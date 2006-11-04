@@ -1,0 +1,2243 @@
+# Translation of faq.docbook to Russian
+# Copyright (C) 2006, Krusader Krew
+# This file is distributed under the same license as the Krusader package
+# Roman Batejkin <romulak@mail.ru>, 2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version:  Krusader-doc-1.80.0 2006-11-01\n"
+"Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
+"POT-Creation-Date: 2006-11-04 11:13+0000\n"
+"PO-Revision-Date: 2006-11-03 07:18+0000\n"
+"Last-Translator: Roman Batejkin <romulak@mail.ru>\n"
+"Language-Team: Russian <krusader-i18n@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: application/x-xml2pot; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Tag: title
+#: faq.docbook:23
+#, no-c-format
+msgid "Frequently Asked Questions (&FAQ;)"
+msgstr "Часто задаваемые вопросы (&FAQ;)"
+
+#. Tag: primary
+#: faq.docbook:24
+#, no-c-format
+msgid "<primary>FAQ</primary>"
+msgstr ""
+
+#. Tag: para
+#: faq.docbook:29
+#, no-c-format
+msgid ""
+"If you have problems with &krusader; please check the &install_proc_lnk;, "
+"your problem may be due to a bad installation."
+msgstr ""
+"Если у вас возникли проблемы с &krusader; пожалуйста проверьте "
+"&install_proc_lnk; , возможно ваша проблема вызвана неправильной установкой."
+
+#. Tag: para
+#: faq.docbook:32
+#, no-c-format
+msgid ""
+"The &FAQ; is divided into three sections: <itemizedlist> "
+"<listitem><para><link linkend=\"faq_installation\">Installation &FAQ;</link> "
+"(this page)</para></listitem> <listitem><para><link linkend=\"faq_usage"
+"\">Usage &FAQ;</link> (issues when running/using &krusader;)</para></"
+"listitem> <listitem><para><link linkend=\"faq_general\">General &FAQ;</link> "
+"(bug reports, forum, mailing list, ...)</para></listitem> </itemizedlist> If "
+"you have the feeling that a &FAQ; is missing or if something is not clear to "
+"you, please <link linkend=\"editors_note\">let us know</link>."
+msgstr ""
+"&FAQ; разделен на три части: <itemizedlist> <listitem><para><link linkend="
+"\"faq_installation\"> &FAQ;Установка </link> (this page)</para></listitem> "
+"<listitem><para><link linkend=\"faq_usage\"> &FAQ; Использование</link> "
+"(issues when running/using &krusader;)</para></listitem> "
+"<listitem><para><link linkend=\"faq_general\"> &FAQ; Основной</link> (bug "
+"reports, forum, mailing list, ...)</para></listitem> </itemizedlist> If you "
+"have the feeling that a &FAQ; is missing or if something is not clear to "
+"you, please <link linkend=\"editors_note\">let us know</link>."
+
+#. Tag: title
+#: faq.docbook:46
+#, no-c-format
+msgid "Installation &FAQ;"
+msgstr "&FAQ; Установка"
+
+#. Tag: para
+#: faq.docbook:51
+#, no-c-format
+msgid "Does &krusader; need &kde; to run?"
+msgstr "Нуждается ли &krusader; в &kde; ?"
+
+#. Tag: para
+#: faq.docbook:54
+#, no-c-format
+msgid ""
+"<emphasis>No, &krusader; does not need the &kde; window manager</emphasis> "
+"to run on your computer but &krusader;'s natural environment is &kde;, "
+"because it relies on services provided by the &kde; base libraries. Only "
+"some shared libraries are needed &eg; &kde; libraries, &Qt; libraries, &etc; "
+"This means that &krusader; runs on &gnome_url;, &afterstep_url;, &xfce_url; "
+"and other window managers provided the approriate libraries are installed on "
+"your computer. All this is not a problem since the apt-get world can resolve "
+"these dependencies instantly."
+msgstr ""
+"<emphasis>Нет , &krusader; не нуждается в оконном менеджере &kde;</emphasis> "
+"для запуска на вашем компьютере , потому что он пользуется службам&eg; &kde;"
+"и базовой библиотеки &kde;Необходимы только некоторые разделяемые библиотеки "
+"например &kde; &Qt; , &etc;Этот способ в &krusader; , запущеном в "
+"&gnome_url;, &afterstep_url;, &xfce_url; и других оконных менеджерах "
+"реализуется за счет связанных с ними библиотек .Это не проблема и решается "
+"правильным соблюдением зависимостей при установке."
+
+#. Tag: para
+#: faq.docbook:63
+#, no-c-format
+msgid ""
+"You don't need to switch to the &kde; window manager to use &krusader;; you "
+"can still use &gnome_url;, &afterstep_url;, &xfce_url; or another window "
+"manager. However, the configuration of the &krusader; fonts and some "
+"behavior is done by running <command>Kcontrol</command>."
+msgstr ""
+"Нет необходимости переключаться в &kde; для использования &krusader;; вы "
+"можете использовать &gnome_url;, &afterstep_url;, &xfce_url; или в других "
+"оконных менеджерах.Но настройка шрифтов и поведения &krusader; производится "
+"в <command>Kcontrol</command>."
+
+#. Tag: para
+#: faq.docbook:68
+#, no-c-format
+msgid ""
+"A lot depends on what you would like to do with &krusader;. You should know "
+"that &krusader; uses the &kde; &kioslaves1_url; to access remote file "
+"systems, and support for only a limited number of filesystem types are "
+"shipped with &kdelibs_url;, most of the &kioslaves2_url; are bundled with "
+"&kdebase_url; (including fish, sftp and tar). But ... if the property-dialog "
+"should show EXIF-data for .jpeg's, you need &kde;graphics if you want ID3-"
+"infos, you need &kde;multimedia, and so on...."
+msgstr ""
+"Не волнуйтесь о судьбе зависимостей , если вы выберете &krusader;.Вы узнаете "
+"что &krusader; использует &kde; &kioslaves1_url; для получения доступа к "
+"удаленным файловым системам и поддерживает все файловые системы , которые "
+"доступны в &kdelibs_url; больше в &kioslaves2_url; или связаны с "
+"&kdebase_url;(включая fish, sftp и tar).Только... если диалог свойств "
+"показывает данные EXIF для .jpeg's, вы нуждаетесь в пакетах графики &kde; , "
+"если вы хотите видеть информацию ID3 - пакеты мультимедиа для &kde; и так "
+"далее и тому подобное...."
+
+#. Tag: para
+#: faq.docbook:75
+#, no-c-format
+msgid ""
+"To summarize, if you want a working &krusader; - install &kde;libs. If you "
+"want a functional &krusader; then you need &kde;libs + &kde;base. For "
+"maximum functionality, &krusader; needs all of the &kde; package libraries, "
+"but the &kde; window manager is optional."
+msgstr ""
+"Суммируя , если вы хотите работать в &krusader; - установите библиотеки "
+"&kde;.Если нужна полная функциональнось в &krusader; нужно установить "
+"дополнительные библиотеки и базовый пакет &kde;.Для полной функциональности "
+"необходимы все библиотеки и все пакеты &kde; , оконный менеджер остается "
+"опциональным."
+
+#. Tag: para
+#: faq.docbook:86
+#, no-c-format
+msgid "Which libraries does &krusader; need to run?"
+msgstr "Какие библиотеки необходимы для запуска &krusader; ?"
+
+#. Tag: para
+#: faq.docbook:89
+#, no-c-format
+msgid ""
+"For running &krusader; (&eg; when you have installed &krusader; with a "
+"binary RPM) you need less libraries than if you compile &krusader; from "
+"source. &eg; you only need the C-compliler &gcc; when you compile &krusader; "
+"from source (see the next question)."
+msgstr ""
+"Для запуска &krusader; (&eg; если вы установили &krusader; из бинарного RPM) "
+"вы наименее нуждаетесь в библиотеках чем если собираете его из исходного "
+"кода.Например , вы нуждаетесьтолько в компиляторе &gcc; затем компилируете "
+"&krusader; (смотрите следующий вопрос)."
+
+#. Tag: para
+#: faq.docbook:93
+#, no-c-format
+msgid ""
+"Here is a (possibly incomplete) list of the required shared libraries when "
+"you run &krusader;:"
+msgstr ""
+"Здесь (возможно неполный) список необходимых разделяемых библиотек для "
+"&krusader;:"
+
+#. Tag: para
+#: faq.docbook:95
+#, no-c-format
+msgid "kdelibs (for the required &kde; version see the &install_proc_lnk;)"
+msgstr ""
+"библиотеки kde ( для определенной версии &kde; смотреть &install_proc_lnk;)"
+
+#. Tag: para
+#: faq.docbook:98
+#, no-c-format
+msgid "libacl1 libart-2.0 libattr1 libaudio2 libc6 libfam0 libfontconfig1"
+msgstr "libacl1 libart-2.0 libattr1 libaudio2 libc6 libfam0 libfontconfig1"
+
+#. Tag: para
+#: faq.docbook:101
+#, no-c-format
+msgid "libfreetype6 libgcc1 libgcc2 libice6 libidn11 libjpeg62 libkjsembed1"
+msgstr "libfreetype6 libgcc1 libgcc2 libice6 libidn11 libjpeg62 libkjsembed1"
+
+#. Tag: para
+#: faq.docbook:104
+#, no-c-format
+msgid ""
+"libkonq4 libpcre3 libpng12 libqt3-mt libsm6 libstdc++6 libunwind7 libx11-6"
+msgstr ""
+"libkonq4 libpcre3 libpng12 libqt3-mt libsm6 libstdc++6 libunwind7 libx11-6"
+
+#. Tag: para
+#: faq.docbook:107
+#, no-c-format
+msgid ""
+"libxcursor1 libxext6 libxft2 libxi6 libxinerama1 libxrandr2 libxrender1 "
+"libxt6 zlib1g"
+msgstr ""
+"libxcursor1 libxext6 libxft2 libxi6 libxinerama1 libxrandr2 libxrender1 "
+"libxt6 zlib1g"
+
+#. Tag: para
+#: faq.docbook:110
+#, no-c-format
+msgid ""
+"If you need more info please take a look at the &deb_requirements_url; ."
+msgstr ""
+"Если вы нуждаетесь в более подробной информации пожалуйста посмотрите "
+"&deb_requirements_url; ."
+
+#. Tag: para
+#: faq.docbook:119
+#, no-c-format
+msgid ""
+"I have followed all steps but <command>configure</command> complains about "
+"missing libs or headers. What do I need to do?"
+msgstr ""
+"Я сделал все необходое , только <command>configure</command> ругается на "
+"отсутствие библиотек headers.Что я делаю не так ?"
+
+#. Tag: para
+#: faq.docbook:123
+#, no-c-format
+msgid "Please install them. ;-)"
+msgstr "Пожалуйста установите их . ;-)"
+
+#. Tag: para
+#: faq.docbook:124
+#, fuzzy, no-c-format
+msgid ""
+"Here is a (possibly incomplete) list of the required packages to compile "
+"&krusader; from source:"
+msgstr ""
+"Здесь (возможно неполный) список необходимых разделяемых библиотек для "
+"&krusader;:"
+
+#. Tag: para
+#: faq.docbook:126
+#, no-c-format
+msgid ""
+"gcc-cpp gcc-c++ glibc libgcc1 (other compilers may work but haven't been "
+"tested)"
+msgstr ""
+
+#. Tag: para
+#: faq.docbook:128
+#, no-c-format
+msgid "autoconf automake XFree"
+msgstr "autoconf automake XFree"
+
+#. Tag: para
+#: faq.docbook:130
+#, no-c-format
+msgid "libqt3 libqt-devel"
+msgstr "libqt3 libqt-devel"
+
+#. Tag: para
+#: faq.docbook:131
+#, no-c-format
+msgid "kdelibs kdelibs-devel"
+msgstr "kdelibs kdelibs-devel"
+
+#. Tag: para
+#: faq.docbook:132
+#, no-c-format
+msgid "libjpeg62 libjpeg-devel libpng3 libmng1"
+msgstr "libjpeg62 libjpeg-devel libpng3 libmng1"
+
+#. Tag: para
+#: faq.docbook:133
+#, no-c-format
+msgid "fam libfam-devel"
+msgstr "fam libfam-devel"
+
+#. Tag: para
+#: faq.docbook:134
+#, no-c-format
+msgid "zlib1 arts libart_lgpl2 libstdc++5 libpcre0"
+msgstr "zlib1 arts libart_lgpl2 libstdc++5 libpcre0"
+
+#. Tag: para
+#: faq.docbook:135
+#, no-c-format
+msgid ""
+"libkjsembed, if you use the &javascript_console_lnk;, often found in a "
+"package called KDEbindings(-devel) and libkonq-dev for the &konqueror; right-"
+"click menu entries."
+msgstr ""
+"libkjsembed,если вы используете &javascript_console_lnk;,обычно находится в "
+"пакете именуемом KDEbindings(-devel) и libkonq-dev для &konqueror; внутри "
+"меню по правому щелчку мыши."
+
+#. Tag: para
+#: faq.docbook:138
+#, no-c-format
+msgid ""
+"Most RPM-based distributions separate the headers from the libs. The headers "
+"are needed to compile &krusader;. Look for packages in the form foo-devel-*."
+"rpm (&eg; <filename>kdelibs-devel-foo.i586.rpm</filename>) or foo-dev-*.deb "
+"for &debian; based distributions. These are usually included with your "
+"distribution."
+msgstr ""
+"Большинство дистрибутивов на основе RPM разделяют headers и сами библиотеки."
+"Просто установите их , введя в поиске пакетов foo-devel-*.rpm(&eg; "
+"<filename>kdelibs-devel-foo.i586.rpm</filename>) или oo-dev-*.deb для "
+"основанных на &debian; дистрибутивов.Обычно они включены в стандартной "
+"поставке."
+
+#. Tag: para
+#: faq.docbook:143
+#, no-c-format
+msgid ""
+"If you can't find the needed package, use &rpmfind_url; and click 'missing "
+"lib or header' in the search line. Or use <command>apt-cache search "
+"<replaceable>foo</replaceable></command> to find the corresponding package "
+"for &debian; based distributions."
+msgstr ""
+"Если вы не нашли необходимый пакет используйте &rpmfind_url; и попробуйте "
+"найти там недостающие пакеты.Или используйте <command>apt&krusader;-cache "
+"search <replaceable>foo</replaceable></command> для поиска в пакета в "
+"дистрибутивах на основе &debian;"
+
+#. Tag: para
+#: faq.docbook:153
+#, no-c-format
+msgid "How do I compile &krusader; when I'm using a 64 bit processor ?"
+msgstr "Как мне скомпилировать &krusader; на 64 -х битном процессоре ?"
+
+#. Tag: para
+#: faq.docbook:156
+#, no-c-format
+msgid ""
+"As far as we know there are no issues, btw. &krusader; is available on "
+"<ulink url=\"http://packages.debian.org/unstable/utils/krusader\">many other "
+"architectures</ulink>."
+msgstr ""
+"Насколько нам известно в этом нет нужды .&krusader; доступен для многих "
+"платформ <ulink url=\"http://packages.debian.org/unstable/utils/krusader"
+"\">много различных архитектур</ulink>."
+
+#. Tag: para
+#: faq.docbook:165
+#, no-c-format
+msgid ""
+"I have downloaded the Source RPM <filename>krusader-x.xx.dist.src.rpm</"
+"filename> What now?"
+msgstr ""
+"Я загрузил RPM с исходным кодом <filename>krusader-x.xx.dist.src.rpm</"
+"filename> Что делать дальше ?"
+
+#. Tag: para
+#: faq.docbook:169 faq.docbook:439
+#, no-c-format
+msgid ""
+"Check the ownership and the permissions on <filename class=\"directory\">/"
+"usr/src/RPM/</filename> and all recursive directories, that your normal user "
+"can read-write-execute in these directories."
+msgstr ""
+"Проверьте права доступа для <filename class=\"directory\">/usr/src/RPM/</"
+"filename> и всех вложенных директорий - ваша учетная запись пользователя "
+"должна иметь права на чтение-запись-выполнение во всех директориях."
+
+#. Tag: para
+#: faq.docbook:173
+#, no-c-format
+msgid "To produce the binary RPM for your computer, do this:"
+msgstr "Для создания бинарного RPM выполните :"
+
+#. Tag: screen
+#: faq.docbook:174
+#, no-c-format
+msgid ""
+"<prompt>$</prompt> <userinput><command>rpm</command> <option>--rebuild</"
+"option> <replaceable>&lt;/path/to/rpmfile/&gt; krusader-x.xx.dist.src.rpm</"
+"replaceable></userinput>"
+msgstr ""
+"<prompt\n"
+">$</prompt\n"
+"> <userinput\n"
+"><command\n"
+">rpm</command\n"
+"> <option\n"
+">--rebuild</option\n"
+"> <replaceable\n"
+">&lt;/путь_к_файлу/&gt; krusader-x.xx.dist.src.rpm</replaceable\n"
+"></userinput\n"
+">"
+
+#. Tag: para
+#: faq.docbook:176
+#, no-c-format
+msgid ""
+"If all <link linkend=\"faqi_missing_libs\">dependencies</link> are OK, a "
+"binary RPM <filename>krusader-x.xx.dist.rpm</filename> will be created at "
+"<filename class=\"directory\">/usr/src/RPM/RPMS/i586</filename> (replace "
+"i586 with your architecture)."
+msgstr ""
+"Если все <link linkend=\"faqi_missing_libs\"> зависимости</"
+"link>удовлетворены - RPM <filename>krusader-x.xx.dist.rpm</filename> будет "
+"создан в <filename class=\"directory\">/usr/src/RPM/RPMS/i586</filename>"
+"(если у вас архитектура i586)."
+
+#. Tag: para
+#: faq.docbook:180
+#, no-c-format
+msgid ""
+"Test the binary RPM for errors before installing: <screen><prompt>$</prompt> "
+"<userinput><command>rpm</command> <option>-i --test</option>  "
+"<replaceable>&lt;/path/to/rpmfile&gt; krusader-x.xx.dist.rpm</replaceable></"
+"userinput></screen> If the prompt returns without any message, than "
+"everything is OK."
+msgstr ""
+"Проверьте собранный бинарный пакет перед установкой командой "
+"<screen><prompt\n"
+">$</prompt\n"
+"> <userinput\n"
+"><command\n"
+">rpm</command\n"
+"> <option\n"
+">-i --test</option\n"
+">  <replaceable\n"
+">&lt;/path/to/rpmfile&gt; krusader-x.xx.dist.rpm</replaceable\n"
+"></userinput\n"
+"></screen> .Если в ответ не будет никаких сообщений , значит все завершилось "
+"успешно."
+
+#. Tag: para
+#: faq.docbook:184
+#, no-c-format
+msgid ""
+"Install the binary RPM as usual, for example: <screen><prompt>$</prompt> "
+"<userinput><command>su -c 'rpm</command> <option>-Uvh</option>  "
+"<replaceable>&lt;/path/to/rpmfile&gt; krusader-x.xx.dist.rpm</replaceable>'</"
+"userinput></screen> You will be asked to enter your root password."
+msgstr ""
+"Установка пакета делается как обычно , например <screen><prompt\n"
+">$</prompt\n"
+"> <userinput\n"
+"><command\n"
+">su -c 'rpm</command\n"
+"> <option\n"
+">-Uvh</option\n"
+">  <replaceable\n"
+">&lt;/path/to/rpmfile&gt; krusader-x.xx.dist.rpm</replaceable\n"
+">'</userinput\n"
+"></screen> .Вас спросят о пароле для суперпользователя."
+
+#. Tag: para
+#: faq.docbook:188
+#, no-c-format
+msgid ""
+"Now you can <link linkend=\"starting-krusader\">start</link> &krusader;."
+msgstr ""
+"Теперь вы можете <link linkend=\"starting-krusader\">запустить</link> "
+"&krusader;."
+
+#. Tag: para
+#: faq.docbook:192
+#, no-c-format
+msgid ""
+"For more information about RPM, visit &rpm_org_url; and read the "
+"&rpm_guide_url; by Eric Foster-Johnson."
+msgstr ""
+"Для получения более подробной информации по RPM посетите &rpm_org_url; и "
+"почитайте &rpm_guide_url; от Eric Foster-Johnson."
+
+#. Tag: para
+#: faq.docbook:202
+#, no-c-format
+msgid ""
+"I'm trying to install binary foo (RPM or DEB package), but it fails. What's "
+"wrong?"
+msgstr ""
+"Я пытаюсь установить бинарный пакет (RPM или DEB ) , только ничего не "
+"получается .Что неправильно ?"
+
+#. Tag: para
+#: faq.docbook:205
+#, no-c-format
+msgid ""
+"Since we only prepare (and use) the source, we cannot know this. Did you "
+"test the binary RPM before installing? <screen><prompt>$</prompt> "
+"<userinput><command>rpm</command> <option>-i --test</option>  "
+"<replaceable>&lt;/path/to/rpmfile&gt; krusader-x.xx.dist.rpm</replaceable></"
+"userinput></screen> If the prompt returns without any message, than "
+"everything is OK. RPM's downloaded from our website are usually provided by "
+"&krusader; users. Visit your distro website and search for an updated RPM."
+msgstr ""
+"Обычно мы только пишем (и используем) исходный код , мы не знаем об этом.Вы "
+"провели тестирование пакета перед установкой ?<screen><prompt\n"
+">$</prompt\n"
+"> <userinput\n"
+"><command\n"
+">rpm</command\n"
+"> <option\n"
+">-i --test</option\n"
+">  <replaceable\n"
+">&lt;/path/to/rpmfile&gt; krusader-x.xx.dist.rpm</replaceable\n"
+"></userinput\n"
+"></screen>.Если не было никаких сообщений после обработки команды , значит "
+"все в порядке.Пакеты , которые доступны на нашем сайте обычно "
+"предоставляются пользователями.Посетите сайт вашего дистрибутива и поищите "
+"там нужный пакет."
+
+#. Tag: para
+#: faq.docbook:211
+#, no-c-format
+msgid ""
+"If the RPM is not OK, try to find another package at &Linux; software "
+"archives such as &freshmeat_url; or &kde_apps_url;. If you still can't find "
+"the appropriate package for your &Linux; distribution, we recommend "
+"searching for it with &rpmfind_url; or &rpmpbone_url;."
+msgstr ""
+"Если пакета нет , попробуйте поискать другие пакеты для &Linux; в фаловых "
+"архивах , таких как &freshmeat_url; или &kde_apps_url;.Если вы так и не "
+"смогли найти пакет для вашего дистрибутива , мы рекомендуем поискать на "
+"&rpmfind_url; или &rpmpbone_url;."
+
+#. Tag: para
+#: faq.docbook:216
+#, no-c-format
+msgid ""
+"In general, a package for an older version of your distrubution or even for "
+"another distribution might work on your computer (&eg; FC RPM's often work "
+"on Mdk and RH, and vice versa), but it is always the best that you install "
+"only RPM's that exactly match your distribution. If you can't find a package "
+"that matches your distribution version, architecture or distribution, then "
+"use a source RPM. When you use a source RPM, the Krusader sources will be "
+"built, on your computer, guaranteeing a suitable binary RPM for your "
+"specific distribution and architecture. In addition, this method results in "
+"maximum system speed, since the resulting binary is customized for your "
+"computer. Please read the previous question, it explains how to install a "
+"source RPM. The best solution is explained in the next question."
+msgstr ""
+"В основном , пакеты от старых версий вашего дистрибутива или других "
+"дистрибутивов могут заботать ( например будут работать под Mdk и RH, и им "
+"подобным) , хотя конечно же лучше всего будет если вы будете устанавливать "
+"пакеты , предназначенные для вашего дистрибутива.Если вы так и не смогли "
+"найти пакеты для вашей версии дистрибутива или вашей архитектуры используйте "
+"пакет с исходным кодом.Если вы будете собирать из пакета с исходным кодом , "
+"Крусадер будет гарантировано собран под ваши архитектуру и дистрибутив.В "
+"дополнение этот метод дает максимальные результаты в скорости дальнейшей "
+"работы , потому что пакет оптимизирован под особенности вашего компьютера."
+"Пожалуйста прочитайте предыдущий вопрос , он обьясняет установку из пакета с "
+"исходным кодом.Лучшие решения описаны в следующем вопросе."
+
+#. Tag: para
+#: faq.docbook:235
+#, no-c-format
+msgid "I can't find a RPM or DEB package for &krusader;, What now?"
+msgstr "Я не могу найти пакеты RPM или DEB для &krusader; , что делать ?"
+
+#. Tag: para
+#: faq.docbook:238
+#, no-c-format
+msgid ""
+"Check if your distribution provides &krusader;, if it doesn't than contact "
+"your distribution creator and ask them to include &krusader;!"
+msgstr ""
+
+#. Tag: para
+#: faq.docbook:241
+#, no-c-format
+msgid ""
+"Did you take a look at the &URL;'s on the &install_proc_lnk; page? Yes, and "
+"nothing found? Then you can compile &krusader; from source :) Even if you "
+"think that you have no skills, you will probably succeed in compiling "
+"&krusader;! We provide a very detailed installation procedure. This HowTo "
+"enables newcomers to compile &krusader; from source, even if they have never "
+"done a compilation from source before; just follow the instructions "
+"carefully. Feel free to post a &help_request_lnk; if you encounter problems."
+msgstr ""
+"Вы видели &URL;' на &install_proc_lnk; странице ? И ничего не нашли ? Значит "
+"вы можете скомпилировать &krusader; из исходного кода.Если вы не уверены в "
+"своих возможностях , попробуйте собрать &krusader;!Мы предоставили очень "
+"подробную методику установки. Это руководство позволит новичкам собрать "
+"&krusader; из исходного кода даже если вы не собирали ранее ничего , просто "
+"внимательно следуйте инструкциям.Оставьте сообщение на &help_request_lnk; "
+"если столкнетесь с проблемами."
+
+#. Tag: para
+#: faq.docbook:255
+#, no-c-format
+msgid ""
+"I've installed &krusader;, but when I start it, only the <guimenu>\"Help\"</"
+"guimenu> menu appears. Why?"
+msgstr ""
+"Я установил &krusader;, только когда я запускаю его в меню видно только "
+"<guimenu>\"Help\"</guimenu>.Почему ?"
+
+#. Tag: para
+#: faq.docbook:258
+#, no-c-format
+msgid ""
+"In this case only the <guimenu>Help</guimenu> menu is visible and all other "
+"menu items like &eg; <guimenu>File</guimenu> and <guimenu>Select</guimenu> "
+"are missing. This is because some distributions put the <filename>krusaderui."
+"rc</filename> file in the wrong directory. To solve the problem, just copy "
+"the <filename>krusaderui.rc</filename> file from the package "
+"<filename>krusader_kde3/krusader/krusaderui.rc</filename> to <filename>"
+"$KDEDIR/share/apps/krusader/krusaderui.rc</filename> and <filename>~/.kde/"
+"share/apps/krusader/krusaderui.rc</filename> and re-run &krusader;. If you "
+"have compiled &krusader; from sources this is often caused when the "
+"&kdeqtdir_lnk; environment variables are not correctly set. The result is "
+"that the <filename>krusaderui.rc</filename> file is installed in the wrong "
+"directory. Please also read the next question."
+msgstr ""
+"In this case only the <guimenu>Help</guimenu> menu is visible and all other "
+"menu items like &eg; <guimenu>File</guimenu> and <guimenu>Select</guimenu> "
+"are missing. This is because some distributions put the <filename>krusaderui."
+"rc</filename> file in the wrong directory. To solve the problem, just copy "
+"the <filename>krusaderui.rc</filename> file from the package "
+"<filename>krusader_kde3/krusader/krusaderui.rc</filename> to <filename>"
+"$KDEDIR/share/apps/krusader/krusaderui.rc</filename> and <filename>~/.kde/"
+"share/apps/krusader/krusaderui.rc</filename> and re-run &krusader;. If you "
+"have compiled &krusader; from sources this is often caused when the "
+"&kdeqtdir_lnk; environment variables are not correctly set. The result is "
+"that the <filename>krusaderui.rc</filename> file is installed in the wrong "
+"directory. Please also read the next question."
+
+#. Tag: para
+#: faq.docbook:275
+#, no-c-format
+msgid ""
+"Some new menu items are missing after updating &krusader;, what's wrong?"
+msgstr ""
+"Некоторые новые меню &krusader; недоступны после обновления , что поломалось?"
+
+#. Tag: para
+#: faq.docbook:278
+#, no-c-format
+msgid ""
+"The <filename>krusaderui.rc</filename> file is stored in <filename>$KDEDIR/"
+"share/apps/krusader/krusaderui.rc</filename>. When you change the <guilabel>"
+"\"Toolbar\"</guilabel>, &kde; makes a copy of that file in the home "
+"directory at <filename>~/.kde/share/apps/krusader/krusaderui.rc</filename>. "
+"If Krusader was previously installed on your computer, and you install a "
+"newer &krusader; version the <filename>~/.kde/share/apps/krusader/krusaderui."
+"rc</filename> file must be replaced with the newer version."
+msgstr ""
+"Файл <filename>krusaderui.rc</filename> хранится в <filename>$KDEDIR/share/"
+"apps/krusader/krusaderui.rc</filename>. Если  вы выбрали новую <guilabel>"
+"\"Панель\"</guilabel> ,&kde; создаст копию файла <filename>~/.kde/share/apps/"
+"krusader/krusaderui.rc</filename> в домашнем каталоге. Если Крусадер уже был "
+"установлен на вашем компьютере, и вы установили новую версию , файл "
+"<filename>~/.kde/share/apps/krusader/krusaderui.rc</filename> должен быть "
+"перезаписан новой версией."
+
+#. Tag: para
+#: faq.docbook:286
+#, no-c-format
+msgid ""
+"The first line of <filename>krusaderui.rc</filename> contains the version "
+"number. After installing a newer &krusader; version, &kde; will "
+"automatically replace the old <filename>~/.kde/share/apps/krusader/"
+"krusaderui.rc</filename> with the newer version when starting the new "
+"&krusader; for the first time (&kde; will detect the newer version number in "
+"the first line)."
+msgstr ""
+"Первая строка файла <filename>krusaderui.rc</filename> содержит номер "
+"версии. После установки новой версии &krusader; &kde; автоматически "
+"перепишет старый файл <filename>~/.kde/share/apps/krusader/krusaderui.rc</"
+"filename> новой версией при первом старте нового &krusader; (&kde; определит "
+"новую версию по первой строке)."
+
+#. Tag: para
+#: faq.docbook:294
+#, no-c-format
+msgid ""
+"If you install a CVS or beta version and &krusader; was already installed on "
+"your computer then you should delete the <filename>krusaderui.rc</filename> "
+"file in your home directory to activate the new menu entries <prompt>$</"
+"prompt> <userinput><command>rm</command> <option>~/.kde/share/apps/krusader/"
+"krusaderui.rc</option></userinput>"
+msgstr ""
+"Если вы устанавливает из CVS или бета версию и &krusader; уже был кстановлен "
+"вы должны удалить старый файл <filename>krusaderui.rc</filename> для "
+"вклучения новых меню <prompt>$</prompt> <userinput><command>rm</command> "
+"<option>~/.kde/share/apps/krusader/krusaderui.rc</option></userinput>"
+
+#. Tag: para
+#: faq.docbook:300
+#, no-c-format
+msgid ""
+"If the <filename>~/.kde/share/apps/krusader/krusaderui.rc</filename> file is "
+"older, then the new menu elements will not be shown. Read the previous "
+"question for information on how to update the <filename>krusaderui.rc</"
+"filename> file. If <filename>krusaderui.rc</filename> is missing or in a "
+"wrong directory, only the <guimenu>\"Help\"</guimenu> menu appears, please "
+"read the previous question."
+msgstr ""
+"Если файл <filename>~/.kde/share/apps/krusader/krusaderui.rc</filename> "
+"старый , новые элементы меню не будут видны. Прочитайте предыдущий вопрос , "
+"в нем описано как обновить файл <filename>krusaderui.rc</filename>. Если "
+"файл <filename>krusaderui.rc</filename> утерян или находится не в том "
+"каталоге , видно только <guimenu>\"Справка\"</guimenu> , прочитайте "
+"предыдущий вопрос."
+
+#. Tag: para
+#: faq.docbook:312
+#, no-c-format
+msgid ""
+"When I run <command>make</command> it complains about <filename>libfam.la</"
+"filename>"
+msgstr ""
+"Когда я запускаю <command>make</command> , он жалуется на <filename>libfam."
+"la</filename>"
+
+#. Tag: para
+#: faq.docbook:315
+#, no-c-format
+msgid ""
+"The <command>./configure</command> script does not check for the presence of "
+"<filename>libfam.la</filename>, and <command>make</command> needs "
+"<filename>libfam.la</filename> to compile &krusader;. If you know how this "
+"can be solved, please let us know. Install <filename>libfam0-devel-foo.rpm</"
+"filename>. Note: when you install &Mandrake;-&Linux; 9.2 with the default "
+"settings, this package is not installed. If you need more information take a "
+"look at &missing_libs_lnk;."
+msgstr ""
+"Скрипт <command>./configure</command> не проверяет наличие файла "
+"<filename>libfam.la</filename>, и <command>make</command> нуждается в "
+"<filename>libfam.la</filename> для сборки &krusader;.Если вы знаете как это "
+"устранить , помогите нам.Установите пакет <filename>libfam0-devel-foo.rpm</"
+"filename>.Примечание: если вы установили &Mandrake;-&Linux; 9.2 с "
+"настройками по умолчанию , этот пакет не установлен.Если вам нужно больше "
+"информации о зависимостях посмотрите на &missing_libs_lnk;."
+
+#. Tag: para
+#: faq.docbook:329
+#, no-c-format
+msgid ""
+"&debian; complains about &Qt; when running <command>./configure</command>"
+msgstr ""
+"&debian; жалуется на &Qt; когда запускаю  <command>./configure</command>"
+
+#. Tag: para
+#: faq.docbook:332
+#, no-c-format
+msgid ""
+"This problem occurs when you use &gcc; 2.95, you need to install &gcc; 3.2 "
+"(or higher). You also need to set the enviroment variables \"CC, CPP and CXX"
+"\" before running the <command>./configure</command> script. <screen><prompt>"
+"$</prompt> <userinput><command>export</command> CC=<replaceable>/usr/bin/gcc-"
+"3.2</replaceable></userinput>\n"
+"<prompt>$</prompt> <userinput><command>export</command> CXX=<replaceable>/"
+"usr/bin/g++-3.2</replaceable></userinput>\n"
+"<prompt>$</prompt> <userinput><command>export</command> CPP=<replaceable>/"
+"usr/bin/cpp-3.2</replaceable></userinput>\n"
+"</screen> For more information please take a look &debian_qt_a_url; and at "
+"the &debian_qt_b_url; on how to build a &Qt;/&kde;3 application on &debian;."
+msgstr ""
+"Эта проблема возникает когда вы используете &gcc; 2.95, нужно установить "
+"&gcc; 3.2 (или выше). Вы также должны установить переменные окружения \"CC, "
+"CPP and CXX\"  до запуска скрипта <command>./configure</command> .script. "
+"<screen><prompt>$</prompt> <userinput><command>export</command> "
+"CC=<replaceable>/usr/bin/gcc-3.2</replaceable></userinput>\n"
+"<prompt>$</prompt> <userinput><command>export</command> CXX=<replaceable>/"
+"usr/bin/g++-3.2</replaceable></userinput>\n"
+"<prompt>$</prompt> <userinput><command>export</command> CPP=<replaceable>/"
+"usr/bin/cpp-3.2</replaceable></userinput>\n"
+"</screen> Для получения дополнительной информации посетите &debian_qt_a_url; "
+"и &debian_qt_b_url; чтобы узнать как собирать приложения &Qt;/&kde;3 в "
+"&debian;."
+
+#. Tag: para
+#: faq.docbook:346
+#, no-c-format
+msgid ""
+"I have a <filename>libGLcore.so.1</filename> compile error after using the "
+"&nvidia; installer"
+msgstr ""
+"У меня ошибка компиляции <filename>libGLcore.so.1</filename> после "
+"использования инсталлятора &nvidia;"
+
+#. Tag: para
+#: faq.docbook:349
+#, no-c-format
+msgid ""
+"This problem occurs when you use the &nvidia; installer and not the official "
+"&nvidia; packages of your distribution. &krusader; is based on &Qt; which "
+"can be linked against the X OpenGL libraries. As a result &krusader; may "
+"look for OpenGL as well. The problem is that the &nvidia; installer (prior "
+"to version 7xxx) doesn't do its job properly, it replaces the OpenGL header "
+"files (which get included into &krusader;) but doesn't set the libGL links "
+"correctly. The best solution is to use the &nvidia; packages provided by "
+"your distributor or a new &nvidia; installer, the current version at moment "
+"of writing is 7114. If, for some reason, you must use an old &nvidia; "
+"driver, one solution is the following (bad? :) hack, the exact commands "
+"depend on the distribution used and the version of the &nvidia; driver (6111 "
+"in this example), but it should read something like this:"
+msgstr ""
+"Эта проблема связана с использованием установщика &nvidia;. &krusader; "
+"основан на &Qt; и связан с библиотеками X OpenGL . Проблема в том , что "
+"установщик &nvidia; ( до версии 7xxx) переписывает файлы заголовков OpenGL и "
+"не устанавливает правильные ссылки на библиотеки OpenGL. Лучшим решением "
+"будет использовать пакет с драйвером &nvidia; , который идет в "
+"дистрибутивной поставке.Если в некоторых случаях необходимо использовать "
+"старый драйвер единственное решение использовать нестандартное решение для "
+"старого драйвера(6111 в этом примере) , что-то вроде этого :"
+
+#. Tag: screen
+#: faq.docbook:361
+#, no-c-format
+msgid ""
+"<prompt>$</prompt> <userinput><command>ln</command> -s "
+"<replaceable>libGLcore.so.1.0.6111  libGLcore.so.0</replaceable></"
+"userinput>\n"
+"<prompt>$</prompt> <userinput><command>ln</command> -s "
+"<replaceable>libGLcore.so.1.0.6111  libGLcore.so</replaceable></userinput>\n"
+"<prompt>$</prompt> <userinput><command>ln</command> -s "
+"<replaceable>libGLcore.so.1.0.6111  libGLcore.so.1.0.0</replaceable></"
+"userinput>\n"
+"<prompt>$</prompt> <userinput><command>ln</command> -s "
+"<replaceable>libGLcore.so.1.0.6111  libGLcore.so.0.0.0</replaceable></"
+"userinput>\n"
+"<prompt>$</prompt> <userinput><command>ln</command> -s "
+"<replaceable>libGLcore.so.1.0.6111  libGL.so </replaceable></userinput>\n"
+"<prompt>$</prompt> <userinput><command>ln</command> -s "
+"<replaceable>libGLcore.so.1.0.6111  libGL.so.0</replaceable></userinput>\n"
+"<prompt>$</prompt> <userinput><command>ln</command> -s "
+"<replaceable>libGLcore.so.1.0.6111  libGL.so.0.0.0</replaceable></"
+"userinput>\n"
+"<prompt>$</prompt> <userinput><command>ln</command> -s "
+"<replaceable>libGLcore.so.1.0.6111  libGL.so.1</replaceable></userinput>\n"
+"<prompt>$</prompt> <userinput><command>ln</command> -s "
+"<replaceable>libGLcore.so.1.0.6111  libGL.so.1.0.0</replaceable></"
+"userinput>\n"
+"<prompt>$</prompt> <userinput><command>ln</command> -s <replaceable> /usr/"
+"lib/libGLU.la   /usr/X11R6/lib/libGLU.la</replaceable></userinput>"
+msgstr ""
+
+#. Tag: para
+#: faq.docbook:369
+#, no-c-format
+msgid "Why &krusader;-1.60.x does not compile with gcc4?"
+msgstr "Почему &krusader;-1.60.x не собирается с gcc4?"
+
+#. Tag: para
+#: faq.docbook:372
+#, no-c-format
+msgid ""
+"Because &krusader;-1.60.x was not gcc4 compatible, it needs first some "
+"patches: <itemizedlist> <listitem><para>add 'class ListPanelFunc;' in "
+"krusader/Panel/listpanel.h</para></listitem> <listitem><para>add 'class "
+"KMountManGUI;' in krusader/MountMan/kmountman.h</para></listitem> "
+"<listitem><para>add 'class KrDetailedViewItem;' in krusader/Panel/"
+"krdetailedview.h </para></listitem> </itemizedlist> More information can be "
+"found in our <ulink url=\"http://www.krusader.org/phpBB/viewtopic.php?t=1328"
+"\">forum</ulink> ."
+msgstr ""
+"Потому что &krusader;-1.60.x  не совместим с gcc4 , он нуждается в "
+"заплатках : <itemizedlist> <listitem><para>add 'class ListPanelFunc;' in "
+"krusader/Panel/listpanel.h</para></listitem> <listitem><para>add 'class "
+"KMountManGUI;' in krusader/MountMan/kmountman.h</para></listitem> "
+"<listitem><para>add 'class KrDetailedViewItem;' in krusader/Panel/"
+"krdetailedview.h </para></listitem> </itemizedlist> Больше можно узнать на "
+"нашем <ulink url=\"http://www.krusader.org/phpBB/viewtopic.php?t=1328"
+"\">форуме</ulink> ."
+
+#. Tag: para
+#: faq.docbook:388
+#, no-c-format
+msgid ""
+"I am having trouble compiling and installing &krusader;, how do I send a "
+"help request?"
+msgstr ""
+"У меня возникли пролемы со сборкой и установкой &krusader;, где и как мне "
+"получить помощь ?"
+
+#. Tag: para
+#: faq.docbook:391
+#, no-c-format
+msgid ""
+"Please read our detailed <link linkend=\"compilation\">installation "
+"procedure</link> and the &faq_lnk;. If you can't find a solution to your "
+"problem then feel free to post a <emphasis role=\"bold\">help request</"
+"emphasis> at our &krusader; forum or use the &kruusers_url; mailinglist. But "
+"before posting a help request, please try the following:"
+msgstr ""
+"Пожалуйста прочитайте нашу подробную <link linkend=\"compilation"
+"\">инструкцию по установке</link> и &faq_lnk;. Если вы не нашли решение "
+"проблемы опишите все в <emphasis role=\"bold\">просьбе о помощи</emphasis> "
+"на нашем форуме &kruusers_url; или в списке рассылки.Перед этим попробуйте "
+"следующее:"
+
+#. Tag: para
+#: faq.docbook:397
+#, no-c-format
+msgid ""
+"Use the &kruforumsearch_url; function of the &forum_lnk;, your problem might "
+"be solved or discussed already."
+msgstr ""
+"Воспользуйтесь функцией &kruforumsearch_url; на &forum_lnk;, ваша проблема "
+"возможно уже решена или уже обсуждается ."
+
+#. Tag: para
+#: faq.docbook:401
+#, no-c-format
+msgid ""
+"If you can't find a solution, please make a note of the following issues: "
+"<itemizedlist> <listitem><para>the &krusader; version used</para></listitem> "
+"<listitem><para>the &Linux; distribution + version used</para></listitem> "
+"<listitem><para>a good description of the problem</para></listitem> </"
+"itemizedlist> Without this information, it is very difficult for us to help "
+"you."
+msgstr ""
+"Если вы не нашли решения проблемы , создайте вопрос со следующими "
+"параметрами: <itemizedlist> <listitem><para>используемая версия &krusader;</"
+"para></listitem> <listitem><para>дистрибутив &Linux; + версия</para></"
+"listitem> <listitem><para>полное описание проблемы</para></listitem> </"
+"itemizedlist> Без этой информации будет очень трудно помочь вам."
+
+#. Tag: para
+#: faq.docbook:408
+#, no-c-format
+msgid ""
+"If you give us the error messages (&eg; <command>make</command> error "
+"messages) please start with the FIRST error message, all the error messages "
+"who are following the first error message are consequences and not the cause "
+"of your problem."
+msgstr ""
+"Если у вас появляются ошибки в работе (например сообщения об ошибках "
+"<command>make</command> ) , пожалуйста начните с первой ошибки , все "
+"последующие - это следствие первой ошибки и не причина вашей проблемы."
+
+#. Tag: para
+#: faq.docbook:415
+#, no-c-format
+msgid "Send out the help request ;)"
+msgstr "Пошлите ваш запрос о помощи ;)"
+
+#. Tag: para
+#: faq.docbook:420 faq.docbook:974 faq.docbook:1111
+#, no-c-format
+msgid "Thanks for your cooperation!"
+msgstr "Спасибо за ваше сотрудничество!"
+
+#. Tag: para
+#: faq.docbook:427
+#, no-c-format
+msgid "How can I build an RPM package for &krusader;?"
+msgstr "Как мне собрать пакет RPM для &krusader;?"
+
+#. Tag: para
+#: faq.docbook:430
+#, no-c-format
+msgid ""
+"If you have experience with compiling from source, you will probably be able "
+"to build a &krusader; RPM too. Information about RPM can be found at "
+"&rpm_org_url; and in the &rpm_guide_url; by Eric Foster-Johnson. The next is "
+"the short procedure howto to build an RPM."
+msgstr ""
+"Если у вас есть опыт сборки программ из исходного кода , можете попробовать "
+"также собрать и RPM.Информация о сборке на &rpm_org_url; и в &rpm_guide_url; "
+"от Eric Foster-Johnson.Далее короткое описание процедуры создания RPM."
+
+#. Tag: para
+#: faq.docbook:434
+#, no-c-format
+msgid ""
+"Never, ever build RPMs when logged in as root. Mistakes in building packages "
+"(&eg; a bad <filename>krusader.spec</filename> file) can do serious damage "
+"to your system, when logged in as root."
+msgstr ""
+"Никогда не создавайте пакеты RPM под учетной записью root.Ошибки в "
+"построении пакета (например неправильный файл <filename>krusader.spec</"
+"filename>) могут серьезно повредить вашу систему, когда вы работаете как "
+"root."
+
+#. Tag: para
+#: faq.docbook:437
+#, no-c-format
+msgid ""
+"Compile &krusader; from source to check that the compilation works fine."
+msgstr ""
+"Соберите &krusader; из исходного кода для проверки корректной компиляции."
+
+#. Tag: para
+#: faq.docbook:443
+#, no-c-format
+msgid ""
+"Copy <filename>kusader-1.xx.tar.gz</filename> to <filename class=\"directory"
+"\">/usr/scr/RPM/SOURCE</filename>"
+msgstr ""
+"Скопируйте <filename>kusader-1.xx.tar.gz</filename> в <filename class="
+"\"directory\">/usr/scr/RPM/SOURCE</filename>"
+
+#. Tag: para
+#: faq.docbook:446
+#, no-c-format
+msgid ""
+"Copy <filename>kusader.spec</filename> to <filename class=\"directory\">/usr/"
+"scr/RPM/SPECS</filename> Tip: the latest <filename>kusader.spec</filename> "
+"can be found in CVS."
+msgstr ""
+"Скопируйте <filename>kusader.spec</filename>в <filename class=\"directory\">/"
+"usr/scr/RPM/SPECS</filename> Совет: самый последний <filename>kusader.spec</"
+"filename> можно найти в CVS."
+
+#. Tag: para
+#: faq.docbook:450
+#, no-c-format
+msgid ""
+"Edit <filename>kusader.spec</filename> and add your name, your e-mail "
+"address, the rpm name, ... Other changes may be needed if <command>rpmbuild</"
+"command> fails."
+msgstr ""
+"Отредактируйте <filename>kusader.spec</filename> и добавьте свое имя , адрес "
+"эл. почты , имя пакета ,...Другие изменения необходимы , если "
+"<command>rpmbuild</command> не работает."
+
+#. Tag: para
+#: faq.docbook:454
+#, no-c-format
+msgid ""
+"Build the binary and the source RPM with: <screen><prompt>$</prompt> "
+"<userinput><command>rpmbuild</command> <option>-ba</option> <replaceable>/"
+"usr/scr/RPM/SPECS/krusader.spec</replaceable></userinput></screen> If "
+"everything went OK you will have a binary RPM in <filename class=\"directory"
+"\">/usr/src/RPM/RPMS/i586</filename> (depending on your architecture) and a "
+"sourceRPM in <filename class=\"directory\">/usr/src/RPM/SRPMS/</filename> "
+"&eg; <filename>krusader-1.70-beta1.suse10.i586.rpm</filename> and "
+"<filename>krusader-1.70-beta1.suse10.src.rpm</filename>"
+msgstr ""
+"Создайте бинарный пакет и пакет с исходным кодом с помощью <screen><prompt>"
+"$</prompt> <userinput><command>rpmbuild</command> <option>-ba</option> "
+"<replaceable>/usr/scr/RPM/SPECS/krusader.spec</replaceable></userinput></"
+"screen>Если будет удачно вы получите бинарный RPM  в <filename class="
+"\"directory\">/usr/src/RPM/RPMS/i586</filename>(в зависимости от вашей "
+"архитектуры) и пакет с исходным кодом в <filename class=\"directory\">/usr/"
+"src/RPM/SRPMS/</filename> . например <filename>krusader-1.70-beta1.suse10."
+"i586.rpm</filename> и <filename>krusader-1.70-beta1.suse10.src.rpm</filename>"
+
+#. Tag: para
+#: faq.docbook:462
+#, no-c-format
+msgid ""
+"If the build is not OK you will receive an error message during the rpmbuild "
+"process, try to fix it and re-run <command>rpmbuild</command> again."
+msgstr ""
+"Если возникнут ошибки , вы получите сообщения от rpmbuild , попытайтесь "
+"устранить их перезапустите <command>rpmbuild</command> снова."
+
+#. Tag: para
+#: faq.docbook:466
+#, no-c-format
+msgid ""
+"And finally: <link linkend=\"faqi_rpm_source\">test</link> the RPM before "
+"sending it in."
+msgstr ""
+"В конце: <link linkend=\"faqi_rpm_source\">проверьте</link> пакет перед "
+"тем , как послать его нам."
+
+#. Tag: para
+#: faq.docbook:477
+#, no-c-format
+msgid "Why does &krusader;-cvs shows an old version number in the about box?"
+msgstr ""
+
+#. Tag: para
+#: faq.docbook:480
+#, no-c-format
+msgid ""
+"Because we only change the version number just before we do a new release. "
+"&krusader;-cvs will show an older version number, so ignore the version "
+"number and check the download date. We just haven't decided yet what will be "
+"the next version number :)"
+msgstr ""
+
+#. Tag: title
+#: faq.docbook:495
+#, no-c-format
+msgid "Usage &FAQ;"
+msgstr "&FAQ; Использование"
+
+#. Tag: para
+#: faq.docbook:500
+#, no-c-format
+msgid "Why does &krusader; crash?"
+msgstr "Почему &krusader; падает ?"
+
+#. Tag: para
+#: faq.docbook:503
+#, no-c-format
+msgid ""
+"We've been received a lot of emails and bug reports (December 2005) "
+"regarding random crashes in &krusader;, especially during some file "
+"operations (copy/move etc.). <emphasis role=\"bold\">These crashes are "
+"related to &Qt; 3.3.5 and NOT &krusader;.</emphasis> It seems that &Qt; "
+"3.3.5 introduced a serious bug which is currently (December 2005) causing "
+"random crashes in many &kde; applications including &konqueror;. You can "
+"Google for it to find out more. As far as we know, &debian;-Sid and &SuSE; "
+"already posted new &Qt; binaries that fix the problem, and &gentoo; has "
+"masked &Qt; 3.3.5 completely. As for now, you either need &Qt; 3.3.4 or a "
+"fixed &Qt; 3.3.5 or a higer version, depending on your distribution. More "
+"information is available on our <ulink url=\"http://krusader.sourceforge.net/"
+"phpBB/viewtopic.php?t=1407\">website</ulink>."
+msgstr ""
+"Мы получили много писем-отчетов(декабрь 2005) относительно различных проблем "
+"в &krusader;,особенно во время некоторых операций с файлами(копирование/"
+"перемещение и др.)<emphasis role=\"bold\">Эти проблемы связаны с &Qt; 3.3.5 "
+"и &krusader; тут не виноват.</emphasis>Это , возможно серьезная ошибка в "
+"&Qt; 3.3.5 и причина многочисленных сбоев в различных приложениях &kde; "
+"включая &konqueror;.В Google вы можете найти множеств подобных вопросов.В "
+"дальнейшем , насколько нам известно в &debian;-Sid и &SuSE; уже включена "
+"новая версия &Qt; с устраненной проблемой. Дополнительная информация на "
+"нашем <ulink url=\"http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1407"
+"\">сайте</ulink>."
+
+#. Tag: para
+#: faq.docbook:522
+#, no-c-format
+msgid ""
+"When I try to mount/unmount my cdrom/floppy, &krusader; says something about "
+"supermount, what's this about?"
+msgstr ""
+"Когда я пробую монтировать/отмонтировать мои cdrom/floppy, &krusader; "
+"говорит о supermount, что это такое ?"
+
+#. Tag: para
+#: faq.docbook:526
+#, no-c-format
+msgid ""
+"Supermount is a daemon which handles the mounting/unmounting of removable "
+"filesystems for you. Just insert a floppy, and do <userinput><command>cd</"
+"command> <option><replaceable>/mnt/floppy</replaceable></option></userinput> "
+"supermount will do the mount for you automatically and transparently. All "
+"this is great, however, supermount misleads the system into thinking that "
+"the <hardware>floppy/cdrom</hardware> is mounted at all times! This creates "
+"some problems for &krusader;, as it cannot really know when the floppy or CD "
+"has been removed because the system information is not correctly updated by "
+"supermount - is there really a <hardware>floppy</hardware> in the "
+"<hardware>drive</hardware>? Of course, this can be solved, but as for now, "
+"we don't consider it a priority. Feel free to write a patch for it ;-)."
+msgstr ""
+"Supermount это демон , который самостоятельно монтирует/отмонтирует файловые "
+"системы.Только вставьте флоппи и дайте команду <userinput><command>cd</"
+"command> <option><replaceable>/mnt/floppy</replaceable></option></userinput> "
+"и он смонтирует его автоматически без вашего участия.Это великолепно ,только "
+"supermount обманывает систему , говоря ей что <hardware>floppy/cdrom</"
+"hardware> смонтирован все время !Это создает проблему для &krusader;, не "
+"дает коррректно отмонтировать флоппи или СД диск , потому что supermount не "
+"дает корректной информации реально ли <hardware>флоппи</hardware> находится "
+"в <hardware>приводе</hardware>?Конечно , это будет разрешено , только сейчас "
+"это рассматривается нами как очень важное.Воможно кто-то напишет заплатку "
+"для этого ;-)."
+
+#. Tag: para
+#: faq.docbook:547
+#, no-c-format
+msgid "Why does &krusader; freeze or hang on a dead mountpoint?"
+msgstr "Почему &krusader; зависает когда неверна точка монтирования ?"
+
+#. Tag: para
+#: faq.docbook:550
+#, no-c-format
+msgid ""
+"When &krusader; is &eg; browsing a NFS share and the NFS server goes down, "
+"then &krusader; will freeze. This &krusader; (and all other open internal "
+"viewers/editors) freeze is fatal, and can only be corrected with the "
+"<command>kill -9</command>. We have no solution to offer here. This is an "
+"issue not confined to file managers, or even the &Linux; OS! The problem is "
+"that you \"hang\" on the first access to the dead share - so there is no way "
+"around it, no check to avoid it, even <command>ls</command> will freeze. "
+"Just trying to read something - anything - is enough to get you stuck. The "
+"one and only way around this architectural problem is using a multi-threaded "
+"design - this way if we get stuck, we don't hang the entire application "
+"event loop, but we don't think that the time is right for adding threads, we "
+"are not sure that *all* the &kde; systems out there are using &Qt;-mt (the "
+"multi threaded version of the &Qt; library), and the Krusader Krew may not "
+"be the right people to address this major issue in any case; so currently "
+"this is just a bug we have to learn to live with."
+msgstr ""
+"Когда &krusader; , например просматривает ресурсы NFS и сервер выключен , "
+"&krusader; зависнет.Это зависание фатально для &krusader; (и для всех "
+"открытых встроенных редакторов/просмотрщиков) и может быть исправлено только "
+"командой <command>kill -9</command>.Мы не имеем предложенных решений для "
+"решения проблемы.Эта проблема не связана с файловыми менеджерами или  самой "
+"ОС &Linux;!Проблема этого вашего \"зависания\" в первом обращении к "
+"отключенному ресурсу  - там нет возможности сделать проверку содержимого , "
+"осмотреть каталог и <command>ls</command> зависает.Это проблема многонитевой "
+"архитектуры и в самом приложении зависания нет.Мы не знаем где проблема , "
+"скорее всего это не &kde; он использует &Qt;-mt (многонитевая версия "
+"библиотеки) , и Krusader Krew не знает решения этой проблемы , в настоящее "
+"время мы просто смирились с этой проблемой."
+
+#. Tag: para
+#: faq.docbook:574
+#, no-c-format
+msgid ""
+"When I try to resize &krusader;, so that it's smaller, I discover that I "
+"can't resize it below a certain size. Basically, it doesn't get much "
+"smaller. Why?"
+msgstr ""
+"Почему когда я пытаюсь уменьшить окно &krusader; нижняя часть не изменяет "
+"свои размеры.По-сущевству , не получается уменьшить окно.Почему ?"
+
+#. Tag: para
+#: faq.docbook:578
+#, no-c-format
+msgid ""
+"See the <guibutton>F1, F2</guibutton> (&etc;) buttons? They are not allowing "
+"&krusader; to downsize as they have a minimum size. Just disable them "
+"<emphasis role=\"bold\"><menuchoice><guimenu>View</guimenu> "
+"<guimenuitem>Show FN Keys Bar</guimenuitem></menuchoice></emphasis> and "
+"you'll be able to resize &krusader; to your liking. Since version 1.51 we "
+"have improved this a lot: when downsizing the buttons will look like 'F5 .."
+"py'. When the button faces are too small to read a tooltip will give the "
+"complete text. The minimum width is 45 pixels for each button."
+msgstr ""
+"Смотрите на кнопки <guibutton>F1, F2</guibutton> (&etc;) ? &krusader; пока "
+"не позволяет уменьшить их размер.Пока просто запретите их <emphasis role="
+"\"bold\"><menuchoice><guimenu>Вид</guimenu> <guimenuitem>Показывать FN "
+"панель</guimenuitem></menuchoice></emphasis> и  окно &krusader; можно будет "
+"уменьшить.Начиная с версии 1.51 мы введем это: когда размер будет уменьшен "
+"кнопки будут выглядеть примерно как  'F5..ровать'. Минимальная ширина для "
+"полного отображения текста каждой кнопки  - 45 точек."
+
+#. Tag: para
+#: faq.docbook:593
+#, no-c-format
+msgid ""
+"When I do some file operation, and &krusader;'s panel doesn't refresh / I'm "
+"using &krusader; with fam installed, but updates to the panel are not shown."
+msgstr ""
+"Когда я произвожу некоторые операции над файлами панели &krusader; не "
+"обновляются / Я использую &krusader; с установленным fam , но обновление "
+"панелей не видно."
+
+#. Tag: para
+#: faq.docbook:597
+#, no-c-format
+msgid ""
+"The bad news is that we're not sure why, but it seems that <command>fam</"
+"command> (file alteration monitor) sometimes refuses to work. We are looking "
+"into this problem to make sure it is not <emphasis>our</emphasis> problem. "
+"We've tried the same source code on two different Gentoo installations: one "
+"worked, the other did not. The good news is that if you disable "
+"<application>fam</application>, &krusader; will automatically revert to its "
+"internal update mechanism (which is less efficient, but works) without "
+"needing to recompile. You can disable <application>fam</application> with: "
+"<screen><prompt>$</prompt> <userinput><command>su -c 'fam -l'</command></"
+"userinput></screen> Look at the manpages for more information about "
+"<application>fam</application>."
+msgstr ""
+"Плохие новости , <command>fam</command> корректно работает далеко не всегда."
+"Мы проверяли и точно определили - это не <emphasis>наша</emphasis> проблема ."
+"Мы побовали два одинаковые пакеты на  двух различных системах Gentoo: один "
+"работает , а другой нет.Хорошие новости - если вы запретите "
+"<application>fam</application>, &krusader; автоматически вернется на "
+"собственный механизм обновления ( с немного меньшей эффективностью работы)  "
+"без необходимости пересборки. Вы можете запретить <application>fam</"
+"application>  в <screen><prompt>$</prompt> <userinput><command>su -c 'fam -"
+"l'</command></userinput></screen> .Для более подробной информации посмотрите "
+"документацию ."
+
+#. Tag: para
+#: faq.docbook:616
+#, no-c-format
+msgid ""
+"<application>Samba</application> ISO 8859-x codepage / what to do if "
+"&krusader; does not read shared directories containing special international "
+"characters?"
+msgstr ""
+"<application>Samba</application> кодировка ISO 8859-x / что делать если "
+"&krusader; не может прочитать содержимое директорий в других локалях ?"
+
+#. Tag: para
+#: faq.docbook:620
+#, no-c-format
+msgid ""
+"&krusader; does not handle (yet) <application>Samba</application> ISO 8859-x "
+"codepages, if you use a codepage different than 8859-1 you will have to do a "
+"manual configuration. Create or modify the file: <filename>~/.smb/smb.conf</"
+"filename> <programlisting>\n"
+"   [global]\n"
+"   workgroup = MyWorkGroup       (ex. WORKGROUP)\n"
+"   client code page = MyCodePage (ex. 852)\n"
+"   character set = MyCharSet     (ex. ISO8859-2)</programlisting> "
+"Unfortunately <application>kcontrol</application> (&kde; 3.1.1) fails to "
+"configure smb.conf properly, so this must be done manually with a text "
+"editor."
+msgstr ""
+"&krusader; не управляет <application>Samba</application> .Если вам нужна "
+"другая кодировка вы должны вручную её настроить .Создайте или модифицируйте "
+"файл <filename>~/.smb/smb.conf</filename> <programlisting>\n"
+"   [global]\n"
+"   workgroup = MyWorkGroup       (ex. WORKGROUP)\n"
+"   client code page = MyCodePage (ex. 852)\n"
+"   character set = MyCharSet     (ex. ISO8859-2)</programlisting> в вашем "
+"любимом текстовом редакторе."
+
+#. Tag: para
+#: faq.docbook:636
+#, no-c-format
+msgid ""
+"&krusader; reports \"krarc:... protocol not supported\" error at opening an "
+"archive file."
+msgstr ""
+"&krusader; говорит что \"krarc:... протокол не поддерживается\" при открытии "
+"файла архива."
+
+#. Tag: para
+#: faq.docbook:639
+#, no-c-format
+msgid "Solution: install the krarc slave properly:"
+msgstr "Решение: установите правильно krarc slave:"
+
+#. Tag: para
+#: faq.docbook:640
+#, no-c-format
+msgid ""
+"Copy the <filename>kio_krarc.so</filename>, <filename>kio_krarc.la</"
+"filename> files into <filename class=\"directory\">$KDEDIR/lib/kde3</"
+"filename>"
+msgstr ""
+"Скопируйте файлы <filename>kio_krarc.so</filename>, <filename>kio_krarc.la</"
+"filename> в <filename class=\"directory\">$KDEDIR/lib/kde3</filename>"
+
+#. Tag: para
+#: faq.docbook:642
+#, no-c-format
+msgid ""
+"Copy the <filename>krarc.protocol</filename> file into <filename class="
+"\"directory\">$KDEDIR/share/services</filename>"
+msgstr ""
+"Копируйте <filename>krarc.protocol</filename> в <filename class=\"directory"
+"\">$KDEDIR/share/services</filename>"
+
+#. Tag: para
+#: faq.docbook:644
+#, no-c-format
+msgid ""
+"or the directory where the KIO slaves are placed in your &Linux; "
+"distribution."
+msgstr ""
+"или директорию , в которой находятся KIO slaves вашего дистрибутива &Linux;."
+
+#. Tag: para
+#: faq.docbook:653
+#, no-c-format
+msgid ""
+"I get the error message \"Protocol not supported by Krusader: \"krarc:/path/"
+"to/foo-archive\", when I try to open foo-Archive"
+msgstr ""
+"Я получаю сообщение об ошибке \"протокол не поддерживается в крусадер: "
+"\"krarc:/путь/некоторый архив\" , когда пытаюсь открыть файл архива"
+
+#. Tag: para
+#: faq.docbook:657
+#, no-c-format
+msgid ""
+"The icons, kio_slaves and documentation must be installed in the correct "
+"places in the &kde; directory tree. The <filename>kio_krarc.*</filename> "
+"files must be in the same directory with the other KIO slaves. Try: locate "
+"<filename>kio_tar.*</filename> and copy/link the <filename>kio_krarc.*</"
+"filename> files to the same location. Don't forget to run <command># "
+"ldconfig</command> on this directory when you're done. For more information "
+"click <ulink url=\"www.krusader.org/phpBB/viewtopic.php?t=991\">here</"
+"ulink> ."
+msgstr ""
+"Иконки, kio_slaves и документация должны быть  правильно установлены в "
+"дереве каталогов &kde;. Файлы <filename>kio_krarc.*</filename> быть в той же "
+"директории , что и остальные KIO slaves.Попробуйте : locate "
+"<filename>kio_tar.*</filename> и копируйте/сделайте ссылки на файлы "
+"<filename>kio_krarc.*</filename> в соответствующей директории. Не забудьте  "
+"после запустить команду <command># ldconfig</command> в соответствующей "
+"директории.Дополнительная информация <ulink url=\"www.krusader.org/phpBB/"
+"viewtopic.php?t=991\">здесь</ulink> ."
+
+#. Tag: para
+#: faq.docbook:675
+#, no-c-format
+msgid "Why have i trouble with my &FTP; connection?"
+msgstr "Почему у меня возникают проблемы с соединением по  &FTP;?"
+
+#. Tag: para
+#: faq.docbook:678
+#, no-c-format
+msgid ""
+"This problem often occurs when you are behind a firewall or proxy. Open "
+"<emphasis role=\"bold\"><menuchoice><guimenu>KDE Control Center</guimenu> "
+"<guimenuitem>Network</guimenuitem><guimenuitem>Preferences</guimenuitem></"
+"menuchoice></emphasis> , <guilabel>\"Enable Passive Mode (PASV)\"</guilabel> "
+"has to be turned on or off, depending on it's current setting. Now try your "
+"&FTP; session again to see if it works. Also, make sure you have no other "
+"&FTP; sessions open (using web browsers, etc.), they might cause some "
+"trouble. More information information can be found in "
+"&active_passive_ftp_url; ."
+msgstr ""
+"Эта проблема часто возникает если вы защищены прокси или файрволлом.Откройте "
+"Open <emphasis role=\"bold\"><menuchoice><guimenu>Центр управления KDE</"
+"guimenu> <guimenuitem>Сеть</guimenuitem><guimenuitem>Настройки</"
+"guimenuitem></menuchoice></emphasis> , <guilabel>\"Разрешить пассивный режим "
+"(PASV)\"</guilabel> должно быть включено или выключено в зависимости от "
+"текущих настроек. Теперь попробуйте снова сделать соединение с &FTP;Также "
+"проверьте чтобы не было других соединений с &FTP; и открытых сессий "
+"(браузеры и т.д.), они могут создать проблемы. Дополнительную информацию "
+"можно найти в &active_passive_ftp_url; ."
+
+#. Tag: para
+#: faq.docbook:695
+#, no-c-format
+msgid ""
+"I get <errorcode>\"FTP protocol not supported by &krusader;\"</errorcode> "
+"error at trying to open a remote &FTP; directory."
+msgstr ""
+"Я получаю ошибку <errorcode>\"Протокол FTP не поддерживается в  &krusader;"
+"\"</errorcode> когда пытаюсь открыть директорию на удаленном &FTP;."
+
+#. Tag: para
+#: faq.docbook:699
+#, no-c-format
+msgid ""
+"The reason for this error is that '&FTP; via &HTTP; proxy' feature is not "
+"yet supported by &krusader;. This error can occur from the misconfiguring of "
+"the proxy settings in &kcontrolcenter;. Modify the proxy settings to not use "
+"&HTTP; proxy and &FTP; will work."
+msgstr ""
+"Причина этой ошибки в том  что работа  &FTP; через &HTTP; прокси не включена "
+"в &krusader;.Эта ошибка вызвана неправильной настройкой прокси в "
+"&kcontrolcenter;.Выставьте в настройках не использовать прокси для &HTTP; и "
+"&FTP; и все будет работать."
+
+#. Tag: para
+#: faq.docbook:711
+#, no-c-format
+msgid "How can i close a remote connection (&eg; a FTP connection) ?"
+msgstr "Как мне закрыть удаленное соединение (например соединение с FTP)?"
+
+#. Tag: para
+#: faq.docbook:714
+#, no-c-format
+msgid ""
+"It's explained in the <link linkend=\"remote-connections\">remote "
+"connections chapter</link> ."
+msgstr ""
+"Это объясняется в <link linkend=\"remote-connections\">разделе удаленные "
+"соединения</link> ."
+
+#. Tag: para
+#: faq.docbook:722
+#, no-c-format
+msgid "Why do i have some trouble with the media:// protocol?"
+msgstr "Почему у меня возникают проблемы с протоколом media:// ?"
+
+#. Tag: para
+#: faq.docbook:725
+#, no-c-format
+msgid ""
+"At the moment of writing the media:// protocol is instable, we need to wait "
+"until the &kde; team corrects it, every other protocol works properly with "
+"&krusader;, only media fails. More information regarding this issue is "
+"available in <ulink url=\"http://www.krusader.org/phpBB/viewtopic.php?t=1357"
+"\">our forum</ulink> ."
+msgstr ""
+"В настоящее время написание протокола the media:// находится в нестабильном "
+"состоянии , мы должны подождать пока команда &kde; устранит ошибки , все "
+"остальные протоколы в &krusader;, работают нормально , проблемы только с "
+"media. Допольнительная информация относительно этого вопроса доступна на "
+"<ulink url=\"http://www.krusader.org/phpBB/viewtopic.php?t=1357\">нашем "
+"форуме</ulink> ."
+
+#. Tag: para
+#: faq.docbook:737
+#, no-c-format
+msgid "How can I disable the default sounds &eg; when I do a delete action ?"
+msgstr ""
+"Как мне запретить системные звуки , например звук , когда  происходит "
+"удаление ?"
+
+#. Tag: para
+#: faq.docbook:740
+#, no-c-format
+msgid ""
+"Those are the default &kde; System sounds, and not related to &krusader;. If "
+"you want to disable them globally open your &kde; &kcontrolcenter; "
+"(<application>kcontrol</application>): <emphasis role=\"bold"
+"\"><menuchoice><guimenu>KDE Control Center</guimenu> <guimenuitem>Sound "
+"&amp; Multimedia</guimenuitem><guimenuitem>System Notifications</"
+"guimenuitem></menuchoice></emphasis> , <guilabel>Event Source: \"KDE System "
+"Notifications\"</guilabel> and uncheck sound items you don't like."
+msgstr ""
+"Это настройки Системный звук в &kde; и они не имеют отношения к &krusader;."
+"Если вы хотите глобально запретить их , откройте &kde; &kcontrolcenter; "
+"(<application>kcontrol</application>): <emphasis role=\"bold"
+"\"><menuchoice><guimenu>Центр управления KDE</guimenu> <guimenuitem>Sound "
+"&amp; Мультимедиа</guimenuitem><guimenuitem>Системные уведомления</"
+"guimenuitem></menuchoice></emphasis> , <guilabel>Источник событий: "
+"\"Системные уведомления KDE\"</guilabel> и снимите отметки с ненужных "
+"уведомлений."
+
+#. Tag: para
+#: faq.docbook:753
+#, no-c-format
+msgid "Where is RemoteMan, the remote connection manager ?"
+msgstr "Что такое RemoteMan - это менеджер удаленных соединений ?"
+
+#. Tag: para
+#: faq.docbook:756
+#, no-c-format
+msgid ""
+"RemoteMan has been replaced by our Bookmark Manager since Krusader 1.25-"
+"beta1. The Bookmark Manager handles local files and <link linkend=\"remote-"
+"connections\">remote &URL;'s</link> the same way. RemoteMan was left as a "
+"selection until &krusader;-1.51 to allow an easier transition and give you a "
+"chance to move your &bookmarks_lnk;. RemoteMan was disabled, as announced, "
+"in &krusader;-1.60."
+msgstr ""
+"RemoteMan теперь заменен Менеждером закладок с Krusader 1.25-beta1.Менеджер "
+"закладок управляет локальными файлами и <link linkend=\"remote-connections"
+"\">удаленными &URL;'s</link> одинаково.RemoteMan будет удален в &krusader;-"
+"1.51 , есть возможность переноса ваших &bookmarks_lnk;.Он  будет  удален "
+"полностью в &krusader;-1.60."
+
+#. Tag: para
+#: faq.docbook:764
+#, no-c-format
+msgid "&URL; transition procedure:"
+msgstr "Процедура переноса &URL; "
+
+#. Tag: para
+#: faq.docbook:767
+#, no-c-format
+msgid "install &krusader;-1.51"
+msgstr "установите &krusader;-1.51"
+
+#. Tag: para
+#: faq.docbook:770
+#, no-c-format
+msgid "open the RemoteMan and connect to an &FTP;"
+msgstr "Откройте RemoteMan и соединитесь с &FTP;"
+
+#. Tag: para
+#: faq.docbook:773
+#, no-c-format
+msgid "once inside, bookmark the current location, select a name and save."
+msgstr "сделайте закладку для текущего положения , выберите имя и сохраните."
+
+#. Tag: para
+#: faq.docbook:776
+#, no-c-format
+msgid ""
+"do this for all your connections, all the &bookmarks_lnk; are now stored in "
+"<filename>krbookmarks.xml</filename>"
+msgstr ""
+"сделайте это для всех ваших соединений , все ваши &bookmarks_lnk; будут "
+"сохранены в файле <filename>krbookmarks.xml</filename>"
+
+#. Tag: para
+#: faq.docbook:780
+#, no-c-format
+msgid ""
+"install &krusader;-1.60, it will use <filename>krbookmarks.xml</filename> or "
+"import it if needed."
+msgstr ""
+"установите &krusader;-1.60, он использует файл <filename>krbookmarks.xml</"
+"filename> или импортируйте его если понадобится."
+
+#. Tag: para
+#: faq.docbook:790
+#, no-c-format
+msgid "Why mimetype magic isn't sometimes working inside archives?"
+msgstr "Почему привязки к типу файлов не работают внутри архивов?"
+
+#. Tag: para
+#: faq.docbook:793
+#, no-c-format
+msgid ""
+"When you enter an archive and press <keycap>F3</keycap> to view a file that "
+"has no known extension, &eg; <filename>README, INSTALL</filename> &etc;. And "
+"if the viewer opens in hex-mode instead of the usual mode, than you need to "
+"configure: <emphasis role=\"bold\"><menuchoice><guimenu>KDE Control Center</"
+"guimenu> <guimenuitem>KDE components</guimenuitem><guimenuitem>File "
+"Associations</guimenuitem> <guimenuitem>Application</"
+"guimenuitem><guimenuitem>octet-stream</guimenuitem></menuchoice></emphasis>, "
+"<guilabel>binary viewer</guilabel> needs to be removed."
+msgstr ""
+"Когда вы входите в архив и нажимаете клавишу <keycap>F3</keycap> для "
+"просмотра файла с неизвестным расширением , например файл <filename>README, "
+"INSTALL</filename> &etc; и если просмотрщик открывает его в режиме HEX "
+"просмотра вместо обычного , просто надо настроить :<emphasis role=\"bold"
+"\"><menuchoice><guimenu>Центр управления KDE</guimenu> "
+"<guimenuitem>Компоненты KDE</guimenuitem><guimenuitem>Привязки файлов</"
+"guimenuitem> <guimenuitem>Приложения</guimenuitem><guimenuitem>octet-stream</"
+"guimenuitem></menuchoice></emphasis>, <guilabel>binary viewer</guilabel> "
+"нужно удалить."
+
+#. Tag: para
+#: faq.docbook:809
+#, no-c-format
+msgid "Why does the handbook not work?"
+msgstr "Почему Руководство не работает ?"
+
+#. Tag: para
+#: faq.docbook:812
+#, no-c-format
+msgid ""
+"This error will happen on &debian; (or &debian; based) distro with the "
+"krusader_1.51-1_i386.deb package. You will see the next error message if you "
+"try to open the handbook: \"The requested help file could not be found. "
+"Check that you have installed the documentation.\" To fix it go to "
+"<filename>/usr/share/doc/kde/HTML/en/krusader/</filename>, you will see the "
+"<filename>foo.docbook.gz</filename> files. Now, you need to extract all "
+"these files with root priveleges (\"File->Unpack\" with &krusader;) to "
+"create <filename>foo.docbook</filename> files. Now the handbook will work. "
+"This error is fixed in the krusader_1.60.0-1_i386.deb package and higher "
+"versions."
+msgstr ""
+"Эта ошибка случается в  дистрибутивах &debian;(или на основе &debian;) с "
+"пакетом krusader_1.51-1_i386.deb.Вы видите следующее сообщение об ошибке , "
+"когда открываете Руководство  \"Запрашиваемый файл не найден. Проверьте "
+"правильность установки документации\".Для устранения перейдите  в <filename>/"
+"usr/share/doc/kde/HTML/en/krusader/</filename>,  вы должны увидеть файлы "
+"<filename>foo.docbook.gz</filename>.Теперь распакуйте все эти файлы с "
+"привилегиями root в файлы <filename>foo.docbook</filename>.Теперь "
+"Руководство будет работать.Эта ошибка исправлена в пакете krusader_1.60.0-"
+"1_i386.deb и старших версиях."
+
+#. Tag: para
+#: faq.docbook:830
+#, no-c-format
+msgid "Why \"save last location\" doesn't work?"
+msgstr ""
+
+#. Tag: para
+#: faq.docbook:833
+#, no-c-format
+msgid ""
+"Unfortunately the 1.70.x version contains a bug. The tabs are not saved if a "
+"\"Panels Save Settings=Tabs\" item is present in the configuration files. "
+"The fix is easy: <itemizedlist> <listitem><para>open and edit <filename>~/."
+"kde/share/config/krusaderrc</filename></para></listitem> "
+"<listitem><para>remove the \"Panels Save Settings\" item</para></listitem> </"
+"itemizedlist> and it'll work with the &lt;Last Session&gt; thing in "
+"Konfigurator. More info can be found in <ulink url=\"http://www.krusader.org/"
+"phpBB/viewtopic.php?t=1357\">our forum</ulink> ."
+msgstr ""
+
+#. Tag: title
+#: faq.docbook:854
+#, no-c-format
+msgid "General &FAQ;"
+msgstr "Основной &FAQ;"
+
+#. Tag: para
+#: faq.docbook:859
+#, no-c-format
+msgid "How can I report a wish, a suggestion, or a comment?"
+msgstr "Как мне отослать пожелания , предложения или комментарии ?"
+
+#. Tag: para
+#: faq.docbook:862
+#, no-c-format
+msgid ""
+"An open source project's greatest strength is derived from getting user "
+"feedback. That is why we love to hear what you have to say. Your \"Gripes\" "
+"are our instructions. After about 6 months, programmers can no longer see "
+"their own mistakes. It's natural. We want the ideas, xritiques, and feedback "
+"because we all want to make &krusader; the best, most useful, file manager "
+"available anywhere."
+msgstr ""
+"В открытых проектах есть великолепная возможность обратной связи с  "
+"пользователями. Почему нам нравится слушать то что вы хотите сказать ? Ваши "
+"\"Трудности\" это наши инструкции.После 6 месяцев программирования "
+"программисты не увидели своих ошибок .Это естественно.Мы нуждается в идеях , "
+"критике и обратной связи , потому что хотим сделать &krusader; лучшим , "
+"наиболее удобным файловым менеджером."
+
+#. Tag: para
+#: faq.docbook:868
+#, no-c-format
+msgid ""
+"The most convenient way to contact us is to use the &forum_lnk;, or the "
+"krusader-users &mailing_lists_url;. For information on what remains to be "
+"done look at the &todoforum_url;. Adding ToDo items into the &todoforum_url; "
+"is for developers only, but feel free to post to the &featureforum_url; for "
+"things that aren't on the &todoforum_url;, but should be. If you have a nice "
+"feature request, the &krusader; Krew will add your request to the "
+"&todoforum_url;. We review and discuss every submission. For more "
+"information how the forum works click <link linkend=\"faqg_kru_forum\">here</"
+"link> ."
+msgstr ""
+"Наиболее удобный способ для связи с нами - это использование &forum_lnk;, "
+"или списка рассылки пользователей &mailing_lists_url;.Что бы увидеть что "
+"сделано посмотрите &todoforum_url;.Дополнительные элементы в "
+"&todoforum_url;  только для разработчиков .Свободное место для обсуждения "
+"&featureforum_url; форум &todoforum_url; не для этого.Если у вас есть новые "
+"идеи  - &krusader; Krew добавит вашу просьбу в &todoforum_url;.Мы рассмотрим "
+"и обсудим каждое предложение.Дополнительная информация на форуме по ссылке "
+"<link linkend=\"faqg_kru_forum\">here</link> ."
+
+#. Tag: para
+#: faq.docbook:883
+#, no-c-format
+msgid "How can I send a patch?"
+msgstr "Как мне прислать заплатку ?"
+
+#. Tag: para
+#: faq.docbook:886
+#, no-c-format
+msgid "It's not easy to write some patch guidlines, but here we give a try."
+msgstr ""
+
+#. Tag: para
+#: faq.docbook:890
+#, no-c-format
+msgid "Patches, new code or new features are always welcome!"
+msgstr "Заплатки , новый код и предложения всегда приветствуются!"
+
+#. Tag: para
+#: faq.docbook:895
+#, no-c-format
+msgid ""
+"If you like you can always start a discussion with the developers on the "
+"krusader-users &mailing_lists_url; or on the &forum_lnk;. Unfortunatly, we "
+"can't apply a patch if the patch is in conflict with the \"general design\" "
+"of the &krusader; code (continue to read for more instructions)."
+msgstr ""
+"Если вам хочется , всегда можно начать обсуждение с разработчиками в списке "
+"рассылки пользователей &mailing_lists_url; или на &forum_lnk;.Несчастные , "
+"мы не сможем принять заплатку , если она расходится с \"основным направлением"
+"\" в коде &krusader;(читайте дальше)."
+
+#. Tag: para
+#: faq.docbook:903
+#, no-c-format
+msgid ""
+"At one time focus only one problem, so the developers may easily understand "
+"and commit if it works. Please send one change request per mail, so that the "
+"discussion is easier to follow! The modifications should be committed step "
+"by step, checking each line."
+msgstr ""
+"Опишите проблему сразу , так разработчикам будет проще пронять и принять , "
+"если это заработает.Пожалуйста присылайте по одному предложению в письме , "
+"так будет проще продолжать обсуждение!Изменения будут приниматься шаг за "
+"шагом , с проверкой каждой строчки."
+
+#. Tag: para
+#: faq.docbook:912
+#, no-c-format
+msgid ""
+"Send the patches or all the changed files to us. Mail attachments are "
+"usually okay, zipped or tar.gz'ed archives, or links to code. Do not copy "
+"changes into a mail. Most mailers will change the white spaces, so that the "
+"diff will not apply or the code snipped does not diff."
+msgstr ""
+"Присылайте все файлы или заплаты в письме.Большинство почтовиков изменяют "
+"пробелы , эти изменения не обрабатываются и код не работает."
+
+#. Tag: para
+#: faq.docbook:919
+#, no-c-format
+msgid ""
+"Use portable solutions, &krusader; should run on: <itemizedlist> "
+"<listitem><para>All POSIX (&Linux;/BSD/&UNIX;-like OSes), &Solaris;.</para> "
+"</listitem> <listitem><para>All BSD Platforms (&freebsd;/&netbsd;/&openbsd;/"
+"&MacOS;).</para> </listitem> <listitem><para>&kde; 3.3- &kde; 3.5.3 and even "
+"on GNOME with &kde;libs.</para> </listitem> <listitem><para>GCC 2.95 - GCC "
+"4.1</para> </listitem> </itemizedlist> Architecure changes are made by the "
+"team only."
+msgstr ""
+"Используйте машинно-независимые решения, &krusader; запускается в : "
+"<itemizedlist> <listitem><para>All POSIX (&Linux;/BSD/&UNIX;-like OSes), "
+"&Solaris;.</para> </listitem> <listitem><para>All BSD Platforms (&freebsd;/"
+"&netbsd;/&openbsd;/&MacOS;).</para> </listitem> <listitem><para>&kde; 3.3- "
+"&kde; 3.5.3 and even on GNOME with &kde;libs.</para> </listitem> "
+"<listitem><para>GCC 2.95 - GCC 4.1</para> </listitem> </itemizedlist>. "
+"Изменения в архитектуре делает только сама команда разработчиков."
+
+#. Tag: para
+#: faq.docbook:934
+#, no-c-format
+msgid ""
+"A final thing to note is: Keep always in mind, a patch might be reject. "
+"Either it has side effects, which we could not fix or it does contradict the "
+"idea behind the patched module. Here a software project differs from lets "
+"say a wiki: in a software project there is someone, who makes the final "
+"decission. Otherwise software will not work. Furthermore: Keep in mind, that "
+"the examination of patches might take time, as we all have private lifes."
+msgstr ""
+
+#. Tag: para
+#: faq.docbook:953
+#, no-c-format
+msgid "How can I report a bug?"
+msgstr "Как мне послать сообщение об ошибке?"
+
+#. Tag: para
+#: faq.docbook:956
+#, no-c-format
+msgid "Bugs?!?!? Well, ok.... We have an online Bug Tracking System."
+msgstr "Ошибки?!?!? Хорошо, у нас есть система отслеживания ошибок."
+
+#. Tag: para
+#: faq.docbook:957
+#, no-c-format
+msgid ""
+"Using the online bug-tracker helps us have a clear and orderly way to know "
+"how many bugs are open, bug priority and follow-ups. It saves us the long "
+"time needed to browse the entire &krusader; forum, searching for yesterdays "
+"bug. Please use this system."
+msgstr ""
+"Используйте  помощь в системе отслеживания ошибок , так как много ошибок уже "
+"известно. Это избавит нас от продолжительного чтения форума &krusader; в "
+"поисках вчерашней ошибки.Пожалуйста используйте эту систему."
+
+#. Tag: para
+#: faq.docbook:960
+#, no-c-format
+msgid "Before reporting a bug, please read the following:"
+msgstr "Перед отправкой сообщения , прочтите следующее:"
+
+#. Tag: para
+#: faq.docbook:962
+#, no-c-format
+msgid ""
+"Use the &kruforumsearch_url; function of the &forum_lnk; , your bug might be "
+"solved already. Please DO NOT post new bugs to the &bugforum_url; (except if "
+"you are not sure that you have found a bug). We use it for bug discussions."
+msgstr ""
+"Используйте функцию поиска &kruforumsearch_url; на форуме &forum_lnk;, "
+"возможно ваша ошибка уже устранена.Пожалуйста НЕ ПИШИТЕ сообщения в "
+"&bugforum_url;( исключая случаи , когда вы уверены что  нашли ошибку).Мы "
+"используем его для обсуждения ошибок."
+
+#. Tag: para
+#: faq.docbook:966
+#, no-c-format
+msgid ""
+"<emphasis role=\"bold\">Check</emphasis> if the bug is already posted in the "
+"&online_buglist_url; of the Bug Tracking System."
+msgstr ""
+"<emphasis role=\"bold\">Проверьте</emphasis> если ошибка уже есть в "
+"&online_buglist_url; системе отслеживания ошибок."
+
+#. Tag: para
+#: faq.docbook:968
+#, no-c-format
+msgid ""
+"If you can't find this bug mentioned, please <emphasis role=\"bold\">submit</"
+"emphasis> it into the bug tracker by clicking the <guibutton>Submit New</"
+"guibutton> button in the bug-tracker window. Please submit the following "
+"issues: the &krusader; version used, the &Linux; distribution + version "
+"used, processor type, and as good a description of the problem as you can "
+"manage."
+msgstr ""
+"Если вы нашли упоминание о ней , пожалуйста <emphasis role=\"bold"
+"\">подтвердите</emphasis> её в системе нажатием кнопки <guibutton>Submit "
+"New</guibutton> в окне.Пожалуйста подтвердите следующие параметры: "
+"используемая версия &krusader;, дистрибутив+версия &Linux;, тип процессора , "
+"и полное описание проблемы , которую вы решаете."
+
+#. Tag: para
+#: faq.docbook:975
+#, no-c-format
+msgid ""
+"If possible, try to do the same operation with &konqueror; or another &kde; "
+"application. If you encounter the same problem then it is possibly a "
+"&kioslaves1_url; or &kde; (kdelibs) bug, and not a &krusader; bug. "
+"&krusader; uses the &kde; libraries and the &kioslaves2_url; for many "
+"operations. In some cases you can encounter problems if your distribution is "
+"incorrectly configured, please test it first as explained above, thanks!"
+msgstr ""
+"Если возможно , попробуйте проделать те же операции в &konqueror; или других "
+"приложениях &kde;.Если вы встречаетесь с подобной проблемой , тогда , "
+"возможно они в &kioslaves1_url; или ошибках &kde;(библиотеках) и не являются "
+"проблемой &krusader;.&krusader; использует библиотеки &kde; и "
+"&kioslaves2_url; для многих операций .В некоторых случаях это проблемы "
+"конкретного дистрибутива , неправильная настройка , пожалуйста убедитесь в "
+"этом прежде всего!"
+
+#. Tag: remark
+#: faq.docbook:983
+#, no-c-format
+msgid ""
+"If you've got bugs to report please do not use &kde;'s bugzilla http://bugs."
+"kde.org/, &kde;'s Bug Tracking System. Report &krusader; bugs directly to us."
+msgstr ""
+"Если вы нашли такую ошибку , пишите не в bugzilla http://bugs.kde.org/ &kde;."
+"Напишите в &krusader; и отчет будет перенаправлен."
+
+#. Tag: para
+#: faq.docbook:992
+#, no-c-format
+msgid "Does &krusader; have a mailing list?"
+msgstr "Имеет ли &krusader; список рассылки ?"
+
+#. Tag: para
+#: faq.docbook:995
+#, no-c-format
+msgid ""
+"Yes, currently have 6 &mailing_lists_url;. No spam, no bother, just "
+"&krusader;. Feel free to (un)subscribe."
+msgstr ""
+"Да , в настоящее время имеется 6 &mailing_lists_url;.Свободно можно "
+"подписаться и отписаться."
+
+#. Tag: para
+#: faq.docbook:999
+#, no-c-format
+msgid ""
+"Tip. our mailing lists can be browsed online or read with a newsreader, so "
+"that you don't even need to subscribe to follow the action on the mailing "
+"lists."
+msgstr ""
+"Совет.Наши списки можно просматривать прямо в браузере или просмотрщике "
+"новостей , так вам не надо подписываться."
+
+#. Tag: para
+#: faq.docbook:1002
+#, no-c-format
+msgid ""
+"&krunews_url; is a very low volume list, used for newsletters and "
+"announcements of new versions or critical bugfixes. The news can also been "
+"read online at &krulatestnews_url; and in the &newsforum_url; which are "
+"basically the same but displayed in another format."
+msgstr ""
+"&krunews_url; - это очень небольшой по объему лист , используемый для "
+"новостей и анонсов новых версий или критических ошибок.Новости также можно "
+"прочитать на &krulatestnews_url; и на &newsforum_url; которые будут "
+"представлены в немного ином формате."
+
+#. Tag: para
+#: faq.docbook:1007
+#, no-c-format
+msgid ""
+"&krudevel_url; is the developer mailing list (read-only). If you want to "
+"follow the development of &krusader; on the bleeding edge, this is the place "
+"to be!"
+msgstr ""
+"&krudevel_url; - это лист рассылки для разработчиков(только для чтения).Если "
+"вы хотите присоединиться к разработке &krusader; и попасть на передовую - "
+"это место здесь!"
+
+#. Tag: para
+#: faq.docbook:1011
+#, no-c-format
+msgid ""
+"&kruusers_url; is the &krusader; users mailing list. Here you can ask help "
+"and talk with the &krusader; users and developers."
+msgstr ""
+"&kruusers_url; - это рассылка для пользователей &krusader;.Здесь вы можете "
+"спросить совет , и поговорить о &krusader; с пользователями и разработчиками."
+
+#. Tag: para
+#: faq.docbook:1014
+#, no-c-format
+msgid "&krui18n_url; is the translations mailing list."
+msgstr "&krui18n_url; - это лист рассылки для переводчиков."
+
+#. Tag: para
+#: faq.docbook:1016
+#, no-c-format
+msgid "&krudoc_url; is the documentation mailing list."
+msgstr "&krudoc_url; - рассылка документации."
+
+#. Tag: para
+#: faq.docbook:1018
+#, no-c-format
+msgid ""
+"&krucommits_url; (read-only) when the &krusader; Krew commits code into CVS, "
+"it will be reported in this mailing list. This allows you to follow the "
+"&krusader; development ... live! Want to keep track? Waiting for a certain "
+"feature/bugfix?"
+msgstr ""
+"&krucommits_url; (только для чтения) - когда &krusader; вносит изменения в "
+"код CVS  , это сообщается в данном листе рассылки.Этот лист позволит вам "
+"быть в курсе состояния разработки &krusader;! Хотите быть всегда в курсе ? "
+"Ожидаете новых возможностей/исправлений ?"
+
+#. Tag: para
+#: faq.docbook:1032
+#, no-c-format
+msgid "Does &krusader; provides newsfeeds?"
+msgstr "Есть ли в &krusader; ленты новостей?"
+
+#. Tag: para
+#: faq.docbook:1035
+#, no-c-format
+msgid ""
+"Yes, we do. Several newsfeeds in various formats are available. "
+"&filereleasefeed_url;, &forumfeed_url;, &krunewsfeed_url;, "
+"&krudevelfeed_url; and even <ulink url=\"http://dir.gmane.org/gmane.comp.kde."
+"krusader.devel\">additional feeds</ulink> by gmane.org. &kruusersfeed_url;, "
+"&krui18nfeed_url;, &krudocfeed_url;."
+msgstr ""
+"Да , есть.Несколько лент  доступны  в различных форматах."
+"&filereleasefeed_url;, &forumfeed_url;, &krunewsfeed_url;, "
+"&krudevelfeed_url; и также <ulink url=\"http://dir.gmane.org/gmane.comp.kde."
+"krusader.devel\">дополнительные ленты</ulink>  на gmane.org. "
+"&kruusersfeed_url;, &krui18nfeed_url;, &krudocfeed_url;."
+
+#. Tag: para
+#: faq.docbook:1049
+#, no-c-format
+msgid "Does &krusader; have a IRC channel?"
+msgstr "Есть у &krusader; канал в IRC ?"
+
+#. Tag: para
+#: faq.docbook:1052
+#, no-c-format
+msgid ""
+"Yes, we have. Feel free to talk to the &krusader; Krew, and of course fellow-"
+"users via &freenode_url; servers. The server is <emphasis>irc.freenode.org</"
+"emphasis>, the channel is <emphasis>#krusader</emphasis>. Everyone is "
+"welcome."
+msgstr ""
+"Есть.Поговорить с &krusader; Krew, и пользователями можно через серверы "
+"&freenode_url;Сервер <emphasis>irc.freenode.org</emphasis>, канал "
+"<emphasis>#krusader</emphasis>.Всегда рады."
+
+#. Tag: para
+#: faq.docbook:1064
+#, no-c-format
+msgid "How does the &krusader; forum work?"
+msgstr "Как работает форум &krusader;?"
+
+#. Tag: para
+#: faq.docbook:1067
+#, no-c-format
+msgid ""
+"In the spirit of freedom of speech, everything that is &krusader; related "
+"can be discussed in our forum. It does not matter that you are a newcomer or "
+"an advanced user, everybody is welcome. An open source project's greatest "
+"strength is derived from getting user feedback. That is why we love to hear "
+"what you have to say. With your feedback we can make &krusader; better and "
+"better; otherwise, we are not aware of issues and ideas you may have. But "
+"please remember the following, so that we can maintain some order in the "
+"chaos. ;-)"
+msgstr ""
+"В духе свободы слова , все что связано с &krusader; можно обсудить на нашем "
+"форуме.И не важно новичок вы , или продвинутый пользователь , всегда добро "
+"пожаловать.В этом и сила открытых проектов, в обратной связи с "
+"пользователями.С вашей помощью мы сделаем &krusader; лучшим  , иначе мы не "
+"узнаем  о появлении новых идей , которые есть у вас.Только будьте "
+"последовательны, только так мы сможем удержаться от хаоса. ;-)"
+
+#. Tag: para
+#: faq.docbook:1075
+#, no-c-format
+msgid ""
+"If the <link linkend=\"index\">Documentation</link>, &faq_lnk;, "
+"&kruforum_url; and &krudevel_url; (please use the search function ) can't "
+"help you, do not hesitate to drop a note to our forum. The &krusader; Krew "
+"or the &krusader; community is always available to help you."
+msgstr ""
+"Если <link linkend=\"index\">Документация</link>, &faq_lnk;, &kruforum_url; "
+"и &krudevel_url;(пожалуйста пользуйтесь поиском) , не помогли вам, не "
+"стесняйтесь писать в форум. &krusader; Krew или сообщество , всегда сможет "
+"помочь вам."
+
+#. Tag: para
+#: faq.docbook:1079
+#, no-c-format
+msgid ""
+"Please use the &kruforumsearch_url; function of the &kruforum_url;, your "
+"issue may have been previously discussed (this allows us to minimze the "
+"double/triple/... postings). If your issue has already been discussed in the "
+"past there is a great chance that you will have an instant solution for your "
+"issue/problem. If the issue is currently being discussed, you can join in "
+"the discussion. Some questions are asked over and over again, for these we "
+"have made the &faq_lnk; ;-) This also allows us also to spend more time in "
+"developing &krusader;."
+msgstr ""
+"Пожалуйста используйте функцию &kruforumsearch_url; на &kruforum_url;, "
+"возможно ваш вопрос уже обуждался(это сократит размножение сообщений).Если "
+"ваша тема уже обсуждалась в прошлом , есть большой шанс того , что решение "
+"уже найдено.Если же обсуждение ещё идет , вы можете присоединиться к нему."
+"Некоторый вопросы регулярно повторяются.Для этого мы сделали &faq_lnk; ;-) "
+"Это позволит нам больше времени уделять разработке &krusader;."
+
+#. Tag: para
+#: faq.docbook:1087
+#, no-c-format
+msgid "The &kruforum_url; is split into six sections:"
+msgstr "Форум &kruforum_url; разделен на  6 частей:"
+
+#. Tag: para
+#: faq.docbook:1089
+#, no-c-format
+msgid "&newsforum_url; all the latest news."
+msgstr "&newsforum_url; все последние новости"
+
+#. Tag: para
+#: faq.docbook:1090
+#, no-c-format
+msgid ""
+"&bugforum_url;: discussions about bugs, please DO NOT use the forum for "
+"&faqbugreports_lnk; (except if you are unsure if you have found a bug)."
+msgstr ""
+"&bugforum_url;:обсуждение ошибок , позалуйста НЕ ПИШИТЕ сюда (исключение , "
+"если вы не уверены что это ошибка)."
+
+#. Tag: para
+#: faq.docbook:1092
+#, no-c-format
+msgid ""
+"&featureforum_url;: discussions about new features for future &krusader; "
+"versions."
+msgstr ""
+"&featureforum_url;:обсуждение новых возможностей &krusader; в будущих "
+"версиях."
+
+#. Tag: para
+#: faq.docbook:1094
+#, fuzzy, no-c-format
+msgid ""
+"&todoforum_url; here you will find the list of the planned features. "
+"Registered users will be able to VOTE and COMMENT on the TODO items. Here "
+"you get the chance to push your favourite features (+3) and still prefer "
+"certain features over others (+1), if you don't care about a feature just "
+"simply don't vote on that feature. Unregistered users may only browse the "
+"&todoforum_url;. The &todoranking_url; contains the results based on the "
+"votes. <link linkend=\"faqg_patch\">Adding ToDo items</link> or removing "
+"ToDo items which have been implemented will be done by the &krusader; Krew."
+msgstr ""
+"&todoforum_url; - здесь вы найдете список планируемых нововведений."
+"Зарегистрированные пользователи могут ГОЛОСОВАТЬ и КОММЕНТИРОВАТЬ в нем."
+"Здесь вы можете продвинуть ваше любимое нововведение (+3)  или тихо повысить "
+"рейтинг (+1), если вас не интересно можно просто не учавствовать в "
+"голосовании.Незарегистрированные пользователи не могут только читать. "
+"&todoranking_url; содержит резальтаты голосований. <link linkend=\"faqg_wish"
+"\">Adding ToDo items</link> или removing ToDo items содержит список того что "
+"будет добавлено и удалено &krusader; Krew."
+
+#. Tag: para
+#: faq.docbook:1104
+#, no-c-format
+msgid ""
+"&useractionsforum_url; discussions about &useractions_lnk;. Posting your own "
+"User Actions is greatly appreciated. We plan to include the best ones in the "
+"next &krusader; releases."
+msgstr ""
+"&useractionsforum_url; обсуждение &useractions_lnk;.Пишите сюда ваши - это "
+"очень ценно.Мы планируем включить лучшие в следующие выпуски &krusader;."
+
+#. Tag: para
+#: faq.docbook:1107
+#, no-c-format
+msgid ""
+"&krugenforum_url;: everything that is &krusader; related and doesn't belong "
+"in the other forums."
+msgstr ""
+"&krugenforum_url;:здесь все что не связано  и не относится к другим форумам "
+"в &krusader;."
+
+#. Tag: para
+#: faq.docbook:1113
+#, no-c-format
+msgid ""
+"We are providing RSS feeds for our forums. You don't have to check for new "
+"posts all the time, instead the news will come to you! To make use of them, "
+"simply point your RSS aggregator to &rss_url;."
+msgstr ""
+"Ты также предоставляем ленты RSS для форумов. Вас не нужно будет постоянно "
+"проверять наличие новых сообщений , новости сами придут к вам!Просто "
+"добавьте &rss_url; в ваш клиент  RSS."
+
+#. Tag: para
+#: faq.docbook:1123
+#, no-c-format
+msgid "How can I translate &krusader; to my native language?"
+msgstr "Как мне перевести &krusader; на мой родной язык?"
+
+#. Tag: para
+#: faq.docbook:1126
+#, no-c-format
+msgid ""
+"Please read the &i18n_page_url;. It's not difficult to translate! Most "
+"anyone can do it, it just takes some time."
+msgstr ""
+"Пожалуйста посетите &i18n_page_url;.Перевести не трудно!Многие уже  сделали "
+"это , только это  требует некоторого времени."
+
+#. Tag: para
+#: faq.docbook:1135
+#, no-c-format
+msgid "How can I support &krusader;?"
+msgstr "Как мне помочь &krusader;?"
+
+#. Tag: para
+#: faq.docbook:1138
+#, no-c-format
+msgid ""
+"You can <link linkend=\"help_krusader\">support</link> &krusader; in many "
+"different ways: please send us <link linkend=\"faqg_wish\">feedback</link>, "
+"&faqbugreports_lnk;, patches, <link linkend=\"help_krusader\">donations</"
+"link>, translations, ..."
+msgstr ""
+"Вы можете <link linkend=\"help_krusader\">поддержать</link> &krusader; "
+"многими способами: присылайте нам заплатки <link linkend=\"faqg_wish"
+"\">обратная связь</link>, &faqbugreports_lnk;,<link linkend=\"help_krusader"
+"\">пожертвования</link>, переводы,..."
+
+#. Tag: para
+#: faq.docbook:1149
+#, no-c-format
+msgid "Is there a &MacOS; X port?"
+msgstr "Есть ли порт для &MacOS; X ?"
+
+#. Tag: para
+#: faq.docbook:1152
+#, no-c-format
+msgid ""
+"Yes, there is &MacOS; X port, but you will not have (yet) the all the power "
+"like on &Linux;. Please read the <link linkend=\"mac-port\">&MacOS; X port "
+"section</link> for more information. A recommended native file manager for "
+"&MacOS; is &disk_order_url; (shareware)."
+msgstr ""
+"Есть , только в нем нет всех возможностей как в версии для &Linux;.Посетите "
+"<link linkend=\"mac-port\">раздел &MacOS; X port </link> для получения "
+"дополнительной информации.Рекомендованный , родной файловый менеджер для "
+"&MacOS; - это &disk_order_url;(условно бесплатный)."
+
+#. Tag: para
+#: faq.docbook:1162
+#, no-c-format
+msgid "Is there a &Windows; port?"
+msgstr "Есть ли порт для &Windows;?"
+
+#. Tag: para
+#: faq.docbook:1165
+#, no-c-format
+msgid ""
+"No, but this might change in the future. Please <link linkend=\"help_krusader"
+"\">help us</link>, thanks. A recommended native file manager for &Windows; "
+"is &tcmd_url; (shareware)."
+msgstr ""
+"Нет, возможно в будущем.Пожалуйста <link linkend=\"help_krusader\">помогите "
+"нам</link>, спасибо.Рекомендуем для &Windows; - это &tcmd_url;(условно "
+"бесплатный)."

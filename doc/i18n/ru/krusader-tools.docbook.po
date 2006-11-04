@@ -1,0 +1,3697 @@
+# Translation of krusader-tools.docbook to LANGUAGE
+# Copyright (C) 2006, Krusader Krew
+# This file is distributed under the same license as the Krusader package
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Krusader-doc-1.80.0 2006-11-01\n"
+"Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
+"POT-Creation-Date: 2006-11-04 11:14+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: application/x-xml2pot; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Tag: title
+#: krusader-tools.docbook:24
+#, no-c-format
+msgid "&krusader; Tools"
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:27
+#, no-c-format
+msgid "<title>Remote Connections</title>"
+msgstr ""
+
+#. Tag: primary
+#: krusader-tools.docbook:28
+#, no-c-format
+msgid "<primary>Remote Connections</primary>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:30
+#, no-c-format
+msgid ""
+"Remote connections are easy made by typing the &URL; in the <link linkend="
+"\"list_panel\">Location Toolbar</link> , these are actually "
+"&kioslaves1_url; . Please note that the &krusader; panel does not support "
+"all &kioslaves2_url; &eg; <command>http://</command> will not work in the "
+"panel, but will work in the <link linkend=\"krviewer\">viewer</link> . Some "
+"examples:"
+msgstr ""
+
+#. Tag: userinput
+#: krusader-tools.docbook:38
+#, no-c-format
+msgid ""
+"<command>ftp://</command><replaceable>public.ftpserver.org/directory/</"
+"replaceable>"
+msgstr ""
+
+#. Tag: userinput
+#: krusader-tools.docbook:41
+#, no-c-format
+msgid "<command>fish://</command><replaceable>username@hostname/</replaceable>"
+msgstr ""
+
+#. Tag: userinput
+#: krusader-tools.docbook:44
+#, no-c-format
+msgid ""
+"<command>sftp://</command><replaceable>username:password@sftp.foo.org/</"
+"replaceable>"
+msgstr ""
+
+#. Tag: userinput
+#: krusader-tools.docbook:47
+#, no-c-format
+msgid ""
+"<command>ftp://</command><replaceable>username@my.server.org:21/directory/</"
+"replaceable>"
+msgstr ""
+
+#. Tag: userinput
+#: krusader-tools.docbook:50
+#, no-c-format
+msgid ""
+"<command>smb://</command><replaceable>username:password@server/share</"
+"replaceable>"
+msgstr ""
+
+#. Tag: userinput
+#: krusader-tools.docbook:53
+#, no-c-format
+msgid ""
+"<command>ftp://</command><replaceable>username@proxyusername:"
+"password@proxipassword@hostname/directory</replaceable>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:58
+#, no-c-format
+msgid ""
+"You can Bookmark these &URL;'s, please read the <link linkend=\"bookman"
+"\">Bookman</link> section regarding <emphasis>securely save passwords</"
+"emphasis>. For connecting to multiple locations, bookmark these &URL;'s and "
+"open them one by one, or open them all together by using "
+"&panel_profiles_lnk; . To switch from one to another location, just open a "
+"&foldertabs_lnk; for each."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:65
+#, no-c-format
+msgid "There are three ways to start a Remote Connection:"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:67
+#, no-c-format
+msgid ""
+"Type the &URL; in the <link linkend=\"list_panel\">Location Toolbar</link>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:70
+#, no-c-format
+msgid ""
+"Selecting <emphasis role=\"bold\"><menuchoice><guimenu>Commands</guimenu> "
+"<guimenuitem>New Net Connection</guimenuitem></menuchoice></emphasis> which "
+"will pop-up a dialog that will ask for the remote site details. This dialog "
+"is handy if you are not used to type remote &URL;'s in the Location Toolbar. "
+"Leaving the password and user name fields empty will try to log you in as "
+"annonymous. NOTE: we are planning to rewrite this dialog window."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:78
+#, no-c-format
+msgid ""
+"You can bookmark a directory on a remote host and return to this directory "
+"from the bookmark button on the top corner of your panel just like in a web "
+"browser."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:84
+#, no-c-format
+msgid ""
+"After you logon to a remote server you can browse it just like your local "
+"hard drive with the following exceptions:"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:87
+#, no-c-format
+msgid "You cannot execute files on remote servers."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:89
+#, no-c-format
+msgid ""
+"Permissions cannot always be calculated on remote servers (depends on server "
+"and access method) so you might get a \"?\" on the permissions columns for "
+"some files."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:92
+#, no-c-format
+msgid "Disk usage information is not availble for most remote filesystems."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:97
+#, no-c-format
+msgid ""
+"To change the charset of the remote host use <emphasis role=\"bold"
+"\"><menuchoice><guimenu>Commands</guimenu> <guimenuitem>Select Remote "
+"Charset</guimenuitem></menuchoice></emphasis>."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:101
+#, no-c-format
+msgid ""
+"You can <emphasis role=\"bold\">close the current Active Remote Connection</"
+"emphasis> by several methods:"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:110
+#, no-c-format
+msgid ""
+"Manually: Add the disconnect button to the &main_toolbar_lnk; and click on "
+"it."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:113
+#, no-c-format
+msgid "Automatically: change the &URL; in the &location_toolbar_lnk; ."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:119
+#, no-c-format
+msgid ""
+"&krusader; is a filemanager that supports remote connections via "
+"&kioslaves1_url;, but if you are looking for even more advanced remote "
+"connections features, &eg; an advanced &FTP;-client we recommend you to use "
+"&eg; &kasablanca_url; or &kftpgrabber_url;."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:128
+#, no-c-format
+msgid "MountMan: work with your mounted filesystems"
+msgstr ""
+
+#. Tag: primary
+#: krusader-tools.docbook:129
+#, no-c-format
+msgid "Mount"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:131
+#, no-c-format
+msgid ""
+"MountMan is a tool which helps you manage your mounted filesystems. Once "
+"invoked, it displays a list of every mounted filesystem. For each "
+"filesystem, MountMan displays it's name (which is the actual device name - "
+"&ie; <filename class=\"directory\">/dev/fd0</filename> for a "
+"<hardware>floppy</hardware>), it's type (vfat, ext3, ReiserFS ...) and it's "
+"mount-point on your system (the directory on which the filesystem is "
+"mounted)."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:151
+#, no-c-format
+msgid "<title>MountMan</title>"
+msgstr ""
+
+#. Tag: phrase
+#: krusader-tools.docbook:154
+#, no-c-format
+msgid "<phrase>MountMan</phrase>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:158
+#, no-c-format
+msgid ""
+"MountMan also displays usage information using total size, free size, and "
+"percentage of available space free. If those numbers say <guilabel>N/A</"
+"guilabel>, it usually means that the filesystem isn't mounted. Left clicking "
+"on a filesystem displays a pie chart on the left of the window, this "
+"graphically displays the usage information for the filesystem. Clicking on a "
+"non-mounted filesystem will display <guilabel>not mounted</guilabel> instead "
+"of the graph."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:165
+#, no-c-format
+msgid ""
+"<keycap>Double-clicking</keycap> on a filesystem will close MountMan and "
+"open that filesystem inside &krusader;'s active panel."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:168
+#, no-c-format
+msgid ""
+"<keycap>Right clicking</keycap> on a filesystem will open a small menu which "
+"displays what actions can be performed on that filesystem. For now you can "
+"only mount, unmount and eject (if clicking on a removable filesystem, e.g., "
+"a <hardware>cdrom</hardware>)."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:175
+#, no-c-format
+msgid ""
+"We plan to expand MountMan in the next evolution of &krusader;. It will be "
+"able to format floppies, edit <filename class=\"directory\">/etc/fstab</"
+"filename>, create new filesystems and more.... BTW, we have started working "
+"on it, see \"Quickmode for MountMan\""
+msgstr ""
+
+#. Tag: emphasis
+#: krusader-tools.docbook:180
+#, no-c-format
+msgid "Quickmode for MountMan"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:182
+#, no-c-format
+msgid ""
+"To activate Quickmode for MountMan, click AND HOLD the MountMan button on "
+"the &main_toolbar_lnk;"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:184
+#, no-c-format
+msgid ""
+"General idea: display a list of all possible mountpoints. Each time the menu "
+"is displayed, it determines if a mountpoint is mounted or not and associates "
+"the correct action (mount or umount). This offers a quick interface to "
+"MountMan. It is working, and currently uses KMountMan::mount and unmount. It "
+"uses the new &kde; services for fstab-reading and this will enable us to "
+"remove A LOT of code from the \"old\" MountMan."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:195
+#, no-c-format
+msgid "BookMan: Organize your Bookmarks"
+msgstr ""
+
+#. Tag: primary
+#: krusader-tools.docbook:196
+#, no-c-format
+msgid "Bookmarks"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:198
+#, no-c-format
+msgid ""
+"BookMan is &krusader;'s Bookmark tool to bookmark folders, local- and <link "
+"linkend=\"remote-connections\">remote URL's</link>, and later return to them "
+"in a click of a button. The Bookman menu is devided in four sections:"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:203
+#, no-c-format
+msgid "Your personal bookmarks."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:206
+#, no-c-format
+msgid "Popular &URL;'s."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:209
+#, no-c-format
+msgid "Permanent bookmarks."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:212
+#, no-c-format
+msgid "Manage bookmarks."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:217
+#, no-c-format
+msgid ""
+"You can bookmark inside a remote filesystem (&FTP; or SAMBA) and later use "
+"the bookmark to quickly connect to the remote machine, but You CANNOT "
+"bookmark inside an archive."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:233
+#, no-c-format
+msgid "<title>Bookmark menu</title>"
+msgstr ""
+
+#. Tag: phrase
+#: krusader-tools.docbook:236
+#, no-c-format
+msgid "<phrase>Bookmark menu</phrase>"
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:242
+#, no-c-format
+msgid "Using Bookmarks"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:244
+#, no-c-format
+msgid ""
+"Usually, you click on the <guibutton>Bookmark</guibutton> button when you're "
+"in the target folder. For example, to bookmark <filename class=\"directory"
+"\">/usr/tmp</filename>, navigate &krusader; there and click the "
+"<guibutton>Bookmark</guibutton> button and select <guimenuitem>Bookmark "
+"Current</guimenuitem>. When the <guilabel>Bookmark Current</guilabel> dialog "
+"box appears, the &URL; line will say <filename class=\"directory\">/usr/tmp</"
+"filename>. <guilabel>Name</guilabel> is for the name you would like to give "
+"to the bookmark (for example: temporary folder). Hotkeys are supported by "
+"adding <literal>&amp;</literal> to the bookmarkname &eg; <literal>&amp;"
+"sourceforge, &amp;home, down&amp;loads</literal> &etc;, so you can quickly "
+"call the bookmark name with <keycombo action=\"simul\">&Alt;<keycap>foo</"
+"keycap></keycombo>. If you add the bookmark without entering a name, the "
+"bookmarks name will be the same as its target. <guilabel>URL</guilabel> is "
+"where the bookmark points to. <guilabel>Create in</guilabel> creates "
+"bookmark folders for organizing your bookmarks."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:261
+#, no-c-format
+msgid ""
+"To use your bookmarks, click the <guibutton>Bookmark</guibutton> button and "
+"choose a Bookmark. You may also use the &keybindigs_lnk; : <keycombo action="
+"\"simul\">&Ctrl;&Shift;<keycap>d</keycap></keycombo> to bookmark the current "
+"item, <keycombo action=\"simul\">&Alt;<keycap>right/left arrow</keycap></"
+"keycombo> to <keycap>open right/left panel bookmarks list</keycap> and "
+"<keycombo action=\"simul\">&Ctrl;<keycap>d</keycap></keycombo> to open the "
+"bookmarks of the active panel. A &MMB; click on bookmarks opens them in a "
+"new <link linkend=\"folder_tabs\">Folder tab</link>."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:271
+#, no-c-format
+msgid "Navigation in bookmarks:"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:274
+#, no-c-format
+msgid "start typing letters"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:278
+#, no-c-format
+msgid ""
+"&eg; when you type <literal>'h'</literal> and only 1 bookmark starts with "
+"<literal>'h'</literal>, it is executed immediatly - no enter needed"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:283
+#, no-c-format
+msgid ""
+"if more than one bookmarks start with <literal>'h'</literal>, you will have "
+"to continue adding letters, until you specified enough and again, the "
+"bookmark is executed."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:294
+#, no-c-format
+msgid "Password handling"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:296
+#, no-c-format
+msgid ""
+"One of the benefits of the <link linkend=\"bookman\">bookmark manager</link> "
+"is that the passwords are saved using &kde;'s services - where &eg; your "
+"&konqueror;/&kmail; password are saved. If you have a wallet, &kde; will "
+"save the passwords there. Click the bookmarks, a dialog will open and asking "
+"for username and password. supply them and click 'save password'. the "
+"passwords and usernames will be saved securly by &kde;'s wallet (make sure "
+"it is enabled by your distro). The downside here, is that if you reinstall "
+"and don't backup your passwords from the wallet as well as &krusader;'s "
+"bookmark file, something will be lost."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:309
+#, no-c-format
+msgid "Popular URL's"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:311
+#, no-c-format
+msgid ""
+"The submenu <guilabel>Popular URL's</guilabel> holds persistent the most "
+"popular visited &URL;'s (local or remote). This submenu displays the top 15 "
+"popular urls, sorted by ranking, so that the top &URL; is the most popular. "
+"This is easy for when u need to visit &URL;s often, but don't want to create "
+"&bookmarks_lnk;, it serves as a temporary bookmark list for the most visited "
+"links. <guilabel>Quicksearch Popular URL's</guilabel> is a fast way to "
+"browse/select the Popular &URL;s:"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:322
+#, no-c-format
+msgid ""
+"open the <guilabel>Popular URL's</guilabel> or use <keycombo action=\"simul"
+"\">&Ctrl;<keycap>z</keycap></keycombo>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:326
+#, no-c-format
+msgid "type few letters to narrow the search"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:328
+#, no-c-format
+msgid "hit enter (you'll go to the &URL; list)"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:330
+#, no-c-format
+msgid "hit enter again and the panel is refreshed"
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:337
+#, no-c-format
+msgid "Permanent bookmarks"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:339
+#, no-c-format
+msgid ""
+"These are hardcoded bookmarks to the top bookmark menu without the need of "
+"being saved to the file. With the &context_menu_lnk; you can enable/disable "
+"these Permanent bookmarks. The next Permanent bookmarks are available:"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:344
+#, no-c-format
+msgid ""
+"<guilabel>Media</guilabel> uses &kde;'s <link linkend=\"konfig-advanced"
+"\">Media protocol</link> <filename>media:/</filename>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:349
+#, no-c-format
+msgid ""
+"<guilabel>Local Network</guilabel> uses &kde;'s <filename>lan:/</filename> "
+"protocol."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:354
+#, no-c-format
+msgid ""
+"<guilabel>Virtual Filesystem</guilabel> &vfs_lnk; <filename>virt:/</"
+"filename> is not a virtual folder, but a container for &URL;'s from "
+"different file systems. It is used for &eg; the <guilabel>Feed to Listbox</"
+"guilabel> feature of the search module and the synchronizer. The location "
+"toolbar will display &eg; <filename>virt:/Search results 1</filename> or "
+"<filename>virt:/Synchronise results 1</filename>."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:362
+#, no-c-format
+msgid ""
+"<guilabel>Jump back</guilabel> or <keycombo action=\"simul\">&Ctrl;"
+"<keycap>J</keycap></keycombo> brings you back to your starting position when "
+"you did create a New Tab in the panel window. This feature is very handy if "
+"you go deep into a directory tree, than you can return with one action to "
+"the starting point. With <guilabel>Set jump back point here</guilabel> or "
+"<keycombo action=\"simul\">&Ctrl;&Shift;<keycap>J</keycap></keycombo> sets "
+"the current directory as a jump back point."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:377
+#, no-c-format
+msgid "Manage bookmarks"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:379
+#, no-c-format
+msgid ""
+"To edit and organize your bookmarks, click the <guibutton>Bookmark</"
+"guibutton> button and select <guimenuitem>Manage Bookmarks</guimenuitem>, "
+"&keditbookmarks; will be displayed. This is where you can edit/remove and re-"
+"arrange the bookmarks. &keditbookmarks; (part of the kdebase package) is a "
+"bookmark editor for &konqueror;, &krusader; and other applications, which "
+"use the &xbel_url; standard for the bookmark format. The bookmarks are "
+"stored in <filename>~/.kde/share/apps/krusader/krbookmarks.xml.</filename>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:385
+#, no-c-format
+msgid ""
+"You can import bookmarks from <application>IE</application>, "
+"<application>Opera</application>, <application>Galeon</application>, &kde;, "
+"<application>Mozilla</application>, &Netscape;. &keditbookmarks; is easy to "
+"use, please read the &keditbookmarks; or the &konqueror; handbook if you "
+"need more info."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:403
+#, no-c-format
+msgid "<title>&keditbookmarks; Bookmark Manager</title>"
+msgstr ""
+
+#. Tag: phrase
+#: krusader-tools.docbook:406
+#, no-c-format
+msgid "<phrase>&keditbookmarks; Bookmark Manager</phrase>"
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:415
+#, no-c-format
+msgid "Bookmarks as action buttons on the Toolbar"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:417
+#, no-c-format
+msgid ""
+"Bookmarks can be placed as buttons on the &main_toolbar_lnk; or the "
+"&actions_toolbar_lnk;, you can even make a key-binding for them."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:420
+#, no-c-format
+msgid "create your &bookmarks_lnk; ."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:422
+#, no-c-format
+msgid ""
+"If you want, create keybindings for the bookmarks in the <guilabel>Key-"
+"bindings</guilabel> section of the &konfiglookandfeel_lnk; ."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:425
+#, no-c-format
+msgid ""
+"Add your bookmarks as action buttons on the &main_toolbar_lnk; or the "
+"&actions_toolbar_lnk; with the <guilabel>Toolbar</guilabel> section of the "
+"&konfiglookandfeel_lnk; ."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:436
+#, no-c-format
+msgid "KruSearcher: find what you're looking for"
+msgstr ""
+
+#. Tag: primary
+#: krusader-tools.docbook:437
+#, no-c-format
+msgid "Search"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:439
+#, no-c-format
+msgid ""
+"Welcome to &krusader;'s powerful search module - nicknamed Krusearcher. It "
+"is the most able tool (that we know of) for &Linux;, since it allows so many "
+"different ways to quickly find the file you're looking for. The search "
+"function is also available on remote file systems. It is divided into two "
+"levels, the general and the advanced. Let's take a look at the general "
+"page ..."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:459
+#, no-c-format
+msgid "<title>General Search</title>"
+msgstr ""
+
+#. Tag: phrase
+#: krusader-tools.docbook:462
+#, no-c-format
+msgid "<phrase>General Search</phrase>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:467
+#, no-c-format
+msgid ""
+"The page is divided into four parts: top (search for) part, bottom part - "
+"titled 'containing text', left part - titled 'search in' and right part "
+"which is called 'don't search in'. Obviously, each part handles different "
+"aspects of the search. Let's look at them closely."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:472
+#, no-c-format
+msgid "Top Part:"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:473
+#, no-c-format
+msgid ""
+"<guilabel>Search for</guilabel>: here you enter the main search criteria. "
+"You can enter a filename, a wildcard (<literal role=\"extension\">*.o.*</"
+"literal>, <literal role=\"extension\">*.c</literal> &etc;) or both - "
+"separated by a space. If you type <literal>'text'</literal> the results is "
+"the same as <literal>'*text*'</literal>. You can exclude files from the "
+"search with '|' (&eg; <literal role=\"extension\">'*.cpp *.h | *.moc.cpp'</"
+"literal> )."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:479
+#, no-c-format
+msgid ""
+"<guilabel>Case sensitive</guilabel>: unchecking it will allow lower and "
+"upper case search (&ie;: <literal role=\"extension\">*.c</literal> "
+"interprets as <literal role=\"extension\">*.c</literal> AND <literal role="
+"\"extension\">*.C</literal>)."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:484
+#, no-c-format
+msgid ""
+"<guilabel>Of type</guilabel>: this box lets you search for a file not only "
+"by its name, but also by its mimetype. For example, you can search for all "
+"the audio files whose name begins with B. Usually this option defaults to "
+"'all files', but you can choose to search for archives, directories, images, "
+"text files, videos and audio files."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:491
+#, no-c-format
+msgid "Left and Right Part:"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:492
+#, no-c-format
+msgid ""
+"<guilabel>Search in</guilabel> and <guilabel>Don't search in</guilabel>: "
+"Using those two parts, you can specify a search exactly the way you want it. "
+"For example, you might want to search for a file in the whole filesystem "
+"(beginning with <filename>/</filename>), but don't want to search inside "
+"<filename>/mnt</filename>. All you need to do is write <filename>/</"
+"filename> in the <guilabel>search in</guilabel> box, and write <filename>/"
+"mnt</filename> in the <guilabel>dont search in</guilabel> box. If you want "
+"to enter more than one directory in one of the boxes, just type the first "
+"name and press &Enter;. The directory's name will be copied to the bigger "
+"box and you'll be able to enter another name."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:502
+#, no-c-format
+msgid ""
+"The input line has an auto completion feature, corrosponding to &kde;'s "
+"global settings. If you wish, you can click on the <guiicon>folder icon</"
+"guiicon>, and browse to the directory you wish to add."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:509
+#, no-c-format
+msgid "Bottom Part:"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:510
+#, no-c-format
+msgid ""
+"<guilabel>Text</guilabel>: entering text here makes &krusader; search for it "
+"inside the files (<command>grep</command>). That way, you can search for all "
+"header files (<literal role=\"extension\">*.h</literal>) which include the "
+"word <literal>'testing 123'</literal> inside them."
+msgstr ""
+
+#. Tag: guilabel
+#: krusader-tools.docbook:515
+#, no-c-format
+msgid "Match whole word only"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:517
+#, no-c-format
+msgid ""
+"<guilabel>Case sensitive</guilabel>: refers to your text being searched for "
+"in upper and lower case or the exact phrase you entered."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:520
+#, no-c-format
+msgid ""
+"<guilabel>Search in subdirectories</guilabel>: do a recursive search and "
+"dive into every directory on the way."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:523
+#, no-c-format
+msgid ""
+"<guilabel>Search in archives</guilabel>: &krusader; will search for your "
+"files inside every supported archive. This, however, takes longer to perform."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:525
+#, no-c-format
+msgid ""
+"If you check this checkbox, you'll notice you cannot <command>grep</command> "
+"inside files anymore. This is done, since looking inside archived files "
+"forces &krusader; to extract them, which results in an extremely time-"
+"consuming search."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:530
+#, no-c-format
+msgid ""
+"<guilabel>Follow links</guilabel>: if checked, &krusader; will follow soft-"
+"links during the search."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:533
+#, no-c-format
+msgid ""
+"<guilabel>Profiles</guilabel>: if you have to regularly perform the same "
+"search operation, you can save the search settings &eg; include files, "
+"exclude files, etc.... Press the 'profile' button, and you'll be able to add/"
+"load/save/remove search profiles."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:539
+#, no-c-format
+msgid ""
+"The above screenshot shows a search for all the files which end with "
+"<literal role=\"extension\">c, cpp</literal> or <literal role=\"extension"
+"\">h</literal> and include the string <literal>'testing 123'</literal>. "
+"&krusader; will search in <filename class=\"directory\">/root, /opt, /bin</"
+"filename> and <filename class=\"directory\">/usr</filename>, but not in "
+"<filename class=\"directory\">/usr/lib</filename> and <filename class="
+"\"directory\">/usr/share</filename>."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:546
+#, no-c-format
+msgid ""
+"Clicking the <guibutton>Search</guibutton> button starts the search and "
+"displays the results page. During the search, you may press the "
+"<guibutton>Stop</guibutton> button to stop the search. The <guibutton>Close</"
+"guibutton> button is not operational during a search, so you must first stop "
+"the search and then <guibutton>Close</guibutton> the window. When a result "
+"is found, double clicking on it will make &krusader;'s active panel point to "
+"the found files - but will not close the search window, so you'll be able to "
+"click on a different result."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:553
+#, no-c-format
+msgid ""
+"Sometimes, you need to narrow your search even more. Krusearcher allows a "
+"much finer search, and for that, let's look at the <guilabel>Advanced Page</"
+"guilabel>..."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:569
+#, no-c-format
+msgid "<title>Advanced Search</title>"
+msgstr ""
+
+#. Tag: phrase
+#: krusader-tools.docbook:572
+#, no-c-format
+msgid "<phrase>Advanced Search</phrase>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:577
+#, no-c-format
+msgid ""
+"This screenshot shows a search for files whose size is between 10KB and "
+"150KB, which were modified between October 10th and November 1st, which "
+"belong to any user in the 'users' group, and are readable and writeable by "
+"anyone in the 'users' group, but only readable to the rest of the world."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:583
+#, no-c-format
+msgid ""
+"The advanced page is divided into three parts: size, date and ownership."
+msgstr ""
+
+#. Tag: emphasis
+#: krusader-tools.docbook:585
+#, no-c-format
+msgid "Size"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:587
+#, no-c-format
+msgid ""
+"Allows you to choose the size range of the file you're looking for. By "
+"checking the checkboxes, you can search for a file which is bigger than XXX "
+"bytes (or KB, MB), smaller than XXX bytes or, by checking both search for a "
+"file which size is bigger than XXX but smaller than YYY."
+msgstr ""
+
+#. Tag: emphasis
+#: krusader-tools.docbook:592
+#, no-c-format
+msgid "Date"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:594
+#, no-c-format
+msgid "This part offers three different ways of defining a date criteria:"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:596
+#, no-c-format
+msgid ""
+"<guilabel>Modified between</guilabel>: allows you to enter two dates. "
+"&krusader; will search for files with a modification date between the first "
+"date and the second one, inclusive. If you only enter a date in the left "
+"box, you'll be searching for files older than that date. If you only enter a "
+"date in the right box, you'll be searching for files newer than that date."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:600
+#, no-c-format
+msgid ""
+"You can click on the date icon (near the input boxes) to open a standard "
+"date window - which allows you to easily browse through the calendar and "
+"search for the desired date. Clicking on a date will close the window and "
+"the date will appear in the input box."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:605
+#, no-c-format
+msgid ""
+"<guilabel>Not modified after</guilabel>: choosing this option makes "
+"&krusader; search for files that were NOT modified after a given date, which "
+"is the same as searching for files older than that date."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:609
+#, no-c-format
+msgid ""
+"<guilabel>Modified in the last/not modified in the last</guilabel>: in these "
+"input boxes, you enter not a date, but a number. This number represents days/"
+"weeks/months (as chosen in the near dropbox). Entering the number 5 in the "
+"upper input box, makes &krusader; search for files that were modified in the "
+"last 5 days. Entering the number 2 in the lower input box makes &krusader; "
+"search for files that did NOT change in the last 2 days. The combination of "
+"both results in a search for files that were changed in the last 5 days, but "
+"NOT in the last 2 days."
+msgstr ""
+
+#. Tag: emphasis
+#: krusader-tools.docbook:620
+#, no-c-format
+msgid "Ownership"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:623
+#, no-c-format
+msgid ""
+"<guilabel>Belongs to user/group</guilabel>: by checking each of the "
+"corresponding checkboxes, you can search for files which belong to a certain "
+"user and/or group. The dropbox lists all the user names and group names in "
+"the system, just choose one and go ahead."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:627
+#, no-c-format
+msgid ""
+"<guilabel>Permissions</guilabel>: divided into owner, group and all - it "
+"allows you to choose certain permissions for the file. You can choose to "
+"specify permissions for the owner, group, all or any combination. The "
+"question mark (?) is a wildcard - which means that any permission is valid."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:634
+#, no-c-format
+msgid ""
+"To clarify, the screenshot above (the permissions part) describes a search "
+"for files that belong to any user in group 'ftp', are readable, writable but "
+"not executable to any user in the group, are readable but not writable or "
+"executable to the rest of the world and have unknown permissions to its "
+"owner."
+msgstr ""
+
+#. Tag: emphasis
+#: krusader-tools.docbook:638
+#, no-c-format
+msgid "Results"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:640
+#, no-c-format
+msgid ""
+"Clicking on the <guibutton>Search</guibutton> button to start the search and "
+"open the Results window. Here you can see the progress and the the results "
+"of the search action. If you want you can stop the current search action "
+"with the <guibutton>Stop</guibutton> button. In the result list select the "
+"file and use <keycap>F3</keycap>/<keycap>F4</keycap> to view/edit or use the "
+"right-click menu. When you click on a found item, the directory of the "
+"active panel will change if the selected item is not in the current panel "
+"directory. When you close the Krusearcher window, the selected item is "
+"selected in the active panel."
+msgstr ""
+
+#. Tag: emphasis
+#: krusader-tools.docbook:649
+#, no-c-format
+msgid "Feed to listbox"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:651
+#, no-c-format
+msgid ""
+"When you click the <guibutton>Feed to listbox</guibutton> button after the "
+"results are displayed, then &krusader; ask for a Query Name, this name will "
+"be used in the Results-Tab in the List Panel that holds the search results. "
+"You can do whatever you want on the files in the new tab. The location "
+"toolbar will display &eg; <filename>virt:/Search results 1</filename>."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:657
+#, no-c-format
+msgid ""
+"The files in the Results-Tab are actually the original files. if you delete "
+"a file - it is removed!"
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:663
+#, no-c-format
+msgid "Locate &GUI; Frontend"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:665
+#, no-c-format
+msgid ""
+"&krusader; has a &GUI; frontend for the <command>locate</command> command "
+"(findutils). Locate is used for fast file searching. It does not search from "
+"a directory, but from a database. The package contains two files "
+"<command>locate</command> and <command>updatedb</command>. Updatedb walks "
+"through on the local filesystem and stores the file entries in the database. "
+"Often <command>cron</command> will call <command>updatedb</command> every "
+"night (set with Kcron). Choose <emphasis role=\"bold"
+"\"><menuchoice><guimenu>Commands</guimenu> <guimenuitem>Locate</"
+"guimenuitem></menuchoice></emphasis> or <keycombo action=\"simul\">&Ctrl;"
+"<keycap>L</keycap></keycombo> to start this feature. <link linkend=\"konfig-"
+"advanced\">Konfigurator</link> can set additional arguments for "
+"<command>updatedb</command>."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:678
+#, no-c-format
+msgid "Checkbox Options"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:680
+#, no-c-format
+msgid ""
+"<guilabel>Show only the existing files</guilabel>: if the database contains "
+"entries which do not exist any more (deleted, moved since the last "
+"<command>updatedb</command>), <command>locate</command> will not list them. "
+"It checks the existence of each file before listing in the results window "
+"(slow)."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:685
+#, no-c-format
+msgid ""
+"<guilabel>Case Sensitive</guilabel>: unchecking it will allow lower and "
+"upper case search."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:690
+#, no-c-format
+msgid "<para>Action buttons</para>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:692
+#, no-c-format
+msgid ""
+"<guibutton>Locate</guibutton>: executes <command>locate <replaceable>foo "
+"foo</replaceable></command> and places its output into the results window."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:695
+#, no-c-format
+msgid "<guibutton>Stop</guibutton>: stops the locate process."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:697
+#, no-c-format
+msgid ""
+"<guibutton>UpdateDB</guibutton>: starts <command>updatedb</command> for "
+"updating the locate database after entering the root password."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:700
+#, no-c-format
+msgid "<guibutton>Close</guibutton>: closes the locate window."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:705
+#, no-c-format
+msgid "Results window"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:707
+#, no-c-format
+msgid ""
+"double click on an item: steps to its directory, makes the item visible and "
+"closes the locate dialog."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:711
+#, no-c-format
+msgid "right click: edit/view/find menu."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:713
+#, no-c-format
+msgid "<keycap>F3</keycap>: views the current item."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:714
+#, no-c-format
+msgid "<keycap>F4</keycap>: edit the current item."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:715
+#, no-c-format
+msgid ""
+"<keycombo action=\"simul\">&Ctrl;<keycap>f</keycap></keycombo>: find files "
+"in the results window."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:717
+#, no-c-format
+msgid ""
+"<keycombo action=\"simul\">&Ctrl;<keycap>n</keycap></keycombo>: next search "
+"result."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:719
+#, no-c-format
+msgid ""
+"<keycombo action=\"simul\">&Ctrl;<keycap>p</keycap></keycombo>: previous "
+"search result."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:735
+#, no-c-format
+msgid "KrViewer: &krusader;'s internal viewer-editor"
+msgstr ""
+
+#. Tag: primary
+#: krusader-tools.docbook:736
+#, no-c-format
+msgid "<primary>Viewer</primary>"
+msgstr ""
+
+#. Tag: seealso
+#: krusader-tools.docbook:737
+#, no-c-format
+msgid "<seealso>Editor</seealso>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:740
+#, no-c-format
+msgid ""
+"Pressing &Enter; on a selected file <emphasis>opens the file with the "
+"associated application</emphasis>. The editor-viewer is tabbed, configure it "
+"on the &konfiggereral_lnk;"
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:746
+#, no-c-format
+msgid "<title>Viewer</title>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:748
+#, no-c-format
+msgid ""
+"To view a file as fast as possible according to it's type, just put it under "
+"the cursor and press <keycap>F3</keycap>. &krusader;'s internal viewer is "
+"actually a &konqueror; part, which can basically view every file type "
+"viewable by &konqueror; (&eg; display pictures, play music, show the content "
+"of an archive), this is called the 'Generic viewer'. You need to configure "
+"the mimetypes for this."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:753
+#, no-c-format
+msgid ""
+"The viewer works as follows: <itemizedlist> <listitem><para>It will try to "
+"view the file with the <emphasis>'Generic viewer'.</emphasis> </para></"
+"listitem> <listitem><para>When the file type (mimetype) cannot be determined "
+"or when a file (&eg; a binary) doesn't have an associated action, it "
+"disables the 'generic viewer'. The file will be treated as a text file, this "
+"is the <emphasis>'Text viewer'</emphasis>. </para></listitem> "
+"<listitem><para>The user can change in the <link linkend="
+"\"kredit_krviewer_menu\">KrViewer menu</link> between: 'Generic viewer' (if "
+"available), 'Text viewer' and <emphasis>'Hex viewer'</emphasis>. </para></"
+"listitem> </itemizedlist> The default viewer mode can be configured on the "
+"&konfiggereral_lnk; ."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:769
+#, no-c-format
+msgid ""
+"<keycombo action=\"simul\">&Shift;<keycap>F3</keycap></keycombo> views a "
+"&URL; on demand, &eg;:"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:771
+#, no-c-format
+msgid "<userinput><command>man:/</command></userinput> views the manpages."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:774
+#, no-c-format
+msgid ""
+"<userinput><command>man:/</command><replaceable>krusader</replaceable></"
+"userinput> views a manpage."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:777
+#, no-c-format
+msgid "<userinput><command>info:/</command></userinput> views the infopages."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:780
+#, no-c-format
+msgid ""
+"<userinput><command>http://</command><replaceable>krusader.sourceforce.net/</"
+"replaceable></userinput> views a webpage."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:784
+#, no-c-format
+msgid ""
+"<userinput><command>ftp://</command><replaceable>ftp.kde.org/pub/kde/</"
+"replaceable></userinput> views a ftp-server."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:788
+#, no-c-format
+msgid ""
+"<userinput><command>sftp://</command><replaceable>sftp.foo/</replaceable></"
+"userinput> views a secure ftp-server."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:792
+#, no-c-format
+msgid ""
+"<userinput><command>file:/</command><replaceable>home/frank</replaceable></"
+"userinput> views the homedirectory of Frank."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:796
+#, no-c-format
+msgid ""
+"<userinput><replaceable>/home/frank/archive.tar.gz</replaceable></userinput> "
+"views a <literal role=\"extension\">tar.gz</literal> archive."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:803
+#, no-c-format
+msgid ""
+"KrViewer can have the following menu's: <link linkend=\"kredit_file_menu"
+"\">File</link>, <link linkend=\"kredit_edit_menu\">Edit</link>, <link "
+"linkend=\"kredit_view_menu\">View</link>, <link linkend="
+"\"kredit_settings_menu\">Settings</link> and <link linkend="
+"\"kredit_krviewer_menu\">Krviewer</link>, depending on which file type is "
+"viewed. They will be discussed in the <link linkend=\"kredit\">Editor "
+"section</link>. The internal viewer can follow links on HTML pages. With "
+"<keycombo action=\"simul\">&Ctrl;<keycap>E</keycap></keycombo> the viewer "
+"will start &krusader;'s internal editor (which is basically the same "
+"application)."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:816
+#, no-c-format
+msgid ""
+"The embedded viewer is not written by us, it is supplied via &kde; (libs) "
+"and &kioslaves1_url; We cannot and don't want to change it, usings these "
+"libraries reduces the amount of written code. So we don't have to reinvent "
+"the wheel ;-)"
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:822
+#, no-c-format
+msgid "<title>Editor</title>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:824
+#, no-c-format
+msgid ""
+"&krusader;'s internal editor has almost everything that you can expect of an "
+"editor. Editing is similar to viewing but with the <keycap>F4</keycap> key. "
+"The default editor is &krusader;'s internal editor. You can change the "
+"default editor in the &konfiggereral_lnk;, if you prefer to use an external "
+"editor."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:829
+#, no-c-format
+msgid ""
+"When you use &krusader;'s internal editor for the first time, It is "
+"recommended to look at each section of the <link linkend="
+"\"kredit_settings_menu\">Settings</link> menu, and configure it the way you "
+"want it."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:837
+#, no-c-format
+msgid "Menu overview"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:838
+#, no-c-format
+msgid "Most of the menus are pretty self-explanatory. ;-)"
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:841
+#, no-c-format
+msgid "<guimenu>File</guimenu> menu"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:844
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;<keycap>S</keycap></keycombo></"
+"shortcut> <guimenu>File</guimenu> <guimenuitem>Save</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:849
+#, no-c-format
+msgid "Save file."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:855
+#, no-c-format
+msgid "<guimenu>File</guimenu> <guimenuitem>Save As</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:859
+#, no-c-format
+msgid "Save file with another name."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:865
+#, no-c-format
+msgid ""
+"<shortcut><keycap>F5</keycap></shortcut> <guimenu>File</guimenu> "
+"<guimenuitem>Reload</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:870
+#, no-c-format
+msgid "Reload file."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:876
+#, no-c-format
+msgid "<guimenu>File</guimenu> <guimenuitem>Export</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:880
+#, no-c-format
+msgid "Export the file to <literal role=\"extension\">html</literal> format."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:886
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;<keycap>P</keycap></keycombo></"
+"shortcut> <guimenu>File</guimenu> <guimenuitem>Print</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:891
+#, no-c-format
+msgid "Print the file."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:897
+#, no-c-format
+msgid "<guimenu>Edit</guimenu> menu"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:900
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;<keycap>Z</keycap></keycombo></"
+"shortcut> <guimenu>Edit</guimenu> <guimenuitem>Undo</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:905
+#, no-c-format
+msgid "Undo last action."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:911
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;&Shift;<keycap>Z</keycap></"
+"keycombo></shortcut> <guimenu>Edit</guimenu> <guimenuitem>Redo</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:916
+#, no-c-format
+msgid "Redo last action."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:922
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;<keycap>X</keycap></keycombo></"
+"shortcut> <guimenu>Edit</guimenu> <guimenuitem>Cut</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:927
+#, no-c-format
+msgid "Cut selected text to clipboard."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:933
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;<keycap>C</keycap></keycombo></"
+"shortcut> <guimenu>Edit</guimenu> <guimenuitem>Copy</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:938
+#, no-c-format
+msgid "Copy selected text to clipboard."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:944
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;<keycap>V</keycap></keycombo></"
+"shortcut> <guimenu>Edit</guimenu> <guimenuitem>Paste</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:949
+#, no-c-format
+msgid "Paste clipboard content to the document."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:955
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;<keycap>A</keycap></keycombo></"
+"shortcut> <guimenu>Edit</guimenu> <guimenuitem>Select All</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:960
+#, no-c-format
+msgid "Select whole document."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:966
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;&Shift;<keycap>A</keycap></"
+"keycombo></shortcut> <guimenu>Edit</guimenu> <guimenuitem>Deselect</"
+"guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:971
+#, no-c-format
+msgid "Deselect current selection."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:977
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;&Shift;<keycap>B</keycap></"
+"keycombo></shortcut> <guimenu>Edit</guimenu> <guimenuitem>Block Selection "
+"Mode</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:982
+#, no-c-format
+msgid ""
+"Toggle Block Selection, this will activate/deactivate the block selection "
+"possibility."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:988
+#, no-c-format
+msgid ""
+"<shortcut><keycap>Insert</keycap></shortcut> <guimenu>Edit</guimenu> "
+"<guimenuitem>Overwrite Mode</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:993
+#, no-c-format
+msgid "Toggle Insert/Overwrite Mode."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:999
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;<keycap>F</keycap></keycombo></"
+"shortcut> <guimenu>Edit</guimenu> <guimenuitem>Find</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1004
+#, no-c-format
+msgid "Find text."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1010
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\"><keycap>F3</keycap></keycombo></"
+"shortcut> <guimenu>Edit</guimenu> <guimenuitem>Find Next</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1015
+#, no-c-format
+msgid "Find next text."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1021
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Shift;<keycap>F3</keycap></keycombo></"
+"shortcut> <guimenu>Edit</guimenu> <guimenuitem>Find Previous</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1026
+#, no-c-format
+msgid "Find previous text."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1032
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;<keycap>R</keycap></keycombo></"
+"shortcut> <guimenu>Edit</guimenu> <guimenuitem>Replace</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1037
+#, no-c-format
+msgid "Replace text."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1043
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;<keycap>G</keycap></keycombo></"
+"shortcut> <guimenu>Edit</guimenu> <guimenuitem>Go to line</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1048
+#, no-c-format
+msgid "Go to given linenumber."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:1054
+#, no-c-format
+msgid "<guimenu>View</guimenu> menu"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1057
+#, no-c-format
+msgid ""
+"<shortcut><keycap>F7</keycap></shortcut> <guimenu>View</guimenu> "
+"<guimenuitem>Switch to Command Line.</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1062
+#, no-c-format
+msgid "Display Command Line."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1068
+#, no-c-format
+msgid "<guimenu>View</guimenu> <guimenuitem>Schema.</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1072
+#, no-c-format
+msgid ""
+"Set Schema &eg; &krusader; Normal, &krusader; Printing, &kate; Normal, "
+"&kwrite; Normal."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1079
+#, no-c-format
+msgid ""
+"<shortcut><keycap>F10</keycap></shortcut> <guimenu>View</guimenu> "
+"<guimenuitem>Dynamic Word Wrap</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1084
+#, no-c-format
+msgid ""
+"Go to the next line at the maximum number of characters per line (default "
+"80)."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1090
+#, no-c-format
+msgid ""
+"<guimenu>View</guimenu> <guimenuitem>Dynamic Word Wrap Indicators</"
+"guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1094
+#, no-c-format
+msgid "Off, Follow Line Numbers, Always On."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1100
+#, no-c-format
+msgid ""
+"<guimenu>View</guimenu> <guimenuitem>Show Static Word Wrap marker</"
+"guimenuitem>"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1110
+#, no-c-format
+msgid ""
+"<shortcut><keycap>F6</keycap></shortcut> <guimenu>View</guimenu> "
+"<guimenuitem>Show Icon Border</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1115
+#, no-c-format
+msgid "Show Icon Border."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1121
+#, no-c-format
+msgid ""
+"<shortcut><keycap>F11</keycap></shortcut> <guimenu>View</guimenu> "
+"<guimenuitem>Show Line Numbers</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1126
+#, no-c-format
+msgid "Shows the line numbers."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1132
+#, no-c-format
+msgid ""
+"<guimenu>View</guimenu> <guimenuitem>Show Scrollbar Marks.</guimenuitem>"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1142
+#, no-c-format
+msgid ""
+"<shortcut><keycap>F9</keycap></shortcut> <guimenu>View</guimenu> "
+"<guimenuitem>Hide Folding Markers</guimenuitem>"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1153
+#, no-c-format
+msgid "<guimenu>View</guimenu> <guimenuitem>Code Folding.</guimenuitem>"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1163
+#, no-c-format
+msgid "<guimenu>View</guimenu> <guimenuitem>Set Encoding</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1167
+#, no-c-format
+msgid "&eg; ISO8859-1, utf8, utf16, tscii, ... ."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:1173
+#, no-c-format
+msgid "<guimenu>Bookmarks</guimenu> menu"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1176
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;<keycap>B</keycap></keycombo></"
+"shortcut> <guimenu>Bookmark</guimenu> <guimenuitem>Set Bookmark</guimenuitem>"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1187
+#, no-c-format
+msgid ""
+"<guimenu>Bookmark</guimenu> <guimenuitem>Clear All Bookmarks</guimenuitem>"
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:1224
+#, no-c-format
+msgid "<guimenu>Tools</guimenu> menu"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1227
+#, no-c-format
+msgid "<guimenu>Tools</guimenu> <guimenuitem>Read Only Mode</guimenuitem>"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1237
+#, no-c-format
+msgid "<guimenu>Tools</guimenu> <guimenuitem>Filetype Mode</guimenuitem>"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1247
+#, no-c-format
+msgid "<guimenu>Tools</guimenu> <guimenuitem>Highlight mode</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1251
+#, no-c-format
+msgid ""
+"Highlight mode for scripts, programming languages, markup file, &etc;: &eg; "
+"<literal role=\"extension\">html, Bash, C++, XML, Makefile, Diff, ...</"
+"literal> ."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1258
+#, no-c-format
+msgid "<guimenu>Tools</guimenu> <guimenuitem>End of Line</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1262
+#, no-c-format
+msgid ""
+"Change the end of Line termination: &UNIX;, &Windows;/DOS, <trademark class="
+"\"registered\">Macintosh</trademark>."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1269
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;<keycap>I</keycap></keycombo></"
+"shortcut> <guimenu>Tools</guimenu> <guimenuitem>Indent</guimenuitem>"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1280
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;&Shift;<keycap>I</keycap></"
+"keycombo></shortcut> <guimenu>Tools</guimenu> <guimenuitem>Unindent</"
+"guimenuitem>"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1291
+#, no-c-format
+msgid "<guimenu>Tools</guimenu> <guimenuitem>Clean Indendation</guimenuitem>"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1301
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;<keycap>D</keycap></keycombo></"
+"shortcut> <guimenu>Tools</guimenu> <guimenuitem>Comment</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1306
+#, no-c-format
+msgid "Add appropriate comment tags, if available."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1312
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;&Shift;<keycap>D</keycap></"
+"keycombo></shortcut> <guimenu>Tools</guimenu> <guimenuitem>Uncomment</"
+"guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1317
+#, no-c-format
+msgid "Removes the comment tags on the left."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1323
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;<keycap>U</keycap></keycombo></"
+"shortcut> <guimenu>Tools</guimenu> <guimenuitem>Uppercase</guimenuitem>"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1334
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;&Shift;<keycap>U</keycap></"
+"keycombo></shortcut> <guimenu>Tools</guimenu> <guimenuitem>Lowercase</"
+"guimenuitem>"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1345
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Alt;&Ctrl;<keycap>U</keycap></"
+"keycombo></shortcut> <guimenu>Tools</guimenu> <guimenuitem>Capitalize</"
+"guimenuitem>"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1356
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;<keycap>J</keycap></keycombo></"
+"shortcut> <guimenu>Tools</guimenu> <guimenuitem>Join Lines</guimenuitem>"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1367
+#, no-c-format
+msgid "<guimenu>Tools</guimenu> <guimenuitem>Word Wrap Document</guimenuitem>"
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:1378
+#, no-c-format
+msgid "<guimenu>Settings -> Configure Editor</guimenu> menu"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1381
+#, no-c-format
+msgid ""
+"<guimenu>Settings</guimenu> <guimenuitem>Configure Editor</guimenuitem> "
+"<guimenuitem>Colors</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1386
+#, no-c-format
+msgid ""
+"Color configuration for the: Background, Selected text, Current line and "
+"Bracket highlighting."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1392
+#, no-c-format
+msgid ""
+"<guimenu>Settings</guimenu> <guimenuitem>Configure Editor</guimenuitem> "
+"<guimenuitem>Fonts</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1397
+#, no-c-format
+msgid ""
+"Fonts configuration for display and printer: Font, font Style and Size, with "
+"a preview window."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1403
+#, no-c-format
+msgid ""
+"<guimenu>Settings</guimenu> <guimenuitem>Configure Editor</guimenuitem> "
+"<guimenuitem>Indentation</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1408
+#, no-c-format
+msgid ""
+"Indentation configuration: Automatically indent, use Spaces to indent, &Tab; "
+"Keys indent, &Backspace; key unindents, keep indent profile, keep extra "
+"spaces."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1415
+#, no-c-format
+msgid ""
+"<guimenu>Settings</guimenu> <guimenuitem>Configure Editor</guimenuitem> "
+"<guimenuitem>Selection</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1420
+#, no-c-format
+msgid ""
+"Selection configuration: Persistent selections, Overwrite selected text."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1426
+#, no-c-format
+msgid ""
+"<guimenu>Settings</guimenu> <guimenuitem>Configure Editor</guimenuitem> "
+"<guimenuitem>Editing</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1431
+#, no-c-format
+msgid ""
+"Editing configuration: Word Wrap config., Whitespace config, Auto brackets, "
+"Smart home, Wrap cursor, Maximum undo steps."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1438
+#, no-c-format
+msgid ""
+"<guimenu>Settings</guimenu> <guimenuitem>Configure Editor</guimenuitem> "
+"<guimenuitem>Shortcuts</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1443
+#, no-c-format
+msgid "Shortcuts configuration."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1449
+#, no-c-format
+msgid ""
+"<guimenu>Settings</guimenu> <guimenuitem>Configure Editor</guimenuitem> "
+"<guimenuitem>Highlighting</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1454
+#, no-c-format
+msgid "Highlighting configuration: Default styles and Highlight mode."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1460
+#, no-c-format
+msgid ""
+"<guimenu>Settings</guimenu> <guimenuitem>Configure Editor</guimenuitem> "
+"<guimenuitem>View defaults</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1465
+#, no-c-format
+msgid ""
+"View defaults: Dynamic word wrap, show Line numbers, show Icon border, show "
+"Folder markers if available, sort Bookmarks menu method."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1472
+#, no-c-format
+msgid ""
+"<guimenu>Settings</guimenu> <guimenuitem>Configure Editor</guimenuitem> "
+"<guimenuitem>Plugins</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1477
+#, no-c-format
+msgid ""
+"Plugins configuration: &eg; kTexteditor incremental search plugin, "
+"kTexteditor insert file plugin, kTexteditor kdatatoolplugin..."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:1484
+#, no-c-format
+msgid "<guimenu>KrViewer</guimenu> menu"
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1487
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;&Shift;<keycap>G</keycap></"
+"keycombo></shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Generic "
+"viewer</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1492
+#, no-c-format
+msgid ""
+"&krusader;'s internal viewer is actually part of Konqueror, which can "
+"basically view every file type viewable by &konqueror; (&eg; display "
+"pictures, play music, show the content of an archive)."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1499
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;<keycap>T</keycap></keycombo></"
+"shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Text viewer</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1504
+#, no-c-format
+msgid "View the file in text mode."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1510
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;&Shift;<keycap>H</keycap></"
+"keycombo></shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Hex viewer</"
+"guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1515
+#, no-c-format
+msgid "View the file in hex mode."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1521
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;&Shift;<keycap>E</keycap></"
+"keycombo></shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Text editor</"
+"guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1526
+#, no-c-format
+msgid "Edit the file in text mode."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1532
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Alt;<keycap>Right</keycap></keycombo></"
+"shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Next Tab</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1537
+#, no-c-format
+msgid "Next browsing Tab."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1543
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Alt;<keycap>Left</keycap></keycombo></"
+"shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Previous Tab</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1548
+#, no-c-format
+msgid "Previous browsing Tab."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1554
+#, no-c-format
+msgid ""
+"<shortcut><keycombo action=\"simul\">&Ctrl;&Shift;<keycap>D</keycap></"
+"keycombo></shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Detach Tab</"
+"guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1559
+#, no-c-format
+msgid "Detach browsing Tab and open in a new window."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1565
+#, no-c-format
+msgid ""
+"<shortcut>&Esc;</shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Close "
+"current Tab.</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1570
+#, no-c-format
+msgid "Close current browsing Tab."
+msgstr ""
+
+#. Tag: menuchoice
+#: krusader-tools.docbook:1576
+#, no-c-format
+msgid ""
+"<shortcut>&Ctrl;<keycap>Q</keycap></shortcut> <guimenu>KrViewer</guimenu> "
+"<guimenuitem>Close</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1581
+#, no-c-format
+msgid "Closes &krusader;'s viewer/editor window."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:1591 krusader-tools.docbook:1620
+#, no-c-format
+msgid "<title>Synchronizer</title>"
+msgstr ""
+
+#. Tag: primary
+#: krusader-tools.docbook:1592
+#, no-c-format
+msgid "<primary>Synchronizer</primary>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1594
+#, no-c-format
+msgid ""
+"This function compares the left and the right panel directories and shows "
+"the difference between them. After selecting some options and the "
+"<guilabel>Compare</guilabel> function you can synchronize the files and "
+"directories. One panel could be an &FTP; server. Don't forget the "
+"<guilabel>Compare by content</guilabel> option if the file size stays equal. "
+"Choose <emphasis role=\"bold\"><menuchoice><guimenu>Commands</guimenu> "
+"<guimenuitem>Synchronize Directories</guimenuitem></menuchoice></emphasis> "
+"or <keycombo action=\"simul\">&Ctrl;<keycap>Y</keycap></keycombo> to start "
+"this feature. The <link linkend=\"konfig-color\">colors</link> are "
+"configurable."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1605
+#, no-c-format
+msgid ""
+"For local files: the synchronizer changes the date information to the "
+"original dates."
+msgstr ""
+
+#. Tag: phrase
+#: krusader-tools.docbook:1623
+#, no-c-format
+msgid "<phrase>Synchronizer</phrase>"
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:1629
+#, no-c-format
+msgid "Procedure:"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1630
+#, no-c-format
+msgid ""
+"Set the <guilabel>Left directory</guilabel> and the <guilabel>Right "
+"directory</guilabel>."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1632
+#, no-c-format
+msgid ""
+"Configure the optional <guilabel>File Filter</guilabel>, <guilabel>General "
+"Filters</guilabel> and <guilabel>Advanced filters</guilabel>. The "
+"<guilabel>General Filters</guilabel> includes a <guilabel>don't search in</"
+"guilabel> option which lets you exclude directories from comparision."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1638
+#, no-c-format
+msgid ""
+"Set the <link linkend=\"synccomp_checkb_options\">checkbox options</link>: "
+"<guilabel>Recurse subdirectories</guilabel>, <guilabel>Follow symlinks</"
+"guilabel>, <guilabel>Compare by content</guilabel>, <guilabel>Ignore Date</"
+"guilabel> and <guilabel>Asymmetric</guilabel>."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1643
+#, no-c-format
+msgid ""
+"Click on the <guibutton>Compare</guibutton> button to compare the "
+"directories."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1645
+#, no-c-format
+msgid ""
+"By using the <link linkend=\"synccomp_show_options\">Show options</link>, "
+"you can include/exclude particular filetypes. Those files, that are not in "
+"the list, will be untouched by synchronization."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1649
+#, no-c-format
+msgid ""
+"If needed you can change the <guilabel>Task</guilabel> operations determined "
+"by the Comparator with the <link linkend=\"synccomp_right_click\">right "
+"click menu</link>."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1653
+#, no-c-format
+msgid ""
+"When you agree with the <guibutton>Compare</guibutton> results click on the "
+"<guibutton>Synchronize</guibutton> button to show the synchronize dialog."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1656
+#, no-c-format
+msgid ""
+"After selection the options of the <link linkend=\"sychronizer"
+"\">Synchronizer</link>, click on the <guibutton>Start</guibutton> button to "
+"start the synchronization process."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1660
+#, no-c-format
+msgid ""
+"A detailed explanation of all the functions and buttons is described in the "
+"following text."
+msgstr ""
+
+#. Tag: emphasis
+#: krusader-tools.docbook:1664
+#, no-c-format
+msgid "Comparator"
+msgstr ""
+
+#. Tag: term
+#: krusader-tools.docbook:1667
+#, no-c-format
+msgid "Panel elements"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1670
+#, no-c-format
+msgid "<guilabel>Left Directory</guilabel>: the left side base directory."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1672
+#, no-c-format
+msgid "<guilabel>Right Directory</guilabel>: the right side base directory."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1674
+#, no-c-format
+msgid ""
+"<guilabel>File Filter</guilabel>: filter the filenames at synchronizing. "
+"&eg; <literal role=\"extension\">*.png</literal> selects only those files "
+"whose name's end with <literal role=\"extension\">.png</literal> Directories "
+"will be listed if the directory name ends with <literal role=\"extension\">."
+"png</literal> or if the directory contains files which end with <literal "
+"role=\"extension\">.png</literal> Multiple include/exclude example: <literal "
+"role=\"extension\">'*.cpp *.h | *.moc.cpp'</literal> will include <literal "
+"role=\"extension\">*.cpp *.h</literal> and exclude <literal role=\"extension"
+"\">*.moc.cpp</literal>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1685
+#, no-c-format
+msgid "<guilabel>General filters</guilabel>: search for, containing text"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1687
+#, no-c-format
+msgid "<guilabel>Advanced filters</guilabel>: size, date, ownership"
+msgstr ""
+
+#. Tag: term
+#: krusader-tools.docbook:1693
+#, no-c-format
+msgid "Checkbox options"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1696
+#, no-c-format
+msgid ""
+"<guilabel>Recurse subdirectories</guilabel>: the Synchronizer walks through "
+"subdirectories when comparing."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1699
+#, no-c-format
+msgid ""
+"<guilabel>Follow symlinks</guilabel>: the Synchronizer follows the symbolic "
+"links to directories (not the files!)."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1702
+#, no-c-format
+msgid ""
+"<guilabel>Compare by content</guilabel>: those files whose sizes are equal "
+"will be compared by content as well."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1705
+#, no-c-format
+msgid ""
+"<guilabel>Ignore Date</guilabel>: Ignores the date information (useful for "
+"&FTP;, smb, archive, ... ) the date information is relevant *only* in the "
+"local file system."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1709
+#, no-c-format
+msgid ""
+"<guilabel>Asymmetric</guilabel>: The <guilabel>Left Directory</guilabel> is "
+"the target directory, the <guilabel>Right Directory</guilabel> is the source "
+"directory. This functions synchronizes the content of the left directory to "
+"the right directory. <itemizedlist> <listitem><para>Those files that exist "
+"only on the left side will be deleted.</para> </listitem> "
+"<listitem><para>Those files that exist only on the right side will be copied "
+"to left.</para> </listitem> <listitem><para>Those files considered to be "
+"equal will be untouched.</para> </listitem> <listitem><para>Those files "
+"considered to be different will be copied to left. Use this feature with "
+"care!</para> </listitem> </itemizedlist> This function is useful if the date "
+"information is unusable, or to synchronize the left directory to the content "
+"of a fileserver (like a download). Or to make a backup from the right "
+"directory to left directory. NOTE: do NOT use this to option to synchronize "
+"a desktop and a notebook (&eg; files that exists only in the left side will "
+"be deleted!)."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1729
+#, no-c-format
+msgid ""
+"<guilabel>Automatic Scrolling</guilabel>: Is for slow &FTP; servers, ... "
+"When the Synchronizer is finished comparing a file, it puts the file into "
+"the end of the list at once and scrolls the window, if necessary. It is "
+"important if you want to know what the Synchronizer is doing. If the &FTP; "
+"server is slow, the comparison of a directory may take a lot of time. By "
+"turning this option on, one can see that the comparator is \"alive\", but "
+"slow. For fast file systems, it can reduce the speed of comparing slightly."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1744
+#, no-c-format
+msgid ""
+"When all the above things are done, click on the <guibutton>Compare</"
+"guibutton> button to compare the directories, the results are displayed in "
+"the \"File List\"."
+msgstr ""
+
+#. Tag: term
+#: krusader-tools.docbook:1747
+#, no-c-format
+msgid "\"File List\""
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1749
+#, no-c-format
+msgid ""
+"The <guilabel>File List</guilabel> has the following columns: \"Left name | "
+"Left size | Left time | Task | Right time | Right size | Right name\"."
+msgstr ""
+
+#. Tag: term
+#: krusader-tools.docbook:1754
+#, no-c-format
+msgid "Tasks (&lt;=>)"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1755
+#, no-c-format
+msgid "This column will display the task that is planned for the Syncronizer."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1757
+#, no-c-format
+msgid ""
+"<guibutton>-></guibutton>: copy from the left side to the right side. For "
+"directories: <command>mkdir</command> in the right side."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1761
+#, no-c-format
+msgid "<guibutton>=</guibutton>: the files are the same, don't do anything."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1764
+#, no-c-format
+msgid ""
+"<guibutton>!=</guibutton>: the file is excluded, or the Synchronizer does "
+"not know what to do."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1767
+#, no-c-format
+msgid ""
+"<guibutton>&lt;-</guibutton>: copy from the right side to the left side. For "
+"directories: <command>mkdir</command> in the left side"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1771
+#, no-c-format
+msgid "<guibutton>DEL</guibutton>: delete files from the right side."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1775
+#, no-c-format
+msgid ""
+"The tasks can be changed with the <link linkend=\"synccomp_right_click"
+"\">right click menu</link>."
+msgstr ""
+
+#. Tag: term
+#: krusader-tools.docbook:1779
+#, no-c-format
+msgid "Show options"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1781
+#, no-c-format
+msgid ""
+"Here you can include/exclude particular filetypes. Those files, that are not "
+"in the list, will be untouched at synchronization."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1784
+#, no-c-format
+msgid ""
+"<guibutton>-></guibutton>: Enable/Disable the copy task from left to right."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1786
+#, no-c-format
+msgid "<guibutton>=</guibutton>: Enable/Disable listing the equal files."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1788
+#, no-c-format
+msgid ""
+"<guibutton>!=</guibutton>: Enable/Disable listing the excluded / \"don't "
+"know what to do\" files."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1790
+#, no-c-format
+msgid ""
+"<guibutton>&lt;-</guibutton>: Enable/Disable the copy task from right to "
+"left."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1792
+#, no-c-format
+msgid ""
+"<guibutton>Trash</guibutton>: Enable/Disable the file deleting from the left "
+"side task."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1794
+#, no-c-format
+msgid ""
+"<guibutton>Duplicates</guibutton>: Enable/Disable those files that exist on "
+"both side."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1796
+#, no-c-format
+msgid ""
+"<guibutton>Singles</guibutton>: Enable/Disable those files that exist only "
+"on one side."
+msgstr ""
+
+#. Tag: term
+#: krusader-tools.docbook:1801 krusader-tools.docbook:1946
+#, no-c-format
+msgid "<term>Action buttons</term>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1804
+#, no-c-format
+msgid ""
+"<guibutton>Compare</guibutton>: compares the directories, the results are "
+"displayed in the <guilabel>File List</guilabel>."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1806
+#, no-c-format
+msgid "<guibutton>Stop</guibutton>: stops comparing."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1808
+#, no-c-format
+msgid "<guibutton>Synchronize</guibutton>: shows the synchronize dialog."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1810
+#, no-c-format
+msgid "<guibutton>Close</guibutton>: closes the Synchronizer window."
+msgstr ""
+
+#. Tag: term
+#: krusader-tools.docbook:1815
+#, no-c-format
+msgid "The Status line may contain"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1818
+#, no-c-format
+msgid "The number of scanned directories while comparing."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1819
+#, no-c-format
+msgid "The filename when comparing by content (for big files)."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1820
+#, no-c-format
+msgid "The number of files in the list."
+msgstr ""
+
+#. Tag: term
+#: krusader-tools.docbook:1824
+#, no-c-format
+msgid "Right click menu on the <guilabel>File List</guilabel>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1826
+#, no-c-format
+msgid "The right click menu is split up in three sections:"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1828
+#, no-c-format
+msgid ""
+"1. change the <guilabel>Task</guilabel> operations determined by the "
+"Comparator. Select one or multiple files. The change will be applied on the "
+"selection and not only on the right clicked item. If the selected item is a "
+"directory, the change will be applied on its files/subdirectories as well."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1834
+#, no-c-format
+msgid "<guibutton>Synchronise Directories</guibutton>: starts synchronization."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1836
+#, no-c-format
+msgid ""
+"<guibutton>Exclude</guibutton>: excludes a file/dir from synchronization "
+"( task change to != )."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1838
+#, no-c-format
+msgid ""
+"<guibutton>Restore original operation</guibutton>: task change to the "
+"original result of comparison."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1840
+#, no-c-format
+msgid ""
+"<guibutton>Reverse direction</guibutton>: task change ( -> to &lt;-, and "
+"&lt;- to -> )."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1842
+#, no-c-format
+msgid "<guibutton>Copy from right to left</guibutton>: task change to &lt;-."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1844
+#, no-c-format
+msgid "<guibutton>Copy from left to right</guibutton>: task change to ->."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1846
+#, no-c-format
+msgid "<guibutton>Delete ( left single )</guibutton>: task change to DEL."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1850
+#, no-c-format
+msgid "2. change the selections"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1852
+#, no-c-format
+msgid ""
+"<guibutton>Select items</guibutton>: Opens a dialog which allows you to "
+"select items. This is the <guimenuitem>Select Group</guimenuitem> dialog "
+"from the &editmenu_lnk;."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1856
+#, no-c-format
+msgid ""
+"<guibutton>Unselect items</guibutton>: Opens a dialog which allows you to "
+"unselect items. This is the <guimenuitem>Unselect Group</guimenuitem> dialog "
+"from the &editmenu_lnk;."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1860
+#, no-c-format
+msgid ""
+"<guibutton>Invert selection</guibutton>: Invert the selection status of all "
+"items."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1864
+#, no-c-format
+msgid ""
+"3. others Note: the following operations work on the right-clicked file and "
+"not on the selection."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1866
+#, no-c-format
+msgid "<guibutton>View left file</guibutton>: starts viewer on the left file."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1868
+#, no-c-format
+msgid ""
+"<guibutton>View right file</guibutton>: starts viewer on the right file."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1870
+#, no-c-format
+msgid ""
+"<guibutton>Compare Files</guibutton>: starts the diff utility (&eg; "
+"&kompare;) on the files."
+msgstr ""
+
+#. Tag: term
+#: krusader-tools.docbook:1876
+#, no-c-format
+msgid "Other buttons"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1880
+#, no-c-format
+msgid ""
+"<guibutton>Profiles</guibutton>: If you have to synchronize often the same "
+"directories you can save the settings &eg; include files, exclude files, ... "
+"Press the <guibutton>Profile</guibutton> button, and you'll be able to add/ "
+"load / save / remove synchronizer profiles."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1886
+#, no-c-format
+msgid ""
+"<guibutton>Swap sides</guibutton>: swaps the <guilabel>File List</guilabel>."
+msgstr ""
+
+#. Tag: term
+#: krusader-tools.docbook:1893
+#, no-c-format
+msgid "Synchronize with &kget;"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1895
+#, no-c-format
+msgid ""
+"If you want to synchronize a local directory with an unstable ftp server, "
+"&kget; is a much better solution than simple file copying. After comparing "
+"you may right click on the result list and select <guimenuitem>Synchronize "
+"with kget</guimenuitem> to execute the synchronization, after that the "
+"listed files will be downloaded with kget instead of krusader. Of course "
+"<application>kget</application> needs to be installed on your computer; "
+"otherwise, it will not be available."
+msgstr ""
+
+#. Tag: emphasis
+#: krusader-tools.docbook:1910
+#, no-c-format
+msgid "<emphasis>Synchronizer</emphasis>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1911
+#, no-c-format
+msgid ""
+"After pressing the <guibutton>Synchronize</guibutton> button the "
+"synchronization dialog appears."
+msgstr ""
+
+#. Tag: term
+#: krusader-tools.docbook:1914
+#, no-c-format
+msgid "Check boxes"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1916
+#, no-c-format
+msgid "Here you confirm the copy and delete operations of the Synchronizer"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1918
+#, no-c-format
+msgid ""
+"<guilabel>Right to left</guilabel>: copy X1 files ( Y1 bytes ) enable / "
+"disable the copy from right to left."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1921
+#, no-c-format
+msgid ""
+"<guilabel>Left to right</guilabel>: copy X2 files ( Y2 bytes ) enable / "
+"disable the copy from left to right."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1924
+#, no-c-format
+msgid ""
+"<guilabel>Left</guilabel>: delete X3 files ( Y3 bytes ) enable / disable the "
+"left side deleting."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1927
+#, no-c-format
+msgid ""
+"<guilabel>Confirm overwrites</guilabel>: By switching this option on, "
+"Krusader will show the <guibutton>rename, skip, overwrite, skip all, "
+"overwrite all</guibutton> dialog box, before overwriting the file."
+msgstr ""
+
+#. Tag: term
+#: krusader-tools.docbook:1934
+#, no-c-format
+msgid "Status labels"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1937
+#, no-c-format
+msgid ""
+"<guilabel>Ready</guilabel>: A1/A2 files, B1/B2. This line is changed at "
+"synchronizing, showing that synchronizer finished with A1 files from A2 ( B1 "
+"bytes from B2 )."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1941
+#, no-c-format
+msgid ""
+"<guilabel>Progress bar</guilabel>: Shows the progress on the synchronization "
+"(based on bytes)."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1949
+#, no-c-format
+msgid "<guibutton>Start</guibutton>: starts synchronization."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1951
+#, no-c-format
+msgid ""
+"<guibutton>Pause / Resume</guibutton>: pauses/resumes the synchronization "
+"process."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1953
+#, no-c-format
+msgid ""
+"<guibutton>Close</guibutton>: closes the synchronization dialog (and stops "
+"synchronization)."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:1964
+#, no-c-format
+msgid "<title>UserActions</title>"
+msgstr ""
+
+#. Tag: primary
+#: krusader-tools.docbook:1965
+#, no-c-format
+msgid "<primary>UserActions</primary>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:1968
+#, no-c-format
+msgid ""
+"With ActionMan you can set up, configure and manage your UserActions, some "
+"general settings are configured with <link linkend=\"konfig-useractions"
+"\">Konfigurator</link>. With the UserActions the user can make his own "
+"actions on files in the panel or to access krusader-internal functions with "
+"parameter directly using placeholder(s). The actions integrate seamlessly "
+"into &kde;'s action-system, so the standard edit-toolbar/shortcut-dialogs "
+"will show/manipulate the UserActions too. The UserActions are stored in "
+"<filename>~/.kde/share/apps/krusader/useraction.xml</filename> (the file-"
+"structure is documentated in doxygen-headers of UserActionXML). Several "
+"<link linkend=\"useraction_xml\">examples</link> are included in the "
+"documentation. UserActions can be edit/add/im-/export using by using "
+"ActionMan. The default UserActions are stored in <filename>~/.kde/share/apps/"
+"krusader/useraction_examples.xml</filename>. UserActions can appear nearly "
+"everywhere where \"normal\" KActions can be placed. They integrate seamless "
+"in the well knows Edit-(Toolbar,Shortcut) Dialogs from &kde;. It's even "
+"possible to place them in the menubar, but for that one has to manipulate "
+"the <filename>krusaderui.rc</filename> file with an editor. Some examples: "
+"<itemizedlist> <listitem><para><link linkend=\"useractions-menu"
+"\">Useractions Menu</link> </para></listitem> <listitem><para>&usermenu_lnk; "
+"</para></listitem> <listitem><para>&actions_toolbar_lnk; </para></listitem> "
+"<listitem><para>right-click menu's </para></listitem> <listitem><para>&etc; "
+"</para></listitem> </itemizedlist> Once you understand how to write "
+"UserActions you will find out that &krusader; has a very powerful, "
+"customizable UserActions tool."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2001
+#, no-c-format
+msgid ""
+"Several UserActions are provided by default. Please <link linkend="
+"\"help_krusader\">upload your favorite UserActions</link> so that they "
+"become available for the &krusader; community. Thanks! We provide also an "
+"&useractionsforum_url;."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2008
+#, no-c-format
+msgid ""
+"Basically UserActions are a method to call external programs with variable "
+"parameters. You could for example have a UserAction with the following "
+"<command>xmms <option>--enqueue %aList(\"Selected\")%</option></command> to "
+"enqueue all selected items of the active panel to the current instance of "
+"xmms. In addition to that, there is limited access to krusader-internal "
+"functions which requires parameter, so <command>%aPanelSize(\"80\")%</"
+"command> will set the width of the active panel to 80% of &krusader;'s "
+"mainwindow. Since the parameter of placeholders can itself contain other "
+"placeholders, little scripts are possible but real scripting can be done "
+"with the &javascript_console_lnk;."
+msgstr ""
+
+#. Tag: emphasis
+#: krusader-tools.docbook:2020
+#, no-c-format
+msgid "Managing UserActions"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2021
+#, no-c-format
+msgid ""
+"Open Konfigurator and choose \"User-Actions -> ActionMan\", here you can add/"
+"edit/remove/import/export UserActions. <itemizedlist> "
+"<listitem><para><guimenuitem>Add Action</guimenuitem>: If you add an new "
+"action, you get an empty input-mask where you can enter all the properties. "
+"The action will be added as soon as you press <guimenuitem>Ok</guimenuitem>. "
+"Now the name is shown in the list on the left. </para></listitem> "
+"<listitem><para>To edit a UserAction: select the UserAction on the left. Now "
+"you can choose it if you want to edit the properties, the changes will only "
+"take effect when you press <guimenuitem>Ok</guimenuitem>. </para></listitem> "
+"<listitem><para><guimenuitem>Remove Action</guimenuitem>: Select the "
+"UserAction on the left and click the remove button. </para></listitem> "
+"<listitem><para><guimenuitem>Import Action</guimenuitem>: If you import some "
+"actions they will be automatically added to your list. If there are name-"
+"conflicts (the names have to be unique because these are the ID for &kde;'s "
+"action-system) you're asked to resolve them. For this the list on the left "
+"will only show the actions where conflicts exists. You now can give them new "
+"names or remove them. </para></listitem> <listitem><para><guimenuitem>Export "
+"Action</guimenuitem>: If you export a UserAction you have to give a filename "
+"in which to store it. If it does not exist it will be created. If it "
+"contains already some UserActions, the action you're exporting will be added "
+"to that file. </para></listitem> </itemizedlist> All actions you've defined "
+"are now shown in the usermenu and in &kde;'s dialogs for changing shortcuts "
+"and managing the toolbar. In addition all actions available for the current "
+"item will also show up in the rightclick menu."
+msgstr ""
+
+#. Tag: guimenuitem
+#: krusader-tools.docbook:2055
+#, no-c-format
+msgid "Basic Properties"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2056
+#, no-c-format
+msgid ""
+"<guimenuitem>\"Distinct Name\", \"Title\" and \"Command line\"</guimenuitem> "
+"are always required, all the other properties are optional."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2059
+#, no-c-format
+msgid ""
+"<guimenuitem>\"Distinct Name\"</guimenuitem>: a unique name of the "
+"UserAction, used to identiy it for &kde;'s action-system."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2062
+#, no-c-format
+msgid ""
+"<guimenuitem>\"Icon button\"</guimenuitem>: the icon for your UserAction."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2064
+#, no-c-format
+msgid ""
+"<guimenuitem>\"Category\"</guimenuitem>: adds an category for an better "
+"overview. NOTE: this property is not used yet. It is planed to be used, but "
+"this is not implemented yet."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2067
+#, no-c-format
+msgid ""
+"<guimenuitem>\"Title\"</guimenuitem>: the title displayed in the menus/"
+"dialogs."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2069
+#, no-c-format
+msgid ""
+"<guimenuitem>\"Tooltip\"</guimenuitem>: a tooltip for your UserAction, &eg; "
+"displayed in the toolbar on mouseover."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2072
+#, no-c-format
+msgid ""
+"<guimenuitem>\"Description\"</guimenuitem>: a description of what the "
+"UserAction is doing. This is also displayed as <guimenuitem>\"What's This\"</"
+"guimenuitem> if you <keycombo action=\"simul\">&Shift;<keycap>F1</keycap></"
+"keycombo> click on your UserAction."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2076
+#, no-c-format
+msgid ""
+"<guimenuitem>\"Use Tooltip checkbox\"</guimenuitem>: uses the tooltip as "
+"description."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2078
+#, no-c-format
+msgid ""
+"<guimenuitem>\"Command line\"</guimenuitem>: is the command which is finaly "
+"executed. You can add placeholder using a GUI with the <guibutton>add</"
+"guibutton> button."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2081
+#, no-c-format
+msgid ""
+"<guimenuitem>\"Startpath\"</guimenuitem>: the working directory for the "
+"command that will be executed."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2084
+#, no-c-format
+msgid "<guimenuitem>\"Execution mode\"</guimenuitem>:"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2086
+#, no-c-format
+msgid "<guimenuitem>\"Normal\"</guimenuitem>: normal execution mode."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2088
+#, no-c-format
+msgid ""
+"<guimenuitem>\"Run in terminal\"</guimenuitem>: runs the command in the "
+"terminal."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2090
+#, no-c-format
+msgid ""
+"<guimenuitem>\"Collect output\"</guimenuitem>: collects the output off the "
+"executed programm in a &GUI; window."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2093
+#, no-c-format
+msgid ""
+"<guimenuitem>\"Separate standard error\"</guimenuitem> when \"Collect output"
+"\" is used the stdout and stderr are separately collected"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2099
+#, no-c-format
+msgid "<guimenuitem>\"Command accepts\"</guimenuitem>:"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2101
+#, no-c-format
+msgid ""
+"<guimenuitem>\"Local files (no URL's)\"</guimenuitem>: tells the placeholder "
+"it should return local addesses."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2104
+#, no-c-format
+msgid ""
+"<guimenuitem>\"URL's (local and remote)\"</guimenuitem>: tells the "
+"placeholder it should return &URL;'s."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2118
+#, no-c-format
+msgid ""
+"<guimenuitem>\"Shortcut button\"</guimenuitem>: configures a shortcut for "
+"the UserAction."
+msgstr ""
+
+#. Tag: emphasis
+#: krusader-tools.docbook:2122
+#, no-c-format
+msgid "Commandline-syntax:"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2123
+#, no-c-format
+msgid ""
+"Basically, everything you type in the command line will get executed (if you "
+"type \"ls -l\", \"ls -l\" gets executed). You have the possiblity to get "
+"some character string from &krusader; which represents the current panel-"
+"state. This is done by placeholders. A placeholder begins with a percent-"
+"sign ('%'), followd by a panel-indicator ('a' for the active, 'o' for the "
+"other, 'l' for the left and 'r' for the right panel. If the placeholder "
+"doesn't need a panel to operate on you have to indicate this by an "
+"underscore ('_')). Then comes the name of the placeholder (see the list "
+"below), which may get some parameters enclosed in quotes, and finally, again "
+"the percent-sign."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2124
+#, no-c-format
+msgid ""
+"This sounds very complicated, so lets make an example: '%aList(\"Selected"
+"\")%' will be replaced by a list of all selected items in the active panel. "
+"So a command like 'xmms --enqueue %aList(\"All\", \" \", \"\", \"*.mp3\")%' "
+"will execute xmms with a list of all .mp3's in the current panel, separated "
+"by a single blank."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2125
+#, no-c-format
+msgid ""
+"Currently, these placeholders are implemented: <itemizedlist> "
+"<listitem><para><userinput>Path</userinput> - replaced by the panels path</"
+"para> <orderedlist> <listitem><para>&useraction_optional_parameter; "
+"Automatic escape spaces. &useraction_default; yes</para></listitem> </"
+"orderedlist> </listitem> <listitem><para><userinput>Count</userinput> - "
+"replaced by the number of &lt;first parameter&gt;</para> <orderedlist> "
+"<listitem><para>&useraction_parameter; Which items; either \"All\", "
+"\"Selected\", \"Files\" or \"Dirs\"</para></listitem> </orderedlist> </"
+"listitem> <listitem><para><userinput>Filter</userinput> - replaced by the "
+"panels filter-mask</para></listitem> <listitem><para><userinput>Current</"
+"userinput> - replaced by the current item</para> <orderedlist> "
+"<listitem><para>&useraction_optional_parameter; Omit the current path. "
+"&useraction_default; no</para></listitem> "
+"<listitem><para>&useraction_optional_parameter; Automatic escape spaces. "
+"&useraction_default; yes</para></listitem> </orderedlist> </listitem> "
+"<listitem><para><userinput>List</userinput> - replaced by a list of all &lt;"
+"first parameter&gt;</para> <orderedlist> "
+"<listitem><para>&useraction_parameter; Which items; either \"All\", "
+"\"Selected\", \"Files\" or \"Dirs\"</para></listitem> "
+"<listitem><para>&useraction_optional_parameter; Separator between the items. "
+"&useraction_default; \"&nbsp;\"</para></listitem> "
+"<listitem><para>&useraction_optional_parameter; Omit the current path. "
+"&useraction_default; no</para></listitem> "
+"<listitem><para>&useraction_optional_parameter; Filtermask (for all but "
+"\"Selected\"). &useraction_default; *</para></listitem> "
+"<listitem><para>&useraction_optional_parameter; Automatic escape spaces. "
+"&useraction_default; yes</para></listitem> </orderedlist> </listitem> "
+"<listitem><para><userinput>Select</userinput> - manipulates the selection in "
+"a panel</para> <orderedlist> <listitem><para>&useraction_parameter; "
+"Filtermask</para></listitem> <listitem><para>&useraction_optional_parameter; "
+"manipulate in which way; either \"Set\", \"Add\" or \"Remove\". "
+"&useraction_default; \"Set\"</para></listitem> </orderedlist> </listitem> "
+"<listitem><para><userinput>Goto</userinput> - changes the panels's path to "
+"&lt;first parameter&gt;</para> <orderedlist> "
+"<listitem><para>&useraction_parameter; A relative or absolute path, or an "
+"URL</para></listitem> <listitem><para>&useraction_optional_parameter; Open "
+"the location in a new tab. &useraction_default; no</para></listitem> </"
+"orderedlist> </listitem> <listitem><para><userinput>Ask</userinput> - asks "
+"the user for a some text and is replaced by the answer</para> <orderedlist> "
+"<listitem><para>&useraction_parameter; The Question</para></listitem> "
+"<listitem><para>&useraction_optional_parameter; A default answer</para></"
+"listitem> <listitem><para>&useraction_optional_parameter; A caption for the "
+"questionbox</para></listitem> </orderedlist> </listitem> "
+"<listitem><para><userinput>Clipboard</userinput> - manipulates the "
+"clipboard</para> <orderedlist> <listitem><para>&useraction_parameter; The "
+"text that should go to the clipboard (you may want to use \"%aCurrent%\" "
+"here)</para></listitem> <listitem><para>&useraction_optional_parameter; "
+"Append the text to the current clipboard-content with this separator</para></"
+"listitem> </orderedlist> </listitem> <listitem><para><userinput>Copy</"
+"userinput> - copies a file, useful for quick, local backups</para> "
+"<orderedlist> <listitem><para>&useraction_parameter; What should be copied</"
+"para></listitem> <listitem><para>&useraction_parameter; Where it should be "
+"copied</para></listitem> </orderedlist> </listitem> "
+"<listitem><para><userinput>Sync</userinput> - opens the Synchronizer with a "
+"given profile</para> <orderedlist> <listitem><para>&useraction_parameter; A "
+"profile for the Synchronizer</para></listitem> </orderedlist> </listitem> "
+"<listitem><para><userinput>NewSearch</userinput> - opens the search-windows "
+"with a given profile</para> <orderedlist> "
+"<listitem><para>&useraction_parameter; A profile for the search-module</"
+"para></listitem> </orderedlist> </listitem> "
+"<listitem><para><userinput>Profile</userinput> - loads a given panel-"
+"profile</para> <orderedlist> <listitem><para>&useraction_parameter; A panel-"
+"profile</para></listitem> </orderedlist> </listitem> "
+"<listitem><para><userinput>Each</userinput> - splits the commandline into a "
+"list. These commands are executed one after another.</para> <orderedlist> "
+"<listitem><para>&useraction_parameter; A list-item (all, all files, all "
+"dirs, all selected).</para></listitem> </orderedlist> </listitem> "
+"<listitem><para><userinput>Move</userinput> - Move from source to "
+"destination.</para> <orderedlist> <listitem><para>&useraction_parameter; A "
+"source</para></listitem> <listitem><para>&useraction_parameter; A "
+"destination</para></listitem> </orderedlist> </listitem> "
+"<listitem><para><userinput>PanelSize</userinput> - Change the ratio between "
+"the two panels.</para> <orderedlist> "
+"<listitem><para>&useraction_optional_parameter; A integer value, e.g., 80 "
+"makes the active panel use 80% of &krusader;'s width (height in vertical-"
+"mode), omitting the parameter means 50%. </para></listitem> </orderedlist> </"
+"listitem> <listitem><para><userinput>Ask</userinput> - Cancel the execution."
+"</para> <orderedlist> <listitem><para>&useraction_optional_parameter; A "
+"string for the cancel question. </para></listitem> </orderedlist> </"
+"listitem> <listitem><para><userinput>Script</userinput> - Executes an "
+"external <link linkend=\"javascript_console\">Javascript</link> file.</para> "
+"<para>NOTE: is still experimental and the interface may change, feedback is "
+"always welcome.</para> <orderedlist> <listitem><para>&useraction_parameter; "
+"path to the external foo.js file, absolut path or relative to <filename>&lt;"
+"kde-app-data&gt;/krusader/js/</filename>. &lt;kde-app-data&gt; is <filename>"
+"$(kde-config --localprefix)/share/apps/</filename> or <filename>$(kde-config "
+"--prefix)/share/apps/</filename>, for those who don't know where so copy the "
+"scripts/extensions. If all the needed files (normaly <filename>.js</"
+"filename> and maybe <filename>.ui</filename>) are in one of these dirs it's "
+"sufficient to give the filename only as 1. parameter. </para></listitem> "
+"<listitem><para>&useraction_optional_parameter; a list of variables which "
+"should be set, like \"return=cmd; a=lalala; b='%_Ask(..)'\" so that the "
+"placeholder is replaced be the content of the variable cmd and the other two "
+"have already these values when the script starts. </para></listitem> </"
+"orderedlist> </listitem> <listitem><para><userinput>ListFile</userinput> - "
+"is replaced by path/filename of a temporary file containing a list of items</"
+"para> <orderedlist> <listitem><para>&useraction_parameter; path/filename</"
+"para></listitem> </orderedlist> </listitem> "
+"<listitem><para><userinput>ColSort</userinput> - set the sorting on a column "
+"of a specific panel.</para> <orderedlist> "
+"<listitem><para>&useraction_parameter; Column: either \"Name\", \"Ext\", "
+"\"Type\", \"Size\", \"Modified\", \"Perms\", \"rwx\", \"Owner\" and \"Group"
+"\"</para></listitem> <listitem><para>&useraction_parameter; Sort sequence: "
+"either \"Toggle\", \"Asc\", \"Desc\" </para></listitem> </orderedlist> </"
+"listitem> <listitem><para><userinput>View</userinput> - set the view mode.</"
+"para> <orderedlist> <listitem><para>&useraction_parameter; View mode: either "
+"\"generic\", \"text\", \"hex\" </para></listitem> "
+"<listitem><para>&useraction_parameter; Window Mode: either \"tab\", \"window"
+"\" </para></listitem> </orderedlist> </listitem> </itemizedlist> A GUI-based "
+"helper for placeholder-adding is provided. Spaces In Path, Current and List "
+"are by default, automatically escaped. There is one more important thing to "
+"know: All placeholders that interact with &krusader;-internal functions are "
+"called at expand-time (meaning directly when the placeholders are replaced). "
+"External programms are called at execution-time (meaning after all "
+"placeholders are replaced)."
+msgstr ""
+
+#. Tag: guimenuitem
+#: krusader-tools.docbook:2277
+#, no-c-format
+msgid "Advanced Properties"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2278
+#, no-c-format
+msgid ""
+"Here you can configure where your command should be visible (for the "
+"rightclick-menu) In addition, it's possible to change the command executed "
+"and confirm it separately. You can also set a user under which the command "
+"should be executed."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2282
+#, no-c-format
+msgid ""
+"Configures if the action is valid for a Protocol, Path, Mime-type or "
+"Filename."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2283
+#, no-c-format
+msgid "Tweaking the command line before being executed."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2284
+#, no-c-format
+msgid ""
+"Set a different user for the execution (this has no effect in krusader-"
+"internal functions)"
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:2291
+#, no-c-format
+msgid "<title>JavaScript Console</title>"
+msgstr ""
+
+#. Tag: primary
+#: krusader-tools.docbook:2292
+#, no-c-format
+msgid "<primary>JavaScript Console</primary>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2294
+#, no-c-format
+msgid ""
+"<keycombo action=\"simul\">&Alt;&Ctrl;<keycap>j</keycap></keycombo> opens "
+"the JavaScript-console. (only available if libkjsembed is present at "
+"compile- and runtime)"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2297
+#, no-c-format
+msgid ""
+"The JavaScript console is an interface to the embeded JS-Interpreter which "
+"can be used to play around and test how things work."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:2303
+#, no-c-format
+msgid "<title>JavaScript interface</title>"
+msgstr ""
+
+#. Tag: primary
+#: krusader-tools.docbook:2304
+#, no-c-format
+msgid "<primary>JavaScript interface</primary>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2306
+#, no-c-format
+msgid ""
+"<emphasis role=\"bold\">Warning:</emphasis> The JS-Support is quite stable "
+"(which means that it won't crash &krusader; (hopefully ;)) and you can't "
+"loose any data by using it). However, the JS-interface will certainly "
+"change! So using it can't do any harm but you must know that your scripts "
+"may (or quite certainly, if you're interacting with Krusader) won't work "
+"with future versions of &krusader; anymore."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2314
+#, no-c-format
+msgid ""
+"Please <link linkend=\"help_krusader\">upload your favorite JavaScript "
+"Extensions</link> so that they become available for the &krusader; "
+"community. Thanks!"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2319
+#, no-c-format
+msgid ""
+"JavaScript applications have usually 2 files <filename>foo.js</filename> and "
+"<filename>foo.ui</filename>. They will be installed in <filename>~/.kde/"
+"share/apps/krusader/js/</filename>, a useraction with a \"%_Script\" action "
+"will start the Javascripting. Currently we have 2 JS demo's <filename>root-"
+"mount-extension.tar.bz2</filename> and <filename>js-demo-calc.tar.bz2</"
+"filename> that will be more explenatory."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2326
+#, no-c-format
+msgid ""
+"When a script is executed, the script doesn't know it's origin (or maybe "
+"there is a way which that we don't know) and all relative path's are "
+"relative to the current working-dir. But this dir is (normaly) not the one "
+"where the script is located but the current dir of the active Panel of "
+"Krusader. This needs to stay like this. However, for referenceing additional "
+"files like .ui (Userinterface, exported by &Qt;'s Designer) one need the "
+"path of the script. The alternative where absolute path's but this is more "
+"then unhandy. For this reason the Variable \"scriptDir\" was introduced. If "
+"a Script want to load a &GUI; from a .ui-file this can be done this way: "
+"<emphasis>var ui = Factory.loadui( scriptDir + 'filename.ui' );</emphasis> I "
+"recomend using Dialog as a base when designing &GUI;'s for using with JS. "
+"Execute the dialog with: <emphasis>ui.exec();</emphasis> The elements of the "
+"&GUI; may be accessed like this: <emphasis>ui.child('widgetName')</emphasis>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2342
+#, no-c-format
+msgid ""
+"Currently there are only the objects 'Krusader' and 'PanelManager' which are "
+"exposed C++ objects without a real sence behind. They can be inspected using "
+"the JS-Console and the functions 'properties()', 'children()' and 'slots()'. "
+"The children can be accessed with the function 'chlid(\"nameOfChild\")' with "
+"returns an object itself. Currently more usefull is the Variable scriptDir. "
+"Following the root-mount-extension it's already possible to create advnaced "
+"&GUI;'s for commandline-tools"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2351
+#, no-c-format
+msgid ""
+"You can play around with'Krusader.setCaption(\"Hey Ho, Let's go!\");', "
+"'Krusader.children();', 'Krusader.child(\"help\").slots();', 'alert(Krusader."
+"properties())' or 'Krusader.child(\"help\").show();'.... In addition a new "
+"placeholder for the &useractions_lnk;, %_Script()%, will execute an external "
+"file."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2355
+#, no-c-format
+msgid ""
+"NOTE: The object 'Krusader' will change. We haven't made decisions about the "
+"JS-interface yet (at the time of the 1.70.0-release). Any ideas are welcome. "
+"Plase use our &kruforum_url; for feedback."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2359
+#, no-c-format
+msgid ""
+"The JavaScript-support is based on &kjsembed_url;. Some expamples which show "
+"the power of this library can be found on <ulink url=\"http://xmelegance.org/"
+"kjsembed/examples/index.html\"></ulink>. Support for all of KDE's ground-"
+"laying technologies like DCOP or KParts is provided. You can even load whole "
+"GUI's from .ui-files, created with &Qt;'s Designer. An example extension "
+"making use of this can be found <ulink url=\"http://www.krusader.org/phpBB/"
+"viewtopic.php?p=4832#4832\">here</ulink>."
+msgstr ""
+
+#. Tag: title
+#: krusader-tools.docbook:2369
+#, no-c-format
+msgid "<title>Disk Usage</title>"
+msgstr ""
+
+#. Tag: primary
+#: krusader-tools.docbook:2370
+#, no-c-format
+msgid "<primary>Disk Usage</primary>"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2372
+#, no-c-format
+msgid ""
+"The Disk Usage is based on the code of &filelight;. The Disk Usage shows you "
+"exactly how your disk space is being used by a graphical representation of "
+"your filesystem. The following presentations are possible: <itemizedlist> "
+"<listitem><para>Line view</para></listitem> <listitem><para>Detailed view</"
+"para></listitem> <listitem><para>&filelight; view: as a set of concentric "
+"segmented-rings.</para></listitem> </itemizedlist> Choose <emphasis role="
+"\"bold\"><menuchoice><guimenu>Tools</guimenu> <guimenuitem>Disk Usage</"
+"guimenuitem></menuchoice></emphasis> or <keycombo action=\"simul\">&Alt;"
+"<keycap>d</keycap></keycombo> to start this feature in a separate window, or "
+"open it insided the &popup_panel_lnk;."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2388
+#, no-c-format
+msgid "Disk Usage Keybindings, right click menu."
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2390
+#, no-c-format
+msgid "<keycap>Del</keycap>: Delete"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2392
+#, no-c-format
+msgid "<keycombo action=\"simul\">&Ctrl;<keycap>e</keycap></keycombo>: Exclude"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2394
+#, no-c-format
+msgid ""
+"<keycombo action=\"simul\">&Shift;<keycap>Arrow Up</keycap></keycombo>: "
+"parent dir"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2396
+#, no-c-format
+msgid ""
+"<keycombo action=\"simul\">&Ctrl;<keycap>n</keycap></keycombo>: new search"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2398
+#, no-c-format
+msgid "<keycombo action=\"simul\">&Ctrl;<keycap>r</keycap></keycombo>: refresh"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2400
+#, no-c-format
+msgid ""
+"<keycombo action=\"simul\">&Ctrl;<keycap>i</keycap></keycombo>: include all"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2402
+#, no-c-format
+msgid ""
+"<keycombo action=\"simul\">&Shift;<keycap>Arrow Down</keycap></keycombo>: "
+"step into"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2405
+#, no-c-format
+msgid "View menu:"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2407
+#, no-c-format
+msgid ""
+"<keycombo action=\"simul\">&Ctrl;<keycap>l</keycap></keycombo>: line view"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2409
+#, no-c-format
+msgid ""
+"<keycombo action=\"simul\">&Ctrl;<keycap>d</keycap></keycombo>: detailed view"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2411
+#, no-c-format
+msgid ""
+"<keycombo action=\"simul\">&Ctrl;<keycap>f</keycap></keycombo>: filelight "
+"view"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2413
+#, no-c-format
+msgid ""
+"<keycombo action=\"simul\">&Shift;<keycap>Arrow Right</keycap></keycombo>: "
+"next view"
+msgstr ""
+
+#. Tag: para
+#: krusader-tools.docbook:2415
+#, no-c-format
+msgid ""
+"<keycombo action=\"simul\">&Shift;<keycap>Arrow Left</keycap></keycombo>: "
+"previous view"
+msgstr ""
