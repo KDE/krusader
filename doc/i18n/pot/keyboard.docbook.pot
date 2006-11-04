@@ -1,0 +1,1482 @@
+# Translation of keyboard.docbook to LANGUAGE
+# Copyright (C) 2006, Krusader Krew
+# This file is distributed under the same license as the Krusader package
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Krusader-doc-1.80.0 2006-11-04\n"
+"Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
+"POT-Creation-Date: 2006-11-04 11:13+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: application/x-xml2pot; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Tag: title
+#: keyboard.docbook:23
+#, no-c-format
+msgid "Keyboard Commands"
+msgstr ""
+
+#. Tag: primary
+#: keyboard.docbook:24 keyboard.docbook:59
+#, no-c-format
+msgid "Commands"
+msgstr ""
+
+#. Tag: secondary
+#: keyboard.docbook:24 keyboard.docbook:60
+#, no-c-format
+msgid "Keyboard"
+msgstr ""
+
+#. Tag: title
+#: keyboard.docbook:27
+#, no-c-format
+msgid "Keyboard Usage"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:29
+#, no-c-format
+msgid "NOTE: this chaper is work in progress ;)"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:31
+#, no-c-format
+msgid "In this chapter we will learn how to use the keyboard because most operations can be done much more quickly by keyboard than with the mouse. So put away your mouse and get ready for the next exercise ;) It will take some time to learn the &keybindigs_lnk;, but once you can \"play piano\" with &krusader; you will save a lot of time every day! Please note that &krusader; can use &keybindigs_profiles_lnk; to swap easily to other Key-binding setups, e.g. of other commanders, or you can create your own key-bindings."
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:41
+#, no-c-format
+msgid "After <link linkend=\"starting-krusader\">starting</link> &krusader; the keyboard action can begin. Use Ctrl+I to jump to the &location_toolbar_lnk;, here you type the desired directory. After Ctrl+Down Arrow you are in the &termemu_lnk;, and you can type any command you desire, use Ctrl+Up arrow to jump back to the active panel. If you want to jump to a file or directory that starts with \"f\", then simply press \"f\" on the keyboard to use the &quick_search_lnk; . Use the Enter key to execute the file or to open a directory that has the focus. Be sure to remember the Function Keys - to View F3, to Edit F4, to Copy F5, Alt+u Unpack, etc."
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:50
+#, no-c-format
+msgid "You can also perform several operations with the &foldertabs_lnk;, including several <link linkend=\"edit-menu\">selection</link> operations. And at the end you can close &krusader; with F10."
+msgstr ""
+
+#. Tag: title
+#: keyboard.docbook:57
+#, no-c-format
+msgid "<title>Key Bindings</title>"
+msgstr ""
+
+#. Tag: primary
+#: keyboard.docbook:58
+#, no-c-format
+msgid "<primary>Key Bindings</primary>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:63
+#, no-c-format
+msgid "Most of the key bindings (shortcuts) are configurable in the &konfiglookandfeel_lnk;. Some key bindings are not &krusader; Key Bindings &eg; &kde; Key Bindings. By default &krusader; has the following key bindings:"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:67
+#, no-c-format
+msgid "If you are used to use other Key Bindings then the default ones listed below, change them with the &konfiglookandfeel_lnk;. Here you will find even more actions who can be linked to a Key Binding."
+msgstr ""
+
+#. Tag: emphasis
+#: keyboard.docbook:72
+#, no-c-format
+msgid "Function (FN) Keys"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:73
+#, no-c-format
+msgid "These are the Key Bindings of the &fnkeybar_lnk;. These Key Bindings are configurable since version 1.51"
+msgstr ""
+
+#. Tag: keycap
+#: keyboard.docbook:78
+#, no-c-format
+msgid "<keycap>F1</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:79
+#, no-c-format
+msgid "Help"
+msgstr ""
+
+#. Tag: keycap
+#: keyboard.docbook:81
+#, no-c-format
+msgid "<keycap>F2</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:82
+#, no-c-format
+msgid "Terminal"
+msgstr ""
+
+#. Tag: keycap
+#: keyboard.docbook:84
+#, no-c-format
+msgid "<keycap>F3</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:85
+#, no-c-format
+msgid "View files"
+msgstr ""
+
+#. Tag: keycap
+#: keyboard.docbook:87
+#, no-c-format
+msgid "<keycap>F4</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:88
+#, no-c-format
+msgid "Edit files"
+msgstr ""
+
+#. Tag: keycap
+#: keyboard.docbook:90
+#, no-c-format
+msgid "<keycap>F5</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:91
+#, no-c-format
+msgid "Copy files"
+msgstr ""
+
+#. Tag: keycap
+#: keyboard.docbook:93
+#, no-c-format
+msgid "<keycap>F6</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:94
+#, no-c-format
+msgid "Move files"
+msgstr ""
+
+#. Tag: keycap
+#: keyboard.docbook:96
+#, no-c-format
+msgid "<keycap>F7</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:97
+#, no-c-format
+msgid "Create a new directory"
+msgstr ""
+
+#. Tag: keycap
+#: keyboard.docbook:99
+#, no-c-format
+msgid "<keycap>F8</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:100
+#, no-c-format
+msgid "Delete (or move to Trash) files"
+msgstr ""
+
+#. Tag: keycap
+#: keyboard.docbook:102
+#, no-c-format
+msgid "<keycap>F9</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:103
+#, no-c-format
+msgid "Rename files"
+msgstr ""
+
+#. Tag: keycap
+#: keyboard.docbook:105
+#, no-c-format
+msgid "<keycap>F10</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:106 keyboard.docbook:300
+#, no-c-format
+msgid "Quit &krusader;"
+msgstr ""
+
+#. Tag: emphasis
+#: keyboard.docbook:113
+#, no-c-format
+msgid "SHIFT keys"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:118
+#, no-c-format
+msgid "&Shift;<keycap>F1</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:119
+#, no-c-format
+msgid "What's this?"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:121
+#, no-c-format
+msgid "&Shift;<keycap>F3</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:122
+#, no-c-format
+msgid "Enter an &URL; to view"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:124
+#, no-c-format
+msgid "&Shift;<keycap>F4</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:125
+#, no-c-format
+msgid "Edit new file"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:127
+#, no-c-format
+msgid "&Shift;<keycap>F9</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:128
+#, no-c-format
+msgid "Multi Rename (&krename;)"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:130
+#, no-c-format
+msgid "&Shift;<keycap>F10</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:131
+#, no-c-format
+msgid "View all files"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:133
+#, no-c-format
+msgid "&Shift;<keycap>F12</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:134
+#, no-c-format
+msgid "Custom view files"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:141
+#, no-c-format
+msgid "&Shift;<keycap>Left Arrow</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:142
+#, no-c-format
+msgid "Change to left tab"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:144
+#, no-c-format
+msgid "&Shift;<keycap>Right Arrow</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:145
+#, no-c-format
+msgid "Change to right tab"
+msgstr ""
+
+#. Tag: emphasis
+#: keyboard.docbook:152
+#, no-c-format
+msgid "ALT keys"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:157
+#, no-c-format
+msgid "&Alt;<keycap>d</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:158 keyboard.docbook:546
+#, no-c-format
+msgid "&diskusage_lnk;"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:160
+#, no-c-format
+msgid "&Alt;<keycap>e</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:161
+#, no-c-format
+msgid "Test Archive"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:163
+#, no-c-format
+msgid "&Alt;<keycap>k</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:164
+#, no-c-format
+msgid "Start &rootmode_lnk; &krusader;"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:166
+#, no-c-format
+msgid "&Alt;<keycap>L</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:167
+#, no-c-format
+msgid "&panel_profiles_lnk;"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:169
+#, no-c-format
+msgid "&Alt;<keycap>p</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:170
+#, no-c-format
+msgid "Pack files"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:172
+#, no-c-format
+msgid "&Alt;<keycap>u</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:173
+#, no-c-format
+msgid "Unpack files"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:175
+#, no-c-format
+msgid "&Alt;<keycap>+</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:176
+#, no-c-format
+msgid "Select All"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:178
+#, no-c-format
+msgid "&Alt;<keycap>-</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:179
+#, no-c-format
+msgid "Unselect All"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:181
+#, no-c-format
+msgid "&Alt;<keycap>*</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:182
+#, no-c-format
+msgid "Invert Selection"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:184
+#, no-c-format
+msgid "&Alt;<keycap>/</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:185
+#, no-c-format
+msgid "MountMan"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:187
+#, no-c-format
+msgid "&Alt;<keycap>`</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:188
+#, no-c-format
+msgid "&usermenu_lnk;"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:190
+#, no-c-format
+msgid "&Alt;&Enter;"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:191
+#, no-c-format
+msgid "Properties"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:193
+#, no-c-format
+msgid "&Alt;<keycap>Left Arrow</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:194
+#, no-c-format
+msgid "Left bookmarks"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:196
+#, no-c-format
+msgid "&Alt;<keycap>Right Arrow</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:197
+#, no-c-format
+msgid "Right bookmarks"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:199
+#, no-c-format
+msgid "&Alt;<keycap>Down Arrow</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:200
+#, no-c-format
+msgid "&popup_panel_lnk;"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:202
+#, no-c-format
+msgid "&Alt;<keycap>F1..F12</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:203 keyboard.docbook:406 keyboard.docbook:409
+#, no-c-format
+msgid "Standard (&kde;) key-bindings"
+msgstr ""
+
+#. Tag: emphasis
+#: keyboard.docbook:210
+#, no-c-format
+msgid "CTRL keys"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:215
+#, no-c-format
+msgid "&Ctrl;<keycap>+</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:216
+#, no-c-format
+msgid "Select Group"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:218
+#, no-c-format
+msgid "&Ctrl;<keycap>-</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:219
+#, no-c-format
+msgid "Unselect Group"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:221
+#, no-c-format
+msgid "&Ctrl;<keycap>=</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:222
+#, no-c-format
+msgid "<link linkend=\"view-menu\">Compare directories</link> (Compare Mode)"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:224
+#, no-c-format
+msgid "&Ctrl;<keycap>.</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:225
+#, no-c-format
+msgid "Show/Hide Hidden (dot) Files"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:227 keyboard.docbook:477
+#, no-c-format
+msgid "&Ctrl;<keycap>/</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:228
+#, no-c-format
+msgid "Opens command line history list"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:230 keyboard.docbook:483
+#, no-c-format
+msgid "&Ctrl;<keycap>Down arrow</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:231
+#, no-c-format
+msgid "Go from the active panel to the command line/terminal emulator"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:233 keyboard.docbook:236 keyboard.docbook:480
+#, no-c-format
+msgid "&Ctrl;<keycap>Up arrow</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:234
+#, no-c-format
+msgid "Go from the command line/terminal emulator to the active panel"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:237
+#, no-c-format
+msgid "Go from the active panel to the &location_toolbar_lnk;"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:239
+#, no-c-format
+msgid "&Ctrl;<keycap>Home</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:240
+#, no-c-format
+msgid "Jumps to the Home directory"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:242
+#, no-c-format
+msgid "<keycombo action=\"simul\">&Ctrl;<keycap>Left</keycap></keycombo> or <keycombo><keycap>Right arrow</keycap></keycombo>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:243
+#, no-c-format
+msgid "Focus a file or directory on the left panel, press <keycombo action=\"simul\">&Ctrl;<keycap>Left arrow</keycap></keycombo> and the right <link linkend=\"panels\">panel</link> changes: <itemizedlist> <listitem><para>on a file: the right panel gets the same path as the left <link linkend=\"panels\">panel</link></para></listitem> <listitem><para>on a directory: refreshes the right panel with the contents of the directory</para></listitem> </itemizedlist> For the right panel: press <keycombo action=\"simul\">&Ctrl;<keycap>Right arrow</keycap></keycombo> and the left panel will change."
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:255
+#, no-c-format
+msgid "&Ctrl;<keycap>b</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:256
+#, no-c-format
+msgid "&combinefiles_lnk;"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:258
+#, no-c-format
+msgid "&Ctrl;<keycap>d</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:259
+#, no-c-format
+msgid "<link linkend=\"bookman\">Open Bookmarks</link> in the active panel."
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:261 keyboard.docbook:505
+#, no-c-format
+msgid "&Ctrl;<keycap>e</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:262
+#, no-c-format
+msgid "Edit file as root (Default Useraction)"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:264
+#, no-c-format
+msgid "&Ctrl;<keycap>h</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:265
+#, no-c-format
+msgid "<link linkend=\"folderhistory\">Opens History list</link> in the active panel."
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:267
+#, no-c-format
+msgid "&Ctrl;<keycap>j</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:268
+#, no-c-format
+msgid "A &safari;-like <link linkend=\"jump_back\">Jump-Back</link> ."
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:270
+#, no-c-format
+msgid "&Ctrl;<keycap>l</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:271
+#, no-c-format
+msgid "Go to the &location_toolbar_lnk; (origin) as in &firefox; and &konqueror;"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:273
+#, no-c-format
+msgid "&Ctrl;<keycap>m</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:274
+#, no-c-format
+msgid "<link linkend=\"list_panel\">Open media list</link>."
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:276
+#, no-c-format
+msgid "&Ctrl;<keycap>n</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:277
+#, no-c-format
+msgid "<link linkend=\"tools-menu\">New Network Connection</link> dialog."
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:284
+#, no-c-format
+msgid "&Ctrl;<keycap>o</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:285
+#, no-c-format
+msgid "Select directory dialog to open this directory in the panel."
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:287
+#, no-c-format
+msgid "&Ctrl;<keycap>p</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:288
+#, no-c-format
+msgid "Split file"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:290
+#, no-c-format
+msgid "&Ctrl;<keycap>u</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:291
+#, no-c-format
+msgid "Swap Panels"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:293
+#, no-c-format
+msgid "&Ctrl;<keycap>r</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:294
+#, no-c-format
+msgid "Reload (Refresh) Panel"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:296
+#, no-c-format
+msgid "<keycap>Ctrl</keycap><keycap>s</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:297
+#, no-c-format
+msgid "Search"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:299
+#, no-c-format
+msgid "&Ctrl;<keycap>q</keycap>"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:302
+#, no-c-format
+msgid "&Ctrl;<keycap>w</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:303
+#, no-c-format
+msgid "Close tab"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:305
+#, no-c-format
+msgid "&Ctrl;<keycap>y</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:306
+#, no-c-format
+msgid "&syncdirs_lnk;"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:308
+#, no-c-format
+msgid "&Ctrl;<keycap>z</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:309
+#, no-c-format
+msgid "Popular URL's"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:311
+#, no-c-format
+msgid "&Ctrl;&Backspace;"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:312
+#, no-c-format
+msgid "Jumps to the Root directory"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:314
+#, no-c-format
+msgid "&Ctrl;<keycap>PageUp</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:315
+#, no-c-format
+msgid "Up one directory"
+msgstr ""
+
+#. Tag: emphasis
+#: keyboard.docbook:322
+#, no-c-format
+msgid "CTRL+SHIFT keys"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:327
+#, no-c-format
+msgid "&Ctrl;&Shift;<keycap>d</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:328
+#, no-c-format
+msgid "Bookmark current item"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:330
+#, no-c-format
+msgid "&Ctrl;&Shift;<keycap>f</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:331
+#, no-c-format
+msgid "Disconnect remote connection"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:333
+#, no-c-format
+msgid "&Ctrl;&Shift;<keycap>j</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:334
+#, no-c-format
+msgid "Set jump back point"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:336
+#, no-c-format
+msgid "&Ctrl;&Shift;<keycap>l</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:337 keyboard.docbook:549
+#, no-c-format
+msgid "&locate_lnk;"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:339
+#, no-c-format
+msgid "&Ctrl;&Shift;<keycap>Left arrow</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:340
+#, no-c-format
+msgid "<link linkend=\"list_panel\">Open left media list</link>."
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:342
+#, no-c-format
+msgid "&Ctrl;&Shift;<keycap>Right arrow</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:343
+#, no-c-format
+msgid "<link linkend=\"list_panel\">Open right media list</link>."
+msgstr ""
+
+#. Tag: emphasis
+#: keyboard.docbook:350
+#, no-c-format
+msgid "CTRL+ALT keys"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:355
+#, no-c-format
+msgid "&Ctrl;&Alt;<keycap>j</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:356
+#, no-c-format
+msgid "&javascript_console_lnk;"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:358 keyboard.docbook:511
+#, no-c-format
+msgid "&Ctrl;&Alt;<keycap>m</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:359
+#, no-c-format
+msgid "Mount (Default Useraction)"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:361
+#, no-c-format
+msgid "&Ctrl;&Alt;<keycap>n</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:362
+#, no-c-format
+msgid "New tab"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:364
+#, no-c-format
+msgid "&Ctrl;&Alt;<keycap>r</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:365
+#, no-c-format
+msgid "Toggels the &list_panel_lnk; between horizontal and vertical mode."
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:367
+#, no-c-format
+msgid "&Ctrl;&Alt;<keycap>s</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:368
+#, no-c-format
+msgid "Create a new symlink."
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:370
+#, no-c-format
+msgid "&Ctrl;&Alt;<keycap>t</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:371
+#, no-c-format
+msgid "Show/hide the <link linkend=\"cmdline\">terminal emulator</link>."
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:373
+#, no-c-format
+msgid "&Ctrl;&Alt;<keycap>Left Arrow</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:374
+#, no-c-format
+msgid "Left History list"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:376
+#, no-c-format
+msgid "&Ctrl;&Alt;<keycap>Right Arrow</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:377
+#, no-c-format
+msgid "Right History list"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:379 keyboard.docbook:514
+#, no-c-format
+msgid "&Ctrl;&Alt;<keycap>=</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:380
+#, no-c-format
+msgid "Equal Panel Size (Default Useraction)"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:382
+#, no-c-format
+msgid "&Ctrl;&Alt;&Shift;<keycap>n</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:383
+#, no-c-format
+msgid "Duplicate a tab"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:385
+#, no-c-format
+msgid "&Ctrl;&Alt;&Enter;"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:386
+#, no-c-format
+msgid "Open current folder in a <link linkend=\"folder_tabs\">new tab</link>"
+msgstr ""
+
+#. Tag: emphasis
+#: keyboard.docbook:393
+#, no-c-format
+msgid "General CTRL keys"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:398
+#, no-c-format
+msgid "&Ctrl;<keycap>a</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:399
+#, no-c-format
+msgid "Select all"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:401
+#, no-c-format
+msgid "&Ctrl;<keycap>PageDown</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:402
+#, no-c-format
+msgid "Move to the lower part in the current directory"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:405
+#, no-c-format
+msgid "&Ctrl;<keycap>F1..F12</keycap>"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:408
+#, no-c-format
+msgid "&Ctrl;&Shift;<keycap>F1..F12</keycap>"
+msgstr ""
+
+#. Tag: emphasis
+#: keyboard.docbook:416
+#, no-c-format
+msgid "Other keys"
+msgstr ""
+
+#. Tag: keycap
+#: keyboard.docbook:421
+#, no-c-format
+msgid "<keycap>foo</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:422
+#, no-c-format
+msgid "&quick_search_lnk;"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:424
+#, no-c-format
+msgid "&Tab;"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:425
+#, no-c-format
+msgid "Switch between the panels"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:427
+#, no-c-format
+msgid "&Enter;"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:428
+#, no-c-format
+msgid "<link linkend=\"executing_files\">On a file:</link> open/execute that file"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:429
+#, no-c-format
+msgid "<link linkend=\"browsing-archives\">On an archive file:</link> browse the archive as if it was a directory"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:432
+#, no-c-format
+msgid "&Esc;"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:433
+#, no-c-format
+msgid "Will make the menu bar loose the focus if it has it"
+msgstr ""
+
+#. Tag: keycap
+#: keyboard.docbook:436
+#, no-c-format
+msgid "Delete"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:437
+#, no-c-format
+msgid "Delete (or move to Trash)"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:439
+#, no-c-format
+msgid "&Shift;<keycap>Delete</keycap>"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:440
+#, no-c-format
+msgid "Delete permanently"
+msgstr ""
+
+#. Tag: keycap
+#: keyboard.docbook:442
+#, no-c-format
+msgid "SPACE"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:443
+#, no-c-format
+msgid "<link linkend=\"marking-files\">On a file:</link> toggle the marking of the file without affecting the marking of other files/directories."
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:445
+#, no-c-format
+msgid "<link linkend=\"calculate\">On a directory:</link> calculate the size, without without affecting the marking of other files/directories."
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:448
+#, no-c-format
+msgid "&Backspace;"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:449
+#, no-c-format
+msgid "One directory up"
+msgstr ""
+
+#. Tag: keycap
+#: keyboard.docbook:451
+#, no-c-format
+msgid "INSERT"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:452
+#, no-c-format
+msgid "Does the same as the SPACE key <link linkend=\"marking-files\">but it will go one position down to toggle the next file.</link>"
+msgstr ""
+
+#. Tag: keycap
+#: keyboard.docbook:454
+#, no-c-format
+msgid "MENU"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:455
+#, no-c-format
+msgid "Right-click menu"
+msgstr ""
+
+#. Tag: keycap
+#: keyboard.docbook:457
+#, no-c-format
+msgid "Home"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:458
+#, no-c-format
+msgid "Cursor jumps to the top of the list"
+msgstr ""
+
+#. Tag: keycap
+#: keyboard.docbook:460
+#, no-c-format
+msgid "<keycap>End</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:461
+#, no-c-format
+msgid "Cursor jumps to the last file in the list"
+msgstr ""
+
+#. Tag: emphasis
+#: keyboard.docbook:468
+#, no-c-format
+msgid "Command Line"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:469
+#, no-c-format
+msgid "&cmdline_lnk; keybindings."
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:474
+#, no-c-format
+msgid "<keycap>Up arrow</keycap> and <keycap>Down arrow</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:475
+#, no-c-format
+msgid "scroll through previously typed commands."
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:478
+#, no-c-format
+msgid "opens the command line history list."
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:481
+#, no-c-format
+msgid "jumps from the command line to the active panel."
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:484
+#, no-c-format
+msgid "jumps from the active panel to the command line."
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:486
+#, no-c-format
+msgid "&Ctrl;&Enter;"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:487
+#, no-c-format
+msgid "inserts current file / directory name without path to current command line position."
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:490
+#, no-c-format
+msgid "&Ctrl;&Shift;&Enter;"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:491
+#, no-c-format
+msgid "inserts current file / directory with full path name to current command line position."
+msgstr ""
+
+#. Tag: emphasis
+#: keyboard.docbook:499
+#, no-c-format
+msgid "Default Useractions"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:500
+#, no-c-format
+msgid "Default &useractions_lnk; keybindings provided by &krusader;."
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:506
+#, no-c-format
+msgid "Edit a file as root"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:508
+#, no-c-format
+msgid "&Ctrl;&Alt;<keycap>c</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:509
+#, no-c-format
+msgid "Copy current item to clipboard"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:512
+#, no-c-format
+msgid "Mount a new filesystem"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:515
+#, no-c-format
+msgid "Equal panel-size"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:517
+#, no-c-format
+msgid "<keycap>Win</keycap><keycap>a</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:518
+#, no-c-format
+msgid "Enqueue in Amarok"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:520
+#, no-c-format
+msgid "<keycap>Win</keycap><keycap>1</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:521
+#, no-c-format
+msgid "Sort by Name"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:523
+#, no-c-format
+msgid "<keycap>Win</keycap><keycap>2</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:524
+#, no-c-format
+msgid "Sort by Extension"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:526
+#, no-c-format
+msgid "<keycap>Win</keycap><keycap>3</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:527
+#, no-c-format
+msgid "Sorts the active panel by Size"
+msgstr ""
+
+#. Tag: keycombo
+#: keyboard.docbook:529
+#, no-c-format
+msgid "<keycap>Win</keycap><keycap>4</keycap>"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:530
+#, no-c-format
+msgid "Sort by Modified"
+msgstr ""
+
+#. Tag: title
+#: keyboard.docbook:538
+#, no-c-format
+msgid "Other Key-bindings"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:540
+#, no-c-format
+msgid "Marking files"
+msgstr ""
+
+#. Tag: link
+#: keyboard.docbook:543
+#, no-c-format
+msgid "KrViewer"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:552
+#, no-c-format
+msgid "&kcontrolcenter; -> Accessibility -> Keyboard Shortcuts"
+msgstr ""
+
+#. Tag: para
+#: keyboard.docbook:555
+#, no-c-format
+msgid "&useractions_lnk; configurable key-bindings"
+msgstr ""
+

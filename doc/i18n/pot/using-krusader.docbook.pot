@@ -1,0 +1,789 @@
+# Translation of using-krusader.docbook to LANGUAGE
+# Copyright (C) 2006, Krusader Krew
+# This file is distributed under the same license as the Krusader package
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Krusader-doc-1.80.0 2006-11-04\n"
+"Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
+"POT-Creation-Date: 2006-11-04 11:14+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: application/x-xml2pot; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Tag: title
+#: using-krusader.docbook:24
+#, no-c-format
+msgid "Using &krusader;"
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:27
+#, no-c-format
+msgid "Controls"
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:30
+#, no-c-format
+msgid "General"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:32
+#, no-c-format
+msgid "This is a rather short but important section that will go into the details of controlling &krusader;. This section doesn't try to cover all the various key combinations for two reasons: <orderedlist numeration=\"arabic\"> <listitem> <para>there are just too many of them</para> </listitem> <listitem> <para>most of &krusader;'s actions are configurable in the &konfiglookandfeel_lnk;</para> </listitem> </orderedlist> We will only mention the most important keyboard shortcuts with the default configuration but keep in mind that most of the &keybindigs_lnk; are configurable. If you find that you use a certain command a lot and want to know the shortcut for this command, or you want to change this command shortcut, then check out the &keybindigs_lnk; tab at the &konfiglookandfeel_lnk;."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:53
+#, no-c-format
+msgid "Moving Around"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:54
+#, no-c-format
+msgid "By Moving Around we mean the transfer of the keyboard and mouse focus between the different parts of the &krusader; <link linkend=\"mainwindow\">main window</link>. The focus can be in one of five places: the Left or Right Panel, the Menu Bar, the Command Line or the Terminal Emulator. The panel that has the focus is called the Active Panel. An Active Panel will remain active until the other panel receives the focus (&ie;: if the Left Panel was active and you clicked on the Command Line - then the Left Panel remains the Active Panel). You must deliberately change which panel is active."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:62
+#, no-c-format
+msgid "The most common way to transfer the focus to a specific panel is to use the mouse to click on that panel. But you should be aware of the following:"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:66
+#, no-c-format
+msgid "Clicking on the Toolbar, the FN keys bar or the Status Bar does *not* change the focus."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:79
+#, no-c-format
+msgid "Pushing the <guibutton>\"History\"</guibutton> or the <guibutton>\"Run in Terminal\"</guibutton> buttons in the Command Line will not transfer the focus so you have click inside the Input Line."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:85
+#, no-c-format
+msgid "The Menu Bar can get the focus by choosing a menu but it keeps the focus until you choose a command, and then the focus returns to the previous owner."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:91
+#, no-c-format
+msgid "There are, of course, ways to use the keyboard to change the focus"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:93
+#, no-c-format
+msgid "The &Tab; Key will switch panels if one of the panel has the focus, or rotate between all the commands in a menu if the Menu Bar is active."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:96
+#, no-c-format
+msgid "The <keycombo action=\"simul\">&Ctrl;<keycap>Down Arrow</keycap></keycombo> will take you from the Active Panel to the Command Line or Terminal Emulator, and the <keycombo action=\"simul\">&Ctrl;<keycap>Up Arrow</keycap></keycombo> will take you back from the Command Line to the Active Panel."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:101
+#, no-c-format
+msgid "The &Esc; Key will make the Menu Bar return the focus, if it has it, to the previous Active Panel."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:103
+#, no-c-format
+msgid "If you happen to be inside the Terminal Emulator, you can use the &Tab; Key, or the mouse, to navigate to an Active Panel."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:105
+#, no-c-format
+msgid "Pressing <keycombo action=\"simul\">&Alt;<keycap>\"Underlined Letter\"</keycap></keycombo> from the Menu Bar will open that menu (unless this key combination is a \"Reserved Key\", used by one of &krusader;'s actions)."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:115
+#, no-c-format
+msgid "Marking (Selecting)"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:117
+#, no-c-format
+msgid "&krusader; offers 4 &mouse_selection_modes_lnk;, only &krusader;'s Mouse Selection Mode is explained here."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:119
+#, no-c-format
+msgid "Marking is a skill you need to master in order to get the most out of &krusader;. Since you can't select files in the Quick View Panel, and the Tree Panel only lets you select one directory at a time, this paragraph mainly explains how to select files in the List Panel filelist."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:123
+#, no-c-format
+msgid "Moving the cursor is easy. Left-clicking on a file or directory (referred to herein as \"elements\" meaning, files AND directories) will select it. Here are some useful pointers that will make Krusader even easier to use: (assuming you're using &krusader;'s Mouse Selection Mode)"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:129
+#, no-c-format
+msgid "The <keycap>SPACE</keycap> and <keycap>Insert</keycap> key will toggle the marking of the file under the cursor without affecting the marking of other files/directories, the cussor will go one position down."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:134
+#, no-c-format
+msgid "Pressing the <keycap>SPACE</keycap> on a Directory under the cursor will <link linkend=\"calculate\">calculate occupied space</link> without affecting the marking of other files/directories."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:139
+#, no-c-format
+msgid "<keycap>Left Clicking</keycap> on a file will select, or unselect, all previously marked files."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:143
+#, no-c-format
+msgid "<keycombo action=\"simul\">&Ctrl;<keycap>Left Clicking</keycap></keycombo> will toggle the marking of the file under the cursor without affecting the marking of other files/directories."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:147
+#, no-c-format
+msgid "<keycombo action=\"simul\">&Shift;<keycap>Left Clicking</keycap></keycombo> will select all the elements between the previous cursor location and the new one."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:151
+#, no-c-format
+msgid "<keycombo action=\"simul\">&Shift;<keycap>Home</keycap></keycombo> selects everything above the cursor (and unselect everthing below the cusror if marked)."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:155
+#, no-c-format
+msgid "<keycombo action=\"simul\">&Shift;<keycap>End</keycap></keycombo> selects everything below the cursor (and unselect everthing above the cusror if marked)."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:159
+#, no-c-format
+msgid "The \"..\" entry is not markable."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:162
+#, no-c-format
+msgid "The &editmenu_lnk; can offer more ways to select your files."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:171
+#, no-c-format
+msgid "Executing Commands"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:172
+#, no-c-format
+msgid "There isn't a lot to say here, all you need to do is select some files (if you don't &krusader; will operate on the file(s) or directory(s) that have the focus), choose a <link linkend=\"menu-commands\">Command</link> from the Menu Bar or use a Keyboard Shortcut (or the Right Click Menu) and the selected Command executes. See also <link linkend=\"executing_files\">Executing Files</link>."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:181
+#, no-c-format
+msgid "Quicksearch"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:184
+#, no-c-format
+msgid "This feature will do a quick search for the file name in the Active List Panel."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:186
+#, no-c-format
+msgid "There are two quick search methods:"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:188
+#, no-c-format
+msgid "\"Old Quicksearch\": type <keycap>foo</keycap> (one character) to do a quick search in the Active List Panel for a file beginning with \"foo\"."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:191
+#, no-c-format
+msgid "\"New Quicksearch\": type <keycap>foo</keycap> to open the small quick search dialog box below the Active List Panel. Type the first few characters of the desired filename (more than one character allowed), the cursor will jump to that filename (if it exists), &eg; type \"ab\" to search for a file which begins with \"ab\". The <keycap>Up/Down Arrow</keycap> will jump to the next or previous match. &Esc; will close the quicksearch line. The cursor will stay on the last Quicksearch file found."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:203
+#, no-c-format
+msgid "If you press <keycombo action=\"simul\">&Alt;<keycap>foo</keycap></keycombo>, the key binding shortcut will be executed. If there is no configured key binding, the remaining letter <keycap>foo</keycap> will used for the quick search."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:207
+#, no-c-format
+msgid "Use &konfiglookandfeel_lnk; to change from the default configuration."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:211
+#, no-c-format
+msgid "Context Menu"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:213
+#, no-c-format
+msgid "&krusader; has many Context menus that allow you to do fast operations with the mouse, usually a Right-Click will open the Context menu (depending on your &mouse_selection_modes_lnk; settings). This list gives an overview of the most important Context menus, use them to discover the available commands."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:218
+#, no-c-format
+msgid "&main_toolbar_lnk; (orientation, text position , icon size)"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:219
+#, no-c-format
+msgid "&list_panel_lnk; on a file or directory"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:220
+#, no-c-format
+msgid "&cmdline_lnk; (undo, paste, text completion, ...)"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:221
+#, no-c-format
+msgid "&termemu_lnk; (send signal, font, history, ...)"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:222
+#, no-c-format
+msgid "&foldertabs_lnk; (new, duplicate, close)"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:223
+#, no-c-format
+msgid "<link linkend=\"krusearcher\">KruSearcher</link> Search results file list (F3 View, F4 Edit)"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:225
+#, no-c-format
+msgid "&mountman_lnk; (unmount, format, ...)"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:226
+#, no-c-format
+msgid "&syncdirs_lnk; File List"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:227
+#, no-c-format
+msgid "&useractions_lnk;"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:228
+#, no-c-format
+msgid "&konqueror; Right-Click actions are shown in &krusader;"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:229
+#, no-c-format
+msgid "Show/hide <link linkend=\"list_panel\">Column Headers</link>"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:230
+#, no-c-format
+msgid "<para>...</para>"
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:238
+#, no-c-format
+msgid "Basic File Management"
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:241
+#, no-c-format
+msgid "Executing Files"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:242
+#, no-c-format
+msgid "You can only execute files in the Active List Panel. To <keycap>execute</keycap> a file just <keycap>(double-)click on it or press Enter</keycap> when it is under the list cursor. &krusader; will open it in the default application for this file type (picture, textfile, ...) or the file will be executed (script, binary, ...). If you want to use <keycap>another application</keycap> to open the file, then <keycap>Right-Click</keycap> on the file and go to the \"open with\" sub-menu which will offer more options. &krusader; is compatible with &kde; default file-manager for all file types except archives that are opened inside the &krusader; panel and not in an external application. See <link linkend=\"konfig-archives\">the archives page in Konfigurator</link> for details."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:255
+#, no-c-format
+msgid "Copying and Moving"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:256
+#, no-c-format
+msgid "To copy or move files/directories just select them and press <keycap>F5</keycap> to <keycap>copy</keycap> or <keycap>F6</keycap> to <keycap>move</keycap> them. If checked the <guimenuitem>Preserve attributes (only on local targets)</guimenuitem> option, &krusader; will try to preserve all attributes (time, owner, group) of the local files according to the source depending on your permissions: <itemizedlist> <listitem><para>User preserving if you are root</para></listitem> <listitem><para>Group preserving if you are root or member of the group</para></listitem> <listitem><para>Preserving the timestamp</para></listitem> </itemizedlist> Using this option might slow down the copy/move process. A dialog will appear and allow you to choose the operation destination, the default destination is the other-panel browsed directory. If you enter a partial &URL; &krusader; will use the current panel directory as the &URL; base."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:275
+#, no-c-format
+msgid "Deleting"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:276
+#, no-c-format
+msgid "Deleting files/directories is done by marking them and pressing <keycap>F8</keycap> or <keycap>Delete</keycap>. By <link linkend=\"konfig-general\">default</link> it will be moved to &kde;'s Trash, <keycombo action=\"simul\">&Shift;<keycap>Delete</keycap></keycombo> will delete the file permanently. A dialog will ask for your confirmation and will warn you when deleting non-empty directories. Of course only operations that you are permitted to do by the Operating System will be performed - you will be notified otherwise. If you don't wish to see the confirmation dialogs, you can disable them in the <link linkend=\"konfig-advanced\">Konfigurator advanced tab</link>."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:290
+#, no-c-format
+msgid "Renaming files, Creating Directories, and Link Handling"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:291
+#, no-c-format
+msgid "<keycap>Rename</keycap> the file under the cursor with the <keycap>F9</keycap> key or with two single mouseclicks. If only the filename needs to be renamed and not the extension you can configure this in the &konfiglookandfeel_lnk;. <keycap>Create a new directory</keycap> with the <keycap>F7</keycap> key. <keycap>Right-clicking on a regular file</keycap> will give you the <keycap>option \"New Symlink\"</keycap>, a dialog will prompt you to enter a symlink name. That name will point to the file/directory you Right-Clicked on. If the file you Right-Clicked on is a symlink you will also be presented with the \"redirect link\" option that will allow you change the link target."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:304
+#, no-c-format
+msgid "Viewing and Editing files"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:305
+#, no-c-format
+msgid "<link linkend=\"krviewer\">KrViewer</link> has a chapter of its own."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:311
+#, no-c-format
+msgid "Archive Handling"
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:314
+#, no-c-format
+msgid "Browsing Archives"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:315
+#, no-c-format
+msgid "The &vfs_lnk; allows to browse archives as it was a directory. &krusader; supports currently the following archives types: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip and supports the next passworded archives: arj, ace, rar and zip. Passwords can be stored in &kwallet;. Please note that the archive support first needs to be properly <link linkend=\"konfig-archives\">configured</link> in Konfigurator. To open the archive use &Enter;, (double-)click or the <keycap>Right Arrow</keycap>. &krusader; supports also <emphasis role=\"bold\">hidden archives</emphasis>, these are renamed archives with a *wrong* extension. &eg; &openoffice; uses zip archives with the next extensions: odt, sxw and odw. &Enter; will open the &openoffice; document and the <keycap>Right Arrow</keycap> will open the archive. An other example is J2EE where the rar extension means a zip archive. &krusader; will open with <keycap>Right Arrow</keycap> the archive even if it has an other mime type, since &krusader; autodetects the supported archive types. Please note that browsing archives has a few limitations:"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:332
+#, no-c-format
+msgid "Not all functions are supported by all archive types. (&ie;: you can't delete files in ace or rar archives)"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:335
+#, no-c-format
+msgid "The permissions you have inside the archive are the same as the permissions you have for the archive."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:338
+#, no-c-format
+msgid "The command line (if visible) will not follow you inside the archive but will point to the archive directory."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:341
+#, no-c-format
+msgid "Before any action is performed on files/directories inside the archive they must be extracted. The archive will be repacked when you leave it or when &krusader; detects that extracted files have changed."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:345
+#, no-c-format
+msgid "Packing and un-packing are \"blocking operations\" that display a Progress Dialog. Though, this might change in the future since we are planning to create more background operations."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:355
+#, no-c-format
+msgid "Unpack Files"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:356
+#, no-c-format
+msgid "There are 2 ways to extract files from archives:"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:358
+#, no-c-format
+msgid "If you want to unpack a whole archive(s), browse to the archive location, select the archive(s) and select <emphasis role=\"bold\"><menuchoice><guimenu>File</guimenu> <guimenuitem>Unpack</guimenuitem></menuchoice></emphasis> or <keycombo action=\"simul\">&Alt;<keycap>U</keycap></keycombo>. &krusader; will ask you where to put the extracted files, the default location is the inactive panel directory. If you don't cancel the operation, &krusader; will try to unpack all the selected files in the inactive panel."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:366
+#, no-c-format
+msgid "If you only want to extract part of the archive, then <link linkend=\"browsing-archives\">browse</link> the archive and copy the files you want to extract to their new location just as you would copy \"normal\" files. Note that unpacking from a browsed archive takes more time (file by file unpack) compared to unpacking a whole archive with the first method."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:375
+#, no-c-format
+msgid "Packing Files"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:376
+#, no-c-format
+msgid "If you want to create a new archive, begin by marking the elements you want to pack in the active panel and select <emphasis role=\"bold\"><menuchoice><guimenu>File</guimenu> <guimenuitem>Pack</guimenuitem></menuchoice></emphasis> or <keycombo action=\"simul\">&Alt;<keycap>P</keycap></keycombo>. A dialog will pop-up, prompting you to select the archive name and location, you select the packer by selecting one of the <link linkend=\"konfig-archives\">supported filename extensions</link>."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:383
+#, no-c-format
+msgid "To add files to an existing archives, open the archive in one panel and the files to be copied in the other panel, then simply copy the files into the archive in exactly the same way you copy files into a \"normal\" directory."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:390
+#, no-c-format
+msgid "Testing Archives"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:391
+#, no-c-format
+msgid "Krusader will not handle corrupted archives since it may result in data loss. If you receive an error message when opening an archive, or if you suspect that there something wrong with the archive you should test it before use. To test an archive, browse (navigate) to the archive location, select the archive. Next select <emphasis role=\"bold\"><menuchoice><guimenu>File</guimenu> <guimenuitem>Test Archive</guimenuitem></menuchoice></emphasis> or <keycombo action=\"simul\">&Alt;<keycap>E</keycap></keycombo>. &krusader; will test the archive file and inform you if the archive passed or failed the file integrity test."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:406
+#, no-c-format
+msgid "More features"
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:409
+#, no-c-format
+msgid "Virtual file systems (VFS)"
+msgstr ""
+
+#. Tag: primary
+#: using-krusader.docbook:410
+#, no-c-format
+msgid "<primary>VFS</primary>"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:412
+#, no-c-format
+msgid "A basic <link linkend=\"features\">OFM feature</link> is VFS, this an abstracted layer over all kinds of archived information (ZIP files, FTP servers, TAR archives, NFS filesystems, SAMBA shares, ISO cd/dvd images, RPM catalogs, etc.), which allows the user to access all the information in these divergent types of filesystems transparently - just like entering an ordinary sub-directory! &krusader; supports several VFS: <itemizedlist> <listitem><para><link linkend=\"remote-connections\">Remote connections VFS</link>: provides the capability of working with a remote connection session (FTP, NFS, Samba, FISH, SFTP) like with local filesystems. It's perfect for complex remote operations and almost as powerful as most standalone GUI remote clients.</para> </listitem> <listitem><para><link linkend=\"archives\">Archive VFS</link>: allows to browse archives in VFS as it was a directory (ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip).</para> </listitem> <listitem><para><link linkend=\"archives\">Search VFS</link>: <guibutton>Feed to listbox</guibutton> will place the search results in VFS. </para> </listitem> <listitem><para><link linkend=\"synchronizer\">Synchronizer VFS</link>: places the synchronizer results in VFS. </para> </listitem> </itemizedlist> Actions you perform on the files in VFS are performed on the 'real' files. You don't just delete files from the VFS - you delete them from your hard drive. Limitations: you can't create directories inside in a VFS."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:446
+#, no-c-format
+msgid "Compare"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:447
+#, no-c-format
+msgid "&krusader; contains several compare functions: <guimenuitem>Compare by content</guimenuitem>, <guimenuitem>Compare Directories</guimenuitem> and the <link linkend=\"synchronizer\">Synchronizer</link> compare function."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:454
+#, no-c-format
+msgid "Compare by Content"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:455
+#, no-c-format
+msgid "Select in each panel one file, and use <emphasis role=\"bold\"><menuchoice><guimenu>File</guimenu> <guimenuitem>Compare by content</guimenuitem></menuchoice></emphasis>. &krusader; will open a external graphical difference tool that is <link linkend=\"konfig-dependencies\">configured</link>, right now &kompare;, &kdiff3_url; and &xxdiff_url; are supported."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:466
+#, no-c-format
+msgid "Compare Directories"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:467
+#, no-c-format
+msgid "Compare the files of each panel by using <emphasis role=\"bold\"><menuchoice><guimenu>Mark</guimenu> <guimenuitem>Compare Directories</guimenuitem></menuchoice></emphasis>. By default newer and single files will be selected in each panel, this behaviour can be changed in the <guimenuitem>Compare Setup</guimenuitem> menu."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:472
+#, no-c-format
+msgid "The files are not compared by content but by their names and dates only."
+msgstr ""
+
+#. Tag: menuchoice
+#: using-krusader.docbook:477
+#, no-c-format
+msgid "<guimenu>Mark</guimenu> <guimenuitem>Compare Setup</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:481
+#, no-c-format
+msgid "Configures the <guimenuitem>Compare Directories</guimenuitem> function."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:483
+#, no-c-format
+msgid "<guimenuitem>Mark Newer and Single</guimenuitem> (default)"
+msgstr ""
+
+#. Tag: guimenuitem
+#: using-krusader.docbook:485
+#, no-c-format
+msgid "Mark Single"
+msgstr ""
+
+#. Tag: guimenuitem
+#: using-krusader.docbook:487
+#, no-c-format
+msgid "Mark Newer"
+msgstr ""
+
+#. Tag: guimenuitem
+#: using-krusader.docbook:489
+#, no-c-format
+msgid "Mark Different and Single"
+msgstr ""
+
+#. Tag: guimenuitem
+#: using-krusader.docbook:491
+#, no-c-format
+msgid "Mark Different"
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:503
+#, no-c-format
+msgid "Calculate Occupied Space"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:506
+#, no-c-format
+msgid "There are two ways to calculate the occupied space of files/directories. <itemizedlist> <listitem> <para>Pressing the <keycap>SPACE</keycap> on a directory under the cursor instantly calculates the occupied size. Pressing <keycap>SPACE</keycap> a second time will toggle the marking of the directory without affecting the selection status of other files/directories.</para></listitem> <listitem> <para>To calculate how much disk space is occupied by the marked files and directories in the active panel select <emphasis role=\"bold\"><menuchoice><guimenu>File</guimenu> <guimenuitem>Calculate Occupied Space</guimenuitem></menuchoice></emphasis>. After a (hopefully) small delay, a dialog box will be displayed with total occupied space and the number of files and directories you selected. The space occupied by every selected directory will be shown as if the user just pressed <keycap>SPACE</keycap> on that directories. If the active panel is browsing an archive, the numbers will apply to the *unpacked* size of the selected files and directories, not their compressed size. After the calculation the marking state will toggle and the cusor will move one position down.</para> </listitem> </itemizedlist> Calculating the occupied space on remote filesystems is supported."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:529
+#, no-c-format
+msgid "Performing this operation on a very large filesystem (thousands of files) may be time consuming. You can always cancel the calculation process at any time by clicking on the <guibutton>Cancel</guibutton> button."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:537
+#, no-c-format
+msgid "File Splitter"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:539
+#, no-c-format
+msgid "This function splits one (big) file up into multiple smaller files so that they can be placed on several smaller media (&eg; zip-drives, ...) or sent by e-mail. The multiple files can be combined again to recreate the original file. &krusader; and &tcmd; split/combine functions are compatible. To split a file choose <emphasis role=\"bold\"><menuchoice><guimenu>File</guimenu><guimenuitem>Split</guimenuitem></menuchoice> </emphasis> or <keycombo action=\"simul\">&Ctrl;<keycap>P</keycap></keycombo> A Split dialog will open to confirm the operation."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:550
+#, no-c-format
+msgid "If the name of the original file is <filename>foo</filename>, then the name of the smaller files will be <filename>foo.000 foo.001 foo.002</filename> &etc; There is no theoretical limit in the number of smaller files, but it is recommended to limit the number to a max of 1023 files. &krusader; creates a <filename>foo.crc</filename> file. This file contains the name, size and the crc checksum of the original file. It's possible to combine the file without the <filename>foo.crc</filename> file but in this case &krusader; can't check if the the original file was recreated correctly."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:558
+#, no-c-format
+msgid "An example of a <filename>foo.crc</filename> file:"
+msgstr ""
+
+#. Tag: programlisting
+#: using-krusader.docbook:559
+#, no-c-format
+msgid ""
+      "filename=foo\n"
+      "      size=432998467868\n"
+      "      crc32=21EB719A"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:563
+#, no-c-format
+msgid "To combine the multiple files choose, select a partial file <filename>foo.xxx</filename> and choose <emphasis role=\"bold\"><menuchoice><guimenu>File</guimenu> <guimenuitem>Combine files</guimenuitem></menuchoice></emphasis> or <keycombo action=\"simul\">&Ctrl;<keycap>B</keycap></keycombo>. The target directory is the unactive panel and can be changed. The file names must be numbered in ascending order: <filename>foo.001, foo.002, foo.003</filename> &etc; or have letters in ascending order: (\"<userinput><command>split</command> <option>-b</option></userinput> letter method\") <filename>fileaa, fileab, fileac</filename> &etc; If the file <filename>foo.crc</filename> is found in the same directory as the partial files, &krusader; will use this file to check the combined file for errors."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:582
+#, no-c-format
+msgid "Checksum creation-verification"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:584
+#, no-c-format
+msgid "<emphasis role=\"bold\"><menuchoice><guimenu>File</guimenu> <guimenuitem>Create Checksum</guimenuitem></menuchoice></emphasis> : &krusader; checks which tools you have and if those tools allow recursive operation (in case you selected folders), you choose the type of checksum (md5, sha...) and it is generated. You can then save the checksum to a file, usually called checksum.md5 (or .sha1 or whatever)."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:593
+#, no-c-format
+msgid "<emphasis role=\"bold\"><menuchoice><guimenu>File</guimenu> <guimenuitem>Verify Checksum</guimenuitem></menuchoice></emphasis> : &krusader; checks if you have a tool that supports the type of checksum you need (from your specified checksum file) and displays the files that failed the checksum (if any)."
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:601
+#, no-c-format
+msgid "The nice thing is that the system abstracts over different checksum mechanisms and different binaries. Right now, it supports md5, sha1, sha256, tiger, whirlpool and cfv. You probably have md5sum and sha1sum already, external supported tools are md5deep (sha256, tiger, whirlpool) and cfv."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:611
+#, no-c-format
+msgid "Send Files by e-mail"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:612
+#, no-c-format
+msgid "Select a file and use <emphasis role=\"bold\"><menuchoice><guimenu>Right-Click menu</guimenu> <guimenuitem>Send by Email</guimenuitem></menuchoice></emphasis>. Selecting this option will open a new &kmail; window with the file already attached. Just fill in the subject and recipient(s) and send it. Of course, &kmail; must be properly configured."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:622
+#, no-c-format
+msgid "Shred Files"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:623
+#, no-c-format
+msgid "When you delete files in your local system they are not completely erased and the information stored in them can be recovered using special software and hardware tools. If you want to erase a file without recoverable traces, select the file and use <emphasis role=\"bold\"><menuchoice><guimenu>Right-Click menu</guimenu> <guimenuitem>Shred</guimenuitem></menuchoice></emphasis>."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:644
+#, no-c-format
+msgid "<title>Profiles</title>"
+msgstr ""
+
+#. Tag: primary
+#: using-krusader.docbook:645
+#, no-c-format
+msgid "<primary>Profiles</primary>"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:647
+#, no-c-format
+msgid "With profiles you can save and restore your favorite settings. Several features supports profiles, you can have &eg; different panel profiles (work, home, remote connectios, &etc;), search profiles, synchroniser profiles, &etc;"
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:654
+#, no-c-format
+msgid "Panel Profiles"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:655
+#, no-c-format
+msgid "A panel profile contains: all the tabs paths (left/right), the current tab (left/right), the active panel (left or right), all this information is stored in the &krusaderrc_lnk; file. You can have several Panel profiles &eg; file-managment, ftp-managment, home, work, etc. The panel profile can be <link linkend=\"c_panel_profiles\">saved and restored</link> in the <guimenu>Commands menu</guimenu>. The <link linkend=\"konfig-startup\">default startup profile</link> will be used when starting krusader, with a <link linkend=\"starting-krusader\">commandline option</link> you override the default startup profile."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:668
+#, no-c-format
+msgid "Color Profiles"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:669
+#, no-c-format
+msgid "Colormaps can be saved and restored with <link linkend=\"konfig-color\">Color Profiles</link>. &krusader; Colormaps are available at &kde_files_url;."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:675
+#, no-c-format
+msgid "Key-binding Profiles"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:676
+#, no-c-format
+msgid "Keymaps can be saved and restored with <link linkend=\"configure-shortcuts\">Key-binding Profiles</link>. &krusader; Keymaps are available at &kde_files_url;."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:682
+#, no-c-format
+msgid "Search Profiles"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:683
+#, no-c-format
+msgid "When you regularly perform the same search operation, than you can save the search settings (&eg; include files, exclude files, &etc;) in a <link linkend=\"krusearcher\">Search Profile</link>."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:690
+#, no-c-format
+msgid "Synchroniser Profiles"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:691
+#, no-c-format
+msgid "When you regularly perform the same synchronise operation, than you can save the synchronise settings in a <link linkend=\"synchronizer\">Synchroniser Profile</link>."
+msgstr ""
+
