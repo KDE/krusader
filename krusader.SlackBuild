@@ -1,76 +1,76 @@
 #!/bin/sh
-# krusader.SlackBuild  --  use this script to build a Slackware package
-# this script works on Slackware 10.1 for Krusader-1.60.0
-# 
-# this script is written by 
-# Mateusz Dubiel [ mjd {*} radioemiter {.} pl ]
-# http://mjd.radioemiter.pl/ 
-
-# updated by Andrea Sciucca [ gohanz {*} infinito {.} it ] for krusader-1.70.0
-# http://www.kde-apps.org/usermanager/search.php?username=gohanz
-# http://www.slacky.it/index.php?option=com_remository&Itemid=29&filecatid=385&func=fileinfo
+# Slackware build script for krusader: http://krusader.sourceforge.net
+# By Matías A. Fonzo, <selkfoster@gmail.com>
 
 CWD=`pwd`
-if ["$TMP" = ""]; then
- TMP=/tmp
-fi
+TMP=${TMP:-/tmp/pkgs}
 
-PKG=$TMP/package-krusader
-NAME=krusader
-VERSION=1.70.0
-TARGET=i486
+PRGNAM=krusader
+VERSION=1.70.1
 ARCH=${ARCH:-i486}
-BUILD=1sl
+BUILD=2
 
-if [ "$ARCH" = "i486" ]; then
-  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
-elif [ "$ARCH" = "i686" ]; then
-  SLKCFLAGS="-O2 -march=i686 -mcpu=i686"
-elif [ "$ARCH" = "x86_64" ]; then
-  SLKCFLAGS="-O2"
+if [ -z "$SLKCFLAGS" ]; then
+  if [ "$ARCH" = "i486" ]; then
+    SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+  elif [ "$ARCH" = "i686" ]; then
+    SLKCFLAGS="-O2 -march=i686 -mtune=i686"
+  fi
 fi
 
-if [ ! -d $TMP ]; then
- mkdir -p $TMP 
-fi
-if [ ! -d $PKG ]; then
- mkdir -p $PKG
+# Number of jobs to compile at once:
+if [ -z "$NUMJOBS" ]; then
+  NUMJOBS=-j2
 fi
 
+# Avoid a version number in .la files:
+if [ -d /usr/lib/qt ]; then
+  QTDIR=/usr/lib/qt
+fi
+
+PKG=$TMP/package-${PRGNAM}
+rm -rf $PKG
+mkdir -p $PKG
 cd $TMP
-tar xzvf $CWD/$NAME-$VERSION.tar.gz
-cd $NAME-$VERSION
-chown -R root.root .
+rm -rf ${PRGNAM}-$VERSION
+echo "Building ${PRGNAM}-$VERSION.tar.gz..."
+tar xvfz $CWD/${PRGNAM}-$VERSION.tar.gz
+cd ${PRGNAM}-$VERSION
+chown -R root:root .
+find . -perm 777 -exec chmod 755 {} \;
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
-./configure --prefix=/opt/kde \
---disable-debug \
---mandir=/usr/man \
---program-prefix="" \
---program-suffix="" \
-$TARGET-slackware-linux
-make
+./configure \
+  --prefix=/opt/kde \
+  --disable-debug \
+  --program-prefix="" \
+  --program-suffix="" \
+  $ARCH-slackware-linux
+make $NUMJOBS || exit 1
 make install DESTDIR=$PKG
-mkdir -p $PKG/usr/doc/$NAME-$VERSION
-cp -a AUTHORS COPYING CVSNEWS ChangeLog INSTALL README TODO $PKG/usr/doc/$NAME-$VERSION
-
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null
   find . | xargs file | grep "shared object" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null
 )
-
-find $PKG/usr/man -type f -exec gzip -9 {} \;
-rm -rf $PKG/tmp
+gzip -9 $PKG/opt/kde/man/man?/*.?
+mkdir -p $PKG/usr/doc/${PRGNAM}-$VERSION/html
+cp -a \
+  AUTHORS COPYING ChangeLog INSTALL README TODO FAQ CVSNEWS krusader.lsm ./doc/actions_tutorial.txt \
+  $PKG/usr/doc/${PRGNAM}-$VERSION
+( cd $PKG/usr/doc/${PRGNAM}-$VERSION/html ; ln -sf /opt/kde/share/doc/HTML/en/krusader en )
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
-cd $CWD
-cp -a *.SlackBuild slack-desc $PKG/usr/doc/$NAME-$VERSION
-chown -R root.root $PKG/usr/doc/$NAME-$VERSION
-cd $PKG
-requiredbuilder -v -y -s $CWD $PKG
-makepkg -l y -c n $CWD/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
-if [ "$1" = "--cleanup" ]; then
- rm -rf $TMP/$NAME-$VERSION
- rm -rf $PKG
+cd $PKG
+makepkg -l y -c n $TMP/${PRGNAM}-$VERSION-$ARCH-$BUILD.tgz
+
+# Final touches:
+( cd $TMP
+  cat $PKG/install/slack-desc | grep "^$PRGNAM:" > ${PRGNAM}-$VERSION-$ARCH-$BUILD.txt
+  md5sum ${PRGNAM}-$VERSION-$ARCH-$BUILD.tgz > ${PRGNAM}-$VERSION-$ARCH-$BUILD.tgz.md5 )
+
+# Clean up the extra stuff:
+if [ "$1" = "--cleanup" -o "$1" = "-c" ]; then
+  rm -rf $TMP/${PRGNAM}-$VERSION
+  rm -rf $PKG
 fi
