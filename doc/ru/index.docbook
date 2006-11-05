@@ -35,7 +35,14 @@ Previous used Docbook
 <!ENTITY % addindex "INCLUDE">
 
 <!-- ONLY If you are writing non-English original documentation, change the language here -->
-<!ENTITY % English "INCLUDE">
+<!ENTITY % Russian "INCLUDE">
+<!ENTITY Backspace   "<keycap>Backspace</keycap>">
+<!--
+<!ENTITY % English "INCLUDE"> changed to Russian
+and added <!ENTITY Backspace  "<keycap>Backspace</keycap>"> in index.docbook 
+since the Entity Backspace is not defined in
+/usr/share/apps/ksgmltools2/customization/ru/user.entities on KDE: 3.5.4
+-->
 
 <!-- kdebase, kdeadmin, etc. Leave this unchanged if your application is not maintained in KDE CVS -->
 <!ENTITY package "kde-module">
