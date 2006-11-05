@@ -35,6 +35,16 @@ Previous used Docbook
 
 <!-- ONLY If you are writing non-English original documentation, change the language here -->
 <!ENTITY % English "INCLUDE">
+<!ENTITY Backspace   "<keycap>Backspace</keycap>">
+<!--
+Added <!ENTITY Backspace  "<keycap>Backspace</keycap>"> in index.docbook 
+since the Entity Backspace is not defined in
+/usr/share/apps/ksgmltools2/customization/ru/user.entities on KDE: 3.5.4
+This is a workaround, until Backspace is translated in all
+/usr/share/apps/ksgmltools2/customization/ru/user.entities
+files
+http://groups.google.com/group/krusader-devel/browse_thread/thread/d102adec2edcfb47/e3ca0489310cc12e#e3ca0489310cc12e
+-->
 
 <!-- kdebase, kdeadmin, etc. Leave this unchanged if your application is not maintained in KDE CVS -->
 <!ENTITY package "kde-module">
@@ -397,13 +407,22 @@ Previous used Docbook
         <affiliation><address><email>jonas.baehr@web.de</email></address></affiliation>
   </othercredit>
   
-  <author>
+
+<!--
+Changed the <author> tag in favor for <othercredit role="developer"> for Frank since
+the <author><contrib> tag is not shown for the documentation author on the index page
+This is a workaround, i have no idea why the <author> tag doesn't show the <contrib> tag (= the title)
+on the index page.
+Frank.
+-->
+
+  <othercredit role="developer">
         <firstname>Frank</firstname>
         <surname>Schoolmeesters</surname>
         <contrib>Documentation &amp; Marketing coordinator</contrib>
         <affiliation><address><email>frank_schoolmeesters@yahoo.com</email></address></affiliation>
-  </author>
-  
+  </othercredit>
+
   <othercredit role="reviewer">
         <firstname>Richard</firstname><surname>Holt</surname>
         <contrib>Documentation &amp; Proofing</contrib>
@@ -440,7 +459,7 @@ Previous used Docbook
                with no Invariant Sections, with no Front-Cover Texts, and with no Back-Cover Texts. 
                A copy of the license is included in the &krusader; sources.</para></legalnotice>
 
-  <date>2006-08-26</date>
+  <date>2006-11-06</date>
   <releaseinfo>1.80.0 "cvs repository"</releaseinfo>
 
    <abstract>
