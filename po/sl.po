@@ -12,7 +12,7 @@ msgstr ""
 "POT-Creation-Date: 2006-10-10 23:09+0200\n"
 "PO-Revision-Date: 2006-10-16 14:39+0100\n"
 "Last-Translator: Matej Urbancic <matej.urban@gmail.com>\n"
-"Language-Team: Slovenian <krusader-i18n@googlegroups.com>\n"
+"Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -384,7 +384,7 @@ msgstr "Slikovne datoteke"
 #: Filter/generalfilter.cpp:97
 #: VFS/krquery.cpp:141
 msgid "Text Files"
-msgstr "Tekstovne datoteke"
+msgstr "Besedilne datoteke"
 
 #: Filter/generalfilter.cpp:98
 #: VFS/krquery.cpp:142
@@ -394,7 +394,7 @@ msgstr "Video datoteke"
 #: Filter/generalfilter.cpp:99
 #: VFS/krquery.cpp:143
 msgid "Audio Files"
-msgstr "Avdio datoteke"
+msgstr "Zvočne datoteke"
 
 #: VFS/krquery.cpp:144
 msgid "Custom"
@@ -1587,7 +1587,7 @@ msgstr "Mapa..."
 
 #: Panel/krpopupmenu.cpp:216
 msgid "Text File..."
-msgstr "Tekstovna datoteka..."
+msgstr "Besedilna datoteka..."
 
 #: Panel/krpopupmenu.cpp:219
 msgid "Create New"
@@ -1973,7 +1973,7 @@ msgid ""
 "Note: Your bookmarks and keybindings will remain intact.\n"
 " Krusader will now run Konfigurator."
 msgstr ""
-"Krusader je našel nastavitve starejše od verzije v1.51 in bo samodejno postavil nove privzete vrednosti.\n"
+"Krusader je našel nastavitve starejše od različice v1.51 in bo samodejno postavil nove privzete vrednosti.\n"
 "Namig: Zaznamki in povezave bodo ostale nespremenjene.\n"
 " Zagnal bom Konfiguratorja."
 
@@ -2027,7 +2027,7 @@ msgstr "pojavna ukazna vrstica"
 
 #: krusader.cpp:536
 msgid "&New Text File..."
-msgstr "Nova tekstovna datoteka..."
+msgstr "Nova besedilna datoteka..."
 
 #: krusader.cpp:537
 msgid "Start &Root Mode Krusader"
@@ -2362,7 +2362,7 @@ msgstr "&Generični pregledovalnik"
 
 #: KViewer/krviewer.cpp:85
 msgid "&Text viewer"
-msgstr "&Tekstovni pregledovalnik"
+msgstr "&Besedilni pregledovalnik"
 
 #: KViewer/krviewer.cpp:86
 msgid "&Hex viewer"
@@ -2979,7 +2979,7 @@ msgid ""
 "*.keymap|Krusader keymaps\n"
 "*|all files"
 msgstr ""
-"*.keymap|Tabela tipkovnih bližnic\n"
+"*.keymap|Preglednica tipkovnih bližnic\n"
 "*|vse datoteke"
 
 #: Dialogs/krkeydialog.cpp:41
@@ -3001,14 +3001,14 @@ msgstr "Shrani trenutne tipkovne povezave v tipkovni zemljevid - keymap"
 #: Dialogs/krkeydialog.cpp:64
 #: Dialogs/krkeydialog.cpp:128
 msgid "Select a keymap file"
-msgstr "Izberi datoteko s tabelo tipkovnih bližnic"
+msgstr "Izberi datoteko s preglednico tipkovnih bližnic"
 
 #: Dialogs/krkeydialog.cpp:71
 msgid ""
 "This file does not seem to be a valid keymap.\n"
 "It may be a keymap using a legacy format. The import can't be undone!"
 msgstr ""
-"Datoteka ne vsebuje veljavne tabele tipkovnih bližnic.\n"
+"Datoteka ne vsebuje veljavne preglednice tipkovnih bližnic.\n"
 "Morda je datoteka v podedovanem formatu. Uvoza ni mogoče razveljaviti.!"
 
 #: Dialogs/krkeydialog.cpp:73
@@ -4637,7 +4637,7 @@ msgstr "Tekstni način"
 
 #: Konfigurator/kggeneral.cpp:92
 msgid "View the file in text-only mode"
-msgstr "Preglej datoteko v tekstovnem načinu"
+msgstr "Preglej datoteko v besedilnem načinu"
 
 #: Konfigurator/kggeneral.cpp:93
 msgid "Hex mode"
@@ -4763,7 +4763,7 @@ msgstr "Nastavitve Krusaderja ob zagonu"
 #: Konfigurator/konfigurator.cpp:94
 #: Konfigurator/konfigurator.cpp:95
 msgid "Look & Feel"
-msgstr "Izgled in teme"
+msgstr "Videz in teme"
 
 #: Konfigurator/kgcolors.cpp:79
 #: Konfigurator/kgcolors.cpp:221
@@ -4819,7 +4819,7 @@ msgstr "Operacije"
 
 #: Konfigurator/kglookfeel.cpp:79
 msgid "Look && Feel"
-msgstr "Izgled in teme"
+msgstr "Videz in teme"
 
 #: Konfigurator/kglookfeel.cpp:84
 msgid "Warn on exit"
@@ -5383,7 +5383,7 @@ msgstr "Uporabi privzete KDE barve"
 
 #: Konfigurator/kgcolors.cpp:59
 msgid "<p>Use KDE's global color configuration.</p><p><i>KDE Control Center -> Appearance & Themes -> Colors</i></p>"
-msgstr "<p>Uporabi globalne KDE nastavitve.</p><p><i>KDE Kontrolni Center -> Izgled & Teme -> Barve</i></p>"
+msgstr "<p>Uporabi globalne KDE nastavitve.</p><p><i>KDE Kontrolni Center -> Videz & Teme -> Barve</i></p>"
 
 #: Konfigurator/kgcolors.cpp:60
 msgid "Use alternate background color"
@@ -5924,7 +5924,7 @@ msgstr "Ne najdem ukaza 'locate'. naložiti je potrebno GNU paket *findutils-loc
 msgid ""
 "Important: RemoteMan has been replaced by our new bookmark manager. The new manager handles local files and remote URLs the same way. RemoteMan is being left around to allow an easier transition and give you a chance to move your bookmarks. IT WILL BE REMOVED SOON!\n"
 "Try the new bookmark-manager: open a new remote connection, once done, press the bookmark button, select 'Add bookmark' and that's it!"
-msgstr "Pomembno: Od verzije 1.60.0 je RemoteMan zamenjan z Upravljavcem zaznamkov!"
+msgstr "Pomembno: Od različice 1.60.0 je RemoteMan zamenjan z Upravljavcem zaznamkov!"
 
 #: krslots.cpp:442
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
@@ -6168,7 +6168,7 @@ msgstr "Napaka pri pisanju datoteke %1!"
 #~ msgid "new symlink"
 #~ msgstr "nova simbolična povezava"
 #~ msgid "Text file"
-#~ msgstr "Tekstovna datoteka"
+#~ msgstr "Besedilna datoteka"
 #~ msgid "Are you sure you want to shred "
 #~ msgstr "Res želite razcefrati datoteko "
 #~ msgid "Calculate &Occupied Space..."
