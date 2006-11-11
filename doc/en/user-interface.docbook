@@ -1,6 +1,5 @@
 <chapter id="user-interface">
-
-<!-- **********************************************************************
+  <!-- **********************************************************************
                             user-interface.docbook
                           +++++++++++++++++++++++++++
   copyright            : (C) 2000, 2001, 2002, 2003, 2004, 2005, 2006
@@ -20,39 +19,33 @@
 * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
 * MA 02111-1307, USA.                                                     *
 *********************************************************************** -->
-
-<title>User Interface</title>
-<indexterm><primary>User Interface</primary></indexterm>
-
-<sect1 id="ofm-userinterface">
-<title>OFM User Interface</title>
-<para>NOTE: this chaper is work in progress ;)</para>
-
-<para>The OFM filemanagers concept contains 
-      <link linkend="features">many features</link> who make them
-      one of the most powerful filemanagers.   
-      The interface is simple: a left panel, a right panel and a commandline at below.
-      Because of interaction between these three items it speeds up your file managment work drasticly. 
-</para>
-
-<para>
-If you like to know 
-<ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml">how &krusader; feels</ulink> 
-there is only one way to discover,
-install it on your computer and use it for a while!
-To accept a &ofm_url; like &krusader;,
-you need to get used to <emphasis>new ideas</emphasis> who are already 20 years old :)
-If you prefer to waste time and lose a lot of productivity,
-you can always continue to use one panel filemanagers who are based on &Windows; Explorer ;-)  
-</para>
-
-</sect1>
-
-
-<sect1 id="mainwindow">
-<title>&krusader; Main Window</title>
-
-<!-- OLD
+  <title>User Interface</title>
+  <indexterm>
+    <primary>User Interface</primary>
+  </indexterm>
+  <sect1 id="ofm-userinterface">
+    <title>OFM User Interface</title>
+    <para>NOTE: this chaper is work in progress ;)</para>
+    <para>The OFM filemanagers concept contains 
+    <link linkend="features">many features</link>who make them one
+    of the most powerful filemanagers. The interface is simple: a
+    left panel, a right panel and a commandline at below. Because
+    of interaction between these three items it speeds up your file
+    managment work drasticly.</para>
+    <para>If you like to know 
+    <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml">
+    how &amp;krusader; feels</ulink>there is only one way to
+    discover, install it on your computer and use it for a while!
+    To accept a &amp;ofm_url; like &amp;krusader;, you need to get
+    used to 
+    <emphasis>new ideas</emphasis>who are already 20 years old :)
+    If you prefer to waste time and lose a lot of productivity, you
+    can always continue to use one panel filemanagers who are based
+    on &amp;Windows; Explorer ;-)</para>
+  </sect1>
+  <sect1 id="mainwindow">
+    <title>&amp;krusader; Main Window</title>
+    <!-- OLD
 <screenshot>
    <screeninfo>&krusader; Main Window</screeninfo>
     <mediaobject>
@@ -63,42 +56,49 @@ you can always continue to use one panel filemanagers who are based on &Windows;
     </mediaobject>
 </screenshot>
 -->
-
-<figure id="screenshot-mainwindow" float="1">
-<title>&krusader; Main Window</title>
-<mediaobject>
-<imageobject><imagedata fileref="mainwindow.png"/></imageobject>
-<textobject><phrase>&krusader; Main Window</phrase></textobject>
-</mediaobject>
-</figure> 
-
-<para>The User Interface is based on the &ofm_url; paradigm, a 20 years old principle
-      that has proven it's bones. It's known as simple, easy and powerful.  
-      In the following sections we'll cover the basic functions of each part with the
-      exception of:</para>
-
-<itemizedlist>
-   <listitem>
-      <para>The <link linkend="menu-commands">Menu Bar</link> which has a chapter of its own.</para>
-   </listitem>
-
-   <listitem>
-      <para>The <link linkend="bookman">Bookmarks</link> which has a chapter of its own.</para>
-   </listitem>
-   
-   <listitem>
-     <para>The <emphasis role="bold">Status Bar</emphasis> shows the properties of the current
-	   file that has the focus. You can use "drag and drop" to drop a &URL; "into" 
-	   the Status Bar.</para>
-   </listitem>
-</itemizedlist>
-</sect1>
-
-<sect1 id="main_toolbar">
-<title>Main Toolbar</title>
-<indexterm><primary>Toolbar</primary><secondary>Main Toolbar</secondary></indexterm> 
-
-<!-- OLD
+    <figure id="screenshot-mainwindow" float="1">
+      <title>&amp;krusader; Main Window</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="mainwindow.png" />
+        </imageobject>
+        <textobject>
+          <phrase>&amp;krusader; Main Window</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para>The User Interface is based on the &amp;ofm_url;
+    paradigm, a 20 years old principle that has proven it's bones.
+    It's known as simple, easy and powerful. In the following
+    sections we'll cover the basic functions of each part with the
+    exception of:</para>
+    <itemizedlist>
+      <listitem>
+        <para>The 
+        <link linkend="menu-commands">Menu Bar</link>which has a
+        chapter of its own.</para>
+      </listitem>
+      <listitem>
+        <para>The 
+        <link linkend="bookman">Bookmarks</link>which has a chapter
+        of its own.</para>
+      </listitem>
+      <listitem>
+        <para>The 
+        <emphasis role="bold">Status Bar</emphasis>shows the
+        properties of the current file that has the focus. You can
+        use "drag and drop" to drop a &amp;URL; "into" the Status
+        Bar.</para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+  <sect1 id="main_toolbar">
+    <title>Main Toolbar</title>
+    <indexterm>
+      <primary>Toolbar</primary>
+      <secondary>Main Toolbar</secondary>
+    </indexterm>
+    <!-- OLD
 <screenshot>
     <screeninfo>Main Toolbar</screeninfo>
     <mediaobject>
@@ -108,78 +108,91 @@ you can always continue to use one panel filemanagers who are based on &Windows;
     </mediaobject>
 </screenshot>
 -->
-
-<figure id="screenshot-maintoolbar" float="1">
-<title>Main Toolbar</title>
-<mediaobject>
-<imageobject><imagedata fileref="toolbar.png"/></imageobject>
-<textobject><phrase>Main Toolbar</phrase></textobject>
-</mediaobject>
-</figure> 
-
-
-<para>
-The &krusader; Main Toolbar, is a standard &kde; toolbar that can be dragged around 
-the application or configured via a <keycap>Right-Click</keycap> menu.
-You can decide if you want to display it (or not) every time you start &krusader;
-in the &konfigstartpg_lnk;, and you can toggle its use in the current session in the &viewmenu_lnk;.
-The Main Toolbar contents can be configured from the <guimenuitem>Configure Toolbars</guimenuitem>
-in the &settingsmenu_lnk; or the <guilabel>Toolbar</guilabel> tab in the &konfiglookandfeel_lnk;.
-Since the various commands and options in &krusader; are context dependent, some commands are not 
-always available, the icon of an inappropriate or inactive action will be deactivated (grayed-out) 
-and you won't  be able to click or select it.
-&bookmarks_lnk; can be placed into the Main Toolbar and the Actions Toolbar
-with the mouse using "drag and drop".</para>
-
-</sect1>
-
-<sect1 id="actions_toolbar">
-<title>Actions Toolbar</title>
-<indexterm><primary>Toolbar</primary><secondary>Actions Toolbar</secondary></indexterm> 
-
-<para>
-&useractions_lnk; and &bookmarks_lnk; can be "plugged into" the
-<guilabel>Actions Toolbar</guilabel>.
-To show it use <emphasis role="bold"><menuchoice><guimenu>View</guimenu>
-<guimenuitem>Show Actions Toolbar</guimenuitem></menuchoice></emphasis>.
-To add useractions use <emphasis role="bold"><menuchoice><guimenu>Settings</guimenu>
-<guimenuitem>Configure Toolbars</guimenuitem></menuchoice></emphasis> and select Actions Toolbar.
-You could, for example, drag the Actions Toolbar to the right side using the mouse.
-</para>
-</sect1>
-
-
-<sect1 id="panels">
-<title>Panels</title>
-
-<para>
-The &krusader; panels are where most of the action takes place.
-Currently, there are two types of panels:
- <itemizedlist>
-  <listitem><para>&list_panel_lnk;: shows the files and directories.
-            </para></listitem>
-  <listitem><para>&popup_panel_lnk;: has several display modes: 
-             Preview, Tree, Quickselect, View and Disk Usage for the file or
-             directory that has the focus. 
-             The PopUp Panel may be left open, or closed, as desired.
-            </para></listitem>
-  </itemizedlist>
-      
-&krusader; is a "twin-panel" file manager so there are two panels, the "Left"
-panel and the "Right" panel, or a more important logical distinction, 
-the *Active* panel and the *Inactive* panel. 
-The Active panel is the one that will accept your mouse and keyboard input. 
-If you choose a command from the <guilabel>Menu-Bar</guilabel> or 
-<guilabel>Toolbar</guilabel> the command will act upon the selected 
-files/directories in the active panel.
-You can switch between panels using the &Tab; key or by clicking on the
-<guilabel>Information or Totals labels</guilabel>, or by selecting any file 
-in a panel with the mouse.
-As always: default startup settings can be modified with the &konfigstartpg_lnk;,
-and you control the current session with the &viewmenu_lnk;.
-</para>
-
-<!-- OLD
+    <figure id="screenshot-maintoolbar" float="1">
+      <title>Main Toolbar</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="toolbar.png" />
+        </imageobject>
+        <textobject>
+          <phrase>Main Toolbar</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para>The &amp;krusader; Main Toolbar, is a standard &amp;kde;
+    toolbar that can be dragged around the application or
+    configured via a 
+    <keycap>Right-Click</keycap>menu. You can decide if you want to
+    display it (or not) every time you start &amp;krusader; in the
+    &amp;konfigstartpg_lnk;, and you can toggle its use in the
+    current session in the &amp;viewmenu_lnk;. The Main Toolbar
+    contents can be configured from the 
+    <guimenuitem>Configure Toolbars</guimenuitem>in the
+    &amp;settingsmenu_lnk; or the 
+    <guilabel>Toolbar</guilabel>tab in the
+    &amp;konfiglookandfeel_lnk;. Since the various commands and
+    options in &amp;krusader; are context dependent, some commands
+    are not always available, the icon of an inappropriate or
+    inactive action will be deactivated (grayed-out) and you won't
+    be able to click or select it. &amp;bookmarks_lnk; can be
+    placed into the Main Toolbar and the Actions Toolbar with the
+    mouse using "drag and drop".</para>
+  </sect1>
+  <sect1 id="actions_toolbar">
+    <title>Actions Toolbar</title>
+    <indexterm>
+      <primary>Toolbar</primary>
+      <secondary>Actions Toolbar</secondary>
+    </indexterm>
+    <para>&amp;useractions_lnk; and &amp;bookmarks_lnk; can be
+    "plugged into" the 
+    <guilabel>Actions Toolbar</guilabel>. To show it use 
+    <emphasis role="bold">
+      <menuchoice>
+        <guimenu>View</guimenu>
+        <guimenuitem>Show Actions Toolbar</guimenuitem>
+      </menuchoice>
+    </emphasis>. To add useractions use 
+    <emphasis role="bold">
+      <menuchoice>
+        <guimenu>Settings</guimenu>
+        <guimenuitem>Configure Toolbars</guimenuitem>
+      </menuchoice>
+    </emphasis>and select Actions Toolbar. You could, for example,
+    drag the Actions Toolbar to the right side using the
+    mouse.</para>
+  </sect1>
+  <sect1 id="panels">
+    <title>Panels</title>
+    <para>The &amp;krusader; panels are where most of the action
+    takes place. Currently, there are two types of panels: 
+    <itemizedlist>
+      <listitem>
+        <para>&amp;list_panel_lnk;: shows the files and
+        directories.</para>
+      </listitem>
+      <listitem>
+        <para>&amp;popup_panel_lnk;: has several display modes:
+        Preview, Tree, Quickselect, View and Disk Usage for the
+        file or directory that has the focus. The PopUp Panel may
+        be left open, or closed, as desired.</para>
+      </listitem>
+    </itemizedlist>&amp;krusader; is a "twin-panel" file manager so
+    there are two panels, the "Left" panel and the "Right" panel,
+    or a more important logical distinction, the *Active* panel and
+    the *Inactive* panel. The Active panel is the one that will
+    accept your mouse and keyboard input. If you choose a command
+    from the 
+    <guilabel>Menu-Bar</guilabel>or 
+    <guilabel>Toolbar</guilabel>the command will act upon the
+    selected files/directories in the active panel. You can switch
+    between panels using the &amp;Tab; key or by clicking on the 
+    <guilabel>Information or Totals labels</guilabel>, or by
+    selecting any file in a panel with the mouse. As always:
+    default startup settings can be modified with the
+    &amp;konfigstartpg_lnk;, and you control the current session
+    with the &amp;viewmenu_lnk;.</para>
+    <!-- OLD
 <screenshot>
     <screeninfo>List Panel</screeninfo>
     <mediaobject>
@@ -190,298 +203,376 @@ and you control the current session with the &viewmenu_lnk;.
     </mediaobject>
 </screenshot>
 -->
-
-<figure id="screenshot-listpanel" float="1">
-<title>List Panel</title>
-<mediaobject>
-<imageobject><imagedata fileref="listpanel.png"/></imageobject>
-<textobject><phrase>List Panel</phrase></textobject>
-</mediaobject>
-</figure> 
-
-
-<sect2 id="list_panel">
-<title>List Panel</title>
-<indexterm><primary>Toolbar</primary><secondary>Location Toolbar</secondary></indexterm>
-<para>
-    This is the default panel and the one you'll probably use most of the time. This panel shows the
-    contents of one directory which can be local (part of your mounted file systems,
-    either a native file or the files inside an archive) or remote files (accessed via &FTP; or Samba).
-    File copy/paste/cut via Clipboard between &konqueror; and &krusader;
-    <keycombo action="simul">&Ctrl;<keycap>c</keycap></keycombo>,
-    <keycombo action="simul">&Ctrl;<keycap>v</keycap></keycombo>,
-    <keycombo action="simul">&Ctrl;<keycap>x</keycap></keycombo> is supported.
-    <keycombo action="simul">&Alt;&Ctrl;<keycap>r</keycap></keycombo> toggles the 
-    <guilabel>List Panel</guilabel> between horizontal and vertical mode.
-</para>
-
-<para>The following items are available: 
-   <itemizedlist>
-
-       <listitem><para><emphasis><guibutton>Location Toolbar</guibutton></emphasis> : shows the path the
-	         panel is currently pointing to. If the selected path is too long, it will be automatically
- 		 shortened and an ellipsis "..." will replace the omitted part of the pathname.
- 		 When entering archives the path will consist of the
- 		 "archive name:/directory/archive_filename/the directory inside the archive".
- 		 This format makes the paths uniform and easy to read.
- 		 The <guibutton>Location Toolbar</guibutton> supports also supports &kioslaves1_url; but not all of them,
- 		 some can only be used with the <link linkend="krviewer">viewer</link> and some can not be used.
-                 With a single mouse click you can enter the desired path &eg;
-
-     <itemizedlist>
-            
+    <figure id="screenshot-listpanel" float="1">
+      <title>List Panel</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="listpanel.png" />
+        </imageobject>
+        <textobject>
+          <phrase>List Panel</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <sect2 id="list_panel">
+      <title>List Panel</title>
+      <indexterm>
+        <primary>Toolbar</primary>
+        <secondary>Location Toolbar</secondary>
+      </indexterm>
+      <para>This is the default panel and the one you'll probably
+      use most of the time. This panel shows the contents of one
+      directory which can be local (part of your mounted file
+      systems, either a native file or the files inside an archive)
+      or remote files (accessed via &amp;FTP; or Samba). File
+      copy/paste/cut via Clipboard between &amp;konqueror; and
+      &amp;krusader; 
+      <keycombo action="simul">&amp;Ctrl;
+      <keycap>c</keycap></keycombo>, 
+      <keycombo action="simul">&amp;Ctrl;
+      <keycap>v</keycap></keycombo>, 
+      <keycombo action="simul">&amp;Ctrl;
+      <keycap>x</keycap></keycombo>is supported. 
+      <keycombo action="simul">&amp;Alt;&amp;Ctrl;
+      <keycap>r</keycap></keycombo>toggles the 
+      <guilabel>List Panel</guilabel>between horizontal and
+      vertical mode.</para>
+      <para>The following items are available: 
+      <itemizedlist>
         <listitem>
-           <para><userinput><replaceable>/mnt/cdrom/</replaceable></userinput></para>
+          <para>
+          <emphasis>
+            <guibutton>Location Toolbar</guibutton>
+          </emphasis>: shows the path the panel is currently
+          pointing to. If the selected path is too long, it will be
+          automatically shortened and an ellipsis "..." will
+          replace the omitted part of the pathname. When entering
+          archives the path will consist of the "archive
+          name:/directory/archive_filename/the directory inside the
+          archive". This format makes the paths uniform and easy to
+          read. The 
+          <guibutton>Location Toolbar</guibutton>supports also
+          supports &amp;kioslaves1_url; but not all of them, some
+          can only be used with the 
+          <link linkend="krviewer">viewer</link>and some can not be
+          used. With a single mouse click you can enter the desired
+          path &amp;eg; 
+          <itemizedlist>
+            <listitem>
+              <para>
+                <userinput>
+                  <replaceable>/mnt/cdrom/</replaceable>
+                </userinput>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+              <userinput>
+                <command>settings:/</command>
+              </userinput>will browse and open entries of the 
+              <application>KDE control center</application></para>
+            </listitem>
+            <listitem>
+              <para>
+              <userinput>
+                <command>devices:/</command>
+              </userinput>gives an overiew of the devices &amp;eg; 
+              <hardware>floppy</hardware>or 
+              <hardware>cdrom</hardware>drives.</para>
+            </listitem>
+            <listitem>
+              <para>
+              <userinput>
+                <command>trash:/</command>
+              </userinput>opens &amp;kde;'s trash.</para>
+            </listitem>
+            <listitem>
+              <para>
+              <userinput>
+                <command>ipod:/</command>
+              </userinput>uses the &amp;kio_ipodslave_url; to
+              access, upload and organize the Music stored on an
+              &amp;appleipod;.</para>
+            </listitem>
+            <listitem>
+              <para>And last but not least
+              &amp;remote_connections_lnk; !</para>
+            </listitem>
+          </itemizedlist>You can copy-paste an &amp;URL; in the 
+          <guibutton>Location Toolbar</guibutton>or use a middle
+          click. With the Right-Click menu you can configure the
+          autocomplete function. An optional 
+          <guilabel>Clear Location Toolbar</guilabel>button is
+          available.</para>
+          <para>Quick Navigation: 
+          <keycap>&amp;Ctrl;</keycap>point with mouse in the middle
+          of the &amp;URL; of the 
+          <guibutton>Location Toolbar</guibutton>, a popup window
+          will inform you what will become the next &amp;URL;
+          location, a mouseclick when holding the 
+          <keycap>&amp;Ctrl;</keycap>key will jump to the location
+          where the mouse was pointing to, this feature allows
+          faster navigation in a big directory tree.</para>
         </listitem>
-            
-        <listitem><para><userinput><command>settings:/</command></userinput> will browse and open entries 
-                  of the <application>KDE control center</application></para>
+        <listitem>
+          <para>
+          <link linkend="panel_toolbar">
+            <emphasis>
+              <guibutton>Panel toolbar</guibutton>
+            </emphasis>
+          </link>: contains 
+          <link linkend="panel_toolbar">configurable
+          buttons</link>.</para>
         </listitem>
-         
-        <listitem><para><userinput><command>devices:/</command></userinput> gives an overiew of the devices 
-                  &eg; <hardware>floppy</hardware> or <hardware>cdrom</hardware> drives.</para>
+        <listitem>
+          <para>
+          <emphasis>
+            <guilabel>Information Label</guilabel>
+          </emphasis>: shows how much free space is physically
+          available on the file system, the file system capacity
+          and where the path is mounted. If the information is not
+          available (most often in the case of remote file system)
+          a message will be displayed with the reason for
+          unavailablity instead of the information.</para>
+          <para>The 
+          <guibutton>Media button</guibutton>on the left of the 
+          <guilabel>Information Label</guilabel>displays a list of
+          all available media, where you can select the desired
+          media (hdd partition, dvd, usb-stick, &amp;etc;). The
+          context menu gives several options like 
+          <guilabel>Mount</guilabel>, 
+          <guilabel>Open in a new tab</guilabel>, &amp;etc;. The 
+          <guibutton>Media button</guibutton>is 
+          <link linkend="konfig-advanced">
+          configurable</link>.</para>
         </listitem>
-
-        <listitem><para><userinput><command>trash:/</command></userinput> opens &kde;'s trash.</para>
+        <listitem>
+          <para>
+          <emphasis>
+            <guilabel>Column Headers</guilabel>
+          </emphasis>: here you can change the sort order of the
+          files and directories as desired. The default sort order
+          is by 
+          <guilabel>Name</guilabel>. The sort order can be
+          instantly changed by clicking on one of the 
+          <guilabel>Column Headers</guilabel>. To reverse the sort
+          order, click a second time on the Column Header. An arrow
+          will apear on the right of the Column Header text,
+          showing the sort direction (Up arrow = a to z sorting,
+          Down arrow = z to a sorting). Default
+          &amp;useractions_lnk; set a keybinding for the Column
+          Headers. The default 
+          <guilabel>Column Headers</guilabel>are: 
+          <guilabel>Name, Ext, Size, Modified, rwx</guilabel>. More
+          
+          <link linkend="konfig-looknfeel-panel">optional Column
+          Headers</link>are available with the &amp;RMB;. The width
+          
+          <guilabel>Column Headers</guilabel>can be changed with
+          the mouse by single clicking and moving the divider line
+          to the desired width (keep the mouse button pressed).
+          Both 
+          <guilabel>List Panels</guilabel>remember the sort order
+          and column width. The 
+          <guilabel>Column Headers</guilabel>can be changed and
+          saved individually to each panel.</para>
         </listitem>
-
-        <listitem><para><userinput><command>ipod:/</command></userinput> uses the &kio_ipodslave_url; to 
-        access, upload and organize the Music stored on an &appleipod;.</para>
+        <listitem>
+          <para>
+          <emphasis>
+            <guilabel>File List</guilabel>
+          </emphasis>: displays the files and directories in the
+          browsed directory. The &amp;quick_search_lnk; allows you
+          to search for files by typing their names, or the first
+          few characters of a filename. Pressing &amp;Enter; or
+          double clicking on a file will open/execute that file.
+          You can select/unselect files using the mouse with the 
+          <keycap>Insert</keycap>key or the
+          &amp;editmenu_lnk;.</para>
         </listitem>
-         
-        <listitem><para>And last but not least &remote_connections_lnk; !</para>
+        <listitem>
+          <para>
+          <emphasis>
+            <guilabel>Totals Label</guilabel>
+          </emphasis>: marking or unmarking files will change the 
+          <emphasis>
+            <guilabel>Totals Label</guilabel>
+          </emphasis>at the bottom of the panel, which displays how
+          many files you've selected (and how much total disk space
+          they use) as well as the total file and disk usage of the
+          current directory (as opposed to the information label
+          that displays information for the whole file system). If
+          a directory contains a lot of subdirectories, it may not
+          possible to drop the &amp;URL; onto the panel (on which
+          only directories are visible), but the &amp;URL; can be
+          dropped onto the "Status Bar" or "Totals Label" instead.
+          When a 
+          <link linkend="view-menu">custom filter</link>is set, it
+          will show the setting. example: [*.cpp].</para>
         </listitem>
-        
-    </itemizedlist>
-     
-     You can copy-paste an &URL; in the <guibutton>Location Toolbar</guibutton> or use a middle click.
-     With the Right-Click menu you can configure the autocomplete function.
-     An optional <guilabel>Clear Location Toolbar</guilabel> button is available.
-     </para>
-     <para>Quick Navigation: <keycap>&Ctrl;</keycap> point with mouse in the middle of the &URL; 
-           of the <guibutton>Location Toolbar</guibutton>, a popup window will inform you what will become the
-           next &URL; location, a mouseclick when holding the <keycap>&Ctrl;</keycap> key will jump to the
-           location where the mouse was pointing to, this feature allows faster navigation in a big directory tree.</para>
-     </listitem>
-       
-     <listitem>
-       <para><link linkend="panel_toolbar"><emphasis><guibutton>Panel toolbar</guibutton></emphasis></link> :
-             contains <link linkend="panel_toolbar">configurable buttons</link>.
-      </para>
-     </listitem>
-     
-     <listitem>
-       <para><emphasis><guilabel>Information Label</guilabel></emphasis> : shows how much free space
-        is physically available on the file system, the file system capacity and where the path is mounted.
-        If the information is not available (most often in the case of remote file system) a message will be
-        displayed with the reason for unavailablity instead of the information.</para>
-        
-        <para>The <guibutton>Media button</guibutton> on the left of the <guilabel>Information Label</guilabel> 
-        displays a list of all available media, where you can select the desired media 
-        (hdd partition, dvd, usb-stick, &etc;). The context menu gives several options
-        like <guilabel>Mount</guilabel>, <guilabel>Open in a new tab</guilabel>, &etc;.
-        The <guibutton>Media button</guibutton> is <link linkend="konfig-advanced">configurable</link>.</para>
-     </listitem>
-     
-     <listitem>
-        <para><emphasis><guilabel>Column Headers</guilabel></emphasis> :
-         here you can change the sort order of the files and directories as desired.
-         The default sort order is by <guilabel>Name</guilabel>. The sort order can be instantly changed
-	 by clicking on one of the <guilabel>Column Headers</guilabel>.
-         To reverse the sort order, click a second time on the Column Header. 
-         An arrow will apear on the right of the Column Header text, showing the sort direction 
-         (Up arrow = a to z sorting, Down arrow = z to a sorting).
-         Default &useractions_lnk; set a keybinding for the Column Headers. 
-         The default <guilabel>Column Headers</guilabel> are: <guilabel>Name, Ext, Size, Modified, rwx</guilabel>.
-         More <link linkend="konfig-looknfeel-panel">optional Column Headers</link> are
-         available with the &RMB;.
-         The width <guilabel>Column Headers</guilabel> can be changed with the mouse by single clicking and moving 
-         the divider line to the desired width (keep the mouse button pressed).
-         Both <guilabel>List Panels</guilabel> remember the sort order and column width.
-         The <guilabel>Column Headers</guilabel> can be changed and saved individually to each panel.
-     </para>
-     </listitem>
-     
-     
-      <listitem>
-        <para><emphasis><guilabel>File List</guilabel></emphasis> : displays the files and directories
-          in the browsed directory. The &quick_search_lnk; allows you to search for
-          files by typing their names, or the first few characters of a filename.
-          Pressing &Enter; or double clicking on a file will open/execute that file.
-          You can select/unselect files using the mouse with the <keycap>Insert</keycap> key or the
-          &editmenu_lnk;.</para>
-      </listitem>
-      
-      
-      <listitem>
-      <para><emphasis><guilabel>Totals Label</guilabel></emphasis> :
-          marking or unmarking files will change the
-          <emphasis><guilabel>Totals Label</guilabel></emphasis> at the bottom
-          of the panel, which displays how many files you've selected (and how much total disk space they use)
-          as well as the total file and disk usage of the current directory (as opposed to the information label
-          that displays information for the whole file system).
-          If a directory contains a lot of subdirectories, it may not possible to drop the &URL; onto the panel
-          (on which only directories are visible), but the &URL; can be dropped onto the "Status Bar" or 
-           "Totals Label" instead.
-           When a <link linkend="view-menu">custom filter</link> is set, it will show the setting. example: [*.cpp]. 
-           </para>
-       </listitem>
-    </itemizedlist>
-    
-    When using the "&kde; default <link linkend="konfig-color">colors</link>",
-    then the marked files are shown in blue and the current file is surrounded by a fine-lined rectangle.
-    By default an icon is shown according to the file type.
-    Use &konfiglookandfeel_lnk; to change the default configuration to better meet your individual needs.
-</para>
-
-
-<para>Some useful <guilabel>List panel</guilabel> &keybindigs_lnk;:
-    <itemizedlist>
-    
-    <listitem>
-       <para><keycombo action="simul">&Ctrl;<keycap>r</keycap></keycombo> will refresh the panel.</para>
-    </listitem>
-    
-    <listitem>
-      <para>Focus a file or directory on the left panel, press
-            <keycombo action="simul">&Ctrl;<keycap>Left arrow</keycap></keycombo>
-            and the right panel changes:
-       <itemizedlist>
-         <listitem>
-           <para>on a file: the right panel gets the same path as the left panel.</para>
-         </listitem>
-       
-         <listitem>
-           <para>on a directory: refreshes the right panel with the contents of the directory.</para>
-         </listitem>
-       </itemizedlist></para>   
-    </listitem>
-       
-    <listitem><para>For the right panel: press
-              <keycombo action="simul">&Ctrl;<keycap>Right arrow</keycap></keycombo>
-              and the left panel will change.</para>
-     </listitem>
-       
-   </itemizedlist>
-</para>
-
-</sect2>
-
-
-<sect2 id="popup_panel">
-<title>PopUp Panel</title>
-
-<para>This is "&krusader;'s 3rd Hand" or the 3rd Panel, click on the up-arrow button on the left of the
-      <guilabel>Totals Label</guilabel> or
-      <keycombo action="simul">&Alt;<keycap>Down-Arrow</keycap></keycombo> to open the
-      <guilabel>PopUp Panel</guilabel>.
-      This panel has several display modes which can be activated by clicking on the apropriate button
-
-<itemizedlist>
-   
-   <listitem>
-     <para><emphasis><guilabel>Preview Panel</guilabel></emphasis> :
-           gives a preview of the file that has the focus (currently selected file).</para>
-   </listitem>
-   
-    <listitem>
-     <para><emphasis><guilabel>Tree Panel</guilabel></emphasis> :
-          is used to quickly browse the local directory tree. This panel behaves like the
-          list panel but only one directory may be selected at a time and double clicking or pressing
-          &Enter; on a directory will open that directory in the active panel.
-          The panels fully support drag and drop (copy,move,link) mouse actions.</para>
-    </listitem>
-    
-    <listitem>
-     <para><emphasis><guilabel>Quickselect Panel</guilabel></emphasis>:
-           quickly select files, &eg; <literal role="extension">*.png</literal> and click on the 
-           <guibutton>"Go"</guibutton> button.
-           The "floppy" button stores the current selection. The "select group dialog" is also available.
-           </para>
-    </listitem>
-     
-    <listitem>
-    <para><emphasis><guilabel>Viewer Panel</guilabel></emphasis> :
-           views a text file, views an image, &etc;.
-           A thumbnail view is generated whenever you open the <guilabel>Viewer Panel</guilabel> 
-           and click on a name of a folder that contains pictures.</para>
-    </listitem>
-        
-    <listitem>
-       <para><emphasis><guilabel>Disk Usage Panel</guilabel></emphasis> :
-            views the &diskusage_lnk; of a directory.</para>
-    </listitem>
-    
-</itemizedlist>
-
-If needed you can resize the window &eg; to better display a picture or view a file's contents.
-Click on the arrow down button to close the <guilabel>3rd Hand Panel</guilabel>.
-</para>
-
-</sect2>
-
-
-<sect2 id="panel_toolbar">
-<title>Panel Toolbar</title>
-<indexterm><primary>Toolbar</primary><secondary>Panel Toolbar</secondary></indexterm> 
-
-<para>Both panels have a <link linkend="konfig-looknfeel-ptoolbar">configurable Panel Toolbar</link>.
-      The complete Panel Toolbar or specific buttons can be made visible or be hidden.
-
-<itemizedlist>
-
-  <listitem>
-     <para><guibutton>OpenDir Button</guibutton>: opens the directory browser.</para>
-  </listitem>
-  
-  <listitem>
-     <para><guibutton>Equals Button (=)</guibutton>: changes the panel directory to the
-                     other panel directory.</para>
-  </listitem>
-  
-  <listitem>
-    <para><guibutton>Up Button (..)</guibutton>: changes the panel directory to the parent 
-                     directory.</para>
-  </listitem>
-  
-  <listitem>
-    <para><guibutton>Home Button (~)</guibutton>: changes the panel directory to the home directory</para>
-  </listitem>
-             
-  <listitem>
-    <para><guibutton>Root Button (/)</guibutton>: changes the panel directory to the root directory.</para>
-  </listitem>
-  
-  <listitem>
-    <para><guibutton>Sync-browsing Button</guibutton>: when active, each directory-change in the
-                     specific panel is performed in the other panel, also.</para>
-  </listitem>
-       
-</itemizedlist>
-</para>
-</sect2>
-
-
-<sect2 id="folderhistory">
-<title>Folder History</title>
-
-<para>
-Both panels remember recently visited folders.
-Click on the <guibutton>"Folder history"</guibutton> button ("watch" symbol) to open the Folder history list.
-Here you can quickly change to previously visited folders, the currently focused folder is checked.
-On every new start of Krusader, the history list is empty.
-</para>
-</sect2>
-
-</sect1>
-
-
-<sect1 id="cmdline">
-<title>Command Line / Terminal Emulator</title>
-
-<para>This part of the &GUI; (graphical user interface) can have two modes: </para>
-
-<!-- OLD
+      </itemizedlist>When using the "&amp;kde; default 
+      <link linkend="konfig-color">colors</link>", then the marked
+      files are shown in blue and the current file is surrounded by
+      a fine-lined rectangle. By default an icon is shown according
+      to the file type. Use &amp;konfiglookandfeel_lnk; to change
+      the default configuration to better meet your individual
+      needs.</para>
+      <para>Some useful 
+      <guilabel>List panel</guilabel>&amp;keybindigs_lnk;: 
+      <itemizedlist>
+        <listitem>
+          <para>
+          <keycombo action="simul">&amp;Ctrl;
+          <keycap>r</keycap></keycombo>will refresh the
+          panel.</para>
+        </listitem>
+        <listitem>
+          <para>Focus a file or directory on the left panel, press 
+          <keycombo action="simul">&amp;Ctrl;
+          <keycap>Left arrow</keycap></keycombo>and the right panel
+          changes: 
+          <itemizedlist>
+            <listitem>
+              <para>on a file: the right panel gets the same path
+              as the left panel.</para>
+            </listitem>
+            <listitem>
+              <para>on a directory: refreshes the right panel with
+              the contents of the directory.</para>
+            </listitem>
+          </itemizedlist></para>
+        </listitem>
+        <listitem>
+          <para>For the right panel: press 
+          <keycombo action="simul">&amp;Ctrl;
+          <keycap>Right arrow</keycap></keycombo>and the left panel
+          will change.</para>
+        </listitem>
+      </itemizedlist></para>
+    </sect2>
+    <sect2 id="popup_panel">
+      <title>PopUp Panel</title>
+      <para>This is "&amp;krusader;'s 3rd Hand" or the 3rd Panel,
+      click on the up-arrow button on the left of the 
+      <guilabel>Totals Label</guilabel>or 
+      <keycombo action="simul">&amp;Alt;
+      <keycap>Down-Arrow</keycap></keycombo>to open the 
+      <guilabel>PopUp Panel</guilabel>. This panel has several
+      display modes which can be activated by clicking on the
+      apropriate button 
+      <itemizedlist>
+        <listitem>
+          <para>
+          <emphasis>
+            <guilabel>Preview Panel</guilabel>
+          </emphasis>: gives a preview of the file that has the
+          focus (currently selected file).</para>
+        </listitem>
+        <listitem>
+          <para>
+          <emphasis>
+            <guilabel>Tree Panel</guilabel>
+          </emphasis>: is used to quickly browse the local
+          directory tree. This panel behaves like the list panel
+          but only one directory may be selected at a time and
+          double clicking or pressing &amp;Enter; on a directory
+          will open that directory in the active panel. The panels
+          fully support drag and drop (copy,move,link) mouse
+          actions.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <emphasis>
+            <guilabel>Quickselect Panel</guilabel>
+          </emphasis>: quickly select files, &amp;eg; 
+          <literal role="extension">*.png</literal>and click on the
+          
+          <guibutton>"Go"</guibutton>button. The "floppy" button
+          stores the current selection. The "select group dialog"
+          is also available.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <emphasis>
+            <guilabel>Viewer Panel</guilabel>
+          </emphasis>: views a text file, views an image,
+          &amp;etc;. A thumbnail view is generated whenever you
+          open the 
+          <guilabel>Viewer Panel</guilabel>and click on a name of a
+          folder that contains pictures.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <emphasis>
+            <guilabel>Disk Usage Panel</guilabel>
+          </emphasis>: views the &amp;diskusage_lnk; of a
+          directory.</para>
+        </listitem>
+      </itemizedlist>If needed you can resize the window &amp;eg;
+      to better display a picture or view a file's contents. Click
+      on the arrow down button to close the 
+      <guilabel>3rd Hand Panel</guilabel>.</para>
+    </sect2>
+    <sect2 id="panel_toolbar">
+      <title>Panel Toolbar</title>
+      <indexterm>
+        <primary>Toolbar</primary>
+        <secondary>Panel Toolbar</secondary>
+      </indexterm>
+      <para>Both panels have a 
+      <link linkend="konfig-looknfeel-ptoolbar">configurable Panel
+      Toolbar</link>. The complete Panel Toolbar or specific
+      buttons can be made visible or be hidden. 
+      <itemizedlist>
+        <listitem>
+          <para>
+          <guibutton>OpenDir Button</guibutton>: opens the
+          directory browser.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guibutton>Equals Button (=)</guibutton>: changes the
+          panel directory to the other panel directory.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guibutton>Up Button (..)</guibutton>: changes the panel
+          directory to the parent directory.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guibutton>Home Button (~)</guibutton>: changes the panel
+          directory to the home directory</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guibutton>Root Button (/)</guibutton>: changes the panel
+          directory to the root directory.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guibutton>Sync-browsing Button</guibutton>: when active,
+          each directory-change in the specific panel is performed
+          in the other panel, also.</para>
+        </listitem>
+      </itemizedlist></para>
+    </sect2>
+    <sect2 id="folderhistory">
+      <title>Folder History</title>
+      <para>Both panels remember recently visited folders. Click on
+      the 
+      <guibutton>"Folder history"</guibutton>button ("watch"
+      symbol) to open the Folder history list. Here you can quickly
+      change to previously visited folders, the currently focused
+      folder is checked. On every new start of Krusader, the
+      history list is empty.</para>
+    </sect2>
+  </sect1>
+  <sect1 id="cmdline">
+    <title>Command Line / Terminal Emulator</title>
+    <para>This part of the &amp;GUI; (graphical user interface) can
+    have two modes:</para>
+    <!-- OLD
 <screenshot>
   <screeninfo>Command line</screeninfo>
   <mediaobject>
@@ -492,34 +583,39 @@ On every new start of Krusader, the history list is empty.
   </mediaobject>
 </screenshot>
 -->
-
-<figure id="screenshot-commandline" float="1">
-<title>Command line</title>
-<mediaobject>
-<imageobject><imagedata fileref="cmdline.png"/></imageobject>
-<textobject><phrase>Command line</phrase></textobject>
-</mediaobject>
-</figure> 
-
-
-<para>
-The traditional command line mode offers a single line of input to enter commands,
-it also features two buttons: <guibutton>"run in terminal mode"</guibutton> 
-(console icon) and <guibutton>"command history"</guibutton> (down arrow) to the 
-right of the input line.
-When you start typing your commands the command line "auto completion" feature 
-will make its offers according to what you choose in the &kcontrolcenter;. 
-If you want to change the way auto-complete behaves in the current &krusader; 
-session then <keycap>right click</keycap> on command line and change it.
-To the left of the input line you can find the local path that the active panel 
-is currently is pointing to, this path is where your command will be executed. 
-Typing <userinput><command>cd </command><replaceable>&lt;directory&gt;</replaceable></userinput>
-in the command line will also cause the active panel to point to this directory.
-Cick <link linkend="cmdline_keybindings">here</link> to view the command line 
-keybindings.
-</para>
-
-<!--
+    <figure id="screenshot-commandline" float="1">
+      <title>Command line</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="cmdline.png" />
+        </imageobject>
+        <textobject>
+          <phrase>Command line</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para>The traditional command line mode offers a single line of
+    input to enter commands, it also features two buttons: 
+    <guibutton>"run in terminal mode"</guibutton>(console icon) and
+    
+    <guibutton>"command history"</guibutton>(down arrow) to the
+    right of the input line. When you start typing your commands
+    the command line "auto completion" feature will make its offers
+    according to what you choose in the &amp;kcontrolcenter;. If
+    you want to change the way auto-complete behaves in the current
+    &amp;krusader; session then 
+    <keycap>right click</keycap>on command line and change it. To
+    the left of the input line you can find the local path that the
+    active panel is currently is pointing to, this path is where
+    your command will be executed. Typing 
+    <userinput>
+      <command>cd</command>
+      <replaceable>&lt;directory&gt;</replaceable>
+    </userinput>in the command line will also cause the active
+    panel to point to this directory. Cick 
+    <link linkend="cmdline_keybindings">here</link>to view the
+    command line keybindings.</para>
+    <!--
 <screenshot>
   <screeninfo>Terminal emulator</screeninfo>
   <mediaobject>
@@ -530,40 +626,42 @@ keybindings.
   </mediaobject>
 </screenshot>
 -->
-
-<figure id="screenshot-terminalemulator" float="1">
-<title>Terminal emulator</title>
-<mediaobject>
-<imageobject><imagedata fileref="terminalEmu.png"/></imageobject>
-<textobject><phrase>Terminal emulator</phrase></textobject>
-</mediaobject>
-</figure> 
-
-
-<para>
-The terminal emulator mode is in fact a small konsole and acts like one.
-You can change the active directory in the terminal by using the
-<userinput><command>cd</command></userinput> command.
-The terminal emulator will follow the active panel directory.
-When you drag a file from the <interface>"List Panel"</interface>, 
-you will get to choose between:
-"Paste", <command>cd</command>, <command>mv</command> and <command>ln</command>.
-If you drag multiple files, then <command>cd</command> will not be available.
-You can close the emulator by typing <userinput><command>exit</command></userinput>.
-</para>
-
-<para>
-You can choose your mode of operation (command line, emulator, both or none)
-either for &krusader;'s startup with the &konfigstartpg_lnk;, or for the current
-session with the &viewmenu_lnk;.
-</para>
-
-</sect1>
-
-<sect1 id="fnkeys">
-<title>Function (FN) Keys Bar</title>
-
-<!-- OLD
+    <figure id="screenshot-terminalemulator" float="1">
+      <title>Terminal emulator</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="terminalEmu.png" />
+        </imageobject>
+        <textobject>
+          <phrase>Terminal emulator</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para>The terminal emulator mode is in fact a small konsole and
+    acts like one. You can change the active directory in the
+    terminal by using the 
+    <userinput>
+      <command>cd</command>
+    </userinput>command. The terminal emulator will follow the
+    active panel directory. When you drag a file from the 
+    <interface>"List Panel"</interface>, you will get to choose
+    between: "Paste", 
+    <command>cd</command>, 
+    <command>mv</command>and 
+    <command>ln</command>. If you drag multiple files, then 
+    <command>cd</command>will not be available. You can close the
+    emulator by typing 
+    <userinput>
+      <command>exit</command>
+    </userinput>.</para>
+    <para>You can choose your mode of operation (command line,
+    emulator, both or none) either for &amp;krusader;'s startup
+    with the &amp;konfigstartpg_lnk;, or for the current session
+    with the &amp;viewmenu_lnk;.</para>
+  </sect1>
+  <sect1 id="fnkeys">
+    <title>Function (FN) Keys Bar</title>
+    <!-- OLD
 <screenshot>
   <screeninfo>Function (FN) Keys Bar</screeninfo>
   <mediaobject>
@@ -573,38 +671,42 @@ session with the &viewmenu_lnk;.
   </mediaobject>
 </screenshot>
 -->
-
-<figure id="screenshot-fnkeys" float="1">
-<title>Function (FN) Keys Bar</title>
-<mediaobject>
-<imageobject><imagedata fileref="fnkeys.png"/></imageobject>
-<textobject><phrase>Function (FN) Keys Bar</phrase></textobject>
-</mediaobject>
-</figure> 
-
-<para>
-This bar gets its name from the function (FN) keys it represents.
-For each button on this bar there is a corresponding function key that performs the same action.
-This bar is derived from the design of the first twin-panel file managers and the 
-FN keys usually act the same with two changes: the <keycap>F2</keycap> key will open 
-a terminal at the last local path that the active panel pointed to, and the 
-<keycap>F9</keycap> key is used to rename files.
-<guilabel>Mkdir</guilabel> <keycap>F7</keycap> can create whole directory trees on the 
-fly &eg; <literal>foo/bar/test</literal>.
-You can choose to display <link linkend="faqu_resize">or not</link> the 
-<guilabel>FN keys bar</guilabel> when starting up &krusader; via the &konfigstartpg_lnk;, 
-and you can toggle its use in the current session with the &viewmenu_lnk;.
-The actions and &keybindigs_lnk; performed by the function keys are configurable since 
-version 1.51 , they will remain active with or without the <guilabel>FN keys bar</guilabel> displayed.
-</para>
-
-</sect1>
-
-
-<sect1 id="folder_tabs">
-<title>Folder Tabs</title>
-
-<!-- OLD
+    <figure id="screenshot-fnkeys" float="1">
+      <title>Function (FN) Keys Bar</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="fnkeys.png" />
+        </imageobject>
+        <textobject>
+          <phrase>Function (FN) Keys Bar</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para>This bar gets its name from the function (FN) keys it
+    represents. For each button on this bar there is a
+    corresponding function key that performs the same action. This
+    bar is derived from the design of the first twin-panel file
+    managers and the FN keys usually act the same with two changes:
+    the 
+    <keycap>F2</keycap>key will open a terminal at the last local
+    path that the active panel pointed to, and the 
+    <keycap>F9</keycap>key is used to rename files. 
+    <guilabel>Mkdir</guilabel>
+    <keycap>F7</keycap>can create whole directory trees on the fly
+    &amp;eg; 
+    <literal>foo/bar/test</literal>. You can choose to display 
+    <link linkend="faqu_resize">or not</link>the 
+    <guilabel>FN keys bar</guilabel>when starting up &amp;krusader;
+    via the &amp;konfigstartpg_lnk;, and you can toggle its use in
+    the current session with the &amp;viewmenu_lnk;. The actions
+    and &amp;keybindigs_lnk; performed by the function keys are
+    configurable since version 1.51 , they will remain active with
+    or without the 
+    <guilabel>FN keys bar</guilabel>displayed.</para>
+  </sect1>
+  <sect1 id="folder_tabs">
+    <title>Folder Tabs</title>
+    <!-- OLD
 <screenshot>
   <screeninfo>Tabbed browsing</screeninfo>
   <mediaobject>
@@ -614,87 +716,83 @@ version 1.51 , they will remain active with or without the <guilabel>FN keys bar
   </mediaobject>
 </screenshot>
 -->
-
-<figure id="screenshot-tabbedbrowsing" float="1">
-<title>Folder Tabs</title>
-<mediaobject>
-<imageobject><imagedata fileref="tabbed_browsing.png"/></imageobject>
-<textobject><phrase>Folder Tabs</phrase></textobject>
-</mediaobject>
-</figure> 
-
-
-<para>
-With &folder_tabs; you can quickly change to multiple folders, 
-each panel has is own &folder_tabs;.
-The &folder_tabs; positions are saved when closing &krusader;.
-To switch between &folder_tabs;, click them with the mouse.
-Squeezed &folder_tabs; have tooltips to display the full path.
-
-The next &folder_tabs; operations are available:
-<itemizedlist>
-    
-    <listitem>
-       <para>To <keycap>open a new tab</keycap> and keep the current directory: 
-             &right_click; on a directory and select <keycap>open in a new tab</keycap>, 
-             or use the &MMB;, or use
-             <keycombo action="simul">&Alt;&Ctrl;<keycap>n</keycap></keycombo>.
-       </para>
-    </listitem>
-
-    <listitem>
-       <para>To <keycap>duplicate a tab</keycap>: &right_click; on the Folder Tab 
-             and select <keycap>duplicate tab</keycap>, or use
-             <keycombo action="simul">&Alt;&Ctrl;&Shift;<keycap>n</keycap></keycombo>.
-       </para>
-    </listitem>
-
-    <listitem>
-        <para>To <keycap>close a tab</keycap> (except the left tab): &right_click; 
-              on the tab and select <keycap>close tab</keycap>, or use the &MMB;,
-              or use the Folder tabs <guibutton>"red cross"</guibutton> button, or use
-              <keycombo action="simul">&Alt;&Ctrl;<keycap>c</keycap></keycombo>.
-       </para>
-    </listitem>
-
-    <listitem>
-        <para>To create a <keycap>"home" tab</keycap>: click on the 
-              <guibutton>Folder Tab Bookmark</guibutton> button.
-        </para>
-    </listitem>
-
-    <listitem>
-        <para>To <keycap>change tabs</keycap>: 
-              <keycombo action="simul">&Shift;<keycap>Left Arrow</keycap></keycombo>
-              or <keycombo action="simul">&Shift;<keycap>Right Arrow</keycap></keycombo>.
-       </para>
-    </listitem>
-
-    <listitem>
-        <para>To open the current folder in a new tab: use  
-              <keycombo action="simul">&Ctrl;&Alt;&Enter;</keycombo>
-        </para>
-    </listitem>
-
-</itemizedlist>
-</para>
-</sect1>
-
-
-<sect1 id="ui_buutons">
-<title>Buttons</title>
-
-<para>Several buttons for fast operations are available: &main_toolbar_lnk;,  &actions_toolbar_lnk;, 
-      <link linkend="panel_toolbar">Panel Toolbar</link>, 
-      <link linkend="list_panel">Clear Location Toolbar</link>, 
-      <link linkend="list_panel">Media</link>, 
-      <link linkend="panel_toolbar">Folder history</link>, 
-      <link linkend="bookman">Bookmarks</link>, 
-      <link linkend="folder_tabs">Tab</link>, 
-      <link linkend="cmdline">Commandline</link>, 
-      <link linkend="fnkeys">Function keys</link>.
-</para>
-</sect1>
-
+    <figure id="screenshot-tabbedbrowsing" float="1">
+      <title>Folder Tabs</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="tabbed_browsing.png" />
+        </imageobject>
+        <textobject>
+          <phrase>Folder Tabs</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para>With &amp;folder_tabs; you can quickly change to multiple
+    folders, each panel has is own &amp;folder_tabs;. The
+    &amp;folder_tabs; positions are saved when closing
+    &amp;krusader;. To switch between &amp;folder_tabs;, click them
+    with the mouse. Squeezed &amp;folder_tabs; have tooltips to
+    display the full path. The next &amp;folder_tabs; operations
+    are available: 
+    <itemizedlist>
+      <listitem>
+        <para>To 
+        <keycap>open a new tab</keycap>and keep the current
+        directory: &amp;right_click; on a directory and select 
+        <keycap>open in a new tab</keycap>, or use the &amp;MMB;,
+        or use 
+        <keycombo action="simul">&amp;Alt;&amp;Ctrl;
+        <keycap>n</keycap></keycombo>.</para>
+      </listitem>
+      <listitem>
+        <para>To 
+        <keycap>duplicate a tab</keycap>: &amp;right_click; on the
+        Folder Tab and select 
+        <keycap>duplicate tab</keycap>, or use 
+        <keycombo action="simul">&amp;Alt;&amp;Ctrl;&amp;Shift;
+        <keycap>n</keycap></keycombo>.</para>
+      </listitem>
+      <listitem>
+        <para>To 
+        <keycap>close a tab</keycap>(except the left tab):
+        &amp;right_click; on the tab and select 
+        <keycap>close tab</keycap>, or use the &amp;MMB;, or use
+        the Folder tabs 
+        <guibutton>"red cross"</guibutton>button, or use 
+        <keycombo action="simul">&amp;Alt;&amp;Ctrl;
+        <keycap>c</keycap></keycombo>.</para>
+      </listitem>
+      <listitem>
+        <para>To create a 
+        <keycap>"home" tab</keycap>: click on the 
+        <guibutton>Folder Tab Bookmark</guibutton>button.</para>
+      </listitem>
+      <listitem>
+        <para>To 
+        <keycap>change tabs</keycap>: 
+        <keycombo action="simul">&amp;Shift;
+        <keycap>Left Arrow</keycap></keycombo>or 
+        <keycombo action="simul">&amp;Shift;
+        <keycap>Right Arrow</keycap></keycombo>.</para>
+      </listitem>
+      <listitem>
+        <para>To open the current folder in a new tab: use 
+        <keycombo action="simul">
+        &amp;Ctrl;&amp;Alt;&amp;Enter;</keycombo></para>
+      </listitem>
+    </itemizedlist></para>
+  </sect1>
+  <sect1 id="ui_buutons">
+    <title>Buttons</title>
+    <para>Several buttons for fast operations are available:
+    &amp;main_toolbar_lnk;, &amp;actions_toolbar_lnk;, 
+    <link linkend="panel_toolbar">Panel Toolbar</link>, 
+    <link linkend="list_panel">Clear Location Toolbar</link>, 
+    <link linkend="list_panel">Media</link>, 
+    <link linkend="panel_toolbar">Folder history</link>, 
+    <link linkend="bookman">Bookmarks</link>, 
+    <link linkend="folder_tabs">Tab</link>, 
+    <link linkend="cmdline">Commandline</link>, 
+    <link linkend="fnkeys">Function keys</link>.</para>
+  </sect1>
 </chapter>
-

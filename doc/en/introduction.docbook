@@ -1,6 +1,5 @@
 <chapter id="introduction">
-
-<!-- **********************************************************************
+  <!-- **********************************************************************
                             introduction.docbook
                           ++++++++++++++++++++++++
   (C)opyright            : (C) 2000, 2001, 2002, 2003, 2004, 2005, 2006
@@ -20,12 +19,10 @@
 * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
 * MA 02111-1307, USA.                                                     *
 *********************************************************************** -->
-
-<title>Introduction</title>
-<sect1 id="package-description">
-<title>Package description</title>
-
-<!-- OLD
+  <title>Introduction</title>
+  <sect1 id="package-description">
+    <title>Package description</title>
+    <!-- OLD
 <screenshot>
   <screeninfo>&krusader; Logo</screeninfo>
   <mediaobject>
@@ -35,31 +32,33 @@
   </mediaobject>
 </screenshot>
 -->
-
-<figure id="screenshot-logo" float="1">
-<title>&krusader; Logo</title>
-<mediaobject>
-<imageobject><imagedata fileref="krusader_title.png"/></imageobject>
-<textobject><phrase>&krusader; Logo</phrase></textobject>
-</mediaobject>
-</figure>
-
-<para>&krusader; is a simple, easy, powerful, twin-panel file manager (commander-style) for &kde; 
-      and other *nix desktops, similar to &mc; or &tcmd;.
-      It provides all the file management features you could possibly want.</para>
-
-<para>Plus: extensive Archive handling, mounted Filesystem support, &FTP;,
-     advanced Search module, viewer/Editor, directory Synchronization,
-     file content Comparisons, powerful batch Renaming and much, much more.
-     Supports archive formats: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip.
-     Handles other &kioslaves1_url; such as smb:// or fish://.</para>
-
-<para>Almost completely customizable, &krusader; is very user friendly, facile,
-      and looks great on your desktop! :-)</para>
-
-<para>Give &krusader; a try.</para>
-
-<!-- OLD
+    <figure id="screenshot-logo" float="1">
+      <title>&amp;krusader; Logo</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="krusader_title.png" />
+        </imageobject>
+        <textobject>
+          <phrase>&amp;krusader; Logo</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para>&amp;krusader; is a simple, easy, powerful, twin-panel
+    file manager (commander-style) for &amp;kde; and other *nix
+    desktops, similar to &amp;mc; or &amp;tcmd;. It provides all
+    the file management features you could possibly want.</para>
+    <para>Plus: extensive Archive handling, mounted Filesystem
+    support, &amp;FTP;, advanced Search module, viewer/Editor,
+    directory Synchronization, file content Comparisons, powerful
+    batch Renaming and much, much more. Supports archive formats:
+    ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and
+    7-zip. Handles other &amp;kioslaves1_url; such as smb:// or
+    fish://.</para>
+    <para>Almost completely customizable, &amp;krusader; is very
+    user friendly, facile, and looks great on your desktop!
+    :-)</para>
+    <para>Give &amp;krusader; a try.</para>
+    <!-- OLD
 <screenshot>
   <screeninfo>&krusader; screenshot</screeninfo>
   <mediaobject id="krusader_screenshot">
@@ -70,106 +69,119 @@
   </mediaobject>
 </screenshot>
 -->
-
-<figure id="screenshot-krusader" float="1">
-<title>&krusader; screenshot</title>
-<mediaobject>
-<imageobject><imagedata fileref="krusader1.png"/></imageobject>
-<textobject><phrase>&krusader; screenshot</phrase></textobject>
-</mediaobject>
-</figure>
-
-
-<para>More &kru_screenshots_url; can be viewed on our website.</para>
-
-</sect1> 
-
-<sect1 id="welcome">
-<title>Welcome to &krusader;!</title>
-
-  <para>
-  Our aim is to give you a facile, intuitive tool that easily handles the most important tasks
-  you perform on your computer each and every day: manage and process your files the way you want,
-  and look great doing it!</para>
-
-  <para>
-  Whether you are a &Linux; expert or a novice, &krusader; makes routine file management tasks
-  quick and accurate, allowing you to focus on the big picture, not command line syntax.
-  This is especially helpful if you are new to xxNIX operating systems.
-  To do just that, &krusader; wears a great looking &GUI;, supports drag n' drop and mimetypes
-  (with or without magic!) - all you need to feel right at home using it, right from the start!</para>
-
-  <para>
-  &krusader; is packed with cool features, is fast, and handles &archives_lnk; transparently.
-  In addition, &krusader; streamlines many complex file management tasks, reducing fatigue, errors,
-  and distraction. Basically, &krusader; provides all the helpful features you've come to expect from
-  other quality file management tools like &mc; and &tcmd;.
-  But why reinvent the wheel, you ask? &krusader; is designed to integrate seamlessly with the
-  &kde; Desktop, the desktop of choice for many programmers, network engineers, and other power users
-  of &Linux;. With &krusader; even novice users can quickly access the power, convenience, and feature
-  rich capabilities of the &kde; Desktop. &krusader; is open-source, free, and is released under the
-  &gpl_lnk;, although we (the developers) still retain the copyright for the project, its name,
-  and manage the project's continuing evolution.</para>
-
-  <para>
-  The &krusader; Project's mission is to create an "all-in-one" file manager, which will do all
-  the ordinary things you'd expect from it, plus a lot more ... ;-)
-  Since the principle behind &krusader; is based on the &ofm_url;, dual-pane filemanagers
-  (&mc;, &nc;, &etc;), it is a given that &krusader; handles all the standard Copy, Move, Delete, &etc;
-  file operations, but that is just the foundation!</para>
-
-  <para>
-  From the start, virtual filesystems became a main focus.
-  &vfs_lnk; are an abstracted layer over all kinds of archived information
-  (ZIP files, &FTP; servers, TAR archives, NFS filesystems, SAMBA shares, ISO cd/dvd images,
-  RPM catalogs, &etc;), which allows the user to access all the information in these divergent
-  types of filesystems transparently - just like entering an ordinary sub-directory!
-  Files can then be copied or moved from and to (except ISO,rpm,tar.gz) these data sources/containers
-  with the click of a mouse.
-  &krusader; currently supports VFSs for all popular [and some specialized] types of archives
-  (ace, arj, bzip2, gzip, iso, lha, rar, tar, zip and 7-zip), configuration packages (rpm, deb),
-  and traditional remote filesystem types (&FTP;, NFS, Samba, FISH, SFTP).</para>
-
-  <para>
-  &krusader; also includes a built-in Mount-Manager &mountman_lnk;, which enables you to mount or unmount
-  filesystems of all types with a single mouse click! Get usage and other property information easily,
-  in a consistent and understandable format in seconds without moving your mouse!
-  Ease and consistency are the goal.</para>
-
-  <para>
-  A &bookmark-manager_lnk; for local files/remote &URL;s and an &advanced_search_module_lnk; 
-  are also included to speed the locating of needed files. &krusader; also allows you to 
-  configure your Toolbars to provide a wide variety of additional functionality including 
-  File Comparison (several user selectable methods available), Multiple File Rename, 
-  and standard Terminal windows can be spawned with a single mouse click! 
-  Need temporary Root access to your files?
-  Simply "SU" within a Terminal window or click on &krusader;'s "Root Mode" to bring up a
-  new &krusader; Manager as Root!</para>
-
-  <para>
-  Advanced users benefit greatly from being able to carry out clerical tasks effortlessly,
-  without distraction from the real task at hand; a big help during those late night edit/compile sessions.
-  Convenient shortcut keys enable you to navigate directory trees with ease, create multiple tabbed
-  directory views simultaneously, and access fully functional history lists - all with a single mouse click!
-  Due to efficient programming and low system overhead, &krusader; is perhaps the most responsive all around
-  system management tool you can use to access the full potential of your computer using &kde;,
-  or with any other standards compliant X Windows window manager. Although designed specifically for,
-  and tightly integrated with, &kde;; &krusader; works equally well with Gnome, Enlightenment, WindowMaker,
-  IceWM, BlackBox, Wiamea, XFCE, etc. -- when the &kde; libraries are installed.</para>
-
-  <para>
-  New extensibility is provided by the flexible &useractions_lnk;,
-  a &krusader; innovation, that allows unlimited additional custom functionality to be added to suit the
-  user's specific needs and wishes.
-  We are planning to develop more modules in the near future, thereby enhancing &krusader; greatly.
-  For information on what is proposed, approved, or remains to be completed look at the &todoforum_url;.</para>
-
-  <para>
-  No other program we know of, offers so many useful, easily accessible features in such an intuitive
-  and simple format! Best of all, we listen, and implement good suggestions that are consonant with the
-  &krusader; Project's goal: making &krusader; the very best File Manager available!</para>
-  <para>We hope you'll enjoy it -- we do!</para>
-
-</sect1> 
-
+    <figure id="screenshot-krusader" float="1">
+      <title>&amp;krusader; screenshot</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="krusader1.png" />
+        </imageobject>
+        <textobject>
+          <phrase>&amp;krusader; screenshot</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para>More &amp;kru_screenshots_url; can be viewed on our
+    website.</para>
+  </sect1>
+  <sect1 id="welcome">
+    <title>Welcome to &amp;krusader;!</title>
+    <para>Our aim is to give you a facile, intuitive tool that
+    easily handles the most important tasks you perform on your
+    computer each and every day: manage and process your files the
+    way you want, and look great doing it!</para>
+    <para>Whether you are a &amp;Linux; expert or a novice,
+    &amp;krusader; makes routine file management tasks quick and
+    accurate, allowing you to focus on the big picture, not command
+    line syntax. This is especially helpful if you are new to xxNIX
+    operating systems. To do just that, &amp;krusader; wears a
+    great looking &amp;GUI;, supports drag n' drop and mimetypes
+    (with or without magic!) - all you need to feel right at home
+    using it, right from the start!</para>
+    <para>&amp;krusader; is packed with cool features, is fast, and
+    handles &amp;archives_lnk; transparently. In addition,
+    &amp;krusader; streamlines many complex file management tasks,
+    reducing fatigue, errors, and distraction. Basically,
+    &amp;krusader; provides all the helpful features you've come to
+    expect from other quality file management tools like &amp;mc;
+    and &amp;tcmd;. But why reinvent the wheel, you ask?
+    &amp;krusader; is designed to integrate seamlessly with the
+    &amp;kde; Desktop, the desktop of choice for many programmers,
+    network engineers, and other power users of &amp;Linux;. With
+    &amp;krusader; even novice users can quickly access the power,
+    convenience, and feature rich capabilities of the &amp;kde;
+    Desktop. &amp;krusader; is open-source, free, and is released
+    under the &amp;gpl_lnk;, although we (the developers) still
+    retain the copyright for the project, its name, and manage the
+    project's continuing evolution.</para>
+    <para>The &amp;krusader; Project's mission is to create an
+    "all-in-one" file manager, which will do all the ordinary
+    things you'd expect from it, plus a lot more ... ;-) Since the
+    principle behind &amp;krusader; is based on the &amp;ofm_url;,
+    dual-pane filemanagers (&amp;mc;, &amp;nc;, &amp;etc;), it is a
+    given that &amp;krusader; handles all the standard Copy, Move,
+    Delete, &amp;etc; file operations, but that is just the
+    foundation!</para>
+    <para>From the start, virtual filesystems became a main focus.
+    &amp;vfs_lnk; are an abstracted layer over all kinds of
+    archived information (ZIP files, &amp;FTP; servers, TAR
+    archives, NFS filesystems, SAMBA shares, ISO cd/dvd images, RPM
+    catalogs, &amp;etc;), which allows the user to access all the
+    information in these divergent types of filesystems
+    transparently - just like entering an ordinary sub-directory!
+    Files can then be copied or moved from and to (except
+    ISO,rpm,tar.gz) these data sources/containers with the click of
+    a mouse. &amp;krusader; currently supports VFSs for all popular
+    [and some specialized] types of archives (ace, arj, bzip2,
+    gzip, iso, lha, rar, tar, zip and 7-zip), configuration
+    packages (rpm, deb), and traditional remote filesystem types
+    (&amp;FTP;, NFS, Samba, FISH, SFTP).</para>
+    <para>&amp;krusader; also includes a built-in Mount-Manager
+    &amp;mountman_lnk;, which enables you to mount or unmount
+    filesystems of all types with a single mouse click! Get usage
+    and other property information easily, in a consistent and
+    understandable format in seconds without moving your mouse!
+    Ease and consistency are the goal.</para>
+    <para>A &amp;bookmark-manager_lnk; for local files/remote
+    &amp;URL;s and an &amp;advanced_search_module_lnk; are also
+    included to speed the locating of needed files. &amp;krusader;
+    also allows you to configure your Toolbars to provide a wide
+    variety of additional functionality including File Comparison
+    (several user selectable methods available), Multiple File
+    Rename, and standard Terminal windows can be spawned with a
+    single mouse click! Need temporary Root access to your files?
+    Simply "SU" within a Terminal window or click on
+    &amp;krusader;'s "Root Mode" to bring up a new &amp;krusader;
+    Manager as Root!</para>
+    <para>Advanced users benefit greatly from being able to carry
+    out clerical tasks effortlessly, without distraction from the
+    real task at hand; a big help during those late night
+    edit/compile sessions. Convenient shortcut keys enable you to
+    navigate directory trees with ease, create multiple tabbed
+    directory views simultaneously, and access fully functional
+    history lists - all with a single mouse click! Due to efficient
+    programming and low system overhead, &amp;krusader; is perhaps
+    the most responsive all around system management tool you can
+    use to access the full potential of your computer using
+    &amp;kde;, or with any other standards compliant X Windows
+    window manager. Although designed specifically for, and tightly
+    integrated with, &amp;kde;; &amp;krusader; works equally well
+    with Gnome, Enlightenment, WindowMaker, IceWM, BlackBox,
+    Wiamea, XFCE, etc. -- when the &amp;kde; libraries are
+    installed.</para>
+    <para>New extensibility is provided by the flexible
+    &amp;useractions_lnk;, a &amp;krusader; innovation, that allows
+    unlimited additional custom functionality to be added to suit
+    the user's specific needs and wishes. We are planning to
+    develop more modules in the near future, thereby enhancing
+    &amp;krusader; greatly. For information on what is proposed,
+    approved, or remains to be completed look at the
+    &amp;todoforum_url;.</para>
+    <para>No other program we know of, offers so many useful,
+    easily accessible features in such an intuitive and simple
+    format! Best of all, we listen, and implement good suggestions
+    that are consonant with the &amp;krusader; Project's goal:
+    making &amp;krusader; the very best File Manager
+    available!</para>
+    <para>We hope you'll enjoy it -- we do!</para>
+  </sect1>
 </chapter>

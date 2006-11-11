@@ -1,6 +1,5 @@
-<appendix id = "release_overview">
-
-<!-- **********************************************************************
+<appendix id="release_overview">
+  <!-- **********************************************************************
                                release-overview.docbook
                             ++++++++++++++++++++++++++++++
   copyright            : (C) 2000, 2001, 2002, 2003, 2004, 2005, 2006
@@ -20,292 +19,507 @@
 * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
 * MA 02111-1307, USA.                                                     *
 *********************************************************************** -->
-
-
-<title>Release overview</title>
-<para>This appendix gives an overview of the &krusader; releases.</para>
-
-
-<table id="release_overview_table" pgwide="1" frame="all">
-<title>Release overview</title>
-<tgroup cols="3" colsep="1" rowsep="1">
-<thead>
-<row>
-  <entry><para>&krusader; version</para></entry>
-  <entry><para>release date</para></entry>
-  <entry><para>&kde; version</para></entry>
-</row>
-</thead>
-
-<tbody>
-<row>
-  <entry><para>2.0.0 "name ?????"</para></entry>
-  <entry><para>2006-??-?? under construction</para></entry>
-  <entry><para>&kde; 4</para></entry>
-</row>
-
-<row>
-  <entry><para>1.80.0 "name ?????"</para></entry>
-  <entry><para>2006-??-?? under construction</para></entry>
-  <entry><para>&kde; 3.3 - 3.5</para></entry>
-</row>
-
-<row>
-  <entry><para>
-  <ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1665">1.70.1 "Round Robin"</ulink>
-  </para></entry>
-  <entry><para>2006-07-17</para></entry>
-  <entry><para>&kde; 3.3 - 3.5</para></entry>
-</row>
-
-<row>
-  <entry><para>
-  <ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1465">1.70.0 "Round Robin"</ulink>
-  </para></entry>
-  <entry><para>2006-02-12</para></entry>
-  <entry><para>&kde; 3.3 - 3.5</para></entry>
-</row>
-
-<row>
-  <entry><para>
-  <ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1378">1.70.0-beta2 "Afterburner"</ulink>
-  </para></entry>
-  <entry><para>2005-11-05</para></entry>
-  <entry><para>&kde; 3.3 - 3.5</para></entry>
-</row>
-
-<row>
-  <entry><para>
-   <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=1323">1.70.0-beta1 "Hellfire"</ulink>
-  </para></entry>
-  <entry><para>2005-10-02</para></entry>
-  <entry><para>&kde; 3.3 - 3.5</para></entry>
-</row>
-
-<row>
-  <entry><para>
-   <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=1368">1.60.1</ulink>
-  </para></entry>
-  <entry><para>2005-10-30</para></entry>
-  <entry><para>&kde; 3.3 - 3.4</para></entry>
-</row>
-
-<row>
-  <entry><para>
-   <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=1158">1.60.0</ulink>
-  </para></entry>
-  <entry><para>2005-04-10</para></entry>
-  <entry><para>&kde; 3.3 - 3.4</para></entry>
-</row>
-
-<row>
-  <entry><para>
-   <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=1142">1.60.0-beta2</ulink>
-   </para></entry>
-  <entry><para>2005-03-21</para></entry>
-  <entry><para>&kde; 3.3 - 3.4</para></entry>
-</row>
-
-<row>
-  <entry><para>
-   <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=1123">1.60.0-beta1</ulink>  
-  </para></entry>
-  <entry><para>2005-03-03</para></entry>
-  <entry><para>&kde; 3.3 - 3.4</para></entry>
-</row>
-
-<row>
-  <entry><para>
-   <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=989">1.51</ulink>
-  </para></entry>
-  <entry><para>2004-12-14</para></entry>
-  <entry><para>&kde; 3.2 - 3.3</para></entry>
-</row>
-
-<row>
-  <entry><para>1.50</para></entry>
-  <entry><para>2004-10-31</para></entry>
-  <entry><para>&kde; 3.2 - 3.3</para></entry>
-</row>
-
-<row>
-  <entry><para>1.50-beta1</para></entry>
-  <entry><para>2004-10-17</para></entry>
-  <entry><para>&kde; 3.2 - 3.3</para></entry>
-</row>
-
-<row>
-  <entry><para>1.40</para></entry>
-  <entry><para>2004-07-20</para></entry>
-  <entry><para>&kde; 3.2</para></entry>
-</row>
-
-<row>
-  <entry><para>1.40-beta2</para></entry>
-  <entry><para>2004-06-22</para></entry>
-  <entry><para>&kde; 3.2</para></entry>
-</row>
-
-<row>
-  <entry><para>1.40-beta1</para></entry>
-  <entry><para>2004-04-11</para></entry>
-  <entry><para>&kde; 3.2</para></entry>
-</row>
-
-<row>
-  <entry><para>1.30</para></entry>
-  <entry><para>2003-11-14</para></entry>
-  <entry><para>&kde; 3.0 - 3.2</para></entry>
-</row>
-
-<row>
-  <entry><para>1.29-beta1</para></entry>
-  <entry><para>2003-10-02</para></entry>
-  <entry><para>&kde; 3.0 - 3.2</para></entry>
-</row>
-
-<row>
-  <entry><para>1.25-beta1</para></entry>
-  <entry><para>2003-08-15</para></entry>
-  <entry><para>&kde; 3.0 - 3.2</para></entry>
-</row>
-
-<row>
-  <entry><para>1.21-beta1</para></entry>
-  <entry><para>2003-07-18</para></entry>
-  <entry><para>&kde; 3.0 - 3.2</para></entry>
-</row>
-
-<row>
-  <entry><para>1.20</para></entry>
-  <entry><para>2003-05-31</para></entry>
-  <entry><para>&kde; 3.0 - 3.2</para></entry>
-</row>
-
-<row>
-  <entry><para>1.12-beta2</para></entry>
-  <entry><para>2003-05-09</para></entry>
-  <entry><para>&kde; 3.0 - 3.2</para></entry>
-</row>
-
-<row>
-  <entry><para>1.12-beta1</para></entry>
-  <entry><para>2002-12-23</para></entry>
-  <entry><para>&kde; 3.0 - 3.2</para></entry>
-</row>
-
-<row>
-  <entry><para>1.11</para></entry>
-  <entry><para>2002-10-17</para></entry>
-  <entry><para>&kde; 3.0 - 3.2</para></entry>
-</row>
-
-<row>
-  <entry><para>1.10</para></entry>
-  <entry><para>2002-08-16</para></entry>
-  <entry><para>&kde; 3.0 - 3.2</para></entry>
-</row>
-
-<row>
-  <entry><para>1.01</para></entry>
-  <entry><para>2002-04-01</para></entry>
-  <entry><para>&kde; 2</para></entry>
-</row>
-
-<row>
-  <entry><para>1.00</para></entry>
-  <entry><para>2002-01-01</para></entry>
-  <entry><para>&kde; 2</para></entry>
-</row>
-
-<row>
- <entry><para>0.99</para></entry>
- <entry><para>2001-12-01</para></entry>
- <entry><para>&kde; 2</para></entry>
-</row>
-
-<row>
- <entry><para>0.98</para></entry>
- <entry><para>2001-10-27</para></entry>
- <entry><para>&kde; 2</para></entry>
-</row>
-
-<row>
- <entry><para>0.97</para></entry>
- <entry><para>2001-10-08</para></entry>
- <entry><para>&kde; 2</para></entry>
-</row>
-
-<row>
- <entry><para>0.95</para></entry>
- <entry><para>2001-07-22</para></entry>
- <entry><para>&kde; 2</para></entry>
-</row>
-
-<row>
- <entry><para>0.93</para></entry>
- <entry><para>2001-05-31</para></entry>
- <entry><para>&kde; 2</para></entry>
-</row>
-
-<row>
- <entry><para>0.92</para></entry>
- <entry><para>2001-05-17</para></entry>
- <entry><para>&kde; 2</para></entry>
-</row>
-
-<row>
- <entry><para>0.91</para></entry>
- <entry><para>2001-05-10</para></entry>
- <entry><para>&kde; 2</para></entry>
-</row>
-
-<row>
- <entry><para>0.90</para></entry>
- <entry><para>2001-04-30</para></entry>
- <entry><para>&kde; 2</para></entry>
-</row>
-
-<row>
- <entry><para>0.79</para></entry>
- <entry><para>2001-02-25</para></entry>
- <entry><para>&kde; 2</para></entry>
-</row>
-
-<row>
- <entry><para>0.65</para></entry>
- <entry><para>2000-08-19</para></entry>
- <entry><para>&kde; 2</para></entry>
-</row>
-
-<row>
- <entry><para>0.60</para></entry>
- <entry><para>2000-07-19</para></entry>
- <entry><para>&kde; 2</para></entry>
-</row>
-
-<row>
- <entry><para>M2 (milestone 2)</para></entry>
- <entry><para>2000-07-11</para></entry>
- <entry><para>&kde; 2</para></entry>
-</row>
-
-<row>
- <entry><para>M1 (milestone 1)</para></entry>
- <entry><para>2000-??-??</para></entry>
- <entry><para>&kde; 2 (Kleopatra 1.91)</para></entry>
-</row>
-
-<row>
- <entry><para>Project began</para></entry>
- <entry><para>2000-04-30</para></entry>
- <entry><para>Kleopatra 1.91</para></entry>
-</row>
-
-</tbody>
-</tgroup>
-</table>
-
-<para>Note: some very old 0.x beta releases are not included in this table.</para>
-
+  <title>Release overview</title>
+  <para>This appendix gives an overview of the &amp;krusader;
+  releases.</para>
+  <table id="release_overview_table" pgwide="1" frame="all">
+    <title>Release overview</title>
+    <tgroup cols="3" colsep="1" rowsep="1">
+      <thead>
+        <row>
+          <entry>
+            <para>&amp;krusader; version</para>
+          </entry>
+          <entry>
+            <para>release date</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; version</para>
+          </entry>
+        </row>
+      </thead>
+      <tbody>
+        <row>
+          <entry>
+            <para>2.0.0 "name ?????"</para>
+          </entry>
+          <entry>
+            <para>2006-??-?? under construction</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 4</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>1.80.0 "name ?????"</para>
+          </entry>
+          <entry>
+            <para>2006-??-?? under construction</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.3 - 3.5</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>
+              <ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1665">
+              1.70.1 "Round Robin"</ulink>
+            </para>
+          </entry>
+          <entry>
+            <para>2006-07-17</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.3 - 3.5</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>
+              <ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1465">
+              1.70.0 "Round Robin"</ulink>
+            </para>
+          </entry>
+          <entry>
+            <para>2006-02-12</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.3 - 3.5</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>
+              <ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1378">
+              1.70.0-beta2 "Afterburner"</ulink>
+            </para>
+          </entry>
+          <entry>
+            <para>2005-11-05</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.3 - 3.5</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>
+              <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=1323">
+              1.70.0-beta1 "Hellfire"</ulink>
+            </para>
+          </entry>
+          <entry>
+            <para>2005-10-02</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.3 - 3.5</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>
+              <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=1368">
+              1.60.1</ulink>
+            </para>
+          </entry>
+          <entry>
+            <para>2005-10-30</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.3 - 3.4</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>
+              <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=1158">
+              1.60.0</ulink>
+            </para>
+          </entry>
+          <entry>
+            <para>2005-04-10</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.3 - 3.4</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>
+              <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=1142">
+              1.60.0-beta2</ulink>
+            </para>
+          </entry>
+          <entry>
+            <para>2005-03-21</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.3 - 3.4</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>
+              <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=1123">
+              1.60.0-beta1</ulink>
+            </para>
+          </entry>
+          <entry>
+            <para>2005-03-03</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.3 - 3.4</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>
+              <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=989">
+              1.51</ulink>
+            </para>
+          </entry>
+          <entry>
+            <para>2004-12-14</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.2 - 3.3</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>1.50</para>
+          </entry>
+          <entry>
+            <para>2004-10-31</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.2 - 3.3</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>1.50-beta1</para>
+          </entry>
+          <entry>
+            <para>2004-10-17</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.2 - 3.3</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>1.40</para>
+          </entry>
+          <entry>
+            <para>2004-07-20</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>1.40-beta2</para>
+          </entry>
+          <entry>
+            <para>2004-06-22</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>1.40-beta1</para>
+          </entry>
+          <entry>
+            <para>2004-04-11</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>1.30</para>
+          </entry>
+          <entry>
+            <para>2003-11-14</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.0 - 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>1.29-beta1</para>
+          </entry>
+          <entry>
+            <para>2003-10-02</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.0 - 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>1.25-beta1</para>
+          </entry>
+          <entry>
+            <para>2003-08-15</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.0 - 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>1.21-beta1</para>
+          </entry>
+          <entry>
+            <para>2003-07-18</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.0 - 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>1.20</para>
+          </entry>
+          <entry>
+            <para>2003-05-31</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.0 - 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>1.12-beta2</para>
+          </entry>
+          <entry>
+            <para>2003-05-09</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.0 - 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>1.12-beta1</para>
+          </entry>
+          <entry>
+            <para>2002-12-23</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.0 - 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>1.11</para>
+          </entry>
+          <entry>
+            <para>2002-10-17</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.0 - 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>1.10</para>
+          </entry>
+          <entry>
+            <para>2002-08-16</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 3.0 - 3.2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>1.01</para>
+          </entry>
+          <entry>
+            <para>2002-04-01</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>1.00</para>
+          </entry>
+          <entry>
+            <para>2002-01-01</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>0.99</para>
+          </entry>
+          <entry>
+            <para>2001-12-01</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>0.98</para>
+          </entry>
+          <entry>
+            <para>2001-10-27</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>0.97</para>
+          </entry>
+          <entry>
+            <para>2001-10-08</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>0.95</para>
+          </entry>
+          <entry>
+            <para>2001-07-22</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>0.93</para>
+          </entry>
+          <entry>
+            <para>2001-05-31</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>0.92</para>
+          </entry>
+          <entry>
+            <para>2001-05-17</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>0.91</para>
+          </entry>
+          <entry>
+            <para>2001-05-10</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>0.90</para>
+          </entry>
+          <entry>
+            <para>2001-04-30</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>0.79</para>
+          </entry>
+          <entry>
+            <para>2001-02-25</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>0.65</para>
+          </entry>
+          <entry>
+            <para>2000-08-19</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>0.60</para>
+          </entry>
+          <entry>
+            <para>2000-07-19</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>M2 (milestone 2)</para>
+          </entry>
+          <entry>
+            <para>2000-07-11</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 2</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>M1 (milestone 1)</para>
+          </entry>
+          <entry>
+            <para>2000-??-??</para>
+          </entry>
+          <entry>
+            <para>&amp;kde; 2 (Kleopatra 1.91)</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>Project began</para>
+          </entry>
+          <entry>
+            <para>2000-04-30</para>
+          </entry>
+          <entry>
+            <para>Kleopatra 1.91</para>
+          </entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+  <para>Note: some very old 0.x beta releases are not included in
+  this table.</para>
 </appendix>

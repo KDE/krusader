@@ -1,6 +1,5 @@
 <glossary id="glossary">
-
-<!-- **********************************************************************
+  <!-- **********************************************************************
                                glossary.docbook
                             ++++++++++++++++++++++++++
   copyright            : (C) 2000, 2001, 2002, 2003, 2004, 2005, 2006
@@ -20,163 +19,145 @@
 * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
 * MA 02111-1307, USA.                                                     *
 *********************************************************************** -->
-
-<para>This chapter is intended to explain the various words which have been used throughout
-      the &krusader; documentation. If you feel any acronyms or terms are missing here, 
-      please don't hesitate to contact the &krusader; documentation team. Thank you!
-</para>
-
-<para>NOTE: This page is work in progress, Matej Urbancic is working at the Glossary.
-</para>
-
-
-<glossentry id="gloss-a">
-<glossterm><acronym>A</acronym></glossterm>
-<glossdef>
-<para>
-bla bla.
-</para>
-</glossdef>
-</glossentry>
-
-<glossentry id="gloss-b">
-<glossterm>B</glossterm>
-<glossdef>
-<para>
-bla bla.
-</para>
-</glossdef>
-</glossentry>
-
-<glossentry id="gloss-bsd">
-<glossterm><acronym>BSD</acronym></glossterm>
-<glossdef>
-<para>
-Berkeley Software Distribution; here refers to any of several free
-&UNIX;-compatible operating systems derived from <acronym>BSD</acronym>
-&UNIX;.
-</para>
-</glossdef>
-</glossentry>
-
-<glossentry id="gloss-cvs">
-<glossterm><acronym>CVS</acronym></glossterm>
-<glossdef>
-<para>
-Concurrent Versions System; a software configuration management system
-used by many software projects including &kde; and &krusader;.
-</para>
-</glossdef>
-</glossentry>
-
-<glossentry id="gloss-deb">
-<glossterm><acronym>DEB</acronym></glossterm>
-<glossdef>
-<para>
-This is a binary file format that is used by &debian; and &debian;-based distributions. 
-This will be the suffix of a file specifically for these distributions. 
-An example would be <filename>krusader_1.70.1-1_amd64.deb</filename> 
-For more information on installing these files, refer to the 
-<ulink url="http://www.debian.org/">Debian Web Site</ulink>.
-</para>
-</glossdef>
-</glossentry>
-
-<glossentry id="glos-ftp">
-<glossterm>&FTP;</glossterm>
-<glossdef>
-<para>
-&FTP; is the File Transfer Protocol; it is an Internet protocol that allows you to retrieve files from 
-so-called &FTP; servers.
-</para>
-</glossdef>
-</glossentry>
-
-<glossentry id="gloss-gpl">
-<glossterm><acronym>GPL</acronym></glossterm>
-<glossdef>
-<para>
-<acronym>GNU</acronym> General Public License; a software license
-created by the Free Software Foundation defining the terms for releasing
-free software.
-</para>
-</glossdef>
-</glossentry>
-
-<glossentry id="gloss-gui">
-<glossterm>&GUI;</glossterm>
-<glossdef>
-<para>
-Graphical User Interface
-</para>
-</glossdef>
-</glossentry>
-
-<glossentry id="gloss-h">
-<glossterm>H</glossterm>
-<glossdef>
-<para>
-bla bla.
-</para>
-</glossdef>
-</glossentry>
-
-<glossentry id="gloss-kde">
-<glossterm>&kde;</glossterm>
-<glossdef>
-<para>
-K Desktop Environment; a project to develop a free graphical desktop
-environment for &UNIX; compatible systems.
-</para>
-</glossdef>
-</glossentry>
-
-<glossentry id="gloss-rpm">
-<glossterm>RPM</glossterm>
-<glossdef>
-<para>
-This is the binary file format for distributions based on the Red Hat package manager, a widely used 
-packaging tool for the &Linux; operating system. If you still have to get &krusader; and your system supports 
-RPM packages, you should get &krusader; packages ending in .rpm. They are very easy to use.
-</para>
-</glossdef>
-</glossentry>
-
-<glossentry id="gloss-url">
-<glossterm><acronym>&URL;</acronym></glossterm>
-<glossdef>
-<para>&URL; is an abbreviation for Universal Resource Locater. 
-      A universal resource locater is the technical term for what is commonly referred to as a websites address.
-      Examples of URLs include <ulink url="http://krusader.sourceforge.net">http://krusader.sourceforge.net</ulink> 
-      and &remote_connections_lnk;.
-</para>
-</glossdef>
-</glossentry>
-
-<glossentry id="gloss-s">
-<glossterm>S</glossterm>
-<glossdef>
-<para>bla bla.
-</para>
-</glossdef>
-</glossentry>
-
-<glossentry id="gloss-y">
-<glossterm>Y</glossterm>
-<glossdef>
-<para>
-bla bla.
-</para>
-</glossdef>
-</glossentry>
-
-<glossentry id="gloss-z">
-<glossterm><acronym>Z</acronym></glossterm>
-<glossdef>
-<para>
-bla bla.
-</para>
-</glossdef>
-</glossentry>
-
+  <para>This chapter is intended to explain the various words which
+  have been used throughout the &amp;krusader; documentation. If
+  you feel any acronyms or terms are missing here, please don't
+  hesitate to contact the &amp;krusader; documentation team. Thank
+  you!</para>
+  <para>NOTE: This page is work in progress, Matej Urbancic is
+  working at the Glossary.</para>
+  <glossentry id="gloss-a">
+    <glossterm>
+      <acronym>A</acronym>
+    </glossterm>
+    <glossdef>
+      <para>bla bla.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-b">
+    <glossterm>B</glossterm>
+    <glossdef>
+      <para>bla bla.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-bsd">
+    <glossterm>
+      <acronym>BSD</acronym>
+    </glossterm>
+    <glossdef>
+      <para>Berkeley Software Distribution; here refers to any of
+      several free &amp;UNIX;-compatible operating systems derived
+      from 
+      <acronym>BSD</acronym>&amp;UNIX;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-cvs">
+    <glossterm>
+      <acronym>CVS</acronym>
+    </glossterm>
+    <glossdef>
+      <para>Concurrent Versions System; a software configuration
+      management system used by many software projects including
+      &amp;kde; and &amp;krusader;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-deb">
+    <glossterm>
+      <acronym>DEB</acronym>
+    </glossterm>
+    <glossdef>
+      <para>This is a binary file format that is used by
+      &amp;debian; and &amp;debian;-based distributions. This will
+      be the suffix of a file specifically for these distributions.
+      An example would be 
+      <filename>krusader_1.70.1-1_amd64.deb</filename>For more
+      information on installing these files, refer to the 
+      <ulink url="http://www.debian.org/">Debian Web
+      Site</ulink>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-ftp">
+    <glossterm>&amp;FTP;</glossterm>
+    <glossdef>
+      <para>&amp;FTP; is the File Transfer Protocol; it is an
+      Internet protocol that allows you to retrieve files from
+      so-called &amp;FTP; servers.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-gpl">
+    <glossterm>
+      <acronym>GPL</acronym>
+    </glossterm>
+    <glossdef>
+      <para>
+      <acronym>GNU</acronym>General Public License; a software
+      license created by the Free Software Foundation defining the
+      terms for releasing free software.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-gui">
+    <glossterm>&amp;GUI;</glossterm>
+    <glossdef>
+      <para>Graphical User Interface</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-h">
+    <glossterm>H</glossterm>
+    <glossdef>
+      <para>bla bla.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kde">
+    <glossterm>&amp;kde;</glossterm>
+    <glossdef>
+      <para>K Desktop Environment; a project to develop a free
+      graphical desktop environment for &amp;UNIX; compatible
+      systems.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-rpm">
+    <glossterm>RPM</glossterm>
+    <glossdef>
+      <para>This is the binary file format for distributions based
+      on the Red Hat package manager, a widely used packaging tool
+      for the &amp;Linux; operating system. If you still have to
+      get &amp;krusader; and your system supports RPM packages, you
+      should get &amp;krusader; packages ending in .rpm. They are
+      very easy to use.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-url">
+    <glossterm>
+      <acronym>&amp;URL;</acronym>
+    </glossterm>
+    <glossdef>
+      <para>&amp;URL; is an abbreviation for Universal Resource
+      Locater. A universal resource locater is the technical term
+      for what is commonly referred to as a websites address.
+      Examples of URLs include 
+      <ulink url="http://krusader.sourceforge.net">
+      http://krusader.sourceforge.net</ulink>and
+      &amp;remote_connections_lnk;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-s">
+    <glossterm>S</glossterm>
+    <glossdef>
+      <para>bla bla.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-y">
+    <glossterm>Y</glossterm>
+    <glossdef>
+      <para>bla bla.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-z">
+    <glossterm>
+      <acronym>Z</acronym>
+    </glossterm>
+    <glossdef>
+      <para>bla bla.</para>
+    </glossdef>
+  </glossentry>
 </glossary>

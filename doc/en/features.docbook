@@ -1,5 +1,4 @@
 <chapter id="features">
-
 <!-- **********************************************************************
                               features.docbook
                           ++++++++++++++++++++++++
@@ -20,354 +19,391 @@
 * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
 * MA 02111-1307, USA.                                                     *
 *********************************************************************** -->
-
 <title>Features</title>
-<indexterm><primary>Features</primary></indexterm>
-
-<note><para>
-The most important features and improvements are highlighted here, it would make this list too
-long if we were to include <emphasis>all</emphasis> the features and improvements.
-You will discover even more features in this documentation and in the &changelog_url; file.
-</para></note>
-
-
+<indexterm>
+  <primary>Features</primary>
+</indexterm>
+<note>
+  <para>The most important features and improvements are
+  highlighted here, it would make this list too long if we were to
+  include 
+  <emphasis>all</emphasis>the features and improvements. You will
+  discover even more features in this documentation and in the
+  &amp;changelog_url; file.</para>
+</note>
 <para>
-<itemizedlist>
-  <listitem>
-     <para>
-         <itemizedlist>
-         <title>&ofm_url; features</title>
-          <listitem>
-               <para>Two powerful easy to use <link linkend="panels">OFM panels</link>.</para>
-          </listitem>
-          <listitem>
-               <para>&cmdline_lnk; and optional &termemu_lnk; at below.</para>
-          </listitem>
-          <listitem>
-               <para>Strong <link linkend="keyboard-commands">keyboard</link> orientation, 
-                     the ability to perform all functions without the mouse.</para>
-          </listitem>
-          <listitem>
-               <para>Context-dependent invocation of scripts and programs &eg; mouseclick/enter 
-                     (execute or open with the associated application), F3(view) and F4(edit).</para>
-          </listitem>
-          <listitem>
-               <para>&usermenu_lnk;, create your own customized menu!</para>
-          </listitem>
-          <listitem>
-               <para>History for everything: &eg; <link linkend="folderhistory">Folder History</link>,
-                     <link linkend="popular_urls">Popular &URL;s</link>, ...</para>
-          </listitem>
-          <listitem>
-               <para>&vfs_lnk; for &eg; &remote_connections_lnk;, &archives_lnk;, 
-                     search results, synchronizer, ...</para>
-          </listitem>
-          <listitem>
-               <para>Powerful internal <link linkend="krviewer">viewer and editor</link>
-                     via kparts it supports almost every fileformat!</para>
-          </listitem>
-          <listitem>
-               <para>&advanced_search_module_lnk; : searching in archives and search content on remote filesystems.</para>
-          </listitem>
-          <listitem>
-               <para>Several Panel view modes via the &popup_panel_lnk;.</para>
-          </listitem>
-          <listitem>
-               <para>&remote_connections_lnk; : &FTP;/SAMBA with SFTP/SCP support via &kioslaves1_url;</para>
-          </listitem>
-        </itemizedlist>
-     </para>
-  </listitem>
-
-
-  <listitem>
-     <para>
-         <itemizedlist>
-         <title>&krusader; tools</title>
-          <listitem>
-               <para><link linkend="mount-man">Mount-Manager</link></para>
-          </listitem>
-          <listitem>
-               <para>&syncdirs_lnk;</para>
-          </listitem>
-          <listitem>
-               <para>&diskusage_lnk;</para>
-          </listitem>
-          <listitem>
-               <para>&locate_lnk;</para>
-          </listitem>
-          <listitem>
-               <para> </para>
-          </listitem>
-          <listitem>
-               <para> </para>
-          </listitem>
-          <listitem>
-               <para> </para>
-          </listitem>
-          <listitem>
-               <para> </para>
-          </listitem>
-          <listitem>
-               <para> </para>
-          </listitem>
-          <listitem>
-               <para> </para>
-          </listitem>
-          <listitem>
-               <para> </para>
-          </listitem>
-        </itemizedlist>
-     </para>
-  </listitem>
-
-
-  <listitem>
-     <para>
-         <itemizedlist>
-         <title>&krusader; features</title>
-          <listitem>
-               <para>Archive Handling: browsing, unpack, pack, testing. Supported &archives_lnk; : 
-                     ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip.</para>
-          </listitem>
-          <listitem>
-               <para><link linkend="checksum">Checksum creation-verification</link> mechanism that 
-                      supports md5, sha1, sha256, tiger, whirlpool.
-                      External supported tools are md5deep and cfv.</para>
-          </listitem>
-          <listitem>
-               <para><link linkend="calculate">Calculate occupied space</link> of files and folders,
-                     archives and remote filesystems.</para>
-          </listitem>
-          <listitem>
-               <para><link linkend="compare-dir">Directory comparison</link> and 
-                     <link linkend="view-menu">filtering</link>.</para>
-          </listitem>
-          <listitem>
-               <para><link linkend="compare-content">Compare files by content</link> via external diff 
-                     programs like &kompare;, &kdiff3_url; or &xxdiff_url;.</para>
-          </listitem>
-          <listitem>
-               <para><link linkend="multi_rename">Rename</link> files and folders via &krename_url;</para>
-          </listitem>
-          <listitem>
-               <para>Completely supports drag'n'drop: drag from &konqueror; straight into a .tar.gz file, 
-                     from &krusader;'s panel into the trash-bin, the desktop or into &konqueror;!</para>
-          </listitem>
-          <listitem>
-               <para><link linkend="konfig-advanced">Preserve date</link> 
-                     for local targets at copy/move operations.</para>
-          </listitem>
-          <listitem>
-               <para>F2 opens a <link linkend="tools-menu">Terminal Window</link> in the default directory.</para>
-          </listitem>
-          <listitem>
-               <para>Easy editing of <link linkend="file-menu">file permissions</link> 
-                     and ownership and <link linkend="konfig-looknfeel-operation">Numeric permissions</link>.</para>
-          </listitem>
-          <listitem>
-               <para><link linkend="krusearcher">Selection filters</link> 
-                     used in &eg; Synchronizer and KruSearcher.
-               </para>
-          </listitem>
-          <listitem>
-               <para><link linkend="jump_back">Jump-Back</link></para>
-          </listitem>
-          <listitem>
-               <para>Fully <link linkend="konfig-general">mimetype-aware</link> 
-                    (with or without "magic"!).</para>
-          </listitem>
-          <listitem>
-               <para><link linkend="folder_tabs">Tabbed panels</link> and 
-                     <link linkend="krviewer">Tabbed Editor/Viewer</link>.</para>
-          </listitem>
-          <listitem>
-               <para>&rootmode_lnk;, &quick_search_lnk;</para>
-          </listitem>
-          <listitem>
-               <para><link linkend="splitter">File splitter</link>.</para>
-          </listitem>
-          <listitem>
-               <para><link linkend="mouse_gestures">Mouse Gestures</link>.</para>
-          </listitem>
-          <listitem>
-               <para><link linkend="list_panel">Quick Navigation</link> in the Location Toolbar.</para>
-          </listitem>
-          <listitem>
-               <para>&whatsthis_url; Helpfunction in favour of Tooltips where reasonable.</para>
-          </listitem>
-          <listitem>
-               <para>&sync_browsing_lnk;</para>
-          </listitem>
-        </itemizedlist>
-     </para>
-  </listitem>
-
-
-  <listitem>
-     <para>
-         <itemizedlist>
-         <title>Customize &krusader; to your own needs</title>
-          <listitem>
-               <para><link linkend="konfig-startup">Konfigurator</link> 
-                      &krusader;'s configuration center.</para>
-          </listitem>
-          <listitem>
-               <para>&main_toolbar_lnk;, <link linkend="actions_toolbar">Actions Toolbar</link> 
-                     for user actions and bookmarks.</para>
-          </listitem>
-          <listitem>
-               <para><link linkend="key_bindings">key-bindings</link>.</para>
-          </listitem>
-          <listitem>
-               <para><link linkend="konfig-color">Colors</link>.</para>
-          </listitem>
-          <listitem>
-               <para>&panel_profiles_lnk;</para>
-          </listitem>
-          <listitem>
-               <para>&bookmark-manager_lnk;</para>
-          </listitem>
-          <listitem>
-               <para>&mouse_selection_modes_lnk;</para>
-          </listitem>
-          <listitem>
-               <para>Many more features can be 
-                     <link linkend="konfig-startup">configured the way you like</link>.</para>
-          </listitem>
-        </itemizedlist>
-     </para>
-  </listitem>
-
-
-  <listitem>
-     <para>
-         <itemizedlist>
-         <title>&krusader; extra's</title>
-          <listitem>
-               <para>&useractions_lnk;</para>
-          </listitem>
-          <listitem>
-               <para>&javascript_console_lnk;</para>
-          </listitem>
-          <listitem>
-               <para>&color_profiles_lnk;</para>
-          </listitem>
-          <listitem>
-               <para>&keybindigs_profiles_lnk;</para>
-          </listitem>
-       </itemizedlist>
-      Upload/Download your favorite &krusader; configurations/extensions/plugins at &kde_files_url;!
-     </para>
-  </listitem>
-</itemizedlist>
-</para>
-
-<para>
-<itemizedlist>
-  <title>New features in version CVS (the future 1.80.0 release)</title>
-  <listitem>
-        <para>Archive improvements
-        <itemizedlist>
-          <listitem>
-             <para><link linkend="archives">Password support</link> for:
-              arj, ace, rar and zip. Passwords can be stored in &kwallet;</para>
-          </listitem>
-
-          <listitem>
-           <para><link linkend="archives">7-zip support</link>, by external applications 7z and 7za.</para>
-          </listitem>
-
-          <listitem>
-           <para><link linkend="archives">Autodetection support</link>, allowing you to open "hidden archives" 
-                 (&eg; &openoffice; documents, wich is actually a zip archive with an other filename extension)</para>
-          </listitem>
-
-          <listitem>
-            <para>Packing/unpacking are now in the background.</para>
-          </listitem>
-        </itemizedlist>
-        </para>
-  </listitem>
-
-  <listitem>
-        <para>&useractions_lnk; improvements.</para>
-  </listitem>
-
-  <listitem>
-        <para><link linkend="konfig-advanced">Media button</link>.</para>
-  </listitem>
-
-  <listitem>
-        <para>Copy/Move: 
-              <link linkend="copying">preserve all attributes</link> (time, owner, group).</para>
-  </listitem>
-
-  <listitem>
-        <para><link linkend="konfig-color">Dim the colors of the inactive panel</link>.</para>
-  </listitem>
-
-  <listitem>
-        <para>Renaming a the filename without the extension, single instance mode,
-              start to system tray, check them out in
-              <link linkend="konfigurator">Konfigurator</link> 
-              </para>
-  </listitem>
-
-   <listitem>
-        <para>Atomic extensions (NOT DOCUMENTED YET).</para>
-  </listitem>
-
-  <listitem>
-        <para>Context menu for bookmarks and
-              enable/disable special bookmarks by right clicking on them.</para>
-  </listitem>
-
-  <listitem>
-        <para>Restyled <link linkend="menu-commands">MenuBar</link>.</para>
-  </listitem>
-
-  <listitem>
-        <para>&termemu_lnk; improvements (NOT DOCUMENTED YET).</para>
-  </listitem>
-
-  <listitem>
-        <para>&synchronizer_lnk; improvements (NOT DOCUMENTED YET).</para>
-  </listitem>
-
-  <listitem>
-        <para>Quick navigation improvements (NOT DOCUMENTED YET)</para>
-  </listitem>
-
-  <listitem>
-        <para>.</para>
-  </listitem>
-
-
- <listitem>
-        <para>Many bugfixes.</para>
-  </listitem>
-
-  <listitem>
-        <para>TODO ... NOT YET DESCRIBED IN THE HANDBOOK ... </para>
-  </listitem>
-
+  <itemizedlist>
     <listitem>
-        <para>NOTE: NOT ALL NEW FEATURES ARE DESCRIBED YET IN THE HANDBOOK</para>
-  </listitem>
- 
-  <listitem>
-        <para>THIS LIST IS INCOMPLTE ...
-        If someone likes to &contribute_url; to this handbook, please contact Frank. 
-        For more features, please read the &changelog_url; and &cvsnews_url;.</para>
-  </listitem>
+      <para>
+        <itemizedlist>
+          <title>&amp;ofm_url; features</title>
+          <listitem>
+            <para>Two powerful easy to use 
+            <link linkend="panels">OFM panels</link>.</para>
+          </listitem>
+          <listitem>
+            <para>&amp;cmdline_lnk; and optional &amp;termemu_lnk;
+            at below.</para>
+          </listitem>
+          <listitem>
+            <para>Strong 
+            <link linkend="keyboard-commands">
+            keyboard</link>orientation, the ability to perform all
+            functions without the mouse.</para>
+          </listitem>
+          <listitem>
+            <para>Context-dependent invocation of scripts and
+            programs &amp;eg; mouseclick/enter (execute or open
+            with the associated application), F3(view) and
+            F4(edit).</para>
+          </listitem>
+          <listitem>
+            <para>&amp;usermenu_lnk;, create your own customized
+            menu!</para>
+          </listitem>
+          <listitem>
+            <para>History for everything: &amp;eg; 
+            <link linkend="folderhistory">Folder History</link>, 
+            <link linkend="popular_urls">Popular &amp;URL;s</link>,
+            ...</para>
+          </listitem>
+          <listitem>
+            <para>&amp;vfs_lnk; for &amp;eg;
+            &amp;remote_connections_lnk;, &amp;archives_lnk;,
+            search results, synchronizer, ...</para>
+          </listitem>
+          <listitem>
+            <para>Powerful internal 
+            <link linkend="krviewer">viewer and editor</link>via
+            kparts it supports almost every fileformat!</para>
+          </listitem>
+          <listitem>
+            <para>&amp;advanced_search_module_lnk; : searching in
+            archives and search content on remote
+            filesystems.</para>
+          </listitem>
+          <listitem>
+            <para>Several Panel view modes via the
+            &amp;popup_panel_lnk;.</para>
+          </listitem>
+          <listitem>
+            <para>&amp;remote_connections_lnk; : &amp;FTP;/SAMBA
+            with SFTP/SCP support via &amp;kioslaves1_url;</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title>&amp;krusader; tools</title>
+          <listitem>
+            <para>
+              <link linkend="mount-man">Mount-Manager</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>&amp;syncdirs_lnk;</para>
+          </listitem>
+          <listitem>
+            <para>&amp;diskusage_lnk;</para>
+          </listitem>
+          <listitem>
+            <para>&amp;locate_lnk;</para>
+          </listitem>
+          <listitem>
+            <para></para>
+          </listitem>
+          <listitem>
+            <para></para>
+          </listitem>
+          <listitem>
+            <para></para>
+          </listitem>
+          <listitem>
+            <para></para>
+          </listitem>
+          <listitem>
+            <para></para>
+          </listitem>
+          <listitem>
+            <para></para>
+          </listitem>
+          <listitem>
+            <para></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title>&amp;krusader; features</title>
+          <listitem>
+            <para>Archive Handling: browsing, unpack, pack,
+            testing. Supported &amp;archives_lnk; : ace, arj,
+            bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and
+            7-zip.</para>
+          </listitem>
+          <listitem>
+            <para>
+            <link linkend="checksum">Checksum
+            creation-verification</link>mechanism that supports
+            md5, sha1, sha256, tiger, whirlpool. External supported
+            tools are md5deep and cfv.</para>
+          </listitem>
+          <listitem>
+            <para>
+            <link linkend="calculate">Calculate occupied
+            space</link>of files and folders, archives and remote
+            filesystems.</para>
+          </listitem>
+          <listitem>
+            <para>
+            <link linkend="compare-dir">Directory
+            comparison</link>and 
+            <link linkend="view-menu">filtering</link>.</para>
+          </listitem>
+          <listitem>
+            <para>
+            <link linkend="compare-content">Compare files by
+            content</link>via external diff programs like
+            &amp;kompare;, &amp;kdiff3_url; or
+            &amp;xxdiff_url;.</para>
+          </listitem>
+          <listitem>
+            <para>
+            <link linkend="multi_rename">Rename</link>files and
+            folders via &amp;krename_url;</para>
+          </listitem>
+          <listitem>
+            <para>Completely supports drag'n'drop: drag from
+            &amp;konqueror; straight into a .tar.gz file, from
+            &amp;krusader;'s panel into the trash-bin, the desktop
+            or into &amp;konqueror;!</para>
+          </listitem>
+          <listitem>
+            <para>
+            <link linkend="konfig-advanced">Preserve date</link>for
+            local targets at copy/move operations.</para>
+          </listitem>
+          <listitem>
+            <para>F2 opens a 
+            <link linkend="tools-menu">Terminal Window</link>in the
+            default directory.</para>
+          </listitem>
+          <listitem>
+            <para>Easy editing of 
+            <link linkend="file-menu">file permissions</link>and
+            ownership and 
+            <link linkend="konfig-looknfeel-operation">Numeric
+            permissions</link>.</para>
+          </listitem>
+          <listitem>
+            <para>
+            <link linkend="krusearcher">Selection
+            filters</link>used in &amp;eg; Synchronizer and
+            KruSearcher.</para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="jump_back">Jump-Back</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>Fully 
+            <link linkend="konfig-general">
+            mimetype-aware</link>(with or without "magic"!).</para>
+          </listitem>
+          <listitem>
+            <para>
+            <link linkend="folder_tabs">Tabbed panels</link>and 
+            <link linkend="krviewer">Tabbed
+            Editor/Viewer</link>.</para>
+          </listitem>
+          <listitem>
+            <para>&amp;rootmode_lnk;, &amp;quick_search_lnk;</para>
+          </listitem>
+          <listitem>
+            <para>
+            <link linkend="splitter">File splitter</link>.</para>
+          </listitem>
+          <listitem>
+            <para>
+            <link linkend="mouse_gestures">Mouse
+            Gestures</link>.</para>
+          </listitem>
+          <listitem>
+            <para>
+            <link linkend="list_panel">Quick Navigation</link>in
+            the Location Toolbar.</para>
+          </listitem>
+          <listitem>
+            <para>&amp;whatsthis_url; Helpfunction in favour of
+            Tooltips where reasonable.</para>
+          </listitem>
+          <listitem>
+            <para>&amp;sync_browsing_lnk;</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title>Customize &amp;krusader; to your own needs</title>
+          <listitem>
+            <para>
+            <link linkend="konfig-startup">
+            Konfigurator</link>&amp;krusader;'s configuration
+            center.</para>
+          </listitem>
+          <listitem>
+            <para>&amp;main_toolbar_lnk;, 
+            <link linkend="actions_toolbar">Actions
+            Toolbar</link>for user actions and bookmarks.</para>
+          </listitem>
+          <listitem>
+            <para>
+            <link linkend="key_bindings">
+            key-bindings</link>.</para>
+          </listitem>
+          <listitem>
+            <para>
+            <link linkend="konfig-color">Colors</link>.</para>
+          </listitem>
+          <listitem>
+            <para>&amp;panel_profiles_lnk;</para>
+          </listitem>
+          <listitem>
+            <para>&amp;bookmark-manager_lnk;</para>
+          </listitem>
+          <listitem>
+            <para>&amp;mouse_selection_modes_lnk;</para>
+          </listitem>
+          <listitem>
+            <para>Many more features can be 
+            <link linkend="konfig-startup">configured the way you
+            like</link>.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+      <itemizedlist>
+        <title>&amp;krusader; extra's</title>
+        <listitem>
+          <para>&amp;useractions_lnk;</para>
+        </listitem>
+        <listitem>
+          <para>&amp;javascript_console_lnk;</para>
+        </listitem>
+        <listitem>
+          <para>&amp;color_profiles_lnk;</para>
+        </listitem>
+        <listitem>
+          <para>&amp;keybindigs_profiles_lnk;</para>
+        </listitem>
+      </itemizedlist>Upload/Download your favorite &amp;krusader;
+      configurations/extensions/plugins at
+      &amp;kde_files_url;!</para>
+    </listitem>
   </itemizedlist>
-
-
 </para>
-
-
-&dev_cvs_note;
-
-
-</chapter>
+<para>
+  <itemizedlist>
+    <title>New features in version CVS (the future 1.80.0
+    release)</title>
+    <listitem>
+      <para>Archive improvements 
+      <itemizedlist>
+        <listitem>
+          <para>
+          <link linkend="archives">Password support</link>for: arj,
+          ace, rar and zip. Passwords can be stored in
+          &amp;kwallet;</para>
+        </listitem>
+        <listitem>
+          <para>
+          <link linkend="archives">7-zip support</link>, by
+          external applications 7z and 7za.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <link linkend="archives">Autodetection support</link>,
+          allowing you to open "hidden archives" (&amp;eg;
+          &amp;openoffice; documents, wich is actually a zip
+          archive with an other filename extension)</para>
+        </listitem>
+        <listitem>
+          <para>Packing/unpacking are now in the background.</para>
+        </listitem>
+      </itemizedlist></para>
+    </listitem>
+    <listitem>
+      <para>&amp;useractions_lnk; improvements.</para>
+    </listitem>
+    <listitem>
+      <para>
+      <link linkend="konfig-advanced">Media button</link>.</para>
+    </listitem>
+    <listitem>
+      <para>Copy/Move: 
+      <link linkend="copying">preserve all attributes</link>(time,
+      owner, group).</para>
+    </listitem>
+    <listitem>
+      <para>
+      <link linkend="konfig-color">Dim the colors of the inactive
+      panel</link>.</para>
+    </listitem>
+    <listitem>
+      <para>Renaming a the filename without the extension, single
+      instance mode, start to system tray, check them out in 
+      <link linkend="konfigurator">Konfigurator</link></para>
+    </listitem>
+    <listitem>
+      <para>Atomic extensions (NOT DOCUMENTED YET).</para>
+    </listitem>
+    <listitem>
+      <para>Context menu for bookmarks and enable/disable special
+      bookmarks by right clicking on them.</para>
+    </listitem>
+    <listitem>
+      <para>Restyled 
+      <link linkend="menu-commands">MenuBar</link>.</para>
+    </listitem>
+    <listitem>
+      <para>&amp;termemu_lnk; improvements (NOT DOCUMENTED
+      YET).</para>
+    </listitem>
+    <listitem>
+      <para>&amp;synchronizer_lnk; improvements (NOT DOCUMENTED
+      YET).</para>
+    </listitem>
+    <listitem>
+      <para>Quick navigation improvements (NOT DOCUMENTED
+      YET)</para>
+    </listitem>
+    <listitem>
+      <para>.</para>
+    </listitem>
+    <listitem>
+      <para>Many bugfixes.</para>
+    </listitem>
+    <listitem>
+      <para>TODO ... NOT YET DESCRIBED IN THE HANDBOOK ...</para>
+    </listitem>
+    <listitem>
+      <para>NOTE: NOT ALL NEW FEATURES ARE DESCRIBED YET IN THE
+      HANDBOOK</para>
+    </listitem>
+    <listitem>
+      <para>THIS LIST IS INCOMPLTE ... If someone likes to
+      &amp;contribute_url; to this handbook, please contact Frank.
+      For more features, please read the &amp;changelog_url; and
+      &amp;cvsnews_url;.</para>
+    </listitem>
+  </itemizedlist>
+</para>&amp;dev_cvs_note;</chapter>
