@@ -571,8 +571,22 @@
       <varlistentry>
         <term>
           <menuchoice>
+            <guimenu>Edit</guimenu>
+            <guimenuitem>Calculate Occupied Space</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>
+          <link linkend="calculate">Calculate occupied space</link> of files and folders,
+          archives and remote filesystems.
+        </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Alt;<keycap>*</keycap></keycombo>
+              <keycombo action="simul">&Alt;<keycap>KP_Enter</keycap></keycombo>
             </shortcut>
             <guimenu>Edit</guimenu>
             <guimenuitem>Properties</guimenuitem>
@@ -640,6 +654,19 @@
           Allows you to install a custom filter on the &krusader; panel. Only files that match
           the filter pattern(s) and directories will be displayed. 
           Don't forget to deactivate the custom filter after use, or some files may not be visible.
+        </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>View</guimenu>
+            <guimenuitem>Select Remote Charset</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>
+              Selects the remote charset for &remote_connections_lnk;.
         </para>
         </listitem>
       </varlistentry>
@@ -803,6 +830,54 @@
         <listitem>
           <para>
           Opens the default Useractions and Useractions created by the user.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Equal panel-size</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>
+          Sets the ratio between the two panels to 50/50.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Edit as root</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>
+          Edit a file with kwrite using root permissions.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Mount</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>
+          Mount a new filesystem.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Enqueue in Amarok</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>
+          Append selected item(s) to Amarok playlist.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
