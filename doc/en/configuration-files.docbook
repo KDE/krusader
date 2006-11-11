@@ -1,5 +1,6 @@
-<appendix id="config_files">
-  <!-- **********************************************************************
+<appendix id = "config_files">
+
+<!-- **********************************************************************
                                configuration-files.docbook
                             +++++++++++++++++++++++++++++++++
   copyright            : (C) 2000, 2001, 2002, 2003, 2004, 2005, 2006
@@ -19,142 +20,79 @@
 * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
 * MA 02111-1307, USA.                                                     *
 *********************************************************************** -->
-  <title>Configuration files</title>
-  <para>This appendix gives an overview of the configuration files
-  used by &amp;krusader;.</para>
-  <para>
-    <emphasis role="bold">krusaderui.rc</emphasis>
-  </para>
-  <para>This file stores the users toolbar settings and the menu
-  structure. Tip: please read also the 
-  <link linkend="faqi_krusaderui_rc">krusaderui.rc
-  &amp;FAQ;</link>.</para>
-  <para>Location: 
-  <filename>$KDEDIR/share/apps/krusader/krusaderui.rc</filename>or 
-  <filename>
-  ~/.kde/share/apps/krusader/krusaderui.rc</filename></para>
-  <para>
-    <emphasis role="bold">krusaderrc</emphasis>
-  </para>
-  <para>This file stores the &amp;krusader; configuration.</para>
-  <para>Location: 
-  <filename>~/.kde/share/config/krusaderrc</filename></para>
-  <para>The following settings are &amp;eg; stored:</para>
-  <itemizedlist>
-    <listitem>
-      <para>Actions Toolbar</para>
-    </listitem>
-    <listitem>
-      <para>Archives</para>
-    </listitem>
-    <listitem>
-      <para>Colors</para>
-    </listitem>
-    <listitem>
-      <para>Dependencies</para>
-    </listitem>
-    <listitem>
-      <para>DiskUsage</para>
-    </listitem>
-    <listitem>
-      <para>DiskUsageViewer</para>
-    </listitem>
-    <listitem>
-      <para>General</para>
-    </listitem>
-    <listitem>
-      <para>HTML Settings</para>
-    </listitem>
-    <listitem>
-      <para>KFileDialog</para>
-    </listitem>
-    <listitem>
-      <para>KFileDialog Speedbar</para>
-    </listitem>
-    <listitem>
-      <para>KrDetailedViewLeft</para>
-    </listitem>
-    <listitem>
-      <para>KrDetailedViewRight</para>
-    </listitem>
-    <listitem>
-      <para>KrViewerWindow</para>
-    </listitem>
-    <listitem>
-      <para>KrViewerWindow Toolbar extraToolBar</para>
-    </listitem>
-    <listitem>
-      <para>Look&amp;Feel</para>
-    </listitem>
-    <listitem>
-      <para>Notification Messages</para>
-    </listitem>
-    <listitem>
-      <para>Panel Profiles</para>
-    </listitem>
-    <listitem>
-      <para>Private</para>
-    </listitem>
-    <listitem>
-      <para>Protocols</para>
-    </listitem>
-    <listitem>
-      <para>Search</para>
-    </listitem>
-    <listitem>
-      <para>Startup</para>
-    </listitem>
-    <listitem>
-      <para>Synchronize</para>
-    </listitem>
-    <listitem>
-      <para>Locate</para>
-    </listitem>
-    <listitem>
-      <para>SynchronizerProfile - 1</para>
-    </listitem>
-  </itemizedlist>
-  <para>
-    <emphasis role="bold">krbookmarks.xml</emphasis>
-  </para>
-  <para>This file stores the &amp;krusader; bookmarks and uses the
-  &amp;xbel_url; standard.</para>
-  <para>Location: 
-  <filename>
-  ~/.kde/share/apps/krusader/krbookmarks.xml</filename></para>
-  <para>
-    <emphasis role="bold">useractions.xml</emphasis>
-  </para>
-  <para>This file stores the &amp;useractions_lnk; configuration.
-  The file-structure is documented in doxygen-headers of
-  UserActionXML.</para>
-  <para>Location: 
-  <filename>
-  ~/.kde/share/apps/krusader/useractions.xml</filename></para>
-  <para>
-    <emphasis role="bold">useraction_examples.xml</emphasis>
-  </para>
-  <para>The default User-Actions provided by us. The file-structure
-  is documented in doxygen-headers of UserActionXML.</para>
-  <para>Location: 
-  <filename>
-  $KDEDIR/share/apps/krusader/useraction_examples.xml</filename></para>
-  <para>
-    <emphasis role="bold">foo.keymap</emphasis>
-  </para>
-  <para>Is a ini file that holds a 
-  <link linkend="configure-shortcuts">Key-binding profile</link>.
-  Until &amp;krusader;-1.70.0 this was a binary file,
-  &amp;krusader; is backwards compatible for importing this legacy
-  binary format.</para>
-  <para>Location: 
-  <filename>
-  $KDEDIR/share/apps/krusader/foo.keymap</filename></para>
-  <para>
-    <emphasis role="bold">foo.color</emphasis>
-  </para>
-  <para>Is a binary file that holds the 
-  <link linkend="konfig-color">Color Scheme</link>.</para>
-  <para>Location: 
-  <filename>$KDEDIR/share/apps/krusader/foo.color</filename></para>
+
+
+<title>Configuration files</title>
+<para>This appendix gives an overview of the configuration files used by &krusader;.</para>
+
+
+<para><emphasis role="bold">krusaderui.rc</emphasis></para>
+<para>This file stores the users toolbar settings and the menu structure.
+      Tip: please read also the <link linkend="faqi_krusaderui_rc">krusaderui.rc &FAQ;</link>.</para>
+<para>Location: <filename>$KDEDIR/share/apps/krusader/krusaderui.rc</filename> or
+      <filename>~/.kde/share/apps/krusader/krusaderui.rc</filename></para>
+
+
+
+<para><emphasis role="bold">krusaderrc</emphasis></para>
+<para>This file stores the &krusader; configuration.</para>
+<para>Location: <filename>~/.kde/share/config/krusaderrc</filename></para>
+
+<para>The following settings are &eg; stored:</para>
+<itemizedlist>
+    <listitem><para>Actions Toolbar</para></listitem>
+    <listitem><para>Archives</para></listitem>
+    <listitem><para>Colors</para></listitem>
+    <listitem><para>Dependencies</para></listitem>
+    <listitem><para>DiskUsage</para></listitem>
+    <listitem><para>DiskUsageViewer</para></listitem>
+    <listitem><para>General</para></listitem>
+    <listitem><para>HTML Settings</para></listitem>
+    <listitem><para>KFileDialog</para></listitem>
+    <listitem><para>KFileDialog Speedbar</para></listitem>
+    <listitem><para>KrDetailedViewLeft</para></listitem>
+    <listitem><para>KrDetailedViewRight</para></listitem>
+    <listitem><para>KrViewerWindow</para></listitem>
+    <listitem><para>KrViewerWindow Toolbar extraToolBar</para></listitem>
+    <listitem><para>Look&amp;Feel</para></listitem>
+    <listitem><para>Notification Messages</para></listitem>
+    <listitem><para>Panel Profiles</para></listitem>
+    <listitem><para>Private</para></listitem>
+    <listitem><para>Protocols</para></listitem>
+    <listitem><para>Search</para></listitem>
+    <listitem><para>Startup</para></listitem>
+    <listitem><para>Synchronize</para></listitem>
+    <listitem><para>Locate</para></listitem>
+    <listitem><para>SynchronizerProfile - 1</para></listitem>
+</itemizedlist>
+
+
+<para><emphasis role="bold">krbookmarks.xml</emphasis></para>
+<para>This file stores the &krusader; bookmarks and uses the &xbel_url; standard.</para>
+<para>Location: <filename>~/.kde/share/apps/krusader/krbookmarks.xml</filename></para>
+
+
+<para><emphasis role="bold">useractions.xml</emphasis></para>
+<para>This file stores the &useractions_lnk; configuration.
+      The file-structure is documented in doxygen-headers of UserActionXML.</para>
+<para>Location: <filename>~/.kde/share/apps/krusader/useractions.xml</filename></para>
+
+<para><emphasis role="bold">useraction_examples.xml</emphasis></para>
+<para>The default User-Actions provided by us. 
+      The file-structure is documented in doxygen-headers of UserActionXML.</para>
+<para>Location: <filename>$KDEDIR/share/apps/krusader/useraction_examples.xml</filename></para>
+
+<para><emphasis role="bold">foo.keymap</emphasis></para>
+<para>Is a ini file that holds a <link linkend="configure-shortcuts">Key-binding profile</link>.
+      Until &krusader;-1.70.0 this was a binary file, &krusader; is backwards compatible 
+      for importing this legacy binary format.</para>
+<para>Location: <filename>$KDEDIR/share/apps/krusader/foo.keymap</filename></para>
+
+
+<para><emphasis role="bold">foo.color</emphasis></para>
+<para>Is a binary file that holds the <link linkend="konfig-color">Color Scheme</link>.</para>
+<para>Location: <filename>$KDEDIR/share/apps/krusader/foo.color</filename></para>
+
+
 </appendix>
+

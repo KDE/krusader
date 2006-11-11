@@ -1,8 +1,5 @@
 <!-- <?xml version="1.0" ?> -->
-<!DOCTYPE 
-book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN"
-"dtd/kdex.dtd"
-[
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
 
 <!--
 Previous used Docbook
@@ -368,162 +365,152 @@ http://groups.google.com/group/krusader-devel/browse_thread/thread/d102adec2edcf
   <!ENTITY release-overview SYSTEM "release-overview.docbook">
   
 ]>
-<book lang="&amp;language;">
+
+<book lang="&language;">
 <bookinfo id="index">
-  <title>The Krusader Handbook</title>
-  <authorgroup>
-    <othercredit role="developer">
-      <firstname>Shie</firstname>
-      <surname>Erlich</surname>
-      <contrib>Author and initial Handbook author</contrib>
-      <affiliation>
-        <address>
-          <email>erlich@users.sourceforge.net</email>
-        </address>
-      </affiliation>
-    </othercredit>
-    <othercredit role="developer">
-      <firstname>Rafi</firstname>
-      <surname>Yanai</surname>
-      <contrib>Author and initial Handbook author</contrib>
-      <affiliation>
-        <address>
-          <email>yanai@users.sourceforge.net</email>
-        </address>
-      </affiliation>
-    </othercredit>
-    <othercredit role="developer">
-      <firstname>Dirk</firstname>
-      <surname>Eschler</surname>
-      <contrib>Webmaster &amp; i18n coordinator</contrib>
-      <affiliation>
-        <address>
-          <email>deschler@users.sourceforge.net</email>
-        </address>
-      </affiliation>
-    </othercredit>
-    <othercredit role="developer">
-      <firstname>Csaba</firstname>
-      <surname>Karai</surname>
-      <contrib>Developer</contrib>
-      <affiliation>
-        <address>
-          <email>ckarai@users.sourceforge.net</email>
-        </address>
-      </affiliation>
-    </othercredit>
-    <othercredit role="developer">
-      <firstname>Heiner</firstname>
-      <surname>Eichmann</surname>
-      <contrib>Developer</contrib>
-      <affiliation>
-        <address>
-          <email>h.eichmann@gmx.de</email>
-        </address>
-      </affiliation>
-    </othercredit>
-    <othercredit role="developer">
-      <firstname>Jonas</firstname>
-      <surname>B&#228;hr</surname>
-      <contrib>Developer</contrib>
-      <affiliation>
-        <address>
-          <email>jonas.baehr@web.de</email>
-        </address>
-      </affiliation>
-    </othercredit>
-    <!--
+<title>The Krusader Handbook</title>
+
+<authorgroup>
+  <othercredit role="developer">
+        <firstname>Shie</firstname><surname>Erlich</surname>
+        <contrib>Author and initial Handbook author</contrib>
+        <affiliation><address><email>erlich@users.sourceforge.net</email></address></affiliation>
+  </othercredit>
+  
+  <othercredit role="developer">
+        <firstname>Rafi</firstname><surname>Yanai</surname>
+        <contrib>Author and initial Handbook author</contrib>
+        <affiliation><address><email>yanai@users.sourceforge.net</email></address></affiliation>
+  </othercredit>
+  
+  <othercredit role="developer">
+        <firstname>Dirk</firstname><surname>Eschler</surname>
+        <contrib>Webmaster &amp; i18n coordinator</contrib>
+        <affiliation><address><email>deschler@users.sourceforge.net</email></address></affiliation>
+  </othercredit>
+  
+  <othercredit role="developer">
+        <firstname>Csaba</firstname><surname>Karai</surname>
+        <contrib>Developer</contrib>
+        <affiliation><address><email>ckarai@users.sourceforge.net</email></address></affiliation>
+  </othercredit>
+  
+  <othercredit role="developer">
+        <firstname>Heiner</firstname><surname>Eichmann</surname>
+        <contrib>Developer</contrib>
+        <affiliation><address><email>h.eichmann@gmx.de</email></address></affiliation>
+  </othercredit>
+  
+  <othercredit role="developer">
+        <firstname>Jonas</firstname><surname>B&auml;hr</surname>
+        <contrib>Developer</contrib>
+        <affiliation><address><email>jonas.baehr@web.de</email></address></affiliation>
+  </othercredit>
+  
+
+<!--
 Changed the <author> tag in favor for <othercredit role="developer"> for Frank since
 the <author><contrib> tag is not shown for the documentation author on the index page
 This is a workaround, i have no idea why the <author> tag doesn't show the <contrib> tag (= the title)
 on the index page.
 Frank.
 -->
-    <othercredit role="developer">
-      <firstname>Frank</firstname>
-      <surname>Schoolmeesters</surname>
-      <contrib>Documentation &amp; Marketing coordinator</contrib>
-      <affiliation>
-        <address>
-          <email>frank_schoolmeesters@yahoo.com</email>
-        </address>
-      </affiliation>
-    </othercredit>
-    <othercredit role="reviewer">
-      <firstname>Richard</firstname>
-      <surname>Holt</surname>
-      <contrib>Documentation &amp; Proofing</contrib>
-      <affiliation>
-        <address>
-          <email>richard.holt@gmail.com</email>
-        </address>
-      </affiliation>
-    </othercredit>
-    <othercredit role="reviewer">
-      <firstname>Matej</firstname>
-      <surname>Urban&amp;ccaron;i&amp;ccaron;</surname>
-      <contrib>Marketing &amp; Product Research</contrib>
-      <affiliation>
-        <address>
-          <email>matej.urban@gmail.com</email>
-        </address>
-      </affiliation>
-    </othercredit>
-  </authorgroup>
+
+  <othercredit role="developer">
+        <firstname>Frank</firstname>
+        <surname>Schoolmeesters</surname>
+        <contrib>Documentation &amp; Marketing coordinator</contrib>
+        <affiliation><address><email>frank_schoolmeesters@yahoo.com</email></address></affiliation>
+  </othercredit>
+
+  <othercredit role="reviewer">
+        <firstname>Richard</firstname><surname>Holt</surname>
+        <contrib>Documentation &amp; Proofing</contrib>
+        <affiliation><address><email>richard.holt@gmail.com</email></address></affiliation>
+  </othercredit>
+
+  <othercredit role="reviewer">
+        <firstname>Matej</firstname><surname>Urban&ccaron;i&ccaron;</surname>
+        <contrib>Marketing &amp; Product Research</contrib>
+        <affiliation><address><email>matej.urban@gmail.com</email></address></affiliation>
+  </othercredit>
+
+</authorgroup>      
+
   <copyright>
-    <year>2000</year>
-    <year>2001</year>
-    <year>2002</year>
-    <year>2003</year>
-    <holder>Rafi Yanai</holder>
-    <holder>Shie Erlich</holder>
+        <year>2000</year>
+        <year>2001</year>
+        <year>2002</year>
+        <year>2003</year>
+        <holder>Rafi Yanai</holder>
+        <holder>Shie Erlich</holder>
   </copyright>
+
   <copyright>
-    <year>2004</year>
-    <year>2005</year>
-    <year>2006</year>
-    <holder>Krusader Krew</holder>
+        <year>2004</year>
+        <year>2005</year>
+        <year>2006</year>
+        <holder>Krusader Krew</holder>
   </copyright>
-  <legalnotice>
-    <para>Permission is granted to copy, distribute and/or modify
-    this document under the terms of the 
-    <ulink url="http://www.gnu.org/copyleft/fdl.html">GNU Free
-    Documentation License</ulink>, Version 1.1 or any later version
-    published by the Free Software Foundation; with no Invariant
-    Sections, with no Front-Cover Texts, and with no Back-Cover
-    Texts. A copy of the license is included in the &amp;krusader;
-    sources.</para>
-  </legalnotice>
+
+  <legalnotice><para>Permission is granted to copy, distribute and/or modify this document under the terms of
+               the <ulink url="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License</ulink>, 
+               Version 1.1 or any later version published by the Free Software Foundation; 
+               with no Invariant Sections, with no Front-Cover Texts, and with no Back-Cover Texts. 
+               A copy of the license is included in the &krusader; sources.</para></legalnotice>
+
   <date>2006-11-06</date>
   <releaseinfo>1.80.0 "cvs repository"</releaseinfo>
-  <abstract>
-    <para>&amp;krusader; is an advanced, twin-panel
-    (commander-style) file-manager for KDE, and other desktops in
-    the *nix world</para>
-  </abstract>
-  <keywordset>
-    <keyword>KDE</keyword>
-    <keyword>krusader</keyword>
-    <keyword>commander</keyword>
-    <keyword>filemanager</keyword>
-    <keyword>twinpanel</keyword>
-    <keyword>linux</keyword>
-    <keyword>file</keyword>
-    <keyword>manager</keyword>
-    <keyword>dual pane</keyword>
-    <keyword>linux-commander</keyword>
-    <keyword>kde-commander</keyword>
-  </keywordset>
+
+   <abstract>
+   <para>&krusader; is an advanced, twin-panel (commander-style) file-manager for KDE, 
+         and other desktops in the *nix world</para>
+   </abstract>
+
+ <keywordset>
+  <keyword>KDE</keyword>
+  <keyword>krusader</keyword>
+  <keyword>commander</keyword>
+  <keyword>filemanager</keyword>
+  <keyword>twinpanel</keyword>
+  <keyword>linux</keyword>
+  <keyword>file</keyword>
+  <keyword>manager</keyword>
+  <keyword>dual pane</keyword>
+  <keyword>linux-commander</keyword>
+  <keyword>kde-commander</keyword>
+ </keywordset>
+
 </bookinfo>
+
 <!-- preface -->
-&amp;help; &amp;editors-note; 
-<!-- chapters -->&amp;introduction; &amp;features;
-&amp;user-interface; &amp;using-krusader; &amp;commands;
-&amp;keyboard; &amp;mouse; &amp;krusader-tools; &amp;konfigurator;
-&amp;faq; &amp;credits; 
+  &help;
+  &editors-note;
+
+<!-- chapters -->  
+  &introduction;
+  &features;
+  &user-interface;
+  &using-krusader;
+  &commands;
+  &keyboard;
+  &mouse;
+  &krusader-tools;
+  &konfigurator;
+  &faq;
+  &credits;
+ 
 <!-- appendices -->
-&amp;installation; &amp;configuration-files; &amp;useraction-xml;
-&amp;release-overview; 
-<!-- glossary -->&amp;glossary; 
+  &installation;
+  &configuration-files;
+  &useraction-xml;
+  &release-overview;
+
+<!-- glossary -->    
+  &glossary;
+
 <!-- index (automagically generated) -->
-&amp;documentation.index;</book>
+  &documentation.index;
+
+</book>
+

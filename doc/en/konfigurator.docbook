@@ -1,5 +1,6 @@
 <chapter id="konfigurator">
-  <!-- **********************************************************************
+
+<!-- **********************************************************************
                             konfigurator.docbook
                           ++++++++++++++++++++++++
   copyright            : (C) 2000, 2001, 2002, 2003, 2004, 2005, 2006
@@ -19,27 +20,21 @@
 * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
 * MA 02111-1307, USA.                                                     *
 *********************************************************************** -->
-  <title>Konfigurator: &amp;krusader;'s Configuration
-  Center</title>
-  <indexterm>
-    <primary>Configure</primary>
-    <secondary>Krusader</secondary>
-  </indexterm>
-  <para>Konfigurator is &amp;krusader;'s configuration center. Here
-  you can modify the way &amp;krusader; does things and customize
-  it to your own needs. At any time, pressing the 
-  <guibutton>Apply</guibutton>button will apply the changes,
-  pressing 
-  <guibutton>Close</guibutton>will close Konfigurator, and pressing
-  
-  <guibutton>Defaults</guibutton>will re-apply &amp;krusader;'s
-  "factory" settings. Konfigurator is divided into pages, each
-  containing items related to that page. For some changes to the
-  &amp;GUI;, you will have to close and restart
-  &amp;krusader;.</para>
-  <sect1 id="konfig-startup">
-    <title>Startup</title>
-    <!-- OLD
+
+<title>Konfigurator: &krusader;'s Configuration Center</title>
+<indexterm><primary>Configure</primary><secondary>Krusader</secondary></indexterm>
+
+<para>Konfigurator is &krusader;'s configuration center. Here you can modify the way &krusader; does
+things and customize it to your own needs. At any time, pressing the <guibutton>Apply</guibutton> button
+will apply the changes, pressing <guibutton>Close</guibutton> will close Konfigurator, and pressing
+<guibutton>Defaults</guibutton> will re-apply &krusader;'s "factory" settings. Konfigurator is divided
+into pages, each containing items related to that page. For some changes to the &GUI;, you will have to close
+and restart &krusader;.</para>
+
+<sect1 id="konfig-startup">
+<title>Startup</title>
+
+<!-- OLD
 <screenshot>
   <screeninfo>Startup configuration</screeninfo>
   <mediaobject>
@@ -50,136 +45,97 @@
   </mediaobject>
 </screenshot>
 -->
-    <figure id="screenshot-kgstartup" float="1">
-      <title>Startup configuration</title>
-      <mediaobject>
-        <imageobject>
-          <imagedata fileref="kgstartup.png" />
-        </imageobject>
-        <textobject>
-          <phrase>Startup configuration</phrase>
-        </textobject>
-      </mediaobject>
-    </figure>
-    <para>The startup page determines the way that &amp;krusader;
-    looks (and works) when it is launched. It is divided into two
-    main parts:</para>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>General</guilabel>
-        </term>
-        <listitem>
-          <itemizedlist>
-            <listitem>
-              <para>
-              <guilabel>Startup Profile</guilabel>: Starts the
-              selected 
-              <link linkend="panel_profiles">Panel profile</link>at
-              startup. 
-              <guilabel>&lt;Last session&gt;</guilabel>is a special
-              Panel Profile, it is saved automaticly when closing
-              &amp;krusader;.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Show splashscreen</guilabel>: Display a
-              splashscreen when starting &amp;krusader;.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Single Instance Mode</guilabel>: Only one
-              Krusader instance is allowed to run.</para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <guilabel>User Interface</guilabel>
-        </term>
-        <listitem>
-          <para>Determine which parts of the user interface are
-          visible after startup. 
-          <itemizedlist>
-            <listitem>
-              <para>
-              <guilabel>Save settings on exit</guilabel>: if
-              checked, restore the user interface components to
-              their condition when last shutdown.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Show toolbar</guilabel>: if checked,
-              &amp;main_toolbar_lnk; will be visible after
-              startup.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Show statusbar</guilabel>: if checked, the
-              &amp;statusbar_lnk; will be visible after
-              startup.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Show function keys</guilabel>: if checked,
-              the &amp;fnkeybar_lnk; will be visible after
-              startup.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Show command line</guilabel>: if checked,
-              the &amp;cmdline_lnk; will be visible after
-              startup.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Show terminal emulator</guilabel>: if
-              checked, the &amp;termemu_lnk; will be visible after
-              startup.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Save last position, size and panel
-              settings</guilabel>: when launched, &amp;krusader;
-              will resize itself to the size it was when last
-              shutdown. &amp;krusader; will also appear in the same
-              location on the screen, having panels sorted and
-              aligned as they were. If this option is unchecked,
-              you can use the menu 
-              <emphasis role="bold">
-                <menuchoice>
-                  <guimenu>Settings</guimenu>
-                  <guimenuitem>Save Position</guimenuitem>
-                </menuchoice>
-              </emphasis>option to manually set &amp;krusader;'s
-              size and position at startup.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Start to tray</guilabel>: if checked,
-              &amp;krusader; starts to tray (if minimize to tray is
-              set), without showing the main window.</para>
-            </listitem>
-          </itemizedlist></para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </sect1>
-  <sect1 id="konfig-looknfeel">
-    <title>Look &amp; Feel</title>
-    <para>Here you can determine the look &amp; feel of things -
-    which basically means fine-tuning the application to your
-    needs. The page is divided into five tabs: 
-    <guilabel>Operation</guilabel>, 
-    <guilabel>Panel</guilabel>, 
-    <guilabel>Toolbar</guilabel>, 
-    <guilabel>Key-bindings</guilabel>and 
-    <guilabel>Panel Toolbar</guilabel>. Since 
-    <guilabel>Toolbar</guilabel>and 
-    <guilabel>Key-bindings</guilabel>are &amp;kde; standard tools,
-    we'll focus on the other sections:</para>
-    <!-- OLD
+
+<figure id="screenshot-kgstartup" float="1">
+<title>Startup configuration</title>
+<mediaobject>
+<imageobject><imagedata fileref="kgstartup.png"/></imageobject>
+<textobject><phrase>Startup configuration</phrase></textobject>
+</mediaobject>
+</figure>
+
+<para>The startup page determines the way that &krusader; looks (and works) when it is launched.
+       It is divided into two main parts:</para>
+
+<variablelist>
+<varlistentry><term><guilabel>General</guilabel></term>
+   <listitem>
+   <itemizedlist>
+    <listitem><para>
+              <guilabel>Startup Profile</guilabel> : 
+                        Starts the selected <link linkend="panel_profiles">Panel profile</link> at startup.
+                        <guilabel>&lt;Last session&gt;</guilabel> is a special Panel Profile,
+                        it is saved automaticly when closing &krusader;.
+              </para></listitem>
+
+  <listitem><para><guilabel>Show splashscreen</guilabel>: 
+                   Display a splashscreen when starting &krusader;.
+                   </para></listitem> 
+
+  <listitem><para><guilabel>Single Instance Mode</guilabel>: 
+                   Only one Krusader instance is allowed to run.
+                   </para></listitem> 
+
+  </itemizedlist>
+  </listitem>
+ </varlistentry>
+
+<varlistentry><term><guilabel>User Interface</guilabel></term>
+  <listitem><para>Determine which parts of the user interface are visible after startup.
+  <itemizedlist>
+  <listitem><para><guilabel>Save settings on exit</guilabel>: if checked, 
+                  restore the user interface components to their condition when
+                  last shutdown.</para></listitem>
+                 
+  <listitem><para><guilabel>Show toolbar</guilabel>: if checked,
+                   &main_toolbar_lnk; will be visible after startup.</para></listitem>
+                   
+  <listitem><para><guilabel>Show statusbar</guilabel>: if checked, 
+            the &statusbar_lnk; will be visible after startup.</para></listitem>
+         
+  <listitem><para><guilabel>Show function keys</guilabel>: if checked, 
+         the &fnkeybar_lnk; will be visible after startup.
+         </para></listitem>
+         
+  <listitem><para><guilabel>Show command line</guilabel>: if checked, 
+         the &cmdline_lnk; will be visible after startup.
+         </para></listitem>
+         
+  <listitem><para><guilabel>Show terminal emulator</guilabel>: if checked, 
+            the &termemu_lnk; will be visible after startup.
+         </para></listitem>
+         
+  <listitem><para><guilabel>Save last position, size and panel settings</guilabel>: when launched, 
+            &krusader; will resize itself to the size it was when last shutdown.
+            &krusader; will also appear in the same location on the screen, having panels sorted 
+            and aligned as they were. If this option is unchecked, you can use the menu
+            <emphasis role="bold"><menuchoice><guimenu>Settings</guimenu>
+            <guimenuitem>Save Position</guimenuitem></menuchoice></emphasis> 
+            option to manually set &krusader;'s size and position at startup.
+          </para></listitem>
+
+  <listitem><para><guilabel>Start to tray</guilabel>: if checked, 
+            &krusader; starts to tray (if minimize to tray is set), without showing the main window.
+         </para></listitem>
+
+  </itemizedlist>
+  </para></listitem>
+   </varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="konfig-looknfeel">
+<title>Look &amp; Feel</title>
+
+<para>Here you can determine the look &amp; feel of things - which basically means fine-tuning the
+      application to your needs. The page is divided into five tabs: <guilabel>Operation</guilabel>,
+      <guilabel>Panel</guilabel>, <guilabel>Toolbar</guilabel>, <guilabel>Key-bindings</guilabel> and
+      <guilabel>Panel Toolbar</guilabel>. Since <guilabel>Toolbar</guilabel>
+       and <guilabel>Key-bindings</guilabel> are &kde; standard tools, we'll focus on
+       the other sections:</para>
+
+<!-- OLD
 <screenshot>
   <screeninfo>Look &amp; Feel configurtarion</screeninfo>
   <mediaobject>
@@ -190,7 +146,8 @@
   </mediaobject>
 </screenshot>
 -->
-    <!--HTML_PARSING
+
+<!--HTML_PARSING
 <figure id="screenshot-kglookfeel" float="1">
 <title>Look &amp; Feel configurtarion</title>
 <mediaobject>
@@ -199,377 +156,233 @@
 </mediaobject>
 </figure>
 HTML_PARSING-->
-    <sect2 id="konfig-looknfeel-operation">
-      <title>Operation</title>
-      <itemizedlist>
-        <title>
-          <guilabel>Look &amp; Feel</guilabel>
-        </title>
-        <listitem>
-          <para>
-          <guilabel>Warn on exit</guilabel>: if checked,
-          &amp;krusader; will display an "Are you sure?" warning
-          when you try to shut it down; otherwise, it will exit
-          without protest.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Minimize to tray</guilabel>: if checked, when
-          you minimize &amp;krusader;, it's icon will appear in the
-          system tray instead of the taskbar.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Automark Directories</guilabel>: when 
-          <link linkend="edit-menu">selecting a group of
-          files</link>(either by using Select Group or by using
-          Select All), &amp;krusader; will check this option. If
-          checked, then directories matching the select criteria
-          will also be marked; otherwise, only files will be
-          marked.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Rename selects extension</guilabel>: When
-          renaming a file, the whole text is selected. If you want
-          total-commander like renaming of just the name, without
-          extension, unmark this item.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Use fullpath tab names</guilabel>: if checked,
-          display the full path in the &amp;foldertabs_lnk;,
-          otherwise only the last part of the path will be
-          displayed.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Fullscreen terminal (mc-style)</guilabel>:
-          Terminal is shown instead of the &amp;krusader; window
-          (full screen).</para>
-        </listitem>
-        <!--
+
+
+<sect2 id="konfig-looknfeel-operation">
+<title>Operation</title>
+
+<itemizedlist><title><guilabel>Look &amp; Feel</guilabel></title>
+  <listitem><para><guilabel>Warn on exit</guilabel>: 
+                  if checked, &krusader; will display an "Are you 
+                  sure?" warning when you try to shut it down; otherwise, it will exit without 
+                  protest.
+                  </para></listitem>
+
+  <listitem><para><guilabel>Minimize to tray</guilabel>: 
+                  if checked, when you minimize &krusader;, it's icon will appear in the system 
+                  tray instead of the taskbar.
+                  </para></listitem>
+
+  <listitem><para><guilabel>Automark Directories</guilabel>: 
+                  when <link linkend="edit-menu">selecting a group of files</link> (either by
+                  using Select Group or by using Select All), &krusader; will check this option. 
+                  If checked, then directories matching the select criteria will also be marked; 
+                  otherwise, only files will be marked.
+                   </para></listitem>
+
+  <listitem><para><guilabel>Rename selects extension</guilabel>: 
+                  When renaming a file, the whole text is selected. If you want total-commander 
+                  like renaming of just the name, without extension, unmark this item.
+                   </para></listitem>
+
+ <listitem><para><guilabel>Use fullpath tab names</guilabel>: 
+                   if checked, display the full path in the &foldertabs_lnk;, otherwise only the 
+                   last part of the path will be displayed.
+                   </para></listitem>
+
+  <listitem><para><guilabel>Fullscreen terminal (mc-style)</guilabel>: 
+                  Terminal is shown instead of the &krusader; window (full screen).
+                   </para></listitem>
+
+<!--
   <listitem><para><guilabel>HTML viewers minimal font size</guilabel>: when viewing an HTML file
        (usually using <keycap>F3</keycap>), &krusader; invokes &kde;'s built-in HTML parser. This option
        sets the minimal font size for the viewer, and aligns other font sizes accordingly.
        </para></listitem> -->
-      </itemizedlist>
+
+</itemizedlist>
+
+
+<itemizedlist><title><guilabel>Quicksearch</guilabel></title>
+  <listitem><para><guilabel>New style Quicksearch</guilabel>: 
+                  The new <link linkend="quicksearch">Quicksearch</link> feature is used.
+            </para></listitem>
+
+  <listitem><para><guilabel>Case Sensitive Quicksearch</guilabel>: 
+                   When using the <link linkend="quicksearch">Quicksearch</link> feature: 
+                   if checked (the &UNIX; default), all files beginning with capital letters appear 
+                   before files beginning with non-capital letters; otherwise, all files beginning 
+                   with a specified letter (capital or otherwise) will appear together.
+                   </para></listitem>
+</itemizedlist>
+
+</sect2>
+
+<sect2 id="konfig-looknfeel-panel">
+<title>Panel</title>
+
+<itemizedlist>
+  <listitem><para><guilabel>Panel font</guilabel>: allows you to change the font used inside the file
+       lists.</para></listitem>
+  <listitem><para><guilabel>Filelist icon size</guilabel>: allows you to change the size of the icons in
+       the file lists. The available sizes are 16x16, 22x22, 32x32 and 48x48 pixels.</para></listitem>
+  <listitem><para><guilabel>Use icons in filenames</guilabel>: if checked,
+                    show the icons in filenames and folders.</para></listitem>
+  <listitem><para><guilabel>Human readable file size</guilabel>: if checked,
+                    the file size will be displayed in kB, Mb &etc; and not in bytes (default).</para></listitem>
+  <listitem><para>Since &krusader;-1.70.0 you need to configure the Columns with the right click menu 
+                  in the panel and not in Konfigurator.
+                  The left and right panel use their own Columns independently.
+                  The next Columns are available:
       <itemizedlist>
-        <title>
-          <guilabel>Quicksearch</guilabel>
-        </title>
-        <listitem>
-          <para>
-          <guilabel>New style Quicksearch</guilabel>: The new 
-          <link linkend="quicksearch">Quicksearch</link>feature is
-          used.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Case Sensitive Quicksearch</guilabel>: When
-          using the 
-          <link linkend="quicksearch">Quicksearch</link>feature: if
-          checked (the &amp;UNIX; default), all files beginning
-          with capital letters appear before files beginning with
-          non-capital letters; otherwise, all files beginning with
-          a specified letter (capital or otherwise) will appear
-          together.</para>
-        </listitem>
-      </itemizedlist>
-    </sect2>
-    <sect2 id="konfig-looknfeel-panel">
-      <title>Panel</title>
-      <itemizedlist>
-        <listitem>
-          <para>
-          <guilabel>Panel font</guilabel>: allows you to change the
-          font used inside the file lists.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Filelist icon size</guilabel>: allows you to
-          change the size of the icons in the file lists. The
-          available sizes are 16x16, 22x22, 32x32 and 48x48
-          pixels.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Use icons in filenames</guilabel>: if checked,
-          show the icons in filenames and folders.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Human readable file size</guilabel>: if
-          checked, the file size will be displayed in kB, Mb
-          &amp;etc; and not in bytes (default).</para>
-        </listitem>
-        <listitem>
-          <para>Since &amp;krusader;-1.70.0 you need to configure
-          the Columns with the right click menu in the panel and
-          not in Konfigurator. The left and right panel use their
-          own Columns independently. The next Columns are
-          available: 
-          <itemizedlist>
-            <listitem>
-              <para>
-                <guilabel>Name</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Ext</guilabel>: show the last part of the
-              filename (part after the last dot) in the Ext Column
-              and not as a complete filename in the Name Column
-              like e.g. &amp;konqueror; does.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Type</guilabel>: show the mimetype
-              field.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Size</guilabel>: show the size
-              field.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Modified</guilabel>: show the modified date
-              and time field.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Perms</guilabel>: show the full perissions
-              &amp;eg; "rwxr-xr-x" or as octal numbers '0755'
-              instead with enable/disable 
-              <guilabel>Nummeric Permissions</guilabel>in Look
-              &amp; Feel 
-              <guilabel>Operation</guilabel>Tab.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>rwx</guilabel>: show only the rights of the
-              current user &amp;eg; "-rw".</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Owner</guilabel>: show the owner
-              field.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Group</guilabel>: show the group
-              field.</para>
-            </listitem>
-          </itemizedlist></para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Show Hidden files</guilabel>: if checked,
-          &amp;krusader; will display the "dot-files" which are
-          otherwise hidden.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Case Sensitive Sorting</guilabel>: if checked
-          (the &amp;UNIX; default), all files beginning with
-          capital letters appear before files beginning with
-          non-capital letters; otherwise, all files beginning with
-          a specified letter (capital or otherwise) will appear
-          together.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Always sort dirs by name</guilabel>:
-          Directories are sorted by name, regardless of the sort
-          column.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Numeric permissions</guilabel>: Permission
-          column (Look &amp; Feel 
-          <guilabel>Panel</guilabel>Tab) shows octal numbers '0755'
-          instead of 'rwxr-xr-x'.</para>
-        </listitem>
-      </itemizedlist>
-      <tip>
-        <para>Uncheck the un-used columns, this allows more space
-        for columns in use.</para>
-      </tip>
-    </sect2>
-    <sect2 id="konfig-looknfeel-ptoolbar">
-      <title>Panel Toolbar</title>
-      <para>
-      <guilabel>Panel Toolbar visible</guilabel>: if checked,
-      &amp;krusader; will display the Panel Toolbar.</para>
-      <para>The buttons on the 
-      <guilabel>Panel Toolbar</guilabel>can be made visible or
-      hidden: 
-      <itemizedlist>
-        <listitem>
-          <para>
-          <guilabel>Clear Location Toolbar</guilabel>button: clears
-          the &amp;location_toolbar_lnk;</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Open</guilabel>button</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Equal (=)</guilabel>button</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Up (..)</guilabel>button</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Home (~)</guilabel>button</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Root (/)</guilabel>button</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Toggle-button for sync-browsing</guilabel>: if
-          checked, show the &amp;sync_browsing_lnk; button.</para>
-        </listitem>
-      </itemizedlist></para>
-    </sect2>
-    <sect2 id="konfig-selection_modes">
-      <title>Selection Mode</title>
-      <para>Here you can configure the selection modes. 
-      <itemizedlist id="mouse_selection_modes">
-        <title>
-          <guilabel>General</guilabel>
-        </title>
-        <listitem>
-          <para>
-          <guilabel>&amp;krusader; Mode</guilabel>: the way
-          &amp;krusader; has worked from day one. Both mouse keys
-          allow selecting files. To select more than one file, hold
-          the &amp;Ctrl; key and click the &amp;LMB;. Right-click
-          menu is invoked using a short click on the
-          &amp;RMB;.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Konqueror Mode</guilabel>: pressing the
-          &amp;LMB; selects files -- 
-          <!-- Openjade does not like an application element for "Konqueror" here -->
-          you can click and select multiple files. Right-click menu
-          is invoked using a short click on the &amp;RMB;.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Total commander Mode</guilabel>: pressing the
-          &amp;RMB; selects multiple files 
-          <!-- Openjade does not like an trademark element for "Total commander" here -->
-          and the right-click menu is invoked by 
-          <guilabel>pressing and holding</guilabel>the &amp;RMB;
-          The &amp;LMB; does not select, but sets the current file
-          without affecting the current selection.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Custom Selection Mode</guilabel>: create your
-          own selection style!</para>
-        </listitem>
-      </itemizedlist>
-      <itemizedlist>
-        <title>
-          <guilabel>Details</guilabel>
-        </title>
-        <listitem>
-          <para>
-          <guilabel>Double-click selects (classic)</guilabel>: A
-          single click on a file will select and focus, a double
-          click opens the file or steps into the directory.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Obey KDE's global selection policy</guilabel>:
-          pressing the &amp;LMB; selects files -- Use &amp;kde;'s
-          global setting: &amp;kde; Control Center -&gt;
-          Peripherals -&gt; Mouse.</para>
-        </listitem>
-        <listitem>
-          <para>Custom Selection Mode items: 
-          <itemizedlist>
-            <listitem>
-              <para>
-                <guilabel>Based on KDE's selection mode</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Left mouse button selects</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Left mouse button preserves
-                selection</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Shift/Ctrl-Left mouse button
-                selects</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Right mouse button selects</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Right mouse button preserves
-                selection</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Shift/Ctrl-Right mouse button
-                selects</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Spacebar moves down</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Spacebar calculates diskspace</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Insert moves down</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Right clicking pops context-menu
-                immediately</guilabel>
-              </para>
-            </listitem>
-          </itemizedlist></para>
-        </listitem>
-      </itemizedlist></para>
-    </sect2>
-  </sect1>
-  <sect1 id="konfig-color">
-    <title>Colors</title>
-    <para>This page configures the colors of the
-    &amp;list_panel_lnk; and the &amp;synchronizer_lnk;. The 
-    <guilabel>KDE default colors</guilabel>is the default color
-    configuration.</para>
-    <!-- OLD
+        <listitem><para><guilabel>Name</guilabel>
+                  </para></listitem>
+        <listitem><para><guilabel>Ext</guilabel>: 
+                    show the last part of the filename (part after the last dot) in the Ext Column and not
+                    as a complete filename in the Name Column like e.g. &konqueror; does.
+                  </para></listitem>
+        <listitem><para><guilabel>Type</guilabel>: 
+                    show the mimetype field.
+                   </para></listitem>
+        <listitem><para><guilabel>Size</guilabel>: 
+                    show the size field.
+                   </para></listitem>
+        <listitem><para><guilabel>Modified</guilabel>: 
+                    show the modified date and time field.
+                   </para></listitem>
+        <listitem><para><guilabel>Perms</guilabel>: 
+                    show the full perissions &eg; "rwxr-xr-x" or as octal numbers '0755' instead
+                    with enable/disable <guilabel>Nummeric Permissions</guilabel> in Look &amp; Feel 
+                    <guilabel>Operation</guilabel> Tab.
+                   </para></listitem>
+        <listitem><para><guilabel>rwx</guilabel>: 
+                    show only the rights of the current user &eg; "-rw".
+                   </para></listitem>
+        <listitem><para><guilabel>Owner</guilabel>: 
+                    show the owner field.
+                   </para></listitem>
+        <listitem><para><guilabel>Group</guilabel>: 
+                    show the group field.
+                   </para></listitem>
+       </itemizedlist>
+       </para></listitem>
+
+ <listitem><para><guilabel>Show Hidden files</guilabel>: 
+                  if checked, &krusader; will display the "dot-files" which are otherwise hidden.
+                  </para></listitem>
+
+  <listitem><para><guilabel>Case Sensitive Sorting</guilabel>: 
+                  if checked (the &UNIX; default), all files beginning with capital letters appear 
+                  before files beginning with non-capital letters; otherwise, all files beginning 
+                  with a specified letter (capital or otherwise) will appear together.
+                  </para></listitem>
+
+  <listitem><para><guilabel>Always sort dirs by name</guilabel>: 
+                   Directories are sorted by name, regardless of the sort column.
+                   </para></listitem> 
+
+ <listitem><para><guilabel>Numeric permissions</guilabel>: 
+                   Permission column (Look &amp; Feel <guilabel>Panel</guilabel> Tab) shows octal 
+                   numbers '0755' instead of 'rwxr-xr-x'.
+                   </para></listitem>
+
+</itemizedlist>
+
+<tip><para>Uncheck the un-used columns, this allows more space for columns in use.
+     </para></tip>
+
+</sect2>
+
+
+<sect2 id="konfig-looknfeel-ptoolbar">
+<title>Panel Toolbar</title>
+<para><guilabel>Panel Toolbar visible</guilabel>: if checked, &krusader; will display the Panel Toolbar.</para>
+
+<para>The buttons on the <guilabel>Panel Toolbar</guilabel> can be made visible or hidden:
+<itemizedlist>
+  <listitem><para><guilabel>Clear Location Toolbar</guilabel> button: clears the &location_toolbar_lnk;</para>
+             </listitem>
+  <listitem><para><guilabel>Open</guilabel> button</para>
+             </listitem>
+  <listitem><para><guilabel>Equal (=)</guilabel> button</para>
+             </listitem>
+  <listitem><para><guilabel>Up (..)</guilabel> button</para>
+             </listitem>
+  <listitem><para><guilabel>Home (~)</guilabel> button</para>
+             </listitem>
+  <listitem><para><guilabel>Root (/)</guilabel> button</para>
+             </listitem>
+  <listitem><para><guilabel>Toggle-button for sync-browsing</guilabel>: if checked,
+                            show the &sync_browsing_lnk; button.</para></listitem>
+</itemizedlist>
+</para>
+</sect2>
+
+
+<sect2 id="konfig-selection_modes">
+<title>Selection Mode</title>
+<para>Here you can configure the selection modes.
+
+<itemizedlist id="mouse_selection_modes"><title><guilabel>General</guilabel></title>
+      <listitem><para><guilabel>&krusader; Mode</guilabel>: the way &krusader; has worked from day one.
+         Both mouse keys allow selecting files. To select more than one file, hold the
+         &Ctrl; key and click the &LMB;. Right-click menu is invoked using a short click on
+         the &RMB;.</para></listitem>
+  <listitem><para><guilabel>Konqueror Mode</guilabel>: pressing the &LMB; selects files --
+  <!-- Openjade does not like an application element for "Konqueror" here -->
+          you can click and select multiple files.
+         Right-click menu is invoked using a short click on the &RMB;.
+         </para></listitem>
+  <listitem><para><guilabel>Total commander Mode</guilabel>: pressing the &RMB; selects multiple files
+  <!-- Openjade does not like an trademark element for "Total commander" here -->
+         and the right-click menu is invoked by <guilabel>pressing and holding</guilabel> the &RMB;
+         The &LMB; does not select, but sets the current file without affecting the current selection.
+         </para></listitem>
+
+  <listitem><para><guilabel>Custom Selection Mode</guilabel>: create your own selection style!
+           </para></listitem>
+</itemizedlist>
+
+<itemizedlist><title><guilabel>Details</guilabel></title>
+      <listitem><para><guilabel>Double-click selects (classic)</guilabel>: 
+      A single click on a file will select and focus, a double click opens the file or steps into the directory.
+      </para></listitem>
+
+  <listitem><para><guilabel>Obey KDE's global selection policy</guilabel>: pressing the &LMB; selects files --
+            Use &kde;'s global setting: &kde; Control Center -> Peripherals -> Mouse.
+         </para></listitem>
+
+  <listitem><para>Custom Selection Mode items: 
+        <itemizedlist>
+         <listitem><para><guilabel>Based on KDE's selection mode</guilabel></para></listitem>
+         <listitem><para><guilabel>Left mouse button selects</guilabel></para></listitem>
+         <listitem><para><guilabel>Left mouse button preserves selection</guilabel></para></listitem>
+         <listitem><para><guilabel>Shift/Ctrl-Left mouse button selects</guilabel></para></listitem>
+         <listitem><para><guilabel>Right mouse button selects</guilabel></para></listitem>
+         <listitem><para><guilabel>Right mouse button preserves selection</guilabel></para></listitem>
+         <listitem><para><guilabel>Shift/Ctrl-Right mouse button selects</guilabel></para></listitem>
+         <listitem><para><guilabel>Spacebar moves down</guilabel></para></listitem>
+         <listitem><para><guilabel>Spacebar calculates diskspace</guilabel></para></listitem>
+         <listitem><para><guilabel>Insert moves down</guilabel></para></listitem>
+         <listitem><para><guilabel>Right clicking pops context-menu immediately</guilabel></para></listitem>
+        </itemizedlist>
+         </para></listitem>
+</itemizedlist>
+
+</para>
+</sect2>
+
+</sect1>
+
+
+<sect1 id="konfig-color">
+<title>Colors</title>
+
+<para>This page configures the colors of the &list_panel_lnk; and the &synchronizer_lnk;.
+      The <guilabel>KDE default colors</guilabel> is the default color configuration.
+      </para>
+
+<!-- OLD
 <screenshot>
   <screeninfo>Colors configuration</screeninfo>
   <mediaobject>
@@ -580,7 +393,9 @@ HTML_PARSING-->
   </mediaobject>
 </screenshot>
 -->
-    <!--HTML_PARSING
+
+
+<!--HTML_PARSING
 <figure id="screenshot-kgcolor" float="1">
 <title>Colors configuration</title>
 <mediaobject>
@@ -589,224 +404,103 @@ HTML_PARSING-->
 </mediaobject>
 </figure>
 HTML_PARSING-->
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>General</guilabel>
-        </term>
-        <listitem>
-          <itemizedlist>
-            <listitem>
-              <para>
-              <guilabel>Use the default KDE colors</guilabel>: this
-              is the default, it uses &amp;kde;'s the color
-              settings of 
-              <command>kcontrol</command>.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Use Alternate Background color</guilabel>:
-              If checked, the 
-              <guilabel>Background</guilabel>color and the 
-              <guilabel>Alternate background</guilabel>color
-              alternates line by line. When you don't use the
-              &amp;kde; default colors, you can configure the
-              alternate colors in the 
-              <guilabel>Colors</guilabel>box.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Show current item even if not
-              focused</guilabel>: If checked, shows the last cursor
-              position in the non active list panel. This option is
-              only available when you don't use the &amp;kde;
-              default colors.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Dim the colors of the inactive
-              panel</guilabel>: If checked, the colors of the
-              inactive panel are calculated by a dim color and a
-              dim factor, these settings can be configured in the 
-              <guilabel>Inactive</guilabel>tab of the 
-              <guilabel>Colors</guilabel>box. This option is only
-              available when you don't use the &amp;kde; default
-              colors.</para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <guilabel>Colors</guilabel>
-        </term>
-        <listitem>
-          <para>Choose the colors the way you like. In the 
-          <guilabel>Preview</guilabel>section you can see the
-          result. The following items of the active and inactive
-          panel can be configured:</para>
-          <itemizedlist>
-            <listitem>
-              <para>
-                <guilabel>Foreground</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Directory foreground</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Executable foreground</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Symbolic link foreground</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Invalid symlink foreground</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Background</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Alternate background</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Marked foreground</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Marked background</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Alternate marked background</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Current foreground</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Marked current foreground</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Current background</guilabel>
-              </para>
-            </listitem>
-          </itemizedlist>
-          <para>The following items of the &amp;synchronizer_lnk;
-          can be configured:</para>
-          <itemizedlist>
-            <listitem>
-              <para>
-                <guilabel>Equals foreground</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Equals background</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Differing foreground</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Differing background</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Copy to left foreground</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Copy to left background</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Copy to right foreground</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Copy to left background</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Delete foreground</guilabel>
-              </para>
-            </listitem>
-            <listitem>
-              <para>
-                <guilabel>Delete background</guilabel>
-              </para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <guilabel>Preview</guilabel>
-        </term>
-        <listitem>
-          <para>Here you see a preview of the configured
-          colors.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <guilabel>Color schemes</guilabel>
-        </term>
-        <listitem>
-          <para>With the 
-          <guibutton>Import Color Scheme</guibutton>
-          <guibutton>Export Color Scheme</guibutton>buttons you can
-          load and save a Color Scheme profile. This allows that
-          &amp;krusader; can have the &amp;tcmd;, &amp;mc;,
-          foo-commander or your custom colors. The Color Schemes
-          are stored in 
-          <filename>$KDEDIR/share/apps/krusader</filename>, the 
-          <filename>foo.color</filename>is a binary file that holds
-          the Color Scheme.</para>
-          <tip>
-            <para>A &amp;mc; and &amp;tcmd; Color scheme file is
-            provided. Please 
-            <link linkend="help_krusader">upload your favorite
-            Color schemes</link>so that they become available for
-            the &amp;krusader; community. Thanks!</para>
-          </tip>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </sect1>
-  <sect1 id="konfig-general">
-    <title>General</title>
-    <para>Here you configure the basic operations.</para>
-    <!-- OLD
+
+
+<variablelist>
+ <varlistentry><term><guilabel>General</guilabel></term>
+  <listitem>
+  <itemizedlist>
+      <listitem><para><guilabel>Use the default KDE colors</guilabel>: this is the default,
+                 it uses &kde;'s the color settings of <command>kcontrol</command>.</para>
+      </listitem>
+
+      <listitem><para><guilabel>Use Alternate Background color</guilabel>:
+                     If checked, the <guilabel>Background</guilabel> color and the
+                     <guilabel>Alternate background</guilabel> color alternates line by line.
+                     When you don't use the &kde; default colors, you can configure the
+                     alternate colors in the <guilabel>Colors</guilabel> box.</para>
+      </listitem>
+
+  <listitem><para><guilabel>Show current item even if not focused</guilabel>:
+                    If checked, shows the last cursor position in the non active list panel.
+                    This option is only available when you don't use the &kde; default colors.</para>
+   </listitem>
+
+  <listitem><para><guilabel>Dim the colors of the inactive panel</guilabel>:
+                    If checked, the colors of the inactive panel are calculated by a dim color and
+                    a dim factor, these settings can be configured in the <guilabel>Inactive</guilabel> 
+                    tab of the <guilabel>Colors</guilabel> box.
+                    This option is only available when you don't use the &kde; default colors.</para>
+   </listitem>
+
+  </itemizedlist>
+  </listitem>
+ </varlistentry>
+
+ <varlistentry><term><guilabel>Colors</guilabel></term>
+  <listitem><para>Choose the colors the way you like. In the <guilabel>Preview</guilabel> section you can
+  see the result. The following items of the active and inactive panel can be configured:</para>
+  <itemizedlist>
+  <listitem><para><guilabel>Foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Directory foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Executable foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Symbolic link foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Invalid symlink foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Background</guilabel></para></listitem>
+  <listitem><para><guilabel>Alternate background</guilabel></para></listitem>
+  <listitem><para><guilabel>Marked foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Marked background</guilabel></para></listitem>
+  <listitem><para><guilabel>Alternate marked background</guilabel></para></listitem>
+  <listitem><para><guilabel>Current foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Marked current foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Current background</guilabel></para></listitem>
+  </itemizedlist>
+  <para>The following items of the &synchronizer_lnk; can be configured:</para>
+  <itemizedlist>
+  <listitem><para><guilabel>Equals foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Equals background</guilabel></para></listitem>
+  <listitem><para><guilabel>Differing foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Differing background</guilabel></para></listitem>
+  <listitem><para><guilabel>Copy to left foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Copy to left background</guilabel></para></listitem>
+  <listitem><para><guilabel>Copy to right foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Copy to left background</guilabel></para></listitem>
+  <listitem><para><guilabel>Delete foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Delete background</guilabel></para></listitem>
+  </itemizedlist>
+  </listitem>
+ </varlistentry>
+
+
+ <varlistentry><term><guilabel>Preview</guilabel></term>
+  <listitem><para>Here you see a preview of the configured colors.</para>
+  </listitem></varlistentry>
+
+ <varlistentry><term><guilabel>Color schemes</guilabel></term>
+  <listitem><para>With the <guibutton>Import Color Scheme</guibutton> <guibutton>Export Color Scheme</guibutton>
+      buttons you can load and save a Color Scheme profile.
+      This allows that &krusader; can have the &tcmd;, &mc;, foo-commander or your custom colors.
+      The Color Schemes are stored in <filename>$KDEDIR/share/apps/krusader</filename>,
+      the <filename>foo.color</filename> is a binary file that holds the Color Scheme.</para>
+
+      <tip><para>
+      A &mc; and &tcmd; Color scheme file is provided.
+      Please <link linkend="help_krusader">upload your favorite Color schemes</link> 
+      so that they become available for the &krusader; community. Thanks!
+      </para></tip>
+
+  </listitem></varlistentry>
+
+</variablelist>
+
+
+</sect1>
+
+<sect1 id="konfig-general">
+<title>General</title>
+<para>Here you configure the basic operations.</para>
+
+<!-- OLD
 <screenshot>
   <screeninfo>General configuration</screeninfo>
   <mediaobject>
@@ -817,7 +511,8 @@ HTML_PARSING-->
   </mediaobject>
 </screenshot>
 -->
-    <!--HTML_PARSING
+
+<!--HTML_PARSING
 <figure id="screenshot-kggeneral" float="1">
 <title>General configuration</title>
 <mediaobject>
@@ -826,82 +521,49 @@ HTML_PARSING-->
 </mediaobject>
 </figure>
 HTML_PARSING-->
-    <para>The following options determine basic aspects of
-    operation: 
-    <itemizedlist>
-      <listitem>
-        <para>
-        <guilabel>Delete files/Move to trash</guilabel>: when
-        &amp;krusader; deletes files it can either 'really' delete
-        them or move them to the trash folder, thereby making them
-        available via &amp;kde;'s trash.</para>
-      </listitem>
-      <listitem>
-        <para>
-        <guilabel>Use mimetype magic</guilabel>: mimetype magic is
-        a mechanism which allows &amp;krusader; to inspect the
-        files in the panels and determine their type even if the
-        file has no identifying extension. For example, if you take
-        an image file - 'image1.jpg' - and rename it to 'image1',
-        &amp;krusader; will still know it's an image file and work
-        with it accordingly. However, this mode of operation is
-        slower (while refreshing the panel, or changing
-        directories), so try &amp;krusader; with and without
-        mimetype magic and decide what's best for you.</para>
-      </listitem>
-      <listitem>
-        <para>
-        <guilabel>Editor</guilabel>: choose what editor will be
-        used when editing a file (via F4).</para>
-      </listitem>
-      <listitem>
-        <para>
-        <guilabel>Default viewer mode</guilabel>: eighter: generic,
-        text or hex mode.</para>
-      </listitem>
-      <listitem>
-        <para>
-        <guilabel>Viewer opens each file in a separate
-        window</guilabel>: use browsing tabs or not.</para>
-      </listitem>
-      <listitem>
-        <para>
-        <guilabel>Terminal</guilabel>: choose what terminal
-        emulator will be used when &amp;krusader; opens a console
-        window (via F2, or Commands-&gt;Terminal menu
-        option).</para>
-      </listitem>
-      <listitem>
-        <para>
-        <guilabel>Terminal Emulator sends Chdir on a panel
-        change</guilabel>: if unchecked, there will be no 
-        <command>cd</command>command sended to the Termainal
-        Emulator if the panelfolder changes.</para>
-      </listitem>
-      <listitem>
-        <para>
-        <guilabel>Temp Directory</guilabel>: this option selects
-        the base directory for &amp;krusader;'s temporary files.
-        The actual files will be created in separate directories
-        under the 'Temp directory', so that each user running
-        &amp;krusader; will have his/her own temporary
-        subdirectories under the chosen directory. 
-        <note>
-          <para>You must choose a temporary directory to which all
-          users running &amp;krusader; have full
-          permissions!</para>
-        </note></para>
-      </listitem>
-    </itemizedlist></para>
-  </sect1>
-  <sect1 id="konfig-advanced">
-    <title>Advanced</title>
-    <para>This page handles more advanced issues, so you should
-    double-check what you do here, since modifying things around
-    here 
-    <remark>makes &amp;krusader; a more powerful AND dangerous
-    tool.</remark></para>
-    <!-- OLD
+
+
+<para>The following options determine basic aspects of operation:
+
+<itemizedlist>
+  <listitem><para><guilabel>Delete files/Move to trash</guilabel>: when &krusader; deletes files it can
+       either 'really' delete them or move them to the trash folder, thereby making them available via
+       &kde;'s trash.</para></listitem>
+  <listitem><para><guilabel>Use mimetype magic</guilabel>: mimetype magic is a mechanism which allows
+       &krusader; to inspect the files in the panels and determine their type even if the file has no
+       identifying extension. For example, if you take an image file - 'image1.jpg' - and rename it to
+       'image1', &krusader; will still know it's an image file and work with it accordingly. However, this
+       mode of operation is slower (while refreshing the panel, or changing directories), so try &krusader;
+       with and without mimetype magic and decide what's best for you.</para></listitem>
+  <listitem><para><guilabel>Editor</guilabel>: choose what editor will be used when editing a file (via
+       F4).</para></listitem>
+  <listitem><para><guilabel>Default viewer mode</guilabel>: eighter: generic, text or hex mode.
+             </para></listitem>
+  <listitem><para><guilabel>Viewer opens each file in a separate window</guilabel>: 
+            use browsing tabs or not. 
+            </para></listitem>
+  <listitem><para><guilabel>Terminal</guilabel>: choose what terminal emulator will be used when &krusader;
+       opens a console window (via F2, or Commands->Terminal menu option).</para></listitem>
+  <listitem><para><guilabel>Terminal Emulator sends Chdir on a panel change</guilabel>: 
+            if unchecked, there will be no <command>cd</command> command sended to the Termainal Emulator if
+            the panelfolder changes.</para></listitem>
+  <listitem><para><guilabel>Temp Directory</guilabel>: this option selects the base directory for
+       &krusader;'s temporary files. The actual files will be created in separate directories under the
+       'Temp directory', so that each user running &krusader; will have his/her own temporary
+       subdirectories under the chosen directory.
+
+  <note><para>You must choose a temporary directory to which all users running &krusader;
+           have full permissions!</para></note></para></listitem>
+</itemizedlist></para>
+
+</sect1>
+
+<sect1 id="konfig-advanced">
+<title>Advanced</title>
+<para>This page handles more advanced issues, so you should double-check what you do here, since modifying
+       things around here <remark>makes &krusader; a more powerful AND dangerous tool.</remark></para>
+
+<!-- OLD
 <screenshot>
   <screeninfo>Advanced configuration</screeninfo>
   <mediaobject>
@@ -912,7 +574,9 @@ HTML_PARSING-->
   </mediaobject>
 </screenshot>
 -->
-    <!--HTML_PARSING
+
+
+<!--HTML_PARSING
 <figure id="screenshot-kgadvanced" float="1">
 <title>Advanced configuration</title>
 <mediaobject>
@@ -921,134 +585,82 @@ HTML_PARSING-->
 </mediaobject>
 </figure>
 HTML_PARSING-->
-    <para>The page is divided into three parts:</para>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>General</guilabel>
-        </term>
-        <listitem>
-          <itemizedlist>
-            <listitem>
-              <para>
-              <guilabel>Preserve attributes for local copy/move
-              (slower)</guilabel>: If checked, &amp;krusader; will
-              try to preserve all attributes (time, owner, group)
-              of the local files according to the source one
-              depending on your 
-              <link linkend="copying">permissions</link>.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Automount filesystems</guilabel>: this
-              makes &amp;krusader; try to mount a filesystem before
-              entering it. For example, if you click on 
-              <filename class="directory">/mnt/cdrom</filename>(and
-              
-              <filename class="directory">
-              /mnt/cdrom</filename>appears in 
-              <filename class="directory">/etc/fstab</filename>as a
-              mount point), &amp;krusader; will check if it is
-              mounted. If not, it will try and mount it for you and
-              then enter, so that you'd see the contents of your
-              cdrom. Note, however, that &amp;krusader; will NOT
-              unmount when exiting 
-              <filename class="directory">
-              /mnt/cdrom</filename>.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Don't use KDE's media protocol for the
-              Media button (if it's buggy or missing)</guilabel>:
-              If checked, &amp;krusader; won't use &amp;kde;'s
-              media protocol for the 
-              <link linkend="list_panel">Media button</link>. Use
-              this open when the media protocol is buggy (in some
-              older &amp;kde; versions) or if you have no kdebase
-              package installed on your system.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>MountMan won't (un)mount the following
-              mount-points</guilabel>: If you have filesystems that
-              you don't want to accidentally unmount (or mount)
-              then enter a list of mountpoints separated by commas
-              (&amp;eg; 
-              <literal>/, /boot, /tmp</literal>) and
-              &amp;mountman_lnk; won't try to (un)mount
-              them.</para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <guilabel>Confirmations</guilabel>
-        </term>
-        <listitem>
-          <para>By checking the options in this section,
-          &amp;krusader; will ask for confirmation before doing a
-          specific action; otherwise, the following actions will be
-          done without warning:</para>
-          <itemizedlist>
-            <listitem>
-              <para>deleting non empty directorie(s)</para>
-            </listitem>
-            <listitem>
-              <para>deleting file(s)</para>
-            </listitem>
-            <listitem>
-              <para>copying file(s)</para>
-            </listitem>
-            <listitem>
-              <para>moving file(s)</para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <guilabel>Fine-Tuning</guilabel>
-        </term>
-        <listitem>
-          <itemizedlist>
-            <listitem>
-              <para>
-              <guilabel>Icon Cache Size</guilabel>: &amp;krusader;
-              uses an icon cache, so it won't have to reload icons
-              that were already used before. Of course, as the
-              cache grows bigger, it can store more icons and
-              further speed operations, but the memory footprint of
-              &amp;krusader; will be bigger.</para>
-            </listitem>
-            <listitem>
-              <para>
-              <guilabel>Arguments of updatedb</guilabel>: sets
-              additional arguments for 
-              <command>updatedb</command>, please read the manpages
-              for more information.</para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </sect1>
-  <sect1 id="konfig-archives">
-    <title>Archives</title>
-    <para>This page handles the way &amp;krusader; works with
-    archives. In the 
-    <guilabel>General</guilabel>section you'll see a list of
-    archive formats. Some are checked and some are grayed-out. The
-    ones that are available (not grayed-out) are supported by
-    &amp;krusader;. If you check them, then &amp;krusader; will
-    handle them transparently and let you open them as folders;
-    otherwise, &amp;krusader; will attempt to invoke an application
-    which opens that type of archive. If a certain archive is
-    grayed-out, it means that &amp;krusader; couldn't find the
-    appropriate executables in the configured path. The next
-    archives are supported: ace, arj, bzip2, deb, gzip, iso, lha,
-    rar, rpm, tar, zip and 7-zip.</para>
-    <!-- OLD
+
+
+<para>The page is divided into three parts:</para>
+
+<variablelist>
+<varlistentry><term><guilabel>General</guilabel></term>
+  <listitem>
+  <itemizedlist>
+  <listitem><para><guilabel>Preserve attributes for local copy/move (slower)</guilabel>: 
+                  If checked, &krusader; will try to preserve all attributes (time, owner, group) 
+                  of the local files according to the source one depending on your
+                  <link linkend="copying">permissions</link>.
+                  </para></listitem>
+  <listitem><para><guilabel>Automount filesystems</guilabel>: this makes &krusader; try to mount a
+        filesystem before entering it. For example, if you click on
+        <filename class="directory">/mnt/cdrom</filename>
+        (and <filename class="directory">/mnt/cdrom</filename> appears in
+        <filename class="directory">/etc/fstab</filename> as a mount point), &krusader; will check if it
+        is mounted. If not, it will try and mount it for you and then enter, so that you'd see the contents
+        of your cdrom. Note, however, that &krusader;  will NOT unmount when exiting
+        <filename class="directory">/mnt/cdrom</filename>.
+         </para></listitem>
+  
+    <listitem><para><guilabel>Don't use KDE's media protocol for the Media button 
+                    (if it's buggy or missing)</guilabel>:
+                    If checked, &krusader; won't use  &kde;'s media protocol for the
+                    <link linkend="list_panel">Media button</link>. Use this open when
+                    the media protocol is buggy (in some older &kde; versions)
+                    or if you have no kdebase package installed on your system.
+         </para></listitem>
+
+  <listitem><para><guilabel>MountMan won't (un)mount the following mount-points</guilabel>:
+            If you have filesystems that you don't want to accidentally unmount (or mount) then
+            enter a list of mountpoints separated by commas
+            (&eg; <literal>/, /boot, /tmp</literal>) and &mountman_lnk; won't try to (un)mount them.
+         </para></listitem>
+  </itemizedlist>
+  </listitem>
+</varlistentry>
+
+<varlistentry><term><guilabel>Confirmations</guilabel></term>
+  <listitem><para>By checking the options in this section, &krusader; will ask for confirmation
+       before doing a specific action; otherwise, the following actions will be done without warning:</para>
+       <itemizedlist>
+           <listitem><para>deleting non empty directorie(s)</para></listitem>
+           <listitem><para>deleting file(s)</para></listitem>
+           <listitem><para>copying file(s)</para></listitem>
+           <listitem><para>moving file(s)</para></listitem>
+       </itemizedlist>
+  </listitem></varlistentry>
+
+<varlistentry><term><guilabel>Fine-Tuning</guilabel></term>
+  <listitem><itemizedlist>
+  <listitem><para><guilabel>Icon Cache Size</guilabel>: &krusader; uses an icon cache, so it won't have to
+      reload icons that were already used before. Of course, as the cache grows bigger, it can store more
+      icons and further speed operations, but the memory footprint of &krusader; will be
+      bigger.</para></listitem>
+  <listitem><para><guilabel>Arguments of updatedb</guilabel>: sets additional arguments for
+                    <command>updatedb</command>, please read the manpages for more information.</para></listitem>
+  </itemizedlist>
+  </listitem></varlistentry>
+
+</variablelist>
+</sect1>
+
+<sect1 id="konfig-archives">
+<title>Archives</title>
+<para>This page handles the way &krusader; works with archives. In the <guilabel>General</guilabel> section
+you'll see a list of archive formats. Some are checked and some are grayed-out. The ones that are available
+(not grayed-out) are supported by &krusader;. If you check them, then &krusader; will handle them transparently
+and let you open them as folders; otherwise, &krusader; will attempt to invoke an application which opens that
+type of archive. If a certain archive is grayed-out, it means that &krusader; couldn't find the appropriate
+executables in the configured path.
+The next archives are supported: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip.</para>
+
+<!-- OLD
 <screenshot>
   <screeninfo>Archives configuration</screeninfo>
   <mediaobject>
@@ -1059,7 +671,8 @@ HTML_PARSING-->
   </mediaobject>
 </screenshot>
 -->
-    <!--HTML_PARSING
+
+<!--HTML_PARSING
 <figure id="screenshot-kgarchives" float="1">
 <title>Archives configuration</title>
 <mediaobject>
@@ -1068,610 +681,256 @@ HTML_PARSING-->
 </mediaobject>
 </figure>
 HTML_PARSING-->
-    <para>If you've installed a certain archive application (let's
-    say 
-    <command>arj</command>) and want &amp;krusader; to know about
-    it, just click the 
-    <guibutton>Auto Configure</guibutton>button. &amp;krusader;
-    will search for all supported executables and print a report
-    listing the archive formats that can be handled. If all went
-    well the new archive should be available and checked.</para>
-    <note>
-      <para>Please install new packagers to your 
-      <envar>PATH</envar>(&amp;ie;: 
-      <filename>/usr/bin</filename>or 
-      <filename>/usr/local/bin</filename>&amp;etc;)</para>
-    </note>
-    <para>The full path of the packagers is stored in the
-    &amp;konfigdependencie_lnk; (&amp;eg; to handle ZIP archives,
-    &amp;krusader; needs the 
-    <command>unzip</command>and 
-    <command>zip</command>executables). It's possible that you need
-    to configure manually the mimes to the protocols in the
-    &amp;konfigprotocol_lnk;.</para>
-    <para>
-      <guilabel>Fine-Tuning</guilabel>
-      <itemizedlist>
-        <listitem>
-          <para>
-          <guilabel>Allow moving into archives</guilabel>: this
-          option allows you to move files into an archive (as
-          opposed to just copying into the archive). The down side
-          is that if a power failure occurs during the process, the
-          files that were moved might already be deleted, but not
-          yet packed into the archive. 
-          <note>
-            <para>If such thing happens, the file(s) are NOT LOST.
-            They were actually moved into a subfolder in the
-            &amp;krusader;'s 
-            <link linkend="konfig-general">temp directory</link>.
-            You can search that directory and find your files, safe
-            and sound.</para>
-          </note></para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Test archives when finished packing</guilabel>:
-          this option automatically runs a test on a newly packed
-          archive. It is safer, but takes longer.</para>
-        </listitem>
-      </itemizedlist>
-    </para>
-  </sect1>
-  <sect1 id="konfig-dependencies">
-    <title>Dependencies page</title>
-    <para>This page configures the full path of the external
-    applications. It is even possible to configure the full path of
-    &amp;krusader;!</para>
-    <para>
-      <emphasis role="bold">General tab</emphasis>
-    </para>
-    <para>Here you can configure the full path of the following
-    external applications: 
-    <informaltable>
-      <tgroup cols="2">
-        <tbody>
-          <row>
-            <entry>application</entry>
-            <entry>configurable full path</entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>df</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/bin/df</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>eject</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/eject</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>kdesu</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/kdesu</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>kget</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/kget</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>kmail</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/kmail</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>diff utility</para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/kompare</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <command>krename</command>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/krename</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>krusader</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/krusader</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>locate</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/locate</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>mount</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/bin/mount</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>umount</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/bin/umount</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>updatedb</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/updatedb</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-        </tbody>
-      </tgroup>
-    </informaltable></para>
-    <tip>
-      <para>By default &amp;kompare; (part of the kdebase package)
-      is used as external diff utility but you can also use your
-      favorite diff utility &amp;eg; &amp;xxdiff_url; or
-      &amp;kdiff3_url; , just fill in the full path and
-      enjoy.</para>
-    </tip>
-    <para>
-      <emphasis role="bold">Packers tab</emphasis>
-    </para>
-    <para>Here you can configure the full path of the following
-    external packers, &amp;krusader; offers also a 
-    <link linkend="konfig-archives">auto configure tool</link>for
-    packagers. 
-    <informaltable>
-      <tgroup cols="2">
-        <tbody>
-          <row>
-            <entry>packer</entry>
-            <entry>configurable full path</entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>7z</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>usr/bin/7z</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>arj</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>usr/bin/arj</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>bzip2</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>usr/bin/bzip2</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>cpio</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/bin/cpio</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>dpkg</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/bin/dpkg</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>gzip</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/gzip</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>lha</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/lha</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>rar</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/rar</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>tar</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/bin/tar</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>unace</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/unace</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>unarj</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/unarj</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>unrar</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/unrar</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>unzip</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/unzip</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>zip</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/zip</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-        </tbody>
-      </tgroup>
-    </informaltable></para>
-    <note>
-      <para>It is possible that unace doesn't work, but please
-      don't blame us. ACE doesn't want, that other programs could
-      cooperate with it. Unace has closed source, and they wrote
-      some additional lines, that if the stdin is redirected to
-      somewhere else, unace gets into infinite loop. It works with
-      the same manner as 'su', where you cannot enter the password
-      only from the stdin. &amp;krusader; &gt;= 1-51 emulates the
-      command line environment for being able to cooperate with
-      unace, but we noticed that unace always changes its output's
-      format from release to release, making the cooperation almost
-      impossible.</para>
-    </note>
-    <para>
-      <emphasis role="bold">Checksum Utilities tab</emphasis>
-    </para>
-    <para>Here you can configure the full path of the following
-    external 
-    <link linkend="checksum">Checksum Utilities</link>: 
-    <informaltable>
-      <tgroup cols="2">
-        <tbody>
-          <row>
-            <entry>Checksum Utilities</entry>
-            <entry>configurable full path</entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>md5sum</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/md5sum</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>sha1sum</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/sha1sum</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>md5deep</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/md5deep</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>sha1deep</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/sha1deep</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>sha256deep</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/sha256deep</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>tigerdeep</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/tigerdeep</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>whirlpooldeep</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/whirlpooldeep</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <command>cfv</command>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <filename class="directory">
-                  <replaceable>/usr/bin/cfv</replaceable>
-                </filename>
-              </para>
-            </entry>
-          </row>
-        </tbody>
-      </tgroup>
-    </informaltable></para>
-  </sect1>
-  <sect1 id="konfig-useractions">
-    <title>UserActions</title>
-    <para>Here you can configure the Terminal for UserActions and
-    the font for the output-collection. The default terminal is 
-    <filename>konsole --noclose -e</filename>To set up, configure
-    and manage your UserActions use ActionMan
-    (&amp;useractions_lnk; url).</para>
-    <!-- OLD
+
+
+<para>If you've installed a certain archive application (let's say <command>arj</command>) and want &krusader;
+to know about it, just click the <guibutton>Auto Configure</guibutton> button. &krusader; will search for all
+supported executables and print a report listing the archive formats that can be handled. If all went well the
+new archive should be available and checked.</para>
+
+<note><para>Please install new packagers to your <envar>PATH</envar> (&ie;: <filename>/usr/bin</filename> or
+             <filename>/usr/local/bin</filename> &etc;)</para></note>
+
+<para>The full path of the packagers is stored in the &konfigdependencie_lnk; 
+      (&eg; to handle ZIP archives, &krusader; needs the <command>unzip</command> and 
+      <command>zip</command> executables).
+      It's possible that you need to configure manually the mimes to the protocols in the 
+      &konfigprotocol_lnk;.</para>
+
+<para><guilabel>Fine-Tuning</guilabel>
+  <itemizedlist>
+    <listitem><para><guilabel>Allow moving into archives</guilabel>: this option allows you to move files
+      into an archive (as opposed to just copying into the archive). The down side is that if a power
+      failure occurs during the process, the files that were moved might already be deleted, but not yet
+      packed into the archive.
+    <note><para> If such thing happens, the file(s) are NOT LOST. They were actually moved into a subfolder in the
+    &krusader;'s <link linkend="konfig-general">temp directory</link>.
+    You can search that directory and find your files, safe and sound.
+    </para></note></para></listitem>
+    <listitem><para><guilabel>Test archives when finished packing</guilabel>: this option automatically
+       runs a test on a newly packed archive. It is safer, but takes longer.</para></listitem>
+  </itemizedlist></para>
+
+</sect1>
+
+<sect1 id="konfig-dependencies">
+<title>Dependencies page</title>
+
+<para>This page configures the full path of the external applications.
+       It is even possible to configure the full path of &krusader;!</para>
+
+
+<para><emphasis role="bold">General tab</emphasis></para>
+<para>Here you can configure the full path of the following external applications:
+<informaltable>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry>application</entry>
+<entry>configurable full path</entry>
+</row>
+<row>
+<entry><para><command>df</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/bin/df</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>eject</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/eject</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>kdesu</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/kdesu</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>kget</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/kget</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>kmail</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/kmail</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para>diff utility</para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/kompare</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><command>krename</command></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/krename</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>krusader</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/krusader</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>locate</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/locate</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>mount</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/bin/mount</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>umount</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/bin/umount</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>updatedb</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/updatedb</replaceable></filename></para></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</para>
+
+
+
+<tip><para>By default &kompare; (part of the kdebase package) is used as external diff utility but
+           you can also use your favorite diff utility &eg; &xxdiff_url; or &kdiff3_url; , 
+           just fill in the full path and enjoy.</para></tip>
+
+<para><emphasis role="bold">Packers tab</emphasis></para>
+<para>Here you can configure the full path of the following external packers,
+      &krusader; offers also a <link linkend="konfig-archives">auto configure tool</link> for packagers.
+<informaltable>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry>packer</entry>
+<entry>configurable full path</entry>
+</row>
+<row>
+<entry><para><command>7z</command></para></entry>
+<entry><para><filename class="directory"><replaceable>usr/bin/7z</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>arj</command></para></entry>
+<entry><para><filename class="directory"><replaceable>usr/bin/arj</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>bzip2</command></para></entry>
+<entry><para><filename class="directory"><replaceable>usr/bin/bzip2</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>cpio</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/bin/cpio</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>dpkg</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/bin/dpkg</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>gzip</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/gzip</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>lha</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/lha</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>rar</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/rar</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>tar</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/bin/tar</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>unace</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/unace</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>unarj</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/unarj</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>unrar</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/unrar</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>unzip</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/unzip</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>zip</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/zip</replaceable></filename></para></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</para>
+
+
+<note><para>
+It is possible that unace doesn't work, but please don't blame us.
+ACE doesn't want, that other programs could cooperate with it. 
+Unace has closed source, and they wrote some additional lines, that if the stdin is redirected 
+to somewhere else, unace gets into infinite loop. 
+It works with the same manner as 'su', where you cannot enter the password only from the stdin. 
+&krusader; >= 1-51 emulates the command line environment for being able to cooperate with unace,
+but we noticed that unace always changes its output's format from release to release, 
+making the cooperation almost impossible.
+</para></note>
+
+<para><emphasis role="bold">Checksum Utilities tab</emphasis></para>
+<para>Here you can configure the full path of the following external
+      <link linkend="checksum">Checksum Utilities</link>:
+<informaltable>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry>Checksum Utilities</entry>
+<entry>configurable full path</entry>
+</row>
+<row>
+<entry><para><command>md5sum</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/md5sum</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>sha1sum</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/sha1sum</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>md5deep</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/md5deep</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>sha1deep</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/sha1deep</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>sha256deep</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/sha256deep</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>tigerdeep</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/tigerdeep</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>whirlpooldeep</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/whirlpooldeep</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>cfv</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/cfv</replaceable></filename></para></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</para>
+
+
+</sect1>
+
+<sect1 id="konfig-useractions">
+<title>UserActions</title>
+
+<para>Here you can configure the Terminal for UserActions and the font for the output-collection.
+      The default terminal is <filename>konsole --noclose -e</filename>
+      To set up, configure and manage your UserActions use ActionMan (&useractions_lnk; url).
+</para>
+
+
+<!-- OLD
 <screenshot>
   <screeninfo>Useractions configuration</screeninfo>
   <mediaobject>
@@ -1682,7 +941,8 @@ HTML_PARSING-->
   </mediaobject>
 </screenshot>
 -->
-    <!--HTML_PARSING
+
+<!--HTML_PARSING
 <figure id="screenshot-kguseractions" float="1">
 <title>Useractions configuration</title>
 <mediaobject>
@@ -1691,12 +951,18 @@ HTML_PARSING-->
 </mediaobject>
 </figure>
 HTML_PARSING-->
-  </sect1>
-  <sect1 id="konfig-protocols">
-    <title>Protocols</title>
-    <para>This page links the mimes to protocols. &amp;eg; protocol
-    "tar" is linked to mime "application/x-tar".</para>
-    <!-- OLD
+
+
+</sect1>
+
+<sect1 id="konfig-protocols">
+<title>Protocols</title>
+
+<para>This page links the mimes to protocols.
+      &eg; protocol "tar" is linked to mime "application/x-tar".</para>
+
+
+<!-- OLD
 <screenshot>
   <screeninfo>Protocols configuration</screeninfo>
   <mediaobject>
@@ -1707,7 +973,8 @@ HTML_PARSING-->
   </mediaobject>
 </screenshot>
 -->
-    <!--HTML_PARSING
+
+<!--HTML_PARSING
 <figure id="screenshot-kgprotocols" float="1">
 <title>Protocols configuration</title>
 <mediaobject>
@@ -1716,75 +983,48 @@ HTML_PARSING-->
 </mediaobject>
 </figure>
 HTML_PARSING-->
-    <para>In the 
-    <guilabel>Defined Links</guilabel>you will see &amp;eg; 
-    <itemizedlist>
-      <listitem>
-        <para>Iso</para>
-        <itemizedlist>
-          <listitem>
-            <para>application/x-iso</para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
-      <listitem>
-        <para>krarc</para>
-        <itemizedlist>
-          <listitem>
-            <para>application/x-ace</para>
-          </listitem>
-          <listitem>
-            <para>application/x-arj</para>
-          </listitem>
-          <listitem>
-            <para>application/x-bzip2</para>
-          </listitem>
-          <listitem>
-            <para>application/x-cpio</para>
-          </listitem>
-          <listitem>
-            <para>application/x-deb</para>
-          </listitem>
-          <listitem>
-            <para>application/x-debian-package</para>
-          </listitem>
-          <listitem>
-            <para>application/x-gzip</para>
-          </listitem>
-          <listitem>
-            <para>application/x-jar</para>
-          </listitem>
-          <listitem>
-            <para>application/x-lha</para>
-          </listitem>
-          <listitem>
-            <para>application/x-rar</para>
-          </listitem>
-          <listitem>
-            <para>application/x-rpm</para>
-          </listitem>
-          <listitem>
-            <para>application/x-zip</para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
-      <listitem>
-        <para>tar</para>
-        <itemizedlist>
-          <listitem>
-            <para>application/x-tar</para>
-          </listitem>
-          <listitem>
-            <para>application/x-tarz</para>
-          </listitem>
-          <listitem>
-            <para>application/x-tbz</para>
-          </listitem>
-          <listitem>
-            <para>application/x-tgz</para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
-    </itemizedlist></para>
-  </sect1>
+
+
+<para>In the <guilabel>Defined Links</guilabel> you will see &eg;
+<itemizedlist>
+
+  <listitem><para>Iso</para>
+     <itemizedlist>
+       <listitem><para>application/x-iso</para></listitem>
+     </itemizedlist>
+  </listitem>
+  
+  <listitem><para>krarc</para>
+     <itemizedlist>
+       <listitem><para>application/x-ace</para></listitem>
+       <listitem><para>application/x-arj</para></listitem>
+       <listitem><para>application/x-bzip2</para></listitem>
+       <listitem><para>application/x-cpio</para></listitem>
+       <listitem><para>application/x-deb</para></listitem>
+       <listitem><para>application/x-debian-package</para></listitem>
+       <listitem><para>application/x-gzip</para></listitem>
+       <listitem><para>application/x-jar</para></listitem>
+       <listitem><para>application/x-lha</para></listitem>
+       <listitem><para>application/x-rar</para></listitem>
+       <listitem><para>application/x-rpm</para></listitem>
+       <listitem><para>application/x-zip</para></listitem>
+     </itemizedlist>
+  </listitem>
+  
+  <listitem><para>tar</para>
+     <itemizedlist>
+       <listitem><para>application/x-tar</para></listitem>
+       <listitem><para>application/x-tarz</para></listitem>
+       <listitem><para>application/x-tbz</para></listitem>
+       <listitem><para>application/x-tgz</para></listitem>
+     </itemizedlist>
+  </listitem>
+
+</itemizedlist>
+
+
+</para>
+
+</sect1>
+
 </chapter>
