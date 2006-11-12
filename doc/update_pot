@@ -1,0 +1,57 @@
+#!/bin/sh
+
+# ***************************************************************************
+#                                update_pot
+#                           ++++++++++++++++++++
+#   copyright            : (C) 2006
+#                           Frank Schoolmeesters
+#                           & the Krusader Krew
+#   e-mail               : krusader@users.sourceforge.net
+#   web site             : http://www.krusader.org
+#   description          : update translation pot template files 
+# 
+# ***************************************************************************
+# * Permission is granted to copy, distribute and/or modify this            *
+# * document under the terms of the GNU Free Documentation License,         *
+# * Version 1.1 or any later version published by the Free Software         *
+# * Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+# * no Back-Cover Texts.  A copy of the license is available on the         *
+# * GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+# * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+# * MA 02111-1307, USA.                                                     *
+# ***************************************************************************
+#
+# This script creates *.pot translation template files in the krusader_kde3/doc/i18n folder
+# with xml2pot *.docbook > *.docbook.pot
+
+# Requirements: bash, xml2pot, perl
+# usage:  run ./update_pot
+
+# jump into the english folder
+cd en
+
+# grepping version information from index.docbook
+VERSION=`grep releaseinfo index.docbook | tr -d '</releaseinfo> ' | tr -d 'a-z' | tr -d 'A-Z' | tr -d '"'`
+
+# current date
+DATENOW=$(date +%Y-%m-%d)
+
+for FILENAME in $(ls *.docbook);do  
+    echo updating ${FILENAME}.pot ...
+    # create pot file in the english folder
+    xml2pot ${FILENAME} > ${FILENAME}.pot
+    # modify pot header with perl seach/replace function
+    perl -p -i -e 's/# SOME DESCRIPTIVE TITLE./# Translation of '${FILENAME}' to LANGUAGE
+# Copyright (C) 2006, Krusader Krew
+# This file is distributed under the same license as the Krusader package/g' ${FILENAME}.pot
+    perl -p -i -e 's/Project-Id-Version: PACKAGE VERSION/Project-Id-Version: Krusader-doc-'$VERSION' '$DATENOW'/g' ${FILENAME}.pot
+    perl -p -i -e 's/Report-Msgid-Bugs-To: http:\/\/bugs.kde.org/Report-Msgid-Bugs-To:  <frank_schoolmeesters\@yahoo.com>/g' ${FILENAME}.pot
+    perl -p -i -e 's/kde-i18n-doc\@kde.org/krusader-i18n\@googlegroups.com/g' ${FILENAME}.pot
+done
+
+# move pot files to folder krusader_kde3/doc/i18n/pot since they don't belong in the english folder
+mv *.pot ../i18n/pot
+
+echo NOTE: This script sould only be used by the Documentation i18n coordinator or the Krusader Krew
+echo Please contact the Documentation i18n coordinator if you want to translate the Krusader documentation
+echo Wrong usage of this script might result in outdated documentation files

@@ -1,0 +1,73 @@
+#!/bin/sh
+
+# ***************************************************************************
+#                             update_docbook
+#                           ++++++++++++++++++++
+#   copyright            : (C) 2006
+#                           Frank Schoolmeesters
+#                           & the Krusader Krew
+#   e-mail               : krusader@users.sourceforge.net
+#   web site             : http://www.krusader.org
+#   description          : update translated docbook files 
+# 
+# ***************************************************************************
+# * Permission is granted to copy, distribute and/or modify this            *
+# * document under the terms of the GNU Free Documentation License,         *
+# * Version 1.1 or any later version published by the Free Software         *
+# * Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+# * no Back-Cover Texts.  A copy of the license is available on the         *
+# * GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+# * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+# * MA 02111-1307, USA.                                                     *
+# ***************************************************************************
+#
+# This script creates the translated docbook files by inserting the translated po text into the original 
+# english docbook files in the language folder ../doc/i18n/$lang
+# with po2xml *.docbook.po > *.docbook
+# Before running this script the according english docbook files need to be copied in the language folder ../doc/i18n/$lang
+# for a 100% merge the po and the english docbook files need to have the same date
+# The created docbook files needs to be copied into the proper language dir ../doc/$lang
+
+
+# Requirements: bash, po2xml
+# usage:  run ./update_docbook ru Russian
+
+
+# --help
+if test $# -eq 0 || test "$1" = "--help" ; then
+  echo "update_docbook <lang_subdir> <language>"
+  exit
+fi
+
+# test if $2 is used
+if test $# -eq 0 || test "$2" = "" ; then
+  echo "update_docbook <lang_subdir> <language>"
+  exit
+fi
+
+# read first parameter
+lang=$1
+
+# read second parameter
+newlanguage=$2
+
+# jump into the lang folder
+cd ../doc/i18n/$lang
+
+
+# update
+for FILENAME in $(ls *.docbook);do
+    #display the '*.docbook' filename
+    echo updating ${FILENAME} ...
+    # po2xml index_en.docbook index_ru_new.docbook.po > index_ru.docbook
+    po2xml ${FILENAME} $FILENAME.po > ${FILENAME}.new
+    # rename docbook.new into docbook
+    mv $FILENAME.new $FILENAME
+done
+
+# change "English" in to "$newlanguage" in the translated index.docbook file
+perl -p -i -e 's/English "INCLUDE"/'$newlanguage' "INCLUDE"/g' index.docbook
+
+echo NOTE: This script sould only be used by the Documentation i18n coordinator or the Krusader Krew
+echo Please contact the Documentation i18n coordinator if you want to translate the Krusader documentation
+echo Wrong usage of this script might result in outdated documentation files
