@@ -1,15 +1,29 @@
 The Krusader Handbook ChangeLog
 -------------------------------
   
+  ---------------------------------------------------- 
+  Other todo items not related to Krusader's changelog: 
   TODO: make the Synchronizer chapter more readable and more undertandable
   TODO: complete Keyboard Usage
   TODO: complete glossary
   TODO: complete Mouse Usage
   TODO: selection modes 
         http://krusader.sourceforge.net/phpBB/viewtopic.php?p=8255#8255
-  --------- 
+  ---------------------------------------------------- 
 
+ 
+  ---------------------------------------------------- 
+  Design changes (issues todo by Frank):
+  TODO: Menu Commands, url updates
+  TODO: Create more docbook files and improve the chapter/index structure
+  TODO: split up krusader-tools.docbook in smaller files
+  TODO: split up using-krusader.docbook in smaller files
+  -----------------------------------------------------
 
+  ADDED: actionman.png screenshot
+  ADDED: i18n scripts update_docbook, update_pot, update_po
+         They only should be used by the doc 18n coordinator
+         Wrong usage of this script might result in outdated documentation files 
   ADDED: Russian Handbook (translation is work in progress) thanks to Roman Batejkin
 
   TODO: Experimental input method support in quick search (patch by Jiri Palecek)
@@ -34,12 +48,8 @@ The Krusader Handbook ChangeLog
   TODO: Better subdir calculation on quick navigation
   TODO: Renamed 'mark' to 'select' in konfigurator, colors panel
   
-  
-  Design changes (issues done/todo by Frank):
-  ---------------------------------------------------- 
-  TODO: Menu Commands, url updates
-  TODO: Create more docbook files and improve the chapter/index structure
-   
+  ------------- Docbook file splitting -------------------
+  ADDED: useractions.docbook (formerly part of krusader-tools.docbook)       
   ADDED: Mouse Commands, mouse.docbook (formerly part of using-krusader.docbook)
   ADDED: Keyboard Commands, keyboard.docbook (formerly part of using-krusader.docbook)
   ADDED: abc-index by using <indexterm>
@@ -52,11 +62,8 @@ The Krusader Handbook ChangeLog
   ADDED: editorsnote.docbook (formerly part of index.docbook)
   ADDED: features.docbook (formerly part of introduction.docbook)
   ADDED: glossary.docbook
+  ----------------------------------------------------------
   
-  UPDATED: Command Reference -> Menu Commands
-  UPDATED: moved the "Foreword" from index.docbbook to introduction.docbook
-  -----------------------------------------------------
-
   ADDED: ActionMan for useraction configuration
   ADDED: single instance mode (Konfigurator Startup)
   ADDED: start to system tray (Konfigurator Startup)
@@ -72,6 +79,8 @@ The Krusader Handbook ChangeLog
   ADDED: Profiles chapter
   ADDED: Media button, Ctrl+M, Ctrl+Shift+Left, Ctrl+Shift+Right
 
+UPDATED: Command Reference -> Menu Commands
+UPDATED: moved the "Foreword" from index.docbbook to introduction.docbook
 UPDATED: Shortcut- and Toolbardialogs are removed from Konfigurator
 UPDATED: Heavily extended and reordered menubar, 
          Updated commands.docbook (thanks to Dan Price)
@@ -91,6 +100,10 @@ UPDATED: Marking (Selecting) files and directories
 UPDATED: Virtual file systems (VFS)
 UPDATED: Archives
 UPDATED: Features list rewritten to make it more clear
+
+  FIXED: KruSearcher 'ftp' group -> 'users', thanks to Roman Batejkin
+
+REMOVED: remoteman.png screenshot
 
 1.70.0 "Round Robin"
 ====================
