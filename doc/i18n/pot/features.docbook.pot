@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-1.80.0 2006-11-04\n"
+"Project-Id-Version: Krusader-doc-1.80.0 2006-11-14\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2006-11-04 11:13+0000\n"
+"POT-Creation-Date: 2006-11-14 21:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -100,22 +100,22 @@ msgstr ""
 msgid "Several Panel view modes via the &popup_panel_lnk;."
 msgstr ""
 
-#. Tag: para
-#: features.docbook:76
-#, no-c-format
-msgid "&remote_connections_lnk; : &FTP;/SAMBA with SFTP/SCP support via &kioslaves1_url;"
-msgstr ""
-
 #. Tag: title
-#: features.docbook:86
+#: features.docbook:83
 #, no-c-format
 msgid "&krusader; tools"
 msgstr ""
 
-#. Tag: link
+#. Tag: para
+#: features.docbook:85
+#, no-c-format
+msgid "&remote_connections_lnk; : &FTP;/SAMBA with SFTP/SCP support via &kioslaves1_url;"
+msgstr ""
+
+#. Tag: para
 #: features.docbook:88
 #, no-c-format
-msgid "Mount-Manager"
+msgid "&locate_lnk;"
 msgstr ""
 
 #. Tag: para
@@ -124,368 +124,374 @@ msgstr ""
 msgid "&syncdirs_lnk;"
 msgstr ""
 
-#. Tag: para
+#. Tag: link
 #: features.docbook:94
 #, no-c-format
-msgid "&diskusage_lnk;"
+msgid "Mount-Manager"
 msgstr ""
 
 #. Tag: para
 #: features.docbook:97
 #, no-c-format
-msgid "&locate_lnk;"
+msgid "&diskusage_lnk;"
+msgstr ""
+
+#. Tag: para
+#: features.docbook:100
+#, no-c-format
+msgid "&rootmode_lnk;"
 msgstr ""
 
 #. Tag: title
-#: features.docbook:128
+#: features.docbook:110
 #, no-c-format
 msgid "&krusader; features"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:130
+#: features.docbook:112
 #, no-c-format
 msgid "Archive Handling: browsing, unpack, pack, testing. Supported &archives_lnk; : ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:134
+#: features.docbook:116
 #, no-c-format
 msgid "<link linkend=\"checksum\">Checksum creation-verification</link> mechanism that supports md5, sha1, sha256, tiger, whirlpool. External supported tools are md5deep and cfv."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:139
+#: features.docbook:121
 #, no-c-format
 msgid "<link linkend=\"calculate\">Calculate occupied space</link> of files and folders, archives and remote filesystems."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:143
+#: features.docbook:125
 #, no-c-format
 msgid "<link linkend=\"compare-dir\">Directory comparison</link> and <link linkend=\"view-menu\">filtering</link>."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:147
+#: features.docbook:129
 #, no-c-format
 msgid "<link linkend=\"compare-content\">Compare files by content</link> via external diff programs like &kompare;, &kdiff3_url; or &xxdiff_url;."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:151
+#: features.docbook:133
 #, no-c-format
 msgid "<link linkend=\"multi_rename\">Rename</link> files and folders via &krename_url;"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:154
+#: features.docbook:136
 #, no-c-format
 msgid "Completely supports drag'n'drop: drag from &konqueror; straight into a .tar.gz file, from &krusader;'s panel into the trash-bin, the desktop or into &konqueror;!"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:158
+#: features.docbook:140
 #, no-c-format
 msgid "<link linkend=\"konfig-advanced\">Preserve date</link> for local targets at copy/move operations."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:162
+#: features.docbook:144
 #, no-c-format
 msgid "F2 opens a <link linkend=\"tools-menu\">Terminal Window</link> in the default directory."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:165
+#: features.docbook:147
 #, no-c-format
 msgid "Easy editing of <link linkend=\"file-menu\">file permissions</link> and ownership and <link linkend=\"konfig-looknfeel-operation\">Numeric permissions</link>."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:169
+#: features.docbook:151
 #, no-c-format
 msgid "<link linkend=\"krusearcher\">Selection filters</link> used in &eg; Synchronizer and KruSearcher."
 msgstr ""
 
 #. Tag: link
-#: features.docbook:174
+#: features.docbook:156
 #, no-c-format
 msgid "Jump-Back"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:177
+#: features.docbook:159
 #, no-c-format
 msgid "Fully <link linkend=\"konfig-general\">mimetype-aware</link> (with or without \"magic\"!)."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:181
+#: features.docbook:163
 #, no-c-format
 msgid "<link linkend=\"folder_tabs\">Tabbed panels</link> and <link linkend=\"krviewer\">Tabbed Editor/Viewer</link>."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:185
+#: features.docbook:167
 #, no-c-format
-msgid "&rootmode_lnk;, &quick_search_lnk;"
+msgid "&quick_search_lnk;"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:188
+#: features.docbook:170
 #, no-c-format
 msgid "<link linkend=\"splitter\">File splitter</link>."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:191
+#: features.docbook:173
 #, no-c-format
 msgid "<link linkend=\"mouse_gestures\">Mouse Gestures</link>."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:194
+#: features.docbook:176
 #, no-c-format
 msgid "<link linkend=\"list_panel\">Quick Navigation</link> in the Location Toolbar."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:197
+#: features.docbook:179
 #, no-c-format
 msgid "&whatsthis_url; Helpfunction in favour of Tooltips where reasonable."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:200
+#: features.docbook:182
 #, no-c-format
 msgid "&sync_browsing_lnk;"
 msgstr ""
 
 #. Tag: title
-#: features.docbook:210
+#: features.docbook:192
 #, no-c-format
 msgid "Customize &krusader; to your own needs"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:212
+#: features.docbook:194
 #, no-c-format
 msgid "<link linkend=\"konfig-startup\">Konfigurator</link> &krusader;'s configuration center."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:216
+#: features.docbook:198
 #, no-c-format
 msgid "&main_toolbar_lnk;, <link linkend=\"actions_toolbar\">Actions Toolbar</link> for user actions and bookmarks."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:220
+#: features.docbook:202
 #, no-c-format
 msgid "<link linkend=\"key_bindings\">key-bindings</link>."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:223
+#: features.docbook:205
 #, no-c-format
 msgid "<link linkend=\"konfig-color\">Colors</link>."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:226
+#: features.docbook:208
 #, no-c-format
 msgid "&panel_profiles_lnk;"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:229
+#: features.docbook:211
 #, no-c-format
 msgid "&bookmark-manager_lnk;"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:232
+#: features.docbook:214
 #, no-c-format
 msgid "&mouse_selection_modes_lnk;"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:235
+#: features.docbook:217
 #, no-c-format
 msgid "Many more features can be <link linkend=\"konfig-startup\">configured the way you like</link>."
 msgstr ""
 
 #. Tag: title
-#: features.docbook:246
+#: features.docbook:228
 #, no-c-format
-msgid "&krusader; extra's"
+msgid "&krusader; Extensions"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:248
+#: features.docbook:230
 #, no-c-format
 msgid "&useractions_lnk;"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:251
+#: features.docbook:233
 #, no-c-format
 msgid "&javascript_console_lnk;"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:254
+#: features.docbook:236
 #, no-c-format
 msgid "&color_profiles_lnk;"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:257
+#: features.docbook:239
 #, no-c-format
 msgid "&keybindigs_profiles_lnk;"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:259
+#: features.docbook:241
 #, no-c-format
-msgid "Upload/Download your favorite &krusader; configurations/extensions/plugins at &kde_files_url;!"
+msgid "Download and Upload your favorite &krusader; Extensions at &kde_files_url;!"
 msgstr ""
 
 #. Tag: title
-#: features.docbook:268
+#: features.docbook:250
 #, no-c-format
 msgid "New features in version CVS (the future 1.80.0 release)"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:270
+#: features.docbook:252
 #, no-c-format
 msgid "Archive improvements"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:273
+#: features.docbook:255
 #, no-c-format
 msgid "<link linkend=\"archives\">Password support</link> for: arj, ace, rar and zip. Passwords can be stored in &kwallet;"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:278
+#: features.docbook:260
 #, no-c-format
 msgid "<link linkend=\"archives\">7-zip support</link>, by external applications 7z and 7za."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:282
+#: features.docbook:264
 #, no-c-format
 msgid "<link linkend=\"archives\">Autodetection support</link>, allowing you to open \"hidden archives\" (&eg; &openoffice; documents, wich is actually a zip archive with an other filename extension)"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:287
+#: features.docbook:269
 #, no-c-format
 msgid "Packing/unpacking are now in the background."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:294
+#: features.docbook:276
 #, no-c-format
 msgid "&useractions_lnk; improvements."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:298
+#: features.docbook:280
 #, no-c-format
 msgid "<link linkend=\"konfig-advanced\">Media button</link>."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:302
+#: features.docbook:284
 #, no-c-format
 msgid "Copy/Move: <link linkend=\"copying\">preserve all attributes</link> (time, owner, group)."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:307
+#: features.docbook:289
 #, no-c-format
 msgid "<link linkend=\"konfig-color\">Dim the colors of the inactive panel</link>."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:311
+#: features.docbook:293
 #, no-c-format
 msgid "Renaming a the filename without the extension, single instance mode, start to system tray, check them out in <link linkend=\"konfigurator\">Konfigurator</link>"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:318
+#: features.docbook:300
 #, no-c-format
 msgid "Atomic extensions (NOT DOCUMENTED YET)."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:322
+#: features.docbook:304
 #, no-c-format
 msgid "Context menu for bookmarks and enable/disable special bookmarks by right clicking on them."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:327
+#: features.docbook:309
 #, no-c-format
 msgid "Restyled <link linkend=\"menu-commands\">MenuBar</link>."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:331
+#: features.docbook:313
 #, no-c-format
 msgid "&termemu_lnk; improvements (NOT DOCUMENTED YET)."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:335
+#: features.docbook:317
 #, no-c-format
 msgid "&synchronizer_lnk; improvements (NOT DOCUMENTED YET)."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:339
+#: features.docbook:321
 #, no-c-format
 msgid "Quick navigation improvements (NOT DOCUMENTED YET)"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:343
+#: features.docbook:325
 #, no-c-format
 msgid "<para>.</para>"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:348
+#: features.docbook:330
 #, no-c-format
 msgid "Many bugfixes."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:352
+#: features.docbook:334
 #, no-c-format
 msgid "TODO ... NOT YET DESCRIBED IN THE HANDBOOK ..."
 msgstr ""
 
 #. Tag: para
-#: features.docbook:356
+#: features.docbook:338
 #, no-c-format
 msgid "NOTE: NOT ALL NEW FEATURES ARE DESCRIBED YET IN THE HANDBOOK"
 msgstr ""
 
 #. Tag: para
-#: features.docbook:360
+#: features.docbook:342
 #, no-c-format
 msgid "THIS LIST IS INCOMPLTE ... If someone likes to &contribute_url; to this handbook, please contact Frank. For more features, please read the &changelog_url; and &cvsnews_url;."
 msgstr ""
 
 #. Tag: chapter
-#: features.docbook:364
+#: features.docbook:346
 #, no-c-format
 msgid "&dev_cvs_note;"
 msgstr ""
