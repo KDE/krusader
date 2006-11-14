@@ -1,7 +1,7 @@
 ####### kdevelop will overwrite this part!!! (begin)##########
 
 
-EXTRA_DIST = bookmanadd.png bookmanedit.png cmdline.png fnkeys.png kgstartup.png krusader1.png listpanel.png mainwindow.png mountman.png remoteman.png search_advanced.png search_general.png terminalEmu.png toolbar.png tabbed_browsing.png krusader_title.png syncdir.png 
+EXTRA_DIST = bookmanadd.png bookmanedit.png cmdline.png fnkeys.png kgstartup.png krusader1.png listpanel.png mainwindow.png mountman.png actionman.png search_advanced.png search_general.png terminalEmu.png toolbar.png tabbed_browsing.png krusader_title.png syncdir.png 
 
 install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(kde_htmldir)/en/krusader/
@@ -23,7 +23,7 @@ install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(kde_htmldir)/en/krusader/
 	$(INSTALL_DATA) $(srcdir)/mountman.png $(DESTDIR)$(kde_htmldir)/en/krusader/mountman.png
 	$(mkinstalldirs) $(DESTDIR)$(kde_htmldir)/en/krusader/
-	$(INSTALL_DATA) $(srcdir)/remoteman.png $(DESTDIR)$(kde_htmldir)/en/krusader/remoteman.png
+	$(INSTALL_DATA) $(srcdir)/actionman.png $(DESTDIR)$(kde_htmldir)/en/krusader/actionman.png
 	$(mkinstalldirs) $(DESTDIR)$(kde_htmldir)/en/krusader/
 	$(INSTALL_DATA) $(srcdir)/search_advanced.png $(DESTDIR)$(kde_htmldir)/en/krusader/search_advanced.png
 	$(mkinstalldirs) $(DESTDIR)$(kde_htmldir)/en/krusader/
@@ -49,7 +49,7 @@ uninstall-local:
 	-rm -f $(DESTDIR)$(kde_htmldir)/en/krusader/listpanel.png
 	-rm -f $(DESTDIR)$(kde_htmldir)/en/krusader/mainwindow.png
 	-rm -f $(DESTDIR)$(kde_htmldir)/en/krusader/mountman.png
-	-rm -f $(DESTDIR)$(kde_htmldir)/en/krusader/remoteman.png
+	-rm -f $(DESTDIR)$(kde_htmldir)/en/krusader/actionman.png
 	-rm -f $(DESTDIR)$(kde_htmldir)/en/krusader/search_advanced.png
 	-rm -f $(DESTDIR)$(kde_htmldir)/en/krusader/search_general.png
 	-rm -f $(DESTDIR)$(kde_htmldir)/en/krusader/terminalEmu.png
