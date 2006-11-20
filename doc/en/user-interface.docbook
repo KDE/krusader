@@ -37,7 +37,7 @@
 
 <para>
 If you like to know 
-<ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml">how &krusader; feels</ulink> 
+<ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml">how &krusader; feels to use</ulink> 
 there is only one way to discover,
 install it on your computer and use it for a while!
 To accept a &ofm_url; like &krusader;,
@@ -94,7 +94,13 @@ you can always continue to use one panel filemanagers who are based on &Windows;
 </itemizedlist>
 </sect1>
 
-<sect1 id="main_toolbar">
+
+<sect1 id="toolbars">
+<title>Toolbars</title>
+<para>&krusader; comes with several Toolbars.
+</para>
+
+<sect2 id="main_toolbar">
 <title>Main Toolbar</title>
 <indexterm><primary>Toolbar</primary><secondary>Main Toolbar</secondary></indexterm> 
 
@@ -130,24 +136,116 @@ always available, the icon of an inappropriate or inactive action will be deacti
 and you won't  be able to click or select it.
 &bookmarks_lnk; can be placed into the Main Toolbar and the Actions Toolbar
 with the mouse using "drag and drop".</para>
+</sect2>
 
-</sect1>
-
-<sect1 id="actions_toolbar">
+<sect2 id="actions_toolbar">
 <title>Actions Toolbar</title>
 <indexterm><primary>Toolbar</primary><secondary>Actions Toolbar</secondary></indexterm> 
 
 <para>
 &useractions_lnk; and &bookmarks_lnk; can be "plugged into" the
 <guilabel>Actions Toolbar</guilabel>.
-To show it use <emphasis role="bold"><menuchoice><guimenu>View</guimenu>
+To show it, use <emphasis role="bold"><menuchoice><guimenu>View</guimenu>
 <guimenuitem>Show Actions Toolbar</guimenuitem></menuchoice></emphasis>.
-To add useractions use <emphasis role="bold"><menuchoice><guimenu>Settings</guimenu>
+To add useractions, use <emphasis role="bold"><menuchoice><guimenu>Settings</guimenu>
 <guimenuitem>Configure Toolbars</guimenuitem></menuchoice></emphasis> and select Actions Toolbar.
 You could, for example, drag the Actions Toolbar to the right side using the mouse.
 </para>
-</sect1>
+</sect2>
 
+
+<sect2 id="location_toolbar">
+<title>Location Toolbar</title>
+<indexterm><primary>Toolbar</primary><secondary>Location Toolbar</secondary></indexterm> 
+
+<para>Below the <guibutton>Main Toolbar</guibutton> there is one <guibutton>Location Toolbar</guibutton>
+      for each panel, it shows the path the panel is currently pointing to.
+      If the selected path is too long, it will be automatically
+      shortened and an ellipsis "..." will replace the omitted part of the pathname.
+      When entering archives the path will consist of the
+      "archive name:/directory/archive_filename/the directory inside the archive".
+      This format makes the paths uniform and easy to read.
+      The <guibutton>Location Toolbar</guibutton> supports also supports &kioslaves1_url; but not all of them,
+      some can only be used with the <link linkend="krviewer">viewer</link> and some can not be used.
+      With a single mouse click you can enter the desired path &eg;
+
+<itemizedlist>            
+        <listitem>
+           <para><userinput><replaceable>/mnt/cdrom/</replaceable></userinput></para>
+        </listitem>
+            
+        <listitem><para><userinput><command>settings:/</command></userinput> will browse and open entries 
+                  of the <application>KDE control center</application></para>
+        </listitem>
+         
+        <listitem><para><userinput><command>devices:/</command></userinput> gives an overiew of the devices 
+                  &eg; <hardware>floppy</hardware> or <hardware>cdrom</hardware> drives.</para>
+        </listitem>
+
+        <listitem><para><userinput><command>trash:/</command></userinput> opens &kde;'s trash.</para>
+        </listitem>
+
+        <listitem><para><userinput><command>ipod:/</command></userinput> uses the &kio_ipodslave_url; to 
+        access, upload and organize the Music stored on an &appleipod;.</para>
+        </listitem>
+         
+        <listitem><para>And last but not least &remote_connections_lnk; !</para>
+        </listitem>
+</itemizedlist>
+     
+You can copy-paste an &URL; in the <guibutton>Location Toolbar</guibutton> or use a middle click.
+With the Right-Click menu you can configure the autocomplete function.
+An optional <guilabel>Clear Location Toolbar</guilabel> button is available.
+</para>
+     
+<para>Quick Navigation: <keycap>&Ctrl;</keycap> point with mouse in the middle of the &URL; 
+      of the <guibutton>Location Toolbar</guibutton>, a popup window will inform you what will become the
+      next &URL; location, a mouseclick when holding the <keycap>&Ctrl;</keycap> key will jump to the
+      location where the mouse was pointing to, this feature allows faster navigation in a big directory tree.</para>
+
+</sect2>
+
+<sect2 id="panel_toolbar">
+<title>Panel Toolbar</title>
+<indexterm><primary>Toolbar</primary><secondary>Panel Toolbar</secondary></indexterm> 
+
+<para>Each panel has a <link linkend="konfig-looknfeel-ptoolbar">configurable Panel Toolbar</link>.
+      The complete Panel Toolbar or specific buttons can be made visible or be hidden.
+
+<itemizedlist>
+
+  <listitem>
+     <para><guibutton>OpenDir Button</guibutton>: opens the directory browser.</para>
+  </listitem>
+  
+  <listitem>
+     <para><guibutton>Equals Button (=)</guibutton>: changes the panel directory to the
+                     other panel directory.</para>
+  </listitem>
+  
+  <listitem>
+    <para><guibutton>Up Button (..)</guibutton>: changes the panel directory to the parent 
+                     directory.</para>
+  </listitem>
+  
+  <listitem>
+    <para><guibutton>Home Button (~)</guibutton>: changes the panel directory to the home directory</para>
+  </listitem>
+             
+  <listitem>
+    <para><guibutton>Root Button (/)</guibutton>: changes the panel directory to the root directory.</para>
+  </listitem>
+  
+  <listitem>
+    <para><guibutton>Sync-browsing Button</guibutton>: when active, each directory-change in the
+                     specific panel is performed in the other panel, also.</para>
+  </listitem>
+       
+</itemizedlist>
+</para>
+</sect2>
+
+</sect1>
 
 <sect1 id="panels">
 <title>Panels</title>
@@ -202,7 +300,7 @@ and you control the current session with the &viewmenu_lnk;.
 
 <sect2 id="list_panel">
 <title>List Panel</title>
-<indexterm><primary>Toolbar</primary><secondary>Location Toolbar</secondary></indexterm>
+<indexterm><primary>Panel</primary><secondary>List Panel</secondary></indexterm>
 <para>
     This is the default panel and the one you'll probably use most of the time. This panel shows the
     contents of one directory which can be local (part of your mounted file systems,
@@ -217,58 +315,6 @@ and you control the current session with the &viewmenu_lnk;.
 
 <para>The following items are available: 
    <itemizedlist>
-
-       <listitem><para><emphasis><guibutton>Location Toolbar</guibutton></emphasis> : shows the path the
-	         panel is currently pointing to. If the selected path is too long, it will be automatically
- 		 shortened and an ellipsis "..." will replace the omitted part of the pathname.
- 		 When entering archives the path will consist of the
- 		 "archive name:/directory/archive_filename/the directory inside the archive".
- 		 This format makes the paths uniform and easy to read.
- 		 The <guibutton>Location Toolbar</guibutton> supports also supports &kioslaves1_url; but not all of them,
- 		 some can only be used with the <link linkend="krviewer">viewer</link> and some can not be used.
-                 With a single mouse click you can enter the desired path &eg;
-
-     <itemizedlist>
-            
-        <listitem>
-           <para><userinput><replaceable>/mnt/cdrom/</replaceable></userinput></para>
-        </listitem>
-            
-        <listitem><para><userinput><command>settings:/</command></userinput> will browse and open entries 
-                  of the <application>KDE control center</application></para>
-        </listitem>
-         
-        <listitem><para><userinput><command>devices:/</command></userinput> gives an overiew of the devices 
-                  &eg; <hardware>floppy</hardware> or <hardware>cdrom</hardware> drives.</para>
-        </listitem>
-
-        <listitem><para><userinput><command>trash:/</command></userinput> opens &kde;'s trash.</para>
-        </listitem>
-
-        <listitem><para><userinput><command>ipod:/</command></userinput> uses the &kio_ipodslave_url; to 
-        access, upload and organize the Music stored on an &appleipod;.</para>
-        </listitem>
-         
-        <listitem><para>And last but not least &remote_connections_lnk; !</para>
-        </listitem>
-        
-    </itemizedlist>
-     
-     You can copy-paste an &URL; in the <guibutton>Location Toolbar</guibutton> or use a middle click.
-     With the Right-Click menu you can configure the autocomplete function.
-     An optional <guilabel>Clear Location Toolbar</guilabel> button is available.
-     </para>
-     <para>Quick Navigation: <keycap>&Ctrl;</keycap> point with mouse in the middle of the &URL; 
-           of the <guibutton>Location Toolbar</guibutton>, a popup window will inform you what will become the
-           next &URL; location, a mouseclick when holding the <keycap>&Ctrl;</keycap> key will jump to the
-           location where the mouse was pointing to, this feature allows faster navigation in a big directory tree.</para>
-     </listitem>
-       
-     <listitem>
-       <para><link linkend="panel_toolbar"><emphasis><guibutton>Panel toolbar</guibutton></emphasis></link> :
-             contains <link linkend="panel_toolbar">configurable buttons</link>.
-      </para>
-     </listitem>
      
      <listitem>
        <para><emphasis><guilabel>Information Label</guilabel></emphasis> : shows how much free space
@@ -370,6 +416,7 @@ and you control the current session with the &viewmenu_lnk;.
 
 <sect2 id="popup_panel">
 <title>PopUp Panel</title>
+<indexterm><primary>Panel</primary><secondary>PopUp Panel (3rd Panel)</secondary></indexterm>
 
 <para>This is "&krusader;'s 3rd Hand" or the 3rd Panel, click on the up-arrow button on the left of the
       <guilabel>Totals Label</guilabel> or
@@ -421,45 +468,6 @@ Click on the arrow down button to close the <guilabel>3rd Hand Panel</guilabel>.
 </sect2>
 
 
-<sect2 id="panel_toolbar">
-<title>Panel Toolbar</title>
-<indexterm><primary>Toolbar</primary><secondary>Panel Toolbar</secondary></indexterm> 
-
-<para>Both panels have a <link linkend="konfig-looknfeel-ptoolbar">configurable Panel Toolbar</link>.
-      The complete Panel Toolbar or specific buttons can be made visible or be hidden.
-
-<itemizedlist>
-
-  <listitem>
-     <para><guibutton>OpenDir Button</guibutton>: opens the directory browser.</para>
-  </listitem>
-  
-  <listitem>
-     <para><guibutton>Equals Button (=)</guibutton>: changes the panel directory to the
-                     other panel directory.</para>
-  </listitem>
-  
-  <listitem>
-    <para><guibutton>Up Button (..)</guibutton>: changes the panel directory to the parent 
-                     directory.</para>
-  </listitem>
-  
-  <listitem>
-    <para><guibutton>Home Button (~)</guibutton>: changes the panel directory to the home directory</para>
-  </listitem>
-             
-  <listitem>
-    <para><guibutton>Root Button (/)</guibutton>: changes the panel directory to the root directory.</para>
-  </listitem>
-  
-  <listitem>
-    <para><guibutton>Sync-browsing Button</guibutton>: when active, each directory-change in the
-                     specific panel is performed in the other panel, also.</para>
-  </listitem>
-       
-</itemizedlist>
-</para>
-</sect2>
 
 
 <sect2 id="folderhistory">
