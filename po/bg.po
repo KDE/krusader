@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2006-10-10 23:09+0200\n"
+"POT-Creation-Date: 2006-11-15 11:49+0100\n"
 "PO-Revision-Date: 2005-12-04 10:30+0200\n"
 "Last-Translator: Milen Ivanov <milen.kerat@gmail.com>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
@@ -309,7 +309,8 @@ msgstr ""
 
 #: VFS/arc_vfs.cpp:217
 msgid "<qt>Can't read <b>%1</b>. Archive might be corrupted!</qt>"
-msgstr "<qt>Прочитането на <b>%1</b> е невъзможно. Архива може да е повреден!</qt>"
+msgstr ""
+"<qt>Прочитането на <b>%1</b> е невъзможно. Архива може да е повреден!</qt>"
 
 #: VFS/arc_vfs.cpp:322 VFS/arc_vfs.cpp:579
 msgid "Deleting Files..."
@@ -1738,8 +1739,8 @@ msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>All data in the previous archive will be lost!</p></qt>"
 msgstr ""
-"<qt><p>Архивът <b>%1.%2</b> вече съществува. Искате ли да го презапишете?"
-"</p><p>Всички данни в стария архив ще бъдат загубени!</p></qt>"
+"<qt><p>Архивът <b>%1.%2</b> вече съществува. Искате ли да го презапишете?</"
+"p><p>Всички данни в стария архив ще бъдат загубени!</p></qt>"
 
 #: Panel/panelfunc.cpp:805
 msgid ""
@@ -1747,8 +1748,8 @@ msgid ""
 "</p><p>Zip will replace identically named entries in the zip archive or add "
 "entries for new names.</p></qt>"
 msgstr ""
-"<qt><p>Архивът <b>%1.%2</b> вече съществува. Искате ли да го презапишете?"
-"</p><p>Zip ще замени еднаквите имена на записи в zip архива или ще добави "
+"<qt><p>Архивът <b>%1.%2</b> вече съществува. Искате ли да го презапишете?</"
+"p><p>Zip ще замени еднаквите имена на записи в zip архива или ще добави "
 "записи за нови имена.</p></qt>"
 
 #: Panel/panelfunc.cpp:812
@@ -1877,19 +1878,19 @@ msgstr "Търсене следващ (Ctrl+N)"
 msgid "Find previous (Ctrl+P)"
 msgstr "Търсене предишен (Ctrl+P)"
 
-#: Locate/locate.cpp:420 Locate/locate.cpp:437
+#: Locate/locate.cpp:425 Locate/locate.cpp:442
 msgid "Search string not found!"
 msgstr "Търсеният низ не е намерен!"
 
-#: Locate/locate.cpp:488
+#: Locate/locate.cpp:493
 msgid "Locate results"
 msgstr "Резултати"
 
-#: Locate/locate.cpp:496 Search/krsearchdialog.cpp:534
+#: Locate/locate.cpp:501 Search/krsearchdialog.cpp:534
 msgid "Query name"
 msgstr "Име на заявка"
 
-#: Locate/locate.cpp:497 Search/krsearchdialog.cpp:535
+#: Locate/locate.cpp:502 Search/krsearchdialog.cpp:535
 #: Synchronizer/feedtolistboxdialog.cpp:110
 msgid "Here you can name the file collection"
 msgstr "Тук можете да дадете име на файловата колекция"
@@ -2279,7 +2280,7 @@ msgstr "Търсене на файлове"
 msgid "JavaScript Console..."
 msgstr "JavaScript конзола..."
 
-#: krusader.cpp:853
+#: krusader.cpp:861
 msgid "Are you sure you want to quit?"
 msgstr "Наистина ли искате да излезете?"
 
@@ -4494,8 +4495,8 @@ msgstr "&Давай"
 
 #. i18n: file krusaderui.rc line 85
 #: rc.cpp:18
-#, no-c-format
-msgid "&Useractions"
+#, fuzzy, no-c-format
+msgid "User&actions"
 msgstr "&Потребителски действия"
 
 #. i18n: file krusaderui.rc line 90
@@ -4829,9 +4830,9 @@ msgid ""
 "Commander like renaming of just the name, without extension, uncheck this "
 "option."
 msgstr ""
-"Когато преименувате файл, маркира се целия текст. Ако искате "
-"преименуването да бъде в стил Total Commander, т.е. преименуването да става "
-"само с името, а не и с разширението, махнете отметката."
+"Когато преименувате файл, маркира се целия текст. Ако искате преименуването "
+"да бъде в стил Total Commander, т.е. преименуването да става само с името, а "
+"не и с разширението, махнете отметката."
 
 #: Konfigurator/kglookfeel.cpp:88
 msgid "Use full path tab names"

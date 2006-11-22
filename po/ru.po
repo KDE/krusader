@@ -11,11 +11,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
-"POT-Creation-Date: 2006-10-10 23:09+0200\n"
-"PO-Revision-Date: 2006-10-22 18:53+0700\n"
+"POT-Creation-Date: 2006-11-15 11:49+0100\n"
+"PO-Revision-Date: 2006-11-22 19:38+0600\n"
 "Last-Translator: Dmitry A. Bugay <sam@vhnet.ru>\n"
-"Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\\nMIME-"
-"Version: 1.0\n"
+"Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
@@ -481,7 +481,7 @@ msgid ""
 "There is an error in the JavaScript"
 msgstr ""
 "В %1:\n"
-"Существуют ошибки JavaScript"
+"Существует ошибка в JavaScript"
 
 #: Filter/filtertabs.cpp:44
 msgid "&General"
@@ -1491,7 +1491,7 @@ msgstr "Уничтожить"
 
 #: Panel/krpopupmenu.cpp:156 krusader.cpp:658
 msgid "New Symlink..."
-msgstr "Символическую ссылку..."
+msgstr "Символическая ссылка..."
 
 #: Panel/krpopupmenu.cpp:157
 msgid "New Hardlink..."
@@ -1886,19 +1886,19 @@ msgstr "Продолжить поиск (Ctrl+N)"
 msgid "Find previous (Ctrl+P)"
 msgstr "Найти предыдущий (Ctrl+P)"
 
-#: Locate/locate.cpp:420 Locate/locate.cpp:437
+#: Locate/locate.cpp:425 Locate/locate.cpp:442
 msgid "Search string not found!"
 msgstr "Искомая строка не найдена!"
 
-#: Locate/locate.cpp:488
+#: Locate/locate.cpp:493
 msgid "Locate results"
 msgstr "Результаты выполнения утилиты 'locate'"
 
-#: Locate/locate.cpp:496 Search/krsearchdialog.cpp:534
+#: Locate/locate.cpp:501 Search/krsearchdialog.cpp:534
 msgid "Query name"
 msgstr "Имя для запроса"
 
-#: Locate/locate.cpp:497 Search/krsearchdialog.cpp:535
+#: Locate/locate.cpp:502 Search/krsearchdialog.cpp:535
 #: Synchronizer/feedtolistboxdialog.cpp:110
 msgid "Here you can name the file collection"
 msgstr "Вы можете ввести имя для коллекции файлов"
@@ -1941,7 +1941,7 @@ msgstr "Tab: переключение панелей"
 
 #: krusader.cpp:499
 msgid "&Reload"
-msgstr "&Перезапустить"
+msgstr "&Обновить"
 
 #: krusader.cpp:501
 msgid "Show Actions Toolbar"
@@ -1989,7 +1989,7 @@ msgstr "Про&верить архив"
 
 #: krusader.cpp:543
 msgid "New Net &Connection..."
-msgstr "&Новое сетевое соединение..."
+msgstr "Сетевое со&единение..."
 
 #: krusader.cpp:545
 msgid "Pro&files"
@@ -2101,7 +2101,7 @@ msgstr "С&инхронизировать изменения в каталоге
 
 #: krusader.cpp:614
 msgid "D&isk Usage..."
-msgstr "Исполь&зование диска..."
+msgstr "Статистика использования ди&ска..."
 
 #: krusader.cpp:616
 msgid "Configure &Krusader..."
@@ -2121,7 +2121,7 @@ msgstr "&Все файлы"
 
 #: krusader.cpp:628
 msgid "&Custom"
-msgstr "&Пользовательский"
+msgstr "&Настраиваемый"
 
 #: krusader.cpp:630
 msgid "Compare b&y Content..."
@@ -2288,7 +2288,7 @@ msgstr "Поиск файлов"
 msgid "JavaScript Console..."
 msgstr "Консоль JavaScript..."
 
-#: krusader.cpp:853
+#: krusader.cpp:861
 msgid "Are you sure you want to quit?"
 msgstr "Выйти?"
 
@@ -2822,7 +2822,7 @@ msgstr "ОК"
 
 #: Dialogs/newftpgui.cpp:49
 msgid "New Network Connection"
-msgstr "Новое сетевое соединение"
+msgstr "Сетевое соединение"
 
 #: Dialogs/newftpgui.cpp:62
 msgid "About to connect to..."
@@ -2914,7 +2914,7 @@ msgstr "Загрузить комбинации"
 
 #: Dialogs/krkeydialog.cpp:42
 msgid "Load a keybinding profile, e.g., total_commander.keymap"
-msgstr "Загрузить список комбинаций клавиш, например, как в Total-Commander"
+msgstr "Загрузить список комбинаций клавиш как в Total-Commander"
 
 #: Dialogs/krkeydialog.cpp:46
 msgid "Export shortcuts"
@@ -3413,7 +3413,7 @@ msgstr "Применять команду"
 
 #: ActionMan/actionpropertybase.cpp:391
 msgid "Local files only (no URL's)"
-msgstr "Только для локальных файлов (не использовать URL)"
+msgstr "Только для локальных файлов"
 
 #: ActionMan/actionpropertybase.cpp:392
 msgid "Substitute the <b>Placeholders</b> with local filenames."
@@ -3425,7 +3425,7 @@ msgstr "Для удалённых (URL) и локальных файлов "
 
 #: ActionMan/actionpropertybase.cpp:394
 msgid "Substitute the <b>Placeholders</b> with valid URL's."
-msgstr "Заменять <b>шаблоны</b> правильными путями к удалённым ресурсам (URL)."
+msgstr "Заменять <b>шаблоны</b> путями к удалённым ресурсам (URL)."
 
 #: ActionMan/actionpropertybase.cpp:395 ActionMan/actionpropertybase.cpp:397
 msgid "The title displayed in the <b>Usermenu</b>."
@@ -4225,7 +4225,7 @@ msgstr "Открыть &Konqueror"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:161
 msgid "Open &Konsole Here"
-msgstr "Открыть &терминал"
+msgstr "Запустить &Konsole"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:166
 msgid "&Center Map Here"
@@ -4506,9 +4506,9 @@ msgstr "&Навигация"
 
 #. i18n: file krusaderui.rc line 85
 #: rc.cpp:18
-#, no-c-format
-msgid "&Useractions"
-msgstr "&Действия"
+#, fuzzy, no-c-format
+msgid "User&actions"
+msgstr "Дей&ствия"
 
 #. i18n: file krusaderui.rc line 90
 #: rc.cpp:21
@@ -4592,7 +4592,7 @@ msgid ""
 "Hint: use 'internal editor' if you want to use Krusader's fast built-in "
 "editor"
 msgstr ""
-"Подсказка: Используйте внутренний редактор если вы хотите использовать "
+"Подсказка: Используйте внутренний редактор, если вы хотите использовать "
 "быстрый редактор Krusader'а"
 
 #: Konfigurator/kggeneral.cpp:86
@@ -4621,7 +4621,7 @@ msgstr "Hex режим"
 
 #: Konfigurator/kggeneral.cpp:93
 msgid "View the file in hex-mode (better for binary files)"
-msgstr "Просмотр файла в Hex режиме (хорошо для двоичных файлов)"
+msgstr "Просмотр файла в Hex режиме (для двоичных файлов)"
 
 #: Konfigurator/kggeneral.cpp:99
 msgid "Viewer opens each file in a separate window"
@@ -4649,7 +4649,7 @@ msgid ""
 "krusader changes the current directory in the terminal emulator."
 msgstr ""
 "Всякий раз, когда меняется панель, допустим, при нажатии клавиши TAB, "
-"krusader изменяет текущий каталог в эмуляторе терминала."
+"Krusader изменяет текущий каталог в эмуляторе терминала."
 
 #: Konfigurator/kggeneral.cpp:124
 msgid "Temp Directory:"
@@ -4666,7 +4666,7 @@ msgstr "Поиск инструментов..."
 #: Konfigurator/kggeneral.cpp:152
 msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr "Установить новые инструменты из <code>$PATH</code> (пр. /usr/bin)"
+msgstr "Установить новые инструменты из <code>$PATH</code>"
 
 #: Konfigurator/krresulttable.cpp:121
 msgid "unarj not found, but arj found, which will be used for unpacking"
@@ -5095,7 +5095,7 @@ msgstr "Настройте свой собственный стиль выдел
 
 #: Konfigurator/kglookfeel.cpp:244
 msgid "Details"
-msgstr "Детальный"
+msgstr "Детально"
 
 #: Konfigurator/kglookfeel.cpp:252
 msgid "Double-click selects (classic)"
@@ -5760,7 +5760,7 @@ msgstr "Показывать заставку"
 
 #: Konfigurator/kgstartup.cpp:72
 msgid "Display a splashscreen when starting krusader."
-msgstr "Показывать заставку при запуске krusader."
+msgstr "Показывать заставку при запуске Krusader."
 
 #: Konfigurator/kgstartup.cpp:73
 msgid "Single instance mode"
@@ -5768,7 +5768,7 @@ msgstr "Запускать одну копию Krusader"
 
 #: Konfigurator/kgstartup.cpp:73
 msgid "Only one Krusader instance is allowed to run."
-msgstr "Запускать только одну копию Krusader."
+msgstr "Запускать одну копию Krusader."
 
 #: Konfigurator/kgstartup.cpp:83
 msgid "User Interface"
@@ -5951,7 +5951,7 @@ msgstr "Поиск архиваторов..."
 #: Konfigurator/kgarchives.cpp:114
 msgid ""
 "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr "Установить новые архиваторы из <code>$PATH</code> (пр. /usr/bin)"
+msgstr "Установить новые архиваторы из <code>$PATH</code>"
 
 #: Konfigurator/kguseractions.cpp:48
 msgid "Information"
@@ -6018,10 +6018,10 @@ msgid ""
 "in the active panel.</li><li>Make sure there is a file in the other panel, "
 "with the same name as the current file in the active panel.</li></ul>"
 msgstr ""
-"Чтобы сравнить 2 файла по содержимому сделайте следующее:\n"
-"- Выберите (пометьте) один файл на левой панели, другой - на правой.\n"
-"- Точно так же выделите 2 файла на активной панели.\n"
-"- Убедитесь что имена выделенных файлов совпадают"
+"Чтобы сравнить 2 файла по содержимому сделайте следующее:<ul><li>\n"
+"- Выберите (пометьте) один файл на левой панели, другой - на правой. Точно "
+"так же выделите 2 файла на активной панели.</li><li>\n"
+"- Убедитесь что имена выделенных файлов совпадают.</li></ul>"
 
 #: krslots.cpp:184
 msgid ""
