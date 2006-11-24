@@ -22,24 +22,24 @@
 *********************************************************************** -->
 
 <title
->&krusader; Tools</title>
+>Инструменты &krusader;</title>
 
 <sect1 id = "remote-connections">
 <title
->Remote Connections</title>
+>Удаленные соединения</title>
 <indexterm
 ><primary
->Remote Connections</primary
+>Удаленные соединения</primary
 ></indexterm>
 
 <para
->Remote connections are easy made by typing the &URL; in the <link linkend="list_panel"
->Location Toolbar</link
-> , these are actually &kioslaves1_url; . Please note that the &krusader; panel does not support all &kioslaves2_url; &eg; <command
+>Удаленные соединения легко создаются набором &URL; в <link linkend="list_panel"
+>Панели адреса</link
+> , они работают в &kioslaves1_url; . Пожалуйста запомните , что в панели &krusader; не поддерживаются все &kioslaves2_url; например , <command
 >http://</command
-> will not work in the panel, but will work in the <link linkend="krviewer"
->viewer</link
-> . Some examples:</para>
+> не будет работать в <link linkend="krviewer"
+>просмотрщике</link
+> .Некоторые примеры:</para>
  
  <itemizedlist>
      <listitem
@@ -115,73 +115,73 @@
 
  
 <para
->You can Bookmark these &URL;'s, please read the <link linkend="bookman"
->Bookman</link
-> section regarding <emphasis
->securely save passwords</emphasis
->. For connecting to multiple locations, bookmark these &URL;'s and open them one by one, or open them all together by using &panel_profiles_lnk; . To switch from one to another location, just open a &foldertabs_lnk; for each. </para>
+>Вы можете добавить эти &URL;'ы в закладки , прочитайте секцию <link linkend="bookman"
+>Менеджер закладок</link
+> относительно <emphasis
+>безопасного сохранения паролей</emphasis
+>.Для соединения с большим количеством адресатов добавьте &URL;'ы в закладки и открывайте их одну за одной в или откройте их одновременно , используя &panel_profiles_lnk; . Для переключения между адресами просто откройте &foldertabs_lnk; для каждой. </para>
 
 <para
->There are three ways to start a Remote Connection: <itemizedlist>
+>Есть три способа создания удаленного соединения: <itemizedlist>
       <listitem
 ><para
->Type the &URL; in the <link linkend="list_panel"
->Location Toolbar</link
+>Введите &URL; в <link linkend="list_panel"
+>панели адреса</link
 ></para>
       </listitem>
                
       <listitem
 ><para
->Selecting <emphasis role="bold"
+>Выберите <emphasis role="bold"
 ><menuchoice
 ><guimenu
->Commands</guimenu
+>Команды</guimenu
 > <guimenuitem
->New Net Connection</guimenuitem
+>Новое сетевое соединение</guimenuitem
 ></menuchoice
 ></emphasis
-> which will pop-up a dialog that will ask for the remote site details. This dialog is handy if you are not used to type remote &URL;'s in the Location Toolbar. Leaving the password and user name fields empty will try to log you in as annonymous. NOTE: we are planning to rewrite this dialog window.</para>
+> , которое вызовет диалог с детальным описанием соединения.Этот диалог очень удобен , если вы не пробовали вписывать &URL;'ы в панели адреса.Пустые поля пароля и логина подразумевают анонимный вход.Примечание:мы планируем переписать этот диалог.</para>
       </listitem>
                 
       <listitem
 ><para
->You can bookmark a directory on a remote host and return to this directory from the bookmark button on the top corner of your panel just like in a web browser.</para>
+>Вы можете сделать закладку для каталога на удаленной машине  и вернуться в этот каталог из менеджера закладок с помощью кнопки в верхнем углу вашей панели , как будто это  обычный браузер.</para>
       </listitem>
 </itemizedlist>
 </para>
 
 <para
->After you logon to a remote server you can browse it just like your local hard drive with the following exceptions: <itemizedlist>
+>После регистрации на удаленном сервере вы можете просматривать его как локальный диск со следующими исключениями: <itemizedlist>
       <listitem
 ><para
->You cannot execute files on remote servers.</para>
+>Вы не можете запускать исполняемые файлы на удаленной машине.</para>
                 </listitem>
       <listitem
 ><para
->Permissions cannot always be calculated on remote servers (depends on server and access method) so you might get a "?" on the permissions columns for some files. </para>
+>Права доступа не всегда определяются на удаленном сервере (зависит от сервера и метода доступа) вы можете получить "?" в полях прав доступа для некоторых файлов. </para>
                 </listitem>
   <listitem
 ><para
->Disk usage information is not availble for most remote filesystems.</para>
+>Информация о использовании дискового пространства  не доступна на удаленных файловых системах.</para>
             </listitem>
     </itemizedlist>
 </para>
 
 <para
->To change the charset of the remote host use <emphasis role="bold"
+>Для выбора кодировки на удаленной машине используйте <emphasis role="bold"
 ><menuchoice
 ><guimenu
->Commands</guimenu
+>Команды</guimenu
 > <guimenuitem
->Select Remote Charset</guimenuitem
+>Выбрать кодировку</guimenuitem
 ></menuchoice
 ></emphasis
 >.</para>
 
 <para
->You can <emphasis role="bold"
->close the current Active Remote Connection</emphasis
-> by several methods: <itemizedlist>
+>Вы можете <emphasis role="bold"
+>закрыть текущее активное удаленное  соединение</emphasis
+> несколькими способами: <itemizedlist>
         <!--
         <listitem>
            <para
@@ -198,12 +198,12 @@
         -->
         <listitem>
            <para
->Manually: Add the disconnect button to the &main_toolbar_lnk; and click on it.</para>
+>Вручную:Добавить кнопку разъединения на &main_toolbar_lnk; и нажать её.</para>
         </listitem>
         
         <listitem
 ><para
->Automatically: change the &URL; in the &location_toolbar_lnk; .</para>
+>Автоматически:выбрать &URL; в &location_toolbar_lnk; .</para>
         </listitem>
       </itemizedlist
 >      
@@ -211,25 +211,25 @@
 
 <note>
   <para
->&krusader; is a filemanager that supports remote connections via &kioslaves1_url;, but if you are looking for even more advanced remote connections features, &eg; an advanced &FTP;-client we recommend you to use &eg; &kasablanca_url; or &kftpgrabber_url;.</para>
+>&krusader; - это файловый менеджер , который поддерживает удаленные соединения через &kioslaves1_url; , поэтому , если вы хотите получить больше возможностей для удаленных соединений мы рекомендуем  , например , для &FTP; - использовать &kasablanca_url;  или &kftpgrabber_url;.</para>
   </note>
 
 </sect1>
 
 <sect1 id = "mount-man">
 <title
->MountMan: work with your mounted filesystems</title>
+>Менеджер монтирования:работа с файловыми системами</title>
 <indexterm
 ><primary
->Mount</primary
+>Монтирование</primary
 ></indexterm>
 
 <para
->MountMan is a tool which helps you manage your mounted filesystems. Once invoked, it displays a list of every mounted filesystem. For each filesystem, MountMan displays it's name (which is the actual device name - &ie; <filename class="directory"
+>Менеджер монтирования это инструмент , который поможет вам управлять монтированием файловых систем.Еще он показывает список разделов , смонтированных в настоящее  время. Для каждой файловой системы  он показывает  имя устройства( с его номером <filename class="directory"
 >/dev/fd0</filename
-> for a <hardware
->floppy</hardware
->), it's type (vfat, ext3, ReiserFS ...) and it's mount-point on your system (the directory on which the filesystem is mounted).</para>
+> для <hardware
+>флоппи</hardware
+>), тип (vfat, ext3, ReiserFS ...) и точку монтирования в системе (директорию , в которой файловая система смонтирована).</para>
 
 <!-- OLD
 <screenshot>
@@ -254,35 +254,35 @@
 
 <figure id="screenshot-mountman" float="1">
 <title
->MountMan</title>
+>Менеджер монтирования</title>
 <mediaobject>
 <imageobject
 ><imagedata fileref="mountman.png"/></imageobject>
 <textobject
 ><phrase
->MountMan</phrase
+>Менеджер монтирования</phrase
 ></textobject>
 </mediaobject>
 </figure>
 
 <para
->MountMan also displays usage information using total size, free size, and percentage of available space free. If those numbers say <guilabel
+>Менеджер монтирования также показывает информацию о занятом/свободном месте на разделе и свободное пространство в процентах.Если эти цифры видны как <guilabel
 >N/A</guilabel
->, it usually means that the filesystem isn't mounted. Left clicking on a filesystem displays a pie chart on the left of the window, this graphically displays the usage information for the filesystem. Clicking on a non-mounted filesystem will display <guilabel
+>, значит раздел не смонтирован.Клик левой кнопкой мыши на на строке раздела покажет в окне слева от списка графическую диаграмму для выбранного раздела.Щелчок на не смонтированной файловой файловой системе покажет <guilabel
 >not mounted</guilabel
-> instead of the graph.</para>
+> .</para>
   <itemizedlist>
       <listitem
 ><para
 ><keycap
->Double-clicking</keycap
-> on a filesystem will close MountMan and open that filesystem inside &krusader;'s active panel. </para
+>Двойной клик</keycap
+> на файловой системе закроет Менеджер монтирования и откроет файловую систему в текущей панели внутри &krusader;. </para
 ></listitem>
       <listitem
 ><para
 ><keycap
->Right clicking</keycap
-> on a filesystem will open a small menu which displays what actions can be performed on that filesystem. For now you can only mount, unmount and eject (if clicking on a removable filesystem, e.g., a <hardware
+>Правый клик</keycap
+> на файловой системе откроет в маленьком меню диалог с доступными для данной файловой системы действиями.Сейчас  можно монтировать/отмонтировать и извлечь ( для <hardware
 >cdrom</hardware
 >). </para
 ></listitem>
@@ -290,62 +290,62 @@
 
 <note
 ><para
->We plan to expand MountMan in the next evolution of &krusader;. It will be able to format floppies, edit <filename class="directory"
+>Мы планируем расширить Менеджер монтирования в дальнейшем развитии &krusader;. Будет добавлено форматирование для флоппи, редактирование <filename class="directory"
 >/etc/fstab</filename
->, create new filesystems and more.... BTW, we have started working on it, see "Quickmode for MountMan"</para
+> , создание новых файловых систем и другое...Мы начали работу над этим</para
 ></note>
 
 <para
 ><emphasis role="bold"
->Quickmode for MountMan</emphasis
+>Быстрый режим для Менеджер монтирования</emphasis
 ></para>
 
 <para
->To activate Quickmode for MountMan, click AND HOLD the MountMan button on the &main_toolbar_lnk;</para>
+>Для активации быстрого режима в Менеджер монтирования нажмите и удерживайте кнопку мыши на кнопке в &main_toolbar_lnk;</para>
 
 <para
->General idea: display a list of all possible mountpoints. Each time the menu is displayed, it determines if a mountpoint is mounted or not and associates the correct action (mount or umount). This offers a quick interface to MountMan. It is working, and currently uses KMountMan::mount and unmount. It uses the new &kde; services for fstab-reading and this will enable us to remove A LOT of code from the "old" MountMan.</para>
+>Основная идея: показывать список всех доступных точек монтирования. Каждый раз , когда показывается меню, определяется  точка монтирования смонтирована или нет и  связывается с верным действием (монтирование/отмонтирование). Это быстрый способ доступа к Менеджер монтирования.Он позволяет только монтировать и отмонтировать. В новом &kde; будет сервис для fstab и часть старого кода будет удалена из Менеджер монтирования.</para>
 
 </sect1>
 
 
 <sect1 id = "bookman">
 <title
->BookMan: Organize your Bookmarks</title>
+>Менеджер закладок: управление закладками</title>
 <indexterm
 ><primary
->Bookmarks</primary
+>Закладки</primary
 ></indexterm>
 
 <para
->BookMan is &krusader;'s Bookmark tool to bookmark folders, local- and <link linkend="remote-connections"
->remote URL's</link
->, and later return to them in a click of a button. The Bookman menu is devided in four sections: <itemizedlist>
+>Менеджер закладок в &krusader; - это инструмент управления   папками закладками , локальными и <link linkend="remote-connections"
+>удаленными URL'ами</link
+>, и дальнейший возврат их по щелчку мыши.Меню состоит их четырех секций: <itemizedlist>
     <listitem
 ><para
->Your personal bookmarks.</para>
+>Персональные закладки.</para>
     </listitem>
 
     <listitem
 ><para
->Popular &URL;'s.</para>
+>Наиболее часто посещяемые &URL;'ы.</para>
     </listitem>
 
     <listitem
 ><para
->Permanent bookmarks.</para>
+>Неизменяемые закладки.</para>
     </listitem>
 
     <listitem
 ><para
->Manage bookmarks.</para>
+>Управление закладками.</para>
     </listitem>
   </itemizedlist>
 </para>
 
 <note
 ><para
->You can bookmark inside a remote filesystem (&FTP; or SAMBA) and later use the bookmark to quickly connect to the remote machine, but You CANNOT bookmark inside an archive.</para
+>Вы можете сделать закладку внутри удаленной  файловой системы (&FTP; или SAMBA) и после использовать для быстрого доступа к удаленной машине, но НЕЛЬЗЯ сделать закладку внутри  архива.</para
 ></note>
 
 <!-- OLD
@@ -371,13 +371,13 @@
 
 <figure id="screenshot-bookmanadd" float="1">
 <title
->Bookmark menu</title>
+>меню Закладки</title>
 <mediaobject>
 <imageobject
 ><imagedata fileref="bookmanadd.png"/></imageobject>
 <textobject
 ><phrase
->Bookmark menu</phrase
+>меню Закладки</phrase
 ></textobject>
 </mediaobject>
 </figure>
@@ -385,79 +385,77 @@
 
 <sect2 id = "using_bookmarks">
 <title
->Using Bookmarks</title>
+>Использование закладок</title>
 
 <para
->Usually, you click on the <guibutton
->Bookmark</guibutton
-> button when you're in the target folder. For example, to bookmark <filename class="directory"
+>Обычно , вы нажимаете на  кнопку <guibutton
+>Закладка</guibutton
+>  , когда вы находитесь в целевом каталоге. Для примера создадим закладку для <filename class="directory"
 >/usr/tmp</filename
->, navigate &krusader; there and click the <guibutton
->Bookmark</guibutton
-> button and select <guimenuitem
->Bookmark Current</guimenuitem
->. When the <guilabel
->Bookmark Current</guilabel
-> dialog box appears, the &URL; line will say <filename class="directory"
+>, переведем &krusader; в каталог и нажимаем кнопку <guibutton
+>Закладки</guibutton
+>.Затем в диалоговом окне <guilabel
+>Добавить закладку</guilabel
+> путь к &URL; <filename class="directory"
 >/usr/tmp</filename
->. <guilabel
->Name</guilabel
-> is for the name you would like to give to the bookmark (for example: temporary folder). Hotkeys are supported by adding <literal
+>.<guilabel
+>Имя</guilabel
+> , которое вы дадите закладке (например:временный каталог).Комбинации клавиш поддерживают добавление <literal
 >&amp;</literal
-> to the bookmarkname &eg; <literal
+> в имя закладки , например <literal
 >&amp;sourceforge, &amp;home, down&amp;loads</literal
-> &etc;, so you can quickly call the bookmark name with <keycombo action="simul"
+> &etc;,  так вы можете быстро вызвать закладку , используя горячую клавишу <keycombo action="simul"
 >&Alt;<keycap
 >foo</keycap
 ></keycombo
->. If you add the bookmark without entering a name, the bookmarks name will be the same as its target. <guilabel
+>.Если вы добавите закладку не давая ей имени , она будет названа по пути к каталогу.<guilabel
 >URL</guilabel
-> is where the bookmark points to. <guilabel
->Create in</guilabel
-> creates bookmark folders for organizing your bookmarks.</para>
+> являются именами закладок.<guilabel
+>Создать в</guilabel
+> создает папку закладок для упорядочивания ваших закладок.</para>
 
 <para
->To use your bookmarks, click the <guibutton
->Bookmark</guibutton
-> button and choose a Bookmark. You may also use the &keybindigs_lnk; : <keycombo action="simul"
+>Для использования закладок нажмите кнопку <guibutton
+>Закладки</guibutton
+> и выберите закладку.Вы также можете использовать &keybindigs_lnk; : <keycombo action="simul"
 >&Ctrl;&Shift;<keycap
 >d</keycap
 ></keycombo
-> to bookmark the current item, <keycombo action="simul"
+> для добавления закладки , <keycombo action="simul"
 >&Alt;<keycap
->right/left arrow</keycap
+>правая/левая стрелка</keycap
 ></keycombo
-> to <keycap
->open right/left panel bookmarks list</keycap
-> and <keycombo action="simul"
+> для <keycap
+>открытия правой/левой панели закладок</keycap
+> и <keycombo action="simul"
 >&Ctrl;<keycap
 >d</keycap
 ></keycombo
-> to open the bookmarks of the active panel. A &MMB; click on bookmarks opens them in a new <link linkend="folder_tabs"
->Folder tab</link
+> для открытия закладки в активной панели. A &MMB; откроет закладку в новой <link linkend="folder_tabs"
+>вкладке</link
 >. </para>
 
 <para
->Navigation in bookmarks: <orderedlist>
+>Перемещение в закладках: <orderedlist>
           <listitem>
              <para
->start typing letters</para>
+>начните печатать буквы</para>
           </listitem>
 
           <listitem>
               <para
->&eg; when you type <literal
+>Например , если вы напечатали <literal
 >'h'</literal
-> and only 1 bookmark starts with <literal
+> и только одна закладка начинается с буквы <literal
 >'h'</literal
->, it is executed immediatly - no enter needed</para>
+>, откроется именно она - дальше ничего не нужно вводить</para>
           </listitem>
 
           <listitem>
              <para
->if more than one bookmarks start with <literal
+>если более чем одна закладка начинается с буквы <literal
 >'h'</literal
->, you will have to continue adding letters, until you specified enough and again, the bookmark is executed.</para>
+>, вы должны вводить дальше , пока не определится необходимая закладка.</para>
           </listitem>
       </orderedlist>
 </para>
@@ -467,30 +465,30 @@
 
 <sect2 id = "password_handling">
 <title
->Password handling</title>
+>Обработка паролей</title>
 
 <para
->One of the benefits of the <link linkend="bookman"
->bookmark manager</link
-> is that the passwords are saved using &kde;'s services - where &eg; your &konqueror;/&kmail; password are saved. If you have a wallet, &kde; will save the passwords there. Click the bookmarks, a dialog will open and asking for username and password. supply them and click 'save password'. the passwords and usernames will be saved securly by &kde;'s wallet (make sure it is enabled by your distro). The downside here, is that if you reinstall and don't backup your passwords from the wallet as well as &krusader;'s bookmark file, something will be lost. </para>
+>Одно из преимуществ <link linkend="bookman"
+>управления закладками</link
+> - это  сохранение паролей средствами &kde; , когда , например ваши пароли сохранены в &konqueror;/&kmail;. Если вы имеете бумажник &kde; , сохраняйте пароли в нем.Выберите закладки , в диалоге вас спросят о пароле и имени.Введите их и нажмите 'сохранить пароль'. Пароли и имена будут сохранены в бумажнике &kde;( если это разрешено в вашем дистрибутиве).При переустановке , если вы не сохраните ваши пароли из бумажника как файл закладок &krusader; , они будут утеряны. </para>
 
 </sect2>
 
 <sect2 id = "popular_urls">
 <title
->Popular URL's</title>
+>Наиболее часто посещаемые</title>
 
 <para
->The submenu <guilabel
->Popular URL's</guilabel
-> holds persistent the most popular visited &URL;'s (local or remote). This submenu displays the top 15 popular urls, sorted by ranking, so that the top &URL; is the most popular. This is easy for when u need to visit &URL;s often, but don't want to create &bookmarks_lnk;, it serves as a temporary bookmark list for the most visited links. <guilabel
->Quicksearch Popular URL's</guilabel
-> is a fast way to browse/select the Popular &URL;s: <itemizedlist>
+>Подменю <guilabel
+>Наиболее часто посещаемые</guilabel
+> хранит самые посещаемые &URL;'ы (локальные или удаленные).Это подменю показывает список 15 самых посещаемых мест , сортированных по посещаемости.Это удобно , если нужно быстро найти часто посещаемое место , и не обязательно нужно делать для него &bookmarks_lnk;, он служит временным списком закладок .<guilabel
+>Быстрый поиск</guilabel
+> это легкий способ найти/выбрать необходимый &URL;: <itemizedlist>
     <listitem
 ><para
->open the <guilabel
->Popular URL's</guilabel
-> or use <keycombo action="simul"
+>откройте <guilabel
+>Наиболее часто посещаемые или</guilabel
+> или используйте <keycombo action="simul"
 >&Ctrl;<keycap
 >z</keycap
 ></keycombo
@@ -498,15 +496,15 @@
 ></listitem>
     <listitem
 ><para
->type few letters to narrow the search </para
+>введите несколько букв для сужения критерия поиска </para
 ></listitem>
     <listitem
 ><para
->hit enter (you'll go to the &URL; list) </para
+>жмите ввод (вы перейдете в список &URL;) </para
 ></listitem>
     <listitem
 ><para
->hit enter again and the panel is refreshed</para
+>жмите ввод снова и панель обновится</para
 ></listitem>
  </itemizedlist>
 </para>
@@ -515,60 +513,60 @@
 
 <sect2 id = "permanent_bookmarks">
 <title
->Permanent bookmarks</title>
+>Неизменяемые закладки</title>
 
 <para
->These are hardcoded bookmarks to the top bookmark menu without the need of being saved to the file. With the &context_menu_lnk; you can enable/disable these Permanent bookmarks. The next Permanent bookmarks are available: <itemizedlist>
+>Эти , жестко запрограммированные закладки в меню не нуждаются в сохранении в файл.В &context_menu_lnk; вы можете запретить/разрешить неизменяемые закладки.Доступные следующие неизменяемые закладки.Доступны следующие неизменяемые закладки: <itemizedlist>
     <listitem
 ><para
 ><guilabel
->Media</guilabel
-> uses &kde;'s <link linkend="konfig-advanced"
->Media protocol</link
+>Носители</guilabel
+> использует <link linkend="konfig-advanced"
+>Протокол</link
 > <filename
 >media:/</filename
-></para>
+> из &kde;</para>
     </listitem>
 
     <listitem
 ><para
 ><guilabel
->Local Network</guilabel
-> uses &kde;'s <filename
+>Локальная сеть</guilabel
+> использует протокол &kde; <filename
 >lan:/</filename
-> protocol. </para>
+>. </para>
     </listitem>
 
     <listitem
 ><para
 ><guilabel
->Virtual Filesystem</guilabel
+>Виртуальная файловая система</guilabel
 > &vfs_lnk; <filename
 >virt:/</filename
-> is not a virtual folder, but a container for &URL;'s from different file systems. It is used for &eg; the <guilabel
->Feed to Listbox</guilabel
-> feature of the search module and the synchronizer. The location toolbar will display &eg; <filename
->virt:/Search results 1</filename
-> or <filename
->virt:/Synchronise results 1</filename
+> - это не виртуальная папка , а только контейнер для &URL;'ов из различных файловых систем.Она используется например для <guilabel
+>Поместить на панель</guilabel
+> в модуле поиска и синхронизаторе.Панель адреса отобразит , например так :<filename
+>virt:/Результаты поиска 1</filename
+> или <filename
+>virt:/Результаты синхронизации 1</filename
 >. </para
 ></listitem>
 
     <listitem id= "jump_back"
 ><para
 ><guilabel
->Jump back</guilabel
-> or <keycombo action="simul"
+>Вернуться</guilabel
+> или <keycombo action="simul"
 >&Ctrl;<keycap
 >J</keycap
 ></keycombo
-> brings you back to your starting position when you did create a New Tab in the panel window. This feature is very handy if you go deep into a directory tree, than you can return with one action to the starting point. With <guilabel
->Set jump back point here</guilabel
-> or <keycombo action="simul"
+> позволяет вернуться на начальную позицию , когда вы создаете новую вкладку в панели.Эта возможность очень удобна - если вы находитесь глубоко внутри дерева каталогов  можно вернуться на один шаг назад.<guilabel
+>Установить точку возврата</guilabel
+> или <keycombo action="simul"
 >&Ctrl;&Shift;<keycap
 >J</keycap
 ></keycombo
-> sets the current directory as a jump back point.</para>
+> установит текущую директорию как точку возврата.</para>
     </listitem>
  </itemizedlist>
 </para>
@@ -577,18 +575,18 @@
 
 <sect2 id = "manage_bookmarks">
 <title
->Manage bookmarks</title>
+>Управление закладками</title>
 
 <para
->To edit and organize your bookmarks, click the <guibutton
->Bookmark</guibutton
-> button and select <guimenuitem
->Manage Bookmarks</guimenuitem
->, &keditbookmarks; will be displayed. This is where you can edit/remove and re-arrange the bookmarks. &keditbookmarks; (part of the kdebase package) is a bookmark editor for &konqueror;, &krusader; and other applications, which use the &xbel_url; standard for the bookmark format. The bookmarks are stored in <filename
+>Чтобы редактировать и настраивать ваши закладки нажмите кнопку <guibutton
+>Закладки</guibutton
+> и выберите меню <guimenuitem
+>Управление закладками</guimenuitem
+> , будет вызван Редактор закладок. Здесь вы можете редактировать/удалять и переназначать закладки. Редактор закладок (часть базового пакета КДЕ) - используется дляr &konqueror;, &krusader;  и других приложений по стандарту &xbel_url; для формата закладок. Закладки сохраняются в файле <filename
 >~/.kde/share/apps/krusader/krbookmarks.xml.</filename
 ></para>
       <para
->You can import bookmarks from <application
+>Вы можете импортировать закладки из <application
 >IE</application
 >, <application
 >Opera</application
@@ -596,7 +594,7 @@
 >Galeon</application
 >, &kde;, <application
 >Mozilla</application
->, &Netscape;. &keditbookmarks; is easy to use, please read the &keditbookmarks; or the &konqueror; handbook if you need more info.</para>
+>, &Netscape;. &keditbookmarks; - это легко сделать , прочитайте руководство Редактора закладок или &konqueror; если хотите узнать больше.</para>
 
 <!-- OLD
 <screenshot>
@@ -621,13 +619,13 @@
 
 <figure id="screenshot-bookmanedit" float="1">
 <title
->&keditbookmarks; Bookmark Manager</title>
+>Редактор закладок</title>
 <mediaobject>
 <imageobject
 ><imagedata fileref="bookmanedit.png"/></imageobject>
 <textobject
 ><phrase
->&keditbookmarks; Bookmark Manager</phrase
+>Редактор закладок</phrase
 ></textobject>
 </mediaobject>
 </figure>
@@ -638,25 +636,25 @@
 
 <sect2 id = "bookmark_buttons">
 <title
->Bookmarks as action buttons on the Toolbar</title>
+>Закладки - это кнопка управления на панели</title>
 
 <para
->Bookmarks can be placed as buttons on the &main_toolbar_lnk; or the &actions_toolbar_lnk;, you can even make a key-binding for them. <itemizedlist>
+>Кнопка закладки может быть помещена на &main_toolbar_lnk; или на &actions_toolbar_lnk;, в дальнейшем вы можете назначить сочетание клавиш для неё. <itemizedlist>
     <listitem
 ><para
->create your &bookmarks_lnk; . </para
+>создайте ваши &bookmarks_lnk; . </para
 ></listitem>
     <listitem
 ><para
->If you want, create keybindings for the bookmarks in the <guilabel
->Key-bindings</guilabel
-> section of the &konfiglookandfeel_lnk; . </para
+>Если вы хотите , создайте сочетание клавиш  для вызова закладок в секции <guilabel
+>Сочетания клавиш</guilabel
+> в &konfiglookandfeel_lnk; . </para
 ></listitem>
     <listitem
 ><para
->Add your bookmarks as action buttons on the &main_toolbar_lnk; or the &actions_toolbar_lnk; with the <guilabel
->Toolbar</guilabel
-> section of the &konfiglookandfeel_lnk; . </para
+>Добавьте кнопку на &main_toolbar_lnk; или &actions_toolbar_lnk; используя секцию<guilabel
+>Панель</guilabel
+>  &konfiglookandfeel_lnk; . </para
 ></listitem>
  </itemizedlist>
 </para>
@@ -667,14 +665,14 @@
 
 <sect1 id = "krusearcher">
 <title
->KruSearcher: find what you're looking for</title>
+>Krusader::Поиск: найдет то , что вы ищете</title>
 <indexterm
 ><primary
->Search</primary
+>Поиск</primary
 ></indexterm>
 
 <para
->Welcome to &krusader;'s powerful search module - nicknamed Krusearcher. It is the most able tool (that we know of) for &Linux;, since it allows so many different ways to quickly find the file you're looking for. The search function is also available on remote file systems. It is divided into two levels, the general and the advanced. Let's take a look at the general page ...</para>
+>Добро пожаловать в многофункциональный модуль поиска , называемый Krusader::Поиск. Он является наиболее мощным(насколько мы знаем) инструментом для поиска в &Linux;, и дает несколько различных способов для быстрого поиска файлов.Функция поиска также  доступна для удаленных файловых систем.Поиск разделен на два уровня : основной и дополнительный.Посмотрим на основную страницу...</para>
 
 <!-- OLD
 <screenshot>
@@ -699,86 +697,86 @@
 
 <figure id="screenshot-search-general" float="1">
 <title
->General Search</title>
+>Основной поиск</title>
 <mediaobject>
 <imageobject
 ><imagedata fileref="search_general.png"/></imageobject>
 <textobject
 ><phrase
->General Search</phrase
+>Основной поиск</phrase
 ></textobject>
 </mediaobject>
 </figure>
 
 
 <para
->The page is divided into four parts: top (search for) part, bottom part - titled 'containing text', left part - titled 'search in' and right part which is called 'don't search in'. Obviously, each part handles different aspects of the search. Let's look at them closely.</para>
+>Страница разделена на четыре части: верхняя (фильтр) часть,нижняя часть - названная 'Содержащие текст' , левая часть - 'Искать в ' и правая - 'не искать в'. Очевидно , что каждая часть предоставляет различные способы поиска.</para>
 
 <itemizedlist
 ><title
->Top Part:</title>
+>Верхняя часть:</title>
            <listitem
 ><para
 ><guilabel
->Search for</guilabel
->: here you enter the main search criteria. You can enter a filename, a wildcard (<literal role="extension"
+>Фильтр</guilabel
+>: здесь вы можете задать критерий поиска.Здесьвы можете ввести имя файла , символ (<literal role="extension"
 >*.o.*</literal
 >, <literal role="extension"
 >*.c</literal
-> &etc;) or both - separated by a space. If you type <literal
+> &etc;) или оба - разделенные пробелом.Если вы ввели <literal
 >'text'</literal
-> the results is the same as <literal
+> то результаты будут подобны <literal
 >'*text*'</literal
->. You can exclude files from the search with '|' (&eg; <literal role="extension"
+>.Вы можете исключить из поиска файлы используя '|' ( например <literal role="extension"
 >'*.cpp *.h | *.moc.cpp'</literal
 > ). </para
 ></listitem>
            <listitem
 ><para
 ><guilabel
->Case sensitive</guilabel
->: unchecking it will allow lower and upper case search (&ie;: <literal role="extension"
+>С учетом регистра</guilabel
+>: отмена этого позволит искать в верхнем и нижнем регистре (например : <literal role="extension"
 >*.c</literal
-> interprets as <literal role="extension"
+> интерпретируется как <literal role="extension"
 >*.c</literal
-> AND <literal role="extension"
+> и <literal role="extension"
 >*.C</literal
 >). </para
 ></listitem>
            <listitem
 ><para
 ><guilabel
->Of type</guilabel
->: this box lets you search for a file not only by its name, but also by its mimetype. For example, you can search for all the audio files whose name begins with B. Usually this option defaults to 'all files', but you can choose to search for archives, directories, images, text files, videos and audio files. </para
+>Типы</guilabel
+>: это меню позволяет искать файлы по содержимому.Например , вы можете искать все файлы аудио , которые начитаются с буквы Б.Обычно эта опция выставлена  по умолчанию на 'все файлы' , но вы можете выбирать поиск для архивов , каталогов , графических  и текстовых файлов , видео и аудио файлов. </para
 ></listitem>
 </itemizedlist>
 
 <itemizedlist
 ><title
->Left and Right Part:</title>
+>Левая и правая части:</title>
     <listitem
 ><para
 ><guilabel
->Search in</guilabel
-> and <guilabel
->Don't search in</guilabel
->: Using those two parts, you can specify a search exactly the way you want it. For example, you might want to search for a file in the whole filesystem (beginning with <filename
+>Искать в</guilabel
+> и <guilabel
+>Не искать в</guilabel
+>: используя эти две части вы можете уточнить путь поиска методом исключения.Например , вы можете искать файл в всей файловой системе ( начиная с <filename
 >/</filename
->), but don't want to search inside <filename
+>), но исключив поиск внутри <filename
 >/mnt</filename
->. All you need to do is write <filename
+>.Все что нужно - это вписать <filename
 >/</filename
-> in the <guilabel
->search in</guilabel
-> box, and write <filename
+> в поле <guilabel
+>Искать в</guilabel
+> и <filename
 >/mnt</filename
-> in the <guilabel
->dont search in</guilabel
-> box. If you want to enter more than one directory in one of the boxes, just type the first name and press &Enter;. The directory's name will be copied to the bigger box and you'll be able to enter another name. <note
+> в поле <guilabel
+>Не искать в</guilabel
+>. Если вы хотите вписать более чем один каталог , просто нажмите ввод когда напишите первый.Имя каталога  копируется в большое поле и можно вписывать следующее имя. <note
 ><para
->The input line has an auto completion feature, corrosponding to &kde;'s global settings. If you wish, you can click on the <guiicon
->folder icon</guiicon
->, and browse to the directory you wish to add. </para
+>Поле ввода делает автоматическое дополнение , используя глобальные настройки &kde;. Если хотите , можете щелкнуть по <guiicon
+>иконке папки</guiicon
+> и просмотреть каталог , который хотите добавить. </para
 ></note>
               </para
 ></listitem>
@@ -786,60 +784,60 @@
 
 <itemizedlist
 ><title
->Bottom Part:</title>
+>Нижняя часть:</title>
     <listitem
 ><para
 ><guilabel
->Text</guilabel
->: entering text here makes &krusader; search for it inside the files (<command
+>Текст</guilabel
+>: по введенному здесь тексту &krusader;  проведет поиск внутри файлов (<command
 >grep</command
->). That way, you can search for all header files (<literal role="extension"
+>).Таким способом вы можете найти внутри всех файлах заголовков (<literal role="extension"
 >*.h</literal
->) which include the word <literal
+>) слово <literal
 >'testing 123'</literal
-> inside them. </para
+>. </para
 ></listitem>
     <listitem
 ><para
 ><guilabel
->Match whole word only</guilabel>
+>Выбирайте только полное слово</guilabel>
                </para
 ></listitem>
     <listitem
 ><para
 ><guilabel
->Case sensitive</guilabel
->: refers to your text being searched for in upper and lower case or the exact phrase you entered. </para
+>С учетом регистра</guilabel
+>: поиск будет производится ссылаясь на ваш текст по верхнему/нижнему регистру или по фразе , которою вы ввели. </para
 ></listitem>
     <listitem
 ><para
 ><guilabel
->Search in subdirectories</guilabel
->: do a recursive search and dive into every directory on the way. </para
+>Искать в подкаталогах</guilabel
+>: произведет рекурсивный поиск и внутри каталога , по указанному пути. </para
 ></listitem>
     <listitem
 ><para
 ><guilabel
->Search in archives</guilabel
->: &krusader; will search for your files inside every supported archive. This, however, takes longer to perform. <note
+>Искать в архивах</guilabel
+>: &krusader; будет искать внутри поддерживаемых архивов.Однако это очень продолжительная операция. <note
 ><para
->If you check this checkbox, you'll notice you cannot <command
+>Если  поставите здесь отметку , появится уведомление  о невозможности использования <command
 >grep</command
-> inside files anymore. This is done, since looking inside archived files forces &krusader; to extract them, which results in an extremely time-consuming search.</para
+> внутри файлов. Это сделано потому что &krusader; распаковывает архивные файлы перед поиском , в результате  на это уходит много времени.</para
 ></note>
                </para
 ></listitem>
     <listitem
 ><para
 ><guilabel
->Follow links</guilabel
->: if checked, &krusader; will follow soft-links during the search. </para
+>Следовать по ссылкам</guilabel
+>: если это установлено , &krusader; будет следовать по мягким ссылкам во время поиска. </para
 ></listitem>
     <listitem
 ><para
 ><guilabel
->Profiles</guilabel
->: if you have to regularly perform the same search operation, you can save the search settings &eg; include files, exclude files, etc.... Press the 'profile' button, and you'll be able to add/load/save/remove search profiles. </para
+>Профили</guilabel
+>: если вы часто производите одинаковый поиск , например , внутри включая или исключая файлы и т.д. , можно сохранить настройки.Нажмите кнопку 'Профили' и добавляйте/загружайте/удаляйте профили поиска. </para
 ></listitem>
 </itemizedlist>
 
@@ -861,19 +859,19 @@
 >. </para>
 
 <para
->Clicking the <guibutton
->Search</guibutton
-> button starts the search and displays the results page. During the search, you may press the <guibutton
->Stop</guibutton
-> button to stop the search. The <guibutton
->Close</guibutton
-> button is not operational during a search, so you must first stop the search and then <guibutton
->Close</guibutton
-> the window. When a result is found, double clicking on it will make &krusader;'s active panel point to the found files - but will not close the search window, so you'll be able to click on a different result.</para>
+>Нажатие кнопки <guibutton
+>Поиск</guibutton
+> запустит поиск и покажет результат на странице результатов.Во время поиска вы можете нажать кнопку <guibutton
+>Стоп</guibutton
+> и остановить поиск.Кнопка <guibutton
+>Закрыть</guibutton
+> не доступна во время поиска.Сначала нужно остановить поиск и потом <guibutton
+>Закрыть</guibutton
+> окно.Когда поиск будет окончен , двойной щелчок в нем переведет активную панель в точку расположения найденных файлов.Только не закрывайте окно поиска , так будут доступны другие результаты поиска.</para>
 
 <para
->Sometimes, you need to narrow your search even more. Krusearcher allows a much finer search, and for that, let's look at the <guilabel
->Advanced Page</guilabel
+>Иногда  бывает нужно сузить параметры поиска.Это можно сделать с помощью вкладки <guilabel
+>Дополнительно</guilabel
 >...</para>
 
 <!-- OLD
@@ -899,61 +897,61 @@
 
 <figure id="screenshot-search-advanced" float="1">
 <title
->Advanced Search</title>
+>Расширенный поиск</title>
 <mediaobject>
 <imageobject
 ><imagedata fileref="search_advanced.png"/></imageobject>
 <textobject
 ><phrase
->Advanced Search</phrase
+>Расширенный поиск</phrase
 ></textobject>
 </mediaobject>
 </figure>
 
 
 <para
->This screenshot shows a search for files whose size is between 10KB and 150KB, which were modified between October 10th and November 1st, which belong to any user in the 'users' group, and are readable and writeable by anyone in the 'users' group, but only readable to the rest of the world.</para>
+>Этот снимок экрана показывает поиск для файлов размером между 10KB и 150KB , которые изменялись  между 10 октября и 1 ноября , принадлежащих любому пользователю в группе 'пользователи' и доступным для чтения/записи каждому в группе , но только для чтения всем остальным.</para>
 
 <para
->The advanced page is divided into three parts: size, date and ownership.</para>
-
-<para
-><emphasis role="bold"
->Size</emphasis
-></para>
-
-<para
->Allows you to choose the size range of the file you're looking for. By checking the checkboxes, you can search for a file which is bigger than XXX bytes (or KB, MB), smaller than XXX bytes or, by checking both search for a file which size is bigger than XXX but smaller than YYY.</para>
-
+>Страница расширенного поиска разделена на три части: размер , дата и владелец.</para>
 
 <para
 ><emphasis role="bold"
->Date</emphasis
+>Размер</emphasis
 ></para>
 
 <para
->This part offers three different ways of defining a date criteria: <itemizedlist>
+>Позволяет выбрать диапазон размера файла.Можно искать меньше чем ХХХ байт (или Кб, Мб) , больше чем ХХХ байт , или , при выборе обоих параметров меньше чем ХХХ и больше чем YYY.</para>
+
+
+<para
+><emphasis role="bold"
+>Дата</emphasis
+></para>
+
+<para
+>Эта часть предлагает три различных пути определения даты: <itemizedlist>
    <listitem
 ><para
 ><guilabel
->Modified between</guilabel
->: allows you to enter two dates. &krusader; will search for files with a modification date between the first date and the second one, inclusive. If you only enter a date in the left box, you'll be searching for files older than that date. If you only enter a date in the right box, you'll be searching for files newer than that date. <note
+>Изменявшееся между</guilabel
+>: вводятся две даты. &krusader; бдует искать файлы между этими датами , включая их самих.Если вы установите дату только в левое поле будет поиск файлов старее этой даты.Соответсвенно если установите дату в правом поле - новее этой даты. <note
 ><para
->You can click on the date icon (near the input boxes) to open a standard date window - which allows you to easily browse through the calendar and search for the desired date. Clicking on a date will close the window and the date will appear in the input box. </para
+>Можно щелкнуть по иконке даты (рядом с полем ввода) - откроется стандартное окно даты - найдите свою дату в календаре.Щелчок по дате закроет окно и введет дату в  соответствующее поле ввода даты. </para
 ></note>
              </para
 ></listitem>
   <listitem
 ><para
 ><guilabel
->Not modified after</guilabel
->: choosing this option makes &krusader; search for files that were NOT modified after a given date, which is the same as searching for files older than that date. </para
+>Не изменявшееся после</guilabel
+>: выбор этой опции заставит &krusader; искать файлы , которые не изменялись после указанной даты , что равнозначно поиску файлов старее этой же даты. </para
 ></listitem>
   <listitem
 ><para
 ><guilabel
->Modified in the last/not modified in the last</guilabel
->: in these input boxes, you enter not a date, but a number. This number represents days/weeks/months (as chosen in the near dropbox). Entering the number 5 in the upper input box, makes &krusader; search for files that were modified in the last 5 days. Entering the number 2 in the lower input box makes &krusader; search for files that did NOT change in the last 2 days. The combination of both results in a search for files that were changed in the last 5 days, but NOT in the last 2 days. </para
+>Изменялись за последние/Не изменялись за последние</guilabel
+>: в этих полях вводите не дату а только числа.Эти числа представляют дни/недели/месяцы (как выбрано в выпадающем списке). Введение цифры 5 в верхнем поле заставит &krusader; искать файлы изменявшиеся в течение последних пяти дней.Введение цифры 2 в нижнем поле ввода вызовет поиск файлов не изменявшихся за последние два дня.Комбинация обоих результатов даст в сумме поиск для файлов , которые изменялись в течение пяти последних дней и не изменялись за два последних дня. </para
 ></listitem>
 </itemizedlist
 ></para>
@@ -961,21 +959,21 @@
 
 <para
 ><emphasis role="bold"
->Ownership</emphasis
+>Владелец</emphasis
 ></para>
 
 <itemizedlist>
    <listitem
 ><para
 ><guilabel
->Belongs to user/group</guilabel
->: by checking each of the corresponding checkboxes, you can search for files which belong to a certain user and/or group. The dropbox lists all the user names and group names in the system, just choose one and go ahead. </para
+>Принадлежит пользователю/группе</guilabel
+>: при выборе этих опций вы сможете искать файлы , принадлежащие определенным пользователям/группам.В выпадающем списке показаны все пользователи и группы в вашей системе , только выберите необходимое. </para
 ></listitem>
    <listitem
 ><para
 ><guilabel
->Permissions</guilabel
->: divided into owner, group and all - it allows you to choose certain permissions for the file. You can choose to specify permissions for the owner, group, all or any combination. The question mark (?) is a wildcard - which means that any permission is valid. </para
+>Права</guilabel
+>: делится на владельца , группу и всех - поиск по правам доступа к файлам.Вы можете искать по правам доступа в любой комбинации .Знак вопроса (?) - это шаблонный символ - с ним действительны любые права доступа. </para
 ></listitem>
 </itemizedlist>
 
@@ -986,7 +984,7 @@
 
 <para
 ><emphasis role="bold"
->Results</emphasis
+>Результаты</emphasis
 ></para>
 
 <para
@@ -1002,7 +1000,7 @@
 
 <para
 ><emphasis role="bold"
->Feed to listbox</emphasis
+>Поместить на панель</emphasis
 ></para>
 
 <para
@@ -1021,75 +1019,75 @@
 
 <sect1 id="locate">
 <title
->Locate &GUI; Frontend</title>
+>Размещение - графическая оболочка</title>
 
 <para
->&krusader; has a &GUI; frontend for the <command
+>&krusader; имеет графическую оболочку для команды <command
 >locate</command
-> command (findutils). Locate is used for fast file searching. It does not search from a directory, but from a database. The package contains two files <command
+> (findutils).Locate  используется для быстрого поиска файлов.Она не ищет в каталоге , только в базе данных.Пакет содержит два файла <command
 >locate</command
-> and <command
+> и <command
 >updatedb</command
->. Updatedb walks through on the local filesystem and stores the file entries in the database. Often <command
+>.Updatedb осматривает локальную файловую систему и сохраняет файл внутри базы данных.Часто <command
 >cron</command
-> will call <command
+> вызывает <command
 >updatedb</command
-> every night (set with Kcron). Choose <emphasis role="bold"
+> каждую ночь (установки в Kcron).Выберите <emphasis role="bold"
 ><menuchoice
 ><guimenu
->Commands</guimenu
+>Инструменты</guimenu
 > <guimenuitem
->Locate</guimenuitem
+>Размещение</guimenuitem
 ></menuchoice
 ></emphasis
-> or <keycombo action="simul"
+> или <keycombo action="simul"
 >&Ctrl;<keycap
 >L</keycap
 ></keycombo
-> to start this feature. <link linkend="konfig-advanced"
->Konfigurator</link
-> can set additional arguments for <command
+> .<link linkend="konfig-advanced"
+>Настроить Крусадер</link
+> устанавливает дополнительные аргументы для команды <command
 >updatedb</command
 >. </para>
 
 <para
->Checkbox Options <itemizedlist>
+>Опции <itemizedlist>
      <listitem
 ><para
 ><guilabel
->Show only the existing files</guilabel
->: if the database contains entries which do not exist any more (deleted, moved since the last <command
+>Показывать только существующие файлы</guilabel
+>: если база содержит данные о файлах , которые больше не существуют (удалены, перемещены после последней <command
 >updatedb</command
 >), <command
 >locate</command
-> will not list them. It checks the existence of each file before listing in the results window (slow).</para>
+> не покажет их.Эта операция проверит каждый файл перед выводом результатов поиска (медленно).</para>
          </listitem>
      <listitem
 ><para
 ><guilabel
->Case Sensitive</guilabel
->: unchecking it will allow lower and upper case search.</para>
+>С учетом регистра</guilabel
+>: снимите отметку для поиска в верхнем и нижнем регистре одновременно.</para>
          </listitem>
 </itemizedlist
 ></para>
 
 <para
->Action buttons <itemizedlist>
+>Кнопки действий <itemizedlist>
       <listitem
 ><para
 ><guibutton
 >Locate</guibutton
->: executes <command
+>: выполнит <command
 >locate <replaceable
 >foo foo</replaceable
 ></command
-> and places its output into the results window.</para
+> и поместит вывод в окно результатов поиска.</para
 ></listitem>
   <listitem
 ><para
 ><guibutton
 >Stop</guibutton
->: stops the locate process.</para
+>: остановит выполнение locate .</para
 ></listitem>
       <listitem
 ><para
@@ -1102,14 +1100,14 @@
   <listitem
 ><para
 ><guibutton
->Close</guibutton
->: closes the locate window.</para
+>Закрыть</guibutton
+>: закроет окно Размещения.</para
 ></listitem>
 </itemizedlist>
 </para>
 
 <para
->Results window <itemizedlist>
+>Окно результатов <itemizedlist>
   <listitem
 ><para
 >double click on an item: steps to its directory, makes the item visible and closes the locate dialog.</para>
@@ -1179,18 +1177,18 @@
 </indexterm>
 
 <para
->Pressing &Enter; on a selected file <emphasis
->opens the file with the associated application</emphasis
->. The editor-viewer is tabbed, configure it on the &konfiggereral_lnk; </para>
+>Нажатие &Enter; на выделенном файле <emphasis
+>откроет файл в связанном  с ним приложении</emphasis
+>. Редактор/просмотрщик имеет многотабовый интерфейс , настройка в &konfiggereral_lnk; </para>
 
 <sect2 id = "krview">
 <title
->Viewer</title>
+>Просмотрщик</title>
 
 <para
->To view a file as fast as possible according to it's type, just put it under the cursor and press <keycap
+>Внутренний просмотрщик &krusader; вызывается по <keycap
 >F3</keycap
->. &krusader;'s internal viewer is actually a &konqueror; part, which can basically view every file type viewable by &konqueror; (&eg; display pictures, play music, show the content of an archive), this is called the 'Generic viewer'. You need to configure the mimetypes for this.</para>
+>.Он открывает файл  быстро и с определением по содержимому . Просмотрщик - это часть &konqueror; и умеет работать с типами файлов (например , показывать изображения , проигрывать музыкальные файлы и просматривать содержимое архивов) . Это доступно в режиме 'Основной просмотрщик'. Вы должны настроить привязки файлов для этого режима.</para>
 
 <para
 >The viewer works as follows: <itemizedlist
@@ -1229,7 +1227,7 @@
 ><command
 >man:/</command
 ></userinput
-> views the manpages. </para
+> просмотр страниц руководства. </para
 ></listitem>
       <listitem
 ><para
@@ -1239,7 +1237,7 @@
 ><replaceable
 >krusader</replaceable
 ></userinput
-> views a manpage. </para
+> покажет страницу руководства . </para
 ></listitem>
                  <listitem
 ><para
@@ -1247,7 +1245,7 @@
 ><command
 >info:/</command
 ></userinput
-> views the infopages. </para
+> просмотр страниц инфо. </para
 ></listitem>
       <listitem
 ><para
@@ -1257,7 +1255,7 @@
 ><replaceable
 >krusader.sourceforce.net/</replaceable
 ></userinput
-> views a webpage. </para
+> просмотр сайта. </para
 ></listitem>
       <listitem
 ><para
@@ -1267,7 +1265,7 @@
 ><replaceable
 >ftp.kde.org/pub/kde/</replaceable
 ></userinput
-> views a ftp-server. </para
+> просмотр сервера FTP . </para
 ></listitem>
      <listitem
 ><para
@@ -1277,7 +1275,7 @@
 ><replaceable
 >sftp.foo/</replaceable
 ></userinput
-> views a secure ftp-server. </para
+> просмотр защищенного сервера FTP . </para
 ></listitem>
      <listitem
 ><para
@@ -1287,7 +1285,7 @@
 ><replaceable
 >home/frank</replaceable
 ></userinput
-> views the homedirectory of Frank. </para
+> просмотр домашнего каталога Франка. </para
 ></listitem>
       <listitem
 ><para
@@ -1295,68 +1293,68 @@
 ><replaceable
 >/home/frank/archive.tar.gz</replaceable
 ></userinput
-> views a <literal role="extension"
+> просмотр архива <literal role="extension"
 >tar.gz</literal
-> archive. </para
+>. </para
 ></listitem>
  </itemizedlist>
 </para>
 
 <para
->KrViewer can have the following menu's: <link linkend="kredit_file_menu"
->File</link
+>KrViewer состоит из следующих меню: <link linkend="kredit_file_menu"
+>Файл</link
 >, <link linkend="kredit_edit_menu"
->Edit</link
+>Правка</link
 >, <link linkend="kredit_view_menu"
->View</link
+>Вид</link
 >, <link linkend="kredit_settings_menu"
->Settings</link
-> and <link linkend="kredit_krviewer_menu"
+>Настройки</link
+> и <link linkend="kredit_krviewer_menu"
 >Krviewer</link
->, depending on which file type is viewed. They will be discussed in the <link linkend="kredit"
->Editor section</link
->. The internal viewer can follow links on HTML pages. With <keycombo action="simul"
+>, в зависимости от того , какой тип файла просматривается. Это обсуждается в <link linkend="kredit"
+>Разделе редактирование</link
+>. Внутренний просмотрщик может переходить по ссылкам на HTML странице. <keycombo action="simul"
 >&Ctrl;<keycap
 >E</keycap
 ></keycombo
-> the viewer will start &krusader;'s internal editor (which is basically the same application). </para>
+> запустит внутренний редактор &krusader; . </para>
 
 <note
 ><para
->The embedded viewer is not written by us, it is supplied via &kde; (libs) and &kioslaves1_url; We cannot and don't want to change it, usings these libraries reduces the amount of written code. So we don't have to reinvent the wheel ;-)</para
+>Встроенный просмотрщик написан не нами , это часть библиотек &kde; и &kioslaves1_url; .Мы не можем и не хотим переписать его , к тому же использование готовых библиотек позволило уменьшить количество исходных кодов.Мы не изобретаем колесо ;-)</para
 ></note>
 </sect2>
 
 <sect2 id="kredit">
 <title
->Editor</title>
+>Редактор</title>
 
 <para
->&krusader;'s internal editor has almost everything that you can expect of an editor. Editing is similar to viewing but with the <keycap
+>Встроенный редактор &krusader; имеет все  ,что вы ожидаете от текстового редактора.Редактирование , подобно просмотру вызывается клавишей <keycap
 >F4</keycap
-> key. The default editor is &krusader;'s internal editor. You can change the default editor in the &konfiggereral_lnk;, if you prefer to use an external editor.</para>
+>. По умолчанию используется встроенный редактор.Вы можете выбрать другой в &konfiggereral_lnk;, если вы предпочитаете использовать внешний  редактор.</para>
 
 <tip
 ><para
->When you use &krusader;'s internal editor for the first time, It is recommended to look at each section of the <link linkend="kredit_settings_menu"
->Settings</link
-> menu, and configure it the way you want it. </para
+>Если вы впервые используете встроенный редактор , рекомендуем посмотреть секцию <link linkend="kredit_settings_menu"
+>Настройки</link
+> в меню и настроить его удобным для вас способом. </para
 ></tip>
 
 </sect2>
 
 <sect2 id="kredit_menus">
 <title
->Menu overview</title>
+>Обзор меню</title>
 <para
->Most of the menus are pretty self-explanatory. ;-)</para>
+>Большинство меню легкодоступны. ;-)</para>
 
 <!-- FILE menu -->
 <variablelist id="kredit_file_menu"
 ><title
-><guimenu
->File</guimenu
-> menu</title>
+>меню <guimenu
+>Файл</guimenu
+></title>
    <varlistentry>
    <term>
    <menuchoice
@@ -1367,14 +1365,14 @@
 ></keycombo
 ></shortcut
 > <guimenu
->File</guimenu
+>Файл</guimenu
 > <guimenuitem
->Save</guimenuitem
+>Сохранить</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Save file.</para>
+>Сохранить файл.</para>
    </listitem>
   </varlistentry>
 
@@ -1382,14 +1380,14 @@
    <term>
    <menuchoice
 ><guimenu
->File</guimenu
+>Файл</guimenu
 > <guimenuitem
->Save As</guimenuitem
+>Сохранить как</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Save file with another name.</para>
+>Сохранить файл с другим именем.</para>
    </listitem>
   </varlistentry>
 
@@ -1401,14 +1399,14 @@
 >F5</keycap
 ></shortcut
 > <guimenu
->File</guimenu
+>Файл</guimenu
 > <guimenuitem
->Reload</guimenuitem
+>Обновить</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Reload file.</para>
+>Обновить файл.</para>
    </listitem>
   </varlistentry>
 
@@ -1416,16 +1414,16 @@
    <term>
    <menuchoice
 ><guimenu
->File</guimenu
+>Файл</guimenu
 > <guimenuitem
->Export</guimenuitem
+>Экспорт</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Export the file to <literal role="extension"
+>Экспорт в формат <literal role="extension"
 >html</literal
-> format.</para>
+>.</para>
    </listitem>
   </varlistentry>
 
@@ -1439,14 +1437,14 @@
 ></keycombo
 ></shortcut
 > <guimenu
->File</guimenu
+>Файл</guimenu
 > <guimenuitem
->Print</guimenuitem
+>Печать</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Print the file.</para>
+>Печать файла.</para>
    </listitem>
   </varlistentry>
 </variablelist>
@@ -1454,9 +1452,9 @@
 <!-- EDIT menu -->
 <variablelist id="kredit_edit_menu"
 ><title
-><guimenu
->Edit</guimenu
-> menu</title>
+>меню <guimenu
+>Правка</guimenu
+></title>
   <varlistentry>
    <term>
    <menuchoice
@@ -1467,14 +1465,14 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Edit</guimenu
+>Правка</guimenu
 > <guimenuitem
->Undo</guimenuitem
+>Отменить действие</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Undo last action.</para>
+>Отменить предыдущее действие.</para>
    </listitem>
   </varlistentry>
 
@@ -1488,14 +1486,14 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Edit</guimenu
+>Правка</guimenu
 > <guimenuitem
->Redo</guimenuitem
+>Повторить</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Redo last action.</para>
+>Повторить предыдущее действие.</para>
    </listitem>
   </varlistentry>
 
@@ -1509,14 +1507,14 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Edit</guimenu
+>Правка</guimenu
 > <guimenuitem
->Cut</guimenuitem
+>Вырезать</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Cut selected text to clipboard.</para>
+>Вырезать выбранный текст в буфер.</para>
    </listitem>
   </varlistentry>
 
@@ -1530,14 +1528,14 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Edit</guimenu
+>Правка</guimenu
 > <guimenuitem
->Copy</guimenuitem
+>Копировать</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Copy selected text to clipboard.</para>
+>Копировать выбранный текст в буфер.</para>
    </listitem>
   </varlistentry>
 
@@ -1551,14 +1549,14 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Edit</guimenu
+>Правка</guimenu
 > <guimenuitem
->Paste</guimenuitem
+>Вставить</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Paste clipboard content to the document.</para>
+>Вставить содержимое буфера в документ.</para>
    </listitem>
   </varlistentry>
 
@@ -1572,14 +1570,14 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Edit</guimenu
+>Правка</guimenu
 > <guimenuitem
->Select All</guimenuitem
+>Выбрать все</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Select whole document.</para>
+>Выбрать весь документ.</para>
    </listitem>
   </varlistentry>
 
@@ -1593,14 +1591,14 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Edit</guimenu
+>Правка</guimenu
 > <guimenuitem
->Deselect</guimenuitem
+>Снять выделение</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Deselect current selection.</para>
+>Снять  текущие выделение.</para>
    </listitem>
   </varlistentry>
 
@@ -1633,14 +1631,14 @@
 >Insert</keycap
 ></shortcut
 > <guimenu
->Edit</guimenu
+>Правка</guimenu
 > <guimenuitem
->Overwrite Mode</guimenuitem
+>Режим замены</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Toggle Insert/Overwrite Mode.</para>
+>Переключение режима вставки/замены.</para>
    </listitem>
   </varlistentry>
 
@@ -1654,14 +1652,14 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Edit</guimenu
+>Правка</guimenu
 > <guimenuitem
->Find</guimenuitem
+>Поиск</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Find text.</para>
+>Искать текст.</para>
    </listitem>
   </varlistentry>
 
@@ -1675,14 +1673,14 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Edit</guimenu
+>Правка</guimenu
 > <guimenuitem
->Find Next</guimenuitem
+>Найти текст</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Find next text.</para>
+>Искать следующий текст.</para>
    </listitem>
   </varlistentry>
 
@@ -1696,14 +1694,14 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Edit</guimenu
+>Правка</guimenu
 > <guimenuitem
->Find Previous</guimenuitem
+>Найти предыдущий</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Find previous text.</para>
+>Искать предыдущий текст.</para>
    </listitem>
   </varlistentry>
 
@@ -1717,14 +1715,14 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Edit</guimenu
+>Правка</guimenu
 > <guimenuitem
->Replace</guimenuitem
+>Заменить</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Replace text.</para>
+>Заменить текст.</para>
    </listitem>
   </varlistentry>
 
@@ -1738,14 +1736,14 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Edit</guimenu
+>Правка</guimenu
 > <guimenuitem
->Go to line</guimenuitem
+>Перейти на строку</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Go to given linenumber.</para>
+>Перейти к строке.</para>
    </listitem>
   </varlistentry>
 </variablelist>
@@ -1753,9 +1751,9 @@
 <!-- VIEW menu -->
 <variablelist id="kredit_view_menu"
 ><title
-><guimenu
->View</guimenu
-> menu</title>
+>Меню <guimenu
+>Вид</guimenu
+></title>
   <varlistentry>
    <term>
    <menuchoice
@@ -1764,14 +1762,14 @@
 >F7</keycap
 ></shortcut
 > <guimenu
->View</guimenu
+>Вид</guimenu
 > <guimenuitem
->Switch to Command Line.</guimenuitem
+>Переключиться в командную строку.</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Display Command Line.</para
+>Показать командную строку.</para
 >  <!-- TODO -->
    </listitem>
   </varlistentry>
@@ -1780,14 +1778,14 @@
    <term>
    <menuchoice
 ><guimenu
->View</guimenu
+>Вид</guimenu
 > <guimenuitem
->Schema.</guimenuitem
+>Схема.</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Set Schema &eg; &krusader; Normal, &krusader; Printing, &kate; Normal, &kwrite; Normal.</para
+>Установка схемы , например &krusader; Normal, &krusader; Printing, &kate; Normal, &kwrite; Normal.</para
 >  <!-- TODO -->
    </listitem>
   </varlistentry>
@@ -1800,14 +1798,14 @@
 >F10</keycap
 ></shortcut
 > <guimenu
->View</guimenu
+>Вид</guimenu
 > <guimenuitem
->Dynamic Word Wrap</guimenuitem
+>Динамический перенос строк</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Go to the next line at the maximum number of characters per line (default 80).</para>
+>Переходить на следующую строку , когда превышается максимальное количество знаков в строке ( умолчание - 80 ).</para>
    </listitem>
   </varlistentry>
 
@@ -1815,9 +1813,9 @@
    <term>
    <menuchoice
 ><guimenu
->View</guimenu
+>Вид</guimenu
 > <guimenuitem
->Dynamic Word Wrap Indicators</guimenuitem
+>Индикаторы динамического переноса строк</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
@@ -1850,14 +1848,14 @@
 >F6</keycap
 ></shortcut
 > <guimenu
->View</guimenu
+>Вид</guimenu
 > <guimenuitem
->Show Icon Border</guimenuitem
+>Показывать отметки</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Show Icon Border.</para
+>Показывать отметки.</para
 >  <!-- TODO -->
    </listitem>
   </varlistentry>
@@ -1872,12 +1870,12 @@
 > <guimenu
 >View</guimenu
 > <guimenuitem
->Show Line Numbers</guimenuitem
+>Показывать номера строк</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Shows the line numbers.</para>
+>Показывать номера строк.</para>
    </listitem>
   </varlistentry>
 
@@ -1885,9 +1883,9 @@
    <term>
    <menuchoice
 ><guimenu
->View</guimenu
+>Вид</guimenu
 > <guimenuitem
->Show Scrollbar Marks.</guimenuitem
+>Показывать отметки на полосе прокрутки.</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
@@ -1904,9 +1902,9 @@
 >F9</keycap
 ></shortcut
 > <guimenu
->View</guimenu
+>Вид</guimenu
 > <guimenuitem
->Hide Folding Markers</guimenuitem
+>Скрыть полосу сворачивания блоков</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
@@ -1920,9 +1918,9 @@
    <term>
    <menuchoice
 ><guimenu
->View</guimenu
+>Вид</guimenu
 > <guimenuitem
->Code Folding.</guimenuitem
+>Сворачивание блоков кода.</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
@@ -1936,14 +1934,14 @@
    <term>
    <menuchoice
 ><guimenu
->View</guimenu
+>Вид</guimenu
 > <guimenuitem
->Set Encoding</guimenuitem
+>Кодировка</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->&eg; ISO8859-1, utf8, utf16, tscii, ... .</para>
+>Например  ISO8859-1, utf8, utf16, tscii, ... .</para>
    </listitem>
   </varlistentry>
 </variablelist>
@@ -1951,9 +1949,9 @@
 <!-- BOOKMARKS menu -->
 <variablelist id="kredit_bookmarks_menu"
 ><title
-><guimenu
->Bookmarks</guimenu
-> menu</title>
+>меню <guimenu
+>Закладки</guimenu
+></title>
   <varlistentry>
    <term
 >                               <!-- TODO -->
@@ -1965,9 +1963,9 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Bookmark</guimenu
+>Закладка</guimenu
 > <guimenuitem
->Set Bookmark</guimenuitem
+>Поставить закладку</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
@@ -1980,9 +1978,9 @@
    <term>
    <menuchoice
 ><guimenu
->Bookmark</guimenu
+>Закладки</guimenu
 > <guimenuitem
->Clear All Bookmarks</guimenuitem
+>Убрать все закладки</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
@@ -2042,16 +2040,16 @@
 <!-- TOOLS menu -->
 <variablelist id="kredit_tools_menu"
 ><title
-><guimenu
->Tools</guimenu
-> menu</title>
+>меню <guimenu
+>Инструменты</guimenu
+></title>
   <varlistentry>
    <term>
    <menuchoice
 ><guimenu
->Tools</guimenu
+>Инструменты</guimenu
 > <guimenuitem
->Read Only Mode</guimenuitem
+>Режим 'Только для чтения'</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
@@ -2064,9 +2062,9 @@
    <term>
    <menuchoice
 ><guimenu
->Tools</guimenu
+>Инструменты</guimenu
 > <guimenuitem
->Filetype Mode</guimenuitem
+>Тип файла</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
@@ -2079,14 +2077,14 @@
    <term>
    <menuchoice
 ><guimenu
->Tools</guimenu
+>Инструменты</guimenu
 > <guimenuitem
->Highlight mode</guimenuitem
+>Подсветка</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Highlight mode for scripts, programming languages, markup file, &etc;: &eg; <literal role="extension"
+>Подсветка для скриптов, языков программирования, макросов, например <literal role="extension"
 >html, Bash, C++, XML, Makefile, Diff, ...</literal
 > .</para>
    </listitem>
@@ -2096,14 +2094,14 @@
    <term>
    <menuchoice
 ><guimenu
->Tools</guimenu
+>Инструменты</guimenu
 > <guimenuitem
->End of Line</guimenuitem
+>Конец строки</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Change the end of Line termination: &UNIX;, &Windows;/DOS, <trademark class="registered"
+>Выбор окончания строки: &UNIX;, &Windows;/DOS, <trademark class="registered"
 >Macintosh</trademark
 >.</para>
    </listitem>
@@ -2119,9 +2117,9 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Tools</guimenu
+>Инструменты</guimenu
 > <guimenuitem
->Indent</guimenuitem
+>Вставить отступ</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
@@ -2141,9 +2139,9 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Tools</guimenu
+>Инструменты</guimenu
 > <guimenuitem
->Unindent</guimenuitem
+>Снять отступ</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
@@ -2157,7 +2155,7 @@
    <term>
    <menuchoice
 ><guimenu
->Tools</guimenu
+>Инструменты</guimenu
 > <guimenuitem
 >Clean Indendation</guimenuitem
 ></menuchoice
@@ -2179,14 +2177,14 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Tools</guimenu
+>Инструменты</guimenu
 > <guimenuitem
->Comment</guimenuitem
+>Закомментировать</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Add appropriate comment tags, if available.</para>
+>Добавить подходящие теги комментариев, если доступно.</para>
    </listitem>
   </varlistentry>
 
@@ -2200,14 +2198,14 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Tools</guimenu
+>Инструменты</guimenu
 > <guimenuitem
->Uncomment</guimenuitem
+>Раскомментировать</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Removes the comment tags on the left.</para>
+>Удалить теги комментариев.</para>
    </listitem>
   </varlistentry>
 
@@ -2221,9 +2219,9 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Tools</guimenu
+>Инструменты</guimenu
 > <guimenuitem
->Uppercase</guimenuitem
+>ВЕРХНИЙ РЕГИСТР</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
@@ -2242,9 +2240,9 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Tools</guimenu
+>Инструменты</guimenu
 > <guimenuitem
->Lowercase</guimenuitem
+>Нижний  регистр</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
@@ -2263,9 +2261,9 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Tools</guimenu
+>Инструменты</guimenu
 > <guimenuitem
->Capitalize</guimenuitem
+>Как в предложениях</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
@@ -2284,9 +2282,9 @@
 ></keycombo
 ></shortcut
 > <guimenu
->Tools</guimenu
+>Инструменты</guimenu
 > <guimenuitem
->Join Lines</guimenuitem
+>Объединить строки</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
@@ -2299,9 +2297,9 @@
    <term>
    <menuchoice
 ><guimenu
->Tools</guimenu
+>Инструменты</guimenu
 > <guimenuitem
->Word Wrap Document</guimenuitem
+>Перенос строк в документе</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
@@ -2316,23 +2314,23 @@
 <!-- SETTINGS -> CONFIGURE EDITOR menu -->
 <variablelist id="kredit_settings_menu"
 ><title
-><guimenu
->Settings -> Configure Editor</guimenu
-> menu</title>
+> меню <guimenu
+>Настройки -> Настроить редактор</guimenu
+> </title>
   <varlistentry>
    <term>
    <menuchoice
 ><guimenu
->Settings</guimenu
+>Настройки</guimenu
 > <guimenuitem
->Configure Editor</guimenuitem
+>Настроить редактор</guimenuitem
 > <guimenuitem
->Colors</guimenuitem
+>Цвета</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Color configuration for the: Background, Selected text, Current line and Bracket highlighting.</para>
+>Настройка цвета для: фона, выбранного текста, текущей строки и подсветка скобок.</para>
    </listitem>
   </varlistentry>
 
@@ -2340,16 +2338,16 @@
    <term>
    <menuchoice
 ><guimenu
->Settings</guimenu
+>Настройки</guimenu
 > <guimenuitem
->Configure Editor</guimenuitem
+>Настроить редактор</guimenuitem
 > <guimenuitem
->Fonts</guimenuitem
+>Шрифты</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Fonts configuration for display and printer: Font, font Style and Size, with a preview window.</para>
+>Настройка шрифтов для монитора  и принтера: шрифт , тип и размер , с окном предпросмотра.</para>
    </listitem>
   </varlistentry>
 
@@ -2357,9 +2355,9 @@
    <term>
    <menuchoice
 ><guimenu
->Settings</guimenu
+>Настройки</guimenu
 > <guimenuitem
->Configure Editor</guimenuitem
+>Настроить редактор</guimenuitem
 > <guimenuitem
 >Indentation</guimenuitem
 ></menuchoice
@@ -2374,9 +2372,9 @@
    <term>
    <menuchoice
 ><guimenu
->Settings</guimenu
+>Настройки</guimenu
 > <guimenuitem
->Configure Editor</guimenuitem
+>Настроить редактор</guimenuitem
 > <guimenuitem
 >Selection</guimenuitem
 ></menuchoice
@@ -2391,16 +2389,16 @@
    <term>
    <menuchoice
 ><guimenu
->Settings</guimenu
+>Настройки</guimenu
 > <guimenuitem
->Configure Editor</guimenuitem
+>Настроить редактор</guimenuitem
 > <guimenuitem
->Editing</guimenuitem
+>Редактирование</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Editing configuration: Word Wrap config., Whitespace config, Auto brackets, Smart home, Wrap cursor, Maximum undo steps.</para>
+>Настройка редактирования: настройка переноса строк, пробелов, автоскобки, максимальное количество шагов отмены.</para>
    </listitem>
   </varlistentry>
 
@@ -2408,16 +2406,16 @@
    <term>
    <menuchoice
 ><guimenu
->Settings</guimenu
+>Настройки</guimenu
 > <guimenuitem
->Configure Editor</guimenuitem
+>Настроить редактор</guimenuitem
 > <guimenuitem
->Shortcuts</guimenuitem
+>Сочетания клавиш</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Shortcuts configuration.</para>
+>Настройка сочетаний клавиш.</para>
    </listitem>
   </varlistentry>
 
@@ -2425,16 +2423,16 @@
    <term>
    <menuchoice
 ><guimenu
->Settings</guimenu
+>Настройки</guimenu
 > <guimenuitem
->Configure Editor</guimenuitem
+>Настроить редактор</guimenuitem
 > <guimenuitem
->Highlighting</guimenuitem
+>Подсветка</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Highlighting configuration: Default styles and Highlight mode.</para>
+>Настройка подсветки: нет и режимы подсветки.</para>
    </listitem>
   </varlistentry>
 
@@ -2442,16 +2440,16 @@
    <term>
    <menuchoice
 ><guimenu
->Settings</guimenu
+>Настройки</guimenu
 > <guimenuitem
->Configure Editor</guimenuitem
+>Настроить редактор</guimenuitem
 > <guimenuitem
->View defaults</guimenuitem
+>Внешний вид</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->View defaults: Dynamic word wrap, show Line numbers, show Icon border, show Folder markers if available, sort Bookmarks menu method.</para>
+>Внешний вид: Динамический перенос строк, показывать номера строк, показывать отметки, показывать полосу сворачивания блоков(если поддерживается).</para>
    </listitem>
   </varlistentry>
 
@@ -2459,16 +2457,16 @@
    <term>
    <menuchoice
 ><guimenu
->Settings</guimenu
+>Настройки</guimenu
 > <guimenuitem
->Configure Editor</guimenuitem
+>Настроить редактор</guimenuitem
 > <guimenuitem
->Plugins</guimenuitem
+>Модули</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Plugins configuration: &eg; kTexteditor incremental search plugin, kTexteditor insert file plugin, kTexteditor kdatatoolplugin...</para>
+>Настройка модулей, например kTexteditor - встроенный модуль поиска, kTexteditor - модуль вставки файла...</para>
    </listitem>
   </varlistentry>
 </variablelist>
@@ -2476,9 +2474,9 @@
 <!-- KRVIEWER menu -->
 <variablelist id="kredit_krviewer_menu"
 ><title
-><guimenu
+> меню <guimenu
 >KrViewer</guimenu
-> menu</title>
+></title>
   <varlistentry>
    <term>
    <menuchoice
@@ -2491,12 +2489,12 @@
 > <guimenu
 >KrViewer</guimenu
 > <guimenuitem
->Generic viewer</guimenuitem
+>Основной просмотрщик</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->&krusader;'s internal viewer is actually part of Konqueror, which can basically view every file type viewable by &konqueror; (&eg; display pictures, play music, show the content of an archive).</para>
+>Встроенный просмотрщик &krusader; - это часть Konqueror, который умеет, например показывать изображения, проигрывать музыкальные файлы, показывать содержимое архивов.</para>
    </listitem>
   </varlistentry>
 
@@ -2512,12 +2510,12 @@
 > <guimenu
 >KrViewer</guimenu
 > <guimenuitem
->Text viewer</guimenuitem
+>Текстовый просмотрщик</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->View the file in text mode.</para>
+>Просмотр файла в текстовом режиме.</para>
    </listitem>
   </varlistentry>
 
@@ -2533,12 +2531,12 @@
 > <guimenu
 >KrViewer</guimenu
 > <guimenuitem
->Hex viewer</guimenuitem
+>Просмотрщик Hex</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->View the file in hex mode.</para>
+>Просмотр файла в Hex режиме.</para>
    </listitem>
   </varlistentry>
 
@@ -2554,12 +2552,12 @@
 > <guimenu
 >KrViewer</guimenu
 > <guimenuitem
->Text editor</guimenuitem
+>Текстовый редактор</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Edit the file in text mode.</para>
+>Редактирование файла в текстовом режиме.</para>
    </listitem>
   </varlistentry>
 
@@ -2569,18 +2567,18 @@
 ><shortcut
 ><keycombo action="simul"
 >&Alt;<keycap
->Right</keycap
+>Вправо</keycap
 ></keycombo
 ></shortcut
 > <guimenu
 >KrViewer</guimenu
 > <guimenuitem
->Next Tab</guimenuitem
+>Следующая вкладка</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Next browsing Tab.</para>
+>Следующая открытая вкладка.</para>
    </listitem>
   </varlistentry>
 
@@ -2590,18 +2588,18 @@
 ><shortcut
 ><keycombo action="simul"
 >&Alt;<keycap
->Left</keycap
+>Влево</keycap
 ></keycombo
 ></shortcut
 > <guimenu
 >KrViewer</guimenu
 > <guimenuitem
->Previous Tab</guimenuitem
+>Предыдущая вкладка</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Previous browsing Tab.</para>
+>Предыдущая  открытая вкладка.</para>
    </listitem>
   </varlistentry>
 
@@ -2617,12 +2615,12 @@
 > <guimenu
 >KrViewer</guimenu
 > <guimenuitem
->Detach Tab</guimenuitem
+>Отделить вкладку</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Detach browsing Tab and open in a new window.</para>
+>Отделить вкладку и открыть в новом окне.</para>
    </listitem>
   </varlistentry>
 
@@ -2634,12 +2632,12 @@
 > <guimenu
 >KrViewer</guimenu
 > <guimenuitem
->Close current Tab.</guimenuitem
+>Закрыть текущую вкладку.</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Close current browsing Tab.</para>
+>Закрыть текущую просматриваемую вкладку.</para>
    </listitem>
   </varlistentry>
 
@@ -2653,12 +2651,12 @@
 > <guimenu
 >KrViewer</guimenu
 > <guimenuitem
->Close</guimenuitem
+>Закрыть</guimenuitem
 ></menuchoice
 ></term>
    <listitem>
    <para
->Closes &krusader;'s viewer/editor window.</para>
+>Закрыть окно редактора/просмотрщика &krusader;.</para>
    </listitem>
   </varlistentry>
 </variablelist>
@@ -2669,36 +2667,36 @@
 
 <sect1 id="synchronizer">
 <title
->Synchronizer</title>
+>Синхронизатор</title>
 <indexterm
 ><primary
->Synchronizer</primary
+>Синхронизатор</primary
 ></indexterm>
 
 <para
->This function compares the left and the right panel directories and shows the difference between them. After selecting some options and the <guilabel
->Compare</guilabel
-> function you can synchronize the files and directories. One panel could be an &FTP; server. Don't forget the <guilabel
->Compare by content</guilabel
-> option if the file size stays equal. Choose <emphasis role="bold"
+>Это функция сравнения каталогов левой и правой панели и представления различий между ними.После выбора опций и выполнения <guilabel
+>сравнить</guilabel
+> файлы и каталоги будут синхронизированы.Одна из панелей может быть сервером &FTP; .Только не забудьте  опцию <guilabel
+>сравнить по содержимому</guilabel
+> , если  файлы одинакового размера.Выберите <emphasis role="bold"
 ><menuchoice
 ><guimenu
->Commands</guimenu
+>Инструменты</guimenu
 > <guimenuitem
->Synchronize Directories</guimenuitem
+>Синхронизировать каталоги</guimenuitem
 ></menuchoice
 ></emphasis
-> or <keycombo action="simul"
+> или <keycombo action="simul"
 >&Ctrl;<keycap
 >Y</keycap
 ></keycombo
-> to start this feature. The <link linkend="konfig-color"
->colors</link
-> are configurable.</para>
+> для выполнения этой операции .<link linkend="konfig-color"
+>Цвета</link
+> настраиваются.</para>
 
 <note
 ><para
->For local files: the synchronizer changes the date information to the original dates.</para
+>Для локальных файлов: синхронизатор изменит информацию о дате на исходную.</para
 ></note>
 
 <!-- OLD
@@ -2724,13 +2722,13 @@
 
 <figure id="screenshot-syncdir" float="1">
 <title
->Synchronizer</title>
+>Синхронизатор</title>
 <mediaobject>
 <imageobject
 ><imagedata fileref="syncdir.png"/></imageobject>
 <textobject
 ><phrase
->Synchronizer</phrase
+>Синхронизатор</phrase
 ></textobject>
 </mediaobject>
 </figure>
@@ -2739,56 +2737,56 @@
 <para>
     <orderedlist
 ><title
->Procedure:</title>
+>Процедура:</title>
     <listitem
 ><para
->Set the <guilabel
->Left directory</guilabel
-> and the <guilabel
->Right directory</guilabel
+>Установите <guilabel
+>Левый каталог</guilabel
+> и <guilabel
+>Правый каталог</guilabel
 >.</para>
               </listitem>
     <listitem
 ><para
->Configure the optional <guilabel
->File Filter</guilabel
+>Настройте по необходимости <guilabel
+>Файловый фильтр</guilabel
 >, <guilabel
->General Filters</guilabel
-> and <guilabel
->Advanced filters</guilabel
->. The <guilabel
->General Filters</guilabel
-> includes a <guilabel
->don't search in</guilabel
-> option which lets you exclude directories from comparision. </para>
+>Основные</guilabel
+> и <guilabel
+>Дополнительно</guilabel
+>. <guilabel
+>Основные</guilabel
+> включают  опцию <guilabel
+>не искать в</guilabel
+>, которая позволяет исключить каталоги. </para>
               </listitem>
     <listitem
 ><para
->Set the <link linkend="synccomp_checkb_options"
->checkbox options</link
+>Установите <link linkend="synccomp_checkb_options"
+>опции</link
 >: <guilabel
->Recurse subdirectories</guilabel
+>Рекурсивный обход подкаталогов</guilabel
 >, <guilabel
->Follow symlinks</guilabel
+>Следовать по символическим ссылкам</guilabel
 >, <guilabel
->Compare by content</guilabel
+>Сравнивать по содержимому</guilabel
 >, <guilabel
->Ignore Date</guilabel
-> and <guilabel
->Asymmetric</guilabel
+>Игнорировать дату</guilabel
+> и <guilabel
+>Ассиметричный режим</guilabel
 >.</para>
               </listitem>
     <listitem
 ><para
->Click on the <guibutton
->Compare</guibutton
-> button to compare the directories.</para>
+>Нажмите кнопку <guibutton
+>Сравнить</guibutton
+> для сравнения каталогов.</para>
               </listitem>
     <listitem
 ><para
->By using the <link linkend="synccomp_show_options"
->Show options</link
->, you can include/exclude particular filetypes. Those files, that are not in the list, will be untouched by synchronization.</para>
+>Используя <link linkend="synccomp_show_options"
+>Показать параметры</link
+>, вы можете включить/исключить определенные типы файлов.Эти файлы будут исключены из синхронизации.</para>
               </listitem>
     <listitem
 ><para
@@ -2800,77 +2798,77 @@
               </listitem>
     <listitem
 ><para
->When you agree with the <guibutton
->Compare</guibutton
-> results click on the <guibutton
->Synchronize</guibutton
-> button to show the synchronize dialog.</para>
+>Когда вы согласитесь с результатами <guibutton
+>Сравнить</guibutton
+> нажимайте на кнопку <guibutton
+>Синхронизировать</guibutton
+> для показа диалога синхронизации.</para>
               </listitem>
     <listitem
 ><para
->After selection the options of the <link linkend="sychronizer"
->Synchronizer</link
->, click on the <guibutton
->Start</guibutton
-> button to start the synchronization process.</para>
+>После выбора опций в <link linkend="sychronizer"
+>Сихронизировать</link
+>, нажимайте на кнопку <guibutton
+>Старт</guibutton
+> для запуска процедуры синхронизации.</para>
               </listitem>
     </orderedlist>
-A detailed explanation of all the functions and buttons is described in the following text. </para>
+Детальное описание всех функций и кнопок в следующем тексте. </para>
 
 <para
 ><emphasis role="bold"
->Comparator</emphasis
+>Сравнение</emphasis
 ></para>
 
 <variablelist>
 <varlistentry
 ><term
->Panel elements</term>
+>Панель элементов</term>
   <listitem>
    <itemizedlist>
      <listitem
 ><para
 ><guilabel
->Left Directory</guilabel
->: the left side base directory.</para>
+>Левый каталог</guilabel
+>: левый сравниваемый каталог.</para>
              </listitem>
      <listitem
 ><para
 ><guilabel
->Right Directory</guilabel
->: the right side base directory.</para>
+>Правый каталог</guilabel
+>: правый сравниваемый каталог.</para>
                </listitem>
     <listitem
 ><para
 ><guilabel
->File Filter</guilabel
->: filter the filenames at synchronizing. &eg; <literal role="extension"
+>Файловый фильтр</guilabel
+>: фильтр для синхронизации, например <literal role="extension"
 >*.png</literal
-> selects only those files whose name's end with <literal role="extension"
+> выбирает только файлы с окончанием <literal role="extension"
 >.png</literal
-> Directories will be listed if the directory name ends with <literal role="extension"
+> Каталоги будут выбраны, если оканчиваются на <literal role="extension"
 >.png</literal
-> or if the directory contains files which end with <literal role="extension"
+> или содержат файлы с расширением <literal role="extension"
 >.png</literal
-> Multiple include/exclude example: <literal role="extension"
+> Пример включения/исключения: <literal role="extension"
 >'*.cpp *.h | *.moc.cpp'</literal
-> will include <literal role="extension"
+> будут включены <literal role="extension"
 >*.cpp *.h</literal
-> and exclude <literal role="extension"
+> и исключены <literal role="extension"
 >*.moc.cpp</literal
 > </para>
               </listitem>
    <listitem
 ><para
 ><guilabel
->General filters</guilabel
->: search for, containing text</para>
+>Основные</guilabel
+>: содержашие текст</para>
                </listitem>
    <listitem
 ><para
 ><guilabel
->Advanced filters</guilabel
->: size, date, ownership</para>
+>Дополнительно</guilabel
+>: размер, дата, владелец</para>
                </listitem>
    </itemizedlist>
    </listitem>
@@ -2878,66 +2876,66 @@ A detailed explanation of all the functions and buttons is described in the foll
 
 <varlistentry id="synccomp_checkb_options"
 ><term
->Checkbox options</term>
+>Опции</term>
   <listitem>
    <itemizedlist>
      <listitem
 ><para
 ><guilabel
->Recurse subdirectories</guilabel
->: the Synchronizer walks through subdirectories when comparing.</para>
+>Рекурсивный обход подкаталогов</guilabel
+>: Сихронизатор будет опускаться внутрь подкаталогов при сравнении.</para>
          </listitem>
      <listitem
 ><para
 ><guilabel
->Follow symlinks</guilabel
->: the Synchronizer follows the symbolic links to directories (not the files!).</para>
+>Следовать по символическим ссылкам</guilabel
+>: Сихронизатор будет  переходить по символическим ссылкам на каталоги (не файлы!).</para>
          </listitem>
      <listitem
 ><para
 ><guilabel
->Compare by content</guilabel
->: those files whose sizes are equal will be compared by content as well.</para>
+>Сравнивать по содержимому</guilabel
+>: файлы одинакового размера будут сравниваться по содержимому.</para>
          </listitem>
      <listitem
 ><para
 ><guilabel
->Ignore Date</guilabel
->: Ignores the date information (useful for &FTP;, smb, archive, ... ) the date information is relevant *only* in the local file system.</para>
+>Игнорировать дату</guilabel
+>: информация о дате будет проигнорирована ( используется для &FTP;, smb, archive, ... ) , она уместна только для локальных файловых систем.</para>
                </listitem>
      <listitem
 ><para
 ><guilabel
->Asymmetric</guilabel
->: The <guilabel
->Left Directory</guilabel
-> is the target directory, the <guilabel
->Right Directory</guilabel
-> is the source directory. This functions synchronizes the content of the left directory to the right directory. <itemizedlist
+>Ассиметричный режим</guilabel
+>: <guilabel
+>Левый каталог</guilabel
+> это целевой каталог, <guilabel
+>Правый каталог</guilabel
+> это исходный каталог. Это способ синхронизировать содержимое левого каталога с правым. <itemizedlist
 > <listitem
 ><para
->Those files that exist only on the left side will be deleted.</para
+>Файлы , которые есть только в левом каталоге будут удалены.</para
 > </listitem
 > <listitem
 ><para
->Those files that exist only on the right side will be copied to left.</para
+>Те файлы, которые есть только в правом каталоге, будут скопированы в левый .</para
 > </listitem
 > <listitem
 ><para
->Those files considered to be equal will be untouched.</para
+>Те файлы, котрые будут считаться одинаковыми, останутся нетронутыми.</para
 > </listitem
 > <listitem
 ><para
->Those files considered to be different will be copied to left. Use this feature with care!</para
+>Файлы, содержащие отличия, будут копированы в левый каталог.Используйте эту возможность с осторожностью! </para
 > </listitem
 > </itemizedlist
-> This function is useful if the date information is unusable, or to synchronize the left directory to the content of a fileserver (like a download). Or to make a backup from the right directory to left directory. NOTE: do NOT use this to option to synchronize a desktop and a notebook (&eg; files that exists only in the left side will be deleted!).</para>
+> Эта функция используется если информация о дате не доступна, или синхронизацируется каталог с файловым сервером (подобно загрузке). Или сохраните содержимое правого каталога в левом, или сделайте резервную копию данных. ПРИМЕЧАНИЕ: НЕ используйте эту опцию для  синхронизации с переносным  компьтером ( Файлы , которые есть только в левом каталоге будут удалены!).</para>
                 </listitem>
       <listitem
 ><para
 ><guilabel
->Automatic Scrolling</guilabel
->: Is for slow &FTP; servers, ... When the Synchronizer is finished comparing a file, it puts the file into the end of the list at once and scrolls the window, if necessary. It is important if you want to know what the Synchronizer is doing. If the &FTP; server is slow, the comparison of a directory may take a lot of time. By turning this option on, one can see that the comparator is "alive", but slow. For fast file systems, it can reduce the speed of comparing slightly.</para>
+>Автоматическая прокрутка</guilabel
+>: эта опция для медленных серверов &FTP;, ... Когда Синхронизатор закончит сравнение файлов, он поместит файл в конец списка и переместит фокус в окн, если это необходимо.Это важно, если вы хотите знать что делает Синхронизатор.Если сервер слишком медлен, сравнение может занять продолжительное время.Уставливая эту опцию вы увидите работу "вживую", только медленно.На быстрой файловой системе скорость синхронизации немного уменьшится.</para>
                 </listitem>
     </itemizedlist>
     </listitem>
@@ -2946,108 +2944,108 @@ A detailed explanation of all the functions and buttons is described in the foll
 </variablelist>
 
 <para
->When all the above things are done, click on the <guibutton
->Compare</guibutton
-> button to compare the directories, the results are displayed in the "File List".</para>
+>Когда все указанные операции будут проделаны, нажмите кнопку <guibutton
+>Сравнить</guibutton
+> .Результаты сравнения будут выведены в "Список файлов".</para>
 
 <variablelist
 ><varlistentry
 ><term
->"File List"</term>
+>"Список файлов"</term>
   <listitem>
     <para
->The <guilabel
->File List</guilabel
-> has the following columns: "Left name | Left size | Left time | Task | Right time | Right size | Right name".</para>
+><guilabel
+>Список файлов</guilabel
+> содержит следующие столбцы: "Левый имя | Левый размер | Левый время | Задача | Правый время | Правый размер | Правый имя".</para>
     </listitem>
   </varlistentry>
 
 <varlistentry
 ><term
->Tasks (&lt;=
+>Задачи (&lt;=
 >)</term>
   <listitem
 ><para
->This column will display the task that is planned for the Syncronizer.</para>
+>Этот столбец показывает действие, которое планируется синхронизатором.</para>
     <itemizedlist>
       <listitem
 ><para
 ><guibutton
 >-></guibutton
->: copy from the left side to the right side. For directories: <command
+>: копирует из левой части в правую. <command
 >mkdir</command
-> in the right side.</para>
+> для каталогов в правой части.</para>
                    </listitem>
       <listitem
 ><para
 ><guibutton
 >=</guibutton
->: the files are the same, don't do anything.</para>
+>: файлы одинаковы, синхронизировать нечего.</para>
              </listitem>
   <listitem
 ><para
 ><guibutton
 >!=</guibutton
->: the file is excluded, or the Synchronizer does not know what to do.</para>
+>: файлы исключены, или Синхронизатор не знает что делать.</para>
              </listitem>
   <listitem
 ><para
 ><guibutton
 >&lt;-</guibutton
->: copy from the right side to the left side. For directories: <command
+>: копирование из правой части в левую. <command
 >mkdir</command
-> in the left side</para>
+> для каталогов в левой части</para>
                    </listitem>
   <listitem
 ><para
 ><guibutton
 >DEL</guibutton
->: delete files from the right side.</para>
+>: удалит файлы из правой части.</para>
              </listitem>
     </itemizedlist>
     <para
->The tasks can be changed with the <link linkend="synccomp_right_click"
->right click menu</link
+>Выбор задачи доступен в <link linkend="synccomp_right_click"
+>контекстом меню</link
 >.</para>
     </listitem>
   </varlistentry>
 
   <varlistentry id="synccomp_show_options"
 ><term
->Show options</term>
+>Показать опции</term>
     <listitem>
     <para
->Here you can include/exclude particular filetypes. Those files, that are not in the list, will be untouched at synchronization.</para>
+>Здесь можно включать/исключать специфические типы файлов.Эти файлы, которых нет в списке, будут исключены из синхронизации.</para>
     <itemizedlist>
       <listitem
 ><para
 ><guibutton
 >-></guibutton
->: Enable/Disable the copy task from left to right.</para
+>: Разрешить/Запретить копирование из левой части в правую.</para
 ></listitem>
       <listitem
 ><para
 ><guibutton
 >=</guibutton
->: Enable/Disable listing the equal files.</para
+>: Разрешить/Запретить показывать в списке одинаковые файлы.</para
 ></listitem>
   <listitem
 ><para
 ><guibutton
 >!=</guibutton
->: Enable/Disable listing the excluded / "don't know what to do" files.</para
+>: Разрешить/Запретить показывать исключенные / "не знаю что делать" файлы.</para
 ></listitem>
   <listitem
 ><para
 ><guibutton
 >&lt;-</guibutton
->: Enable/Disable the copy task from right to left.</para
+>: Разрешить/Запретить копирование из правой в левую часть.</para
 ></listitem>
   <listitem
 ><para
 ><guibutton
->Trash</guibutton
->: Enable/Disable the file deleting from the left side task.</para
+>Удалить</guibutton
+>: Разрешить/Запретить единичное удаление файла из левой части.</para
 ></listitem>
   <listitem
 ><para
@@ -3067,34 +3065,34 @@ A detailed explanation of all the functions and buttons is described in the foll
 
     <varlistentry
 ><term
->Action buttons</term>
+>Кнопки действий</term>
     <listitem>
     <itemizedlist>
       <listitem
 ><para
 ><guibutton
->Compare</guibutton
->: compares the directories, the results are displayed in the <guilabel
->File List</guilabel
+>Сравнить</guibutton
+>: сравнить каталоги, результаты выведутся в <guilabel
+>Список файлов</guilabel
 >.</para
 ></listitem>
       <listitem
 ><para
 ><guibutton
->Stop</guibutton
->: stops comparing.</para
+>Стоп</guibutton
+>: остановить сравнение.</para
 ></listitem>
   <listitem
 ><para
 ><guibutton
->Synchronize</guibutton
->: shows the synchronize dialog.</para
+>Синхронизировать</guibutton
+>: появится диалог синхронизации.</para
 ></listitem>
   <listitem
 ><para
 ><guibutton
->Close</guibutton
->: closes the Synchronizer window.</para
+>Закрыть</guibutton
+>: закроет окно Синхронизатора.</para
 ></listitem>
     </itemizedlist
 ></listitem>
@@ -3102,20 +3100,20 @@ A detailed explanation of all the functions and buttons is described in the foll
 
     <varlistentry
 ><term
->The Status line may contain</term>
+>Статусная строка может включать</term>
     <listitem>
     <itemizedlist>
       <listitem
 ><para
->The number of scanned directories while comparing.</para
+>Число сканируемых при сравнении каталогов.</para
 ></listitem>
       <listitem
 ><para
->The filename when comparing by content (for big files).</para
+>Имя файла при сравнении по содержанию(для больших файлов).</para
 ></listitem>
   <listitem
 ><para
->The number of files in the list.</para
+>Количество файлов в списке.</para
 ></listitem>
     </itemizedlist
 ></listitem>
@@ -3123,91 +3121,91 @@ A detailed explanation of all the functions and buttons is described in the foll
 
     <varlistentry id="synccomp_right_click"
 ><term
->Right click menu on the <guilabel
->File List</guilabel
+>Контекстное меню в <guilabel
+>списке файлов</guilabel
 ></term>
     <listitem>
     <para
->The right click menu is split up in three sections:</para>
+>Меню разделено на три секции:</para>
 
     <para
->1. change the <guilabel
->Task</guilabel
-> operations determined by the Comparator. Select one or multiple files. The change will be applied on the selection and not only on the right clicked item. If the selected item is a directory, the change will be applied on its files/subdirectories as well.</para>
+>1. выбор <guilabel
+>задачи</guilabel
+> - операции, выбранной для сравнения.Выберите один или несколько файлов.Изменение будут применено, только нажмите на соотвествующий элемент. Если выбрано изменение для каталога, оно применится для всех файлов/подкаталогов внутри него.</para>
     <itemizedlist>
       <listitem
 ><para
 ><guibutton
->Synchronise Directories</guibutton
->: starts synchronization.</para
+>Синхронизировать каталоги</guibutton
+>: запуск синхронизации.</para
 ></listitem>
       <listitem
 ><para
 ><guibutton
->Exclude</guibutton
->: excludes a file/dir from synchronization ( task change to != ).</para
+>Исключить</guibutton
+>: исключает файл/каталог из синхронизации ( выбор != ).</para
 ></listitem>
   <listitem
 ><para
 ><guibutton
->Restore original operation</guibutton
->: task change to the original result of comparison.</para
+>Восстановить настройки по умолчанию</guibutton
+>: вернет начальный результат сравнения.</para
 ></listitem>
   <listitem
 ><para
 ><guibutton
->Reverse direction</guibutton
->: task change ( -> to &lt;-, and &lt;- to -> ).</para
+>Поменять направление</guibutton
+>: изменит направление ( -> to &lt;-, и &lt;- to -> ).</para
 ></listitem>
         <listitem
 ><para
 ><guibutton
->Copy from right to left</guibutton
->: task change to &lt;-.</para
+>Копировать справа налево</guibutton
+>: выберет &lt;-.</para
 ></listitem>
         <listitem
 ><para
 ><guibutton
->Copy from left to right</guibutton
->: task change to ->.</para
+>Копировать слева направо</guibutton
+>: выберет ->.</para
 ></listitem>
         <listitem
 ><para
 ><guibutton
->Delete ( left single )</guibutton
->: task change to DEL.</para
+>Удалить левый( левый одиночный )</guibutton
+>: выберет DEL.</para
 ></listitem>
     </itemizedlist>
 
     <para
->2. change the selections</para>
+>2. измените</para>
     <itemizedlist>
         <listitem
 ><para
 ><guibutton
->Select items</guibutton
->: Opens a dialog which allows you to select items. This is the <guimenuitem
->Select Group</guimenuitem
-> dialog from the &editmenu_lnk;.</para
+>Выделить элементы</guibutton
+>: откроет диалог выбора выделяемых элементов.Это диалог <guimenuitem
+>Выбрать группу</guimenuitem
+> из &editmenu_lnk;.</para
 ></listitem>
         <listitem
 ><para
 ><guibutton
->Unselect items</guibutton
->: Opens a dialog which allows you to unselect items. This is the <guimenuitem
->Unselect Group</guimenuitem
-> dialog from the &editmenu_lnk;.</para
+>Снять выделение с элементов</guibutton
+>: откроет диалог, снятия выделения с выбранных элементов.Это диалог <guimenuitem
+>Снять выделение с группы</guimenuitem
+> из &editmenu_lnk;.</para
 ></listitem>
         <listitem
 ><para
 ><guibutton
->Invert selection</guibutton
->: Invert the selection status of all items.</para
+>инвертировать выделение</guibutton
+>: инвертирует выбранное  состояние для всех элементов.</para
 ></listitem>
     </itemizedlist>
 
     <para
->3. others Note: the following operations work on the right-clicked file and not on the selection.</para>
+>3. другие замечания: выбранные операции работают на файле, выбранном по правому щелчку мыши, не  при выделении.</para>
     <itemizedlist>
         <listitem
 ><para
@@ -3224,8 +3222,8 @@ A detailed explanation of all the functions and buttons is described in the foll
         <listitem
 ><para
 ><guibutton
->Compare Files</guibutton
->: starts the diff utility (&eg; &kompare;) on the files.</para
+>Сравнить файлы</guibutton
+>: запустит приложение diff ( например &kompare;).</para
 ></listitem>
     </itemizedlist>
     </listitem>
@@ -3233,23 +3231,23 @@ A detailed explanation of all the functions and buttons is described in the foll
 
   <varlistentry
 ><term
->Other buttons</term>
+>Другие кнопки</term>
   <listitem>
    <itemizedlist>
      <listitem>
        <para
 ><guibutton
->Profiles</guibutton
->: If you have to synchronize often the same directories you can save the settings &eg; include files, exclude files, ... Press the <guibutton
+>Профили</guibutton
+>: если вы часто делаете сихнронизацию определенных каталогов, можно сохранить настройки, например включить/исключить файлы, ... Нажмите кнопку <guibutton
 >Profile</guibutton
-> button, and you'll be able to add/ load / save / remove synchronizer profiles.</para>
+> добавьте / загрузите /  удалите профили синхронизатора.</para>
      </listitem>
      <listitem>
        <para
 ><guibutton
->Swap sides</guibutton
->: swaps the <guilabel
->File List</guilabel
+>Поменять стороны местами</guibutton
+>: сменит стороны в <guilabel
+> списке файлов</guilabel
 >.</para>
     </listitem>
    </itemizedlist>
@@ -3259,14 +3257,14 @@ A detailed explanation of all the functions and buttons is described in the foll
 
   <varlistentry
 ><term
->Synchronize with &kget;</term>
+>Синхронизировать с &kget;</term>
    <listitem>
      <para
->If you want to synchronize a local directory with an unstable ftp server, &kget; is a much better solution than simple file copying. After comparing you may right click on the result list and select <guimenuitem
->Synchronize with kget</guimenuitem
-> to execute the synchronization, after that the listed files will be downloaded with kget instead of krusader. Of course <application
+>Если вы хотите синхронизировать локальный каталог с нестабильным сервером ftp, &kget; будет лучшим решением, чем просто копирование файлов.После сравнения вы можете в контекстном меню выбрать <guimenuitem
+>Синхронизировать с kget</guimenuitem
+>, после этого выбранные файлы будут загружаться через kget вместо Крусадер.Конечно же <application
 >kget</application
-> needs to be installed on your computer; otherwise, it will not be available.</para>
+> должен быть установлен, иначе эта опция будет недоступна.</para>
     </listitem>
   </varlistentry>
 
@@ -3276,32 +3274,32 @@ A detailed explanation of all the functions and buttons is described in the foll
 
     <para id="sychronizer"
 ><emphasis role="bold"
->Synchronizer</emphasis
+>Синхронизатор</emphasis
 ></para>
     <para
->After pressing the <guibutton
->Synchronize</guibutton
-> button the synchronization dialog appears.</para>
+>после нажатия кнопки <guibutton
+>Синхронизировать</guibutton
+> появится диалог синхронизации.</para>
 
     <variablelist>
     <varlistentry
 ><term
->Check boxes</term>
+>Опции</term>
     <listitem>
     <para
->Here you confirm the copy and delete operations of the Synchronizer</para>
+>Здесь вы подтверждаете операции копирования и удаления в Синхронизаторе</para>
     <itemizedlist>
       <listitem
 ><para
 ><guilabel
->Right to left</guilabel
->: copy X1 files ( Y1 bytes ) enable / disable the copy from right to left.</para
+>Справа налево</guilabel
+>: копирование  файла Х1 ( Y1 bytes ) разрешить / запретить копирование из левой части в правую.</para
 ></listitem>
       <listitem
 ><para
 ><guilabel
->Left to right</guilabel
->: copy X2 files ( Y2 bytes ) enable / disable the copy from left to right.</para
+>Слева направо</guilabel
+>:  копирование  файла Х2 ( Y2 bytes ) разрешить / запретить копирование из правой части в левую.</para
 ></listitem>
   <listitem
 ><para
@@ -3344,26 +3342,26 @@ A detailed explanation of all the functions and buttons is described in the foll
 
     <varlistentry
 ><term
->Action buttons</term>
+>Кнопки действий</term>
     <listitem>
     <itemizedlist>
       <listitem
 ><para
 ><guibutton
->Start</guibutton
->: starts synchronization.</para
+>Старт</guibutton
+>: запуск синхронизации.</para
 ></listitem>
       <listitem
 ><para
 ><guibutton
->Pause / Resume</guibutton
->: pauses/resumes the synchronization process.</para
+>Приостановить / Возобновить</guibutton
+>: приостановка / возобновление синхронизации.</para
 ></listitem>
   <listitem
 ><para
 ><guibutton
->Close</guibutton
->: closes the synchronization dialog (and stops synchronization).</para
+>Закрыть</guibutton
+>: закрывает диалог синхронизации (и останавливает синхронизацию).</para
 ></listitem>
     </itemizedlist
 ></listitem>
