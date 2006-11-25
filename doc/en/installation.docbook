@@ -289,11 +289,11 @@ We hope it'd be easy to understand.
   (note: updates from within the modules directory do not need the -d parameter)</para>
 
 <para>If you want to checkout a specific version of &krusader; from CVS (&eg; &krusader;-1.60.0) :
-  <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co -rversion_1_60_0 krusader_kde3</option></userinput></screen>
+  <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader co -rversion_1_60_0 krusader_kde3</option></userinput></screen>
 </para>
 
 <para>If you want to checkout a specific date of &krusader; from CVS (&eg; &krusader;-2005-05-23) :
-  <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co -D2005-05-23 krusader_kde3</option></userinput></screen>
+  <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader co -D2006-10-29 krusader_kde3</option></userinput></screen>
 </para>
 
 <para>Mostly being &gentoo; users, we provide a &gentoo_life_ebuild_url; for all those who want
