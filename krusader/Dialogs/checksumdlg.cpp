@@ -32,7 +32,7 @@ typedef QStringList GET_FAILED_FUNC(const QStringList& stdOut, const QStringList
 class CS_Tool {
 public:
 	static const int NumOfTypes = 5;
-	enum Type { MD5=0, SHA1, SHA256, TIGER, WHIRLPOOL};
+	enum Type { MD5=0, SHA1, SHA256, TIGER, WHIRLPOOL, SFV, CRC };
 	
 	Type type;
 	QString binary;
@@ -140,9 +140,12 @@ CS_Tool cs_tools[] = {
 	{CS_Tool::SHA1, 	"sha1sum", 			false, 		sumCreateFunc,		sumVerifyFunc,		sumFailedFunc},
 	{CS_Tool::SHA1, 	"sha1deep",			true, 		deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
 	{CS_Tool::SHA1,		"cfv",				true,		cfvCreateFunc,		cfvVerifyFunc,		cfvFailedFunc},
-	{CS_Tool::SHA256, 	"sha256deep",		true, 			deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
-	{CS_Tool::TIGER,		"tigerdeep", 		true, 		deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
-	{CS_Tool::WHIRLPOOL, "whirlpooldeep",	true, 			deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
+	{CS_Tool::SHA256, 	"sha256deep",		true, 		deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
+	{CS_Tool::TIGER,	"tigerdeep", 		true, 		deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
+	{CS_Tool::WHIRLPOOL, "whirlpooldeep",	true, 		deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
+	{CS_Tool::SFV,		"cfv",				true,		cfvCreateFunc,		cfvVerifyFunc,		cfvFailedFunc},
+	{CS_Tool::CRC,		"cfv",				true,		cfvCreateFunc,		cfvVerifyFunc,		cfvFailedFunc},
+
 };
 
 QMap<QString, CS_Tool::Type> cs_textToType;
@@ -155,7 +158,9 @@ void initChecksumModule() {
 	cs_textToType["sha256"]=CS_Tool::SHA256;
 	cs_textToType["tiger"]=CS_Tool::TIGER;
 	cs_textToType["whirlpool"]=CS_Tool::WHIRLPOOL;
-	
+	cs_textToType["sfv"]=CS_Tool::SFV;
+	cs_textToType["crc"]=CS_Tool::CRC;
+
 	cs_typeToText[CS_Tool::MD5]="md5";
 	cs_typeToText[CS_Tool::SHA1]="sha1";
 	cs_typeToText[CS_Tool::SHA256]="sha256";
@@ -197,7 +202,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 			"Please check the <b>Dependencies</b> page in Krusader's settings.</qt>");
 		if (containFolders) 
 			error += i18n("<qt><b>Note</b>: you've selected directories, and probably have no recursive checksum tool installed."
-			" Krusader currently supports <i>md5deep, sha1deep, sha256deep and tigerdeep</i></qt>");
+			" Krusader currently supports <i>md5deep, sha1deep, sha256deep, tigerdeep and cfv</i></qt>");
 		KMessageBox::error(0, error);
 		return;
 	}
@@ -298,7 +303,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 			"Please check the <b>Dependencies</b> page in Krusader's settings.</qt>");
 		if (containFolders) 
 			error += i18n("<qt><b>Note</b>: you've selected directories, and probably have no recursive checksum tool installed."
-			" Krusader currently supports <i>md5deep, sha1deep, sha256deep and tigerdeep</i></qt>");
+			" Krusader currently supports <i>md5deep, sha1deep, sha256deep, tigerdeep and cfv</i></qt>");
 		KMessageBox::error(0, error);
 		return;
 	}
