@@ -1,19 +1,19 @@
-# Translation of krusader.pot to Serbian (Latn)
-#
+# Translation of krusader.pot to Serbian
+# 
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
 # Copyright (C) 2004-2006, Krusader Krew
 # This file is distributed under the same license as the Krusader package
-#
+# 
 # Proofread by: Chusslove Illich <caslav.ilic@gmx.net>, 2005.
-# Sasa Tomic <stomic@gmx.net>, 2005, 2006.
+# Sasa Tomic <tomic80@gmail.com>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.70.1\n"
+"Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2006-11-15 11:49+0100\n"
-"PO-Revision-Date: 2006-07-24 23:42+0200\n"
-"Last-Translator: Sasa Tomic <stomic@gmx.net>\n"
-"Language-Team: Serbian <krusader-i18n@googlegroups.com>\n"
+"PO-Revision-Date: 2006-11-29 11:44+0100\n"
+"Last-Translator: Sasa Tomic <tomic80@gmail.com>\n"
+"Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -430,7 +430,7 @@ msgstr "Nisam uspeo da raspakujem %1!"
 
 #: VFS/krarchandler.cpp:342 VFS/krarchandler.cpp:511
 msgid "User cancelled."
-msgstr ""
+msgstr "Korisnik je otkazao."
 
 #: VFS/krarchandler.cpp:386
 msgid "Testing Archive"
@@ -996,7 +996,7 @@ msgstr "Ubij pokrenuti proces"
 
 #: UserAction/kraction.cpp:53
 msgid "Save as"
-msgstr ""
+msgstr "Snimi kao"
 
 #: UserAction/kraction.cpp:62
 msgid "Standard Output (stdout)"
@@ -1012,28 +1012,27 @@ msgstr "Izlaz"
 
 #: UserAction/kraction.cpp:96
 msgid "Use font with fixed width"
-msgstr ""
+msgstr "Koristi font sa fiksnom širinom"
 
 #: UserAction/kraction.cpp:130
-#, fuzzy
 msgid ""
 "*.txt|Text files\n"
 "*|all files"
 msgstr ""
-"*.xml|xml-fajlovi\n"
+"*.txt|tekstualni fajlovi\n"
 "*|svi fajlovi"
 
 #: UserAction/kraction.cpp:137
-#, fuzzy
 msgid ""
 "This file already exists.\n"
 "Do you want to overwrite it or append the output?"
-msgstr "Ovaj fajl već postoji. Da li ste sigurni da želite da upišete preko?"
+msgstr ""
+"Ovaj fajl već postoji.\n"
+"Da li želite da upišete preko ili da nadovežete izlaz?"
 
 #: UserAction/kraction.cpp:138
-#, fuzzy
 msgid "Overwrite or append?"
-msgstr "Upiši preko ili spoji?"
+msgstr "Upiši preko ili nadoveži?"
 
 #: ActionMan/useractionpage.cpp:248 ActionMan/useractionpage.cpp:257
 #: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:135
@@ -1042,9 +1041,8 @@ msgid "Overwrite"
 msgstr "Piši preko"
 
 #: UserAction/kraction.cpp:140
-#, fuzzy
 msgid "Append"
-msgstr "Otvori"
+msgstr "Nadoveži"
 
 #: ActionMan/useractionpage.cpp:271 UserAction/kraction.cpp:152
 msgid ""
@@ -1440,7 +1438,6 @@ msgid "Run"
 msgstr "Pokreni"
 
 #: Panel/krpopupmenu.cpp:64 Panel/krpopupmenu.cpp:65
-#, fuzzy
 msgid "Open in New Tab"
 msgstr "Otvori u novom jezičku"
 
@@ -1458,7 +1455,6 @@ msgid "Other..."
 msgstr "Drugo..."
 
 #: Panel/krpopupmenu.cpp:104
-#, fuzzy
 msgid "Open With"
 msgstr "Otvori pomoću"
 
@@ -1467,22 +1463,18 @@ msgid "User Actions"
 msgstr "Korisničke akcije"
 
 #: Panel/krpopupmenu.cpp:123
-#, fuzzy
 msgid "Konqueror Menu"
 msgstr "Meni Konqueror-a"
 
 #: Panel/krpopupmenu.cpp:131 krusader.cpp:689
-#, fuzzy
 msgid "Copy..."
-msgstr "Kopiraj"
+msgstr "Kopiraj..."
 
 #: Panel/krpopupmenu.cpp:134 krusader.cpp:691
-#, fuzzy
 msgid "Move..."
-msgstr "Premesti"
+msgstr "Premesti..."
 
 #: Panel/krpopupmenu.cpp:143
-#, fuzzy
 msgid "Move to Trash"
 msgstr "Baci u smeće"
 
@@ -1497,34 +1489,28 @@ msgid "Shred"
 msgstr "Iseckaj"
 
 #: Panel/krpopupmenu.cpp:156 krusader.cpp:658
-#, fuzzy
 msgid "New Symlink..."
-msgstr "Nova simbolička veza"
+msgstr "Nova simbolička veza..."
 
 #: Panel/krpopupmenu.cpp:157
-#, fuzzy
 msgid "New Hardlink..."
-msgstr "novi tvrda veza (hardlink)"
+msgstr "novi tvrda veza (hardlink)..."
 
 #: Panel/krpopupmenu.cpp:159
-#, fuzzy
 msgid "Redirect Link..."
-msgstr "preusmeri vezu"
+msgstr "Preusmeri vezu..."
 
 #: Panel/krpopupmenu.cpp:161
-#, fuzzy
 msgid "Link Handling"
 msgstr "Rad sa vezama"
 
 #: Panel/krpopupmenu.cpp:181
-#, fuzzy
 msgid "Send by Email"
 msgstr "Pošalji e-poštom"
 
 #: Panel/krpopupmenu.cpp:186
-#, fuzzy
 msgid "Synchronize Selected Files..."
-msgstr "Uskladi izabrane fajlove"
+msgstr "Sinhronizuj izabrane fajlove..."
 
 #: Panel/krpopupmenu.cpp:191 krusader.cpp:509
 msgid "Copy to Clipboard"
@@ -1539,31 +1525,28 @@ msgid "Paste from Clipboard"
 msgstr "Nalepi iz klipborda"
 
 #: Panel/krpopupmenu.cpp:215
-#, fuzzy
 msgid "Folder..."
-msgstr "Fascikla"
+msgstr "Fascikla..."
 
 #: Panel/krpopupmenu.cpp:216
-#, fuzzy
 msgid "Text File..."
-msgstr "Tekstualni fajlovi"
+msgstr "Tekstualni fajl..."
 
 #: Panel/krpopupmenu.cpp:219
-#, fuzzy
 msgid "Create New"
 msgstr "Napravi novi"
 
 #: Panel/krpopupmenu.cpp:261
-#, fuzzy
 msgid ""
 "<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone "
 "forever!</qt>"
-msgstr " ? Jednom kada se isecka, fajl je zauvek nestao !!!"
+msgstr ""
+"<qt>Da li zaista želite da iseckate <b>%1</b>? Jednom kada se isecka, fajl "
+"je zauvek nestao!</qt>"
 
 #: Panel/krpopupmenu.cpp:339
-#, fuzzy
 msgid "Can't open \"%1\""
-msgstr "Ne mogu da otvorim "
+msgstr "Ne mogu da otvorim \"%1\""
 
 #: Panel/panelfunc.cpp:264
 msgid "You can edit links only on local file systems"
@@ -1620,9 +1603,7 @@ msgstr "Nema dozvola za gledanje ovog fajla."
 #: Panel/panelfunc.cpp:374
 #, fuzzy
 msgid "<qt>Can't open <b>%1</b></qt>"
-msgstr ""
-"Ne mogu da otvorim %1 za pisanje!\n"
-"Ništa nije izvezeno."
+msgstr "<qt>Ne mogu da otvorim <b>%1</b> za pisanje!</qt>"
 
 #: Panel/panelfunc.cpp:385
 msgid "You can't edit a directory"
@@ -1775,7 +1756,9 @@ msgstr "Ne mogu da spakujem fajlove u virtuelno odredište!"
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>All data in the previous archive will be lost!</p></qt>"
-msgstr " već postoji. Da li ste sigurni da želite da upišete preko?"
+msgstr ""
+"<qt>Fajl <b>%1</b> već postoji. Da li zaista želite da upišete preko njega?</"
+"qt>"
 
 #: Panel/panelfunc.cpp:805
 #, fuzzy
@@ -2003,19 +1986,16 @@ msgid "popup cmdline"
 msgstr "iskačuća komandna linija"
 
 #: krusader.cpp:536
-#, fuzzy
 msgid "&New Text File..."
-msgstr "Uredi &novi fajl..."
+msgstr "Uredi &novi tekstualni fajl..."
 
 #: krusader.cpp:537
-#, fuzzy
 msgid "Start &Root Mode Krusader"
-msgstr "Pokreni Krusader u režimu &administratora..."
+msgstr "Pokreni Krusader u režimu &administratora"
 
 #: krusader.cpp:539
-#, fuzzy
 msgid "T&est Archive"
-msgstr "T&estiraj arhivu..."
+msgstr "T&estiraj arhivu"
 
 #: krusader.cpp:543
 msgid "New Net &Connection..."
@@ -2026,9 +2006,8 @@ msgid "Pro&files"
 msgstr "Pro&fili"
 
 #: krusader.cpp:547
-#, fuzzy
 msgid "Calculate &Occupied Space"
-msgstr "Izračunaj zauzeti prostor"
+msgstr "Izračunaj &zauzeti prostor"
 
 #: krusader.cpp:549
 msgid "Create Checksum..."
@@ -2059,18 +2038,16 @@ msgid "Com&bine Files..."
 msgstr "Kom&binuj fajlove..."
 
 #: krusader.cpp:563
-#, fuzzy
 msgid "Select &Group..."
-msgstr "Odaberi &grupu"
+msgstr "Odaberi &grupu..."
 
 #: krusader.cpp:565
 msgid "&Select All"
 msgstr "&Odaberi sve"
 
 #: krusader.cpp:567
-#, fuzzy
 msgid "&Unselect Group..."
-msgstr "&Poništi izbor grupe"
+msgstr "&Poništi izbor grupe..."
 
 #: krusader.cpp:569
 msgid "U&nselect All"
@@ -2110,12 +2087,10 @@ msgid "Select &Different"
 msgstr "Označi &različite"
 
 #: krusader.cpp:592
-#, fuzzy
 msgid "Start &Terminal"
-msgstr "Terminal"
+msgstr "Pokreni &terminal"
 
 #: krusader.cpp:594
-#, fuzzy
 msgid "Disconnect &from Net"
 msgstr "P&rekini vezu sa Mrežom"
 
@@ -2136,7 +2111,6 @@ msgid "Synchronize &Directories..."
 msgstr "&Uskladi direktorijume..."
 
 #: krusader.cpp:612
-#, fuzzy
 msgid "S&ynchron Directory Changes"
 msgstr "S&inhr. promene direktorijuma"
 
@@ -2173,17 +2147,14 @@ msgid "Multi &Rename..."
 msgstr "&Višestruko preimenovanje..."
 
 #: krusader.cpp:634
-#, fuzzy
 msgid "Right-click Menu"
 msgstr "Meni desnog klika"
 
 #: krusader.cpp:636
-#, fuzzy
 msgid "Right Bookmarks"
 msgstr "Desni markeri"
 
 #: krusader.cpp:638
-#, fuzzy
 msgid "Left Bookmarks"
 msgstr "Levi markeri"
 
@@ -2205,12 +2176,10 @@ msgid "Sync Panels"
 msgstr "Sinh. panele"
 
 #: krusader.cpp:648
-#, fuzzy
 msgid "Left History"
 msgstr "Leva istorija"
 
 #: krusader.cpp:650
-#, fuzzy
 msgid "Right History"
 msgstr "Desna istorija"
 
@@ -2219,12 +2188,10 @@ msgid "Media"
 msgstr "Medijum"
 
 #: krusader.cpp:654
-#, fuzzy
 msgid "Left Media"
 msgstr "Levi mediji"
 
 #: krusader.cpp:656
-#, fuzzy
 msgid "Right Media"
 msgstr "Desni mediji"
 
@@ -2237,32 +2204,26 @@ msgid "Vertical Mode"
 msgstr "Vertikalni režim"
 
 #: krusader.cpp:664
-#, fuzzy
 msgid "New Tab"
 msgstr "Novi jezičak"
 
 #: krusader.cpp:666
-#, fuzzy
 msgid "Duplicate Current Tab"
-msgstr "Dupliraj jezičak"
+msgstr "Dupliraj tekući jezičak"
 
 #: krusader.cpp:668
-#, fuzzy
 msgid "Close Current Tab"
 msgstr "Zatvori tekući jezičak"
 
 #: krusader.cpp:670
-#, fuzzy
 msgid "Next Tab"
 msgstr "Sledeći jezičak"
 
 #: krusader.cpp:672
-#, fuzzy
 msgid "Previous Tab"
 msgstr "Prethodni jezičak"
 
 #: krusader.cpp:678
-#, fuzzy
 msgid "Manage User Actions..."
 msgstr "Upravljanje korisničkim akcijama..."
 
@@ -2272,52 +2233,43 @@ msgstr "Izaberi udaljeni skup znakova"
 
 #: krusader.cpp:683
 msgid "Start Terminal Here"
-msgstr ""
+msgstr "Pokreni terminal ovde"
 
 #: krusader.cpp:685
-#, fuzzy
 msgid "View File"
-msgstr "Video fajlovi"
+msgstr "Pregledaj fajl"
 
 #: krusader.cpp:687
-#, fuzzy
 msgid "Edit File"
-msgstr "Uredi fajl (F4)"
+msgstr "Uredi fajl"
 
 #: krusader.cpp:693
-#, fuzzy
 msgid "New Directory..."
-msgstr "Novi direktorijum"
+msgstr "Novi direktorijum..."
 
 #: krusader.cpp:699
-#, fuzzy
 msgid "Quit"
-msgstr "Tiho"
+msgstr "Odustani"
 
 #: krusader.cpp:701
-#, fuzzy
 msgid "Popular URLs..."
-msgstr "Popularni URL-ovi"
+msgstr "Popularni URL-ovi..."
 
 #: krusader.cpp:703
-#, fuzzy
 msgid "Go to Location Bar"
 msgstr "Idi na traku lokacije"
 
 #: krusader.cpp:705
-#, fuzzy
 msgid "Jump Back"
 msgstr "Skoči unazad"
 
 #: krusader.cpp:707
-#, fuzzy
 msgid "Set Jump Back Point"
 msgstr "Postavi ovde tačku skoka unazad"
 
 #: krusader.cpp:709
-#, fuzzy
 msgid "Toggle Fullwidget Terminal Emulator"
-msgstr "Prikaži emulator terminala"
+msgstr "Uključi/isključi pun-vidžet emulator terminala"
 
 #: krusader.cpp:713
 msgid "Select files using a filter"
@@ -2328,9 +2280,8 @@ msgid "Select all files in the current directory"
 msgstr "Izaberi sve fajlove u trenutnom direktorijumu"
 
 #: krusader.cpp:715
-#, fuzzy
 msgid "Unselect all selected files"
-msgstr "Poništi izbor svih izabranih fajlova"
+msgstr "Poništi izbor fajlova"
 
 #: krusader.cpp:716
 msgid "Setup Krusader the way you like it"
@@ -2349,9 +2300,8 @@ msgid "Search for files"
 msgstr "Pretraga za fajlovima"
 
 #: krusader.cpp:725
-#, fuzzy
 msgid "JavaScript Console..."
-msgstr "JavaScript konzola"
+msgstr "JavaScript konzola..."
 
 #: krusader.cpp:861
 msgid "Are you sure you want to quit?"
@@ -2969,6 +2919,8 @@ msgid ""
 "*.keymap|Krusader keymaps\n"
 "*|all files"
 msgstr ""
+"*.keymap|Krusader mape tastera\n"
+"*|svi fajlovi"
 
 #: Dialogs/krkeydialog.cpp:41
 msgid "Import shortcuts"
@@ -2987,27 +2939,26 @@ msgid "Save current keybindings in a keymap file."
 msgstr "Snimi trenutne prečice u fajl mape tastera."
 
 #: Dialogs/krkeydialog.cpp:64 Dialogs/krkeydialog.cpp:128
-#, fuzzy
 msgid "Select a keymap file"
-msgstr "Izaberi fajl šeme boja"
+msgstr "Izaberi fajl mape tastera"
 
 #: Dialogs/krkeydialog.cpp:71
 msgid ""
 "This file does not seem to be a valid keymap.\n"
 "It may be a keymap using a legacy format. The import can't be undone!"
 msgstr ""
+"Čini se da ovaj fajl nije ispravan fajl mape tastera.\n"
+"Moguće je da je mapa tastera sa starim formatom. Uvoz ne može da se poništi!"
 
 #: Dialogs/krkeydialog.cpp:73
 msgid "Try to import legacy format?"
-msgstr ""
+msgstr "Da li da pokušam da uvezem stari format?"
 
 #: Dialogs/krkeydialog.cpp:74
-#, fuzzy
 msgid "Import anyway"
-msgstr "Uvezi akciju"
+msgstr "Uvezi svakako"
 
 #: Dialogs/krkeydialog.cpp:95
-#, fuzzy
 msgid ""
 "The following information was attached to the keymap. Do you really want to "
 "import this keymap?"
@@ -3017,24 +2968,22 @@ msgstr ""
 
 #: Dialogs/krkeydialog.cpp:122
 msgid "Please restart this dialog in order to see the changes"
-msgstr ""
+msgstr "Molimo vas ponovo pokrenite dijalog da biste videli promene"
 
 #: Dialogs/krkeydialog.cpp:123
 msgid "Legacy import completed"
-msgstr ""
+msgstr "Uvoz starog formata završen"
 
 #: Dialogs/krkeydialog.cpp:134
-#, fuzzy
 msgid ""
 "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
-msgstr " već postoji. Da li ste sigurni da želite da upišete preko?"
+msgstr ""
+"<qt>Fajl <b>%1</b> već postoji. Da li zaista želite da upišete preko njega?</"
+"qt>"
 
 #: Dialogs/krkeydialog.cpp:143
-#, fuzzy
 msgid "<qt>Can't open <b>%1</b> for writing!</qt>"
-msgstr ""
-"Ne mogu da otvorim %1 za pisanje!\n"
-"Ništa nije izvezeno."
+msgstr "<qt>Ne mogu da otvorim <b>%1</b> za pisanje!</qt>"
 
 #: Dialogs/packguibase.cpp:66 Dialogs/packguibase.cpp:120
 msgid "Pack"
@@ -3141,9 +3090,8 @@ msgid "Click to go to <i>%1</i>"
 msgstr "Klikni za odlazak u <i>%1</i>"
 
 #: Dialogs/krpleasewait.cpp:45
-#, fuzzy
 msgid "Krusader::Wait"
-msgstr "Krusader::Pronalaženje"
+msgstr "Krusader::Sačekaj"
 
 #: Dialogs/checksumdlg.cpp:191 Dialogs/checksumdlg.cpp:446
 msgid "Create Checksum"
@@ -3315,40 +3263,33 @@ msgstr ""
 "*|svi fajlovi"
 
 #: ActionMan/useractionpage.cpp:48
-#, fuzzy
 msgid "Create new useraction"
-msgstr "Upravljanje korisničkim akcijama"
+msgstr "Napravi novu korisničku akciju"
 
 #: ActionMan/useractionpage.cpp:53
-#, fuzzy
 msgid "Import useractions"
-msgstr "Uvezi akciju"
+msgstr "Uvezi korisničku akciju"
 
 #: ActionMan/useractionpage.cpp:58
-#, fuzzy
 msgid "Export useractions"
-msgstr "Izvezi akciju"
+msgstr "Izvezi korisničku akciju"
 
 #: ActionMan/useractionpage.cpp:63
-#, fuzzy
 msgid "Copy useractions to clipboard"
-msgstr "Kopiraj u klipbord"
+msgstr "Kopiraj korisničke akcije u klipbord"
 
 #: ActionMan/useractionpage.cpp:68
-#, fuzzy
 msgid "Paste useractions from clipboard"
-msgstr "Nalepi iz klipborda"
+msgstr "Nalepi korisničke akcije iz klipborda"
 
 #: ActionMan/useractionpage.cpp:73
-#, fuzzy
 msgid "Delete selected useractions"
-msgstr "Ukloni izabrane akcije?"
+msgstr "Ukloni izabrane korisničke akcije"
 
 #: ActionMan/useractionpage.cpp:126
-#, fuzzy
 msgid ""
 "The current action has been modified. Do you want to apply these changes?"
-msgstr "Trenutna stranica je izmenjena. Da li želite da primenite izmene?"
+msgstr "Trenutna akcije je izmenjena. Da li želite da primenite izmene?"
 
 #: ActionMan/useractionpage.cpp:203
 msgid "Are you sure that you want to remove all selected actions?"
@@ -3466,9 +3407,8 @@ msgstr ""
 "unutrašnju akciju"
 
 #: ActionMan/actionman.cpp:26
-#, fuzzy
 msgid "ActionMan - Manage Your Useractions"
-msgstr "Upravljanje korisničkim akcijama"
+msgstr "MenadžerAkcija - Upravljanje vašim korisničkim akcijama"
 
 #: ActionMan/actionpropertybase.cpp:386
 msgid "Action Property"
@@ -4569,9 +4509,9 @@ msgstr "&Fajl"
 
 #. i18n: file krusaderui.rc line 36
 #: rc.cpp:6
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "&Edit"
-msgstr " Uredi"
+msgstr "&Uredi"
 
 #. i18n: file krusaderui.rc line 51
 #: rc.cpp:9
@@ -4589,7 +4529,7 @@ msgstr "&Pogled"
 #: rc.cpp:15
 #, no-c-format
 msgid "&Go"
-msgstr ""
+msgstr "&Idi"
 
 #. i18n: file krusaderui.rc line 85
 #: rc.cpp:18
@@ -4613,7 +4553,7 @@ msgstr "&Podešavanja"
 #: rc.cpp:27
 #, no-c-format
 msgid "&Window"
-msgstr ""
+msgstr "&Prozor"
 
 #. i18n: file krusaderui.rc line 147
 #: rc.cpp:30
@@ -4925,16 +4865,18 @@ msgstr ""
 "označeni."
 
 #: Konfigurator/kglookfeel.cpp:87
-#, fuzzy
 msgid "Rename selects extension"
-msgstr "Ukloni izabrane akcije?"
+msgstr "Preimenovanje izabire ekstenziju"
 
 #: Konfigurator/kglookfeel.cpp:87
+#, fuzzy
 msgid ""
 "When renaming a file, the whole text is selected. If you want Total-"
 "Commander like renaming of just the name, without extension, uncheck this "
 "option."
 msgstr ""
+"Pri preimenovanju fajla, ceo fajl se selektuje. Ako želite total-komander "
+"stil preimenovanja - samo naziva fajla, bez ekstenzije, odštiklirajte ovo."
 
 #: Konfigurator/kglookfeel.cpp:88
 msgid "Use full path tab names"
@@ -4950,16 +4892,16 @@ msgstr ""
 
 #: Konfigurator/kglookfeel.cpp:89
 msgid "Fullscreen terminal (mc-style)"
-msgstr ""
+msgstr "Terminal u celom ekranu (mc-stil)"
 
 #: Konfigurator/kglookfeel.cpp:89
+#, fuzzy
 msgid "Terminal is shown instead of the Krusader window (full screen)."
-msgstr ""
+msgstr "Terminal se prikazuje umesto krusader prozora (ceo ekran)."
 
 #: Konfigurator/kglookfeel.cpp:98
-#, fuzzy
 msgid "Quicksearch"
-msgstr "Novi stil brzog pretraživanja"
+msgstr "Brzo pretraživanje"
 
 #: Konfigurator/kglookfeel.cpp:103
 msgid "New style quicksearch"
@@ -5131,9 +5073,8 @@ msgid ""
 msgstr "Svaka promena direktorijuma u panelu odnosi se i na drugi panel."
 
 #: Konfigurator/kglookfeel.cpp:217
-#, fuzzy
 msgid "Selection Mode"
-msgstr "Poseban režim izbora"
+msgstr "Režim izbora"
 
 #: Konfigurator/kglookfeel.cpp:231
 msgid "Krusader Mode"
@@ -5187,9 +5128,8 @@ msgid "Design your own selection mode!"
 msgstr "Dizajnirajte vaš režim izabiranja!"
 
 #: Konfigurator/kglookfeel.cpp:244
-#, fuzzy
 msgid "Details"
-msgstr "Detaljno"
+msgstr "Detalji"
 
 #: Konfigurator/kglookfeel.cpp:252
 msgid "Double-click selects (classic)"
@@ -5355,6 +5295,11 @@ msgid ""
 "root or member of the group</li><li>Preserving the timestamp</li></"
 "ul><b>Note</b>: This can slow down the copy process."
 msgstr ""
+"Krusader će pokušati da očuva sve atribute (vreme, vlasnika, grupu) lokalnih "
+"fajlova u skladu sa izvorom i zavisno od vaših dozvola:<ul><li>Očuvanje "
+"korisnika ako ste root</li><li>Očuvanje grupe ako ste root ili član grupe</"
+"li><li>Očuvanje vremenske marke</li></ul><b>Napomena</b>: Ovo može da uspori "
+"proces kopiranja."
 
 #: Konfigurator/kgadvanced.cpp:64
 msgid "Automount filesystems"
@@ -5588,13 +5533,15 @@ msgstr ""
 
 #: Konfigurator/kgcolors.cpp:62
 msgid "Dim the colors of the inactive panel"
-msgstr ""
+msgstr "Zatamni boje neaktivnog panela"
 
 #: Konfigurator/kgcolors.cpp:62
 msgid ""
 "<p>The colors of the inactive panel are calculated by a dim color and a dim "
 "factor.</p>"
 msgstr ""
+"<p>Boje neaktivnog panela se računaju pomoću zatamnjene boje i faktora "
+"zatamnjenja.</p>"
 
 #: Konfigurator/kgcolors.cpp:89
 msgid "Active"
@@ -5705,12 +5652,11 @@ msgstr "Isto kao aktivan"
 
 #: Konfigurator/kgcolors.cpp:168
 msgid "Dim target color:"
-msgstr ""
+msgstr "Ciljna boja zatamnjenja:"
 
 #: Konfigurator/kgcolors.cpp:171
-#, fuzzy
 msgid "Dim factor:"
-msgstr "Direktorijumi:"
+msgstr "Faktor zatamnjenja:"
 
 #: Konfigurator/kgcolors.cpp:184
 msgid "Synchronizer"
@@ -5771,7 +5717,7 @@ msgstr "Izvezi šemu boja"
 #: Konfigurator/kgcolors.cpp:411
 #, fuzzy
 msgid "Selected + Current"
-msgstr "Dupliraj jezičak"
+msgstr "Dupliraj tekući jezičak"
 
 #: Konfigurator/kgcolors.cpp:412
 #, fuzzy
@@ -6058,25 +6004,25 @@ msgstr ""
 "bin)"
 
 #: Konfigurator/kguseractions.cpp:48
-#, fuzzy
 msgid "Information"
-msgstr "Potvrde"
+msgstr "Informacija"
 
 #: Konfigurator/kguseractions.cpp:53
 msgid ""
 "Here you can configure settings about useractions.\n"
 "To set up, configure and manage your useractions please use ActionMan."
 msgstr ""
+"Ovde možete namestiti podešavanja vezana za korisničke akcije.\n"
+"Za postavljanje, podešavanje i rad sa korisničkim akcijama, molimo vas, "
+"koristite MenadžerAkcija."
 
 #: Konfigurator/kguseractions.cpp:57
-#, fuzzy
 msgid "Start ActionMan"
-msgstr "Pokreni u kaseti"
+msgstr "Pokreni MenadžerAkcija"
 
 #: Konfigurator/kguseractions.cpp:64
-#, fuzzy
 msgid "Terminal execution"
-msgstr "Terminal za korisničke akcije:"
+msgstr "Izvršavanje u terminalu"
 
 #: Konfigurator/kguseractions.cpp:68
 msgid "Terminal for UserActions:"
@@ -6084,20 +6030,19 @@ msgstr "Terminal za korisničke akcije:"
 
 #: Konfigurator/kguseractions.cpp:78
 msgid "Output collection"
-msgstr ""
+msgstr "Kolekcija izlaza"
 
 #: Konfigurator/kguseractions.cpp:83
-#, fuzzy
 msgid "Normal font:"
-msgstr "Font panela:"
+msgstr "Normalni font:"
 
 #: Konfigurator/kguseractions.cpp:89
 msgid "Font with fixed width:"
-msgstr ""
+msgstr "Font fiksne širine:"
 
 #: Konfigurator/kguseractions.cpp:95
 msgid "Use fixed width font as default"
-msgstr ""
+msgstr "Koristi font fiksne širine kao podrazumevani"
 
 #: krslots.cpp:104
 msgid ""
@@ -6407,101 +6352,3 @@ msgstr "Greška pri pisanju fajla %1!"
 
 #~ msgid "Marked 1"
 #~ msgstr "Označeni 1"
-
-#~ msgid "new symlink"
-#~ msgstr "nova simbolička veza"
-
-#~ msgid "Text file"
-#~ msgstr "Tekstualni fajl"
-
-#~ msgid "Are you sure you want to shred "
-#~ msgstr "Da li ste sigurni da želite da iseckate "
-
-#~ msgid "Calculate &Occupied Space..."
-#~ msgstr "Izračunaj &zauzeti prostor..."
-
-#~ msgid "&Terminal..."
-#~ msgstr "&Terminal..."
-
-#~ msgid "Close tab"
-#~ msgstr "Zatvori jezičak"
-
-#~ msgid "F2 - Open a terminal"
-#~ msgstr "F2 - Otvori terminal"
-
-#~ msgid "F3 - View a file"
-#~ msgstr "F3 - Pogledaj fajl"
-
-#~ msgid "F4 - Edit a file"
-#~ msgstr "F4 - Uredi fajl"
-
-#~ msgid "F5 - Copy"
-#~ msgstr "F5 - Kopiraj"
-
-#~ msgid "F6 - Move"
-#~ msgstr "F6 - Premesti"
-
-#~ msgid "F7 - Mkdir"
-#~ msgstr "F7 - Napravi dir"
-
-#~ msgid "F8 - Delete"
-#~ msgstr "F8 - Obriši"
-
-#~ msgid "F9 - Rename"
-#~ msgstr "F9 - Preimenuj"
-
-#~ msgid "F10 - Quit"
-#~ msgstr "F10 - Završi"
-
-#~ msgid "&Mark"
-#~ msgstr "&Označi"
-
-#~ msgid "&Commands"
-#~ msgstr "&Naredbe"
-
-#~ msgid "Toolbar"
-#~ msgstr "Traka sa alatima"
-
-#~ msgid "Keybindings"
-#~ msgstr "Tasterske prečice"
-
-#, fuzzy
-#~ msgid "Mouse mode"
-#~ msgstr "Heks. režim"
-
-#~ msgid "Select a shortcuts file"
-#~ msgstr "Izaberite fajl sa prečicama"
-
-#~ msgid "Panels"
-#~ msgstr "Paneli"
-
-#~ msgid "Single click / Double click Selection:"
-#~ msgstr "Označavanje jednim klikom / duplim klikom:"
-
-#~ msgid "Mouse Selection Mode:"
-#~ msgstr "Režim izbora mišem:"
-
-#~ msgid ""
-#~ "Change all attributes (time, owner, group) of local files according to "
-#~ "the source one. This can slow down the copy process."
-#~ msgstr ""
-#~ "Promeni sve atribute (vreme, vlasnika, grupu) lokalnih fajlova prema "
-#~ "izvorišnim. Ovo može usporiti proces kopiranja."
-
-#~ msgid "Reset"
-#~ msgstr "Resetuj"
-
-#~ msgid "New Action"
-#~ msgstr "Nova akcija"
-
-#~ msgid "Remove Action"
-#~ msgstr "Ukloni akciju"
-
-#~ msgid "Export Action"
-#~ msgstr "Izvezi akciju"
-
-#~ msgid "Action to Clipboard"
-#~ msgstr "Akcija u klipbord"
-
-#~ msgid "Action from Clipboard"
-#~ msgstr "Akcija iz klipborda"
