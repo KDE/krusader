@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2006-11-15 11:49+0100\n"
-"PO-Revision-Date: 2006-10-16 14:39+0100\n"
+"PO-Revision-Date: 2006-11-29 20:25+0100\n"
 "Last-Translator: Matej Urbancic <matej.urban@gmail.com>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,9 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Country: SLOVENIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: KBabel 1.11.2\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3);\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #: GUI/dirhistorybutton.cpp:35
 msgid "Open the directory history list"
@@ -2590,8 +2589,7 @@ msgid ""
 msgstr "Notranja napaka v Priklopniku. Obvesti razvijalce programa."
 
 #: MountMan/kmountmangui.cpp:326
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr "Notranja napaka v Priklopniku. Obvesti razvijalce programa."
 
 #: MountMan/kmountmangui.cpp:331
@@ -2964,8 +2962,7 @@ msgid "Legacy import completed"
 msgstr "Podedovan uvoz končan"
 
 #: Dialogs/krkeydialog.cpp:134
-msgid ""
-"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
 msgstr "<qt>Datoteka <b>%1</b> že obstaja. Jo zares želite prepisati?</qt>"
 
 #: Dialogs/krkeydialog.cpp:143
@@ -3272,8 +3269,7 @@ msgid "Delete selected useractions"
 msgstr "Odstrani izbrane skripte"
 
 #: ActionMan/useractionpage.cpp:126
-msgid ""
-"The current action has been modified. Do you want to apply these changes?"
+msgid "The current action has been modified. Do you want to apply these changes?"
 msgstr "Trenutni skript je bil spremenjen. Želite sprejeti spremembe?"
 
 #: ActionMan/useractionpage.cpp:203
@@ -4504,7 +4500,7 @@ msgstr "&Pojdi"
 
 #. i18n: file krusaderui.rc line 85
 #: rc.cpp:18
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "User&actions"
 msgstr "&Skripti"
 
@@ -4589,8 +4585,7 @@ msgstr "Urejevalnik:"
 msgid ""
 "Hint: use 'internal editor' if you want to use Krusader's fast built-in "
 "editor"
-msgstr ""
-"Namig: Uporabljajte 'vgrajeni urejevalnik' če želite izkoristiti hitrost"
+msgstr "Namig: Uporabljajte 'vgrajeni urejevalnik' če želite izkoristiti hitrost"
 
 #: Konfigurator/kggeneral.cpp:86
 msgid "Default viewer mode:"
@@ -4661,14 +4656,12 @@ msgid "Searching for tools..."
 msgstr "Iščem orodja ..."
 
 #: Konfigurator/kggeneral.cpp:152
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr "Orodja morajo biti naložena v <code>$PATH</code> (e.g. /usr/bin)"
 
 #: Konfigurator/krresulttable.cpp:121
 msgid "unarj not found, but arj found, which will be used for unpacking"
-msgstr ""
-"unarj manjka, vendar je najden arj, ki bo uporabljen tudi za razširjanje"
+msgstr "unarj manjka, vendar je najden arj, ki bo uporabljen tudi za razširjanje"
 
 #: Konfigurator/krresulttable.cpp:127
 msgid "rpm found, but cpio not found which is required for unpacking"
@@ -5029,8 +5022,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Gumb za preklop med brskanjem in usklajevanjem"
 
 #: Konfigurator/kglookfeel.cpp:197
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr "Vsaka sprememba mape se odraža v obeh oknih."
 
 #: Konfigurator/kglookfeel.cpp:217
@@ -5274,8 +5266,7 @@ msgstr ""
 "poskusi točko priklopiti z določenimi parametri."
 
 #: Konfigurator/kgadvanced.cpp:65
-msgid ""
-"Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
 msgstr "Ne uporabljaj KDE media protokola za media gumb."
 
 #: Konfigurator/kgadvanced.cpp:65
@@ -5933,8 +5924,7 @@ msgid "Test archive before unpacking"
 msgstr "Testiraj arhivu pred razširjanjem"
 
 #: Konfigurator/kgarchives.cpp:96
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr "Nekateri arhivi so lahko poškodovani, zato je testiranje priporočeno."
 
 #: Konfigurator/kgarchives.cpp:113
@@ -5942,10 +5932,8 @@ msgid "Searching for packers..."
 msgstr "Iskanje programov za arhiviranje ..."
 
 #: Konfigurator/kgarchives.cpp:114
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr ""
-"Nova orodja za stiskanje namestite v <code>$PATH</code> (npr. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgstr "Nova orodja za stiskanje namestite v <code>$PATH</code> (npr. /usr/bin)"
 
 #: Konfigurator/kguseractions.cpp:48
 msgid "Information"
@@ -6040,8 +6028,7 @@ msgid ""
 "bookmarks. IT WILL BE REMOVED SOON!\n"
 "Try the new bookmark-manager: open a new remote connection, once done, press "
 "the bookmark button, select 'Add bookmark' and that's it!"
-msgstr ""
-"Pomembno: Od različice 1.60.0 je RemoteMan zamenjan z Upravljavcem zaznamkov!"
+msgstr "Pomembno: Od različice 1.60.0 je RemoteMan zamenjan z Upravljavcem zaznamkov!"
 
 #: krslots.cpp:442
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
@@ -6049,8 +6036,7 @@ msgstr "Ni mogoče zagnati priklopa! Preverite 'Odvisnosti' v Konfiguratorju."
 
 #: krslots.cpp:474
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
-msgstr ""
-"Ne najdem \"KsysCtrl\". Naložiti bo potrebno KDE administratorski paket"
+msgstr "Ne najdem \"KsysCtrl\". Naložiti bo potrebno KDE administratorski paket"
 
 #: krslots.cpp:482
 msgid ""
@@ -6205,8 +6191,7 @@ msgid "Not a valid CRC file!"
 msgstr "Datoteka CRC ni prava!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Preverjanje pravilnosti ni mogoče brez CRC datoteke. Želite nadaljevati "
 "lepljenje?"
@@ -6237,7 +6222,7 @@ msgstr "Razdeljevanje datoteke %1 ..."
 
 #: Splitter/splitter.cpp:74
 msgid "Can't split a directory!"
-msgstr "Ni mogoče razdeliti mape!"
+msgstr "Mape ni mogoče razdeliti!"
 
 #: Splitter/splitter.cpp:125
 msgid "Error reading file %1!"
@@ -6247,127 +6232,3 @@ msgstr "Napaka pri branju datoteke %1!"
 msgid "Error at writing file %1!"
 msgstr "Napaka pri pisanju datoteke %1!"
 
-#~ msgid "Can't Read "
-#~ msgstr "Ni mogoče prebrati "
-
-#~ msgid "Directory "
-#~ msgstr "Mapa "
-
-#~ msgid "The Archive "
-#~ msgstr "Arhiv"
-
-#~ msgid " already exists. Do you want to overwrite the archive ?\n"
-#~ msgstr " že obstaja. Naj arhiv prepišem?\n"
-
-#~ msgid "Mark &Newer"
-#~ msgstr "Označi &novejše"
-
-#~ msgid "Mark &Single"
-#~ msgstr "Označi &samostojne"
-
-#~ msgid "trash"
-#~ msgstr "vreči v smeti"
-
-#~ msgid "delete"
-#~ msgstr "izbrisati"
-
-#~ msgid "Are you sure you want to "
-#~ msgstr "Res želite "
-
-#~ msgid "Marked foreground:"
-#~ msgstr "Označeni prednji tekst:"
-
-#~ msgid "Marked background:"
-#~ msgstr "Označeno ozadje:"
-
-#~ msgid "Same as marked background"
-#~ msgstr "Enak kot označeno ozadje"
-
-#~ msgid "Marked 2"
-#~ msgstr "Označeno 2"
-
-#~ msgid "Marked 1"
-#~ msgstr "Označeno 1"
-
-#~ msgid "Copy"
-#~ msgstr "Kopiraj"
-
-#~ msgid "Move"
-#~ msgstr "Premakni"
-
-#, fuzzy
-#~ msgid "New Symlink"
-#~ msgstr "Nova simbolna povezava"
-
-#~ msgid "&Edit New File..."
-#~ msgstr "Ur&edi novo datoteko ..."
-
-#, fuzzy
-#~ msgid "Create Directory..."
-#~ msgstr "Mapa višje"
-
-#~ msgid "new symlink"
-#~ msgstr "nova simbolna povezava"
-
-#~ msgid "Text file"
-#~ msgstr "Besedilna datoteka"
-
-#~ msgid "Are you sure you want to shred "
-#~ msgstr "Res želite razcefrati datoteko "
-
-#~ msgid "Calculate &Occupied Space..."
-#~ msgstr "&Zasedenost prostora ..."
-
-#~ msgid "&Terminal..."
-#~ msgstr "&Terminal ..."
-
-#~ msgid "Close tab"
-#~ msgstr "Zapri zavihek"
-
-#~ msgid "F2 - Open a terminal"
-#~ msgstr "F2 - Odpri Terminal"
-
-#~ msgid "F3 - View a file"
-#~ msgstr "F3 - Poglej datoteko"
-
-#~ msgid "F4 - Edit a file"
-#~ msgstr "F4 - Uredi datoteko"
-
-#~ msgid "F5 - Copy"
-#~ msgstr "F5 - Kopiraj"
-
-#~ msgid "F6 - Move"
-#~ msgstr "F6 - Premakni"
-
-#~ msgid "F7 - Mkdir"
-#~ msgstr "F7 - Mkdir"
-
-#~ msgid "F8 - Delete"
-#~ msgstr "F8 - Izbriši"
-
-#~ msgid "F9 - Rename"
-#~ msgstr "F9 - Preimenuj"
-
-#~ msgid "F10 - Quit"
-#~ msgstr "F10 - Izhod"
-
-#~ msgid "&Mark"
-#~ msgstr "&Izbiranje"
-
-#~ msgid "&Commands"
-#~ msgstr "&Ukazi"
-
-#~ msgid "Toolbar"
-#~ msgstr "Orodna vrstica"
-
-#~ msgid "Keybindings"
-#~ msgstr "Tipkovne bližnjice"
-
-#~ msgid "Mouse mode"
-#~ msgstr "Način z miško"
-
-#~ msgid "Select a shortcuts file"
-#~ msgstr "Označi bližnjice datotek"
-
-#~ msgid "Panels"
-#~ msgstr "Okna"
