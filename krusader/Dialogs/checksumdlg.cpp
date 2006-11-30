@@ -166,6 +166,8 @@ void initChecksumModule() {
 	cs_typeToText[CS_Tool::SHA256]="sha256";
 	cs_typeToText[CS_Tool::TIGER]="tiger";
 	cs_typeToText[CS_Tool::WHIRLPOOL]="whirlpool";
+	cs_typeToText[CS_Tool::SFV]="sfv";
+	cs_typeToText[CS_Tool::CRC]="crc";
 
 	// build the checksumFilter (for usage in KRQuery)
 	QMap<QString, CS_Tool::Type>::Iterator it;
