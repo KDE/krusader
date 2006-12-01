@@ -11,14 +11,13 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2006-11-15 11:49+0100\n"
-"PO-Revision-Date: 2006-11-29 11:44+0100\n"
+"PO-Revision-Date: 2006-12-01 10:58+0100\n"
 "Last-Translator: Sasa Tomic <tomic80@gmail.com>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: KBabel 1.11.2\n"
 
 #: GUI/dirhistorybutton.cpp:35
@@ -312,9 +311,8 @@ msgstr ""
 "%1"
 
 #: VFS/arc_vfs.cpp:217
-#, fuzzy
 msgid "<qt>Can't read <b>%1</b>. Archive might be corrupted!</qt>"
-msgstr "Архива може бити оштећена!"
+msgstr "<qt>Не могу да прочитам <b>%1</b>. Архива је можда оштећена!</qt>"
 
 #: VFS/arc_vfs.cpp:322 VFS/arc_vfs.cpp:579
 msgid "Deleting Files..."
@@ -364,8 +362,7 @@ msgstr ""
 
 #: VFS/virt_vfs.cpp:173
 msgid "Creating new directories is allowed only in the 'virt:/' directory."
-msgstr ""
-"Креирање нових директоријума је дозвољено једино у директоријуму „virt:/“."
+msgstr "Креирање нових директоријума је дозвољено једино у директоријуму „virt:/“."
 
 #: Filter/generalfilter.cpp:94 Konfigurator/konfigurator.cpp:107
 #: VFS/krquery.cpp:138
@@ -1601,9 +1598,8 @@ msgid "No permissions to view this file."
 msgstr "Нема дозвола за гледање овог фајла."
 
 #: Panel/panelfunc.cpp:374
-#, fuzzy
 msgid "<qt>Can't open <b>%1</b></qt>"
-msgstr "<qt>Не могу да отворим <b>%1</b> за писање!</qt>"
+msgstr "<qt>Не могу да отворим <b>%1</b></qt>"
 
 #: Panel/panelfunc.cpp:385
 msgid "You can't edit a directory"
@@ -1731,13 +1727,10 @@ msgid "Warning"
 msgstr "Упозорење"
 
 #: Panel/panelfunc.cpp:676
-#, fuzzy
 msgid ""
 "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete All?</"
 "p></qt>"
-msgstr ""
-" није празан!\n"
-"Прескочи овај или обриши све?"
+msgstr "<qt><p>Директоријум <b>%1</b> није празан!</p><p>Прескочи овај или обриши све?</p></qt>"
 
 #: Panel/panelfunc.cpp:677
 msgid "&Skip"
@@ -1752,23 +1745,19 @@ msgid "Cannot pack files onto a virtual destination!"
 msgstr "Не могу да спакујем фајлове у виртуелно одредиште!"
 
 #: Panel/panelfunc.cpp:803
-#, fuzzy
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>All data in the previous archive will be lost!</p></qt>"
-msgstr ""
-"<qt>Фајл <b>%1</b> већ постоји. Да ли заиста желите да упишете преко њега?</"
-"qt>"
+msgstr "<qt><p>Архива <b>%1.%2</b> већ постоји. Да ли желите да упишете преко ње?</p><p>Сви подаци у претходној архиви ће бити изгубљени!</p></qt>"
 
 #: Panel/panelfunc.cpp:805
-#, fuzzy
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>Zip will replace identically named entries in the zip archive or add "
 "entries for new names.</p></qt>"
 msgstr ""
-"(ЗИП ће заменити идентично именоване улазе у зип архиви или додати улазе за "
-"нове називе)"
+"<qt><p>Архива <b>%1.%2</b> већ постоји. Да ли желите да упишете преко ње?"
+"</p><p>Zip ће заменити идентично назване улазе у zip архиви или ће додати улазе за нове називе.</p></qt>"
 
 #: Panel/panelfunc.cpp:812
 msgid "Counting files to pack"
@@ -1856,8 +1845,7 @@ msgstr "Резултати"
 
 #: Locate/locate.cpp:195
 msgid "Can't start 'locate'! Check the 'Dependencies' page in konfigurator."
-msgstr ""
-"Не могу да покренем „locate“! Проверите страницу „Зависности“ у подешавањима."
+msgstr "Не могу да покренем „locate“! Проверите страницу „Зависности“ у подешавањима."
 
 #: Locate/locate.cpp:232
 msgid ""
@@ -1915,8 +1903,7 @@ msgstr "Овде можете именовати колекцију фајлов
 
 #: krusader.cpp:316
 msgid "Statusbar will show basic information about file below mouse pointer."
-msgstr ""
-"Статусна трака приказује основне информације о фајлу испод показивача миша."
+msgstr "Статусна трака приказује основне информације о фајлу испод показивача миша."
 
 #: krusader.cpp:396
 msgid ""
@@ -2061,27 +2048,22 @@ msgid "&Compare Directories"
 msgstr "&Упореди директоријуме"
 
 #: krusader.cpp:575
-#, fuzzy
 msgid "&Select Newer and Single"
 msgstr "&Означи новије и јединствене"
 
 #: krusader.cpp:577
-#, fuzzy
 msgid "Select &Newer"
-msgstr "Означи ставке"
+msgstr "Означи &новије"
 
 #: krusader.cpp:579
-#, fuzzy
 msgid "Select &Single"
-msgstr "Изаберите фајлове"
+msgstr "Означи &јединствене"
 
 #: krusader.cpp:581
-#, fuzzy
 msgid "Select Different &and Single"
 msgstr "Означи различите &и јединствене"
 
 #: krusader.cpp:583
-#, fuzzy
 msgid "Select &Different"
 msgstr "Означи &различите"
 
@@ -2447,9 +2429,9 @@ msgid "BookMan II"
 msgstr "МенаџМаркера II"
 
 #: BookMan/krbookmarkhandler.cpp:172
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to write to %1"
-msgstr "Не могу да пишем у "
+msgstr "Не могу да пишем у %1"
 
 #: BookMan/krbookmarkhandler.cpp:180
 msgid " instead of "
@@ -2461,14 +2443,13 @@ msgid "missing tag "
 msgstr "недостаје ознака"
 
 #: BookMan/krbookmarkhandler.cpp:261
-#, fuzzy
 msgid "%1 doesn't seem to be a valid Bookmarks file"
-msgstr " чини се да није важећи фајл маркера"
+msgstr "%1 чини се да није важећи фајл маркера"
 
 #: BookMan/krbookmarkhandler.cpp:268
-#, fuzzy, c-format
+#, c-format
 msgid "Error reading bookmarks file: %1"
-msgstr "Грешка при читању фајла маркера: "
+msgstr "Грешка при читању фајла маркера: %1"
 
 #: BookMan/krbookmarkhandler.cpp:332 BookMan/krbookmarkhandler.cpp:485
 msgid "Popular URLs"
@@ -2600,8 +2581,7 @@ msgstr ""
 "Контактирајте програмере"
 
 #: MountMan/kmountmangui.cpp:326
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Менаџер монтирања је наишао на унутрашњу грешку. Молимо вас обавестите "
 "програмере. Хвала вам."
@@ -2885,8 +2865,7 @@ msgstr "&Откажи"
 
 #: Dialogs/popularurls.cpp:62
 msgid "Saved 'Popular Urls' are invalid. List will be cleared"
-msgstr ""
-"Снимљена листа „Популарни URL-ови“ је неисправна. Листа ће бити избрисана."
+msgstr "Снимљена листа „Популарни URL-ови“ је неисправна. Листа ће бити избрисана."
 
 #: Dialogs/popularurls.cpp:230
 msgid "Popular Urls"
@@ -2973,8 +2952,7 @@ msgid "Legacy import completed"
 msgstr "Увоз старог формата завршен"
 
 #: Dialogs/krkeydialog.cpp:134
-msgid ""
-"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
 msgstr ""
 "<qt>Фајл <b>%1</b> већ постоји. Да ли заиста желите да упишете преко њега?</"
 "qt>"
@@ -3284,8 +3262,7 @@ msgid "Delete selected useractions"
 msgstr "Уклони изабране корисничке акције"
 
 #: ActionMan/useractionpage.cpp:126
-msgid ""
-"The current action has been modified. Do you want to apply these changes?"
+msgid "The current action has been modified. Do you want to apply these changes?"
 msgstr "Тренутна акције је измењена. Да ли желите да примените измене?"
 
 #: ActionMan/useractionpage.cpp:203
@@ -4421,17 +4398,12 @@ msgid "Krusader::DiskUsage"
 msgstr "Krusader::Заузетост диска"
 
 #: DiskUsage/diskusage.cpp:597
-#, fuzzy
 msgid "Do you really want to move this item to the trash?"
-msgstr ""
-"Да ли сте сигурни да желите да обришете ову ставку?\n"
-"Да ли сте сигурни да желите да обришете %n ставке?\n"
-"Да ли сте сигурни да желите да обришете %n ставки?"
+msgstr "Да ли сте сигурни да желите да преместите ову ставку у смеће?"
 
 #: DiskUsage/diskusage.cpp:600
-#, fuzzy
 msgid "Do you really want to delete this item?"
-msgstr "Да ли сте сигурни да желите да обришете ову ставку ???"
+msgstr "Да ли сте сигурни да желите да обришете ову ставку?"
 
 #: DiskUsage/diskusage.cpp:612
 msgid "Deleting %1..."
@@ -4529,7 +4501,7 @@ msgstr "&Иди"
 
 #. i18n: file krusaderui.rc line 85
 #: rc.cpp:18
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "User&actions"
 msgstr "Корисничке &акције"
 
@@ -4602,8 +4574,7 @@ msgstr "Користи магију MIME типова"
 
 #: Konfigurator/kggeneral.cpp:65
 msgid "Mimetype magic allows better distinction of file types, but is slower."
-msgstr ""
-"Магија MIME типова омогућава боље разликовање типова фајлова, али је спорија."
+msgstr "Магија MIME типова омогућава боље разликовање типова фајлова, али је спорија."
 
 #: Konfigurator/kggeneral.cpp:72
 msgid "Editor:"
@@ -4686,10 +4657,8 @@ msgid "Searching for tools..."
 msgstr "Тражим алате..."
 
 #: Konfigurator/kggeneral.cpp:152
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr ""
-"Уверите се да инсталирате нове алате у ваш <code>$PATH</code> (нпр. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgstr "Уверите се да инсталирате нове алате у ваш <code>$PATH</code> (нпр. /usr/bin)"
 
 #: Konfigurator/krresulttable.cpp:121
 msgid "unarj not found, but arj found, which will be used for unpacking"
@@ -4845,31 +4814,25 @@ msgstr ""
 "минимизира."
 
 #: Konfigurator/kglookfeel.cpp:86
-#, fuzzy
 msgid "Autoselect directories"
 msgstr "Аутоматски означи директоријуме"
 
 #: Konfigurator/kglookfeel.cpp:86
-#, fuzzy
 msgid ""
 "When matching the select criteria, not only files will be selected, but also "
 "directories."
-msgstr ""
-"При испуњавању критеријума изабирања, директоријуми ће такође бити означени."
+msgstr "При испуњавању критеријума означавања, неће бити означени само фајлови, већ и директоријуми."
 
 #: Konfigurator/kglookfeel.cpp:87
 msgid "Rename selects extension"
 msgstr "Преименовање изабире екстензију"
 
 #: Konfigurator/kglookfeel.cpp:87
-#, fuzzy
 msgid ""
 "When renaming a file, the whole text is selected. If you want Total-"
 "Commander like renaming of just the name, without extension, uncheck this "
 "option."
-msgstr ""
-"При преименовању фајла, цео фајл се селектује. Ако желите тотал-командер "
-"стил преименовања - само назива фајла, без екстензије, одштиклирајте ово."
+msgstr "При преименовању фајла, цео текст се селектује. Ако желите тотал-командер стил преименовања - само назива фајла, без екстензије, одштиклирајте ово."
 
 #: Konfigurator/kglookfeel.cpp:88
 msgid "Use full path tab names"
@@ -4888,9 +4851,8 @@ msgid "Fullscreen terminal (mc-style)"
 msgstr "Терминал у целом екрану (mc-стил)"
 
 #: Konfigurator/kglookfeel.cpp:89
-#, fuzzy
 msgid "Terminal is shown instead of the Krusader window (full screen)."
-msgstr "Терминал се приказује уместо krusader прозора (цео екран)."
+msgstr "Терминал се приказује уместо Krusader прозора (цео екран)."
 
 #: Konfigurator/kglookfeel.cpp:98
 msgid "Quicksearch"
@@ -5061,8 +5023,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Дугме за синхронизовано прегледање."
 
 #: Konfigurator/kglookfeel.cpp:197
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr "Свака промена директоријума у панелу односи се и на други панел."
 
 #: Konfigurator/kglookfeel.cpp:217
@@ -5307,8 +5268,7 @@ msgstr ""
 "b>-у, покушај да је монтираш са дефинисаним параметрима."
 
 #: Konfigurator/kgadvanced.cpp:65
-msgid ""
-"Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
 msgstr ""
 "Не користи KDE-ов протокол медија за дугме медија (ако је баговит или "
 "недостаје)"
@@ -5583,28 +5543,24 @@ msgid "Alternate background:"
 msgstr "Алтернативна позадина:"
 
 #: Konfigurator/kgcolors.cpp:105 Konfigurator/kgcolors.cpp:141
-#, fuzzy
 msgid "Selected foreground:"
-msgstr "Први план брисања:"
+msgstr "Изабрани испис:"
 
 #: Konfigurator/kgcolors.cpp:106 Konfigurator/kgcolors.cpp:142
-#, fuzzy
 msgid "Selected background:"
-msgstr "Позадина брисања:"
+msgstr "Изабрана позадина:"
 
 #: Konfigurator/kgcolors.cpp:107 Konfigurator/kgcolors.cpp:143
 msgid "Same as alt. background"
 msgstr "Исто као алтерн. позадина"
 
 #: Konfigurator/kgcolors.cpp:108 Konfigurator/kgcolors.cpp:145
-#, fuzzy
 msgid "Alternate selected background:"
 msgstr "Алтернативна позадина означених:"
 
 #: Konfigurator/kgcolors.cpp:108 Konfigurator/kgcolors.cpp:144
-#, fuzzy
 msgid "Same as selected background"
-msgstr "Исто као алтерн. позадина"
+msgstr "Исто као изабрана позадина"
 
 #: Konfigurator/kgcolors.cpp:109 Konfigurator/kgcolors.cpp:146
 msgid "Current foreground:"
@@ -5616,14 +5572,12 @@ msgid "Not used"
 msgstr "Не користи се"
 
 #: Konfigurator/kgcolors.cpp:110 Konfigurator/kgcolors.cpp:147
-#, fuzzy
 msgid "Same as selected foreground"
 msgstr "Исто као испис означених"
 
 #: Konfigurator/kgcolors.cpp:111 Konfigurator/kgcolors.cpp:148
-#, fuzzy
 msgid "Selected current foreground:"
-msgstr "Тренутни испис означених:"
+msgstr "Изабрани испис означених:"
 
 #: Konfigurator/kgcolors.cpp:112 Konfigurator/kgcolors.cpp:149
 msgid "Current background:"
@@ -5708,19 +5662,16 @@ msgid "Export color-scheme"
 msgstr "Извези шему боја"
 
 #: Konfigurator/kgcolors.cpp:411
-#, fuzzy
 msgid "Selected + Current"
-msgstr "Дуплирај текући језичак"
+msgstr "Изабрани + тренутни"
 
 #: Konfigurator/kgcolors.cpp:412
-#, fuzzy
 msgid "Selected 2"
-msgstr "Изаберите фајлове"
+msgstr "Изабрано 2"
 
 #: Konfigurator/kgcolors.cpp:413
-#, fuzzy
 msgid "Selected 1"
-msgstr "Изаберите фајлове"
+msgstr "Изабрано 1"
 
 #: Konfigurator/kgcolors.cpp:414
 msgid "Current"
@@ -5980,18 +5931,15 @@ msgid "Test archive before unpacking"
 msgstr "Испробај архиву пре распакивања"
 
 #: Konfigurator/kgarchives.cpp:96
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
-msgstr ""
-"Неке оштећене архиве могу изазвати рушење; стога, тестирање се препоручује."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgstr "Неке оштећене архиве могу изазвати рушење; стога, тестирање се препоручује."
 
 #: Konfigurator/kgarchives.cpp:113
 msgid "Searching for packers..."
 msgstr "Тражим архивере..."
 
 #: Konfigurator/kgarchives.cpp:114
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Уверите се да инсталирате нове архивере у ваш <code>$PATH</code> (нпр. /usr/"
 "bin)"
@@ -6100,8 +6048,7 @@ msgstr ""
 
 #: krslots.cpp:442
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
-msgstr ""
-"Не могу да покренем „mount“! Проверите страницу „Зависности“ у Подешавањима."
+msgstr "Не могу да покренем „mount“! Проверите страницу „Зависности“ у Подешавањима."
 
 #: krslots.cpp:474
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
@@ -6260,8 +6207,7 @@ msgid "Not a valid CRC file!"
 msgstr "Није исправан CRC фајл!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Проверавање исправности је немогуће без доброг CRC фајла. Да наставим са "
 "спајањем?"
@@ -6302,44 +6248,3 @@ msgstr "Грешка при читању фајла %1!"
 msgid "Error at writing file %1!"
 msgstr "Грешка при писању фајла %1!"
 
-#~ msgid "Can't Read "
-#~ msgstr "Не могу да прочитам"
-
-#~ msgid "Directory "
-#~ msgstr "Директоријум "
-
-#~ msgid "The Archive "
-#~ msgstr "Архива"
-
-#~ msgid " already exists. Do you want to overwrite the archive ?\n"
-#~ msgstr " већ постоји. Да ли желите да упишете преко архиве?\n"
-
-#~ msgid "Mark &Newer"
-#~ msgstr "Означи &новије"
-
-#~ msgid "Mark &Single"
-#~ msgstr "Означи &јединствене"
-
-#~ msgid "trash"
-#~ msgstr "баците у смеће"
-
-#~ msgid "delete"
-#~ msgstr "обришете"
-
-#~ msgid "Are you sure you want to "
-#~ msgstr "Да ли сте сигурни да желите да "
-
-#~ msgid "Marked foreground:"
-#~ msgstr "Испис означених:"
-
-#~ msgid "Marked background:"
-#~ msgstr "Позадина означених:"
-
-#~ msgid "Same as marked background"
-#~ msgstr "Исто као позадина означених"
-
-#~ msgid "Marked 2"
-#~ msgstr "Означени 2"
-
-#~ msgid "Marked 1"
-#~ msgstr "Означени 1"
