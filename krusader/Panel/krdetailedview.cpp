@@ -1178,7 +1178,7 @@ void KrDetailedView::renameCurrentItem() {
       // if applicable, select only the name without extension
       KConfigGroupSaver svr(krConfig,"Look&Feel");
       if (!krConfig->readBoolEntry("Rename Selects Extension", true)) {
-	if (it->hasExtension()) 
+	if (it->hasExtension() && !it->VF->vfile_isDir() ) 
 		renameLineEdit()->setSelection(0, it->name().findRev(it->extension())-1);
       }
       // signal will be emited when renaming is done, and finalization
