@@ -1217,7 +1217,7 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
       QString ext, name = static_cast<KrDetailedViewItem*>( it ) ->name();
       if ( !static_cast<KrDetailedViewItem*>( it ) ->VF->vfile_isDir() && COLUMN( Extention ) != -1 ) {
 		ext = static_cast<KrDetailedViewItem*>( it ) ->extension();
-		name = static_cast<KrDetailedViewItem*>( it ) ->name();
+		name = static_cast<KrDetailedViewItem*>( it ) ->name( false );
       }
       it->setText( COLUMN( Name ), name );
       it->setText( COLUMN( Extention ), ext );
