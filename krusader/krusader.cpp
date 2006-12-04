@@ -428,7 +428,7 @@ void Krusader::showEvent ( QShowEvent * ) {
    bool showTrayIcon = krConfig->readBoolEntry( "Minimize To Tray", _MinimizeToTray );
    bool singleInstanceMode = krConfig->readBoolEntry( "Single Instance Mode", _SingleInstanceMode );
    
-   if( !showTrayIcon && !singleInstanceMode )
+   if( showTrayIcon && !singleInstanceMode )
      sysTray->hide();
    show(); // needed to make sure krusader is removed from
    // the taskbar when minimizing (system tray issue)
