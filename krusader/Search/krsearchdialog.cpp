@@ -41,13 +41,10 @@
 #include "krsearchmod.h"
 #include "krsearchdialog.h"
 
-#include <time.h>
-#include <kglobal.h>
 #include <kinputdialog.h>
 #include <qregexp.h>
 #include <qfontmetrics.h>
 #include <kmessagebox.h>
-#include <klocale.h>
 #include <kpopupmenu.h>
 #include <qcursor.h>
 #include <qclipboard.h>
@@ -323,7 +320,7 @@ void KrSearchDialog::found(QString what, QString where, KIO::filesize_t size, ti
   struct tm* t=localtime((time_t *)&mtime);
   QDateTime tmp(QDate(t->tm_year+1900, t->tm_mon+1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
   ResultListViewItem *it =new ResultListViewItem(resultsList, what,
-  	 where.replace(QRegExp("\\\\"),"#"), size, KGlobal::locale()->formatDateTime(tmp), perm);
+  	 where.replace(QRegExp("\\\\"),"#"), size, tmp, perm);
   QString totals = QString(i18n("Found %1 matches.")).arg(resultsList->childCount());
   foundLabel->setText(totals);
 

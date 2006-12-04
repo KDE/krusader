@@ -49,6 +49,8 @@
 #include <qtabwidget.h>
 #include <qlistview.h>
 #include <qstringlist.h>
+#include <kglobal.h>
+#include <klocale.h>
 
 class KrSearchDialog : public QDialog  {
    Q_OBJECT
@@ -57,6 +59,8 @@ public:
 
   void prepareGUI();
     
+  static KrSearchDialog *SearchDialog;
+  
 public slots:
   void startSearch();
   void stopSearch();
@@ -71,8 +75,6 @@ public slots:
   virtual void rightClickMenu(QListViewItem*, const QPoint&, int);
   virtual void resizeEvent( QResizeEvent *e );
 
-  static KrSearchDialog *SearchDialog;
-  
 protected slots:
   void reject();
 
@@ -126,10 +128,12 @@ class ResultListViewItem : public QListViewItem
 {
 public:
   ResultListViewItem( QListView *resultsList, QString name, QString where, KIO::filesize_t size, 
-                      QString date, QString perm ) : QListViewItem( resultsList, name, where, 
-                      KRpermHandler::parseSize(size), date, perm )
+                      QDateTime date, QString perm ) : QListViewItem( resultsList, name, where, 
+                      KRpermHandler::parseSize(size), 
+                      KGlobal::locale()->formatDateTime( date ), perm )
   {
     fileSize = size;
+    fileDate = date;
   }  
 
   void setFoundText(QString text) { _foundText=text; }
@@ -147,15 +151,30 @@ public:
         return 1;
       return -1;
     }
+    if( col == 3 ) {
+      ResultListViewItem *other = (ResultListViewItem *)i;
+      QDateTime otherDate = other->getDate();
+      
+      if( fileDate == otherDate )
+        return 0;
+      if( fileDate > otherDate )
+        return 1;
+      return -1;
+    }
     return QListViewItem::compare( i, col, ascending );
   }
 
   KIO::filesize_t getSize() {
     return fileSize;
   }
+
+  QDateTime getDate() {
+    return fileDate;
+  }
   
 private:
   KIO::filesize_t fileSize;
+  QDateTime       fileDate;
   QString _foundText;
 };
 
