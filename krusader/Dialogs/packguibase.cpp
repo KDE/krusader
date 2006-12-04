@@ -43,6 +43,8 @@
 #include <qpixmap.h>
 #include <qspinbox.h>
 #include <qslider.h>
+#include <qhbox.h>
+#include <qvbox.h>
 #include <kiconloader.h>
 #include <kglobalsettings.h>
 #include <kcombobox.h>
@@ -178,9 +180,18 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, WFlags
     QSpacerItem* spacer_6 = new QSpacerItem( 20, 26, QSizePolicy::Fixed, QSizePolicy::Fixed );
     sliderHbox->addItem( spacer_6 );
 
-    compressionSlider = new QSlider( 1, 9, 1, 5, Qt::Horizontal, advancedWidget, "compressionSlider" );
+    QVBox * sliderVBox = new QVBox( advancedWidget );
+
+    compressionSlider = new QSlider( 1, 9, 1, 5, Qt::Horizontal, sliderVBox, "compressionSlider" );
     compressionSlider->setTickmarks( QSlider::Below );
-    sliderHbox->addWidget( compressionSlider );
+
+    QHBox * minmaxHBox = new QHBox( sliderVBox );
+    minLabel = new QLabel( i18n("MIN"), minmaxHBox );
+    maxLabel = new QLabel( i18n("MAX"), minmaxHBox );
+    maxLabel->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
+
+    sliderHbox->addWidget( sliderVBox );
+
     compressLayout->addLayout( sliderHbox );
 
     compressLayout->addStretch( 0 );
@@ -351,6 +362,8 @@ void PackGUIBase::checkConsistency() {
                                      packer == "7z" );
     bool sliderEnabled = setCompressionLevel->isEnabled() && setCompressionLevel->isChecked();
     compressionSlider->setEnabled( sliderEnabled );
+    minLabel->setEnabled( sliderEnabled );
+    maxLabel->setEnabled( sliderEnabled );
 }
 
 bool PackGUIBase::extraProperties( QMap<QString,QString> & inMap ) {

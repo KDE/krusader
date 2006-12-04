@@ -69,6 +69,8 @@ public:
     QLabel* TextLabel6;
     QLabel* TextLabel7;
     QLabel* TextLabel8;
+    QLabel* minLabel;
+    QLabel* maxLabel;
     QLineEdit* password;
     QLineEdit* passwordAgain;
     QLabel* passwordConsistencyLabel;
