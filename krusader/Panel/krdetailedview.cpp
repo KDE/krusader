@@ -298,6 +298,9 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
       new KrDetailedViewItem( this, ( QListViewItem* ) 0L, ( vfile* ) 0L );
    }
 
+   // text for updating the status bar
+   QString statusText = QString("%1/  ").arg( v->vfs_getOrigin().fileName() ) + i18n("Directory");
+
    int cnt = 0;
    int cl = columnSorted();
    bool as = ascendingSort();
@@ -338,7 +341,10 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
       ++_count;
       // if the item should be current - make it so
       if ( dvitem->name() == nameToMakeCurrent() )
+      {
          currentItem = static_cast<QListViewItem*>(dvitem);
+         statusText = dvitem->description();
+      }
 
       cnt++;
    }
@@ -352,6 +358,8 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
       currentItem = firstChild();
    KListView::setCurrentItem( currentItem );
    ensureItemVisible( currentItem );
+
+   op()->emitItemDescription( statusText );
 }
 
 QString KrDetailedView::getCurrentItem() const {
