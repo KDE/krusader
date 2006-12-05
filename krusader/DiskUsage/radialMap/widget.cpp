@@ -34,12 +34,17 @@ RadialMap::Widget::Widget( QWidget *parent, const char *name )
 QString
 RadialMap::Widget::path() const
 {
+   if( m_tree == 0 )
+      return QString::null;
    return m_tree->fullPath();
 }
 
 KURL
 RadialMap::Widget::url( File const * const file ) const
 {
+   if( file == 0 && m_tree == 0 )
+      return KURL();
+
    return KURL::fromPathOrURL( file ? file->fullPath() : m_tree->fullPath() );
 }
 
@@ -53,6 +58,8 @@ RadialMap::Widget::invalidate( const bool b )
 
       //disable mouse tracking
       setMouseTracking( false );
+
+      KURL urlInv = url();
 
       //ensure this class won't think we have a map still
       m_tree  = 0;
@@ -68,7 +75,7 @@ RadialMap::Widget::invalidate( const bool b )
          update();
 
       //tell rest of Filelight
-      emit invalidated( url() );
+      emit invalidated( urlInv );
    }
 }
 
@@ -135,7 +142,8 @@ RadialMap::Widget::refresh( int filth )
       {
       case 1:
          m_focus = 0;
-         m_map.make( m_tree, true ); //true means refresh only
+         if( m_tree )
+             m_map.make( m_tree, true ); //true means refresh only
          break;
 
       case 2:
@@ -162,7 +170,8 @@ RadialMap::Widget::zoomIn() //slot
    {
       m_focus = 0;
       --m_map.m_visibleDepth;
-      m_map.make( m_tree );
+      if( m_tree )
+          m_map.make( m_tree );
       Config::defaultRingDepth = m_map.m_visibleDepth;
       update();
    }
@@ -173,7 +182,8 @@ RadialMap::Widget::zoomOut() //slot
 {
    m_focus = 0;
    ++m_map.m_visibleDepth;
-   m_map.make( m_tree );
+   if( m_tree )
+       m_map.make( m_tree );
    if( m_map.m_visibleDepth > Config::defaultRingDepth )
       Config::defaultRingDepth = m_map.m_visibleDepth;
    update();
