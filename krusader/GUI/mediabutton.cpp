@@ -181,14 +181,23 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 		if( text != "." && text != ".." ) {
 			int index = popupMenu->count();
 			QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mime ) ->icon( QString::null, true ) );
-			popupMenu->insertItem( pixmap, text, index, index );
 			
 			mediaUrls.append( url );
 			
 			if( mounted && !localPath.isEmpty() )
+			{
 				url = KURL::fromPathOrURL( localPath );
+				if( !text.contains( url.path() ) )
+					text += "  [" + url.path() + "]";
+			}
 			else if( mounted )
+			{
 				url = getLocalPath( url, &mountList );
+				if( url.isLocalFile() && !text.contains( url.path() ) )
+					text += "  [" + url.path() + "]";
+			}
+			
+			popupMenu->insertItem( pixmap, text, index, index );
 			
 			urls.append( url );
 			mimes.append( mime );
@@ -482,11 +491,11 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 		mimes.append( mime );
 		mediaUrls.append( KURL() );
 		quasiMounted.append( false );
-		popupMenu->insertItem( pixmap, name + " [" + mp->mountPoint() + "]" + extSpc, index, index );
+		popupMenu->insertItem( pixmap, name + "  [" + mp->mountPoint() + "]" + extSpc, index, index );
 	}
 	else {
 		mimes[ overwrite ] = mime;
-		popupMenu->changeItem( overwrite, pixmap, name + " [" + mp->mountPoint() + "]" + extSpc );
+		popupMenu->changeItem( overwrite, pixmap, name + "  [" + mp->mountPoint() + "]" + extSpc );
 	}
 }
 
@@ -612,6 +621,8 @@ void MediaButton::slotTimeout() {
 	for( unsigned index = 0; index < urls.count(); index++ ) {
 		bool mounted = false;
 		
+		QString text = popupMenu->text( index );
+		
 		if( mediaUrls[ index ].isEmpty() ) {
 			for (KMountPoint::List::iterator it = mountList.begin(); it != mountList.end(); ++it)
 				if( (*it)->mountPoint() == urls[ index ].path() ) {
@@ -623,6 +634,27 @@ void MediaButton::slotTimeout() {
 			if(  uri.isLocalFile() ) {
 				urls[ index ] = uri;
 				mounted = true;
+				
+				if( !text.contains( uri.path() ) ) 
+				{
+					if( text.endsWith( "]" ) )
+					{
+						int ndx = text.findRev( "  [" );
+						if( ndx >0 )
+							text.truncate( ndx );
+					}
+					
+					text += "  [" + uri.path() + "]";
+				}
+			}
+			else
+			{
+				if( text.endsWith( "]" ) )
+				{
+					int ndx = text.findRev( "  [" );
+					if( ndx >0 )
+						text.truncate( ndx );
+				}
 			}
 		}
 		
@@ -635,7 +667,7 @@ void MediaButton::slotTimeout() {
 			mimes[ index ] = mimes[ index ].replace( "_unmounted", "_mounted" );
 		
 		QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mimes[ index ] ) ->icon( QString::null, true ) );
-		popupMenu->changeItem( index, pixmap, popupMenu->text( index ) );
+		popupMenu->changeItem( index, pixmap, text );
 		
 		if( ((int)index == waitingForMount) && mounted ) {
 			waitingForMount = -1;
