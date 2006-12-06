@@ -48,7 +48,6 @@ DUFilelight::DUFilelight( DiskUsage *usage, const char *name )
    connect( diskUsage, SIGNAL( changeFinished()  ), this, SLOT( slotRefresh() ) );
    connect( diskUsage, SIGNAL( deleteFinished()  ), this, SLOT( slotRefresh() ) );
    connect( diskUsage, SIGNAL( aboutToShow( QWidget * ) ), this, SLOT( slotAboutToShow( QWidget * ) ) );
-   connect( this, SIGNAL( activated( const KURL& ) ), this, SLOT( slotActivated( const KURL& ) ) );
 }
 
 void DUFilelight::slotDirChanged( Directory *dir )
@@ -70,26 +69,6 @@ void DUFilelight::clear()
 {
   invalidate( false );
   currentDir = 0;
-}
-
-void DUFilelight::slotActivated( const KURL& url )
-{
-  KURL baseURL = diskUsage->getBaseURL();
-  
-  if( !baseURL.path().endsWith("/") )
-    baseURL.setPath( baseURL.path() + "/" );
-    
-  QString relURL = KURL::relativeURL( baseURL, url );
-  
-  if( relURL.endsWith( "/" ) )
-    relURL.truncate( relURL.length() - 1 );
-  
-  Directory * dir = diskUsage->getDirectory( relURL );
-  if( dir != 0 && dir != currentDir )
-  {
-    currentDir = dir;
-    diskUsage->changeDirectory( dir );  
-  }
 }
 
 File * DUFilelight::getCurrentFile()
@@ -148,6 +127,11 @@ void DUFilelight::mousePressEvent( QMouseEvent *event )
      if( focus && !focus->isFake() && focus->file() == currentDir )
      {
        diskUsage->dirUp();
+       return;
+     }
+     else if( focus && !focus->isFake() && focus->file()->isDir() )
+     {
+       diskUsage->changeDirectory( (Directory *)focus->file() );
        return;
      }
    }
@@ -236,7 +220,7 @@ void DUFilelight::slotRefresh()
     return;
 
   refreshNeeded = false;
-  if( currentDir )
+  if( currentDir && currentDir == diskUsage->getCurrentDir() )
   {
     invalidate( false );
     create( currentDir );
@@ -246,10 +230,7 @@ void DUFilelight::slotRefresh()
 void DUFilelight::slotChanged( File * )
 {
    if( !refreshNeeded )
-   {
-     invalidate( false );
      refreshNeeded = true;
-   }
 }
 
 #include "dufilelight.moc"

@@ -51,7 +51,6 @@ public slots:
   void slotRefresh();
 
 protected slots:  
-  void slotActivated( const KURL& );
   void slotAboutToShow( QWidget *widget );
     
   void schemeRainbow()        { setScheme( Filelight::Rainbow ); }
