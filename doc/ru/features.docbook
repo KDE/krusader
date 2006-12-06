@@ -22,17 +22,17 @@
 *********************************************************************** -->
 
 <title
->Features</title>
+>Возможности</title>
 <indexterm
 ><primary
->Features</primary
+>Возможности</primary
 ></indexterm>
 
 <note
 ><para
->The most important features and improvements are highlighted here, it would make this list too long if we were to include <emphasis
->all</emphasis
-> the features and improvements. You will discover even more features in this documentation and in the &changelog_url; file. </para
+>Наиболее важные возможности и улучшения освещены здесь, этот список будет слишком длинным, если включить <emphasis
+>все</emphasis
+>. Полное описание всех возможностей вы найдете в этом руководстве и в файле &changelog_url;. </para
 ></note>
 
 
@@ -42,60 +42,60 @@
      <para>
          <itemizedlist>
          <title
->&ofm_url; features</title>
+>Возможности &ofm_url;</title>
           <listitem>
                <para
->Two powerful easy to use <link linkend="panels"
->OFM panels</link
+>Две, легкие в использовании <link linkend="panels"
+>панели</link
 >.</para>
           </listitem>
           <listitem>
                <para
->&cmdline_lnk; and optional &termemu_lnk; at below.</para>
+>&cmdline_lnk; и опционально &termemu_lnk; внизу.</para>
           </listitem>
           <listitem>
                <para
->Strong <link linkend="keyboard-commands"
->keyboard</link
-> orientation, the ability to perform all functions without the mouse.</para>
+>Сильная ориентированность на <link linkend="keyboard-commands"
+>клавиатуру</link
+>, возможность работать со всеми функциями без использования мыши.</para>
           </listitem>
           <listitem>
                <para
->Context-dependent invocation of scripts and programs &eg; mouseclick/enter (execute or open with the associated application), F3(view) and F4(edit).</para>
+>Контекстно зависимое выполнение скриптов и программ, например щелчок мыши/открыть (выполнить  или открыть в ассоциированном приложении), F3(просмотр и F4(редактирование).</para>
           </listitem>
           <listitem>
                <para
->&usermenu_lnk;, create your own customized menu!</para>
+>&usermenu_lnk;, - создайте ваше специальное меню!</para>
           </listitem>
           <listitem>
                <para
->History for everything: &eg; <link linkend="folderhistory"
->Folder History</link
+>История для всего, например &eg; <link linkend="folderhistory"
+>История каталогов</link
 >, <link linkend="popular_urls"
->Popular &URL;s</link
+>Наиболее часто посещаемые &URL;ы</link
 >, ...</para>
           </listitem>
           <listitem>
                <para
->&vfs_lnk; for &eg; &remote_connections_lnk;, &archives_lnk;, search results, synchronizer, ...</para>
+>&vfs_lnk; для например &remote_connections_lnk;, &archives_lnk;, результатов поиска, синхронизатора, ...</para>
           </listitem>
           <listitem>
                <para
->Powerful internal <link linkend="krviewer"
->viewer and editor</link
-> via kparts it supports almost every fileformat!</para>
+>Мощный встроенный <link linkend="krviewer"
+>просмотрщик и редактор</link
+> через kparts поддерживает все доступные форматы файлов!</para>
           </listitem>
           <listitem>
                <para
->&advanced_search_module_lnk; : searching in archives and search content on remote filesystems.</para>
+>&advanced_search_module_lnk; : поиск в архивах и удаленных файловых системах.</para>
           </listitem>
           <listitem>
                <para
->Several Panel view modes via the &popup_panel_lnk;.</para>
+>Несколько режимов просмотра в панели через &popup_panel_lnk;.</para>
           </listitem>
           <listitem>
                <para
->&remote_connections_lnk; : &FTP;/SAMBA with SFTP/SCP support via &kioslaves1_url;</para>
+>&remote_connections_lnk; : &FTP;/SAMBA с поддержкой SFTP/SCP через &kioslaves1_url;</para>
           </listitem>
         </itemizedlist>
      </para>
@@ -106,11 +106,11 @@
      <para>
          <itemizedlist>
          <title
->&krusader; tools</title>
+>Инструменты &krusader;</title>
           <listitem>
                <para
 ><link linkend="mount-man"
->Mount-Manager</link
+>Менеджер монтирования</link
 ></para>
           </listitem>
           <listitem>
@@ -141,91 +141,91 @@
      <para>
          <itemizedlist>
          <title
->&krusader; features</title>
+>Возможности &krusader;</title>
           <listitem>
                <para
->Archive Handling: browsing, unpack, pack, testing. Supported &archives_lnk; : ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip.</para>
+>Работа с архивами: просмотр, распаковка, упаковка, тестирование.Поддкрживаются &archives_lnk; : ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip и 7-zip.</para>
           </listitem>
           <listitem>
                <para
 ><link linkend="checksum"
->Checksum creation-verification</link
-> mechanism that supports md5, sha1, sha256, tiger, whirlpool. External supported tools are md5deep and cfv.</para>
+>Проверка-создание контрольной суммы</link
+> поддерживается md5, sha1, sha256, tiger, whirlpool.Поддерживаются внешние инструменты md5deep и cfv.</para>
           </listitem>
           <listitem>
                <para
 ><link linkend="calculate"
->Calculate occupied space</link
-> of files and folders, archives and remote filesystems.</para>
+>Подсчет занятого пространства</link
+> для файлов, каталогов, архивов и удаленных файловых систем.</para>
           </listitem>
           <listitem>
                <para
 ><link linkend="compare-dir"
->Directory comparison</link
-> and <link linkend="view-menu"
->filtering</link
+>Сравнение каталогов</link
+> и <link linkend="view-menu"
+>фильтрация</link
 >.</para>
           </listitem>
           <listitem>
                <para
 ><link linkend="compare-content"
->Compare files by content</link
-> via external diff programs like &kompare;, &kdiff3_url; or &xxdiff_url;.</para>
+>Сравнение файлов по содержимому</link
+> через внешную программу &kompare;, &kdiff3_url; или &xxdiff_url;.</para>
           </listitem>
           <listitem>
                <para
 ><link linkend="multi_rename"
->Rename</link
-> files and folders via &krename_url;</para>
+>Переименовывание</link
+> файлов и каталогов через &krename_url;</para>
           </listitem>
           <listitem>
                <para
->Completely supports drag'n'drop: drag from &konqueror; straight into a .tar.gz file, from &krusader;'s panel into the trash-bin, the desktop or into &konqueror;!</para>
+>Полноценная поддержка перетаскивания: перетаскивайте из &konqueror; в a .tar.gz файл, из панели в Корзину, на рабочий стол или в &konqueror;!</para>
           </listitem>
           <listitem>
                <para
 ><link linkend="konfig-advanced"
->Preserve date</link
-> for local targets at copy/move operations.</para>
+>Сохранение даты</link
+> для локальных целей при копировании/перемещении.</para>
           </listitem>
           <listitem>
                <para
->F2 opens a <link linkend="tools-menu"
->Terminal Window</link
-> in the default directory.</para>
+>F2  откроет <link linkend="tools-menu"
+>Окно терминала</link
+> в текущем каталоге.</para>
           </listitem>
           <listitem>
                <para
->Easy editing of <link linkend="file-menu"
->file permissions</link
-> and ownership and <link linkend="konfig-looknfeel-operation"
->Numeric permissions</link
+>Легкая правка <link linkend="file-menu"
+>прав файлов</link
+> и владельца файла, и <link linkend="konfig-looknfeel-operation"
+>прав(цифровой вид)</link
 >.</para>
           </listitem>
           <listitem>
                <para
 ><link linkend="krusearcher"
->Selection filters</link
-> used in &eg; Synchronizer and KruSearcher. </para>
+>Выбор фильтров</link
+> используемых в синхронизаторе и поиске. </para>
           </listitem>
           <listitem>
                <para
 ><link linkend="jump_back"
->Jump-Back</link
+>Возврат</link
 ></para>
           </listitem>
           <listitem>
                <para
->Fully <link linkend="konfig-general"
->mimetype-aware</link
-> (with or without "magic"!).</para>
+>Полная поддержка <link linkend="konfig-general"
+>mimetype</link
+> (с или без "magic"!).</para>
           </listitem>
           <listitem>
                <para
 ><link linkend="folder_tabs"
->Tabbed panels</link
-> and <link linkend="krviewer"
->Tabbed Editor/Viewer</link
+>вкладки на панелях</link
+> и <link linkend="krviewer"
+>Вкладки в Редакторе/Просмотрщике</link
 >.</para>
           </listitem>
           <listitem>
@@ -235,24 +235,24 @@
           <listitem>
                <para
 ><link linkend="splitter"
->File splitter</link
+>Разделитель файла</link
 >.</para>
           </listitem>
           <listitem>
                <para
 ><link linkend="mouse_gestures"
->Mouse Gestures</link
+>Жесты мыши</link
 >.</para>
           </listitem>
           <listitem>
                <para
 ><link linkend="list_panel"
->Quick Navigation</link
-> in the Location Toolbar.</para>
+>Быстрая навигация</link
+> в панели адреса.</para>
           </listitem>
           <listitem>
                <para
->&whatsthis_url; Helpfunction in favour of Tooltips where reasonable.</para>
+>&whatsthis_url; функция помощи подсказками.</para>
           </listitem>
           <listitem>
                <para
@@ -267,29 +267,29 @@
      <para>
          <itemizedlist>
          <title
->Customize &krusader; to your own needs</title>
+>Настройте &krusader;  под себя</title>
           <listitem>
                <para
 ><link linkend="konfig-startup"
->Konfigurator</link
-> &krusader;'s configuration center.</para>
+>Конфигуратор</link
+> - это центр настройки &krusader;.</para>
           </listitem>
           <listitem>
                <para
 >&main_toolbar_lnk;, <link linkend="actions_toolbar"
->Actions Toolbar</link
-> for user actions and bookmarks.</para>
+>Меню UserActions</link
+> для пользовательских действий и закладок.</para>
           </listitem>
           <listitem>
                <para
 ><link linkend="key_bindings"
->key-bindings</link
+>Комбинации клавиш</link
 >.</para>
           </listitem>
           <listitem>
                <para
 ><link linkend="konfig-color"
->Colors</link
+>Цвета</link
 >.</para>
           </listitem>
           <listitem>
@@ -306,8 +306,8 @@
           </listitem>
           <listitem>
                <para
->Many more features can be <link linkend="konfig-startup"
->configured the way you like</link
+>Многие возможности настраиваются в <link linkend="konfig-startup"
+>вкладке запуск</link
 >.</para>
           </listitem>
         </itemizedlist>
@@ -319,7 +319,7 @@
      <para>
          <itemizedlist>
          <title
->&krusader; extra's</title>
+>Дополнения &krusader;</title>
           <listitem>
                <para
 >&useractions_lnk;</para>
@@ -337,7 +337,7 @@
 >&keybindigs_profiles_lnk;</para>
           </listitem>
        </itemizedlist>
-Upload/Download your favorite &krusader; configurations/extensions/plugins at &kde_files_url;! </para>
+Отправьте/загрузите свои любимые настройки/расширения/модули на &kde_files_url;! </para>
   </listitem>
 </itemizedlist>
 </para>
@@ -345,34 +345,34 @@ Upload/Download your favorite &krusader; configurations/extensions/plugins at &k
 <para>
 <itemizedlist>
   <title
->New features in version CVS (the future 1.80.0 release)</title>
+>Новые возможности в CVS  версии(будущий релиз 1.80.0)</title>
   <listitem>
         <para
->Archive improvements <itemizedlist>
+>Усовершенствование работы с архивами <itemizedlist>
           <listitem>
              <para
 ><link linkend="archives"
->Password support</link
-> for: arj, ace, rar and zip. Passwords can be stored in &kwallet;</para>
+>Поддержка паролей</link
+> для: arj, ace, rar и zip. Пароли будут сохраняться в &kwallet;</para>
           </listitem>
 
           <listitem>
            <para
 ><link linkend="archives"
->7-zip support</link
->, by external applications 7z and 7za.</para>
+>поддержка 7-zip</link
+>, через внешние приложения 7z и 7za.</para>
           </listitem>
 
           <listitem>
            <para
 ><link linkend="archives"
->Autodetection support</link
->, allowing you to open "hidden archives" (&eg; &openoffice; documents, wich is actually a zip archive with an other filename extension)</para>
+>Автоопределение</link
+>, позволит вам открывать "скрытые архивы" (например, документы &openoffice; которые фактически являются архивами zip с другим расширением в имени файла)</para>
           </listitem>
 
           <listitem>
             <para
->Packing/unpacking are now in the background.</para>
+>Упаковка/распаковка  в фоне.</para>
           </listitem>
         </itemizedlist>
         </para>
@@ -380,67 +380,67 @@ Upload/Download your favorite &krusader; configurations/extensions/plugins at &k
 
   <listitem>
         <para
->&useractions_lnk; improvements.</para>
+>Улучшения в &useractions_lnk;.</para>
   </listitem>
 
   <listitem>
         <para
 ><link linkend="konfig-advanced"
->Media button</link
+>Кнопка Media</link
 >.</para>
   </listitem>
 
   <listitem>
         <para
->Copy/Move: <link linkend="copying"
->preserve all attributes</link
-> (time, owner, group).</para>
+>Копирование/перемещение: <link linkend="copying"
+>сохранение всех атрибутов</link
+> (время, владелец, группа).</para>
   </listitem>
 
   <listitem>
         <para
 ><link linkend="konfig-color"
->Dim the colors of the inactive panel</link
+>Тусклые цвета для неактивной панели</link
 >.</para>
   </listitem>
 
   <listitem>
         <para
->Renaming a the filename without the extension, single instance mode, start to system tray, check them out in <link linkend="konfigurator"
->Konfigurator</link
+>Переименовывание файла без смены расширения, одиночный режим, сворачивание в системный лоток, проверка выхода в <link linkend="konfigurator"
+>конфигураторе</link
 > </para>
   </listitem>
 
    <listitem>
         <para
->Atomic extensions (NOT DOCUMENTED YET).</para>
+>Элементарные расширения (ЕЩЁ НЕ ДОКУМЕНТИРОВАНО).</para>
   </listitem>
 
   <listitem>
         <para
->Context menu for bookmarks and enable/disable special bookmarks by right clicking on them.</para>
+>Контекстное меню для закладок и разрешение/запрещение специальных закладок в контекстном меню.</para>
   </listitem>
 
   <listitem>
         <para
->Restyled <link linkend="menu-commands"
->MenuBar</link
+>Изменение <link linkend="menu-commands"
+>Меню</link
 >.</para>
   </listitem>
 
   <listitem>
         <para
->&termemu_lnk; improvements (NOT DOCUMENTED YET).</para>
+>Улучшения в &termemu_lnk; (ЕЩЁ НЕ ДОКУМЕНТИРОВАНО).</para>
   </listitem>
 
   <listitem>
         <para
->&synchronizer_lnk; improvements (NOT DOCUMENTED YET).</para>
+>Улучшения в &synchronizer_lnk; (ЕЩЁ НЕ ДОКУМЕНТИРОВАНО).</para>
   </listitem>
 
   <listitem>
         <para
->Quick navigation improvements (NOT DOCUMENTED YET)</para>
+>Улучшения в быстрой навигации (ЕЩЁ НЕ ДОКУМЕНТИРОВАНО)</para>
   </listitem>
 
   <listitem>
@@ -451,22 +451,22 @@ Upload/Download your favorite &krusader; configurations/extensions/plugins at &k
 
  <listitem>
         <para
->Many bugfixes.</para>
+>Много исправлений.</para>
   </listitem>
 
   <listitem>
         <para
->TODO ... NOT YET DESCRIBED IN THE HANDBOOK ... </para>
+>TODO ...ЕЩЁ НЕ ВКЛЮЧЕНО В РУКОВОДСТВО ... </para>
   </listitem>
 
     <listitem>
         <para
->NOTE: NOT ALL NEW FEATURES ARE DESCRIBED YET IN THE HANDBOOK</para>
+>ПРИМЕЧАНИЕ: НЕ ВСЕ ВОЗМОЖНОСТИ ОПИСАНЫ В РУКОВОДСТВЕ</para>
   </listitem>
  
   <listitem>
         <para
->THIS LIST IS INCOMPLTE ... If someone likes to &contribute_url; to this handbook, please contact Frank. For more features, please read the &changelog_url; and &cvsnews_url;.</para>
+>ЭТОТ СПИСОК НЕ ПОЛОН ...Если кто-то хочет помочь, посетите &contribute_url;, свяжитесь с Франком.Чтобы узнать больше прочитайте &changelog_url; и &cvsnews_url;.</para>
   </listitem>
   </itemizedlist>
 </para
