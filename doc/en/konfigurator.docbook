@@ -875,43 +875,72 @@ making the cooperation almost impossible.
 <para>Here you can configure the full path of the following external
       <link linkend="checksum">Checksum Utilities</link>:
 <informaltable>
-<tgroup cols="2">
+<tgroup cols="3">
 <tbody>
 <row>
 <entry>Checksum Utilities</entry>
 <entry>configurable full path</entry>
+<entry>supported checksums</entry>
 </row>
 <row>
 <entry><para><command>md5sum</command></para></entry>
 <entry><para><filename class="directory"><replaceable>/usr/bin/md5sum</replaceable></filename></para></entry>
+<entry><para>md5</para></entry>
 </row>
 <row>
 <entry><para><command>sha1sum</command></para></entry>
 <entry><para><filename class="directory"><replaceable>/usr/bin/sha1sum</replaceable></filename></para></entry>
+<entry><para>sha1</para></entry>
 </row>
 <row>
 <entry><para><command>md5deep</command></para></entry>
 <entry><para><filename class="directory"><replaceable>/usr/bin/md5deep</replaceable></filename></para></entry>
+<entry><para>md5</para></entry>
 </row>
 <row>
 <entry><para><command>sha1deep</command></para></entry>
 <entry><para><filename class="directory"><replaceable>/usr/bin/sha1deep</replaceable></filename></para></entry>
+<entry><para>sha1</para></entry>
+</row>
+<row>
+<entry><para><command>sha224sum</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/sha224sum</replaceable></filename></para></entry>
+<entry><para>sha224</para></entry>
+</row>
+<row>
+<entry><para><command>sha256sum</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/sha256sum</replaceable></filename></para></entry>
+<entry><para>sha256</para></entry>
 </row>
 <row>
 <entry><para><command>sha256deep</command></para></entry>
 <entry><para><filename class="directory"><replaceable>/usr/bin/sha256deep</replaceable></filename></para></entry>
+<entry><para>sha256</para></entry>
+</row>
+<row>
+<entry><para><command>sha384sum</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/sha384sum</replaceable></filename></para></entry>
+<entry><para>sha384</para></entry>
+</row>
+<row>
+<entry><para><command>sha512sum</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/sha512sum</replaceable></filename></para></entry>
+<entry><para>sha512</para></entry>
 </row>
 <row>
 <entry><para><command>tigerdeep</command></para></entry>
 <entry><para><filename class="directory"><replaceable>/usr/bin/tigerdeep</replaceable></filename></para></entry>
+<entry><para>tiger</para></entry>
 </row>
 <row>
 <entry><para><command>whirlpooldeep</command></para></entry>
 <entry><para><filename class="directory"><replaceable>/usr/bin/whirlpooldeep</replaceable></filename></para></entry>
+<entry><para>whirlpool</para></entry>
 </row>
 <row>
 <entry><para><command>cfv</command></para></entry>
 <entry><para><filename class="directory"><replaceable>/usr/bin/cfv</replaceable></filename></para></entry>
+<entry><para>md5, sha1, sfv, crc</para></entry>
 </row>
 </tbody>
 </tgroup>

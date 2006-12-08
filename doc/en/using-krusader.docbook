@@ -609,9 +609,10 @@ the &keybindigs_lnk; tab at the &konfiglookandfeel_lnk;.</para>
 
 <para>
   The nice thing is that the system abstracts over different checksum mechanisms 
-  and different binaries. Right now, it supports md5, sha1, sha256, tiger, whirlpool and cfv.
-  You probably have md5sum and sha1sum already, external supported tools are md5deep 
-  (sha256, tiger, whirlpool) and cfv.
+  and Checksum Utilities. Right now, the next checksums are supported:
+  md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv and crc.
+  Please check your <link linkend="konfig-dependencies">Checksum Utilities settings</link> 
+  before using this function.
 </para>
 
 </sect2>
