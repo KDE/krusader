@@ -127,6 +127,8 @@ int main(int argc, char *argv[]) {
   aboutData.addAuthor("Frank Schoolmeesters", "Documentation and marketing coordinator", "frank_schoolmeesters@yahoo.com", 0);
   aboutData.addAuthor("Richard Holt", "Documentation & Proofing", "richard.holt@gmail.com", 0);
   aboutData.addAuthor("Matej Urbancic", " Marketing & Product Research", "matej.urban@gmail.com", 0);
+  aboutData.addCredit("Václav Juza", "QA, bug-hunting, patches and general help", "vaclavjuza@gmail.com", 0);
+  aboutData.addCredit("Jiri Palecek", "QA, bug-hunting, patches and general help", "jpalecek@web.de", 0);
   aboutData.addCredit("Andrew Neupokoev", "Killer Logo and Icons for Krusader (contest winner)", "doom-blue@yandex.ru", 0);
   aboutData.addCredit("The UsefulArts Organization", "Icon for krusader", "mail@usefularts.rg", 0);
   aboutData.addCredit("Gábor Lehel", "Viewer module for 3rd Hand", "illissius@gmail.com", 0);
