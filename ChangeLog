@@ -58,6 +58,7 @@
   CHANGED: UserActions are now managed with ActionMan. In Konfigurator
            you can change settings _about_ useractions.
 
+    FIXED: .tar.bz2 was not treated as atomic extension, while .tar.gz.test was.
     FIXED: disk usage: other filelight bugfixes
     FIXED: disk usage: filelight crash because of missing null pointer checks
     FIXED: media button always writes out the mounted location

@@ -10,7 +10,7 @@
 
 QString atomicExtensions[] = { 
 	".tar.gz", 
-	".tar.bz2" 
+	".tar.bz2", 
 	".moc.cpp"
 };
 
@@ -23,9 +23,8 @@ KrViewItem::KrViewItem(vfile *vf, const KrViewProperties* properties):
 		if (loc>0) { // avoid mishandling of .bashrc and friend
 			// check if it has one of the predefined 'atomic extensions'
 			for (int i=0; i<(sizeof(atomicExtensions)/sizeof(QString)); ++i) {
-				int aloc = vfName.findRev(atomicExtensions[i]);
-				if (aloc>0) {
-					loc = aloc;
+				if (vfName.endsWith(atomicExtensions[i])){
+					loc = vfName.length() - atomicExtensions[i].length();
 					break;
 				}
 			}
