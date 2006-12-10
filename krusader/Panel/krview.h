@@ -65,6 +65,7 @@ public:
 	KRQuery filterMask;	// what items to show (*.cpp, *.h etc)
 	bool localeAwareCompareIsCaseSensitive; // mostly, it is not! depends on LC_COLLATE
 	bool humanReadableSize;		// display size as KB, MB or just as a long number
+	QStringList atomicExtensions;	// list of strings, which will be treated as one extension. Must start with a dot.
 };
 
 // operator can handle two ways of doing things:

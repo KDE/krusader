@@ -22,9 +22,9 @@ KrViewItem::KrViewItem(vfile *vf, const KrViewProperties* properties):
 		int loc = vfName.findRev('.');
 		if (loc>0) { // avoid mishandling of .bashrc and friend
 			// check if it has one of the predefined 'atomic extensions'
-			for (int i=0; i<(sizeof(atomicExtensions)/sizeof(QString)); ++i) {
-				if (vfName.endsWith(atomicExtensions[i])){
-					loc = vfName.length() - atomicExtensions[i].length();
+			for (QStringList::const_iterator i = PROPS->atomicExtensions.begin(); i != PROPS->atomicExtensions.end(); ++i) {
+				if (vfName.endsWith(*i)){
+					loc = vfName.length() - (*i).length();
 					break;
 				}
 			}

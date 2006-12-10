@@ -7,8 +7,11 @@
 - extension to the ChangeLog.
 ------------------------------------------------------------------------
 
-New feature: atomic extension. extensions known to be atomic (tar.gz, tar.bz2)
-are now handled properly both in the panel and during rename
+New feature: atomic extension. 
+  - Extensions known to be atomic (like tar.gz)
+    are now handled properly both in the panel and during rename. The list of 
+    atomic extensions can be provided through "Atomic Extensions" in [Look&Feel]
+    in krusaderrc.
 
 New feature: rename just the filename, without extension
   - in the look&feel page, disable "rename selects extension", and then,
