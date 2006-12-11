@@ -1,0 +1,78 @@
+<sect1 id="diskusage">
+<title>Disk Usage</title>
+<indexterm><primary>Disk Usage</primary></indexterm>
+
+<para>The Disk Usage is based on the code of &filelight;.
+      The Disk Usage shows you exactly how your disk space is being used by a graphical
+      representation of your filesystem. The following presentations are possible:
+ <itemizedlist>
+  <listitem><para>Line view</para></listitem>
+  <listitem><para>Detailed view</para></listitem>
+  <listitem><para>&filelight; view: as a set of concentric segmented-rings.</para></listitem>
+ </itemizedlist>
+
+ Choose <emphasis role="bold"><menuchoice><guimenu>Tools</guimenu>
+      <guimenuitem>Disk Usage</guimenuitem></menuchoice></emphasis>
+      or
+      <keycombo action="simul">&Alt;<keycap>d</keycap></keycombo> to start this feature in a
+       separate window, or open it insided  the &popup_panel_lnk;.
+</para>
+
+<para>Disk Usage Keybindings, right click menu.
+ <itemizedlist>
+  <listitem><para><keycap>Del</keycap>: 
+            Delete</para></listitem>
+  <listitem><para><keycombo action="simul">&Ctrl;<keycap>e</keycap></keycombo>: 
+            Exclude</para></listitem>
+  <listitem><para><keycombo action="simul">&Shift;<keycap>Arrow Up</keycap></keycombo>: 
+            parent dir</para></listitem>
+  <listitem><para><keycombo action="simul">&Ctrl;<keycap>n</keycap></keycombo>: 
+            new search</para></listitem>
+  <listitem><para><keycombo action="simul">&Ctrl;<keycap>r</keycap></keycombo>: 
+            refresh</para></listitem>
+  <listitem><para><keycombo action="simul">&Ctrl;<keycap>i</keycap></keycombo>: 
+            include all</para></listitem>
+  <listitem><para><keycombo action="simul">&Shift;<keycap>Arrow Down</keycap></keycombo>: 
+            step into</para></listitem>
+  
+  <listitem><para>View menu:
+  <itemizedlist>
+  <listitem><para><keycombo action="simul">&Ctrl;<keycap>l</keycap></keycombo>: 
+            line view</para></listitem>
+  <listitem><para><keycombo action="simul">&Ctrl;<keycap>d</keycap></keycombo>: 
+            detailed view</para></listitem>
+  <listitem><para><keycombo action="simul">&Ctrl;<keycap>f</keycap></keycombo>: 
+            filelight view</para></listitem>
+  <listitem><para><keycombo action="simul">&Shift;<keycap>Arrow Right</keycap></keycombo>: 
+            next view</para></listitem>
+  <listitem><para><keycombo action="simul">&Shift;<keycap>Arrow Left</keycap></keycombo>: 
+            previous view</para></listitem>
+  </itemizedlist>
+  </para></listitem>
+
+ </itemizedlist>
+</para>
+
+<!-- OLD
+<screenshot>
+  <screeninfo>Disk Usage</screeninfo>
+  <mediaobject>
+  <imageobject><imagedata fileref="diskusage.png" format="PNG"/></imageobject>
+  <imageobject><imagedata fileref="diskusage.png" format="EPS"/></imageobject>
+  <textobject><phrase>Konfigurator Look &amp; Feel page</phrase></textobject>
+  <caption><para>Disk Usage</para></caption>
+  </mediaobject>
+</screenshot>
+-->
+
+<!--HTML_PARSING
+<figure id="screenshot-diskusage" float="1">
+<title>Disk Usage</title>
+<mediaobject>
+<imageobject><imagedata fileref="diskusage.png"/></imageobject>
+<textobject><phrase>Disk Usage</phrase></textobject>
+</mediaobject>
+</figure>
+HTML_PARSING-->
+
+</sect1>

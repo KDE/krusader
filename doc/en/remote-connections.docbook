@@ -1,0 +1,100 @@
+<sect1 id = "remote-connections">
+<title>Remote Connections</title>
+<indexterm><primary>Remote Connections</primary></indexterm>
+
+<para>Remote connections are easy made by typing the &URL; in the 
+     <link linkend="list_panel">Location Toolbar</link> , these are actually &kioslaves1_url; .
+     Please note that the &krusader; panel does not support all &kioslaves2_url; &eg;
+     <command>http://</command> will not work in the panel, but will work in the 
+     <link linkend="krviewer">viewer</link> .
+     Some examples:</para>
+ 
+ <itemizedlist>
+     <listitem><para><userinput><command>ftp://</command><replaceable>public.ftpserver.org/directory/</replaceable></userinput></para>
+     </listitem>
+     
+     <listitem><para><userinput><command>fish://</command><replaceable>username@hostname/</replaceable></userinput></para>
+     </listitem>
+                                   
+     <listitem><para><userinput><command>sftp://</command><replaceable>username:password@sftp.foo.org/</replaceable></userinput></para>          
+     </listitem>
+     
+     <listitem><para><userinput><command>ftp://</command><replaceable>username@my.server.org:21/directory/</replaceable></userinput></para>
+     </listitem> 
+         
+     <listitem><para><userinput><command>smb://</command><replaceable>username:password@server/share</replaceable></userinput></para>
+     </listitem>
+
+     <listitem><para><userinput><command>ftp://</command><replaceable>username@proxyusername:password@proxipassword@hostname/directory</replaceable></userinput></para>
+     </listitem>     
+ </itemizedlist>          
+
+ 
+<para>You can Bookmark these &URL;'s, please read the <link linkend="bookman">Bookman</link> section 
+      regarding <emphasis>securely save passwords</emphasis>.
+      For connecting to multiple locations, bookmark these &URL;'s and open them one by one,
+      or open them all together by using &panel_profiles_lnk; .
+      To switch from one to another location, just open a &foldertabs_lnk; for each.
+      </para>
+
+<para>There are three ways to start a Remote Connection:
+<itemizedlist>
+      <listitem><para>Type the &URL; in the <link linkend="list_panel">Location Toolbar</link></para>
+      </listitem>
+               
+      <listitem><para>Selecting <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
+                <guimenuitem>New Net Connection</guimenuitem></menuchoice></emphasis> which will pop-up a
+                dialog that will ask for the remote site details.
+                This dialog is handy if you are not used to type remote &URL;'s in the Location Toolbar.
+                Leaving the password and user name fields empty will try to log you in as annonymous.
+                NOTE: we are planning to rewrite this dialog window.</para>
+      </listitem>
+                
+      <listitem><para>You can bookmark a directory on a remote host and return to this directory from the 
+                      bookmark button on the top corner of your panel just like in a web browser.</para>
+      </listitem>
+</itemizedlist>
+</para>
+
+<para>After you logon to a remote server you can browse it just like your local hard drive
+      with the following exceptions:
+      <itemizedlist>
+      <listitem><para>You cannot execute files on remote servers.</para>
+                </listitem>
+      <listitem><para>Permissions cannot always be calculated on remote servers (depends on server and access method) 
+                so you might get a "?" on the permissions columns for some files. </para>
+                </listitem>
+  <listitem><para>Disk usage information is not availble for most remote filesystems.</para>
+            </listitem>
+    </itemizedlist>
+</para>
+
+<para>To change the charset of the remote host use
+      <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
+      <guimenuitem>Select Remote Charset</guimenuitem></menuchoice></emphasis>.</para>
+
+<para>You can <emphasis role="bold">close the current Active Remote Connection</emphasis> by several methods:
+      <itemizedlist>
+        <!--
+        <listitem>
+           <para>Manually: <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
+                 <guimenuitem>Disconnect From Net</guimenuitem></menuchoice></emphasis></para>
+        </listitem>
+        -->
+        <listitem>
+           <para>Manually: Add the disconnect button to the &main_toolbar_lnk; and click on it.</para>
+        </listitem>
+        
+        <listitem><para>Automatically: change the &URL; in the &location_toolbar_lnk; .</para>
+        </listitem>
+      </itemizedlist>      
+</para>
+
+<note>
+  <para>&krusader; is a filemanager that supports remote connections via &kioslaves1_url;,
+        but if you are looking for even more advanced remote connections features,
+        &eg; an advanced &FTP;-client we recommend you to use &eg; &kasablanca_url; 
+        or &kftpgrabber_url;.</para>
+  </note>
+
+</sect1>

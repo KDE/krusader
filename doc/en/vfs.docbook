@@ -1,0 +1,35 @@
+<sect2 id="vfs">
+<title>Virtual file systems (VFS)</title>
+<indexterm><primary>VFS</primary></indexterm>
+
+<para>
+ A basic <link linkend="features">OFM feature</link> is  VFS, 
+ this an abstracted layer over all kinds of archived information 
+ (ZIP files, FTP servers, TAR archives, NFS filesystems, SAMBA shares, ISO cd/dvd images, RPM catalogs, etc.),
+ which allows the user to access all the information in these divergent types of filesystems transparently - 
+ just like entering an ordinary sub-directory!
+ &krusader; supports several VFS:
+<itemizedlist>
+    <listitem><para><link linkend="remote-connections">Remote connections VFS</link>: 
+              provides the capability of working with a remote connection session (FTP, NFS, Samba, FISH, SFTP)
+              like with local filesystems.
+              It's perfect for complex remote operations and almost as powerful as most standalone GUI remote clients.</para>
+    </listitem>
+    <listitem><para><link linkend="archives">Archive VFS</link>:
+     allows to browse archives in VFS as it was a directory (ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip).</para>
+    </listitem>
+    <listitem><para><link linkend="archives">Search VFS</link>: <guibutton>Feed to listbox</guibutton> will place the
+     search results in VFS.
+    </para>
+    </listitem>
+    <listitem><para><link linkend="synchronizer">Synchronizer VFS</link>: places the
+     synchronizer results in VFS.
+     </para>
+     </listitem>
+</itemizedlist>
+     Actions you perform on the files in VFS are performed on the 'real' files.
+     You don't just delete files from the VFS - you delete them from your hard drive.
+     Limitations: you can't create directories inside in a VFS.
+</para>
+
+</sect2>

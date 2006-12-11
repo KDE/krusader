@@ -1,0 +1,58 @@
+<sect2 id="compare">
+<title>Compare</title>
+<para>&krusader; contains several compare functions: <guimenuitem>Compare by content</guimenuitem>,
+      <guimenuitem>Compare Directories</guimenuitem> and the
+      <link linkend="synchronizer">Synchronizer</link> compare function.
+</para>
+
+
+<sect3 id="compare-content">
+<title>Compare by Content</title>
+<indexterm><primary>Compare</primary><secondary>Content</secondary></indexterm> 
+<para>Select in each panel one file, and use
+      <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
+      <guimenuitem>Compare by content</guimenuitem></menuchoice></emphasis>.
+      &krusader; will open a external graphical difference tool that is 
+      <link linkend="konfig-dependencies">configured</link>, 
+      right now &kompare;, &kdiff3_url; and &xxdiff_url; are supported.
+      </para>
+</sect3>
+
+
+<sect3 id="compare-dir">
+<title>Compare Directories</title>
+<indexterm><primary>Compare</primary><secondary>Directories</secondary></indexterm> 
+<para>Compare the files of each panel by using
+      <emphasis role="bold"><menuchoice><guimenu>Mark</guimenu>
+      <guimenuitem>Compare Directories</guimenuitem></menuchoice></emphasis>.
+      By default newer and single files will be selected in each panel, this behaviour can
+      be changed in the <guimenuitem>Compare Setup</guimenuitem> menu.
+<note><para>The files are not compared by content but by their names and dates only.</para></note>
+</para>
+
+<variablelist>
+<varlistentry>
+  <term><menuchoice>
+  <guimenu>Mark</guimenu>
+  <guimenuitem>Compare Setup</guimenuitem>
+  </menuchoice></term>
+  <listitem><para>Configures the <guimenuitem>Compare Directories</guimenuitem> function.</para>
+   <itemizedlist>
+            <listitem><para><guimenuitem>Mark Newer and Single</guimenuitem> (default)
+                      </para></listitem>
+            <listitem><para><guimenuitem>Mark Single</guimenuitem>
+                </para></listitem>
+            <listitem><para><guimenuitem>Mark Newer</guimenuitem>
+                </para></listitem>
+            <listitem><para><guimenuitem>Mark Different and Single</guimenuitem>
+                </para></listitem>
+            <listitem><para><guimenuitem>Mark Different</guimenuitem>
+                </para></listitem>
+         </itemizedlist>
+  </listitem>
+  </varlistentry>
+</variablelist>
+
+</sect3>
+
+</sect2>

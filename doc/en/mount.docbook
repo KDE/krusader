@@ -1,0 +1,65 @@
+<sect1 id = "mount-man">
+<title>MountMan: work with your mounted filesystems</title>
+<indexterm><primary>Mount</primary></indexterm>
+
+<para>MountMan is a tool which helps you manage your mounted filesystems.
+      Once invoked, it displays a list of every mounted filesystem.
+      For each filesystem, MountMan displays it's name (which is the actual device name - &ie;
+      <filename class="directory">/dev/fd0</filename> for a <hardware>floppy</hardware>),
+      it's type (vfat, ext3, ReiserFS ...) and it's mount-point on your system
+      (the directory on which the filesystem is mounted).</para>
+
+<!-- OLD
+<screenshot>
+  <screeninfo>MountMan</screeninfo>
+  <mediaobject>
+  <imageobject><imagedata fileref="mountman.png" format="PNG"/></imageobject>
+  <imageobject><imagedata fileref="mountman.png" format="EPS"/></imageobject>
+  <textobject><phrase>MountMan</phrase></textobject>
+  <caption><para>MountMan</para></caption>
+  </mediaobject>
+</screenshot>
+-->
+
+<figure id="screenshot-mountman" float="1">
+<title>MountMan</title>
+<mediaobject>
+<imageobject><imagedata fileref="mountman.png"/></imageobject>
+<textobject><phrase>MountMan</phrase></textobject>
+</mediaobject>
+</figure>
+
+<para>MountMan also displays usage information using total size, free size, and percentage of available space free.
+      If those numbers say <guilabel>N/A</guilabel>, it usually means that the filesystem isn't mounted.
+      Left clicking on a filesystem displays a pie chart on the left of the window, this
+      graphically displays the usage information for the filesystem.
+      Clicking on a non-mounted filesystem will display <guilabel>not mounted</guilabel>
+      instead of the graph.</para>
+  <itemizedlist>
+      <listitem><para><keycap>Double-clicking</keycap> on a filesystem will close MountMan and open
+                that filesystem inside &krusader;'s active panel.
+                </para></listitem>
+      <listitem><para><keycap>Right clicking</keycap> on a filesystem will open a small menu which
+                displays what actions can be performed on that filesystem.
+                For now you can only mount, unmount and eject (if clicking on a removable filesystem,
+                e.g., a <hardware>cdrom</hardware>).
+                </para></listitem>
+   </itemizedlist>
+
+<note><para>We plan to expand MountMan in the next evolution of &krusader;.
+            It will be able to format floppies, edit <filename class="directory">/etc/fstab</filename>,
+            create new filesystems and more....
+            BTW, we have started working on it, see "Quickmode for MountMan"</para></note>
+
+<para><emphasis role="bold">Quickmode for MountMan</emphasis></para>
+
+<para>To activate Quickmode for MountMan, click AND HOLD the MountMan button on the &main_toolbar_lnk;</para>
+
+<para>General idea: display a list of all possible mountpoints.
+      Each time the menu is displayed, it determines if a mountpoint is mounted or not
+			 and associates the correct action (mount or umount). This offers a quick interface to MountMan.
+      It is working, and currently uses KMountMan::mount and unmount.
+      It uses the new &kde; services for fstab-reading and this will enable us to remove A LOT of code
+      from the "old" MountMan.</para>
+
+</sect1>

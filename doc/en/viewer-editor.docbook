@@ -1,0 +1,856 @@
+<sect1 id = "krviewer">
+<title>KrViewer: &krusader;'s internal viewer-editor</title>
+<indexterm><primary>Viewer</primary>
+           <seealso>Editor</seealso>
+</indexterm>
+
+<para>Pressing &Enter; on a selected file <emphasis>opens the file with the associated
+      application</emphasis>.
+      The editor-viewer is tabbed, configure it on the &konfiggereral_lnk;
+</para>
+
+<sect2 id = "krview">
+<title>Viewer</title>
+
+<para>To view a file as fast as possible according to it's type, just put it under the cursor and press
+      <keycap>F3</keycap>. &krusader;'s internal viewer is actually a &konqueror; part, which can basically
+      view every file type viewable by &konqueror; (&eg; display pictures, play music, show the content of an
+      archive), this is called the 'Generic viewer'. You need to configure the mimetypes for this.</para>
+
+<para>The viewer works as follows:
+     <itemizedlist>
+       <listitem><para>It will try to view the file with the <emphasis>'Generic viewer'.</emphasis>
+                 </para></listitem>
+       <listitem><para>When the file type (mimetype) cannot be determined or when a file (&eg; a binary)
+                 doesn't have an associated action, it disables the 'generic viewer'.
+                 The file will be treated as a text file, this is the <emphasis>'Text viewer'</emphasis>.
+                 </para></listitem>
+       <listitem><para>The user can change in the
+                 <link linkend="kredit_krviewer_menu">KrViewer menu</link> between:
+                  'Generic viewer' (if available), 'Text viewer' and <emphasis>'Hex viewer'</emphasis>.
+                 </para></listitem>
+      </itemizedlist>
+      The default viewer mode can be configured on the &konfiggereral_lnk; .
+</para>
+
+<para><keycombo action="simul">&Shift;<keycap>F3</keycap></keycombo> views a &URL; on demand, &eg;:
+ <itemizedlist>
+      <listitem><para>
+                <userinput><command>man:/</command></userinput> views the manpages.
+                </para></listitem>
+      <listitem><para>
+                <userinput><command>man:/</command><replaceable>krusader</replaceable></userinput> views a manpage.
+                 </para></listitem>
+                 <listitem><para>
+      <userinput><command>info:/</command></userinput> views the infopages.
+                 </para></listitem>
+      <listitem><para>
+                <userinput><command>http://</command><replaceable>krusader.sourceforce.net/</replaceable></userinput>
+                views a webpage.
+                </para></listitem>
+      <listitem><para>
+                <userinput><command>ftp://</command><replaceable>ftp.kde.org/pub/kde/</replaceable></userinput>
+                 views a ftp-server.
+                </para></listitem>
+     <listitem><para>
+               <userinput><command>sftp://</command><replaceable>sftp.foo/</replaceable></userinput>
+                views a secure ftp-server.
+               </para></listitem>
+     <listitem><para>
+               <userinput><command>file:/</command><replaceable>home/frank</replaceable></userinput>
+                views the homedirectory of Frank.
+               </para></listitem>
+      <listitem><para>
+                <userinput><replaceable>/home/frank/archive.tar.gz</replaceable></userinput>
+                 views a <literal role="extension">tar.gz</literal> archive.
+                </para></listitem>
+ </itemizedlist>
+</para>
+
+<para>KrViewer can have the following menu's:
+        <link linkend="kredit_file_menu">File</link>,
+        <link linkend="kredit_edit_menu">Edit</link>,
+        <link linkend="kredit_view_menu">View</link>,
+        <link linkend="kredit_settings_menu">Settings</link> and
+        <link linkend="kredit_krviewer_menu">Krviewer</link>,
+        depending on which file type is viewed. They will be discussed in the
+        <link linkend="kredit">Editor section</link>.
+        The internal viewer can follow links on HTML pages.
+        With <keycombo action="simul">&Ctrl;<keycap>E</keycap></keycombo> the viewer will
+        start &krusader;'s internal editor (which is basically the same application).
+</para>
+
+<note><para>The embedded viewer is not written by us, it is supplied via &kde; (libs) and &kioslaves1_url;
+       We cannot and don't want to change it, usings these libraries reduces the amount of written code.
+       So we don't have to reinvent the wheel ;-)</para></note>
+</sect2>
+
+<sect2 id="kredit">
+<title>Editor</title>
+<indexterm><primary>Editor</primary></indexterm>
+
+<para>&krusader;'s internal editor has almost everything that you can expect of an editor.
+      Editing is similar to viewing but with the <keycap>F4</keycap> key.
+      The default editor is &krusader;'s internal editor. You can change the default
+      editor in the &konfiggereral_lnk;, if you prefer to use an external editor.</para>
+
+<tip><para>When you use &krusader;'s internal editor for the first time,
+               It is recommended to look at each section of the
+               <link linkend="kredit_settings_menu">Settings</link> menu, and configure it the way you want it.
+              </para></tip>
+
+</sect2>
+
+<sect2 id="kredit_menus">
+<title>Menu overview</title>
+<para>Most of the menus are pretty self-explanatory. ;-)</para>
+
+<!-- FILE menu -->
+<variablelist id="kredit_file_menu"><title><guimenu>File</guimenu> menu</title>
+   <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;<keycap>S</keycap></keycombo></shortcut>
+   <guimenu>File</guimenu>
+   <guimenuitem>Save</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Save file.</para>
+   </listitem>
+  </varlistentry>
+
+   <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>File</guimenu>
+   <guimenuitem>Save As</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Save file with another name.</para>
+   </listitem>
+  </varlistentry>
+
+   <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycap>F5</keycap></shortcut>
+   <guimenu>File</guimenu>
+   <guimenuitem>Reload</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Reload file.</para>
+   </listitem>
+  </varlistentry>
+
+   <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>File</guimenu>
+   <guimenuitem>Export</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Export the file to <literal role="extension">html</literal> format.</para>
+   </listitem>
+  </varlistentry>
+
+   <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;<keycap>P</keycap></keycombo></shortcut>
+   <guimenu>File</guimenu>
+   <guimenuitem>Print</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Print the file.</para>
+   </listitem>
+  </varlistentry>
+</variablelist>
+
+<!-- EDIT menu -->
+<variablelist id="kredit_edit_menu"><title><guimenu>Edit</guimenu> menu</title>
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;<keycap>Z</keycap></keycombo></shortcut>
+   <guimenu>Edit</guimenu>
+   <guimenuitem>Undo</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Undo last action.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>Z</keycap></keycombo></shortcut>
+   <guimenu>Edit</guimenu>
+   <guimenuitem>Redo</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Redo last action.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;<keycap>X</keycap></keycombo></shortcut>
+   <guimenu>Edit</guimenu>
+   <guimenuitem>Cut</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Cut selected text to clipboard.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;<keycap>C</keycap></keycombo></shortcut>
+   <guimenu>Edit</guimenu>
+   <guimenuitem>Copy</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Copy selected text to clipboard.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;<keycap>V</keycap></keycombo></shortcut>
+   <guimenu>Edit</guimenu>
+   <guimenuitem>Paste</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Paste clipboard content to the document.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;<keycap>A</keycap></keycombo></shortcut>
+   <guimenu>Edit</guimenu>
+   <guimenuitem>Select All</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Select whole document.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>A</keycap></keycombo></shortcut>
+   <guimenu>Edit</guimenu>
+   <guimenuitem>Deselect</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Deselect current selection.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>B</keycap></keycombo></shortcut>
+   <guimenu>Edit</guimenu>
+   <guimenuitem>Block Selection Mode</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Toggle Block Selection, this will activate/deactivate the block selection possibility.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+  <shortcut><keycap>Insert</keycap></shortcut>
+   <guimenu>Edit</guimenu>
+   <guimenuitem>Overwrite Mode</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Toggle Insert/Overwrite Mode.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;<keycap>F</keycap></keycombo></shortcut>
+   <guimenu>Edit</guimenu>
+   <guimenuitem>Find</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Find text.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul"><keycap>F3</keycap></keycombo></shortcut>
+   <guimenu>Edit</guimenu>
+   <guimenuitem>Find Next</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Find next text.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Shift;<keycap>F3</keycap></keycombo></shortcut>
+   <guimenu>Edit</guimenu>
+   <guimenuitem>Find Previous</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Find previous text.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;<keycap>R</keycap></keycombo></shortcut>
+   <guimenu>Edit</guimenu>
+   <guimenuitem>Replace</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Replace text.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;<keycap>G</keycap></keycombo></shortcut>
+   <guimenu>Edit</guimenu>
+   <guimenuitem>Go to line</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Go to given linenumber.</para>
+   </listitem>
+  </varlistentry>
+</variablelist>
+
+<!-- VIEW menu -->
+<variablelist id="kredit_view_menu"><title><guimenu>View</guimenu> menu</title>
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycap>F7</keycap></shortcut>
+   <guimenu>View</guimenu>
+   <guimenuitem>Switch to Command Line.</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Display Command Line.</para>  <!-- TODO -->
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>View</guimenu>
+   <guimenuitem>Schema.</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Set Schema &eg; &krusader; Normal, &krusader; Printing, 
+         &kate; Normal, &kwrite; Normal.</para>  <!-- TODO -->
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycap>F10</keycap></shortcut>
+   <guimenu>View</guimenu>
+   <guimenuitem>Dynamic Word Wrap</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Go to the next line at the maximum number of characters per line (default 80).</para>
+   </listitem>
+  </varlistentry>
+
+ <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>View</guimenu>
+   <guimenuitem>Dynamic Word Wrap Indicators</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Off, Follow Line Numbers, Always On.</para>
+   </listitem>
+  </varlistentry>
+
+ <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>View</guimenu>
+   <guimenuitem>Show Static Word Wrap marker</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para> <!-- TODO -->
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycap>F6</keycap></shortcut>
+   <guimenu>View</guimenu>
+   <guimenuitem>Show Icon Border</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Show Icon Border.</para>  <!-- TODO -->
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycap>F11</keycap></shortcut>
+   <guimenu>View</guimenu>
+   <guimenuitem>Show Line Numbers</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Shows the line numbers.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>View</guimenu>
+   <guimenuitem>Show Scrollbar Marks.</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycap>F9</keycap></shortcut>
+   <guimenu>View</guimenu>
+   <guimenuitem>Hide Folding Markers</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para>  <!-- TODO -->
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>View</guimenu>
+   <guimenuitem>Code Folding.</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para>  <!-- TODO -->
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>View</guimenu>
+   <guimenuitem>Set Encoding</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>&eg; ISO8859-1, utf8, utf16, tscii, ... .</para>
+   </listitem>
+  </varlistentry>
+</variablelist>
+
+<!-- BOOKMARKS menu -->
+<variablelist id="kredit_bookmarks_menu"><title><guimenu>Bookmarks</guimenu> menu</title>
+  <varlistentry>
+   <term>                               <!-- TODO -->
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;<keycap>B</keycap></keycombo></shortcut>
+   <guimenu>Bookmark</guimenu>
+   <guimenuitem>Set Bookmark</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>Bookmark</guimenu>
+   <guimenuitem>Clear All Bookmarks</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para>
+   </listitem>
+  </varlistentry>
+
+<!-- These enties are gone on my system with kde3.3.2
+  
+<varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Alt;<keycap>PageDown</keycap></keycombo></shortcut>
+   <guimenu>Bookmark</guimenu>
+   <guimenuitem>Next Bookmark</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Go to the next Bookmark.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Alt;<keycap>PageUp</keycap></keycombo></shortcut>
+   <guimenu>Bookmark</guimenu>
+   <guimenuitem>Previous Bookmark</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Go to the previous Bookmark.</para>
+   </listitem>
+  </varlistentry>
+-->
+
+</variablelist>
+
+
+<!-- TOOLS menu -->
+<variablelist id="kredit_tools_menu"><title><guimenu>Tools</guimenu> menu</title>
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>Tools</guimenu>
+   <guimenuitem>Read Only Mode</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>Tools</guimenu>
+   <guimenuitem>Filetype  Mode</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>Tools</guimenu>
+   <guimenuitem>Highlight mode</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Highlight mode for scripts, programming languages, markup file, &etc;: &eg;
+         <literal role="extension">html, Bash, C++, XML, Makefile, Diff, ...</literal> .</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>Tools</guimenu>
+   <guimenuitem>End of Line</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Change the end of Line termination: &UNIX;, &Windows;/DOS,
+         <trademark class="registered">Macintosh</trademark>.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;<keycap>I</keycap></keycombo></shortcut>
+   <guimenu>Tools</guimenu>
+   <guimenuitem>Indent</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para> <!-- TODO-->
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>I</keycap></keycombo></shortcut>
+   <guimenu>Tools</guimenu>
+   <guimenuitem>Unindent</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para> <!-- TODO-->
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>Tools</guimenu>
+   <guimenuitem>Clean Indendation</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para> <!-- TODO-->
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;<keycap>D</keycap></keycombo></shortcut>
+   <guimenu>Tools</guimenu>
+   <guimenuitem>Comment</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Add appropriate comment tags, if available.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>D</keycap></keycombo></shortcut>
+   <guimenu>Tools</guimenu>
+   <guimenuitem>Uncomment</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Removes the comment tags on the left.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;<keycap>U</keycap></keycombo></shortcut>
+   <guimenu>Tools</guimenu>
+   <guimenuitem>Uppercase</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>U</keycap></keycombo></shortcut>
+   <guimenu>Tools</guimenu>
+   <guimenuitem>Lowercase</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Alt;&Ctrl;<keycap>U</keycap></keycombo></shortcut>
+   <guimenu>Tools</guimenu>
+   <guimenuitem>Capitalize</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;<keycap>J</keycap></keycombo></shortcut>
+   <guimenu>Tools</guimenu>
+   <guimenuitem>Join Lines</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>Tools</guimenu>
+   <guimenuitem>Word Wrap Document</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para> <!-- TODO-->
+   </listitem>
+  </varlistentry>
+</variablelist>
+
+
+<!-- SETTINGS -> CONFIGURE EDITOR menu -->
+<variablelist id="kredit_settings_menu"><title><guimenu>Settings -> Configure Editor</guimenu> menu</title>
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>Settings</guimenu>
+   <guimenuitem>Configure Editor</guimenuitem>
+   <guimenuitem>Colors</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Color configuration for the: Background, Selected text, Current line and Bracket highlighting.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>Settings</guimenu>
+   <guimenuitem>Configure Editor</guimenuitem>
+   <guimenuitem>Fonts</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Fonts configuration for display and printer: Font, font Style and Size, with a preview window.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>Settings</guimenu>
+   <guimenuitem>Configure Editor</guimenuitem>
+   <guimenuitem>Indentation</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Indentation configuration: Automatically indent, use Spaces to indent, &Tab; Keys indent,
+         &Backspace; key unindents, keep indent profile, keep extra spaces.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>Settings</guimenu>
+   <guimenuitem>Configure Editor</guimenuitem>
+   <guimenuitem>Selection</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Selection configuration: Persistent selections, Overwrite selected text.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>Settings</guimenu>
+   <guimenuitem>Configure Editor</guimenuitem>
+   <guimenuitem>Editing</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Editing configuration: Word Wrap config., Whitespace config, Auto brackets, Smart home,
+          Wrap cursor, Maximum undo steps.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>Settings</guimenu>
+   <guimenuitem>Configure Editor</guimenuitem>
+   <guimenuitem>Shortcuts</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Shortcuts configuration.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>Settings</guimenu>
+   <guimenuitem>Configure Editor</guimenuitem>
+   <guimenuitem>Highlighting</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Highlighting configuration: Default styles and Highlight mode.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>Settings</guimenu>
+   <guimenuitem>Configure Editor</guimenuitem>
+   <guimenuitem>View defaults</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>View defaults: Dynamic word wrap, show Line numbers, show Icon border, show Folder markers if
+          available, sort Bookmarks menu method.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>Settings</guimenu>
+   <guimenuitem>Configure Editor</guimenuitem>
+   <guimenuitem>Plugins</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Plugins configuration: &eg; kTexteditor incremental search plugin,
+          kTexteditor insert file plugin, kTexteditor kdatatoolplugin...</para>
+   </listitem>
+  </varlistentry>
+</variablelist>
+
+<!-- KRVIEWER menu -->
+<variablelist id="kredit_krviewer_menu"><title><guimenu>KrViewer</guimenu> menu</title>
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>G</keycap></keycombo></shortcut>
+   <guimenu>KrViewer</guimenu>
+   <guimenuitem>Generic viewer</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>&krusader;'s internal viewer is actually part of Konqueror, which can basically view every file type
+         viewable by &konqueror; (&eg; display pictures, play music, show the content of an archive).</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;<keycap>T</keycap></keycombo></shortcut>
+   <guimenu>KrViewer</guimenu>
+   <guimenuitem>Text viewer</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>View the file in text mode.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>H</keycap></keycombo></shortcut>
+   <guimenu>KrViewer</guimenu>
+   <guimenuitem>Hex viewer</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>View the file in hex mode.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>E</keycap></keycombo></shortcut>
+   <guimenu>KrViewer</guimenu>
+   <guimenuitem>Text editor</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Edit the file in text mode.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Alt;<keycap>Right</keycap></keycombo></shortcut>
+   <guimenu>KrViewer</guimenu>
+   <guimenuitem>Next Tab</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Next browsing Tab.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Alt;<keycap>Left</keycap></keycombo></shortcut>
+   <guimenu>KrViewer</guimenu>
+   <guimenuitem>Previous Tab</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Previous browsing Tab.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>D</keycap></keycombo></shortcut>
+   <guimenu>KrViewer</guimenu>
+   <guimenuitem>Detach Tab</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Detach browsing Tab and open in a new window.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut>&Esc;</shortcut>
+   <guimenu>KrViewer</guimenu>
+   <guimenuitem>Close current Tab.</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Close current browsing Tab.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut>&Ctrl;<keycap>Q</keycap></shortcut>
+   <guimenu>KrViewer</guimenu>
+   <guimenuitem>Close</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Closes &krusader;'s viewer/editor window.</para>
+   </listitem>
+  </varlistentry>
+</variablelist>
+
+</sect2>
+
+</sect1>
