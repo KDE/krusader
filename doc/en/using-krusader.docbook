@@ -111,12 +111,12 @@ the &keybindigs_lnk; tab at the &konfiglookandfeel_lnk;.</para>
 </sect2>
 
 
-<sect2 id="marking-files">
-<title>Marking (Selecting)</title>
+<sect2 id="selecting-files">
+<title>Selecting</title>
 
 <note><para>&krusader; offers 4 &mouse_selection_modes_lnk;, only &krusader;'s Mouse Selection Mode is explained here.</para></note>
 
-<para>Marking is a skill you need to master in order to get the most out of &krusader;. Since you can't
+<para>Selecting is a skill you need to master in order to get the most out of &krusader;. Since you can't
       select files in the Quick View Panel, and the Tree Panel only lets you select one directory at a time,
       this paragraph mainly explains how to select files in the List Panel filelist.</para>
 
@@ -126,22 +126,22 @@ the &keybindigs_lnk; tab at the &konfiglookandfeel_lnk;.</para>
       (assuming you're using &krusader;'s Mouse Selection Mode)
 
 <itemizedlist>
-    <listitem><para>The <keycap>SPACE</keycap> and <keycap>Insert</keycap> key will toggle the marking of 
-              the file under the cursor without affecting the marking of other files/directories, the cussor
+    <listitem><para>The <keycap>SPACE</keycap> and <keycap>Insert</keycap> key will toggle the selection of 
+              the file under the cursor without affecting the selection of other files/directories, the cussor
               will go one position down.</para>
     </listitem>
 
     <listitem><para>Pressing the <keycap>SPACE</keycap> on a Directory under the cursor will
                     <link linkend="calculate">calculate occupied space</link> without
-                    affecting the marking of other files/directories.</para>
+                    affecting the selection of other files/directories.</para>
     </listitem>
 
-    <listitem><para><keycap>Left Clicking</keycap> on a file will select, or unselect, all previously marked
+    <listitem><para><keycap>Left Clicking</keycap> on a file will select, or unselect, all previously selected
                       files.</para>
     </listitem>
 
     <listitem><para><keycombo action="simul">&Ctrl;<keycap>Left Clicking</keycap></keycombo> will toggle the 
-              marking of the file under the cursor without affecting the marking of other files/directories.</para>
+              selection of the file under the cursor without affecting the selection of other files/directories.</para>
     </listitem>
 
     <listitem><para><keycombo action="simul">&Shift;<keycap>Left Clicking</keycap></keycombo> will
@@ -149,14 +149,14 @@ the &keybindigs_lnk; tab at the &konfiglookandfeel_lnk;.</para>
     </listitem>
 
     <listitem><para><keycombo action="simul">&Shift;<keycap>Home</keycap></keycombo> selects everything above 
-              the cursor (and unselect everthing below the cusror if marked).</para>
+              the cursor (and unselect everthing below the cusror if selected).</para>
     </listitem>
 
     <listitem><para><keycombo action="simul">&Shift;<keycap>End</keycap></keycombo> selects everything below 
-              the cursor (and unselect everthing above the cusror if marked).</para>
+              the cursor (and unselect everthing above the cusror if selected).</para>
     </listitem>
 
-    <listitem><para>The ".." entry is not markable.</para>
+    <listitem><para>The ".." entry is not selectable.</para>
     </listitem>
 
     <listitem><para>The &editmenu_lnk; can offer more ways to select your files.</para>
@@ -273,7 +273,7 @@ the &keybindigs_lnk; tab at the &konfiglookandfeel_lnk;.</para>
 
 <sect2 id="deleting">
 <title>Deleting</title>
-<para>Deleting files/directories is done by marking them and pressing <keycap>F8</keycap> 
+<para>Deleting files/directories is done by selecting them and pressing <keycap>F8</keycap> 
        or <keycap>Delete</keycap>.
        By <link linkend="konfig-general">default</link> it will be moved to &kde;'s Trash,
        <keycombo action="simul">&Shift;<keycap>Delete</keycap></keycombo> will delete

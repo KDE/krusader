@@ -8,10 +8,10 @@
     <listitem>
          <para>Pressing the <keycap>SPACE</keycap> on a directory under the cursor
          instantly calculates the occupied size. Pressing <keycap>SPACE</keycap> a second time
-         will toggle the marking of the directory without affecting the selection status of other
+         will toggle the selection of the directory without affecting the selection status of other
          files/directories.</para></listitem>
     <listitem>
-         <para>To calculate how much disk space is occupied by the marked files and directories
+         <para>To calculate how much disk space is occupied by the selected files and directories
                in the active panel select
                <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
                <guimenuitem>Calculate Occupied Space</guimenuitem></menuchoice></emphasis>.
@@ -21,7 +21,7 @@
                <keycap>SPACE</keycap> on that directories.
                If the active panel is browsing an archive, the numbers will apply to the *unpacked*
                size of the selected files and directories, not their compressed size.
-               After the calculation the marking state will toggle and the cusor will move one position down.</para>
+               After the calculation the selection state will toggle and the cusor will move one position down.</para>
                </listitem>
    </itemizedlist>
    Calculating the occupied space on remote filesystems is supported.

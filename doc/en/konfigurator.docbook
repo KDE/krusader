@@ -173,16 +173,16 @@ HTML_PARSING-->
                   tray instead of the taskbar.
                   </para></listitem>
 
-  <listitem><para><guilabel>Automark Directories</guilabel>: 
+  <listitem><para><guilabel>Autoselect Directories</guilabel>: 
                   when <link linkend="edit-menu">selecting a group of files</link> (either by
                   using Select Group or by using Select All), &krusader; will check this option. 
-                  If checked, then directories matching the select criteria will also be marked; 
-                  otherwise, only files will be marked.
+                  If checked, then directories matching the select criteria will also be selected; 
+                  otherwise, only files will be selected.
                    </para></listitem>
 
   <listitem><para><guilabel>Rename selects extension</guilabel>: 
                   When renaming a file, the whole text is selected. If you want total-commander 
-                  like renaming of just the name, without extension, unmark this item.
+                  like renaming of just the name, without extension, unselect this item.
                    </para></listitem>
 
  <listitem><para><guilabel>Use fullpath tab names</guilabel>: 
@@ -448,11 +448,11 @@ HTML_PARSING-->
   <listitem><para><guilabel>Invalid symlink foreground</guilabel></para></listitem>
   <listitem><para><guilabel>Background</guilabel></para></listitem>
   <listitem><para><guilabel>Alternate background</guilabel></para></listitem>
-  <listitem><para><guilabel>Marked foreground</guilabel></para></listitem>
-  <listitem><para><guilabel>Marked background</guilabel></para></listitem>
-  <listitem><para><guilabel>Alternate marked background</guilabel></para></listitem>
+  <listitem><para><guilabel>Selected foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Selected background</guilabel></para></listitem>
+  <listitem><para><guilabel>Alternate selected background</guilabel></para></listitem>
   <listitem><para><guilabel>Current foreground</guilabel></para></listitem>
-  <listitem><para><guilabel>Marked current foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Selected current foreground</guilabel></para></listitem>
   <listitem><para><guilabel>Current background</guilabel></para></listitem>
   </itemizedlist>
   <para>The following items of the &synchronizer_lnk; can be configured:</para>
