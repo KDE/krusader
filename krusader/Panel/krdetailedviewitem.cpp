@@ -279,7 +279,7 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
 			return QString::compare(text0, itext0);
 		} else return QString::localeAwareCompare(text0,itext0);
   } else if (col == COLUMN(Size) ) {
-      return QString::compare(num2qstring(VF->vfile_getSize()),num2qstring(other->VF->vfile_getSize()));
+      return (VF->vfile_getSize() > other->VF->vfile_getSize() ? 1 : -1);
   } else if (col == COLUMN(DateTime) ) {
       return (VF->vfile_getTime_t() > other->VF->vfile_getTime_t() ? 1 : -1);
   } else if (col == COLUMN(Permissions) && PROPS->numericPermissions) {
