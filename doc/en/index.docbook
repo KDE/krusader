@@ -349,6 +349,7 @@ http://groups.google.com/group/krusader-devel/browse_thread/thread/d102adec2edcf
   <!ENTITY features SYSTEM "features.docbook">
   <!ENTITY user-interface SYSTEM "user-interface.docbook">
   <!ENTITY using-krusader SYSTEM "using-krusader.docbook">
+  <!ENTITY more SYSTEM "more.docbook">
   <!ENTITY commands SYSTEM "commands.docbook">
   <!ENTITY keyboard SYSTEM "keyboard.docbook">  
   <!ENTITY mouse SYSTEM "mouse.docbook">  
@@ -392,6 +393,34 @@ http://groups.google.com/group/krusader-devel/browse_thread/thread/d102adec2edcf
 <title>The Krusader Handbook</title>
 
 <authorgroup>
+
+<!--
+Changed the <author> tag in favor for <othercredit role="developer"> for Frank since
+the <author><contrib> tag is not shown for the documentation author on the index page
+This is a workaround, i have no idea why the <author> tag doesn't show the <contrib> tag (= the title)
+on the index page.
+Frank.
+-->
+
+  <othercredit role="developer">
+        <firstname>Frank</firstname>
+        <surname>Schoolmeesters</surname>
+        <contrib>Documentation &amp; Marketing coordinator</contrib>
+        <affiliation><address><email>frank_schoolmeesters@yahoo.com</email></address></affiliation>
+  </othercredit>
+
+  <othercredit role="reviewer">
+        <firstname>Richard</firstname><surname>Holt</surname>
+        <contrib>Documentation &amp; Proofing</contrib>
+        <affiliation><address><email>richard.holt@gmail.com</email></address></affiliation>
+  </othercredit>
+
+  <othercredit role="reviewer">
+        <firstname>Matej</firstname><surname>Urban&ccaron;i&ccaron;</surname>
+        <contrib>Marketing &amp; Product Research</contrib>
+        <affiliation><address><email>matej.urban@gmail.com</email></address></affiliation>
+  </othercredit>
+
   <othercredit role="developer">
         <firstname>Shie</firstname><surname>Erlich</surname>
         <contrib>Author and initial Handbook author</contrib>
@@ -428,34 +457,6 @@ http://groups.google.com/group/krusader-devel/browse_thread/thread/d102adec2edcf
         <affiliation><address><email>jonas.baehr@web.de</email></address></affiliation>
   </othercredit>
   
-
-<!--
-Changed the <author> tag in favor for <othercredit role="developer"> for Frank since
-the <author><contrib> tag is not shown for the documentation author on the index page
-This is a workaround, i have no idea why the <author> tag doesn't show the <contrib> tag (= the title)
-on the index page.
-Frank.
--->
-
-  <othercredit role="developer">
-        <firstname>Frank</firstname>
-        <surname>Schoolmeesters</surname>
-        <contrib>Documentation &amp; Marketing coordinator</contrib>
-        <affiliation><address><email>frank_schoolmeesters@yahoo.com</email></address></affiliation>
-  </othercredit>
-
-  <othercredit role="reviewer">
-        <firstname>Richard</firstname><surname>Holt</surname>
-        <contrib>Documentation &amp; Proofing</contrib>
-        <affiliation><address><email>richard.holt@gmail.com</email></address></affiliation>
-  </othercredit>
-
-  <othercredit role="reviewer">
-        <firstname>Matej</firstname><surname>Urban&ccaron;i&ccaron;</surname>
-        <contrib>Marketing &amp; Product Research</contrib>
-        <affiliation><address><email>matej.urban@gmail.com</email></address></affiliation>
-  </othercredit>
-
 </authorgroup>      
 
   <copyright>
@@ -480,7 +481,7 @@ Frank.
                with no Invariant Sections, with no Front-Cover Texts, and with no Back-Cover Texts. 
                A copy of the license is included in the &krusader; sources.</para></legalnotice>
 
-  <date>2006-12-11</date>
+  <date>2006-12-15</date>
   <releaseinfo>1.80.0 "cvs repository"</releaseinfo>
 
    <abstract>
@@ -513,6 +514,7 @@ Frank.
   &features;
   &user-interface;
   &using-krusader;
+  &more;
   &commands;
   &keyboard;
   &mouse;

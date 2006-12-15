@@ -1,4 +1,4 @@
-<sect2 id="vfs">
+<sect1 id="vfs">
 <title>Virtual file systems (VFS)</title>
 <indexterm><primary>VFS</primary></indexterm>
 
@@ -32,4 +32,33 @@
      Limitations: you can't create directories inside in a VFS.
 </para>
 
-</sect2>
+<para>It's possible to keep the directory structure when doing a from copy from a virtial folder
+to a non virtual folder, by selecting the "Keep virtual directory structure" checkbox of the copy dialog. 
+Imagine the next virtual folder:
+<screen><prompt>$</prompt> <userinput>file:/home/myhome/mydir1/myfile1</userinput></screen> 
+<screen><prompt>$</prompt> <userinput>file:/home/myhome/mydir1/myfile2</userinput></screen> 
+<screen><prompt>$</prompt> <userinput>file:/home/myhome/mydir2/myfile3 </userinput></screen> 
+
+Than do the next steps:
+<itemizedlist>
+   <listitem><para>go to the virtual folder and select the files</para>
+             </listitem>
+   <listitem><para>select a destination folder (non virtual!)</para>
+             </listitem> 
+   <listitem><para>press <keycap>F5</keycap> -> copy dialog appears</para>
+             </listitem> 
+   <listitem><para>Check <guilabel>Keep virtual directory structure</guilabel></para>
+             </listitem> 
+   <listitem><para>Select <filename>/home/myhome/</filename> for base &URL;</para>
+             </listitem> 
+   <listitem><para>Start copy by pressing OK</para>
+             </listitem> 
+</itemizedlist>
+
+The result will be::
+<screen><prompt>$</prompt> <userinput>destinationdir/mydir1/myfile1</userinput></screen> 
+<screen><prompt>$</prompt> <userinput>destinationdir/mydir1/myfile2</userinput></screen> 
+<screen><prompt>$</prompt> <userinput>destinationdir/mydir2/myfile3</userinput></screen>
+</para>
+
+</sect1>

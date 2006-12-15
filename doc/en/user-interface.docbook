@@ -200,8 +200,8 @@ An optional <guilabel>Clear Location Toolbar</guilabel> button is available.
      
 <para>Quick Navigation: <keycap>&Ctrl;</keycap> point with mouse in the middle of the &URL; 
       of the <guibutton>Location Toolbar</guibutton>, a popup window will inform you what will become the
-      next &URL; location, a mouseclick when holding the <keycap>&Ctrl;</keycap> key will jump to the
-      location where the mouse was pointing to, this feature allows faster navigation in a big directory tree.</para>
+      next &URL; location, <keycap>&Ctrl;</keycap> + &LMB; will jump to the location where the mouse was 
+      pointing to, this feature allows faster navigation in a big directory tree.</para>
 
 </sect2>
 
@@ -339,6 +339,8 @@ and you control the current session with the &viewmenu_lnk;.
          (Up arrow = a to z sorting, Down arrow = z to a sorting).
          Default &useractions_lnk; set a keybinding for the Column Headers. 
          The default <guilabel>Column Headers</guilabel> are: <guilabel>Name, Ext, Size, Modified, rwx</guilabel>.
+         Predefined atomic extensions like <filename>tar.gz</filename> are shown as one part in the 
+         <guilabel>Ext</guilabel> Column.
          More <link linkend="konfig-looknfeel-panel">optional Column Headers</link> are
          available with the &RMB;.
          The width <guilabel>Column Headers</guilabel> can be changed with the mouse by single clicking and moving 
@@ -557,6 +559,8 @@ When you drag a file from the <interface>"List Panel"</interface>,
 you will get to choose between:
 "Paste", <command>cd</command>, <command>mv</command> and <command>ln</command>.
 If you drag multiple files, then <command>cd</command> will not be available.
+A full screen terminal emulator can be used when <link linkend="konfig-looknfeel-operation">configured</link> 
+or <keycombo action="simul">&Ctrl;<keycap>f</keycap></keycombo> toggles between normal and full screen mode.
 You can close the emulator by typing <userinput><command>exit</command></userinput>.
 </para>
 

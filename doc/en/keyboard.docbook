@@ -212,46 +212,6 @@
 <tgroup cols="2">
 <tbody>
 <row>
-<entry><para><keycombo action="simul">&Ctrl;<keycap>+</keycap></keycombo></para></entry>
-<entry><para><link linkend="edit-menu">Select Group</link></para></entry></row>
-<row>
-<entry><para><keycombo action="simul">&Ctrl;<keycap>-</keycap></keycombo></para></entry>
-<entry><para><link linkend="edit-menu">Unselect Group</link></para></entry></row>
-<row>
-<entry><para><keycombo action="simul">&Ctrl;<keycap>=</keycap></keycombo></para></entry>
-<entry><para><link linkend="view-menu">Compare directories</link> (Compare Mode)</para></entry></row>
-<row>
-<entry><para><keycombo action="simul">&Ctrl;<keycap>.</keycap></keycombo></para></entry>
-<entry><para><link linkend="view-menu">Show/Hide Hidden (dot) Files</link></para></entry></row>
-<row>
-<entry><para><keycombo action="simul">&Ctrl;<keycap>/</keycap></keycombo></para></entry>
-<entry><para><link linkend="cmdline">Opens command line history list</link></para></entry></row>
-<row>
-<entry><para><keycombo action="simul">&Ctrl;<keycap>Down arrow</keycap></keycombo></para></entry>
-<entry><para><link linkend="cmdline">Go from the active panel to the command line/terminal emulator</link></para></entry></row>
-<row>
-<entry><para><keycombo action="simul">&Ctrl;<keycap>Up arrow</keycap></keycombo></para></entry>
-<entry><para><link linkend="cmdline">Go from the command line/terminal emulator to the active panel</link></para></entry></row>
-<row>
-<entry><para><keycombo action="simul">&Ctrl;<keycap>Up arrow</keycap></keycombo></para></entry>
-<entry><para>Go from the active panel to the &location_toolbar_lnk;</para></entry></row>
-<row>
-<entry><para><keycombo action="simul">&Ctrl;<keycap>Home</keycap></keycombo></para></entry>
-<entry><para>Jumps to the Home directory</para></entry></row>
-<row>
-<entry><para><keycombo action="simul">&Ctrl;<keycap>Left</keycap></keycombo> or <keycombo><keycap>Right arrow</keycap></keycombo></para></entry>
-<entry><para>Focus a file or directory on the left panel, press <keycombo action="simul">&Ctrl;<keycap>Left arrow</keycap></keycombo>
-       and the right <link linkend="panels">panel</link> changes:
-      <itemizedlist>
-      <listitem><para>on a file: the right panel gets the same path as the left
-                <link linkend="panels">panel</link></para></listitem>
-      <listitem><para>on a directory: refreshes the right panel with the contents of the
-                      directory</para></listitem>
-      </itemizedlist>
-      For the right panel: press <keycombo action="simul">&Ctrl;<keycap>Right arrow</keycap></keycombo> and
-      the left panel will change.</para>
-</entry></row>
-<row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>b</keycap></keycombo></para></entry>
 <entry><para>&combinefiles_lnk;</para></entry></row>
 <row>
@@ -260,6 +220,9 @@
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>e</keycap></keycombo></para></entry>
 <entry><para>Edit file as root (Default Useraction)</para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>f</keycap></keycombo></para></entry>
+<entry><para>Toggle between normal and full screen <link linkend="cmdline">terminal emulator</link>.</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>h</keycap></keycombo></para></entry>
 <entry><para><link linkend="folderhistory">Opens History list</link> in the active panel.</para></entry></row>
@@ -308,6 +271,46 @@
 <entry><para><keycombo action="simul">&Ctrl;<keycap>z</keycap></keycombo></para></entry>
 <entry><para><link linkend="bookman">Popular URL's</link></para></entry></row>
 <row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>+</keycap></keycombo></para></entry>
+<entry><para><link linkend="edit-menu">Select Group</link></para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>-</keycap></keycombo></para></entry>
+<entry><para><link linkend="edit-menu">Unselect Group</link></para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>=</keycap></keycombo></para></entry>
+<entry><para><link linkend="view-menu">Compare directories</link> (Compare Mode)</para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>.</keycap></keycombo></para></entry>
+<entry><para><link linkend="view-menu">Show/Hide Hidden (dot) Files</link></para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>/</keycap></keycombo></para></entry>
+<entry><para><link linkend="cmdline">Opens command line history list</link></para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>Down arrow</keycap></keycombo></para></entry>
+<entry><para><link linkend="cmdline">Go from the active panel to the command line/terminal emulator</link></para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>Up arrow</keycap></keycombo></para></entry>
+<entry><para><link linkend="cmdline">Go from the command line/terminal emulator to the active panel</link></para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>Up arrow</keycap></keycombo></para></entry>
+<entry><para>Go from the active panel to the &location_toolbar_lnk;</para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>Home</keycap></keycombo></para></entry>
+<entry><para>Jumps to the Home directory</para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>Left</keycap></keycombo> or <keycombo><keycap>Right arrow</keycap></keycombo></para></entry>
+<entry><para>Focus a file or directory on the left panel, press <keycombo action="simul">&Ctrl;<keycap>Left arrow</keycap></keycombo>
+       and the right <link linkend="panels">panel</link> changes:
+      <itemizedlist>
+      <listitem><para>on a file: the right panel gets the same path as the left
+                <link linkend="panels">panel</link></para></listitem>
+      <listitem><para>on a directory: refreshes the right panel with the contents of the
+                      directory</para></listitem>
+      </itemizedlist>
+      For the right panel: press <keycombo action="simul">&Ctrl;<keycap>Right arrow</keycap></keycombo> and
+      the left panel will change.</para>
+</entry></row>
+<row>
 <entry><para><keycombo action="simul">&Ctrl;&Backspace;</keycombo></para></entry>
 <entry><para>Jumps to the Root directory</para></entry></row>
 <row>
@@ -341,6 +344,12 @@
 <row>
 <entry><para><keycombo action="simul">&Ctrl;&Shift;<keycap>Right arrow</keycap></keycombo></para></entry>
 <entry><para><link linkend="list_panel">Open right media list</link>.</para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;&Shift;<keycap>Up arrow</keycap></keycombo></para></entry>
+<entry><para>Open <link linkend="cmdline">terminal emulator</link>, independently whether the command line is shown or not.</para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;&Shift;<keycap>Down arrow</keycap></keycombo></para></entry>
+<entry><para>Close <link linkend="cmdline">terminal emulator</link>, independently whether the command line is shown or not.</para></entry></row>
 </tbody>
 </tgroup>
 </informaltable>

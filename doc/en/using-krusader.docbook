@@ -285,6 +285,16 @@ the &keybindigs_lnk; tab at the &konfiglookandfeel_lnk;.</para>
        <link linkend="konfig-advanced">Konfigurator advanced tab</link>.</para>
 </sect2>
 
+<sect2 id="shred">
+<title>Shred Files</title>
+<para>When you delete files in your local system they are not completely erased and the
+      information stored in them can be recovered using special software and hardware tools. If
+      you want to erase a file without recoverable traces, select the file and use
+      <emphasis role="bold"><menuchoice><guimenu>Right-Click menu</guimenu>
+      <guimenuitem>Shred</guimenuitem></menuchoice></emphasis>.
+    </para>
+</sect2>
+
 
 <sect2 id="renaming">
 <title>Renaming files, Creating Directories, and Link Handling</title>
@@ -311,53 +321,6 @@ the &keybindigs_lnk; tab at the &konfiglookandfeel_lnk;.</para>
 <!-- call the archives sect1 section -->
 &archives;
 
-
-<sect1 id="more-features">
-<title>More features</title>
-
-<!-- call the vfs sect2 section -->
-&vfs;
-
-<!-- call the compare sect2 section -->
-&compare;
-
-<!-- call the occupied space sect2 section -->
-&occupied-space;
-
-<!-- call the splitter sect2 section -->
-&splitter;
-
-<!-- call the checksum sect2 section -->
-&checksum;
-
-<sect2 id="send-email">
-<title>Send Files by e-mail</title>
-<para>Select a file and use <emphasis role="bold"><menuchoice><guimenu>Right-Click menu</guimenu>
-      <guimenuitem>Send by Email</guimenuitem></menuchoice></emphasis>.
-      Selecting this option will open a new &kmail; window with the file already
-      attached. Just fill in the subject and recipient(s) and send it. 
-      Of course, &kmail; must be properly configured.
-</para>
-</sect2>
-
-
-<sect2 id="shred">
-<title>Shred Files</title>
-<para>When you delete files in your local system they are not completely erased and the
-      information stored in them can be recovered using special software and hardware tools. If
-      you want to erase a file without recoverable traces, select the file and use
-      <emphasis role="bold"><menuchoice><guimenu>Right-Click menu</guimenu>
-      <guimenuitem>Shred</guimenuitem></menuchoice></emphasis>.
-    </para>
-</sect2>
-
-
-
-</sect1>
-
-
-<!-- call the profiles sect1 section -->
-&profiles;
 
 </chapter>
 

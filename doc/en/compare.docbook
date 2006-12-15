@@ -1,4 +1,4 @@
-<sect2 id="compare">
+<sect1 id="compare">
 <title>Compare</title>
 <para>&krusader; contains several compare functions: <guimenuitem>Compare by content</guimenuitem>,
       <guimenuitem>Compare Directories</guimenuitem> and the
@@ -6,7 +6,7 @@
 </para>
 
 
-<sect3 id="compare-content">
+<sect2 id="compare-content">
 <title>Compare by Content</title>
 <indexterm><primary>Compare</primary><secondary>Content</secondary></indexterm> 
 <para>Select in each panel one file, and use
@@ -16,10 +16,10 @@
       <link linkend="konfig-dependencies">configured</link>, 
       right now &kompare;, &kdiff3_url; and &xxdiff_url; are supported.
       </para>
-</sect3>
+</sect2>
 
 
-<sect3 id="compare-dir">
+<sect2 id="compare-dir">
 <title>Compare Directories</title>
 <indexterm><primary>Compare</primary><secondary>Directories</secondary></indexterm> 
 <para>Compare the files of each panel by using
@@ -53,6 +53,6 @@
   </varlistentry>
 </variablelist>
 
-</sect3>
-
 </sect2>
+
+</sect1>
