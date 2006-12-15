@@ -1,0 +1,156 @@
+# Translation of remote-connections.docbook to LANGUAGE
+# Copyright (C) 2006, Krusader Krew
+# This file is distributed under the same license as the Krusader package
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Krusader-doc-1.80.0 2006-12-15\n"
+"Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
+"POT-Creation-Date: 2006-12-15 19:39+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: application/x-xml2pot; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Tag: title
+#: remote-connections.docbook:2
+#, no-c-format
+msgid "<title>Remote Connections</title>"
+msgstr ""
+
+#. Tag: primary
+#: remote-connections.docbook:3
+#, no-c-format
+msgid "<primary>Remote Connections</primary>"
+msgstr ""
+
+#. Tag: para
+#: remote-connections.docbook:5
+#, no-c-format
+msgid "Remote connections are easy made by typing the &URL; in the <link linkend=\"list_panel\">Location Toolbar</link> , these are actually &kioslaves1_url; . Please note that the &krusader; panel does not support all &kioslaves2_url; &eg; <command>http://</command> will not work in the panel, but will work in the <link linkend=\"krviewer\">viewer</link> . Some examples:"
+msgstr ""
+
+#. Tag: userinput
+#: remote-connections.docbook:13
+#, no-c-format
+msgid "<command>ftp://</command><replaceable>public.ftpserver.org/directory/</replaceable>"
+msgstr ""
+
+#. Tag: userinput
+#: remote-connections.docbook:16
+#, no-c-format
+msgid "<command>fish://</command><replaceable>username@hostname/</replaceable>"
+msgstr ""
+
+#. Tag: userinput
+#: remote-connections.docbook:19
+#, no-c-format
+msgid "<command>sftp://</command><replaceable>username:password@sftp.foo.org/</replaceable>"
+msgstr ""
+
+#. Tag: userinput
+#: remote-connections.docbook:22
+#, no-c-format
+msgid "<command>ftp://</command><replaceable>username@my.server.org:21/directory/</replaceable>"
+msgstr ""
+
+#. Tag: userinput
+#: remote-connections.docbook:25
+#, no-c-format
+msgid "<command>smb://</command><replaceable>username:password@server/share</replaceable>"
+msgstr ""
+
+#. Tag: userinput
+#: remote-connections.docbook:28
+#, no-c-format
+msgid "<command>ftp://</command><replaceable>username@proxyusername:password@proxipassword@hostname/directory</replaceable>"
+msgstr ""
+
+#. Tag: para
+#: remote-connections.docbook:33
+#, no-c-format
+msgid "You can Bookmark these &URL;'s, please read the <link linkend=\"bookman\">Bookman</link> section regarding <emphasis>securely save passwords</emphasis>. For connecting to multiple locations, bookmark these &URL;'s and open them one by one, or open them all together by using &panel_profiles_lnk; . To switch from one to another location, just open a &foldertabs_lnk; for each."
+msgstr ""
+
+#. Tag: para
+#: remote-connections.docbook:40
+#, no-c-format
+msgid "There are three ways to start a Remote Connection:"
+msgstr ""
+
+#. Tag: para
+#: remote-connections.docbook:42
+#, no-c-format
+msgid "Type the &URL; in the <link linkend=\"list_panel\">Location Toolbar</link>"
+msgstr ""
+
+#. Tag: para
+#: remote-connections.docbook:45
+#, no-c-format
+msgid "Selecting <emphasis role=\"bold\"><menuchoice><guimenu>Commands</guimenu> <guimenuitem>New Net Connection</guimenuitem></menuchoice></emphasis> which will pop-up a dialog that will ask for the remote site details. This dialog is handy if you are not used to type remote &URL;'s in the Location Toolbar. Leaving the password and user name fields empty will try to log you in as annonymous. NOTE: we are planning to rewrite this dialog window."
+msgstr ""
+
+#. Tag: para
+#: remote-connections.docbook:53
+#, no-c-format
+msgid "You can bookmark a directory on a remote host and return to this directory from the bookmark button on the top corner of your panel just like in a web browser."
+msgstr ""
+
+#. Tag: para
+#: remote-connections.docbook:59
+#, no-c-format
+msgid "After you logon to a remote server you can browse it just like your local hard drive with the following exceptions:"
+msgstr ""
+
+#. Tag: para
+#: remote-connections.docbook:62
+#, no-c-format
+msgid "You cannot execute files on remote servers."
+msgstr ""
+
+#. Tag: para
+#: remote-connections.docbook:64
+#, no-c-format
+msgid "Permissions cannot always be calculated on remote servers (depends on server and access method) so you might get a \"?\" on the permissions columns for some files."
+msgstr ""
+
+#. Tag: para
+#: remote-connections.docbook:67
+#, no-c-format
+msgid "Disk usage information is not availble for most remote filesystems."
+msgstr ""
+
+#. Tag: para
+#: remote-connections.docbook:72
+#, no-c-format
+msgid "To change the charset of the remote host use <emphasis role=\"bold\"><menuchoice><guimenu>Commands</guimenu> <guimenuitem>Select Remote Charset</guimenuitem></menuchoice></emphasis>."
+msgstr ""
+
+#. Tag: para
+#: remote-connections.docbook:76
+#, no-c-format
+msgid "You can <emphasis role=\"bold\">close the current Active Remote Connection</emphasis> by several methods:"
+msgstr ""
+
+#. Tag: para
+#: remote-connections.docbook:85
+#, no-c-format
+msgid "Manually: Add the disconnect button to the &main_toolbar_lnk; and click on it."
+msgstr ""
+
+#. Tag: para
+#: remote-connections.docbook:88
+#, no-c-format
+msgid "Automatically: change the &URL; in the &location_toolbar_lnk; ."
+msgstr ""
+
+#. Tag: para
+#: remote-connections.docbook:94
+#, no-c-format
+msgid "&krusader; is a filemanager that supports remote connections via &kioslaves1_url;, but if you are looking for even more advanced remote connections features, &eg; an advanced &FTP;-client we recommend you to use &eg; &kasablanca_url; or &kftpgrabber_url;."
+msgstr ""
+

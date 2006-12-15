@@ -1,0 +1,63 @@
+# Translation of splitter.docbook to LANGUAGE
+# Copyright (C) 2006, Krusader Krew
+# This file is distributed under the same license as the Krusader package
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Krusader-doc-1.80.0 2006-12-15\n"
+"Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
+"POT-Creation-Date: 2006-12-15 19:39+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: application/x-xml2pot; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Tag: title
+#: splitter.docbook:2
+#, no-c-format
+msgid "<title>File Splitter</title>"
+msgstr ""
+
+#. Tag: primary
+#: splitter.docbook:3
+#, no-c-format
+msgid "<primary>File Splitter</primary>"
+msgstr ""
+
+#. Tag: para
+#: splitter.docbook:5
+#, no-c-format
+msgid "This function splits one (big) file up into multiple smaller files so that they can be placed on several smaller media (&eg; zip-drives, ...) or sent by e-mail. The multiple files can be combined again to recreate the original file. &krusader; and &tcmd; split/combine functions are compatible. To split a file choose <emphasis role=\"bold\"><menuchoice><guimenu>File</guimenu><guimenuitem>Split</guimenuitem></menuchoice> </emphasis> or <keycombo action=\"simul\">&Ctrl;<keycap>P</keycap></keycombo> A Split dialog will open to confirm the operation."
+msgstr ""
+
+#. Tag: para
+#: splitter.docbook:16
+#, no-c-format
+msgid "If the name of the original file is <filename>foo</filename>, then the name of the smaller files will be <filename>foo.000 foo.001 foo.002</filename> &etc; There is no theoretical limit in the number of smaller files, but it is recommended to limit the number to a max of 1023 files. &krusader; creates a <filename>foo.crc</filename> file. This file contains the name, size and the crc checksum of the original file. It's possible to combine the file without the <filename>foo.crc</filename> file but in this case &krusader; can't check if the the original file was recreated correctly."
+msgstr ""
+
+#. Tag: para
+#: splitter.docbook:24
+#, no-c-format
+msgid "An example of a <filename>foo.crc</filename> file:"
+msgstr ""
+
+#. Tag: programlisting
+#: splitter.docbook:25
+#, no-c-format
+msgid ""
+      "filename=foo\n"
+      "      size=432998467868\n"
+      "      crc32=21EB719A"
+msgstr ""
+
+#. Tag: para
+#: splitter.docbook:29
+#, no-c-format
+msgid "To combine the multiple files choose, select a partial file <filename>foo.xxx</filename> and choose <emphasis role=\"bold\"><menuchoice><guimenu>File</guimenu> <guimenuitem>Combine files</guimenuitem></menuchoice></emphasis> or <keycombo action=\"simul\">&Ctrl;<keycap>B</keycap></keycombo>. The target directory is the unactive panel and can be changed. The file names must be numbered in ascending order: <filename>foo.001, foo.002, foo.003</filename> &etc; or have letters in ascending order: (\"<userinput><command>split</command> <option>-b</option></userinput> letter method\") <filename>fileaa, fileab, fileac</filename> &etc; If the file <filename>foo.crc</filename> is found in the same directory as the partial files, &krusader; will use this file to check the combined file for errors."
+msgstr ""
+
