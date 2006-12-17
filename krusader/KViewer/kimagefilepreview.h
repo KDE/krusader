@@ -10,8 +10,8 @@
 * License. See the file "COPYING" for the exact licensing terms.
 */
 
-#ifndef KIMAGEFILEPREVIEW_H
-#define KIMAGEFILEPREVIEW_H
+#ifndef KrusaderImageFilePreview_H
+#define KrusaderImageFilePreview_H
 
 #include <qpixmap.h>
 
@@ -26,12 +26,12 @@ class QTimer;
 class KFileDialog;
 class KFileItem;
 
-class KImageFilePreview : public KPreviewWidgetBase {
+class KrusaderImageFilePreview : public KPreviewWidgetBase {
 		Q_OBJECT
 
 	public:
-		KImageFilePreview( QWidget *parent );
-		~KImageFilePreview();
+		KrusaderImageFilePreview( QWidget *parent );
+		~KrusaderImageFilePreview();
 
 		virtual QSize sizeHint() const;
 
@@ -63,8 +63,8 @@ class KImageFilePreview : public KPreviewWidgetBase {
 	protected:
 		virtual void virtual_hook( int id, void* data );
 	private:
-		class KImageFilePreviewPrivate;
-		KImageFilePreviewPrivate *d;
+		class KrusaderImageFilePreviewPrivate;
+		KrusaderImageFilePreviewPrivate *d;
 };
 
-#endif // KIMAGEFILEPREVIEW_H
+#endif // KrusaderImageFilePreview_H

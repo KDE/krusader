@@ -1,3 +1,4 @@
+    
     ADDED: credit for Václav Juza and Jiri Palecek in the about box
     ADDED: Russian Handbook (translation is work in progress) thanks to Roman Batejkin
     ADDED: Experimental input method support in quick search (patch by Jiri Palecek)
@@ -60,6 +61,8 @@
   CHANGED: UserActions are now managed with ActionMan. In Konfigurator
            you can change settings _about_ useractions.
 
+    FIXED: crash when viewing file properties due to class name clash
+           thanks to stephan binner
     FIXED: .tar.bz2 was not treated as atomic extension, while .tar.gz.test was.
     FIXED: disk usage: other filelight bugfixes
     FIXED: disk usage: filelight crash because of missing null pointer checks

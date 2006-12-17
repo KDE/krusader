@@ -131,7 +131,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	tree->branch( i18n( "Home" ) ) ->root();
 
    // create the quickview part ------
-	viewer = new KImageFilePreview(stack);
+	viewer = new KrusaderImageFilePreview(stack);
    stack->addWidget( viewer, Preview );
 
 	// create the panelview

@@ -27,9 +27,9 @@
 
 #include "kimagefilepreview.h"
 
-/**** KImageFilePreview ****/
+/**** KrusaderImageFilePreview ****/
 
-KImageFilePreview::KImageFilePreview( QWidget *parent )
+KrusaderImageFilePreview::KrusaderImageFilePreview( QWidget *parent )
 		: KPreviewWidgetBase( parent ),
 m_job( 0L ) {
 	QVBoxLayout *vb = new QVBoxLayout( this, KDialog::marginHint() );
@@ -46,23 +46,23 @@ m_job( 0L ) {
 	setSupportedMimeTypes( KIO::PreviewJob::supportedMimeTypes() );
 }
 
-KImageFilePreview::~KImageFilePreview() {
+KrusaderImageFilePreview::~KrusaderImageFilePreview() {
 	if ( m_job )
 		m_job->kill();
 }
 
-void KImageFilePreview::showPreview() {
+void KrusaderImageFilePreview::showPreview() {
 	// Pass a copy since clearPreview() will clear currentURL
 	KURL url = currentURL;
 	showPreview( url, true );
 }
 
 // called via KPreviewWidgetBase interface
-void KImageFilePreview::showPreview( const KURL& url ) {
+void KrusaderImageFilePreview::showPreview( const KURL& url ) {
 	showPreview( url, false );
 }
 
-void KImageFilePreview::showPreview( const KURL &url, bool force ) {
+void KrusaderImageFilePreview::showPreview( const KURL &url, bool force ) {
 	if ( !url.isValid() ) {
 		clearPreview();
 		return ;
@@ -87,26 +87,26 @@ void KImageFilePreview::showPreview( const KURL &url, bool force ) {
 	}
 }
 
-void KImageFilePreview::resizeEvent( QResizeEvent * ) {
+void KrusaderImageFilePreview::resizeEvent( QResizeEvent * ) {
 	timer->start( 100, true ); // forces a new preview
 }
 
-QSize KImageFilePreview::sizeHint() const {
+QSize KrusaderImageFilePreview::sizeHint() const {
 	return QSize( 20, 200 ); // otherwise it ends up huge???
 }
 
-KIO::PreviewJob * KImageFilePreview::createJob( const KURL& url, int w, int h ) {
+KIO::PreviewJob * KrusaderImageFilePreview::createJob( const KURL& url, int w, int h ) {
 	KURL::List urls;
 	urls.append( url );
 	return KIO::filePreview( urls, w, h, 0, 0, true, false );
 }
 
-void KImageFilePreview::gotPreview( const KFileItem* item, const QPixmap& pm ) {
+void KrusaderImageFilePreview::gotPreview( const KFileItem* item, const QPixmap& pm ) {
 	if ( item->url() == currentURL )   // should always be the case
 		imageLabel->setPixmap( pm );
 }
 
-void KImageFilePreview::slotFailed( const KFileItem* item ) {
+void KrusaderImageFilePreview::slotFailed( const KFileItem* item ) {
 	if ( item->isDir() )
 		imageLabel->clear();
 	else if ( item->url() == currentURL )   // should always be the case
@@ -114,12 +114,12 @@ void KImageFilePreview::slotFailed( const KFileItem* item ) {
 		                                  KIcon::DisabledState ) );
 }
 
-void KImageFilePreview::slotResult( KIO::Job *job ) {
+void KrusaderImageFilePreview::slotResult( KIO::Job *job ) {
 	if ( job == m_job )
 		m_job = 0L;
 }
 
-void KImageFilePreview::clearPreview() {
+void KrusaderImageFilePreview::clearPreview() {
 	if ( m_job ) {
 		m_job->kill();
 		m_job = 0L;
@@ -129,7 +129,7 @@ void KImageFilePreview::clearPreview() {
 	currentURL = KURL();
 }
 
-void KImageFilePreview::virtual_hook( int id, void* data ) {
+void KrusaderImageFilePreview::virtual_hook( int id, void* data ) {
 	KPreviewWidgetBase::virtual_hook( id, data );
 }
 

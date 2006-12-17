@@ -19,7 +19,7 @@ class QToolButton;
 class KrSqueezedTextLabel;
 class KLineEdit;
 class KComboBox;
-class KImageFilePreview;
+class KrusaderImageFilePreview;
 class PanelViewer;
 class DiskUsageViewer;
 
@@ -55,7 +55,7 @@ protected:
 	bool _left;
 	bool _hidden;
 	QWidgetStack *stack;
-	KImageFilePreview *viewer;
+	KrusaderImageFilePreview *viewer;
 	KrSqueezedTextLabel *dataLine;
 	QGuardedPtr<KIO::PreviewJob> pjob;
 	KFileTreeView *tree;
