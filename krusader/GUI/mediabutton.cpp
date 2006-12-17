@@ -160,7 +160,7 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 		for( ; it2 != (*it).end(); it2++ ) {
 			switch ((*it2).m_uds) {
 			case KIO::UDS_NAME:
-				text = (*it2).m_str;
+				text = KURL::decode_string((*it2).m_str);
 				break;
 			case KIO::UDS_URL:
 				url = KURL::fromPathOrURL(  (*it2).m_str );
