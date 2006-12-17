@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2006-11-15 11:49+0100\n"
+"POT-Creation-Date: 2006-12-17 12:36+0100\n"
 "PO-Revision-Date: 2006-10-21 23:37+0100\n"
 "Last-Translator: Bruno Miguel Queiroz <brunoqueiros@portugalmail.com>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
@@ -63,62 +63,62 @@ msgstr "Padrão"
 msgid "Open the available media list"
 msgstr "Abrir a lista da média disponível"
 
-#: GUI/mediabutton.cpp:445
+#: GUI/mediabutton.cpp:454
 msgid "Hard Disk"
 msgstr "Disco Rígido"
 
-#: GUI/mediabutton.cpp:447
+#: GUI/mediabutton.cpp:456
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: GUI/mediabutton.cpp:449
+#: GUI/mediabutton.cpp:458
 msgid "CD Recorder"
 msgstr "Gravador CD"
 
-#: GUI/mediabutton.cpp:452
+#: GUI/mediabutton.cpp:461
 msgid "DVD Recorder"
 msgstr "Gravador DVD"
 
-#: GUI/mediabutton.cpp:455
+#: GUI/mediabutton.cpp:464
 msgid "DVD"
 msgstr "DVD"
 
-#: GUI/mediabutton.cpp:457 GUI/mediabutton.cpp:459
+#: GUI/mediabutton.cpp:466 GUI/mediabutton.cpp:468
 msgid "Remote Share"
 msgstr "Partilha Remota"
 
-#: GUI/mediabutton.cpp:461 GUI/mediabutton.cpp:463
+#: GUI/mediabutton.cpp:470 GUI/mediabutton.cpp:472
 msgid "Floppy"
 msgstr "Disquete"
 
-#: GUI/mediabutton.cpp:465
+#: GUI/mediabutton.cpp:474
 msgid "Zip Disk"
 msgstr "Disco Zip"
 
-#: GUI/mediabutton.cpp:468
+#: GUI/mediabutton.cpp:477
 msgid "Unknown"
 msgstr "Desconhecido"
 
-#: BookMan/krbookmarkhandler.cpp:538 GUI/mediabutton.cpp:520
+#: BookMan/krbookmarkhandler.cpp:538 GUI/mediabutton.cpp:529
 #: Panel/krpopupmenu.cpp:61
 msgid "Open"
 msgstr "Abrir"
 
-#: BookMan/krbookmarkhandler.cpp:539 GUI/mediabutton.cpp:521
+#: BookMan/krbookmarkhandler.cpp:539 GUI/mediabutton.cpp:530
 msgid "Open in a new tab"
 msgstr "Abrir num separador novo"
 
-#: GUI/mediabutton.cpp:524 MountMan/kmountman.cpp:287
+#: GUI/mediabutton.cpp:533 MountMan/kmountman.cpp:287
 #: MountMan/kmountmangui.cpp:333 Panel/krpopupmenu.cpp:174
 msgid "Mount"
 msgstr "Montar"
 
-#: GUI/mediabutton.cpp:526 MountMan/kmountman.cpp:287
+#: GUI/mediabutton.cpp:535 MountMan/kmountman.cpp:287
 #: MountMan/kmountmangui.cpp:337 Panel/krpopupmenu.cpp:172
 msgid "Unmount"
 msgstr "Desmontar"
 
-#: GUI/mediabutton.cpp:528 MountMan/kmountmangui.cpp:343
+#: GUI/mediabutton.cpp:537 MountMan/kmountmangui.cpp:343
 #: Panel/krpopupmenu.cpp:176
 msgid "Eject"
 msgstr "Ejectar"
@@ -485,7 +485,7 @@ msgstr ""
 msgid "&General"
 msgstr "&Geral"
 
-#: Dialogs/packguibase.cpp:266 Dialogs/packguibase.cpp:306
+#: Dialogs/packguibase.cpp:277 Dialogs/packguibase.cpp:317
 #: Filter/filtertabs.cpp:49
 msgid "&Advanced"
 msgstr "&Avançado"
@@ -599,7 +599,7 @@ msgid "Please specify a location to search in."
 msgstr "Por favor especifique uma localização para procurar."
 
 #: Filter/advancedfilter.cpp:59 Panel/krdetailedview.cpp:106
-#: Panel/krdetailedview.cpp:1401 Search/krsearchdialog.cpp:149
+#: Panel/krdetailedview.cpp:1428 Search/krsearchdialog.cpp:146
 #: Synchronizer/synchronizergui.cpp:1255 Synchronizer/synchronizergui.cpp:1259
 msgid "Size"
 msgstr "Tamanho"
@@ -625,7 +625,7 @@ msgid "&Smaller than"
 msgstr "Menor que(&S)"
 
 #: DiskUsage/dulistview.cpp:71 Filter/advancedfilter.cpp:113
-#: Search/krsearchdialog.cpp:150 Synchronizer/synchronizergui.cpp:1256
+#: Search/krsearchdialog.cpp:147 Synchronizer/synchronizergui.cpp:1256
 #: Synchronizer/synchronizergui.cpp:1258
 msgid "Date"
 msgstr "Data"
@@ -979,7 +979,7 @@ msgstr "Escolha um modo-visualização"
 msgid "Choose a window-mode"
 msgstr "Escolha um modo- janela"
 
-#: Konfigurator/konfigurator.cpp:69 Search/krsearchdialog.cpp:106
+#: Konfigurator/konfigurator.cpp:69 Search/krsearchdialog.cpp:103
 #: Synchronizer/synchronizedialog.cpp:117
 #: Synchronizer/synchronizergui.cpp:1393 UserAction/kraction.cpp:48
 msgid "Close"
@@ -1034,7 +1034,7 @@ msgid "Overwrite or append?"
 msgstr "Substituir ou adicionar?"
 
 #: ActionMan/useractionpage.cpp:248 ActionMan/useractionpage.cpp:257
-#: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:135
+#: Dialogs/checksumdlg.cpp:552 Dialogs/krkeydialog.cpp:135
 #: Konfigurator/kgcolors.cpp:523 UserAction/kraction.cpp:139
 msgid "Overwrite"
 msgstr "S&obrepor"
@@ -1237,7 +1237,7 @@ msgstr "Mover Aqui"
 msgid "Link Here"
 msgstr "Ligar Aqui"
 
-#: Dialogs/krmaskchoice.cpp:135 Dialogs/packguibase.cpp:278
+#: Dialogs/krmaskchoice.cpp:135 Dialogs/packguibase.cpp:289
 #: DiskUsage/diskusage.cpp:155 Panel/listpanel.cpp:788
 #: Panel/panelpopup.cpp:351
 msgid "Cancel"
@@ -1257,59 +1257,63 @@ msgstr "Lendo: "
 
 #: DiskUsage/dulines.cpp:238 DiskUsage/dulistview.cpp:56
 #: Konfigurator/krresulttable.cpp:129 MountMan/kmountmangui.cpp:127
-#: Panel/krdetailedview.cpp:103 Search/krsearchdialog.cpp:147
+#: Panel/krdetailedview.cpp:103 Search/krsearchdialog.cpp:144
 #: Synchronizer/synchronizergui.cpp:1254 Synchronizer/synchronizergui.cpp:1260
 msgid "Name"
 msgstr "Nome"
 
-#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1395
+#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1422
 msgid "Ext"
 msgstr "Ext"
 
 #: DiskUsage/dulistview.cpp:68 MountMan/kmountmangui.cpp:128
-#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1398
+#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1425
 msgid "Type"
 msgstr "Tipo"
 
-#: Panel/krdetailedview.cpp:107 Panel/krdetailedview.cpp:1404
+#: Panel/krdetailedview.cpp:107 Panel/krdetailedview.cpp:1431
 msgid "Modified"
 msgstr "Modificado"
 
-#: Panel/krdetailedview.cpp:108 Panel/krdetailedview.cpp:1407
+#: Panel/krdetailedview.cpp:108 Panel/krdetailedview.cpp:1434
 msgid "Perms"
 msgstr "Perms"
 
-#: Panel/krdetailedview.cpp:109 Panel/krdetailedview.cpp:1410
+#: Panel/krdetailedview.cpp:109 Panel/krdetailedview.cpp:1437
 msgid "rwx"
 msgstr "rwx"
 
 #: DiskUsage/dulistview.cpp:77 Panel/krdetailedview.cpp:110
-#: Panel/krdetailedview.cpp:1413
+#: Panel/krdetailedview.cpp:1440
 msgid "Owner"
 msgstr "Dono"
 
 #: DiskUsage/dulistview.cpp:80 Konfigurator/krresulttable.cpp:281
-#: Panel/krdetailedview.cpp:111 Panel/krdetailedview.cpp:1416
+#: Panel/krdetailedview.cpp:111 Panel/krdetailedview.cpp:1443
 msgid "Group"
 msgstr "Grupo"
 
-#: Panel/krdetailedview.cpp:1382
+#: Konfigurator/kgcolors.cpp:419 Panel/krdetailedview.cpp:302
+msgid "Directory"
+msgstr "Directório"
+
+#: Panel/krdetailedview.cpp:1409
 msgid "Columns"
 msgstr "Colunas"
 
-#: Panel/krviewitem.cpp:45
+#: Panel/krviewitem.cpp:44
 msgid "Climb up the directory tree"
 msgstr "Subir a árvore de directórios"
 
-#: Panel/krviewitem.cpp:57
+#: Panel/krviewitem.cpp:56
 msgid "Symbolic Link"
 msgstr "Ligação Simbólica"
 
-#: Panel/krviewitem.cpp:58
+#: Panel/krviewitem.cpp:57
 msgid "(broken link !)"
 msgstr "(ligação quebrada !)"
 
-#: Panel/krviewitem.cpp:59
+#: Panel/krviewitem.cpp:58
 msgid "%1 (Link)"
 msgstr "%1 (Ligação)"
 
@@ -1715,7 +1719,7 @@ msgstr ""
 "_n: Você quer mesmo apagar este item?\n"
 "Você quer mesmo apagar estes %n items?"
 
-#: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:135
+#: Dialogs/checksumdlg.cpp:552 Dialogs/krkeydialog.cpp:135
 #: DiskUsage/diskusage.cpp:608 Konfigurator/kgcolors.cpp:523
 #: Panel/panelfunc.cpp:658
 msgid "Warning"
@@ -1808,7 +1812,7 @@ msgstr ""
 "Não é possível copiar uma colecção virtual de URL para a área de "
 "transferência!"
 
-#: Locate/locate.cpp:67 Locate/locate.cpp:205 Search/krsearchdialog.cpp:102
+#: Locate/locate.cpp:67 Locate/locate.cpp:205 Search/krsearchdialog.cpp:99
 #: Synchronizer/synchronizergui.cpp:1377
 msgid "Stop"
 msgstr "Parar"
@@ -1863,7 +1867,7 @@ msgstr ""
 msgid "Error during the start of 'locate' process!"
 msgstr "Erro durante o início do processo de localização!"
 
-#: Locate/locate.cpp:244 Search/krsearchdialog.cpp:91
+#: Locate/locate.cpp:244 Search/krsearchdialog.cpp:88
 #: Synchronizer/synchronizergui.cpp:1382
 msgid "Feed to listbox"
 msgstr "Feed para a listbox"
@@ -1896,11 +1900,11 @@ msgstr "A sequência procurada não foi encontrada!"
 msgid "Locate results"
 msgstr "Resultados da localização"
 
-#: Locate/locate.cpp:501 Search/krsearchdialog.cpp:534
+#: Locate/locate.cpp:501 Search/krsearchdialog.cpp:531
 msgid "Query name"
 msgstr "Nome da pergunta"
 
-#: Locate/locate.cpp:502 Search/krsearchdialog.cpp:535
+#: Locate/locate.cpp:502 Search/krsearchdialog.cpp:532
 #: Synchronizer/feedtolistboxdialog.cpp:110
 msgid "Here you can name the file collection"
 msgstr "Aqui você pode nomear a colecção de ficheiros"
@@ -2362,39 +2366,39 @@ msgstr "Edição"
 msgid "Sorry, can't find internal editor"
 msgstr "Desculpe, não consigo encontrar o terminal interno"
 
-#: Search/krsearchdialog.cpp:72
+#: Search/krsearchdialog.cpp:69
 msgid "Krusader::Search"
 msgstr "Krusader::Procurar"
 
-#: Search/krsearchdialog.cpp:96
+#: Search/krsearchdialog.cpp:93
 msgid "Search"
 msgstr "Procurar"
 
-#: Search/krsearchdialog.cpp:133 Search/krsearchdialog.cpp:362
+#: Search/krsearchdialog.cpp:130 Search/krsearchdialog.cpp:359
 msgid "Found 0 matches."
 msgstr "Encontrei 0 ocorrências."
 
-#: Search/krsearchdialog.cpp:148
+#: Search/krsearchdialog.cpp:145
 msgid "Location"
 msgstr "Localização"
 
-#: DiskUsage/dulistview.cpp:74 Search/krsearchdialog.cpp:151
+#: DiskUsage/dulistview.cpp:74 Search/krsearchdialog.cpp:148
 msgid "Permissions"
 msgstr "Permissões"
 
-#: Search/krsearchdialog.cpp:188
+#: Search/krsearchdialog.cpp:185
 msgid "Text found:"
 msgstr "Texto encontrado:"
 
-#: Search/krsearchdialog.cpp:198
+#: Search/krsearchdialog.cpp:195
 msgid "&Results"
 msgstr "&Resultados"
 
-#: Search/krsearchdialog.cpp:327
+#: Search/krsearchdialog.cpp:324
 msgid "Found %1 matches."
 msgstr "Encontrei %1 ocorrências."
 
-#: Search/krsearchdialog.cpp:349
+#: Search/krsearchdialog.cpp:346
 msgid ""
 "Since you chose to also search in archives, note the following limitations:\n"
 "You cannot search for text (grep) while doing a search that includes "
@@ -2405,24 +2409,24 @@ msgstr ""
 "Não pode procurar por texto (grep) enquanto faz uma procura que inclui "
 "arquivos."
 
-#: Search/krsearchdialog.cpp:400
+#: Search/krsearchdialog.cpp:397
 msgid "Finished searching."
 msgstr "Procura terminada."
 
-#: Search/krsearchdialog.cpp:496
+#: Search/krsearchdialog.cpp:493
 msgid "Krusader Search"
 msgstr "Procura Krusader"
 
-#: Search/krsearchdialog.cpp:498
+#: Search/krsearchdialog.cpp:495
 msgid "View File (F3)"
 msgstr "Ver Ficheiro (F3)"
 
-#: Search/krsearchdialog.cpp:499
+#: Search/krsearchdialog.cpp:496
 msgid "Edit File (F4)"
 msgstr "Editar Ficheiro (F4)"
 
 #: Konfigurator/kgarchives.cpp:113 Konfigurator/kggeneral.cpp:151
-#: Search/krsearchdialog.cpp:526
+#: Search/krsearchdialog.cpp:523
 msgid "Search results"
 msgstr "Resultados da procura"
 
@@ -2659,7 +2663,7 @@ msgstr ""
 "IRC\n"
 "server: irc.freenode.net, channel: #krusader"
 
-#: main.cpp:200
+#: main.cpp:202
 msgid "Application already running!\n"
 msgstr "Aplicação já está a ser executada!\n"
 
@@ -2970,67 +2974,75 @@ msgstr ""
 msgid "<qt>Can't open <b>%1</b> for writing!</qt>"
 msgstr "<qt>Não consigo abrir <b>%1</b> para escrita!</qt>"
 
-#: Dialogs/packguibase.cpp:66 Dialogs/packguibase.cpp:120
+#: Dialogs/packguibase.cpp:68 Dialogs/packguibase.cpp:122
 msgid "Pack"
 msgstr "Compactar"
 
-#: Dialogs/packguibase.cpp:76
+#: Dialogs/packguibase.cpp:78
 msgid "To archive"
 msgstr "Para o arquivo"
 
-#: Dialogs/packguibase.cpp:95
+#: Dialogs/packguibase.cpp:97
 msgid "In directory"
 msgstr "No directório"
 
-#: Dialogs/packguibase.cpp:145
+#: Dialogs/packguibase.cpp:147
 msgid "Multiple volume archive"
 msgstr "Volume múltiplo de arquivos"
 
-#: Dialogs/packguibase.cpp:154 DiskUsage/diskusage.cpp:1033
+#: Dialogs/packguibase.cpp:156 DiskUsage/diskusage.cpp:1033
 msgid "Size:"
 msgstr "Tamanho:"
 
-#: Dialogs/packguibase.cpp:172
+#: Dialogs/packguibase.cpp:174
 msgid "Set compression level"
 msgstr "Defina nível de compressão"
 
-#: Dialogs/packguibase.cpp:200
+#: Dialogs/packguibase.cpp:189
+msgid "MIN"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:190
+msgid "MAX"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:211
 msgid "Password"
 msgstr "Palavra Passe"
 
-#: Dialogs/packguibase.cpp:210
+#: Dialogs/packguibase.cpp:221
 msgid "Again"
 msgstr "Outra vez"
 
-#: Dialogs/packguibase.cpp:228
+#: Dialogs/packguibase.cpp:239
 msgid "Encrypt headers"
 msgstr "Encriptar cabeçalhos"
 
-#: Dialogs/packguibase.cpp:240
+#: Dialogs/packguibase.cpp:251
 msgid "Command line switches:"
 msgstr "Opções liinha de comandos:"
 
-#: Dialogs/packguibase.cpp:273
+#: Dialogs/packguibase.cpp:284
 msgid "Ok"
 msgstr "Ok"
 
-#: Dialogs/packguibase.cpp:322
+#: Dialogs/packguibase.cpp:333
 msgid "The passwords are equal"
 msgstr "As palavras passe são iguais"
 
-#: Dialogs/packguibase.cpp:326
+#: Dialogs/packguibase.cpp:337
 msgid "The passwords are different"
 msgstr "As palavras passe são diferentes"
 
-#: Dialogs/packguibase.cpp:361
+#: Dialogs/packguibase.cpp:374
 msgid "Cannot pack! The passwords are different!"
 msgstr "Impossível compactar! As palavras passe são diferentes!"
 
-#: Dialogs/packguibase.cpp:386
+#: Dialogs/packguibase.cpp:399
 msgid "Invalid volume size!"
 msgstr "Tamanho de volume inválido!"
 
-#: Dialogs/packguibase.cpp:416
+#: Dialogs/packguibase.cpp:429
 msgid ""
 "Invalid command line switch!\n"
 "Switch must start with '-'!"
@@ -3038,7 +3050,7 @@ msgstr ""
 "Opção de linha de comando inválido!\n"
 "A opção tem que começar com '-'!"
 
-#: Dialogs/packguibase.cpp:428
+#: Dialogs/packguibase.cpp:441
 msgid ""
 "Invalid command line switch!\n"
 "Backslash cannot be the last character"
@@ -3046,7 +3058,7 @@ msgstr ""
 "Opção de linha de comando inválido!\n"
 "A barra não pode ser o último caracter"
 
-#: Dialogs/packguibase.cpp:436
+#: Dialogs/packguibase.cpp:449
 msgid ""
 "Invalid command line switch!\n"
 "Unclosed quotation mark!"
@@ -3078,11 +3090,11 @@ msgstr "Click para ir para <i>%1</i>"
 msgid "Krusader::Wait"
 msgstr "Krusader::Esperar"
 
-#: Dialogs/checksumdlg.cpp:191 Dialogs/checksumdlg.cpp:446
+#: Dialogs/checksumdlg.cpp:198 Dialogs/checksumdlg.cpp:453
 msgid "Create Checksum"
 msgstr "Criar Cheksum"
 
-#: Dialogs/checksumdlg.cpp:196
+#: Dialogs/checksumdlg.cpp:203
 msgid ""
 "<qt>Can't calculate checksum since no supported tool was found. Please check "
 "the <b>Dependencies</b> page in Krusader's settings.</qt>"
@@ -3091,45 +3103,46 @@ msgstr ""
 "encontrada. Por favor verifique a página <b>Dependências</b> nas "
 "configurações do Krusader.</qt>"
 
-#: Dialogs/checksumdlg.cpp:199 Dialogs/checksumdlg.cpp:300
+#: Dialogs/checksumdlg.cpp:206 Dialogs/checksumdlg.cpp:307
+#, fuzzy
 msgid ""
 "<qt><b>Note</b>: you've selected directories, and probably have no recursive "
 "checksum tool installed. Krusader currently supports <i>md5deep, sha1deep, "
-"sha256deep and tigerdeep</i></qt>"
+"sha256deep, tigerdeep and cfv</i></qt>"
 msgstr ""
 "<qt><b>Nota</b>: seleccionou directórios, e provavelmente não tem nenhuma "
 "ferramenta de checksum recursiva instalada. Krusader actualmente suporta "
 "<i>md5deep, sha1deep, sha256deep e tigerdeep</i></qt>"
 
-#: Dialogs/checksumdlg.cpp:215
+#: Dialogs/checksumdlg.cpp:222
 msgid "About to calculate checksum for the following files"
 msgstr "Prestes a calcular o checksum para os seguintes ficheiros"
 
-#: Dialogs/checksumdlg.cpp:216 Dialogs/checksumdlg.cpp:317
+#: Dialogs/checksumdlg.cpp:223 Dialogs/checksumdlg.cpp:324
 msgid " and folders:"
 msgstr "e directórios:"
 
-#: Dialogs/checksumdlg.cpp:229
+#: Dialogs/checksumdlg.cpp:236
 msgid "Select the checksum method:"
 msgstr "Seleccione o metodo de checksum:"
 
-#: Dialogs/checksumdlg.cpp:250
+#: Dialogs/checksumdlg.cpp:257
 msgid "Calculating checksums ..."
 msgstr "Calculando checksums ..."
 
-#: Dialogs/checksumdlg.cpp:265 Dialogs/checksumdlg.cpp:379
+#: Dialogs/checksumdlg.cpp:272 Dialogs/checksumdlg.cpp:386
 msgid "<qt>There was an error while running <b>%1</b>.</qt>"
 msgstr "<qt>Houve um erro ao executar <b>%1</b>.</qt>"
 
-#: Dialogs/checksumdlg.cpp:277 Dialogs/checksumdlg.cpp:388
+#: Dialogs/checksumdlg.cpp:284 Dialogs/checksumdlg.cpp:395
 msgid "Error reading stdout or stderr"
 msgstr "Erro ao ler o stdout ou stderr"
 
-#: Dialogs/checksumdlg.cpp:292 Dialogs/checksumdlg.cpp:410
+#: Dialogs/checksumdlg.cpp:299 Dialogs/checksumdlg.cpp:417
 msgid "Verify Checksum"
 msgstr "Verificar Checksum"
 
-#: Dialogs/checksumdlg.cpp:297
+#: Dialogs/checksumdlg.cpp:304
 msgid ""
 "<qt>Can't verify checksum since no supported tool was found. Please check "
 "the <b>Dependencies</b> page in Krusader's settings.</qt>"
@@ -3138,15 +3151,15 @@ msgstr ""
 "encontrada. Por favor verifique a página <b>Dependências</b> nas "
 "configurações do Krusader.</qt>"
 
-#: Dialogs/checksumdlg.cpp:316
+#: Dialogs/checksumdlg.cpp:323
 msgid "About to verify checksum for the following files"
 msgstr "Prestes a verificar o cheksum para os seguintes ficheiros"
 
-#: Dialogs/checksumdlg.cpp:330
+#: Dialogs/checksumdlg.cpp:337
 msgid "Checksum file:"
 msgstr "Ficheiro de Checksum:"
 
-#: Dialogs/checksumdlg.cpp:344
+#: Dialogs/checksumdlg.cpp:351
 msgid ""
 "<qt>Error reading checksum file <i>%1</i>.<br />Please specify a valid "
 "checksum file.</qt>"
@@ -3154,7 +3167,7 @@ msgstr ""
 "<qt>Erro ao ler ficheiro de checksum <i>%1</i>.<br>Por favor especifique um "
 "ficheiro de checksum válido.</qt>"
 
-#: Dialogs/checksumdlg.cpp:357
+#: Dialogs/checksumdlg.cpp:364
 msgid ""
 "<qt>Krusader can't find a checksum tool that handles %1 on your system. "
 "Please check the <b>Dependencies</b> page in Krusader's settings.</qt>"
@@ -3163,55 +3176,55 @@ msgstr ""
 "trabalhe com %1 no seu sistema. Por favor verifique a página "
 "<b>Dependências</b> nas configurações do Krusader.</qt>"
 
-#: Dialogs/checksumdlg.cpp:366
+#: Dialogs/checksumdlg.cpp:373
 msgid "Verifying checksums ..."
 msgstr "Verificando checksums ..."
 
-#: Dialogs/checksumdlg.cpp:423
+#: Dialogs/checksumdlg.cpp:430
 msgid "Errors were detected while verifying the checksums"
 msgstr "Foram detectados erros ao verificar os checksums"
 
-#: Dialogs/checksumdlg.cpp:424
+#: Dialogs/checksumdlg.cpp:431
 msgid "Checksums were verified successfully"
 msgstr "Checksums foram verificados com sucesso"
 
-#: Dialogs/checksumdlg.cpp:430
+#: Dialogs/checksumdlg.cpp:437
 msgid "The following files have failed:"
 msgstr "Os seguintes ficheiros falharam:"
 
-#: Dialogs/checksumdlg.cpp:461
+#: Dialogs/checksumdlg.cpp:468
 msgid "Errors were detected while creating the checksums"
 msgstr "Erros detectados quando criando os checksums"
 
-#: Dialogs/checksumdlg.cpp:462
+#: Dialogs/checksumdlg.cpp:469
 msgid "Checksums were created successfully"
 msgstr "Checksums criados com sucesso"
 
-#: Dialogs/checksumdlg.cpp:469
+#: Dialogs/checksumdlg.cpp:476
 msgid "Here are the calculated checksums:"
 msgstr "Aqui estão os checksums calculados:"
 
-#: Dialogs/checksumdlg.cpp:474
+#: Dialogs/checksumdlg.cpp:481
 msgid "Hash"
 msgstr "Hash"
 
-#: Dialogs/checksumdlg.cpp:475 Konfigurator/kgcolors.cpp:418
+#: Dialogs/checksumdlg.cpp:482 Konfigurator/kgcolors.cpp:418
 msgid "File"
 msgstr "Ficheiro"
 
-#: Dialogs/checksumdlg.cpp:494
+#: Dialogs/checksumdlg.cpp:501
 msgid "Here are the errors received:"
 msgstr "Aqui estão os erros recebidos:"
 
-#: Dialogs/checksumdlg.cpp:508
+#: Dialogs/checksumdlg.cpp:515
 msgid "Save checksum to file:"
 msgstr "Gravar checksum para o ficheiro:"
 
-#: Dialogs/checksumdlg.cpp:522
+#: Dialogs/checksumdlg.cpp:529
 msgid "Checksum file for each source file"
 msgstr "Ficheiro de Checksum para cada ficheiro de origem"
 
-#: Dialogs/checksumdlg.cpp:544
+#: Dialogs/checksumdlg.cpp:551
 msgid ""
 "File %1 already exists.\n"
 "Are you sure you want to overwrite it?"
@@ -3219,20 +3232,20 @@ msgstr ""
 "O ficheiro %1 já existe.\n"
 "Tem a certeza que quer substituí-lo?"
 
-#: Dialogs/checksumdlg.cpp:547
+#: Dialogs/checksumdlg.cpp:554
 msgid "Select a file to save to"
 msgstr "Seleccione um ficheiro para onde gravar"
 
-#: Dialogs/checksumdlg.cpp:552
+#: Dialogs/checksumdlg.cpp:559
 #, c-format
 msgid "Error saving file %1"
 msgstr "Erro ao gravar o ficheiro%1!"
 
-#: Dialogs/checksumdlg.cpp:564
+#: Dialogs/checksumdlg.cpp:571
 msgid "Saving checksum files..."
 msgstr "Gravando ficheiros de cheksum..."
 
-#: Dialogs/checksumdlg.cpp:569
+#: Dialogs/checksumdlg.cpp:576
 msgid "Errors occured while saving multiple checksums. Stopping"
 msgstr "Ocorreram erros ao gravar vários chesksums. Parando"
 
@@ -4284,59 +4297,59 @@ msgstr "Mostrar tamanho dos ficheiros:"
 msgid "Lines"
 msgstr "Linhas"
 
-#: DiskUsage/dufilelight.cpp:117
+#: DiskUsage/dufilelight.cpp:96
 msgid "Zoom In"
 msgstr "Zoom In"
 
-#: DiskUsage/dufilelight.cpp:118
+#: DiskUsage/dufilelight.cpp:97
 msgid "Zoom Out"
 msgstr "Zoom Out"
 
-#: DiskUsage/dufilelight.cpp:121
+#: DiskUsage/dufilelight.cpp:100
 msgid "Rainbow"
 msgstr "Arco-Iris"
 
-#: DiskUsage/dufilelight.cpp:122
+#: DiskUsage/dufilelight.cpp:101
 msgid "High Contrast"
 msgstr "Alto Contraste"
 
-#: DiskUsage/dufilelight.cpp:123
+#: DiskUsage/dufilelight.cpp:102
 msgid "KDE"
 msgstr "KDE"
 
-#: DiskUsage/dufilelight.cpp:126
+#: DiskUsage/dufilelight.cpp:105
 msgid "Scheme"
 msgstr "Esquema"
 
-#: DiskUsage/dufilelight.cpp:128
+#: DiskUsage/dufilelight.cpp:107
 msgid "Increase contrast"
 msgstr "Aumentar Contraste"
 
-#: DiskUsage/dufilelight.cpp:129
+#: DiskUsage/dufilelight.cpp:108
 msgid "Decrease contrast"
 msgstr "Diminuir Contraste"
 
-#: DiskUsage/dufilelight.cpp:131
+#: DiskUsage/dufilelight.cpp:110
 msgid "Use anti-aliasing"
 msgstr "Use anti-aliasing"
 
-#: DiskUsage/dufilelight.cpp:134
+#: DiskUsage/dufilelight.cpp:113
 msgid "Show small files"
 msgstr "Mostrar ficheiros pequenos"
 
-#: DiskUsage/dufilelight.cpp:137
+#: DiskUsage/dufilelight.cpp:116
 msgid "Vary label font sizes"
 msgstr "Variar tamanhos das etiquetas das fontes"
 
-#: DiskUsage/dufilelight.cpp:140 DiskUsage/dufilelight.cpp:209
+#: DiskUsage/dufilelight.cpp:119 DiskUsage/dufilelight.cpp:193
 msgid "Minimum font size"
 msgstr "Tamanho mínimo das fontes"
 
-#: DiskUsage/diskusage.cpp:789 DiskUsage/dufilelight.cpp:142
+#: DiskUsage/diskusage.cpp:789 DiskUsage/dufilelight.cpp:121
 msgid "Filelight"
 msgstr "Filelight"
 
-#: DiskUsage/dufilelight.cpp:208
+#: DiskUsage/dufilelight.cpp:192
 msgid "Krusader::Filelight"
 msgstr "Krusader::Filelight"
 
@@ -5730,10 +5743,6 @@ msgstr "Ligação simbólica"
 #: Konfigurator/kgcolors.cpp:417
 msgid "Application"
 msgstr "Aplicação"
-
-#: Konfigurator/kgcolors.cpp:419
-msgid "Directory"
-msgstr "Directório"
 
 #: Konfigurator/kgcolors.cpp:475
 msgid "Copy to right"

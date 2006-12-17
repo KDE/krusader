@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2006-11-15 11:49+0100\n"
+"POT-Creation-Date: 2006-12-17 12:36+0100\n"
 "PO-Revision-Date: 2006-11-29 20:25+0100\n"
 "Last-Translator: Matej Urbancic <matej.urban@gmail.com>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
@@ -19,7 +19,8 @@ msgstr ""
 "X-Poedit-Country: SLOVENIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #: GUI/dirhistorybutton.cpp:35
 msgid "Open the directory history list"
@@ -65,62 +66,62 @@ msgstr "Privzeto"
 msgid "Open the available media list"
 msgstr "Odpri media listo"
 
-#: GUI/mediabutton.cpp:445
+#: GUI/mediabutton.cpp:454
 msgid "Hard Disk"
 msgstr "Trdi disk"
 
-#: GUI/mediabutton.cpp:447
+#: GUI/mediabutton.cpp:456
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: GUI/mediabutton.cpp:449
+#: GUI/mediabutton.cpp:458
 msgid "CD Recorder"
 msgstr "CD zapisovalec"
 
-#: GUI/mediabutton.cpp:452
+#: GUI/mediabutton.cpp:461
 msgid "DVD Recorder"
 msgstr "DVD zapisovalec"
 
-#: GUI/mediabutton.cpp:455
+#: GUI/mediabutton.cpp:464
 msgid "DVD"
 msgstr "DVD"
 
-#: GUI/mediabutton.cpp:457 GUI/mediabutton.cpp:459
+#: GUI/mediabutton.cpp:466 GUI/mediabutton.cpp:468
 msgid "Remote Share"
 msgstr "Oddaljeno mesto"
 
-#: GUI/mediabutton.cpp:461 GUI/mediabutton.cpp:463
+#: GUI/mediabutton.cpp:470 GUI/mediabutton.cpp:472
 msgid "Floppy"
 msgstr "Disketnik"
 
-#: GUI/mediabutton.cpp:465
+#: GUI/mediabutton.cpp:474
 msgid "Zip Disk"
 msgstr "Zip disk"
 
-#: GUI/mediabutton.cpp:468
+#: GUI/mediabutton.cpp:477
 msgid "Unknown"
 msgstr "Neznano"
 
-#: BookMan/krbookmarkhandler.cpp:538 GUI/mediabutton.cpp:520
+#: BookMan/krbookmarkhandler.cpp:538 GUI/mediabutton.cpp:529
 #: Panel/krpopupmenu.cpp:61
 msgid "Open"
 msgstr "Odpri"
 
-#: BookMan/krbookmarkhandler.cpp:539 GUI/mediabutton.cpp:521
+#: BookMan/krbookmarkhandler.cpp:539 GUI/mediabutton.cpp:530
 msgid "Open in a new tab"
 msgstr "Odpri v novem zavihku"
 
-#: GUI/mediabutton.cpp:524 MountMan/kmountman.cpp:287
+#: GUI/mediabutton.cpp:533 MountMan/kmountman.cpp:287
 #: MountMan/kmountmangui.cpp:333 Panel/krpopupmenu.cpp:174
 msgid "Mount"
 msgstr "Priklop"
 
-#: GUI/mediabutton.cpp:526 MountMan/kmountman.cpp:287
+#: GUI/mediabutton.cpp:535 MountMan/kmountman.cpp:287
 #: MountMan/kmountmangui.cpp:337 Panel/krpopupmenu.cpp:172
 msgid "Unmount"
 msgstr "Odklop"
 
-#: GUI/mediabutton.cpp:528 MountMan/kmountmangui.cpp:343
+#: GUI/mediabutton.cpp:537 MountMan/kmountmangui.cpp:343
 #: Panel/krpopupmenu.cpp:176
 msgid "Eject"
 msgstr "Izvrzi"
@@ -485,7 +486,7 @@ msgstr ""
 msgid "&General"
 msgstr "&Splošno"
 
-#: Dialogs/packguibase.cpp:266 Dialogs/packguibase.cpp:306
+#: Dialogs/packguibase.cpp:277 Dialogs/packguibase.cpp:317
 #: Filter/filtertabs.cpp:49
 msgid "&Advanced"
 msgstr "&Napredno"
@@ -598,7 +599,7 @@ msgid "Please specify a location to search in."
 msgstr "Manjka izbor lokacije iskanja."
 
 #: Filter/advancedfilter.cpp:59 Panel/krdetailedview.cpp:106
-#: Panel/krdetailedview.cpp:1401 Search/krsearchdialog.cpp:149
+#: Panel/krdetailedview.cpp:1428 Search/krsearchdialog.cpp:146
 #: Synchronizer/synchronizergui.cpp:1255 Synchronizer/synchronizergui.cpp:1259
 msgid "Size"
 msgstr "Velikost"
@@ -624,7 +625,7 @@ msgid "&Smaller than"
 msgstr "&Manjši kot"
 
 #: DiskUsage/dulistview.cpp:71 Filter/advancedfilter.cpp:113
-#: Search/krsearchdialog.cpp:150 Synchronizer/synchronizergui.cpp:1256
+#: Search/krsearchdialog.cpp:147 Synchronizer/synchronizergui.cpp:1256
 #: Synchronizer/synchronizergui.cpp:1258
 msgid "Date"
 msgstr "Datum"
@@ -975,7 +976,7 @@ msgstr "Izbor načina pregledovanja"
 msgid "Choose a window-mode"
 msgstr "Izbor načina okna"
 
-#: Konfigurator/konfigurator.cpp:69 Search/krsearchdialog.cpp:106
+#: Konfigurator/konfigurator.cpp:69 Search/krsearchdialog.cpp:103
 #: Synchronizer/synchronizedialog.cpp:117
 #: Synchronizer/synchronizergui.cpp:1393 UserAction/kraction.cpp:48
 msgid "Close"
@@ -1030,7 +1031,7 @@ msgid "Overwrite or append?"
 msgstr "Prepišem ali združim?"
 
 #: ActionMan/useractionpage.cpp:248 ActionMan/useractionpage.cpp:257
-#: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:135
+#: Dialogs/checksumdlg.cpp:552 Dialogs/krkeydialog.cpp:135
 #: Konfigurator/kgcolors.cpp:523 UserAction/kraction.cpp:139
 msgid "Overwrite"
 msgstr "Prepiši"
@@ -1230,7 +1231,7 @@ msgstr "Premakni sem"
 msgid "Link Here"
 msgstr "Poveži sem"
 
-#: Dialogs/krmaskchoice.cpp:135 Dialogs/packguibase.cpp:278
+#: Dialogs/krmaskchoice.cpp:135 Dialogs/packguibase.cpp:289
 #: DiskUsage/diskusage.cpp:155 Panel/listpanel.cpp:788
 #: Panel/panelpopup.cpp:351
 msgid "Cancel"
@@ -1250,59 +1251,63 @@ msgstr "Berem:"
 
 #: DiskUsage/dulines.cpp:238 DiskUsage/dulistview.cpp:56
 #: Konfigurator/krresulttable.cpp:129 MountMan/kmountmangui.cpp:127
-#: Panel/krdetailedview.cpp:103 Search/krsearchdialog.cpp:147
+#: Panel/krdetailedview.cpp:103 Search/krsearchdialog.cpp:144
 #: Synchronizer/synchronizergui.cpp:1254 Synchronizer/synchronizergui.cpp:1260
 msgid "Name"
 msgstr "Ime"
 
-#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1395
+#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1422
 msgid "Ext"
 msgstr "Kon"
 
 #: DiskUsage/dulistview.cpp:68 MountMan/kmountmangui.cpp:128
-#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1398
+#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1425
 msgid "Type"
 msgstr "Tip"
 
-#: Panel/krdetailedview.cpp:107 Panel/krdetailedview.cpp:1404
+#: Panel/krdetailedview.cpp:107 Panel/krdetailedview.cpp:1431
 msgid "Modified"
 msgstr "Sprememba"
 
-#: Panel/krdetailedview.cpp:108 Panel/krdetailedview.cpp:1407
+#: Panel/krdetailedview.cpp:108 Panel/krdetailedview.cpp:1434
 msgid "Perms"
 msgstr "Dovoljenja"
 
-#: Panel/krdetailedview.cpp:109 Panel/krdetailedview.cpp:1410
+#: Panel/krdetailedview.cpp:109 Panel/krdetailedview.cpp:1437
 msgid "rwx"
 msgstr "rwx"
 
 #: DiskUsage/dulistview.cpp:77 Panel/krdetailedview.cpp:110
-#: Panel/krdetailedview.cpp:1413
+#: Panel/krdetailedview.cpp:1440
 msgid "Owner"
 msgstr "Lastnik"
 
 #: DiskUsage/dulistview.cpp:80 Konfigurator/krresulttable.cpp:281
-#: Panel/krdetailedview.cpp:111 Panel/krdetailedview.cpp:1416
+#: Panel/krdetailedview.cpp:111 Panel/krdetailedview.cpp:1443
 msgid "Group"
 msgstr "Skupina"
 
-#: Panel/krdetailedview.cpp:1382
+#: Konfigurator/kgcolors.cpp:419 Panel/krdetailedview.cpp:302
+msgid "Directory"
+msgstr "Mapa"
+
+#: Panel/krdetailedview.cpp:1409
 msgid "Columns"
 msgstr "Stolpci"
 
-#: Panel/krviewitem.cpp:45
+#: Panel/krviewitem.cpp:44
 msgid "Climb up the directory tree"
 msgstr "Splezaj po strukturi map"
 
-#: Panel/krviewitem.cpp:57
+#: Panel/krviewitem.cpp:56
 msgid "Symbolic Link"
 msgstr "Simbolna povezava"
 
-#: Panel/krviewitem.cpp:58
+#: Panel/krviewitem.cpp:57
 msgid "(broken link !)"
 msgstr "(napačna povezava!)"
 
-#: Panel/krviewitem.cpp:59
+#: Panel/krviewitem.cpp:58
 msgid "%1 (Link)"
 msgstr "%1 (povezava)"
 
@@ -1727,7 +1732,7 @@ msgstr ""
 "Zares želite izbrisati %n predmeta?\n"
 "Zares želite izbrisati %n predmete?"
 
-#: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:135
+#: Dialogs/checksumdlg.cpp:552 Dialogs/krkeydialog.cpp:135
 #: DiskUsage/diskusage.cpp:608 Konfigurator/kgcolors.cpp:523
 #: Panel/panelfunc.cpp:658
 msgid "Warning"
@@ -1818,7 +1823,7 @@ msgstr "Ni mogoče izrezati zbirke virtualnih URL-jev v odložišče!"
 msgid "Cannot copy a virtual URL collection onto the clipboard!"
 msgstr "Ni mogoče kopirati zbirke virtualnih URL-jev v odložišče!"
 
-#: Locate/locate.cpp:67 Locate/locate.cpp:205 Search/krsearchdialog.cpp:102
+#: Locate/locate.cpp:67 Locate/locate.cpp:205 Search/krsearchdialog.cpp:99
 #: Synchronizer/synchronizergui.cpp:1377
 msgid "Stop"
 msgstr "Stop"
@@ -1871,7 +1876,7 @@ msgstr ""
 msgid "Error during the start of 'locate' process!"
 msgstr "Napaka med izvajanjem ukaza 'locate'!"
 
-#: Locate/locate.cpp:244 Search/krsearchdialog.cpp:91
+#: Locate/locate.cpp:244 Search/krsearchdialog.cpp:88
 #: Synchronizer/synchronizergui.cpp:1382
 msgid "Feed to listbox"
 msgstr "Napolni listo"
@@ -1904,11 +1909,11 @@ msgstr "Iskalnega niza nisem našel!"
 msgid "Locate results"
 msgstr "Lociranje - rezultati"
 
-#: Locate/locate.cpp:501 Search/krsearchdialog.cpp:534
+#: Locate/locate.cpp:501 Search/krsearchdialog.cpp:531
 msgid "Query name"
 msgstr "Ime poizvedbe"
 
-#: Locate/locate.cpp:502 Search/krsearchdialog.cpp:535
+#: Locate/locate.cpp:502 Search/krsearchdialog.cpp:532
 #: Synchronizer/feedtolistboxdialog.cpp:110
 msgid "Here you can name the file collection"
 msgstr "Tu lahko poimenujete izbor datotek"
@@ -2366,39 +2371,39 @@ msgstr "Urejanje"
 msgid "Sorry, can't find internal editor"
 msgstr "Ne najdem vgrajenega urejevalnika"
 
-#: Search/krsearchdialog.cpp:72
+#: Search/krsearchdialog.cpp:69
 msgid "Krusader::Search"
 msgstr "Krusader::Iskanje"
 
-#: Search/krsearchdialog.cpp:96
+#: Search/krsearchdialog.cpp:93
 msgid "Search"
 msgstr "Iskanje"
 
-#: Search/krsearchdialog.cpp:133 Search/krsearchdialog.cpp:362
+#: Search/krsearchdialog.cpp:130 Search/krsearchdialog.cpp:359
 msgid "Found 0 matches."
 msgstr "Iskani niz ne vrne zadetkov."
 
-#: Search/krsearchdialog.cpp:148
+#: Search/krsearchdialog.cpp:145
 msgid "Location"
 msgstr "Lokacija"
 
-#: DiskUsage/dulistview.cpp:74 Search/krsearchdialog.cpp:151
+#: DiskUsage/dulistview.cpp:74 Search/krsearchdialog.cpp:148
 msgid "Permissions"
 msgstr "Dovoljenje"
 
-#: Search/krsearchdialog.cpp:188
+#: Search/krsearchdialog.cpp:185
 msgid "Text found:"
 msgstr "Najdeno besedilo:"
 
-#: Search/krsearchdialog.cpp:198
+#: Search/krsearchdialog.cpp:195
 msgid "&Results"
 msgstr "&Rezultati"
 
-#: Search/krsearchdialog.cpp:327
+#: Search/krsearchdialog.cpp:324
 msgid "Found %1 matches."
 msgstr "Našel sem %1 zadetkov."
 
-#: Search/krsearchdialog.cpp:349
+#: Search/krsearchdialog.cpp:346
 msgid ""
 "Since you chose to also search in archives, note the following limitations:\n"
 "You cannot search for text (grep) while doing a search that includes "
@@ -2407,24 +2412,24 @@ msgstr ""
 "Med iskanjem znotraj arhivov je nekaj omejitev:\n"
 "Iskanje besedila znotraj arhivov ni podprto."
 
-#: Search/krsearchdialog.cpp:400
+#: Search/krsearchdialog.cpp:397
 msgid "Finished searching."
 msgstr "Iskanje končano."
 
-#: Search/krsearchdialog.cpp:496
+#: Search/krsearchdialog.cpp:493
 msgid "Krusader Search"
 msgstr "Krusader Iskalnik"
 
-#: Search/krsearchdialog.cpp:498
+#: Search/krsearchdialog.cpp:495
 msgid "View File (F3)"
 msgstr "Poglej datoteko (F3)"
 
-#: Search/krsearchdialog.cpp:499
+#: Search/krsearchdialog.cpp:496
 msgid "Edit File (F4)"
 msgstr "Uredi datoteko (F4)"
 
 #: Konfigurator/kgarchives.cpp:113 Konfigurator/kggeneral.cpp:151
-#: Search/krsearchdialog.cpp:526
+#: Search/krsearchdialog.cpp:523
 msgid "Search results"
 msgstr "Rezultati iskanja"
 
@@ -2589,7 +2594,8 @@ msgid ""
 msgstr "Notranja napaka v Priklopniku. Obvesti razvijalce programa."
 
 #: MountMan/kmountmangui.cpp:326
-msgid "MountMan has an internal error. Please notify the developers. Thank you."
+msgid ""
+"MountMan has an internal error. Please notify the developers. Thank you."
 msgstr "Notranja napaka v Priklopniku. Obvesti razvijalce programa."
 
 #: MountMan/kmountmangui.cpp:331
@@ -2654,7 +2660,7 @@ msgstr ""
 "IRC\n"
 "server: irc.freenode.net, kanal: #krusader"
 
-#: main.cpp:200
+#: main.cpp:202
 msgid "Application already running!\n"
 msgstr "Program že teče.\n"
 
@@ -2962,74 +2968,83 @@ msgid "Legacy import completed"
 msgstr "Podedovan uvoz končan"
 
 #: Dialogs/krkeydialog.cpp:134
-msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgid ""
+"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
 msgstr "<qt>Datoteka <b>%1</b> že obstaja. Jo zares želite prepisati?</qt>"
 
 #: Dialogs/krkeydialog.cpp:143
 msgid "<qt>Can't open <b>%1</b> for writing!</qt>"
 msgstr "</qt>Ni mogoče odpreti <b>%1</b> za pisanje!</qt>"
 
-#: Dialogs/packguibase.cpp:66 Dialogs/packguibase.cpp:120
+#: Dialogs/packguibase.cpp:68 Dialogs/packguibase.cpp:122
 msgid "Pack"
 msgstr "Stisni"
 
-#: Dialogs/packguibase.cpp:76
+#: Dialogs/packguibase.cpp:78
 msgid "To archive"
 msgstr "v arhiv"
 
-#: Dialogs/packguibase.cpp:95
+#: Dialogs/packguibase.cpp:97
 msgid "In directory"
 msgstr "v mapo"
 
-#: Dialogs/packguibase.cpp:145
+#: Dialogs/packguibase.cpp:147
 msgid "Multiple volume archive"
 msgstr "Več enotni arhiv"
 
-#: Dialogs/packguibase.cpp:154 DiskUsage/diskusage.cpp:1033
+#: Dialogs/packguibase.cpp:156 DiskUsage/diskusage.cpp:1033
 msgid "Size:"
 msgstr "Velikost:"
 
-#: Dialogs/packguibase.cpp:172
+#: Dialogs/packguibase.cpp:174
 msgid "Set compression level"
 msgstr "Določi stopnjo stiskanja"
 
-#: Dialogs/packguibase.cpp:200
+#: Dialogs/packguibase.cpp:189
+msgid "MIN"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:190
+msgid "MAX"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:211
 msgid "Password"
 msgstr "Geslo"
 
-#: Dialogs/packguibase.cpp:210
+#: Dialogs/packguibase.cpp:221
 msgid "Again"
 msgstr "Znova"
 
-#: Dialogs/packguibase.cpp:228
+#: Dialogs/packguibase.cpp:239
 msgid "Encrypt headers"
 msgstr "Kodiraj glavo"
 
-#: Dialogs/packguibase.cpp:240
+#: Dialogs/packguibase.cpp:251
 msgid "Command line switches:"
 msgstr "Zastavice ukazne vrstice:"
 
-#: Dialogs/packguibase.cpp:273
+#: Dialogs/packguibase.cpp:284
 msgid "Ok"
 msgstr "V redu"
 
-#: Dialogs/packguibase.cpp:322
+#: Dialogs/packguibase.cpp:333
 msgid "The passwords are equal"
 msgstr "Gesli sta enaki"
 
-#: Dialogs/packguibase.cpp:326
+#: Dialogs/packguibase.cpp:337
 msgid "The passwords are different"
 msgstr "Gesli sta različni"
 
-#: Dialogs/packguibase.cpp:361
+#: Dialogs/packguibase.cpp:374
 msgid "Cannot pack! The passwords are different!"
 msgstr "Ni mogoče stisniti! Gesli nista enaki!"
 
-#: Dialogs/packguibase.cpp:386
+#: Dialogs/packguibase.cpp:399
 msgid "Invalid volume size!"
 msgstr "Napačna velikost enote!"
 
-#: Dialogs/packguibase.cpp:416
+#: Dialogs/packguibase.cpp:429
 msgid ""
 "Invalid command line switch!\n"
 "Switch must start with '-'!"
@@ -3037,7 +3052,7 @@ msgstr ""
 "Nepravilna zastavica ukaza!\n"
 "Zastavica se mora začeti z '-'!"
 
-#: Dialogs/packguibase.cpp:428
+#: Dialogs/packguibase.cpp:441
 msgid ""
 "Invalid command line switch!\n"
 "Backslash cannot be the last character"
@@ -3045,7 +3060,7 @@ msgstr ""
 "Nepravilna zastavica ukaza!\n"
 "Povratni delivec ne more biti zadnji znak."
 
-#: Dialogs/packguibase.cpp:436
+#: Dialogs/packguibase.cpp:449
 msgid ""
 "Invalid command line switch!\n"
 "Unclosed quotation mark!"
@@ -3077,11 +3092,11 @@ msgstr "Klikni za odhod na <i>%1</i>"
 msgid "Krusader::Wait"
 msgstr "Krusader::Čakanje"
 
-#: Dialogs/checksumdlg.cpp:191 Dialogs/checksumdlg.cpp:446
+#: Dialogs/checksumdlg.cpp:198 Dialogs/checksumdlg.cpp:453
 msgid "Create Checksum"
 msgstr "Izračunaj kontrolno vsoto"
 
-#: Dialogs/checksumdlg.cpp:196
+#: Dialogs/checksumdlg.cpp:203
 msgid ""
 "<qt>Can't calculate checksum since no supported tool was found. Please check "
 "the <b>Dependencies</b> page in Krusader's settings.</qt>"
@@ -3089,45 +3104,46 @@ msgstr ""
 "<qt>Ne morem izračunati kontrolnih vsot, ker ne najdem primernega orodja. "
 "Preverite <b>Odvisnosti</b> med nastavitvami Krusaderja.</qt>"
 
-#: Dialogs/checksumdlg.cpp:199 Dialogs/checksumdlg.cpp:300
+#: Dialogs/checksumdlg.cpp:206 Dialogs/checksumdlg.cpp:307
+#, fuzzy
 msgid ""
 "<qt><b>Note</b>: you've selected directories, and probably have no recursive "
 "checksum tool installed. Krusader currently supports <i>md5deep, sha1deep, "
-"sha256deep and tigerdeep</i></qt>"
+"sha256deep, tigerdeep and cfv</i></qt>"
 msgstr ""
 "<qt><b>Opozorilo</b>: izbrane so tudi mape, vendar verjetno ni orodja za "
 "rekurzivno kreiranj kontrolnih vsot. Krusader podpira <i>md5deep, sha1deep, "
 "sha256deep</i> in <i>tigerdeep</i>.</qt>"
 
-#: Dialogs/checksumdlg.cpp:215
+#: Dialogs/checksumdlg.cpp:222
 msgid "About to calculate checksum for the following files"
 msgstr "Izračunal bom kontrolne vsote za naslednje datoteke"
 
-#: Dialogs/checksumdlg.cpp:216 Dialogs/checksumdlg.cpp:317
+#: Dialogs/checksumdlg.cpp:223 Dialogs/checksumdlg.cpp:324
 msgid " and folders:"
 msgstr " in mape:"
 
-#: Dialogs/checksumdlg.cpp:229
+#: Dialogs/checksumdlg.cpp:236
 msgid "Select the checksum method:"
 msgstr "Izberite metodo za izračun kontrolnih vsot:"
 
-#: Dialogs/checksumdlg.cpp:250
+#: Dialogs/checksumdlg.cpp:257
 msgid "Calculating checksums ..."
 msgstr "Izračunavanje kontrolne vsote ..."
 
-#: Dialogs/checksumdlg.cpp:265 Dialogs/checksumdlg.cpp:379
+#: Dialogs/checksumdlg.cpp:272 Dialogs/checksumdlg.cpp:386
 msgid "<qt>There was an error while running <b>%1</b>.</qt>"
 msgstr "<qt>Prišlo je do napake med nalaganjem <b>%1</b>.</qt>"
 
-#: Dialogs/checksumdlg.cpp:277 Dialogs/checksumdlg.cpp:388
+#: Dialogs/checksumdlg.cpp:284 Dialogs/checksumdlg.cpp:395
 msgid "Error reading stdout or stderr"
 msgstr "Napaka pri branju stdout ali stderr"
 
-#: Dialogs/checksumdlg.cpp:292 Dialogs/checksumdlg.cpp:410
+#: Dialogs/checksumdlg.cpp:299 Dialogs/checksumdlg.cpp:417
 msgid "Verify Checksum"
 msgstr "Overi kontrolno vsoto"
 
-#: Dialogs/checksumdlg.cpp:297
+#: Dialogs/checksumdlg.cpp:304
 msgid ""
 "<qt>Can't verify checksum since no supported tool was found. Please check "
 "the <b>Dependencies</b> page in Krusader's settings.</qt>"
@@ -3135,15 +3151,15 @@ msgstr ""
 "<qt>Ni mogoče preveriti kontrolnih vsot, ker ni določenih primernih orodij. "
 "Preverite <b>Odvisnosti</b> med nastavitvami Krusaderja.</qt>"
 
-#: Dialogs/checksumdlg.cpp:316
+#: Dialogs/checksumdlg.cpp:323
 msgid "About to verify checksum for the following files"
 msgstr "Preveril bom kontrolne vsote za naslednje datoteke"
 
-#: Dialogs/checksumdlg.cpp:330
+#: Dialogs/checksumdlg.cpp:337
 msgid "Checksum file:"
 msgstr "Datoteka s kontrolnih vsotami:"
 
-#: Dialogs/checksumdlg.cpp:344
+#: Dialogs/checksumdlg.cpp:351
 msgid ""
 "<qt>Error reading checksum file <i>%1</i>.<br />Please specify a valid "
 "checksum file.</qt>"
@@ -3151,7 +3167,7 @@ msgstr ""
 "<qt>Napaka pri branju datoteke s kontrolnimi števili <i>%1</i>.<br /"
 ">Izberite primerno datoteko.</qt>"
 
-#: Dialogs/checksumdlg.cpp:357
+#: Dialogs/checksumdlg.cpp:364
 msgid ""
 "<qt>Krusader can't find a checksum tool that handles %1 on your system. "
 "Please check the <b>Dependencies</b> page in Krusader's settings.</qt>"
@@ -3159,55 +3175,55 @@ msgstr ""
 "<qt>Ne najdem orodja za izračunavanje kontrolnih vsot %1. Preverite "
 "<b>Odvisnosti</b> med nastavitvami Krusaderja.</qt>"
 
-#: Dialogs/checksumdlg.cpp:366
+#: Dialogs/checksumdlg.cpp:373
 msgid "Verifying checksums ..."
 msgstr "Overjanje kontrolne vsote ..."
 
-#: Dialogs/checksumdlg.cpp:423
+#: Dialogs/checksumdlg.cpp:430
 msgid "Errors were detected while verifying the checksums"
 msgstr "Pojavile so se napake pri preverjanju kontrolnih vsot"
 
-#: Dialogs/checksumdlg.cpp:424
+#: Dialogs/checksumdlg.cpp:431
 msgid "Checksums were verified successfully"
 msgstr "Kontrolne vsote so potrjene"
 
-#: Dialogs/checksumdlg.cpp:430
+#: Dialogs/checksumdlg.cpp:437
 msgid "The following files have failed:"
 msgstr "Naslednje datoteke imajo napake:"
 
-#: Dialogs/checksumdlg.cpp:461
+#: Dialogs/checksumdlg.cpp:468
 msgid "Errors were detected while creating the checksums"
 msgstr "Pojavile so se napake pri ustvarjanju kontrolnih vsot"
 
-#: Dialogs/checksumdlg.cpp:462
+#: Dialogs/checksumdlg.cpp:469
 msgid "Checksums were created successfully"
 msgstr "Kontrolne vsote so bile uspešno ustvarjene"
 
-#: Dialogs/checksumdlg.cpp:469
+#: Dialogs/checksumdlg.cpp:476
 msgid "Here are the calculated checksums:"
 msgstr "Tu so izračunane kontrolne vsote"
 
-#: Dialogs/checksumdlg.cpp:474
+#: Dialogs/checksumdlg.cpp:481
 msgid "Hash"
 msgstr "Razpršilo"
 
-#: Dialogs/checksumdlg.cpp:475 Konfigurator/kgcolors.cpp:418
+#: Dialogs/checksumdlg.cpp:482 Konfigurator/kgcolors.cpp:418
 msgid "File"
 msgstr "Datoteka "
 
-#: Dialogs/checksumdlg.cpp:494
+#: Dialogs/checksumdlg.cpp:501
 msgid "Here are the errors received:"
 msgstr "Tu so napake, ki so se pojavile:"
 
-#: Dialogs/checksumdlg.cpp:508
+#: Dialogs/checksumdlg.cpp:515
 msgid "Save checksum to file:"
 msgstr "Shrani kontrolne vsote v datoteko:"
 
-#: Dialogs/checksumdlg.cpp:522
+#: Dialogs/checksumdlg.cpp:529
 msgid "Checksum file for each source file"
 msgstr "Kontrolne vsote za vsako datoteko posebej"
 
-#: Dialogs/checksumdlg.cpp:544
+#: Dialogs/checksumdlg.cpp:551
 msgid ""
 "File %1 already exists.\n"
 "Are you sure you want to overwrite it?"
@@ -3215,20 +3231,20 @@ msgstr ""
 "Datoteka 1% že obstaja.\n"
 "Naj jo prepišem?"
 
-#: Dialogs/checksumdlg.cpp:547
+#: Dialogs/checksumdlg.cpp:554
 msgid "Select a file to save to"
 msgstr "Označi datoteko za shranjevanje"
 
-#: Dialogs/checksumdlg.cpp:552
+#: Dialogs/checksumdlg.cpp:559
 #, c-format
 msgid "Error saving file %1"
 msgstr "Napaka pri shranjevanju datoteke <b>%1</b>"
 
-#: Dialogs/checksumdlg.cpp:564
+#: Dialogs/checksumdlg.cpp:571
 msgid "Saving checksum files..."
 msgstr "Shranjevanje kontrolne vsote ..."
 
-#: Dialogs/checksumdlg.cpp:569
+#: Dialogs/checksumdlg.cpp:576
 msgid "Errors occured while saving multiple checksums. Stopping"
 msgstr "Pojavile so se napake pri shranjevanju kontrolnih vsot. Prekinjam"
 
@@ -3269,7 +3285,8 @@ msgid "Delete selected useractions"
 msgstr "Odstrani izbrane skripte"
 
 #: ActionMan/useractionpage.cpp:126
-msgid "The current action has been modified. Do you want to apply these changes?"
+msgid ""
+"The current action has been modified. Do you want to apply these changes?"
 msgstr "Trenutni skript je bil spremenjen. Želite sprejeti spremembe?"
 
 #: ActionMan/useractionpage.cpp:203
@@ -4270,59 +4287,59 @@ msgstr "Pokaži velikost datotek"
 msgid "Lines"
 msgstr "Vrstice"
 
-#: DiskUsage/dufilelight.cpp:117
+#: DiskUsage/dufilelight.cpp:96
 msgid "Zoom In"
 msgstr "Povečaj"
 
-#: DiskUsage/dufilelight.cpp:118
+#: DiskUsage/dufilelight.cpp:97
 msgid "Zoom Out"
 msgstr "Pomanjšaj"
 
-#: DiskUsage/dufilelight.cpp:121
+#: DiskUsage/dufilelight.cpp:100
 msgid "Rainbow"
 msgstr "Mavrica"
 
-#: DiskUsage/dufilelight.cpp:122
+#: DiskUsage/dufilelight.cpp:101
 msgid "High Contrast"
 msgstr "Visok kontrast"
 
-#: DiskUsage/dufilelight.cpp:123
+#: DiskUsage/dufilelight.cpp:102
 msgid "KDE"
 msgstr "KDE"
 
-#: DiskUsage/dufilelight.cpp:126
+#: DiskUsage/dufilelight.cpp:105
 msgid "Scheme"
 msgstr "Shema"
 
-#: DiskUsage/dufilelight.cpp:128
+#: DiskUsage/dufilelight.cpp:107
 msgid "Increase contrast"
 msgstr "Povečaj kontrast"
 
-#: DiskUsage/dufilelight.cpp:129
+#: DiskUsage/dufilelight.cpp:108
 msgid "Decrease contrast"
 msgstr "Pomanjšaj kontrast"
 
-#: DiskUsage/dufilelight.cpp:131
+#: DiskUsage/dufilelight.cpp:110
 msgid "Use anti-aliasing"
 msgstr "Uporabi glajenje črk"
 
-#: DiskUsage/dufilelight.cpp:134
+#: DiskUsage/dufilelight.cpp:113
 msgid "Show small files"
 msgstr "Pokaži male datoteke"
 
-#: DiskUsage/dufilelight.cpp:137
+#: DiskUsage/dufilelight.cpp:116
 msgid "Vary label font sizes"
 msgstr "Spremeni velikost pisave označb"
 
-#: DiskUsage/dufilelight.cpp:140 DiskUsage/dufilelight.cpp:209
+#: DiskUsage/dufilelight.cpp:119 DiskUsage/dufilelight.cpp:193
 msgid "Minimum font size"
 msgstr "Minimalna velikost pisave"
 
-#: DiskUsage/diskusage.cpp:789 DiskUsage/dufilelight.cpp:142
+#: DiskUsage/diskusage.cpp:789 DiskUsage/dufilelight.cpp:121
 msgid "Filelight"
 msgstr "Filelight"
 
-#: DiskUsage/dufilelight.cpp:208
+#: DiskUsage/dufilelight.cpp:192
 msgid "Krusader::Filelight"
 msgstr "Krusader::Filelight"
 
@@ -4585,7 +4602,8 @@ msgstr "Urejevalnik:"
 msgid ""
 "Hint: use 'internal editor' if you want to use Krusader's fast built-in "
 "editor"
-msgstr "Namig: Uporabljajte 'vgrajeni urejevalnik' če želite izkoristiti hitrost"
+msgstr ""
+"Namig: Uporabljajte 'vgrajeni urejevalnik' če želite izkoristiti hitrost"
 
 #: Konfigurator/kggeneral.cpp:86
 msgid "Default viewer mode:"
@@ -4656,12 +4674,14 @@ msgid "Searching for tools..."
 msgstr "Iščem orodja ..."
 
 #: Konfigurator/kggeneral.cpp:152
-msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid ""
+"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr "Orodja morajo biti naložena v <code>$PATH</code> (e.g. /usr/bin)"
 
 #: Konfigurator/krresulttable.cpp:121
 msgid "unarj not found, but arj found, which will be used for unpacking"
-msgstr "unarj manjka, vendar je najden arj, ki bo uporabljen tudi za razširjanje"
+msgstr ""
+"unarj manjka, vendar je najden arj, ki bo uporabljen tudi za razširjanje"
 
 #: Konfigurator/krresulttable.cpp:127
 msgid "rpm found, but cpio not found which is required for unpacking"
@@ -5022,7 +5042,8 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Gumb za preklop med brskanjem in usklajevanjem"
 
 #: Konfigurator/kglookfeel.cpp:197
-msgid "Each directory change in the panel is also performed in the other panel."
+msgid ""
+"Each directory change in the panel is also performed in the other panel."
 msgstr "Vsaka sprememba mape se odraža v obeh oknih."
 
 #: Konfigurator/kglookfeel.cpp:217
@@ -5266,7 +5287,8 @@ msgstr ""
 "poskusi točko priklopiti z določenimi parametri."
 
 #: Konfigurator/kgadvanced.cpp:65
-msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgid ""
+"Don't use KDE's media protocol for media button (if it's buggy or missing)"
 msgstr "Ne uporabljaj KDE media protokola za media gumb."
 
 #: Konfigurator/kgadvanced.cpp:65
@@ -5683,10 +5705,6 @@ msgstr "Simbolna povezava"
 msgid "Application"
 msgstr "Aplikacija"
 
-#: Konfigurator/kgcolors.cpp:419
-msgid "Directory"
-msgstr "Mapa"
-
 #: Konfigurator/kgcolors.cpp:475
 msgid "Copy to right"
 msgstr "Kopiraj na desno"
@@ -5924,7 +5942,8 @@ msgid "Test archive before unpacking"
 msgstr "Testiraj arhivu pred razširjanjem"
 
 #: Konfigurator/kgarchives.cpp:96
-msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid ""
+"Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr "Nekateri arhivi so lahko poškodovani, zato je testiranje priporočeno."
 
 #: Konfigurator/kgarchives.cpp:113
@@ -5932,8 +5951,10 @@ msgid "Searching for packers..."
 msgstr "Iskanje programov za arhiviranje ..."
 
 #: Konfigurator/kgarchives.cpp:114
-msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr "Nova orodja za stiskanje namestite v <code>$PATH</code> (npr. /usr/bin)"
+msgid ""
+"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgstr ""
+"Nova orodja za stiskanje namestite v <code>$PATH</code> (npr. /usr/bin)"
 
 #: Konfigurator/kguseractions.cpp:48
 msgid "Information"
@@ -6028,7 +6049,8 @@ msgid ""
 "bookmarks. IT WILL BE REMOVED SOON!\n"
 "Try the new bookmark-manager: open a new remote connection, once done, press "
 "the bookmark button, select 'Add bookmark' and that's it!"
-msgstr "Pomembno: Od različice 1.60.0 je RemoteMan zamenjan z Upravljavcem zaznamkov!"
+msgstr ""
+"Pomembno: Od različice 1.60.0 je RemoteMan zamenjan z Upravljavcem zaznamkov!"
 
 #: krslots.cpp:442
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
@@ -6036,7 +6058,8 @@ msgstr "Ni mogoče zagnati priklopa! Preverite 'Odvisnosti' v Konfiguratorju."
 
 #: krslots.cpp:474
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
-msgstr "Ne najdem \"KsysCtrl\". Naložiti bo potrebno KDE administratorski paket"
+msgstr ""
+"Ne najdem \"KsysCtrl\". Naložiti bo potrebno KDE administratorski paket"
 
 #: krslots.cpp:482
 msgid ""
@@ -6191,7 +6214,8 @@ msgid "Not a valid CRC file!"
 msgstr "Datoteka CRC ni prava!"
 
 #: Splitter/combiner.cpp:152
-msgid "Validity checking is impossible without a good CRC file. Continue combining?"
+msgid ""
+"Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Preverjanje pravilnosti ni mogoče brez CRC datoteke. Želite nadaljevati "
 "lepljenje?"
@@ -6231,4 +6255,3 @@ msgstr "Napaka pri branju datoteke %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Napaka pri pisanju datoteke %1!"
-
