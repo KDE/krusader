@@ -289,7 +289,7 @@ bool KRQuery::checkBuffer( const char *buf, int len ) const {
 
   if( receivedBuffer ) {
     int previous = 0;
-    while( buf[previous] != '\n' && previous < after && previous < MAX_LINE_LEN )
+    while( previous < after && previous < MAX_LINE_LEN && buf[previous] != '\n' )
       previous++;
 
     char * str = new char[ receivedBufferLen + previous ];
