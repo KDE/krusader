@@ -14,9 +14,9 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2006-12-17 12:36+0100\n"
-"PO-Revision-Date: 2006-09-18 22:58+0200\n"
+"PO-Revision-Date: 2006-12-19 07:58+0100\n"
 "Last-Translator: Tomek Grzejszczyk <tgrzej@onet.eu>\n"
-"Language-Team: Polish <krusader-i18n@googlegroups.com>\n"
+"Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -315,9 +315,8 @@ msgstr ""
 "%1"
 
 #: VFS/arc_vfs.cpp:217
-#, fuzzy
 msgid "<qt>Can't read <b>%1</b>. Archive might be corrupted!</qt>"
-msgstr " Archiwum może być uszkodzone !"
+msgstr "<qt>Nie można odczytać <b>%1</b>. Archiwum może być uszkodzone!</qt>"
 
 #: VFS/arc_vfs.cpp:322 VFS/arc_vfs.cpp:579
 msgid "Deleting Files..."
@@ -1610,9 +1609,8 @@ msgid "No permissions to view this file."
 msgstr "Nie masz praw do czytania tego pliku."
 
 #: Panel/panelfunc.cpp:374
-#, fuzzy
 msgid "<qt>Can't open <b>%1</b></qt>"
-msgstr "<qt>Nie można otworzyć <b>%1</b> do pisania!</qt>"
+msgstr "<qt>Nie można otworzyć <b>%1</b></qt>"
 
 #: Panel/panelfunc.cpp:385
 msgid "You can't edit a directory"
@@ -1740,13 +1738,12 @@ msgid "Warning"
 msgstr "Uwaga"
 
 #: Panel/panelfunc.cpp:676
-#, fuzzy
 msgid ""
 "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete All?</"
 "p></qt>"
 msgstr ""
-" nie jest pusty !\n"
-"Pominąć go czy usunąć wszystko ?"
+"<qt><p>Katalog <b>%1</b> nie jest pusty!</p><p>Chcesz go pominąć, czy usunąć "
+"wszystko?</p></qt>"
 
 #: Panel/panelfunc.cpp:677
 msgid "&Skip"
@@ -1761,22 +1758,22 @@ msgid "Cannot pack files onto a virtual destination!"
 msgstr "Nie można pakować plików w wirtualnym miejscu!"
 
 #: Panel/panelfunc.cpp:803
-#, fuzzy
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>All data in the previous archive will be lost!</p></qt>"
 msgstr ""
-"<qt>Plik <br>%1</b> już istnieje. Jesteś pewien że chcesz go nadpisać?</qt>"
+"<qt><p>Archiwum <b>%1.%2</b> już istnieje. Czy chcesz je nadpisać? </"
+"p><p>Wszystkie dane zawarte w poprzednim archiwum zostaną utracone!</p></qt>"
 
 #: Panel/panelfunc.cpp:805
-#, fuzzy
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>Zip will replace identically named entries in the zip archive or add "
 "entries for new names.</p></qt>"
 msgstr ""
-"(ZIP zastąpi identycznie nazwane wpisy w archiwum zip, lub doda wpisy dla "
-"nowych nazw)"
+"<qt><p>Archiwum <b>%1.%2</b> już istnieje. Czy chcesz je nadpisać? </"
+"p><p>Zip doda nowe pliki do archiwum a te o istniejących nazwach zostaną "
+"zastąpione.</p></qt>"
 
 #: Panel/panelfunc.cpp:812
 msgid "Counting files to pack"
@@ -2071,27 +2068,22 @@ msgid "&Compare Directories"
 msgstr "&Porównaj katalogi"
 
 #: krusader.cpp:575
-#, fuzzy
 msgid "&Select Newer and Single"
 msgstr "&Zaznacz nowsze i pojedyncze"
 
 #: krusader.cpp:577
-#, fuzzy
 msgid "Select &Newer"
-msgstr "Zaznacz elementy"
+msgstr "Zaznacz &nowsze"
 
 #: krusader.cpp:579
-#, fuzzy
 msgid "Select &Single"
-msgstr " Zaznaczanie plików "
+msgstr "Zaznacz &pojedyncze"
 
 #: krusader.cpp:581
-#, fuzzy
 msgid "Select Different &and Single"
 msgstr "Z&aznacz różne i pojedyncze"
 
 #: krusader.cpp:583
-#, fuzzy
 msgid "Select &Different"
 msgstr "Zaznacz &różne"
 
@@ -2458,9 +2450,9 @@ msgid "BookMan II"
 msgstr "Zakładki II"
 
 #: BookMan/krbookmarkhandler.cpp:172
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to write to %1"
-msgstr "Nie można pisać do "
+msgstr "Nie można pisać do %1"
 
 #: BookMan/krbookmarkhandler.cpp:180
 msgid " instead of "
@@ -2472,14 +2464,13 @@ msgid "missing tag "
 msgstr "brakuje znacznika "
 
 #: BookMan/krbookmarkhandler.cpp:261
-#, fuzzy
 msgid "%1 doesn't seem to be a valid Bookmarks file"
-msgstr " nie wygląda na poprawny plik Zakładek"
+msgstr "%1 nie wygląda na poprawny plik zakładek"
 
 #: BookMan/krbookmarkhandler.cpp:268
-#, fuzzy, c-format
+#, c-format
 msgid "Error reading bookmarks file: %1"
-msgstr "Błąd podczas odczytu pliku zakładek: "
+msgstr "Błąd podczas odczytu pliku zakładek: %1"
 
 #: BookMan/krbookmarkhandler.cpp:332 BookMan/krbookmarkhandler.cpp:485
 msgid "Popular URLs"
@@ -4456,17 +4447,12 @@ msgid "Krusader::DiskUsage"
 msgstr "Krusader::Miejsce na dysku"
 
 #: DiskUsage/diskusage.cpp:597
-#, fuzzy
 msgid "Do you really want to move this item to the trash?"
-msgstr ""
-"Czy na pewno chcesz usunąć ten plik?\n"
-"Czy na pewno chcesz usunąć te %n pliki?\n"
-"Czy na pewno chcesz usunąć te %n plików?"
+msgstr "Czy na pewno chcesz przenieść ten element do kosza?"
 
 #: DiskUsage/diskusage.cpp:600
-#, fuzzy
 msgid "Do you really want to delete this item?"
-msgstr "Czy na pewno chcesz usunąć ten element ???"
+msgstr "Czy na pewno chcesz usunąć ten element ?"
 
 #: DiskUsage/diskusage.cpp:612
 msgid "Deleting %1..."
@@ -4564,7 +4550,7 @@ msgstr "U&ruchom"
 
 #. i18n: file krusaderui.rc line 85
 #: rc.cpp:18
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "User&actions"
 msgstr "Akcje &użytkownika"
 
@@ -4884,31 +4870,28 @@ msgstr ""
 "systemowej zamiast na pasku zadań."
 
 #: Konfigurator/kglookfeel.cpp:86
-#, fuzzy
 msgid "Autoselect directories"
 msgstr "Automatycznie zaznaczaj katalogi"
 
 #: Konfigurator/kglookfeel.cpp:86
-#, fuzzy
 msgid ""
 "When matching the select criteria, not only files will be selected, but also "
 "directories."
 msgstr ""
-"Kiedy kryteria wybierania są dopasowywane, katalogi są wtedy również "
-"zaznaczane."
+"W przypadku dopasowania kryteriów wyboru zaznaczane będą zarówno pliki jak i "
+"katalogi."
 
 #: Konfigurator/kglookfeel.cpp:87
 msgid "Rename selects extension"
 msgstr "Masowa zmiana nazw razem z rozszerzeniem"
 
 #: Konfigurator/kglookfeel.cpp:87
-#, fuzzy
 msgid ""
 "When renaming a file, the whole text is selected. If you want Total-"
 "Commander like renaming of just the name, without extension, uncheck this "
 "option."
 msgstr ""
-"Podczas zmiany nazw plików, wybierana jest cała nazwa. Jeśli chcesz, by "
+"Podczas zmiany nazw plików wybierana jest cała nazwa. Jeśli chcesz, by "
 "zmiana nazw nie obejmowała rozszerzenia, tak jak w Total Commanderze, "
 "odznacz to pole."
 
@@ -4929,10 +4912,9 @@ msgid "Fullscreen terminal (mc-style)"
 msgstr "Terminal pełnoekranowy (jak w mc)"
 
 #: Konfigurator/kglookfeel.cpp:89
-#, fuzzy
 msgid "Terminal is shown instead of the Krusader window (full screen)."
 msgstr ""
-"Zamiast okna krusadera wyświetlany jest terminal (w trybie pełnoekranowym)."
+"Zamiast okna Krusadera wyświetlany jest terminal (w trybie pełnoekranowym)."
 
 #: Konfigurator/kglookfeel.cpp:98
 msgid "Quicksearch"
@@ -5631,32 +5613,28 @@ msgid "Alternate background:"
 msgstr "Alternatywne tło:"
 
 #: Konfigurator/kgcolors.cpp:105 Konfigurator/kgcolors.cpp:141
-#, fuzzy
 msgid "Selected foreground:"
-msgstr "Kolor czcionki wyrażenia do skasowania:"
+msgstr "Zaznaczone elementy:"
 
 #: Konfigurator/kgcolors.cpp:106 Konfigurator/kgcolors.cpp:142
-#, fuzzy
 msgid "Selected background:"
-msgstr "Kolor tła wyrażenia do skasowania:"
+msgstr "Tło zaznaczonych elementów:"
 
 #: Konfigurator/kgcolors.cpp:107 Konfigurator/kgcolors.cpp:143
 msgid "Same as alt. background"
 msgstr "Taki sam jak kolor tła alternatywnego"
 
 #: Konfigurator/kgcolors.cpp:108 Konfigurator/kgcolors.cpp:145
-#, fuzzy
 msgid "Alternate selected background:"
-msgstr "Alternatywny kolor tła zaznaczonego pliku:"
+msgstr "Alt. kolor tła zaznaczonych elementów:"
 
 #: Konfigurator/kgcolors.cpp:108 Konfigurator/kgcolors.cpp:144
-#, fuzzy
 msgid "Same as selected background"
-msgstr "Taki sam jak kolor tła alternatywnego"
+msgstr "Taki sam jak kolor tła zaznaczonych elementów:"
 
 #: Konfigurator/kgcolors.cpp:109 Konfigurator/kgcolors.cpp:146
 msgid "Current foreground:"
-msgstr "Bieżący plik:"
+msgstr "Bieżący element:"
 
 #: Konfigurator/kgcolors.cpp:109 Konfigurator/kgcolors.cpp:111
 #: Konfigurator/kgcolors.cpp:112
@@ -5664,18 +5642,16 @@ msgid "Not used"
 msgstr "Nie używany"
 
 #: Konfigurator/kgcolors.cpp:110 Konfigurator/kgcolors.cpp:147
-#, fuzzy
 msgid "Same as selected foreground"
-msgstr "Taki sam jak zaznaczony plik"
+msgstr "Taki sam jak kolor zaznaczonych elementów"
 
 #: Konfigurator/kgcolors.cpp:111 Konfigurator/kgcolors.cpp:148
-#, fuzzy
 msgid "Selected current foreground:"
-msgstr "Zaznaczony bieżący plik:"
+msgstr "Zaznaczony bieżący element:"
 
 #: Konfigurator/kgcolors.cpp:112 Konfigurator/kgcolors.cpp:149
 msgid "Current background:"
-msgstr "Tło bieżącego pliku:"
+msgstr "Tło bieżącego elementu:"
 
 #: Konfigurator/kgcolors.cpp:122
 msgid "Inactive"
@@ -5756,19 +5732,16 @@ msgid "Export color-scheme"
 msgstr "Eksportuj schemat kolorów"
 
 #: Konfigurator/kgcolors.cpp:411
-#, fuzzy
 msgid "Selected + Current"
-msgstr "Powiel kartę"
+msgstr "Zaznaczone i bieżący"
 
 #: Konfigurator/kgcolors.cpp:412
-#, fuzzy
 msgid "Selected 2"
-msgstr " Zaznaczanie plików "
+msgstr "Zaznaczone 2"
 
 #: Konfigurator/kgcolors.cpp:413
-#, fuzzy
 msgid "Selected 1"
-msgstr " Zaznaczanie plików "
+msgstr " Zaznaczone 1"
 
 #: Konfigurator/kgcolors.cpp:414
 msgid "Current"
@@ -6348,45 +6321,3 @@ msgstr "Błąd podczas odczytu pliku %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Błąd podczas zapisu pliku %1!"
-
-#~ msgid "Can't Read "
-#~ msgstr "Odczyt niemożliwy "
-
-#~ msgid "Directory "
-#~ msgstr "Katalog "
-
-#~ msgid "The Archive "
-#~ msgstr "Archiwum "
-
-#~ msgid " already exists. Do you want to overwrite the archive ?\n"
-#~ msgstr " już istnieje. Czy chcesz nadpisać archiwum?\n"
-
-#~ msgid "Mark &Newer"
-#~ msgstr "Zaznacz &nowsze"
-
-#~ msgid "Mark &Single"
-#~ msgstr "Zaznacz &pojedyncze"
-
-#~ msgid "trash"
-#~ msgstr "wyrzucić do kosza"
-
-#~ msgid "delete"
-#~ msgstr "usunąć"
-
-#~ msgid "Are you sure you want to "
-#~ msgstr "Czy na pewno chcesz "
-
-#~ msgid "Marked foreground:"
-#~ msgstr "Zaznaczone pliki:"
-
-#~ msgid "Marked background:"
-#~ msgstr "Tło zaznaczonych plików:"
-
-#~ msgid "Same as marked background"
-#~ msgstr "Taki sam jak kolor tła zaznaczonego pliku"
-
-#~ msgid "Marked 2"
-#~ msgstr "Zaznaczenie 2"
-
-#~ msgid "Marked 1"
-#~ msgstr "Zaznaczenie 1"

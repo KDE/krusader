@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2006-12-17 12:36+0100\n"
-"PO-Revision-Date: 2006-10-22 02:43+0300\n"
+"PO-Revision-Date: 2006-12-19 19:57+0200\n"
 "Last-Translator: Spiros Georgaras <sngeorgaras@otenet.gr>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -3016,11 +3016,11 @@ msgstr "Ορίστε το επίπεδο συμπίεσης"
 
 #: Dialogs/packguibase.cpp:189
 msgid "MIN"
-msgstr ""
+msgstr "ΕΛ"
 
 #: Dialogs/packguibase.cpp:190
 msgid "MAX"
-msgstr ""
+msgstr "ΜΕΓ"
 
 #: Dialogs/packguibase.cpp:211
 msgid "Password"
@@ -3120,7 +3120,6 @@ msgstr ""
 "ρυθμίσεις του Krusader.</qt>"
 
 #: Dialogs/checksumdlg.cpp:206 Dialogs/checksumdlg.cpp:307
-#, fuzzy
 msgid ""
 "<qt><b>Note</b>: you've selected directories, and probably have no recursive "
 "checksum tool installed. Krusader currently supports <i>md5deep, sha1deep, "
@@ -3128,8 +3127,8 @@ msgid ""
 msgstr ""
 "<qt><b>Σημείωση</b>: έχετε επιλέξει μια σειρά καταλόγων, και πιθανότατα δεν "
 "έχετε εγκατεστημένο κάποιο αναδρομικό εργαλείο αθροίσματος ελέγχου. Ο "
-"Krusader υποστηρίζει τα <i>md5deep, sha1deep, sha256deep και tigerdeep</i></"
-"qt>"
+"Krusader υποστηρίζει τα <i>md5deep, sha1deep, sha256deep, tigerdeep και cfv</"
+"i></qt>"
 
 #: Dialogs/checksumdlg.cpp:222
 msgid "About to calculate checksum for the following files"
@@ -4557,7 +4556,7 @@ msgstr "&Μετάβαση"
 
 #. i18n: file krusaderui.rc line 85
 #: rc.cpp:18
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "User&actions"
 msgstr "Ενέργειες &χρήστη"
 

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "POT-Creation-Date: 2006-12-17 12:36+0100\n"
-"PO-Revision-Date: 2006-11-22 19:38+0600\n"
+"PO-Revision-Date: 2006-12-19 21:25+0600\n"
 "Last-Translator: Dmitry A. Bugay <sam@vhnet.ru>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -616,11 +616,11 @@ msgstr "Байт"
 
 #: Filter/advancedfilter.cpp:79 Filter/advancedfilter.cpp:95
 msgid "KB"
-msgstr "КБайт"
+msgstr "Кб"
 
 #: Filter/advancedfilter.cpp:80 Filter/advancedfilter.cpp:96
 msgid "MB"
-msgstr "МБайт"
+msgstr "Мб"
 
 #: Filter/advancedfilter.cpp:85
 msgid "&Smaller than"
@@ -1743,7 +1743,7 @@ msgstr "&Удалить всё"
 
 #: Panel/panelfunc.cpp:791
 msgid "Cannot pack files onto a virtual destination!"
-msgstr ""
+msgstr "Не удалось упаковать файлы в виртуальную файловую систему!"
 
 #: Panel/panelfunc.cpp:803
 msgid ""
@@ -2523,23 +2523,23 @@ msgstr ""
 
 #: MountMan/kmountman.cpp:224
 msgid "%1 ZB"
-msgstr "%1 ZB"
+msgstr "%1 Пб"
 
 #: MountMan/kmountman.cpp:226
 msgid "%1 TB"
-msgstr "%1 ТБ"
+msgstr "%1 Тб"
 
 #: MountMan/kmountman.cpp:231
 msgid "%1 GB"
-msgstr "%1 ГБ"
+msgstr "%1 Гб"
 
 #: MountMan/kmountman.cpp:236
 msgid "%1 MB"
-msgstr "%1 MБ"
+msgstr "%1 Mб"
 
 #: MountMan/kmountman.cpp:241
 msgid "%1 KB"
-msgstr "%1 KБ"
+msgstr "%1 Kб"
 
 #: MountMan/kmountman.cpp:250
 msgid "MountMan is not operational. Sorry"
@@ -2911,6 +2911,8 @@ msgid ""
 "*.keymap|Krusader keymaps\n"
 "*|all files"
 msgstr ""
+"*.keymap|Комбинации клавиш krusader\n"
+"*|Все файлы"
 
 #: Dialogs/krkeydialog.cpp:41
 msgid "Import shortcuts"
@@ -2930,37 +2932,39 @@ msgstr "Сохранить текущий список комбинаций кл
 
 #: Dialogs/krkeydialog.cpp:64 Dialogs/krkeydialog.cpp:128
 msgid "Select a keymap file"
-msgstr ""
+msgstr "Выбрать файл с комбинациями клавиш"
 
 #: Dialogs/krkeydialog.cpp:71
 msgid ""
 "This file does not seem to be a valid keymap.\n"
 "It may be a keymap using a legacy format. The import can't be undone!"
 msgstr ""
+"Файл является неправильным файлом комбинаций клавиш.\n"
+"Файл, возможно имеет устаревший формат. Загрузка не может быть завершена!"
 
 #: Dialogs/krkeydialog.cpp:73
 msgid "Try to import legacy format?"
-msgstr ""
+msgstr "Попробовать загрузить устаревший формат?"
 
 #: Dialogs/krkeydialog.cpp:74
 msgid "Import anyway"
-msgstr ""
+msgstr "Загрузить"
 
 #: Dialogs/krkeydialog.cpp:95
 msgid ""
 "The following information was attached to the keymap. Do you really want to "
 "import this keymap?"
 msgstr ""
-"К текущей раскладке клавиатуры добавляется новая.\n"
-"Добавить выбранную раскладку?"
+"К текущей комбинации клавиш добавляется новая.\n"
+"Добавить выбранную комбинацию?"
 
 #: Dialogs/krkeydialog.cpp:122
 msgid "Please restart this dialog in order to see the changes"
-msgstr ""
+msgstr "Перезапустите диалог, чтобы увидеть изменения"
 
 #: Dialogs/krkeydialog.cpp:123
 msgid "Legacy import completed"
-msgstr ""
+msgstr "Загрузка завершена"
 
 #: Dialogs/krkeydialog.cpp:134
 msgid ""
@@ -2997,11 +3001,11 @@ msgstr "Установить степень сжатия"
 
 #: Dialogs/packguibase.cpp:189
 msgid "MIN"
-msgstr ""
+msgstr "МИН"
 
 #: Dialogs/packguibase.cpp:190
 msgid "MAX"
-msgstr ""
+msgstr "МАХ"
 
 #: Dialogs/packguibase.cpp:211
 msgid "Password"
@@ -3101,7 +3105,6 @@ msgstr ""
 "настройках.</qt>"
 
 #: Dialogs/checksumdlg.cpp:206 Dialogs/checksumdlg.cpp:307
-#, fuzzy
 msgid ""
 "<qt><b>Note</b>: you've selected directories, and probably have no recursive "
 "checksum tool installed. Krusader currently supports <i>md5deep, sha1deep, "
@@ -3109,7 +3112,7 @@ msgid ""
 msgstr ""
 "<qt><b>Примечание</b>: Вы имеете выделенные каталоги или, возможно, у вас не "
 "установлены программы для проверки контрольной суммы. Krusader поддерживает "
-"<i>md5deep, sha1deep, sha256deep и tigerdeep</i></qt>"
+"<i>md5deep, sha1deep, sha256deep, tigerdeep и cfv</i></qt>"
 
 #: Dialogs/checksumdlg.cpp:222
 msgid "About to calculate checksum for the following files"
@@ -3379,7 +3382,7 @@ msgstr "Назначить иное имя файла:"
 
 #: ActionMan/actionproperty.cpp:433
 msgid "Please set a unique name for the useraction"
-msgstr "Задайте уникальное имя для действия"
+msgstr "Задайте имя для действия"
 
 #: ActionMan/actionproperty.cpp:438
 msgid "Please set a title for the menu entry"
@@ -3395,6 +3398,9 @@ msgid ""
 "If you don't have such an useraction the name is used by Krusader for an "
 "internal action"
 msgstr ""
+"Действие с таким именем уже существует\n"
+"Если нет пользовательского действия с таким именем, значит имя использовано "
+"для встроенного действия"
 
 #: ActionMan/actionman.cpp:26
 msgid "ActionMan - Manage Your Useractions"
@@ -3454,9 +3460,9 @@ msgid ""
 "<i>Konfigurator</i> and doesn't appear in any other menu.<p><b>Note</b>: The "
 "<i>Title</i> shown in the <b>Usermenu</b> can be set below."
 msgstr ""
-"Уникальное имя <b>действия</b> используется только в <i>конфигураторе</i> и "
-"не может появляться в других меню.<b>Примечание</b>: <b>название</b> "
-"показанное в <b>меню</b> может быть установлено ниже."
+"Имя <b>действия</b> используется только в <i>конфигураторе</i> и не может "
+"появляться в других меню.<b>Примечание</b>: <b>название</b> показанное в "
+"<b>меню</b> может быть установлено ниже."
 
 #: ActionMan/actionpropertybase.cpp:399 ActionMan/actionpropertybase.cpp:416
 msgid ""
@@ -3488,9 +3494,9 @@ msgid ""
 "<i>Konfigurator</i> and doesn't appear in any other menu.</p><p><b>Note</b>: "
 "The <i>Title</i> shown in the <b>Usermenu</b> can be set below.</p>"
 msgstr ""
-"<p>Уникальное имя <b>действия</b> используется только в <i>конфигураторе</i> "
-"и не может появляться в других меню.</p><p><b>Примечание</b>: <i>название</"
-"i> показанное в <b>меню</b> может быть установлено ниже.</p>"
+"<p>Имя <b>действия</b> используется только в <i>конфигураторе</i> и не может "
+"появляться в других меню.</p><p><b>Примечание</b>: <i>название</i> "
+"показанное в <b>меню</b> может быть установлено ниже.</p>"
 
 #: ActionMan/actionpropertybase.cpp:404
 msgid "Command:"
@@ -3933,7 +3939,7 @@ msgstr "Равный порог:"
 
 #: Synchronizer/synchronizergui.cpp:1315 Synchronizer/synchronizergui.cpp:1330
 msgid "sec"
-msgstr "сек"
+msgstr "с"
 
 #: Synchronizer/synchronizergui.cpp:1316 Synchronizer/synchronizergui.cpp:1331
 msgid "min"
@@ -4346,7 +4352,7 @@ msgstr "Krusader::Статистика использования диска"
 
 #: DiskUsage/diskusagegui.cpp:60
 msgid "Start new disk usage search"
-msgstr ""
+msgstr "Новая статистика использования диска"
 
 #: DiskUsage/diskusage.cpp:769 DiskUsage/diskusagegui.cpp:64
 msgid "Refresh"
@@ -4519,7 +4525,7 @@ msgstr "&Навигация"
 
 #. i18n: file krusaderui.rc line 85
 #: rc.cpp:18
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "User&actions"
 msgstr "Дей&ствия"
 
@@ -4940,9 +4946,7 @@ msgstr "Размеры файлов в удобном формате"
 
 #: Konfigurator/kglookfeel.cpp:153
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
-msgstr ""
-"Размеры файлов будут отображаться в байтах, килобайтах, мегабайтах, а не "
-"только в байтах."
+msgstr "Размеры файлов будут отображаться как в байтах, так и в Кб, Мб, Гб."
 
 #: Konfigurator/kglookfeel.cpp:154
 msgid "Show hidden files"
@@ -5349,7 +5353,7 @@ msgstr "Точная настройка"
 
 #: Konfigurator/kgadvanced.cpp:116
 msgid "Icon cache size (KB):"
-msgstr "Размер кэша иконок (Кбайт):"
+msgstr "Размер кэша иконок (Кб):"
 
 #: Konfigurator/kgadvanced.cpp:117 Konfigurator/kgadvanced.cpp:121
 msgid ""
@@ -5542,7 +5546,7 @@ msgstr "Текст символической ссылки:"
 
 #: Konfigurator/kgcolors.cpp:101 Konfigurator/kgcolors.cpp:137
 msgid "Invalid symlink foreground:"
-msgstr "Текст неверной симв. ссылки:"
+msgstr "Текст неверной ссылки:"
 
 #: Konfigurator/kgcolors.cpp:102 Konfigurator/kgcolors.cpp:138
 msgid "Background:"
@@ -5989,7 +5993,7 @@ msgstr "Терминал для пользовательских действи�
 
 #: Konfigurator/kguseractions.cpp:78
 msgid "Output collection"
-msgstr ""
+msgstr "Вывод данных"
 
 #: Konfigurator/kguseractions.cpp:83
 msgid "Normal font:"
@@ -6135,35 +6139,35 @@ msgstr "Соединить %1.* в каталог:"
 
 #: Splitter/splittergui.cpp:39
 msgid "1.44 MB (3.5\")"
-msgstr "1.44 Мбайт (3.5\")"
+msgstr "1.44 Мб (3.5\")"
 
 #: Splitter/splittergui.cpp:40
 msgid "1.2 MB (5.25\")"
-msgstr "1.2 Мбайт (5.25\")"
+msgstr "1.2 Мб (5.25\")"
 
 #: Splitter/splittergui.cpp:41
 msgid "720 kB (3.5\")"
-msgstr "720 Кбайт (3.5\")"
+msgstr "720 Кб (3.5\")"
 
 #: Splitter/splittergui.cpp:42
 msgid "360 kB (5.25\")"
-msgstr "360 Кбайт (5.25\")"
+msgstr "360 Кб (5.25\")"
 
 #: Splitter/splittergui.cpp:43
 msgid "100 MB (ZIP)"
-msgstr "100 Мбайт (ZIP)"
+msgstr "100 Мб (ZIP)"
 
 #: Splitter/splittergui.cpp:44
 msgid "250 MB (ZIP)"
-msgstr "250 Мбайт (ZIP)"
+msgstr "250 Мб (ZIP)"
 
 #: Splitter/splittergui.cpp:45
 msgid "650 MB (CD-R)"
-msgstr "650 Мбайт (CD-R)"
+msgstr "650 Мб (CD-R)"
 
 #: Splitter/splittergui.cpp:46
 msgid "700 MB (CD-R)"
-msgstr "700 Мбайт (CD-R)"
+msgstr "700 Мб (CD-R)"
 
 #: Splitter/splittergui.cpp:60
 msgid "Split the file %1 to directory:"
