@@ -107,7 +107,14 @@ void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
 					currentUser = ""; // empty, but not QString::null
 				}
 			}
+#if KDE_IS_VERSION(3,5,0)
+			temp = new vfile( name, size, perm, mtime, symLink,
+			                  kfi.user(), kfi.group(), currentUser, 
+			                  mime, symDest, mode, kfi.ACL().asString(),
+			                  kfi.defaultACL().asString() );
+#else
 			temp = new vfile( name, size, perm, mtime, symLink, kfi.user(), kfi.group(), currentUser, mime, symDest, mode );
+#endif
 		}
 
 #if KDE_IS_VERSION(3,4,0)

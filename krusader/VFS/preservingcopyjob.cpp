@@ -40,19 +40,29 @@
 #include <pwd.h>
 #include <grp.h>
 
+
+#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+#include <sys/acl.h>
+#ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
+#include <acl/libacl.h>
+#endif
+#endif
+
 Attributes::Attributes() 
 {
   time = (time_t)-1;
   uid = (uid_t)-1;
   gid = (gid_t)-1;
+  mode = (mode_t)-1;
+  acl = QString::null;
 }
 
-Attributes::Attributes( time_t tIn, uid_t uIn, gid_t gIn ) 
+Attributes::Attributes( time_t tIn, uid_t uIn, gid_t gIn, mode_t modeIn, const QString & aclIn ) 
 {
-  time = tIn, uid = uIn, gid = gIn;
+  time = tIn, uid = uIn, gid = gIn, mode = modeIn, acl = aclIn;
 }
 
-Attributes::Attributes( time_t tIn, QString user, QString group ) 
+Attributes::Attributes( time_t tIn, QString user, QString group, mode_t modeIn, const QString & aclIn ) 
 {
   time = tIn;
   uid = (uid_t)-1;
@@ -63,9 +73,9 @@ Attributes::Attributes( time_t tIn, QString user, QString group )
   struct group* g = getgrnam(QFile::encodeName( group ));
   if ( g != 0L )
     gid = g->gr_gid;
+  mode = modeIn;
+  acl = aclIn;
 }
-
-
 
 PreservingCopyJob::PreservingCopyJob( const KURL::List& src, const KURL& dest, CopyMode mode,
   bool asMethod, bool showProgressInfo ) : KIO::CopyJob( src, dest, mode, asMethod, showProgressInfo )
@@ -89,7 +99,22 @@ void PreservingCopyJob::slotAboutToCreate( KIO::Job */*job*/, const QValueList< 
       KDE_struct_stat stat_p;
       KDE_lstat( (*it).uSource.path(-1).local8Bit(),&stat_p);    /* getting the date information */
       
-      fileAttributes[ (*it).uSource ] = Attributes( stat_p.st_mtime, stat_p.st_uid, stat_p.st_gid );      
+      QString aclStr;
+#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+      acl_t acl = acl_get_file( (*it).uSource.path(-1).local8Bit(), ACL_TYPE_ACCESS );
+      if ( acl && ( acl_equiv_mode( acl, 0 ) == 0 ) ) {
+        acl_free( acl );
+        acl = NULL;
+      }
+      if( acl )
+      {
+        char *aclString = acl_to_text( acl, 0 );
+        aclStr = QString::fromLatin1( aclString );
+        acl_free( (void*)aclString );
+        acl_free( acl );
+      }
+#endif
+      fileAttributes[ (*it).uSource ] = Attributes( stat_p.st_mtime, stat_p.st_uid, stat_p.st_gid, stat_p.st_mode & 07777, aclStr );
     }
     else {
       time_t mtime = (*it).mtime;
@@ -108,7 +133,11 @@ void PreservingCopyJob::slotResult( Job *job ) {
       KIO::UDSEntry entry = static_cast<KIO::StatJob*>(job)->statResult();      
       KFileItem kfi(entry, url );
     
-      fileAttributes[ url ] = Attributes( kfi.time( KIO::UDS_MODIFICATION_TIME ), kfi.user(), kfi.group() );
+#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+      fileAttributes[ url ] = Attributes( kfi.time( KIO::UDS_MODIFICATION_TIME ), kfi.user(), kfi.group(), kfi.mode(), kfi.ACL().asString() );
+#else
+      fileAttributes[ url ] = Attributes( kfi.time( KIO::UDS_MODIFICATION_TIME ), kfi.user(), kfi.group(), kfi.mode(), QString::null );
+#endif
     }
   }
 
@@ -131,6 +160,8 @@ void PreservingCopyJob::slotListEntries(KIO::Job *job, const KIO::UDSEntryList &
     KURL url = ((KIO::SimpleJob *)job)->url();
     QString relName, user, group;
     time_t mtime = (time_t)-1;
+    mode_t mode;
+    QString acl;
     
     KIO::UDSEntry::ConstIterator it2 = (*it).begin();
     for( ; it2 != (*it).end(); it2++ ) {
@@ -151,11 +182,19 @@ void PreservingCopyJob::slotListEntries(KIO::Job *job, const KIO::UDSEntryList &
       case KIO::UDS_GROUP:
         group = (*it2).m_str;
         break;
+      case KIO::UDS_ACCESS:
+        mode = (*it2).m_long;
+        break;
+#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+      case KIO::UDS_ACL_STRING:
+        acl = (*it2).m_str;
+        break;
+#endif
       }
     }
     url.addPath( relName );
 
-    fileAttributes[ url ] = Attributes( mtime, user, group );
+    fileAttributes[ url ] = Attributes( mtime, user, group, mode, acl );
   }
 }
 
@@ -175,24 +214,40 @@ void PreservingCopyJob::slotCopyingDone( KIO::Job *, const KURL &from, const KUR
   else if( fileAttributes.count( from ) ) {
     Attributes attrs = fileAttributes[ from ];
     fileAttributes.remove( from );
-
-
-    if( attrs.uid != (uid_t)-1 )
-      chown( (const char *)( to.path( -1 ).local8Bit() ), attrs.uid, (gid_t)-1 );
-    if( attrs.gid != (gid_t)-1 )
-      chown( (const char *)( to.path( -1 ).local8Bit() ), (uid_t)-1, attrs.gid );
     
     time_t mtime = attrs.time;
    
-    if( !to.isLocalFile() || mtime == 0 || mtime == ((time_t) -1 ) )
-      return;
-    
-    struct utimbuf timestamp;
+    if( to.isLocalFile() )
+    {
+      if( mtime != 0 && mtime != ((time_t) -1 ) )
+      {
+        struct utimbuf timestamp;
 
-    timestamp.actime  = time( 0 );
-    timestamp.modtime = mtime;
+        timestamp.actime  = time( 0 );
+        timestamp.modtime = mtime;
 
-    utime( (const char *)( to.path( -1 ).local8Bit() ), &timestamp );
+        utime( (const char *)( to.path( -1 ).local8Bit() ), &timestamp );
+      }
+
+      if( attrs.uid != (uid_t)-1 )
+        chown( (const char *)( to.path( -1 ).local8Bit() ), attrs.uid, (gid_t)-1 );
+      if( attrs.gid != (gid_t)-1 )
+        chown( (const char *)( to.path( -1 ).local8Bit() ), (uid_t)-1, attrs.gid );
+
+      if( attrs.mode != (mode_t) -1 )
+        chmod( (const char *)( to.path( -1 ).local8Bit() ), attrs.mode );
+
+#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+      if( !attrs.acl.isNull() )
+      {
+        acl_t acl = acl_from_text( attrs.acl.latin1() );
+        if( acl && !acl_valid( acl ) )
+          acl_set_file( to.path( -1 ).local8Bit(), ACL_TYPE_ACCESS, acl );
+        if( acl )
+          acl_free( acl );
+      }
+#endif
+    }
   }
 }
 

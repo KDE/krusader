@@ -113,19 +113,19 @@ class Synchronizer : public QObject
                                     const QString &, const QString &, bool, bool, KIO::filesize_t,
                                     KIO::filesize_t, time_t, time_t, const QString &, const QString &,
                                     const QString &, const QString &, const QString &, const QString &,
-                                    TaskType, bool, bool);
+                                    mode_t, mode_t, const QString &, const QString &, TaskType, bool, bool);
     SynchronizerFileItem * addLeftOnlyItem( SynchronizerFileItem *, const QString &, const QString &,
                                             KIO::filesize_t, time_t, const QString &, const QString &,
-                                            const QString &, bool isDir = false, bool isTemp = false );
+                                            const QString &, mode_t, const QString &, bool isDir = false, bool isTemp = false );
     SynchronizerFileItem * addRightOnlyItem( SynchronizerFileItem *, const QString &, const QString &,
                                              KIO::filesize_t, time_t, const QString &,  const QString &,
-                                             const QString &, bool isDir = false, bool isTemp = false  );
+                                             const QString &, mode_t, const QString &, bool isDir = false, bool isTemp = false  );
     SynchronizerFileItem * addDuplicateItem( SynchronizerFileItem *, const QString &, const QString &,
                                              const QString &, const QString &, KIO::filesize_t,
                                              KIO::filesize_t, time_t, time_t, const QString &,
                                              const QString &, const QString &, const QString &,
-                                             const QString &, const QString &, bool isDir = false,
-                                             bool isTemp = false  );
+                                             const QString &, const QString &, mode_t, mode_t, const QString &, 
+                                             const QString &, bool isDir = false, bool isTemp = false  );
     bool    isMarked( TaskType task, bool dupl );
     bool    markParentDirectories( SynchronizerFileItem * );
     void    synchronizeLoop();

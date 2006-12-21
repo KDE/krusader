@@ -31,6 +31,7 @@
 #ifndef __PRESERVING_COPY_JOB_H__
 #define __PRESERVING_COPY_JOB_H__
 
+#include "config.h"
 #include <time.h>
 #include <kio/jobclasses.h>
 #include <qmap.h>
@@ -46,12 +47,14 @@ typedef enum {
 class Attributes {
 public:
 	Attributes();
-	Attributes( time_t tIn, uid_t uIn, gid_t gIn );
-	Attributes( time_t tIn, QString user, QString group );
+	Attributes( time_t tIn, uid_t uIn, gid_t gIn, mode_t modeIn, const QString & aclIn );
+	Attributes( time_t tIn, QString user, QString group, mode_t modeIn, const QString & aclIn );
 
-	time_t time;
-	uid_t  uid;
-	gid_t  gid;
+	time_t   time;
+	uid_t    uid;
+	gid_t    gid;
+	mode_t   mode;
+	QString  acl;
 };
 
 class PreservingCopyJob : public KIO::CopyJob

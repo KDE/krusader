@@ -81,6 +81,10 @@ class SynchronizerFileItem
     QString               m_rightOwner;   // the right file's owner
     QString               m_leftGroup;    // the left file's group
     QString               m_rightGroup;   // the right file's group
+    mode_t                m_leftMode;     // mode for left
+    mode_t                m_rightMode;    // mode for right
+    QString               m_leftACL;      // ACL of the left file
+    QString               m_rightACL;     // ACL of the right file
     TaskType              m_task;         // the task with the file
     bool                  m_isDir;        // flag, indicates that the file is a directory
     SynchronizerFileItem *m_parent;       // pointer to the parent directory item or 0
@@ -96,15 +100,17 @@ class SynchronizerFileItem
                        KIO::filesize_t rightSize, time_t leftDate, time_t rightDate,
                        const QString &leftLink, const QString &rightLink, const QString &leftOwner,
                        const QString &rightOwner, const QString &leftGroup, const QString &rightGroup,
+                       mode_t leftMode, mode_t rightMode, const QString &leftACL, const QString &rightACL, 
                        TaskType tsk, bool isDir, bool tmp, SynchronizerFileItem *parent ) :
                        m_leftName( leftNam ), m_rightName( rightNam ), m_leftDirectory( leftDir ),  m_rightDirectory( rightDir ),
                        m_marked( mark ),  m_existsLeft( exL ), m_existsRight( exR ), m_leftSize( leftSize ),
                        m_rightSize( rightSize ), m_leftDate( leftDate ), m_rightDate( rightDate ),
                        m_leftLink( leftLink ), m_rightLink( rightLink ), m_leftOwner( leftOwner ),
                        m_rightOwner( rightOwner ), m_leftGroup( leftGroup ), m_rightGroup( rightGroup ),
-                       m_task( tsk ), m_isDir( isDir ), m_parent(parent), m_userData( 0 ), m_overWrite( false ),
-                       m_destination( QString::null ), m_temporary( tmp ),
-                       m_originalTask( tsk ) {}
+                       m_leftMode( leftMode ), m_rightMode( rightMode ), m_leftACL( leftACL ),
+                       m_rightACL( rightACL ), m_task( tsk ), m_isDir( isDir ), m_parent(parent),
+                       m_userData( 0 ), m_overWrite( false ), m_destination( QString::null ), 
+                       m_temporary( tmp ), m_originalTask( tsk ) {}
 
     inline bool                   isMarked()              {return m_marked;}
     inline void                   setMarked( bool flag )  {m_marked = flag;}
@@ -125,6 +131,10 @@ class SynchronizerFileItem
     inline const QString &        rightOwner()            {return m_rightOwner;}
     inline const QString &        leftGroup()             {return m_leftGroup;}
     inline const QString &        rightGroup()            {return m_rightGroup;}
+    inline mode_t                 leftMode()              {return m_leftMode;}
+    inline mode_t                 rightMode()             {return m_rightMode;}
+    inline const QString &        leftACL()               {return m_leftACL;}
+    inline const QString &        rightACL()              {return m_rightACL;}
     inline TaskType               task()                  {return m_task;}
     inline void                   compareContentResult( bool res )
                                                           {if( res == true )
@@ -152,6 +162,7 @@ class SynchronizerFileItem
                                                            SWAP( m_leftLink, m_rightLink, QString );
                                                            SWAP( m_leftOwner, m_rightOwner, QString );
                                                            SWAP( m_leftGroup, m_rightGroup, QString );
+                                                           SWAP( m_leftACL, m_rightACL, QString );
                                                            REVERSE_TASK( m_originalTask, asym );
                                                            REVERSE_TASK( m_task, asym );}
 };

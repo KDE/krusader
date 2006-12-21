@@ -63,7 +63,10 @@ public:
 	      const gid_t group,
 	      const QString& mime,
 	      const QString& symDest,
-	      const mode_t  mode);
+	      const mode_t  mode,
+	      const QString& aclString = QString::null,
+	      const QString& aclDfltString = QString::null,
+	      const int rwx = -1 );
 	
 	vfile(const QString& name,	
 	      const KIO::filesize_t size,	
@@ -75,7 +78,9 @@ public:
 	      const QString& userName,
 	      const QString& mime,
 	      const QString& symDest,
-	      const mode_t  mode);
+	      const mode_t  mode,
+	      const QString& aclString = QString::null,
+	      const QString& aclDfltString = QString::null);
 	
 	bool        operator==(const vfile& vf) const;
 	vfile&      operator= (const vfile& vf); 
@@ -97,6 +102,8 @@ public:
 	const QString&          vfile_getMime(bool fast=false);
 	const QString&          vfile_getOwner();
 	const QString&          vfile_getGroup();
+	const QString&          vfile_getACL()     const { return vfile_acl;            };
+	const QString&          vfile_getDefaultACL() const { return vfile_def_acl;     };
 	const KIO::UDSEntry     vfile_getEntry(); //< return the UDSEntry from the vfile
 	char                    vfile_isReadable()   const;
 	char                    vfile_isWriteable()  const;
@@ -132,6 +139,10 @@ protected:
 	KURL             vfile_url;      //< file URL - empty by default
 	QString          vfile_icon;     //< the name of the icon file
 	bool             vfile_isdir;    //< flag, if it's a directory
+	int              vfile_rwx;      //< flag, showing read, write, execute properties
+	bool             vfile_has_acl;  //< flag, indicates ACL permissions
+	QString          vfile_acl;      //< ACL permission string
+	QString          vfile_def_acl;  //< ACL default string
 };
 
 	

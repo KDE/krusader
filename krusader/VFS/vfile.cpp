@@ -37,6 +37,7 @@
 #include <qdatetime.h>
 // KDE includes
 #include <kmimetype.h>
+#include <kdeversion.h>
 // Krusader includes
 #include "vfile.h"
 #include "krpermhandler.h"
@@ -52,7 +53,11 @@ vfile::vfile(const QString& name,	                  // useful construtor
              const gid_t group,
              const QString& mime,
              const QString& symDest,
-             const mode_t mode){
+             const mode_t mode,
+             const QString& aclString,
+             const QString& aclDfltString,
+             const int rwx)
+{
 	vfile_name=name;
 	vfile_size=size;
 	vfile_owner=QString::null;
@@ -69,6 +74,10 @@ vfile::vfile(const QString& name,	                  // useful construtor
 	vfile_isdir = ( perm[ 0 ] == 'd' );
 	if (vfile_isDir() && !vfile_symLink )
 		vfile_size = 0;
+	vfile_acl = aclString;
+	vfile_def_acl = aclDfltString;
+	vfile_has_acl = !aclString.isNull() || !aclDfltString.isNull();
+	vfile_rwx = rwx;
 }
 
 vfile::vfile(const QString& name,	                  // useful construtor
@@ -81,7 +90,9 @@ vfile::vfile(const QString& name,	                  // useful construtor
              const QString& userName,
              const QString& mime,
              const QString& symDest,
-             const mode_t mode){
+             const mode_t mode,
+             const QString& aclString,
+             const QString& aclDfltString){
 	vfile_name=name;
 	vfile_size=size;
 	vfile_owner=owner;
@@ -98,25 +109,29 @@ vfile::vfile(const QString& name,	                  // useful construtor
 	vfile_isdir = ( perm[ 0 ] == 'd' );
 	if ( vfile_isDir() && !vfile_symLink )
 		vfile_size = 0;
+	vfile_acl = aclString;
+	vfile_def_acl = aclDfltString;
+	vfile_has_acl = !aclString.isNull() || !aclDfltString.isNull();
+	vfile_rwx = -1;
 }
 
 char vfile::vfile_isReadable() const {
 	if( vfile_userName.isNull() )
-		return KRpermHandler::readable(vfile_perm,vfile_groupId,vfile_ownerId);
+		return KRpermHandler::readable(vfile_perm,vfile_groupId,vfile_ownerId,vfile_rwx);
 	else
 		return KRpermHandler::ftpReadable(vfile_owner, vfile_userName, vfile_perm);
 }
 
 char vfile::vfile_isWriteable() const {
 	if( vfile_userName.isNull() )
-		return KRpermHandler::writeable(vfile_perm,vfile_groupId,vfile_ownerId);
+		return KRpermHandler::writeable(vfile_perm,vfile_groupId,vfile_ownerId,vfile_rwx);
 	else
 		return KRpermHandler::ftpWriteable(vfile_owner, vfile_userName, vfile_perm);
 }
 
 char vfile::vfile_isExecutable() const {
 	if( vfile_userName.isNull() )
-		return KRpermHandler::executable(vfile_perm,vfile_groupId,vfile_ownerId);
+		return KRpermHandler::executable(vfile_perm,vfile_groupId,vfile_ownerId,vfile_rwx);
 	else
 		return KRpermHandler::ftpExecutable(vfile_owner, vfile_userName, vfile_perm);
 }
@@ -187,6 +202,28 @@ const KIO::UDSEntry vfile::vfile_getEntry() {
 		entry.append(atom);
 	}
 
+#if KDE_IS_VERSION(3,5,0)
+	if( vfile_has_acl ) {
+		atom.m_uds = KIO::UDS_EXTENDED_ACL;
+		atom.m_long = 1;
+		entry.append( atom );
+		
+		if( !vfile_acl.isNull() )
+		{
+			atom.m_uds = KIO::UDS_ACL_STRING;
+			atom.m_str = vfile_acl;
+			entry.append(atom);
+		}
+		
+		if( !vfile_def_acl.isNull() )
+		{
+			atom.m_uds = KIO::UDS_DEFAULT_ACL_STRING;
+			atom.m_str = vfile_acl;
+			entry.append(atom);
+		}
+	}
+#endif
+
 	return entry;
 }
 
@@ -198,7 +235,11 @@ bool vfile::operator==(const vfile& vf) const{
 	        (vfile_perm     == vf.vfile_getPerm()   ) &&
 	        (vfile_time_t   == vf.vfile_getTime_t() ) &&
 	        (vfile_ownerId  == vf.vfile_getUid()    ) &&
-	        (vfile_groupId  == vf.vfile_getGid()    ) ;
+	        (vfile_groupId  == vf.vfile_getGid()    ) &&
+	        (vfile_has_acl  == vf.vfile_has_acl     ) &&
+	        (!vfile_has_acl || 
+	        (vfile_acl      == vf.vfile_acl         ) &&
+	        (vfile_def_acl  == vf.vfile_def_acl     ) );;
 	
 	return equal;
 }
@@ -219,6 +260,10 @@ vfile& vfile::operator= (const vfile& vf){
 	vfile_symDest  = vf.vfile_symDest  ;
 	vfile_url      = vf.vfile_url      ;
 	vfile_isdir    = vf.vfile_isdir    ;
+	vfile_has_acl  = vf.vfile_has_acl  ;
+	vfile_acl      = vf.vfile_acl      ;
+	vfile_def_acl  = vf.vfile_def_acl  ;
+	vfile_rwx      = vf.vfile_rwx      ;
 	
 	return (*this);
 } 

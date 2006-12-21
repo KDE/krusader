@@ -38,6 +38,15 @@
 #include <klargefile.h>
 #include <qapplication.h>
 #include <qdir.h>
+#include <kdeversion.h>
+
+
+#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+#include <sys/acl.h>
+#ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
+#include <acl/libacl.h>
+#endif
+#endif
 
 SynchronizerDirList::SynchronizerDirList( QWidget *w ) : QObject(), QDict<vfile>(), fileIterator( 0 ),
                                    parentWidget( w ), busy( false ), result( false ), currentUrl() {
@@ -130,10 +139,27 @@ bool SynchronizerDirList::load( const QString &urlIn, bool wait ) {
 
       QString mime = QString::null;
 
+      QString aclStr;
+#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+      acl_t acl = acl_get_file( fullName.local8Bit(), ACL_TYPE_ACCESS );
+      if ( acl && ( acl_equiv_mode( acl, 0 ) == 0 ) ) {
+        acl_free( acl );
+        acl = NULL;
+      }
+      if( acl )
+      {
+        char *aclString = acl_to_text( acl, 0 );
+        aclStr = QString::fromLatin1( aclString );
+        acl_free( (void*)aclString );
+        acl_free( acl );
+      }
+#endif
+
+
       KURL fileURL = KURL::fromPathOrURL( fullName );
 
       vfile* item=new vfile(name,stat_p.st_size,perm,stat_p.st_mtime,symLink,stat_p.st_uid,
-                        stat_p.st_gid,mime,symlinkDest,stat_p.st_mode);
+                        stat_p.st_gid,mime,symlinkDest,stat_p.st_mode, aclStr);
       item->vfile_setUrl( fileURL );
 
       insert( name, item );
@@ -176,7 +202,11 @@ void SynchronizerDirList::slotEntries( KIO::Job * job, const KIO::UDSEntryList& 
 
       vfile *item = new vfile( kfi.text(), kfi.size(), perm, kfi.time( KIO::UDS_MODIFICATION_TIME ),
           kfi.isLink(), kfi.user(), kfi.group(), kfi.user(), 
-          kfi.mimetype(), kfi.linkDest(), mode );
+          kfi.mimetype(), kfi.linkDest(), mode 
+#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+                                              , kfi.ACL().asString()
+#endif
+                                                                     );
       insert( key, item );
     }
     ++it;

@@ -54,6 +54,16 @@
 #include "../resources.h"
 #include "../krslots.h"
 
+// header files for ACL
+#if KDE_IS_VERSION(3,5,0)
+#ifdef HAVE_POSIX_ACL
+#include <sys/acl.h>
+#ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
+#include <acl/libacl.h>
+#endif
+#endif
+#endif
+
 normal_vfs::normal_vfs(QObject* panel):vfs(panel), watcher(0) {
   vfs_type=NORMAL;
 }
@@ -226,9 +236,10 @@ void normal_vfs::vfs_rename(const QString& fileName,const QString& newName){
 
 vfile* normal_vfs::vfileFromName(const QString& name){
 	QString path = vfs_workingDir()+"/"+name;
+	QCString fileName = path.local8Bit();
 	
 	KDE_struct_stat stat_p;
-	KDE_lstat(path.local8Bit(),&stat_p);
+	KDE_lstat(fileName.data(),&stat_p);
 	KIO::filesize_t size = stat_p.st_size;
 	QString perm = KRpermHandler::mode2QString(stat_p.st_mode);
 	bool symLink= S_ISLNK(stat_p.st_mode);
@@ -236,12 +247,13 @@ vfile* normal_vfs::vfileFromName(const QString& name){
 	
 	KURL mimeUrl = fromPathOrURL(path);
 	QString mime=QString::null;
+	QString acl=QString::null, defAcl=QString::null;
 
 	char symDest[256];
 	bzero(symDest,256); 
 	if( S_ISLNK(stat_p.st_mode) ){  // who the link is pointing to ?
 		int endOfName=0;
-		endOfName=readlink(path.local8Bit(),symDest,256);
+		endOfName=readlink(fileName.data(),symDest,256);
 		if ( endOfName != -1 ){
 			if ( QDir(QString::fromLocal8Bit( symDest ) ).exists() ) perm[0] = 'd';
 			if ( !QDir(vfs_workingDir()).exists( QString::fromLocal8Bit ( symDest ) ) ) mime = "Broken Link !";
@@ -249,11 +261,61 @@ vfile* normal_vfs::vfileFromName(const QString& name){
 		else krOut << "Failed to read link: "<< path<<endl;
 	}
 	
+	int rwx = -1;
+#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+#if HAVE_NON_POSIX_ACL_EXTENSIONS
+	if ( acl_extended_file( fileName.data() ) )
+	{
+#endif
+		acl = getACL( fileName.data(), ACL_TYPE_ACCESS );
+		if( S_ISDIR(stat_p.st_mode) )
+			defAcl = getACL( fileName.data(), ACL_TYPE_DEFAULT );
+		
+		rwx = 0;
+		if( ::access( fileName.data(), R_OK ) == 0 )
+			rwx |= R_OK;
+		if( ::access( fileName.data(), W_OK ) == 0 )
+			rwx |= W_OK;
+		if( ::access( fileName.data(), X_OK ) == 0 )
+			rwx |= X_OK;
+#if HAVE_NON_POSIX_ACL_EXTENSIONS
+	}
+#endif
+#endif
+	
 	// create a new virtual file object
 	vfile* temp=new vfile(name,size,perm,stat_p.st_mtime,symLink,stat_p.st_uid,
-                          stat_p.st_gid,mime,QString::fromLocal8Bit( symDest ),stat_p.st_mode);
+                          stat_p.st_gid,mime,QString::fromLocal8Bit( symDest ),stat_p.st_mode,acl,defAcl, rwx);
 	temp->vfile_setUrl( mimeUrl );
 	return temp;
+}
+
+QString normal_vfs::getACL( const QString & path, int type )
+{
+#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+	acl_t acl = 0;
+	// do we have an acl for the file, and/or a default acl for the dir, if it is one?
+	if ( ( acl = acl_get_file( path.data(), type ) ) != 0 )
+	{
+		if ( acl_equiv_mode( acl, 0 ) == 0 )
+		{
+			acl_free( acl );
+			acl = 0;
+		}
+	}
+	
+	if( acl == 0 )
+		return QString::null;
+	
+	char *aclString = acl_to_text( acl, 0 );
+	QString ret = QString::fromLatin1( aclString );
+	acl_free( (void*)aclString );
+	acl_free( acl );
+	
+	return ret;
+#else
+	return QString::null;
+#endif
 }
 
 void normal_vfs::vfs_slotRefresh()

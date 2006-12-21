@@ -56,9 +56,9 @@ public:
 	static QString gid2group(gid_t groupId);
 	static QString uid2user (uid_t userId);
 
-	static char writeable (QString perm, gid_t gid, uid_t uid);
-	static char readable  (QString perm, gid_t gid, uid_t uid);
-	static char executable(QString perm, gid_t gid, uid_t uid);
+	static char writeable (QString perm, gid_t gid, uid_t uid, int rwx=-1);
+	static char readable  (QString perm, gid_t gid, uid_t uid, int rwx=-1);
+	static char executable(QString perm, gid_t gid, uid_t uid, int rwx=-1);
 	
   static bool fileWriteable (QString localFile);
 	static bool fileReadable  (QString localFile);

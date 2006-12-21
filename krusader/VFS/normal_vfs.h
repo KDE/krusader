@@ -79,7 +79,8 @@ protected:
 
 	QTimer refreshTimer;         //< Timer to exclude sudden refreshes
 	KDirWatch *watcher;          //< The internal dir watcher - use to detect changes in directories
-	vfile* vfileFromName(const QString& name);
+	vfile*   vfileFromName(const QString& name);
+	QString getACL( const QString & path, int type );
 
 private:
 	bool burstRefresh( const QString &path );

@@ -26,6 +26,32 @@ fi
 AM_CONDITIONAL(include_libkonq, test "$have_libkonq" = yes)
 
 ###################################################
+#		Check for ACL
+###################################################
+
+AC_ARG_WITH(acl,
+    AC_HELP_STRING([--without-acl],[build Krusader without support Konqueror's servicemenus [default=with]]),
+    [with_acl=$withval],
+    [with_acl=yes]
+)
+
+if test "$with_acl" != "no"; then
+	# check for the headers
+	have_posix_acl=yes
+	AC_CHECK_HEADER(sys/acl.h, ,[have_posix_acl=no] )
+	have_non_posix_acl_ext=yes
+	AC_CHECK_HEADER(acl/libacl.h, ,[have_non_posix_acl_ext=no] )
+	
+	if test "$have_posix_acl" = "yes" ; then
+		AC_DEFINE([HAVE_POSIX_ACL], 1, [Define if system has POSIX ACL support.])
+		if test "$have_non_posix_acl_ext" = "yes" ; then
+			AC_DEFINE([HAVE_NON_POSIX_ACL_EXTENSIONS], 1, [Define if system has non-POSIX extensions to the ACL support.])
+		fi
+	fi
+fi
+
+
+###################################################
 #		Check for JavaScript
 ###################################################
 
