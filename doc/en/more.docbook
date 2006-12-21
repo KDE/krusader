@@ -52,5 +52,18 @@
 <!-- call the profiles sect1 section -->
 &profiles;
 
+<sect1 id="acl">
+<title>ACL permissions</title> 
+<para><link linkend="gloss-acl">ACL permissions</link> are fully supported for when using properties, 
+      preserve attributes and the synchronizer.
+      To view/modify the ACL permissions, select a file and use the &context_menu_lnk; : 
+      <emphasis role="bold"><menuchoice><guimenu>Properties</guimenu><guimenuitem>Permissions</guimenuitem>
+      <guimenuitem>Special permissions</guimenuitem> </menuchoice></emphasis>.
+      At Copy/Move if <guilabel>preserve attributes</guilabel> are selected, the ACL permissions are also copied.
+      The synchronizer keeps the ACL permissions as well. 
+</para>
+</sect1>
+
+
 </chapter>
 
