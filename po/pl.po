@@ -11,10 +11,10 @@
 # Tomek Grzejszczyk <tgrzej@onet.eu>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.70.0\n"
+"Project-Id-Version: krusader-1.80.0-beta1\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2006-12-17 12:36+0100\n"
-"PO-Revision-Date: 2006-12-19 07:58+0100\n"
+"PO-Revision-Date: 2006-12-21 09:56+0100\n"
 "Last-Translator: Tomek Grzejszczyk <tgrzej@onet.eu>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -3015,11 +3015,11 @@ msgstr "Ustaw poziom kompresji"
 
 #: Dialogs/packguibase.cpp:189
 msgid "MIN"
-msgstr ""
+msgstr "MIN"
 
 #: Dialogs/packguibase.cpp:190
 msgid "MAX"
-msgstr ""
+msgstr "MAX"
 
 #: Dialogs/packguibase.cpp:211
 msgid "Password"
@@ -3119,16 +3119,15 @@ msgstr ""
 "ustawieniach Krusadera.</qt>"
 
 #: Dialogs/checksumdlg.cpp:206 Dialogs/checksumdlg.cpp:307
-#, fuzzy
 msgid ""
 "<qt><b>Note</b>: you've selected directories, and probably have no recursive "
 "checksum tool installed. Krusader currently supports <i>md5deep, sha1deep, "
 "sha256deep, tigerdeep and cfv</i></qt>"
 msgstr ""
-"<qt><b>Adnotacja</b>: zaznaczono katalog, a prawdopodobnie nie ma "
+"<qt><b>Uwaga</b>: zaznaczono katalog, ale prawdopodobnie nie ma "
 "zainstalowanego narzędzia do rekursywnego obliczania sum kontrolnych. "
-"Krusader aktualnie obsługuje <i>md5deep, sha1deep, sha256deep, oraz "
-"tigerdeep</i></qt>"
+"Krusader aktualnie obsługuje <i>md5deep, sha1deep, sha256deep tigerdeep oraz "
+"cfv</i></qt>"
 
 #: Dialogs/checksumdlg.cpp:222
 msgid "About to calculate checksum for the following files"
