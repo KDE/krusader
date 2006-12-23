@@ -30,7 +30,7 @@ AM_CONDITIONAL(include_libkonq, test "$have_libkonq" = yes)
 ###################################################
 
 AC_ARG_WITH(acl,
-    AC_HELP_STRING([--without-acl],[build Krusader without support Konqueror's servicemenus [default=with]]),
+    AC_HELP_STRING([--without-acl],[build Krusader without ACL support [default=with]]),
     [with_acl=$withval],
     [with_acl=yes]
 )
