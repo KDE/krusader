@@ -1,7 +1,7 @@
 --------------------------------------------
-- Documentation version:  1.80.0
-- Documentation date:  2006-11-14
-- Parsing date: Tue Nov 14 21:14:56 UTC 2006
+- Documentation version:  1.80.0-1
+- Documentation date:  2006-12-21
+- Parsing date: Thu Dec 21 20:12:12 UTC 2006
 --------------------------------------------
  
 
@@ -60,8 +60,7 @@ distribution. For more information is available on our website at
 http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1407 
 
 ------------------------------------------------------------------------
-
-Chapter 11. Frequently Asked Questions (FAQ)
+Chapter 12. Frequently Asked Questions (FAQ)
 
    If you have problems with Krusader please check the
    Installation procedure, your problem may be due to a bad
@@ -77,47 +76,47 @@ Chapter 11. Frequently Asked Questions (FAQ)
    is not clear to you, please let us know.
      _________________________________________________________
 
-11.1. Installation FAQ
+12.1. Installation FAQ
 
-   11.1.1. Does Krusader need KDE to run?
-   11.1.2. Which libraries does Krusader need to run?
-   11.1.3. I have followed all steps but configure complains
+   12.1.1. Does Krusader need KDE to run?
+   12.1.2. Which libraries does Krusader need to run?
+   12.1.3. I have followed all steps but configure complains
           about missing libs or headers. What do I need to do?
 
-   11.1.4. How do I compile Krusader when I'm using a 64 bit
+   12.1.4. How do I compile Krusader when I'm using a 64 bit
           processor ?
 
-   11.1.5. I have downloaded the Source RPM
+   12.1.5. I have downloaded the Source RPM
           krusader-x.xx.dist.src.rpm What now?
 
-   11.1.6. I'm trying to install binary foo (RPM or DEB package),
+   12.1.6. I'm trying to install binary foo (RPM or DEB package),
           but it fails. What's wrong?
 
-   11.1.7. I can't find a RPM or DEB package for Krusader, What
+   12.1.7. I can't find a RPM or DEB package for Krusader, What
           now?
 
-   11.1.8. I've installed Krusader, but when I start it, only the
+   12.1.8. I've installed Krusader, but when I start it, only the
           "Help" menu appears. Why?
 
-   11.1.9. Some new menu items are missing after updating
+   12.1.9. Some new menu items are missing after updating
           Krusader, what's wrong?
 
-   11.1.10. When I run make it complains about libfam.la
-   11.1.11. Debian complains about Qt(TM) when running
+   12.1.10. When I run make it complains about libfam.la
+   12.1.11. Debian® complains about Qt(TM) when running
           ./configure
 
-   11.1.12. I have a libGLcore.so.1 compile error after using the
-          NVIDIA installer
+   12.1.12. I have a libGLcore.so.1 compile error after using the
+          NVIDIA® installer
 
-   11.1.13. Why Krusader-1.60.x does not compile with gcc4?
-   11.1.14. I am having trouble compiling and installing
+   12.1.13. Why Krusader-1.60.x does not compile with gcc4?
+   12.1.14. I am having trouble compiling and installing
           Krusader, how do I send a help request?
 
-   11.1.15. How can I build an RPM package for Krusader?
-   11.1.16. Why does Krusader-cvs shows an old version number in
+   12.1.15. How can I build an RPM package for Krusader?
+   12.1.16. Why does Krusader-cvs shows an old version number in
           the about box?
 
-   11.1.1. Does Krusader need KDE to run?
+   12.1.1. Does Krusader need KDE to run?
 
    No, Krusader does not need the KDE window manager to run on
    your computer but Krusader's natural environment is KDE,
@@ -149,7 +148,7 @@ Chapter 11. Frequently Asked Questions (FAQ)
    all of the KDE package libraries, but the KDE window manager
    is optional.
 
-   11.1.2. Which libraries does Krusader need to run?
+   12.1.2. Which libraries does Krusader need to run?
 
    For running Krusader (e.g. when you have installed Krusader
    with a binary RPM) you need less libraries than if you compile
@@ -171,9 +170,9 @@ Chapter 11. Frequently Asked Questions (FAQ)
        libxrandr2 libxrender1 libxt6 zlib1g
 
    If you need more info please take a look at the requirements
-   on Debian .
+   on Debian® .
 
-   11.1.3. I have followed all steps but configure complains
+   12.1.3. I have followed all steps but configure complains
    about missing libs or headers. What do I need to do?
 
    Please install them. ;-)
@@ -196,7 +195,7 @@ Chapter 11. Frequently Asked Questions (FAQ)
    Most RPM-based distributions separate the headers from the
    libs. The headers are needed to compile Krusader. Look for
    packages in the form foo-devel-*.rpm (e.g.
-   kdelibs-devel-foo.i586.rpm) or foo-dev-*.deb for Debian based
+   kdelibs-devel-foo.i586.rpm) or foo-dev-*.deb for Debian® based
    distributions. These are usually included with your
    distribution.
 
@@ -204,16 +203,16 @@ Chapter 11. Frequently Asked Questions (FAQ)
 
    If you can't find the needed package, use rpmfind and click
    'missing lib or header' in the search line. Or use apt-cache
-   search foo to find the corresponding package for Debian based
+   search foo to find the corresponding package for Debian® based
    distributions.
 
-   11.1.4. How do I compile Krusader when I'm using a 64 bit
+   12.1.4. How do I compile Krusader when I'm using a 64 bit
    processor ?
 
    As far as we know there are no issues, btw. Krusader is
    available on many other architectures.
 
-   11.1.5. I have downloaded the Source RPM
+   12.1.5. I have downloaded the Source RPM
    krusader-x.xx.dist.src.rpm What now?
 
     1. Check the ownership and the permissions on /usr/src/RPM/
@@ -239,7 +238,7 @@ $ su -c 'rpm -Uvh  </path/to/rpmfile> krusader-x.xx.dist.rpm'
    For more information about RPM, visit rpm.org and read the RPM
    Guide by Eric Foster-Johnson.
 
-   11.1.6. I'm trying to install binary foo (RPM or DEB package),
+   12.1.6. I'm trying to install binary foo (RPM or DEB package),
    but it fails. What's wrong?
 
    Since we only prepare (and use) the source, we cannot know
@@ -251,9 +250,9 @@ $ rpm -i --test  </path/to/rpmfile> krusader-x.xx.dist.rpm
    Krusader users. Visit your distro website and search for an
    updated RPM.
 
-   If the RPM is not OK, try to find another package at Linux
+   If the RPM is not OK, try to find another package at Linux®
    software archives such as freshmeat.net or KDE-APPS.org. If
-   you still can't find the appropriate package for your Linux
+   you still can't find the appropriate package for your Linux®
    distribution, we recommend searching for it with rpmfind or
    rpmpbone.
 
@@ -272,7 +271,7 @@ $ rpm -i --test  </path/to/rpmfile> krusader-x.xx.dist.rpm
    question, it explains how to install a source RPM. The best
    solution is explained in the next question.
 
-   11.1.7. I can't find a RPM or DEB package for Krusader, What
+   12.1.7. I can't find a RPM or DEB package for Krusader, What
    now?
 
    Check if your distribution provides Krusader, if it doesn't
@@ -289,7 +288,7 @@ $ rpm -i --test  </path/to/rpmfile> krusader-x.xx.dist.rpm
    carefully. Feel free to post a help request if you encounter
    problems.
 
-   11.1.8. I've installed Krusader, but when I start it, only the
+   12.1.8. I've installed Krusader, but when I start it, only the
    "Help" menu appears. Why?
 
    In this case only the Help menu is visible and all other menu
@@ -305,7 +304,7 @@ $ rpm -i --test  </path/to/rpmfile> krusader-x.xx.dist.rpm
    installed in the wrong directory. Please also read the next
    question.
 
-   11.1.9. Some new menu items are missing after updating
+   12.1.9. Some new menu items are missing after updating
    Krusader, what's wrong?
 
    The krusaderui.rc file is stored in
@@ -336,17 +335,17 @@ $ rpm -i --test  </path/to/rpmfile> krusader-x.xx.dist.rpm
    directory, only the "Help" menu appears, please read the
    previous question.
 
-   11.1.10. When I run make it complains about libfam.la
+   12.1.10. When I run make it complains about libfam.la
 
    The ./configure script does not check for the presence of
    libfam.la, and make needs libfam.la to compile Krusader. If
    you know how this can be solved, please let us know. Install
    libfam0-devel-foo.rpm. Note: when you install
-   Mandrake(TM)-Linux 9.2 with the default settings, this
+   Mandrake(TM)-Linux® 9.2 with the default settings, this
    package is not installed. If you need more information take a
    look at FAQ missing libs or headers.
 
-   11.1.11. Debian complains about Qt(TM) when running
+   12.1.11. Debian® complains about Qt(TM) when running
    ./configure
 
    This problem occurs when you use gcc 2.95, you need to install
@@ -359,24 +358,24 @@ $ export CPP=/usr/bin/cpp-3.2
 
    For more information please take a look in our forum and at
    the instructions on how to build a Qt(TM)/KDE3 application on
-   Debian.
+   Debian®.
 
-   11.1.12. I have a libGLcore.so.1 compile error after using the
-   NVIDIA installer
+   12.1.12. I have a libGLcore.so.1 compile error after using the
+   NVIDIA® installer
 
-   This problem occurs when you use the NVIDIA installer and not
-   the official NVIDIA packages of your distribution. Krusader
+   This problem occurs when you use the NVIDIA® installer and not
+   the official NVIDIA® packages of your distribution. Krusader
    is based on Qt(TM) which can be linked against the X OpenGL
    libraries. As a result Krusader may look for OpenGL as well.
-   The problem is that the NVIDIA installer (prior to version
+   The problem is that the NVIDIA® installer (prior to version
    7xxx) doesn't do its job properly, it replaces the OpenGL
    header files (which get included into Krusader) but doesn't
    set the libGL links correctly. The best solution is to use the
-   NVIDIA packages provided by your distributor or a new NVIDIA
+   NVIDIA® packages provided by your distributor or a new NVIDIA®
    installer, the current version at moment of writing is 7114.
-   If, for some reason, you must use an old NVIDIA driver, one
+   If, for some reason, you must use an old NVIDIA® driver, one
    solution is the following (bad? :) hack, the exact commands
-   depend on the distribution used and the version of the NVIDIA
+   depend on the distribution used and the version of the NVIDIA®
    driver (6111 in this example), but it should read something
    like this:
 $ ln -s libGLcore.so.1.0.6111  libGLcore.so.0
@@ -390,7 +389,7 @@ $ ln -s libGLcore.so.1.0.6111  libGL.so.1
 $ ln -s libGLcore.so.1.0.6111  libGL.so.1.0.0
 $ ln -s  /usr/lib/libGLU.la   /usr/X11R6/lib/libGLU.la
 
-   11.1.13. Why Krusader-1.60.x does not compile with gcc4?
+   12.1.13. Why Krusader-1.60.x does not compile with gcc4?
 
    Because Krusader-1.60.x was not gcc4 compatible, it needs
    first some patches:
@@ -402,7 +401,7 @@ $ ln -s  /usr/lib/libGLU.la   /usr/X11R6/lib/libGLU.la
 
    More information can be found in our forum .
 
-   11.1.14. I am having trouble compiling and installing
+   12.1.14. I am having trouble compiling and installing
    Krusader, how do I send a help request?
 
    Please read our detailed installation procedure and the FAQ.
@@ -416,7 +415,7 @@ $ ln -s  /usr/lib/libGLU.la   /usr/X11R6/lib/libGLU.la
     2. If you can't find a solution, please make a note of the
        following issues:
           + the Krusader version used
-          + the Linux distribution + version used
+          + the Linux® distribution + version used
           + a good description of the problem
        Without this information, it is very difficult for us to
        help you.
@@ -431,7 +430,7 @@ $ ln -s  /usr/lib/libGLU.la   /usr/X11R6/lib/libGLU.la
 
    Thanks for your cooperation!
 
-   11.1.15. How can I build an RPM package for Krusader?
+   12.1.15. How can I build an RPM package for Krusader?
 
    If you have experience with compiling from source, you will
    probably be able to build a Krusader RPM too. Information
@@ -468,7 +467,7 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
        rpmbuild again.
     8. And finally: test the RPM before sending it in.
 
-   11.1.16. Why does Krusader-cvs shows an old version number in
+   12.1.16. Why does Krusader-cvs shows an old version number in
    the about box?
 
    Because we only change the version number just before we do a
@@ -478,53 +477,53 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
    :)
      _________________________________________________________
 
-11.2. Usage FAQ
+12.2. Usage FAQ
 
-   11.2.1. Why does Krusader crash?
-   11.2.2. When I try to mount/unmount my cdrom/floppy, Krusader
+   12.2.1. Why does Krusader crash?
+   12.2.2. When I try to mount/unmount my cdrom/floppy, Krusader
           says something about supermount, what's this about?
 
-   11.2.3. Why does Krusader freeze or hang on a dead mountpoint?
-   11.2.4. When I try to resize Krusader, so that it's smaller, I
+   12.2.3. Why does Krusader freeze or hang on a dead mountpoint?
+   12.2.4. When I try to resize Krusader, so that it's smaller, I
           discover that I can't resize it below a certain size.
           Basically, it doesn't get much smaller. Why?
 
-   11.2.5. When I do some file operation, and Krusader's panel
+   12.2.5. When I do some file operation, and Krusader's panel
           doesn't refresh / I'm using Krusader with fam
           installed, but updates to the panel are not shown.
 
-   11.2.6. Samba ISO 8859-x codepage / what to do if Krusader
+   12.2.6. Samba ISO 8859-x codepage / what to do if Krusader
           does not read shared directories containing special
           international characters?
 
-   11.2.7. Krusader reports "krarc:... protocol not supported"
+   12.2.7. Krusader reports "krarc:... protocol not supported"
           error at opening an archive file.
 
-   11.2.8. I get the error message "Protocol not supported by
+   12.2.8. I get the error message "Protocol not supported by
           Krusader: "krarc:/path/to/foo-archive", when I try to
           open foo-Archive
 
-   11.2.9. Why have i trouble with my FTP connection?
-   11.2.10. I get "FTP protocol not supported by Krusader" error
+   12.2.9. Why have i trouble with my FTP connection?
+   12.2.10. I get "FTP protocol not supported by Krusader" error
           at trying to open a remote FTP directory.
 
-   11.2.11. How can i close a remote connection (e.g. a FTP
+   12.2.11. How can i close a remote connection (e.g. a FTP
           connection) ?
 
-   11.2.12. Why do i have some trouble with the media://
+   12.2.12. Why do i have some trouble with the media://
           protocol?
 
-   11.2.13. How can I disable the default sounds e.g. when I do a
+   12.2.13. How can I disable the default sounds e.g. when I do a
           delete action ?
 
-   11.2.14. Where is RemoteMan, the remote connection manager ?
-   11.2.15. Why mimetype magic isn't sometimes working inside
+   12.2.14. Where is RemoteMan, the remote connection manager ?
+   12.2.15. Why mimetype magic isn't sometimes working inside
           archives?
 
-   11.2.16. Why does the handbook not work?
-   11.2.17. Why "save last location" doesn't work?
+   12.2.16. Why does the handbook not work?
+   12.2.17. Why "save last location" doesn't work?
 
-   11.2.1. Why does Krusader crash?
+   12.2.1. Why does Krusader crash?
 
    We've been received a lot of emails and bug reports (December
    2005) regarding random crashes in Krusader, especially during
@@ -533,14 +532,14 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
    3.3.5 introduced a serious bug which is currently (December
    2005) causing random crashes in many KDE applications
    including Konqueror. You can Google for it to find out more.
-   As far as we know, Debian-Sid and SuSE already posted new
-   Qt(TM) binaries that fix the problem, and Gentoo has masked
+   As far as we know, Debian®-Sid and SuSE® already posted new
+   Qt(TM) binaries that fix the problem, and Gentoo® has masked
    Qt(TM) 3.3.5 completely. As for now, you either need Qt(TM)
    3.3.4 or a fixed Qt(TM) 3.3.5 or a higer version, depending on
    your distribution. More information is available on our
    website.
 
-   11.2.2. When I try to mount/unmount my cdrom/floppy, Krusader
+   12.2.2. When I try to mount/unmount my cdrom/floppy, Krusader
    says something about supermount, what's this about?
 
    Supermount is a daemon which handles the mounting/unmounting
@@ -556,14 +555,14 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
    this can be solved, but as for now, we don't consider it a
    priority. Feel free to write a patch for it ;-).
 
-   11.2.3. Why does Krusader freeze or hang on a dead mountpoint?
+   12.2.3. Why does Krusader freeze or hang on a dead mountpoint?
 
    When Krusader is e.g. browsing a NFS share and the NFS server
    goes down, then Krusader will freeze. This Krusader (and all
    other open internal viewers/editors) freeze is fatal, and can
    only be corrected with the kill -9. We have no solution to
    offer here. This is an issue not confined to file managers, or
-   even the Linux OS! The problem is that you "hang" on the
+   even the Linux® OS! The problem is that you "hang" on the
    first access to the dead share - so there is no way around it,
    no check to avoid it, even ls will freeze. Just trying to read
    something - anything - is enough to get you stuck. The one and
@@ -577,7 +576,7 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
    major issue in any case; so currently this is just a bug we
    have to learn to live with.
 
-   11.2.4. When I try to resize Krusader, so that it's smaller, I
+   12.2.4. When I try to resize Krusader, so that it's smaller, I
    discover that I can't resize it below a certain size.
    Basically, it doesn't get much smaller. Why?
 
@@ -590,7 +589,7 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
    give the complete text. The minimum width is 45 pixels for
    each button.
 
-   11.2.5. When I do some file operation, and Krusader's panel
+   12.2.5. When I do some file operation, and Krusader's panel
    doesn't refresh / I'm using Krusader with fam installed, but
    updates to the panel are not shown.
 
@@ -606,7 +605,7 @@ $ su -c 'fam -l'
 
    Look at the manpages for more information about fam.
 
-   11.2.6. Samba ISO 8859-x codepage / what to do if Krusader
+   12.2.6. Samba ISO 8859-x codepage / what to do if Krusader
    does not read shared directories containing special
    international characters?
 
@@ -622,7 +621,7 @@ $ su -c 'fam -l'
    Unfortunately kcontrol (KDE 3.1.1) fails to configure smb.conf
    properly, so this must be done manually with a text editor.
 
-   11.2.7. Krusader reports "krarc:... protocol not supported"
+   12.2.7. Krusader reports "krarc:... protocol not supported"
    error at opening an archive file.
 
    Solution: install the krarc slave properly:
@@ -633,9 +632,9 @@ $ su -c 'fam -l'
    Copy the krarc.protocol file into $KDEDIR/share/services
 
    or the directory where the KIO slaves are placed in your
-   Linux distribution.
+   Linux® distribution.
 
-   11.2.8. I get the error message "Protocol not supported by
+   12.2.8. I get the error message "Protocol not supported by
    Krusader: "krarc:/path/to/foo-archive", when I try to open
    foo-Archive
 
@@ -646,7 +645,7 @@ $ su -c 'fam -l'
    the same location. Don't forget to run # ldconfig on this
    directory when you're done. For more information click here .
 
-   11.2.9. Why have i trouble with my FTP connection?
+   12.2.9. Why have i trouble with my FTP connection?
 
    This problem often occurs when you are behind a firewall or
    proxy. Open KDE Control Center->Network->Preferences , "Enable
@@ -657,7 +656,7 @@ $ su -c 'fam -l'
    More information information can be found in Active FTP vs.
    Passive FTP, a Definitive Explanation .
 
-   11.2.10. I get "FTP protocol not supported by Krusader" error
+   12.2.10. I get "FTP protocol not supported by Krusader" error
    at trying to open a remote FTP directory.
 
    The reason for this error is that 'FTP via HTTP proxy' feature
@@ -666,12 +665,12 @@ $ su -c 'fam -l'
    Center. Modify the proxy settings to not use HTTP proxy and
    FTP will work.
 
-   11.2.11. How can i close a remote connection (e.g. a FTP
+   12.2.11. How can i close a remote connection (e.g. a FTP
    connection) ?
 
    It's explained in the remote connections chapter .
 
-   11.2.12. Why do i have some trouble with the media://
+   12.2.12. Why do i have some trouble with the media://
    protocol?
 
    At the moment of writing the media:// protocol is instable, we
@@ -679,7 +678,7 @@ $ su -c 'fam -l'
    protocol works properly with Krusader, only media fails. More
    information regarding this issue is available in our forum .
 
-   11.2.13. How can I disable the default sounds e.g. when I do a
+   12.2.13. How can I disable the default sounds e.g. when I do a
    delete action ?
 
    Those are the default KDE System sounds, and not related to
@@ -688,7 +687,7 @@ $ su -c 'fam -l'
    Multimedia->System Notifications , Event Source: "KDE System
    Notifications" and uncheck sound items you don't like.
 
-   11.2.14. Where is RemoteMan, the remote connection manager ?
+   12.2.14. Where is RemoteMan, the remote connection manager ?
 
    RemoteMan has been replaced by our Bookmark Manager since
    Krusader 1.25-beta1. The Bookmark Manager handles local files
@@ -708,7 +707,7 @@ $ su -c 'fam -l'
     5. install Krusader-1.60, it will use krbookmarks.xml or
        import it if needed.
 
-   11.2.15. Why mimetype magic isn't sometimes working inside
+   12.2.15. Why mimetype magic isn't sometimes working inside
    archives?
 
    When you enter an archive and press F3 to view a file that has
@@ -718,9 +717,9 @@ $ su -c 'fam -l'
    Associations->Application->octet-stream, binary viewer needs
    to be removed.
 
-   11.2.16. Why does the handbook not work?
+   12.2.16. Why does the handbook not work?
 
-   This error will happen on Debian (or Debian based) distro
+   This error will happen on Debian® (or Debian® based) distro
    with the krusader_1.51-1_i386.deb package. You will see the
    next error message if you try to open the handbook: "The
    requested help file could not be found. Check that you have
@@ -732,7 +731,7 @@ $ su -c 'fam -l'
    fixed in the krusader_1.60.0-1_i386.deb package and higher
    versions.
 
-   11.2.17. Why "save last location" doesn't work?
+   12.2.17. Why "save last location" doesn't work?
 
    Unfortunately the 1.70.x version contains a bug. The tabs are
    not saved if a "Panels Save Settings=Tabs" item is present in
@@ -745,25 +744,25 @@ $ su -c 'fam -l'
    More info can be found in our forum .
      _________________________________________________________
 
-11.3. General FAQ
+12.3. General FAQ
 
-   11.3.1. How can I report a wish, a suggestion, or a comment?
-   11.3.2. How can I send a patch?
-   11.3.3. How can I report a bug?
-   11.3.4. Does Krusader have a mailing list?
-   11.3.5. Does Krusader provides newsfeeds?
-   11.3.6. Does Krusader have a IRC channel?
-   11.3.7. How does the Krusader forum work?
-   11.3.8. How can I translate Krusader to my native language?
-   11.3.9. How can I support Krusader?
-   11.3.10. Is there a Mac OS X port?
-   11.3.11. Is there a Windows port?
-   11.3.12. Why is Konqueror in "midnight commander style" not an
+   12.3.1. How can I report a wish, a suggestion, or a comment?
+   12.3.2. How can I send a patch?
+   12.3.3. How can I report a bug?
+   12.3.4. Does Krusader have a mailing list?
+   12.3.5. Does Krusader provides newsfeeds?
+   12.3.6. Does Krusader have a IRC channel?
+   12.3.7. How does the Krusader forum work?
+   12.3.8. How can I translate Krusader to my native language?
+   12.3.9. How can I support Krusader?
+   12.3.10. Is there a Mac® OS X port?
+   12.3.11. Is there a Windows® port?
+   12.3.12. Why is Konqueror in "midnight commander style" not an
           OFM?
 
-   11.3.13. Why should i use an OFM?
+   12.3.13. Why should i use an OFM?
 
-   11.3.1. How can I report a wish, a suggestion, or a comment?
+   12.3.1. How can I report a wish, a suggestion, or a comment?
 
    An open source project's greatest strength is derived from
    getting user feedback. That is why we love to hear what you
@@ -784,7 +783,7 @@ $ su -c 'fam -l'
    submission. For more information how the forum works click
    here .
 
-   11.3.2. How can I send a patch?
+   12.3.2. How can I send a patch?
 
    It's not easy to write some patch guidlines, but here we give
    a try.
@@ -806,8 +805,8 @@ $ su -c 'fam -l'
        mail. Most mailers will change the white spaces, so that
        the diff will not apply or the code snipped does not diff.
     5. Use portable solutions, Krusader should run on:
-          + All POSIX (Linux/BSD/UNIX-like OSes), Solaris(TM).
-          + All BSD Platforms (FreeBSD/NetBSD/OpenBSD/Mac
+          + All POSIX (Linux®/BSD/UNIX®-like OSes), Solaris(TM).
+          + All BSD Platforms (FreeBSD®/NetBSD®/OpenBSD®/Mac®
             OS).
           + KDE 3.3- KDE 3.5.3 and even on GNOME with KDElibs.
           + GCC 2.95 - GCC 4.1
@@ -821,7 +820,7 @@ $ su -c 'fam -l'
        work. Furthermore: Keep in mind, that the examination of
        patches might take time, as we all have private lifes.
 
-   11.3.3. How can I report a bug?
+   12.3.3. How can I report a bug?
 
    Bugs?!?!? Well, ok.... We have an online Bug Tracking System.
 
@@ -842,7 +841,7 @@ $ su -c 'fam -l'
     3. If you can't find this bug mentioned, please submit it
        into the bug tracker by clicking the Submit New button in
        the bug-tracker window. Please submit the following
-       issues: the Krusader version used, the Linux distribution
+       issues: the Krusader version used, the Linux® distribution
        + version used, processor type, and as good a description
        of the problem as you can manage.
 
@@ -860,7 +859,7 @@ $ su -c 'fam -l'
 
    Note
 
-   11.3.4. Does Krusader have a mailing list?
+   12.3.4. Does Krusader have a mailing list?
 
    Yes, currently have 6 mailing lists. No spam, no bother, just
    Krusader. Feel free to (un)subscribe.
@@ -888,7 +887,7 @@ $ su -c 'fam -l'
        ... live! Want to keep track? Waiting for a certain
        feature/bugfix?
 
-   11.3.5. Does Krusader provides newsfeeds?
+   12.3.5. Does Krusader provides newsfeeds?
 
    Yes, we do. Several newsfeeds in various formats are
    available. rss-filerelease feed, rss-forumfeed, krusader-news
@@ -896,14 +895,14 @@ $ su -c 'fam -l'
    gmane.org. krusader-users feed, krusader-i18n feed,
    krusader-doc feed.
 
-   11.3.6. Does Krusader have a IRC channel?
+   12.3.6. Does Krusader have a IRC channel?
 
    Yes, we have. Feel free to talk to the Krusader Krew, and of
    course fellow-users via freenode.org servers. The server is
    irc.freenode.org, the channel is #krusader. Everyone is
    welcome.
 
-   11.3.7. How does the Krusader forum work?
+   12.3.7. How does the Krusader forum work?
 
    In the spirit of freedom of speech, everything that is
    Krusader related can be discussed in our forum. It does not
@@ -962,37 +961,38 @@ $ su -c 'fam -l'
    to you! To make use of them, simply point your RSS aggregator
    to here.
 
-   11.3.8. How can I translate Krusader to my native language?
+   12.3.8. How can I translate Krusader to my native language?
 
    Please read the i18n page. It's not difficult to translate!
    Most anyone can do it, it just takes some time.
 
-   11.3.9. How can I support Krusader?
+   12.3.9. How can I support Krusader?
 
    You can support Krusader in many different ways: please send
    us feedback, bug reports, patches, donations, translations,
    ...
 
-   11.3.10. Is there a Mac OS X port?
+   12.3.10. Is there a Mac® OS X port?
 
-   Yes, there is Mac OS X port, but you will not have (yet) the
-   all the power like on Linux. Please read the Mac OS X port
+   Yes, there is Mac® OS X port, but you will not have (yet) the
+   all the power like on Linux®. Please read the Mac® OS X port
    section for more information. A recommended native file
-   manager for Mac OS is Disk Order (shareware).
+   manager for Mac® OS is Disk Order© (shareware).
 
-   11.3.11. Is there a Windows port?
+   12.3.11. Is there a Windows® port?
 
    No, but this might change in the future. Please help us,
-   thanks. A recommended native file manager for Windows is
-   Total Commander (shareware).
+   thanks. A recommended native file manager for Windows® is
+   Total Commander© (shareware).
 
-   11.3.12. Why is Konqueror in "midnight commander style" not an
+   12.3.12. Why is Konqueror in "midnight commander style" not an
    OFM?
 
-   The two panels and a commanline are there, all the other OFM
-   features and the OFM interaction with the user is missing.
+   The two panels and a commandline are available, all the other
+   stuff like OFM features and the OFM interaction with the user
+   is missing.
 
-   11.3.13. Why should i use an OFM?
+   12.3.13. Why should i use an OFM?
 
    An Orthodox File Manager (OFM) is much faster than a one panel
    filemanager and faster than the command line. If you like to
@@ -1002,7 +1002,7 @@ $ su -c 'fam -l'
    used to new ideas who are already 20 years old :) If you
    prefer to waste time and lose a lot of productivity, you can
    always continue to use one panel filemanagers who are based on
-   Windows Explorer ;-) Matej Urbancic has written a blog why
+   Windows® Explorer ;-) Matej Urbancic has written a blog why
    OFM is better than a one panel filemanager.
      _________________________________________________________
 

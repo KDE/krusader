@@ -1,7 +1,7 @@
 --------------------------------------------
-- Documentation version:  1.80.0
-- Documentation date:  2006-11-14
-- Parsing date: Tue Nov 14 21:14:56 UTC 2006
+- Documentation version:  1.80.0-1
+- Documentation date:  2006-12-21
+- Parsing date: Thu Dec 21 20:12:12 UTC 2006
 --------------------------------------------
  
 This file contains the TXT install instructions for Krusader.
@@ -48,6 +48,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 ------------------------------------------------------------------------
 
 Appendix A. Installation
+     _________________________________________________________
 
 A.1. Requirements
 
@@ -63,8 +64,9 @@ A.1. Requirements
      * Krusader v1.50 - v1.51: KDE 3.2 - KDE 3.3 (Konfigurator
        crash on KDE 3.4)
      * Krusader v1.60.0 - v1.70.0: KDE 3.3 - KDE 3.5
-     * Krusader 1.70.0: prefers KDE >= 3.4 (otherwise not all
+     * Krusader 1.70.x: prefers KDE >= 3.4 (otherwise not all
        features will be available)
+     * Krusader 1.80.0: KDE 3.4 - KDE 3.5
      * Krusader v2.xx.x: KDE 4 - Qt(TM) 4 The big challenge,
        maybe a first release in 2006 ;)
 
@@ -283,13 +285,13 @@ usader co krusader_kde3
 
    If you want to checkout a specific version of Krusader from
    CVS (e.g. Krusader-1.60.0) :
-$ cvs -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co
- -rversion_1_60_0 krusader_kde3
+$ cvs -z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/kr
+usader co -rversion_1_60_0 krusader_kde3
 
    If you want to checkout a specific date of Krusader from CVS
-   (e.g. Krusader-2005-05-23) :
-$ cvs -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co
- -D2005-05-23 krusader_kde3
+   (e.g. Krusader-2006-10-29) :
+$ cvs -z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/kr
+usader co -D2006-10-29 krusader_kde3
 
    Mostly being Gentoo® users, we provide a Gentoo® Live Ebuild
    for all those who want to stay on the bleeding edge of
