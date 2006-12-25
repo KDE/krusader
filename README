@@ -1,9 +1,10 @@
-Krusader 1.70.0 "Round Robin"
-=============================
-The Krew is pleased to announce the stable release of Krusader 1.70.0.
+Krusader 1.80.0-beta1 "????"
+===================================
+The Krew is pleased to announce the first beta release of 
+Krusader 1.80.0-beta1
 Introducing many new, expert features as well as many operational and
 visibility enhancements. With this release Krusader is heading straight
-to its second milestone, bringing a feature rich file manager with new
+to its third milestone, bringing a feature rich file manager with new
 technologies and standards to the Linux desktop. We would like to thank
 the developers, translators, and the rest of the community for keeping
 us sharp, for beta testing and using our file manager and for your
@@ -32,81 +33,79 @@ your distribution. For more information is available on our website at
 http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1407
 ************************************************************************
 
-Krusader v1.70.0 contains over 40 changes, bug fixes and updates in
+Krusader v1.80.0-beta1 contains over 40 changes, bug fixes and updates in
 response to reports and requests from our users. The highlights are:
 
 New Modules/Features
 --------------------
-* New zip/tar slave - based on KDE's but support writing to archive
-* A Safari-like Jump-Back feature (Ctrl-J and in the bookmark-menu)
-* Quick Navigation: hold the CTRL button and move the mouse over the
-  text in the url bar to see this new feature in action
-* Checksum creation/verification mechanism that supports md5, sha1,
-  sha256, tiger, whirlpool. external supported tools are md5deep and
-  cfv.
-* Editor/viewer is now tabbed. Configure it in General->Viewer
-* Viewer has a new placeholder for the UserActions which allows
-  to open the viewer with different view- and window-modes:
-  %_View("filename", "view-mode", "window-mode")%
-* Filters for selecting files - click "select files" to see how
-* Column types can be changed and saved individually to each panel
-  (each side). right click on the column names to use this mechanism
-* When searching for text inside files, the result will display the
-  line in which the requested was found.
-* Select remote encoding menu for fish, ftp and sftp protocols.
-  Accessible via a new subemenu in the Command menu.
-* One can now Synchronize selected files, via right-click menu
-
+* Archive improvements
+  - Password support for: arj, ace, rar and zip. Passwords can be stored in Kwallet
+  - 7-zip support, by external applications 7z and 7za.
+  - Autodetection support, allowing you to open "hidden archives"
+  - Packing/unpacking are now in the background.
+* Media button
+* Full ACL permissions support (properties, preserve attributes, synchronizer).
+* atomic extensions
+* atomic extensions are configurable through krusaderrc
+* ActionMan for useraction configuration
+* Copy/Move: preserve all attributes (time, owner, group)
 
 Improvements
 ------------
-* Synchronizer is now in color!
-* Calculate space in archives and remote FS (KDE >= 3.3.0) 
-* Improved performance when reading directories with many files 
-* New permissions column as octal numbers
-* Preserve date for local targets on copy / move operations
-* Starting krusader with more tabs,
-  using --left=tab1,tab2,tab3 --right=tab4,tab5
-* Use WhatsThis in favour of tooltips where reasonable
-  and more ...
-
+* panel splitter: shows the percent values at moving
+* viewer: print + copy actions
+* searcher is able to search content on remote URLs
+* synchronizer: threshold for equality, time offset between sides
+* synchronizer: faster "compare by content" for local files
+* synchronizer: Feed to listbox
+* synchronizer: parallel threads for slow FTP servers
+* synchronizer: double click on a file calls the diff utility (kompare)
+* single instance mode
+* UserAction: Outputcollectionwindow can now save the buffer
+* UserAction: Outputcollection now supports fonts with fixed or
+              variable width
+* UserActions are now managed with ActionMan. In Konfigurator
+              you can change settings _about_ useractions.
+* Konfigurator: MouseMode got now it's own Tab in Look&Feel
+* Shortcut- and Toolbardialogs are removed from Konfigurator
+* Shortcuts are now exported in as plaintext, legacy import still works.
 
 Usability
 ---------
-* Ctrl-L goes to the location bar (url bar), as in konqueror and firefox
-* Ctrl-Alt-ENTER opens the selected folder in a new tab
-* Alt-Ctrl-S creates a new symlink
-* Ctrl-H opens the history list on the current panel (much like ctrl-d)
-* When starting krusader for the first time, auto detection of tools is
-  displayed in a more coherent and good looking way
-* Trash, delete and shred options are added directly into the right
-  click menu
-* Right-click menu now has a "Create new" submenu
-* New "clear location bar" button, a-la Konqueror
-* Krusader's icon is set according to user's priveldges
+* Restyled MenuBar
+* swap panels / swap sides
+* Experimental input method support in quick search (patch by Jiri Palecek)
+* an option for directories to be always sorted by name
+* keeping the directory structures for virt folders at copy/move
+* searcher, synchronizer: directory name filters (ex. '* | CVS/')
+* enable/disable special bookmarks by right clicking on them
+* start to system tray
+* right click menu for bookmarks
+* Inactive panel color dimming
+* renaming of just the filename, without extension
+* archive packing / unpacking are now in the background
+* Terminal emulator: Ctrl+Enter,Ctrl+Shift+Enter paste the filename
+* Terminal emulator: Ctrl+F switches between full-widget TE, normal TE
+  (thanks to Vaclav Juza)
+* Terminal emulator: Ctrl+Shift+Up/Down always focus/unfocus TE
+                    independently whether the command line is shown or not
+* Terminal emulator: if the command line is hidden,
+                    TE receives Ctrl+Up / Ctrl+Down (thanks to Vaclav Juza)
+* full screen terminal window (mc-style)
+* removed KDE's KeyDialog in order to provide import/export abilities
+* Ctrl+Up from panel focuses the origin editbox, Ctrl+Down from origin
+* editbox focuses the panel (thanks to Vaclav Juza)
+* Better quick navigation: first move mouse over subdir, then
+                           press ctrl + left mouse button (patch by Jiri Palecek)
+* Better subdir calculation on quick navigation
+* Color cache redesigned. Konfigurator preview and actual colors
+                          should now match
 
 
 Translations
 ------------
 * Many new and updated :-)
-* i18n multiple plural support
-
-
-Changes since beta1 include (but not limited to):
--------------------------------------------------
-* Improvements in the checksum module
-* More control over the terminal emulator (requested feature)
-* Our modified KIO-TAR is now built only when passing --with-kiotar to
-  configure
-* Bugfixes to bookmarks, viewer and much more
-* A fix for a nasty bug that was plagueing people with gcc 4.x
-
-
-Changes since beta2 include (but not limited to):
--------------------------------------------------
-* New icons and artwork by our contest winner Andrew Neupokoev
-* A splashscreen based on the contest artwork
-* Bug fixes, bug fixes, bug fixes
+* Russian Handbook (translation is work in progress) thanks to Roman Batejkin
 
 
 enjoy!
