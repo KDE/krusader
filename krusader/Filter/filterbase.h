@@ -45,6 +45,7 @@ public:
   virtual void            saveToProfile( QString name ) = 0;
   virtual QString         name() = 0;
   virtual FilterTabs *    filterTabs() = 0;
+  virtual ~FilterBase()   {}
 };
 
 #endif /* FILTERBASE_H */

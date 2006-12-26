@@ -56,9 +56,9 @@ void sumCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
 	proc << files << "1>" << stdoutFileName << "2>" << stderrFileName;	
 }
 
-void sumVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& files, 
+void sumVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& /* files */, 
 	const QString checksumFile, bool recursive, const QString& stdoutFileName, 
-	const QString& stderrFileName, const QString& type) {
+	const QString& stderrFileName, const QString& /* type */) {
 	proc.setUseShell(true, "/bin/bash");
 	proc << KrServices::fullPathName( self->binary );
 	Q_ASSERT(!recursive);
@@ -100,7 +100,7 @@ void deepVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
 	proc << "-x" << checksumFile << files << "1>" << stdoutFileName << "2>" << stderrFileName;
 }
 
-QStringList deepFailedFunc(const QStringList& stdOut, const QStringList& stdErr) {
+QStringList deepFailedFunc(const QStringList& stdOut, const QStringList&/* stdErr */) {
 	// *deep dumps (via -x) all failed hashes to stdout
 	return stdOut;
 }
@@ -115,7 +115,7 @@ void cfvCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
 	proc << "-t" << type << "-f-" << "-U" << files << "1>" << stdoutFileName << "2>" << stderrFileName;	
 }
 
-void cfvVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& files, 
+void cfvVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& /* files */, 
 	const QString checksumFile, bool recursive, const QString& stdoutFileName, 
 	const QString& stderrFileName, const QString&type) {
 	proc.setUseShell(true, "/bin/bash");
@@ -124,7 +124,7 @@ void cfvVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
 	proc << "-U" << "-VV" << "-t" << type << "-f" << checksumFile << "1>" << stdoutFileName << "2>" << stderrFileName;// << files;
 }
 
-QStringList cfvFailedFunc(const QStringList& stdOut, const QStringList& stdErr) {
+QStringList cfvFailedFunc(const QStringList& /* stdOut */, const QStringList& stdErr) {
 	// cfv dumps all failed hashes to stderr
 	return stdErr;
 }
@@ -449,7 +449,7 @@ VerifyResultDlg::VerifyResultDlg(const QStringList& failed):
 // ------------- ChecksumResultsDlg
 
 ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringList& stdErr,
-	const QString& suggestedFilename, const QString& binary, const QString& type):
+	const QString& suggestedFilename, const QString& binary, const QString& /* type */):
 	KDialogBase(Plain, i18n("Create Checksum"), Ok | Cancel, Ok, krApp), _binary(binary) {
 	QGridLayout *layout = new QGridLayout( plainPage(), 1, 1,
 		KDialogBase::marginHint(), KDialogBase::spacingHint());

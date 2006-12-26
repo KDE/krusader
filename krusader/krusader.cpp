@@ -1138,7 +1138,7 @@ const char* Krusader::privIcon() {
       return "krusader_root";
 }
 
-bool Krusader::process(const QCString &fun, const QByteArray &data, QCString &replyType, QByteArray &replyData) {
+bool Krusader::process(const QCString &fun, const QByteArray &/* data */, QCString &/* replyType */, QByteArray &/* replyData */) {
    if (fun == "moveToTop()") {
       moveToTop();
       return true;

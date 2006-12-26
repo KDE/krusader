@@ -239,7 +239,7 @@ int QuickNavLineEdit::findCharFromPos(const QString & str, const QFontMetrics & 
 {
 	if (pos < 0)
 		return -1;
-	for (int i = 1; i <= str.length(); ++i)
+	for (int i = 1; i <= (int)str.length(); ++i)
 		if (metrics.width(str, i) > pos)
 			return i;
 	return str.length();

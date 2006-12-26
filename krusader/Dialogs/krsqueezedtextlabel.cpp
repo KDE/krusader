@@ -52,8 +52,8 @@ void KrSqueezedTextLabel::squeezeTextToLabel(int index, int length) {
 				sqtext.replace(0, delta, "...");
 			}
 			
-			if (numOfExtraChars>0 && (sqtext.length() > length+3)) {
-				delta = QMIN(numOfExtraChars, sqtext.length() - (length+3));
+			if (numOfExtraChars>0 && ((int)sqtext.length() > length+3)) {
+				delta = QMIN(numOfExtraChars, (int)sqtext.length() - (length+3));
 				sqtext.replace(sqtext.length()-delta, delta, "...");
 			}
 			QLabel::setText(sqtext);

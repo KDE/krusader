@@ -182,7 +182,7 @@ QString KrServices::quote( QString name ) {
 
 QStringList KrServices::quote( const QStringList& names ) {
 	QStringList result;
-	for (int i=0; i<names.size(); ++i)
+	for (unsigned i=0; i<names.size(); ++i)
 		result.append(quote(names[i]));
 	return result;
 }
@@ -213,10 +213,10 @@ void KEasyProcess::init() {
 		this, SLOT(receivedStderr(KProcess *, char *, int)));
 }
 
-void KEasyProcess::receivedStdout (KProcess *proc, char *buffer, int buflen) {
+void KEasyProcess::receivedStdout (KProcess * /* proc */, char *buffer, int buflen) {
 	_stdout+=QString::fromLocal8Bit(buffer, buflen);
 }
 
-void KEasyProcess::receivedStderr (KProcess *proc, char *buffer, int buflen) {
+void KEasyProcess::receivedStderr (KProcess * /* proc */, char *buffer, int buflen) {
 	_stderr+=QString::fromLocal8Bit(buffer, buflen);
 }

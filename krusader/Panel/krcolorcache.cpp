@@ -650,7 +650,7 @@ QColor KrColorCacheImpl::getCurrentMarkedForegroundColor(bool isActive) const
 	return m_colorSettings.getColorValue(colorName);
 }
 
-QColor KrColorCacheImpl::dimColor(QColor color, bool isBackgroundColor) const
+QColor KrColorCacheImpl::dimColor(QColor color, bool /* isBackgroundColor */) const
 {
 	krConfig->setGroup("Colors");
 	int dimFactor = m_colorSettings.getNumValue("Dim Factor", 100);

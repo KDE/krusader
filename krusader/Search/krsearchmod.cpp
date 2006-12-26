@@ -125,8 +125,6 @@ void KRSearchMod::scanURL( KURL url )
 
 void KRSearchMod::scanLocalDir( KURL urlToScan )
 {
-  int passes = 0;
-
   QString dir = urlToScan.path( 1 );
 
   DIR* d = opendir( dir.local8Bit() );
@@ -205,8 +203,6 @@ void KRSearchMod::scanLocalDir( KURL urlToScan )
 
 void KRSearchMod::scanRemoteDir( KURL url )
 {
-  int passes = 0;
-  
   vfs * vfs_;
   
 

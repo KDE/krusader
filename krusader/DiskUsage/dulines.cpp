@@ -178,6 +178,8 @@ class DULinesToolTip : public QToolTip
 public:
     DULinesToolTip( DiskUsage *usage, QWidget *parent, QListView *lv );
     void maybeTip( const QPoint &pos );
+
+    virtual ~DULinesToolTip() {}
 private:
     QListView *view;
     DiskUsage *diskUsage;

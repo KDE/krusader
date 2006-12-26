@@ -121,7 +121,7 @@ void KgDependencies::addApplication( QString name, QGridLayout *grid, int row, Q
 
   if( dflt.isEmpty() ) {
     QStringList list = QStringList::split( ',', additionalList );
-    for( int i=0; i != list.count(); i++ )
+    for( unsigned i=0; i != list.count(); i++ )
       if( !KrServices::fullPathName( list[ i ] ).isEmpty() ) {
         dflt = KrServices::fullPathName( list[ i ] );
         break;

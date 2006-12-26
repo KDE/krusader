@@ -331,7 +331,7 @@ void virt_vfs::vfs_calcSpace( QString name , KIO::filesize_t* totalSize, unsigne
 	if( path == "/" ) {
 		KURL::List* urlList = virtVfsDict[ name ];
 		if ( urlList )
-			for( int i=0; (i != urlList->size()) && !(*stop); i++ )
+			for( unsigned i=0; (i != urlList->size()) && !(*stop); i++ )
 				calculateURLSize( (*urlList)[ i ], totalSize, totalFiles, totalDirs, stop );
 		return;        
 	}                

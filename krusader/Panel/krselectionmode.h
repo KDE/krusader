@@ -29,6 +29,8 @@ public:
    inline bool shiftCtrlLeftButtonSelects() { return _shiftCtrlLeftButtonSelects; }	
    inline int showContextMenu() { return _showContextMenu; } // 0: no, -1: yes, n>0: after n milliseconds
 
+   virtual ~KrSelectionMode() {}
+
 protected:
 	bool _useQTSelection, _spaceMovesDown, _insertMovesDown, _spaceCalculatesDiskSpace;
 	bool _rightButtonSelects, _leftButtonSelects, _rightButtonPreservesSelection;

@@ -57,7 +57,7 @@ private:
 	bool initiated;
 	static int expHeight;
 	// TODO:
-	static const QColor & setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2) {}
+	static const QColor & setColorIfContrastIsSufficient(const QColor & /* background */, const QColor & /* color1 */, const QColor & /* color2 */ ) {static QColor col; return col;}
 	
 	
 //	static int expHeight;

@@ -139,7 +139,6 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 	}
 
 	vfs* v = 0;
-	bool validRefresh=false;
 	if ( !urlStack.top().equals( url ) )
 		urlStack.push( url );
 	// count home many urls is in the stack, so later on, we'll know if the refresh was a success

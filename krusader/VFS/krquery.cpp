@@ -457,7 +457,7 @@ void KRQuery::setNameFilter( const QString &text, bool cs )
       matchText = "*";
   }
 
-  int i;
+  unsigned i;
 
   matches  = QStringList::split(QChar(' '), matchText );
   includedDirs.clear();

@@ -1017,7 +1017,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString profile ) :
    initGUI( parent, profile, KURL(), KURL(), QStringList() );
 }
 
-void SynchronizerGUI::initGUI(QWidget* parent, QString profileName, KURL leftURL, KURL rightURL, QStringList selList) {
+void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KURL leftURL, KURL rightURL, QStringList selList) {
   selectedFiles = selList;
   isComparing = wasClosed = wasSync = false;
   firstResize = true;

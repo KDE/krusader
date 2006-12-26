@@ -304,7 +304,7 @@ void KMountManGUI::changeActive( QListViewItem *i ) {
 }
 
 // called when right-clicked on a filesystem
-void KMountManGUI::clicked( QListViewItem *item, const QPoint& pos, int col ) {
+void KMountManGUI::clicked( QListViewItem *item, const QPoint& pos, int /* col */ ) {
    // these are the values that will exist in the menu
 #define MOUNT_ID       90
 #define UNMOUNT_ID     91

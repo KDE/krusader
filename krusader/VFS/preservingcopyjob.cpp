@@ -160,7 +160,7 @@ void PreservingCopyJob::slotListEntries(KIO::Job *job, const KIO::UDSEntryList &
     KURL url = ((KIO::SimpleJob *)job)->url();
     QString relName, user, group;
     time_t mtime = (time_t)-1;
-    mode_t mode;
+    mode_t mode = 0755;
     QString acl;
     
     KIO::UDSEntry::ConstIterator it2 = (*it).begin();

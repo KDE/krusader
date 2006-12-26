@@ -72,7 +72,7 @@ VirtProtocol::~VirtProtocol() {
 	delete kio_virt_db;
 }
 
-void VirtProtocol::del(KURL const & url, bool isFile){
+void VirtProtocol::del(KURL const & /*url */, bool /* isFile */ ){
 //	KRDEBUG(url.path());
 	
 	messageBox(KIO::SlaveBase::QuestionYesNo,
@@ -85,7 +85,7 @@ void VirtProtocol::del(KURL const & url, bool isFile){
 	finished();
 }
 
-void VirtProtocol::copy( const KURL &src, const KURL &dest, int permissions, bool overwrite ){
+void VirtProtocol::copy( const KURL &src, const KURL &dest, int /* permissions */, bool /* overwrite */ ){
 	QString path = dest.path( -1 ).mid( 1 );
 	path = path.left(path.findRev("/"));
 	if ( path.isEmpty() ) path = "/";
@@ -215,7 +215,7 @@ void VirtProtocol::get( const KURL & url ) {
 	finished();
 }
 
-bool VirtProtocol::rewriteURL(const KURL& src, KURL&){ 
+bool VirtProtocol::rewriteURL(const KURL& /* src */, KURL&){ 
 	return true; 
 }
 

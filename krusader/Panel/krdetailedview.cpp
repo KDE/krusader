@@ -1510,7 +1510,7 @@ void KrDetailedView::slotRightButtonPressed(QListViewItem*, const QPoint& point,
 // hack: this needs to be done in a more cross-view way
 void KrDetailedView::slotSortOrderChanged(int col) {
 	// map the column to a sort specification
-	KrViewProperties::SortSpec sp;
+	KrViewProperties::SortSpec sp = KrViewProperties::Name;
 	int i;
 	for (i = 0; i < KrDetailedViewProperties::MAX_COLUMNS; ++i) {
 		if (PROPS->column[i] == col) break;

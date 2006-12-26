@@ -443,7 +443,7 @@ void KrViewer::detachTab(){
 		viewer->addTab(pvb,i18n( "Viewing" ),VIEW_ICON,pvb->part());
 }
 
-void KrViewer::windowActivationChange ( bool oldActive ) {
+void KrViewer::windowActivationChange ( bool /* oldActive */ ) {
 	if( isActiveWindow() )
 		if( viewers.remove( this ) ) viewers.prepend( this ); // move to first
 }
