@@ -785,6 +785,7 @@ void Krusader::saveSettings() {
       config->writeEntry( "Show tool bar", actShowToolBar->isChecked() );
       config->writeEntry( "Show FN Keys", actToggleFnkeys->isChecked() );
       config->writeEntry( "Show Cmd Line", actToggleCmdline->isChecked() );
+		config->writeEntry( "Run CommandLine Command In Terminal", mainView->cmdLine->runInTerminalButton()->isOn() );
       config->writeEntry( "Show Terminal Emulator", actToggleTerminal->isChecked() );
       config->writeEntry( "Vertical Mode", actVerticalMode->isChecked());
       config->writeEntry( "Start To Tray", isHidden());
@@ -987,6 +988,10 @@ void Krusader::updateGUI( bool enforce ) {
          mainView->cmdLine->show();
          actToggleCmdline->setChecked( true );
       }
+		if ( krConfig->readBoolEntry( "Run CommandLine Command In Terminal", false )) {
+			mainView->cmdLine->runInTerminalButton()->setOn(true);
+		}
+
       // update the Fn bar to the shortcuts selected by the user
       mainView->fnKeys->updateShortcuts();
       if ( !krConfig->readBoolEntry( "Show FN Keys", _ShowFNkeys ) ) {

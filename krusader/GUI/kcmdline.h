@@ -65,6 +65,7 @@ class KCMDLine : public QWidget {
     void setCurrent( const QString & );
     QString text() {return cmdLine->currentText();}
     void setText(QString text) {cmdLine->setCurrentText( text );}
+	 QToolButton *runInTerminalButton() { return terminal; }
 
   public slots:
     inline void setFocus() { cmdLine->setFocus(); } // overloaded for KCmdLine
