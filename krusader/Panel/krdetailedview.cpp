@@ -735,7 +735,7 @@ void KrDetailedView::contentsMouseMoveEvent ( QMouseEvent * e ) {
              if (below)
                below = below->itemBelow();
            }
-           if (above == lastSwushPosition)
+           if (above && (above == lastSwushPosition))
            {
              for (; above != newItem; above = above->itemBelow())
                above->setSelected(swushSelects);
@@ -743,7 +743,7 @@ void KrDetailedView::contentsMouseMoveEvent ( QMouseEvent * e ) {
              lastSwushPosition = newItem;
              updateView();
            }
-           else if (below == lastSwushPosition)
+           else if (below && (below == lastSwushPosition))
            {
              for (; below != newItem; below = below->itemAbove())
                below->setSelected(swushSelects);
