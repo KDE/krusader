@@ -171,7 +171,7 @@ void vfile::vfile_loadACL()
 	if( vfile_url.isLocalFile() )
 	{
 		normal_vfs::getACL( this, vfile_acl, vfile_def_acl );
-		vfile_has_acl = !vfile_acl.isNull() || !aclDfltString.isNull();
+		vfile_has_acl = !vfile_acl.isNull() || !vfile_def_acl.isNull();
 	}
 	vfile_acl_loaded = true;
 }
