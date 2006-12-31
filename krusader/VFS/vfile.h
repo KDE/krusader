@@ -64,8 +64,6 @@ public:
 	      const QString& mime,
 	      const QString& symDest,
 	      const mode_t  mode,
-	      const QString& aclString = QString::null,
-	      const QString& aclDfltString = QString::null,
 	      const int rwx = -1 );
 	
 	vfile(const QString& name,	
@@ -102,8 +100,8 @@ public:
 	const QString&          vfile_getMime(bool fast=false);
 	const QString&          vfile_getOwner();
 	const QString&          vfile_getGroup();
-	const QString&          vfile_getACL()     const { return vfile_acl;            };
-	const QString&          vfile_getDefaultACL() const { return vfile_def_acl;     };
+	const QString&          vfile_getACL();
+	const QString&          vfile_getDefaultACL();
 	const KIO::UDSEntry     vfile_getEntry(); //< return the UDSEntry from the vfile
 	char                    vfile_isReadable()   const;
 	char                    vfile_isWriteable()  const;
@@ -120,6 +118,9 @@ public:
 	inline QString          vfile_getIcon();
 
 	virtual ~vfile(){}
+
+private:
+	void                    vfile_loadACL();
 
 protected:
 	// the file information list
@@ -140,6 +141,7 @@ protected:
 	QString          vfile_icon;     //< the name of the icon file
 	bool             vfile_isdir;    //< flag, if it's a directory
 	int              vfile_rwx;      //< flag, showing read, write, execute properties
+	bool             vfile_acl_loaded;//<flag, indicates that ACL permissions already loaded
 	bool             vfile_has_acl;  //< flag, indicates ACL permissions
 	QString          vfile_acl;      //< ACL permission string
 	QString          vfile_def_acl;  //< ACL default string

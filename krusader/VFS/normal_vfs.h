@@ -67,6 +67,9 @@ public:
 	/// return the VFS working dir
 	virtual QString vfs_workingDir() { return vfs_origin.path(-1); }
 
+	/// Get ACL permissions
+	static void getACL( vfile *file, QString &acl, QString &defAcl );
+
 public slots:
 	void vfs_slotRefresh();
 	void vfs_slotDirty(const QString& path);
@@ -80,10 +83,10 @@ protected:
 	QTimer refreshTimer;         //< Timer to exclude sudden refreshes
 	KDirWatch *watcher;          //< The internal dir watcher - use to detect changes in directories
 	vfile*   vfileFromName(const QString& name);
-	QString getACL( const QString & path, int type );
 
 private:
 	bool burstRefresh( const QString &path );
+	static QString getACL( const QString & path, int type );
 };
 
 #endif

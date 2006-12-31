@@ -139,27 +139,10 @@ bool SynchronizerDirList::load( const QString &urlIn, bool wait ) {
 
       QString mime = QString::null;
 
-      QString aclStr;
-#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
-      acl_t acl = acl_get_file( fullName.local8Bit(), ACL_TYPE_ACCESS );
-      if ( acl && ( acl_equiv_mode( acl, 0 ) == 0 ) ) {
-        acl_free( acl );
-        acl = NULL;
-      }
-      if( acl )
-      {
-        char *aclString = acl_to_text( acl, 0 );
-        aclStr = QString::fromLatin1( aclString );
-        acl_free( (void*)aclString );
-        acl_free( acl );
-      }
-#endif
-
-
       KURL fileURL = KURL::fromPathOrURL( fullName );
 
       vfile* item=new vfile(name,stat_p.st_size,perm,stat_p.st_mtime,symLink,stat_p.st_uid,
-                        stat_p.st_gid,mime,symlinkDest,stat_p.st_mode, aclStr);
+                        stat_p.st_gid,mime,symlinkDest,stat_p.st_mode);
       item->vfile_setUrl( fileURL );
 
       insert( name, item );

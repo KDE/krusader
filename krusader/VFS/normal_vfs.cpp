@@ -247,7 +247,6 @@ vfile* normal_vfs::vfileFromName(const QString& name){
 	
 	KURL mimeUrl = fromPathOrURL(path);
 	QString mime=QString::null;
-	QString acl=QString::null, defAcl=QString::null;
 
 	char symDest[256];
 	bzero(symDest,256); 
@@ -261,33 +260,37 @@ vfile* normal_vfs::vfileFromName(const QString& name){
 		else krOut << "Failed to read link: "<< path<<endl;
 	}
 	
-	int rwx = -1;
+	int rwx = 0;
+	if( ::access( fileName.data(), R_OK ) == 0 )
+		rwx |= R_OK;
+	if( ::access( fileName.data(), W_OK ) == 0 )
+		rwx |= W_OK;
+	if( ::access( fileName.data(), X_OK ) == 0 )
+		rwx |= X_OK;
+	
+	// create a new virtual file object
+	vfile* temp=new vfile(name,size,perm,stat_p.st_mtime,symLink,stat_p.st_uid,
+                          stat_p.st_gid,mime,QString::fromLocal8Bit( symDest ),stat_p.st_mode, rwx);
+	temp->vfile_setUrl( mimeUrl );
+	return temp;
+}
+
+void normal_vfs::getACL( vfile *file, QString &acl, QString &defAcl )
+{
+	acl = defAcl = QString::null;
 #if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+	QCString fileName = file->vfile_getUrl().path( -1 ).local8Bit();
 #if HAVE_NON_POSIX_ACL_EXTENSIONS
 	if ( acl_extended_file( fileName.data() ) )
 	{
 #endif
 		acl = getACL( fileName.data(), ACL_TYPE_ACCESS );
-		if( S_ISDIR(stat_p.st_mode) )
+		if( file->vfile_isDir() )
 			defAcl = getACL( fileName.data(), ACL_TYPE_DEFAULT );
-		
-		rwx = 0;
-		if( ::access( fileName.data(), R_OK ) == 0 )
-			rwx |= R_OK;
-		if( ::access( fileName.data(), W_OK ) == 0 )
-			rwx |= W_OK;
-		if( ::access( fileName.data(), X_OK ) == 0 )
-			rwx |= X_OK;
 #if HAVE_NON_POSIX_ACL_EXTENSIONS
 	}
 #endif
 #endif
-	
-	// create a new virtual file object
-	vfile* temp=new vfile(name,size,perm,stat_p.st_mtime,symLink,stat_p.st_uid,
-                          stat_p.st_gid,mime,QString::fromLocal8Bit( symDest ),stat_p.st_mode,acl,defAcl, rwx);
-	temp->vfile_setUrl( mimeUrl );
-	return temp;
 }
 
 QString normal_vfs::getACL( const QString & path, int type )
