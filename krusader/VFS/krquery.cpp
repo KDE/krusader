@@ -438,6 +438,42 @@ bool KRQuery::checkTimer() const {
   return false;
 }
 
+QStringList KRQuery::split( QString str )
+{
+  QStringList list;
+  unsigned splitNdx = 0;
+  unsigned startNdx = 0;
+  bool quotation = false;
+
+  while( splitNdx < str.length() )
+  {
+    if( str[ splitNdx ] == '"' )
+      quotation = !quotation;
+
+    if( !quotation && str[ splitNdx ] == ' ')
+    {
+      QString section = str.mid( startNdx, splitNdx - startNdx );
+      startNdx = splitNdx+1;
+      if( section.startsWith( "\"" ) && section.endsWith( "\"" ) && section.length() >=2 )
+        section = section.mid( 1, section.length()-2 );
+      if( !section.isEmpty() )
+        list.append( section );
+    }
+    splitNdx++;
+  }
+
+  if( startNdx < splitNdx )
+  {
+    QString section = str.mid( startNdx, splitNdx - startNdx );
+    if( section.startsWith( "\"" ) && section.endsWith( "\"" ) && section.length() >=2 )
+      section = section.mid( 1, section.length()-2 );
+    if( !section.isEmpty() )
+      list.append( section );
+  }
+
+  return list;
+}
+
 void KRQuery::setNameFilter( const QString &text, bool cs )
 {
   bNull = false;
@@ -447,8 +483,21 @@ void KRQuery::setNameFilter( const QString &text, bool cs )
   QString matchText = text;
   QString excludeText;
   
-  int excludeNdx = matchText.find( '|' );
-  if( excludeNdx > -1 )
+  unsigned excludeNdx = 0;
+  bool quotationMark = 0;
+  while( excludeNdx < matchText.length() )
+  {
+    if( matchText[ excludeNdx ] == '"' )
+      quotationMark = !quotationMark;
+    if( !quotationMark )
+    {
+      if( matchText[ excludeNdx ] == '|' )
+        break; 
+    }
+    excludeNdx++;
+  }
+
+  if( excludeNdx < matchText.length() )
   {
     excludeText = matchText.mid( excludeNdx + 1 ).stripWhiteSpace();
     matchText.truncate( excludeNdx );
@@ -459,12 +508,10 @@ void KRQuery::setNameFilter( const QString &text, bool cs )
 
   unsigned i;
 
-  matches  = QStringList::split(QChar(' '), matchText );
+  matches  = split( matchText );
   includedDirs.clear();
 
   for( i=0; i < matches.count(); ) {
-    matches[ i ] = matches[ i ].stripWhiteSpace();
-
     if( matches[ i ].endsWith( "/" ) ) {
       includedDirs.push_back( matches[ i ].left( matches[ i ].length() - 1 ) );
       matches.remove( matches.at( i ) );
@@ -477,12 +524,10 @@ void KRQuery::setNameFilter( const QString &text, bool cs )
     i++;
   }
 
-  excludes = QStringList::split(QChar(' '), excludeText );
+  excludes = split( excludeText );
   excludedDirs.clear();
 
   for( i=0; i < excludes.count(); ) {
-    excludes[ i ] = excludes[ i ].stripWhiteSpace();
-
     if( excludes[ i ].endsWith( "/" ) ) {
       excludedDirs.push_back( excludes[ i ].left( excludes[ i ].length() - 1 ) );
       excludes.remove( excludes.at( i ) );

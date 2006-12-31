@@ -185,6 +185,7 @@ private:
   bool checkBuffer( const char *buffer, int len ) const;
   bool checkLines( QString line ) const;
   bool checkTimer() const;
+  QStringList split( QString );
 
 private slots:
   void containsContentData(KIO::Job *, const QByteArray &);
