@@ -344,6 +344,8 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
 
    if ( ! startProfile.isEmpty() )
        mainView->profiles( startProfile );
+   // let the good times rool :)
+   updateGUI( true );
 
    if (!runKonfig) {
 		config->setGroup( "Private" );
@@ -361,8 +363,6 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
 		else
 			show();
 	}
-   // let the good times rool :)
-   updateGUI( true );
 
    if ( runKonfig )
       slot->runKonfigurator( true );
