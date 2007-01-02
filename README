@@ -1,24 +1,16 @@
 Krusader 1.80.0-beta1 "????"
 ===================================
-The Krew is pleased to announce the first beta release of 
-Krusader 1.80.0-beta1
-Introducing many new, expert features as well as many operational and
-visibility enhancements. With this release Krusader is heading straight
-to its third milestone, bringing a feature rich file manager with new
-technologies and standards to the Linux desktop. We would like to thank
-the developers, translators, and the rest of the community for keeping
-us sharp, for beta testing and using our file manager and for your
-feedback, which makes this product one of the greatest.
+Well, here we are!
 
-IMPORTANT: Remove your krusaderui.rc
-************************************************************************
-Please remove your ~/.kde/share/apps/krusader/krusaderui.rc file after
-installation!!! (Else you won't see new menu entries. But please note:
-this will also reset all your changes on toolbars and shortcuts!)
-************************************************************************
+The Krew is finally bringing you the _last_ release of Krusader the
+file manager. In this release you can expect many new enhancements and
+features oriented to both experts and basic users, finalizing many
+requests, that we owed and many that were sitting on our todo list. We
+would like to thank to all of the community for keeping us sharp all
+these years till the end and start of our final release cycle.
 
 IMPORTANT: Crashes in Krusader caused by Qt 3.3.5
-************************************************************************
+------------------------------------------------------------------------
 We've been getting a lot of emails and bug reports regarding random
 crashes in Krusader, especially during some file operations (copy/move
 etc.). These crashes are related to Qt 3.3.5 and NOT Krusader.
@@ -26,89 +18,32 @@ It seems that Qt 3.3.5 introduced a serious bug which is now causing
 random crashes in many KDE applications including Konqueror. You can
 google for it to find out more. 
 
-As far as we know, debian and suse already posted new Qt binaries that
-fix the problem, and gentoo has masked Qt 3.3.5 completely.
+As far as we know, Debian and SUSE already posted new Qt binaries that
+fix the problem, and Gentoo has masked Qt 3.3.5 completely.
 As for now, you either need Qt 3.3.4 or a fixed Qt 3.3.5, depending on
 your distribution. For more information is available on our website at
 http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1407
-************************************************************************
+------------------------------------------------------------------------
 
-Krusader v1.80.0-beta1 contains over 40 changes, bug fixes and updates in
+Krusader 1.80.0-beta1 contains over 40 changes, bug fixes and updates in
 response to reports and requests from our users. The highlights are:
 
-New Modules/Features
---------------------
-* Archive improvements
-  - Password support for: arj, ace, rar and zip. Passwords can be stored in Kwallet
-  - 7-zip support, by external applications 7z and 7za.
-  - Autodetection support, allowing you to open "hidden archives"
-  - Packing/unpacking are now in the background.
-* Media button
-* Full ACL permissions support (properties, preserve attributes, synchronizer).
-* atomic extensions
-* atomic extensions are configurable through krusaderrc
-* ActionMan for useraction configuration
-* Copy/Move: preserve all attributes (time, owner, group)
+- Full support for ACL permissions like properties, preserve
+  attributes, synchronizer and other
+- Many terminal emulator enhancements bringing new functions, new
+  usages and new look
+- Many enhancements and improvements of the UserAction system
+- Comparing in the synchronizer interface and parallel threading over
+  slower servers
+- Atomic extensions and ability to rename the filename, without extension
+- Archive packing and unpacking are now handled in the background
+- Numerous archive enhancements like packing with encryption, multiple
+  volume archives, compress level
+- Complete list of changes and enhancements is in the ChangeLog
+- Next cycle with all our energy and efforts begins for Krusader on
+  KDE4
 
-Improvements
-------------
-* panel splitter: shows the percent values at moving
-* viewer: print + copy actions
-* searcher is able to search content on remote URLs
-* synchronizer: threshold for equality, time offset between sides
-* synchronizer: faster "compare by content" for local files
-* synchronizer: Feed to listbox
-* synchronizer: parallel threads for slow FTP servers
-* synchronizer: double click on a file calls the diff utility (kompare)
-* single instance mode
-* UserAction: Outputcollectionwindow can now save the buffer
-* UserAction: Outputcollection now supports fonts with fixed or
-              variable width
-* UserActions are now managed with ActionMan. In Konfigurator
-              you can change settings _about_ useractions.
-* Konfigurator: MouseMode got now it's own Tab in Look&Feel
-* Shortcut- and Toolbardialogs are removed from Konfigurator
-* Shortcuts are now exported in as plaintext, legacy import still works.
-
-Usability
----------
-* Restyled MenuBar
-* swap panels / swap sides
-* Experimental input method support in quick search (patch by Jiri Palecek)
-* an option for directories to be always sorted by name
-* keeping the directory structures for virt folders at copy/move
-* searcher, synchronizer: directory name filters (ex. '* | CVS/')
-* enable/disable special bookmarks by right clicking on them
-* start to system tray
-* right click menu for bookmarks
-* Inactive panel color dimming
-* renaming of just the filename, without extension
-* archive packing / unpacking are now in the background
-* Terminal emulator: Ctrl+Enter,Ctrl+Shift+Enter paste the filename
-* Terminal emulator: Ctrl+F switches between full-widget TE, normal TE
-  (thanks to Vaclav Juza)
-* Terminal emulator: Ctrl+Shift+Up/Down always focus/unfocus TE
-                    independently whether the command line is shown or not
-* Terminal emulator: if the command line is hidden,
-                    TE receives Ctrl+Up / Ctrl+Down (thanks to Vaclav Juza)
-* full screen terminal window (mc-style)
-* removed KDE's KeyDialog in order to provide import/export abilities
-* Ctrl+Up from panel focuses the origin editbox, Ctrl+Down from origin
-* editbox focuses the panel (thanks to Vaclav Juza)
-* Better quick navigation: first move mouse over subdir, then
-                           press ctrl + left mouse button (patch by Jiri Palecek)
-* Better subdir calculation on quick navigation
-* Color cache redesigned. Konfigurator preview and actual colors
-                          should now match
-
-
-Translations
-------------
-* Many new and updated :-)
-* Russian Handbook (translation is work in progress) thanks to Roman Batejkin
-
-
-enjoy!
+Enjoy!
   Krusader Krew
 
 Notice: if you've got bugs to report, please do so using Krusader's
@@ -117,18 +52,16 @@ Notice: if you've got bugs to report, please do so using Krusader's
             as always, enjoy
                  Krusader Krew.
 
-                      http://krusader.sourceforge.net
-
+                      http://www.krusader.org
 
 
 +----------------------------------------------------------------------+
-| To learn what's new, read the Changelog file.                        |
+| To learn what's new, read the ChangeLog file.                        |
 | For bug reports, fixes, patches and comments: please read the FAQ    |
 | section of the Krusader Handbook.                                    |
 | You can reach us by mail [krusader * users sourceforge net]          |
 | or drop us a note in our Krusader forum.                             |
 +----------------------------------------------------------------------+
-
 
 
 Installation
@@ -236,8 +169,8 @@ http://www.kde-files.org/index.php?xcontentmode=660x661x662x663
 
 Feature Requests
 ----------------
-Discussions about new features for future Krusader versions. Please visit
-our "New Features Discussions/Requests" forum.
+Discussions about new features for future Krusader versions. Please
+visit our "New Features Requests" forum.
 
 Packagers
 ---------
@@ -256,9 +189,9 @@ hardware, or promoting of the project.
 
 Spread the Word
 ---------------
-If you like Krusader, let people know! Write articles and reviews for internet
-or print publications. Encourage your friends to give Krusader a try.
-Participate in forums to help others in the community.
+If you like Krusader, let people know! Write articles and reviews for
+internet or print publications. Encourage your friends to give Krusader
+a try. Participate in forums to help others in the community.
 Help us spreading the word about Krusader!
 
 
@@ -398,13 +331,13 @@ Krusader Krew:
 
 Package Description
 ===================
-Krusader is an advanced, twin-panel (commander-style) file-manager for KDE 
-and other desktops
+Krusader is an advanced, twin-panel (commander-style) file-manager for
+KDE and other desktops
 
 Krusader is a simple, easy, powerful, twin-panel file manager 
 (commander-style) for KDE and other *nix desktops, similar to Midnight
-or Total Commander. It provides all the file management features you could
-possibly want.
+or Total Commander. It provides all the file management features you
+could possibly want.
 
 Plus: extensive Archive handling, mounted Filesystem support, FTP,
 advanced Search module, viewer/Editor, directory Synchronization,
@@ -415,4 +348,3 @@ slaves such as smb or fish. It is (almost) completely customizable, very
 user friendly, fast and looks great on your desktop!
 
 You should give it a try.
-
