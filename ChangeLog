@@ -1,8 +1,9 @@
     ADDED: quotation mark handling at search (ex. "Program Files")
-    ADDED: full support for ACL permissions (properties, preserve attrs, synchronizer)
-    ADDED: credit for Václav Juza and Jiri Palecek in the about box
-    ADDED: Russian Handbook (translation is work in progress) thanks to Roman Batejkin
-    ADDED: Experimental input method support in quick search (patch by Jiri Palecek)
+    ADDED: full support for ACL permissions (properties, preserve attrs,
+           synchronizer)
+    ADDED: credit for Vaclav Juza and Jiri Palecek in the about box
+    ADDED: Experimental input method support in quick search
+           (patch by Jiri Palecek)
     ADDED: TerminalEmulator: Ctrl+F switches between full-widget TE, normal TE
            (thanks to Vaclav Juza)
     ADDED: Ctrl+Up from panel focuses the origin editbox, Ctrl+Down from origin
@@ -63,12 +64,12 @@
            you can change settings _about_ useractions.
 
     FIXED: [ 1500411 ] Crash when R-click on free space and drag on files
-	 FIXED: [ 1579847 ] launch command line in console not saved
+    FIXED: [ 1579847 ] launch command line in console not saved
     FIXED: media button would display encoded paths
            (http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1789)
     FIXED: crash when viewing file properties due to class name clash
-           thanks to stephan binner
-    FIXED: .tar.bz2 was not treated as atomic extension, while .tar.gz.test was.
+           (thanks to Stephan Binner)
+    FIXED: .tar.bz2 was not treated as atomic extension, while .tar.gz.test was
     FIXED: disk usage: other filelight bugfixes
     FIXED: disk usage: filelight crash because of missing null pointer checks
     FIXED: media button always writes out the mounted location
@@ -114,39 +115,47 @@
     FIXED: [ 1479034 ] Crashes after clicking home button, when quicksearch is
            active (patch by Heiner Eichmann)
     FIXED: wrong character set is used on the radial map labels
-    FIXED: TC style rename does not work with "Obey KDE's global selection policy"
+    FIXED: TC style rename does not work with "Obey KDE's global selection
+           policy"
     FIXED: [ 1189341 ] minimize to tray problems with GNOME
     FIXED: set duplicate exclusion and maximum count for all KHistoryCombos
-    FIXED: [ 984936 ] Wrong file cursor position when entering protected directory
+    FIXED: [ 984936 ] Wrong file cursor position when entering protected
+           directory
     FIXED: [ 1232507 ] panel focus change problems at using the keyboard
     FIXED: bookmark separators get corrupted after adding a new bookmark
-    FIXED: [ 1116161 ] more detailed error message at opening FTP URLs  via HTTP proxy
-    FIXED: [ 1103646 ] MountMan exits after umount and a fast click on the device
+    FIXED: [ 1116161 ] more detailed error message at opening FTP URLs via HTTP
+           proxy
+    FIXED: [ 1103646 ] MountMan exits after umount and a fast click on the
+           device
     FIXED: single click doesn't work in TC selection mode
     FIXED: disk usage crash at deleting files
-    FIXED: valgrind: Free Memory Read          - KMountManGUI::clicked()
-    FIXED: valgrind: Free Memory Read          - SynchronizerGUI::loadFromProfile()
-    FIXED: valgrind: Free Memory Read          - RadialMap::Widget::paintExplodedLabels()
-    FIXED: valgrind: Free Memory Read          - DULines::slotChanged()
-    FIXED: valgrind: Free Memory Read          - DULines::slotDeleted()
-    FIXED: valgrind: Free Memory Read          - KrDetailedView::contentsMousePressEvent()
+    FIXED: valgrind: Free Memory Read - KMountManGUI::clicked()
+    FIXED: valgrind: Free Memory Read - SynchronizerGUI::loadFromProfile()
+    FIXED: valgrind: Free Memory Read - RadialMap::Widget::paintExplodedLabels()
+    FIXED: valgrind: Free Memory Read - DULines::slotChanged()
+    FIXED: valgrind: Free Memory Read - DULines::slotDeleted()
+    FIXED: valgrind: Free Memory Read - KrDetailedView::contentsMousePressEvent()
     FIXED: valgrind: Mismatched delete/delete[]- RadialMap::Builder::Builder()
     FIXED: valgrind: Uninitialized Memory Read - DUFileLight::slotAboutToShow()
-    FIXED: valgrind: Free Memory Read          - KViewer::tabCloseRequest()
+    FIXED: valgrind: Free Memory Read - KViewer::tabCloseRequest()
     FIXED: valgrind: Uninitialized Memory Read - KViewer::tabChanged()
-    FIXED: valgrind: Free Memory Read          - PanelManager::slotCloseTab()
+    FIXED: valgrind: Free Memory Read - PanelManager::slotCloseTab()
     FIXED: [ 1435352 ] crash after NewPanel->Ctrl+U->DeletePanel
     FIXED: HTML tags cause problem to the searcher
     FIXED: [ 1415250 ] searching large directories, doesn't process UI events
-    FIXED: search by content goes into infinite loop if the file cannot be opened
+    FIXED: search by content goes into infinite loop if the file cannot be
+           opened
     FIXED: after exiting the pending jobs stall
     FIXED: [ 1193239 ] crash at 'Closing Current Session'
     FIXED: synchronizer is always on the top of the panels
-    FIXED: [Debian: 352367] useractions with terminal output ignores configured terminal
+    FIXED: [Debian: 352367] useractions with terminal output ignores configured
+           terminal
     FIXED: last tabs are not saved, if an old config value is present
     FIXED: panel popup gets focus at opening, gives focus to panel at hiding
     FIXED: viewer, detaching tab changes 'Editing' to 'Viewing'
 
+     I18N: Added a russian handbook (translation is work in progress)
+           (thanks to Roman Batejkin)
      I18N: Fixed clash with unpack shortcut in useractions string (Alt+U)
            (thanks Hideki Kimura)
      I18N: Updated Japanese translation (thanks Hideki Kimura)
@@ -158,7 +167,8 @@
      I18N: Updated Serbian translations (thanks Sasa Tomic)
      I18N: Updated Brazilian Portuguese translation (thanks Doutor Zero)
      I18N: Updated French translation (thanks Guillerm David)
-     I18N: Updated Polish translation (thanks Tomek Grzejszczyk and Marcin Garski)
+     I18N: Updated Polish translation
+           (thanks Tomek Grzejszczyk and Marcin Garski)
      I18N: Updated Lithuanian translation (thanks Dovydas Sankauskas)
      I18N: Menu items which open a new window, indicate that with trailing dots
            (KDE standard)
