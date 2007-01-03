@@ -15,7 +15,7 @@ QString atomicExtensions[] = {
 };
 
 KrViewItem::KrViewItem(vfile *vf, const KrViewProperties* properties): 
-	_vf(vf), dummyVfile(false), _viewProperties(properties), _hasExtension(false), _extension("") {
+	_vf(vf), dummyVfile(false), _viewProperties(properties), _hasExtension(false), _hidden(false), _extension("") {
 	if (vf) {
 		// check if the file has an extension
 		const QString& vfName = vf->vfile_getName();
@@ -32,6 +32,9 @@ KrViewItem::KrViewItem(vfile *vf, const KrViewProperties* properties):
 			_extension = vfName.mid(loc+1);
 			_hasExtension=true;
 		}
+		
+		if( vfName.startsWith(".") )
+			_hidden = true;
 	}
 }
 

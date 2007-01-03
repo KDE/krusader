@@ -55,8 +55,10 @@ public:
 	virtual ~KrViewItem() { if (dummyVfile) delete _vf; }
 		
 	// DON'T USE THOSE OUTSIDE THE VIEWS!!!
-	virtual inline const vfile* getVfile() const { return _vf; }
-	virtual inline vfile* getMutableVfile() { return _vf; }
+	inline const vfile* getVfile() const { return _vf; }
+	inline vfile* getMutableVfile() { return _vf; }
+	inline bool isDummy() const { return dummyVfile; }
+	inline bool isHidden() const { return _hidden; }
 
 protected:
 	// used INTERNALLY when calculation of dir size changes the displayed size of the item
@@ -66,6 +68,7 @@ protected:
 	bool dummyVfile;	// used in case our item represents the ".." (updir) item
 	const KrViewProperties* _viewProperties;
 	bool _hasExtension;
+	bool _hidden;
 	QString _name;
 	QString _extension;
 };

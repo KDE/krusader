@@ -248,42 +248,53 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
   bool ignoreCase = (PROPS->sortMode & KrViewProperties::IgnoreCase);
 	bool alwaysSortDirsByName = (PROPS->sortMode & KrViewProperties::AlwaysSortDirsByName);
   int asc = ( ascending ? -1 : 1 );
-  KrViewItem *other = dynamic_cast<KrViewItem*>(i);
+  KrDetailedViewItem *other = (KrDetailedViewItem *)(i);
+
+  bool thisDir = VF->vfile_isDir();
+  bool otherDir = other->VF->vfile_isDir();
 
   // handle directory sorting
-  if (VF->vfile_isDir()){
-    if (!other->VF->vfile_isDir()) return 1*asc;
-  } else if(other->VF->vfile_isDir()) return -1*asc;
+  if ( thisDir ){
+    if ( !otherDir ) return 1*asc;
+  } else if( otherDir ) return -1*asc;
 
-  QString text0 = name();
-  if (text0 == "..") return 1*asc;
-  
-  QString itext0 = other->name();
-  if (itext0 == "..") return -1*asc;
-	
-  if( ignoreCase )
-  {
-    text0  = text0.lower();
-    itext0 = itext0.lower();
-  }
-	
+  if ( isDummy() ) return 1*asc;
+  if ( other->isDummy() ) return -1*asc;
+		
   if (col == COLUMN(Name) ||
-			(alwaysSortDirsByName && VF->vfile_isDir() && other->VF->vfile_isDir())) {
+			(alwaysSortDirsByName && thisDir && otherDir )) {
       // localeAwareCompare doesn't handle names that start with a dot
-		if (text0.startsWith(".")) {
-			if (!itext0.startsWith(".")) return 1*asc;
-		} else if (itext0.startsWith(".")) return -1*asc;
+		QString text0 = name();
+		QString itext0 = other->name();
+
+		if( ignoreCase )
+		{
+			text0  = text0.lower();
+			itext0 = itext0.lower();
+		}
+
+		if ( isHidden() ) {
+			if ( !other->isHidden() ) return 1*asc;
+		} else if ( other->isHidden() ) return -1*asc;
 		if (!ignoreCase && !PROPS->localeAwareCompareIsCaseSensitive) {
 			// sometimes, localeAwareCompare is not case sensative. in that case,
 			// we need to fallback to a simple string compare (KDE bug #40131)
 			return QString::compare(text0, itext0);
 		} else return QString::localeAwareCompare(text0,itext0);
   } else if (col == COLUMN(Size) ) {
+      if( VF->vfile_getSize() == other->VF->vfile_getSize() )
+        return 0;
       return (VF->vfile_getSize() > other->VF->vfile_getSize() ? 1 : -1);
   } else if (col == COLUMN(DateTime) ) {
+      if( VF->vfile_getTime_t() == other->VF->vfile_getTime_t() )
+        return 0;
       return (VF->vfile_getTime_t() > other->VF->vfile_getTime_t() ? 1 : -1);
   } else if (col == COLUMN(Permissions) && PROPS->numericPermissions) {
-		return ((text(col).toLong() > i->text(col).toLong()) ? 1 : -1);
+		int thisPerm = VF->vfile_getMode() & PERM_BITMASK;
+		int otherPerm = other->VF->vfile_getMode() & PERM_BITMASK;
+		if( thisPerm == otherPerm )
+			return 0;
+		return ((thisPerm > otherPerm) ? 1 : -1);
   } else {
       QString e1 = (!ignoreCase ? text(col) : text(col).lower());
       QString e2 = (!ignoreCase ? i->text(col) : i->text(col).lower());
