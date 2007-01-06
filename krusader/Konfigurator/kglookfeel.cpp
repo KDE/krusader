@@ -311,7 +311,7 @@ void KgLookFeel::setupMouseModeTab() {
   // TODO preview
   mousePreview = new QListView( mousePreviewGroup, "mousePreview" );
   mousePreviewGrid->addWidget( mousePreview, 0 ,0 );
-
+  mousePreviewGroup->setEnabled(false); // TODO re-enable once the preview is implemented
   // ------------------------------------------
   mouseLayout->addWidget( mousePreviewGroup, 1,1 );
 }
