@@ -576,6 +576,20 @@ rm -f $tmpname
 
 package_messages()
 {
+# Ensure the patched gettext for KDE is available
+which xgettext-kde >/dev/null 2>&1
+if test $? -eq 1; then
+  echo "xgettext-kde not found. Aborting."
+  echo
+  echo "Get the patched gettext for KDE (0.10.35) and install the binaries"
+  echo "with \"-kde\" suffix. Make sure that at least xgettext-kde is in your \$PATH".
+  echo
+  echo "ftp://ftp.kde.org/pub/kde/devel/gettext-kde/"
+  echo
+
+  exit
+fi
+
 rm -rf po.backup
 mkdir po.backup
 
