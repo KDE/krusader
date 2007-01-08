@@ -118,6 +118,7 @@ while (<IN>) {
 
     s/0x[0-9a-fA-F]+/0x......../g;
     s/base size=/size=/g;
+    s/\(\)\s*$//g;
     s/base align=/align=/g;
 
     $chunk .= $_ . "\n";
@@ -154,4 +155,3 @@ flock MYLOCK, LOCK_UN;
 close(MYLOCK);
 
 exit 0;
-

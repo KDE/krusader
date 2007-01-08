@@ -6,6 +6,8 @@
 # It defines a shell function for each known target
 # and then does a case to call the correct function.
 
+unset MAKEFLAGS
+
 call_and_fix_autoconf()
 {
   $AUTOCONF || exit 1
@@ -30,7 +32,7 @@ check_autotool_versions()
 required_autoconf_version="2.53 or newer"
 AUTOCONF_VERSION=`$AUTOCONF --version | head -n 1`
 case $AUTOCONF_VERSION in
-  Autoconf*2.5* | autoconf*2.5* | Autoconf*2.6* | autoconf*2.6*) : ;;
+  Autoconf*2.5* | autoconf*2.5* | autoconf*2.6* ) : ;;
   "" )
     echo "*** AUTOCONF NOT FOUND!."
     echo "*** KDE requires autoconf $required_autoconf_version"
@@ -42,10 +44,10 @@ case $AUTOCONF_VERSION in
     exit 1
     ;;
 esac
- 
+
 AUTOHEADER_VERSION=`$AUTOHEADER --version | head -n 1`
 case $AUTOHEADER_VERSION in
-  Autoconf*2.5* | autoheader*2.5* | Autoconf*2.6* | autoheader*2.6* ) : ;;
+  Autoconf*2.5* | autoheader*2.5* | autoheader*2.6* ) : ;;
   "" )
     echo "*** AUTOHEADER NOT FOUND!."
     echo "*** KDE requires autoheader $required_autoconf_version"
@@ -58,8 +60,6 @@ case $AUTOHEADER_VERSION in
     ;;
 esac
 
-unset UNSERMAKE || :
-
 AUTOMAKE_STRING=`$AUTOMAKE --version | head -n 1`
 required_automake_version="1.6.1 or newer"
 case $AUTOMAKE_STRING in
@@ -68,7 +68,10 @@ case $AUTOMAKE_STRING in
     echo "*** KDE requires automake $required_automake_version"
     exit 1
     ;;
-  automake*1.6.* | automake*1.7* | automake*1.8* | automake*1.9*) : ;;
+  automake*1.6.* | automake*1.7* | automake*1.8* | automake*1.9*)
+    echo "*** $AUTOMAKE_STRING found."
+    UNSERMAKE=no
+    ;;
   "" )
     echo "*** AUTOMAKE NOT FOUND!."
     echo "*** KDE requires automake $required_automake_version"
@@ -128,12 +131,13 @@ call_and_fix_autoconf
 if egrep "^AM_CONFIG_HEADER" configure.in >/dev/null 2>&1; then
   echo "*** Creating config.h template"
   $AUTOHEADER || exit 1
+  touch config.h.in
 fi
 
 echo "*** Creating Makefile templates"
 $AUTOMAKE || exit 1
 
-if test -z "$UNSERMAKE"; then
+if test "$UNSERMAKE" = no; then
   echo "*** Postprocessing Makefile templates"
   perl -w admin/am_edit || exit 1
 fi
@@ -183,9 +187,13 @@ $ACLOCAL $ACLOCALFLAGS
 if egrep "^AM_CONFIG_HEADER" configure.in >/dev/null 2>&1; then
   echo "*** Creating config.h template"
   $AUTOHEADER || exit 1
+  touch config.h.in
 fi
-$AUTOMAKE --foreign
-perl -w admin/am_edit
+$AUTOMAKE --foreign || exit 1
+if test "$UNSERMAKE" = no; then
+  echo "*** Postprocessing Makefile templates"
+  perl -w admin/am_edit || exit 1
+fi
 call_and_fix_autoconf
 touch stamp-h.in
 if grep "^cvs-local:" $makefile_am >/dev/null; then
@@ -213,8 +221,15 @@ subdir_dist()
 {
 $ACLOCAL $ACLOCALFLAGS
 $AUTOHEADER
+touch config.h.in
 $AUTOMAKE
-perl -w ../admin/am_edit --path=../admin
+AUTOMAKE_STRING=`$AUTOMAKE --version | head -n 1`
+case $AUTOMAKE_STRING in
+  *unsermake* ) :
+    ;;
+  *)
+     perl -w ../admin/am_edit --path=../admin
+esac
 call_and_fix_autoconf
 touch stamp-h.in
 }
@@ -301,7 +316,7 @@ if test -f configure.in.in; then
    fi
 fi
 if test -z "$VERSION" || test "$VERSION" = "@VERSION@"; then
-     VERSION="\"3.3.0\""
+     VERSION="\"3.5.5\""
 fi
 if test -z "$modulename" || test "$modulename" = "@MODULENAME@"; then
    modulename=`pwd`; 
@@ -340,11 +355,11 @@ if test -f inst-apps; then
    inst=`cat inst-apps`
    list=""
    for i in $inst; do
-      list="$list `find $i/ -name "configure.in.in" -o -name "configure.in.bot" -o -name "configure.in.mid" | \
+      list="$list `find $i/ -follow -name "configure.in.in" -o -name "configure.in.bot" -o -name "configure.in.mid" | \
 		sed -e "s,/configure,/aaaconfigure," | sort | sed -e "s,/aaaconfigure,/configure,"`"
    done
 else
-   list=`find . -name "configure.in.in" -o -name "configure.in.bot" -o -name "configure.in.mid" | \
+   list=`find . -follow -name "configure.in.in" -o -name "configure.in.bot" -o -name "configure.in.mid" | \
 		sed -e "s,/configure,/aaaconfigure," | sort | sed -e "s,/aaaconfigure,/configure,"`
 fi
 for i in $list; do if test -f $i && test `dirname $i` != "." ; then
@@ -490,19 +505,8 @@ acinclude_m4()
   fi
   # if it wasn't created up to now, then we do it better
   if test ! -f acinclude.m4; then
-     cat admin/acinclude.m4.in admin/libtool.m4.in $adds > acinclude.m4
+     cat admin/acinclude.m4.in admin/libtool.m4.in admin/pkg.m4.in $adds > acinclude.m4
   fi
-}
-
-cvs_clean()
-{
-if test -d CVS; then :; else
-  echo "You don't have a toplevel CVS directory."
-  echo "You most certainly didn't use cvs to get these sources."
-  echo "But this function depends on cvs's information."
-  exit 1
-fi
-perl $admindir/cvs-clean.pl
 }
 
 package_merge()
@@ -522,7 +526,6 @@ for cat in $catalogs; do
   fi
 done
 }
-
 
 extract_messages()
 {
@@ -551,8 +554,13 @@ for subdir in $dirs; do
    fi
    perl -e '$mes=0; while (<STDIN>) { next if (/^(if\s|else\s|endif)/); if (/^messages:/) { $mes=1; print $_; next; } if ($mes) { if (/$\\(XGETTEXT\)/ && / -o/) { s/ -o \$\(podir\)/ _translatorinfo.cpp -o \$\(podir\)/ } print $_; } else { print $_; } }' < Makefile.am | egrep -v '^include ' > _transMakefile
 
+   kdepotpath=${includedir:-`kde-config --expandvars --install include`}/kde.pot
+   if ! test -f $kdepotpath; then
+	kdepotpath=`kde-config --expandvars --prefix`/include/kde.pot
+   fi
+
    $MAKE -s -f _transMakefile podir=$podir EXTRACTRC="$EXTRACTRC" PREPARETIPS="$PREPARETIPS" srcdir=. \
-	XGETTEXT="${XGETTEXT:-xgettext-kde} --foreign-user -C -ci18n -ki18n -ktr2i18n -kI18N_NOOP -kI18N_NOOP2 -kaliasLocale" messages
+	XGETTEXT="${XGETTEXT:-xgettext} --foreign-user -C -ci18n -ki18n -ktr2i18n -kI18N_NOOP -kI18N_NOOP2 -kaliasLocale -x $kdepotpath" messages
    exit_code=$?
    if test "$exit_code" != 0; then
        echo "make exit code: $exit_code"
@@ -568,25 +576,11 @@ rm -f $tmpname
 
 package_messages()
 {
-# Ensure the patched gettext for KDE is available
-which xgettext-kde >/dev/null 2>&1
-if test $? -eq 1; then
-  echo "xgettext-kde not found. Aborting."
-  echo
-  echo "Get the patched gettext for KDE (0.10.35) and install the binaries"
-  echo "with \"-kde\" suffix. Make sure that at least xgettext-kde is in your \$PATH".
-  echo
-  echo "ftp://ftp.kde.org/pub/kde/devel/gettext-kde/"
-  echo
-
-  exit
-fi
-
 rm -rf po.backup
 mkdir po.backup
 
 for i in `ls -1 po/*.pot 2>/dev/null | sed -e "s#po/##"`; do
-  egrep -v '^#([^:]|$)' po/$i | egrep '^.*[^ ]+.*$' | grep -v "\"POT-Creation" > po.backup/$i
+  egrep -v '^#[^,]' po/$i | egrep '^.*[^ ]+.*$' | grep -v "\"POT-Creation" > po.backup/$i
   cat po/$i > po.backup/backup_$i
   touch -r po/$i po.backup/backup_$i
   rm po/$i
@@ -598,11 +592,11 @@ for i in `ls -1 po.backup/*.pot 2>/dev/null | sed -e "s#po.backup/##" | egrep -v
   test -f po/$i || echo "disappeared: $i"
 done
 for i in `ls -1 po/*.pot 2>/dev/null | sed -e "s#po/##"`; do
-   sed -e 's,^"Content-Type: text/plain; charset=CHARSET\\n"$,"Content-Type: text/plain; charset=UTF-8\\n",' po/$i > po/$i.new && mv po/$i.new po/$i
-   #msgmerge -q -o po/$i po/$i po/$i
-   egrep -v '^#([^:]|$)' po/$i | egrep '^.*[^ ]+.*$' | grep -v "\"POT-Creation" > temp.pot
+  sed -e 's,^"Content-Type: text/plain; charset=CHARSET\\n"$,"Content-Type: text/plain; charset=UTF-8\\n",' po/$i > po/$i.new && mv po/$i.new po/$i
+  #msgmerge -q -o po/$i po/$i po/$i
+  egrep -v '^#[^,]' po/$i | egrep '^.*[^ ]+.*$' | grep -v "\"POT-Creation" > temp.pot
   if test -f po.backup/$i && ! cmp -s temp.pot po.backup/$i; then
-	echo "will update $i"
+    echo "will update $i"
   else
     if test -f po.backup/backup_$i; then
       test -z "$VERBOSE" || echo "I'm restoring $i"
@@ -617,7 +611,9 @@ rm -f temp.pot
 rm -rf po.backup
 }
 
-unset LC_ALL || :
+# Make sure that sorting is always done the same way
+LC_ALL=C
+export LC_ALL
 unset LANG || :
 unset LC_CTYPE || :
 unset LANGUAGE || :
@@ -635,8 +631,9 @@ if test -f Makefile.am.in; then
   rm -f $makefile_wo
 fi
 
-# Suck in the AUTOCONF detection code
-. $admindir/detect-autoconf.sh
+# Call script to find autoconf and friends.  Uses eval since the script outputs
+# sh-compatible code.
+eval `$admindir/detect-autoconf.pl`
 
 ###
 ### Main
@@ -649,7 +646,7 @@ case $arg in
   configure ) call_and_fix_autoconf ;;
   * ) echo "Usage: cvs.sh <target>"
       echo "Target can be one of:"
-      echo "    cvs cvs-clean dist"
+      echo "    cvs svn dist"
       echo "    configure.in configure.files"
       echo "    package-merge package-messages"
       echo ""
