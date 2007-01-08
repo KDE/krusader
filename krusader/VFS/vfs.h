@@ -135,7 +135,7 @@ signals:
 
 protected:
 	/// Feel the vfs dictionary with vfiles, must be implemented for each vfs
-	virtual bool populateVfsList(const KURL& origin, bool showHidden) = 0L;
+	virtual bool populateVfsList(const KURL& origin, bool showHidden) = 0;
 	/// Set the vfile list pointer
 	void setVfsFilesP(vfileDict* dict);
 	/// clear and delete all current vfiles
