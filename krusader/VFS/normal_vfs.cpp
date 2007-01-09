@@ -300,7 +300,28 @@ QString normal_vfs::getACL( const QString & path, int type )
 	// do we have an acl for the file, and/or a default acl for the dir, if it is one?
 	if ( ( acl = acl_get_file( path.data(), type ) ) != 0 )
 	{
-		if ( acl_equiv_mode( acl, 0 ) == 0 )
+		bool aclExtended = false;
+		
+#if HAVE_NON_POSIX_ACL_EXTENSIONS
+		aclExtended = acl_equiv_mode( acl, 0 );
+#else
+		acl_entry_t entry;
+		int ret = acl_get_entry( acl, ACL_FIRST_ENTRY, &entry );
+		while ( ret == 1 ) {
+			acl_tag_t currentTag;
+			acl_get_tag_type( entry, &currentTag );
+			if ( currentTag != ACL_USER_OBJ &&
+				currentTag != ACL_GROUP_OBJ &&
+				currentTag != ACL_OTHER )
+			{
+				aclExtended = true;
+				break;
+			}
+			ret = acl_get_entry( acl, ACL_NEXT_ENTRY, &entry );
+		}
+#endif
+		
+		if ( !aclExtended )
 		{
 			acl_free( acl );
 			acl = 0;

@@ -102,7 +102,32 @@ void PreservingCopyJob::slotAboutToCreate( KIO::Job */*job*/, const QValueList< 
       QString aclStr;
 #if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
       acl_t acl = acl_get_file( (*it).uSource.path(-1).local8Bit(), ACL_TYPE_ACCESS );
-      if ( acl && ( acl_equiv_mode( acl, 0 ) == 0 ) ) {
+
+      bool aclExtended = false;
+      if( acl )
+      {
+#if HAVE_NON_POSIX_ACL_EXTENSIONS
+        aclExtended = acl_equiv_mode( acl, 0 );
+#else
+        acl_entry_t entry;
+        int ret = acl_get_entry( acl, ACL_FIRST_ENTRY, &entry );
+        while ( ret == 1 ) {
+          acl_tag_t currentTag;
+          acl_get_tag_type( entry, &currentTag );
+          if ( currentTag != ACL_USER_OBJ &&
+            currentTag != ACL_GROUP_OBJ &&
+            currentTag != ACL_OTHER )
+          {
+            aclExtended = true;
+            break;
+          }
+          ret = acl_get_entry( acl, ACL_NEXT_ENTRY, &entry );
+        }
+#endif
+      }
+
+
+      if ( acl && !aclExtended ) {
         acl_free( acl );
         acl = NULL;
       }
