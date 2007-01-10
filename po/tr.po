@@ -1,14 +1,15 @@
 # Translation of krusader.po to Turkish
 #
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
-# Copyright (C) 2004-2006, Krusader Krew
+# Copyright (C) 2004-2007, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 #
 # Bekir SONAT <bekirsonat@kde.org.tr>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.70.0\n"
-"POT-Creation-Date: 2006-12-17 12:36+0100\n"
+"Project-Id-Version: krusader-1.80.0-beta1\n"
+"Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
+"POT-Creation-Date: 2007-01-10 19:43+0100\n"
 "PO-Revision-Date: 2006-11-27 01:46+0200\n"
 "Last-Translator: Bekir SONAT <bekirsonat@kde.org.tr>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
@@ -48,14 +49,6 @@ msgstr "Krusader::GörünümYönetici"
 #: GUI/profilemanager.cpp:112
 msgid "Enter the profile name:"
 msgstr "Görünümü adlandırın:"
-
-#: GUI/krremoteencodingmenu.cpp:97
-msgid "Reload"
-msgstr "Yeniden Yükle"
-
-#: GUI/krremoteencodingmenu.cpp:98 Konfigurator/konfiguratoritems.cpp:539
-msgid "Default"
-msgstr "Varsayılan"
 
 #: GUI/mediabutton.cpp:81
 msgid "Open the available media list"
@@ -98,27 +91,22 @@ msgstr "Zip Disk"
 msgid "Unknown"
 msgstr "bilinmeyen"
 
-#: BookMan/krbookmarkhandler.cpp:538 GUI/mediabutton.cpp:529
-#: Panel/krpopupmenu.cpp:61
-msgid "Open"
-msgstr "Aç"
-
-#: BookMan/krbookmarkhandler.cpp:539 GUI/mediabutton.cpp:530
+#: GUI/mediabutton.cpp:530 BookMan/krbookmarkhandler.cpp:539
 msgid "Open in a new tab"
 msgstr "Yeni sekmede aç"
 
-#: GUI/mediabutton.cpp:533 MountMan/kmountman.cpp:287
-#: MountMan/kmountmangui.cpp:333 Panel/krpopupmenu.cpp:174
+#: GUI/mediabutton.cpp:533 Panel/krpopupmenu.cpp:174
+#: MountMan/kmountman.cpp:287 MountMan/kmountmangui.cpp:333
 msgid "Mount"
 msgstr "Bağla"
 
-#: GUI/mediabutton.cpp:535 MountMan/kmountman.cpp:287
-#: MountMan/kmountmangui.cpp:337 Panel/krpopupmenu.cpp:172
+#: GUI/mediabutton.cpp:535 Panel/krpopupmenu.cpp:172
+#: MountMan/kmountman.cpp:287 MountMan/kmountmangui.cpp:337
 msgid "Unmount"
 msgstr "Ayır"
 
-#: GUI/mediabutton.cpp:537 MountMan/kmountmangui.cpp:343
-#: Panel/krpopupmenu.cpp:176
+#: GUI/mediabutton.cpp:537 Panel/krpopupmenu.cpp:176
+#: MountMan/kmountmangui.cpp:343
 msgid "Eject"
 msgstr "Çıkart"
 
@@ -283,8 +271,7 @@ msgstr "Adlandır"
 msgid " Quit"
 msgstr "Çık"
 
-#: VFS/ftp_vfs.cpp:151
-#, c-format
+#: VFS/ftp_vfs.cpp:158
 msgid ""
 "Malformed URL:\n"
 "%1"
@@ -292,7 +279,7 @@ msgstr ""
 "Yanlış URL:\n"
 "%1"
 
-#: VFS/ftp_vfs.cpp:154
+#: VFS/ftp_vfs.cpp:161
 msgid ""
 "Krusader doesn't support FTP access via HTTP.\n"
 "If it is not the case, please check and change the Proxy settings in "
@@ -302,8 +289,7 @@ msgstr ""
 "Eğer sorun bu değilse, lütfen kcontrol içindeki Vekil (Proxy) ayarlarını "
 "denetleyip-değiştirin."
 
-#: VFS/ftp_vfs.cpp:156
-#, c-format
+#: VFS/ftp_vfs.cpp:163
 msgid ""
 "Protocol not supported by Krusader:\n"
 "%1"
@@ -327,29 +313,19 @@ msgstr "Dosyalar açılıyor.."
 msgid "Repacking..."
 msgstr "Yeniden sıkıştırılıyor.."
 
-#: VFS/normal_vfs.cpp:80
+#: VFS/normal_vfs.cpp:90
 msgid "Directory %1 does not exist!"
 msgstr "Dizin mevcut değil:%1"
 
-#: BookMan/krbookmarkhandler.cpp:172 Konfigurator/kgcolors.cpp:508
-#: Konfigurator/kgcolors.cpp:525 MountMan/kmountman.cpp:197
-#: Synchronizer/synchronizerdirlist.cpp:92 VFS/krarchandler.cpp:208
-#: VFS/krarchandler.cpp:265 VFS/krarchandler.cpp:282 VFS/krarchandler.cpp:343
-#: VFS/krarchandler.cpp:512 VFS/krarchandler.cpp:519 VFS/normal_vfs.cpp:80
-#: VFS/normal_vfs.cpp:90 VFS/normal_vfs.cpp:96 VFS/virt_vfs.cpp:87
-#: VFS/virt_vfs.cpp:173
-msgid "Error"
-msgstr "Hata"
-
-#: Synchronizer/synchronizerdirlist.cpp:92 VFS/normal_vfs.cpp:90
+#: VFS/normal_vfs.cpp:100 Synchronizer/synchronizerdirlist.cpp:101
 msgid "Can't open the %1 directory!"
 msgstr "Dizin açılamıyor:%1"
 
-#: VFS/normal_vfs.cpp:96
+#: VFS/normal_vfs.cpp:106
 msgid "Access denied to"
 msgstr "Erişim yasaklandı:"
 
-#: VFS/normal_vfs.cpp:205
+#: VFS/normal_vfs.cpp:215
 msgid "Can't create a directory. Check your permissions."
 msgstr "Dizin yaratılamıyor. Yetkilerinizi gözden geçirin."
 
@@ -366,28 +342,28 @@ msgid "Creating new directories is allowed only in the 'virt:/' directory."
 msgstr ""
 "Sadece 'virt:/' dizini içinde izin verilen yeni dizinler oluşturuluyor."
 
-#: Filter/generalfilter.cpp:94 Konfigurator/konfigurator.cpp:107
-#: VFS/krquery.cpp:138
+#: VFS/krquery.cpp:138 Filter/generalfilter.cpp:94
+#: Konfigurator/konfigurator.cpp:107
 msgid "Archives"
 msgstr "Arşivler"
 
-#: Filter/generalfilter.cpp:95 VFS/krquery.cpp:139
+#: VFS/krquery.cpp:139 Filter/generalfilter.cpp:95
 msgid "Directories"
 msgstr "Dizinler"
 
-#: Filter/generalfilter.cpp:96 VFS/krquery.cpp:140
+#: VFS/krquery.cpp:140 Filter/generalfilter.cpp:96
 msgid "Image Files"
 msgstr "Görüntü Dosyaları"
 
-#: Filter/generalfilter.cpp:97 VFS/krquery.cpp:141
+#: VFS/krquery.cpp:141 Filter/generalfilter.cpp:97
 msgid "Text Files"
 msgstr "Metin Dosyaları"
 
-#: Filter/generalfilter.cpp:98 VFS/krquery.cpp:142
+#: VFS/krquery.cpp:142 Filter/generalfilter.cpp:98
 msgid "Video Files"
 msgstr "Video Dosyaları"
 
-#: Filter/generalfilter.cpp:99 VFS/krquery.cpp:143
+#: VFS/krquery.cpp:143 Filter/generalfilter.cpp:99
 msgid "Audio Files"
 msgstr "Ses Dosyaları"
 
@@ -488,8 +464,8 @@ msgstr ""
 msgid "&General"
 msgstr "&Genel"
 
-#: Dialogs/packguibase.cpp:277 Dialogs/packguibase.cpp:317
-#: Filter/filtertabs.cpp:49
+#: Filter/filtertabs.cpp:49 Dialogs/packguibase.cpp:277
+#: Dialogs/packguibase.cpp:317
 msgid "&Advanced"
 msgstr "&ileri Düzey"
 
@@ -537,7 +513,7 @@ msgstr "Tüm Dosyalar"
 msgid "&Profile handler"
 msgstr "&Görünüm İşleyici"
 
-#: ActionMan/actionpropertybase.cpp:417 Filter/generalfilter.cpp:127
+#: Filter/generalfilter.cpp:127 ActionMan/actionpropertybase.cpp:417
 msgid "&Add"
 msgstr "&Ekle"
 
@@ -545,13 +521,9 @@ msgstr "&Ekle"
 msgid "&Load"
 msgstr "&Yükle"
 
-#: Filter/generalfilter.cpp:134 Panel/panelfunc.cpp:807
+#: Filter/generalfilter.cpp:134 Panel/panelfunc.cpp:806
 msgid "&Overwrite"
 msgstr "Ü&zerineYaz"
-
-#: Filter/generalfilter.cpp:138 RemoteMan/remotemanbase.cpp:155
-msgid "&Remove"
-msgstr "&Sil"
 
 #: Filter/generalfilter.cpp:155
 msgid "&Search in"
@@ -627,9 +599,9 @@ msgstr "MB"
 msgid "&Smaller than"
 msgstr "&küçüktür"
 
-#: DiskUsage/dulistview.cpp:71 Filter/advancedfilter.cpp:113
-#: Search/krsearchdialog.cpp:147 Synchronizer/synchronizergui.cpp:1256
-#: Synchronizer/synchronizergui.cpp:1258
+#: Filter/advancedfilter.cpp:113 Search/krsearchdialog.cpp:147
+#: Synchronizer/synchronizergui.cpp:1256 Synchronizer/synchronizergui.cpp:1258
+#: DiskUsage/dulistview.cpp:71
 msgid "Date"
 msgstr "Tarih"
 
@@ -983,12 +955,6 @@ msgstr "Görüntüleme-kipini seç"
 msgid "Choose a window-mode"
 msgstr "Pencere-kipini seç"
 
-#: Konfigurator/konfigurator.cpp:69 Search/krsearchdialog.cpp:103
-#: Synchronizer/synchronizedialog.cpp:117
-#: Synchronizer/synchronizergui.cpp:1393 UserAction/kraction.cpp:48
-msgid "Close"
-msgstr "Kapat"
-
 #: UserAction/kraction.cpp:51
 msgid "Kill"
 msgstr "Öldür"
@@ -1039,9 +1005,9 @@ msgstr ""
 msgid "Overwrite or append?"
 msgstr "Üzerine yaz veya Ekle"
 
-#: ActionMan/useractionpage.cpp:248 ActionMan/useractionpage.cpp:257
-#: Dialogs/checksumdlg.cpp:552 Dialogs/krkeydialog.cpp:135
-#: Konfigurator/kgcolors.cpp:523 UserAction/kraction.cpp:139
+#: UserAction/kraction.cpp:139 Dialogs/krkeydialog.cpp:135
+#: Dialogs/checksumdlg.cpp:552 ActionMan/useractionpage.cpp:248
+#: ActionMan/useractionpage.cpp:257 Konfigurator/kgcolors.cpp:523
 msgid "Overwrite"
 msgstr "Üzerine yaz"
 
@@ -1050,7 +1016,7 @@ msgstr "Üzerine yaz"
 msgid "Append"
 msgstr "Aç"
 
-#: ActionMan/useractionpage.cpp:271 UserAction/kraction.cpp:152
+#: UserAction/kraction.cpp:152 ActionMan/useractionpage.cpp:271
 msgid ""
 "Can't open %1 for writing!\n"
 "Nothing exported."
@@ -1058,7 +1024,7 @@ msgstr ""
 "%1 yazmak için açılamıyor!\n"
 "Hiçbirşey aktarılamadı."
 
-#: ActionMan/useractionpage.cpp:272 UserAction/kraction.cpp:153
+#: UserAction/kraction.cpp:153 ActionMan/useractionpage.cpp:272
 msgid "Export failed!"
 msgstr "Aktarım başarısız!"
 
@@ -1079,8 +1045,11 @@ msgstr "%1 dosyası geçerli KullanıcıEylemleri içermiyor.\n"
 msgid "UserActions - can't read from file!"
 msgstr "KullanıcıEylemleri dosyasından okunamıyor"
 
+#: UserAction/useraction.cpp:111
+msgid "The actionfile's root-element isn't called "
+msgstr ""
+
 #: UserAction/useraction.cpp:123
-#, c-format
 msgid "Unable to open actionfile %1"
 msgstr "%1 Eylem dosyası açılamıyor"
 
@@ -1241,12 +1210,6 @@ msgstr "Buraya taşı"
 msgid "Link Here"
 msgstr "Buraya Bağ koy"
 
-#: Dialogs/krmaskchoice.cpp:135 Dialogs/packguibase.cpp:289
-#: DiskUsage/diskusage.cpp:155 Panel/listpanel.cpp:788
-#: Panel/panelpopup.cpp:351
-msgid "Cancel"
-msgstr "Vazgeç"
-
 #: Panel/listpanel.cpp:1004
 msgid ">> Reading..."
 msgstr ">> Okuyor.."
@@ -1259,10 +1222,10 @@ msgstr "Okuyor"
 msgid "Reading: "
 msgstr "Okuyor:"
 
-#: DiskUsage/dulines.cpp:238 DiskUsage/dulistview.cpp:56
-#: Konfigurator/krresulttable.cpp:129 MountMan/kmountmangui.cpp:127
 #: Panel/krdetailedview.cpp:103 Search/krsearchdialog.cpp:144
-#: Synchronizer/synchronizergui.cpp:1254 Synchronizer/synchronizergui.cpp:1260
+#: MountMan/kmountmangui.cpp:127 Synchronizer/synchronizergui.cpp:1254
+#: Synchronizer/synchronizergui.cpp:1260 DiskUsage/dulines.cpp:240
+#: DiskUsage/dulistview.cpp:56 Konfigurator/krresulttable.cpp:129
 msgid "Name"
 msgstr "İsim"
 
@@ -1270,8 +1233,8 @@ msgstr "İsim"
 msgid "Ext"
 msgstr "Uzantı"
 
-#: DiskUsage/dulistview.cpp:68 MountMan/kmountmangui.cpp:128
 #: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1425
+#: MountMan/kmountmangui.cpp:128 DiskUsage/dulistview.cpp:68
 msgid "Type"
 msgstr "Türü"
 
@@ -1287,17 +1250,17 @@ msgstr "İzinler"
 msgid "rwx"
 msgstr "rwx"
 
-#: DiskUsage/dulistview.cpp:77 Panel/krdetailedview.cpp:110
-#: Panel/krdetailedview.cpp:1440
+#: Panel/krdetailedview.cpp:110 Panel/krdetailedview.cpp:1440
+#: DiskUsage/dulistview.cpp:77
 msgid "Owner"
 msgstr "Sahip"
 
-#: DiskUsage/dulistview.cpp:80 Konfigurator/krresulttable.cpp:281
 #: Panel/krdetailedview.cpp:111 Panel/krdetailedview.cpp:1443
+#: DiskUsage/dulistview.cpp:80 Konfigurator/krresulttable.cpp:281
 msgid "Group"
 msgstr "Grup"
 
-#: Konfigurator/kgcolors.cpp:419 Panel/krdetailedview.cpp:302
+#: Panel/krdetailedview.cpp:302 Konfigurator/kgcolors.cpp:419
 msgid "Directory"
 msgstr "Dizin"
 
@@ -1305,19 +1268,19 @@ msgstr "Dizin"
 msgid "Columns"
 msgstr "Kolonlar"
 
-#: Panel/krviewitem.cpp:44
+#: Panel/krviewitem.cpp:47
 msgid "Climb up the directory tree"
 msgstr "Üst-dizine çık"
 
-#: Panel/krviewitem.cpp:56
+#: Panel/krviewitem.cpp:59
 msgid "Symbolic Link"
 msgstr "Simgesel Bağ"
 
-#: Panel/krviewitem.cpp:57
+#: Panel/krviewitem.cpp:60
 msgid "(broken link !)"
 msgstr "(kopuk bağ!)"
 
-#: Panel/krviewitem.cpp:58
+#: Panel/krviewitem.cpp:61
 msgid "%1 (Link)"
 msgstr "%1 (Bağ)"
 
@@ -1326,7 +1289,7 @@ msgstr "%1 (Bağ)"
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "%2 'ın %1 'ı boş, %5 (%6) için boş yer %3 (%4)"
 
-#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:325 krusader.cpp:697
+#: Panel/krview.cpp:325 Panel/krpopupmenu.cpp:137 krusader.cpp:697
 msgid "Rename"
 msgstr "Adlandır"
 
@@ -1415,27 +1378,18 @@ msgid "Name: "
 msgstr "İsim:"
 
 #: Panel/krcalcspacedialog.cpp:147
-#, c-format
 msgid "Total occupied space: %1"
 msgstr "Kapladığı toplam alan: %1"
 
 #: Panel/krcalcspacedialog.cpp:151
-#, c-format
-msgid ""
-"_n: in %n directory\n"
-"in %n directories"
-msgstr ""
-"_n:%n dizin içinde\n"
-"%n dizin"
+#, fuzzy, c-format
+msgid "in %n directory"
+msgstr "Dizinde"
 
 #: Panel/krcalcspacedialog.cpp:153
-#, c-format
-msgid ""
-"_n: and %n file\n"
-"and %n files"
-msgstr ""
-"_n:ve %n dosya\n"
-"ve %n dosya"
+#, fuzzy, c-format
+msgid "and %n file"
+msgstr "Dosya gönderiliyor:"
 
 #: Panel/krpopupmenu.cpp:59
 msgid "Open/Run"
@@ -1450,8 +1404,8 @@ msgstr "Çalıştır"
 msgid "Open in New Tab"
 msgstr "Yeni sekmede aç"
 
-#: Konfigurator/kgcolors.cpp:212 Konfigurator/kglookfeel.cpp:309
-#: Panel/krpopupmenu.cpp:76
+#: Panel/krpopupmenu.cpp:76 Konfigurator/kglookfeel.cpp:309
+#: Konfigurator/kgcolors.cpp:212
 msgid "Preview"
 msgstr "Ön-görünüm"
 
@@ -1467,7 +1421,7 @@ msgstr "Diğer..."
 msgid "Open With"
 msgstr ".. ile Aç"
 
-#: Konfigurator/konfigurator.cpp:113 Panel/krpopupmenu.cpp:109
+#: Panel/krpopupmenu.cpp:109 Konfigurator/konfigurator.cpp:113
 msgid "User Actions"
 msgstr "Kullanıcı Eylemleri"
 
@@ -1488,12 +1442,6 @@ msgstr "Taşı..."
 #, fuzzy
 msgid "Move to Trash"
 msgstr "Çöp kutusuna at"
-
-#: BookMan/krbookmarkhandler.cpp:541 Dialogs/krmaskchoice.cpp:110
-#: Dialogs/kurllistrequester.cpp:149 DiskUsage/diskusage.cpp:758
-#: Konfigurator/kgcolors.cpp:474 Panel/krpopupmenu.cpp:145 krusader.cpp:695
-msgid "Delete"
-msgstr "Sil"
 
 #: Panel/krpopupmenu.cpp:149
 msgid "Shred"
@@ -1564,197 +1512,166 @@ msgstr " ? Yokedildiğinde,-dosyanız sonsuza kadar kaybedilecek!!!"
 msgid "Can't open \"%1\""
 msgstr "\"%1\" açılamıyor"
 
-#: Panel/panelfunc.cpp:264
+#: Panel/panelfunc.cpp:263
 msgid "You can edit links only on local file systems"
 msgstr "Sadece yerel dosya sisteminizdeki bağları düzenleyebilirsiniz"
 
-#: Panel/panelfunc.cpp:275
+#: Panel/panelfunc.cpp:274
 msgid "The current file is not a link, so I can't redirect it."
 msgstr "Seçili dosya bir bağ değil,-yönlendiremeyeceksiniz."
 
-#: Panel/panelfunc.cpp:282
+#: Panel/panelfunc.cpp:281
 msgid "Link Redirection"
 msgstr "Bağ yönlendirme"
 
-#: Panel/panelfunc.cpp:283
+#: Panel/panelfunc.cpp:282
 msgid "Please enter the new link destination:"
 msgstr "Yeni bağ'ın hedefini belirtin:"
 
-#: Panel/panelfunc.cpp:290
+#: Panel/panelfunc.cpp:289
 msgid "Can't remove old link: "
 msgstr "Eski bağ silinemeyecek:"
 
-#: Panel/panelfunc.cpp:295 Panel/panelfunc.cpp:335
+#: Panel/panelfunc.cpp:294 Panel/panelfunc.cpp:334
 msgid "Failed to create a new link: "
 msgstr "Yeni bağ oluşturma başarısız:"
 
-#: Panel/panelfunc.cpp:302
+#: Panel/panelfunc.cpp:301
 msgid "You can create links only on local file systems"
 msgstr "Sadece yerel dosya sisteminizde bağlar yaratabilirsiniz"
 
-#: Panel/panelfunc.cpp:311
+#: Panel/panelfunc.cpp:310
 msgid "New link"
 msgstr "Yeni bağ"
 
-#: Panel/panelfunc.cpp:311
+#: Panel/panelfunc.cpp:310
 msgid "Create a new link to: "
 msgstr "Oluşturulacak yeni bağ:"
 
-#: Panel/panelfunc.cpp:319 Panel/panelfunc.cpp:505
+#: Panel/panelfunc.cpp:318 Panel/panelfunc.cpp:504
 msgid "A directory or a file with this name already exists."
 msgstr "Dizin veya dosya zaten var."
 
-#: Panel/panelfunc.cpp:331
+#: Panel/panelfunc.cpp:330
 msgid "Failed to create a new symlink: "
 msgstr "Yeni simgesel-bağ oluşturma başarısız:"
 
-#: Panel/panelfunc.cpp:332 Panel/panelfunc.cpp:336
+#: Panel/panelfunc.cpp:331 Panel/panelfunc.cpp:335
 msgid " To: "
 msgstr "hedef:"
 
-#: Panel/panelfunc.cpp:350
+#: Panel/panelfunc.cpp:349
 msgid "No permissions to view this file."
 msgstr "Bu dosyayı görme yetkiniz yok."
 
-#: Panel/panelfunc.cpp:374
+#: Panel/panelfunc.cpp:373
 msgid "<qt>Can't open <b>%1</b></qt>"
 msgstr "<qt><b>%1</b> açılamıyor</qt>"
 
-#: Panel/panelfunc.cpp:385
+#: Panel/panelfunc.cpp:384
 msgid "You can't edit a directory"
 msgstr "Bir dizin'i düzenleyemezsiniz!"
 
-#: Panel/panelfunc.cpp:390
+#: Panel/panelfunc.cpp:389
 msgid "No permissions to edit this file."
 msgstr "Bu dosyayı düzenleme yetkiniz yok."
 
-#: Panel/panelfunc.cpp:410
+#: Panel/panelfunc.cpp:409
 msgid "Moving into archive is disabled"
 msgstr "Arşiv'e taşıma etkisiz kılındı."
 
-#: Panel/panelfunc.cpp:420
+#: Panel/panelfunc.cpp:419
 msgid "Move %1 to:"
 msgstr "%1 taşınacak:"
 
-#: Panel/panelfunc.cpp:422
+#: Panel/panelfunc.cpp:421
 #, fuzzy, c-format
-msgid ""
-"_n: Move %n file to:\n"
-"Move %n files to:"
-msgstr ""
-"_n:%n dosya taşınacak:\n"
-"%n dosya taşınacak:"
+msgid "Move %n file to:"
+msgstr "%1 taşınacak:"
 
-#: Panel/panelfunc.cpp:466
+#: Panel/panelfunc.cpp:465
 msgid "You can't move files to this file system"
 msgstr "Bu dosya sistemine taşıma yapamayacaksınız"
 
-#: Panel/panelfunc.cpp:492
+#: Panel/panelfunc.cpp:491
 msgid "New directory"
 msgstr "Yeni dizin"
 
-#: Panel/panelfunc.cpp:492
+#: Panel/panelfunc.cpp:491
 msgid "Directory's name:"
 msgstr "Dizin'in adı:"
 
-#: Panel/panelfunc.cpp:575
+#: Panel/panelfunc.cpp:574
 msgid "Copy %1 to:"
 msgstr "%1 taşınacak:"
 
-#: Panel/panelfunc.cpp:577
+#: Panel/panelfunc.cpp:576
 #, fuzzy, c-format
-msgid ""
-"_n: Copy %n file to:\n"
-"Copy %n files to:"
-msgstr ""
-"_n:%n dosya kopyalanacak:\n"
-"%n dosya kopyalanacak:"
+msgid "Copy %n file to:"
+msgstr "%1 taşınacak:"
 
-#: Panel/panelfunc.cpp:613
+#: Panel/panelfunc.cpp:612
 msgid "You can't copy files to this file system"
 msgstr "Bu dosya sistemine kopyalama yapamayacaksınız"
 
-#: Panel/panelfunc.cpp:624
+#: Panel/panelfunc.cpp:623
 msgid "You do not have write permission to this directory"
 msgstr "Bu dizine yazma hakkınız yok"
 
-#: Panel/panelfunc.cpp:642
-#, c-format
-msgid ""
-"_n: Do you really want to move this item to the trash?\n"
-"Do you really want to move these %n items to the trash?"
+#: Panel/panelfunc.cpp:641 DiskUsage/diskusage.cpp:597
+#, fuzzy
+msgid "Do you really want to move this item to the trash?"
 msgstr ""
-"Bu ögeyi çöp kutusuna atmayı gerçekten istiyor musunuz?\n"
-"%n ögeyi çöp kutusuna atmayı gerçekten istiyor musunuz?"
+"Bu ögeyi silmeyi gerçekten istiyor musunuz?\n"
+"%n ögeyi silmeyi gerçekten istiyor musunuz?"
 
-#: DiskUsage/diskusage.cpp:598 Panel/panelfunc.cpp:643
+#: Panel/panelfunc.cpp:642 DiskUsage/diskusage.cpp:598
 msgid "&Trash"
 msgstr "Çöpe &At"
 
-#: Panel/panelfunc.cpp:645
+#: Panel/panelfunc.cpp:644
+#, fuzzy
 msgid ""
-"_n: Do you really want to delete this virtual item (physical files stay "
-"untouched)?\n"
-"Do you really want to delete these virtual items (physical files stay "
+"Do you really want to delete this virtual item (physical files stay "
 "untouched)?"
-msgstr ""
-"_n:Bu ögeyi silmeyi gerçekten istiyor musunuz?\n"
-"%n ögeyi silmeyi gerçekten istiyor musunuz?"
+msgstr "Bu ögeyi silmek istediğinize emin misiniz ???"
 
-#: DiskUsage/diskusage.cpp:601 DiskUsage/radialMap/widgetEvents.cpp:172
-#: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:646
-#: Panel/panelfunc.cpp:649 Panel/panelfunc.cpp:652
-msgid "&Delete"
-msgstr "&Sil"
-
-#: Panel/panelfunc.cpp:648
-#, fuzzy, c-format
+#: Panel/panelfunc.cpp:647
+#, fuzzy
 msgid ""
-"_n: <qt>Do you really want to delete this item <b>physically</b> (not just "
-"removing it from the virtual items)?</qt>\n"
-"<qt>Do you really want to delete these %n items <b>physically</b> (not just "
-"removing them from the virtual items)?</qt>"
+"<qt>Do you really want to delete this item <b>physically</b> (not just "
+"removing it from the virtual items)?</qt>"
 msgstr ""
 "_n:<qt>Bu ögenin <b>gerçek varlığını</b> (sanal ögelerdeki görünümünün "
 "ötesinde) silmek istediğinize emin misiniz?</qt>\n"
 "<qt>Bu ögenin <b>gerçek varlığını</b> (sanal ögelerdeki görünümünün "
 "ötesinde) silmek istediğinize emin misiniz?</qt>"
 
-#: Panel/panelfunc.cpp:651
-#, c-format
-msgid ""
-"_n: Do you really want to delete this item?\n"
-"Do you really want to delete these %n items?"
-msgstr ""
-"_n:Bu ögeyi silmeyi gerçekten istiyor musunuz?\n"
-"%n ögeyi silmeyi gerçekten istiyor musunuz?"
+#: Panel/panelfunc.cpp:650 DiskUsage/diskusage.cpp:600
+#, fuzzy
+msgid "Do you really want to delete this item?"
+msgstr "Bu ögeyi silmek istediğinize emin misiniz ???"
 
-#: Dialogs/checksumdlg.cpp:552 Dialogs/krkeydialog.cpp:135
-#: DiskUsage/diskusage.cpp:608 Konfigurator/kgcolors.cpp:523
-#: Panel/panelfunc.cpp:658
-msgid "Warning"
-msgstr "Uyarı"
-
-#: Panel/panelfunc.cpp:676
+#: Panel/panelfunc.cpp:675
 msgid ""
 "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete All?</"
 "p></qt>"
 msgstr ""
 "<qt><p><b>%1</b> dizini boş değil!</p><p>Bunu atla veya Hepsini sil?</p></qt>"
 
-#: Panel/panelfunc.cpp:677
+#: Panel/panelfunc.cpp:676
 msgid "&Skip"
 msgstr "A&tla"
 
-#: Panel/panelfunc.cpp:677
+#: Panel/panelfunc.cpp:676
 msgid "&Delete All"
 msgstr "&Hepsini Sil"
 
-#: Panel/panelfunc.cpp:791
+#: Panel/panelfunc.cpp:790
 msgid "Cannot pack files onto a virtual destination!"
 msgstr "Sanal hedef üzerine dosya sıkıştıramazsınız!"
 
-#: Panel/panelfunc.cpp:803
+#: Panel/panelfunc.cpp:802
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>All data in the previous archive will be lost!</p></qt>"
@@ -1762,7 +1679,7 @@ msgstr ""
 "<qt><p><b>%1.%2</b> arşiv dosyası zaten var.. Üzerine yazmak ister misiniz?</"
 "p><p>Önceki arşivdeki tüm veri yokedilecek!</p></qt>"
 
-#: Panel/panelfunc.cpp:805
+#: Panel/panelfunc.cpp:804
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>Zip will replace identically named entries in the zip archive or add "
@@ -1772,57 +1689,48 @@ msgstr ""
 "p><p>ZIP, isim olarak aynı olanları değiştirecek veya yeni isimlileri arşive "
 "ekleyecek.</p></qt>"
 
-#: Panel/panelfunc.cpp:812
+#: Panel/panelfunc.cpp:811
 msgid "Counting files to pack"
 msgstr "Çıkarılacak dosyaları sayıyor.."
 
-#: Panel/panelfunc.cpp:872 Panel/panelfunc.cpp:933 krslots.cpp:192
+#: Panel/panelfunc.cpp:871 Panel/panelfunc.cpp:932 krslots.cpp:192
 #: krslots.cpp:198
 msgid "Krusader is unable to download: "
 msgstr "Krusader indiremiyor:"
 
-#: Panel/panelfunc.cpp:884
+#: Panel/panelfunc.cpp:883
 msgid "%1, unknown archive type."
 msgstr "%1 bilinmeyen bir arşiv türü."
 
-#: Panel/panelfunc.cpp:892
+#: Panel/panelfunc.cpp:891
 msgid "%1, test passed."
 msgstr "%1 sınaması başarılı."
 
-#: Panel/panelfunc.cpp:894
+#: Panel/panelfunc.cpp:893
 msgid "%1, test failed!"
 msgstr "%1 sınaması başarısız."
 
-#: Panel/panelfunc.cpp:910
+#: Panel/panelfunc.cpp:909
 msgid "Unpack %1 to:"
 msgstr "%1 açılacağı yer:"
 
-#: Panel/panelfunc.cpp:912
-#, c-format
-msgid ""
-"_n: Unpack %n file to:\n"
-"Unpack %n files to:"
-msgstr ""
-"_n:%n dosya çıkarılacak:\n"
-"%n dosya çıkarılacak:"
+#: Panel/panelfunc.cpp:911
+#, fuzzy, c-format
+msgid "Unpack %n file to:"
+msgstr "%1 açılacağı yer:"
 
-#: Panel/panelfunc.cpp:958
+#: Panel/panelfunc.cpp:957
 msgid "%1, unknown archive type"
 msgstr "%1, tanımlanamayan arşiv türü"
 
-#: Panel/panelfunc.cpp:1141
+#: Panel/panelfunc.cpp:1140
 #, fuzzy
 msgid "Cannot cut a virtual URL collection to the clipboard!"
 msgstr "Sanal adresler Karalama-Defterine (clipboard) taşınamaz!"
 
-#: Panel/panelfunc.cpp:1143
+#: Panel/panelfunc.cpp:1142
 msgid "Cannot copy a virtual URL collection onto the clipboard!"
 msgstr "Sanal adresler Karalama-Defterine (clipboard) kopyalanamaz!"
-
-#: Locate/locate.cpp:67 Locate/locate.cpp:205 Search/krsearchdialog.cpp:99
-#: Synchronizer/synchronizergui.cpp:1377
-msgid "Stop"
-msgstr "Dur"
 
 #: Locate/locate.cpp:67
 msgid "Update DB"
@@ -1952,11 +1860,6 @@ msgstr "F3 Göster İletişimi"
 msgid "Tab: switch panel"
 msgstr "Tab: Pencere değiştir"
 
-#: krusader.cpp:499
-#, fuzzy
-msgid "&Reload"
-msgstr "&Yenile"
-
 #: krusader.cpp:501
 msgid "Show Actions Toolbar"
 msgstr "Eylemler Araç-çubuğunu göster"
@@ -2027,11 +1930,6 @@ msgstr "Sağlama Oluştur"
 #, fuzzy
 msgid "Verify Checksum..."
 msgstr "Sağlama'yı Denetle"
-
-#: krusader.cpp:553
-#, fuzzy
-msgid "&Properties..."
-msgstr "Ö&zellikler"
 
 #: krusader.cpp:555
 #, fuzzy
@@ -2147,10 +2045,6 @@ msgstr "Disk &Kullanımı"
 msgid "Configure &Krusader..."
 msgstr "&Krusader'i Yapılandır"
 
-#: krusader.cpp:618
-msgid "Back"
-msgstr "Geri"
-
 #: krusader.cpp:622
 msgid "Save &Position"
 msgstr "&Konumu Sakla"
@@ -2188,12 +2082,7 @@ msgstr "Sağ yer-imleri"
 msgid "Left Bookmarks"
 msgstr "Sol yer-imleri"
 
-#: BookMan/kraddbookmarkdlg.cpp:71 BookMan/krbookmarkbutton.cpp:19
-#: BookMan/krbookmarkhandler.cpp:30 krusader.cpp:640
-msgid "Bookmarks"
-msgstr "Yer-imleri"
-
-#: BookMan/krbookmarkhandler.cpp:399 krusader.cpp:642
+#: krusader.cpp:642 BookMan/krbookmarkhandler.cpp:399
 msgid "Bookmark Current"
 msgstr "Burayı Yer-imlerine Ekle"
 
@@ -2215,7 +2104,7 @@ msgstr "Sol Geçmişi"
 msgid "Right History"
 msgstr "Sağ Geçmişi"
 
-#: BookMan/krbookmark.cpp:12 krusader.cpp:652
+#: krusader.cpp:652 BookMan/krbookmark.cpp:12
 msgid "Media"
 msgstr "Ortam"
 
@@ -2287,10 +2176,6 @@ msgstr "Dosya Düzenle (F4)"
 msgid "New Directory..."
 msgstr "Yeni dizin..."
 
-#: krusader.cpp:699
-msgid "Quit"
-msgstr "Çık"
-
 #: krusader.cpp:701
 #, fuzzy
 msgid "Popular URLs..."
@@ -2350,7 +2235,7 @@ msgstr "Dosya(lar)ı Ara"
 msgid "JavaScript Console..."
 msgstr "JavaScript konsolu"
 
-#: krusader.cpp:861
+#: krusader.cpp:862
 msgid "Are you sure you want to quit?"
 msgstr "Çıkmak istediğinize emin misiniz?"
 
@@ -2358,7 +2243,7 @@ msgstr "Çıkmak istediğinize emin misiniz?"
 msgid "No file selected or selected file can't be displayed."
 msgstr "Dosya seçilmedi veya görüntülenemiyor."
 
-#: KViewer/krviewer.cpp:589 KViewer/panelviewer.cpp:151
+#: KViewer/panelviewer.cpp:151 KViewer/krviewer.cpp:589
 msgid "KrViewer is unable to download: "
 msgstr "KrViewer indiremiyor: "
 
@@ -2393,10 +2278,6 @@ msgstr "Sekmeyi &Ayır"
 #: KViewer/krviewer.cpp:100
 msgid "&Close current tab"
 msgstr "Bulunulan Sekmeyi Ka&pat"
-
-#: KViewer/krviewer.cpp:101
-msgid "&Quit"
-msgstr "&ÇIK"
 
 #: KViewer/krviewer.cpp:141
 msgid "&KrViewer"
@@ -2438,7 +2319,7 @@ msgstr "Uyan yok"
 msgid "Location"
 msgstr "Konu"
 
-#: DiskUsage/dulistview.cpp:74 Search/krsearchdialog.cpp:148
+#: Search/krsearchdialog.cpp:148 DiskUsage/dulistview.cpp:74
 msgid "Permissions"
 msgstr "Yetkiler"
 
@@ -2479,8 +2360,8 @@ msgstr "Dosyayı Göster (F3)"
 msgid "Edit File (F4)"
 msgstr "Dosya Düzenle (F4)"
 
-#: Konfigurator/kgarchives.cpp:113 Konfigurator/kggeneral.cpp:151
-#: Search/krsearchdialog.cpp:523
+#: Search/krsearchdialog.cpp:523 Konfigurator/kggeneral.cpp:151
+#: Konfigurator/kgarchives.cpp:113
 msgid "Search results"
 msgstr "Arama sonuçları"
 
@@ -2497,7 +2378,7 @@ msgid "BookMan II"
 msgstr "BookMan II"
 
 #: BookMan/krbookmarkhandler.cpp:172
-#, fuzzy, c-format
+#, fuzzy
 msgid "Unable to write to %1"
 msgstr "Yazılamıyor:"
 
@@ -2517,7 +2398,7 @@ msgid "%1 doesn't seem to be a valid Bookmarks file"
 msgstr "geçerli bir Yer-imi dosyası gibi görünmüyor"
 
 #: BookMan/krbookmarkhandler.cpp:268
-#, fuzzy, c-format
+#, fuzzy
 msgid "Error reading bookmarks file: %1"
 msgstr "Yer-imi dosyası okunamıyor:"
 
@@ -2534,15 +2415,15 @@ msgstr "Yer-im'lerini Düzenle"
 msgid "Enable special bookmarks"
 msgstr "Yer-im'lerini Düzenle"
 
-#: BookMan/krbookmark.cpp:14 BookMan/krbookmarkhandler.cpp:487
+#: BookMan/krbookmarkhandler.cpp:487 BookMan/krbookmark.cpp:14
 msgid "Devices"
 msgstr "Aygıtlar"
 
-#: BookMan/krbookmark.cpp:17 BookMan/krbookmarkhandler.cpp:489
+#: BookMan/krbookmarkhandler.cpp:489 BookMan/krbookmark.cpp:17
 msgid "Local Network"
 msgstr "Yerel Ağ"
 
-#: BookMan/krbookmark.cpp:16 BookMan/krbookmarkhandler.cpp:491
+#: BookMan/krbookmarkhandler.cpp:491 BookMan/krbookmark.cpp:16
 msgid "Virtual Filesystem"
 msgstr "Sanal Dosya-sistemi"
 
@@ -2602,10 +2483,6 @@ msgstr "%1 KB"
 msgid "MountMan is not operational. Sorry"
 msgstr "Maalesef Bağlamacı çalışamıyor."
 
-#: MountMan/kmountmangui.cpp:70 RemoteMan/remotemanbase.cpp:73
-msgid "&Close"
-msgstr "&Kapat"
-
 #: MountMan/kmountmangui.cpp:72
 msgid "MountMan - Your Mount-Manager"
 msgstr "Bağlamacı,-Bağlama Yöneticiniz"
@@ -2627,7 +2504,6 @@ msgid "Free Size"
 msgstr "Boş yer"
 
 #: MountMan/kmountmangui.cpp:132
-#, c-format
 msgid "Free %"
 msgstr "Boş %"
 
@@ -2757,22 +2633,14 @@ msgid "Krusader Progress"
 msgstr "Krusader çalışıyor.."
 
 #: Dialogs/krprogress.cpp:165
-#, c-format
-msgid ""
-"_n: %n directory\n"
-"%n directories"
-msgstr ""
-"%n dizin\n"
-"%n dizin"
+#, fuzzy, c-format
+msgid "%n directory"
+msgstr "Dizinde"
 
 #: Dialogs/krprogress.cpp:166
-#, c-format
-msgid ""
-"_n: %n file\n"
-"%n files"
-msgstr ""
-"%n dosya\n"
-"%n dosya"
+#, fuzzy, c-format
+msgid "%n file"
+msgstr "Dosya taşıma"
 
 #: Dialogs/krprogress.cpp:172
 msgid "%1% of %2 "
@@ -2787,20 +2655,13 @@ msgid "%1 of %2 complete"
 msgstr "%2 için %1 tamamlandı"
 
 #: Dialogs/krprogress.cpp:201 Dialogs/krprogress.cpp:214
-msgid ""
-"_n: %1 / %n directory\n"
-"%1 / %n directories"
-msgstr ""
-"%1 / %n dizin\n"
-"%1 / %n dizin"
+#, fuzzy
+msgid "%1 / %n directory"
+msgstr "Dizinde"
 
 #: Dialogs/krprogress.cpp:203 Dialogs/krprogress.cpp:217
-msgid ""
-"_n: %1 / %n file\n"
-"%1 / %n files"
+msgid "%1 / %n file"
 msgstr ""
-"%1 / %n dosya\n"
-"%1 / %n dosya"
 
 #: Dialogs/krprogress.cpp:225
 msgid "Working"
@@ -2811,18 +2672,13 @@ msgid "%1/s ( %2 remaining )"
 msgstr "%1/s ( %2 kaldı )"
 
 #: Dialogs/packgui.cpp:53
-#, c-format
 msgid "Pack %1"
 msgstr "%1 paketle"
 
 #: Dialogs/packgui.cpp:55
-#, c-format
-msgid ""
-"_n: Pack %n file\n"
-"Pack %n files"
-msgstr ""
-"%n dosya paketle\n"
-"%n dosya paketle"
+#, fuzzy, c-format
+msgid "Pack %n file"
+msgstr "Dosya(lar) sıkıştırılıyor"
 
 #: Dialogs/packgui.cpp:94
 msgid "Please select a directory"
@@ -2859,10 +2715,6 @@ msgstr ""
 "Unutmayınki, kalıbı düzenlediğiniz satır kendi geçmişinde saklanır ve "
 "gerektiğinde bu kayıtları listeleyebilirsiniz."
 
-#: Dialogs/krmaskchoice.cpp:105
-msgid "Add"
-msgstr "Ekle"
-
 #: Dialogs/krmaskchoice.cpp:106
 msgid "Adds the selection in the line-edit to the list"
 msgstr "Seçilen Düzenleme Satırını listeye ekler."
@@ -2871,17 +2723,9 @@ msgstr "Seçilen Düzenleme Satırını listeye ekler."
 msgid "Delete the marked selection from the list"
 msgstr "İşaretli seçim'i listeden siler"
 
-#: Dialogs/krmaskchoice.cpp:115
-msgid "Clear"
-msgstr "Temizle"
-
 #: Dialogs/krmaskchoice.cpp:116
 msgid "Clears the entire list of selections"
 msgstr "Seçimler listesinin hepsini temizler"
-
-#: Dialogs/krmaskchoice.cpp:131
-msgid "OK"
-msgstr "Tamam"
 
 #: Dialogs/newftpgui.cpp:49
 msgid "New Network Connection"
@@ -2931,11 +2775,6 @@ msgstr "Parola:"
 #: Dialogs/newftpgui.cpp:127
 msgid "&Connect"
 msgstr "&Bağlan"
-
-#: Dialogs/krpleasewait.cpp:60 Dialogs/newftpgui.cpp:136
-#: Splitter/splittergui.cpp:113
-msgid "&Cancel"
-msgstr "&Vazgeç"
 
 #: Dialogs/popularurls.cpp:62
 msgid "Saved 'Popular Urls' are invalid. List will be cleared"
@@ -3097,22 +2936,26 @@ msgid "Ok"
 msgstr "Tamam"
 
 #: Dialogs/packguibase.cpp:333
+msgid "No password specified"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:338
 msgid "The passwords are equal"
 msgstr "Parolalar aynı"
 
-#: Dialogs/packguibase.cpp:337
+#: Dialogs/packguibase.cpp:342
 msgid "The passwords are different"
 msgstr "Parolalar farklı"
 
-#: Dialogs/packguibase.cpp:374
+#: Dialogs/packguibase.cpp:379
 msgid "Cannot pack! The passwords are different!"
 msgstr "Paketlenemiyor! Parolalar farklı!"
 
-#: Dialogs/packguibase.cpp:399
+#: Dialogs/packguibase.cpp:404
 msgid "Invalid volume size!"
 msgstr "Geçersiz birim büyüklüğü!"
 
-#: Dialogs/packguibase.cpp:429
+#: Dialogs/packguibase.cpp:434
 msgid ""
 "Invalid command line switch!\n"
 "Switch must start with '-'!"
@@ -3120,7 +2963,7 @@ msgstr ""
 "Geçersiz komut satırı açıcısı!\n"
 "Açıcı '-' ile başlamalı!"
 
-#: Dialogs/packguibase.cpp:441
+#: Dialogs/packguibase.cpp:446
 msgid ""
 "Invalid command line switch!\n"
 "Backslash cannot be the last character"
@@ -3128,7 +2971,7 @@ msgstr ""
 "Geçersiz komut satırı açıcısı!\n"
 "Backslash enson'da yer alamaz"
 
-#: Dialogs/packguibase.cpp:449
+#: Dialogs/packguibase.cpp:454
 msgid ""
 "Invalid command line switch!\n"
 "Unclosed quotation mark!"
@@ -3282,10 +3125,6 @@ msgstr "Hasaplanan sağlamalar:"
 msgid "Hash"
 msgstr "Haşat"
 
-#: Dialogs/checksumdlg.cpp:482 Konfigurator/kgcolors.cpp:418
-msgid "File"
-msgstr "Dosya"
-
 #: Dialogs/checksumdlg.cpp:501
 msgid "Here are the errors received:"
 msgstr "Saptanan hatalar:"
@@ -3312,7 +3151,6 @@ msgid "Select a file to save to"
 msgstr "Saklanacak dosyayı seçin"
 
 #: Dialogs/checksumdlg.cpp:559
-#, c-format
 msgid "Error saving file %1"
 msgstr "%1 dosyası kaydedilirken hata."
 
@@ -3383,10 +3221,6 @@ msgstr ""
 #: ActionMan/useractionpage.cpp:204
 msgid "Remove selected actions?"
 msgstr "Seçili Eylemler silinsin mi?"
-
-#: ActionMan/useractionpage.cpp:205
-msgid "Remove"
-msgstr "Sil"
 
 #: ActionMan/useractionpage.cpp:246
 msgid ""
@@ -4035,11 +3869,6 @@ msgstr "<=>"
 msgid "&Synchronizer"
 msgstr "&Eşgüdümleyici"
 
-#: Synchronizer/synchronizergui.cpp:1287
-#, fuzzy
-msgid "&Options"
-msgstr "İşlem"
-
 #: Synchronizer/synchronizergui.cpp:1296
 msgid "Parallel threads:"
 msgstr "Koşut İşparçacıkları"
@@ -4129,7 +3958,7 @@ msgstr "Hem sağ hem sol taraftaki adresler yukarıdan aşağı sıralı olmalı
 msgid "Synchronize Directories"
 msgstr "Dizinleri eşgüdümle"
 
-#: DiskUsage/diskusage.cpp:760 Synchronizer/synchronizergui.cpp:1609
+#: Synchronizer/synchronizergui.cpp:1609 DiskUsage/diskusage.cpp:760
 msgid "Exclude"
 msgstr "Hariç tut"
 
@@ -4206,50 +4035,34 @@ msgid "Krusader::Synchronize"
 msgstr "Krusader::Eşgüdümle"
 
 #: Synchronizer/synchronizedialog.cpp:53
-#, fuzzy, c-format
-msgid ""
-"_n: Right to left: Copy 1 file\n"
-"Right to left: Copy %n files"
+#, fuzzy
+msgid "Right to left: Copy 1 file"
 msgstr ""
 "%n dosya kopyalanacak:\n"
 "%n dosya kopyalanacak:"
 
 #: Synchronizer/synchronizedialog.cpp:54 Synchronizer/synchronizedialog.cpp:67
 #: Synchronizer/synchronizedialog.cpp:80
-#, c-format
-msgid ""
-"_n: (1 byte)\n"
-"(%n bytes)"
+msgid "(1 byte)"
 msgstr ""
-"_n:(1 bayt)\n"
-"(%n bayt)"
 
 #: Synchronizer/synchronizedialog.cpp:60 Synchronizer/synchronizedialog.cpp:73
 #: Synchronizer/synchronizedialog.cpp:86
-msgid ""
-"_n: Ready: %1/1 file, %3/%4\n"
-"Ready: %1/%n files, %3/%4"
-msgstr ""
-"_n:Hazır: %1/1 dosya, %3/%4\n"
-"Hazır: %1/1 dosya, %3/%4"
+#, fuzzy
+msgid "Ready: %1/1 file, %3/%4"
+msgstr "\tHazır: %1/%2 dosya, %3/%4"
 
 #: Synchronizer/synchronizedialog.cpp:66
-#, c-format
-msgid ""
-"_n: Left to right: Copy 1 file\n"
-"Left to right: Copy %n files"
+#, fuzzy
+msgid "Left to right: Copy 1 file"
 msgstr ""
 "_n:Soldan Sağa: Kopyalanan 1 dosya\n"
 "Soldan Sağa: Kopyalanan  %n dosya"
 
 #: Synchronizer/synchronizedialog.cpp:79
-#, fuzzy, c-format
-msgid ""
-"_n: Left: Delete 1 file\n"
-"Left: Delete %n files"
-msgstr ""
-"_n:Sol: 1 dosya sil\n"
-"Sol: %n dosya sil"
+#, fuzzy
+msgid "Left: Delete 1 file"
+msgstr "Dosyaları sil"
 
 #: Synchronizer/synchronizedialog.cpp:101
 msgid "Confirm overwrites"
@@ -4260,8 +4073,8 @@ msgid "Start"
 msgstr "Başla"
 
 #: Synchronizer/synchronizedialog.cpp:114
-#: Synchronizer/synchronizedialog.cpp:186 Synchronizer/synchronizer.cpp:1286
-#: Synchronizer/synchronizer.cpp:1296
+#: Synchronizer/synchronizedialog.cpp:186 Synchronizer/synchronizer.cpp:1342
+#: Synchronizer/synchronizer.cpp:1352
 msgid "Pause"
 msgstr "Duraklat"
 
@@ -4271,41 +4084,40 @@ msgstr "Duraklat"
 msgid "\tReady: %1/%2 files, %3/%4"
 msgstr "\tHazır: %1/%2 dosya, %3/%4"
 
-#: Synchronizer/synchronizedialog.cpp:194 Synchronizer/synchronizer.cpp:1298
+#: Synchronizer/synchronizedialog.cpp:194 Synchronizer/synchronizer.cpp:1354
 msgid "Resume"
 msgstr "Devam"
 
-#: Synchronizer/synchronizer.cpp:145 Synchronizer/synchronizer.cpp:617
-#, c-format
+#: Synchronizer/synchronizer.cpp:156 Synchronizer/synchronizer.cpp:647
 msgid "Number of files: %1"
 msgstr "Dosya sayısı: %1"
 
-#: Synchronizer/synchronizer.cpp:176
-#, fuzzy, c-format
+#: Synchronizer/synchronizer.cpp:187
+#, fuzzy
 msgid "Number of compared directories: %1"
 msgstr "Taranan dizinler:%1"
 
-#: Synchronizer/synchronizer.cpp:1094 Synchronizer/synchronizer.cpp:1107
+#: Synchronizer/synchronizer.cpp:1150 Synchronizer/synchronizer.cpp:1163
 msgid "File Already Exists"
 msgstr "Dosya zaten mevcut"
 
-#: Synchronizer/synchronizer.cpp:1152 Synchronizer/synchronizer.cpp:1157
+#: Synchronizer/synchronizer.cpp:1208 Synchronizer/synchronizer.cpp:1213
 msgid "Error at copying file %1 to %2!"
 msgstr "%1, %2 olarak kopyalanırken hata!"
 
-#: Synchronizer/synchronizer.cpp:1162
+#: Synchronizer/synchronizer.cpp:1218
 msgid "Error at deleting file %1!"
 msgstr "%1 dosyası silinirken hata!"
 
-#: Synchronizer/synchronizer.cpp:1341
+#: Synchronizer/synchronizer.cpp:1397
 msgid "Krusader::Synchronizer"
 msgstr "Krusader::Eşgüdümleyici"
 
-#: Synchronizer/synchronizer.cpp:1342
+#: Synchronizer/synchronizer.cpp:1398
 msgid "Feeding the URLs to Kget"
 msgstr "Adres kGet'e aktarılıyor"
 
-#: Synchronizer/synchronizer.cpp:1391 krslots.cpp:117 krslots.cpp:209
+#: Synchronizer/synchronizer.cpp:1447 krslots.cpp:117 krslots.cpp:209
 msgid "Error executing "
 msgstr "Çalıştırmada hata"
 
@@ -4325,14 +4137,6 @@ msgstr "Sonuçları Eşgüdümle"
 msgid "Side to feed:"
 msgstr "Döküm tarafı:"
 
-#: Synchronizer/feedtolistboxdialog.cpp:125
-msgid "Left"
-msgstr "Sol"
-
-#: Synchronizer/feedtolistboxdialog.cpp:126
-msgid "Right"
-msgstr "Sağ"
-
 #: Synchronizer/feedtolistboxdialog.cpp:127
 msgid "Both"
 msgstr "Her ikisi"
@@ -4345,7 +4149,7 @@ msgstr "Sadece seçilen dosyalar"
 msgid "Cannot open %1!"
 msgstr "%1 Açılamadı"
 
-#: Konfigurator/kglookfeel.cpp:120 paneltabbar.cpp:35
+#: paneltabbar.cpp:35 Konfigurator/kglookfeel.cpp:120
 msgid "Panel"
 msgstr "Pencere"
 
@@ -4384,23 +4188,22 @@ msgid "%1 files: ~ %2"
 msgstr "%1 dosya: ~ %2"
 
 #: DiskUsage/radialMap/segmentTip.cpp:103
-#, c-format
 msgid "Files: %1"
 msgstr "Dosyalar: %1"
 
-#: DiskUsage/dulines.cpp:232
+#: DiskUsage/dulines.cpp:234
 msgid "Line View"
 msgstr "Satır Görünümü"
 
-#: DiskUsage/dulines.cpp:235 DiskUsage/dulistview.cpp:59
+#: DiskUsage/dulines.cpp:237 DiskUsage/dulistview.cpp:59
 msgid "Percent"
 msgstr "Yüzde"
 
-#: DiskUsage/dulines.cpp:458
+#: DiskUsage/dulines.cpp:460
 msgid "Show file sizes"
 msgstr "Dosya büyüklüğünü göster"
 
-#: DiskUsage/diskusage.cpp:785 DiskUsage/dulines.cpp:461
+#: DiskUsage/dulines.cpp:463 DiskUsage/diskusage.cpp:785
 msgid "Lines"
 msgstr "Satırlar"
 
@@ -4453,7 +4256,7 @@ msgstr "Değişken yazıtipi büyüklükleri"
 msgid "Minimum font size"
 msgstr "En-az yazıtipi büyüklüğü"
 
-#: DiskUsage/diskusage.cpp:789 DiskUsage/dufilelight.cpp:121
+#: DiskUsage/dufilelight.cpp:121 DiskUsage/diskusage.cpp:789
 msgid "Filelight"
 msgstr "DosyaRenklendirme"
 
@@ -4469,7 +4272,7 @@ msgstr "Krusader::Disk Kullanımı"
 msgid "Start new disk usage search"
 msgstr "Yeni bir disk kullanım incelemesi başlat"
 
-#: DiskUsage/diskusage.cpp:769 DiskUsage/diskusagegui.cpp:64
+#: DiskUsage/diskusagegui.cpp:64 DiskUsage/diskusage.cpp:769
 msgid "Refresh"
 msgstr "Tazele"
 
@@ -4533,18 +4336,6 @@ msgstr ""
 msgid "Krusader::DiskUsage"
 msgstr "Krusader::DiskKullanımı"
 
-#: DiskUsage/diskusage.cpp:597
-#, fuzzy
-msgid "Do you really want to move this item to the trash?"
-msgstr ""
-"Bu ögeyi silmeyi gerçekten istiyor musunuz?\n"
-"%n ögeyi silmeyi gerçekten istiyor musunuz?"
-
-#: DiskUsage/diskusage.cpp:600
-#, fuzzy
-msgid "Do you really want to delete this item?"
-msgstr "Bu ögeyi silmek istediğinize emin misiniz ???"
-
 #: DiskUsage/diskusage.cpp:612
 msgid "Deleting %1..."
 msgstr "%1 siliniyor.."
@@ -4585,10 +4376,6 @@ msgstr "Sonraki"
 msgid "Previous"
 msgstr "Önceki"
 
-#: DiskUsage/diskusage.cpp:798
-msgid "View"
-msgstr "Göster"
-
 #: DiskUsage/diskusage.cpp:1032
 msgid "Type:"
 msgstr "Tür:"
@@ -4609,29 +4396,11 @@ msgstr "Yetkiler:"
 msgid "Owner:"
 msgstr "Sahibi:"
 
-#. i18n: file krusaderui.rc line 4
-#: rc.cpp:3
-#, no-c-format
-msgid "&File"
-msgstr "&Dosya"
-
-#. i18n: file krusaderui.rc line 36
-#: rc.cpp:6
-#, no-c-format
-msgid "&Edit"
-msgstr "Dü&zenle"
-
 #. i18n: file krusaderui.rc line 51
 #: rc.cpp:9
 #, no-c-format
 msgid "Compare Se&tup"
 msgstr "Karşılaştırma &Ayar"
-
-#. i18n: file krusaderui.rc line 63
-#: rc.cpp:12
-#, no-c-format
-msgid "&View"
-msgstr "Gö&rünüm"
 
 #. i18n: file krusaderui.rc line 74
 #: rc.cpp:15
@@ -4645,34 +4414,16 @@ msgstr "&Git"
 msgid "User&actions"
 msgstr "Kullanıcı&Eylemleri"
 
-#. i18n: file krusaderui.rc line 90
-#: rc.cpp:21
-#, no-c-format
-msgid "&Tools"
-msgstr "A&raçlar"
-
-#. i18n: file krusaderui.rc line 114
-#: rc.cpp:24
-#, no-c-format
-msgid "&Settings"
-msgstr "Ayar&lar"
-
 #. i18n: file krusaderui.rc line 130
 #: rc.cpp:27
 #, no-c-format
 msgid "&Window"
 msgstr "&Pencere"
 
-#. i18n: file krusaderui.rc line 147
-#: rc.cpp:30
-#, no-c-format
-msgid "&Help"
-msgstr "&Yardım"
-
-#: Konfigurator/kgadvanced.cpp:48 Konfigurator/kgarchives.cpp:51
-#: Konfigurator/kgcolors.cpp:51 Konfigurator/kgdependencies.cpp:53
-#: Konfigurator/kggeneral.cpp:51 Konfigurator/kglookfeel.cpp:223
-#: Konfigurator/kgstartup.cpp:47 Konfigurator/konfigurator.cpp:100
+#: Konfigurator/kgdependencies.cpp:53 Konfigurator/kggeneral.cpp:51
+#: Konfigurator/konfigurator.cpp:100 Konfigurator/kglookfeel.cpp:223
+#: Konfigurator/kgadvanced.cpp:48 Konfigurator/kgcolors.cpp:51
+#: Konfigurator/kgstartup.cpp:47 Konfigurator/kgarchives.cpp:51
 msgid "General"
 msgstr "Genel"
 
@@ -4884,8 +4635,8 @@ msgstr "Başlangıçtaki Krusader ayarları"
 msgid "Look & Feel"
 msgstr "İzlenim"
 
-#: Konfigurator/kgcolors.cpp:79 Konfigurator/kgcolors.cpp:221
 #: Konfigurator/konfigurator.cpp:97 Konfigurator/konfigurator.cpp:98
+#: Konfigurator/kgcolors.cpp:79 Konfigurator/kgcolors.cpp:221
 msgid "Colors"
 msgstr "Renkler"
 
@@ -4917,7 +4668,7 @@ msgstr "Harici uygulamaların tam-yollarını belirle"
 msgid "Configure your personal actions"
 msgstr "Kişisel eylemlerinizi yapılandırın"
 
-#: Konfigurator/kgprotocols.cpp:103 Konfigurator/konfigurator.cpp:116
+#: Konfigurator/konfigurator.cpp:116 Konfigurator/kgprotocols.cpp:103
 msgid "Protocols"
 msgstr "Yordamlar"
 
@@ -5988,11 +5739,12 @@ msgid "Save last position, size and panel settings"
 msgstr "Son konumu, boyut ve pencere ayarlarını sakla"
 
 #: Konfigurator/kgstartup.cpp:94
+#, fuzzy
 msgid ""
 "<p>At startup, the main window will resize itself to the size it was when "
 "last shutdown. It will also appear in the same location of the screen, "
 "having panels sorted and aligned as they were before.</p><p>If this option "
-"is disabled, you can use the menu <i>Settings -> Save Position</i> option to "
+"is disabled, you can use the menu <i>Window -> Save Position</i> option to "
 "manually set the main window's size and position at startup.</p>"
 msgstr ""
 "Başlangıçta, Ana pencere, kendini, son kapatıldığı boyutlarına geri getirir. "
@@ -6103,10 +5855,6 @@ msgid ""
 msgstr ""
 "Yeni paketleyicilerinizin <code>$PATH</code>içinde bulunduğundan emin olun "
 "(Ö.: /usr/bin)"
-
-#: Konfigurator/kguseractions.cpp:48
-msgid "Information"
-msgstr "Bilgilendirme"
 
 #: Konfigurator/kguseractions.cpp:53
 msgid ""
@@ -6409,3 +6157,228 @@ msgstr "%1 dosyası okunurken hata!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "%1 dosyasına yazarken hata!"
+
+#~ msgid "Reload"
+#~ msgstr "Yeniden Yükle"
+
+#~ msgid "Default"
+#~ msgstr "Varsayılan"
+
+#~ msgid "Open"
+#~ msgstr "Aç"
+
+#~ msgid "Error"
+#~ msgstr "Hata"
+
+#~ msgid "&Remove"
+#~ msgstr "&Sil"
+
+#~ msgid "Close"
+#~ msgstr "Kapat"
+
+#~ msgid "Cancel"
+#~ msgstr "Vazgeç"
+
+#~ msgid ""
+#~ "_n: in %n directory\n"
+#~ "in %n directories"
+#~ msgstr ""
+#~ "_n:%n dizin içinde\n"
+#~ "%n dizin"
+
+#~ msgid ""
+#~ "_n: and %n file\n"
+#~ "and %n files"
+#~ msgstr ""
+#~ "_n:ve %n dosya\n"
+#~ "ve %n dosya"
+
+#~ msgid "Delete"
+#~ msgstr "Sil"
+
+#, fuzzy
+#~ msgid ""
+#~ "_n: Move %n file to:\n"
+#~ "Move %n files to:"
+#~ msgstr ""
+#~ "_n:%n dosya taşınacak:\n"
+#~ "%n dosya taşınacak:"
+
+#, fuzzy
+#~ msgid ""
+#~ "_n: Copy %n file to:\n"
+#~ "Copy %n files to:"
+#~ msgstr ""
+#~ "_n:%n dosya kopyalanacak:\n"
+#~ "%n dosya kopyalanacak:"
+
+#~ msgid ""
+#~ "_n: Do you really want to move this item to the trash?\n"
+#~ "Do you really want to move these %n items to the trash?"
+#~ msgstr ""
+#~ "Bu ögeyi çöp kutusuna atmayı gerçekten istiyor musunuz?\n"
+#~ "%n ögeyi çöp kutusuna atmayı gerçekten istiyor musunuz?"
+
+#~ msgid ""
+#~ "_n: Do you really want to delete this virtual item (physical files stay "
+#~ "untouched)?\n"
+#~ "Do you really want to delete these virtual items (physical files stay "
+#~ "untouched)?"
+#~ msgstr ""
+#~ "_n:Bu ögeyi silmeyi gerçekten istiyor musunuz?\n"
+#~ "%n ögeyi silmeyi gerçekten istiyor musunuz?"
+
+#~ msgid "&Delete"
+#~ msgstr "&Sil"
+
+#~ msgid ""
+#~ "_n: Do you really want to delete this item?\n"
+#~ "Do you really want to delete these %n items?"
+#~ msgstr ""
+#~ "_n:Bu ögeyi silmeyi gerçekten istiyor musunuz?\n"
+#~ "%n ögeyi silmeyi gerçekten istiyor musunuz?"
+
+#~ msgid "Warning"
+#~ msgstr "Uyarı"
+
+#~ msgid ""
+#~ "_n: Unpack %n file to:\n"
+#~ "Unpack %n files to:"
+#~ msgstr ""
+#~ "_n:%n dosya çıkarılacak:\n"
+#~ "%n dosya çıkarılacak:"
+
+#~ msgid "Stop"
+#~ msgstr "Dur"
+
+#, fuzzy
+#~ msgid "&Reload"
+#~ msgstr "&Yenile"
+
+#, fuzzy
+#~ msgid "&Properties..."
+#~ msgstr "Ö&zellikler"
+
+#~ msgid "Back"
+#~ msgstr "Geri"
+
+#~ msgid "Bookmarks"
+#~ msgstr "Yer-imleri"
+
+#~ msgid "Quit"
+#~ msgstr "Çık"
+
+#~ msgid "&Quit"
+#~ msgstr "&ÇIK"
+
+#~ msgid "&Close"
+#~ msgstr "&Kapat"
+
+#~ msgid ""
+#~ "_n: %n directory\n"
+#~ "%n directories"
+#~ msgstr ""
+#~ "%n dizin\n"
+#~ "%n dizin"
+
+#~ msgid ""
+#~ "_n: %n file\n"
+#~ "%n files"
+#~ msgstr ""
+#~ "%n dosya\n"
+#~ "%n dosya"
+
+#~ msgid ""
+#~ "_n: %1 / %n directory\n"
+#~ "%1 / %n directories"
+#~ msgstr ""
+#~ "%1 / %n dizin\n"
+#~ "%1 / %n dizin"
+
+#~ msgid ""
+#~ "_n: %1 / %n file\n"
+#~ "%1 / %n files"
+#~ msgstr ""
+#~ "%1 / %n dosya\n"
+#~ "%1 / %n dosya"
+
+#~ msgid ""
+#~ "_n: Pack %n file\n"
+#~ "Pack %n files"
+#~ msgstr ""
+#~ "%n dosya paketle\n"
+#~ "%n dosya paketle"
+
+#~ msgid "Add"
+#~ msgstr "Ekle"
+
+#~ msgid "Clear"
+#~ msgstr "Temizle"
+
+#~ msgid "OK"
+#~ msgstr "Tamam"
+
+#~ msgid "&Cancel"
+#~ msgstr "&Vazgeç"
+
+#~ msgid "File"
+#~ msgstr "Dosya"
+
+#~ msgid "Remove"
+#~ msgstr "Sil"
+
+#, fuzzy
+#~ msgid "&Options"
+#~ msgstr "İşlem"
+
+#~ msgid ""
+#~ "_n: (1 byte)\n"
+#~ "(%n bytes)"
+#~ msgstr ""
+#~ "_n:(1 bayt)\n"
+#~ "(%n bayt)"
+
+#~ msgid ""
+#~ "_n: Ready: %1/1 file, %3/%4\n"
+#~ "Ready: %1/%n files, %3/%4"
+#~ msgstr ""
+#~ "_n:Hazır: %1/1 dosya, %3/%4\n"
+#~ "Hazır: %1/1 dosya, %3/%4"
+
+#, fuzzy
+#~ msgid ""
+#~ "_n: Left: Delete 1 file\n"
+#~ "Left: Delete %n files"
+#~ msgstr ""
+#~ "_n:Sol: 1 dosya sil\n"
+#~ "Sol: %n dosya sil"
+
+#~ msgid "Left"
+#~ msgstr "Sol"
+
+#~ msgid "Right"
+#~ msgstr "Sağ"
+
+#~ msgid "View"
+#~ msgstr "Göster"
+
+#~ msgid "&File"
+#~ msgstr "&Dosya"
+
+#~ msgid "&Edit"
+#~ msgstr "Dü&zenle"
+
+#~ msgid "&View"
+#~ msgstr "Gö&rünüm"
+
+#~ msgid "&Tools"
+#~ msgstr "A&raçlar"
+
+#~ msgid "&Settings"
+#~ msgstr "Ayar&lar"
+
+#~ msgid "&Help"
+#~ msgstr "&Yardım"
+
+#~ msgid "Information"
+#~ msgstr "Bilgilendirme"
