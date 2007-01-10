@@ -159,6 +159,13 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 				vfsP->vfs_requestDelete();                                
 			}
 			vfsP = v; // v != 0 so this is safe
+		} else {
+			if( vfsP->vfs_isBusy() )
+			{
+				delayURL = url;               /* this function is useful for FTP url-s and bookmarks */
+				delayTimer.start( 100, true );  /* if vfs is busy try refreshing later */
+				return;
+			}
 		}
 		connect( files(), SIGNAL(startJob(KIO::Job* )),
 				panel, SLOT(slotJobStarted(KIO::Job* )));

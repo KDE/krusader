@@ -127,7 +127,7 @@ void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
 		temp->vfile_setUrl( kfi.url() );
 #endif
 		temp->vfile_setIcon( kfi.iconName() );
-		addToList( temp );
+		foundVfile( temp );
 	}
 }
 

@@ -84,7 +84,7 @@ public:
 	/// Return true if the VFS url is writable
 	virtual bool vfs_isWritable() { return isWritable; }
 	/// Return vfile* or 0 if not found
-	inline vfile* vfs_search(const QString& name){ return (*vfs_searchP)[name]; } 
+	inline vfile* vfs_search(const QString& name){ return (*vfs_filesP)[name]; } 
 	/// Return an empty vfile* list if not found
 	QValueList<vfile*> vfs_search(const KRQuery& filter);
 	/// The total size of all the files in the VFS,
@@ -95,6 +95,8 @@ public:
 	inline KURL vfs_getOrigin()          { return vfs_origin;          }
 	/// Return the VFS type.
 	inline VFS_TYPE vfs_getType()        { return vfs_type;            }
+	/// Returns true if vfs is busy
+	inline bool vfs_isBusy()             { return vfs_busy;            }
 	/// Return the first file in the VFS and set the internal iterator to the beginning of the list.
 	inline vfile* vfs_getFirstFile(){ return (vfileIterator ? vfileIterator->toFirst() : 0); }
 	/// Return the the next file in the list and advance the iterator.
@@ -114,14 +116,14 @@ public:
 
 public slots:
 	/// Re-reads files and stats and fills the vfile list
-	virtual bool vfs_refresh(const KURL& origin);
+	bool vfs_refresh(const KURL& origin);
 	/// Used to refresh the VFS when a job finishs. it calls the refresh() slot
 	/// or display a error message if the job fails
-	virtual bool vfs_refresh(KIO::Job* job);
-	virtual bool vfs_refresh();
-	virtual void vfs_setQuiet(bool beQuiet){ quietMode=beQuiet; }
-	virtual void vfs_enableRefresh(bool enable);        
-	virtual void vfs_invalidate() { invalidated = true; }          
+	bool vfs_refresh(KIO::Job* job);
+	bool vfs_refresh();
+	void vfs_setQuiet(bool beQuiet){ quietMode=beQuiet; }
+	void vfs_enableRefresh(bool enable);        
+	void vfs_invalidate() { invalidated = true; }          
 
 signals:
 	void startUpdate(); //< emitted when the VFS starts to refresh its list of vfiles.
@@ -136,6 +138,8 @@ signals:
 protected:
 	/// Feel the vfs dictionary with vfiles, must be implemented for each vfs
 	virtual bool populateVfsList(const KURL& origin, bool showHidden) = 0;
+	/// Called by populateVfsList for each file
+	void foundVfile( vfile *vf ) { vfs_tempFilesP->insert(vf->vfile_getName(),vf); }
 	/// Set the vfile list pointer
 	void setVfsFilesP(vfileDict* dict);
 	/// clear and delete all current vfiles
@@ -150,6 +154,7 @@ protected:
         
 	VFS_TYPE      vfs_type;     //< the vfs type.
 	KURL          vfs_origin;   //< the path or file the VFS originates from.
+	bool          vfs_busy;     //< true if vfs is busy with refreshing
 	bool quietMode;             //< if true the vfs won't display error messages or emit signals
 	bool disableRefresh;        //< true if refresh is disabled
 	bool isWritable;            //< true if it's writable
@@ -163,7 +168,7 @@ protected slots:
         
 private:
 	vfileDict*  vfs_filesP;    //< Point to a lists of virtual files (vfile).
-	vfileDict*  vfs_searchP;   //< Searches are preformed in this dictionary (usualy points to vfs_files)	
+	vfileDict*  vfs_tempFilesP;//< Temporary files are stored here
 	QDictIterator<vfile>* vfileIterator; //< Point to a dictionary of virtual files (vfile).
 	
 	// used in the calcSpace function

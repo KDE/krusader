@@ -74,7 +74,7 @@ bool virt_vfs::populateVfsList( const KURL& origin, bool /*showHidden*/ ) {
 			// the iterator is advanced automaticly
 			continue;
 		}
-		addToList( vf );
+		foundVfile( vf );
 		++it;
 	}
 	save();

@@ -41,8 +41,8 @@
 #include "../krusader.h"
 #include "../defaults.h"
 
-vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),disableRefresh(false),
-                                      invalidated(true),vfileIterator(0),deletePossible( true ),
+vfs::vfs(QObject* panel, bool quiet): vfs_busy(false), quietMode(quiet),disableRefresh(false),
+                                      invalidated(true),vfs_tempFilesP(0),vfileIterator(0),deletePossible( true ),
                                       deleteRequested( false ) {
 		
 
@@ -128,21 +128,23 @@ QString vfs::pathOrURL( const KURL &originIn, int trailingSlash )
 
 void vfs::setVfsFilesP(vfileDict* dict){
 	vfs_filesP=dict;
-	vfs_searchP = dict;
+	vfs_tempFilesP = new vfileDict();
+	vfs_tempFilesP->setAutoDelete( true );
 	dict->setAutoDelete(true);
 	if( vfileIterator ) delete vfileIterator;
 	vfileIterator = new QDictIterator<vfile>(*dict);
 }
 
 bool vfs::vfs_refresh(){ 
+	if( vfs_busy )
+		return false;
+	
 	if( invalidated ) // invalidated fs requires total refresh
 		return vfs_refresh( vfs_getOrigin() );
 	
 	dirty = false;
-	// point the vfs_filesP to a NEW (empty) dictionary
-	vfs_filesP = new vfileDict();
-	vfs_filesP->setAutoDelete(true);
 	
+	vfs_busy = true;
 	// and populate it
 	krConfig->setGroup("Look&Feel");
 	bool showHidden = krConfig->readBoolEntry("Show Hidden",_ShowHidden);
@@ -153,11 +155,11 @@ bool vfs::vfs_refresh(){
 		// compare the two list emiting signals when needed;;
 		for( vfile* vf = vfs_getFirstFile(); vf ;  ){
 			name = vf->vfile_getName();
-			vfile* newVf = (*vfs_filesP)[name];
+			vfile* newVf = (*vfs_tempFilesP)[name];
 			if( !newVf ){
 				// the file was deleted..
 				emit deletedVfile(name);
-				vfs_searchP->remove(name);
+				vfs_filesP->remove(name);
 				// the remove() advance our iterator ! 
 				vf = vfileIterator->current();
 			} else {
@@ -168,42 +170,50 @@ bool vfs::vfs_refresh(){
 				}
 				vf=vfs_getNextFile();
 			}
-			removeFromList(name);
+			vfs_tempFilesP->remove(name);
 		} 
 		// everything thats left is a new file
-		QDictIterator<vfile> it(*vfs_filesP);
+		QDictIterator<vfile> it(*vfs_tempFilesP);
 		for(vfile* vf=it.toFirst(); vf; vf=(++it)){
 			// sanity checking
-			if( !vf || (*vfs_searchP)[vf->vfile_getName()] ) continue;
+			if( !vf || (*vfs_filesP)[vf->vfile_getName()] ) continue;
 			
 			vfile* newVf = new vfile();
 			*newVf = *vf;
-			vfs_searchP->insert(newVf->vfile_getName(),newVf);
+			vfs_filesP->insert(newVf->vfile_getName(),newVf);
 			emit addedVfile(newVf);
 		}
 	}
 	
-	// delete the needed temporary vfs_filesP
-	// and make the vfs_searchP the primary list again 
-	vfileDict *temp = vfs_filesP;
-	vfs_filesP = vfs_searchP;
-	delete temp;
+	// delete the temporary vfiles
+	vfs_tempFilesP->clear();
+	vfs_busy = false;
+	
 	emit incrementalRefreshFinished( vfs_origin );
 	
 	return res; 
 }
 
 bool vfs::vfs_refresh(const KURL& origin){
+	if( vfs_busy )
+		return false;
+	
 	if( !invalidated && origin.equals(vfs_getOrigin(),true) ) return vfs_refresh();
 	
+	vfs_busy = true;
 	dirty = false;        
 	krConfig->setGroup("Look&Feel");
 	bool showHidden = krConfig->readBoolEntry("Show Hidden",_ShowHidden);
 
-	// clear the the list
-	clear();
+	vfs_tempFilesP->clear();
 	// and re-populate it
 	if (!populateVfsList(origin,showHidden) ) return false;
+	
+	clear();
+	delete vfs_filesP;
+	setVfsFilesP( vfs_tempFilesP );
+	vfs_busy = false;
+	
 	if (!disableRefresh) emit startUpdate();
 	else dirty = true;   
 	

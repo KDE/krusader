@@ -120,7 +120,7 @@ bool normal_vfs::populateVfsList(const KURL& origin, bool showHidden){
 		if (name=="." || name == "..") continue;
 	  
 		vfile* temp = vfileFromName(name);
-    addToList(temp);
+    foundVfile(temp);
   }
 	// clean up
 	closedir(dir);
