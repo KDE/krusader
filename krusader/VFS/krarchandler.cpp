@@ -178,8 +178,6 @@ long KRarcHandler::arcFileCount( QString archive, QString type, QString password
       lister += " -g'" + password + "'";
     if ( type == "-ace" || type == "-rar" || type == "-7z" )
       lister += " -p'" + password + "'";
-    if ( type == "-zip" ) 
-      lister += " -P '" + password + "'";
   }
 
   // tell the user to wait
