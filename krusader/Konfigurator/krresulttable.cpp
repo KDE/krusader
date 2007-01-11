@@ -112,7 +112,7 @@ KrArchiverResultTable::KrArchiverResultTable(QWidget* parent)
   Archiver* unrar = new Archiver("unrar", "http://www.rarsoft.com",  PS("unrar"), false, true);
   Archiver* rpm   = new Archiver("rpm",   "http://www.gnu.org",      PS("rpm"),   false, true);
   Archiver* dpkg  = new Archiver("dpkg",  "http://www.dpkg.org",     PS("dpkg"),  false, true);
-  Archiver* _7z   = new Archiver("7z",    "http://www.7-zip.org",    PS("7z"),  false, true);
+  Archiver* _7z   = new Archiver("7z",    "http://www.7-zip.org",    PS("7z"),  true, true);
 
   // Special case: arj can unpack, but unarj is prefered
   if(PS("arj") && PS("unarj"))
