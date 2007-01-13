@@ -43,6 +43,12 @@ public:
 public slots:
   void  applyTempDir(QObject *,QString, QString);
   void  slotFindTools();
+  
+  void  slotAddExtension();
+  void  slotRemoveExtension();
+
+private:
+  KonfiguratorListBox *listBox;
 };
 
 #endif /* __KGGENERAL_H__ */

@@ -170,7 +170,6 @@ public:
     * @param  cls         The class name used in KConfig (ex. "Archives")
     * @param  name        The itemname used in KConfig (ex. "Do Tar")
     * @param  dflt        The default value of the editbox
-    * @param  text        The text field of the editbox
     * @param  parent      Reference to the parent widget
     * @param  rst         The change of this parameter requires Krusader restart
     * @param  pg          The subpage of a Konfigurator page (because of setDefaults)
@@ -178,6 +177,28 @@ public:
     * @return             reference to the newly created editbox
     */
   KonfiguratorEditBox     *createEditBox(  QString cls, QString name, QString dflt,
+                                           QWidget *parent=0, bool rst=false, int pg=FIRST_PAGE );
+
+  /**
+    * Adds a new listbox item to the page.
+    * <br>The listbox widget's name is QString(cls + "/" + name).ascii()<br>
+    *
+    * Sample:<br><br>
+    * QStringList valueList;<br>
+    * valueList += "item";<br>
+    * KonfiguratorListBox *myListBox = createListBox( "class", "name", valueList, parentWidget );<br>
+    * myLayout->addWidget( myListBox, 0, 0 );
+    *
+    * @param  cls         The class name used in KConfig (ex. "Archives")
+    * @param  name        The itemname used in KConfig (ex. "Do Tar")
+    * @param  dflt        The default value of the listbox
+    * @param  parent      Reference to the parent widget
+    * @param  rst         The change of this parameter requires Krusader restart
+    * @param  pg          The subpage of a Konfigurator page (because of setDefaults)
+    *
+    * @return             reference to the newly created editbox
+    */
+  KonfiguratorListBox     *createListBox(  QString cls, QString name, QStringList dflt,
                                            QWidget *parent=0, bool rst=false, int pg=FIRST_PAGE );
 
   /**
@@ -326,10 +347,11 @@ public:
     *
     * @param  parent      Reference to the parent widget
     * @param  widgetName  The name of the newly generated label widget
+    * @param  vertical    Means vertical line
     *
     * @return             reference to the newly created spacer widget
     */
-  QFrame                  *createLine( QWidget *parent=0, const char *widgetName=0 );
+  QFrame                  *createLine( QWidget *parent=0, const char *widgetName=0, bool vertical = false );
 
   /**
     * Creates a checkbox group. A checkbox group contains a lot of checkboxes.

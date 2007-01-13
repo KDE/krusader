@@ -169,7 +169,7 @@ void KrBookmarkHandler::exportToFile() {
 		stream << doc.toString();
 		file.close();
 	} else {
-		KMessageBox::error(krApp, i18n("Error"), i18n("Unable to write to %1").arg(filename));
+		KMessageBox::error(krApp, i18n("Unable to write to %1").arg(filename), i18n("Error"));
 	}
 }
 
@@ -265,7 +265,7 @@ void KrBookmarkHandler::importFromFile() {
 	goto SUCCESS;
 	
 ERROR:
-	KMessageBox::error(krApp, "Error", i18n("Error reading bookmarks file: %1").arg(errorMsg));
+	KMessageBox::error(krApp, i18n("Error reading bookmarks file: %1").arg(errorMsg), i18n( "Error" ));
 
 SUCCESS:
 	file.close();

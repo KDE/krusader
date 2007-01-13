@@ -30,12 +30,16 @@
 
 #include <qlabel.h>
 #include <qhbox.h>
+#include <qvbox.h>
+#include <qfontmetrics.h>
 #include <klocale.h>
 #include <kmessagebox.h>
+#include <kinputdialog.h>
 #include "krresulttabledialog.h"
 #include "kggeneral.h"
 #include "../defaults.h"
 #include "../krusader.h"
+#include "../kicons.h"
 
 KgGeneral::KgGeneral( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name )
@@ -83,23 +87,54 @@ QFrame *line2 = createLine( generalGrp, "line2" );
 
   // viewer
 
-  QLabel *label32 = new QLabel( i18n("Default viewer mode:"), generalGrp);
-  generalGrid->addWidget(label32, 6, 0);
+  QHBox * hbox2 = new QHBox( generalGrp );
+  QVBox * vbox = new QVBox( hbox2 );
+
+  new QLabel( i18n("Default viewer mode:"), vbox);
   
   KONFIGURATOR_NAME_VALUE_TIP viewMode[] =
   //            name            value    tooltip
     {{ i18n( "Generic mode" ),  "generic", i18n( "Use the system's default viewer" ) },
      { i18n( "Text mode" ), "text",  i18n( "View the file in text-only mode" ) }, 
      { i18n( "Hex mode" ), "hex",  i18n( "View the file in hex-mode (better for binary files)" ) } };
-  KonfiguratorRadioButtons *viewRadio= createRadioButtonGroup( "General", "Default Viewer Mode",
-      "generic", 3, 0, viewMode, 3, generalGrp, "myRadio2", false );
-  generalGrid->addMultiCellWidget( viewRadio, 7, 7, 0, 1 );
+  createRadioButtonGroup( "General", "Default Viewer Mode",
+      "generic", 0, 3, viewMode, 3, vbox, "myRadio2", false );
 
-  KonfiguratorCheckBox *viewerCheckbox= createCheckBox( "General", "View In Separate Window", _ViewInSeparateWindow,
-                     i18n( "Viewer opens each file in a separate window" ), generalGrp, false,
+  createCheckBox( "General", "View In Separate Window", _ViewInSeparateWindow,
+                     i18n( "Viewer opens each file in a separate window" ), vbox, false,
                      i18n( "If checked, each file will open in a separate window, otherwise, the viewer will work in a single, tabbed mode" ) );
-  generalGrid->addMultiCellWidget( viewerCheckbox, 8, 8, 0, 1 );
 
+  generalGrid->addMultiCellWidget(hbox2, 6, 8, 0, 1);
+
+  // atomic extensions
+  QFrame * frame21 = createLine( hbox2, "line2.1", true );
+  frame21->setMinimumWidth( 15 );
+  QVBox * vbox2 = new QVBox( hbox2 );
+
+  QHBox * hbox3 = new QHBox( vbox2 );
+  QLabel * atomLabel = new QLabel( i18n("Atomic extensions:"), hbox3);
+
+  int size = QFontMetrics( atomLabel->font() ).height();
+
+  QToolButton *addButton = new QToolButton( hbox3, "addBtnList" );
+  QPixmap icon = krLoader->loadIcon("add",KIcon::Desktop, size );
+  addButton->setFixedSize( icon.width() + 4, icon.height() + 4 );
+  addButton->setPixmap( icon );
+  connect( addButton, SIGNAL( clicked() ), this, SLOT( slotAddExtension() ) );
+
+  QToolButton *removeButton = new QToolButton( hbox3, "removeBtnList" );
+  icon = krLoader->loadIcon("remove",KIcon::Desktop, size );
+  removeButton->setFixedSize( icon.width() + 4, icon.height() + 4 );
+  removeButton->setPixmap( icon );
+  connect( removeButton, SIGNAL( clicked() ), this, SLOT( slotRemoveExtension() ) );
+
+  QStringList defaultAtomicExtensions;
+  defaultAtomicExtensions += ".tar.gz";
+  defaultAtomicExtensions += ".tar.bz2";
+  defaultAtomicExtensions += ".moc.cpp";
+
+  listBox = createListBox( "Look&Feel", "Atomic Extensions", 
+      defaultAtomicExtensions, vbox2, true, false );
 
   QFrame *line3 = createLine( generalGrp, "line3" );
   generalGrid->addMultiCellWidget( line3, 9, 9, 0, 1 );
@@ -151,6 +186,28 @@ void KgGeneral::slotFindTools()
   KrResultTableDialog* dia = new KrResultTableDialog(this, KrResultTableDialog::Tool, i18n("Search results"), i18n("Searching for tools..."),
     "package_settings", i18n("Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"));
   dia->exec();
+}
+
+void KgGeneral::slotAddExtension()
+{
+  bool ok;
+  QString atomExt =
+    KInputDialog::getText( i18n( "Add new atomic extension" ), i18n( "Extension: " ), QString::null, &ok );
+
+  if( ok )
+  {
+    if( !atomExt.startsWith( "." ) || atomExt.find( '.', 1 ) == -1 )
+      KMessageBox::error(krApp, i18n("Atomic extensions must start with '.'\n and must contain at least one more '.' character"), i18n("Error"));
+    else
+      listBox->addItem( atomExt );
+  }
+}
+
+void KgGeneral::slotRemoveExtension()
+{
+  QListBoxItem * item = listBox->selectedItem();
+  if( item )
+    listBox->removeItem( item->text() );
 }
 
 #include "kggeneral.moc"

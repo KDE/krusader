@@ -735,4 +735,81 @@ QColor KonfiguratorColorChooser::getColor()
   return palette[ currentItem() ];
 }
 
+// KonfiguratorListBox class
+///////////////////////////////
+
+KonfiguratorListBox::KonfiguratorListBox( QString cls, QString name, QStringList dflt,
+    QWidget *parent, const char *widgetName, bool rst, int pg ) : QListBox( parent, widgetName ),
+    defaultValue( dflt )
+{
+  ext = new KonfiguratorExtension( this, cls, name, rst, pg );
+  connect( ext, SIGNAL( applyAuto(QObject *,QString, QString) ), this, SLOT( slotApply(QObject *,QString, QString) ) );
+  connect( ext, SIGNAL( setDefaultsAuto(QObject *) ), this, SLOT( slotSetDefaults(QObject *) ) );
+  connect( ext, SIGNAL( setInitialValue(QObject *) ), this, SLOT( loadInitialValue() ) );
+
+  loadInitialValue();
+}
+
+KonfiguratorListBox::~KonfiguratorListBox()
+{
+  delete ext;
+}
+
+void KonfiguratorListBox::loadInitialValue()
+{
+  krConfig->setGroup( ext->getCfgClass() );
+  setList( krConfig->readListEntry( ext->getCfgName().ascii(), defaultValue ) );
+  ext->setChanged( false );
+}
+
+void KonfiguratorListBox::slotApply(QObject *,QString cls, QString name)
+{
+  krConfig->setGroup( cls );
+  krConfig->writeEntry( name, list() );
+}
+
+void KonfiguratorListBox::slotSetDefaults(QObject *)
+{
+  if( list() != defaultValue )
+  {
+    ext->setChanged();
+    setList( defaultValue );
+  }
+}
+
+void KonfiguratorListBox::setList( QStringList list )
+{
+  clear();
+  insertStringList( list );
+}
+
+QStringList KonfiguratorListBox::list()
+{
+  QStringList lst;
+  
+  for( unsigned i=0; i != count(); i++ )
+    lst += text( i );
+
+  return lst;
+}
+
+void KonfiguratorListBox::addItem( const QString & item )
+{
+  if( !list().contains( item ) )
+  {
+    insertItem( item );
+    ext->setChanged();
+  }
+}
+
+void KonfiguratorListBox::removeItem( const QString & item )
+{
+  QListBoxItem * listItem = findItem( item );
+  if( listItem != 0 )
+  {
+    takeItem( listItem );
+    ext->setChanged();
+  }
+}
+
 #include "konfiguratoritems.moc"

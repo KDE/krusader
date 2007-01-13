@@ -383,5 +383,36 @@ protected:
   bool                            disableColorChooser;
 };
 
+// KonfiguratorListBox class
+///////////////////////////////
+
+class KonfiguratorListBox : public QListBox
+{
+  Q_OBJECT
+
+public:
+  KonfiguratorListBox( QString cls, QString name, QStringList dflt,
+                        QWidget *parent=0, const char *widgetName=0,
+                        bool rst=false,  int pg=FIRST_PAGE );
+  ~KonfiguratorListBox();
+
+  inline KonfiguratorExtension *extension()   {return ext;}
+
+  void addItem( const QString & );
+  void removeItem( const QString & );
+
+public slots:
+  virtual void loadInitialValue();
+  void slotApply(QObject *,QString, QString);
+  void slotSetDefaults(QObject *);
+
+protected:
+  QStringList                   list();
+  void                          setList( QStringList );
+
+  QStringList                   defaultValue;
+  KonfiguratorExtension        *ext;
+};
+
 #endif /* __KONFIGURATOR_ITEMS_H__ */
 

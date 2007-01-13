@@ -127,6 +127,16 @@ KonfiguratorEditBox* KonfiguratorPage::createEditBox(  QString cls, QString name
   return editBox;
 }
 
+KonfiguratorListBox* KonfiguratorPage::createListBox(  QString cls, QString name,
+    QStringList dflt, QWidget *parent, bool rst, int pg )
+{
+  KonfiguratorListBox *listBox = new KonfiguratorListBox( cls, name, dflt, parent,
+                                        QString(cls + "/" + name).ascii(), rst, pg );
+
+  registerObject( listBox->extension() );
+  return listBox;
+}
+
 KonfiguratorURLRequester* KonfiguratorPage::createURLRequester(  QString cls, QString name,
     QString dflt, QWidget *parent, bool rst, int pg )
 {
@@ -281,10 +291,10 @@ KonfiguratorComboBox *KonfiguratorPage::createComboBox(  QString cls, QString na
   return comboBox;
 }
 
-QFrame* KonfiguratorPage::createLine( QWidget *parent, const char *widgetName )
+QFrame* KonfiguratorPage::createLine( QWidget *parent, const char *widgetName, bool vertical )
 {
   QFrame *line = new QFrame( parent, widgetName );
-  line->setFrameStyle( QFrame::HLine | QFrame::Sunken );
+  line->setFrameStyle( ( vertical ? QFrame::VLine : QFrame::HLine ) | QFrame::Sunken );
   return line;
 }
 
