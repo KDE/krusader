@@ -81,6 +81,7 @@ private:
 	/** add a new directory (file list container). */
 	KIO::UDSEntryList* addNewDir(QString path);
 	QString fullPathName( QString name );
+	QString convertFileName( QString name );
 	static QString convertName( QString name );
 	static QString escape( QString name );
 	

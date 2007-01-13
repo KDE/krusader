@@ -153,7 +153,7 @@ void kio_krarcProtocol::mkdir(const KURL& url,int permissions){
 	
 	// pack the directory
 	KrShellProcess proc;
-	proc << putCmd << convertName( arcFile->url().path() ) + " " << convertName( tmpDir.mid(arcTempDir.length()) );
+	proc << putCmd << convertName( arcFile->url().path() ) + " " << convertFileName( tmpDir.mid(arcTempDir.length()) );
 	infoMessage(i18n("Creating %1 ...").arg( url.fileName() ) );
 	QDir::setCurrent(arcTempDir);
 	proc.start(KProcess::Block,KProcess::AllOutput);
@@ -224,7 +224,7 @@ void kio_krarcProtocol::put(const KURL& url,int permissions,bool overwrite,bool 
 	close(fd);
 	// pack the file
 	KrShellProcess proc;
-	proc << putCmd << convertName( arcFile->url().path() )+ " " <<convertName( tmpFile.mid(arcTempDir.length()) );
+	proc << putCmd << convertName( arcFile->url().path() )+ " " <<convertFileName( tmpFile.mid(arcTempDir.length()) );
 	infoMessage(i18n("Packing %1 ...").arg( url.fileName() ) );
 	QDir::setCurrent(arcTempDir);
 	proc.start(KProcess::Block,KProcess::AllOutput);
@@ -301,7 +301,7 @@ void kio_krarcProtocol::get(const KURL& url, int tries ){
 	if( extArcReady ){
 		proc << getCmd << arcTempDir+"contents.cpio " << convertName( "*"+file );
 	} else if( arcType == "arj" || arcType == "ace" || arcType == "7z" ) {
-		proc << getCmd << convertName( arcFile->url().path(-1) )+ " " << convertName( file );
+		proc << getCmd << convertName( arcFile->url().path(-1) )+ " " << convertFileName( file );
 		if( arcType == "ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
 		proc << "<" << "/dev/ptmx"; 
 		file = url.fileName();
@@ -313,7 +313,7 @@ void kio_krarcProtocol::get(const KURL& url, int tries ){
 		KMimeType::Ptr mt = KMimeType::findByURL( arcTempDir+file, 0, false /* NOT local URL */ );
 		emit mimeType( mt->name() );
 		proc << getCmd << convertName( arcFile->url().path() )+" ";
-		if( arcType != "gzip" && arcType != "bzip2" ) proc << convertName( file );
+		if( arcType != "gzip" && arcType != "bzip2" ) proc << convertFileName( file );
 		connect(&proc,SIGNAL(receivedStdout(KProcess*,char*,int)),
 				this,SLOT(receivedData(KProcess*,char*,int)) );
 	}
@@ -458,7 +458,7 @@ void kio_krarcProtocol::del(KURL const & url, bool isFile){
 		if(arcType == "zip") file = file + "/";
 	}
 	KrShellProcess proc;
-	proc << delCmd << convertName( arcFile->url().path() )+" " << convertName( file );
+	proc << delCmd << convertName( arcFile->url().path() )+" " << convertFileName( file );
 	infoMessage(i18n("Deleting %1 ...").arg( url.fileName() ) );
 	proc.start(KProcess::Block, KProcess::AllOutput);
 	if( !proc.normalExit() || !checkStatus( proc.exitStatus() ) )  {
@@ -551,7 +551,7 @@ void kio_krarcProtocol::copy (const KURL &url, const KURL &dest, int, bool overw
 			QDir::setCurrent( destDir.local8Bit() );
 			
 			KrShellProcess proc;
-			proc << copyCmd << convertName( arcFile->url().path(-1) )+" " << convertName( file );
+			proc << copyCmd << convertName( arcFile->url().path(-1) )+" " << convertFileName( file );
 			if( arcType == "ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
 				proc << "<" << "/dev/ptmx"; 
 			
@@ -1640,6 +1640,12 @@ QString kio_krarcProtocol::fullPathName( QString name ) {
 	if( supposedName.isEmpty() )
 		supposedName = name;
 	return escape( supposedName );
+}
+
+QString kio_krarcProtocol::convertFileName( QString name ) {
+	if( arcType == "zip" )
+		name = name.replace( "[", "[[]" );
+	return convertName( name );
 }
 
 QString kio_krarcProtocol::convertName( QString name ) {
