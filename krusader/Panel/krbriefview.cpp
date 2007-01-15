@@ -1,15 +1,25 @@
 #include "krbriefview.h"
+#include "krbriefviewitem.h"
 #include "../defaults.h"
 #include "krcolorcache.h"
 #include "krselectionmode.h"
 #include "../krusader.h"
 #include "../kicons.h"
 #include "../krslots.h"
+#include "../Dialogs/krspecialwidgets.h"
+#include "../VFS/krarchandler.h"
+
+#define VF	getVfile()
 
 KrBriefView::KrBriefView( QWidget *parent, bool &left, KConfig *cfg, const char *name ):
 	KIconView(parent, name), KrView( cfg ) {
 	setWidget( this );
 	_nameInKConfig = QString( "KrBriefView" ) + QString( ( left ? "Left" : "Right" ) );
+	setItemTextPos( QIconView::Right );
+	setArrangement( QIconView::TopToBottom );
+	setWordWrapIconText( false );
+
+	setBackgroundMode( PaletteBase );
 }
 
 KrBriefView::~KrBriefView() {
@@ -65,11 +75,186 @@ void KrBriefView::setup() {
 
 	// TODO: connect( header(), SIGNAL(clicked(int)), this, SLOT(slotSortOrderChanged(int )));
 
+   setSelectionMode( QIconView::Extended );
+
    setFocusPolicy( StrongFocus );
    restoreSettings();
-   // TODO: refreshColors();
+   refreshColors();
 
    //CANCEL_TWO_CLICK_RENAME;	
+}
+
+void KrBriefView::resizeEvent ( QResizeEvent * resEvent )
+{
+   QIconView::resizeEvent( resEvent );
+
+   setGridX( width() / 3 );
+
+   // QT bug, it's important for recalculating the bounding rectangle
+   for( QIconViewItem * item = firstItem(); item; item = item->nextItem() )
+   {
+      QString txt = item->text();
+      item->setText( "" );
+      item->setText( txt );
+   }
+
+   arrangeItemsInGrid();
+}
+
+// if vfile passes the filter, create an item, otherwise, drop it
+KrViewItem *KrBriefView::preAddItem( vfile *vf ) {
+   bool isDir = vf->vfile_isDir();
+   if ( !isDir || ( isDir && ( _properties->filter & KrViewProperties::ApplyToDirs ) ) ) {
+      switch ( _properties->filter ) {
+            case KrViewProperties::All :
+               break;
+            case KrViewProperties::Custom :
+            if ( !_properties->filterMask.match( vf ) ) return 0;
+            break;
+            case KrViewProperties::Dirs:
+            if ( !vf->vfile_isDir() ) return 0;
+            break;
+            case KrViewProperties::Files:
+            if ( vf->vfile_isDir() ) return 0;
+            break;
+            case KrViewProperties::ApplyToDirs :
+            break; // no-op, stop compiler complaints
+      }
+   }
+   // passed the filter ...
+	return new KrBriefViewItem( this, lastItem(), vf );
+}
+
+bool KrBriefView::preDelItem(KrViewItem *item) {
+   /* KDE HACK START - the renaming item is not disappeared after delete */
+   /* solution: we send an ESC key event to terminate the rename */
+   if( item ) {
+      QIconViewItem * viewItem = dynamic_cast<QIconViewItem*>( item );
+/*      if( viewItem == currentlyRenamedItem ) {
+         currentlyRenamedItem = 0;
+         QKeyEvent escEvent( QEvent::KeyPress, Key_Escape, 27, 0 );
+         QApplication::sendEvent( renameLineEdit(), &escEvent );
+      }*/
+   }
+   /* KDE HACK END */
+   return true;
+}
+
+void KrBriefView::addItems( vfs *v, bool addUpDir ) {
+   QIconViewItem * item = firstItem();
+   QIconViewItem * currentItem = item;
+
+   // add the up-dir arrow if needed
+   if ( addUpDir ) {
+      new KrBriefViewItem( this, ( QIconViewItem* ) 0L, ( vfile* ) 0L );
+   }
+
+
+   // text for updating the status bar
+   QString statusText = QString("%1/  ").arg( v->vfs_getOrigin().fileName() ) + i18n("Directory");
+
+   bool as = sortDirection();
+   setSorting( false, as ); // disable sorting*/
+
+   for ( vfile * vf = v->vfs_getFirstFile(); vf != 0 ; vf = v->vfs_getNextFile() ) {
+      //size = KRpermHandler::parseSize( vf->vfile_getSize() );
+      //name = vf->vfile_getName();
+      bool isDir = vf->vfile_isDir();
+      if ( !isDir || ( isDir && ( _properties->filter & KrViewProperties::ApplyToDirs ) ) ) {
+         switch ( _properties->filter ) {
+               case KrViewProperties::All :
+               break;
+               case KrViewProperties::Custom :
+               if ( !_properties->filterMask.match( vf ) )
+                  continue;
+               break;
+               case KrViewProperties::Dirs:
+               if ( !vf->vfile_isDir() )
+                  continue;
+               break;
+               case KrViewProperties::Files:
+               if ( vf->vfile_isDir() )
+                  continue;
+               break;
+
+               case KrViewProperties::ApplyToDirs :
+               break; // no-op, stop compiler complaints
+         }
+      }
+
+      KrBriefViewItem *bvitem = new KrBriefViewItem( this, item, vf );
+      _dict.insert( vf->vfile_getName(), bvitem );
+      if ( isDir )
+         ++_numDirs;
+      else
+         _countSize += bvitem->VF->vfile_getSize();
+      ++_count;
+      // if the item should be current - make it so
+      if ( bvitem->name() == nameToMakeCurrent() )
+      {
+         currentItem = static_cast<QIconViewItem*>(bvitem);
+         statusText = bvitem->description();
+      }
+
+      //cnt++;
+   }
+
+
+   // re-enable sorting
+   setSorting( true, as );
+   sort( as );
+
+   if ( !currentItem )
+      currentItem = firstItem();
+   KIconView::setCurrentItem( currentItem );
+   ensureItemVisible( currentItem );
+
+   op()->emitItemDescription( statusText );
+}
+
+void KrBriefView::delItem( const QString &name ) {
+   KrView::delItem( name );
+   arrangeItemsInGrid();
+}
+
+void KrBriefView::clear() {
+   /* KDE HACK START - the renaming item is not disappeared after clear */
+   /* solution: we send an ESC key event to terminate the rename */
+//   if( currentlyRenamedItem ) {
+//      currentlyRenamedItem = 0;
+//      QKeyEvent escEvent( QEvent::KeyPress, Key_Escape, 27, 0 );
+//      QApplication::sendEvent( renameLineEdit(), &escEvent );
+//   }
+   /* KDE HACK END */
+
+   op()->emitSelectionChanged(); /* to avoid rename crash at refresh */
+   KIconView::clear();
+   KrView::clear();
+}
+
+void KrBriefView::prepareForActive() {
+   KrView::prepareForActive();
+   setFocus();
+   slotItemDescription( currentItem() );
+}
+
+void KrBriefView::prepareForPassive() {
+   KrView::prepareForPassive();
+/*   CANCEL_TWO_CLICK_RENAME;
+   if ( renameLineEdit() ->isVisible() )
+      renameLineEdit() ->clearFocus();
+   KConfigGroupSaver grpSvr( _config, "Look&Feel" ); */
+/*   if ( _config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
+      if ( MAIN_VIEW ) {
+         if ( ACTIVE_PANEL ) {
+            if ( ACTIVE_PANEL->quickSearch ) {
+               if ( ACTIVE_PANEL->quickSearch->isShown() ) {
+                  stopQuickSearch( 0 );
+               }
+            }
+         }
+      }
+   }*/
 }
 
 void KrBriefView::initProperties() {
@@ -83,6 +268,23 @@ void KrBriefView::initProperties() {
       _properties->sortMode = static_cast<KrViewProperties::SortSpec>( _properties->sortMode |
 				 KrViewProperties::IgnoreCase );
 	_properties->localeAwareCompareIsCaseSensitive = QString( "a" ).localeAwareCompare( "B" ) > 0; // see KDE bug #40131
+}
+
+void KrBriefView::refreshColors() {
+   krConfig->setGroup("Colors");
+   bool kdeDefault = krConfig->readBoolEntry("KDE Default"); 
+   if ( !kdeDefault ) {
+      // KDE default is not choosen: set the background color (as this paints the empty areas) and the alternate color
+      bool isActive = hasFocus();
+      if ( MAIN_VIEW && ACTIVE_PANEL && ACTIVE_PANEL->view )
+         isActive = ( static_cast<KrView *>( this ) == ACTIVE_PANEL->view );
+      QColorGroup cg;
+      KrColorCache::getColorCache().getColors(cg, KrColorItemType(KrColorItemType::File, false, isActive, false, false));
+      setPaletteBackgroundColor( cg.background() );
+   } else {
+      // KDE default is choosen: set back the background color
+      setPaletteBackgroundColor( KGlobalSettings::baseColor() );
+   }
 }
 
 void KrBriefView::initOperator() {
@@ -101,4 +303,320 @@ QString KrBriefView::getCurrentItem() const {
       return QString::null;
    else
       return dynamic_cast<KrViewItem*>( it ) ->name();
+}
+
+void KrBriefView::slotItemDescription( QIconViewItem * item ) {
+   KrViewItem * it = static_cast<KrBriefViewItem*>( item );
+   if ( !it )
+      return ;
+   QString desc = it->description();
+   op()->emitItemDescription(desc);
+}
+
+void KrBriefView::keyPressEvent( QKeyEvent * e ) {
+   if ( !e || !firstItem() )
+      return ; // subclass bug
+   if ( ACTIVE_PANEL->quickSearch->isShown() ) {
+      ACTIVE_PANEL->quickSearch->myKeyPressEvent( e );
+      return ;
+   }
+   switch ( e->key() ) {
+         case Key_Up :
+         if ( e->state() == ControlButton ) { // let the panel handle it - jump to the Location Bar
+            e->ignore();
+            break;
+         } else if (!KrSelectionMode::getSelectionHandler()->useQTSelection()) {
+            QIconViewItem * i = currentItem();
+            if ( !i ) break;
+            if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+            i = i->prevItem();
+         	if ( i ) {
+					QIconView::setCurrentItem( i );
+					QIconView::ensureItemVisible( i );
+				}
+         } else KIconView::keyPressEvent(e);
+         break;
+         case Key_Down :
+         if ( e->state() == ControlButton || e->state() == ( ControlButton | ShiftButton ) ) { // let the panel handle it - jump to command line
+            e->ignore();
+            break;
+         } else if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
+            QIconViewItem * i = currentItem();
+            if ( !i ) break;
+            if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+            i = i->nextItem();
+         if ( i ) {QIconView::setCurrentItem( i ); QIconView::ensureItemVisible( i ); }
+         } else KIconView::keyPressEvent(e);
+         break;
+         case Key_Next:  if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
+            QIconViewItem * i = currentItem(), *j;
+            if ( !i ) break;
+            QRect r( i->rect() );
+            if ( !r.height() ) break;
+            for ( int page = visibleHeight() / r.height() - 1; page > 0 && ( j = i->nextItem() ); --page )
+               i = j;
+            if ( i ) {QIconView::setCurrentItem( i ); QIconView::ensureItemVisible( i ); }
+         } else KIconView::keyPressEvent(e);
+         break;
+         case Key_Prior:  if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
+            QIconViewItem * i = currentItem(), *j;
+            if ( !i ) break;
+            QRect r( i->rect() );
+            if ( !r.height() ) break;
+            for ( int page = visibleHeight() / r.height() - 1; page > 0 && ( j = i->prevItem() ); --page )
+               i = j;
+            if ( i ) {QIconView::setCurrentItem( i ); QIconView::ensureItemVisible( i ); }
+         } else KIconView::keyPressEvent(e);
+         break;
+         case Key_Home:  if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
+            if ( e->state() & ShiftButton )  /* Shift+Home */
+            {
+               clearSelection();
+               KIconView::keyPressEvent( e );
+               op()->emitSelectionChanged();
+               arrangeItemsInGrid();
+               break;
+            } else {
+               QIconViewItem * i = firstItem();
+               if ( i ) {QIconView::setCurrentItem( i ); QIconView::ensureItemVisible( i ); }
+            }
+         } else KIconView::keyPressEvent(e);
+         break;
+         case Key_End:  if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
+            if ( e->state() & ShiftButton )  /* Shift+End */
+            {
+               clearSelection();
+               KIconView::keyPressEvent( e );
+               op()->emitSelectionChanged();
+               arrangeItemsInGrid();
+               break;
+            } else {
+               QIconViewItem *i = firstItem(), *j;
+               while ( ( j = i->nextItem() ) )
+                  i = j;
+               while ( ( j = i->nextItem() ) )
+                  i = j;
+            if ( i ) {QIconView::setCurrentItem( i ); QIconView::ensureItemVisible( i ); }
+               break;
+            }
+         } else KIconView::keyPressEvent(e);
+         break;
+         case Key_Enter :
+         case Key_Return : {
+            if ( e->state() & ControlButton )         // let the panel handle it
+               e->ignore();
+            else {
+               KrViewItem * i = getCurrentKrViewItem();
+               QString tmp = i->name();
+               op()->emitExecuted(tmp);
+            }
+            break;
+         }
+         case Key_QuoteLeft :          // Terminal Emulator bugfix
+         if ( e->state() == ControlButton ) { // let the panel handle it
+            e->ignore();
+            break;
+         } else {          // a normal click - do a lynx-like moving thing
+            SLOTS->home(); // ask krusader to move up a directory
+            return ;         // safety
+         }
+         break;
+         case Key_Right :
+         if ( e->state() == ControlButton ) { // let the panel handle it
+            e->ignore();
+            break;
+         } else if (!KrSelectionMode::getSelectionHandler()->useQTSelection()) {
+            QIconViewItem *i = currentItem();
+            QIconViewItem *newCurrent = 0;
+
+            if ( !i ) break;
+
+            int minY = i->y() - i->height() / 2;
+            int minX  = i->width() / 2 + i->x();
+
+            if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+
+            while( i && i->x() <= minX )
+            {
+              if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+              newCurrent = i;
+              i = i->nextItem();
+            }
+
+            while( i && i->y() < minY )
+            {
+              if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+              newCurrent = i;
+              i = i->nextItem();
+            }
+
+            if( i )
+            {
+              if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+              newCurrent = i;
+            }
+
+            if( newCurrent )
+            {
+              QIconView::setCurrentItem( newCurrent );
+              QIconView::ensureItemVisible( newCurrent );
+            }
+         } else KIconView::keyPressEvent(e);
+         break;
+         case Key_Backspace :                         // Terminal Emulator bugfix
+         if ( e->state() == ControlButton || e->state() == ShiftButton ) { // let the panel handle it
+            e->ignore();
+            break;
+         } else {          // a normal click - do a lynx-like moving thing
+            SLOTS->dirUp(); // ask krusader to move up a directory
+            return ;         // safety
+         }
+         case Key_Left :
+         if ( e->state() == ControlButton ) { // let the panel handle it
+            e->ignore();
+            break;
+         } else if (!KrSelectionMode::getSelectionHandler()->useQTSelection()) {
+            QIconViewItem *i = currentItem();
+            QIconViewItem *newCurrent = 0;
+
+            if ( !i ) break;
+
+            int maxY = i->y() + i->height() / 2;
+            int maxX  = i->x() - i->width() / 2;
+
+            if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+
+            while( i && i->x() >= maxX )
+            {
+              if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+              newCurrent = i;
+              i = i->prevItem();
+            }
+
+            while( i && i->y() > maxY )
+            {
+              if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+              newCurrent = i;
+              i = i->prevItem();
+            }
+            if( i )
+            {
+              if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+              newCurrent = i;
+            }
+
+            if( newCurrent )
+            {
+              QIconView::setCurrentItem( newCurrent );
+              QIconView::ensureItemVisible( newCurrent );
+            }
+         } else KIconView::keyPressEvent(e);
+         break;
+
+         case Key_Delete :                   // kill file
+         SLOTS->deleteFiles( e->state() == ShiftButton || e->state() == ControlButton );
+				
+         break ;
+         case Key_Insert : {
+            {
+               QIconViewItem *i = currentItem();
+               if( !i )
+                  break;
+
+               if (KrSelectionMode::getSelectionHandler()->insertMovesDown())
+               {
+                  setSelected( i, !i->isSelected(), true );
+                  if( i->nextItem() )
+                  {
+                     QIconView::setCurrentItem( i->nextItem() );
+                     QIconView::ensureItemVisible( i->nextItem() );
+                  }
+               }
+               else
+               {
+                  setSelected( i, !i->isSelected(), true );
+               }
+            }
+            break ;
+         }
+         case Key_Space : {
+            {
+               QIconViewItem *i = currentItem();
+               if( !i )
+                  break;
+
+               if (KrSelectionMode::getSelectionHandler()->spaceMovesDown())
+               {
+                  setSelected( i, !i->isSelected(), true );
+                  if( i->nextItem() )
+                  {
+                     QIconView::setCurrentItem( i->nextItem() );
+                     QIconView::ensureItemVisible( i->nextItem() );
+                  }
+               }
+               else
+               {
+                  setSelected( i, !i->isSelected(), true );
+               }
+            }
+            break ;
+         }
+         case Key_A :                 // mark all
+         if ( e->state() == ControlButton ) {
+            KIconView::keyPressEvent( e );
+            updateView();
+            break;
+         }
+         default:
+         if ( e->key() == Key_Escape ) {
+            QIconView::keyPressEvent( e ); return ; // otherwise the selection gets lost??!??
+         }
+         // if the key is A..Z or 1..0 do quick search otherwise...
+         if ( e->text().length() > 0 && e->text() [ 0 ].isPrint() )       // better choice. Otherwise non-ascii characters like  can not be the first character of a filename
+            /*         if ( ( e->key() >= Key_A && e->key() <= Key_Z ) ||
+                           ( e->key() >= Key_0 && e->key() <= Key_9 ) ||
+                           ( e->key() == Key_Backspace ) ||
+                           ( e->key() == Key_Down ) ||
+                           ( e->key() == Key_Period ) ) */{ 
+            // are we doing quicksearch? if not, send keys to panel
+            //if ( _config->readBoolEntry( "Do Quicksearch", _DoQuicksearch ) ) {
+               // are we using krusader's classic quicksearch, or wincmd style?
+               {
+						KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+						if ( !_config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) )
+							KIconView::keyPressEvent( e );
+						else {
+							// first, show the quicksearch if its hidden
+							if ( ACTIVE_PANEL->quickSearch->isHidden() ) {
+								ACTIVE_PANEL->quickSearch->show();
+								// hack: if the pressed key requires a scroll down, the selected
+								// item is "below" the quick search window, as the list view will
+								// realize its new size after the key processing. The following line
+								// will resize the list view immediately.
+								ACTIVE_PANEL->layout->activate();
+								// second, we need to disable the dirup action - hack!
+								krDirUp->setEnabled( false );
+							}
+							// now, send the key to the quicksearch
+							ACTIVE_PANEL->quickSearch->myKeyPressEvent( e );
+						}
+					}
+            //} else
+            //   e->ignore(); // send to panel
+         } else {
+            if ( ACTIVE_PANEL->quickSearch->isShown() ) {
+               ACTIVE_PANEL->quickSearch->hide();
+               ACTIVE_PANEL->quickSearch->clear();
+               krDirUp->setEnabled( true );
+            }
+            KIconView::keyPressEvent( e );
+         }
+   }
+   // emit the new item description
+   slotItemDescription( currentItem() ); // actually send the QIconViewItem
+}
+
+void KrBriefView::setNameToMakeCurrent( QIconViewItem * it ) {
+	if (!it) return;
+   KrView::setNameToMakeCurrent( static_cast<KrBriefViewItem*>( it ) ->name() );
 }
