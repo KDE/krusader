@@ -22,8 +22,8 @@ public:
 	virtual void delItem(const QString &);
 	virtual void updateItem(vfile */* vf */) {}
 	virtual QString getCurrentItem() const;
-	virtual void setCurrentItem(const QString& /* name */) {}
-	virtual void makeItemVisible(const KrViewItem * /* item */) {}
+	virtual void setCurrentItem(const QString& name );
+	virtual void makeItemVisible(const KrViewItem * item );
 	virtual void clear();
 	virtual void updateView() {}
 	virtual void updateItem(KrViewItem* /* item */) {}
@@ -36,7 +36,6 @@ public:
 	virtual QString nameInKConfig() {return QString::null;}
 	virtual void renameCurrentItem() {}
 	virtual void resizeEvent ( QResizeEvent * );
-	virtual void keyPressEvent( QKeyEvent *e );
 
 protected:
 	virtual void setup();
@@ -45,12 +44,20 @@ protected:
 	virtual KrViewItem *preAddItem(vfile * vf);
 	virtual bool preDelItem(KrViewItem * item );
 
+	virtual void keyPressEvent( QKeyEvent *e );
+	virtual void imStartEvent( QIMEvent* e );
+	virtual void imEndEvent( QIMEvent *e );
+	virtual void imComposeEvent( QIMEvent *e );
+
 protected slots:
 	void slotItemDescription( QIconViewItem * );
 	void setNameToMakeCurrent( QIconViewItem *it );
 
 public slots:
 	void refreshColors();
+	void quickSearch( const QString &, int = 0 );
+	void stopQuickSearch( QKeyEvent* );
+	void handleQuickSearchEvent( QKeyEvent* );
 
   
 signals:

@@ -266,21 +266,20 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
 #ifdef TESTING_BRIEF_VIEW // code is used for testing purposes only! do not enable it!!! 
 	view = new KrBriefView( splt, _left, krConfig );
    view->init();
-/* TODO
-   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( middleButtonClicked( QListViewItem * ) ), SLOTS, SLOT( newTab( QListViewItem * ) ) );
-	connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( currentChanged( QListViewItem* ) ), 
+
+   connect( dynamic_cast<KrBriefView*>( view ), SIGNAL( middleButtonClicked( QListViewItem * ) ), SLOTS, SLOT( newTab( QListViewItem * ) ) );
+	connect( dynamic_cast<KrBriefView*>( view ), SIGNAL( currentChanged( QListViewItem* ) ), 
 		SLOTS, SLOT( updatePopupPanel( QListViewItem* ) ) );
 
 	// connect quicksearch
    connect( quickSearch, SIGNAL( textChanged( const QString& ) ),
-            dynamic_cast<KrDetailedView*>( view ), SLOT( quickSearch( const QString& ) ) );
+            dynamic_cast<KrBriefView*>( view ), SLOT( quickSearch( const QString& ) ) );
    connect( quickSearch, SIGNAL( otherMatching( const QString&, int ) ),
-            dynamic_cast<KrDetailedView*>( view ), SLOT( quickSearch( const QString& , int ) ) );
+            dynamic_cast<KrBriefView*>( view ), SLOT( quickSearch( const QString& , int ) ) );
    connect( quickSearch, SIGNAL( stop( QKeyEvent* ) ),
-            dynamic_cast<KrDetailedView*>( view ), SLOT( stopQuickSearch( QKeyEvent* ) ) );
+            dynamic_cast<KrBriefView*>( view ), SLOT( stopQuickSearch( QKeyEvent* ) ) );
    connect( quickSearch, SIGNAL( process( QKeyEvent* ) ),
-            dynamic_cast<KrDetailedView*>( view ), SLOT( handleQuickSearchEvent( QKeyEvent* ) ) );	
-*/
+            dynamic_cast<KrBriefView*>( view ), SLOT( handleQuickSearchEvent( QKeyEvent* ) ) );	
 #else	
    view = new KrDetailedView( splt, _left, krConfig );
    view->init();

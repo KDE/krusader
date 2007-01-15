@@ -217,6 +217,12 @@ void KrBriefView::delItem( const QString &name ) {
    arrangeItemsInGrid();
 }
 
+void KrBriefView::setCurrentItem( const QString& name ) {
+   KrBriefViewItem * it = dynamic_cast<KrBriefViewItem*>(_dict[ name ]);
+   if ( it )
+      KIconView::setCurrentItem( it );
+}
+
 void KrBriefView::clear() {
    /* KDE HACK START - the renaming item is not disappeared after clear */
    /* solution: we send an ESC key event to terminate the rename */
@@ -242,9 +248,9 @@ void KrBriefView::prepareForPassive() {
    KrView::prepareForPassive();
 /*   CANCEL_TWO_CLICK_RENAME;
    if ( renameLineEdit() ->isVisible() )
-      renameLineEdit() ->clearFocus();
-   KConfigGroupSaver grpSvr( _config, "Look&Feel" ); */
-/*   if ( _config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
+      renameLineEdit() ->clearFocus();*/
+   KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+   if ( _config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
       if ( MAIN_VIEW ) {
          if ( ACTIVE_PANEL ) {
             if ( ACTIVE_PANEL->quickSearch ) {
@@ -254,7 +260,7 @@ void KrBriefView::prepareForPassive() {
             }
          }
       }
-   }*/
+   }
 }
 
 void KrBriefView::initProperties() {
@@ -287,6 +293,11 @@ void KrBriefView::refreshColors() {
    }
 }
 
+void KrBriefView::makeItemVisible( const KrViewItem *item ) {
+//	qApp->processEvents();  // Please don't remove the comment. Causes crash if it is inserted!
+	ensureItemVisible( (QIconViewItem *)( static_cast<const KrBriefViewItem*>( item ) ) ); 
+}
+
 void KrBriefView::initOperator() {
 	_operator = new KrViewOperator(this, this);
 	// QIconView emits selection changed, so chain them to operator
@@ -311,6 +322,76 @@ void KrBriefView::slotItemDescription( QIconViewItem * item ) {
       return ;
    QString desc = it->description();
    op()->emitItemDescription(desc);
+}
+
+void KrBriefView::handleQuickSearchEvent( QKeyEvent * e ) {
+   switch ( e->key() ) {
+         case Key_Insert:
+         {
+            QKeyEvent ev = QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 );
+            KIconView::keyPressEvent( & ev );
+            ev = QKeyEvent( QKeyEvent::KeyPress, Key_Down, 0, 0 );
+            keyPressEvent( & ev );
+            break;
+         }
+         case Key_Home:
+         {
+            QIconView::setCurrentItem( firstItem() );
+            QKeyEvent ev = QKeyEvent( QKeyEvent::KeyPress, Key_Down, 0, 0 );
+            keyPressEvent( & ev );
+            break;
+         }
+         case Key_End:
+         {
+            QIconView::setCurrentItem( firstItem() );
+            QKeyEvent ev = QKeyEvent( QKeyEvent::KeyPress, Key_Up, 0, 0 );
+            keyPressEvent( & ev );
+            break;
+         }
+   }
+}
+
+void KrBriefView::imStartEvent(QIMEvent* e)
+{
+  if ( ACTIVE_PANEL->quickSearch->isShown() ) {
+    ACTIVE_PANEL->quickSearch->myIMStartEvent( e );
+    return ;
+  }else {
+    KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+    if ( !_config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) )
+      KIconView::imStartEvent( e );
+    else {
+							// first, show the quicksearch if its hidden
+      if ( ACTIVE_PANEL->quickSearch->isHidden() ) {
+        ACTIVE_PANEL->quickSearch->show();
+								// hack: if the pressed key requires a scroll down, the selected
+								// item is "below" the quick search window, as the list view will
+								// realize its new size after the key processing. The following line
+								// will resize the list view immediately.
+        ACTIVE_PANEL->layout->activate();
+								// second, we need to disable the dirup action - hack!
+        krDirUp->setEnabled( false );
+      }
+							// now, send the key to the quicksearch
+      ACTIVE_PANEL->quickSearch->myIMStartEvent( e );
+    }
+  }
+}
+
+void KrBriefView::imEndEvent(QIMEvent* e)
+{
+  if ( ACTIVE_PANEL->quickSearch->isShown() ) {
+    ACTIVE_PANEL->quickSearch->myIMEndEvent( e );
+    return ;
+  }
+}
+
+void KrBriefView::imComposeEvent(QIMEvent* e)
+{
+  if ( ACTIVE_PANEL->quickSearch->isShown() ) {
+    ACTIVE_PANEL->quickSearch->myIMComposeEvent( e );
+    return ;
+  }
 }
 
 void KrBriefView::keyPressEvent( QKeyEvent * e ) {
@@ -614,6 +695,43 @@ void KrBriefView::keyPressEvent( QKeyEvent * e ) {
    }
    // emit the new item description
    slotItemDescription( currentItem() ); // actually send the QIconViewItem
+}
+
+// TODO: move the whole quicksearch mess out of here and into krview
+void KrBriefView::quickSearch( const QString & str, int direction ) {
+   KrViewItem * item = getCurrentKrViewItem();
+   if (!item)
+      return;
+   KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+   bool caseSensitive = _config->readBoolEntry( "Case Sensitive Quicksearch", _CaseSensitiveQuicksearch );
+   if ( !direction ) {
+      if ( caseSensitive ? item->name().startsWith( str ) : item->name().lower().startsWith( str.lower() ) )
+         return ;
+      direction = 1;
+   }
+   KrViewItem * startItem = item;
+   while ( true ) {
+      item = ( direction > 0 ) ? getNext( item ) : getPrev( item );
+      if ( !item )
+         item = ( direction > 0 ) ? getFirst() : getLast();
+      if ( item == startItem )
+         return ;
+      if ( caseSensitive ? item->name().startsWith( str ) : item->name().lower().startsWith( str.lower() ) ) {
+			setCurrentItem( item->name() );
+			makeItemVisible( item );
+         return ;
+      }
+   }
+}
+
+void KrBriefView::stopQuickSearch( QKeyEvent * e ) {
+   if( ACTIVE_PANEL && ACTIVE_PANEL->quickSearch ) {
+     ACTIVE_PANEL->quickSearch->hide();
+     ACTIVE_PANEL->quickSearch->clear();
+     krDirUp->setEnabled( true );
+     if ( e )
+        keyPressEvent( e );
+   }
 }
 
 void KrBriefView::setNameToMakeCurrent( QIconViewItem * it ) {
