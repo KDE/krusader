@@ -4,6 +4,9 @@
 #include "krview.h"
 #include "krviewitem.h"
 #include <kiconview.h>
+#include <qtimer.h>
+
+class KrBriefViewItem;
 
 class KrBriefView: public KIconView, public KrView {
 	friend class KrBriefViewItem;
@@ -34,7 +37,6 @@ public:
 	virtual void prepareForActive();
 	virtual void prepareForPassive();
 	virtual QString nameInKConfig() {return QString::null;}
-	virtual void renameCurrentItem() {}
 	virtual void resizeEvent ( QResizeEvent * );
 
 protected:
@@ -48,9 +50,14 @@ protected:
 	virtual void imStartEvent( QIMEvent* e );
 	virtual void imEndEvent( QIMEvent *e );
 	virtual void imComposeEvent( QIMEvent *e );
+	virtual bool event( QEvent *e );
 
 protected slots:
+	void rename( QIconViewItem *item );
 	void slotItemDescription( QIconViewItem * );
+	void slotCurrentChanged( QIconViewItem *item );
+	virtual void renameCurrentItem();
+	void inplaceRenameFinished( QIconViewItem *it );
 	void setNameToMakeCurrent( QIconViewItem *it );
 
 public slots:
@@ -63,6 +70,12 @@ public slots:
 signals:
 	void letsDrag(QStringList items, QPixmap icon);
 	void gotDrop(QDropEvent *);
+
+private:
+	bool singleClicked;
+	bool modifierPressed;
+	QTimer renameTimer;
+	KrBriefViewItem *currentlyRenamedItem;
 };
 
 #endif

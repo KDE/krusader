@@ -9,10 +9,11 @@
 #include "../Dialogs/krspecialwidgets.h"
 #include "../VFS/krarchandler.h"
 
+#define CANCEL_TWO_CLICK_RENAME {singleClicked = false;renameTimer.stop();}
 #define VF	getVfile()
 
 KrBriefView::KrBriefView( QWidget *parent, bool &left, KConfig *cfg, const char *name ):
-	KIconView(parent, name), KrView( cfg ) {
+	KIconView(parent, name), KrView( cfg ), currentlyRenamedItem( 0 ) {
 	setWidget( this );
 	_nameInKConfig = QString( "KrBriefView" ) + QString( ( left ? "Left" : "Right" ) );
 	setItemTextPos( QIconView::Right );
@@ -59,19 +60,12 @@ void KrBriefView::setup() {
    // TODO: setDropHighlighter(true);
    // TODO: setSelectionModeExt( KListView::FileManager );
 
-   //---- don't enable these lines, as it causes an ugly bug with inplace renaming
-   //-->  setItemsRenameable( true );
-   //-->  setRenameable( column( Name ), true );
-   //-------------------------------------------------------------------------------
-
-   // TODO: renameLineEdit()->installEventFilter( this );
-   
    // allow in-place renaming
-// TODO
-/*   connect( renameLineEdit(), SIGNAL( done( QListViewItem *, int ) ),
-            this, SLOT( inplaceRenameFinished( QListViewItem*, int ) ) );
+
+   connect( this, SIGNAL( itemRenamed ( QIconViewItem * ) ), 
+            this, SLOT( inplaceRenameFinished( QIconViewItem * ) ) );
    connect( &renameTimer, SIGNAL( timeout() ), this, SLOT( renameCurrentItem() ) );
-   connect( &contextMenuTimer, SIGNAL (timeout()), this, SLOT (showContextMenu()));*/
+/*   connect( &contextMenuTimer, SIGNAL (timeout()), this, SLOT (showContextMenu()));*/
 
 	// TODO: connect( header(), SIGNAL(clicked(int)), this, SLOT(slotSortOrderChanged(int )));
 
@@ -81,7 +75,7 @@ void KrBriefView::setup() {
    restoreSettings();
    refreshColors();
 
-   //CANCEL_TWO_CLICK_RENAME;	
+   CANCEL_TWO_CLICK_RENAME;	
 }
 
 void KrBriefView::resizeEvent ( QResizeEvent * resEvent )
@@ -126,17 +120,14 @@ KrViewItem *KrBriefView::preAddItem( vfile *vf ) {
 }
 
 bool KrBriefView::preDelItem(KrViewItem *item) {
-   /* KDE HACK START - the renaming item is not disappeared after delete */
-   /* solution: we send an ESC key event to terminate the rename */
    if( item ) {
-      QIconViewItem * viewItem = dynamic_cast<QIconViewItem*>( item );
-/*      if( viewItem == currentlyRenamedItem ) {
+      KrBriefViewItem * viewItem = dynamic_cast<KrBriefViewItem*>( item );
+      if( viewItem == currentlyRenamedItem ) {
+         currentlyRenamedItem->cancelRename();
          currentlyRenamedItem = 0;
-         QKeyEvent escEvent( QEvent::KeyPress, Key_Escape, 27, 0 );
-         QApplication::sendEvent( renameLineEdit(), &escEvent );
-      }*/
+      }
    }
-   /* KDE HACK END */
+
    return true;
 }
 
@@ -224,14 +215,10 @@ void KrBriefView::setCurrentItem( const QString& name ) {
 }
 
 void KrBriefView::clear() {
-   /* KDE HACK START - the renaming item is not disappeared after clear */
-   /* solution: we send an ESC key event to terminate the rename */
-//   if( currentlyRenamedItem ) {
-//      currentlyRenamedItem = 0;
-//      QKeyEvent escEvent( QEvent::KeyPress, Key_Escape, 27, 0 );
-//      QApplication::sendEvent( renameLineEdit(), &escEvent );
-//   }
-   /* KDE HACK END */
+   if( currentlyRenamedItem ) {
+      currentlyRenamedItem->cancelRename();
+      currentlyRenamedItem = 0;
+   }
 
    op()->emitSelectionChanged(); /* to avoid rename crash at refresh */
    KIconView::clear();
@@ -246,9 +233,7 @@ void KrBriefView::prepareForActive() {
 
 void KrBriefView::prepareForPassive() {
    KrView::prepareForPassive();
-/*   CANCEL_TWO_CLICK_RENAME;
-   if ( renameLineEdit() ->isVisible() )
-      renameLineEdit() ->clearFocus();*/
+   CANCEL_TWO_CLICK_RENAME;
    KConfigGroupSaver grpSvr( _config, "Look&Feel" );
    if ( _config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
       if ( MAIN_VIEW ) {
@@ -349,6 +334,13 @@ void KrBriefView::handleQuickSearchEvent( QKeyEvent * e ) {
             break;
          }
    }
+}
+
+void KrBriefView::slotCurrentChanged( QIconViewItem * item ) {
+   CANCEL_TWO_CLICK_RENAME;
+   if ( !item )
+      return ;
+   _nameToMakeCurrent = static_cast<KrBriefViewItem*>( item ) ->name();
 }
 
 void KrBriefView::imStartEvent(QIMEvent* e)
@@ -696,6 +688,50 @@ void KrBriefView::keyPressEvent( QKeyEvent * e ) {
    // emit the new item description
    slotItemDescription( currentItem() ); // actually send the QIconViewItem
 }
+// overridden to make sure EXTENTION won't be lost during rename
+void KrBriefView::rename( QIconViewItem * item ) {
+   currentlyRenamedItem = dynamic_cast< KrBriefViewItem * >( item );
+   currentlyRenamedItem->rename();
+   //TODO: renameLineEdit() ->selectAll();
+}
+
+void KrBriefView::renameCurrentItem() {
+   QString newName, fileName;
+
+	// handle inplace renaming, if possible
+	
+   KrBriefViewItem *it = static_cast<KrBriefViewItem*>(getCurrentKrViewItem());
+   if ( it )
+      fileName = it->name();
+   else
+      return ; // quit if no current item available
+   // don't allow anyone to rename ..
+   if ( fileName == ".." )
+      return ;
+
+   rename( static_cast<QIconViewItem*>( it ) );
+   // if applicable, select only the name without extension
+/* TODO:
+   KConfigGroupSaver svr(krConfig,"Look&Feel");
+   if (!krConfig->readBoolEntry("Rename Selects Extension", true)) {
+     if (it->hasExtension() && !it->VF->vfile_isDir() ) 
+       renameLineEdit()->setSelection(0, it->name().findRev(it->extension())-1);
+   }*/
+}
+
+void KrBriefView::inplaceRenameFinished( QIconViewItem * it ) {
+   if ( !it ) { // major failure - call developers
+      krOut << "Major failure at inplaceRenameFinished(): item is null" << endl;
+      return;
+   }
+
+   KrBriefViewItem *item = dynamic_cast<KrBriefViewItem *>( it );
+   if( item->text() != item->name() )
+      op()->emitRenameItem( item->name(), item->text() );
+
+   currentlyRenamedItem = 0;
+   setFocus();
+}
 
 // TODO: move the whole quicksearch mess out of here and into krview
 void KrBriefView::quickSearch( const QString & str, int direction ) {
@@ -737,4 +773,20 @@ void KrBriefView::stopQuickSearch( QKeyEvent * e ) {
 void KrBriefView::setNameToMakeCurrent( QIconViewItem * it ) {
 	if (!it) return;
    KrView::setNameToMakeCurrent( static_cast<KrBriefViewItem*>( it ) ->name() );
+}
+
+
+bool KrBriefView::event( QEvent *e ) {
+   modifierPressed = false;
+
+   switch ( e->type() ) {
+         case QEvent::Timer:
+         case QEvent::MouseMove:
+         case QEvent::MouseButtonPress:
+         case QEvent::MouseButtonRelease:
+         break;
+         default:
+         CANCEL_TWO_CLICK_RENAME;
+   }
+   return KIconView::event( e );
 }

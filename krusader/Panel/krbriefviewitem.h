@@ -47,6 +47,7 @@ public:
 	KrBriefViewItem(KrBriefView *parent, QIconViewItem *after, vfile *vf);
 	inline bool isSelected() const { return KIconViewItem::isSelected(); }
 	inline void setSelected(bool s) { KIconViewItem::setSelected(s); }
+	inline void cancelRename() { removeRenameBox(); }
 	int compare(QIconViewItem *i) const;
 	void repaintItem() {}
 	static void itemHeightChanged(); // force the items to resize when icon/font size change
