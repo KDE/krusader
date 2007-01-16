@@ -131,6 +131,7 @@ void KrDetailedView::setup() {
 		connect( this, SIGNAL( rightButtonPressed(QListViewItem*, const QPoint&, int)),
 			this, SLOT(slotRightButtonPressed(QListViewItem*, const QPoint&, int)));
       connect( this, SIGNAL( currentChanged( QListViewItem* ) ), this, SLOT( setNameToMakeCurrent( QListViewItem* ) ) );
+      connect( this, SIGNAL( currentChanged( QListViewItem* ) ), this, SLOT( transformCurrentChanged( QListViewItem* ) ) );
       connect( this, SIGNAL( mouseButtonClicked ( int, QListViewItem *, const QPoint &, int ) ),
                this, SLOT( slotMouseClicked ( int, QListViewItem *, const QPoint &, int ) ) );
       connect( &KrColorCache::getColorCache(), SIGNAL( colorsRefreshed() ), this, SLOT( refreshColors() ) );
@@ -1285,7 +1286,7 @@ void KrDetailedView::setNameToMakeCurrent( QListViewItem * it ) {
 void KrDetailedView::slotMouseClicked( int button, QListViewItem * item, const QPoint&, int ) {
    pressedItem = 0; // if the signals are emitted, don't emit twice at contentsMouseReleaseEvent
    if ( button == Qt::MidButton )
-      emit middleButtonClicked( item );
+      emit middleButtonClicked( dynamic_cast<KrViewItem *>( item ) );
 }
 
 void KrDetailedView::refreshColors() {

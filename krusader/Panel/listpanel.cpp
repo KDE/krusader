@@ -267,9 +267,9 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
 	view = new KrBriefView( splt, _left, krConfig );
    view->init();
 
-   connect( dynamic_cast<KrBriefView*>( view ), SIGNAL( middleButtonClicked( QListViewItem * ) ), SLOTS, SLOT( newTab( QListViewItem * ) ) );
-	connect( dynamic_cast<KrBriefView*>( view ), SIGNAL( currentChanged( QListViewItem* ) ), 
-		SLOTS, SLOT( updatePopupPanel( QListViewItem* ) ) );
+   connect( dynamic_cast<KrBriefView*>( view ), SIGNAL( middleButtonClicked( KrViewItem * ) ), SLOTS, SLOT( newTab( KrViewItem * ) ) );
+	connect( dynamic_cast<KrBriefView*>( view ), SIGNAL( currentChanged( KrViewItem * ) ), 
+		SLOTS, SLOT( updatePopupPanel( KrViewItem* ) ) );
 
 	// connect quicksearch
    connect( quickSearch, SIGNAL( textChanged( const QString& ) ),
@@ -283,9 +283,9 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
 #else	
    view = new KrDetailedView( splt, _left, krConfig );
    view->init();
-   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( middleButtonClicked( QListViewItem * ) ), SLOTS, SLOT( newTab( QListViewItem * ) ) );
-	connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( currentChanged( QListViewItem* ) ), 
-		SLOTS, SLOT( updatePopupPanel( QListViewItem* ) ) );
+   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( middleButtonClicked( KrViewItem * ) ), SLOTS, SLOT( newTab( KrViewItem * ) ) );
+	connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( currentChanged( KrViewItem * ) ), 
+		SLOTS, SLOT( updatePopupPanel( KrViewItem * ) ) );
 	// connect quicksearch
    connect( quickSearch, SIGNAL( textChanged( const QString& ) ),
             dynamic_cast<KrDetailedView*>( view ), SLOT( quickSearch( const QString& ) ) );

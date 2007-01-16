@@ -53,11 +53,12 @@ protected:
 	virtual void contentsMousePressEvent( QMouseEvent *e );
 	virtual void contentsMouseReleaseEvent (QMouseEvent *e);
 	virtual void contentsMouseMoveEvent ( QMouseEvent * e );
-	virtual void contentsWheelEvent( QWheelEvent *e );
 	virtual bool event( QEvent *e );
 
 signals:
-	void middleButtonClicked( QIconViewItem *item );
+	void middleButtonClicked( KrViewItem *item );
+	void currentChanged( KrViewItem *item );
+
 
 protected slots:
 	void rename( QIconViewItem *item );
@@ -65,15 +66,18 @@ protected slots:
 	void slotDoubleClicked( QIconViewItem *item );
 	void slotItemDescription( QIconViewItem * );
 	void slotCurrentChanged( QIconViewItem *item );
+	void handleContextMenu( QIconViewItem*, const QPoint& );
 	virtual void renameCurrentItem();
+	virtual void showContextMenu( );
 	void inplaceRenameFinished( QIconViewItem *it );
 	void setNameToMakeCurrent( QIconViewItem *it );
 	void slotRightButtonPressed(QIconViewItem*, const QPoint& point);
+	void transformCurrentChanged( QIconViewItem * item ) { emit currentChanged( dynamic_cast<KrViewItem *>(item ) ); }
 
 	/**
 	  * used internally to produce the signal middleButtonClicked()
 	 */
-	void slotMouseClicked( int button, QIconViewItem * item, const QPoint & pos, int c );
+	void slotMouseClicked( int button, QIconViewItem * item, const QPoint & pos );
 	inline void slotExecuted( QIconViewItem* i ) {
 		QString tmp = dynamic_cast<KrViewItem*>( i ) ->name();
 		op()->emitExecuted( tmp );
@@ -100,6 +104,7 @@ private:
 	QIconViewItem *clickedItem;
 	QTimer renameTimer;
 	QTimer contextMenuTimer;
+	QPoint contextMenuPoint;
 	KrBriefViewItem *currentlyRenamedItem;
 	QIconViewItem *pressedItem;
 };

@@ -47,6 +47,7 @@ void KrBriefView::setup() {
 		connect( this, SIGNAL( rightButtonPressed(QIconViewItem*, const QPoint&)),
 			this, SLOT(slotRightButtonPressed(QIconViewItem*, const QPoint&)));
       connect( this, SIGNAL( currentChanged( QIconViewItem* ) ), this, SLOT( setNameToMakeCurrent( QIconViewItem* ) ) );
+      connect( this, SIGNAL( currentChanged( QIconViewItem* ) ), this, SLOT( transformCurrentChanged( QIconViewItem* ) ) );
       connect( this, SIGNAL( mouseButtonClicked ( int, QIconViewItem *, const QPoint & ) ),
                this, SLOT( slotMouseClicked ( int, QIconViewItem *, const QPoint & ) ) );
       connect( &KrColorCache::getColorCache(), SIGNAL( colorsRefreshed() ), this, SLOT( refreshColors() ) );
@@ -65,7 +66,7 @@ void KrBriefView::setup() {
    connect( this, SIGNAL( itemRenamed ( QIconViewItem * ) ), 
             this, SLOT( inplaceRenameFinished( QIconViewItem * ) ) );
    connect( &renameTimer, SIGNAL( timeout() ), this, SLOT( renameCurrentItem() ) );
-/*   connect( &contextMenuTimer, SIGNAL (timeout()), this, SLOT (showContextMenu()));*/
+   connect( &contextMenuTimer, SIGNAL (timeout()), this, SLOT (showContextMenu()));
 
 	// TODO: connect( header(), SIGNAL(clicked(int)), this, SLOT(slotSortOrderChanged(int )));
 
@@ -327,7 +328,10 @@ void KrBriefView::initOperator() {
 }
 
 KrViewItem *KrBriefView::getKrViewItemAt( const QPoint & vp ) {
-   return dynamic_cast<KrViewItem*>( KIconView::findItem( vp ) );
+   QPoint point = vp;
+   point.setX( point.x() + contentsX() );
+   point.setY( point.y() + contentsY() );
+   return dynamic_cast<KrViewItem*>( KIconView::findItem( point ) );
 }
 
 QString KrBriefView::getCurrentItem() const {
@@ -385,7 +389,10 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
    pressedItem = 0;
 
    QIconViewItem * oldCurrent = currentItem();
-   QIconViewItem *newCurrent = findItem( contentsToViewport( e->pos() ) );
+   QPoint point = contentsToViewport( e->pos() );
+   point.setX( point.x() + contentsX() );
+   point.setY( point.y() + contentsY() );
+   QIconViewItem *newCurrent = findItem( point );
    if (e->button() == RightButton)
    {
 	if (KrSelectionMode::getSelectionHandler()->rightButtonSelects() || 
@@ -468,6 +475,8 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
 
    if ( !_focused )
    	op()->emitNeedFocus();
+   setFocus();
+
    if (processEvent && ( (e->state() & ShiftButton) || (e->state() & ControlButton) || (e->state() & AltButton) ) && !KrSelectionMode::getSelectionHandler()->useQTSelection()){
       if ( oldCurrent && newCurrent && oldCurrent != newCurrent && e->state() & ShiftButton ) {
          int oldPos = oldCurrent->index();
@@ -482,7 +491,7 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
          }
          while( top )
          {
-            if ( top->isSelected() ) {
+            if ( !top->isSelected() ) {
                top->setSelected( true, true );
                selectionChanged = true;
             }
@@ -493,12 +502,13 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
          QIconView::setCurrentItem( newCurrent );
          callDefaultHandler = false;
       }
+      if( e->state() & ShiftButton )
+         callDefaultHandler = false;
    }
 	
 	if (selectionChanged)
 		updateView(); // don't call triggerUpdate directly!
 	
-   //   QIconViewItem * i = findItem( contentsToViewport( e->pos() ) );
    if (callDefaultHandler)
    {
      dragStartPos = QPoint( -1, -1 );
@@ -548,6 +558,8 @@ void KrBriefView::contentsMouseReleaseEvent( QMouseEvent * e ) {
 
   if( pressedItem ) {
     QPoint vp = contentsToViewport( e->pos() );
+    vp.setX( vp.x() + contentsX() );
+    vp.setY( vp.y() + contentsY() );
     QIconViewItem *newCurrent = findItem( vp );
 
     if( pressedItem == newCurrent ) {
@@ -567,7 +579,10 @@ void KrBriefView::contentsMouseReleaseEvent( QMouseEvent * e ) {
 }
 
 void KrBriefView::contentsMouseMoveEvent ( QMouseEvent * e ) {
-   if ( ( singleClicked || renameTimer.isActive() ) && findItem( contentsToViewport( e->pos() ) ) != clickedItem )
+   QPoint point = e->pos();
+   point.setX( point.x() + contentsX() );
+   point.setY( point.y() + contentsY() );
+   if ( ( singleClicked || renameTimer.isActive() ) && findItem( point ) != clickedItem )
       CANCEL_TWO_CLICK_RENAME;
    if ( dragStartPos != QPoint( -1, -1 ) &&
         e->state() & LeftButton && ( dragStartPos - e->pos() ).manhattanLength() > QApplication::startDragDistance() )
@@ -576,7 +591,7 @@ void KrBriefView::contentsMouseMoveEvent ( QMouseEvent * e ) {
       && KrSelectionMode::getSelectionHandler()->rightButtonSelects() 
       && KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0 && e->state() == Qt::RightButton)
       {
-         QIconViewItem *newItem = findItem( contentsToViewport( e->pos() ) );
+         QIconViewItem *newItem = findItem( point );
          e->accept();
          if (newItem != lastSwushPosition && newItem)
          {
@@ -618,10 +633,29 @@ void KrBriefView::contentsMouseMoveEvent ( QMouseEvent * e ) {
          KIconView::contentsMouseMoveEvent( e );
 }
 
-void KrBriefView::contentsWheelEvent( QWheelEvent * e ) {
+void KrBriefView::handleContextMenu( QIconViewItem * it, const QPoint & pos ) {
    if ( !_focused )
       op()->emitNeedFocus();
-   KIconView::contentsWheelEvent( e );
+   setFocus();
+
+   if ( !it )
+      return ;
+   if ( static_cast<KrBriefViewItem*>( it ) ->
+         name() == ".." )
+      return ;
+   int i = KrSelectionMode::getSelectionHandler()->showContextMenu();
+   contextMenuPoint = QPoint( pos.x(), pos.y() );
+   if (i < 0)
+     showContextMenu();
+   else if (i > 0)
+     contextMenuTimer.start(i, true);
+}
+
+void KrBriefView::showContextMenu()
+{
+	if (lastSwushPosition)
+		lastSwushPosition->setSelected(true);
+	op()->emitContextMenu( contextMenuPoint );
 }
 
 void KrBriefView::imStartEvent(QIMEvent* e)
@@ -1056,10 +1090,10 @@ void KrBriefView::setNameToMakeCurrent( QIconViewItem * it ) {
    KrView::setNameToMakeCurrent( static_cast<KrBriefViewItem*>( it ) ->name() );
 }
 
-void KrBriefView::slotMouseClicked( int button, QIconViewItem * item, const QPoint&, int ) {
+void KrBriefView::slotMouseClicked( int button, QIconViewItem * item, const QPoint& ) {
    pressedItem = 0; // if the signals are emitted, don't emit twice at contentsMouseReleaseEvent
    if ( button == Qt::MidButton )
-      emit middleButtonClicked( item );
+      emit middleButtonClicked( dynamic_cast<KrViewItem *>( item ) );
 }
 
 bool KrBriefView::event( QEvent *e ) {
@@ -1073,6 +1107,12 @@ bool KrBriefView::event( QEvent *e ) {
          break;
          default:
          CANCEL_TWO_CLICK_RENAME;
+   }
+   if( e->type() == QEvent::Wheel )
+   {
+      if ( !_focused )
+         op()->emitNeedFocus();
+      setFocus();
    }
    return KIconView::event( e );
 }

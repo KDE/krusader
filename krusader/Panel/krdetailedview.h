@@ -99,7 +99,8 @@ public:
    virtual inline void restoreSettings() { KListView::restoreLayout( _config, nameInKConfig() ); }
 
 signals:
-   void middleButtonClicked( QListViewItem *item );
+   void middleButtonClicked( KrViewItem *item );
+   void currentChanged( KrViewItem *item );
 
 protected:
 	virtual void setup();
@@ -141,7 +142,8 @@ protected slots:
 	void sortOrderChanged(int);
 	void slotRightButtonPressed(QListViewItem*, const QPoint& point, int);
 	void slotSortOrderChanged(int col);
-	
+   void transformCurrentChanged( QListViewItem * item ) { emit currentChanged( dynamic_cast<KrViewItem *>(item ) ); }
+
    /**
     * used internally to produce the signal middleButtonClicked()
     */

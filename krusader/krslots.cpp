@@ -57,7 +57,9 @@
 #include "krusaderview.h"
 #include "Panel/listpanel.h"
 #include "Panel/krselectionmode.h"
+#include "Panel/krdetailedview.h"
 #include "Panel/krdetailedviewitem.h"
+#include "Panel/krbriefview.h"
 #include "Panel/krbriefviewitem.h"
 #include "Dialogs/krdialogs.h"
 #include "Dialogs/krspwidgets.h"
@@ -210,12 +212,30 @@ void KRslots::compareContent( KURL url1, KURL url2 )
 }
 
 void KRslots::rightclickMenu() {
-  ACTIVE_PANEL->popRightClickMenu(
-   ACTIVE_PANEL->mapToGlobal(
-   dynamic_cast<KListView*>(ACTIVE_PANEL->view)->itemRect(dynamic_cast<QListViewItem*>
-   (ACTIVE_PANEL->view->getCurrentKrViewItem())).topLeft()
-   )
-  );
+  if( dynamic_cast<KrDetailedView*>(ACTIVE_PANEL->view) != 0 )
+  {
+    QListViewItem * currentItem = dynamic_cast<QListViewItem*>(ACTIVE_PANEL->view->getCurrentKrViewItem());
+    if( currentItem )
+    {
+      ACTIVE_PANEL->popRightClickMenu(
+       ACTIVE_PANEL->mapToGlobal(
+         dynamic_cast<KListView*>(ACTIVE_PANEL->view)->itemRect( currentItem ).topLeft()
+       )
+      );
+    }
+  }
+  else if( dynamic_cast<KrBriefView*>(ACTIVE_PANEL->view) != 0 )
+  {
+    QIconViewItem * currentItem = dynamic_cast<QIconViewItem*>(ACTIVE_PANEL->view->getCurrentKrViewItem());
+    if( currentItem )
+    {
+      ACTIVE_PANEL->popRightClickMenu(
+       ACTIVE_PANEL->mapToGlobal(
+         currentItem->rect().topLeft()
+       )
+      );
+    }
+  }
 }
 
 void KRslots::addBookmark(){
@@ -603,9 +623,8 @@ void KRslots::previousTab() {
   ACTIVE_PANEL_MANAGER->slotPreviousTab();
 }
 
-void KRslots::newTab(QListViewItem *item) {
-  if (!item) return;
-  KrViewItem *it = dynamic_cast<KrViewItem*>(item);
+void KRslots::newTab(KrViewItem *it) {
+  if (!it) return;
   if( it->name() == ".." ) {
     KURL url = ACTIVE_PANEL->virtualPath();
     ACTIVE_PANEL_MANAGER->slotNewTab( url.upURL() );
@@ -813,7 +832,7 @@ void KRslots::slotSyncBrowse() {
    ACTIVE_PANEL->syncBrowseButton->toggle();
 }
 
-void KRslots::updatePopupPanel(QListViewItem *it) {
+void KRslots::updatePopupPanel(KrViewItem *item) {
 	// which panel to display on?
 	ListPanel *lp = 0;
 	if (ACTIVE_PANEL->popup->isHidden() &&
@@ -823,7 +842,6 @@ void KRslots::updatePopupPanel(QListViewItem *it) {
 	else if (ACTIVE_PANEL->otherPanel->popup->isShown())
 		lp = ACTIVE_PANEL->otherPanel;
 
-	KrViewItem *item = dynamic_cast<KrViewItem*>(it);
 	KURL url;
 	if (item->name()!="..") // updir
 		url = ACTIVE_FUNC->files()->vfs_getFile(item->name());

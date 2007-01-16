@@ -45,9 +45,9 @@ KrBriefViewItem::KrBriefViewItem(KrBriefView *parent, QIconViewItem *after, vfil
 		if (PROPS->displayIcons)
 			setPixmap(KrView::getIcon(_vf));
 		setText( _vf->vfile_getName() );
-		setRenameEnabled( true );
 	}
 	
+	setRenameEnabled( false );
 	repaintItem();
 }
 

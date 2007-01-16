@@ -133,7 +133,7 @@ class KRslots : public QObject {
     void cmdlinePopup() { MAIN_VIEW->cmdLine->popup(); }
     void duplicateTab();
     void newTab(const KURL& url = KURL());
-    void newTab(QListViewItem *item);
+    void newTab(KrViewItem *item);
     void closeTab();
     void nextTab();
     void previousTab();
@@ -148,7 +148,7 @@ class KRslots : public QObject {
     void slotJumpBack();
     void slotSetJumpBack();
     void newSymlink() { ACTIVE_PANEL->func->krlink(true); }
-    void updatePopupPanel(QListViewItem*);
+    void updatePopupPanel(KrViewItem *);
 		void windowActive(); // called when krusader's window becomes focussed
 		void windowInactive(); // called when another application steals the focus
     // F2
