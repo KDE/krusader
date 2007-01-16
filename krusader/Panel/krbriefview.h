@@ -50,15 +50,34 @@ protected:
 	virtual void imStartEvent( QIMEvent* e );
 	virtual void imEndEvent( QIMEvent *e );
 	virtual void imComposeEvent( QIMEvent *e );
+	virtual void contentsMousePressEvent( QMouseEvent *e );
+	virtual void contentsMouseReleaseEvent (QMouseEvent *e);
+	virtual void contentsMouseMoveEvent ( QMouseEvent * e );
+	virtual void contentsWheelEvent( QWheelEvent *e );
 	virtual bool event( QEvent *e );
+
+signals:
+	void middleButtonClicked( QIconViewItem *item );
 
 protected slots:
 	void rename( QIconViewItem *item );
+	void slotClicked( QIconViewItem *item );
+	void slotDoubleClicked( QIconViewItem *item );
 	void slotItemDescription( QIconViewItem * );
 	void slotCurrentChanged( QIconViewItem *item );
 	virtual void renameCurrentItem();
 	void inplaceRenameFinished( QIconViewItem *it );
 	void setNameToMakeCurrent( QIconViewItem *it );
+	void slotRightButtonPressed(QIconViewItem*, const QPoint& point);
+
+	/**
+	  * used internally to produce the signal middleButtonClicked()
+	 */
+	void slotMouseClicked( int button, QIconViewItem * item, const QPoint & pos, int c );
+	inline void slotExecuted( QIconViewItem* i ) {
+		QString tmp = dynamic_cast<KrViewItem*>( i ) ->name();
+		op()->emitExecuted( tmp );
+	}
 
 public slots:
 	void refreshColors();
@@ -72,10 +91,17 @@ signals:
 	void gotDrop(QDropEvent *);
 
 private:
+	bool swushSelects;
+	QPoint dragStartPos;
+	QIconViewItem *lastSwushPosition;
 	bool singleClicked;
 	bool modifierPressed;
+	QTime clickTime;
+	QIconViewItem *clickedItem;
 	QTimer renameTimer;
+	QTimer contextMenuTimer;
 	KrBriefViewItem *currentlyRenamedItem;
+	QIconViewItem *pressedItem;
 };
 
 #endif

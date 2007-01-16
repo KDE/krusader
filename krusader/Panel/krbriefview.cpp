@@ -42,13 +42,13 @@ void KrBriefView::setup() {
 
       // a change in the selection needs to update totals
       connect( this, SIGNAL( onItem( QIconViewItem* ) ), this, SLOT( slotItemDescription( QIconViewItem* ) ) );
-      connect( this, SIGNAL( contextMenuRequested( QIconViewItem*, const QPoint&, int ) ),
-               this, SLOT( handleContextMenu( QIconViewItem*, const QPoint&, int ) ) );
-		connect( this, SIGNAL( rightButtonPressed(QIconViewItem*, const QPoint&, int)),
-			this, SLOT(slotRightButtonPressed(QIconViewItem*, const QPoint&, int)));
+      connect( this, SIGNAL( contextMenuRequested( QIconViewItem*, const QPoint& ) ),
+               this, SLOT( handleContextMenu( QIconViewItem*, const QPoint& ) ) );
+		connect( this, SIGNAL( rightButtonPressed(QIconViewItem*, const QPoint&)),
+			this, SLOT(slotRightButtonPressed(QIconViewItem*, const QPoint&)));
       connect( this, SIGNAL( currentChanged( QIconViewItem* ) ), this, SLOT( setNameToMakeCurrent( QIconViewItem* ) ) );
-      connect( this, SIGNAL( mouseButtonClicked ( int, QIconViewItem *, const QPoint &, int ) ),
-               this, SLOT( slotMouseClicked ( int, QIconViewItem *, const QPoint &, int ) ) );
+      connect( this, SIGNAL( mouseButtonClicked ( int, QIconViewItem *, const QPoint & ) ),
+               this, SLOT( slotMouseClicked ( int, QIconViewItem *, const QPoint & ) ) );
       connect( &KrColorCache::getColorCache(), SIGNAL( colorsRefreshed() ), this, SLOT( refreshColors() ) );
    }
    
@@ -225,6 +225,39 @@ void KrBriefView::clear() {
    KrView::clear();
 }
 
+void KrBriefView::slotClicked( QIconViewItem *item ) {
+   if ( !item ) return ;
+
+   if ( !modifierPressed ) {
+      if ( singleClicked && !renameTimer.isActive() ) {
+         KConfig * config = KGlobal::config();
+         config->setGroup( "KDE" );
+         int doubleClickInterval = config->readNumEntry( "DoubleClickInterval", 400 );
+
+         int msecsFromLastClick = clickTime.msecsTo( QTime::currentTime() );
+
+         if ( msecsFromLastClick > doubleClickInterval && msecsFromLastClick < 5 * doubleClickInterval ) {
+            singleClicked = false;
+            renameTimer.start( doubleClickInterval, true );
+            return ;
+         }
+      }
+
+      CANCEL_TWO_CLICK_RENAME;
+      singleClicked = true;
+      clickTime = QTime::currentTime();
+      clickedItem = item;
+   }
+}
+
+void KrBriefView::slotDoubleClicked( QIconViewItem *item ) {
+   CANCEL_TWO_CLICK_RENAME;
+   if ( !item )
+      return ;
+   QString tmp = dynamic_cast<KrViewItem*>( item ) ->name();
+   op()->emitExecuted(tmp);
+}
+
 void KrBriefView::prepareForActive() {
    KrView::prepareForActive();
    setFocus();
@@ -259,6 +292,10 @@ void KrBriefView::initProperties() {
       _properties->sortMode = static_cast<KrViewProperties::SortSpec>( _properties->sortMode |
 				 KrViewProperties::IgnoreCase );
 	_properties->localeAwareCompareIsCaseSensitive = QString( "a" ).localeAwareCompare( "B" ) > 0; // see KDE bug #40131
+}
+
+void KrBriefView::slotRightButtonPressed(QIconViewItem*, const QPoint& point) {
+	op()->emitEmptyContextMenu(point);
 }
 
 void KrBriefView::refreshColors() {
@@ -343,6 +380,250 @@ void KrBriefView::slotCurrentChanged( QIconViewItem * item ) {
    _nameToMakeCurrent = static_cast<KrBriefViewItem*>( item ) ->name();
 }
 
+void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
+   bool callDefaultHandler = true, processEvent = true, selectionChanged = false;
+   pressedItem = 0;
+
+   QIconViewItem * oldCurrent = currentItem();
+   QIconViewItem *newCurrent = findItem( contentsToViewport( e->pos() ) );
+   if (e->button() == RightButton)
+   {
+	if (KrSelectionMode::getSelectionHandler()->rightButtonSelects() || 
+		(((e->state() & ShiftButton) || (e->state() & ControlButton))) && KrSelectionMode::getSelectionHandler()->shiftCtrlRightButtonSelects())
+     {
+       if (KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection() && !(e->state() & ShiftButton)
+          && !(e->state() & ControlButton) && !(e->state() & AltButton))
+       {
+         if (newCurrent)
+         {
+           if (KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0)
+           {
+             swushSelects = !newCurrent->isSelected();
+             lastSwushPosition = newCurrent;
+           }
+           newCurrent->setSelected(!newCurrent->isSelected(), true);
+           newCurrent->repaint();
+			  selectionChanged = true;
+         }
+         callDefaultHandler = false;
+         processEvent = false;
+         e->accept();
+       }
+     }
+     else
+     {
+       callDefaultHandler = false;
+       processEvent = false;
+       e->accept();
+     }
+   }
+   if (e->button() == LeftButton)
+   {
+     dragStartPos = e->pos();
+	  if (KrSelectionMode::getSelectionHandler()->leftButtonSelects() || 
+	  		(((e->state() & ShiftButton) || (e->state() & ControlButton))) &&
+			KrSelectionMode::getSelectionHandler()->shiftCtrlLeftButtonSelects())
+     {
+       if (KrSelectionMode::getSelectionHandler()->leftButtonPreservesSelection() && !(e->state() & ShiftButton)
+          && !(e->state() & ControlButton) && !(e->state() & AltButton))
+       {
+         if (newCurrent)
+         {
+           newCurrent->setSelected(!newCurrent->isSelected(), true);
+           newCurrent->repaint();
+			  selectionChanged = true;
+         }
+         callDefaultHandler = false;
+         processEvent = false;
+         e->accept();
+       }
+     }
+     else
+     {
+       callDefaultHandler = false;
+       processEvent = false;
+       e->accept();
+     }
+   }
+
+   modifierPressed = false;
+   if ( (e->state() & ShiftButton) || (e->state() & ControlButton) || (e->state() & AltButton) ) {
+      CANCEL_TWO_CLICK_RENAME;
+      modifierPressed = true;
+   }
+
+   // stop quick search in case a mouse click occured
+   KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+   if ( _config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
+      if ( MAIN_VIEW ) {
+         if ( ACTIVE_PANEL ) {
+            if ( ACTIVE_PANEL->quickSearch ) {
+               if ( ACTIVE_PANEL->quickSearch->isShown() ) {
+                  stopQuickSearch( 0 );
+               }
+            }
+         }
+      }
+   }
+
+   if ( !_focused )
+   	op()->emitNeedFocus();
+   if (processEvent && ( (e->state() & ShiftButton) || (e->state() & ControlButton) || (e->state() & AltButton) ) && !KrSelectionMode::getSelectionHandler()->useQTSelection()){
+      if ( oldCurrent && newCurrent && oldCurrent != newCurrent && e->state() & ShiftButton ) {
+         int oldPos = oldCurrent->index();
+         int newPos = newCurrent->index();
+         QIconViewItem *top = 0, *bottom = 0;
+         if ( oldPos > newPos ) {
+            top = newCurrent;
+            bottom = oldCurrent;
+         } else {
+            top = oldCurrent;
+            bottom = newCurrent;
+         }
+         while( top )
+         {
+            if ( top->isSelected() ) {
+               top->setSelected( true, true );
+               selectionChanged = true;
+            }
+            if ( top == bottom )
+               break;
+            top = top->nextItem();
+         }
+         QIconView::setCurrentItem( newCurrent );
+         callDefaultHandler = false;
+      }
+   }
+	
+	if (selectionChanged)
+		updateView(); // don't call triggerUpdate directly!
+	
+   //   QIconViewItem * i = findItem( contentsToViewport( e->pos() ) );
+   if (callDefaultHandler)
+   {
+     dragStartPos = QPoint( -1, -1 );
+
+     QString name = QString::null;    // will the file be deleted by the mouse event?
+     if( newCurrent )                 // save the name of the file
+       name = static_cast<KrBriefViewItem*>( newCurrent ) ->name();
+
+     KIconView::contentsMousePressEvent( e );
+
+     if( name.isEmpty() || _dict.find( name ) == 0 ) // is the file still valid?
+       newCurrent = 0;                // if not, don't do any crash...
+   } else {
+     // emitting the missing signals from QIconView::contentsMousePressEvent();
+     // the right click signal is not emitted as it is used for selection
+
+     QPoint vp = contentsToViewport( e->pos() );
+
+     if( !newCurrent ) {
+       emit pressed( pressedItem = newCurrent );
+       emit pressed( newCurrent, viewport()->mapToGlobal( vp ) );
+     }
+
+     emit mouseButtonPressed( e->button(), newCurrent, viewport()->mapToGlobal( vp ) );
+   }
+
+   //   if (i != 0) // comment in, if click sould NOT select
+   //     setSelected(i, FALSE);
+   if (newCurrent) QIconView::setCurrentItem(newCurrent);
+
+   if ( ACTIVE_PANEL->quickSearch->isShown() ) {
+      ACTIVE_PANEL->quickSearch->hide();
+      ACTIVE_PANEL->quickSearch->clear();
+      krDirUp->setEnabled( true );
+   }
+   if ( OTHER_PANEL->quickSearch->isShown() ) {
+      OTHER_PANEL->quickSearch->hide();
+      OTHER_PANEL->quickSearch->clear();
+      krDirUp->setEnabled( true );
+   }
+}
+
+void KrBriefView::contentsMouseReleaseEvent( QMouseEvent * e ) {
+  if (e->button() == RightButton)
+    contextMenuTimer.stop();
+  KIconView::contentsMouseReleaseEvent( e );
+
+  if( pressedItem ) {
+    QPoint vp = contentsToViewport( e->pos() );
+    QIconViewItem *newCurrent = findItem( vp );
+
+    if( pressedItem == newCurrent ) {
+      // emitting the missing signals from QIconView::contentsMouseReleaseEvent();
+      // the right click signal is not emitted as it is used for selection
+
+      if( !newCurrent ) {
+        emit clicked( newCurrent );
+        emit clicked( newCurrent, viewport()->mapToGlobal( vp ) );
+      }
+
+      emit mouseButtonClicked( e->button(), newCurrent, viewport()->mapToGlobal( vp ) );
+    }
+
+    pressedItem = 0;
+  }
+}
+
+void KrBriefView::contentsMouseMoveEvent ( QMouseEvent * e ) {
+   if ( ( singleClicked || renameTimer.isActive() ) && findItem( contentsToViewport( e->pos() ) ) != clickedItem )
+      CANCEL_TWO_CLICK_RENAME;
+   if ( dragStartPos != QPoint( -1, -1 ) &&
+        e->state() & LeftButton && ( dragStartPos - e->pos() ).manhattanLength() > QApplication::startDragDistance() )
+      startDrag();
+   if (KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection() 
+      && KrSelectionMode::getSelectionHandler()->rightButtonSelects() 
+      && KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0 && e->state() == Qt::RightButton)
+      {
+         QIconViewItem *newItem = findItem( contentsToViewport( e->pos() ) );
+         e->accept();
+         if (newItem != lastSwushPosition && newItem)
+         {
+           // is the new item above or below the previous one?
+           QIconViewItem * above = newItem;
+           QIconViewItem * below = newItem;
+           for (;(above || below) && above != lastSwushPosition && below != lastSwushPosition;)
+           {
+             if (above)
+               above = above->nextItem();
+             if (below)
+               below = below->prevItem();
+           }
+           if (above && (above == lastSwushPosition))
+           {
+             for (; above != newItem; above = above->prevItem())
+               above->setSelected(swushSelects,true);
+             newItem->setSelected(swushSelects,true);
+             lastSwushPosition = newItem;
+             updateView();
+           }
+           else if (below && (below == lastSwushPosition))
+           {
+             for (; below != newItem; below = below->nextItem())
+               below->setSelected(swushSelects,true);
+             newItem->setSelected(swushSelects,true);
+             lastSwushPosition = newItem;
+             updateView();
+           }
+           contextMenuTimer.stop();
+         }
+         // emitting the missing signals from QIconView::contentsMouseMoveEvent();
+         if( newItem )
+           emit onItem( newItem );
+         else
+           emit onViewport();
+      }
+      else
+         KIconView::contentsMouseMoveEvent( e );
+}
+
+void KrBriefView::contentsWheelEvent( QWheelEvent * e ) {
+   if ( !_focused )
+      op()->emitNeedFocus();
+   KIconView::contentsWheelEvent( e );
+}
+
 void KrBriefView::imStartEvent(QIMEvent* e)
 {
   if ( ACTIVE_PANEL->quickSearch->isShown() ) {
@@ -357,9 +638,9 @@ void KrBriefView::imStartEvent(QIMEvent* e)
       if ( ACTIVE_PANEL->quickSearch->isHidden() ) {
         ACTIVE_PANEL->quickSearch->show();
 								// hack: if the pressed key requires a scroll down, the selected
-								// item is "below" the quick search window, as the list view will
+								// item is "below" the quick search window, as the icon view will
 								// realize its new size after the key processing. The following line
-								// will resize the list view immediately.
+								// will resize the icon view immediately.
         ACTIVE_PANEL->layout->activate();
 								// second, we need to disable the dirup action - hack!
         krDirUp->setEnabled( false );
@@ -663,9 +944,9 @@ void KrBriefView::keyPressEvent( QKeyEvent * e ) {
 							if ( ACTIVE_PANEL->quickSearch->isHidden() ) {
 								ACTIVE_PANEL->quickSearch->show();
 								// hack: if the pressed key requires a scroll down, the selected
-								// item is "below" the quick search window, as the list view will
+								// item is "below" the quick search window, as the icon view will
 								// realize its new size after the key processing. The following line
-								// will resize the list view immediately.
+								// will resize the icon view immediately.
 								ACTIVE_PANEL->layout->activate();
 								// second, we need to disable the dirup action - hack!
 								krDirUp->setEnabled( false );
@@ -775,6 +1056,11 @@ void KrBriefView::setNameToMakeCurrent( QIconViewItem * it ) {
    KrView::setNameToMakeCurrent( static_cast<KrBriefViewItem*>( it ) ->name() );
 }
 
+void KrBriefView::slotMouseClicked( int button, QIconViewItem * item, const QPoint&, int ) {
+   pressedItem = 0; // if the signals are emitted, don't emit twice at contentsMouseReleaseEvent
+   if ( button == Qt::MidButton )
+      emit middleButtonClicked( item );
+}
 
 bool KrBriefView::event( QEvent *e ) {
    modifierPressed = false;
