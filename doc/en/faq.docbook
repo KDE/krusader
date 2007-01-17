@@ -865,6 +865,22 @@ copy/link the
   </qandaentry>
 
 
+  <qandaentry>
+  <question id="faqu_equal_lookandfeel">
+  <para>How can I set the look&and;Feel of 2 different users equal?</para>
+  </question>
+  <answer>
+  <para>Presuming that the the current behavior is the good configuration, 
+        you can copy the current configuration to the other user.
+       <screen><prompt>#</prompt> <userinput><command>cp ~/.kde/share/config/krusaderrc /home/foo_user/.kde/share/config</command></userinput></screen>
+       And when the other user is Root use:
+       <screen><prompt>#</prompt> <userinput><command>cp ~/.kde/share/config/krusaderrc /root/.kde/share/config</command></userinput></screen>
+      </para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+  </qandaentry>
+
+
 </qandaset>
 </sect1>
 
