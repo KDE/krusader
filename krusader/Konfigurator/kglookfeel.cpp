@@ -42,6 +42,7 @@
 #include <kglobal.h>
 #include <kstandarddirs.h>
 #include "../Panel/krselectionmode.h"
+#include "../Panel/listpanel.h"
 
 #define PAGE_OPERATION     0
 #define PAGE_PANEL         1
@@ -158,7 +159,23 @@ void KgLookFeel::setupPanelTab() {
     };
 
   KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup( 2, 0, panelSettings, 6 /*count*/, panelGrp, 0, PAGE_PANEL );
+  
   panelGrid->addWidget( panelSett, 3, 0 );
+  
+// ----------------------------------------------------------------------------------
+//  ---------------------------- DEFAULT PANEL TYPE -------------------------------------
+// ----------------------------------------------------------------------------------
+  
+  panelGrid->addWidget( createLine( panelGrp, "lookSep4" ), 4, 0 );
+  
+  QHBox *hbox3 = new QHBox( panelGrp, "lookAndFeelHBox3" );
+  QLabel *lbl2 = new QLabel( i18n( "Default panel type:" ), hbox3, "lookAndFeelLabel3" );
+  KONFIGURATOR_NAME_VALUE_PAIR panelTypes[] =
+    {{ i18n( "Detailed" ),  "Detailed" },
+     { i18n( "Brief" ),     "Brief" }};
+  KonfiguratorComboBox *panelCombo = createComboBox( "Look&Feel", "Default Panel Type", _DefaultPanelType, panelTypes, 2, hbox3, false, false, PAGE_PANEL );
+  createSpacer ( hbox3 );
+  panelGrid->addWidget( hbox3, 5, 0 );  
 
   panelLayout->addWidget( panelGrp, 0, 0 );
 }

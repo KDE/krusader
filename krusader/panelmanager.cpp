@@ -9,6 +9,7 @@
 #include "Panel/listpanel.h"
 #include "Panel/panelfunc.h"
 #include "krusaderview.h"
+#include "defaults.h"
 
 #define HIDE_ON_SINGLE_TAB  false
 
@@ -67,9 +68,9 @@ void PanelManager::slotChangePanel( ListPanel *p ) {
    _self->slotFocusOnMe();
 }
 
-ListPanel* PanelManager::createPanel( bool setCurrent ) {
+ListPanel* PanelManager::createPanel( QString type, bool setCurrent ) {
    // create the panel and add it into the widgetstack
-   ListPanel * p = new ListPanel( _stack, _left );
+   ListPanel * p = new ListPanel( type, _stack, _left );
    _stack->addWidget( p );
 
    // now, create the corrosponding tab
@@ -94,23 +95,34 @@ void PanelManager::startPanel( ListPanel *panel, const KURL& path ) {
 
 void PanelManager::saveSettings( KConfig *config, const QString& key, bool localOnly ) {
    QStringList l;
+   QStringList types;
    int i=0, cnt=0;
    while (cnt < _tabbar->count()) {
       PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt(i));
       if (t && t->panel) {
          l << ( localOnly ? t->panel->realPath() : vfs::pathOrURL( t->panel->virtualPath() ) );
+         types << t->panel->getType();
          ++cnt;
       }
       ++i;
    }
    config->writePathEntry( key, l );
+   config->writeEntry( key + " Types", types );
 }
 
 void PanelManager::loadSettings( KConfig *config, const QString& key ) {
    QStringList l = config->readPathListEntry( key );
+   QStringList types = config->readListEntry( key + " Types" );
+   
    if( l.count() < 1 )
      return;
      
+   while( types.count() < l.count() )
+   {
+      KConfigGroupSaver saver( config, "Look&Feel");
+      types << krConfig->readEntry( "Default Panel Type", _DefaultPanelType );
+   }
+   
    int i=0, totalTabs = _tabbar->count();
    
    while (i < totalTabs && i < (int)l.count() ) 
@@ -118,6 +130,8 @@ void PanelManager::loadSettings( KConfig *config, const QString& key ) {
       PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt(i));
       if (t && t->panel) 
       {
+         if( t->panel->getType() != types[ i ] )
+           t->panel->changeType( types[ i ] );
          t->panel->otherPanel = _other;
          _other->otherPanel = t->panel;
          t->panel->func->files()->vfs_enableRefresh( true );
@@ -130,11 +144,16 @@ void PanelManager::loadSettings( KConfig *config, const QString& key ) {
      slotCloseTab( --totalTabs );
       
    for(; i < (int)l.count(); i++ )
-     slotNewTab( vfs::fromPathOrURL(l[i]), false );
+     slotNewTab( vfs::fromPathOrURL(l[i]), false, types[ i ] );
 }
 
-void PanelManager::slotNewTab(const KURL& url, bool setCurrent) {
-   ListPanel *p = createPanel( setCurrent );   
+void PanelManager::slotNewTab(const KURL& url, bool setCurrent, QString type) {
+   if( type.isNull() )
+   {
+       krConfig->setGroup( "Look&Feel" );
+       type = krConfig->readEntry( "Default Panel Type", _DefaultPanelType );
+   }
+   ListPanel *p = createPanel( type, setCurrent );   
    // update left/right pointers
    p->otherPanel = _other;
    if( setCurrent )
@@ -246,7 +265,8 @@ void PanelManager::slotRecreatePanels() {
      PanelTab *updatedPanel = dynamic_cast<PanelTab*>(_tabbar->tabAt( i ) );
      
      ListPanel *oldPanel = updatedPanel->panel;
-     ListPanel *newPanel = new ListPanel( _stack, _left );
+     QString type = oldPanel->getType();
+     ListPanel *newPanel = new ListPanel( type, _stack, _left );
      _stack->addWidget( newPanel, i );
      _stack->removeWidget( oldPanel );
 

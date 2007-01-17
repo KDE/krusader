@@ -72,6 +72,7 @@ class SyncBrowseButton;
 class KrBookmarkButton;
 class KPushButton;
 class ListPanelFunc;
+class QHeader;
 
 class ListPanel : public QWidget {
    friend class ListPanelFunc;
@@ -80,9 +81,13 @@ public:
 	#define ITEM2VFILE(PANEL_PTR, KRVIEWITEM)		PANEL_PTR->func->files()->vfs_search(KRVIEWITEM->name())
 	#define NAME2VFILE(PANEL_PTR, STRING_NAME)	PANEL_PTR->func->files()->vfs_search(STRING_NAME)
    // constructor create the panel, but DOESN'T fill it with data, use start()
-   ListPanel( QWidget *parent, bool &left, const char *name = 0 );
+   ListPanel( QString panelType, QWidget *parent, bool &left, const char *name = 0 );
    ~ListPanel();
    void start( KURL url = KURL(), bool immediate = false );
+   
+   const QString & getType() { return panelType; }
+   void changeType( const QString & );
+   
    KURL virtualPath() const;
 	QString realPath() const;
    QString getCurrentName();
@@ -133,6 +138,8 @@ protected:
    virtual void showEvent( QShowEvent * );
    virtual void hideEvent( QHideEvent * );
    virtual bool eventFilter ( QObject * watched, QEvent * e );
+   
+   void createView();
 
 protected slots:
    void handleDropOnView(QDropEvent *, QWidget *destWidget=0); // handles drops on the view only
@@ -154,6 +161,7 @@ signals:
    void finishedDragging();              // currently
 
 public:
+   QString panelType;
    ListPanelFunc	*func;
    KrView *view;
    ListPanel	*otherPanel;
@@ -182,6 +190,8 @@ public:
    SyncBrowseButton *syncBrowseButton;
 	KPushButton *inlineRefreshCancelButton;
 	KIO::Job *inlineRefreshJob;
+	QSplitter *splt;
+   QHeader * header;
 
 protected:
    KURL _realPath; // named with _ to keep realPath() compatability

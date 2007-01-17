@@ -169,6 +169,9 @@ KAction *Krusader::actLocationBar = 0;
 KAction *Krusader::actPopularUrls = 0;
 KAction *Krusader::actJumpBack = 0;
 KAction *Krusader::actSetJumpBack = 0;
+KAction *Krusader::actDetailedView = 0;
+KAction *Krusader::actBriefView = 0;
+
 KToggleAction *Krusader::actToggleTerminal = 0;
 KToggleAction *Krusader::actVerticalMode = 0;
 KRadioAction  *Krusader::actSelectNewerAndSingle = 0;
@@ -250,16 +253,22 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
    // init the checksum tools
    initChecksumModule();
 
+   krConfig->setGroup( "Look&Feel" );
+   QString defaultType = krConfig->readEntry( "Default Panel Type", _DefaultPanelType );
+
    krConfig->setGroup( "Startup" );
    QStringList leftTabs = krConfig->readPathListEntry( "Left Tab Bar" );
    QStringList rightTabs = krConfig->readPathListEntry( "Right Tab Bar" );
+   QStringList leftTabTypes = krConfig->readListEntry( "Left Tab Bar Types" );
+   QStringList rightTabTypes = krConfig->readListEntry( "Right Tab Bar Types" );
    int         leftActiveTab = krConfig->readNumEntry( "Left Active Tab", 0 );
    int         rightActiveTab = krConfig->readNumEntry( "Right Active Tab", 0 );
    QString     startProfile = krConfig->readEntry("Starter Profile Name", QString::null );
-
+   
    // get command-line arguments
    if ( args->isSet( "left" ) ) {
       leftTabs = QStringList::split( ',', args->getOption( "left" ) );
+      leftTabTypes.clear();
 
       leftActiveTab = 0;
 
@@ -274,6 +283,7 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
    }
    if ( args->isSet( "right" ) ) {
       rightTabs = QStringList::split( ',', args->getOption( "right" ) );
+      rightTabTypes.clear();
 
       rightActiveTab = 0;
 
@@ -287,22 +297,35 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
       startProfile = QString::null;
    }
 
+   while( leftTabTypes.count() < leftTabs.count() )
+      leftTabTypes += defaultType;
+   while( rightTabTypes.count() < rightTabs.count() )
+      rightTabTypes += defaultType;
+
    if ( args->isSet( "profile" ) )
     startProfile = args->getOption( "profile" );
 
    if( !startProfile.isEmpty() ) {
       leftTabs.clear();
-      rightTabs.clear();      
+      leftTabTypes.clear();
+      rightTabs.clear();   
+      rightTabTypes.clear();   
       leftActiveTab = rightActiveTab = 0;
    }
 
    if( leftTabs.count() == 0 )
+   {
      leftTabs.push_back( QDir::homeDirPath() );
+     leftTabTypes.push_back( defaultType );
+   }
    if( rightTabs.count() == 0 )
+   {
      rightTabs.push_back( QDir::homeDirPath() );
+     rightTabTypes.push_back( defaultType );
+   }
 
    // starting the panels
-   mainView->start( leftTabs, leftActiveTab, rightTabs, rightActiveTab );
+   mainView->start( leftTabs, leftTabTypes, leftActiveTab, rightTabs, rightTabTypes, rightActiveTab );
 
    // create the user menu
    userMenu = new UserMenu( this );
@@ -519,6 +542,13 @@ void Krusader::setupActions() {
    actToggleTerminal = new KToggleAction( i18n( "Show Terminal &Emulator" ), ALT + CTRL + Key_T, SLOTS,
                                           SLOT( toggleTerminal() ), actionCollection(), "toggle terminal emulator" );
    actToggleTerminal->setChecked( false );
+
+   actDetailedView = new KAction( i18n( "&Detailed View" ), ALT + SHIFT + Key_D, SLOTS,
+                                SLOT( setDetailedView() ), actionCollection(), "detailed_view" );
+
+   actBriefView = new KAction( i18n( "&Brief View" ), ALT + SHIFT + Key_B, SLOTS,
+                                SLOT( setBriefView() ), actionCollection(), "brief_view" );
+
    actToggleHidden = new KToggleAction( i18n( "Show &Hidden Files" ), CTRL + Key_Period, SLOTS,
                                         SLOT( toggleHidden() ), actionCollection(), "toggle hidden files" );
    actSwapPanels = new KAction( i18n( "S&wap Panels" ), CTRL + Key_U, SLOTS,

@@ -37,13 +37,14 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../krslots.h"
 #include "../VFS/krarchandler.h"
 #include "../Dialogs/krspecialwidgets.h"
+#include <qheader.h>
 
 #define CANCEL_TWO_CLICK_RENAME {singleClicked = false;renameTimer.stop();}
 #define VF	getVfile()
 
-KrBriefView::KrBriefView( QWidget *parent, bool &left, KConfig *cfg, const char *name ):
-	KIconView(parent, name), KrView( cfg ), _currDragItem( 0 ), currentlyRenamedItem( 0 ),
-	    pressedItem( 0 ) {
+KrBriefView::KrBriefView( QHeader * headerIn, QWidget *parent, bool &left, KConfig *cfg, const char *name ):
+	KIconView(parent, name), KrView( cfg ), header( headerIn ), _currDragItem( 0 ),
+            currentlyRenamedItem( 0 ), pressedItem( 0 ) {
 	setWidget( this );
 	_nameInKConfig = QString( "KrBriefView" ) + QString( ( left ? "Left" : "Right" ) );
 	krConfig->setGroup("Private");
@@ -87,6 +88,7 @@ void KrBriefView::setup() {
    setItemTextPos( QIconView::Right );
    setArrangement( QIconView::TopToBottom );
    setWordWrapIconText( false );
+   setSpacing( 0 );
 
    // allow in-place renaming
 
@@ -101,7 +103,19 @@ void KrBriefView::setup() {
    restoreSettings();
    refreshColors();
 
-   CANCEL_TWO_CLICK_RENAME;	
+   CANCEL_TWO_CLICK_RENAME;
+
+   // setting the header 
+   while( header->count() )
+      header->removeLabel( 0 );
+
+   header->addLabel( i18n( "Name" ) );
+   header->setStretchEnabled( true );
+
+   header->setSortIndicator( 0, sortDirection() ? Qt::Ascending : Qt::Descending );
+   connect( header, SIGNAL(clicked( int )), this, SLOT( changeSortOrder()));
+
+   header->show();
 }
 
 KrBriefView::~KrBriefView() {
@@ -1167,6 +1181,13 @@ void KrBriefView::updateItem(KrViewItem* item) {
 
 void KrBriefView::slotRightButtonPressed(QIconViewItem*, const QPoint& point) {
 	op()->emitEmptyContextMenu(point);
+}
+
+void KrBriefView::changeSortOrder()
+{
+	bool asc = !sortDirection();
+	header->setSortIndicator( 0, asc ? Qt::Ascending : Qt::Descending );
+	sort( asc );
 }
 
 #include "krbriefview.moc"

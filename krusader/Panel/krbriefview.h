@@ -37,6 +37,7 @@ A
 
 class KrBriefViewItem;
 class QDragMoveEvent;
+class QHeader;
 
 /**
  * KrBriefView implements everthing and anything regarding a brief view in a filemananger.
@@ -49,7 +50,7 @@ class KrBriefView: public KIconView, public KrView {
 	friend class KrBriefViewItem;
 	Q_OBJECT
 public:
-	KrBriefView( QWidget *parent, bool &left, KConfig *cfg = krConfig, const char *name = 0 );
+	KrBriefView( QHeader *header, QWidget *parent, bool &left, KConfig *cfg = krConfig, const char *name = 0 );
 	virtual ~KrBriefView();
 	virtual inline KrViewItem *getFirst() { return dynamic_cast<KrViewItem*>( firstItem() ); }
 	virtual inline KrViewItem *getLast() { return dynamic_cast<KrViewItem*>( lastItem() ); }
@@ -128,6 +129,7 @@ public slots:
 	void quickSearch( const QString &, int = 0 );
 	void stopQuickSearch( QKeyEvent* );
 	void handleQuickSearchEvent( QKeyEvent* );
+	void changeSortOrder();
 
   
 signals:
@@ -135,6 +137,7 @@ signals:
 	void gotDrop(QDropEvent *);
 
 private:
+	QHeader * header;
 	bool swushSelects;
 	QPoint dragStartPos;
 	QIconViewItem *lastSwushPosition;

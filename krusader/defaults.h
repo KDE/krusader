@@ -113,6 +113,8 @@
 #define _SingleClickSelects false
 // Numeric Permissions
 #define _NumericPermissions false
+// Create brief mode panels
+#define _DefaultPanelType   "Detailed"
 // Show splashscreen
 #define _ShowSplashScreen true
 // Single instance mode

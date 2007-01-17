@@ -1,4 +1,4 @@
-<!DOCTYPE kpartgui ><kpartgui version="14" name="krusader" >
+<!DOCTYPE kpartgui ><kpartgui version="15" name="krusader" >
  <MenuBar>
   <Menu name="file" >
    <text>&amp;File</text>
@@ -61,6 +61,9 @@
   </Menu>
   <Menu name="myview" >
    <text>&amp;View</text>
+   <Action name="detailed_view" />
+   <Action name="brief_view" />
+   <Separator/>
    <Action name="toggle hidden files" />
    <Action name="all files" />
    <Action name="exec files" />

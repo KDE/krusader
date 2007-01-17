@@ -52,7 +52,7 @@
 KrusaderView::KrusaderView( QWidget *parent ) : QWidget( parent, "KrusaderView" ), activePanel(0), 
 								konsole_part( 0L ) {}
 
-void KrusaderView::start( QStringList leftTabs, int leftActiveTab, QStringList rightTabs, int rightActiveTab ) {
+void KrusaderView::start( QStringList leftTabs, QStringList leftTypes, int leftActiveTab, QStringList rightTabs, QStringList rightTypes, int rightActiveTab ) {
   ////////////////////////////////
   // make a 1x1 mainLayout, it will auto-expand:
   mainLayout = new QGridLayout( this, 1, 1 );
@@ -72,8 +72,8 @@ void KrusaderView::start( QStringList leftTabs, int leftActiveTab, QStringList r
   // now, create the panels inside the manager
   //left = new ListPanel( leftMng, true );
   //right = new ListPanel( rightMng, false );
-  left = leftMng->createPanel();
-  right = rightMng->createPanel();
+  left = leftMng->createPanel( leftTypes[ 0 ] );
+  right = rightMng->createPanel( rightTypes[ 0 ] );
 
   left->setOther( right );
   right->setOther( left );
@@ -115,10 +115,10 @@ void KrusaderView::start( QStringList leftTabs, int leftActiveTab, QStringList r
   activePanel->slotFocusOnMe();  // left starts out active
      
   for(unsigned int i = 1; i < leftTabs.count(); i++ )
-    leftMng->slotNewTab( leftTabs[ i ] );
+    leftMng->slotNewTab( leftTabs[ i ], false, leftTypes[ i ] );
 
   for(unsigned int j = 1; j < rightTabs.count(); j++ )
-    rightMng->slotNewTab( rightTabs[ j ] );
+    rightMng->slotNewTab( rightTabs[ j ], false, rightTypes[ j ] );
        
   leftMng->setActiveTab( leftActiveTab );
   rightMng->setActiveTab( rightActiveTab );

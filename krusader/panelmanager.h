@@ -27,7 +27,7 @@ class PanelManager: public QWidget {
      * Called once by KrusaderView to create the first panel. Subsequent called are done internally
      * Note: only creates the panel, but doesn't start the VFS inside it. Use startPanel() for that.
      */
-    ListPanel* createPanel( bool setCurrent = true );
+    ListPanel* createPanel( QString type, bool setCurrent = true );
     /**
      * Called once by KrusaderView to start the first panel. Subsequent called are done internally
      * Only starts the VFS inside the panel, you must first use createPanel() !
@@ -50,7 +50,7 @@ class PanelManager: public QWidget {
      * Called externally to start a new tab. Example of usage would be the "open in a new tab"
      * action, from the context-menu.
      */
-    void slotNewTab(const KURL& url, bool setCurrent = true );
+    void slotNewTab(const KURL& url, bool setCurrent = true, QString type = QString::null );
     void slotNewTab();
     void slotNextTab();
     void slotPreviousTab();	 

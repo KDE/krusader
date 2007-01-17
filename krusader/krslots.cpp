@@ -363,6 +363,16 @@ void KRslots::runKonfigurator(bool firstTime) {
   delete konfigurator;
 }
 
+void KRslots::setDetailedView() {
+  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != "Detailed" )
+    ACTIVE_PANEL->changeType( "Detailed" );
+}
+
+void KRslots::setBriefView() {
+  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != "Brief" )
+    ACTIVE_PANEL->changeType( "Brief" );
+}
+
 void KRslots::toggleHidden(){
   krConfig->setGroup("Look&Feel");
   bool show = !krConfig->readBoolEntry("Show Hidden",_ShowHidden);

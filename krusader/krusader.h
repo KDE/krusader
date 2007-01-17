@@ -133,6 +133,7 @@ class Krusader : public KParts::MainWindow, public DCOPObject {
     static KAction *actCombine, *actUserMenu, *actManageUseractions, *actSyncDirs, *actSyncBrowse;
     static KAction *actF2, *actF3, *actF4, *actF5, *actF6, *actF7, *actF8, *actF9, *actF10;
     static KAction *actPopularUrls, *actLocationBar, *actJumpBack, *actSetJumpBack, *actCreateChecksum, *actMatchChecksum;
+    static KAction *actDetailedView, *actBriefView;
     static KToggleAction *actToggleTerminal, *actVerticalMode;
     static KRadioAction *actSelectNewerAndSingle, *actSelectNewer, *actSelectSingle, 
                         *actSelectDifferentAndSingle, *actSelectDifferent;
