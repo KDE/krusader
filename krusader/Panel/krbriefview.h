@@ -7,6 +7,7 @@
 #include <qtimer.h>
 
 class KrBriefViewItem;
+class QDragMoveEvent;
 
 class KrBriefView: public KIconView, public KrView {
 	friend class KrBriefViewItem;
@@ -53,6 +54,10 @@ protected:
 	virtual void contentsMousePressEvent( QMouseEvent *e );
 	virtual void contentsMouseReleaseEvent (QMouseEvent *e);
 	virtual void contentsMouseMoveEvent ( QMouseEvent * e );
+	virtual bool acceptDrag( QDropEvent* e ) const;
+	virtual void contentsDropEvent( QDropEvent *e );
+	virtual void contentsDragMoveEvent( QDragMoveEvent *e );
+	virtual void startDrag() { op()->startDrag(); }
 	virtual bool event( QEvent *e );
 
 signals:
@@ -98,6 +103,7 @@ private:
 	bool swushSelects;
 	QPoint dragStartPos;
 	QIconViewItem *lastSwushPosition;
+	KrViewItem *_currDragItem;
 	bool singleClicked;
 	bool modifierPressed;
 	QTime clickTime;

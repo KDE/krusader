@@ -35,9 +35,11 @@ KrBriefViewItem::KrBriefViewItem(KrBriefView *parent, QIconViewItem *after, vfil
 		_vf = new vfile("..", 0, "drw-r--r--", 0, false, 0, 0, QString::null, QString::null, 0);
 		
 		setText("..");
-      if ( PROPS->displayIcons )
-         setPixmap( FL_LOADICON( "up" ) );
-      setSelectable( false );
+		if ( PROPS->displayIcons )
+			setPixmap( FL_LOADICON( "up" ) );
+		setSelectable( false );
+		setDragEnabled( false );
+		setDropEnabled( false );
 #ifdef FASTER
 		initiated = true;
 #endif // FASTER
@@ -45,6 +47,8 @@ KrBriefViewItem::KrBriefViewItem(KrBriefView *parent, QIconViewItem *after, vfil
 		if (PROPS->displayIcons)
 			setPixmap(KrView::getIcon(_vf));
 		setText( _vf->vfile_getName() );
+		setDragEnabled( true );
+		setDropEnabled( true );
 	}
 	
 	setRenameEnabled( false );
@@ -117,12 +121,12 @@ void KrBriefViewItem::paintItem(QPainter *p, const QColorGroup &cg) {
 
   QIconViewItem::paintItem(p, _cg);
 
-  if( this == iconView()->currentItem() )
-    paintFocus( p, cg );
+  paintFocus( p, cg );
 }
 
 void KrBriefViewItem::paintFocus(QPainter *p, const QColorGroup &cg) {
-  if ( iconView()->hasFocus() )
+  if ( ( iconView()->hasFocus() && this == iconView()->currentItem() ) || 
+     ((KrBriefView *)iconView())->_currDragItem == this )
   {
     iconView()->style().drawPrimitive(QStyle::PE_FocusRect, p,
        QRect( rect().x(), rect().y(), rect().width(), rect().height() ), cg,

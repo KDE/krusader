@@ -13,7 +13,8 @@
 #define VF	getVfile()
 
 KrBriefView::KrBriefView( QWidget *parent, bool &left, KConfig *cfg, const char *name ):
-	KIconView(parent, name), KrView( cfg ), currentlyRenamedItem( 0 ) {
+	KIconView(parent, name), KrView( cfg ), _currDragItem( 0 ), currentlyRenamedItem( 0 ),
+	    pressedItem( 0 ) {
 	setWidget( this );
 	_nameInKConfig = QString( "KrBriefView" ) + QString( ( left ? "Left" : "Right" ) );
 	setItemTextPos( QIconView::Right );
@@ -55,11 +56,7 @@ void KrBriefView::setup() {
    
    // determine basic settings for the view
    setAcceptDrops( true );
-	setItemsMovable( false );
-   // TODO: setDragEnabled( true );
-   // TODO: setDropVisualizer(false);
-   // TODO: setDropHighlighter(true);
-   // TODO: setSelectionModeExt( KListView::FileManager );
+   setItemsMovable( false );
 
    // allow in-place renaming
 
@@ -328,10 +325,7 @@ void KrBriefView::initOperator() {
 }
 
 KrViewItem *KrBriefView::getKrViewItemAt( const QPoint & vp ) {
-   QPoint point = vp;
-   point.setX( point.x() + contentsX() );
-   point.setY( point.y() + contentsY() );
-   return dynamic_cast<KrViewItem*>( KIconView::findItem( point ) );
+   return dynamic_cast<KrViewItem*>( KIconView::findItem( vp ) );
 }
 
 QString KrBriefView::getCurrentItem() const {
@@ -389,10 +383,7 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
    pressedItem = 0;
 
    QIconViewItem * oldCurrent = currentItem();
-   QPoint point = contentsToViewport( e->pos() );
-   point.setX( point.x() + contentsX() );
-   point.setY( point.y() + contentsY() );
-   QIconViewItem *newCurrent = findItem( point );
+   QIconViewItem *newCurrent = findItem( e->pos() );
    if (e->button() == RightButton)
    {
 	if (KrSelectionMode::getSelectionHandler()->rightButtonSelects() || 
@@ -558,9 +549,7 @@ void KrBriefView::contentsMouseReleaseEvent( QMouseEvent * e ) {
 
   if( pressedItem ) {
     QPoint vp = contentsToViewport( e->pos() );
-    vp.setX( vp.x() + contentsX() );
-    vp.setY( vp.y() + contentsY() );
-    QIconViewItem *newCurrent = findItem( vp );
+    QIconViewItem *newCurrent = findItem( e->pos() );
 
     if( pressedItem == newCurrent ) {
       // emitting the missing signals from QIconView::contentsMouseReleaseEvent();
@@ -579,10 +568,7 @@ void KrBriefView::contentsMouseReleaseEvent( QMouseEvent * e ) {
 }
 
 void KrBriefView::contentsMouseMoveEvent ( QMouseEvent * e ) {
-   QPoint point = e->pos();
-   point.setX( point.x() + contentsX() );
-   point.setY( point.y() + contentsY() );
-   if ( ( singleClicked || renameTimer.isActive() ) && findItem( point ) != clickedItem )
+   if ( ( singleClicked || renameTimer.isActive() ) && findItem( e->pos() ) != clickedItem )
       CANCEL_TWO_CLICK_RENAME;
    if ( dragStartPos != QPoint( -1, -1 ) &&
         e->state() & LeftButton && ( dragStartPos - e->pos() ).manhattanLength() > QApplication::startDragDistance() )
@@ -591,7 +577,7 @@ void KrBriefView::contentsMouseMoveEvent ( QMouseEvent * e ) {
       && KrSelectionMode::getSelectionHandler()->rightButtonSelects() 
       && KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0 && e->state() == Qt::RightButton)
       {
-         QIconViewItem *newItem = findItem( point );
+         QIconViewItem *newItem = findItem( e->pos() );
          e->accept();
          if (newItem != lastSwushPosition && newItem)
          {
@@ -656,6 +642,25 @@ void KrBriefView::showContextMenu()
 	if (lastSwushPosition)
 		lastSwushPosition->setSelected(true);
 	op()->emitContextMenu( contextMenuPoint );
+}
+
+bool KrBriefView::acceptDrag( QDropEvent* ) const {
+   return true;
+}
+
+void KrBriefView::contentsDropEvent( QDropEvent * e ) {
+   _currDragItem = 0;
+   op()->emitGotDrop(e);
+   e->ignore();
+   KIconView::contentsDropEvent( e );                   
+}
+
+void KrBriefView::contentsDragMoveEvent( QDragMoveEvent * e ) {
+   _currDragItem = getKrViewItemAt( e->pos() );
+   if( _currDragItem && !_currDragItem->VF->vfile_isDir() )
+     _currDragItem = 0;
+   
+   KIconView::contentsDragMoveEvent( e );
 }
 
 void KrBriefView::imStartEvent(QIMEvent* e)
