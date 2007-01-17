@@ -1,7 +1,7 @@
 /***************************************************************************
                             krbriefviewitem.h
                              -------------------
-    copyright            : (C) 2000-2002 by Shie Erlich & Rafi Yanai
+    copyright            : (C) 2000-2007 by Shie Erlich & Rafi Yanai & Csaba Karai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------

@@ -1,13 +1,42 @@
+/***************************************************************************
+                   krbriefview.cpp
+                 -------------------
+copyright            : (C) 2000-2007 by Shie Erlich & Rafi Yanai & Csaba Karai
+e-mail               : krusader@users.sourceforge.net
+web site             : http://krusader.sourceforge.net
+---------------------------------------------------------------------------
+Description
+***************************************************************************
+
+A
+
+db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
+88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
+88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
+88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
+88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
+YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
+
+                                         S o u r c e    F i l e
+
+***************************************************************************
+*                                                                         *
+*   This program is free software; you can redistribute it and/or modify  *
+*   it under the terms of the GNU General Public License as published by  *
+*   the Free Software Foundation; either version 2 of the License, or     *
+*   (at your option) any later version.                                   *
+*                                                                         *
+***************************************************************************/
 #include "krbriefview.h"
 #include "krbriefviewitem.h"
-#include "../defaults.h"
 #include "krcolorcache.h"
 #include "krselectionmode.h"
 #include "../krusader.h"
 #include "../kicons.h"
+#include "../defaults.h"
 #include "../krslots.h"
-#include "../Dialogs/krspecialwidgets.h"
 #include "../VFS/krarchandler.h"
+#include "../Dialogs/krspecialwidgets.h"
 
 #define CANCEL_TWO_CLICK_RENAME {singleClicked = false;renameTimer.stop();}
 #define VF	getVfile()
@@ -17,46 +46,47 @@ KrBriefView::KrBriefView( QWidget *parent, bool &left, KConfig *cfg, const char 
 	    pressedItem( 0 ) {
 	setWidget( this );
 	_nameInKConfig = QString( "KrBriefView" ) + QString( ( left ? "Left" : "Right" ) );
-	setItemTextPos( QIconView::Right );
-	setArrangement( QIconView::TopToBottom );
-	setWordWrapIconText( false );
-
-	setBackgroundMode( PaletteBase );
-}
-
-KrBriefView::~KrBriefView() {
-	delete _properties; _properties = 0;
-	delete _operator; _operator = 0;
+	krConfig->setGroup("Private");
+	if (krConfig->readBoolEntry("Enable Input Method", true))
+		setInputMethodEnabled(true);
 }
 
 void KrBriefView::setup() {
-   { // use the {} so that KConfigGroupSaver will work correctly!
-      KConfigGroupSaver grpSvr( _config, "Look&Feel" );
-      setFont( _config->readFontEntry( "Filelist Font", _FilelistFont ) );
-      // decide on single click/double click selection
-      if ( _config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) ) {
-         connect( this, SIGNAL( executed( QIconViewItem* ) ), this, SLOT( slotExecuted( QIconViewItem* ) ) );
-      } else {
-         connect( this, SIGNAL( clicked( QIconViewItem* ) ), this, SLOT( slotClicked( QIconViewItem* ) ) );
-         connect( this, SIGNAL( doubleClicked( QIconViewItem* ) ), this, SLOT( slotDoubleClicked( QIconViewItem* ) ) );
-      }
-
-      // a change in the selection needs to update totals
-      connect( this, SIGNAL( onItem( QIconViewItem* ) ), this, SLOT( slotItemDescription( QIconViewItem* ) ) );
-      connect( this, SIGNAL( contextMenuRequested( QIconViewItem*, const QPoint& ) ),
-               this, SLOT( handleContextMenu( QIconViewItem*, const QPoint& ) ) );
-		connect( this, SIGNAL( rightButtonPressed(QIconViewItem*, const QPoint&)),
-			this, SLOT(slotRightButtonPressed(QIconViewItem*, const QPoint&)));
-      connect( this, SIGNAL( currentChanged( QIconViewItem* ) ), this, SLOT( setNameToMakeCurrent( QIconViewItem* ) ) );
-      connect( this, SIGNAL( currentChanged( QIconViewItem* ) ), this, SLOT( transformCurrentChanged( QIconViewItem* ) ) );
-      connect( this, SIGNAL( mouseButtonClicked ( int, QIconViewItem *, const QPoint & ) ),
-               this, SLOT( slotMouseClicked ( int, QIconViewItem *, const QPoint & ) ) );
-      connect( &KrColorCache::getColorCache(), SIGNAL( colorsRefreshed() ), this, SLOT( refreshColors() ) );
+   lastSwushPosition = 0;
+      
+   // use the {} so that KConfigGroupSaver will work correctly!
+   KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+   setFont( _config->readFontEntry( "Filelist Font", _FilelistFont ) );
+   // decide on single click/double click selection
+   if ( _config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) &&
+           KGlobalSettings::singleClick() ) {
+      connect( this, SIGNAL( executed( QIconViewItem* ) ), this, SLOT( slotExecuted( QIconViewItem* ) ) );
+   } else {
+      connect( this, SIGNAL( clicked( QIconViewItem* ) ), this, SLOT( slotClicked( QIconViewItem* ) ) );
+      connect( this, SIGNAL( doubleClicked( QIconViewItem* ) ), this, SLOT( slotDoubleClicked( QIconViewItem* ) ) );
    }
+
+   // a change in the selection needs to update totals
+   connect( this, SIGNAL( onItem( QIconViewItem* ) ), this, SLOT( slotItemDescription( QIconViewItem* ) ) );
+   connect( this, SIGNAL( contextMenuRequested( QIconViewItem*, const QPoint& ) ),
+            this, SLOT( handleContextMenu( QIconViewItem*, const QPoint& ) ) );
+	connect( this, SIGNAL( rightButtonPressed(QIconViewItem*, const QPoint&)),
+		this, SLOT(slotRightButtonPressed(QIconViewItem*, const QPoint&)));
+   connect( this, SIGNAL( currentChanged( QIconViewItem* ) ), this, SLOT( setNameToMakeCurrent( QIconViewItem* ) ) );
+   connect( this, SIGNAL( currentChanged( QIconViewItem* ) ), this, SLOT( transformCurrentChanged( QIconViewItem* ) ) );
+   connect( this, SIGNAL( mouseButtonClicked ( int, QIconViewItem *, const QPoint & ) ),
+            this, SLOT( slotMouseClicked ( int, QIconViewItem *, const QPoint & ) ) );
+   connect( &KrColorCache::getColorCache(), SIGNAL( colorsRefreshed() ), this, SLOT( refreshColors() ) );
+
+   // add whatever columns are needed to the listview
+   krConfig->setGroup( nameInKConfig() );
    
    // determine basic settings for the view
    setAcceptDrops( true );
    setItemsMovable( false );
+   setItemTextPos( QIconView::Right );
+   setArrangement( QIconView::TopToBottom );
+   setWordWrapIconText( false );
 
    // allow in-place renaming
 
@@ -65,8 +95,6 @@ void KrBriefView::setup() {
    connect( &renameTimer, SIGNAL( timeout() ), this, SLOT( renameCurrentItem() ) );
    connect( &contextMenuTimer, SIGNAL (timeout()), this, SLOT (showContextMenu()));
 
-	// TODO: connect( header(), SIGNAL(clicked(int)), this, SLOT(slotSortOrderChanged(int )));
-
    setSelectionMode( QIconView::Extended );
 
    setFocusPolicy( StrongFocus );
@@ -74,6 +102,11 @@ void KrBriefView::setup() {
    refreshColors();
 
    CANCEL_TWO_CLICK_RENAME;	
+}
+
+KrBriefView::~KrBriefView() {
+	delete _properties; _properties = 0;
+	delete _operator; _operator = 0;
 }
 
 void KrBriefView::resizeEvent ( QResizeEvent * resEvent )
@@ -143,11 +176,9 @@ void KrBriefView::addItems( vfs *v, bool addUpDir ) {
    QString statusText = QString("%1/  ").arg( v->vfs_getOrigin().fileName() ) + i18n("Directory");
 
    bool as = sortDirection();
-   setSorting( false, as ); // disable sorting*/
+   setSorting( false, as ); // disable sorting
 
    for ( vfile * vf = v->vfs_getFirstFile(); vf != 0 ; vf = v->vfs_getNextFile() ) {
-      //size = KRpermHandler::parseSize( vf->vfile_getSize() );
-      //name = vf->vfile_getName();
       bool isDir = vf->vfile_isDir();
       if ( !isDir || ( isDir && ( _properties->filter & KrViewProperties::ApplyToDirs ) ) ) {
          switch ( _properties->filter ) {
@@ -184,8 +215,6 @@ void KrBriefView::addItems( vfs *v, bool addUpDir ) {
          currentItem = static_cast<QIconViewItem*>(bvitem);
          statusText = bvitem->description();
       }
-
-      //cnt++;
    }
 
 
@@ -204,6 +233,14 @@ void KrBriefView::addItems( vfs *v, bool addUpDir ) {
 void KrBriefView::delItem( const QString &name ) {
    KrView::delItem( name );
    arrangeItemsInGrid();
+}
+
+QString KrBriefView::getCurrentItem() const {
+   QIconViewItem * it = currentItem();
+   if ( !it )
+      return QString::null;
+   else
+      return dynamic_cast<KrViewItem*>( it ) ->name();
 }
 
 void KrBriefView::setCurrentItem( const QString& name ) {
@@ -279,63 +316,6 @@ void KrBriefView::prepareForPassive() {
    }
 }
 
-void KrBriefView::initProperties() {
-	// TODO: move this to a general location, maybe KrViewProperties constructor ?
-	_properties = new KrViewProperties;
-	KConfigGroupSaver grpSvr( _config, "Look&Feel" );
-	_properties->displayIcons = _config->readBoolEntry( "With Icons", _WithIcons );
-	_properties->sortMode = static_cast<KrViewProperties::SortSpec>( KrViewProperties::Name |
-		KrViewProperties::Descending | KrViewProperties::DirsFirst );
-	if ( !_config->readBoolEntry( "Case Sensative Sort", _CaseSensativeSort ) )
-      _properties->sortMode = static_cast<KrViewProperties::SortSpec>( _properties->sortMode |
-				 KrViewProperties::IgnoreCase );
-	_properties->localeAwareCompareIsCaseSensitive = QString( "a" ).localeAwareCompare( "B" ) > 0; // see KDE bug #40131
-}
-
-void KrBriefView::slotRightButtonPressed(QIconViewItem*, const QPoint& point) {
-	op()->emitEmptyContextMenu(point);
-}
-
-void KrBriefView::refreshColors() {
-   krConfig->setGroup("Colors");
-   bool kdeDefault = krConfig->readBoolEntry("KDE Default"); 
-   if ( !kdeDefault ) {
-      // KDE default is not choosen: set the background color (as this paints the empty areas) and the alternate color
-      bool isActive = hasFocus();
-      if ( MAIN_VIEW && ACTIVE_PANEL && ACTIVE_PANEL->view )
-         isActive = ( static_cast<KrView *>( this ) == ACTIVE_PANEL->view );
-      QColorGroup cg;
-      KrColorCache::getColorCache().getColors(cg, KrColorItemType(KrColorItemType::File, false, isActive, false, false));
-      setPaletteBackgroundColor( cg.background() );
-   } else {
-      // KDE default is choosen: set back the background color
-      setPaletteBackgroundColor( KGlobalSettings::baseColor() );
-   }
-}
-
-void KrBriefView::makeItemVisible( const KrViewItem *item ) {
-//	qApp->processEvents();  // Please don't remove the comment. Causes crash if it is inserted!
-	ensureItemVisible( (QIconViewItem *)( static_cast<const KrBriefViewItem*>( item ) ) ); 
-}
-
-void KrBriefView::initOperator() {
-	_operator = new KrViewOperator(this, this);
-	// QIconView emits selection changed, so chain them to operator
-	connect(this, SIGNAL(selectionChanged()), _operator, SIGNAL(selectionChanged()));
-}
-
-KrViewItem *KrBriefView::getKrViewItemAt( const QPoint & vp ) {
-   return dynamic_cast<KrViewItem*>( KIconView::findItem( vp ) );
-}
-
-QString KrBriefView::getCurrentItem() const {
-   QIconViewItem * it = currentItem();
-   if ( !it )
-      return QString::null;
-   else
-      return dynamic_cast<KrViewItem*>( it ) ->name();
-}
-
 void KrBriefView::slotItemDescription( QIconViewItem * item ) {
    KrViewItem * it = static_cast<KrBriefViewItem*>( item );
    if ( !it )
@@ -370,6 +350,7 @@ void KrBriefView::handleQuickSearchEvent( QKeyEvent * e ) {
          }
    }
 }
+
 
 void KrBriefView::slotCurrentChanged( QIconViewItem * item ) {
    CANCEL_TWO_CLICK_RENAME;
@@ -642,6 +623,10 @@ void KrBriefView::showContextMenu()
 	if (lastSwushPosition)
 		lastSwushPosition->setSelected(true);
 	op()->emitContextMenu( contextMenuPoint );
+}
+
+KrViewItem *KrBriefView::getKrViewItemAt( const QPoint & vp ) {
+   return dynamic_cast<KrViewItem*>( KIconView::findItem( vp ) );
 }
 
 bool KrBriefView::acceptDrag( QDropEvent* ) const {
@@ -1101,6 +1086,23 @@ void KrBriefView::slotMouseClicked( int button, QIconViewItem * item, const QPoi
       emit middleButtonClicked( dynamic_cast<KrViewItem *>( item ) );
 }
 
+void KrBriefView::refreshColors() {
+   krConfig->setGroup("Colors");
+   bool kdeDefault = krConfig->readBoolEntry("KDE Default"); 
+   if ( !kdeDefault ) {
+      // KDE default is not choosen: set the background color (as this paints the empty areas) and the alternate color
+      bool isActive = hasFocus();
+      if ( MAIN_VIEW && ACTIVE_PANEL && ACTIVE_PANEL->view )
+         isActive = ( static_cast<KrView *>( this ) == ACTIVE_PANEL->view );
+      QColorGroup cg;
+      KrColorCache::getColorCache().getColors(cg, KrColorItemType(KrColorItemType::File, false, isActive, false, false));
+      setPaletteBackgroundColor( cg.background() );
+   } else {
+      // KDE default is choosen: set back the background color
+      setPaletteBackgroundColor( KGlobalSettings::baseColor() );
+   }
+}
+
 bool KrBriefView::event( QEvent *e ) {
    modifierPressed = false;
 
@@ -1121,3 +1123,50 @@ bool KrBriefView::event( QEvent *e ) {
    }
    return KIconView::event( e );
 }
+
+void KrBriefView::makeItemVisible( const KrViewItem *item ) {
+//	qApp->processEvents();  // Please don't remove the comment. Causes crash if it is inserted!
+	ensureItemVisible( (QIconViewItem *)( static_cast<const KrBriefViewItem*>( item ) ) ); 
+}
+
+void KrBriefView::initOperator() {
+	_operator = new KrViewOperator(this, this);
+	// QIconView emits selection changed, so chain them to operator
+	connect(this, SIGNAL(selectionChanged()), _operator, SIGNAL(selectionChanged()));
+}
+
+void KrBriefView::initProperties() {
+	// TODO: move this to a general location, maybe KrViewProperties constructor ?
+	_properties = new KrViewProperties;
+	KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+	_properties->displayIcons = _config->readBoolEntry( "With Icons", _WithIcons );
+	_properties->sortMode = static_cast<KrViewProperties::SortSpec>( KrViewProperties::Name |
+		KrViewProperties::Descending | KrViewProperties::DirsFirst );
+	if ( !_config->readBoolEntry( "Case Sensative Sort", _CaseSensativeSort ) )
+      _properties->sortMode = static_cast<KrViewProperties::SortSpec>( _properties->sortMode |
+				 KrViewProperties::IgnoreCase );
+	_properties->localeAwareCompareIsCaseSensitive = QString( "a" ).localeAwareCompare( "B" ) > 0; // see KDE bug #40131
+}
+
+void KrBriefView::sortOrderChanged() {
+	ensureItemVisible(currentItem());
+	
+	if( !_focused )
+		op()->emitNeedFocus();
+
+}
+
+void KrBriefView::updateView() {
+	arrangeItemsInGrid();
+	op()->emitSelectionChanged();
+}
+
+void KrBriefView::updateItem(KrViewItem* item) {
+	dynamic_cast<KrBriefViewItem*>(item)->repaintItem();
+}
+
+void KrBriefView::slotRightButtonPressed(QIconViewItem*, const QPoint& point) {
+	op()->emitEmptyContextMenu(point);
+}
+
+#include "krbriefview.moc"
