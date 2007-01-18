@@ -38,9 +38,43 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../VFS/krarchandler.h"
 #include "../Dialogs/krspecialwidgets.h"
 #include <qheader.h>
+#include <qtooltip.h>
 
 #define CANCEL_TWO_CLICK_RENAME {singleClicked = false;renameTimer.stop();}
 #define VF	getVfile()
+
+
+class KrBriefViewToolTip : public QToolTip
+{
+public:
+    KrBriefViewToolTip( KrBriefView *view, QWidget *parent );
+    void maybeTip( const QPoint &pos );
+
+    virtual ~KrBriefViewToolTip() {}
+private:
+    KrBriefView *view;
+};
+
+KrBriefViewToolTip::KrBriefViewToolTip( KrBriefView *lv, QWidget *parent )
+  : QToolTip( parent ), view( lv )
+{
+}
+
+void KrBriefViewToolTip::maybeTip( const QPoint &pos )
+{
+  QIconViewItem *item = view->findItem( view->viewportToContents( pos ) );
+
+  if ( !item )
+    return;
+    
+  int width = QFontMetrics( view->font() ).width( item->text() ) + 4;
+    
+  QRect r = item->rect();
+  r.setTopLeft( view->contentsToViewport( r.topLeft() ) );
+  if( width > item->textRect().width() )
+    tip( r, item->text() );
+}
+
 
 KrBriefView::KrBriefView( QHeader * headerIn, QWidget *parent, bool &left, KConfig *cfg, const char *name ):
 	KIconView(parent, name), KrView( cfg ), header( headerIn ), _currDragItem( 0 ),
@@ -50,6 +84,7 @@ KrBriefView::KrBriefView( QHeader * headerIn, QWidget *parent, bool &left, KConf
 	krConfig->setGroup("Private");
 	if (krConfig->readBoolEntry("Enable Input Method", true))
 		setInputMethodEnabled(true);
+	toolTip = new KrBriefViewToolTip( this, viewport() );
 }
 
 void KrBriefView::setup() {
@@ -125,6 +160,7 @@ KrBriefView::~KrBriefView() {
 	if( mouseEvent )
 		delete mouseEvent;
 	mouseEvent = 0;
+	delete toolTip;
 }
 
 void KrBriefView::resizeEvent ( QResizeEvent * resEvent )
@@ -1267,13 +1303,13 @@ QMouseEvent * KrBriefView::transformMouseEvent( QMouseEvent * e )
 		QPoint glPos;
 		if( !e->globalPos().isNull() )
 		{
-			glPos = QPoint( e->pos().x() - mouseX + e->globalPos().x(),
-			              e->pos().y() - mouseX + e->globalPos().y() );
+			glPos = QPoint( mouseX - e->pos().x() + e->globalPos().x(),
+			                mouseY - e->pos().y() + e->globalPos().y() );
 		}
 		
 		if( mouseEvent )
 			delete mouseEvent;
-		return mouseEvent = new QMouseEvent( e->type(), newPos, e->button(), e->state() );
+		return mouseEvent = new QMouseEvent( e->type(), newPos, glPos, e->button(), e->state() );
 	}
 	
 	return e;

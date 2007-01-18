@@ -37,6 +37,7 @@ A
 
 class KrBriefViewItem;
 class QDragMoveEvent;
+class QToolTip;
 class QHeader;
 
 /**
@@ -154,6 +155,7 @@ private:
 	KrBriefViewItem *currentlyRenamedItem;
 	QIconViewItem *pressedItem;
 	QMouseEvent *mouseEvent;
+	QToolTip *toolTip;
 };
 
 #endif
