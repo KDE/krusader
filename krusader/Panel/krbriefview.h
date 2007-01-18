@@ -100,6 +100,7 @@ protected:
 	virtual void startDrag() { op()->startDrag(); }
 	virtual bool event( QEvent *e );
 	virtual bool eventFilter( QObject * watched, QEvent * e );
+	QMouseEvent * transformMouseEvent( QMouseEvent * );
 
 protected slots:
 	void rename( QIconViewItem *item );
@@ -152,6 +153,7 @@ private:
 	QPoint contextMenuPoint;
 	KrBriefViewItem *currentlyRenamedItem;
 	QIconViewItem *pressedItem;
+	QMouseEvent *mouseEvent;
 };
 
 #endif

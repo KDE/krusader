@@ -44,7 +44,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 KrBriefView::KrBriefView( QHeader * headerIn, QWidget *parent, bool &left, KConfig *cfg, const char *name ):
 	KIconView(parent, name), KrView( cfg ), header( headerIn ), _currDragItem( 0 ),
-            currentlyRenamedItem( 0 ), pressedItem( 0 ) {
+            currentlyRenamedItem( 0 ), pressedItem( 0 ), mouseEvent( 0 ) {
 	setWidget( this );
 	_nameInKConfig = QString( "KrBriefView" ) + QString( ( left ? "Left" : "Right" ) );
 	krConfig->setGroup("Private");
@@ -122,6 +122,9 @@ void KrBriefView::setup() {
 KrBriefView::~KrBriefView() {
 	delete _properties; _properties = 0;
 	delete _operator; _operator = 0;
+	if( mouseEvent )
+		delete mouseEvent;
+	mouseEvent = 0;
 }
 
 void KrBriefView::resizeEvent ( QResizeEvent * resEvent )
@@ -378,6 +381,8 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
    bool callDefaultHandler = true, processEvent = true, selectionChanged = false;
    pressedItem = 0;
 
+   e = transformMouseEvent( e );
+   
    QIconViewItem * oldCurrent = currentItem();
    QIconViewItem *newCurrent = findItem( e->pos() );
    if (e->button() == RightButton)
@@ -541,8 +546,11 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
 void KrBriefView::contentsMouseReleaseEvent( QMouseEvent * e ) {
   if (e->button() == RightButton)
     contextMenuTimer.stop();
+  
+  e = transformMouseEvent( e );
+  
   KIconView::contentsMouseReleaseEvent( e );
-
+   
   if( pressedItem ) {
     QPoint vp = contentsToViewport( e->pos() );
     QIconViewItem *newCurrent = findItem( e->pos() );
@@ -566,6 +574,9 @@ void KrBriefView::contentsMouseReleaseEvent( QMouseEvent * e ) {
 void KrBriefView::contentsMouseMoveEvent ( QMouseEvent * e ) {
    if ( ( singleClicked || renameTimer.isActive() ) && findItem( e->pos() ) != clickedItem )
       CANCEL_TWO_CLICK_RENAME;
+   
+   e = transformMouseEvent( e );
+
    if ( dragStartPos != QPoint( -1, -1 ) &&
         e->state() & LeftButton && ( dragStartPos - e->pos() ).manhattanLength() > QApplication::startDragDistance() )
       startDrag();
@@ -1204,6 +1215,68 @@ void KrBriefView::changeSortOrder()
 	bool asc = !sortDirection();
 	header->setSortIndicator( 0, asc ? Qt::Ascending : Qt::Descending );
 	sort( asc );
+}
+
+QMouseEvent * KrBriefView::transformMouseEvent( QMouseEvent * e )
+{
+	if( findItem( e->pos() ) != 0 )
+		return e;
+	
+	QIconViewItem *closestItem = 0;
+	int mouseX = e->pos().x(), mouseY = e->pos().y();
+	int closestDelta = 0x7FFFFFFF;
+	
+	int minX = ( mouseX / gridX() ) * gridX();
+	int maxX = minX + gridX();
+	
+	QIconViewItem *current = firstItem();
+	while( current )
+	{
+		if( current->x() >= minX && current->x() < maxX )
+		{
+			int delta = mouseY - current->y();
+			if( delta >= 0 && delta < closestDelta )
+			{
+				closestDelta = delta;
+				closestItem = current;
+			}
+		}
+		current = current->nextItem();
+	}
+	
+	if( closestItem != 0 )
+	{
+		if( mouseX - closestItem->x() > gridX() )
+			closestItem = 0;
+		else if( mouseY - closestItem->y() > closestItem->height() )
+			closestItem = 0;
+	}
+	
+	if( closestItem != 0 )
+	{
+		QRect rec = closestItem->rect();
+		if( mouseX < rec.x() )
+			mouseX = rec.x();
+		if( mouseY < rec.y() )
+			mouseX = rec.y();
+		if( mouseX > rec.x() + rec.width() -1 )
+			mouseX = rec.x() + rec.width() -1;
+		if( mouseY > rec.y() + rec.height() -1 )
+			mouseX = rec.y() + rec.height() -1;
+		QPoint newPos( mouseX, mouseY );
+		QPoint glPos;
+		if( !e->globalPos().isNull() )
+		{
+			glPos = QPoint( e->pos().x() - mouseX + e->globalPos().x(),
+			              e->pos().y() - mouseX + e->globalPos().y() );
+		}
+		
+		if( mouseEvent )
+			delete mouseEvent;
+		return mouseEvent = new QMouseEvent( e->type(), newPos, e->button(), e->state() );
+	}
+	
+	return e;
 }
 
 #include "krbriefview.moc"
