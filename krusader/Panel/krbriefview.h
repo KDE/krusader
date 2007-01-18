@@ -99,6 +99,7 @@ protected:
 	virtual void contentsDragMoveEvent( QDragMoveEvent *e );
 	virtual void startDrag() { op()->startDrag(); }
 	virtual bool event( QEvent *e );
+	virtual bool eventFilter( QObject * watched, QEvent * e );
 
 protected slots:
 	void rename( QIconViewItem *item );

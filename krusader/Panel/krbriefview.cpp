@@ -89,6 +89,7 @@ void KrBriefView::setup() {
    setArrangement( QIconView::TopToBottom );
    setWordWrapIconText( false );
    setSpacing( 0 );
+   horizontalScrollBar()->installEventFilter( this );
 
    // allow in-place renaming
 
@@ -1136,6 +1137,21 @@ bool KrBriefView::event( QEvent *e ) {
       setFocus();
    }
    return KIconView::event( e );
+}
+
+
+bool KrBriefView::eventFilter( QObject * watched, QEvent * e )
+{
+  if( watched == horizontalScrollBar() )
+  {
+    if( e->type() == QEvent::Hide || e->type() == QEvent::Show )
+    {
+      bool res = KIconView::eventFilter( watched, e );
+      arrangeItemsInGrid();
+      return res;
+    }
+  }
+  return KIconView::eventFilter( watched, e );
 }
 
 void KrBriefView::makeItemVisible( const KrViewItem *item ) {
