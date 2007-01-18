@@ -37,6 +37,8 @@
 #include <kiconview.h>
 #include <qguardedptr.h>
 
+#define FASTER
+
 class QPixmap;
 class KrBriefView;
 
@@ -49,9 +51,13 @@ public:
 	inline void setSelected(bool s) { KIconViewItem::setSelected(s); }
 	inline void cancelRename() { removeRenameBox(); }
 	int compare(QIconViewItem *i) const;
-	void repaintItem() {}
+	virtual void repaintItem();
 	static void itemHeightChanged(); // force the items to resize when icon/font size change
 	// TODO: virtual void setup(); // called when iconview needs to know the height of the item
+#ifdef FASTER
+	virtual QPixmap * pixmap() const {return const_cast<QPixmap *>(&itemIcon);}
+	virtual void setPixmap ( const QPixmap &icon ) { itemIcon = icon;}
+#endif
 
 protected:
 	virtual void paintItem(QPainter *p, const QColorGroup &cg);
@@ -61,10 +67,10 @@ private:
 #ifdef FASTER
 	bool initiated;
 	static int expHeight;
+	QPixmap itemIcon;
 #endif // FASTER
 	// TODO:
 	static const QColor & setColorIfContrastIsSufficient(const QColor & /* background */, const QColor & /* color1 */, const QColor & /* color2 */ ) {static QColor col; return col;}
-	
 	
 //	static int expHeight;
 };

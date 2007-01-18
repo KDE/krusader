@@ -26,6 +26,7 @@ KrBriefViewItem::KrBriefViewItem(KrBriefView *parent, QIconViewItem *after, vfil
 		KConfigGroupSaver svr(krConfig, "Look&Feel");
   		expHeight = 2 + (krConfig->readEntry("Filelist Icon Size",_FilelistIconSize)).toInt();
 	}
+	itemIcon = QPixmap( expHeight, expHeight );
 #endif // FASTER
 
 	// there's a special case, where if _vf is null, then we've got the ".." (updir) item
@@ -43,15 +44,11 @@ KrBriefViewItem::KrBriefViewItem(KrBriefView *parent, QIconViewItem *after, vfil
 #ifdef FASTER
 		initiated = true;
 #endif // FASTER
-	} else {
-		if (PROPS->displayIcons)
-			setPixmap(KrView::getIcon(_vf));
-		setText( _vf->vfile_getName() );
-		setDragEnabled( true );
-		setDropEnabled( true );
 	}
 	
 	setRenameEnabled( false );
+	setDragEnabled( true );
+	setDropEnabled( true );
 	repaintItem();
 }
 
@@ -97,6 +94,15 @@ int KrBriefViewItem::compare(QIconViewItem *i ) const {
 }
 
 void KrBriefViewItem::paintItem(QPainter *p, const QColorGroup &cg) {
+#ifdef FASTER
+  if (!initiated && !dummyVfile) {
+     // display an icon if needed
+     initiated = true;
+     if (PROPS->displayIcons)
+       itemIcon =KrView::getIcon(_vf);
+  }
+#endif
+
   QColorGroup _cg(cg);
 
   KrColorItemType colorItemType;
@@ -138,4 +144,15 @@ void KrBriefViewItem::itemHeightChanged() {
 #ifdef FASTER
 	expHeight = 0;
 #endif // FASTER
+}
+
+void KrBriefViewItem::repaintItem()
+{
+   if ( dummyVfile ) return;
+
+#ifndef FASTER
+   if (PROPS->displayIcons)
+     setPixmap(KrView::getIcon(_vf));
+#endif // FASTER
+   setText( _vf->vfile_getName() );
 }
