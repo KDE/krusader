@@ -608,10 +608,10 @@ void KrBriefView::contentsMouseReleaseEvent( QMouseEvent * e ) {
 }
 
 void KrBriefView::contentsMouseMoveEvent ( QMouseEvent * e ) {
+   e = transformMouseEvent( e );
+
    if ( ( singleClicked || renameTimer.isActive() ) && findItem( e->pos() ) != clickedItem )
       CANCEL_TWO_CLICK_RENAME;
-   
-   e = transformMouseEvent( e );
 
    if ( dragStartPos != QPoint( -1, -1 ) &&
         e->state() & LeftButton && ( dragStartPos - e->pos() ).manhattanLength() > QApplication::startDragDistance() )
