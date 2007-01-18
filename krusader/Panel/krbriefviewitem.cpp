@@ -26,7 +26,8 @@ KrBriefViewItem::KrBriefViewItem(KrBriefView *parent, QIconViewItem *after, vfil
 		KConfigGroupSaver svr(krConfig, "Look&Feel");
   		expHeight = 2 + (krConfig->readEntry("Filelist Icon Size",_FilelistIconSize)).toInt();
 	}
-	itemIcon = QPixmap( expHeight, expHeight );
+	if( PROPS->displayIcons )
+		itemIcon = QPixmap( expHeight, expHeight );
 #endif // FASTER
 
 	// there's a special case, where if _vf is null, then we've got the ".." (updir) item
@@ -155,4 +156,30 @@ void KrBriefViewItem::repaintItem()
      setPixmap(KrView::getIcon(_vf));
 #endif // FASTER
    setText( _vf->vfile_getName() );
+}
+
+// for keeping the exact item heights...
+void KrBriefViewItem::calcRect ( const QString & text_ )
+{
+   KIconViewItem::calcRect( text_ );
+   QRect rec = rect();
+   if( rec.height() != expHeight )
+   {
+     rec.setHeight( expHeight );
+     setItemRect( rec );
+   }
+   
+   rec = pixmapRect();
+   if( rec.height() > expHeight )
+   {
+     rec.setHeight( expHeight );
+     setPixmapRect( rec );
+   }   
+   
+   rec = textRect();
+   if( rec.height() > expHeight )
+   {
+     rec.setHeight( expHeight );
+     setTextRect( rec );
+   }   
 }
