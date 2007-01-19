@@ -108,7 +108,12 @@ void KrBriefViewItem::paintItem(QPainter *p, const QColorGroup &cg) {
 
   KrColorItemType colorItemType;
   colorItemType.m_activePanel = (dynamic_cast<KrView *>(iconView()) == ACTIVE_PANEL->view);
-  colorItemType.m_alternateBackgroundColor = 0;
+  
+  int gridX = iconView()->gridX();
+  int xpos = x() / gridX;
+  int ypos = y() / height();
+  
+  colorItemType.m_alternateBackgroundColor = (xpos & 1) ^ (ypos & 1) ;
   colorItemType.m_currentItem = (iconView()->currentItem() == this);
   colorItemType.m_selectedItem = isSelected();
   if (VF->vfile_isSymLink())
@@ -125,6 +130,15 @@ void KrBriefViewItem::paintItem(QPainter *p, const QColorGroup &cg) {
   else
      colorItemType.m_fileType = KrColorItemType::File;
   KrColorCache::getColorCache().getColors(_cg, colorItemType);
+  
+  if( _cg.background() != iconView()->paletteBackgroundColor() )
+  {
+     p->save();
+     p->setPen( Qt::NoPen );
+     p->setBrush( QBrush( _cg.background() ) );
+     p->drawRect( rect() );
+     p->restore();
+  }
 
   QIconViewItem::paintItem(p, _cg);
 
@@ -163,11 +177,13 @@ void KrBriefViewItem::calcRect ( const QString & text_ )
 {
    KIconViewItem::calcRect( text_ );
    QRect rec = rect();
-   if( rec.height() != expHeight )
-   {
-     rec.setHeight( expHeight );
-     setItemRect( rec );
-   }
+   
+   int gridX = iconView()->gridX();
+   int minX  = ( rec.x() / gridX ) * gridX;
+   rec.setX( minX );
+   rec.setWidth( gridX );
+   rec.setHeight( expHeight );   
+   setItemRect( rec );
    
    rec = pixmapRect();
    if( rec.height() > expHeight )

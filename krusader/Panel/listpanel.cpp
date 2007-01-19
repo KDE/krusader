@@ -597,12 +597,32 @@ void ListPanel::slotFocusOnMe() {
    emit activePanelChanged( this );
 
    func->refreshActions();
-   KrDetailedView * v = dynamic_cast<KrDetailedView *>( view );
-   if ( v )
-      v->refreshColors();
-   v = dynamic_cast<KrDetailedView *>( otherPanel->view );
-   if ( v )
-      v->refreshColors();
+   
+   if( panelType == "Brief" )
+   {
+      KrBriefView * v = dynamic_cast<KrBriefView *>( view );
+      if ( v )
+         v->refreshColors();
+   }
+   else /* detailed */
+   {
+      KrDetailedView * v = dynamic_cast<KrDetailedView *>( view );
+      if ( v )
+         v->refreshColors();
+   }
+   
+   if( otherPanel->panelType == "Brief" )
+   {
+      KrBriefView * v = dynamic_cast<KrBriefView *>( otherPanel->view );
+      if ( v )
+         v->refreshColors();
+   }
+   else /* detailed */
+   {   
+      KrDetailedView *v = dynamic_cast<KrDetailedView *>( otherPanel->view );
+      if ( v )
+         v->refreshColors();
+   }
 }
 
 // this is used to start the panel, AFTER setOther() has been used

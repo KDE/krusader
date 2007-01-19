@@ -662,6 +662,12 @@ void KrBriefView::contentsMouseMoveEvent ( QMouseEvent * e ) {
          KIconView::contentsMouseMoveEvent( e );
 }
 
+void KrBriefView::contentsMouseDoubleClickEvent ( QMouseEvent * e )
+{
+   e = transformMouseEvent ( e );
+   KIconView::contentsMouseDoubleClickEvent( e );
+}
+
 void KrBriefView::handleContextMenu( QIconViewItem * it, const QPoint & pos ) {
    if ( !_focused )
       op()->emitNeedFocus();
@@ -1163,6 +1169,7 @@ void KrBriefView::refreshColors() {
       // KDE default is choosen: set back the background color
       setPaletteBackgroundColor( KGlobalSettings::baseColor() );
    }
+   slotUpdate();
 }
 
 bool KrBriefView::event( QEvent *e ) {
