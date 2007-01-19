@@ -1224,12 +1224,36 @@ void KrBriefView::initProperties() {
 	_properties = new KrViewProperties;
 	KConfigGroupSaver grpSvr( _config, "Look&Feel" );
 	_properties->displayIcons = _config->readBoolEntry( "With Icons", _WithIcons );
+	bool dirsByNameAlways = _config->readBoolEntry("Always sort dirs by name", false);
 	_properties->sortMode = static_cast<KrViewProperties::SortSpec>( KrViewProperties::Name |
-		KrViewProperties::Descending | KrViewProperties::DirsFirst );
+			KrViewProperties::Descending | KrViewProperties::DirsFirst | 
+			(dirsByNameAlways ? KrViewProperties::AlwaysSortDirsByName : 0) );
 	if ( !_config->readBoolEntry( "Case Sensative Sort", _CaseSensativeSort ) )
-      _properties->sortMode = static_cast<KrViewProperties::SortSpec>( _properties->sortMode |
+      	_properties->sortMode = static_cast<KrViewProperties::SortSpec>( _properties->sortMode |
 				 KrViewProperties::IgnoreCase );
+	_properties->humanReadableSize = krConfig->readBoolEntry("Human Readable Size", _HumanReadableSize);
 	_properties->localeAwareCompareIsCaseSensitive = QString( "a" ).localeAwareCompare( "B" ) > 0; // see KDE bug #40131
+	
+	QStringList defaultAtomicExtensions;
+	defaultAtomicExtensions += ".tar.gz";
+	defaultAtomicExtensions += ".tar.bz2";
+	defaultAtomicExtensions += ".moc.cpp";
+	QStringList atomicExtensions = krConfig->readListEntry("Atomic Extensions", defaultAtomicExtensions);
+	for (QStringList::iterator i = atomicExtensions.begin(); i != atomicExtensions.end(); )
+	{
+		QString & ext = *i;
+		ext = ext.stripWhiteSpace();
+		if (!ext.length())
+		{
+			i = atomicExtensions.remove(i);
+			continue;
+		}
+		if (!ext.startsWith("."))
+			ext.insert(0, '.');
+		++i;
+	}
+	_properties->atomicExtensions = atomicExtensions;
+
 }
 
 void KrBriefView::sortOrderChanged() {
