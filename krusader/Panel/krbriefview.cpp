@@ -1290,15 +1290,15 @@ QMouseEvent * KrBriefView::transformMouseEvent( QMouseEvent * e )
 	
 	if( closestItem != 0 )
 	{
-		QRect rec = closestItem->rect();
+		QRect rec = closestItem->textRect( false );
 		if( mouseX < rec.x() )
 			mouseX = rec.x();
 		if( mouseY < rec.y() )
-			mouseX = rec.y();
+			mouseY = rec.y();
 		if( mouseX > rec.x() + rec.width() -1 )
 			mouseX = rec.x() + rec.width() -1;
 		if( mouseY > rec.y() + rec.height() -1 )
-			mouseX = rec.y() + rec.height() -1;
+			mouseY = rec.y() + rec.height() -1;
 		QPoint newPos( mouseX, mouseY );
 		QPoint glPos;
 		if( !e->globalPos().isNull() )
