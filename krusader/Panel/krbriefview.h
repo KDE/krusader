@@ -108,6 +108,7 @@ protected:
 	virtual bool acceptDrag( QDropEvent* e ) const;
 	virtual void contentsDropEvent( QDropEvent *e );
 	virtual void contentsDragMoveEvent( QDragMoveEvent *e );
+	virtual void contentsDragLeaveEvent ( QDragLeaveEvent * );
 	virtual void startDrag() { op()->startDrag(); }
 	virtual bool event( QEvent *e );
 	virtual bool eventFilter( QObject * watched, QEvent * e );

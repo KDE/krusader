@@ -169,8 +169,17 @@ KrBriefView::~KrBriefView() {
 
 void KrBriefView::resizeEvent ( QResizeEvent * resEvent )
 {
+   
+   QRect viewportRect( QPoint( contentsX(), contentsY() ), resEvent->oldSize() );
+   bool visible = false;
+   if( currentItem() )
+     visible = viewportRect.contains( currentItem()->rect() );
+
    KIconView::resizeEvent( resEvent );
    redrawColumns();
+
+   if( visible && currentItem() )
+      ensureItemVisible( currentItem() );
 }
 
 void KrBriefView::redrawColumns()
@@ -722,11 +731,32 @@ void KrBriefView::contentsDropEvent( QDropEvent * e ) {
 }
 
 void KrBriefView::contentsDragMoveEvent( QDragMoveEvent * e ) {
+   KrViewItem *oldDragItem = _currDragItem;
+
    _currDragItem = getKrViewItemAt( e->pos() );
    if( _currDragItem && !_currDragItem->VF->vfile_isDir() )
      _currDragItem = 0;
    
    KIconView::contentsDragMoveEvent( e );
+
+   if( _currDragItem != oldDragItem )
+   {
+     if( oldDragItem )
+        dynamic_cast<KrBriefViewItem *>( oldDragItem )->repaint();
+     if( _currDragItem )
+        dynamic_cast<KrBriefViewItem *>( _currDragItem )->repaint();
+   }
+}
+
+void KrBriefView::contentsDragLeaveEvent ( QDragLeaveEvent *e )
+{
+   KrViewItem *oldDragItem = _currDragItem;
+
+   _currDragItem = 0;
+   KIconView::contentsDragLeaveEvent( e );
+
+   if( oldDragItem )
+     dynamic_cast<KrBriefViewItem *>( oldDragItem )->repaint();
 }
 
 void KrBriefView::imStartEvent(QIMEvent* e)
