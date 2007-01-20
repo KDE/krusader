@@ -36,6 +36,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../defaults.h"
 #include "../krslots.h"
 #include "../VFS/krarchandler.h"
+#include "../VFS/krquery.h"
 #include "../Dialogs/krspecialwidgets.h"
 #include <qheader.h>
 #include <qtooltip.h>
@@ -1222,6 +1223,8 @@ void KrBriefView::initOperator() {
 void KrBriefView::initProperties() {
 	// TODO: move this to a general location, maybe KrViewProperties constructor ?
 	_properties = new KrViewProperties;
+	_properties->filter = KrViewProperties::All;
+	_properties->filterMask = KRQuery( "*" );
 	KConfigGroupSaver grpSvr( _config, "Look&Feel" );
 	_properties->displayIcons = _config->readBoolEntry( "With Icons", _WithIcons );
 	bool dirsByNameAlways = _config->readBoolEntry("Always sort dirs by name", false);

@@ -8,7 +8,7 @@
 #include "krcolorcache.h"
 
 #include <qpainter.h>
-#include <qstyle.h>
+#include <qpointarray.h>
 
 #define PROPS	_viewProperties
 #define VF	getVfile()
@@ -149,9 +149,33 @@ void KrBriefViewItem::paintFocus(QPainter *p, const QColorGroup &cg) {
   if ( ( iconView()->hasFocus() && this == iconView()->currentItem() ) || 
      ((KrBriefView *)iconView())->_currDragItem == this )
   {
-    iconView()->style().drawPrimitive(QStyle::PE_FocusRect, p,
-       QRect( rect().x(), rect().y(), rect().width(), rect().height() ), cg,
-              QStyle::Style_Default, cg.base() );
+      p->save();
+      QPen pen( cg.shadow(), 0, Qt::DotLine );
+      p->setPen( pen );
+
+      // we manually draw the focus rect by points
+      QRect rec = rect();
+      QPointArray points( rec.right() - rec.left() + rec.bottom() - rec.top() + 4 );
+      
+      int ndx = 0;
+      for( int x=rec.left(); x <= rec.right(); x+=2 )
+      {
+        points.setPoint( ndx++, x, rec.top() );
+        points.setPoint( ndx++, x, rec.bottom() );
+      }
+      for( int y=rec.top(); y <= rec.bottom(); y+=2 )
+      {
+        points.setPoint( ndx++, rec.left(), y );
+        points.setPoint( ndx++, rec.right(), y );
+      }
+
+      p->drawPoints( points );
+      p->restore();
+
+//    --- That didn't work with all themes
+//    iconView()->style().drawPrimitive(QStyle::PE_FocusRect, p,
+//       QRect( rect().x(), rect().y(), rect().width(), rect().height() ), cg,
+//              QStyle::Style_Default, cg.base() );
   }
 }
 

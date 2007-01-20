@@ -207,7 +207,11 @@ bool vfs::vfs_refresh(const KURL& origin){
 
 	vfs_tempFilesP->clear();
 	// and re-populate it
-	if (!populateVfsList(origin,showHidden) ) return false;
+	if (!populateVfsList(origin,showHidden) ) 
+	{
+		vfs_busy = false;
+		return false;
+	}
 	
 	clear();
 	delete vfs_filesP;
