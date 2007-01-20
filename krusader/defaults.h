@@ -113,6 +113,8 @@
 #define _SingleClickSelects false
 // Numeric Permissions
 #define _NumericPermissions false
+// Number of Columns in the Brief View
+#define _NumberOfBriefColumns  3
 // Create brief mode panels
 #define _DefaultPanelType   "Detailed"
 // Show splashscreen

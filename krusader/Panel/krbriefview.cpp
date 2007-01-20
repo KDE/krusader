@@ -42,7 +42,9 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <qtooltip.h>
 
 #define CANCEL_TWO_CLICK_RENAME {singleClicked = false;renameTimer.stop();}
-#define VF	getVfile()
+#define PROPS	 static_cast<KrBriefViewProperties*>(_properties)	
+#define MAX_COLS 5
+#define VF	 getVfile()
 
 
 class KrBriefViewToolTip : public QToolTip
@@ -152,6 +154,7 @@ void KrBriefView::setup() {
    header->setSortIndicator( 0, sortDirection() ? Qt::Ascending : Qt::Descending );
    connect( header, SIGNAL(clicked( int )), this, SLOT( changeSortOrder()));
 
+   header->installEventFilter( this );
    header->show();
 }
 
@@ -166,9 +169,16 @@ KrBriefView::~KrBriefView() {
 
 void KrBriefView::resizeEvent ( QResizeEvent * resEvent )
 {
-   QIconView::resizeEvent( resEvent );
+   KIconView::resizeEvent( resEvent );
+   redrawColumns();
+}
 
-   setGridX( width() / 3 );
+void KrBriefView::redrawColumns()
+{
+   bool ascending = sortDirection();
+   setSorting( false, ascending );
+
+   setGridX( width() / PROPS->numberOfColumns );
 
    // QT bug, it's important for recalculating the bounding rectangle
    for( QIconViewItem * item = firstItem(); item; item = item->nextItem() )
@@ -177,6 +187,8 @@ void KrBriefView::resizeEvent ( QResizeEvent * resEvent )
       item->setText( "" );
       item->setText( txt );
    }
+
+   setSorting( true, ascending );
 
    arrangeItemsInGrid();
 }
@@ -1206,6 +1218,15 @@ bool KrBriefView::eventFilter( QObject * watched, QEvent * e )
       return res;
     }
   }
+  else if( watched == header )
+  {
+    if( e->type() == QEvent::MouseButtonPress && ((QMouseEvent *)e )->button() == Qt::RightButton )
+    {
+      setColumnNr();
+      return TRUE;
+    }
+    return FALSE;
+  }
   return KIconView::eventFilter( watched, e );
 }
 
@@ -1222,7 +1243,7 @@ void KrBriefView::initOperator() {
 
 void KrBriefView::initProperties() {
 	// TODO: move this to a general location, maybe KrViewProperties constructor ?
-	_properties = new KrViewProperties;
+	_properties = new KrBriefViewProperties;
 	_properties->filter = KrViewProperties::All;
 	_properties->filterMask = KRQuery( "*" );
 	KConfigGroupSaver grpSvr( _config, "Look&Feel" );
@@ -1256,7 +1277,38 @@ void KrBriefView::initProperties() {
 		++i;
 	}
 	_properties->atomicExtensions = atomicExtensions;
+	
+	_config->setGroup( nameInKConfig() );
+	PROPS->numberOfColumns = _config->readNumEntry( "Number Of Brief Columns", _NumberOfBriefColumns );
+	if( PROPS->numberOfColumns < 1 )
+		PROPS->numberOfColumns = 1;
+	else if( PROPS->numberOfColumns > MAX_COLS )
+		PROPS->numberOfColumns = MAX_COLS;
+}
 
+void KrBriefView::setColumnNr()
+{
+  KPopupMenu popup( this );
+  popup.insertTitle( i18n("Columns"));
+  
+  int COL_ID = 14700;
+
+  for( int i=1; i <= MAX_COLS; i++ )
+  {
+    popup.insertItem( QString( "%1" ).arg( i ), COL_ID + i );
+    popup.setItemChecked( COL_ID + i, PROPS->numberOfColumns == i );
+  }
+  
+  int result=popup.exec(QCursor::pos());
+
+  krConfig->setGroup( nameInKConfig() );
+  
+  if( result > COL_ID && result <= COL_ID + MAX_COLS )
+  {
+    krConfig->writeEntry( "Number Of Brief Columns", result - COL_ID );
+    PROPS->numberOfColumns = result - COL_ID;
+    redrawColumns();
+  }
 }
 
 void KrBriefView::sortOrderChanged() {

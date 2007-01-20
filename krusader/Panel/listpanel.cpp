@@ -598,6 +598,9 @@ void ListPanel::slotFocusOnMe() {
 
    func->refreshActions();
    
+   Krusader::actDetailedView->setEnabled( panelType != "Detailed" ); // enable/disable the detailed view action
+   Krusader::actBriefView->setEnabled( panelType != "Brief" );       // enable/disable the brief view action
+
    if( panelType == "Brief" )
    {
       KrBriefView * v = dynamic_cast<KrBriefView *>( view );

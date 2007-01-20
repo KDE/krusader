@@ -35,6 +35,12 @@ A
 #include <kiconview.h>
 #include <qtimer.h>
 
+// extends KrViewProperties to add detailedview-only properties
+class KrBriefViewProperties: public KrViewProperties {
+public:
+	int numberOfColumns; // the number of columns in the view
+};
+
 class KrBriefViewItem;
 class QDragMoveEvent;
 class QToolTip;
@@ -74,7 +80,7 @@ public:
 	virtual void prepareForPassive();
 	virtual void saveSettings() {}
 	virtual void restoreSettings() {}
-	virtual QString nameInKConfig() {return QString::null;}
+	virtual QString nameInKConfig() {return _nameInKConfig;}
 	virtual void resizeEvent ( QResizeEvent * );
 
 signals:
@@ -87,6 +93,9 @@ protected:
 	virtual void initOperator();
 	virtual KrViewItem *preAddItem(vfile * vf);
 	virtual bool preDelItem(KrViewItem * item );
+
+	void setColumnNr();
+	void redrawColumns();
 
 	virtual void keyPressEvent( QKeyEvent *e );
 	virtual void imStartEvent( QIMEvent* e );
