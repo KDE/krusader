@@ -6,13 +6,13 @@
 #
 # Erik Johansson <erre@telia.com>, 2001.
 # Anders Lindén <connyosis@gmx.net>, 2004.
-# Peter Landgren <peter.talken@telia.com>, 2005, 2006.
+# Peter Landgren <peter.talken@telia.com>, 2005, 2006, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.80.0-beta1\n"
-"Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2007-01-10 19:43+0100\n"
-"PO-Revision-Date: 2006-12-22 12:57+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-01-21 21:11+0100\n"
+"PO-Revision-Date: 2007-01-21 11:13+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -372,55 +372,55 @@ msgstr "Anpassad"
 msgid "Searching content of '%1' (%2%)"
 msgstr "Söker innehål i '%1' (%2%)"
 
-#: VFS/krarchandler.cpp:186
+#: VFS/krarchandler.cpp:184
 msgid "Counting files in archive"
 msgstr "Räknar filer i arkiv"
 
-#: VFS/krarchandler.cpp:207
+#: VFS/krarchandler.cpp:205
 msgid "Failed to list the content of the archive (%1)!"
 msgstr "Misslyckades med att lista innehållet i arkivet (%1)!"
 
-#: VFS/krarchandler.cpp:227
+#: VFS/krarchandler.cpp:225
 msgid "Failed to unpack"
 msgstr "Uppackningen misslyckades"
 
-#: VFS/krarchandler.cpp:264
+#: VFS/krarchandler.cpp:262
 msgid "Failed to convert rpm (%1) to cpio!"
 msgstr "Misslyckades med att omvandla rpm (%1) till cpio!"
 
-#: VFS/krarchandler.cpp:281
+#: VFS/krarchandler.cpp:279
 msgid "Failed to convert deb (%1) to tar!"
 msgstr "Misslyckades med att omvandla deb (%1) till tar!"
 
-#: VFS/krarchandler.cpp:315
+#: VFS/krarchandler.cpp:313
 msgid "Unpacking File(s)"
 msgstr "Packar upp fil(er)"
 
-#: VFS/krarchandler.cpp:341
+#: VFS/krarchandler.cpp:339
 msgid "Failed to unpack %1!"
 msgstr "Misslyckades med uppackningen av %1!"
 
-#: VFS/krarchandler.cpp:342 VFS/krarchandler.cpp:511
+#: VFS/krarchandler.cpp:340 VFS/krarchandler.cpp:509
 msgid "User cancelled."
 msgstr "Avbrutet av användare."
 
-#: VFS/krarchandler.cpp:386
+#: VFS/krarchandler.cpp:384
 msgid "Testing Archive"
 msgstr "Testar arkivfil"
 
-#: VFS/krarchandler.cpp:492
+#: VFS/krarchandler.cpp:490
 msgid "Packing File(s)"
 msgstr "Packar fil(er)"
 
-#: VFS/krarchandler.cpp:510
+#: VFS/krarchandler.cpp:508
 msgid "Failed to pack %1!"
 msgstr "Misslyckades med att packa %1!"
 
-#: VFS/krarchandler.cpp:519
+#: VFS/krarchandler.cpp:517
 msgid "Failed to pack: "
 msgstr "Packningen misslyckades"
 
-#: VFS/krarchandler.cpp:550
+#: VFS/krarchandler.cpp:548
 msgid "This archive is encrypted, please supply the password:"
 msgstr "Denna arkivfil är krypterad, ange lösenord:"
 
@@ -517,7 +517,7 @@ msgstr "&Lägg till"
 msgid "&Load"
 msgstr "&Ladda"
 
-#: Filter/generalfilter.cpp:134 Panel/panelfunc.cpp:806
+#: Filter/generalfilter.cpp:134 Panel/panelfunc.cpp:813
 msgid "&Overwrite"
 msgstr "&Skriv över"
 
@@ -570,7 +570,7 @@ msgid "Please specify a location to search in."
 msgstr "Ange en plats att söka på."
 
 #: Filter/advancedfilter.cpp:59 Panel/krdetailedview.cpp:106
-#: Panel/krdetailedview.cpp:1428 Search/krsearchdialog.cpp:146
+#: Panel/krdetailedview.cpp:1429 Search/krsearchdialog.cpp:146
 #: Synchronizer/synchronizergui.cpp:1255 Synchronizer/synchronizergui.cpp:1259
 msgid "Size"
 msgstr "Storlek"
@@ -1065,7 +1065,24 @@ msgstr "<DIR>"
 msgid "Preview not available"
 msgstr "Förhandsgranskning ej tillgängligt"
 
-#: Panel/listpanel.cpp:137
+#: Panel/krbriefview.cpp:151 Panel/krdetailedview.cpp:103
+#: Search/krsearchdialog.cpp:144 MountMan/kmountmangui.cpp:127
+#: Synchronizer/synchronizergui.cpp:1254 Synchronizer/synchronizergui.cpp:1260
+#: DiskUsage/dulines.cpp:240 DiskUsage/dulistview.cpp:56
+#: Konfigurator/krresulttable.cpp:129
+msgid "Name"
+msgstr "Namn"
+
+#: Panel/krbriefview.cpp:252 Panel/krdetailedview.cpp:303
+#: Konfigurator/kgcolors.cpp:419
+msgid "Directory"
+msgstr "Mapp"
+
+#: Panel/krbriefview.cpp:1322 Panel/krdetailedview.cpp:1410
+msgid "Columns"
+msgstr "Kolumner"
+
+#: Panel/listpanel.cpp:133
 msgid ""
 "The statusbar displays information about the FILESYSTEM which holds your "
 "current directory: Total size, free space, type of filesystem, etc."
@@ -1073,7 +1090,7 @@ msgstr ""
 "Statusraden visar information om det FILSYSTEM, som innehåller aktuell mapp: "
 "Totalt utrymme, ledigt utrymme, filsystemtyp m. m."
 
-#: Panel/listpanel.cpp:153
+#: Panel/listpanel.cpp:149
 msgid ""
 "Open menu with bookmarks. You can also add current location to the list, "
 "edit bookmarks or add subfolder to the list."
@@ -1081,7 +1098,7 @@ msgstr ""
 "Öppna meny med bokmärken. Du kan även lägga till aktuell plats till listan, "
 "redigera bokmärken eller lägga till undermappar till listan."
 
-#: Panel/listpanel.cpp:167
+#: Panel/listpanel.cpp:163
 msgid ""
 "The totals bar shows how many files exist, how many selected and the bytes "
 "math"
@@ -1089,19 +1106,19 @@ msgstr ""
 "Totalfältet visar hur många filer som finns, hur många utvalda samt byte-"
 "matematik"
 
-#: Panel/listpanel.cpp:183 Panel/listpanel.cpp:382
+#: Panel/listpanel.cpp:179 Panel/listpanel.cpp:407
 msgid "Open the popup panel"
 msgstr "Öppna pop-upp-panelen"
 
-#: Panel/listpanel.cpp:202
+#: Panel/listpanel.cpp:198
 msgid "Clear the location bar"
 msgstr "Nollställ platsraden"
 
-#: Panel/listpanel.cpp:210
+#: Panel/listpanel.cpp:206
 msgid "Use superb KDE file dialog to choose location. "
 msgstr "Använd utmärkt KDE fildialog för att välja plats. "
 
-#: Panel/listpanel.cpp:215
+#: Panel/listpanel.cpp:211
 msgid ""
 "Name of directory where you are. You can also enter name of desired location "
 "to move there. Use of Net protocols like ftp or fish is possible."
@@ -1109,154 +1126,139 @@ msgstr ""
 "Namn på aktuell mapp. Du kan även mata in namn på önskad plats för att "
 "flytta dig dit. Använd nätprotokoll som ftp eller fish om möjligt."
 
-#: Panel/listpanel.cpp:234
+#: Panel/listpanel.cpp:230
 msgid "="
 msgstr "="
 
-#: Panel/listpanel.cpp:235
+#: Panel/listpanel.cpp:231
 msgid "Equal"
 msgstr "Lika"
 
-#: Panel/listpanel.cpp:240
+#: Panel/listpanel.cpp:236
 msgid ".."
 msgstr ".."
 
-#: Panel/listpanel.cpp:241 krusader.cpp:535
+#: Panel/listpanel.cpp:237 krusader.cpp:565
 msgid "Up"
 msgstr "Upp"
 
-#: Panel/listpanel.cpp:246
+#: Panel/listpanel.cpp:242
 msgid "~"
 msgstr "~"
 
-#: Panel/listpanel.cpp:247 Panel/panelpopup.cpp:118 Panel/panelpopup.cpp:119
-#: Panel/panelpopup.cpp:120 Panel/panelpopup.cpp:131 krusader.cpp:498
+#: Panel/listpanel.cpp:243 Panel/panelpopup.cpp:118 Panel/panelpopup.cpp:119
+#: Panel/panelpopup.cpp:120 Panel/panelpopup.cpp:131 krusader.cpp:521
 msgid "Home"
 msgstr "Hem"
 
-#: Panel/listpanel.cpp:252
+#: Panel/listpanel.cpp:248
 msgid "/"
 msgstr "/"
 
-#: Panel/listpanel.cpp:253 Panel/panelpopup.cpp:122 Panel/panelpopup.cpp:123
+#: Panel/listpanel.cpp:249 Panel/panelpopup.cpp:122 Panel/panelpopup.cpp:123
 #: Panel/panelpopup.cpp:125 Panel/panelpopup.cpp:126 Panel/panelpopup.cpp:130
-#: krusader.cpp:620
+#: krusader.cpp:650
 msgid "Root"
 msgstr "Rot"
 
-#: Panel/listpanel.cpp:376
+#: Panel/listpanel.cpp:401
 msgid "Close the popup panel"
 msgstr "Stäng pop-upp-panelen"
 
-#: Panel/listpanel.cpp:480 Panel/listpanel.cpp:846
+#: Panel/listpanel.cpp:505 Panel/listpanel.cpp:894
 msgid " Select Files "
 msgstr " Markera filer "
 
-#: Panel/listpanel.cpp:480
+#: Panel/listpanel.cpp:505
 msgid " Unselect Files "
 msgstr " Avmarkera filer "
 
-#: Panel/listpanel.cpp:654
+#: Panel/listpanel.cpp:702
 msgid "No space information on non-local filesystems"
 msgstr "Ingen utrymmesinformation på fjärrfilsystem"
 
-#: Panel/listpanel.cpp:661
+#: Panel/listpanel.cpp:709
 msgid "No space information on [dev]"
 msgstr "Ingen utrymmesinformation på [dev]"
 
-#: Panel/listpanel.cpp:666
+#: Panel/listpanel.cpp:714
 msgid "No space information on [procfs]"
 msgstr "Ingen utrymmesinformation på [procfs]"
 
-#: Panel/listpanel.cpp:671
+#: Panel/listpanel.cpp:719
 msgid "No space information on [proc]"
 msgstr "Ingen utrymmesinformation på [proc]"
 
-#: Panel/listpanel.cpp:676
+#: Panel/listpanel.cpp:724
 msgid "Mt.Man: working ..."
 msgstr "Mt. Man: arbetar ..."
 
-#: Panel/listpanel.cpp:690
+#: Panel/listpanel.cpp:738
 msgid "unknown"
 msgstr "okänd"
 
-#: Panel/listpanel.cpp:698
+#: Panel/listpanel.cpp:746
 msgid "%1 free out of %2 (%3%) on %4 [ (%5) ]"
 msgstr "%1 fria av %2 (%3%) på %4 [ (%5) ]"
 
-#: Panel/listpanel.cpp:759
+#: Panel/listpanel.cpp:807
 msgid "Can't drop here, no write permissions."
 msgstr "Kan inte släppa här, skrivskyddat."
 
-#: Panel/listpanel.cpp:782 Panel/panelpopup.cpp:348
+#: Panel/listpanel.cpp:830 Panel/panelpopup.cpp:348
 msgid "Copy Here"
 msgstr "Kopiera hit"
 
-#: Panel/listpanel.cpp:784 Panel/panelpopup.cpp:349
+#: Panel/listpanel.cpp:832 Panel/panelpopup.cpp:349
 msgid "Move Here"
 msgstr "Flytta hit"
 
-#: Panel/listpanel.cpp:787 Panel/panelpopup.cpp:350
+#: Panel/listpanel.cpp:835 Panel/panelpopup.cpp:350
 msgid "Link Here"
 msgstr "Länka hit"
 
-#: Panel/listpanel.cpp:1004
+#: Panel/listpanel.cpp:1052
 msgid ">> Reading..."
 msgstr ">> Läser..."
 
-#: Panel/listpanel.cpp:1016
+#: Panel/listpanel.cpp:1064
 msgid "Reading"
 msgstr "Läser"
 
-#: Panel/listpanel.cpp:1021
+#: Panel/listpanel.cpp:1069
 msgid "Reading: "
 msgstr "Läser: "
 
-#: Panel/krdetailedview.cpp:103 Search/krsearchdialog.cpp:144
-#: MountMan/kmountmangui.cpp:127 Synchronizer/synchronizergui.cpp:1254
-#: Synchronizer/synchronizergui.cpp:1260 DiskUsage/dulines.cpp:240
-#: DiskUsage/dulistview.cpp:56 Konfigurator/krresulttable.cpp:129
-msgid "Name"
-msgstr "Namn"
-
-#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1422
+#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1423
 msgid "Ext"
 msgstr "Ext"
 
-#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1425
+#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1426
 #: MountMan/kmountmangui.cpp:128 DiskUsage/dulistview.cpp:68
 msgid "Type"
 msgstr "Typ"
 
-#: Panel/krdetailedview.cpp:107 Panel/krdetailedview.cpp:1431
+#: Panel/krdetailedview.cpp:107 Panel/krdetailedview.cpp:1432
 msgid "Modified"
 msgstr "Ändrad"
 
-#: Panel/krdetailedview.cpp:108 Panel/krdetailedview.cpp:1434
+#: Panel/krdetailedview.cpp:108 Panel/krdetailedview.cpp:1435
 msgid "Perms"
 msgstr "Behörigheter"
 
-#: Panel/krdetailedview.cpp:109 Panel/krdetailedview.cpp:1437
+#: Panel/krdetailedview.cpp:109 Panel/krdetailedview.cpp:1438
 msgid "rwx"
 msgstr "rwx"
 
-#: Panel/krdetailedview.cpp:110 Panel/krdetailedview.cpp:1440
+#: Panel/krdetailedview.cpp:110 Panel/krdetailedview.cpp:1441
 #: DiskUsage/dulistview.cpp:77
 msgid "Owner"
 msgstr "Ägare"
 
-#: Panel/krdetailedview.cpp:111 Panel/krdetailedview.cpp:1443
+#: Panel/krdetailedview.cpp:111 Panel/krdetailedview.cpp:1444
 #: DiskUsage/dulistview.cpp:80 Konfigurator/krresulttable.cpp:281
 msgid "Group"
 msgstr "Grupp"
-
-#: Panel/krdetailedview.cpp:302 Konfigurator/kgcolors.cpp:419
-msgid "Directory"
-msgstr "Mapp"
-
-#: Panel/krdetailedview.cpp:1409
-msgid "Columns"
-msgstr "Kolumner"
 
 #: Panel/krviewitem.cpp:47
 msgid "Climb up the directory tree"
@@ -1278,7 +1280,7 @@ msgstr "%1 (Länk)"
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "%1 av %2, %3 (%4) av %5 (%6)"
 
-#: Panel/krview.cpp:325 Panel/krpopupmenu.cpp:137 krusader.cpp:697
+#: Panel/krview.cpp:325 Panel/krpopupmenu.cpp:137 krusader.cpp:727
 msgid "Rename"
 msgstr "Döp om"
 
@@ -1392,7 +1394,7 @@ msgstr "Kör"
 msgid "Open in New Tab"
 msgstr "Öppna i en ny flik"
 
-#: Panel/krpopupmenu.cpp:76 Konfigurator/kglookfeel.cpp:309
+#: Panel/krpopupmenu.cpp:76 Konfigurator/kglookfeel.cpp:326
 #: Konfigurator/kgcolors.cpp:212
 msgid "Preview"
 msgstr "Förhandsgranskning"
@@ -1417,11 +1419,11 @@ msgstr "Användaråtgärder"
 msgid "Konqueror Menu"
 msgstr "Konquerormeny"
 
-#: Panel/krpopupmenu.cpp:131 krusader.cpp:689
+#: Panel/krpopupmenu.cpp:131 krusader.cpp:719
 msgid "Copy..."
 msgstr "Kopiera..."
 
-#: Panel/krpopupmenu.cpp:134 krusader.cpp:691
+#: Panel/krpopupmenu.cpp:134 krusader.cpp:721
 msgid "Move..."
 msgstr "Flytta..."
 
@@ -1433,7 +1435,7 @@ msgstr "Flytta till papperskorgen"
 msgid "Shred"
 msgstr "Förstör"
 
-#: Panel/krpopupmenu.cpp:156 krusader.cpp:658
+#: Panel/krpopupmenu.cpp:156 krusader.cpp:688
 msgid "New Symlink..."
 msgstr "Ny symbolisk länk..."
 
@@ -1457,15 +1459,15 @@ msgstr "Skicka med e-post"
 msgid "Synchronize Selected Files..."
 msgstr "Synkronisera valda filer..."
 
-#: Panel/krpopupmenu.cpp:191 krusader.cpp:509
+#: Panel/krpopupmenu.cpp:191 krusader.cpp:532
 msgid "Copy to Clipboard"
 msgstr "Kopiera till urklipp"
 
-#: Panel/krpopupmenu.cpp:194 krusader.cpp:508
+#: Panel/krpopupmenu.cpp:194 krusader.cpp:531
 msgid "Cut to Clipboard"
 msgstr "Klipp ut till urklipp"
 
-#: Panel/krpopupmenu.cpp:195 Panel/krpopupmenu.cpp:211 krusader.cpp:510
+#: Panel/krpopupmenu.cpp:195 Panel/krpopupmenu.cpp:211 krusader.cpp:533
 msgid "Paste from Clipboard"
 msgstr "Klistar in från urklipp"
 
@@ -1495,128 +1497,128 @@ msgstr ""
 msgid "Can't open \"%1\""
 msgstr "Kan inte öppna  \"%1\""
 
-#: Panel/panelfunc.cpp:263
+#: Panel/panelfunc.cpp:270
 msgid "You can edit links only on local file systems"
 msgstr "Du kan bara ändra länkar på lokala filsystem"
 
-#: Panel/panelfunc.cpp:274
+#: Panel/panelfunc.cpp:281
 msgid "The current file is not a link, so I can't redirect it."
 msgstr "Nuvarande fil är inte en länk, så jag kan inte omdirigera den."
 
-#: Panel/panelfunc.cpp:281
+#: Panel/panelfunc.cpp:288
 msgid "Link Redirection"
 msgstr "Omdirigering av  länk"
 
-#: Panel/panelfunc.cpp:282
+#: Panel/panelfunc.cpp:289
 msgid "Please enter the new link destination:"
 msgstr "Ange nytt länkmål:"
 
-#: Panel/panelfunc.cpp:289
+#: Panel/panelfunc.cpp:296
 msgid "Can't remove old link: "
 msgstr "Kan inte ta bort gammal länk"
 
-#: Panel/panelfunc.cpp:294 Panel/panelfunc.cpp:334
+#: Panel/panelfunc.cpp:301 Panel/panelfunc.cpp:341
 msgid "Failed to create a new link: "
 msgstr "Kunde inte skapa ny länk: "
 
-#: Panel/panelfunc.cpp:301
+#: Panel/panelfunc.cpp:308
 msgid "You can create links only on local file systems"
 msgstr "Du kan bara skapa länkar på lokala filsystem"
 
-#: Panel/panelfunc.cpp:310
+#: Panel/panelfunc.cpp:317
 msgid "New link"
 msgstr "Ny länk"
 
-#: Panel/panelfunc.cpp:310
+#: Panel/panelfunc.cpp:317
 msgid "Create a new link to: "
 msgstr "Skapa ny länk till: "
 
-#: Panel/panelfunc.cpp:318 Panel/panelfunc.cpp:504
+#: Panel/panelfunc.cpp:325 Panel/panelfunc.cpp:511
 msgid "A directory or a file with this name already exists."
 msgstr "En mapp eller fil med detta namn existerar redan."
 
-#: Panel/panelfunc.cpp:330
+#: Panel/panelfunc.cpp:337
 msgid "Failed to create a new symlink: "
 msgstr "Kunde inte skapa ny symbolisk länk: "
 
-#: Panel/panelfunc.cpp:331 Panel/panelfunc.cpp:335
+#: Panel/panelfunc.cpp:338 Panel/panelfunc.cpp:342
 msgid " To: "
 msgstr " Till: "
 
-#: Panel/panelfunc.cpp:349
+#: Panel/panelfunc.cpp:356
 msgid "No permissions to view this file."
 msgstr "Ej tillåtet att granska denna fil."
 
-#: Panel/panelfunc.cpp:373
+#: Panel/panelfunc.cpp:380
 msgid "<qt>Can't open <b>%1</b></qt>"
 msgstr "<qt>Kan ej öppna <b>%1</b></qt>"
 
-#: Panel/panelfunc.cpp:384
+#: Panel/panelfunc.cpp:391
 msgid "You can't edit a directory"
 msgstr "Du kan inte redigera en mapp"
 
-#: Panel/panelfunc.cpp:389
+#: Panel/panelfunc.cpp:396
 msgid "No permissions to edit this file."
 msgstr "Ej tillåtet att redigera denna fil."
 
-#: Panel/panelfunc.cpp:409
+#: Panel/panelfunc.cpp:416
 msgid "Moving into archive is disabled"
 msgstr "Möjligheten att flytta in i arkiv är avstängd"
 
-#: Panel/panelfunc.cpp:419
+#: Panel/panelfunc.cpp:426
 msgid "Move %1 to:"
 msgstr "Flytta %1 till:"
 
-#: Panel/panelfunc.cpp:421
+#: Panel/panelfunc.cpp:428
 #, fuzzy, c-format
 msgid "Move %n file to:"
 msgstr "Flytta %1 till:"
 
-#: Panel/panelfunc.cpp:465
+#: Panel/panelfunc.cpp:472
 msgid "You can't move files to this file system"
 msgstr "Du kan inte flytta filer till detta filsystem"
 
-#: Panel/panelfunc.cpp:491
+#: Panel/panelfunc.cpp:498
 msgid "New directory"
 msgstr "Ny mapp"
 
-#: Panel/panelfunc.cpp:491
+#: Panel/panelfunc.cpp:498
 msgid "Directory's name:"
 msgstr "Mappens namn:"
 
-#: Panel/panelfunc.cpp:574
+#: Panel/panelfunc.cpp:581
 msgid "Copy %1 to:"
 msgstr "Kopiera %1 till:"
 
-#: Panel/panelfunc.cpp:576
+#: Panel/panelfunc.cpp:583
 #, fuzzy, c-format
 msgid "Copy %n file to:"
 msgstr "Kopiera %1 till:"
 
-#: Panel/panelfunc.cpp:612
+#: Panel/panelfunc.cpp:619
 msgid "You can't copy files to this file system"
 msgstr "Du kan inte kopierar filer till detta filsystem"
 
-#: Panel/panelfunc.cpp:623
+#: Panel/panelfunc.cpp:630
 msgid "You do not have write permission to this directory"
 msgstr "Du har inte skrivrättigheter till denna mapp"
 
-#: Panel/panelfunc.cpp:641 DiskUsage/diskusage.cpp:597
+#: Panel/panelfunc.cpp:648 DiskUsage/diskusage.cpp:597
 msgid "Do you really want to move this item to the trash?"
 msgstr "Vill du verkligen flytta detta till papperskorgen?"
 
-#: Panel/panelfunc.cpp:642 DiskUsage/diskusage.cpp:598
+#: Panel/panelfunc.cpp:649 DiskUsage/diskusage.cpp:598
 msgid "&Trash"
 msgstr "&Papperskorgen"
 
-#: Panel/panelfunc.cpp:644
+#: Panel/panelfunc.cpp:651
 #, fuzzy
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
 "untouched)?"
 msgstr "Är du säker på att du vill ta bort detta?"
 
-#: Panel/panelfunc.cpp:647
+#: Panel/panelfunc.cpp:654
 #, fuzzy
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -1627,11 +1629,11 @@ msgstr ""
 "<qt>Vill du verkligen ta bort dessa %1 poster <b>fysiska</b> (inte bara "
 "flyttning från virtuella poster)?</qt>"
 
-#: Panel/panelfunc.cpp:650 DiskUsage/diskusage.cpp:600
+#: Panel/panelfunc.cpp:657 DiskUsage/diskusage.cpp:600
 msgid "Do you really want to delete this item?"
 msgstr "Är du säker på att du vill ta bort detta?"
 
-#: Panel/panelfunc.cpp:675
+#: Panel/panelfunc.cpp:682
 msgid ""
 "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete All?</"
 "p></qt>"
@@ -1639,19 +1641,19 @@ msgstr ""
 "<qt><p>Mapp <b>%1</b> är inte tom!</p><p>Hoppa över denna eller radera allat?"
 "</p></qt>"
 
-#: Panel/panelfunc.cpp:676
+#: Panel/panelfunc.cpp:683
 msgid "&Skip"
 msgstr "&Hoppa över"
 
-#: Panel/panelfunc.cpp:676
+#: Panel/panelfunc.cpp:683
 msgid "&Delete All"
 msgstr "&Ta bort alla"
 
-#: Panel/panelfunc.cpp:790
+#: Panel/panelfunc.cpp:797
 msgid "Cannot pack files onto a virtual destination!"
 msgstr "Kan ej packa filer till ett virtuellt mål!"
 
-#: Panel/panelfunc.cpp:802
+#: Panel/panelfunc.cpp:809
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>All data in the previous archive will be lost!</p></qt>"
@@ -1660,7 +1662,7 @@ msgstr ""
 "p><p>Samtliga datat i det föregående arkivet kommer att förloras!</p></qt></"
 "qt>"
 
-#: Panel/panelfunc.cpp:804
+#: Panel/panelfunc.cpp:811
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>Zip will replace identically named entries in the zip archive or add "
@@ -1670,45 +1672,45 @@ msgstr ""
 "kommer att byta ut identiska namn i ziparkivet eller lägga till poster med "
 "nya namn.</p></qt>"
 
-#: Panel/panelfunc.cpp:811
+#: Panel/panelfunc.cpp:818
 msgid "Counting files to pack"
 msgstr "Räknar filer att packa"
 
-#: Panel/panelfunc.cpp:871 Panel/panelfunc.cpp:932 krslots.cpp:192
-#: krslots.cpp:198
+#: Panel/panelfunc.cpp:878 Panel/panelfunc.cpp:939 krslots.cpp:194
+#: krslots.cpp:200
 msgid "Krusader is unable to download: "
 msgstr "Krusader kan inte ladda ned: "
 
-#: Panel/panelfunc.cpp:883
+#: Panel/panelfunc.cpp:890
 msgid "%1, unknown archive type."
 msgstr "%1, okänd typ av arkivfil."
 
-#: Panel/panelfunc.cpp:891
+#: Panel/panelfunc.cpp:898
 msgid "%1, test passed."
 msgstr "%1, testet lyckades."
 
-#: Panel/panelfunc.cpp:893
+#: Panel/panelfunc.cpp:900
 msgid "%1, test failed!"
 msgstr "%1, testet misslyckades!"
 
-#: Panel/panelfunc.cpp:909
+#: Panel/panelfunc.cpp:916
 msgid "Unpack %1 to:"
 msgstr "Packa upp %1 till:"
 
-#: Panel/panelfunc.cpp:911
+#: Panel/panelfunc.cpp:918
 #, fuzzy, c-format
 msgid "Unpack %n file to:"
 msgstr "Packa upp %1 till:"
 
-#: Panel/panelfunc.cpp:957
+#: Panel/panelfunc.cpp:964
 msgid "%1, unknown archive type"
 msgstr "%1, okänd typ av arkivfil"
 
-#: Panel/panelfunc.cpp:1140
+#: Panel/panelfunc.cpp:1147
 msgid "Cannot cut a virtual URL collection to the clipboard!"
 msgstr "Kan ej klippa ut en virtuell URL-samling till urklipp!"
 
-#: Panel/panelfunc.cpp:1142
+#: Panel/panelfunc.cpp:1149
 msgid "Cannot copy a virtual URL collection onto the clipboard!"
 msgstr "Kan ej kopiera en virtuell URL-samling till urklipp!"
 
@@ -1802,13 +1804,13 @@ msgstr "Namn på förfrågan"
 msgid "Here you can name the file collection"
 msgstr "Här kan du namnge filsamlingen"
 
-#: krusader.cpp:316
+#: krusader.cpp:339
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr ""
 "Statusfältet kommer att visa grundläggande information om filen under "
 "muspekaren."
 
-#: krusader.cpp:396
+#: krusader.cpp:419
 msgid ""
 "A configuration of 1.51 or older was detected. Krusader has to reset your "
 "configuration to default values.\n"
@@ -1820,7 +1822,7 @@ msgstr ""
 "Märk: Dina bokmärken och tangentkopplingar blir intakta.\n"
 " Krusader kommer nu att starta Konfigurator."
 
-#: krusader.cpp:408
+#: krusader.cpp:431
 msgid ""
 "<qt><b>Welcome to Krusader!</b><p>As this is your first run, your machine "
 "will now be checked for external applications. Then the Konfigurator will be "
@@ -1831,343 +1833,353 @@ msgstr ""
 "Konfiguratorn att startas där du kan anpassa Krusader för dina behov.</p></"
 "qt>"
 
-#: krusader.cpp:474
+#: krusader.cpp:497
 msgid "F3 View Dialog"
 msgstr "F3 Granskadialog"
 
-#: krusader.cpp:477
+#: krusader.cpp:500
 msgid "Tab: switch panel"
 msgstr "Tab: byt panel"
 
-#: krusader.cpp:501
+#: krusader.cpp:524
 msgid "Show Actions Toolbar"
 msgstr "Visa &åtgärdsverktygsfält"
 
-#: krusader.cpp:513
+#: krusader.cpp:536
 msgid "Show &FN Keys Bar"
 msgstr "Visa F&unktionstangentfältet"
 
-#: krusader.cpp:516
+#: krusader.cpp:539
 msgid "Show &Command Line"
 msgstr "Visa k&ommandoraden"
 
-#: krusader.cpp:519
+#: krusader.cpp:542
 msgid "Show Terminal &Emulator"
 msgstr "Visa &Terminalemulatorn"
 
-#: krusader.cpp:522
+#: krusader.cpp:546
+#, fuzzy
+msgid "&Detailed View"
+msgstr "Detaljerad vy"
+
+#: krusader.cpp:549
+#, fuzzy
+msgid "&Brief View"
+msgstr "Radvy"
+
+#: krusader.cpp:552
 msgid "Show &Hidden Files"
 msgstr "V&isa gömda filer"
 
-#: krusader.cpp:524
+#: krusader.cpp:554
 msgid "S&wap Panels"
 msgstr "B&yt Paneler"
 
-#: krusader.cpp:526
+#: krusader.cpp:556
 msgid "Sw&ap Sides"
 msgstr "B&yt sidor."
 
-#: krusader.cpp:532
+#: krusader.cpp:562
 msgid "popup cmdline"
 msgstr "pop-upp-kommandorad"
 
-#: krusader.cpp:536
+#: krusader.cpp:566
 msgid "&New Text File..."
 msgstr "&Ny textfil..."
 
-#: krusader.cpp:537
+#: krusader.cpp:567
 msgid "Start &Root Mode Krusader"
 msgstr "Starta Krusader i &Rotläge"
 
-#: krusader.cpp:539
+#: krusader.cpp:569
 msgid "T&est Archive"
 msgstr "T&esta arkiv"
 
-#: krusader.cpp:543
+#: krusader.cpp:573
 msgid "New Net &Connection..."
 msgstr "&Ny nätanslutning..."
 
-#: krusader.cpp:545
+#: krusader.cpp:575
 msgid "Pro&files"
 msgstr "Pro&filer"
 
-#: krusader.cpp:547
+#: krusader.cpp:577
 msgid "Calculate &Occupied Space"
 msgstr "Beräkna an&vänt utrymme"
 
-#: krusader.cpp:549
+#: krusader.cpp:579
 msgid "Create Checksum..."
 msgstr "Skapa checksumma..."
 
-#: krusader.cpp:551
+#: krusader.cpp:581
 msgid "Verify Checksum..."
 msgstr "Verifiera checksumma..."
 
-#: krusader.cpp:555
+#: krusader.cpp:585
 msgid "Pac&k..."
 msgstr "Pac&ka..."
 
-#: krusader.cpp:557
+#: krusader.cpp:587
 msgid "&Unpack..."
 msgstr "Packa &upp..."
 
-#: krusader.cpp:559
+#: krusader.cpp:589
 msgid "Sp&lit File..."
 msgstr "K&lyv fil..."
 
-#: krusader.cpp:561
+#: krusader.cpp:591
 msgid "Com&bine Files..."
 msgstr "Kom&binera filer..."
 
-#: krusader.cpp:563
+#: krusader.cpp:593
 msgid "Select &Group..."
 msgstr "Markera &grupp..."
 
-#: krusader.cpp:565
+#: krusader.cpp:595
 msgid "&Select All"
 msgstr "&Markera allt"
 
-#: krusader.cpp:567
+#: krusader.cpp:597
 msgid "&Unselect Group..."
 msgstr "&Avmarkera grupp..."
 
-#: krusader.cpp:569
+#: krusader.cpp:599
 msgid "U&nselect All"
 msgstr "A&vmarkera allt"
 
-#: krusader.cpp:571
+#: krusader.cpp:601
 msgid "&Invert Selection"
 msgstr "&Invertera det utvalda"
 
-#: krusader.cpp:573
+#: krusader.cpp:603
 msgid "&Compare Directories"
 msgstr "&Jämför mappar"
 
-#: krusader.cpp:575
+#: krusader.cpp:605
 msgid "&Select Newer and Single"
 msgstr "&Markera nyare och enstaka"
 
-#: krusader.cpp:577
+#: krusader.cpp:607
 msgid "Select &Newer"
 msgstr "Markera &nyare"
 
-#: krusader.cpp:579
+#: krusader.cpp:609
 msgid "Select &Single"
 msgstr "Markera en&staka"
 
-#: krusader.cpp:581
+#: krusader.cpp:611
 msgid "Select Different &and Single"
 msgstr "Markera olika och enst&aka"
 
-#: krusader.cpp:583
+#: krusader.cpp:613
 msgid "Select &Different"
 msgstr "Markera &olika"
 
-#: krusader.cpp:592
+#: krusader.cpp:622
 msgid "Start &Terminal"
 msgstr "Starta &Terminal"
 
-#: krusader.cpp:594
+#: krusader.cpp:624
 msgid "Disconnect &from Net"
 msgstr "Koppla bort &från nät"
 
-#: krusader.cpp:597 krusader.cpp:602
+#: krusader.cpp:627 krusader.cpp:632
 msgid "&MountMan..."
 msgstr "&MountMan..."
 
-#: krusader.cpp:606
+#: krusader.cpp:636
 msgid "&Search..."
 msgstr "&Sök..."
 
-#: krusader.cpp:608
+#: krusader.cpp:638
 msgid "&Locate..."
 msgstr "&Lokalisera..."
 
-#: krusader.cpp:610
+#: krusader.cpp:640
 msgid "Synchronize &Directories..."
 msgstr "Synkronisera &Mappar..."
 
-#: krusader.cpp:612
+#: krusader.cpp:642
 msgid "S&ynchron Directory Changes"
 msgstr "S&ynkrona mappändringar"
 
-#: krusader.cpp:614
+#: krusader.cpp:644
 msgid "D&isk Usage..."
 msgstr "D&iskutnyttjande..."
 
-#: krusader.cpp:616
+#: krusader.cpp:646
 msgid "Configure &Krusader..."
 msgstr "Konfigurera &Krusader..."
 
-#: krusader.cpp:622
+#: krusader.cpp:652
 msgid "Save &Position"
 msgstr "S&para läge"
 
-#: krusader.cpp:624
+#: krusader.cpp:654
 msgid "&All Files"
 msgstr "Alla &filer"
 
-#: krusader.cpp:628
+#: krusader.cpp:658
 msgid "&Custom"
 msgstr "An&passad"
 
-#: krusader.cpp:630
+#: krusader.cpp:660
 msgid "Compare b&y Content..."
 msgstr "&Jämför innehåll..."
 
-#: krusader.cpp:632
+#: krusader.cpp:662
 msgid "Multi &Rename..."
 msgstr "Män&gdomdöpning..."
 
-#: krusader.cpp:634
+#: krusader.cpp:664
 msgid "Right-click Menu"
 msgstr "Högerklickmeny"
 
-#: krusader.cpp:636
+#: krusader.cpp:666
 msgid "Right Bookmarks"
 msgstr "Högerbokmärken"
 
-#: krusader.cpp:638
+#: krusader.cpp:668
 msgid "Left Bookmarks"
 msgstr "Vänsterbokmärken"
 
-#: krusader.cpp:642 BookMan/krbookmarkhandler.cpp:399
+#: krusader.cpp:672 BookMan/krbookmarkhandler.cpp:399
 msgid "Bookmark Current"
 msgstr "Gör ett bokmärke för gällande"
 
-#: krusader.cpp:644
+#: krusader.cpp:674
 msgid "History"
 msgstr "Historik"
 
-#: krusader.cpp:646
+#: krusader.cpp:676
 msgid "Sync Panels"
 msgstr "Synkronisera paneler"
 
-#: krusader.cpp:648
+#: krusader.cpp:678
 msgid "Left History"
 msgstr "Vänsterhistorik"
 
-#: krusader.cpp:650
+#: krusader.cpp:680
 msgid "Right History"
 msgstr "Högerhistorik"
 
-#: krusader.cpp:652 BookMan/krbookmark.cpp:12
+#: krusader.cpp:682 BookMan/krbookmark.cpp:12
 msgid "Media"
 msgstr "Media"
 
-#: krusader.cpp:654
+#: krusader.cpp:684
 msgid "Left Media"
 msgstr "Vänstermedia"
 
-#: krusader.cpp:656
+#: krusader.cpp:686
 msgid "Right Media"
 msgstr "Högermedia"
 
-#: krusader.cpp:660
+#: krusader.cpp:690
 msgid "Toggle Popup Panel"
 msgstr "Växla pop-upp-panel"
 
-#: krusader.cpp:662
+#: krusader.cpp:692
 msgid "Vertical Mode"
 msgstr "Vertikal &mod"
 
-#: krusader.cpp:664
+#: krusader.cpp:694
 msgid "New Tab"
 msgstr "Ny flik"
 
-#: krusader.cpp:666
+#: krusader.cpp:696
 msgid "Duplicate Current Tab"
 msgstr "Klona aktuell flik"
 
-#: krusader.cpp:668
+#: krusader.cpp:698
 msgid "Close Current Tab"
 msgstr "Stäng gällande flik"
 
-#: krusader.cpp:670
+#: krusader.cpp:700
 msgid "Next Tab"
 msgstr "Nästa flik"
 
-#: krusader.cpp:672
+#: krusader.cpp:702
 msgid "Previous Tab"
 msgstr "Föregående flik"
 
-#: krusader.cpp:678
+#: krusader.cpp:708
 msgid "Manage User Actions..."
 msgstr "Hantera användaråtgärder..."
 
-#: krusader.cpp:680
+#: krusader.cpp:710
 msgid "Select Remote Charset"
 msgstr "Välj teckensnitt på fjärranslutning"
 
-#: krusader.cpp:683
+#: krusader.cpp:713
 msgid "Start Terminal Here"
 msgstr "Starta terminal här"
 
-#: krusader.cpp:685
+#: krusader.cpp:715
 msgid "View File"
 msgstr "Betrakta fil"
 
-#: krusader.cpp:687
+#: krusader.cpp:717
 msgid "Edit File"
 msgstr "Redigera fil"
 
-#: krusader.cpp:693
+#: krusader.cpp:723
 msgid "New Directory..."
 msgstr "Ny mapp..."
 
-#: krusader.cpp:701
+#: krusader.cpp:731
 msgid "Popular URLs..."
 msgstr "Populära URL:er..."
 
-#: krusader.cpp:703
+#: krusader.cpp:733
 msgid "Go to Location Bar"
 msgstr "Hoppa till platsrad"
 
-#: krusader.cpp:705
+#: krusader.cpp:735
 msgid "Jump Back"
 msgstr "Hoppa tillbaka"
 
-#: krusader.cpp:707
+#: krusader.cpp:737
 msgid "Set Jump Back Point"
 msgstr "Sätt tillbakahoppspunkten här"
 
-#: krusader.cpp:709
+#: krusader.cpp:739
 msgid "Toggle Fullwidget Terminal Emulator"
 msgstr "Växla till terminalemulator"
 
-#: krusader.cpp:713
+#: krusader.cpp:743
 msgid "Select files using a filter"
 msgstr "Välj filer med hjälp av ett filter"
 
-#: krusader.cpp:714
+#: krusader.cpp:744
 msgid "Select all files in the current directory"
 msgstr "Välj alla filer i aktuell mapp"
 
-#: krusader.cpp:715
+#: krusader.cpp:745
 msgid "Unselect all selected files"
 msgstr "Avmarkera alla valda filer"
 
-#: krusader.cpp:716
+#: krusader.cpp:746
 msgid "Setup Krusader the way you like it"
 msgstr "Anpassa Krusader som du vill ha det"
 
-#: krusader.cpp:717
+#: krusader.cpp:747
 msgid "Back to the place you came from"
 msgstr "Tillbaka till stället du kom från"
 
-#: krusader.cpp:718
+#: krusader.cpp:748
 msgid "ROOT (/)"
 msgstr "ROT (/)"
 
-#: krusader.cpp:719
+#: krusader.cpp:749
 msgid "Search for files"
 msgstr "Sök efter filer"
 
-#: krusader.cpp:725
+#: krusader.cpp:755
 msgid "JavaScript Console..."
 msgstr "Java-Skipt-konsol..."
 
-#: krusader.cpp:862
+#: krusader.cpp:892
 msgid "Are you sure you want to quit?"
 msgstr "Är du säker på att du vill avsluta?"
 
@@ -2222,7 +2234,7 @@ msgstr "Granskar"
 
 # msgid "Are you sure you want to shred "
 # msgstr "� du säker att du vill förstöra "
-#: KViewer/krviewer.cpp:222 krslots.cpp:465
+#: KViewer/krviewer.cpp:222 krslots.cpp:495
 msgid "Can't open "
 msgstr "Kan inte öppna "
 
@@ -2294,16 +2306,16 @@ msgstr "Granska Fil (F3)"
 msgid "Edit File (F4)"
 msgstr "Redigera fil (F4)"
 
-#: Search/krsearchdialog.cpp:523 Konfigurator/kggeneral.cpp:151
+#: Search/krsearchdialog.cpp:523 Konfigurator/kggeneral.cpp:186
 #: Konfigurator/kgarchives.cpp:113
 msgid "Search results"
 msgstr "Sökresultat"
 
-#: panelmanager.cpp:31
+#: panelmanager.cpp:32
 msgid "Open a new tab in home"
 msgstr "Öppna ny flik i hemmappen"
 
-#: panelmanager.cpp:39
+#: panelmanager.cpp:40
 msgid "Close current tab"
 msgstr "Stäng gällande flik"
 
@@ -3984,7 +3996,7 @@ msgstr "Krusader::Synkroniserare"
 msgid "Feeding the URLs to Kget"
 msgstr "Överföring av URL till KGet"
 
-#: Synchronizer/synchronizer.cpp:1447 krslots.cpp:117 krslots.cpp:209
+#: Synchronizer/synchronizer.cpp:1447 krslots.cpp:119 krslots.cpp:211
 msgid "Error executing "
 msgstr "Fel vid körning"
 
@@ -4018,7 +4030,7 @@ msgstr "Endast markerade filer"
 msgid "Cannot open %1!"
 msgstr "Kan inte öppna %1!"
 
-#: paneltabbar.cpp:35 Konfigurator/kglookfeel.cpp:120
+#: paneltabbar.cpp:35 Konfigurator/kglookfeel.cpp:121
 msgid "Panel"
 msgstr "Panel"
 
@@ -4230,7 +4242,7 @@ msgstr "Inkludera allt"
 msgid "Step into"
 msgstr "Stega in i"
 
-#: DiskUsage/diskusage.cpp:787
+#: DiskUsage/diskusage.cpp:787 Konfigurator/kglookfeel.cpp:174
 msgid "Detailed"
 msgstr "Detaljerad"
 
@@ -4268,26 +4280,26 @@ msgstr "Ägare:"
 msgid "Compare Se&tup"
 msgstr "Jämför ins&tällningar"
 
-#. i18n: file krusaderui.rc line 74
+#. i18n: file krusaderui.rc line 77
 #: rc.cpp:15
 #, no-c-format
 msgid "&Go"
 msgstr "&Kör"
 
-#. i18n: file krusaderui.rc line 85
+#. i18n: file krusaderui.rc line 88
 #: rc.cpp:18
 #, no-c-format
 msgid "User&actions"
 msgstr "A&nvändaråtgärder"
 
-#. i18n: file krusaderui.rc line 130
+#. i18n: file krusaderui.rc line 133
 #: rc.cpp:27
 #, no-c-format
 msgid "&Window"
 msgstr "&Fönster"
 
-#: Konfigurator/kgdependencies.cpp:53 Konfigurator/kggeneral.cpp:51
-#: Konfigurator/konfigurator.cpp:100 Konfigurator/kglookfeel.cpp:223
+#: Konfigurator/kgdependencies.cpp:53 Konfigurator/kggeneral.cpp:55
+#: Konfigurator/konfigurator.cpp:100 Konfigurator/kglookfeel.cpp:240
 #: Konfigurator/kgadvanced.cpp:48 Konfigurator/kgcolors.cpp:51
 #: Konfigurator/kgstartup.cpp:47 Konfigurator/kgarchives.cpp:51
 msgid "General"
@@ -4309,37 +4321,37 @@ msgstr "%1-sökvägen är felaktig, ingen giltig sökväg funnen."
 msgid "The %1 path is incorrect, %2 used instead."
 msgstr "%1-sökvägen är felaktig, %2 används i stället."
 
-#: Konfigurator/kggeneral.cpp:56
+#: Konfigurator/kggeneral.cpp:60
 msgid "Delete files"
 msgstr "Ta bort filer"
 
-#: Konfigurator/kggeneral.cpp:56
+#: Konfigurator/kggeneral.cpp:60
 msgid "Files will be permanently deleted."
 msgstr "Filer kommer att raderas permanent."
 
-#: Konfigurator/kggeneral.cpp:57
+#: Konfigurator/kggeneral.cpp:61
 msgid "Move to trash"
 msgstr "Flytta till papperskorgen"
 
-#: Konfigurator/kggeneral.cpp:57
+#: Konfigurator/kggeneral.cpp:61
 msgid "Files will be moved to trash when deleted."
 msgstr "Filer kommer att flyttas till papperskorgen när de tas bort."
 
-#: Konfigurator/kggeneral.cpp:64
+#: Konfigurator/kggeneral.cpp:68
 msgid "Use mimetype magic"
 msgstr "Använd mimetypemagi"
 
-#: Konfigurator/kggeneral.cpp:65
+#: Konfigurator/kggeneral.cpp:69
 msgid "Mimetype magic allows better distinction of file types, but is slower."
 msgstr ""
 "Med mimetypsmagi så blir det lättare att skilja på filer, men det tar längre "
 "tid."
 
-#: Konfigurator/kggeneral.cpp:72
+#: Konfigurator/kggeneral.cpp:76
 msgid "Editor:"
 msgstr "Redigerare:"
 
-#: Konfigurator/kggeneral.cpp:78
+#: Konfigurator/kggeneral.cpp:82
 msgid ""
 "Hint: use 'internal editor' if you want to use Krusader's fast built-in "
 "editor"
@@ -4347,39 +4359,39 @@ msgstr ""
 "Tips: använd interedigeraren om du vill använda Krusaders  snabba inbyggda "
 "redigerare"
 
-#: Konfigurator/kggeneral.cpp:86
+#: Konfigurator/kggeneral.cpp:93
 msgid "Default viewer mode:"
 msgstr "Standardgranskarläge:"
 
-#: Konfigurator/kggeneral.cpp:91
+#: Konfigurator/kggeneral.cpp:97
 msgid "Generic mode"
 msgstr "Generell granskare"
 
-#: Konfigurator/kggeneral.cpp:91
+#: Konfigurator/kggeneral.cpp:97
 msgid "Use the system's default viewer"
 msgstr "Använd systemets standardgranskare"
 
-#: Konfigurator/kggeneral.cpp:92
+#: Konfigurator/kggeneral.cpp:98
 msgid "Text mode"
 msgstr "Textläge"
 
-#: Konfigurator/kggeneral.cpp:92
+#: Konfigurator/kggeneral.cpp:98
 msgid "View the file in text-only mode"
 msgstr "Granska filen i enbart text-läge"
 
-#: Konfigurator/kggeneral.cpp:93
+#: Konfigurator/kggeneral.cpp:99
 msgid "Hex mode"
 msgstr "Hexadecimalt läge"
 
-#: Konfigurator/kggeneral.cpp:93
+#: Konfigurator/kggeneral.cpp:99
 msgid "View the file in hex-mode (better for binary files)"
 msgstr "Gransak filen i hexadecimalt läge (bäst för binära filer.)"
 
-#: Konfigurator/kggeneral.cpp:99
+#: Konfigurator/kggeneral.cpp:104
 msgid "Viewer opens each file in a separate window"
 msgstr "Granskaren öppnar varje fil i ett separat fönster"
 
-#: Konfigurator/kggeneral.cpp:100
+#: Konfigurator/kggeneral.cpp:105
 msgid ""
 "If checked, each file will open in a separate window, otherwise, the viewer "
 "will work in a single, tabbed mode"
@@ -4387,15 +4399,19 @@ msgstr ""
 "Om markerad kommer varje fil att öppnas i ett separat fönster. Annars kommer "
 "granskaren att arbeta med flikar."
 
-#: Konfigurator/kggeneral.cpp:108
+#: Konfigurator/kggeneral.cpp:115
+msgid "Atomic extensions:"
+msgstr ""
+
+#: Konfigurator/kggeneral.cpp:143
 msgid "Terminal:"
 msgstr "Terminal:"
 
-#: Konfigurator/kggeneral.cpp:115
+#: Konfigurator/kggeneral.cpp:150
 msgid "Terminal Emulator sends Chdir on panel change"
 msgstr "Terminalemulator sänder Chdir vid paneländring"
 
-#: Konfigurator/kggeneral.cpp:116
+#: Konfigurator/kggeneral.cpp:151
 msgid ""
 "When checked, whenever the panel is changed (for example, by pressing TAB), "
 "krusader changes the current directory in the terminal emulator."
@@ -4403,23 +4419,37 @@ msgstr ""
 "Om markerad, kommer krusader, närhelst panelen ändras (t. ex. genom att "
 "trycka TAB), att ändra aktuell mapp i terminalemulatorn."
 
-#: Konfigurator/kggeneral.cpp:124
+#: Konfigurator/kggeneral.cpp:159
 msgid "Temp Directory:"
 msgstr "Temp-mapp:"
 
-#: Konfigurator/kggeneral.cpp:132
+#: Konfigurator/kggeneral.cpp:167
 msgid "Note: you must have full permissions for the temporary directory!"
 msgstr "OBS: du måste ha full behörighet till den temporära mappen!"
 
-#: Konfigurator/kggeneral.cpp:151
+#: Konfigurator/kggeneral.cpp:186
 msgid "Searching for tools..."
 msgstr "Söker efter verktyg..."
 
-#: Konfigurator/kggeneral.cpp:152
+#: Konfigurator/kggeneral.cpp:187
 msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Se till att installera ny verktyg i din <code>$PATH</code> (t. ex. /usr/bin)"
+
+#: Konfigurator/kggeneral.cpp:195
+msgid "Add new atomic extension"
+msgstr ""
+
+#: Konfigurator/kggeneral.cpp:195
+msgid "Extension: "
+msgstr ""
+
+#: Konfigurator/kggeneral.cpp:200
+msgid ""
+"Atomic extensions must start with '.'\n"
+" and must contain at least one more '.' character"
+msgstr ""
 
 #: Konfigurator/krresulttable.cpp:121
 msgid "unarj not found, but arj found, which will be used for unpacking"
@@ -4547,27 +4577,27 @@ msgstr "Länka mime till protokoll"
 msgid "The current page has been changed. Do you want to apply changes?"
 msgstr "Den aktuella sidan har ändrats. Vill du genomföra ändringarna?"
 
-#: Konfigurator/kglookfeel.cpp:72
+#: Konfigurator/kglookfeel.cpp:73
 msgid "Operation"
 msgstr "Åtgärd"
 
-#: Konfigurator/kglookfeel.cpp:79
+#: Konfigurator/kglookfeel.cpp:80
 msgid "Look && Feel"
 msgstr "Utseende && känsla"
 
-#: Konfigurator/kglookfeel.cpp:84
+#: Konfigurator/kglookfeel.cpp:85
 msgid "Warn on exit"
 msgstr "Varna vid avslut"
 
-#: Konfigurator/kglookfeel.cpp:84
+#: Konfigurator/kglookfeel.cpp:85
 msgid "Display a warning when trying to close the main window."
 msgstr "Visa en varning när du försöker stänga huvudfönstret."
 
-#: Konfigurator/kglookfeel.cpp:85
+#: Konfigurator/kglookfeel.cpp:86
 msgid "Minimize to tray"
 msgstr "Förminska till aktivitetsfältet"
 
-#: Konfigurator/kglookfeel.cpp:85
+#: Konfigurator/kglookfeel.cpp:86
 msgid ""
 "The icon will appear in the system tray instead of the taskbar, when "
 "Krusader is minimized."
@@ -4575,21 +4605,21 @@ msgstr ""
 "När Krusader minimeras kommer dess ikon att dyka upp i systemfältet i "
 "stället för i aktivitetsfältet."
 
-#: Konfigurator/kglookfeel.cpp:86
+#: Konfigurator/kglookfeel.cpp:87
 msgid "Autoselect directories"
 msgstr "Markerar mappar automatiskt"
 
-#: Konfigurator/kglookfeel.cpp:86
+#: Konfigurator/kglookfeel.cpp:87
 msgid ""
 "When matching the select criteria, not only files will be selected, but also "
 "directories."
 msgstr "Vid matchning av urvalsvillkoren kommer även mappar att väljas ut."
 
-#: Konfigurator/kglookfeel.cpp:87
+#: Konfigurator/kglookfeel.cpp:88
 msgid "Rename selects extension"
 msgstr "Döpa om väljer-utvidgningar"
 
-#: Konfigurator/kglookfeel.cpp:87
+#: Konfigurator/kglookfeel.cpp:88
 msgid ""
 "When renaming a file, the whole text is selected. If you want Total-"
 "Commander like renaming of just the name, without extension, uncheck this "
@@ -4598,11 +4628,11 @@ msgstr ""
 "Vid omdöpning av en fil, väljs hela texten. Om du vill på total-commander-"
 "liknande omdöpning av bara namn utan utvidgning, avmarkera detta."
 
-#: Konfigurator/kglookfeel.cpp:88
+#: Konfigurator/kglookfeel.cpp:89
 msgid "Use full path tab names"
 msgstr "Använd fullständig sökvägsfliknamn"
 
-#: Konfigurator/kglookfeel.cpp:88
+#: Konfigurator/kglookfeel.cpp:89
 msgid ""
 "Display the full path in the folder tabs. By default only the last part of "
 "the path is displayed."
@@ -4610,31 +4640,31 @@ msgstr ""
 "Visa den fullständiga sökvägen i mappfliken; i annat fall visas bara den "
 "avslutande delen av sökvägen."
 
-#: Konfigurator/kglookfeel.cpp:89
+#: Konfigurator/kglookfeel.cpp:90
 msgid "Fullscreen terminal (mc-style)"
 msgstr "Fullskärmsterminal (mc-stil)"
 
-#: Konfigurator/kglookfeel.cpp:89
+#: Konfigurator/kglookfeel.cpp:90
 msgid "Terminal is shown instead of the Krusader window (full screen)."
 msgstr "Terminal visas i ställer för krusader-fönstret (fullkärm)."
 
-#: Konfigurator/kglookfeel.cpp:98
+#: Konfigurator/kglookfeel.cpp:99
 msgid "Quicksearch"
 msgstr "Snabbsökning"
 
-#: Konfigurator/kglookfeel.cpp:103
+#: Konfigurator/kglookfeel.cpp:104
 msgid "New style quicksearch"
 msgstr "Ny sorts snabbsökning"
 
-#: Konfigurator/kglookfeel.cpp:103
+#: Konfigurator/kglookfeel.cpp:104
 msgid "Opens a quick search dialog box."
 msgstr "Öppnar en snabbsökningsdialogruta."
 
-#: Konfigurator/kglookfeel.cpp:104
+#: Konfigurator/kglookfeel.cpp:105
 msgid "Case sensitive quicksearch"
 msgstr "Snabbsökning av filer storlekskänsligt (gemener/VERSALER)"
 
-#: Konfigurator/kglookfeel.cpp:104 Konfigurator/kglookfeel.cpp:155
+#: Konfigurator/kglookfeel.cpp:105 Konfigurator/kglookfeel.cpp:156
 msgid ""
 "All files beginning with capital letters appear before files beginning with "
 "non-capital letters (UNIX default)."
@@ -4642,168 +4672,177 @@ msgstr ""
 "Alla filer, vars namn börjar med stora bokstäver kommer före filer vars namn "
 "börjar med små bokstäver. (UNIX standard)."
 
-#: Konfigurator/kglookfeel.cpp:125
+#: Konfigurator/kglookfeel.cpp:126
 msgid "Panel settings"
 msgstr "Panelinställningar"
 
 # msgid "Costumize the way Krusader deals with archives"
 # msgstr "�dra sättet som Krusader hanterar arkivfiler"
-#: Konfigurator/kglookfeel.cpp:129
+#: Konfigurator/kglookfeel.cpp:130
 msgid "Panel font:"
 msgstr "Panelteckensnitt:"
 
-#: Konfigurator/kglookfeel.cpp:135
+#: Konfigurator/kglookfeel.cpp:136
 msgid "Filelist icon size:"
-msgstr "Fillistans ikon storlek:"
+msgstr "Fillistans ikonstorlek:"
 
-#: Konfigurator/kglookfeel.cpp:138
+#: Konfigurator/kglookfeel.cpp:139
 msgid "16"
 msgstr "16"
 
-#: Konfigurator/kglookfeel.cpp:139
+#: Konfigurator/kglookfeel.cpp:140
 msgid "22"
 msgstr "22"
 
-#: Konfigurator/kglookfeel.cpp:140
+#: Konfigurator/kglookfeel.cpp:141
 msgid "32"
 msgstr "32"
 
-#: Konfigurator/kglookfeel.cpp:141
+#: Konfigurator/kglookfeel.cpp:142
 msgid "48"
 msgstr "48"
 
-#: Konfigurator/kglookfeel.cpp:152
+#: Konfigurator/kglookfeel.cpp:153
 msgid "Use icons in the filenames"
 msgstr "Använd ikoner i filnamnen"
 
-#: Konfigurator/kglookfeel.cpp:152
+#: Konfigurator/kglookfeel.cpp:153
 msgid "Show the icons for filenames and folders."
 msgstr "Visa ikoner för filnamn och mappar."
 
-#: Konfigurator/kglookfeel.cpp:153
+#: Konfigurator/kglookfeel.cpp:154
 msgid "Use human-readable file size"
 msgstr "Använd vettigt läsbar filstorlek"
 
-#: Konfigurator/kglookfeel.cpp:153
+#: Konfigurator/kglookfeel.cpp:154
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
 msgstr "Filstorlekar kommer att visas i B, KB, MB och GB och inte som byte."
 
-#: Konfigurator/kglookfeel.cpp:154
+#: Konfigurator/kglookfeel.cpp:155
 msgid "Show hidden files"
 msgstr "Visa gömda filer"
 
-#: Konfigurator/kglookfeel.cpp:154
+#: Konfigurator/kglookfeel.cpp:155
 msgid "Display files beginning with a dot."
 msgstr "Visa filer som börjar med en punkt."
 
-#: Konfigurator/kglookfeel.cpp:155
+#: Konfigurator/kglookfeel.cpp:156
 msgid "Case sensitive sorting"
 msgstr "Sortera filer storlekskänsligt (gemener/VERSALER)"
 
-#: Konfigurator/kglookfeel.cpp:156
+#: Konfigurator/kglookfeel.cpp:157
 msgid "Always sort dirs by name"
 msgstr "Sortera alltid mappar namnvis"
 
-#: Konfigurator/kglookfeel.cpp:156
-msgid "Directories are sorted by name, regardless of the sort column."
-msgstr "mappar soteras efter namn, oberoende av sorteringskolumn."
-
 #: Konfigurator/kglookfeel.cpp:157
+msgid "Directories are sorted by name, regardless of the sort column."
+msgstr "mappar sorteras efter namn, oberoende av sorteringskolumn."
+
+#: Konfigurator/kglookfeel.cpp:158
 msgid "Numeric Permissions"
 msgstr "Numeriska rättigheter"
 
-#: Konfigurator/kglookfeel.cpp:157
+#: Konfigurator/kglookfeel.cpp:158
 msgid ""
 "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in "
 "the permission column."
 msgstr ""
 "Visa oktala tal (0755) i ställer för standardrättigheter (rwxr-xr-x) i "
-"rättighetsspalten."
+"rättighetskolumnen."
 
-#: Konfigurator/kglookfeel.cpp:171
+#: Konfigurator/kglookfeel.cpp:172
+#, fuzzy
+msgid "Default panel type:"
+msgstr "Vänster panel"
+
+#: Konfigurator/kglookfeel.cpp:175
+msgid "Brief"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:188
 msgid "Panel Toolbar"
 msgstr "Panelverktygsfält"
 
-#: Konfigurator/kglookfeel.cpp:179
+#: Konfigurator/kglookfeel.cpp:196
 msgid "Show Panel Toolbar"
 msgstr "Visa Panelverktygsfältet"
 
-#: Konfigurator/kglookfeel.cpp:179
+#: Konfigurator/kglookfeel.cpp:196
 msgid "The panel toolbar will be visible."
 msgstr "Verktygsfältet kommer att synas."
 
-#: Konfigurator/kglookfeel.cpp:185
+#: Konfigurator/kglookfeel.cpp:202
 msgid "Visible Panel Toolbar buttons"
 msgstr "Synliga knappar för Panelverktygsfält"
 
-#: Konfigurator/kglookfeel.cpp:191
+#: Konfigurator/kglookfeel.cpp:208
 msgid "Clear location bar button"
 msgstr "Nollställ platsknappen"
 
-#: Konfigurator/kglookfeel.cpp:191
+#: Konfigurator/kglookfeel.cpp:208
 msgid "Clears the location bar"
 msgstr "Tömmer platsknappen"
 
-#: Konfigurator/kglookfeel.cpp:192
+#: Konfigurator/kglookfeel.cpp:209
 msgid "Open button"
 msgstr "Öppnaknapp"
 
-#: Konfigurator/kglookfeel.cpp:192
+#: Konfigurator/kglookfeel.cpp:209
 msgid "Opens the directory browser."
 msgstr "Öppnar mappläsaren."
 
-#: Konfigurator/kglookfeel.cpp:193
+#: Konfigurator/kglookfeel.cpp:210
 msgid "Equal button (=)"
 msgstr "Likhetsteckenknapp (=)"
 
-#: Konfigurator/kglookfeel.cpp:193
+#: Konfigurator/kglookfeel.cpp:210
 msgid "Changes the panel directory to the other panel directory."
 msgstr "Ändrar panelmappen till den andra panelmappen."
 
 # msgid "Restore last position and size"
 # msgstr "�erställ senaste position och storlek"
-#: Konfigurator/kglookfeel.cpp:194
+#: Konfigurator/kglookfeel.cpp:211
 msgid "Up button (..)"
 msgstr "Uppknapp (..)"
 
-#: Konfigurator/kglookfeel.cpp:194
+#: Konfigurator/kglookfeel.cpp:211
 msgid "Changes the panel directory to the parent directory."
 msgstr "Ändrar panelmappen till föräldramappen."
 
-#: Konfigurator/kglookfeel.cpp:195
+#: Konfigurator/kglookfeel.cpp:212
 msgid "Home button (~)"
 msgstr "Hemknappen (~)"
 
-#: Konfigurator/kglookfeel.cpp:195
+#: Konfigurator/kglookfeel.cpp:212
 msgid "Changes the panel directory to the home directory."
 msgstr "Ändrar panelmappen till hemmappen."
 
-#: Konfigurator/kglookfeel.cpp:196
+#: Konfigurator/kglookfeel.cpp:213
 msgid "Root button (/)"
 msgstr "Rot-knapp (/)"
 
-#: Konfigurator/kglookfeel.cpp:196
+#: Konfigurator/kglookfeel.cpp:213
 msgid "Changes the panel directory to the root directory."
 msgstr "Ändrar panelmappen till rot-mappen."
 
-#: Konfigurator/kglookfeel.cpp:197
+#: Konfigurator/kglookfeel.cpp:214
 msgid "Toggle-button for sync-browsing"
 msgstr "Växlarknapp för synkroniseringsläsning"
 
-#: Konfigurator/kglookfeel.cpp:197
+#: Konfigurator/kglookfeel.cpp:214
 msgid ""
 "Each directory change in the panel is also performed in the other panel."
 msgstr "Varje mappändring i panelen utförs också i den andra panelen."
 
-#: Konfigurator/kglookfeel.cpp:217
+#: Konfigurator/kglookfeel.cpp:234
 msgid "Selection Mode"
 msgstr "Urvalsläge"
 
-#: Konfigurator/kglookfeel.cpp:231
+#: Konfigurator/kglookfeel.cpp:248
 msgid "Krusader Mode"
 msgstr "Krusaderläge"
 
-#: Konfigurator/kglookfeel.cpp:231
+#: Konfigurator/kglookfeel.cpp:248
 msgid ""
 "Both keys allow selecting files. To select more than one file, hold the Ctrl "
 "key and click the left mouse button. Right-click menu is invoked using a "
@@ -4813,11 +4852,11 @@ msgstr ""
 "Ctrl-tangenten och klicka med vänstra musknappen. Högerklickmeny åstadkoms "
 "med en kort klick med den högra musknappen."
 
-#: Konfigurator/kglookfeel.cpp:232
+#: Konfigurator/kglookfeel.cpp:249
 msgid "Konqueror Mode"
 msgstr "Konquerorläge"
 
-#: Konfigurator/kglookfeel.cpp:232
+#: Konfigurator/kglookfeel.cpp:249
 msgid ""
 "Pressing the left mouse button selects files - you can click and select "
 "multiple files. Right-click menu is invoked using a short click on the right "
@@ -4827,39 +4866,39 @@ msgstr ""
 "och välja flera filer.Högerklickmeny åstadkoms med en kort klick med den "
 "högra musknappen."
 
-#: Konfigurator/kglookfeel.cpp:233
+#: Konfigurator/kglookfeel.cpp:250
 msgid "Total-Commander Mode"
 msgstr "Total-Commander-läge"
 
-#: Konfigurator/kglookfeel.cpp:233
+#: Konfigurator/kglookfeel.cpp:250
 msgid ""
 "The left mouse button does not select, but sets the current file without "
 "affecting the current selection. The right mouse button selects multiple "
 "files and the right-click menu is invoked by pressing and holding the right "
 "mouse button."
 msgstr ""
-"Den vänstar musknappen väljer inte, men markerar aktuell fil utan att "
+"Den vänstra musknappen väljer inte, men markerar aktuell fil utan att "
 "påverka det aktuella urvalet. Den högra musknappen markerar många filer och "
 "högerklick-meny åstadkoms genom att tryck och hålla nere den högra "
 "musknappen."
 
-#: Konfigurator/kglookfeel.cpp:234 Konfigurator/kglookfeel.cpp:337
+#: Konfigurator/kglookfeel.cpp:251 Konfigurator/kglookfeel.cpp:354
 msgid "Custom Selection Mode"
 msgstr "Användarurvalsläge"
 
-#: Konfigurator/kglookfeel.cpp:234
+#: Konfigurator/kglookfeel.cpp:251
 msgid "Design your own selection mode!"
 msgstr "Konstruera ditt eget urvalssätt!"
 
-#: Konfigurator/kglookfeel.cpp:244
+#: Konfigurator/kglookfeel.cpp:261
 msgid "Details"
 msgstr "Detaljer"
 
-#: Konfigurator/kglookfeel.cpp:252
+#: Konfigurator/kglookfeel.cpp:269
 msgid "Double-click selects (classic)"
 msgstr "Dubbelklick väljer (klassiskt)"
 
-#: Konfigurator/kglookfeel.cpp:252
+#: Konfigurator/kglookfeel.cpp:269
 msgid ""
 "A single click on a file will select and focus, a double click opens the "
 "file or steps into the directory."
@@ -4867,11 +4906,11 @@ msgstr ""
 "Ett enkelklick på en fil väljer den, ett dubbelklick öppnar filen eller går "
 "in i mappen."
 
-#: Konfigurator/kglookfeel.cpp:253
+#: Konfigurator/kglookfeel.cpp:270
 msgid "Obey KDE's global selection policy"
 msgstr "Följ KDE's övergripande urvalssätt"
 
-#: Konfigurator/kglookfeel.cpp:253
+#: Konfigurator/kglookfeel.cpp:270
 msgid ""
 "<p>Use KDE's global setting:</p><p><i>KDE Control Center -> Peripherals -> "
 "Mouse</i></p>"
@@ -4879,27 +4918,27 @@ msgstr ""
 "<p>Använd KDE's globala inställning:<p><i>KDE Control Center-"
 ">Kringutrustning->Mus</i></p>"
 
-#: Konfigurator/kglookfeel.cpp:265
+#: Konfigurator/kglookfeel.cpp:282
 msgid "Based on KDE's selection mode"
 msgstr "Grundat på KDE's urvalsläge"
 
-#: Konfigurator/kglookfeel.cpp:266
+#: Konfigurator/kglookfeel.cpp:283
 msgid "If checked, use a mode based on KDE's style."
 msgstr "Om markerad, använd stil grundad på KDE's stil."
 
-#: Konfigurator/kglookfeel.cpp:268
+#: Konfigurator/kglookfeel.cpp:285
 msgid "Left mouse button selects"
 msgstr "Vänster musknapp väljer"
 
-#: Konfigurator/kglookfeel.cpp:269
+#: Konfigurator/kglookfeel.cpp:286
 msgid "If checked, left clicking an item will select it."
 msgstr "Om markerad, kommer vänsterklick att välja det."
 
-#: Konfigurator/kglookfeel.cpp:271
+#: Konfigurator/kglookfeel.cpp:288
 msgid "Left mouse button preserves selection"
 msgstr "Vänster musknapp bevarar urvalet"
 
-#: Konfigurator/kglookfeel.cpp:272
+#: Konfigurator/kglookfeel.cpp:289
 msgid ""
 "If checked, left clicking an item will select it, but will not unselect "
 "other, already selected items."
@@ -4907,11 +4946,11 @@ msgstr ""
 "Om markerad, kommer vänsterklick att välja det, men kommer inte att välja "
 "bort andra redan markerade."
 
-#: Konfigurator/kglookfeel.cpp:274
+#: Konfigurator/kglookfeel.cpp:291
 msgid "Shift/Ctrl-Left mouse button selects"
 msgstr "Shift/Ctrl-vänster musknapp väljer"
 
-#: Konfigurator/kglookfeel.cpp:275
+#: Konfigurator/kglookfeel.cpp:292
 msgid ""
 "If checked, shift/ctrl left clicking will select items. \n"
 "Note: This is meaningless if 'Left Button Selects' is checked."
@@ -4919,19 +4958,19 @@ msgstr ""
 "Om markerad, kommer shift/ctrl-vänsterklick att välja.\n"
 " Märk att detta är meningslöst om 'Vänster Knapp Väljer', är markerad."
 
-#: Konfigurator/kglookfeel.cpp:277
+#: Konfigurator/kglookfeel.cpp:294
 msgid "Right mouse button selects"
 msgstr "Höger musknapp väljer"
 
-#: Konfigurator/kglookfeel.cpp:278
+#: Konfigurator/kglookfeel.cpp:295
 msgid "If checked, right clicking an item will select it."
 msgstr "Om markerad, kommer högerklick att välja det."
 
-#: Konfigurator/kglookfeel.cpp:280
+#: Konfigurator/kglookfeel.cpp:297
 msgid "Right mouse button preserves selection"
 msgstr "Höger musknapp bevarar urvalet"
 
-#: Konfigurator/kglookfeel.cpp:281
+#: Konfigurator/kglookfeel.cpp:298
 msgid ""
 "If checked, right clicking an item will select it, but will not unselect "
 "other, already selected items."
@@ -4939,11 +4978,11 @@ msgstr ""
 "Om markerad, kommer högerklick att välja det, men kommer inte att välja bort "
 "andra redan markerade."
 
-#: Konfigurator/kglookfeel.cpp:283
+#: Konfigurator/kglookfeel.cpp:300
 msgid "Shift/Ctrl-Right mouse button selects"
 msgstr "Shift/Ctrl-höger musknapp väljer"
 
-#: Konfigurator/kglookfeel.cpp:284
+#: Konfigurator/kglookfeel.cpp:301
 msgid ""
 "If checked, shift/ctrl right clicking will select items. \n"
 "Note: This is meaningless if 'Right Button Selects' is checked."
@@ -4951,11 +4990,11 @@ msgstr ""
 "Om markerad, kommer shift/ctrl-högerklick att välja.\n"
 "Märk att detta är meningslöst om 'Höger Knapp Väljer', är markerad."
 
-#: Konfigurator/kglookfeel.cpp:286
+#: Konfigurator/kglookfeel.cpp:303
 msgid "Spacebar moves down"
 msgstr "Mellanslag flyttar nedåt"
 
-#: Konfigurator/kglookfeel.cpp:287
+#: Konfigurator/kglookfeel.cpp:304
 msgid ""
 "If checked, pressing the spacebar will select the current item and move "
 "down. \n"
@@ -4964,11 +5003,11 @@ msgstr ""
 "Om markerad, kommer mellanslag att välja aktuellt och flyttas nedåt.\n"
 "Annars väljs aktuell, men stannar på denna."
 
-#: Konfigurator/kglookfeel.cpp:289
+#: Konfigurator/kglookfeel.cpp:306
 msgid "Spacebar calculates disk space"
 msgstr "Mellanslag beräknar skivutrymme"
 
-#: Konfigurator/kglookfeel.cpp:290
+#: Konfigurator/kglookfeel.cpp:307
 msgid ""
 "If checked, pressing the spacebar while the current item is a folder, will "
 "(except from selecting the folder) \n"
@@ -4978,11 +5017,11 @@ msgstr ""
 "väljs)\n"
 " beräkna upptaget utrymme hos mappen (rekursivt)."
 
-#: Konfigurator/kglookfeel.cpp:292
+#: Konfigurator/kglookfeel.cpp:309
 msgid "Insert moves down"
 msgstr "Insert flyttar nedåt"
 
-#: Konfigurator/kglookfeel.cpp:293
+#: Konfigurator/kglookfeel.cpp:310
 msgid ""
 "If checked, pressing INSERT will select the current item, and move down to "
 "the next item. \n"
@@ -4991,17 +5030,17 @@ msgstr ""
 "Om markerad, kommer INSERT att välja aktuellt och flytta ned till nästa.\n"
 " Annars ändras inte aktuellt."
 
-#: Konfigurator/kglookfeel.cpp:295
+#: Konfigurator/kglookfeel.cpp:312
 msgid "Right clicking pops context menu immediately"
 msgstr "Med högerklick hoppar innehållsmeny upp direkt"
 
-#: Konfigurator/kglookfeel.cpp:296
+#: Konfigurator/kglookfeel.cpp:313
 msgid ""
 "If checked, right clicking will result in an immediate showing of the "
 "context menu. \n"
 "Otherwise, user needs to click and hold the right mouse button for 500ms."
 msgstr ""
-"Om markerad, kommer högreklick att åstadkomma en omedelbar visning av "
+"Om markerad, kommer högerklick att åstadkomma en omedelbar visning av "
 "innehållsmeny.\n"
 "Annars måste användaren klicka och hålla höger musknapp nere minst 500 ms."
 
@@ -5018,7 +5057,7 @@ msgid ""
 "ul><b>Note</b>: This can slow down the copy process."
 msgstr ""
 "Krusader kommer att försöka bevara alla attribut (tid, ägare, grupp) hos de "
-"lokala filerna enligt källan beronde på din tillåtelse: "
+"lokala filerna enligt källan beroende på din tillåtelse: "
 "<ul><li>Användarbevarande om du är root</li><li>Gruppbevarande om du är root "
 "eller medlem av gruppen.</li><li>Tidsmarkering bevaras</li></ul><b>Notera:</"
 "b>Detta kan slöa ner kopieringsprocessen."
@@ -5047,7 +5086,7 @@ msgid ""
 "Select if your media protocol is buggy (in some older KDE versions), or not "
 "present (no kdebase package installed)."
 msgstr ""
-"Välj om ditt mediaprotokoll är felaktigt (i vissas äldre KDE-versioner), "
+"Välj om ditt mediaprotokoll är felaktigt (i vissa äldre KDE-versioner), "
 "eller inte närvarande (inget kdebase-paket installerat)."
 
 #: Konfigurator/kgadvanced.cpp:74
@@ -5250,7 +5289,7 @@ msgid ""
 "option is only available when you don't use the <i>KDE default colors</i>.</"
 "p>"
 msgstr ""
-"<p>Visa den sista markörspositionen i den icke aktiva listpanelen.</"
+"<p>Visa den sista markörpositionen i den icke aktiva listpanelen.</"
 "p><p>Detta tillägg är endast tillgängligt när du inte använder <i>KDE's "
 "standardfärger</i>.</p>"
 
@@ -5263,8 +5302,8 @@ msgid ""
 "<p>The colors of the inactive panel are calculated by a dim color and a dim "
 "factor.</p>"
 msgstr ""
-"<p>Färgerna för den inaktiva panelen är beräknade av en diffus-färg och en "
-"diffus-faktor.</p>"
+"<p>Färgerna för den inaktiva panelen är beräknade av en diffus färg och en "
+"diffus faktor.</p>"
 
 #: Konfigurator/kgcolors.cpp:89
 msgid "Active"
@@ -5369,7 +5408,7 @@ msgstr "Samma som aktiv"
 
 #: Konfigurator/kgcolors.cpp:168
 msgid "Dim target color:"
-msgstr "Diffus måkfärg:"
+msgstr "Diffus målfärg:"
 
 #: Konfigurator/kgcolors.cpp:171
 msgid "Dim factor:"
@@ -5753,7 +5792,7 @@ msgstr "Teckensnitt med fast bredd:"
 msgid "Use fixed width font as default"
 msgstr "Använd font med gast teckensnitt som standard"
 
-#: krslots.cpp:104
+#: krslots.cpp:106
 msgid ""
 "Krusader can't find a supported mail client. Please install one to your "
 "path. Hint: Krusader supports Kmail."
@@ -5761,15 +5800,15 @@ msgstr ""
 "Krusader kan inte hitta någon stödd e-post klient. Var vänlig installera en "
 "i din sökväg. Tips: Krusader stödjer Kmail."
 
-#: krslots.cpp:111
+#: krslots.cpp:113
 msgid "Sending file: "
 msgstr "Skickar fil: "
 
-#: krslots.cpp:147
+#: krslots.cpp:149
 msgid "Don't know which files to compare."
 msgstr "Vet inte vilka filer som skall jämföras."
 
-#: krslots.cpp:147
+#: krslots.cpp:149
 msgid ""
 "To compare two files by content, you can either:<ul><li>Select one file in "
 "the left panel, and one in the right panel.</li><li>Select exactly two files "
@@ -5782,7 +5821,7 @@ msgstr ""
 "att det finns en fil i den andra panelen med samma namn som den aktuella "
 "filen har i den aktiva panelen.</li></ul>"
 
-#: krslots.cpp:184
+#: krslots.cpp:186
 msgid ""
 "Krusader can't find any of the supported diff-frontends. Please install one "
 "to your path. Hint: Krusader supports Kompare, Kdiff3 and Xxdiff."
@@ -5791,7 +5830,7 @@ msgstr ""
 "installera ett i din sökväg. Tips: Krusader stödjer Kompare, Kdiff3 och "
 "Xxdiff."
 
-#: krslots.cpp:411
+#: krslots.cpp:441
 msgid ""
 "Can't find the 'locate' command. Please install the findutils-locate package "
 "of GNU, or set its dependencies in Konfigurator"
@@ -5799,7 +5838,7 @@ msgstr ""
 "Kan inte hitta 'locate' kommandot. Var vänlig installera GNU's 'findutils-"
 "locate' paket eller ställ in dess beroenden i Konfigurator"
 
-#: krslots.cpp:423
+#: krslots.cpp:453
 msgid ""
 "Important: RemoteMan has been replaced by our new bookmark manager. The new "
 "manager handles local files and remote URLs the same way. RemoteMan is being "
@@ -5816,15 +5855,15 @@ msgstr ""
 "är gjort, tryck bokmärkesknappen, välj 'Lägg till bokmärke' och allt är "
 "klart!"
 
-#: krslots.cpp:442
+#: krslots.cpp:472
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
 msgstr "Kan inte starta 'montering'! Kontrollera beroendesidan i Konfigurator."
 
-#: krslots.cpp:474
+#: krslots.cpp:504
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
 msgstr "Kan inte hitta \"KsysCtrl\". Vänligen installera KDE's 'admin' paket"
 
-#: krslots.cpp:482
+#: krslots.cpp:512
 msgid ""
 "Can't find a batch rename tool.\n"
 "You can get Krename at http://www.krename.net"
@@ -5832,7 +5871,7 @@ msgstr ""
 "Kan inte inte hitta ett 'batch rename'-verktyg.\n"
 "Du kan hämta Krename från http://www.krename.net"
 
-#: krslots.cpp:512
+#: krslots.cpp:542
 msgid ""
 "Can't start root mode krusader, because krusader or kdesu is missing from "
 "the path. Please configure the dependencies in Konfigurator!"
@@ -5840,43 +5879,43 @@ msgstr ""
 "Kan inte starta Krusader i rot läge eftersom Krusader eller kdesu saknas "
 "från din sökväg. Vänligen konfigurera beroendena i Konfigurator!"
 
-#: krslots.cpp:567
+#: krslots.cpp:597
 msgid "Enter a URL to view:"
 msgstr "Mata in en URL att granska:"
 
-#: krslots.cpp:578
+#: krslots.cpp:608
 msgid "Enter the filename to edit:"
 msgstr "Mata in filnamn på den fil du vill redigera:"
 
-#: krslots.cpp:636
+#: krslots.cpp:665
 msgid "Don't know which file to split."
 msgstr "Vet inte vilka fil som skall klyvas."
 
-#: krslots.cpp:645
+#: krslots.cpp:674
 msgid "You can't split a directory!"
 msgstr "Du kan inte klyva en mapp!"
 
-#: krslots.cpp:676
+#: krslots.cpp:705
 msgid "Don't know which files to combine."
 msgstr "Vet inte vilka filer, som skall slås ihop."
 
-#: krslots.cpp:688
+#: krslots.cpp:717
 msgid "You can't combine a directory!"
 msgstr "Du kan inte slå ihop en mapp!"
 
-#: krslots.cpp:707
+#: krslots.cpp:736
 msgid "Not a split file %1!"
 msgstr "Inte en kluven fil %1!"
 
-#: krslots.cpp:722
+#: krslots.cpp:751
 msgid "Select only one split file!"
 msgstr "Välj endast en kluven fil!"
 
-#: krslots.cpp:770
+#: krslots.cpp:799
 msgid "Not a splitted file %1!"
 msgstr "Inte en kluven fil %1!"
 
-#: krslots.cpp:777
+#: krslots.cpp:806
 msgid "Combining %1.* to directory:"
 msgstr "Slår ihop %1.* till mapp:"
 
