@@ -169,8 +169,8 @@ KrBriefView::~KrBriefView() {
 
 void KrBriefView::resizeEvent ( QResizeEvent * resEvent )
 {
-   
-   QRect viewportRect( QPoint( contentsX(), contentsY() ), resEvent->oldSize() );
+   QPoint pnt( contentsX(), contentsY() );
+   QRect viewportRect( pnt, resEvent->oldSize() );
    bool visible = false;
    if( currentItem() )
      visible = viewportRect.contains( currentItem()->rect() );

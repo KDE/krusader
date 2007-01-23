@@ -276,6 +276,12 @@ void PanelManager::slotRecreatePanels() {
        _other->otherPanel = newPanel;         
      updatedPanel->panel = newPanel;
      newPanel->start( oldPanel->virtualPath(), true );          
+     if( _self == oldPanel )
+     {
+        _self = newPanel;
+        _self->otherPanel = _other;
+        _other->otherPanel = _self;
+     }
      deletePanel( oldPanel );
    
      _tabbar->updateTab( newPanel );
