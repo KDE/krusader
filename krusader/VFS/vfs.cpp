@@ -151,7 +151,7 @@ bool vfs::vfs_refresh(){
 	vfs_busy = true;
 	// and populate it
 	krConfig->setGroup("Advanced");
-	int maxIncrementalRefreshFileNr = krConfig->readNumEntry("Max Refresh Frequency", 1000);
+	int maxIncrementalRefreshFileNr = krConfig->readNumEntry("Max Incremental Refresh File Nr", 50);
 	krConfig->setGroup("Look&Feel");
 	bool showHidden = krConfig->readBoolEntry("Show Hidden",_ShowHidden);
 	bool res = populateVfsList(vfs_getOrigin(),showHidden);
