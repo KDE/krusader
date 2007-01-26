@@ -101,7 +101,7 @@ QFrame *line2 = createLine( generalGrp, "line2" );
       "generic", 0, 3, viewMode, 3, vbox, "myRadio2", false );
 
   createCheckBox( "General", "View In Separate Window", _ViewInSeparateWindow,
-                     i18n( "Viewer opens each file in a separate window" ), vbox, false,
+                     i18n( "Internal editor and viewer opens each file in a separate window" ), vbox, false,
                      i18n( "If checked, each file will open in a separate window, otherwise, the viewer will work in a single, tabbed mode" ) );
 
   generalGrid->addMultiCellWidget(hbox2, 6, 8, 0, 1);

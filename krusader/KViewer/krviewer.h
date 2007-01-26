@@ -47,7 +47,7 @@ public:
 	static void view( KURL url, QWidget * parent = krApp );
 	static void view( KURL url, Mode mode, bool new_window, QWidget * parent = krApp );
 	static void edit( KURL url, QWidget * parent );
-	static void edit( KURL url, Mode mode=Text, bool new_window=false, QWidget * parent = krApp );
+	static void edit( KURL url, Mode mode=Text, int new_window=-1, QWidget * parent = krApp );
 
 
 public slots:

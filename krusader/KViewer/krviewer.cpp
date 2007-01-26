@@ -204,12 +204,15 @@ void KrViewer::view( KURL url, Mode mode,  bool new_window, QWidget * parent ) {
 }
 
 void KrViewer::edit( KURL url, QWidget * parent ) {
-	edit( url, Text, false, parent );
+	edit( url, Text, -1, parent );
 }
 
-void KrViewer::edit( KURL url, Mode mode, bool new_window, QWidget * parent ) {
+void KrViewer::edit( KURL url, Mode mode, int new_window, QWidget * parent ) {
 	krConfig->setGroup( "General" );
 	QString edit = krConfig->readEntry( "Editor", _Editor );
+	
+	if( new_window == -1 )
+		new_window = krConfig->readBoolEntry( "View In Separate Window",_ViewInSeparateWindow );
 
 	if ( edit != "internal editor" ) {
 		KProcess proc;
