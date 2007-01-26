@@ -41,7 +41,7 @@
 #include "../krusader.h"
 #include "../defaults.h"
 
-vfs::vfs(QObject* panel, bool quiet): vfs_busy(false), quietMode(quiet),disableRefresh(false),
+vfs::vfs(QObject* panel, bool quiet): vfs_busy(false), quietMode(quiet),disableRefresh(false),postponedRefreshURL(),
                                       invalidated(true),vfs_tempFilesP(0),vfileIterator(0),deletePossible( true ),
                                       deleteRequested( false ) {
 		
@@ -142,16 +142,38 @@ bool vfs::vfs_refresh(){
 	if( invalidated ) // invalidated fs requires total refresh
 		return vfs_refresh( vfs_getOrigin() );
 	
-	dirty = false;
+	if( disableRefresh )
+	{
+		postponedRefreshURL = vfs_getOrigin();
+		return false;
+	}
 	
 	vfs_busy = true;
 	// and populate it
+	krConfig->setGroup("Advanced");
+	int maxIncrementalRefreshFileNr = krConfig->readNumEntry("Max Refresh Frequency", 1000);
 	krConfig->setGroup("Look&Feel");
 	bool showHidden = krConfig->readBoolEntry("Show Hidden",_ShowHidden);
 	bool res = populateVfsList(vfs_getOrigin(),showHidden);
 
 	QString name;
 	if( res ){
+		// check if the maximum incremental refresh number is achieved
+		int diff = vfs_filesP->count() - vfs_tempFilesP->count();
+		if( diff < 0 )
+			diff = -diff;
+		if( diff >= maxIncrementalRefreshFileNr )
+		{
+			// total filesystem refresh is cheaper than incremental refresh for many files
+			clear();
+			delete vfs_filesP;
+			setVfsFilesP( vfs_tempFilesP );
+			vfs_busy = false;
+			
+			emit startUpdate();
+			return true;
+		}
+
 		// compare the two list emiting signals when needed;;
 		for( vfile* vf = vfs_getFirstFile(); vf ;  ){
 			name = vf->vfile_getName();
@@ -198,10 +220,16 @@ bool vfs::vfs_refresh(const KURL& origin){
 	if( vfs_busy )
 		return false;
 	
+	if( disableRefresh )
+	{
+		postponedRefreshURL = origin;
+		return true;
+	}
+
 	if( !invalidated && origin.equals(vfs_getOrigin(),true) ) return vfs_refresh();
 	
 	vfs_busy = true;
-	dirty = false;        
+	
 	krConfig->setGroup("Look&Feel");
 	bool showHidden = krConfig->readBoolEntry("Show Hidden",_ShowHidden);
 
@@ -218,8 +246,7 @@ bool vfs::vfs_refresh(const KURL& origin){
 	setVfsFilesP( vfs_tempFilesP );
 	vfs_busy = false;
 	
-	if (!disableRefresh) emit startUpdate();
-	else dirty = true;   
+	emit startUpdate();
 	
 	invalidated = false;
 	return true;
@@ -229,8 +256,8 @@ void vfs::vfs_enableRefresh(bool enable){
 	if (vfs_type != NORMAL) return;
 	if (disableRefresh == !enable) return; // if gets called twice by mistake
 	disableRefresh = quietMode = !enable;
-  if( enable && dirty ) vfs_refresh();
-	dirty = false;
+	if( enable && !postponedRefreshURL.isEmpty() ) vfs_refresh( postponedRefreshURL );
+	postponedRefreshURL = KURL();
 }
 
 void vfs::clear()

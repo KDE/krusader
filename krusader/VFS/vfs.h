@@ -158,7 +158,7 @@ protected:
 	bool quietMode;             //< if true the vfs won't display error messages or emit signals
 	bool disableRefresh;        //< true if refresh is disabled
 	bool isWritable;            //< true if it's writable
-	bool dirty;                 //< true if a watcher signal arrived while in disabled refresh.
+	KURL postponedRefreshURL;   //< true if vfs_refresh() was called when refresh is disabled.
 	bool invalidated;           //< the content of the cache is invalidated
 	
 protected slots:

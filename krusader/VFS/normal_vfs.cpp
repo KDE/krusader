@@ -360,7 +360,7 @@ bool normal_vfs::burstRefresh(const QString& path ){
 		}
 		disconnect( &refreshTimer, SIGNAL( timeout() ), this, SLOT( vfs_slotRefresh() ) );
 		connect( &refreshTimer, SIGNAL( timeout() ), this, SLOT( vfs_slotRefresh() ) );
-		dirty = true;
+		postponedRefreshURL = fromPathOrURL(path);
 		return true;
 	}
 	return false;
@@ -368,7 +368,7 @@ bool normal_vfs::burstRefresh(const QString& path ){
 
 void normal_vfs::vfs_slotDirty(const QString& path){ 
 	if( disableRefresh ){
-		dirty = true;
+		postponedRefreshURL = fromPathOrURL(path);
 		return;
 	}
 	
@@ -390,7 +390,7 @@ void normal_vfs::vfs_slotDirty(const QString& path){
 
 void normal_vfs::vfs_slotCreated(const QString& path){  
 	if( disableRefresh ){
-		dirty = true;
+		postponedRefreshURL = fromPathOrURL(path);
 		return;
 	}	
 	
@@ -411,7 +411,7 @@ void normal_vfs::vfs_slotCreated(const QString& path){
 
 void normal_vfs::vfs_slotDeleted(const QString& path){ 
 	if( disableRefresh ){
-		dirty = true;
+		postponedRefreshURL = fromPathOrURL(path);
 		return;
 	}
 	
