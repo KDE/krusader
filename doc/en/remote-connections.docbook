@@ -8,26 +8,33 @@
      <command>http://</command> will not work in the panel, but will work in the 
      <link linkend="krviewer">viewer</link> .
      Some examples:</para>
- 
+
  <itemizedlist>
      <listitem><para><userinput><command>ftp://</command><replaceable>public.ftpserver.org/directory/</replaceable></userinput></para>
      </listitem>
-     
+
      <listitem><para><userinput><command>fish://</command><replaceable>username@hostname/</replaceable></userinput></para>
      </listitem>
-                                   
+
      <listitem><para><userinput><command>sftp://</command><replaceable>username:password@sftp.foo.org/</replaceable></userinput></para>          
      </listitem>
-     
+
      <listitem><para><userinput><command>ftp://</command><replaceable>username@my.server.org:21/directory/</replaceable></userinput></para>
      </listitem> 
-         
+
      <listitem><para><userinput><command>smb://</command><replaceable>username:password@server/share</replaceable></userinput></para>
      </listitem>
 
      <listitem><para><userinput><command>ftp://</command><replaceable>username@proxyusername:password@proxipassword@hostname/directory</replaceable></userinput></para>
-     </listitem>     
- </itemizedlist>          
+     </listitem>
+
+     <listitem><para><userinput><command>nfs://</command><replaceable>&lt;host>:&lt;port>&lt;url-path></replaceable></userinput></para>
+     </listitem>
+
+     <listitem><para><userinput><command>webdav://</command><replaceable>www.server.com/path/</replaceable></userinput></para>
+     </listitem>
+
+ </itemizedlist>
 
  
 <para>You can Bookmark these &URL;'s, please read the <link linkend="bookman">Bookman</link> section 
