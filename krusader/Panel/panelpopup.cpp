@@ -71,14 +71,14 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	
 	previewBtn = new QToolButton(this);
 	QToolTip::add(previewBtn, i18n("Preview Panel: display a preview of the current file"));
-	previewBtn->setPixmap(krLoader->loadIcon( "folder_image", KIcon::Toolbar, 16 ));
+	previewBtn->setPixmap(krLoader->loadIcon( "thumbnail", KIcon::Toolbar, 16 ));
 	previewBtn->setFixedSize(20, 20);
 	previewBtn->setToggleButton(true);
 	btns->insert(previewBtn, Preview);
 	
 	quickBtn = new QToolButton(this);
 	QToolTip::add(quickBtn, i18n("Quick Panel: quick way to perform actions"));
-	quickBtn->setPixmap(krLoader->loadIcon( "kr_select", KIcon::Toolbar, 16 ));
+	quickBtn->setPixmap(krLoader->loadIcon( "misc", KIcon::Toolbar, 16 ));
 	quickBtn->setFixedSize(20, 20);
 	quickBtn->setToggleButton(true);
 	btns->insert(quickBtn, QuickPanel);
