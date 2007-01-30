@@ -85,7 +85,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 
 	viewerBtn = new QToolButton(this);
 	QToolTip::add(viewerBtn, i18n("View Panel: view the current file"));
-	viewerBtn->setPixmap(krLoader->loadIcon( "kview", KIcon::Toolbar, 16 ));
+	viewerBtn->setPixmap(krLoader->loadIcon( "xmag", KIcon::Toolbar, 16 ));
 	viewerBtn->setFixedSize(20, 20);
 	viewerBtn->setToggleButton(true);
 	btns->insert(viewerBtn, View);	
