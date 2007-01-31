@@ -125,13 +125,16 @@ bool normal_vfs::populateVfsList(const KURL& origin, bool showHidden){
 	// clean up
 	closedir(dir);
 	
-	watcher = new KDirWatch();
-	// connect the watcher
-  connect(watcher,SIGNAL(dirty(const QString&)),this,SLOT(vfs_slotDirty(const QString&)));
-  connect(watcher,SIGNAL(created(const QString&)),this, SLOT(vfs_slotCreated(const QString&)));
-  connect(watcher,SIGNAL(deleted(const QString&)),this, SLOT(vfs_slotDeleted(const QString&)));	
-  watcher->addDir(vfs_getOrigin().path(-1),true); //start watching the new dir
-  watcher->startScan(true);
+	if( panelConnected )
+	{
+		watcher = new KDirWatch();
+		// connect the watcher
+		connect(watcher,SIGNAL(dirty(const QString&)),this,SLOT(vfs_slotDirty(const QString&)));
+		connect(watcher,SIGNAL(created(const QString&)),this, SLOT(vfs_slotCreated(const QString&)));
+		connect(watcher,SIGNAL(deleted(const QString&)),this, SLOT(vfs_slotDeleted(const QString&)));	
+		watcher->addDir(vfs_getOrigin().path(-1),true); //start watching the new dir
+		watcher->startScan(true);
+	}
 
   return true;
 }

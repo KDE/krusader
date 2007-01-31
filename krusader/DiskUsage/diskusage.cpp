@@ -269,7 +269,6 @@ void DiskUsage::load( KURL baseDir )
   }
 
   searchVfs->vfs_setQuiet( true );
-  searchVfs->vfs_enableRefresh( false );
   currentVfile = 0;
 
   if( !loading )

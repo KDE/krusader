@@ -42,12 +42,13 @@
 #include "../defaults.h"
 
 vfs::vfs(QObject* panel, bool quiet): vfs_busy(false), quietMode(quiet),disableRefresh(false),postponedRefreshURL(),
-                                      invalidated(true),vfs_tempFilesP(0),vfileIterator(0),deletePossible( true ),
+                                      invalidated(true),panelConnected(false),vfs_tempFilesP(0),vfileIterator(0),deletePossible( true ),
                                       deleteRequested( false ) {
 		
 
 	setVfsFilesP( new vfileDict() );
 	if ( panel ){
+		panelConnected = true;
 		connect(this,SIGNAL(startUpdate()),panel,SLOT(slotStartUpdate()));
 		connect(this,SIGNAL(incrementalRefreshFinished( const KURL& )),panel,SLOT(slotGetStats( const KURL& )));
 	}

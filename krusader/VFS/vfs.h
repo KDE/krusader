@@ -160,6 +160,7 @@ protected:
 	bool isWritable;            //< true if it's writable
 	KURL postponedRefreshURL;   //< true if vfs_refresh() was called when refresh is disabled.
 	bool invalidated;           //< the content of the cache is invalidated
+	bool panelConnected;        //< indicates that there's a panel connected. Important for disabling the dir watcher
 	
 protected slots:
 	/// The slot for the KDirSize job
