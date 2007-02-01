@@ -79,7 +79,7 @@ RadialMap::Map::make( const Directory *tree, bool refresh )
     {
         int i;
 
-        for( i = 4; i > 0; --i )
+        for( i = 3; i > 0; --i )
             if( tree->size() > File::DENOMINATOR[i] )
                 break;
 
