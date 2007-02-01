@@ -43,6 +43,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	// create the label+buttons setup
 	dataLine = new KrSqueezedTextLabel(this);
 	dataLine->setText("blah blah");
+	connect( dataLine, SIGNAL( clicked() ), this, SLOT( setFocus() ) );
 	krConfig->setGroup( "Look&Feel" );
    dataLine->setFont( krConfig->readFontEntry( "Filelist Font", _FilelistFont ) );
    // --- hack: setup colors to be the same as an inactive panel
@@ -229,6 +230,31 @@ void PanelPopup::hide() {
   if (stack->id(stack->visibleWidget()) == DskUsage) diskusage->closeURL();
 }
 
+void PanelPopup::setFocus() {
+	switch ( stack->id( stack->visibleWidget() ) ) {
+	case Preview:
+		if( !isHidden() )
+			viewer->setFocus();
+		break;
+	case View:
+		if( !isHidden() && panelviewer->part() && panelviewer->part()->widget() )
+			panelviewer->part()->widget()->setFocus();
+		break;
+	case DskUsage:
+		if( !isHidden() && diskusage->getWidget() && diskusage->getWidget()->visibleWidget() )
+			diskusage->getWidget()->visibleWidget()->setFocus();
+		break;
+	case Tree:
+		if( !isHidden() )
+			tree->setFocus();
+		break;
+	case QuickPanel:
+		if( !isHidden() )
+			quickSelectCombo->setFocus();
+		break;
+	}
+}
+
 void PanelPopup::saveSizes() {
   krConfig->setGroup( "Private" );
 
@@ -279,6 +305,8 @@ void PanelPopup::tabSelected( int id ) {
 		case DskUsage:
 			dataLine->setText( i18n("Disk Usage:") );
 			update(url);
+			if( !isHidden() && diskusage->getWidget() && diskusage->getWidget()->visibleWidget() )
+				diskusage->getWidget()->visibleWidget()->setFocus();
 			break;
 	}
 	if (id != View) panelviewer->closeURL();  

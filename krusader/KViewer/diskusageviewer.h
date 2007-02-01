@@ -47,6 +47,8 @@ public:
   void openURL( KURL url );
   void closeURL();
   void setStatusLabel( QLabel *statLabel, QString pref );
+
+  inline DiskUsage * getWidget() { return diskUsage; }
   
 signals:
   void openURLRequest(const KURL &);

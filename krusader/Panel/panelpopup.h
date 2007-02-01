@@ -43,6 +43,7 @@ signals:
 	void hideMe();
    
 protected slots:	
+	virtual void setFocus();
 	void tabSelected(int id);
 	void treeSelection(QListViewItem*);
 	void slotDroppedOnTree(QWidget *widget, QDropEvent *e, KURL::List &lst, KURL &);

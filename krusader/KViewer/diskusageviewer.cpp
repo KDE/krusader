@@ -46,6 +46,7 @@ DiskUsageViewer::~ DiskUsageViewer()
   {
     krConfig->setGroup( "DiskUsageViewer" );  
     krConfig->writeEntry( "View", diskUsage->getActiveView() );
+    delete diskUsage;
   }
 }
 
