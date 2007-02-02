@@ -146,6 +146,9 @@ void PreservingCopyJob::slotAboutToCreate( KIO::Job */*job*/, const QValueList< 
   
       if( mtime != 0 && mtime != ((time_t) -1 ) )       /* is it correct? */
         fileAttributes[ (*it).uSource ].time = mtime;
+
+      int permissions = (*it).permissions;
+      fileAttributes[ (*it).uSource ].mode = permissions;
     }
   }
 }
