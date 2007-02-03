@@ -48,7 +48,8 @@ public:
 	static void view( KURL url, Mode mode, bool new_window, QWidget * parent = krApp );
 	static void edit( KURL url, QWidget * parent );
 	static void edit( KURL url, Mode mode=Text, int new_window=-1, QWidget * parent = krApp );
-
+	
+	virtual bool eventFilter ( QObject * watched, QEvent * e );
 
 public slots:
 	void keyPressEvent( QKeyEvent *e );
@@ -100,7 +101,12 @@ private:
 	KAction *printAction;
 	KAction *copyAction;
 
+	int tabCloseID;
+	int closeID;
+
 	static QPtrList<KrViewer> viewers; // the first viewer is the active one
+	QValueList<int>    reservedKeys;   // the reserved key sequences
+	QValueList<int>    reservedKeyIDs; // the IDs of the reserved keys
 };
 
 class Invoker : public QObject {

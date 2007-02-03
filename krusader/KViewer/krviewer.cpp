@@ -53,7 +53,8 @@
 QPtrList<KrViewer> KrViewer::viewers;
 
 KrViewer::KrViewer( QWidget *parent, const char *name ) :
-KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ), returnFocusTo( 0 ), returnFocusTab( 0 ) {
+KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ), returnFocusTo( 0 ), returnFocusTab( 0 ),
+                                    reservedKeys(), reservedKeyIDs() {
 
 	//setWFlags(WType_TopLevel | WDestructiveClose);
 	setXMLFile( "krviewer.rc" ); // kpart-related xml file
@@ -97,8 +98,8 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ), retur
 	viewerMenu->insertItem( printAction->text(), this, SLOT( print() ), printAction->shortcut() );
 	viewerMenu->insertItem( copyAction->text(), this, SLOT( copy() ), copyAction->shortcut() );
 	viewerMenu->insertSeparator();
-	viewerMenu->insertItem( i18n( "&Close current tab" ), this, SLOT( tabCloseRequest() ), Key_Escape );
-	viewerMenu->insertItem( i18n( "&Quit" ), this, SLOT( close() ), CTRL + Key_Q );
+	tabCloseID = viewerMenu->insertItem( i18n( "&Close current tab" ), this, SLOT( tabCloseRequest() ), Key_Escape );
+	closeID = viewerMenu->insertItem( i18n( "&Quit" ), this, SLOT( close() ), CTRL + Key_Q );
 
 	//toolBar() ->insertLined("Edit:",1,"",this,"",true ,i18n("Enter an URL to edit and press enter"));
 	
@@ -136,12 +137,70 @@ void KrViewer::createGUI( KParts::Part* part ) {
 	toolBar() ->show();
 	statusBar() ->show();
 
+	// the KParts part may override the viewer shortcuts. We prevent it
+	// by installing an event filter on the menuBar() and the part
+	reservedKeys.clear();
+	reservedKeyIDs.clear();
+	
+	// getting the key sequences of the viewer menu
+	for( unsigned w=0; w != viewerMenu->count(); w++ )
+	{
+		int id = viewerMenu->idAt( w );
+		QKeySequence sequence = viewerMenu->accel( id );
+		if( sequence.count() > 0 )
+		{
+			reservedKeys.push_back( sequence[ 0 ] );
+			reservedKeyIDs.push_back( id );
+		}
+	}
+	
 	// and "fix" the menubar
 	menuBar() ->removeItem( 70 );
 	menuBar() ->insertItem( i18n( "&KrViewer" ), viewerMenu, 70 );
 	menuBar() ->show();
+	
+	// filtering out the key events
+	menuBar() ->installEventFilter( this );
+	part->installEventFilter( this );
 }
 
+bool KrViewer::eventFilter (  QObject * /* watched */, QEvent * e )
+{
+	if( e->type() == QEvent::AccelOverride )
+	{
+		QKeyEvent* ke = (QKeyEvent*) e;
+		if( reservedKeys.contains( ke->key() ) )
+		{
+			ke->accept();
+			
+			int id = reservedKeyIDs[ reservedKeys.findIndex( ke->key() ) ];
+			if( id != -1 )
+			{
+				// don't activate the close functions immediately!
+				// it can cause crash
+				if( id == tabCloseID )
+					QTimer::singleShot( 0, this, SLOT( tabCloseRequest() ) );
+				else if( id == closeID )
+					QTimer::singleShot( 0, this, SLOT( close() ) );
+				else {
+					int index = viewerMenu->indexOf( id );
+					viewerMenu->activateItemAt( index );
+				}
+			}
+			return true;
+		}
+	}
+	else if( e->type() == QEvent::KeyPress )
+	{
+		QKeyEvent* ke = (QKeyEvent*) e;
+		if( reservedKeys.contains( ke->key() ) )
+		{
+			ke->accept();
+			return true;
+		}
+	}
+	return false;
+}
 void KrViewer::keyPressEvent( QKeyEvent *e ) {
 	switch ( e->key() ) {
 		case Key_F10:
