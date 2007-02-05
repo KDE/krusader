@@ -1,16 +1,16 @@
 # Translation of krusader.pot to Greek
 #
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
-# Copyright (C) 2004-2006, Krusader Krew
+# Copyright (C) 2004-2007, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 #
-# Spiros Georgaras <sngeorgaras@otenet.gr>, 2005, 2006.
+# Spiros Georgaras <sngeorgaras@otenet.gr>, 2005, 2006, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.70.0\n"
+"Project-Id-Version: krusader-1.80.0-beta1\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2007-01-26 21:23+0100\n"
-"PO-Revision-Date: 2006-12-19 19:57+0200\n"
+"PO-Revision-Date: 2007-02-03 21:52+0200\n"
 "Last-Translator: Spiros Georgaras <sngeorgaras@otenet.gr>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -1351,7 +1351,7 @@ msgstr ""
 #: Panel/panelpopup.cpp:73
 msgid "Preview Panel: display a preview of the current file"
 msgstr ""
-"Πίνακας προεπισκόπησης: εμφάνιση της προεπισκόπησης: του τρέχοντος αρχείου"
+"Πίνακας προεπισκόπησης: εμφάνιση της προεπισκόπησης του τρέχοντος αρχείου"
 
 #: Panel/panelpopup.cpp:80
 msgid "Quick Panel: quick way to perform actions"
@@ -1979,14 +1979,12 @@ msgid "Show Terminal &Emulator"
 msgstr "Εμφάνιση εξομοιωτή &τερματικού"
 
 #: krusader.cpp:546
-#, fuzzy
 msgid "&Detailed View"
-msgstr "Προβολή λεπτομερειών"
+msgstr "&Λεπτομερής προβολή"
 
 #: krusader.cpp:549
-#, fuzzy
 msgid "&Brief View"
-msgstr "Προβολή γραμμών"
+msgstr "&Σύντομη προβολή"
 
 #: krusader.cpp:552
 msgid "Show &Hidden Files"
@@ -2207,7 +2205,7 @@ msgstr "Μέσο αριστερού πινάκα"
 
 #: krusader.cpp:686
 msgid "Right Media"
-msgstr "Μέοσ δεξιού πινάκα"
+msgstr "Μέσο δεξιού πινάκα"
 
 #: krusader.cpp:690
 msgid "Toggle Popup Panel"
@@ -3057,7 +3055,7 @@ msgstr "Εντάξει"
 
 #: Dialogs/packguibase.cpp:333
 msgid "No password specified"
-msgstr ""
+msgstr "Δε δόθηκε κωδικός πρόσβασης"
 
 #: Dialogs/packguibase.cpp:338
 msgid "The passwords are equal"
@@ -4450,7 +4448,7 @@ msgstr "Κατάλογοι:"
 
 #: DiskUsage/diskusage.cpp:116
 msgid "Total Size:"
-msgstr "Συνολικό μέγεθος"
+msgstr "Συνολικό μέγεθος:"
 
 #: DiskUsage/diskusage.cpp:243
 msgid "Loading the disk usage information..."
@@ -4507,7 +4505,7 @@ msgstr "Μετάβαση"
 
 #: DiskUsage/diskusage.cpp:787 Konfigurator/kglookfeel.cpp:174
 msgid "Detailed"
-msgstr "Λεπτομερώς"
+msgstr "Λεπτομερής"
 
 #: DiskUsage/diskusage.cpp:792
 msgid "Next"
@@ -4660,7 +4658,7 @@ msgid ""
 "editor"
 msgstr ""
 "Υπόδειξη: χρησιμοποιήστε το 'internal editor' αν θέλετε να χρησιμοποιήσετε "
-"τον ενσωματωμένο επεξεργαστή του Krusader'"
+"τον ενσωματωμένο επεξεργαστή του Krusader"
 
 #: Konfigurator/kggeneral.cpp:93
 msgid "Default viewer mode:"
@@ -4692,9 +4690,9 @@ msgstr ""
 "Εμφάνιση του αρχείου σε δεκαεξαδική μορφή (καλύτερο για δυαδικά αρχεία)"
 
 #: Konfigurator/kggeneral.cpp:104
-#, fuzzy
 msgid "Internal editor and viewer opens each file in a separate window"
-msgstr "Προβολή του κάθε αρχείου σε ξεχωριστό παράθυρο"
+msgstr ""
+"Ο εσωτερικός επεξεργαστής και προβολέας ανοίγει το κάθε σε ξεχωριστό παράθυρο"
 
 #: Konfigurator/kggeneral.cpp:105
 msgid ""
@@ -4706,7 +4704,7 @@ msgstr ""
 
 #: Konfigurator/kggeneral.cpp:115
 msgid "Atomic extensions:"
-msgstr ""
+msgstr "Σύνθετες επεκτάσεις:"
 
 #: Konfigurator/kggeneral.cpp:143
 msgid "Terminal:"
@@ -4748,17 +4746,19 @@ msgstr ""
 
 #: Konfigurator/kggeneral.cpp:195
 msgid "Add new atomic extension"
-msgstr ""
+msgstr "Προσθήκη μιας νέας σύνθετης επέκτασης"
 
 #: Konfigurator/kggeneral.cpp:195
 msgid "Extension: "
-msgstr ""
+msgstr "Επέκταση: "
 
 #: Konfigurator/kggeneral.cpp:200
 msgid ""
 "Atomic extensions must start with '.'\n"
 " and must contain at least one more '.' character"
 msgstr ""
+"Οι σύνθετες επεκτάσεις πρέπει να ξεκινούν με '.'\n"
+"και πρέπει να περιέχουν μία ακόμα '.'"
 
 #: Konfigurator/krresulttable.cpp:121
 msgid "unarj not found, but arj found, which will be used for unpacking"
@@ -5037,7 +5037,7 @@ msgstr "Εμφάνιση κρυφών αρχείων"
 
 #: Konfigurator/kglookfeel.cpp:155
 msgid "Display files beginning with a dot."
-msgstr "Εμφάνιση των αρχείων που αρχίζουν με τελεία."
+msgstr "Εμφάνιση αρχείων που αρχίζουν με τελεία."
 
 #: Konfigurator/kglookfeel.cpp:156
 msgid "Case sensitive sorting"
@@ -5066,13 +5066,12 @@ msgstr ""
 "στήλη των αδειών."
 
 #: Konfigurator/kglookfeel.cpp:172
-#, fuzzy
 msgid "Default panel type:"
-msgstr "Αριστερός πίνακας"
+msgstr "Προκαθορισμένος τύπος πίνακα:"
 
 #: Konfigurator/kglookfeel.cpp:175
 msgid "Brief"
-msgstr ""
+msgstr "Σύντομος"
 
 #: Konfigurator/kglookfeel.cpp:188
 msgid "Panel Toolbar"
@@ -5080,7 +5079,7 @@ msgstr "Γραμμή εργαλείων πίνακα"
 
 #: Konfigurator/kglookfeel.cpp:196
 msgid "Show Panel Toolbar"
-msgstr "Εμφάνιση της γραμμής εργαλείων πίνακα"
+msgstr "Εμφάνιση γραμμής εργαλείων πίνακα"
 
 #: Konfigurator/kglookfeel.cpp:196
 msgid "The panel toolbar will be visible."
@@ -5947,7 +5946,7 @@ msgstr "Τα πλήκτρα λειτουργών θα είναι ορατά με
 
 #: Konfigurator/kgstartup.cpp:92
 msgid "Show command line"
-msgstr "Εμφάνιση της γραμμής εντολών θα είναι ορατή μετά την εκκίνηση."
+msgstr "Εμφάνιση γραμμής εντολών"
 
 #: Konfigurator/kgstartup.cpp:92
 msgid "Command line will be visible after startup."
@@ -5966,7 +5965,6 @@ msgid "Save last position, size and panel settings"
 msgstr "Αποθήκευση της τελευταίας θέσης, μεγέθους και ρυθμίσεων πινάκων"
 
 #: Konfigurator/kgstartup.cpp:94
-#, fuzzy
 msgid ""
 "<p>At startup, the main window will resize itself to the size it was when "
 "last shutdown. It will also appear in the same location of the screen, "
@@ -5977,10 +5975,10 @@ msgstr ""
 "<p>Στην εκκίνηση, το κύριο παράθυρο θα αλλάζει μέγεθος ώστε να έχει το "
 "μέγεθος που είχε κατά την τελευταία έξοδο. Επίσης θα καταλάβει την ίδια θέση "
 "που είχε στην οθόνη ενώ οι πίνακες και οι καρτέλες θα έχουν την ίδια διάταξη "
-"και ταξινόμηση που είχαν πριν.</p><p>Αν ενεργοποιηθεί αυτή η επιλογή, "
+"και ταξινόμηση που είχαν πριν.</p><p>Αν απενεργοποιηθεί αυτή η επιλογή, "
 "μπορείτε να ορίσετε χειροκίνητα το μέγεθος και τη θέση του κύριου παραθύρου "
-"για την επόμενη εκκίνηση, από το μενού <i>Ρυθμίσεις -> Αποθήκευση θέσης</i>."
-"</p>"
+"για την επόμενη εκκίνηση, από το μενού <i>Παράθυρο -> Αποθήκευση θέσης</i>.</"
+"p>"
 
 #: Konfigurator/kgstartup.cpp:95
 msgid "Start to tray"
