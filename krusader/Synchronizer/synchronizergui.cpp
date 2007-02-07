@@ -1063,7 +1063,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KURL l
   grid->addWidget( leftDirLabel, 0 ,0 );
 
   QLabel *filterLabel = new QLabel( compareDirs, "filterLabel" );
-  filterLabel->setText( i18n( "File Filter:" ) );
+  filterLabel->setText( i18n( "File &Filter:" ) );
   filterLabel->setAlignment( Qt::AlignHCenter );
   grid->addWidget( filterLabel, 0 ,1 );
 
@@ -1088,6 +1088,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KURL l
   QWhatsThis::add( leftLocation, i18n( "The left base directory used during the synchronisation process." ) );
   leftUrlReq->setEnabled( !hasSelectedFiles );
   leftLocation->setEnabled( !hasSelectedFiles );
+  leftDirLabel->setBuddy( leftLocation );
 
   fileFilter = new KHistoryCombo(false, compareDirs, "SynchronizerFilter");
   fileFilter->setMaxCount(25);  // remember 25 items
@@ -1099,6 +1100,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KURL l
   fileFilter->setHistoryItems(list);
   fileFilter->setEditText("*");
   grid->addWidget( fileFilter, 1 ,1 );
+  filterLabel->setBuddy( fileFilter );
 
   QString wtFilter = "<p><img src='toolbar|find'></p>" + i18n("<p>The filename filtering criteria is defined here.</p><p>You can make use of wildcards. Multiple patterns are separated by space and patterns are excluded from the search using the pipe symbol.</p><p>Examples:<ul><code><li>*.o</li><li>*.h *.c\?\?</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</li></code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to '<code>*text*</code>'.</p>");
   QWhatsThis::add(fileFilter, wtFilter);
@@ -1119,6 +1121,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KURL l
   QWhatsThis::add( rightLocation, i18n( "The right base directory used during the synchronisation process." ) );
   rightUrlReq->setEnabled( !hasSelectedFiles );
   rightLocation->setEnabled( !hasSelectedFiles );
+  rightDirLabel->setBuddy( rightLocation );
 
   QHBox *optionBox  = new QHBox( compareDirs );
   QGrid *optionGrid = new QGrid( 3, optionBox );
@@ -1145,7 +1148,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KURL l
   /* =========================== Show options groupbox ============================= */
 
   QGroupBox *showOptions  = new QGroupBox( optionBox, "SyncOptionBox" );
-  showOptions->setTitle( i18n( "Show options" ) );
+  showOptions->setTitle( i18n( "S&how options" ) );
   showOptions->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed);
   showOptions->setColumnLayout(0, Qt::Vertical );
   showOptions->layout()->setSpacing( 0 );
@@ -1165,7 +1168,8 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KURL l
   btnLeftToRight->setPixmap( showLeftToRight );
   btnLeftToRight->setToggleButton( true );
   btnLeftToRight->setOn( krConfig->readBoolEntry( "LeftToRight Button", _BtnLeftToRight ) );
-  QWhatsThis::add( btnLeftToRight, i18n( "Show files marked to <i>Copy from left to right</i>." ) );
+  btnLeftToRight->setAccel( CTRL + Key_L );
+  QWhatsThis::add( btnLeftToRight, i18n( "Show files marked to <i>Copy from left to right</i> (CTRL+L)." ) );
   showOptionsLayout->addWidget( btnLeftToRight, 0, 0);
 
   btnEquals = new QPushButton( showOptions, "btnEquals" );
@@ -1173,7 +1177,8 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KURL l
   btnEquals->setPixmap( showEquals );
   btnEquals->setToggleButton( true );
   btnEquals->setOn( krConfig->readBoolEntry( "Equals Button", _BtnEquals ) );
-  QWhatsThis::add( btnEquals, i18n( "Show files considered to be identical." ) );
+  btnEquals->setAccel( CTRL + Key_E );
+  QWhatsThis::add( btnEquals, i18n( "Show files considered to be identical (CTRL+E)." ) );
   showOptionsLayout->addWidget( btnEquals, 0, 1);
 
   btnDifferents = new QPushButton( showOptions, "btnDifferents" );
@@ -1181,7 +1186,8 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KURL l
   btnDifferents->setPixmap( showDifferents );
   btnDifferents->setToggleButton( true );
   btnDifferents->setOn( krConfig->readBoolEntry( "Differents Button", _BtnDifferents ) );
-  QWhatsThis::add( btnDifferents, i18n( "Show excluded files." ) );
+  btnDifferents->setAccel( CTRL + Key_D );
+  QWhatsThis::add( btnDifferents, i18n( "Show excluded files (CTRL+D)." ) );
   showOptionsLayout->addWidget( btnDifferents, 0, 2);
 
   btnRightToLeft = new QPushButton( showOptions, "btnRightToLeft" );
@@ -1189,7 +1195,8 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KURL l
   btnRightToLeft->setPixmap( showRightToLeft );
   btnRightToLeft->setToggleButton( true );
   btnRightToLeft->setOn( krConfig->readBoolEntry( "RightToLeft Button", _BtnRightToLeft ) );
-  QWhatsThis::add( btnRightToLeft, i18n( "Show files marked to <i>Copy from right to left</i>" ) );
+  btnRightToLeft->setAccel( CTRL + Key_R );
+  QWhatsThis::add( btnRightToLeft, i18n( "Show files marked to <i>Copy from right to left</i> (CTRL+R)." ) );
   showOptionsLayout->addWidget( btnRightToLeft, 0, 3);
 
   btnDeletable = new QPushButton( showOptions, "btnDeletable" );
@@ -1197,7 +1204,8 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KURL l
   btnDeletable->setPixmap( showDeletable );
   btnDeletable->setToggleButton( true );
   btnDeletable->setOn( krConfig->readBoolEntry( "Deletable Button", _BtnDeletable ) );
-  QWhatsThis::add( btnDeletable, i18n( "Show files marked to delete." ) );
+  btnDeletable->setAccel( CTRL + Key_T );
+  QWhatsThis::add( btnDeletable, i18n( "Show files marked to delete. (CTRL+T)" ) );
   showOptionsLayout->addWidget( btnDeletable, 0, 4);
 
   btnDuplicates = new QPushButton( showOptions, "btnDuplicates" );
@@ -1221,8 +1229,8 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KURL l
   synchronizerGrid->addWidget( compareDirs, 0, 0 );
 
   /* ========================= Synchronization list view ========================== */
-
   syncList=new QListView( synchronizerTab );  // create the main container
+  QWhatsThis::add( syncList, i18n( "The compare results of the synchronizer (CTRL+M)." ) );
 
   krConfig->setGroup("Look&Feel");
   syncList->setFont(krConfig->readFontEntry("Filelist Font",_FilelistFont));
@@ -1343,12 +1351,15 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KURL l
   buttons->setMargin( 0 );
 
   profileManager = new ProfileManager( "SynchronizerProfile", this, "profileManager" );
+  profileManager->setAccel( CTRL + Key_P );
+  QWhatsThis::add( profileManager, i18n( "Profile manager (Ctrl+P)." ) );
   buttons->addWidget( profileManager );
 
   QPixmap swapSides( ( const char** ) swap_sides_data );
   btnSwapSides = new QPushButton( this, "btnSwapSides" );
   btnSwapSides->setPixmap( swapSides );
-  QWhatsThis::add( btnSwapSides, i18n( "Swap sides." ) );
+  btnSwapSides->setAccel( CTRL + Key_S );
+  QWhatsThis::add( btnSwapSides, i18n( "Swap sides (Ctrl+S)." ) );
   buttons->addWidget( btnSwapSides );
 
   statusLabel = new QLabel( this, "statusLabel" );
@@ -1401,7 +1412,10 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KURL l
            this, SLOT(rightMouseClicked(QListViewItem *)));
   connect( syncList,SIGNAL(doubleClicked(QListViewItem *, const QPoint &, int)),
            this, SLOT(doubleClicked(QListViewItem *)));
-
+  
+  connect( syncList,SIGNAL(contextMenuRequested(QListViewItem *, const QPoint &, int)),
+           this, SLOT(rightMouseClicked(QListViewItem *)));
+   
   connect( profileManager, SIGNAL( loadFromProfile( QString ) ), this, SLOT( loadFromProfile( QString ) ) );
   connect( profileManager, SIGNAL( saveToProfile( QString ) ), this, SLOT( saveToProfile( QString ) ) );
 
@@ -1496,23 +1510,23 @@ void SynchronizerGUI::setPanelLabels()
 {
   if( hasSelectedFiles && cbAsymmetric->isChecked() )
   {
-    leftDirLabel->setText( i18n( "Selected files from target directory:" ) );
-    rightDirLabel->setText( i18n( "Selected files from source directory:" ) );
+    leftDirLabel->setText( i18n( "Selected files from targ&et directory:" ) );
+    rightDirLabel->setText( i18n( "Selected files from sou&rce directory:" ) );
   }
   else if( hasSelectedFiles && !cbAsymmetric->isChecked() )
   {
-    leftDirLabel->setText( i18n( "Selected files from left directory:" ) );
-    rightDirLabel->setText( i18n( "Selected files from right directory:" ) );
+    leftDirLabel->setText( i18n( "Selected files from &left directory:" ) );
+    rightDirLabel->setText( i18n( "Selected files from &right directory:" ) );
   }
   else if( cbAsymmetric->isChecked() )
   {
-    leftDirLabel->setText( i18n( "Target directory:" ) );
-    rightDirLabel->setText( i18n( "Source directory:" ) );
+    leftDirLabel->setText( i18n( "Targ&et directory:" ) );
+    rightDirLabel->setText( i18n( "Sou&rce directory:" ) );
   }
   else
   {
-    leftDirLabel->setText( i18n( "Left directory:" ) );
-    rightDirLabel->setText( i18n( "Right directory:" ) );
+    leftDirLabel->setText( i18n( "&Left directory:" ) );
+    rightDirLabel->setText( i18n( "&Right directory:" ) );
   }
 }
 
@@ -1606,35 +1620,35 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
   KPopupMenu popup;
   popup.insertTitle(i18n("Synchronize Directories"));
 
-  popup.insertItem(i18n("Exclude"),EXCLUDE_ID);
+  popup.insertItem(i18n("E&xclude"),EXCLUDE_ID);
   popup.setItemEnabled(EXCLUDE_ID, true );
-  popup.insertItem(i18n("Restore original operation"),RESTORE_ID);
+  popup.insertItem(i18n("Restore ori&ginal operation"),RESTORE_ID);
   popup.setItemEnabled(RESTORE_ID, true );
-  popup.insertItem(i18n("Reverse direction"),REVERSE_DIR_ID);
+  popup.insertItem(i18n("Re&verse direction"),REVERSE_DIR_ID);
   popup.setItemEnabled(REVERSE_DIR_ID, true );
-  popup.insertItem(i18n("Copy from right to left"),COPY_TO_LEFT_ID);
+  popup.insertItem(i18n("Copy from &right to left"),COPY_TO_LEFT_ID);
   popup.setItemEnabled(COPY_TO_LEFT_ID, true );
-  popup.insertItem(i18n("Copy from left to right"),COPY_TO_RIGHT_ID);
+  popup.insertItem(i18n("Copy from &left to right"),COPY_TO_RIGHT_ID);
   popup.setItemEnabled(COPY_TO_RIGHT_ID, true );
-  popup.insertItem(i18n("Delete (left single)"),DELETE_ID);
+  popup.insertItem(i18n("&Delete (left single)"),DELETE_ID);
   popup.setItemEnabled(DELETE_ID, true );
 
   popup.insertSeparator();
 
-  popup.insertItem(i18n("View left file"),VIEW_LEFT_FILE_ID);
+  popup.insertItem(i18n("V&iew left file"),VIEW_LEFT_FILE_ID);
   popup.setItemEnabled(VIEW_LEFT_FILE_ID, !isDir && item->existsInLeft() );
-  popup.insertItem(i18n("View right file"),VIEW_RIGHT_FILE_ID);
+  popup.insertItem(i18n("Vi&ew right file"),VIEW_RIGHT_FILE_ID);
   popup.setItemEnabled(VIEW_RIGHT_FILE_ID, !isDir && item->existsInRight() );
-  popup.insertItem(i18n("Compare Files"),COMPARE_FILES_ID);
+  popup.insertItem(i18n("&Compare Files"),COMPARE_FILES_ID);
   popup.setItemEnabled(COMPARE_FILES_ID, !isDir && isDuplicate );
 
   popup.insertSeparator();
 
-  popup.insertItem(i18n("Select items"),SELECT_ITEMS_ID);
+  popup.insertItem(i18n("&Select items"),SELECT_ITEMS_ID);
   popup.setItemEnabled(SELECT_ITEMS_ID, true );
-  popup.insertItem(i18n("Deselect items"),DESELECT_ITEMS_ID);
+  popup.insertItem(i18n("Deselec&t items"),DESELECT_ITEMS_ID);
   popup.setItemEnabled(DESELECT_ITEMS_ID, true );
-  popup.insertItem(i18n("Invert selection"),INVERT_SELECTION_ID);
+  popup.insertItem(i18n("I&nvert selection"),INVERT_SELECTION_ID);
   popup.setItemEnabled(INVERT_SELECTION_ID, true );
 
   KURL leftBDir = vfs::fromPathOrURL( synchronizer.leftBaseDirectory() );
@@ -1645,7 +1659,7 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
       ( leftBDir.isLocalFile() && !rightBDir.isLocalFile() && btnRightToLeft->isOn() ) ) )
   {
     popup.insertSeparator();
-    popup.insertItem(i18n("Synchronize with KGet"),SYNCH_WITH_KGET_ID);
+    popup.insertItem(i18n("Synchronize with &KGet"),SYNCH_WITH_KGET_ID);
     popup.setItemEnabled(SYNCH_WITH_KGET_ID, true );
   }
 
@@ -1843,6 +1857,8 @@ void SynchronizerGUI::compare()
     btnFeedToListBox->setEnabled( true );
   }
 
+  syncList->setFocus();
+  
   if( wasClosed )
     closeDialog();
 }
@@ -2096,11 +2112,35 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
 {
   switch ( e->key() )
   {
-  case Key_F3 :
+  case Key_C :
     {
+      if( e->state() == ControlButton )
+      {
+        QListViewItem *listItem =  syncList->currentItem();
+        if( listItem == 0 )
+          break;
+        doubleClicked( listItem );   
+      }
+      break;
+    }
+  case Key_M :
+    {
+      if( e->state() == ControlButton )
+      {
+        syncList->setFocus();
+        e->accept();        
+      }
+      break;
+    }
+  case Key_F3 :
+  case Key_F4 :
+    {
+      e->accept();
       QListViewItem *listItem =  syncList->currentItem();
       if( listItem == 0 )
         break;
+
+      bool isedit = e->key() == Key_F4;
 
       SynchronizerFileItem *item = ((SyncViewItem *)listItem)->synchronizerItemRef();
       QString leftDirName    = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
@@ -2112,13 +2152,19 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
       if ( e->state() == ShiftButton && item->existsInRight() )
       {
         KURL rightURL = vfs::fromPathOrURL( synchronizer.rightBaseDirectory() + rightDirName + item->rightName() );
-        KrViewer::view( rightURL ); // view the file
+        if( isedit )
+          KrViewer::edit( rightURL ); // view the file
+        else
+          KrViewer::view( rightURL ); // view the file
         return;
       }
       else if ( e->state() == 0 && item->existsInLeft() )
       {
         KURL leftURL  = vfs::fromPathOrURL( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
-        KrViewer::view( leftURL ); // view the file
+        if( isedit )
+          KrViewer::edit( leftURL ); // view the file
+        else
+          KrViewer::view( leftURL ); // view the file
         return;
       }
     }
@@ -2126,6 +2172,7 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
   case Key_U :
     if( e->state() != ControlButton )
       break;
+    e->accept();
     swapSides();
     return;
   }

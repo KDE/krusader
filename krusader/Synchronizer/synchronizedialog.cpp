@@ -107,14 +107,14 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   hbox->layout()->addItem( spacer );
   
   btnStart = new QPushButton( hbox, "btnStart" );
-  btnStart->setText( i18n( "Start" ) );
+  btnStart->setText( i18n( "&Start" ) );
 
   btnPause = new QPushButton( hbox, "btnPause" );
   btnPause->setEnabled( false );
-  btnPause->setText( i18n( "Pause" ) );
+  btnPause->setText( i18n( "&Pause" ) );
   
   QPushButton *btnClose = new QPushButton( hbox, "btnClose" );
-  btnClose->setText( i18n( "Close" ) );
+  btnClose->setText( i18n( "&Close" ) );
 
   layout->addWidget( hbox );
 
