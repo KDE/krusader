@@ -735,6 +735,24 @@ copy/link the
   </answer>
   </qandaentry>
 
+
+ <qandaentry>
+  <question id="faqu_fxp">
+  <para>Does &krusader; support the FXP protocol?</para>
+  </question>
+  <answer>
+  <para>Currently &krusader; doesn't support the FXP protocol but this feature request is 
+       added on the <ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?p=8703">todo list</ulink>.
+       There are currently 2 workarounds: the commandline tool <command>lftp</command> is able to 
+       to tranfer data directly from server to server via fxp, so you can create an 
+       <link linkend="useractions">UserAction</link>'> for it, 
+       or you could use &kftpgrabber_url; or &kasablanca_url; who have buildin FXP support.
+  </para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+ </qandaentry>
+
+
   <qandaentry>
   <question id="faqu_media_protocol">
   <para>Why do i have some trouble with the media:// protocol?</para>
