@@ -22,36 +22,36 @@
 *********************************************************************** -->
 
 <title
->User Interface</title>
+>Интерфейс пользователя</title>
 <indexterm
 ><primary
->User Interface</primary
+>Интерфейс пользователя</primary
 ></indexterm>
 
 <sect1 id="ofm-userinterface">
 <title
->OFM User Interface</title>
+>OFM интерфейс</title>
 <para
->NOTE: this chaper is work in progress ;)</para>
+>ПРИМЕЧАНИЕ: эта часть ещё не дописана ;)</para>
 
 <para
->The OFM filemanagers concept contains <link linkend="features"
->many features</link
-> who make them one of the most powerful filemanagers. The interface is simple: a left panel, a right panel and a commandline at below. Because of interaction between these three items it speeds up your file managment work drasticly. </para>
+>Концепция OFM файлменеджера содержит <link linkend="features"
+>много возможностей</link
+>, которые делают их наиболее мощными.Интерфейс прост: левая и правая панели, командная строка внизу. Взаимодействие между этими тремя элементами радикально увеличивает скорость управления файлами во время работы. </para>
 
 <para
->If you like to know <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml"
->how &krusader; feels</ulink
-> there is only one way to discover, install it on your computer and use it for a while! To accept a &ofm_url; like &krusader;, you need to get used to <emphasis
->new ideas</emphasis
-> who are already 20 years old :) If you prefer to waste time and lose a lot of productivity, you can always continue to use one panel filemanagers who are based on &Windows; Explorer ;-) </para>
+>Если вы хотите узнать как <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml"
+>попробовать &krusader;</ulink
+> есть только один путь, установитеего на свой компьютер и используйте некоторе время! Признайте, &krusader;, похож на &ofm_url;, вы нуждаетесь в <emphasis
+>новых идеях</emphasis
+> которые уже существуют 20 лет :) Если вы хотите и дальше терять время и терять производительность, вы всегда можете продолжать использовать однопанельные файловые менеджеры, которые основаны на идее &Windows; Explorer ;-) </para>
 
 </sect1>
 
 
 <sect1 id="mainwindow">
 <title
->&krusader; Main Window</title>
+>Главное окно &krusader;</title>
 
 <!-- OLD
 <screenshot>
@@ -76,53 +76,53 @@
 
 <figure id="screenshot-mainwindow" float="1">
 <title
->&krusader; Main Window</title>
+>Главное окно &krusader;</title>
 <mediaobject>
 <imageobject
 ><imagedata fileref="mainwindow.png"/></imageobject>
 <textobject
 ><phrase
->&krusader; Main Window</phrase
+>Главное окно &krusader;</phrase
 ></textobject>
 </mediaobject>
 </figure
 > 
 
 <para
->The User Interface is based on the &ofm_url; paradigm, a 20 years old principle that has proven it's bones. It's known as simple, easy and powerful. In the following sections we'll cover the basic functions of each part with the exception of:</para>
+>Интерфейс пользователя основан на парадигме &ofm_url;, этот принцип проверен 20-ти летней практикой.Он заведомо прост, легок и мощен.В следующей части мы рассмотрим основные функции каждой части, исключая:</para>
 
 <itemizedlist>
    <listitem>
       <para
->The <link linkend="menu-commands"
->Menu Bar</link
-> which has a chapter of its own.</para>
+><link linkend="menu-commands"
+>Меню</link
+>, которое имеет свой раздел.</para>
    </listitem>
 
    <listitem>
       <para
->The <link linkend="bookman"
->Bookmarks</link
-> which has a chapter of its own.</para>
+><link linkend="bookman"
+>Закладки</link
+>, которое имеет свой раздел.</para>
    </listitem>
    
    <listitem>
      <para
 >The <emphasis role="bold"
->Status Bar</emphasis
-> shows the properties of the current file that has the focus. You can use "drag and drop" to drop a &URL; "into" the Status Bar.</para>
+>Строка состояния</emphasis
+> показывает свойства файла, который выбран или в фокусе. Вы можете использовать перетаскивание &URL; в строку состояния.</para>
    </listitem>
 </itemizedlist>
 </sect1>
 
 <sect1 id="main_toolbar">
 <title
->Main Toolbar</title>
+>Основная панель инструментов</title>
 <indexterm
 ><primary
->Toolbar</primary
+>Панель инструментов</primary
 ><secondary
->Main Toolbar</secondary
+>Панель инструментов</secondary
 ></indexterm
 > 
 
@@ -145,13 +145,13 @@
 
 <figure id="screenshot-maintoolbar" float="1">
 <title
->Main Toolbar</title>
+>Основная панель инструментов</title>
 <mediaobject>
 <imageobject
 ><imagedata fileref="toolbar.png"/></imageobject>
 <textobject
 ><phrase
->Main Toolbar</phrase
+>Панель инструментов</phrase
 ></textobject>
 </mediaobject>
 </figure
@@ -159,72 +159,72 @@
 
 
 <para
->The &krusader; Main Toolbar, is a standard &kde; toolbar that can be dragged around the application or configured via a <keycap
->Right-Click</keycap
-> menu. You can decide if you want to display it (or not) every time you start &krusader; in the &konfigstartpg_lnk;, and you can toggle its use in the current session in the &viewmenu_lnk;. The Main Toolbar contents can be configured from the <guimenuitem
->Configure Toolbars</guimenuitem
-> in the &settingsmenu_lnk; or the <guilabel
->Toolbar</guilabel
-> tab in the &konfiglookandfeel_lnk;. Since the various commands and options in &krusader; are context dependent, some commands are not always available, the icon of an inappropriate or inactive action will be deactivated (grayed-out) and you won't be able to click or select it. &bookmarks_lnk; can be placed into the Main Toolbar and the Actions Toolbar with the mouse using "drag and drop".</para>
+>панель инструментов &krusader; - это стандартная панель &kde;, которая перемещается внутри приложения или настраивается через <keycap
+>контекстное</keycap
+> меню. Вы можете выбрать показывать или нет её при запуске в &konfigstartpg_lnk;, и зафиксировать для текущей сессии в &viewmenu_lnk;. Содержимое настраивается из <guimenuitem
+>Настроить панели инструментов</guimenuitem
+> в &settingsmenu_lnk;  или во вкладке <guilabel
+>панель</guilabel
+> меню &konfiglookandfeel_lnk;. Различные команды и опции в &krusader; зависят от контекста, некоторые не всегда доступны, иконки невозможных или неактивных действий деактивируются(сереют) и вы не можете выбрать или использовать их. &bookmarks_lnk; можно поместить на основную панель и панель действий перетаскиванием.</para>
 
 </sect1>
 
 <sect1 id="actions_toolbar">
 <title
->Actions Toolbar</title>
+>Панель действий</title>
 <indexterm
 ><primary
->Toolbar</primary
+>Панель инструментов</primary
 ><secondary
->Actions Toolbar</secondary
+>Панель действий</secondary
 ></indexterm
 > 
 
 <para
->&useractions_lnk; and &bookmarks_lnk; can be "plugged into" the <guilabel
->Actions Toolbar</guilabel
->. To show it use <emphasis role="bold"
+>&useractions_lnk; и &bookmarks_lnk; можно поместить на <guilabel
+>панель действий</guilabel
+>. Выберите <emphasis role="bold"
 ><menuchoice
 ><guimenu
->View</guimenu
+>Настройки</guimenu
 > <guimenuitem
->Show Actions Toolbar</guimenuitem
+>Показывать панель действий</guimenuitem
 ></menuchoice
 ></emphasis
->. To add useractions use <emphasis role="bold"
+>. Чтобы добавить действие используйте <emphasis role="bold"
 ><menuchoice
 ><guimenu
->Settings</guimenu
+>Настройки</guimenu
 > <guimenuitem
->Configure Toolbars</guimenuitem
+>Панели инструментов</guimenuitem
 ></menuchoice
 ></emphasis
-> and select Actions Toolbar. You could, for example, drag the Actions Toolbar to the right side using the mouse. </para>
+> и выберите панель действий. Вы можете, например переместить панель в правый угол, используя мышь. </para>
 </sect1>
 
 
 <sect1 id="panels">
 <title
->Panels</title>
+>Панели</title>
 
 <para
->The &krusader; panels are where most of the action takes place. Currently, there are two types of panels: <itemizedlist
+>Панели &krusader; это место где производится работа. В настоящее время есть два типа панелей: <itemizedlist
 > <listitem
 ><para
->&list_panel_lnk;: shows the files and directories. </para
+>&list_panel_lnk;: показывается список каталогов и файлов. </para
 ></listitem
 > <listitem
 ><para
->&popup_panel_lnk;: has several display modes: Preview, Tree, Quickselect, View and Disk Usage for the file or directory that has the focus. The PopUp Panel may be left open, or closed, as desired. </para
+>&popup_panel_lnk;: включает остальные режимы: Предпросмотр, Дерево каталогов, Выбор быстрых операций, Просмотр статистики использования диска файлом или каталогом. Дополнительную панель можно открывать ил закрывать по своему усомтрению. </para
 ></listitem
 > </itemizedlist
-> &krusader; is a "twin-panel" file manager so there are two panels, the "Left" panel and the "Right" panel, or a more important logical distinction, the *Active* panel and the *Inactive* panel. The Active panel is the one that will accept your mouse and keyboard input. If you choose a command from the <guilabel
->Menu-Bar</guilabel
-> or <guilabel
->Toolbar</guilabel
-> the command will act upon the selected files/directories in the active panel. You can switch between panels using the &Tab; key or by clicking on the <guilabel
->Information or Totals labels</guilabel
->, or by selecting any file in a panel with the mouse. As always: default startup settings can be modified with the &konfigstartpg_lnk;, and you control the current session with the &viewmenu_lnk;. </para>
+> &krusader; - это "двухпанельный" файловый менеджер и в нем только "Левая" и "Правая"  панели, или, логичнее, активная и неактивная. В активной панели вы получаете реакцию на нажатия кнопок мыши и клавиатуры. Если вы выбираете команду из  <guilabel
+>меню</guilabel
+> или <guilabel
+>панели</guilabel
+> она выполнится для выбранных файлов/каталогов в активной панели. Вы можете переключатся между панелями клавишей &Tab;, нажатием на <guilabel
+>информационное поле</guilabel
+>, или выбрав любой файл или каталог в панели мышью. Как всегда: стартовые настройки в &konfigstartpg_lnk;, и управление текущей сессией в &viewmenu_lnk;. </para>
 
 <!-- OLD
 <screenshot>
@@ -249,13 +249,13 @@
 
 <figure id="screenshot-listpanel" float="1">
 <title
->List Panel</title>
+>Панель списка</title>
 <mediaobject>
 <imageobject
 ><imagedata fileref="listpanel.png"/></imageobject>
 <textobject
 ><phrase
->List Panel</phrase
+>Панель списка</phrase
 ></textobject>
 </mediaobject>
 </figure
@@ -264,15 +264,15 @@
 
 <sect2 id="list_panel">
 <title
->List Panel</title>
+>Панель списка</title>
 <indexterm
 ><primary
->Toolbar</primary
+>Панель инструментов</primary
 ><secondary
->Location Toolbar</secondary
+>Панель адреса</secondary
 ></indexterm>
 <para
->This is the default panel and the one you'll probably use most of the time. This panel shows the contents of one directory which can be local (part of your mounted file systems, either a native file or the files inside an archive) or remote files (accessed via &FTP; or Samba). File copy/paste/cut via Clipboard between &konqueror; and &krusader; <keycombo action="simul"
+>Это основная панель и она используется больше всего. Эта панель показывает содержимое каталога (раздел смонтированной файловой системы, файлы или содержимое архива) или файлы на удаленной файловой системе (&FTP; или Samba). Поддерживается копирование/вставка/вырезка через буфер обмена между &konqueror; и &krusader;  сочетаниями клавиш <keycombo action="simul"
 >&Ctrl;<keycap
 >c</keycap
 ></keycombo
@@ -284,27 +284,27 @@
 >&Ctrl;<keycap
 >x</keycap
 ></keycombo
-> is supported. <keycombo action="simul"
+>. <keycombo action="simul"
 >&Alt;&Ctrl;<keycap
 >r</keycap
 ></keycombo
-> toggles the <guilabel
->List Panel</guilabel
-> between horizontal and vertical mode. </para>
+> переключает <guilabel
+>Панель списка</guilabel
+> между горизонтальным и вертикальным режимами. </para>
 
 <para
->The following items are available: <itemizedlist
+>Имеются следующие элементы: <itemizedlist
 > <listitem
 ><para
 ><emphasis
 ><guibutton
->Location Toolbar</guibutton
+>Панель адреса</guibutton
 ></emphasis
-> : shows the path the panel is currently pointing to. If the selected path is too long, it will be automatically shortened and an ellipsis "..." will replace the omitted part of the pathname. When entering archives the path will consist of the "archive name:/directory/archive_filename/the directory inside the archive". This format makes the paths uniform and easy to read. The <guibutton
->Location Toolbar</guibutton
-> supports also supports &kioslaves1_url; but not all of them, some can only be used with the <link linkend="krviewer"
->viewer</link
-> and some can not be used. With a single mouse click you can enter the desired path &eg; <itemizedlist
+> : показывает путь в текущей панели. Если он слишком длинный то сработает автоматическое сокращение вида "..." с пренебрежением вывода полного пути. В архиве путь будет иметь вид "имя архива:/каталог/имя архива/каталог внутри архива". Этот формат делает вывод пути легким для чтения и однообразным. <guibutton
+>Панель адреса</guibutton
+> также поддерживает некоторые &kioslaves1_url;, только не все, т.к. некоторые используются только в <link linkend="krviewer"
+>просмотрщике</link
+> или не поддерживаются. Перейти в желаемый каталог можно одним щелчком  кнопки мыши, &eg; <itemizedlist
 > <listitem
 > <para
 ><userinput
@@ -313,14 +313,14 @@
 ></userinput
 ></para
 > </listitem
-> <listitem
+><listitem
 ><para
 ><userinput
 ><command
 >settings:/</command
 ></userinput
-> will browse and open entries of the <application
->KDE control center</application
+> просмотр и открытие компонентов <application
+>Центра управления КДЕ</application
 ></para
 > </listitem
 > <listitem
@@ -329,11 +329,11 @@
 ><command
 >devices:/</command
 ></userinput
-> gives an overiew of the devices &eg; <hardware
+> обзор устройств хранения данных, например <hardware
 >floppy</hardware
-> or <hardware
+> или <hardware
 >cdrom</hardware
-> drives.</para
+>.</para
 > </listitem
 > <listitem
 ><para
@@ -341,127 +341,127 @@
 ><command
 >trash:/</command
 ></userinput
-> opens &kde;'s trash.</para
+>Корзина &kde;</para
 > </listitem
-> <listitem
+><listitem
 ><para
 ><userinput
-><command
+> <command
 >ipod:/</command
 ></userinput
-> uses the &kio_ipodslave_url; to access, upload and organize the Music stored on an &appleipod;.</para
-> </listitem
+> используется для доступа к &kio_ipodslave_url;, загрузка песен и управление &appleipod;.</para
+></listitem
 > <listitem
 ><para
->And last but not least &remote_connections_lnk; !</para
+>И последнее, но не малое! &remote_connections_lnk; !</para
 > </listitem
 > </itemizedlist
-> You can copy-paste an &URL; in the <guibutton
->Location Toolbar</guibutton
-> or use a middle click. With the Right-Click menu you can configure the autocomplete function. An optional <guilabel
->Clear Location Toolbar</guilabel
-> button is available. </para
+>Вы можете копировать-вставлять &URL; в<guibutton
+>Панель адреса</guibutton
+> или щелкнуть колесом мыши. В контекстном меню по правому щелчку можно настроить функцию завершения текста. Дополнительно есть кнопка<guilabel
+>Очистить поле адреса</guilabel
+>. </para
 > <para
->Quick Navigation: <keycap
+>Быстрая навигация: <keycap
 >&Ctrl;</keycap
-> point with mouse in the middle of the &URL; of the <guibutton
->Location Toolbar</guibutton
->, a popup window will inform you what will become the next &URL; location, a mouseclick when holding the <keycap
+>установите курсор в середине &URL; в <guibutton
+>панели адреса</guibutton
+>, всплывающее окно покажет &URL;, место, куда перейдет текущая панель при щелчке с удержанием <keycap
 >&Ctrl;</keycap
-> key will jump to the location where the mouse was pointing to, this feature allows faster navigation in a big directory tree.</para
+>, эта возможность дает быструю и удобную навигацию в большом дереве каталогов.</para
 > </listitem
 > <listitem
 > <para
 ><link linkend="panel_toolbar"
 ><emphasis
 ><guibutton
->Panel toolbar</guibutton
+>Панель инструментов</guibutton
 ></emphasis
 ></link
-> : contains <link linkend="panel_toolbar"
->configurable buttons</link
+> : содержит <link linkend="panel_toolbar"
+>настраиваемые кнопки</link
 >. </para
 > </listitem
 > <listitem
 > <para
 ><emphasis
 ><guilabel
->Information Label</guilabel
+>Информационное поле</guilabel
 ></emphasis
-> : shows how much free space is physically available on the file system, the file system capacity and where the path is mounted. If the information is not available (most often in the case of remote file system) a message will be displayed with the reason for unavailablity instead of the information.</para
+> : показывает размер доступного пространства в файловой системе, сколько места занято в файловой системе и путь монтирования. Если информация не доступна(чаще всего в случае удаленнойфайловой системы) будет сообщение о невозможности вывести информацию.</para
 > <para
->The <guibutton
->Media button</guibutton
-> on the left of the <guilabel
->Information Label</guilabel
-> displays a list of all available media, where you can select the desired media (hdd partition, dvd, usb-stick, &etc;). The context menu gives several options like <guilabel
->Mount</guilabel
+><guibutton
+>Кнопка Медиа</guibutton
+> слева в <guilabel
+>информационном поле</guilabel
+> показывает список доступных медиаустройств, можно выбрать необходимое устройство(диск раздел, dvd, usb-stick, &etc;). Контекстное меню содержит несколько опций: <guilabel
+>Монтировать</guilabel
 >, <guilabel
->Open in a new tab</guilabel
->, &etc;. The <guibutton
->Media button</guibutton
-> is <link linkend="konfig-advanced"
->configurable</link
+>Открыть в новой вкладке</guilabel
+>, &etc;. <guibutton
+>Кнопка медиа</guibutton
+> <link linkend="konfig-advanced"
+>настраивается</link
 >.</para
 > </listitem
 > <listitem
 > <para
 ><emphasis
 ><guilabel
->Column Headers</guilabel
+>Столбцы</guilabel
 ></emphasis
-> : here you can change the sort order of the files and directories as desired. The default sort order is by <guilabel
->Name</guilabel
->. The sort order can be instantly changed by clicking on one of the <guilabel
->Column Headers</guilabel
->. To reverse the sort order, click a second time on the Column Header. An arrow will apear on the right of the Column Header text, showing the sort direction (Up arrow = a to z sorting, Down arrow = z to a sorting). Default &useractions_lnk; set a keybinding for the Column Headers. The default <guilabel
->Column Headers</guilabel
-> are: <guilabel
->Name, Ext, Size, Modified, rwx</guilabel
->. More <link linkend="konfig-looknfeel-panel"
->optional Column Headers</link
-> are available with the &RMB;. The width <guilabel
->Column Headers</guilabel
-> can be changed with the mouse by single clicking and moving the divider line to the desired width (keep the mouse button pressed). Both <guilabel
->List Panels</guilabel
-> remember the sort order and column width. The <guilabel
->Column Headers</guilabel
-> can be changed and saved individually to each panel. </para
+> : здесь вы можете выбрать порядок сортировки файлов и каталогов по своему желанию. По умолчанию критерий сортировки <guilabel
+>Имя</guilabel
+>. Критерий сортировки выбирается моментально нажатием в поле <guilabel
+>Столбцы</guilabel
+>. Для сортировки в обратном порядке щелкните повторно в необходимом поле. Стрелка справа от текста в поле столбца, показывает направление сортировки. Умолчальные клавиши для столбцов настраиваются в &useractions_lnk;. Имеются <guilabel
+>столбцы</guilabel
+>: <guilabel
+>Имя, Расширение, Размер, Изменен, Права</guilabel
+>. Остальные <link linkend="konfig-looknfeel-panel"
+>дополнительные столбцы</link
+> доступны по &RMB;. Ширину <guilabel
+>столбцов</guilabel
+> можно регулировать перемещения линию разделения столбцов  левой кнопкой мыши(с удержанием нажатия). Обе <guilabel
+>Панели</guilabel
+> запоминают порядок сортировки и ширину столбцов. <guilabel
+>Столбцы</guilabel
+> можно изменять и сохранять индивидуально для каждой панели. </para
 > </listitem
 > <listitem
 > <para
 ><emphasis
 ><guilabel
->File List</guilabel
+>Список файлов</guilabel
 ></emphasis
-> : displays the files and directories in the browsed directory. The &quick_search_lnk; allows you to search for files by typing their names, or the first few characters of a filename. Pressing &Enter; or double clicking on a file will open/execute that file. You can select/unselect files using the mouse with the <keycap
+> : показывает файлы и каталоги внутри просматриваемого каталога. &quick_search_lnk; позволяет быстро находить файлы, вводя их имена, или первые буквы имени. Нажатие &Enter; или двойной щелчок мыши на файле открывает/запускает его. Вы можете выделять/снимать выделение файлов мышью, клавишей <keycap
 >Insert</keycap
-> key or the &editmenu_lnk;.</para
+> или &editmenu_lnk;.</para
 > </listitem
 > <listitem
 > <para
 ><emphasis
 ><guilabel
->Totals Label</guilabel
+>Поле суммы</guilabel
 ></emphasis
-> : marking or unmarking files will change the <emphasis
+> : выделяя или снимая выделение с файлов вы изменяете <emphasis
 ><guilabel
->Totals Label</guilabel
+>поле суммы</guilabel
 ></emphasis
-> at the bottom of the panel, which displays how many files you've selected (and how much total disk space they use) as well as the total file and disk usage of the current directory (as opposed to the information label that displays information for the whole file system). If a directory contains a lot of subdirectories, it may not possible to drop the &URL; onto the panel (on which only directories are visible), but the &URL; can be dropped onto the "Status Bar" or "Totals Label" instead. When a <link linkend="view-menu"
->custom filter</link
-> is set, it will show the setting. example: [*.cpp]. </para
+> в нижней панели, которое показывает сколько файлов вы выбрали (и сколько места на диске они занимают), общее количество файлов в директории и занятое ими место (иначе информационное поле показывает сведения о файловой системе в целом). Если каталог содержит много подкаталогов, то перенос &URL; на панель (где видны только подкаталоги) невозможен, но &URL; можно перетащить в "Панель состояния" или "Поле суммы". Когда установлен <link linkend="view-menu"
+>специальный фильтр</link
+> будет показываться только установленное. Пример: [*.cpp]. </para
 > </listitem
 > </itemizedlist
-> When using the "&kde; default <link linkend="konfig-color"
->colors</link
->", then the marked files are shown in blue and the current file is surrounded by a fine-lined rectangle. By default an icon is shown according to the file type. Use &konfiglookandfeel_lnk; to change the default configuration to better meet your individual needs. </para>
+> Когда используются "&kde; умолчательные <link linkend="konfig-color"
+>цвета</link
+>", выделенные файлы отмечаются голубым и текущий файл окружен прямоугольником. По умолчанию иконка отображает связанный с файлом тип. Используйте &konfiglookandfeel_lnk; для изменения настроек по своему предпочтению. </para>
 
 
 <para
->Some useful <guilabel
->List panel</guilabel
-> &keybindigs_lnk;: <itemizedlist>
+>Некоторые полезные &keybindigs_lnk; <guilabel
+>Панели списка</guilabel
+>: <itemizedlist>
     
     <listitem>
        <para
@@ -469,24 +469,24 @@
 >&Ctrl;<keycap
 >r</keycap
 ></keycombo
-> will refresh the panel.</para>
+> обновит панель.</para>
     </listitem>
     
     <listitem>
       <para
->Focus a file or directory on the left panel, press <keycombo action="simul"
+>Наведите фокус на файл или каталог в левой панели и нажмите <keycombo action="simul"
 >&Ctrl;<keycap
->Left arrow</keycap
+>Стрелка вправо</keycap
 ></keycombo
-> and the right panel changes: <itemizedlist>
+> и правая панель изменится: <itemizedlist>
          <listitem>
            <para
->on a file: the right panel gets the same path as the left panel.</para>
+>на файле:  правая панель перейдет по пути левой панели.</para>
          </listitem>
        
          <listitem>
            <para
->on a directory: refreshes the right panel with the contents of the directory.</para>
+>на каталоге: правая панель обновится и покажет содержимое каталога.</para>
          </listitem>
        </itemizedlist
 ></para
@@ -495,11 +495,11 @@
        
     <listitem
 ><para
->For the right panel: press <keycombo action="simul"
+>Для правой панели: нажмите <keycombo action="simul"
 >&Ctrl;<keycap
->Right arrow</keycap
+>Стрелка влево</keycap
 ></keycombo
-> and the left panel will change.</para>
+> и изменится левая панель.</para>
      </listitem>
        
    </itemizedlist>
@@ -510,128 +510,128 @@
 
 <sect2 id="popup_panel">
 <title
->PopUp Panel</title>
+>Дополнительная панель</title>
 
 <para
->This is "&krusader;'s 3rd Hand" or the 3rd Panel, click on the up-arrow button on the left of the <guilabel
->Totals Label</guilabel
-> or <keycombo action="simul"
+>Это "третья рука" Крусадера или дополнительная панель. Нажмите кнопку со стрелкой вверх в  левом <guilabel
+>поле суммы</guilabel
+> или <keycombo action="simul"
 >&Alt;<keycap
 >Down-Arrow</keycap
 ></keycombo
-> to open the <guilabel
->PopUp Panel</guilabel
->. This panel has several display modes which can be activated by clicking on the apropriate button <itemizedlist
+> для открытия <guilabel
+>дополнительной панели</guilabel
+>. Эта панель имеет несколько режимов, которые вызываются нажатием на соответсвующую кнопку <itemizedlist
 > <listitem
 > <para
 ><emphasis
 ><guilabel
->Preview Panel</guilabel
+>Панель предпросмотра</guilabel
 ></emphasis
-> : gives a preview of the file that has the focus (currently selected file).</para
+> : позволяет предпросмотр файла на который наведен фокус (текущий выбранный файл).</para
 > </listitem
 > <listitem
 > <para
 ><emphasis
 ><guilabel
->Tree Panel</guilabel
+>Дерево</guilabel
 ></emphasis
-> : is used to quickly browse the local directory tree. This panel behaves like the list panel but only one directory may be selected at a time and double clicking or pressing &Enter; on a directory will open that directory in the active panel. The panels fully support drag and drop (copy,move,link) mouse actions.</para
+> : используется для быстрой навигации в локальном дереве каталогов. Эта панель подобна основной, только нужно выбрать один каталог и двойной щелчок или нажатие &Enter; откроет его в активной панели. панели полностью поддерживают перетаскивание (копирование, перемещение, ссылки).</para
 > </listitem
 > <listitem
 > <para
 ><emphasis
 ><guilabel
->Quickselect Panel</guilabel
+>Панель быстрых операций</guilabel
 ></emphasis
->: quickly select files, &eg; <literal role="extension"
+>: быстрый выбор файлов, например <literal role="extension"
 >*.png</literal
-> and click on the <guibutton
->"Go"</guibutton
-> button. The "floppy" button stores the current selection. The "select group dialog" is also available. </para
+> и нажмите кнопку <guibutton
+>"применить выбор"</guibutton
+>. Кнопка "флоппи" сохранит текущее выделение. "Диалог выбора группы" также воможен. </para
 > </listitem
 > <listitem
 > <para
 ><emphasis
 ><guilabel
->Viewer Panel</guilabel
+>Панель просмотра</guilabel
 ></emphasis
-> : views a text file, views an image, &etc;. A thumbnail view is generated whenever you open the <guilabel
->Viewer Panel</guilabel
-> and click on a name of a folder that contains pictures.</para
+> : просмотр текстового файла, просмотр изображения, &etc;. Просмотр уменьшенных копий картинок создается когда открывается <guilabel
+>Панель просмотра</guilabel
+> и выбирается каталог с картинками.</para
 > </listitem
 > <listitem
 > <para
 ><emphasis
 ><guilabel
->Disk Usage Panel</guilabel
+>Панель статистики</guilabel
 ></emphasis
-> : views the &diskusage_lnk; of a directory.</para
+> : просмотр &diskusage_lnk; каталогом.</para
 > </listitem
 > </itemizedlist
-> If needed you can resize the window &eg; to better display a picture or view a file's contents. Click on the arrow down button to close the <guilabel
->3rd Hand Panel</guilabel
->. </para>
+> Если необходимо, вы можете изменять размер окна, например для лучшего вида просматриваемой картинки или файла. Нажмите на кпопку со стрелкой вниз и <guilabel
+>дополнительная панель</guilabel
+> закроется. </para>
 
 </sect2>
 
 
 <sect2 id="panel_toolbar">
 <title
->Panel Toolbar</title>
+>Панель инструментов</title>
 <indexterm
 ><primary
->Toolbar</primary
+>Панель инструментов</primary
 ><secondary
->Panel Toolbar</secondary
+>Панель инструментов</secondary
 ></indexterm
 > 
 
 <para
->Both panels have a <link linkend="konfig-looknfeel-ptoolbar"
->configurable Panel Toolbar</link
->. The complete Panel Toolbar or specific buttons can be made visible or be hidden. <itemizedlist>
+>Обе панели имеют <link linkend="konfig-looknfeel-ptoolbar"
+>настраиваемые панели инструментов</link
+>. Панель инструментов или специфичные кнопки можно делать видимыми или скрытыми. <itemizedlist>
 
   <listitem>
      <para
 ><guibutton
->OpenDir Button</guibutton
->: opens the directory browser.</para>
+>Кнопка Открыть каталог файлов</guibutton
+>: открывает браузер каталогов.</para>
   </listitem>
   
   <listitem>
      <para
 ><guibutton
->Equals Button (=)</guibutton
->: changes the panel directory to the other panel directory.</para>
+>Кнопка равно (=)</guibutton
+>: меняет каталог в активной панели на каталог неактивной.</para>
   </listitem>
   
   <listitem>
     <para
 ><guibutton
->Up Button (..)</guibutton
->: changes the panel directory to the parent directory.</para>
+>Кнопка вверх (..)</guibutton
+>: переводит активную панель в родительский каталог.</para>
   </listitem>
   
   <listitem>
     <para
 ><guibutton
->Home Button (~)</guibutton
->: changes the panel directory to the home directory</para>
+>Домой (~)</guibutton
+>: переход в домашний каталог</para>
   </listitem>
              
   <listitem>
     <para
 ><guibutton
->Root Button (/)</guibutton
->: changes the panel directory to the root directory.</para>
+>Корневой каталог(/)</guibutton
+>: переход в корневой каталог.</para>
   </listitem>
   
   <listitem>
     <para
 ><guibutton
->Sync-browsing Button</guibutton
->: when active, each directory-change in the specific panel is performed in the other panel, also.</para>
+>Кнопка синхронного режима</guibutton
+>: когда активна, каждое изменение любого каталога в панели применяется в другой панели автоматически.</para>
   </listitem>
        
 </itemizedlist>
@@ -641,12 +641,12 @@
 
 <sect2 id="folderhistory">
 <title
->Folder History</title>
+>История каталогов</title>
 
 <para
->Both panels remember recently visited folders. Click on the <guibutton
->"Folder history"</guibutton
-> button ("watch" symbol) to open the Folder history list. Here you can quickly change to previously visited folders, the currently focused folder is checked. On every new start of Krusader, the history list is empty. </para>
+>Обе панели запоминают недавно посещенные каталоги. Нажмите на кнопку <guibutton
+>"История каталогов"</guibutton
+> ( значок "часы") для открытия истории посещения каталогов. Здесь вы можете быстро выбрать каталог, текущий отмечен галочкой. При каждом новом запуске история очищается. </para>
 </sect2>
 
 </sect1>
@@ -654,10 +654,10 @@
 
 <sect1 id="cmdline">
 <title
->Command Line / Terminal Emulator</title>
+>Командная строка / Эмулятор терминала</title>
 
 <para
->This part of the &GUI; (graphical user interface) can have two modes: </para>
+>Эта часть &GUI; имеет два режима: </para>
 
 <!-- OLD
 <screenshot>
@@ -682,13 +682,13 @@
 
 <figure id="screenshot-commandline" float="1">
 <title
->Command line</title>
+>Командная строка</title>
 <mediaobject>
 <imageobject
 ><imagedata fileref="cmdline.png"/></imageobject>
 <textobject
 ><phrase
->Command line</phrase
+>Командная строка</phrase
 ></textobject>
 </mediaobject>
 </figure
@@ -696,21 +696,21 @@
 
 
 <para
->The traditional command line mode offers a single line of input to enter commands, it also features two buttons: <guibutton
->"run in terminal mode"</guibutton
-> (console icon) and <guibutton
->"command history"</guibutton
-> (down arrow) to the right of the input line. When you start typing your commands the command line "auto completion" feature will make its offers according to what you choose in the &kcontrolcenter;. If you want to change the way auto-complete behaves in the current &krusader; session then <keycap
->right click</keycap
-> on command line and change it. To the left of the input line you can find the local path that the active panel is currently is pointing to, this path is where your command will be executed. Typing <userinput
+>Традиционный режим предлагает одну строку для ввода команд и две кнопки: <guibutton
+>"запускать в теминале"</guibutton
+> (иконка терминала) и <guibutton
+>"история команд"</guibutton
+> (стрелка вниз) справа от поля ввода. Когда вы начнете набирать команду будет предложено "автодополнение", только включите его в &kcontrolcenter;. Если вы хотите изменить поведение автодополнения для текущей сессии - <keycap
+>правая кнопка мыши</keycap
+> в командной строке и выберите необходимое. Слева в строке ввода вы можете найти локальный путь для активной панели, этот путь путь будет использован при выполнении команды. Введя <userinput
 ><command
 >cd </command
 ><replaceable
->&lt;directory&gt;</replaceable
+>&lt;каталог&gt;</replaceable
 ></userinput
-> in the command line will also cause the active panel to point to this directory. Cick <link linkend="cmdline_keybindings"
->here</link
-> to view the command line keybindings. </para>
+> в командной строке вы также переведете активную панель в этот каталог. Щелкните <link linkend="cmdline_keybindings"
+>сюда</link
+> для просмотра быстрых клавиш командной строки. </para>
 
 <!--
 <screenshot>
@@ -735,13 +735,13 @@
 
 <figure id="screenshot-terminalemulator" float="1">
 <title
->Terminal emulator</title>
+>Эмулятор терминала</title>
 <mediaobject>
 <imageobject
 ><imagedata fileref="terminalEmu.png"/></imageobject>
 <textobject
 ><phrase
->Terminal emulator</phrase
+>Эмулятор терминала</phrase
 ></textobject>
 </mediaobject>
 </figure
@@ -749,34 +749,34 @@
 
 
 <para
->The terminal emulator mode is in fact a small konsole and acts like one. You can change the active directory in the terminal by using the <userinput
+>Эмулятор терминала - это фактически маленькая консоль и работает она также. Вы можете изменить активный каталог используя команду <userinput
 ><command
 >cd</command
 ></userinput
-> command. The terminal emulator will follow the active panel directory. When you drag a file from the <interface
->"List Panel"</interface
->, you will get to choose between: "Paste", <command
+>. Когда вы перетаскиваете файлы из <interface
+>"Панели списка"</interface
+>, можно выбирать между "Вставить", <command
 >cd</command
 >, <command
 >mv</command
-> and <command
+> и <command
 >ln</command
->. If you drag multiple files, then <command
+>. Если вы перетаскиваете несколько файлов <command
 >cd</command
-> will not be available. You can close the emulator by typing <userinput
+> не доступно. Закрыть эмулятор можно командой <userinput
 ><command
 >exit</command
 ></userinput
 >. </para>
 
 <para
->You can choose your mode of operation (command line, emulator, both or none) either for &krusader;'s startup with the &konfigstartpg_lnk;, or for the current session with the &viewmenu_lnk;. </para>
+>Вы можете выбрать режим работы(командная строка, эмулятор, оба или ни одного) при старте Крусадера в &konfigstartpg_lnk; или для текущей сессии в &viewmenu_lnk;. </para>
 
 </sect1>
 
 <sect1 id="fnkeys">
 <title
->Function (FN) Keys Bar</title>
+>Функциональные клавиши(FN)</title>
 
 <!-- OLD
 <screenshot>
@@ -797,43 +797,43 @@
 
 <figure id="screenshot-fnkeys" float="1">
 <title
->Function (FN) Keys Bar</title>
+>Функциональные клавиши(FN)</title>
 <mediaobject>
 <imageobject
 ><imagedata fileref="fnkeys.png"/></imageobject>
 <textobject
 ><phrase
->Function (FN) Keys Bar</phrase
+>Функциональные клавиши(FN)</phrase
 ></textobject>
 </mediaobject>
 </figure
 > 
 
 <para
->This bar gets its name from the function (FN) keys it represents. For each button on this bar there is a corresponding function key that performs the same action. This bar is derived from the design of the first twin-panel file managers and the FN keys usually act the same with two changes: the <keycap
+>Эта панель составлена из названий  функций клавиш (FN). Для каждой кнопки на этой панели имеется соотвествующая клавиша, выполняющая определенное действие. Она унаследовала дизайн первых двухпанельных файловых менеджеров и и обычно клавиши используются для двух действий: <keycap
 >F2</keycap
-> key will open a terminal at the last local path that the active panel pointed to, and the <keycap
+> для вызова терминала в текущем каталоге и <keycap
 >F9</keycap
-> key is used to rename files. <guilabel
->Mkdir</guilabel
+> для перемеиновывания файла. <guilabel
+>Новый каталог</guilabel
 > <keycap
 >F7</keycap
-> can create whole directory trees on the fly &eg; <literal
+> создает целое дерево каталогов на лету, например <literal
 >foo/bar/test</literal
->. You can choose to display <link linkend="faqu_resize"
->or not</link
-> the <guilabel
->FN keys bar</guilabel
-> when starting up &krusader; via the &konfigstartpg_lnk;, and you can toggle its use in the current session with the &viewmenu_lnk;. The actions and &keybindigs_lnk; performed by the function keys are configurable since version 1.51 , they will remain active with or without the <guilabel
->FN keys bar</guilabel
-> displayed. </para>
+>. Вы можете выбрать показывать <link linkend="faqu_resize"
+>или нет</link
+>  <guilabel
+>FN панель</guilabel
+> при запуске &krusader; через &konfigstartpg_lnk;, и переключать использование для текущей сессии в &viewmenu_lnk;. Действия и &keybindigs_lnk; выполняемые функциональными  клавишами настраиваются с версии 1.51 , они остаются активными независимо от того видна <guilabel
+>панель FN</guilabel
+> или нет. </para>
 
 </sect1>
 
 
 <sect1 id="folder_tabs">
 <title
->Folder Tabs</title>
+>Вкладки каталогов</title>
 
 <!-- OLD
 <screenshot>
@@ -854,13 +854,13 @@
 
 <figure id="screenshot-tabbedbrowsing" float="1">
 <title
->Folder Tabs</title>
+>Вкладки каталогов</title>
 <mediaobject>
 <imageobject
 ><imagedata fileref="tabbed_browsing.png"/></imageobject>
 <textobject
 ><phrase
->Folder Tabs</phrase
+>Вкладки каталогов</phrase
 ></textobject>
 </mediaobject>
 </figure
@@ -868,15 +868,15 @@
 
 
 <para
->With &folder_tabs; you can quickly change to multiple folders, each panel has is own &folder_tabs;. The &folder_tabs; positions are saved when closing &krusader;. To switch between &folder_tabs;, click them with the mouse. Squeezed &folder_tabs; have tooltips to display the full path. The next &folder_tabs; operations are available: <itemizedlist>
+>Используя &folder_tabs; вы можете быстро изменять многочисленные каталоги, каждая панель имеет свою &folder_tabs;. Положение во вкладках сохраняется при закрытии Крусадера. Переключаться между вкладками можно с помощью мыши. В неиспользуемых вкладках полный путь отображается в сжатом виде. Для вкладок доступны следующие операции: <itemizedlist>
     
     <listitem>
        <para
->To <keycap
->open a new tab</keycap
-> and keep the current directory: &right_click; on a directory and select <keycap
->open in a new tab</keycap
->, or use the &MMB;, or use <keycombo action="simul"
+><keycap
+>открыть новую вкладку</keycap
+> и остаться в текущем каталоге: &right_click; в каталоге и выбрать <keycap
+>открыть в новой вкладке</keycap
+>, или &MMB;, или <keycombo action="simul"
 >&Alt;&Ctrl;<keycap
 >n</keycap
 ></keycombo
@@ -885,11 +885,11 @@
 
     <listitem>
        <para
->To <keycap
->duplicate a tab</keycap
->: &right_click; on the Folder Tab and select <keycap
->duplicate tab</keycap
->, or use <keycombo action="simul"
+><keycap
+>дублировать вкладку</keycap
+>: &right_click; на вкладке и выбрать <keycap
+>дублировать вкладку</keycap
+>, или <keycombo action="simul"
 >&Alt;&Ctrl;&Shift;<keycap
 >n</keycap
 ></keycombo
@@ -898,13 +898,13 @@
 
     <listitem>
         <para
->To <keycap
->close a tab</keycap
-> (except the left tab): &right_click; on the tab and select <keycap
->close tab</keycap
->, or use the &MMB;, or use the Folder tabs <guibutton
->"red cross"</guibutton
-> button, or use <keycombo action="simul"
+><keycap
+>закрыть вкладку</keycap
+> (исключая левую): &right_click; на вкладке и выбрать <keycap
+>закрыть вкладку</keycap
+>, или &MMB;, или использовать кнопку <guibutton
+>"красный крест"</guibutton
+> или <keycombo action="simul"
 >&Alt;&Ctrl;<keycap
 >c</keycap
 ></keycombo
@@ -913,31 +913,31 @@
 
     <listitem>
         <para
->To create a <keycap
->"home" tab</keycap
->: click on the <guibutton
->Folder Tab Bookmark</guibutton
-> button. </para>
+>открыть <keycap
+>вкладку в "домашнем каталоге"</keycap
+>: нажмите на кнопку <guibutton
+>Новая вкладка</guibutton
+>. </para>
     </listitem>
 
     <listitem>
         <para
->To <keycap
->change tabs</keycap
+><keycap
+>сменить вкладку</keycap
 >: <keycombo action="simul"
 >&Shift;<keycap
->Left Arrow</keycap
+>Стрелка влево</keycap
 ></keycombo
-> or <keycombo action="simul"
+> или <keycombo action="simul"
 >&Shift;<keycap
->Right Arrow</keycap
+>Стрелка вправо</keycap
 ></keycombo
 >. </para>
     </listitem>
 
     <listitem>
         <para
->To open the current folder in a new tab: use <keycombo action="simul"
+>Для открытия текущего каталога в новой вкладке используйте <keycombo action="simul"
 >&Ctrl;&Alt;&Enter;</keycombo
 > </para>
     </listitem>
@@ -949,25 +949,25 @@
 
 <sect1 id="ui_buutons">
 <title
->Buttons</title>
+>Кнопки</title>
 
 <para
->Several buttons for fast operations are available: &main_toolbar_lnk;, &actions_toolbar_lnk;, <link linkend="panel_toolbar"
->Panel Toolbar</link
+>Для быстрых операций доступны следующие кнопки: &main_toolbar_lnk;, &actions_toolbar_lnk;, <link linkend="panel_toolbar"
+>Панель инструментов</link
 >, <link linkend="list_panel"
->Clear Location Toolbar</link
+>Очистить панель адреса</link
 >, <link linkend="list_panel"
->Media</link
+>Медиа</link
 >, <link linkend="panel_toolbar"
->Folder history</link
+>История каталогов</link
 >, <link linkend="bookman"
->Bookmarks</link
+>Закладки</link
 >, <link linkend="folder_tabs"
->Tab</link
+>Вкладки</link
 >, <link linkend="cmdline"
->Commandline</link
+>Командная строка</link
 >, <link linkend="fnkeys"
->Function keys</link
+>Функциональные клавиши</link
 >. </para>
 </sect1>
 
