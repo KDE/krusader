@@ -1712,10 +1712,10 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
       }
       break;
     case VIEW_LEFT_FILE_ID:
-      KrViewer::view( leftURL ); // view the file
+      KrViewer::view( leftURL, this ); // view the file
       break;
     case VIEW_RIGHT_FILE_ID:
-      KrViewer::view( rightURL ); // view the file
+      KrViewer::view( rightURL, this ); // view the file
       break;
     case COMPARE_FILES_ID:
       SLOTS->compareContent( leftURL, rightURL );
@@ -2112,17 +2112,6 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
 {
   switch ( e->key() )
   {
-  case Key_C :
-    {
-      if( e->state() == ControlButton )
-      {
-        QListViewItem *listItem =  syncList->currentItem();
-        if( listItem == 0 )
-          break;
-        doubleClicked( listItem );   
-      }
-      break;
-    }
   case Key_M :
     {
       if( e->state() == ControlButton )
@@ -2153,18 +2142,18 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
       {
         KURL rightURL = vfs::fromPathOrURL( synchronizer.rightBaseDirectory() + rightDirName + item->rightName() );
         if( isedit )
-          KrViewer::edit( rightURL ); // view the file
+          KrViewer::edit( rightURL, this ); // view the file
         else
-          KrViewer::view( rightURL ); // view the file
+          KrViewer::view( rightURL, this ); // view the file
         return;
       }
       else if ( e->state() == 0 && item->existsInLeft() )
       {
         KURL leftURL  = vfs::fromPathOrURL( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
         if( isedit )
-          KrViewer::edit( leftURL ); // view the file
+          KrViewer::edit( leftURL, this ); // view the file
         else
-          KrViewer::view( leftURL ); // view the file
+          KrViewer::view( leftURL, this ); // view the file
         return;
       }
     }
@@ -2174,6 +2163,49 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
       break;
     e->accept();
     swapSides();
+    return;
+  case Key_Enter:
+  case Key_Return:
+    if( syncList->hasFocus() )
+    {
+        e->accept();
+
+        QListViewItem *listItem =  syncList->currentItem();
+        if( listItem == 0 || !listItem->isVisible() )
+          return;
+        
+        SynchronizerFileItem *item = ((SyncViewItem *)listItem)->synchronizerItemRef();
+        if( item->isDir() ) {
+            listItem->setOpen( !listItem->isOpen() );
+            return;
+        }
+
+        if( !item->existsInLeft() || !item->existsInRight() )
+          return;
+        // call compare
+        doubleClicked( listItem );   
+        return;
+    }
+    break;
+  case Key_Escape:
+    if( btnStopComparing->isShown() && btnStopComparing->isEnabled() ) // is it comparing?
+    {
+      e->accept();
+      btnStopComparing->animateClick(); // just click the stop button
+    }
+    else
+    {
+      e->accept();
+      if( syncList->childCount() != 0 )
+      {
+         int result = KMessageBox::warningYesNo(this, i18n( "The synchronizer window contains datas from a previous compare. If you exit, those datas will be lost. Do you really want to exit?" ), 
+                                                      i18n("Krusader::Synchronize Directories"),
+                                                      KStdGuiItem::yes(), KStdGuiItem::no(), "syncGUIexit" );
+         if( result != KMessageBox::Yes )
+             return;
+      }
+      QDialog::reject();
+    }
     return;
   }
 
