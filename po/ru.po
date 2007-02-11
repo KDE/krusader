@@ -1,18 +1,18 @@
 # Translation of krusader.pot to Russian
 #
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
-# Copyright (C) 2004-2006, Krusader Krew
+# Copyright (C) 2004-2007, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 #
 # Dmitry V. Chernyak <dvc@mail.ru>, 2003, 2005.
 # Denis Koryavov <dkoryavov@rambler.ru>, 2005.
 # Nick Shaforostoff <shafff@ukr.net>, 2005.
-# Dmitry A. Bugay <sam@vhnet.ru>, 2006.
+# Dmitry A. Bugay <sam@vhnet.ru>, 2006, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.70.0\n"
+"Project-Id-Version: krusader-1.80.0-beta1\n"
 "POT-Creation-Date: 2007-01-26 21:23+0100\n"
-"PO-Revision-Date: 2006-12-19 21:25+0600\n"
+"PO-Revision-Date: 2007-01-31 08:34+0600\n"
 "Last-Translator: Dmitry A. Bugay <sam@vhnet.ru>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -1502,7 +1502,7 @@ msgstr "Символическая ссылка..."
 
 #: Panel/krpopupmenu.cpp:157
 msgid "New Hardlink..."
-msgstr "жёсткую ссылку..."
+msgstr "Жёсткая ссылка..."
 
 #: Panel/krpopupmenu.cpp:159
 msgid "Redirect Link..."
@@ -1711,6 +1711,12 @@ msgid ""
 "<qt>Do you really want to delete these %n items <b>physically</b> (not just "
 "removing them from the virtual items)?</qt>"
 msgstr ""
+"<qt>Удалить элемент <b>физически</b> (удаляется также из числа виртуальных "
+"элементов)?</qt>\n"
+"<qt>Удалить %n элемента <b>физически</b> (удаляются также из числа "
+"виртуальных элементов)?</qt>\n"
+"<qt>Удалить %n элементов <b>физически</b> (удаляются также из числа "
+"виртуальных элементов)?</qt>"
 
 #: Panel/panelfunc.cpp:657
 #, c-format
@@ -1967,14 +1973,12 @@ msgid "Show Terminal &Emulator"
 msgstr "Показывать &эмулятор терминала"
 
 #: krusader.cpp:546
-#, fuzzy
 msgid "&Detailed View"
-msgstr "Детальный вид"
+msgstr "&Детальный вид"
 
 #: krusader.cpp:549
-#, fuzzy
 msgid "&Brief View"
-msgstr "Линейный вид"
+msgstr "&Компактный вид"
 
 #: krusader.cpp:552
 msgid "Show &Hidden Files"
@@ -3018,7 +3022,7 @@ msgstr "МИН"
 
 #: Dialogs/packguibase.cpp:190
 msgid "MAX"
-msgstr "МАХ"
+msgstr "МАКС"
 
 #: Dialogs/packguibase.cpp:211
 msgid "Password"
@@ -3042,7 +3046,7 @@ msgstr "OK"
 
 #: Dialogs/packguibase.cpp:333
 msgid "No password specified"
-msgstr ""
+msgstr "Пароль не задан"
 
 #: Dialogs/packguibase.cpp:338
 msgid "The passwords are equal"
@@ -4660,7 +4664,6 @@ msgid "View the file in hex-mode (better for binary files)"
 msgstr "Просмотр файла в Hex режиме (для двоичных файлов)"
 
 #: Konfigurator/kggeneral.cpp:104
-#, fuzzy
 msgid "Internal editor and viewer opens each file in a separate window"
 msgstr "Просмотрщик открывает каждый файл в отдельном окне"
 
@@ -4674,7 +4677,7 @@ msgstr ""
 
 #: Konfigurator/kggeneral.cpp:115
 msgid "Atomic extensions:"
-msgstr ""
+msgstr "Единые расширения:"
 
 #: Konfigurator/kggeneral.cpp:143
 msgid "Terminal:"
@@ -4711,17 +4714,18 @@ msgstr "Установить новые инструменты из <code>$PATH<
 
 #: Konfigurator/kggeneral.cpp:195
 msgid "Add new atomic extension"
-msgstr ""
+msgstr "Добавить новое расширение"
 
 #: Konfigurator/kggeneral.cpp:195
 msgid "Extension: "
-msgstr ""
+msgstr "Расширение: "
 
 #: Konfigurator/kggeneral.cpp:200
 msgid ""
 "Atomic extensions must start with '.'\n"
 " and must contain at least one more '.' character"
 msgstr ""
+"Единые расширения должны начинаться с '.'и содержать более одного знака '.'"
 
 #: Konfigurator/krresulttable.cpp:121
 msgid "unarj not found, but arj found, which will be used for unpacking"
@@ -4861,7 +4865,7 @@ msgstr "Запрашивать подтверждение при выходе"
 
 #: Konfigurator/kglookfeel.cpp:85
 msgid "Display a warning when trying to close the main window."
-msgstr "Показывать предупреждение, когда вы выходите из Krusader."
+msgstr "Показывать предупреждение, при выходе из Krusader."
 
 #: Konfigurator/kglookfeel.cpp:86
 msgid "Minimize to tray"
@@ -5015,13 +5019,12 @@ msgid ""
 msgstr "Показывать числа (0755) взамен стандартных прав (rwxr-xr-x) в столбце."
 
 #: Konfigurator/kglookfeel.cpp:172
-#, fuzzy
 msgid "Default panel type:"
-msgstr "Левая панель"
+msgstr "Стандартный тип панели:"
 
 #: Konfigurator/kglookfeel.cpp:175
 msgid "Brief"
-msgstr ""
+msgstr "Компактный"
 
 #: Konfigurator/kglookfeel.cpp:188
 msgid "Panel Toolbar"
@@ -5325,6 +5328,11 @@ msgid ""
 "root or member of the group</li><li>Preserving the timestamp</li></"
 "ul><b>Note</b>: This can slow down the copy process."
 msgstr ""
+"Krusader пробует сохранить все атрибуты (время доступа, владелец, группа) "
+"локальных файлов в соответствии с исходными правами:\n"
+"<ul><li>Владелец сохраняется, если вы root </li><li>Группа сохраняется, если "
+"вы root или член группы.</li><li>Сохраняется время доступа</li></ul>\n"
+"<b>Примечание</b>: Это может замедлить процесс копирования."
 
 #: Konfigurator/kgadvanced.cpp:64
 msgid "Automount filesystems"
@@ -5889,7 +5897,6 @@ msgid "Save last position, size and panel settings"
 msgstr "Восстанавливать позицию, размер и настройки панелей"
 
 #: Konfigurator/kgstartup.cpp:94
-#, fuzzy
 msgid ""
 "<p>At startup, the main window will resize itself to the size it was when "
 "last shutdown. It will also appear in the same location of the screen, "
