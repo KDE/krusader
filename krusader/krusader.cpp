@@ -600,7 +600,7 @@ void Krusader::setupActions() {
                                  SLOTS, SLOT( unmarkAll() ), actionCollection(), "unselect all" );
    actInvert = new KAction( i18n( "&Invert Selection" ), "kr_invert", ALT + Key_Asterisk,
                             SLOTS, SLOT( invert() ), actionCollection(), "invert" );
-   actCompDirs = new KAction( i18n( "&Compare Directories" ), "view_left_right", 0,
+   actCompDirs = new KAction( i18n( "&Compare Directories" ), "view_left_right", ALT + Key_C,
                               SLOTS, SLOT( compareDirs() ), actionCollection(), "compare dirs" );
    actSelectNewerAndSingle = new KRadioAction( i18n( "&Select Newer and Single" ), 0,
                                  SLOTS, SLOT( compareSetup() ), actionCollection(), "select_newer_and_single" );
@@ -657,7 +657,7 @@ void Krusader::setupActions() {
    //                             SLOTS, SLOT( execFilter() ), actionCollection(), "exec files" );
    actCustomFilter = new KAction( i18n( "&Custom" ), SHIFT + Key_F12,
                                   SLOTS, SLOT( customFilter() ), actionCollection(), "custom files" );
-   actCompare = new KAction( i18n( "Compare b&y Content..." ), "kmultiple", ALT + Key_C,
+   actCompare = new KAction( i18n( "Compare b&y Content..." ), "kmultiple", 0,
                              SLOTS, SLOT( compareContent() ), actionCollection(), "compare" );
    actMultiRename = new KAction( i18n( "Multi &Rename..." ), "krename", SHIFT + Key_F9,
                                  SLOTS, SLOT( multiRename() ), actionCollection(), "multirename" );
