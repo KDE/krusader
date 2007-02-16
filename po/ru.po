@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.80.0-beta1\n"
-"POT-Creation-Date: 2007-01-26 21:23+0100\n"
+"POT-Creation-Date: 2007-02-16 18:56+0100\n"
 "PO-Revision-Date: 2007-01-31 08:34+0600\n"
 "Last-Translator: Dmitry A. Bugay <sam@vhnet.ru>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
@@ -350,7 +350,7 @@ msgstr "Не удалось открыть каталог %1!"
 msgid "Access denied to"
 msgstr "Доступ запрещён к"
 
-#: VFS/normal_vfs.cpp:215
+#: VFS/normal_vfs.cpp:218
 msgid "Can't create a directory. Check your permissions."
 msgstr "Не удалось создать каталог. Проверьте права доступа."
 
@@ -509,21 +509,25 @@ msgstr "С &учётом регистра"
 msgid "Search &for:"
 msgstr "&Фильтр:"
 
-#: Filter/generalfilter.cpp:81 Synchronizer/synchronizergui.cpp:1103
+#: Filter/generalfilter.cpp:81 Synchronizer/synchronizergui.cpp:1105
 msgid ""
 "<p>The filename filtering criteria is defined here.</p><p>You can make use "
-"of wildcards. Multiple patterns are separated by space and patterns are "
-"excluded from the search using the pipe symbol.</p><p>Examples:"
-"<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</li><li>* "
-"| CVS/ .svn/</li></code></ul><b>Note</b>: the search term '<code>text</"
-"code>' is equivalent to '<code>*text*</code>'.</p>"
+"of wildcards. Multiple patterns are separated by space (means logical OR) "
+"and patterns are excluded from the search using the pipe symbol.</p><p>If "
+"the pattern is ended with a slash (<code>*pattern*/</code>), that means that "
+"pattern relates to recursive search of directories.<ul><li><code>pattern</"
+"code> - means to search those files/directories that name is <code>pattern</"
+"code>, recursive search goes through all subdirectories independently of the "
+"value of <code>pattern</code></li><li><code>pattern/</code> - means to "
+"search all files/directories, but recursive search goes through/excludes the "
+"directories that name is <code>pattern</code></li></ul><p></p><p>It's "
+"allowed to use quotation marks for names that contain space. Filter <code>"
+"\"Program&nbsp;Files\"</code> searches out those files/directories that name "
+"is <code>Program&nbsp;Files</code>.</p><p>Examples:<ul><code><li>*.o</"
+"li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</li></"
+"code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to "
+"'<code>*text*</code>'.</p>"
 msgstr ""
-"<p>Имя файла выбирается по критериям, определённым здесь. Можно применять "
-"шаблоны. Многочисленные выражения могут быть разделены пробелом, для "
-"исключения выражений из поиска применяется символ '|'. Пример: "
-"<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h *.moc.cpp</li></code></"
-"ul><b>Примечание</b>: при поиске слово '<code>текст</code>' эквивалентно "
-"'<code>*текст*</code>'.</p>"
 
 #: Filter/generalfilter.cpp:86
 msgid "&Of type:"
@@ -603,7 +607,7 @@ msgstr "Укажите расположение для поиска."
 
 #: Filter/advancedfilter.cpp:59 Panel/krdetailedview.cpp:106
 #: Panel/krdetailedview.cpp:1429 Search/krsearchdialog.cpp:146
-#: Synchronizer/synchronizergui.cpp:1255 Synchronizer/synchronizergui.cpp:1259
+#: Synchronizer/synchronizergui.cpp:1263 Synchronizer/synchronizergui.cpp:1267
 msgid "Size"
 msgstr "Размер"
 
@@ -628,8 +632,8 @@ msgid "&Smaller than"
 msgstr "&Меньше, чем"
 
 #: DiskUsage/dulistview.cpp:71 Filter/advancedfilter.cpp:113
-#: Search/krsearchdialog.cpp:147 Synchronizer/synchronizergui.cpp:1256
-#: Synchronizer/synchronizergui.cpp:1258
+#: Search/krsearchdialog.cpp:147 Synchronizer/synchronizergui.cpp:1264
+#: Synchronizer/synchronizergui.cpp:1266
 msgid "Date"
 msgstr "Дата"
 
@@ -985,8 +989,7 @@ msgid "Choose a window-mode"
 msgstr "Выбрать режим окна"
 
 #: Konfigurator/konfigurator.cpp:69 Search/krsearchdialog.cpp:103
-#: Synchronizer/synchronizedialog.cpp:117
-#: Synchronizer/synchronizergui.cpp:1393 UserAction/kraction.cpp:48
+#: Synchronizer/synchronizergui.cpp:1404 UserAction/kraction.cpp:48
 msgid "Close"
 msgstr "Закрыть"
 
@@ -1093,8 +1096,8 @@ msgid "UserActions - invalid action"
 msgstr "Пользовательское действие - неверное действие"
 
 #: Panel/krdetailedviewitem.cpp:78 Panel/krdetailedviewitem.cpp:110
-#: Synchronizer/synchronizergui.cpp:1878 Synchronizer/synchronizergui.cpp:1885
-#: Synchronizer/synchronizergui.cpp:1937 Synchronizer/synchronizergui.cpp:1944
+#: Synchronizer/synchronizergui.cpp:1894 Synchronizer/synchronizergui.cpp:1901
+#: Synchronizer/synchronizergui.cpp:1953 Synchronizer/synchronizergui.cpp:1960
 msgid "<DIR>"
 msgstr "<KAT>"
 
@@ -1105,8 +1108,8 @@ msgstr "Предварительный просмотр не доступен"
 #: DiskUsage/dulines.cpp:240 DiskUsage/dulistview.cpp:56
 #: Konfigurator/krresulttable.cpp:129 MountMan/kmountmangui.cpp:127
 #: Panel/krbriefview.cpp:151 Panel/krdetailedview.cpp:103
-#: Search/krsearchdialog.cpp:144 Synchronizer/synchronizergui.cpp:1254
-#: Synchronizer/synchronizergui.cpp:1260
+#: Search/krsearchdialog.cpp:144 Synchronizer/synchronizergui.cpp:1262
+#: Synchronizer/synchronizergui.cpp:1268
 msgid "Name"
 msgstr "Имя"
 
@@ -1184,8 +1187,8 @@ msgstr "Вверх"
 msgid "~"
 msgstr "~"
 
-#: Panel/listpanel.cpp:243 Panel/panelpopup.cpp:118 Panel/panelpopup.cpp:119
-#: Panel/panelpopup.cpp:120 Panel/panelpopup.cpp:131 krusader.cpp:521
+#: Panel/listpanel.cpp:243 Panel/panelpopup.cpp:119 Panel/panelpopup.cpp:120
+#: Panel/panelpopup.cpp:121 Panel/panelpopup.cpp:132 krusader.cpp:521
 msgid "Home"
 msgstr "Домой"
 
@@ -1193,8 +1196,8 @@ msgstr "Домой"
 msgid "/"
 msgstr "/"
 
-#: Panel/listpanel.cpp:249 Panel/panelpopup.cpp:122 Panel/panelpopup.cpp:123
-#: Panel/panelpopup.cpp:125 Panel/panelpopup.cpp:126 Panel/panelpopup.cpp:130
+#: Panel/listpanel.cpp:249 Panel/panelpopup.cpp:123 Panel/panelpopup.cpp:124
+#: Panel/panelpopup.cpp:126 Panel/panelpopup.cpp:127 Panel/panelpopup.cpp:131
 #: krusader.cpp:650
 msgid "Root"
 msgstr "Корневой каталог"
@@ -1243,21 +1246,21 @@ msgstr "%1 свободно из %2 (%3%) на %4 [ (%5) ]"
 msgid "Can't drop here, no write permissions."
 msgstr "Не удалось перетащить, нет прав на запись."
 
-#: Panel/listpanel.cpp:830 Panel/panelpopup.cpp:348
+#: Panel/listpanel.cpp:830 Panel/panelpopup.cpp:376
 msgid "Copy Here"
 msgstr "Копировать"
 
-#: Panel/listpanel.cpp:832 Panel/panelpopup.cpp:349
+#: Panel/listpanel.cpp:832 Panel/panelpopup.cpp:377
 msgid "Move Here"
 msgstr "Перенести"
 
-#: Panel/listpanel.cpp:835 Panel/panelpopup.cpp:350
+#: Panel/listpanel.cpp:835 Panel/panelpopup.cpp:378
 msgid "Link Here"
 msgstr "Создать ссылку"
 
 #: Dialogs/krmaskchoice.cpp:135 Dialogs/packguibase.cpp:289
 #: DiskUsage/diskusage.cpp:155 Panel/listpanel.cpp:836
-#: Panel/panelpopup.cpp:351
+#: Panel/panelpopup.cpp:379
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -1336,71 +1339,71 @@ msgstr "Переименовать "
 msgid " to:"
 msgstr " в:"
 
-#: Panel/panelpopup.cpp:65
+#: Panel/panelpopup.cpp:66
 msgid "Tree Panel: a tree view of the local file system"
 msgstr "Дерево: древовидный вид локальной файловой системы"
 
-#: Panel/panelpopup.cpp:73
+#: Panel/panelpopup.cpp:74
 msgid "Preview Panel: display a preview of the current file"
 msgstr "Панель предпросмотра: отображает предпросмотр текущего файла"
 
-#: Panel/panelpopup.cpp:80
+#: Panel/panelpopup.cpp:81
 msgid "Quick Panel: quick way to perform actions"
 msgstr "Панель быстрых операций: быстрый способ выполнения некоторых операций"
 
-#: Panel/panelpopup.cpp:87
+#: Panel/panelpopup.cpp:88
 msgid "View Panel: view the current file"
 msgstr "Панель просмотра: показывает текущий файл"
 
-#: Panel/panelpopup.cpp:94
+#: Panel/panelpopup.cpp:95
 msgid "Disk Usage Panel: view the usage of a directory"
 msgstr "Панель статистики: показать статистику использования каталогов"
 
-#: Panel/panelpopup.cpp:146 Panel/panelpopup.cpp:307
+#: Panel/panelpopup.cpp:147 Panel/panelpopup.cpp:335
 msgid "Disk Usage: "
 msgstr "Статистика использования диска: "
 
-#: Panel/panelpopup.cpp:155
+#: Panel/panelpopup.cpp:156
 msgid "Quick Select"
 msgstr "Быстрое выделение"
 
-#: Panel/panelpopup.cpp:172
+#: Panel/panelpopup.cpp:173
 msgid "apply the selection"
 msgstr "применить выбор"
 
-#: Panel/panelpopup.cpp:178
+#: Panel/panelpopup.cpp:179
 msgid "store the current selection"
 msgstr "сохранить текущее выделение"
 
-#: Panel/panelpopup.cpp:184
+#: Panel/panelpopup.cpp:185
 msgid "select group dialog"
 msgstr "вызвать диалог выбора"
 
-#: Panel/panelpopup.cpp:260
+#: Panel/panelpopup.cpp:286
 msgid "Tree:"
 msgstr "Дерево:"
 
-#: Panel/panelpopup.cpp:265
+#: Panel/panelpopup.cpp:291
 msgid "Preview:"
 msgstr "Предпросмотр:"
 
-#: Panel/panelpopup.cpp:269
+#: Panel/panelpopup.cpp:295
 msgid "Quick Select:"
 msgstr "Быстрый выбор:"
 
-#: Panel/panelpopup.cpp:274
+#: Panel/panelpopup.cpp:300
 msgid "View:"
 msgstr "Просмотр:"
 
-#: Panel/panelpopup.cpp:280
+#: Panel/panelpopup.cpp:306
 msgid "Disk Usage:"
 msgstr "Статистика использования диска:"
 
-#: Panel/panelpopup.cpp:296
+#: Panel/panelpopup.cpp:324
 msgid "Preview: "
 msgstr "Предпросмотр: "
 
-#: Panel/panelpopup.cpp:300
+#: Panel/panelpopup.cpp:328
 msgid "View: "
 msgstr "Просмотр: "
 
@@ -1487,7 +1490,7 @@ msgid "Move to Trash"
 msgstr "Переместить в корзину"
 
 #: BookMan/krbookmarkhandler.cpp:541 Dialogs/krmaskchoice.cpp:110
-#: Dialogs/kurllistrequester.cpp:149 DiskUsage/diskusage.cpp:758
+#: Dialogs/kurllistrequester.cpp:149 DiskUsage/diskusage.cpp:757
 #: Konfigurator/kgcolors.cpp:474 Panel/krpopupmenu.cpp:145 krusader.cpp:725
 msgid "Delete"
 msgstr "Удалить"
@@ -1682,7 +1685,7 @@ msgstr ""
 "Переместить %n элемента в корзину?\n"
 "Переместить %n элементов в корзину?"
 
-#: DiskUsage/diskusage.cpp:598 Panel/panelfunc.cpp:649
+#: DiskUsage/diskusage.cpp:597 Panel/panelfunc.cpp:649
 msgid "&Trash"
 msgstr "&Корзина"
 
@@ -1697,7 +1700,7 @@ msgstr ""
 "Удалить %n виртуальных элементов (физические файлы останутся нетронутыми)?\n"
 "Удалить %n виртуальных элементов (физические файлы останутся нетронутыми)?"
 
-#: DiskUsage/diskusage.cpp:601 DiskUsage/radialMap/widgetEvents.cpp:172
+#: DiskUsage/diskusage.cpp:600 DiskUsage/radialMap/widgetEvents.cpp:172
 #: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:652
 #: Panel/panelfunc.cpp:655 Panel/panelfunc.cpp:658
 msgid "&Delete"
@@ -1729,7 +1732,7 @@ msgstr ""
 "Удалить %n элементов?"
 
 #: Dialogs/checksumdlg.cpp:552 Dialogs/krkeydialog.cpp:135
-#: DiskUsage/diskusage.cpp:608 Konfigurator/kgcolors.cpp:523
+#: DiskUsage/diskusage.cpp:607 Konfigurator/kgcolors.cpp:523
 #: Panel/panelfunc.cpp:664
 msgid "Warning"
 msgstr "Предупреждение"
@@ -1820,7 +1823,7 @@ msgid "Cannot copy a virtual URL collection onto the clipboard!"
 msgstr ""
 
 #: Locate/locate.cpp:67 Locate/locate.cpp:205 Search/krsearchdialog.cpp:99
-#: Synchronizer/synchronizergui.cpp:1377
+#: Synchronizer/synchronizergui.cpp:1388
 msgid "Stop"
 msgstr "Стоп"
 
@@ -1875,7 +1878,7 @@ msgid "Error during the start of 'locate' process!"
 msgstr "Произошла ошибка во время запуска утилиты 'locate'!"
 
 #: Locate/locate.cpp:244 Search/krsearchdialog.cpp:88
-#: Synchronizer/synchronizergui.cpp:1382
+#: Synchronizer/synchronizergui.cpp:1393
 msgid "Feed to listbox"
 msgstr "Поместить на панель"
 
@@ -2318,65 +2321,65 @@ msgid "No file selected or selected file can't be displayed."
 msgstr ""
 "Не выделено ни одного файла или выделенные файлы не могут быть показаны."
 
-#: KViewer/krviewer.cpp:592 KViewer/panelviewer.cpp:151
+#: KViewer/krviewer.cpp:651 KViewer/panelviewer.cpp:151
 msgid "KrViewer is unable to download: "
 msgstr "KrViewer недоступен для загрузки: "
 
-#: KViewer/krviewer.cpp:84
+#: KViewer/krviewer.cpp:85
 msgid "&Generic viewer"
 msgstr "&Основной просмотрщик"
 
-#: KViewer/krviewer.cpp:85
+#: KViewer/krviewer.cpp:86
 msgid "&Text viewer"
 msgstr "&Просмотрщик текста"
 
-#: KViewer/krviewer.cpp:86
+#: KViewer/krviewer.cpp:87
 msgid "&Hex viewer"
 msgstr "&Hex просмотрщик"
 
-#: KViewer/krviewer.cpp:88
+#: KViewer/krviewer.cpp:89
 msgid "Text &editor"
 msgstr "Текстовый &редактор"
 
-#: KViewer/krviewer.cpp:90
+#: KViewer/krviewer.cpp:91
 msgid "&Next tab"
 msgstr "&Следующая вкладка"
 
-#: KViewer/krviewer.cpp:91
+#: KViewer/krviewer.cpp:92
 msgid "&Previous tab"
 msgstr "&Предыдущая вкладка"
 
-#: KViewer/krviewer.cpp:93
+#: KViewer/krviewer.cpp:94
 msgid "&Detach tab"
 msgstr "&Отделить вкладку"
 
-#: KViewer/krviewer.cpp:100
+#: KViewer/krviewer.cpp:101
 msgid "&Close current tab"
 msgstr "&Закрыть текущую вкладку"
 
-#: KViewer/krviewer.cpp:101
+#: KViewer/krviewer.cpp:102
 msgid "&Quit"
 msgstr "&Выход"
 
-#: KViewer/krviewer.cpp:141
+#: KViewer/krviewer.cpp:159
 msgid "&KrViewer"
 msgstr "&KrViewer"
 
-#: KViewer/krviewer.cpp:200 KViewer/krviewer.cpp:268 KViewer/krviewer.cpp:352
-#: KViewer/krviewer.cpp:361 KViewer/krviewer.cpp:370 KViewer/krviewer.cpp:446
+#: KViewer/krviewer.cpp:259 KViewer/krviewer.cpp:327 KViewer/krviewer.cpp:411
+#: KViewer/krviewer.cpp:420 KViewer/krviewer.cpp:429 KViewer/krviewer.cpp:505
 msgid "Viewing"
 msgstr "Просмотр"
 
-#: KViewer/krviewer.cpp:225 krslots.cpp:495
+#: KViewer/krviewer.cpp:284 krslots.cpp:495
 msgid "Can't open "
 msgstr "Не удалось открыть "
 
-#: KViewer/krviewer.cpp:233 KViewer/krviewer.cpp:268 KViewer/krviewer.cpp:379
-#: KViewer/krviewer.cpp:444
+#: KViewer/krviewer.cpp:292 KViewer/krviewer.cpp:327 KViewer/krviewer.cpp:438
+#: KViewer/krviewer.cpp:503
 msgid "Editing"
 msgstr "Редактирование"
 
-#: KViewer/krviewer.cpp:522
+#: KViewer/krviewer.cpp:581
 msgid "Sorry, can't find internal editor"
 msgstr "Не найден внутренний редактор"
 
@@ -2516,7 +2519,7 @@ msgstr "Добавить закладку"
 msgid "New Folder"
 msgstr "Новая папка"
 
-#: BookMan/kraddbookmarkdlg.cpp:26 DiskUsage/diskusage.cpp:1031
+#: BookMan/kraddbookmarkdlg.cpp:26 DiskUsage/diskusage.cpp:1030
 msgid "Name:"
 msgstr "Имя:"
 
@@ -2563,6 +2566,7 @@ msgid "MountMan is not operational. Sorry"
 msgstr "MountMan не работает, извините"
 
 #: MountMan/kmountmangui.cpp:70 RemoteMan/remotemanbase.cpp:73
+#: Synchronizer/synchronizedialog.cpp:117
 msgid "&Close"
 msgstr "&Закрыть"
 
@@ -3008,7 +3012,7 @@ msgstr "В каталог"
 msgid "Multiple volume archive"
 msgstr "Многотомный архив"
 
-#: Dialogs/packguibase.cpp:156 DiskUsage/diskusage.cpp:1033
+#: Dialogs/packguibase.cpp:156 DiskUsage/diskusage.cpp:1032
 msgid "Size:"
 msgstr "Размер:"
 
@@ -3811,7 +3815,7 @@ msgstr "Меню пользователя"
 msgid "Manage user actions"
 msgstr "Управление действиями"
 
-#: Synchronizer/synchronizergui.cpp:1033
+#: Synchronizer/synchronizergui.cpp:1033 Synchronizer/synchronizergui.cpp:2202
 msgid "Krusader::Synchronize Directories"
 msgstr "Krusader::Синхронизатор каталогов"
 
@@ -3820,47 +3824,48 @@ msgid "Directory Comparison"
 msgstr "Сравнение каталогов"
 
 #: Synchronizer/synchronizergui.cpp:1066
-msgid "File Filter:"
+#, fuzzy
+msgid "File &Filter:"
 msgstr "Файловый фильтр:"
 
 #: Synchronizer/synchronizergui.cpp:1088
 msgid "The left base directory used during the synchronisation process."
 msgstr "Левый указанный каталог используется в течение процесса синхронизации."
 
-#: Synchronizer/synchronizergui.cpp:1119
+#: Synchronizer/synchronizergui.cpp:1121
 msgid "The right base directory used during the synchronisation process."
 msgstr ""
 "Правый указанный каталог используется в течение процесса синхронизации."
 
-#: Synchronizer/synchronizergui.cpp:1125
+#: Synchronizer/synchronizergui.cpp:1128
 msgid "Recurse subdirectories"
 msgstr "Рекурсивный обход подкаталогов"
 
-#: Synchronizer/synchronizergui.cpp:1127
+#: Synchronizer/synchronizergui.cpp:1130
 msgid "Compare not only the base directories but their subdirectories as well."
 msgstr "Сравниваются не только указанные каталоги, но и их подкаталоги."
 
-#: Synchronizer/synchronizergui.cpp:1128
+#: Synchronizer/synchronizergui.cpp:1131
 msgid "Follow symlinks"
 msgstr "Следовать по символическим ссылкам"
 
-#: Synchronizer/synchronizergui.cpp:1131
+#: Synchronizer/synchronizergui.cpp:1134
 msgid "Follow symbolic links during the compare process."
 msgstr "Следовать по символическим ссылкам при сравнении."
 
-#: Synchronizer/synchronizergui.cpp:1132
+#: Synchronizer/synchronizergui.cpp:1135
 msgid "Compare by content"
 msgstr "Сравнивать по содержанию"
 
-#: Synchronizer/synchronizergui.cpp:1134
+#: Synchronizer/synchronizergui.cpp:1137
 msgid "Compare duplicated files with same size by content."
 msgstr "Одинаковые файлы сравниваются по содержимому."
 
-#: Synchronizer/synchronizergui.cpp:1135
+#: Synchronizer/synchronizergui.cpp:1138
 msgid "Ignore Date"
 msgstr "Игнорировать дату"
 
-#: Synchronizer/synchronizergui.cpp:1137
+#: Synchronizer/synchronizergui.cpp:1140
 msgid ""
 "<p>Ignore date information during the compare process.</p><p><b>Note</b>: "
 "useful if the files are located on network filesystems or in archives.</p>"
@@ -3869,11 +3874,11 @@ msgstr ""
 "<b>Примечание</b>: Это полезно, если файлы находятся на сетевых файловых "
 "системах или в архивах.</p>"
 
-#: Synchronizer/synchronizergui.cpp:1138
+#: Synchronizer/synchronizergui.cpp:1141
 msgid "Asymmetric"
 msgstr "Ассиметричный режим"
 
-#: Synchronizer/synchronizergui.cpp:1140
+#: Synchronizer/synchronizergui.cpp:1143
 msgid ""
 "<p><b>Asymmetric mode</b></p><p>The left side is the destination, the right "
 "is the source directory. Files existing only in the left directory will be "
@@ -3886,11 +3891,11 @@ msgstr ""
 "остальные будут заменены файлами с правого каталога.\n"
 "</p><p>Удобно при синхронизации с файловым сервером.</p>"
 
-#: Synchronizer/synchronizergui.cpp:1141
+#: Synchronizer/synchronizergui.cpp:1144
 msgid "Ignore Case"
 msgstr "Без учёта регистра"
 
-#: Synchronizer/synchronizergui.cpp:1143
+#: Synchronizer/synchronizergui.cpp:1146
 msgid ""
 "<p>Case insensitive filename compare.</p><p><b>Note</b>: useful when "
 "synchronizing Windows filesystems.</p>"
@@ -3898,201 +3903,251 @@ msgstr ""
 "<p>Регистронезависимое сравнение имён файлов.</p><p>Используйте для "
 "синхронизации с файловыми системами операционных систем Windows.</p>"
 
-#: Synchronizer/synchronizergui.cpp:1148
-msgid "Show options"
+#: Synchronizer/synchronizergui.cpp:1151
+#, fuzzy
+msgid "S&how options"
 msgstr "Показать параметры"
 
-#: Synchronizer/synchronizergui.cpp:1168
-msgid "Show files marked to <i>Copy from left to right</i>."
+#: Synchronizer/synchronizergui.cpp:1172
+#, fuzzy
+msgid "Show files marked to <i>Copy from left to right</i> (CTRL+L)."
 msgstr "Список файлов выделенных для <i>копирования слева направо</i>."
 
-#: Synchronizer/synchronizergui.cpp:1176
-msgid "Show files considered to be identical."
+#: Synchronizer/synchronizergui.cpp:1181
+#, fuzzy
+msgid "Show files considered to be identical (CTRL+E)."
 msgstr "Список файлов рассматриваемых на идентичность."
 
-#: Synchronizer/synchronizergui.cpp:1184
-msgid "Show excluded files."
+#: Synchronizer/synchronizergui.cpp:1190
+#, fuzzy
+msgid "Show excluded files (CTRL+D)."
 msgstr "Список исключённых файлов."
 
-#: Synchronizer/synchronizergui.cpp:1192
-msgid "Show files marked to <i>Copy from right to left</i>"
+#: Synchronizer/synchronizergui.cpp:1199
+#, fuzzy
+msgid "Show files marked to <i>Copy from right to left</i> (CTRL+R)."
 msgstr "Список файлов выделенных для копирования с права налево"
 
-#: Synchronizer/synchronizergui.cpp:1200
-msgid "Show files marked to delete."
+#: Synchronizer/synchronizergui.cpp:1208
+#, fuzzy
+msgid "Show files marked to delete. (CTRL+T)"
 msgstr "Список файлов помеченных для удаления."
 
-#: Synchronizer/synchronizergui.cpp:1204
+#: Synchronizer/synchronizergui.cpp:1212
 msgid "Duplicates"
 msgstr "Дубликаты"
 
-#: Synchronizer/synchronizergui.cpp:1208
+#: Synchronizer/synchronizergui.cpp:1216
 msgid "Show files that exist on both sides."
 msgstr "Список всех файлов с обоих сторон."
 
-#: Synchronizer/synchronizergui.cpp:1212
+#: Synchronizer/synchronizergui.cpp:1220
 msgid "Singles"
 msgstr "Единичные"
 
-#: Synchronizer/synchronizergui.cpp:1216
+#: Synchronizer/synchronizergui.cpp:1224
 msgid "Show files that exist on one side only."
 msgstr "Список всех файлов с одной стороны."
 
-#: Synchronizer/synchronizergui.cpp:1257
+#: Synchronizer/synchronizergui.cpp:1233
+msgid "The compare results of the synchronizer (CTRL+M)."
+msgstr ""
+
+#: Synchronizer/synchronizergui.cpp:1265
 msgid "<=>"
 msgstr "<=>"
 
-#: Synchronizer/synchronizergui.cpp:1276
+#: Synchronizer/synchronizergui.cpp:1284
 msgid "&Synchronizer"
 msgstr "&Синхронизатор"
 
-#: Synchronizer/synchronizergui.cpp:1287
+#: Synchronizer/synchronizergui.cpp:1295
 msgid "&Options"
 msgstr "&Параметры"
 
-#: Synchronizer/synchronizergui.cpp:1296
+#: Synchronizer/synchronizergui.cpp:1304
 msgid "Parallel threads:"
 msgstr "Параллельные потоки:"
 
-#: Synchronizer/synchronizergui.cpp:1307
+#: Synchronizer/synchronizergui.cpp:1315
 msgid "Equality threshold:"
 msgstr "Равный порог:"
 
-#: Synchronizer/synchronizergui.cpp:1315 Synchronizer/synchronizergui.cpp:1330
+#: Synchronizer/synchronizergui.cpp:1323 Synchronizer/synchronizergui.cpp:1338
 msgid "sec"
 msgstr "с"
 
-#: Synchronizer/synchronizergui.cpp:1316 Synchronizer/synchronizergui.cpp:1331
+#: Synchronizer/synchronizergui.cpp:1324 Synchronizer/synchronizergui.cpp:1339
 msgid "min"
 msgstr "мин"
 
-#: Synchronizer/synchronizergui.cpp:1317 Synchronizer/synchronizergui.cpp:1332
+#: Synchronizer/synchronizergui.cpp:1325 Synchronizer/synchronizergui.cpp:1340
 msgid "hour"
 msgstr "час"
 
-#: Synchronizer/synchronizergui.cpp:1318 Synchronizer/synchronizergui.cpp:1333
+#: Synchronizer/synchronizergui.cpp:1326 Synchronizer/synchronizergui.cpp:1341
 msgid "day"
 msgstr "день"
 
-#: Synchronizer/synchronizergui.cpp:1321
+#: Synchronizer/synchronizergui.cpp:1329
 msgid "Time shift (right-left):"
 msgstr "Смещение времени (вправо-влево):"
 
-#: Synchronizer/synchronizergui.cpp:1351
-msgid "Swap sides."
+#: Synchronizer/synchronizergui.cpp:1355
+msgid "Profile manager (Ctrl+P)."
+msgstr ""
+
+#: Synchronizer/synchronizergui.cpp:1362
+#, fuzzy
+msgid "Swap sides (Ctrl+S)."
 msgstr "Поменять стороны местами."
 
-#: Synchronizer/synchronizergui.cpp:1361
+#: Synchronizer/synchronizergui.cpp:1372
 msgid "Compare"
 msgstr "Сравнить"
 
-#: Synchronizer/synchronizergui.cpp:1371 Synchronizer/synchronizergui.cpp:2229
+#: Synchronizer/synchronizergui.cpp:1382 Synchronizer/synchronizergui.cpp:2308
 msgid "Quiet"
 msgstr "Скрытый"
 
-#: Synchronizer/synchronizergui.cpp:1373 Synchronizer/synchronizergui.cpp:2231
+#: Synchronizer/synchronizergui.cpp:1384 Synchronizer/synchronizergui.cpp:2310
 msgid "Scroll Results"
 msgstr "Прокрутить результаты"
 
-#: Synchronizer/synchronizergui.cpp:1388
+#: Synchronizer/synchronizergui.cpp:1399
 msgid "Synchronize"
 msgstr "Синхронизировать"
 
-#: Synchronizer/synchronizergui.cpp:1499
-msgid "Selected files from target directory:"
+#: Synchronizer/synchronizergui.cpp:1513
+#, fuzzy
+msgid "Selected files from targ&et directory:"
 msgstr "Выделенные файлы в текущем каталоге:"
 
-#: Synchronizer/synchronizergui.cpp:1500
-msgid "Selected files from source directory:"
+#: Synchronizer/synchronizergui.cpp:1514
+#, fuzzy
+msgid "Selected files from sou&rce directory:"
 msgstr "Выделенные файлы в указанном каталоге:"
 
-#: Synchronizer/synchronizergui.cpp:1504
-msgid "Selected files from left directory:"
+#: Synchronizer/synchronizergui.cpp:1518
+#, fuzzy
+msgid "Selected files from &left directory:"
 msgstr "Выделенные файлы с левого каталога:"
 
-#: Synchronizer/synchronizergui.cpp:1505
-msgid "Selected files from right directory:"
+#: Synchronizer/synchronizergui.cpp:1519
+#, fuzzy
+msgid "Selected files from &right directory:"
 msgstr "Выделенные файлы из правого каталога:"
 
-#: Synchronizer/synchronizergui.cpp:1509
-msgid "Target directory:"
+#: Synchronizer/synchronizergui.cpp:1523
+#, fuzzy
+msgid "Targ&et directory:"
 msgstr "Каталог назначения:"
 
-#: Synchronizer/synchronizergui.cpp:1510
-msgid "Source directory:"
+#: Synchronizer/synchronizergui.cpp:1524
+#, fuzzy
+msgid "Sou&rce directory:"
 msgstr "Исходный каталог:"
 
-#: Synchronizer/synchronizergui.cpp:1514
-msgid "Left directory:"
+#: Synchronizer/synchronizergui.cpp:1528
+#, fuzzy
+msgid "&Left directory:"
 msgstr "Левый каталог:"
 
-#: Synchronizer/synchronizergui.cpp:1515
-msgid "Right directory:"
+#: Synchronizer/synchronizergui.cpp:1529
+#, fuzzy
+msgid "&Right directory:"
 msgstr "Правый каталог:"
 
-#: Synchronizer/synchronizergui.cpp:1550
+#: Synchronizer/synchronizergui.cpp:1564
 msgid "URL must be the descendant of either the left or the right base URL!"
 msgstr "URL должен быть основан на URL правой или левой панели!"
 
-#: Synchronizer/synchronizergui.cpp:1607
+#: Synchronizer/synchronizergui.cpp:1621
 msgid "Synchronize Directories"
 msgstr "Синхронизировать каталоги"
 
-#: DiskUsage/diskusage.cpp:760 Synchronizer/synchronizergui.cpp:1609
-msgid "Exclude"
+#: Synchronizer/synchronizergui.cpp:1623
+#, fuzzy
+msgid "E&xclude"
 msgstr "Исключить"
 
-#: Synchronizer/synchronizergui.cpp:1611
-msgid "Restore original operation"
+#: Synchronizer/synchronizergui.cpp:1625
+#, fuzzy
+msgid "Restore ori&ginal operation"
 msgstr "Восстановить настройки по умолчанию"
 
-#: Synchronizer/synchronizergui.cpp:1613
-msgid "Reverse direction"
+#: Synchronizer/synchronizergui.cpp:1627
+#, fuzzy
+msgid "Re&verse direction"
 msgstr "Поменять направление"
 
-#: Synchronizer/synchronizergui.cpp:1615
-msgid "Copy from right to left"
+#: Synchronizer/synchronizergui.cpp:1629
+#, fuzzy
+msgid "Copy from &right to left"
 msgstr "Копировать с права налево"
 
-#: Synchronizer/synchronizergui.cpp:1617
-msgid "Copy from left to right"
+#: Synchronizer/synchronizergui.cpp:1631
+#, fuzzy
+msgid "Copy from &left to right"
 msgstr "Копировать слева на право"
 
-#: Synchronizer/synchronizergui.cpp:1619
-msgid "Delete (left single)"
+#: Synchronizer/synchronizergui.cpp:1633
+#, fuzzy
+msgid "&Delete (left single)"
 msgstr "Удалить (левый единичный)"
 
-#: Synchronizer/synchronizergui.cpp:1624
-msgid "View left file"
+#: Synchronizer/synchronizergui.cpp:1638
+#, fuzzy
+msgid "V&iew left file"
 msgstr "Просмотреть левый файл"
 
-#: Synchronizer/synchronizergui.cpp:1626
-msgid "View right file"
+#: Synchronizer/synchronizergui.cpp:1640
+#, fuzzy
+msgid "Vi&ew right file"
 msgstr "Просмотреть правый файл"
 
-#: Synchronizer/synchronizergui.cpp:1628
-msgid "Compare Files"
+#: Synchronizer/synchronizergui.cpp:1642
+#, fuzzy
+msgid "&Compare Files"
 msgstr "Сравнить файлы"
 
-#: Synchronizer/synchronizergui.cpp:1633 Synchronizer/synchronizergui.cpp:1712
+#: Synchronizer/synchronizergui.cpp:1647
+#, fuzzy
+msgid "&Select items"
+msgstr "Выделить элементы"
+
+#: Synchronizer/synchronizergui.cpp:1649
+#, fuzzy
+msgid "Deselec&t items"
+msgstr "Снять выделение с элементов"
+
+#: Synchronizer/synchronizergui.cpp:1651
+#, fuzzy
+msgid "I&nvert selection"
+msgstr "Инвертировать выделение"
+
+#: Synchronizer/synchronizergui.cpp:1662
+#, fuzzy
+msgid "Synchronize with &KGet"
+msgstr "Синхронизация с KGet"
+
+#: Synchronizer/synchronizergui.cpp:1726
 msgid "Select items"
 msgstr "Выделить элементы"
 
-#: Synchronizer/synchronizergui.cpp:1635 Synchronizer/synchronizergui.cpp:1713
+#: Synchronizer/synchronizergui.cpp:1727
 msgid "Deselect items"
 msgstr "Снять выделение с элементов"
 
-#: Synchronizer/synchronizergui.cpp:1637
-msgid "Invert selection"
-msgstr "Инвертировать выделение"
-
-#: Synchronizer/synchronizergui.cpp:1648
-msgid "Synchronize with KGet"
-msgstr "Синхронизация с KGet"
-
-#: Synchronizer/synchronizergui.cpp:2039
+#: Synchronizer/synchronizergui.cpp:2055
 msgid "Synchronizer has nothing to do!"
 msgstr "Синхронизатору нечего делать!"
+
+#: Synchronizer/synchronizergui.cpp:2201
+msgid ""
+"The synchronizer window contains data from a previous compare. If you exit, "
+"this data will be lost. Do you really want to exit?"
+msgstr ""
 
 #: Synchronizer/synchronizertask.cpp:132 Synchronizer/synchronizertask.cpp:139
 msgid "Error at opening %1!"
@@ -4166,13 +4221,13 @@ msgid "Confirm overwrites"
 msgstr "Подтверждать перезапись"
 
 #: Synchronizer/synchronizedialog.cpp:110
-msgid "Start"
+#, fuzzy
+msgid "&Start"
 msgstr "Запуск"
 
 #: Synchronizer/synchronizedialog.cpp:114
-#: Synchronizer/synchronizedialog.cpp:186 Synchronizer/synchronizer.cpp:1342
-#: Synchronizer/synchronizer.cpp:1352
-msgid "Pause"
+#, fuzzy
+msgid "&Pause"
 msgstr "Пауза"
 
 #: Synchronizer/synchronizedialog.cpp:158
@@ -4180,6 +4235,11 @@ msgstr "Пауза"
 #: Synchronizer/synchronizedialog.cpp:164
 msgid "\tReady: %1/%2 files, %3/%4"
 msgstr "\tГотово: %1/%2 файлов, %3/%4"
+
+#: Synchronizer/synchronizedialog.cpp:186 Synchronizer/synchronizer.cpp:1342
+#: Synchronizer/synchronizer.cpp:1352
+msgid "Pause"
+msgstr "Пауза"
 
 #: Synchronizer/synchronizedialog.cpp:194 Synchronizer/synchronizer.cpp:1354
 msgid "Resume"
@@ -4307,7 +4367,7 @@ msgstr "Процент"
 msgid "Show file sizes"
 msgstr "Показывать размеры файлов"
 
-#: DiskUsage/diskusage.cpp:785 DiskUsage/dulines.cpp:463
+#: DiskUsage/diskusage.cpp:784 DiskUsage/dulines.cpp:463
 msgid "Lines"
 msgstr "Линейный"
 
@@ -4359,7 +4419,7 @@ msgstr "Менять размер шрифта в заметках"
 msgid "Minimum font size"
 msgstr "Уменьшить размер шрифта"
 
-#: DiskUsage/diskusage.cpp:789 DiskUsage/dufilelight.cpp:121
+#: DiskUsage/diskusage.cpp:788 DiskUsage/dufilelight.cpp:121
 msgid "Filelight"
 msgstr "Круговой"
 
@@ -4375,7 +4435,7 @@ msgstr "Krusader::Статистика использования диска"
 msgid "Start new disk usage search"
 msgstr "Новая статистика использования диска"
 
-#: DiskUsage/diskusage.cpp:769 DiskUsage/diskusagegui.cpp:64
+#: DiskUsage/diskusage.cpp:768 DiskUsage/diskusagegui.cpp:64
 msgid "Refresh"
 msgstr "Обновить"
 
@@ -4427,7 +4487,7 @@ msgstr "Общий размер:"
 msgid "Loading the disk usage information..."
 msgstr "Загрузка информации о состоянии использования диска..."
 
-#: DiskUsage/diskusage.cpp:412
+#: DiskUsage/diskusage.cpp:411
 msgid ""
 "Stepping into the parent directory requires loading the content of the \"%1"
 "\" URL. Do you wish to continue?"
@@ -4435,82 +4495,86 @@ msgstr ""
 "Переход на один уровень вверх потребует загрузки информации о содержимом "
 "каталога \"%1 \". Продолжить?"
 
-#: DiskUsage/diskusage.cpp:416
+#: DiskUsage/diskusage.cpp:415
 msgid "Krusader::DiskUsage"
 msgstr "Статистика использования диска"
 
-#: DiskUsage/diskusage.cpp:597
+#: DiskUsage/diskusage.cpp:596
 msgid "Do you really want to move this item to the trash?"
 msgstr ""
 "Переместить в корзину?\n"
 "Переместить %n элемента в корзину?\n"
 "Переместить %n элементов в корзину?"
 
-#: DiskUsage/diskusage.cpp:600
+#: DiskUsage/diskusage.cpp:599
 msgid "Do you really want to delete this item?"
 msgstr "Удалить?"
 
-#: DiskUsage/diskusage.cpp:612
+#: DiskUsage/diskusage.cpp:611
 msgid "Deleting %1..."
 msgstr "Удаление %1 ..."
 
-#: DiskUsage/diskusage.cpp:728
+#: DiskUsage/diskusage.cpp:727
 msgid "Current directory:%1,  Total size:%2,  Own size:%3"
 msgstr "Текущий каталог:%1,  Общий размер:%2,  Собственный размер:%3"
 
-#: DiskUsage/diskusage.cpp:754
+#: DiskUsage/diskusage.cpp:753
 msgid "Disk Usage"
 msgstr "Статистика использования диска"
 
-#: DiskUsage/diskusage.cpp:765
+#: DiskUsage/diskusage.cpp:759
+msgid "Exclude"
+msgstr "Исключить"
+
+#: DiskUsage/diskusage.cpp:764
 msgid "Up one directory"
 msgstr "Выше на один уровень"
 
-#: DiskUsage/diskusage.cpp:767
+#: DiskUsage/diskusage.cpp:766
 msgid "New search"
 msgstr "Новый поиск"
 
-#: DiskUsage/diskusage.cpp:771
+#: DiskUsage/diskusage.cpp:770
 msgid "Include all"
 msgstr "Включить все"
 
-#: DiskUsage/diskusage.cpp:773
+#: DiskUsage/diskusage.cpp:772
 msgid "Step into"
 msgstr "Войти"
 
-#: DiskUsage/diskusage.cpp:787 Konfigurator/kglookfeel.cpp:174
+#: DiskUsage/diskusage.cpp:786 Konfigurator/kglookfeel.cpp:174
 msgid "Detailed"
 msgstr "Детальный"
 
-#: DiskUsage/diskusage.cpp:792
+#: DiskUsage/diskusage.cpp:791
 msgid "Next"
 msgstr "Следующий"
 
-#: DiskUsage/diskusage.cpp:794
+#: DiskUsage/diskusage.cpp:793
 msgid "Previous"
 msgstr "Предыдущий"
 
-#: DiskUsage/diskusage.cpp:798
+#: DiskUsage/diskusage.cpp:797
 msgid "View"
 msgstr "Просмотр"
 
-#: DiskUsage/diskusage.cpp:1032
+#: DiskUsage/diskusage.cpp:1031
 msgid "Type:"
 msgstr "Тип:"
 
-#: DiskUsage/diskusage.cpp:1036
+#: DiskUsage/diskusage.cpp:1035
 msgid "Own size:"
 msgstr "Собственный размер:"
 
-#: DiskUsage/diskusage.cpp:1038
+#: DiskUsage/diskusage.cpp:1037
 msgid "Last modified:"
 msgstr "Дата последней модификации:"
 
-#: DiskUsage/diskusage.cpp:1039
+#: DiskUsage/diskusage.cpp:1038
 msgid "Permissions:"
 msgstr "Права доступа:"
 
-#: DiskUsage/diskusage.cpp:1040
+#: DiskUsage/diskusage.cpp:1039
 msgid "Owner:"
 msgstr "Владелец:"
 
@@ -6328,3 +6392,18 @@ msgstr "Ошибка чтения файла %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Ошибка записи файла %1!"
+
+#~ msgid ""
+#~ "<p>The filename filtering criteria is defined here.</p><p>You can make "
+#~ "use of wildcards. Multiple patterns are separated by space and patterns "
+#~ "are excluded from the search using the pipe symbol.</p><p>Examples:"
+#~ "<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</"
+#~ "li><li>* | CVS/ .svn/</li></code></ul><b>Note</b>: the search term "
+#~ "'<code>text</code>' is equivalent to '<code>*text*</code>'.</p>"
+#~ msgstr ""
+#~ "<p>Имя файла выбирается по критериям, определённым здесь. Можно применять "
+#~ "шаблоны. Многочисленные выражения могут быть разделены пробелом, для "
+#~ "исключения выражений из поиска применяется символ '|'. Пример: "
+#~ "<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h *.moc.cpp</li></"
+#~ "code></ul><b>Примечание</b>: при поиске слово '<code>текст</code>' "
+#~ "эквивалентно '<code>*текст*</code>'.</p>"

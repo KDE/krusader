@@ -1,16 +1,16 @@
 # Translation of krusader.pot to Japanese
 #
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
-# Copyright (C) 2004-2006, Krusader Krew
+# Copyright (C) 2004-2007, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 #
 # UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2003, 2004.
 # Hideki Kimura <hangyo1973@gmail.com>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.70.0\n"
+"Project-Id-Version: krusader-1.80.0-beta1\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2007-01-26 21:23+0100\n"
+"POT-Creation-Date: 2007-02-16 18:56+0100\n"
 "PO-Revision-Date: 2006-10-11 03:54+0900\n"
 "Last-Translator: Hideki Kimura <hangyo1973@gmail.com>\n"
 "Language-Team: Japanese <krusader-i18n@googlegroups.com>\n"
@@ -348,7 +348,7 @@ msgstr "ディレクトリ %1 が開けません！"
 msgid "Access denied to"
 msgstr "アクセスが拒否されました。"
 
-#: VFS/normal_vfs.cpp:215
+#: VFS/normal_vfs.cpp:218
 msgid "Can't create a directory. Check your permissions."
 msgstr "ディレクトリが作成できません。権限を確認して下さい。"
 
@@ -506,21 +506,25 @@ msgstr "大文字小文字を区別(&C)"
 msgid "Search &for:"
 msgstr "検索(&F):"
 
-#: Filter/generalfilter.cpp:81 Synchronizer/synchronizergui.cpp:1103
+#: Filter/generalfilter.cpp:81 Synchronizer/synchronizergui.cpp:1105
 msgid ""
 "<p>The filename filtering criteria is defined here.</p><p>You can make use "
-"of wildcards. Multiple patterns are separated by space and patterns are "
-"excluded from the search using the pipe symbol.</p><p>Examples:"
-"<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</li><li>* "
-"| CVS/ .svn/</li></code></ul><b>Note</b>: the search term '<code>text</"
-"code>' is equivalent to '<code>*text*</code>'.</p>"
-msgstr ""
-"<p>ファイル名の絞り込み条件をここで設定します。</p><p>ワイルドカードが使用で"
-"きます。複数のパターンを同時に指定する場合、スペースで区切ります。パイプ文字"
-"を使うと、パターンは検索から除外されます。</p><p>例:<ul><code><li>*.o</"
+"of wildcards. Multiple patterns are separated by space (means logical OR) "
+"and patterns are excluded from the search using the pipe symbol.</p><p>If "
+"the pattern is ended with a slash (<code>*pattern*/</code>), that means that "
+"pattern relates to recursive search of directories.<ul><li><code>pattern</"
+"code> - means to search those files/directories that name is <code>pattern</"
+"code>, recursive search goes through all subdirectories independently of the "
+"value of <code>pattern</code></li><li><code>pattern/</code> - means to "
+"search all files/directories, but recursive search goes through/excludes the "
+"directories that name is <code>pattern</code></li></ul><p></p><p>It's "
+"allowed to use quotation marks for names that contain space. Filter <code>"
+"\"Program&nbsp;Files\"</code> searches out those files/directories that name "
+"is <code>Program&nbsp;Files</code>.</p><p>Examples:<ul><code><li>*.o</"
 "li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</li></"
-"code></ul><b>メモ</b>: 検索項目 <code>'text'</code> は <code>*text*</code> と"
-"同じです。</p>"
+"code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to "
+"'<code>*text*</code>'.</p>"
+msgstr ""
 
 #: Filter/generalfilter.cpp:86
 msgid "&Of type:"
@@ -600,7 +604,7 @@ msgstr "検索する場所を指定してください。"
 
 #: Filter/advancedfilter.cpp:59 Panel/krdetailedview.cpp:106
 #: Panel/krdetailedview.cpp:1429 Search/krsearchdialog.cpp:146
-#: Synchronizer/synchronizergui.cpp:1255 Synchronizer/synchronizergui.cpp:1259
+#: Synchronizer/synchronizergui.cpp:1263 Synchronizer/synchronizergui.cpp:1267
 msgid "Size"
 msgstr "サイズ"
 
@@ -625,8 +629,8 @@ msgid "&Smaller than"
 msgstr "より小さい(&S)"
 
 #: DiskUsage/dulistview.cpp:71 Filter/advancedfilter.cpp:113
-#: Search/krsearchdialog.cpp:147 Synchronizer/synchronizergui.cpp:1256
-#: Synchronizer/synchronizergui.cpp:1258
+#: Search/krsearchdialog.cpp:147 Synchronizer/synchronizergui.cpp:1264
+#: Synchronizer/synchronizergui.cpp:1266
 msgid "Date"
 msgstr "日付"
 
@@ -1014,8 +1018,7 @@ msgid "Choose a window-mode"
 msgstr "a ウィンドウ"
 
 #: Konfigurator/konfigurator.cpp:69 Search/krsearchdialog.cpp:103
-#: Synchronizer/synchronizedialog.cpp:117
-#: Synchronizer/synchronizergui.cpp:1393 UserAction/kraction.cpp:48
+#: Synchronizer/synchronizergui.cpp:1404 UserAction/kraction.cpp:48
 #, fuzzy
 msgid "Close"
 msgstr "閉じる"
@@ -1135,8 +1138,8 @@ msgid "UserActions - invalid action"
 msgstr ""
 
 #: Panel/krdetailedviewitem.cpp:78 Panel/krdetailedviewitem.cpp:110
-#: Synchronizer/synchronizergui.cpp:1878 Synchronizer/synchronizergui.cpp:1885
-#: Synchronizer/synchronizergui.cpp:1937 Synchronizer/synchronizergui.cpp:1944
+#: Synchronizer/synchronizergui.cpp:1894 Synchronizer/synchronizergui.cpp:1901
+#: Synchronizer/synchronizergui.cpp:1953 Synchronizer/synchronizergui.cpp:1960
 msgid "<DIR>"
 msgstr ""
 
@@ -1148,8 +1151,8 @@ msgstr "プレビュー"
 #: DiskUsage/dulines.cpp:240 DiskUsage/dulistview.cpp:56
 #: Konfigurator/krresulttable.cpp:129 MountMan/kmountmangui.cpp:127
 #: Panel/krbriefview.cpp:151 Panel/krdetailedview.cpp:103
-#: Search/krsearchdialog.cpp:144 Synchronizer/synchronizergui.cpp:1254
-#: Synchronizer/synchronizergui.cpp:1260
+#: Search/krsearchdialog.cpp:144 Synchronizer/synchronizergui.cpp:1262
+#: Synchronizer/synchronizergui.cpp:1268
 #, fuzzy
 msgid "Name"
 msgstr "名前"
@@ -1231,8 +1234,8 @@ msgstr "上へ"
 msgid "~"
 msgstr ""
 
-#: Panel/listpanel.cpp:243 Panel/panelpopup.cpp:118 Panel/panelpopup.cpp:119
-#: Panel/panelpopup.cpp:120 Panel/panelpopup.cpp:131 krusader.cpp:521
+#: Panel/listpanel.cpp:243 Panel/panelpopup.cpp:119 Panel/panelpopup.cpp:120
+#: Panel/panelpopup.cpp:121 Panel/panelpopup.cpp:132 krusader.cpp:521
 #, fuzzy
 msgid "Home"
 msgstr "ホーム"
@@ -1242,8 +1245,8 @@ msgstr "ホーム"
 msgid "/"
 msgstr "/"
 
-#: Panel/listpanel.cpp:249 Panel/panelpopup.cpp:122 Panel/panelpopup.cpp:123
-#: Panel/panelpopup.cpp:125 Panel/panelpopup.cpp:126 Panel/panelpopup.cpp:130
+#: Panel/listpanel.cpp:249 Panel/panelpopup.cpp:123 Panel/panelpopup.cpp:124
+#: Panel/panelpopup.cpp:126 Panel/panelpopup.cpp:127 Panel/panelpopup.cpp:131
 #: krusader.cpp:650
 #, fuzzy
 msgid "Root"
@@ -1303,24 +1306,24 @@ msgstr ""
 msgid "Can't drop here, no write permissions."
 msgstr "いいえ."
 
-#: Panel/listpanel.cpp:830 Panel/panelpopup.cpp:348
+#: Panel/listpanel.cpp:830 Panel/panelpopup.cpp:376
 #, fuzzy
 msgid "Copy Here"
 msgstr "コピー"
 
-#: Panel/listpanel.cpp:832 Panel/panelpopup.cpp:349
+#: Panel/listpanel.cpp:832 Panel/panelpopup.cpp:377
 #, fuzzy
 msgid "Move Here"
 msgstr "移動"
 
-#: Panel/listpanel.cpp:835 Panel/panelpopup.cpp:350
+#: Panel/listpanel.cpp:835 Panel/panelpopup.cpp:378
 #, fuzzy
 msgid "Link Here"
 msgstr "リンク"
 
 #: Dialogs/krmaskchoice.cpp:135 Dialogs/packguibase.cpp:289
 #: DiskUsage/diskusage.cpp:155 Panel/listpanel.cpp:836
-#: Panel/panelpopup.cpp:351
+#: Panel/panelpopup.cpp:379
 #, fuzzy
 msgid "Cancel"
 msgstr "キャンセル"
@@ -1413,87 +1416,87 @@ msgstr "名前を変更 "
 msgid " to:"
 msgstr "to:"
 
-#: Panel/panelpopup.cpp:65
+#: Panel/panelpopup.cpp:66
 #, fuzzy
 msgid "Tree Panel: a tree view of the local file system"
 msgstr "ツリー パネル a ローカル"
 
-#: Panel/panelpopup.cpp:73
+#: Panel/panelpopup.cpp:74
 #, fuzzy
 msgid "Preview Panel: display a preview of the current file"
 msgstr "プレビュー パネル a プレビュー"
 
-#: Panel/panelpopup.cpp:80
+#: Panel/panelpopup.cpp:81
 #, fuzzy
 msgid "Quick Panel: quick way to perform actions"
 msgstr "パネル to 動作"
 
-#: Panel/panelpopup.cpp:87
+#: Panel/panelpopup.cpp:88
 #, fuzzy
 msgid "View Panel: view the current file"
 msgstr "表示 パネル"
 
-#: Panel/panelpopup.cpp:94
+#: Panel/panelpopup.cpp:95
 #, fuzzy
 msgid "Disk Usage Panel: view the usage of a directory"
 msgstr "使い方 パネル a"
 
-#: Panel/panelpopup.cpp:146 Panel/panelpopup.cpp:307
+#: Panel/panelpopup.cpp:147 Panel/panelpopup.cpp:335
 #, fuzzy
 msgid "Disk Usage: "
 msgstr "使い方 "
 
-#: Panel/panelpopup.cpp:155
+#: Panel/panelpopup.cpp:156
 #, fuzzy
 msgid "Quick Select"
 msgstr "選択"
 
-#: Panel/panelpopup.cpp:172
+#: Panel/panelpopup.cpp:173
 #, fuzzy
 msgid "apply the selection"
 msgstr "選択を入力:"
 
-#: Panel/panelpopup.cpp:178
+#: Panel/panelpopup.cpp:179
 #, fuzzy
 msgid "store the current selection"
 msgstr "選択を入力:"
 
-#: Panel/panelpopup.cpp:184
+#: Panel/panelpopup.cpp:185
 #, fuzzy
 msgid "select group dialog"
 msgstr "グループ"
 
-#: Panel/panelpopup.cpp:260
+#: Panel/panelpopup.cpp:286
 #, fuzzy
 msgid "Tree:"
 msgstr "ツリー:"
 
-#: Panel/panelpopup.cpp:265
+#: Panel/panelpopup.cpp:291
 #, fuzzy
 msgid "Preview:"
 msgstr "プレビュー:"
 
-#: Panel/panelpopup.cpp:269
+#: Panel/panelpopup.cpp:295
 #, fuzzy
 msgid "Quick Select:"
 msgstr "選択:"
 
-#: Panel/panelpopup.cpp:274
+#: Panel/panelpopup.cpp:300
 #, fuzzy
 msgid "View:"
 msgstr "表示:"
 
-#: Panel/panelpopup.cpp:280
+#: Panel/panelpopup.cpp:306
 #, fuzzy
 msgid "Disk Usage:"
 msgstr "使い方:"
 
-#: Panel/panelpopup.cpp:296
+#: Panel/panelpopup.cpp:324
 #, fuzzy
 msgid "Preview: "
 msgstr "プレビュー "
 
-#: Panel/panelpopup.cpp:300
+#: Panel/panelpopup.cpp:328
 #, fuzzy
 msgid "View: "
 msgstr "表示 "
@@ -1588,7 +1591,7 @@ msgid "Move to Trash"
 msgstr "ごみ箱へ移動"
 
 #: BookMan/krbookmarkhandler.cpp:541 Dialogs/krmaskchoice.cpp:110
-#: Dialogs/kurllistrequester.cpp:149 DiskUsage/diskusage.cpp:758
+#: Dialogs/kurllistrequester.cpp:149 DiskUsage/diskusage.cpp:757
 #: Konfigurator/kgcolors.cpp:474 Panel/krpopupmenu.cpp:145 krusader.cpp:725
 #, fuzzy
 msgid "Delete"
@@ -1810,7 +1813,7 @@ msgid ""
 "Do you really want to move these %n items to the trash?"
 msgstr "本当にこれら %n 項目をゴミ箱に移動させますか?"
 
-#: DiskUsage/diskusage.cpp:598 Panel/panelfunc.cpp:649
+#: DiskUsage/diskusage.cpp:597 Panel/panelfunc.cpp:649
 #, fuzzy
 msgid "&Trash"
 msgstr "ごみ箱"
@@ -1824,7 +1827,7 @@ msgid ""
 "untouched)?"
 msgstr "n to to?"
 
-#: DiskUsage/diskusage.cpp:601 DiskUsage/radialMap/widgetEvents.cpp:172
+#: DiskUsage/diskusage.cpp:600 DiskUsage/radialMap/widgetEvents.cpp:172
 #: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:652
 #: Panel/panelfunc.cpp:655 Panel/panelfunc.cpp:658
 #, fuzzy
@@ -1850,7 +1853,7 @@ msgid ""
 msgstr "本当にこれら %n 項目を削除しますか?"
 
 #: Dialogs/checksumdlg.cpp:552 Dialogs/krkeydialog.cpp:135
-#: DiskUsage/diskusage.cpp:608 Konfigurator/kgcolors.cpp:523
+#: DiskUsage/diskusage.cpp:607 Konfigurator/kgcolors.cpp:523
 #: Panel/panelfunc.cpp:664
 #, fuzzy
 msgid "Warning"
@@ -1946,7 +1949,7 @@ msgid "Cannot copy a virtual URL collection onto the clipboard!"
 msgstr "コピー a URL!"
 
 #: Locate/locate.cpp:67 Locate/locate.cpp:205 Search/krsearchdialog.cpp:99
-#: Synchronizer/synchronizergui.cpp:1377
+#: Synchronizer/synchronizergui.cpp:1388
 #, fuzzy
 msgid "Stop"
 msgstr "停止"
@@ -2008,7 +2011,7 @@ msgid "Error during the start of 'locate' process!"
 msgstr "エラー start!"
 
 #: Locate/locate.cpp:244 Search/krsearchdialog.cpp:88
-#: Synchronizer/synchronizergui.cpp:1382
+#: Synchronizer/synchronizergui.cpp:1393
 #, fuzzy
 msgid "Feed to listbox"
 msgstr "to"
@@ -2542,77 +2545,77 @@ msgstr "to?"
 msgid "No file selected or selected file can't be displayed."
 msgstr "いいえ もしくは."
 
-#: KViewer/krviewer.cpp:592 KViewer/panelviewer.cpp:151
+#: KViewer/krviewer.cpp:651 KViewer/panelviewer.cpp:151
 #, fuzzy
 msgid "KrViewer is unable to download: "
 msgstr "to "
 
-#: KViewer/krviewer.cpp:84
+#: KViewer/krviewer.cpp:85
 #, fuzzy
 msgid "&Generic viewer"
 msgstr "一般"
 
-#: KViewer/krviewer.cpp:85
+#: KViewer/krviewer.cpp:86
 #, fuzzy
 msgid "&Text viewer"
 msgstr "テキスト"
 
-#: KViewer/krviewer.cpp:86
+#: KViewer/krviewer.cpp:87
 #, fuzzy
 msgid "&Hex viewer"
 msgstr "16進"
 
-#: KViewer/krviewer.cpp:88
+#: KViewer/krviewer.cpp:89
 #, fuzzy
 msgid "Text &editor"
 msgstr "テキスト"
 
-#: KViewer/krviewer.cpp:90
+#: KViewer/krviewer.cpp:91
 #, fuzzy
 msgid "&Next tab"
 msgstr "次"
 
-#: KViewer/krviewer.cpp:91
+#: KViewer/krviewer.cpp:92
 #, fuzzy
 msgid "&Previous tab"
 msgstr "前曲"
 
-#: KViewer/krviewer.cpp:93
+#: KViewer/krviewer.cpp:94
 #, fuzzy
 msgid "&Detach tab"
 msgstr "切断"
 
-#: KViewer/krviewer.cpp:100
+#: KViewer/krviewer.cpp:101
 #, fuzzy
 msgid "&Close current tab"
 msgstr "閉じる"
 
-#: KViewer/krviewer.cpp:101
+#: KViewer/krviewer.cpp:102
 #, fuzzy
 msgid "&Quit"
 msgstr "終了(&Q)"
 
-#: KViewer/krviewer.cpp:141
+#: KViewer/krviewer.cpp:159
 msgid "&KrViewer"
 msgstr "&KrViewer"
 
-#: KViewer/krviewer.cpp:200 KViewer/krviewer.cpp:268 KViewer/krviewer.cpp:352
-#: KViewer/krviewer.cpp:361 KViewer/krviewer.cpp:370 KViewer/krviewer.cpp:446
+#: KViewer/krviewer.cpp:259 KViewer/krviewer.cpp:327 KViewer/krviewer.cpp:411
+#: KViewer/krviewer.cpp:420 KViewer/krviewer.cpp:429 KViewer/krviewer.cpp:505
 #, fuzzy
 msgid "Viewing"
 msgstr "F3 閲覧"
 
-#: KViewer/krviewer.cpp:225 krslots.cpp:495
+#: KViewer/krviewer.cpp:284 krslots.cpp:495
 msgid "Can't open "
 msgstr "開けません"
 
-#: KViewer/krviewer.cpp:233 KViewer/krviewer.cpp:268 KViewer/krviewer.cpp:379
-#: KViewer/krviewer.cpp:444
+#: KViewer/krviewer.cpp:292 KViewer/krviewer.cpp:327 KViewer/krviewer.cpp:438
+#: KViewer/krviewer.cpp:503
 #, fuzzy
 msgid "Editing"
 msgstr "編集"
 
-#: KViewer/krviewer.cpp:522
+#: KViewer/krviewer.cpp:581
 #, fuzzy
 msgid "Sorry, can't find internal editor"
 msgstr "すみません"
@@ -2774,7 +2777,7 @@ msgstr "ブックマークに追加"
 msgid "New Folder"
 msgstr "新規フォルダ"
 
-#: BookMan/kraddbookmarkdlg.cpp:26 DiskUsage/diskusage.cpp:1031
+#: BookMan/kraddbookmarkdlg.cpp:26 DiskUsage/diskusage.cpp:1030
 #, fuzzy
 msgid "Name:"
 msgstr "名前:"
@@ -2829,6 +2832,7 @@ msgid "MountMan is not operational. Sorry"
 msgstr "すみません"
 
 #: MountMan/kmountmangui.cpp:70 RemoteMan/remotemanbase.cpp:73
+#: Synchronizer/synchronizedialog.cpp:117
 #, fuzzy
 msgid "&Close"
 msgstr "閉じる(&C)"
@@ -3307,7 +3311,7 @@ msgstr "入"
 msgid "Multiple volume archive"
 msgstr "volume"
 
-#: Dialogs/packguibase.cpp:156 DiskUsage/diskusage.cpp:1033
+#: Dialogs/packguibase.cpp:156 DiskUsage/diskusage.cpp:1032
 #, fuzzy
 msgid "Size:"
 msgstr "サイズ:"
@@ -4214,7 +4218,7 @@ msgstr "ユーザメニュー"
 msgid "Manage user actions"
 msgstr "動作"
 
-#: Synchronizer/synchronizergui.cpp:1033
+#: Synchronizer/synchronizergui.cpp:1033 Synchronizer/synchronizergui.cpp:2202
 #, fuzzy
 msgid "Krusader::Synchronize Directories"
 msgstr "同期 ディレクトリ"
@@ -4226,7 +4230,7 @@ msgstr "ディレクトリ"
 
 #: Synchronizer/synchronizergui.cpp:1066
 #, fuzzy
-msgid "File Filter:"
+msgid "File &Filter:"
 msgstr "ファイル フィルタ:"
 
 #: Synchronizer/synchronizergui.cpp:1088
@@ -4234,58 +4238,58 @@ msgstr "ファイル フィルタ:"
 msgid "The left base directory used during the synchronisation process."
 msgstr "左 ベース."
 
-#: Synchronizer/synchronizergui.cpp:1119
+#: Synchronizer/synchronizergui.cpp:1121
 #, fuzzy
 msgid "The right base directory used during the synchronisation process."
 msgstr "右 ベース."
 
-#: Synchronizer/synchronizergui.cpp:1125
+#: Synchronizer/synchronizergui.cpp:1128
 #, fuzzy
 msgid "Recurse subdirectories"
 msgstr "サブディレクトリを検索"
 
-#: Synchronizer/synchronizergui.cpp:1127
+#: Synchronizer/synchronizergui.cpp:1130
 #, fuzzy
 msgid "Compare not only the base directories but their subdirectories as well."
 msgstr "比較 ベース."
 
-#: Synchronizer/synchronizergui.cpp:1128
+#: Synchronizer/synchronizergui.cpp:1131
 #, fuzzy
 msgid "Follow symlinks"
 msgstr "Follow"
 
-#: Synchronizer/synchronizergui.cpp:1131
+#: Synchronizer/synchronizergui.cpp:1134
 #, fuzzy
 msgid "Follow symbolic links during the compare process."
 msgstr "Follow."
 
-#: Synchronizer/synchronizergui.cpp:1132
+#: Synchronizer/synchronizergui.cpp:1135
 #, fuzzy
 msgid "Compare by content"
 msgstr "比較"
 
-#: Synchronizer/synchronizergui.cpp:1134
+#: Synchronizer/synchronizergui.cpp:1137
 #, fuzzy
 msgid "Compare duplicated files with same size by content."
 msgstr "比較 置換後 サイズ."
 
-#: Synchronizer/synchronizergui.cpp:1135
+#: Synchronizer/synchronizergui.cpp:1138
 #, fuzzy
 msgid "Ignore Date"
 msgstr "無視 日付"
 
-#: Synchronizer/synchronizergui.cpp:1137
+#: Synchronizer/synchronizergui.cpp:1140
 #, fuzzy
 msgid ""
 "<p>Ignore date information during the compare process.</p><p><b>Note</b>: "
 "useful if the files are located on network filesystems or in archives.</p>"
 msgstr "<p> 無視 日付</p><p><b> 注意</b> ネットワーク もしくは in</p>"
 
-#: Synchronizer/synchronizergui.cpp:1138
+#: Synchronizer/synchronizergui.cpp:1141
 msgid "Asymmetric"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1140
+#: Synchronizer/synchronizergui.cpp:1143
 #, fuzzy
 msgid ""
 "<p><b>Asymmetric mode</b></p><p>The left side is the destination, the right "
@@ -4296,257 +4300,281 @@ msgstr ""
 "<p><b></b></p><p> 左 右 ソース ファイル in 左 削除済み 右 to 左</p><p><b> 注"
 "意</b> a a</p>"
 
-#: Synchronizer/synchronizergui.cpp:1141
+#: Synchronizer/synchronizergui.cpp:1144
 #, fuzzy
 msgid "Ignore Case"
 msgstr "無視"
 
-#: Synchronizer/synchronizergui.cpp:1143
+#: Synchronizer/synchronizergui.cpp:1146
 #, fuzzy
 msgid ""
 "<p>Case insensitive filename compare.</p><p><b>Note</b>: useful when "
 "synchronizing Windows filesystems.</p>"
 msgstr "<p> ファイル名</p><p><b> 注意</b> ウィンドウ</p>"
 
-#: Synchronizer/synchronizergui.cpp:1148
+#: Synchronizer/synchronizergui.cpp:1151
 #, fuzzy
-msgid "Show options"
+msgid "S&how options"
 msgstr "オプションを表示"
 
-#: Synchronizer/synchronizergui.cpp:1168
+#: Synchronizer/synchronizergui.cpp:1172
 #, fuzzy
-msgid "Show files marked to <i>Copy from left to right</i>."
+msgid "Show files marked to <i>Copy from left to right</i> (CTRL+L)."
 msgstr "表示 to<i> コピー 左 to 右</i>."
 
-#: Synchronizer/synchronizergui.cpp:1176
+#: Synchronizer/synchronizergui.cpp:1181
 #, fuzzy
-msgid "Show files considered to be identical."
+msgid "Show files considered to be identical (CTRL+E)."
 msgstr "表示 to."
 
-#: Synchronizer/synchronizergui.cpp:1184
+#: Synchronizer/synchronizergui.cpp:1190
 #, fuzzy
-msgid "Show excluded files."
+msgid "Show excluded files (CTRL+D)."
 msgstr "表示."
 
-#: Synchronizer/synchronizergui.cpp:1192
+#: Synchronizer/synchronizergui.cpp:1199
 #, fuzzy
-msgid "Show files marked to <i>Copy from right to left</i>"
+msgid "Show files marked to <i>Copy from right to left</i> (CTRL+R)."
 msgstr "表示 to<i> コピー 右 to 左</i>"
 
-#: Synchronizer/synchronizergui.cpp:1200
+#: Synchronizer/synchronizergui.cpp:1208
 #, fuzzy
-msgid "Show files marked to delete."
+msgid "Show files marked to delete. (CTRL+T)"
 msgstr "表示 to."
 
-#: Synchronizer/synchronizergui.cpp:1204
+#: Synchronizer/synchronizergui.cpp:1212
 #, fuzzy
 msgid "Duplicates"
 msgstr "タブを複製"
 
-#: Synchronizer/synchronizergui.cpp:1208
+#: Synchronizer/synchronizergui.cpp:1216
 #, fuzzy
 msgid "Show files that exist on both sides."
 msgstr "表示."
 
-#: Synchronizer/synchronizergui.cpp:1212
+#: Synchronizer/synchronizergui.cpp:1220
 msgid "Singles"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1216
+#: Synchronizer/synchronizergui.cpp:1224
 #, fuzzy
 msgid "Show files that exist on one side only."
 msgstr "表示 第一."
 
-#: Synchronizer/synchronizergui.cpp:1257
+#: Synchronizer/synchronizergui.cpp:1233
+msgid "The compare results of the synchronizer (CTRL+M)."
+msgstr ""
+
+#: Synchronizer/synchronizergui.cpp:1265
 msgid "<=>"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1276
+#: Synchronizer/synchronizergui.cpp:1284
 #, fuzzy
 msgid "&Synchronizer"
 msgstr "ディレクトリ"
 
-#: Synchronizer/synchronizergui.cpp:1287
+#: Synchronizer/synchronizergui.cpp:1295
 #, fuzzy
 msgid "&Options"
 msgstr "オプション"
 
-#: Synchronizer/synchronizergui.cpp:1296
+#: Synchronizer/synchronizergui.cpp:1304
 #, fuzzy
 msgid "Parallel threads:"
 msgstr "平行線:"
 
-#: Synchronizer/synchronizergui.cpp:1307
+#: Synchronizer/synchronizergui.cpp:1315
 msgid "Equality threshold:"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1315 Synchronizer/synchronizergui.cpp:1330
+#: Synchronizer/synchronizergui.cpp:1323 Synchronizer/synchronizergui.cpp:1338
 msgid "sec"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1316 Synchronizer/synchronizergui.cpp:1331
+#: Synchronizer/synchronizergui.cpp:1324 Synchronizer/synchronizergui.cpp:1339
 #, fuzzy
 msgid "min"
 msgstr "最低"
 
-#: Synchronizer/synchronizergui.cpp:1317 Synchronizer/synchronizergui.cpp:1332
+#: Synchronizer/synchronizergui.cpp:1325 Synchronizer/synchronizergui.cpp:1340
 #, fuzzy
 msgid "hour"
 msgstr "時"
 
-#: Synchronizer/synchronizergui.cpp:1318 Synchronizer/synchronizergui.cpp:1333
+#: Synchronizer/synchronizergui.cpp:1326 Synchronizer/synchronizergui.cpp:1341
 #, fuzzy
 msgid "day"
 msgstr "日"
 
-#: Synchronizer/synchronizergui.cpp:1321
+#: Synchronizer/synchronizergui.cpp:1329
 #, fuzzy
 msgid "Time shift (right-left):"
 msgstr "時間 右 左:"
 
-#: Synchronizer/synchronizergui.cpp:1351
+#: Synchronizer/synchronizergui.cpp:1355
+msgid "Profile manager (Ctrl+P)."
+msgstr ""
+
+#: Synchronizer/synchronizergui.cpp:1362
 #, fuzzy
-msgid "Swap sides."
+msgid "Swap sides (Ctrl+S)."
 msgstr "スワップ."
 
-#: Synchronizer/synchronizergui.cpp:1361
+#: Synchronizer/synchronizergui.cpp:1372
 #, fuzzy
 msgid "Compare"
 msgstr "比較"
 
-#: Synchronizer/synchronizergui.cpp:1371 Synchronizer/synchronizergui.cpp:2229
+#: Synchronizer/synchronizergui.cpp:1382 Synchronizer/synchronizergui.cpp:2308
 #, fuzzy
 msgid "Quiet"
 msgstr "少ない"
 
-#: Synchronizer/synchronizergui.cpp:1373 Synchronizer/synchronizergui.cpp:2231
+#: Synchronizer/synchronizergui.cpp:1384 Synchronizer/synchronizergui.cpp:2310
 #, fuzzy
 msgid "Scroll Results"
 msgstr "結果"
 
-#: Synchronizer/synchronizergui.cpp:1388
+#: Synchronizer/synchronizergui.cpp:1399
 #, fuzzy
 msgid "Synchronize"
 msgstr "同期"
 
-#: Synchronizer/synchronizergui.cpp:1499
+#: Synchronizer/synchronizergui.cpp:1513
 #, fuzzy
-msgid "Selected files from target directory:"
+msgid "Selected files from targ&et directory:"
 msgstr "選択されたもの:"
-
-#: Synchronizer/synchronizergui.cpp:1500
-#, fuzzy
-msgid "Selected files from source directory:"
-msgstr "選択されたもの ソース:"
-
-#: Synchronizer/synchronizergui.cpp:1504
-#, fuzzy
-msgid "Selected files from left directory:"
-msgstr "選択されたもの 左:"
-
-#: Synchronizer/synchronizergui.cpp:1505
-#, fuzzy
-msgid "Selected files from right directory:"
-msgstr "選択されたもの 右:"
-
-#: Synchronizer/synchronizergui.cpp:1509
-#, fuzzy
-msgid "Target directory:"
-msgstr "ターゲット:"
-
-#: Synchronizer/synchronizergui.cpp:1510
-#, fuzzy
-msgid "Source directory:"
-msgstr "ソース:"
 
 #: Synchronizer/synchronizergui.cpp:1514
 #, fuzzy
-msgid "Left directory:"
+msgid "Selected files from sou&rce directory:"
+msgstr "選択されたもの ソース:"
+
+#: Synchronizer/synchronizergui.cpp:1518
+#, fuzzy
+msgid "Selected files from &left directory:"
+msgstr "選択されたもの 左:"
+
+#: Synchronizer/synchronizergui.cpp:1519
+#, fuzzy
+msgid "Selected files from &right directory:"
+msgstr "選択されたもの 右:"
+
+#: Synchronizer/synchronizergui.cpp:1523
+#, fuzzy
+msgid "Targ&et directory:"
+msgstr "ターゲット:"
+
+#: Synchronizer/synchronizergui.cpp:1524
+#, fuzzy
+msgid "Sou&rce directory:"
+msgstr "ソース:"
+
+#: Synchronizer/synchronizergui.cpp:1528
+#, fuzzy
+msgid "&Left directory:"
 msgstr "左:"
 
-#: Synchronizer/synchronizergui.cpp:1515
+#: Synchronizer/synchronizergui.cpp:1529
 #, fuzzy
-msgid "Right directory:"
+msgid "&Right directory:"
 msgstr "右:"
 
-#: Synchronizer/synchronizergui.cpp:1550
+#: Synchronizer/synchronizergui.cpp:1564
 #, fuzzy
 msgid "URL must be the descendant of either the left or the right base URL!"
 msgstr "URL 左 もしくは 右 ベース URL!"
 
-#: Synchronizer/synchronizergui.cpp:1607
+#: Synchronizer/synchronizergui.cpp:1621
 #, fuzzy
 msgid "Synchronize Directories"
 msgstr "同期 ディレクトリ"
 
-#: DiskUsage/diskusage.cpp:760 Synchronizer/synchronizergui.cpp:1609
-msgid "Exclude"
+#: Synchronizer/synchronizergui.cpp:1623
+msgid "E&xclude"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1611
+#: Synchronizer/synchronizergui.cpp:1625
 #, fuzzy
-msgid "Restore original operation"
+msgid "Restore ori&ginal operation"
 msgstr "元に戻す オリジナル"
 
-#: Synchronizer/synchronizergui.cpp:1613
+#: Synchronizer/synchronizergui.cpp:1627
 #, fuzzy
-msgid "Reverse direction"
+msgid "Re&verse direction"
 msgstr "逆方向"
 
-#: Synchronizer/synchronizergui.cpp:1615
+#: Synchronizer/synchronizergui.cpp:1629
 #, fuzzy
-msgid "Copy from right to left"
+msgid "Copy from &right to left"
 msgstr "コピー 右 to 左"
 
-#: Synchronizer/synchronizergui.cpp:1617
+#: Synchronizer/synchronizergui.cpp:1631
 #, fuzzy
-msgid "Copy from left to right"
+msgid "Copy from &left to right"
 msgstr "コピー 左 to 右"
 
-#: Synchronizer/synchronizergui.cpp:1619
+#: Synchronizer/synchronizergui.cpp:1633
 #, fuzzy
-msgid "Delete (left single)"
+msgid "&Delete (left single)"
 msgstr "削除 左"
 
-#: Synchronizer/synchronizergui.cpp:1624
+#: Synchronizer/synchronizergui.cpp:1638
 #, fuzzy
-msgid "View left file"
+msgid "V&iew left file"
 msgstr "表示 左"
 
-#: Synchronizer/synchronizergui.cpp:1626
+#: Synchronizer/synchronizergui.cpp:1640
 #, fuzzy
-msgid "View right file"
+msgid "Vi&ew right file"
 msgstr "表示 右"
 
-#: Synchronizer/synchronizergui.cpp:1628
+#: Synchronizer/synchronizergui.cpp:1642
 #, fuzzy
-msgid "Compare Files"
+msgid "&Compare Files"
 msgstr "比較 ファイル"
 
-#: Synchronizer/synchronizergui.cpp:1633 Synchronizer/synchronizergui.cpp:1712
+#: Synchronizer/synchronizergui.cpp:1647
+#, fuzzy
+msgid "&Select items"
+msgstr "選択"
+
+#: Synchronizer/synchronizergui.cpp:1649
+#, fuzzy
+msgid "Deselec&t items"
+msgstr "選択解除"
+
+#: Synchronizer/synchronizergui.cpp:1651
+#, fuzzy
+msgid "I&nvert selection"
+msgstr "白黒逆転"
+
+#: Synchronizer/synchronizergui.cpp:1662
+#, fuzzy
+msgid "Synchronize with &KGet"
+msgstr "同期 置換後 KGet"
+
+#: Synchronizer/synchronizergui.cpp:1726
 #, fuzzy
 msgid "Select items"
 msgstr "選択"
 
-#: Synchronizer/synchronizergui.cpp:1635 Synchronizer/synchronizergui.cpp:1713
+#: Synchronizer/synchronizergui.cpp:1727
 #, fuzzy
 msgid "Deselect items"
 msgstr "選択解除"
 
-#: Synchronizer/synchronizergui.cpp:1637
-#, fuzzy
-msgid "Invert selection"
-msgstr "白黒逆転"
-
-#: Synchronizer/synchronizergui.cpp:1648
-#, fuzzy
-msgid "Synchronize with KGet"
-msgstr "同期 置換後 KGet"
-
-#: Synchronizer/synchronizergui.cpp:2039
+#: Synchronizer/synchronizergui.cpp:2055
 #, fuzzy
 msgid "Synchronizer has nothing to do!"
 msgstr "なし to!"
+
+#: Synchronizer/synchronizergui.cpp:2201
+msgid ""
+"The synchronizer window contains data from a previous compare. If you exit, "
+"this data will be lost. Do you really want to exit?"
+msgstr ""
 
 #: Synchronizer/synchronizertask.cpp:132 Synchronizer/synchronizertask.cpp:139
 #, fuzzy
@@ -4612,14 +4640,12 @@ msgstr "確認"
 
 #: Synchronizer/synchronizedialog.cpp:110
 #, fuzzy
-msgid "Start"
+msgid "&Start"
 msgstr "開始"
 
 #: Synchronizer/synchronizedialog.cpp:114
-#: Synchronizer/synchronizedialog.cpp:186 Synchronizer/synchronizer.cpp:1342
-#: Synchronizer/synchronizer.cpp:1352
 #, fuzzy
-msgid "Pause"
+msgid "&Pause"
 msgstr "一時停止"
 
 #: Synchronizer/synchronizedialog.cpp:158
@@ -4628,6 +4654,12 @@ msgstr "一時停止"
 #, fuzzy
 msgid "\tReady: %1/%2 files, %3/%4"
 msgstr "4"
+
+#: Synchronizer/synchronizedialog.cpp:186 Synchronizer/synchronizer.cpp:1342
+#: Synchronizer/synchronizer.cpp:1352
+#, fuzzy
+msgid "Pause"
+msgstr "一時停止"
 
 #: Synchronizer/synchronizedialog.cpp:194 Synchronizer/synchronizer.cpp:1354
 #, fuzzy
@@ -4781,7 +4813,7 @@ msgstr "パーセント"
 msgid "Show file sizes"
 msgstr "表示"
 
-#: DiskUsage/diskusage.cpp:785 DiskUsage/dulines.cpp:463
+#: DiskUsage/diskusage.cpp:784 DiskUsage/dulines.cpp:463
 #, fuzzy
 msgid "Lines"
 msgstr "線"
@@ -4843,7 +4875,7 @@ msgstr "ラベル"
 msgid "Minimum font size"
 msgstr "サイズ"
 
-#: DiskUsage/diskusage.cpp:789 DiskUsage/dufilelight.cpp:121
+#: DiskUsage/diskusage.cpp:788 DiskUsage/dufilelight.cpp:121
 msgid "Filelight"
 msgstr ""
 
@@ -4862,7 +4894,7 @@ msgstr "使い方"
 msgid "Start new disk usage search"
 msgstr "開始 新規"
 
-#: DiskUsage/diskusage.cpp:769 DiskUsage/diskusagegui.cpp:64
+#: DiskUsage/diskusage.cpp:768 DiskUsage/diskusagegui.cpp:64
 #, fuzzy
 msgid "Refresh"
 msgstr "更新"
@@ -4927,104 +4959,108 @@ msgstr "合計 サイズ:"
 msgid "Loading the disk usage information..."
 msgstr "読み込み中."
 
-#: DiskUsage/diskusage.cpp:412
+#: DiskUsage/diskusage.cpp:411
 #, fuzzy
 msgid ""
 "Stepping into the parent directory requires loading the content of the \"%1"
 "\" URL. Do you wish to continue?"
 msgstr "読み込み中 URL to?"
 
-#: DiskUsage/diskusage.cpp:416
+#: DiskUsage/diskusage.cpp:415
 #, fuzzy
 msgid "Krusader::DiskUsage"
 msgstr "Krusader:検索"
 
-#: DiskUsage/diskusage.cpp:597
+#: DiskUsage/diskusage.cpp:596
 #, fuzzy
 msgid "Do you really want to move this item to the trash?"
 msgstr "本当にこれら %n 項目を削除しますか?"
 
-#: DiskUsage/diskusage.cpp:600
+#: DiskUsage/diskusage.cpp:599
 #, fuzzy
 msgid "Do you really want to delete this item?"
 msgstr "to?"
 
-#: DiskUsage/diskusage.cpp:612
+#: DiskUsage/diskusage.cpp:611
 #, fuzzy
 msgid "Deleting %1..."
 msgstr "削除中."
 
-#: DiskUsage/diskusage.cpp:728
+#: DiskUsage/diskusage.cpp:727
 #, fuzzy
 msgid "Current directory:%1,  Total size:%2,  Own size:%3"
 msgstr "現在 合計 サイズ サイズ 3"
 
-#: DiskUsage/diskusage.cpp:754
+#: DiskUsage/diskusage.cpp:753
 #, fuzzy
 msgid "Disk Usage"
 msgstr "使い方"
 
-#: DiskUsage/diskusage.cpp:765
+#: DiskUsage/diskusage.cpp:759
+msgid "Exclude"
+msgstr ""
+
+#: DiskUsage/diskusage.cpp:764
 #, fuzzy
 msgid "Up one directory"
 msgstr "上へ 第一"
 
-#: DiskUsage/diskusage.cpp:767
+#: DiskUsage/diskusage.cpp:766
 #, fuzzy
 msgid "New search"
 msgstr "新規"
 
-#: DiskUsage/diskusage.cpp:771
+#: DiskUsage/diskusage.cpp:770
 #, fuzzy
 msgid "Include all"
 msgstr "全て"
 
-#: DiskUsage/diskusage.cpp:773
+#: DiskUsage/diskusage.cpp:772
 #, fuzzy
 msgid "Step into"
 msgstr "ステップ"
 
-#: DiskUsage/diskusage.cpp:787 Konfigurator/kglookfeel.cpp:174
+#: DiskUsage/diskusage.cpp:786 Konfigurator/kglookfeel.cpp:174
 #, fuzzy
 msgid "Detailed"
 msgstr "KrDetailedView"
 
-#: DiskUsage/diskusage.cpp:792
+#: DiskUsage/diskusage.cpp:791
 #, fuzzy
 msgid "Next"
 msgstr "次"
 
-#: DiskUsage/diskusage.cpp:794
+#: DiskUsage/diskusage.cpp:793
 #, fuzzy
 msgid "Previous"
 msgstr "前曲"
 
-#: DiskUsage/diskusage.cpp:798
+#: DiskUsage/diskusage.cpp:797
 #, fuzzy
 msgid "View"
 msgstr "表示"
 
-#: DiskUsage/diskusage.cpp:1032
+#: DiskUsage/diskusage.cpp:1031
 #, fuzzy
 msgid "Type:"
 msgstr "タイプ:"
 
-#: DiskUsage/diskusage.cpp:1036
+#: DiskUsage/diskusage.cpp:1035
 #, fuzzy
 msgid "Own size:"
 msgstr "サイズ:"
 
-#: DiskUsage/diskusage.cpp:1038
+#: DiskUsage/diskusage.cpp:1037
 #, fuzzy
 msgid "Last modified:"
 msgstr "最終更新日時:"
 
-#: DiskUsage/diskusage.cpp:1039
+#: DiskUsage/diskusage.cpp:1038
 #, fuzzy
 msgid "Permissions:"
 msgstr "許可情報:"
 
-#: DiskUsage/diskusage.cpp:1040
+#: DiskUsage/diskusage.cpp:1039
 #, fuzzy
 msgid "Owner:"
 msgstr "所有者:"
@@ -7013,3 +7049,18 @@ msgstr "Error reading file %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Error at writing file %1!"
+
+#~ msgid ""
+#~ "<p>The filename filtering criteria is defined here.</p><p>You can make "
+#~ "use of wildcards. Multiple patterns are separated by space and patterns "
+#~ "are excluded from the search using the pipe symbol.</p><p>Examples:"
+#~ "<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</"
+#~ "li><li>* | CVS/ .svn/</li></code></ul><b>Note</b>: the search term "
+#~ "'<code>text</code>' is equivalent to '<code>*text*</code>'.</p>"
+#~ msgstr ""
+#~ "<p>ファイル名の絞り込み条件をここで設定します。</p><p>ワイルドカードが使用"
+#~ "できます。複数のパターンを同時に指定する場合、スペースで区切ります。パイプ"
+#~ "文字を使うと、パターンは検索から除外されます。</p><p>例:<ul><code><li>*."
+#~ "o</li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</"
+#~ "li></code></ul><b>メモ</b>: 検索項目 <code>'text'</code> は <code>*text*</"
+#~ "code> と同じです。</p>"
