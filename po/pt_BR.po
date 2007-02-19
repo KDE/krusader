@@ -7,13 +7,13 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.80.0-beta1\n"
+"Project-Id-Version: krusader-1.80.0-beta2\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2007-02-16 18:56+0100\n"
-"PO-Revision-Date: 2007-01-07 14:52-0300\n"
-"Last-Translator: Doutor Zero <doutor.zero@gmail.com>\n"
-"Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
-"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2007-02-19 11:19-0300\n"
+"Last-Translator: Doutor.Zero <doutor.zero@gmail..com>\n"
+"Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\\nMIME-"
+"Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Genemouser: KBabel 1.9.1\n"
@@ -528,6 +528,23 @@ msgid ""
 "code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to "
 "'<code>*text*</code>'.</p>"
 msgstr ""
+"<p>O critério para filtragem de nome do arquivo é definido aqui.</p><p>Você "
+"pode usar coringas. Múltiplos padrões são separados por espaços (o que "
+"significa ou, 'OR') e padrões são excluídos da busca usando-se o símbolo de "
+"pipe ('|').</p><p>Se o padrão terminar com uma barra (<code>*padrão*/</"
+"code>), isso significará que o padrão está relacionado à busca recursiva em "
+"diretórios.<ul><li><code>padrão</code> - significa buscar naqueles arquivos/"
+"diretórios que possuam o nome <code>padrão</code>, a busca recursiva inclui "
+"todos os subdiretórios, independentemente do valor do <code>padrão</code></"
+"li><li><code>padrão/</code> - significa buscar por todos os arquivos/"
+"diretórios, mas a busca recursiva ignora/exclui os diretórios com o nome "
+"<code>padrão</code></li></ul><p></p><p>É permitido usar aspas para nomes que "
+"contenham espaços. O filtro <code>\"Programa&nbsp;Arquivos\"</code> busca "
+"por aqueles arquivos/diretórios que tenham o nome <code>Programa&nbsp;"
+"Arquivos</code>.</p><p>Exemplos:<ul><code><li>*.o</li><li>*.h *.c??</"
+"li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</li></code></"
+"ul><b>Atenção</b>: o termo de busca '<code>texto</code>' é equivalente a "
+"'<code>*texto*</code>'.</p>"
 
 #: Filter/generalfilter.cpp:86
 msgid "&Of type:"
@@ -1975,14 +1992,12 @@ msgid "Show Terminal &Emulator"
 msgstr "Mostrar &Emulador de Terminal"
 
 #: krusader.cpp:546
-#, fuzzy
 msgid "&Detailed View"
-msgstr "Visualização detalhada"
+msgstr "Visualização &Detalhada"
 
 #: krusader.cpp:549
-#, fuzzy
 msgid "&Brief View"
-msgstr "Visualização em Linha"
+msgstr "Visualização &Resumida"
 
 #: krusader.cpp:552
 msgid "Show &Hidden Files"
@@ -3049,7 +3064,7 @@ msgstr "Ok"
 
 #: Dialogs/packguibase.cpp:333
 msgid "No password specified"
-msgstr ""
+msgstr "Nenhuma senha especificada"
 
 #: Dialogs/packguibase.cpp:338
 msgid "The passwords are equal"
@@ -3828,9 +3843,8 @@ msgid "Directory Comparison"
 msgstr "Comparação de Diretórios"
 
 #: Synchronizer/synchronizergui.cpp:1066
-#, fuzzy
 msgid "File &Filter:"
-msgstr "Filtro de arquivos:"
+msgstr "&Filtro de Arquivo:"
 
 #: Synchronizer/synchronizergui.cpp:1088
 msgid "The left base directory used during the synchronisation process."
@@ -3910,36 +3924,32 @@ msgstr ""
 "p>"
 
 #: Synchronizer/synchronizergui.cpp:1151
-#, fuzzy
 msgid "S&how options"
-msgstr "Mostrar opções"
+msgstr "Mos&trar opções"
 
 #: Synchronizer/synchronizergui.cpp:1172
-#, fuzzy
 msgid "Show files marked to <i>Copy from left to right</i> (CTRL+L)."
 msgstr ""
-"Mostrar os arquivos marcados para <i>Copiar da esquerda para a direita</i>."
+"Mostrar os arquivos marcados para <i>Copiar da esquerda para a direita</i> "
+"(Ctrl-L)."
 
 #: Synchronizer/synchronizergui.cpp:1181
-#, fuzzy
 msgid "Show files considered to be identical (CTRL+E)."
-msgstr "Mostrar os arquivos considerados idênticos."
+msgstr "Mostrar os arquivos considerados idênticos (Ctrl-E)."
 
 #: Synchronizer/synchronizergui.cpp:1190
-#, fuzzy
 msgid "Show excluded files (CTRL+D)."
-msgstr "Mostrar os arquivos excluídos."
+msgstr "Mostrar os arquivos excluídos (Ctrl-D)."
 
 #: Synchronizer/synchronizergui.cpp:1199
-#, fuzzy
 msgid "Show files marked to <i>Copy from right to left</i> (CTRL+R)."
 msgstr ""
-"Mostrar os arquivos marcados para <i>Copiar da direita para a esquerda</i>."
+"Mostrar os arquivos marcados para <i>Copiar da direita para a esquerda</i> "
+"(Ctrl-R)."
 
 #: Synchronizer/synchronizergui.cpp:1208
-#, fuzzy
 msgid "Show files marked to delete. (CTRL+T)"
-msgstr "Mostrar os arquivos marcados para apagar."
+msgstr "Mostrar os arquivos marcados para apagar (Ctrl-T)."
 
 #: Synchronizer/synchronizergui.cpp:1212
 msgid "Duplicates"
@@ -3959,7 +3969,7 @@ msgstr "Mostrar os arquivos que existam apenas em um lado."
 
 #: Synchronizer/synchronizergui.cpp:1233
 msgid "The compare results of the synchronizer (CTRL+M)."
-msgstr ""
+msgstr "Os resultados da comparação do sincronizador (Ctrl-M)."
 
 #: Synchronizer/synchronizergui.cpp:1265
 msgid "<=>"
@@ -4003,12 +4013,11 @@ msgstr "Diferença de tempo (direita-esquerda):"
 
 #: Synchronizer/synchronizergui.cpp:1355
 msgid "Profile manager (Ctrl+P)."
-msgstr ""
+msgstr "Gerenciador de perfis (Ctrl-P)."
 
 #: Synchronizer/synchronizergui.cpp:1362
-#, fuzzy
 msgid "Swap sides (Ctrl+S)."
-msgstr "Inverter lados."
+msgstr "Inverter lados (Ctrl-S)."
 
 #: Synchronizer/synchronizergui.cpp:1372
 msgid "Compare"
@@ -4027,44 +4036,36 @@ msgid "Synchronize"
 msgstr "Sincronizar"
 
 #: Synchronizer/synchronizergui.cpp:1513
-#, fuzzy
 msgid "Selected files from targ&et directory:"
-msgstr "Arquivos selecionados no diretório de destino:"
+msgstr "Arquivos selecionados no diretório de d&estino:"
 
 #: Synchronizer/synchronizergui.cpp:1514
-#, fuzzy
 msgid "Selected files from sou&rce directory:"
-msgstr "Arquivos selecionados no diretório de origem:"
+msgstr "Arquivos selecionados no diretório de o&rigem:"
 
 #: Synchronizer/synchronizergui.cpp:1518
-#, fuzzy
 msgid "Selected files from &left directory:"
-msgstr "Arquivos selecionados no diretório da esquerda:"
+msgstr "Arquivos selecionados no diretório da es&querda:"
 
 #: Synchronizer/synchronizergui.cpp:1519
-#, fuzzy
 msgid "Selected files from &right directory:"
-msgstr "Arquivos selecionados no diretório da direita:"
+msgstr "Arquivos selecionados no diretório da di&reita:"
 
 #: Synchronizer/synchronizergui.cpp:1523
-#, fuzzy
 msgid "Targ&et directory:"
-msgstr "Diretório de destino:"
+msgstr "Diretório de d&estino:"
 
 #: Synchronizer/synchronizergui.cpp:1524
-#, fuzzy
 msgid "Sou&rce directory:"
-msgstr "Diretório de origem:"
+msgstr "Diretório de o&rigem:"
 
 #: Synchronizer/synchronizergui.cpp:1528
-#, fuzzy
 msgid "&Left directory:"
-msgstr "Diretório da esquerda:"
+msgstr "Diretório da es&querda:"
 
 #: Synchronizer/synchronizergui.cpp:1529
-#, fuzzy
 msgid "&Right directory:"
-msgstr "Diretório da direita:"
+msgstr "Diretório da di&reita:"
 
 #: Synchronizer/synchronizergui.cpp:1564
 msgid "URL must be the descendant of either the left or the right base URL!"
@@ -4075,69 +4076,56 @@ msgid "Synchronize Directories"
 msgstr "Sincronizar Diretórios"
 
 #: Synchronizer/synchronizergui.cpp:1623
-#, fuzzy
 msgid "E&xclude"
-msgstr "Excluir"
+msgstr "E&xcluir"
 
 #: Synchronizer/synchronizergui.cpp:1625
-#, fuzzy
 msgid "Restore ori&ginal operation"
-msgstr "Restaurar operação original"
+msgstr "Restaurar operação ori&ginal"
 
 #: Synchronizer/synchronizergui.cpp:1627
-#, fuzzy
 msgid "Re&verse direction"
-msgstr "Inverter direção"
+msgstr "In&verter direção"
 
 #: Synchronizer/synchronizergui.cpp:1629
-#, fuzzy
 msgid "Copy from &right to left"
-msgstr "Copiar da direita para a esquerda"
+msgstr "Copiar da di&reita para a esquerda"
 
 #: Synchronizer/synchronizergui.cpp:1631
-#, fuzzy
 msgid "Copy from &left to right"
-msgstr "Copiar da esquerda para a direita"
+msgstr "Copiar da es&querda para a direita"
 
 #: Synchronizer/synchronizergui.cpp:1633
-#, fuzzy
 msgid "&Delete (left single)"
-msgstr "Apagar (único à esquerda)"
+msgstr "A&pagar (único à esquerda)"
 
 #: Synchronizer/synchronizergui.cpp:1638
-#, fuzzy
 msgid "V&iew left file"
-msgstr "Visualizar arquivo da esquerda"
+msgstr "V&isualizar arquivo da esquerda"
 
 #: Synchronizer/synchronizergui.cpp:1640
-#, fuzzy
 msgid "Vi&ew right file"
-msgstr "Visualizar arquivo da direita"
+msgstr "Vi&sualizar arquivo da direita"
 
 #: Synchronizer/synchronizergui.cpp:1642
-#, fuzzy
 msgid "&Compare Files"
-msgstr "Comparar Arquivos"
+msgstr "&Comparar Arquivos"
 
 #: Synchronizer/synchronizergui.cpp:1647
-#, fuzzy
 msgid "&Select items"
-msgstr "Selecionar itens"
+msgstr "&Selecionar itens"
 
 #: Synchronizer/synchronizergui.cpp:1649
-#, fuzzy
 msgid "Deselec&t items"
-msgstr "Deselecionar itens"
+msgstr "Dese&lecionar itens"
 
 #: Synchronizer/synchronizergui.cpp:1651
-#, fuzzy
 msgid "I&nvert selection"
-msgstr "Inverter seleção"
+msgstr "I&nverter seleção"
 
 #: Synchronizer/synchronizergui.cpp:1662
-#, fuzzy
 msgid "Synchronize with &KGet"
-msgstr "Sincronizar com o KGet"
+msgstr "Sincronizar com o &KGet"
 
 #: Synchronizer/synchronizergui.cpp:1726
 msgid "Select items"
@@ -4156,6 +4144,8 @@ msgid ""
 "The synchronizer window contains data from a previous compare. If you exit, "
 "this data will be lost. Do you really want to exit?"
 msgstr ""
+"A janela do sincronizador contém dados de uma comparação anterior. Se você "
+"sair, esses dados serão perdidos. Tem certeza que deseja sair?"
 
 #: Synchronizer/synchronizertask.cpp:132 Synchronizer/synchronizertask.cpp:139
 msgid "Error at opening %1!"
@@ -4224,14 +4214,12 @@ msgid "Confirm overwrites"
 msgstr "Confirmar ao sobrescrever"
 
 #: Synchronizer/synchronizedialog.cpp:110
-#, fuzzy
 msgid "&Start"
-msgstr "Iniciar"
+msgstr "&Iniciar"
 
 #: Synchronizer/synchronizedialog.cpp:114
-#, fuzzy
 msgid "&Pause"
-msgstr "Pausa"
+msgstr "&Pausar"
 
 #: Synchronizer/synchronizedialog.cpp:158
 #: Synchronizer/synchronizedialog.cpp:161
@@ -4730,9 +4718,9 @@ msgstr ""
 "Visualizar o arquivo no modo hexadecimal (melhor para arquivos binários)"
 
 #: Konfigurator/kggeneral.cpp:104
-#, fuzzy
 msgid "Internal editor and viewer opens each file in a separate window"
-msgstr "O visualizador abre cada arquivo em uma janela separada"
+msgstr ""
+"O editor interno e o visualizador abrem cada arquivo em uma janela separada"
 
 #: Konfigurator/kggeneral.cpp:105
 msgid ""
@@ -4744,7 +4732,7 @@ msgstr ""
 
 #: Konfigurator/kggeneral.cpp:115
 msgid "Atomic extensions:"
-msgstr ""
+msgstr "Extensões atômicas:"
 
 #: Konfigurator/kggeneral.cpp:143
 msgid "Terminal:"
@@ -4784,17 +4772,19 @@ msgstr ""
 
 #: Konfigurator/kggeneral.cpp:195
 msgid "Add new atomic extension"
-msgstr ""
+msgstr "Adicionar nova extensão atômica"
 
 #: Konfigurator/kggeneral.cpp:195
 msgid "Extension: "
-msgstr ""
+msgstr "Extensão: "
 
 #: Konfigurator/kggeneral.cpp:200
 msgid ""
 "Atomic extensions must start with '.'\n"
 " and must contain at least one more '.' character"
 msgstr ""
+"Extensões atômicas devem começar com '.'\n"
+"e devem conter pelo menos mais um caractere '.'"
 
 #: Konfigurator/krresulttable.cpp:121
 msgid "unarj not found, but arj found, which will be used for unpacking"
@@ -5099,13 +5089,12 @@ msgstr ""
 "na coluna de permissões."
 
 #: Konfigurator/kglookfeel.cpp:172
-#, fuzzy
 msgid "Default panel type:"
-msgstr "Painel esquerdo"
+msgstr "Tipo padrão de painel:"
 
 #: Konfigurator/kglookfeel.cpp:175
 msgid "Brief"
-msgstr ""
+msgstr "Resumida"
 
 #: Konfigurator/kglookfeel.cpp:188
 msgid "Panel Toolbar"
@@ -5995,7 +5984,6 @@ msgid "Save last position, size and panel settings"
 msgstr "Salvar a última posição, tamanho e configurações do painel"
 
 #: Konfigurator/kgstartup.cpp:94
-#, fuzzy
 msgid ""
 "<p>At startup, the main window will resize itself to the size it was when "
 "last shutdown. It will also appear in the same location of the screen, "
@@ -6008,7 +5996,7 @@ msgstr ""
 "aparecerá na mesma posição na tela, tendo os painéis organizados e alinhados "
 "como estavam antes.</p><p>Se esta opção estiver desabilitada, você pode usar "
 "o menu <i>Janela -> Salvar Posição</i> para ajustar manualmente o tamanho e "
-"posição que a janela principal terá na inicialização.</p>"
+"a posição que a janela principal terá na inicialização.</p>"
 
 #: Konfigurator/kgstartup.cpp:95
 msgid "Start to tray"
@@ -6191,9 +6179,9 @@ msgid ""
 "Krusader can't find any of the supported diff-frontends. Please install one "
 "to your path. Hint: Krusader supports Kompare, Kdiff3 and Xxdiff."
 msgstr ""
-"Krusader não conseguiu localizar nenhum dos diff-frontends suportados. Por "
-"favor instale um no seu caminho. Dica: o Krusader suporta Kompare, Kdiff3 e "
-"Xxdiff."
+"Krusader não conseguiu localizar nenhuma das interfaces de diff suportadas. "
+"Por favor instale uma no seu caminho. Dica: o Krusader suporta Kompare, "
+"Kdiff3 e Xxdiff."
 
 #: krslots.cpp:441
 msgid ""
@@ -6431,18 +6419,3 @@ msgstr "Erro ao ler o arquivo %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Erro ao gravar o arquivo %1!"
-
-#~ msgid ""
-#~ "<p>The filename filtering criteria is defined here.</p><p>You can make "
-#~ "use of wildcards. Multiple patterns are separated by space and patterns "
-#~ "are excluded from the search using the pipe symbol.</p><p>Examples:"
-#~ "<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</"
-#~ "li><li>* | CVS/ .svn/</li></code></ul><b>Note</b>: the search term "
-#~ "'<code>text</code>' is equivalent to '<code>*text*</code>'.</p>"
-#~ msgstr ""
-#~ "<p>O critério para filtrar o nome do arquivo é definido aqui.</p><p>Você "
-#~ "pode usar curingas. Múltiplas formas devem ser separadas por espaços e "
-#~ "formas são excluídas da busca usando o símbolo de pipe ('|').</"
-#~ "p><p>Exemplos:<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h | *."
-#~ "moc.cpp</li><li>* | CVS/ .svn/</li></code></ul><b>Atenção</b>: o termo de "
-#~ "busca '<code>texto</code>' é equivalente a '<code>*texto*</code>'.</p>"
