@@ -641,7 +641,7 @@ void Krusader::setupActions() {
                               SLOTS, SLOT( slotSynchronizeDirs() ), actionCollection(), "sync dirs" );
    actSyncBrowse = new KAction( i18n( "S&ynchron Directory Changes" ), "kr_syncbrowse_off", ALT + Key_Y,
                               SLOTS, SLOT( slotSyncBrowse() ), actionCollection(), "sync browse" );
-   actDiskUsage = new KAction( i18n( "D&isk Usage..." ), "kchart", ALT + Key_D,
+   actDiskUsage = new KAction( i18n( "D&isk Usage..." ), "kr_diskusage", ALT + Key_D,
                               SLOTS, SLOT( slotDiskUsage() ), actionCollection(), "disk usage" );
    actKonfigurator = new KAction( i18n( "Configure &Krusader..." ), "configure", 0,
                                   SLOTS, SLOT( startKonfigurator() ), actionCollection(), "konfigurator" );
