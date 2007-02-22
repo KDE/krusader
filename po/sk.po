@@ -7,17 +7,17 @@
 # Zdenko Podobny <zdenop@gmail.com>, 2004,2005,2006,2007
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.80.0-beta1\n"
+"Project-Id-Version: krusader-1.80.0-beta2\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2007-02-16 18:56+0100\n"
-"PO-Revision-Date: 2007-01-01 19:09+0100\n"
+"PO-Revision-Date: 2007-02-22 14:59+0100\n"
 "Last-Translator: Zdenko Podobny <zdenop@gmail.com>\n"
 "Language-Team: krusaer-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.2\n"
-"Plural-Forms:  nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: GUI/dirhistorybutton.cpp:35
 msgid "Open the directory history list"
@@ -525,6 +525,21 @@ msgid ""
 "code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to "
 "'<code>*text*</code>'.</p>"
 msgstr ""
+"<p>Tu sú zadefinované kritériá filtrovania názvov súborov.</p><p>Môžete "
+"používať aj masky. Viac vzorov je oddelených medzerou a vzory sa vylučujú z "
+"hľadania použitím symbolu rúry (<code>|</code>).</p><p>Pokiaľ je vzor "
+"zakončený lomkou(<code>*vzor*/</code>), tak sa výraz vzťahuje na rekurzívne "
+"prehľadávanie priečinkov.<ul<li><code>vzor</code> - znamená hľadanie "
+"súborov, ktorých názov je <code>vzor</code>. Rekurzívne prehľadávanie cez "
+"všetky podpriečinky nezávislé na hodnote <code>vzor</code></"
+"li><li><code>vzor/</code> - znamená hľadanie všetkcýh súborov/prierinkov, "
+"kde sa rekúrzívne prechádzdza cez priečinky, ktorých názov je <code>vzor</"
+"code></li><ul></p><p>Je povolené používať úvodzovky pre názvy, ktoré "
+"obsahují mezeru.Filter <code>\"Program&nbsp;Files\"</code> hľadá medzi "
+"súbormi, ktorých názov je <code>Program&nbsp;Files</code>.</p><p>Príklady:"
+"<ul><code><li>*.o</\"li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</"
+"li><li>* | CVS/ .svn/</li></\"code></ul><b>Pozn.</b>: vyhľadávací výraz "
+"<code>text</code> znamená to isté ako <code>*text*</code>.</p>"
 
 #: Filter/generalfilter.cpp:86
 msgid "&Of type:"
@@ -1972,14 +1987,12 @@ msgid "Show Terminal &Emulator"
 msgstr "Zobraziť &emulátor terminálu"
 
 #: krusader.cpp:546
-#, fuzzy
 msgid "&Detailed View"
-msgstr "Detailné zobrazenie"
+msgstr "&Detailné zobrazenie"
 
 #: krusader.cpp:549
-#, fuzzy
 msgid "&Brief View"
-msgstr "Riadkové zobrazenie"
+msgstr "St&ručné zobrazenie"
 
 #: krusader.cpp:552
 msgid "Show &Hidden Files"
@@ -3045,7 +3058,7 @@ msgstr "Ok"
 
 #: Dialogs/packguibase.cpp:333
 msgid "No password specified"
-msgstr ""
+msgstr "Heslo nebolo zadané"
 
 #: Dialogs/packguibase.cpp:338
 msgid "The passwords are equal"
@@ -3519,6 +3532,10 @@ msgid ""
 "<i>Konfigurator</i> and doesn't appear in any other menu.</p><p><b>Note</b>: "
 "The <i>Title</i> shown in the <b>Usermenu</b> can be set below.</p>"
 msgstr ""
+"<p>Jedinečný názov <b>Používateľskej akcie</b>. Používa sa iba v "
+"<i>Konfiguratore</i> a neobjavuje sa v žiadnej inej ponuke.</p><p><b>Pozn.</"
+"b>: <i>Titulok</i> zobrazený v <b>Používateľskej ponuke</b> môžete nastaviť "
+"nižšie.</p>"
 
 #: ActionMan/actionpropertybase.cpp:404
 msgid "Command:"
@@ -3533,18 +3550,27 @@ msgid ""
 "</li></code></ul>\n"
 "Please consult the handbook to learn more about the syntax.</p>"
 msgstr ""
+"<p><i>Príkaz</i> definuje príkaz, ktorý sa vykoná, keď sa použije "
+"<b>Používateľská akcia</b>. Môže to byť jednoduchý shellovský príkaz alebo "
+"zložitá postupnosť viacerých príkazov so <b>Zástupcami</b>.</p><p>Príklady:"
+"<ul><code><li>eject /mnt/cdrom</li><li>amarok --append %aList(\"Selected\")%"
+"</li></code></ul>\n"
+"Pokiaľ chcete vedieť viac o syntaxi, tak si pozrite príručku.</p>"
 
 #: ActionMan/actionpropertybase.cpp:407 ActionMan/actionpropertybase.cpp:410
 msgid ""
 "The <i>Tooltip</i> is shown when the mouse cursor is hold over an entry of "
 "the <b>Useraction Toolbar</b>."
 msgstr ""
+"<i>Rada</i> sa zobrazí, keď ukazovateľ myši zastane nad položkou "
+"<b>Nástrojového panela používateľských akcii</b>."
 
 #: ActionMan/actionpropertybase.cpp:408 ActionMan/actionpropertybase.cpp:421
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
 msgstr ""
+"<i>Pracovný priečinok</i> určí, v ktorom priečinku sa <i>Príkaz</i> vykoná."
 
 #: ActionMan/actionpropertybase.cpp:409
 msgid "Tooltip:"
@@ -3559,6 +3585,12 @@ msgid ""
 "(\"Selected\")%</li></code></ul>\n"
 "Please consult the handbook to learn more about the syntax."
 msgstr ""
+"<i>Príkaz</i> definuje príkaz, ktorý sa vykoná, keď sa použije "
+"<b>Používateľská akcia</b>. Môže to byť jednoduchý shellovský príkaz alebo "
+"zložitá postupnosť viacerých príkazov so <b>Zástupcami</b>.<p>\n"
+"Príklady:<ul><code><li>eject /mnt/cdrom</li><li>amarok --append %aList"
+"(\"Selected\")%</li></code></ul>\n"
+"Pokiaľ chcete vedieť viac o syntaxi, tak si pozrite príručku.</p>"
 
 #: ActionMan/actionpropertybase.cpp:415
 msgid "Category:"
@@ -3661,6 +3693,8 @@ msgid ""
 "Show the <b>Useraction</b> only for the filenames defined here. The "
 "wildcards '<code>?</code>' and '<code>*</code>' can be used."
 msgstr ""
+"Zobraziť <b>Používateľskú akciu</b> len pre tu definované názvy súborov. Je "
+"možné použiť aj masky  '<code>?</code>' a '<code>*</code>."
 
 #: ActionMan/actionpropertybase.cpp:454
 msgid "Filename"
@@ -3803,9 +3837,8 @@ msgid "Directory Comparison"
 msgstr "Porovnanie priečinokov"
 
 #: Synchronizer/synchronizergui.cpp:1066
-#, fuzzy
 msgid "File &Filter:"
-msgstr "Filter súborov:"
+msgstr "&Filter súborov:"
 
 #: Synchronizer/synchronizergui.cpp:1088
 msgid "The left base directory used during the synchronisation process."
@@ -3850,6 +3883,9 @@ msgid ""
 "<p>Ignore date information during the compare process.</p><p><b>Note</b>: "
 "useful if the files are located on network filesystems or in archives.</p>"
 msgstr ""
+"<p>Ignorovať údaj o dátume počas porovnávacieho procesu.</p><p><b>Pozn.</b>: "
+"užitočné, pokiaľ sa súbory nachádzajú na sieťových súborovych systémoch "
+"alebo v archívoch.</p>"
 
 #: Synchronizer/synchronizergui.cpp:1141
 msgid "Asymmetric"
@@ -3880,34 +3916,30 @@ msgstr ""
 "b>: užitočné pri synchonizovaní na Windows súborových systémoch.</p>"
 
 #: Synchronizer/synchronizergui.cpp:1151
-#, fuzzy
 msgid "S&how options"
-msgstr "Zobraziť možnosti"
+msgstr "Nastavenia zobrazenia"
 
 #: Synchronizer/synchronizergui.cpp:1172
-#, fuzzy
 msgid "Show files marked to <i>Copy from left to right</i> (CTRL+L)."
-msgstr "Zobraziť súbory označené pre <i>Kopírovanie zľava doprava</i>."
+msgstr ""
+"Zobraziť súbory označené pre <i>Kopírovanie zľava doprava</i> (CTRL+L)."
 
 #: Synchronizer/synchronizergui.cpp:1181
-#, fuzzy
 msgid "Show files considered to be identical (CTRL+E)."
-msgstr "Zobraziť súbory považované za identické."
+msgstr "Zobraziť súbory považované za identické (CTRL+E)."
 
 #: Synchronizer/synchronizergui.cpp:1190
-#, fuzzy
 msgid "Show excluded files (CTRL+D)."
-msgstr "Zobraziť vylúčené súbory."
+msgstr "Zobraziť vylúčené súbory (CTRL+D)."
 
 #: Synchronizer/synchronizergui.cpp:1199
-#, fuzzy
 msgid "Show files marked to <i>Copy from right to left</i> (CTRL+R)."
-msgstr "Zobraziť súbory označené pre <i>Kopírovanie sprava doľava</i>."
+msgstr ""
+"Zobraziť súbory označené pre <i>Kopírovanie sprava doľava</i> (CTRL+R)."
 
 #: Synchronizer/synchronizergui.cpp:1208
-#, fuzzy
 msgid "Show files marked to delete. (CTRL+T)"
-msgstr "Zobraziť súbory označené na zmazanie."
+msgstr "Zobraziť súbory označené na zmazanie (CTRL+T)."
 
 #: Synchronizer/synchronizergui.cpp:1212
 msgid "Duplicates"
@@ -3927,7 +3959,7 @@ msgstr "Zobraziť tie súbory, ktoré existujú na jednej strane."
 
 #: Synchronizer/synchronizergui.cpp:1233
 msgid "The compare results of the synchronizer (CTRL+M)."
-msgstr ""
+msgstr "Vysledky porovnávanie Synchronizérom (CTRL+M)."
 
 #: Synchronizer/synchronizergui.cpp:1265
 msgid "<=>"
@@ -3971,12 +4003,11 @@ msgstr "Posun času (pravý-ľavý):"
 
 #: Synchronizer/synchronizergui.cpp:1355
 msgid "Profile manager (Ctrl+P)."
-msgstr ""
+msgstr "Správca profilov (Ctrl+P)."
 
 #: Synchronizer/synchronizergui.cpp:1362
-#, fuzzy
 msgid "Swap sides (Ctrl+S)."
-msgstr "Prehodiť strany."
+msgstr "Prehodiť strany (Ctrl+S)."
 
 #: Synchronizer/synchronizergui.cpp:1372
 msgid "Compare"
@@ -3995,44 +4026,36 @@ msgid "Synchronize"
 msgstr "Synchronizovať"
 
 #: Synchronizer/synchronizergui.cpp:1513
-#, fuzzy
 msgid "Selected files from targ&et directory:"
 msgstr "Označené súbory z cieľového priečinku:"
 
 #: Synchronizer/synchronizergui.cpp:1514
-#, fuzzy
 msgid "Selected files from sou&rce directory:"
 msgstr "Označené súbory zo zdrojového priečinku:"
 
 #: Synchronizer/synchronizergui.cpp:1518
-#, fuzzy
 msgid "Selected files from &left directory:"
 msgstr "Označené súbory z ľavého priečinku:"
 
 #: Synchronizer/synchronizergui.cpp:1519
-#, fuzzy
 msgid "Selected files from &right directory:"
 msgstr "Označené súbory z pravého priečinku:"
 
 #: Synchronizer/synchronizergui.cpp:1523
-#, fuzzy
 msgid "Targ&et directory:"
-msgstr "Cieľový priečinok:"
+msgstr "Ci&eľový priečinok"
 
 #: Synchronizer/synchronizergui.cpp:1524
-#, fuzzy
 msgid "Sou&rce directory:"
-msgstr "Zdrojový priečinok:"
+msgstr "Zd&rojový priečinok"
 
 #: Synchronizer/synchronizergui.cpp:1528
-#, fuzzy
 msgid "&Left directory:"
-msgstr "Ľavý priečinok:"
+msgstr "Ľa&vý priečinok:"
 
 #: Synchronizer/synchronizergui.cpp:1529
-#, fuzzy
 msgid "&Right directory:"
-msgstr "Pravý priečinok:"
+msgstr "&Pravý priečinok:"
 
 #: Synchronizer/synchronizergui.cpp:1564
 msgid "URL must be the descendant of either the left or the right base URL!"
@@ -4043,69 +4066,56 @@ msgid "Synchronize Directories"
 msgstr "Synchronizovať priečinky"
 
 #: Synchronizer/synchronizergui.cpp:1623
-#, fuzzy
 msgid "E&xclude"
-msgstr "Vylúčiť"
+msgstr "V&ylúčiť"
 
 #: Synchronizer/synchronizergui.cpp:1625
-#, fuzzy
 msgid "Restore ori&ginal operation"
-msgstr "Obnoviť pôvodnú operáciu"
+msgstr "Obnoviť pôv&odnú operáciu"
 
 #: Synchronizer/synchronizergui.cpp:1627
-#, fuzzy
 msgid "Re&verse direction"
-msgstr "Opačný smer"
+msgstr "Opačné po&radie"
 
 #: Synchronizer/synchronizergui.cpp:1629
-#, fuzzy
 msgid "Copy from &right to left"
-msgstr "Kopírovať sprava doľava"
+msgstr "Kopírovať sp&rava doľava"
 
 #: Synchronizer/synchronizergui.cpp:1631
-#, fuzzy
 msgid "Copy from &left to right"
-msgstr "Kopírovať zľava doprava"
+msgstr "Kopírovať zľa&va doprava"
 
 #: Synchronizer/synchronizergui.cpp:1633
-#, fuzzy
 msgid "&Delete (left single)"
 msgstr "Zmazať (nechať samotné)"
 
 #: Synchronizer/synchronizergui.cpp:1638
-#, fuzzy
 msgid "V&iew left file"
-msgstr "Zobraziť ľavý súbor"
+msgstr "Zobraziť ľ&avý súbor"
 
 #: Synchronizer/synchronizergui.cpp:1640
-#, fuzzy
 msgid "Vi&ew right file"
-msgstr "Zobraziť pravý súbor"
+msgstr "Zobraziť &pravý súbor"
 
 #: Synchronizer/synchronizergui.cpp:1642
-#, fuzzy
 msgid "&Compare Files"
-msgstr "Porovnať súbory"
+msgstr "&Porovnať súbory"
 
 #: Synchronizer/synchronizergui.cpp:1647
-#, fuzzy
 msgid "&Select items"
-msgstr "Zvoliť položky"
+msgstr "O&značiť položky"
 
 #: Synchronizer/synchronizergui.cpp:1649
-#, fuzzy
 msgid "Deselec&t items"
-msgstr "Odznačiť položky"
+msgstr "O&dznačiť položky"
 
 #: Synchronizer/synchronizergui.cpp:1651
-#, fuzzy
 msgid "I&nvert selection"
-msgstr "Obrátiť výber"
+msgstr "&Obrátiť výber"
 
 #: Synchronizer/synchronizergui.cpp:1662
-#, fuzzy
 msgid "Synchronize with &KGet"
-msgstr "Synchronizovať s KGet"
+msgstr "Synchronizovať s &KGet"
 
 #: Synchronizer/synchronizergui.cpp:1726
 msgid "Select items"
@@ -4124,6 +4134,8 @@ msgid ""
 "The synchronizer window contains data from a previous compare. If you exit, "
 "this data will be lost. Do you really want to exit?"
 msgstr ""
+"Okno Synchronizéra obsahuje dáta z prechádzajúceho porovnávania. Pokiaľ "
+"odídete, tieto dáta budú stretné. Skutočne chcete odísť?"
 
 #: Synchronizer/synchronizertask.cpp:132 Synchronizer/synchronizertask.cpp:139
 msgid "Error at opening %1!"
@@ -4197,14 +4209,12 @@ msgid "Confirm overwrites"
 msgstr "Potvrdiť prepisovanie"
 
 #: Synchronizer/synchronizedialog.cpp:110
-#, fuzzy
 msgid "&Start"
-msgstr "Štart"
+msgstr "&Spustiť"
 
 #: Synchronizer/synchronizedialog.cpp:114
-#, fuzzy
 msgid "&Pause"
-msgstr "Pauza"
+msgstr "&Pozastaviť"
 
 #: Synchronizer/synchronizedialog.cpp:158
 #: Synchronizer/synchronizedialog.cpp:161
@@ -4316,6 +4326,7 @@ msgid ""
 "<qt>The directory at <i>'%1'</i> will be <b>recursively</b> and "
 "<b>permanently</b> deleted!</qt>"
 msgstr ""
+"<qt>Priečinok <i>'%1'</i> bude <b>celý</b> a <b>natrvalo</b> zmazaný!</qt>"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:193
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted!</qt>"
@@ -4467,6 +4478,8 @@ msgid ""
 "Stepping into the parent directory requires loading the content of the \"%1"
 "\" URL. Do you wish to continue?"
 msgstr ""
+"Aby ste vkročili do rodičovského priečinku, je potrebné načítať obsah URL  "
+"\"%1\". Chcete pokračovať?"
 
 #: DiskUsage/diskusage.cpp:415
 msgid "Krusader::DiskUsage"
@@ -4696,9 +4709,8 @@ msgid "View the file in hex-mode (better for binary files)"
 msgstr "Zobraziť súbor iba v hexa režime (lepšie pre binárne súbory)"
 
 #: Konfigurator/kggeneral.cpp:104
-#, fuzzy
 msgid "Internal editor and viewer opens each file in a separate window"
-msgstr "Prehliadač otvorí každý súbor vo zvláštnom okne"
+msgstr "Interný editor a prehliadač otvorí každý súbor v samostatnom okne"
 
 #: Konfigurator/kggeneral.cpp:105
 msgid ""
@@ -4708,7 +4720,7 @@ msgstr ""
 
 #: Konfigurator/kggeneral.cpp:115
 msgid "Atomic extensions:"
-msgstr ""
+msgstr "Nedelené prípony:"
 
 #: Konfigurator/kggeneral.cpp:143
 msgid "Terminal:"
@@ -4745,11 +4757,11 @@ msgstr ""
 
 #: Konfigurator/kggeneral.cpp:195
 msgid "Add new atomic extension"
-msgstr ""
+msgstr "Pridá novú nedelenú príponu"
 
 #: Konfigurator/kggeneral.cpp:195
 msgid "Extension: "
-msgstr ""
+msgstr "Prípona:"
 
 #: Konfigurator/kggeneral.cpp:200
 msgid ""
@@ -5051,13 +5063,12 @@ msgstr ""
 "(rwxr-xr-x)  v stĺpci práva."
 
 #: Konfigurator/kglookfeel.cpp:172
-#, fuzzy
 msgid "Default panel type:"
-msgstr "Ľavý panel"
+msgstr "Štandardný typ panela:"
 
 #: Konfigurator/kglookfeel.cpp:175
 msgid "Brief"
-msgstr ""
+msgstr "Stručne"
 
 #: Konfigurator/kglookfeel.cpp:188
 msgid "Panel Toolbar"
