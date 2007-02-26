@@ -12,19 +12,18 @@ msgstr ""
 "Project-Id-Version: krusader-1.80.0-beta2\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2007-02-16 18:56+0100\n"
-"PO-Revision-Date: 2007-02-26 12:00+0100\n"
+"PO-Revision-Date: 2007-02-26 13:32+0100\n"
 "Last-Translator: Sasa Tomic <sasa.tomic.forwarded@gmail.com>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: GUI/dirhistorybutton.cpp:35
 msgid "Open the directory history list"
-msgstr ""
+msgstr "Отвори листу историје директоријума"
 
 #: GUI/krusaderstatus.cpp:39
 msgid "Ready."
@@ -365,8 +364,7 @@ msgstr ""
 
 #: VFS/virt_vfs.cpp:173
 msgid "Creating new directories is allowed only in the 'virt:/' directory."
-msgstr ""
-"Креирање нових директоријума је дозвољено једино у директоријуму „virt:/“."
+msgstr "Креирање нових директоријума је дозвољено једино у директоријуму „virt:/“."
 
 #: Filter/generalfilter.cpp:94 Konfigurator/konfigurator.cpp:107
 #: VFS/krquery.cpp:138
@@ -529,6 +527,11 @@ msgid ""
 "code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to "
 "'<code>*text*</code>'.</p>"
 msgstr ""
+"<p>Овде се дефинише критеријум за филтрирање фајлова.</p><p>Можете користити џокере. Вишеструки обрасци се раздвајају размаком (значи логичко ИЛИ) и обрасци се икључују из претраге користећи симбол пајпа ('|').</p><p>Ако се образац завршава са 'кроз' (<code>*образац*/</code>), то значи да је образац повезан са рекурзивном претрагом директоријума.<ul><li><code>образац</"
+"code> - значи претрагу оних фајлова/директоријума чије име је <code>образац</code>, рекурзивна претрага пролази кроз све поддиректоријуме независно од вредности <code>образац</code></li><li><code>образац/</code> - значи да се претражују сви фајлови/директоријуми, али рекурзивна претрага искључује директоријуме чије име је <code>образац</code></li></ul><p></p><p>Дозвољено је користити наводнике за имена која садрже размак. Филтер <code>"
+"\"Program&nbsp;Files\"</code> претражује оне фајлове/директоријуме чије име је <code>Program&nbsp;Files</code>.</p><p>Примери:<ul><code><li>*.o</"
+"li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</li></"
+"code></ul><b>Напомена</b>: термин претраживања '<code>text</code>' је еквивалентан са '<code>*text*</code>'.</p>"
 
 #: Filter/generalfilter.cpp:86
 msgid "&Of type:"
@@ -1863,8 +1866,7 @@ msgstr "Резултати"
 
 #: Locate/locate.cpp:195
 msgid "Can't start 'locate'! Check the 'Dependencies' page in konfigurator."
-msgstr ""
-"Не могу да покренем „locate“! Проверите страницу „Зависности“ у подешавањима."
+msgstr "Не могу да покренем „locate“! Проверите страницу „Зависности“ у подешавањима."
 
 #: Locate/locate.cpp:232
 msgid ""
@@ -1922,8 +1924,7 @@ msgstr "Овде можете именовати колекцију фајлов
 
 #: krusader.cpp:339
 msgid "Statusbar will show basic information about file below mouse pointer."
-msgstr ""
-"Статусна трака приказује основне информације о фајлу испод показивача миша."
+msgstr "Статусна трака приказује основне информације о фајлу испод показивача миша."
 
 #: krusader.cpp:419
 msgid ""
@@ -2610,8 +2611,7 @@ msgstr ""
 "Контактирајте програмере"
 
 #: MountMan/kmountmangui.cpp:326
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Менаџер монтирања је наишао на унутрашњу грешку. Молимо вас обавестите "
 "програмере. Хвала вам."
@@ -2895,8 +2895,7 @@ msgstr "&Откажи"
 
 #: Dialogs/popularurls.cpp:62
 msgid "Saved 'Popular Urls' are invalid. List will be cleared"
-msgstr ""
-"Снимљена листа „Популарни URL-ови“ је неисправна. Листа ће бити избрисана."
+msgstr "Снимљена листа „Популарни URL-ови“ је неисправна. Листа ће бити избрисана."
 
 #: Dialogs/popularurls.cpp:230
 msgid "Popular Urls"
@@ -2983,8 +2982,7 @@ msgid "Legacy import completed"
 msgstr "Увоз старог формата завршен"
 
 #: Dialogs/krkeydialog.cpp:134
-msgid ""
-"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
 msgstr ""
 "<qt>Фајл <b>%1</b> већ постоји. Да ли заиста желите да упишете преко њега?</"
 "qt>"
@@ -3306,8 +3304,7 @@ msgid "Delete selected useractions"
 msgstr "Уклони изабране корисничке акције"
 
 #: ActionMan/useractionpage.cpp:126
-msgid ""
-"The current action has been modified. Do you want to apply these changes?"
+msgid "The current action has been modified. Do you want to apply these changes?"
 msgstr "Тренутна акције је измењена. Да ли желите да примените измене?"
 
 #: ActionMan/useractionpage.cpp:203
@@ -3824,9 +3821,8 @@ msgid "Directory Comparison"
 msgstr "Поређење директоријума"
 
 #: Synchronizer/synchronizergui.cpp:1066
-#, fuzzy
 msgid "File &Filter:"
-msgstr "Фајл филтер:"
+msgstr "Фајл &филтер:"
 
 #: Synchronizer/synchronizergui.cpp:1088
 msgid "The left base directory used during the synchronisation process."
@@ -3902,34 +3898,28 @@ msgstr ""
 "p>"
 
 #: Synchronizer/synchronizergui.cpp:1151
-#, fuzzy
 msgid "S&how options"
-msgstr "Прикажи опције"
+msgstr "При&кажи опције"
 
 #: Synchronizer/synchronizergui.cpp:1172
-#, fuzzy
 msgid "Show files marked to <i>Copy from left to right</i> (CTRL+L)."
-msgstr "Листа фајлове означене за <i>копирање са лева на десно</i>."
+msgstr "Листа фајлове означене за <i>копирање са лева на десно</i> (CTRL+L)."
 
 #: Synchronizer/synchronizergui.cpp:1181
-#, fuzzy
 msgid "Show files considered to be identical (CTRL+E)."
-msgstr "Листа фајлове за које се сматра да су идентични."
+msgstr "Листа фајлове за које се сматра да су идентични (CTRL+E)."
 
 #: Synchronizer/synchronizergui.cpp:1190
-#, fuzzy
 msgid "Show excluded files (CTRL+D)."
-msgstr "Листа изузете фајлове."
+msgstr "Листа изузете фајлове (CTRL+D)."
 
 #: Synchronizer/synchronizergui.cpp:1199
-#, fuzzy
 msgid "Show files marked to <i>Copy from right to left</i> (CTRL+R)."
-msgstr "Листа фајлове означене за <i>копирање са десна на лево</i>"
+msgstr "Листа фајлове означене за <i>копирање са десна на лево</i> (CTRL+R)."
 
 #: Synchronizer/synchronizergui.cpp:1208
-#, fuzzy
 msgid "Show files marked to delete. (CTRL+T)"
-msgstr "Листа фајлове означене за брисање."
+msgstr "Листа фајлове означене за брисање. (CTRL+T)"
 
 #: Synchronizer/synchronizergui.cpp:1212
 msgid "Duplicates"
@@ -3949,7 +3939,7 @@ msgstr "Листа оне фајлове који постоје само на �
 
 #: Synchronizer/synchronizergui.cpp:1233
 msgid "The compare results of the synchronizer (CTRL+M)."
-msgstr ""
+msgstr "Резултати упоређивања из усаглашавача (CTRL+M)."
 
 #: Synchronizer/synchronizergui.cpp:1265
 msgid "<=>"
@@ -3993,12 +3983,11 @@ msgstr "Тотални померај (десно-лево):"
 
 #: Synchronizer/synchronizergui.cpp:1355
 msgid "Profile manager (Ctrl+P)."
-msgstr ""
+msgstr "Менаџер профила (Ctrl+P)."
 
 #: Synchronizer/synchronizergui.cpp:1362
-#, fuzzy
 msgid "Swap sides (Ctrl+S)."
-msgstr "Замени стране."
+msgstr "Замени стране (Ctrl+S)."
 
 #: Synchronizer/synchronizergui.cpp:1372
 msgid "Compare"
@@ -4017,44 +4006,36 @@ msgid "Synchronize"
 msgstr "Усклади"
 
 #: Synchronizer/synchronizergui.cpp:1513
-#, fuzzy
 msgid "Selected files from targ&et directory:"
-msgstr "Изабрани фајлови из одредишног директоријума:"
+msgstr "Изабрани фајлови из &циљног директоријума:"
 
 #: Synchronizer/synchronizergui.cpp:1514
-#, fuzzy
 msgid "Selected files from sou&rce directory:"
-msgstr "Изабрани фајлови из изворишног директоријума:"
+msgstr "Изабрани фајлови из из&воришног директоријума:"
 
 #: Synchronizer/synchronizergui.cpp:1518
-#, fuzzy
 msgid "Selected files from &left directory:"
-msgstr "Изабрани фајлови из левог директоријума:"
+msgstr "Изабрани фајлови из &левог директоријума:"
 
 #: Synchronizer/synchronizergui.cpp:1519
-#, fuzzy
 msgid "Selected files from &right directory:"
-msgstr "Изабрани фајлови из десног директоријума:"
+msgstr "Изабрани фајлови из &десног директоријума:"
 
 #: Synchronizer/synchronizergui.cpp:1523
-#, fuzzy
 msgid "Targ&et directory:"
-msgstr "Циљни директоријум:"
+msgstr "&Циљни директоријум:"
 
 #: Synchronizer/synchronizergui.cpp:1524
-#, fuzzy
 msgid "Sou&rce directory:"
-msgstr "Изворни директоријум:"
+msgstr "Из&ворни директоријум:"
 
 #: Synchronizer/synchronizergui.cpp:1528
-#, fuzzy
 msgid "&Left directory:"
-msgstr "Леви директоријум:"
+msgstr "&Леви директоријум:"
 
 #: Synchronizer/synchronizergui.cpp:1529
-#, fuzzy
 msgid "&Right directory:"
-msgstr "Десни директоријум:"
+msgstr "&Десни директоријум:"
 
 #: Synchronizer/synchronizergui.cpp:1564
 msgid "URL must be the descendant of either the left or the right base URL!"
@@ -4065,69 +4046,56 @@ msgid "Synchronize Directories"
 msgstr "Усклади директоријуме"
 
 #: Synchronizer/synchronizergui.cpp:1623
-#, fuzzy
 msgid "E&xclude"
-msgstr "Изузми"
+msgstr "&Изузми"
 
 #: Synchronizer/synchronizergui.cpp:1625
-#, fuzzy
 msgid "Restore ori&ginal operation"
-msgstr "Врати оригиналну операцију"
+msgstr "Врати ори&гиналну операцију"
 
 #: Synchronizer/synchronizergui.cpp:1627
-#, fuzzy
 msgid "Re&verse direction"
-msgstr "Супротан смер"
+msgstr "Су&протан смер"
 
 #: Synchronizer/synchronizergui.cpp:1629
-#, fuzzy
 msgid "Copy from &right to left"
-msgstr "Копирај с десна на лево"
+msgstr "Копирај с &десна на лево"
 
 #: Synchronizer/synchronizergui.cpp:1631
-#, fuzzy
 msgid "Copy from &left to right"
-msgstr "Копирај с лева на десно"
+msgstr "Копирај с &лева на десно"
 
 #: Synchronizer/synchronizergui.cpp:1633
-#, fuzzy
 msgid "&Delete (left single)"
-msgstr "Обриши (леви јединствени)"
+msgstr "О&бриши (леви јединствени)"
 
 #: Synchronizer/synchronizergui.cpp:1638
-#, fuzzy
 msgid "V&iew left file"
-msgstr "Прегледај леви фајл"
+msgstr "Пре&гледај леви фајл"
 
 #: Synchronizer/synchronizergui.cpp:1640
-#, fuzzy
 msgid "Vi&ew right file"
-msgstr "Прегледај десни фајл"
+msgstr "Прегл&едај десни фајл"
 
 #: Synchronizer/synchronizergui.cpp:1642
-#, fuzzy
 msgid "&Compare Files"
-msgstr "Упореди фајлове"
+msgstr "&Упореди фајлове"
 
 #: Synchronizer/synchronizergui.cpp:1647
-#, fuzzy
 msgid "&Select items"
-msgstr "Означи ставке"
+msgstr "&Означи ставке"
 
 #: Synchronizer/synchronizergui.cpp:1649
-#, fuzzy
 msgid "Deselec&t items"
-msgstr "Поништи избор"
+msgstr "Пониш&ти избор"
 
 #: Synchronizer/synchronizergui.cpp:1651
-#, fuzzy
 msgid "I&nvert selection"
-msgstr "Изврни избор"
+msgstr "И&зврни избор"
 
 #: Synchronizer/synchronizergui.cpp:1662
-#, fuzzy
 msgid "Synchronize with &KGet"
-msgstr "Усклади са KGet-ом"
+msgstr "Усклади са &KGet-ом"
 
 #: Synchronizer/synchronizergui.cpp:1726
 msgid "Select items"
@@ -4145,7 +4113,7 @@ msgstr "Усаглашавач нема шта да ради!"
 msgid ""
 "The synchronizer window contains data from a previous compare. If you exit, "
 "this data will be lost. Do you really want to exit?"
-msgstr ""
+msgstr "Прозор усклађивача садржи податке из претходног упоређивања. Ако изађете, ови подаци ће бити изгубљени. Да ли заиста желите да изађете?"
 
 #: Synchronizer/synchronizertask.cpp:132 Synchronizer/synchronizertask.cpp:139
 msgid "Error at opening %1!"
@@ -4219,14 +4187,12 @@ msgid "Confirm overwrites"
 msgstr "Потврди упис преко"
 
 #: Synchronizer/synchronizedialog.cpp:110
-#, fuzzy
 msgid "&Start"
-msgstr "Почни"
+msgstr "По&чни"
 
 #: Synchronizer/synchronizedialog.cpp:114
-#, fuzzy
 msgid "&Pause"
-msgstr "Паузирај"
+msgstr "Пау&зирај"
 
 #: Synchronizer/synchronizedialog.cpp:158
 #: Synchronizer/synchronizedialog.cpp:161
@@ -4679,8 +4645,7 @@ msgstr "Користи магију MIME типова"
 
 #: Konfigurator/kggeneral.cpp:69
 msgid "Mimetype magic allows better distinction of file types, but is slower."
-msgstr ""
-"Магија MIME типова омогућава боље разликовање типова фајлова, али је спорија."
+msgstr "Магија MIME типова омогућава боље разликовање типова фајлова, али је спорија."
 
 #: Konfigurator/kggeneral.cpp:76
 msgid "Editor:"
@@ -4767,10 +4732,8 @@ msgid "Searching for tools..."
 msgstr "Тражим алате..."
 
 #: Konfigurator/kggeneral.cpp:187
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr ""
-"Уверите се да инсталирате нове алате у ваш <code>$PATH</code> (нпр. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgstr "Уверите се да инсталирате нове алате у ваш <code>$PATH</code> (нпр. /usr/bin)"
 
 #: Konfigurator/kggeneral.cpp:195
 msgid "Add new atomic extension"
@@ -5163,8 +5126,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Дугме за синхронизовано прегледање."
 
 #: Konfigurator/kglookfeel.cpp:214
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr "Свака промена директоријума у панелу односи се и на други панел."
 
 #: Konfigurator/kglookfeel.cpp:234
@@ -5409,8 +5371,7 @@ msgstr ""
 "b>-у, покушај да је монтираш са дефинисаним параметрима."
 
 #: Konfigurator/kgadvanced.cpp:65
-msgid ""
-"Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
 msgstr ""
 "Не користи KDE-ов протокол медија за дугме медија (ако је баговит или "
 "недостаје)"
@@ -6069,18 +6030,15 @@ msgid "Test archive before unpacking"
 msgstr "Испробај архиву пре распакивања"
 
 #: Konfigurator/kgarchives.cpp:96
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
-msgstr ""
-"Неке оштећене архиве могу изазвати рушење; стога, тестирање се препоручује."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgstr "Неке оштећене архиве могу изазвати рушење; стога, тестирање се препоручује."
 
 #: Konfigurator/kgarchives.cpp:113
 msgid "Searching for packers..."
 msgstr "Тражим архивере..."
 
 #: Konfigurator/kgarchives.cpp:114
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Уверите се да инсталирате нове архивере у ваш <code>$PATH</code> (нпр. /usr/"
 "bin)"
@@ -6189,8 +6147,7 @@ msgstr ""
 
 #: krslots.cpp:472
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
-msgstr ""
-"Не могу да покренем „mount“! Проверите страницу „Зависности“ у Подешавањима."
+msgstr "Не могу да покренем „mount“! Проверите страницу „Зависности“ у Подешавањима."
 
 #: krslots.cpp:504
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
@@ -6349,8 +6306,7 @@ msgid "Not a valid CRC file!"
 msgstr "Није исправан CRC фајл!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Проверавање исправности је немогуће без доброг CRC фајла. Да наставим са "
 "спајањем?"
@@ -6391,17 +6347,3 @@ msgstr "Грешка при читању фајла %1!"
 msgid "Error at writing file %1!"
 msgstr "Грешка при писању фајла %1!"
 
-#~ msgid ""
-#~ "<p>The filename filtering criteria is defined here.</p><p>You can make "
-#~ "use of wildcards. Multiple patterns are separated by space and patterns "
-#~ "are excluded from the search using the pipe symbol.</p><p>Examples:"
-#~ "<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</"
-#~ "li><li>* | CVS/ .svn/</li></code></ul><b>Note</b>: the search term "
-#~ "'<code>text</code>' is equivalent to '<code>*text*</code>'.</p>"
-#~ msgstr ""
-#~ "<p>Овде се дефинише критеријум филтрирања имена фајла. </p><p> Можете "
-#~ "користити џокере. Вишеструке шеме се раздвајају размаком и шеме се "
-#~ "искључују из претраге користећи пајп симбол (усправна црта). <p><p> "
-#~ "Примери:<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h | *.moc."
-#~ "cpp</li></code></ul><b>Напомена</b>: термин претраживања '<code>текст</"
-#~ "code>' је еквивалентан са '<code>*текст*</code>'.</p>"
