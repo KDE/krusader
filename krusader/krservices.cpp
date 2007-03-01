@@ -87,11 +87,12 @@ QString KrServices::fullPathName( QString name, QString confName )
   return supposedName;
 }
 
+// TODO: Document me!
 QStringList KrServices::separateArgs( QString args )
 {
   QStringList argList;
   int   pointer = 0, tokenStart, len = args.length();
-  bool  quoted = false, slashed = false;
+  bool  quoted = false;
   QChar quoteCh;
 
   do{
@@ -105,33 +106,26 @@ QStringList KrServices::separateArgs( QString args )
 
       QString result="";
       
-      while( pointer < len && ( quoted || slashed || !args[ pointer ].isSpace()) )
+      for(; pointer < len && ( quoted || !args[ pointer ].isSpace()) ; pointer++)
       {
-        slashed = false;
-        
-        if( !quoted && ( args[pointer] == '"' || args[pointer] == '\'' ) )
+        if( !quoted && ( args[pointer] == '"' || args[pointer] == '\'' ) ) {
           quoted = true, quoteCh = args[pointer];
-        else if( quoted && args[pointer] == quoteCh )
+          continue;
+        }
+        else if( quoted && args[pointer] == quoteCh ) {
           quoted = false;
+          continue;
+        }
         else if( !quoted && args[pointer] == '\\' )
         {
           pointer++;
-          slashed = true;
-          continue;
+          if(pointer>=len) break;
         }
 
         result += args[pointer];        
-        pointer++;
       }
 
-      result = result.stripWhiteSpace();
-      if( result.startsWith( "'" ) && result.endsWith( "'" ) )
-        result = result.mid( 1, result.length()-2 );
-      else if( result.startsWith( "\"" ) && result.endsWith( "\"" ) )
-        result = result.mid( 1, result.length()-2 );
-
-      if( !result.isEmpty() )
-        argList.append( result );
+      argList.append( result );
       
     }while( pointer < len );
     
@@ -188,7 +182,7 @@ QStringList KrServices::quote( const QStringList& names ) {
 }
 
 QString KrServices::escape( QString name ) {
-  const QString evilstuff = "\\\"'`()[]{}!?;$&<>| ";		// stuff that should get escaped
+  const QString evilstuff = "\\\"'`()[]{}!?;$&<>| \t\r\n";		// stuff that should get escaped
      
     for ( unsigned int i = 0; i < evilstuff.length(); ++i )
         name.replace( evilstuff[ i ], ('\\' + evilstuff[ i ]) );
