@@ -81,7 +81,7 @@ DiskUsageGUI::DiskUsageGUI( KURL openDir, QWidget* parent, const char *name )
   QToolTip::add( btnDetailed, i18n( "Detailed view" ) );
 
   btnFilelight = new QToolButton( duTools, "btnFilelight" );
-  btnFilelight->setIconSet( QIconSet(krLoader->loadIcon("none",KIcon::Desktop)) );
+  btnFilelight->setIconSet( QIconSet(krLoader->loadIcon("kr_diskusage",KIcon::Desktop)) );
   btnFilelight->setToggleButton( true );
   QToolTip::add( btnFilelight, i18n( "Filelight view" ) );
     
