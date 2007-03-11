@@ -66,7 +66,7 @@ private:
  */
 class ParameterBase : public QWidget {
 public:
-   inline ParameterBase( exp_parameter* parameter, QWidget* parent ) : QWidget( parent ) { _nessesary = parameter->nessesary(); }
+   inline ParameterBase( const exp_parameter& parameter, QWidget* parent ) : QWidget( parent ) { _nessesary = parameter.nessesary(); }
    /**
     * @return the text for the parameter
     */
@@ -92,12 +92,12 @@ private:
 };
 
 /**
- *  The simples Parameter widgets: a line-edit with the description above
+ *  The simple Parameter widgets: a line-edit with the description above
  *  used by default
  */
 class ParameterText : public ParameterBase {
 public:
-   ParameterText( exp_parameter* parameter, QWidget* parent );
+   ParameterText( const exp_parameter& parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -114,7 +114,7 @@ private:
 class ParameterPlaceholder : public ParameterBase {
 Q_OBJECT
 public:
-   ParameterPlaceholder( exp_parameter* parameter, QWidget* parent );
+   ParameterPlaceholder( const exp_parameter& parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -132,7 +132,7 @@ private slots:
  */
 class ParameterYes : public ParameterBase {
 public:
-   ParameterYes( exp_parameter* parameter, QWidget* parent );
+   ParameterYes( const exp_parameter& parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -147,7 +147,7 @@ private:
  */
 class ParameterNo : public ParameterBase {
 public:
-   ParameterNo( exp_parameter* parameter, QWidget* parent );
+   ParameterNo( const exp_parameter& parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -163,7 +163,7 @@ private:
 class ParameterFile : public ParameterBase {
 Q_OBJECT
 public:
-   ParameterFile( exp_parameter* parameter, QWidget* parent );
+   ParameterFile( const exp_parameter& parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -181,7 +181,7 @@ private slots:
  */
 class ParameterChoose : public ParameterBase {
 public:
-   ParameterChoose( exp_parameter* parameter, QWidget* parent );
+   ParameterChoose( const exp_parameter& parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -196,7 +196,7 @@ private:
  */
 class ParameterSelect : public ParameterBase {
 public:
-   ParameterSelect( exp_parameter* parameter, QWidget* parent );
+   ParameterSelect( const exp_parameter& parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -212,7 +212,7 @@ private:
 class ParameterGoto : public ParameterBase {
 Q_OBJECT
 public:
-   ParameterGoto( exp_parameter* parameter, QWidget* parent );
+   ParameterGoto( const exp_parameter& parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -231,7 +231,7 @@ private slots:
  */
 class ParameterSyncprofile : public ParameterBase {
 public:
-   ParameterSyncprofile( exp_parameter* parameter, QWidget* parent );
+   ParameterSyncprofile( const exp_parameter& parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -246,7 +246,7 @@ private:
  */
 class ParameterPanelprofile : public ParameterBase {
 public:
-   ParameterPanelprofile( exp_parameter* parameter, QWidget* parent );
+   ParameterPanelprofile( const exp_parameter& parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -261,7 +261,7 @@ private:
  */
 class ParameterSearch : public ParameterBase {
 public:
-   ParameterSearch( exp_parameter* parameter, QWidget* parent );
+   ParameterSearch( const exp_parameter& parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -276,7 +276,7 @@ private:
  */
 class ParameterInt : public ParameterBase {
 public:
-   ParameterInt( exp_parameter* parameter, QWidget* parent );
+   ParameterInt( const exp_parameter& parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -297,7 +297,7 @@ private:
 class ParameterDialog : public KDialogBase {
 Q_OBJECT
 public:
-   ParameterDialog( exp_placeholder* currentPlaceholder, QWidget *parent );
+   ParameterDialog( const exp_placeholder* currentPlaceholder, QWidget *parent );
    
    /**
     * Use this to execute the dialog.

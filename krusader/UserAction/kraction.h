@@ -16,7 +16,7 @@
 #include <kaction.h>
 #include <kprocess.h>
 #include <kdialogbase.h>
-
+#include "kractionbase.h"
 
 class UserActionProperties;
 class QTextEdit;
@@ -28,7 +28,7 @@ class QDomDocument;
  * This subclass of KAction extends it with an individual executor and a struct UserActionProperties. It is used to integrate useractions into KDE's KAction-System
  * @author Jonas Bähr (http://www.jonas-baehr.de)
  */
-class KrAction: public KAction {
+class KrAction: public KAction, public KrActionBase {
    Q_OBJECT
    public:
       KrAction( KActionCollection *parent, const char* name );
@@ -58,7 +58,6 @@ class KrAction: public KAction {
       QString startpath() const { return _startpath; };
       void setStartpath( const QString& startpath ) { _startpath = startpath; };
 
-      enum ExecType { Normal, Terminal, CollectOutput, CollectOutputSeparateStderr };
       ExecType execType() const { return _execType; };
       void setExecType( ExecType execType ) { _execType = execType; };
 
@@ -80,11 +79,19 @@ class KrAction: public KAction {
       QStringList showonlyFile() const { return _showonlyFile; };
       void setShowonlyFile( const QStringList& showonlyFile ) { _showonlyFile = showonlyFile; };
 
+      bool doSubstitution() const {
+        return true;
+      }
+
+      QString text() const {
+        return KAction::text();
+      }
+
    public slots:
-      /**
-       * connected to KAction's activated signal
-       */
-      void exec();
+    void exec() {
+      KrActionBase::exec();
+    }
+
 
    private:
       void readCommand( const QDomElement& element );
@@ -109,7 +116,7 @@ class KrAction: public KAction {
 
 class QFont;
 /**
- * This diesplays the output of a process
+ * This displays the output of a process
  * @author Shie Erlich, Jonas Bähr
  */
 class KrActionProcDlg: public KDialogBase {
@@ -139,8 +146,8 @@ class KrActionProc: public QObject {
       Q_OBJECT
    public:
 
-      KrActionProc( KrAction* action );
-      ~KrActionProc();
+      KrActionProc( KrActionBase* action );
+      virtual ~KrActionProc();
       void start( QString cmdLine );
       void start( QStringList cmdLineList );
 
@@ -149,7 +156,7 @@ class KrActionProc: public QObject {
       void processExited( KProcess *proc );
 
    private:
-      KrAction* _action;
+      KrActionBase* _action;
       KProcess *_proc;
       QString _stdout;
       QString _stderr;

@@ -8,5 +8,12 @@ INCLUDES = $(all_includes)
 
 libUserAction_a_METASOURCES = AUTO
 
-libUserAction_a_SOURCES = useraction.cpp kraction.cpp expander.cpp \
-	useractionpopupmenu.cpp
+libUserAction_a_SOURCES = useraction.cpp \
+	kraction.cpp \
+	expander.cpp \
+	useractionpopupmenu.cpp \
+	kractionbase.cpp
+
+
+METASOURCES = AUTO
+noinst_HEADERS = tstring.h

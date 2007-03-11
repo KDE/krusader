@@ -7,6 +7,11 @@
 - extension to the ChangeLog.
 ------------------------------------------------------------------------
 
+UserActions: Expander: Many fixes, better error handling, sensible %_Each&-handling
+  Finaly I manages to implement Jiris 100K patch for the useractions. This patch
+  handles the Each-placeholder much better (i.e. allows Each inside Copy and can deal
+  with multiple Each's) and provides a good base for future extensions. Thanks a lot!
+
 New feature: atomic extension. 
   - Extensions known to be atomic (like tar.gz)
     are now handled properly both in the panel and during rename. The list of 

@@ -102,7 +102,7 @@ QString AddPlaceholderPopup::getPlaceholder( const QPoint& pos ) {
          //return filename; // without extra space
    } else { // user selected something from the menus
       Expander expander;
-      exp_placeholder* currentPlaceholder = expander.placeholder( res & ~( ACTIVE_MASK | OTHER_MASK | LEFT_MASK | RIGHT_MASK | INDEPENDENT_MASK ) );
+      const exp_placeholder* currentPlaceholder = expander.placeholder( res & ~( ACTIVE_MASK | OTHER_MASK | LEFT_MASK | RIGHT_MASK | INDEPENDENT_MASK ) );
 //       if ( &currentPlaceholder->expFunc == 0 ) {
 //          KMessageBox::sorry( this, "BOFH Excuse #93:\nFeature not yet implemented" );
 //          return QString::null;
@@ -132,7 +132,7 @@ QString AddPlaceholderPopup::getPlaceholder( const QPoint& pos ) {
 /////////////////////////////// ParameterDialog ////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-ParameterDialog::ParameterDialog( exp_placeholder* currentPlaceholder, QWidget *parent ) : KDialogBase( Plain, i18n("User Action Parameter Dialog"), Default | Ok, Ok, parent ) {
+ParameterDialog::ParameterDialog( const exp_placeholder* currentPlaceholder, QWidget *parent ) : KDialogBase( Plain, i18n("User Action Parameter Dialog"), Default | Ok, Ok, parent ) {
    _parameter.clear();
    _parameterCount = currentPlaceholder->parameterCount();
    
@@ -143,27 +143,27 @@ ParameterDialog::ParameterDialog( exp_placeholder* currentPlaceholder, QWidget *
    new QLabel( i18n("This placeholder allows some parameter:"), plainPage(), "intro" );
    
    for (int i = 0; i < _parameterCount; ++i ) {
-      if ( currentPlaceholder->parameter( i )->preset() == "__placeholder" )
+      if ( currentPlaceholder->parameter( i ).preset() == "__placeholder" )
          _parameter.append( new ParameterPlaceholder( currentPlaceholder->parameter( i ), plainPage() ) );
-      else if ( currentPlaceholder->parameter( i )->preset() == "__yes" )
+      else if ( currentPlaceholder->parameter( i ).preset() == "__yes" )
          _parameter.append( new ParameterYes( currentPlaceholder->parameter( i ), plainPage() ) );
-      else if ( currentPlaceholder->parameter( i )->preset() == "__no" )
+      else if ( currentPlaceholder->parameter( i ).preset() == "__no" )
          _parameter.append( new ParameterNo( currentPlaceholder->parameter( i ), plainPage() ) );
-      else if ( currentPlaceholder->parameter( i )->preset() == "__file" )
+      else if ( currentPlaceholder->parameter( i ).preset() == "__file" )
          _parameter.append( new ParameterFile( currentPlaceholder->parameter( i ), plainPage() ) );
-      else if ( currentPlaceholder->parameter( i )->preset().find( "__choose" ) != -1 )
+      else if ( currentPlaceholder->parameter( i ).preset().find( "__choose" ) != -1 )
          _parameter.append( new ParameterChoose( currentPlaceholder->parameter( i ), plainPage() ) );
-      else if ( currentPlaceholder->parameter( i )->preset() == "__select" )
+      else if ( currentPlaceholder->parameter( i ).preset() == "__select" )
          _parameter.append( new ParameterSelect( currentPlaceholder->parameter( i ), plainPage() ) );
-      else if ( currentPlaceholder->parameter( i )->preset() == "__goto" )
+      else if ( currentPlaceholder->parameter( i ).preset() == "__goto" )
          _parameter.append( new ParameterGoto( currentPlaceholder->parameter( i ), plainPage() ) );
-      else if ( currentPlaceholder->parameter( i )->preset() == "__syncprofile" )
+      else if ( currentPlaceholder->parameter( i ).preset() == "__syncprofile" )
          _parameter.append( new ParameterSyncprofile( currentPlaceholder->parameter( i ), plainPage() ) );
-      else if ( currentPlaceholder->parameter( i )->preset() == "__searchprofile" )
+      else if ( currentPlaceholder->parameter( i ).preset() == "__searchprofile" )
          _parameter.append( new ParameterSearch( currentPlaceholder->parameter( i ), plainPage() ) );
-      else if ( currentPlaceholder->parameter( i )->preset() == "__panelprofile" )
+      else if ( currentPlaceholder->parameter( i ).preset() == "__panelprofile" )
          _parameter.append( new ParameterPanelprofile( currentPlaceholder->parameter( i ), plainPage() ) );
-      else if ( currentPlaceholder->parameter( i )->preset().find( "__int" ) != -1 )
+      else if ( currentPlaceholder->parameter( i ).preset().find( "__int" ) != -1 )
          _parameter.append( new ParameterInt( currentPlaceholder->parameter( i ), plainPage() ) );
       else
          _parameter.append( new ParameterText( currentPlaceholder->parameter( i ), plainPage() ) );
@@ -219,14 +219,14 @@ void ParameterDialog::slotOk() {
 }
 
 ///////////// ParameterText
-ParameterText::ParameterText( exp_parameter* parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
+ParameterText::ParameterText( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
    QVBoxLayout* layout = new QVBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter->description(), this );
-   _lineEdit = new KLineEdit( parameter->preset(), this );
-   _preset = parameter->preset();
+   new QLabel( parameter.description(), this );
+   _lineEdit = new KLineEdit( parameter.preset(), this );
+   _preset = parameter.preset();
 }
 
 QString ParameterText::text() {
@@ -246,12 +246,12 @@ bool ParameterText::valid() {
 } 
 
 ///////////// ParameterPlaceholder
-ParameterPlaceholder::ParameterPlaceholder( exp_parameter* parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
+ParameterPlaceholder::ParameterPlaceholder( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
    QVBoxLayout* layout = new QVBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter->description(), this );
+   new QLabel( parameter.description(), this );
    QHBox * hbox = new QHBox( this );
    hbox->setSpacing( 6 );
    _lineEdit = new KLineEdit( hbox );
@@ -283,12 +283,12 @@ void ParameterPlaceholder::addPlaceholder() {
 }
 
 ///////////// ParameterYes
-ParameterYes::ParameterYes( exp_parameter* parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
+ParameterYes::ParameterYes( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
    QVBoxLayout* layout = new QVBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   _checkBox = new QCheckBox( parameter->description(), this );
+   _checkBox = new QCheckBox( parameter.description(), this );
    _checkBox->setChecked( true );
 }
 
@@ -309,12 +309,12 @@ bool ParameterYes::valid() {
 } 
 
 ///////////// ParameterNo
-ParameterNo::ParameterNo( exp_parameter* parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
+ParameterNo::ParameterNo( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
    QVBoxLayout* layout = new QVBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   _checkBox = new QCheckBox( parameter->description(), this );
+   _checkBox = new QCheckBox( parameter.description(), this );
    _checkBox->setChecked( false );
 }
 
@@ -335,12 +335,12 @@ bool ParameterNo::valid() {
 } 
 
 ///////////// ParameterFile
-ParameterFile::ParameterFile( exp_parameter* parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
+ParameterFile::ParameterFile( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
    QVBoxLayout* layout = new QVBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter->description(), this );
+   new QLabel( parameter.description(), this );
    QHBox * hbox = new QHBox( this );
    hbox->setSpacing( 6 );
    _lineEdit = new KLineEdit( hbox );
@@ -371,14 +371,14 @@ void ParameterFile::addFile() {
 }
 
 ///////////// ParameterChoose
-ParameterChoose::ParameterChoose( exp_parameter* parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
+ParameterChoose::ParameterChoose( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
    QVBoxLayout* layout = new QVBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter->description(), this );
+   new QLabel( parameter.description(), this );
    _combobox = new KComboBox( this );
-   _combobox->insertStringList( QStringList::split( ";", parameter->preset().section(":", 1) ) );
+   _combobox->insertStringList( QStringList::split( ";", parameter.preset().section(":", 1) ) );
 }
 
 QString ParameterChoose::text() {
@@ -395,12 +395,12 @@ bool ParameterChoose::valid() {
 } 
 
 ///////////// ParameterSelect
-ParameterSelect::ParameterSelect( exp_parameter* parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
+ParameterSelect::ParameterSelect( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
    QVBoxLayout* layout = new QVBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter->description(), this );
+   new QLabel( parameter.description(), this );
    _combobox = new KComboBox( this );
    _combobox->setEditable( true );
    
@@ -427,12 +427,12 @@ bool ParameterSelect::valid() {
 } 
 
 ///////////// ParameterGoto
-ParameterGoto::ParameterGoto( exp_parameter* parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
+ParameterGoto::ParameterGoto( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
    QVBoxLayout* layout = new QVBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter->description(), this );
+   new QLabel( parameter.description(), this );
    QHBox * hbox = new QHBox( this );
    hbox->setSpacing( 6 );
    _lineEdit = new KLineEdit( hbox );
@@ -473,12 +473,12 @@ void ParameterGoto::addPlaceholder() {
 }
 
 ///////////// ParameterSyncprofile
-ParameterSyncprofile::ParameterSyncprofile( exp_parameter* parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
+ParameterSyncprofile::ParameterSyncprofile( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
    QVBoxLayout* layout = new QVBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter->description(), this );
+   new QLabel( parameter.description(), this );
    _combobox = new KComboBox( this );
    
    _combobox->insertStringList( ProfileManager::availableProfiles("SynchronizerProfile") );
@@ -498,12 +498,12 @@ bool ParameterSyncprofile::valid() {
 } 
 
 ///////////// ParameterSearch
-ParameterSearch::ParameterSearch( exp_parameter* parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
+ParameterSearch::ParameterSearch( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
    QVBoxLayout* layout = new QVBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter->description(), this );
+   new QLabel( parameter.description(), this );
    _combobox = new KComboBox( this );
    
    _combobox->insertStringList( ProfileManager::availableProfiles("SearcherProfile") );
@@ -523,12 +523,12 @@ bool ParameterSearch::valid() {
 } 
 
 ///////////// ParameterPanelprofile
-ParameterPanelprofile::ParameterPanelprofile( exp_parameter* parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
+ParameterPanelprofile::ParameterPanelprofile( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
    QVBoxLayout* layout = new QVBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter->description(), this );
+   new QLabel( parameter.description(), this );
    _combobox = new KComboBox( this );
    
    _combobox->insertStringList( ProfileManager::availableProfiles("Panel") );
@@ -548,14 +548,14 @@ bool ParameterPanelprofile::valid() {
 } 
 
 ///////////// ParameterInt
-ParameterInt::ParameterInt( exp_parameter* parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
+ParameterInt::ParameterInt( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
    QHBoxLayout* layout = new QHBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter->description(), this );
+   new QLabel( parameter.description(), this );
    _spinbox = new KIntSpinBox( this );
-   QStringList para = QStringList::split( ";", parameter->preset().section(":", 1) );
+   QStringList para = QStringList::split( ";", parameter.preset().section(":", 1) );
    
    _spinbox->setMinValue( para[0].toInt() );
    _spinbox->setMaxValue( para[1].toInt() );

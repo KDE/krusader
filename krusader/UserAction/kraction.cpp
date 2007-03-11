@@ -79,8 +79,9 @@ _stdout(0), _stderr(0), _currentTextEdit(0) {
    }
 
    _currentTextEdit = _stdout;
-   connect( _stderr, SIGNAL( clicked(int, int) ), SLOT( currentTextEditChanged() ) );
    connect( _stdout, SIGNAL( clicked(int, int) ), SLOT( currentTextEditChanged() ) );
+   if (_stderr)
+      connect( _stderr, SIGNAL( clicked(int, int) ), SLOT( currentTextEditChanged() ) );
 
    krConfig->setGroup( "UserActions" );
    normalFont = krConfig->readFontEntry( "Normal Font", _UserActions_NormalFont );
@@ -171,7 +172,7 @@ void KrActionProcDlg::currentTextEditChanged() {
 ////////////////////////////////////  KrActionProc  ////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-KrActionProc::KrActionProc( KrAction* action ) : QObject(), _action( action ), _proc( new KProcess() ), _output( 0 ) {
+KrActionProc::KrActionProc( KrActionBase* action ) : QObject(), _action( action ), _proc( new KProcess(this) ), _output( 0 ) {
    _proc->setUseShell( true );
 
    connect( _proc, SIGNAL( processExited( KProcess* ) ),
@@ -271,39 +272,6 @@ KrAction::KrAction( KActionCollection *parent, const char* name ) : KAction( par
 KrAction::~KrAction() {
    unplugAll();
    krUserAction->removeKrAction( this ); // Importent! Else Krusader will crash when writing the actions to file
-}
-
-void KrAction::exec() {
-   KrActionProc *proc;
-   
-   // replace %% and prepare string
-   Expander expander;
-   QStringList commandList = expander.expand( _command, _acceptURLs );
-   //TODO: query expander for status and may skip the rest of the function
-   
-   // stop here if the commandline is empty
-   if ( commandList.count() == 1 && commandList[0].stripWhiteSpace().isEmpty() )
-      return;
-   
-   if ( _confirmExecution ) {
-      for ( QStringList::iterator it = commandList.begin(); it != commandList.end(); ++it ) {
-         bool exec = true;
-         *it = KInputDialog::getText(
-      i18n( "Confirm execution" ),
-      i18n( "Command being executed:" ),
-      *it,
-      &exec, 0 );
-         if ( exec ) {
-            proc = new KrActionProc( this );
-            proc->start( *it );
-         }
-      } //for
-   } // if ( _properties->confirmExecution() )
-   else {
-      proc = new KrActionProc( this );
-      proc->start( commandList );
-   }
-
 }
 
 bool KrAction::isAvailable( const KURL& currentURL ) {
