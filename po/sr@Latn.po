@@ -11,14 +11,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.80.0-beta2\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2007-02-16 18:56+0100\n"
+"POT-Creation-Date: 2007-03-12 19:47+0100\n"
 "PO-Revision-Date: 2007-02-26 13:32+0100\n"
 "Last-Translator: Sasa Tomic <sasa.tomic.forwarded@gmail.com>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: GUI/dirhistorybutton.cpp:35
@@ -364,7 +365,8 @@ msgstr ""
 
 #: VFS/virt_vfs.cpp:173
 msgid "Creating new directories is allowed only in the 'virt:/' directory."
-msgstr "Kreiranje novih direktorijuma je dozvoljeno jedino u direktorijumu „virt:/“."
+msgstr ""
+"Kreiranje novih direktorijuma je dozvoljeno jedino u direktorijumu „virt:/“."
 
 #: Filter/generalfilter.cpp:94 Konfigurator/konfigurator.cpp:107
 #: VFS/krquery.cpp:138
@@ -527,11 +529,23 @@ msgid ""
 "code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to "
 "'<code>*text*</code>'.</p>"
 msgstr ""
-"<p>Ovde se definiše kriterijum za filtriranje fajlova.</p><p>Možete koristiti džokere. Višestruki obrasci se razdvajaju razmakom (znači logičko ILI) i obrasci se iključuju iz pretrage koristeći simbol pajpa ('|').</p><p>Ako se obrazac završava sa 'kroz' (<code>*obrazac*/</code>), to znači da je obrazac povezan sa rekurzivnom pretragom direktorijuma.<ul><li><code>obrazac</"
-"code> - znači pretragu onih fajlova/direktorijuma čije ime je <code>obrazac</code>, rekurzivna pretraga prolazi kroz sve poddirektorijume nezavisno od vrednosti <code>obrazac</code></li><li><code>obrazac/</code> - znači da se pretražuju svi fajlovi/direktorijumi, ali rekurzivna pretraga isključuje direktorijume čije ime je <code>obrazac</code></li></ul><p></p><p>Dozvoljeno je koristiti navodnike za imena koja sadrže razmak. Filter <code>"
-"\"Program&nbsp;Files\"</code> pretražuje one fajlove/direktorijume čije ime je <code>Program&nbsp;Files</code>.</p><p>Primeri:<ul><code><li>*.o</"
-"li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</li></"
-"code></ul><b>Napomena</b>: termin pretraživanja '<code>text</code>' je ekvivalentan sa '<code>*text*</code>'.</p>"
+"<p>Ovde se definiše kriterijum za filtriranje fajlova.</p><p>Možete "
+"koristiti džokere. Višestruki obrasci se razdvajaju razmakom (znači logičko "
+"ILI) i obrasci se iključuju iz pretrage koristeći simbol pajpa ('|').</"
+"p><p>Ako se obrazac završava sa 'kroz' (<code>*obrazac*/</code>), to znači "
+"da je obrazac povezan sa rekurzivnom pretragom direktorijuma."
+"<ul><li><code>obrazac</code> - znači pretragu onih fajlova/direktorijuma "
+"čije ime je <code>obrazac</code>, rekurzivna pretraga prolazi kroz sve "
+"poddirektorijume nezavisno od vrednosti <code>obrazac</code></"
+"li><li><code>obrazac/</code> - znači da se pretražuju svi fajlovi/"
+"direktorijumi, ali rekurzivna pretraga isključuje direktorijume čije ime je "
+"<code>obrazac</code></li></ul><p></p><p>Dozvoljeno je koristiti navodnike za "
+"imena koja sadrže razmak. Filter <code>\"Program&nbsp;Files\"</code> "
+"pretražuje one fajlove/direktorijume čije ime je <code>Program&nbsp;Files</"
+"code>.</p><p>Primeri:<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h | "
+"*.moc.cpp</li><li>* | CVS/ .svn/</li></code></ul><b>Napomena</b>: termin "
+"pretraživanja '<code>text</code>' je ekvivalentan sa '<code>*text*</code>'.</"
+"p>"
 
 #: Filter/generalfilter.cpp:86
 msgid "&Of type:"
@@ -786,207 +800,309 @@ msgstr ""
 "Datum na vrhu je nakon datuma na dnu. Molimo vas ponovo unesite datume, tako "
 "da datum na vrhu bude pre datuma na dnu."
 
+#: UserAction/expander.cpp:55
+#, c-format
+msgid "Needed panel specification missing in expander %1"
+msgstr ""
+
 #: UserAction/expander.cpp:70
+msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
+msgstr ""
+
+#: UserAction/expander.cpp:357
 msgid "panel's path"
 msgstr "putanja panela"
 
-#: UserAction/expander.cpp:73 UserAction/expander.cpp:135
-#: UserAction/expander.cpp:169 UserAction/expander.cpp:238
-#: UserAction/expander.cpp:540
+#: UserAction/expander.cpp:360 UserAction/expander.cpp:422
+#: UserAction/expander.cpp:456 UserAction/expander.cpp:488
+#: UserAction/expander.cpp:775
 msgid "Automatic escape spaces"
 msgstr "Automatski izbegni razmake"
 
-#: UserAction/expander.cpp:93
+#: UserAction/expander.cpp:380
 msgid "number of ..."
 msgstr "broj ..."
 
-#: UserAction/expander.cpp:96
+#: UserAction/expander.cpp:383
 msgid "count all:"
 msgstr "broji sve:"
 
-#: UserAction/expander.cpp:120
+#: UserAction/expander.cpp:398
+msgid "Expander: Bad argument to Count: %1 is not valid item specifier"
+msgstr ""
+
+#: UserAction/expander.cpp:407
 msgid "filter mask: *.h, *.cpp, etc."
 msgstr "maska filtera: *.h, *.cpp, itd."
 
-#: UserAction/expander.cpp:131
+#: UserAction/expander.cpp:418
 msgid "current file (!= selected file)"
 msgstr "trenutni fajl (!= označeni fajl)"
 
-#: UserAction/expander.cpp:134 UserAction/expander.cpp:167
-#: UserAction/expander.cpp:236 UserAction/expander.cpp:538
+#: UserAction/expander.cpp:421 UserAction/expander.cpp:454
+#: UserAction/expander.cpp:486 UserAction/expander.cpp:773
 msgid "Omit the current path (optional)"
 msgstr "Izostavi trenutnu putanju (opciono)"
 
-#: UserAction/expander.cpp:162
+#: UserAction/expander.cpp:449
 msgid "Item list of ..."
 msgstr "Lista stavki ..."
 
-#: UserAction/expander.cpp:165 UserAction/expander.cpp:234
-#: UserAction/expander.cpp:537
+#: UserAction/expander.cpp:452 UserAction/expander.cpp:484
+#: UserAction/expander.cpp:772
 msgid "Which items"
 msgstr "Koje stavke"
 
-#: UserAction/expander.cpp:166 UserAction/expander.cpp:235
+#: UserAction/expander.cpp:453 UserAction/expander.cpp:485
 msgid "Separator between the items (optional)"
 msgstr "Razdvajač između stavki (opciono)"
 
-#: UserAction/expander.cpp:168 UserAction/expander.cpp:237
-#: UserAction/expander.cpp:539
+#: UserAction/expander.cpp:455 UserAction/expander.cpp:487
+#: UserAction/expander.cpp:774
 msgid "Mask (optional, all but 'Selected')"
 msgstr "Maska (opciono, sve sem „Označeno“)"
 
-#: UserAction/expander.cpp:231
+#: UserAction/expander.cpp:481
 msgid "Filename of an itemlist ..."
 msgstr "Naziv fajla liste stavki..."
 
-#: UserAction/expander.cpp:311
+#: UserAction/expander.cpp:504
+msgid "Expander: tempfile couldn't be opened (%1)"
+msgstr ""
+
+#: UserAction/expander.cpp:524
 msgid "Manipulate the selection"
 msgstr "Manipulisanje izborom"
 
-#: UserAction/expander.cpp:314
+#: UserAction/expander.cpp:527
 msgid "Selection mask"
 msgstr "Maska izbora"
 
-#: UserAction/expander.cpp:315
+#: UserAction/expander.cpp:528
 msgid "Manipulate in which way"
 msgstr "Manipulisanje u koju stranu"
 
-#: UserAction/expander.cpp:340
+#: UserAction/expander.cpp:553
 msgid "Jump to a location"
 msgstr "Skoči na lokaciju"
 
-#: UserAction/expander.cpp:343
+#: UserAction/expander.cpp:556
 msgid "please choose a path"
 msgstr "Molimo vas odaberite putanju"
 
-#: UserAction/expander.cpp:344
+#: UserAction/expander.cpp:557
 msgid "open the location in a new tab"
 msgstr "otvori lokaciju u novom jezičku"
 
-#: UserAction/expander.cpp:380
+#: UserAction/expander.cpp:593
 msgid "Ask the user for a parameter"
 msgstr "Pitaj korisnika za parametar"
 
-#: UserAction/expander.cpp:383
+#: UserAction/expander.cpp:596
 msgid "Question"
 msgstr "Pitanje"
 
-#: UserAction/expander.cpp:384
+#: UserAction/expander.cpp:597
 msgid "Preset (optional)"
 msgstr "Prepodešeno (opciono)"
 
-#: UserAction/expander.cpp:385
+#: UserAction/expander.cpp:598
 msgid "Caption (optional)"
 msgstr "Natpis (opciono)"
 
-#: UserAction/expander.cpp:391
+#: UserAction/expander.cpp:604
 msgid "User Action"
 msgstr "Korisnička akcija"
 
-#: UserAction/expander.cpp:414
+#: UserAction/expander.cpp:629
 msgid "Copy to clipboard"
 msgstr "Kopiraj u klipbord"
 
-#: UserAction/expander.cpp:417 UserAction/expander.cpp:435
+#: UserAction/expander.cpp:632 UserAction/expander.cpp:655
 msgid "What should be copied"
 msgstr "Šta treba biti kopirano"
 
-#: UserAction/expander.cpp:418
+#: UserAction/expander.cpp:633
 msgid "Append to the current clipboard-content with this separator (optional)"
 msgstr "Dodaj na trenutni klipbord-sadržaj sa ovim razdvajačem (opciono)"
 
-#: UserAction/expander.cpp:432
+#: UserAction/expander.cpp:639
+msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
+msgstr ""
+
+#: UserAction/expander.cpp:652
 msgid "Copy a file/folder"
 msgstr "Kopiraj fajl/fasciklu"
 
-#: UserAction/expander.cpp:436
+#: UserAction/expander.cpp:656
 msgid "Where it should be copied"
 msgstr "Gde treba biti kopirano"
 
-#: UserAction/expander.cpp:456
+#: UserAction/expander.cpp:663
+msgid "Expander: %Each% may not be in the second argument of %Copy%"
+msgstr ""
+
+#: UserAction/expander.cpp:673
+msgid "Expander: invalid URL's in %_Copy(\"src\", \"dest\")%"
+msgstr ""
+
+#: UserAction/expander.cpp:684
 msgid "Move/Rename a file/folder"
 msgstr "Premesti/preimenuj fajl/fasciklu"
 
-#: UserAction/expander.cpp:459
+#: UserAction/expander.cpp:687
 msgid "What moved/renamed"
 msgstr "Šta premešteno/preimenovano"
 
-#: UserAction/expander.cpp:460
+#: UserAction/expander.cpp:688
 msgid "New target/name"
 msgstr "Nova meta/ime"
 
-#: UserAction/expander.cpp:480
+#: UserAction/expander.cpp:694
+msgid "%Each% may not be in the second argument of %Move%"
+msgstr ""
+
+#: UserAction/expander.cpp:704
+msgid "Expander: invalid URL's in %_Move(\"src\", \"dest\")%"
+msgstr ""
+
+#: UserAction/expander.cpp:715
 msgid "Open a synchronizer-profile"
 msgstr "Otvori sinhronizator-profil"
 
-#: UserAction/expander.cpp:483 UserAction/expander.cpp:501
-#: UserAction/expander.cpp:519
+#: UserAction/expander.cpp:718 UserAction/expander.cpp:736
+#: UserAction/expander.cpp:754
 msgid "Choose a profile"
 msgstr "Odaberi profil"
 
-#: UserAction/expander.cpp:498
+#: UserAction/expander.cpp:722
+msgid "Expander: no profile specified for %_Sync(profile)%"
+msgstr ""
+
+#: UserAction/expander.cpp:733
 msgid "Open a searchmodule-profile"
 msgstr "Otvori modultraženja-profil"
 
-#: UserAction/expander.cpp:516
+#: UserAction/expander.cpp:740
+msgid "Expander: no profile specified for %_NewSearch(profile)%"
+msgstr ""
+
+#: UserAction/expander.cpp:751
 msgid "Load a panel-profile"
 msgstr "Učitaj profil-panela"
 
-#: UserAction/expander.cpp:534
+#: UserAction/expander.cpp:758
+msgid "Expander: no profile specified for %_Profile(profile)%; abort..."
+msgstr ""
+
+#: UserAction/expander.cpp:769
 msgid "Separate programm call for each..."
 msgstr "Razdvoji poziv programa za svaki..."
 
-#: UserAction/expander.cpp:594
+#: UserAction/expander.cpp:801
 msgid "Set the sorting for this panel"
 msgstr "Postavi sortiranje za ovaj panel"
 
-#: UserAction/expander.cpp:597
+#: UserAction/expander.cpp:804
 msgid "Choose a column"
 msgstr "Odaberite kolonu"
 
-#: UserAction/expander.cpp:598
+#: UserAction/expander.cpp:805
 msgid "Choose the sort sequence"
 msgstr "Odaberite sekvencu sortiranja"
 
-#: UserAction/expander.cpp:688
+#: UserAction/expander.cpp:811
+msgid "Expander: no column specified for %_ColSort(column)%"
+msgstr ""
+
+#: UserAction/expander.cpp:883
+msgid "Expander: unknown column specified for %_ColSort(%1)%"
+msgstr ""
+
+#: UserAction/expander.cpp:895
 msgid "Set the relation between the two panels"
 msgstr "Postavi relaciju između dva panela"
 
-#: UserAction/expander.cpp:691
+#: UserAction/expander.cpp:898
 msgid "Set the new size in percent"
 msgstr "Postavi novu veličinu u procentima"
 
-#: UserAction/expander.cpp:727
+#: UserAction/expander.cpp:910
+msgid ""
+"Expander: Value %1 out of range for %_PanelSize(percent)%. The first "
+"parameter has to be >0 and <100"
+msgstr ""
+
+#: UserAction/expander.cpp:934
 msgid "Executes a JavaScript-extension"
 msgstr "Izvršava JavaScript proširenje"
 
-#: UserAction/expander.cpp:730
+#: UserAction/expander.cpp:937
 msgid "Location of the script"
 msgstr "Lokacija skripta"
 
-#: UserAction/expander.cpp:731
+#: UserAction/expander.cpp:938
+#, fuzzy
 msgid ""
 "Set some variables for the execution (optional).\n"
-"i.e. \"return=cmd;foo=bar\", consult the handbook for more information"
+"i.e. \"return=return_var;foo=bar\", consult the handbook for more information"
 msgstr ""
 "Postavite neke promenljive za izvršavanje (opciono).\n"
 "npr. „return=cmd;foo=bar“, konsultujte dokumentaciju za još informacija"
 
-#: UserAction/expander.cpp:777
+#: UserAction/expander.cpp:942
+msgid "Expander: no script specified for %_Script(script)%"
+msgstr ""
+
+#: UserAction/expander.cpp:984
 msgid "View a file with Krusader's internal viewer"
 msgstr "Pregledaj fajl pomoću internog pregledača Krusader-a"
 
-#: UserAction/expander.cpp:780
+#: UserAction/expander.cpp:987
 msgid "Which file to view (normally '%aCurrent%')"
 msgstr "Koji fajl se pregleda (obično '%aCurrent%')"
 
-#: UserAction/expander.cpp:781
+#: UserAction/expander.cpp:988
 msgid "Choose a view-mode"
 msgstr "Odaberi režim pregledanja"
 
-#: UserAction/expander.cpp:784
+#: UserAction/expander.cpp:991
 msgid "Choose a window-mode"
 msgstr "Odaberi režim prozora"
+
+#: UserAction/expander.cpp:995
+msgid "Expander: no file to view in %_View(filename)%"
+msgstr ""
+
+#: UserAction/expander.cpp:1032
+#, c-format
+msgid "%Each% is not allowed in parameter to %1"
+msgstr ""
+
+#: UserAction/expander.cpp:1053
+msgid "Expander: Bad panel specifier %1 in placeholder %2"
+msgstr ""
+
+#: UserAction/expander.cpp:1082
+#, c-format
+msgid "Error: unterminated % in Expander::expandCurrent"
+msgstr ""
+
+#: UserAction/expander.cpp:1112
+msgid "Error: unrecognized %%%1%2%% in Expander::expand"
+msgstr ""
+
+#: UserAction/expander.cpp:1148
+msgid "Error: missing ')' in Expander::separateParameter"
+msgstr ""
+
+#: UserAction/kractionbase.cpp:51
+msgid "Confirm execution"
+msgstr "Potvrdi izvršenje"
+
+#: UserAction/kractionbase.cpp:52
+msgid "Command being executed:"
+msgstr "Naredba koja se izvršava:"
 
 #: Konfigurator/konfigurator.cpp:69 Search/krsearchdialog.cpp:103
 #: Synchronizer/synchronizergui.cpp:1404 UserAction/kraction.cpp:48
@@ -1017,11 +1133,11 @@ msgstr "Standardne greške (stderr)"
 msgid "Output"
 msgstr "Izlaz"
 
-#: UserAction/kraction.cpp:96
+#: UserAction/kraction.cpp:97
 msgid "Use font with fixed width"
 msgstr "Koristi font sa fiksnom širinom"
 
-#: UserAction/kraction.cpp:130
+#: UserAction/kraction.cpp:131
 msgid ""
 "*.txt|Text files\n"
 "*|all files"
@@ -1029,7 +1145,7 @@ msgstr ""
 "*.txt|tekstualni fajlovi\n"
 "*|svi fajlovi"
 
-#: UserAction/kraction.cpp:137
+#: UserAction/kraction.cpp:138
 msgid ""
 "This file already exists.\n"
 "Do you want to overwrite it or append the output?"
@@ -1037,21 +1153,21 @@ msgstr ""
 "Ovaj fajl već postoji.\n"
 "Da li želite da upišete preko ili da nadovežete izlaz?"
 
-#: UserAction/kraction.cpp:138
+#: UserAction/kraction.cpp:139
 msgid "Overwrite or append?"
 msgstr "Upiši preko ili nadoveži?"
 
 #: ActionMan/useractionpage.cpp:248 ActionMan/useractionpage.cpp:257
 #: Dialogs/checksumdlg.cpp:552 Dialogs/krkeydialog.cpp:135
-#: Konfigurator/kgcolors.cpp:523 UserAction/kraction.cpp:139
+#: Konfigurator/kgcolors.cpp:523 UserAction/kraction.cpp:140
 msgid "Overwrite"
 msgstr "Piši preko"
 
-#: UserAction/kraction.cpp:140
+#: UserAction/kraction.cpp:141
 msgid "Append"
 msgstr "Nadoveži"
 
-#: ActionMan/useractionpage.cpp:271 UserAction/kraction.cpp:152
+#: ActionMan/useractionpage.cpp:271 UserAction/kraction.cpp:153
 msgid ""
 "Can't open %1 for writing!\n"
 "Nothing exported."
@@ -1059,17 +1175,9 @@ msgstr ""
 "Ne mogu da otvorim %1 za pisanje!\n"
 "Ništa nije izvezeno."
 
-#: ActionMan/useractionpage.cpp:272 UserAction/kraction.cpp:153
+#: ActionMan/useractionpage.cpp:272 UserAction/kraction.cpp:154
 msgid "Export failed!"
 msgstr "Izvoz nije uspeo!"
-
-#: UserAction/kraction.cpp:292
-msgid "Confirm execution"
-msgstr "Potvrdi izvršenje"
-
-#: UserAction/kraction.cpp:293
-msgid "Command being executed:"
-msgstr "Naredba koja se izvršava:"
 
 #: UserAction/useraction.cpp:100
 msgid "The file %1 does not contain valid UserActions.\n"
@@ -1866,7 +1974,9 @@ msgstr "Rezultati"
 
 #: Locate/locate.cpp:195
 msgid "Can't start 'locate'! Check the 'Dependencies' page in konfigurator."
-msgstr "Ne mogu da pokrenem „locate“! Proverite stranicu „Zavisnosti“ u podešavanjima."
+msgstr ""
+"Ne mogu da pokrenem „locate“! Proverite stranicu „Zavisnosti“ u "
+"podešavanjima."
 
 #: Locate/locate.cpp:232
 msgid ""
@@ -1924,7 +2034,8 @@ msgstr "Ovde možete imenovati kolekciju fajlova"
 
 #: krusader.cpp:339
 msgid "Statusbar will show basic information about file below mouse pointer."
-msgstr "Statusna traka prikazuje osnovne informacije o fajlu ispod pokazivača miša."
+msgstr ""
+"Statusna traka prikazuje osnovne informacije o fajlu ispod pokazivača miša."
 
 #: krusader.cpp:419
 msgid ""
@@ -2611,7 +2722,8 @@ msgstr ""
 "Kontaktirajte programere"
 
 #: MountMan/kmountmangui.cpp:326
-msgid "MountMan has an internal error. Please notify the developers. Thank you."
+msgid ""
+"MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Menadžer montiranja je naišao na unutrašnju grešku. Molimo vas obavestite "
 "programere. Hvala vam."
@@ -2684,7 +2796,8 @@ msgstr "Aplikacija je već pokrenuta!\n"
 
 #: krusaderview.cpp:85
 msgid "Function keys allow performing fast operations on files."
-msgstr "Funkcijski tasteri omogućavaju brzo izvršavanje operacija na fajlovima."
+msgstr ""
+"Funkcijski tasteri omogućavaju brzo izvršavanje operacija na fajlovima."
 
 #: Dialogs/krdialogs.cpp:130
 msgid "Preserve attributes (only for local targets)"
@@ -2895,7 +3008,8 @@ msgstr "&Otkaži"
 
 #: Dialogs/popularurls.cpp:62
 msgid "Saved 'Popular Urls' are invalid. List will be cleared"
-msgstr "Snimljena lista „Popularni URL-ovi“ je neispravna. Lista će biti izbrisana."
+msgstr ""
+"Snimljena lista „Popularni URL-ovi“ je neispravna. Lista će biti izbrisana."
 
 #: Dialogs/popularurls.cpp:230
 msgid "Popular Urls"
@@ -2982,7 +3096,8 @@ msgid "Legacy import completed"
 msgstr "Uvoz starog formata završen"
 
 #: Dialogs/krkeydialog.cpp:134
-msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgid ""
+"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
 msgstr ""
 "<qt>Fajl <b>%1</b> već postoji. Da li zaista želite da upišete preko njega?</"
 "qt>"
@@ -3265,7 +3380,8 @@ msgstr "Snimam fajlove kontrolnih suma..."
 
 #: Dialogs/checksumdlg.cpp:576
 msgid "Errors occured while saving multiple checksums. Stopping"
-msgstr "Nastale su greške pri snimanju višestrukih kontrolnih suma. Zaustavljam"
+msgstr ""
+"Nastale su greške pri snimanju višestrukih kontrolnih suma. Zaustavljam"
 
 #: ActionMan/useractionlistview.cpp:34
 msgid "Title"
@@ -3304,7 +3420,8 @@ msgid "Delete selected useractions"
 msgstr "Ukloni izabrane korisničke akcije"
 
 #: ActionMan/useractionpage.cpp:126
-msgid "The current action has been modified. Do you want to apply these changes?"
+msgid ""
+"The current action has been modified. Do you want to apply these changes?"
 msgstr "Trenutna akcije je izmenjena. Da li želite da primenite izmene?"
 
 #: ActionMan/useractionpage.cpp:203
@@ -3490,8 +3607,9 @@ msgid ""
 "<b>Useractions</b> can be grouped in categories for better distinction. "
 "Choose a existing <i>Category</i> or create a new one by entering a name."
 msgstr ""
-"<b>Korisničke akcije</b> se mogu grupisati u kategorije za bolje razlikovanje."
-"Izaberite postojeću <i> Kategoriju</i> ili kreirajte novu unoseći naziv."
+"<b>Korisničke akcije</b> se mogu grupisati u kategorije za bolje "
+"razlikovanje.Izaberite postojeću <i> Kategoriju</i> ili kreirajte novu "
+"unoseći naziv."
 
 #: ActionMan/actionpropertybase.cpp:400
 msgid "Icon"
@@ -3894,8 +4012,8 @@ msgid ""
 "synchronizing Windows filesystems.</p>"
 msgstr ""
 "<p>Upoređivanje naziva fajlova neosetljivo na veličinu slova.</"
-"p><p><b>Napomena</b>: Korisno pri sinhronizovanju Windows-ovih fajl sistema.</"
-"p>"
+"p><p><b>Napomena</b>: Korisno pri sinhronizovanju Windows-ovih fajl sistema."
+"</p>"
 
 #: Synchronizer/synchronizergui.cpp:1151
 msgid "S&how options"
@@ -4113,7 +4231,9 @@ msgstr "Usaglašavač nema šta da radi!"
 msgid ""
 "The synchronizer window contains data from a previous compare. If you exit, "
 "this data will be lost. Do you really want to exit?"
-msgstr "Prozor usklađivača sadrži podatke iz prethodnog upoređivanja. Ako izađete, ovi podaci će biti izgubljeni. Da li zaista želite da izađete?"
+msgstr ""
+"Prozor usklađivača sadrži podatke iz prethodnog upoređivanja. Ako izađete, "
+"ovi podaci će biti izgubljeni. Da li zaista želite da izađete?"
 
 #: Synchronizer/synchronizertask.cpp:132 Synchronizer/synchronizertask.cpp:139
 msgid "Error at opening %1!"
@@ -4645,7 +4765,9 @@ msgstr "Koristi magiju MIME tipova"
 
 #: Konfigurator/kggeneral.cpp:69
 msgid "Mimetype magic allows better distinction of file types, but is slower."
-msgstr "Magija MIME tipova omogućava bolje razlikovanje tipova fajlova, ali je sporija."
+msgstr ""
+"Magija MIME tipova omogućava bolje razlikovanje tipova fajlova, ali je "
+"sporija."
 
 #: Konfigurator/kggeneral.cpp:76
 msgid "Editor:"
@@ -4732,8 +4854,10 @@ msgid "Searching for tools..."
 msgstr "Tražim alate..."
 
 #: Konfigurator/kggeneral.cpp:187
-msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr "Uverite se da instalirate nove alate u vaš <code>$PATH</code> (npr. /usr/bin)"
+msgid ""
+"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgstr ""
+"Uverite se da instalirate nove alate u vaš <code>$PATH</code> (npr. /usr/bin)"
 
 #: Konfigurator/kggeneral.cpp:195
 msgid "Add new atomic extension"
@@ -4759,7 +4883,8 @@ msgstr ""
 
 #: Konfigurator/krresulttable.cpp:127
 msgid "rpm found, but cpio not found which is required for unpacking"
-msgstr "rpm pronađen, ali cpio nije pronađen, koji je neophodan za raspakivanje"
+msgstr ""
+"rpm pronađen, ali cpio nije pronađen, koji je neophodan za raspakivanje"
 
 #: Konfigurator/krresulttable.cpp:130 Konfigurator/krresulttable.cpp:283
 msgid "Found"
@@ -4913,8 +5038,8 @@ msgid ""
 "When matching the select criteria, not only files will be selected, but also "
 "directories."
 msgstr ""
-"Pri ispunjavanju kriterijuma označavanja, neće biti označeni samo fajlovi, već "
-"i direktorijumi."
+"Pri ispunjavanju kriterijuma označavanja, neće biti označeni samo fajlovi, "
+"već i direktorijumi."
 
 #: Konfigurator/kglookfeel.cpp:88
 msgid "Rename selects extension"
@@ -5126,7 +5251,8 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Dugme za sinhronizovano pregledanje."
 
 #: Konfigurator/kglookfeel.cpp:214
-msgid "Each directory change in the panel is also performed in the other panel."
+msgid ""
+"Each directory change in the panel is also performed in the other panel."
 msgstr "Svaka promena direktorijuma u panelu odnosi se i na drugi panel."
 
 #: Konfigurator/kglookfeel.cpp:234
@@ -5371,7 +5497,8 @@ msgstr ""
 "b>-u, pokušaj da je montiraš sa definisanim parametrima."
 
 #: Konfigurator/kgadvanced.cpp:65
-msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgid ""
+"Don't use KDE's media protocol for media button (if it's buggy or missing)"
 msgstr ""
 "Ne koristi KDE-ov protokol medija za dugme medija (ako je bagovit ili "
 "nedostaje)"
@@ -5584,8 +5711,8 @@ msgid ""
 "option is only available when you don't use the <i>KDE default colors</i>.</"
 "p>"
 msgstr ""
-"<p>Prikazuje poslednju poziciju kursora u neaktivnom panelu.</p><p>Ova opcija "
-"je dostupna samo kada ne koristite <i>podrazumevane KDE boje</i>.</p>"
+"<p>Prikazuje poslednju poziciju kursora u neaktivnom panelu.</p><p>Ova "
+"opcija je dostupna samo kada ne koristite <i>podrazumevane KDE boje</i>.</p>"
 
 #: Konfigurator/kgcolors.cpp:62
 msgid "Dim the colors of the inactive panel"
@@ -5841,8 +5968,8 @@ msgid ""
 msgstr ""
 "Pokreće izabrani profil panela. profil panela sadrži: <ul><li>sve jezičke "
 "putanja</li><li> trenutni jezičak</li><li>aktivni panel</li></ul><b>&lt;"
-"Poslednja sesija&gt;</b> je specijalni profil panela, snima se automatski pri "
-"zatvaranju Krusader-a."
+"Poslednja sesija&gt;</b> je specijalni profil panela, snima se automatski "
+"pri zatvaranju Krusader-a."
 
 #: Konfigurator/kgstartup.cpp:51
 msgid "Startup profile:"
@@ -6009,8 +6136,8 @@ msgid ""
 "system last time Krusader checked. If you wish Krusader to\n"
 "search again, click the 'Auto Configure' button."
 msgstr ""
-"Arhive koje su „zasivljene“ nisu bile dostupne na vašem sistemu poslednji put "
-"kada je Krusader proveravao. Ako želite da Krusader \n"
+"Arhive koje su „zasivljene“ nisu bile dostupne na vašem sistemu poslednji "
+"put kada je Krusader proveravao. Ako želite da Krusader \n"
 "ponovo pretraži, kliknite na dugme „Automatski podesi“."
 
 #: Konfigurator/kgarchives.cpp:80
@@ -6030,15 +6157,18 @@ msgid "Test archive before unpacking"
 msgstr "Isprobaj arhivu pre raspakivanja"
 
 #: Konfigurator/kgarchives.cpp:96
-msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
-msgstr "Neke oštećene arhive mogu izazvati rušenje; stoga, testiranje se preporučuje."
+msgid ""
+"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgstr ""
+"Neke oštećene arhive mogu izazvati rušenje; stoga, testiranje se preporučuje."
 
 #: Konfigurator/kgarchives.cpp:113
 msgid "Searching for packers..."
 msgstr "Tražim arhivere..."
 
 #: Konfigurator/kgarchives.cpp:114
-msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid ""
+"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Uverite se da instalirate nove arhivere u vaš <code>$PATH</code> (npr. /usr/"
 "bin)"
@@ -6107,10 +6237,11 @@ msgid ""
 "in the active panel.</li><li>Make sure there is a file in the other panel, "
 "with the same name as the current file in the active panel.</li></ul>"
 msgstr ""
-"Za upoređivanje 2 fajla po sadržaju, možete bilo:<ul><li>Izabrati (obeležiti) "
-"jedan fajl u levom panelu, i jedan u desnom panelu.</li><li>Izabrati tačno "
-"dva fajla u aktivnom panelu.</li><li>Uveriti se da postoji fajl u drugom "
-"panelu, sa istim imenom kao trenutni fajl u aktivnom panelu.</li></ul>"
+"Za upoređivanje 2 fajla po sadržaju, možete bilo:<ul><li>Izabrati "
+"(obeležiti) jedan fajl u levom panelu, i jedan u desnom panelu.</"
+"li><li>Izabrati tačno dva fajla u aktivnom panelu.</li><li>Uveriti se da "
+"postoji fajl u drugom panelu, sa istim imenom kao trenutni fajl u aktivnom "
+"panelu.</li></ul>"
 
 #: krslots.cpp:186
 msgid ""
@@ -6142,12 +6273,13 @@ msgstr ""
 "rukuje lokalnim fajlovima i udaljenim URL-ovima na isti način. RemoteMan je "
 "ostavljen da bi omogućio lakši prelazak i dao priliku da premestite markere. "
 "BIĆE UKLONJEN USKORO!\n"
-"Isprobajte novi menadžer markera: otvorite novu udaljenu konekciju, i kada to "
-"uspete, pritisnite dugme markera, izaberite „Dodaj marker“ i to je sve!"
+"Isprobajte novi menadžer markera: otvorite novu udaljenu konekciju, i kada "
+"to uspete, pritisnite dugme markera, izaberite „Dodaj marker“ i to je sve!"
 
 #: krslots.cpp:472
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
-msgstr "Ne mogu da pokrenem „mount“! Proverite stranicu „Zavisnosti“ u Podešavanjima."
+msgstr ""
+"Ne mogu da pokrenem „mount“! Proverite stranicu „Zavisnosti“ u Podešavanjima."
 
 #: krslots.cpp:504
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
@@ -6295,7 +6427,8 @@ msgid ""
 "Validity checking is impossible without it. Continue combining?"
 msgstr ""
 "Fajl sa CRC informacijom (%1) nedostaje!\n"
-"Proveravanje ispravnosti je nemoguće bez njega. Da li da nastavim sa spajanjem?"
+"Proveravanje ispravnosti je nemoguće bez njega. Da li da nastavim sa "
+"spajanjem?"
 
 #: Splitter/combiner.cpp:110
 msgid "Error at reading the CRC file (%1)!"
@@ -6306,7 +6439,8 @@ msgid "Not a valid CRC file!"
 msgstr "Nije ispravan CRC fajl!"
 
 #: Splitter/combiner.cpp:152
-msgid "Validity checking is impossible without a good CRC file. Continue combining?"
+msgid ""
+"Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Proveravanje ispravnosti je nemoguće bez dobrog CRC fajla. Da nastavim sa "
 "spajanjem?"
@@ -6346,4 +6480,3 @@ msgstr "Greška pri čitanju fajla %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Greška pri pisanju fajla %1!"
-

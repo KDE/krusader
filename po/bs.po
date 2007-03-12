@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.80.0-beta1\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2007-02-16 18:56+0100\n"
+"POT-Creation-Date: 2007-03-12 19:47+0100\n"
 "PO-Revision-Date: 2004-10-13 23:06+0200\n"
 "Last-Translator: Asim Husanovic <asim.h@megatel.ba>\n"
 "Language-Team: Bosnian\n"
@@ -802,216 +802,318 @@ msgstr ""
 "Molim, ponovo unesite datum, ali gornji datum mora biti\n"
 "raniji od donjeg."
 
+#: UserAction/expander.cpp:55
+#, c-format
+msgid "Needed panel specification missing in expander %1"
+msgstr ""
+
 #: UserAction/expander.cpp:70
+msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
+msgstr ""
+
+#: UserAction/expander.cpp:357
 msgid "panel's path"
 msgstr "panelova putanja"
 
-#: UserAction/expander.cpp:73 UserAction/expander.cpp:135
-#: UserAction/expander.cpp:169 UserAction/expander.cpp:238
-#: UserAction/expander.cpp:540
+#: UserAction/expander.cpp:360 UserAction/expander.cpp:422
+#: UserAction/expander.cpp:456 UserAction/expander.cpp:488
+#: UserAction/expander.cpp:775
 msgid "Automatic escape spaces"
 msgstr ""
 
-#: UserAction/expander.cpp:93
+#: UserAction/expander.cpp:380
 msgid "number of ..."
 msgstr "broj od ..."
 
-#: UserAction/expander.cpp:96
+#: UserAction/expander.cpp:383
 msgid "count all:"
 msgstr "suma svih:"
 
-#: UserAction/expander.cpp:120
+#: UserAction/expander.cpp:398
+msgid "Expander: Bad argument to Count: %1 is not valid item specifier"
+msgstr ""
+
+#: UserAction/expander.cpp:407
 #, fuzzy
 msgid "filter mask: *.h, *.cpp, etc."
 msgstr "filter maska (*.h, *.cpp ...)"
 
-#: UserAction/expander.cpp:131
+#: UserAction/expander.cpp:418
 msgid "current file (!= selected file)"
 msgstr "trenutna datoteka (!= označena datoteka)"
 
-#: UserAction/expander.cpp:134 UserAction/expander.cpp:167
-#: UserAction/expander.cpp:236 UserAction/expander.cpp:538
+#: UserAction/expander.cpp:421 UserAction/expander.cpp:454
+#: UserAction/expander.cpp:486 UserAction/expander.cpp:773
 #, fuzzy
 msgid "Omit the current path (optional)"
 msgstr "Zanemari trenutnu putanju (opcionalno)"
 
-#: UserAction/expander.cpp:162
+#: UserAction/expander.cpp:449
 msgid "Item list of ..."
 msgstr "Lista članova od ..."
 
-#: UserAction/expander.cpp:165 UserAction/expander.cpp:234
-#: UserAction/expander.cpp:537
+#: UserAction/expander.cpp:452 UserAction/expander.cpp:484
+#: UserAction/expander.cpp:772
 msgid "Which items"
 msgstr "Koji članovi"
 
-#: UserAction/expander.cpp:166 UserAction/expander.cpp:235
+#: UserAction/expander.cpp:453 UserAction/expander.cpp:485
 msgid "Separator between the items (optional)"
 msgstr "Djelilac između članova (opcionalno)"
 
-#: UserAction/expander.cpp:168 UserAction/expander.cpp:237
-#: UserAction/expander.cpp:539
+#: UserAction/expander.cpp:455 UserAction/expander.cpp:487
+#: UserAction/expander.cpp:774
 msgid "Mask (optional, all but 'Selected')"
 msgstr "Maska (opcionalno, sve ali 'Označeno')"
 
-#: UserAction/expander.cpp:231
+#: UserAction/expander.cpp:481
 msgid "Filename of an itemlist ..."
 msgstr ""
 
-#: UserAction/expander.cpp:311
+#: UserAction/expander.cpp:504
+msgid "Expander: tempfile couldn't be opened (%1)"
+msgstr ""
+
+#: UserAction/expander.cpp:524
 msgid "Manipulate the selection"
 msgstr "Kontrolisanje odabiranja"
 
-#: UserAction/expander.cpp:314
+#: UserAction/expander.cpp:527
 #, fuzzy
 msgid "Selection mask"
 msgstr "maska odabiranja"
 
-#: UserAction/expander.cpp:315
+#: UserAction/expander.cpp:528
 msgid "Manipulate in which way"
 msgstr "Upravljanje u bilo kojem putu"
 
-#: UserAction/expander.cpp:340
+#: UserAction/expander.cpp:553
 msgid "Jump to a location"
 msgstr "u"
 
-#: UserAction/expander.cpp:343
+#: UserAction/expander.cpp:556
 msgid "please choose a path"
 msgstr "molim izaberite zabilješku"
 
-#: UserAction/expander.cpp:344
+#: UserAction/expander.cpp:557
 msgid "open the location in a new tab"
 msgstr "otvori zabilješku u novoj kartici"
 
-#: UserAction/expander.cpp:380
+#: UserAction/expander.cpp:593
 #, fuzzy
 msgid "Ask the user for a parameter"
 msgstr "Korisničko pitanje za parametar"
 
-#: UserAction/expander.cpp:383
+#: UserAction/expander.cpp:596
 msgid "Question"
 msgstr "Pitanje"
 
-#: UserAction/expander.cpp:384
+#: UserAction/expander.cpp:597
 msgid "Preset (optional)"
 msgstr "Preset (optional)"
 
-#: UserAction/expander.cpp:385
+#: UserAction/expander.cpp:598
 msgid "Caption (optional)"
 msgstr "Naslov (opcionalno)"
 
-#: UserAction/expander.cpp:391
+#: UserAction/expander.cpp:604
 msgid "User Action"
 msgstr "Korisnička akcija"
 
-#: UserAction/expander.cpp:414
+#: UserAction/expander.cpp:629
 msgid "Copy to clipboard"
 msgstr "Kopiraj u clipboard"
 
-#: UserAction/expander.cpp:417 UserAction/expander.cpp:435
+#: UserAction/expander.cpp:632 UserAction/expander.cpp:655
 msgid "What should be copied"
 msgstr "Šta želite kopirati"
 
-#: UserAction/expander.cpp:418
+#: UserAction/expander.cpp:633
 #, fuzzy
 msgid "Append to the current clipboard-content with this separator (optional)"
 msgstr "Prihvati u trenutni clipboard sadržaj sa ovim djeliocem (opcionalno)"
 
-#: UserAction/expander.cpp:432
+#: UserAction/expander.cpp:639
+msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
+msgstr ""
+
+#: UserAction/expander.cpp:652
 msgid "Copy a file/folder"
 msgstr "Kopiraj datoteku/direktorij"
 
-#: UserAction/expander.cpp:436
+#: UserAction/expander.cpp:656
 msgid "Where it should be copied"
 msgstr "Šta želite kopirati"
 
-#: UserAction/expander.cpp:456
+#: UserAction/expander.cpp:663
+msgid "Expander: %Each% may not be in the second argument of %Copy%"
+msgstr ""
+
+#: UserAction/expander.cpp:673
+msgid "Expander: invalid URL's in %_Copy(\"src\", \"dest\")%"
+msgstr ""
+
+#: UserAction/expander.cpp:684
 #, fuzzy
 msgid "Move/Rename a file/folder"
 msgstr "Kopiraj datoteku/direktorij"
 
-#: UserAction/expander.cpp:459
+#: UserAction/expander.cpp:687
 msgid "What moved/renamed"
-msgstr ""
-
-#: UserAction/expander.cpp:460
-#, fuzzy
-msgid "New target/name"
-msgstr "Novo ime datoteke"
-
-#: UserAction/expander.cpp:480
-msgid "Open a synchronizer-profile"
-msgstr "Otvori sinhronizer-profil"
-
-#: UserAction/expander.cpp:483 UserAction/expander.cpp:501
-#: UserAction/expander.cpp:519
-msgid "Choose a profile"
-msgstr "Izaberi profil"
-
-#: UserAction/expander.cpp:498
-msgid "Open a searchmodule-profile"
-msgstr "Otvori modulpretrage-profil"
-
-#: UserAction/expander.cpp:516
-msgid "Load a panel-profile"
-msgstr "Učitaj panel-profil"
-
-#: UserAction/expander.cpp:534
-msgid "Separate programm call for each..."
-msgstr ""
-
-#: UserAction/expander.cpp:594
-msgid "Set the sorting for this panel"
-msgstr ""
-
-#: UserAction/expander.cpp:597
-#, fuzzy
-msgid "Choose a column"
-msgstr "Izaberi profil"
-
-#: UserAction/expander.cpp:598
-msgid "Choose the sort sequence"
 msgstr ""
 
 #: UserAction/expander.cpp:688
 #, fuzzy
+msgid "New target/name"
+msgstr "Novo ime datoteke"
+
+#: UserAction/expander.cpp:694
+msgid "%Each% may not be in the second argument of %Move%"
+msgstr ""
+
+#: UserAction/expander.cpp:704
+msgid "Expander: invalid URL's in %_Move(\"src\", \"dest\")%"
+msgstr ""
+
+#: UserAction/expander.cpp:715
+msgid "Open a synchronizer-profile"
+msgstr "Otvori sinhronizer-profil"
+
+#: UserAction/expander.cpp:718 UserAction/expander.cpp:736
+#: UserAction/expander.cpp:754
+msgid "Choose a profile"
+msgstr "Izaberi profil"
+
+#: UserAction/expander.cpp:722
+msgid "Expander: no profile specified for %_Sync(profile)%"
+msgstr ""
+
+#: UserAction/expander.cpp:733
+msgid "Open a searchmodule-profile"
+msgstr "Otvori modulpretrage-profil"
+
+#: UserAction/expander.cpp:740
+msgid "Expander: no profile specified for %_NewSearch(profile)%"
+msgstr ""
+
+#: UserAction/expander.cpp:751
+msgid "Load a panel-profile"
+msgstr "Učitaj panel-profil"
+
+#: UserAction/expander.cpp:758
+msgid "Expander: no profile specified for %_Profile(profile)%; abort..."
+msgstr ""
+
+#: UserAction/expander.cpp:769
+msgid "Separate programm call for each..."
+msgstr ""
+
+#: UserAction/expander.cpp:801
+msgid "Set the sorting for this panel"
+msgstr ""
+
+#: UserAction/expander.cpp:804
+#, fuzzy
+msgid "Choose a column"
+msgstr "Izaberi profil"
+
+#: UserAction/expander.cpp:805
+msgid "Choose the sort sequence"
+msgstr ""
+
+#: UserAction/expander.cpp:811
+msgid "Expander: no column specified for %_ColSort(column)%"
+msgstr ""
+
+#: UserAction/expander.cpp:883
+msgid "Expander: unknown column specified for %_ColSort(%1)%"
+msgstr ""
+
+#: UserAction/expander.cpp:895
+#, fuzzy
 msgid "Set the relation between the two panels"
 msgstr "Djelilac između članova (opcionalno)"
 
-#: UserAction/expander.cpp:691
+#: UserAction/expander.cpp:898
 msgid "Set the new size in percent"
 msgstr ""
 
-#: UserAction/expander.cpp:727
+#: UserAction/expander.cpp:910
+msgid ""
+"Expander: Value %1 out of range for %_PanelSize(percent)%. The first "
+"parameter has to be >0 and <100"
+msgstr ""
+
+#: UserAction/expander.cpp:934
 msgid "Executes a JavaScript-extension"
 msgstr ""
 
-#: UserAction/expander.cpp:730
+#: UserAction/expander.cpp:937
 msgid "Location of the script"
 msgstr ""
 
-#: UserAction/expander.cpp:731
+#: UserAction/expander.cpp:938
 msgid ""
 "Set some variables for the execution (optional).\n"
-"i.e. \"return=cmd;foo=bar\", consult the handbook for more information"
+"i.e. \"return=return_var;foo=bar\", consult the handbook for more information"
 msgstr ""
 
-#: UserAction/expander.cpp:777
+#: UserAction/expander.cpp:942
+msgid "Expander: no script specified for %_Script(script)%"
+msgstr ""
+
+#: UserAction/expander.cpp:984
 msgid "View a file with Krusader's internal viewer"
 msgstr ""
 
-#: UserAction/expander.cpp:780
+#: UserAction/expander.cpp:987
 msgid "Which file to view (normally '%aCurrent%')"
 msgstr ""
 
-#: UserAction/expander.cpp:781
+#: UserAction/expander.cpp:988
 #, fuzzy
 msgid "Choose a view-mode"
 msgstr "Izaberi profil"
 
-#: UserAction/expander.cpp:784
+#: UserAction/expander.cpp:991
 #, fuzzy
 msgid "Choose a window-mode"
 msgstr "Izaberi profil"
+
+#: UserAction/expander.cpp:995
+msgid "Expander: no file to view in %_View(filename)%"
+msgstr ""
+
+#: UserAction/expander.cpp:1032
+#, c-format
+msgid "%Each% is not allowed in parameter to %1"
+msgstr ""
+
+#: UserAction/expander.cpp:1053
+msgid "Expander: Bad panel specifier %1 in placeholder %2"
+msgstr ""
+
+#: UserAction/expander.cpp:1082
+#, c-format
+msgid "Error: unterminated % in Expander::expandCurrent"
+msgstr ""
+
+#: UserAction/expander.cpp:1112
+msgid "Error: unrecognized %%%1%2%% in Expander::expand"
+msgstr ""
+
+#: UserAction/expander.cpp:1148
+msgid "Error: missing ')' in Expander::separateParameter"
+msgstr ""
+
+#: UserAction/kractionbase.cpp:51
+msgid "Confirm execution"
+msgstr "Potvrda izvršenja"
+
+#: UserAction/kractionbase.cpp:52
+#, fuzzy
+msgid "Command being executed:"
+msgstr "Naredba će biti izvršena:"
 
 #: Konfigurator/konfigurator.cpp:69 Search/krsearchdialog.cpp:103
 #: Synchronizer/synchronizergui.cpp:1404 UserAction/kraction.cpp:48
@@ -1043,60 +1145,51 @@ msgstr "Standardne greške (stderr)"
 msgid "Output"
 msgstr "Izlaz"
 
-#: UserAction/kraction.cpp:96
+#: UserAction/kraction.cpp:97
 msgid "Use font with fixed width"
 msgstr ""
 
-#: UserAction/kraction.cpp:130
+#: UserAction/kraction.cpp:131
 #, fuzzy
 msgid ""
 "*.txt|Text files\n"
 "*|all files"
 msgstr "*.xml|xml-datoteke"
 
-#: UserAction/kraction.cpp:137
+#: UserAction/kraction.cpp:138
 #, fuzzy
 msgid ""
 "This file already exists.\n"
 "Do you want to overwrite it or append the output?"
 msgstr " postoji. Da li želite prepisati arhivu?"
 
-#: UserAction/kraction.cpp:138
+#: UserAction/kraction.cpp:139
 #, fuzzy
 msgid "Overwrite or append?"
 msgstr "Prepiši unos"
 
 #: ActionMan/useractionpage.cpp:248 ActionMan/useractionpage.cpp:257
 #: Dialogs/checksumdlg.cpp:552 Dialogs/krkeydialog.cpp:135
-#: Konfigurator/kgcolors.cpp:523 UserAction/kraction.cpp:139
+#: Konfigurator/kgcolors.cpp:523 UserAction/kraction.cpp:140
 #, fuzzy
 msgid "Overwrite"
 msgstr "&Prepiši"
 
-#: UserAction/kraction.cpp:140
+#: UserAction/kraction.cpp:141
 #, fuzzy
 msgid "Append"
 msgstr "Vidljivo dugme otvaranja"
 
-#: ActionMan/useractionpage.cpp:271 UserAction/kraction.cpp:152
+#: ActionMan/useractionpage.cpp:271 UserAction/kraction.cpp:153
 msgid ""
 "Can't open %1 for writing!\n"
 "Nothing exported."
 msgstr ""
 
-#: ActionMan/useractionpage.cpp:272 UserAction/kraction.cpp:153
+#: ActionMan/useractionpage.cpp:272 UserAction/kraction.cpp:154
 #, fuzzy
 msgid "Export failed!"
 msgstr "Tekst datoteke"
-
-#: UserAction/kraction.cpp:292
-msgid "Confirm execution"
-msgstr "Potvrda izvršenja"
-
-#: UserAction/kraction.cpp:293
-#, fuzzy
-msgid "Command being executed:"
-msgstr "Naredba će biti izvršena:"
 
 #: UserAction/useraction.cpp:100
 msgid "The file %1 does not contain valid UserActions.\n"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.80.0-beta1\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2007-02-16 18:56+0100\n"
+"POT-Creation-Date: 2007-03-12 19:47+0100\n"
 "PO-Revision-Date: 2007-02-03 11:18+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\\nMIME-"
@@ -779,208 +779,310 @@ msgstr ""
 "Datumet högst upp är senare än det längst ner. Var vänlig ange datum så att "
 "det upptill är tidigare än det lägre."
 
+#: UserAction/expander.cpp:55
+#, c-format
+msgid "Needed panel specification missing in expander %1"
+msgstr ""
+
 #: UserAction/expander.cpp:70
+msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
+msgstr ""
+
+#: UserAction/expander.cpp:357
 msgid "panel's path"
 msgstr "panelens sökväg"
 
-#: UserAction/expander.cpp:73 UserAction/expander.cpp:135
-#: UserAction/expander.cpp:169 UserAction/expander.cpp:238
-#: UserAction/expander.cpp:540
+#: UserAction/expander.cpp:360 UserAction/expander.cpp:422
+#: UserAction/expander.cpp:456 UserAction/expander.cpp:488
+#: UserAction/expander.cpp:775
 msgid "Automatic escape spaces"
 msgstr "Bevarar mellanslag automatiskt"
 
-#: UserAction/expander.cpp:93
+#: UserAction/expander.cpp:380
 msgid "number of ..."
 msgstr "antal av ..."
 
-#: UserAction/expander.cpp:96
+#: UserAction/expander.cpp:383
 msgid "count all:"
 msgstr "räkna alla:"
 
-#: UserAction/expander.cpp:120
+#: UserAction/expander.cpp:398
+msgid "Expander: Bad argument to Count: %1 is not valid item specifier"
+msgstr ""
+
+#: UserAction/expander.cpp:407
 msgid "filter mask: *.h, *.cpp, etc."
 msgstr "filtermask *.h, *.cpp  m. m."
 
-#: UserAction/expander.cpp:131
+#: UserAction/expander.cpp:418
 msgid "current file (!= selected file)"
 msgstr "aktuell fil (!= vald fil)"
 
-#: UserAction/expander.cpp:134 UserAction/expander.cpp:167
-#: UserAction/expander.cpp:236 UserAction/expander.cpp:538
+#: UserAction/expander.cpp:421 UserAction/expander.cpp:454
+#: UserAction/expander.cpp:486 UserAction/expander.cpp:773
 msgid "Omit the current path (optional)"
 msgstr "Utelämna aktuell sökväg (valfritt)"
 
-#: UserAction/expander.cpp:162
+#: UserAction/expander.cpp:449
 msgid "Item list of ..."
 msgstr "Postlista för ..."
 
-#: UserAction/expander.cpp:165 UserAction/expander.cpp:234
-#: UserAction/expander.cpp:537
+#: UserAction/expander.cpp:452 UserAction/expander.cpp:484
+#: UserAction/expander.cpp:772
 msgid "Which items"
 msgstr "Vilka poster"
 
-#: UserAction/expander.cpp:166 UserAction/expander.cpp:235
+#: UserAction/expander.cpp:453 UserAction/expander.cpp:485
 msgid "Separator between the items (optional)"
 msgstr "Skiljetecken mellan poster (valfritt)"
 
-#: UserAction/expander.cpp:168 UserAction/expander.cpp:237
-#: UserAction/expander.cpp:539
+#: UserAction/expander.cpp:455 UserAction/expander.cpp:487
+#: UserAction/expander.cpp:774
 msgid "Mask (optional, all but 'Selected')"
 msgstr "Mask (valfritt, alla utom 'Vald')"
 
-#: UserAction/expander.cpp:231
+#: UserAction/expander.cpp:481
 msgid "Filename of an itemlist ..."
 msgstr "Filnamn för en postlista ..."
 
-#: UserAction/expander.cpp:311
+#: UserAction/expander.cpp:504
+msgid "Expander: tempfile couldn't be opened (%1)"
+msgstr ""
+
+#: UserAction/expander.cpp:524
 msgid "Manipulate the selection"
 msgstr "Manipulera det urvalda"
 
-#: UserAction/expander.cpp:314
+#: UserAction/expander.cpp:527
 msgid "Selection mask"
 msgstr "Urvalsmask"
 
-#: UserAction/expander.cpp:315
+#: UserAction/expander.cpp:528
 msgid "Manipulate in which way"
 msgstr "Manipulera på vilket sätt"
 
-#: UserAction/expander.cpp:340
+#: UserAction/expander.cpp:553
 msgid "Jump to a location"
 msgstr "Hoppa till en plats"
 
-#: UserAction/expander.cpp:343
+#: UserAction/expander.cpp:556
 msgid "please choose a path"
 msgstr "vänligen välj en sökväg"
 
-#: UserAction/expander.cpp:344
+#: UserAction/expander.cpp:557
 msgid "open the location in a new tab"
 msgstr "öppna platsen i en ny flik"
 
-#: UserAction/expander.cpp:380
+#: UserAction/expander.cpp:593
 msgid "Ask the user for a parameter"
 msgstr "Fråga användaren efter en parameter"
 
-#: UserAction/expander.cpp:383
+#: UserAction/expander.cpp:596
 msgid "Question"
 msgstr "Fråga"
 
-#: UserAction/expander.cpp:384
+#: UserAction/expander.cpp:597
 msgid "Preset (optional)"
 msgstr "Förval (valfritt)"
 
-#: UserAction/expander.cpp:385
+#: UserAction/expander.cpp:598
 msgid "Caption (optional)"
 msgstr "Rubrik (valfritt)"
 
-#: UserAction/expander.cpp:391
+#: UserAction/expander.cpp:604
 msgid "User Action"
 msgstr "Användaråtgärd"
 
-#: UserAction/expander.cpp:414
+#: UserAction/expander.cpp:629
 msgid "Copy to clipboard"
 msgstr "Kopiera till urklipp"
 
-#: UserAction/expander.cpp:417 UserAction/expander.cpp:435
+#: UserAction/expander.cpp:632 UserAction/expander.cpp:655
 msgid "What should be copied"
 msgstr "Vad skall kopieras"
 
-#: UserAction/expander.cpp:418
+#: UserAction/expander.cpp:633
 msgid "Append to the current clipboard-content with this separator (optional)"
 msgstr ""
 "Lägg till till aktuellt urklippsinnehåll med detta skiljetecken (valfritt)"
 
-#: UserAction/expander.cpp:432
+#: UserAction/expander.cpp:639
+msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
+msgstr ""
+
+#: UserAction/expander.cpp:652
 msgid "Copy a file/folder"
 msgstr "Kopiera en fil/mapp"
 
-#: UserAction/expander.cpp:436
+#: UserAction/expander.cpp:656
 msgid "Where it should be copied"
 msgstr "Vart den skall kopieras"
 
-#: UserAction/expander.cpp:456
+#: UserAction/expander.cpp:663
+msgid "Expander: %Each% may not be in the second argument of %Copy%"
+msgstr ""
+
+#: UserAction/expander.cpp:673
+msgid "Expander: invalid URL's in %_Copy(\"src\", \"dest\")%"
+msgstr ""
+
+#: UserAction/expander.cpp:684
 msgid "Move/Rename a file/folder"
 msgstr "Flytta/döp om en fil/mapp"
 
-#: UserAction/expander.cpp:459
+#: UserAction/expander.cpp:687
 msgid "What moved/renamed"
 msgstr "Vad flyttades/döptes om"
 
-#: UserAction/expander.cpp:460
+#: UserAction/expander.cpp:688
 msgid "New target/name"
 msgstr "Nytt mål/namn"
 
-#: UserAction/expander.cpp:480
+#: UserAction/expander.cpp:694
+msgid "%Each% may not be in the second argument of %Move%"
+msgstr ""
+
+#: UserAction/expander.cpp:704
+msgid "Expander: invalid URL's in %_Move(\"src\", \"dest\")%"
+msgstr ""
+
+#: UserAction/expander.cpp:715
 msgid "Open a synchronizer-profile"
 msgstr "Öppna en synkroniseringsprofil"
 
-#: UserAction/expander.cpp:483 UserAction/expander.cpp:501
-#: UserAction/expander.cpp:519
+#: UserAction/expander.cpp:718 UserAction/expander.cpp:736
+#: UserAction/expander.cpp:754
 msgid "Choose a profile"
 msgstr "Välj en profil"
 
-#: UserAction/expander.cpp:498
+#: UserAction/expander.cpp:722
+msgid "Expander: no profile specified for %_Sync(profile)%"
+msgstr ""
+
+#: UserAction/expander.cpp:733
 msgid "Open a searchmodule-profile"
 msgstr "Öppna en sökmodulsprofil"
 
-#: UserAction/expander.cpp:516
+#: UserAction/expander.cpp:740
+msgid "Expander: no profile specified for %_NewSearch(profile)%"
+msgstr ""
+
+#: UserAction/expander.cpp:751
 msgid "Load a panel-profile"
 msgstr "Ladda en panelprofil"
 
-#: UserAction/expander.cpp:534
+#: UserAction/expander.cpp:758
+msgid "Expander: no profile specified for %_Profile(profile)%; abort..."
+msgstr ""
+
+#: UserAction/expander.cpp:769
 msgid "Separate programm call for each..."
 msgstr "Skilda programanrop för varje..."
 
-#: UserAction/expander.cpp:594
+#: UserAction/expander.cpp:801
 msgid "Set the sorting for this panel"
 msgstr "Välj sortering för denna panel"
 
-#: UserAction/expander.cpp:597
+#: UserAction/expander.cpp:804
 msgid "Choose a column"
 msgstr "Välj en kolumn"
 
-#: UserAction/expander.cpp:598
+#: UserAction/expander.cpp:805
 msgid "Choose the sort sequence"
 msgstr "Välj sorteringssekvensen"
 
-#: UserAction/expander.cpp:688
+#: UserAction/expander.cpp:811
+msgid "Expander: no column specified for %_ColSort(column)%"
+msgstr ""
+
+#: UserAction/expander.cpp:883
+msgid "Expander: unknown column specified for %_ColSort(%1)%"
+msgstr ""
+
+#: UserAction/expander.cpp:895
 msgid "Set the relation between the two panels"
 msgstr "Välj förhållandet mellan de två panelerna"
 
-#: UserAction/expander.cpp:691
+#: UserAction/expander.cpp:898
 msgid "Set the new size in percent"
 msgstr "Välj den nya storleken i procent"
 
-#: UserAction/expander.cpp:727
+#: UserAction/expander.cpp:910
+msgid ""
+"Expander: Value %1 out of range for %_PanelSize(percent)%. The first "
+"parameter has to be >0 and <100"
+msgstr ""
+
+#: UserAction/expander.cpp:934
 msgid "Executes a JavaScript-extension"
 msgstr "Utför ett utvidgat JavaSkript"
 
-#: UserAction/expander.cpp:730
+#: UserAction/expander.cpp:937
 msgid "Location of the script"
 msgstr "Platsen för skriptet"
 
-#: UserAction/expander.cpp:731
+#: UserAction/expander.cpp:938
+#, fuzzy
 msgid ""
 "Set some variables for the execution (optional).\n"
-"i.e. \"return=cmd;foo=bar\", consult the handbook for more information"
+"i.e. \"return=return_var;foo=bar\", consult the handbook for more information"
 msgstr ""
 "Sätt några variabler för exekvering (alternativ).\n"
 "t. ex. \"retur=CMD; foo=bar\", titta i handboken för ytterligare information"
 
-#: UserAction/expander.cpp:777
+#: UserAction/expander.cpp:942
+msgid "Expander: no script specified for %_Script(script)%"
+msgstr ""
+
+#: UserAction/expander.cpp:984
 msgid "View a file with Krusader's internal viewer"
 msgstr "Granska en fil med Krusaders egen granskare"
 
-#: UserAction/expander.cpp:780
+#: UserAction/expander.cpp:987
 msgid "Which file to view (normally '%aCurrent%')"
 msgstr "Vilken fil skall granskas (normalt '%aCurrent%')"
 
-#: UserAction/expander.cpp:781
+#: UserAction/expander.cpp:988
 msgid "Choose a view-mode"
 msgstr "Välj ett granskningssätt"
 
-#: UserAction/expander.cpp:784
+#: UserAction/expander.cpp:991
 msgid "Choose a window-mode"
 msgstr "Välj en kolumnmod"
+
+#: UserAction/expander.cpp:995
+msgid "Expander: no file to view in %_View(filename)%"
+msgstr ""
+
+#: UserAction/expander.cpp:1032
+#, c-format
+msgid "%Each% is not allowed in parameter to %1"
+msgstr ""
+
+#: UserAction/expander.cpp:1053
+msgid "Expander: Bad panel specifier %1 in placeholder %2"
+msgstr ""
+
+#: UserAction/expander.cpp:1082
+#, c-format
+msgid "Error: unterminated % in Expander::expandCurrent"
+msgstr ""
+
+#: UserAction/expander.cpp:1112
+msgid "Error: unrecognized %%%1%2%% in Expander::expand"
+msgstr ""
+
+#: UserAction/expander.cpp:1148
+msgid "Error: missing ')' in Expander::separateParameter"
+msgstr ""
+
+#: UserAction/kractionbase.cpp:51
+msgid "Confirm execution"
+msgstr "Bekräfta exekvering"
+
+#: UserAction/kractionbase.cpp:52
+msgid "Command being executed:"
+msgstr "Kommando som utförs:"
 
 #: Konfigurator/konfigurator.cpp:69 Search/krsearchdialog.cpp:103
 #: Synchronizer/synchronizergui.cpp:1404 UserAction/kraction.cpp:48
@@ -1011,11 +1113,11 @@ msgstr "Standard Error (stderr)"
 msgid "Output"
 msgstr "Utdata"
 
-#: UserAction/kraction.cpp:96
+#: UserAction/kraction.cpp:97
 msgid "Use font with fixed width"
 msgstr "Andvänd teckensnitt med fast bredd"
 
-#: UserAction/kraction.cpp:130
+#: UserAction/kraction.cpp:131
 msgid ""
 "*.txt|Text files\n"
 "*|all files"
@@ -1023,7 +1125,7 @@ msgstr ""
 "*.txtl|Text-filer\n"
 "*|alla filer"
 
-#: UserAction/kraction.cpp:137
+#: UserAction/kraction.cpp:138
 msgid ""
 "This file already exists.\n"
 "Do you want to overwrite it or append the output?"
@@ -1031,21 +1133,21 @@ msgstr ""
 "Denna fil finns redan.\n"
 "Vill du skriva över den eller utvidga den?"
 
-#: UserAction/kraction.cpp:138
+#: UserAction/kraction.cpp:139
 msgid "Overwrite or append?"
 msgstr "Skriva över eller utvidga?"
 
 #: ActionMan/useractionpage.cpp:248 ActionMan/useractionpage.cpp:257
 #: Dialogs/checksumdlg.cpp:552 Dialogs/krkeydialog.cpp:135
-#: Konfigurator/kgcolors.cpp:523 UserAction/kraction.cpp:139
+#: Konfigurator/kgcolors.cpp:523 UserAction/kraction.cpp:140
 msgid "Overwrite"
 msgstr "Skriv över"
 
-#: UserAction/kraction.cpp:140
+#: UserAction/kraction.cpp:141
 msgid "Append"
 msgstr "Utvidga"
 
-#: ActionMan/useractionpage.cpp:271 UserAction/kraction.cpp:152
+#: ActionMan/useractionpage.cpp:271 UserAction/kraction.cpp:153
 msgid ""
 "Can't open %1 for writing!\n"
 "Nothing exported."
@@ -1053,17 +1155,9 @@ msgstr ""
 "Kan ej öppna %1 för skrivning!\n"
 "Ingenting exporterat."
 
-#: ActionMan/useractionpage.cpp:272 UserAction/kraction.cpp:153
+#: ActionMan/useractionpage.cpp:272 UserAction/kraction.cpp:154
 msgid "Export failed!"
 msgstr "Exportering misslyckades!"
-
-#: UserAction/kraction.cpp:292
-msgid "Confirm execution"
-msgstr "Bekräfta exekvering"
-
-#: UserAction/kraction.cpp:293
-msgid "Command being executed:"
-msgstr "Kommando som utförs:"
 
 #: UserAction/useraction.cpp:100
 msgid "The file %1 does not contain valid UserActions.\n"
