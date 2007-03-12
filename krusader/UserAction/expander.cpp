@@ -52,7 +52,7 @@ QValueList<const exp_placeholder*>& Expander::_placeholder()
 
 void exp_placeholder::panelMissingError(const QString &s, Expander& exp)
 {
-	exp.setError( Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Needed panel specification missing in expander  %1").arg(s)) );
+	exp.setError( Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Needed panel specification missing in expander %1").arg(s)) );
 }
 
 QStringList exp_placeholder::fileList(const ListPanel* const panel,const QString& type,const QString& mask,const bool ommitPath,const bool useUrl,Expander& exp,const QString& error)
