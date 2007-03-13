@@ -78,4 +78,13 @@
   <command>%aColSort(&quot;Modified&quot;)%</command>
   <defaultshortcut>Win+4</defaultshortcut>
  </action>
+ <action name="backup_current" >
+  <title>Backup current</title>
+  <tooltip>Backup current file in current directory</tooltip>
+  <icon>filesaveas</icon>
+  <category>System</category>
+  <description>Backups current file in current directory and asks the user for a new filename. By default &quot;.old&quot; is appended to the original filename.</description>
+  <command>%_Copy(&quot;%aCurrent%&quot;, &quot;%_Ask(&quot;New filename&quot;, &quot;%aCurrent%.old&quot;)%&quot;)%</command>
+  <defaultshortcut>Shift+F5</defaultshortcut>
+ </action>
 </KrusaderUserActions>
