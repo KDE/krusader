@@ -1,30 +1,34 @@
 <sect1 id="checksum">
-<title>Checksum creation-verification</title>
-<indexterm><primary>Checksum</primary></indexterm>
-
-<para>
-  <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
-  <guimenuitem>Create Checksum</guimenuitem></menuchoice></emphasis> :
-  &krusader; checks which tools you have and if those tools allow recursive
-  operation (in case you selected folders), you choose the type of checksum (md5, sha...) 
-  and it is generated. You can then save the
-  checksum to a file, usually called checksum.md5 (or .sha1 or whatever).
-</para>
-
-<para>
-  <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
-  <guimenuitem>Verify Checksum</guimenuitem></menuchoice></emphasis> :
-  &krusader; checks if you have a tool that supports the type of checksum you need
-  (from your specified checksum file) and displays the files that failed
-  the checksum (if any).
-</para>
-
-<para>
-  The nice thing is that the system abstracts over different checksum mechanisms 
-  and Checksum Utilities. Right now, the next checksums are supported:
-  md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv and crc.
-  Please check your <link linkend="konfig-dependencies">Checksum Utilities settings</link> 
-  before using this function.
-</para>
-
+  <title>Checksum creation-verification</title>
+  <indexterm>
+    <primary>Checksum</primary>
+  </indexterm>
+  <para>
+  <emphasis role="bold">
+    <menuchoice>
+      <guimenu>File</guimenu>
+      <guimenuitem>Create Checksum</guimenuitem>
+    </menuchoice>
+  </emphasis>: &krusader; checks which tools you have
+  and if those tools allow recursive operation (in case you
+  selected folders), you can generate a checksum by choosing a
+  checksum type from the list (md5, sha...). You can then save the
+  checksum to a file, usually called checksum.md5 or
+  checksum.sha1.</para>
+  <para>
+  <emphasis role="bold">
+    <menuchoice>
+      <guimenu>File</guimenu>
+      <guimenuitem>Verify Checksum</guimenuitem>
+    </menuchoice>
+  </emphasis>: &krusader; checks if you have a tool that
+  supports the type of checksum you need (from your specified
+  checksum file) and displays the files that failed the checksum
+  (if any).</para>
+  <para>The system abstracts over different checksum mechanisms and
+  Checksum Utilities. At the moment, the following checksums are
+  supported: md5, sha1, sha256, sha224, sha256, sha384, sha512,
+  tiger, whirlpool, cfv and crc. Please check your 
+  <link linkend="konfig-dependencies">Checksum Utilities
+  settings</link>before using this function.</para>
 </sect1>

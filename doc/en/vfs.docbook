@@ -1,64 +1,99 @@
 <sect1 id="vfs">
-<title>Virtual file systems (VFS)</title>
-<indexterm><primary>VFS</primary></indexterm>
-
-<para>
- A basic <link linkend="features">OFM feature</link> is  VFS, 
- this an abstracted layer over all kinds of archived information 
- (ZIP files, FTP servers, TAR archives, NFS filesystems, SAMBA shares, ISO cd/dvd images, RPM catalogs, etc.),
- which allows the user to access all the information in these divergent types of filesystems transparently - 
- just like entering an ordinary sub-directory!
- &krusader; supports several VFS:
-<itemizedlist>
-    <listitem><para><link linkend="remote-connections">Remote connections VFS</link>: 
-              provides the capability of working with a remote connection session (FTP, NFS, Samba, FISH, SFTP)
-              like with local filesystems.
-              It's perfect for complex remote operations and almost as powerful as most standalone GUI remote clients.</para>
+  <title>Virtual file systems (VFS)</title>
+  <indexterm>
+    <primary>VFS</primary>
+  </indexterm>
+  <para>A basic 
+  <link linkend="features">OFM feature</link>is VFS, this an
+  abstracted layer over all kinds of archived information (ZIP
+  files, FTP servers, TAR archives, NFS filesystems, SAMBA shares,
+  ISO cd/dvd images, RPM catalogs, etc.), which allows the user to
+  access all the information in these divergent types of
+  filesystems transparently - just like entering an ordinary
+  sub-directory. &krusader; supports several Virtual
+  File Systems: 
+  <itemizedlist>
+    <listitem>
+      <para>
+      <link linkend="remote-connections">Remote connections
+      VFS</link>: provides the capability of working with a remote
+      connection session (FTP, NFS, Samba, FISH, SFTP) like with
+      local filesystems. It's perfect for complex remote operations
+      and almost as powerful as most standalone GUI remote
+      clients.</para>
     </listitem>
-    <listitem><para><link linkend="archives">Archive VFS</link>:
-     allows to browse archives in VFS as it was a directory (ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip).</para>
+    <listitem>
+      <para>
+      <link linkend="archives">Archive VFS</link>: allows to browse
+      archives in VFS as it was a directory (ace, arj, bzip2, deb,
+      gzip, iso, lha, rar, rpm, tar, zip and 7-zip).</para>
     </listitem>
-    <listitem><para><link linkend="archives">Search VFS</link>: <guibutton>Feed to listbox</guibutton> will place the
-     search results in VFS.
-    </para>
+    <listitem>
+      <para>
+      <link linkend="archives">Search VFS</link>: 
+      <guibutton>Feed to listbox</guibutton>will place the search
+      results in VFS.</para>
     </listitem>
-    <listitem><para><link linkend="synchronizer">Synchronizer VFS</link>: places the
-     synchronizer results in VFS.
-     </para>
-     </listitem>
-</itemizedlist>
-     Actions you perform on the files in VFS are performed on the 'real' files.
-     You don't just delete files from the VFS - you delete them from your hard drive.
-     Limitations: you can't create directories inside in a VFS.
-</para>
-
-<para>It's possible to keep the directory structure when doing a from copy from a virtial folder
-to a non virtual folder, by selecting the "Keep virtual directory structure" checkbox of the copy dialog. 
-Imagine the next virtual folder:
-<screen><prompt>$</prompt> <userinput>file:/home/myhome/mydir1/myfile1</userinput></screen> 
-<screen><prompt>$</prompt> <userinput>file:/home/myhome/mydir1/myfile2</userinput></screen> 
-<screen><prompt>$</prompt> <userinput>file:/home/myhome/mydir2/myfile3 </userinput></screen> 
-
-Than do the next steps:
-<itemizedlist>
-   <listitem><para>go to the virtual folder and select the files</para>
-             </listitem>
-   <listitem><para>select a destination folder (non virtual!)</para>
-             </listitem> 
-   <listitem><para>press <keycap>F5</keycap> -> copy dialog appears</para>
-             </listitem> 
-   <listitem><para>Check <guilabel>Keep virtual directory structure</guilabel></para>
-             </listitem> 
-   <listitem><para>Select <filename>/home/myhome/</filename> for base &URL;</para>
-             </listitem> 
-   <listitem><para>Start copy by pressing OK</para>
-             </listitem> 
-</itemizedlist>
-
-The result will be::
-<screen><prompt>$</prompt> <userinput>destinationdir/mydir1/myfile1</userinput></screen> 
-<screen><prompt>$</prompt> <userinput>destinationdir/mydir1/myfile2</userinput></screen> 
-<screen><prompt>$</prompt> <userinput>destinationdir/mydir2/myfile3</userinput></screen>
-</para>
-
+    <listitem>
+      <para>
+      <link linkend="synchronizer">Synchronizer VFS</link>: places
+      the synchronizer results in VFS.</para>
+    </listitem>
+  </itemizedlist>Actions you perform on the files in VFS are
+  performed on the 'real' files. You don't just delete files from
+  the VFS - you delete them from your hard drive. Limitations: you
+  can't create directories inside a VFS.</para>
+  <para>It's possible to keep the directory structure when doing a
+  from copy from a virtual folder to a non virtual folder, by
+  selecting the "Keep virtual directory structure" checkbox of the
+  copy dialog. Imagine the following virtual folder: 
+  <screen>
+    <prompt>$</prompt>
+    <userinput>file:/home/myhome/mydir1/myfile1</userinput>
+  </screen>
+  <screen>
+    <prompt>$</prompt>
+    <userinput>file:/home/myhome/mydir1/myfile2</userinput>
+  </screen>
+  <screen>
+    <prompt>$</prompt>
+    <userinput>file:/home/myhome/mydir2/myfile3</userinput>
+  </screen>Then do the following steps: 
+  <itemizedlist>
+    <listitem>
+      <para>go to the virtual folder and select the files</para>
+    </listitem>
+    <listitem>
+      <para>select a destination folder (non virtual!)</para>
+    </listitem>
+    <listitem>
+      <para>press 
+      <keycap>F5</keycap>-&gt; copy dialog
+      appears</para>
+    </listitem>
+    <listitem>
+      <para>Check 
+      <guilabel>Keep virtual directory structure</guilabel></para>
+    </listitem>
+    <listitem>
+      <para>Select 
+      <filename>/home/myhome/</filename>for base
+      &URL;</para>
+    </listitem>
+    <listitem>
+      <para>Start copy by pressing OK</para>
+    </listitem>
+  </itemizedlist>The result will be: 
+  <screen>
+    <prompt>$</prompt>
+    <userinput>destinationdir/mydir1/myfile1</userinput>
+  </screen>
+  <screen>
+    <prompt>$</prompt>
+    <userinput>destinationdir/mydir1/myfile2</userinput>
+  </screen>
+  <screen>
+    <prompt>$</prompt>
+    <userinput>destinationdir/mydir2/myfile3</userinput>
+  </screen></para>
 </sect1>

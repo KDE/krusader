@@ -1,6 +1,5 @@
-<chapter id="using-krusader">
-
-<!-- **********************************************************************
+<chapter id="basic-functions">
+  <!-- **********************************************************************
                             using-krusader.docbook
                           +++++++++++++++++++++++++++
   copyright            : (C) 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007
@@ -20,308 +19,409 @@
 * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
 * MA 02111-1307, USA.                                                     *
 *********************************************************************** -->
-
-<title>Using &krusader;</title>
-
-<sect1 id="controls">
-<title>Controls</title>
-
-<sect2 id="control-general">
-<title>General</title>
-
-<para>
-This is a rather short but important section that will go into the details of 
-controlling &krusader;.
-This section doesn't try to cover all the various key combinations for two reasons: 
-<orderedlist numeration="arabic">
-  <listitem>
-     <para>there are just too many of them</para>
-  </listitem>
-  
-  <listitem>  
-     <para>most of &krusader;'s actions are configurable in the &konfiglookandfeel_lnk;</para>
-  </listitem>
-</orderedlist>
-We will only mention the most important keyboard shortcuts with the default 
-configuration but keep in mind that most of the &keybindigs_lnk; are configurable. 
-If you find that you use a certain command a lot and want to know the shortcut 
-for this command, or you want to change this command shortcut, then check out 
-the &keybindigs_lnk; tab at the &konfiglookandfeel_lnk;.</para>
-</sect2>
-
-<sect2 id="moving-around">
-<title>Moving Around</title>
-<para>By Moving Around we mean the transfer of the keyboard and mouse focus between the different parts
-      of the &krusader; <link linkend="mainwindow">main window</link>. The focus can be in one of five places:
-      the Left or Right Panel, the Menu Bar, the Command Line or the Terminal Emulator.
-      The panel that has the focus is called the Active Panel. An Active Panel will remain active
-      until the other panel receives the focus (&ie;: if the Left Panel was active and you clicked on
-      the Command Line - then the Left Panel remains the Active Panel).
-      You must deliberately change which panel is active.</para>
-
-<para>The most common way to transfer the focus to a specific panel is to use the mouse to click on that panel.
-       But you should be aware of the following:
-<itemizedlist>
-   <listitem>
-     <para>Clicking on the Toolbar, the FN keys bar or the Status Bar does *not* change the
-           focus.</para>
-   </listitem>
-
-<!--
+  <title>Basic Functions</title>
+  <sect1 id="controls">
+    <title>Controls</title>
+    <sect2 id="control-general">
+      <title>General</title>
+      <para>This is a rather short but important section that will
+      go into the details of controlling &krusader;.
+      This section doesn't try to cover all the various key
+      combinations for two reasons: 
+      <orderedlist numeration="arabic">
+        <listitem>
+          <para>there are just too many of them</para>
+        </listitem>
+        <listitem>
+          <para>most of &krusader;'s actions are
+          configurable in the
+          &konfiglookandfeel_lnk;</para>
+        </listitem>
+      </orderedlist>We will only mention the most important
+      keyboard shortcuts with the default configuration, but keep
+      in mind that most of the &keybindigs_lnk; are
+      configurable. If you find that you use a certain command a
+      lot and want to know the shortcut for this command, or you
+      want to change this command shortcut, then check out the
+      &keybindigs_lnk; tab at the
+      &konfiglookandfeel_lnk;.</para>
+    </sect2>
+    <sect2 id="moving-around">
+      <title>Moving Around</title>
+      <para>By Moving Around we mean the transfer of the keyboard
+      and mouse focus between the different parts of the
+      &krusader; 
+      <link linkend="mainwindow">main window</link>. The focus can
+      be in one of five places: the Left or Right Panel, the Menu
+      Bar, the Command Line or the Terminal Emulator. The panel
+      that has the focus is called the Active Panel. An Active
+      Panel will remain active until the other panel receives the
+      focus (&ie;: if the Left Panel was active and you
+      clicked on the Command Line - then the Left Panel remains the
+      Active Panel). You must deliberately change which panel is
+      active.</para>
+      <para>The most common way to transfer the focus to a specific
+      panel is to use the mouse to click on that panel. But you
+      should be aware of the following: 
+      <itemizedlist>
+        <listitem>
+          <para>Clicking on the Toolbar, the FN keys bar or the
+          Status Bar does *not* change the focus.</para>
+        </listitem>
+        <!--
    Quick View Panel: old Krusader feature , removed since krusader-1.12-beta1      
    <listitem>
      <para>The display part of the Quick View Panel does not accept clicks so you should click on the
            Location Toolbar of this panel if you want it to have focus.</para>
    </listitem>
--->   
-
-   <listitem>
-     <para>Pushing the <guibutton>"History"</guibutton> or the
-           <guibutton>"Run in Terminal"</guibutton> buttons in the Command Line will not transfer
-           the focus so you have click inside the Input Line.</para>
-   </listitem>
-   
-   <listitem>
-     <para>The Menu Bar can get the focus by choosing a menu but it keeps the focus until you choose a
-           command, and then the focus returns to the previous owner.</para>
-   </listitem>
-</itemizedlist>
-</para>
-
-<para>There are, of course, ways to use the keyboard to change the focus
-<itemizedlist>
-    <listitem><para>The &Tab; Key will switch panels if one of the panel has the focus, or
-                    rotate between all the commands in a menu if the Menu Bar is active.</para>
+-->
+        <listitem>
+          <para>Pushing the 
+          <guibutton>"History"</guibutton>or the 
+          <guibutton>"Run in Terminal"</guibutton>buttons in the
+          Command Line will not transfer the focus, so you have to
+          click inside the Input Line.</para>
         </listitem>
-    <listitem><para>The <keycombo action="simul">&Ctrl;<keycap>Down Arrow</keycap></keycombo> will
-                    take you from the Active Panel to the Command Line or Terminal Emulator, and the
-                    <keycombo action="simul">&Ctrl;<keycap>Up Arrow</keycap></keycombo> will take you
-                    back from the Command Line to the Active Panel.</para>
+        <listitem>
+          <para>When you choose a menu, the Menu Bar will become
+          focused. It remains focused until you choose a command -
+          the focus returns to the previous owner.</para>
         </listitem>
-    <listitem><para>The &Esc; Key will make the Menu Bar return the focus, if it has it, to the previous Active Panel.</para>
+      </itemizedlist></para>
+      <para>There are, of course, ways to use the keyboard to
+      change the focus: 
+      <itemizedlist>
+        <listitem>
+          <para>The &Tab; Key will switch panels, if one
+          of the panels has the focus or rotate between all the
+          commands in a menu, if the Menu Bar is active.</para>
         </listitem>
-    <listitem><para>If you happen to be inside the Terminal Emulator, you can use the &Tab; Key, or the mouse, to navigate to an Active Panel.</para>
+        <listitem>
+          <para>The 
+          <keycombo action="simul">&Ctrl;
+          <keycap>Down Arrow</keycap></keycombo>will take you from
+          the Active Panel to the Command Line or Terminal
+          Emulator, and the 
+          <keycombo action="simul">&Ctrl;
+          <keycap>Up Arrow</keycap></keycombo>will take you back
+          from the Command Line to the Active Panel.</para>
         </listitem>
-    <listitem><para>Pressing <keycombo action="simul">&Alt;<keycap>"Underlined Letter"</keycap></keycombo>
-      from the Menu Bar will open that menu (unless this key combination is a "Reserved Key", used by one of
-        &krusader;'s actions).</para>
+        <listitem>
+          <para>The &Esc; Key will make the Menu Bar
+          return the focus, if it has it, to the previous Active
+          Panel.</para>
         </listitem>
-</itemizedlist>
-</para>
-</sect2>
-
-
-<sect2 id="selecting-files">
-<title>Selecting</title>
-
-<note><para>&krusader; offers 4 &mouse_selection_modes_lnk;, only &krusader;'s Mouse Selection Mode is explained here.</para></note>
-
-<para>Selecting is a skill you need to master in order to get the most out of &krusader;. Since you can't
-      select files in the Quick View Panel, and the Tree Panel only lets you select one directory at a time,
-      this paragraph mainly explains how to select files in the List Panel filelist.</para>
-
-<para>Moving the cursor is easy. Left-clicking on
-      a file or directory (referred to herein as "elements" meaning, files AND directories) will select it.
-      Here are some useful pointers that will make Krusader even easier to use:
-      (assuming you're using &krusader;'s Mouse Selection Mode)
-
-<itemizedlist>
-    <listitem><para>The <keycap>SPACE</keycap> and <keycap>Insert</keycap> key will toggle the selection of 
-              the file under the cursor without affecting the selection of other files/directories, the cussor
-              will go one position down.</para>
-    </listitem>
-
-    <listitem><para>Pressing the <keycap>SPACE</keycap> on a Directory under the cursor will
-                    <link linkend="calculate">calculate occupied space</link> without
-                    affecting the selection of other files/directories.</para>
-    </listitem>
-
-    <listitem><para><keycap>Left Clicking</keycap> on a file will select, or unselect, all previously selected
-                      files.</para>
-    </listitem>
-
-    <listitem><para><keycombo action="simul">&Ctrl;<keycap>Left Clicking</keycap></keycombo> will toggle the 
-              selection of the file under the cursor without affecting the selection of other files/directories.</para>
-    </listitem>
-
-    <listitem><para><keycombo action="simul">&Shift;<keycap>Left Clicking</keycap></keycombo> will
-              select all the elements between the previous cursor location and the new one.</para>
-    </listitem>
-
-    <listitem><para><keycombo action="simul">&Shift;<keycap>Home</keycap></keycombo> selects everything above 
-              the cursor (and unselect everthing below the cusror if selected).</para>
-    </listitem>
-
-    <listitem><para><keycombo action="simul">&Shift;<keycap>End</keycap></keycombo> selects everything below 
-              the cursor (and unselect everthing above the cusror if selected).</para>
-    </listitem>
-
-    <listitem><para>The ".." entry is not selectable.</para>
-    </listitem>
-
-    <listitem><para>The &editmenu_lnk; can offer more ways to select your files.</para>
-    </listitem>
-
-</itemizedlist>
-</para>
-</sect2>
-
-
-<sect2 id="executing_commands">
-<title>Executing Commands</title>
-<para>There isn't a lot to say here, all you need to do is select some files (if you don't &krusader; will operate on
-       the file(s) or directory(s) that have the focus), choose a <link linkend="menu-commands">Command</link>
-       from the Menu Bar or use a Keyboard Shortcut (or the Right Click Menu) and the selected Command executes.
-       See also <link linkend="executing_files">Executing Files</link>.
-      </para>
-</sect2>
-
-
-<sect2 id="quicksearch">
-<title>Quicksearch</title>
-<!-- Thanks to Heiner Eichmann -->
-
-<para>This feature will do a quick search for the file name in the Active List Panel.</para>
-
-<para>There are two quick search methods:
- <itemizedlist>
-   <listitem><para>"Old Quicksearch": type <keycap>foo</keycap> (one character) to do
-                   a quick search in the Active List Panel for a file beginning with "foo".</para>
-              </listitem>
-   <listitem><para>"New Quicksearch": type <keycap>foo</keycap> to open
-                   the small quick search dialog box below the Active List Panel.
-       Type the first few characters of the desired filename (more than one character allowed),
-       the cursor will jump to that filename (if it exists), &eg; type "ab" to search for a file
-       which begins with "ab".
-                   The <keycap>Up/Down Arrow</keycap> will jump to the next or previous match.
-                   &Esc; will close the quicksearch line.
-                   The cursor will stay on the last Quicksearch file found.
-   </para></listitem>
-  </itemizedlist>
-</para>
-
-<note><para>If you press <keycombo action="simul">&Alt;<keycap>foo</keycap></keycombo>,
-             the key binding shortcut will be executed. If there is no configured key binding,
-       the remaining letter <keycap>foo</keycap> will used for the quick search.</para></note>
-
-<para>Use &konfiglookandfeel_lnk; to change from the default configuration.</para>
-</sect2>
-
-<sect2 id="context-menu">
-<title>Context Menu</title>
-
-<para>&krusader; has many Context menus that allow you to do fast operations with the mouse,
-      usually a Right-Click will open the Context menu (depending on your &mouse_selection_modes_lnk; settings).
-      This list gives an overview of the most important Context menus, use them
-      to discover the available commands.
-<itemizedlist>
-    <listitem><para>&main_toolbar_lnk; (orientation, text position , icon size)</para></listitem>
-    <listitem><para>&list_panel_lnk; on a file or directory</para></listitem>
-    <listitem><para>&cmdline_lnk; (undo, paste, text completion, ...)</para></listitem>
-    <listitem><para>&termemu_lnk; (send signal, font, history, ...)</para></listitem>
-    <listitem><para>&foldertabs_lnk; (new, duplicate, close)</para></listitem>
-    <listitem><para><link linkend="krusearcher">KruSearcher</link>
-                      Search results file list (F3 View, F4 Edit)</para></listitem>
-    <listitem><para>&mountman_lnk; (unmount, format, ...)</para></listitem>
-    <listitem><para>&syncdirs_lnk; File List</para></listitem>
-    <listitem><para>&useractions_lnk;</para></listitem>
-    <listitem><para>&konqueror; Right-Click actions are shown in &krusader;</para></listitem>
-    <listitem><para>Show/hide <link linkend="list_panel">Column Headers</link></para></listitem>
-    <listitem><para>&bookmarks_lnk; enable/disable permanent bookmarks.</para></listitem>
-    <listitem><para>...</para></listitem>
-</itemizedlist>
-</para>
-</sect2>
-
-</sect1>
-
-<sect1 id="basic">
-<title>Basic File Management</title>
-
-<sect2 id="executing_files">
-<title>Executing Files</title>
-<para>You can only execute files in the Active List Panel.
-       To <keycap>execute</keycap> a file just <keycap>(double-)click on it or press Enter</keycap>
-       when it is under the list cursor. &krusader; will open it in the default application
-       for this file type (picture, textfile, ...) or the file will be executed (script, binary, ...).
-       If you want to use <keycap>another application</keycap> to open the file, then
-       <keycap>Right-Click</keycap> on the file and go to the "open with" sub-menu which will offer
-       more options. &krusader; is compatible with &kde; default file-manager for all file types
-       except archives that are opened inside the &krusader; panel and not in an external application.
-       See <link linkend="konfig-archives">the archives page in Konfigurator</link> for details.</para>
-</sect2>
-
-
-<sect2 id="copying">
-<title>Copying and Moving</title>
-<para>To copy or move files/directories just select them and press <keycap>F5</keycap> 
-      to <keycap>copy</keycap> or <keycap>F6</keycap> to
-       <keycap>move</keycap> them.
-       If checked the <guimenuitem>Preserve attributes (only on local targets)</guimenuitem> option, 
-       &krusader; will try to preserve all attributes (time, owner, group) of the local files 
-       according to the source depending on your permissions:
-       <itemizedlist>
-        <listitem><para>User preserving if you are root</para></listitem>
-        <listitem><para>Group preserving if you are root or member of the group</para></listitem>
-        <listitem><para>Preserving the timestamp</para></listitem>
-       </itemizedlist> Using this option might slow down the copy/move process.
-       A dialog will appear and allow you to choose the operation destination, 
-       the default destination is the other-panel browsed directory. 
-       If you enter a partial &URL; &krusader; will use
-       the current panel directory as the &URL; base.</para>
-</sect2>
-
-
-<sect2 id="deleting">
-<title>Deleting</title>
-<para>Deleting files/directories is done by selecting them and pressing <keycap>F8</keycap> 
-       or <keycap>Delete</keycap>.
-       By <link linkend="konfig-general">default</link> it will be moved to &kde;'s Trash,
-       <keycombo action="simul">&Shift;<keycap>Delete</keycap></keycombo> will delete
-       the file permanently.
-       A dialog will ask for your confirmation and will warn you when deleting non-empty directories.
-       Of course only operations that you are permitted to do by the Operating System will 
-       be performed - you will be notified otherwise.
-       If you don't wish to see the confirmation dialogs, you can disable them in the
-       <link linkend="konfig-advanced">Konfigurator advanced tab</link>.</para>
-</sect2>
-
-<sect2 id="shred">
-<title>Shred Files</title>
-<para>When you delete files in your local system they are not completely erased and the
-      information stored in them can be recovered using special software and hardware tools. If
-      you want to erase a file without recoverable traces, select the file and use
-      <emphasis role="bold"><menuchoice><guimenu>Right-Click menu</guimenu>
-      <guimenuitem>Shred</guimenuitem></menuchoice></emphasis>.
-    </para>
-</sect2>
-
-
-<sect2 id="renaming">
-<title>Renaming files, Creating Directories, and Link Handling</title>
-<para><keycap>Rename</keycap> the file under the cursor with the <keycap>F9</keycap> key
-      or with two single mouseclicks. If only the filename needs to be renamed and not the extension
-      you can configure this in the &konfiglookandfeel_lnk;.
-      <keycap>Create a new directory</keycap> with the <keycap>F7</keycap> key.
-      <keycap>Right-clicking on a regular file</keycap> will give you the <keycap>option "New Symlink"</keycap>,
-      a dialog will prompt you to enter a symlink name.
-      That name will point to the file/directory you Right-Clicked on.
-      If the file you Right-Clicked on is a symlink you will also be presented with the
-      "redirect link" option that will allow you change the link target.</para>
-</sect2>
-
-
-<sect2 id="viewing">
-<title>Viewing and Editing files</title>
-<para><link linkend="krviewer">KrViewer</link> has a chapter of its own.</para>
-</sect2>
-
-</sect1>
-
+        <listitem>
+          <para>If you happen to be inside the Terminal Emulator,
+          you can use the &Tab; Key, or the mouse, to
+          navigate to an Active Panel.</para>
+        </listitem>
+        <listitem>
+          <para>Pressing 
+          <keycombo action="simul">&Alt;
+          <keycap>"Underlined Letter"</keycap></keycombo>from the
+          Menu Bar will open that menu (unless this key combination
+          is a "Reserved Key", used by one of
+          &krusader;'s actions).</para>
+        </listitem>
+      </itemizedlist></para>
+    </sect2>
+    <sect2 id="selecting-files">
+      <title>Selecting</title>
+      <note>
+        <para>&krusader; offers 4
+        &mouse_selection_modes_lnk;, only
+        &krusader;'s Mouse Selection Mode is explained
+        here.</para>
+      </note>
+      <para>Selecting is a skill you need to master in order to get
+      the most out of &krusader;. Since you can't select
+      files in the Quick View Panel, and the Tree Panel only lets
+      you select one directory at a time, this paragraph mainly
+      explains how to select files in the List Panel
+      filelist.</para>
+      <para>Moving the cursor is easy. Left-clicking on a file or
+      directory (referred to herein as "elements" meaning files AND
+      directories) will select it. Here are some useful pointers
+      that will make Krusader even easier to use (assuming you're
+      using &krusader;'s Mouse Selection Mode): 
+      <itemizedlist>
+        <listitem>
+          <para>The 
+          <keycap>SPACE</keycap>and 
+          <keycap>Insert</keycap>key will toggle the selection of
+          the file under the cursor without affecting the selection
+          of other files/directories, the cursor will go one
+          position down.</para>
+        </listitem>
+        <listitem>
+          <para>Pressing the 
+          <keycap>SPACE</keycap>on a Directory under the cursor
+          will 
+          <link linkend="calculate">calculate occupied
+          space</link>without affecting the selection of other
+          files/directories.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <keycap>Left Clicking</keycap>on a file will select, or
+          unselect, all previously selected files.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <keycombo action="simul">&Ctrl;
+          <keycap>Left Clicking</keycap></keycombo>will toggle the
+          selection of the file under the cursor without affecting
+          the selection of other files/directories.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <keycombo action="simul">&Shift;
+          <keycap>Left Clicking</keycap></keycombo>will select all
+          the elements between the previous cursor location and the
+          new one.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <keycombo action="simul">&Shift;
+          <keycap>Home</keycap></keycombo>selects everything above
+          the cursor (and unselects everything below the cursor, if
+          selected).</para>
+        </listitem>
+        <listitem>
+          <para>
+          <keycombo action="simul">&Shift;
+          <keycap>End</keycap></keycombo>selects everything below
+          the cursor (and unselects everything above the cursor, if
+          selected).</para>
+        </listitem>
+        <listitem>
+          <para>The ".." entry is not selectable.</para>
+        </listitem>
+        <listitem>
+          <para>The &editmenu_lnk; can offer more ways
+          to select your files.</para>
+        </listitem>
+      </itemizedlist></para>
+    </sect2>
+    <sect2 id="executing_commands">
+      <title>Executing Commands</title>
+      <para>There isn't a lot to say here, all you need to do is
+      select some files (if you don't, &krusader; will
+      operate on the file(s) or directory(s) that have the focus),
+      choose a 
+      <link linkend="menu-commands">Command</link>from the Menu Bar
+      or use a Keyboard Shortcut (or the Right Click Menu) and the
+      selected Command executes. See also 
+      <link linkend="executing_files">Executing
+      Files</link>.</para>
+    </sect2>
+    <sect2 id="quicksearch">
+      <title>Quicksearch</title>
+      <!-- Thanks to Heiner Eichmann -->
+      <para>This feature will do a quick search for the file name
+      in the Active List Panel.</para>
+      <para>Type 
+      <keycap>foo</keycap>(one character) to do a quick search in
+      the Active List Panel for a file beginning with "foo". A
+      small quick search dialog box will open below the Active List
+      Panel. Type the first few characters of the desired filename
+      (more than one character allowed), the cursor will jump to
+      that filename (if it exists), &eg; type "ab" to
+      search for a file which begins with "ab". The 
+      <keycap>Up/Down Arrow</keycap>will jump to the next or
+      previous match. &Esc; will close the quicksearch
+      line. The cursor will stay on the last Quicksearch file
+      found.</para>
+      <note>
+        <para>If you press 
+        <keycombo action="simul">&Alt;
+        <keycap>foo</keycap></keycombo>, the key binding shortcut
+        will be executed. If there is no configured key binding,
+        the remaining letter 
+        <keycap>foo</keycap>will be used for the quick
+        search.</para>
+      </note>
+      <para>Use &konfiglookandfeel_lnk; to change from
+      the default configuration.</para>
+    </sect2>
+    <sect2 id="context-menu">
+      <title>Context Menu</title>
+      <para>&krusader; has many Context menus that allow
+      you to do fast operations with the mouse, usually a
+      Right-Click will open the Context menu (depending on your
+      &mouse_selection_modes_lnk; settings). This list
+      gives an overview of the most important Context menus. Use
+      them to discover the available commands. 
+      <itemizedlist>
+        <listitem>
+          <para>&main_toolbar_lnk; (orientation, text
+          position, icon size)</para>
+        </listitem>
+        <listitem>
+          <para>&list_panel_lnk; on a file or
+          directory</para>
+        </listitem>
+        <listitem>
+          <para>&cmdline_lnk; (undo, paste, text
+          completion...)</para>
+        </listitem>
+        <listitem>
+          <para>&termemu_lnk; (send signal, font,
+          history...)</para>
+        </listitem>
+        <listitem>
+          <para>&foldertabs_lnk; (new, duplicate,
+          close)</para>
+        </listitem>
+        <listitem>
+          <para>
+          <link linkend="krusearcher">KruSearcher</link>Search
+          results file list (F3 View, F4 Edit)</para>
+        </listitem>
+        <listitem>
+          <para>&mountman_lnk; (unmount,
+          format...)</para>
+        </listitem>
+        <listitem>
+          <para>&syncdirs_lnk; File List</para>
+        </listitem>
+        <listitem>
+          <para>&useractions_lnk;</para>
+        </listitem>
+        <listitem>
+          <para>&konqueror; Right-Click actions are
+          shown in &krusader;</para>
+        </listitem>
+        <listitem>
+          <para>Show/hide 
+          <link linkend="list_panel">Column Headers</link></para>
+        </listitem>
+        <listitem>
+          <para>&bookmarks_lnk; enable/disable permanent
+          bookmarks</para>
+        </listitem>
+        <listitem>
+          <para>...</para>
+        </listitem>
+      </itemizedlist></para>
+    </sect2>
+  </sect1>
+  <sect1 id="basic">
+    <title>Basic File Management</title>
+    <sect2 id="executing_files">
+      <title>Executing Files</title>
+      <para>You can only execute files in the Active List Panel. To
+      
+      <keycap>execute</keycap>a file just 
+      <keycap>(double-)click on it or press Enter</keycap>when it
+      is under the list cursor. &krusader; will open it
+      in the default application for this file type (picture,
+      textfile...) or the file will be executed (script,
+      binary...). If you want to use 
+      <keycap>another application</keycap>to open the file, 
+      <keycap>Right-Click</keycap>on the file and go to the "open
+      with" sub-menu which will offer more options.
+      &krusader; is compatible with &kde;
+      default file-manager for all file types except archives that
+      are opened inside the &krusader; panel and not in
+      an external application. See 
+      <link linkend="konfig-archives">the archives page in
+      Konfigurator</link>for details.</para>
+    </sect2>
+    <sect2 id="copying">
+      <title>Copying and Moving</title>
+      <para>To copy or move files/directories just select them and
+      press 
+      <keycap>F5</keycap>to 
+      <keycap>copy</keycap>or 
+      <keycap>F6</keycap>to 
+      <keycap>move</keycap>them. If the 
+      <guimenuitem>Preserve attributes (only on local
+      targets)</guimenuitem>option is checked,
+      &krusader; will try to preserve all attributes
+      (time, owner, group) of the local files according to the
+      source depending on your permissions: 
+      <itemizedlist>
+        <listitem>
+          <para>User preserving if you are root</para>
+        </listitem>
+        <listitem>
+          <para>Group preserving if you are root or member of the
+          group</para>
+        </listitem>
+        <listitem>
+          <para>Preserving the timestamp</para>
+        </listitem>
+      </itemizedlist>Using this option may slow down the copy/move
+      process. A dialog will appear and allow you to choose the
+      operation destination. The default destination is the
+      other-panel browsed directory. If you enter a partial
+      &URL;, &krusader; will use the current
+      panel directory as the &URL; base.</para>
+    </sect2>
+    <sect2 id="deleting">
+      <title>Deleting</title>
+      <para>Deleting files/directories is done by selecting them
+      and pressing 
+      <keycap>F8</keycap>or 
+      <keycap>Delete</keycap>. By 
+      <link linkend="konfig-general">default</link>it will be moved
+      to &kde;'s Trash, 
+      <keycombo action="simul">&Shift;
+      <keycap>Delete</keycap></keycombo>will delete the file
+      permanently. A dialog will ask for your confirmation and will
+      warn you when deleting non-empty directories. Of course only
+      operations that you are permitted to do by the Operating
+      System will be performed - you will be notified otherwise. If
+      you don't wish to see the confirmation dialogs, you can
+      disable them in the 
+      <link linkend="konfig-advanced">Konfigurator advanced
+      tab</link>.</para>
+    </sect2>
+    <sect2 id="shred">
+      <title>Shred Files</title>
+      <para>When you delete files in your local system, they are
+      not completely erased and the information stored in them can
+      be recovered using special software and hardware tools. If
+      you want to erase a file without recoverable traces, select
+      the file and use 
+      <emphasis role="bold">
+        <menuchoice>
+          <guimenu>Right-Click menu</guimenu>
+          <guimenuitem>Shred</guimenuitem>
+        </menuchoice>
+      </emphasis>.</para>
+    </sect2>
+    <sect2 id="renaming">
+      <title>Renaming Files, Creating Directories and Link
+      Handling</title>
+      <para>
+      <keycap>Rename</keycap>the file under the cursor with the 
+      <keycap>F9</keycap>key or with two single mouse clicks. If
+      only the filename needs to be renamed and not the extension,
+      you can configure this in the
+      &konfiglookandfeel_lnk;. 
+      <keycap>Create a new directory</keycap>with the 
+      <keycap>F7</keycap>key. 
+      <keycap>Right-clicking on a regular file</keycap>will give
+      you the 
+      <keycap>option "New Symlink"</keycap>. A dialog will prompt
+      you to enter a symlink name. That name will point to the
+      file/directory you Right-Clicked on. If the file you
+      Right-Clicked on is a symlink, you will also be presented
+      with the "redirect link" option that will allow you to change
+      the link target.</para>
+    </sect2>
+    <sect2 id="viewing">
+      <title>Viewing and Editing files</title>
+      <para>
+      <link linkend="krviewer">KrViewer</link>has a chapter of its
+      own.</para>
+    </sect2>
+  </sect1>
 
 <!-- call the archives sect1 section -->
 &archives;
 
-
 </chapter>
-
