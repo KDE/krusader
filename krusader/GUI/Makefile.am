@@ -13,5 +13,6 @@ libGUI_a_SOURCES = \
 	syncbrowsebutton.cpp \
 	profilemanager.cpp \
 	krremoteencodingmenu.cpp \
-	mediabutton.cpp
+	mediabutton.cpp \
+	kcmdmodebutton.cpp
 

@@ -67,6 +67,8 @@ public:
   inline PanelManager *inactiveManager() const { return (activePanel==left ? rightMng : leftMng); }
   QValueList<int> getTerminalEmulatorSplitterSizes();
   virtual bool eventFilter ( QObject * watched, QEvent * e );
+  /** if the KonsolePart for the Terminal Emulator is not yet loaded, load it */
+  void createTE();
   
 public slots:
   void slotCurrentChanged(QString p);

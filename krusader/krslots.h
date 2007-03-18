@@ -88,6 +88,8 @@ class KRslots : public QObject {
     void invert();
     void compareDirs();
     void compareSetup();
+    /** called by actExec* actions to choose the built-in command line mode */
+    void execTypeSetup();
     void refresh();
     void refresh( const KURL& u );
     void properties();

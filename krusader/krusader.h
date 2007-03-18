@@ -137,10 +137,16 @@ class Krusader : public KParts::MainWindow, public DCOPObject {
     static KToggleAction *actToggleTerminal, *actVerticalMode;
     static KRadioAction *actSelectNewerAndSingle, *actSelectNewer, *actSelectSingle, 
                         *actSelectDifferentAndSingle, *actSelectDifferent;
+    /** actions for setting the execution mode of commands from commanddline */
+    static KRadioAction *actExecStartAndForget,
+                        *actExecCollectSeparate,*actExecCollectTogether,
+                        *actExecTerminalExternal,*actExecTerminalEmbedded;
     KToggleAction *actToggleFnkeys, *actToggleCmdline, *actShowToolBar,
                   *actShowStatusBar, *actToggleHidden, *actCompareDirs;
 
     static KRadioAction **compareArray[];
+    /** actions for setting the execution mode of commands from commanddline */
+    static KRadioAction **execTypeArray[];
 
     // return a path to a temp dir or file we can use.
     QString getTempDir();

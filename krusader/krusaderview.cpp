@@ -128,7 +128,7 @@ void KrusaderView::start( QStringList leftTabs, QStringList leftTypes, int leftA
 //////////////////////////////////////////////////////////
 void KrusaderView::slotCurrentChanged( QString p ) {
   cmdLine->setCurrent( p );
-  if ( konsole_part != 0L && terminal_dock->isVisible() ) {
+  if ( konsole_part != 0L && konsole_part->widget() != 0L ) {
 	 KConfigGroupSaver grp(krConfig, "General");
     if (krConfig->readBoolEntry("Send CDs", _SendCDs)) // hopefully, this is cached in kconfig
         if( !konsole_part->url().equals( KURL( p ), true ) )
@@ -142,6 +142,36 @@ void KrusaderView::cmdLineFocus() {  // command line receive's keyboard focus
 
 void KrusaderView::cmdLineUnFocus() { // return focus to the active panel
   activePanel->slotFocusOnMe();
+}
+
+/** if the KonsolePart for the Terminal Emulator is not yet loaded, load it */
+void KrusaderView::createTE() {
+  if ( konsole_part == 0L ) {  // konsole part is not yet loaded
+    KLibFactory * factory = KLibLoader::self() ->factory( "libkonsolepart" );
+    if ( factory ) {
+      QWidget *focusW = qApp->focusWidget();
+      // Create the part
+      konsole_part = ( KParts::ReadOnlyPart * )
+                          factory->create( terminal_dock, "konsolepart",
+                                           "KParts::ReadOnlyPart" );
+      if( konsole_part ) { //loaded successfully
+        connect( konsole_part, SIGNAL( destroyed() ),
+                 this, SLOT( killTerminalEmulator() ) );
+        qApp->installEventFilter( this );
+      } else {
+        qApp->removeEventFilter( this );
+      }
+      /*the Terminal Emulator may be hidden (if we are creating it only
+        to send command there and see the results later */
+      if( focusW ) {
+        focusW->setFocus();
+      }
+      else {
+        activePanel->slotFocusOnMe();    
+      }
+    } else
+      konsole_part = 0L;
+  }
 }
 
 // Tab - switch focus
@@ -191,16 +221,7 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
     return ;
   }
   // else implied
-  if ( konsole_part == 0L ) {  // konsole part is not yet loaded
-    KLibFactory * factory = KLibLoader::self() ->factory( "libkonsolepart" );
-    if ( factory ) {
-      // Create the part
-      konsole_part = ( KParts::ReadOnlyPart * ) factory->create( terminal_dock, "konsolepart",
-                                                                 "KParts::ReadOnlyPart" );
-      connect( konsole_part, SIGNAL( destroyed() ), this, SLOT( killTerminalEmulator() ) );
-    } else
-      konsole_part = 0L;
-  }
+  createTE();
   if ( konsole_part ) {      // if we succeeded in creating the konsole
     if( !verticalSplitterSizes.empty() )
       vert_splitter->setSizes( verticalSplitterSizes );
@@ -215,7 +236,6 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
     if( konsole_part->widget() ) {
       konsole_part->widget()->setFocus();
 
-      qApp->installEventFilter( this );
     }
     krToggleTerminal->setChecked( true );
     // in full screen mode, we hide everything else, but first, see what was actually shown
@@ -235,10 +255,8 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
 	krApp->menuBar()->hide();
     }
   } else {
-    activePanel->slotFocusOnMe();
     terminal_dock->hide();
     krToggleTerminal->setChecked( false );
-    qApp->removeEventFilter( this );
   }
 }
 

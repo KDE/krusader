@@ -44,6 +44,10 @@
 #include <kshellcompletion.h>
 #include <kcombobox.h>
 
+#include "../UserAction/kractionbase.h"
+
+class KCMDModeButton;
+
 class KrHistoryCombo: public KHistoryCombo {
   Q_OBJECT
 
@@ -57,20 +61,29 @@ class KrHistoryCombo: public KHistoryCombo {
     void returnToPanel();
 };
 
-class KCMDLine : public QWidget {
+class KCMDLine : public QWidget, KrActionBase {
     Q_OBJECT
   public:
     KCMDLine( QWidget *parent = 0, const char *name = 0 );
     ~KCMDLine();
     void setCurrent( const QString & );
-    QString text() {return cmdLine->currentText();}
-    void setText(QString text) {cmdLine->setCurrentText( text );}
-	 QToolButton *runInTerminalButton() { return terminal; }
-
+    //virtual methods from KrActionBase
+    void setText(QString text);
+    QString command() const;
+    ExecType execType() const;
+    QString startpath() const;
+    QString user() const;
+    QString text() const;
+    bool acceptURLs() const;
+    bool confirmExecution() const;
+    bool doSubstitution() const;
+  signals:
+    void signalRun();		
   public slots:
     inline void setFocus() { cmdLine->setFocus(); } // overloaded for KCmdLine
     void slotReturnFocus(); // returns keyboard focus to panel
-    void slotRun(const QString &command1);
+    void slotRun();
+    void addPlaceholder();
     void addText( QString text ) { cmdLine->setCurrentText( cmdLine->currentText() + text ); }
     void popup() { cmdLine->popup(); }
 
@@ -78,9 +91,9 @@ class KCMDLine : public QWidget {
   private:
     QLabel *path;
     KrHistoryCombo *cmdLine;
-    QToolButton *terminal;
+    KCMDModeButton *terminal;
+    QToolButton *buttonAddPlaceholder;
     KShellCompletion completion;
 };
-
 
 #endif

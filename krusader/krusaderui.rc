@@ -1,4 +1,4 @@
-<!DOCTYPE kpartgui ><kpartgui version="15" name="krusader" >
+<!DOCTYPE kpartgui ><kpartgui version="16" name="krusader" >
  <MenuBar>
   <Menu name="file" >
    <text>&amp;File</text>
@@ -121,8 +121,16 @@
    <Action name="toggle actions toolbar"/>
    <Action name="std_statusbar" />
    <Action name="toggle fn bar" />
-   <Action name="toggle command line" />
    <Action name="toggle terminal emulator" />
+   <Action name="toggle command line" />
+   <Menu name="command_execution_mode" >
+    <text>Command Execution Mode Se&amp;tup</text>
+    <Action name="exec_start_and_forget" />
+    <Action name="exec_collect_separate" />
+    <Action name="exec_collect_together" />
+    <Action name="exec_terminal_external" />
+    <Action name="exec_terminal_embedded" />
+   </Menu>
    <Separator/>
    <Action name="std_config_keys" />
    <Action name="std_config_toolbar" />

@@ -30,6 +30,7 @@
 #include "expander.h"
 #include "useraction.h"
 #include "../krusader.h"
+#include "../krusaderview.h"
 #include "../defaults.h"
 
 //for the availabilitycheck:
@@ -196,32 +197,46 @@ void KrActionProc::start( QStringList cmdLineList ) {
       _proc->setWorkingDirectory( _action->startpath() );
 
    if ( _action->execType() == KrAction::Terminal && cmdLineList.count() > 1)
-      KMessageBox::sorry( 0, "Support for more than one command doesn't work in a terminal. Only the first is executed in the terminal" );
+      KMessageBox::sorry( 0, i18n("Support for more than one command doesn't work in a terminal. Only the first is executed in the terminal") );
 
-   if ( _action->execType() != KrAction::CollectOutput && _action->execType() != KrAction::CollectOutputSeparateStderr ) {
+   if ( _action->execType() == KrAction::RunInTE
+         && ( MAIN_VIEW->konsole_part == NULL || MAIN_VIEW->konsole_part->widget() == NULL ) ) {
+      KMessageBox::sorry( 0, i18n("Embedded terminal emulator does not work, using collect output insted.") );
+   }
+
+   if( _action->execType() == KrAction::Normal || _action->execType() == KrAction::Terminal
+       || ( _action->execType() == KrAction::RunInTE && MAIN_VIEW->konsole_part && MAIN_VIEW->konsole_part->widget() )
+   ) { // not collect output
       //TODO option to run them in paralell (not available for: collect output)
       for ( QStringList::Iterator it = cmdLineList.begin(); it != cmdLineList.end(); ++it) {
          if ( ! cmd.isEmpty() )
             cmd += " ; ";	//TODO make this separator configurable (users may want && or || for spec. actions)
          cmd += *it;
       }
-      // run in terminal
-      if ( _action->execType() == KrAction::Terminal ) {
-        krConfig->setGroup( "UserActions" );
-        QString term = krConfig->readEntry( "Terminal", _UserActions_Terminal );
+      //run in TE
+      if ( _action->execType() == KrAction::RunInTE ) {
+         //send the commandline contents to the terminal emulator
+         QKeyEvent keyEvent( QEvent::KeyPress, 0, -1, 0,  cmd+"\n");
+         QApplication::sendEvent( MAIN_VIEW->konsole_part->widget(), &keyEvent );     
+      } else { // will start a new process
+         // run in terminal
+         if ( _action->execType() == KrAction::Terminal ) {
+           krConfig->setGroup( "UserActions" );
+           QString term = krConfig->readEntry( "Terminal", _UserActions_Terminal );
 
-         if ( _action->user().isEmpty() )
-            ( *_proc ) << term << cmd;
-         else
-//             ( *_proc )  << "kdesu" << "-u" << *_properties->user() << "-c" << KProcess::quote("konsole --noclose -e " + KProcess::quote(cmd) );
-            ( *_proc )  << "kdesu" << "-u" << _action->user() << "-c" << KProcess::quote( term + " " + cmd );
-      } else { // no terminal, no output collection
-         if ( _action->user().isEmpty() )
-            ( *_proc ) << cmd;
-         else
-            ( *_proc ) << "kdesu" << "-u" << _action->user() << "-c" << KProcess::quote(cmd);
+            if ( _action->user().isEmpty() )
+               ( *_proc ) << term << cmd;
+            else
+//                ( *_proc )  << "kdesu" << "-u" << *_properties->user() << "-c" << KProcess::quote("konsole --noclose -e " + KProcess::quote(cmd) );
+               ( *_proc )  << "kdesu" << "-u" << _action->user() << "-c" << KProcess::quote( term + " " + cmd );
+         } else { // no terminal, no output collection, start&forget
+            if ( _action->user().isEmpty() )
+               ( *_proc ) << cmd;
+            else
+               ( *_proc ) << "kdesu" << "-u" << _action->user() << "-c" << KProcess::quote(cmd);
+         }
+         _proc->start( KProcess::NotifyOnExit, ( KProcess::Communication ) ( KProcess::Stdout | KProcess::Stderr ) );
       }
-     _proc->start( KProcess::NotifyOnExit, ( KProcess::Communication ) ( KProcess::Stdout | KProcess::Stderr ) );
    }
    else { // collect output
       bool separateStderr = false;

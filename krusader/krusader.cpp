@@ -181,6 +181,15 @@ KRadioAction  *Krusader::actSelectDifferentAndSingle = 0;
 KRadioAction  *Krusader::actSelectDifferent = 0;
 KRadioAction  **Krusader::compareArray[] = {&actSelectNewerAndSingle, &actSelectNewer, &actSelectSingle, 
                                             &actSelectDifferentAndSingle, &actSelectDifferent, 0};
+KRadioAction *Krusader::actExecStartAndForget = 0;
+KRadioAction *Krusader::actExecCollectSeparate = 0;
+KRadioAction *Krusader::actExecCollectTogether = 0;
+KRadioAction *Krusader::actExecTerminalExternal = 0;
+KRadioAction *Krusader::actExecTerminalEmbedded = 0;
+KRadioAction **Krusader::execTypeArray[] =
+       {&actExecStartAndForget, &actExecCollectSeparate, &actExecCollectTogether,
+        &actExecTerminalExternal, &actExecTerminalEmbedded, 0};
+
 KPopupMenu *Krusader::userActionMenu = 0;
 UserAction *Krusader::userAction = 0;
 UserMenu *Krusader::userMenu = 0;
@@ -517,6 +526,7 @@ void Krusader::setupActions() {
    /* Shortcut disabled because of the Terminal Emulator bug. */
    krConfig->setGroup( "Private" );
    int compareMode = krConfig->readNumEntry( "Compare Mode", 0 );
+   int cmdExecMode =  krConfig->readNumEntry( "Command Execution Mode", 0 );
 
    KStdAction::home( SLOTS, SLOT( home() ), actionCollection(), "std_home" )->setText( i18n("Home") ); /*->setShortcut(Key_QuoteLeft);*/
    new KAction( i18n( "&Reload" ), "reload", CTRL + Key_R, SLOTS, SLOT( refresh() ), actionCollection(), "std_redisplay" );
@@ -619,6 +629,35 @@ void Krusader::setupActions() {
    actSelectDifferent->setExclusiveGroup( "the_select_group" );
    if( compareMode < (int)( sizeof( compareArray ) / sizeof( KRadioAction ** ) ) -1 )
      (*compareArray[ compareMode ])->setChecked( true );
+   actExecStartAndForget = new KRadioAction(
+                                 i18n( "Start and &Forget" ), 0,
+                                 SLOTS, SLOT( execTypeSetup() ),
+                                 actionCollection(), "exec_start_and_forget" );
+   actExecCollectSeparate = new KRadioAction(
+                                 i18n( "Display &separated standard and error output" ), 0,
+                                 SLOTS, SLOT( execTypeSetup() ),
+                                 actionCollection(), "exec_collect_separate" );
+   actExecCollectTogether = new KRadioAction(
+                                 i18n( "Display &mixed standard and error output" ), 0,
+                                 SLOTS, SLOT( execTypeSetup() ),
+                                 actionCollection(), "exec_collect_together" );
+   actExecTerminalExternal = new KRadioAction(
+                                 i18n( "Start in a &new Terminal" ), 0,
+                                 SLOTS, SLOT( execTypeSetup() ),
+                                 actionCollection(), "exec_terminal_external" );
+   actExecTerminalEmbedded = new KRadioAction(
+                                 i18n( "Send to &embedded Terminal Emulator" ), 0,
+                                 SLOTS, SLOT( execTypeSetup() ),
+                                 actionCollection(), "exec_terminal_embedded" );
+   actExecStartAndForget->setExclusiveGroup("the_exec_type_group");
+   actExecCollectSeparate->setExclusiveGroup("the_exec_type_group");
+   actExecCollectTogether->setExclusiveGroup("the_exec_type_group");
+   actExecTerminalExternal->setExclusiveGroup("the_exec_type_group");
+   actExecTerminalEmbedded->setExclusiveGroup("the_exec_type_group");
+   if( cmdExecMode < (int)( sizeof( execTypeArray ) / sizeof( KRadioAction ** ) ) -1 )
+     (*execTypeArray[ cmdExecMode ])->setChecked( true );
+
+
    actHomeTerminal = new KAction( i18n( "Start &Terminal" ), "terminal", 0,
                                   SLOTS, SLOT( homeTerminal() ), actionCollection(), "terminal@home" );
    actFTPDisconnect = new KAction( i18n( "Disconnect &from Net" ), "kr_ftp_disconnect", SHIFT + CTRL + Key_F,
@@ -815,7 +854,6 @@ void Krusader::saveSettings() {
       config->writeEntry( "Show tool bar", actShowToolBar->isChecked() );
       config->writeEntry( "Show FN Keys", actToggleFnkeys->isChecked() );
       config->writeEntry( "Show Cmd Line", actToggleCmdline->isChecked() );
-		config->writeEntry( "Run CommandLine Command In Terminal", mainView->cmdLine->runInTerminalButton()->isOn() );
       config->writeEntry( "Show Terminal Emulator", actToggleTerminal->isChecked() );
       config->writeEntry( "Vertical Mode", actVerticalMode->isChecked());
       config->writeEntry( "Start To Tray", isHidden());
@@ -1018,9 +1056,6 @@ void Krusader::updateGUI( bool enforce ) {
          mainView->cmdLine->show();
          actToggleCmdline->setChecked( true );
       }
-		if ( krConfig->readBoolEntry( "Run CommandLine Command In Terminal", false )) {
-			mainView->cmdLine->runInTerminalButton()->setOn(true);
-		}
 
       // update the Fn bar to the shortcuts selected by the user
       mainView->fnKeys->updateShortcuts();
@@ -1036,20 +1071,22 @@ void Krusader::updateGUI( bool enforce ) {
       	actVerticalMode->setChecked(true);
 			mainView->toggleVerticalMode();
       }
+      if ( config->readBoolEntry( "Show Terminal Emulator", _ShowTerminalEmulator ) ) {
+        mainView->slotTerminalEmulator( true ); // create konsole_part
+        KConfigGroup grp(krConfig, "Private" );
+        QValueList<int> lst;
+        lst.append( grp.readNumEntry( "Panel Size", _PanelSize ) );
+        lst.append( grp.readNumEntry( "Terminal Size", _TerminalSize ) );
+        mainView->vert_splitter->setSizes( lst );
+        config->setGroup( "Startup" );
+      } else if ( actExecTerminalEmbedded->isChecked() ) {
+        //create (but not show) terminal emulator,
+        //if command-line commands are to be run there
+        mainView->createTE();
+      }
    }
 	// popular urls
 	popularUrls->load();
-	if ( config->readBoolEntry( "Show Terminal Emulator", _ShowTerminalEmulator ) ) {
-		if ( enforce ) {
-			mainView->slotTerminalEmulator( true ); // create konsole_part
-			config->setGroup( "Private" );
-			QValueList<int> lst;
-			lst.append( config->readNumEntry( "Panel Size", _PanelSize ) );
-			lst.append( config->readNumEntry( "Terminal Size", _TerminalSize ) );
-			mainView->vert_splitter->setSizes( lst );
-			config->setGroup( "Startup" );
-		}
-	}
 
 }
 

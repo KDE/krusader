@@ -45,6 +45,8 @@
 #include "../krusaderview.h"
 #include "../Panel/listpanel.h"
 #include "../krservices.h"
+#include "../ActionMan/addplaceholderpopup.h"
+#include "kcmdmodebutton.h"
 #include <qdir.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
@@ -56,7 +58,7 @@
 #include <ktempfile.h> 
 
 KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name ) {
-  QGridLayout * layout = new QGridLayout( this, 1, 3 );
+  QGridLayout * layout = new QGridLayout( this, 1, 4 );
   path = new QLabel( this );
   QWhatsThis::add
     ( path, i18n( "Name of directory where command will be processed." ) );
@@ -84,7 +86,7 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
   QStringList list = krConfig->readListEntry( "cmdline history" );
   cmdLine->setHistoryItems( list );
 
-  connect( cmdLine, SIGNAL( returnPressed(const QString& ) ), this, SLOT( slotRun( const QString& ) ) );
+  connect( cmdLine, SIGNAL( returnPressed(const QString &) ), this, SLOT( slotRun() ) );
   connect( cmdLine, SIGNAL( returnPressed(const QString &) ), cmdLine, SLOT( clearEdit() ) );
   connect( cmdLine, SIGNAL( returnToPanel() ), this, SLOT( slotReturnFocus() ));
 
@@ -92,21 +94,28 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
     ( cmdLine, i18n( "<qt><p>Well, it's actually quite simple: You type your command here and Krusader obeys.</p><p><b>Tip</b>: Move within command line history with &lt;Up&gt; and &lt;Down&gt; arrows.</p></qt>" ) );
   layout->addWidget( cmdLine, 0, 1 );
 
+  buttonAddPlaceholder = new QToolButton( this, "ButtonAddPlaceholder" );
+  buttonAddPlaceholder->setFixedSize(22,20);
+  buttonAddPlaceholder->adjustSize();
+  buttonAddPlaceholder->setPixmap( SmallIcon( "add" ) );
+  connect( buttonAddPlaceholder, SIGNAL( clicked() ), this, SLOT( addPlaceholder() ) );
+  QWhatsThis::add( buttonAddPlaceholder, i18n( "Add <b>Placeholders</b> for the selected files in the panel." ) );
+
+  layout->addWidget( buttonAddPlaceholder, 0, 2 );
+
   // a run in terminal button
-  terminal = new QToolButton( this );
-  terminal->setFixedSize( 22, 20 );
-  terminal->setTextLabel( i18n( "If pressed, Krusader executes command line in a terminal." ) );
-  terminal->setToggleButton( true );
-  terminal->setOn( false );
-  terminal->setIconSet( SmallIcon( "konsole" ) );
-  terminal->adjustSize();  
-  QWhatsThis::add
-    ( terminal, i18n( "The 'run in terminal' button allows Krusader "
-                      "to run console (or otherwise non-graphical) "
-                      "programs in a terminal of your choice. If it's "
-                      "pressed, terminal mode is active." ) );
-  layout->addWidget( terminal, 0, 2 );
+  terminal = new KCMDModeButton( this );
+  layout->addWidget( terminal, 0, 3 );
+
   layout->activate();
+}
+
+void KCMDLine::addPlaceholder() {
+   AddPlaceholderPopup popup( this );
+   QString exp = popup.getPlaceholder(
+      buttonAddPlaceholder->mapToGlobal(  QPoint( 0, 0) )
+   );
+   this->addText( exp );
 }
 
 void KCMDLine::setCurrent( const QString &p ) {
@@ -140,12 +149,10 @@ KCMDLine::~KCMDLine() {
    krConfig->sync();
 }
 
-void KCMDLine::slotRun(const QString &command1) {
-  //cmdLine->clearEdit(); // clean the line edit
-
+void KCMDLine::slotRun() {
+  const QString command1(cmdLine->currentText());
   if ( command1.isEmpty() )
     return ;
-  krConfig->setGroup( "General" );
   QString panelPath = path->text().left( path->text().length() - 1 );
 
   cmdLine->addToHistory(command1);
@@ -159,39 +166,8 @@ void KCMDLine::slotRun(const QString &command1) {
         dir = panelPath + ( panelPath == "/" ? "" : "/" ) + dir;
     SLOTS->refresh( dir );
   } else {
-    QString save = getcwd( 0, 0 );
-    KShellProcess proc;
-    chdir( panelPath.local8Bit() );
-    // run in a terminal ???
-    if ( terminal->isOn() ) {
-      QString terminal = krConfig->readEntry( "Terminal", _Terminal );
-      proc << KrServices::separateArgs( terminal );
-      // if the terminal support is - don't close when the command finish
-      //if( terminal == "konsole" ) proc << "--noclose ";
-      //if( terminal == "xterm" ) proc << "-hold ";
-      //if( terminal == "Eterm" ) proc << "--pause ";
-      proc << "-e ";
-      // redirect the command to file so pipe will be supperted..
-//      KTempFile tmpfile("krcmd","tmp");
-      KTempFile tmpfile(locateLocal("tmp","krcmd"),"tmp");
-      QTextStream *stream = tmpfile.textStream();
-      // delete the temporary file
-      *stream << "rm -rf " << tmpfile.name() << endl;
-      *stream << command1 << endl;
-      *stream << "echo" << endl;
-      *stream << "echo Krusader: "+i18n("This terminal will close in 1 hour..") << endl;
-      *stream << "sleep 3600" << endl;
-      
-      // execute file with favorite shell
-      proc << getenv("SHELL") << tmpfile.name(); 
-      
-    }
-    else {
-      proc << command1;
-    }
-    proc.start( KProcess::DontCare );
-
-    chdir( save.local8Bit() );
+    exec();
+    cmdLine->clearEdit();
   }
 }
 
@@ -200,6 +176,52 @@ void KCMDLine::slotReturnFocus() {
   Krusader::App->mainView->cmdLineUnFocus();
 }
 
+static const KrActionBase::ExecType execModesMenu[] = {
+ KrActionBase::Normal,
+ KrActionBase::CollectOutputSeparateStderr,
+ KrActionBase::CollectOutput,
+ KrActionBase::Terminal,
+ KrActionBase::RunInTE,
+};
+
+QString KCMDLine::command() const {
+  return cmdLine->currentText();
+}
+
+KrActionBase::ExecType KCMDLine::execType() const {
+  KConfigGroup grp( krConfig, "Private" );
+  int i = grp.readNumEntry("Command Execution Mode",0);
+  return execModesMenu[i];
+}
+
+QString KCMDLine::startpath() const {
+  return path->text().left( path->text().length() - 1 );
+}
+
+QString KCMDLine::user() const {
+  return QString();
+}
+
+QString KCMDLine::text() const {
+  return cmdLine->currentText();
+}
+
+bool KCMDLine::acceptURLs() const {
+  return false;
+}
+
+bool KCMDLine::confirmExecution() const {
+  return false;
+}
+
+bool KCMDLine::doSubstitution() const {
+  return true;
+}
+
+void KCMDLine::setText(QString text) {
+	cmdLine->setCurrentText( text );
+}
+ 
 void KrHistoryCombo::keyPressEvent( QKeyEvent *e ) {
    switch (e->key()) {
       case Key_Enter:

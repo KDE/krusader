@@ -875,6 +875,22 @@ void KRslots::compareSetup()
     }
 }
 
+/** called by actions actExec* to choose the built-in command line mode  */
+void KRslots::execTypeSetup()
+{
+  for( int i=0; Krusader::execTypeArray[i] != 0; i++ )
+    if( (*Krusader::execTypeArray[i])->isChecked() )
+    {
+      if( *Krusader::execTypeArray[i] == Krusader::actExecTerminalEmbedded ){
+         // if commands are to be executed in the TE, it must be loaded
+         MAIN_VIEW->createTE();
+      }
+      KConfigGroup grp(krConfig,  "Private" );
+      grp.writeEntry( "Command Execution Mode", i );
+      break;
+    }
+}
+
 void KRslots::togglePopupPanel() {
 	ACTIVE_PANEL->togglePanelPopup();
 }
