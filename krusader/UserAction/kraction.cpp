@@ -201,7 +201,7 @@ void KrActionProc::start( QStringList cmdLineList ) {
 
    if ( _action->execType() == KrAction::RunInTE
          && ( MAIN_VIEW->konsole_part == NULL || MAIN_VIEW->konsole_part->widget() == NULL ) ) {
-      KMessageBox::sorry( 0, i18n("Embedded terminal emulator does not work, using collect output insted.") );
+      KMessageBox::sorry( 0, i18n("Embedded terminal emulator does not work, using output collection instead.") );
    }
 
    if( _action->execType() == KrAction::Normal || _action->execType() == KrAction::Terminal
