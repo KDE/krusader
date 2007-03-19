@@ -634,19 +634,19 @@ void Krusader::setupActions() {
                                  SLOTS, SLOT( execTypeSetup() ),
                                  actionCollection(), "exec_start_and_forget" );
    actExecCollectSeparate = new KRadioAction(
-                                 i18n( "Display &separated standard and error output" ), 0,
+                                 i18n( "Display &Separated Standard and Error Output" ), 0,
                                  SLOTS, SLOT( execTypeSetup() ),
                                  actionCollection(), "exec_collect_separate" );
    actExecCollectTogether = new KRadioAction(
-                                 i18n( "Display &mixed standard and error output" ), 0,
+                                 i18n( "Display &Mixed Standard and Error Output" ), 0,
                                  SLOTS, SLOT( execTypeSetup() ),
                                  actionCollection(), "exec_collect_together" );
    actExecTerminalExternal = new KRadioAction(
-                                 i18n( "Start in a &new Terminal" ), 0,
+                                 i18n( "Start in &New Terminal" ), 0,
                                  SLOTS, SLOT( execTypeSetup() ),
                                  actionCollection(), "exec_terminal_external" );
    actExecTerminalEmbedded = new KRadioAction(
-                                 i18n( "Send to &embedded Terminal Emulator" ), 0,
+                                 i18n( "Send to &Embedded Terminal Emulator" ), 0,
                                  SLOTS, SLOT( execTypeSetup() ),
                                  actionCollection(), "exec_terminal_embedded" );
    actExecStartAndForget->setExclusiveGroup("the_exec_type_group");

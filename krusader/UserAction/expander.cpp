@@ -354,10 +354,10 @@ QString separateAndQuote(QStringList list,const QString& separator,const bool qu
 
 exp_Path::exp_Path() {
    _expression = "Path";
-   _description = i18n("panel's path");
+   _description = i18n("Panel's Path...");
    _needPanel = true;
    
-   addParameter( exp_parameter( i18n("Automatic escape spaces"), "__yes", false ) );
+   addParameter( exp_parameter( i18n("Automatically escape spaces"), "__yes", false ) );
 }
 TagString exp_Path::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, Expander& exp ) const {
    NEED_PANEL
@@ -377,10 +377,10 @@ TagString exp_Path::expFunc( const ListPanel* panel, const QStringList& paramete
 
 exp_Count::exp_Count() {
    _expression = "Count";
-   _description = i18n("number of ...");
+   _description = i18n("Number of...");
    _needPanel = true;
    
-   addParameter( exp_parameter( i18n("count all:"), "__choose:All;Files;Dirs;Selected", false ) );
+   addParameter( exp_parameter( i18n("Count:"), "__choose:All;Files;Dirs;Selected", false ) );
 }
 TagString exp_Count::expFunc( const ListPanel* panel, const QStringList& parameter, const bool&, Expander& exp ) const {
    NEED_PANEL
@@ -404,7 +404,7 @@ TagString exp_Count::expFunc( const ListPanel* panel, const QStringList& paramet
 
 exp_Filter::exp_Filter() {
    _expression = "Filter";
-   _description = i18n("filter mask: *.h, *.cpp, etc.");
+   _description = i18n("Filter Mask (*.h, *.cpp, etc.)");
    _needPanel = true;
 }
 TagString exp_Filter::expFunc( const ListPanel* panel, const QStringList&, const bool&, Expander& exp ) const {
@@ -415,11 +415,11 @@ TagString exp_Filter::expFunc( const ListPanel* panel, const QStringList&, const
 
 exp_Current::exp_Current() {
    _expression = "Current";
-   _description = i18n("current file (!= selected file)");
+   _description = i18n("Current File (!= Selected File)...");
    _needPanel = true;
 
    addParameter( exp_parameter( i18n("Omit the current path (optional)"), "__no", false ) );
-   addParameter( exp_parameter( i18n("Automatic escape spaces"), "__yes", false ) );
+   addParameter( exp_parameter( i18n("Automatically escape spaces"), "__yes", false ) );
 }
 TagString exp_Current::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, Expander& exp ) const {
    NEED_PANEL
@@ -446,14 +446,14 @@ TagString exp_Current::expFunc( const ListPanel* panel, const QStringList& param
 
 exp_List::exp_List() {
    _expression = "List";
-   _description = i18n("Item list of ...");
+   _description = i18n("Item List of...");
    _needPanel = true;
 
-   addParameter( exp_parameter( i18n("Which items"), "__choose:All;Files;Dirs;Selected", false ) );
+   addParameter( exp_parameter( i18n("Which items:"), "__choose:All;Files;Dirs;Selected", false ) );
    addParameter( exp_parameter( i18n("Separator between the items (optional)"), " ", false ) );
    addParameter( exp_parameter( i18n("Omit the current path (optional)"), "__no", false ) );
-   addParameter( exp_parameter( i18n("Mask (optional, all but 'Selected')"), "__select", false ) );
-   addParameter( exp_parameter( i18n("Automatic escape spaces"), "__yes", false ) );
+   addParameter( exp_parameter( i18n("Mask (optional, all but 'Selected'):"), "__select", false ) );
+   addParameter( exp_parameter( i18n("Automatically escape spaces"), "__yes", false ) );
 }
 TagString exp_List::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, Expander& exp ) const {
    NEED_PANEL
@@ -478,14 +478,14 @@ TagString exp_List::expFunc( const ListPanel* panel, const QStringList& paramete
 
 exp_ListFile::exp_ListFile() {
    _expression = "ListFile";
-   _description = i18n("Filename of an itemlist ...");
+   _description = i18n("Filename of an Item List...");
    _needPanel = true;
 
-   addParameter( exp_parameter( i18n("Which items"), "__choose:All;Files;Dirs;Selected", false ) );
+   addParameter( exp_parameter( i18n("Which items:"), "__choose:All;Files;Dirs;Selected", false ) );
    addParameter( exp_parameter( i18n("Separator between the items (optional)"), "\n", false ) );
    addParameter( exp_parameter( i18n("Omit the current path (optional)"), "__no", false ) );
-   addParameter( exp_parameter( i18n("Mask (optional, all but 'Selected')"), "__select", false ) );
-   addParameter( exp_parameter( i18n("Automatic escape spaces"), "__no", false ) );
+   addParameter( exp_parameter( i18n("Mask (optional, all but 'Selected'):"), "__select", false ) );
+   addParameter( exp_parameter( i18n("Automatically escape spaces"), "__no", false ) );
 }
 TagString exp_ListFile::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, Expander& exp ) const {
    NEED_PANEL
@@ -521,11 +521,11 @@ TagString exp_ListFile::expFunc( const ListPanel* panel, const QStringList& para
 
 exp_Select::exp_Select() {
    _expression = "Select";
-   _description = i18n("Manipulate the selection");
+   _description = i18n("Manipulate the Selection...");
    _needPanel = true;
 
-   addParameter( exp_parameter( i18n("Selection mask"), "__select", true ) );
-   addParameter( exp_parameter( i18n("Manipulate in which way"), "__choose:Set;Add;Remove", false ) );
+   addParameter( exp_parameter( i18n("Selection mask:"), "__select", true ) );
+   addParameter( exp_parameter( i18n("Manipulate in which way:"), "__choose:Set;Add;Remove", false ) );
 }
 TagString exp_Select::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& , Expander& exp) const {
    NEED_PANEL
@@ -550,11 +550,11 @@ TagString exp_Select::expFunc( const ListPanel* panel, const QStringList& parame
 
 exp_Goto::exp_Goto() {
    _expression = "Goto";
-   _description = i18n("Jump to a location");
+   _description = i18n("Jump to a Location...");
    _needPanel = true;
    
-   addParameter( exp_parameter( i18n("please choose a path"), "__goto", true ) );
-   addParameter( exp_parameter( i18n("open the location in a new tab"), "__no", false ) );
+   addParameter( exp_parameter( i18n("Choose a path:"), "__goto", true ) );
+   addParameter( exp_parameter( i18n("Open location in a new tab"), "__no", false ) );
 }
 TagString exp_Goto::expFunc( const ListPanel* panel, const QStringList& parameter, const bool&, Expander& exp ) const {
    NEED_PANEL
@@ -590,12 +590,12 @@ exp_Search::exp_Search() {
 
 exp_Ask::exp_Ask() {
    _expression = "Ask";
-   _description = i18n("Ask the user for a parameter");
+   _description = i18n("Ask Parameter from User...");
    _needPanel = false;
 
-   addParameter( exp_parameter( i18n("Question"), "Where do you want do go today?", true ) );
-   addParameter( exp_parameter( i18n("Preset (optional)"), "", false ) );
-   addParameter( exp_parameter( i18n("Caption (optional)"), "", false ) );
+   addParameter( exp_parameter( i18n("Question:"), "Where do you want do go today?", true ) );
+   addParameter( exp_parameter( i18n("Preset (optional):"), "", false ) );
+   addParameter( exp_parameter( i18n("Caption (optional):"), "", false ) );
 }
 TagString exp_Ask::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
    QString caption, preset, result;
@@ -626,11 +626,11 @@ TagString exp_Ask::expFunc( const ListPanel*, const QStringList& parameter, cons
 
 exp_Clipboard::exp_Clipboard() {
    _expression = "Clipboard";
-   _description = i18n("Copy to clipboard");
+   _description = i18n("Copy to Clipboard...");
    _needPanel = false;
 
-   addParameter( exp_parameter( i18n("What should be copied"), "__placeholder", true ) );
-   addParameter( exp_parameter( i18n("Append to the current clipboard-content with this separator (optional)"), "", false ) );
+   addParameter( exp_parameter( i18n("What to copy:"), "__placeholder", true ) );
+   addParameter( exp_parameter( i18n("Append to current clipboard content with this separator (optional):"), "", false ) );
 }
 TagString exp_Clipboard::expFunc( const ListPanel*, const TagStringList& parameter, const bool&, Expander& exp ) const {
 //    kdDebug() << "Expander::exp_Clipboard, parameter[0]: '" << parameter[0] << "', Clipboard: " << KApplication::clipboard()->text() << endl;
@@ -649,11 +649,11 @@ TagString exp_Clipboard::expFunc( const ListPanel*, const TagStringList& paramet
 
 exp_Copy::exp_Copy() {
    _expression = "Copy";
-   _description = i18n("Copy a file/folder");
+   _description = i18n("Copy a File/Folder...");
    _needPanel = false;
 
-   addParameter( exp_parameter( i18n("What should be copied"), "__placeholder", true ) );
-   addParameter( exp_parameter( i18n("Where it should be copied"), "__placeholder", true ) );
+   addParameter( exp_parameter( i18n("What to copy:"), "__placeholder", true ) );
+   addParameter( exp_parameter( i18n("Where to copy:"), "__placeholder", true ) );
 }
 TagString exp_Copy::expFunc( const ListPanel*, const TagStringList& parameter, const bool&, Expander& exp ) const {
 
@@ -681,11 +681,11 @@ TagString exp_Copy::expFunc( const ListPanel*, const TagStringList& parameter, c
 
 exp_Move::exp_Move() {
    _expression = "Move";
-   _description = i18n("Move/Rename a file/folder");
+   _description = i18n("Move/Rename a File/Folder...");
    _needPanel = false;
 
-   addParameter( exp_parameter( i18n("What moved/renamed"), "__placeholder", true ) );
-   addParameter( exp_parameter( i18n("New target/name"), "__placeholder", true ) );
+   addParameter( exp_parameter( i18n("What to move/rename:"), "__placeholder", true ) );
+   addParameter( exp_parameter( i18n("New target/name:"), "__placeholder", true ) );
 }                    
 TagString exp_Move::expFunc( const ListPanel*, const TagStringList& parameter, const bool& , Expander& exp ) const {
    // basically the parameter can already be used as URL, but since KURL has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is neccesary:
@@ -712,10 +712,10 @@ TagString exp_Move::expFunc( const ListPanel*, const TagStringList& parameter, c
 
 exp_Sync::exp_Sync() {
    _expression = "Sync";
-   _description = i18n("Open a synchronizer-profile");
+   _description = i18n("Load a Synchronizer Profile...");
    _needPanel = false;
    
-   addParameter( exp_parameter( i18n("Choose a profile"), "__syncprofile", true ) );
+   addParameter( exp_parameter( i18n("Choose a profile:"), "__syncprofile", true ) );
 }
 TagString exp_Sync::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
    if ( parameter[0].isEmpty() ) {
@@ -730,10 +730,10 @@ TagString exp_Sync::expFunc( const ListPanel*, const QStringList& parameter, con
 
 exp_NewSearch::exp_NewSearch() {
    _expression = "NewSearch";
-   _description = i18n("Open a searchmodule-profile");
+   _description = i18n("Load a Searchmodule Profile...");
    _needPanel = false;
    
-   addParameter( exp_parameter( i18n("Choose a profile"), "__searchprofile", true ) );
+   addParameter( exp_parameter( i18n("Choose a profile:"), "__searchprofile", true ) );
 }
 TagString exp_NewSearch::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
    if ( parameter[0].isEmpty() ) {
@@ -748,10 +748,10 @@ TagString exp_NewSearch::expFunc( const ListPanel*, const QStringList& parameter
 
 exp_Profile::exp_Profile() {
    _expression = "Profile";
-   _description = i18n("Load a panel-profile");
+   _description = i18n("Load a Panel Profile...");
    _needPanel = false;
    
-   addParameter( exp_parameter( i18n("Choose a profile"), "__panelprofile", true ) );
+   addParameter( exp_parameter( i18n("Choose a profile:"), "__panelprofile", true ) );
 }
 TagString exp_Profile::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
    if ( parameter[0].isEmpty() ) {
@@ -766,13 +766,13 @@ TagString exp_Profile::expFunc( const ListPanel*, const QStringList& parameter, 
 
 exp_Each::exp_Each() {
    _expression = "Each";
-   _description = i18n("Separate programm call for each...");
+   _description = i18n("Separate Program Call for Each...");
    _needPanel = true;
 
-   addParameter( exp_parameter( i18n("Which items"), "__choose:All;Files;Dirs;Selected", false ) );
+   addParameter( exp_parameter( i18n("Which items:"), "__choose:All;Files;Dirs;Selected", false ) );
    addParameter( exp_parameter( i18n("Omit the current path (optional)"), "__no", false ) );
-   addParameter( exp_parameter( i18n("Mask (optional, all but 'Selected')"), "__select", false ) );
-   addParameter( exp_parameter( i18n("Automatic escape spaces"), "__yes", false ) );
+   addParameter( exp_parameter( i18n("Mask (optional, all but 'Selected'):"), "__select", false ) );
+   addParameter( exp_parameter( i18n("Automatically escape spaces"), "__yes", false ) );
 }
 TagString exp_Each::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, Expander& exp ) const {
    NEED_PANEL
@@ -798,11 +798,11 @@ TagString exp_Each::expFunc( const ListPanel* panel, const QStringList& paramete
 
 exp_ColSort::exp_ColSort() {
    _expression = "ColSort";
-   _description = i18n("Set the sorting for this panel");
+   _description = i18n("Set Sorting for This Panel...");
    _needPanel = true;
    
-   addParameter( exp_parameter( i18n("Choose a column"), "__choose:Name;Ext;Type;Size;Modified;Perms;rwx;Owner;Group", true ) );
-   addParameter( exp_parameter( i18n("Choose the sort sequence"), "__choose:Toggle;Asc;Desc", false ) );
+   addParameter( exp_parameter( i18n("Choose a column:"), "__choose:Name;Ext;Type;Size;Modified;Perms;rwx;Owner;Group", true ) );
+   addParameter( exp_parameter( i18n("Choose a sort sequence:"), "__choose:Toggle;Asc;Desc", false ) );
 }
 TagString exp_ColSort::expFunc( const ListPanel* panel, const QStringList& parameter, const bool&, Expander& exp ) const {
    NEED_PANEL
@@ -892,10 +892,10 @@ TagString exp_ColSort::expFunc( const ListPanel* panel, const QStringList& param
 
 exp_PanelSize::exp_PanelSize() {
    _expression = "PanelSize";
-   _description = i18n("Set the relation between the two panels");
+   _description = i18n("Set Relation Between the Panels...");
    _needPanel = true;
    
-   addParameter( exp_parameter( i18n("Set the new size in percent"), "__int:0;100;5;50", true ) );
+   addParameter( exp_parameter( i18n("Set the new size in percent:"), "__int:0;100;5;50", true ) );
 }
 TagString exp_PanelSize::expFunc( const ListPanel* panel, const QStringList& parameter, const bool&, Expander& exp ) const {
    NEED_PANEL
@@ -931,7 +931,7 @@ TagString exp_PanelSize::expFunc( const ListPanel* panel, const QStringList& par
 #ifdef __KJSEMBED__
 exp_Script::exp_Script() {
    _expression = "Script";
-   _description = i18n("Executes a JavaScript-extension");
+   _description = i18n("Execute a JavaScript Extension...");
    _needPanel = false;
 
    addParameter( exp_parameter( i18n("Location of the script"), "", true ) );
@@ -981,14 +981,14 @@ TagString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, c
 
 exp_View::exp_View() {
    _expression = "View";
-   _description = i18n("View a file with Krusader's internal viewer");
+   _description = i18n("View File with Krusader's Internal Viewer...");
    _needPanel = false;
 
-   addParameter( exp_parameter( i18n("Which file to view (normally '%aCurrent%')"), "__placeholder", true ) );
-   addParameter( exp_parameter( i18n("Choose a view-mode"), "__choose:generic;text;hex", false ) );
+   addParameter( exp_parameter( i18n("Which file to view (normally '%aCurrent%'):"), "__placeholder", true ) );
+   addParameter( exp_parameter( i18n("Choose a view mode:"), "__choose:generic;text;hex", false ) );
    //addParameter( exp_parameter( i18n("Choose a window-mode"), "__choose:tab;window;panel", false ) );
    //TODO: window-mode 'panel' should open the file in the third-hand viewer
-   addParameter( exp_parameter( i18n("Choose a window-mode"), "__choose:tab;window", false ) );
+   addParameter( exp_parameter( i18n("Choose a window mode:"), "__choose:tab;window", false ) );
 }
 TagString exp_View::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
    if ( parameter[0].isEmpty() ) {
