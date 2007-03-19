@@ -197,7 +197,7 @@ void KrActionProc::start( QStringList cmdLineList ) {
       _proc->setWorkingDirectory( _action->startpath() );
 
    if ( _action->execType() == KrAction::Terminal && cmdLineList.count() > 1)
-      KMessageBox::sorry( 0, i18n("Support for more than one command doesn't work in a terminal. Only the first is executed in the terminal") );
+      KMessageBox::sorry( 0, i18n("Support for more than one command doesn't work in a terminal. Only the first is executed in the terminal.") );
 
    if ( _action->execType() == KrAction::RunInTE
          && ( MAIN_VIEW->konsole_part == NULL || MAIN_VIEW->konsole_part->widget() == NULL ) ) {
