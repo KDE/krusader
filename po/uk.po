@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.80.0-beta1\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2007-03-12 19:47+0100\n"
+"POT-Creation-Date: 2007-03-19 20:16+0100\n"
 "PO-Revision-Date: 2005-02-21 23:08-0800\n"
 "Last-Translator: Ivan Petrouchtchak <iip@telus.net>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
@@ -142,11 +142,15 @@ msgstr ""
 "Якщо ввімкнено, кожна зміна каталогу виконується в активній\n"
 "і неактивній панелі (якщо можливо)."
 
-#: GUI/kcmdline.cpp:62
+#: ActionMan/actionpropertybase.cpp:425 GUI/kcmdmodebutton.cpp:47
+msgid "Execution mode"
+msgstr "Режим виконання"
+
+#: GUI/kcmdline.cpp:64
 msgid "Name of directory where command will be processed."
 msgstr "Назва каталогу, в якому буде виконана команда."
 
-#: GUI/kcmdline.cpp:92
+#: GUI/kcmdline.cpp:94
 #, fuzzy
 msgid ""
 "<qt><p>Well, it's actually quite simple: You type your command here and "
@@ -157,23 +161,10 @@ msgstr ""
 "підкоряється.<p><Tip:>Пересуватись по історії командного рядка можна за "
 "допомогою стрілок &lt;Вгору&gt; та &lt;Вниз&gt;.</qt>"
 
-#: GUI/kcmdline.cpp:98
-msgid "If pressed, Krusader executes command line in a terminal."
-msgstr "При натисканні, Krusader виконає команду в терміналі."
-
-#: GUI/kcmdline.cpp:104
-msgid ""
-"The 'run in terminal' button allows Krusader to run console (or otherwise "
-"non-graphical) programs in a terminal of your choice. If it's pressed, "
-"terminal mode is active."
-msgstr ""
-"Кнопка \"виконання в терміналі\" дозволяє Krusader-у виконувати консольні "
-"(або не-графічні) програми в терміналі на вибір. Коли натиснута, режим "
-"терміналу активований."
-
-#: GUI/kcmdline.cpp:182
-msgid "This terminal will close in 1 hour.."
-msgstr "Цей термінал закриється через 1 годину..."
+#: ActionMan/actionpropertybase.cpp:418 GUI/kcmdline.cpp:102
+#, fuzzy
+msgid "Add <b>Placeholders</b> for the selected files in the panel."
+msgstr "Додати шаблони для вибраних файлів у панелі"
 
 #: GUI/kfnkeys.cpp:50
 msgid "F2 Term  "
@@ -803,33 +794,39 @@ msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
 msgstr ""
 
 #: UserAction/expander.cpp:357
-msgid "panel's path"
+#, fuzzy
+msgid "Panel's Path..."
 msgstr "шлях до панелі"
 
 #: UserAction/expander.cpp:360 UserAction/expander.cpp:422
 #: UserAction/expander.cpp:456 UserAction/expander.cpp:488
 #: UserAction/expander.cpp:775
-msgid "Automatic escape spaces"
+#, fuzzy
+msgid "Automatically escape spaces"
 msgstr "Автоматичні інтервали виходу"
 
 #: UserAction/expander.cpp:380
-msgid "number of ..."
+#, fuzzy
+msgid "Number of..."
 msgstr "кількість ..."
 
 #: UserAction/expander.cpp:383
-msgid "count all:"
-msgstr "підрахувати всі:"
+#, fuzzy
+msgid "Count:"
+msgstr "Змонтувати"
 
 #: UserAction/expander.cpp:398
 msgid "Expander: Bad argument to Count: %1 is not valid item specifier"
 msgstr ""
 
 #: UserAction/expander.cpp:407
-msgid "filter mask: *.h, *.cpp, etc."
+#, fuzzy
+msgid "Filter Mask (*.h, *.cpp, etc.)"
 msgstr "маска фільтра: *.h, *.cpp, та ін."
 
 #: UserAction/expander.cpp:418
-msgid "current file (!= selected file)"
+#, fuzzy
+msgid "Current File (!= Selected File)..."
 msgstr "поточний файл (!= вибраний файл)"
 
 #: UserAction/expander.cpp:421 UserAction/expander.cpp:454
@@ -838,69 +835,87 @@ msgid "Omit the current path (optional)"
 msgstr "Обминати поточний шлях (не обов'язково)"
 
 #: UserAction/expander.cpp:449
-msgid "Item list of ..."
+#, fuzzy
+msgid "Item List of..."
 msgstr "Список елементів ..."
 
 #: UserAction/expander.cpp:452 UserAction/expander.cpp:484
 #: UserAction/expander.cpp:772
-msgid "Which items"
+#, fuzzy
+msgid "Which items:"
 msgstr "Які елементи"
 
-#: UserAction/expander.cpp:453 UserAction/expander.cpp:485
-msgid "Separator between the items (optional)"
+#: UserAction/expander.cpp:453
+#, fuzzy
+msgid "Separator between the items (optional):"
 msgstr "Роздільник між елементами (не обов'язковий)"
 
 #: UserAction/expander.cpp:455 UserAction/expander.cpp:487
 #: UserAction/expander.cpp:774
-msgid "Mask (optional, all but 'Selected')"
+#, fuzzy
+msgid "Mask (optional, all but 'Selected'):"
 msgstr "Маска (не обов'язкова для всіх, крім \"Вибраних\")"
 
 #: UserAction/expander.cpp:481
-msgid "Filename of an itemlist ..."
+#, fuzzy
+msgid "Filename of an Item List..."
 msgstr "Назва файла списку елементів..."
+
+#: UserAction/expander.cpp:485
+msgid "Separator between the items (optional)"
+msgstr "Роздільник між елементами (не обов'язковий)"
 
 #: UserAction/expander.cpp:504
 msgid "Expander: tempfile couldn't be opened (%1)"
 msgstr ""
 
 #: UserAction/expander.cpp:524
-msgid "Manipulate the selection"
+#, fuzzy
+msgid "Manipulate the Selection..."
 msgstr "Працювати на вибраному"
 
 #: UserAction/expander.cpp:527
-msgid "Selection mask"
+#, fuzzy
+msgid "Selection mask:"
 msgstr "Маска вибору"
 
 #: UserAction/expander.cpp:528
-msgid "Manipulate in which way"
+#, fuzzy
+msgid "Manipulate in which way:"
 msgstr "Як маніпулювати"
 
 #: UserAction/expander.cpp:553
-msgid "Jump to a location"
+#, fuzzy
+msgid "Jump to a Location..."
 msgstr "Перескочити до адреси"
 
 #: UserAction/expander.cpp:556
-msgid "please choose a path"
+#, fuzzy
+msgid "Choose a path:"
 msgstr "будь ласка, виберіть шлях"
 
 #: UserAction/expander.cpp:557
-msgid "open the location in a new tab"
+#, fuzzy
+msgid "Open location in a new tab"
 msgstr "відкрити адресу в новій вкладці"
 
 #: UserAction/expander.cpp:593
-msgid "Ask the user for a parameter"
-msgstr "Запитати користувача про параметр"
+msgid "Ask Parameter from User..."
+msgstr ""
 
 #: UserAction/expander.cpp:596
-msgid "Question"
+#, fuzzy
+msgid "Question:"
 msgstr "Питання"
 
 #: UserAction/expander.cpp:597
-msgid "Preset (optional)"
+#, fuzzy
+msgid "Preset (optional):"
 msgstr "Preset (не обов'язково)"
 
 #: UserAction/expander.cpp:598
-msgid "Caption (optional)"
+#, fuzzy
+msgid "Caption (optional):"
 msgstr "Надпис (не обов'язково)"
 
 #: UserAction/expander.cpp:604
@@ -908,15 +923,17 @@ msgid "User Action"
 msgstr "Дія користувача"
 
 #: UserAction/expander.cpp:629
-msgid "Copy to clipboard"
-msgstr "Скопіювати в кишеню"
+#, fuzzy
+msgid "Copy to Clipboard..."
+msgstr "Скопіювати до кишені"
 
 #: UserAction/expander.cpp:632 UserAction/expander.cpp:655
-msgid "What should be copied"
-msgstr "Що має бути скопійоване"
+msgid "What to copy:"
+msgstr ""
 
 #: UserAction/expander.cpp:633
-msgid "Append to the current clipboard-content with this separator (optional)"
+#, fuzzy
+msgid "Append to current clipboard content with this separator (optional):"
 msgstr "Додати до поточного вмісту кишені з цим роздільником (не обов'язково)"
 
 #: UserAction/expander.cpp:639
@@ -924,11 +941,13 @@ msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
 msgstr ""
 
 #: UserAction/expander.cpp:652
-msgid "Copy a file/folder"
+#, fuzzy
+msgid "Copy a File/Folder..."
 msgstr "Скопіювати файл/теку"
 
 #: UserAction/expander.cpp:656
-msgid "Where it should be copied"
+#, fuzzy
+msgid "Where to copy:"
 msgstr "Куди це має бути скопійовано"
 
 #: UserAction/expander.cpp:663
@@ -940,15 +959,18 @@ msgid "Expander: invalid URL's in %_Copy(\"src\", \"dest\")%"
 msgstr ""
 
 #: UserAction/expander.cpp:684
-msgid "Move/Rename a file/folder"
+#, fuzzy
+msgid "Move/Rename a File/Folder..."
 msgstr "Пересунути/перейменувати файл/теку"
 
 #: UserAction/expander.cpp:687
-msgid "What moved/renamed"
+#, fuzzy
+msgid "What to move/rename:"
 msgstr "Що пересунуто/перейменовано"
 
 #: UserAction/expander.cpp:688
-msgid "New target/name"
+#, fuzzy
+msgid "New target/name:"
 msgstr "Нова ціль/назва"
 
 #: UserAction/expander.cpp:694
@@ -960,12 +982,14 @@ msgid "Expander: invalid URL's in %_Move(\"src\", \"dest\")%"
 msgstr ""
 
 #: UserAction/expander.cpp:715
-msgid "Open a synchronizer-profile"
+#, fuzzy
+msgid "Load a Synchronizer Profile..."
 msgstr "Відкрити профіль синхронізатора"
 
 #: UserAction/expander.cpp:718 UserAction/expander.cpp:736
 #: UserAction/expander.cpp:754
-msgid "Choose a profile"
+#, fuzzy
+msgid "Choose a profile:"
 msgstr "Виберіть профіль"
 
 #: UserAction/expander.cpp:722
@@ -973,7 +997,8 @@ msgid "Expander: no profile specified for %_Sync(profile)%"
 msgstr ""
 
 #: UserAction/expander.cpp:733
-msgid "Open a searchmodule-profile"
+#, fuzzy
+msgid "Load a Searchmodule Profile..."
 msgstr "Відкрити профіль модуля пошуку"
 
 #: UserAction/expander.cpp:740
@@ -981,7 +1006,8 @@ msgid "Expander: no profile specified for %_NewSearch(profile)%"
 msgstr ""
 
 #: UserAction/expander.cpp:751
-msgid "Load a panel-profile"
+#, fuzzy
+msgid "Load a Panel Profile..."
 msgstr "Завантажити профіль панелі"
 
 #: UserAction/expander.cpp:758
@@ -989,19 +1015,23 @@ msgid "Expander: no profile specified for %_Profile(profile)%; abort..."
 msgstr ""
 
 #: UserAction/expander.cpp:769
-msgid "Separate programm call for each..."
+#, fuzzy
+msgid "Separate Program Call for Each..."
 msgstr "Виклик окремої програми для кожного..."
 
 #: UserAction/expander.cpp:801
-msgid "Set the sorting for this panel"
+#, fuzzy
+msgid "Set Sorting for This Panel..."
 msgstr "Вкажіть впорядкування для цієї панелі"
 
 #: UserAction/expander.cpp:804
-msgid "Choose a column"
+#, fuzzy
+msgid "Choose a column:"
 msgstr "Виберіть стовпчик"
 
 #: UserAction/expander.cpp:805
-msgid "Choose the sort sequence"
+#, fuzzy
+msgid "Choose a sort sequence:"
 msgstr "Виберіть послідовність впорядкування"
 
 #: UserAction/expander.cpp:811
@@ -1013,11 +1043,13 @@ msgid "Expander: unknown column specified for %_ColSort(%1)%"
 msgstr ""
 
 #: UserAction/expander.cpp:895
-msgid "Set the relation between the two panels"
+#, fuzzy
+msgid "Set Relation Between the Panels..."
 msgstr "Вкажіть взаємозв'язок між двома панелями"
 
 #: UserAction/expander.cpp:898
-msgid "Set the new size in percent"
+#, fuzzy
+msgid "Set the new size in percent:"
 msgstr "Вкажіть новий розмір у відсотках"
 
 #: UserAction/expander.cpp:910
@@ -1027,7 +1059,8 @@ msgid ""
 msgstr ""
 
 #: UserAction/expander.cpp:934
-msgid "Executes a JavaScript-extension"
+#, fuzzy
+msgid "Execute a JavaScript Extension..."
 msgstr "Виконує розширення JavaScript"
 
 #: UserAction/expander.cpp:937
@@ -1048,21 +1081,21 @@ msgid "Expander: no script specified for %_Script(script)%"
 msgstr ""
 
 #: UserAction/expander.cpp:984
-msgid "View a file with Krusader's internal viewer"
+msgid "View File with Krusader's Internal Viewer..."
 msgstr ""
 
 #: UserAction/expander.cpp:987
-msgid "Which file to view (normally '%aCurrent%')"
+msgid "Which file to view (normally '%aCurrent%'):"
 msgstr ""
 
 #: UserAction/expander.cpp:988
 #, fuzzy
-msgid "Choose a view-mode"
+msgid "Choose a view mode:"
 msgstr "Виберіть профіль"
 
 #: UserAction/expander.cpp:991
 #, fuzzy
-msgid "Choose a window-mode"
+msgid "Choose a window mode:"
 msgstr "Виберіть стовпчик"
 
 #: UserAction/expander.cpp:995
@@ -1100,79 +1133,90 @@ msgid "Command being executed:"
 msgstr "Виконується команда:"
 
 #: Konfigurator/konfigurator.cpp:69 Search/krsearchdialog.cpp:103
-#: Synchronizer/synchronizergui.cpp:1404 UserAction/kraction.cpp:48
+#: Synchronizer/synchronizergui.cpp:1404 UserAction/kraction.cpp:49
 #, fuzzy
 msgid "Close"
 msgstr "Кольори"
 
-#: UserAction/kraction.cpp:51
+#: UserAction/kraction.cpp:52
 msgid "Kill"
 msgstr "Знищити"
 
-#: UserAction/kraction.cpp:51
+#: UserAction/kraction.cpp:52
 msgid "Kill the running process"
 msgstr "Знищити робочий процес"
 
-#: UserAction/kraction.cpp:53
+#: UserAction/kraction.cpp:54
 msgid "Save as"
 msgstr ""
 
-#: UserAction/kraction.cpp:62
+#: UserAction/kraction.cpp:63
 msgid "Standard Output (stdout)"
 msgstr "стандартний вивід (stdout)"
 
-#: UserAction/kraction.cpp:69
+#: UserAction/kraction.cpp:70
 msgid "Standard Error (stderr)"
 msgstr "Стандартна помилка (stderr)"
 
-#: UserAction/kraction.cpp:75
+#: UserAction/kraction.cpp:76
 msgid "Output"
 msgstr "Вивід"
 
-#: UserAction/kraction.cpp:97
+#: UserAction/kraction.cpp:98
 msgid "Use font with fixed width"
 msgstr ""
 
-#: UserAction/kraction.cpp:131
+#: UserAction/kraction.cpp:132
 #, fuzzy
 msgid ""
 "*.txt|Text files\n"
 "*|all files"
 msgstr "*.xml|xml-файли"
 
-#: UserAction/kraction.cpp:138
+#: UserAction/kraction.cpp:139
 #, fuzzy
 msgid ""
 "This file already exists.\n"
 "Do you want to overwrite it or append the output?"
 msgstr " вже існує. Ви дійсно хочете перезаписати його?"
 
-#: UserAction/kraction.cpp:139
+#: UserAction/kraction.cpp:140
 #, fuzzy
 msgid "Overwrite or append?"
 msgstr "Перезаписати елемент"
 
 #: ActionMan/useractionpage.cpp:248 ActionMan/useractionpage.cpp:257
 #: Dialogs/checksumdlg.cpp:552 Dialogs/krkeydialog.cpp:135
-#: Konfigurator/kgcolors.cpp:523 UserAction/kraction.cpp:140
+#: Konfigurator/kgcolors.cpp:523 UserAction/kraction.cpp:141
 msgid "Overwrite"
 msgstr "Перезаписати"
 
-#: UserAction/kraction.cpp:141
+#: UserAction/kraction.cpp:142
 #, fuzzy
 msgid "Append"
 msgstr "&Відкрити"
 
-#: ActionMan/useractionpage.cpp:271 UserAction/kraction.cpp:153
+#: ActionMan/useractionpage.cpp:271 UserAction/kraction.cpp:154
 msgid ""
 "Can't open %1 for writing!\n"
 "Nothing exported."
 msgstr ""
 
-#: ActionMan/useractionpage.cpp:272 UserAction/kraction.cpp:154
+#: ActionMan/useractionpage.cpp:272 UserAction/kraction.cpp:155
 #, fuzzy
 msgid "Export failed!"
 msgstr "Текстові файли"
+
+#: UserAction/kraction.cpp:200
+msgid ""
+"Support for more than one command doesn't work in a terminal. Only the first "
+"is executed in the terminal."
+msgstr ""
+
+#: UserAction/kraction.cpp:204
+msgid ""
+"Embedded terminal emulator does not work, using output collection instead."
+msgstr ""
 
 #: UserAction/useraction.cpp:100
 msgid "The file %1 does not contain valid UserActions.\n"
@@ -1284,7 +1328,7 @@ msgstr "Дорівнює"
 msgid ".."
 msgstr ".."
 
-#: Panel/listpanel.cpp:237 krusader.cpp:565
+#: Panel/listpanel.cpp:237 krusader.cpp:575
 msgid "Up"
 msgstr "Вверх"
 
@@ -1293,7 +1337,7 @@ msgid "~"
 msgstr "~"
 
 #: Panel/listpanel.cpp:243 Panel/panelpopup.cpp:119 Panel/panelpopup.cpp:120
-#: Panel/panelpopup.cpp:121 Panel/panelpopup.cpp:132 krusader.cpp:521
+#: Panel/panelpopup.cpp:121 Panel/panelpopup.cpp:132 krusader.cpp:531
 msgid "Home"
 msgstr "Домівка"
 
@@ -1303,7 +1347,7 @@ msgstr "/"
 
 #: Panel/listpanel.cpp:249 Panel/panelpopup.cpp:123 Panel/panelpopup.cpp:124
 #: Panel/panelpopup.cpp:126 Panel/panelpopup.cpp:127 Panel/panelpopup.cpp:131
-#: krusader.cpp:650
+#: krusader.cpp:689
 msgid "Root"
 msgstr "Кореневий каталог"
 
@@ -1433,7 +1477,7 @@ msgstr "%1 (посилання)"
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "%1 з %2, %3 (%4) з %5 (%6)"
 
-#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:325 krusader.cpp:727
+#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:325 krusader.cpp:766
 msgid "Rename"
 msgstr "Перейменувати"
 
@@ -1581,12 +1625,12 @@ msgstr "Дії користувача"
 msgid "Konqueror Menu"
 msgstr "Меню Konqueror-а"
 
-#: Panel/krpopupmenu.cpp:131 krusader.cpp:719
+#: Panel/krpopupmenu.cpp:131 krusader.cpp:758
 #, fuzzy
 msgid "Copy..."
 msgstr "Копіювання "
 
-#: Panel/krpopupmenu.cpp:134 krusader.cpp:721
+#: Panel/krpopupmenu.cpp:134 krusader.cpp:760
 #, fuzzy
 msgid "Move..."
 msgstr "Пересунути "
@@ -1598,7 +1642,7 @@ msgstr "Пересунути у смітник"
 
 #: BookMan/krbookmarkhandler.cpp:541 Dialogs/krmaskchoice.cpp:110
 #: Dialogs/kurllistrequester.cpp:149 DiskUsage/diskusage.cpp:757
-#: Konfigurator/kgcolors.cpp:474 Panel/krpopupmenu.cpp:145 krusader.cpp:725
+#: Konfigurator/kgcolors.cpp:474 Panel/krpopupmenu.cpp:145 krusader.cpp:764
 #, fuzzy
 msgid "Delete"
 msgstr " Видалити"
@@ -1607,7 +1651,7 @@ msgstr " Видалити"
 msgid "Shred"
 msgstr "Знищити"
 
-#: Panel/krpopupmenu.cpp:156 krusader.cpp:688
+#: Panel/krpopupmenu.cpp:156 krusader.cpp:727
 #, fuzzy
 msgid "New Symlink..."
 msgstr "нове символічне посилання"
@@ -1637,15 +1681,15 @@ msgstr "Надіслати ел. поштою"
 msgid "Synchronize Selected Files..."
 msgstr "Синхронізувати каталоги"
 
-#: Panel/krpopupmenu.cpp:191 krusader.cpp:532
+#: Panel/krpopupmenu.cpp:191 krusader.cpp:542
 msgid "Copy to Clipboard"
 msgstr "Скопіювати до кишені"
 
-#: Panel/krpopupmenu.cpp:194 krusader.cpp:531
+#: Panel/krpopupmenu.cpp:194 krusader.cpp:541
 msgid "Cut to Clipboard"
 msgstr "Вирізати до кишені"
 
-#: Panel/krpopupmenu.cpp:195 Panel/krpopupmenu.cpp:211 krusader.cpp:533
+#: Panel/krpopupmenu.cpp:195 Panel/krpopupmenu.cpp:211 krusader.cpp:543
 msgid "Paste from Clipboard"
 msgstr "Вставити з кишені"
 
@@ -1921,7 +1965,7 @@ msgstr ""
 msgid "Cannot copy a virtual URL collection onto the clipboard!"
 msgstr ""
 
-#: Locate/locate.cpp:67 Locate/locate.cpp:205 Search/krsearchdialog.cpp:99
+#: Locate/locate.cpp:67 Locate/locate.cpp:206 Search/krsearchdialog.cpp:99
 #: Synchronizer/synchronizergui.cpp:1388
 #, fuzzy
 msgid "Stop"
@@ -1931,7 +1975,7 @@ msgstr "до"
 msgid "Update DB"
 msgstr "Поновити базу даних"
 
-#: Locate/locate.cpp:67 Locate/locate.cpp:315
+#: Locate/locate.cpp:67 Locate/locate.cpp:318
 msgid "Locate"
 msgstr "Місцезнаходження"
 
@@ -1943,29 +1987,29 @@ msgstr "Krusader::Місцезнаходження"
 msgid "Search for:"
 msgstr "Шукати за:"
 
-#: Locate/locate.cpp:93
+#: Locate/locate.cpp:94
 msgid "Don't search in path"
 msgstr "Не шукати в шляху"
 
-#: Locate/locate.cpp:95
+#: Locate/locate.cpp:96
 msgid "Show only the existing files"
 msgstr "Показувати тільки існуючі файли"
 
-#: Locate/locate.cpp:97
+#: Locate/locate.cpp:98
 msgid "Case Sensitive"
 msgstr "З урахуванням регістру"
 
-#: Locate/locate.cpp:116
+#: Locate/locate.cpp:117
 msgid "Results"
 msgstr "Результати"
 
-#: Locate/locate.cpp:195
+#: Locate/locate.cpp:196
 msgid "Can't start 'locate'! Check the 'Dependencies' page in konfigurator."
 msgstr ""
 "Неможливо запустити \"locate\"! Перевірте сторінку \"Залежності\" в "
 "Конфігураторі."
 
-#: Locate/locate.cpp:232
+#: Locate/locate.cpp:234
 msgid ""
 "Locate produced the following error message:\n"
 "\n"
@@ -1973,57 +2017,57 @@ msgstr ""
 "Locate видала наступне повідомлення про помилку:\n"
 "\n"
 
-#: Locate/locate.cpp:235
+#: Locate/locate.cpp:237
 msgid "Error during the start of 'locate' process!"
 msgstr "Помилка під час запуску процесу \"locate\"!"
 
-#: Locate/locate.cpp:244 Search/krsearchdialog.cpp:88
+#: Locate/locate.cpp:247 Search/krsearchdialog.cpp:88
 #: Synchronizer/synchronizergui.cpp:1393
 msgid "Feed to listbox"
 msgstr "Подача у список"
 
-#: Locate/locate.cpp:317
+#: Locate/locate.cpp:320
 msgid "View (F3)"
 msgstr "Огляд (F3)"
 
-#: Locate/locate.cpp:318
+#: Locate/locate.cpp:321
 msgid "Edit (F4)"
 msgstr "Правка (F4)"
 
-#: Locate/locate.cpp:322
+#: Locate/locate.cpp:325
 msgid "Find (Ctrl+F)"
 msgstr "Знайти (Ctrl+F)"
 
-#: Locate/locate.cpp:323
+#: Locate/locate.cpp:326
 msgid "Find next (Ctrl+N)"
 msgstr "Знайти наступне (Ctrl+N)"
 
-#: Locate/locate.cpp:324
+#: Locate/locate.cpp:327
 msgid "Find previous (Ctrl+P)"
 msgstr "Знайти попереднє (Ctrl+P)"
 
-#: Locate/locate.cpp:425 Locate/locate.cpp:442
+#: Locate/locate.cpp:435 Locate/locate.cpp:452
 msgid "Search string not found!"
 msgstr "Шуканий рядок не знайдено!"
 
-#: Locate/locate.cpp:493
+#: Locate/locate.cpp:503
 msgid "Locate results"
 msgstr "Знайти результати"
 
-#: Locate/locate.cpp:501 Search/krsearchdialog.cpp:531
+#: Locate/locate.cpp:511 Search/krsearchdialog.cpp:531
 msgid "Query name"
 msgstr "Назва запиту"
 
-#: Locate/locate.cpp:502 Search/krsearchdialog.cpp:532
+#: Locate/locate.cpp:512 Search/krsearchdialog.cpp:532
 #: Synchronizer/feedtolistboxdialog.cpp:110
 msgid "Here you can name the file collection"
 msgstr "Тут можна назвати збірку файлів"
 
-#: krusader.cpp:339
+#: krusader.cpp:348
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr "Смужка стану показуватиме основну інформацію про файл під курсором."
 
-#: krusader.cpp:419
+#: krusader.cpp:428
 msgid ""
 "A configuration of 1.51 or older was detected. Krusader has to reset your "
 "configuration to default values.\n"
@@ -2035,441 +2079,464 @@ msgstr ""
 "Примітка: Ваші закладки та прив'язки клавіш залишаться без змін.\n"
 "Krusader зараз запустить Конфігуратор."
 
-#: krusader.cpp:431
+#: krusader.cpp:440
 msgid ""
 "<qt><b>Welcome to Krusader!</b><p>As this is your first run, your machine "
 "will now be checked for external applications. Then the Konfigurator will be "
 "launched where you can customize Krusader to your needs.</p></qt>"
 msgstr ""
 
-#: krusader.cpp:497
+#: krusader.cpp:506
 msgid "F3 View Dialog"
 msgstr "F3 Вікно перегляду"
 
-#: krusader.cpp:500
+#: krusader.cpp:509
 msgid "Tab: switch panel"
 msgstr "Tab: перемикання панелей"
 
-#: krusader.cpp:522
+#: krusader.cpp:532
 #, fuzzy
 msgid "&Reload"
 msgstr "&Місцезнаходження"
 
-#: krusader.cpp:524
+#: krusader.cpp:534
 msgid "Show Actions Toolbar"
 msgstr "Показувати пенал дій"
 
-#: krusader.cpp:536
+#: krusader.cpp:546
 msgid "Show &FN Keys Bar"
 msgstr "Показувати смужку клавіш &функцій"
 
-#: krusader.cpp:539
+#: krusader.cpp:549
 msgid "Show &Command Line"
 msgstr "Показувати &командний рядок"
 
-#: krusader.cpp:542
+#: krusader.cpp:552
 msgid "Show Terminal &Emulator"
 msgstr "Показувати &емулятор термінала"
 
-#: krusader.cpp:546
+#: krusader.cpp:556
 #, fuzzy
 msgid "&Detailed View"
 msgstr "Детальний вигляд"
 
-#: krusader.cpp:549
+#: krusader.cpp:559
 #, fuzzy
 msgid "&Brief View"
 msgstr "Рядковий вигляд"
 
-#: krusader.cpp:552
+#: krusader.cpp:562
 msgid "Show &Hidden Files"
 msgstr "Показувати &приховані файли"
 
-#: krusader.cpp:554
+#: krusader.cpp:564
 msgid "S&wap Panels"
 msgstr "Помін&яти панелі місцями"
 
-#: krusader.cpp:556
+#: krusader.cpp:566
 #, fuzzy
 msgid "Sw&ap Sides"
 msgstr "Поміняти місцями"
 
-#: krusader.cpp:562
+#: krusader.cpp:572
 msgid "popup cmdline"
 msgstr "показ командного рядка"
 
-#: krusader.cpp:566
+#: krusader.cpp:576
 #, fuzzy
 msgid "&New Text File..."
 msgstr "&Редагувати новий файл"
 
-#: krusader.cpp:567
+#: krusader.cpp:577
 #, fuzzy
 msgid "Start &Root Mode Krusader"
 msgstr "Запустити Krusader в режимі &адміністратора"
 
-#: krusader.cpp:569
+#: krusader.cpp:579
 #, fuzzy
 msgid "T&est Archive"
 msgstr "П&еревірити архів(и)"
 
-#: krusader.cpp:573
+#: krusader.cpp:583
 #, fuzzy
 msgid "New Net &Connection..."
 msgstr "Нове &з'єднання мережі"
 
-#: krusader.cpp:575
+#: krusader.cpp:585
 msgid "Pro&files"
 msgstr "Про&філі"
 
-#: krusader.cpp:577
+#: krusader.cpp:587
 #, fuzzy
 msgid "Calculate &Occupied Space"
 msgstr "Підрахувати зайняте місце"
 
-#: krusader.cpp:579
+#: krusader.cpp:589
 #, fuzzy
 msgid "Create Checksum..."
 msgstr "Створити в:"
 
-#: krusader.cpp:581
+#: krusader.cpp:591
 #, fuzzy
 msgid "Verify Checksum..."
 msgstr "Розділення файла %1..."
 
-#: krusader.cpp:583
+#: krusader.cpp:593
 #, fuzzy
 msgid "&Properties..."
 msgstr "&Властивості"
 
-#: krusader.cpp:585
+#: krusader.cpp:595
 #, fuzzy
 msgid "Pac&k..."
 msgstr "Запа&кувати"
 
-#: krusader.cpp:587
+#: krusader.cpp:597
 #, fuzzy
 msgid "&Unpack..."
 msgstr "&Розпакувати"
 
-#: krusader.cpp:589
+#: krusader.cpp:599
 #, fuzzy
 msgid "Sp&lit File..."
 msgstr "Розді&лити файл"
 
-#: krusader.cpp:591
+#: krusader.cpp:601
 #, fuzzy
 msgid "Com&bine Files..."
 msgstr "О&б'єднати файли"
 
-#: krusader.cpp:593
+#: krusader.cpp:603
 #, fuzzy
 msgid "Select &Group..."
 msgstr "Вибрати &групу"
 
-#: krusader.cpp:595
+#: krusader.cpp:605
 msgid "&Select All"
 msgstr "&Вибрати все"
 
-#: krusader.cpp:597
+#: krusader.cpp:607
 #, fuzzy
 msgid "&Unselect Group..."
 msgstr "&Скасувати вибір групи"
 
-#: krusader.cpp:599
+#: krusader.cpp:609
 msgid "U&nselect All"
 msgstr "С&касувати вибір всього"
 
-#: krusader.cpp:601
+#: krusader.cpp:611
 msgid "&Invert Selection"
 msgstr "&Інвертувати вибір"
 
-#: krusader.cpp:603
+#: krusader.cpp:613
 msgid "&Compare Directories"
 msgstr "&Порівняти каталоги"
 
-#: krusader.cpp:605
+#: krusader.cpp:615
 #, fuzzy
 msgid "&Select Newer and Single"
 msgstr "&Позначити новіші і одинарні"
 
-#: krusader.cpp:607
+#: krusader.cpp:617
 #, fuzzy
 msgid "Select &Newer"
 msgstr "Вибрати елементи"
 
-#: krusader.cpp:609
+#: krusader.cpp:619
 #, fuzzy
 msgid "Select &Single"
 msgstr " Вибрати файли "
 
-#: krusader.cpp:611
+#: krusader.cpp:621
 #, fuzzy
 msgid "Select Different &and Single"
 msgstr "Позначити відмінні &й одинарні"
 
-#: krusader.cpp:613
+#: krusader.cpp:623
 #, fuzzy
 msgid "Select &Different"
 msgstr "Позначити &відмінні"
 
-#: krusader.cpp:622
+#: krusader.cpp:633
+msgid "Start and &Forget"
+msgstr ""
+
+#: krusader.cpp:637
+#, fuzzy
+msgid "Display &Separated Standard and Error Output"
+msgstr "Відділяти стандартні помилки"
+
+#: krusader.cpp:641
+msgid "Display &Mixed Standard and Error Output"
+msgstr ""
+
+#: krusader.cpp:645
+#, fuzzy
+msgid "Start in &New Terminal"
+msgstr "Термінал"
+
+#: krusader.cpp:649
+#, fuzzy
+msgid "Send to &Embedded Terminal Emulator"
+msgstr "Показувати &емулятор термінала"
+
+#: krusader.cpp:661
 #, fuzzy
 msgid "Start &Terminal"
 msgstr "Термінал"
 
-#: krusader.cpp:624
+#: krusader.cpp:663
 #, fuzzy
 msgid "Disconnect &from Net"
 msgstr "Роз'єднати &від мережі"
 
-#: krusader.cpp:627 krusader.cpp:632
+#: krusader.cpp:666 krusader.cpp:671
 #, fuzzy
 msgid "&MountMan..."
 msgstr "&Монтування пристроїв"
 
-#: krusader.cpp:636
+#: krusader.cpp:675
 #, fuzzy
 msgid "&Search..."
 msgstr "&Пошук"
 
-#: krusader.cpp:638
+#: krusader.cpp:677
 #, fuzzy
 msgid "&Locate..."
 msgstr "&Місцезнаходження"
 
-#: krusader.cpp:640
+#: krusader.cpp:679
 #, fuzzy
 msgid "Synchronize &Directories..."
 msgstr "Синхронізувати ката&логи"
 
-#: krusader.cpp:642
+#: krusader.cpp:681
 #, fuzzy
 msgid "S&ynchron Directory Changes"
 msgstr "Син&хронізувати зміни в каталозі"
 
-#: krusader.cpp:644
+#: krusader.cpp:683
 #, fuzzy
 msgid "D&isk Usage..."
 msgstr "Використання ди&ска"
 
-#: krusader.cpp:646
+#: krusader.cpp:685
 #, fuzzy
 msgid "Configure &Krusader..."
 msgstr "Налаштувати &Krusader"
 
-#: krusader.cpp:648
+#: krusader.cpp:687
 #, fuzzy
 msgid "Back"
 msgstr "Чорний"
 
-#: krusader.cpp:652
+#: krusader.cpp:691
 msgid "Save &Position"
 msgstr "Зберегти &позицію"
 
-#: krusader.cpp:654
+#: krusader.cpp:693
 msgid "&All Files"
 msgstr "&Всі файли"
 
-#: krusader.cpp:658
+#: krusader.cpp:697
 msgid "&Custom"
 msgstr "&Нетипове"
 
-#: krusader.cpp:660
+#: krusader.cpp:699
 #, fuzzy
 msgid "Compare b&y Content..."
 msgstr "Порівняти з&а вмістом"
 
-#: krusader.cpp:662
+#: krusader.cpp:701
 #, fuzzy
 msgid "Multi &Rename..."
 msgstr "Групове пере&йменування"
 
-#: krusader.cpp:664
+#: krusader.cpp:703
 #, fuzzy
 msgid "Right-click Menu"
 msgstr "Контекстне меню"
 
-#: krusader.cpp:666
+#: krusader.cpp:705
 #, fuzzy
 msgid "Right Bookmarks"
 msgstr "Праві закладки"
 
-#: krusader.cpp:668
+#: krusader.cpp:707
 #, fuzzy
 msgid "Left Bookmarks"
 msgstr "Ліві закладки"
 
 #: BookMan/kraddbookmarkdlg.cpp:71 BookMan/krbookmarkbutton.cpp:19
-#: BookMan/krbookmarkhandler.cpp:30 krusader.cpp:670
+#: BookMan/krbookmarkhandler.cpp:30 krusader.cpp:709
 #, fuzzy
 msgid "Bookmarks"
 msgstr "Додати закладку"
 
-#: BookMan/krbookmarkhandler.cpp:399 krusader.cpp:672
+#: BookMan/krbookmarkhandler.cpp:399 krusader.cpp:711
 msgid "Bookmark Current"
 msgstr "Зробити закладку поточного"
 
-#: krusader.cpp:674
+#: krusader.cpp:713
 #, fuzzy
 msgid "History"
 msgstr "Історія лівої"
 
-#: krusader.cpp:676
+#: krusader.cpp:715
 msgid "Sync Panels"
 msgstr "Синхронізувати панелі"
 
-#: krusader.cpp:678
+#: krusader.cpp:717
 #, fuzzy
 msgid "Left History"
 msgstr "Історія лівої"
 
-#: krusader.cpp:680
+#: krusader.cpp:719
 #, fuzzy
 msgid "Right History"
 msgstr "Історія правої"
 
-#: BookMan/krbookmark.cpp:12 krusader.cpp:682
+#: BookMan/krbookmark.cpp:12 krusader.cpp:721
 #, fuzzy
 msgid "Media"
 msgstr "редагувати"
 
-#: krusader.cpp:684
+#: krusader.cpp:723
 #, fuzzy
 msgid "Left Media"
 msgstr "Ліва панель"
 
-#: krusader.cpp:686
+#: krusader.cpp:725
 #, fuzzy
 msgid "Right Media"
 msgstr "Права панель"
 
-#: krusader.cpp:690
+#: krusader.cpp:729
 msgid "Toggle Popup Panel"
 msgstr "Увімкнути/вимкнути панель-вигульк"
 
-#: krusader.cpp:692
+#: krusader.cpp:731
 msgid "Vertical Mode"
 msgstr "Вертикальний режим"
 
-#: krusader.cpp:694
+#: krusader.cpp:733
 #, fuzzy
 msgid "New Tab"
 msgstr "Нова вкладка"
 
-#: krusader.cpp:696
+#: krusader.cpp:735
 #, fuzzy
 msgid "Duplicate Current Tab"
 msgstr "Здублювати вкладку"
 
-#: krusader.cpp:698
+#: krusader.cpp:737
 #, fuzzy
 msgid "Close Current Tab"
 msgstr "Закрити поточну вкладку"
 
-#: krusader.cpp:700
+#: krusader.cpp:739
 #, fuzzy
 msgid "Next Tab"
 msgstr "Наступна вкладка"
 
-#: krusader.cpp:702
+#: krusader.cpp:741
 #, fuzzy
 msgid "Previous Tab"
 msgstr "Попередня вкладка"
 
-#: krusader.cpp:708
+#: krusader.cpp:747
 #, fuzzy
 msgid "Manage User Actions..."
 msgstr "Керування діями користувача"
 
-#: krusader.cpp:710
+#: krusader.cpp:749
 #, fuzzy
 msgid "Select Remote Charset"
 msgstr "Вибрати елементи"
 
-#: krusader.cpp:713
+#: krusader.cpp:752
 msgid "Start Terminal Here"
 msgstr ""
 
-#: krusader.cpp:715
+#: krusader.cpp:754
 #, fuzzy
 msgid "View File"
 msgstr "Відео файли"
 
-#: krusader.cpp:717
+#: krusader.cpp:756
 #, fuzzy
 msgid "Edit File"
 msgstr "Правка файла (F4)"
 
-#: krusader.cpp:723
+#: krusader.cpp:762
 #, fuzzy
 msgid "New Directory..."
 msgstr "Новий каталог"
 
-#: krusader.cpp:729
+#: krusader.cpp:768
 #, fuzzy
 msgid "Quit"
 msgstr "Тихо"
 
-#: krusader.cpp:731
+#: krusader.cpp:770
 #, fuzzy
 msgid "Popular URLs..."
 msgstr "Популярні URL"
 
-#: krusader.cpp:733
+#: krusader.cpp:772
 #, fuzzy
 msgid "Go to Location Bar"
 msgstr "Перескочити до адреси"
 
-#: krusader.cpp:735
+#: krusader.cpp:774
 #, fuzzy
 msgid "Jump Back"
 msgstr "Чорний"
 
-#: krusader.cpp:737
+#: krusader.cpp:776
 msgid "Set Jump Back Point"
 msgstr ""
 
-#: krusader.cpp:739
+#: krusader.cpp:778
 #, fuzzy
 msgid "Toggle Fullwidget Terminal Emulator"
 msgstr "Показувати емулятор термінала"
 
-#: krusader.cpp:743
+#: krusader.cpp:782
 msgid "Select files using a filter"
 msgstr "Вибрати файли за допомогою фільтра"
 
-#: krusader.cpp:744
+#: krusader.cpp:783
 msgid "Select all files in the current directory"
 msgstr "Вибрати всі файли в поточному каталозі"
 
-#: krusader.cpp:745
+#: krusader.cpp:784
 #, fuzzy
 msgid "Unselect all selected files"
 msgstr "Відмінити вибір всіх вибраних файлів"
 
-#: krusader.cpp:746
+#: krusader.cpp:785
 msgid "Setup Krusader the way you like it"
 msgstr "Налаштуйте Krusader так, як вам подобається"
 
-#: krusader.cpp:747
+#: krusader.cpp:786
 msgid "Back to the place you came from"
 msgstr "Назад до того місця звідки прийшли"
 
-#: krusader.cpp:748
+#: krusader.cpp:787
 msgid "ROOT (/)"
 msgstr "ROOT (/)"
 
-#: krusader.cpp:749
+#: krusader.cpp:788
 msgid "Search for files"
 msgstr "Пошук файлів"
 
-#: krusader.cpp:755
+#: krusader.cpp:794
 #, fuzzy
 msgid "JavaScript Console..."
 msgstr "Консоль JavaScript"
 
-#: krusader.cpp:892
+#: krusader.cpp:930
 msgid "Are you sure you want to quit?"
 msgstr "Ви дійсно хочете вийти?"
 
@@ -3723,11 +3790,6 @@ msgstr ""
 msgid "Category:"
 msgstr "Категорія"
 
-#: ActionMan/actionpropertybase.cpp:418
-#, fuzzy
-msgid "Add <b>Placeholders</b> for the selected files in the panel."
-msgstr "Додати шаблони для вибраних файлів у панелі"
-
 #: ActionMan/actionpropertybase.cpp:420
 #, fuzzy
 msgid "Workdir:"
@@ -3745,10 +3807,6 @@ msgstr "Немає"
 #, fuzzy
 msgid "Set a default keyboard shortcut."
 msgstr "встановіть стандартне скорочення клавіатури"
-
-#: ActionMan/actionpropertybase.cpp:425
-msgid "Execution mode"
-msgstr "Режим виконання"
 
 #: ActionMan/actionpropertybase.cpp:426
 msgid "Collect output"
@@ -3879,7 +3937,8 @@ msgid "Panel independent"
 msgstr "Незалежне від панелі"
 
 #: ActionMan/addplaceholderpopup.cpp:60
-msgid "Executable"
+#, fuzzy
+msgid "Choose executable..."
 msgstr "Файл програми"
 
 #: ActionMan/addplaceholderpopup.cpp:135
@@ -4781,14 +4840,20 @@ msgstr "Підказка"
 msgid "&Settings"
 msgstr "Одинарні"
 
-#. i18n: file krusaderui.rc line 133
+#. i18n: file krusaderui.rc line 127
 #: rc.cpp:27
+#, fuzzy, no-c-format
+msgid "Command Execution Mode Se&tup"
+msgstr "Режим виконання"
+
+#. i18n: file krusaderui.rc line 141
+#: rc.cpp:30
 #, no-c-format
 msgid "&Window"
 msgstr ""
 
-#. i18n: file krusaderui.rc line 150
-#: rc.cpp:30
+#. i18n: file krusaderui.rc line 158
+#: rc.cpp:33
 #, no-c-format
 msgid "&Help"
 msgstr ""
@@ -6608,6 +6673,33 @@ msgstr "Помилка при читанні файла %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Помилка при записі файла %1!"
+
+#~ msgid "If pressed, Krusader executes command line in a terminal."
+#~ msgstr "При натисканні, Krusader виконає команду в терміналі."
+
+#~ msgid ""
+#~ "The 'run in terminal' button allows Krusader to run console (or otherwise "
+#~ "non-graphical) programs in a terminal of your choice. If it's pressed, "
+#~ "terminal mode is active."
+#~ msgstr ""
+#~ "Кнопка \"виконання в терміналі\" дозволяє Krusader-у виконувати консольні "
+#~ "(або не-графічні) програми в терміналі на вибір. Коли натиснута, режим "
+#~ "терміналу активований."
+
+#~ msgid "This terminal will close in 1 hour.."
+#~ msgstr "Цей термінал закриється через 1 годину..."
+
+#~ msgid "count all:"
+#~ msgstr "підрахувати всі:"
+
+#~ msgid "Ask the user for a parameter"
+#~ msgstr "Запитати користувача про параметр"
+
+#~ msgid "Copy to clipboard"
+#~ msgstr "Скопіювати в кишеню"
+
+#~ msgid "What should be copied"
+#~ msgstr "Що має бути скопійоване"
 
 #~ msgid "Can't Read "
 #~ msgstr "Неможливо прочитати "
