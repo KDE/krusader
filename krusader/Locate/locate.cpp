@@ -74,8 +74,9 @@ LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KD
   setPlainCaption( i18n( "Krusader::Locate" ) );
   
   QHBox *hbox = new QHBox( widget, "locateHBox" );
-  new QLabel( i18n( "Search for:" ), hbox, "locateLabel" );
+  QLabel *label = new QLabel( i18n( "Search for:" ), hbox, "locateLabel" );
   locateSearchFor = new KHistoryCombo( false, hbox, "locateSearchFor" );
+  label->setBuddy( locateSearchFor );
   krConfig->setGroup("Locate");
   QStringList list = krConfig->readListEntry("Search For");
   locateSearchFor->setMaxCount(25);  // remember 25 items
@@ -204,7 +205,8 @@ void LocateDlg::slotUser3()   /* The locate button */
   enableButton( KDialogBase::User1, true );   /* enable the stop button */
   setButtonText( KDialogBase::User1, i18n( "Stop" ) ); /* the button behaves as stop */
   isFeedToListBox = false;
-  
+  resultList->setFocus();
+
   qApp->processEvents();
 
   stopping = false;
@@ -238,6 +240,7 @@ void LocateDlg::slotUser3()   /* The locate button */
   
   if( resultList->childCount() == 0 )
   {
+    locateSearchFor->setFocus();
     enableButton( KDialogBase::User1, false ); /* disable the stop button */
     isFeedToListBox = false;
   }else{
@@ -360,6 +363,13 @@ void LocateDlg::keyPressEvent( QKeyEvent *e )
 {
   switch ( e->key() )
   {
+  case Key_M :
+    if( e->state() == ControlButton )
+    {
+      resultList->setFocus();
+      e->accept();
+    }
+    break;
   case Key_F3 :
     if( resultList->currentItem() )
       operate( resultList->currentItem(), VIEW_ID );
