@@ -450,7 +450,7 @@ exp_List::exp_List() {
    _needPanel = true;
 
    addParameter( exp_parameter( i18n("Which items:"), "__choose:All;Files;Dirs;Selected", false ) );
-   addParameter( exp_parameter( i18n("Separator between the items (optional)"), " ", false ) );
+   addParameter( exp_parameter( i18n("Separator between the items (optional):"), " ", false ) );
    addParameter( exp_parameter( i18n("Omit the current path (optional)"), "__no", false ) );
    addParameter( exp_parameter( i18n("Mask (optional, all but 'Selected'):"), "__select", false ) );
    addParameter( exp_parameter( i18n("Automatically escape spaces"), "__yes", false ) );
