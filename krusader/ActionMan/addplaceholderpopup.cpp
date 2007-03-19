@@ -57,7 +57,7 @@ AddPlaceholderPopup::AddPlaceholderPopup( QWidget *parent ) : KPopupMenu( parent
    insertItem( i18n( "Left panel" ), _leftSub );
    insertItem( i18n( "Right panel" ), _rightSub );
    insertItem( i18n( "Panel independent" ), _independentSub );
-   _independentSub->insertItem( i18n( "Executable" ), EXECUTABLE_ID );
+   _independentSub->insertItem( i18n( "Choose executable..." ), EXECUTABLE_ID );
    _independentSub->insertSeparator();
 
    // read the expressions array from the user menu and populate menus
