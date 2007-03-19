@@ -4,15 +4,15 @@
 # Václav Jůza <vaclavjuza@seznam.cz>, 2005, 2006, 2007.
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
 # Copyright (C) 2004-2007, Krusader Krew
-# This file is distributed under the same license as the Krusader package#
 #
+# This file is distributed under the same license as the Krusader package#
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.80.0-beta2\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2007-03-12 19:47+0100\n"
-"PO-Revision-Date: 2007-02-18 16:56+0100\n"
-"Last-Translator: Vaclav Juza <vaclavjuza@seznam.cz>\n"
+"PO-Revision-Date: 2007-03-18 22:04+0100\n"
+"Last-Translator: Václav Jůza <vaclavjuza@seznam.cz>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -150,8 +150,9 @@ msgstr ""
 "Nahoru&gt; a  &lt;Dolů&gt;</p></qt>"
 
 #: GUI/kcmdline.cpp:98
+#, fuzzy
 msgid "If pressed, Krusader executes command line in a terminal."
-msgstr "Pokud je zmáčknuto, Krusader spustí příkaz v terminálu."
+msgstr "Spustit příkaz v terminálu."
 
 #: GUI/kcmdline.cpp:104
 msgid ""
@@ -159,13 +160,10 @@ msgid ""
 "non-graphical) programs in a terminal of your choice. If it's pressed, "
 "terminal mode is active."
 msgstr ""
-"Tlačítko 'spustit v terminálu' umožňuje Krusaderu spustit řádkové (nebo jiné "
-"ne-grafické) programy v terminálu podle Vašeho výběru. Pokud je tlačítko "
-"zmáčknuto, režim terminálu je zapnut."
 
 #: GUI/kcmdline.cpp:182
 msgid "This terminal will close in 1 hour.."
-msgstr "Tento terminál se zavře za 1 hodinu..."
+msgstr ""
 
 #: GUI/kfnkeys.cpp:50
 msgid "F2 Term  "
@@ -798,11 +796,11 @@ msgstr ""
 #: UserAction/expander.cpp:55
 #, c-format
 msgid "Needed panel specification missing in expander %1"
-msgstr ""
+msgstr "V expanderu chybí potřebné určení panelu %1"
 
 #: UserAction/expander.cpp:70
 msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
-msgstr ""
+msgstr "Expander: Špatný argument pro %1: %2 není platné určení položky"
 
 #: UserAction/expander.cpp:357
 msgid "panel's path"
@@ -824,7 +822,7 @@ msgstr "spočítat všechny:"
 
 #: UserAction/expander.cpp:398
 msgid "Expander: Bad argument to Count: %1 is not valid item specifier"
-msgstr ""
+msgstr "Expander: Špatný argument pro počet: %1 je neplatné určení položky"
 
 #: UserAction/expander.cpp:407
 msgid "filter mask: *.h, *.cpp, etc."
@@ -863,7 +861,7 @@ msgstr "Název souboru se seznamem ..."
 
 #: UserAction/expander.cpp:504
 msgid "Expander: tempfile couldn't be opened (%1)"
-msgstr ""
+msgstr "Expander: dočasný soubor nelze otevřít (%1)"
 
 #: UserAction/expander.cpp:524
 msgid "Manipulate the selection"
@@ -923,7 +921,7 @@ msgstr "Přidat k aktuálnímu obsahu schránky s tímto oddělovačem (nepovinn
 
 #: UserAction/expander.cpp:639
 msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
-msgstr ""
+msgstr "Expander: %Each% nemůže být použito v druhém argumentu %Clipboard%"
 
 #: UserAction/expander.cpp:652
 msgid "Copy a file/folder"
@@ -935,11 +933,11 @@ msgstr "Kam se má zkopírovat"
 
 #: UserAction/expander.cpp:663
 msgid "Expander: %Each% may not be in the second argument of %Copy%"
-msgstr ""
+msgstr "Expander: %Each% nemůže být v druhém parametru %Copy%"
 
 #: UserAction/expander.cpp:673
 msgid "Expander: invalid URL's in %_Copy(\"src\", \"dest\")%"
-msgstr ""
+msgstr "Expander: neplatná URL v %_Copy(\"src\",\"dest\")%"
 
 #: UserAction/expander.cpp:684
 msgid "Move/Rename a file/folder"
@@ -955,11 +953,11 @@ msgstr "Nový cíl/název"
 
 #: UserAction/expander.cpp:694
 msgid "%Each% may not be in the second argument of %Move%"
-msgstr ""
+msgstr "%Each% nemůže být druhý argument %Move%"
 
 #: UserAction/expander.cpp:704
 msgid "Expander: invalid URL's in %_Move(\"src\", \"dest\")%"
-msgstr ""
+msgstr "Expander: neplatná URL v %_Move(\"src\",\"dest\")%"
 
 #: UserAction/expander.cpp:715
 msgid "Open a synchronizer-profile"
@@ -972,7 +970,7 @@ msgstr "Vyberte profil"
 
 #: UserAction/expander.cpp:722
 msgid "Expander: no profile specified for %_Sync(profile)%"
-msgstr ""
+msgstr "Expander: není určen žádný profil pro %_Sync(profil)%"
 
 #: UserAction/expander.cpp:733
 msgid "Open a searchmodule-profile"
@@ -980,7 +978,7 @@ msgstr "Otevřít profil vyhledávacího modulu"
 
 #: UserAction/expander.cpp:740
 msgid "Expander: no profile specified for %_NewSearch(profile)%"
-msgstr ""
+msgstr "Expander: není určen žádný profil pro %_NewSearch(profil)%"
 
 #: UserAction/expander.cpp:751
 msgid "Load a panel-profile"
@@ -988,7 +986,7 @@ msgstr "Načíst profil panelu"
 
 #: UserAction/expander.cpp:758
 msgid "Expander: no profile specified for %_Profile(profile)%; abort..."
-msgstr ""
+msgstr "Expander: není určen žádný profil pro %_Profile(profil)%; končím..."
 
 #: UserAction/expander.cpp:769
 msgid "Separate programm call for each..."
@@ -1008,11 +1006,11 @@ msgstr "Vyberte řadící posloupnost"
 
 #: UserAction/expander.cpp:811
 msgid "Expander: no column specified for %_ColSort(column)%"
-msgstr ""
+msgstr "Expander: není určen žádný sloupec pro %_ColSort(sloupec)%"
 
 #: UserAction/expander.cpp:883
 msgid "Expander: unknown column specified for %_ColSort(%1)%"
-msgstr ""
+msgstr "Expander: neznámý sloupec určen pro %_ColSort(%1)%"
 
 #: UserAction/expander.cpp:895
 msgid "Set the relation between the two panels"
@@ -1027,6 +1025,8 @@ msgid ""
 "Expander: Value %1 out of range for %_PanelSize(percent)%. The first "
 "parameter has to be >0 and <100"
 msgstr ""
+"Expander: Hodnota %1 mimo rozsah pro %_PanelSize(procenta)%. Parametr musí "
+"být >0 a <100"
 
 #: UserAction/expander.cpp:934
 msgid "Executes a JavaScript-extension"
@@ -1037,17 +1037,17 @@ msgid "Location of the script"
 msgstr "Umístění skriptu"
 
 #: UserAction/expander.cpp:938
-#, fuzzy
 msgid ""
 "Set some variables for the execution (optional).\n"
 "i.e. \"return=return_var;foo=bar\", consult the handbook for more information"
 msgstr ""
 "Nastavte některé proměnné pro vykonání (nepovinné).\n"
-"např. \"return=cmd;foo=bar\", více informací naleznete v příručce."
+"např. \"return=navratova_promenna;foo=bar\", více informací naleznete v "
+"příručce."
 
 #: UserAction/expander.cpp:942
 msgid "Expander: no script specified for %_Script(script)%"
-msgstr ""
+msgstr "Expander: není určen žádný skript pro %_Script(skript)%"
 
 #: UserAction/expander.cpp:984
 msgid "View a file with Krusader's internal viewer"
@@ -1067,29 +1067,29 @@ msgstr "Vyberte režim okna"
 
 #: UserAction/expander.cpp:995
 msgid "Expander: no file to view in %_View(filename)%"
-msgstr ""
+msgstr "Expander: žádný soubor k prohlížení v %_View(názevSouboru)%"
 
 #: UserAction/expander.cpp:1032
 #, c-format
 msgid "%Each% is not allowed in parameter to %1"
-msgstr ""
+msgstr "%Each% není povoleno v parametru pro %1"
 
 #: UserAction/expander.cpp:1053
 msgid "Expander: Bad panel specifier %1 in placeholder %2"
-msgstr ""
+msgstr "Expander: špatné určení panelu %1 v zástupci %2"
 
 #: UserAction/expander.cpp:1082
 #, c-format
 msgid "Error: unterminated % in Expander::expandCurrent"
-msgstr ""
+msgstr "Chyba: Neukončené %"
 
 #: UserAction/expander.cpp:1112
 msgid "Error: unrecognized %%%1%2%% in Expander::expand"
-msgstr ""
+msgstr "Chyba: nerozpoznané %%%1%2%%."
 
 #: UserAction/expander.cpp:1148
 msgid "Error: missing ')' in Expander::separateParameter"
-msgstr ""
+msgstr "Chyba: chybí ')'."
 
 #: UserAction/kractionbase.cpp:51
 msgid "Confirm execution"
@@ -6478,3 +6478,34 @@ msgstr "Chyba při čtení souboru %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Chyba při zapisování souboru %1!"
+
+#~ msgid ""
+#~ "Support for more than one command doesn't work in a terminal. Only the "
+#~ "first is executed in the terminal"
+#~ msgstr ""
+#~ "Podpora více než jednoho příkazu v terminálu nefunguje. Vykoná.se jen "
+#~ "první."
+
+#~ msgid ""
+#~ "Embedded terminal emulator does not work, using collect output insted."
+#~ msgstr ""
+#~ "Zabudovaný emulátor terminálu nefunguje nebo není nainstalován, použiji "
+#~ "místo něj režim \"Zobraz výstup\"."
+
+#~ msgid "Command Execution Mode Se&tup"
+#~ msgstr "Režim s&pouštění příkazů"
+
+#~ msgid "Start and &Forget"
+#~ msgstr "Spusť a za&pomeň"
+
+#~ msgid "Display &separated standard and error output"
+#~ msgstr "Zobrazit oddělený standardní a chybový výstup"
+
+#~ msgid "Display &mixed standard and error output"
+#~ msgstr "Zobrazit s&míchaný standardní a chybový výstup"
+
+#~ msgid "Start in a &new Terminal"
+#~ msgstr "Spustit v &novém Terminálu"
+
+#~ msgid "Send to &embedded Terminal Emulator"
+#~ msgstr "Poslat do za&budovaného emulátoru terminálu"
