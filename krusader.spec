@@ -1,10 +1,11 @@
-# Spec file for Fedora Core 4 (Fedora Extras) by Marcin Garski <mgarski[AT]post.pl>
-# http://fedoraproject.org/extras/4/i386/repodata/repoview/
-# http://cvs.fedora.redhat.com/viewcvs/rpms/krusader/FC-4/?root=extras
+# Spec file for Krusader-1.70.1 on Fedora Core 6 (Fedora Extras) by Marcin Garski <mgarski[AT]post.pl>
+# http://cvs.fedora.redhat.com/viewcvs/rpms/krusader/FC-6/?root=extras 
+# http://fedoraproject.org/extras/6/SRPMS/repoview/krusader.html
+# http://fedoraproject.org/extras/6/i386/repoview/krusader.html
 
 Name:		krusader
-Version:	1.70.0
-Release:	1%{?dist}
+Version:	1.70.1
+Release:	2%{?dist}
 Summary:	An advanced twin-panel (commander-style) file-manager for KDE
 
 Group:		Applications/File
@@ -59,8 +60,8 @@ desktop-file-install --vendor fedora --delete-original \
 rm -rf $RPM_BUILD_ROOT%{_tmppath}
 
 # Make symlink relative
-pushd $RPM_BUILD_ROOT%{_datadir}/doc/HTML/en/krusader/
-ln -s -f ../common
+pushd $RPM_BUILD_ROOT%{_docdir}/HTML/en/krusader/
+ln -sf ../common
 popd
 
 %find_lang %{name}
@@ -104,7 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/konqueror/servicemenus/isoservice.desktop
 %{_datadir}/apps/krusader/
 %{_datadir}/config/kio_isorc
-%{_datadir}/doc/HTML/en/krusader/
+%{_docdir}/HTML/en/krusader/
 %{_datadir}/icons/crystalsvg/*/apps/*
 %{_datadir}/icons/locolor/*/apps/*
 %{_mandir}/man1/krusader.1*
@@ -112,6 +113,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/krarc.protocol
 
 %changelog
+* Fri Sep 01 2006 Marcin Garski <mgarski[AT]post.pl> 1.70.1-2
+- Rebuild for Fedora Core 6
+- Spec tweak
+
+* Sat Jul 29 2006 Marcin Garski <mgarski[AT]post.pl> 1.70.1-1
+- Updated to version 1.70.1 which fix CVE-2006-3816 (#200323)
+
 * Mon Feb 13 2006 Marcin Garski <mgarski[AT]post.pl> 1.70.0-1
 - Remove all patches (merged upstream)
 - Updated to version 1.70.0
