@@ -49,6 +49,42 @@
 #include <qcursor.h>
 #include <qclipboard.h>
 #include <qheader.h>
+#include <kurldrag.h>
+#include <../kicons.h>
+
+class SearchListView : public QListView
+{
+public:
+  SearchListView( QWidget * parent, const char * name ) : QListView( parent, name )
+  {
+  }
+
+  void startDrag() 
+  {
+    KURL::List urls;
+
+    QListViewItem * item = firstChild();
+    while( item )
+    {
+      if( item->isSelected() )
+      {
+         QString name = item->text(1);
+         name += (name.endsWith( "/" ) ? item->text(0) : "/" + item->text(0) );
+         urls.push_back( vfs::fromPathOrURL( name ) );
+      }
+      item = item->nextSibling();
+    }
+
+    if( urls.count() == 0 )
+      return;
+
+    KURLDrag *d = new KURLDrag(urls, this);
+    d->setPixmap( FL_LOADICON( "file" ), QPoint( -7, 0 ) );
+    d->dragCopy();
+  }
+};
+
+
 
 KrSearchDialog *KrSearchDialog::SearchDialog = 0;
 
@@ -140,7 +176,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
 
   // creating the result list view
 
-  resultsList = new QListView( resultTab, "resultsList" );
+  resultsList = new SearchListView( resultTab, "resultsList" );
   resultsList->addColumn( i18n( "Name" ) );
   resultsList->addColumn( i18n( "Location" ) );
   resultsList->addColumn( i18n( "Size" ) );
@@ -148,6 +184,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   resultsList->addColumn( i18n( "Permissions" ) );
 
   resultsList->setSorting(1); // sort by location
+  resultsList->setSelectionMode( QListView::Extended );
 
   // fix the results list
   // => make the results font smaller
@@ -257,7 +294,6 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   }
   else
     profileManager->loadProfile( profile ); // important: call this _after_ you've connected profileManager ot the loadFromProfile!!
-
 }
 
 void KrSearchDialog::closeDialog( bool isAccept )
@@ -429,6 +465,8 @@ void KrSearchDialog::closeEvent(QCloseEvent *e)
 
 void KrSearchDialog::keyPressEvent(QKeyEvent *e)
 {
+  KKey pressedKey( e );
+
   if( isSearching && e->key() == Key_Escape ) /* at searching we must not close the window */
   {
     stopSearch();         /* so we simply stop searching */
@@ -448,6 +486,11 @@ void KrSearchDialog::keyPressEvent(QKeyEvent *e)
       if (!generalFilter->containsText->currentText().isEmpty() && QApplication::clipboard()->text() != generalFilter->containsText->currentText())
         QApplication::clipboard()->setText(generalFilter->containsText->currentText());
       viewCurrent();
+      return;
+    }
+    else if( Krusader::actCopy->shortcut().contains( pressedKey ) )
+    {
+      copyToClipBoard();
       return;
     }
   }
@@ -482,8 +525,9 @@ void KrSearchDialog::viewCurrent()
 void KrSearchDialog::rightClickMenu(QListViewItem *item, const QPoint&, int)
 {
   // these are the values that will exist in the menu
-  #define EDIT_FILE_ID        110
-  #define VIEW_FILE_ID        111
+  #define EDIT_FILE_ID                110
+  #define VIEW_FILE_ID                111
+  #define COPY_SELECTED_TO_CLIPBOARD  112
   //////////////////////////////////////////////////////////
   if (!item)
     return;
@@ -492,8 +536,9 @@ void KrSearchDialog::rightClickMenu(QListViewItem *item, const QPoint&, int)
   KPopupMenu popup;
   popup.insertTitle(i18n("Krusader Search"));
 
-  popup.insertItem(i18n("View File (F3)"),VIEW_FILE_ID);
-  popup.insertItem(i18n("Edit File (F4)"),EDIT_FILE_ID);
+  popup.insertItem(i18n("View File (F3)"),            VIEW_FILE_ID);
+  popup.insertItem(i18n("Edit File (F4)"),            EDIT_FILE_ID);
+  popup.insertItem(i18n("Copy selected to clipboard"),COPY_SELECTED_TO_CLIPBOARD);
 
   int result=popup.exec(QCursor::pos());
 
@@ -505,6 +550,9 @@ void KrSearchDialog::rightClickMenu(QListViewItem *item, const QPoint&, int)
       break;
     case EDIT_FILE_ID:
       editCurrent();
+      break;
+    case COPY_SELECTED_TO_CLIPBOARD:
+      copyToClipBoard();
       break;
     default:    // the user clicked outside of the menu
       break;
@@ -551,6 +599,30 @@ void KrSearchDialog::feedToListBox()
   //ACTIVE_FUNC->openUrl(url);
   ACTIVE_MNG->slotNewTab(url.prettyURL());
   closeDialog();
+}
+
+void KrSearchDialog::copyToClipBoard()
+{
+  KURL::List urls;
+
+  QListViewItem * item = resultsList->firstChild();
+  while( item )
+  {
+    if( item->isSelected() )
+    {
+       QString name = item->text(1);
+       name += (name.endsWith( "/" ) ? item->text(0) : "/" + item->text(0) );
+       urls.push_back( vfs::fromPathOrURL( name ) );
+    }
+    item = item->nextSibling();
+  }
+
+  if( urls.count() == 0 )
+    return;
+
+  KURLDrag *d = new KURLDrag(urls, this);
+  d->setPixmap( FL_LOADICON( "file" ), QPoint( -7, 0 ) );
+  QApplication::clipboard()->setData( d );
 }
 
 #include "krsearchdialog.moc"

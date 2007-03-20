@@ -65,6 +65,7 @@ public slots:
   void startSearch();
   void stopSearch();
   void feedToListBox();
+  void copyToClipBoard();
   void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm, QString foundText);
   void closeDialog( bool isAccept = true );
   void resultDoubleClicked(QListViewItem*);
@@ -134,6 +135,7 @@ public:
   {
     fileSize = size;
     fileDate = date;
+    setDragEnabled( true );
   }  
 
   void setFoundText(QString text) { _foundText=text; }
