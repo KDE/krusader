@@ -444,8 +444,13 @@ void KRslots::locate()
     return;
   }
   
-  LocateDlg *loc = new LocateDlg();
-  delete loc;
+  if ( LocateDlg::LocateDialog != 0 ) {
+    LocateDlg::LocateDialog->showNormal();
+    LocateDlg::LocateDialog->raise();
+    LocateDlg::LocateDialog->setActiveWindow();
+    LocateDlg::LocateDialog->reset();
+  } else
+    LocateDlg::LocateDialog = new LocateDlg();
 }
 
 void KRslots::runRemoteMan() {

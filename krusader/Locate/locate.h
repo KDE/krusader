@@ -44,10 +44,14 @@ class LocateDlg : public KDialogBase
 public:
   LocateDlg();
 
+  static LocateDlg *LocateDialog;
+
   virtual void      slotUser1();
   virtual void      slotUser2();
   virtual void      slotUser3();
   virtual void      feedToListBox();
+
+  void              reset();
 
 public slots:
   void              processStdout(KProcess *, char *, int);

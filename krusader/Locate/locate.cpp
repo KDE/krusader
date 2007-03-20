@@ -52,16 +52,50 @@
 #include <kinputdialog.h>
 #include <qregexp.h>
 #include <qdir.h>
+#include <qclipboard.h>
+#include <kurldrag.h>
+#include <../kicons.h>
 
 // these are the values that will exist in the menu
-#define VIEW_ID             90
-#define EDIT_ID             91
-#define FIND_ID             92
-#define FIND_NEXT_ID        93
-#define FIND_PREV_ID        94
+#define VIEW_ID                     90
+#define EDIT_ID                     91
+#define FIND_ID                     92
+#define FIND_NEXT_ID                93
+#define FIND_PREV_ID                94
+#define COPY_SELECTED_TO_CLIPBOARD  95
 //////////////////////////////////////////////////////////
 
+class LocateListView : public KListView
+{
+public:
+  LocateListView( QWidget * parent, const char * name = 0 ) : KListView( parent, name )
+  {
+  }
+
+  void startDrag()
+  {
+    KURL::List urls;
+
+    QListViewItem * item = firstChild();
+    while( item )
+    {
+      if( item->isSelected() )
+         urls.push_back( vfs::fromPathOrURL( item->text( 0 ) ) );
+
+      item = item->nextSibling();
+    }
+
+    if( urls.count() == 0 )
+      return;
+
+    KURLDrag *d = new KURLDrag(urls, this);
+    d->setPixmap( FL_LOADICON( "file" ), QPoint( -7, 0 ) );
+    d->dragCopy();
+  }
+};
+
 KProcess *  LocateDlg::updateProcess = 0;
+LocateDlg * LocateDlg::LocateDialog = 0;
 
 LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KDialogBase::User2 | KDialogBase::User3 | KDialogBase::Close,
       KDialogBase::User3, false, i18n("Stop"), i18n("Update DB"), i18n("Locate") ), isFeedToListBox( false )
@@ -103,7 +137,7 @@ LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KD
   line1->setFrameStyle( QFrame::HLine | QFrame::Sunken );
   grid->addWidget( line1, 2, 0 );
 
-  resultList=new KListView( widget );  // create the main container
+  resultList=new LocateListView( widget );  // create the main container
 
   krConfig->setGroup("Look&Feel");
   resultList->setFont(krConfig->readFontEntry("Filelist Font",_FilelistFont));
@@ -113,6 +147,7 @@ LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KD
   resultList->setHScrollBarMode(QScrollView::Auto);
   resultList->setShowSortIndicator(false);
   resultList->setSorting(-1);
+  resultList->setSelectionMode( QListView::Extended );
 
   resultList->addColumn( i18n("Results"), QFontMetrics(resultList->font()).width("W") * 60 );
   resultList->setColumnWidthMode(0,QListView::Maximum);
@@ -146,7 +181,7 @@ LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KD
   setMainWidget(widget);
   show();
 
-  exec();
+  LocateDialog = this;
 }
 
 void LocateDlg::slotUser1()   /* The stop / feed to listbox button */
@@ -289,6 +324,8 @@ void LocateDlg::processStdout(KProcess *proc, char *buffer, int length)
         lastItem = new KListViewItem( resultList, lastItem, *it );
       else
         lastItem = new KListViewItem( resultList, *it );
+
+      lastItem->setDragEnabled( true );
     }
   }
 
@@ -326,6 +363,11 @@ void LocateDlg::slotRightClick(QListViewItem *item)
   popup.insertItem(i18n("Find next (Ctrl+N)"), FIND_NEXT_ID);
   popup.insertItem(i18n("Find previous (Ctrl+P)"), FIND_PREV_ID);
 
+  popup.insertSeparator();
+
+  popup.insertItem(i18n("Copy selected to clipboard"), COPY_SELECTED_TO_CLIPBOARD);
+
+
   int result=popup.exec(QCursor::pos());
 
   // check out the user's option
@@ -336,6 +378,7 @@ void LocateDlg::slotRightClick(QListViewItem *item)
   case FIND_ID:
   case FIND_NEXT_ID:
   case FIND_PREV_ID:
+  case COPY_SELECTED_TO_CLIPBOARD:
     operate( item, result );
     break;
   }
@@ -361,6 +404,13 @@ void LocateDlg::slotDoubleClick(QListViewItem *item)
 
 void LocateDlg::keyPressEvent( QKeyEvent *e )
 {
+  if( Krusader::actCopy->shortcut().contains( KKey( e ) ) )
+  {
+    operate( 0, COPY_SELECTED_TO_CLIPBOARD );
+    e->accept();
+    return;
+  }
+
   switch ( e->key() )
   {
   case Key_M :
@@ -397,7 +447,9 @@ void LocateDlg::keyPressEvent( QKeyEvent *e )
 
 void LocateDlg::operate( QListViewItem *item, int task )
 {
-  KURL name = vfs::fromPathOrURL( item->text( 0 ) );
+  KURL name;
+  if( item != 0 )
+    name = vfs::fromPathOrURL( item->text( 0 ) );
   
   switch ( task )
   {
@@ -455,6 +507,27 @@ void LocateDlg::operate( QListViewItem *item, int task )
 
       if( task == FIND_PREV_ID )
         findOptions ^= KFindDialog::FindBackwards;
+    }
+    break;
+  case COPY_SELECTED_TO_CLIPBOARD:
+    {
+      KURL::List urls;
+
+      QListViewItem * item = resultList->firstChild();
+      while( item )
+      {
+        if( item->isSelected() )
+           urls.push_back( vfs::fromPathOrURL( item->text( 0 ) ) );
+
+        item = item->nextSibling();
+      }
+
+      if( urls.count() == 0 )
+        return;
+
+      KURLDrag *d = new KURLDrag(urls, this);
+      d->setPixmap( FL_LOADICON( "file" ), QPoint( -7, 0 ) );
+      QApplication::clipboard()->setData( d );
     }
     break;
   }
@@ -529,6 +602,12 @@ void LocateDlg::feedToListBox()
   //ACTIVE_FUNC->openUrl(url);  
   ACTIVE_MNG->slotNewTab(url.prettyURL());
   accept();
+}
+
+void LocateDlg::reset()
+{
+  locateSearchFor->lineEdit()->setFocus();
+  locateSearchFor->lineEdit()->selectAll();
 }
 
 #include "locate.moc"
