@@ -304,6 +304,9 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
   containsText->completionObject()->setItems(list);
   list = krConfig->readListEntry("ContainsText History");
   containsText->setHistoryItems(list);
+
+  setTabOrder( searchFor, containsText );  // search for -> content 
+  setTabOrder( containsText, searchType ); // content -> search type
 }
 
 GeneralFilter::~GeneralFilter()
