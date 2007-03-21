@@ -8,10 +8,10 @@
 # Proofread and fixes by Monkey 9 <monkey9@iae.nl>, 2005.
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.80.0-beta1\n"
+"Project-Id-Version: krusader-1.80.0-beta2\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2007-03-19 20:16+0100\n"
-"PO-Revision-Date: 2007-02-23 20:12+0100\n"
+"PO-Revision-Date: 2007-03-21 23:57+0100\n"
 "Last-Translator: Frank Schoolmeesters <frank_schoolmeesters@yahoo.com>\n"
 "Language-Team: Nederlands <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -228,7 +228,7 @@ msgstr "F9 Hernoemen"
 
 #: GUI/kfnkeys.cpp:90
 msgid "Rename file, directory, etc."
-msgstr "Bestand, map, enz. hernoemen"
+msgstr "Bestand, map, enz. hernoemen."
 
 #: GUI/kfnkeys.cpp:94
 msgid "F10 Quit "
@@ -792,47 +792,41 @@ msgstr ""
 #: UserAction/expander.cpp:55
 #, c-format
 msgid "Needed panel specification missing in expander %1"
-msgstr ""
+msgstr "Noodzakelijke venster specificatie ontbreekt in het uitbereidingsmenu %1"
 
 #: UserAction/expander.cpp:70
 msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
-msgstr ""
+msgstr "Uitbereidingsmenu: slecht argument in %1: %2 is geen geldig item"
 
 #: UserAction/expander.cpp:357
-#, fuzzy
 msgid "Panel's Path..."
-msgstr "venster pad"
+msgstr "Venster pad..."
 
 #: UserAction/expander.cpp:360 UserAction/expander.cpp:422
 #: UserAction/expander.cpp:456 UserAction/expander.cpp:488
 #: UserAction/expander.cpp:775
-#, fuzzy
 msgid "Automatically escape spaces"
-msgstr "Automatisch spaties 'ontvluchten'"
+msgstr "Automatisch spaties 'escapen'"
 
 #: UserAction/expander.cpp:380
-#, fuzzy
 msgid "Number of..."
-msgstr "aantal van ..."
+msgstr "Aantal van ..."
 
 #: UserAction/expander.cpp:383
-#, fuzzy
 msgid "Count:"
-msgstr "Aankoppelen (mount)"
+msgstr "Tellen:"
 
 #: UserAction/expander.cpp:398
 msgid "Expander: Bad argument to Count: %1 is not valid item specifier"
-msgstr ""
+msgstr "Uitberedingsmenu: Slecht argument in tellen: %1 is geen geldig item"
 
 #: UserAction/expander.cpp:407
-#, fuzzy
 msgid "Filter Mask (*.h, *.cpp, etc.)"
-msgstr "filter masker: *.h, *.cpp, enz."
+msgstr "filter masker (*.h, *.cpp, enz.)"
 
 #: UserAction/expander.cpp:418
-#, fuzzy
 msgid "Current File (!= Selected File)..."
-msgstr "huidig bestand (!= geselecteerd bestand)"
+msgstr "Huidig bestand (!= geselecteerd bestand)..."
 
 #: UserAction/expander.cpp:421 UserAction/expander.cpp:454
 #: UserAction/expander.cpp:486 UserAction/expander.cpp:773
@@ -840,31 +834,26 @@ msgid "Omit the current path (optional)"
 msgstr "Huidig pad weglaten (optioneel)"
 
 #: UserAction/expander.cpp:449
-#, fuzzy
 msgid "Item List of..."
 msgstr "Itemlijst van ..."
 
 #: UserAction/expander.cpp:452 UserAction/expander.cpp:484
 #: UserAction/expander.cpp:772
-#, fuzzy
 msgid "Which items:"
-msgstr "Welke items"
+msgstr "Welke items:"
 
 #: UserAction/expander.cpp:453
-#, fuzzy
 msgid "Separator between the items (optional):"
-msgstr "Scheiding tussen de items (optioneel)"
+msgstr "Scheiding tussen de items (optioneel):"
 
 #: UserAction/expander.cpp:455 UserAction/expander.cpp:487
 #: UserAction/expander.cpp:774
-#, fuzzy
 msgid "Mask (optional, all but 'Selected'):"
-msgstr "Masker (optioneel, alles behalve 'Geselecteerd')"
+msgstr "Masker (optioneel, alles behalve 'Geselecteerd'):"
 
 #: UserAction/expander.cpp:481
-#, fuzzy
 msgid "Filename of an Item List..."
-msgstr "Bestandsnaam of een itemlijst ..."
+msgstr "Bestandsnaam of een itemlijst..."
 
 #: UserAction/expander.cpp:485
 msgid "Separator between the items (optional)"
@@ -872,210 +861,182 @@ msgstr "Scheiding tussen de items (optioneel)"
 
 #: UserAction/expander.cpp:504
 msgid "Expander: tempfile couldn't be opened (%1)"
-msgstr ""
+msgstr "Uitbereidingsmenu: het sjabloonbestand (%1) kon niet geopend worden"
 
 #: UserAction/expander.cpp:524
-#, fuzzy
 msgid "Manipulate the Selection..."
-msgstr "Selectie bewerken"
+msgstr "Selectie bewerken..."
 
 #: UserAction/expander.cpp:527
-#, fuzzy
 msgid "Selection mask:"
-msgstr "Selectiemasker"
+msgstr "Selectiemasker:"
 
 #: UserAction/expander.cpp:528
-#, fuzzy
 msgid "Manipulate in which way:"
-msgstr "Op welke wijze bewerken"
+msgstr "Op welke wijze bewerken:"
 
 #: UserAction/expander.cpp:553
-#, fuzzy
 msgid "Jump to a Location..."
-msgstr "Naar een bestemming springen"
+msgstr "Naar een bestemming springen..."
 
 #: UserAction/expander.cpp:556
-#, fuzzy
 msgid "Choose a path:"
-msgstr "Pad kiezen a.u.b."
+msgstr "Pad kiezen a.u.b.:"
 
 #: UserAction/expander.cpp:557
-#, fuzzy
 msgid "Open location in a new tab"
-msgstr "locatie in een nieuwe tab openen"
+msgstr "Locatie in een nieuwe tab openen"
 
 #: UserAction/expander.cpp:593
 msgid "Ask Parameter from User..."
-msgstr ""
+msgstr "Parameter van gebruiker vragen..."
 
 #: UserAction/expander.cpp:596
-#, fuzzy
 msgid "Question:"
-msgstr "Vraag"
+msgstr "Vraag:"
 
 #: UserAction/expander.cpp:597
-#, fuzzy
 msgid "Preset (optional):"
-msgstr "Voorinstelling (optioneel)"
+msgstr "Voorinstelling (optioneel):"
 
 #: UserAction/expander.cpp:598
-#, fuzzy
 msgid "Caption (optional):"
-msgstr "Inleiding (optioneel)"
+msgstr "Inleiding (optioneel):"
 
 #: UserAction/expander.cpp:604
 msgid "User Action"
 msgstr "Gebruikers actie"
 
 #: UserAction/expander.cpp:629
-#, fuzzy
 msgid "Copy to Clipboard..."
-msgstr "Naar klembord kopiëren"
+msgstr "Naar klembord kopiëren..."
 
 #: UserAction/expander.cpp:632 UserAction/expander.cpp:655
 msgid "What to copy:"
-msgstr ""
+msgstr "Wat te kopiëren:"
 
 #: UserAction/expander.cpp:633
-#, fuzzy
 msgid "Append to current clipboard content with this separator (optional):"
 msgstr ""
 "Aanhechten van de huidige klembord-inhoud met dit afscheidingsteken "
-"(optioneel)"
+"(optioneel):"
 
 #: UserAction/expander.cpp:639
 msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
-msgstr ""
+msgstr "Uitberedingsmenu: %Each% mag niet in het tweede argument van %Clipboard% zijn"
 
 #: UserAction/expander.cpp:652
-#, fuzzy
 msgid "Copy a File/Folder..."
-msgstr "Bestand/map kopiëren"
+msgstr "Bestand/map kopiëren..."
 
 #: UserAction/expander.cpp:656
-#, fuzzy
 msgid "Where to copy:"
-msgstr "Naar waar het gekopieerd moet worden"
+msgstr "Doelbestemmig van de kopie:"
 
 #: UserAction/expander.cpp:663
 msgid "Expander: %Each% may not be in the second argument of %Copy%"
-msgstr ""
+msgstr "UItbereidingsmenu: %Each% mag niet in het tweede argument van %Copy%"
 
 #: UserAction/expander.cpp:673
 msgid "Expander: invalid URL's in %_Copy(\"src\", \"dest\")%"
-msgstr ""
+msgstr "Uitberedingsmenu: ongeldige URL's in %_Copy(\"src\", \"dest\")%"
 
 #: UserAction/expander.cpp:684
-#, fuzzy
 msgid "Move/Rename a File/Folder..."
-msgstr "Bestand/map verplaatsen/hernoemen"
+msgstr "Bestand/map verplaatsen/hernoemen..."
 
 #: UserAction/expander.cpp:687
-#, fuzzy
 msgid "What to move/rename:"
-msgstr "Wat verplaatsen/hernoemen"
+msgstr "Wat verplaatsen/hernoemen:"
 
 #: UserAction/expander.cpp:688
-#, fuzzy
 msgid "New target/name:"
-msgstr "Nieuw doel/naam"
+msgstr "Nieuw doel/naam:"
 
 #: UserAction/expander.cpp:694
 msgid "%Each% may not be in the second argument of %Move%"
-msgstr ""
+msgstr "%Each% mag niet in het tweede argument van %Move%"
 
 #: UserAction/expander.cpp:704
 msgid "Expander: invalid URL's in %_Move(\"src\", \"dest\")%"
-msgstr ""
+msgstr "Uitberedingsmenu: ongeldige URL's in %_Move(\"src\", \"dest\")%"
 
 #: UserAction/expander.cpp:715
-#, fuzzy
 msgid "Load a Synchronizer Profile..."
-msgstr "Synchronisatie profiel openen"
+msgstr "Synchronisatie profiel openen..."
 
 #: UserAction/expander.cpp:718 UserAction/expander.cpp:736
 #: UserAction/expander.cpp:754
-#, fuzzy
 msgid "Choose a profile:"
-msgstr "Een profiel kiezen"
+msgstr "Een profiel kiezen:"
 
 #: UserAction/expander.cpp:722
 msgid "Expander: no profile specified for %_Sync(profile)%"
-msgstr ""
+msgstr "Uitberedingsmenu: geen profiel gespecifieerd voor %_Sync(profile)%"
 
 #: UserAction/expander.cpp:733
-#, fuzzy
 msgid "Load a Searchmodule Profile..."
-msgstr "Zoekmoduleprofiel openen"
+msgstr "Zoekmoduleprofiel openen..."
 
 #: UserAction/expander.cpp:740
 msgid "Expander: no profile specified for %_NewSearch(profile)%"
-msgstr ""
+msgstr "Uitberedingsmenu: geen profiel gespecifieerd voor %_NewSearch(profile)%"
 
 #: UserAction/expander.cpp:751
-#, fuzzy
 msgid "Load a Panel Profile..."
-msgstr "Vensterprofiel laden"
+msgstr "Vensterprofiel laden..."
 
 #: UserAction/expander.cpp:758
 msgid "Expander: no profile specified for %_Profile(profile)%; abort..."
-msgstr ""
+msgstr "Uitberedingsmenu: geen uitebereidingsprofiel gespecifieerd voor %_Profile(profile)%; abort..."
 
 #: UserAction/expander.cpp:769
-#, fuzzy
 msgid "Separate Program Call for Each..."
 msgstr "Afzonderlijke programma aanroep voor elke..."
 
 #: UserAction/expander.cpp:801
-#, fuzzy
 msgid "Set Sorting for This Panel..."
-msgstr "Sortering instellen voor dit venster"
+msgstr "Sortering instellen voor dit venster..."
 
 #: UserAction/expander.cpp:804
-#, fuzzy
 msgid "Choose a column:"
-msgstr "Kies een kolom"
+msgstr "Kies een kolom:"
 
 #: UserAction/expander.cpp:805
-#, fuzzy
 msgid "Choose a sort sequence:"
-msgstr "Kies de sorteer volgorde"
+msgstr "Kies de sorteer volgorde:"
 
 #: UserAction/expander.cpp:811
 msgid "Expander: no column specified for %_ColSort(column)%"
-msgstr ""
+msgstr "Uitberedingsmenu: geen kolom gespecifieerd voor %_ColSort(column)%"
 
 #: UserAction/expander.cpp:883
 msgid "Expander: unknown column specified for %_ColSort(%1)%"
-msgstr ""
+msgstr "Uitberedingsmenu: onbekende kolom gespecifieerd voor %_ColSort(%1)%"
 
 #: UserAction/expander.cpp:895
-#, fuzzy
 msgid "Set Relation Between the Panels..."
-msgstr "Relatie tussen twee vensters instellen"
+msgstr "Relatie tussen twee vensters instellen..."
 
 #: UserAction/expander.cpp:898
-#, fuzzy
 msgid "Set the new size in percent:"
-msgstr "Nieuwe grootte instellen in percentage"
+msgstr "Nieuwe grootte instellen in percentage:"
 
 #: UserAction/expander.cpp:910
 msgid ""
 "Expander: Value %1 out of range for %_PanelSize(percent)%. The first "
 "parameter has to be >0 and <100"
-msgstr ""
+msgstr "Uitberedingsmenu: Waarde %1 buiten bereik voor %_PanelSize(percent)%. De eerste parameter moet >0 en <100 zijn"
 
 #: UserAction/expander.cpp:934
-#, fuzzy
 msgid "Execute a JavaScript Extension..."
-msgstr "Een JavaScript-extensie uitvoeren"
+msgstr "Een JavaScript-extensie uitvoeren..."
 
 #: UserAction/expander.cpp:937
 msgid "Location of the script"
 msgstr "Locatie van het script"
 
 #: UserAction/expander.cpp:938
-#, fuzzy
 msgid ""
 "Set some variables for the execution (optional).\n"
 "i.e. \"return=return_var;foo=bar\", consult the handbook for more information"
@@ -1085,53 +1046,49 @@ msgstr ""
 
 #: UserAction/expander.cpp:942
 msgid "Expander: no script specified for %_Script(script)%"
-msgstr ""
+msgstr "Uitberedingsmenu: geen script gespecifieerd voor %_Script(script)%"
 
 #: UserAction/expander.cpp:984
-#, fuzzy
 msgid "View File with Krusader's Internal Viewer..."
-msgstr "Een bestand bekijken met Krusader's interne viewer"
+msgstr "Een bestand bekijken met Krusader's interne viewer..."
 
 #: UserAction/expander.cpp:987
-#, fuzzy
 msgid "Which file to view (normally '%aCurrent%'):"
-msgstr "Welk bestand te bekijken (normaal '%aCurrent%')"
+msgstr "Welk bestand te bekijken (normaal '%aCurrent%'):"
 
 #: UserAction/expander.cpp:988
-#, fuzzy
 msgid "Choose a view mode:"
-msgstr "View-modus kiezen"
+msgstr "View-modus kiezen:"
 
 #: UserAction/expander.cpp:991
-#, fuzzy
 msgid "Choose a window mode:"
-msgstr "Venster-modus kiezen"
+msgstr "Venster-modus kiezen:"
 
 #: UserAction/expander.cpp:995
 msgid "Expander: no file to view in %_View(filename)%"
-msgstr ""
+msgstr "Uitberedingsmenu: geen bestand te bekijken in %_View(filename)%"
 
 #: UserAction/expander.cpp:1032
 #, c-format
 msgid "%Each% is not allowed in parameter to %1"
-msgstr ""
+msgstr "%Each% is niet toegestaan in parameter naar %1"
 
 #: UserAction/expander.cpp:1053
 msgid "Expander: Bad panel specifier %1 in placeholder %2"
-msgstr ""
+msgstr "Uitberedingsmenu: Slecht venster specifcatie %1 in plaatshouder %2"
 
 #: UserAction/expander.cpp:1082
 #, c-format
 msgid "Error: unterminated % in Expander::expandCurrent"
-msgstr ""
+msgstr "Fout: geen eindteken % in Uitberedingsmenu::expandCurrent"
 
 #: UserAction/expander.cpp:1112
 msgid "Error: unrecognized %%%1%2%% in Expander::expand"
-msgstr ""
+msgstr "Fout: onbekende %%%1%2%% in Uitberedingsmenu::expand"
 
 #: UserAction/expander.cpp:1148
 msgid "Error: missing ')' in Expander::separateParameter"
-msgstr ""
+msgstr "Fout: ontbrekende ')' in Uitberedingsmenu::separateParameter"
 
 #: UserAction/kractionbase.cpp:51
 msgid "Confirm execution"
@@ -1218,12 +1175,11 @@ msgstr "Het exporteren is mislukt!"
 msgid ""
 "Support for more than one command doesn't work in a terminal. Only the first "
 "is executed in the terminal."
-msgstr ""
+msgstr "Ondersteuning voor meer dan één commando werkt niet in de terminal. Alleen het eerste commando wordt uitgevoerd in de terminal."
 
 #: UserAction/kraction.cpp:204
-msgid ""
-"Embedded terminal emulator does not work, using output collection instead."
-msgstr ""
+msgid "Embedded terminal emulator does not work, using output collection instead."
+msgstr "Terminal emulator werkt niet, maakt in de plaats gebruik van de uitvoer collector."
 
 #: UserAction/useraction.cpp:100
 msgid "The file %1 does not contain valid UserActions.\n"
@@ -1497,8 +1453,7 @@ msgstr " naar:"
 
 #: Panel/panelpopup.cpp:66
 msgid "Tree Panel: a tree view of the local file system"
-msgstr ""
-"Boomstruktuur venster: boomstruktuurweergave van het lokale bestandsysteem"
+msgstr "Boomstruktuur venster: boomstruktuurweergave van het lokale bestandsysteem"
 
 #: Panel/panelpopup.cpp:74
 msgid "Preview Panel: display a preview of the current file"
@@ -1756,7 +1711,7 @@ msgstr "Een directory of bestand met deze naam bestaat reeds."
 
 #: Panel/panelfunc.cpp:337
 msgid "Failed to create a new symlink: "
-msgstr "Aanmaken van nieuwe symbolische koppeling is mislukt:"
+msgstr "Aanmaken van nieuwe symbolische koppeling is mislukt: "
 
 #: Panel/panelfunc.cpp:338 Panel/panelfunc.cpp:342
 msgid " To: "
@@ -1938,7 +1893,7 @@ msgstr "Krusader is niet in staat om te downloaden: "
 
 #: Panel/panelfunc.cpp:890
 msgid "%1, unknown archive type."
-msgstr "%1, onbekend archief type"
+msgstr "%1, onbekend archief type."
 
 #: Panel/panelfunc.cpp:898
 msgid "%1, test passed."
@@ -2161,7 +2116,7 @@ msgstr "Krusader in &root modus starten"
 
 #: krusader.cpp:579
 msgid "T&est Archive"
-msgstr "Archief T&esten..."
+msgstr "Archief T&esten"
 
 #: krusader.cpp:583
 msgid "New Net &Connection..."
@@ -2249,26 +2204,23 @@ msgstr "&Verschillen Markeren"
 
 #: krusader.cpp:633
 msgid "Start and &Forget"
-msgstr ""
+msgstr "Starten en &vergeten"
 
 #: krusader.cpp:637
-#, fuzzy
 msgid "Display &Separated Standard and Error Output"
-msgstr "Aparte standaard error (stderr)"
+msgstr "&Aparte standaard error (stderr) en standaard uit (stdout) tonen"
 
 #: krusader.cpp:641
 msgid "Display &Mixed Standard and Error Output"
-msgstr ""
+msgstr "&Gemengde standaard error (stderr) en standaard uit (stdout) tonen"
 
 #: krusader.cpp:645
-#, fuzzy
 msgid "Start in &New Terminal"
-msgstr "&Terminal starten"
+msgstr "In &nieuwe terminal starten"
 
 #: krusader.cpp:649
-#, fuzzy
 msgid "Send to &Embedded Terminal Emulator"
-msgstr "Terminal &Emulator Tonen"
+msgstr "Naar &Terminal Emulator zenden"
 
 #: krusader.cpp:661
 msgid "Start &Terminal"
@@ -2600,7 +2552,7 @@ msgstr ""
 "Omdat u kiest om ook in archieven te zoeken moet u rekening houden met de "
 "volgende beperkingen:\n"
 "Je kunt niet zoeken naar tekst (grep) terwijl je zoekt met inbegrip van "
-"archieven "
+"archieven."
 
 #: Search/krsearchdialog.cpp:397
 msgid "Finished searching."
@@ -2789,8 +2741,7 @@ msgstr ""
 "Verwittig gelieve de Krusader ontwikkelaars"
 
 #: MountMan/kmountmangui.cpp:326
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "MountMan heeft een interne fout. Verwittig gelieve de Krusader "
 "ontwikkelaars. Dank U."
@@ -2937,7 +2888,7 @@ msgstr ""
 
 #: Dialogs/krprogress.cpp:225
 msgid "Working"
-msgstr "Bezig..."
+msgstr "Bezig"
 
 #: Dialogs/krprogress.cpp:233
 msgid "%1/s ( %2 remaining )"
@@ -3152,16 +3103,14 @@ msgstr ""
 
 #: Dialogs/krkeydialog.cpp:122
 msgid "Please restart this dialog in order to see the changes"
-msgstr ""
-"Gelieve deze dialoog te herstarten om de wijzigingen zichtbaar te maken"
+msgstr "Gelieve deze dialoog te herstarten om de wijzigingen zichtbaar te maken"
 
 #: Dialogs/krkeydialog.cpp:123
 msgid "Legacy import completed"
 msgstr "Importeren van het oud bestandsformaat is voltooid"
 
 #: Dialogs/krkeydialog.cpp:134
-msgid ""
-"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
 msgstr ""
 "<qt>Bestand <b>%1</b> bestaat reeds. Bent u er zeker van dat u het wilt "
 "overschrijven?</qt>"
@@ -3331,8 +3280,7 @@ msgstr "Berekening van de controlesommen ..."
 
 #: Dialogs/checksumdlg.cpp:272 Dialogs/checksumdlg.cpp:386
 msgid "<qt>There was an error while running <b>%1</b>.</qt>"
-msgstr ""
-"<qt>De volgende fout is opgetreden tijdens het uitvoeren <b>%1</b>.</qt>"
+msgstr "<qt>De volgende fout is opgetreden tijdens het uitvoeren <b>%1</b>.</qt>"
 
 #: Dialogs/checksumdlg.cpp:284 Dialogs/checksumdlg.cpp:395
 msgid "Error reading stdout or stderr"
@@ -3382,8 +3330,7 @@ msgstr "Controlesom verifieren ..."
 
 #: Dialogs/checksumdlg.cpp:430
 msgid "Errors were detected while verifying the checksums"
-msgstr ""
-"Fouten werden gedetecteerd tijdens het verifieren van de controlesommen."
+msgstr "Fouten werden gedetecteerd tijdens het verifieren van de controlesommen."
 
 #: Dialogs/checksumdlg.cpp:431
 msgid "Checksums were verified successfully"
@@ -3415,7 +3362,7 @@ msgstr "Bestand"
 
 #: Dialogs/checksumdlg.cpp:501
 msgid "Here are the errors received:"
-msgstr "Hier zijn de ontvangen fouten"
+msgstr "Hier zijn de ontvangen fouten:"
 
 #: Dialogs/checksumdlg.cpp:515
 msgid "Save checksum to file:"
@@ -3444,7 +3391,7 @@ msgstr "Fout bij het bewaren van bestand %1"
 
 #: Dialogs/checksumdlg.cpp:571
 msgid "Saving checksum files..."
-msgstr "Controlesom bestanden bewaren ... "
+msgstr "Controlesom bestanden bewaren..."
 
 #: Dialogs/checksumdlg.cpp:576
 msgid "Errors occured while saving multiple checksums. Stopping"
@@ -3489,8 +3436,7 @@ msgid "Delete selected useractions"
 msgstr "Geselecteerde acties verwijderen"
 
 #: ActionMan/useractionpage.cpp:126
-msgid ""
-"The current action has been modified. Do you want to apply these changes?"
+msgid "The current action has been modified. Do you want to apply these changes?"
 msgstr "De huidige actie is gewijzigd. Wilt u deze wijzigingen toepassen?"
 
 #: ActionMan/useractionpage.cpp:203
@@ -3736,8 +3682,7 @@ msgstr ""
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
-msgstr ""
-"<i>Werkmap</i> is de map waar het <i>Commando</i> zal worden uitgevoerd."
+msgstr "<i>Werkmap</i> is de map waar het <i>Commando</i> zal worden uitgevoerd."
 
 #: ActionMan/actionpropertybase.cpp:409
 msgid "Tooltip:"
@@ -3903,9 +3848,8 @@ msgid "Panel independent"
 msgstr "Venster onafhankelijk"
 
 #: ActionMan/addplaceholderpopup.cpp:60
-#, fuzzy
 msgid "Choose executable..."
-msgstr "Uitvoerbaar"
+msgstr "Kies uitvoerbaar bestand..."
 
 #: ActionMan/addplaceholderpopup.cpp:135
 msgid "User Action Parameter Dialog"
@@ -4009,8 +3953,7 @@ msgstr "De linkse basismap wordt gebruikt gedurende het synchronisatieprocess."
 
 #: Synchronizer/synchronizergui.cpp:1121
 msgid "The right base directory used during the synchronisation process."
-msgstr ""
-"De rechter basismap wordt gebruikt gedurende het synchronisatieprocess."
+msgstr "De rechter basismap wordt gebruikt gedurende het synchronisatieprocess."
 
 #: Synchronizer/synchronizergui.cpp:1128
 msgid "Recurse subdirectories"
@@ -4562,7 +4505,7 @@ msgstr "Variabele tekengrootte voor beschrijvingen"
 
 #: DiskUsage/dufilelight.cpp:119 DiskUsage/dufilelight.cpp:193
 msgid "Minimum font size"
-msgstr "Minimum tekengrootte:"
+msgstr "Minimum tekengrootte"
 
 #: DiskUsage/diskusage.cpp:788 DiskUsage/dufilelight.cpp:121
 msgid "Filelight"
@@ -4770,9 +4713,9 @@ msgstr "&Instellingen"
 
 #. i18n: file krusaderui.rc line 127
 #: rc.cpp:27
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Command Execution Mode Se&tup"
-msgstr "Uitvoer modus"
+msgstr "Commando uitvoer modus &instelling"
 
 #. i18n: file krusaderui.rc line 141
 #: rc.cpp:30
@@ -4835,7 +4778,7 @@ msgstr "Mimetype magic gebruiken"
 msgid "Mimetype magic allows better distinction of file types, but is slower."
 msgstr ""
 "Mimetype magic laat u toe om een beter onderscheid te maken tussen "
-"bestandtypes, maar is trager"
+"bestandtypes, maar is trager."
 
 #: Konfigurator/kggeneral.cpp:76
 msgid "Editor:"
@@ -4879,8 +4822,7 @@ msgstr "Bestand bekijken in hex modus (is beter voor binaire bestanden)"
 
 #: Konfigurator/kggeneral.cpp:104
 msgid "Internal editor and viewer opens each file in a separate window"
-msgstr ""
-"De interne viewer en editor zulllen elk bestand in een apart venster openen"
+msgstr "De interne viewer en editor zulllen elk bestand in een apart venster openen"
 
 #: Konfigurator/kggeneral.cpp:105
 msgid ""
@@ -4923,8 +4865,7 @@ msgid "Searching for tools..."
 msgstr "Zoeken naar gereedschap..."
 
 #: Konfigurator/kggeneral.cpp:187
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Vergewis u er van dat u nieuw gereedschap installeert in uw <code>$PATH</"
 "code> (bv. /usr/bin)"
@@ -4953,8 +4894,7 @@ msgstr ""
 
 #: Konfigurator/krresulttable.cpp:127
 msgid "rpm found, but cpio not found which is required for unpacking"
-msgstr ""
-"rpm gevonden, maar cpio niet gevonden wat noodzakelijk is om uit te pakken."
+msgstr "rpm gevonden, maar cpio niet gevonden wat noodzakelijk is om uit te pakken."
 
 #: Konfigurator/krresulttable.cpp:130 Konfigurator/krresulttable.cpp:283
 msgid "Found"
@@ -5324,8 +5264,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Knop voor synchroon bladeren omschakelen"
 
 #: Konfigurator/kglookfeel.cpp:214
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr ""
 "Elke map verandering in het venster wordt ook uitgevoerd in het andere "
 "venster."
@@ -5577,8 +5516,7 @@ msgstr ""
 "parameters."
 
 #: Konfigurator/kgadvanced.cpp:65
-msgid ""
-"Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
 msgstr ""
 "Het KDE media protocol niet gebruiken voor de media knop (als het fouten "
 "bevat of als het niet aanwezig is)"
@@ -5642,7 +5580,7 @@ msgstr "Fijn instellingen"
 
 #: Konfigurator/kgadvanced.cpp:116
 msgid "Icon cache size (KB):"
-msgstr "Icoon cache grootte (Kb)"
+msgstr "Icoon cache grootte (Kb):"
 
 #: Konfigurator/kgadvanced.cpp:117 Konfigurator/kgadvanced.cpp:121
 msgid ""
@@ -6057,7 +5995,7 @@ msgstr ""
 
 #: Konfigurator/kgstartup.cpp:51
 msgid "Startup profile:"
-msgstr "Startop profiel."
+msgstr "Startop profiel:"
 
 #: Konfigurator/kgstartup.cpp:56
 msgid "Last session"
@@ -6077,7 +6015,7 @@ msgstr "Eén programma modus"
 
 #: Konfigurator/kgstartup.cpp:73
 msgid "Only one Krusader instance is allowed to run."
-msgstr "Slecht één programma (proces) van Krusader is toegelaten"
+msgstr "Slecht één programma (proces) van Krusader is toegelaten."
 
 #: Konfigurator/kgstartup.cpp:83
 msgid "User Interface"
@@ -6126,7 +6064,7 @@ msgstr "Commandoregel tonen"
 
 #: Konfigurator/kgstartup.cpp:92
 msgid "Command line will be visible after startup."
-msgstr "Commandoregel zal zichtbaar zijn na het opstarten"
+msgstr "Commandoregel zal zichtbaar zijn na het opstarten."
 
 #: Konfigurator/kgstartup.cpp:93
 msgid "Show terminal emulator"
@@ -6134,7 +6072,7 @@ msgstr "Terminal emulator tonen"
 
 #: Konfigurator/kgstartup.cpp:93
 msgid "Terminal emulator will be visible after startup."
-msgstr "Terminal emulator zal zichtbaar zijn na het opstarten"
+msgstr "Terminal emulator zal zichtbaar zijn na het opstarten."
 
 #: Konfigurator/kgstartup.cpp:94
 msgid "Save last position, size and panel settings"
@@ -6243,19 +6181,17 @@ msgid "Test archive before unpacking"
 msgstr "Archief eerst testen voor het uitpakken"
 
 #: Konfigurator/kgarchives.cpp:96
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Sommige corrupte archieven kunnen mogelijk een crash veroorzaken, daarom is "
-"testen aangeraden"
+"testen aangeraden."
 
 #: Konfigurator/kgarchives.cpp:113
 msgid "Searching for packers..."
 msgstr "Naar inpakgereedschap zoeken..."
 
 #: Konfigurator/kgarchives.cpp:114
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Vergewis u er van dat u nieuw inpak gereedschap installeert in uw <code>"
 "$PATH</code> (bv. /usr/bin)"
@@ -6282,7 +6218,7 @@ msgstr "Terminal uitvoering"
 
 #: Konfigurator/kguseractions.cpp:68
 msgid "Terminal for UserActions:"
-msgstr "Terminal voor gebruikeracties"
+msgstr "Terminal voor gebruikeracties:"
 
 #: Konfigurator/kguseractions.cpp:78
 msgid "Output collection"
@@ -6294,7 +6230,7 @@ msgstr "Normaal lettertype:"
 
 #: Konfigurator/kguseractions.cpp:89
 msgid "Font with fixed width:"
-msgstr "Lettertype met vaste breedte"
+msgstr "Lettertype met vaste breedte:"
 
 #: Konfigurator/kguseractions.cpp:95
 msgid "Use fixed width font as default"
@@ -6527,8 +6463,7 @@ msgid "Not a valid CRC file!"
 msgstr "Ongeldig CRC bestand!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Geldigheids controle is onmogelijk zonder een goed CRC bestand. Doorgaan met "
 "combineren?"
@@ -6569,30 +6504,3 @@ msgstr "Fout bij het lezen van bestand %1!"
 msgid "Error at writing file %1!"
 msgstr "Fout bij het schrijven van bestand %1!"
 
-#~ msgid "If pressed, Krusader executes command line in a terminal."
-#~ msgstr ""
-#~ "Indien ingedrukt, voert Krusader het commando uit in een terminalvenster."
-
-#~ msgid ""
-#~ "The 'run in terminal' button allows Krusader to run console (or otherwise "
-#~ "non-graphical) programs in a terminal of your choice. If it's pressed, "
-#~ "terminal mode is active."
-#~ msgstr ""
-#~ "De 'Uitvoeren in terminal' knop laat toe dat Krusader de console (of "
-#~ "andere niet grafische) programma's uitvoert in een terminal van uw keuze. "
-#~ "Indien ingedrukt is de terminal modus actief."
-
-#~ msgid "This terminal will close in 1 hour.."
-#~ msgstr "Dit terminalvenster zal automatsich sluiten binnen 1 uur.."
-
-#~ msgid "count all:"
-#~ msgstr "alles tellen:"
-
-#~ msgid "Ask the user for a parameter"
-#~ msgstr "De gebruiker naar een parameter vragen"
-
-#~ msgid "Copy to clipboard"
-#~ msgstr "Naar klembord kopiëren"
-
-#~ msgid "What should be copied"
-#~ msgstr "Wat moet er gekopieerd worden"
