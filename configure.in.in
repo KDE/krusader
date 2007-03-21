@@ -50,6 +50,8 @@ if test "$with_acl" != "no"; then
 	fi
 fi
 
+AM_CONDITIONAL(include_libacl, test "$have_posix_acl" = yes)
+
 
 ###################################################
 #		Check for JavaScript
