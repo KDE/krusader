@@ -16,28 +16,27 @@
     </menuchoice>
   </emphasis>or 
   <keycombo action="simul">&Ctrl;
-  <keycap>P</keycap></keycombo>A Split dialog will open to confirm
+  <keycap>P</keycap></keycombo> A Split dialog will open to confirm
   the operation.</para>
   <para>If the name of the original file is 
   <filename>foo</filename>, then the name of the smaller files will
   be 
-  <filename>foo.000 foo.001 foo.002</filename>&etc;
+  <filename>foo.000 foo.001 foo.002</filename> &etc;
   There is no theoretical limit in the number of smaller files, but
   it is recommended to limit the number to a maximum of 1023 files.
   &krusader; creates a 
-  <filename>foo.crc</filename>file. This file contains the name,
-  size and the crc checksum of the original file. It's possible to
+  <filename>foo.crc</filename> file. This file contains the name,
+  size and the crc checksum of the original file. It is possible to
   combine the file without the 
-  <filename>foo.crc</filename>file but in this case
-  &krusader; can't check if the the original file was
+  <filename>foo.crc</filename> file but in this case
+  &krusader; cannot check if the the original file was
   recreated correctly.</para>
   <para>An example of a 
-  <filename>foo.crc</filename>file: 
-  <programlisting>filename=foo size=432998467868
-  crc32=21EB719A</programlisting></para>
+  <filename>foo.crc</filename> file: 
+  <programlisting>filename=foo size=432998467868 crc32=21EB719A</programlisting></para>
   <para>To combine the multiple files choose, select a partial file
   
-  <filename>foo.xxx</filename>and choose 
+  <filename>foo.xxx</filename> and choose 
   <emphasis role="bold">
     <menuchoice>
       <guimenu>File</guimenu>
@@ -48,15 +47,15 @@
   <keycap>B</keycap></keycombo>. The target directory is the
   unactive panel and can be changed. The file names must be
   numbered in ascending order: 
-  <filename>foo.001, foo.002, foo.003</filename>&etc; or
+  <filename>foo.001, foo.002, foo.003</filename> &etc; or
   have letters in ascending order: ("
   <userinput>
     <command>split</command>
     <option>-b</option>
   </userinput>letter method") 
-  <filename>fileaa, fileab, fileac</filename>&etc; If
+  <filename>fileaa, fileab, fileac</filename> &etc; If
   the file 
-  <filename>foo.crc</filename>is found in the same directory as the
+  <filename>foo.crc</filename> is found in the same directory as the
   partial files, &krusader; will use this file to check
   the combined file for errors.</para>
 </sect1>

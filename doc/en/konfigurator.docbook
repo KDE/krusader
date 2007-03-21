@@ -28,9 +28,9 @@
   <para>Konfigurator is &krusader;'s configuration
   center. There you can modify the way &krusader; works
   and customize it to your own needs. At any time, pressing the 
-  <guibutton>Apply</guibutton>button applies the changes, pressing 
-  <guibutton>Close</guibutton>closes Konfigurator, and pressing 
-  <guibutton>Defaults</guibutton>re-applies &krusader;'s
+  <guibutton>Apply</guibutton> button applies the changes, pressing 
+  <guibutton>Close</guibutton> closes Konfigurator, and pressing 
+  <guibutton>Defaults</guibutton> re-applies &krusader;'s
   "factory" settings. Konfigurator is divided into pages, each
   containing items related to that page. For some changes to the
   &GUI;, you have to close and restart
@@ -73,23 +73,23 @@
               <para>
               <guilabel>Startup Profile</guilabel>: Starts the
               selected 
-              <link linkend="panel_profiles">Panel profile</link>at
+              <link linkend="panel_profiles">Panel profile</link> at
               startup. 
               <guilabel>&lt;Last
-              session&gt;</guilabel>is a special Panel
+              session&gt;</guilabel> is a special Panel
               Profile, it is saved automatically when closing
               &krusader;.</para>
             </listitem>
             <listitem>
               <para>
               <guilabel>Show splashscreen</guilabel>: Displays a
-              splashscreen when starting
+              splash screen when starting
               &krusader;.</para>
             </listitem>
             <listitem>
               <para>
               <guilabel>Single Instance Mode</guilabel>: Allows
-              only one Krusader instance to run.</para>
+              only one &krusader; instance to run.</para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -100,13 +100,13 @@
         </term>
         <listitem>
           <para>Determines which parts of the user interface are
-          visible after startup. 
+          visible after start-up. 
           <itemizedlist>
             <listitem>
               <para>
               <guilabel>Save settings on exit</guilabel>: If
               checked, restores the user interface components to
-              their condition when last shut down.</para>
+              their condition when last shut-down.</para>
             </listitem>
             <listitem>
               <para>
@@ -118,32 +118,32 @@
               <para>
               <guilabel>Show statusbar</guilabel>: If checked, the
               &statusbar_lnk; is visible after
-              startup.</para>
+              start-up.</para>
             </listitem>
             <listitem>
               <para>
               <guilabel>Show function keys</guilabel>: If checked,
               the &fnkeybar_lnk; is visible after
-              startup.</para>
+              start-up.</para>
             </listitem>
             <listitem>
               <para>
               <guilabel>Show command line</guilabel>: If checked,
               the &cmdline_lnk; is visible after
-              startup.</para>
+              start-up.</para>
             </listitem>
             <listitem>
               <para>
               <guilabel>Show terminal emulator</guilabel>: If
               checked, the &termemu_lnk; is visible
-              after startup.</para>
+              after start-up.</para>
             </listitem>
             <listitem>
               <para>
               <guilabel>Save last position, size and panel
               settings</guilabel>: When launched,
               &krusader; resizes itself to the size it
-              was when last shutdown. &krusader; also
+              was when last shut-down. &krusader; also
               appears in the same location on the screen, having
               panels sorted and aligned as they were. If this
               option is unchecked, you can use the menu 
@@ -152,9 +152,9 @@
                   <guimenu>Settings</guimenu>
                   <guimenuitem>Save Position</guimenuitem>
                 </menuchoice>
-              </emphasis>option to manually set
-              &krusader;'s size and position at
-              startup.</para>
+              </emphasis> option to manually set
+              &krusader; size and position at
+              start-up.</para>
             </listitem>
             <listitem>
               <para>
@@ -170,16 +170,16 @@
   <sect1 id="konfig-looknfeel">
     <title>Look and Feel</title>
     <para>Here you can determine the look and feel of things -
-    which means fine-tuning the application to your needs. The page
+    which means finetuning the application to your needs. The page
     is divided into five tabs: 
     <guilabel>Operation</guilabel>, 
     <guilabel>Panel</guilabel>, 
     <guilabel>Toolbar</guilabel>, 
-    <guilabel>Key-bindings</guilabel>and 
+    <guilabel>Key-bindings</guilabel> and 
     <guilabel>Panel Toolbar</guilabel>. Since 
-    <guilabel>Toolbar</guilabel>and 
-    <guilabel>Key-bindings</guilabel>are &kde; standard
-    tools, we'll focus on the other sections:</para>
+    <guilabel>Toolbar</guilabel> and 
+    <guilabel>Key-bindings</guilabel> are standard &kde;
+    tools, we will focus on the other sections:</para>
     <!-- OLD
 <screenshot>
   <screeninfo>Look &amp; Feel configurtarion</screeninfo>
@@ -223,17 +223,17 @@ HTML_PARSING-->
           <para>
           <guilabel>Autoselect Directories</guilabel>: When 
           <link linkend="edit-menu">you select a group of
-          files</link>(either by using Select Group or by using
+          files</link> (either by using Select Group or by using
           Select All), &krusader; checks this option. If
           checked, the directories matching the select criteria are
-          also selected; otherwise, only files are selected.</para>
+          also selected. Otherwise, only files are selected.</para>
         </listitem>
         <listitem>
           <para>
           <guilabel>Rename selects extension</guilabel>: When 
           <link linkend="renaming">you rename a file</link>, the
-          whole text is selected. If you want total-commander- like
-          renaming of just the name, without extension, unselect
+          whole text is selected. If you want total commanderlike
+          renaming of just the name, without extension, deselect
           this item.</para>
         </listitem>
         <listitem>
@@ -272,7 +272,7 @@ HTML_PARSING-->
           <link linkend="quicksearch">Quicksearch</link>feature: If
           checked (the &UNIX; default), all files
           beginning with capital letters appear before files
-          beginning with non-capital letters; otherwise, all files
+          beginning with lower case letters; otherwise, all files
           beginning with a specified letter (capital or otherwise)
           will be displayed together.</para>
         </listitem>
@@ -296,7 +296,7 @@ HTML_PARSING-->
         <listitem>
           <para>
           <guilabel>Use icons in filenames</guilabel>: If checked,
-          show the icons in filenames and folders.</para>
+          show the icons in file names and folders.</para>
         </listitem>
         <listitem>
           <para>
@@ -306,9 +306,9 @@ HTML_PARSING-->
         </listitem>
         <listitem>
           <para>Since &krusader;-1.70.0 you need to
-          configure the Columns with the right click menu in the
+          configure the columns with the right click menu in the
           panel, not in Konfigurator. The left and right panel use
-          their own Columns independently. The following Columns
+          their own columns independently. The following columns
           are available: 
           <itemizedlist>
             <listitem>
@@ -319,13 +319,13 @@ HTML_PARSING-->
             <listitem>
               <para>
               <guilabel>Ext</guilabel>: Shows the last part of the
-              filename (the part after the last dot) in the Ext
-              Column, not as a complete filename in the Name Column
+              filename (the part after the last dot) in the ext
+              column, not as a complete filename in the name column
               like e.g. &konqueror; does.</para>
             </listitem>
             <listitem>
               <para>
-              <guilabel>Type</guilabel>: Shows the mimetype
+              <guilabel>Type</guilabel>: Shows the mime type
               field.</para>
             </listitem>
             <listitem>
@@ -340,12 +340,12 @@ HTML_PARSING-->
             </listitem>
             <listitem>
               <para>
-              <guilabel>Perms</guilabel>: Shows the full perissions
+              <guilabel>Perms</guilabel>: Shows the full permissions
               &eg; "rwxr-xr-x" or as octal numbers
               '0755' instead with enable/disable 
-              <guilabel>Numeric Permissions</guilabel>in Look
+              <guilabel>Numeric Permissions</guilabel> in Look
               &amp; Feel 
-              <guilabel>Operation</guilabel>Tab.</para>
+              <guilabel>Operation</guilabel> Tab.</para>
             </listitem>
             <listitem>
               <para>
@@ -404,32 +404,32 @@ HTML_PARSING-->
       <guilabel>Panel Toolbar visible</guilabel>: If checked,
       &krusader; displays the Panel Toolbar.</para>
       <para>You can make the buttons on the 
-      <guilabel>Panel Toolbar</guilabel>visible or hidden: 
+      <guilabel>Panel Toolbar</guilabel> visible or hidden: 
       <itemizedlist>
         <listitem>
           <para>
-          <guilabel>Clear Location Toolbar</guilabel>button: Clears
+          <guilabel>Clear Location Toolbar</guilabel> button: Clears
           the &location_toolbar_lnk;</para>
         </listitem>
         <listitem>
           <para>
-          <guilabel>Open</guilabel>button</para>
+          <guilabel>Open</guilabel> button</para>
         </listitem>
         <listitem>
           <para>
-          <guilabel>Equal (=)</guilabel>button</para>
+          <guilabel>Equal (=)</guilabel> button</para>
         </listitem>
         <listitem>
           <para>
-          <guilabel>Up (..)</guilabel>button</para>
+          <guilabel>Up (..)</guilabel> button</para>
         </listitem>
         <listitem>
           <para>
-          <guilabel>Home (~)</guilabel>button</para>
+          <guilabel>Home (~)</guilabel> button</para>
         </listitem>
         <listitem>
           <para>
-          <guilabel>Root (/)</guilabel>button</para>
+          <guilabel>Root (/)</guilabel> button</para>
         </listitem>
         <listitem>
           <para>
@@ -470,7 +470,7 @@ HTML_PARSING-->
           &RMB; selects multiple files 
           <!-- Openjade does not like an trademark element for "Total commander" here -->
           and the right-click menu appears with 
-          <guilabel>pressing and holding</guilabel>the
+          <guilabel>pressing and holding</guilabel> the
           &RMB; The &LMB; does not select,
           but sets the current file without affecting the current
           selection.</para>
@@ -493,7 +493,7 @@ HTML_PARSING-->
         </listitem>
         <listitem>
           <para>
-          <guilabel>Obey KDE's global selection policy</guilabel>:
+          <guilabel>Obey KDE global selection policy</guilabel>:
           Pressing the &LMB; selects files -- Use
           &kde;'s global setting: &kde;
           Control Center -&gt; Peripherals
@@ -543,12 +543,12 @@ HTML_PARSING-->
             </listitem>
             <listitem>
               <para>
-                <guilabel>Spacebar moves down</guilabel>
+                <guilabel>Space bar moves down</guilabel>
               </para>
             </listitem>
             <listitem>
               <para>
-                <guilabel>Spacebar calculates diskspace</guilabel>
+                <guilabel>Space bar calculates diskspace</guilabel>
               </para>
             </listitem>
             <listitem>
@@ -558,7 +558,7 @@ HTML_PARSING-->
             </listitem>
             <listitem>
               <para>
-                <guilabel>Right clicking pops context-menu
+                <guilabel>Right-clicking shows the context menu
                 immediately</guilabel>
               </para>
             </listitem>
@@ -572,7 +572,7 @@ HTML_PARSING-->
     <para>This page configures the colors of the
     &list_panel_lnk; and the
     &synchronizer_lnk;. The 
-    <guilabel>KDE default colors</guilabel>is the default color
+    <guilabel>KDE default colors</guilabel> is the default color
     configuration.</para>
     <!-- OLD
 <screenshot>
@@ -604,7 +604,7 @@ HTML_PARSING-->
             <listitem>
               <para>
               <guilabel>Use the default KDE colors</guilabel>: this
-              is the default, it uses &kde;'s color
+              is the default, it uses &kde; color
               settings of 
               <command>kcontrol</command>.</para>
             </listitem>
@@ -612,19 +612,19 @@ HTML_PARSING-->
               <para>
               <guilabel>Use Alternate Background color</guilabel>:
               If checked, the 
-              <guilabel>Background</guilabel>color and the 
-              <guilabel>Alternate background</guilabel>color
-              alternates line by line. When you don't use the
+              <guilabel>Background</guilabel> color and the 
+              <guilabel>Alternate background</guilabel> color
+              alternates line by line. When you do not use the
               &kde; default colors, you can configure
               the alternate colors in the 
-              <guilabel>Colors</guilabel>box.</para>
+              <guilabel>Colors</guilabel> box.</para>
             </listitem>
             <listitem>
               <para>
               <guilabel>Show current item even if not
               focused</guilabel>: If checked, shows the last cursor
               position in the non active list panel. This option is
-              only available when you don't use the
+              only available when you do not use the
               &kde; default colors.</para>
             </listitem>
             <listitem>
@@ -633,9 +633,9 @@ HTML_PARSING-->
               panel</guilabel>: If checked, the colors of the
               inactive panel are dimmed. These settings can be
               configured in the 
-              <guilabel>Inactive</guilabel>tab of the 
-              <guilabel>Colors</guilabel>box. This option is only
-              available when you don't use the &kde;
+              <guilabel>Inactive</guilabel> tab of the 
+              <guilabel>Colors</guilabel> box. This option is only
+              available when you do not use the &kde;
               default colors.</para>
             </listitem>
           </itemizedlist>
@@ -648,7 +648,7 @@ HTML_PARSING-->
         <listitem>
           <para>Configure the colors the way you like, you can see
           the result in the 
-          <guilabel>Preview</guilabel>section. The following items
+          <guilabel>Preview</guilabel> section. The following items
           of the active and inactive panel can be
           configured:</para>
           <itemizedlist>
@@ -789,20 +789,20 @@ HTML_PARSING-->
         </term>
         <listitem>
           <para>With the 
-          <guibutton>Import Color Scheme</guibutton>and 
-          <guibutton>Export Color Scheme</guibutton>buttons you can
+          <guibutton>Import Color Scheme</guibutton> and 
+          <guibutton>Export Color Scheme</guibutton> buttons you can
           load and save a Color Scheme profile. This allows
           &krusader; to use &tcmd;,
           &mc;, foo-commander or your own custom color
           profile. The Color Schemes are stored in 
           <filename>$KDEDIR/share/apps/krusader</filename>, the 
-          <filename>foo.color</filename>is a binary file that holds
-          the Color Scheme.</para>
+          <filename>foo.color</filename> is a binary file that holds
+          the color scheme.</para>
           <tip>
             <para>&mc; and &tcmd; Color
             scheme files are provided. Please 
             <link linkend="help_krusader">upload your favorite
-            Color schemes</link>so that they become available for
+            Color schemes</link> so that they become available for
             the &krusader; community. Thanks!</para>
           </tip>
         </listitem>
@@ -844,7 +844,7 @@ HTML_PARSING-->
       </listitem>
       <listitem>
         <para>
-        <guilabel>Use mimetype magic</guilabel>: mimetype magic is
+        <guilabel>Use mimetype magic</guilabel>: mime type magic is
         a mechanism which allows &krusader; to inspect
         the files in the panels and determine their type even if
         the file has no identifying extension. For example, if you
@@ -853,7 +853,7 @@ HTML_PARSING-->
         image file and work with it accordingly. However, this mode
         of operation is slower (while refreshing the panel, or
         changing directories), so try &krusader; with
-        and without mimetype magic and decide what's best for
+        and without mime type magic and decide what is best for
         you.</para>
       </listitem>
       <listitem>
@@ -883,7 +883,7 @@ HTML_PARSING-->
         <para>
         <guilabel>Terminal Emulator sends Chdir on a panel
         change</guilabel>: if unchecked, there will be no 
-        <command>cd</command>command sent to the Terminal Emulator
+        <command>cd</command> command sent to the Terminal Emulator
         if the panel folder changes.</para>
       </listitem>
       <listitem>
@@ -948,16 +948,15 @@ HTML_PARSING-->
             <listitem>
               <para>
               <guilabel>Automount filesystems</guilabel>: this
-              makes &krusader; try to mount a filesystem
+              makes &krusader; try to mount a file system
               before entering it. For example, if you click on 
-              <filename class="directory">/mnt/cdrom</filename>(and
-              
+              <filename class="directory">/mnt/cdrom</filename> (and
               <filename class="directory">
-              /mnt/cdrom</filename>appears in 
-              <filename class="directory">/etc/fstab</filename>as a
+              /mnt/cdrom</filename> appears in 
+              <filename class="directory">/etc/fstab</filename> as a
               mount point), &krusader; will check if it
               is mounted. If not, it will try and mount it for you
-              and then enter, so that you'd see the contents of
+              and then enter, so that you would see the contents of
               your cdrom. Note, however, that &krusader;
               will NOT unmount when exiting 
               <filename class="directory">
@@ -965,10 +964,10 @@ HTML_PARSING-->
             </listitem>
             <listitem>
               <para>
-              <guilabel>Don't use KDE's media protocol for the
-              Media button (if it's buggy or missing)</guilabel>:
-              If checked, &krusader; won't use
-              &kde;'s media protocol for the 
+              <guilabel>Do not use KDE media protocol for the
+              Media button (if it is buggy or missing)</guilabel>:
+              If checked, &krusader; will not use
+              &kde; media protocol for the 
               <link linkend="list_panel">Media button</link>.
               Choose this when the media protocol is buggy (in some
               older &kde; versions) or if you have no
@@ -976,13 +975,13 @@ HTML_PARSING-->
             </listitem>
             <listitem>
               <para>
-              <guilabel>MountMan won't (un)mount the following
-              mount-points</guilabel>: If you have filesystems that
-              you don't want to accidentally unmount (or mount)
-              then enter a list of mountpoints separated by commas
+              <guilabel>MountMan will not (un)mount the following
+              mount points</guilabel>: If you have file systems that
+              you do not want to accidentally unmount (or mount)
+              then enter a list of mount points separated by commas
               (&eg; 
               <literal>/, /boot, /tmp</literal>) and
-              &mountman_lnk; won't try to (un)mount
+              &mountman_lnk; will not try to (un)mount
               them.</para>
             </listitem>
           </itemizedlist>
@@ -1022,7 +1021,7 @@ HTML_PARSING-->
             <listitem>
               <para>
               <guilabel>Icon Cache Size</guilabel>:
-              &krusader; uses an icon cache, so it won't
+              &krusader; uses an icon cache, so it will not
               have to reload icons that have been used before. Of
               course, as the cache grows bigger, it can store more
               icons and further speed operations, but the memory
@@ -1045,7 +1044,7 @@ HTML_PARSING-->
     <title>Archives</title>
     <para>This page handles the way &krusader; works
     with archives. In the 
-    <guilabel>General</guilabel>section you'll see a list of
+    <guilabel>General</guilabel> section you will see a list of
     archive formats. Some are checked and some are grayed-out. The
     ones that are available (not grayed-out) are supported by
     &krusader;. If you check them, &krusader;
@@ -1053,7 +1052,7 @@ HTML_PARSING-->
     folders; otherwise, &krusader; will attempt to
     invoke an application which opens archives of that type. If a
     certain archive is grayed-out, it means that
-    &krusader; couldn't find the appropriate executables
+    &krusader; could not find the appropriate executables
     in the configured path. The next archives are supported: ace,
     arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and
     7-zip.</para>
@@ -1077,26 +1076,26 @@ HTML_PARSING-->
 </mediaobject>
 </figure>
 HTML_PARSING-->
-    <para>If you've installed a certain archive application (let's
+    <para>If you have installed a certain archive application (let's
     say 
     <command>arj</command>) and want &krusader; to know
     about it, just click the 
-    <guibutton>Auto Configure</guibutton>button.
+    <guibutton>Auto Configure</guibutton> button.
     &krusader; will search for all supported executables
     and print a report listing the archive formats that can be
     handled. If the operation was successful the new archive should
     be available and checked.</para>
     <note>
       <para>Please install new packagers to your 
-      <envar>PATH</envar>(&ie;: 
-      <filename>/usr/bin</filename>or 
-      <filename>/usr/local/bin</filename>&etc;)</para>
+      <envar>PATH</envar> (&ie;: 
+      <filename>/usr/bin</filename> or 
+      <filename>/usr/local/bin</filename> &etc;)</para>
     </note>
     <para>The full path of the packagers is stored in the
     &konfigdependencie_lnk; (&eg; to handle
     ZIP archives, &krusader; needs the 
-    <command>unzip</command>and 
-    <command>zip</command>executables). It's possible that you need
+    <command>unzip</command> and 
+    <command>zip</command> executables). It is possible that you need
     to manually configure the mimes to the protocols in the
     &konfigprotocol_lnk;.</para>
     <para>
@@ -1112,7 +1111,7 @@ HTML_PARSING-->
           yet packed into the archive. 
           <note>
             <para>If such a thing happens, the file(s) are NOT
-            LOST. They were actually moved into a subfolder in the
+            LOST. They were actually moved into a subfolder in
             &krusader;'s 
             <link linkend="konfig-general">temp directory</link>.
             You can search the directory and recover your
@@ -1324,7 +1323,7 @@ HTML_PARSING-->
     </para>
     <para>Here you can configure the full path of the following
     external packers. &krusader; also offers an 
-    <link linkend="konfig-archives">auto configure tool</link>for
+    <link linkend="konfig-archives">auto configure tool</link> for
     packagers. 
     <informaltable>
       <tgroup cols="2">
@@ -1533,7 +1532,7 @@ HTML_PARSING-->
       </tgroup>
     </informaltable></para>
     <note>
-      <para>Krusader may not be compatible with ACE despite our
+      <para>&krusader; may not be compatible with ACE despite our
       best efforts. Unace uses closed source and contains
       additional lines that make Unace get into infinite loop if
       the stdin is redirected to somewhere else. It works in the
@@ -1768,9 +1767,9 @@ HTML_PARSING-->
   </sect1>
   <sect1 id="konfig-useractions">
     <title>UserActions</title>
-    <para>Here you can configure the Terminal for UserActions and
+    <para>Here you can configure the terminal for UserActions and
     the font for the output-collection. The default terminal is 
-    <filename>konsole --noclose -e</filename>To set up, configure
+    <filename>konsole --noclose -e</filename>. To set up, configure
     and manage your UserActions use ActionMan
     (&useractions_lnk; url).</para>
     <!-- OLD

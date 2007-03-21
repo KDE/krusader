@@ -1,15 +1,15 @@
 <sect1 id="krusearcher">
-  <title>KruSearcher: find what you're looking for</title>
+  <title>KruSearcher: find what you are looking for</title>
   <indexterm>
     <primary>Search</primary>
   </indexterm>
   <para>Welcome to &krusader;'s powerful search module -
   nicknamed KruSearcher. It is the most able tool (that we know of)
   for &Linux;, since it allows so many different ways to
-  quickly find the file you're looking for. The search function is
+  quickly find the file you are looking for. The search function is
   also available on remote file systems. It is divided into two
   levels, the general and the advanced. Let's take a look at the
-  general page ...</para>
+  general page.</para>
   <!-- OLD
 <screenshot>
   <screeninfo>Krusearcher General</screeninfo>
@@ -42,11 +42,11 @@
     <listitem>
       <para>
       <guilabel>Search for</guilabel>: here you enter the main
-      search criteria. You can enter a filename, a wildcard (
+      search criteria. You can enter a file name, a wildcard (
       <literal role="extension">*.o.*</literal>, 
-      <literal role="extension">*.c</literal>&etc;) or
+      <literal role="extension">*.c</literal> &etc;) or
       both - separated by a space. If you type 
-      <literal>'text'</literal>the results is the same as 
+      <literal>'text'</literal> the results is the same as 
       <literal>'*text*'</literal>. You can exclude files from the
       search with '|' (&eg; 
       <literal role="extension">'*.cpp *.h |
@@ -56,14 +56,14 @@
       <para>
       <guilabel>Case sensitive</guilabel>: unchecking it will allow
       lower and upper case search (&ie;: 
-      <literal role="extension">*.c</literal>interprets as 
-      <literal role="extension">*.c</literal>AND 
+      <literal role="extension">*.c</literal> interprets as 
+      <literal role="extension">*.c</literal> AND 
       <literal role="extension">*.C</literal>).</para>
     </listitem>
     <listitem>
       <para>
       <guilabel>Of type</guilabel>: this box lets you search for a
-      file not only by its name, but also by its mimetype. For
+      file not only by its name, but also by its mime type. For
       example, you can search for all the audio files whose name
       begins with B. Usually this option defaults to 'all files',
       but you can choose to search for archives, directories,
@@ -74,24 +74,24 @@
     <title>Left and Right Part:</title>
     <listitem>
       <para>
-      <guilabel>Search in</guilabel>and 
+      <guilabel>Search in</guilabel> and 
       <guilabel>Don't search in</guilabel>: Using those two parts,
       you can specify a search exactly the way you want it. For
       example, you might want to search for a file in the whole
-      filesystem (beginning with 
-      <filename>/</filename>), but don't want to search inside 
+      file system (beginning with 
+      <filename>/</filename>), but do not want to search inside 
       <filename>/mnt</filename>. All you need to do is write 
-      <filename>/</filename>in the 
-      <guilabel>search in</guilabel>box, and write 
-      <filename>/mnt</filename>in the 
-      <guilabel>dont search in</guilabel>box. If you want to enter
+      <filename>/</filename> in the 
+      <guilabel>search in</guilabel> box, and write 
+      <filename>/mnt</filename> in the 
+      <guilabel>dont search in</guilabel> box. If you want to enter
       more than one directory in one of the boxes, just type the
-      first name and press &Enter;. The directory's name
-      will be copied to the bigger box and you'll be able to enter
+      first name and press &Enter;. The directory name
+      will be copied to the bigger box and youwill be able to enter
       another name. 
       <note>
-        <para>The input line has an auto completion feature,
-        corrosponding to &kde;'s global settings. If you
+        <para>The input line has an auto-completion feature,
+        corresponding to &kde; global settings. If you
         wish, you can click on the 
         <guiicon>folder icon</guiicon>, and browse to the directory
         you wish to add.</para>
@@ -104,11 +104,11 @@
       <para>
       <guilabel>Text</guilabel>: entering text here makes
       &krusader; search for it inside the files (
-      <command>grep</command>). That way, you can search for all
+      <command>grep</command>). This way you can search for all
       header files (
       <literal role="extension">*.h</literal>) which include the
       word 
-      <literal>'testing 123'</literal>inside them.</para>
+      <literal>'testing 123'</literal>.</para>
     </listitem>
     <listitem>
       <para>
@@ -133,8 +133,8 @@
       &krusader; will search for your files inside every
       supported archive. This, however, takes longer to perform. 
       <note>
-        <para>If you check this checkbox, you'll notice you cannot 
-        <command>grep</command>inside files anymore. This is done,
+        <para>If you check this checkbox, youwill notice you cannot 
+        <command>grep</command> inside files anymore. This is done,
         since looking inside archived files forces
         &krusader; to extract them, which results in an
         extremely time-consuming search.</para>
@@ -151,30 +151,30 @@
       <guilabel>Profiles</guilabel>: if you have to regularly
       perform the same search operation, you can save the search
       settings &eg; include files, exclude files,
-      etc.... Press the 'profile' button, and you'll be able to
+      etc.... Press the 'profile' button, and you can
       add/load/save/remove search profiles.</para>
     </listitem>
   </itemizedlist>
-  <para>The above screenshot shows a search for all the files which
+  <para>The above screen shot shows a search for all the files which
   end with 
-  <literal role="extension">c, cpp</literal>or 
-  <literal role="extension">h</literal>and include the string 
+  <literal role="extension">c, cpp</literal> or 
+  <literal role="extension">h</literal> and include the string 
   <literal>'testing 123'</literal>. &krusader; will
   search in 
-  <filename class="directory">/root, /opt, /bin</filename>and 
+  <filename class="directory">/root, /opt, /bin</filename> and 
   <filename class="directory">/usr</filename>, but not in 
-  <filename class="directory">/usr/lib</filename>and 
+  <filename class="directory">/usr/lib</filename> and 
   <filename class="directory">/usr/share</filename>.</para>
   <para>Clicking the 
-  <guibutton>Search</guibutton>button starts the search and
+  <guibutton>Search</guibutton> button starts the search and
   displays the results page. During the search, you may press the 
-  <guibutton>Stop</guibutton>button to stop the search. The 
-  <guibutton>Close</guibutton>button is not operational during a
+  <guibutton>Stop</guibutton> button to stop the search. The 
+  <guibutton>Close</guibutton> button is not operational during a
   search, so you must first stop the search and then 
-  <guibutton>Close</guibutton>the window. When a result is found,
-  double clicking on it will make &krusader;'s active
+  <guibutton>Close</guibutton> the window. When a result is found,
+  double-clicking on it will take &krusader;'s active
   panel point to the found files - but will not close the search
-  window, so you'll be able to click on a different result.</para>
+  window, so you will be able to click on a different result.</para>
   <para>Sometimes, you need to narrow your search even more.
   Krusearcher allows a much finer search, and for that, let's look
   at the 
@@ -201,7 +201,7 @@
       </textobject>
     </mediaobject>
   </figure>
-  <para>This screenshot shows a search for files whose size is
+  <para>This screen shot shows a search for files whose size is
   between 10KB and 150KB, which were modified between October 10th
   and November 1st, which belong to any user in the 'users' group,
   and are readable and writable by anyone in the 'users' group, but
@@ -211,8 +211,8 @@
   <para>
     <emphasis role="bold">Size</emphasis>
   </para>
-  <para>Allows you to choose the size range of the file you're
-  looking for. By checking the checkboxes, you can search for a
+  <para>Allows you to choose the size range of the file you are
+  looking for. By checking the check boxes, you can search for a
   file which is bigger than XXX bytes (or KB, MB), smaller than XXX
   bytes or, by checking both search for a file which size is bigger
   than XXX but smaller than YYY.</para>
@@ -227,9 +227,9 @@
       <guilabel>Modified between</guilabel>: allows you to enter
       two dates. &krusader; will search for files with a
       modification date between the first date and the second one,
-      inclusive. If you only enter a date in the left box, you'll
+      inclusive. If you only enter a date in the left box, you will
       be searching for files older than that date. If you only
-      enter a date in the right box, you'll be searching for files
+      enter a date in the right box, you will be searching for files
       newer than that date. 
       <note>
         <para>You can click on the date icon (near the input boxes)
@@ -249,9 +249,9 @@
     <listitem>
       <para>
       <guilabel>Modified in the last/not modified in the
-      last</guilabel>: in these input boxes, you enter not a date,
+      last</guilabel>: in these input boxes, you do not enter a date
       but a number. This number represents days/weeks/months (as
-      chosen in the near dropbox). Entering the number 5 in the
+      chosen in the near drop box). Entering the number 5 in the
       upper input box, makes &krusader; search for files
       that were modified in the last 5 days. Entering the number 2
       in the lower input box makes &krusader; search for
@@ -267,8 +267,8 @@
     <listitem>
       <para>
       <guilabel>Belongs to user/group</guilabel>: by checking each
-      of the corresponding checkboxes, you can search for files
-      which belong to a certain user and/or group. The dropbox
+      of the corresponding check boxes, you can search for files
+      which belong to a certain user and/or group. The drop box
       lists all the user names and group names in the system, just
       choose one and go ahead.</para>
     </listitem>
@@ -282,7 +282,7 @@
     </listitem>
   </itemizedlist>
   <note>
-    <para>To clarify, the screenshot above (the permissions part)
+    <para>To clarify, the screen shot above (the permissions part)
     describes a search for files that belong to any user in group
     'users', are readable, writable but not executable to any user
     in the group, are readable but not writable or executable to
@@ -293,14 +293,14 @@
     <emphasis role="bold">Results</emphasis>
   </para>
   <para>Clicking on the 
-  <guibutton>Search</guibutton>button to start the search and open
+  <guibutton>Search</guibutton> button to start the search and open
   the Results window. Here you can see the progress and the the
   results of the search action. If you want you can stop the
   current search action with the 
   <guibutton>Stop</guibutton>button. In the result list select the
   file and use 
   <keycap>F3</keycap>/
-  <keycap>F4</keycap>to view/edit or use the right-click menu. When
+  <keycap>F4</keycap> to view/edit or use the right-click menu. When
   you click on a found item, the directory of the active panel will
   change if the selected item is not in the current panel
   directory. When you close the Krusearcher window, the selected
@@ -309,7 +309,7 @@
     <emphasis role="bold">Feed to listbox</emphasis>
   </para>
   <para>When you click the 
-  <guibutton>Feed to listbox</guibutton>button after the results
+  <guibutton>Feed to listbox</guibutton> button after the results
   are displayed, then &krusader; ask for a Query Name,
   this name will be used in the Results-Tab in the List Panel that
   holds the search results. You can do whatever you want on the

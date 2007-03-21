@@ -26,7 +26,7 @@
   </indexterm>
   <sect1 id="file-menu">
     <title>
-    <guimenu>File</guimenu>Menu</title>
+    <guimenu>File</guimenu> Menu</title>
     <variablelist>
       <varlistentry>
         <term>
@@ -119,7 +119,7 @@
         </term>
         <listitem>
           <para>Opens a dialog to 
-          <link linkend="copying">copy</link>the currently selected
+          <link linkend="copying">copy</link> the currently selected
           files or directories to a specified location.</para>
         </listitem>
       </varlistentry>
@@ -135,7 +135,7 @@
         </term>
         <listitem>
           <para>Opens a dialog to 
-          <link linkend="copying">move</link>the currently selected
+          <link linkend="copying">move</link> the currently selected
           files or directories to a specified location.</para>
         </listitem>
       </varlistentry>
@@ -152,7 +152,7 @@
         </term>
         <listitem>
           <para>Creates a 
-          <link linkend="pack-archive">new archive</link>of all the
+          <link linkend="pack-archive">new archive</link> of all the
           selected files and directories in the active
           panel.</para>
         </listitem>
@@ -170,7 +170,7 @@
         </term>
         <listitem>
           <para>
-          <link linkend="unpacking-archives">Unpacks</link>all the
+          <link linkend="unpacking-archives">Unpacks</link> all the
           selected files in the active panel.</para>
         </listitem>
       </varlistentry>
@@ -187,7 +187,7 @@
         </term>
         <listitem>
           <para>
-          <link linkend="test-archive">Tests archive</link>for
+          <link linkend="test-archive">Tests archive</link> for
           corruption.</para>
         </listitem>
       </varlistentry>
@@ -281,7 +281,7 @@
         </term>
         <listitem>
           <para>
-          <link linkend="checksum">Checksum creation</link>on
+          <link linkend="checksum">Checksum creation</link> on
           file(s) and/or folder(s).</para>
         </listitem>
       </varlistentry>
@@ -314,7 +314,7 @@
           <para>The &splitfile_lnk; function splits a
           file up into multiple smaller files so that it can be
           stored on several smaller media (like 
-          <hardware>diskettes, zip-drives...</hardware>) or sent by
+          <hardware>diskettes, zip-drives, ...</hardware>) or sent by
           e-mail.</para>
         </listitem>
       </varlistentry>
@@ -350,7 +350,7 @@
         <listitem>
           <para>Closes &krusader; and cleans up the
           temporary directory, the same as pressing 
-          <keycap>F10</keycap>key.</para>
+          <keycap>F10</keycap> key.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -372,7 +372,7 @@
         </term>
         <listitem>
           <para>
-          <link linkend="copying">Cuts</link>the selected file(s)
+          <link linkend="copying">Cuts</link> the selected file(s)
           to the clipboard to be moved to another location.</para>
         </listitem>
       </varlistentry>
@@ -389,7 +389,7 @@
         </term>
         <listitem>
           <para>
-          <link linkend="copying">Copies</link>the selected file(s)
+          <link linkend="copying">Copies</link> the selected file(s)
           to the clipboard to be moved to another location.</para>
         </listitem>
       </varlistentry>
@@ -406,7 +406,7 @@
         </term>
         <listitem>
           <para>
-          <link linkend="copying">Pastes</link>previously cut or
+          <link linkend="copying">Pastes</link> previously cut or
           copied items from the clipboard to the current
           directory.</para>
         </listitem>
@@ -423,7 +423,7 @@
         </term>
         <listitem>
           <para>
-          <link linkend="renaming">Renames</link>the currently
+          <link linkend="renaming">Renames</link> the currently
           selected file.</para>
         </listitem>
       </varlistentry>
@@ -439,7 +439,7 @@
         </term>
         <listitem>
           <para>
-          <link linkend="deleting">Deletes</link>the currently
+          <link linkend="deleting">Deletes</link> the currently
           selected file(s).</para>
         </listitem>
       </varlistentry>
@@ -457,22 +457,22 @@
         <listitem>
           <para>Opens a dialog which allows you to select files in
           the active panel. In the 
-          <guilabel>Search for</guilabel>dialog place the main
+          <guilabel>Search for</guilabel> dialog place the main
           search criteria. Enter a filename, a wildcard (
           <literal role="extension">*.o.*</literal>, 
-          <literal role="extension">*.c</literal>&etc;)
+          <literal role="extension">*.c</literal> &etc;)
           or both - separated by a space. When using 
           <literal>'text'</literal>, the results are the same as 
           <literal>'*text*'</literal>. You can exclude files from
           the search with '|' (&eg; 
           <literal role="extension">'*.cpp *.h |
           *.moc.cpp'</literal>). With the 
-          <link linkend="profiles">profile handler</link>you can
+          <link linkend="profiles">profile handler</link> you can
           manage your selections for future usage. A double-click
-          on a Profile is the same as entering the selection and
+          on a profile is the same as entering the selection and
           pressing the 
-          <guibutton>OK</guibutton>button. More options for 
-          <guilabel>Select Group</guilabel>dialog are explained in
+          <guibutton>OK</guibutton> button. More options for 
+          <guilabel>Select Group</guilabel> dialog are explained in
           the 
           <link linkend="krusearcher">Search dialog</link>, which
           are basically almost the same dialogs.</para>
@@ -493,7 +493,7 @@
           <para>The opposite of 
           <guimenuitem>Select Group</guimenuitem>. The files that
           match the pattern in the active panel will be
-          unselected.</para>
+          deselected.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -510,7 +510,7 @@
         <listitem>
           <para>Selects all files in the active panel. You can also
           select all directories by activating the 
-          <guilabel>Automark directories</guilabel>option in the
+          <guilabel>Automark directories</guilabel> option in the
           &konfiglookandfeel_lnk;.</para>
         </listitem>
       </varlistentry>
@@ -543,7 +543,7 @@
         <listitem>
           <para>Inverts the selection status of all the files in
           the active panel (&ie; selected files will
-          become unselected and unselected files will become
+          become unselected and deselected files will become
           selected).</para>
         </listitem>
       </varlistentry>
@@ -568,13 +568,11 @@
         </term>
         <listitem>
           <para>Configures the 
-          <guimenuitem>Compare
-          Directories</guimenuitem>function.</para>
+          <guimenuitem>Compare Directories</guimenuitem> function.</para>
           <itemizedlist>
             <listitem>
               <para>
-              <guimenuitem>Select Newer and
-              Single</guimenuitem>(default)</para>
+              <guimenuitem>Select Newer and Single</guimenuitem> (default)</para>
             </listitem>
             <listitem>
               <para>
@@ -588,8 +586,7 @@
             </listitem>
             <listitem>
               <para>
-                <guimenuitem>Select Different and
-                Single</guimenuitem>
+                <guimenuitem>Select Different and Single</guimenuitem>
               </para>
             </listitem>
             <listitem>
@@ -610,7 +607,7 @@
         <listitem>
           <para>
           <link linkend="calculate">Calculates occupied
-          space</link>of files and folders, archives and remote
+          space</link> of files and folders, archives and remote
           filesystems.</para>
         </listitem>
       </varlistentry>
@@ -891,7 +888,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Opens the default Useractions and Useractions
+          <para>Opens the default user actions and those
           created by the user.</para>
         </listitem>
       </varlistentry>
@@ -1052,7 +1049,7 @@
         </term>
         <listitem>
           <para>Opens 
-          <link linkend="krusearcher">KruSearcher</link>- the
+          <link linkend="krusearcher">KruSearcher</link> - the
           Krusader search module.</para>
         </listitem>
       </varlistentry>
@@ -1105,7 +1102,7 @@
         </term>
         <listitem>
           <para>Opens 
-          <link linkend="mount-man">MountMan</link>- the
+          <link linkend="mount-man">MountMan</link> - the
           Mount-Manager.</para>
         </listitem>
       </varlistentry>
@@ -1140,9 +1137,9 @@
           <link linkend="remote-connections">New Network
           Connection</link>dialog to start a &FTP;, SMB,
           FISH or SFTP connection to a remote host. If you leave
-          the username and password fields empty, you'll login as
+          the user name and password fields empty, you will login as
           anonymous. You can 
-          <link linkend="bookman">Bookmark</link>these remote
+          <link linkend="bookman">Bookmark</link> these remote
           sessions.</para>
         </listitem>
       </varlistentry>
@@ -1161,8 +1158,8 @@
         <listitem>
           <para>Ends the 
           <link linkend="remote-connections">remote
-          connection</link>in the active panel and returns to the
-          startup path.</para>
+          connection</link> in the active panel and returns to the
+          start-up path.</para>
         </listitem>
       </varlistentry>
       <!-- vertical bar -->
@@ -1262,7 +1259,7 @@
   </sect1>
   <sect1 id="settings-menu">
     <title>
-    <guimenu>Settings</guimenu>Menu</title>
+    <guimenu>Settings</guimenu> Menu</title>
     <variablelist>
       <varlistentry>
         <term>
@@ -1297,7 +1294,7 @@
         </term>
         <listitem>
           <para>Shows the 
-          <link linkend="mainwindow">Statusbar</link>if
+          <link linkend="mainwindow">Statusbar</link> if
           chosen.</para>
         </listitem>
       </varlistentry>
@@ -1310,7 +1307,7 @@
         </term>
         <listitem>
           <para>Hides the 
-          <link linkend="mainwindow">Statusbar</link>if
+          <link linkend="mainwindow">Statusbar</link> if
           chosen.</para>
         </listitem>
       </varlistentry>
@@ -1335,7 +1332,7 @@
         </term>
         <listitem>
           <para>Shows the 
-          <link linkend="cmdline">Command Line</link>if
+          <link linkend="cmdline">Command Line</link> if
           checked.</para>
         </listitem>
       </varlistentry>
@@ -1353,7 +1350,7 @@
         </term>
         <listitem>
           <para>Show the 
-          <link linkend="cmdline">Terminal Emulator</link>if
+          <link linkend="cmdline">Terminal Emulator</link> if
           checked.</para>
         </listitem>
       </varlistentry>
@@ -1372,24 +1369,24 @@
           <para>Opens a dialog which allows you to configure the
           &krusader; key bindings.</para>
           <para>With the 
-          <guibutton>Import shortcuts</guibutton>and 
-          <guibutton>Export shortcuts</guibutton>buttons you can
+          <guibutton>Import shortcuts</guibutton> and 
+          <guibutton>Export shortcuts</guibutton> buttons you can
           load and save a Key-binding profile. This allows
           &krusader; to have the &tcmd;,
           &mc;, foo-commander, or your custom
           Key-bindings. The only limitation is that global
           &kde; key-bindings and some
-          &krusader; key-bindings can't be changed yet,
+          &krusader; key-bindings can not be changed yet,
           as well as some features in foo-commander that we either
-          don't have or don't need. The Key-bindings are stored in 
+          do not have or need. The Key-bindings are stored in 
           <filename>$KDEDIR/share/apps/krusader</filename>, 
-          <filename>foo.keymap.info</filename>contains a
+          <filename>foo.keymap.info</filename> contains a
           description, 
-          <filename>foo.keymap</filename>is a ini file that holds
+          <filename>foo.keymap</filename> is an ini file that holds
           the Key-bindings. Until &krusader;-1.70.1 this
           was a binary file, &krusader; is backwards
           compatible for importing this legacy binary format. If a 
-          <filename>*.keymap.info</filename>text file exists,
+          <filename>*.keymap.info</filename> text file exists,
           &krusader; will display it, showing additional
           information regarding the loaded Key-bindings file. Here
           you have a chance to exit without importing the proposed
@@ -1397,8 +1394,8 @@
           <tip>
             <para>A &tcmd; Key-bindings file is
             provided. Please 
-            <link linkend="help_krusader">upload your favorite
-            Key-bindings schemes</link>so that they become
+            <link linkend="help_krusader"> upload your favorite
+            Key-bindings schemes</link> so that they become
             available for the &krusader; community.
             Thanks!</para>
           </tip>
@@ -1416,7 +1413,7 @@
           &main_toolbar_lnk; or the
           &actions_toolbar_lnk;. You can add action
           buttons of your favourite &useractions_lnk; to
-          the desired Toolbar.</para>
+          the desired toolbar.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1429,7 +1426,7 @@
         </term>
         <listitem>
           <para>Opens 
-          <link linkend="konfigurator">Konfigurator</link>- the
+          <link linkend="konfigurator">Konfigurator</link> - the
           &krusader; configuration center.</para>
         </listitem>
       </varlistentry>
@@ -1536,7 +1533,7 @@
         </term>
         <listitem>
           <para>Opens a menu where 
-          <link linkend="panel_profiles">Panel profiles</link>can
+          <link linkend="panel_profiles">Panel profiles</link> can
           be saved and restored.</para>
         </listitem>
       </varlistentry>
@@ -1619,7 +1616,7 @@
           <para>Saves the current size and position of the
           &krusader; main window. This action can be
           automated with 
-          <guilabel>"Save settings on exit"</guilabel>in
+          <guilabel>"Save settings on exit"</guilabel> in
           &konfigstartpg_lnk;</para>
         </listitem>
       </varlistentry>
@@ -1658,7 +1655,7 @@
           changes the mouse cursor to a combination arrow and
           question mark. Clicking on items within
           &krusader; will open a help window (if one
-          exists for that particular item) explaining the item's
+          exists for that particular item) explaining the item
           function. Use this feature if you want to know more about
           a specific item. A right-click on an item will also open
           the &whatsthis_url; help.</para>
@@ -1677,7 +1674,7 @@
           via mail.</para>
           <note>
             <para>
-              <remark>If you've got bugs to report please do not
+              <remark>If you have bugs to report please do not
               use &kde;'s bugzilla http://bugs.kde.org/,
               &kde;'s Bug Tracking System. We use
               Sourceforge.net for reporting and managing our

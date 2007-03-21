@@ -3,16 +3,16 @@
   <indexterm>
     <primary>Locate</primary>
   </indexterm>
-  <para>&krusader; has a &GUI; frontend for
+  <para>&krusader; has a &GUI; front end for
   the 
-  <command>locate</command>command (findutils). Locate is used for
+  <command>locate</command> command (findutils). Locate is used for
   fast file searching not from a directory but a database. The
   package contains two files, 
-  <command>locate</command>and 
+  <command>locate</command> and 
   <command>updatedb</command>. Updatedb goes through the local
-  filesystem and stores the file entries in the database. 
-  <command>cron</command>often calls 
-  <command>updatedb</command>every night (set with Kcron). Choose 
+  file system and stores the file entries in the database. 
+  <command>cron</command> often calls 
+  <command>updatedb</command> every night (set with Kcron). Choose 
   <emphasis role="bold">
     <menuchoice>
       <guimenu>Commands</guimenu>
@@ -20,8 +20,8 @@
     </menuchoice>
   </emphasis>or 
   <keycombo action="simul">&Ctrl;
-  <keycap>L</keycap></keycombo>to start this feature. 
-  <link linkend="konfig-advanced">Konfigurator</link>can set
+  <keycap>L</keycap></keycombo> to start this feature. 
+  <link linkend="konfig-advanced">Konfigurator</link> can set
   additional arguments for 
   <command>updatedb</command>.</para>
   <para>Checkbox Options 
@@ -32,7 +32,7 @@
       database contains entries which no longer exist any more
       (deleted, moved since the last 
       <command>updatedb</command>), 
-      <command>locate</command>does not list them. It checks the
+      <command>locate</command> does not list them. It checks the
       existence of each file before the listing in the results
       window (slow).</para>
     </listitem>
@@ -48,7 +48,7 @@
       <para>
       <guibutton>Locate</guibutton>: executes 
       <command>locate 
-      <replaceable>foo foo</replaceable></command>and places its
+      <replaceable>foo foo</replaceable></command> and places its
       output into the results window.</para>
     </listitem>
     <listitem>
@@ -59,7 +59,7 @@
     <listitem>
       <para>
       <guibutton>UpdateDB</guibutton>: starts 
-      <command>updatedb</command>for updating the locate database
+      <command>updatedb</command> for updating the locate database
       after entering the root password.</para>
     </listitem>
     <listitem>
@@ -71,7 +71,7 @@
   <para>Results window 
   <itemizedlist>
     <listitem>
-      <para>Double click on an item: steps to its directory, makes
+      <para>Double-click on an item: steps to its directory, makes
       the item visible and closes the locate dialog.</para>
     </listitem>
     <listitem>

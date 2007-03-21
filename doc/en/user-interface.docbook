@@ -1,23 +1,23 @@
-<chapter>
+<chapter id="user-interface">
   <title>User Interface</title>
   <indexterm>
     <primary>User Interface</primary>
   </indexterm>
   <sect1 id="ofm-userinterface">
     <title>OFM User Interface</title>
-    <para>The OFM filemanagers' concept contains 
+    <para>The OFM file manager concept contains 
     <link linkend="features">many features</link> that make them
     powerful enough to belong among the best file managers today.
     The interface is simple: left panel, right panel and a command
     line below. Because of interaction between these three items
-    the user's file managing will become more efficient.</para>
+    the file managing will become more efficient.</para>
     <para>If you would like to know 
     <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml">
     how &krusader; works</ulink> you can try it yourself,
     just install it on your computer. To accept an
     &ofm_url; like &krusader;, the user needs
     to get used to 
-    <emphasis>new ideas</emphasis>that are actually already 20
+    <emphasis>new ideas</emphasis> that are actually already 20
     years old. If you prefer to waste time and lose a lot of
     productivity, you can always continue to use one panel file
     managers that are based on &Windows;
@@ -32,7 +32,7 @@
      <imageobject><imagedata fileref="mainwindow.png" format="PNG"/></imageobject>
      <imageobject><imagedata fileref="mainwindow.png" format="EPS"/></imageobject>
      <textobject><phrase>&krusader; Main Window</phrase></textobject>
-     <caption><para>&krusader;'s main window with all the different parts named on the screen.</para></caption>
+     <caption><para>&krusader; is main window with all the different parts named on the screen.</para></caption>
     </mediaobject>
 </screenshot>
 -->
@@ -49,23 +49,23 @@
     </figure>
     <para>The User Interface is based on &ofm_url;
     paradigm, a 20- year old principle that has proven its bones.
-    It's known as simple, easy and powerful. In the following
-    sections we'll cover the basic functions of each part with the
+    It is known as simple, easy and powerful. In the following
+    sections we will cover the basic functions of each part with the
     exception of:</para>
     <itemizedlist>
       <listitem>
         <para>The 
-        <link linkend="menu-commands">Menu Bar</link>which has a
+        <link linkend="menu-commands">Menu Bar</link> which has a
         chapter of its own.</para>
       </listitem>
       <listitem>
         <para>The 
-        <link linkend="bookman">Bookmarks</link>which has a chapter
+        <link linkend="bookman">Bookmarks</link> which has a chapter
         of its own.</para>
       </listitem>
       <listitem>
         <para>The 
-        <emphasis role="bold">Status Bar</emphasis>shows the
+        <emphasis role="bold">Status Bar</emphasis> shows the
         properties of the current file (that is being) in focus.
         You can use "drag and drop" to drop a &URL;
         "into" the Status Bar.</para>
@@ -105,17 +105,17 @@
       <para>The &krusader; Main Toolbar, is a standard
       &kde; toolbar that can be dragged around the
       application or configured via a 
-      <keycap>Right-Click</keycap>menu. You can decide whether or
+      <keycap>Right-Click</keycap> menu. You can decide whether or
       not you want to display it each time you start
       &krusader; in the &konfigstartpg_lnk;,
       and you can toggle its use in the current session in the
       &viewmenu_lnk;. The Main Toolbar contents can be
       configured from the 
-      <guimenuitem>Configure Toolbars</guimenuitem>in the
+      <guimenuitem>Configure Toolbars</guimenuitem> in the
       &settingsmenu_lnk; or the 
-      <guilabel>Toolbar</guilabel>tab in the
+      <guilabel>Toolbar</guilabel> tab in the
       &konfiglookandfeel_lnk;. Since various commands
-      and options in &krusader; are context dependent,
+      and options in &krusader; are context-dependent,
       some commands are not always available. The icon of an
       inappropriate or inactive action will be deactivated
       (grayed-out) disabling its use. &bookmarks_lnk;
@@ -136,13 +136,13 @@
           <guimenu>View</guimenu>
           <guimenuitem>Show Actions Toolbar</guimenuitem>
         </menuchoice>
-      </emphasis>. To add useractions, use 
+      </emphasis>. To add user actions, use 
       <emphasis role="bold">
         <menuchoice>
           <guimenu>Settings</guimenu>
           <guimenuitem>Configure Toolbars</guimenuitem>
         </menuchoice>
-      </emphasis>and select Actions Toolbar. You can, for example,
+      </emphasis> and select Actions Toolbar. You can, for example,
       drag the Actions Toolbar to the right side using the
       mouse.</para>
     </sect2>
@@ -153,20 +153,20 @@
         <secondary>Location Toolbar</secondary>
       </indexterm>
       <para>Below the 
-      <guibutton>Main Toolbar</guibutton>there is a 
-      <guibutton>Location Toolbar</guibutton>for each panel. It
+      <guibutton>Main Toolbar</guibutton> there is a 
+      <guibutton>Location Toolbar</guibutton> for each panel. It
       shows the path the panel is currently pointing to. If the
       selected path is too long, it will be automatically shortened
       and an ellipsis "..." will replace the omitted part of the
-      pathname. When entering archives the path will be displayed
+      path name. When entering archives the path will be displayed
       in the following format: "archive
       name:/directory/archive_filename/the directory inside the
       archive". This format makes the paths uniform and easy to
       read. The 
-      <guibutton>Location Toolbar</guibutton>supports also
+      <guibutton>Location Toolbar</guibutton> supports also
       &kioslaves1_url; but not all of them, some can
       only be used with the 
-      <link linkend="krviewer">viewer</link>and some can not be
+      <link linkend="krviewer">viewer</link> and some can not be
       used. The user can enter a desired path by clicking on it. 
       <itemizedlist>
         <listitem>
@@ -189,21 +189,21 @@
             <command>devices:/</command>
           </userinput>gives an overview of the devices
           &eg; 
-          <hardware>floppy</hardware>or 
-          <hardware>CD-ROM</hardware>drives.</para>
+          <hardware>floppy</hardware> or 
+          <hardware>CD-ROM</hardware> drives.</para>
         </listitem>
         <listitem>
           <para>
           <userinput>
             <command>trash:/</command>
-          </userinput>opens &kde;'s trash.</para>
+          </userinput>opens &kde; is trash.</para>
         </listitem>
         <listitem>
           <para>
           <userinput>
             <command>ipod:/</command>
           </userinput>uses the &kio_ipodslave_url; to
-          access, upload and organize the Music stored on
+          access, upload and organize the music stored on
           &appleipod;.</para>
         </listitem>
         <listitem>
@@ -211,15 +211,15 @@
           &remote_connections_lnk; .</para>
         </listitem>
       </itemizedlist>You can copy-paste a &URL; in the 
-      <guibutton>Location Toolbar</guibutton>or use a middle click.
-      With the Right-Click menu you can configure the autocomplete
+      <guibutton>Location Toolbar</guibutton> or use a middle click.
+      With the Right-Click menu you can configure the auto-complete
       function. An optional 
-      <guilabel>Clear Location Toolbar</guilabel>button is also
+      <guilabel>Clear Location Toolbar</guilabel> button is also
       available.</para>
       <para>Quick Navigation: 
       <keycap>&Ctrl;</keycap>point with mouse in the
       middle of &URL; of the 
-      <guibutton>Location Toolbar</guibutton>. A popup window shows
+      <guibutton>Location Toolbar</guibutton>. A pop-up window shows
       the next &URL; location. Pressing 
       <keycap>&Ctrl;</keycap>+ &LMB; shows
       the location where the mouse was pointing to. This feature
@@ -264,7 +264,7 @@
         <listitem>
           <para>
           <guibutton>Sync-browsing Button</guibutton>: when active,
-          each directory-change in the specific panel is performed
+          each directory change in the specific panel is performed
           in the other panel as well.</para>
         </listitem>
       </itemizedlist></para>
@@ -288,11 +288,11 @@
     </itemizedlist>&krusader; is a "twin-panel" file
     manager so there are two panels: the "Left" panel and the
     "Right" panel, or a more important logical distinction, the
-    *Active* panel and the *Inactive* panel. The Active panel is
+    *Active* panel and the *Inactive* panel. The active panel is
     the one that will accept your mouse and keyboard input. If you
     choose a command from the 
-    <guilabel>Menu-Bar</guilabel>or 
-    <guilabel>Toolbar</guilabel>the command will act upon the
+    <guilabel>Menu-Bar</guilabel> or 
+    <guilabel>Toolbar</guilabel> the command will act upon the
     selected files/directories in the active panel. You can switch
     between panels using the &Tab; key or by clicking on
     the 
@@ -329,22 +329,22 @@
         <primary>Panel</primary>
         <secondary>List Panel</secondary>
       </indexterm>
-      <para>This is the default panel and the one you'll probably
+      <para>This is the default panel and the one you will probably
       use most of the time. This panel shows the contents of one
       directory which can be local (part of your mounted file
       systems, either a native file or the files inside an archive)
       or remote files (accessed via &FTP; or Samba).
-      File copy/paste/cut via Clipboard between
+      File copy/paste/cut via clipboard between
       &konqueror; and &krusader; 
       <keycombo action="simul">&Ctrl;
       <keycap>c</keycap></keycombo>, 
       <keycombo action="simul">&Ctrl;
       <keycap>v</keycap></keycombo>, 
       <keycombo action="simul">&Ctrl;
-      <keycap>x</keycap></keycombo>is supported. 
+      <keycap>x</keycap></keycombo> is supported. 
       <keycombo action="simul">&Alt;&Ctrl;
-      <keycap>r</keycap></keycombo>toggles the 
-      <guilabel>List Panel</guilabel>between horizontal and
+      <keycap>r</keycap></keycombo> toggles the 
+      <guilabel>List Panel</guilabel> between horizontal and
       vertical mode.</para>
       <para>The following items are available: 
       <itemizedlist>
@@ -359,15 +359,15 @@
           a message will be displayed with the reason for
           unavailablity instead of the information.</para>
           <para>The 
-          <guibutton>Media button</guibutton>on the left of the 
-          <guilabel>Information Label</guilabel>displays a list of
+          <guibutton>Media button</guibutton> on the left of the 
+          <guilabel>Information Label</guilabel> displays a list of
           all available media, where you can select the desired
           media (hdd partition, dvd, usb-stick, &etc;).
           The context menu gives several options like 
           <guilabel>Mount</guilabel>, 
           <guilabel>Open in a new tab</guilabel>, &etc;
           The 
-          <guibutton>Media button</guibutton>is 
+          <guibutton>Media button</guibutton> is 
           <link linkend="konfig-advanced">
           configurable</link>.</para>
         </listitem>
@@ -387,21 +387,21 @@
           Down arrow = Z to A sorting). Default
           &useractions_lnk; set a keybinding for the
           Column Headers. The default 
-          <guilabel>Column Headers</guilabel>are: 
+          <guilabel>Column Headers</guilabel> are: 
           <guilabel>Name, Ext, Size, Modified, rwx</guilabel>.
           Predefined atomic extensions like 
-          <filename>tar.gz</filename>are shown as one part in the 
-          <guilabel>Ext</guilabel>Column. More 
+          <filename>tar.gz</filename> are shown as one part in the 
+          <guilabel>Ext</guilabel> Column. More 
           <link linkend="konfig-looknfeel-panel">optional Column
-          Headers</link>are available with the &RMB;.
+          Headers</link> are available with the &RMB;.
           The width 
-          <guilabel>Column Headers</guilabel>can be changed with
+          <guilabel>Column Headers</guilabel> can be changed with
           the mouse by single clicking and moving the divider line
           to the desired width (keep the mouse button pressed).
           Both 
-          <guilabel>List Panels</guilabel>remember the sort order
+          <guilabel>List Panels</guilabel> remember the sort order
           and column width. The 
-          <guilabel>Column Headers</guilabel>can be changed and
+          <guilabel>Column Headers</guilabel> can be changed and
           saved individually to each panel.</para>
         </listitem>
         <listitem>
@@ -411,32 +411,32 @@
           </emphasis>: displays the files and directories in the
           browsed directory. The &quick_search_lnk;
           allows you to search for files by typing their names, or
-          the first few characters of a filename. Pressing
+          the first few characters of a file name. Pressing
           &Enter; or double clicking on a file will
           open/execute that file. You can select/unselect files
           using the mouse with the 
-          <keycap>Insert</keycap>key or the
+          <keycap>Insert</keycap> key or the
           &editmenu_lnk;.</para>
         </listitem>
         <listitem>
           <para>
           <emphasis>
             <guilabel>Totals Label</guilabel>
-          </emphasis>: selecting or unselecting files will change
+          </emphasis>: selecting or deselecting files will change
           the 
           <emphasis>
             <guilabel>Totals Label</guilabel>
           </emphasis>at the bottom of the panel, which displays how
-          many files you've selected (and how much total disk space
+          many files you have selected (and how much total disk space
           they use) as well as the total file and disk usage of the
           current directory (as opposed to the information label
           that displays information for the whole file system). If
           a directory contains a lot of subdirectories, it may not
-          possible to drop the &URL; onto the panel (on
+          be possible to drop the &URL; onto the panel (on
           which only directories are visible), but the
           &URL; can be dropped onto the "Status Bar" or
           "Totals Label" instead. When a 
-          <link linkend="view-menu">custom filter</link>is set, it
+          <link linkend="view-menu">custom filter</link> is set, it
           will show the setting, example: [*.cpp].</para>
         </listitem>
       </itemizedlist>When using the "&kde; default 
@@ -445,20 +445,20 @@
       surrounded by a fine-lined rectangle. By default an icon is
       shown according to the file type. Use
       &konfiglookandfeel_lnk; to change the default
-      configuration to better meet your individual needs.</para>
+      configuration to meet your individual needs.</para>
       <para>Some useful 
       <guilabel>List panel</guilabel>&keybindigs_lnk;: 
       <itemizedlist>
         <listitem>
           <para>
           <keycombo action="simul">&Ctrl;
-          <keycap>r</keycap></keycombo>will refresh the
+          <keycap>r</keycap></keycombo> will refresh the
           panel.</para>
         </listitem>
         <listitem>
           <para>Focus a file or directory on the left panel, press 
           <keycombo action="simul">&Ctrl;
-          <keycap>Left arrow</keycap></keycombo>and the right panel
+          <keycap>Left arrow</keycap></keycombo> and the right panel
           changes: 
           <itemizedlist>
             <listitem>
@@ -474,7 +474,7 @@
         <listitem>
           <para>For the right panel: press 
           <keycombo action="simul">&Ctrl;
-          <keycap>Right arrow</keycap></keycombo>and the left panel
+          <keycap>Right arrow</keycap></keycombo> and the left panel
           will change.</para>
         </listitem>
       </itemizedlist></para>
@@ -485,11 +485,11 @@
         <primary>Panel</primary>
         <secondary>PopUp Panel (3rd Panel)</secondary>
       </indexterm>
-      <para>This is "&krusader;'s 3rd Hand" or the 3rd
-      Panel, click on the up-arrow button on the left of the 
-      <guilabel>Totals Label</guilabel>or 
+      <para>This is "&krusader; is 3rd Hand" or the 3rd
+      Panel, click on the arrow-up button on the left of the 
+      <guilabel>Totals Label</guilabel> or 
       <keycombo action="simul">&Alt;
-      <keycap>Down-Arrow</keycap></keycombo>to open the 
+      <keycap>Down-Arrow</keycap></keycombo> to open the 
       <guilabel>PopUp Panel</guilabel>. This panel has several
       display modes which can be activated by clicking on the
       appropriate button. 
@@ -521,7 +521,7 @@
           &eg; 
           <literal role="extension">*.png</literal>and click on the
           
-          <guibutton>"Go"</guibutton>button. The "floppy" button
+          <guibutton>"Go"</guibutton> button. The "floppy" button
           stores the current selection. The "select group dialog"
           is also available.</para>
         </listitem>
@@ -532,7 +532,7 @@
           </emphasis>: views a text file, views an image,
           &etc; A thumbnail view is generated whenever
           you open the 
-          <guilabel>Viewer Panel</guilabel>and click on a name of a
+          <guilabel>Viewer Panel</guilabel> and click on a name of a
           folder that contains pictures.</para>
         </listitem>
         <listitem>
@@ -543,7 +543,7 @@
           directory.</para>
         </listitem>
       </itemizedlist>If needed you can resize the window
-      &eg; to better display a picture or view a file's
+      &eg; to better display a picture or view a file is
       contents. Click on the arrow down button to close the 
       <guilabel>3rd Hand Panel</guilabel>.</para>
     </sect2>
@@ -551,10 +551,10 @@
       <title>Folder History</title>
       <para>Both panels remember recently visited folders. Click on
       the 
-      <guibutton>"Folder history"</guibutton>button ("watch"
-      symbol) to open the Folder history list. Here you can quickly
+      <guibutton>"Folder history"</guibutton> button ("watch"
+      symbol) to open the folder history list. Here you can quickly
       change to previously visited folders. The currently focused
-      folder is checked. On every new start of Krusader, the
+      folder is checked. On every new start of &krusader;, the
       history list is empty.</para>
     </sect2>
   </sect1>
@@ -586,11 +586,10 @@
     </figure>
     <para>The traditional command line mode offers a single line of
     input to enter commands, it also features two buttons: 
-    <guibutton>"run in terminal mode"</guibutton>(console icon) and
-    
-    <guibutton>"command history"</guibutton>(down arrow) to the
+    <guibutton>"run in terminal mode"</guibutton> (console icon) and
+    <guibutton>"command history"</guibutton> (down arrow) to the
     right of the input line. When you start typing your commands,
-    the command line "auto completion" feature will make its offers
+    the command line auto-completion feature will make its offers
     according to what you choose in the
     &kcontrolcenter;. If you want to change the way
     auto-complete behaves in the current &krusader;
@@ -603,9 +602,9 @@
       <command>cd</command>
       <replaceable>
       &lt;directory&gt;</replaceable>
-    </userinput>in the command line will also cause the active
+    </userinput> in the command line will also cause the active
     panel to point to this directory. Click 
-    <link linkend="cmdline_keybindings">here</link>to view the
+    <link linkend="cmdline_keybindings">here</link> to view the
     command line keybindings.</para>
     <!--
 <screenshot>
@@ -629,45 +628,45 @@
         </textobject>
       </mediaobject>
     </figure>
-    <para>The terminal emulator mode is in fact a small konsole and
+    <para>The terminal emulator mode is in fact a small console and
     acts like one. You can change the active directory in the
     terminal by using the 
     <userinput>
       <command>cd</command>
-    </userinput>command. The terminal emulator will follow the
+    </userinput> command. The terminal emulator will follow the
     active panel directory. When you drag a file from the 
     <interface>"List Panel"</interface>, you will get to choose
     between: "Paste", 
     <command>cd</command>, 
-    <command>mv</command>and 
+    <command>mv</command> and 
     <command>ln</command>. If you drag multiple files, then 
-    <command>cd</command>will not be available. A full screen
+    <command>cd</command> will not be available. A full-screen
     terminal emulator can be used when 
     <link linkend="konfig-looknfeel-operation">configured</link>or 
     <keycombo action="simul">&Ctrl;
-    <keycap>f</keycap></keycombo>toggles between normal and full
+    <keycap>f</keycap></keycombo> toggles between normal and full
     screen mode. If the command line is hidden, press 
     <keycombo action="simul">&Ctrl;
-    <keycap>up</keycap></keycombo>to focus the terminal emulator. 
+    <keycap>up</keycap></keycombo> to focus the terminal emulator. 
     <keycombo action="simul">&Ctrl;
-    <keycap>down</keycap></keycombo>brings you back down. 
+    <keycap>down</keycap></keycombo> brings you back down. 
     <keycombo action="simul">&Ctrl;
     <keycap>Shift</keycap>
-    <keycap>Up/Down</keycap></keycombo>always focus/unfocus the
+    <keycap>Up/Down</keycap></keycombo> always focus/unfocus the
     terminal emulator independently whether the command line is
     shown or not. 
     <keycombo action="simul">&Ctrl;
-    <keycap>Enter</keycap></keycombo>and 
+    <keycap>Enter</keycap></keycombo> and 
     <keycombo action="simul">&Ctrl;
     <keycap>Shift</keycap>
-    <keycap>Enter</keycap></keycombo>paste the filename. You can
+    <keycap>Enter</keycap></keycombo> paste the filename. You can
     close the emulator by typing 
     <userinput>
       <command>exit</command>
     </userinput>.</para>
     <para>You can choose your mode of operation (command line,
-    emulator, both or none) either for &krusader;'s
-    startup with the &konfigstartpg_lnk;, or for the
+    emulator, both or none) either for &krusader;
+    start-up with the &konfigstartpg_lnk;, or for the
     current session with the &viewmenu_lnk;.</para>
   </sect1>
   <sect1 id="fnkeys">
@@ -699,22 +698,22 @@
     bar is derived from the design of the first twin-panel file
     managers and the FN keys usually act the same way with two
     changes: the 
-    <keycap>F2</keycap>key will open a terminal at the last local
+    <keycap>F2</keycap> key will open a terminal at the last local
     path that the active panel pointed to, and the 
-    <keycap>F9</keycap>key is used to rename files. 
+    <keycap>F9</keycap> key is used to rename files. 
     <guilabel>Mkdir</guilabel>
-    <keycap>F7</keycap>can create whole directory trees on the fly
+    <keycap>F7</keycap> can create whole directory trees on the fly
     &eg; 
     <literal>foo/bar/test</literal>. You can choose to display 
-    <link linkend="faqu_resize">or not</link>the 
-    <guilabel>FN keys bar</guilabel>when starting up
+    <link linkend="faqu_resize">or not</link> the 
+    <guilabel>FN keys bar</guilabel> when starting up
     &krusader; via the &konfigstartpg_lnk;,
     and you can toggle its use in the current session with the
     &viewmenu_lnk;. The actions and
     &keybindigs_lnk; performed by the function keys are
     configurable since version 1.51, they will remain active with
     or without the 
-    <guilabel>FN keys bar</guilabel>displayed.</para>
+    <guilabel>FN keys bar</guilabel> displayed.</para>
   </sect1>
   <sect1 id="folder_tabs">
     <title>Folder Tabs</title>
@@ -750,7 +749,7 @@
     <itemizedlist>
       <listitem>
         <para>To 
-        <keycap>open a new tab</keycap>and keep the current
+        <keycap>open a new tab</keycap> and keep the current
         directory: &right_click; on a directory and
         select 
         <keycap>open in a new tab</keycap>, or use the
@@ -769,24 +768,24 @@
       </listitem>
       <listitem>
         <para>To 
-        <keycap>close a tab</keycap>(except the left tab):
+        <keycap>close a tab</keycap> (except the left tab):
         &right_click; on the tab and select 
         <keycap>close tab</keycap>, or use the &MMB;, or
-        use the Folder tabs 
-        <guibutton>"red cross"</guibutton>button, or use 
+        use the Folder tab 
+        <guibutton>"red cross"</guibutton> button, or use 
         <keycombo action="simul">&Alt;&Ctrl;
         <keycap>c</keycap></keycombo>.</para>
       </listitem>
       <listitem>
         <para>To create a 
         <keycap>"home" tab</keycap>: click on the 
-        <guibutton>Folder Tab Bookmark</guibutton>button.</para>
+        <guibutton>Folder Tab Bookmark</guibutton> button.</para>
       </listitem>
       <listitem>
         <para>To 
         <keycap>change tabs</keycap>: 
         <keycombo action="simul">&Shift;
-        <keycap>Left Arrow</keycap></keycombo>or 
+        <keycap>Left Arrow</keycap></keycombo> or 
         <keycombo action="simul">&Shift;
         <keycap>Right Arrow</keycap></keycombo>.</para>
       </listitem>

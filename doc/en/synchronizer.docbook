@@ -6,10 +6,10 @@
   <para>This function compares the left and the right panel
   directories and shows the difference between them. After
   selecting some options and the 
-  <guilabel>Compare</guilabel>function you can synchronize the
+  <guilabel>Compare</guilabel> function you can synchronize the
   files and directories. One panel could be an &FTP;
-  server. Don't forget the 
-  <guilabel>Compare by content</guilabel>option if the file size
+  server. Do not forget the 
+  <guilabel>Compare by content</guilabel> option if the file size
   stays equal. Choose 
   <emphasis role="bold">
     <menuchoice>
@@ -18,7 +18,7 @@
     </menuchoice>
   </emphasis>or 
   <keycombo action="simul">&Ctrl;
-  <keycap>Y</keycap></keycombo>to start this feature. The 
+  <keycap>Y</keycap></keycombo> to start this feature. The 
   <link linkend="konfig-color">colors</link>are
   configurable.</para>
   <note>
@@ -52,16 +52,16 @@
     <title>Procedure:</title>
     <listitem>
       <para>Set the 
-      <guilabel>Left directory</guilabel>and the 
+      <guilabel>Left directory</guilabel> and the 
       <guilabel>Right directory</guilabel>.</para>
     </listitem>
     <listitem>
       <para>Configure the optional 
       <guilabel>File Filter</guilabel>, 
-      <guilabel>General Filters</guilabel>and 
+      <guilabel>General Filters</guilabel> and 
       <guilabel>Advanced filters</guilabel>. The 
-      <guilabel>General Filters</guilabel>includes a 
-      <guilabel>don't search in</guilabel>option which lets you
+      <guilabel>General Filters</guilabel> includes a 
+      <guilabel>don't search in</guilabel> option which lets you
       exclude directories from comparision.</para>
     </listitem>
     <listitem>
@@ -71,39 +71,39 @@
       <guilabel>Recurse subdirectories</guilabel>, 
       <guilabel>Follow symlinks</guilabel>, 
       <guilabel>Compare by content</guilabel>, 
-      <guilabel>Ignore Date</guilabel>and 
+      <guilabel>Ignore Date</guilabel> and 
       <guilabel>Asymmetric</guilabel>.</para>
     </listitem>
     <listitem>
       <para>Click on the 
-      <guibutton>Compare</guibutton>button to compare the
+      <guibutton>Compare</guibutton> button to compare the
       directories.</para>
     </listitem>
     <listitem>
-      <para>By using the 
+      <para>By using
       <link linkend="synccomp_show_options">Show options</link>,
-      you can include/exclude particular filetypes. The files that
+      you can include/exclude particular file types. The files that
       are not on the list will be untouched by
       synchronization.</para>
     </listitem>
     <listitem>
       <para>If needed, you can change the 
-      <guilabel>Task</guilabel>operations determined by the
+      <guilabel>Task</guilabel> operations determined by the
       Comparator with the 
       <link linkend="synccomp_right_click">right click
       menu</link>.</para>
     </listitem>
     <listitem>
       <para>When you agree with the 
-      <guibutton>Compare</guibutton>results, click on the 
-      <guibutton>Synchronize</guibutton>button to show the
+      <guibutton>Compare</guibutton> results, click on the 
+      <guibutton>Synchronize</guibutton> button to show the
       synchronize dialog.</para>
     </listitem>
     <listitem>
       <para>After selecting the options of the 
       <link linkend="synchronizer">Synchronizer</link>, click on
       the 
-      <guibutton>Start</guibutton>button to start the
+      <guibutton>Start</guibutton> button to start the
       synchronization process.</para>
     </listitem>
   </orderedlist>A detailed explanation of all the functions and
@@ -130,17 +130,17 @@
             <para>
             <guilabel>File Filter</guilabel>: Filters the filenames
             at synchronizing. &eg; 
-            <literal role="extension">*.png</literal>selects only
-            those files whose names end with 
-            <literal role="extension">.png</literal>Directories are
+            <literal role="extension">*.png</literal> selects only
+            files the names of which end with 
+            <literal role="extension">.png</literal> Directories are
             listed if the directory name ends with 
-            <literal role="extension">.png</literal>or if the
+            <literal role="extension">.png</literal> or if the
             directory contains files which end with 
-            <literal role="extension">.png</literal>Multiple
+            <literal role="extension">.png</literal> Multiple
             include/exclude example: 
             <literal role="extension">'*.cpp *.h |
             *.moc.cpp'</literal>includes 
-            <literal role="extension">*.cpp *.h</literal>and
+            <literal role="extension">*.cpp *.h</literal> and
             exclude 
             <literal role="extension">*.moc.cpp</literal></para>
           </listitem>
@@ -164,7 +164,7 @@
       <listitem>
         <itemizedlist>
           <listitem>
-            <para>You can make use of wildcards. Multiple patterns
+            <para>You can make use of wild cards. Multiple patterns
             are separated by space (means logical OR) and patterns
             are excluded from the search using the pipe symbol. If
             the pattern is ended with a slash (*pattern*/), it
@@ -183,9 +183,9 @@
             directories whose name is a pattern.</para>
           </listitem>
           <listitem>
-            <para>It's allowed to use quotation marks for names
+            <para>You can use quotation marks for names
             that contain spaces. Filter "Program Files" searches
-            out those files/directories whose name is Program
+            out those files/directories the name of which is Program
             Files.</para>
           </listitem>
           <listitem>
@@ -238,7 +238,7 @@
           <listitem>
             <para>
             <guilabel>Compare by content</guilabel>: The files
-            whose sizes are equal will be compared by content as
+            the sizes of which are equal will be compared by content as
             well.</para>
           </listitem>
           <listitem>
@@ -251,9 +251,9 @@
           <listitem>
             <para>
             <guilabel>Asymmetric</guilabel>: The 
-            <guilabel>Left Directory</guilabel>is the target
+            <guilabel>Left Directory</guilabel> is the target
             directory, the 
-            <guilabel>Right Directory</guilabel>is the source
+            <guilabel>Right Directory</guilabel> is the source
             directory. This functions synchronizes the content of
             the left directory to the right directory. 
             <itemizedlist>
@@ -276,7 +276,7 @@
               </listitem>
             </itemizedlist>This function is useful if the date
             information is unusable, or to synchronize the left
-            directory to the content of a fileserver (like a
+            directory to the content of a file server (like a
             download). Alternatively, it is useful to make a backup
             from the right directory to the left directory. NOTE:
             Do NOT use this option to synchronize a desktop and a
@@ -289,11 +289,11 @@
             slow &FTP; servers, ... When the
             Synchronizer has finished comparing a file, it puts the
             file into the end of the list at once and scrolls the
-            window, if necessary. It is important if you want to
+            window, if necessary. It is important, if you want to
             know what the Synchronizer is doing. If the
             &FTP; server is slow, the comparison of a
             directory may take a lot of time. By turning this
-            option on, one can see that the comparator is "alive",
+            option on, you can see that the comparator is "alive",
             but slow. For fast file systems, it can reduce the
             speed of comparing slightly.</para>
           </listitem>
@@ -302,14 +302,14 @@
     </varlistentry>
   </variablelist>
   <para>When everything mentioned above is done, click on the 
-  <guibutton>Compare</guibutton>button to compare the directories,
+  <guibutton>Compare</guibutton> button to compare the directories,
   the results are displayed in the "File List".</para>
   <variablelist>
     <varlistentry>
       <term>"File List"</term>
       <listitem>
         <para>The 
-        <guilabel>File List</guilabel>has the following columns:
+        <guilabel>File List</guilabel> has the following columns:
         "Left name | Left size | Left time | Task | Right time |
         Right size | Right name".</para>
       </listitem>
@@ -324,11 +324,11 @@
             <para>
             <guibutton>-&gt;</guibutton>: Copy from the
             left side to the right side. For directories: 
-            <command>mkdir</command>in the right side.</para>
+            <command>mkdir</command> in the right side.</para>
           </listitem>
           <listitem>
             <para>
-            <guibutton>=</guibutton>: The files are the same, don't
+            <guibutton>=</guibutton>: The files are the same, do not
             do anything.</para>
           </listitem>
           <listitem>
@@ -340,7 +340,7 @@
             <para>
             <guibutton>&lt;-</guibutton>: copy from the
             right side to the left side. For directories: 
-            <command>mkdir</command>in the left side</para>
+            <command>mkdir</command> in the left side</para>
           </listitem>
           <listitem>
             <para>
@@ -356,7 +356,7 @@
     <varlistentry id="synccomp_show_options">
       <term>Show options</term>
       <listitem>
-        <para>Here you can include/exclude particular filetypes.
+        <para>Here you can include/exclude particular file types.
         Those files, that are not in the list, will be untouched at
         synchronization.</para>
         <itemizedlist>
@@ -450,7 +450,7 @@
         <para>The right click menu is split up in three
         sections:</para>
         <para>1. change the 
-        <guilabel>Task</guilabel>operations determined by the
+        <guilabel>Task</guilabel> operations determined by the
         Comparator. Select one or multiple files. The change will
         be applied on the selection and not only on the right
         clicked item. If the selected item is a directory, the
@@ -500,14 +500,14 @@
             <para>
             <guibutton>Select items</guibutton>: Opens a dialog
             which allows you to select items. This is the 
-            <guimenuitem>Select Group</guimenuitem>dialog from the
+            <guimenuitem>Select Group</guimenuitem> dialog from the
             &editmenu_lnk;.</para>
           </listitem>
           <listitem>
             <para>
             <guibutton>Unselect items</guibutton>: Opens a dialog
-            which allows you to unselect items. This is the 
-            <guimenuitem>Unselect Group</guimenuitem>dialog from
+            which allows you to deselect items. This is the 
+            <guimenuitem>Unselect Group</guimenuitem> dialog from
             the &editmenu_lnk;.</para>
           </listitem>
           <listitem>
@@ -516,8 +516,8 @@
             selection status of all items.</para>
           </listitem>
         </itemizedlist>
-        <para>3. others Note: The following operations work on the
-        right-clicked file and not on the selection.</para>
+        <para>3. others (note that the following operations work on the
+        right-clicked file and not on the selection).</para>
         <itemizedlist>
           <listitem>
             <para>
@@ -545,10 +545,10 @@
           <listitem>
             <para>
             <guibutton>Profiles</guibutton>: If you have to
-            synchronize often the same directories you can save the
+            synchronize the same directories often, you can save the
             settings &eg; include files, exclude files,
             ... Press the 
-            <guibutton>Profile</guibutton>button, and you'll be
+            <guibutton>Profile</guibutton> button, and you will be
             able to add / load / save / remove synchronizer
             profiles.</para>
           </listitem>
@@ -567,10 +567,10 @@
         unstable ftp server, &kget; is a much better
         solution than simple file copying. After comparing you may
         right click on the result list and select 
-        <guimenuitem>Synchronize with kget</guimenuitem>to execute
+        <guimenuitem>Synchronize with kget</guimenuitem> to execute
         the synchronization, after that the listed files will be
         downloaded with kget instead of krusader. Of course 
-        <application>kget</application>needs to be installed on
+        <application>kget</application> needs to be installed on
         your computer; otherwise, it will not be available.</para>
       </listitem>
     </varlistentry>
@@ -579,7 +579,7 @@
     <emphasis role="bold">Synchronizer</emphasis>
   </para>
   <para>After pressing the 
-  <guibutton>Synchronize</guibutton>button the synchronization
+  <guibutton>Synchronize</guibutton> button the synchronization
   dialog appears.</para>
   <variablelist>
     <varlistentry>
@@ -610,7 +610,7 @@
             <guilabel>Confirm overwrites</guilabel>: By switching
             this option on, Krusader will show the 
             <guibutton>rename, skip, overwrite, skip all, overwrite
-            all</guibutton>dialog box, before overwriting the
+            all</guibutton> dialog box, before overwriting the
             file.</para>
           </listitem>
         </itemizedlist>
@@ -671,7 +671,7 @@
             synchronized with slow FTP servers.</para>
           </listitem>
           <listitem>
-            <para>Doesn't affect the speed of local
+            <para>Does not affect the speed of local
             synchronization.</para>
           </listitem>
           <listitem>

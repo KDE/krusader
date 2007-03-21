@@ -18,7 +18,7 @@
     view every file type viewable by &konqueror;
     (&eg; display pictures, play music, show the content
     of an archive). This is called the 'Generic viewer', for which
-    you need to configure the mimetypes.</para>
+    you need to configure the mime types.</para>
     <para>The viewer works as follows: 
     <itemizedlist>
       <listitem>
@@ -26,7 +26,7 @@
         <emphasis>'Generic viewer'.</emphasis></para>
       </listitem>
       <listitem>
-        <para>When the file type (mimetype) cannot be determined or
+        <para>When the file type (mime type) cannot be determined or
         when a file (&eg; a binary) doesn't have an
         associated action, it disables the 'generic viewer'. The
         file is treated as a text file, which is the 
@@ -35,7 +35,7 @@
       <listitem>
         <para>The user can change in the 
         <link linkend="kredit_krviewer_menu">KrViewer
-        menu</link>between: 'Generic viewer' (if available), 'Text
+        menu</link> between: 'Generic viewer' (if available), 'Text
         viewer' and 
         <emphasis>'Hex viewer'</emphasis>.</para>
       </listitem>
@@ -98,28 +98,28 @@
         <userinput>
           <replaceable>/home/frank/archive.tar.gz</replaceable>
         </userinput>views a 
-        <literal role="extension">tar.gz</literal>archive.</para>
+        <literal role="extension">tar.gz</literal> archive.</para>
       </listitem>
     </itemizedlist></para>
     <para>KrViewer can have the following menus: 
     <link linkend="kredit_file_menu">File</link>, 
     <link linkend="kredit_edit_menu">Edit</link>, 
     <link linkend="kredit_view_menu">View</link>, 
-    <link linkend="kredit_settings_menu">Settings</link>and 
+    <link linkend="kredit_settings_menu">Settings</link> and 
     <link linkend="kredit_krviewer_menu">Krviewer</link>, depending
     on which file type is viewed. They will be discussed in the 
     <link linkend="kredit">Editor section</link>. The internal
     viewer can follow links on HTML pages. With 
     <keycombo action="simul">&Ctrl;
-    <keycap>E</keycap></keycombo>the viewer can start
+    <keycap>E</keycap></keycombo> the viewer can start
     &krusader;'s internal editor (which is basically the
     same application).</para>
     <note>
       <para>The embedded viewer is not written by us, it is
       supplied via &kde; (libs) and
-      &kioslaves1_url; We cannot and don't want to
+      &kioslaves1_url; We cannot and do not want to
       change it, usings these libraries reduces the amount of
-      written code. So we don't have to reinvent the wheel
+      written code. So we do not have to reinvent the wheel
       ;-)</para>
     </note>
   </sect2>
@@ -131,7 +131,7 @@
     <para>&krusader;'s internal editor has almost
     everything that you can expect of an editor. Editing is similar
     to viewing but with the 
-    <keycap>F4</keycap>key. The default editor is
+    <keycap>F4</keycap> key. The default editor is
     &krusader;'s internal editor. You can change the
     default editor in the &konfiggereral_lnk;, if you
     prefer to use an external editor.</para>
@@ -199,7 +199,7 @@
         </term>
         <listitem>
           <para>Export the file to 
-          <literal role="extension">html</literal>format.</para>
+          <literal role="extension">HTML</literal> format.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -221,7 +221,7 @@
     <!-- EDIT menu -->
     <variablelist id="kredit_edit_menu">
       <title>
-      <guimenu>Edit</guimenu>menu</title>
+      <guimenu>Edit</guimenu> menu</title>
       <varlistentry>
         <term>
           <menuchoice>
@@ -682,7 +682,7 @@
         <listitem>
           <para>Highlight mode for scripts, programming languages,
           markup file, &etc;: &eg; 
-          <literal role="extension">html, Bash, C++, XML, Makefile,
+          <literal role="extension">HTML, Bash, C++, XML, Makefile,
           Diff, ...</literal>.</para>
         </listitem>
       </varlistentry>

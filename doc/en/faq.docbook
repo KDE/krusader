@@ -33,18 +33,18 @@
     <listitem>
       <para>
       <link linkend="faq_installation">Installation
-      &FAQ;</link>(this page)</para>
+      &FAQ;</link> (this page)</para>
     </listitem>
     <listitem>
       <para>
       <link linkend="faq_usage">Usage
-      &FAQ;</link>(issues with running/using
+      &FAQ;</link> (issues with running/using
       &krusader;)</para>
     </listitem>
     <listitem>
       <para>
       <link linkend="faq_general">General
-      &FAQ;</link>(bug reports, forum, mailing list,
+      &FAQ;</link> (bug reports, forum, mailing list,
       ...)</para>
     </listitem>
   </itemizedlist>If you feel that a &FAQ; is missing or
@@ -61,7 +61,7 @@
         <answer>
           <para>
           <emphasis>No, &krusader; does not need the
-          &kde; window manager</emphasis>to run on your
+          &kde; window manager</emphasis> to run on your
           computer but &krusader;'s natural environment
           is &kde;, because it relies on services
           provided by the &kde; base libraries. Only
@@ -76,7 +76,7 @@
           instantly.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
-          <para>You don't need to switch to the &kde;
+          <para>You do not need to switch to the &kde;
           window manager to use &krusader;; you can
           still use &gnome_url;,
           &afterstep_url;, &xfce_url; or
@@ -209,11 +209,11 @@
           distributions. These are usually included with your
           distribution. 
           <tip>
-            <para>If you can't find the needed package, use
+            <para>If you ca not find the needed package, use
             &rpmfind_url; and click 'missing lib or
             header' in the search line. Or use 
             <command>apt-cache search 
-            <replaceable>foo</replaceable></command>to find the
+            <replaceable>foo</replaceable></command> to find the
             corresponding package for &debian; based
             distributions.</para>
           </tip></para>
@@ -247,67 +247,43 @@
               <listitem>
                 <para>Check the ownership and the permissions on 
                 <filename class="directory">
-                /usr/src/RPM/</filename>and all recursive
+                /usr/src/RPM/</filename> and all recursive
                 directories that your normal user can
                 read-write-execute in these directories.</para>
               </listitem>
               <listitem>
                 <para>To produce the binary RPM for your computer,
                 do this: 
-                <screen>
-                  <prompt>$</prompt>
-                  <userinput>
-                    <command>rpm</command>
-                    <option>--rebuild</option>
-                    <replaceable>
-                    &lt;/path/to/rpmfile/&gt;
-                    krusader-x.xx.dist.src.rpm</replaceable>
-                  </userinput>
-                </screen></para>
+                <screen><prompt>$</prompt> <userinput><command>rpm</command> <option>--rebuild</option> <replaceable>&lt;/path/to/rpmfile/&gt; krusader-x.xx.dist.src.rpm</replaceable></userinput></screen>
+                </para>
               </listitem>
               <listitem>
                 <para>If all 
                 <link linkend="faqi_missing_libs">
-                dependencies</link>are OK, a binary RPM 
-                <filename>krusader-x.xx.dist.rpm</filename>will be
+                dependencies</link> are OK, a binary RPM 
+                <filename>krusader-x.xx.dist.rpm</filename> will be
                 created at 
                 <filename class="directory">
-                /usr/src/RPM/RPMS/i586</filename>(replace i586 with
+                /usr/src/RPM/RPMS/i586</filename> (replace i586 with
                 your architecture).</para>
               </listitem>
               <listitem>
                 <para>Test the binary RPM for errors before
                 installing: 
-                <screen>
-                  <prompt>$</prompt>
-                  <userinput>
-                    <command>rpm</command>
-                    <option>-i --test</option>
-                    <replaceable>
-                    &lt;/path/to/rpmfile&gt;
-                    krusader-x.xx.dist.rpm</replaceable>
-                  </userinput>
-                </screen>If the prompt returns without any message,
+                <screen><prompt>$</prompt> <userinput><command>rpm</command> <option>-i --test</option> <replaceable>&lt;/path/to/rpmfile&gt; krusader-x.xx.dist.rpm</replaceable></userinput></screen>
+                If the prompt returns without any message,
                 then everything is OK.</para>
               </listitem>
               <listitem>
                 <para>Install the binary RPM as usual, for example:
-                
-                <screen>
-                  <prompt>$</prompt>
-                  <userinput>
-                  <command>su -c 'rpm</command>
-                  <option>-Uvh</option>
-                  <replaceable>
-                  &lt;/path/to/rpmfile&gt;
-                  krusader-x.xx.dist.rpm</replaceable>'</userinput>
-                </screen>You will be asked to enter your root
+                <screen><prompt>$</prompt> <userinput><command>su -c 'rpm</command> <option>-Uvh</option> <replaceable>&lt;/path/to/rpmfile&gt; krusader-x.xx.dist.rpm</replaceable>'</userinput></screen> 
+                You will be asked to enter your root
                 password.</para>
               </listitem>
               <listitem>
                 <para>Now you can 
                 <link linkend="starting-krusader">
-                start</link>&krusader;.</para>
+                start</link> &krusader;.</para>
               </listitem>
             </orderedlist>
           </para>
@@ -332,16 +308,8 @@
           <para>Since we only prepare (and use) the source, we have
           no way of knowing this. Did you test the binary RPM
           before installing? 
-          <screen>
-            <prompt>$</prompt>
-            <userinput>
-              <command>rpm</command>
-              <option>-i --test</option>
-              <replaceable>
-              &lt;/path/to/rpmfile&gt;
-              krusader-x.xx.dist.rpm</replaceable>
-            </userinput>
-          </screen>If the prompt returns without any message, then
+          <screen><prompt>$</prompt> <userinput><command>rpm</command> <option>-i --test</option> <replaceable>&lt;/path/to/rpmfile&gt; krusader-x.xx.dist.rpm</replaceable></userinput></screen> 
+          If the prompt returns without any message, then
           everything is OK. RPM's downloaded from our website are
           usually provided by &krusader; users. Visit
           your distro website and search for an updated RPM.</para>
@@ -402,29 +370,29 @@
         <question id="faqi_krusaderui_rc">
           <para>I've installed &krusader;, but when I
           start, only the 
-          <guimenu>"Help"</guimenu>menu appears. Why?</para>
+          <guimenu>"Help"</guimenu> menu appears. Why?</para>
         </question>
         <answer>
           <para>In this case only the 
-          <guimenu>Help</guimenu>menu is visible and all other menu
+          <guimenu>Help</guimenu> menu is visible and all other menu
           items like &eg; 
-          <guimenu>File</guimenu>and 
-          <guimenu>Select</guimenu>are missing. This is because
+          <guimenu>File</guimenu> and 
+          <guimenu>Select</guimenu> are missing. This is because
           some distributions put the 
-          <filename>krusaderui.rc</filename>file in the wrong
+          <filename>krusaderui.rc</filename> file in the wrong
           directory. To solve the problem, just copy the 
-          <filename>krusaderui.rc</filename>file from the package 
+          <filename>krusaderui.rc</filename> file from the package 
           <filename>
-          krusader_kde3/krusader/krusaderui.rc</filename>to 
+          krusader_kde3/krusader/krusaderui.rc</filename> to 
           <filename>
-          $KDEDIR/share/apps/krusader/krusaderui.rc</filename>and 
+          $KDEDIR/share/apps/krusader/krusaderui.rc</filename> and 
           <filename>
-          ~/.kde/share/apps/krusader/krusaderui.rc</filename>and
+          ~/.kde/share/apps/krusader/krusaderui.rc</filename> and
           re-run &krusader;. If you have compiled
           &krusader; from sources this is often caused
           if the &kdeqtdir_lnk; environment variables
           are not correctly set. The result is that the 
-          <filename>krusaderui.rc</filename>file is installed in
+          <filename>krusaderui.rc</filename> file is installed in
           the wrong directory. Please read the following question,
           as well.</para>
           <para></para>
@@ -438,7 +406,7 @@
         </question>
         <answer>
           <para>The 
-          <filename>krusaderui.rc</filename>file is stored in 
+          <filename>krusaderui.rc</filename> file is stored in 
           <filename>
           $KDEDIR/share/apps/krusader/krusaderui.rc</filename>.
           When you change the 
@@ -449,17 +417,17 @@
           Krusader was previously installed on your computer, and
           you install a newer &krusader; version the 
           <filename>
-          ~/.kde/share/apps/krusader/krusaderui.rc</filename>file
+          ~/.kde/share/apps/krusader/krusaderui.rc</filename> file
           must be replaced with the newer version. Note: this will
           also reset all your changes on toolbars and
           shortcuts!</para>
           <para>The first line of 
-          <filename>krusaderui.rc</filename>contains the version
+          <filename>krusaderui.rc</filename> contains the version
           number. After installing a newer &krusader;
           version, &kde; will automatically replace the
           old 
           <filename>
-          ~/.kde/share/apps/krusader/krusaderui.rc</filename>with
+          ~/.kde/share/apps/krusader/krusaderui.rc</filename> with
           the newer version when starting the new
           &krusader; for the first time
           (&kde; will detect the newer version number in
@@ -467,7 +435,7 @@
           <para>If you install a CVS or beta version and
           &krusader; was already installed on your
           computer then you should delete the 
-          <filename>krusaderui.rc</filename>file from your home
+          <filename>krusaderui.rc</filename> file from your home
           directory to activate the new menu entries 
           <prompt>$</prompt>
           <userinput>
@@ -477,14 +445,14 @@
           </userinput></para>
           <para>If the 
           <filename>
-          ~/.kde/share/apps/krusader/krusaderui.rc</filename>file
+          ~/.kde/share/apps/krusader/krusaderui.rc</filename> file
           is older, then the new menu elements will not be shown.
           Read the previous question for information on how to
           update the 
-          <filename>krusaderui.rc</filename>file. If 
-          <filename>krusaderui.rc</filename>is missing or in a
+          <filename>krusaderui.rc</filename> file. If 
+          <filename>krusaderui.rc</filename> is missing or in a
           wrong directory, only the 
-          <guimenu>"Help"</guimenu>menu appears, please read the
+          <guimenu>"Help"</guimenu> menu appears, please read the
           previous question.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
@@ -498,11 +466,11 @@
         </question>
         <answer>
           <para>The 
-          <command>./configure</command>script does not check for
+          <command>./configure</command> script does not check for
           the presence of 
           <filename>libfam.la</filename>, and 
-          <command>make</command>needs 
-          <filename>libfam.la</filename>to compile
+          <command>make</command> needs 
+          <filename>libfam.la</filename> to compile
           &krusader;. If you know how this can be
           solved, please let us know. Install 
           <filename>libfam0-devel-foo.rpm</filename>. Note: when
@@ -525,21 +493,13 @@
           2.95, you need to install &gcc; 3.2 (or
           higher). You also need to set the enviroment variables
           "CC, CPP and CXX" before running the 
-          <command>./configure</command>script. 
+          <command>./configure</command> script. 
           <screen>
-            <prompt>$</prompt>
-            <userinput>
-            <command>export</command>CC=
-            <replaceable>/usr/bin/gcc-3.2</replaceable></userinput>
-            <prompt>$</prompt>
-            <userinput>
-            <command>export</command>CXX=
-            <replaceable>/usr/bin/g++-3.2</replaceable></userinput>
-            <prompt>$</prompt>
-            <userinput>
-            <command>export</command>CPP=
-            <replaceable>/usr/bin/cpp-3.2</replaceable></userinput>
-          </screen>For more information please take a look
+            <prompt>$</prompt> <userinput><command>export</command> CC=<replaceable>/usr/bin/gcc-3.2</replaceable></userinput>
+            <prompt>$</prompt> <userinput><command>export</command> CXX=<replaceable>/usr/bin/g++-3.2</replaceable></userinput>
+            <prompt>$</prompt> <userinput><command>export</command> CPP=<replaceable>/usr/bin/cpp-3.2</replaceable></userinput>
+          </screen> 
+          For more information please take a look
           &debian_qt_a_url; and at the
           &debian_qt_b_url; on how to build a
           &Qt;/&kde;3 application on
@@ -551,7 +511,7 @@
       <qandaentry>
         <question id="faqi_nvidia">
           <para>I have a 
-          <filename>libGLcore.so.1</filename>compile error after
+          <filename>libGLcore.so.1</filename> compile error after
           using the &nvidia; installer, what to
           do?</para>
         </question>
@@ -576,56 +536,16 @@
           &nvidia; driver (6111 in this example), but it
           should read something like this: 
           <screen>
-            <prompt>$</prompt>
-            <userinput>
-            <command>ln</command>-s 
-            <replaceable>libGLcore.so.1.0.6111
-            libGLcore.so.0</replaceable></userinput>
-            <prompt>$</prompt>
-            <userinput>
-            <command>ln</command>-s 
-            <replaceable>libGLcore.so.1.0.6111
-            libGLcore.so</replaceable></userinput>
-            <prompt>$</prompt>
-            <userinput>
-            <command>ln</command>-s 
-            <replaceable>libGLcore.so.1.0.6111
-            libGLcore.so.1.0.0</replaceable></userinput>
-            <prompt>$</prompt>
-            <userinput>
-            <command>ln</command>-s 
-            <replaceable>libGLcore.so.1.0.6111
-            libGLcore.so.0.0.0</replaceable></userinput>
-            <prompt>$</prompt>
-            <userinput>
-            <command>ln</command>-s 
-            <replaceable>libGLcore.so.1.0.6111
-            libGL.so</replaceable></userinput>
-            <prompt>$</prompt>
-            <userinput>
-            <command>ln</command>-s 
-            <replaceable>libGLcore.so.1.0.6111
-            libGL.so.0</replaceable></userinput>
-            <prompt>$</prompt>
-            <userinput>
-            <command>ln</command>-s 
-            <replaceable>libGLcore.so.1.0.6111
-            libGL.so.0.0.0</replaceable></userinput>
-            <prompt>$</prompt>
-            <userinput>
-            <command>ln</command>-s 
-            <replaceable>libGLcore.so.1.0.6111
-            libGL.so.1</replaceable></userinput>
-            <prompt>$</prompt>
-            <userinput>
-            <command>ln</command>-s 
-            <replaceable>libGLcore.so.1.0.6111
-            libGL.so.1.0.0</replaceable></userinput>
-            <prompt>$</prompt>
-            <userinput>
-            <command>ln</command>-s 
-            <replaceable>/usr/lib/libGLU.la
-            /usr/X11R6/lib/libGLU.la</replaceable></userinput>
+            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so.0</replaceable></userinput>
+            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so</replaceable></userinput>
+            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so.1.0.0</replaceable></userinput>
+            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so.0.0.0</replaceable></userinput>
+            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so</replaceable></userinput>
+            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.0</replaceable></userinput>
+            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.0.0.0</replaceable></userinput>
+            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.1</replaceable></userinput>
+            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.1.0.0</replaceable></userinput>
+            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>/usr/lib/libGLU.la /usr/X11R6/lib/libGLU.la</replaceable></userinput>
           </screen></para>
           <para></para>
           <!-- Empty line to make it more readable -->
@@ -668,10 +588,10 @@
         <answer>
           <para>Please read our detailed 
           <link linkend="compilation">installation
-          procedure</link>and the &faq_lnk;. If you
+          procedure</link> and the &faq_lnk;. If you
           can't find a solution to your problem then feel free to
           post a 
-          <emphasis role="bold">help request</emphasis>at our
+          <emphasis role="bold">help request</emphasis> at our
           &krusader; forum or use the
           &kruusers_url; mailing list. But before
           posting a help request, please try the following: 
@@ -701,7 +621,7 @@
               <note>
                 <para>If you give us the error messages
                 (&eg; 
-                <command>make</command>error messages) please start
+                <command>make</command> error messages) please start
                 with the FIRST error message, all the error
                 messages which follow the first error message are
                 consequences and not the cause of your
@@ -733,7 +653,7 @@
           <warning>
             <para>NEVER build RPMs when logged in as root. Mistakes
             in building packages (&eg; a bad 
-            <filename>krusader.spec</filename>file) can do serious
+            <filename>krusader.spec</filename> file) can do serious
             damage to your system when logged in as root.</para>
           </warning>
           <para>
@@ -745,62 +665,55 @@
               <listitem>
                 <para>Check the ownership and the permissions on 
                 <filename class="directory">
-                /usr/src/RPM/</filename>and all recursive
+                /usr/src/RPM/</filename> and all recursive
                 directories that your normal user can
                 read-write-execute in these directories.</para>
               </listitem>
               <listitem>
                 <para>Copy 
-                <filename>kusader-1.xx.tar.gz</filename>to 
+                <filename>kusader-1.xx.tar.gz</filename> to 
                 <filename class="directory">
                 /usr/scr/RPM/SOURCE</filename></para>
               </listitem>
               <listitem>
                 <para>Copy 
-                <filename>kusader.spec</filename>to 
+                <filename>kusader.spec</filename> to 
                 <filename class="directory">
-                /usr/scr/RPM/SPECS</filename>Tip: the latest 
-                <filename>kusader.spec</filename>can be found in
+                /usr/scr/RPM/SPECS</filename> Tip: the latest 
+                <filename>kusader.spec</filename> can be found in
                 CVS.</para>
               </listitem>
               <listitem>
                 <para>Edit 
-                <filename>kusader.spec</filename>and add your name,
+                <filename>kusader.spec</filename> and add your name,
                 your e-mail address, the rpm name, ... Other
                 changes may be needed if 
-                <command>rpmbuild</command>fails.</para>
+                <command>rpmbuild</command> fails.</para>
               </listitem>
               <listitem>
                 <para>Build the binary and the source RPM with: 
-                <screen>
-                  <prompt>$</prompt>
-                  <userinput>
-                    <command>rpmbuild</command>
-                    <option>-ba</option>
-                    <replaceable>
-                    /usr/scr/RPM/SPECS/krusader.spec</replaceable>
-                  </userinput>
-                </screen>If everything went OK you will have a
+                <screen><prompt>$</prompt> <userinput><command>rpmbuild</command> <option>-ba</option> <replaceable>/usr/scr/RPM/SPECS/krusader.spec</replaceable></userinput></screen> 
+                If everything went OK you will have a
                 binary RPM in 
                 <filename class="directory">
-                /usr/src/RPM/RPMS/i586</filename>(depending on your
-                architecture) and a sourceRPM in 
+                /usr/src/RPM/RPMS/i586</filename> (depending on your
+                architecture) and a source RPM in 
                 <filename class="directory">
-                /usr/src/RPM/SRPMS/</filename>&eg; 
+                /usr/src/RPM/SRPMS/</filename> &eg; 
                 <filename>
-                krusader-1.70-beta1.suse10.i586.rpm</filename>and 
+                krusader-1.70-beta1.suse10.i586.rpm</filename> and 
                 <filename>
                 krusader-1.70-beta1.suse10.src.rpm</filename></para>
               </listitem>
               <listitem>
                 <para>If the build is not OK you will receive an
                 error message during the rpmbuild process, try to
-                fix it and re-run 
-                <command>rpmbuild</command>again.</para>
+                fix it and run 
+                <command>rpmbuild</command> again.</para>
               </listitem>
               <listitem>
                 <para>And finally: 
-                <link linkend="faqi_rpm_source">test</link>the RPM
+                <link linkend="faqi_rpm_source">test</link> the RPM
                 before sending it in.</para>
               </listitem>
             </orderedlist>
@@ -840,7 +753,7 @@
           etc. 
           <emphasis role="bold">These crashes are related to
           &Qt; 3.3.5 and NOT
-          &krusader;.</emphasis>It seems that
+          &krusader;.</emphasis> It seems that
           &Qt; 3.3.5 introduced a serious bug which is
           currently (December 2005) causing random crashes in many
           &kde; applications including
@@ -877,12 +790,12 @@
           automatically and transparently. Usually this works fine.
           However, supermount misleads the system into thinking
           that the 
-          <hardware>floppy/cdrom</hardware>is mounted at all times!
+          <hardware>floppy/cdrom</hardware> is mounted at all times!
           This creates some problems for &krusader;, as
           it cannot really know when the floppy or CD has been
           removed because the system information is not correctly
           updated by supermount - is there really a 
-          <hardware>floppy</hardware>in the 
+          <hardware>floppy</hardware> in the 
           <hardware>drive</hardware>? Of course, this can be
           solved, but as for now, we don't consider it a
           priority.</para>
@@ -907,7 +820,7 @@
           the &Linux; OS! The problem is that you "hang"
           on the first access to the dead share - so there is no
           way around it, no check to avoid it, even 
-          <command>ls</command>will freeze. Just trying to read
+          <command>ls</command> will freeze. Just trying to read
           something - anything - is enough to get you stuck. The
           one and only way around this architectural problem is
           using a multi-threaded design - this way if we get stuck,
@@ -931,7 +844,7 @@
         </question>
         <answer>
           <para>See the 
-          <guibutton>F1, F2</guibutton>(&etc;) buttons?
+          <guibutton>F1, F2</guibutton> (&etc;) buttons?
           They are not allowing &krusader; to downsize
           as they have a minimum size. Just disable them 
           <emphasis role="bold">
@@ -960,10 +873,10 @@
         <answer>
           <para>The bad news is that we're not sure why, but it
           seems that 
-          <command>fam</command>(file alteration monitor) sometimes
+          <command>fam</command> (file alteration monitor) sometimes
           refuses to work. We are looking into this problem to make
           sure it is not 
-          <emphasis>our</emphasis>problem. We've tried the same
+          <emphasis>our</emphasis> problem. We've tried the same
           source code on two different Gentoo installations: one
           worked, the other did not. The good news is that if you
           disable 
@@ -971,13 +884,9 @@
           will automatically revert to its internal update
           mechanism (which is less efficient, but works) without
           needing to recompile. You can disable 
-          <application>fam</application>with: 
-          <screen>
-            <prompt>$</prompt>
-            <userinput>
-              <command>su -c 'fam -l'</command>
-            </userinput>
-          </screen>Look at the manpages for more information about 
+          <application>fam</application> with: 
+          <screen><prompt>$</prompt> <userinput><command>su -c 'fam -l'</command></userinput></screen>
+          Look at the manpages for more information about 
           <application>fam</application>.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
@@ -987,22 +896,25 @@
       <qandaentry>
         <question id="faqu_samba_codepage">
           <para>
-          <application>Samba</application>ISO 8859-x codepage /
+          <application>Samba</application> ISO 8859-x codepage /
           What to do if &krusader; does not read shared
           directories containing special international
           characters?</para>
         </question>
         <answer>
           <para>&krusader; does not handle (yet) 
-          <application>Samba</application>ISO 8859-x codepages, if
+          <application>Samba</application> ISO 8859-x codepages, if
           you use a codepage different than 8859-1 you will have to
           do a manual configuration. Create or modify the file: 
           <filename>~/.smb/smb.conf</filename>
-          <programlisting>[global] workgroup = MyWorkGroup (ex.
-          WORKGROUP) client code page = MyCodePage (ex. 852)
-          character set = MyCharSet (ex.
-          ISO8859-2)</programlisting>Unfortunately 
-          <application>kcontrol</application>(&kde;
+          <programlisting>
+          [global] 
+          workgroup = MyWorkGroup (ex. WORKGROUP) 
+          client code page = MyCodePage (ex. 852)
+          character set = MyCharSet (ex. ISO8859-2)
+          </programlisting>
+          Unfortunately 
+          <application>kcontrol</application> (&kde;
           3.1.1) fails to configure smb.conf properly, so this must
           be done manually with a text editor.</para>
           <para></para>
@@ -1020,11 +932,11 @@
           <para>Install the krarc slave properly:</para>
           <para>Copy the 
           <filename>kio_krarc.so</filename>, 
-          <filename>kio_krarc.la</filename>files into 
+          <filename>kio_krarc.la</filename> files into 
           <filename class="directory">
           $KDEDIR/lib/kde3</filename></para>
           <para>Copy the 
-          <filename>krarc.protocol</filename>file into 
+          <filename>krarc.protocol</filename> file into 
           <filename class="directory">
           $KDEDIR/share/services</filename></para>
           <para>or the directory where the KIO slaves are placed in
@@ -1043,12 +955,12 @@
           <para>The icons, kio_slaves and documentation must be
           installed in the correct places in the &kde;
           directory tree. The 
-          <filename>kio_krarc.*</filename>files must be in the same
+          <filename>kio_krarc.*</filename> files must be in the same
           directory with the other KIO slaves. Try this: locate 
-          <filename>kio_tar.*</filename>and copy/link the 
-          <filename>kio_krarc.*</filename>files to the same
+          <filename>kio_tar.*</filename> and copy/link the 
+          <filename>kio_krarc.*</filename> files to the same
           location. Don't forget to run 
-          <command># ldconfig</command>on this directory when
+          <command># ldconfig</command> on this directory when
           you're done. For more information click 
           <ulink url="www.krusader.org/phpBB/viewtopic.php?t=991">
           here</ulink>.</para>
@@ -1072,13 +984,13 @@
               <guimenuitem>Preferences</guimenuitem>
             </menuchoice>
           </emphasis>, 
-          <guilabel>"Enable Passive Mode (PASV)"</guilabel>has to
+          <guilabel>"Enable Passive Mode (PASV)"</guilabel> has to
           be turned on or off, depending on it's current setting.
           Now try your &FTP; session again to see if it
           works. Also, make sure you have no other &FTP;
           sessions open (using web browsers, etc.), they can cause
           complications. More information can be found in
-          &active_passive_ftp_url; .</para>
+          &active_passive_ftp_url;.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -1088,7 +1000,7 @@
         <question id="faqu_ftp_http_proxy">
           <para>I get 
           <errorcode>"FTP protocol not supported by
-          &krusader;"</errorcode>error when trying to
+          &krusader;"</errorcode> error when trying to
           open a remote &FTP; directory, what to
           do?</para>
         </question>
@@ -1107,7 +1019,7 @@
       <qandaentry>
         <question id="faqu_close_connection">
           <para>How can I close a remote connection
-          (&eg; a FTP connection) ?</para>
+          (&eg; a FTP connection)?</para>
         </question>
         <answer>
           <para>It's explained in the 
@@ -1155,7 +1067,7 @@
             </menuchoice>
           </emphasis>, 
           <guilabel>Event Source: "KDE System
-          Notifications"</guilabel>and uncheck sound items you
+          Notifications"</guilabel> and uncheck sound items you
           don't like.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
@@ -1171,7 +1083,7 @@
           since Krusader 1.25-beta1. The Bookmark Manager handles
           local files and 
           <link linkend="remote-connections">remote
-          &URL;'s</link>the same way. RemoteMan was left
+          &URL;'s</link> the same way. RemoteMan was left
           as a selection until &krusader;-1.51 to allow
           an easier transition and give you a chance to move your
           &bookmarks_lnk;. RemoteMan was disabled, as
@@ -1196,8 +1108,7 @@
             </listitem>
             <listitem>
               <para>install &krusader;-1.60, it will use
-              
-              <filename>krbookmarks.xml</filename>or import it if
+              <filename>krbookmarks.xml</filename> or import it if
               needed.</para>
             </listitem>
           </orderedlist></para>
@@ -1212,9 +1123,9 @@
         </question>
         <answer>
           <para>When you enter an archive and press 
-          <keycap>F3</keycap>to view a file that has no known
+          <keycap>F3</keycap> to view a file that has no known
           extension, &eg; 
-          <filename>README, INSTALL</filename>&etc;. And
+          <filename>README, INSTALL</filename> &etc;. And
           if the viewer opens in hex-mode instead of the usual
           mode, than you need to configure: 
           <emphasis role="bold">
@@ -1226,7 +1137,7 @@
               <guimenuitem>octet-stream</guimenuitem>
             </menuchoice>
           </emphasis>, 
-          <guilabel>binary viewer</guilabel>needs to be
+          <guilabel>binary viewer</guilabel> needs to be
           removed.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
@@ -1246,11 +1157,11 @@
           <filename>
           /usr/share/doc/kde/HTML/en/krusader/</filename>, you will
           see the 
-          <filename>foo.docbook.gz</filename>files. Now, you need
+          <filename>foo.docbook.gz</filename> files. Now, you need
           to extract all these files with root privileges
           ("File-&gt;Unpack" with &krusader;)
           to create 
-          <filename>foo.docbook</filename>files. Now the handbook
+          <filename>foo.docbook</filename> files. Now the handbook
           will work. This error is fixed in the
           krusader_1.60.0-1_i386.deb package and higher
           versions.</para>
@@ -1294,20 +1205,10 @@
           <para>Presuming that the current setup is the good
           configuration, you can copy the configuration to the
           other user. 
-          <screen>
-            <prompt>#</prompt>
-            <userinput>
-              <command>cp ~/.kde/share/config/krusaderrc
-              /home/foo_user/.kde/share/config</command>
-            </userinput>
-          </screen>And when the other user is Root use: 
-          <screen>
-            <prompt>#</prompt>
-            <userinput>
-              <command>cp ~/.kde/share/config/krusaderrc
-              /root/.kde/share/config</command>
-            </userinput>
-          </screen></para>
+          <screen><prompt>#</prompt> <userinput><command>cp ~/.kde/share/config/krusaderrc /home/foo_user/.kde/share/config</command></userinput></screen>
+          And when the other user is Root use: 
+          <screen><prompt>#</prompt> <userinput><command>cp ~/.kde/share/config/krusaderrc /root/.kde/share/config</command></userinput></screen>
+          </para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -1450,15 +1351,15 @@
             </listitem>
             <listitem>
               <para>
-              <emphasis role="bold">Check</emphasis>if the bug is
+              <emphasis role="bold">Check</emphasis> if the bug is
               already posted in the &online_buglist_url;
               of the Bug Tracking System.</para>
             </listitem>
             <listitem>
               <para>If you can't find this bug mentioned, please 
-              <emphasis role="bold">submit</emphasis>it into the
+              <emphasis role="bold">submit</emphasis> it into the
               bug tracker by clicking the 
-              <guibutton>Submit New</guibutton>button in the
+              <guibutton>Submit New</guibutton> button in the
               bug-tracker window. Please submit the following
               issues: the &krusader; version used, the
               &Linux; distribution + version used,
@@ -1560,7 +1461,7 @@
           &forumfeed_url;, &krunewsfeed_url;,
           &krudevelfeed_url; and even 
           <ulink url="http://dir.gmane.org/gmane.comp.kde.krusader.devel">
-          additional feeds</ulink>by gmane.org.
+          additional feeds</ulink> by gmane.org.
           &kruusersfeed_url;,
           &krui18nfeed_url;,
           &krudocfeed_url;.</para>
@@ -1649,7 +1550,7 @@
               may only browse the &todoforum_url;. The
               &todoranking_url; contains the results
               based on the votes. 
-              <link linkend="faqg_patch">Adding ToDo items</link>or
+              <link linkend="faqg_patch">Adding ToDo items</link> or
               removing ToDo items which have been implemented will
               be done by the &krusader; Krew.</para>
             </listitem>
@@ -1695,7 +1596,7 @@
         <answer>
           <para>You can 
           <link linkend="help_krusader">
-          support</link>&krusader; in many different
+          support</link> &krusader; in many different
           ways. Please send us 
           <link linkend="faqg_wish">feedback</link>,
           &faqbugreports_lnk;, patches, 
@@ -1714,7 +1615,7 @@
           will not have the all the power you would have on
           &Linux;. Please read the 
           <link linkend="mac-port">&MacOS; X port
-          section</link>for more information. A recommended native
+          section</link> for more information. A recommended native
           file manager for &MacOS; is
           &disk_order_url; (shareware).</para>
           <para></para>
@@ -1727,7 +1628,7 @@
         </question>
         <answer>
           <para>No, but this might change in the future. Please 
-          <link linkend="help_krusader">help us</link>with this
+          <link linkend="help_krusader">help us</link> with this
           project, contributions are greatly appreciated. A
           recommended native file manager for &Windows;
           is &tcmd_url; (shareware).</para>
@@ -1744,8 +1645,8 @@
         <answer>
           <para>The two panels and a commandline are available, all
           the other stuff like 
-          <link linkend="features">OFM features</link>and the 
-          <link linkend="gloss-ofm">OFM</link>interaction with the
+          <link linkend="features">OFM features</link> and the 
+          <link linkend="gloss-ofm">OFM</link> interaction with the
           user is missing from this profile.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
@@ -1770,7 +1671,7 @@
           a 
           <ulink url="http://murban.blogspot.com/2006/01/krusader-and-konqueror-twin-versus-one.html">
           blog</ulink>on why 
-          <link linkend="gloss-ofm">OFM</link>is better than a one
+          <link linkend="gloss-ofm">OFM</link> is better than a one
           panel filemanager.</para>
           <para></para>
           <!-- Empty line to make it more readable -->

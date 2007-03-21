@@ -26,14 +26,14 @@
       <title>General</title>
       <para>This is a rather short but important section that will
       go into the details of controlling &krusader;.
-      This section doesn't try to cover all the various key
+      This section does not try to cover all the various key
       combinations for two reasons: 
       <orderedlist numeration="arabic">
         <listitem>
           <para>there are just too many of them</para>
         </listitem>
         <listitem>
-          <para>most of &krusader;'s actions are
+          <para>most of &krusader; actions are
           configurable in the
           &konfiglookandfeel_lnk;</para>
         </listitem>
@@ -77,8 +77,8 @@
 -->
         <listitem>
           <para>Pushing the 
-          <guibutton>"History"</guibutton>or the 
-          <guibutton>"Run in Terminal"</guibutton>buttons in the
+          <guibutton>"History"</guibutton> or the 
+          <guibutton>"Run in Terminal"</guibutton> buttons in the
           Command Line will not transfer the focus, so you have to
           click inside the Input Line.</para>
         </listitem>
@@ -99,11 +99,11 @@
         <listitem>
           <para>The 
           <keycombo action="simul">&Ctrl;
-          <keycap>Down Arrow</keycap></keycombo>will take you from
+          <keycap>Down Arrow</keycap></keycombo> will take you from
           the Active Panel to the Command Line or Terminal
           Emulator, and the 
           <keycombo action="simul">&Ctrl;
-          <keycap>Up Arrow</keycap></keycombo>will take you back
+          <keycap>Up Arrow</keycap></keycombo> will take you back
           from the Command Line to the Active Panel.</para>
         </listitem>
         <listitem>
@@ -119,7 +119,7 @@
         <listitem>
           <para>Pressing 
           <keycombo action="simul">&Alt;
-          <keycap>"Underlined Letter"</keycap></keycombo>from the
+          <keycap>"Underlined Letter"</keycap></keycombo> from the
           Menu Bar will open that menu (unless this key combination
           is a "Reserved Key", used by one of
           &krusader;'s actions).</para>
@@ -135,7 +135,7 @@
         here.</para>
       </note>
       <para>Selecting is a skill you need to master in order to get
-      the most out of &krusader;. Since you can't select
+      the most out of &krusader;. Since you can not select
       files in the Quick View Panel, and the Tree Panel only lets
       you select one directory at a time, this paragraph mainly
       explains how to select files in the List Panel
@@ -143,55 +143,55 @@
       <para>Moving the cursor is easy. Left-clicking on a file or
       directory (referred to herein as "elements" meaning files AND
       directories) will select it. Here are some useful pointers
-      that will make Krusader even easier to use (assuming you're
+      that will make &krusader; even easier to use (assuming you are
       using &krusader;'s Mouse Selection Mode): 
       <itemizedlist>
         <listitem>
           <para>The 
-          <keycap>SPACE</keycap>and 
-          <keycap>Insert</keycap>key will toggle the selection of
+          <keycap>SPACE</keycap> and 
+          <keycap>Insert</keycap> key will toggle the selection of
           the file under the cursor without affecting the selection
           of other files/directories, the cursor will go one
           position down.</para>
         </listitem>
         <listitem>
           <para>Pressing the 
-          <keycap>SPACE</keycap>on a Directory under the cursor
+          <keycap>SPACE</keycap> on a Directory under the cursor
           will 
           <link linkend="calculate">calculate occupied
-          space</link>without affecting the selection of other
+          space</link> without affecting the selection of other
           files/directories.</para>
         </listitem>
         <listitem>
           <para>
-          <keycap>Left Clicking</keycap>on a file will select, or
+          <keycap>Left Clicking</keycap> on a file will select, or
           unselect, all previously selected files.</para>
         </listitem>
         <listitem>
           <para>
           <keycombo action="simul">&Ctrl;
-          <keycap>Left Clicking</keycap></keycombo>will toggle the
+          <keycap>Left Clicking</keycap></keycombo> will toggle the
           selection of the file under the cursor without affecting
           the selection of other files/directories.</para>
         </listitem>
         <listitem>
           <para>
           <keycombo action="simul">&Shift;
-          <keycap>Left Clicking</keycap></keycombo>will select all
+          <keycap>Left Clicking</keycap></keycombo> will select all
           the elements between the previous cursor location and the
           new one.</para>
         </listitem>
         <listitem>
           <para>
           <keycombo action="simul">&Shift;
-          <keycap>Home</keycap></keycombo>selects everything above
-          the cursor (and unselects everything below the cursor, if
+          <keycap>Home</keycap></keycombo> selects everything above
+          the cursor (and deselects everything below the cursor, if
           selected).</para>
         </listitem>
         <listitem>
           <para>
           <keycombo action="simul">&Shift;
-          <keycap>End</keycap></keycombo>selects everything below
+          <keycap>End</keycap></keycombo> selects everything below
           the cursor (and unselects everything above the cursor, if
           selected).</para>
         </listitem>
@@ -206,11 +206,11 @@
     </sect2>
     <sect2 id="executing_commands">
       <title>Executing Commands</title>
-      <para>There isn't a lot to say here, all you need to do is
-      select some files (if you don't, &krusader; will
+      <para>There is not a lot to say here, all you need to do is
+      select some files (if you do not, &krusader; will
       operate on the file(s) or directory(s) that have the focus),
       choose a 
-      <link linkend="menu-commands">Command</link>from the Menu Bar
+      <link linkend="menu-commands">Command</link> from the Menu Bar
       or use a Keyboard Shortcut (or the Right Click Menu) and the
       selected Command executes. See also 
       <link linkend="executing_files">Executing
@@ -225,13 +225,13 @@
       <keycap>foo</keycap>(one character) to do a quick search in
       the Active List Panel for a file beginning with "foo". A
       small quick search dialog box will open below the Active List
-      Panel. Type the first few characters of the desired filename
+      Panel. Type the first few characters of the desired file name
       (more than one character allowed), the cursor will jump to
       that filename (if it exists), &eg; type "ab" to
       search for a file which begins with "ab". The 
       <keycap>Up/Down Arrow</keycap>will jump to the next or
-      previous match. &Esc; will close the quicksearch
-      line. The cursor will stay on the last Quicksearch file
+      previous match. &Esc; will close the quick search
+      line. The cursor will stay on the last file
       found.</para>
       <note>
         <para>If you press 
@@ -249,9 +249,9 @@
       <title>Context Menu</title>
       <para>&krusader; has many Context menus that allow
       you to do fast operations with the mouse, usually a
-      Right-Click will open the Context menu (depending on your
+      right-click will open the Context menu (depending on your
       &mouse_selection_modes_lnk; settings). This list
-      gives an overview of the most important Context menus. Use
+      gives an overview of the most important context menus. Use
       them to discover the available commands. 
       <itemizedlist>
         <listitem>
@@ -276,7 +276,7 @@
         </listitem>
         <listitem>
           <para>
-          <link linkend="krusearcher">KruSearcher</link>Search
+          <link linkend="krusearcher">KruSearcher</link> Search
           results file list (F3 View, F4 Edit)</para>
         </listitem>
         <listitem>
@@ -312,18 +312,17 @@
     <sect2 id="executing_files">
       <title>Executing Files</title>
       <para>You can only execute files in the Active List Panel. To
-      
-      <keycap>execute</keycap>a file just 
-      <keycap>(double-)click on it or press Enter</keycap>when it
+      <keycap>execute</keycap> a file just 
+      <keycap>(double-)click on it or press Enter</keycap> when it
       is under the list cursor. &krusader; will open it
       in the default application for this file type (picture,
-      textfile...) or the file will be executed (script,
+      text file...) or the file will be executed (script,
       binary...). If you want to use 
-      <keycap>another application</keycap>to open the file, 
-      <keycap>Right-Click</keycap>on the file and go to the "open
+      <keycap>another application</keycap> to open the file, 
+      <keycap>Right-Click</keycap> on the file and go to the "open
       with" sub-menu which will offer more options.
       &krusader; is compatible with &kde;
-      default file-manager for all file types except archives that
+      default file manager for all file types except archives that
       are opened inside the &krusader; panel and not in
       an external application. See 
       <link linkend="konfig-archives">the archives page in
@@ -338,7 +337,7 @@
       <keycap>F6</keycap>to 
       <keycap>move</keycap>them. If the 
       <guimenuitem>Preserve attributes (only on local
-      targets)</guimenuitem>option is checked,
+      targets)</guimenuitem> option is checked,
       &krusader; will try to preserve all attributes
       (time, owner, group) of the local files according to the
       source depending on your permissions: 
@@ -364,17 +363,17 @@
       <title>Deleting</title>
       <para>Deleting files/directories is done by selecting them
       and pressing 
-      <keycap>F8</keycap>or 
+      <keycap>F8</keycap> or 
       <keycap>Delete</keycap>. By 
       <link linkend="konfig-general">default</link>it will be moved
       to &kde;'s Trash, 
       <keycombo action="simul">&Shift;
-      <keycap>Delete</keycap></keycombo>will delete the file
+      <keycap>Delete</keycap></keycombo> will delete the file
       permanently. A dialog will ask for your confirmation and will
       warn you when deleting non-empty directories. Of course only
       operations that you are permitted to do by the Operating
       System will be performed - you will be notified otherwise. If
-      you don't wish to see the confirmation dialogs, you can
+      you do not wish to see the confirmation dialogs, you can
       disable them in the 
       <link linkend="konfig-advanced">Konfigurator advanced
       tab</link>.</para>
@@ -397,14 +396,14 @@
       <title>Renaming Files, Creating Directories and Link
       Handling</title>
       <para>
-      <keycap>Rename</keycap>the file under the cursor with the 
-      <keycap>F9</keycap>key or with two single mouse clicks. If
-      only the filename needs to be renamed and not the extension,
+      <keycap>Rename</keycap> the file under the cursor with the 
+      <keycap>F9</keycap> key or with two single mouse clicks. If
+      only the file name needs to be renamed and not the extension,
       you can configure this in the
       &konfiglookandfeel_lnk;. 
-      <keycap>Create a new directory</keycap>with the 
-      <keycap>F7</keycap>key. 
-      <keycap>Right-clicking on a regular file</keycap>will give
+      <keycap>Create a new directory</keycap> with the 
+      <keycap>F7</keycap> key. 
+      <keycap>Right-clicking on a regular file</keycap> will give
       you the 
       <keycap>option "New Symlink"</keycap>. A dialog will prompt
       you to enter a symlink name. That name will point to the
@@ -416,7 +415,7 @@
     <sect2 id="viewing">
       <title>Viewing and Editing files</title>
       <para>
-      <link linkend="krviewer">KrViewer</link>has a chapter of its
+      <link linkend="krviewer">KrViewer</link> has a chapter of its
       own.</para>
     </sect2>
   </sect1>

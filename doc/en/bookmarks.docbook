@@ -23,7 +23,7 @@
     </listitem>
   </itemizedlist></para>
   <note>
-    <para>You can bookmark inside a remote filesystem
+    <para>You can bookmark inside a remote file system
     (&FTP; or SAMBA) and later use the bookmark to
     quickly connect to the remote machine, but you cannot bookmark
     inside an archive.</para>
@@ -53,22 +53,22 @@
   <sect2 id="using_bookmarks">
     <title>Using Bookmarks</title>
     <para>Usually, you click on the 
-    <guibutton>Bookmark</guibutton>button when you're in the target
+    <guibutton>Bookmark</guibutton> button when you are in the target
     folder. For example, to bookmark 
     <filename class="directory">/usr/tmp</filename>, navigate
     &krusader; there and click the 
-    <guibutton>Bookmark</guibutton>button and select 
+    <guibutton>Bookmark</guibutton> button and select 
     <guimenuitem>Bookmark Current</guimenuitem>. When the 
-    <guilabel>Bookmark Current</guilabel>dialog box appears, the
+    <guilabel>Bookmark Current</guilabel> dialog box appears, the
     &URL; line will say 
     <filename class="directory">/usr/tmp</filename>. 
-    <guilabel>Name</guilabel>is for the name you would like to give
+    <guilabel>Name</guilabel> is for the name you would like to give
     to the bookmark (e.g.: temporary folder). Hotkeys are supported
     by adding 
-    <literal>&amp;</literal>to the bookmarkname
+    <literal>&amp;</literal> to the bookmark name
     &eg; 
     <literal>&amp;sourceforge, &amp;home,
-    down&amp;loads</literal>&etc;, so you can
+    down&amp;loads</literal> &etc;, so you can
     quickly call the bookmark name with 
     <keycombo action="simul">&Alt;
     <keycap>foo</keycap></keycombo>. If you add the bookmark
@@ -77,18 +77,18 @@
     <guilabel>URL</guilabel>
     <!-- Openjade does not like an acronym element for "URL" here -->
     is where the bookmark points to. 
-    <guilabel>Create in</guilabel>creates bookmark folders for
+    <guilabel>Create in</guilabel> creates bookmark folders for
     organizing your bookmarks.</para>
     <para>To use your bookmarks, click the 
-    <guibutton>Bookmark</guibutton>button and choose a Bookmark.
+    <guibutton>Bookmark</guibutton> button and choose a bookmark.
     You may also use the &keybindigs_lnk; : 
     <keycombo action="simul">&Ctrl;&Shift;
-    <keycap>d</keycap></keycombo>to bookmark the current item, 
+    <keycap>d</keycap></keycombo> to bookmark the current item, 
     <keycombo action="simul">&Alt;
-    <keycap>right/left arrow</keycap></keycombo>to 
-    <keycap>open right/left panel bookmarks list</keycap>and 
+    <keycap>right/left arrow</keycap></keycombo> to 
+    <keycap>open right/left panel bookmarks list</keycap> and 
     <keycombo action="simul">&Ctrl;
-    <keycap>d</keycap></keycombo>to open the bookmarks of the
+    <keycap>d</keycap></keycombo> to open the bookmarks of the
     active panel. A &MMB; click on bookmarks opens them
     in a new 
     <link linkend="folder_tabs">Folder tab</link>.</para>
@@ -99,7 +99,7 @@
       </listitem>
       <listitem>
         <para>&eg; when you type 
-        <literal>'h'</literal>and only one bookmark starts with 
+        <literal>'h'</literal> and only one bookmark starts with 
         <literal>'h'</literal>, it is executed immediately - no
         enter needed</para>
       </listitem>
@@ -114,7 +114,7 @@
   <sect2 id="password_handling">
     <title>Password handling</title>
     <para>One of the benefits of the 
-    <link linkend="bookman">bookmark manager</link>is that the
+    <link linkend="bookman">bookmark manager</link> is that the
     passwords are saved using &kde;'s services - where
     &eg; your &konqueror;/&kmail;
     password are saved. If you have a wallet, &kde; will
@@ -123,7 +123,7 @@
     and click 'save password'. The passwords and usernames will be
     saved securely by &kde;'s wallet (make sure it is
     enabled by your distro). The downside here is that if you
-    reinstall and don't backup your passwords from the wallet as
+    reinstall and do not backup your passwords from the wallet as
     well as &krusader;'s bookmark file, something will
     be lost.</para>
   </sect2>
@@ -142,8 +142,8 @@
     &URL;s often, but do not want to create
     &bookmarks_lnk;, it serves as a temporary bookmark
     list for the most visited links. 
-    <guilabel>Quicksearch Popular URL's</guilabel>is a fast way to
-    browse/select the Popular &URL;s: 
+    <guilabel>Quicksearch Popular URL's</guilabel> is a fast way to
+    browse/select the popular &URL;s: 
     <itemizedlist>
       <listitem>
         <para>Open the 
@@ -157,7 +157,7 @@
         <para>Type a few letters to narrow the search</para>
       </listitem>
       <listitem>
-        <para>Press enter (you'll go to the &URL;
+        <para>Press enter (you will go to the &URL;
         list)</para>
       </listitem>
       <listitem>
@@ -170,46 +170,46 @@
     <para>These are hardcoded bookmarks to the top bookmark menu;
     there is no need for them to be saved to the file. With the
     &context_menu_lnk; you can enable/disable these
-    permanent bookmarks. The following Permanent bookmarks are
+    permanent bookmarks. The following permanent bookmarks are
     available: 
     <itemizedlist>
       <listitem>
         <para>
-        <guilabel>Media</guilabel>uses &kde;'s 
-        <link linkend="konfig-advanced">Media protocol</link>
+        <guilabel>Media</guilabel> uses &kde;'s 
+        <link linkend="konfig-advanced">Media protocol</link> 
         <filename>media:/</filename></para>
       </listitem>
       <listitem>
         <para>
-        <guilabel>Local Network</guilabel>uses &kde;'s 
-        <filename>lan:/</filename>protocol.</para>
+        <guilabel>Local Network</guilabel> uses &kde;'s 
+        <filename>lan:/</filename> protocol.</para>
       </listitem>
       <listitem>
         <para>
-        <guilabel>Virtual Filesystem</guilabel>&vfs_lnk;
+        <guilabel>Virtual Filesystem</guilabel> &vfs_lnk;
         
-        <filename>virt:/</filename>is not a virtual folder, but a
+        <filename>virt:/</filename> is not a virtual folder, but a
         container for &URL;'s from different file
         systems. It is used for &eg; the 
-        <guilabel>Feed to Listbox</guilabel>feature of the search
+        <guilabel>Feed to Listbox</guilabel> feature of the search
         module and the synchronizer. The location toolbar will
         display &eg; 
-        <filename>virt:/Search results 1</filename>or 
+        <filename>virt:/Search results 1</filename> or 
         <filename>virt:/Synchronise results 1</filename>.</para>
       </listitem>
       <listitem id="jump_back">
         <para>
-        <guilabel>Jump back</guilabel>or 
+        <guilabel>Jump back</guilabel> or 
         <keycombo action="simul">&Ctrl;
-        <keycap>J</keycap></keycombo>brings you back to your
-        starting position when you did create a New Tab in the
+        <keycap>J</keycap></keycombo> brings you back to your
+        starting position when you did create a new tab in the
         panel window. This feature is very handy if you go deep
         into a directory tree, than you can return with one action
         to the starting point. With 
-        <guilabel>Set jump back point here</guilabel>or 
+        <guilabel>Set jump back point here</guilabel> or 
         <keycombo action="simul">
         &Ctrl;&Shift;
-        <keycap>J</keycap></keycombo>sets the current directory as
+        <keycap>J</keycap></keycombo> sets the current directory as
         a jump back point.</para>
       </listitem>
     </itemizedlist></para>
@@ -217,10 +217,10 @@
   <sect2 id="manage_bookmarks">
     <title>Manage bookmarks</title>
     <para>To edit and organize your bookmarks, by clicking the 
-    <guibutton>Bookmark</guibutton>button and selecting the 
+    <guibutton>Bookmark</guibutton> button and selecting the 
     <guimenuitem>Manage Bookmarks</guimenuitem>,
     &keditbookmarks; will be displayed. This is where
-    you can edit/remove and re-arrange the bookmarks.
+    you can edit/remove and rearrange the bookmarks.
     &keditbookmarks; (part of the kdebase package) is a
     bookmark editor for &konqueror;,
     &krusader; and other applications, which use the
@@ -269,19 +269,19 @@
     key-binding for them: 
     <itemizedlist>
       <listitem>
-        <para>Create your &bookmarks_lnk; .</para>
+        <para>Create your &bookmarks_lnk;.</para>
       </listitem>
       <listitem>
         <para>If you want, create keybindings for the bookmarks in
         the 
-        <guilabel>Key-bindings</guilabel>section of the
+        <guilabel>Key-bindings</guilabel> section of the
         &konfiglookandfeel_lnk;.</para>
       </listitem>
       <listitem>
         <para>Add your bookmarks as action buttons on the
         &main_toolbar_lnk; or the
         &actions_toolbar_lnk; with the 
-        <guilabel>Toolbar</guilabel>section of the
+        <guilabel>Toolbar</guilabel> section of the
         &konfiglookandfeel_lnk;.</para>
       </listitem>
     </itemizedlist></para>

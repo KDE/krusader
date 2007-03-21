@@ -21,7 +21,7 @@
 *********************************************************************** -->
   <title>useraction.xml</title>
   <para>This appendix gives several examples of 
-  <filename>useraction.xml</filename>files. With this you can begin
+  <filename>useraction.xml</filename> files. With this you can begin
   to discover the power of the &useractions_lnk; and
   start learning how to use them. Once you understand how to write
   UserActions you will find that &krusader; is an even
@@ -35,358 +35,285 @@
     <listitem>
       <para>Run 
       <command>uptime:</command>
-      <programlisting>&lt;?xml version="1.0"
-      encoding="UTF-8" ?&gt; &lt;!DOCTYPE
-      KrusaderUserActions&gt;
+      <programlisting>
+      &lt;?xml version="1.0" encoding="UTF-8" ?&gt; 
+      &lt;!DOCTYPE KrusaderUserActions&gt;
       &lt;KrusaderUserActions&gt;
       &lt;action name="uptime" &gt;
       &lt;title&gt;Up-time&lt;/title&gt;
-      &lt;tooltip&gt;tells how long since the
-      computer has been
-      booted&lt;/tooltip&gt;
+      &lt;tooltip&gt;tells how long since the computer has been booted&lt;/tooltip&gt;
       &lt;icon&gt;clock&lt;/icon&gt;
       &lt;category&gt;information&lt;/category&gt;
-      &lt;description&gt;tells how long since
-      the computer has been
-      booted&lt;/description&gt;
-      &lt;command executionmode="collect_output"
-      &gt;uptime&lt;/command&gt;
+      &lt;description&gt;tells how long since the computer has been booted&lt;/description&gt;
+      &lt;command executionmode="collect_output" &gt;uptime&lt;/command&gt;
       &lt;defaultshortcut&gt;Alt+Ctrl+U&lt;/defaultshortcut&gt;
       &lt;/action&gt;
-      &lt;/KrusaderUserActions&gt;</programlisting></para>
+      &lt;/KrusaderUserActions&gt;
+      </programlisting></para>
     </listitem>
     <listitem>
       <para>Run 
       <command>ls -l:</command>
-      <programlisting>&lt;?xml version="1.0"
-      encoding="UTF-8" ?&gt; &lt;!DOCTYPE
-      KrusaderUserActions&gt;
+      <programlisting>
+      &lt;?xml version="1.0" encoding="UTF-8" ?&gt; 
+      &lt;!DOCTYPE KrusaderUserActions&gt;
       &lt;KrusaderUserActions&gt;
       &lt;action name="ls -l" &gt;
-      &lt;title&gt;ls -l in current
-      dir&lt;/title&gt;
-      &lt;description&gt;Runs ls -l in
-      current dir&lt;/description&gt;
-      &lt;command executionmode="collect_output"
-      &gt;ls -l %aPath%
-      %oPath%&lt;/command&gt;
+      &lt;title&gt;ls -l in current dir&lt;/title&gt;
+      &lt;description&gt;Runs ls -l in current dir&lt;/description&gt;
+      &lt;command executionmode="collect_output" &gt;ls -l %aPath% %oPath%&lt;/command&gt;
       &lt;/action&gt;
-      &lt;/KrusaderUserActions&gt;</programlisting></para>
+      &lt;/KrusaderUserActions&gt;
+      </programlisting></para>
     </listitem>
     <listitem>
       <para>Echo Placeholder: 
-      <programlisting>&lt;?xml version="1.0"
-      encoding="UTF-8" ?&gt; &lt;!DOCTYPE
-      KrusaderUserActions&gt;
+      <programlisting>
+      &lt;?xml version="1.0" encoding="UTF-8" ?&gt; 
+      &lt;!DOCTYPE KrusaderUserActions&gt;
       &lt;KrusaderUserActions&gt;
-      &lt;action name="test_placeholder" &gt;
-      &lt;title&gt;Echo
-      Placeholder&lt;/title&gt;
-      &lt;tooltip&gt;Echo's the placeholder
-      values&lt;/tooltip&gt;
+      &lt;action name="test_placeholder" &gt; 
+      &lt;title&gt;Echo Placeholder&lt;/title&gt;
+      &lt;tooltip&gt;Echo's the placeholder values&lt;/tooltip&gt;
       &lt;category&gt;Testing&lt;/category&gt;
-      &lt;description&gt;Echo's the
-      placeholder values&lt;/description&gt;
-      &lt;command executionmode="collect_output"
-      onmultiplefiles="call_each" &gt;echo -e
-      &quot;aPath %aPath()% \naCurrent:
-      %aCurrent()%&quot;&lt;/command&gt;
+      &lt;description&gt;Echo's the placeholder values&lt;/description&gt;
+      &lt;command executionmode="collect_output" onmultiplefiles="call_each" &gt;echo -e &quot;aPath %aPath()% \naCurrent: %aCurrent()%&quot;&lt;/command&gt;
       &lt;/action&gt;
-      &lt;/KrusaderUserActions&gt;</programlisting></para>
+      &lt;/KrusaderUserActions&gt;
+      </programlisting></para>
     </listitem>
     <listitem>
       <para>Copy current path and filename to clipboard: 
-      <programlisting>&lt;?xml version="1.0"
-      encoding="UTF-8" ?&gt; &lt;!DOCTYPE
-      KrusaderUserActions&gt;
+      <programlisting>
+      &lt;?xml version="1.0" encoding="UTF-8" ?&gt; 
+      &lt;!DOCTYPE KrusaderUserActions&gt;
       &lt;KrusaderUserActions&gt;
-      &lt;action name="clipboard current"
-      &gt; &lt;title&gt;Copy to
-      Clipboard&lt;/title&gt;
-      &lt;tooltip&gt;Copy to
-      clipboard&lt;/tooltip&gt;
+      &lt;action name="clipboard current" &gt; 
+      &lt;title&gt;Copy to Clipboard&lt;/title&gt;
+      &lt;tooltip&gt;Copy to clipboard&lt;/tooltip&gt;
       &lt;icon&gt;klipper&lt;/icon&gt;
       &lt;category&gt;System&lt;/category&gt;
-      &lt;description&gt;Copy current path
-      and filename to
-      clipboard&lt;/description&gt;
+      &lt;description&gt;Copy current path and filename to clipboard&lt;/description&gt;
       &lt;command&gt;%_Clipboard(&quot;%aCurrent%&quot;)%&lt;/command&gt;
       &lt;defaultshortcut&gt;Win+C&lt;/defaultshortcut&gt;
       &lt;/action&gt;
-      &lt;/KrusaderUserActions&gt;</programlisting></para>
+      &lt;/KrusaderUserActions&gt;
+      </programlisting></para>
     </listitem>
     <listitem>
       <para>Select 
-      <literal role="extension">.diff</literal>and 
-      <literal role="extension">*.h</literal>in the active panel: 
-      <programlisting>&lt;?xml version="1.0"
-      encoding="UTF-8" ?&gt; &lt;!DOCTYPE
-      KrusaderUserActions&gt;
+      <literal role="extension">.diff</literal> and 
+      <literal role="extension">*.h</literal> in the active panel: 
+      <programlisting>
+      &lt;?xml version="1.0" encoding="UTF-8" ?&gt; 
+      &lt;!DOCTYPE KrusaderUserActions&gt;
       &lt;KrusaderUserActions&gt;
       &lt;action name="test_select" &gt;
-      &lt;title&gt;Add selection *.diff and
-      *.h&lt;/title&gt;
+      &lt;title&gt;Add selection *.diff and *.h&lt;/title&gt;
       &lt;category&gt;Selection&lt;/category&gt;
-      &lt;command&gt;%aSelect(&quot;*.diff&quot;,
-      &quot;add&quot;)%
-      %aSelect(&quot;*.h&quot;,
-      &quot;add&quot;)%&lt;/command&gt;
+      &lt;command&gt;%aSelect(&quot;*.diff&quot;,&quot;add&quot;)% %aSelect(&quot;*.h&quot;, &quot;add&quot;)%&lt;/command&gt;
       &lt;/action&gt;
-      &lt;/KrusaderUserActions&gt;</programlisting></para>
+      &lt;/KrusaderUserActions&gt;
+      </programlisting></para>
     </listitem>
     <listitem>
       <para>Change active panel to 
       <filename>mnt/floppy</filename>(bookmark): 
-      <programlisting>&lt;?xml version="1.0"
-      encoding="UTF-8" ?&gt; &lt;!DOCTYPE
-      KrusaderUserActions&gt; &lt;action
-      name="mnt/floppy bookmark" &gt;
-      &lt;title&gt;Jump to
-      /mnt/floppy&lt;/title&gt;
+      <programlisting>
+      &lt;?xml version="1.0" encoding="UTF-8" ?&gt; 
+      &lt;!DOCTYPE KrusaderUserActions&gt; 
+      &lt;action name="mnt/floppy bookmark" &gt;
+      &lt;title&gt;Jump to /mnt/floppy&lt;/title&gt;
       &lt;category&gt;Bookmarks&lt;/category&gt;
-      &lt;command&gt;%aGoto(&quot;/mnt/floppy&quot;,
-      &quot;yes&quot;)%&lt;/command&gt;
+      &lt;command&gt;%aGoto(&quot;/mnt/floppy&quot;,&quot;yes&quot;)%&lt;/command&gt;
       &lt;/action&gt;
-      &lt;/KrusaderUserActions&gt;</programlisting></para>
+      &lt;/KrusaderUserActions&gt;
+      </programlisting></para>
     </listitem>
     <listitem>
       <para>Select in the non-active panel all filenames that are
       highlighted in the active panel: 
-      <programlisting>&lt;?xml version="1.0"
-      encoding="UTF-8" ?&gt; &lt;!DOCTYPE
-      KrusaderUserActions&gt; &lt;action
-      name="asdfasdf" &gt;
-      &lt;title&gt;Select in Other
-      Panel&lt;/title&gt;
+      <programlisting>
+      &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+      &lt;!DOCTYPE KrusaderUserActions&gt; 
+      &lt;action name="asdfasdf" &gt;
+      &lt;title&gt;Select in Other Panel&lt;/title&gt;
       &lt;category&gt;Selection&lt;/category&gt;
-      &lt;description&gt;Select all filenames
-      that are selected in the active panel, also in the non-active
-      panel&lt;/description&gt;
-      &lt;command&gt;%oSelect(&quot;%aList(&quot;selected&quot;,
-      &quot; &quot;,
-      &quot;Yes&quot;)%&quot;)%&lt;/command&gt;
+      &lt;description&gt;Select all filenames that are selected in the active panel, also in the non-active panel&lt;/description&gt;
+      &lt;command&gt;%oSelect(&quot;%aList(&quot;selected&quot;,&quot; &quot;,&quot;Yes&quot;)%&quot;)%&lt;/command&gt;
       &lt;/action&gt;
-      &lt;/KrusaderUserActions</programlisting></para>
+      &lt;/KrusaderUserActions
+      </programlisting></para>
     </listitem>
     <listitem>
       <para>Make a backup of the current file/folder to 
-      <filename>foo.bak</filename>into the current directory: 
-      <programlisting>&lt;?xml version="1.0"
-      encoding="UTF-8" ?&gt; &lt;!DOCTYPE
-      KrusaderUserActions&gt;
+      <filename>foo.bak</filename> into the current directory: 
+      <programlisting>
+      &lt;?xml version="1.0" encoding="UTF-8" ?&gt; 
+      &lt;!DOCTYPE KrusaderUserActions&gt;
       &lt;KrusaderUserActions&gt;
       &lt;action name="backup current" &gt;
-      &lt;title&gt;Backup in Current
-      Directory&lt;/title&gt;
-      &lt;tooltip&gt;Backup in current
-      directory&lt;/tooltip&gt;
+      &lt;title&gt;Backup in Current Directory&lt;/title&gt;
+      &lt;tooltip&gt;Backup in current directory&lt;/tooltip&gt;
       &lt;icon&gt;filesaveas&lt;/icon&gt;
       &lt;category&gt;System&lt;/category&gt;
-      &lt;description&gt;Backup in current
-      directory&lt;/description&gt;
-      &lt;command&gt;%_Copy(&quot;%aCurrent%&quot;,
-      &quot;%_Ask(&quot;new
-      name&quot;,
-      &quot;%aCurrent%.bak&quot;)&quot;)%&lt;/command&gt;
+      &lt;description&gt;Backup in current directory&lt;/description&gt;
+      &lt;command&gt;%_Copy(&quot;%aCurrent%&quot;,&quot;%_Ask(&quot;new name&quot;,&quot;%aCurrent%.bak&quot;)&quot;)%&lt;/command&gt;
       &lt;defaultshortcut&gt;Shift+F5&lt;/defaultshortcut&gt;
       &lt;/action&gt;
-      &lt;/KrusaderUserActions&gt;</programlisting></para>
+      &lt;/KrusaderUserActions&gt;
+      </programlisting></para>
     </listitem>
     <listitem>
       <para>Open 
       <link linkend="krusearcher">KruSearcher</link>: 
-      <programlisting>&lt;?xml version="1.0"
-      encoding="UTF-8" ?&gt; &lt;!DOCTYPE
-      KrusaderUserActions&gt;
+      <programlisting>
+      &lt;?xml version="1.0" encoding="UTF-8" ?&gt; 
+      &lt;!DOCTYPE KrusaderUserActions&gt;
       &lt;KrusaderUserActions&gt;
       &lt;action name="search" &gt;
-      &lt;title&gt;Search
-      Test&lt;/title&gt;
-      &lt;command&gt;%_NewSearch(&quot;Search
-      2&quot;)%&lt;/command&gt;
+      &lt;title&gt;Search Test&lt;/title&gt;
+      &lt;command&gt;%_NewSearch(&quot;Search 2&quot;)%&lt;/command&gt;
       &lt;/action&gt;
-      &lt;/KrusaderUserActions&gt;</programlisting></para>
+      &lt;/KrusaderUserActions&gt;
+      </programlisting></para>
     </listitem>
     <listitem>
       <para>Set the selected picture as wallpaper: 
-      <programlisting>&lt;?xml version="1.0"
-      encoding="UTF-8" ?&gt; &lt;!DOCTYPE
-      KrusaderUserActions&gt;
+      <programlisting>
+      &lt;?xml version="1.0" encoding="UTF-8" ?&gt; 
+      &lt;!DOCTYPE KrusaderUserActions&gt;
       &lt;KrusaderUserActions&gt;
       &lt;action name="set wallpaper" &gt;
-      &lt;title&gt;Set as
-      Wallpaper&lt;/title&gt;
-      &lt;tooltip&gt;Set as
-      wallpaper&lt;/tooltip&gt;
+      &lt;title&gt;Set as Wallpaper&lt;/title&gt;
+      &lt;tooltip&gt;Set as wallpaper&lt;/tooltip&gt;
       &lt;icon&gt;image&lt;/icon&gt;
-      &lt;category&gt;Service
-      Menu&lt;/category&gt;
-      &lt;description&gt;Set as wallpaper
-      (scaled)&lt;/description&gt;
-      &lt;command&gt;dcop kdesktop
-      KBackgroundIface setWallpaper
-      &quot;%aCurrent%&quot;
-      6&lt;/command&gt;
+      &lt;category&gt;Service Menu&lt;/category&gt;
+      &lt;description&gt;Set as wallpaper (scaled)&lt;/description&gt;
+      &lt;command&gt;dcop kdesktop KBackgroundIface setWallpaper &quot;%aCurrent%&quot; 6&lt;/command&gt;
       &lt;defaultshortcut&gt;Win+W&lt;/defaultshortcut&gt;
       &lt;/action&gt;
-      &lt;/KrusaderUserActions&gt;</programlisting></para>
+      &lt;/KrusaderUserActions&gt;
+      </programlisting></para>
     </listitem>
     <listitem>
       <para>Edit a file with root permissions using 
       <command>kdesu</command>: 
-      <programlisting>&lt;?xml version="1.0"
-      encoding="UTF-8" ?&gt; &lt;!DOCTYPE
-      KrusaderUserActions&gt;
+      <programlisting>
+      &lt;?xml version="1.0" encoding="UTF-8" ?&gt; 
+      &lt;!DOCTYPE KrusaderUserActions&gt;
       &lt;KrusaderUserActions&gt;
       &lt;action name="edit as root" &gt;
-      &lt;title&gt;Edit as
-      Root&lt;/title&gt;
-      &lt;tooltip&gt;Edit as
-      root&lt;/tooltip&gt;
+      &lt;title&gt;Edit as Root&lt;/title&gt;
+      &lt;tooltip&gt;Edit as root&lt;/tooltip&gt;
       &lt;icon&gt;kwrite&lt;/icon&gt;
       &lt;category&gt;System&lt;/category&gt;
-      &lt;description&gt;Edit a file with
-      root permissions using
-      kdesu&lt;/description&gt;
-      &lt;command&gt;kdesu kedit
-      %aCurrent%&lt;/command&gt;
+      &lt;description&gt;Edit a file with root permissions using kdesu&lt;/description&gt;
+      &lt;command&gt;kdesu kedit %aCurrent%&lt;/command&gt;
       &lt;defaultshortcut&gt;Win+F4&lt;/defaultshortcut&gt;
       &lt;/action&gt;
-      &lt;/KrusaderUserActions&gt;</programlisting></para>
+      &lt;/KrusaderUserActions&gt;
+      </programlisting></para>
     </listitem>
     <listitem>
       <para>Add item(s) to Amarok playlist: 
-      <programlisting>&lt;?xml version="1.0"
-      encoding="UTF-8" ?&gt; &lt;!DOCTYPE
-      KrusaderUserActions&gt;
+      <programlisting>
+      &lt;?xml version="1.0" encoding="UTF-8" ?&gt; 
+      &lt;!DOCTYPE KrusaderUserActions&gt;
       &lt;KrusaderUserActions&gt;
       &lt;action name="amarok enqueue" &gt;
-      &lt;title&gt;Enqueue in
-      Amarok&lt;/title&gt;
-      &lt;tooltip&gt;Append selected item(s)
-      to Amarok playlist&lt;/tooltip&gt;
+      &lt;title&gt;Enqueue in Amarok&lt;/title&gt;
+      &lt;tooltip&gt;Append selected item(s) to Amarok playlist&lt;/tooltip&gt;
       &lt;icon&gt;amarok&lt;/icon&gt;
       &lt;category&gt;Multimedia&lt;/category&gt;
-      &lt;description&gt;Append selected
-      item(s) to Amarok
-      playlist&lt;/description&gt;
-      &lt;command&gt;amarok --append
-      %aList(&quot;Selected&quot;)%&lt;/command&gt;
+      &lt;description&gt;Append selected item(s) to Amarok playlist&lt;/description&gt;
+      &lt;command&gt;amarok --append %aList(&quot;Selected&quot;)%&lt;/command&gt;
       &lt;defaultshortcut&gt;Win+A&lt;/defaultshortcut&gt;
       &lt;/action&gt;
-      &lt;/KrusaderUserActions&gt;</programlisting></para>
+      &lt;/KrusaderUserActions&gt;
+      </programlisting></para>
     </listitem>
     <listitem>
       <para>Open &synchronizer_lnk;: 
-      <programlisting>&lt;?xml version="1.0"
-      encoding="UTF-8" ?&gt; &lt;!DOCTYPE
-      KrusaderUserActions&gt;
+      <programlisting>
+      &lt;?xml version="1.0" encoding="UTF-8" ?&gt; 
+      &lt;!DOCTYPE KrusaderUserActions&gt;
       &lt;KrusaderUserActions&gt;
       &lt;action name="synchronizer" &gt;
       &lt;title&gt;Synchronizer&lt;/title&gt;
-      &lt;command&gt;%_Sync(&quot;Sync
-      2&quot;)%&lt;/command&gt;
+      &lt;command&gt;%_Sync(&quot;Sync 2&quot;)%&lt;/command&gt;
       &lt;/action&gt;
-      &lt;/KrusaderUserActions&gt;</programlisting></para>
+      &lt;/KrusaderUserActions&gt;
+      </programlisting></para>
     </listitem>
     <listitem>
       <para>Copy selected files &amp; directories with
       root privileges (also inside archives): 
-      <programlisting>&lt;?xml version="1.0"
-      encoding="UTF-8" ?&gt; &lt;!DOCTYPE
-      KrusaderUserActions&gt;
+      <programlisting>
+      &lt;?xml version="1.0" encoding="UTF-8" ?&gt; 
+      &lt;!DOCTYPE KrusaderUserActions&gt;
       &lt;KrusaderUserActions&gt;
       &lt;action name="root_copy" &gt;
-      &lt;title&gt;Copy as
-      "root"&lt;/title&gt;
-      &lt;tooltip&gt;Copy as
-      "root"&lt;/tooltip&gt;
+      &lt;title&gt;Copy as "root"&lt;/title&gt;
+      &lt;tooltip&gt;Copy as "root"&lt;/tooltip&gt;
       &lt;icon&gt;editcopy&lt;/icon&gt;
       &lt;category&gt;Selection&lt;/category&gt;
-      &lt;description&gt;Copy selected files
-      &amp; directories with root privileges, also
-      inside archives!&lt;/description&gt;
-      &lt;command run_as="root"
-      accept="url"&gt;kfmclient copy %aList("Selected",
-      " ", "No")% %oPath%&lt;/command&gt;
+      &lt;description&gt;Copy selected files &amp; directories with root privileges, also inside archives!&lt;/description&gt;
+      &lt;command run_as="root" accept="url"&gt;kfmclient copy %aList("Selected"," ", "No")% %oPath%&lt;/command&gt;
       &lt;/action&gt;
-      &lt;/KrusaderUserActions&gt;</programlisting></para>
+      &lt;/KrusaderUserActions&gt;
+      </programlisting></para>
     </listitem>
     <listitem>
       <para>Search and replace strings and regular expressions in
       textfiles using 
       <command>sed</command>: 
-      <programlisting>&lt;?xml version="1.0"
-      encoding="UTF-8" ?&gt; &lt;!DOCTYPE
-      KrusaderUserActions&gt;
+      <programlisting>
+      &lt;?xml version="1.0" encoding="UTF-8" ?&gt; 
+      &lt;!DOCTYPE KrusaderUserActions&gt;
       &lt;KrusaderUserActions&gt;
       &lt;action name="search_replace" &gt;
-      &lt;title&gt;Simple Search and
-      Replace&lt;/title&gt;
-      &lt;tooltip&gt;Search and replace a
-      string/regex in
-      textfiles&lt;/tooltip&gt;
+      &lt;title&gt;Simple Search and Replace&lt;/title&gt;
+      &lt;tooltip&gt;Search and replace a string/regex in textfiles&lt;/tooltip&gt;
       &lt;icon&gt;kcachegrind&lt;/icon&gt;
       &lt;category&gt;Samples&lt;/category&gt;
-      &lt;description&gt;This UA uses the
-      UNIX standard-tool sed (the stream-editor) to perform search
-      and replace operations in all selected files. It is possible
-      to give a regular expression for both strings. Please note:
-      The sed-command is "s/search/replace/", so you have to escape
-      the slash when you need
-      it!&lt;/description&gt;
-      &lt;command&gt;sed -i -e
-      's/%_Ask("Search for:")%/%_Ask("Replace with:")%/'
-      %aList("Selected")%&lt;/command&gt;
+      &lt;description&gt;
+      This UA uses the UNIX standard-tool sed (the stream-editor) to perform search and replace 
+      operations in all selected files. It is possible to give a regular expression for both strings. 
+      Please note: The sed-command is "s/search/replace/", so you have to escape the slash when you need
+      it!
+      &lt;/description&gt;
+      &lt;command&gt;sed -i -e 's/%_Ask("Search for:")%/%_Ask("Replace with:")%/' %aList("Selected")%&lt;/command&gt;
       &lt;/action&gt;
-      &lt;/KrusaderUserActions&gt;</programlisting></para>
+      &lt;/KrusaderUserActions&gt;
+      </programlisting></para>
     </listitem>
     <listitem>
-      <para>Convert content of selected text-files from ISO-8859-15
+      <para>Convert content of selected text files from ISO-8859-15
       to UTF8 and vice versa using 
       <command>iconv</command>(also inside archives): 
-      <programlisting>&lt;?xml version="1.0"
-      encoding="UTF-8" ?&gt; &lt;!DOCTYPE
-      KrusaderUserActions&gt;
+      <programlisting>
+      &lt;?xml version="1.0" encoding="UTF-8" ?&gt; 
+      &lt;!DOCTYPE KrusaderUserActions&gt;
       &lt;KrusaderUserActions&gt;
       &lt;action name="iso8859-15_to_utf8"
-      &gt; &lt;title&gt;ISO
-      8859-15 =&gt;
-      UTF8&lt;/title&gt;
-      &lt;tooltip&gt;convert
-      characterset&lt;/tooltip&gt;
+      &gt; &lt;title&gt;ISO 8859-15 =&gt; UTF8&lt;/title&gt;
+      &lt;tooltip&gt;convert characterset&lt;/tooltip&gt;
       &lt;icon&gt;editcopy&lt;/icon&gt;
       &lt;category&gt;Selection&lt;/category&gt;
-      &lt;description&gt;Converts content of
-      selected text-files from ISO-8859-15 to
-      UTF8&lt;/description&gt;
-      &lt;command&gt;sh -c 'cd %aPath%; for i
-      in %aList(&quot;Selected&quot;,
-      &quot; &quot;,
-      &quot;Yes&quot;)% ; do iconv -f
-      iso8859-15 -t utf-8 &quot;$i&quot; -o
-      %oPath%&quot;$i&quot;; done
-      '&lt;/command&gt;
-      &lt;/action&gt; &lt;action
-      name="utf8_to_iso8859-15" &gt;
-      &lt;title&gt;UTF8 =&gt; ISO
-      8859-15&lt;/title&gt;
-      &lt;tooltip&gt;convert
-      characterset&lt;/tooltip&gt;
+      &lt;description&gt;Converts content of selected text-files from ISO-8859-15 to UTF8&lt;/description&gt;
+      &lt;command&gt;sh -c 'cd %aPath%; for i in %aList(&quot;Selected&quot;,&quot; &quot;,&quot;Yes&quot;)% ; do iconv -f iso8859-15 -t utf-8 &quot;$i&quot; -o %oPath%&quot;$i&quot;; done'&lt;/command&gt;
+      &lt;/action&gt; 
+      &lt;action name="utf8_to_iso8859-15" &gt;
+      &lt;title&gt;UTF8 =&gt; ISO 8859-15&lt;/title&gt;
+      &lt;tooltip&gt;convert characterset&lt;/tooltip&gt;
       &lt;icon&gt;editcopy&lt;/icon&gt;
       &lt;category&gt;Selection&lt;/category&gt;
-      &lt;description&gt;Converts content of
-      selected text-files from UTF8 to
-      ISO-8859-15&lt;/description&gt;
-      &lt;command&gt;sh -c 'cd %aPath%; for i
-      in %aList(&quot;Selected&quot;,
-      &quot; &quot;,
-      &quot;Yes&quot;)% ; do iconv -f utf-8
-      -t iso8859-15 &quot;$i&quot; -o
-      %oPath%&quot;$i&quot;; done
-      '&lt;/command&gt;
+      &lt;description&gt;Converts content of selected text-files from UTF8 to ISO-8859-15&lt;/description&gt;
+      &lt;command&gt;sh -c 'cd %aPath%; for i in %aList(&quot;Selected&quot;,&quot; &quot;,&quot;Yes&quot;)% ; do iconv -f utf-8 -t iso8859-15 &quot;$i&quot; -o %oPath%&quot;$i&quot;; done'&lt;/command&gt;
       &lt;/action&gt;
-      &lt;/KrusaderUserActions&gt;</programlisting></para>
+      &lt;/KrusaderUserActions&gt;
+      </programlisting></para>
     </listitem>
   </itemizedlist>
 </appendix>

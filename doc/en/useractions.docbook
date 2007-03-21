@@ -34,10 +34,10 @@
   standard Edit Toolbar and Edit Shortcut dialogs will show
   UserActions, too. The UserActions are stored in 
   <filename>
-  ~/.kde/share/apps/krusader/useraction.xml</filename>(the file
+  ~/.kde/share/apps/krusader/useraction.xml</filename> (the file
   structure is documentated in doxygen headers of UserActionXML).
   Several 
-  <link linkend="useraction_xml">examples</link>are included in the
+  <link linkend="useraction_xml">examples</link> are included in the
   documentation. UserActions can be edited / added / imported /
   exported by using ActionMan. The default UserActions are stored
   in 
@@ -45,10 +45,10 @@
   ~/.kde/share/apps/krusader/useraction_examples.xml</filename>.
   UserActions can appear nearly everywhere where "normal" KActions
   can be placed. The actions integrate seamlessly into
-  &kde;'s action system, which means that the standard
+  &kde; action system, which means that the standard
   Edit Toolbar and Edit Shortcut dialogs will show UserActions,
   too. They can even be placed in the menu bar, but for that the 
-  <filename>krusaderui.rc</filename>file must be edited. A few
+  <filename>krusaderui.rc</filename> file must be edited. A few
   examples: 
   <itemizedlist>
     <listitem>
@@ -74,7 +74,7 @@
   <tip>
     <para>Several UserActions are provided by default. Please 
     <link linkend="help_krusader">upload your favorite
-    UserActions</link>so that they become available for the
+    UserActions</link> so that they become available for the
     &krusader; community. Thanks! We provide also an
     &useractionsforum_url;.</para>
   </tip>
@@ -93,12 +93,12 @@
   programs with variable parameters. For example, you could have a
   UserAction with the following 
   <command>xmms 
-  <option>--enqueue %aList("Selected")%</option></command>to
+  <option>--enqueue %aList("Selected")%</option></command> to
   enqueue all selected items of the active panel to the current
   instance of xmms. Additionally, there is limited access to
   &krusader; internal functions requiring parameters.
   For example, 
-  <command>%aPanelSize("80")%</command>will set the width of the
+  <command>%aPanelSize("80")%</command> will set the width of the
   active panel to 80% of the &krusader; mainwindow.
   Since the parameter of placeholders can contain other
   placeholders, few scripts are possible. However, scripting can be
@@ -123,7 +123,7 @@
       <para>To edit a UserAction: Select the UserAction on the
       left. Then choose it if you want to edit its properties. The
       changes will only take effect when you press 
-      <guimenuitem>Ok</guimenuitem>.</para>
+      <guimenuitem>OK</guimenuitem>.</para>
     </listitem>
     <listitem>
       <para>
@@ -145,11 +145,11 @@
       <guimenuitem>Export Action</guimenuitem>: If you export a
       UserAction you have to give a filename in which to store it.
       If it does not exist, it will be created. If the file already
-      contains UserActions, the action you're exporting will be
+      contains UserActions, the action you are exporting will be
       added to that file.</para>
     </listitem>
-  </itemizedlist>All actions you've defined are now shown in the
-  usermenu and in &kde;'s dialogs for changing shortcuts
+  </itemizedlist>All actions you have defined are now shown in the
+  user menu and in &kde; dialogs for changing shortcuts
   and managing the toolbar. In addition, all actions available for
   the current item will also show up in the right click
   menu.</para>
@@ -195,9 +195,9 @@
       <para>
       <guimenuitem>"Description"</guimenuitem>: A description of
       what the UserAction does. This is also displayed as 
-      <guimenuitem>"What's This"</guimenuitem>if you 
+      <guimenuitem>"What's This"</guimenuitem> if you 
       <keycombo action="simul">&Shift;
-      <keycap>F1</keycap></keycombo>click on your
+      <keycap>F1</keycap></keycombo> click on your
       UserAction.</para>
     </listitem>
     <listitem>
@@ -210,7 +210,7 @@
       <guimenuitem>"Command line"</guimenuitem>: The command which
       will be executed. You can add placeholder using a GUI with
       the 
-      <guibutton>add</guibutton>button.</para>
+      <guibutton>add</guibutton> button.</para>
     </listitem>
     <listitem>
       <para>
@@ -234,7 +234,7 @@
         <listitem>
           <para>
           <guimenuitem>"Collect output"</guimenuitem>: Collects the
-          output of the executed programm in a &GUI;
+          output of the executed program in a &GUI;
           window.</para>
         </listitem>
         <listitem>
@@ -300,7 +300,7 @@
   <itemizedlist>
     <listitem>
       <para>
-      <userinput>Path</userinput>- replaced by the panels
+      <userinput>Path</userinput> - replaced by the panels
       path</para>
       <orderedlist>
         <listitem>
@@ -312,7 +312,7 @@
     </listitem>
     <listitem>
       <para>
-      <userinput>Count</userinput>- replaced by the number of
+      <userinput>Count</userinput> - replaced by the number of
       &lt;first parameter&gt;</para>
       <orderedlist>
         <listitem>
@@ -323,12 +323,12 @@
     </listitem>
     <listitem>
       <para>
-      <userinput>Filter</userinput>- replaced by the panel's filter
+      <userinput>Filter</userinput> - replaced by the panel's filter
       mask</para>
     </listitem>
     <listitem>
       <para>
-      <userinput>Current</userinput>- replaced by the current
+      <userinput>Current</userinput> - replaced by the current
       item</para>
       <orderedlist>
         <listitem>
@@ -344,7 +344,7 @@
     </listitem>
     <listitem>
       <para>
-      <userinput>List</userinput>- replaced by a list of all
+      <userinput>List</userinput> - replaced by a list of all
       &lt;first parameter&gt;</para>
       <orderedlist>
         <listitem>
@@ -375,7 +375,7 @@
     </listitem>
     <listitem>
       <para>
-      <userinput>Select</userinput>- manipulates the selection in a
+      <userinput>Select</userinput> - manipulates the selection in a
       panel</para>
       <orderedlist>
         <listitem>
@@ -390,7 +390,7 @@
     </listitem>
     <listitem>
       <para>
-      <userinput>Goto</userinput>- changes the panels' path to
+      <userinput>Goto</userinput> - changes the panels' path to
       &lt;first parameter&gt;</para>
       <orderedlist>
         <listitem>
@@ -406,7 +406,7 @@
     </listitem>
     <listitem>
       <para>
-      <userinput>Ask</userinput>- asks the user for some text and
+      <userinput>Ask</userinput> - asks the user for some text and
       is replaced by the answer</para>
       <orderedlist>
         <listitem>
@@ -419,13 +419,13 @@
         </listitem>
         <listitem>
           <para>&useraction_optional_parameter; A
-          caption for the questionbox</para>
+          caption for the question box</para>
         </listitem>
       </orderedlist>
     </listitem>
     <listitem>
       <para>
-      <userinput>Clipboard</userinput>- manipulates the
+      <userinput>Clipboard</userinput> - manipulates the
       clipboard</para>
       <orderedlist>
         <listitem>
@@ -442,7 +442,7 @@
     </listitem>
     <listitem>
       <para>
-      <userinput>Copy</userinput>- copies a file, useful for quick,
+      <userinput>Copy</userinput> - copies a file, useful for quick,
       local backups</para>
       <orderedlist>
         <listitem>
@@ -457,7 +457,7 @@
     </listitem>
     <listitem>
       <para>
-      <userinput>Sync</userinput>- opens the Synchronizer with a
+      <userinput>Sync</userinput> - opens the Synchronizer with a
       given profile</para>
       <orderedlist>
         <listitem>
@@ -468,7 +468,7 @@
     </listitem>
     <listitem>
       <para>
-      <userinput>NewSearch</userinput>- opens the search windows
+      <userinput>NewSearch</userinput> - opens the search windows
       with a given profile</para>
       <orderedlist>
         <listitem>
@@ -479,7 +479,7 @@
     </listitem>
     <listitem>
       <para>
-      <userinput>Profile</userinput>- loads a given panel
+      <userinput>Profile</userinput> - loads a given panel
       profile</para>
       <orderedlist>
         <listitem>
@@ -490,7 +490,7 @@
     </listitem>
     <listitem>
       <para>
-      <userinput>Each</userinput>- splits the commandline into a
+      <userinput>Each</userinput> - splits the commandline into a
       list. These commands are executed one after another.</para>
       <orderedlist>
         <listitem>
@@ -501,7 +501,7 @@
     </listitem>
     <listitem>
       <para>
-      <userinput>Move</userinput>- Move from source to
+      <userinput>Move</userinput> - move from source to
       destination.</para>
       <orderedlist>
         <listitem>
@@ -515,7 +515,7 @@
     </listitem>
     <listitem>
       <para>
-      <userinput>PanelSize</userinput>- Change the ratio between
+      <userinput>PanelSize</userinput> - change the ratio between
       the two panels.</para>
       <orderedlist>
         <listitem>
@@ -528,7 +528,7 @@
     </listitem>
     <listitem>
       <para>
-      <userinput>Ask</userinput>- Cancel the execution.</para>
+      <userinput>Ask</userinput> - cancel the execution.</para>
       <orderedlist>
         <listitem>
           <para>&useraction_optional_parameter; A string
@@ -538,9 +538,9 @@
     </listitem>
     <listitem>
       <para>
-      <userinput>Script</userinput>- Executes an external 
+      <userinput>Script</userinput> - executes an external 
       <link linkend="javascript_console">
-      Javascript</link>file.</para>
+      Javascript</link> file.</para>
       <para>NOTE: This is still experimental and the interface may
       change, feedback is always welcome.</para>
       <orderedlist>
@@ -551,13 +551,13 @@
           &lt;kde-app-data&gt;/krusader/js/</filename>.
           &lt;kde-app-data&gt; is 
           <filename>$(kde-config
-          --localprefix)/share/apps/</filename>or 
+          --localprefix)/share/apps/</filename> or 
           <filename>$(kde-config --prefix)/share/apps/</filename>,
           for those who don't know where to copy the
           scripts/extensions. If all the needed files (normally 
-          <filename>.js</filename>and maybe 
+          <filename>.js</filename> and maybe 
           <filename>.ui</filename>) are in one of these dirs it's
-          sufficient to give the filename only as 1.
+          sufficient to give the file name only as 1.
           parameter.</para>
         </listitem>
         <listitem>
@@ -572,7 +572,7 @@
     </listitem>
     <listitem>
       <para>
-      <userinput>ListFile</userinput>- is replaced by path/filename
+      <userinput>ListFile</userinput> - is replaced by path/file name
       of a temporary file containing a list of items</para>
       <orderedlist>
         <listitem>
@@ -583,7 +583,7 @@
     </listitem>
     <listitem>
       <para>
-      <userinput>ColSort</userinput>- set the sorting on a column
+      <userinput>ColSort</userinput> - set the sorting on a column
       of a specific panel.</para>
       <orderedlist>
         <listitem>
@@ -599,7 +599,7 @@
     </listitem>
     <listitem>
       <para>
-      <userinput>View</userinput>- set the view mode.</para>
+      <userinput>View</userinput> - set the view mode.</para>
       <orderedlist>
         <listitem>
           <para>&useraction_parameter; View mode: Either
@@ -616,7 +616,7 @@
   automatically escaped. There is one more important thing to know:
   All placeholders that interact with &krusader;
   internal functions are called at expand time (meaning directly
-  when the placeholders are replaced). External programms are
+  when the placeholders are replaced). External programs are
   called at execution time (meaning after all placeholders are
   replaced).</para>
   <para>
@@ -625,20 +625,20 @@
     </emphasis>
   </para>
   <para>Here you can configure where your command should be visible
-  (for the right click menu) In addition, it's possible to change
+  (for the right click menu) In addition, it is possible to change
   the command executed and confirm it separately. You can also set
   a user under which the command should be executed. 
   <itemizedlist>
     <listitem>
       <para>Configures if the action is valid for a Protocol, Path,
-      Mime type or Filename.</para>
+      Mime type or File name.</para>
     </listitem>
     <listitem>
       <para>Tweaking the command line before being executed.</para>
     </listitem>
     <listitem>
       <para>Set a different user for the execution (this has no
-      effect in krusader internal functions)</para>
+      effect in &krusader; internal functions)</para>
     </listitem>
   </itemizedlist></para>
 </sect1>

@@ -1,4 +1,4 @@
-<chapter>
+<chapter id="introduction">
 
 <title>Introduction</title>
 <indexterm><primary>Introduction</primary></indexterm>
@@ -9,16 +9,16 @@
     and other *nix desktops, similar to &mc; or
     &tcmd;. It provides all the file management features
     you could possibly want.</para>
-    <para>Krusader also includes extensive Archive handling,
-    mounted Filesystem support, &FTP;, advanced Search
-    module, viewer/Editor, directory Synchronization, file content
-    Comparisons, powerful batch Renaming and much, much more.
-    Supports archive formats: ace, arj, bzip2, deb, gzip, iso, lha,
-    rar, rpm, tar, zip and 7-zip. Handles other
+    <para>Krusader also includes extensive archive handling,
+    mounted file system support, &FTP;, advanced search
+    module, viewer/editor, directory synchronization, file content
+    comparisons, powerful batch renaming and much, much more.
+    &krusader; supports archive formats: ace, arj, bzip2, deb, gzip, iso, lha,
+    rar, rpm, tar, zip and 7-zip and handles other
     &kioslaves1_url; such as smb:// or fish://.</para>
-    <para>Krusader is almost completely customizable, and therefore
-    very easy and user friendly.</para>
-    <para>Try Krusader.</para>
+    <para>&krusader; is almost completely customizable and therefore
+    very user-friendly.</para>
+    <para>Try &krusader;.</para>
     <!-- OLD
 <screenshot>
   <screeninfo>&krusader; screenshot</screeninfo>
@@ -37,7 +37,7 @@
           <imagedata fileref="krusader1.png"></imagedata>
         </imageobject>
         <textobject>
-          <phrase>&krusader; screenshot</phrase>
+          <phrase>&krusader; screen shot</phrase>
         </textobject>
       </mediaobject>
     </figure>
@@ -56,14 +56,14 @@
     and accurate, allowing you to focus on the big picture, not
     command line syntax. This is especially helpful if you are new
     to xxNIX operating systems. To do just that,
-    &krusader; uses a good looking &GUI; and
-    supports drag n' drop as well as mimetypes, making it easy to
+    &krusader; uses a good-looking &GUI; and
+    supports drag and drop as well as mime types, making it easy to
     use.</para>
-    <para>Krusader has many useful features. It is fast, and
+    <para>&krusader; has many useful features. It is fast, and
     handles &archives_lnk; transparently. In addition,
     &krusader; streamlines many complex file management
     tasks, reducing fatigue, errors, and distraction. Basically,
-    &krusader; provides all the helpful features you've
+    &krusader; provides all the helpful features you have
     come to expect from other quality file management tools like
     &mc; and &tcmd;. &krusader; is
     designed to integrate seamlessly with the &kde;
@@ -76,9 +76,9 @@
     &gpl_lnk;, although the developers still retain the
     copyright for the project and its name, and manage the
     project's continuing evolution.</para>
-    <para>The &krusader; Project's mission is to create
+    <para>The &krusader; Project mission is to create
     an "all-in-one" file manager, which will do all the ordinary
-    things you'd expect from it, and more. Since the principle
+    things you would expect of it, and more. Since the principle
     behind &krusader; is based on the
     &ofm_url;, dual-pane filemanagers (&mc;,
     &nc;, &etc;), it is certain that
@@ -90,17 +90,17 @@
     servers, TAR archives, NFS filesystems, SAMBA shares, ISO
     cd/dvd images, RPM catalogs, &etc;), which allow the
     user to access all the information in these divergent types of
-    filesystems transparently - just like entering an ordinary
+    file systems transparently - just like entering an ordinary
     sub-directory. Files can then be copied or moved around (except
     ISO,rpm,tar.gz) between these data sources/containers
     effortlessly. &krusader; currently supports VFSs for
     all popular and some specialized types of archives (ace, arj,
     bzip2, gzip, iso, lha, rar, tar, zip and 7-zip), configuration
-    packages (rpm, deb), and traditional remote filesystem types
+    packages (rpm, deb), and traditional remote file system types
     (&FTP;, NFS, Samba, FISH, SFTP).</para>
     <para>&krusader; also includes a built-in
     Mount-Manager &mountman_lnk;, which enables you to
-    mount or unmount filesystems of all types with a click of a
+    mount or unmount file systems of all types with a click of a
     mouse. The user is able to obtain usage and other property
     information easily, in a consistent and understandable format
     in seconds. Ease and consistency is the goal.</para>
@@ -129,7 +129,7 @@
     <para>New extensibility is provided by the flexible
     &useractions_lnk;, a &krusader;
     innovation that allows unlimited additional custom
-    functionality to be added to suit the user's specific needs. We
+    functionality to be added to suit the specific needs of users. We
     are planning to develop more modules in the near future,
     thereby enhancing &krusader;. Information on what is
     proposed, approved, or remains to be completed can be found in

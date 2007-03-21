@@ -40,7 +40,7 @@
       </listitem>
       <listitem>
         <para>&krusader; 1.40: prefers &kde;
-        3.2 (otherwise all features won't be available)</para>
+        3.2 (otherwise all features will not be available)</para>
       </listitem>
       <listitem>
         <para>&krusader; v1.50 - v1.51: &kde;
@@ -54,7 +54,7 @@
       <listitem>
         <para>&krusader; 1.70.x: prefers
         &kde; &gt;= 3.4 (otherwise all
-        features won't be available)</para>
+        features will not be available)</para>
       </listitem>
       <listitem>
         <para>&krusader; 1.80.0: &kde; 3.4 -
@@ -85,7 +85,7 @@
     must be configured 
     <link linkend="konfig-dependencies">here</link>.</para>
     <para>A package of popular (un)packers, &krusader;
-    itself and addons can be found on the
+    itself and add-ons can be found on the
     &krudownload_url;.</para>
     <para>For more requirements, see below. Have a look at the
     &faq_lnk; section as well.</para>
@@ -96,7 +96,7 @@
     found on the &kruwebsite_url; .</para>
     <sect2 id="krusader_download">
       <title>&krusader; Downloads</title>
-      <para>It's recommend to use the &krusader; package
+      <para>it is recommended to use the &krusader; package
       that is provided by your distribution.
       &distrowatch_com_url; is a great resource to check
       the availability. If your distribution does not offer
@@ -120,7 +120,7 @@
         <listitem>
           <para>&fedora; via
           &fedora_extras_url; 
-          <command># yum install krusader</command>will do the job,
+          <command># yum install krusader</command> will do the job,
           thanks to Marcin Garski. &RedHat; RPM packages
           can usually found on the &krudownload_url; or
           at &dag_wiers_download_url; and
@@ -140,7 +140,7 @@
         <listitem>
           <para>&mandriva_download_url; via the contrib
           repository 
-          <command># urpmi krusader</command>will do the job,
+          <command># urpmi krusader</command> will do the job,
           &gentoo_download_url;,
           &yoper_download_url;.</para>
         </listitem>
@@ -179,13 +179,13 @@
           found on the &krudownload_url;. You can also
           use &portpkg_url; that contains a
           &kru_slackbuild_url;, 
-          <command># portpkg krusader</command>will do the
+          <command># portpkg krusader</command> will do the
           job.</para>
         </listitem>
         <listitem>
           <para>There is a &macosx_download_url; port
           with the help of &fink_url; , the port is
-          maintained by &bodo_tasche_url; .</para>
+          maintained by &bodo_tasche_url;.</para>
         </listitem>
       </itemizedlist></para>
       <para>Installation via the &klik_protocol_url; 
@@ -215,19 +215,19 @@
           &kde_apps_url; .</para>
         </listitem>
         <listitem>
-          <para>If you can't find a package for your distribution,
+          <para>If you can notfind a package for your distribution,
           we recommend searching for it with
-          &rpmfind_url; , &rpmpbone_url; or
-          &rpmseek_url; .</para>
+          &rpmfind_url;, &rpmpbone_url; or
+          &rpmseek_url;.</para>
         </listitem>
       </itemizedlist>If you enjoy using &krusader;, we
       would appreciate it if you went to one of these sites and
       rated it.</para>
-      <para>If you still can't find a package, follow the
+      <para>If you still can not find a package, follow the
       installation procedure on how to compile
       &krusader; from source. This very thorough HowTo
       describes the process in such detail that even newcomers
-      shouldn't have any problems.</para>
+      should not have any problems.</para>
     </sect2>
     <sect2 id="version_scheme">
       <title>Version Scheme</title>
@@ -247,8 +247,8 @@
       </itemizedlist>In essence, releasing
       &krusader;-1.60.0 means that we believe that
       &krusader; is about 60% done with all the features
-      we'd schedule for the 1.x.x series. Series 2.x.x will be
-      &kde; 4.x releases. Hopefully, it's easy to
+      we had scheduled for the 1.x.x series. Series 2.x.x will be
+      &kde; 4.x releases. Hopefully, it is easy to
       understand.</para>
     </sect2>
     <sect2 id="krusader_stable">
@@ -303,47 +303,47 @@
       </warning>
       <para>We provide daily snapshots of &krusader;'s
       CVS version. For those who are interested, the 
-      <emphasis role="bold">nightly tarball</emphasis>can be found
+      <emphasis role="bold">nightly tarball</emphasis> can be found
       on the &krucutedge_url;. Depending on the stage of
       development, this version will either be stable or unstable.
       Just before a stable release, the CVS version is almost
       stable. After a stable release new features will be committed
       into CVS, which might lead to the appearance of bugs. In some
-      rare cases, the build won't even compile if we make a
-      mistake. In that case we try to fix the mistake as soon as
+      rare cases, the build will not even compile if we make a
+      mistake. In that case we try to fix the error as soon as
       possible.</para>
       <para>&krusader; provides 2 nightly snapshots: 
       <orderedlist numeration="arabic">
         <listitem>
           <para>
           <filename>krusader-cvs-yyyymmdd.tar.gz</filename>: 
-          <command>make -f Makefile.cvs</command>must be run before
+          <command>make -f Makefile.cvs</command> must be run before
           the 
-          <command>./configure</command>script is available.</para>
+          <command>./configure</command> script is available.</para>
         </listitem>
         <listitem>
           <para>
           <filename>krusader-cvs2-yyyymmdd.tar.gz</filename>: for
           users who have problems with the 
-          <command>make -f Makefile.cvs</command>command, we have
+          <command>make -f Makefile.cvs</command> command, we have
           already done this for you and the 
-          <command>./configure</command>script is included in the
+          <command>./configure</command> script is included in the
           tarball. This tarball is a bit bigger than the first
           one.</para>
         </listitem>
       </orderedlist></para>
       <para>
-      <emphasis role="bold">Checkout from CVS</emphasis>.
+      <emphasis role="bold">check out from CVS</emphasis>.
       &krusader; can be checked out through anonymous
       (pserver) CVS with the following instruction set. The module
-      you wish to check out must be specified as the modulename.
+      you wish to check out must be specified as the module name.
       When prompted for a password for anonymous, press the
       &Enter; key.</para>
       <para>Currently, there are two module options: 
       <itemizedlist>
         <listitem>
           <para>krusader_kde2: the &kde;2 branch, stable
-          but it's basically v1.01 and there are no planned
+          but it is basically v1.01 and there are no planned
           changes</para>
         </listitem>
         <listitem>
@@ -351,53 +351,24 @@
           currently use</para>
         </listitem>
       </itemizedlist></para>
-      <para>To checkout &krusader; from CVS: 
-      <screen>
-        <prompt>$</prompt>
-        <userinput>
-          <command>cvs</command>
-          <option>
-          -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader
-          login</option>
-        </userinput>
-      </screen>
-      <screen>
-        <prompt>$</prompt>
-        <userinput>
-          <command>cvs</command>
-          <option>-z3
-          -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader
-          co krusader_kde3</option>
-        </userinput>
-      </screen>(note: updates from within the modules directory do
+      <para>To check out &krusader; from CVS: 
+      <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader login</option></userinput></screen>
+      <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader co krusader_kde3</option></userinput></screen>
+      (note: updates from within the modules directory do
       not need the -d parameter)</para>
-      <para>If you want to checkout a specific version of
+      <para>If you want to check out a specific version of
       &krusader; from CVS (&eg;
       &krusader;-1.60.0) : 
-      <screen>
-        <prompt>$</prompt>
-        <userinput>
-          <command>cvs</command>
-          <option>-z3
-          -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader
-          co -rversion_1_60_0 krusader_kde3</option>
-        </userinput>
-      </screen></para>
-      <para>If you want to checkout a specific date of
+      <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader co -rversion_1_60_0 krusader_kde3</option></userinput></screen>
+      </para>
+      <para>If you want to check out a specific date of
       &krusader; from CVS (&eg;
       &krusader;-2006-10-29) : 
-      <screen>
-        <prompt>$</prompt>
-        <userinput>
-          <command>cvs</command>
-          <option>-z3
-          -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader
-          co -D2006-10-29 krusader_kde3</option>
-        </userinput>
-      </screen></para>
+      <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader co -D2006-10-29 krusader_kde3</option></userinput></screen>
+      </para>
       <para>Mostly being &gentoo; users, we provide a
       &gentoo_life_ebuild_url; for all those who want to
-      stay on the bleeding edge of file management and don't want
+      stay on the bleeding edge of file management and do not want
       to miss the advantages of portage. Please take a look at our
       &krucutedge_url; for more installation
       details.</para>
@@ -408,30 +379,18 @@
       <title>Subversion</title>
       <para>&subversion_url; will probably be used for
       the &krusader; 2.x series for &kde;4.
-      It's also possible to
+      it is also possible to
       &browse_svn_repo_url;.</para>
       <para>To check out the latest &krusader; 1.x for
-      &kde; 3 from SVN: (NOTE: at moment of writing it's
+      &kde; 3 from SVN: (NOTE: at moment of writing it is
       recommend to use CVS for krusader_kde3, since krusader_kde3
       is developed in CVS and not in SVN) 
-      <screen>
-        <prompt>$</prompt>
-        <userinput>
-          <command>svn</command>
-          <option>co
-          https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde3</option>
-        </userinput>
-      </screen>To check out the latest &krusader; 2.x
+      <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde3</option></userinput></screen>
+      To check out the latest &krusader; 2.x
       for &kde; 4 from SVN: (NOTE: not yet available at
       moment of writing) 
-      <screen>
-        <prompt>$</prompt>
-        <userinput>
-          <command>svn</command>
-          <option>co
-          https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4</option>
-        </userinput>
-      </screen></para>
+      <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4</option></userinput></screen>
+      </para>
     </sect2>
     <sect2 id="krusader_old">
       <title>Older Releases</title>
@@ -450,23 +409,14 @@
     system, type the following in the base directory of the
     &krusader; package:</para>
     <screen>
-      <prompt>$</prompt>
-      <userinput>
-        <command>./configure</command>
-      </userinput>
-      <prompt>$</prompt>
-      <userinput>
-        <command>make</command>
-      </userinput>
-      <prompt>$</prompt>
-      <userinput>
-        <command>su -c 'make</command>
-        <option>install'</option>
-      </userinput>
-    </screen>&krusaderui_rc_text; 
+      <prompt>$</prompt> <userinput><command>./configure</command></userinput>
+      <prompt>$</prompt> <userinput><command>make</command></userinput>
+      <prompt>$</prompt> <userinput><command>su -c 'make</command> <option>install'</option></userinput>
+    </screen>
+    &krusaderui_rc_text; 
     <para>Since &krusader; uses 
-    <command>autoconf</command>and 
-    <command>automake</command>you should have no trouble compiling
+    <command>autoconf</command> and 
+    <command>automake</command> you should have no trouble compiling
     it. If you run into problems, read the detailed installation
     instructions below.</para></sect2>
     <sect2 id="install_tutorial">
@@ -480,7 +430,7 @@
       if they are mostly not &krusader; specific.
       Experienced users may easily skip most of the steps.</para>
       <para>Unfortunately, because not all &Linux;
-      distributions follow the &fhs_url; it's impossible
+      distributions follow the &fhs_url; it is impossible
       to write a tutorial that would cover all circumstances.
       However, these guidelines will help you in the right
       direction.</para>
@@ -518,11 +468,8 @@
           keep all the sources you compile in. This way you will
           have a better overview of the installed programs and it
           will be easier to uninstall them later. 
-          <screen>
-            <prompt>$</prompt>
-            <userinput>
-            <command>mkdir</command>~/source</userinput>
-          </screen>The chosen directory is just an example, any
+          <screen><prompt>$</prompt> <userinput><command>mkdir</command> ~/source</userinput></screen>
+          The chosen directory is just an example, any
           other will work.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
@@ -531,47 +478,26 @@
         </listitem>
         <listitem>
           <para>Copy the sources to the 
-          <filename>~/source</filename>directory and unpack them. 
-          <screen>
-            <prompt>$</prompt>
-            <userinput>
-            <command>cp</command>/
-            <replaceable>
-            "your_dir"</replaceable>/krusader-x.xx.tar.gz
-            ~/source</userinput>
-          </screen>
-          <screen>
-            <prompt>$</prompt>
-            <userinput>
-            <command>cd</command>~/source</userinput>
-          </screen>
-          <screen>
-            <prompt>$</prompt>
-            <userinput>
-            <command>tar</command>
-            <option>-xzvf</option>krusader-x.xx.tar.gz</userinput>
-          </screen></para>
+          <filename>~/source</filename> directory and unpack them. 
+          <screen><prompt>$</prompt> <userinput><command>cp</command> /<replaceable>"your_dir"</replaceable> /krusader-x.xx.tar.gz ~/source</userinput></screen>
+          <screen><prompt>$</prompt> <userinput><command>cd</command> ~/source</userinput></screen>
+          <screen><prompt>$</prompt> <userinput><command>tar</command> <option>-xzvf</option>krusader-x.xx.tar.gz</userinput></screen>
+          </para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </listitem>
         <listitem>
           <para>Optional step: if you wish you can delete the
           tarball at this point as it is no longer needed. 
-          <screen>
-            <prompt>$</prompt>
-            <userinput>
-            <command>rm</command>krusader-x.xx.tar.gz</userinput>
-          </screen></para>
+          <screen><prompt>$</prompt> <userinput><command>rm</command> krusader-x.xx.tar.gz</userinput></screen>
+          </para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </listitem>
         <listitem>
           <para>Change to the directory containing the sources. 
-          <screen>
-            <prompt>$</prompt>
-            <userinput>
-            <command>cd</command>krusader-x.xx</userinput>
-          </screen></para>
+          <screen><prompt>$</prompt> <userinput><command>cd</command> krusader-x.xx</userinput></screen>
+          </para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </listitem>
@@ -579,77 +505,54 @@
           <para>Check the environment variables 
           <envar>QTDIR</envar>and 
           <envar>KDEDIR</envar>. &krusader;'s 
-          <command>./configure</command>script needs to know where
+          <command>./configure</command> script needs to know where
           the &Qt; and &kde; directories
           are.</para>
           <para>
           <envar>QTDIR</envar>: 
           <replaceable>&lt;path to your Qt
-          installation&gt;</replaceable>&eg; 
-          <filename>/usr/lib/qt3</filename>or 
+          installation&gt;</replaceable> &eg; 
+          <filename>/usr/lib/qt3</filename> or 
           <filename>/usr/qt3</filename></para>
           <para>
           <envar>KDEDIR</envar>: 
           <replaceable>&lt;path to your KDE
-          installation&gt;</replaceable>&eg; 
-          <filename>/usr</filename>or 
+          installation&gt;</replaceable> &eg; 
+          <filename>/usr</filename> or 
           <filename>/opt/kde3</filename></para>
           <para>Normally your distribution will set them for you,
-          but experience has shown that some don't. You can easily
+          but experience has shown that some do not. You can easily
           check the values with the 
-          <command>echo</command>command. 
+          <command>echo</command> command. 
           <screen>
-          <prompt>$</prompt>
-          <userinput>
-          <command>echo</command>$QTDIR</userinput>/usr/lib/qt3 
-          <prompt>$</prompt>
-          <userinput>
-          <command>echo</command>$KDEDIR</userinput>/usr</screen>If
+          	<prompt>$</prompt> <userinput><command>echo</command> $QTDIR</userinput> /usr/lib/qt3 
+          	<prompt>$</prompt> <userinput><command>echo</command> $KDEDIR</userinput> /usr
+          </screen>
+          If
           both commands give an output, the enviroment variables
           are set (the above example are the settings of
           &mandriva;-&Linux;). In case you
           receive empty lines, the variables are not set and you
-          have to set them manually. If you don't know what to set
+          have to set them manually. If you do not know what to set
           the variables to, or if you want to check if the
           variables are correctly set, ask your distributor or use
           the 
-          <command>find</command>command. 
+          <command>find</command> command. 
           <screen>
-          <prompt>$</prompt>
-          <userinput>
-          <command>find</command>
-          <option>/usr /opt -name</option>qtconfig 
-          <option>-type f
-          2&gt;/dev/null</option></userinput>/usr/lib/qt3/bin/qtconfig
-          
-          <prompt>$</prompt>
-          <userinput>
-          <command>find</command>
-          <option>/usr /opt -name</option>kdeinit 
-          <option>-type f
-          2&gt;/dev/null</option></userinput>/usr/bin/kdeinit</screen>In
-          this case 
-          <filename>/usr/lib/qt3</filename>is your 
-          <envar>QTDIR</envar>and 
-          <filename>/usr</filename>is your 
+          	<prompt>$</prompt> <userinput><command>find</command> <option>/usr /opt -name</option> qtconfig <option>-type f 2&gt;/dev/null</option></userinput> /usr/lib/qt3/bin/qtconfig
+         	<prompt>$</prompt> <userinput><command>find</command> <option>/usr /opt -name</option> kdeinit <option>-type f 2&gt;/dev/null</option></userinput> /usr/bin/kdeinit
+          </screen>
+          In this case 
+          <filename>/usr/lib/qt3</filename> is your 
+          <envar>QTDIR</envar> and 
+          <filename>/usr</filename> is your 
           <envar>KDEDIR</envar>. The installed binaries will go to 
           <filename>/usr/bin</filename>. Now we will set the
           enviroment variables with the 
-          <command>export</command>command. 
-          <screen>
-            <prompt>$</prompt>
-            <userinput>
-            <command>export</command>QTDIR=
-            <replaceable>&lt;replace with your
-            QTDIR&gt;</replaceable></userinput>
-          </screen>
-          <screen>
-            <prompt>$</prompt>
-            <userinput>
-            <command>export</command>KDEDIR=
-            <replaceable>&lt;replace with your
-            KDEDIR&gt;</replaceable></userinput>
-          </screen></para>
+          <command>export</command> command. 
+          <screen><prompt>$</prompt> <userinput><command>export</command> QTDIR=<replaceable>&lt;replace with your QTDIR&gt;</replaceable></userinput></screen>
+          <screen><prompt>$</prompt> <userinput><command>export</command> KDEDIR=<replaceable>&lt;replace with your KDEDIR&gt;</replaceable></userinput></screen>
+          </para>
           <note>
             <para>These enviroment variables are only set for the
             lifetime of your current shell. When you close your
@@ -661,8 +564,8 @@
             <filename class="directory">/etc/profile</filename>)
             file.</para>
           </note>
-          <para>If you can't determine your KDEDIR, 
-          <command>kde-config --prefix</command>might help
+          <para>If you can notdetermine your KDEDIR, 
+          <command>kde-config --prefix</command> might help
           you.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
@@ -671,55 +574,54 @@
         </listitem>
         <listitem>
           <para>If you have downloaded a stable version 
-          <filename>"krusader-x.xx.tar.gz"</filename>or a beta
+          <filename>"krusader-x.xx.tar.gz"</filename> or a beta
           version 
           <filename>"krusader-x.xx-betax.tar.gz"</filename>, you
           can skip this step. In this case the 
-          <filename>./configure</filename>script is
+          <filename>./configure</filename> script is
           provided.</para>
           <para>If you have downloaded a CVS build or nightly
           tarball 
           <filename>"krusader-cvs-yyyy-mm-dd.tar.gz"</filename>",
           you will have to run the following command to create the 
-          <filename>./configure</filename>script: 
-          <screen>
-            <prompt>$</prompt>
-            <userinput>
-            <command>make</command>
-            <option>-f</option>Makefile.cvs</userinput>
-          </screen></para>
+          <filename>./configure</filename> script: 
+          <screen><prompt>$</prompt> <userinput><command>make</command> <option>-f</option>Makefile.cvs</userinput></screen>
+          </para>
           <para>If everything is OK you will see the following
           output on your screen: 
           <screen>
-          <prompt>$</prompt>
-          <userinput>
-          <command>make</command>
-          <option>-f</option>Makefile.cvs</userinput>This Makefile
-          is only for the CVS repository This will be deleted
-          before making the distribution *** Creating acinclude.m4
-          *** Creating list of subdirectories *** Creating
-          configure.in *** Creating aclocal.m4 *** Creating
-          configure *** Creating config.h template *** Creating
-          Makefile templates *** Postprocessing Makefile templates
-          *** Creating date/time stamp *** Finished Don't forget to
-          run ./configure If you haven't done so in a while, run
-          ./configure --help 
-          <prompt>$</prompt></screen></para>
+         	 <prompt>$</prompt> <userinput><command>make</command> <option>-f</option> Makefile.cvs</userinput> 
+      	    This Makefile is only for the CVS repository 
+   	       This will be deleted before making the distribution 
+	          *** Creating acinclude.m4
+         	 *** Creating list of subdirectories 
+      	    *** Creating configure.in 
+	          *** Creating aclocal.m4 
+   	       *** Creating configure 
+         	 *** Creating config.h template 
+      	    *** Creating Makefile templates 
+   	       *** Postprocessing Makefile templates
+	          *** Creating date/time stamp 
+         	 *** Finished 
+      	    do not forget to run ./configure 
+   	       If you haven't done so in a while, run ./configure --help 
+	          <prompt>$</prompt>
+          </screen>
+          </para>
           <note>
             <para>You will need to have 
             <application>autoconf 2.52, 2.53 or
-            2.54</application>and 
-            <application>automake 1.6</application>(or higher) to
+            2.54</application> and 
+            <application>automake 1.6</application> (or higher) to
             run the 
-            <command>make -f Makefile.cvs</command>command</para>
+            <command>make -f Makefile.cvs</command> command</para>
           </note>
           <tip>
             <para>If you encounter problems with this command click
-            
             <link linkend="krusader_cvs">here</link>.
             &krusader; provides two nightly builds
             (snapshots) one with a 
-            <filename>./configure</filename>script and one
+            <filename>./configure</filename> script and one
             without.</para>
           </tip>
           <para></para>
@@ -731,14 +633,14 @@
           <para>Your &Linux; distro
           &krusader; RPM or DEB package will normally
           install &krusader; in the 
-          <filename>KDEDIR/bin</filename>directory. According to
+          <filename>KDEDIR/bin</filename> directory. According to
           the &fhs_url;, any user installed files go to
           the 
-          <filename>/usr/local</filename>directory. If you wish
+          <filename>/usr/local</filename> directory. If you wish
           &krusader; to be installed in another
           directory, it can be determed with the prefix option. If
-          you don't have root access, 
-          <filename>/home/YOUR_USERNAME/.kde</filename>is probably
+          you do not have root access, 
+          <filename>/home/YOUR_USERNAME/.kde</filename> is probably
           a good choice. 
           <screen>
             <prompt>$</prompt>
@@ -751,28 +653,40 @@
           well it will &eg; end with the following
           messages:</para>
           <para>
-            <screen>foo Krusader Project: ----------------- Source
-            code location: . C Compiler: gcc C Compiler flags:
-            -ansi -W -Wall -pedantic -Wchar-subscripts -Wshadow
-            -Wpointer-arith -Wmissing-prototypes -Wwrite-strings
-            -D_XOPEN_SOURCE=500 -D_BSD_SOURCE -O2 -Wformat-security
-            -Wmissing-format-attribute C++ Compiler: g++ prefix:
-            /usr/local kde_libraries: /usr/include kde_includes:
-            /usr/lib kde_locale: /usr/share/locale qt_libraries:
-            /usr/lib/qt3/lib qt_includes: /usr/lib/qt3/include
-            KDEDIR: /usr QTDIR: /usr/lib/qt3 Install path:
-            /usr/local/bin krusader version: 1.51 krusader binary:
-            /usr/local/bin/krusader (after 'make install') Thank
-            you for using Krusader Good - your configure finished.
-            Start make now 
-            <prompt>bash$</prompt></screen>
+            <screen>
+	            foo Krusader Project: 
+         	   ----------------- 
+      	      Source code location: . 
+   	         C Compiler: gcc 
+	            C Compiler flags:
+            	-ansi -W -Wall -pedantic -Wchar-subscripts -Wshadow
+         	   -Wpointer-arith -Wmissing-prototypes -Wwrite-strings
+      	      -D_XOPEN_SOURCE=500 -D_BSD_SOURCE -O2 -Wformat-security
+   	         -Wmissing-format-attribute 
+	            C++ Compiler: g++ 
+            	prefix: /usr/local 
+         	   kde_libraries: /usr/include 
+      	      kde_includes: /usr/lib 
+   	         kde_locale: /usr/share/locale 
+	            qt_libraries: /usr/lib/qt3/lib 
+            	qt_includes: /usr/lib/qt3/include
+         	   KDEDIR: /usr 
+      	      QTDIR: /usr/lib/qt3 
+   	         Install path: /usr/local/bin 
+	            krusader version: 1.51 
+            	krusader binary: /usr/local/bin/krusader (after 'make install') 
+         	   Thank you for using Krusader 
+      	      Good - your configure finished.
+   	         Start make now 
+	            <prompt>bash$</prompt>
+            </screen>
           </para>
           <para>This is the output for
           &Mandrake;-&Linux; 10, other
           distributions may give a different output.</para>
           <tip>
             <para>At the end of the 
-            <command>./configure</command>script you will find a
+            <command>./configure</command> script you will find a
             summary of the most important settings, &eg;
             where the &krusader; binary will be
             installed (after the 'make install' command). This part
@@ -782,7 +696,7 @@
           <para></para>
           <!-- Empty line to make it more readable -->
           <para>Since &krusader;-1.70.0 
-          <command>./configure</command>has two specific
+          <command>./configure</command> has two specific
           &krusader; options: 
           <itemizedlist>
             <listitem>
@@ -813,29 +727,26 @@
             <command>./configure</command>
             <option>--help</option>
           </userinput>to see more options or read the 
-          <filename>INSTALL</filename>file in the
+          <filename>INSTALL</filename> file in the
           &krusader; sources.</para>
           <para>If you used another --prefix= than 
           <filename>$KDEDIR or /usr/local</filename>, it is
           recommended to do an extra check: 
           <screen>
-          <prompt>$</prompt>
-          <userinput>
-            <command>kde-config</command>
-            <option>--path exe</option>
-          </userinput>/home/frank/.kde/bin/:/usr/bin/:/usr/local/bin/
-          
-          <prompt>$</prompt></screen>If the
+          	<prompt>$</prompt> <userinput><command>kde-config</command> <option>--path exe</option></userinput> /home/frank/.kde/bin/:/usr/bin/:/usr/local/bin/
+				<prompt>$</prompt>
+			 </screen>
+          If the
           &lt;prefix_dir/bin&gt; directory is
           not shown, you need to use e.g. 
           <command>export KDEDIRS=/usr/local:/usr</command>. To
           make these settings permanent you can &eg;
           append this export command to your 
-          <filename>/etc/profile</filename>file. After that you
+          <filename>/etc/profile</filename> file. After that you
           need to restart &kde;.</para>
           <note>
             <para>If 
-            <command>./configure</command>fails, take a look at
+            <command>./configure</command> fails, take a look at
             &missing_libs_lnk;.</para>
           </note>
           <para></para>
@@ -843,27 +754,25 @@
         </listitem>
         <listitem>
           <para>Start the compilation process with the 
-          <command>make</command>command. 
-          <screen>
-            <prompt>$</prompt>
-            <userinput>
-              <command>make</command>
-            </userinput>
-          </screen>This will take about 10 - 40 minutes. If
+          <command>make</command> command. 
+          <screen><prompt>$</prompt> <userinput><command>make</command></userinput></screen>
+          This will take about 10 - 40 minutes. If
           everything goes well, it will &eg; end with
           the following messages: 
-          <screen>foo make[2]: Leaving directory
-          `/home/source/krusader_kde3/tar' make[2]: Entering
-          directory `/home/source/krusader_kde3' make[2]: Leaving
-          directory `/home/source/krusader_kde3' make[1]: Leaving
-          directory `/home/source/krusader_kde3' 
-          <prompt>bash$</prompt></screen></para>
+          <screen>
+          	foo make[2]: Leaving directory `/home/source/krusader_kde3/tar' 
+          	make[2]: Entering directory `/home/source/krusader_kde3' 
+          	make[2]: Leaving directory `/home/source/krusader_kde3' 
+          	make[1]: Leaving directory `/home/source/krusader_kde3' 
+            <prompt>bash$</prompt>
+          </screen>
+          </para>
           <para></para>
           <!-- Empty line to make it more readable -->
           <para>If 
-          <command>./configure</command>was successful and 
-          <command>make</command>failed for some reason, continue
-          to read this page. If you can't find a solution to your
+          <command>./configure</command> was successful and 
+          <command>make</command> failed for some reason, continue
+          to read this page. If you can not find a solution to your
           problem, feel free to post a help request at our
           &forum_lnk;.</para>
           <para></para>
@@ -872,13 +781,8 @@
         <listitem>
           <para>If everything is correct, you can now install
           &krusader;. 
-          <screen>
-            <prompt>$</prompt>
-            <userinput>
-              <command>su -c 'make</command>
-              <option>install'</option>
-            </userinput>
-          </screen>You will be asked to enter your root
+          <screen><prompt>$</prompt> <userinput><command>su -c 'make</command> <option>install'</option></userinput></screen>
+          You will be asked to enter your root
           password.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
@@ -891,7 +795,7 @@
         <listitem>
           <para>Now you can 
           <link linkend="starting-krusader">
-          start</link>&krusader;.</para>
+          start</link> &krusader;.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </listitem>
@@ -899,13 +803,8 @@
           <para>Optional step: Cleaning up to save disk space.
           Note: All compiled files created with the 
           <command>make</command>command will be deleted. 
-          <screen>
-            <prompt>$</prompt>
-            <userinput>
-              <command>make</command>
-              <option>clean</option>
-            </userinput>
-          </screen></para>
+          <screen><prompt>$</prompt> <userinput><command>make</command> <option>clean</option></userinput></screen>
+          </para>
           <para></para>
           <!-- Empty line to make it more readable -->
           <para></para>
@@ -914,13 +813,8 @@
         <listitem>
           <para>If you ever want to uninstall
           &krusader;, use 
-          <screen>
-            <prompt>$</prompt>
-            <userinput>
-              <command>su -c 'make</command>
-              <option>uninstall'</option>
-            </userinput>
-          </screen>You will be asked to enter your root
+          <screen><prompt>$</prompt> <userinput><command>su -c 'make</command> <option>uninstall'</option></userinput></screen>
+          You will be asked to enter your root
           password.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
@@ -933,9 +827,9 @@
     </sect2>
   </sect1>
   <sect1 id="mac-port">
-    <title>Installing on &MacOS;-x</title>
+    <title>Installing on &MacOS;-X</title>
     <indexterm>
-      <primary>&MacOS;-x port</primary>
+      <primary>&MacOS;-X port</primary>
     </indexterm>
     <para>Krusader is ported to &MacOS; thanks to Jonas
     B&auml;hr and &bodo_tasche_url; .
@@ -943,7 +837,7 @@
     &fink_url; has to offer is currenly 3.1.4 which
     means you need to use &krusader;-1.40 .
     Unfortunately the &MacOS; X &krusader;
-    port doesn't have the same power as in a native
+    port does not have the same power as in a native
     &Linux;-&kde; environment. To run
     &krusader; you need also X11, which doesn't interact
     with the rest of the &MacOS; desktop. We hope that
@@ -961,8 +855,8 @@
       <listitem>
         <para>Extract the 
         <filename>
-        krusader-1.40.fink.darwin-ppc.tar.bz2</filename>package to 
-        <filename>/sw/fink/dist/local/main/</filename>Only root can
+        krusader-1.40.fink.darwin-ppc.tar.bz2</filename> package to 
+        <filename>/sw/fink/dist/local/main/</filename> Only root can
         write here. You may have to create 'local' and
         'main'.</para>
       </listitem>
@@ -972,7 +866,7 @@
       </listitem>
     </orderedlist></para>
     <para>Follow these instructions if you wish to compile more
-    sourcecode or use a more recent version of
+    source code or use a more recent version of
     &krusader;: 
     <orderedlist>
       <listitem>
@@ -988,14 +882,14 @@
       <listitem>
         <para>Compile kdelibs 3.4.1 or higher (fink provides the
         necessary 
-        <filename>.info</filename>files)</para>
+        <filename>.info</filename> files)</para>
       </listitem>
       <listitem>
         <para>Compile the &krusader;-tarball or follow
         steps 2 and 3 of the previous section if a recent
         &krusader;-package &eg; 
         <filename>
-        krusader-1.60.0.fink.darwin-ppc.tar.bz2</filename>is
+        krusader-1.60.0.fink.darwin-ppc.tar.bz2</filename> is
         available</para>
       </listitem>
     </orderedlist></para>
@@ -1005,34 +899,32 @@
     <para>Type 
     <userinput>
       <command>krusader</command>
-    </userinput>(lower case) at a command prompt. You can create
+    </userinput> (lower case) at a command prompt. You can create
     shortcut on your desktop or create an entry in the
     (&kde;) menu. Read the previous page and the
     &faq_lnk; if &krusader; doesn't
     start.</para>
     <para>When &krusader; is started from the
-    command-line, various options can be specified to modify its
+    command line, various options can be specified to modify its
     behavior.</para>
     <screen>
-    <prompt>$</prompt>
-    <userinput>
-      <command>krusader</command>
-    </userinput>WARNING: Mt.Man: Born, looking around to get
-    familiar. foo</screen>
+    	<prompt>$</prompt> <userinput><command>krusader</command></userinput>
+    	WARNING: Mt.Man: Born, looking around to get familiar. foo
+    </screen>
     <note>
-      <para>Don't worry about the messages you get in the
+      <para>Do not worry about the messages you get in the
       &konsole;. These messages are log messages that
       can be used for debugging &krusader;.</para>
     </note>
     <para>You can also use 
     <keycombo action="simul">&Alt;
-    <keycap>F2</keycap></keycombo>to open the Run Command dialog
+    <keycap>F2</keycap></keycombo> to open the Run Command dialog
     box, type 
     <userinput>
       <command>krusader</command>
-    </userinput>(lower case) and press &Enter; or click
+    </userinput> (lower case) and press &Enter; or click
     on the 
-    <guibutton>Run</guibutton>button.</para>
+    <guibutton>Run</guibutton> button.</para>
     <para>If &krusader; is installed by an RPM or DEB
     package then usually &krusader; can be started from
     the &kmenu;. &eg; on
@@ -1096,7 +988,7 @@
         <listitem>
           <para>
             <action>load a 
-            <link linkend="panel_profiles">panel-profile</link>on
+            <link linkend="panel_profiles">panel-profile</link> on
             startup (this overrides the 
             <link linkend="konfig-startup">default startup
             profile</link>).</action>
@@ -1105,46 +997,12 @@
       </varlistentry>
     </variablelist>
     <para>Examples: 
-    <screen>
-      <prompt>$</prompt>
-      <userinput>
-        <command>krusader</command>
-        <replaceable>--left=&lt;path&gt;
-        --right=&lt;path&gt;</replaceable>
-      </userinput>
-    </screen>
-    <screen>
-      <prompt>$</prompt>
-      <userinput>
-        <command>krusader</command>
-        <replaceable>--left=/mnt/cdrom
-        --right=ftp://downloads@myserver.net</replaceable>
-      </userinput>
-    </screen>
-    <screen>
-      <prompt>$</prompt>
-      <userinput>
-        <command>krusader</command>
-        <replaceable>
-        --left=&lt;path1&gt;,&lt;path2&gt;
-        --right=&lt;path1&gt;,&lt;path2&gt;,&lt;path3&gt;</replaceable>
-      </userinput>
-    </screen>
-    <screen>
-      <prompt>$</prompt>
-      <userinput>
-        <command>krusader</command>
-        <replaceable>--profile
-        &lt;panel-profile&gt;</replaceable>
-      </userinput>
-    </screen>
-    <screen>
-      <prompt>$</prompt>
-      <userinput>
-        <command>krusader</command>
-        <replaceable>--profile ftp-managment</replaceable>
-      </userinput>
-    </screen></para>
+    <screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--left=&lt;path&gt; --right=&lt;path&gt;</replaceable></userinput></screen>
+    <screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--left=/mnt/cdrom --right=ftp://downloads@myserver.net</replaceable></userinput></screen>
+    <screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--left=&lt;path1&gt;,&lt;path2&gt; --right=&lt;path1&gt;,&lt;path2&gt;,&lt;path3&gt;</replaceable></userinput></screen>
+    <screen><prompt>$</prompt> <userinput><command>krusader</command><replaceable>--profile &lt;panel-profile&gt;</replaceable></userinput></screen>
+    <screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--profile ftp-managment</replaceable></userinput></screen>
+    </para>
     <para>The standard &Qt; and &kde;
     command-line options are available, and can be listed by
     entering 
@@ -1220,7 +1078,7 @@
     <title>Configuring &krusader;</title>
     <para>When you run &krusader; for the first time,
     the &krusader; configuration module 
-    <link linkend="konfigurator">Konfigurator</link>will show up
+    <link linkend="konfigurator">Konfigurator</link> will show up
     and allow you to configure &krusader; as well as
     detect installed packers and tools. You can always run
     Konfigurator again from the
