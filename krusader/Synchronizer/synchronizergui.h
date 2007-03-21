@@ -68,6 +68,7 @@ public:
                                      label7, label8 ), syncItemRef( item ), lastItemRef( 0 ), textColor( txt ), baseColor( base )
       {
         item->setUserData( (void *)this );
+        setDragEnabled( true );
       }
       
       SyncViewItem( SynchronizerFileItem *item, QColor txt, QColor base, QListViewItem * parent, QListViewItem *after, QString label1,
@@ -78,6 +79,7 @@ public:
                                      label7, label8 ), syncItemRef( item ), lastItemRef( 0 ), textColor( txt ), baseColor( base )
       {
         item->setUserData( (void *)this );
+        setDragEnabled( true );
       }
 
       ~SyncViewItem()
@@ -145,6 +147,7 @@ private:
   void    setMarkFlags();
   void    disableMarkButtons();
   void    enableMarkButtons();
+  void    copyToClipboard( bool isLeft );
   
   int     convertToSeconds( int time, int unit );
   void    convertFromSeconds( int &time, int &unit, int second );

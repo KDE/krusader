@@ -832,15 +832,8 @@ void KRslots::manageUseractions() {
 }
 
 void KRslots::slotSynchronizeDirs( QStringList selected ) {
-  SynchronizerGUI *sync = new SynchronizerGUI( 0,
-                MAIN_VIEW->left->func->files()->vfs_getOrigin(),
-                MAIN_VIEW->right->func->files()->vfs_getOrigin(), selected );
-
-  bool refresh = sync->wasSynchronization();
-  delete sync;
-
-  if( refresh )
-    REFRESH_BOTH_PANELS;
+  new SynchronizerGUI( 0, MAIN_VIEW->left->func->files()->vfs_getOrigin(),
+                          MAIN_VIEW->right->func->files()->vfs_getOrigin(), selected );
 }
 
 void KRslots::slotSyncBrowse() {

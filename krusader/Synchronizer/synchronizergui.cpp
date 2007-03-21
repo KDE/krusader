@@ -37,6 +37,7 @@
 #include "../VFS/krquery.h"
 #include "../krservices.h"
 #include "../krslots.h"
+#include "../kicons.h"
 #include "synchronizedialog.h"
 #include "feedtolistboxdialog.h"
 #include <qlayout.h>
@@ -54,6 +55,8 @@
 #include <qheader.h>
 #include <qspinbox.h>
 #include <kinputdialog.h>
+#include <kurldrag.h>
+#include <qclipboard.h>
 
 static const char * const right_arrow_button_data[] = {
 "18 18 97 2",
@@ -1007,6 +1010,63 @@ static const char * const swap_sides_data[] = {
 "                                                      ",
 "                                                      "};
 
+class SynchronizerListView : public QListView
+{
+private:
+  Synchronizer   *synchronizer;
+  bool            isLeft;
+  
+public:
+  SynchronizerListView( Synchronizer * sync, QWidget * parent ) : QListView( parent ), synchronizer( sync )
+  {
+  }
+
+  void contentsMouseMoveEvent ( QMouseEvent * e )
+  {
+    isLeft = (( e->state() & ShiftButton ) == 0 );
+    QListView::contentsMouseMoveEvent( e );
+  }
+  void startDrag() 
+  {
+    KURL::List urls;
+
+    unsigned              ndx = 0;
+    SynchronizerFileItem  *currentItem;
+
+    while( ( currentItem = synchronizer->getItemAt( ndx++ ) ) != 0 )
+    {
+      SynchronizerGUI::SyncViewItem *viewItem = (SynchronizerGUI::SyncViewItem *)currentItem->userData();
+
+      if( !viewItem || !viewItem->isSelected() || !viewItem->isVisible() )
+        continue;
+
+      SynchronizerFileItem *item = viewItem->synchronizerItemRef();
+      if( item )
+      {
+        if( isLeft && item->existsInLeft() )
+        {
+          QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
+          KURL leftURL = vfs::fromPathOrURL( synchronizer->leftBaseDirectory()  + leftDirName + item->leftName() );
+          urls.push_back( leftURL );
+        }
+        else if( !isLeft && item->existsInRight() )
+        {
+          QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
+          KURL rightURL = vfs::fromPathOrURL( synchronizer->rightBaseDirectory()  + rightDirName + item->rightName() );
+          urls.push_back( rightURL );
+        }
+      }
+    }
+
+    if( urls.count() == 0 )
+      return;
+
+    KURLDrag *d = new KURLDrag(urls, this);
+    d->setPixmap( FL_LOADICON( isLeft ? "2leftarrow" : "2rightarrow" ), QPoint( -7, 0 ) );
+    d->dragCopy();
+  }
+};
+
 SynchronizerGUI::SynchronizerGUI(QWidget* parent,  KURL leftURL, KURL rightURL, QStringList selList ) :
     QDialog( parent, "Krusader::SynchronizerGUI", false, 0 ) {
    initGUI( parent, QString::null, leftURL, rightURL, selList );
@@ -1229,7 +1289,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KURL l
   synchronizerGrid->addWidget( compareDirs, 0, 0 );
 
   /* ========================= Synchronization list view ========================== */
-  syncList=new QListView( synchronizerTab );  // create the main container
+  syncList=new SynchronizerListView( &synchronizer, synchronizerTab );  // create the main container
   QWhatsThis::add( syncList, i18n( "The compare results of the synchronizer (CTRL+M)." ) );
 
   krConfig->setGroup("Look&Feel");
@@ -1497,8 +1557,6 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KURL l
     profileManager->loadProfile( profileName );
 
   synchronizer.setParentWidget( this );
-
-  exec();
 }
 
 SynchronizerGUI::~SynchronizerGUI()
@@ -1598,6 +1656,8 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
   #define DESELECT_ITEMS_ID   100
   #define INVERT_SELECTION_ID 101
   #define SYNCH_WITH_KGET_ID  102
+  #define COPY_CLPBD_LEFT_ID  103
+  #define COPY_CLPBD_RIGHT_ID 104
   //////////////////////////////////////////////////////////
   if (!itemIn)
     return;
@@ -1641,6 +1701,11 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
   popup.setItemEnabled(VIEW_RIGHT_FILE_ID, !isDir && item->existsInRight() );
   popup.insertItem(i18n("&Compare Files"),COMPARE_FILES_ID);
   popup.setItemEnabled(COMPARE_FILES_ID, !isDir && isDuplicate );
+  
+  popup.insertSeparator();
+  
+  popup.insertItem(i18n("C&opy selected to clipboard (left)"),COPY_CLPBD_LEFT_ID);
+  popup.insertItem(i18n("Co&py selected to clipboard (right)"),COPY_CLPBD_RIGHT_ID);
 
   popup.insertSeparator();
 
@@ -1751,6 +1816,12 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
       synchronizer.synchronizeWithKGet();
       closeDialog();
       break;
+    case COPY_CLPBD_LEFT_ID:
+      copyToClipboard( true );
+      break;
+    case COPY_CLPBD_RIGHT_ID:
+      copyToClipboard( false );
+      break;
     case -1 : return;     // the user clicked outside of the menu
   }
 }
@@ -1803,6 +1874,16 @@ void SynchronizerGUI::closeDialog()
   krConfig->writeEntry("Right Name Width", syncList->columnWidth( 6 ) );
 
   QDialog::reject();
+  
+  this->deleteLater();
+  
+  if( wasSync )
+  {
+    ListPanel *p=ACTIVE_PANEL;
+    MAIN_VIEW->left->func->refresh();
+    MAIN_VIEW->right->func->refresh();
+    p->slotFocusOnMe();
+  }
 }
 
 void SynchronizerGUI::compare()
@@ -2342,5 +2423,44 @@ void SynchronizerGUI::convertFromSeconds( int &time, int &unit, int second ) {
   }
 }
 
+void SynchronizerGUI::copyToClipboard( bool isLeft )
+{
+  KURL::List urls;
+
+  unsigned              ndx = 0;
+  SynchronizerFileItem  *currentItem;
+
+  while( ( currentItem = synchronizer.getItemAt( ndx++ ) ) != 0 )
+  {
+    SynchronizerGUI::SyncViewItem *viewItem = (SynchronizerGUI::SyncViewItem *)currentItem->userData();
+
+    if( !viewItem || !viewItem->isSelected() || !viewItem->isVisible() )
+      continue;
+
+    SynchronizerFileItem *item = viewItem->synchronizerItemRef();
+    if( item )
+    {
+      if( isLeft && item->existsInLeft() )
+      {
+        QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
+        KURL leftURL = vfs::fromPathOrURL( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
+        urls.push_back( leftURL );
+      }
+      else if( !isLeft && item->existsInRight() )
+      {
+        QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
+        KURL rightURL = vfs::fromPathOrURL( synchronizer.rightBaseDirectory()  + rightDirName + item->rightName() );
+        urls.push_back( rightURL );
+      }
+    }
+  }
+
+  if( urls.count() == 0 )
+    return;
+
+  KURLDrag *d = new KURLDrag(urls, this);
+  d->setPixmap( FL_LOADICON( isLeft ? "2leftarrow" : "2rightarrow" ), QPoint( -7, 0 ) );
+  QApplication::clipboard()->setData( d );
+}
 
 #include "synchronizergui.moc"
