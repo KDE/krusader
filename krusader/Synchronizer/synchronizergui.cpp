@@ -1349,7 +1349,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KURL l
   generalFilter->searchFor->setEditText( fileFilter->currentText() );
   generalFilter->searchForCase->setChecked( true );
 
-  // creating the time shift, equality threshold options
+  // creating the time shift, equality threshold, hidden files options
 
   QGroupBox *optionsGroup = new QGroupBox( generalFilter, "options" );
   optionsGroup->setTitle( i18n( "&Options" ) );
@@ -1401,6 +1401,13 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KURL l
   timeShiftUnitCombo->insertItem( i18n( "day" ) );
   optionsLayout->addWidget( timeShiftUnitCombo, 2, 2 );
 
+  QFrame *line = new QFrame( optionsGroup );
+  line->setFrameStyle( QFrame::HLine | QFrame::Sunken );
+  optionsLayout->addMultiCellWidget( line, 3, 3, 0, 2 );
+
+  ignoreHiddenFilesCB = new QCheckBox( i18n( "Ignore hidden files" ), optionsGroup );
+  optionsLayout->addMultiCellWidget( ignoreHiddenFilesCB, 4, 4, 0, 2 );
+  
   generalFilter->middleLayout->addWidget( optionsGroup );
 
 
@@ -1923,7 +1930,7 @@ void SynchronizerGUI::compare()
                        cbIgnoreCase->isChecked(), btnScrollResults->isOn(), selectedFiles,
                        convertToSeconds( equalitySpinBox->value(), equalityUnitCombo->currentItem() ),
                        convertToSeconds( timeShiftSpinBox->value(), timeShiftUnitCombo->currentItem() ),
-                       parallelThreadsSpinBox->value() );
+                       parallelThreadsSpinBox->value(), ignoreHiddenFilesCB->isChecked() );
   enableMarkButtons();
   btnStopComparing->setEnabled( isComparing = false );
   btnStopComparing->hide();
@@ -2342,6 +2349,9 @@ void SynchronizerGUI::loadFromProfile( QString profile )
   int parallelThreads = krConfig->readNumEntry( "Parallel Threads", 1 );
   parallelThreadsSpinBox->setValue( parallelThreads );
 
+  bool ignoreHidden = krConfig->readBoolEntry( "Ignore Hidden Files", FALSE );
+  ignoreHiddenFilesCB->setChecked( ignoreHidden );
+  
   refresh();
 }
 
@@ -2373,6 +2383,8 @@ void SynchronizerGUI::saveToProfile( QString profile )
   krConfig->writeEntry( "Equality Threshold", convertToSeconds( equalitySpinBox->value(), equalityUnitCombo->currentItem() ) );
   krConfig->writeEntry( "Time Shift", convertToSeconds( timeShiftSpinBox->value(), timeShiftUnitCombo->currentItem() ) );
   krConfig->writeEntry( "Parallel Threads", parallelThreadsSpinBox->value() );
+
+  krConfig->writeEntry( "Ignore Hidden Files", ignoreHiddenFilesCB->isChecked() );
 }
 
 void SynchronizerGUI::connectFilters( const QString &newString )

@@ -40,17 +40,19 @@
 
 CompareTask::CompareTask( SynchronizerFileItem *parentIn, const QString &leftURL,
                           const QString &rightURL, const QString &leftDir,
-                          const QString &rightDir ) : SynchronizerTask (),  m_parent( parentIn ),
+                          const QString &rightDir, bool hidden ) : SynchronizerTask (),  m_parent( parentIn ),
                           m_url( leftURL ), m_dir( leftDir ), m_otherUrl( rightURL ),
                           m_otherDir( rightDir ), m_duplicate( true ),
                           m_dirList( 0 ), m_otherDirList( 0 ) {
+  ignoreHidden = hidden;
 }
 
 CompareTask::CompareTask( SynchronizerFileItem *parentIn, const QString &urlIn,
-                          const QString &dirIn, bool isLeftIn ) : SynchronizerTask (),
+                          const QString &dirIn, bool isLeftIn, bool hidden ) : SynchronizerTask (),
                           m_parent( parentIn ), m_url( urlIn ), m_dir( dirIn ),
                           m_isLeft( isLeftIn ), m_duplicate( false ),
                           m_dirList( 0 ), m_otherDirList( 0 ) {
+  ignoreHidden = hidden;
 }
 
 CompareTask::~CompareTask() {
@@ -69,12 +71,12 @@ void CompareTask::start() {
     m_state = ST_STATE_PENDING;
     m_loadFinished = m_otherLoadFinished = false;
 
-    m_dirList = new SynchronizerDirList( parentWidget );
+    m_dirList = new SynchronizerDirList( parentWidget, ignoreHidden );
     connect( m_dirList, SIGNAL( finished( bool ) ), this, SLOT( slotFinished( bool ) ));
     m_dirList->load( m_url, false );
 
     if( m_duplicate ) {
-      m_otherDirList = new SynchronizerDirList( parentWidget );
+      m_otherDirList = new SynchronizerDirList( parentWidget, ignoreHidden );
       connect( m_otherDirList, SIGNAL( finished( bool ) ), this, SLOT( slotOtherFinished( bool ) ));
       m_otherDirList->load( m_otherUrl, false );
     }
@@ -268,8 +270,11 @@ void CompareContentTask::slotDataReceived(KIO::Job *job, const QByteArray &data)
   }
   else
   {
-    ((KIO::TransferJob *)job)->suspend();
-    otherJob->resume();
+    if( !((KIO::TransferJob *)job)->isSuspended() )
+    {
+      ((KIO::TransferJob *)job)->suspend();
+      otherJob->resume();
+    }
   }
 }
 
@@ -285,14 +290,18 @@ void CompareContentTask::slotFinished(KIO::Job *job)
   if( otherJob )
     otherJob->resume();
 
-  if( job->error() && job->error() != KIO::ERR_USER_CANCELED && !errorPrinted )
+  if( job->error() )
   {
     timer->stop();
+    abortContentComparing();
+  }
+
+  if( job->error() && job->error() != KIO::ERR_USER_CANCELED && !errorPrinted )
+  {
     errorPrinted = true;
     KMessageBox::error(parentWidget, i18n("IO error at comparing file %1 with %2!")
                        .arg( vfs::pathOrURL( leftURL ) )
                        .arg( vfs::pathOrURL( rightURL ) ) );
-    abortContentComparing();
   }
 
   if( leftReadJob == 0 && rightReadJob == 0 )

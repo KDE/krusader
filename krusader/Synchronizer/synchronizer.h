@@ -60,7 +60,7 @@ class Synchronizer : public QObject
     Synchronizer();
     int     compare( QString leftURL, QString rightURL, KRQuery *query, bool subDirs, bool symLinks,
                      bool igDate, bool asymm, bool cmpByCnt, bool igCase, bool autoSc, QStringList &selFiles,
-                     int equThres, int timeOffs, int parThreads );
+                     int equThres, int timeOffs, int parThreads, bool hiddenFiles );
     void    stop() {stopped = true;}
     void    setMarkFlags( bool left, bool equal, bool differs, bool right, bool dup, bool sing, bool del );
     int     refresh( bool nostatus=false );
@@ -160,6 +160,7 @@ class Synchronizer : public QObject
 
     int                               equalsThreshold;// threshold to treat files equal
     int                               timeOffset;     // time offset between the left and right sides
+    bool                              ignoreHidden;   // ignores the hidden files
 
     bool                              markEquals;     // show the equal files
     bool                              markDiffers;    // show the different files

@@ -103,7 +103,7 @@ void Synchronizer::reset()
 
 int Synchronizer::compare( QString leftURL, QString rightURL, KRQuery *query, bool subDirs,
                             bool symLinks, bool igDate, bool asymm, bool cmpByCnt, bool igCase, 
-                            bool autoSc, QStringList &selFiles, int equThres, int timeOffs, int parThreads )
+                            bool autoSc, QStringList &selFiles, int equThres, int timeOffs, int parThreads, bool hiddenFiles )
 {
   resultList.clear();
   temporaryList.clear();
@@ -119,6 +119,7 @@ int Synchronizer::compare( QString leftURL, QString rightURL, KRQuery *query, bo
   equalsThreshold= equThres;
   timeOffset     = timeOffs;
   parallelThreads= parThreads;
+  ignoreHidden   = hiddenFiles;
 
   stopped = false;
 
@@ -137,7 +138,7 @@ int Synchronizer::compare( QString leftURL, QString rightURL, KRQuery *query, bo
 
   comparedDirs = fileCount = 0;
 
-  stack.append( new CompareTask( 0, leftBaseDir = leftURL, rightBaseDir = rightURL, "", "" ) );
+  stack.append( new CompareTask( 0, leftBaseDir = leftURL, rightBaseDir = rightURL, "", "", ignoreHidden ) );
   compareLoop();
 
   SynchronizerFileItem *item = temporaryList.first();
@@ -293,7 +294,7 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, SynchronizerD
                                                       left_file->vfile_getMode(), left_file->vfile_getACL(),
                                                       true, !query->match( left_file ) );
           stack.append( new CompareTask( me, leftURL+left_file_name+"/", 
-                              leftDir.isEmpty() ? left_file_name : leftDir+"/"+left_file_name, true ) );
+                              leftDir.isEmpty() ? left_file_name : leftDir+"/"+left_file_name, true, ignoreHidden ) );
         } else {
           QString right_file_name =  right_file->vfile_getName();
           SynchronizerFileItem *me = addDuplicateItem( parent, left_file_name, right_file_name, 
@@ -307,7 +308,7 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, SynchronizerD
                                                        true, !query->match( left_file ) );
           stack.append( new CompareTask( me, leftURL+left_file_name+"/", rightURL+right_file_name+"/",
                             leftDir.isEmpty() ? left_file_name : leftDir+"/"+left_file_name,
-                            rightDir.isEmpty() ? right_file_name : rightDir+"/"+right_file_name ) );
+                            rightDir.isEmpty() ? right_file_name : rightDir+"/"+right_file_name, ignoreHidden ) );
         }
       }
     }
@@ -337,7 +338,7 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, SynchronizerD
                                                       right_file->vfile_getMode(), right_file->vfile_getACL(),
                                                       true, !query->match( right_file ) );
           stack.append( new CompareTask( me, rightURL+file_name+"/", 
-                              rightDir.isEmpty() ? file_name : rightDir+"/"+file_name, false ) );
+                              rightDir.isEmpty() ? file_name : rightDir+"/"+file_name, false, ignoreHidden ) );
         }
       }
     }
@@ -563,7 +564,7 @@ void Synchronizer::addSingleDirectory( SynchronizerFileItem *parent, Synchronize
                                  file->vfile_getOwner(), file->vfile_getGroup(), file->vfile_getMode(),
                                  file->vfile_getACL(), true, !query->match( file ) );
         stack.append( new CompareTask( me, url+file_name+"/", 
-                            dirName.isEmpty() ? file_name : dirName+"/"+file_name, isLeft ) );
+                            dirName.isEmpty() ? file_name : dirName+"/"+file_name, isLeft, ignoreHidden ) );
     }
   }
 }

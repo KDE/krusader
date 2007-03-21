@@ -86,9 +86,9 @@ class CompareTask : public SynchronizerTask {
 public:
   CompareTask( SynchronizerFileItem *parentIn, const QString &leftURL,
                 const QString &rightURL, const QString &leftDir,
-                const QString &rightDir );
+                const QString &rightDir, bool ignoreHidden );
   CompareTask( SynchronizerFileItem *parentIn, const QString &urlIn,
-                const QString &dirIn, bool isLeftIn );
+                const QString &dirIn, bool isLeftIn, bool ignoreHidden );
   virtual ~CompareTask();
 
   inline bool isDuplicate()                      { return m_duplicate; }
@@ -121,6 +121,7 @@ private:
   SynchronizerDirList * m_otherDirList;
   bool m_loadFinished;
   bool m_otherLoadFinished;
+  bool ignoreHidden;
 };
 
 

@@ -42,7 +42,7 @@ class SynchronizerDirList : public QObject, public QDict<vfile>
   Q_OBJECT
 
 public:
-  SynchronizerDirList( QWidget *w );
+  SynchronizerDirList( QWidget *w, bool ignoreHidden );
   ~SynchronizerDirList();
 
   vfile * search( const QString &name, bool ignoreCase = false );
@@ -65,6 +65,7 @@ private:
   QWidget *parentWidget;
   bool     busy;
   bool     result;
+  bool     ignoreHidden;
   QString  currentUrl;
 };
 

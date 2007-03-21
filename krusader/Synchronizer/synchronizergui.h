@@ -202,6 +202,7 @@ protected:
   QComboBox     *equalityUnitCombo;
   QSpinBox      *timeShiftSpinBox;
   QComboBox     *timeShiftUnitCombo;
+  QCheckBox     *ignoreHiddenFilesCB;
 
 private:
   QPixmap        fileIcon;

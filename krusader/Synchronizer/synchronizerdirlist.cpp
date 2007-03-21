@@ -48,8 +48,8 @@
 #endif
 #endif
 
-SynchronizerDirList::SynchronizerDirList( QWidget *w ) : QObject(), QDict<vfile>(), fileIterator( 0 ),
-                                   parentWidget( w ), busy( false ), result( false ), currentUrl() {
+SynchronizerDirList::SynchronizerDirList( QWidget *w, bool hidden ) : QObject(), QDict<vfile>(), fileIterator( 0 ),
+                                   parentWidget( w ), busy( false ), result( false ), ignoreHidden( hidden ), currentUrl() {
   setAutoDelete( true );
 }
 
@@ -110,6 +110,7 @@ bool SynchronizerDirList::load( const QString &urlIn, bool wait ) {
       name = QString::fromLocal8Bit(dirEnt->d_name);
 
       if (name=="." || name == "..") continue;
+      if (ignoreHidden && name.startsWith( "." ) ) continue;
 
       QString fullName = path + "/" + name;
 
@@ -177,7 +178,7 @@ void SynchronizerDirList::slotEntries( KIO::Job * job, const KIO::UDSEntryList& 
   {
     KFileItem kfi( *it, (( KIO::ListJob *)job )->url(), true, true );
     QString key = kfi.text();
-    if( key != "." && key != ".." ) {
+    if( key != "." && key != ".." && (!ignoreHidden || !key.startsWith(".") ) ) {
       mode_t mode = kfi.mode() | kfi.permissions();
       QString perm = KRpermHandler::mode2QString( mode );
       if ( kfi.isDir() ) 
