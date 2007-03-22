@@ -14,6 +14,4 @@ libUserAction_a_SOURCES = useraction.cpp \
 	useractionpopupmenu.cpp \
 	kractionbase.cpp
 
-
-METASOURCES = AUTO
 noinst_HEADERS = tstring.h
