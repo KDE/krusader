@@ -950,10 +950,10 @@ bool Krusader::queryClose() {
         QWidget *activeModal = QApplication::activeModalWidget();
         QWidget *w = list->first();
 
-        if( activeModal && activeModal != this && activeModal != sysTray && list->contains( activeModal ) && !activeModal->isHidden() )
+        if( activeModal && activeModal != this && activeModal != menuBar() && activeModal != sysTray && list->contains( activeModal ) && !activeModal->isHidden() )
           w = activeModal;
         else {
-          while(w && (w==this || w==sysTray || w->isHidden()))
+          while(w && (w==this || w==sysTray || w->isHidden() || w==menuBar()) )
             w = list->next();
         }
         delete list;
