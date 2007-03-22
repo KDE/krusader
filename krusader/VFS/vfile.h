@@ -38,6 +38,8 @@
 #include <kio/global.h>
 #include <kmimetype.h>
 
+#define PERM_ALL          -2
+
 /**
  * The Virtual File class handles all the details of maintaining a single
  * file component within the virtual file system (vfs). a vfile object
@@ -77,8 +79,9 @@ public:
 	      const QString& mime,
 	      const QString& symDest,
 	      const mode_t  mode,
+	      const int rwx = -1,
 	      const QString& aclString = QString::null,
-	      const QString& aclDfltString = QString::null);
+	      const QString& aclDfltString = QString::null );
 	
 	bool        operator==(const vfile& vf) const;
 	vfile&      operator= (const vfile& vf); 

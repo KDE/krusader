@@ -88,8 +88,9 @@ vfile::vfile(const QString& name,	                  // useful construtor
              const QString& mime,
              const QString& symDest,
              const mode_t mode,
+             const int rwx,
              const QString& aclString,
-             const QString& aclDfltString){
+             const QString& aclDfltString ){
 	vfile_name=name;
 	vfile_size=size;
 	vfile_owner=owner;
@@ -110,25 +111,36 @@ vfile::vfile(const QString& name,	                  // useful construtor
 	vfile_def_acl = aclDfltString;
 	vfile_has_acl = !aclString.isNull() || !aclDfltString.isNull();
 	vfile_acl_loaded = true;
-	vfile_rwx = -1;
+	vfile_rwx = rwx;
 }
 
 char vfile::vfile_isReadable() const {
-	if( vfile_userName.isNull() )
+	if( vfile_rwx == PERM_ALL )
+		return ALLOWED_PERM;
+	else if( vfile_userName.isNull() )
 		return KRpermHandler::readable(vfile_perm,vfile_groupId,vfile_ownerId,vfile_rwx);
 	else
 		return KRpermHandler::ftpReadable(vfile_owner, vfile_userName, vfile_perm);
 }
 
 char vfile::vfile_isWriteable() const {
-	if( vfile_userName.isNull() )
+	if( vfile_rwx == PERM_ALL )
+		return ALLOWED_PERM;
+	else if( vfile_userName.isNull() )
 		return KRpermHandler::writeable(vfile_perm,vfile_groupId,vfile_ownerId,vfile_rwx);
 	else
 		return KRpermHandler::ftpWriteable(vfile_owner, vfile_userName, vfile_perm);
 }
 
 char vfile::vfile_isExecutable() const {
-	if( vfile_userName.isNull() )
+	if( vfile_rwx == PERM_ALL )
+	{
+		if(( vfile_mode & 0111 ) || vfile_isdir )
+			return ALLOWED_PERM;
+		else
+			return NO_PERM;
+	}
+	else if( vfile_userName.isNull() )
 		return KRpermHandler::executable(vfile_perm,vfile_groupId,vfile_ownerId,vfile_rwx);
 	else
 		return KRpermHandler::ftpExecutable(vfile_owner, vfile_userName, vfile_perm);

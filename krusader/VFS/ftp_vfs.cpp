@@ -67,6 +67,12 @@ ftp_vfs::~ftp_vfs() {
 }
 
 void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
+	int rwx = -1;
+	
+	QString prot = vfs_origin.protocol();
+	if( prot == "krarc" || prot == "tar" || prot == "zip" )
+		rwx = PERM_ALL;
+	
 	KIO::UDSEntryListConstIterator it = entries.begin();
 	KIO::UDSEntryListConstIterator end = entries.end();
 
@@ -95,7 +101,7 @@ void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
 
 		// create a new virtual file object
 		if ( kfi.user().isEmpty() )
-			temp = new vfile( name, size, perm, mtime, symLink, getuid(), getgid(), mime, symDest, mode );
+			temp = new vfile( name, size, perm, mtime, symLink, getuid(), getgid(), mime, symDest, mode, rwx );
 		else {
 			QString currentUser = vfs_origin.user();
 			if ( currentUser.contains( "@" ) )  /* remove the FTP proxy tags from the username */
@@ -110,10 +116,10 @@ void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
 #if KDE_IS_VERSION(3,5,0)
 			temp = new vfile( name, size, perm, mtime, symLink,
 			                  kfi.user(), kfi.group(), currentUser, 
-			                  mime, symDest, mode, kfi.ACL().asString(),
+			                  mime, symDest, mode, kfi.ACL().asString(), rwx,
 			                  kfi.defaultACL().asString() );
 #else
-			temp = new vfile( name, size, perm, mtime, symLink, kfi.user(), kfi.group(), currentUser, mime, symDest, mode );
+			temp = new vfile( name, size, perm, mtime, symLink, kfi.user(), kfi.group(), currentUser, mime, symDest, mode, rwx );
 #endif
 		}
 
