@@ -451,9 +451,8 @@ void KrViewer::checkModified(){
 	// add a * to modified files.
 	if( pvb->isModified() ){
 		QString label = tabBar.tabLabel(pvb);
-		if( !label.endsWith("*)") ){
-			label.truncate(label.length()-1);
-			label.append("*)");
+		if( !label.startsWith("*" + pvb->part()->url().fileName() ) ){
+			label.prepend("*");
 			QIconSet icon = QIconSet(krLoader->loadIcon(MODIFIED_ICON,KIcon::Small));
 
 			tabBar.changeTab(pvb,icon,label);
@@ -462,9 +461,8 @@ void KrViewer::checkModified(){
 	// remove the * from previously modified files.
 	else {
 		QString label = tabBar.tabLabel(pvb);
-		if( label.endsWith("*)") ){
-			label.truncate(label.length()-2);
-			label.append(")");
+		if( label.startsWith("*" + pvb->part()->url().fileName() ) ){
+			label = label.mid( 1 );
 			QIconSet icon = QIconSet(krLoader->loadIcon(EDIT_ICON,KIcon::Small));
 
 			tabBar.changeTab(pvb,icon,label);
