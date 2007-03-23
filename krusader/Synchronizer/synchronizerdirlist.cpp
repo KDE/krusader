@@ -174,6 +174,12 @@ void SynchronizerDirList::slotEntries( KIO::Job * job, const KIO::UDSEntryList& 
   KIO::UDSEntryListConstIterator it = entries.begin();
   KIO::UDSEntryListConstIterator end = entries.end();
 
+  int rwx = -1;
+  QString prot = (( KIO::ListJob *)job )->url().protocol();
+
+  if( prot == "krarc" || prot == "tar" || prot == "zip" )
+    rwx = PERM_ALL;
+
   while( it != end )
   {
     KFileItem kfi( *it, (( KIO::ListJob *)job )->url(), true, true );
@@ -186,7 +192,7 @@ void SynchronizerDirList::slotEntries( KIO::Job * job, const KIO::UDSEntryList& 
 
       vfile *item = new vfile( kfi.text(), kfi.size(), perm, kfi.time( KIO::UDS_MODIFICATION_TIME ),
           kfi.isLink(), kfi.user(), kfi.group(), kfi.user(), 
-          kfi.mimetype(), kfi.linkDest(), mode 
+          kfi.mimetype(), kfi.linkDest(), mode, rwx
 #if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
                                               , kfi.ACL().asString()
 #endif

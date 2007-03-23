@@ -116,7 +116,7 @@ void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
 #if KDE_IS_VERSION(3,5,0)
 			temp = new vfile( name, size, perm, mtime, symLink,
 			                  kfi.user(), kfi.group(), currentUser, 
-			                  mime, symDest, mode, kfi.ACL().asString(), rwx,
+			                  mime, symDest, mode, rwx, kfi.ACL().asString(),
 			                  kfi.defaultACL().asString() );
 #else
 			temp = new vfile( name, size, perm, mtime, symLink, kfi.user(), kfi.group(), currentUser, mime, symDest, mode, rwx );
