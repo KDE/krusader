@@ -54,6 +54,7 @@
 #include "../resources.h"
 #include "../VFS/vfs.h"
 #include "../defaults.h"
+#include <qdir.h>
 
 KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd) {
 	KURLRequesterDlg *dlg = new KURLRequesterDlg( vfs::pathOrURL( url, 1 ),text,krApp,"");
@@ -66,6 +67,11 @@ KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd) {
 			KURL temp = u;
 			u = cwd;
 			u.addPath(temp.url());
+			u.cleanPath();
+			if( u.protocol() == "zip" || u.protocol() == "krarc" || u.protocol() == "tar" || u.protocol() == "iso" ) {
+				if( QDir( u.path() ).exists() )
+					u.setProtocol( "file" );
+			}
 		}
 	}
 	delete dlg;
@@ -83,6 +89,11 @@ KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd, bool &pre
 			KURL temp = u;
 			u = cwd;
 			u.addPath(temp.url());
+			u.cleanPath();
+			if( u.protocol() == "zip" || u.protocol() == "krarc" || u.protocol() == "tar" || u.protocol() == "iso" ) {
+				if( QDir( u.path() ).exists() )
+					u.setProtocol( "file" );
+			}
 		}
 	}
 	preserveAttrs = dlg->preserveAttrs();
@@ -101,6 +112,11 @@ KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd, bool &pre
 			KURL temp = u;
 			u = cwd;
 			u.addPath(temp.url());
+			u.cleanPath();
+			if( u.protocol() == "zip" || u.protocol() == "krarc" || u.protocol() == "tar" || u.protocol() == "iso" ) {
+				if( QDir( u.path() ).exists() )
+					u.setProtocol( "file" );
+			}
 		}
 		
 		if( dlg->copyDirStructure() ) {
