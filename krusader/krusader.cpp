@@ -380,6 +380,9 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
    // let the good times rool :)
    updateGUI( true );
 
+	if ( runKonfig )
+		slot->runKonfigurator( true );
+	
    if (!runKonfig) {
 		config->setGroup( "Private" );
 		if ( krConfig->readBoolEntry( "Maximized" ) )
@@ -388,17 +391,15 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
 			move( oldPos = krConfig->readPointEntry( "Start Position", _StartPosition ) );
 			resize( oldSize = krConfig->readSizeEntry( "Start Size", _StartSize ));
 		}
-			
-		if( startToTray ) {
-			sysTray->show();
-			hide();
-		}
-		else
-			show();
 	}
+	
+	if( startToTray ) {
+		sysTray->show();
+		hide();
+	}
+	else
+		show();
 
-   if ( runKonfig )
-      slot->runKonfigurator( true );
 
    isStarting = false;
 }
