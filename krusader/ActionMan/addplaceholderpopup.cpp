@@ -75,13 +75,13 @@ AddPlaceholderPopup::AddPlaceholderPopup( QWidget *parent ) : KPopupMenu( parent
       }
       else {
          if ( expander.placeholder( i )->needPanel() ) {
-            _activeSub->insertItem( expander.placeholder( i )->description(), ( i | ACTIVE_MASK ) );
-            _otherSub->insertItem( expander.placeholder( i )->description(), ( i | OTHER_MASK ) );
-            _leftSub->insertItem( expander.placeholder( i )->description(), ( i | LEFT_MASK ) );
-            _rightSub->insertItem( expander.placeholder( i )->description(), ( i | RIGHT_MASK ) );
+            _activeSub->insertItem( i18n( expander.placeholder( i )->description().utf8() ), ( i | ACTIVE_MASK ) );
+            _otherSub->insertItem( i18n( expander.placeholder( i )->description().utf8() ), ( i | OTHER_MASK ) );
+            _leftSub->insertItem( i18n( expander.placeholder( i )->description().utf8() ), ( i | LEFT_MASK ) );
+            _rightSub->insertItem( i18n( expander.placeholder( i )->description().utf8() ), ( i | RIGHT_MASK ) );
          }
          else
-            _independentSub->insertItem( expander.placeholder( i )->description(), ( i | INDEPENDENT_MASK ) );
+            _independentSub->insertItem( i18n( expander.placeholder( i )->description().utf8() ), ( i | INDEPENDENT_MASK ) );
       }
    }
 
