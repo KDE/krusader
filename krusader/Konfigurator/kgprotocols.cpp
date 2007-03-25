@@ -53,6 +53,7 @@ QString KgProtocols::defaultKrarcMimes = "application/x-7z,application/x-7z-comp
                                          "application/x-rpm,"
                                          "application/x-zip,application/x-zip-compressed";
 QString KgProtocols::defaultTarMimes   = "application/x-tar,application/x-tarz,"
+                                         "application/x-compressed-tar,"
                                          "application/x-tbz,application/x-tgz";
 
 KgProtocols::KgProtocols( bool first, QWidget* parent,  const char* name ) :
