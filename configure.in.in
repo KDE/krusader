@@ -48,10 +48,11 @@ if test "$with_acl" != "no"; then
 			AC_DEFINE([HAVE_NON_POSIX_ACL_EXTENSIONS], 1, [Define if system has non-POSIX extensions to the ACL support.])
 		fi
 	fi
+	
+	if test "$have_posix_acl" = "yes" ; then
+		AC_CHECK_LIB(acl, acl_free)
+	fi
 fi
-
-AM_CONDITIONAL(include_libacl, test "$have_posix_acl" = yes)
-
 
 ###################################################
 #		Check for JavaScript

@@ -4,11 +4,6 @@ LIB_KONQ = -lkonq
 endif
 
 # the condition for this is found in configure.in.in
-if include_libacl
-LIB_ACL = -lacl
-endif
-
-# the condition for this is found in configure.in.in
 if include_libkjsembed
 AM_CPPFLAGS = -D__KJSEMBED__
 LIB_KJSEMBED = -lkjsembed
@@ -99,7 +94,6 @@ krusader_LDADD   = \
 	Dialogs/libDialogs.a \
 	GUI/libGUI.a \
 	$(LIB_KONQ) \
-	$(LIB_ACL) \
 	$(LIB_KJSEMBED) \
 	$(LIB_KPARTS) \
 	$(LIB_KFILE) \
