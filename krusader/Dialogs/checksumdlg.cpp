@@ -31,12 +31,16 @@ typedef QStringList GET_FAILED_FUNC(const QStringList& stdOut, const QStringList
 
 class CS_Tool {
 public:
-	static const int NumOfTypes = 5;
-	enum Type { MD5=0, SHA1, SHA256, TIGER, WHIRLPOOL, SFV, CRC };
+	enum Type {
+          MD5=0, SHA1, SHA256, TIGER, WHIRLPOOL, SFV, CRC,
+          SHA224, SHA384, SHA512,
+	  NumOfTypes
+	};
 	
 	Type type;
 	QString binary;
 	bool recursive;
+	bool standardFormat;
 	PREPARE_PROC_FUNC *create, *verify;
 	GET_FAILED_FUNC *failed;
 };
@@ -133,19 +137,22 @@ QStringList cfvFailedFunc(const QStringList& /* stdOut */, const QStringList& st
 // one after another, and then all sha1 and so on and so forth. they tools must be grouped,
 // since the code in getTools() counts on it!
 CS_Tool cs_tools[] = {
-	// type					binary				recursive		create_func			verify_func			failed_func
-	{CS_Tool::MD5, 		"md5sum", 			false, 		sumCreateFunc,		sumVerifyFunc,		sumFailedFunc},
-	{CS_Tool::MD5, 		"md5deep", 			true, 		deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
-	{CS_Tool::MD5,		"cfv",				true,		cfvCreateFunc,		cfvVerifyFunc,		cfvFailedFunc},
-	{CS_Tool::SHA1, 	"sha1sum", 			false, 		sumCreateFunc,		sumVerifyFunc,		sumFailedFunc},
-	{CS_Tool::SHA1, 	"sha1deep",			true, 		deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
-	{CS_Tool::SHA1,		"cfv",				true,		cfvCreateFunc,		cfvVerifyFunc,		cfvFailedFunc},
-	{CS_Tool::SHA256, 	"sha256deep",		true, 		deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
-	{CS_Tool::TIGER,	"tigerdeep", 		true, 		deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
-	{CS_Tool::WHIRLPOOL, "whirlpooldeep",	true, 		deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
-	{CS_Tool::SFV,		"cfv",				true,		cfvCreateFunc,		cfvVerifyFunc,		cfvFailedFunc},
-	{CS_Tool::CRC,		"cfv",				true,		cfvCreateFunc,		cfvVerifyFunc,		cfvFailedFunc},
-
+	// type              binary            recursive   stdFmt           create_func       verify_func      failed_func
+	{CS_Tool::MD5,       "md5sum",         false,      true,            sumCreateFunc,    sumVerifyFunc,   sumFailedFunc},
+	{CS_Tool::MD5,       "md5deep",        true,       true,            deepCreateFunc,   deepVerifyFunc,  deepFailedFunc},
+	{CS_Tool::MD5,       "cfv",            true,       true,            cfvCreateFunc,    cfvVerifyFunc,   cfvFailedFunc},
+	{CS_Tool::SHA1,      "sha1sum",        false,      true,            sumCreateFunc,    sumVerifyFunc,   sumFailedFunc},
+	{CS_Tool::SHA1,      "sha1deep",       true,       true,            deepCreateFunc,   deepVerifyFunc,  deepFailedFunc},
+	{CS_Tool::SHA1,      "cfv",            true,       true,            cfvCreateFunc,    cfvVerifyFunc,   cfvFailedFunc},
+	{CS_Tool::SHA224,    "sha224sum",      false,      true,            sumCreateFunc,    sumVerifyFunc,   sumFailedFunc},
+	{CS_Tool::SHA256,    "sha256sum",      false,      true,            sumCreateFunc,    sumVerifyFunc,   sumFailedFunc},
+	{CS_Tool::SHA256,    "sha256deep",     true,       true,            deepCreateFunc,   deepVerifyFunc,  deepFailedFunc},
+	{CS_Tool::SHA384,    "sha384sum",      false,      true,            sumCreateFunc,    sumVerifyFunc,   sumFailedFunc},
+	{CS_Tool::SHA512,    "sha512sum",      false,      true,            sumCreateFunc,    sumVerifyFunc,   sumFailedFunc},
+	{CS_Tool::TIGER,     "tigerdeep",      true,       true,            deepCreateFunc,   deepVerifyFunc,  deepFailedFunc},
+	{CS_Tool::WHIRLPOOL, "whirlpooldeep",  true,       true,            deepCreateFunc,   deepVerifyFunc,  deepFailedFunc},
+	{CS_Tool::SFV,       "cfv",            true,       false,           cfvCreateFunc,    cfvVerifyFunc,   cfvFailedFunc},
+	{CS_Tool::CRC,       "cfv",            true,       false,           cfvCreateFunc,    cfvVerifyFunc,   cfvFailedFunc},
 };
 
 QMap<QString, CS_Tool::Type> cs_textToType;
@@ -156,6 +163,9 @@ void initChecksumModule() {
 	cs_textToType["md5"]=CS_Tool::MD5;
 	cs_textToType["sha1"]=CS_Tool::SHA1;
 	cs_textToType["sha256"]=CS_Tool::SHA256;
+	cs_textToType["sha224"]=CS_Tool::SHA224;
+	cs_textToType["sha384"]=CS_Tool::SHA384;
+	cs_textToType["sha512"]=CS_Tool::SHA512;
 	cs_textToType["tiger"]=CS_Tool::TIGER;
 	cs_textToType["whirlpool"]=CS_Tool::WHIRLPOOL;
 	cs_textToType["sfv"]=CS_Tool::SFV;
@@ -164,6 +174,9 @@ void initChecksumModule() {
 	cs_typeToText[CS_Tool::MD5]="md5";
 	cs_typeToText[CS_Tool::SHA1]="sha1";
 	cs_typeToText[CS_Tool::SHA256]="sha256";
+	cs_typeToText[CS_Tool::SHA224]="sha224";
+	cs_typeToText[CS_Tool::SHA384]="sha384";
+	cs_typeToText[CS_Tool::SHA512]="sha512";
 	cs_typeToText[CS_Tool::TIGER]="tiger";
 	cs_typeToText[CS_Tool::WHIRLPOOL]="whirlpool";
 	cs_typeToText[CS_Tool::SFV]="sfv";
@@ -285,7 +298,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 		return;
 	}
 
-	ChecksumResultsDlg dlg( stdOut, stdErr, suggestedFilename, mytool->binary, cs_typeToText[mytool->type]);
+	ChecksumResultsDlg dlg( stdOut, stdErr, suggestedFilename, mytool->binary, cs_typeToText[mytool->type], mytool->standardFormat);
 	tmpOut->unlink(); delete tmpOut;
 	tmpErr->unlink(); delete tmpErr;
 }
@@ -345,7 +358,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	layout->addMultiCellLayout(hlayout2, row, row, 0, 1, Qt::AlignLeft);
 
 	if (exec() != Accepted) return;
-	QString file = checksumFileReq->url().simplifyWhiteSpace();
+	QString file = checksumFileReq->url();
 	QString extension;
 	if (!verifyChecksumFile(file, extension)) {
 		KMessageBox::error(0, i18n("<qt>Error reading checksum file <i>%1</i>.<br />Please specify a valid checksum file.</qt>").arg(file));
@@ -449,7 +462,7 @@ VerifyResultDlg::VerifyResultDlg(const QStringList& failed):
 // ------------- ChecksumResultsDlg
 
 ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringList& stdErr,
-	const QString& suggestedFilename, const QString& binary, const QString& /* type */):
+	const QString& suggestedFilename, const QString& binary, const QString& /* type */, bool standardFormat):
 	KDialogBase(Plain, i18n("Create Checksum"), Ok | Cancel, Ok, krApp), _binary(binary) {
 	QGridLayout *layout = new QGridLayout( plainPage(), 1, 1,
 		KDialogBase::marginHint(), KDialogBase::spacingHint());
@@ -478,13 +491,21 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 			++row;
 		}
 		KListView *lv = new KListView(plainPage());
-		lv->addColumn(i18n("Hash"));
-		lv->addColumn(i18n("File"));
-		lv->setAllColumnsShowFocus(true);
+		if(standardFormat){
+			lv->addColumn(i18n("Hash"));
+			lv->addColumn(i18n("File"));
+			lv->setAllColumnsShowFocus(true);
+		} else {
+			lv->addColumn(i18n("File and hash"));
+		}
 		for ( QStringList::ConstIterator it = stdOut.begin(); it != stdOut.end(); ++it ) {
-			QString line = (*it).simplifyWhiteSpace();
-			int space = line.find(' ');
-			new KListViewItem(lv, line.left(space), line.mid(space+1));
+			QString line = (*it);
+			if(standardFormat) {
+				int space = line.find(' ');
+				new KListViewItem(lv, line.left(space), line.mid(space+2));
+			} else {
+				new KListViewItem(lv, line);
+			}	
 		}
 		layout->addMultiCellWidget(lv, row, row, 0, 1);
 		++row;
@@ -525,7 +546,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 	}
 	
 	QCheckBox *onePerFile=0;
-	if (stdOut.size() > 1) {
+	if (stdOut.size() > 1 && standardFormat) {
 		onePerFile = new QCheckBox(i18n("Checksum file for each source file"), plainPage());
 		onePerFile->setChecked(false);
 		// clicking this, disables the 'save as' part
@@ -537,7 +558,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 	}
 	
 	if (exec() == Accepted && successes) {
-		if (stdOut.size()>1 && onePerFile->isChecked()) {
+		if (stdOut.size()>1 && standardFormat && onePerFile->isChecked()) {
 			savePerFile(stdOut, suggestedFilename.mid(suggestedFilename.findRev('.')));
 		} else if (saveFileCb->isEnabled() && saveFileCb->isChecked() && !checksumFile->url().simplifyWhiteSpace().isEmpty()) {
 			saveChecksum(stdOut, checksumFile->url());
@@ -570,8 +591,8 @@ bool ChecksumResultsDlg::saveChecksum(const QStringList& data, QString filename)
 void ChecksumResultsDlg::savePerFile(const QStringList& data, const QString& type) {
 	krApp->startWaiting(i18n("Saving checksum files..."), 0);
 	for ( QStringList::ConstIterator it = data.begin(); it != data.end(); ++it ) {
-			QString line = (*it).simplifyWhiteSpace();
-			QString filename = line.mid(line.find(' ')+1)+type;
+			QString line = (*it);
+			QString filename = line.mid(line.find(' ')+2)+type;
 			if (!saveChecksum(*it, filename)) {
 				KMessageBox::error(0, i18n("Errors occured while saving multiple checksums. Stopping"));
 				krApp->stopWait();

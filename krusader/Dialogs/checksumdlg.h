@@ -34,7 +34,8 @@ private:
 class ChecksumResultsDlg: public KDialogBase {
 public:
 	ChecksumResultsDlg(const QStringList& stdOut, const QStringList& stdErr,
-		const QString& suggestedFilename, const QString& binary, const QString& type);
+		const QString& suggestedFilename, const QString& binary, const QString& type,
+		bool standardFormat);
 
 protected:
 	bool saveChecksum(const QStringList& data, QString filename);
