@@ -107,6 +107,7 @@ KAction *Krusader::actPack = 0;
 KAction *Krusader::actUnpack = 0;
 KAction *Krusader::actTest = 0;
 KAction *Krusader::actCopy = 0;
+KAction *Krusader::actPaste = 0;
 KAction *Krusader::actCompare = 0;
 KAction *Krusader::actCalculate = 0;
 KAction *Krusader::actCreateChecksum = 0;
@@ -542,7 +543,7 @@ void Krusader::setupActions() {
 
    KStdAction::cut( SLOTS, SLOT( cut() ), actionCollection(), "std_cut" )->setText( i18n("Cut to Clipboard") );
    (actCopy = KStdAction::copy( SLOTS, SLOT( copy() ), actionCollection(), "std_copy" ))->setText( i18n("Copy to Clipboard") );
-   KStdAction::paste( SLOTS, SLOT( paste() ), actionCollection(), "std_paste" )->setText( i18n("Paste from Clipboard") );
+   (actPaste = KStdAction::paste( SLOTS, SLOT( paste() ), actionCollection(), "std_paste" ))->setText( i18n("Paste from Clipboard") );
 
    // the toggle actions
    actToggleFnkeys = new KToggleAction( i18n( "Show &FN Keys Bar" ), 0, SLOTS,

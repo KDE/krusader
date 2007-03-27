@@ -48,6 +48,7 @@
 #include "GUI/profilemanager.h"
 #include "Dialogs/percentalsplitter.h"
 #include "krservices.h"
+#include <qclipboard.h>
 
 KrusaderView::KrusaderView( QWidget *parent ) : QWidget( parent, "KrusaderView" ), activePanel(0), 
 								konsole_part( 0L ) {}
@@ -279,7 +280,14 @@ void KrusaderView::switchFullScreenTE()
 
 
 bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
-  if( e->type() == QEvent::KeyPress && konsole_part && konsole_part->widget() == watched ) {
+  if( e->type() == QEvent::AccelOverride && konsole_part && konsole_part->widget() == watched ) {
+    QKeyEvent *ke = (QKeyEvent *)e;
+    if( ( ke->key() ==  Key_Insert ) && ( ke->state()  == ShiftButton ) ) {
+      ke->accept();
+      return true;
+    }
+  }
+  else if( e->type() == QEvent::KeyPress && konsole_part && konsole_part->widget() == watched ) {
     QKeyEvent *ke = (QKeyEvent *)e;
     KKey pressedKey( ke );
 
@@ -315,6 +323,15 @@ bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
     } else if( ( ( ke->key() ==  Key_Up ) && ( ke->state()  == ControlButton ) ) || 
                ( ke->state()  == ( ControlButton | ShiftButton ) ) ) {
       ACTIVE_PANEL->slotFocusOnMe();
+      return true;
+    } else if( Krusader::actPaste->shortcut().contains( pressedKey ) ) {
+      QString text = QApplication::clipboard()->text();
+      if ( ! text.isEmpty() )
+      {
+        text.replace("\n", "\r");
+        QKeyEvent keyEvent(QEvent::KeyPress, 0,-1,0, text);
+        QApplication::sendEvent( konsole_part->widget(), &keyEvent );
+      }
       return true;
     }
   }
