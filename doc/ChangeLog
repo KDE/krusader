@@ -1,21 +1,42 @@
 The Krusader Handbook ChangeLog
 -------------------------------
 
- Renewed documentation by the students of the University of Oulu in Finland http://www.oulu.fi/english/ , under the lead of Minna Hekanaho 
- Note: this is work in progress, some issues needs to be fixed.
- This Changelog is not modified yet. 
-
-  TODO: Brief view
-  http://groups.google.com/group/krusader-devel/browse_thread/thread/d2ad800bf434a993/f423e4d65312d83e#f423e4d65312d83e
-  The number of brief columns can be changed, by right clicking on the "Name" header. 
-  ALT+SHIFT+D   Detailed view
-  ALT+SHIFT+B   Brief view 
-  Menu -> view -> Brief View
-  Menu -> view -> Detailed View
-
+  TODO: Terminal Emulator, paste with SHIFT+INSERT and CTRL+V
+  TODO: Vaclav's checksum patches (added sha* tools, fixed bugs etc...)
+  TODO: Synchronizer: ignore hidden files option
+  TODO: Synchronizer-results: drag [left], SHIFT+drag [right],
+        Copy left/right selected items to clipboard
+  TODO: Locate-results: dragging items, copy to clipboard (CTRL+C)
+  TODO: Searcher-results: dragging items, copy to clipboard (CTRL+C)
+  1/2TODO: Support for useraction placeholders in Krusader's commandline
+  ADDED: New default user action "Backup current"
+  ADDED: ALT+C as default shortcut for compare directories 
   TODO: GUI for configuring the atomic extensions in Konfigurator
   TODO: quotation mark handling at search (ex. "Program Files")
 
+  ---------------------------------------------------- 
+  Other todo items not related to Krusader's changelog: 
+  TODO: patch forum
+  TODO: make the Synchronizer chapter more readable and more undertandable
+  TODO: complete Keyboard Usage
+  TODO: complete glossary
+  TODO: complete Mouse Usage
+  TODO: selection modes 
+        http://krusader.sourceforge.net/phpBB/viewtopic.php?p=8255#8255
+  ---------------------------------------------------- 
+ 
+  ADDED: Remote LAN Connections (zeroconf)
+  ADDED: NewsLetter Forum
+  ADDED: Quickstart Installation Tutorial
+  ADDED: FAQ: What todo if an extenal tool doesn't seem to work?
+  ADDED: FAQ: What todo if the KDEcrashhandler sends no usefull backtrace information?
+  ADDED: FAQ: How can i send good debug or crash reports?
+  ADDED: Brief view
+  
+  Documentation updates by the Technical Communication team of 2007, 
+  University of Oulu, Finland http://www.oulu.fi/english/ 
+  under the lead of Minna Hekanaho
+  
   ADDED: FAQ: Does krusader supports the FXP protocol?
   ADDED: webdav and nfs url
   ADDED: FAQ: How can I set the look & Feel of 2 different users equal?
@@ -25,16 +46,6 @@ The Krusader Handbook ChangeLog
 1.80.0-beta1 "The Last Krusade"
 ===============================
 Date: 2007-01-07
-
-  ---------------------------------------------------- 
-  Other todo items not related to Krusader's changelog: 
-  TODO: make the Synchronizer chapter more readable and more undertandable
-  TODO: complete Keyboard Usage
-  TODO: complete glossary
-  TODO: complete Mouse Usage
-  TODO: selection modes 
-        http://krusader.sourceforge.net/phpBB/viewtopic.php?p=8255#8255
-  ---------------------------------------------------- 
 
   ADDED: full support for ACL permissions (properties, preserve attrs, synchronizer)
   ADDED: actionman.png screenshot

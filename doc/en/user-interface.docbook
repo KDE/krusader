@@ -334,6 +334,10 @@
       directory which can be local (part of your mounted file
       systems, either a native file or the files inside an archive)
       or remote files (accessed via &FTP; or Samba).
+      There are two modes: <link linkend="view-menu">Detailed View</link> that shows the file names, 
+      file size, creation date and time and their attributes. 
+      And <link linkend="view-menu">Brief View</link> that shows only the file names,
+      the number of brief columns can be changed, by right clicking on the <guilabel>Name</guilabel> header.
       File copy/paste/cut via clipboard between
       &konqueror; and &krusader; 
       <keycombo action="simul">&Ctrl;
@@ -603,7 +607,10 @@
       <replaceable>
       &lt;directory&gt;</replaceable>
     </userinput> in the command line will also cause the active
-    panel to point to this directory. Click 
+    panel to point to this directory. 
+    <link linkend="useractions">Useraction placeholders</link> are supported in &krusader;'s 
+    commandline and Terminal Emulator.
+    Click 
     <link linkend="cmdline_keybindings">here</link> to view the
     command line keybindings.</para>
     <!--

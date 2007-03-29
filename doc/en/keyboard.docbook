@@ -255,6 +255,19 @@
             <entry>
               <para>
                 <keycombo action="simul">&Shift;
+                <keycap>F5</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="useractions-menu">Backup current file (Default Useraction).</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Shift;
                 <keycap>F9</keycap></keycombo>
               </para>
             </entry>
@@ -334,6 +347,17 @@
     <informaltable>
       <tgroup cols="2">
         <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Alt;
+                <keycap>c</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>&comparedir_lnk;</para>
+            </entry>
+          </row>
           <row>
             <entry>
               <para>
@@ -531,30 +555,6 @@
             <entry>
               <para>Standard (&kde;)
               key-bindings.</para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul">
-                &Alt;&Shift;
-                <keycap>D</keycap></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para>Detailed View</para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul">
-                &Alt;&Shift;
-                <keycap>B</keycap></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para>Brief View</para>
             </entry>
           </row>
         </tbody>
@@ -1105,6 +1105,30 @@
     <informaltable>
       <tgroup cols="2">
         <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul">
+                &Alt;&Shift;
+                <keycap>b</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>Brief View</para>
+            </entry>
+          </row>
+           <row>
+            <entry>
+              <para>
+                <keycombo action="simul">
+                &Alt;&Shift;
+                <keycap>d</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>Detailed View</para>
+            </entry>
+          </row>
           <row>
             <entry>
               <para>

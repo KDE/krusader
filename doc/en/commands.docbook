@@ -550,6 +550,10 @@
       <varlistentry>
         <term>
           <menuchoice>
+          <shortcut>
+              <keycombo action="simul">&Alt;
+              <keycap>C</keycap></keycombo>
+            </shortcut>
             <guimenu>Edit</guimenu>
             <guimenuitem>Compare Directories</guimenuitem>
           </menuchoice>
@@ -649,7 +653,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Selects detailed view.</para>
+          <para>Shows the file names, file size, creation date and time and their attributes.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -665,8 +669,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Selects brief view. Brief view knows everything
-          that the detailed view knows.</para>
+          <para>Shows only the file names.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1028,6 +1031,23 @@
           in the &krusader; panel becomes the last
           modified date for each file. This is useful for finding
           files you recently worked on.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo action="simul">
+                &Shift;<keycap>F5</keycap>
+              </keycombo>
+            </shortcut>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Backup current</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Backups current file in current directory and asks the user for a new filename. 
+                By default <filename>.old</filename> is appended to the original filename.</para>
         </listitem>
       </varlistentry>
     </variablelist>

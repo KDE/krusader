@@ -16,69 +16,56 @@
     <listitem>
       <para>
         <userinput>
-          <command>ftp://</command>
-          <replaceable>
-          public.ftpserver.org/directory/</replaceable>
+          <command>ftp://</command><replaceable>public.ftpserver.org/directory/</replaceable>
         </userinput>
       </para>
     </listitem>
     <listitem>
       <para>
         <userinput>
-          <command>fish://</command>
-          <replaceable>username@hostname/</replaceable>
+          <command>fish://</command><replaceable>username@hostname/</replaceable>
         </userinput>
       </para>
     </listitem>
     <listitem>
       <para>
         <userinput>
-          <command>sftp://</command>
-          <replaceable>
-          username:password@sftp.foo.org/</replaceable>
+          <command>sftp://</command><replaceable>username:password@sftp.foo.org/</replaceable>
         </userinput>
       </para>
     </listitem>
     <listitem>
       <para>
         <userinput>
-          <command>ftp://</command>
-          <replaceable>
-          username@my.server.org:21/directory/</replaceable>
+          <command>ftp://</command><replaceable>username@my.server.org:21/directory/</replaceable>
         </userinput>
       </para>
     </listitem>
     <listitem>
       <para>
         <userinput>
-          <command>smb://</command>
-          <replaceable>username:password@server/share</replaceable>
+          <command>smb://</command><replaceable>username:password@server/share</replaceable>
         </userinput>
       </para>
     </listitem>
     <listitem>
       <para>
         <userinput>
-          <command>ftp://</command>
-          <replaceable>
-          username@proxyusername:password@proxipassword@hostname/directory</replaceable>
+          <command>ftp://</command><replaceable>username@proxyusername:password@proxipassword@hostname/directory</replaceable>
         </userinput>
       </para>
     </listitem>
     <listitem>
       <para>
         <userinput>
-          <command>nfs://</command>
-          <replaceable>
-          &lt;host&gt;:&lt;port&gt;&lt;url-path&gt;</replaceable>
+          <command>nfs://</command><replaceable>&lt;host&gt;:&lt;port&gt;&lt;url-path&gt;</replaceable>
         </userinput>
       </para>
     </listitem>
     <listitem>
       <para>
         <userinput>
-          <command>webdav://</command>
-          <replaceable>www.server.com/path/</replaceable>
+          <command>webdav://</command><replaceable>www.server.com/path/</replaceable>
         </userinput>
       </para>
     </listitem>
@@ -169,4 +156,112 @@
     &kasablanca_url; or
     &kftpgrabber_url;.</para>
   </note>
+
+<sect2 id="remote-connections-lan-fish">
+  <title>LAN connections via fish:/ protocol (zeroconf)</title>
+  <indexterm>
+    <primary>Remote LAN Connections (zeroconf)</primary>
+  </indexterm>
+
+<para>This section is contributed by 
+      <ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1912">Andrew Svet (z-vet)</ulink>,
+      feedback about this chapter is appriciated. Thanks!</para>
+
+ <note>
+   <para>This works on a &debian; system, so it will work on &debian; and derivatives (&kubuntu; &etc;), though
+   it should work on other Linuxes as well. 
+   We assume that you have <link linkend="gloss-ssh">SSH</link> installed, configured and working on 
+   every machine on LAN you want to connect to/from.
+   There are plenty of very good tutorials about <link linkend="gloss-ssh">SSH</link> on the net, &eg;
+   at <ulink url="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch17_:_Secure_Remote_Logins_and_File_Copying">linuxhomenetworking.com</ulink> 
+   or just google for it.  We use the default <link linkend="gloss-ssh">SSH</link> port (22) for this chapter.
+   Remember to change it if you use different one. All modifications, editing &etc; must be done as root. 
+   </para>
+ </note>
+
+<para>
+Let's start with installing all the packages we need: 
+<screen>
+<prompt>#</prompt> <userinput><command>apt-get install</command> <option>avahi-daemon libnss-mdns kdnssd</option></userinput>
+</screen>
+
+Everything is installed, now let's do some configuration. First, we need our services to be announced on LAN.
+That's why we installed avahi-daemon: it represents your machine on local network and allows other applications 
+to publish services they provide. Avahi-daemon comes with example <filename>ssh.service</filename> configuration 
+file found in <filename>/usr/share/doc/avahi-daemon/examples</filename> . In order to get the service to be 
+announced on LAN we need to copy this file to <filename>/etc/avahi/services</filename> directory: 
+<screen>
+<prompt>#</prompt> <userinput><command>cp</command> <option>/usr/share/doc/avahi-daemon/examples/ssh.service /etc/avahi/services</option></userinput>
+</screen>
+
+Now we need fish:/ protocol to be announced too, so we use an ssh.service file as a template for fish.service: 
+<screen>
+<prompt>#</prompt> <userinput><command>cp</command> <option>/etc/avahi/services/ssh.service /etc/avahi/services/fish.service</option></userinput>
+</screen>
+
+This file is just a copy of ssh.service, Edit the <filename>fish.service</filename> file and replace 
+"Remote Terminal on %h" with "Fish to %h" and "_ssh._tcp" with "_fish._tcp". 
+
+Here's how it looks after edit: 
+<programlisting> 
+&lt;?xml version="1.0" standalone='no'?&gt;&lt;!--*-nxml-*--> 
+&lt;!DOCTYPE service-group SYSTEM "avahi-service.dtd"&gt;
+
+&lt;!-- $Id$ --> 
+
+&lt;!-- 
+  This file is part of avahi. 
+  
+  avahi is free software; you can redistribute it and/or modify it 
+  under the terms of the GNU Lesser General Public License as 
+  published by the Free Software Foundation; either version 2 of the 
+  License, or (at your option) any later version. 
+
+  avahi is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of 
+  MERCHANTABILITY or FITNESS FOR 
+
+&lt;!-- See avahi.service(5) for more information about this configuration file --> 
+
+&lt;service-group> 
+
+  &lt;name replace-wildcards="yes">FISH to %h&lt;/name> 
+
+  &lt;service> 
+    &lt;type>_fish._tcp&lt;/type> 
+    &lt;port>22&lt;/port> 
+  &lt;/service> 
+
+&lt;/service-group>  
+</programlisting>
+Save the modified file. 
+
+Now we need to create a new file <filename>_fish._tcp</filename>, open a text editor and add the next lines:
+<programlisting>
+Name=FISH Protocol (ssh) 
+Type=_fish._tcp 
+UserEntry=u 
+PathEntry=path 
+PasswordEntry=p
+</programlisting> 
+And save the file <filename>/usr/share/apps/zeroconf/_fish._tcp</filename>
+
+Do the same on each machine on your LAN, then restart avahi-daemon: 
+<screen>
+<prompt># /etc/init.d/</prompt> <userinput><command>avahi-daemon</command> <option>restart</option></userinput>
+</screen>
+
+Than open &krusader; and type in location_toolbar_lnk: <filename>zeroconf:/</filename> to open the  
+<link linkend="gloss-zeroconf">zeroconf</link> connection.
+Enter the <guilabel>Fish Protocol</guilabel> directory. Inside you'll find the links to each machine that 
+announced <filename>fish:/</filename> on your LAN, the location_toolbar_lnk: will point to 
+<filename>zeroconf:/_fish._tcp</filename> Double clicking on any of these machines,
+them will bring up the password prompt, asking you for yor ssh key passphrase (if password was set). 
+Enter your passphrase. Congratulations: you connected to remote machine using &krusader;!
+</para> 
+
+</sect2>
+
 </sect1>
+
+

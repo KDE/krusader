@@ -494,10 +494,9 @@
           higher). You also need to set the enviroment variables
           "CC, CPP and CXX" before running the 
           <command>./configure</command> script. 
-          <screen>
-            <prompt>$</prompt> <userinput><command>export</command> CC=<replaceable>/usr/bin/gcc-3.2</replaceable></userinput>
-            <prompt>$</prompt> <userinput><command>export</command> CXX=<replaceable>/usr/bin/g++-3.2</replaceable></userinput>
-            <prompt>$</prompt> <userinput><command>export</command> CPP=<replaceable>/usr/bin/cpp-3.2</replaceable></userinput>
+          <screen><prompt>$</prompt> <userinput><command>export</command> CC=<replaceable>/usr/bin/gcc-3.2</replaceable></userinput>
+          <prompt>$</prompt> <userinput><command>export</command> CXX=<replaceable>/usr/bin/g++-3.2</replaceable></userinput>
+          <prompt>$</prompt> <userinput><command>export</command> CPP=<replaceable>/usr/bin/cpp-3.2</replaceable></userinput>
           </screen> 
           For more information please take a look
           &debian_qt_a_url; and at the
@@ -535,17 +534,16 @@
           depend on the distribution used and the version of the
           &nvidia; driver (6111 in this example), but it
           should read something like this: 
-          <screen>
-            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so.0</replaceable></userinput>
-            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so</replaceable></userinput>
-            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so.1.0.0</replaceable></userinput>
-            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so.0.0.0</replaceable></userinput>
-            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so</replaceable></userinput>
-            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.0</replaceable></userinput>
-            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.0.0.0</replaceable></userinput>
-            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.1</replaceable></userinput>
-            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.1.0.0</replaceable></userinput>
-            <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>/usr/lib/libGLU.la /usr/X11R6/lib/libGLU.la</replaceable></userinput>
+          <screen><prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so.0</replaceable></userinput>
+          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so</replaceable></userinput>
+          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so.1.0.0</replaceable></userinput>
+          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so.0.0.0</replaceable></userinput>
+          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so</replaceable></userinput>
+          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.0</replaceable></userinput>
+          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.0.0.0</replaceable></userinput>
+          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.1</replaceable></userinput>
+          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.1.0.0</replaceable></userinput>
+          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>/usr/lib/libGLU.la /usr/X11R6/lib/libGLU.la</replaceable></userinput>
           </screen></para>
           <para></para>
           <!-- Empty line to make it more readable -->
@@ -907,8 +905,7 @@
           you use a codepage different than 8859-1 you will have to
           do a manual configuration. Create or modify the file: 
           <filename>~/.smb/smb.conf</filename>
-          <programlisting>
-          [global] 
+          <programlisting>[global] 
           workgroup = MyWorkGroup (ex. WORKGROUP) 
           client code page = MyCodePage (ex. 852)
           character set = MyCharSet (ex. ISO8859-2)
@@ -968,6 +965,34 @@
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
+      
+<qandaentry>
+  <question id="faqu_external_tool">
+  <para>What todo if an extenal tool doesn't seem to work?</para>
+  </question>
+  <answer>
+  <para>Krusader uses several programs as <link linkend="konfig-dependencies">external tools</link>, 
+        and sometimes they appear not to work.
+        
+       Open a terminal and check if tool foo is installed.
+       <screen><prompt>$</prompt> <userinput><command>foo</command></userinput></screen> 
+
+       Check if tool foo is properly configured in the &konfigdependencie_lnk;.
+
+       For Archiving tools: autodetect the archives again with the <guibutton>Auto Configure</guibutton> button
+       in the <link linkend="konfig-archives">Konfigurator archive page</link>. 
+       
+       Check the &konfigprotocol_lnk;
+   
+     If it doesn't work, backup your <filename>~/.kde/share/config/krusaderrc</filename> configuration file and remove it from this location,
+     Restart Krusader, Krusader will now start the first start configuration wizard, follow these guidelines.
+   
+    </para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+</qandaentry>
+      
+      
       <!-- Thanks to Dirk Eschler -->
       <qandaentry>
         <question id="faqu_ftp_firewall">
@@ -1395,7 +1420,56 @@
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
-      <qandaentry>
+      
+<qandaentry>
+  <question id="faqg_valgrint">
+  <para>How can i send good debug or crash reports?</para>
+  </question>
+  <answer>
+  <para>Usually binary packages that are been used by your distribution do not contain debug information.
+        Since we usually only develop and fix &krusader;-cvs, compile &krusader;-cvs in debugmode and install it, than check if the bug still exist.
+        <screen><prompt>$</prompt> <userinput><command>./configure</command> <option>--enable-debug=full</option></userinput></screen>  
+
+        Install <ulink url="http://valgrind.org">valgrind</ulink>, a suite of tools for debugging and profiling &Linux; programs.
+
+        Run Valgrind/&krusader;
+        <screen><prompt>$</prompt> <userinput><command>valgrind</command> <option>--tool=memcheck</option> <replaceable>{foo_path}/krusader</replaceable></userinput></screen>
+        
+        The valgrind tool will write to stdout, what really happens.
+        If you could send these informations before the crash, it's almost sure, that we may fix or tell you what to do.
+  </para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+</qandaentry>
+
+<qandaentry>
+  <question id="faqg_crashhandler">
+  <para>What todo if the KDEcrashhandler sends no usefull backtrace information?</para>
+  </question>
+  <answer>
+  <para>Usually binary packages that are been used by your distribution do not contain debug information.
+        Since we usually only develop and fix &krusader;-cvs, compile &krusader;-cvs in debugmode and install it, than check if the bug still exist.
+        <screen><prompt>$</prompt> <userinput><command>./configure</command> <option>--enable-debug=full</option></userinput></screen> 
+ 
+       If the KDEKrashhandler still doesn't provide usefull backtrace information, than sometimes a coredump will give better information. 
+       Run Krusader, with disabled crashhandler.
+       <screen><prompt>$</prompt> <userinput><command>krusader</command> <option>--nocrashhandler</option></userinput></screen>
+
+       On a crash you will get a <filename>.core</filename> file, usually in your home directory.
+
+       Run <ulink url="http://sourceware.org/gdb/">gdb</ulink>, the GNU Project Debugger
+       
+       <screen><prompt>$</prompt> <userinput><command>gdb</command> <option>-c</option> <replaceable>corefile krusader</replaceable></userinput></screen>
+       
+       Now type <command>bt</command> to get the backtrace and type <command>q</command> to quit gdb.
+
+       Often the best debug results will be given when using the valgrint tool.
+  </para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+</qandaentry>
+      
+<qandaentry>
         <question id="faqg_mail_list">
           <para>Does &krusader; have a mailing
           list?</para>
@@ -1521,12 +1595,15 @@
           and over again, that's why we have created this
           &faq_lnk;. This allows us to spend more time
           developing &krusader;.</para>
-          <para>The &kruforum_url; is split into six
+          <para>The &kruforum_url; is split into seven
           sections: 
           <itemizedlist>
             <listitem>
               <para>&newsforum_url;: all the latest
               news.</para>
+            </listitem>
+             <listitem>
+              <para>&newsletterforum_url;: all newsletters.</para>
             </listitem>
             <listitem>
               <para>&bugforum_url;: discussions about
