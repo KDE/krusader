@@ -1634,7 +1634,7 @@ if AC_TRY_EVAL(kde_line); then
 	# if you're trying to debug this check and think it's incorrect,
 	# better check your installation. The check _is_ correct - your
 	# installation is not.
-	if test -f actest.cpp && grep klineedit actest.cpp > /dev/null; then
+	if test -f actest.cpp && grep -i klineedit actest.cpp > /dev/null; then
 		kde_cv_uic_plugins=yes
 	fi
 fi
