@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.80.0-beta2\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2007-03-23 13:00+0100\n"
+"POT-Creation-Date: 2007-03-27 15:16+0200\n"
 "PO-Revision-Date: 2006-10-11 03:54+0900\n"
 "Last-Translator: Hideki Kimura <hangyo1973@gmail.com>\n"
 "Language-Team: Japanese <krusader-i18n@googlegroups.com>\n"
@@ -770,341 +770,341 @@ msgstr ""
 "上の日付が下の日付より後になっています。上の日付の方が下の日付より前になるよ"
 "うに日付を入力し直してください。"
 
-#: UserAction/expander.cpp:49
+#: UserAction/expander.cpp:55
 #, c-format
 msgid "Needed panel specification missing in expander %1"
 msgstr ""
 
-#: UserAction/expander.cpp:64
+#: UserAction/expander.cpp:70
 msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
 msgstr ""
 
-#: UserAction/expander.cpp:351
+#: UserAction/expander.cpp:357
 msgid "Panel's Path..."
 msgstr ""
 
-#: UserAction/expander.cpp:354 UserAction/expander.cpp:416
-#: UserAction/expander.cpp:450 UserAction/expander.cpp:482
-#: UserAction/expander.cpp:769
+#: UserAction/expander.cpp:360 UserAction/expander.cpp:422
+#: UserAction/expander.cpp:456 UserAction/expander.cpp:488
+#: UserAction/expander.cpp:775
 #, fuzzy
 msgid "Automatically escape spaces"
 msgstr "自動"
 
-#: UserAction/expander.cpp:374
+#: UserAction/expander.cpp:380
 msgid "Number of..."
 msgstr ""
 
-#: UserAction/expander.cpp:377
+#: UserAction/expander.cpp:383
 #, fuzzy
 msgid "Count:"
 msgstr "マウント"
 
-#: UserAction/expander.cpp:392
+#: UserAction/expander.cpp:398
 msgid "Expander: Bad argument to Count: %1 is not valid item specifier"
 msgstr ""
 
-#: UserAction/expander.cpp:401
+#: UserAction/expander.cpp:407
 #, fuzzy
 msgid "Filter Mask (*.h, *.cpp, etc.)"
 msgstr "フィルタ."
 
-#: UserAction/expander.cpp:412
+#: UserAction/expander.cpp:418
 #, fuzzy
 msgid "Current File (!= Selected File)..."
 msgstr "同期 選択されたもの ファイル."
 
-#: UserAction/expander.cpp:415 UserAction/expander.cpp:448
-#: UserAction/expander.cpp:480 UserAction/expander.cpp:767
+#: UserAction/expander.cpp:421 UserAction/expander.cpp:454
+#: UserAction/expander.cpp:486 UserAction/expander.cpp:773
 #, fuzzy
 msgid "Omit the current path (optional)"
 msgstr "選択を入力:"
 
-#: UserAction/expander.cpp:443
+#: UserAction/expander.cpp:449
 #, fuzzy
 msgid "Item List of..."
 msgstr "項目."
 
-#: UserAction/expander.cpp:446 UserAction/expander.cpp:478
-#: UserAction/expander.cpp:766
+#: UserAction/expander.cpp:452 UserAction/expander.cpp:484
+#: UserAction/expander.cpp:772
 #, fuzzy
 msgid "Which items:"
 msgstr " ファイルを選択 "
 
-#: UserAction/expander.cpp:447
+#: UserAction/expander.cpp:453
 #, fuzzy
 msgid "Separator between the items (optional):"
 msgstr "セパレータ"
 
-#: UserAction/expander.cpp:449 UserAction/expander.cpp:481
-#: UserAction/expander.cpp:768
+#: UserAction/expander.cpp:455 UserAction/expander.cpp:487
+#: UserAction/expander.cpp:774
 #, fuzzy
 msgid "Mask (optional, all but 'Selected'):"
 msgstr "全て 選択されたもの"
 
-#: UserAction/expander.cpp:475
+#: UserAction/expander.cpp:481
 #, fuzzy
 msgid "Filename of an Item List..."
 msgstr "ファイル名."
 
-#: UserAction/expander.cpp:479
+#: UserAction/expander.cpp:485
 #, fuzzy
 msgid "Separator between the items (optional)"
 msgstr "セパレータ"
 
-#: UserAction/expander.cpp:498
+#: UserAction/expander.cpp:504
 msgid "Expander: tempfile couldn't be opened (%1)"
 msgstr ""
 
-#: UserAction/expander.cpp:518
+#: UserAction/expander.cpp:524
 #, fuzzy
 msgid "Manipulate the Selection..."
 msgstr "選択を入力:"
 
-#: UserAction/expander.cpp:521
+#: UserAction/expander.cpp:527
 #, fuzzy
 msgid "Selection mask:"
 msgstr "選択"
 
-#: UserAction/expander.cpp:522
+#: UserAction/expander.cpp:528
 #, fuzzy
 msgid "Manipulate in which way:"
 msgstr "in"
 
-#: UserAction/expander.cpp:547
+#: UserAction/expander.cpp:553
 #, fuzzy
 msgid "Jump to a Location..."
 msgstr "to a"
 
-#: UserAction/expander.cpp:550
+#: UserAction/expander.cpp:556
 #, fuzzy
 msgid "Choose a path:"
 msgstr "a"
 
-#: UserAction/expander.cpp:551
+#: UserAction/expander.cpp:557
 #, fuzzy
 msgid "Open location in a new tab"
 msgstr "in a 新規"
 
-#: UserAction/expander.cpp:587
+#: UserAction/expander.cpp:593
 msgid "Ask Parameter from User..."
 msgstr ""
 
-#: UserAction/expander.cpp:590
+#: UserAction/expander.cpp:596
 #, fuzzy
 msgid "Question:"
 msgstr "質問"
 
-#: UserAction/expander.cpp:591
+#: UserAction/expander.cpp:597
 msgid "Preset (optional):"
 msgstr ""
 
-#: UserAction/expander.cpp:592
+#: UserAction/expander.cpp:598
 msgid "Caption (optional):"
 msgstr ""
 
-#: UserAction/expander.cpp:598
+#: UserAction/expander.cpp:604
 #, fuzzy
 msgid "User Action"
 msgstr "ユーザ 動作"
 
-#: UserAction/expander.cpp:623
+#: UserAction/expander.cpp:629
 #, fuzzy
 msgid "Copy to Clipboard..."
 msgstr "クリップボードに複写"
 
-#: UserAction/expander.cpp:626 UserAction/expander.cpp:649
+#: UserAction/expander.cpp:632 UserAction/expander.cpp:655
 msgid "What to copy:"
 msgstr ""
 
-#: UserAction/expander.cpp:627
+#: UserAction/expander.cpp:633
 #, fuzzy
 msgid "Append to current clipboard content with this separator (optional):"
 msgstr "追加 to 置換後"
 
-#: UserAction/expander.cpp:633
+#: UserAction/expander.cpp:639
 msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
 msgstr ""
 
-#: UserAction/expander.cpp:646
+#: UserAction/expander.cpp:652
 #, fuzzy
 msgid "Copy a File/Folder..."
 msgstr "コピー a"
 
-#: UserAction/expander.cpp:650
+#: UserAction/expander.cpp:656
 msgid "Where to copy:"
 msgstr ""
 
-#: UserAction/expander.cpp:657
+#: UserAction/expander.cpp:663
 msgid "Expander: %Each% may not be in the second argument of %Copy%"
 msgstr ""
 
-#: UserAction/expander.cpp:667
+#: UserAction/expander.cpp:673
 msgid "Expander: invalid URL's in %_Copy(\"src\", \"dest\")%"
 msgstr ""
 
-#: UserAction/expander.cpp:678
+#: UserAction/expander.cpp:684
 #, fuzzy
 msgid "Move/Rename a File/Folder..."
 msgstr "移動 名前を変更 a"
 
-#: UserAction/expander.cpp:681
+#: UserAction/expander.cpp:687
 msgid "What to move/rename:"
 msgstr ""
 
-#: UserAction/expander.cpp:682
+#: UserAction/expander.cpp:688
 #, fuzzy
 msgid "New target/name:"
 msgstr "新規 名前"
 
-#: UserAction/expander.cpp:688
+#: UserAction/expander.cpp:694
 msgid "%Each% may not be in the second argument of %Move%"
 msgstr ""
 
-#: UserAction/expander.cpp:698
+#: UserAction/expander.cpp:704
 msgid "Expander: invalid URL's in %_Move(\"src\", \"dest\")%"
 msgstr ""
 
-#: UserAction/expander.cpp:709
+#: UserAction/expander.cpp:715
 #, fuzzy
 msgid "Load a Synchronizer Profile..."
 msgstr "開く a"
 
-#: UserAction/expander.cpp:712 UserAction/expander.cpp:730
-#: UserAction/expander.cpp:748
+#: UserAction/expander.cpp:718 UserAction/expander.cpp:736
+#: UserAction/expander.cpp:754
 #, fuzzy
 msgid "Choose a profile:"
 msgstr "a"
 
-#: UserAction/expander.cpp:716
+#: UserAction/expander.cpp:722
 msgid "Expander: no profile specified for %_Sync(profile)%"
 msgstr ""
 
-#: UserAction/expander.cpp:727
+#: UserAction/expander.cpp:733
 #, fuzzy
 msgid "Load a Searchmodule Profile..."
 msgstr "開く a"
 
-#: UserAction/expander.cpp:734
+#: UserAction/expander.cpp:740
 msgid "Expander: no profile specified for %_NewSearch(profile)%"
 msgstr ""
 
-#: UserAction/expander.cpp:745
+#: UserAction/expander.cpp:751
 #, fuzzy
 msgid "Load a Panel Profile..."
 msgstr "読込 a パネル"
 
-#: UserAction/expander.cpp:752
+#: UserAction/expander.cpp:758
 msgid "Expander: no profile specified for %_Profile(profile)%; abort..."
 msgstr ""
 
-#: UserAction/expander.cpp:763
+#: UserAction/expander.cpp:769
 #, fuzzy
 msgid "Separate Program Call for Each..."
 msgstr "for."
 
-#: UserAction/expander.cpp:795
+#: UserAction/expander.cpp:801
 #, fuzzy
 msgid "Set Sorting for This Panel..."
 msgstr "for パネル"
 
-#: UserAction/expander.cpp:798
+#: UserAction/expander.cpp:804
 #, fuzzy
 msgid "Choose a column:"
 msgstr "a"
 
-#: UserAction/expander.cpp:799
+#: UserAction/expander.cpp:805
 #, fuzzy
 msgid "Choose a sort sequence:"
 msgstr "a"
 
-#: UserAction/expander.cpp:805
+#: UserAction/expander.cpp:811
 msgid "Expander: no column specified for %_ColSort(column)%"
 msgstr ""
 
-#: UserAction/expander.cpp:877
+#: UserAction/expander.cpp:883
 msgid "Expander: unknown column specified for %_ColSort(%1)%"
 msgstr ""
 
-#: UserAction/expander.cpp:889
+#: UserAction/expander.cpp:895
 #, fuzzy
 msgid "Set Relation Between the Panels..."
 msgstr "第二"
 
-#: UserAction/expander.cpp:892
+#: UserAction/expander.cpp:898
 #, fuzzy
 msgid "Set the new size in percent:"
 msgstr "新規 サイズ in"
 
-#: UserAction/expander.cpp:904
+#: UserAction/expander.cpp:910
 msgid ""
 "Expander: Value %1 out of range for %_PanelSize(percent)%. The first "
 "parameter has to be >0 and <100"
 msgstr ""
 
-#: UserAction/expander.cpp:928
+#: UserAction/expander.cpp:934
 #, fuzzy
 msgid "Execute a JavaScript Extension..."
 msgstr "a JavaScript"
 
-#: UserAction/expander.cpp:931
+#: UserAction/expander.cpp:937
 #, fuzzy
 msgid "Location of the script"
 msgstr "場所"
 
-#: UserAction/expander.cpp:932
+#: UserAction/expander.cpp:938
 #, fuzzy
 msgid ""
 "Set some variables for the execution (optional).\n"
 "i.e. \"return=return_var;foo=bar\", consult the handbook for more information"
 msgstr "同じ for e for"
 
-#: UserAction/expander.cpp:936
+#: UserAction/expander.cpp:942
 msgid "Expander: no script specified for %_Script(script)%"
 msgstr ""
 
-#: UserAction/expander.cpp:978
+#: UserAction/expander.cpp:984
 #, fuzzy
 msgid "View File with Krusader's Internal Viewer..."
 msgstr "表示 a 置換後 秒"
 
-#: UserAction/expander.cpp:981
+#: UserAction/expander.cpp:987
 #, fuzzy
 msgid "Which file to view (normally '%aCurrent%'):"
 msgstr "to"
 
-#: UserAction/expander.cpp:982
+#: UserAction/expander.cpp:988
 #, fuzzy
 msgid "Choose a view mode:"
 msgstr "a"
 
-#: UserAction/expander.cpp:985
+#: UserAction/expander.cpp:991
 #, fuzzy
 msgid "Choose a window mode:"
 msgstr "a ウィンドウ"
 
-#: UserAction/expander.cpp:989
+#: UserAction/expander.cpp:995
 msgid "Expander: no file to view in %_View(filename)%"
 msgstr ""
 
-#: UserAction/expander.cpp:1026
+#: UserAction/expander.cpp:1032
 #, c-format
 msgid "%Each% is not allowed in parameter to %1"
 msgstr ""
 
-#: UserAction/expander.cpp:1073
+#: UserAction/expander.cpp:1053
 msgid "Expander: Bad panel specifier %1 in placeholder %2"
 msgstr ""
 
-#: UserAction/expander.cpp:1102
+#: UserAction/expander.cpp:1082
 #, c-format
 msgid "Error: unterminated % in Expander::expandCurrent"
 msgstr ""
 
-#: UserAction/expander.cpp:1132
+#: UserAction/expander.cpp:1112
 msgid "Error: unrecognized %%%1%2%% in Expander::expand"
 msgstr ""
 
-#: UserAction/expander.cpp:1168
+#: UserAction/expander.cpp:1148
 msgid "Error: missing ')' in Expander::separateParameter"
 msgstr ""
 
@@ -1178,7 +1178,7 @@ msgid "Overwrite or append?"
 msgstr "上書き もしくは?"
 
 #: ActionMan/useractionpage.cpp:248 ActionMan/useractionpage.cpp:257
-#: Dialogs/checksumdlg.cpp:552 Dialogs/krkeydialog.cpp:135
+#: Dialogs/checksumdlg.cpp:573 Dialogs/krkeydialog.cpp:135
 #: Konfigurator/kgcolors.cpp:523 UserAction/kraction.cpp:141
 #, fuzzy
 msgid "Overwrite"
@@ -1327,7 +1327,7 @@ msgstr "等価"
 msgid ".."
 msgstr ""
 
-#: Panel/listpanel.cpp:237 krusader.cpp:576
+#: Panel/listpanel.cpp:237 krusader.cpp:577
 #, fuzzy
 msgid "Up"
 msgstr "上へ"
@@ -1337,7 +1337,7 @@ msgid "~"
 msgstr ""
 
 #: Panel/listpanel.cpp:243 Panel/panelpopup.cpp:119 Panel/panelpopup.cpp:120
-#: Panel/panelpopup.cpp:121 Panel/panelpopup.cpp:132 krusader.cpp:532
+#: Panel/panelpopup.cpp:121 Panel/panelpopup.cpp:132 krusader.cpp:533
 #, fuzzy
 msgid "Home"
 msgstr "ホーム"
@@ -1349,7 +1349,7 @@ msgstr "/"
 
 #: Panel/listpanel.cpp:249 Panel/panelpopup.cpp:123 Panel/panelpopup.cpp:124
 #: Panel/panelpopup.cpp:126 Panel/panelpopup.cpp:127 Panel/panelpopup.cpp:131
-#: krusader.cpp:690
+#: krusader.cpp:691
 #, fuzzy
 msgid "Root"
 msgstr "ルート"
@@ -1503,7 +1503,7 @@ msgstr "%1 (リンク)"
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr ""
 
-#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:325 krusader.cpp:767
+#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:325 krusader.cpp:768
 #, fuzzy
 msgid "Rename"
 msgstr "名前を変更"
@@ -1677,12 +1677,12 @@ msgstr "ユーザ アクション"
 msgid "Konqueror Menu"
 msgstr "Konqueror メニュー"
 
-#: Panel/krpopupmenu.cpp:131 krusader.cpp:759
+#: Panel/krpopupmenu.cpp:131 krusader.cpp:760
 #, fuzzy
 msgid "Copy..."
 msgstr "コピー..."
 
-#: Panel/krpopupmenu.cpp:134 krusader.cpp:761
+#: Panel/krpopupmenu.cpp:134 krusader.cpp:762
 #, fuzzy
 msgid "Move..."
 msgstr "移動."
@@ -1694,7 +1694,7 @@ msgstr "ごみ箱へ移動"
 
 #: BookMan/krbookmarkhandler.cpp:541 Dialogs/krmaskchoice.cpp:110
 #: Dialogs/kurllistrequester.cpp:149 DiskUsage/diskusage.cpp:757
-#: Konfigurator/kgcolors.cpp:474 Panel/krpopupmenu.cpp:145 krusader.cpp:765
+#: Konfigurator/kgcolors.cpp:474 Panel/krpopupmenu.cpp:145 krusader.cpp:766
 #, fuzzy
 msgid "Delete"
 msgstr "削除"
@@ -1704,7 +1704,7 @@ msgstr "削除"
 msgid "Shred"
 msgstr "シュレッダ"
 
-#: Panel/krpopupmenu.cpp:156 krusader.cpp:728
+#: Panel/krpopupmenu.cpp:156 krusader.cpp:729
 msgid "New Symlink..."
 msgstr "シンボリックリンクの新規作成"
 
@@ -1732,17 +1732,17 @@ msgstr "送信 Eメール"
 msgid "Synchronize Selected Files..."
 msgstr "同期 選択されたもの ファイル."
 
-#: Panel/krpopupmenu.cpp:191 krusader.cpp:543
+#: Panel/krpopupmenu.cpp:191 krusader.cpp:544
 #, fuzzy
 msgid "Copy to Clipboard"
 msgstr "クリップボードに複写"
 
-#: Panel/krpopupmenu.cpp:194 krusader.cpp:542
+#: Panel/krpopupmenu.cpp:194 krusader.cpp:543
 #, fuzzy
 msgid "Cut to Clipboard"
 msgstr "切り取り to クリップボード"
 
-#: Panel/krpopupmenu.cpp:195 Panel/krpopupmenu.cpp:211 krusader.cpp:544
+#: Panel/krpopupmenu.cpp:195 Panel/krpopupmenu.cpp:211 krusader.cpp:545
 #, fuzzy
 msgid "Paste from Clipboard"
 msgstr "貼り付け クリップボード"
@@ -1954,7 +1954,7 @@ msgid ""
 "Do you really want to delete these %n items?"
 msgstr "本当にこれら %n 項目を削除しますか?"
 
-#: Dialogs/checksumdlg.cpp:552 Dialogs/krkeydialog.cpp:135
+#: Dialogs/checksumdlg.cpp:573 Dialogs/krkeydialog.cpp:135
 #: DiskUsage/diskusage.cpp:607 Konfigurator/kgcolors.cpp:523
 #: Panel/panelfunc.cpp:664
 #, fuzzy
@@ -2174,7 +2174,7 @@ msgstr "名前"
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr "マウス."
 
-#: krusader.cpp:429
+#: krusader.cpp:430
 #, fuzzy
 msgid ""
 "A configuration of 1.51 or older was detected. Krusader has to reset your "
@@ -2185,7 +2185,7 @@ msgstr ""
 "A 構成 もしくは to 構成 to 標準 と\n"
 " 現在の状態."
 
-#: krusader.cpp:441
+#: krusader.cpp:442
 #, fuzzy
 msgid ""
 "<qt><b>Welcome to Krusader!</b><p>As this is your first run, your machine "
@@ -2193,479 +2193,479 @@ msgid ""
 "launched where you can customize Krusader to your needs.</p></qt>"
 msgstr "<qt><b> Welcome to</b><p> 最初 現在の状態 for to</p></qt>"
 
-#: krusader.cpp:507
+#: krusader.cpp:508
 #, fuzzy
 msgid "F3 View Dialog"
 msgstr "表示 ダイアログ"
 
-#: krusader.cpp:510
+#: krusader.cpp:511
 #, fuzzy
 msgid "Tab: switch panel"
 msgstr "タブ パネル"
 
-#: krusader.cpp:533
+#: krusader.cpp:534
 #, fuzzy
 msgid "&Reload"
 msgstr "再読み込み(&R)"
 
-#: krusader.cpp:535
+#: krusader.cpp:536
 #, fuzzy
 msgid "Show Actions Toolbar"
 msgstr "表示 アクション ツールバー"
 
-#: krusader.cpp:547
+#: krusader.cpp:548
 #, fuzzy
 msgid "Show &FN Keys Bar"
 msgstr "表示 鍵"
 
-#: krusader.cpp:550
+#: krusader.cpp:551
 #, fuzzy
 msgid "Show &Command Line"
 msgstr "表示 コマンド 行"
 
-#: krusader.cpp:553
+#: krusader.cpp:554
 msgid "Show Terminal &Emulator"
 msgstr "端末エミュレータを表示(&E)"
 
-#: krusader.cpp:557
+#: krusader.cpp:558
 #, fuzzy
 msgid "&Detailed View"
 msgstr "KrDetailedView"
 
-#: krusader.cpp:560
+#: krusader.cpp:561
 #, fuzzy
 msgid "&Brief View"
 msgstr "行 表示"
 
-#: krusader.cpp:563
+#: krusader.cpp:564
 #, fuzzy
 msgid "Show &Hidden Files"
 msgstr "隠しファイルを表示(&H)"
 
-#: krusader.cpp:565
+#: krusader.cpp:566
 #, fuzzy
 msgid "S&wap Panels"
 msgstr "スワップ パネル"
 
-#: krusader.cpp:567
+#: krusader.cpp:568
 #, fuzzy
 msgid "Sw&ap Sides"
 msgstr "スワップ"
 
-#: krusader.cpp:573
+#: krusader.cpp:574
 msgid "popup cmdline"
 msgstr "コマンドラインをポップアップ"
 
-#: krusader.cpp:577
+#: krusader.cpp:578
 #, fuzzy
 msgid "&New Text File..."
 msgstr "新規 テキスト ファイル."
 
-#: krusader.cpp:578
+#: krusader.cpp:579
 #, fuzzy
 msgid "Start &Root Mode Krusader"
 msgstr "開始 ルート モード"
 
-#: krusader.cpp:580
+#: krusader.cpp:581
 #, fuzzy
 msgid "T&est Archive"
 msgstr "テスト アーカイブ"
 
-#: krusader.cpp:584
+#: krusader.cpp:585
 #, fuzzy
 msgid "New Net &Connection..."
 msgstr "新規 接続."
 
-#: krusader.cpp:586
+#: krusader.cpp:587
 #, fuzzy
 msgid "Pro&files"
 msgstr "プロファイル"
 
-#: krusader.cpp:588
+#: krusader.cpp:589
 #, fuzzy
 msgid "Calculate &Occupied Space"
 msgstr "計算 取り込み中 スペース"
 
-#: krusader.cpp:590
+#: krusader.cpp:591
 #, fuzzy
 msgid "Create Checksum..."
 msgstr "作成 チェックサム."
 
-#: krusader.cpp:592
+#: krusader.cpp:593
 #, fuzzy
 msgid "Verify Checksum..."
 msgstr "確認 チェックサム."
 
-#: krusader.cpp:594
+#: krusader.cpp:595
 #, fuzzy
 msgid "&Properties..."
 msgstr "プロパティ(&P)..."
 
-#: krusader.cpp:596
+#: krusader.cpp:597
 #, fuzzy
 msgid "Pac&k..."
 msgstr "圧縮(&k)"
 
-#: krusader.cpp:598
+#: krusader.cpp:599
 #, fuzzy
 msgid "&Unpack..."
 msgstr "解凍(&U)"
 
-#: krusader.cpp:600
+#: krusader.cpp:601
 #, fuzzy
 msgid "Sp&lit File..."
 msgstr "ファイル."
 
-#: krusader.cpp:602
+#: krusader.cpp:603
 #, fuzzy
 msgid "Com&bine Files..."
 msgstr "ファイル."
 
-#: krusader.cpp:604
+#: krusader.cpp:605
 #, fuzzy
 msgid "Select &Group..."
 msgstr "選択 グループ."
 
-#: krusader.cpp:606
+#: krusader.cpp:607
 #, fuzzy
 msgid "&Select All"
 msgstr "全て選択(&S)"
 
-#: krusader.cpp:608
+#: krusader.cpp:609
 #, fuzzy
 msgid "&Unselect Group..."
 msgstr "選択しない グループ."
 
-#: krusader.cpp:610
+#: krusader.cpp:611
 #, fuzzy
 msgid "U&nselect All"
 msgstr "選択しない 全て"
 
-#: krusader.cpp:612
+#: krusader.cpp:613
 #, fuzzy
 msgid "&Invert Selection"
 msgstr "選択を反転(&I)"
 
-#: krusader.cpp:614
+#: krusader.cpp:615
 #, fuzzy
 msgid "&Compare Directories"
 msgstr "比較 ディレクトリ"
 
-#: krusader.cpp:616
+#: krusader.cpp:617
 #, fuzzy
 msgid "&Select Newer and Single"
 msgstr "マーク と シングル"
 
-#: krusader.cpp:618
+#: krusader.cpp:619
 #, fuzzy
 msgid "Select &Newer"
 msgstr "選択"
 
-#: krusader.cpp:620
+#: krusader.cpp:621
 #, fuzzy
 msgid "Select &Single"
 msgstr "選択 ファイル "
 
-#: krusader.cpp:622
+#: krusader.cpp:623
 #, fuzzy
 msgid "Select Different &and Single"
 msgstr "マーク と シングル"
 
-#: krusader.cpp:624
+#: krusader.cpp:625
 #, fuzzy
 msgid "Select &Different"
 msgstr "マーク"
 
-#: krusader.cpp:634
+#: krusader.cpp:635
 msgid "Start and &Forget"
 msgstr ""
 
-#: krusader.cpp:638
+#: krusader.cpp:639
 #, fuzzy
 msgid "Display &Separated Standard and Error Output"
 msgstr "エラー"
 
-#: krusader.cpp:642
+#: krusader.cpp:643
 msgid "Display &Mixed Standard and Error Output"
 msgstr ""
 
-#: krusader.cpp:646
+#: krusader.cpp:647
 #, fuzzy
 msgid "Start in &New Terminal"
 msgstr "コマンドライン端末を開始(&T)"
 
-#: krusader.cpp:650
+#: krusader.cpp:651
 #, fuzzy
 msgid "Send to &Embedded Terminal Emulator"
 msgstr "端末エミュレータを表示(&E)"
 
-#: krusader.cpp:662
+#: krusader.cpp:663
 msgid "Start &Terminal"
 msgstr "コマンドライン端末を開始(&T)"
 
-#: krusader.cpp:664
+#: krusader.cpp:665
 #, fuzzy
 msgid "Disconnect &from Net"
 msgstr "切断"
 
-#: krusader.cpp:667 krusader.cpp:672
+#: krusader.cpp:668 krusader.cpp:673
 #, fuzzy
 msgid "&MountMan..."
 msgstr "&MountMan"
 
-#: krusader.cpp:676
+#: krusader.cpp:677
 #, fuzzy
 msgid "&Search..."
 msgstr "検索."
 
-#: krusader.cpp:678
+#: krusader.cpp:679
 #, fuzzy
 msgid "&Locate..."
 msgstr "場所"
 
-#: krusader.cpp:680
+#: krusader.cpp:681
 #, fuzzy
 msgid "Synchronize &Directories..."
 msgstr "同期 ディレクトリ."
 
-#: krusader.cpp:682
+#: krusader.cpp:683
 #, fuzzy
 msgid "S&ynchron Directory Changes"
 msgstr "ディレクトリ 変化"
 
-#: krusader.cpp:684
+#: krusader.cpp:685
 #, fuzzy
 msgid "D&isk Usage..."
 msgstr "使い方."
 
-#: krusader.cpp:686
+#: krusader.cpp:687
 #, fuzzy
 msgid "Configure &Krusader..."
 msgstr "設定."
 
-#: krusader.cpp:688
+#: krusader.cpp:689
 #, fuzzy
 msgid "Back"
 msgstr "戻る"
 
-#: krusader.cpp:692
+#: krusader.cpp:693
 #, fuzzy
 msgid "Save &Position"
 msgstr "保存 位置"
 
-#: krusader.cpp:694
+#: krusader.cpp:695
 #, fuzzy
 msgid "&All Files"
 msgstr "全て ファイル"
 
-#: krusader.cpp:698
+#: krusader.cpp:699
 #, fuzzy
 msgid "&Custom"
 msgstr "カスタム"
 
-#: krusader.cpp:700
+#: krusader.cpp:701
 #, fuzzy
 msgid "Compare b&y Content..."
 msgstr "比較."
 
-#: krusader.cpp:702
+#: krusader.cpp:703
 #, fuzzy
 msgid "Multi &Rename..."
 msgstr "名前を変更."
 
-#: krusader.cpp:704
+#: krusader.cpp:705
 #, fuzzy
 msgid "Right-click Menu"
 msgstr "右 メニュー"
 
-#: krusader.cpp:706
+#: krusader.cpp:707
 #, fuzzy
 msgid "Right Bookmarks"
 msgstr "右 ブックマーク"
 
-#: krusader.cpp:708
+#: krusader.cpp:709
 #, fuzzy
 msgid "Left Bookmarks"
 msgstr "左 ブックマーク"
 
 #: BookMan/kraddbookmarkdlg.cpp:71 BookMan/krbookmarkbutton.cpp:19
-#: BookMan/krbookmarkhandler.cpp:30 krusader.cpp:710
+#: BookMan/krbookmarkhandler.cpp:30 krusader.cpp:711
 #, fuzzy
 msgid "Bookmarks"
 msgstr "ブックマーク"
 
-#: BookMan/krbookmarkhandler.cpp:399 krusader.cpp:712
+#: BookMan/krbookmarkhandler.cpp:399 krusader.cpp:713
 #, fuzzy
 msgid "Bookmark Current"
 msgstr "ブックマーク 現在"
 
-#: krusader.cpp:714
+#: krusader.cpp:715
 #, fuzzy
 msgid "History"
 msgstr "履歴"
 
-#: krusader.cpp:716
+#: krusader.cpp:717
 #, fuzzy
 msgid "Sync Panels"
 msgstr "同期 パネル"
 
-#: krusader.cpp:718
+#: krusader.cpp:719
 #, fuzzy
 msgid "Left History"
 msgstr "左 履歴"
 
-#: krusader.cpp:720
+#: krusader.cpp:721
 #, fuzzy
 msgid "Right History"
 msgstr "右 履歴"
 
-#: BookMan/krbookmark.cpp:12 krusader.cpp:722
+#: BookMan/krbookmark.cpp:12 krusader.cpp:723
 #, fuzzy
 msgid "Media"
 msgstr "メディア"
 
-#: krusader.cpp:724
+#: krusader.cpp:725
 #, fuzzy
 msgid "Left Media"
 msgstr "左 メディア"
 
-#: krusader.cpp:726
+#: krusader.cpp:727
 #, fuzzy
 msgid "Right Media"
 msgstr "右 メディア"
 
-#: krusader.cpp:730
+#: krusader.cpp:731
 #, fuzzy
 msgid "Toggle Popup Panel"
 msgstr "ポップアップ パネル"
 
-#: krusader.cpp:732
+#: krusader.cpp:733
 #, fuzzy
 msgid "Vertical Mode"
 msgstr "垂直 モード"
 
-#: krusader.cpp:734
+#: krusader.cpp:735
 #, fuzzy
 msgid "New Tab"
 msgstr "新規 タブ"
 
-#: krusader.cpp:736
+#: krusader.cpp:737
 #, fuzzy
 msgid "Duplicate Current Tab"
 msgstr "現在 タブ"
 
-#: krusader.cpp:738
+#: krusader.cpp:739
 #, fuzzy
 msgid "Close Current Tab"
 msgstr "現在のタブを閉じる"
 
-#: krusader.cpp:740
+#: krusader.cpp:741
 #, fuzzy
 msgid "Next Tab"
 msgstr "次のタブ"
 
-#: krusader.cpp:742
+#: krusader.cpp:743
 #, fuzzy
 msgid "Previous Tab"
 msgstr "前のタブ"
 
-#: krusader.cpp:748
+#: krusader.cpp:749
 #, fuzzy
 msgid "Manage User Actions..."
 msgstr "ユーザ アクション."
 
-#: krusader.cpp:750
+#: krusader.cpp:751
 #, fuzzy
 msgid "Select Remote Charset"
 msgstr "選択 リモート 文字セット"
 
-#: krusader.cpp:753
+#: krusader.cpp:754
 msgid "Start Terminal Here"
 msgstr "ここでコマンドライン端末を開始する。"
 
-#: krusader.cpp:755
+#: krusader.cpp:756
 #, fuzzy
 msgid "View File"
 msgstr "表示 ファイル"
 
-#: krusader.cpp:757
+#: krusader.cpp:758
 #, fuzzy
 msgid "Edit File"
 msgstr "ファイルを編集"
 
-#: krusader.cpp:763
+#: krusader.cpp:764
 #, fuzzy
 msgid "New Directory..."
 msgstr "新しいディレクトリ.."
 
-#: krusader.cpp:769
+#: krusader.cpp:770
 #, fuzzy
 msgid "Quit"
 msgstr "終了"
 
-#: krusader.cpp:771
+#: krusader.cpp:772
 #, fuzzy
 msgid "Popular URLs..."
 msgstr "URLs."
 
-#: krusader.cpp:773
+#: krusader.cpp:774
 #, fuzzy
 msgid "Go to Location Bar"
 msgstr "移動 to 場所"
 
-#: krusader.cpp:775
+#: krusader.cpp:776
 #, fuzzy
 msgid "Jump Back"
 msgstr "戻る"
 
-#: krusader.cpp:777
+#: krusader.cpp:778
 #, fuzzy
 msgid "Set Jump Back Point"
 msgstr "戻る 点"
 
-#: krusader.cpp:779
+#: krusader.cpp:780
 msgid "Toggle Fullwidget Terminal Emulator"
 msgstr ""
 
-#: krusader.cpp:783
+#: krusader.cpp:784
 #, fuzzy
 msgid "Select files using a filter"
 msgstr "選択 a フィルタ"
 
-#: krusader.cpp:784
+#: krusader.cpp:785
 #, fuzzy
 msgid "Select all files in the current directory"
 msgstr "選択 全て in"
 
-#: krusader.cpp:785
+#: krusader.cpp:786
 #, fuzzy
 msgid "Unselect all selected files"
 msgstr "選択しない 全て"
 
-#: krusader.cpp:786
+#: krusader.cpp:787
 msgid "Setup Krusader the way you like it"
 msgstr "好きな方法でKrusaderをセットアップ"
 
-#: krusader.cpp:787
+#: krusader.cpp:788
 #, fuzzy
 msgid "Back to the place you came from"
 msgstr "戻る to"
 
-#: krusader.cpp:788
+#: krusader.cpp:789
 msgid "ROOT (/)"
 msgstr "root(/)"
 
-#: krusader.cpp:789
+#: krusader.cpp:790
 #, fuzzy
 msgid "Search for files"
 msgstr "検索 for"
 
-#: krusader.cpp:795
+#: krusader.cpp:796
 #, fuzzy
 msgid "JavaScript Console..."
 msgstr "JavaScript."
 
-#: krusader.cpp:931
+#: krusader.cpp:932
 #, fuzzy
 msgid "Are you sure you want to quit?"
 msgstr "to?"
@@ -2675,7 +2675,7 @@ msgstr "to?"
 msgid "No file selected or selected file can't be displayed."
 msgstr "いいえ もしくは."
 
-#: KViewer/krviewer.cpp:651 KViewer/panelviewer.cpp:151
+#: KViewer/krviewer.cpp:649 KViewer/panelviewer.cpp:151
 #, fuzzy
 msgid "KrViewer is unable to download: "
 msgstr "to "
@@ -2730,7 +2730,7 @@ msgid "&KrViewer"
 msgstr "&KrViewer"
 
 #: KViewer/krviewer.cpp:259 KViewer/krviewer.cpp:327 KViewer/krviewer.cpp:411
-#: KViewer/krviewer.cpp:420 KViewer/krviewer.cpp:429 KViewer/krviewer.cpp:505
+#: KViewer/krviewer.cpp:420 KViewer/krviewer.cpp:429 KViewer/krviewer.cpp:503
 #, fuzzy
 msgid "Viewing"
 msgstr "F3 閲覧"
@@ -2740,12 +2740,12 @@ msgid "Can't open "
 msgstr "開けません"
 
 #: KViewer/krviewer.cpp:292 KViewer/krviewer.cpp:327 KViewer/krviewer.cpp:438
-#: KViewer/krviewer.cpp:503
+#: KViewer/krviewer.cpp:501
 #, fuzzy
 msgid "Editing"
 msgstr "編集"
 
-#: KViewer/krviewer.cpp:581
+#: KViewer/krviewer.cpp:579
 #, fuzzy
 msgid "Sorry, can't find internal editor"
 msgstr "すみません"
@@ -3092,7 +3092,7 @@ msgstr ""
 msgid "Application already running!\n"
 msgstr "アプリケーション 実行中 n"
 
-#: krusaderview.cpp:85
+#: krusaderview.cpp:86
 #, fuzzy
 msgid "Function keys allow performing fast operations on files."
 msgstr "関数."
@@ -3555,19 +3555,19 @@ msgstr "to to<i></i>"
 msgid "Krusader::Wait"
 msgstr "Krusader:検索"
 
-#: Dialogs/checksumdlg.cpp:198 Dialogs/checksumdlg.cpp:453
+#: Dialogs/checksumdlg.cpp:211 Dialogs/checksumdlg.cpp:466
 #, fuzzy
 msgid "Create Checksum"
 msgstr "作成 チェックサム"
 
-#: Dialogs/checksumdlg.cpp:203
+#: Dialogs/checksumdlg.cpp:216
 #, fuzzy
 msgid ""
 "<qt>Can't calculate checksum since no supported tool was found. Please check "
 "the <b>Dependencies</b> page in Krusader's settings.</qt>"
 msgstr "<qt> いいえ check<b> 依存</b> in 秒 設定</qt>"
 
-#: Dialogs/checksumdlg.cpp:206 Dialogs/checksumdlg.cpp:307
+#: Dialogs/checksumdlg.cpp:219 Dialogs/checksumdlg.cpp:320
 #, fuzzy
 msgid ""
 "<qt><b>Note</b>: you've selected directories, and probably have no recursive "
@@ -3575,149 +3575,154 @@ msgid ""
 "sha256deep, tigerdeep and cfv</i></qt>"
 msgstr "<qt><b> 注意</b> と いいえ<i> と</i></qt>"
 
-#: Dialogs/checksumdlg.cpp:222
+#: Dialogs/checksumdlg.cpp:235
 #, fuzzy
 msgid "About to calculate checksum for the following files"
 msgstr "このプログラムについて to for 次の"
 
-#: Dialogs/checksumdlg.cpp:223 Dialogs/checksumdlg.cpp:324
+#: Dialogs/checksumdlg.cpp:236 Dialogs/checksumdlg.cpp:337
 #, fuzzy
 msgid " and folders:"
 msgstr "と:"
 
-#: Dialogs/checksumdlg.cpp:236
+#: Dialogs/checksumdlg.cpp:249
 #, fuzzy
 msgid "Select the checksum method:"
 msgstr "選択 メソッド:"
 
-#: Dialogs/checksumdlg.cpp:257
+#: Dialogs/checksumdlg.cpp:270
 msgid "Calculating checksums ..."
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:272 Dialogs/checksumdlg.cpp:386
+#: Dialogs/checksumdlg.cpp:285 Dialogs/checksumdlg.cpp:399
 #, fuzzy
 msgid "<qt>There was an error while running <b>%1</b>.</qt>"
 msgstr "<qt> エラー 実行中<b></b></qt>"
 
-#: Dialogs/checksumdlg.cpp:284 Dialogs/checksumdlg.cpp:395
+#: Dialogs/checksumdlg.cpp:297 Dialogs/checksumdlg.cpp:408
 #, fuzzy
 msgid "Error reading stdout or stderr"
 msgstr "エラー もしくは"
 
-#: Dialogs/checksumdlg.cpp:299 Dialogs/checksumdlg.cpp:417
+#: Dialogs/checksumdlg.cpp:312 Dialogs/checksumdlg.cpp:430
 #, fuzzy
 msgid "Verify Checksum"
 msgstr "確認 チェックサム"
 
-#: Dialogs/checksumdlg.cpp:304
+#: Dialogs/checksumdlg.cpp:317
 #, fuzzy
 msgid ""
 "<qt>Can't verify checksum since no supported tool was found. Please check "
 "the <b>Dependencies</b> page in Krusader's settings.</qt>"
 msgstr "<qt> いいえ check<b> 依存</b> in 秒 設定</qt>"
 
-#: Dialogs/checksumdlg.cpp:323
+#: Dialogs/checksumdlg.cpp:336
 #, fuzzy
 msgid "About to verify checksum for the following files"
 msgstr "このプログラムについて to for 次の"
 
-#: Dialogs/checksumdlg.cpp:337
+#: Dialogs/checksumdlg.cpp:350
 #, fuzzy
 msgid "Checksum file:"
 msgstr "チェックサム:"
 
-#: Dialogs/checksumdlg.cpp:351
+#: Dialogs/checksumdlg.cpp:364
 #, fuzzy
 msgid ""
 "<qt>Error reading checksum file <i>%1</i>.<br />Please specify a valid "
 "checksum file.</qt>"
 msgstr "<qt> エラー<i></i><br /> a</qt>"
 
-#: Dialogs/checksumdlg.cpp:364
+#: Dialogs/checksumdlg.cpp:377
 #, fuzzy
 msgid ""
 "<qt>Krusader can't find a checksum tool that handles %1 on your system. "
 "Please check the <b>Dependencies</b> page in Krusader's settings.</qt>"
 msgstr "<qt> a check<b> 依存</b> in 秒 設定</qt>"
 
-#: Dialogs/checksumdlg.cpp:373
+#: Dialogs/checksumdlg.cpp:386
 #, fuzzy
 msgid "Verifying checksums ..."
 msgstr "検証中."
 
-#: Dialogs/checksumdlg.cpp:430
+#: Dialogs/checksumdlg.cpp:443
 #, fuzzy
 msgid "Errors were detected while verifying the checksums"
 msgstr "エラー"
 
-#: Dialogs/checksumdlg.cpp:431
+#: Dialogs/checksumdlg.cpp:444
 msgid "Checksums were verified successfully"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:437
+#: Dialogs/checksumdlg.cpp:450
 #, fuzzy
 msgid "The following files have failed:"
 msgstr "次の:"
 
-#: Dialogs/checksumdlg.cpp:468
+#: Dialogs/checksumdlg.cpp:481
 #, fuzzy
 msgid "Errors were detected while creating the checksums"
 msgstr "エラー 作成中"
 
-#: Dialogs/checksumdlg.cpp:469
+#: Dialogs/checksumdlg.cpp:482
 msgid "Checksums were created successfully"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:476
+#: Dialogs/checksumdlg.cpp:489
 msgid "Here are the calculated checksums:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:481
+#: Dialogs/checksumdlg.cpp:495
 #, fuzzy
 msgid "Hash"
 msgstr "trash"
 
-#: Dialogs/checksumdlg.cpp:482 Konfigurator/kgcolors.cpp:418
+#: Dialogs/checksumdlg.cpp:496 Konfigurator/kgcolors.cpp:418
 #, fuzzy
 msgid "File"
 msgstr "ファイル"
 
-#: Dialogs/checksumdlg.cpp:501
+#: Dialogs/checksumdlg.cpp:499
+#, fuzzy
+msgid "File and hash"
+msgstr "ファイル名"
+
+#: Dialogs/checksumdlg.cpp:522
 msgid "Here are the errors received:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:515
+#: Dialogs/checksumdlg.cpp:536
 #, fuzzy
 msgid "Save checksum to file:"
 msgstr "保存 to:"
 
-#: Dialogs/checksumdlg.cpp:529
+#: Dialogs/checksumdlg.cpp:550
 #, fuzzy
 msgid "Checksum file for each source file"
 msgstr "チェックサム for ソース"
 
-#: Dialogs/checksumdlg.cpp:551
+#: Dialogs/checksumdlg.cpp:572
 #, fuzzy
 msgid ""
 "File %1 already exists.\n"
 "Are you sure you want to overwrite it?"
 msgstr "ファイル to?"
 
-#: Dialogs/checksumdlg.cpp:554
+#: Dialogs/checksumdlg.cpp:575
 #, fuzzy
 msgid "Select a file to save to"
 msgstr "選択 a to to"
 
-#: Dialogs/checksumdlg.cpp:559
+#: Dialogs/checksumdlg.cpp:580
 #, fuzzy, c-format
 msgid "Error saving file %1"
 msgstr "エラー 1"
 
-#: Dialogs/checksumdlg.cpp:571
+#: Dialogs/checksumdlg.cpp:592
 msgid "Saving checksum files..."
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:576
+#: Dialogs/checksumdlg.cpp:597
 #, fuzzy
 msgid "Errors occured while saving multiple checksums. Stopping"
 msgstr "エラー"
@@ -5284,12 +5289,12 @@ msgstr "圧縮"
 msgid "Checksum Utilities"
 msgstr "チェックサム ユーティリティ"
 
-#: Konfigurator/kgdependencies.cpp:152
+#: Konfigurator/kgdependencies.cpp:156
 #, fuzzy
 msgid "The %1 path is incorrect, no valid path found."
 msgstr "いいえ."
 
-#: Konfigurator/kgdependencies.cpp:155
+#: Konfigurator/kgdependencies.cpp:159
 msgid "The %1 path is incorrect, %2 used instead."
 msgstr ""
 
@@ -5573,7 +5578,7 @@ msgstr ""
 msgid "Configure your personal actions"
 msgstr "設定 動作"
 
-#: Konfigurator/kgprotocols.cpp:103 Konfigurator/konfigurator.cpp:116
+#: Konfigurator/kgprotocols.cpp:108 Konfigurator/konfigurator.cpp:116
 #, fuzzy
 msgid "Protocols"
 msgstr "プロトコル"
@@ -6207,36 +6212,36 @@ msgstr "アイコン サイズ a パネル a メモリ."
 msgid "Arguments of updatedb:"
 msgstr ""
 
-#: Konfigurator/kgprotocols.cpp:62
+#: Konfigurator/kgprotocols.cpp:67
 #, fuzzy
 msgid "Links"
 msgstr "List"
 
-#: Konfigurator/kgprotocols.cpp:66
+#: Konfigurator/kgprotocols.cpp:71
 msgid "Defined Links"
 msgstr ""
 
-#: Konfigurator/kgprotocols.cpp:80
+#: Konfigurator/kgprotocols.cpp:85
 #, fuzzy
 msgid "Add protocol to the link list."
 msgstr "追加 to リンク."
 
-#: Konfigurator/kgprotocols.cpp:83
+#: Konfigurator/kgprotocols.cpp:88
 #, fuzzy
 msgid "Remove protocol from the link list."
 msgstr "削除 リンク."
 
-#: Konfigurator/kgprotocols.cpp:93
+#: Konfigurator/kgprotocols.cpp:98
 #, fuzzy
 msgid "Add mime to the selected protocol on the link list."
 msgstr "追加 to リンク."
 
-#: Konfigurator/kgprotocols.cpp:96
+#: Konfigurator/kgprotocols.cpp:101
 #, fuzzy
 msgid "Remove mime from the link list."
 msgstr "削除 リンク."
 
-#: Konfigurator/kgprotocols.cpp:114
+#: Konfigurator/kgprotocols.cpp:119
 msgid "Mimes"
 msgstr ""
 
