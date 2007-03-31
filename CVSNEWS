@@ -7,24 +7,27 @@
 - extension to the ChangeLog.
 ------------------------------------------------------------------------
 
-UserActions: Expander: Many fixes, better error handling, sensible %_Each&-handling
-  Finaly I manages to implement Jiris 100K patch for the useractions. This patch
-  handles the Each-placeholder much better (i.e. allows Each inside Copy and can deal
-  with multiple Each's) and provides a good base for future extensions. Thanks a lot!
+UserActions: Expander: Many fixes, better error handling, sensible
+  %_Each&-handling. Finally I managed to implement Jiri's 100k patch for
+  the useractions. This patch handles the Each-placeholder much better
+  (i.e. allows Each inside Copy and can deal with multiple Each's) and
+  provides a good base for future extensions. Thanks a lot!
 
 New feature: atomic extension. 
-  - Extensions known to be atomic (like tar.gz)
-    are now handled properly both in the panel and during rename. The list of 
-    atomic extensions can be provided through "Atomic Extensions" in [Look&Feel]
-    in krusaderrc.
+  - Extensions known to be atomic (like tar.gz) are now handled properly
+    both in the panel and during rename. The list of atomic extensions
+    can be provided through "Atomic Extensions" in [Look&Feel] in
+    krusaderrc.
 
 New feature: rename just the filename, without extension
   - in the look&feel page, disable "rename selects extension", and then,
-    when you rename a file, only the filename will be selected, but not the extension
+    when you rename a file, only the filename will be selected, but not
+    the extension
 
 New feature: full screen terminal (mc style)
   - if enabled in look&feel, pressing the required shortcut to show
-    the terminal emulator will hide all of krusader, just like midnight commander.
+    the terminal emulator will hide all of krusader, just like midnight
+    commander.
 
 New feature: right click menu for bookmarks
   - after right clicking on a bookmark, a popup menu appears with
@@ -37,8 +40,8 @@ New feature: right click menu for bookmarks
 
 New feature: enable/disable the special bookmarks
   - right click on a special bookmark
-    (Popular URLs, Devices, Local Network, Virtual Filesystem, Jumb back,
-     Set jump back, Bookmark Current or Manage Bookmarks)
+    (Popular URLs, Devices, Local Network, Virtual Filesystem, Jumb
+    back, Set jump back, Bookmark Current or Manage Bookmarks)
   - a new rightclick menu appears containing the special bookmark items
     if a menu item is checked then the bookmark is enabled
   - one can enable/disable separately the following special bookmarks
@@ -61,7 +64,8 @@ New feature: keeping the directory structure of copying/moving from
   - Just press F5 for copy (dialog appears)
     source MUST be a virtual subfolder!
     target MUST NOT be a virtual folder!
-  - in the dialog, there's a new option: "Keep virtual directory structure"
+  - in the dialog, there's a new option:
+    "Keep virtual directory structure"
   - check it
   - select /home/myhome/ for base URL
   - start the copy / move
