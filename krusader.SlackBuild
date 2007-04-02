@@ -27,7 +27,7 @@ TMP=${TMP:-/tmp/pkgs}
 PRGNAM=krusader
 VERSION=1.70.1
 ARCH=${ARCH:-i486}
-BUILD=3
+BUILD=4
 
 if [ -z "$SLKCFLAGS" ]; then
   if [ "$ARCH" = "i486" ]; then
@@ -60,7 +60,6 @@ chown -R root:root .
 find . -perm 777 -exec chmod 755 {} \;
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
-CPPFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/opt/kde \
   --disable-debug \
