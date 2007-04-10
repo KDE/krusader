@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: krusader-1.80.0-beta2\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2007-03-27 15:16+0200\n"
-"PO-Revision-Date: 2007-03-21 23:57+0100\n"
+"PO-Revision-Date: 2007-04-10 23:11+0200\n"
 "Last-Translator: Frank Schoolmeesters <frank_schoolmeesters@yahoo.com>\n"
 "Language-Team: Nederlands <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -792,8 +792,7 @@ msgstr ""
 #: UserAction/expander.cpp:55
 #, c-format
 msgid "Needed panel specification missing in expander %1"
-msgstr ""
-"Noodzakelijke venster specificatie ontbreekt in het uitbereidingsmenu %1"
+msgstr "Noodzakelijke venster specificatie ontbreekt in het uitbereidingsmenu %1"
 
 #: UserAction/expander.cpp:70
 msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
@@ -924,8 +923,7 @@ msgstr ""
 
 #: UserAction/expander.cpp:639
 msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
-msgstr ""
-"Uitberedingsmenu: %Each% mag niet in het tweede argument van %Clipboard% zijn"
+msgstr "Uitberedingsmenu: %Each% mag niet in het tweede argument van %Clipboard% zijn"
 
 #: UserAction/expander.cpp:652
 msgid "Copy a File/Folder..."
@@ -982,8 +980,7 @@ msgstr "Zoekmoduleprofiel openen..."
 
 #: UserAction/expander.cpp:740
 msgid "Expander: no profile specified for %_NewSearch(profile)%"
-msgstr ""
-"Uitberedingsmenu: geen profiel gespecifieerd voor %_NewSearch(profile)%"
+msgstr "Uitberedingsmenu: geen profiel gespecifieerd voor %_NewSearch(profile)%"
 
 #: UserAction/expander.cpp:751
 msgid "Load a Panel Profile..."
@@ -1187,8 +1184,7 @@ msgstr ""
 "het eerste commando wordt uitgevoerd in de terminal."
 
 #: UserAction/kraction.cpp:204
-msgid ""
-"Embedded terminal emulator does not work, using output collection instead."
+msgid "Embedded terminal emulator does not work, using output collection instead."
 msgstr ""
 "Terminal emulator werkt niet, maakt in de plaats gebruik van de uitvoer "
 "collector."
@@ -1465,8 +1461,7 @@ msgstr " naar:"
 
 #: Panel/panelpopup.cpp:66
 msgid "Tree Panel: a tree view of the local file system"
-msgstr ""
-"Boomstruktuur venster: boomstruktuurweergave van het lokale bestandsysteem"
+msgstr "Boomstruktuur venster: boomstruktuurweergave van het lokale bestandsysteem"
 
 #: Panel/panelpopup.cpp:74
 msgid "Preview Panel: display a preview of the current file"
@@ -2022,9 +2017,8 @@ msgid "Find previous (Ctrl+P)"
 msgstr "Vorige zoeken (Ctrl+P)"
 
 #: Locate/locate.cpp:368 Search/krsearchdialog.cpp:541
-#, fuzzy
 msgid "Copy selected to clipboard"
-msgstr "Acties naar klembord kopiëren"
+msgstr "Selectie naar het klembord kopiëren"
 
 #: Locate/locate.cpp:487 Locate/locate.cpp:504
 msgid "Search string not found!"
@@ -2759,8 +2753,7 @@ msgstr ""
 "Verwittig gelieve de Krusader ontwikkelaars"
 
 #: MountMan/kmountmangui.cpp:326
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "MountMan heeft een interne fout. Verwittig gelieve de Krusader "
 "ontwikkelaars. Dank U."
@@ -3122,16 +3115,14 @@ msgstr ""
 
 #: Dialogs/krkeydialog.cpp:122
 msgid "Please restart this dialog in order to see the changes"
-msgstr ""
-"Gelieve deze dialoog te herstarten om de wijzigingen zichtbaar te maken"
+msgstr "Gelieve deze dialoog te herstarten om de wijzigingen zichtbaar te maken"
 
 #: Dialogs/krkeydialog.cpp:123
 msgid "Legacy import completed"
 msgstr "Importeren van het oud bestandsformaat is voltooid"
 
 #: Dialogs/krkeydialog.cpp:134
-msgid ""
-"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
 msgstr ""
 "<qt>Bestand <b>%1</b> bestaat reeds. Bent u er zeker van dat u het wilt "
 "overschrijven?</qt>"
@@ -3301,8 +3292,7 @@ msgstr "Berekening van de controlesommen ..."
 
 #: Dialogs/checksumdlg.cpp:285 Dialogs/checksumdlg.cpp:399
 msgid "<qt>There was an error while running <b>%1</b>.</qt>"
-msgstr ""
-"<qt>De volgende fout is opgetreden tijdens het uitvoeren <b>%1</b>.</qt>"
+msgstr "<qt>De volgende fout is opgetreden tijdens het uitvoeren <b>%1</b>.</qt>"
 
 #: Dialogs/checksumdlg.cpp:297 Dialogs/checksumdlg.cpp:408
 msgid "Error reading stdout or stderr"
@@ -3352,8 +3342,7 @@ msgstr "Controlesom verifieren ..."
 
 #: Dialogs/checksumdlg.cpp:443
 msgid "Errors were detected while verifying the checksums"
-msgstr ""
-"Fouten werden gedetecteerd tijdens het verifieren van de controlesommen."
+msgstr "Fouten werden gedetecteerd tijdens het verifieren van de controlesommen."
 
 #: Dialogs/checksumdlg.cpp:444
 msgid "Checksums were verified successfully"
@@ -3384,9 +3373,8 @@ msgid "File"
 msgstr "Bestand"
 
 #: Dialogs/checksumdlg.cpp:499
-#, fuzzy
 msgid "File and hash"
-msgstr "Bestandsnaam"
+msgstr "Bestandsnaam en hash"
 
 #: Dialogs/checksumdlg.cpp:522
 msgid "Here are the errors received:"
@@ -3464,8 +3452,7 @@ msgid "Delete selected useractions"
 msgstr "Geselecteerde acties verwijderen"
 
 #: ActionMan/useractionpage.cpp:126
-msgid ""
-"The current action has been modified. Do you want to apply these changes?"
+msgid "The current action has been modified. Do you want to apply these changes?"
 msgstr "De huidige actie is gewijzigd. Wilt u deze wijzigingen toepassen?"
 
 #: ActionMan/useractionpage.cpp:203
@@ -3711,8 +3698,7 @@ msgstr ""
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
-msgstr ""
-"<i>Werkmap</i> is de map waar het <i>Commando</i> zal worden uitgevoerd."
+msgstr "<i>Werkmap</i> is de map waar het <i>Commando</i> zal worden uitgevoerd."
 
 #: ActionMan/actionpropertybase.cpp:409
 msgid "Tooltip:"
@@ -3983,8 +3969,7 @@ msgstr "De linkse basismap wordt gebruikt gedurende het synchronisatieprocess."
 
 #: Synchronizer/synchronizergui.cpp:1181
 msgid "The right base directory used during the synchronisation process."
-msgstr ""
-"De rechter basismap wordt gebruikt gedurende het synchronisatieprocess."
+msgstr "De rechter basismap wordt gebruikt gedurende het synchronisatieprocess."
 
 #: Synchronizer/synchronizergui.cpp:1188
 msgid "Recurse subdirectories"
@@ -4140,9 +4125,8 @@ msgid "Time shift (right-left):"
 msgstr "Tijd verschuiven (rechts-links):"
 
 #: Synchronizer/synchronizergui.cpp:1408
-#, fuzzy
 msgid "Ignore hidden files"
-msgstr "Verborgen bestanden tonen"
+msgstr "Verborgen bestanden negeren"
 
 #: Synchronizer/synchronizergui.cpp:1422
 msgid "Profile manager (Ctrl+P)."
@@ -4245,14 +4229,12 @@ msgid "&Compare Files"
 msgstr "Bestanden &vergelijken"
 
 #: Synchronizer/synchronizergui.cpp:1714
-#, fuzzy
 msgid "C&opy selected to clipboard (left)"
-msgstr "Acties naar klembord kopiëren"
+msgstr "Selectie naar het klembord &kopiëren (links)"
 
 #: Synchronizer/synchronizergui.cpp:1715
-#, fuzzy
 msgid "Co&py selected to clipboard (right)"
-msgstr "Acties naar klembord kopiëren"
+msgstr "Selectie naar het klembord kopië&ren (rechts)"
 
 #: Synchronizer/synchronizergui.cpp:1719
 msgid "&Select items"
@@ -4868,8 +4850,7 @@ msgstr "Bestand bekijken in hex modus (is beter voor binaire bestanden)"
 
 #: Konfigurator/kggeneral.cpp:104
 msgid "Internal editor and viewer opens each file in a separate window"
-msgstr ""
-"De interne viewer en editor zulllen elk bestand in een apart venster openen"
+msgstr "De interne viewer en editor zulllen elk bestand in een apart venster openen"
 
 #: Konfigurator/kggeneral.cpp:105
 msgid ""
@@ -4912,8 +4893,7 @@ msgid "Searching for tools..."
 msgstr "Zoeken naar gereedschap..."
 
 #: Konfigurator/kggeneral.cpp:187
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Vergewis u er van dat u nieuw gereedschap installeert in uw <code>$PATH</"
 "code> (bv. /usr/bin)"
@@ -4942,8 +4922,7 @@ msgstr ""
 
 #: Konfigurator/krresulttable.cpp:127
 msgid "rpm found, but cpio not found which is required for unpacking"
-msgstr ""
-"rpm gevonden, maar cpio niet gevonden wat noodzakelijk is om uit te pakken."
+msgstr "rpm gevonden, maar cpio niet gevonden wat noodzakelijk is om uit te pakken."
 
 #: Konfigurator/krresulttable.cpp:130 Konfigurator/krresulttable.cpp:283
 msgid "Found"
@@ -5313,8 +5292,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Knop voor synchroon bladeren omschakelen"
 
 #: Konfigurator/kglookfeel.cpp:214
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr ""
 "Elke map verandering in het venster wordt ook uitgevoerd in het andere "
 "venster."
@@ -5566,8 +5544,7 @@ msgstr ""
 "parameters."
 
 #: Konfigurator/kgadvanced.cpp:65
-msgid ""
-"Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
 msgstr ""
 "Het KDE media protocol niet gebruiken voor de media knop (als het fouten "
 "bevat of als het niet aanwezig is)"
@@ -6232,8 +6209,7 @@ msgid "Test archive before unpacking"
 msgstr "Archief eerst testen voor het uitpakken"
 
 #: Konfigurator/kgarchives.cpp:96
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Sommige corrupte archieven kunnen mogelijk een crash veroorzaken, daarom is "
 "testen aangeraden."
@@ -6243,8 +6219,7 @@ msgid "Searching for packers..."
 msgstr "Naar inpakgereedschap zoeken..."
 
 #: Konfigurator/kgarchives.cpp:114
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Vergewis u er van dat u nieuw inpak gereedschap installeert in uw <code>"
 "$PATH</code> (bv. /usr/bin)"
@@ -6516,8 +6491,7 @@ msgid "Not a valid CRC file!"
 msgstr "Ongeldig CRC bestand!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Geldigheids controle is onmogelijk zonder een goed CRC bestand. Doorgaan met "
 "combineren?"
@@ -6557,3 +6531,4 @@ msgstr "Fout bij het lezen van bestand %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Fout bij het schrijven van bestand %1!"
+
