@@ -279,6 +279,8 @@ bool KRpermHandler::fileExist( QString path, QString name ) {
 }
 
 QString KRpermHandler::parseSize( KIO::filesize_t val ) {
+	return KGlobal::locale()->formatNumber(QString::number(val), false, 0);	
+#if 0
 	QString temp;
 	temp.sprintf( "%llu", val );
 	if ( temp.length() <= 3 ) return temp;
@@ -290,7 +292,9 @@ QString KRpermHandler::parseSize( KIO::filesize_t val ) {
 		i += 3;
 	}
 	size = size + temp.right( 3 );
+							
 	return size;
+#endif
 }
 
 QString KRpermHandler::date2qstring( QString date ) {
