@@ -560,6 +560,43 @@
         </tbody>
       </tgroup>
     </informaltable>
+
+    <!-- ALT+SHIFT -->
+    <para>
+      <emphasis role="bold">ALT+SHIFT keys</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul">
+                &Alt;&Shift;
+                <keycap>b</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para><link linkend="view-menu">Brief View</link></para>
+            </entry>
+          </row>
+           <row>
+            <entry>
+              <para>
+                <keycombo action="simul">
+                &Alt;&Shift;
+                <keycap>d</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para><link linkend="view-menu">Detailed View</link></para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+
     <!-- CTRL -->
     <para>
       <emphasis role="bold">CTRL keys</emphasis>
@@ -611,8 +648,7 @@
             </entry>
             <entry>
               <para>Toggle between normal and full screen 
-              <link linkend="cmdline">terminal
-              emulator.</link>.</para>
+              &termemu_lnk;.</para>
             </entry>
           </row>
           <row>
@@ -1109,30 +1145,6 @@
             <entry>
               <para>
                 <keycombo action="simul">
-                &Alt;&Shift;
-                <keycap>b</keycap></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para>Brief View</para>
-            </entry>
-          </row>
-           <row>
-            <entry>
-              <para>
-                <keycombo action="simul">
-                &Alt;&Shift;
-                <keycap>d</keycap></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para>Detailed View</para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul">
                 &Ctrl;&Alt;
                 <keycap>j</keycap></keycombo>
               </para>
@@ -1487,6 +1499,7 @@
         </tbody>
       </tgroup>
     </informaltable>
+
     <!-- COMMANDLINE -->
     <para id="cmdline_keybindings">
       <emphasis role="bold">Command Line</emphasis>
@@ -1569,6 +1582,92 @@
         </tbody>
       </tgroup>
     </informaltable>
+
+    <!-- TERMINAL EMULATOR -->
+    <para id="termemu_keybindings">
+      <emphasis role="bold">Terminal emulator</emphasis>
+    </para>
+    <para>&termemu_lnk; keybindings.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Ctrl;
+                <keycap>f</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>Toggle between normal and full screen 
+              &termemu_lnk;.</para>
+            </entry>
+          </row>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Ctrl;
+                <keycap>v</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>Insert from clipboard.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Ctrl;
+                <keycap>Up arrow</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>Jump from the Terminal Emulator to the active
+              panel if the Command line is hidden.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Ctrl;
+                <keycap>Down arrow</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>Jump from the active panel to the Terminal Emulator
+                    if the Command line is hidden.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Ctrl;&Shift;
+                <keycap>Up/Down arrow</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>Always focus/unfocus the Terminal Emulator independently 
+                    whether the Command Line is shown or not. </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Shift;
+                <keycap>Insert</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>Insert from clipboard.</para>
+            </entry>
+          </row>
+
+          <!--  "Backspace" key in terminal, /* Shortcut disabled because of the Terminal Emulator bug. */ krusader.cpp -->
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+
     <!-- DEFAULT USERACTIONS -->
     <para>
       <emphasis role="bold">Default Useractions</emphasis>
