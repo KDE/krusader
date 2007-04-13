@@ -1,15 +1,26 @@
 The Krusader Handbook ChangeLog
 -------------------------------
 
+1.80.0 "??????"
+==================================
+Date: 2007-??-??
 
-  TODO: Terminal Emulator, paste with SHIFT+INSERT and CTRL+V
+
+  ADDED: Terminal Emulator, paste with SHIFT+INSERT and CTRL+V
   TODO: Vaclav's checksum patches (added sha* tools, fixed bugs etc...)
-  TODO: Synchronizer: ignore hidden files option
+  1/2ADDED: Synchronizer: ignore hidden files option
   TODO: Synchronizer-results: drag [left], SHIFT+drag [right],
         Copy left/right selected items to clipboard
   TODO: Locate-results: dragging items, copy to clipboard (CTRL+C)
   TODO: Searcher-results: dragging items, copy to clipboard (CTRL+C)
 
+ ADDED: Terminal Emulator keybindings in a separate section
+ 
+ UPDATED: make the Synchronizer chapter more readable and more undertandable 
+ UPDATED: Command Line / Terminal Emulator chapter
+ UPDATED: FAQ, Sourceforge patch tracker tool 
+ UPDATED: keybindings
+ UPDATED: old urls of old releases
 
 1.80.0-beta2 "Last Unstable Stone"
 ==================================
@@ -24,8 +35,6 @@ Date: 2007-03-31
 
   ---------------------------------------------------- 
   Other todo items not related to Krusader's changelog: 
-  TODO: patch forum
-  TODO: make the Synchronizer chapter more readable and more undertandable
   TODO: complete Keyboard Usage
   TODO: complete glossary
   TODO: complete Mouse Usage
@@ -62,20 +71,20 @@ Date: 2007-01-07
          Wrong usage of this script might result in outdated documentation files 
   ADDED: Russian Handbook (translation is work in progress) thanks to Roman Batejkin
 
-  1/2TODO: TerminalEmulator: Ctrl+F switches between full-widget TE, normal TE
-           (thanks to Vaclav Juza)
-  1/2TODO: Ctrl+Up from panel focuses the origin editbox, Ctrl+Down from origin
+  ADDED: TerminalEmulator: Ctrl+F switches between full-widget TE, normal TE
+         (thanks to Vaclav Juza)
+??1/2TODO: Ctrl+Up from panel focuses the origin editbox, Ctrl+Down from origin
            editbox focuses the panel (thanks to Vaclav Juza)
-  1/2TODO: TerminalEmulator: Ctrl+Shift+Up/Down always focus/unfocus TE
-           independently whether the command line is shown or not
-  1/2TODO: TerminalEmulator: if the command line is hidden,
-           TE receives Ctrl+Up / Ctrl+Down (thanks to Vaclav Juza)
-  TODO: synchronizer: double click on a file calls the diff utility (kompare)
+  ADDED: TerminalEmulator: Ctrl+Shift+Up/Down always focus/unfocus TE
+         independently whether the command line is shown or not
+  ADDED: TerminalEmulator: if the command line is hidden,
+         TE receives Ctrl+Up / Ctrl+Down (thanks to Vaclav Juza)
+  1/2ADDED: synchronizer: double click on a file calls the diff utility (kompare)
   ADDED: atomic extensions (see CVSNEWS)
   ADDED: renaming of just the filename, without extension
-  1/2ADDED: full screen terminal window (mc-style)
+  ADDED: full screen terminal window (mc-style)
   ADDED: keeping the directory structures for virt folders at copy/move
-  TODO: synchronizer, parallel threads for slow FTP servers
+  1/2ADDED: synchronizer, parallel threads for slow FTP servers
 
   ADDED: Better quick navigation: first move mouse over subdir, then
          press ctrl + left mouse button (patch by Jiri Palecek)

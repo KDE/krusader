@@ -562,10 +562,18 @@
       history list is empty.</para>
     </sect2>
   </sect1>
-  <sect1 id="cmdline">
+  <sect1 id="cmdline_termemu">
     <title>Command Line / Terminal Emulator</title>
-    <para>This part of the &GUI; (graphical user
-    interface) can have two modes:</para>
+    <para>This part of the <link linkend="gloss-gui">GUI</link> 
+    can have four modes: Command Line, Terminal Emulator, show both and show none.
+    You can choose your mode of operation either on start-up with the 
+    &konfigstartpg_lnk;, or for the current session with the &viewmenu_lnk; .
+    <link linkend="useractions">Useraction placeholders</link> are supported in the 
+    Command Line and Terminal Emulator.</para>
+    
+  <sect2 id="cmdline">
+    <title>Command Line</title>
+        
     <!-- OLD
 <screenshot>
   <screeninfo>Command line</screeninfo>
@@ -598,7 +606,7 @@
     &kcontrolcenter;. If you want to change the way
     auto-complete behaves in the current &krusader;
     session, 
-    <keycap>right click</keycap>on the command line and change it.
+    <keycap>right click</keycap> on the command line and change it.
     To the left of the input line you can find the local path that
     the active panel is currently pointing to. This path is where
     your command will be executed. Typing 
@@ -608,11 +616,15 @@
       &lt;directory&gt;</replaceable>
     </userinput> in the command line will also cause the active
     panel to point to this directory. 
-    <link linkend="useractions">Useraction placeholders</link> are supported in &krusader;'s 
-    commandline and Terminal Emulator.
+    
     Click 
     <link linkend="cmdline_keybindings">here</link> to view the
     command line keybindings.</para>
+</sect2>    
+
+  <sect2 id="termemu">
+    <title>Terminal Emulator</title>
+       
     <!--
 <screenshot>
   <screeninfo>Terminal emulator</screeninfo>
@@ -649,7 +661,7 @@
     <command>ln</command>. If you drag multiple files, then 
     <command>cd</command> will not be available. A full-screen
     terminal emulator can be used when 
-    <link linkend="konfig-looknfeel-operation">configured</link>or 
+    <link linkend="konfig-looknfeel-operation">configured</link> or 
     <keycombo action="simul">&Ctrl;
     <keycap>f</keycap></keycombo> toggles between normal and full
     screen mode. If the command line is hidden, press 
@@ -657,11 +669,6 @@
     <keycap>up</keycap></keycombo> to focus the terminal emulator. 
     <keycombo action="simul">&Ctrl;
     <keycap>down</keycap></keycombo> brings you back down. 
-    <keycombo action="simul">&Ctrl;
-    <keycap>Shift</keycap>
-    <keycap>Up/Down</keycap></keycombo> always focus/unfocus the
-    terminal emulator independently whether the command line is
-    shown or not. 
     <keycombo action="simul">&Ctrl;
     <keycap>Enter</keycap></keycombo> and 
     <keycombo action="simul">&Ctrl;
@@ -671,10 +678,12 @@
     <userinput>
       <command>exit</command>
     </userinput>.</para>
-    <para>You can choose your mode of operation (command line,
-    emulator, both or none) either for &krusader;
-    start-up with the &konfigstartpg_lnk;, or for the
-    current session with the &viewmenu_lnk;.</para>
+    <para>
+    Click 
+    <link linkend="termemu_keybindings">here</link> to view the
+    Terminal emulator keybindings..</para>
+    </sect2>
+    
   </sect1>
   <sect1 id="fnkeys">
     <title>Function (FN) Keys Bar</title>
