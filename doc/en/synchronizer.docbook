@@ -3,9 +3,11 @@
   <indexterm>
     <primary>Synchronizer</primary>
   </indexterm>
-  <para>This function compares the left and the right panel
-  directories and shows the difference between them. After
-  selecting some options and the 
+  
+<sect2 id="synchronizer_introduction">
+  <title>Introduction</title>    
+  <para>This function compares two directories with all subdirectories and shows the differences between them.
+  After selecting some options and the 
   <guilabel>Compare</guilabel> function you can synchronize the
   files and directories. One panel could be an &FTP;
   server. Do not forget the 
@@ -19,7 +21,7 @@
   </emphasis>or 
   <keycombo action="simul">&Ctrl;
   <keycap>Y</keycap></keycombo> to start this feature. The 
-  <link linkend="konfig-color">colors</link>are
+  <link linkend="konfig-color">colors</link> are
   configurable.</para>
   <note>
     <para>For local files: The synchronizer changes the date
@@ -53,7 +55,7 @@
     <listitem>
       <para>Set the 
       <guilabel>Left directory</guilabel> and the 
-      <guilabel>Right directory</guilabel>.</para>
+      <guilabel>Right directory</guilabel> that you want to compare.</para>
     </listitem>
     <listitem>
       <para>Configure the optional 
@@ -71,8 +73,11 @@
       <guilabel>Recurse subdirectories</guilabel>, 
       <guilabel>Follow symlinks</guilabel>, 
       <guilabel>Compare by content</guilabel>, 
-      <guilabel>Ignore Date</guilabel> and 
-      <guilabel>Asymmetric</guilabel>.</para>
+      <guilabel>Ignore Date</guilabel>, 
+      <guilabel>Asymmetric</guilabel>,  
+      <guilabel>Ignore Case</guilabel> and
+      <guilabel>Hidden hidden files</guilabel>.
+      </para>
     </listitem>
     <listitem>
       <para>Click on the 
@@ -108,9 +113,12 @@
     </listitem>
   </orderedlist>A detailed explanation of all the functions and
   buttons is described in the following text.</para>
-  <para>
-    <emphasis role="bold">Comparator</emphasis>
-  </para>
+
+</sect2>
+
+<sect2 id="synchronizer_comparator">
+  <title>Comparator</title>  
+
   <variablelist>
     <varlistentry>
       <term>Panel elements</term>
@@ -297,28 +305,57 @@
             but slow. For fast file systems, it can reduce the
             speed of comparing slightly.</para>
           </listitem>
+          <listitem>
+            <para>
+            <guilabel>Ignore Case</guilabel>: Case insensitive filename compare, 
+            this is useful when synchronizing &Windows; filesystems.</para>
+          </listitem>
+          <listitem>
+            <para>
+            <guilabel>Ignore hidden files</guilabel>: Ignores files that start with a dot.</para>
+          </listitem>
         </itemizedlist>
       </listitem>
     </varlistentry>
   </variablelist>
   <para>When everything mentioned above is done, click on the 
   <guibutton>Compare</guibutton> button to compare the directories,
-  the results are displayed in the "File List".</para>
+  the results are displayed in the <guilabel>File List</guilabel>.</para>
   <variablelist>
     <varlistentry>
-      <term>"File List"</term>
+      <term>File List</term>
       <listitem>
         <para>The 
         <guilabel>File List</guilabel> has the following columns:
         "Left name | Left size | Left time | Task | Right time |
-        Right size | Right name".</para>
+        Right size | Right name".
+        Here you can check the compare results and modify the synchronisation actions if desired.
+        The text color defines the default copy direction determined by the comparator.
+        <itemizedlist>
+              <listitem>
+                <para>Green: Copy from left to right.</para>
+              </listitem>
+              <listitem>
+                <para>Blue: Copy from right to left or delete on the right side in asymmetric mode.</para>
+              </listitem>
+              <listitem>
+                <para>Red: Files which are different by the given criteria (no copy direction).</para>
+              </listitem>
+              <listitem>
+                <para>Black: Files which are identical (no copy direction).</para>
+              </listitem>
+            </itemizedlist>
+            A double click on a file calls the &krusader;s <guilabel>Compare by content</guilabel> function.
+            The Tasks (&lt;=&gt;) column defines the default copy direction, which can be modified by the user if needed.
+        </para>
       </listitem>
     </varlistentry>
     <varlistentry>
-      <term>Tasks (&lt;=&gt;)</term>
+      <term><guilabel>File List</guilabel>: Tasks (&lt;=&gt;) column</term>
       <listitem>
         <para>This column displays the task that is planned for the
-        Syncronizer.</para>
+        Synchronizer, this task can be modified with the 
+        <link linkend="synccomp_right_click">right click menu</link>.</para>
         <itemizedlist>
           <listitem>
             <para>
@@ -348,9 +385,6 @@
             side.</para>
           </listitem>
         </itemizedlist>
-        <para>The tasks can be changed with the 
-        <link linkend="synccomp_right_click">right click
-        menu</link>.</para>
       </listitem>
     </varlistentry>
     <varlistentry id="synccomp_show_options">
@@ -575,9 +609,11 @@
       </listitem>
     </varlistentry>
   </variablelist>
-  <para id="sychronizer">
-    <emphasis role="bold">Synchronizer</emphasis>
-  </para>
+ 
+</sect2>  
+<sect2 id="synchronizer_sychronisation">
+  <title>Sychronisation</title>  
+
   <para>After pressing the 
   <guibutton>Synchronize</guibutton> button the synchronization
   dialog appears.</para>
@@ -680,11 +716,13 @@
           </listitem>
           <listitem>
             <para>Remote synchronization is also done in parallel,
-            except the mkdir tasks. (mkdir must be before
+            except the mkdir tasks (mkdir must be before
             copy).</para>
           </listitem>
         </itemizedlist>
       </listitem>
     </varlistentry>
   </variablelist>
+
+</sect2>
 </sect1>
