@@ -1288,29 +1288,33 @@
               welcome!</para>
             </listitem>
             <listitem>
-              <para>If you wish, you can always start a discussion
-              with the developers on the krusader-users
+              <para>Focus only on one problem at a time, so the
+              developers can easily understand you, and commit your patch
+              it works.</para>              
+            </listitem>
+            <listitem>
+              <para>Preferrably, you can start a discussion
+              with the developers on the krusader-devel
               &mailing_lists_url; or on the
               &forum_lnk;. Unfortunatly, we can't apply
               a patch if the patch is in conflict with the "general
-              design" of the &krusader; code (more
-              instructions follow).</para>
-            </listitem>
-            <listitem>
-              <para>Focus only on one problem at a time, so the
-              developers can easily understand you, and commit if
-              it works. Please send one change request per mail, so
-              that the discussion is easier to follow! The
+              design" of the &krusader; code (read for more
+              instructions in this FAQ).
+              Please send only one change request per mail, so
+              that the discussion is easier to follow. The
               modifications should be committed step by step,
-              checking each line.</para>
+              checking each line.
+              </para>
             </listitem>
             <listitem>
-              <para>Send the patches and all the altered files to
-              us. Mail attachments are usually okay, zipped or
-              tar.gz'ed archives, or links to code. Do not copy
-              changes into a mail. Most mailers will change the
+             <para>Submit your patch files into our &patch_tracker_url;,
+              so that all patch proposals stay organised and don't get lost,
+              tar.gz archives or diffs are usually ok.
+              Do not copy changes into a mail. Most mailers will change the
               white spaces, so that the diff will not apply or the
-              code snipped does not diff.</para>
+              code snipped does not diff. In the past, patch mails went lost or disorganized in many many mails,
+              so please use the &patch_tracker_url;, thanks! 
+              </para> 
             </listitem>
             <listitem>
               <para>Use portable solutions, &krusader;
@@ -1327,8 +1331,8 @@
                 </listitem>
                 <listitem>
                   <para>&kde; 3.3- &kde;
-                  3.5.3 and even on GNOME with
-                  &kde;libs.</para>
+                  3.5 and even on GNOME with
+                  &kde;libs (for krusader-2.x &kde; 4) .</para>
                 </listitem>
                 <listitem>
                   <para>GCC 2.95 - GCC 4.1</para>
