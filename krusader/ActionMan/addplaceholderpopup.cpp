@@ -224,7 +224,7 @@ ParameterText::ParameterText( const exp_parameter& parameter, QWidget* parent ) 
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter.description(), this );
+   new QLabel( i18n( parameter.description().utf8() ), this );
    _lineEdit = new KLineEdit( parameter.preset(), this );
    _preset = parameter.preset();
 }
@@ -251,7 +251,7 @@ ParameterPlaceholder::ParameterPlaceholder( const exp_parameter& parameter, QWid
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter.description(), this );
+   new QLabel( i18n( parameter.description().utf8() ), this );
    QHBox * hbox = new QHBox( this );
    hbox->setSpacing( 6 );
    _lineEdit = new KLineEdit( hbox );
@@ -288,7 +288,7 @@ ParameterYes::ParameterYes( const exp_parameter& parameter, QWidget* parent ) : 
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   _checkBox = new QCheckBox( parameter.description(), this );
+   _checkBox = new QCheckBox( i18n( parameter.description().utf8() ), this );
    _checkBox->setChecked( true );
 }
 
@@ -314,7 +314,7 @@ ParameterNo::ParameterNo( const exp_parameter& parameter, QWidget* parent ) : Pa
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   _checkBox = new QCheckBox( parameter.description(), this );
+   _checkBox = new QCheckBox( i18n( parameter.description().utf8() ), this );
    _checkBox->setChecked( false );
 }
 
@@ -340,7 +340,7 @@ ParameterFile::ParameterFile( const exp_parameter& parameter, QWidget* parent ) 
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter.description(), this );
+   new QLabel( i18n( parameter.description().utf8() ), this );
    QHBox * hbox = new QHBox( this );
    hbox->setSpacing( 6 );
    _lineEdit = new KLineEdit( hbox );
@@ -376,7 +376,7 @@ ParameterChoose::ParameterChoose( const exp_parameter& parameter, QWidget* paren
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter.description(), this );
+   new QLabel( i18n( parameter.description().utf8() ), this );
    _combobox = new KComboBox( this );
    _combobox->insertStringList( QStringList::split( ";", parameter.preset().section(":", 1) ) );
 }
@@ -400,7 +400,7 @@ ParameterSelect::ParameterSelect( const exp_parameter& parameter, QWidget* paren
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter.description(), this );
+   new QLabel( i18n( parameter.description().utf8() ), this );
    _combobox = new KComboBox( this );
    _combobox->setEditable( true );
    
@@ -432,7 +432,7 @@ ParameterGoto::ParameterGoto( const exp_parameter& parameter, QWidget* parent ) 
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter.description(), this );
+   new QLabel( i18n( parameter.description().utf8() ), this );
    QHBox * hbox = new QHBox( this );
    hbox->setSpacing( 6 );
    _lineEdit = new KLineEdit( hbox );
@@ -478,7 +478,7 @@ ParameterSyncprofile::ParameterSyncprofile( const exp_parameter& parameter, QWid
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter.description(), this );
+   new QLabel( i18n( parameter.description().utf8() ), this );
    _combobox = new KComboBox( this );
    
    _combobox->insertStringList( ProfileManager::availableProfiles("SynchronizerProfile") );
@@ -503,7 +503,7 @@ ParameterSearch::ParameterSearch( const exp_parameter& parameter, QWidget* paren
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter.description(), this );
+   new QLabel( i18n( parameter.description().utf8() ), this );
    _combobox = new KComboBox( this );
    
    _combobox->insertStringList( ProfileManager::availableProfiles("SearcherProfile") );
@@ -528,7 +528,7 @@ ParameterPanelprofile::ParameterPanelprofile( const exp_parameter& parameter, QW
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter.description(), this );
+   new QLabel( i18n( parameter.description().utf8() ), this );
    _combobox = new KComboBox( this );
    
    _combobox->insertStringList( ProfileManager::availableProfiles("Panel") );
@@ -553,7 +553,7 @@ ParameterInt::ParameterInt( const exp_parameter& parameter, QWidget* parent ) : 
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
-   new QLabel( parameter.description(), this );
+   new QLabel( i18n( parameter.description().utf8() ), this );
    _spinbox = new KIntSpinBox( this );
    QStringList para = QStringList::split( ";", parameter.preset().section(":", 1) );
    
