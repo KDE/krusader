@@ -568,8 +568,7 @@
     can have four modes: Command Line, Terminal Emulator, show both and show none.
     You can choose your mode of operation either on start-up with the 
     &konfigstartpg-lnk;, or for the current session with the &viewmenu-lnk; .
-    <link linkend="useractions">Useraction placeholders</link> are supported in the 
-    Command Line and Terminal Emulator.</para>
+    </para>
     
   <sect2 id="cmdline">
     <title>Command Line</title>
@@ -597,10 +596,45 @@
       </mediaobject>
     </figure>
     <para>The traditional command line mode offers a single line of
-    input to enter commands, it also features two buttons: 
-    <guibutton>"run in terminal mode"</guibutton> (console icon) and
-    <guibutton>"command history"</guibutton> (down arrow) to the
-    right of the input line. When you start typing your commands,
+    input to enter commands, it also features three buttons:
+     <itemizedlist>
+        <listitem>
+          <para><guibutton>"command history"</guibutton> (down arrow) to quick open previous used commands
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guibutton>"Useraction expander"</guibutton> (green plus button) to add easy
+                <link linkend="useractions">Useraction placeholders</link>
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guibutton>"run in terminal mode"</guibutton> (console icon) button with the next options:
+         <itemizedlist>
+          <listitem><para>Start and Forget</para>
+          </listitem>
+
+          <listitem><para>Display Separated Standard and Error Output</para>
+           </listitem>
+
+          <listitem><para>Display Mixed Standard and Error Output</para>
+          </listitem>
+
+           <listitem><para>Start in New Terminal</para>
+          </listitem>
+
+           <listitem><para>Send to Embedded Terminal Emulator</para>
+           </listitem>
+
+         </itemizedlist>
+          </para>
+
+        </listitem>
+
+
+     </itemizedlist>
+    When you start typing your commands,
     the command line auto-completion feature will make its offers
     according to what you choose in the
     &kcontrolcenter;. If you want to change the way
