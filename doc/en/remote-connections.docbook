@@ -6,9 +6,9 @@
   <para>Remote connections are easily made by typing the
   &URL; in the 
   <link linkend="list_panel">Location Toolbar</link>; these are
-  actually &kioslaves1_url;. Please note that the
+  actually &kioslaves1-url;. Please note that the
   &krusader; panel does not support all
-  &kioslaves2_url; &eg; 
+  &kioslaves2-url; &eg; 
   <command>http://</command> will not work in the panel, but will
   work in the 
   <link linkend="krviewer">viewer</link>. Some examples:</para>
@@ -76,8 +76,8 @@
   <emphasis>securely save passwords</emphasis>. For connecting to
   multiple locations, bookmark these &URL;'s and open
   them one by one, or open them all together by using
-  &panel_profiles_lnk;. To switch from one to another
-  location, just open a &foldertabs_lnk; for
+  &panel-profiles-lnk;. To switch from one to another
+  location, just open a &foldertabs-lnk; for
   each.</para>
   <para>There are three ways to start a remote connection: 
   <itemizedlist>
@@ -140,21 +140,21 @@
         -->
     <listitem>
       <para>Manually: Add the disconnect button to the
-      &main_toolbar_lnk; and click on it.</para>
+      &main-toolbar-lnk; and click on it.</para>
     </listitem>
     <listitem>
       <para>Automatically: Change the &URL; in the
-      &location_toolbar_lnk; .</para>
+      &location-toolbar-lnk; .</para>
     </listitem>
   </itemizedlist></para>
   <note>
     <para>&krusader; is a file manager that supports
-    remote connections via &kioslaves1_url;, but if you
+    remote connections via &kioslaves1-url;, but if you
     are looking for even more advanced remote connections features,
     &eg; an advanced &FTP;-client we
     recommend you to use &eg;
-    &kasablanca_url; or
-    &kftpgrabber_url;.</para>
+    &kasablanca-url; or
+    &kftpgrabber-url;.</para>
   </note>
 
 <sect2 id="remote-connections-lan-fish">
@@ -251,10 +251,10 @@ Do the same on each machine on your LAN, then restart avahi-daemon:
 <prompt># /etc/init.d/</prompt> <userinput><command>avahi-daemon</command> <option>restart</option></userinput>
 </screen>
 
-Than open &krusader; and type in location_toolbar_lnk: <filename>zeroconf:/</filename> to open the  
+Than open &krusader; and type in location-toolbar-lnk: <filename>zeroconf:/</filename> to open the  
 <link linkend="gloss-zeroconf">zeroconf</link> connection.
 Enter the <guilabel>Fish Protocol</guilabel> directory. Inside you'll find the links to each machine that 
-announced <filename>fish:/</filename> on your LAN, the location_toolbar_lnk: will point to 
+announced <filename>fish:/</filename> on your LAN, the location-toolbar-lnk: will point to 
 <filename>zeroconf:/_fish._tcp</filename> Double clicking on any of these machines,
 them will bring up the password prompt, asking you for yor ssh key passphrase (if password was set). 
 Enter your passphrase. Congratulations: you connected to remote machine using &krusader;!

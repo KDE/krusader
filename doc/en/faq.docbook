@@ -26,7 +26,7 @@
   <!--  &reporting.bugs;
   &updating.documentation; -->
   <para>If you have problems with &krusader; please
-  check the &install_proc_lnk;, as your problem may be
+  check the &install-proc-lnk;, as your problem may be
   caused by a bad installation.</para>
   <para>The &FAQ; is divided into three sections: 
   <itemizedlist>
@@ -68,8 +68,8 @@
           some shared libraries are needed &eg;
           &kde; libraries, &Qt; libraries,
           &etc; This means that &krusader;
-          runs on &gnome_url;,
-          &afterstep_url;, &xfce_url; and
+          runs on &gnome-url;,
+          &afterstep-url;, &xfce-url; and
           other window managers provided the approriate libraries
           are installed on your computer. All this is not a problem
           since the apt-get world can resolve these dependencies
@@ -78,8 +78,8 @@
           <!-- Empty line to make it more readable -->
           <para>You do not need to switch to the &kde;
           window manager to use &krusader;; you can
-          still use &gnome_url;,
-          &afterstep_url;, &xfce_url; or
+          still use &gnome-url;,
+          &afterstep-url;, &xfce-url; or
           another window manager. However, the configuration of the
           &krusader; fonts and some behavior is done by
           running 
@@ -89,11 +89,11 @@
           <para>A lot depends on what you want to do with
           &krusader;. You should know that
           &krusader; uses the &kde;
-          &kioslaves1_url; to access remote file
+          &kioslaves1-url; to access remote file
           systems, and support for only a limited number of file
-          system types are shipped with &kdelibs_url;,
-          most of the &kioslaves2_url; are bundled with
-          &kdebase_url; (including fish, sftp and tar).
+          system types are shipped with &kdelibs-url;,
+          most of the &kioslaves2-url; are bundled with
+          &kdebase-url; (including fish, sftp and tar).
           However, if you want the property-dialog to show
           EXIF-data for .jpeg's, you need &kde;graphics.
           If you want ID3-infos, you need
@@ -130,7 +130,7 @@
           <itemizedlist>
             <listitem>
               <para>kdelibs (for the required &kde;
-              version see the &install_proc_lnk;)</para>
+              version see the &install-proc-lnk;)</para>
             </listitem>
             <listitem>
               <para>libacl1 libart-2.0 libattr1 libaudio2 libc6
@@ -150,7 +150,7 @@
               zlib1g</para>
             </listitem>
           </itemizedlist>If you need more info please take a look
-          at the &deb_requirements_url; .</para>
+          at the &deb-requirements-url; .</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -193,7 +193,7 @@
               </listitem>
               <listitem>
                 <para>libkjsembed, if you use the
-                &javascript_console_lnk;, often found in
+                &javascript-console-lnk;, often found in
                 a package called KDEbindings(-devel) and
                 libkonq-dev for the &konqueror;
                 right-click menu entries.</para>
@@ -210,7 +210,7 @@
           distribution. 
           <tip>
             <para>If you ca not find the needed package, use
-            &rpmfind_url; and click 'missing lib or
+            &rpmfind-url; and click 'missing lib or
             header' in the search line. Or use 
             <command>apt-cache search 
             <replaceable>foo</replaceable></command> to find the
@@ -236,7 +236,7 @@
         </answer>
       </qandaentry>
       <qandaentry>
-        <question id="faqi_rpm_source">
+        <question id="faqi_rpm-source">
           <para>I have downloaded the Source RPM 
           <filename>krusader-x.xx.dist.src.rpm</filename>, what to
           do now?</para>
@@ -291,8 +291,8 @@
           <!-- Empty line to make it more readable -->
           <tip>
             <para>For more information about RPM, visit
-            &rpm_org_url; and read the
-            &rpm_guide_url; by Eric
+            &rpm-org-url; and read the
+            &rpm-guide-url; by Eric
             Foster-Johnson.</para>
           </tip>
           <para></para>
@@ -300,7 +300,7 @@
         </answer>
       </qandaentry>
       <qandaentry>
-        <question id="faqi_rpm_fails">
+        <question id="faqi_rpm-fails">
           <para>I'm trying to install binary foo (RPM or DEB
           package), but it fails. What's wrong?</para>
         </question>
@@ -315,11 +315,11 @@
           your distro website and search for an updated RPM.</para>
           <para>If the RPM is not OK, try to find another package
           at &Linux; software archives such as
-          &freshmeat_url; or &kde_apps_url;.
+          &freshmeat-url; or &kde-apps-url;.
           If you still can't find the appropriate package for your
           &Linux; distribution, we recommend searching
-          for it with &rpmfind_url; or
-          &rpmpbone_url;.</para>
+          for it with &rpmfind-url; or
+          &rpmpbone-url;.</para>
           <para>In general, a package for an older version of your
           distrubution or even for another distribution might work
           on your computer (&eg; FC RPM's often work on
@@ -341,7 +341,7 @@
         </answer>
       </qandaentry>
       <qandaentry>
-        <question id="faqi_rpm_notfound">
+        <question id="faqi_rpm-notfound">
           <para>I can't find an RPM or DEB package for
           &krusader;, what to do?</para>
         </question>
@@ -351,7 +351,7 @@
           distribution creator and ask them to include
           &krusader;!</para>
           <para>Did you take a look at the &URL;'s on
-          the &install_proc_lnk; page? If you have and
+          the &install-proc-lnk; page? If you have and
           found nothing, you can always compile
           &krusader; from source. Even if you feel you
           haven't got the necessary skills, you will probably
@@ -360,7 +360,7 @@
           newcomers to compile &krusader; from source,
           even if they have never done a compilation from source
           before, just follow the instructions carefully. Feel free
-          to post a &help_request_lnk; if you encounter
+          to post a &help-request-lnk; if you encounter
           problems.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
@@ -390,7 +390,7 @@
           ~/.kde/share/apps/krusader/krusaderui.rc</filename> and
           re-run &krusader;. If you have compiled
           &krusader; from sources this is often caused
-          if the &kdeqtdir_lnk; environment variables
+          if the &kdeqtdir-lnk; environment variables
           are not correctly set. The result is that the 
           <filename>krusaderui.rc</filename> file is installed in
           the wrong directory. Please read the following question,
@@ -477,13 +477,13 @@
           you install &Mandrake;-&Linux; 9.2
           with the default settings, this package is not installed.
           If you need more information take a look at
-          &missing_libs_lnk;.</para>
+          &missing-libs-lnk;.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
       <qandaentry>
-        <question id="faqi_deb_qt">
+        <question id="faqi_deb-qt">
           <para>&debian; complains about &Qt;
           when running 
           <command>./configure</command>, what's wrong?</para>
@@ -499,8 +499,8 @@
           <prompt>$</prompt> <userinput><command>export</command> CPP=<replaceable>/usr/bin/cpp-3.2</replaceable></userinput>
           </screen> 
           For more information please take a look
-          &debian_qt_a_url; and at the
-          &debian_qt_b_url; on how to build a
+          &debian-qt-a-url; and at the
+          &debian-qt-b-url; on how to build a
           &Qt;/&kde;3 application on
           &debian;.</para>
           <para></para>
@@ -586,17 +586,17 @@
         <answer>
           <para>Please read our detailed 
           <link linkend="compilation">installation
-          procedure</link> and the &faq_lnk;. If you
+          procedure</link> and the &faq-lnk;. If you
           can't find a solution to your problem then feel free to
           post a 
           <emphasis role="bold">help request</emphasis> at our
           &krusader; forum or use the
-          &kruusers_url; mailing list. But before
+          &kruusers-url; mailing list. But before
           posting a help request, please try the following: 
           <orderedlist>
             <listitem>
-              <para>Use the &kruforumsearch_url;
-              function on the &forum_lnk;, your problem
+              <para>Use the &kruforumsearch-url;
+              function on the &forum-lnk;, your problem
               might be solved or discussed already.</para>
             </listitem>
             <listitem>
@@ -636,7 +636,7 @@
         </answer>
       </qandaentry>
       <qandaentry>
-        <question id="faqi_rpm_build">
+        <question id="faqi_rpm-build">
           <para>How can I build an RPM package for
           &krusader;?</para>
         </question>
@@ -644,8 +644,8 @@
           <para>If you have experience with compiling from source,
           you will probably be able to build a
           &krusader; RPM too. Information about RPM can
-          be found at &rpm_org_url; and in the
-          &rpm_guide_url; by Eric Foster-Johnson. The
+          be found at &rpm-org-url; and in the
+          &rpm-guide-url; by Eric Foster-Johnson. The
           following is the short procedure howto on building an
           RPM.</para>
           <warning>
@@ -711,7 +711,7 @@
               </listitem>
               <listitem>
                 <para>And finally: 
-                <link linkend="faqi_rpm_source">test</link> the RPM
+                <link linkend="faqi_rpm-source">test</link> the RPM
                 before sending it in.</para>
               </listitem>
             </orderedlist>
@@ -977,12 +977,12 @@
        Open a terminal and check if tool foo is installed.
        <screen><prompt>$</prompt> <userinput><command>foo</command></userinput></screen> 
 
-       Check if tool foo is properly configured in the &konfigdependencie_lnk;.
+       Check if tool foo is properly configured in the &konfigdependencie-lnk;.
 
        For Archiving tools: autodetect the archives again with the <guibutton>Auto Configure</guibutton> button
        in the <link linkend="konfig-archives">Konfigurator archive page</link>. 
        
-       Check the &konfigprotocol_lnk;
+       Check the &konfigprotocol-lnk;
    
      If it doesn't work, backup your <filename>~/.kde/share/config/krusaderrc</filename> configuration file and remove it from this location,
      Restart Krusader, Krusader will now start the first start configuration wizard, follow these guidelines.
@@ -1015,7 +1015,7 @@
           works. Also, make sure you have no other &FTP;
           sessions open (using web browsers, etc.), they can cause
           complications. More information can be found in
-          &active_passive_ftp_url;.</para>
+          &active-passive-ftp-url;.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -1111,7 +1111,7 @@
           &URL;'s</link> the same way. RemoteMan was left
           as a selection until &krusader;-1.51 to allow
           an easier transition and give you a chance to move your
-          &bookmarks_lnk;. RemoteMan was disabled, as
+          &bookmarks-lnk;. RemoteMan was disabled, as
           announced, in &krusader;-1.60.</para>
           <para>&URL; transition procedure: 
           <orderedlist numeration="arabic">
@@ -1128,7 +1128,7 @@
             </listitem>
             <listitem>
               <para>do this for all your connections, all the
-              &bookmarks_lnk; are now stored in 
+              &bookmarks-lnk; are now stored in 
               <filename>krbookmarks.xml</filename></para>
             </listitem>
             <listitem>
@@ -1258,19 +1258,19 @@
           make &krusader; the best and most useful file
           manager available anywhere.</para>
           <para>The most convenient way to contact us is to use the
-          &forum_lnk;, or the krusader-users
-          &mailing_lists_url;. For information on what
+          &forum-lnk;, or the krusader-users
+          &mailing-lists-url;. For information on what
           remains to be done look at the
-          &todoforum_url;. Adding ToDo items into the
-          &todoforum_url; is for developers only, but
-          feel free to post to the &featureforum_url;
-          for things that aren't on the &todoforum_url;,
+          &todoforum-url;. Adding ToDo items into the
+          &todoforum-url; is for developers only, but
+          feel free to post to the &featureforum-url;
+          for things that aren't on the &todoforum-url;,
           but should be. If you have a nice feature request, the
           &krusader; Krew will add your request to the
-          &todoforum_url;. We review and discuss every
+          &todoforum-url;. We review and discuss every
           submission. For more information how the forum works
           click 
-          <link linkend="faqg_kru_forum">here</link>.</para>
+          <link linkend="faqg_kru-forum">here</link>.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -1295,8 +1295,8 @@
             <listitem>
               <para>Preferrably, you can start a discussion
               with the developers on the krusader-devel
-              &mailing_lists_url; or on the
-              &forum_lnk;. Unfortunatly, we can't apply
+              &mailing-lists-url; or on the
+              &forum-lnk;. Unfortunatly, we can't apply
               a patch if the patch is in conflict with the "general
               design" of the &krusader; code (read for more
               instructions in this FAQ).
@@ -1307,13 +1307,13 @@
               </para>
             </listitem>
             <listitem>
-             <para>Submit your patch files into our &patch_tracker_url;,
+             <para>Submit your patch files into our &patch-tracker-url;,
               so that all patch proposals stay organised and don't get lost,
               tar.gz archives or diffs are usually ok.
               Do not copy changes into a mail. Most mailers will change the
               white spaces, so that the diff will not apply or the
               code snipped does not diff. In the past, patch mails went lost or disorganized in many many mails,
-              so please use the &patch_tracker_url;, thanks! 
+              so please use the &patch-tracker-url;, thanks! 
               </para> 
             </listitem>
             <listitem>
@@ -1371,17 +1371,17 @@
           <para>Before reporting a bug, please read the following: 
           <orderedlist>
             <listitem>
-              <para>Use the &forum_lnk;'s
-              &kruforumsearch_url; function , your bug
+              <para>Use the &forum-lnk;'s
+              &kruforumsearch-url; function , your bug
               might be already solved . Please DO NOT post new bugs
-              to the &bugforum_url; (except if you are
+              to the &bugforum-url; (except if you are
               not sure that you have found a bug). We use it for
               bug discussions.</para>
             </listitem>
             <listitem>
               <para>
               <emphasis role="bold">Check</emphasis> if the bug is
-              already posted in the &online_buglist_url;
+              already posted in the &online-buglist-url;
               of the Bug Tracking System.</para>
             </listitem>
             <listitem>
@@ -1401,11 +1401,11 @@
             <para>If possible, try to do the same operation with
             &konqueror; or another &kde;
             application. If you encounter the same problem then it
-            is possibly a &kioslaves1_url; or
+            is possibly a &kioslaves1-url; or
             &kde; (kdelibs) bug, and not a
             &krusader; bug. &krusader; uses
             the &kde; libraries and the
-            &kioslaves2_url; for many operations. In
+            &kioslaves2-url; for many operations. In
             some cases you can encounter problems if your
             distribution is incorrectly configured, please test it
             first as explained above.</para>
@@ -1480,7 +1480,7 @@
         </question>
         <answer>
           <para>Yes, currently we have 6
-          &mailing_lists_url;. No spam, no bother, just
+          &mailing-lists-url;. No spam, no bother, just
           &krusader;. Feel free to subscribe and
           unsubscribe.</para>
           <para>Tip. our mailing lists can be browsed online or
@@ -1488,35 +1488,35 @@
           subscribe to follow the action on the mailing lists. 
           <itemizedlist>
             <listitem>
-              <para>&krunews_url; is a very low volume
+              <para>&krunews-url; is a very low volume
               list, used for newsletters and announcements of new
               versions or critical bugfixes. The news can also be
-              read online at &krulatestnews_url; and in
-              the &newsforum_url; which are basically
+              read online at &krulatestnews-url; and in
+              the &newsforum-url; which are basically
               the same but displayed in another format.</para>
             </listitem>
             <listitem>
-              <para>&krudevel_url; is the developer
+              <para>&krudevel-url; is the developer
               mailing list (read-only). If you want to follow the
               development of &krusader; on the cutting
               edge, this is the list to follow.</para>
             </listitem>
             <listitem>
-              <para>&kruusers_url; is the
+              <para>&kruusers-url; is the
               &krusader; users mailing list. Here you
               can ask for help and talk with the
               &krusader; users and developers.</para>
             </listitem>
             <listitem>
-              <para>&krui18n_url; is the translations
+              <para>&krui18n-url; is the translations
               mailing list.</para>
             </listitem>
             <listitem>
-              <para>&krudoc_url; is the documentation
+              <para>&krudoc-url; is the documentation
               mailing list.</para>
             </listitem>
             <listitem>
-              <para>&krucommits_url; (read-only): when
+              <para>&krucommits-url; (read-only): when
               the &krusader; Krew commits code into CVS,
               it will be reported in this mailing list. Want to
               keep track? Waiting for a certain feature/bugfix?
@@ -1535,14 +1535,14 @@
         </question>
         <answer>
           <para>Yes, we do. Several newsfeeds in various formats
-          are available. &filereleasefeed_url;,
-          &forumfeed_url;, &krunewsfeed_url;,
-          &krudevelfeed_url; and even 
+          are available. &filereleasefeed-url;,
+          &forumfeed-url;, &krunewsfeed-url;,
+          &krudevelfeed-url; and even 
           <ulink url="http://dir.gmane.org/gmane.comp.kde.krusader.devel">
           additional feeds</ulink> by gmane.org.
-          &kruusersfeed_url;,
-          &krui18nfeed_url;,
-          &krudocfeed_url;.</para>
+          &kruusersfeed-url;,
+          &krui18nfeed-url;,
+          &krudocfeed-url;.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -1555,7 +1555,7 @@
         <answer>
           <para>Yes, we do. Feel free to talk to the
           &krusader; Krew and fellow-users via
-          &freenode_url; servers. The server is 
+          &freenode-url; servers. The server is 
           <emphasis>irc.freenode.org</emphasis>, the channel is 
           <emphasis>#krusader</emphasis>. Everyone is
           welcome.</para>
@@ -1564,7 +1564,7 @@
         </answer>
       </qandaentry>
       <qandaentry>
-        <question id="faqg_kru_forum">
+        <question id="faqg_kru-forum">
           <para>How does the &krusader; forum
           work?</para>
         </question>
@@ -1582,14 +1582,14 @@
           chaos.</para>
           <para>If the 
           <link linkend="index">Documentation</link>,
-          &faq_lnk;, &kruforum_url; and
-          &krudevel_url; (please use the search function
+          &faq-lnk;, &kruforum-url; and
+          &krudevel-url; (please use the search function
           ) can't help you, do not hesitate to post on our forum.
           The &krusader; Krew or the
           &krusader; community is always available to
           help you.</para>
-          <para>Please use the &kruforumsearch_url;
-          function of the &kruforum_url;, your issue may
+          <para>Please use the &kruforumsearch-url;
+          function of the &kruforum-url;, your issue may
           have been previously discussed (this allows us to
           minimize the double/triple/... postings). If your issue
           has already been discussed in the past there is a great
@@ -1597,53 +1597,53 @@
           problem. If the issue is currently being discussed, you
           can join in the discussion. Some questions are asked over
           and over again, that's why we have created this
-          &faq_lnk;. This allows us to spend more time
+          &faq-lnk;. This allows us to spend more time
           developing &krusader;.</para>
-          <para>The &kruforum_url; is split into seven
+          <para>The &kruforum-url; is split into seven
           sections: 
           <itemizedlist>
             <listitem>
-              <para>&newsforum_url;: all the latest
+              <para>&newsforum-url;: all the latest
               news.</para>
             </listitem>
              <listitem>
-              <para>&newsletterforum_url;: all newsletters.</para>
+              <para>&newsletterforum-url;: all newsletters.</para>
             </listitem>
             <listitem>
-              <para>&bugforum_url;: discussions about
+              <para>&bugforum-url;: discussions about
               bugs, please DO NOT use the forum for
-              &faqbugreports_lnk; (except if you are
+              &faqbugreports-lnk; (except if you are
               unsure if you have found a bug).</para>
             </listitem>
             <listitem>
-              <para>&featureforum_url;: discussions
+              <para>&featureforum-url;: discussions
               about new features for future &krusader;
               versions.</para>
             </listitem>
             <listitem>
-              <para>&todoforum_url; here you will find
+              <para>&todoforum-url; here you will find
               the list of the planned features. Registered users
               will be able to VOTE and COMMENT on the TODO items.
               Here you get the chance to push your favourite
               features (+3) and still prefer certain features over
               others (+1), if you don't care about a feature just
               simply don't vote on that feature. Unregistered users
-              may only browse the &todoforum_url;. The
-              &todoranking_url; contains the results
+              may only browse the &todoforum-url;. The
+              &todoranking-url; contains the results
               based on the votes. 
               <link linkend="faqg_patch">Adding ToDo items</link> or
               removing ToDo items which have been implemented will
               be done by the &krusader; Krew.</para>
             </listitem>
             <listitem>
-              <para>&useractionsforum_url;: discussions
-              about &useractions_lnk;. Posting your own
+              <para>&useractionsforum-url;: discussions
+              about &useractions-lnk;. Posting your own
               User Actions is greatly appreciated. We plan to
               include the best ones in the next
               &krusader; releases.</para>
             </listitem>
             <listitem>
-              <para>&krugenforum_url;: everything that
+              <para>&krugenforum-url;: everything that
               is &krusader; related and doesn't belong
               in the other forums.</para>
             </listitem>
@@ -1652,7 +1652,7 @@
           <para>We provide RSS feeds for our forums. You don't have
           to check for new posts all the time, instead the news
           will come to you! To make use of them, simply point your
-          RSS aggregator to &rss_url;.</para>
+          RSS aggregator to &rss-url;.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -1663,7 +1663,7 @@
           native language?</para>
         </question>
         <answer>
-          <para>Please read the &i18n_page_url;. It's
+          <para>Please read the &i18n-page-url;. It's
           not difficult to translate! Most anyone can do it, it
           just takes some time.</para>
           <para></para>
@@ -1680,7 +1680,7 @@
           support</link> &krusader; in many different
           ways. Please send us 
           <link linkend="faqg_wish">feedback</link>,
-          &faqbugreports_lnk;, patches, 
+          &faqbugreports-lnk;, patches, 
           <link linkend="help_krusader">donations</link>,
           translations, ...</para>
           <para></para>
@@ -1698,7 +1698,7 @@
           <link linkend="mac-port">&MacOS; X port
           section</link> for more information. A recommended native
           file manager for &MacOS; is
-          &disk_order_url; (shareware).</para>
+          &disk-order-url; (shareware).</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -1712,7 +1712,7 @@
           <link linkend="help_krusader">help us</link> with this
           project, contributions are greatly appreciated. A
           recommended native file manager for &Windows;
-          is &tcmd_url; (shareware).</para>
+          is &tcmd-url; (shareware).</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -1739,7 +1739,7 @@
           <link linkend="gloss-ofm">OFM</link>?</para>
         </question>
         <answer>
-          <para>An &ofm_url; is much faster than a one
+          <para>An &ofm-url; is much faster than a one
           panel filemanager and faster than the command line. If
           you would like to know 
           <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml">

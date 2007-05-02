@@ -37,12 +37,12 @@
   ~/.kde/share/apps/krusader/useraction.xml</filename> (the file
   structure is documentated in doxygen headers of UserActionXML).
   Several 
-  <link linkend="useraction_xml">examples</link> are included in the
+  <link linkend="useraction-xml">examples</link> are included in the
   documentation. UserActions can be edited / added / imported /
   exported by using ActionMan. The default UserActions are stored
   in 
   <filename>
-  ~/.kde/share/apps/krusader/useraction_examples.xml</filename>.
+  ~/.kde/share/apps/krusader/useraction-examples.xml</filename>.
   UserActions can appear nearly everywhere where "normal" KActions
   can be placed. The actions integrate seamlessly into
   &kde; action system, which means that the standard
@@ -57,10 +57,10 @@
       </para>
     </listitem>
     <listitem>
-      <para>&usermenu_lnk;</para>
+      <para>&usermenu-lnk;</para>
     </listitem>
     <listitem>
-      <para>&actions_toolbar_lnk;</para>
+      <para>&actions-toolbar-lnk;</para>
     </listitem>
     <listitem>
       <para>right click menus</para>
@@ -76,7 +76,7 @@
     <link linkend="help_krusader">upload your favorite
     UserActions</link> so that they become available for the
     &krusader; community. Thanks! We provide also an
-    &useractionsforum_url;.</para>
+    &useractionsforum-url;.</para>
   </tip>
   <figure id="screenshot-actionman" float="1">
     <title>ActionMan</title>
@@ -102,7 +102,7 @@
   active panel to 80% of the &krusader; mainwindow.
   Since the parameter of placeholders can contain other
   placeholders, few scripts are possible. However, scripting can be
-  done with the &javascript_console_lnk;.</para>
+  done with the &javascript-console-lnk;.</para>
   <para>
     <emphasis role="bold">Managing UserActions</emphasis>
   </para>
@@ -304,8 +304,8 @@
       path</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_optional_parameter;
-          Automatic escape spaces. &useraction_default;
+          <para>&useraction-optional-parameter;
+          Automatic escape spaces. &useraction-default;
           yes</para>
         </listitem>
       </orderedlist>
@@ -316,7 +316,7 @@
       &lt;first parameter&gt;</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_parameter; Which items;
+          <para>&useraction-parameter; Which items;
           either "All", "Selected", "Files" or "Dirs"</para>
         </listitem>
       </orderedlist>
@@ -332,12 +332,12 @@
       item</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_optional_parameter; Omit the
-          current path. &useraction_default; no</para>
+          <para>&useraction-optional-parameter; Omit the
+          current path. &useraction-default; no</para>
         </listitem>
         <listitem>
-          <para>&useraction_optional_parameter;
-          Automatic escape spaces. &useraction_default;
+          <para>&useraction-optional-parameter;
+          Automatic escape spaces. &useraction-default;
           yes</para>
         </listitem>
       </orderedlist>
@@ -348,27 +348,27 @@
       &lt;first parameter&gt;</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_parameter; Which items;
+          <para>&useraction-parameter; Which items;
           either "All", "Selected", "Files" or "Dirs"</para>
         </listitem>
         <listitem>
-          <para>&useraction_optional_parameter;
+          <para>&useraction-optional-parameter;
           Separator between the items.
-          &useraction_default;
+          &useraction-default;
           "&nbsp;"</para>
         </listitem>
         <listitem>
-          <para>&useraction_optional_parameter; Omit the
-          current path. &useraction_default; no</para>
+          <para>&useraction-optional-parameter; Omit the
+          current path. &useraction-default; no</para>
         </listitem>
         <listitem>
-          <para>&useraction_optional_parameter;
+          <para>&useraction-optional-parameter;
           Filtermask (for all but "Selected").
-          &useraction_default; *</para>
+          &useraction-default; *</para>
         </listitem>
         <listitem>
-          <para>&useraction_optional_parameter;
-          Automatic escape spaces. &useraction_default;
+          <para>&useraction-optional-parameter;
+          Automatic escape spaces. &useraction-default;
           yes</para>
         </listitem>
       </orderedlist>
@@ -379,12 +379,12 @@
       panel</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_parameter; Filtermask</para>
+          <para>&useraction-parameter; Filtermask</para>
         </listitem>
         <listitem>
-          <para>&useraction_optional_parameter;
+          <para>&useraction-optional-parameter;
           manipulate in which way; either "Set", "Add" or "Remove".
-          &useraction_default; "Set"</para>
+          &useraction-default; "Set"</para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -394,12 +394,12 @@
       &lt;first parameter&gt;</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_parameter; A relative or
+          <para>&useraction-parameter; A relative or
           absolute path, or an URL</para>
         </listitem>
         <listitem>
-          <para>&useraction_optional_parameter; Open the
-          location in a new tab. &useraction_default;
+          <para>&useraction-optional-parameter; Open the
+          location in a new tab. &useraction-default;
           no</para>
         </listitem>
       </orderedlist>
@@ -410,15 +410,15 @@
       is replaced by the answer</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_parameter; The
+          <para>&useraction-parameter; The
           Question</para>
         </listitem>
         <listitem>
-          <para>&useraction_optional_parameter; A
+          <para>&useraction-optional-parameter; A
           default answer</para>
         </listitem>
         <listitem>
-          <para>&useraction_optional_parameter; A
+          <para>&useraction-optional-parameter; A
           caption for the question box</para>
         </listitem>
       </orderedlist>
@@ -429,12 +429,12 @@
       clipboard</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_parameter; The text that
+          <para>&useraction-parameter; The text that
           should go to the clipboard (you may want to use
           "%aCurrent%" here)</para>
         </listitem>
         <listitem>
-          <para>&useraction_optional_parameter; Append
+          <para>&useraction-optional-parameter; Append
           the text to the current content of the clipboard with
           this separator</para>
         </listitem>
@@ -446,11 +446,11 @@
       local backups</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_parameter; What should be
+          <para>&useraction-parameter; What should be
           copied</para>
         </listitem>
         <listitem>
-          <para>&useraction_parameter; Where it should
+          <para>&useraction-parameter; Where it should
           be copied</para>
         </listitem>
       </orderedlist>
@@ -461,7 +461,7 @@
       given profile</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_parameter; A profile for the
+          <para>&useraction-parameter; A profile for the
           Synchronizer</para>
         </listitem>
       </orderedlist>
@@ -472,7 +472,7 @@
       with a given profile</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_parameter; A profile for the
+          <para>&useraction-parameter; A profile for the
           search module</para>
         </listitem>
       </orderedlist>
@@ -483,7 +483,7 @@
       profile</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_parameter; A panel
+          <para>&useraction-parameter; A panel
           profile</para>
         </listitem>
       </orderedlist>
@@ -494,7 +494,7 @@
       list. These commands are executed one after another.</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_parameter; A list item (all,
+          <para>&useraction-parameter; A list item (all,
           all files, all dirs, all selected).</para>
         </listitem>
       </orderedlist>
@@ -505,10 +505,10 @@
       destination.</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_parameter; A source</para>
+          <para>&useraction-parameter; A source</para>
         </listitem>
         <listitem>
-          <para>&useraction_parameter; A
+          <para>&useraction-parameter; A
           destination</para>
         </listitem>
       </orderedlist>
@@ -519,7 +519,7 @@
       the two panels.</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_optional_parameter; A
+          <para>&useraction-optional-parameter; A
           integer value, e.g., 80 makes the active panel use 80% of
           &krusader;'s width (height in vertical mode),
           omitting the parameter means 50%.</para>
@@ -531,7 +531,7 @@
       <userinput>Ask</userinput> - cancel the execution.</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_optional_parameter; A string
+          <para>&useraction-optional-parameter; A string
           for the cancel question.</para>
         </listitem>
       </orderedlist>
@@ -545,7 +545,7 @@
       change, feedback is always welcome.</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_parameter; path to the
+          <para>&useraction-parameter; path to the
           external foo.js file, absolute path or relative to 
           <filename>
           &lt;kde-app-data&gt;/krusader/js/</filename>.
@@ -561,7 +561,7 @@
           parameter.</para>
         </listitem>
         <listitem>
-          <para>&useraction_optional_parameter; a list
+          <para>&useraction-optional-parameter; a list
           of variables which should be set, like "return=cmd;
           a=lalala; b='%_Ask(..)'" so that the placeholder is
           replaced be the content of the variable cmd and the other
@@ -576,7 +576,7 @@
       of a temporary file containing a list of items</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_parameter;
+          <para>&useraction-parameter;
           path/filename</para>
         </listitem>
       </orderedlist>
@@ -587,12 +587,12 @@
       of a specific panel.</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_parameter; Column: Either
+          <para>&useraction-parameter; Column: Either
           "Name", "Ext", "Type", "Size", "Modified", "Perms",
           "rwx", "Owner" and "Group"</para>
         </listitem>
         <listitem>
-          <para>&useraction_parameter; Sort sequence:
+          <para>&useraction-parameter; Sort sequence:
           Either "Toggle", "Asc", "Desc"</para>
         </listitem>
       </orderedlist>
@@ -602,11 +602,11 @@
       <userinput>View</userinput> - set the view mode.</para>
       <orderedlist>
         <listitem>
-          <para>&useraction_parameter; View mode: Either
+          <para>&useraction-parameter; View mode: Either
           "generic", "text", "hex"</para>
         </listitem>
         <listitem>
-          <para>&useraction_parameter; Window Mode:
+          <para>&useraction-parameter; Window Mode:
           Either "tab", "window"</para>
         </listitem>
       </orderedlist>

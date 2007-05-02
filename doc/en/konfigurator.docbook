@@ -111,31 +111,31 @@
             <listitem>
               <para>
               <guilabel>Show toolbar</guilabel>: If checked,
-              &main_toolbar_lnk; is visible after
+              &main-toolbar-lnk; is visible after
               startup.</para>
             </listitem>
             <listitem>
               <para>
               <guilabel>Show statusbar</guilabel>: If checked, the
-              &statusbar_lnk; is visible after
+              &statusbar-lnk; is visible after
               start-up.</para>
             </listitem>
             <listitem>
               <para>
               <guilabel>Show function keys</guilabel>: If checked,
-              the &fnkeybar_lnk; is visible after
+              the &fnkeybar-lnk; is visible after
               start-up.</para>
             </listitem>
             <listitem>
               <para>
               <guilabel>Show command line</guilabel>: If checked,
-              the &cmdline_lnk; is visible after
+              the &cmdline-lnk; is visible after
               start-up.</para>
             </listitem>
             <listitem>
               <para>
               <guilabel>Show terminal emulator</guilabel>: If
-              checked, the &termemu_lnk; is visible
+              checked, the &termemu-lnk; is visible
               after start-up.</para>
             </listitem>
             <listitem>
@@ -239,7 +239,7 @@ HTML_PARSING-->
         <listitem>
           <para>
           <guilabel>Use fullpath tab names</guilabel>: If checked,
-          display the full path in the &foldertabs_lnk;;
+          display the full path in the &foldertabs-lnk;;
           otherwise only the last part of the path is
           displayed.</para>
         </listitem>
@@ -409,7 +409,7 @@ HTML_PARSING-->
         <listitem>
           <para>
           <guilabel>Clear Location Toolbar</guilabel> button: Clears
-          the &location_toolbar_lnk;</para>
+          the &location-toolbar-lnk;</para>
         </listitem>
         <listitem>
           <para>
@@ -434,7 +434,7 @@ HTML_PARSING-->
         <listitem>
           <para>
           <guilabel>Toggle-button for sync-browsing</guilabel>: If
-          checked, shows the &sync_browsing_lnk;
+          checked, shows the &sync-browsing-lnk;
           button.</para>
         </listitem>
       </itemizedlist></para>
@@ -570,8 +570,8 @@ HTML_PARSING-->
   <sect1 id="konfig-color">
     <title>Colors</title>
     <para>This page configures the colors of the
-    &list_panel_lnk; and the
-    &synchronizer_lnk;. The 
+    &list-panel-lnk; and the
+    &synchronizer-lnk;. The 
     <guilabel>KDE default colors</guilabel> is the default color
     configuration.</para>
     <!-- OLD
@@ -719,7 +719,7 @@ HTML_PARSING-->
             </listitem>
           </itemizedlist>
           <para>The following items of the
-          &synchronizer_lnk; can be configured:</para>
+          &synchronizer-lnk; can be configured:</para>
           <itemizedlist>
             <listitem>
               <para>
@@ -981,7 +981,7 @@ HTML_PARSING-->
               then enter a list of mount points separated by commas
               (&eg; 
               <literal>/, /boot, /tmp</literal>) and
-              &mountman_lnk; will not try to (un)mount
+              &mountman-lnk; will not try to (un)mount
               them.</para>
             </listitem>
           </itemizedlist>
@@ -1092,12 +1092,12 @@ HTML_PARSING-->
       <filename>/usr/local/bin</filename> &etc;)</para>
     </note>
     <para>The full path of the packagers is stored in the
-    &konfigdependencie_lnk; (&eg; to handle
+    &konfigdependencie-lnk; (&eg; to handle
     ZIP archives, &krusader; needs the 
     <command>unzip</command> and 
     <command>zip</command> executables). It is possible that you need
     to manually configure the mimes to the protocols in the
-    &konfigprotocol_lnk;.</para>
+    &konfigprotocol-lnk;.</para>
     <para>
       <guilabel>Fine-Tuning</guilabel>
       <itemizedlist>
@@ -1315,7 +1315,7 @@ HTML_PARSING-->
       <para>By default &kompare; (part of the kdebase
       package) is used as external diff utility but you can also
       use your favorite diff utility &eg;
-      &xxdiff_url; or &kdiff3_url;, just fill
+      &xxdiff-url; or &kdiff3-url;, just fill
       in the full path and enjoy.</para>
     </tip>
     <para>
@@ -1771,7 +1771,7 @@ HTML_PARSING-->
     the font for the output-collection. The default terminal is 
     <filename>konsole --noclose -e</filename>. To set up, configure
     and manage your UserActions use ActionMan
-    (&useractions_lnk; url).</para>
+    (&useractions-lnk; url).</para>
     <!-- OLD
 <screenshot>
   <screeninfo>Useractions configuration</screeninfo>

@@ -15,7 +15,7 @@
     <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml">
     how &krusader; works</ulink> you can try it yourself,
     just install it on your computer. To accept an
-    &ofm_url; like &krusader;, the user needs
+    &ofm-url; like &krusader;, the user needs
     to get used to 
     <emphasis>new ideas</emphasis> that are actually already 20
     years old. If you prefer to waste time and lose a lot of
@@ -47,7 +47,7 @@
         </textobject>
       </mediaobject>
     </figure>
-    <para>The User Interface is based on &ofm_url;
+    <para>The User Interface is based on &ofm-url;
     paradigm, a 20- year old principle that has proven its bones.
     It is known as simple, easy and powerful. In the following
     sections we will cover the basic functions of each part with the
@@ -107,18 +107,18 @@
       application or configured via a 
       <keycap>Right-Click</keycap> menu. You can decide whether or
       not you want to display it each time you start
-      &krusader; in the &konfigstartpg_lnk;,
+      &krusader; in the &konfigstartpg-lnk;,
       and you can toggle its use in the current session in the
-      &viewmenu_lnk;. The Main Toolbar contents can be
+      &viewmenu-lnk;. The Main Toolbar contents can be
       configured from the 
       <guimenuitem>Configure Toolbars</guimenuitem> in the
-      &settingsmenu_lnk; or the 
+      &settingsmenu-lnk; or the 
       <guilabel>Toolbar</guilabel> tab in the
-      &konfiglookandfeel_lnk;. Since various commands
+      &konfiglookandfeel-lnk;. Since various commands
       and options in &krusader; are context-dependent,
       some commands are not always available. The icon of an
       inappropriate or inactive action will be deactivated
-      (grayed-out) disabling its use. &bookmarks_lnk;
+      (grayed-out) disabling its use. &bookmarks-lnk;
       can be placed into the Main Toolbar and the Actions Toolbar
       with the mouse using "drag and drop".</para>
     </sect2>
@@ -128,8 +128,8 @@
         <primary>Toolbar</primary>
         <secondary>Actions Toolbar</secondary>
       </indexterm>
-      <para>&useractions_lnk; and
-      &bookmarks_lnk; can be "plugged" into the 
+      <para>&useractions-lnk; and
+      &bookmarks-lnk; can be "plugged" into the 
       <guilabel>Actions Toolbar</guilabel>. To show it, use 
       <emphasis role="bold">
         <menuchoice>
@@ -164,7 +164,7 @@
       archive". This format makes the paths uniform and easy to
       read. The 
       <guibutton>Location Toolbar</guibutton> supports also
-      &kioslaves1_url; but not all of them, some can
+      &kioslaves1-url; but not all of them, some can
       only be used with the 
       <link linkend="krviewer">viewer</link> and some can not be
       used. The user can enter a desired path by clicking on it. 
@@ -202,13 +202,13 @@
           <para>
           <userinput>
             <command>ipod:/</command>
-          </userinput>uses the &kio_ipodslave_url; to
+          </userinput>uses the &kio-ipodslave-url; to
           access, upload and organize the music stored on
           &appleipod;.</para>
         </listitem>
         <listitem>
           <para>And last but not least
-          &remote_connections_lnk; .</para>
+          &remote-connections-lnk; .</para>
         </listitem>
       </itemizedlist>You can copy-paste a &URL; in the 
       <guibutton>Location Toolbar</guibutton> or use a middle click.
@@ -276,11 +276,11 @@
     action takes place. Currently, there are two types of panels: 
     <itemizedlist>
       <listitem>
-        <para>&list_panel_lnk;: shows the files and
+        <para>&list-panel-lnk;: shows the files and
         directories.</para>
       </listitem>
       <listitem>
-        <para>&popup_panel_lnk;: has several display
+        <para>&popup-panel-lnk;: has several display
         modes: Preview, Tree, Quickselect, View and Disk Usage for
         the file or directory that has the focus. The PopUp Panel
         may be left open or closed, as desired.</para>
@@ -299,8 +299,8 @@
     <guilabel>Information or Totals labels</guilabel>, or by
     selecting any file in a panel with the mouse. As always,
     default startup settings can be modified with the
-    &konfigstartpg_lnk;, and you control the current
-    session with the &viewmenu_lnk;.</para>
+    &konfigstartpg-lnk;, and you control the current
+    session with the &viewmenu-lnk;.</para>
     <!-- OLD
 <screenshot>
     <screeninfo>List Panel</screeninfo>
@@ -389,7 +389,7 @@
           will appear on the right of the Column Header text,
           showing the sort direction (Up arrow = A to Z sorting,
           Down arrow = Z to A sorting). Default
-          &useractions_lnk; set a keybinding for the
+          &useractions-lnk; set a keybinding for the
           Column Headers. The default 
           <guilabel>Column Headers</guilabel> are: 
           <guilabel>Name, Ext, Size, Modified, rwx</guilabel>.
@@ -413,14 +413,14 @@
           <emphasis>
             <guilabel>File List</guilabel>
           </emphasis>: displays the files and directories in the
-          browsed directory. The &quick_search_lnk;
+          browsed directory. The &quick-search-lnk;
           allows you to search for files by typing their names, or
           the first few characters of a file name. Pressing
           &Enter; or double clicking on a file will
           open/execute that file. You can select/unselect files
           using the mouse with the 
           <keycap>Insert</keycap> key or the
-          &editmenu_lnk;.</para>
+          &editmenu-lnk;.</para>
         </listitem>
         <listitem>
           <para>
@@ -448,10 +448,10 @@
       selected files are shown in blue and the current file is
       surrounded by a fine-lined rectangle. By default an icon is
       shown according to the file type. Use
-      &konfiglookandfeel_lnk; to change the default
+      &konfiglookandfeel-lnk; to change the default
       configuration to meet your individual needs.</para>
       <para>Some useful 
-      <guilabel>List panel</guilabel>&keybindigs_lnk;: 
+      <guilabel>List panel</guilabel>&keybindigs-lnk;: 
       <itemizedlist>
         <listitem>
           <para>
@@ -543,7 +543,7 @@
           <para>
           <emphasis>
             <guilabel>Disk Usage Panel</guilabel>
-          </emphasis>: views the &diskusage_lnk; of a
+          </emphasis>: views the &diskusage-lnk; of a
           directory.</para>
         </listitem>
       </itemizedlist>If needed you can resize the window
@@ -567,7 +567,7 @@
     <para>This part of the <link linkend="gloss-gui">GUI</link> 
     can have four modes: Command Line, Terminal Emulator, show both and show none.
     You can choose your mode of operation either on start-up with the 
-    &konfigstartpg_lnk;, or for the current session with the &viewmenu_lnk; .
+    &konfigstartpg-lnk;, or for the current session with the &viewmenu-lnk; .
     <link linkend="useractions">Useraction placeholders</link> are supported in the 
     Command Line and Terminal Emulator.</para>
     
@@ -723,15 +723,15 @@
     <literal>foo/bar/test</literal>. You can choose to display 
     <link linkend="faqu_resize">or not</link> the 
     <guilabel>FN keys bar</guilabel> when starting up
-    &krusader; via the &konfigstartpg_lnk;,
+    &krusader; via the &konfigstartpg-lnk;,
     and you can toggle its use in the current session with the
-    &viewmenu_lnk;. The actions and
-    &keybindigs_lnk; performed by the function keys are
+    &viewmenu-lnk;. The actions and
+    &keybindigs-lnk; performed by the function keys are
     configurable since version 1.51, they will remain active with
     or without the 
     <guilabel>FN keys bar</guilabel> displayed.</para>
   </sect1>
-  <sect1 id="folder_tabs">
+  <sect1 id="folder-tabs">
     <title>Folder Tabs</title>
     <!-- OLD
 <screenshot>
@@ -754,19 +754,19 @@
         </textobject>
       </mediaobject>
     </figure>
-    <para>With &folder_tabs; you can quickly change to
+    <para>With &folder-tabs; you can quickly change to
     multiple folders; each panel has its own
-    &folder_tabs;. The &folder_tabs;
+    &folder-tabs;. The &folder-tabs;
     positions are saved when closing &krusader;. To
-    switch between &folder_tabs;, click them with the
-    mouse. Squeezed &folder_tabs; have tooltips to
-    display the full path. The following &folder_tabs;
+    switch between &folder-tabs;, click them with the
+    mouse. Squeezed &folder-tabs; have tooltips to
+    display the full path. The following &folder-tabs;
     operations are available: 
     <itemizedlist>
       <listitem>
         <para>To 
         <keycap>open a new tab</keycap> and keep the current
-        directory: &right_click; on a directory and
+        directory: &right-click; on a directory and
         select 
         <keycap>open in a new tab</keycap>, or use the
         &MMB;, or use 
@@ -775,7 +775,7 @@
       </listitem>
       <listitem>
         <para>To 
-        <keycap>duplicate a tab</keycap>: &right_click;
+        <keycap>duplicate a tab</keycap>: &right-click;
         on the Folder Tab and select 
         <keycap>duplicate tab</keycap>, or use 
         <keycombo action="simul">
@@ -785,7 +785,7 @@
       <listitem>
         <para>To 
         <keycap>close a tab</keycap> (except the left tab):
-        &right_click; on the tab and select 
+        &right-click; on the tab and select 
         <keycap>close tab</keycap>, or use the &MMB;, or
         use the Folder tab 
         <guibutton>"red cross"</guibutton> button, or use 
@@ -822,7 +822,7 @@
     <link linkend="list_panel">Media</link>, 
     <link linkend="folderhistory">Folder history</link>, 
     <link linkend="bookman">Bookmarks</link>, 
-    <link linkend="folder_tabs">Tab</link>, 
+    <link linkend="folder-tabs">Tab</link>, 
     <link linkend="cmdline">Commandline</link>, 
     <link linkend="fnkeys">Function keys</link>.</para>
   </sect1>

@@ -81,7 +81,7 @@
     organizing your bookmarks.</para>
     <para>To use your bookmarks, click the 
     <guibutton>Bookmark</guibutton> button and choose a bookmark.
-    You may also use the &keybindigs_lnk; : 
+    You may also use the &keybindigs-lnk; : 
     <keycombo action="simul">&Ctrl;&Shift;
     <keycap>d</keycap></keycombo> to bookmark the current item, 
     <keycombo action="simul">&Alt;
@@ -91,7 +91,7 @@
     <keycap>d</keycap></keycombo> to open the bookmarks of the
     active panel. A &MMB; click on bookmarks opens them
     in a new 
-    <link linkend="folder_tabs">Folder tab</link>.</para>
+    <link linkend="folder-tabs">Folder tab</link>.</para>
     <para>Navigation in bookmarks: 
     <orderedlist>
       <listitem>
@@ -127,7 +127,7 @@
     well as &krusader;'s bookmark file, something will
     be lost.</para>
   </sect2>
-  <sect2 id="popular_urls">
+  <sect2 id="popular-urls">
     <title>Popular URL's</title>
     <indexterm>
       <primary>Popular URL's</primary>
@@ -140,7 +140,7 @@
     URLs, sorted by ranking, so that the top &URL; is
     the most popular. This is easy for when you need to visit
     &URL;s often, but do not want to create
-    &bookmarks_lnk;, it serves as a temporary bookmark
+    &bookmarks-lnk;, it serves as a temporary bookmark
     list for the most visited links. 
     <guilabel>Quicksearch Popular URL's</guilabel> is a fast way to
     browse/select the popular &URL;s: 
@@ -169,7 +169,7 @@
     <title>Permanent bookmarks</title>
     <para>These are hardcoded bookmarks to the top bookmark menu;
     there is no need for them to be saved to the file. With the
-    &context_menu_lnk; you can enable/disable these
+    &context-menu-lnk; you can enable/disable these
     permanent bookmarks. The following permanent bookmarks are
     available: 
     <itemizedlist>
@@ -186,7 +186,7 @@
       </listitem>
       <listitem>
         <para>
-        <guilabel>Virtual Filesystem</guilabel> &vfs_lnk;
+        <guilabel>Virtual Filesystem</guilabel> &vfs-lnk;
         
         <filename>virt:/</filename> is not a virtual folder, but a
         container for &URL;'s from different file
@@ -224,7 +224,7 @@
     &keditbookmarks; (part of the kdebase package) is a
     bookmark editor for &konqueror;,
     &krusader; and other applications, which use the
-    &xbel_url; standard for the bookmark format. The
+    &xbel-url; standard for the bookmark format. The
     bookmarks are stored in 
     <filename>
     ~/.kde/share/apps/krusader/krbookmarks.xml.</filename></para>
@@ -264,25 +264,25 @@
   <sect2 id="bookmark_buttons">
     <title>Bookmarks as action buttons on the Toolbar</title>
     <para>Bookmarks can be placed as buttons on the
-    &main_toolbar_lnk; or the
-    &actions_toolbar_lnk;. You can even make a
+    &main-toolbar-lnk; or the
+    &actions-toolbar-lnk;. You can even make a
     key-binding for them: 
     <itemizedlist>
       <listitem>
-        <para>Create your &bookmarks_lnk;.</para>
+        <para>Create your &bookmarks-lnk;.</para>
       </listitem>
       <listitem>
         <para>If you want, create keybindings for the bookmarks in
         the 
         <guilabel>Key-bindings</guilabel> section of the
-        &konfiglookandfeel_lnk;.</para>
+        &konfiglookandfeel-lnk;.</para>
       </listitem>
       <listitem>
         <para>Add your bookmarks as action buttons on the
-        &main_toolbar_lnk; or the
-        &actions_toolbar_lnk; with the 
+        &main-toolbar-lnk; or the
+        &actions-toolbar-lnk; with the 
         <guilabel>Toolbar</guilabel> section of the
-        &konfiglookandfeel_lnk;.</para>
+        &konfiglookandfeel-lnk;.</para>
       </listitem>
     </itemizedlist></para>
   </sect2>
