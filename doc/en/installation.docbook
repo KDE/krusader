@@ -783,7 +783,7 @@ Good - your configure finished. Start make now
               <userinput>
                 <command>./configure</command>
                 <option>--without-konqueror</option>
-              </userinput>: build Krusader without support
+              </userinput>: build &krusader; without support
               &konqueror;'s servicemenus, default=with.
               This means that &konqueror;'s right-click
               menu entries will not be available.</para>
@@ -793,10 +793,18 @@ Good - your configure finished. Start make now
               <userinput>
                 <command>./configure</command>
                 <option>--without-javascript</option>
-              </userinput>: build Krusader without JavaScript
+              </userinput>: build &krusader; without JavaScript
               support, default=with. This means that the
               &javascript-console-lnk; will not be
               available.</para>
+            </listitem>
+            <listitem>
+              <para>
+              <userinput>
+                <command>./configure</command>
+                <option>--without-acl</option>
+              </userinput>: build &krusader; without ACL support default=with.
+              Sometimes this option is needed if you get a ACL compile error when running <command>make</command>.</para>
             </listitem>
           </itemizedlist>In the past the support was always
           compiled in when the headers where found, now you have
@@ -910,7 +918,7 @@ make[1]: Leaving directory `/home/source/krusader_kde3'
     <indexterm>
       <primary>&MacOS;-X port</primary>
     </indexterm>
-    <para>Krusader is ported to &MacOS; thanks to Jonas
+    <para>Krusader is ported to &MacOS; thanks the &fink-url;-project and Jonas
     B&auml;hr and &bodo-tasche-url; .
     Unfortunately the only *stable* kdelib-binaries which
     &fink-url; has to offer is currenly 3.1.4 which
@@ -972,6 +980,37 @@ make[1]: Leaving directory `/home/source/krusader_kde3'
         available</para>
       </listitem>
     </orderedlist></para>
+
+<para>Follow these instructions if you wish to compile &krusader;-1.80.0 : 
+    <orderedlist>
+      <listitem>
+        <para>Install &apple-x11-url;</para>
+      </listitem>
+      <listitem>
+        <para>nstall fink and 
+        <ulink url="http://fink.sourceforge.net/faq/usage-fink.php#unstable">enable fink unstable</ulink>.</para>
+      </listitem>
+      <listitem>
+        <para>Compile and install the &kde; bundle in fink: fink install bundle-kde-ssl 
+             (if you get “no package found” the previous step did not succeed).</para>
+      </listitem>
+      <listitem>
+        <para>Use <filename>krusader.info</filename> (provided in the &krusader;-sourcecode) and then copy to 
+        <filename>/sw/fink/dists/local/main/finkinfo</filename> .</para>
+      </listitem>
+      <listitem>
+        <para>Compile and install &krusader; in fink: <command>fink install krusader</command>
+        </para>
+      </listitem>
+      <listitem>
+        <para>Start X11 (startx) and in xterm run &krusader;
+        </para>
+      </listitem>
+    </orderedlist>
+    Thanks to <ulink url="http://hritcu.wordpress.com/2006/08/10/krusader-on-intel-mac/">Catalin Hritcu </ulink> for these install instructions.
+</para>
+
+
   </sect1>
   <sect1 id="starting-krusader">
     <title>Starting &krusader;</title>
