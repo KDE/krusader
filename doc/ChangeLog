@@ -1,14 +1,14 @@
 The Krusader Handbook ChangeLog
 -------------------------------
 
-1.80.0 "??????"
+1.80.0 "Final 3 Stones"
 ==================================
 Date: 2007-??-??
 
 
   ADDED: Terminal Emulator, paste with SHIFT+INSERT and CTRL+V
   TODO: Vaclav's checksum patches (added sha* tools, fixed bugs etc...)
-  1/2ADDED: Synchronizer: ignore hidden files option
+  ADDED: Synchronizer: ignore hidden files option
   TODO: Synchronizer-results: drag [left], SHIFT+drag [right],
         Copy left/right selected items to clipboard
   TODO: Locate-results: dragging items, copy to clipboard (CTRL+C)
@@ -30,12 +30,11 @@ Date: 2007-??-??
 ==================================
 Date: 2007-03-31
 
-  1/2TODO: Support for useraction placeholders in Krusader's commandline
-
+  ADDED: Support for useraction placeholders in Krusader's commandline
   ADDED: New default user action "Backup current"
   ADDED: ALT+C as default shortcut for compare directories 
-  TODO: GUI for configuring the atomic extensions in Konfigurator
-  TODO: quotation mark handling at search (ex. "Program Files")
+  ADDED: GUI for configuring the atomic extensions in Konfigurator
+  ADDED: quotation mark handling at search (ex. "Program Files")
 
   ---------------------------------------------------- 
   Other todo items not related to Krusader's changelog: 
@@ -77,18 +76,18 @@ Date: 2007-01-07
 
   ADDED: TerminalEmulator: Ctrl+F switches between full-widget TE, normal TE
          (thanks to Vaclav Juza)
-??1/2TODO: Ctrl+Up from panel focuses the origin editbox, Ctrl+Down from origin
+  TODO: Ctrl+Up from panel focuses the origin editbox, Ctrl+Down from origin
            editbox focuses the panel (thanks to Vaclav Juza)
   ADDED: TerminalEmulator: Ctrl+Shift+Up/Down always focus/unfocus TE
          independently whether the command line is shown or not
   ADDED: TerminalEmulator: if the command line is hidden,
          TE receives Ctrl+Up / Ctrl+Down (thanks to Vaclav Juza)
-  1/2ADDED: synchronizer: double click on a file calls the diff utility (kompare)
+  ADDED: synchronizer: double click on a file calls the diff utility (kompare)
   ADDED: atomic extensions (see CVSNEWS)
   ADDED: renaming of just the filename, without extension
   ADDED: full screen terminal window (mc-style)
   ADDED: keeping the directory structures for virt folders at copy/move
-  1/2ADDED: synchronizer, parallel threads for slow FTP servers
+  ADDED: synchronizer, parallel threads for slow FTP servers
 
   ADDED: Better quick navigation: first move mouse over subdir, then
          press ctrl + left mouse button (patch by Jiri Palecek)

@@ -398,11 +398,24 @@
             <entry>
               <para>
                 <keycombo action="simul">&Alt;
-                <keycap>L</keycap></keycombo>
+                <keycap>l</keycap></keycombo>
               </para>
             </entry>
             <entry>
               <para>&panel-profiles-lnk;.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Alt;
+                <keycap>o</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="panel_toolbar">Sync panels aka "Equals Button (=)".</link>
+              </para>
             </entry>
           </row>
           <row>
@@ -430,6 +443,17 @@
                 <link linkend="unpacking-archives">Unpack
                 files.</link>
               </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Alt;
+                <keycap>y</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para><link linkend="synchronizer">Synchronize Directory changes</link>.</para>
             </entry>
           </row>
           <row>
@@ -754,7 +778,7 @@
             </entry>
             <entry>
               <para>
-                <link linkend="view-menu">Swap panels.</link>
+                <link linkend="view-menu">Swap panels (don't swap all folder tabs)</link>.
               </para>
             </entry>
           </row>
@@ -807,7 +831,7 @@
             </entry>
             <entry>
               <para>
-                <link linkend="folder-tabs">Close tab.</link>
+                <link linkend="folder-tabs">Close Current tab.</link>
               </para>
             </entry>
           </row>
@@ -912,7 +936,7 @@
             <entry>
               <para>
                 <link linkend="cmdline">Go from the active panel to
-                the command line/terminal emulator.</link>
+                the command line/terminal emulator</link>.
               </para>
             </entry>
           </row>
@@ -1078,6 +1102,18 @@
               <para>
                 <keycombo action="simul">
                 &Ctrl;&Shift;
+                <keycap>u</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para><link linkend="view-menu">Swap Sides (also swap all folder tabs)</link>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul">
+                &Ctrl;&Shift;
                 <keycap>Left arrow</keycap></keycombo>
               </para>
             </entry>
@@ -1215,7 +1251,7 @@
             <entry>
               <para>Show/hide the 
               <link linkend="cmdline">terminal
-              emulator.</link>.</para>
+              emulator</link>.</para>
             </entry>
           </row>
           <row>

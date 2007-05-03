@@ -50,7 +50,10 @@
       <literal>'*text*'</literal>. You can exclude files from the
       search with '|' (&eg; 
       <literal role="extension">'*.cpp *.h |
-      *.moc.cpp'</literal>).</para>
+      *.moc.cpp'</literal>) . You can use quotation marks for names
+            that contain spaces. Filter "Program Files" searches
+            out those files/directories the name of which is <filename>Program
+            Files</filename>.</para>
     </listitem>
     <listitem>
       <para>
