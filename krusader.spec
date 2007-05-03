@@ -1,24 +1,22 @@
-# Spec file for Krusader-1.70.1 on Fedora Core 6 (Fedora Extras) by Marcin Garski <mgarski[AT]post.pl>
-# http://cvs.fedora.redhat.com/viewcvs/rpms/krusader/FC-6/?root=extras 
-# http://fedoraproject.org/extras/6/SRPMS/repoview/krusader.html
-# http://fedoraproject.org/extras/6/i386/repoview/krusader.html
+# Spec file for Krusader-1.80.0 on Fedora 7 by Marcin Garski <mgarski[AT]post.pl>
+# http://cvs.fedoraproject.org/viewcvs/rpms/krusader/devel/?root=extras
+# http://download.fedoraproject.org/pub/fedora/linux/extras/development/SRPMS/repoview/krusader.html
+# http://download.fedoraproject.org/pub/fedora/linux/extras/development/i386/repoview/krusader.html
 
-Name:		krusader
-Version:	1.70.1
-Release:	2%{?dist}
-Summary:	An advanced twin-panel (commander-style) file-manager for KDE
+Name:           krusader
+Version:        1.80.0
+Release:        1%{?dist}
+Summary:        An advanced twin-panel (commander-style) file-manager for KDE
 
-Group:		Applications/File
-License:	GPL
-URL:		http://krusader.sourceforge.net/
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Group:          Applications/File
+License:        GPL
+URL:            http://krusader.sourceforge.net/
+Source0:        http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:	qt-devel kdelibs-devel kdebase-devel kdebindings-devel
-BuildRequires:	desktop-file-utils automake gettext
-BuildRequires:	arts-devel libpng-devel gamin-devel
-Requires(post): desktop-file-utils
-Requires(postun): desktop-file-utils
+BuildRequires:  kdelibs-devel kdebase-devel kdebindings-devel
+BuildRequires:  libpng-devel gamin-devel libacl-devel
+BuildRequires:  desktop-file-utils automake gettext
 
 %description
 Krusader is an advanced twin-panel (commander-style) file-manager for KDE
@@ -39,12 +37,11 @@ You should give it a try.
 
 %build
 unset QTDIR || : ; . %{_sysconfdir}/profile.d/qt.sh
-export QTLIB=${QTDIR}/lib QTINC=${QTDIR}/include
 
 %configure \
-	--disable-rpath \
-	--disable-debug \
-	--disable-dependency-tracking
+       --disable-rpath \
+       --disable-debug \
+       --disable-dependency-tracking
 make %{?_smp_mflags}
 
 %install
@@ -52,17 +49,17 @@ rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 
 desktop-file-install --vendor fedora --delete-original \
-	--dir $RPM_BUILD_ROOT%{_datadir}/applications \
-	--add-category X-Fedora \
-	$RPM_BUILD_ROOT%{_datadir}/applnk/*.desktop
-
-# Workaround for some wicked install bug
-rm -rf $RPM_BUILD_ROOT%{_tmppath}
+       --dir $RPM_BUILD_ROOT%{_datadir}/applications/kde \
+       $RPM_BUILD_ROOT%{_datadir}/applications/kde/*.desktop
 
 # Make symlink relative
 pushd $RPM_BUILD_ROOT%{_docdir}/HTML/en/krusader/
 ln -sf ../common
 popd
+
+# Fix FAQ encoding
+iconv -f ISO-8859-1 -t UTF-8 < FAQ > FAQ.tmp
+mv -f FAQ.tmp FAQ
 
 %find_lang %{name}
 
@@ -71,12 +68,12 @@ update-desktop-database &> /dev/null ||:
 
 touch --no-create %{_datadir}/icons/crystalsvg || :
 if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-	%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
+       %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
 fi
 
 touch --no-create %{_datadir}/icons/locolor || :
 if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-	%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/locolor || :
+       %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/locolor || :
 fi
 
 %postun
@@ -84,35 +81,40 @@ update-desktop-database &> /dev/null ||:
 
 touch --no-create %{_datadir}/icons/crystalsvg || :
 if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-	%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
+       %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
 fi
 
 touch --no-create %{_datadir}/icons/locolor || :
 if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-	%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/locolor || :
+       %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/locolor || :
 fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files -f %name.lang
-%defattr(-, root, root)
+%defattr(-,root,root,-)
 %doc doc/actions_tutorial.txt AUTHORS ChangeLog COPYING CVSNEWS FAQ README TODO
 %{_bindir}/krusader
-%{_libdir}/kde3/kio_iso.*
-%{_libdir}/kde3/kio_krarc.*
-%{_datadir}/applications/*krusader*.desktop
+%{_libdir}/kde3/kio_*.*
+%{_datadir}/applications/kde/*krusader*.desktop
 %{_datadir}/apps/konqueror/servicemenus/isoservice.desktop
 %{_datadir}/apps/krusader/
 %{_datadir}/config/kio_isorc
-%{_docdir}/HTML/en/krusader/
+%{_docdir}/HTML/*/krusader/
 %{_datadir}/icons/crystalsvg/*/apps/*
 %{_datadir}/icons/locolor/*/apps/*
 %{_mandir}/man1/krusader.1*
-%{_datadir}/services/iso.protocol
-%{_datadir}/services/krarc.protocol
+%{_datadir}/services/*.protocol
 
 %changelog
+* Thu May 03 2007 Marcin Garski <mgarski[AT]post.pl> 1.80.0-1
+- Updated to version 1.80.0
+
+* Fri Apr 20 2007 Marcin Garski <mgarski[AT]post.pl> 1.80.0-0.1.beta2
+- Updated to version 1.80.0-beta2
+- Drop X-Fedora category
+
 * Fri Sep 01 2006 Marcin Garski <mgarski[AT]post.pl> 1.70.1-2
 - Rebuild for Fedora Core 6
 - Spec tweak
@@ -131,7 +133,7 @@ rm -rf $RPM_BUILD_ROOT
 - Remove --disable-dependency-tracking
 
 * Sun Jan 15 2006 Marcin Garski <mgarski[AT]post.pl> 1.60.1-4
-- Change "/etc/profile.d/qt.sh" to "%{_sysconfdir}/profile.d/qt.sh"
+- Change "/etc/profile.d/qt.sh" to "%%{_sysconfdir}/profile.d/qt.sh"
 - Add --disable-debug --disable-dependency-tracking & --enable-final
 
 * Wed Dec 14 2005 Marcin Garski <mgarski[AT]post.pl> 1.60.1-3
@@ -150,7 +152,7 @@ rm -rf $RPM_BUILD_ROOT
 - Include .la files
 - Include actions_tutorial.txt
 - Fix krusader_root-mode.desktop file to show only in KDE and under System
-  category
+ category
 - Fix compile warnings
 
 * Fri Aug 12 2005 Marcin Garski <mgarski[AT]post.pl> 1.60.0-2
