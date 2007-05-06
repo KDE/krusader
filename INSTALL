@@ -1,7 +1,7 @@
 --------------------------------------------
-- Documentation version:  1.80.0-1
-- Documentation date:  2006-12-21
-- Parsing date: Thu Dec 21 20:12:12 UTC 2006
+- Documentation version:  1.80.0
+- Documentation date:  2007-05-03
+- Parsing date: Sun May 6 22:32:02 CEST 2007
 --------------------------------------------
  
 This file contains the TXT install instructions for Krusader.
@@ -45,932 +45,814 @@ db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
 88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
 YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD 
 
+
+This textfile created with the next command: $ xmlto txt index.docbook
 ------------------------------------------------------------------------
 
-Appendix A. Installation
-     _________________________________________________________
-
-A.1. Requirements
-
-   In order to successfully use the most recent Krusader, you
-   need KDElibs >= 3.4
-
-   Required KDE version:
-
-     * Krusader v1.01: KDE 2
-     * Krusader v1.02 - 1.40: KDE 3.0 - KDE 3.2
-     * Krusader 1.40: prefers KDE 3.2 (otherwise not all features
-       will be available)
-     * Krusader v1.50 - v1.51: KDE 3.2 - KDE 3.3 (Konfigurator
-       crash on KDE 3.4)
-     * Krusader v1.60.0 - v1.70.0: KDE 3.3 - KDE 3.5
-     * Krusader 1.70.x: prefers KDE >= 3.4 (otherwise not all
-       features will be available)
-     * Krusader 1.80.0: KDE 3.4 - KDE 3.5
-     * Krusader v2.xx.x: KDE 4 - Qt(TM) 4 The big challenge,
-       maybe a first release in 2006 ;)
-
-   Platforms:
-
-     * All POSIX (Linux�/BSD/UNIX�-like OSes), Solaris(TM).
-     * All BSD Platforms (FreeBSD�/NetBSD�/OpenBSD�/Mac� OS).
-
-   Krusader uses about 3-4 MByte of memory to run (and about 15
-   Mbyte shared memory which is also used by other processes),
-   but this may vary depending on your platform and
-   configuration. In order to handle archives the archivers must
-   be configured here.
-
-   A package of popular (un)packers, Krusader itself and addons
-   can be found on the Krusader downloadpage.
-
-   For more requirements, continue to read this chapter and read
-   also the FAQ section.
-     _________________________________________________________
-
-A.2. How to obtain Krusader
-
-   The latest information about Krusader can be found on the
-   Krusader website .
-     _________________________________________________________
-
-A.2.1. Download Krusader
-
-   It's recommend to use the Krusader package that is provided by
-   your distribution, Distrowatch.com is a great resource to
-   check the availability. If your distribution does not offer
-   Krusader please contact the creators of your distribution and
-   ask them to provide a Krusader package, thanks!
-
-   The latest version (and older versions) can be found on the
-   Krusader downloadpage and on the Sourceforge mirrors. It
-   contains the source tarballs, RPM and DEB packages to whatever
-   distro the Krusader-Krew is using and packages build by
-   third-parties and Krusader users.
-
-   Distributions who provide Krusader:
-
-     * SuSE� >= 9.3, Note: please use Krusader-1.60.0 and not
-       Krusader-1.51 (might be instable on SuSE�9.3-KDE3.4)
-     * Fedora(TM) via Fedora(TM) Extras # yum install krusader
-       will do the job, thanks to Marcin Garski. Red Hat� RPM
-       packages can usually found on the Krusader downloadpage or
-       at dag.wieers.com and Dries Verachtert RPM Repository .
-     * Debian�, on our Krusader downloadpage you might find more
-       recent "unofficial bleeding-edge" DEB packages. Note:
-       usually Debian� packages work also on distributions who
-       are "based on Debian�", some of these provide their own
-       (incompatible) packages. Ubuntu�/Kubuntu�, Linspire�,
-       Knoppix� 4.x DVD, Kanotix�, ...
-     * Mandriva� via the contrib repository # urpmi krusader will
-       do the job, Gentoo�, Yoper(TM)
-     * Arch Linux�, Frugalware Linux�, PCLinuxOS�, altlinux�
-     * FreeBSD�, the port is maintained by Heiner Eichmann .
-     * NetBSD�, Lunar Linux� ,Ark Linux�, OpenLX(TM), Source
-       Mage�.
-     * Even more distributions can be found with Distrowatch.com
-
-   Use the installation tools that your distro uses to install
-   the Krusader package, sometimes an internet connection is
-   needed if Krusader is not available on the CD or DVD. There
-   are probably more distributions out there who include
-   Krusader, sorry we can't mention you all, though feedback is
-   always welcome to improve this distrolist.
-
-   Others
-
-     * Slackware� tgz binaries can usually found on the Krusader
-       downloadpage, or use Portpkg that contains a Krusader
-       SlackBuild, # portpkg krusader will do the job.
-     * There is a Mac� OS-X port with the help of fink , the port
-       is maintained by Bodo Tasche .
-
-   Installation via the klik protocol .
-
-     * klik://krusader downloads Krusader provided by Debian�
-       stable, more information is available .
-     * klik://krusader-latest downloads the latest stable
-       Krusader provided by the Krusader Krew.
-     * klik://krusader-cvs downloads a cvs snapshot of Krusader
-       provided by the Krusader Krew.
+Chapter 3. Installation on KDE3.x
 
-   Search engines
+Table of Contents
 
-     * You can also find packages on Linux� software archives
-       such as freshmeat.net or KDE-APPS.org .
-     * If you can't find a package for your distribution, we
-       recommend searching for it with rpmfind , rpmpbone or
-       rpmseek .
-
-   If you like Krusader go to one of these sites and rate
-   Krusader, thanks.
-
-   If you still can't find a package, please don't worry. We
-   provide a very detailed installation procedure. This very
-   thorough HowTo shows even newcomers how to compile Krusader
-   from source, even if you've never compiled a program from
-   source. Please continue to read this chapter ;)
-     _________________________________________________________
+Requirements
+Obtaining Krusader
 
-A.2.2. Version scheme
-
-   We use a new version scheme since Krusader-1.60.0
+    Krusader Downloads
+    Version Scheme
+    Stable Version
+    Development Version (beta release)
+    CVS Builds
+    Subversion
+    Older Releases
 
-     * First digit - the major version
-     * Second digit(s) - percentage of features completed for
-       this major version
-     * third digit(s) - bugfixes.
-
-   So in essence, releasing Krusader-1.60.0, means that we
-   believe that Krusader is about 60% done with all the features
-   we'd schedule for the 1.x.x series. Series 2.x.x will be KDE
-   4.x releases. We hope it'd be easy to understand.
-     _________________________________________________________
-
-A.2.3. Stable version
-
-   krusader-x.xx.tar.gz
-
-   Note
-
-   Krusader is released under the GNU General Public License
-   (GPL), this means that THE PROGRAM IS PROVIDED "AS IS" WITH NO
-   WARRANTY OF ANY KIND, even when it is marked as a stable
-   release.
-     _________________________________________________________
-
-A.2.4. Development version (beta release)
-
-   krusader-x.xx-betax.tar.gz
-
-   Before every stable release we release at least one
-   development version, so that we can hunt down the bugs.
-
-   Warning
+Compiling and Installing
 
-   These releases are beta releases and will probably contain
-   some bugs.
-
-   Note
-
-   If you are using a development or CVS version, it is possible
-   that the latest new features are not yet in the "The Krusader
-   Handbook". Please read the ChangeLog file online or in the
-   Krusader sources to find out more about the new features. For
-   a brief description, please read the CVSNEWS file online or in
-   the Krusader sources. User feedback and Bug reports are always
-   welcome!
-
-   The beta release has 3 goals:
-
-     * Apply a feature-freeze until the stable is released, only
-       bugs will be fixed. New features have to wait until the
-       stable is released.
-     * Obtain feedback from Krusader users so that we can fix the
-       bugs.
-     * Give translators the time to update the translations, for
-       the coming stable. Please read the i18n page
-     _________________________________________________________
+    Compiling Krusader. What now?
+    Quickstart Installation Tutorial
+    Detailed Installation Tutorial
 
-A.2.5. CVS builds
+Installing on Mac® OS-X
+Starting Krusader
+Configuring Krusader
+Making Krusader the default file manager
 
-   krusader-cvs-yyyymmdd.tar.gz
+Requirements
 
-   Warning
-
-   These builds are untested and come without any warranty. They
-   may contain bugfixes, new features or new bugs!
-
-   We provide daily snapshots of Krusader's CVS version. For
-   those who are interested, the nightly tarball can be found on
-   the Krusader's Cutting Edge page. Depending on the stage of
-   development, this version will either be stable or unstable.
-   Just before a stable release, the CVS version is almost
-   stable. After a stable release new features will be committed
-   into CVS, which might lead to the appearance of bugs. In some
-   rare cases, the build will even not compile if we make a
-   mistake, in that case we try to fix the mistake as soon as
-   possible.
+In order to successfully use the most recent Krusader, you need KDElibs >= 3.4
 
-   Krusader provides 2 nightly snapshots:
-
-    1. krusader-cvs-yyyymmdd.tar.gz: make -f Makefile.cvs must be
-       run before the ./configure script is available
-    2. krusader-cvs2-yyyymmdd.tar.gz: for users who have problems
-       with the make -f Makefile.cvs command, we have already
-       done this for you and the ./configure script is included
-       in the tarball (This tarball is a bit bigger then the
-       first one).
-
-   Checkout from CVS. Krusader can be checked out through
-   anonymous (pserver) CVS with the following instruction set.
-   The module you wish to check out must be specified as the
-   modulename. When prompted for a password for anonymous, simply
-   press the Enter key.
-
-   Currently, there are two module options:
-
-     * krusader_kde2: the KDE2 branch, stable but it's basically
-       v1.01 and there are no planned changes
-     * krusader_kde3: the KDE3 branch, that we currently use
-
-   To checkout Krusader from CVS:
-$ cvs -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusad
-er login
-$ cvs -z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/kr
-usader co krusader_kde3
-
-   (note: updates from within the modules directory do not need
-   the -d parameter)
-
-   If you want to checkout a specific version of Krusader from
-   CVS (e.g. Krusader-1.60.0) :
-$ cvs -z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/kr
-usader co -rversion_1_60_0 krusader_kde3
-
-   If you want to checkout a specific date of Krusader from CVS
-   (e.g. Krusader-2006-10-29) :
-$ cvs -z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/kr
-usader co -D2006-10-29 krusader_kde3
-
-   Mostly being Gentoo� users, we provide a Gentoo� Live Ebuild
-   for all those who want to stay on the bleeding edge of
-   filemanagement and don't want to miss the advantages of
-   portage. Please take a look at our Krusader's Cutting Edge
-   page for more installation details.
-
-   We also provide ViewCVS to browse the CVS repository.
-     _________________________________________________________
-
-A.2.6. Subversion
-
-   Subversion will probably used for the Krusader 2.x series for
-   KDE4. It's also possible to Browse the Subversion Repository.
-
-   To checkout the latest Krusader 1.x for KDE 3 from SVN: (NOTE:
-   at moment of writing it's recommend to use CVS for
-   krusader_kde3, since krusader_kde3 is developed in CVS and not
-   in SVN)
-$ svn co https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kd
-e3
-
-   To checkout the latest Krusader 2.x for KDE 4 from SVN: (NOTE:
-   not yet available at moment of writing)
-$ svn co https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kd
-e4
-     _________________________________________________________
-
-A.2.7. Older releases
-
-   Looking for older releases? Try the Sourceforge mirrors
-   available from our project page.
-     _________________________________________________________
-
-A.3. Compilation and installation
-
-A.3.1. I have downloaded the sources for Krusader. What now?
-
-   Check the environment variables KDEDIR - QTDIR.
-
-   In order to compile and install Krusader on your system, type
-   the following in the base directory of the Krusader package:
-$ ./configure
-$ make
-$ su -c 'make install'
-
-   If you install a CVS or beta version and if Krusader was
-   previously installed on your computer, then you should delete
-   the krusaderui.rc file in your home directory to activate the
-   new menu entries $ rm ~/.kde/share/apps/krusader/krusaderui.rc
-   , click here for more info.
-
-   Since Krusader uses autoconf and automake you should have no
-   trouble compiling it. Should you run into problems please read
-   the detailed installation instructions below.
-     _________________________________________________________
-
-A.3.2. Installation Tutorial
-
-   The next section will explain step by step, in detail, how to
-   install Krusader. This question has been asked many times and
-   especially users new to Linux� often have problems compiling
-   software from source. Therefore, we are trying to keep the
-   explanations as detailed as possible even if they are mostly
-   not Krusader specific. Experienced users may easily skip most
-   of the steps.
-
-   Because not all Linux� distributions do follow the Filesystem
-   Hierarchy Standard (FHS) it's unfortunately impossible to
-   write a tutorial that always works in all circumstances, but
-   with these guidelines will be a big help in the right
-   direction.
-
-   Note
-
-   If you encounter problems, please read first this installation
-   procedure and the FAQ, if this does not solve your problem
-   then feel free to ask for help with an help request.
-
-    1. Install all needed packages and libraries that you need
-       for the compilation, please read the FAQ.
-
-   Tip
-
-   If you install Kdevelop then (almost) everything that you need
-   to compile Krusader will be installed on your computer, BUT
-   please don't use Kdevelop to compile Krusader if you are not a
-   developer (possible automake hell), just follow the next
-   instructions.
-    2. Open your favourite terminal emulator (e.g. Konsole).
-    3. We recommend you create a separate directory to keep all
-       the sources you compile in. This will give you a better
-       overview of installed programs and makes it easier to
-       uninstall them later.
-$ mkdir ~/source
-       The chosen directory is just an example, any other will
-       work.
-    4. Copy the sources to the ~/source directory and unpack
-       them.
-$ cp /"your_dir"/krusader-x.xx.tar.gz ~/source
-$ cd ~/source
-$ tar -xzvf krusader-x.xx.tar.gz
-    5. Optional step: the tarball is no longer needed at this
-       point, you can delete it if you want or you can keep it if
-       you like.
-$ rm  krusader-x.xx.tar.gz
-    6. Change to the directory containing the sources.
-$ cd  krusader-x.xx
-    7. Check the environment variables QTDIR and KDEDIR.
-       Krusader's ./configure script needs to know where the
-       Qt(TM) and KDE directories are.
-       QTDIR : <path to your Qt installation> e.g. /usr/lib/qt3
-       or /usr/qt3
-       KDEDIR : <path to your KDE installation> e.g. /usr or
-       /opt/kde3
-       Normally your distribution will set them for you, but
-       experience has shown that some don't. You can easily check
-       the values with the echo command.
-$ echo $QTDIR
-/usr/lib/qt3
-$ echo $KDEDIR
-/usr
-       If both commands give an output, the enviroment variables
-       are set (the above example are the settings of
-       Mandriva�-Linux�). In case you just receive empty lines,
-       the variables are not set and you have to set them it
-       manually. If you have no idea what to set the variables
-       to, or if you want to check if the variables are correctly
-       set, ask your distributor or use the find command.
-$ find /usr /opt -name qtconfig -type f 2>/dev/null
-/usr/lib/qt3/bin/qtconfig
-$ find /usr /opt -name kdeinit -type f 2>/dev/null
-/usr/bin/kdeinit
-       In this case /usr/lib/qt3 is your QTDIR and /usr is your
-       KDEDIR. The installed binaries will go to /usr/bin. Now we
-       will set the enviroment variables with the export command.
-$ export QTDIR=<replace with your QTDIR>
-$ export KDEDIR=<replace with your KDEDIR>
-
-   Note
-
-   These enviroment variables are only set for the lifetime of
-   your current shell. When you close your terminal and open a
-   new one they will be gone. Assuming Krusader is not the only
-   Qt(TM)/KDE program you want to compile, we recommend to make
-   these settings permanent (e.g. append both export commands to
-   your /etc/profile) file.
-       If you can't determine your KDEDIR than kde-config
-       --prefix might help you.
-    8. If you have downloaded a stable version
-       "krusader-x.xx.tar.gz" or a beta version
-       "krusader-x.xx-betax.tar.gz", you can skip this step, in
-       this case the ./configure script is provided.
-       If you have downloaded a CVS build or nightly tarball
-       "krusader-cvs-yyyy-mm-dd.tar.gz"", you will have to run
-       the following command to create the ./configure script:
-$ make -f  Makefile.cvs
-       If everything is OK you will see the following output on
-       your screen:
+Required KDE version:
+
+  ● Krusader v1.01: KDE 2
+
+  ● Krusader v1.02 - 1.40: KDE 3.0 - KDE 3.2
+
+  ● Krusader 1.40: prefers KDE 3.2 (otherwise all features will not be
+    available)
+
+  ● Krusader v1.50 - v1.51: KDE 3.2 - KDE 3.3 (Konfigurator crash on KDE 3.4)
+
+  ● Krusader v1.60.0 - v1.70.0: KDE 3.3 - KDE 3.5
+
+  ● Krusader 1.70.x: prefers KDE >= 3.4 (otherwise all features will not be
+    available)
+
+  ● Krusader 1.80.0: KDE 3.4 - KDE 3.5
+
+  ● Krusader v2.xx.x: KDE 4 - Qt™ 4 The big challenge, a first release in 2007
+
+NOTE: there are no installation instructions for KDE4 yet available since at
+moment of writing Krusader was not ported yet to KDE4.
+
+Platforms:
+
+  ● All POSIX (Linux®/BSD/UNIX®-like OSes), Solaris™
+
+  ● All BSD Platforms (FreeBSD®/NetBSD®/OpenBSD®/Mac® OS)
+
+Krusader uses about 3-4 Mbyte of memory to run and about 15 Mbyte of shared
+memory, which is also used by other processes, but this may vary depending on
+your platform and configuration. In order to handle archives the archivers must
+be configured here.
+
+A package of popular (un)packers, Krusader itself and add-ons can be found on
+the Krusader downloadpage.
+
+For more requirements, see below. Have a look at the FAQ section as well.
+
+Obtaining Krusader
+
+The latest information about Krusader can be found on the Krusader website .
+
+Krusader Downloads
+
+it is recommended to use the Krusader package that is provided by your
+distribution. Distrowatch.com is a great resource to check the availability. If
+your distribution does not offer Krusader, please contact the creators of your
+distribution and ask them to provide a Krusader package
+
+The latest version, as well as the older versions, can be found on the Krusader
+downloadpage and on the Sourceforge mirrors. It contains the source tarballs,
+RPM and DEB packages to whatever distro the Krusader-Krew is using and packages
+build by Krusader users and third parties.
+
+Distributions who provide Krusader:
+
+  ● SuSE® >= 9.3, Note: please use Krusader-1.60.0 instead of Krusader-1.51
+    (might be unstable on SuSE®9.3-KDE3.4).
+
+  ● Fedora™ via Fedora™ Extras # yum install krusader will do the job, thanks
+    to Marcin Garski. Red Hat® RPM packages can usually found on the Krusader
+    downloadpage or at dag.wieers.com and Dries Verachtert RPM Repository .
+
+  ● Debian®, on our Krusader downloadpage you might find more recent DEB
+    packages. Note: usually Debian® packages work also on distributions that
+    are "based on Debian®", and some of these provide their own (incompatible)
+    packages. Ubuntu®/Kubuntu®, Linspire®, Knoppix® 4.x DVD, Kanotix®, etc.
+
+  ● Mandriva® via the contrib repository # urpmi krusader will do the job,
+    Gentoo®, Yoper™.
+
+  ● Arch Linux®, Frugalware Linux®, PCLinuxOS®, altlinux®.
+
+  ● FreeBSD®, the port is maintained by Heiner Eichmann.
+
+  ● NetBSD®, Lunar Linux® ,Ark Linux®, OpenLX™, Source Mage®.
+
+  ● Even more distributions can be found with Distrowatch.com.
+
+Use the installation tools included in your distro to install the Krusader
+package. You might need an internet connection if Krusader is not included on
+the CD or DVD. There are probably other distributions which include Krusader.
+If you know of one, please send feedback so that we can include it on the
+distrolist.
+
+Others
+
+  ● Slackware® tgz binaries can usually be found on the Krusader downloadpage.
+    You can also use Portpkg that contains a Krusader SlackBuild, # portpkg
+    krusader will do the job.
+
+  ● There is a Mac® OS-X port with the help of fink , the port is maintained by
+    Bodo Tasche.
+
+Installation via the klik protocol
+
+  ● klik://krusader downloads Krusader provided by Debian® stable, more
+    information is available .
+
+  ● klik://krusader-latest downloads the latest stable Krusader provided by the
+    Krusader Krew.
+
+  ● klik://krusader-cvs downloads a cvs snapshot of Krusader provided by the
+    Krusader Krew.
+
+Search engines
+
+  ● You can also find packages on Linux® software archives such as
+    freshmeat.net or KDE-APPS.org .
+
+  ● If you can notfind a package for your distribution, we recommend searching
+    for it with rpmfind, rpmpbone or rpmseek.
+
+If you enjoy using Krusader, we would appreciate it if you went to one of these
+sites and rated it.
+
+If you still can not find a package, follow the installation procedure on how
+to compile Krusader from source. This very thorough HowTo describes the process
+in such detail that even newcomers should not have any problems.
+
+Version Scheme
+
+A new version scheme has been used since Krusader-1.60.0
+
+  ● First digit - the major version
+
+  ● Second digit(s) - percentage of features completed for this major version
+
+  ● Third digit(s) - bugfixes.
+
+In essence, releasing Krusader-1.60.0 means that we believe that Krusader is
+about 60% done with all the features we had scheduled for the 1.x.x series.
+Series 2.x.x will be KDE 4.x releases. Hopefully, it is easy to understand.
+
+Stable Version
+
+krusader-x.xx.tar.gz
+
+Note
+
+Krusader is released under the GNU General Public License (GPL). This means
+that THE PROGRAM IS PROVIDED "AS IS" WITH NO WARRANTY OF ANY KIND, even when it
+is marked as a stable release.
+
+Development Version (beta release)
+
+krusader-x.xx-betax.tar.gz
+
+Before every stable release we release at least one development version in
+order to hunt down the bugs.
+
+Warning
+
+These releases are beta releases and will probably contain some bugs.
+
+Note
+
+If you are using a development or CVS version, it is possible that the latest
+new features are not yet in the "The Krusader Handbook". Please read the
+ChangeLog file online or in the Krusader sources to find out more about the new
+features. For a brief description, please read the CVSNEWS file online or in
+the Krusader sources. User feedback and Bug reports are always welcome!
+
+The beta release has 3 goals:
+
+  ● Apply a feature-freeze until the stable is released, only bugs will be
+    fixed. New features have to wait until the stable is released.
+
+  ● Obtain feedback from Krusader users so that we can fix the bugs.
+
+  ● Give translators time to update the translations for the coming stable.
+    Please read the i18n page.
+
+CVS Builds
+
+krusader-cvs-yyyymmdd.tar.gz
+
+Warning
+
+These builds are untested and come without any warranty. They may contain
+bugfixes, new features, or even new bugs.
+
+We provide daily snapshots of Krusader's CVS version. For those who are
+interested, the nightly tarball can be found on the Krusader's Cutting Edge
+page. Depending on the stage of development, this version will either be stable
+or unstable. Just before a stable release, the CVS version is almost stable.
+After a stable release new features will be committed into CVS, which might
+lead to the appearance of bugs. In some rare cases, the build will not even
+compile if we make a mistake. In that case we try to fix the error as soon as
+possible.
+
+Krusader provides 2 nightly snapshots:
+
+ 1. krusader-cvs-yyyymmdd.tar.gz: make -f Makefile.cvs must be run before the .
+    /configure script is available.
+
+ 2. krusader-cvs2-yyyymmdd.tar.gz: for users who have problems with the make -f
+    Makefile.cvs command, we have already done this for you and the ./configure
+    script is included in the tarball. This tarball is a bit bigger than the
+    first one.
+
+check out from CVS. Krusader can be checked out through anonymous (pserver) CVS
+with the following instruction set. The module you wish to check out must be
+specified as the module name. When prompted for a password for anonymous, press
+the Enter key.
+
+Currently, there are two module options:
+
+  ● krusader_kde2: the KDE2 branch, stable but it is basically v1.01 and there
+    are no planned changes
+
+  ● krusader_kde3: the KDE3 branch that we currently use
+
+To check out Krusader from CVS:
+
+$ cvs -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader login
+
+$ cvs -z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader co krusader_kde3
+
+(note: updates from within the modules directory do not need the -d parameter)
+
+If you want to check out a specific version of Krusader from CVS (e.g.
+Krusader-1.60.0) :
+
+$ cvs -z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader co -rversion_1_60_0 krusader_kde3
+
+If you want to check out a specific date of Krusader from CVS (e.g.
+Krusader-2006-10-29) :
+
+$ cvs -z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader co -D2006-10-29 krusader_kde3
+
+Mostly being Gentoo® users, we provide a Gentoo® Live Ebuild for all those who
+want to stay on the bleeding edge of file management and do not want to miss
+the advantages of portage. Please take a look at our Krusader's Cutting Edge
+page for more installation details.
+
+We also provide ViewCVS to browse the CVS repository.
+
+Subversion
+
+Subversion will probably be used for the Krusader 2.x series for KDE4. it is
+also possible to Browse the Subversion Repository.
+
+To check out the latest Krusader 1.x for KDE 3 from SVN: (NOTE: at moment of
+writing it is recommend to use CVS for krusader_kde3, since krusader_kde3 is
+developed in CVS and not in SVN)
+
+$ svn co https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde3
+
+To check out the latest Krusader 2.x for KDE 4 from SVN: (NOTE: not yet
+available at moment of writing)
+
+$ svn co https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4
+
+Older Releases
+
+If you are looking for older releases we recommend the Sourceforge mirrors,
+available from our project page.
+
+Compiling and Installing
+
+Compiling Krusader. What now?
+
+Check the environment variables KDEDIR - QTDIR.
+
+To compile and install Krusader on your system, type the following in the base
+directory of the Krusader package:
+
+      $ ./configure
+      $ make
+      $ su -c 'make install'
+
+If you install a CVS or beta version and if Krusader was previously installed
+on your computer, then you should delete the krusaderui.rc file in your home
+directory to activate the new menu entries $ rm ~/.kde/share/apps/krusader/
+krusaderui.rc , click here for more info.
+
+Since Krusader uses autoconf and automake you should have no trouble compiling
+it. If you run into problems, read the detailed installation instructions
+below.
+
+Quickstart Installation Tutorial
+
+Debian
+
+These instructions should work as well on Debian® based distributions like:
+Ubuntu®, Kubuntu®, Linspire®, Kanotix®, ...
+
+Add the next lines in the ~/.bashrc configuration file
+
+export QTDIR=/usr
+export KDEDIR=/usr
+export export KDEDIRS=/opt/krusader:/usr
+
+Install the build dependencies for Krusader
+
+# apt-get build-dep krusader
+
+Download the Krusader sourcecode, unpack and enter the krusader_kde3 directory.
+
+The next command will create ./configure
+
 $ make -f Makefile.cvs
-This Makefile is only for the CVS repository
-This will be deleted before making the distribution
-*** Creating acinclude.m4
-*** Creating list of subdirectories
-*** Creating configure.in
-*** Creating aclocal.m4
-*** Creating configure
-*** Creating config.h template
-*** Creating Makefile templates
-*** Postprocessing Makefile templates
-*** Creating date/time stamp
-*** Finished
-Don't forget to run ./configure
-If you haven't done so in a while, run ./configure --help
-$
 
-   Note
+NOTE: you might need to upgrade automake and/or autoconf, if an error message
+appears.
 
-   You will need to have: autoconf 2.52, 2.53 or 2.54 and
-   automake 1.6 (or higher) to run the make -f Makefile.cvs
-   command
+Install Krusader in the /opt directory to not overwrite the official Debian®
+binary /usr/bin/krusader, so that krusader will run the official Debian®
+package and /opt/bin/krusader runs the compiled version. It's recommended to
+use enable the full debug, so that you can possible problems at us. Run
+configure.
 
-   Tip
+$ ./configure --prefix=/opt/krusader --enable-debug=full
 
-   If you encounter problems with this command click here.
-   Krusader provides 2 nightly builds (snapshots) one with a
-   ./configure script and one without.
-    9. Your Linux� distro Krusader RPM or DEB package will
-       usually install Krusader in the KDEDIR/bin directory.
-       According to the Filesystem Hierarchy Standard (FHS), any
-       user installed files should go to the /usr/local
-       directory, but in some cases you might want that Krusader
-       will be installed in an other directory, this behaviour
-       can be determed with the prefix option. If you don't have
-       root access /home/YOUR_USERNAME/.kde is probably a good
-       choice.
-$ ./configure --prefix=/usr/local
-       This will take about 1 minute, if everything goes well it
-       will e.g. end with the following messages:
-foo
+Compile Krusader
 
-Krusader Project:
------------------
-Source code location: .
-C Compiler:           gcc
-C Compiler flags:     -ansi -W -Wall -pedantic -Wchar-subscripts -Wshad
-ow -Wpointer-arith
--Wmissing-prototypes -Wwrite-strings -D_XOPEN_SOURCE=500 -D_BSD_SOURCE
--O2
--Wformat-security -Wmissing-format-attribute
-C++ Compiler:         g++
-prefix:               /usr/local
-kde_libraries:        /usr/include
-kde_includes:         /usr/lib
-kde_locale:           /usr/share/locale
-qt_libraries:         /usr/lib/qt3/lib
-qt_includes:          /usr/lib/qt3/include
-KDEDIR:               /usr
-QTDIR:                /usr/lib/qt3
-Install path:         /usr/local/bin
-krusader version:     1.51
-krusader binary:      /usr/local/bin/krusader     (after 'make install'
-)
-Thank you for using Krusader
-
-Good - your configure finished. Start make now
-bash$
-       This is the output for Mandrake(TM)-Linux� 10, other
-       distributions may give a different output.
-
-   Tip
-
-   At the end of the ./configure script you will find a summary
-   of the most important settings, e.g. where the Krusader binary
-   will be installed (after the 'make install' command). This
-   part will also display a warning if the environment variables
-   KDEDIR - QTDIR are empty.
-       Since Krusader-1.70.0 ./configure has two specific
-       Krusader options:
-          + ./configure --without-konqueror
-            : build Krusader without support Konqueror's
-            servicemenus, default=with. This means that
-            Konqueror's right-click menu entries will not be
-            available.
-          + ./configure --without-javascript
-            : build Krusader without JavaScript support,
-            default=with. This means that the JavaScript console
-            will not be available.
-       In the past the support was always compiled in when the
-       headers where found, now you have the choice.
-       Use ./configure --help
-       to see more options or read the INSTALL file in the
-       Krusader sources.
-       If you dit use the an other --prefix= than $KDEDIR or
-       /usr/local , then it can't hurt to do an extra check:
-$ kde-config --path exe
-/home/frank/.kde/bin/:/usr/bin/:/usr/local/bin/
-$
-       If the <prefix_dir/bin> directory is not shown, you need
-       to use e.g. export KDEDIRS=/usr/local:/usr. To make these
-       settings permanent you can e.g. append this export command
-       to your /etc/profile file. Than you need to restart KDE,
-       and check again.
-
-       Note
-
-   If ./configure fails, take a look at FAQ missing libs or
-   headers.
-   10. Start the compilation process with the make command.
 $ make
-       This will take about 10 to 40 minutes, if everything goes
-       well it will e.g. end with the following messages:
-foo
-make[2]: Leaving directory `/home/source/krusader_kde3/tar'
-make[2]: Entering directory `/home/source/krusader_kde3'
-make[2]: Leaving directory `/home/source/krusader_kde3'
-make[1]: Leaving directory `/home/source/krusader_kde3'
-bash$
-       If ./configure was successful and make failed for some
-       reason, continue to read this page. If you can't find any
-       solution for your problem then feel free to post a help
-       request at our Krusader Forum.
-   11. If nothing went wrong, you can now install Krusader.
-$ su -c 'make install'
-       You will be asked to enter your root password.
-   12. If you install a CVS or beta version and if Krusader was
-       previously installed on your computer, then you should
-       delete the krusaderui.rc file in your home directory to
-       activate the new menu entries $ rm
-       ~/.kde/share/apps/krusader/krusaderui.rc
-       , click here for more info.
-   13. Now you can start Krusader.
-   14. Optional step: if you want you can clean up to save some
-       diskspace. Note: in this case all the compiled files
-       created with the make command will be deleted.
-$ make clean
-   15. If you ever want to uninstall Krusader, just use
-$ su -c 'make uninstall'
-       You will be asked to enter your root password.
 
-   If you encounter problems with installing Krusader please read
-   first the FAQ. If this installation procedure and the FAQ does
-   not solve the problem, feel free to ask for help with an help
-   request.
-     _________________________________________________________
+Install Krusader
 
-A.4. Mac� OS-x port
+$ su -c "make install"
 
-   Krusader is ported to Mac� OS thanks to Jonas B�hr and Bodo
-   Tasche . Unfortunately the only *stable* kdelib-binaries which
-   fink has to offer is currenly 3.1.4 which means you need to
-   use Krusader-1.40 . Unfortunately the Mac� OS X Krusader port
-   doesn't have the same power as in a native Linux�-KDE
-   environement. To run Krusader you need also X11 which doesn't
-   realy interact with the rest of the Mac� OS desktop (drag and
-   drop, etc...) We hope that Qt(TM)4/KDE4 will solve most of
-   these problems. When you want a higher Krusader version than
-   you need to compile KDE , what is not so difficult with fink
-   but it takes some CPU cycles.
+/opt/bin/krusader runs the compiled Krusader version.
 
-   Installation Instructions for Krusader-1.40
+SuSE
 
-    1. Download and install fink with the KDE3.1 binaries
-       provided by fink and read the documentation.
-    2. Extract the krusader-1.40.fink.darwin-ppc.tar.bz2 package
-       to /sw/fink/dist/local/main/ Only root can write here, you
-       may have to create 'local' and 'main'
-    3. Run as root: fink install krusader
+Install the build dependencies for Krusader
 
-   If you like to compile more sourcecode or if you want to use a
-   more recent Krusader version then these are the installation
-   instructions.
+Download the Krusader sourcecode, unpack and enter the krusader_kde3 directory.
+Now you can compile and install Krusader
 
-    1. install Apple� X11
-    2. install the Apple� X11 SDK developer-tools with X11
-       headers (gcc is included)
-    3. install the fink-base
-    4. compile kdelibs 3.4.1 or higher (fink provides the
-       necessary .info files)
-    5. compile the Krusader-tarball or follow steps 2 and 3 of
-       the previous section if a recent Krusader-package e.g.
-       krusader-1.60.0.fink.darwin-ppc.tar.bz2 is available
-     _________________________________________________________
+$ make -f Makefile.cvs
+$ ./configure --prefix=/opt/krusader --enable-debug=full
+$ make
+$ su -c "make install"
 
-A.5. Starting Krusader
+For other Linuxes
 
-   Type krusader (lower case) at a command prompt. You can create
-   shortcut on your desktop or create an entry in the (KDE) menu.
-   Read the previous page and the FAQ if Krusader doesn't start.
+Ofcource it's impossible to cover all Linuxes, but here are the general
+installation instructions.
 
-   When Krusader is started from the command-line, various
-   options can be specified to modify its behavior.
-$ krusader
-WARNING: Mt.Man: Born, looking around to get familiar.
-foo
+Usually ./configure --prefix=/usr should be used, though options like /opt/
+krusader are usually better so that you don't overwrite files that are
+installed by your package managment system. Please don't use the /usr/local
+directory as it simply won't work.
 
-   Note
+Install the build dependencies for Krusader
 
-   Don't worry about the messages you get in the Konsole. These
-   messages are log messages that can be used for debugging
-   Krusader.
+Download the Krusader sourcecode, unpack and enter the krusader_kde3 directory.
+Now you can compile and install Krusader
 
-   You can also use Alt+F2 to open the Run Command dialog box,
-   type krusader (lower case) and press Enter or click on the Run
-   button.
+$ make -f Makefile.cvs
+$ ./configure --prefix=/usr
+$ make
+$ su -c "make install"
 
-   If Krusader is installed by an RPM or DEB package then usually
-   Krusader can be started from the K menu. e.g. on
-   Mandrake(TM)-Linux� 10.0 click on the [kmenu.png] icon button
-   and choose Applications->File tools->Krusader.
+Detailed Installation Tutorial
 
-   Command-line options:
+The next section will explain how to install Krusader step by step. Questions
+about the installation process have been asked many times and especially users
+new to Linux® often have problems compiling software from source. Therefore, we
+are trying to keep the explanations as detailed as possible even if they are
+mostly not Krusader specific. Experienced users may easily skip most of the
+steps.
 
-   --left <path>
-          start left panel at <path>
+Unfortunately, because not all Linux® distributions follow the Filesystem
+Hierarchy Standard (FHS) it is impossible to write a tutorial that would cover
+all circumstances. However, these guidelines will help you in the right
+direction.
 
-   --right <path>
-          start right panel at <path>
+Note
 
-   --left <path1>,<path2>,<path3>
-          start left panel at <path1>,<path2>,<path3>, with tabs.
+If you encountered problems, please read first this installation procedure and
+the FAQ. If the problem persists, use the help request to ask for help.
 
-   --profile <panel-profile>
-          load a panel-profile on startup (this overrides the
-          default startup profile).
+ 1. Install all packages and libraries that are needed for the compilation,
+    please read the FAQ.
 
-   Examples:
+    Tip
+
+    If you install Kdevelop, (almost) everything that you need to compile
+    Krusader will be installed on your computer. However, if you are not a
+    developer, please follow the instructions and do not use Kdevelop to
+    compile Krusader.
+
+ 2. Open your favourite terminal emulator (e.g. Konsole).
+
+ 3. We recommend you create a separate directory to keep all the sources you
+    compile in. This way you will have a better overview of the installed
+    programs and it will be easier to uninstall them later.
+
+    $ mkdir ~/source
+
+    The chosen directory is just an example, any other will work.
+
+ 4. Copy the sources to the ~/source directory and unpack them.
+
+    $ cp /"your_dir" /krusader-x.xx.tar.gz ~/source
+
+    $ cd ~/source
+
+    $ tar -xzvfkrusader-x.xx.tar.gz
+
+ 5. Optional step: if you wish you can delete the tarball at this point as it
+    is no longer needed.
+
+    $ rm krusader-x.xx.tar.gz
+
+ 6. Change to the directory containing the sources.
+
+    $ cd krusader-x.xx
+
+ 7. Check the environment variables QTDIRand KDEDIR. Krusader's ./configure
+    script needs to know where the Qt™ and KDE directories are.
+
+    QTDIR: <path to your Qt installation> e.g. /usr/lib/qt3 or /usr/qt3
+
+    KDEDIR: <path to your KDE installation> e.g. /usr or /opt/kde3
+
+    Normally your distribution will set them for you, but experience has shown
+    that some do not. You can easily check the values with the echo command.
+
+    $ echo $QTDIR/usr/lib/qt3
+                      $ echo $KDEDIR/usr
+
+    If both commands give an output, the enviroment variables are set (the
+    above example are the settings of Mandriva®-Linux®). In case you receive
+    empty lines, the variables are not set and you have to set them manually.
+    If you do not know what to set the variables to, or if you want to check if
+    the variables are correctly set, ask your distributor or use the find
+    command.
+
+    $ find /usr /opt -name qtconfig -type f 2>/dev/null
+    /usr/lib/qt3/bin/qtconfig
+    $ find /usr /opt -name kdeinit -type f 2>/dev/null
+    /usr/bin/kdeinit
+
+    In this case /usr/lib/qt3 is your QTDIR and /usr is your KDEDIR. The
+    installed binaries will go to /usr/bin. Now we will set the enviroment
+    variables with the export command.
+
+    $ export QTDIR=<replace with your QTDIR>
+
+    $ export KDEDIR=<replace with your KDEDIR>
+
+    Note
+
+    These enviroment variables are only set for the lifetime of your current
+    shell. When you close your terminal and open a new one they will be gone.
+    Assuming Krusader is not the only Qt™/KDE program you want to compile, we
+    recommend to make these settings permanent (e.g. append both export
+    commands to your /etc/profile) file.
+
+    If you can notdetermine your KDEDIR, kde-config --prefix might help you.
+
+ 8. If you have downloaded a stable version "krusader-x.xx.tar.gz" or a beta
+    version "krusader-x.xx-betax.tar.gz", you can skip this step. In this case
+    the ./configure script is provided.
+
+    If you have downloaded a CVS build or nightly tarball
+    "krusader-cvs-yyyy-mm-dd.tar.gz"", you will have to run the following
+    command to create the ./configure script:
+
+    $ make -fMakefile.cvs
+
+    If everything is OK you will see the following output on your screen:
+
+    $ make -f Makefile.cvs
+    This Makefile is only for the CVS repository
+    This will be deleted before making the distribution
+    *** Creating acinclude.m4
+    *** Creating list of subdirectories
+    *** Creating configure.in
+    *** Creating aclocal.m4
+    *** Creating configure
+    *** Creating config.h template
+    *** Creating Makefile templates
+    *** Postprocessing Makefile templates
+    *** Creating date/time stamp
+    *** Finished
+    Don't forget to run ./configure
+    If you haven't done so in a while, run ./configure --help
+    $
+
+    Note
+
+    You will need to have autoconf 2.52, 2.53 or 2.54 and automake 1.6 (or
+    higher) to run the make -f Makefile.cvs command
+
+    Tip
+
+    If you encounter problems with this command click here. Krusader provides
+    two nightly builds (snapshots) one with a ./configure script and one
+    without.
+
+ 9. Your Linux® distro Krusader RPM or DEB package will normally install
+    Krusader in the KDEDIR/bin directory. According to the Filesystem Hierarchy
+    Standard (FHS), any user installed files go to the /usr/local directory. If
+    you wish Krusader to be installed in another directory, it can be determed
+    with the prefix option. If you do not have root access, /home/YOUR_USERNAME
+    /.kde is probably a good choice.
+
+    foo
+
+    Krusader Project:
+    -----------------
+    Source code location: .
+    C Compiler:           gcc
+    C Compiler flags:     -ansi -W -Wall -pedantic -Wchar-subscripts -Wshadow -Wpointer-arith
+    -Wmissing-prototypes -Wwrite-strings -D_XOPEN_SOURCE=500 -D_BSD_SOURCE -O2
+    -Wformat-security -Wmissing-format-attribute
+    C++ Compiler:         g++
+    prefix:               /usr/local
+    kde_libraries:        /usr/include
+    kde_includes:         /usr/lib
+    kde_locale:           /usr/share/locale
+    qt_libraries:         /usr/lib/qt3/lib
+    qt_includes:          /usr/lib/qt3/include
+    KDEDIR:               /usr
+    QTDIR:                /usr/lib/qt3
+    Install path:         /usr/local/bin
+    krusader version:     1.80.0
+    krusader binary:      /usr/local/bin/krusader     (after 'make install')
+    Thank you for using Krusader
+
+    Good - your configure finished. Start make now
+    bash$
+
+    This is the output for Mandrake™-Linux® 10, other distributions may give a
+    different output.
+
+    Tip
+
+    At the end of the ./configure script you will find a summary of the most
+    important settings, e.g. where the Krusader binary will be installed (after
+    the 'make install' command). This part will also display a warning if the
+    environment variables KDEDIR - QTDIR are empty.
+
+    Since Krusader-1.70.0 ./configure has two specific Krusader options:
+
+      ● ./configure --without-konqueror : build Krusader without support
+        Konqueror's servicemenus, default=with. This means that Konqueror's
+        right-click menu entries will not be available.
+
+      ● ./configure --without-javascript : build Krusader without JavaScript
+        support, default=with. This means that the JavaScript console will not
+        be available.
+
+      ● ./configure --without-acl : build Krusader without ACL support default=
+        with. Sometimes this option is needed if you get a ACL compile error
+        when running make.
+
+    In the past the support was always compiled in when the headers where
+    found, now you have the choice.
+
+    Use ./configure --help to see more options or read the INSTALL file in the
+    Krusader sources.
+
+    If you used another --prefix= than $KDEDIR or /usr/local, it is recommended
+    to do an extra check:
+
+    $ kde-config --path exe
+    /home/frank/.kde/bin/:/usr/bin/:/usr/local/bin/
+    $
+
+    If the <prefix_dir/bin> directory is not shown, you need to use e.g. export
+    KDEDIRS=/usr/local:/usr. To make these settings permanent you can e.g.
+    append this export command to your /etc/profile file. After that you need
+    to restart KDE.
+
+    Note
+
+    If ./configure fails, take a look at FAQ missing libs or headers.
+
+10. Start the compilation process with the make command.
+
+    $ make
+
+    This will take about 3 - 40 minutes depending on how fast your computer
+    runs. If everything goes well, it will e.g. end with the following
+    messages:
+
+    foo
+    make[2]: Leaving directory `/home/source/krusader_kde3/tar'
+    make[2]: Entering directory `/home/source/krusader_kde3'
+    make[2]: Leaving directory `/home/source/krusader_kde3'
+    make[1]: Leaving directory `/home/source/krusader_kde3'
+    bash$
+
+    If ./configure was successful and make failed for some reason, continue to
+    read this page. If you can not find a solution to your problem, feel free
+    to post a help request at our Krusader Forum.
+
+11. If everything is correct, you can now install Krusader.
+
+    $ su -c 'make install'
+
+    You will be asked to enter your root password.
+
+12. If you install a CVS or beta version and if Krusader was previously
+    installed on your computer, then you should delete the krusaderui.rc file
+    in your home directory to activate the new menu entries $ rm ~/.kde/share/
+    apps/krusader/krusaderui.rc , click here for more info.
+
+13. Now you can start Krusader.
+
+14. Optional step: Cleaning up to save disk space. Note: All compiled files
+    created with the makecommand will be deleted.
+
+    $ make clean
+
+15. If you ever want to uninstall Krusader, use
+
+    $ su -c 'make uninstall'
+
+    You will be asked to enter your root password.
+
+If you followed the installation procedure and still encountered problems
+installing Krusader, refer to FAQ. If the problem persists, use the help
+request to ask for help.
+
+Installing on Mac® OS-X
+
+Krusader is ported to Mac® OS thanks the fink-project and Jonas Bähr and Bodo
+Tasche . Unfortunately the only *stable* kdelib-binaries which fink has to
+offer is currenly 3.1.4 which means you need to use Krusader-1.40 .
+Unfortunately the Mac® OS X Krusader port does not have the same power as in a
+native Linux®-KDE environment. To run Krusader you need also X11, which doesn't
+interact with the rest of the Mac® OS desktop. We hope that Qt™4/KDE4 will
+solve most of these problems. If you want a more recent Krusader version you
+need to compile KDE. With fink it is rather easy but it takes some CPU cycles.
+
+Installation Instructions for Krusader-1.40
+
+ 1. Download and install fink with the KDE3.1 binaries provided by fink and
+    read the documentation.
+
+ 2. Extract the krusader-1.40.fink.darwin-ppc.tar.bz2 package to /sw/fink/dist/
+    local/main/ Only root can write here. You may have to create 'local' and
+    'main'.
+
+ 3. Run as root: fink install krusader
+
+Follow these instructions if you wish to compile more source code or use a more
+recent version of Krusader:
+
+ 1. Install Apple® X11
+
+ 2. Install the Apple® X11 SDK developer-tools with X11 headers (gcc is
+    included)
+
+ 3. Install the fink-base
+
+ 4. Compile kdelibs 3.4.1 or higher (fink provides the necessary .info files)
+
+ 5. Compile the Krusader-tarball or follow steps 2 and 3 of the previous
+    section if a recent Krusader-package e.g.
+    krusader-1.70.0.fink.darwin-ppc.tar.bz2 is available
+
+Follow these instructions if you wish to compile Krusader-1.80.0 :
+
+ 1. Install Apple® X11
+
+ 2. nstall fink and enable fink unstable.
+
+ 3. Compile and install the KDE bundle in fink: fink install bundle-kde-ssl (if
+    you get “no package found” the previous step did not succeed).
+
+ 4. Use krusader.info (provided in the Krusader-sourcecode) and then copy to /
+    sw/fink/dists/local/main/finkinfo .
+
+ 5. Compile and install Krusader in fink: fink install krusader
+
+ 6. Start X11 (startx) and in xterm run Krusader
+
+Thanks to Catalin Hritcu for these install instructions.
+
+Starting Krusader
+
+Type krusader (lower case) at a command prompt. You can create shortcut on your
+desktop or create an entry in the (KDE) menu. Read the previous page and the
+FAQ if Krusader doesn't start.
+
+When Krusader is started from the command line, various options can be
+specified to modify its behavior.
+
+        $ krusader
+        WARNING: Mt.Man: Born, looking around to get familiar. foo
+
+Note
+
+Do not worry about the messages you get in the Konsole. These messages are log
+messages that can be used for debugging Krusader.
+
+You can also use Alt+F2 to open the Run Command dialog box, type krusader 
+(lower case) and press Enter or click on the Run button.
+
+If Krusader is installed by an RPM or DEB package then usually Krusader can be
+started from the K menu. e.g. on Mandrake™-Linux® 10.0 click on the K icon
+button and choose Applications → File tools → Krusader .
+
+Command-line options:
+
+--left <path>
+
+    start left panel at <path>
+
+--right <path>
+
+    start right panel at <path>
+
+--left <path1>,<path2>,<path3>
+
+    start left panel at <path1>,<path2>,<path3>, with tabs.
+
+--profile <panel-profile>
+
+    load a panel-profile on startup (this overrides the default startup profile
+    ).
+
+Examples:
+
 $ krusader --left=<path> --right=<path>
+
 $ krusader --left=/mnt/cdrom --right=ftp://downloads@myserver.net
+
 $ krusader --left=<path1>,<path2> --right=<path1>,<path2>,<path3>
-$ krusader --profile <panel-profile>
+
+$ krusader--profile <panel-profile>
+
 $ krusader --profile ftp-managment
 
-   The standard Qt(TM) and KDE command-line options are
-   available, and can be listed by entering krusader --help
-   .
+The standard Qt™ and KDE command-line options are available, and can be listed
+by entering krusader --help .
 
-   Other command-line options:
+Other command-line options:
 
-   --help-qt
-          List Qt-specific options
+--help-qt
 
-   --help-kde
-          List KDE-specific options
+    List Qt-specific options
 
-   --help-all
-          List all options
+--help-kde
 
-   --author
-          Show the authors names
+    List KDE-specific options
 
-   -v,--version
-          Show the version number
+--help-all
 
-   --license
-          Show license information
-     _________________________________________________________
+    List all options
 
-A.6. Configure Krusader
+--author
 
-   When you run Krusader for the first time the Krusader
-   configuration module Konfigurator will show up and allow you
-   to configure Krusader as well as detect installed packers and
-   tools. You can always run Konfigurator again from the Settings
-   menu.
-     _________________________________________________________
+    Show the authors names
 
-Appendix B. Configuration files
+-v,--version
 
-   This appendix gives an overview of the configuration files
-   used by Krusader.
+    Show the version number
 
-   krusaderui.rc
+--license
 
-   This file stores the users toolbar settings and the menu
-   structure. Tip: please read also the krusaderui.rc FAQ.
+    Show license information
 
-   Location: $KDEDIR/share/apps/krusader/krusaderui.rc or
-   ~/.kde/share/apps/krusader/krusaderui.rc
+Configuring Krusader
 
-   krusaderrc
+When you run Krusader for the first time, the Krusader configuration module
+Konfigurator will show up and allow you to configure Krusader as well as detect
+installed packers and tools. You can always run Konfigurator again from the
+Settings menu.
 
-   This file stores the Krusader configuration.
+Making Krusader the default file manager
 
-   Location: ~/.kde/share/config/krusaderrc
+To make Krusader the default file manager in Gnome, click here for more
+information.
 
-   The following settings are e.g. stored:
-
-     * Actions Toolbar
-     * Archives
-     * Colors
-     * Dependencies
-     * DiskUsage
-     * DiskUsageViewer
-     * General
-     * HTML Settings
-     * KFileDialog
-     * KFileDialog Speedbar
-     * KrDetailedViewLeft
-     * KrDetailedViewRight
-     * KrViewerWindow
-     * KrViewerWindow Toolbar extraToolBar
-     * Look&Feel
-     * Notification Messages
-     * Panel Profiles
-     * Private
-     * Protocols
-     * Search
-     * Startup
-     * Synchronize
-     * Locate
-     * SynchronizerProfile - 1
-
-   krbookmarks.xml
-
-   This file stores the Krusader bookmarks and uses the XBEL
-   standard standard.
-
-   Location: ~/.kde/share/apps/krusader/krbookmarks.xml
-
-   useractions.xml
-
-   This file stores the UserActions configuration. The
-   file-structure is documented in doxygen-headers of
-   UserActionXML.
-
-   Location: ~/.kde/share/apps/krusader/useractions.xml
-
-   useraction_examples.xml
-
-   The default User-Actions provided by us. The file-structure is
-   documented in doxygen-headers of UserActionXML.
-
-   Location: $KDEDIR/share/apps/krusader/useraction_examples.xml
-
-   foo.keymap
-
-   Is a ini file that holds a Key-binding profile. Until
-   Krusader-1.70.0 this was a binary file, Krusader is backwards
-   compatible for importing this legacy binary format.
-
-   Location: $KDEDIR/share/apps/krusader/foo.keymap
-
-   foo.color
-
-   Is a binary file that holds the Color Scheme.
-
-   Location: $KDEDIR/share/apps/krusader/foo.color
-     _________________________________________________________
-
-
-The following text are generic installation instructions for KDE applications
-(normally you will not need it). The following text is not written by us,
-but is automaticly generated by Kdevelop.
-
-
-Basic Installation
-==================
-
-   These are generic installation instructions.
-
-   The `configure' shell script attempts to guess correct values for
-various system-dependent variables used during compilation.  It uses
-those values to create a `Makefile' in each directory of the package.
-It may also create one or more `.h' files containing system-dependent
-definitions.  Finally, it creates a shell script `config.status' that
-you can run in the future to recreate the current configuration, a file
-`config.cache' that saves the results of its tests to speed up
-reconfiguring, and a file `config.log' containing compiler output
-(useful mainly for debugging `configure').
-
-   If you need to do unusual things to compile the package, please try
-to figure out how `configure' could check whether to do them, and mail
-diffs or instructions to the address given in the `README' so they can
-be considered for the next release.  If at some point `config.cache'
-contains results you don't want to keep, you may remove or edit it.
-
-   The file `configure.in' is used to create `configure' by a program
-called `autoconf'.  You only need `configure.in' if you want to change
-it or regenerate `configure' using a newer version of `autoconf'.
-
-The simplest way to compile this package is:
-
-  1. `cd' to the directory containing the package's source code and type
-     `./configure' to configure the package for your system.  If you're
-     using `csh' on an old version of System V, you might need to type
-     `sh ./configure' instead to prevent `csh' from trying to execute
-     `configure' itself.
-
-     Running `configure' takes a while.  While running, it prints some
-     messages telling which features it is checking for.
-
-  2. Type `make' to compile the package.
-
-  3. Type `make install' to install the programs and any data files and
-     documentation.
-
-  4. You can remove the program binaries and object files from the
-     source code directory by typing `make clean'.
-
-Compilers and Options
-=====================
-
-   Some systems require unusual options for compilation or linking that
-the `configure' script does not know about.  You can give `configure'
-initial values for variables by setting them in the environment.  Using
-a Bourne-compatible shell, you can do that on the command line like
-this:
-     CC=c89 CFLAGS=-O2 LIBS=-lposix ./configure
-
-Or on systems that have the `env' program, you can do it like this:
-     env CPPFLAGS=-I/usr/local/include LDFLAGS=-s ./configure
-
-Compiling For Multiple Architectures
-====================================
-
-   You can compile the package for more than one kind of computer at the
-same time, by placing the object files for each architecture in their
-own directory.  To do this, you must use a version of `make' that
-supports the `VPATH' variable, such as GNU `make'.  `cd' to the
-directory where you want the object files and executables to go and run
-the `configure' script.  `configure' automatically checks for the
-source code in the directory that `configure' is in and in `..'.
-
-   If you have to use a `make' that does not supports the `VPATH'
-variable, you have to compile the package for one architecture at a time
-in the source code directory.  After you have installed the package for
-one architecture, use `make distclean' before reconfiguring for another
-architecture.
-
-Installation Names
-==================
-
-   By default, `make install' will install the package's files in
-`/usr/local/bin', `/usr/local/man', etc.  You can specify an
-installation prefix other than `/usr/local' by giving `configure' the
-option `--prefix=PATH'.
-
-   You can specify separate installation prefixes for
-architecture-specific files and architecture-independent files.  If you
-give `configure' the option `--exec-prefix=PATH', the package will use
-PATH as the prefix for installing programs and libraries.
-Documentation and other data files will still use the regular prefix.
-
-   If the package supports it, you can cause programs to be installed
-with an extra prefix or suffix on their names by giving `configure' the
-option `--program-prefix=PREFIX' or `--program-suffix=SUFFIX'.
-
-Optional Features
-=================
-
-   Some packages pay attention to `--enable-FEATURE' options to
-`configure', where FEATURE indicates an optional part of the package.
-They may also pay attention to `--with-PACKAGE' options, where PACKAGE
-is something like `gnu-as' or `x' (for the X Window System).  The
-`README' should mention any `--enable-' and `--with-' options that the
-package recognizes.
-
-   For packages that use the X Window System, `configure' can usually
-find the X include and library files automatically, but if it doesn't,
-you can use the `configure' options `--x-includes=DIR' and
-`--x-libraries=DIR' to specify their locations.
-
-Specifying the System Type
-==========================
-
-   There may be some features `configure' can not figure out
-automatically, but needs to determine by the type of host the package
-will run on.  Usually `configure' can figure that out, but if it prints
-a message saying it can not guess the host type, give it the
-`--host=TYPE' option.  TYPE can either be a short name for the system
-type, such as `sun4', or a canonical name with three fields:
-     CPU-COMPANY-SYSTEM
-
-See the file `config.sub' for the possible values of each field.  If
-`config.sub' isn't included in this package, then this package doesn't
-need to know the host type.
-
-   If you are building compiler tools for cross-compiling, you can also
-use the `--target=TYPE' option to select the type of system they will
-produce code for and the `--build=TYPE' option to select the type of
-system on which you are compiling the package.
-
-Sharing Defaults
-================
-
-   If you want to set default values for `configure' scripts to share,
-you can create a site shell script called `config.site' that gives
-default values for variables like `CC', `cache_file', and `prefix'.
-`configure' looks for `PREFIX/share/config.site' if it exists, then
-`PREFIX/etc/config.site' if it exists.  Or, you can set the
-`CONFIG_SITE' environment variable to the location of the site script.
-A warning: not all `configure' scripts look for a site script.
-
-Operation Controls
-==================
-
-   `configure' recognizes the following options to control how it
-operates.
-
-`--cache-file=FILE'
-     Use and save the results of the tests in FILE instead of
-     `./config.cache'.  Set FILE to `/dev/null' to disable caching, for
-     debugging `configure'.
-
-`--help'
-     Print a summary of the options to `configure', and exit.
-
-`--quiet'
-`--silent'
-`-q'
-     Do not print messages saying which checks are being made.
-
-`--srcdir=DIR'
-     Look for the package's source code in directory DIR.  Usually
-     `configure' can determine that directory automatically.
-
-`--version'
-     Print the version of Autoconf used to generate the `configure'
-     script, and exit.
-
-`configure' also accepts some other, not widely useful, options.
+To make Krusader the default file manager in KDE, click here for more
+information.
