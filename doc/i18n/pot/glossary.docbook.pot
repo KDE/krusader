@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-1.80.0 2006-12-15\n"
+"Project-Id-Version: Krusader-doc-1.80.03 2007-05-08\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2006-12-15 19:39+0000\n"
+"POT-Creation-Date: 2007-05-08 20:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Tag: primary
-#: glossary.docbook:24
+#: glossary.docbook:23
 #, no-c-format
 msgid "Glossary"
 msgstr ""
@@ -25,270 +25,312 @@ msgstr ""
 #. Tag: para
 #: glossary.docbook:25
 #, no-c-format
-msgid "This chapter is intended to explain the various words which have been used throughout the &krusader; documentation. If you believe some acronyms or terms are missing, please don't hesitate to contact the &krusader; documentation team. Thank you!"
+msgid "This chapter is intended to explain the various words which have been used throughout the &krusader; documentation. If you believe some acronyms or terms are missing, please do not hesitate to contact the &krusader; documentation team."
+msgstr ""
+
+#. Tag: para
+#: glossary.docbook:30
+#, no-c-format
+msgid "Thanks to <ulink url=\"http://en.wikipedia.org/\">wikipedia.org</ulink> the free encyclopedia that anyone can edit."
 msgstr ""
 
 #. Tag: acronym
-#: glossary.docbook:32
+#: glossary.docbook:35
+#, no-c-format
+msgid "<acronym>ACL</acronym>"
+msgstr ""
+
+#. Tag: para
+#: glossary.docbook:38
+#, no-c-format
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/Access_control_list\"> Access Control List</ulink>; a concept in computer security used to enforce privilege separation. It is a means of determining the appropriate access rights to a given object depending on certain aspects of the process that is making the request."
+msgstr ""
+
+#. Tag: acronym
+#: glossary.docbook:49
 #, no-c-format
 msgid "<acronym>BSD</acronym>"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:34
+#: glossary.docbook:52
 #, no-c-format
-msgid "Berkeley Software Distribution; refers to any of several free &UNIX;-compatible operating systems, derived from <acronym>BSD</acronym> &UNIX;."
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/Bsd\">Berkeley Software Distribution</ulink>; refers to any of several free &UNIX;-compatible operating systems, derived from <acronym>BSD</acronym>&UNIX;."
 msgstr ""
 
 #. Tag: acronym
-#: glossary.docbook:43
+#: glossary.docbook:61
 #, no-c-format
 msgid "<acronym>CVS</acronym>"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:45
+#: glossary.docbook:64
 #, no-c-format
-msgid "<ulink url=\"http://www.nongnu.org/cvs/\">Concurrent Versions System</ulink>; is an important component of Source Configuration Management (SCM). By using it, developers can record the history of sources files, and documents."
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/Concurrent_Versions_System\"> Concurrent Versions System</ulink>; an important component of Source Configuration Management (SCM). By using it, developers can record the history of source files and documents."
 msgstr ""
 
 #. Tag: acronym
-#: glossary.docbook:54
+#: glossary.docbook:74
 #, no-c-format
 msgid "<acronym>DEB</acronym>"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:56
+#: glossary.docbook:77
 #, no-c-format
-msgid "This is a binary file format that is used by <ulink url=\"http://www.debian.org/\">&debian;</ulink> and &debian;-based distributions. It is a suffix of a instalation file specifically built for these distributions; an example would be <filename>krusader_1.70.1-1_amd64.deb</filename>. Simply described it is a special archive containing all the program's files and their proposed location on the sistem."
+msgid "This is a binary file format that is used by <ulink url=\"http://en.wikipedia.org/wiki/Debian\"> &debian;</ulink> and &debian;-based distributions. It is a suffix of a installation file specifically built for these distributions; e.g. <filename>krusader_1.70.1-1_amd64.deb</filename>. Simply described it is a special archive containing all the program files and their proposed location on the system."
 msgstr ""
 
 #. Tag: acronym
-#: glossary.docbook:68
+#: glossary.docbook:90
 #, no-c-format
 msgid "DCOP"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:70
+#: glossary.docbook:93
 #, no-c-format
-msgid "<ulink url=\"http://developer.kde.org/documentation/other/dcop.html\">Desktop COmmunication Protocol</ulink>; is the interprocess communication protocol used by &kde; desktop environment. It enables various &kde; applications to communicate to each other."
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/Dcop\">Desktop Communication Protocol</ulink>; the interprocess communication protocol used by &kde; desktop environment. It enables various &kde; applications to communicate with each other."
 msgstr ""
 
 #. Tag: acronym
-#: glossary.docbook:79
+#: glossary.docbook:103
 #, no-c-format
 msgid "<acronym>FAQ</acronym>"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:81
+#: glossary.docbook:106
 #, no-c-format
-msgid "<link linkend=\"faq\">Frequently Asked Questions</link>; normally means a document, where questions that arise many times are answered. If you have a question to the developers of &krusader;, you should always have a look at the &faq_lnk; first."
+msgid "<link linkend=\"faq\">Frequently Asked Questions</link>; a document where questions that arise many times are answered. If you have a question to the developers of &krusader;, you should always have a look at the &faq-lnk; first."
 msgstr ""
 
 #. Tag: glossterm
-#: glossary.docbook:91
+#: glossary.docbook:115
 #, no-c-format
 msgid "&FTP;"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:93
+#: glossary.docbook:117
 #, no-c-format
-msgid "<ulink url=\"http://en.wikipedia.org/wiki/File_Transfer_Protocol\">File Transfer Protocol</ulink>; it is an Internet protocol that allows you to retrieve files from so-called &FTP; servers."
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/File_Transfer_Protocol\"> File Transfer Protocol</ulink>; it is an Internet protocol that allows you to retrieve files from so-called &FTP; servers."
 msgstr ""
 
 #. Tag: acronym
-#: glossary.docbook:101
+#: glossary.docbook:126
 #, no-c-format
 msgid "<acronym>GPL</acronym>"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:103
+#: glossary.docbook:129
 #, no-c-format
-msgid "<acronym>GNU</acronym> General Public License; a software license created by the <ulink url=\"http://www.fsf.org/\">Free Software Foundation</ulink> defining the terms for releasing free software."
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/Gpl\">GNU General Public License</ulink>; a software license created by the <ulink url=\"http://www.fsf.org/\">Free Software Foundation</ulink> defining the terms for releasing free software."
 msgstr ""
 
 #. Tag: glossterm
-#: glossary.docbook:112
+#: glossary.docbook:138
 #, no-c-format
 msgid "&GUI;"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:114
+#: glossary.docbook:140
 #, no-c-format
-msgid "<ulink url=\"http://en.wikipedia.org/wiki/Graphical_user_interface\">Graphical User Interface</ulink>."
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/Graphical_user_interface\"> Graphical User Interface</ulink>."
 msgstr ""
 
 #. Tag: acronym
-#: glossary.docbook:121
+#: glossary.docbook:147
 #, no-c-format
 msgid "<acronym>ISO</acronym>"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:123
+#: glossary.docbook:150
 #, no-c-format
 msgid "An <ulink url=\"http://en.wikipedia.org/wiki/ISO_image\">ISO image</ulink> (.iso) is an informal term for a disk image of an ISO 9660 file system. More loosely, it refers to any optical disk image, even a UDF image."
 msgstr ""
 
 #. Tag: glossterm
-#: glossary.docbook:132
+#: glossary.docbook:158
 #, no-c-format
 msgid "&kde;"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:134
+#: glossary.docbook:160
 #, no-c-format
-msgid "<ulink url=\"http://www.kde.org/\">K Desktop Environment</ulink>; a project to develop a free graphical desktop environment for &UNIX; compatible systems."
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/Kde\">K Desktop Environment</ulink>; a project to develop a free graphical desktop environment for &UNIX; compatible systems."
 msgstr ""
 
 #. Tag: glossterm
-#: glossary.docbook:142
+#: glossary.docbook:168
 #, no-c-format
 msgid "Key Binding"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:144
+#: glossary.docbook:170
 #, no-c-format
-msgid "All features of &krusader; are available through the menubar, but you can also bind (link) a certain key combination to that function. You will find, however, that it's much faster to use the <link linkend=\"keyboard-commands\">keyboard</link> than using the menubar or <link linkend=\"gloss-gui\">GUI</link>, this will speed up your work significantly. <link linkend=\"keyboard-commands\">keyboard usage</link> is an important tool for <link linkend=\"gloss-ofm\">Orthodox File Managers</link>. &krusader; comes with several predefined &keybindigs_lnk;."
+msgid "All features of &krusader; are available through the menubar, but you can also bind (link) a certain key combination to that function. You will find, however, that using the <link linkend=\"keyboard-commands\">keyboard</link> is remakably faster than using the menubar or <link linkend=\"gloss-gui\">GUI</link>. <link linkend=\"keyboard-commands\">Keyboard usage</link> is an important tool for <link linkend=\"gloss-ofm\">Orthodox File Managers</link>. &krusader; comes with several predefined &keybindigs-lnk;."
 msgstr ""
 
 #. Tag: glossterm
-#: glossary.docbook:158
+#: glossary.docbook:185
 #, no-c-format
 msgid "Kpart"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:160
+#: glossary.docbook:187
 #, no-c-format
-msgid "<ulink url=\"http://en.wikipedia.org/wiki/KPart\">Kpart</ulink>; KParts is the name of the component framework for the &kde; desktop environment. KParts are analogous to Bonobo components in &gnome_url;, both of which are based on the same concepts as &Microsoft;'s Object Linking and Embedding. e.g. if you use &krusader;'s viewer to view a PDF file, KPDF wil be lanched inside &krusader;'s viewer."
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/KPart\"> Kpart</ulink>; KParts is the name of the component framework for the &kde; desktop environment. KParts are analogous to Bonobo components in &gnome-url;, both of which are based on the same concepts as &Microsoft;'s Object Linking and Embedding. e.g. if you use &krusader;'s viewer to view a PDF file, KPDF wil be launched inside &krusader;'s viewer."
 msgstr ""
 
 #. Tag: glossterm
-#: glossary.docbook:172
+#: glossary.docbook:200
 #, no-c-format
 msgid "<acronym>KIO</acronym> or kioslave"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:174
+#: glossary.docbook:203
 #, no-c-format
-msgid "<ulink url=\"http://en.wikipedia.org/wiki/Kioslave\">Kde Input/Output)</ulink>; also known as &kioslaves1_url; is part of the &kde; architecture. It provides access to files, web sites and other resources through a single consistent API."
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/Kioslave\">KDE Input/Output</ulink>; also known as &kioslaves1-url; is part of the &kde; architecture. It provides access to files, web sites and other resources through a single consistent API."
 msgstr ""
 
 #. Tag: glossterm
-#: glossary.docbook:183
+#: glossary.docbook:212
 #, no-c-format
 msgid "mount"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:185
+#: glossary.docbook:214
 #, no-c-format
-msgid "<ulink url=\"http://en.wikipedia.org/wiki/Mount_%28computing%29\">Mouting</ulink>; in computer science, is the process of making a file system ready for use by the operating system, typically by reading certain index data structures from storage into memory ahead of time. The term recalls a period in the history of computing when an operator had to mount a magnetic tape or hard disk on a spindle before using it."
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/Mount_%28computing%29\"> Mouting</ulink>; in computer science, is the process of making a file system ready for use by the operating system, typically by reading certain index data structures from storage into memory ahead of time. The term recalls a period in the history of computing when an operator had to mount a magnetic tape or hard disk on a spindle before using it."
 msgstr ""
 
 #. Tag: acronym
-#: glossary.docbook:197
+#: glossary.docbook:227
 #, no-c-format
 msgid "<acronym>OFM</acronym>"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:199
+#: glossary.docbook:230
 #, no-c-format
-msgid "<ulink url=\"http://www.softpanorama.org/OFM/index.shtml\">Orthodox File Manager</ulink>; are also known as \"Commanders\". Members of this family of file managers use simple yet very powerful interface that is a direct derivative of the <ulink url=\"http://en.wikipedia.org/wiki/Norton_Commander\">Norton Commander</ulink> (NC) interface."
+msgid "<ulink url=\"http://www.softpanorama.org/OFM/index.shtml\"> Orthodox File Manager</ulink>; also known as \"Commanders\". Members of this family of file managers use simple yet very powerful interface that is a direct derivative of the <ulink url=\"http://en.wikipedia.org/wiki/Norton_Commander\"> Norton Commander</ulink> (NC) interface."
 msgstr ""
 
 #. Tag: glossterm
-#: glossary.docbook:210
+#: glossary.docbook:240
 #, no-c-format
 msgid "<glossterm>RPM</glossterm>"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:212
+#: glossary.docbook:242
 #, no-c-format
 msgid "This is the binary file format for distributions based on the <ulink url=\"http://www.rpm.org/\">RPM Package Manager</ulink>, a widely used packaging tool for the &Linux; operating system. If you still have to get &krusader; and your system supports RPM packages, you should get &krusader; packages ending in .rpm."
 msgstr ""
 
 #. Tag: glossterm
-#: glossary.docbook:223
+#: glossary.docbook:253
+#, no-c-format
+msgid "<acronym>SSH</acronym>, Secure Shell"
+msgstr ""
+
+#. Tag: para
+#: glossary.docbook:256
+#, no-c-format
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/SSH\">SSH</ulink>; is a set of standards and an associated network protocol that allows establishing a secure channel between a local and a remote computer."
+msgstr ""
+
+#. Tag: glossterm
+#: glossary.docbook:263
 #, no-c-format
 msgid "<acronym>SVN</acronym>, Subversion"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:225
+#: glossary.docbook:266
 #, no-c-format
-msgid "<ulink url=\"http://subversion.tigris.org/\">Subversion</ulink>; a version control system that is a compelling replacement for <link linkend=\"gloss-cvs\">CVS</link>. It's used by many software projects including &kde; and &krusader;."
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/Subversion\"> Subversion</ulink>; a version control system that is a compelling replacement for <link linkend=\"gloss-cvs\">CVS</link>. It is used by many software projects including &kde; and &krusader;."
 msgstr ""
 
 #. Tag: glossterm
-#: glossary.docbook:235
+#: glossary.docbook:276
 #, no-c-format
 msgid "Terminal emulator"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:237
+#: glossary.docbook:278
 #, no-c-format
-msgid "Terminal emulator is simply a windowed shell; this is known as command line window in some other environments. If you want to use the shell and type the commands, you should know at least a few of the system-level commands for your operating system."
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/Terminal_emulator\"> Terminal emulator</ulink>; simply a windowed shell; this is known as command line window in some other environments. If you want to use the shell and type the commands, you should know at least a few of the system-level commands for your operating system."
 msgstr ""
 
 #. Tag: acronym
-#: glossary.docbook:247
+#: glossary.docbook:289
 #, no-c-format
 msgid "POSIX"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:249
+#: glossary.docbook:292
 #, no-c-format
 msgid "<ulink url=\"http://en.wikipedia.org/wiki/Posix\">\"Portable Operating System Interface for uniX\"</ulink>; a collective name of a family of related standards specified by the IEEE to define the application programming interface (API) for software compatible with variants of the &UNIX; operating system."
 msgstr ""
 
 #. Tag: acronym
-#: glossary.docbook:259
+#: glossary.docbook:303
 #, no-c-format
 msgid "&URL;"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:261
+#: glossary.docbook:306
 #, no-c-format
-msgid "<ulink url=\"http://en.wikipedia.org/wiki/URL\">Universal Resource Locater</ulink>; a universal resource locater is the technical term for what is commonly referred to as a websites address. Examples of URLs include <ulink url=\"http://krusader.sourceforge.net\">http://krusader.sourceforge.net</ulink> and &remote_connections_lnk;."
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/URL\">Universal Resource Locater</ulink>; a universal resource locater is the technical term for what is commonly referred to as a websites address. Examples of URLs include <ulink url=\"http://krusader.sourceforge.net\"> http://krusader.sourceforge.net</ulink> and &remote-connections-lnk;."
 msgstr ""
 
 #. Tag: acronym
-#: glossary.docbook:272
+#: glossary.docbook:318
 #, no-c-format
 msgid "<acronym>VFS</acronym>"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:274
+#: glossary.docbook:321
 #, no-c-format
-msgid "&vfs_lnk; is a basic <link linkend=\"features\">OFM feature</link>, this an abstracted layer over all kinds of archived information (ZIP files, FTP servers, TAR archives, NFS filesystems, SAMBA shares, ISO cd/dvd images, RPM catalogs, etc.), which allows the user to access all the information in these divergent types of filesystems transparently - just like entering an ordinary sub-directory! &krusader; supports several &vfs_lnk;."
+msgid "&vfs-lnk; is a basic <link linkend=\"features\">OFM feature</link>, this an abstracted layer over all kinds of archived information (ZIP files, FTP servers, TAR archives, NFS filesystems, SAMBA shares, ISO cd/dvd images, RPM catalogs, etc.), which allows the user to access all the information in these divergent types of file systems transparently - just like entering an ordinary sub-directory! &krusader; supports several &vfs-lnk;."
 msgstr ""
 
 #. Tag: glossterm
-#: glossary.docbook:286
+#: glossary.docbook:333
 #, no-c-format
 msgid "<glossterm>XML</glossterm>"
 msgstr ""
 
 #. Tag: para
-#: glossary.docbook:288
+#: glossary.docbook:335
 #, no-c-format
-msgid "<ulink url=\"http://www.w3.org/XML/\">Extensible Markup Language</ulink>; a very flexible text format derived from SGML (ISO 8879). Originally designed to meet the challenges of large-scale electronic publishing, XML is also playing an increasingly important role in the exchange of a wide variety of data on the Web and elsewhere."
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/Xml\">Extensible Markup Language</ulink>; a very flexible text format derived from SGML (ISO 8879). Originally designed to meet the challenges of large-scale electronic publishing, XML is also playing an increasingly important role in the exchange of a wide variety of data on the Web and elsewhere."
+msgstr ""
+
+#. Tag: glossterm
+#: glossary.docbook:345
+#, no-c-format
+msgid "Zeroconf"
+msgstr ""
+
+#. Tag: para
+#: glossary.docbook:347
+#, no-c-format
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/Zeroconf\">Zeroconf</ulink>; or Zero Configuration Networking is a set of techniques that automatically create a usable IP network without configuration or special servers. This allows inexpert users to connect computers, networked printers, and other items together and expect them to work automatically."
 msgstr ""
 

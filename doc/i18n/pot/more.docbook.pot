@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-1.80.0 2006-12-15\n"
+"Project-Id-Version: Krusader-doc-1.80.03 2007-05-08\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2006-12-15 19:39+0000\n"
+"POT-Creation-Date: 2007-05-08 20:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -17,14 +17,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Tag: title
-#: more.docbook:24
+#: more.docbook:22
 #, no-c-format
-msgid "More features"
+msgid "Advanced functions"
 msgstr ""
 
 #. Tag: chapter
-#: more.docbook:24
+#: more.docbook:22
 #, no-c-format
-msgid "&vfs; &compare; &occupied-space; &splitter; &checksum; <sect1 id=\"send-email\"> <title>Send Files by e-mail</title> <para>Select a file and use <emphasis role=\"bold\"><menuchoice><guimenu>Right-Click menu</guimenu> <guimenuitem>Send by Email</guimenuitem></menuchoice></emphasis>. Selecting this option will open a new &kmail; window with the file already attached. Just fill in the subject and recipient(s) and send it. Of course, &kmail; must be properly configured. </para> </sect1> &profiles;"
+msgid "&vfs; &compare; &occupied-space; &splitter; &checksum; <sect1 id=\"send-email\"> <title>Send Files by e-mail</title> <para>Select a file and use <emphasis role=\"bold\"> <menuchoice> <guimenu>Right-Click menu</guimenu> <guimenuitem>Send by Email</guimenuitem> </menuchoice> </emphasis>. Selecting this option will open a new &kmail; window with the file already attached. Just fill in the subject and recipient(s) and send it. Of course, &kmail; must be properly configured.</para> </sect1> &profiles;"
+msgstr ""
+
+#. Tag: title
+#: more.docbook:49
+#, no-c-format
+msgid "ACL permissions"
+msgstr ""
+
+#. Tag: para
+#: more.docbook:50
+#, no-c-format
+msgid "<link linkend=\"gloss-acl\">ACL permissions</link> are fully supported when using properties, preserve attributes and the synchronizer. To view/modify the ACL permissions, select a file and use the &context-menu-lnk;: <emphasis role=\"bold\"> <menuchoice> <guimenu>Properties</guimenu> <guimenuitem>Permissions</guimenuitem> <guimenuitem>Advanced permissions</guimenuitem> </menuchoice> </emphasis>. At Copy/Move if <guilabel>preserve attributes</guilabel> are selected, the ACL permissions are also copied. The synchronizer keeps the ACL permissions as well."
 msgstr ""
 

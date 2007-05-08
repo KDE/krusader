@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-1.80.0 2006-12-15\n"
+"Project-Id-Version: Krusader-doc-1.80.03 2007-05-08\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2006-12-15 19:39+0000\n"
+"POT-Creation-Date: 2007-05-08 20:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -23,26 +23,26 @@ msgid "Checksum creation-verification"
 msgstr ""
 
 #. Tag: primary
-#: checksum.docbook:3
+#: checksum.docbook:4
 #, no-c-format
 msgid "Checksum"
 msgstr ""
 
 #. Tag: para
-#: checksum.docbook:5
+#: checksum.docbook:6
 #, no-c-format
-msgid "<emphasis role=\"bold\"><menuchoice><guimenu>File</guimenu> <guimenuitem>Create Checksum</guimenuitem></menuchoice></emphasis> : &krusader; checks which tools you have and if those tools allow recursive operation (in case you selected folders), you choose the type of checksum (md5, sha...) and it is generated. You can then save the checksum to a file, usually called checksum.md5 (or .sha1 or whatever)."
+msgid "<emphasis role=\"bold\"> <menuchoice> <guimenu>File</guimenu> <guimenuitem>Create Checksum</guimenuitem> </menuchoice> </emphasis>: &krusader; checks which tools you have and if those tools allow recursive operation (in case you selected folders), you can generate a checksum by choosing a checksum type from the list (md5, sha...). You can then save the checksum to a file, usually called checksum.md5 or checksum.sha1."
 msgstr ""
 
 #. Tag: para
-#: checksum.docbook:14
+#: checksum.docbook:18
 #, no-c-format
-msgid "<emphasis role=\"bold\"><menuchoice><guimenu>File</guimenu> <guimenuitem>Verify Checksum</guimenuitem></menuchoice></emphasis> : &krusader; checks if you have a tool that supports the type of checksum you need (from your specified checksum file) and displays the files that failed the checksum (if any)."
+msgid "<emphasis role=\"bold\"> <menuchoice> <guimenu>File</guimenu> <guimenuitem>Verify Checksum</guimenuitem> </menuchoice> </emphasis>: &krusader; checks if you have a tool that supports the type of checksum you need (from your specified checksum file) and displays the files that failed the checksum (if any)."
 msgstr ""
 
 #. Tag: para
-#: checksum.docbook:22
+#: checksum.docbook:28
 #, no-c-format
-msgid "The nice thing is that the system abstracts over different checksum mechanisms and Checksum Utilities. Right now, the next checksums are supported: md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv and crc. Please check your <link linkend=\"konfig-dependencies\">Checksum Utilities settings</link> before using this function."
+msgid "The system abstracts over different checksum mechanisms and Checksum Utilities. At the moment, the following checksums are supported: md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv and crc. Please check your <link linkend=\"konfig-dependencies\">Checksum Utilities settings</link> before using this function."
 msgstr ""
 

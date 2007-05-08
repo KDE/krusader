@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-1.80.0 2006-12-15\n"
+"Project-Id-Version: Krusader-doc-1.80.03 2007-05-08\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2006-12-15 19:39+0000\n"
+"POT-Creation-Date: 2007-05-08 20:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -23,104 +23,104 @@ msgid "Archive Handling"
 msgstr ""
 
 #. Tag: primary
-#: archives.docbook:3
+#: archives.docbook:4
 #, no-c-format
 msgid "Archives"
 msgstr ""
 
 #. Tag: title
-#: archives.docbook:6
+#: archives.docbook:7
 #, no-c-format
 msgid "Browsing Archives"
 msgstr ""
 
 #. Tag: para
-#: archives.docbook:7
+#: archives.docbook:8
 #, no-c-format
-msgid "The &vfs_lnk; allows to browse archives as it was a directory. &krusader; supports currently the following archives types: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip and supports the next passworded archives: arj, ace, rar and zip. Passwords can be stored in &kwallet;. Please note that the archive support first needs to be properly <link linkend=\"konfig-archives\">configured</link> in Konfigurator. To open the archive use &Enter;, (double-)click or the <keycap>Right Arrow</keycap>. &krusader; supports also <emphasis role=\"bold\">hidden archives</emphasis>, these are renamed archives with a *wrong* extension. &eg; &openoffice; uses zip archives with the next extensions: odt, sxw and odw. &Enter; will open the &openoffice; document and the <keycap>Right Arrow</keycap> will open the archive. An other example is J2EE where the rar extension means a zip archive. &krusader; will open with <keycap>Right Arrow</keycap> the archive even if it has an other mime type, since &krusader; autodetects the supported archive types. Please note that browsing archives has a few limitations:"
-msgstr ""
-
-#. Tag: para
-#: archives.docbook:24
-#, no-c-format
-msgid "Not all functions are supported by all archive types. (&ie;: you can't delete files in ace or rar archives)"
-msgstr ""
-
-#. Tag: para
-#: archives.docbook:27
-#, no-c-format
-msgid "The permissions you have inside the archive are the same as the permissions you have for the archive."
-msgstr ""
-
-#. Tag: para
-#: archives.docbook:30
-#, no-c-format
-msgid "The command line (if visible) will not follow you inside the archive but will point to the archive directory."
+msgid "The &vfs-lnk; allows you to browse archives as if it was a directory. Currently &krusader; supports the following archives types: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip and supports the following passworded archives: arj, ace, rar and zip. Passwords can be stored in &kwallet;. Please note that the archive support first needs to be properly <link linkend=\"konfig-archives\">configured</link> in Konfigurator. To open the archive, use &Enter;, (double-)click or the <keycap>Right Arrow</keycap>. &krusader; supports also <emphasis role=\"bold\">hidden archives</emphasis>, these are renamed archives with a *wrong* extension, &eg; &openoffice; uses zip archives with the following extensions: odt, sxw and odw. &Enter; will open the &openoffice; document and the <keycap>Right Arrow</keycap> will open the archive. Another example is J2EE, where the rar extension means a zip archive. Since &krusader; auto-detects the supported archive types, it will open with <keycap>Right Arrow</keycap> even if it has another mime type. Please note that browsing archives has a few limitations:"
 msgstr ""
 
 #. Tag: para
 #: archives.docbook:33
 #, no-c-format
-msgid "Before any action is performed on files/directories inside the archive they must be extracted. The archive will be repacked when you leave it or when &krusader; detects that extracted files have changed."
+msgid "Not all functions are supported by all archive types. (&ie;: you can not delete files in ace or rar archives)"
 msgstr ""
 
 #. Tag: para
-#: archives.docbook:37
+#: archives.docbook:38
 #, no-c-format
-msgid "Packing and un-packing are \"blocking operations\" that display a Progress Dialog. Though, this might change in the future since we are planning to create more background operations."
+msgid "The permissions you have inside the archive are the same as the permissions you have for the archive."
+msgstr ""
+
+#. Tag: para
+#: archives.docbook:42
+#, no-c-format
+msgid "The command line (if visible) will not follow you inside the archive but will point to the archive directory."
+msgstr ""
+
+#. Tag: para
+#: archives.docbook:47
+#, no-c-format
+msgid "Before any action is performed on files/directories inside the archive, they must be extracted. The archive will be repacked when you leave it or when &krusader; detects that extracted files have changed."
+msgstr ""
+
+#. Tag: para
+#: archives.docbook:54
+#, no-c-format
+msgid "Packing and un-packing are \"blocking operations\" that display a progress dialog. However, this might change in the future since we are planning to create more background operations."
 msgstr ""
 
 #. Tag: title
-#: archives.docbook:47
+#: archives.docbook:62
 #, no-c-format
 msgid "Unpack Files"
 msgstr ""
 
 #. Tag: para
-#: archives.docbook:48
+#: archives.docbook:63
 #, no-c-format
 msgid "There are 2 ways to extract files from archives:"
 msgstr ""
 
 #. Tag: para
-#: archives.docbook:50
+#: archives.docbook:64
 #, no-c-format
-msgid "If you want to unpack a whole archive(s), browse to the archive location, select the archive(s) and select <emphasis role=\"bold\"><menuchoice><guimenu>File</guimenu> <guimenuitem>Unpack</guimenuitem></menuchoice></emphasis> or <keycombo action=\"simul\">&Alt;<keycap>U</keycap></keycombo>. &krusader; will ask you where to put the extracted files, the default location is the inactive panel directory. If you don't cancel the operation, &krusader; will try to unpack all the selected files in the inactive panel."
+msgid "If you want to unpack a whole archive(s), browse to the archive location, select the archive(s) and select <emphasis role=\"bold\"> <menuchoice> <guimenu>File</guimenu> <guimenuitem>Unpack</guimenuitem> </menuchoice> </emphasis>or <keycombo action=\"simul\">&Alt; <keycap>U</keycap></keycombo>. &krusader; will ask you where to put the extracted files. The default location is the inactive panel directory. If you don't cancel the operation, &krusader; will try to unpack all the selected files in the inactive panel."
 msgstr ""
 
 #. Tag: para
-#: archives.docbook:58
+#: archives.docbook:78
 #, no-c-format
-msgid "If you only want to extract part of the archive, then <link linkend=\"browsing-archives\">browse</link> the archive and copy the files you want to extract to their new location just as you would copy \"normal\" files. Note that unpacking from a browsed archive takes more time (file by file unpack) compared to unpacking a whole archive with the first method."
+msgid "If you only want to extract a part of the archive, then <link linkend=\"browsing-archives\">browse</link> the archive and copy the files you want to extract to their new location just as you would copy \"normal\" files. Note that unpacking from a browsed archive takes more time (file by file unpack) compared to unpacking a whole archive with the first method."
 msgstr ""
 
 #. Tag: title
-#: archives.docbook:67
+#: archives.docbook:86
 #, no-c-format
 msgid "Packing Files"
 msgstr ""
 
 #. Tag: para
-#: archives.docbook:68
+#: archives.docbook:87
 #, no-c-format
-msgid "If you want to create a new archive, begin by selecting the elements you want to pack in the active panel and select <emphasis role=\"bold\"><menuchoice><guimenu>File</guimenu> <guimenuitem>Pack</guimenuitem></menuchoice></emphasis> or <keycombo action=\"simul\">&Alt;<keycap>P</keycap></keycombo>. A dialog will pop-up, prompting you to select the archive name and location, you select the packer by selecting one of the <link linkend=\"konfig-archives\">supported filename extensions</link>."
+msgid "If you want to create a new archive, begin by selecting the elements you want to pack in the active panel and select <emphasis role=\"bold\"> <menuchoice> <guimenu>File</guimenu> <guimenuitem>Pack</guimenuitem> </menuchoice> </emphasis> or <keycombo action=\"simul\">&Alt; <keycap>P</keycap></keycombo>. A dialog will pop-up prompting you to select the archive name and location. Select the packer from one of the <link linkend=\"konfig-archives\">supported file name extensions</link>."
 msgstr ""
 
 #. Tag: para
-#: archives.docbook:75
+#: archives.docbook:101
 #, no-c-format
-msgid "To add files to an existing archives, open the archive in one panel and the files to be copied in the other panel, then simply copy the files into the archive in exactly the same way you copy files into a \"normal\" directory."
+msgid "To add files to an existing archive(s), open the archive in one panel and the files to be copied in the other panel, then simply copy the files into the archive in exactly the same way you copy files into a \"normal\" directory."
 msgstr ""
 
 #. Tag: title
-#: archives.docbook:82
+#: archives.docbook:107
 #, no-c-format
 msgid "Testing Archives"
 msgstr ""
 
 #. Tag: para
-#: archives.docbook:83
+#: archives.docbook:108
 #, no-c-format
-msgid "Krusader will not handle corrupted archives since it may result in data loss. If you receive an error message when opening an archive, or if you suspect that there something wrong with the archive you should test it before use. To test an archive, browse (navigate) to the archive location, select the archive. Next select <emphasis role=\"bold\"><menuchoice><guimenu>File</guimenu> <guimenuitem>Test Archive</guimenuitem></menuchoice></emphasis> or <keycombo action=\"simul\">&Alt;<keycap>E</keycap></keycombo>. &krusader; will test the archive file and inform you if the archive passed or failed the file integrity test."
+msgid "Krusader will not handle corrupted archives since it may result in data loss. If you receive an error message when opening an archive, or if you suspect that there is something wrong with the archive, you should test it before use. To test an archive, browse (navigate) to the archive location and select the archive. Next select <emphasis role=\"bold\"> <menuchoice> <guimenu>File</guimenu> <guimenuitem>Test Archive</guimenuitem> </menuchoice> </emphasis> or <keycombo action=\"simul\">&Alt; <keycap>E</keycap></keycombo>. &krusader; will test the archive file and inform you whether the archive passed or failed the file integrity test."
 msgstr ""
 

@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-1.80.0 2006-12-15\n"
+"Project-Id-Version: Krusader-doc-1.80.03 2007-05-08\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2006-12-15 19:39+0000\n"
+"POT-Creation-Date: 2007-05-08 20:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -17,230 +17,230 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Tag: title
-#: useractions.docbook:24
+#: useractions.docbook:22
 #, no-c-format
 msgid "<title>UserActions</title>"
 msgstr ""
 
 #. Tag: primary
-#: useractions.docbook:25
+#: useractions.docbook:24
 #, no-c-format
 msgid "<primary>UserActions</primary>"
 msgstr ""
 
 #. Tag: para
-#: useractions.docbook:28
+#: useractions.docbook:27
 #, no-c-format
-msgid "With ActionMan you can set up, configure and manage your UserActions, some general settings are configured with <link linkend=\"konfig-useractions\">Konfigurator</link>. With the UserActions the user can make his own actions on files in the panel or to access krusader-internal functions with parameter directly using placeholder(s). The actions integrate seamlessly into &kde;'s action-system, so the standard edit-toolbar/shortcut-dialogs will show/manipulate the UserActions too. The UserActions are stored in <filename>~/.kde/share/apps/krusader/useraction.xml</filename> (the file-structure is documentated in doxygen-headers of UserActionXML). Several <link linkend=\"useraction_xml\">examples</link> are included in the documentation. UserActions can be edit/add/im-/export using by using ActionMan. The default UserActions are stored in <filename>~/.kde/share/apps/krusader/useraction_examples.xml</filename>. UserActions can appear nearly everywhere where \"normal\" KActions can be placed. They integrate seamless in the well knows Edit-(Toolbar,Shortcut) Dialogs from &kde;. It's even possible to place them in the menubar, but for that one has to manipulate the <filename>krusaderui.rc</filename> file with an editor. Some examples: <itemizedlist> <listitem><para><link linkend=\"useractions-menu\">Useractions Menu</link> </para></listitem> <listitem><para>&usermenu_lnk; </para></listitem> <listitem><para>&actions_toolbar_lnk; </para></listitem> <listitem><para>right-click menu's </para></listitem> <listitem><para>&etc; </para></listitem> </itemizedlist> Once you understand how to write UserActions you will find out that &krusader; has a very powerful, customizable UserActions tool."
+msgid "With ActionMan you can set up, configure and manage UserActions. Some general settings are configured with <link linkend=\"konfig-useractions\">Konfigurator</link>. With UserActions you can perform actions on files in the panel or to access &krusader; internal functions with parameters directly using placeholders. The actions integrate seamlessly into &kde;'s action system, which means that the standard Edit Toolbar and Edit Shortcut dialogs will show UserActions, too. The UserActions are stored in <filename> ~/.kde/share/apps/krusader/useraction.xml</filename> (the file structure is documentated in doxygen headers of UserActionXML). Several <link linkend=\"useraction-xml\">examples</link> are included in the documentation. UserActions can be edited / added / imported / exported by using ActionMan. The default UserActions are stored in <filename> ~/.kde/share/apps/krusader/useraction-examples.xml</filename>. UserActions can appear nearly everywhere where \"normal\" KActions can be placed. The actions integrate seamlessly into &kde; action system, which means that the standard Edit Toolbar and Edit Shortcut dialogs will show UserActions, too. They can even be placed in the menu bar, but for that the <filename>krusaderui.rc</filename> file must be edited. A few examples: <itemizedlist> <listitem> <para> <link linkend=\"useractions-menu\">Useractions Menu</link> </para> </listitem> <listitem> <para>&usermenu-lnk;</para> </listitem> <listitem> <para>&actions-toolbar-lnk;</para> </listitem> <listitem> <para>right click menus</para> </listitem> <listitem> <para>&etc;</para> </listitem> </itemizedlist>&krusader;'s UserActions tool is very powerful and customizable if you are familiar with writing UserActions in general."
 msgstr ""
 
 #. Tag: para
-#: useractions.docbook:61
+#: useractions.docbook:75
 #, no-c-format
-msgid "Several UserActions are provided by default. Please <link linkend=\"help_krusader\">upload your favorite UserActions</link> so that they become available for the &krusader; community. Thanks! We provide also an &useractionsforum_url;."
+msgid "Several UserActions are provided by default. Please <link linkend=\"help_krusader\">upload your favorite UserActions</link> so that they become available for the &krusader; community. Thanks! We provide also an &useractionsforum-url;."
 msgstr ""
 
 #. Tag: title
-#: useractions.docbook:70
+#: useractions.docbook:82
 #, no-c-format
 msgid "<title>ActionMan</title>"
 msgstr ""
 
 #. Tag: phrase
-#: useractions.docbook:73
+#: useractions.docbook:88
 #, no-c-format
 msgid "<phrase>ActionMan</phrase>"
 msgstr ""
 
 #. Tag: para
-#: useractions.docbook:78
+#: useractions.docbook:92
 #, no-c-format
-msgid "Basically UserActions are a method to call external programs with variable parameters. You could for example have a UserAction with the following <command>xmms <option>--enqueue %aList(\"Selected\")%</option></command> to enqueue all selected items of the active panel to the current instance of xmms. In addition to that, there is limited access to krusader-internal functions which requires parameter, so <command>%aPanelSize(\"80\")%</command> will set the width of the active panel to 80% of &krusader;'s mainwindow. Since the parameter of placeholders can itself contain other placeholders, little scripts are possible but real scripting can be done with the &javascript_console_lnk;."
+msgid "Basically, UserActions are a method to call external programs with variable parameters. For example, you could have a UserAction with the following <command>xmms <option>--enqueue %aList(\"Selected\")%</option></command> to enqueue all selected items of the active panel to the current instance of xmms. Additionally, there is limited access to &krusader; internal functions requiring parameters. For example, <command>%aPanelSize(\"80\")%</command> will set the width of the active panel to 80% of the &krusader; mainwindow. Since the parameter of placeholders can contain other placeholders, few scripts are possible. However, scripting can be done with the &javascript-console-lnk;."
 msgstr ""
 
 #. Tag: emphasis
-#: useractions.docbook:90
+#: useractions.docbook:107
 #, no-c-format
 msgid "Managing UserActions"
 msgstr ""
 
 #. Tag: para
-#: useractions.docbook:91
+#: useractions.docbook:109
 #, no-c-format
-msgid "Open Konfigurator and choose \"User-Actions -> ActionMan\", here you can add/edit/remove/import/export UserActions. <itemizedlist> <listitem><para><guimenuitem>Add Action</guimenuitem>: If you add an new action, you get an empty input-mask where you can enter all the properties. The action will be added as soon as you press <guimenuitem>Ok</guimenuitem>. Now the name is shown in the list on the left. </para></listitem> <listitem><para>To edit a UserAction: select the UserAction on the left. Now you can choose it if you want to edit the properties, the changes will only take effect when you press <guimenuitem>Ok</guimenuitem>. </para></listitem> <listitem><para><guimenuitem>Remove Action</guimenuitem>: Select the UserAction on the left and click the remove button. </para></listitem> <listitem><para><guimenuitem>Import Action</guimenuitem>: If you import some actions they will be automatically added to your list. If there are name-conflicts (the names have to be unique because these are the ID for &kde;'s action-system) you're asked to resolve them. For this the list on the left will only show the actions where conflicts exists. You now can give them new names or remove them. </para></listitem> <listitem><para><guimenuitem>Export Action</guimenuitem>: If you export a UserAction you have to give a filename in which to store it. If it does not exist it will be created. If it contains already some UserActions, the action you're exporting will be added to that file. </para></listitem> </itemizedlist> All actions you've defined are now shown in the usermenu and in &kde;'s dialogs for changing shortcuts and managing the toolbar. In addition all actions available for the current item will also show up in the rightclick menu."
+msgid "Open Konfigurator and choose \"UserActions -&gt; ActionMan\", in which you can add, edit, remove, import and export UserActions. <itemizedlist> <listitem> <para> <guimenuitem>Add Action</guimenuitem>: If you add an new action, you get an empty input mask where you can enter all the properties you desire. The action will be added as soon as you press <guimenuitem>Ok</guimenuitem>. Afterwards, the name is shown in the list on the left.</para> </listitem> <listitem> <para>To edit a UserAction: Select the UserAction on the left. Then choose it if you want to edit its properties. The changes will only take effect when you press <guimenuitem>OK</guimenuitem>.</para> </listitem> <listitem> <para> <guimenuitem>To remove a UserAction</guimenuitem>: Select the UserAction on the left and click the remove button.</para> </listitem> <listitem> <para> <guimenuitem>To import a UserAction</guimenuitem>: If you import some actions, they will be automatically added to your list. If there are name conflicts (the names have to be unique because these are the ID for &kde;'s action system), you are asked to resolve them. For this, the list on the left will only show the actions where conflicts exist. You can now give them new names or remove them.</para> </listitem> <listitem> <para> <guimenuitem>Export Action</guimenuitem>: If you export a UserAction you have to give a filename in which to store it. If it does not exist, it will be created. If the file already contains UserActions, the action you are exporting will be added to that file.</para> </listitem> </itemizedlist>All actions you have defined are now shown in the user menu and in &kde; dialogs for changing shortcuts and managing the toolbar. In addition, all actions available for the current item will also show up in the right click menu."
 msgstr ""
 
 #. Tag: guimenuitem
-#: useractions.docbook:125
+#: useractions.docbook:158
 #, no-c-format
 msgid "Basic Properties"
 msgstr ""
 
 #. Tag: para
-#: useractions.docbook:126
+#: useractions.docbook:161
 #, no-c-format
-msgid "<guimenuitem>\"Distinct Name\", \"Title\" and \"Command line\"</guimenuitem> are always required, all the other properties are optional."
+msgid "<guimenuitem>\"Distinct Name\", \"Title\" and \"Command line\"</guimenuitem>are always required, all the other properties are optional."
 msgstr ""
 
 #. Tag: para
-#: useractions.docbook:129
+#: useractions.docbook:167
 #, no-c-format
-msgid "<guimenuitem>\"Distinct Name\"</guimenuitem>: a unique name of the UserAction, used to identiy it for &kde;'s action-system."
+msgid "<guimenuitem>\"Distinct Name\"</guimenuitem>: A unique name of the UserAction, used to identify it for &kde;'s action system."
 msgstr ""
 
 #. Tag: para
-#: useractions.docbook:132
+#: useractions.docbook:173
 #, no-c-format
-msgid "<guimenuitem>\"Icon button\"</guimenuitem>: the icon for your UserAction."
+msgid "<guimenuitem>\"Icon button\"</guimenuitem>: The icon for your UserAction."
 msgstr ""
 
 #. Tag: para
-#: useractions.docbook:134
+#: useractions.docbook:178
 #, no-c-format
-msgid "<guimenuitem>\"Category\"</guimenuitem>: adds an category for an better overview. NOTE: this property is not used yet. It is planed to be used, but this is not implemented yet."
+msgid "<guimenuitem>\"Category\"</guimenuitem>: Adds a category for a better overview. NOTE: This property is not used yet. It is planned to be used, but has not implemented yet."
 msgstr ""
 
 #. Tag: para
-#: useractions.docbook:137
+#: useractions.docbook:184
 #, no-c-format
-msgid "<guimenuitem>\"Title\"</guimenuitem>: the title displayed in the menus/dialogs."
+msgid "<guimenuitem>\"Title\"</guimenuitem>: The title displayed in the menus or dialogs."
 msgstr ""
 
 #. Tag: para
-#: useractions.docbook:139
+#: useractions.docbook:189
 #, no-c-format
-msgid "<guimenuitem>\"Tooltip\"</guimenuitem>: a tooltip for your UserAction, &eg; displayed in the toolbar on mouseover."
-msgstr ""
-
-#. Tag: para
-#: useractions.docbook:142
-#, no-c-format
-msgid "<guimenuitem>\"Description\"</guimenuitem>: a description of what the UserAction is doing. This is also displayed as <guimenuitem>\"What's This\"</guimenuitem> if you <keycombo action=\"simul\">&Shift;<keycap>F1</keycap></keycombo> click on your UserAction."
-msgstr ""
-
-#. Tag: para
-#: useractions.docbook:146
-#, no-c-format
-msgid "<guimenuitem>\"Use Tooltip checkbox\"</guimenuitem>: uses the tooltip as description."
-msgstr ""
-
-#. Tag: para
-#: useractions.docbook:148
-#, no-c-format
-msgid "<guimenuitem>\"Command line\"</guimenuitem>: is the command which is finaly executed. You can add placeholder using a GUI with the <guibutton>add</guibutton> button."
-msgstr ""
-
-#. Tag: para
-#: useractions.docbook:151
-#, no-c-format
-msgid "<guimenuitem>\"Startpath\"</guimenuitem>: the working directory for the command that will be executed."
-msgstr ""
-
-#. Tag: para
-#: useractions.docbook:154
-#, no-c-format
-msgid "<guimenuitem>\"Execution mode\"</guimenuitem>:"
-msgstr ""
-
-#. Tag: para
-#: useractions.docbook:156
-#, no-c-format
-msgid "<guimenuitem>\"Normal\"</guimenuitem>: normal execution mode."
-msgstr ""
-
-#. Tag: para
-#: useractions.docbook:158
-#, no-c-format
-msgid "<guimenuitem>\"Run in terminal\"</guimenuitem>: runs the command in the terminal."
-msgstr ""
-
-#. Tag: para
-#: useractions.docbook:160
-#, no-c-format
-msgid "<guimenuitem>\"Collect output\"</guimenuitem>: collects the output off the executed programm in a &GUI; window."
-msgstr ""
-
-#. Tag: para
-#: useractions.docbook:163
-#, no-c-format
-msgid "<guimenuitem>\"Separate standard error\"</guimenuitem> when \"Collect output\" is used the stdout and stderr are separately collected"
-msgstr ""
-
-#. Tag: para
-#: useractions.docbook:169
-#, no-c-format
-msgid "<guimenuitem>\"Command accepts\"</guimenuitem>:"
-msgstr ""
-
-#. Tag: para
-#: useractions.docbook:171
-#, no-c-format
-msgid "<guimenuitem>\"Local files (no URL's)\"</guimenuitem>: tells the placeholder it should return local addesses."
-msgstr ""
-
-#. Tag: para
-#: useractions.docbook:174
-#, no-c-format
-msgid "<guimenuitem>\"URL's (local and remote)\"</guimenuitem>: tells the placeholder it should return &URL;'s."
-msgstr ""
-
-#. Tag: para
-#: useractions.docbook:188
-#, no-c-format
-msgid "<guimenuitem>\"Shortcut button\"</guimenuitem>: configures a shortcut for the UserAction."
-msgstr ""
-
-#. Tag: emphasis
-#: useractions.docbook:192
-#, no-c-format
-msgid "Commandline-syntax:"
-msgstr ""
-
-#. Tag: para
-#: useractions.docbook:193
-#, no-c-format
-msgid "Basically, everything you type in the command line will get executed (if you type \"ls -l\", \"ls -l\" gets executed). You have the possiblity to get some character string from &krusader; which represents the current panel-state. This is done by placeholders. A placeholder begins with a percent-sign ('%'), followd by a panel-indicator ('a' for the active, 'o' for the other, 'l' for the left and 'r' for the right panel. If the placeholder doesn't need a panel to operate on you have to indicate this by an underscore ('_')). Then comes the name of the placeholder (see the list below), which may get some parameters enclosed in quotes, and finally, again the percent-sign."
-msgstr ""
-
-#. Tag: para
-#: useractions.docbook:194
-#, no-c-format
-msgid "This sounds very complicated, so lets make an example: '%aList(\"Selected\")%' will be replaced by a list of all selected items in the active panel. So a command like 'xmms --enqueue %aList(\"All\", \" \", \"\", \"*.mp3\")%' will execute xmms with a list of all .mp3's in the current panel, separated by a single blank."
+msgid "<guimenuitem>\"Tooltip\"</guimenuitem>: A tooltip for your UserAction, &eg; displayed in the toolbar on mouseover."
 msgstr ""
 
 #. Tag: para
 #: useractions.docbook:195
 #, no-c-format
-msgid "Currently, these placeholders are implemented: <itemizedlist> <listitem><para><userinput>Path</userinput> - replaced by the panels path</para> <orderedlist> <listitem><para>&useraction_optional_parameter; Automatic escape spaces. &useraction_default; yes</para></listitem> </orderedlist> </listitem> <listitem><para><userinput>Count</userinput> - replaced by the number of &lt;first parameter&gt;</para> <orderedlist> <listitem><para>&useraction_parameter; Which items; either \"All\", \"Selected\", \"Files\" or \"Dirs\"</para></listitem> </orderedlist> </listitem> <listitem><para><userinput>Filter</userinput> - replaced by the panels filter-mask</para></listitem> <listitem><para><userinput>Current</userinput> - replaced by the current item</para> <orderedlist> <listitem><para>&useraction_optional_parameter; Omit the current path. &useraction_default; no</para></listitem> <listitem><para>&useraction_optional_parameter; Automatic escape spaces. &useraction_default; yes</para></listitem> </orderedlist> </listitem> <listitem><para><userinput>List</userinput> - replaced by a list of all &lt;first parameter&gt;</para> <orderedlist> <listitem><para>&useraction_parameter; Which items; either \"All\", \"Selected\", \"Files\" or \"Dirs\"</para></listitem> <listitem><para>&useraction_optional_parameter; Separator between the items. &useraction_default; \"&nbsp;\"</para></listitem> <listitem><para>&useraction_optional_parameter; Omit the current path. &useraction_default; no</para></listitem> <listitem><para>&useraction_optional_parameter; Filtermask (for all but \"Selected\"). &useraction_default; *</para></listitem> <listitem><para>&useraction_optional_parameter; Automatic escape spaces. &useraction_default; yes</para></listitem> </orderedlist> </listitem> <listitem><para><userinput>Select</userinput> - manipulates the selection in a panel</para> <orderedlist> <listitem><para>&useraction_parameter; Filtermask</para></listitem> <listitem><para>&useraction_optional_parameter; manipulate in which way; either \"Set\", \"Add\" or \"Remove\". &useraction_default; \"Set\"</para></listitem> </orderedlist> </listitem> <listitem><para><userinput>Goto</userinput> - changes the panels's path to &lt;first parameter&gt;</para> <orderedlist> <listitem><para>&useraction_parameter; A relative or absolute path, or an URL</para></listitem> <listitem><para>&useraction_optional_parameter; Open the location in a new tab. &useraction_default; no</para></listitem> </orderedlist> </listitem> <listitem><para><userinput>Ask</userinput> - asks the user for a some text and is replaced by the answer</para> <orderedlist> <listitem><para>&useraction_parameter; The Question</para></listitem> <listitem><para>&useraction_optional_parameter; A default answer</para></listitem> <listitem><para>&useraction_optional_parameter; A caption for the questionbox</para></listitem> </orderedlist> </listitem> <listitem><para><userinput>Clipboard</userinput> - manipulates the clipboard</para> <orderedlist> <listitem><para>&useraction_parameter; The text that should go to the clipboard (you may want to use \"%aCurrent%\" here)</para></listitem> <listitem><para>&useraction_optional_parameter; Append the text to the current clipboard-content with this separator</para></listitem> </orderedlist> </listitem> <listitem><para><userinput>Copy</userinput> - copies a file, useful for quick, local backups</para> <orderedlist> <listitem><para>&useraction_parameter; What should be copied</para></listitem> <listitem><para>&useraction_parameter; Where it should be copied</para></listitem> </orderedlist> </listitem> <listitem><para><userinput>Sync</userinput> - opens the Synchronizer with a given profile</para> <orderedlist> <listitem><para>&useraction_parameter; A profile for the Synchronizer</para></listitem> </orderedlist> </listitem> <listitem><para><userinput>NewSearch</userinput> - opens the search-windows with a given profile</para> <orderedlist> <listitem><para>&useraction_parameter; A profile for the search-module</para></listitem> </orderedlist> </listitem> <listitem><para><userinput>Profile</userinput> - loads a given panel-profile</para> <orderedlist> <listitem><para>&useraction_parameter; A panel-profile</para></listitem> </orderedlist> </listitem> <listitem><para><userinput>Each</userinput> - splits the commandline into a list. These commands are executed one after another.</para> <orderedlist> <listitem><para>&useraction_parameter; A list-item (all, all files, all dirs, all selected).</para></listitem> </orderedlist> </listitem> <listitem><para><userinput>Move</userinput> - Move from source to destination.</para> <orderedlist> <listitem><para>&useraction_parameter; A source</para></listitem> <listitem><para>&useraction_parameter; A destination</para></listitem> </orderedlist> </listitem> <listitem><para><userinput>PanelSize</userinput> - Change the ratio between the two panels.</para> <orderedlist> <listitem><para>&useraction_optional_parameter; A integer value, e.g., 80 makes the active panel use 80% of &krusader;'s width (height in vertical-mode), omitting the parameter means 50%. </para></listitem> </orderedlist> </listitem> <listitem><para><userinput>Ask</userinput> - Cancel the execution.</para> <orderedlist> <listitem><para>&useraction_optional_parameter; A string for the cancel question. </para></listitem> </orderedlist> </listitem> <listitem><para><userinput>Script</userinput> - Executes an external <link linkend=\"javascript_console\">Javascript</link> file.</para> <para>NOTE: is still experimental and the interface may change, feedback is always welcome.</para> <orderedlist> <listitem><para>&useraction_parameter; path to the external foo.js file, absolut path or relative to <filename>&lt;kde-app-data&gt;/krusader/js/</filename>. &lt;kde-app-data&gt; is <filename>$(kde-config --localprefix)/share/apps/</filename> or <filename>$(kde-config --prefix)/share/apps/</filename>, for those who don't know where so copy the scripts/extensions. If all the needed files (normaly <filename>.js</filename> and maybe <filename>.ui</filename>) are in one of these dirs it's sufficient to give the filename only as 1. parameter. </para></listitem> <listitem><para>&useraction_optional_parameter; a list of variables which should be set, like \"return=cmd; a=lalala; b='%_Ask(..)'\" so that the placeholder is replaced be the content of the variable cmd and the other two have already these values when the script starts. </para></listitem> </orderedlist> </listitem> <listitem><para><userinput>ListFile</userinput> - is replaced by path/filename of a temporary file containing a list of items</para> <orderedlist> <listitem><para>&useraction_parameter; path/filename</para></listitem> </orderedlist> </listitem> <listitem><para><userinput>ColSort</userinput> - set the sorting on a column of a specific panel.</para> <orderedlist> <listitem><para>&useraction_parameter; Column: either \"Name\", \"Ext\", \"Type\", \"Size\", \"Modified\", \"Perms\", \"rwx\", \"Owner\" and \"Group\"</para></listitem> <listitem><para>&useraction_parameter; Sort sequence: either \"Toggle\", \"Asc\", \"Desc\" </para></listitem> </orderedlist> </listitem> <listitem><para><userinput>View</userinput> - set the view mode.</para> <orderedlist> <listitem><para>&useraction_parameter; View mode: either \"generic\", \"text\", \"hex\" </para></listitem> <listitem><para>&useraction_parameter; Window Mode: either \"tab\", \"window\" </para></listitem> </orderedlist> </listitem> </itemizedlist> A GUI-based helper for placeholder-adding is provided. Spaces In Path, Current and List are by default, automatically escaped. There is one more important thing to know: All placeholders that interact with &krusader;-internal functions are called at expand-time (meaning directly when the placeholders are replaced). External programms are called at execution-time (meaning after all placeholders are replaced)."
+msgid "<guimenuitem>\"Description\"</guimenuitem>: A description of what the UserAction does. This is also displayed as <guimenuitem>\"What's This\"</guimenuitem> if you <keycombo action=\"simul\">&Shift; <keycap>F1</keycap></keycombo> click on your UserAction."
+msgstr ""
+
+#. Tag: para
+#: useractions.docbook:204
+#, no-c-format
+msgid "<guimenuitem>\"Use Tooltip checkbox\"</guimenuitem>: Uses the tooltip as description."
+msgstr ""
+
+#. Tag: para
+#: useractions.docbook:209
+#, no-c-format
+msgid "<guimenuitem>\"Command line\"</guimenuitem>: The command which will be executed. You can add placeholder using a GUI with the <guibutton>add</guibutton> button."
+msgstr ""
+
+#. Tag: para
+#: useractions.docbook:216
+#, no-c-format
+msgid "<guimenuitem>\"Startpath\"</guimenuitem>: The working directory for the command which will be executed."
+msgstr ""
+
+#. Tag: para
+#: useractions.docbook:221
+#, no-c-format
+msgid "<guimenuitem>\"Execution mode\"</guimenuitem>:"
+msgstr ""
+
+#. Tag: para
+#: useractions.docbook:225
+#, no-c-format
+msgid "<guimenuitem>\"Normal\"</guimenuitem>: Normal execution mode."
+msgstr ""
+
+#. Tag: para
+#: useractions.docbook:230
+#, no-c-format
+msgid "<guimenuitem>\"Run in terminal\"</guimenuitem>: Runs the command in the terminal."
+msgstr ""
+
+#. Tag: para
+#: useractions.docbook:235
+#, no-c-format
+msgid "<guimenuitem>\"Collect output\"</guimenuitem>: Collects the output of the executed program in a &GUI; window."
+msgstr ""
+
+#. Tag: para
+#: useractions.docbook:241
+#, no-c-format
+msgid "<guimenuitem>\"Separate standard error\"</guimenuitem>: When \"Collect output\" is used the stdout and stderr are separately collected."
+msgstr ""
+
+#. Tag: para
+#: useractions.docbook:249
+#, no-c-format
+msgid "<guimenuitem>\"Command accepts\"</guimenuitem>:"
+msgstr ""
+
+#. Tag: para
+#: useractions.docbook:253
+#, no-c-format
+msgid "<guimenuitem>\"Local files (no URLs)\"</guimenuitem>: Tells the placeholder it should return local addresses."
+msgstr ""
+
+#. Tag: para
+#: useractions.docbook:258
+#, no-c-format
+msgid "<guimenuitem>\"URLs (local and remote)\"</guimenuitem>: Tells the placeholder it should return &URL;s."
+msgstr ""
+
+#. Tag: para
+#: useractions.docbook:273
+#, no-c-format
+msgid "<guimenuitem>\"Shortcut button\"</guimenuitem>: Configures a shortcut for the UserAction."
+msgstr ""
+
+#. Tag: emphasis
+#: useractions.docbook:279
+#, no-c-format
+msgid "Command-line syntax:"
+msgstr ""
+
+#. Tag: para
+#: useractions.docbook:281
+#, no-c-format
+msgid "Basically, everything you type in the command line will get executed (if you type \"ls -l\", \"ls -l\" gets executed). You have the possiblity to get a character string from &krusader; which represents the current state of the panel. This is done using placeholders. A placeholder begins with a percent-sign ('%') and is followed by a panel indicator ('a' for the active, 'o' for the other, 'l' for the left and 'r' for the right panel. If the placeholder doesn't need a panel to operate on, you have to indicate this by an underscore ('_')). Then comes the name of the placeholder (see the list below), which may get some parameters enclosed in quotes. Finally, again the percent sign."
+msgstr ""
+
+#. Tag: para
+#: useractions.docbook:293
+#, no-c-format
+msgid "This sounds very complicated, so let's make an example: '%aList(\"Selected\")%' is replaced by a list of all selected items in the active panel. So a command like 'xmms --enqueue %aList(\"All\", \" \", \"\", \"*.mp3\")%' will execute xmms with a list of all .mp3s in the current panel, separated by a single blank."
+msgstr ""
+
+#. Tag: para
+#: useractions.docbook:299
+#, no-c-format
+msgid "Currently, these placeholders are implemented: <itemizedlist> <listitem> <para> <userinput>Path</userinput> - replaced by the panels path</para> <orderedlist> <listitem> <para>&useraction-optional-parameter; Automatic escape spaces. &useraction-default; yes</para> </listitem> </orderedlist> </listitem> <listitem> <para> <userinput>Count</userinput> - replaced by the number of &lt;first parameter&gt;</para> <orderedlist> <listitem> <para>&useraction-parameter; Which items; either \"All\", \"Selected\", \"Files\" or \"Dirs\"</para> </listitem> </orderedlist> </listitem> <listitem> <para> <userinput>Filter</userinput> - replaced by the panel's filter mask</para> </listitem> <listitem> <para> <userinput>Current</userinput> - replaced by the current item</para> <orderedlist> <listitem> <para>&useraction-optional-parameter; Omit the current path. &useraction-default; no</para> </listitem> <listitem> <para>&useraction-optional-parameter; Automatic escape spaces. &useraction-default; yes</para> </listitem> </orderedlist> </listitem> <listitem> <para> <userinput>List</userinput> - replaced by a list of all &lt;first parameter&gt;</para> <orderedlist> <listitem> <para>&useraction-parameter; Which items; either \"All\", \"Selected\", \"Files\" or \"Dirs\"</para> </listitem> <listitem> <para>&useraction-optional-parameter; Separator between the items. &useraction-default; \"&nbsp;\"</para> </listitem> <listitem> <para>&useraction-optional-parameter; Omit the current path. &useraction-default; no</para> </listitem> <listitem> <para>&useraction-optional-parameter; Filtermask (for all but \"Selected\"). &useraction-default; *</para> </listitem> <listitem> <para>&useraction-optional-parameter; Automatic escape spaces. &useraction-default; yes</para> </listitem> </orderedlist> </listitem> <listitem> <para> <userinput>Select</userinput> - manipulates the selection in a panel</para> <orderedlist> <listitem> <para>&useraction-parameter; Filtermask</para> </listitem> <listitem> <para>&useraction-optional-parameter; manipulate in which way; either \"Set\", \"Add\" or \"Remove\". &useraction-default; \"Set\"</para> </listitem> </orderedlist> </listitem> <listitem> <para> <userinput>Goto</userinput> - changes the panels' path to &lt;first parameter&gt;</para> <orderedlist> <listitem> <para>&useraction-parameter; A relative or absolute path, or an URL</para> </listitem> <listitem> <para>&useraction-optional-parameter; Open the location in a new tab. &useraction-default; no</para> </listitem> </orderedlist> </listitem> <listitem> <para> <userinput>Ask</userinput> - asks the user for some text and is replaced by the answer</para> <orderedlist> <listitem> <para>&useraction-parameter; The Question</para> </listitem> <listitem> <para>&useraction-optional-parameter; A default answer</para> </listitem> <listitem> <para>&useraction-optional-parameter; A caption for the question box</para> </listitem> </orderedlist> </listitem> <listitem> <para> <userinput>Clipboard</userinput> - manipulates the clipboard</para> <orderedlist> <listitem> <para>&useraction-parameter; The text that should go to the clipboard (you may want to use \"%aCurrent%\" here)</para> </listitem> <listitem> <para>&useraction-optional-parameter; Append the text to the current content of the clipboard with this separator</para> </listitem> </orderedlist> </listitem> <listitem> <para> <userinput>Copy</userinput> - copies a file, useful for quick, local backups</para> <orderedlist> <listitem> <para>&useraction-parameter; What should be copied</para> </listitem> <listitem> <para>&useraction-parameter; Where it should be copied</para> </listitem> </orderedlist> </listitem> <listitem> <para> <userinput>Sync</userinput> - opens the Synchronizer with a given profile</para> <orderedlist> <listitem> <para>&useraction-parameter; A profile for the Synchronizer</para> </listitem> </orderedlist> </listitem> <listitem> <para> <userinput>NewSearch</userinput> - opens the search windows with a given profile</para> <orderedlist> <listitem> <para>&useraction-parameter; A profile for the search module</para> </listitem> </orderedlist> </listitem> <listitem> <para> <userinput>Profile</userinput> - loads a given panel profile</para> <orderedlist> <listitem> <para>&useraction-parameter; A panel profile</para> </listitem> </orderedlist> </listitem> <listitem> <para> <userinput>Each</userinput> - splits the commandline into a list. These commands are executed one after another.</para> <orderedlist> <listitem> <para>&useraction-parameter; A list item (all, all files, all dirs, all selected).</para> </listitem> </orderedlist> </listitem> <listitem> <para> <userinput>Move</userinput> - move from source to destination.</para> <orderedlist> <listitem> <para>&useraction-parameter; A source</para> </listitem> <listitem> <para>&useraction-parameter; A destination</para> </listitem> </orderedlist> </listitem> <listitem> <para> <userinput>PanelSize</userinput> - change the ratio between the two panels.</para> <orderedlist> <listitem> <para>&useraction-optional-parameter; A integer value, e.g., 80 makes the active panel use 80% of &krusader;'s width (height in vertical mode), omitting the parameter means 50%.</para> </listitem> </orderedlist> </listitem> <listitem> <para> <userinput>Ask</userinput> - cancel the execution.</para> <orderedlist> <listitem> <para>&useraction-optional-parameter; A string for the cancel question.</para> </listitem> </orderedlist> </listitem> <listitem> <para> <userinput>Script</userinput> - executes an external <link linkend=\"javascript_console\"> Javascript</link> file.</para> <para>NOTE: This is still experimental and the interface may change, feedback is always welcome.</para> <orderedlist> <listitem> <para>&useraction-parameter; path to the external foo.js file, absolute path or relative to <filename> &lt;kde-app-data&gt;/krusader/js/</filename>. &lt;kde-app-data&gt; is <filename>$(kde-config --localprefix)/share/apps/</filename> or <filename>$(kde-config --prefix)/share/apps/</filename>, for those who don't know where to copy the scripts/extensions. If all the needed files (normally <filename>.js</filename> and maybe <filename>.ui</filename>) are in one of these dirs it's sufficient to give the file name only as 1. parameter.</para> </listitem> <listitem> <para>&useraction-optional-parameter; a list of variables which should be set, like \"return=cmd; a=lalala; b='%_Ask(..)'\" so that the placeholder is replaced be the content of the variable cmd and the other two have already these values when the script starts.</para> </listitem> </orderedlist> </listitem> <listitem> <para> <userinput>ListFile</userinput> - is replaced by path/file name of a temporary file containing a list of items</para> <orderedlist> <listitem> <para>&useraction-parameter; path/filename</para> </listitem> </orderedlist> </listitem> <listitem> <para> <userinput>ColSort</userinput> - set the sorting on a column of a specific panel.</para> <orderedlist> <listitem> <para>&useraction-parameter; Column: Either \"Name\", \"Ext\", \"Type\", \"Size\", \"Modified\", \"Perms\", \"rwx\", \"Owner\" and \"Group\"</para> </listitem> <listitem> <para>&useraction-parameter; Sort sequence: Either \"Toggle\", \"Asc\", \"Desc\"</para> </listitem> </orderedlist> </listitem> <listitem> <para> <userinput>View</userinput> - set the view mode.</para> <orderedlist> <listitem> <para>&useraction-parameter; View mode: Either \"generic\", \"text\", \"hex\"</para> </listitem> <listitem> <para>&useraction-parameter; Window Mode: Either \"tab\", \"window\"</para> </listitem> </orderedlist> </listitem> </itemizedlist>A GUI-based helper for placeholder adding is provided. Spaces In Path, Current and List are by default, automatically escaped. There is one more important thing to know: All placeholders that interact with &krusader; internal functions are called at expand time (meaning directly when the placeholders are replaced). External programs are called at execution time (meaning after all placeholders are replaced)."
 msgstr ""
 
 #. Tag: guimenuitem
-#: useractions.docbook:347
+#: useractions.docbook:624
 #, no-c-format
 msgid "Advanced Properties"
 msgstr ""
 
 #. Tag: para
-#: useractions.docbook:348
+#: useractions.docbook:627
 #, no-c-format
-msgid "Here you can configure where your command should be visible (for the rightclick-menu) In addition, it's possible to change the command executed and confirm it separately. You can also set a user under which the command should be executed."
+msgid "Here you can configure where your command should be visible (for the right click menu) In addition, it is possible to change the command executed and confirm it separately. You can also set a user under which the command should be executed."
 msgstr ""
 
 #. Tag: para
-#: useractions.docbook:352
+#: useractions.docbook:633
 #, no-c-format
-msgid "Configures if the action is valid for a Protocol, Path, Mime-type or Filename."
+msgid "Configures if the action is valid for a Protocol, Path, Mime type or File name."
 msgstr ""
 
 #. Tag: para
-#: useractions.docbook:353
+#: useractions.docbook:637
 #, no-c-format
 msgid "Tweaking the command line before being executed."
 msgstr ""
 
 #. Tag: para
-#: useractions.docbook:354
+#: useractions.docbook:640
 #, no-c-format
-msgid "Set a different user for the execution (this has no effect in krusader-internal functions)"
+msgid "Set a different user for the execution (this has no effect in &krusader; internal functions)"
 msgstr ""
 
