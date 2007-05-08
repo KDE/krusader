@@ -1,13 +1,18 @@
 Package: krusader
-Version: 1.80.0
-Revision: 1
+Version: 1.80.0-beta2
+Revision: 3
 Source: mirror:sourceforge:%n/%n-%v.tar.gz
-Depends: kdelibs3-ssl (>= 3.4) | kdelibs3 (>= 3.4), qt3-shlibs (>= 3.2)
-BuildDepends: autoconf2.5, automake1.9, cctools (>= 446-1), kdelibs3-ssl-dev (>= 3.2) | kdelibs3-dev (>= 3.2), libtool14, qt3 (>= 3.2)
+PatchFile: %n.patch
+PatchScript: patch -p0 < %{PatchFile}
+PatchFile-MD5: d02c7d2fd46873e5130ccb074824c7ff
+GCC: 4.0
+Depends: kdelibs3-unified, qt3-shlibs (>= 3.2), kdebase3-unified-shlibs, x11
+BuildDepends: autoconf2.5, automake1.9, cctools (>= 446-1), kdelibs3-unified-dev, libtool14, qt3 (>= 3.2), fink ( >= 0.24.12), libjpeg, pcre, libart2, libidn, libgettext3-dev, libiconv-dev, libpng3, kdebase3-unified-dev, kjsembed-dev, freetype219
 Maintainer: Jonas Baehr <jonas.baehr@web.de>
 Homepage: http://krusader.sourceforge.net/
 License: GPL
 Description: Twinpanel (commander-style) filemanager
-Source-MD5: 
-ConfigureParams: --with-qt-includes=%{p}/include/qt --without-arts --mandir=%{p}/share/man --with-qt-dir=%{p} --with-qt-includes=%{p}/include/qt --without-acl
-DocFiles: AUTHORS COPYING CVSNEWS Changelog README
+Source-MD5: 2766071dea2fbf5c3abd6de8946c0a08
+ConfigureParams: --with-qt-includes=%{p}/include/qt --without-arts --mandir=%{p}/share/man --with-qt-dir=%{p} --with-qt-includes=%{p}/include/qt --without-acl --disable-dependency-tracking
+InstallScript: make install DESTDIR=%d
+DocFiles: AUTHORS COPYING CVSNEWS ChangeLog README
