@@ -44,28 +44,17 @@ msgstr ""
 #: useraction-xml.docbook:37
 #, no-c-format
 msgid ""
-      "&lt;!DOCTYPE KrusaderUserActions>
-\n"
-      " &lt;KrusaderUserActions>
-\n"
-      "  &lt;action name=\"uptime\" >
-\n"
-      "  &lt;title>Up-time&lt;/title>
-\n"
-      "  &lt;tooltip>tells how long since the computer has been booted&lt;/tooltip>
-\n"
-      "  &lt;icon>clock&lt;/icon>
-\n"
-      "  &lt;category>information&lt;/category>
-\n"
-      "  &lt;description same_as=\"tooltip\" />
-\n"
-      "  &lt;command executionmode=\"collect_output\" >uptime&lt;/command>
-\n"
-      "  &lt;defaultshortcut>Alt+Ctrl+U&lt;/defaultshortcut>
-\n"
-      " &lt;/action>
-\n"
+      "&lt;!DOCTYPE KrusaderUserActions>\n"
+      " &lt;KrusaderUserActions>\n"
+      "  &lt;action name=\"uptime\" >\n"
+      "  &lt;title>Up-time&lt;/title>\n"
+      "  &lt;tooltip>tells how long since the computer has been booted&lt;/tooltip>\n"
+      "  &lt;icon>clock&lt;/icon>\n"
+      "  &lt;category>information&lt;/category>\n"
+      "  &lt;description same_as=\"tooltip\" />\n"
+      "  &lt;command executionmode=\"collect_output\" >uptime&lt;/command>\n"
+      "  &lt;defaultshortcut>Alt+Ctrl+U&lt;/defaultshortcut>\n"
+      " &lt;/action>\n"
       "&lt;/KrusaderUserActions>"
 msgstr ""
 
@@ -79,20 +68,13 @@ msgstr ""
 #: useraction-xml.docbook:53
 #, no-c-format
 msgid ""
-      "&lt;!DOCTYPE KrusaderUserActions>
-\n"
-      " &lt;KrusaderUserActions>
-\n"
-      "  &lt;action name=\"ls -l\" >
-\n"
-      "  &lt;title>ls -l in curremt dir&lt;/title>
-\n"
-      "  &lt;description same_as=\"tooltip\" />
-\n"
-      "  &lt;command executionmode=\"collect_output\" >ls -l %aPath% %oPath%&lt;/command>
-\n"
-      " &lt;/action>
-\n"
+      "&lt;!DOCTYPE KrusaderUserActions>\n"
+      " &lt;KrusaderUserActions>\n"
+      "  &lt;action name=\"ls -l\" >\n"
+      "  &lt;title>ls -l in curremt dir&lt;/title>\n"
+      "  &lt;description same_as=\"tooltip\" />\n"
+      "  &lt;command executionmode=\"collect_output\" >ls -l %aPath% %oPath%&lt;/command>\n"
+      " &lt;/action>\n"
       "&lt;/KrusaderUserActions>"
 msgstr ""
 
@@ -106,24 +88,15 @@ msgstr ""
 #: useraction-xml.docbook:65
 #, no-c-format
 msgid ""
-      "&lt;!DOCTYPE KrusaderUserActions>
-\n"
-      " &lt;KrusaderUserActions>
-\n"
-      "  &lt;action name=\"test_placeholder\" >
-\n"
-      "  &lt;title>Echo Placeholder&lt;/title>
-\n"
-      "  &lt;tooltip>Echo's the placeholder values&lt;/tooltip>
-\n"
-      "  &lt;category>Testing&lt;/category>
-\n"
-      "  &lt;description same_as=\"tooltip\" />
-\n"
-      "  &lt;command executionmode=\"collect_output\" onmultiplefiles=\"call_each\" >echo -e &quot;aPath %aPath()%  \\naCurrent: %aCurrent()%&quot;&lt;/command>
-\n"
-      " &lt;/action>
-\n"
+      "&lt;!DOCTYPE KrusaderUserActions>\n"
+      " &lt;KrusaderUserActions>\n"
+      "  &lt;action name=\"test_placeholder\" >\n"
+      "  &lt;title>Echo Placeholder&lt;/title>\n"
+      "  &lt;tooltip>Echo's the placeholder values&lt;/tooltip>\n"
+      "  &lt;category>Testing&lt;/category>\n"
+      "  &lt;description same_as=\"tooltip\" />\n"
+      "  &lt;command executionmode=\"collect_output\" onmultiplefiles=\"call_each\" >echo -e &quot;aPath %aPath()%  \\naCurrent: %aCurrent()%&quot;&lt;/command>\n"
+      " &lt;/action>\n"
       "&lt;/KrusaderUserActions>"
 msgstr ""
 
@@ -137,28 +110,17 @@ msgstr ""
 #: useraction-xml.docbook:79
 #, no-c-format
 msgid ""
-      "&lt;!DOCTYPE KrusaderUserActions>
-\n"
-      "&lt;KrusaderUserActions>
-\n"
-      " &lt;action name=\"clipboard current\" >
-\n"
-      "  &lt;title>Copy to Clipboard&lt;/title>
-\n"
-      "  &lt;tooltip>Copy to clipboard&lt;/tooltip>
-\n"
-      "  &lt;icon>klipper&lt;/icon>
-\n"
-      "  &lt;category>System&lt;/category>
-\n"
-      "  &lt;description>Copy current path and filename to clipboard&lt;/description>
-\n"
-      "  &lt;command>%_Clipboard(&quot;%aCurrent%&quot;)%&lt;/command>
-\n"
-      "  &lt;defaultshortcut>Win+C&lt;/defaultshortcut>
-\n"
-      " &lt;/action>
-\n"
+      "&lt;!DOCTYPE KrusaderUserActions>\n"
+      "&lt;KrusaderUserActions>\n"
+      " &lt;action name=\"clipboard current\" >\n"
+      "  &lt;title>Copy to Clipboard&lt;/title>\n"
+      "  &lt;tooltip>Copy to clipboard&lt;/tooltip>\n"
+      "  &lt;icon>klipper&lt;/icon>\n"
+      "  &lt;category>System&lt;/category>\n"
+      "  &lt;description>Copy current path and filename to clipboard&lt;/description>\n"
+      "  &lt;command>%_Clipboard(&quot;%aCurrent%&quot;)%&lt;/command>\n"
+      "  &lt;defaultshortcut>Win+C&lt;/defaultshortcut>\n"
+      " &lt;/action>\n"
       "&lt;/KrusaderUserActions>"
 msgstr ""
 
@@ -172,20 +134,13 @@ msgstr ""
 #: useraction-xml.docbook:95
 #, no-c-format
 msgid ""
-      "&lt;!DOCTYPE KrusaderUserActions>
-\n"
-      "&lt;KrusaderUserActions>
-\n"
-      " &lt;action name=\"test_select\" >
-\n"
-      "  &lt;title>Add selection *.diff and *.h&lt;/title>
-\n"
-      "  &lt;category>Selection&lt;/category>
-\n"
-      "  &lt;command>%aSelect(&quot;*.diff&quot;, &quot;add&quot;)% %aSelect(&quot;*.h&quot;, &quot;add&quot;)%&lt;/command>
-\n"
-      " &lt;/action>
-\n"
+      "&lt;!DOCTYPE KrusaderUserActions>\n"
+      "&lt;KrusaderUserActions>\n"
+      " &lt;action name=\"test_select\" >\n"
+      "  &lt;title>Add selection *.diff and *.h&lt;/title>\n"
+      "  &lt;category>Selection&lt;/category>\n"
+      "  &lt;command>%aSelect(&quot;*.diff&quot;, &quot;add&quot;)% %aSelect(&quot;*.h&quot;, &quot;add&quot;)%&lt;/command>\n"
+      " &lt;/action>\n"
       "&lt;/KrusaderUserActions>"
 msgstr ""
 
@@ -199,18 +154,12 @@ msgstr ""
 #: useraction-xml.docbook:107
 #, no-c-format
 msgid ""
-      "&lt;!DOCTYPE KrusaderUserActions>
-\n"
-      "&lt;action name=\"mnt/floppy bookmark\" >
-\n"
-      "  &lt;title>Jump to /mnt/floppy&lt;/title>
-\n"
-      "  &lt;category>Bookmarks&lt;/category>
-\n"
-      "  &lt;command>%aGoto(&quot;/mnt/floppy&quot;, &quot;yes&quot;)%&lt;/command>
-\n"
-      " &lt;/action>
-\n"
+      "&lt;!DOCTYPE KrusaderUserActions>\n"
+      "&lt;action name=\"mnt/floppy bookmark\" >\n"
+      "  &lt;title>Jump to /mnt/floppy&lt;/title>\n"
+      "  &lt;category>Bookmarks&lt;/category>\n"
+      "  &lt;command>%aGoto(&quot;/mnt/floppy&quot;, &quot;yes&quot;)%&lt;/command>\n"
+      " &lt;/action>\n"
       "&lt;/KrusaderUserActions>"
 msgstr ""
 
@@ -224,20 +173,13 @@ msgstr ""
 #: useraction-xml.docbook:118
 #, no-c-format
 msgid ""
-      "&lt;!DOCTYPE KrusaderUserActions>
-\n"
-      " &lt;action name=\"asdfasdf\" >
-\n"
-      "  &lt;title>Select in Other Panel&lt;/title>
-\n"
-      "  &lt;category>Selection&lt;/category>
-\n"
-      "  &lt;description>Select all filenames that are selected in the active panel, also in the non-active panel&lt;/description>
-\n"
-      "  &lt;command>%oSelect(&quot;%aList(&quot;selected&quot;, &quot; &quot;, &quot;Yes&quot;)%&quot;)%&lt;/command>
-\n"
-      " &lt;/action>
-\n"
+      "&lt;!DOCTYPE KrusaderUserActions>\n"
+      " &lt;action name=\"asdfasdf\" >\n"
+      "  &lt;title>Select in Other Panel&lt;/title>\n"
+      "  &lt;category>Selection&lt;/category>\n"
+      "  &lt;description>Select all filenames that are selected in the active panel, also in the non-active panel&lt;/description>\n"
+      "  &lt;command>%oSelect(&quot;%aList(&quot;selected&quot;, &quot; &quot;, &quot;Yes&quot;)%&quot;)%&lt;/command>\n"
+      " &lt;/action>\n"
       "&lt;/KrusaderUserActions"
 msgstr ""
 
@@ -251,28 +193,17 @@ msgstr ""
 #: useraction-xml.docbook:130
 #, no-c-format
 msgid ""
-      "&lt;!DOCTYPE KrusaderUserActions>
-\n"
-      "&lt;KrusaderUserActions>
-\n"
-      " &lt;action name=\"backup current\" >
-\n"
-      "  &lt;title>Backup in Current Directory&lt;/title>
-\n"
-      "  &lt;tooltip>Backup in current directory&lt;/tooltip>
-\n"
-      "  &lt;icon>filesaveas&lt;/icon>
-\n"
-      "  &lt;category>System&lt;/category>
-\n"
-      "  &lt;description same_as=\"tooltip\" />
-\n"
-      "  &lt;command>%_Copy(&quot;%aCurrent%&quot;, &quot;%_Ask(&quot;new name&quot;, &quot;%aCurrent%.bak&quot;)&quot;)%&lt;/command>
-\n"
-      "  &lt;defaultshortcut>Shift+F5&lt;/defaultshortcut>
-\n"
-      " &lt;/action>
-\n"
+      "&lt;!DOCTYPE KrusaderUserActions>\n"
+      "&lt;KrusaderUserActions>\n"
+      " &lt;action name=\"backup current\" >\n"
+      "  &lt;title>Backup in Current Directory&lt;/title>\n"
+      "  &lt;tooltip>Backup in current directory&lt;/tooltip>\n"
+      "  &lt;icon>filesaveas&lt;/icon>\n"
+      "  &lt;category>System&lt;/category>\n"
+      "  &lt;description same_as=\"tooltip\" />\n"
+      "  &lt;command>%_Copy(&quot;%aCurrent%&quot;, &quot;%_Ask(&quot;new name&quot;, &quot;%aCurrent%.bak&quot;)&quot;)%&lt;/command>\n"
+      "  &lt;defaultshortcut>Shift+F5&lt;/defaultshortcut>\n"
+      " &lt;/action>\n"
       "&lt;/KrusaderUserActions>"
 msgstr ""
 
@@ -286,18 +217,12 @@ msgstr ""
 #: useraction-xml.docbook:146
 #, no-c-format
 msgid ""
-      "&lt;!DOCTYPE KrusaderUserActions>
-\n"
-      "&lt;KrusaderUserActions>
-\n"
-      " &lt;action name=\"search\" >
-\n"
-      "  &lt;title>Search Test&lt;/title>
-\n"
-      "  &lt;command>%_NewSearch(&quot;Search 2&quot;)%&lt;/command>
-\n"
-      " &lt;/action>
-\n"
+      "&lt;!DOCTYPE KrusaderUserActions>\n"
+      "&lt;KrusaderUserActions>\n"
+      " &lt;action name=\"search\" >\n"
+      "  &lt;title>Search Test&lt;/title>\n"
+      "  &lt;command>%_NewSearch(&quot;Search 2&quot;)%&lt;/command>\n"
+      " &lt;/action>\n"
       "&lt;/KrusaderUserActions>"
 msgstr ""
 
@@ -311,28 +236,17 @@ msgstr ""
 #: useraction-xml.docbook:157
 #, no-c-format
 msgid ""
-      "&lt;!DOCTYPE KrusaderUserActions>
-\n"
-      "&lt;KrusaderUserActions>
-\n"
-      " &lt;action name=\"set wallpaper\" >
-\n"
-      "  &lt;title>Set as Wallpaper&lt;/title>
-\n"
-      "  &lt;tooltip>Set as wallpaper&lt;/tooltip>
-\n"
-      "  &lt;icon>image&lt;/icon>
-\n"
-      "  &lt;category>Service Menu&lt;/category>
-\n"
-      "  &lt;description>Set as wallpaper (scaled)&lt;/description>
-\n"
-      "  &lt;command>dcop kdesktop KBackgroundIface setWallpaper &quot;%aCurrent%&quot; 6&lt;/command>
-\n"
-      "  &lt;defaultshortcut>Win+W&lt;/defaultshortcut>
-\n"
-      " &lt;/action>
-\n"
+      "&lt;!DOCTYPE KrusaderUserActions>\n"
+      "&lt;KrusaderUserActions>\n"
+      " &lt;action name=\"set wallpaper\" >\n"
+      "  &lt;title>Set as Wallpaper&lt;/title>\n"
+      "  &lt;tooltip>Set as wallpaper&lt;/tooltip>\n"
+      "  &lt;icon>image&lt;/icon>\n"
+      "  &lt;category>Service Menu&lt;/category>\n"
+      "  &lt;description>Set as wallpaper (scaled)&lt;/description>\n"
+      "  &lt;command>dcop kdesktop KBackgroundIface setWallpaper &quot;%aCurrent%&quot; 6&lt;/command>\n"
+      "  &lt;defaultshortcut>Win+W&lt;/defaultshortcut>\n"
+      " &lt;/action>\n"
       "&lt;/KrusaderUserActions>"
 msgstr ""
 
@@ -346,28 +260,17 @@ msgstr ""
 #: useraction-xml.docbook:173
 #, no-c-format
 msgid ""
-      "&lt;!DOCTYPE KrusaderUserActions>
-\n"
-      "&lt;KrusaderUserActions>
-\n"
-      " &lt;action name=\"edit as root\" >
-\n"
-      "  &lt;title>Edit as Root&lt;/title>
-\n"
-      "  &lt;tooltip>Edit as root&lt;/tooltip>
-\n"
-      "  &lt;icon>kwrite&lt;/icon>
-\n"
-      "  &lt;category>System&lt;/category>
-\n"
-      "  &lt;description>Edit a file with root permissions using kdesu&lt;/description>
-\n"
-      "  &lt;command>kdesu kedit %aCurrent%&lt;/command>
-\n"
-      "  &lt;defaultshortcut>Win+F4&lt;/defaultshortcut>
-\n"
-      " &lt;/action>
-\n"
+      "&lt;!DOCTYPE KrusaderUserActions>\n"
+      "&lt;KrusaderUserActions>\n"
+      " &lt;action name=\"edit as root\" >\n"
+      "  &lt;title>Edit as Root&lt;/title>\n"
+      "  &lt;tooltip>Edit as root&lt;/tooltip>\n"
+      "  &lt;icon>kwrite&lt;/icon>\n"
+      "  &lt;category>System&lt;/category>\n"
+      "  &lt;description>Edit a file with root permissions using kdesu&lt;/description>\n"
+      "  &lt;command>kdesu kedit %aCurrent%&lt;/command>\n"
+      "  &lt;defaultshortcut>Win+F4&lt;/defaultshortcut>\n"
+      " &lt;/action>\n"
       "&lt;/KrusaderUserActions>"
 msgstr ""
 
@@ -381,28 +284,17 @@ msgstr ""
 #: useraction-xml.docbook:189
 #, no-c-format
 msgid ""
-      "&lt;!DOCTYPE KrusaderUserActions>
-\n"
-      "&lt;KrusaderUserActions>
-\n"
-      " &lt;action name=\"amarok enqueue\" >
-\n"
-      "  &lt;title>Enqueue in Amarok&lt;/title>
-\n"
-      "  &lt;tooltip>Append selected item(s) to Amarok playlist&lt;/tooltip>
-\n"
-      "  &lt;icon>amarok&lt;/icon>
-\n"
-      "  &lt;category>Multimedia&lt;/category>
-\n"
-      "  &lt;description same_as=\"tooltip\" />
-\n"
-      "  &lt;command>amarok --append %aList(&quot;Selected&quot;)%&lt;/command>
-\n"
-      "  &lt;defaultshortcut>Win+A&lt;/defaultshortcut>
-\n"
-      " &lt;/action>
-\n"
+      "&lt;!DOCTYPE KrusaderUserActions>\n"
+      "&lt;KrusaderUserActions>\n"
+      " &lt;action name=\"amarok enqueue\" >\n"
+      "  &lt;title>Enqueue in Amarok&lt;/title>\n"
+      "  &lt;tooltip>Append selected item(s) to Amarok playlist&lt;/tooltip>\n"
+      "  &lt;icon>amarok&lt;/icon>\n"
+      "  &lt;category>Multimedia&lt;/category>\n"
+      "  &lt;description same_as=\"tooltip\" />\n"
+      "  &lt;command>amarok --append %aList(&quot;Selected&quot;)%&lt;/command>\n"
+      "  &lt;defaultshortcut>Win+A&lt;/defaultshortcut>\n"
+      " &lt;/action>\n"
       "&lt;/KrusaderUserActions>"
 msgstr ""
 
@@ -416,18 +308,12 @@ msgstr ""
 #: useraction-xml.docbook:205
 #, no-c-format
 msgid ""
-      "&lt;!DOCTYPE KrusaderUserActions>
-\n"
-      "&lt;KrusaderUserActions>
-\n"
-      " &lt;action name=\"synchronizer\" >
-\n"
-      "  &lt;title>Synchronizer&lt;/title>
-\n"
-      "  &lt;command>%_Sync(&quot;Sync 2&quot;)%&lt;/command>
-\n"
-      " &lt;/action>
-\n"
+      "&lt;!DOCTYPE KrusaderUserActions>\n"
+      "&lt;KrusaderUserActions>\n"
+      " &lt;action name=\"synchronizer\" >\n"
+      "  &lt;title>Synchronizer&lt;/title>\n"
+      "  &lt;command>%_Sync(&quot;Sync 2&quot;)%&lt;/command>\n"
+      " &lt;/action>\n"
       "&lt;/KrusaderUserActions>"
 msgstr ""
 

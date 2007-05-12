@@ -380,12 +380,9 @@ msgstr ""
 #: faq.docbook:492
 #, no-c-format
 msgid ""
-      "This problem occurs when you use &gcc; 2.95, you need to install &gcc; 3.2 (or higher). You also need to set the enviroment variables \"CC, CPP and CXX\" before running the <command>./configure</command> script. <screen><prompt>$</prompt> <userinput><command>export</command> CC=<replaceable>/usr/bin/gcc-3.2</replaceable></userinput>
-\n"
-      "          <prompt>$</prompt> <userinput><command>export</command> CXX=<replaceable>/usr/bin/g++-3.2</replaceable></userinput>
-\n"
-      "          <prompt>$</prompt> <userinput><command>export</command> CPP=<replaceable>/usr/bin/cpp-3.2</replaceable></userinput>
-\n"
+      "This problem occurs when you use &gcc; 2.95, you need to install &gcc; 3.2 (or higher). You also need to set the enviroment variables \"CC, CPP and CXX\" before running the <command>./configure</command> script. <screen><prompt>$</prompt> <userinput><command>export</command> CC=<replaceable>/usr/bin/gcc-3.2</replaceable></userinput>\n"
+      "          <prompt>$</prompt> <userinput><command>export</command> CXX=<replaceable>/usr/bin/g++-3.2</replaceable></userinput>\n"
+      "          <prompt>$</prompt> <userinput><command>export</command> CPP=<replaceable>/usr/bin/cpp-3.2</replaceable></userinput>\n"
       "          </screen> For more information please take a look &debian-qt-a-url; and at the &debian-qt-b-url; on how to build a &Qt;/&kde;3 application on &debian;."
 msgstr ""
 
@@ -405,24 +402,15 @@ msgstr ""
 #: faq.docbook:537
 #, no-c-format
 msgid ""
-      "<prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so.0</replaceable></userinput>
-\n"
-      "          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so</replaceable></userinput>
-\n"
-      "          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so.1.0.0</replaceable></userinput>
-\n"
-      "          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so.0.0.0</replaceable></userinput>
-\n"
-      "          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so</replaceable></userinput>
-\n"
-      "          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.0</replaceable></userinput>
-\n"
-      "          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.0.0.0</replaceable></userinput>
-\n"
-      "          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.1</replaceable></userinput>
-\n"
-      "          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.1.0.0</replaceable></userinput>
-\n"
+      "<prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so.0</replaceable></userinput>\n"
+      "          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so</replaceable></userinput>\n"
+      "          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so.1.0.0</replaceable></userinput>\n"
+      "          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGLcore.so.0.0.0</replaceable></userinput>\n"
+      "          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so</replaceable></userinput>\n"
+      "          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.0</replaceable></userinput>\n"
+      "          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.0.0.0</replaceable></userinput>\n"
+      "          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.1</replaceable></userinput>\n"
+      "          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111 libGL.so.1.0.0</replaceable></userinput>\n"
       "          <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>/usr/lib/libGLU.la /usr/X11R6/lib/libGLU.la</replaceable></userinput>"
 msgstr ""
 
@@ -628,14 +616,10 @@ msgstr ""
 #: faq.docbook:903
 #, no-c-format
 msgid ""
-      "&krusader; does not handle (yet) <application>Samba</application> ISO 8859-x codepages, if you use a codepage different than 8859-1 you will have to do a manual configuration. Create or modify the file: <filename>~/.smb/smb.conf</filename> <programlisting>[global] 
-\n"
-      "          workgroup = MyWorkGroup (ex. WORKGROUP) 
-\n"
-      "          client code page = MyCodePage (ex. 852)
-\n"
-      "          character set = MyCharSet (ex. ISO8859-2)
-\n"
+      "&krusader; does not handle (yet) <application>Samba</application> ISO 8859-x codepages, if you use a codepage different than 8859-1 you will have to do a manual configuration. Create or modify the file: <filename>~/.smb/smb.conf</filename> <programlisting>[global] \n"
+      "          workgroup = MyWorkGroup (ex. WORKGROUP) \n"
+      "          client code page = MyCodePage (ex. 852)\n"
+      "          character set = MyCharSet (ex. ISO8859-2)\n"
       "          </programlisting> Unfortunately <application>kcontrol</application> (&kde; 3.1.1) fails to configure smb.conf properly, so this must be done manually with a text editor."
 msgstr ""
 

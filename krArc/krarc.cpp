@@ -346,7 +346,7 @@ void kio_krarcProtocol::get(const KURL& url, int tries ){
 			return;
 		}
 		// the follwing block is ripped from KDE file KIO::Slave
-		// $Id$
+		// $Id: krarc.cpp,v 1.43 2007/01/13 13:39:51 ckarai Exp $
 		QCString _path( QFile::encodeName(arcTempDir+file) );
 		KDE_struct_stat buff;
 		if( KDE_lstat( _path.data(), &buff ) == -1 ) {
