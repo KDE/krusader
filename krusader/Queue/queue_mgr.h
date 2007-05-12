@@ -3,6 +3,8 @@
 
 #include "queue.h"
 #include <qmap.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 /**
  * QueueManager holds multiple queues and has a static
@@ -17,7 +19,7 @@ public:
 	~QueueManager();
 	
 	static Queue* queue(const QString& queueName=defaultName);
-	QValueList<QString> queues() const;
+	Q3ValueList<QString> queues() const;
 
 protected:
 	static QMap<QString, Queue*> _queues;

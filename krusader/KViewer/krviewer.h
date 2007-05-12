@@ -19,12 +19,18 @@
 #define KRVIEWER_H
 
 #include <qwidget.h>
-#include <qptrlist.h>
+#include <q3ptrlist.h>
+//Added by qt3to4:
+#include <QEvent>
+#include <Q3ValueList>
+#include <QKeyEvent>
+#include <Q3PopupMenu>
+#include <QFocusEvent>
 #include <kparts/mainwindow.h>
 #include <ktempfile.h>
 #include <kparts/partmanager.h>
 #include <kparts/browserextension.h>
-#include <qguardedptr.h>
+#include <qpointer.h>
 #include <ktabwidget.h>
 
 #include "../krusader.h"
@@ -34,7 +40,7 @@
   *@author Shie Erlich & Rafi Yanai
   */
 
-class QPopupMenu;
+class Q3PopupMenu;
 class PanelViewerBase;
 
 class KrViewer : public KParts::MainWindow {
@@ -90,10 +96,10 @@ private:
 	static KrViewer* getViewer(bool new_window);	
 
 	KParts::PartManager manager;
-	QPopupMenu* viewerMenu;
+	Q3PopupMenu* viewerMenu;
 	KTempFile tmpFile;
 	KTabWidget tabBar;
-	QGuardedPtr<QWidget> returnFocusTo;
+	QPointer<QWidget> returnFocusTo;
 	PanelViewerBase * returnFocusTab;
 	
 	int detachActionIndex;
@@ -104,9 +110,9 @@ private:
 	int tabCloseID;
 	int closeID;
 
-	static QPtrList<KrViewer> viewers; // the first viewer is the active one
-	QValueList<int>    reservedKeys;   // the reserved key sequences
-	QValueList<int>    reservedKeyIDs; // the IDs of the reserved keys
+	static Q3PtrList<KrViewer> viewers; // the first viewer is the active one
+	Q3ValueList<int>    reservedKeys;   // the reserved key sequences
+	Q3ValueList<int>    reservedKeyIDs; // the IDs of the reserved keys
 };
 
 class Invoker : public QObject {

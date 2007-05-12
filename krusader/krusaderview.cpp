@@ -29,7 +29,12 @@
 ***************************************************************************/
 
 // Qt includes
-#include <qwhatsthis.h> 
+#include <q3whatsthis.h> 
+//Added by qt3to4:
+#include <Q3GridLayout>
+#include <Q3ValueList>
+#include <QKeyEvent>
+#include <QEvent>
 #include <kstatusbar.h>
 #include <kmenubar.h>
 #include <kshortcut.h>
@@ -56,13 +61,13 @@ KrusaderView::KrusaderView( QWidget *parent ) : QWidget( parent, "KrusaderView" 
 void KrusaderView::start( QStringList leftTabs, QStringList leftTypes, int leftActiveTab, QStringList rightTabs, QStringList rightTypes, int rightActiveTab ) {
   ////////////////////////////////
   // make a 1x1 mainLayout, it will auto-expand:
-  mainLayout = new QGridLayout( this, 1, 1 );
+  mainLayout = new Q3GridLayout( this, 1, 1 );
   // vertical splitter
   vert_splitter = new QSplitter( this ); // splits between panels and terminal/cmdline
   vert_splitter->setOrientation( QObject::Vertical );
   // horizontal splitter
   horiz_splitter = new PercentalSplitter( vert_splitter );
-  ( terminal_dock = new QHBox( vert_splitter ) ) ->hide(); // create it hidden
+  ( terminal_dock = new Q3HBox( vert_splitter ) ) ->hide(); // create it hidden
   // create a command line thing
   cmdLine = new KCMDLine( this );
 
@@ -82,7 +87,7 @@ void KrusaderView::start( QStringList leftTabs, QStringList leftTypes, int leftA
   // create the function keys widget
   fnKeys = new KFnKeys( this );
   fnKeys->hide();
-  QWhatsThis::add
+  Q3WhatsThis::add
     ( fnKeys, i18n( "Function keys allow performing fast "
                     "operations on files." ) );
 
@@ -94,7 +99,7 @@ void KrusaderView::start( QStringList leftTabs, QStringList leftTypes, int leftA
 
   // get the last saved sizes of the splitter
   krConfig->setGroup( "Private" );
-  QValueList<int> lst = krConfig->readIntListEntry( "Splitter Sizes" );
+  Q3ValueList<int> lst = krConfig->readIntListEntry( "Splitter Sizes" );
   if ( lst.isEmpty() )
   {
     lst = horiz_splitter->sizes();
@@ -202,7 +207,7 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
       konsole_part->widget()->hide(); // hide the widget to prevent from resize
 
     terminal_dock->hide();
-    QValueList<int> newSizes;
+    Q3ValueList<int> newSizes;
     newSizes.push_back( vert_splitter->height() );
     newSizes.push_back( 0 );
     vert_splitter->setSizes( newSizes );
@@ -338,7 +343,7 @@ bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
   return false;
 }
 
-QValueList<int> KrusaderView::getTerminalEmulatorSplitterSizes() {
+Q3ValueList<int> KrusaderView::getTerminalEmulatorSplitterSizes() {
   if( terminal_dock->isVisible() )
     return vert_splitter->sizes();
   else

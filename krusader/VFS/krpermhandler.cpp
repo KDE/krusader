@@ -48,11 +48,11 @@
 #include "krpermhandler.h"
 #include "../resources.h"
 
-QDict<uid_t> *KRpermHandler::passwdCache = 0L;
-QDict<gid_t> *KRpermHandler::groupCache = 0L;
-QIntDict<char> *KRpermHandler::currentGroups = 0L;
-QIntDict<QString> *KRpermHandler::uidCache = 0L;
-QIntDict<QString> *KRpermHandler::gidCache = 0L;
+Q3Dict<uid_t> *KRpermHandler::passwdCache = 0L;
+Q3Dict<gid_t> *KRpermHandler::groupCache = 0L;
+Q3IntDict<char> *KRpermHandler::currentGroups = 0L;
+Q3IntDict<QString> *KRpermHandler::uidCache = 0L;
+Q3IntDict<QString> *KRpermHandler::gidCache = 0L;
 
 char KRpermHandler::writeable( QString perm, gid_t gid, uid_t uid, int rwx ) {
 	if( rwx != -1 )
@@ -166,11 +166,11 @@ void KRpermHandler::init() {
 	int groupNo = getgroups( 50, groupList );
 
 	// init the groups and user caches
-	passwdCache	= new QDict<uid_t>( 317 );
-	groupCache	= new QDict<gid_t>( 317 );
-	currentGroups = new QIntDict<char>( 317 );
-	uidCache = new QIntDict<QString>( 317 );
-	gidCache = new QIntDict<QString>( 317 );
+	passwdCache	= new Q3Dict<uid_t>( 317 );
+	groupCache	= new Q3Dict<gid_t>( 317 );
+	currentGroups = new Q3IntDict<char>( 317 );
+	uidCache = new Q3IntDict<QString>( 317 );
+	gidCache = new Q3IntDict<QString>( 317 );
 
 
 	passwdCache->setAutoDelete( true );

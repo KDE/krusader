@@ -6,6 +6,8 @@
 
 #include <kpixmap.h>
 #include <qwidget.h>
+//Added by qt3to4:
+#include <QEvent>
 
 class File;
 class Directory;

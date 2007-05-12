@@ -8,7 +8,9 @@
 #include "krcolorcache.h"
 
 #include <qpainter.h>
-#include <qpointarray.h>
+#include <q3pointarray.h>
+//Added by qt3to4:
+#include <QPixmap>
 
 #define PROPS	_viewProperties
 #define VF	getVfile()
@@ -17,7 +19,7 @@
 int KrBriefViewItem::expHeight = 0;
 #endif // FASTER
 
-KrBriefViewItem::KrBriefViewItem(KrBriefView *parent, QIconViewItem *after, vfile *vf):
+KrBriefViewItem::KrBriefViewItem(KrBriefView *parent, Q3IconViewItem *after, vfile *vf):
 	KIconViewItem(parent, after), KrViewItem(vf, parent->properties()) {
 #ifdef FASTER
 	initiated = false;
@@ -54,7 +56,7 @@ KrBriefViewItem::KrBriefViewItem(KrBriefView *parent, QIconViewItem *after, vfil
 }
 
 
-int KrBriefViewItem::compare(QIconViewItem *i ) const {
+int KrBriefViewItem::compare(Q3IconViewItem *i ) const {
   bool ignoreCase = (PROPS->sortMode & KrViewProperties::IgnoreCase);
 
   KrBriefViewItem *other = (KrBriefViewItem *)i;
@@ -140,7 +142,7 @@ void KrBriefViewItem::paintItem(QPainter *p, const QColorGroup &cg) {
      p->restore();
   }
 
-  QIconViewItem::paintItem(p, _cg);
+  Q3IconViewItem::paintItem(p, _cg);
 
   paintFocus( p, cg );
 }
@@ -155,7 +157,7 @@ void KrBriefViewItem::paintFocus(QPainter *p, const QColorGroup &cg) {
 
       // we manually draw the focus rect by points
       QRect rec = rect();
-      QPointArray points( rec.right() - rec.left() + rec.bottom() - rec.top() + 4 );
+      Q3PointArray points( rec.right() - rec.left() + rec.bottom() - rec.top() + 4 );
       
       int ndx = 0;
       for( int x=rec.left(); x <= rec.right(); x+=2 )

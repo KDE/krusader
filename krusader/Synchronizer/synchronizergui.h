@@ -36,7 +36,10 @@
 #include "../Filter/filtertabs.h"
 #include "../Filter/generalfilter.h"
 #include <qdialog.h>
-#include <qlistview.h>
+#include <q3listview.h>
+//Added by qt3to4:
+#include <QResizeEvent>
+#include <QKeyEvent>
 #include <kcombobox.h>
 #include <qpixmap.h>
 #include <qcheckbox.h>
@@ -51,7 +54,7 @@ class SynchronizerGUI : QDialog
    Q_OBJECT
 
 public:
-  class SyncViewItem : public QListViewItem
+  class SyncViewItem : public Q3ListViewItem
   {
     private:
       SynchronizerFileItem *syncItemRef;
@@ -60,22 +63,22 @@ public:
       QColor                baseColor;
             
     public:
-      SyncViewItem( SynchronizerFileItem *item, QColor txt, QColor base, QListView * parent, QListViewItem *after, QString label1,
+      SyncViewItem( SynchronizerFileItem *item, QColor txt, QColor base, Q3ListView * parent, Q3ListViewItem *after, QString label1,
                     QString label2 = QString::null, QString label3 = QString::null, QString label4 = QString::null,
                     QString label5 = QString::null, QString label6 = QString::null,
                     QString label7 = QString::null, QString label8 = QString::null ) :
-                      QListViewItem( parent, after, label1, label2, label3, label4, label5, label6,
+                      Q3ListViewItem( parent, after, label1, label2, label3, label4, label5, label6,
                                      label7, label8 ), syncItemRef( item ), lastItemRef( 0 ), textColor( txt ), baseColor( base )
       {
         item->setUserData( (void *)this );
         setDragEnabled( true );
       }
       
-      SyncViewItem( SynchronizerFileItem *item, QColor txt, QColor base, QListViewItem * parent, QListViewItem *after, QString label1,
+      SyncViewItem( SynchronizerFileItem *item, QColor txt, QColor base, Q3ListViewItem * parent, Q3ListViewItem *after, QString label1,
                     QString label2 = QString::null, QString label3 = QString::null, QString label4 = QString::null,
                     QString label5 = QString::null, QString label6 = QString::null,
                     QString label7 = QString::null, QString label8 = QString::null ) :
-                      QListViewItem( parent, after, label1, label2, label3, label4, label5, label6,
+                      Q3ListViewItem( parent, after, label1, label2, label3, label4, label5, label6,
                                      label7, label8 ), syncItemRef( item ), lastItemRef( 0 ), textColor( txt ), baseColor( base )
       {
         item->setUserData( (void *)this );
@@ -103,7 +106,7 @@ public:
           _cg.setColor(QColorGroup::Text, textColor );
         if( baseColor.isValid() )
           _cg.setColor(QColorGroup::Base, baseColor );
-        QListViewItem::paintCell( p, _cg, column, width, align );
+        Q3ListViewItem::paintCell( p, _cg, column, width, align );
       };
   };
    
@@ -116,8 +119,8 @@ public:
   inline bool wasSynchronization()    {return wasSync;}
 
 public slots:
-  void rightMouseClicked(QListViewItem *);
-  void doubleClicked(QListViewItem *);
+  void rightMouseClicked(Q3ListViewItem *);
+  void doubleClicked(Q3ListViewItem *);
   void compare();
   void synchronize();
   void stop();
@@ -166,7 +169,7 @@ protected:
   KHistoryCombo *rightLocation;
   KHistoryCombo *fileFilter;
   
-  QListView     *syncList;
+  Q3ListView     *syncList;
   Synchronizer   synchronizer;
   
   QCheckBox     *cbSubdirs;

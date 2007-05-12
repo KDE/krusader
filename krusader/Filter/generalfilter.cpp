@@ -37,13 +37,17 @@
 #include <kfiledialog.h>
 #include <kmessagebox.h>
 #include <kiconloader.h>
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
 #include <qpushbutton.h>
+//Added by qt3to4:
+#include <Q3HBoxLayout>
+#include <Q3GridLayout>
+#include <QLabel>
 
 GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent, const char *name ) : QWidget( parent, name ),
     profileManager( 0 ), fltTabs( tabs )
 {
-  QGridLayout *filterLayout = new QGridLayout( this );
+  Q3GridLayout *filterLayout = new Q3GridLayout( this );
   filterLayout->setSpacing( 6 );
   filterLayout->setMargin( 11 );
 
@@ -51,12 +55,12 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
 
   // Options for name filtering
 
-  QGroupBox *nameGroup = new QGroupBox( this, "nameGroup" );
+  Q3GroupBox *nameGroup = new Q3GroupBox( this, "nameGroup" );
   nameGroup->setTitle( i18n( "File name" ) );
   nameGroup->setColumnLayout(0, Qt::Vertical );
   nameGroup->layout()->setSpacing( 0 );
   nameGroup->layout()->setMargin( 0 );
-  QGridLayout *nameGroupLayout = new QGridLayout( nameGroup->layout() );
+  Q3GridLayout *nameGroupLayout = new Q3GridLayout( nameGroup->layout() );
   nameGroupLayout->setAlignment( Qt::AlignTop );
   nameGroupLayout->setSpacing( 6 );
   nameGroupLayout->setMargin( 11 );
@@ -79,8 +83,8 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
   nameGroupLayout->addMultiCellWidget( searchFor, 0, 0, 1, 2 );
 
   QString s = "<p><img src='toolbar|find'></p>" + i18n("<p>The filename filtering criteria is defined here.</p><p>You can make use of wildcards. Multiple patterns are separated by space (means logical OR) and patterns are excluded from the search using the pipe symbol.</p><p>If the pattern is ended with a slash (<code>*pattern*/</code>), that means that pattern relates to recursive search of directories.<ul><li><code>pattern</code> - means to search those files/directories that name is <code>pattern</code>, recursive search goes through all subdirectories independently of the value of <code>pattern</code></li><li><code>pattern/</code> - means to search all files/directories, but recursive search goes through/excludes the directories that name is <code>pattern</code></li></ul><p></p><p>It's allowed to use quotation marks for names that contain space. Filter <code>\"Program&nbsp;Files\"</code> searches out those files/directories that name is <code>Program&nbsp;Files</code>.</p><p>Examples:<ul><code><li>*.o</li><li>*.h *.c\?\?</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</li></code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to '<code>*text*</code>'.</p>");
-  QWhatsThis::add(searchFor, s);
-  QWhatsThis::add(searchForLabel, s);
+  Q3WhatsThis::add(searchFor, s);
+  Q3WhatsThis::add(searchForLabel, s);
 
   QLabel *searchType = new QLabel( nameGroup, "searchType" );
   searchType->setText( i18n( "&Of type:" ) );
@@ -101,7 +105,7 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
   nameGroupLayout->addWidget( ofType, 1, 1 );
   filterLayout->addWidget( nameGroup, 0, 0 );
 
-  middleLayout = new QHBoxLayout();
+  middleLayout = new Q3HBoxLayout();
   middleLayout->setSpacing( 6 );
   middleLayout->setMargin( 0 );
   QSpacerItem* middleSpacer = new QSpacerItem( 1, 1, QSizePolicy::Fixed, QSizePolicy::Fixed );
@@ -111,17 +115,17 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
   {
     // The profile handler
 
-    QGroupBox *profileHandler = new QGroupBox( this, "profileHandler" );
+    Q3GroupBox *profileHandler = new Q3GroupBox( this, "profileHandler" );
     profileHandler->setTitle( i18n( "&Profile handler" ) );
     profileHandler->setColumnLayout(0, Qt::Vertical );
     profileHandler->layout()->setSpacing( 0 );
     profileHandler->layout()->setMargin( 0 );
-    QGridLayout *profileLayout = new QGridLayout( profileHandler->layout() );
+    Q3GridLayout *profileLayout = new Q3GridLayout( profileHandler->layout() );
     profileLayout->setAlignment( Qt::AlignTop );
     profileLayout->setSpacing( 6 );
     profileLayout->setMargin( 11 );
 
-    profileListBox = new QListBox( profileHandler, "profileListBox" );
+    profileListBox = new Q3ListBox( profileHandler, "profileListBox" );
     profileLayout->addMultiCellWidget( profileListBox, 0, 3, 0, 0 );
 
     profileAddBtn = new QPushButton( i18n( "&Add" ), profileHandler, "profileAddBtn" );
@@ -151,12 +155,12 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
   {
     // Options for search in
 
-    QGroupBox *searchInGroup = new QGroupBox( this, "searchInGroup" );
+    Q3GroupBox *searchInGroup = new Q3GroupBox( this, "searchInGroup" );
     searchInGroup->setTitle( i18n( "&Search in" ) );
     searchInGroup->setColumnLayout(0, Qt::Vertical );
     searchInGroup->layout()->setSpacing( 0 );
     searchInGroup->layout()->setMargin( 0 );
-    QGridLayout *searchInLayout = new QGridLayout( searchInGroup->layout() );
+    Q3GridLayout *searchInLayout = new Q3GridLayout( searchInGroup->layout() );
     searchInLayout->setAlignment( Qt::AlignTop );
     searchInLayout->setSpacing( 6 );
     searchInLayout->setMargin( 11 );
@@ -171,12 +175,12 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
   {
     // Options for don't search in
 
-    QGroupBox *dontSearchInGroup = new QGroupBox( this, "dontSearchInGroup" );
+    Q3GroupBox *dontSearchInGroup = new Q3GroupBox( this, "dontSearchInGroup" );
     dontSearchInGroup->setTitle( i18n( "&Don't search in" ) );
     dontSearchInGroup->setColumnLayout(0, Qt::Vertical );
     dontSearchInGroup->layout()->setSpacing( 0 );
     dontSearchInGroup->layout()->setMargin( 0 );
-    QGridLayout *dontSearchInLayout = new QGridLayout( dontSearchInGroup->layout() );
+    Q3GridLayout *dontSearchInLayout = new Q3GridLayout( dontSearchInGroup->layout() );
     dontSearchInLayout->setAlignment( Qt::AlignTop );
     dontSearchInLayout->setSpacing( 6 );
     dontSearchInLayout->setMargin( 11 );
@@ -191,17 +195,17 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
 
   // Options for containing text
 
-  QGroupBox *containsGroup = new QGroupBox( this, "containsGroup" );
+  Q3GroupBox *containsGroup = new Q3GroupBox( this, "containsGroup" );
   containsGroup->setTitle( i18n( "Containing text" ) );
   containsGroup->setColumnLayout(0, Qt::Vertical );
   containsGroup->layout()->setSpacing( 0 );
   containsGroup->layout()->setMargin( 0 );
-  QGridLayout *containsLayout = new QGridLayout( containsGroup->layout() );
+  Q3GridLayout *containsLayout = new Q3GridLayout( containsGroup->layout() );
   containsLayout->setAlignment( Qt::AlignTop );
   containsLayout->setSpacing( 6 );
   containsLayout->setMargin( 11 );
 
-  QHBoxLayout *containsTextLayout = new QHBoxLayout();
+  Q3HBoxLayout *containsTextLayout = new Q3HBoxLayout();
   containsTextLayout->setSpacing( 6 );
   containsTextLayout->setMargin( 0 );
 
@@ -219,7 +223,7 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
 
   containsLayout->addLayout( containsTextLayout, 0, 0 );
 
-  QHBoxLayout *containsCbsLayout = new QHBoxLayout();
+  Q3HBoxLayout *containsCbsLayout = new Q3HBoxLayout();
   containsCbsLayout->setSpacing( 6 );
   containsCbsLayout->setMargin( 0 );
   QSpacerItem* cbSpacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -253,7 +257,7 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
   {
     // Options for recursive searching
 
-    QHBoxLayout *recurseLayout = new QHBoxLayout();
+    Q3HBoxLayout *recurseLayout = new Q3HBoxLayout();
     recurseLayout->setSpacing( 6 );
     recurseLayout->setMargin( 0 );
     QSpacerItem* recurseSpacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -283,7 +287,7 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
     connect( profileLoadBtn,      SIGNAL(clicked()) , this, SLOT( slotLoadBtnClicked() ) );
     connect( profileOverwriteBtn, SIGNAL(clicked()) , this, SLOT( slotOverwriteBtnClicked() ) );
     connect( profileRemoveBtn,    SIGNAL(clicked()) , this, SLOT( slotRemoveBtnClicked() ) );
-    connect( profileListBox,      SIGNAL(doubleClicked(QListBoxItem *)) , this, SLOT( slotProfileDoubleClicked(QListBoxItem *) ) );
+    connect( profileListBox,      SIGNAL(doubleClicked(Q3ListBoxItem *)) , this, SLOT( slotProfileDoubleClicked(Q3ListBoxItem *) ) );
     connect( profileManager,      SIGNAL(loadFromProfile(QString )), fltTabs, SLOT( loadFromProfile(QString ) ) );
     connect( profileManager,      SIGNAL(saveToProfile(QString )), fltTabs, SLOT( saveToProfile(QString ) ) );
   }
@@ -458,7 +462,7 @@ void GeneralFilter::saveToProfile( QString name )
     krConfig->writeEntry( "Search In Edit", searchIn->lineEdit()->text() );
 
     QStringList searchInList;
-    for ( QListBoxItem *item = searchIn->listBox()->firstItem(); item != 0; item = item->next() )
+    for ( Q3ListBoxItem *item = searchIn->listBox()->firstItem(); item != 0; item = item->next() )
       searchInList.append( item->text().simplified() );
     krConfig->writeEntry( "Search In List", searchInList );
   }
@@ -468,7 +472,7 @@ void GeneralFilter::saveToProfile( QString name )
     krConfig->writeEntry( "Dont Search In Edit", dontSearchIn->lineEdit()->text() );
 
     QStringList dontSearchInList;
-    for ( QListBoxItem *item = dontSearchIn->listBox()->firstItem(); item != 0; item = item->next() )
+    for ( Q3ListBoxItem *item = dontSearchIn->listBox()->firstItem(); item != 0; item = item->next() )
       dontSearchInList.append( item->text().simplified() );
     krConfig->writeEntry( "Dont Search In List", dontSearchInList );
   }
@@ -501,14 +505,14 @@ void GeneralFilter::slotAddBtnClicked()
 
 void GeneralFilter::slotOverwriteBtnClicked()
 {
-  QListBoxItem *item = profileListBox->item( profileListBox->currentItem() );
+  Q3ListBoxItem *item = profileListBox->item( profileListBox->currentItem() );
   if( item != 0 )
     profileManager->overwriteProfile( item->text() );
 }
 
 void GeneralFilter::slotRemoveBtnClicked()
 {
-  QListBoxItem *item = profileListBox->item( profileListBox->currentItem() );
+  Q3ListBoxItem *item = profileListBox->item( profileListBox->currentItem() );
   if( item != 0 )
   {
     profileManager->deleteProfile( item->text() );
@@ -516,7 +520,7 @@ void GeneralFilter::slotRemoveBtnClicked()
   }
 }
 
-void GeneralFilter::slotProfileDoubleClicked( QListBoxItem *item )
+void GeneralFilter::slotProfileDoubleClicked( Q3ListBoxItem *item )
 {
   if( item != 0 )
   {
@@ -528,7 +532,7 @@ void GeneralFilter::slotProfileDoubleClicked( QListBoxItem *item )
 
 void GeneralFilter::slotLoadBtnClicked()
 {
-  QListBoxItem *item = profileListBox->item( profileListBox->currentItem() );
+  Q3ListBoxItem *item = profileListBox->item( profileListBox->currentItem() );
   if( item != 0 )
     profileManager->loadProfile( item->text() );
 }

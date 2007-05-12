@@ -32,9 +32,9 @@
 
 // QT includes
 #include <qstring.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 #include <qobject.h>
-#include <qdict.h>
+#include <q3dict.h>
 // KDE includes
 #include <kurl.h>
 #include <kio/jobclasses.h>
@@ -51,7 +51,7 @@
 class vfs: public QObject{
 	Q_OBJECT
 public:
-	typedef QDict<vfile> vfileDict;	
+	typedef Q3Dict<vfile> vfileDict;	
 	enum VFS_TYPE{ERROR=0,NORMAL,FTP,TEMP,VIRT};
 
 	/**
@@ -86,7 +86,7 @@ public:
 	/// Return vfile* or 0 if not found
 	inline vfile* vfs_search(const QString& name){ return (*vfs_filesP)[name]; } 
 	/// Return an empty vfile* list if not found
-	QValueList<vfile*> vfs_search(const KRQuery& filter);
+	Q3ValueList<vfile*> vfs_search(const KRQuery& filter);
 	/// The total size of all the files in the VFS,
 	KIO::filesize_t vfs_totalSize();
 	/// The number of files in the VFS
@@ -170,7 +170,7 @@ protected slots:
 private:
 	vfileDict*  vfs_filesP;    //< Point to a lists of virtual files (vfile).
 	vfileDict*  vfs_tempFilesP;//< Temporary files are stored here
-	QDictIterator<vfile>* vfileIterator; //< Point to a dictionary of virtual files (vfile).
+	Q3DictIterator<vfile>* vfileIterator; //< Point to a dictionary of virtual files (vfile).
 	
 	// used in the calcSpace function
 	bool* kds_busy;

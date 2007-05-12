@@ -181,7 +181,7 @@ void VirtualCopyJob::createNextDir() {
 		return;
 	}
 	
-	QDictIterator<KURL::List> diter( m_filesToCopy );
+	Q3DictIterator<KURL::List> diter( m_filesToCopy );
 	
 	m_currentDir = diter.currentKey();
 	m_current = m_dest;

@@ -2,6 +2,11 @@
 #include <kstringhandler.h>
 #include <kurldrag.h>
 #include <qtooltip.h>
+//Added by qt3to4:
+#include <QMouseEvent>
+#include <QDropEvent>
+#include <QDragEnterEvent>
+#include <QLabel>
 
 KrSqueezedTextLabel::KrSqueezedTextLabel(QWidget *parent, const char *name):
   KSqueezedTextLabel(parent, name), acceptDrops( false ), _index(-1), _length(-1) {

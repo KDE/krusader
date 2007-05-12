@@ -32,7 +32,9 @@
 #define FILTERTABS_H
 
 #include <qtabwidget.h>
-#include <qptrlist.h>
+#include <q3ptrlist.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 #include "filterbase.h"
 
@@ -71,8 +73,8 @@ class FilterTabs : public QObject
     FilterTabs( int properties, QTabWidget *tabWidget, QObject *parent );
     void  acceptQuery();
 
-    QPtrList<FilterBase> filterList;
-    QValueList<int>      pageNumbers;
+    Q3PtrList<FilterBase> filterList;
+    Q3ValueList<int>      pageNumbers;
 
     QTabWidget * tabWidget;
 };

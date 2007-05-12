@@ -37,7 +37,7 @@
 #include <qfileinfo.h>
 
 Combiner::Combiner( QWidget* parent,  KURL baseURLIn, KURL destinationURLIn, bool unixNamingIn ) :
-  QProgressDialog( parent, "Krusader::Combiner", true, 0 ), baseURL( baseURLIn ), destinationURL( destinationURLIn ), 
+  Q3ProgressDialog( parent, "Krusader::Combiner", true, 0 ), baseURL( baseURLIn ), destinationURL( destinationURLIn ), 
   hasValidSplitFile( false ), fileCounter ( 0 ), permissions( -1 ), receivedSize( 0 ),
   combineReadJob( 0 ), combineWriteJob( 0 ), unixNaming( unixNamingIn )
 {

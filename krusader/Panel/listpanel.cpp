@@ -32,11 +32,23 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <sys/param.h>
 // QT includes
 #include <qbitmap.h>
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
 #include <qstringlist.h>
-#include <qstrlist.h>
+#include <q3strlist.h>
+//Added by qt3to4:
+#include <Q3HBoxLayout>
+#include <QKeyEvent>
+#include <Q3ValueList>
+#include <Q3GridLayout>
+#include <QPixmap>
+#include <Q3Frame>
+#include <QDropEvent>
+#include <QHideEvent>
+#include <Q3PopupMenu>
+#include <QEvent>
+#include <QShowEvent>
 #include <kurldrag.h>
-#include <qheader.h>
+#include <q3header.h>
 #include <qtimer.h>
 #include <qregexp.h> 
 #include <qsplitter.h>
@@ -100,7 +112,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <konqbookmarkmanager.h>
 #endif
 
-typedef QValueList<KServiceOffer> OfferList;
+typedef Q3ValueList<KServiceOffer> OfferList;
 
 #define URL(X) KURL::fromPathOrURL(X)
 
@@ -113,7 +125,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left, const char *n
 
    func = new ListPanelFunc( this );
    setAcceptDrops( true );
-   layout = new QGridLayout( this, 3, 3 );
+   layout = new Q3GridLayout( this, 3, 3 );
 
    mediaButton = new MediaButton( this, "mediaButton" );
    connect( mediaButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
@@ -123,13 +135,13 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left, const char *n
    krConfig->setGroup( "Look&Feel" );
    status->setFont( krConfig->readFontEntry( "Filelist Font", _FilelistFont ) );
    status->setBackgroundMode( PaletteBackground );
-   status->setFrameStyle( QFrame::Box | QFrame::Raised );
+   status->setFrameStyle( Q3Frame::Box | Q3Frame::Raised );
    status->setLineWidth( 1 );		// a nice 3D touch :-)
    status->setText( "" );        // needed for initialization code!
    status->enableDrops( true );
    int sheight = QFontMetrics( status->font() ).height() + 4;
    status->setMaximumHeight( sheight );
-   QWhatsThis::add
+   Q3WhatsThis::add
       ( status, i18n( "The statusbar displays information about the FILESYSTEM "
                       "which holds your current directory: Total size, free space, "
                       "type of filesystem, etc." ) );
@@ -145,21 +157,21 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left, const char *n
 	bookmarksButton = new KrBookmarkButton(this);
 	connect( bookmarksButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
    connect( bookmarksButton, SIGNAL( openUrl( const KURL& ) ), func, SLOT( openUrl( const KURL& ) ) );
-	QWhatsThis::add
+	Q3WhatsThis::add
       ( bookmarksButton, i18n( "Open menu with bookmarks. You can also add "
                                "current location to the list, edit bookmarks "
                                "or add subfolder to the list." ) );
 										 
-   QHBoxLayout *totalsLayout = new QHBoxLayout;
+   Q3HBoxLayout *totalsLayout = new Q3HBoxLayout;
 	totals = new KrSqueezedTextLabel( this );
    krConfig->setGroup( "Look&Feel" );
    totals->setFont( krConfig->readFontEntry( "Filelist Font", _FilelistFont ) );
-   totals->setFrameStyle( QFrame::Box | QFrame::Raised );
+   totals->setFrameStyle( Q3Frame::Box | Q3Frame::Raised );
    totals->setBackgroundMode( PaletteBackground );
    totals->setLineWidth( 1 );		// a nice 3D touch :-)
    totals->setMaximumHeight( sheight );
    totals->enableDrops( true );
-   QWhatsThis::add
+   Q3WhatsThis::add
       ( totals, i18n( "The totals bar shows how many files exist, "
                       "how many selected and the bytes math" ) );
    connect( totals, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
@@ -184,11 +196,11 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left, const char *n
    quickSearch = new KrQuickSearch( this );
    krConfig->setGroup( "Look&Feel" );
    quickSearch->setFont( krConfig->readFontEntry( "Filelist Font", _FilelistFont ) );
-   quickSearch->setFrameStyle( QFrame::Box | QFrame::Raised );
+   quickSearch->setFrameStyle( Q3Frame::Box | Q3Frame::Raised );
    quickSearch->setLineWidth( 1 );		// a nice 3D touch :-)
    quickSearch->setMaximumHeight( sheight );
 
-   QHBox * hbox = new QHBox( this );
+   Q3HBox * hbox = new Q3HBox( this );
 
 	// clear-origin button
 	bool clearButton = krConfig->readBoolEntry("Clear Location Bar Visible", _ClearLocation);
@@ -200,14 +212,14 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left, const char *n
 	
 	QuickNavLineEdit *qnle = new QuickNavLineEdit(this);
    origin = new KURLRequester( qnle, hbox );
-   QPixmap pixMap = origin->button() ->iconSet() ->pixmap( QIconSet::Small, QIconSet::Normal );
+   QPixmap pixMap = origin->button() ->iconSet() ->pixmap( QIcon::Small, QIcon::Normal );
    origin->button() ->setFixedSize( pixMap.width() + 4, pixMap.height() + 4 );
-   QWhatsThis::add
+   Q3WhatsThis::add
       ( origin, i18n( "Use superb KDE file dialog to choose location. " ) );
    origin->setShowLocalProtocol( false );
    origin->lineEdit() ->setURLDropsEnabled( true );
    origin->lineEdit() ->installEventFilter( this );
-   QWhatsThis::add
+   Q3WhatsThis::add
       ( origin->lineEdit(), i18n( "Name of directory where you are. You can also "
                                   "enter name of desired location to move there. "
                                   "Use of Net protocols like ftp or fish is possible." ) );
@@ -254,7 +266,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left, const char *n
 
    setPanelToolbar();
 
-   header = new QHeader( this );
+   header = new Q3Header( this );
    header->hide();
 
 	// create a splitter to hold the view and the popup
@@ -391,7 +403,7 @@ void ListPanel::togglePanelPopup() {
 		if (popupSizes.count() > 0) {
 			dynamic_cast<QSplitter*>(popup->parent())->setSizes(popupSizes);
 		} else { // on the first time, resize to 50%
-			QValueList<int> lst;
+			Q3ValueList<int> lst;
 			lst << height()/2 << height()/2;
 			dynamic_cast<QSplitter*>(popup->parent())->setSizes(lst);
 		}
@@ -406,7 +418,7 @@ void ListPanel::togglePanelPopup() {
 		popupBtn->setPixmap(krLoader->loadIcon("1uparrow", KIcon::Toolbar, 16));
 		QToolTip::add(  popupBtn, i18n( "Open the popup panel" ) );
 		
-		QValueList<int> lst;
+		Q3ValueList<int> lst;
 		lst << height() << 0;
 		dynamic_cast<QSplitter*>(popup->parent())->setSizes(lst);
 		if( ACTIVE_PANEL )
@@ -826,7 +838,7 @@ void ListPanel::handleDropOnView( QDropEvent *e, QWidget *widget ) {
 
    // the KURL::List is finished, let's go
    // --> display the COPY/MOVE/LINK menu
-   QPopupMenu popup( this );
+   Q3PopupMenu popup( this );
    popup.insertItem( i18n( "Copy Here" ), 1 );
    if ( func->files() ->vfs_isWritable() )
       popup.insertItem( i18n( "Move Here" ), 2 );

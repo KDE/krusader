@@ -33,13 +33,16 @@
 #include <qdatetime.h>
 #include <qapplication.h>
 #include <qpushbutton.h>
+//Added by qt3to4:
+#include <QLabel>
+#include <QCloseEvent>
 #include <unistd.h>
 #include "../krusader.h"
 #include "klocale.h"
 #include <kcursor.h>
 
 KRPleaseWait::KRPleaseWait( QString msg, int count, bool cancel ):
-	QProgressDialog( cancel ? 0 : krApp,0, !cancel) , inc(true) {
+	Q3ProgressDialog( cancel ? 0 : krApp,0, !cancel) , inc(true) {
 	
 	timer = new QTimer(this);
 	setCaption( i18n( "Krusader::Wait" ) );
@@ -50,7 +53,7 @@ KRPleaseWait::KRPleaseWait( QString msg, int count, bool cancel ):
 	
 	connect( timer,SIGNAL(timeout()), this, SLOT(cycleProgress()));
 
-  QProgressBar* progress = new QProgressBar(count,this);
+  Q3ProgressBar* progress = new Q3ProgressBar(count,this);
   progress->setCenterIndicator(true);
 	setBar(progress);
 

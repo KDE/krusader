@@ -36,15 +36,20 @@
 
 #include <qdialog.h>
 #include <qlabel.h>
-#include <qdict.h>
-#include <qptrlist.h>
-#include <qptrdict.h>
-#include <qvaluestack.h>
-#include <qptrstack.h>
+#include <q3dict.h>
+#include <q3ptrlist.h>
+#include <q3ptrdict.h>
+#include <q3valuestack.h>
+#include <q3ptrstack.h>
+//Added by qt3to4:
+#include <QResizeEvent>
+#include <QPixmap>
+#include <QKeyEvent>
+#include <QEvent>
 #include <kurl.h>
 #include <ksqueezedtextlabel.h>
-#include <qwidgetstack.h>
-#include <qscrollview.h>
+#include <q3widgetstack.h>
+#include <q3scrollview.h>
 #include <qtimer.h>
 
 #define VIEW_LINES      0
@@ -52,7 +57,7 @@
 #define VIEW_FILELIGHT  2
 #define VIEW_LOADER     3
 
-typedef QDict<void> Properties;
+typedef Q3Dict<void> Properties;
 
 class DUListView;
 class DULines;
@@ -60,7 +65,7 @@ class DUFilelight;
 class KPopupMenu;
 class LoaderWidget;
 
-class DiskUsage : public QWidgetStack
+class DiskUsage : public Q3WidgetStack
 {
   Q_OBJECT
   
@@ -123,8 +128,8 @@ protected slots:
   void       slotLoadDirectory();
 
 protected:
-  QDict< Directory > contentMap;
-  QPtrDict<Properties> propertyMap;
+  Q3Dict< Directory > contentMap;
+  Q3PtrDict<Properties> propertyMap;
     
   Directory* currentDirectory;
   KIO::filesize_t currentSize;
@@ -157,8 +162,8 @@ protected:
   bool       clearAfterAbort;
   bool       deleting;
 
-  QValueStack<QString> directoryStack;
-  QPtrStack<Directory> parentStack;
+  Q3ValueStack<QString> directoryStack;
+  Q3PtrStack<Directory> parentStack;
 
   vfs       * searchVfs;
   vfile     * currentVfile;
@@ -173,7 +178,7 @@ protected:
 };
 
 
-class LoaderWidget : public QScrollView
+class LoaderWidget : public Q3ScrollView
 {
   Q_OBJECT
   

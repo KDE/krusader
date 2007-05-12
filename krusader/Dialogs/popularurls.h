@@ -3,7 +3,7 @@
 
 #include <qobject.h>
 #include <kurl.h>
-#include <qdict.h>
+#include <q3dict.h>
 #include <kdialogbase.h>
 
 // the class holds a list of most popular links in a dual data structure
@@ -52,7 +52,7 @@ protected:
 	
 private:
 	UrlNodeP head, tail;
-	QDict<UrlNode> ranks; // actually holds UrlNode*
+	Q3Dict<UrlNode> ranks; // actually holds UrlNode*
 	int count;
 	static const int maxUrls = 30; 
 	PopularUrlsDlg *dlg;
@@ -72,7 +72,7 @@ public:
 
 protected slots:
 	void slotSearchReturnPressed(const QString&);
-	void slotItemSelected(QListViewItem *it);
+	void slotItemSelected(Q3ListViewItem *it);
 	
 private:
 	KListView *urls;

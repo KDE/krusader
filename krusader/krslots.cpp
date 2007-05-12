@@ -31,9 +31,13 @@
 #include <qdir.h>
 #include <qpoint.h>
 #include <qstringlist.h>
-#include <qprogressdialog.h>
-#include <qlistview.h>
+#include <q3progressdialog.h>
+#include <q3listview.h>
 #include <qpixmapcache.h>
+//Added by qt3to4:
+#include <QKeyEvent>
+#include <Q3ValueList>
+#include <QEvent>
 // KDE includes
 #include <klocale.h>
 #include <kprocess.h>
@@ -214,7 +218,7 @@ void KRslots::compareContent( KURL url1, KURL url2 )
 void KRslots::rightclickMenu() {
   if( dynamic_cast<KrDetailedView*>(ACTIVE_PANEL->view) != 0 )
   {
-    QListViewItem * currentItem = dynamic_cast<QListViewItem*>(ACTIVE_PANEL->view->getCurrentKrViewItem());
+    Q3ListViewItem * currentItem = dynamic_cast<Q3ListViewItem*>(ACTIVE_PANEL->view->getCurrentKrViewItem());
     if( currentItem )
     {
       ACTIVE_PANEL->popRightClickMenu(
@@ -226,7 +230,7 @@ void KRslots::rightclickMenu() {
   }
   else if( dynamic_cast<KrBriefView*>(ACTIVE_PANEL->view) != 0 )
   {
-    QIconViewItem * currentItem = dynamic_cast<QIconViewItem*>(ACTIVE_PANEL->view->getCurrentKrViewItem());
+    Q3IconViewItem * currentItem = dynamic_cast<Q3IconViewItem*>(ACTIVE_PANEL->view->getCurrentKrViewItem());
     if( currentItem )
     {
       ACTIVE_PANEL->popRightClickMenu(
@@ -392,7 +396,7 @@ void KRslots::swapPanels(){
 }
 
 void KRslots::toggleSwapSides(){
-  QValueList<int> lst = MAIN_VIEW->horiz_splitter->sizes();
+  Q3ValueList<int> lst = MAIN_VIEW->horiz_splitter->sizes();
 
   MAIN_VIEW->horiz_splitter->moveToLast( MAIN_VIEW->leftMng );
 

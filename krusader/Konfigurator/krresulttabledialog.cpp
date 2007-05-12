@@ -29,6 +29,10 @@
  ***************************************************************************/
 
 #include "krresulttabledialog.h"
+//Added by qt3to4:
+#include <Q3VBoxLayout>
+#include <QLabel>
+#include <Q3Frame>
 
 KrResultTableDialog::KrResultTableDialog( QWidget *parent, DialogType type,
   const QString& caption, const QString& heading, const QString& headerIcon,
@@ -39,12 +43,12 @@ KrResultTableDialog::KrResultTableDialog( QWidget *parent, DialogType type,
 {
   _page = new QWidget(this);
   setMainWidget(_page);
-  _topLayout = new QVBoxLayout(_page, 0, spacingHint());
+  _topLayout = new Q3VBoxLayout(_page, 0, spacingHint());
   _topLayout->setAlignment( Qt::AlignTop );
 
   // +++ Heading +++
   // prepare the icon
-  _iconBox = new QHBox(_page, "_iconBox");
+  _iconBox = new Q3HBox(_page, "_iconBox");
   _iconLabel = new QLabel(_iconBox, "iconLabel");
   _iconLabel->setPixmap(krLoader->loadIcon(headerIcon, KIcon::Desktop, 32));
   _iconLabel->setMinimumWidth(fontMetrics().maxWidth()*20);
@@ -77,7 +81,7 @@ KrResultTableDialog::KrResultTableDialog( QWidget *parent, DialogType type,
   _topLayout->addWidget(_resultTable);
 
   // +++ Separator +++
-  KSeparator* hSep = new KSeparator(QFrame::HLine, _page);
+  KSeparator* hSep = new KSeparator(Q3Frame::HLine, _page);
   hSep->setMargin(5);
   _topLayout->addWidget(hSep);
 

@@ -11,13 +11,15 @@
 #include <kpixmapeffect.h>
 #include <qpainter.h>
 #include <qtooltip.h>        //for its palette
+//Added by qt3to4:
+#include <QEvent>
 
 
 
 namespace RadialMap {
 
 SegmentTip::SegmentTip( uint h )
-  : QWidget( 0, 0, WNoAutoErase | WStyle_Customize | WStyle_NoBorder | WStyle_Tool | WStyle_StaysOnTop | WX11BypassWM )
+  : QWidget( 0, 0, Qt::WNoAutoErase | Qt::WStyle_Customize | Qt::WStyle_NoBorder | Qt::WStyle_Tool | Qt::WStyle_StaysOnTop | Qt::WX11BypassWM )
   , m_cursorHeight( -h )
 {
    setBackgroundMode( Qt::NoBackground );
@@ -69,7 +71,7 @@ SegmentTip::moveto( QPoint p, const QWidget &canvas, bool placeAbove )
   m_pixmap = KPixmapEffect::fade( m_pixmap, 0.6, QToolTip::palette().color( QPalette::Active, QColorGroup::Background ) );
 
   paint.begin( &m_pixmap );
-  paint.drawText( rect(), AlignCenter, m_text );
+  paint.drawText( rect(), Qt::AlignCenter, m_text );
   paint.end();
 
   p += screen.topLeft(); //for Xinerama users

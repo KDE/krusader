@@ -24,9 +24,14 @@
 #include "../GUI/profilemanager.h"
 
 #include <qlayout.h>
-#include <qhbox.h>
+#include <q3hbox.h>
 #include <qlabel.h>
 #include <qtoolbutton.h>
+//Added by qt3to4:
+#include <Q3HBoxLayout>
+#include <Q3Frame>
+#include <Q3StrList>
+#include <Q3VBoxLayout>
 #include <klineedit.h>
 #include <qcheckbox.h>
 #include <kiconloader.h>
@@ -136,7 +141,7 @@ ParameterDialog::ParameterDialog( const exp_placeholder* currentPlaceholder, QWi
    _parameter.clear();
    _parameterCount = currentPlaceholder->parameterCount();
    
-   QVBoxLayout* layout = new QVBoxLayout( plainPage() );
+   Q3VBoxLayout* layout = new Q3VBoxLayout( plainPage() );
    layout->setAutoAdd( true );
    layout->setSpacing( 11 );
    
@@ -169,9 +174,9 @@ ParameterDialog::ParameterDialog( const exp_placeholder* currentPlaceholder, QWi
          _parameter.append( new ParameterText( currentPlaceholder->parameter( i ), plainPage() ) );
    }
    
-   QFrame * line = new QFrame( plainPage() );
-   line->setFrameShape( QFrame::HLine );
-   line->setFrameShadow( QFrame::Sunken );
+   Q3Frame * line = new Q3Frame( plainPage() );
+   line->setFrameShape( Q3Frame::HLine );
+   line->setFrameShadow( Q3Frame::Sunken );
 
    connect( this, SIGNAL(defaultClicked()), this, SLOT(reset()) );
 }
@@ -220,7 +225,7 @@ void ParameterDialog::slotOk() {
 
 ///////////// ParameterText
 ParameterText::ParameterText( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
-   QVBoxLayout* layout = new QVBoxLayout( this );
+   Q3VBoxLayout* layout = new Q3VBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
@@ -247,12 +252,12 @@ bool ParameterText::valid() {
 
 ///////////// ParameterPlaceholder
 ParameterPlaceholder::ParameterPlaceholder( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
-   QVBoxLayout* layout = new QVBoxLayout( this );
+   Q3VBoxLayout* layout = new Q3VBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
    new QLabel( i18n( parameter.description().utf8() ), this );
-   QHBox * hbox = new QHBox( this );
+   Q3HBox * hbox = new Q3HBox( this );
    hbox->setSpacing( 6 );
    _lineEdit = new KLineEdit( hbox );
    _button = new QToolButton( hbox);
@@ -284,7 +289,7 @@ void ParameterPlaceholder::addPlaceholder() {
 
 ///////////// ParameterYes
 ParameterYes::ParameterYes( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
-   QVBoxLayout* layout = new QVBoxLayout( this );
+   Q3VBoxLayout* layout = new Q3VBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
@@ -310,7 +315,7 @@ bool ParameterYes::valid() {
 
 ///////////// ParameterNo
 ParameterNo::ParameterNo( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
-   QVBoxLayout* layout = new QVBoxLayout( this );
+   Q3VBoxLayout* layout = new Q3VBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
@@ -336,12 +341,12 @@ bool ParameterNo::valid() {
 
 ///////////// ParameterFile
 ParameterFile::ParameterFile( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
-   QVBoxLayout* layout = new QVBoxLayout( this );
+   Q3VBoxLayout* layout = new Q3VBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
    new QLabel( i18n( parameter.description().utf8() ), this );
-   QHBox * hbox = new QHBox( this );
+   Q3HBox * hbox = new Q3HBox( this );
    hbox->setSpacing( 6 );
    _lineEdit = new KLineEdit( hbox );
    _button = new QToolButton( hbox);
@@ -372,7 +377,7 @@ void ParameterFile::addFile() {
 
 ///////////// ParameterChoose
 ParameterChoose::ParameterChoose( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
-   QVBoxLayout* layout = new QVBoxLayout( this );
+   Q3VBoxLayout* layout = new Q3VBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
@@ -396,7 +401,7 @@ bool ParameterChoose::valid() {
 
 ///////////// ParameterSelect
 ParameterSelect::ParameterSelect( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
-   QVBoxLayout* layout = new QVBoxLayout( this );
+   Q3VBoxLayout* layout = new Q3VBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
@@ -405,7 +410,7 @@ ParameterSelect::ParameterSelect( const exp_parameter& parameter, QWidget* paren
    _combobox->setEditable( true );
    
    krConfig->setGroup( "Private" );
-   QStrList lst;
+   Q3StrList lst;
    int i = krConfig->readListEntry( "Predefined Selections", lst );
    if ( i > 0 )
       _combobox->insertStrList( lst );
@@ -428,12 +433,12 @@ bool ParameterSelect::valid() {
 
 ///////////// ParameterGoto
 ParameterGoto::ParameterGoto( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
-   QVBoxLayout* layout = new QVBoxLayout( this );
+   Q3VBoxLayout* layout = new Q3VBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
    new QLabel( i18n( parameter.description().utf8() ), this );
-   QHBox * hbox = new QHBox( this );
+   Q3HBox * hbox = new Q3HBox( this );
    hbox->setSpacing( 6 );
    _lineEdit = new KLineEdit( hbox );
    _lineEdit->setCompletionObject( new KURLCompletion( KURLCompletion::DirCompletion ) );
@@ -474,7 +479,7 @@ void ParameterGoto::addPlaceholder() {
 
 ///////////// ParameterSyncprofile
 ParameterSyncprofile::ParameterSyncprofile( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
-   QVBoxLayout* layout = new QVBoxLayout( this );
+   Q3VBoxLayout* layout = new Q3VBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
@@ -499,7 +504,7 @@ bool ParameterSyncprofile::valid() {
 
 ///////////// ParameterSearch
 ParameterSearch::ParameterSearch( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
-   QVBoxLayout* layout = new QVBoxLayout( this );
+   Q3VBoxLayout* layout = new Q3VBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
@@ -524,7 +529,7 @@ bool ParameterSearch::valid() {
 
 ///////////// ParameterPanelprofile
 ParameterPanelprofile::ParameterPanelprofile( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
-   QVBoxLayout* layout = new QVBoxLayout( this );
+   Q3VBoxLayout* layout = new Q3VBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    
@@ -549,7 +554,7 @@ bool ParameterPanelprofile::valid() {
 
 ///////////// ParameterInt
 ParameterInt::ParameterInt( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
-   QHBoxLayout* layout = new QHBoxLayout( this );
+   Q3HBoxLayout* layout = new Q3HBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    

@@ -32,6 +32,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../defaults.h"
 #include <kglobalsettings.h> 
 #include <qfile.h> 
+//Added by qt3to4:
+#include <Q3ValueList>
 
 
 // Macro: set target = col, if col is valid
@@ -47,11 +49,11 @@ class KrColorSettingNames
 	static QMap<QString, bool> s_boolNames;
 	static void initialize();
 public:
-	static QValueList<QString> getColorNames();
+	static Q3ValueList<QString> getColorNames();
 	static bool isColorNameValid(const QString & settingName);
-	static QValueList<QString> getNumNames();
+	static Q3ValueList<QString> getNumNames();
 	static bool isNumNameValid(const QString & settingName);
-	static QValueList<QString> getBoolNames();
+	static Q3ValueList<QString> getBoolNames();
 	static bool isBoolNameValid(const QString & settingName);
 } krColorSettingNames;
 
@@ -99,7 +101,7 @@ void KrColorSettingNames::initialize()
 	s_boolNames["Dim Inactive Colors"] = true;
 }
 
-QValueList<QString> KrColorSettingNames::getColorNames()
+Q3ValueList<QString> KrColorSettingNames::getColorNames()
 {
 	initialize();
 	return s_colorNames.keys();
@@ -111,7 +113,7 @@ bool KrColorSettingNames::isColorNameValid(const QString & settingName)
 	return s_colorNames.contains(settingName);
 }
 
-QValueList<QString> KrColorSettingNames::getNumNames()
+Q3ValueList<QString> KrColorSettingNames::getNumNames()
 {
 	initialize();
 	return s_numNames.keys();
@@ -123,7 +125,7 @@ bool KrColorSettingNames::isNumNameValid(const QString & settingName)
 	return s_numNames.contains(settingName);
 }
 
-QValueList<QString> KrColorSettingNames::getBoolNames()
+Q3ValueList<QString> KrColorSettingNames::getBoolNames()
 {
 	initialize();
 	return s_boolNames.keys();
@@ -153,7 +155,7 @@ class KrColorSettingsImpl
 void KrColorSettingsImpl::loadFromConfig()
 {
 	krConfig->setGroup("Colors");
-	QValueList<QString> names = KrColorSettingNames::getColorNames();
+	Q3ValueList<QString> names = KrColorSettingNames::getColorNames();
 	for ( QStringList::Iterator it = names.begin(); it != names.end(); ++it )
 	{
 		m_colorTextValues[*it] = krConfig->readEntry(*it, "");
@@ -196,7 +198,7 @@ const KrColorSettings & KrColorSettings::operator= (const KrColorSettings & src)
 {
 	if (this == & src)
 		return * this;
-	QValueList<QString> names = KrColorSettingNames::getColorNames();
+	Q3ValueList<QString> names = KrColorSettingNames::getColorNames();
 	for ( QStringList::Iterator it = names.begin(); it != names.end(); ++it )
 	{
 		m_impl->m_colorTextValues[*it] = src.m_impl->m_colorTextValues[*it];
@@ -213,7 +215,7 @@ const KrColorSettings & KrColorSettings::operator= (const KrColorSettings & src)
 	return * this;
 }
 
-QValueList<QString> KrColorSettings::getColorNames()
+Q3ValueList<QString> KrColorSettings::getColorNames()
 {
 	return KrColorSettingNames::getColorNames();
 }
@@ -265,7 +267,7 @@ QString KrColorSettings::getColorTextValue(const QString & settingName) const
 	return m_impl->m_colorTextValues[settingName];
 }
 
-QValueList<QString> KrColorSettings::getNumNames()
+Q3ValueList<QString> KrColorSettings::getNumNames()
 {
 	return KrColorSettingNames::getNumNames();
 }
@@ -298,7 +300,7 @@ int KrColorSettings::getNumValue(const QString & settingName, int defaultValue) 
 	return m_impl->m_numValues[settingName];
 }
 
-QValueList<QString> KrColorSettings::getBoolNames()
+Q3ValueList<QString> KrColorSettings::getBoolNames()
 {
 	return KrColorSettingNames::getBoolNames();
 }
@@ -516,7 +518,7 @@ QColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
 const QColor & KrColorCacheImpl::setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2)
 {
    #define sqr(x) ((x)*(x))
-   int contrast = sqr(color1.red() - background.red()) + sqr(color1.green() - background.green()) + sqr(color1.blue() - background.blue());
+   int contrast = sqr(Qt::color1.Qt::red() - background.Qt::red()) + sqr(Qt::color1.Qt::green() - background.Qt::green()) + sqr(Qt::color1.Qt::blue() - background.Qt::blue());
 
    // if the contrast between background and color1 is too small, take color2 instead.
    if (contrast < 1000)

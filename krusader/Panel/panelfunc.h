@@ -35,7 +35,7 @@
 #include "listpanel.h"
 #include "krviewitem.h"
 #include <qobject.h>
-#include <qvaluestack.h>
+#include <q3valuestack.h>
 #include <qtimer.h>
 
 class ListPanelFunc : public QObject{
@@ -94,7 +94,7 @@ private:
 
 protected:
 	ListPanel*           panel;     // our ListPanel
-	QValueStack<KURL>    urlStack;  // Path stack for the "back" button
+	Q3ValueStack<KURL>    urlStack;  // Path stack for the "back" button
 	bool                 inRefresh; // true when we are in refresh()
 	vfs*                 vfsP;      // pointer to vfs.
 	QTimer               delayTimer;

@@ -24,7 +24,9 @@
 
 #include "kdiskfreesp.h"
 #include <qfile.h>
-#include <qtextstream.h>
+#include <q3textstream.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 #include <kdebug.h>
 #include <kprocess.h>
@@ -69,7 +71,7 @@ KDiskFreeSp::~KDiskFreeSp()
 **/
 void KDiskFreeSp::receivedDFStdErrOut(KProcess *, char *data, int len)
 {
-  QCString tmp(data,len+1);  // adds a zero-byte
+  Q3CString tmp(data,len+1);  // adds a zero-byte
   dfStringErrOut.append(tmp);
 }
 
@@ -97,7 +99,7 @@ void KDiskFreeSp::dfDone()
 {
   readingDFStdErrOut=true;
 
-  QTextStream t (dfStringErrOut, IO_ReadOnly);
+  Q3TextStream t (dfStringErrOut, QIODevice::ReadOnly);
   QString s=t.readLine();
   if ( (s.isEmpty()) || ( s.left(10) != QString::fromLatin1("Filesystem") ) )
     kdError() << "Error running df command... got [" << s << "]" << endl;

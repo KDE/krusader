@@ -20,7 +20,7 @@
 #include <qtoolbutton.h>
 #include <qcheckbox.h>
 #include <qradiobutton.h>
-#include <qbuttongroup.h>
+#include <q3buttongroup.h>
 #include <klocale.h>
 #include <kfiledialog.h>
 #include <klineedit.h>
@@ -213,7 +213,7 @@ void ActionProperty::updateAction( KrAction *action ) {
    _action->setStartpath( leStartpath->text() );
    _action->setShortcut( KeyButtonShortcut->shortcut() );
 
-   QListBoxItem* lbi = lbShowonlyProtocol->firstItem();
+   Q3ListBoxItem* lbi = lbShowonlyProtocol->firstItem();
    QStringList list;
    while ( lbi ) {
       list << lbi->text();

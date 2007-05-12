@@ -38,10 +38,12 @@
 
 #include <qwidget.h>
 #include <qlayout.h>
-#include <qgroupbox.h>
+#include <q3groupbox.h>
 #include <qcheckbox.h>
 #include <qlabel.h>
-#include <qlistbox.h>
+#include <q3listbox.h>
+//Added by qt3to4:
+#include <Q3HBoxLayout>
 #include <kcombobox.h>
 #include <kshellcompletion.h>
 
@@ -65,7 +67,7 @@ public slots:
   void    slotLoadBtnClicked();
   void    slotOverwriteBtnClicked();
   void    slotRemoveBtnClicked();
-  void    slotProfileDoubleClicked( QListBoxItem * );
+  void    slotProfileDoubleClicked( Q3ListBoxItem * );
   void    refreshProfileListBox();
   
 public:
@@ -79,7 +81,7 @@ public:
 
   KURLListRequester *searchIn;
   KURLListRequester *dontSearchIn;
-  QHBoxLayout *middleLayout;
+  Q3HBoxLayout *middleLayout;
 
   KHistoryCombo* searchFor;
   KHistoryCombo* containsText;
@@ -88,7 +90,7 @@ public:
 
   KShellCompletion completion;
 
-  QListBox* profileListBox;
+  Q3ListBox* profileListBox;
   
   QPushButton *profileAddBtn;
   QPushButton *profileLoadBtn;

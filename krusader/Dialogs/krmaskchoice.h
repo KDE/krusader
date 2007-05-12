@@ -31,14 +31,19 @@
 #define KRMASKCHOICE_H
 
 #include <qdialog.h>
-class QVBoxLayout; 
-class QHBoxLayout; 
-class QGridLayout; 
+//Added by qt3to4:
+#include <Q3VBoxLayout>
+#include <Q3GridLayout>
+#include <Q3HBoxLayout>
+#include <QLabel>
+class Q3VBoxLayout; 
+class Q3HBoxLayout; 
+class Q3GridLayout; 
 class QComboBox;
-class QGroupBox;
+class Q3GroupBox;
 class QLabel;
-class QListBox;
-class QListBoxItem;
+class Q3ListBox;
+class Q3ListBoxItem;
 class QPushButton;
 
 class KRMaskChoice : public QDialog
@@ -46,14 +51,14 @@ class KRMaskChoice : public QDialog
     Q_OBJECT
 
 public:
-    KRMaskChoice( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, WFlags fl = 0 );
+    KRMaskChoice( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
     ~KRMaskChoice();
 
     QComboBox* selection;
     QLabel* PixmapLabel1;
     QLabel* label;
-    QGroupBox* GroupBox1;
-    QListBox* preSelections;
+    Q3GroupBox* GroupBox1;
+    Q3ListBox* preSelections;
     QPushButton* PushButton7;
     QPushButton* PushButton7_2;
     QPushButton* PushButton7_3;
@@ -64,13 +69,13 @@ public slots:
     virtual void addSelection();
     virtual void clearSelections();
     virtual void deleteSelection();
-    virtual void acceptFromList(QListBoxItem *);
+    virtual void acceptFromList(Q3ListBoxItem *);
 
 protected:
-    QHBoxLayout* hbox;
-    QHBoxLayout* hbox_2;
-    QHBoxLayout* hbox_3;
-    QVBoxLayout* vbox;
+    Q3HBoxLayout* hbox;
+    Q3HBoxLayout* hbox_2;
+    Q3HBoxLayout* hbox_3;
+    Q3VBoxLayout* vbox;
 };
 
 #endif // KRMASKCHOICE_H

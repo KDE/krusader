@@ -11,8 +11,13 @@
 #include <qlabel.h>
 #include <qcombobox.h>
 #include <qcheckbox.h>
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
 #include <qtimer.h>
+//Added by qt3to4:
+#include <QPixmap>
+#include <QResizeEvent>
+#include <Q3VBoxLayout>
+#include <Q3Frame>
 
 #include <kapplication.h>
 #include <kglobal.h>
@@ -32,10 +37,10 @@
 KrusaderImageFilePreview::KrusaderImageFilePreview( QWidget *parent )
 		: KPreviewWidgetBase( parent ),
 m_job( 0L ) {
-	QVBoxLayout *vb = new QVBoxLayout( this, KDialog::marginHint() );
+	Q3VBoxLayout *vb = new Q3VBoxLayout( this, KDialog::marginHint() );
 
 	imageLabel = new QLabel( this );
-	imageLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );
+	imageLabel->setFrameStyle( Q3Frame::Panel | Q3Frame::Sunken );
 	imageLabel->setAlignment( Qt::AlignHCenter | Qt::AlignVCenter );
 	imageLabel->setSizePolicy( QSizePolicy( QSizePolicy::Preferred, QSizePolicy::Ignored ) );
 	vb->addWidget( imageLabel, 1 );

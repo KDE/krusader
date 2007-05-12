@@ -29,10 +29,12 @@
  ***************************************************************************/
 
 #include <qtooltip.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
 #include <klocale.h>
 #include <kglobalsettings.h>
 #include <qfontmetrics.h>
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
 #include "kfnkeys.h"
 #include "../krusader.h"
 #include "../defaults.h"
@@ -46,7 +48,7 @@ KFnKeys::KFnKeys(QWidget *parent, char *name): QWidget(parent,name) {
 }
 				
 		setFont( KGlobalSettings::generalFont() );
-		layout=new QGridLayout(this,1,9);	// 9 keys
+		layout=new Q3GridLayout(this,1,9);	// 9 keys
     F2=new QPushButton( i18n("F2 Term  ") ,this);
       QToolTip::add( F2, "<qt>" + i18n( "<p>Open terminal in current directory.</p>"
                      "<p>The terminal can be defined in Konfigurator, "

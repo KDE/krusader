@@ -30,6 +30,14 @@
 
 #include <time.h>
 #include <qlayout.h>
+//Added by qt3to4:
+#include <QKeyEvent>
+#include <QLabel>
+#include <Q3GridLayout>
+#include <QPixmap>
+#include <Q3Frame>
+#include <QResizeEvent>
+#include <QEvent>
 #include <klocale.h>
 #include <kpopupmenu.h>
 #include <kmimetype.h>
@@ -37,12 +45,12 @@
 #include <kglobalsettings.h>
 #include <kio/job.h>
 #include <qpushbutton.h>
-#include <qhbox.h>
+#include <q3hbox.h>
 #include <qapplication.h>
 #include <qcursor.h>
 #include <qpixmapcache.h>
-#include <qgroupbox.h>
-#include <qguardedptr.h>
+#include <q3groupbox.h>
+#include <qpointer.h>
 #include "diskusage.h"
 #include "../VFS/krpermhandler.h"
 #include "../VFS/krvfshandler.h"
@@ -76,26 +84,26 @@
 
 #define MAX_FILENUM         100
 
-LoaderWidget::LoaderWidget( QWidget *parent, const char *name ) : QScrollView( parent, name ), cancelled( false )
+LoaderWidget::LoaderWidget( QWidget *parent, const char *name ) : Q3ScrollView( parent, name ), cancelled( false )
 {
   viewport()->setEraseColor( Qt::white );
   widget = new QWidget( parent );
 
-  QGridLayout *loaderLayout = new QGridLayout( widget );
+  Q3GridLayout *loaderLayout = new Q3GridLayout( widget );
   loaderLayout->setSpacing( 0 );
   loaderLayout->setMargin( 0 );
 
-  QGroupBox *loaderBox = new QGroupBox( widget, "loaderGroupBox" );
-  loaderBox->setFrameShape( QGroupBox::Box );
-  loaderBox->setFrameShadow( QGroupBox::Sunken );
+  Q3GroupBox *loaderBox = new Q3GroupBox( widget, "loaderGroupBox" );
+  loaderBox->setFrameShape( Q3GroupBox::Box );
+  loaderBox->setFrameShadow( Q3GroupBox::Sunken );
   loaderBox->setColumnLayout(0, Qt::Vertical );
   loaderBox->layout()->setSpacing( 0 );
   loaderBox->layout()->setMargin( 0 );
   loaderBox->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
-  loaderBox->setFrameStyle( QFrame::Panel + QFrame::Raised );
+  loaderBox->setFrameStyle( Q3Frame::Panel + Q3Frame::Raised );
   loaderBox->setLineWidth( 2 );
 
-  QGridLayout *synchGrid = new QGridLayout( loaderBox->layout() );
+  Q3GridLayout *synchGrid = new Q3GridLayout( loaderBox->layout() );
   synchGrid->setSpacing( 6 );
   synchGrid->setMargin( 11 );
 
@@ -144,11 +152,11 @@ LoaderWidget::LoaderWidget( QWidget *parent, const char *name ) : QScrollView( p
   searchedDirectory->setMaximumWidth( width );
   synchGrid->addMultiCellWidget( searchedDirectory, 4, 4, 0, 1 );
 
-  QFrame *line = new QFrame( loaderBox, "duLine" );
-  line->setFrameStyle( QFrame::HLine | QFrame::Sunken );
+  Q3Frame *line = new Q3Frame( loaderBox, "duLine" );
+  line->setFrameStyle( Q3Frame::HLine | Q3Frame::Sunken );
   synchGrid->addMultiCellWidget( line, 5, 5, 0, 1 );
 
-  QHBox *hbox = new QHBox( loaderBox, "hbox" );
+  Q3HBox *hbox = new Q3HBox( loaderBox, "hbox" );
   QSpacerItem* spacer = new QSpacerItem( 0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding );
   hbox->layout()->addItem( spacer );
   QPushButton *cancelButton = new QPushButton( hbox, "cancelButton" );
@@ -164,7 +172,7 @@ LoaderWidget::LoaderWidget( QWidget *parent, const char *name ) : QScrollView( p
 
 void LoaderWidget::resizeEvent ( QResizeEvent *e )
 {
-  QScrollView::resizeEvent( e );
+  Q3ScrollView::resizeEvent( e );
 
   int x = ( viewport()->width() - widget->width() ) / 2;
   int y = ( viewport()->height() - widget->height() ) / 2;
@@ -196,7 +204,7 @@ void LoaderWidget::slotCancelled()
   cancelled = true;
 }
 
-DiskUsage::DiskUsage( QString confGroup, QWidget *parent, char *name ) : QWidgetStack( parent, name ),
+DiskUsage::DiskUsage( QString confGroup, QWidget *parent, char *name ) : Q3WidgetStack( parent, name ),
                       currentDirectory( 0 ), root( 0 ), configGroup( confGroup ), loading( false ),
                       abortLoading( false ), clearAfterAbort( false ), deleting( false ), searchVfs( 0 )
 {
@@ -637,7 +645,7 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
   emit deleted( file );
   deleteNr++;
 
-  QGuardedPtr<KIO::Job> job;
+  QPointer<KIO::Job> job;
 
   if( trash )
   {
@@ -755,22 +763,22 @@ void DiskUsage::rightClickMenu( File *fileItem, KPopupMenu *addPopup, QString ad
   if( fileItem != 0 )
   {
     popup.insertItem(  i18n("Delete"),          DELETE_ID);
-    popup.setAccel( Key_Delete, DELETE_ID );
+    popup.setAccel( Qt::Key_Delete, DELETE_ID );
     popup.insertItem(  i18n("Exclude"),         EXCLUDE_ID);
-    popup.setAccel( CTRL + Key_E, EXCLUDE_ID );
+    popup.setAccel( Qt::CTRL + Qt::Key_E, EXCLUDE_ID );
     popup.insertSeparator();
   }
 
   popup.insertItem(  i18n("Up one directory"),  PARENT_DIR_ID);
-  popup.setAccel( SHIFT + Key_Up, PARENT_DIR_ID );
+  popup.setAccel( Qt::SHIFT + Qt::Key_Up, PARENT_DIR_ID );
   popup.insertItem(  i18n("New search"),        NEW_SEARCH_ID);
-  popup.setAccel( CTRL + Key_N, NEW_SEARCH_ID );
+  popup.setAccel( Qt::CTRL + Qt::Key_N, NEW_SEARCH_ID );
   popup.insertItem(  i18n("Refresh"),           REFRESH_ID);
-  popup.setAccel( CTRL + Key_R, REFRESH_ID );
+  popup.setAccel( Qt::CTRL + Qt::Key_R, REFRESH_ID );
   popup.insertItem(  i18n("Include all"),       INCLUDE_ALL_ID);
-  popup.setAccel( CTRL + Key_I, INCLUDE_ALL_ID );
+  popup.setAccel( Qt::CTRL + Qt::Key_I, INCLUDE_ALL_ID );
   popup.insertItem(  i18n("Step into"),         STEP_INTO_ID);
-  popup.setAccel( SHIFT + Key_Down, STEP_INTO_ID );
+  popup.setAccel( Qt::SHIFT + Qt::Key_Down, STEP_INTO_ID );
   popup.insertSeparator();
 
 
@@ -782,16 +790,16 @@ void DiskUsage::rightClickMenu( File *fileItem, KPopupMenu *addPopup, QString ad
 
   KPopupMenu viewPopup;
   viewPopup.insertItem(i18n("Lines"),      LINES_VIEW_ID);
-  viewPopup.setAccel( CTRL + Key_L, LINES_VIEW_ID );
+  viewPopup.setAccel( Qt::CTRL + Qt::Key_L, LINES_VIEW_ID );
   viewPopup.insertItem(i18n("Detailed"),   DETAILED_VIEW_ID);
-  viewPopup.setAccel( CTRL + Key_D, DETAILED_VIEW_ID );
+  viewPopup.setAccel( Qt::CTRL + Qt::Key_D, DETAILED_VIEW_ID );
   viewPopup.insertItem(i18n("Filelight"),  FILELIGHT_VIEW_ID);
-  viewPopup.setAccel( CTRL + Key_F, FILELIGHT_VIEW_ID );
+  viewPopup.setAccel( Qt::CTRL + Qt::Key_F, FILELIGHT_VIEW_ID );
   viewPopup.insertSeparator();
   viewPopup.insertItem(i18n("Next"),       NEXT_VIEW_ID);
-  viewPopup.setAccel( SHIFT + Key_Right, NEXT_VIEW_ID );
+  viewPopup.setAccel( Qt::SHIFT + Qt::Key_Right, NEXT_VIEW_ID );
   viewPopup.insertItem(i18n("Previous"),   PREVIOUS_VIEW_ID);
-  viewPopup.setAccel( SHIFT + Key_Left, PREVIOUS_VIEW_ID );
+  viewPopup.setAccel( Qt::SHIFT + Qt::Key_Left, PREVIOUS_VIEW_ID );
 
   popup.insertItem( QPixmap(), &viewPopup, VIEW_POPUP_ID );
   popup.changeItem( VIEW_POPUP_ID, i18n( "View" ) );
@@ -956,7 +964,7 @@ void DiskUsage::keyPressEvent( QKeyEvent *e )
       break;
     }
   }
-  QWidgetStack::keyPressEvent( e );
+  Q3WidgetStack::keyPressEvent( e );
 }
 
 QPixmap DiskUsage::getIcon( QString mime )
@@ -1141,7 +1149,7 @@ bool DiskUsage::event( QEvent * e )
       }
     }
   }
-  return QWidgetStack::event( e );
+  return Q3WidgetStack::event( e );
 }
 
 #include "diskusage.moc"

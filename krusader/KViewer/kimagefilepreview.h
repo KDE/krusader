@@ -14,6 +14,9 @@
 #define KrusaderImageFilePreview_H
 
 #include <qpixmap.h>
+//Added by qt3to4:
+#include <QResizeEvent>
+#include <QLabel>
 
 #include <kurl.h>
 #include <kpreviewwidgetbase.h>

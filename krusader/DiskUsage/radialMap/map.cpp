@@ -9,6 +9,8 @@
 #include <qfont.h>           //ctor
 #include <qfontmetrics.h>    //ctor
 #include <qpainter.h>
+//Added by qt3to4:
+#include <Q3PointArray>
 
 #include "builder.h"
 #include "Config.h"
@@ -324,7 +326,7 @@ RadialMap::Map::paint( unsigned int scaleFactor )
          if( (*it)->hasHiddenChildren() )
          {
             //draw arrow head to indicate undisplayed files/directories
-            QPointArray pts( 3 );
+            Q3PointArray pts( 3 );
             QPoint pos, cpos = rect.center();
             int a[3] = { (*it)->start(), (*it)->length(), 0 };
 

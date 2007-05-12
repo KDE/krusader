@@ -19,7 +19,12 @@
 
 #include <kurl.h>
 #include <qtabbar.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
+//Added by qt3to4:
+#include <QResizeEvent>
+#include <QMouseEvent>
+#include <QDragMoveEvent>
+#include <QDragEnterEvent>
 
 class QMouseEvent;
 class KAction;

@@ -48,7 +48,7 @@
 #endif
 #endif
 
-SynchronizerDirList::SynchronizerDirList( QWidget *w, bool hidden ) : QObject(), QDict<vfile>(), fileIterator( 0 ),
+SynchronizerDirList::SynchronizerDirList( QWidget *w, bool hidden ) : QObject(), Q3Dict<vfile>(), fileIterator( 0 ),
                                    parentWidget( w ), busy( false ), result( false ), ignoreHidden( hidden ), currentUrl() {
   setAutoDelete( true );
 }
@@ -90,7 +90,7 @@ bool SynchronizerDirList::load( const QString &urlIn, bool wait ) {
   KURL url = vfs::fromPathOrURL( urlIn );
 
   if( fileIterator == 0 )
-    fileIterator = new QDictIterator<vfile> ( *this );
+    fileIterator = new Q3DictIterator<vfile> ( *this );
 
   clear();
 

@@ -36,9 +36,13 @@
 #include "../MountMan/kdiskfreesp.h"
 #include "../MountMan/kmountman.h"
 
-#include <qpopupmenu.h>
+#include <q3popupmenu.h>
 #include <qfile.h>
 #include <qfontmetrics.h>
+//Added by qt3to4:
+#include <QPixmap>
+#include <QMouseEvent>
+#include <QEvent>
 
 #include <klocale.h>
 #include <kiconloader.h>
@@ -82,7 +86,7 @@ MediaButton::MediaButton( QWidget *parent, const char *name ) : QToolButton( par
 	setPopupDelay( 1 ); // immediate press
 	setAcceptDrops( false );
 
-	popupMenu = new QPopupMenu( this );
+	popupMenu = new Q3PopupMenu( this );
 	popupMenu->installEventFilter( this );
 	Q_CHECK_PTR( popupMenu );
 
@@ -281,9 +285,9 @@ QString MediaButton::detectType( KMountPoint *mp )
 		// CD/DVD drive or harddisk by just looking at the
 		// filename
 		QFile m(QString("/proc/ide/") + devname + "/media");
-		if(m.open(IO_ReadOnly))
+		if(m.open(QIODevice::ReadOnly))
 		{
-			QTextStream in(&m);
+			Q3TextStream in(&m);
 			QString buf=in.readLine();
 			if(buf.contains("cdrom"))
 				isCd=true;
@@ -397,7 +401,7 @@ void MediaButton::gettingSpaceData(const QString &mountPoint, unsigned long kBSi
 }
 
 void MediaButton::openPopup() {
-	QPopupMenu * pP = popup();
+	Q3PopupMenu * pP = popup();
 	if ( pP ) {
 		popup() ->exec( mapToGlobal( QPoint( 0, height() ) ) );
 	}
@@ -525,7 +529,7 @@ void MediaButton::rightClickMenu( int index ) {
 	bool ejectable = mime.contains( "dvd_" ) || mime.contains( "dvdwriter_" ) || mime.contains( "cdrom_" ) || mime.contains( "cdwriter_" );
 	bool mounted = mime.contains( "_mounted" );
 	
-	QPopupMenu * myMenu = rightMenu = new QPopupMenu( popupMenu );
+	Q3PopupMenu * myMenu = rightMenu = new Q3PopupMenu( popupMenu );
 	myMenu->insertItem( i18n( "Open" ), 1 );
 	myMenu->insertItem( i18n( "Open in a new tab" ), 2 );
 	myMenu->insertSeparator();

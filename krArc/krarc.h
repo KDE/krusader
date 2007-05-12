@@ -18,8 +18,8 @@
 #define __krarc_h__
 
 #include <qstring.h>
-#include <qcstring.h>
-#include <qdict.h>
+#include <q3cstring.h>
+#include <q3dict.h>
 #include <qfile.h>
 #include <sys/types.h>
 
@@ -30,12 +30,12 @@
 
 class KProcess;
 class KFileItem;
-class QCString;
+class Q3CString;
 
 class kio_krarcProtocol : public QObject, public KIO::SlaveBase {
 Q_OBJECT
 public:
-	kio_krarcProtocol(const QCString &pool_socket, const QCString &app_socket);
+	kio_krarcProtocol(const Q3CString &pool_socket, const Q3CString &app_socket);
 	virtual ~kio_krarcProtocol();
 	virtual void stat( const KURL & url );
 	virtual void get(const KURL& url);
@@ -85,7 +85,7 @@ private:
 	static QString convertName( QString name );
 	static QString escape( QString name );
 	
-	QDict<KIO::UDSEntryList> dirDict; //< the directoris data structure.
+	Q3Dict<KIO::UDSEntryList> dirDict; //< the directoris data structure.
 	bool encrypted;                   //< tells whether the archive is encrypted
 	bool archiveChanged;              //< true if the archive was changed.
 	bool archiveChanging;             //< true if the archive is currently changing.

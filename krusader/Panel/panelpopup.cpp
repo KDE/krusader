@@ -6,14 +6,20 @@
 #include "../krslots.h"
 #include "panelfunc.h"
 #include <qtooltip.h>
-#include <qbuttongroup.h>
+#include <q3buttongroup.h>
 #include <qtoolbutton.h>
+//Added by qt3to4:
+#include <QDropEvent>
+#include <Q3GridLayout>
+#include <Q3Frame>
+#include <Q3StrList>
+#include <Q3PopupMenu>
 #include <kfiletreeview.h>
 #include <klocale.h>
 #include <qcursor.h>
 #include <qlayout.h>
 #include <qlabel.h>
-#include <qheader.h>
+#include <q3header.h>
 #include <krview.h>
 #include <krviewitem.h>
 #include <klineedit.h>
@@ -25,7 +31,7 @@
 PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ), 
 	_left( left ), _hidden(true), stack( 0 ), viewer( 0 ), pjob( 0 ), splitterSizes() {
 	splitter = parent;
-	QGridLayout * layout = new QGridLayout(this, 1, 1);
+	Q3GridLayout * layout = new Q3GridLayout(this, 1, 1);
 	
 	// loading the splitter sizes
 	krConfig->setGroup( "Private" );
@@ -52,12 +58,12 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
    q.setColor( QColorGroup::Foreground, KGlobalSettings::textColor() );
    q.setColor( QColorGroup::Background, KGlobalSettings::baseColor() );
    dataLine->setPalette( q );
-   dataLine->setFrameStyle( QFrame::Box | QFrame::Raised );
+   dataLine->setFrameStyle( Q3Frame::Box | Q3Frame::Raised );
    dataLine->setLineWidth( 1 );		// a nice 3D touch :-)
    int sheight = QFontMetrics( dataLine->font() ).height() + 4;
    dataLine->setMaximumHeight( sheight );
 	
-	btns = new QButtonGroup(this);
+	btns = new Q3ButtonGroup(this);
 	btns->setExclusive(true);
 	btns->hide();	// it should be invisible
 	connect(btns, SIGNAL(clicked(int)), this, SLOT(tabSelected(int)));
@@ -106,7 +112,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	layout->addWidget(duBtn,0,5);
 	
 	// create a widget stack on which to put the parts
-   stack = new QWidgetStack( this );
+   stack = new Q3WidgetStack( this );
 
    // create the tree part ----------
 	tree = new KFileTreeView( stack );
@@ -126,7 +132,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	tree->branch( i18n( "Root" ) ) ->setChildRecurse(false);
 	tree->branch( i18n( "Root" ) ) ->setOpen( true );
    tree->header() ->setHidden( true );
-	connect(tree, SIGNAL(doubleClicked(QListViewItem*)), this, SLOT(treeSelection(QListViewItem*)));
+	connect(tree, SIGNAL(doubleClicked(Q3ListViewItem*)), this, SLOT(treeSelection(Q3ListViewItem*)));
    // start listing the tree
    tree->branch( i18n( "Root" ) ) ->root();
 	tree->branch( i18n( "Home" ) ) ->root();
@@ -151,13 +157,13 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	// create the quick-panel part ----
 	
 	QWidget *quickPanel = new QWidget(stack);
-	QGridLayout *qlayout = new QGridLayout(quickPanel);	
+	Q3GridLayout *qlayout = new Q3GridLayout(quickPanel);	
 	// --- quick select
 	QLabel *selectLabel = new QLabel(i18n("Quick Select"), quickPanel);
 	quickSelectCombo = new KComboBox( quickPanel );
 	quickSelectCombo->setEditable( true );
 	krConfig->setGroup( "Private" );
-	QStrList lst;
+	Q3StrList lst;
 	int i = krConfig->readListEntry( "Predefined Selections", lst );
 	if ( i > 0 )
 		quickSelectCombo->insertStrList( lst );
@@ -342,7 +348,7 @@ void PanelPopup::update( KURL url ) {
 
 // ------------------- tree
 
-void PanelPopup::treeSelection(QListViewItem*) {
+void PanelPopup::treeSelection(Q3ListViewItem*) {
 	emit selection(tree->currentURL());
 	//emit hideMe();
 }
@@ -372,7 +378,7 @@ void PanelPopup::slotDroppedOnTree(QWidget *widget, QDropEvent *e, KURL::List &l
 	KURL dest = tree->currentURL();
 	
 	// ask the user what to do: copy, move or link?
-   QPopupMenu popup( this );
+   Q3PopupMenu popup( this );
    popup.insertItem( i18n( "Copy Here" ), 1 );
    popup.insertItem( i18n( "Move Here" ), 2 );
    popup.insertItem( i18n( "Link Here" ), 3 );

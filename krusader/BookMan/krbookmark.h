@@ -2,7 +2,7 @@
 #define KRBOOKMARK_H
 
 #include <kaction.h>
-#include <qptrlist.h>
+#include <q3ptrlist.h>
 #include <kurl.h>
 
 class KActionCollection;
@@ -18,7 +18,7 @@ public:
 	inline void setURL(const KURL& url) { _url = url; }
 	inline bool isFolder() const { return _folder; }
 	inline bool isSeparator() const { return _separator; }
-	QPtrList<KrBookmark>& children() { return _children; }
+	Q3PtrList<KrBookmark>& children() { return _children; }
 
 	static KrBookmark* getExistingBookmark(QString actionName, KActionCollection *collection);	
 	// ----- special bookmarks
@@ -39,7 +39,7 @@ private:
 	QString _icon;
 	bool _folder;
 	bool _separator;
-	QPtrList<KrBookmark> _children;
+	Q3PtrList<KrBookmark> _children;
 };
 
 #endif // KRBOOKMARK_H

@@ -3,11 +3,14 @@
 
 #include <qwidget.h>
 #include <qlayout.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
+#include <Q3HBoxLayout>
 #include "paneltabbar.h"
 
 class KConfig;
 class ListPanel;
-class QWidgetStack;
+class Q3WidgetStack;
 class QToolButton;
 
 /**
@@ -65,11 +68,11 @@ class PanelManager: public QWidget {
   private:
     void deletePanel( ListPanel *p );
   
-    QGridLayout *_layout;
-    QHBoxLayout *_barLayout;
+    Q3GridLayout *_layout;
+    Q3HBoxLayout *_barLayout;
     bool _left;
     PanelTabBar *_tabbar;
-    QWidgetStack *_stack;
+    Q3WidgetStack *_stack;
     QToolButton *_newTab, *_closeTab;
     ListPanel **_selfPtr, **_otherPtr;
 };

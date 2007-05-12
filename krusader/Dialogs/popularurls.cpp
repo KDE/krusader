@@ -1,10 +1,13 @@
 #include <kmessagebox.h>
 #include <klocale.h>
 #include <qpushbutton.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
+#include <Q3ValueList>
 #include <klistview.h>
 #include <kiconloader.h>
 #include <klistviewsearchline.h>
-#include <qheader.h>
+#include <q3header.h>
 #include <qlayout.h>
 #include <qlabel.h>
 #include <ktoolbarbutton.h>
@@ -43,7 +46,7 @@ void PopularUrls::save() {
 	KConfigGroupSaver svr(krConfig, "Private");
 	// prepare the string list containing urls and int list with ranks
 	QStringList urlList;
-	QValueList<int> rankList;
+	Q3ValueList<int> rankList;
 	UrlNodeP p = head;
 	while (p) {
 		urlList << p->url.prettyURL();
@@ -57,7 +60,7 @@ void PopularUrls::save() {
 void PopularUrls::load() {
 	KConfigGroupSaver svr(krConfig, "Private");
 	QStringList urlList = krConfig->readListEntry("PopularUrls");
-	QValueList<int> rankList = krConfig->readIntListEntry("PopularUrlsRank");
+	Q3ValueList<int> rankList = krConfig->readIntListEntry("PopularUrlsRank");
 	if (urlList.count() != rankList.count()) {
 		KMessageBox::error(krApp, i18n("Saved 'Popular Urls' are invalid. List will be cleared"));
 		return;
@@ -66,7 +69,7 @@ void PopularUrls::load() {
 	count = 0;
 	// iterate through both lists and
 	QStringList::Iterator uit;
-	QValueList<int>::Iterator rit;
+	Q3ValueList<int>::Iterator rit;
 	for (uit=urlList.begin(), rit=rankList.begin(); uit!=urlList.end() && rit!=rankList.end(); ++uit, ++rit) {
 		UrlNodeP node = new UrlNode;
 		node->url = KURL::fromPathOrURL( *uit );
@@ -228,14 +231,14 @@ void PopularUrls::showDialog() {
 // ===================================== PopularUrlsDlg ======================================
 PopularUrlsDlg::PopularUrlsDlg(): 
 	KDialogBase(Plain, i18n("Popular Urls"), Close, KDialogBase::NoDefault, krApp) {
-	QGridLayout *layout = new QGridLayout( plainPage(), 0, KDialog::spacingHint() );
+	Q3GridLayout *layout = new Q3GridLayout( plainPage(), 0, KDialog::spacingHint() );
 	
 	// listview to contain the urls
 	urls = new KListView(plainPage());
 	urls->header()->hide();
 	urls->addColumn("");
 	urls->setSorting(-1);
-	urls->setVScrollBarMode(QScrollView::AlwaysOn);
+	urls->setVScrollBarMode(Q3ScrollView::AlwaysOn);
 	
 	// quick search
 	QToolButton *btn = new QToolButton(plainPage());
@@ -253,16 +256,16 @@ PopularUrlsDlg::PopularUrlsDlg():
 	setTabOrder(search, urls);
 	setTabOrder(urls, actionButton(Close));
 	
-	connect(urls, SIGNAL(executed(QListViewItem*)), 
-		this, SLOT(slotItemSelected(QListViewItem*)));
-	connect(urls, SIGNAL(returnPressed(QListViewItem*)), 
-		this, SLOT(slotItemSelected(QListViewItem*)));		
+	connect(urls, SIGNAL(executed(Q3ListViewItem*)), 
+		this, SLOT(slotItemSelected(Q3ListViewItem*)));
+	connect(urls, SIGNAL(returnPressed(Q3ListViewItem*)), 
+		this, SLOT(slotItemSelected(Q3ListViewItem*)));		
 	connect(btn, SIGNAL(clicked()), search, SLOT(clear()));
 	connect(search, SIGNAL(returnPressed(const QString&)), 
 		this, SLOT(slotSearchReturnPressed(const QString&)));
 }
 
-void PopularUrlsDlg::slotItemSelected(QListViewItem *it) {
+void PopularUrlsDlg::slotItemSelected(Q3ListViewItem *it) {
 	selection = urls->itemIndex(it);
 	accept();
 }
@@ -270,7 +273,7 @@ void PopularUrlsDlg::slotItemSelected(QListViewItem *it) {
 void PopularUrlsDlg::slotSearchReturnPressed(const QString&) {
 	urls->setFocus();
 	// select the first visible item
-	QListViewItemIterator it( urls );
+	Q3ListViewItemIterator it( urls );
    while ( it.current() ) {
 		if ( it.current()->isVisible() ) {
 			urls->setSelected(it.current(), true);

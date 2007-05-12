@@ -32,8 +32,10 @@
 #include "../krservices.h"
 #include "../krusader.h"
 #include <qtabwidget.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
 #include <klocale.h>
-#include <qhbox.h>
+#include <q3hbox.h>
 #include <kmessagebox.h>
 
 #define PAGE_GENERAL   0
@@ -43,7 +45,7 @@
 KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name )
 {
-  QGridLayout *kgDependenciesLayout = new QGridLayout( parent );
+  Q3GridLayout *kgDependenciesLayout = new Q3GridLayout( parent );
   kgDependenciesLayout->setSpacing( 6 );
 
   //  ---------------------------- GENERAL TAB -------------------------------------
@@ -52,7 +54,7 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   QWidget *general_tab = new QWidget( tabWidget, "tab" );
   tabWidget->insertTab( general_tab, i18n( "General" ) );
 
-  QGridLayout *pathsGrid = new QGridLayout( general_tab );
+  Q3GridLayout *pathsGrid = new Q3GridLayout( general_tab );
   pathsGrid->setSpacing( 6 );
   pathsGrid->setMargin( 11 );
   pathsGrid->setAlignment( Qt::AlignTop );
@@ -74,7 +76,7 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   QWidget *packers_tab = new QWidget( tabWidget, "tab_3" );
   tabWidget->insertTab( packers_tab, i18n( "Packers" ) );
 
-  QGridLayout *archGrid1 = new QGridLayout( packers_tab );
+  Q3GridLayout *archGrid1 = new Q3GridLayout( packers_tab );
   archGrid1->setSpacing( 6 );
   archGrid1->setMargin( 11 );
   archGrid1->setAlignment( Qt::AlignTop );
@@ -98,7 +100,7 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   QWidget *checksum_tab = new QWidget( tabWidget, "tab_4" );
   tabWidget->insertTab( checksum_tab, i18n( "Checksum Utilities" ) );
 
-  QGridLayout *archGrid2 = new QGridLayout( checksum_tab );
+  Q3GridLayout *archGrid2 = new Q3GridLayout( checksum_tab );
   archGrid2->setSpacing( 6 );
   archGrid2->setMargin( 11 );
   archGrid2->setAlignment( Qt::AlignTop );
@@ -119,7 +121,7 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   kgDependenciesLayout->addWidget( tabWidget, 0, 0 );
 }
 
-void KgDependencies::addApplication( QString name, QGridLayout *grid, int row, QWidget *parent, int page, QString additionalList )
+void KgDependencies::addApplication( QString name, Q3GridLayout *grid, int row, QWidget *parent, int page, QString additionalList )
 {
   QString dflt = KrServices::fullPathName( name ); /* try to autodetect the full path name */
 

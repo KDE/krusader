@@ -39,11 +39,14 @@ A
 #include "../VFS/vfs.h"
 #include <klocale.h>
 #include <qpixmap.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
+#include <Q3ValueList>
 #include <kpopupmenu.h>
 #include <qbitmap.h>
 #include <kmessagebox.h>
 #include <qlayout.h>
-#include <qgroupbox.h>
+#include <q3groupbox.h>
 #include <kprocess.h>
 #include <qcursor.h>
 #include <kdebug.h>
@@ -79,14 +82,14 @@ info( 0 ), mountList( 0 ) {
    resize( minimumSize() );
 
    // connections
-   connect( mountList, SIGNAL( doubleClicked( QListViewItem * ) ), this,
-            SLOT( doubleClicked( QListViewItem* ) ) );
-   connect( mountList, SIGNAL( contextMenuRequested( QListViewItem *, const QPoint &, int ) ),
-            this, SLOT( clicked( QListViewItem*, const QPoint&, int ) ) );
-   connect( mountList, SIGNAL( clicked( QListViewItem * ) ), this,
-            SLOT( changeActive( QListViewItem * ) ) );
-   connect( mountList, SIGNAL( selectionChanged( QListViewItem * ) ), this,
-            SLOT( changeActive( QListViewItem * ) ) );
+   connect( mountList, SIGNAL( doubleClicked( Q3ListViewItem * ) ), this,
+            SLOT( doubleClicked( Q3ListViewItem* ) ) );
+   connect( mountList, SIGNAL( contextMenuRequested( Q3ListViewItem *, const QPoint &, int ) ),
+            this, SLOT( clicked( Q3ListViewItem*, const QPoint&, int ) ) );
+   connect( mountList, SIGNAL( clicked( Q3ListViewItem * ) ), this,
+            SLOT( changeActive( Q3ListViewItem * ) ) );
+   connect( mountList, SIGNAL( selectionChanged( Q3ListViewItem * ) ), this,
+            SLOT( changeActive( Q3ListViewItem * ) ) );
 
    getSpaceData();
    exec();
@@ -111,15 +114,15 @@ void KMountManGUI::createMainPage() {
       mountList = 0;
    }
    // clean up is finished...
-   QGridLayout *layout = new QGridLayout( mainPage, 1, 1 );
-   mountList = new QListView( mainPage );  // create the main container
+   Q3GridLayout *layout = new Q3GridLayout( mainPage, 1, 1 );
+   mountList = new Q3ListView( mainPage );  // create the main container
    krConfig->setGroup( "Look&Feel" );
    mountList->setFont( krConfig->readFontEntry( "Filelist Font", _FilelistFont ) );
    mountList->setAllColumnsShowFocus( true );
    mountList->setMultiSelection( false );
-   mountList->setSelectionMode( QListView::Single );
-   mountList->setVScrollBarMode( QScrollView::AlwaysOn );
-   mountList->setHScrollBarMode( QScrollView::Auto );
+   mountList->setSelectionMode( Q3ListView::Single );
+   mountList->setVScrollBarMode( Q3ScrollView::AlwaysOn );
+   mountList->setHScrollBarMode( Q3ScrollView::Auto );
    mountList->setShowSortIndicator( true );
    int i = QFontMetrics( mountList->font() ).width( "W" );
    int j = QFontMetrics( mountList->font() ).width( "0" );
@@ -130,15 +133,15 @@ void KMountManGUI::createMainPage() {
    mountList->addColumn( i18n( "Total Size" ), j * 6 );
    mountList->addColumn( i18n( "Free Size" ), j * 6 );
    mountList->addColumn( i18n( "Free %" ), j * 5 );
-   mountList->setColumnWidthMode( 0, QListView::Maximum );
-   mountList->setColumnWidthMode( 1, QListView::Maximum );
-   mountList->setColumnWidthMode( 2, QListView::Maximum );
-   mountList->setColumnWidthMode( 3, QListView::Maximum );
-   mountList->setColumnWidthMode( 4, QListView::Maximum );
-   mountList->setColumnWidthMode( 5, QListView::Maximum );
+   mountList->setColumnWidthMode( 0, Q3ListView::Maximum );
+   mountList->setColumnWidthMode( 1, Q3ListView::Maximum );
+   mountList->setColumnWidthMode( 2, Q3ListView::Maximum );
+   mountList->setColumnWidthMode( 3, Q3ListView::Maximum );
+   mountList->setColumnWidthMode( 4, Q3ListView::Maximum );
+   mountList->setColumnWidthMode( 5, Q3ListView::Maximum );
    // now the list is created, time to fill it with data.
    //=>krMtMan.forceUpdate();
-   QGroupBox *box = new QGroupBox( "MountMan.Info", mainPage );
+   Q3GroupBox *box = new Q3GroupBox( "MountMan.Info", mainPage );
    box->setAlignment( Qt::AlignHCenter );
    info = new KRFSDisplay( box );
    info->resize( info->width(), height() );
@@ -198,13 +201,13 @@ void KMountManGUI::gettingSpaceData( const QString &mountPoint, unsigned long kB
    fileSystemsTemp.append( data );
 }
 
-void KMountManGUI::addItemToMountList( QListView *lst, fsData &fs ) {
+void KMountManGUI::addItemToMountList( Q3ListView *lst, fsData &fs ) {
    bool mtd = fs.mounted();
 
    QString tSize = QString( "%1" ).arg( KIO::convertSizeFromKB( fs.totalBlks() ) );
    QString fSize = QString( "%1" ).arg( KIO::convertSizeFromKB( fs.freeBlks() ) );
    QString sPrct = QString( "%1%" ).arg( 100 - ( fs.usedPerct() ) );
-   QListViewItem *item = new QListViewItem( lst, fs.name(),
+   Q3ListViewItem *item = new Q3ListViewItem( lst, fs.name(),
                          fs.type(), fs.mntPoint(),
                          ( mtd ? tSize : QString( "N/A" ) ), ( mtd ? fSize : QString( "N/A" ) ),
                          ( mtd ? sPrct : QString( "N/A" ) ) );
@@ -226,7 +229,7 @@ void KMountManGUI::addItemToMountList( QListView *lst, fsData &fs ) {
 void KMountManGUI::updateList() {
    mountList->clear();
    // this handles the mounted ones
-	for ( QValueList<fsData>::iterator it = fileSystems.begin(); it != fileSystems.end() ; ++it ) {
+	for ( Q3ValueList<fsData>::iterator it = fileSystems.begin(); it != fileSystems.end() ; ++it ) {
 		if (krMtMan.invalidFilesystem((*it).type())) {
 			continue;
 		}
@@ -265,7 +268,7 @@ void KMountManGUI::checkMountChange() {
    watcher->start( WATCHER_DELAY, true );   // starting the watch timer ( single shot )
 }
 
-void KMountManGUI::doubleClicked( QListViewItem *i ) {
+void KMountManGUI::doubleClicked( Q3ListViewItem *i ) {
    if ( !i )
 		return; // we don't want to refresh to swap, do we ?
 		 
@@ -278,11 +281,11 @@ void KMountManGUI::doubleClicked( QListViewItem *i ) {
 }
 
 // when user clicks on a filesystem, change information
-void KMountManGUI::changeActive( QListViewItem *i ) {
+void KMountManGUI::changeActive( Q3ListViewItem *i ) {
 	if ( !i ) return ;
    fsData *system = 0;
 	
-	for (QValueList<fsData>::Iterator it = fileSystems.begin(); it != fileSystems.end(); ++it) {
+	for (Q3ValueList<fsData>::Iterator it = fileSystems.begin(); it != fileSystems.end(); ++it) {
 		// the only thing which is unique is the mount point
 		if ((*it).mntPoint() == i->text(2)) { // text(2) ? ugly ugly ugly
 			system = &(*it);
@@ -304,7 +307,7 @@ void KMountManGUI::changeActive( QListViewItem *i ) {
 }
 
 // called when right-clicked on a filesystem
-void KMountManGUI::clicked( QListViewItem *item, const QPoint& pos, int /* col */ ) {
+void KMountManGUI::clicked( Q3ListViewItem *item, const QPoint& pos, int /* col */ ) {
    // these are the values that will exist in the menu
 #define MOUNT_ID       90
 #define UNMOUNT_ID     91
@@ -314,7 +317,7 @@ void KMountManGUI::clicked( QListViewItem *item, const QPoint& pos, int /* col *
 	if ( !item ) return ;
 	
 	fsData *system = 0;
-   for (QValueList<fsData>::Iterator it = fileSystems.begin(); it != fileSystems.end(); ++it) {
+   for (Q3ValueList<fsData>::Iterator it = fileSystems.begin(); it != fileSystems.end(); ++it) {
 		// the only thing which is unique is the mount point
 		if ((*it).mntPoint() == item->text(2)) { // text(2) ? ugly ugly ugly
 			system = &(*it);

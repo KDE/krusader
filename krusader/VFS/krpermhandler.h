@@ -35,8 +35,8 @@
 #include <qstring.h>
 #include <qfileinfo.h>
 #include <sys/types.h>
-#include <qdict.h>
-#include <qintdict.h>
+#include <q3dict.h>
+#include <q3intdict.h>
 #include <kio/global.h>
 
 #define NO_PERM      0
@@ -79,11 +79,11 @@ public:
 
 private:
 	// cache for passwd and group entries
-	static QDict<uid_t> 	    *passwdCache;
-  static QDict<gid_t> 	    *groupCache;
-	static QIntDict<char>     *currentGroups;
-  static QIntDict<QString>  *uidCache;
-  static QIntDict<QString>  *gidCache;
+	static Q3Dict<uid_t> 	    *passwdCache;
+  static Q3Dict<gid_t> 	    *groupCache;
+	static Q3IntDict<char>     *currentGroups;
+  static Q3IntDict<QString>  *uidCache;
+  static Q3IntDict<QString>  *gidCache;
 };
 
 #endif

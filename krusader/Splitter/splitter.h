@@ -33,11 +33,11 @@
 
 #include "crc32.h"
 #include <qstring.h>
-#include <qprogressdialog.h>
+#include <q3progressdialog.h>
 #include <kurl.h>
 #include <kio/jobclasses.h>
  
-class Splitter : public QProgressDialog
+class Splitter : public Q3ProgressDialog
 {
   Q_OBJECT
   

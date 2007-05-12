@@ -47,10 +47,10 @@ public:
    /**
     * makes @e item current and ensures its visibility
     */
-   virtual void setCurrentItem( QListViewItem* item );
+   virtual void setCurrentItem( Q3ListViewItem* item );
 
 protected:
-   QListViewItem* findCategoryItem( const QString& category );
+   Q3ListViewItem* findCategoryItem( const QString& category );
    UserActionListViewItem* findActionItem( const KrAction* action );
 };
 
@@ -60,8 +60,8 @@ protected:
  */
 class UserActionListViewItem : public KListViewItem {
 public:
-   UserActionListViewItem( QListView* view, KrAction* action );
-   UserActionListViewItem( QListViewItem* item, KrAction* action );
+   UserActionListViewItem( Q3ListView* view, KrAction* action );
+   UserActionListViewItem( Q3ListViewItem* item, KrAction* action );
    ~UserActionListViewItem();
 
    void setAction( KrAction* action );
@@ -71,7 +71,7 @@ public:
    /**
     * This reimplements qt's compare-function in order to have categories on the top of the list
     */
-   int compare ( QListViewItem * i, int col, bool ascending ) const;
+   int compare ( Q3ListViewItem * i, int col, bool ascending ) const;
 
 private:
    KrAction* _action;

@@ -11,14 +11,14 @@
 #define __TAGSTRING__H
 
 #include <qstring.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 #include <utility>
 #include <cassert>
 template <class T>
 class TagString_t
 {
 	QString str;
-	typedef QValueList<std::pair<uint,T> > taglist; // may change
+	typedef Q3ValueList<std::pair<uint,T> > taglist; // may change
 	taglist tags;
 public:
 	TagString_t(const QString& s) : str(s) {}

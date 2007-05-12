@@ -30,11 +30,15 @@
 
 #include "kgwelcome.h"
 #include <kstandarddirs.h>
+//Added by qt3to4:
+#include <QPixmap>
+#include <Q3GridLayout>
+#include <QLabel>
 
 KgWelcome::KgWelcome( bool first, QWidget* parent,  const char* name ) :
   KonfiguratorPage( first, parent, name )
 {
-  QGridLayout *kgWelcomeLayout = new QGridLayout( parent );
+  Q3GridLayout *kgWelcomeLayout = new Q3GridLayout( parent );
   kgWelcomeLayout->setSpacing( 6 );
 
   QString pix=KGlobal::dirs()->findResource("appdata","konfig_small.jpg");

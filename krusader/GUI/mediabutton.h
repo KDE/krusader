@@ -33,9 +33,12 @@
 
 #include <qwidget.h>
 #include <qtoolbutton.h>
+//Added by qt3to4:
+#include <QEvent>
+#include <Q3PopupMenu>
 #include <kurl.h>
 #include <kio/jobclasses.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 #include <kmountpoint.h>
 #include <qtimer.h>
 
@@ -43,7 +46,7 @@
   *@author Csaba Karai
   */
 
-class QPopupMenu;
+class Q3PopupMenu;
 class KMountPoint;
 
 class MediaButton : public QToolButton  {
@@ -83,8 +86,8 @@ private:
 
   void addMountPoint( KMountPoint *mp, bool isMounted );
 
-  QPopupMenu *popupMenu;
-  QPopupMenu *rightMenu;
+  Q3PopupMenu *popupMenu;
+  Q3PopupMenu *rightMenu;
 
   bool        hasMedia;
   bool        busy;
@@ -93,10 +96,10 @@ private:
   bool        newTabAfterMount;
   int         maxMountWait;
 
-  QValueList<KURL>    urls;
-  QValueList<KURL>    mediaUrls;
-  QValueList<QString> mimes;
-  QValueList<bool>    quasiMounted;
+  Q3ValueList<KURL>    urls;
+  Q3ValueList<KURL>    mediaUrls;
+  Q3ValueList<QString> mimes;
+  Q3ValueList<bool>    quasiMounted;
 
   QString extraSpaces;  //prevents from increasing the size of the widget
 

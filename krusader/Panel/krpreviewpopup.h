@@ -18,7 +18,7 @@
 #ifndef KRPREVIEWPOPUP_H
 #define KRPREVIEWPOPUP_H
 
-#include <qpopupmenu.h>
+#include <q3popupmenu.h>
 #include <qpixmap.h>
 #include <kfileitem.h>
 #include <kurl.h>
@@ -27,7 +27,7 @@
   *@author Shie Erlich & Rafi Yanai
   */
 
-class KrPreviewPopup : public QPopupMenu {
+class KrPreviewPopup : public Q3PopupMenu {
 	Q_OBJECT
 public: 
 	KrPreviewPopup();

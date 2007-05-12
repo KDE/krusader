@@ -33,9 +33,9 @@
 
 #include <kio/job.h>
 #include "preservingcopyjob.h"
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 #include <qtimer.h>
-#include <qdict.h>
+#include <q3dict.h>
 #include <qmap.h>
 
 class vfs;
@@ -97,9 +97,9 @@ private:
   unsigned long            m_tempFiles;
   unsigned long            m_tempSubdirs;  
     
-  QValueList<KURL>         m_dirsToGetSize;
+  Q3ValueList<KURL>         m_dirsToGetSize;
   
-  QDict<KURL::List>        m_filesToCopy;
+  Q3Dict<KURL::List>        m_filesToCopy;
   
   QMap<QString,int>        m_size;
   QMap<QString,int>        m_filenum;

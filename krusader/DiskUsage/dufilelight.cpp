@@ -33,6 +33,9 @@
 #include <kpopupmenu.h>
 #include <klocale.h>
 #include <kinputdialog.h>
+//Added by qt3to4:
+#include <QPixmap>
+#include <QMouseEvent>
 
 #define SCHEME_POPUP_ID    6730
 

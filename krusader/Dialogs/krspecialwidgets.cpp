@@ -40,6 +40,9 @@ A
 #include <klocale.h>
 #include <klineedit.h>
 #include <kdebug.h>
+//Added by qt3to4:
+#include <QKeyEvent>
+#include <QPaintEvent>
 
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////// Pie related widgets /////////////////////////////////
@@ -208,14 +211,14 @@ KrQuickSearch::KrQuickSearch( QWidget *parent, const char * name ) : KLineEdit( 
 
 void KrQuickSearch::myKeyPressEvent( QKeyEvent *e ) {
    switch ( e->key() ) {
-         case Key_Escape:
+         case Qt::Key_Escape:
          emit stop( 0 );
          break;
-         case Key_Return:
-         case Key_Enter:
-         case Key_Tab:
-         case Key_Right:
-         case Key_Left:
+         case Qt::Key_Return:
+         case Qt::Key_Enter:
+         case Qt::Key_Tab:
+         case Qt::Key_Right:
+         case Qt::Key_Left:
          emit stop( e );
          break;
          case Key_Down:

@@ -6,6 +6,10 @@
 
 #include <kurl.h>
 #include <qtimer.h>
+//Added by qt3to4:
+#include <QResizeEvent>
+#include <QMouseEvent>
+#include <QPaintEvent>
 #include "segmentTip.h"
 
 template <class T> class Chain;

@@ -12,7 +12,7 @@
 #include "krkeydialog.h"
 
 #include <qlayout.h>
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
 #include <klocale.h>
 #include <kpushbutton.h>
 #include <kmessagebox.h>
@@ -36,15 +36,15 @@ KrKeyDialog::KrKeyDialog( QWidget * parent ) : KKeyDialog( false /* allow letter
    // None the less it's quite save to use since this implementation hasn't changed since KDE-3.3 (I haven't looked at earlier
    // versions since we don't support them) and now all work is done in KDE-4.
    QWidget* buttonBox = static_cast<QWidget*>( actionButton(KDialogBase::Ok)->parent() );
-   QBoxLayout* buttonBoxLayout = static_cast<QBoxLayout*>( buttonBox->layout() );
+   Q3BoxLayout* buttonBoxLayout = static_cast<Q3BoxLayout*>( buttonBox->layout() );
 
    KPushButton* importButton = new KPushButton( i18n("Import shortcuts"), buttonBox );
-   QWhatsThis::add( importButton, i18n( "Load a keybinding profile, e.g., total_commander.keymap" ) );
+   Q3WhatsThis::add( importButton, i18n( "Load a keybinding profile, e.g., total_commander.keymap" ) );
    buttonBoxLayout->insertWidget( 1, importButton ); // the defaults-button should stay on position 0
    connect( importButton, SIGNAL( clicked() ), SLOT( slotImportShortcuts() ) );
 
    KPushButton* exportButton = new KPushButton( i18n("Export shortcuts"), buttonBox );
-   QWhatsThis::add( exportButton, i18n( "Save current keybindings in a keymap file." ) );
+   Q3WhatsThis::add( exportButton, i18n( "Save current keybindings in a keymap file." ) );
    buttonBoxLayout->insertWidget( 2, exportButton );
    connect( exportButton, SIGNAL( clicked() ), SLOT( slotExportShortcuts() ) );
 
@@ -89,8 +89,8 @@ void KrKeyDialog::importLegacyShortcuts( const QString& file ) {
  */
 	// check if there's an info file with the keymap
 	QFile info(file+".info");
-	if (info.open(IO_ReadOnly)) {
-		QTextStream stream(&info);
+	if (info.open(QIODevice::ReadOnly)) {
+		Q3TextStream stream(&info);
 		QStringList infoText = QStringList::split("\n", stream.read());
 		if (KMessageBox::questionYesNoList(krApp, i18n("The following information was attached to the keymap. Do you really want to import this keymap?"), infoText)!=KMessageBox::Yes)
 			return;
@@ -98,7 +98,7 @@ void KrKeyDialog::importLegacyShortcuts( const QString& file ) {
 
 	// ok, import away
 	QFile f(file);
-	if (!f.open(IO_ReadOnly)) {
+	if (!f.open(QIODevice::ReadOnly)) {
 		krOut << "Error opening " << file << endl;
 		return;
 	}
@@ -135,7 +135,7 @@ void KrKeyDialog::slotExportShortcuts() {
 		i18n("Warning"), i18n("Overwrite") )
 	!= KMessageBox::Continue)
 	return;
-   if ( f.open( IO_WriteOnly ) )
+   if ( f.open( QIODevice::WriteOnly ) )
       // This is the only way to detect if the file is writable since we don't get feetback from KConfig's sync
       // Additionaly this prevents merging if the file already contains some shortcuts
       f.close();

@@ -15,6 +15,9 @@
 #include <qlayout.h>
 #include <qtoolbutton.h>
 #include <qtooltip.h>
+//Added by qt3to4:
+#include <Q3HBoxLayout>
+#include <Q3VBoxLayout>
 #include <klineedit.h>
 #include <kmessagebox.h>
 #include <kfiledialog.h>
@@ -37,10 +40,10 @@ static const char* FILE_FILTER = I18N_NOOP("*.xml|xml-files\n*|all files");
 UserActionPage::UserActionPage( QWidget* parent )
  : QWidget( parent, "UserActionPage" )
 {
-   QVBoxLayout* layout = new QVBoxLayout( this, 0, 6, "UserActionPageLayout" ); // 0px margin, 6px item-spacing
+   Q3VBoxLayout* layout = new Q3VBoxLayout( this, 0, 6, "UserActionPageLayout" ); // 0px margin, 6px item-spacing
 
    // ======== pseudo-toolbar start ========
-   QHBoxLayout* toolbarLayout = new QHBoxLayout( layout, 0, 0 ); // neither margin nor spacing for the toolbar with autoRaise
+   Q3HBoxLayout* toolbarLayout = new Q3HBoxLayout( layout, 0, 0 ); // neither margin nor spacing for the toolbar with autoRaise
 
    newButton = new QToolButton( this, "newButton" );
    newButton->setPixmap( ICON("filenew") );
@@ -99,7 +102,7 @@ UserActionPage::UserActionPage( QWidget* parent )
    actionProperties = new ActionProperty( split, "actionProperties" );
    actionProperties->setEnabled( false ); // if there are any actions in the list, the first is displayed and this widget is enabled
 
-   connect(  actionTree, SIGNAL( currentChanged(QListViewItem*) ), SLOT( slotChangeCurrent() ) );
+   connect(  actionTree, SIGNAL( currentChanged(Q3ListViewItem*) ), SLOT( slotChangeCurrent() ) );
    connect( newButton, SIGNAL( clicked() ), SLOT( slotNewAction() ) );
    connect( removeButton, SIGNAL( clicked() ), SLOT( slotRemoveAction() ) );
    connect( importButton, SIGNAL( clicked() ), SLOT( slotImport() ) );
@@ -126,16 +129,16 @@ bool UserActionPage::continueInSpiteOfChanges() {
    		i18n("The current action has been modified. Do you want to apply these changes?")
    	);
    if ( answer == KMessageBox::Cancel ) {
-      disconnect(  actionTree, SIGNAL( currentChanged(QListViewItem*) ), this, SLOT( slotChangeCurrent() ) );
+      disconnect(  actionTree, SIGNAL( currentChanged(Q3ListViewItem*) ), this, SLOT( slotChangeCurrent() ) );
       actionTree->setCurrentAction( actionProperties->action() );
-      connect(  actionTree, SIGNAL( currentChanged(QListViewItem*) ), SLOT( slotChangeCurrent() ) );
+      connect(  actionTree, SIGNAL( currentChanged(Q3ListViewItem*) ), SLOT( slotChangeCurrent() ) );
       return false;
    }
    if ( answer == KMessageBox::Yes ) {
       if ( ! actionProperties->validProperties() ) {
-         disconnect(  actionTree, SIGNAL( currentChanged(QListViewItem*) ), this, SLOT( slotChangeCurrent() ) );
+         disconnect(  actionTree, SIGNAL( currentChanged(Q3ListViewItem*) ), this, SLOT( slotChangeCurrent() ) );
          actionTree->setCurrentAction( actionProperties->action() );
-         connect(  actionTree, SIGNAL( currentChanged(QListViewItem*) ), SLOT( slotChangeCurrent() ) );
+         connect(  actionTree, SIGNAL( currentChanged(Q3ListViewItem*) ), SLOT( slotChangeCurrent() ) );
          return false;
       }
       slotUpdateAction();
@@ -240,7 +243,7 @@ void UserActionPage::slotExport() {
    QDomDocument doc = QDomDocument( ACTION_DOCTYPE );
    QFile file( filename );
    int answer = 0;
-   if( file.open( IO_ReadOnly ) ) { // getting here, means the file already exists an can be read
+   if( file.open( QIODevice::ReadOnly ) ) { // getting here, means the file already exists an can be read
       if( doc.setContent( &file ) ) // getting here means the file exists and already contains an UserAction-XML-tree
          answer = KMessageBox::warningYesNoCancel( this,	//parent
          		i18n("This file already contains some useractions.\nDo you want to overwrite it or should it be merged with the selected actions?"),	//text

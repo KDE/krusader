@@ -35,7 +35,9 @@
 #include <sys/types.h>
 #include "../VFS/vfile.h"
 #include <klistview.h>
-#include <qguardedptr.h>
+#include <qpointer.h>
+//Added by qt3to4:
+#include <QPixmap>
 
 #define FASTER
 
@@ -46,10 +48,10 @@ class KrDetailedViewItem : public KListViewItem, public KrViewItem {
 friend class KrDetailedView;
 friend class KrCalcSpaceDialog;
 public:
-	KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf);
+	KrDetailedViewItem(KrDetailedView *parent, Q3ListViewItem *after, vfile *vf);
 	inline bool isSelected() const { return KListViewItem::isSelected(); }
 	inline void setSelected(bool s) { KListViewItem::setSelected(s); }
-	int compare(QListViewItem *i,int col,bool ascending ) const;
+	int compare(Q3ListViewItem *i,int col,bool ascending ) const;
 	void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align);
 	void repaintItem();
 	static void itemHeightChanged(); // force the items to resize when icon/font size change

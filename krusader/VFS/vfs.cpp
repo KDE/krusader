@@ -34,6 +34,8 @@
 #include <unistd.h>
 #include <time.h>
 #include <qeventloop.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 #include <kapplication.h>
 #include <klargefile.h>
 #include <qdir.h>
@@ -133,7 +135,7 @@ void vfs::setVfsFilesP(vfileDict* dict){
 	vfs_tempFilesP->setAutoDelete( true );
 	dict->setAutoDelete(true);
 	if( vfileIterator ) delete vfileIterator;
-	vfileIterator = new QDictIterator<vfile>(*dict);
+	vfileIterator = new Q3DictIterator<vfile>(*dict);
 }
 
 bool vfs::vfs_refresh(){ 
@@ -196,7 +198,7 @@ bool vfs::vfs_refresh(){
 			vfs_tempFilesP->remove(name);
 		} 
 		// everything thats left is a new file
-		QDictIterator<vfile> it(*vfs_tempFilesP);
+		Q3DictIterator<vfile> it(*vfs_tempFilesP);
 		for(vfile* vf=it.toFirst(); vf; vf=(++it)){
 			// sanity checking
 			if( !vf || (*vfs_filesP)[vf->vfile_getName()] ) continue;
@@ -382,8 +384,8 @@ void vfs::slotKdsResult(KIO::Job *job){/* empty */}
 void vfs::vfs_calcSpace( QString /*name*/ , KIO::filesize_t* /*totalSize*/, unsigned long* /*totalFiles*/, unsigned long* /*totalDirs*/, bool* /*stop*/ ) {/* empty*/}
 #endif
 
-QValueList<vfile*> vfs::vfs_search(const KRQuery& filter) {
-	QValueList<vfile*> result;
+Q3ValueList<vfile*> vfs::vfs_search(const KRQuery& filter) {
+	Q3ValueList<vfile*> result;
 	for ( vfile *vf = vfs_getFirstFile(); vf != 0 ; vf = vfs_getNextFile() )
 		if (filter.match(vf)) 
 			result.append(vf);

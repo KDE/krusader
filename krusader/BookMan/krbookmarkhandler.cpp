@@ -6,7 +6,11 @@
 #include "../VFS/vfs.h"
 #include <kiconloader.h>
 #include <kmessagebox.h>
-#include <qptrlist.h>
+#include <q3ptrlist.h>
+//Added by qt3to4:
+#include <QMouseEvent>
+#include <Q3PopupMenu>
+#include <QEvent>
 #include <kactioncollection.h>
 #include <klocale.h>
 #include <kdebug.h>
@@ -163,8 +167,8 @@ void KrBookmarkHandler::exportToFile() {
 	
 	QString filename = locateLocal( "data", BOOKMARKS_FILE );
 	QFile file(filename);
-	if ( file.open( IO_WriteOnly ) ) {
-		QTextStream stream( &file );
+	if ( file.open( QIODevice::WriteOnly ) ) {
+		Q3TextStream stream( &file );
 		stream.setEncoding(stream.UnicodeUTF8);
 		stream << doc.toString();
 		file.close();
@@ -242,7 +246,7 @@ void KrBookmarkHandler::importFromFile() {
 	
 	QString filename = locateLocal( "data", BOOKMARKS_FILE );
 	QFile file( filename );
-	if ( !file.open(IO_ReadOnly))
+	if ( !file.open(QIODevice::ReadOnly))
 		return; // no bookmarks file
 
 	QString errorMsg;
@@ -287,7 +291,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 	for (KrBookmark *bm = parent->children().first(); bm; bm = parent->children().next()) {
 		if (!bm->isFolder()) continue;
 		KPopupMenu *newMenu = new KPopupMenu(menu);
-		int id = menu->insertItem(QIconSet(krLoader->loadIcon(bm->icon(), KIcon::Small)),
+		int id = menu->insertItem(QIcon(krLoader->loadIcon(bm->icon(), KIcon::Small)),
 									bm->text(), newMenu, -1 /* dummy id */, -1 /* end of list */);
 		
 		if( !_bookmarkIDTable.find( menu ) )
@@ -328,7 +332,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 			
 			// add the popular links submenu
 			KPopupMenu *newMenu = new KPopupMenu(menu);
-			itemIndex = menu->insertItem(QIconSet(krLoader->loadIcon("bookmark_folder", KIcon::Small)),
+			itemIndex = menu->insertItem(QIcon(krLoader->loadIcon("bookmark_folder", KIcon::Small)),
 										i18n("Popular URLs"), newMenu, -1 /* dummy id */, -1 /* end of list */);
 			_specialBookmarkIDs.append( itemIndex );
 			// add the top 15 urls
@@ -435,7 +439,7 @@ bool KrBookmarkHandler::eventFilter( QObject *obj, QEvent *ev ) {
 			case RightButton:
 				_middleClick = false;
 				if( obj->inherits( "QPopupMenu" ) ) {
-					int id = static_cast<QPopupMenu*>(obj)->idAt( static_cast<QMouseEvent*>(ev)->pos() );
+					int id = static_cast<Q3PopupMenu*>(obj)->idAt( static_cast<QMouseEvent*>(ev)->pos() );
 					
 					if( obj == _mainBookmarkPopup && _specialBookmarkIDs.contains( id ) ) {
 						rightClickOnSpecialBookmark();
@@ -446,7 +450,7 @@ bool KrBookmarkHandler::eventFilter( QObject *obj, QEvent *ev ) {
 						QMap<int, KrBookmark*> * table = _bookmarkIDTable[ obj ];
 						if( table && table->count( id ) ) {
 							KrBookmark *bm = (*table)[ id ];
-							rightClicked( static_cast<QPopupMenu*>(obj), id, bm );
+							rightClicked( static_cast<Q3PopupMenu*>(obj), id, bm );
 							return true;
 						}
 					}
@@ -478,7 +482,7 @@ void KrBookmarkHandler::rightClickOnSpecialBookmark() {
 	bool hasVirtualFS   = krConfig->readBoolEntry( "BM Virtual FS",   true );
 	bool hasJumpback    = krConfig->readBoolEntry( "BM Jumpback",     true );
 	
-	QPopupMenu menu( _mainBookmarkPopup );
+	Q3PopupMenu menu( _mainBookmarkPopup );
 	menu.setCaption( i18n( "Enable special bookmarks" ) );
 	menu.setCheckable( true );
 	
@@ -532,8 +536,8 @@ void KrBookmarkHandler::rightClickOnSpecialBookmark() {
 #define OPEN_NEW_TAB_ID   100201
 #define DELETE_ID         100202
 
-void KrBookmarkHandler::rightClicked( QPopupMenu *menu, int /*id*/, KrBookmark * bm ) {
-	QPopupMenu popup( _mainBookmarkPopup );
+void KrBookmarkHandler::rightClicked( Q3PopupMenu *menu, int /*id*/, KrBookmark * bm ) {
+	Q3PopupMenu popup( _mainBookmarkPopup );
 	
 	popup.insertItem( krLoader->loadIcon( "fileopen", KIcon::Panel ), i18n( "Open" ), OPEN_ID );
 	popup.insertItem( krLoader->loadIcon( "tab_new", KIcon::Panel ), i18n( "Open in a new tab" ), OPEN_NEW_TAB_ID );

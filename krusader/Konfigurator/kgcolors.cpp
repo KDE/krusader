@@ -36,20 +36,24 @@
 #include <kfiledialog.h>
 #include <kglobalsettings.h>
 #include <kstandarddirs.h>
-#include <qhbox.h>
-#include <qheader.h>
+#include <q3hbox.h>
+#include <q3header.h>
 #include <qtabwidget.h>
+//Added by qt3to4:
+#include <Q3ValueList>
+#include <QLabel>
+#include <Q3GridLayout>
 
 KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name ), offset( 0 )
 {
-  QGridLayout *kgColorsLayout = new QGridLayout( parent );
+  Q3GridLayout *kgColorsLayout = new Q3GridLayout( parent );
   kgColorsLayout->setSpacing( 6 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
 
-  QGroupBox *generalGrp = createFrame( i18n( "General" ), parent, "kgColorsGeneralGrp" );
-  QGridLayout *generalGrid = createGridLayout( generalGrp->layout() );
+  Q3GroupBox *generalGrp = createFrame( i18n( "General" ), parent, "kgColorsGeneralGrp" );
+  Q3GridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
   generalGrid->setSpacing( 0 );
   generalGrid->setMargin( 5 );
@@ -72,12 +76,12 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   connect( generals->find( "Dim Inactive Colors" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
 
   kgColorsLayout->addMultiCellWidget( generalGrp, 0 ,0, 0, 2 );
-  QHBox *hbox = new QHBox( parent );
+  Q3HBox *hbox = new Q3HBox( parent );
 
   //  -------------------------- COLORS GROUPBOX ----------------------------------
 
-  QGroupBox *colorsFrameGrp = createFrame( i18n( "Colors" ), hbox, "kgColorsColorsGrp" );
-  QGridLayout *colorsFrameGrid = createGridLayout( colorsFrameGrp->layout() );
+  Q3GroupBox *colorsFrameGrp = createFrame( i18n( "Colors" ), hbox, "kgColorsColorsGrp" );
+  Q3GridLayout *colorsFrameGrid = createGridLayout( colorsFrameGrp->layout() );
   colorsFrameGrid->setSpacing( 0 );
   colorsFrameGrid->setMargin( 3 );
 
@@ -88,7 +92,7 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   colorsGrp = new QWidget( colorTabWidget, "colorTab" );
   colorTabWidget->insertTab( colorsGrp, i18n( "Active" ) );
 
-  colorsGrid = new QGridLayout( colorsGrp );
+  colorsGrid = new Q3GridLayout( colorsGrp );
   colorsGrid->setSpacing( 0 );
   colorsGrid->setMargin( 2 );
 
@@ -118,12 +122,12 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   connect( getColorSelector( "Alternate Background" ), SIGNAL( colorChanged() ), this, SLOT( slotAltBackgroundChanged() ) );
   connect( getColorSelector( "Marked Background" ), SIGNAL( colorChanged() ), this, SLOT( slotMarkedBackgroundChanged() ) );
 
-  inactiveColorStack = new QWidgetStack( colorTabWidget, "colorTab2" );
+  inactiveColorStack = new Q3WidgetStack( colorTabWidget, "colorTab2" );
   colorTabWidget->insertTab( inactiveColorStack, i18n( "Inactive" ) );
 
   colorsGrp = normalInactiveWidget = new QWidget( inactiveColorStack, "colorTab2" );
 
-  colorsGrid = new QGridLayout( normalInactiveWidget );
+  colorsGrid = new Q3GridLayout( normalInactiveWidget );
   colorsGrid->setSpacing( 0 );
   colorsGrid->setMargin( 2 );
 
@@ -161,7 +165,7 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
 
   colorsGrp = dimmedInactiveWidget = new QWidget( inactiveColorStack, "colorTab2dimmed" );
 
-  colorsGrid = new QGridLayout( dimmedInactiveWidget );
+  colorsGrid = new Q3GridLayout( dimmedInactiveWidget );
   colorsGrid->setSpacing( 0 );
   colorsGrid->setMargin( 2 );
 
@@ -183,7 +187,7 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   colorsGrp = new QWidget( colorTabWidget, "colorTab3" );
   colorTabWidget->insertTab( colorsGrp, i18n( "Synchronizer" ) );
 
-  colorsGrid = new QGridLayout( colorsGrp );
+  colorsGrid = new Q3GridLayout( colorsGrp );
   colorsGrid->setSpacing( 0 );
   colorsGrid->setMargin( 2 );
 
@@ -212,7 +216,7 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   previewGrp = createFrame( i18n( "Preview" ), hbox, "kgColorsPreviewGrp" );
   previewGrid = createGridLayout( previewGrp->layout() );
 
-  preview = new QListView( previewGrp, "colorPreView" );
+  preview = new Q3ListView( previewGrp, "colorPreView" );
 
   preview->setShowSortIndicator(false);
   preview->setSorting(-1);
@@ -262,7 +266,7 @@ int KgColors::addColorSelector( QString cfgName, QString name, QColor dflt, QStr
 
 KonfiguratorColorChooser *KgColors::getColorSelector( QString name )
 {
-  QValueList<QString>::iterator it;
+  Q3ValueList<QString>::iterator it;
   int position = 0;
 
   for( it = itemNames.begin(); it != itemNames.end(); it++, position++ )
@@ -274,7 +278,7 @@ KonfiguratorColorChooser *KgColors::getColorSelector( QString name )
 
 QLabel *KgColors::getSelectorLabel( QString name )
 {
-  QValueList<QString>::iterator it;
+  Q3ValueList<QString>::iterator it;
   int position = 0;
 
   for( it = itemNames.begin(); it != itemNames.end(); it++, position++ )
@@ -427,7 +431,7 @@ void KgColors::generatePreview()
     KrColorSettings colorSettings;
 
     // copy over local settings to color settings instance, which does not affect the persisted krConfig settings
-    QValueList<QString> names = KrColorSettings::getColorNames();
+    Q3ValueList<QString> names = KrColorSettings::getColorNames();
     for ( QStringList::Iterator it = names.begin(); it != names.end(); ++it )
     {
         KonfiguratorColorChooser * chooser = getColorSelector( *it );
@@ -504,7 +508,7 @@ void KgColors::slotImportColors() {
 	QString file = KFileDialog::getOpenFileName(basedir, "*.color", 0, i18n("Select a color-scheme file"));
 	if (file == QString::null) return;
 	QFile f(file);
-	if (!f.open(IO_ReadOnly)) {
+	if (!f.open(QIODevice::ReadOnly)) {
 		KMessageBox::error(this, i18n("Error: unable to read from file"), i18n("Error"));
 		return;
 	}
@@ -521,7 +525,7 @@ void KgColors::slotExportColors() {
 	if (f.exists() && KMessageBox::warningContinueCancel(this,
 		i18n("File ")+file+i18n(" already exists. Are you sure you want to overwrite it?"),
 		i18n("Warning"), i18n("Overwrite")) != KMessageBox::Continue) return;
-	if (!f.open(IO_WriteOnly)) {
+	if (!f.open(QIODevice::WriteOnly)) {
 		KMessageBox::error(this, i18n("Error: unable to write to file"), i18n("Error"));
 		return;
 	}

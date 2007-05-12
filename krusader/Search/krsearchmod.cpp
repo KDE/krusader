@@ -43,7 +43,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <qtextstream.h>
+#include <q3textstream.h>
 #include <qregexp.h>
 #include <klargefile.h>
 #include <kurlrequesterdlg.h>

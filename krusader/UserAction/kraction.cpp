@@ -14,14 +14,17 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kinputdialog.h>
-#include <qtextedit.h>
-#include <qvbox.h>
+#include <q3textedit.h>
+#include <q3vbox.h>
 #include <qlayout.h>
 #include <qsplitter.h>
 #include <qpushbutton.h>
 #include <qcheckbox.h>
 #include <qfile.h>
 #include <qlabel.h>
+//Added by qt3to4:
+#include <QKeyEvent>
+#include <QEvent>
 #include <kaction.h>
 #include <kurl.h>
 #include <kmessagebox.h>
@@ -53,28 +56,28 @@ _stdout(0), _stderr(0), _currentTextEdit(0) {
 
    setButtonText(KDialogBase::User1, i18n("Save as") );
 
-   QVBox *page = makeVBoxMainWidget();
+   Q3VBox *page = makeVBoxMainWidget();
    // do we need to separate stderr and stdout?
    if ( enableStderr ) {
       QSplitter *splitt = new QSplitter( QSplitter::Vertical, page );
       // create stdout
-      QVBox *stdoutBox = new QVBox( splitt, "stdout VBox" );
+      Q3VBox *stdoutBox = new Q3VBox( splitt, "stdout VBox" );
       stdoutBox->setSpacing( 6 );
       new QLabel( i18n( "Standard Output (stdout)" ), stdoutBox );
-      _stdout = new QTextEdit( stdoutBox );
+      _stdout = new Q3TextEdit( stdoutBox );
       _stdout->setReadOnly( true );
       _stdout->setMinimumWidth( fontMetrics().maxWidth() * 40 );
       // create stderr
-      QVBox *stderrBox = new QVBox( splitt, "stderr VBox" );
+      Q3VBox *stderrBox = new Q3VBox( splitt, "stderr VBox" );
       stderrBox->setSpacing( 6 );
       new QLabel( i18n( "Standard Error (stderr)" ), stderrBox );
-      _stderr = new QTextEdit( stderrBox );
+      _stderr = new Q3TextEdit( stderrBox );
       _stderr->setReadOnly( true );
       _stderr->setMinimumWidth( fontMetrics().maxWidth() * 40 );
    } else {
       // create stdout
       new QLabel( i18n( "Output" ), page );
-      _stdout = new QTextEdit( page );
+      _stdout = new Q3TextEdit( page );
       _stdout->setReadOnly( true );
       _stdout->setMinimumWidth( fontMetrics().maxWidth() * 40 );
    }
@@ -94,7 +97,7 @@ _stdout(0), _stderr(0), _currentTextEdit(0) {
    // None the less it's quite save to use since this implementation hasn't changed since KDE-3.3 (I haven't looked at earlier
    // versions since we don't support them) and now all work is done in KDE-4.
    QWidget* buttonBox = static_cast<QWidget*>( actionButton(KDialogBase::Ok)->parent() );
-   QBoxLayout* buttonBoxLayout = static_cast<QBoxLayout*>( buttonBox->layout() );
+   Q3BoxLayout* buttonBoxLayout = static_cast<Q3BoxLayout*>( buttonBox->layout() );
    QCheckBox* useFixedFont = new QCheckBox( i18n("Use font with fixed width"), buttonBox );
    buttonBoxLayout->insertWidget( 0, useFixedFont );
    useFixedFont->setChecked( startupState );
@@ -145,9 +148,9 @@ void KrActionProcDlg::slotUser1() {
       return;
    bool open;
    if ( answer == KMessageBox::No ) // this means to append
-      open = file.open( IO_WriteOnly | IO_Append );
+      open = file.open( QIODevice::WriteOnly | QIODevice::Append );
    else
-      open = file.open( IO_WriteOnly );
+      open = file.open( QIODevice::WriteOnly );
 
    if ( ! open ) {
       KMessageBox::error( this,
@@ -157,7 +160,7 @@ void KrActionProcDlg::slotUser1() {
       return;
    }
 
-   QTextStream stream( &file );
+   Q3TextStream stream( &file );
    stream << _currentTextEdit->text();
    file.close();
 }

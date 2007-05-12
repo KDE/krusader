@@ -1,5 +1,7 @@
-#include <qwidgetstack.h>
+#include <q3widgetstack.h>
 #include <qtoolbutton.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
 #include <klocale.h>
 #include <qimage.h>
 #include <kdebug.h>
@@ -23,8 +25,8 @@ PanelManager::PanelManager( QWidget *parent, bool left ) :
 QWidget( parent, "PanelManager" ), _layout( 0 ), _left( left ), 
        _selfPtr( _left ? &MAIN_VIEW->left : &MAIN_VIEW->right ), 
        _otherPtr( _left ? &MAIN_VIEW->right : &MAIN_VIEW->left ) {   
-   _layout = new QGridLayout( this, 1, 1 );
-   _stack = new QWidgetStack( this );
+   _layout = new Q3GridLayout( this, 1, 1 );
+   _stack = new Q3WidgetStack( this );
 
    // new tab button
    _newTab = new QToolButton( this );

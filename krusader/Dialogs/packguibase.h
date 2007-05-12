@@ -33,11 +33,16 @@
 #include <klocale.h>
 #include <qdialog.h>
 #include <qmap.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
+#include <Q3HBoxLayout>
+#include <Q3VBoxLayout>
+#include <QLabel>
 
 
-class QVBoxLayout; 
-class QHBoxLayout; 
-class QGridLayout; 
+class Q3VBoxLayout; 
+class Q3HBoxLayout; 
+class Q3GridLayout; 
 class QCheckBox;
 class QComboBox;
 class QLabel;
@@ -53,7 +58,7 @@ class PackGUIBase : public QDialog
     Q_OBJECT
 
 public:
-    PackGUIBase( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, WFlags fl = 0 );
+    PackGUIBase( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
     ~PackGUIBase();
 
     QLabel* TextLabel3;
@@ -93,14 +98,14 @@ public slots:
     void checkConsistency();
 
 protected:
-    QHBoxLayout* hbox;
-    QHBoxLayout* hbox_2;
-    QHBoxLayout* hbox_3;
-    QHBoxLayout* hbox_4;
-    QGridLayout* hbox_5;
-    QHBoxLayout* hbox_6;
-    QHBoxLayout* hbox_7;
-    QGridLayout* grid;
+    Q3HBoxLayout* hbox;
+    Q3HBoxLayout* hbox_2;
+    Q3HBoxLayout* hbox_3;
+    Q3HBoxLayout* hbox_4;
+    Q3GridLayout* hbox_5;
+    Q3HBoxLayout* hbox_6;
+    Q3HBoxLayout* hbox_7;
+    Q3GridLayout* grid;
 
 private:
     bool expanded;

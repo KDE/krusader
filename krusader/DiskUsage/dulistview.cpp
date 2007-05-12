@@ -33,18 +33,21 @@
 #include "../kicons.h"
 #include "../VFS/krpermhandler.h"
 #include <qfontmetrics.h>
+//Added by qt3to4:
+#include <QMouseEvent>
+#include <QKeyEvent>
 #include <klocale.h>
 #include <kmimetype.h>
 #include <kglobal.h>
-#include <qheader.h>
+#include <q3header.h>
 #include <time.h>
 
 DUListView::DUListView( DiskUsage *usage, const char *name ) 
-    : QListView( usage, name ), diskUsage( usage )
+    : Q3ListView( usage, name ), diskUsage( usage )
 {  
   setAllColumnsShowFocus(true);
-  setVScrollBarMode(QScrollView::Auto);
-  setHScrollBarMode(QScrollView::Auto);
+  setVScrollBarMode(Q3ScrollView::Auto);
+  setHScrollBarMode(Q3ScrollView::Auto);
   setShowSortIndicator(true);
   setRootIsDecorated( true );
   setTreeStepSize( 10 );
@@ -54,31 +57,31 @@ DUListView::DUListView( DiskUsage *usage, const char *name )
   krConfig->setGroup( diskUsage->getConfigGroup() ); 
   int nameWidth  = krConfig->readNumEntry("D Name Width",  defaultSize * 20 );    
   addColumn( i18n("Name"), nameWidth );
-  setColumnWidthMode(0,QListView::Manual);
+  setColumnWidthMode(0,Q3ListView::Manual);
   int percentWidth  = krConfig->readNumEntry("D Percent Width",  defaultSize * 5 );    
   addColumn( i18n("Percent"), percentWidth );
-  setColumnWidthMode(1,QListView::Manual);
+  setColumnWidthMode(1,Q3ListView::Manual);
   int totalSizeWidth  = krConfig->readNumEntry("D Total Size Width",  defaultSize * 10 );    
   addColumn( i18n("Total size"), totalSizeWidth );
-  setColumnWidthMode(1,QListView::Manual);
+  setColumnWidthMode(1,Q3ListView::Manual);
   int ownSizeWidth  = krConfig->readNumEntry("D Own Size Width",  defaultSize * 10 );    
   addColumn( i18n("Own size"), ownSizeWidth );
-  setColumnWidthMode(2,QListView::Manual);
+  setColumnWidthMode(2,Q3ListView::Manual);
   int typeWidth  = krConfig->readNumEntry("D Type Width",  defaultSize * 10 );
   addColumn( i18n("Type"), typeWidth );
-  setColumnWidthMode(3,QListView::Manual);
+  setColumnWidthMode(3,Q3ListView::Manual);
   int dateWidth  = krConfig->readNumEntry("D Date Width",  defaultSize * 10 );
   addColumn( i18n("Date"), dateWidth );
-  setColumnWidthMode(4,QListView::Manual);
+  setColumnWidthMode(4,Q3ListView::Manual);
   int permissionsWidth  = krConfig->readNumEntry("D Permissions Width",  defaultSize * 6 );
   addColumn( i18n("Permissions"), permissionsWidth );
-  setColumnWidthMode(5,QListView::Manual);
+  setColumnWidthMode(5,Q3ListView::Manual);
   int ownerWidth  = krConfig->readNumEntry("D Owner Width",  defaultSize * 5 );    
   addColumn( i18n("Owner"), ownerWidth );
-  setColumnWidthMode(6,QListView::Manual);
+  setColumnWidthMode(6,Q3ListView::Manual);
   int groupWidth  = krConfig->readNumEntry("D Group Width",  defaultSize * 5 );    
   addColumn( i18n("Group"), groupWidth );
-  setColumnWidthMode(7,QListView::Manual);
+  setColumnWidthMode(7,Q3ListView::Manual);
   
   setColumnAlignment( 1, Qt::AlignRight );
   setColumnAlignment( 2, Qt::AlignRight );
@@ -91,10 +94,10 @@ DUListView::DUListView( DiskUsage *usage, const char *name )
   connect( diskUsage, SIGNAL( changed( File * ) ), this, SLOT( slotChanged( File * ) ) );
   connect( diskUsage, SIGNAL( deleted( File * ) ), this, SLOT( slotDeleted( File * ) ) );
 
-  connect( this, SIGNAL(rightButtonPressed(QListViewItem *, const QPoint &, int)),
-           this, SLOT( slotRightClicked(QListViewItem *) ) );
-  connect( this, SIGNAL( expanded ( QListViewItem * ) ), 
-           this, SLOT( slotExpanded( QListViewItem * ) ) ); 
+  connect( this, SIGNAL(rightButtonPressed(Q3ListViewItem *, const QPoint &, int)),
+           this, SLOT( slotRightClicked(Q3ListViewItem *) ) );
+  connect( this, SIGNAL( expanded ( Q3ListViewItem * ) ), 
+           this, SLOT( slotExpanded( Q3ListViewItem * ) ) ); 
 }
 
 DUListView::~ DUListView()
@@ -111,13 +114,13 @@ DUListView::~ DUListView()
   krConfig->writeEntry("D Group Width",       columnWidth( 8 ) );
 }
 
-void DUListView::addDirectory( Directory *dirEntry, QListViewItem *parent )
+void DUListView::addDirectory( Directory *dirEntry, Q3ListViewItem *parent )
 {
-  QListViewItem * lastItem = 0;
+  Q3ListViewItem * lastItem = 0;
     
   if( parent == 0 && ! ( dirEntry->parent() == 0 ) )
   {
-    lastItem = new QListViewItem( this, ".." );
+    lastItem = new Q3ListViewItem( this, ".." );
     lastItem->setPixmap( 0, FL_LOADICON( "up" ) );
     lastItem->setSelectable( false );
   }
@@ -160,7 +163,7 @@ void DUListView::addDirectory( Directory *dirEntry, QListViewItem *parent )
       lastItem->setExpandable( true );
   }
   
-  QListViewItem *first = firstChild();
+  Q3ListViewItem *first = firstChild();
   if( first )
     setCurrentItem( first );
 }
@@ -173,7 +176,7 @@ void DUListView::slotDirChanged( Directory *dirEntry )
 
 File * DUListView::getCurrentFile()
 {
-  QListViewItem *item = currentItem();
+  Q3ListViewItem *item = currentItem();
   
   if( item == 0 || item->text( 0 ) == ".." )
     return 0;
@@ -204,7 +207,7 @@ void DUListView::slotDeleted( File * item )
   delete duItem;
 }
   
-void DUListView::slotRightClicked( QListViewItem *item )
+void DUListView::slotRightClicked( Q3ListViewItem *item )
 {
   File * file = 0;
   
@@ -214,7 +217,7 @@ void DUListView::slotRightClicked( QListViewItem *item )
   diskUsage->rightClickMenu( file );
 }
 
-bool DUListView::doubleClicked( QListViewItem * item )
+bool DUListView::doubleClicked( Q3ListViewItem * item )
 {
   if( item )
   {
@@ -242,13 +245,13 @@ void DUListView::contentsMouseDoubleClickEvent ( QMouseEvent * e )
   if ( e || e->button() == LeftButton )
   {
     QPoint vp = contentsToViewport(e->pos());
-    QListViewItem * item = itemAt( vp );
+    Q3ListViewItem * item = itemAt( vp );
 
     if( doubleClicked( item ) )
       return;
     
   }
-  QListView::contentsMouseDoubleClickEvent( e );
+  Q3ListView::contentsMouseDoubleClickEvent( e );
 }
 
 void DUListView::keyPressEvent( QKeyEvent *e )
@@ -274,10 +277,10 @@ void DUListView::keyPressEvent( QKeyEvent *e )
     e->ignore();
     return;
   }
-  QListView::keyPressEvent( e );
+  Q3ListView::keyPressEvent( e );
 }
 
-void DUListView::slotExpanded( QListViewItem *item )
+void DUListView::slotExpanded( Q3ListViewItem *item )
 {
   if( item == 0 || item->text( 0 ) == ".." )
     return;

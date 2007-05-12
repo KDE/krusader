@@ -34,7 +34,7 @@
 #define REMOTEMAN_H
 
 #include "remotemanbase.h"
-#include <qlistview.h>
+#include <q3listview.h>
 
 class remoteMan : public remoteManBase  {
   Q_OBJECT
@@ -45,7 +45,7 @@ public:
 protected:
   void config2tree(); // internal
   void tree2config(); // internal
-  QListViewItem *findItem(const QString &name, QListViewItem *p);
+  Q3ListViewItem *findItem(const QString &name, Q3ListViewItem *p);
   	
 public slots:
   void addGroup();
@@ -55,15 +55,15 @@ public slots:
   void addSession();
   void connection();
   void removeSession();
-  void expandDecos(QListViewItem*);
-  void collapseDecos(QListViewItem*);
+  void expandDecos(Q3ListViewItem*);
+  void collapseDecos(Q3ListViewItem*);
 
 protected slots:
   void accept();
   void reject();
 
 private:
-  QListViewItem *currentItem;
+  Q3ListViewItem *currentItem;
   static QString url;
 };
 

@@ -3,11 +3,14 @@
 
 #include "krbookmark.h"
 #include <qobject.h>
-#include <qguardedptr.h>
+#include <qpointer.h>
+//Added by qt3to4:
+#include <QEvent>
+#include <Q3PopupMenu>
 #include <kpopupmenu.h>
 #include <kurl.h>
-#include <qptrdict.h>
-#include <qvaluelist.h>
+#include <q3ptrdict.h>
+#include <q3valuelist.h>
 #include <qdom.h>
 #include <qmap.h>
 
@@ -38,7 +41,7 @@ protected:
 
 	bool eventFilter( QObject *obj, QEvent *ev );
 	
-	void rightClicked( QPopupMenu *menu, int id, KrBookmark *bm );
+	void rightClicked( Q3PopupMenu *menu, int id, KrBookmark *bm );
 	void rightClickOnSpecialBookmark();
 	
 	void removeReferences( KrBookmark *root, KrBookmark *bmToRemove );
@@ -55,9 +58,9 @@ private:
 	KBookmarkManager *manager;
 	bool _middleClick; // if true, the user clicked the middle button to open the bookmark
 	
-	QGuardedPtr<KPopupMenu>            _mainBookmarkPopup; // main bookmark popup menu
-	QValueList<int>                    _specialBookmarkIDs; // the ID list of the special bookmarks
-	QPtrDict<QMap<int,KrBookmark*> >   _bookmarkIDTable;    // the IDs of the bookmarks
+	QPointer<KPopupMenu>            _mainBookmarkPopup; // main bookmark popup menu
+	Q3ValueList<int>                    _specialBookmarkIDs; // the ID list of the special bookmarks
+	Q3PtrDict<QMap<int,KrBookmark*> >   _bookmarkIDTable;    // the IDs of the bookmarks
 };
 
 #endif // KRBOOKMARK_HANDLER_H

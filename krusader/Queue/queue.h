@@ -3,7 +3,7 @@
 
 #include <qobject.h>
 #include <kio/jobclasses.h>
-#include <qptrlist.h>
+#include <q3ptrlist.h>
 
 /**
  * Queue can hold anything which inherits KIO::Job, and schedule it, start it, stop etc...
@@ -26,7 +26,7 @@ protected:
 	void dumpQueue();
 
 	QString _name;
-	QPtrList<KIO::Job> _jobs;
+	Q3PtrList<KIO::Job> _jobs;
 };
 
 #endif // QUEUE_H

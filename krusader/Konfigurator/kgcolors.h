@@ -32,10 +32,13 @@
 #define __KGCOLORS_H__
 
 #include "konfiguratorpage.h"
-#include <qptrlist.h>
-#include <qvaluelist.h>
-#include <qlistview.h>
-#include <qwidgetstack.h>
+#include <q3ptrlist.h>
+#include <q3valuelist.h>
+#include <q3listview.h>
+#include <q3widgetstack.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
+#include <QLabel>
 
 class KgColors : public KonfiguratorPage
 {
@@ -77,30 +80,30 @@ private:
 
 private:
   QWidget                            *colorsGrp;
-  QGridLayout                        *colorsGrid;
+  Q3GridLayout                        *colorsGrid;
   int                                 offset;
   int                                 endOfActiveColors;
   int                                 endOfPanelColors;
 
-  QGroupBox                          *previewGrp;
-  QGridLayout                        *previewGrid;
+  Q3GroupBox                          *previewGrp;
+  Q3GridLayout                        *previewGrid;
   QTabWidget                         *colorTabWidget;
 
-  QWidgetStack                       *inactiveColorStack;
+  Q3WidgetStack                       *inactiveColorStack;
   QWidget                            *normalInactiveWidget;
   QWidget                            *dimmedInactiveWidget;
   KonfiguratorSpinBox                *dimFactor;
 
   KonfiguratorCheckBoxGroup          *generals;
 
-  QPtrList<QLabel>                    labelList;
-  QPtrList<KonfiguratorColorChooser>  itemList;
-  QValueList<QString>                 itemNames;
+  Q3PtrList<QLabel>                    labelList;
+  Q3PtrList<KonfiguratorColorChooser>  itemList;
+  Q3ValueList<QString>                 itemNames;
 
-  QListView                          *preview;
+  Q3ListView                          *preview;
   KPushButton *importBtn, *exportBtn;
 
-  class PreviewItem : public QListViewItem
+  class PreviewItem : public Q3ListViewItem
   {
   private:
     QColor  defaultBackground;
@@ -108,7 +111,7 @@ private:
     QString label;
 
   public:
-    PreviewItem( QListView * parent, QString name ) : QListViewItem( parent, name )
+    PreviewItem( Q3ListView * parent, QString name ) : Q3ListViewItem( parent, name )
     {
       defaultBackground = QColor( 255, 255, 255 );
       defaultForeground = QColor( 0, 0, 0 );
@@ -132,7 +135,7 @@ private:
       QColorGroup _cg( cg );
       _cg.setColor( QColorGroup::Base, defaultBackground );
       _cg.setColor( QColorGroup::Text, defaultForeground );
-      QListViewItem::paintCell(p, _cg, column, width, align);
+      Q3ListViewItem::paintCell(p, _cg, column, width, align);
     }
   };
 };

@@ -24,7 +24,7 @@ protected:
 
 protected slots:
 	void toggleCreateIn(bool show);
-	void createInSelection(QListViewItem *item);
+	void createInSelection(Q3ListViewItem *item);
 	void newFolder();
 	
 private:

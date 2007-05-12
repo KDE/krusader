@@ -33,7 +33,7 @@
 
 #define VIRT_VFS_DB "virt_vfs.db"
 
-QDict<KURL::List> virt_vfs::virtVfsDict;
+Q3Dict<KURL::List> virt_vfs::virtVfsDict;
 KConfig* virt_vfs::virt_vfs_db=0;
 
 virt_vfs::virt_vfs( QObject* panel, bool quiet ) : vfs( panel, quiet ) {
@@ -291,7 +291,7 @@ bool virt_vfs::save(){
 	KConfig* db = getVirtDB();
 	
 	db->setGroup("virt_db");
-	QDictIterator<KURL::List> it( virtVfsDict ); // See QDictIterator
+	Q3DictIterator<KURL::List> it( virtVfsDict ); // See QDictIterator
 	for( ; it.current(); ++it ){
 		KURL::List::iterator url;
 		QStringList entry;

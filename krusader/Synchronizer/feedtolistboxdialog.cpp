@@ -42,16 +42,18 @@
 #include <qlayout.h>
 #include <qlineedit.h>
 #include <qlabel.h>
-#include <qhbox.h>
+#include <q3hbox.h>
 #include <qcombobox.h>
-#include <qframe.h>
+#include <q3frame.h>
+//Added by qt3to4:
+#include <Q3VBoxLayout>
 
 #define  S_LEFT        0
 #define  S_RIGHT       1
 #define  S_BOTH        2
 
 FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent,  const char *name, Synchronizer *sync,
-    QListView *syncL, bool equOK) : KDialogBase( parent, name, true, i18n( "Krusader::Feed to listbox" ),
+    Q3ListView *syncL, bool equOK) : KDialogBase( parent, name, true, i18n( "Krusader::Feed to listbox" ),
     KDialogBase::Ok | KDialogBase::Cancel | KDialogBase::User1, Ok, true, KStdGuiItem::clear() ),
     synchronizer( sync ), syncList( syncL ), equalAllowed( equOK ), accepted( false ) {
   
@@ -62,7 +64,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent,  const char *name, Syn
   int leftExistingNum = 0;
   int rightExistingNum = 0;
 
-  QListViewItemIterator it( syncList );
+  Q3ListViewItemIterator it( syncList );
   while( it.current() ) {
     SynchronizerGUI::SyncViewItem *item = (SynchronizerGUI::SyncViewItem *) it.current();
     SynchronizerFileItem *syncItem = item->synchronizerItemRef();
@@ -105,7 +107,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent,  const char *name, Syn
   // creating the widget
 
   QWidget *widget=new QWidget(this, "feedToListBoxMainWidget");
-  QVBoxLayout *layout = new QVBoxLayout( widget, 0, 10, "FeedToListBoxDialogLayout" );
+  Q3VBoxLayout *layout = new Q3VBoxLayout( widget, 0, 10, "FeedToListBoxDialogLayout" );
     
   QLabel *label = new QLabel( i18n("Here you can name the file collection"), widget, "fbLabel" );
   layout->addWidget( label );    
@@ -115,7 +117,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent,  const char *name, Syn
   lineEdit->selectAll();
   layout->addWidget( lineEdit );  
   
-  QHBox *hbox = new QHBox( widget, "fbHBox" );
+  Q3HBox *hbox = new Q3HBox( widget, "fbHBox" );
   
   QLabel *label2 = new QLabel( i18n( "Side to feed:" ), hbox, "fbSideLabel" );  
   label2->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
@@ -134,8 +136,8 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent,  const char *name, Syn
   } else
     sideCombo->setCurrentItem( 2 );
   
-  QFrame *line = new QFrame( hbox, "fbVLine" );
-  line->setFrameStyle( QFrame::VLine | QFrame::Sunken );
+  Q3Frame *line = new Q3Frame( hbox, "fbVLine" );
+  line->setFrameStyle( Q3Frame::VLine | Q3Frame::Sunken );
   line->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
   
   cbSelected = new QCheckBox( i18n( "Selected files only" ), hbox, "cbSelected" );
@@ -160,7 +162,7 @@ void FeedToListBoxDialog::slotOk() {
   QString name = lineEdit->text();
   KURL::List urlList;
 
-  QListViewItemIterator it( syncList );
+  Q3ListViewItemIterator it( syncList );
   for( ;it.current(); it++ ) {
     SynchronizerGUI::SyncViewItem *item = (SynchronizerGUI::SyncViewItem *) it.current();
     SynchronizerFileItem *syncItem = item->synchronizerItemRef();

@@ -30,6 +30,9 @@
 
 #include "krresulttable.h"
 #include <iostream>
+//Added by qt3to4:
+#include <Q3GridLayout>
+#include <QLabel>
 using namespace std;
 
 #define PS(x) _supported.contains(x)>0
@@ -45,9 +48,9 @@ KrResultTable::~KrResultTable()
 }
 
 
-QGridLayout* KrResultTable::initTable()
+Q3GridLayout* KrResultTable::initTable()
 {
-  _grid = new QGridLayout(this, _numRows, _numColumns);
+  _grid = new Q3GridLayout(this, _numRows, _numColumns);
   _grid->setColStretch(_numColumns-1, 1); // stretch last column
 
   // +++ Build and add table header +++
@@ -71,7 +74,7 @@ QGridLayout* KrResultTable::initTable()
 }
 
 
-void KrResultTable::adjustRow(QGridLayout* grid)
+void KrResultTable::adjustRow(Q3GridLayout* grid)
 {
   QLayoutIterator it = grid->iterator();
   QLayoutItem *child;
@@ -171,7 +174,7 @@ KrArchiverResultTable::~KrArchiverResultTable()
 }
 
 
-bool KrArchiverResultTable::addRow(SearchObject* search, QGridLayout* grid)
+bool KrArchiverResultTable::addRow(SearchObject* search, Q3GridLayout* grid)
 {
   Archiver* arch = dynamic_cast<Archiver*>(search);
 
@@ -219,7 +222,7 @@ bool KrArchiverResultTable::addRow(SearchObject* search, QGridLayout* grid)
   // Note column
   _label = new QLabel(arch->getNote(), this);
   _label->setMargin(5);
-  _label->setAlignment( Qt::AlignTop | Qt::WordBreak ); // wrap words
+  _label->setAlignment( Qt::AlignTop | Qt::TextWordWrap ); // wrap words
   grid->addWidget(_label, _numRows, 4);
 
   // Apply shared design elements
@@ -246,7 +249,7 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
 {
   _supported = Krusader::supportedTools(); // get list of available tools
 
-  QValueVector<Application*> vecDiff, vecMail, vecRename, vecChecksum;
+  Q3ValueVector<Application*> vecDiff, vecMail, vecRename, vecChecksum;
   Application* kdiff3         = new Application("kdiff3",        "http://kdiff3.sourceforge.net/", KrServices::cmdExist("kdiff3"));
   Application* kompare        = new Application("kompare",       "http://www.caffeinated.me.uk/kompare/", KrServices::cmdExist("kompare"));
   Application* xxdiff         = new Application("xxdiff",        "http://xxdiff.sourceforge.net/", KrServices::cmdExist("xxdiff"));
@@ -315,10 +318,10 @@ KrToolResultTable::~KrToolResultTable()
 }
 
 
-bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
+bool KrToolResultTable::addRow(SearchObject* search, Q3GridLayout* grid)
 {
   ApplicationGroup* appGroup = dynamic_cast<ApplicationGroup*>(search);
-  QValueVector<Application*> _apps = appGroup->getAppVec();
+  Q3ValueVector<Application*> _apps = appGroup->getAppVec();
 
   // Name column
   _label = new QLabel(appGroup->getSearchName(), this);
@@ -327,8 +330,8 @@ bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
   grid->addWidget(_label, _numRows, 0);
 
   // Tool column
-  QVBox* toolBox = new QVBox(this);
-  for( QValueVector<Application*>::Iterator it=_apps.begin(); it!=_apps.end(); it++ )
+  Q3VBox* toolBox = new Q3VBox(this);
+  for( Q3ValueVector<Application*>::Iterator it=_apps.begin(); it!=_apps.end(); it++ )
   {
     KURLLabel* l = new KURLLabel( (*it)->getWebsite(), (*it)->getAppName(), toolBox);
     l->setAlignment(Qt::AlignLeft | Qt::AlignTop);
@@ -339,8 +342,8 @@ bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
   grid->addWidget(toolBox, _numRows, 1);
 
   // Found column
-  QVBox* vbox = new QVBox(this);
-  for( QValueVector<Application*>::Iterator it=_apps.begin(); it!=_apps.end(); it++ )
+  Q3VBox* vbox = new Q3VBox(this);
+  for( Q3ValueVector<Application*>::Iterator it=_apps.begin(); it!=_apps.end(); it++ )
   {
     _label = new QLabel( (*it)->getPath(), vbox);
     _label->setMargin(5);

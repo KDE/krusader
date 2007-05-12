@@ -57,11 +57,17 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <qstringlist.h>
 #include <qdir.h>
 #include <qprinter.h>
-#include <qprogressdialog.h>
-#include <qvaluelist.h>
-#include <qwhatsthis.h> 
-#include <qwidgetlist.h>
+#include <q3progressdialog.h>
+#include <q3valuelist.h>
+#include <q3whatsthis.h> 
+#include <qwidget.h>
 #include <qdatetime.h>
+//Added by qt3to4:
+#include <QMoveEvent>
+#include <QResizeEvent>
+#include <QShowEvent>
+#include <QHideEvent>
+#include <Q3CString>
 #include <dcopclient.h>
 // Krusader includes
 #include "krusader.h"
@@ -204,7 +210,7 @@ KAction *Krusader::actShowJSConsole = 0;
 #endif
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
-Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Qt::WStyle_ContextHelp),
+Krusader::Krusader() : KParts::MainWindow(0,0,Qt::WType_TopLevel|Qt::WDestructiveClose|Qt::WStyle_ContextHelp),
    DCOPObject("Krusader-Interface"), status(NULL), sysTray( 0 ), isStarting( true ), isExiting( false ), directExit( false ) {
    // parse command line arguments
    KCmdLineArgs * args = KCmdLineArgs::parsedArgs();
@@ -347,7 +353,7 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
 
    // create a status bar
    status = new KrusaderStatus( this );
-   QWhatsThis::add( status, i18n( "Statusbar will show basic information "
+   Q3WhatsThis::add( status, i18n( "Statusbar will show basic information "
                                           "about file below mouse pointer." ) );
 
    // This enables Krusader to show a tray icon
@@ -666,7 +672,7 @@ void Krusader::setupActions() {
    actFTPDisconnect = new KAction( i18n( "Disconnect &from Net" ), "kr_ftp_disconnect", SHIFT + CTRL + Key_F,
                                    SLOTS, SLOT( FTPDisconnect() ), actionCollection(), "ftp disconnect" );
 #if KDE_IS_VERSION(3,2,0)	/* new mountman feature is available in kde 3.2 only! */
-   actMountMan = new KToolBarPopupAction( i18n( "&MountMan..." ), "kr_mountman", ALT + Key_Slash,
+   actMountMan = new KToolBarPopupAction( i18n( "&MountMan..." ), "kr_mountman", Qt::ALT + Qt::Key_Slash,
                                           SLOTS, SLOT( runMountMan() ), actionCollection(), "mountman" );
    connect( ( ( KToolBarPopupAction* ) actMountMan ) ->popupMenu(), SIGNAL( aboutToShow() ),
             mountMan, SLOT( quickList() ) );
@@ -794,7 +800,7 @@ void Krusader::setupActions() {
    userAction = new UserAction();
 
    #ifdef __KJSEMBED__
-   actShowJSConsole = new KAction( i18n( "JavaScript Console..." ), ALT + CTRL + Key_J, SLOTS, SLOT( jsConsole() ), actionCollection(), "JS_Console" );
+   actShowJSConsole = new KAction( i18n( "JavaScript Console..." ), Qt::ALT + Qt::CTRL + Qt::Key_J, SLOTS, SLOT( jsConsole() ), actionCollection(), "JS_Console" );
    #endif
 }
 
@@ -813,7 +819,7 @@ void Krusader::savePosition() {
    }
    config->writeEntry( "Panel Size", mainView->vert_splitter->sizes() [ 0 ] );
    config->writeEntry( "Terminal Size", mainView->vert_splitter->sizes() [ 1 ] );
-   QValueList<int> lst = mainView->horiz_splitter->sizes();
+   Q3ValueList<int> lst = mainView->horiz_splitter->sizes();
    config->writeEntry( "Splitter Sizes", lst );
    mainView->left->popup->saveSizes();
    mainView->right->popup->saveSizes();
@@ -1077,7 +1083,7 @@ void Krusader::updateGUI( bool enforce ) {
       if ( config->readBoolEntry( "Show Terminal Emulator", _ShowTerminalEmulator ) ) {
         mainView->slotTerminalEmulator( true ); // create konsole_part
         KConfigGroup grp(krConfig, "Private" );
-        QValueList<int> lst;
+        Q3ValueList<int> lst;
         lst.append( grp.readNumEntry( "Panel Size", _PanelSize ) );
         lst.append( grp.readNumEntry( "Terminal Size", _TerminalSize ) );
         mainView->vert_splitter->setSizes( lst );
@@ -1213,7 +1219,7 @@ const char* Krusader::privIcon() {
       return "krusader_root";
 }
 
-bool Krusader::process(const QCString &fun, const QByteArray &/* data */, QCString &/* replyType */, QByteArray &/* replyData */) {
+bool Krusader::process(const Q3CString &fun, const QByteArray &/* data */, Q3CString &/* replyType */, QByteArray &/* replyData */) {
    if (fun == "moveToTop()") {
       moveToTop();
       return true;

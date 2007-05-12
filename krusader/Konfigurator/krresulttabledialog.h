@@ -32,11 +32,13 @@
 #define KRRESULTTABLEDIALOG_H
 
 #include <qlabel.h>
-#include <qvbox.h>
-#include <qhbox.h>
+#include <q3vbox.h>
+#include <q3hbox.h>
 #include <qlayout.h>
 #include <qstringlist.h>
-#include <qvaluevector.h>
+#include <q3valuevector.h>
+//Added by qt3to4:
+#include <Q3VBoxLayout>
 
 #include <kdialogbase.h>
 #include <kiconloader.h>
@@ -75,9 +77,9 @@ protected:
   QLabel* _headingLabel;
   QLabel* _iconLabel;
   QLabel* _hintLabel;
-  QHBox* _iconBox;
+  Q3HBox* _iconBox;
   QWidget* _page;
-  QVBoxLayout* _topLayout;
+  Q3VBoxLayout* _topLayout;
   KrResultTable* _resultTable;
 };
 

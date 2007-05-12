@@ -42,15 +42,23 @@
 #include <qstring.h>
 #include <qpixmap.h>
 #include <qtoolbutton.h>
-#include <qpopupmenu.h>
+#include <q3popupmenu.h>
 #include <qdir.h>
 #include <qpixmapcache.h>
-#include <qiconset.h>
-#include <qptrstack.h>
-#include <qtextbrowser.h>
+#include <qicon.h>
+#include <q3ptrstack.h>
+#include <q3textbrowser.h>
+//Added by qt3to4:
+#include <QDropEvent>
+#include <QShowEvent>
+#include <Q3GridLayout>
+#include <Q3ValueList>
+#include <QHideEvent>
+#include <QKeyEvent>
+#include <QEvent>
 #include <keditcl.h>
 #include <klineedit.h>
-#include <qguardedptr.h>
+#include <qpointer.h>
 #include "krview.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
 
@@ -72,7 +80,7 @@ class SyncBrowseButton;
 class KrBookmarkButton;
 class KPushButton;
 class ListPanelFunc;
-class QHeader;
+class Q3Header;
 
 class ListPanel : public QWidget {
    friend class ListPanelFunc;
@@ -170,12 +178,12 @@ public:
    //FilterSpec	   filter;
    KRQuery filterMask;
    QPixmap currDragPix;
-   QListViewItem *currDragItem;
+   Q3ListViewItem *currDragItem;
    KDiskFreeSp* statsAgent;
    KrSqueezedTextLabel *status, *totals;
    KrQuickSearch *quickSearch;
    KURLRequester *origin;
-   QGridLayout *layout;
+   Q3GridLayout *layout;
    QToolButton *cdRootButton;
    QToolButton *cdHomeButton;
    QToolButton *cdUpButton;
@@ -191,7 +199,7 @@ public:
 	KPushButton *inlineRefreshCancelButton;
 	KIO::Job *inlineRefreshJob;
 	QSplitter *splt;
-   QHeader * header;
+   Q3Header * header;
 
 protected:
    KURL _realPath; // named with _ to keep realPath() compatability
@@ -200,7 +208,7 @@ protected:
 	
 private:
    bool &_left;
-	QValueList<int> popupSizes;
+	Q3ValueList<int> popupSizes;
 };
 
 #endif

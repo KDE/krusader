@@ -25,13 +25,15 @@
 #include <kio/slavebase.h>
 #include <sys/types.h>
 #include "kisofile.h"
+//Added by qt3to4:
+#include <Q3CString>
 
 class KIso;
 
 class kio_isoProtocol : public KIO::SlaveBase
 {
 public:
-    kio_isoProtocol( const QCString &pool, const QCString &app );
+    kio_isoProtocol( const Q3CString &pool, const Q3CString &app );
     virtual ~kio_isoProtocol();
 
     virtual void listDir( const KURL & url );

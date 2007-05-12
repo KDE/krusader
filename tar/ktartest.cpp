@@ -43,7 +43,7 @@ int main( int argc, char** argv )
   {
     KTarGz tar( argv[2] );
 
-    if ( !tar.open( IO_ReadOnly ) )
+    if ( !tar.open( QIODevice::ReadOnly ) )
     {
       printf("Could not open %s for reading\n", argv[1] );
       return 1;
@@ -69,7 +69,7 @@ int main( int argc, char** argv )
 
     KTarGz tar( argv[2] );
 
-    if ( !tar.open( IO_ReadOnly ) )
+    if ( !tar.open( QIODevice::ReadOnly ) )
     {
       printf("Could not open %s for reading\n", argv[1] );
       return 1;
@@ -107,7 +107,7 @@ int main( int argc, char** argv )
     kdDebug() << " --- readwrite --- " << endl;
     KTarGz tar( argv[2] );
 
-    if ( !tar.open( IO_WriteOnly ) )
+    if ( !tar.open( QIODevice::WriteOnly ) )
     {
       printf("Could not open %s for writing\n", argv[1]);
       return 1;
@@ -138,7 +138,7 @@ int main( int argc, char** argv )
 
     printf("-----------------------\n");
 
-    if ( !tar.open( IO_ReadOnly ) )
+    if ( !tar.open( QIODevice::ReadOnly ) )
     {
       printf("Could not open %s for reading\n", argv[1] );
       return 1;
@@ -164,7 +164,7 @@ int main( int argc, char** argv )
   {
     KTarGz tar( argv[2] );
 
-    if ( !tar.open( IO_WriteOnly ) )
+    if ( !tar.open( QIODevice::WriteOnly ) )
     {
       printf("Could not open %s for writing\n", argv[1]);
       return 1;
@@ -187,10 +187,10 @@ int main( int argc, char** argv )
   else if ( command == "bytearray" )
   {
     QFile file( argv[2] );
-    if ( !file.open( IO_ReadOnly ) )
+    if ( !file.open( QIODevice::ReadOnly ) )
       return 1;
     KTarGz tar( &file );
-    tar.open( IO_ReadOnly );
+    tar.open( QIODevice::ReadOnly );
     const KTarDirectory* dir = tar.directory();
     recursive_print( dir, "" );
     return 0;

@@ -37,7 +37,7 @@
 #include "krarchandler.h"
 #include "krpermhandler.h"
 
-#include <qtextstream.h>
+#include <q3textstream.h>
 #include <qtextcodec.h>
 #include <qregexp.h>
 #include <klargefile.h>
@@ -356,7 +356,7 @@ bool KRQuery::checkLines( QString lines ) const
 bool KRQuery::containsContent( QString file ) const
 {
   QFile qf( file );
-  if( !qf.open( IO_ReadOnly ) )
+  if( !qf.open( QIODevice::ReadOnly ) )
     return false;
 
   char buffer[ 1440 ]; // 2k buffer

@@ -29,9 +29,13 @@
  ***************************************************************************/
 
 #include <qlabel.h>
-#include <qhbox.h>
-#include <qvbox.h>
+#include <q3hbox.h>
+#include <q3vbox.h>
 #include <qfontmetrics.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
+#include <Q3Frame>
+#include <QPixmap>
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kinputdialog.h>
@@ -47,13 +51,13 @@ KgGeneral::KgGeneral( bool first, QWidget* parent,  const char* name ) :
 if( first )  
     slotFindTools();
 
-  QGridLayout *kgGeneralLayout = new QGridLayout( parent );
+  Q3GridLayout *kgGeneralLayout = new Q3GridLayout( parent );
   kgGeneralLayout->setSpacing( 6 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
 
-  QGroupBox *generalGrp = createFrame( i18n( "General" ), parent, "kgGenGeneralGrp" );
-  QGridLayout *generalGrid = createGridLayout( generalGrp->layout() );
+  Q3GroupBox *generalGrp = createFrame( i18n( "General" ), parent, "kgGenGeneralGrp" );
+  Q3GridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
   KONFIGURATOR_NAME_VALUE_TIP deleteMode[] =
   //            name            value    tooltip
@@ -69,7 +73,7 @@ if( first )
                      i18n( "Mimetype magic allows better distinction of file types, but is slower." ) );
   generalGrid->addMultiCellWidget( checkBox, 1, 1, 0, 1 );
 
-  QFrame *line1 = createLine( generalGrp, "line1" );
+  Q3Frame *line1 = createLine( generalGrp, "line1" );
   generalGrid->addMultiCellWidget( line1, 2, 2, 0, 1 );
 
   // editor
@@ -82,13 +86,13 @@ if( first )
   QLabel *label2 = new QLabel( i18n( "Hint: use 'internal editor' if you want to use Krusader's fast built-in editor" ), generalGrp, "EditorLabel" );
   generalGrid->addMultiCellWidget( label2, 4, 4, 0, 1 );
 
-QFrame *line2 = createLine( generalGrp, "line2" );
+Q3Frame *line2 = createLine( generalGrp, "line2" );
   generalGrid->addMultiCellWidget( line2, 5, 5, 0, 1 );
 
   // viewer
 
-  QHBox * hbox2 = new QHBox( generalGrp );
-  QVBox * vbox = new QVBox( hbox2 );
+  Q3HBox * hbox2 = new Q3HBox( generalGrp );
+  Q3VBox * vbox = new Q3VBox( hbox2 );
 
   new QLabel( i18n("Default viewer mode:"), vbox);
   
@@ -107,11 +111,11 @@ QFrame *line2 = createLine( generalGrp, "line2" );
   generalGrid->addMultiCellWidget(hbox2, 6, 8, 0, 1);
 
   // atomic extensions
-  QFrame * frame21 = createLine( hbox2, "line2.1", true );
+  Q3Frame * frame21 = createLine( hbox2, "line2.1", true );
   frame21->setMinimumWidth( 15 );
-  QVBox * vbox2 = new QVBox( hbox2 );
+  Q3VBox * vbox2 = new Q3VBox( hbox2 );
 
-  QHBox * hbox3 = new QHBox( vbox2 );
+  Q3HBox * hbox3 = new Q3HBox( vbox2 );
   QLabel * atomLabel = new QLabel( i18n("Atomic extensions:"), hbox3);
 
   int size = QFontMetrics( atomLabel->font() ).height();
@@ -136,7 +140,7 @@ QFrame *line2 = createLine( generalGrp, "line2" );
   listBox = createListBox( "Look&Feel", "Atomic Extensions", 
       defaultAtomicExtensions, vbox2, true, false );
 
-  QFrame *line3 = createLine( generalGrp, "line3" );
+  Q3Frame *line3 = createLine( generalGrp, "line3" );
   generalGrid->addMultiCellWidget( line3, 9, 9, 0, 1 );
 
 	// terminal
@@ -151,11 +155,11 @@ QFrame *line2 = createLine( generalGrp, "line2" );
                      i18n( "When checked, whenever the panel is changed (for example, by pressing TAB), krusader changes the current directory in the terminal emulator." ) );
   generalGrid->addMultiCellWidget( checkBox1, 11, 11, 0, 1 );
 
-  QFrame *line31 = createLine( generalGrp, "line4" );
+  Q3Frame *line31 = createLine( generalGrp, "line4" );
   generalGrid->addMultiCellWidget( line31, 12, 12, 0, 1 );
 
 	// temp dir
-  QHBox *hbox = new QHBox( generalGrp, "hbox" );
+  Q3HBox *hbox = new Q3HBox( generalGrp, "hbox" );
   new QLabel( i18n( "Temp Directory:" ), hbox, "TempDirectory" );
   KonfiguratorURLRequester *urlReq3 = createURLRequester( "General", "Temp Directory", "/tmp/krusader.tmp",
                                       hbox, false );
@@ -205,7 +209,7 @@ void KgGeneral::slotAddExtension()
 
 void KgGeneral::slotRemoveExtension()
 {
-  QListBoxItem * item = listBox->selectedItem();
+  Q3ListBoxItem * item = listBox->selectedItem();
   if( item )
     listBox->removeItem( item->text() );
 }

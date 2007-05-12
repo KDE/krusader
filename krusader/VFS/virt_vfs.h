@@ -66,7 +66,7 @@ protected:
 	bool populateVfsList(const KURL& origin, bool showHidden);
 	vfile* stat(const KURL& url);
 	
-	static QDict<KURL::List> virtVfsDict;
+	static Q3Dict<KURL::List> virtVfsDict;
 	static KConfig* virt_vfs_db;
 	bool busy;
 	QString path;

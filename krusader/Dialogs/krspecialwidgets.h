@@ -35,7 +35,10 @@ A
 #include <qwidget.h>
 #include <qpainter.h>
 #include <qcolor.h>
-#include <qptrlist.h>
+#include <q3ptrlist.h>
+//Added by qt3to4:
+#include <QKeyEvent>
+#include <QPaintEvent>
 #include <klineedit.h>
 #include <qevent.h>
 #include <kio/global.h>

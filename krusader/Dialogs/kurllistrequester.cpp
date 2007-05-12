@@ -33,6 +33,9 @@
 #include <qpixmap.h>
 #include <qcursor.h>
 #include <qlayout.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
+#include <QKeyEvent>
 #include <kfiledialog.h>
 #include <kpopupmenu.h>
 #include <kiconloader.h>
@@ -49,15 +52,15 @@ KURLListRequester::KURLListRequester( QWidget *parent, const char * name ) : QWi
     
   // Creating the widget
   
-  QGridLayout *urlListRequesterGrid = new QGridLayout( this );
+  Q3GridLayout *urlListRequesterGrid = new Q3GridLayout( this );
   urlListRequesterGrid->setSpacing( 0 );
   urlListRequesterGrid->setMargin( 0 );
     
   urlLineEdit = new KLineEdit( this, "urlLineEdit" );
   urlListRequesterGrid->addWidget( urlLineEdit, 0, 0 );
       
-  urlListBox = new QListBox( this, "urlListBox" );
-  urlListBox->setSelectionMode( QListBox::Extended );
+  urlListBox = new Q3ListBox( this, "urlListBox" );
+  urlListBox->setSelectionMode( Q3ListBox::Extended );
   urlListRequesterGrid->addMultiCellWidget( urlListBox, 1, 1, 0, 2 );
 
   urlAddBtn = new QToolButton( this, "urlAddBtn" );
@@ -80,8 +83,8 @@ KURLListRequester::KURLListRequester( QWidget *parent, const char * name ) : QWi
   connect( urlAddBtn, SIGNAL( clicked() ), this, SLOT( slotAdd() ) );
   connect( urlBrowseBtn, SIGNAL( clicked() ), this, SLOT( slotBrowse() ) );
   connect( urlLineEdit, SIGNAL( returnPressed(const QString&) ), this, SLOT( slotAdd() ) );
-  connect( urlListBox, SIGNAL( rightButtonClicked ( QListBoxItem *, const QPoint & ) ), this,
-                       SLOT( slotRightClicked( QListBoxItem * ) ) );
+  connect( urlListBox, SIGNAL( rightButtonClicked ( Q3ListBoxItem *, const QPoint & ) ), this,
+                       SLOT( slotRightClicked( Q3ListBoxItem * ) ) );
 }
 
 void KURLListRequester::slotAdd()
@@ -127,7 +130,7 @@ void KURLListRequester::keyPressEvent(QKeyEvent *e)
 void KURLListRequester::deleteSelectedItems()
 {
   int i=0;
-  QListBoxItem *item;
+  Q3ListBoxItem *item;
 
   while( (item = urlListBox->item(i)) )
   {
@@ -140,7 +143,7 @@ void KURLListRequester::deleteSelectedItems()
   }
 }
 
-void KURLListRequester::slotRightClicked( QListBoxItem *item )
+void KURLListRequester::slotRightClicked( Q3ListBoxItem *item )
 {
   if( item == 0 )
     return;
@@ -172,7 +175,7 @@ KURL::List KURLListRequester::urlList()
       urls.append( vfs::fromPathOrURL( text ) );
   }
     
-  QListBoxItem *item = urlListBox->firstItem();
+  Q3ListBoxItem *item = urlListBox->firstItem();
   while ( item )
   {    
     QString text = item->text().simplified();

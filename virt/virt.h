@@ -19,13 +19,15 @@
 #define _VIRT_H
 
 #include <sys/types.h>
-#include <qdict.h>
+#include <q3dict.h>
+//Added by qt3to4:
+#include <Q3CString>
 #include <kconfig.h>
 #include <kio/slavebase.h>
 
 class VirtProtocol : public KIO::SlaveBase {
 public:
-	VirtProtocol( const QCString &pool, const QCString &app );
+	VirtProtocol( const Q3CString &pool, const Q3CString &app );
 	virtual ~VirtProtocol();
 
 	virtual void listDir ( const KURL & url );
@@ -45,7 +47,7 @@ protected:
 	bool addDir(QString& path);
 
 
-	static QDict<KURL::List> kioVirtDict;
+	static Q3Dict<KURL::List> kioVirtDict;
 	static KConfig* kio_virt_db;
 
 	bool rewriteURL(const KURL&, KURL&);

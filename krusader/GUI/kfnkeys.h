@@ -35,6 +35,8 @@
 #include <qwidget.h>
 #include <qlayout.h>
 #include <qpushbutton.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
 
 // Function Keys widget
 ///////////////////////
@@ -48,7 +50,7 @@ public:
 
 private:
 	QPushButton *F2 ,*F3,*F4,*F5,*F6,*F7,*F8,*F9,*F10;
-	QGridLayout *layout;
+	Q3GridLayout *layout;
 };
 
 #endif

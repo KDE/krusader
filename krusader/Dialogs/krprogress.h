@@ -22,6 +22,8 @@
 #define __kr_progress_h__
 
 #include <qlabel.h>
+//Added by qt3to4:
+#include <QCloseEvent>
 
 #include <kio/global.h>
 

@@ -42,6 +42,9 @@
 #include <qregexp.h>
 #include <qdir.h>
 #include <qtimer.h>
+//Added by qt3to4:
+#include <Q3Frame>
+#include <Q3VBoxLayout>
 #include <kio/job.h>
 #include <kdialogbase.h>
 #include <kio/observer.h>
@@ -1331,8 +1334,8 @@ public:
   {
     showButton(KDialogBase::Close, false);
 
-    QFrame* mainWidget = plainPage();
-    QVBoxLayout* layout = new QVBoxLayout(mainWidget, 10);
+    Q3Frame* mainWidget = plainPage();
+    Q3VBoxLayout* layout = new Q3VBoxLayout(mainWidget, 10);
 
     QLabel *mLabel = new QLabel(text, mainWidget);
     layout->addWidget(mLabel);

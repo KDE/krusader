@@ -38,7 +38,7 @@
 #include <qfileinfo.h>
     
 Splitter::Splitter( QWidget* parent,  KURL fileNameIn, KURL destinationDirIn ) :
-  QProgressDialog( parent, "Krusader::Splitter", true, 0 ), splitSize( 0 )
+  Q3ProgressDialog( parent, "Krusader::Splitter", true, 0 ), splitSize( 0 )
 {
   fileName = fileNameIn;
 

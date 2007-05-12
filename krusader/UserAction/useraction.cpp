@@ -88,7 +88,7 @@ void UserAction::readAllFiles() {
 void UserAction::readFromFile( const QString& filename, ReadMode mode, KrActionList* list ) {
   QDomDocument* doc = new QDomDocument( ACTION_DOCTYPE );
   QFile file( filename );
-  if( file.open( IO_ReadOnly ) ) {
+  if( file.open( QIODevice::ReadOnly ) ) {
     //kdDebug() << "UserAction::readFromFile - " << filename << "could be opened" << endl;
     if( ! doc->setContent( &file ) ) {
       //kdDebug() << "UserAction::readFromFile - content set - failed" << endl;
@@ -186,7 +186,7 @@ bool UserAction::writeActionFile() {
 
 bool UserAction::writeToFile( const QDomDocument& doc, const QString& filename ) {
    QFile file( filename );
-   if( ! file.open( IO_WriteOnly ) )
+   if( ! file.open( QIODevice::WriteOnly ) )
       return false;
 
 /* // This is not needed, because each DomDocument created with UserAction::createEmptyDoc already contains the processinstruction
@@ -197,7 +197,7 @@ bool UserAction::writeToFile( const QDomDocument& doc, const QString& filename )
    }
 */
 
-   QTextStream ts( &file );
+   Q3TextStream ts( &file );
    ts.setEncoding(ts.UnicodeUTF8);
    ts << doc.toString();
 

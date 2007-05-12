@@ -43,16 +43,23 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../panelmanager.h"
 #include <qlayout.h>
 #include <qdir.h>
-#include <qwhatsthis.h>
-#include <qheader.h>
+#include <q3whatsthis.h>
+#include <q3header.h>
 #include <qstyle.h>
+//Added by qt3to4:
+#include <QWheelEvent>
+#include <QMouseEvent>
+#include <QKeyEvent>
+#include <QEvent>
+#include <QDropEvent>
+#include <QDragMoveEvent>
 #include <kprogress.h>
 #include <kstatusbar.h>
 #include <kinputdialog.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 #include <kpopupmenu.h>
-#include <qdict.h>
+#include <q3dict.h>
 
 //////////////////////////////////////////////////////////////////////////
 //  The following is KrDetailedView's settings in KConfig:
@@ -118,22 +125,22 @@ void KrDetailedView::setup() {
       // decide on single click/double click selection
       if ( _config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) &&
            KGlobalSettings::singleClick() ) {
-         connect( this, SIGNAL( executed( QListViewItem* ) ), this, SLOT( slotExecuted( QListViewItem* ) ) );
+         connect( this, SIGNAL( executed( Q3ListViewItem* ) ), this, SLOT( slotExecuted( Q3ListViewItem* ) ) );
       } else {
-         connect( this, SIGNAL( clicked( QListViewItem* ) ), this, SLOT( slotClicked( QListViewItem* ) ) );
-         connect( this, SIGNAL( doubleClicked( QListViewItem* ) ), this, SLOT( slotDoubleClicked( QListViewItem* ) ) );
+         connect( this, SIGNAL( clicked( Q3ListViewItem* ) ), this, SLOT( slotClicked( Q3ListViewItem* ) ) );
+         connect( this, SIGNAL( doubleClicked( Q3ListViewItem* ) ), this, SLOT( slotDoubleClicked( Q3ListViewItem* ) ) );
       }
 
       // a change in the selection needs to update totals
-      connect( this, SIGNAL( onItem( QListViewItem* ) ), this, SLOT( slotItemDescription( QListViewItem* ) ) );
-      connect( this, SIGNAL( contextMenuRequested( QListViewItem*, const QPoint&, int ) ),
-               this, SLOT( handleContextMenu( QListViewItem*, const QPoint&, int ) ) );
-		connect( this, SIGNAL( rightButtonPressed(QListViewItem*, const QPoint&, int)),
-			this, SLOT(slotRightButtonPressed(QListViewItem*, const QPoint&, int)));
-      connect( this, SIGNAL( currentChanged( QListViewItem* ) ), this, SLOT( setNameToMakeCurrent( QListViewItem* ) ) );
-      connect( this, SIGNAL( currentChanged( QListViewItem* ) ), this, SLOT( transformCurrentChanged( QListViewItem* ) ) );
-      connect( this, SIGNAL( mouseButtonClicked ( int, QListViewItem *, const QPoint &, int ) ),
-               this, SLOT( slotMouseClicked ( int, QListViewItem *, const QPoint &, int ) ) );
+      connect( this, SIGNAL( onItem( Q3ListViewItem* ) ), this, SLOT( slotItemDescription( Q3ListViewItem* ) ) );
+      connect( this, SIGNAL( contextMenuRequested( Q3ListViewItem*, const QPoint&, int ) ),
+               this, SLOT( handleContextMenu( Q3ListViewItem*, const QPoint&, int ) ) );
+		connect( this, SIGNAL( rightButtonPressed(Q3ListViewItem*, const QPoint&, int)),
+			this, SLOT(slotRightButtonPressed(Q3ListViewItem*, const QPoint&, int)));
+      connect( this, SIGNAL( currentChanged( Q3ListViewItem* ) ), this, SLOT( setNameToMakeCurrent( Q3ListViewItem* ) ) );
+      connect( this, SIGNAL( currentChanged( Q3ListViewItem* ) ), this, SLOT( transformCurrentChanged( Q3ListViewItem* ) ) );
+      connect( this, SIGNAL( mouseButtonClicked ( int, Q3ListViewItem *, const QPoint &, int ) ),
+               this, SLOT( slotMouseClicked ( int, Q3ListViewItem *, const QPoint &, int ) ) );
       connect( &KrColorCache::getColorCache(), SIGNAL( colorsRefreshed() ), this, SLOT( refreshColors() ) );
 		connect( header(), SIGNAL(clicked(int)), this, SLOT(sortOrderChanged(int )));
    }
@@ -142,48 +149,48 @@ void KrDetailedView::setup() {
    krConfig->setGroup( nameInKConfig() );
    
 	newColumn( KrDetailedViewProperties::Name );  // we always have a name
-   setColumnWidthMode( COLUMN(Name), QListView::Manual );
+   setColumnWidthMode( COLUMN(Name), Q3ListView::Manual );
    if ( _config->readBoolEntry( "Ext Column", _ExtColumn ) ) {
       newColumn( KrDetailedViewProperties::Extention );
-      setColumnWidthMode( COLUMN(Extention), QListView::Manual );
+      setColumnWidthMode( COLUMN(Extention), Q3ListView::Manual );
       setColumnWidth( COLUMN(Extention), QFontMetrics( font() ).width( "tar.bz2" ) );
    }
    if ( _config->readBoolEntry( "Mime Column", _MimeColumn ) ) {
       newColumn( KrDetailedViewProperties::Mime );
-      setColumnWidthMode( COLUMN(Mime), QListView::Manual );
+      setColumnWidthMode( COLUMN(Mime), Q3ListView::Manual );
       setColumnWidth( COLUMN(Mime), QFontMetrics( font() ).width( 'X' ) * 6 );
    }
    if ( _config->readBoolEntry( "Size Column", _SizeColumn ) ) {
       newColumn( KrDetailedViewProperties::Size );
-      setColumnWidthMode( COLUMN(Size), QListView::Manual );
+      setColumnWidthMode( COLUMN(Size), Q3ListView::Manual );
       setColumnWidth( COLUMN(Size), QFontMetrics( font() ).width( "9" ) * 10 );
       setColumnAlignment( COLUMN(Size), Qt::AlignRight ); // right-align numbers
    }
    if ( _config->readBoolEntry( "DateTime Column", _DateTimeColumn ) ) {
       newColumn( KrDetailedViewProperties::DateTime );
-      setColumnWidthMode( COLUMN(DateTime), QListView::Manual );
+      setColumnWidthMode( COLUMN(DateTime), Q3ListView::Manual );
       //setColumnWidth( column( DateTime ), QFontMetrics( font() ).width( "99/99/99  99:99" ) );
       setColumnWidth( COLUMN(DateTime), QFontMetrics( font() ).width( KGlobal::locale() ->formatDateTime(
                          QDateTime ( QDate( 2099, 12, 29 ), QTime( 23, 59 ) ) ) ) + 3 );
    }
    if ( _config->readBoolEntry( "Perm Column", _PermColumn ) ) {
       newColumn( KrDetailedViewProperties::Permissions );
-      setColumnWidthMode( COLUMN(Permissions), QListView::Manual );
+      setColumnWidthMode( COLUMN(Permissions), Q3ListView::Manual );
       setColumnWidth( COLUMN(Permissions), QFontMetrics( font() ).width( "drwxrwxrwx" ) );
    }
    if ( _config->readBoolEntry( "KrPerm Column", _KrPermColumn ) ) {
       newColumn( KrDetailedViewProperties::KrPermissions );
-      setColumnWidthMode( COLUMN(KrPermissions), QListView::Manual );
+      setColumnWidthMode( COLUMN(KrPermissions), Q3ListView::Manual );
       setColumnWidth( COLUMN(KrPermissions), QFontMetrics( font() ).width( "RWX" ) );
    }
    if ( _config->readBoolEntry( "Owner Column", _OwnerColumn ) ) {
       newColumn( KrDetailedViewProperties::Owner );
-      setColumnWidthMode( COLUMN(Owner), QListView::Manual );
+      setColumnWidthMode( COLUMN(Owner), Q3ListView::Manual );
       setColumnWidth( COLUMN(Owner), QFontMetrics( font() ).width( 'X' ) * 6 );
    }
    if ( _config->readBoolEntry( "Group Column", _GroupColumn ) ) {
       newColumn( KrDetailedViewProperties::Group );
-      setColumnWidthMode( COLUMN(Group), QListView::Manual );
+      setColumnWidthMode( COLUMN(Group), Q3ListView::Manual );
       setColumnWidth( COLUMN(Group), QFontMetrics( font() ).width( 'X' ) * 6 );
    }
    
@@ -207,8 +214,8 @@ void KrDetailedView::setup() {
    renameLineEdit()->installEventFilter( this );
    
    // allow in-place renaming
-   connect( renameLineEdit(), SIGNAL( done( QListViewItem *, int ) ),
-            this, SLOT( inplaceRenameFinished( QListViewItem*, int ) ) );
+   connect( renameLineEdit(), SIGNAL( done( Q3ListViewItem *, int ) ),
+            this, SLOT( inplaceRenameFinished( Q3ListViewItem*, int ) ) );
    connect( &renameTimer, SIGNAL( timeout() ), this, SLOT( renameCurrentItem() ) );
    connect( &contextMenuTimer, SIGNAL (timeout()), this, SLOT (showContextMenu()));
 
@@ -278,7 +285,7 @@ bool KrDetailedView::preDelItem(KrViewItem *item) {
    /* KDE HACK START - the renaming item is not disappeared after delete */
    /* solution: we send an ESC key event to terminate the rename */
    if( item ) {
-      QListViewItem * viewItem = dynamic_cast<QListViewItem*>( item );
+      Q3ListViewItem * viewItem = dynamic_cast<Q3ListViewItem*>( item );
       if( viewItem == currentlyRenamedItem ) {
          currentlyRenamedItem = 0;
          QKeyEvent escEvent( QEvent::KeyPress, Key_Escape, 27, 0 );
@@ -290,13 +297,13 @@ bool KrDetailedView::preDelItem(KrViewItem *item) {
 }
 
 void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
-   QListViewItem * item = firstChild();
-   QListViewItem *currentItem = item;
+   Q3ListViewItem * item = firstChild();
+   Q3ListViewItem *currentItem = item;
    QString size, name;
 
    // add the up-dir arrow if needed
    if ( addUpDir ) {
-      new KrDetailedViewItem( this, ( QListViewItem* ) 0L, ( vfile* ) 0L );
+      new KrDetailedViewItem( this, ( Q3ListViewItem* ) 0L, ( vfile* ) 0L );
    }
 
    // text for updating the status bar
@@ -343,7 +350,7 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
       // if the item should be current - make it so
       if ( dvitem->name() == nameToMakeCurrent() )
       {
-         currentItem = static_cast<QListViewItem*>(dvitem);
+         currentItem = static_cast<Q3ListViewItem*>(dvitem);
          statusText = dvitem->description();
       }
 
@@ -364,7 +371,7 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
 }
 
 QString KrDetailedView::getCurrentItem() const {
-   QListViewItem * it = currentItem();
+   Q3ListViewItem * it = currentItem();
    if ( !it )
       return QString::null;
    else
@@ -426,7 +433,7 @@ void KrDetailedView::setSortMode( KrViewProperties::SortSpec mode ) {
    KListView::sort();
 }
 
-void KrDetailedView::slotClicked( QListViewItem *item ) {
+void KrDetailedView::slotClicked( Q3ListViewItem *item ) {
    if ( !item ) return ;
 
    if ( !modifierPressed ) {
@@ -451,7 +458,7 @@ void KrDetailedView::slotClicked( QListViewItem *item ) {
    }
 }
 
-void KrDetailedView::slotDoubleClicked( QListViewItem *item ) {
+void KrDetailedView::slotDoubleClicked( Q3ListViewItem *item ) {
    CANCEL_TWO_CLICK_RENAME;
    if ( !item )
       return ;
@@ -484,7 +491,7 @@ void KrDetailedView::prepareForPassive() {
    }
 }
 
-void KrDetailedView::slotItemDescription( QListViewItem * item ) {
+void KrDetailedView::slotItemDescription( Q3ListViewItem * item ) {
    KrViewItem * it = static_cast<KrDetailedViewItem*>( item );
    if ( !it )
       return ;
@@ -504,14 +511,14 @@ void KrDetailedView::handleQuickSearchEvent( QKeyEvent * e ) {
          }
          case Key_Home:
          {
-            QListView::setCurrentItem( firstChild() );
+            Q3ListView::setCurrentItem( firstChild() );
             QKeyEvent ev = QKeyEvent( QKeyEvent::KeyPress, Key_Down, 0, 0 );
             keyPressEvent( & ev );
             break;
          }
          case Key_End:
          {
-            QListView::setCurrentItem( firstChild() );
+            Q3ListView::setCurrentItem( firstChild() );
             QKeyEvent ev = QKeyEvent( QKeyEvent::KeyPress, Key_Up, 0, 0 );
             keyPressEvent( & ev );
             break;
@@ -520,7 +527,7 @@ void KrDetailedView::handleQuickSearchEvent( QKeyEvent * e ) {
 }
 
 
-void KrDetailedView::slotCurrentChanged( QListViewItem * item ) {
+void KrDetailedView::slotCurrentChanged( Q3ListViewItem * item ) {
    CANCEL_TWO_CLICK_RENAME;
    if ( !item )
       return ;
@@ -531,8 +538,8 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
    bool callDefaultHandler = true, processEvent = true, selectionChanged = false;
    pressedItem = 0;
 
-   QListViewItem * oldCurrent = currentItem();
-   QListViewItem *newCurrent = itemAt( contentsToViewport( e->pos() ) );
+   Q3ListViewItem * oldCurrent = currentItem();
+   Q3ListViewItem *newCurrent = itemAt( contentsToViewport( e->pos() ) );
    if (e->button() == RightButton)
    {
 	if (KrSelectionMode::getSelectionHandler()->rightButtonSelects() || 
@@ -619,7 +626,7 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
       if ( oldCurrent && newCurrent && oldCurrent != newCurrent && e->state() & ShiftButton ) {
          int oldPos = oldCurrent->itemPos();
          int newPos = newCurrent->itemPos();
-         QListViewItem *top = 0, *bottom = 0;
+         Q3ListViewItem *top = 0, *bottom = 0;
          if ( oldPos > newPos ) {
             top = newCurrent;
             bottom = oldCurrent;
@@ -627,7 +634,7 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
             top = oldCurrent;
             bottom = newCurrent;
          }
-         QListViewItemIterator it( top );
+         Q3ListViewItemIterator it( top );
          for ( ; it.current(); ++it ) {
             if ( !it.current() ->isSelected() ) {
                it.current() ->setSelected( true );
@@ -636,7 +643,7 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
             if ( it.current() == bottom )
                break;
          }
-         QListView::setCurrentItem( newCurrent );
+         Q3ListView::setCurrentItem( newCurrent );
          callDefaultHandler = false;
       }
    }
@@ -673,7 +680,7 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
 
    //   if (i != 0) // comment in, if click sould NOT select
    //     setSelected(i, FALSE);
-   if (newCurrent) QListView::setCurrentItem(newCurrent);
+   if (newCurrent) Q3ListView::setCurrentItem(newCurrent);
 
    if ( ACTIVE_PANEL->quickSearch->isShown() ) {
       ACTIVE_PANEL->quickSearch->hide();
@@ -694,7 +701,7 @@ void KrDetailedView::contentsMouseReleaseEvent( QMouseEvent * e ) {
 
   if( pressedItem ) {
     QPoint vp = contentsToViewport( e->pos() );
-    QListViewItem *newCurrent = itemAt( vp );
+    Q3ListViewItem *newCurrent = itemAt( vp );
 
     if( pressedItem == newCurrent ) {
       // emitting the missing signals from QListView::contentsMouseReleaseEvent();
@@ -722,13 +729,13 @@ void KrDetailedView::contentsMouseMoveEvent ( QMouseEvent * e ) {
       && KrSelectionMode::getSelectionHandler()->rightButtonSelects() 
       && KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0 && e->state() == Qt::RightButton)
       {
-         QListViewItem *newItem = itemAt( contentsToViewport( e->pos() ) );
+         Q3ListViewItem *newItem = itemAt( contentsToViewport( e->pos() ) );
          e->accept();
          if (newItem != lastSwushPosition && newItem)
          {
            // is the new item above or below the previous one?
-           QListViewItem * above = newItem;
-           QListViewItem * below = newItem;
+           Q3ListViewItem * above = newItem;
+           Q3ListViewItem * below = newItem;
            for (;(above || below) && above != lastSwushPosition && below != lastSwushPosition;)
            {
              if (above)
@@ -770,7 +777,7 @@ void KrDetailedView::contentsWheelEvent( QWheelEvent * e ) {
    KListView::contentsWheelEvent( e );
 }
 
-void KrDetailedView::handleContextMenu( QListViewItem * it, const QPoint & pos, int ) {
+void KrDetailedView::handleContextMenu( Q3ListViewItem * it, const QPoint & pos, int ) {
    if ( !_focused )
       op()->emitNeedFocus();
    if ( !it )
@@ -801,7 +808,7 @@ bool KrDetailedView::acceptDrag( QDropEvent* ) const {
    return true;
 }
 
-QRect KrDetailedView::drawItemHighlighter(QPainter *painter, QListViewItem *item)
+QRect KrDetailedView::drawItemHighlighter(QPainter *painter, Q3ListViewItem *item)
 {
   QRect r;
   if( _currDragItem && item ) {
@@ -809,7 +816,7 @@ QRect KrDetailedView::drawItemHighlighter(QPainter *painter, QListViewItem *item
 
     if (painter)
        style().drawPrimitive(QStyle::PE_FocusRect, painter, r, colorGroup(),
-                             QStyle::Style_FocusAtBorder, colorGroup().highlight());
+                             QStyle::State_FocusAtBorder, colorGroup().highlight());
   }
   return r;
 }
@@ -886,13 +893,13 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
             e->ignore();
             break;
          } else if (!KrSelectionMode::getSelectionHandler()->useQTSelection()) {
-            QListViewItem * i = currentItem();
+            Q3ListViewItem * i = currentItem();
             if ( !i ) break;
             if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected() );
             i = i->itemAbove();
          	if ( i ) {
-					QListView::setCurrentItem( i );
-					QListView::ensureItemVisible( i );
+					Q3ListView::setCurrentItem( i );
+					Q3ListView::ensureItemVisible( i );
 				}
          } else KListView::keyPressEvent(e);
          break;
@@ -901,31 +908,31 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
             e->ignore();
             break;
          } else if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
-            QListViewItem * i = currentItem();
+            Q3ListViewItem * i = currentItem();
             if ( !i ) break;
             if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected() );
             i = i->itemBelow();
-         if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); }
+         if ( i ) {Q3ListView::setCurrentItem( i ); Q3ListView::ensureItemVisible( i ); }
          } else KListView::keyPressEvent(e);
          break;
          case Key_Next:  if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
-            QListViewItem * i = currentItem(), *j;
+            Q3ListViewItem * i = currentItem(), *j;
             if ( !i ) break;
             QRect r( itemRect( i ) );
             if ( !r.height() ) break;
             for ( int page = visibleHeight() / r.height() - 1; page > 0 && ( j = i->itemBelow() ); --page )
                i = j;
-            if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); }
+            if ( i ) {Q3ListView::setCurrentItem( i ); Q3ListView::ensureItemVisible( i ); }
          } else KListView::keyPressEvent(e);
          break;
          case Key_Prior:  if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
-            QListViewItem * i = currentItem(), *j;
+            Q3ListViewItem * i = currentItem(), *j;
             if ( !i ) break;
             QRect r( itemRect( i ) );
             if ( !r.height() ) break;
             for ( int page = visibleHeight() / r.height() - 1; page > 0 && ( j = i->itemAbove() ); --page )
                i = j;
-            if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); }
+            if ( i ) {Q3ListView::setCurrentItem( i ); Q3ListView::ensureItemVisible( i ); }
          } else KListView::keyPressEvent(e);
          break;
          case Key_Home:  if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
@@ -937,8 +944,8 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
                triggerUpdate();
                break;
             } else {
-               QListViewItem * i = firstChild();
-               if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); }
+               Q3ListViewItem * i = firstChild();
+               if ( i ) {Q3ListView::setCurrentItem( i ); Q3ListView::ensureItemVisible( i ); }
             }
          } else KListView::keyPressEvent(e);
          break;
@@ -951,12 +958,12 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
                triggerUpdate();
                break;
             } else {
-               QListViewItem *i = firstChild(), *j;
+               Q3ListViewItem *i = firstChild(), *j;
                while ( ( j = i->nextSibling() ) )
                   i = j;
                while ( ( j = i->itemBelow() ) )
                   i = j;
-            if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); }
+            if ( i ) {Q3ListView::setCurrentItem( i ); Q3ListView::ensureItemVisible( i ); }
                break;
             }
          } else KListView::keyPressEvent(e);
@@ -1095,7 +1102,7 @@ mark:       if (KrSelectionMode::getSelectionHandler()->spaceMovesDown())
          }
          default:
          if ( e->key() == Key_Escape ) {
-            QListView::keyPressEvent( e ); return ; // otherwise the selection gets lost??!??
+            Q3ListView::keyPressEvent( e ); return ; // otherwise the selection gets lost??!??
          }
          // if the key is A..Z or 1..0 do quick search otherwise...
          if ( e->text().length() > 0 && e->text() [ 0 ].isPrint() )       // better choice. Otherwise non-ascii characters like  can not be the first character of a filename
@@ -1143,7 +1150,7 @@ mark:       if (KrSelectionMode::getSelectionHandler()->spaceMovesDown())
 }
 
 // overridden to make sure EXTENTION won't be lost during rename
-void KrDetailedView::rename( QListViewItem * item, int c ) {
+void KrDetailedView::rename( Q3ListViewItem * item, int c ) {
    // do we have an EXT column? if so, handle differently:
    // copy the contents of the EXT column over to the name
    if ( COLUMN( Extention ) != -1 ) {
@@ -1183,7 +1190,7 @@ void KrDetailedView::renameCurrentItem() {
       c = -1; // failsafe
 
    if ( c >= 0 ) {
-      rename( static_cast<QListViewItem*>( it ), c );
+      rename( static_cast<Q3ListViewItem*>( it ), c );
       // if applicable, select only the name without extension
       KConfigGroupSaver svr(krConfig,"Look&Feel");
       if (!krConfig->readBoolEntry("Rename Selects Extension", true)) {
@@ -1199,7 +1206,7 @@ void KrDetailedView::renameCurrentItem() {
    }
 }
 
-void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
+void KrDetailedView::inplaceRenameFinished( Q3ListViewItem * it, int ) {
    if( currentlyRenamedItem == 0 )
       return;
 
@@ -1278,12 +1285,12 @@ void KrDetailedView::stopQuickSearch( QKeyEvent * e ) {
 }
 
 // internal: converts signal from qlistview to krview
-void KrDetailedView::setNameToMakeCurrent( QListViewItem * it ) {
+void KrDetailedView::setNameToMakeCurrent( Q3ListViewItem * it ) {
 	if (!it) return;
    KrView::setNameToMakeCurrent( static_cast<KrDetailedViewItem*>( it ) ->name() );
 }
 
-void KrDetailedView::slotMouseClicked( int button, QListViewItem * item, const QPoint&, int ) {
+void KrDetailedView::slotMouseClicked( int button, Q3ListViewItem * item, const QPoint&, int ) {
    pressedItem = 0; // if the signals are emitted, don't emit twice at contentsMouseReleaseEvent
    if ( button == Qt::MidButton )
       emit middleButtonClicked( dynamic_cast<KrViewItem *>( item ) );
@@ -1334,7 +1341,7 @@ bool KrDetailedView::eventFilter( QObject * watched, QEvent * e )
     if( currentlyRenamedItem && e->type() == QEvent::Hide )
     {
       /* checking if the currentlyRenamedItem pointer is valid (vfs_refresh can delete this item) */
-      for( QListViewItem *it = firstChild(); it; it = it->nextSibling() )
+      for( Q3ListViewItem *it = firstChild(); it; it = it->nextSibling() )
         if( it == currentlyRenamedItem )
         {
           if ( it->text( COLUMN( Name ) ) == dynamic_cast<KrDetailedViewItem*>( it ) ->name()  && COLUMN( Extention ) != -1 ) 
@@ -1504,7 +1511,7 @@ void KrDetailedView::updateItem(KrViewItem* item) {
 	dynamic_cast<KrDetailedViewItem*>(item)->repaintItem();
 }
 
-void KrDetailedView::slotRightButtonPressed(QListViewItem*, const QPoint& point, int) {
+void KrDetailedView::slotRightButtonPressed(Q3ListViewItem*, const QPoint& point, int) {
 	op()->emitEmptyContextMenu(point);
 }
 

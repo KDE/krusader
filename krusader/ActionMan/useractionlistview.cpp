@@ -13,7 +13,7 @@
 
 #include <klocale.h>
 #include <kiconloader.h>
-#include <qptrlist.h>
+#include <q3ptrlist.h>
 #include <qdom.h>
 
 #include "../krusader.h"
@@ -33,10 +33,10 @@ UserActionListView::UserActionListView( QWidget * parent, const char * name )
 {
    addColumn( i18n("Title") );
    //addColumn( i18n("Identifier") );
-   setResizeMode( QListView::AllColumns );
+   setResizeMode( Q3ListView::AllColumns );
 
    setRootIsDecorated( true );
-   setSelectionMode( QListView::Extended ); // normaly select single items but one may use Ctrl or Shift to select multiple
+   setSelectionMode( Q3ListView::Extended ); // normaly select single items but one may use Ctrl or Shift to select multiple
    setSorting( COL_TITLE );
 
    update();
@@ -83,7 +83,7 @@ UserActionListViewItem* UserActionListView::insertAction( KrAction* action ) {
    if ( action->category().isEmpty() )
       item = new UserActionListViewItem( this, action );
    else {
-      QListViewItem* categoryItem = findCategoryItem( action->category() );
+      Q3ListViewItem* categoryItem = findCategoryItem( action->category() );
       if ( ! categoryItem ) {
          categoryItem = new KListViewItem( this, action->category() ); // create the new category item it not already present
          categoryItem->setSelectable( false );
@@ -95,8 +95,8 @@ UserActionListViewItem* UserActionListView::insertAction( KrAction* action ) {
    return item;
 }
 
-QListViewItem* UserActionListView::findCategoryItem( const QString& category ) {
-   for ( QListViewItem* item = firstChild(); item; item = item->nextSibling() )
+Q3ListViewItem* UserActionListView::findCategoryItem( const QString& category ) {
+   for ( Q3ListViewItem* item = firstChild(); item; item = item->nextSibling() )
       if ( item->text( COL_TITLE ) == category && item->text( COL_NAME ).isEmpty() ) // because actions must have a name, items without name haveto be categories
          return item;
 
@@ -104,7 +104,7 @@ QListViewItem* UserActionListView::findCategoryItem( const QString& category ) {
 }
 
 UserActionListViewItem* UserActionListView::findActionItem( const KrAction* action ) {
-   for ( QListViewItemIterator it( this ); it.current(); ++it ) {
+   for ( Q3ListViewItemIterator it( this ); it.current(); ++it ) {
       if ( UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>( it.current() ) ) {
          if ( item->action() == action )
             return item;
@@ -130,7 +130,7 @@ void UserActionListView::setCurrentAction( const KrAction* action) {
 }
 
 void UserActionListView::setFirstActionCurrent() {
-  for ( QListViewItemIterator it( this ); it.current(); ++it ) {
+  for ( Q3ListViewItemIterator it( this ); it.current(); ++it ) {
     if ( UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>( it.current() ) ) {
       setCurrentItem( item );
       break;
@@ -138,15 +138,15 @@ void UserActionListView::setFirstActionCurrent() {
   } //for
 }
 
-void UserActionListView::setCurrentItem( QListViewItem* item ) {
+void UserActionListView::setCurrentItem( Q3ListViewItem* item ) {
    if ( ! item )
       return;
    ensureItemVisible( item );
-   QListView::setCurrentItem( item );
+   Q3ListView::setCurrentItem( item );
 }
 
 QDomDocument UserActionListView::dumpSelectedActions( QDomDocument* mergeDoc ) const {
-   QPtrList<QListViewItem> list = selectedItems();
+   Q3PtrList<Q3ListViewItem> list = selectedItems();
    QDomDocument doc;
    if ( mergeDoc )
       doc = *mergeDoc;
@@ -154,7 +154,7 @@ QDomDocument UserActionListView::dumpSelectedActions( QDomDocument* mergeDoc ) c
       doc = UserAction::createEmptyDoc();
    QDomElement root = doc.documentElement();
 
-   for ( QListViewItem* item = list.first(); item; item = list.next() )
+   for ( Q3ListViewItem* item = list.first(); item; item = list.next() )
       if ( UserActionListViewItem* actionItem = dynamic_cast<UserActionListViewItem*>( item ) )
          root.appendChild( actionItem->action()->xmlDump( doc ) );
 
@@ -162,9 +162,9 @@ QDomDocument UserActionListView::dumpSelectedActions( QDomDocument* mergeDoc ) c
 }
 
 void UserActionListView::removeSelectedActions() {
-   QPtrList<QListViewItem> list = selectedItems();
+   Q3PtrList<Q3ListViewItem> list = selectedItems();
 
-   for ( QListViewItem* item = list.first(); item; item = list.next() )
+   for ( Q3ListViewItem* item = list.first(); item; item = list.next() )
       if ( UserActionListViewItem* actionItem = dynamic_cast<UserActionListViewItem*>( item ) ) {
          delete actionItem->action(); // remove the action itself
          delete actionItem; // remove the action from the list
@@ -176,13 +176,13 @@ void UserActionListView::removeSelectedActions() {
 ////////////////////////////     UserActionListViewItem    ////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-UserActionListViewItem::UserActionListViewItem( QListView* view, KrAction* action )
+UserActionListViewItem::UserActionListViewItem( Q3ListView* view, KrAction* action )
  : KListViewItem( view )
 {
    setAction( action );
 }
 
-UserActionListViewItem::UserActionListViewItem( QListViewItem* item, KrAction * action )
+UserActionListViewItem::UserActionListViewItem( Q3ListViewItem* item, KrAction * action )
  : KListViewItem( item )
 {
    setAction( action );
@@ -219,14 +219,14 @@ void UserActionListViewItem::update() {
    setText( COL_NAME, _action->name() );
 }
 
-int UserActionListViewItem::compare( QListViewItem* i, int col, bool ascending ) const {
+int UserActionListViewItem::compare( Q3ListViewItem* i, int col, bool ascending ) const {
 // FIXME some how this only produces bullshit :-/
 //   if ( i->text( COL_NAME ).isEmpty() ) { // categories only have titles
 //      //kdDebug() << "this->title: " << text(COL_TITLE) << " |=|   i->title: " << i->text(COL_TITLE)  << endl;
 //       return ( ascending ? -1 : 1 ); // <0 means this is smaller then i
 //    }
 //    else
-      return QListViewItem::compare( i, col, ascending );
+      return Q3ListViewItem::compare( i, col, ascending );
 }
 
 

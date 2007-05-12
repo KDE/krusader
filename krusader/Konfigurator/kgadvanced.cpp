@@ -31,8 +31,11 @@
 #include "kgadvanced.h"
 #include "../defaults.h"
 #include <klocale.h>
-#include <qhbox.h>
-#include <qwhatsthis.h>
+#include <q3hbox.h>
+#include <q3whatsthis.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
+#include <QLabel>
 #include <sys/param.h>
 #include <kdeversion.h>
 #include <kprotocolinfo.h>
@@ -40,13 +43,13 @@
 KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name )
 {
-  QGridLayout *kgAdvancedLayout = new QGridLayout( parent );
+  Q3GridLayout *kgAdvancedLayout = new Q3GridLayout( parent );
   kgAdvancedLayout->setSpacing( 6 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
   
-  QGroupBox *generalGrp = createFrame( i18n( "General" ), parent, "kgAdvGeneralGrp" );
-  QGridLayout *generalGrid = createGridLayout( generalGrp->layout() );
+  Q3GroupBox *generalGrp = createFrame( i18n( "General" ), parent, "kgAdvGeneralGrp" );
+  Q3GridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
 #if KDE_IS_VERSION( 3,5,1 )
   bool dontUseMedia = false;
@@ -85,8 +88,8 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
 
   //  ----------------------- CONFIRMATIONS GROUPBOX -------------------------------
   
-  QGroupBox *confirmGrp = createFrame( i18n( "Confirmations" ), parent, "confirmGrp" );
-  QGridLayout *confirmGrid = createGridLayout( confirmGrp->layout() );
+  Q3GroupBox *confirmGrp = createFrame( i18n( "Confirmations" ), parent, "confirmGrp" );
+  Q3GridLayout *confirmGrid = createGridLayout( confirmGrp->layout() );
 
   addLabel( confirmGrid, 0, 0, "\n"+i18n( "Request user confirmation for the following operations:" )+"\n",
             confirmGrp, "KgAdvLabel1" );
@@ -109,16 +112,16 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
 
   //  ------------------------ FINE-TUNING GROUPBOX --------------------------------
 
-  QGroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), parent, "kgFineTuneGrp" );
-  QGridLayout *fineTuneGrid = createGridLayout( fineTuneGrp->layout() );
+  Q3GroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), parent, "kgFineTuneGrp" );
+  Q3GridLayout *fineTuneGrid = createGridLayout( fineTuneGrp->layout() );
   fineTuneGrid->setAlignment( Qt::AlignLeft | Qt::AlignTop );
   
   QLabel *label = new QLabel( i18n( "Icon cache size (KB):" ), fineTuneGrp, "iconCacheLabel" );
-  QWhatsThis::add( label, i18n( "The icon cache size influences how fast the contents of a panel can be displayed. However, too large a cache might consume your memory." ) );
+  Q3WhatsThis::add( label, i18n( "The icon cache size influences how fast the contents of a panel can be displayed. However, too large a cache might consume your memory." ) );
   fineTuneGrid->addWidget( label, 0, 0 );
   KonfiguratorSpinBox *spinBox = createSpinBox( "Advanced", "Icon Cache Size", _IconCacheSize,
                                                 1, 8192, fineTuneGrp, false );
-  QWhatsThis::add( spinBox, i18n( "The icon cache size influences how fast the contents of a panel can be displayed. However, too large a cache might consume your memory." ) );
+  Q3WhatsThis::add( spinBox, i18n( "The icon cache size influences how fast the contents of a panel can be displayed. However, too large a cache might consume your memory." ) );
   spinBox->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed);
   fineTuneGrid->addWidget( spinBox, 0, 1 );
 

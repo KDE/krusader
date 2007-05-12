@@ -41,13 +41,19 @@
 #include "../GUI/profilemanager.h"
 
 #include <qwidget.h>
+//Added by qt3to4:
+#include <QResizeEvent>
+#include <Q3GridLayout>
+#include <QLabel>
+#include <QKeyEvent>
+#include <QCloseEvent>
 #include <ksqueezedtextlabel.h>
 #include <qstringlist.h>
 #include <sys/types.h>
 #include <time.h>
 #include <qstring.h>
 #include <qtabwidget.h>
-#include <qlistview.h>
+#include <q3listview.h>
 #include <qstringlist.h>
 #include <kglobal.h>
 #include <klocale.h>
@@ -55,7 +61,7 @@
 class KrSearchDialog : public QDialog  {
    Q_OBJECT
 public: 
-  KrSearchDialog(QString profile = 0, QWidget* parent = 0, const char* name = 0, bool modal = false, WFlags fl = 0 );
+  KrSearchDialog(QString profile = 0, QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WFlags fl = 0 );
 
   void prepareGUI();
     
@@ -68,12 +74,12 @@ public slots:
   void copyToClipBoard();
   void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm, QString foundText);
   void closeDialog( bool isAccept = true );
-  void resultDoubleClicked(QListViewItem*);
-  void resultClicked(QListViewItem*);
+  void resultDoubleClicked(Q3ListViewItem*);
+  void resultClicked(Q3ListViewItem*);
 
   virtual void keyPressEvent(QKeyEvent *e);
   virtual void closeEvent(QCloseEvent *e);
-  virtual void rightClickMenu(QListViewItem*, const QPoint&, int);
+  virtual void rightClickMenu(Q3ListViewItem*, const QPoint&, int);
   virtual void resizeEvent( QResizeEvent *e );
 
 protected slots:
@@ -98,12 +104,12 @@ private:
   
   QTabWidget* searcherTabs;  
   QWidget* resultTab;
-  QGridLayout* resultLayout;
+  Q3GridLayout* resultLayout;
   QLabel* foundLabel;
   KrSqueezedTextLabel *foundTextLabel;
   KSqueezedTextLabel *searchingLabel;
   
-  QListView* resultsList;
+  Q3ListView* resultsList;
 
   KRQuery *query;
   KRSearchMod *searcher;
@@ -125,11 +131,11 @@ private:
   int            sizeY;
 };
 
-class ResultListViewItem : public QListViewItem
+class ResultListViewItem : public Q3ListViewItem
 {
 public:
-  ResultListViewItem( QListView *resultsList, QString name, QString where, KIO::filesize_t size, 
-                      QDateTime date, QString perm ) : QListViewItem( resultsList, name, where, 
+  ResultListViewItem( Q3ListView *resultsList, QString name, QString where, KIO::filesize_t size, 
+                      QDateTime date, QString perm ) : Q3ListViewItem( resultsList, name, where, 
                       KRpermHandler::parseSize(size), 
                       KGlobal::locale()->formatDateTime( date ), perm )
   {
@@ -141,7 +147,7 @@ public:
   void setFoundText(QString text) { _foundText=text; }
   const QString& foundText() const { return _foundText; }
   
-  virtual int compare(QListViewItem *i,int col,bool ascending ) const
+  virtual int compare(Q3ListViewItem *i,int col,bool ascending ) const
   {
     if( col == 2 ) {
       ResultListViewItem *other = (ResultListViewItem *)i;
@@ -163,7 +169,7 @@ public:
         return 1;
       return -1;
     }
-    return QListViewItem::compare( i, col, ascending );
+    return Q3ListViewItem::compare( i, col, ascending );
   }
 
   KIO::filesize_t getSize() {

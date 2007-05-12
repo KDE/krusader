@@ -16,7 +16,7 @@
 // class QString;
 #include <qstring.h>
 #include <qstringlist.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 #include "tstring.h"
 // #include <qstringlist.h>
 class ListPanel;
@@ -24,7 +24,7 @@ class Expander;
 class Error;
 
 typedef TagString_t<QStringList> TagString;
-typedef QValueList<TagString> TagStringList;
+typedef Q3ValueList<TagString> TagStringList;
 
 /**
  * This holds informations about each parameter
@@ -83,7 +83,7 @@ protected:
 	~exp_placeholder() { }
    QString _expression;
    QString _description;
-   QValueList <exp_parameter> _parameter;
+   Q3ValueList <exp_parameter> _parameter;
    bool _needPanel;
 };
 
@@ -233,7 +233,7 @@ protected:
 	friend class exp_placeholder;
   
 private:
-  static QValueList <const exp_placeholder*>& _placeholder();
+  static Q3ValueList <const exp_placeholder*>& _placeholder();
 	Error _err;
 	QStringList resultList;
 };

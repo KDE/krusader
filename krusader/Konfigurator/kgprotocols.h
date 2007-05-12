@@ -32,9 +32,9 @@
 #define __KgProtocols_H__
 
 #include "konfiguratorpage.h"
-#include <qlistbox.h>
+#include <q3listbox.h>
 #include <qpushbutton.h>
-#include <qlistview.h>
+#include <q3listview.h>
  
 class KgProtocols : public KonfiguratorPage
 {
@@ -67,10 +67,10 @@ protected:
   void         addMime( QString name, QString protocol );
   void         removeMime( QString name );
   
-  QListView   *linkList;
+  Q3ListView   *linkList;
   
-  QListBox    *protocolList;
-  QListBox    *mimeList;
+  Q3ListBox    *protocolList;
+  Q3ListBox    *mimeList;
   
   QPushButton *btnAddProtocol;
   QPushButton *btnRemoveProtocol;

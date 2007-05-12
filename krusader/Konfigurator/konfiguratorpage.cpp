@@ -30,11 +30,16 @@
 
 #include "konfiguratorpage.h"
 #include <qlayout.h>
+//Added by qt3to4:
+#include <Q3HBoxLayout>
+#include <Q3GridLayout>
+#include <Q3Frame>
+#include <QLabel>
 #include "../krusader.h"
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
 
 KonfiguratorPage::KonfiguratorPage( bool firstTime, QWidget* parent,  const char* name ) :
-  QFrame( parent, name ), firstCall( firstTime )
+  Q3Frame( parent, name ), firstCall( firstTime )
 {
 }
 
@@ -101,7 +106,7 @@ KonfiguratorCheckBox* KonfiguratorPage::createCheckBox( QString cls, QString nam
   KonfiguratorCheckBox *checkBox = new KonfiguratorCheckBox( cls, name, dflt, text,
                                  parent, QString(cls + "/" + name).ascii(), rst, pg );
   if( !toolTip.isEmpty() )
-    QWhatsThis::add( checkBox, toolTip );
+    Q3WhatsThis::add( checkBox, toolTip );
   
   registerObject( checkBox->extension() );
   return checkBox;
@@ -147,12 +152,12 @@ KonfiguratorURLRequester* KonfiguratorPage::createURLRequester(  QString cls, QS
   return urlRequester;
 }
 
-QGroupBox* KonfiguratorPage::createFrame( QString text, QWidget *parent,
+Q3GroupBox* KonfiguratorPage::createFrame( QString text, QWidget *parent,
                                           const char *widgetName )
 {
-  QGroupBox *groupBox = new QGroupBox( parent, widgetName );
-  groupBox->setFrameShape( QGroupBox::Box );
-  groupBox->setFrameShadow( QGroupBox::Sunken );
+  Q3GroupBox *groupBox = new Q3GroupBox( parent, widgetName );
+  groupBox->setFrameShape( Q3GroupBox::Box );
+  groupBox->setFrameShadow( Q3GroupBox::Sunken );
   if( !text.isNull() )
     groupBox->setTitle( text );
   groupBox->setColumnLayout(0, Qt::Vertical );
@@ -161,16 +166,16 @@ QGroupBox* KonfiguratorPage::createFrame( QString text, QWidget *parent,
   return groupBox;
 }                                          
 
-QGridLayout* KonfiguratorPage::createGridLayout( QLayout *parent )
+Q3GridLayout* KonfiguratorPage::createGridLayout( QLayout *parent )
 {
-  QGridLayout *gridLayout = new QGridLayout( parent );
+  Q3GridLayout *gridLayout = new Q3GridLayout( parent );
   gridLayout->setAlignment( Qt::AlignTop );
   gridLayout->setSpacing( 6 );
   gridLayout->setMargin( 11 );
   return gridLayout;
 }
 
-QLabel* KonfiguratorPage::addLabel( QGridLayout *layout, int x, int y, QString label,
+QLabel* KonfiguratorPage::addLabel( Q3GridLayout *layout, int x, int y, QString label,
                                     QWidget *parent, const char *widgetName )
 {
   QLabel *lbl = new QLabel( label, parent, widgetName );
@@ -181,7 +186,7 @@ QLabel* KonfiguratorPage::addLabel( QGridLayout *layout, int x, int y, QString l
 QWidget* KonfiguratorPage::createSpacer( QWidget *parent, const char *widgetName )
 {
   QWidget *widget = new QWidget( parent, widgetName );
-  QHBoxLayout *hboxlayout = new QHBoxLayout( widget );
+  Q3HBoxLayout *hboxlayout = new Q3HBoxLayout( widget );
   QSpacerItem* spacer = new QSpacerItem( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
   hboxlayout->addItem( spacer );
   return widget;
@@ -192,7 +197,7 @@ KonfiguratorCheckBoxGroup* KonfiguratorPage::createCheckBoxGroup( int sizex, int
     const char *widgetName, int pg )
 {
   KonfiguratorCheckBoxGroup *groupWidget = new KonfiguratorCheckBoxGroup( parent, widgetName );
-  QGridLayout *layout = new QGridLayout( groupWidget );
+  Q3GridLayout *layout = new Q3GridLayout( groupWidget );
   layout->setSpacing( 6 );
   layout->setMargin( 0 );
   
@@ -227,14 +232,14 @@ KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup( QString cls,
     int paramNum, QWidget *parent, const char *widgetName, bool rst, int pg )
 {
   KonfiguratorRadioButtons *radioWidget = new KonfiguratorRadioButtons( cls, name, dflt, parent, widgetName, rst, pg );
-  radioWidget->setFrameShape( QButtonGroup::NoFrame );
-  radioWidget->setFrameShadow( QButtonGroup::Sunken );
+  radioWidget->setFrameShape( Q3ButtonGroup::NoFrame );
+  radioWidget->setFrameShadow( Q3ButtonGroup::Sunken );
   radioWidget->setTitle( "" );
   radioWidget->setExclusive( true );
   radioWidget->setRadioButtonExclusive( true );
   radioWidget->setColumnLayout(0, Qt::Vertical );
 
-  QGridLayout *layout = new QGridLayout( radioWidget->layout() );
+  Q3GridLayout *layout = new Q3GridLayout( radioWidget->layout() );
   layout->setAlignment( Qt::AlignTop );
   layout->setSpacing( 6 );
   layout->setMargin( 0 );
@@ -247,7 +252,7 @@ KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup( QString cls,
                         QString( cls + "/" + name + "/" + params[i].value ).ascii() );
 
     if( !params[i].tooltip.isEmpty() )
-      QWhatsThis::add( radBtn, params[i].tooltip );
+      Q3WhatsThis::add( radBtn, params[i].tooltip );
 
     layout->addWidget( radBtn, y, x );
 
@@ -291,10 +296,10 @@ KonfiguratorComboBox *KonfiguratorPage::createComboBox(  QString cls, QString na
   return comboBox;
 }
 
-QFrame* KonfiguratorPage::createLine( QWidget *parent, const char *widgetName, bool vertical )
+Q3Frame* KonfiguratorPage::createLine( QWidget *parent, const char *widgetName, bool vertical )
 {
-  QFrame *line = new QFrame( parent, widgetName );
-  line->setFrameStyle( ( vertical ? QFrame::VLine : QFrame::HLine ) | QFrame::Sunken );
+  Q3Frame *line = new Q3Frame( parent, widgetName );
+  line->setFrameStyle( ( vertical ? Q3Frame::VLine : Q3Frame::HLine ) | Q3Frame::Sunken );
   return line;
 }
 

@@ -35,7 +35,12 @@
 #include "../Dialogs/krdialogs.h"
 
 #include <qtimer.h>
-#include <qhbox.h>
+#include <q3hbox.h>
+//Added by qt3to4:
+#include <QResizeEvent>
+#include <Q3GridLayout>
+#include <Q3HBoxLayout>
+#include <QLabel>
 #include <klocale.h>
 #include <qtooltip.h>
 
@@ -48,45 +53,45 @@ DiskUsageGUI::DiskUsageGUI( KURL openDir, QWidget* parent, const char *name )
   if( !newSearch() )
     return;
   
-  QGridLayout *duGrid = new QGridLayout( this );
+  Q3GridLayout *duGrid = new Q3GridLayout( this );
   duGrid->setSpacing( 6 );
   duGrid->setMargin( 11 );
   
-  QHBox *duTools = new QHBox( this, "duTools" );
+  Q3HBox *duTools = new Q3HBox( this, "duTools" );
   duTools->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
     
   btnNewSearch = new QToolButton( duTools, "btnNewSearch" );
-  btnNewSearch->setIconSet( QIconSet(krLoader->loadIcon("fileopen",KIcon::Desktop)) );
+  btnNewSearch->setIconSet( QIcon(krLoader->loadIcon("fileopen",KIcon::Desktop)) );
   QToolTip::add( btnNewSearch, i18n( "Start new disk usage search" ) );
   
   btnRefresh = new QToolButton( duTools, "btnRefresh" );
-  btnRefresh->setIconSet( QIconSet(krLoader->loadIcon("reload",KIcon::Desktop)) );
+  btnRefresh->setIconSet( QIcon(krLoader->loadIcon("reload",KIcon::Desktop)) );
   QToolTip::add( btnRefresh, i18n( "Refresh" ) );
 
   btnDirUp = new QToolButton( duTools, "btnDirUp" );
-  btnDirUp->setIconSet( QIconSet(krLoader->loadIcon("up",KIcon::Desktop)) );
+  btnDirUp->setIconSet( QIcon(krLoader->loadIcon("up",KIcon::Desktop)) );
   QToolTip::add( btnDirUp, i18n( "Parent directory" ) );
   
   QWidget * separatorWidget = new QWidget( duTools, "separatorWidget" );
   separatorWidget->setMinimumWidth( 10 );
   
   btnLines = new QToolButton( duTools, "btnLines" );
-  btnLines->setIconSet( QIconSet(krLoader->loadIcon("leftjust",KIcon::Desktop)) );
+  btnLines->setIconSet( QIcon(krLoader->loadIcon("leftjust",KIcon::Desktop)) );
   btnLines->setToggleButton( true );
   QToolTip::add( btnLines, i18n( "Line view" ) );
 
   btnDetailed = new QToolButton( duTools, "btnDetailed" );
-  btnDetailed->setIconSet( QIconSet(krLoader->loadIcon("view_detailed",KIcon::Desktop)) );
+  btnDetailed->setIconSet( QIcon(krLoader->loadIcon("view_detailed",KIcon::Desktop)) );
   btnDetailed->setToggleButton( true );
   QToolTip::add( btnDetailed, i18n( "Detailed view" ) );
 
   btnFilelight = new QToolButton( duTools, "btnFilelight" );
-  btnFilelight->setIconSet( QIconSet(krLoader->loadIcon("kr_diskusage",KIcon::Desktop)) );
+  btnFilelight->setIconSet( QIcon(krLoader->loadIcon("kr_diskusage",KIcon::Desktop)) );
   btnFilelight->setToggleButton( true );
   QToolTip::add( btnFilelight, i18n( "Filelight view" ) );
     
   QWidget *spacerWidget = new QWidget( duTools, "spacerWidget" );
-  QHBoxLayout *hboxlayout = new QHBoxLayout( spacerWidget );
+  Q3HBoxLayout *hboxlayout = new Q3HBoxLayout( spacerWidget );
   QSpacerItem* spacer = new QSpacerItem( 0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed );
   hboxlayout->addItem( spacer );
   

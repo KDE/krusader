@@ -31,13 +31,16 @@
 #ifndef __DU_LINES_H__
 #define __DU_LINES_H__
 
-#include <qlistview.h>
+#include <q3listview.h>
 #include <qpixmap.h>
+//Added by qt3to4:
+#include <QMouseEvent>
+#include <QKeyEvent>
 #include "diskusage.h"
 
 class DULinesToolTip;
 
-class DULines : public QListView
+class DULines : public Q3ListView
 {
   Q_OBJECT
   
@@ -50,7 +53,7 @@ public:
 public slots:
   void slotDirChanged( Directory *dirEntry );
   void sectionResized( int );
-  void slotRightClicked(QListViewItem *);
+  void slotRightClicked(Q3ListViewItem *);
   void slotChanged( File * );
   void slotDeleted( File * );
   void slotShowFileSizes();
@@ -65,7 +68,7 @@ protected:
 private:
   QPixmap createPixmap( int percent, int maxPercent, int maxWidth );
   
-  bool doubleClicked( QListViewItem * item );
+  bool doubleClicked( Q3ListViewItem * item );
   
   bool refreshNeeded;
   

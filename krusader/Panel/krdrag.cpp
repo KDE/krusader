@@ -30,11 +30,14 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 #include "krdrag.h"
 #include <kurldrag.h>
+//Added by qt3to4:
+#include <Q3StrList>
+#include <Q3CString>
 
 KRDrag * KRDrag::newDrag( const KURL::List & urls, bool move, QWidget * dragSource, const char* name )
 {
     // See KURLDrag::newDrag
-    QStrList uris;
+    Q3StrList uris;
     KURL::List::ConstIterator uit = urls.begin();
     KURL::List::ConstIterator uEnd = urls.end();
     // Get each URL encoded in utf8 - and since we get it in escaped
@@ -44,8 +47,8 @@ KRDrag * KRDrag::newDrag( const KURL::List & urls, bool move, QWidget * dragSour
     return new KRDrag( uris, move, dragSource, name );
 }
 
-KRDrag::KRDrag( const QStrList & urls, bool move, QWidget * dragSource, const char* name )
-  : QUriDrag( urls, dragSource, name ),
+KRDrag::KRDrag( const Q3StrList & urls, bool move, QWidget * dragSource, const char* name )
+  : Q3UriDrag( urls, dragSource, name ),
     m_bCutSelection( move ), m_urls( urls )
 {}
 
@@ -63,11 +66,11 @@ const char* KRDrag::format( int i ) const
 QByteArray KRDrag::encodedData( const char* mime ) const
 {
     QByteArray a;
-    QCString mimetype( mime );
+    Q3CString mimetype( mime );
     if ( mimetype == "text/uri-list" )
-        return QUriDrag::encodedData( mime );
+        return Q3UriDrag::encodedData( mime );
     else if ( mimetype == "application/x-kde-cutselection" ) {
-        QCString s ( m_bCutSelection ? "1" : "0" );
+        Q3CString s ( m_bCutSelection ? "1" : "0" );
         a.resize( s.length() + 1 ); // trailing zero
         memcpy( a.data(), s.data(), s.length() + 1 );
     }
@@ -76,7 +79,7 @@ QByteArray KRDrag::encodedData( const char* mime ) const
       QStringList uris;
       for (QStrListIterator it(m_urls); *it; ++it)
           uris.append(KURLDrag::stringToUrl(*it).prettyURL());
-      QCString s = uris.join( "\n" ).local8Bit();
+      Q3CString s = uris.join( "\n" ).local8Bit();
       if( uris.count() > 1 )
           s.append( "\n" );
       a.resize( s.length() + 1 ); // trailing zero

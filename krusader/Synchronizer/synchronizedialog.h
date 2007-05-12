@@ -37,14 +37,14 @@
 #include <qpushbutton.h>
 #include <qcheckbox.h>
 #include <qlabel.h>
-#include <qprogressbar.h>
+#include <q3progressbar.h>
 
 class SynchronizeDialog : QDialog
 {
   Q_OBJECT
   
   public:
-    SynchronizeDialog(  QWidget*,  const char*, bool, WFlags, Synchronizer *sync,
+    SynchronizeDialog(  QWidget*,  const char*, bool, Qt::WFlags, Synchronizer *sync,
                         int, KIO::filesize_t, int, KIO::filesize_t, int, KIO::filesize_t, int);
     ~SynchronizeDialog();
 
@@ -58,7 +58,7 @@ class SynchronizeDialog : QDialog
     void pauseAccepted();
 
   private:
-    QProgressBar  *progress;
+    Q3ProgressBar  *progress;
     
     QCheckBox     *cbRightToLeft;
     QCheckBox     *cbLeftToRight;

@@ -36,17 +36,20 @@
 #include <klocale.h>
 #include <kpushbutton.h>
 #include <kdebug.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
+#include <QLabel>
 
 
 KgUserActions::KgUserActions( bool first, QWidget* parent,  const char* name ) :
   KonfiguratorPage( first, parent, name )
 {
-   QGridLayout *kgUserActionLayout = new QGridLayout( parent, 2, 1,
+   Q3GridLayout *kgUserActionLayout = new Q3GridLayout( parent, 2, 1,
    		0 /* margin */, 6 /* spacing */, "kgUserActionLayout" );
 
    // ============= Info Group =============
-   QGroupBox *InfoGroup = createFrame( i18n( "Information" ), parent, "kgUserActionInfoGroup" );
-   QGridLayout *InfoGrid = createGridLayout( InfoGroup->layout() );
+   Q3GroupBox *InfoGroup = createFrame( i18n( "Information" ), parent, "kgUserActionInfoGroup" );
+   Q3GridLayout *InfoGrid = createGridLayout( InfoGroup->layout() );
 
    // terminal for the UserActions
    QLabel *labelInfo = new QLabel( i18n(
@@ -61,8 +64,8 @@ KgUserActions::KgUserActions( bool first, QWidget* parent,  const char* name ) :
    kgUserActionLayout->addWidget( InfoGroup, 0 ,0 );
 
    // ============= Terminal Group =============
-   QGroupBox *terminalGroup = createFrame( i18n( "Terminal execution" ), parent, "kgUserActionTerminalGroup" );
-   QGridLayout *terminalGrid = createGridLayout( terminalGroup->layout() );
+   Q3GroupBox *terminalGroup = createFrame( i18n( "Terminal execution" ), parent, "kgUserActionTerminalGroup" );
+   Q3GridLayout *terminalGrid = createGridLayout( terminalGroup->layout() );
 
    // terminal for the UserActions
    QLabel *labelTerminal = new QLabel( i18n( "Terminal for UserActions:" ),
@@ -75,17 +78,17 @@ KgUserActions::KgUserActions( bool first, QWidget* parent,  const char* name ) :
    kgUserActionLayout->addWidget( terminalGroup, 1 ,0 );
 
    // ============= Outputcollection Group =============
-   QGroupBox *outputGroup = createFrame( i18n( "Output collection" ), parent, "kgUserActionOutputGroup" );
-   QGridLayout *outputGrid = createGridLayout( outputGroup->layout() );
+   Q3GroupBox *outputGroup = createFrame( i18n( "Output collection" ), parent, "kgUserActionOutputGroup" );
+   Q3GridLayout *outputGrid = createGridLayout( outputGroup->layout() );
 
-   QHBox *hbox;
-   hbox = new QHBox( outputGroup, "HBoxNormalFont" );
+   Q3HBox *hbox;
+   hbox = new Q3HBox( outputGroup, "HBoxNormalFont" );
    new QLabel( i18n( "Normal font:" ), hbox, "NormalFontLabel" );
    createFontChooser( "UserActions", "Normal Font", _UserActions_NormalFont, hbox );
    createSpacer ( hbox );
    outputGrid->addWidget( hbox, 2, 0 );
 
-   hbox = new QHBox( outputGroup, "HBoxFixedFont" );
+   hbox = new Q3HBox( outputGroup, "HBoxFixedFont" );
    new QLabel( i18n( "Font with fixed width:" ), hbox, "FixedFontLabel" );
    createFontChooser( "UserActions", "Fixed Font", _UserActions_FixedFont, hbox );
    createSpacer ( hbox );

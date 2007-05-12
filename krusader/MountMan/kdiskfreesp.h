@@ -29,6 +29,8 @@
 
 #include <qobject.h>
 #include <qstring.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 class KProcess;
 
@@ -76,7 +78,7 @@ private slots:
 
 private:
   KProcess         *dfProc;
-  QCString          dfStringErrOut;
+  Q3CString          dfStringErrOut;
   QString           m_mountPoint;
   bool              readingDFStdErrOut;
   class KDiskFreeSpPrivate;

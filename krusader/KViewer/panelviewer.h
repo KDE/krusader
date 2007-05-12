@@ -3,17 +3,17 @@
 
 #include <kurl.h>
 #include <qstring.h>
-#include <qwidgetstack.h>
+#include <q3widgetstack.h>
 #include <kparts/part.h>
 #include <kio/job.h>
 #include <ktempfile.h>
-#include <qdict.h>
+#include <q3dict.h>
 #include <qlabel.h>
 
 #include "krviewer.h"
 
 
-class PanelViewerBase: public QWidgetStack {
+class PanelViewerBase: public Q3WidgetStack {
 	Q_OBJECT
 
 public:
@@ -35,7 +35,7 @@ signals:
 	void urlChanged( PanelViewerBase *, const KURL & );
 
 protected:
-	QDict<KParts::ReadOnlyPart> *mimes;
+	Q3Dict<KParts::ReadOnlyPart> *mimes;
 	KParts::ReadOnlyPart *cpart;
 
 	QString cmimetype;

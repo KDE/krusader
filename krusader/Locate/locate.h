@@ -36,6 +36,8 @@
 #include <klistview.h>
 #include <kprocess.h>
 #include <qcheckbox.h>
+//Added by qt3to4:
+#include <QKeyEvent>
 
 class LocateDlg : public KDialogBase
 {
@@ -56,15 +58,15 @@ public:
 public slots:
   void              processStdout(KProcess *, char *, int);
   void              processStderr(KProcess *proc, char *buffer, int length);
-  void              slotRightClick(QListViewItem *);
-  void              slotDoubleClick(QListViewItem *);
+  void              slotRightClick(Q3ListViewItem *);
+  void              slotDoubleClick(Q3ListViewItem *);
   void              updateFinished();
   
 protected:
   virtual void      keyPressEvent( QKeyEvent * );
   
 private:
-  void              operate( QListViewItem *item, int task );
+  void              operate( Q3ListViewItem *item, int task );
 
   bool              find();
   void              nextLine();

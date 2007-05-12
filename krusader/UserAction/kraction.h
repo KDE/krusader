@@ -19,7 +19,7 @@
 #include "kractionbase.h"
 
 class UserActionProperties;
-class QTextEdit;
+class Q3TextEdit;
 class KActionCollection;
 class QDomElement;
 class QDomDocument;
@@ -131,7 +131,7 @@ class KrActionProcDlg: public KDialogBase {
       void slotUser1(); ///< This is used to save the buffer to disc
 
    private:
-      QTextEdit *_stdout, *_stderr, *_currentTextEdit;
+      Q3TextEdit *_stdout, *_stderr, *_currentTextEdit;
       QFont normalFont, fixedFont;
    private slots:
       void currentTextEditChanged();

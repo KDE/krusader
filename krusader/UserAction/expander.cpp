@@ -36,6 +36,8 @@
 #include <ktempfile.h>
 #include <qstringlist.h>
 #include <qclipboard.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 #include <functional>
 using namespace std;
@@ -44,9 +46,9 @@ using namespace std;
 
 #include "tstring.h"
 
-QValueList<const exp_placeholder*>& Expander::_placeholder()
+Q3ValueList<const exp_placeholder*>& Expander::_placeholder()
 {
-	static QValueList<const exp_placeholder*> ret;
+	static Q3ValueList<const exp_placeholder*> ret;
 	return ret;
 }
 
@@ -505,7 +507,7 @@ TagString exp_ListFile::expFunc( const ListPanel* panel, const QStringList& para
       return QString::null;
     }
     
-    QTextStream stream( tmpFile.file() );
+    Q3TextStream stream( tmpFile.file() );
     stream << separateAndQuote(
     		fileList(panel,
     			parameter.empty() ? QString::null : parameter[0].toLower(),
@@ -911,7 +913,7 @@ TagString exp_PanelSize::expFunc( const ListPanel* panel, const QStringList& par
       return QString::null;
    }
 
-    QValueList<int> panelSizes = MAIN_VIEW->horiz_splitter->sizes();
+    Q3ValueList<int> panelSizes = MAIN_VIEW->horiz_splitter->sizes();
     int totalSize = panelSizes[0] + panelSizes[1];
     
     if ( panel == LEFT_PANEL ) {

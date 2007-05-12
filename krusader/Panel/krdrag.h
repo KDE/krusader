@@ -31,17 +31,19 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #ifndef KRDRAG_H
 #define KRDRAG_H
 
-#include <qdragobject.h> 
+#include <q3dragobject.h> 
+//Added by qt3to4:
+#include <Q3StrList>
 #include <kurl.h>
 
-class KRDrag : public QUriDrag
+class KRDrag : public Q3UriDrag
 {
     Q_OBJECT
 public:
     static KRDrag * newDrag( const KURL::List & urls, bool move, QWidget * dragSource = 0, const char* name = 0 );
 
 protected:
-    KRDrag( const QStrList & urls, bool move, QWidget * dragSource, const char* name );
+    KRDrag( const Q3StrList & urls, bool move, QWidget * dragSource, const char* name );
 
 public:
     virtual ~KRDrag() {}
@@ -56,7 +58,7 @@ public:
 
 protected:
     bool m_bCutSelection;
-    QStrList m_urls;
+    Q3StrList m_urls;
 };
 
 #endif /* KRDRAG_H */

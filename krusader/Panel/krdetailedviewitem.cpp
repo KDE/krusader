@@ -40,6 +40,8 @@
 #include <sys/types.h>
 #include <time.h>
 #include <qpainter.h>
+//Added by qt3to4:
+#include <QPixmap>
 #include <pwd.h>
 #include <grp.h>
 #include <stdlib.h>
@@ -57,7 +59,7 @@
 int KrDetailedViewItem::expHeight = 0;
 #endif // FASTER
 
-KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf):
+KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, Q3ListViewItem *after, vfile *vf):
 	KListViewItem(parent, after), KrViewItem(vf, parent->properties()) {
 #ifdef FASTER
 	initiated = false;
@@ -221,14 +223,14 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
   KrColorCache::getColorCache().getColors(_cg, colorItemType);
 	// center the <DIR> thing if needed
 	if(column != COLUMN(Size))
-		QListViewItem::paintCell(p, _cg, column, width, align);
+		Q3ListViewItem::paintCell(p, _cg, column, width, align);
 	else {
   		if (dummyVfile) {
-			QListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter); // updir
+			Q3ListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter); // updir
   		} else {
     		if (_vf->vfile_isDir() && _vf->vfile_getSize()<=0)
-      		QListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter);
-    		else QListViewItem::paintCell(p, _cg, column, width, align); // size
+      		Q3ListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter);
+    		else Q3ListViewItem::paintCell(p, _cg, column, width, align); // size
   		}
 	}
 }
@@ -236,7 +238,7 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
 const QColor & KrDetailedViewItem::setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2)
 {
    #define sqr(x) ((x)*(x))
-   int contrast = sqr(color1.red() - background.red()) + sqr(color1.green() - background.green()) + sqr(color1.blue() - background.blue());
+   int contrast = sqr(Qt::color1.Qt::red() - background.Qt::red()) + sqr(Qt::color1.Qt::green() - background.Qt::green()) + sqr(Qt::color1.Qt::blue() - background.Qt::blue());
 
    // if the contrast between background and color1 is too small, take color2 instead.
    if (contrast < 1000)
@@ -244,7 +246,7 @@ const QColor & KrDetailedViewItem::setColorIfContrastIsSufficient(const QColor &
    return color1;
 }
 
-int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const {
+int KrDetailedViewItem::compare(Q3ListViewItem *i,int col,bool ascending ) const {
   bool ignoreCase = (PROPS->sortMode & KrViewProperties::IgnoreCase);
 	bool alwaysSortDirsByName = (PROPS->sortMode & KrViewProperties::AlwaysSortDirsByName);
   int asc = ( ascending ? -1 : 1 );

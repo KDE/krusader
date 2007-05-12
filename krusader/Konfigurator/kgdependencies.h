@@ -32,6 +32,8 @@
 #define __KGDEPENDENCIES_H__
 
 #include "konfiguratorpage.h"
+//Added by qt3to4:
+#include <Q3GridLayout>
 
 class QTabWidget;
 
@@ -46,7 +48,7 @@ public:
   virtual int activeSubPage();
   
 private:
-  void addApplication( QString name, QGridLayout *grid, int row, QWidget *parent, int page, QString additionalList=QString::null );
+  void addApplication( QString name, Q3GridLayout *grid, int row, QWidget *parent, int page, QString additionalList=QString::null );
   
 public slots:
   void slotApply( QObject *obj, QString cls, QString name );

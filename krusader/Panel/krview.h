@@ -32,7 +32,10 @@
 
 #include <qpixmap.h>
 #include <qvariant.h>
-#include <qdict.h>
+#include <q3dict.h>
+//Added by qt3to4:
+#include <QDropEvent>
+#include <Q3ValueList>
 #include "../krusader.h"
 #include "../VFS/vfile.h"
 #include "../VFS/vfs.h"
@@ -42,7 +45,7 @@
 
 class KrView;
 class KrViewItem;
-typedef QValueList<KrViewItem*> KrViewItemList;
+typedef Q3ValueList<KrViewItem*> KrViewItemList;
 
 // KrViewProperties
 // This class is an interface class between KrView and KrViewItem
@@ -237,7 +240,7 @@ protected:
   bool _left;
   KrViewProperties *_properties;
   KrViewOperator *_operator;
-  QDict<KrViewItem> _dict;
+  Q3Dict<KrViewItem> _dict;
   bool _focused;
   QString _nameInKConfig;
 };

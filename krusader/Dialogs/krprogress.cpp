@@ -20,6 +20,13 @@
 #include <qlayout.h>
 #include <qtooltip.h>
 #include <qdatetime.h>
+//Added by qt3to4:
+#include <Q3HBoxLayout>
+#include <QCloseEvent>
+#include <Q3GridLayout>
+#include <Q3Frame>
+#include <QLabel>
+#include <Q3VBoxLayout>
 
 #include <kapplication.h>
 #include <kdialog.h>
@@ -48,11 +55,11 @@ KrProgress::KrProgress( KIO::Job* job )
           KGlobal::iconLoader()->loadIcon( "filesave", KIcon::NoGroup, 16 ) );
 #endif
 
-  QVBoxLayout *topLayout = new QVBoxLayout( this, KDialog::marginHint(),
+  Q3VBoxLayout *topLayout = new Q3VBoxLayout( this, KDialog::marginHint(),
                                             KDialog::spacingHint() );
   topLayout->addStrut( 360 );   // makes dlg at least that wide
 
-  QGridLayout *grid = new QGridLayout( 2, 3 );
+  Q3GridLayout *grid = new Q3GridLayout( 2, 3 );
   topLayout->addLayout(grid);
   grid->addColSpacing(1, KDialog::spacingHint());
   // filenames or action name
@@ -71,7 +78,7 @@ KrProgress::KrProgress( KIO::Job* job )
   topLayout->addWidget( m_pProgressBar );
 
   // processed info
-  QHBoxLayout *hBox = new QHBoxLayout();
+  Q3HBoxLayout *hBox = new Q3HBoxLayout();
   topLayout->addLayout(hBox);
 
   sizeLabel = new QLabel(this);
@@ -86,18 +93,18 @@ KrProgress::KrProgress( KIO::Job* job )
   progressLabel->setAlignment( QLabel::AlignRight );
   hBox->addWidget( progressLabel );
 
-  hBox = new QHBoxLayout();
+  hBox = new Q3HBoxLayout();
   topLayout->addLayout(hBox);
 
   speedLabel = new QLabel(this);
   hBox->addWidget(speedLabel, 1);
 
-  QFrame *line = new QFrame( this );
-  line->setFrameShape( QFrame::HLine );
-  line->setFrameShadow( QFrame::Sunken );
+  Q3Frame *line = new Q3Frame( this );
+  line->setFrameShape( Q3Frame::HLine );
+  line->setFrameShadow( Q3Frame::Sunken );
   topLayout->addWidget( line );
 
-  hBox = new QHBoxLayout();
+  hBox = new Q3HBoxLayout();
   topLayout->addLayout(hBox);
 
   hBox->addStretch(1);

@@ -36,6 +36,8 @@
 #include <qpixmapcache.h>
 #include <qdir.h>
 #include <qbitmap.h>
+//Added by qt3to4:
+#include <QPixmap>
 #include <kmimetype.h>
 #include <klocale.h>
 #include <kinputdialog.h>

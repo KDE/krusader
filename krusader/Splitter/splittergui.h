@@ -36,6 +36,8 @@
 #include <qspinbox.h>
 #include <qvalidator.h>
 #include <qcombobox.h>
+//Added by qt3to4:
+#include <QKeyEvent>
 #include <kurlrequester.h>
 #include <kio/global.h>
 

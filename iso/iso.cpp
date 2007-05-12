@@ -28,6 +28,8 @@
 
 #include <klargefile.h>
 #include <qfile.h>
+//Added by qt3to4:
+#include <Q3CString>
 #include <kurl.h>
 #include <kdebug.h>
 #include <kinstance.h>
@@ -78,7 +80,7 @@ int kdemain( int argc, char **argv )
 }
 
 
-kio_isoProtocol::kio_isoProtocol( const QCString &pool, const QCString &app ) : SlaveBase( "iso", pool, app )
+kio_isoProtocol::kio_isoProtocol( const Q3CString &pool, const Q3CString &app ) : SlaveBase( "iso", pool, app )
 {
   kdDebug() << "kio_isoProtocol::kio_isoProtocol" << endl;
   m_isoFile = 0L;
@@ -165,7 +167,7 @@ bool kio_isoProtocol::checkNewFile( QString fullPath, QString & path, int starts
     kdDebug() << "Opening KIso on " << isoFile << endl;
     m_isoFile = new KIso( isoFile );
     m_isoFile->setStartSec(startsec);
-    if ( !m_isoFile->open( IO_ReadOnly ) )
+    if ( !m_isoFile->open( QIODevice::ReadOnly ) )
     {
         kdDebug()   << "Opening " << isoFile << " failed." << endl;
         delete m_isoFile;
@@ -237,7 +239,7 @@ void kio_isoProtocol::listDir( const KURL & url )
     QString path;
     if ( !checkNewFile( url.path(), path, url.hasRef() ? url.htmlRef().toInt() : -1 ) )
     {
-        QCString _path( QFile::encodeName(url.path()));
+        Q3CString _path( QFile::encodeName(url.path()));
         kdDebug()  << "Checking (stat) on " << _path << endl;
         struct stat buff;
         if ( ::stat( _path.data(), &buff ) == -1 || !S_ISDIR( buff.st_mode ) ) {
@@ -323,7 +325,7 @@ void kio_isoProtocol::stat( const KURL & url )
     {
         // We may be looking at a real directory - this happens
         // when pressing up after being in the root of an archive
-        QCString _path( QFile::encodeName(url.path()));
+        Q3CString _path( QFile::encodeName(url.path()));
         kdDebug()  << "kio_isoProtocol::stat (stat) on " << _path << endl;
         struct stat buff;
         if ( ::stat( _path.data(), &buff ) == -1 || !S_ISDIR( buff.st_mode ) ) {
@@ -391,7 +393,7 @@ void kio_isoProtocol::getFile( const KIsoFile *isoFileEntry, const QString &path
     totalSize( size );
     if (!size) mimeType("application/x-zerosize");
 
-    if (size && !m_isoFile->device()->isOpen()) m_isoFile->device()->open(IO_ReadOnly);
+    if (size && !m_isoFile->device()->isOpen()) m_isoFile->device()->open(QIODevice::ReadOnly);
 
     if (zlib) {
         fileData=isoFileEntry->data(0, sizeof(compressed_file_header));

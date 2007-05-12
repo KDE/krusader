@@ -38,7 +38,7 @@
 #include <klocale.h>
 #include <qpixmap.h>
 #include <qspinbox.h>
-#include <qmultilineedit.h>
+#include <q3multilineedit.h>
 #include <qpushbutton.h>
 #include <qstringlist.h>
 #include <qmessagebox.h>
@@ -56,16 +56,16 @@ remoteMan::remoteMan() : remoteManBase(0,0,true), currentItem(0) {
   // ===> should be moved to remoteManBase <=====
   connect( hostName, SIGNAL( textChanged(const QString&) ),
            this, SLOT( updateConnect(const QString&) ) );
-  connect( sessions, SIGNAL(doubleClicked(QListViewItem *)), this, SLOT(connection()));
-  connect( sessions, SIGNAL(returnPressed(QListViewItem *)), this, SLOT(connection()));
+  connect( sessions, SIGNAL(doubleClicked(Q3ListViewItem *)), this, SLOT(connection()));
+  connect( sessions, SIGNAL(returnPressed(Q3ListViewItem *)), this, SLOT(connection()));
   // execute the main dialog
   exec();
 }
 
-void remoteMan::expandDecos(QListViewItem* i) {
+void remoteMan::expandDecos(Q3ListViewItem* i) {
   if (i->text(1)!="SESSION") i->setPixmap(0,LOADICON("folder_open"));
 }
-void remoteMan::collapseDecos(QListViewItem* i) {
+void remoteMan::collapseDecos(Q3ListViewItem* i) {
   if (i->text(1)!="SESSION") i->setPixmap(0,LOADICON("folder_open"));
 }
 
@@ -78,13 +78,13 @@ QString remoteMan::getHost() {
 
 // adds a new group submenu
 void remoteMan::addGroup() {
-  QListViewItem *i=0,*current;
+  Q3ListViewItem *i=0,*current;
   current=sessions->currentItem();
   if (!current) // no item is current, or the list is empty (shouldn't happen)
-    i=new QListViewItem(sessions,i18n("New group"),"GROUP"); // insert into the backplane
+    i=new Q3ListViewItem(sessions,i18n("New group"),"GROUP"); // insert into the backplane
    else
   if (current->text(1).left(5)=="GROUP")
-    i=new QListViewItem(current,i18n("New group"),"GROUP"); // insert under the current item
+    i=new Q3ListViewItem(current,i18n("New group"),"GROUP"); // insert under the current item
       else return;  // cannot create a new group under an item
   // set an open folder pixmap for the group
   i->setPixmap(0,LOADICON("folder_open"));
@@ -94,13 +94,13 @@ void remoteMan::addGroup() {
 
 // add an actual session
 void remoteMan::addSession() {
-  QListViewItem *i=0,*current;
+  Q3ListViewItem *i=0,*current;
   current=sessions->currentItem();
   // if we are pointing to a session, then the new session will be
   // created under the current session's parent group
   if (current->text(1)=="SESSION") current=current->parent();
   // create a new item and give it the appropriate pixmap
-  i=new QListViewItem(current,i18n("New session"),"SESSION");
+  i=new Q3ListViewItem(current,i18n("New session"),"SESSION");
   i->setPixmap(0,LOADICON("kr_ftp_new"));
   // make the new item current and refresh the view
   sessions->setCurrentItem(i); sessions->ensureItemVisible(i);
@@ -119,7 +119,7 @@ void remoteMan::refreshData() {
     currentItem->setText(8,protocol->currentText());
     // we have to check if there's another brother-session with
     // the same name, if so, we add a <2> to it
-    QListViewItem *i;
+    Q3ListViewItem *i;
     if (currentItem->parent()) i=currentItem->parent()->firstChild();
       else i=sessions->firstChild();
     while (i) {
@@ -140,7 +140,7 @@ void remoteMan::refreshData() {
   // here begins the actual function
   removeBtn->setEnabled(true);  // just incase we turned it off last time
   connectBtn->setEnabled(true);
-  QListViewItem *current=sessions->currentItem();
+  Q3ListViewItem *current=sessions->currentItem();
   if (!current) return; // if no item is current yet
   if (current->text(1).left(5)=="GROUP") { // disable all that don't belong to a group
     // first, disable all the fields a user cannot change
@@ -189,7 +189,7 @@ void remoteMan::refreshData() {
 // called when we are changing the session/group name, so that remoteMan
 // is able to change it in the corrosponding listview at the same time
 void remoteMan::updateName(const QString &text) {
-  QListViewItem *i=sessions->currentItem();
+  Q3ListViewItem *i=sessions->currentItem();
   i->setText(0,text);
 }
 
@@ -202,9 +202,9 @@ void remoteMan::updateConnect(const QString &) {
 
 // take an item, and create a "connection", built of the full
 // path of folders to the item, seperated by the ` character
-QString item2connection(QListViewItem *item) {
+QString item2connection(Q3ListViewItem *item) {
   QString con=item->text(0);
-  QListViewItem *iterator=item->parent();
+  Q3ListViewItem *iterator=item->parent();
   while (iterator!=0) {
     //////////////////////// explanation: ///////////////////////////
     // since the` char is special to us, we use it to seperate items
@@ -223,8 +223,8 @@ QString item2connection(QListViewItem *item) {
 }
 
 // find an item with a specific path - if the path doesn't exist, create it
-QListViewItem* remoteMan::findItem(const QString &name, QListViewItem *p) {
-  QListViewItem *it;
+Q3ListViewItem* remoteMan::findItem(const QString &name, Q3ListViewItem *p) {
+  Q3ListViewItem *it;
   if (name.isEmpty()) return p; // the end of the recursion has been reached!!!
   if (p==0) it=sessions->firstChild(); else it=p->firstChild();
   int loc=name.find('`');
@@ -233,8 +233,8 @@ QListViewItem* remoteMan::findItem(const QString &name, QListViewItem *p) {
     it=it->nextSibling();
   }
   if (!it) // item has not been found, create it
-    if (!p) it=new QListViewItem(sessions,name.left(loc),"GROUP");
-     else it=new QListViewItem(p,name.left(loc),"GROUP");
+    if (!p) it=new Q3ListViewItem(sessions,name.left(loc),"GROUP");
+     else it=new Q3ListViewItem(p,name.left(loc),"GROUP");
   // now, it points to the item we want, so let's go down one level
   it=findItem(name.mid(loc+1),it);
   return it;
@@ -247,8 +247,8 @@ void remoteMan::config2tree() {
   QStringList lst=krConfig->readListEntry("Connections");
   if (lst.count()<1) { // no such list in the config file - create the basics
     // add the default groups
-    QListViewItem *i;
-    i=new QListViewItem(sessions,i18n("Sessions"),"GROUP!");
+    Q3ListViewItem *i;
+    i=new Q3ListViewItem(sessions,i18n("Sessions"),"GROUP!");
     // the GROUP text signifies a group (duh), the GROUP! signifies a group
     // that the user cannot change
     i->setPixmap(0,LOADICON("folder_open"));
@@ -260,7 +260,7 @@ void remoteMan::config2tree() {
   // if we got here, we have a connection entry in the config file
   // let's work on it...
   QStringList::Iterator it;
-  QListViewItem *item=0;
+  Q3ListViewItem *item=0;
   for( it = lst.begin(); it != lst.end(); ++it ) {
     QString t=(*it);  // easier to work with
     // this part creates the path to the session
@@ -273,11 +273,11 @@ void remoteMan::config2tree() {
     // so, we create it as a son of the active item
     QStringList newLst=krConfig->readListEntry(*it);      // and fill in
     bool group=(newLst[1]!="SESSION");
-    QListViewItem *newItem;
+    Q3ListViewItem *newItem;
     if (item==0)  // if this item originating from the backplane
-      newItem=new QListViewItem(sessions,t,group ? "GROUP" : "SESSION");
+      newItem=new Q3ListViewItem(sessions,t,group ? "GROUP" : "SESSION");
      else
-      newItem=new QListViewItem(item,t,group ? "GROUP" : "SESSION");
+      newItem=new Q3ListViewItem(item,t,group ? "GROUP" : "SESSION");
     newItem->setPixmap(0,group ? LOADICON("folder") : LOADICON("kr_ftp_new"));  // update a pixmap
     newItem->setText(0,t);
     // expand the item, if needed
@@ -292,7 +292,7 @@ void remoteMan::tree2config() {
   // first, set the stage
   krConfig->setGroup("RemoteMan");
   QStringList lst;
-  QListViewItemIterator it(sessions);
+  Q3ListViewItemIterator it(sessions);
   while (it.current()) { // while there are still items in the tree
     QString temp=item2connection((it.current()));
     lst.append(temp); // write the connection into the "connection-index"
@@ -311,7 +311,7 @@ void remoteMan::tree2config() {
 
 void remoteMan::connection() {
   // if clicked on a group...
-  QListViewItem *i=sessions->currentItem();
+  Q3ListViewItem *i=sessions->currentItem();
   if (i->text(1)!="SESSION") {
     i->setOpen(i->isOpen());
     return;
@@ -354,7 +354,7 @@ void remoteMan::connection() {
 // remove a connection or a group of connections
 void remoteMan::removeSession() {
 
-  QListViewItem *it=sessions->currentItem();
+  Q3ListViewItem *it=sessions->currentItem();
   if (!it) return;  // don't do anything if no item is selected
   switch( QMessageBox::warning( this, i18n("RemoteMan"),
     i18n("Are you sure you want to delete this item ???"),

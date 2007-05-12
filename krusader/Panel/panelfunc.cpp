@@ -30,9 +30,11 @@ A
 #include <unistd.h> 
 // Qt Includes
 #include <qdir.h>
-#include <qtextstream.h>
+#include <q3textstream.h>
 #include <qeventloop.h>
 #include <qclipboard.h> 
+//Added by qt3to4:
+#include <Q3ValueList>
 // KDE Includes
 #include <klocale.h>
 #include <kprocess.h>
@@ -1017,7 +1019,7 @@ void ListPanelFunc::matchChecksum() {
 	QStringList args;
 	bool folders;
 	checksum_wrapper(panel, args, folders);
-	QValueList<vfile*> checksumFiles = files()->vfs_search(
+	Q3ValueList<vfile*> checksumFiles = files()->vfs_search(
 		KRQuery(MatchChecksumDlg::checksumTypesFilter)
 	);
 	MatchChecksumDlg dlg(args, folders, panel->realPath(), 

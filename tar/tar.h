@@ -22,10 +22,12 @@
 
 #include <kio/slavebase.h>
 #include <sys/types.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 class ArchiveProtocol : public KIO::SlaveBase {
 public:
-	ArchiveProtocol( const QCString &pool, const QCString &app );
+	ArchiveProtocol( const Q3CString &pool, const Q3CString &app );
 	virtual ~ArchiveProtocol();
 
 	virtual void listDir( const KURL & url );

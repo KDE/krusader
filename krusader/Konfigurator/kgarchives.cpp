@@ -28,8 +28,10 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qhbox.h>
+#include <q3hbox.h>
 #include <qpushbutton.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
 
 #include "kgarchives.h"
 #include "krresulttable.h"
@@ -43,13 +45,13 @@
 KgArchives::KgArchives( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name )
 {
-  QGridLayout *kgArchivesLayout = new QGridLayout( parent );
+  Q3GridLayout *kgArchivesLayout = new Q3GridLayout( parent );
   kgArchivesLayout->setSpacing( 6 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
 
-  QGroupBox *generalGrp = createFrame( i18n( "General" ), parent, "generalGrp" );
-  QGridLayout *generalGrid = createGridLayout( generalGrp->layout() );
+  Q3GroupBox *generalGrp = createFrame( i18n( "General" ), parent, "generalGrp" );
+  Q3GridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
   addLabel( generalGrid, 0, 0, i18n( "Krusader transparently handles the following types of archives:" ),
             generalGrp, "KgLabel1" );
@@ -75,7 +77,7 @@ KgArchives::KgArchives( bool first, QWidget* parent,  const char* name ) :
   addLabel( generalGrid, 2, 0, i18n( "The archives that are \"greyed-out\" were unavailable on your\nsystem last time Krusader checked. If you wish Krusader to\nsearch again, click the 'Auto Configure' button." ),
             generalGrp, "KgLabel2" );
 
-  QHBox *hbox = new QHBox( generalGrp );
+  Q3HBox *hbox = new Q3HBox( generalGrp );
   createSpacer( hbox, "spacer1" );
   QPushButton *btnAutoConfigure = new QPushButton( i18n( "Auto Configure" ), hbox, "kgAutoConfigure" );
   createSpacer( hbox, "spacer2" );
@@ -86,8 +88,8 @@ KgArchives::KgArchives( bool first, QWidget* parent,  const char* name ) :
 
   //  ------------------------ FINE-TUNING GROUPBOX --------------------------------
 
-  QGroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), parent, "fineTuneGrp" );
-  QGridLayout *fineTuneGrid = createGridLayout( fineTuneGrp->layout() );
+  Q3GroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), parent, "fineTuneGrp" );
+  Q3GridLayout *fineTuneGrid = createGridLayout( fineTuneGrp->layout() );
 
   KONFIGURATOR_CHECKBOX_PARAM finetuners[] =
   //   cfg_class  cfg_name                  default           text                                          restart ToolTip

@@ -44,7 +44,7 @@
 #include <qpushbutton.h>
 #include <qdatetime.h>
 #include <qpixmap.h>
-#include <qprogressdialog.h>
+#include <q3progressdialog.h>
 #include <qsemimodal.h>
 #include <qcheckbox.h>
 #include <qcombobox.h>

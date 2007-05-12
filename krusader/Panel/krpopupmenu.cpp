@@ -31,6 +31,8 @@
 #include "panelfunc.h"
 #include "../krusaderview.h"
 #include "../panelmanager.h"
+//Added by qt3to4:
+#include <QPixmap>
 
 void KrPopupMenu::run(const QPoint &pos, ListPanel *panel) {
 	KrPopupMenu menu(panel);

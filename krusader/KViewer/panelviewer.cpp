@@ -1,11 +1,11 @@
 #include <kurl.h>
 #include <qstring.h>
-#include <qwidgetstack.h>
+#include <q3widgetstack.h>
 #include <qapplication.h>
 #include <kparts/part.h>
 #include <kparts/browserextension.h>
 #include <kmessagebox.h>
-#include <qdict.h>
+#include <q3dict.h>
 #include <qlabel.h>
 #include <kmimetype.h>
 #include <ktempfile.h>
@@ -24,10 +24,10 @@
 /* ----==={ PanelViewerBase }===---- */
 
 PanelViewerBase::PanelViewerBase( QWidget *parent ) :
-QWidgetStack( parent ), mimes( 0 ), cpart( 0 ) {
+Q3WidgetStack( parent ), mimes( 0 ), cpart( 0 ) {
 	setSizePolicy( QSizePolicy( QSizePolicy::Preferred, QSizePolicy::Ignored ) );
 
-	mimes = new QDict<KParts::ReadOnlyPart>( DICTSIZE, false );
+	mimes = new Q3Dict<KParts::ReadOnlyPart>( DICTSIZE, false );
 	mimes->setAutoDelete( true );
 	cpart = 0;
 	fallback = new QLabel( i18n( "No file selected or selected file can't be displayed." ), this );
@@ -156,7 +156,7 @@ void PanelViewer::oldHexViewer(KTempFile& tmpFile) {
 
 	// create a hex file
 	QFile f_in( file );
-	f_in.open( IO_ReadOnly );
+	f_in.open( QIODevice::ReadOnly );
 	QDataStream in( &f_in );
 
 	FILE *out = KDE_fopen( tmpFile.name().local8Bit(), "w" );

@@ -19,8 +19,10 @@
 #include "dirhistoryqueue.h"
 
 #include "../VFS/vfs.h"
-#include <qpopupmenu.h>
+#include <q3popupmenu.h>
 #include <qdir.h>
+//Added by qt3to4:
+#include <QPixmap>
 #include <klocale.h>
 #include <kiconloader.h>
 
@@ -36,7 +38,7 @@ DirHistoryButton::DirHistoryButton( DirHistoryQueue* hQ, QWidget *parent, const 
 	setPopupDelay( 10 ); // 0.01 seconds press
 	setAcceptDrops( false );
 
-	popupMenu = new QPopupMenu( this );
+	popupMenu = new Q3PopupMenu( this );
 	Q_CHECK_PTR( popupMenu );
 
 	setPopup( popupMenu );
@@ -51,7 +53,7 @@ DirHistoryButton::DirHistoryButton( DirHistoryQueue* hQ, QWidget *parent, const 
 DirHistoryButton::~DirHistoryButton() {}
 
 void DirHistoryButton::openPopup() {
-	QPopupMenu * pP = popup();
+	Q3PopupMenu * pP = popup();
 	if ( pP ) {
 		popup() ->exec( mapToGlobal( QPoint( 0, height() ) ) );
 	}

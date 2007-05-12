@@ -34,6 +34,15 @@ A
 #include "krviewitem.h"
 #include <kiconview.h>
 #include <qtimer.h>
+//Added by qt3to4:
+#include <QDragMoveEvent>
+#include <QDropEvent>
+#include <QDragLeaveEvent>
+#include <QResizeEvent>
+#include <QPixmap>
+#include <QMouseEvent>
+#include <QKeyEvent>
+#include <QEvent>
 
 // extends KrViewProperties to add detailedview-only properties
 class KrBriefViewProperties: public KrViewProperties {
@@ -44,7 +53,7 @@ public:
 class KrBriefViewItem;
 class QDragMoveEvent;
 class QToolTip;
-class QHeader;
+class Q3Header;
 
 /**
  * KrBriefView implements everthing and anything regarding a brief view in a filemananger.
@@ -57,12 +66,12 @@ class KrBriefView: public KIconView, public KrView {
 	friend class KrBriefViewItem;
 	Q_OBJECT
 public:
-	KrBriefView( QHeader *header, QWidget *parent, bool &left, KConfig *cfg = krConfig, const char *name = 0 );
+	KrBriefView( Q3Header *header, QWidget *parent, bool &left, KConfig *cfg = krConfig, const char *name = 0 );
 	virtual ~KrBriefView();
 	virtual inline KrViewItem *getFirst() { return dynamic_cast<KrViewItem*>( firstItem() ); }
 	virtual inline KrViewItem *getLast() { return dynamic_cast<KrViewItem*>( lastItem() ); }
-	virtual inline KrViewItem *getNext( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<QIconViewItem*>( current ) ->nextItem() ); }
-	virtual inline KrViewItem *getPrev( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<QIconViewItem*>( current ) ->prevItem() ); }
+	virtual inline KrViewItem *getNext( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<Q3IconViewItem*>( current ) ->nextItem() ); }
+	virtual inline KrViewItem *getPrev( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<Q3IconViewItem*>( current ) ->prevItem() ); }
 	virtual inline KrViewItem *getCurrentKrViewItem() { return dynamic_cast<KrViewItem*>( currentItem() ); }
 	virtual KrViewItem *getKrViewItemAt(const QPoint &vp);
 	virtual inline KrViewItem *findItemByName(const QString &name) { return dynamic_cast<KrViewItem*>( findItem( name, Qt::ExactMatch ) ); }
@@ -115,25 +124,25 @@ protected:
 	QMouseEvent * transformMouseEvent( QMouseEvent * );
 
 protected slots:
-	void rename( QIconViewItem *item );
-	void slotClicked( QIconViewItem *item );
-	void slotDoubleClicked( QIconViewItem *item );
-	void slotItemDescription( QIconViewItem * );
-	void slotCurrentChanged( QIconViewItem *item );
-	void handleContextMenu( QIconViewItem*, const QPoint& );
+	void rename( Q3IconViewItem *item );
+	void slotClicked( Q3IconViewItem *item );
+	void slotDoubleClicked( Q3IconViewItem *item );
+	void slotItemDescription( Q3IconViewItem * );
+	void slotCurrentChanged( Q3IconViewItem *item );
+	void handleContextMenu( Q3IconViewItem*, const QPoint& );
 	virtual void renameCurrentItem();
 	virtual void showContextMenu( );
-	void inplaceRenameFinished( QIconViewItem *it );
-	void setNameToMakeCurrent( QIconViewItem *it );
+	void inplaceRenameFinished( Q3IconViewItem *it );
+	void setNameToMakeCurrent( Q3IconViewItem *it );
 	void sortOrderChanged();
-	void slotRightButtonPressed(QIconViewItem*, const QPoint& point);
-	void transformCurrentChanged( QIconViewItem * item ) { emit currentChanged( dynamic_cast<KrViewItem *>(item ) ); }
+	void slotRightButtonPressed(Q3IconViewItem*, const QPoint& point);
+	void transformCurrentChanged( Q3IconViewItem * item ) { emit currentChanged( dynamic_cast<KrViewItem *>(item ) ); }
 
 	/**
 	  * used internally to produce the signal middleButtonClicked()
 	 */
-	void slotMouseClicked( int button, QIconViewItem * item, const QPoint & pos );
-	inline void slotExecuted( QIconViewItem* i ) {
+	void slotMouseClicked( int button, Q3IconViewItem * item, const QPoint & pos );
+	inline void slotExecuted( Q3IconViewItem* i ) {
 		QString tmp = dynamic_cast<KrViewItem*>( i ) ->name();
 		op()->emitExecuted( tmp );
 	}
@@ -151,20 +160,20 @@ signals:
 	void gotDrop(QDropEvent *);
 
 private:
-	QHeader * header;
+	Q3Header * header;
 	bool swushSelects;
 	QPoint dragStartPos;
-	QIconViewItem *lastSwushPosition;
+	Q3IconViewItem *lastSwushPosition;
 	KrViewItem *_currDragItem;
 	bool singleClicked;
 	bool modifierPressed;
 	QTime clickTime;
-	QIconViewItem *clickedItem;
+	Q3IconViewItem *clickedItem;
 	QTimer renameTimer;
 	QTimer contextMenuTimer;
 	QPoint contextMenuPoint;
 	KrBriefViewItem *currentlyRenamedItem;
-	QIconViewItem *pressedItem;
+	Q3IconViewItem *pressedItem;
 	QMouseEvent *mouseEvent;
 	QToolTip *toolTip;
 };

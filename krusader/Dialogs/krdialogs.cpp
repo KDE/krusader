@@ -37,6 +37,10 @@
 #include <qapplication.h>
 #include <qfontmetrics.h>
 #include <qtooltip.h>
+//Added by qt3to4:
+#include <Q3Frame>
+#include <QLabel>
+#include <Q3VBoxLayout>
 // KDE includes
 #include <klocale.h>
 #include <kurlcompletion.h>
@@ -48,7 +52,7 @@
 #include <kdeversion.h>
 #include <qcheckbox.h>
 #include <krecentdocument.h>
-#include <qhbox.h>
+#include <q3hbox.h>
 // Krusader includes
 #include "../krusader.h"
 #include "../resources.h"
@@ -135,7 +139,7 @@ KURLRequesterDlgForCopy::KURLRequesterDlgForCopy( const QString& urlName, const 
 			:   KDialogBase( Plain, QString::null, Ok|Cancel|User1, Ok, parent, name, modal, true, KStdGuiItem::clear() ),
 			baseUrlCombo( 0 ), copyDirStructureCB( 0 ) {
 	
-	QVBoxLayout * topLayout = new QVBoxLayout( plainPage(), 0, spacingHint() );
+	Q3VBoxLayout * topLayout = new Q3VBoxLayout( plainPage(), 0, spacingHint() );
 
 	QLabel * label = new QLabel( _text, plainPage() );
 	topLayout->addWidget( label );
@@ -147,14 +151,14 @@ KURLRequesterDlgForCopy::KURLRequesterDlgForCopy( const QString& urlName, const 
 	preserveAttrsCB->setChecked( presAttrs );
 	topLayout->addWidget( preserveAttrsCB );
 	if( !baseURL.isEmpty() ) {
-		QFrame *line = new QFrame( plainPage(), "sepLine" );
-		line->setFrameStyle( QFrame::HLine | QFrame::Sunken );
+		Q3Frame *line = new Q3Frame( plainPage(), "sepLine" );
+		line->setFrameStyle( Q3Frame::HLine | Q3Frame::Sunken );
 		topLayout->addWidget( line );
 		copyDirStructureCB = new QCheckBox(i18n("Keep virtual directory structure"), plainPage());
 		connect( copyDirStructureCB, SIGNAL( toggled( bool ) ), this, SLOT( slotDirStructCBChanged() ) );
 		copyDirStructureCB->setChecked( false );
 		topLayout->addWidget( copyDirStructureCB );
-		QHBox * hbox = new QHBox( plainPage(), "copyDirStructure" );
+		Q3HBox * hbox = new Q3HBox( plainPage(), "copyDirStructure" );
 		new QLabel( i18n("Base URL:"),  hbox, "baseURLLabel" );
 		
 		baseUrlCombo = new QComboBox( hbox, "baseUrlRequester" );
@@ -228,7 +232,7 @@ KURL KURLRequesterDlgForCopy::baseURL() const {
 	return vfs::fromPathOrURL( baseUrlCombo->currentText() );
 }
 
-KRGetDate::KRGetDate(QDate date, QWidget *parent, const char *name) : KDialog(parent, name,true,WStyle_DialogBorder) {
+KRGetDate::KRGetDate(QDate date, QWidget *parent, const char *name) : KDialog(parent, name,true,Qt::WStyle_DialogBorder) {
   dateWidget = new KDatePicker(this, date);
   dateWidget->resize(dateWidget->sizeHint());
   setMinimumSize(dateWidget->sizeHint());

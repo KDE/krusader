@@ -44,18 +44,25 @@
 #include <kinputdialog.h>
 #include <qregexp.h>
 #include <qfontmetrics.h>
+//Added by qt3to4:
+#include <Q3HBoxLayout>
+#include <QKeyEvent>
+#include <QLabel>
+#include <Q3GridLayout>
+#include <QResizeEvent>
+#include <QCloseEvent>
 #include <kmessagebox.h>
 #include <kpopupmenu.h>
 #include <qcursor.h>
 #include <qclipboard.h>
-#include <qheader.h>
+#include <q3header.h>
 #include <kurldrag.h>
 #include <../kicons.h>
 
-class SearchListView : public QListView
+class SearchListView : public Q3ListView
 {
 public:
-  SearchListView( QWidget * parent, const char * name ) : QListView( parent, name )
+  SearchListView( QWidget * parent, const char * name ) : Q3ListView( parent, name )
   {
   }
 
@@ -63,7 +70,7 @@ public:
   {
     KURL::List urls;
 
-    QListViewItem * item = firstChild();
+    Q3ListViewItem * item = firstChild();
     while( item )
     {
       if( item->isSelected() )
@@ -99,18 +106,18 @@ bool KrSearchDialog::lastSearchInArchives = false;
 bool KrSearchDialog::lastFollowSymLinks = false;
 
 // class starts here /////////////////////////////////////////
-KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* name, bool modal, WFlags fl )
+KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* name, bool modal, Qt::WFlags fl )
                 : QDialog( parent, name, modal, fl ), query(0), searcher(0)
 {
   setCaption( i18n( "Krusader::Search" ) );
 
-  QGridLayout* searchBaseLayout = new QGridLayout( this );
+  Q3GridLayout* searchBaseLayout = new Q3GridLayout( this );
   searchBaseLayout->setSpacing( 6 );
   searchBaseLayout->setMargin( 11 );
 
   // creating the dialog buttons ( Search, Stop, Close )
 
-  QHBoxLayout* buttonsLayout = new QHBoxLayout();
+  Q3HBoxLayout* buttonsLayout = new Q3HBoxLayout();
   buttonsLayout->setSpacing( 6 );
   buttonsLayout->setMargin( 0 );
 
@@ -149,13 +156,13 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   generalFilter = (GeneralFilter *)filterTabs->get( "GeneralFilter" );
 
   resultTab = new QWidget( searcherTabs, "resultTab" );
-  resultLayout = new QGridLayout( resultTab );
+  resultLayout = new Q3GridLayout( resultTab );
   resultLayout->setSpacing( 6 );
   resultLayout->setMargin( 11 );
 
   // creating the result tab
 
-  QHBoxLayout* resultLabelLayout = new QHBoxLayout();
+  Q3HBoxLayout* resultLabelLayout = new Q3HBoxLayout();
   resultLabelLayout->setSpacing( 6 );
   resultLabelLayout->setMargin( 0 );
 
@@ -184,7 +191,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   resultsList->addColumn( i18n( "Permissions" ) );
 
   resultsList->setSorting(1); // sort by location
-  resultsList->setSelectionMode( QListView::Extended );
+  resultsList->setSelectionMode( Q3ListView::Extended );
 
   // fix the results list
   // => make the results font smaller
@@ -194,7 +201,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
 
   resultsList->setAllColumnsShowFocus(true);
   for (int i=0; i<5; ++i) // don't let it resize automatically
-    resultsList->setColumnWidthMode(i, QListView::Manual);
+    resultsList->setColumnWidthMode(i, Q3ListView::Manual);
 
   int i=QFontMetrics(resultsList->font()).width("W");
   int j=QFontMetrics(resultsList->font()).width("0");
@@ -205,13 +212,13 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   resultsList->setColumnWidth(2, krConfig->readNumEntry("Size Width", j*6) );
   resultsList->setColumnWidth(3, krConfig->readNumEntry("Date Width", j*7) );
   resultsList->setColumnWidth(4, krConfig->readNumEntry("Perm Width", j*7) );
-  resultsList->setColumnAlignment( 2, AlignRight );
+  resultsList->setColumnAlignment( 2, Qt::AlignRight );
 
   resultsList->header()->setStretchEnabled( true, 1 );
 
   resultLayout->addWidget( resultsList, 0, 0 );
 
-  QHBoxLayout* foundTextLayout = new QHBoxLayout();
+  Q3HBoxLayout* foundTextLayout = new Q3HBoxLayout();
   foundTextLayout->setSpacing( 6 );
   foundTextLayout->setMargin( 0 );
   
@@ -237,15 +244,15 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
 
   connect( mainSearchBtn, SIGNAL( clicked() ), this, SLOT( startSearch() ) );
   connect( mainStopBtn, SIGNAL( clicked() ), this, SLOT( stopSearch() ) );
-  connect( resultsList, SIGNAL( returnPressed(QListViewItem*) ), this,
-  	SLOT( resultDoubleClicked(QListViewItem*) ) );
-  connect( resultsList, SIGNAL( doubleClicked(QListViewItem*) ), this,
-  	SLOT( resultDoubleClicked(QListViewItem*) ) );
-  connect( resultsList, SIGNAL( currentChanged(QListViewItem*) ), this,
-  		SLOT( resultClicked(QListViewItem*) ) );
-  connect( resultsList, SIGNAL( clicked(QListViewItem*) ), this,
-  		SLOT( resultClicked(QListViewItem*) ) );
-  connect( resultsList, SIGNAL( rightButtonClicked(QListViewItem*,const QPoint&,int) ), this, SLOT( rightClickMenu(QListViewItem*, const QPoint&, int) ) );
+  connect( resultsList, SIGNAL( returnPressed(Q3ListViewItem*) ), this,
+  	SLOT( resultDoubleClicked(Q3ListViewItem*) ) );
+  connect( resultsList, SIGNAL( doubleClicked(Q3ListViewItem*) ), this,
+  	SLOT( resultDoubleClicked(Q3ListViewItem*) ) );
+  connect( resultsList, SIGNAL( currentChanged(Q3ListViewItem*) ), this,
+  		SLOT( resultClicked(Q3ListViewItem*) ) );
+  connect( resultsList, SIGNAL( clicked(Q3ListViewItem*) ), this,
+  		SLOT( resultClicked(Q3ListViewItem*) ) );
+  connect( resultsList, SIGNAL( rightButtonClicked(Q3ListViewItem*,const QPoint&,int) ), this, SLOT( rightClickMenu(Q3ListViewItem*, const QPoint&, int) ) );
   connect( mainCloseBtn, SIGNAL( clicked() ), this, SLOT( closeDialog() ) );
   connect( mainFeedToListBoxBtn, SIGNAL( clicked() ), this, SLOT( feedToListBox() ) );
 
@@ -433,12 +440,12 @@ void KrSearchDialog::stopSearch() {
   searchingLabel->setText(i18n("Finished searching."));
 }
 
-void KrSearchDialog::resultDoubleClicked(QListViewItem* i) {
+void KrSearchDialog::resultDoubleClicked(Q3ListViewItem* i) {
   ACTIVE_FUNC->openUrl(vfs::fromPathOrURL(i->text(1)),i->text(0));
   showMinimized();
 }
 
-void KrSearchDialog::resultClicked(QListViewItem* i) {
+void KrSearchDialog::resultClicked(Q3ListViewItem* i) {
 	ResultListViewItem *it = dynamic_cast<ResultListViewItem*>(i);
 	if( it == 0 )
 		return;                
@@ -500,7 +507,7 @@ void KrSearchDialog::keyPressEvent(QKeyEvent *e)
 
 void KrSearchDialog::editCurrent()
 {
-  QListViewItem *current = resultsList->currentItem();
+  Q3ListViewItem *current = resultsList->currentItem();
   if( current )
   {
     QString name = current->text(1);
@@ -512,7 +519,7 @@ void KrSearchDialog::editCurrent()
 
 void KrSearchDialog::viewCurrent()
 {
-  QListViewItem *current = resultsList->currentItem();
+  Q3ListViewItem *current = resultsList->currentItem();
   if( current )
   {
     QString name = current->text(1);
@@ -522,7 +529,7 @@ void KrSearchDialog::viewCurrent()
   }
 }
 
-void KrSearchDialog::rightClickMenu(QListViewItem *item, const QPoint&, int)
+void KrSearchDialog::rightClickMenu(Q3ListViewItem *item, const QPoint&, int)
 {
   // these are the values that will exist in the menu
   #define EDIT_FILE_ID                110
@@ -585,7 +592,7 @@ void KrSearchDialog::feedToListBox()
   }
 
   KURL::List urlList;
-  QListViewItem * item = resultsList->firstChild();
+  Q3ListViewItem * item = resultsList->firstChild();
   while( item )
   {
     QString name = item->text(1);
@@ -605,7 +612,7 @@ void KrSearchDialog::copyToClipBoard()
 {
   KURL::List urls;
 
-  QListViewItem * item = resultsList->firstChild();
+  Q3ListViewItem * item = resultsList->firstChild();
   while( item )
   {
     if( item->isSelected() )

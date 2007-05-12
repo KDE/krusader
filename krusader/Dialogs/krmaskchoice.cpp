@@ -30,15 +30,18 @@
 #include "krmaskchoice.h"
 
 #include <qcombobox.h>
-#include <qgroupbox.h>
+#include <q3groupbox.h>
 #include <qlabel.h>
-#include <qlistbox.h>
+#include <q3listbox.h>
 #include <qpushbutton.h>
 #include <qlayout.h>
 #include <qvariant.h>
 #include <qtooltip.h>
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
 #include <qmessagebox.h>
+//Added by qt3to4:
+#include <Q3HBoxLayout>
+#include <Q3VBoxLayout>
 #include <klocale.h>
 #include <qlineedit.h>
 
@@ -49,7 +52,7 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
  */
-KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, WFlags fl )
+KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, Qt::WFlags fl )
     : QDialog( parent, name, modal, fl )
 {
     if ( !name )
@@ -63,12 +66,12 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, WFla
     height =  height + 5*(height > 14) + 6;
     selection->setGeometry( QRect( 12, 48, 377, height) );
     selection->setEditable( TRUE );
-    selection->setInsertPolicy( QComboBox::AtTop );
+    selection->setInsertPolicy( QComboBox::InsertAtTop );
     selection->setAutoCompletion( TRUE );
 
     QWidget* Layout7 = new QWidget( this, "Layout7" );
     Layout7->setGeometry( QRect( 10, 10, 380, 30 ) ); 
-    hbox = new QHBoxLayout( Layout7 );
+    hbox = new Q3HBoxLayout( Layout7 );
     hbox->setSpacing( 6 );
     hbox->setMargin( 0 );
 
@@ -82,22 +85,22 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, WFla
     label->setText( i18n( "Select the following files:"  ) );
     hbox->addWidget( label );
 
-    GroupBox1 = new QGroupBox( this, "GroupBox1" );
+    GroupBox1 = new Q3GroupBox( this, "GroupBox1" );
     GroupBox1->setGeometry( QRect( 11, 77, 379, 190 ) );
     GroupBox1->setTitle( i18n( "Predefined Selections"  ) );
 
     QWidget* Layout6 = new QWidget( GroupBox1, "Layout6" );
     Layout6->setGeometry( QRect( 10, 20, 360, 160 ) ); 
-    hbox_2 = new QHBoxLayout( Layout6 ); 
+    hbox_2 = new Q3HBoxLayout( Layout6 ); 
     hbox_2->setSpacing( 6 );
     hbox_2->setMargin( 0 );
 
-    preSelections = new QListBox( Layout6, "preSelections" );
-    preSelections->setVScrollBarMode( QListBox::AlwaysOn );
-    QWhatsThis::add(  preSelections, i18n( "A predefined selection is a file-mask which you use often.\nSome examples are: \"*.c, *.h\", \"*.c, *.o\", etc.\nYou can add these masks to the list by typing them and pressing the Add button.\nDelete removes a predefined selection and Clear removes all of them.\nNotice that the line in which you edit the mask has it's own history, you can scroll it, if needed." ) );
+    preSelections = new Q3ListBox( Layout6, "preSelections" );
+    preSelections->setVScrollBarMode( Q3ListBox::AlwaysOn );
+    Q3WhatsThis::add(  preSelections, i18n( "A predefined selection is a file-mask which you use often.\nSome examples are: \"*.c, *.h\", \"*.c, *.o\", etc.\nYou can add these masks to the list by typing them and pressing the Add button.\nDelete removes a predefined selection and Clear removes all of them.\nNotice that the line in which you edit the mask has it's own history, you can scroll it, if needed." ) );
     hbox_2->addWidget( preSelections );
 
-    vbox = new QVBoxLayout; 
+    vbox = new Q3VBoxLayout; 
     vbox->setSpacing( 6 );
     vbox->setMargin( 0 );
 
@@ -121,7 +124,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, WFla
 
     QWidget* Layout18 = new QWidget( this, "Layout18" );
     Layout18->setGeometry( QRect( 10, 280, 379, 30 ) ); 
-    hbox_3 = new QHBoxLayout( Layout18 ); 
+    hbox_3 = new Q3HBoxLayout( Layout18 ); 
     hbox_3->setSpacing( 6 );
     hbox_3->setMargin( 0 );
     QSpacerItem* spacer_2 = new QSpacerItem( 205, 20, QSizePolicy::Expanding, QSizePolicy::Fixed );
@@ -143,9 +146,9 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, WFla
     connect( PushButton7_3, SIGNAL( clicked() ), this, SLOT( clearSelections() ) );
     connect( selection, SIGNAL( activated(const QString&) ), selection, SLOT( setEditText(const QString &) ) );
     connect( selection->lineEdit(), SIGNAL( returnPressed() ), this, SLOT( accept() ));
-    connect( preSelections, SIGNAL( doubleClicked(QListBoxItem*) ), this, SLOT( acceptFromList(QListBoxItem *) ) );
+    connect( preSelections, SIGNAL( doubleClicked(Q3ListBoxItem*) ), this, SLOT( acceptFromList(Q3ListBoxItem *) ) );
     connect( preSelections, SIGNAL( highlighted(const QString&) ), selection, SLOT( setEditText(const QString &) ) );
-    connect( preSelections, SIGNAL( returnPressed(QListBoxItem*) ), this, SLOT( acceptFromList(QListBoxItem *) ) );
+    connect( preSelections, SIGNAL( returnPressed(Q3ListBoxItem*) ), this, SLOT( acceptFromList(Q3ListBoxItem *) ) );
 }
 
 /*  
@@ -171,7 +174,7 @@ void KRMaskChoice::deleteSelection()
     qWarning( "KRMaskChoice::deleteSelection(): Not implemented yet!" );
 }
 
-void KRMaskChoice::acceptFromList(QListBoxItem *)
+void KRMaskChoice::acceptFromList(Q3ListBoxItem *)
 {
     qWarning( "KRMaskChoice::acceptFromList(QListBoxItem *): Not implemented yet!" );
 }

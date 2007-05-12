@@ -45,7 +45,13 @@
 #include <kconfig.h>
 #include <kaccel.h>
 #include <qstringlist.h>
-#include <qtextstream.h>
+#include <q3textstream.h>
+//Added by qt3to4:
+#include <QMoveEvent>
+#include <Q3CString>
+#include <QShowEvent>
+#include <QResizeEvent>
+#include <QHideEvent>
 #include <kdebug.h>
 #include <dcopobject.h>
 
@@ -85,7 +91,7 @@ class Krusader : public KParts::MainWindow, public DCOPObject {
     static const char* privIcon();
     static QStringList supportedTools(); // find supported tools
 
-    virtual bool process (const QCString &fun, const QByteArray &data, QCString &replyType, QByteArray &replyData);
+    virtual bool process (const Q3CString &fun, const QByteArray &data, Q3CString &replyType, QByteArray &replyData);
     void moveToTop();
 
   public slots:

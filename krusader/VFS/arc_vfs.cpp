@@ -43,7 +43,7 @@
 #include <klocale.h>
 #include <kprocess.h>
 #include <kio/jobclasses.h>
-#include <qprogressdialog.h>
+#include <q3progressdialog.h>
 #include <kglobalsettings.h>
 #include <kmimetype.h>
 #include <kcursor.h>
@@ -230,7 +230,7 @@ bool arc_vfs::getDirs(){
 
     // parse the temp file
     QFile temp(tmpDir+"/tempfilelist");
-    temp.open(IO_ReadOnly);
+    temp.open(QIODevice::ReadOnly);
     char buf[1000];
     QString line;
     if(vfs_type == "gzip" || vfs_type == "-zip" )

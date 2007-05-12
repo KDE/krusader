@@ -32,11 +32,13 @@
 #define __KONFIGURATOR_PAGE_H__
  
 #include "konfiguratoritems.h"
-#include <qframe.h>
-#include <qptrlist.h>
-#include <qgroupbox.h>
+#include <q3frame.h>
+#include <q3ptrlist.h>
+#include <q3groupbox.h>
 #include <qlabel.h>
 #include <qlayout.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
 
 struct KONFIGURATOR_CHECKBOX_PARAM;
 struct KONFIGURATOR_NAME_VALUE_TIP;
@@ -48,7 +50,7 @@ struct KONFIGURATOR_NAME_VALUE_PAIR;
   *
   * @short The base class of a page in Konfigurator
   */  
-class KonfiguratorPage : public QFrame
+class KonfiguratorPage : public Q3Frame
 {
   Q_OBJECT
    
@@ -284,7 +286,7 @@ public:
     *
     * @return             reference to the newly created frame
     */
-  QGroupBox               *createFrame( QString text = QString::null, QWidget *parent=0,
+  Q3GroupBox               *createFrame( QString text = QString::null, QWidget *parent=0,
                                            const char *widgetName=0 );
 
   /**
@@ -299,7 +301,7 @@ public:
     *
     * @return             reference to the newly created QGridLayout
     */
-  QGridLayout             *createGridLayout( QLayout *parent );
+  Q3GridLayout             *createGridLayout( QLayout *parent );
 
   /**
     * Adds a new label to a grid layout.
@@ -319,7 +321,7 @@ public:
     *
     * @return             reference to the newly created label
     */
-  QLabel                  *addLabel( QGridLayout *layout, int x, int y, QString label,
+  QLabel                  *addLabel( Q3GridLayout *layout, int x, int y, QString label,
                                            QWidget *parent=0, const char *widgetName=0 );
 
   /**
@@ -351,7 +353,7 @@ public:
     *
     * @return             reference to the newly created spacer widget
     */
-  QFrame                  *createLine( QWidget *parent=0, const char *widgetName=0, bool vertical = false );
+  Q3Frame                  *createLine( QWidget *parent=0, const char *widgetName=0, bool vertical = false );
 
   /**
     * Creates a checkbox group. A checkbox group contains a lot of checkboxes.
@@ -481,7 +483,7 @@ signals:
   void  sigChanged();
   
 protected:
-  QPtrList<KonfiguratorExtension> itemList;
+  Q3PtrList<KonfiguratorExtension> itemList;
 
 private:
   bool  firstCall;

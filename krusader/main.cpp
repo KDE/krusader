@@ -37,6 +37,9 @@
 #include <unistd.h>
 #include <signal.h>
 #include <qeventloop.h>
+//Added by qt3to4:
+#include <QPixmap>
+#include <Q3CString>
 
 // Krusader includes
 #include "krusader.h"
@@ -197,7 +200,7 @@ int main(int argc, char *argv[]) {
     DCOPClient* client = KApplication::kApplication() ->dcopClient();
     if ( !client->attach() )
        exit( 0 );
-    QCString regName = client->registerAs( KApplication::kApplication() ->name(), !singleInstanceMode );
+    Q3CString regName = client->registerAs( KApplication::kApplication() ->name(), !singleInstanceMode );
     if( singleInstanceMode && regName != KApplication::kApplication()->name() ) {
       fprintf( stderr, i18n( "Application already running!\n" ).ascii() );
 

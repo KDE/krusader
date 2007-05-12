@@ -31,9 +31,11 @@
 #ifndef KRPLEASEWAIT_H
 #define KRPLEASEWAIT_H
 
-#include <qprogressdialog.h>
+#include <q3progressdialog.h>
 #include <qtimer.h>
-#include <qguardedptr.h>
+#include <qpointer.h>
+//Added by qt3to4:
+#include <QCloseEvent>
 #include <kio/jobclasses.h>
 
 class KProcess;
@@ -57,13 +59,13 @@ public slots:
   bool wasCancelled() const { return _wasCancelled; }
 
 private:
-  QGuardedPtr<KIO::Job> job;
+  QPointer<KIO::Job> job;
   KRPleaseWait * dlg;
   bool cycle, cycleMutex, incMutex, _wasCancelled;
 };
 
 
-class KRPleaseWait : public QProgressDialog {
+class KRPleaseWait : public Q3ProgressDialog {
   Q_OBJECT
 public:
 	KRPleaseWait( QString msg, int count = 0 ,bool cancel = false );

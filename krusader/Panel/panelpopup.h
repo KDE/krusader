@@ -2,17 +2,20 @@
 #define _PANELPOPUP_H
 
 #include <qwidget.h>
-#include <qwidgetstack.h>
+#include <q3widgetstack.h>
 #include <qpixmap.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
+//Added by qt3to4:
+#include <QDropEvent>
+#include <QLabel>
 #include <kfileitem.h>
-#include <qguardedptr.h>
+#include <qpointer.h>
 #include <kio/previewjob.h>
 #include <kurl.h>
 
-class QButtonGroup;
+class Q3ButtonGroup;
 class QLabel;
-class QListViewItem;
+class Q3ListViewItem;
 class QSplitter;
 class KFileTreeView;
 class QToolButton;
@@ -45,7 +48,7 @@ signals:
 protected slots:	
 	virtual void setFocus();
 	void tabSelected(int id);
-	void treeSelection(QListViewItem*);
+	void treeSelection(Q3ListViewItem*);
 	void slotDroppedOnTree(QWidget *widget, QDropEvent *e, KURL::List &lst, KURL &);
 	void handleOpenURLRequest(const KURL &url);
 	void quickSelect();
@@ -55,18 +58,18 @@ protected slots:
 protected:
 	bool _left;
 	bool _hidden;
-	QWidgetStack *stack;
+	Q3WidgetStack *stack;
 	KrusaderImageFilePreview *viewer;
 	KrSqueezedTextLabel *dataLine;
-	QGuardedPtr<KIO::PreviewJob> pjob;
+	QPointer<KIO::PreviewJob> pjob;
 	KFileTreeView *tree;
 	QToolButton *treeBtn, *previewBtn, *quickBtn, *viewerBtn, *duBtn;
-	QButtonGroup *btns;
+	Q3ButtonGroup *btns;
 	KLineEdit *quickFilter;
 	KComboBox *quickSelectCombo;
 	PanelViewer *panelviewer;
 	DiskUsageViewer *diskusage;
-	QValueList<int> splitterSizes;
+	Q3ValueList<int> splitterSizes;
 	QSplitter *splitter;
 };
 

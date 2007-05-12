@@ -32,6 +32,8 @@
 #include "krusader.h"
 #include "defaults.h"
 #include <qstring.h>
+//Added by qt3to4:
+#include <QPixmap>
 
 QPixmap FL_LOADICON(QString name) {
   krConfig->setGroup("Look&Feel");
@@ -39,7 +41,7 @@ QPixmap FL_LOADICON(QString name) {
   if (size!=22)
     return krLoader->loadIcon(name,KIcon::Desktop,size);
   // else implied
-  return QIconSet(krLoader->loadIcon(name,KIcon::Desktop,32)).pixmap(QIconSet::Small,true);
+  return QIcon(krLoader->loadIcon(name,KIcon::Desktop,32)).pixmap(QIcon::Small,true);
 }
 
 const char * no_xpm[] = {

@@ -30,7 +30,10 @@
 #ifndef KRSPWIDGETS_H
 #define KRSPWIDGETS_H
 
-#include <qstrlist.h>
+#include <q3strlist.h>
+//Added by qt3to4:
+#include <QMouseEvent>
+#include <QEvent>
 #include <kurl.h>
 #include "krmaskchoice.h"
 #include "newftpgui.h"
@@ -52,7 +55,7 @@ public:
   static KURL newFTP();
 
 private:
-  static QStrList maskList;  // used by KRMaskChoiceSub 
+  static Q3StrList maskList;  // used by KRMaskChoiceSub 
 };
 
 /////////////////////////// newFTPSub ///////////////////////////////////////
@@ -76,7 +79,7 @@ public slots:
   void addSelection();
   void deleteSelection();
   void clearSelections();
-  void acceptFromList(QListBoxItem *i);
+  void acceptFromList(Q3ListBoxItem *i);
     
 protected:
   void reject();
@@ -104,7 +107,7 @@ private:
 	int charCount(const QMouseEvent * const , QString* const =0) ;
 	int _numOfSelectedChars;
 	bool _dummyDisplayed;
-	QGuardedPtr<KPassivePopup> _pop;
+	QPointer<KPassivePopup> _pop;
 };
 
 #endif

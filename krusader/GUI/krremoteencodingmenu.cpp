@@ -195,7 +195,7 @@ void KrRemoteEncodingMenu::updateKIOSlaves()
     kdDebug() << "Can't connect with DCOP server." << endl;
 
   QByteArray data;
-  QDataStream stream(data, IO_WriteOnly);
+  QDataStream stream(data, QIODevice::WriteOnly);
   stream << QString::null;
   client->send("*", "KIO::Scheduler", "reparseSlaveConfiguration(QString)", data);
   delete client;

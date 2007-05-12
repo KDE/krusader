@@ -37,13 +37,15 @@
 #include <qspinbox.h>
 #include <qpushbutton.h>
 #include <qradiobutton.h>
-#include <qptrlist.h>
-#include <qvaluelist.h>
-#include <qvaluevector.h>
-#include <qbuttongroup.h>
+#include <q3ptrlist.h>
+#include <q3valuelist.h>
+#include <q3valuevector.h>
+#include <q3buttongroup.h>
 #include <qlineedit.h>
+//Added by qt3to4:
+#include <QPixmap>
 #include <kurlrequester.h>
-#include <qhbox.h>
+#include <q3hbox.h>
 #include <kfontdialog.h>
 #include <qlabel.h>
 #include <qfont.h>
@@ -161,13 +163,13 @@ public:
   KonfiguratorCheckBox *  find( QString name );
 
 private:
-  QPtrList<KonfiguratorCheckBox>  checkBoxList;
+  Q3PtrList<KonfiguratorCheckBox>  checkBoxList;
 };
 
 // KonfiguratorRadioButtons class
 ///////////////////////////////
 
-class KonfiguratorRadioButtons : public QButtonGroup
+class KonfiguratorRadioButtons : public Q3ButtonGroup
 {
   Q_OBJECT
 
@@ -191,12 +193,12 @@ public slots:
   void slotSetDefaults(QObject *);
 
 protected:
-  QPtrList<QRadioButton>  radioButtons;
-  QValueList<QString>   radioValues;
-  QValueList<QString>   radioNames;
+  Q3PtrList<QRadioButton>  radioButtons;
+  Q3ValueList<QString>   radioValues;
+  Q3ValueList<QString>   radioNames;
 
   QString         defaultValue;
-  QButtonGroup    *buttonGroup;
+  Q3ButtonGroup    *buttonGroup;
 
   KonfiguratorExtension *ext;
 };
@@ -253,7 +255,7 @@ protected:
 // KonfiguratorFontChooser class
 ///////////////////////////////
 
-class KonfiguratorFontChooser : public QHBox
+class KonfiguratorFontChooser : public Q3HBox
 {
   Q_OBJECT
 
@@ -377,8 +379,8 @@ private:
 protected:
   QColor                          defaultValue;
   QColor                          customValue;
-  QValueVector<QColor>            palette;
-  QValueVector<ADDITIONAL_COLOR>  additionalColors;
+  Q3ValueVector<QColor>            palette;
+  Q3ValueVector<ADDITIONAL_COLOR>  additionalColors;
   KonfiguratorExtension          *ext;
   bool                            disableColorChooser;
 };
@@ -386,7 +388,7 @@ protected:
 // KonfiguratorListBox class
 ///////////////////////////////
 
-class KonfiguratorListBox : public QListBox
+class KonfiguratorListBox : public Q3ListBox
 {
   Q_OBJECT
 

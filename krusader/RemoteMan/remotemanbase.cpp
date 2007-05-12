@@ -11,17 +11,22 @@
 #include <klocale.h>
 #include <qcheckbox.h>
 #include <qcombobox.h>
-#include <qheader.h>
+#include <q3header.h>
 #include <qlabel.h>
 #include <qlineedit.h>
-#include <qlistview.h>
-#include <qmultilineedit.h>
+#include <q3listview.h>
+#include <q3multilineedit.h>
 #include <qpushbutton.h>
 #include <qspinbox.h>
 #include <qlayout.h>
 #include <qvariant.h>
 #include <qtooltip.h>
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
+//Added by qt3to4:
+#include <Q3HBoxLayout>
+#include <Q3GridLayout>
+#include <QEvent>
+#include <Q3VBoxLayout>
 #include <kprotocolinfo.h>
 
 
@@ -32,7 +37,7 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
  */
-remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, WFlags fl )
+remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, Qt::WFlags fl )
     : QDialog( parent, name, modal, fl )
 {
     if ( !name )
@@ -40,11 +45,11 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, WF
     resize( 670, 502 ); 
     setCaption( i18n( "RemoteMan: Connection Manager" ) );
     setSizeGripEnabled( TRUE );
-    remoteManBaseLayout = new QGridLayout( this );
+    remoteManBaseLayout = new Q3GridLayout( this );
     remoteManBaseLayout->setSpacing( 6 );
     remoteManBaseLayout->setMargin( 11 );
 
-    Layout23 = new QVBoxLayout;
+    Layout23 = new Q3VBoxLayout;
     Layout23->setSpacing( 6 );
     Layout23->setMargin( 0 );
 
@@ -57,7 +62,7 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, WF
 
     remoteManBaseLayout->addLayout( Layout23, 0, 1 );
 
-    Layout12 = new QHBoxLayout;
+    Layout12 = new Q3HBoxLayout;
     Layout12->setSpacing( 6 );
     Layout12->setMargin( 0 );
     QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -77,22 +82,22 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, WF
 
     remoteManBaseLayout->addMultiCellLayout( Layout12, 7, 7, 0, 1 );
 
-    sessions = new QListView( this, "sessions" );
+    sessions = new Q3ListView( this, "sessions" );
     sessions->addColumn( i18n( "Sessions" ) );
     sessions->header()->setClickEnabled( FALSE, sessions->header()->count() - 1 );
     sessions->header()->setResizeEnabled( FALSE, sessions->header()->count() - 1 );
     sessions->setMinimumSize( QSize( 300, 400 ) );
-    sessions->setVScrollBarMode( QListView::AlwaysOn );
-    sessions->setHScrollBarMode( QListView::Auto );
+    sessions->setVScrollBarMode( Q3ListView::AlwaysOn );
+    sessions->setHScrollBarMode( Q3ListView::Auto );
     sessions->setRootIsDecorated( TRUE );
 
     remoteManBaseLayout->addMultiCellWidget( sessions, 0, 6, 0, 0 );
 
-    Layout9 = new QVBoxLayout;
+    Layout9 = new Q3VBoxLayout;
     Layout9->setSpacing( 6 );
     Layout9->setMargin( 0 );
 
-    Layout10 = new QGridLayout;
+    Layout10 = new Q3GridLayout;
     Layout10->setSpacing( 6 );
     Layout10->setMargin( 0 );
 
@@ -121,7 +126,7 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, WF
 
     remoteManBaseLayout->addLayout( Layout9, 2, 1 );
 
-    Layout26 = new QVBoxLayout;
+    Layout26 = new Q3VBoxLayout;
     Layout26->setSpacing( 6 );
     Layout26->setMargin( 0 );
 
@@ -134,7 +139,7 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, WF
 
     remoteManBaseLayout->addLayout( Layout26, 4, 1 );
 
-    Layout27 = new QVBoxLayout;
+    Layout27 = new Q3VBoxLayout;
     Layout27->setSpacing( 6 );
     Layout27->setMargin( 0 );
 
@@ -142,12 +147,12 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, WF
     TextLabel1_3_2_2->setText( i18n( "Description:" ) );
     Layout27->addWidget( TextLabel1_3_2_2 );
 
-    description = new QMultiLineEdit( this, "description" );
+    description = new Q3MultiLineEdit( this, "description" );
     Layout27->addWidget( description );
 
     remoteManBaseLayout->addLayout( Layout27, 5, 1 );
 
-    layout = new QGridLayout;
+    layout = new Q3GridLayout;
     layout->setSpacing( 6 );
     layout->setMargin( 0 );
 
@@ -185,7 +190,7 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, WF
 
     remoteManBaseLayout->addLayout( layout, 6, 1 );
 
-    Layout11 = new QGridLayout;
+    Layout11 = new Q3GridLayout;
     Layout11->setSpacing( 6 );
     Layout11->setMargin( 0 );
 
@@ -233,7 +238,7 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, WF
     TextLabel1_4_font.setPointSize( 10 );
     TextLabel1_4->setFont( TextLabel1_4_font );
     TextLabel1_4->setText( i18n( "* Warning: Storing your password is not secure !!!" ) );
-    TextLabel1_4->setAlignment( int( QLabel::AlignVCenter | QLabel::AlignRight ) );
+    TextLabel1_4->setAlignment( int( Qt::AlignVCenter | Qt::AlignRight ) );
 
     remoteManBaseLayout->addWidget( TextLabel1_4, 3, 1 );
 
@@ -241,13 +246,13 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, WF
     connect( closeBtn, SIGNAL( clicked() ), this, SLOT( accept() ) );
     connect( addBtn, SIGNAL( clicked() ), this, SLOT( addSession() ) );
     connect( removeBtn, SIGNAL( clicked() ), this, SLOT( removeSession() ) );
-    connect( sessions, SIGNAL( selectionChanged(QListViewItem*) ), this, SLOT( refreshData() ) );
+    connect( sessions, SIGNAL( selectionChanged(Q3ListViewItem*) ), this, SLOT( refreshData() ) );
     connect( sessions, SIGNAL( selectionChanged() ), this, SLOT( refreshData() ) );
-    connect( sessions, SIGNAL( expanded(QListViewItem*) ), this, SLOT( refreshData() ) );
-    connect( sessions, SIGNAL( currentChanged(QListViewItem*) ), this, SLOT( refreshData() ) );
-    connect( sessions, SIGNAL( mouseButtonClicked(int,QListViewItem*,const 
+    connect( sessions, SIGNAL( expanded(Q3ListViewItem*) ), this, SLOT( refreshData() ) );
+    connect( sessions, SIGNAL( currentChanged(Q3ListViewItem*) ), this, SLOT( refreshData() ) );
+    connect( sessions, SIGNAL( mouseButtonClicked(int,Q3ListViewItem*,const 
 QPoint&,int) ), this, SLOT( refreshData() ) );
-    connect( sessions, SIGNAL( collapsed(QListViewItem*) ), this, SLOT( refreshData() ) );
+    connect( sessions, SIGNAL( collapsed(Q3ListViewItem*) ), this, SLOT( refreshData() ) );
     connect( connectBtn, SIGNAL( clicked() ), this, SLOT( connection() ) );
     connect( sessionName, SIGNAL( textChanged(const QString&) ), this, SLOT( updateName(const QString&) ) );
     connect( newGroupBtn, SIGNAL( clicked() ), this, SLOT( addGroup() ) );

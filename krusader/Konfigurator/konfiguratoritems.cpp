@@ -34,6 +34,9 @@
 #include <qpainter.h>
 #include <qpen.h>
 #include <qcolordialog.h>
+//Added by qt3to4:
+#include <QPixmap>
+#include <QLabel>
 #include <kiconloader.h>
 
 KonfiguratorExtension::KonfiguratorExtension( QObject *obj, QString cfgClass, QString cfgName, bool rst, int pg) :
@@ -205,7 +208,7 @@ KonfiguratorCheckBox * KonfiguratorCheckBoxGroup::find( QString name )
 
 KonfiguratorRadioButtons::KonfiguratorRadioButtons( QString cls, QString name,
     QString dflt, QWidget *parent, const char *widgetName, bool rst, int pg ) :
-    QButtonGroup( parent, widgetName ), defaultValue( dflt )
+    Q3ButtonGroup( parent, widgetName ), defaultValue( dflt )
 {
   ext = new KonfiguratorExtension( this, cls, name, rst, pg );
   connect( ext, SIGNAL( applyAuto(QObject *,QString, QString) ), this, SLOT( slotApply(QObject *,QString, QString) ) );
@@ -383,7 +386,7 @@ void KonfiguratorURLRequester::slotSetDefaults(QObject *)
 ///////////////////////////////
 
 KonfiguratorFontChooser::KonfiguratorFontChooser( QString cls, QString name, QFont *dflt,
-  QWidget *parent, const char *widgetName, bool rst, int pg ) : QHBox ( parent, widgetName ),
+  QWidget *parent, const char *widgetName, bool rst, int pg ) : Q3HBox ( parent, widgetName ),
     defaultValue( dflt )
 {
   ext = new KonfiguratorExtension( this, cls, name, rst, pg );
@@ -739,7 +742,7 @@ QColor KonfiguratorColorChooser::getColor()
 ///////////////////////////////
 
 KonfiguratorListBox::KonfiguratorListBox( QString cls, QString name, QStringList dflt,
-    QWidget *parent, const char *widgetName, bool rst, int pg ) : QListBox( parent, widgetName ),
+    QWidget *parent, const char *widgetName, bool rst, int pg ) : Q3ListBox( parent, widgetName ),
     defaultValue( dflt )
 {
   ext = new KonfiguratorExtension( this, cls, name, rst, pg );
@@ -804,7 +807,7 @@ void KonfiguratorListBox::addItem( const QString & item )
 
 void KonfiguratorListBox::removeItem( const QString & item )
 {
-  QListBoxItem * listItem = findItem( item );
+  Q3ListBoxItem * listItem = findItem( item );
   if( listItem != 0 )
   {
     takeItem( listItem );

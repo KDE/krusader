@@ -40,10 +40,14 @@
 #include "../KViewer/krviewer.h"
 #include "../panelmanager.h"
 #include <klocale.h>
-#include <qhbox.h>
+#include <q3hbox.h>
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qfontmetrics.h>
+//Added by qt3to4:
+#include <QKeyEvent>
+#include <Q3GridLayout>
+#include <Q3Frame>
 #include <kmessagebox.h>
 #include <kpopupmenu.h>
 #include <qcursor.h>
@@ -76,7 +80,7 @@ public:
   {
     KURL::List urls;
 
-    QListViewItem * item = firstChild();
+    Q3ListViewItem * item = firstChild();
     while( item )
     {
       if( item->isSelected() )
@@ -101,13 +105,13 @@ LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KD
       KDialogBase::User3, false, i18n("Stop"), i18n("Update DB"), i18n("Locate") ), isFeedToListBox( false )
 {
   QWidget *widget=new QWidget(this, "locateMainWidget");
-  QGridLayout *grid = new QGridLayout( widget );
+  Q3GridLayout *grid = new Q3GridLayout( widget );
   grid->setSpacing( 6 );
   grid->setMargin( 11 );
 
   setPlainCaption( i18n( "Krusader::Locate" ) );
   
-  QHBox *hbox = new QHBox( widget, "locateHBox" );
+  Q3HBox *hbox = new Q3HBox( widget, "locateHBox" );
   QLabel *label = new QLabel( i18n( "Search for:" ), hbox, "locateLabel" );
   locateSearchFor = new KHistoryCombo( false, hbox, "locateSearchFor" );
   label->setBuddy( locateSearchFor );
@@ -122,7 +126,7 @@ LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KD
 
   grid->addWidget( hbox, 0, 0 );
 
-  QHBox *hbox2 = new QHBox( widget, "locateHBox" );
+  Q3HBox *hbox2 = new Q3HBox( widget, "locateHBox" );
   QSpacerItem* spacer = new QSpacerItem( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
   hbox2->layout()->addItem( spacer );
   dontSearchInPath = new QCheckBox( i18n( "Don't search in path" ), hbox2, "dontSearchInPath" );
@@ -133,8 +137,8 @@ LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KD
   caseSensitive->setChecked( krConfig->readBoolEntry("Case Sensitive") );
   grid->addWidget( hbox2, 1, 0 );
 
-  QFrame *line1 = new QFrame( widget, "locateLine1" );
-  line1->setFrameStyle( QFrame::HLine | QFrame::Sunken );
+  Q3Frame *line1 = new Q3Frame( widget, "locateLine1" );
+  line1->setFrameStyle( Q3Frame::HLine | Q3Frame::Sunken );
   grid->addWidget( line1, 2, 0 );
 
   resultList=new LocateListView( widget );  // create the main container
@@ -143,26 +147,26 @@ LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KD
   resultList->setFont(krConfig->readFontEntry("Filelist Font",_FilelistFont));
 
   resultList->setAllColumnsShowFocus(true);
-  resultList->setVScrollBarMode(QScrollView::Auto);
-  resultList->setHScrollBarMode(QScrollView::Auto);
+  resultList->setVScrollBarMode(Q3ScrollView::Auto);
+  resultList->setHScrollBarMode(Q3ScrollView::Auto);
   resultList->setShowSortIndicator(false);
   resultList->setSorting(-1);
-  resultList->setSelectionMode( QListView::Extended );
+  resultList->setSelectionMode( Q3ListView::Extended );
 
   resultList->addColumn( i18n("Results"), QFontMetrics(resultList->font()).width("W") * 60 );
-  resultList->setColumnWidthMode(0,QListView::Maximum);
+  resultList->setColumnWidthMode(0,Q3ListView::Maximum);
 
-  connect( resultList,SIGNAL(rightButtonPressed(QListViewItem *, const QPoint &, int)),
-           this, SLOT(slotRightClick(QListViewItem *)));
-  connect( resultList,SIGNAL(doubleClicked(QListViewItem *)),
-           this, SLOT(slotDoubleClick(QListViewItem *)));
-  connect( resultList,SIGNAL(returnPressed(QListViewItem *)),
-           this, SLOT(slotDoubleClick(QListViewItem *)));
+  connect( resultList,SIGNAL(rightButtonPressed(Q3ListViewItem *, const QPoint &, int)),
+           this, SLOT(slotRightClick(Q3ListViewItem *)));
+  connect( resultList,SIGNAL(doubleClicked(Q3ListViewItem *)),
+           this, SLOT(slotDoubleClick(Q3ListViewItem *)));
+  connect( resultList,SIGNAL(returnPressed(Q3ListViewItem *)),
+           this, SLOT(slotDoubleClick(Q3ListViewItem *)));
            
   grid->addWidget( resultList, 3, 0 );
 
-  QFrame *line2 = new QFrame( widget, "locateLine2" );
-  line2->setFrameStyle( QFrame::HLine | QFrame::Sunken );
+  Q3Frame *line2 = new Q3Frame( widget, "locateLine2" );
+  line2->setFrameStyle( Q3Frame::HLine | Q3Frame::Sunken );
   grid->addWidget( line2, 4, 0 );
 
   enableButton( KDialogBase::User1, false );  /* disable the stop button */
@@ -345,7 +349,7 @@ void LocateDlg::processStderr(KProcess *, char *buffer, int length)
   delete []buf;  
 }
 
-void LocateDlg::slotRightClick(QListViewItem *item)
+void LocateDlg::slotRightClick(Q3ListViewItem *item)
 {
   if ( !item )
     return;
@@ -384,7 +388,7 @@ void LocateDlg::slotRightClick(QListViewItem *item)
   }
 }
 
-void LocateDlg::slotDoubleClick(QListViewItem *item)
+void LocateDlg::slotDoubleClick(Q3ListViewItem *item)
 {
   if ( !item )
     return;
@@ -445,7 +449,7 @@ void LocateDlg::keyPressEvent( QKeyEvent *e )
   QDialog::keyPressEvent( e );
 }
 
-void LocateDlg::operate( QListViewItem *item, int task )
+void LocateDlg::operate( Q3ListViewItem *item, int task )
 {
   KURL name;
   if( item != 0 )
@@ -513,7 +517,7 @@ void LocateDlg::operate( QListViewItem *item, int task )
     {
       KURL::List urls;
 
-      QListViewItem * item = resultList->firstChild();
+      Q3ListViewItem * item = resultList->firstChild();
       while( item )
       {
         if( item->isSelected() )
@@ -590,7 +594,7 @@ void LocateDlg::feedToListBox()
   }
     
   KURL::List urlList;
-  QListViewItem * item = resultList->firstChild();
+  Q3ListViewItem * item = resultList->firstChild();
   while( item )
   {
     urlList.push_back( vfs::fromPathOrURL( item->text( 0 ) ) );

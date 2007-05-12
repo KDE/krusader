@@ -33,10 +33,13 @@
 #include "../krusader.h"
 #include "../defaults.h"
 #include <qlayout.h>
-#include <qhbox.h>
+#include <q3hbox.h>
+//Added by qt3to4:
+#include <Q3VBoxLayout>
+#include <QLabel>
 #include <klocale.h>
 
-SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool modal, WFlags fl,
+SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool modal, Qt::WFlags fl,
                                       Synchronizer *sync, int pleftCopyNr, KIO::filesize_t pleftCopySize,
                                       int prightCopyNr, KIO::filesize_t prightCopySize, int pdeleteNr,
                                       KIO::filesize_t pdeleteSize, int parThreads ) : QDialog( parent, name, modal, fl ),
@@ -48,7 +51,7 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
 {
   setCaption( i18n("Krusader::Synchronize") );
 
-  QVBoxLayout *layout = new QVBoxLayout( this, 11, 6, "SynchronizeDialogLayout" );
+  Q3VBoxLayout *layout = new Q3VBoxLayout( this, 11, 6, "SynchronizeDialogLayout" );
 
   cbRightToLeft = new QCheckBox( i18n( "Right to left: Copy 1 file", "Right to left: Copy %n files", leftCopyNr) + " " +
                                  i18n( "(1 byte)", "(%n bytes)", KRpermHandler::parseSize( leftCopySize ).trimmed().toInt() ),
@@ -89,13 +92,13 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   lbDeletable->setEnabled( deleteNr != 0 );
   layout->addWidget( lbDeletable );
 
-  progress = new QProgressBar(1000, this);
+  progress = new Q3ProgressBar(1000, this);
   progress->setCenterIndicator(true);
   progress->setProgress( 0 );
   progress->setMinimumWidth( 400 );
   layout->addWidget( progress );
 
-  QHBox *hbox = new QHBox( this, "SynchronizeDialogHBox" );
+  Q3HBox *hbox = new Q3HBox( this, "SynchronizeDialogHBox" );
   hbox->setSpacing( 6 );
 
   cbOverwrite = new QCheckBox( i18n( "Confirm overwrites" ), this, "cbOverWrite" );

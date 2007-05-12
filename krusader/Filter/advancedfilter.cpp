@@ -32,11 +32,15 @@
 #include "advancedfilter.h"
 #include "../Dialogs/krdialogs.h"
 
-#include <qgroupbox.h>
+#include <q3groupbox.h>
+//Added by qt3to4:
+#include <Q3HBoxLayout>
+#include <Q3GridLayout>
+#include <QPixmap>
 #include <klocale.h>
 #include <qlayout.h>
 #include <qlabel.h>
-#include <qbuttongroup.h>
+#include <q3buttongroup.h>
 #include <qfile.h>
 #include <kdebug.h>
 #include <kmessagebox.h>
@@ -48,19 +52,19 @@
 
 AdvancedFilter::AdvancedFilter( FilterTabs *tabs, QWidget *parent, const char *name ) : QWidget( parent, name ), fltTabs( tabs )
 {
-  QGridLayout *filterLayout = new QGridLayout( this );
+  Q3GridLayout *filterLayout = new Q3GridLayout( this );
   filterLayout->setSpacing( 6 );
   filterLayout->setMargin( 11 );
 
   // Options for size
 
-  QGroupBox *sizeGroup = new QGroupBox( this, "sizeGroup" );
+  Q3GroupBox *sizeGroup = new Q3GroupBox( this, "sizeGroup" );
   sizeGroup->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)1, sizeGroup->sizePolicy().hasHeightForWidth() ) );
   sizeGroup->setTitle( i18n( "Size" ) );
   sizeGroup->setColumnLayout(0, Qt::Vertical );
   sizeGroup->layout()->setSpacing( 0 );
   sizeGroup->layout()->setMargin( 0 );
-  QGridLayout *sizeLayout = new QGridLayout( sizeGroup->layout() );
+  Q3GridLayout *sizeLayout = new Q3GridLayout( sizeGroup->layout() );
   sizeLayout->setAlignment( Qt::AlignTop );
   sizeLayout->setSpacing( 6 );
   sizeLayout->setMargin( 11 );
@@ -109,13 +113,13 @@ AdvancedFilter::AdvancedFilter( FilterTabs *tabs, QWidget *parent, const char *n
 
   QPixmap iconDate = krLoader->loadIcon( "date", KIcon::Toolbar, 16 );
 
-  QButtonGroup *dateGroup = new QButtonGroup( this, "dateGroup" );
+  Q3ButtonGroup *dateGroup = new Q3ButtonGroup( this, "dateGroup" );
   dateGroup->setTitle( i18n( "Date" ) );
   dateGroup->setExclusive( true );
   dateGroup->setColumnLayout(0, Qt::Vertical );
   dateGroup->layout()->setSpacing( 0 );
   dateGroup->layout()->setMargin( 0 );
-  QGridLayout *dateLayout = new QGridLayout( dateGroup->layout() );
+  Q3GridLayout *dateLayout = new Q3GridLayout( dateGroup->layout() );
   dateLayout->setAlignment( Qt::AlignTop );
   dateLayout->setSpacing( 6 );
   dateLayout->setMargin( 11 );
@@ -209,17 +213,17 @@ AdvancedFilter::AdvancedFilter( FilterTabs *tabs, QWidget *parent, const char *n
 
   // Options for ownership
 
-  QGroupBox *ownershipGroup = new QGroupBox( this, "ownershipGroup" );
+  Q3GroupBox *ownershipGroup = new Q3GroupBox( this, "ownershipGroup" );
   ownershipGroup->setTitle( i18n( "Ownership" ) );
   ownershipGroup->setColumnLayout(0, Qt::Vertical );
   ownershipGroup->layout()->setSpacing( 0 );
   ownershipGroup->layout()->setMargin( 0 );
-  QGridLayout *ownershipLayout = new QGridLayout( ownershipGroup->layout() );
+  Q3GridLayout *ownershipLayout = new Q3GridLayout( ownershipGroup->layout() );
   ownershipLayout->setAlignment( Qt::AlignTop );
   ownershipLayout->setSpacing( 6 );
   ownershipLayout->setMargin( 11 );
 
-  QHBoxLayout *hboxLayout = new QHBoxLayout();
+  Q3HBoxLayout *hboxLayout = new Q3HBoxLayout();
   hboxLayout->setSpacing( 6 );
   hboxLayout->setMargin( 0 );
 
@@ -247,7 +251,7 @@ AdvancedFilter::AdvancedFilter( FilterTabs *tabs, QWidget *parent, const char *n
   permissionsEnabled->setText( i18n( "P&ermissions" ) );
   ownershipLayout->addWidget( permissionsEnabled, 1, 0 );
 
-  QGroupBox *ownerGroup = new QGroupBox( ownershipGroup, "ownerGroup" );
+  Q3GroupBox *ownerGroup = new Q3GroupBox( ownershipGroup, "ownerGroup" );
   ownerGroup->setTitle( i18n( "O&wner" ) );
   int width = 2*height + height / 2;
 
@@ -274,7 +278,7 @@ AdvancedFilter::AdvancedFilter( FilterTabs *tabs, QWidget *parent, const char *n
 
   ownershipLayout->addWidget( ownerGroup, 1, 1 );
 
-  QGroupBox *groupGroup = new QGroupBox( ownershipGroup, "groupGroup" );
+  Q3GroupBox *groupGroup = new Q3GroupBox( ownershipGroup, "groupGroup" );
   groupGroup->setTitle( i18n( "Grou&p" ) );
 
   groupR = new QComboBox( false, groupGroup, "groupR" );
@@ -300,7 +304,7 @@ AdvancedFilter::AdvancedFilter( FilterTabs *tabs, QWidget *parent, const char *n
 
   ownershipLayout->addWidget( groupGroup, 1, 2 );
 
-  QGroupBox *allGroup = new QGroupBox( ownershipGroup, "allGroup" );
+  Q3GroupBox *allGroup = new Q3GroupBox( ownershipGroup, "allGroup" );
   allGroup->setTitle( i18n( "A&ll" ) );
 
   allR = new QComboBox( false, allGroup, "allR" );
@@ -453,13 +457,13 @@ void AdvancedFilter::qdate2time_t(time_t *dest, QDate d, bool start) {
 
 void AdvancedFilter::fillList(QComboBox *list, QString filename) {
   QFile data(filename);
-  if (!data.open(IO_ReadOnly))
+  if (!data.open(QIODevice::ReadOnly))
   {
     krOut << "Search: Unable to read " << filename << " !!!" << endl;
     return;
   }
   // and read it into the temporary array
-  QTextStream t(&data);
+  Q3TextStream t(&data);
   while (!data.atEnd())
   {
     QString s = t.readLine();

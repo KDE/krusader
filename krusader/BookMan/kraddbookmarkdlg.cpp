@@ -2,9 +2,11 @@
 #include "../krusader.h"
 #include "krbookmarkhandler.h"
 #include <klocale.h>
-#include <qheader.h>
+#include <q3header.h>
 #include <qlayout.h>
 #include <qlabel.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
 #include <kinputdialog.h>
 #include <kiconloader.h>
 #include <kdebug.h>
@@ -21,7 +23,7 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KURL url):
 	QWidget *page = new QWidget(this);
 	setMainWidget(page);
 
-	QGridLayout *layout = new QGridLayout(page, 1, 1, 0, spacingHint()); // expanding
+	Q3GridLayout *layout = new Q3GridLayout(page, 1, 1, 0, spacingHint()); // expanding
 	// name and url
 	QLabel *lb1 = new QLabel(i18n("Name:"), page);
 	_name = new KLineEdit(page);
@@ -76,12 +78,12 @@ QWidget *KrAddBookmarkDlg::createInWidget() {
 	populateCreateInWidget(krBookMan->_root, item);
 	_createIn->setCurrentItem(item);
 	createInSelection(item);
-	connect(_createIn, SIGNAL(selectionChanged(QListViewItem*)), this, SLOT(createInSelection(QListViewItem*)));
+	connect(_createIn, SIGNAL(selectionChanged(Q3ListViewItem*)), this, SLOT(createInSelection(Q3ListViewItem*)));
 	
 	return _createIn;
 }
 
-void KrAddBookmarkDlg::createInSelection(QListViewItem *item) {
+void KrAddBookmarkDlg::createInSelection(Q3ListViewItem *item) {
 	if (item) {
 		_folder->setText(_xr[static_cast<KListViewItem*>(item)]->text());
 	}

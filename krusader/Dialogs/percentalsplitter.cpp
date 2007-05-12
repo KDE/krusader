@@ -32,6 +32,10 @@
 #include <qtooltip.h>
 #include <qpainter.h>
 #include <qapplication.h>
+//Added by qt3to4:
+#include <QLabel>
+#include <Q3ValueList>
+#include <Q3Frame>
 
 class PercentalSplitterToolTip : public QToolTip {
 public:
@@ -72,7 +76,7 @@ PercentalSplitter::~PercentalSplitter() {
 }
   
 QString PercentalSplitter::toolTipString( int p ) {
-  QValueList<int> values = sizes();  
+  Q3ValueList<int> values = sizes();  
   if( values.count() == 2 && ( values[ 0 ] + values[ 1 ]  != 0 ) ) {
     if( p < 0 )
       p = values[ 0 ];
@@ -134,7 +138,7 @@ void PercentalSplitter::setRubberband ( int p ) {
                           WStyle_Customize | WStyle_NoBorder | WStyle_Tool | WX11BypassWM );
       label->setMargin(1);
       label->setAutoMask( FALSE );
-      label->setFrameStyle( QFrame::Plain | QFrame::Box );
+      label->setFrameStyle( Q3Frame::Plain | Q3Frame::Box );
       label->setLineWidth( 1 );
       label->setAlignment( AlignAuto | AlignTop );
       label->setIndent(0);

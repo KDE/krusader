@@ -37,13 +37,13 @@ class Synchronizer;
 class QCheckBox;
 class QLineEdit;
 class QComboBox;
-class QListView;
+class Q3ListView;
 
 class FeedToListBoxDialog : public KDialogBase {
   Q_OBJECT
   
   public:
-    FeedToListBoxDialog( QWidget*,  const char*, Synchronizer *, QListView *, bool);
+    FeedToListBoxDialog( QWidget*,  const char*, Synchronizer *, Q3ListView *, bool);
     virtual ~FeedToListBoxDialog() {};
 
     bool isAccepted() {return accepted;};
@@ -54,7 +54,7 @@ class FeedToListBoxDialog : public KDialogBase {
 
   private:
     Synchronizer * synchronizer;
-    QListView    * syncList;
+    Q3ListView    * syncList;
     QCheckBox    * cbSelected;
     QLineEdit    * lineEdit;
     QComboBox    * sideCombo;

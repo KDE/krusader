@@ -27,7 +27,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#include <qcstring.h>
+#include <q3cstring.h>
 #include <qdir.h>
 #include <qfile.h>
 #include <kdebug.h>
@@ -129,7 +129,7 @@ KIso::KIso( const QString& filename, const QString & _mimetype )
         {
             // Something else. Check if it's not really gzip though (e.g. for KOffice docs)
             QFile file( filename );
-            if ( file.open( IO_ReadOnly ) )
+            if ( file.open( QIODevice::ReadOnly ) )
             {
                 unsigned char firstByte = file.getch();
                 unsigned char secondByte = file.getch();
@@ -342,7 +342,7 @@ bool KIso::openArchive( int mode )
     struct iso_directory_record* idr;
     struct el_torito_boot_descriptor* bootdesc;
 
-    if ( mode == IO_WriteOnly )
+    if ( mode == QIODevice::WriteOnly )
         return false;
 
     readParams();

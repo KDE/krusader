@@ -7,6 +7,8 @@
 #include "listpanel.h"
 #include "krpreviewpopup.h"
 #include "../UserAction/useractionpopupmenu.h"
+//Added by qt3to4:
+#include <Q3ValueList>
 #ifdef __LIBKONQ__
 #include <konq_popupmenu.h>
 #include <konqbookmarkmanager.h>
@@ -68,7 +70,7 @@ private:
    KrViewItemList items; // list of selected items
    KrViewItem *item; // the (first) selected item
    KFileItemList _items;
-   QValueList<KServiceOffer> offers;
+   Q3ValueList<KServiceOffer> offers;
 #ifdef __LIBKONQ__
    KonqPopupMenu *konqMenu;
 #endif

@@ -34,23 +34,26 @@
 #include "../krusader.h"
 #include <klocale.h>
 #include <klineedit.h>
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
+#include <QLabel>
 
 KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
   KonfiguratorPage( first, parent, name ), profileCombo( 0 )
 {
-  QGridLayout *kgStartupLayout = new QGridLayout( parent );
+  Q3GridLayout *kgStartupLayout = new Q3GridLayout( parent );
   kgStartupLayout->setSpacing( 6 );
 
   //  --------------------------- PANELS GROUPBOX ----------------------------------
 
-  QGroupBox *panelsGrp = createFrame( i18n( "General" ), parent, "panelsGrp" );
-  QGridLayout *panelsGrid = createGridLayout( panelsGrp->layout() );
+  Q3GroupBox *panelsGrp = createFrame( i18n( "General" ), parent, "panelsGrp" );
+  Q3GridLayout *panelsGrid = createGridLayout( panelsGrp->layout() );
 
   QString s = "<p><img src='toolbar|kr_profile'></p>" + i18n( "Defines the panel profile used at startup. A panel profile contains:<ul><li>all the tabs paths</li><li>the current tab</li><li>the active panel</li></ul><b>&lt;Last session&gt;</b> is a special panel profile which is saved automatically when Krusader is closed.");
   QLabel *label = addLabel( panelsGrid, 0, 0, i18n( "Startup profile:" ), panelsGrp, "Startup session" );
-  QWhatsThis::add( label, s );
-  QWhatsThis::add( panelsGrp, s );
+  Q3WhatsThis::add( label, s );
+  Q3WhatsThis::add( panelsGrp, s );
 
   QStringList profileList = ProfileManager::availableProfiles( "Panel" );
   profileList.push_front( "<" + i18n( "Last session" ) + ">" );
@@ -80,8 +83,8 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
 
   //  ------------------------ USERINTERFACE GROUPBOX ------------------------------
 
-  QGroupBox *uiGrp = createFrame( i18n( "User Interface" ), parent, "uiGrp" );
-  QGridLayout *uiGrid = createGridLayout( uiGrp->layout() );
+  Q3GroupBox *uiGrp = createFrame( i18n( "User Interface" ), parent, "uiGrp" );
+  Q3GridLayout *uiGrid = createGridLayout( uiGrp->layout() );
 
   KONFIGURATOR_CHECKBOX_PARAM uiCheckBoxes[] =
     { //   cfg_class  cfg_name                default               text                                   restart ToolTip

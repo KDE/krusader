@@ -13,13 +13,17 @@
 #include <qpushbutton.h>
 #include <qspinbox.h>
 #include <qlayout.h>
-#include <qhbox.h>
-#include <qgrid.h>
+#include <q3hbox.h>
+#include <q3grid.h>
 #include <qvariant.h>
 #include <qtooltip.h>
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
 #include <qimage.h>
 #include <qpixmap.h>
+//Added by qt3to4:
+#include <QEvent>
+#include <Q3HBoxLayout>
+#include <Q3VBoxLayout>
 #include <klocale.h>
 #include <kprotocolinfo.h>
 #include <kcombobox.h>
@@ -37,10 +41,10 @@
  
  #define SIZE_MINIMUM	QSizePolicy( (QSizePolicy::SizeType)0, (QSizePolicy::SizeType)0 )
  
-newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl )
+newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags fl )
     : QDialog( parent, name, modal, fl ){
     
-    QVBoxLayout * layout = new QVBoxLayout( this, 11, 6, "newFTPGUI_layout" );
+    Q3VBoxLayout * layout = new Q3VBoxLayout( this, 11, 6, "newFTPGUI_layout" );
     layout->setAutoAdd(true);
     
     if ( !name )
@@ -52,7 +56,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl 
     setMinimumSize( QSize( 342, 261 ) );
 
     
-    QHBox* hbox_image = new QHBox( this, "hbox_image" );
+    Q3HBox* hbox_image = new Q3HBox( this, "hbox_image" );
     hbox_image->setSpacing( 6 );
     
     PixmapLabel1 = new QLabel( hbox_image, "PixmapLabel1" );
@@ -65,7 +69,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl 
     TextLabel3->setFont( TextLabel3_font );
 
     
-    QGrid* grid_host = new QGrid( 3, this, "grid_host" );
+    Q3Grid* grid_host = new Q3Grid( 3, this, "grid_host" );
     
     TextLabel1 = new QLabel( i18n( "Protocol:"  ), grid_host, "TextLabel1" );
     TextLabel1_22 = new QLabel( i18n( "Host:"), grid_host, "TextLabel_2" );
@@ -118,7 +122,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl 
 
     
     QWidget* Layout6 = new QWidget( this, "Layout6" );
-    hbox = new QHBoxLayout( Layout6 );
+    hbox = new Q3HBoxLayout( Layout6 );
     hbox->setSpacing( 6 );
     hbox->setMargin( 0 );
 

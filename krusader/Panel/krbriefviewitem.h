@@ -35,7 +35,9 @@
 #include <sys/types.h>
 #include "../VFS/vfile.h"
 #include <kiconview.h>
-#include <qguardedptr.h>
+#include <qpointer.h>
+//Added by qt3to4:
+#include <QPixmap>
 
 #define FASTER
 
@@ -46,11 +48,11 @@ class KrBriefViewItem : public KIconViewItem, public KrViewItem {
 friend class KrBriefView;
 friend class KrCalcSpaceDialog;
 public:
-	KrBriefViewItem(KrBriefView *parent, QIconViewItem *after, vfile *vf);
+	KrBriefViewItem(KrBriefView *parent, Q3IconViewItem *after, vfile *vf);
 	inline bool isSelected() const { return KIconViewItem::isSelected(); }
 	inline void setSelected(bool s) { KIconViewItem::setSelected(s); }
 	inline void cancelRename() { removeRenameBox(); }
-	int compare(QIconViewItem *i) const;
+	int compare(Q3IconViewItem *i) const;
 	virtual void repaintItem();
 	static void itemHeightChanged(); // force the items to resize when icon/font size change
 	// TODO: virtual void setup(); // called when iconview needs to know the height of the item

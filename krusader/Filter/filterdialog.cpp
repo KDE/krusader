@@ -33,11 +33,13 @@
 #include "generalfilter.h"
 
 #include <klocale.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
 
 FilterDialog::FilterDialog(  QWidget *parent, const char *name )
     : KDialogBase( parent, name, true, i18n("Krusader::Choose Files"), Ok|Cancel )
 {
-  QGridLayout *filterGrid = new QGridLayout( this->layout() );
+  Q3GridLayout *filterGrid = new Q3GridLayout( this->layout() );
   filterGrid->setSpacing( 6 );
   filterGrid->setMargin( 11 );
 

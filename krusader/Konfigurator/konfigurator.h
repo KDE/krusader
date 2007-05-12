@@ -35,6 +35,8 @@
 
 #include "konfiguratorpage.h"
 #include <qwidget.h>
+//Added by qt3to4:
+#include <Q3PtrList>
 #include <kdialogbase.h>
 #include <kjanuswidget.h>
 #include <qtimer.h>
@@ -68,7 +70,7 @@ private:
   int  searchPage( int pageNum );
 
 private:
-  QPtrList<KonfiguratorPage>  kgFrames;
+  Q3PtrList<KonfiguratorPage>  kgFrames;
   KJanusWidget               *widget;
   bool                        firstTime;
   int                         lastPage;

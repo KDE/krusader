@@ -38,8 +38,12 @@
 #include <qlabel.h>
 #include <qlineedit.h>
 #include <qcheckbox.h>
-#include <qlistbox.h>
+#include <q3listbox.h>
 #include <qspinbox.h>
+//Added by qt3to4:
+#include <QMouseEvent>
+#include <Q3StrList>
+#include <QEvent>
 #include <klocale.h>
 #include <kcombobox.h>
 #include <kiconloader.h>
@@ -48,7 +52,7 @@
 #include "../resources.h"
 
 ///////////////////// initiation of the static members ////////////////////////
-QStrList KRSpWidgets::maskList;
+Q3StrList KRSpWidgets::maskList;
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -151,7 +155,7 @@ KRMaskChoiceSub::KRMaskChoiceSub() : KRMaskChoice(0,0,true) {
   label->setText(i18n("Enter a selection:"));
   // the predefined selections list
   krConfig->setGroup("Private");
-  QStrList lst;
+  Q3StrList lst;
   int i=krConfig->readListEntry("Predefined Selections",lst);
   if (i>0) preSelections->insertStrList(lst);
   // the combo-box tweaks
@@ -181,8 +185,8 @@ void KRMaskChoiceSub::accept() {
   if (add)
     KRSpWidgets::maskList.insert(0,selection->currentText().local8Bit());
   // write down the predefined selections list
-  QStrList list;
-  QListBoxItem *i=preSelections->firstItem();
+  Q3StrList list;
+  Q3ListBoxItem *i=preSelections->firstItem();
   while (i!=0) {
     if (i->text().find(i18n("compare mode"))==-1)
       list.append(i->text().local8Bit());
@@ -196,7 +200,7 @@ void KRMaskChoiceSub::accept() {
 void KRMaskChoiceSub::addSelection() {
   QString temp=selection->currentText();
   bool itemExists=false;
-  QListBoxItem *i=preSelections->firstItem();
+  Q3ListBoxItem *i=preSelections->firstItem();
   // check if the selection already exists
   while (i!=0)
     if (i->text()==temp) {
@@ -222,7 +226,7 @@ void KRMaskChoiceSub::clearSelections() {
   preSelections->update();
 }
 
-void KRMaskChoiceSub::acceptFromList(QListBoxItem *i) {
+void KRMaskChoiceSub::acceptFromList(Q3ListBoxItem *i) {
   selection->insertItem(i->text(),0);
   accept();
 }

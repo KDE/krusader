@@ -33,9 +33,14 @@
 #include "stdlib.h"
 #include <unistd.h>
 #include <qmessagebox.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
+#include <Q3Frame>
+#include <QLabel>
+#include <QKeyEvent>
 #include <kprocess.h>
-#include <qiconset.h>
-#include <qwhatsthis.h>
+#include <qicon.h>
+#include <q3whatsthis.h>
 #include <unistd.h>
 #include "../krusader.h"
 #include "../kicons.h"
@@ -58,12 +63,12 @@
 #include <ktempfile.h> 
 
 KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name ) {
-  QGridLayout * layout = new QGridLayout( this, 1, 4 );
+  Q3GridLayout * layout = new Q3GridLayout( this, 1, 4 );
   path = new QLabel( this );
-  QWhatsThis::add
+  Q3WhatsThis::add
     ( path, i18n( "Name of directory where command will be processed." ) );
   path->setAlignment( Qt::AlignRight );
-  path->setFrameStyle( QFrame::Box | QFrame::Sunken );
+  path->setFrameStyle( Q3Frame::Box | Q3Frame::Sunken );
   path->setLineWidth( 1 );
   path->setFont( KGlobalSettings::generalFont() );
   int height = QFontMetrics( KGlobalSettings::generalFont() ).height();
@@ -90,7 +95,7 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
   connect( cmdLine, SIGNAL( returnPressed(const QString &) ), cmdLine, SLOT( clearEdit() ) );
   connect( cmdLine, SIGNAL( returnToPanel() ), this, SLOT( slotReturnFocus() ));
 
-  QWhatsThis::add
+  Q3WhatsThis::add
     ( cmdLine, i18n( "<qt><p>Well, it's actually quite simple: You type your command here and Krusader obeys.</p><p><b>Tip</b>: Move within command line history with &lt;Up&gt; and &lt;Down&gt; arrows.</p></qt>" ) );
   layout->addWidget( cmdLine, 0, 1 );
 
@@ -99,7 +104,7 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
   buttonAddPlaceholder->adjustSize();
   buttonAddPlaceholder->setPixmap( SmallIcon( "add" ) );
   connect( buttonAddPlaceholder, SIGNAL( clicked() ), this, SLOT( addPlaceholder() ) );
-  QWhatsThis::add( buttonAddPlaceholder, i18n( "Add <b>Placeholders</b> for the selected files in the panel." ) );
+  Q3WhatsThis::add( buttonAddPlaceholder, i18n( "Add <b>Placeholders</b> for the selected files in the panel." ) );
 
   layout->addWidget( buttonAddPlaceholder, 0, 2 );
 

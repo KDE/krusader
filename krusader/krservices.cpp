@@ -156,7 +156,7 @@ void KrServices::clearProtocolCache()
   slaveMap = 0;
 }
 
-bool KrServices::fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines) {
+bool KrServices::fileToStringList(Q3TextStream *stream, QStringList& target, bool keepEmptyLines) {
 	if (!stream) return false;
 	QString line;
 	while ( !stream->atEnd() ) {

@@ -36,6 +36,13 @@ A
 #include <qwidget.h>
 #include <qtimer.h>
 #include <qdatetime.h>
+//Added by qt3to4:
+#include <QDragMoveEvent>
+#include <QDropEvent>
+#include <QWheelEvent>
+#include <QMouseEvent>
+#include <QKeyEvent>
+#include <QEvent>
 #include "krview.h"
 #include "krviewitem.h"
 
@@ -123,32 +130,32 @@ protected:
    virtual bool acceptDrag( QDropEvent* e ) const;
    virtual void contentsDropEvent( QDropEvent *e );
    virtual void contentsDragMoveEvent( QDragMoveEvent *e );
-   virtual QRect drawItemHighlighter(QPainter *painter, QListViewItem *item);
+   virtual QRect drawItemHighlighter(QPainter *painter, Q3ListViewItem *item);
    virtual void startDrag() { op()->startDrag(); }
    virtual bool event( QEvent *e );
    virtual bool eventFilter( QObject * watched, QEvent * e );
 
 protected slots:
-   void rename( QListViewItem *item, int c );
-   void slotClicked( QListViewItem *item );
-   void slotDoubleClicked( QListViewItem *item );
-   void slotItemDescription( QListViewItem *item );
-   void slotCurrentChanged( QListViewItem *item );
-   void handleContextMenu( QListViewItem*, const QPoint&, int );
+   void rename( Q3ListViewItem *item, int c );
+   void slotClicked( Q3ListViewItem *item );
+   void slotDoubleClicked( Q3ListViewItem *item );
+   void slotItemDescription( Q3ListViewItem *item );
+   void slotCurrentChanged( Q3ListViewItem *item );
+   void handleContextMenu( Q3ListViewItem*, const QPoint&, int );
    virtual void renameCurrentItem();
    virtual void showContextMenu( );
-   void inplaceRenameFinished( QListViewItem *it, int col );
-   void setNameToMakeCurrent( QListViewItem *it );
+   void inplaceRenameFinished( Q3ListViewItem *it, int col );
+   void setNameToMakeCurrent( Q3ListViewItem *it );
 	void sortOrderChanged(int);
-	void slotRightButtonPressed(QListViewItem*, const QPoint& point, int);
+	void slotRightButtonPressed(Q3ListViewItem*, const QPoint& point, int);
 	void slotSortOrderChanged(int col);
-   void transformCurrentChanged( QListViewItem * item ) { emit currentChanged( dynamic_cast<KrViewItem *>(item ) ); }
+   void transformCurrentChanged( Q3ListViewItem * item ) { emit currentChanged( dynamic_cast<KrViewItem *>(item ) ); }
 
    /**
     * used internally to produce the signal middleButtonClicked()
     */
-   void slotMouseClicked( int button, QListViewItem * item, const QPoint & pos, int c );
-   inline void slotExecuted( QListViewItem* i ) {
+   void slotMouseClicked( int button, Q3ListViewItem * item, const QPoint & pos, int c );
+   inline void slotExecuted( Q3ListViewItem* i ) {
       QString tmp = dynamic_cast<KrViewItem*>( i ) ->name();
       op()->emitExecuted( tmp );
    }
@@ -163,18 +170,18 @@ private:
    static QString ColumnName[ KrDetailedViewProperties::MAX_COLUMNS ];
    bool swushSelects;
    QPoint dragStartPos;
-   QListViewItem *lastSwushPosition;
+   Q3ListViewItem *lastSwushPosition;
    bool caseSensitiveSort;
    KrViewItem *_currDragItem;
    bool singleClicked;
    bool modifierPressed;
    QTime clickTime;
-   QListViewItem *clickedItem;
+   Q3ListViewItem *clickedItem;
    QTimer renameTimer;
    QTimer contextMenuTimer;
    QPoint contextMenuPoint;
-   QListViewItem *currentlyRenamedItem;
-   QListViewItem *pressedItem;
+   Q3ListViewItem *currentlyRenamedItem;
+   Q3ListViewItem *pressedItem;
 };
 
 #endif /* KRDETAILEDVIEW_H */

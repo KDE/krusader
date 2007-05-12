@@ -35,11 +35,13 @@
 
 #include <sys/param.h>
 #include <kdialogbase.h>
-#include <qlistview.h>
+#include <q3listview.h>
+//Added by qt3to4:
+#include <Q3Frame>
 #include <kjanuswidget.h>
 #include <qtimer.h>
 #include <kurl.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 #include <kmountpoint.h>
 #include <qdatetime.h>
 #include "kmountman.h"
@@ -67,9 +69,9 @@ public:
    void createMainPage(); // creator of the main page - filesystems
 
 protected slots:
-   void doubleClicked( QListViewItem * );
-   void clicked( QListViewItem *, const QPoint& pos, int col );
-   void changeActive( QListViewItem * );
+   void doubleClicked( Q3ListViewItem * );
+   void clicked( Q3ListViewItem *, const QPoint& pos, int col );
+   void changeActive( Q3ListViewItem * );
    void checkMountChange(); // check whether the mount table was changed
 
 	void updateList();     // fill-up the filesystems list
@@ -79,7 +81,7 @@ protected slots:
 								unsigned long kBUsed, unsigned long kBAvail);
 
 protected:
-	void addItemToMountList( QListView *lst, fsData &fs );
+	void addItemToMountList( Q3ListView *lst, fsData &fs );
 		
 signals:
    void refreshPanel( const KURL & );
@@ -87,15 +89,15 @@ signals:
 
 private:
    KRFSDisplay *info;
-   QFrame *mainPage;
+   Q3Frame *mainPage;
    KJanusWidget *widget;
-   QListView *mountList;
+   Q3ListView *mountList;
    QTimer *watcher;
    QDateTime lastMtab;
 	// used for the getSpace - gotSpace functions
 	KMountPoint::List possible, mounted;
-	QValueList<fsData> fileSystems;
-	QValueList<fsData> fileSystemsTemp;  // first collect to a temporary place
+	Q3ValueList<fsData> fileSystems;
+	Q3ValueList<fsData> fileSystemsTemp;  // first collect to a temporary place
 	int numOfMountPoints;
 };
 

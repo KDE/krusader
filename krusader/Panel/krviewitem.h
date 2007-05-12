@@ -34,6 +34,8 @@
 #include <kio/global.h>
 #include "../VFS/vfile.h"
 #include "krview.h"
+//Added by qt3to4:
+#include <QPixmap>
 
 class QString;
 class QPixmap;

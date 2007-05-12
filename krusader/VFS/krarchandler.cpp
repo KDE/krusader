@@ -28,7 +28,7 @@
 *                                                                         *
 ***************************************************************************/ 
 // QT includes
-#include <qtextstream.h> 
+#include <q3textstream.h> 
 // KDE includes
 #include <kprocess.h>
 #include <ktempfile.h>
@@ -207,7 +207,7 @@ long KRarcHandler::arcFileCount( QString archive, QString type, QString password
     return 0;
   }
 
-  QTextStream *stream = tmpFile.textStream();
+  Q3TextStream *stream = tmpFile.textStream();
   while ( stream && stream->readLine() != QString::null ) ++count;
   tmpFile.unlink();
 
@@ -631,7 +631,7 @@ QString KRarcHandler::detectArchive( bool &encrypted, QString fileName, bool che
 	encrypted = false;
 	
 	QFile arcFile( fileName );
-	if ( arcFile.open( IO_ReadOnly ) ) {
+	if ( arcFile.open( QIODevice::ReadOnly ) ) {
 		char buffer[ 1024 ];
 		long sizeMax = arcFile.read( buffer, sizeof( buffer ) );
 		arcFile.close();
@@ -656,7 +656,7 @@ QString KRarcHandler::detectArchive( bool &encrypted, QString fileName, bool che
 				QString type = autoDetectParams[ i ].type;
 				if( type == "bzip2" || type == "gzip" ) {
 					KTar tapeArchive( fileName );
-					if( tapeArchive.open( IO_ReadOnly ) ) {
+					if( tapeArchive.open( QIODevice::ReadOnly ) ) {
 						tapeArchive.close();
 						if( type == "bzip2" )
 							type = "tbz";

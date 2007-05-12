@@ -34,9 +34,11 @@
 #include "synchronizertask.h"
 #include "synchronizerfileitem.h"
 #include <qobject.h>
-#include <qptrvector.h>
+#include <q3ptrvector.h>
 #include <qmap.h>
 #include <qcolor.h>
+//Added by qt3to4:
+#include <Q3PtrList>
 #include <kio/job.h>
 
 class KRQuery;
@@ -150,8 +152,8 @@ class Synchronizer : public QObject
     bool                              cmpByContent;   // compare the files by content
     bool                              ignoreCase;     // case insensitive synchronization for Windows fs
     bool                              autoScroll;     // automatic update of the directory
-    QPtrList<SynchronizerFileItem>    resultList;     // the found files
-    QPtrList<SynchronizerFileItem>    temporaryList;  // temporary files
+    Q3PtrList<SynchronizerFileItem>    resultList;     // the found files
+    Q3PtrList<SynchronizerFileItem>    temporaryList;  // temporary files
     QString                           leftBaseDir;    // the left-side base directory
     QString                           rightBaseDir;   // the right-side base directory
     QStringList                       excludedPaths;  // list of the excluded paths
@@ -190,7 +192,7 @@ class Synchronizer : public QObject
     int                               fileCount;      // the number of counted files
 
   private:
-    QPtrList<SynchronizerTask>        stack;          // stack for comparing
+    Q3PtrList<SynchronizerTask>        stack;          // stack for comparing
     QMap<KIO::Job *,SynchronizerFileItem *> jobMap;   // job maps
     QMap<KIO::Job *,KIO::filesize_t>  receivedMap;    // the received file size
     SynchronizerFileItem             *lastTask;       // reference to the last stack

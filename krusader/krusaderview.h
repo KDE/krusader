@@ -44,8 +44,11 @@
 #include <qsplitter.h>
 #include <qwidget.h>
 #include <qpushbutton.h>
-#include <qhbox.h>
-#include <qvaluelist.h>
+#include <q3hbox.h>
+#include <q3valuelist.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
+#include <QEvent>
 
 class PanelManager;
 class ListPanel;
@@ -65,7 +68,7 @@ public:
   void cmdLineUnFocus();// return focus from command line to active panel
   inline PanelManager *activeManager() const { return (activePanel==left ? leftMng : rightMng); }
   inline PanelManager *inactiveManager() const { return (activePanel==left ? rightMng : leftMng); }
-  QValueList<int> getTerminalEmulatorSplitterSizes();
+  Q3ValueList<int> getTerminalEmulatorSplitterSizes();
   virtual bool eventFilter ( QObject * watched, QEvent * e );
   /** if the KonsolePart for the Terminal Emulator is not yet loaded, load it */
   void createTE();
@@ -96,13 +99,13 @@ public:
   PanelManager *leftMng, *rightMng;       // saving them for panel swaps
   KFnKeys			*fnKeys;										// function keys
   KCMDLine    *cmdLine;                   // command line widget
-  QHBox       *terminal_dock;             // docking widget for terminal emulator
+  Q3HBox       *terminal_dock;             // docking widget for terminal emulator
   KParts::ReadOnlyPart *konsole_part;     // the actual part pointer
   QSplitter		*horiz_splitter, *vert_splitter;
-  QValueList<int> verticalSplitterSizes;
+  Q3ValueList<int> verticalSplitterSizes;
 
 private:
-  QGridLayout *mainLayout, *terminal_layout;
+  Q3GridLayout *mainLayout, *terminal_layout;
 };
 
 #endif

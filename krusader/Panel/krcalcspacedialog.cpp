@@ -33,6 +33,8 @@ A
 #include <qtimer.h>
 #include <qlayout.h>
 #include <qlabel.h>
+//Added by qt3to4:
+#include <Q3VBoxLayout>
 // KDE Includes
 #include <klocale.h>
 #include <kcursor.h>
@@ -100,7 +102,7 @@ KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, ListPanel * files, const Q
 	m_pollTimer = new QTimer(this);
 	QWidget * mainWidget = new QWidget( this );
 	setMainWidget(mainWidget);
-	QVBoxLayout *topLayout = new QVBoxLayout( mainWidget, 0, spacingHint() );
+	Q3VBoxLayout *topLayout = new Q3VBoxLayout( mainWidget, 0, spacingHint() );
 
 	m_label = new QLabel( "", mainWidget, "caption" );
 	showResult(); // fill m_label with something usefull

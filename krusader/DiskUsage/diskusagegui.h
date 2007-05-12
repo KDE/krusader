@@ -34,6 +34,8 @@
 #include <qdialog.h>
 #include <qlayout.h>
 #include <qtoolbutton.h>
+//Added by qt3to4:
+#include <QResizeEvent>
 #include <kurl.h>
 #include <ksqueezedtextlabel.h>
 

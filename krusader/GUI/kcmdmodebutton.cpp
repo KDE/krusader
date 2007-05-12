@@ -31,6 +31,8 @@
 #include <kpopupmenu.h>
 
 #include <kdebug.h>
+//Added by qt3to4:
+#include <Q3PopupMenu>
 
 KCMDModeButton::KCMDModeButton( QWidget *parent, const char *name ) : QToolButton( parent, name ) {
   setFixedSize( 22, 20 );
@@ -50,7 +52,7 @@ KCMDModeButton::KCMDModeButton( QWidget *parent, const char *name ) : QToolButto
   {
     action->insert( *Krusader::execTypeArray[i] );
   }
-  QPopupMenu *pP = action->popupMenu();
+  Q3PopupMenu *pP = action->popupMenu();
   Q_CHECK_PTR( pP );
   setPopup( pP );
   setPopupDelay( 10 );
@@ -63,7 +65,7 @@ KCMDModeButton::~KCMDModeButton() {
 
 /** called when clicked to the button */
 void KCMDModeButton::openPopup() {
-  QPopupMenu * pP = popup();
+  Q3PopupMenu * pP = popup();
   if ( pP ) {
     popup() ->exec( mapToGlobal( QPoint( 0, 0 ) ) );
   }

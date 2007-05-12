@@ -33,6 +33,11 @@
 #include <klocale.h>
 #include <qlayout.h>
 #include <qlabel.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
+#include <Q3HBoxLayout>
+#include <Q3Frame>
+#include <QKeyEvent>
 #include <kmessagebox.h>
 
 PredefinedDevice SplitterGUI::predefinedDevices[] = {
@@ -52,7 +57,7 @@ SplitterGUI::SplitterGUI( QWidget* parent,  KURL fileURL, KURL defaultDir ) :
 {
   predefinedDeviceNum = sizeof( predefinedDevices ) / sizeof( PredefinedDevice );
 
-  QGridLayout *grid = new QGridLayout( this );
+  Q3GridLayout *grid = new Q3GridLayout( this );
   grid->setSpacing( 6 );
   grid->setMargin( 11 );
 
@@ -66,7 +71,7 @@ SplitterGUI::SplitterGUI( QWidget* parent,  KURL fileURL, KURL defaultDir ) :
   urlReq->setMode( KFile::Directory );
   grid->addWidget( urlReq, 1 ,0 );
 
-  QHBox *splitSizeLine = new QHBox( this, "splitSizeLine" );
+  Q3HBox *splitSizeLine = new Q3HBox( this, "splitSizeLine" );
      
   deviceCombo = new QComboBox( splitSizeLine, "deviceCombo" );
   for( int i=0; i != predefinedDeviceNum; i++ )
@@ -92,13 +97,13 @@ SplitterGUI::SplitterGUI( QWidget* parent,  KURL fileURL, KURL defaultDir ) :
 
   grid->addWidget( splitSizeLine,2 ,0 );
 
-  QFrame *separator = new QFrame( this, "separatorLine" );
-  separator->setFrameStyle( QFrame::HLine | QFrame::Sunken );
+  Q3Frame *separator = new Q3Frame( this, "separatorLine" );
+  separator->setFrameStyle( Q3Frame::HLine | Q3Frame::Sunken );
   separator->setFixedHeight( separator->sizeHint().height() );
 
   grid->addWidget( separator,3 ,0 );
   
-  QHBoxLayout *splitButtons = new QHBoxLayout;
+  Q3HBoxLayout *splitButtons = new Q3HBoxLayout;
   splitButtons->setSpacing( 6 );
   splitButtons->setMargin( 0 );
 
@@ -201,8 +206,8 @@ void SplitterGUI::keyPressEvent( QKeyEvent *e )
 {
   switch ( e->key() )
   {
-  case Key_Enter :
-  case Key_Return :
+  case Qt::Key_Enter :
+  case Qt::Key_Return :
     emit splitPressed();
     return;
   default:

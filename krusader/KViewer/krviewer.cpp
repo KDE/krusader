@@ -17,8 +17,12 @@
 // Qt includes
 #include <qdatastream.h>
 #include <qfile.h>
-#include <qpopupmenu.h> 
+#include <q3popupmenu.h> 
 #include <qtimer.h>
+//Added by qt3to4:
+#include <QKeyEvent>
+#include <Q3PtrList>
+#include <QEvent>
 // KDE includes
 #include <kmenubar.h>
 #include <kmimetype.h>
@@ -50,7 +54,7 @@
 #define MODIFIED_ICON "filesaveas"
 
 
-QPtrList<KrViewer> KrViewer::viewers;
+Q3PtrList<KrViewer> KrViewer::viewers;
 
 KrViewer::KrViewer( QWidget *parent, const char *name ) :
 KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ), returnFocusTo( 0 ), returnFocusTab( 0 ),
@@ -81,7 +85,7 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ), retur
 	printAction = KStdAction::print( this, SLOT( print() ), 0, 0 );
 	copyAction = KStdAction::copy( this, SLOT( copy() ), 0, 0 );
 
-	viewerMenu = new QPopupMenu( this );
+	viewerMenu = new Q3PopupMenu( this );
 	viewerMenu->insertItem( i18n( "&Generic viewer" ), this, SLOT( viewGeneric() ), CTRL + SHIFT + Key_G, 1 );
 	viewerMenu->insertItem( i18n( "&Text viewer" ), this, SLOT( viewText() ), CTRL + SHIFT + Key_T, 2 );
 	viewerMenu->insertItem( i18n( "&Hex viewer" ), this, SLOT( viewHex() ), CTRL + SHIFT + Key_H, 3 );
@@ -301,7 +305,7 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 	KURL url = pvb->url();
 	setCaption( msg+": " + url.prettyURL() );
 
-	QIconSet icon = QIconSet(krLoader->loadIcon(iconName,KIcon::Small));
+	QIcon icon = QIcon(krLoader->loadIcon(iconName,KIcon::Small));
 
 	manager.addPart( part, this );
 	manager.setActivePart( part );
@@ -453,7 +457,7 @@ void KrViewer::checkModified(){
 		QString label = tabBar.tabLabel(pvb);
 		if( !label.startsWith("*" + pvb->part()->url().fileName() ) ){
 			label.prepend("*");
-			QIconSet icon = QIconSet(krLoader->loadIcon(MODIFIED_ICON,KIcon::Small));
+			QIcon icon = QIcon(krLoader->loadIcon(MODIFIED_ICON,KIcon::Small));
 
 			tabBar.changeTab(pvb,icon,label);
 		}
@@ -463,7 +467,7 @@ void KrViewer::checkModified(){
 		QString label = tabBar.tabLabel(pvb);
 		if( label.startsWith("*" + pvb->part()->url().fileName() ) ){
 			label = label.mid( 1 );
-			QIconSet icon = QIconSet(krLoader->loadIcon(EDIT_ICON,KIcon::Small));
+			QIcon icon = QIcon(krLoader->loadIcon(EDIT_ICON,KIcon::Small));
 
 			tabBar.changeTab(pvb,icon,label);
 		}		
@@ -654,7 +658,7 @@ void KrViewer::viewHex() {
 
 		// create a hex file
 		QFile f_in( file );
-		f_in.open( IO_ReadOnly );
+		f_in.open( QIODevice::ReadOnly );
 		QDataStream in( &f_in );
 
 		FILE *out = KDE_fopen( tmpFile.name().local8Bit(), "w" );

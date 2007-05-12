@@ -25,6 +25,8 @@
 #include <qfileinfo.h>
 #include <qregexp.h>
 #include <qdir.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 #include <kfileitem.h>
 #include <kdebug.h>
@@ -47,8 +49,8 @@
 #if 0
 #define KRDEBUG(X...) do{   \
 	QFile f("/tmp/debug");    \
-	f.open(IO_WriteOnly | IO_Append);     \
-	QTextStream stream( &f ); \
+	f.open(QIODevice::WriteOnly | QIODevice::Append);     \
+	Q3TextStream stream( &f ); \
   stream << "Pid:" << (int)getpid() << " " <<__FUNCTION__<<"(" <<__LINE__<<"): "; \
   stream << X << endl;      \
 	f.close();                \
@@ -76,7 +78,7 @@ int kdemain( int argc, char **argv ){
 
 } // extern "C" 
 
-kio_krarcProtocol::kio_krarcProtocol(const QCString &pool_socket, const QCString &app_socket)
+kio_krarcProtocol::kio_krarcProtocol(const Q3CString &pool_socket, const Q3CString &app_socket)
 	: SlaveBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(0L),extArcReady(false),
 		password(QString::null) {
 	
@@ -347,7 +349,7 @@ void kio_krarcProtocol::get(const KURL& url, int tries ){
 		}
 		// the follwing block is ripped from KDE file KIO::Slave
 		// $Id: krarc.cpp,v 1.43 2007/01/13 13:39:51 ckarai Exp $
-		QCString _path( QFile::encodeName(arcTempDir+file) );
+		Q3CString _path( QFile::encodeName(arcTempDir+file) );
 		KDE_struct_stat buff;
 		if( KDE_lstat( _path.data(), &buff ) == -1 ) {
 			if ( errno == EACCES )
@@ -747,7 +749,7 @@ bool kio_krarcProtocol::initDirDict(const KURL&url, bool forced){
 	}
 	
 	// parse the temp file
-	temp.file()->open(IO_ReadOnly);
+	temp.file()->open(QIODevice::ReadOnly);
 	char buf[1000];
 	QString line;
 	
@@ -1414,7 +1416,7 @@ QString kio_krarcProtocol::detectArchive( bool &encrypted, QString fileName ) {
 	encrypted = false;
 	
 	QFile arcFile( fileName );
-	if ( arcFile.open( IO_ReadOnly ) ) {
+	if ( arcFile.open( QIODevice::ReadOnly ) ) {
 		char buffer[ 1024 ];
 		long sizeMax = arcFile.read( buffer, sizeof( buffer ) );
 		arcFile.close();
@@ -1439,7 +1441,7 @@ QString kio_krarcProtocol::detectArchive( bool &encrypted, QString fileName ) {
 				QString type = autoDetectParams[ i ].type;
 				if( type == "bzip2" || type == "gzip" ) {
 					KTar tapeArchive( fileName );
-					if( tapeArchive.open( IO_ReadOnly ) ) {
+					if( tapeArchive.open( QIODevice::ReadOnly ) ) {
 						tapeArchive.close();
 						if( type == "bzip2" )
 							type = "tbz";
