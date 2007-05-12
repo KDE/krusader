@@ -1,0 +1,22 @@
+
+include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
+
+
+########### install files ###############
+
+
+
+
+#original Makefile.am contents follow:
+
+#noinst_LIBRARIES = libSplitter.a
+#
+#INCLUDES = $(all_includes)
+#
+#libSplitter_a_METASOURCES = AUTO
+#
+#libSplitter_a_SOURCES = \
+#	crc32.cpp \
+#	splittergui.cpp \
+#	splitter.cpp \
+#	combiner.cpp 
