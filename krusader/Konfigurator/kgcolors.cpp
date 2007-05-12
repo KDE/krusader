@@ -589,7 +589,7 @@ void KgColors::deserialize(QDataStream & stream)
           name == "Show Current Item Always" || name == "Dim Inactive Colors" )
       {
         bool bValue = false;
-        value = value.lower();
+        value = value.toLower();
         if( value == "true" || value == "yes" || value == "on" || value == "1" )
           bValue = true;
 

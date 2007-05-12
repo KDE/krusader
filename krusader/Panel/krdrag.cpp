@@ -38,9 +38,9 @@ KRDrag * KRDrag::newDrag( const KURL::List & urls, bool move, QWidget * dragSour
     KURL::List::ConstIterator uit = urls.begin();
     KURL::List::ConstIterator uEnd = urls.end();
     // Get each URL encoded in utf8 - and since we get it in escaped
-    // form on top of that, .latin1() is fine.
+    // form on top of that, .toLatin1() is fine.
     for ( ; uit != uEnd ; ++uit )
-        uris.append( KURLDrag::urlToString( *uit ).latin1() );
+        uris.append( KURLDrag::urlToString( *uit ).toLatin1() );
     return new KRDrag( uris, move, dragSource, name );
 }
 

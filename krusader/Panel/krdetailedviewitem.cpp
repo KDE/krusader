@@ -269,8 +269,8 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
 
 		if( ignoreCase )
 		{
-			text0  = text0.lower();
-			itext0 = itext0.lower();
+			text0  = text0.toLower();
+			itext0 = itext0.toLower();
 		}
 
 		if ( isHidden() ) {
@@ -296,8 +296,8 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
 			return 0;
 		return ((thisPerm > otherPerm) ? 1 : -1);
   } else {
-      QString e1 = (!ignoreCase ? text(col) : text(col).lower());
-      QString e2 = (!ignoreCase ? i->text(col) : i->text(col).lower());
+      QString e1 = (!ignoreCase ? text(col) : text(col).toLower());
+      QString e2 = (!ignoreCase ? i->text(col) : i->text(col).toLower());
 		if (!ignoreCase && !PROPS->localeAwareCompareIsCaseSensitive) {
 			// sometimes, localeAwareCompare is not case sensative. in that case,
 			// we need to fallback to a simple string compare (KDE bug #40131)

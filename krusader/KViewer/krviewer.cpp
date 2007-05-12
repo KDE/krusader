@@ -562,10 +562,10 @@ bool KrViewer::editGeneric( QString mimetype, KURL _url ) {
 		// we now know that our offer can handle mimetype and is a part.
 		// since it is a part, it must also have a library... let's try to
 		// load that now
-		factory = KLibLoader::self() ->factory( ptr->library().latin1() );
+		factory = KLibLoader::self() ->factory( ptr->library().toLatin1() );
 		if ( factory ) {
 			kedit_part = static_cast<KParts::ReadWritePart *>( factory->create( this,
-			             ptr->name().latin1(), "KParts::ReadWritePart" ) );
+			             ptr->name().toLatin1(), "KParts::ReadWritePart" ) );
 			if ( kedit_part )
 				if ( kedit_part->openURL( _url ) ) break;
 				else {

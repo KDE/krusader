@@ -44,7 +44,7 @@ QByteArray KIsoFile::data(long long pos, int count) const {
     
     if ( archive()->device()->at(position()+pos) &&
          r.resize( ((pos+count) < size()) ? count : size()-pos) ) {
-        rlen=archive()->device()->readBlock( r.data(), r.size() );
+        rlen=archive()->device()->read( r.data(), r.size() );
         if (rlen ==- 1) r.resize(0);
         else if (rlen != (int)r.size()) r.resize(rlen);
     }

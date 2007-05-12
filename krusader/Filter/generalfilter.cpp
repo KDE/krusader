@@ -331,7 +331,7 @@ GeneralFilter::~GeneralFilter()
 bool GeneralFilter::fillQuery( KRQuery *query )
 {
   // check that we have (at least) what to search, and where to search in
-  if (searchFor->currentText().simplifyWhiteSpace().isEmpty()) {
+  if (searchFor->currentText().simplified().isEmpty()) {
     KMessageBox::error(this ,i18n("No search criteria entered!"));
     searchFor->setFocus();
     return false;
@@ -339,7 +339,7 @@ bool GeneralFilter::fillQuery( KRQuery *query )
 
   // now fill the query
 
-  query->setNameFilter( searchFor->currentText().stripWhiteSpace(), searchForCase->isChecked() );
+  query->setNameFilter( searchFor->currentText().trimmed(), searchForCase->isChecked() );
 
   bool remoteContent = (properties & FilterTabs::HasRemoteContentSearch ) ? 
                        remoteContentSearch->isChecked() : false;
@@ -459,7 +459,7 @@ void GeneralFilter::saveToProfile( QString name )
 
     QStringList searchInList;
     for ( QListBoxItem *item = searchIn->listBox()->firstItem(); item != 0; item = item->next() )
-      searchInList.append( item->text().simplifyWhiteSpace() );
+      searchInList.append( item->text().simplified() );
     krConfig->writeEntry( "Search In List", searchInList );
   }
 
@@ -469,7 +469,7 @@ void GeneralFilter::saveToProfile( QString name )
 
     QStringList dontSearchInList;
     for ( QListBoxItem *item = dontSearchIn->listBox()->firstItem(); item != 0; item = item->next() )
-      dontSearchInList.append( item->text().simplifyWhiteSpace() );
+      dontSearchInList.append( item->text().simplified() );
     krConfig->writeEntry( "Dont Search In List", dontSearchInList );
   }
 }
@@ -495,7 +495,7 @@ void GeneralFilter::refreshProfileListBox()
 
 void GeneralFilter::slotAddBtnClicked()
 {
-  profileManager->newProfile( searchFor->currentText().simplifyWhiteSpace() );
+  profileManager->newProfile( searchFor->currentText().simplified() );
   refreshProfileListBox();
 }
 

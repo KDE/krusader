@@ -63,11 +63,11 @@ vfile * SynchronizerDirList::search( const QString &name, bool ignoreCase ) {
     return (*this)[ name ];
 
   vfile *item = first();
-  QString file = name.lower();
+  QString file = name.toLower();
 
   while( item )
   {
-    if( file == item->vfile_getName().lower() )
+    if( file == item->vfile_getName().toLower() )
       return item;
     item = next();
   }
@@ -131,7 +131,7 @@ bool SynchronizerDirList::load( const QString &urlIn, bool wait ) {
           QString absSymDest = symlinkDest = QString::fromLocal8Bit( symDest );
 
           if( !absSymDest.startsWith( "/" ) )
-            absSymDest = QDir::cleanDirPath( path + "/" + absSymDest );
+            absSymDest = QDir::cleanPath( path + "/" + absSymDest );
 
           if ( QDir( absSymDest ).exists() )
             perm[0] = 'd';

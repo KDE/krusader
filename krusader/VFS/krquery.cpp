@@ -363,7 +363,7 @@ bool KRQuery::containsContent( QString file ) const
 
   while ( !qf.atEnd() )
   {
-    int bytes = qf.readBlock( buffer, sizeof( buffer ) );
+    int bytes = qf.read( buffer, sizeof( buffer ) );
     if( bytes <= 0 )
       break;
 
@@ -499,9 +499,9 @@ void KRQuery::setNameFilter( const QString &text, bool cs )
 
   if( excludeNdx < matchText.length() )
   {
-    excludeText = matchText.mid( excludeNdx + 1 ).stripWhiteSpace();
+    excludeText = matchText.mid( excludeNdx + 1 ).trimmed();
     matchText.truncate( excludeNdx );
-    matchText = matchText.stripWhiteSpace();
+    matchText = matchText.trimmed();
     if( matchText.isEmpty() )
       matchText = "*";
   }

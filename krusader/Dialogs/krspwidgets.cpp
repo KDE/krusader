@@ -77,8 +77,8 @@ KURL KRSpWidgets::newFTP() {
 	
 	QString protocol = p->prefix->currentText();
 	protocol.truncate(protocol.length() - 3); // remove the trailing ://
-	QString username = p->username->text().simplifyWhiteSpace();
-	QString password = p->password->text().simplifyWhiteSpace();
+	QString username = p->username->text().simplified();
+	QString password = p->password->text().simplified();
 	QString uri = p->url->currentText();
 
 	int uriStart = uri.findRev( '@' ); /* lets the user enter user and password in the URI field */
@@ -172,7 +172,7 @@ void KRMaskChoiceSub::accept() {
   char *tmp;
   // make sure we don't have that already
   for ( tmp = KRSpWidgets::maskList.first(); tmp ; tmp = KRSpWidgets::maskList.next() )
-    if (QString(tmp).simplifyWhiteSpace() == selection->currentText().simplifyWhiteSpace()) {
+    if (QString(tmp).simplified() == selection->currentText().simplified()) {
       // break if we found one such as this
       add = false;
       break;
@@ -275,7 +275,7 @@ void QuickNavLineEdit::mousePressEvent( QMouseEvent *m ) {
 int QuickNavLineEdit::charCount(const QMouseEvent * const m,QString * const str) {
 	// find how much of the string we've selected (approx) 
 	// and select from from the start to the closet slash (on the right)
-	const QString tx = text().simplifyWhiteSpace();
+	const QString tx = text().simplified();
 	if (tx.isEmpty()) {
 		clearAll();
     return -1;

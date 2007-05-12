@@ -86,7 +86,7 @@ KURLListRequester::KURLListRequester( QWidget *parent, const char * name ) : QWi
 
 void KURLListRequester::slotAdd()
 {
-  QString text = urlLineEdit->text().simplifyWhiteSpace();
+  QString text = urlLineEdit->text().simplified();
   if( text.length() )
   {  
     QString error = QString::null;    
@@ -163,7 +163,7 @@ KURL::List KURLListRequester::urlList()
 {
   KURL::List urls;
   
-  QString text = urlLineEdit->text().simplifyWhiteSpace();
+  QString text = urlLineEdit->text().simplified();
   if (!text.isEmpty())
   {
     QString error = QString::null;
@@ -175,7 +175,7 @@ KURL::List KURLListRequester::urlList()
   QListBoxItem *item = urlListBox->firstItem();
   while ( item )
   {    
-    QString text = item->text().simplifyWhiteSpace();
+    QString text = item->text().simplified();
     
     QString error = QString::null;
     emit checkValidity( text, error );    

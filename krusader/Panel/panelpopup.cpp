@@ -116,7 +116,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
    stack->addWidget( tree, Tree );
    tree->addColumn( "" );
 	// add ~
-	tree->addBranch( QDir::home().absPath(), i18n("Home"));
+	tree->addBranch( QDir::home().absolutePath(), i18n("Home"));
 	tree->setDirOnlyMode( tree->branch(i18n("Home")), true);
 	tree->branch(i18n("Home"))->setChildRecurse(false);
 	// add /

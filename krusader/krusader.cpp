@@ -286,9 +286,9 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
       // make sure left or right are not relative paths
       for(unsigned int i = 0; i != leftTabs.count(); i++ )
       {
-        leftTabs[ i ] = leftTabs[ i ].stripWhiteSpace();
+        leftTabs[ i ] = leftTabs[ i ].trimmed();
         if( !leftTabs[ i ].startsWith( "/" ) && leftTabs[ i ].find( ":/" ) < 0 )
-          leftTabs[ i ] = QDir::currentDirPath() + "/" + leftTabs[ i ];
+          leftTabs[ i ] = QDir::currentPath() + "/" + leftTabs[ i ];
       }
       startProfile = QString::null;
    }
@@ -301,9 +301,9 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
       // make sure left or right are not relative paths
       for(unsigned int i = 0; i != rightTabs.count(); i++ )
       {
-        rightTabs[ i ] = rightTabs[ i ].stripWhiteSpace();
+        rightTabs[ i ] = rightTabs[ i ].trimmed();
         if( !rightTabs[ i ].startsWith( "/" ) && rightTabs[ i ].find( ":/" ) < 0 )
-          rightTabs[ i ] = QDir::currentDirPath() + "/" + rightTabs[ i ];
+          rightTabs[ i ] = QDir::currentPath() + "/" + rightTabs[ i ];
       }
       startProfile = QString::null;
    }
@@ -326,12 +326,12 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
 
    if( leftTabs.count() == 0 )
    {
-     leftTabs.push_back( QDir::homeDirPath() );
+     leftTabs.push_back( QDir::homePath() );
      leftTabTypes.push_back( defaultType );
    }
    if( rightTabs.count() == 0 )
    {
-     rightTabs.push_back( QDir::homeDirPath() );
+     rightTabs.push_back( QDir::homePath() );
      rightTabTypes.push_back( defaultType );
    }
 

@@ -369,7 +369,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	uint i;
 	CS_Tool *mytool = 0;
 	for ( i=0; i < tools.count(); ++i )
-		if (cs_typeToText[tools.at(i)->type] == extension.lower()) {
+		if (cs_typeToText[tools.at(i)->type] == extension.toLower()) {
 			mytool = tools.at(i);
 			break;
 		}
@@ -560,7 +560,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 	if (exec() == Accepted && successes) {
 		if (stdOut.size()>1 && standardFormat && onePerFile->isChecked()) {
 			savePerFile(stdOut, suggestedFilename.mid(suggestedFilename.findRev('.')));
-		} else if (saveFileCb->isEnabled() && saveFileCb->isChecked() && !checksumFile->url().simplifyWhiteSpace().isEmpty()) {
+		} else if (saveFileCb->isEnabled() && saveFileCb->isChecked() && !checksumFile->url().simplified().isEmpty()) {
 			saveChecksum(stdOut, checksumFile->url());
 		}
 	}
@@ -573,7 +573,7 @@ bool ChecksumResultsDlg::saveChecksum(const QStringList& data, QString filename)
 		i18n("Warning"), i18n("Overwrite")) != KMessageBox::Continue) {
 		// find a better name to save to
 		filename = KFileDialog::getSaveFileName(QString::null, "*", 0, i18n("Select a file to save to"));
-		if (filename.simplifyWhiteSpace().isEmpty()) return false;
+		if (filename.simplified().isEmpty()) return false;
 	} 
 	QFile file(filename);
 	if (!file.open(IO_WriteOnly)) {

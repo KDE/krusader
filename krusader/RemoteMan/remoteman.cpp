@@ -182,7 +182,7 @@ void remoteMan::refreshData() {
   sessions->setSorting(1); sessions->sort();  // resort the tree
   currentItem=current;  // keep the active item for other jobs
   // disable connect button if no host name is defined
-  if (hostName->text().simplifyWhiteSpace().isEmpty())
+  if (hostName->text().simplified().isEmpty())
     connectBtn->setEnabled(false);
 }
 
@@ -195,7 +195,7 @@ void remoteMan::updateName(const QString &text) {
 
 void remoteMan::updateConnect(const QString &) {
   // disable connect button if no host name is defined
-  if (hostName->text().simplifyWhiteSpace().isEmpty())
+  if (hostName->text().simplified().isEmpty())
     connectBtn->setEnabled(false);
   else connectBtn->setEnabled(true);
 }
@@ -321,13 +321,13 @@ void remoteMan::connection() {
     userName->setText(QString::null);
     password->setText(QString::null);
   } else {
-    userName->setText(userName->text().simplifyWhiteSpace());
-    password->setText(password->text().simplifyWhiteSpace());
+    userName->setText(userName->text().simplified());
+    password->setText(password->text().simplified());
   }
-  hostName->setText(hostName->text().simplifyWhiteSpace().lower());
+  hostName->setText(hostName->text().simplified().toLower());
   if (hostName->text().left(6)=="ftp://" || hostName->text().left(6)=="smb://")
     hostName->setText(hostName->text().mid(6));
-  remoteDir->setText(remoteDir->text().simplifyWhiteSpace());
+  remoteDir->setText(remoteDir->text().simplified());
   if ( !remoteDir->text().isEmpty() && remoteDir->text().left(1)!="/")
 		remoteDir->setText("/"+remoteDir->text());
 

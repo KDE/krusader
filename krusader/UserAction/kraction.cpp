@@ -366,7 +366,7 @@ bool KrAction::xmlRead( const QDomElement& element ) {
 
    Also the name has to be checked before the action is created!
 
-   setName( element.attribute( "name" ).latin1() );
+   setName( element.attribute( "name" ).toLatin1() );
 */
 
    for ( QDomNode node = element.firstChild(); !node.isNull(); node = node.nextSibling() ) {

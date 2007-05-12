@@ -165,7 +165,7 @@ void PanelManager::slotNewTab(const KURL& url, bool setCurrent, QString type) {
 }
 
 void PanelManager::slotNewTab() {
-   slotNewTab( QDir::home().absPath() );
+   slotNewTab( QDir::home().absolutePath() );
 }
 
 void PanelManager::slotCloseTab() {

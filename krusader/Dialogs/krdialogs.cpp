@@ -194,7 +194,7 @@ bool KURLRequesterDlgForCopy::copyDirStructure() {
 }
 
 void KURLRequesterDlgForCopy::slotTextChanged(const QString & text) {
-	bool state = !text.stripWhiteSpace().isEmpty();
+	bool state = !text.trimmed().isEmpty();
 	enableButtonOK( state );
 	enableButton( KDialogBase::User1, state );
 }

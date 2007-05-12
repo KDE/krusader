@@ -170,7 +170,7 @@ void UserActionPage::slotUpdateAction() {
 
   if ( actionProperties->leDistinctName->isEnabled() ) {
       // := new entry
-      KrAction* action = new KrAction( krApp->actionCollection(), actionProperties->leDistinctName->text().latin1() );
+      KrAction* action = new KrAction( krApp->actionCollection(), actionProperties->leDistinctName->text().toLatin1() );
       krUserAction->addKrAction( action );
       actionProperties->updateAction( action );
       UserActionListViewItem* item = actionTree->insertAction( action );

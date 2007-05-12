@@ -188,7 +188,7 @@ void LoaderWidget::setValues( int fileNum, int dirNum, KIO::filesize_t total )
 {
   files->setText( QString("%1").arg( fileNum ) );
   directories->setText( QString("%1").arg( dirNum ) );
-  totalSize->setText( QString("%1").arg( KRpermHandler::parseSize( total ).stripWhiteSpace() ) );
+  totalSize->setText( QString("%1").arg( KRpermHandler::parseSize( total ).trimmed() ) );
 }
 
 void LoaderWidget::slotCancelled()

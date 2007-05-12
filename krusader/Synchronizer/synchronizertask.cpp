@@ -183,8 +183,8 @@ void CompareContentTask::localFileCompareCycle() {
 
   while ( !leftFile->atEnd() && !rightFile->atEnd() )
   {
-    int leftBytes = leftFile->readBlock( leftBuffer, sizeof( leftBuffer ) );
-    int rightBytes = rightFile->readBlock( rightBuffer, sizeof( rightBuffer ) );
+    int leftBytes = leftFile->read( leftBuffer, sizeof( leftBuffer ) );
+    int rightBytes = rightFile->read( rightBuffer, sizeof( rightBuffer ) );
     
     if( leftBytes != rightBytes ) {
       different = true;

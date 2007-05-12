@@ -47,13 +47,13 @@ void KrSqueezedTextLabel::squeezeTextToLabel(int index, int length) {
 			
 			// remove as much as possible from the left, and then from the right
 			if (index>3) {
-				delta=QMIN(index, numOfExtraChars);
+				delta=qMin(index, numOfExtraChars);
 				numOfExtraChars -= delta;
 				sqtext.replace(0, delta, "...");
 			}
 			
 			if (numOfExtraChars>0 && ((int)sqtext.length() > length+3)) {
-				delta = QMIN(numOfExtraChars, (int)sqtext.length() - (length+3));
+				delta = qMin(numOfExtraChars, (int)sqtext.length() - (length+3));
 				sqtext.replace(sqtext.length()-delta, delta, "...");
 			}
 			QLabel::setText(sqtext);

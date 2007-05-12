@@ -390,7 +390,7 @@ void MediaButton::gettingSpaceData(const QString &mountPoint, unsigned long kBSi
 				popupMenu->changeItem( i, pixmap, popupMenu->text( i ) );
 			}
 			else if( mimes[ i ].contains( "hdd_" ) )
-				popupMenu->changeItem( i, sizeText + " " + popupMenu->text( i ).stripWhiteSpace() );
+				popupMenu->changeItem( i, sizeText + " " + popupMenu->text( i ).trimmed() );
 			return;
 		}
 	}

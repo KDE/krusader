@@ -211,7 +211,7 @@ void PopularUrls::dumpList() {
 	UrlNodeP p = head;
 	printf("====start %d====\n",count);
 	while (p) {
-		printf("%d : %s\n", p->rank, p->url.url().latin1());
+		printf("%d : %s\n", p->rank, p->url.url().toLatin1());
 		p = p->next;
 	}
 	fflush(stdout);
@@ -222,7 +222,7 @@ void PopularUrls::showDialog() {
 	dlg->run(list);
 	if (dlg->result() == -1) return;
 	SLOTS->refresh(list[dlg->result()]);
-	//printf("running %s\n", list[dlg->result()].url().latin1());fflush(stdout);
+	//printf("running %s\n", list[dlg->result()].url().toLatin1());fflush(stdout);
 }
 
 // ===================================== PopularUrlsDlg ======================================

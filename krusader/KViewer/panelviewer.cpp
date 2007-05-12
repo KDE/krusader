@@ -114,10 +114,10 @@ KParts::ReadOnlyPart* PanelViewer::getPart( QString mimetype ) {
 		QVariant prop = ptr->property( "X-KDE-BrowserView-AllowAsDefault" );
 		if ( !prop.isValid() || prop.toBool() )   // defaults to true
 		{
-			factory = KLibLoader::self() ->factory( ptr->library().latin1() );
+			factory = KLibLoader::self() ->factory( ptr->library().toLatin1() );
 			if ( factory ) {
 				part = static_cast<KParts::ReadOnlyPart *>( factory->create( this,
-				        ptr->name().latin1(), QString( "KParts::ReadOnlyPart" ).latin1(), args ) );
+				        ptr->name().toLatin1(), QString( "KParts::ReadOnlyPart" ).toLatin1(), args ) );
 			}
 		}
 	}
@@ -277,10 +277,10 @@ KParts::ReadWritePart* PanelEditor::getPart( QString mimetype ) {
 		QVariant prop = ptr->property( "X-KDE-BrowserView-AllowAsDefault" );
 		if ( !prop.isValid() || prop.toBool() )  // defaults to true
 		{
-			factory = KLibLoader::self() ->factory( ptr->library().latin1() );
+			factory = KLibLoader::self() ->factory( ptr->library().toLatin1() );
 			if ( factory ) {
 				part = static_cast<KParts::ReadWritePart *>( factory->create( this,
-				        ptr->name().latin1(), QString( "KParts::ReadWritePart" ).latin1(), args ) );
+				        ptr->name().toLatin1(), QString( "KParts::ReadWritePart" ).toLatin1(), args ) );
 			}
 		}
 	}

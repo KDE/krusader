@@ -160,7 +160,7 @@ bool KrServices::fileToStringList(QTextStream *stream, QStringList& target, bool
 	if (!stream) return false;
 	QString line;
 	while ( !stream->atEnd() ) {
-		line = stream->readLine().stripWhiteSpace();
+		line = stream->readLine().trimmed();
 		if (keepEmptyLines || !line.isEmpty()) target.append(line);
 	}
 	return true;

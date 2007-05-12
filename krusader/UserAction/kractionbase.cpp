@@ -41,7 +41,7 @@ void KrActionBase::exec() {
    //TODO: query expander for status and may skip the rest of the function
 
    // stop here if the commandline is empty
-   if ( commandList.count() == 1 && commandList[0].stripWhiteSpace().isEmpty() )
+   if ( commandList.count() == 1 && commandList[0].trimmed().isEmpty() )
        return;
 
    if ( confirmExecution() ) {

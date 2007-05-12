@@ -305,7 +305,7 @@ void LocateDlg::processStdout(KProcess *proc, char *buffer, int length)
       if( dontSearchPath )
       {
         QRegExp regExp( pattern, isCs, true );
-        QString fileName = (*it).stripWhiteSpace();
+        QString fileName = (*it).trimmed();
         if( fileName.endsWith( "/" ) && fileName != "/" )
           fileName.truncate( fileName.length() -1 );
         fileName = fileName.mid( fileName.findRev( '/' ) + 1 );
@@ -315,7 +315,7 @@ void LocateDlg::processStdout(KProcess *proc, char *buffer, int length)
       }
       if( onlyExist )
       {
-        KFileItem file(KFileItem::Unknown, KFileItem::Unknown, (*it).stripWhiteSpace() );
+        KFileItem file(KFileItem::Unknown, KFileItem::Unknown, (*it).trimmed() );
         if( !file.isReadable() )
           continue;
       }

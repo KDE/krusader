@@ -319,7 +319,7 @@ void KRslots::invert()          { ACTIVE_PANEL->invertSelection();           }
 
 void KRslots::root()            { ACTIVE_FUNC->openUrl(vfs::fromPathOrURL("/"));}
 void KRslots::refresh(const KURL& u){ ACTIVE_FUNC->openUrl(u);        }
-void KRslots::home()            { ACTIVE_FUNC->openUrl(QDir::homeDirPath()); }
+void KRslots::home()            { ACTIVE_FUNC->openUrl(QDir::homePath()); }
 void KRslots::refresh()         { ACTIVE_FUNC->refresh();                    }
 void KRslots::properties()      { ACTIVE_FUNC->properties();                 }
 void KRslots::dirUp()           { ACTIVE_FUNC->dirUp();                      }
@@ -483,7 +483,7 @@ void KRslots::runMountMan() {
 
 void KRslots::homeTerminal(){
   QString save = getcwd(0,0);
-  chdir (QDir::homeDirPath().local8Bit());
+  chdir (QDir::homePath().local8Bit());
 
   KProcess proc;
   krConfig->setGroup("General");
@@ -770,7 +770,7 @@ void KRslots::slotCombine(){
 
         if( lastChar.isLetter() )
         {
-          char fillLetter = ( lastChar.upper() == lastChar ) ? 'A' : 'a';
+          char fillLetter = ( lastChar.toUpper() == lastChar ) ? 'A' : 'a';
 
           if( commonName.isNull() )
           {
@@ -780,7 +780,7 @@ void KRslots::slotCombine(){
             while ( commonName.length() )
             {
               QString shorter  = commonName.left( commonName.length() - 1 );
-              QString testFile = shorter.leftJustify( commonLength, fillLetter );
+              QString testFile = shorter.leftJustified( commonLength, fillLetter );
 
               if( ACTIVE_FUNC->files()->vfs_search( testFile ) == 0 )
                 break;

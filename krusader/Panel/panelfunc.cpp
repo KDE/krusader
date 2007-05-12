@@ -107,7 +107,7 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 	// you may call openUrl or vfs_refresh()
 	if ( !url.isValid() ) {
 		if ( url.url() == "~" ) {
-			return openUrl( QDir::homeDirPath() );
+			return openUrl( QDir::homePath() );
 		} else if ( !url.url().startsWith( "/" ) ) {
 			// possible relative URL - translate to full URL
 			url = files() ->vfs_getOrigin();
@@ -677,7 +677,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 		// verify non-empty dirs delete... (only for normal vfs)
 		if ( emptyDirVerify && vf->vfile_isDir() && !vf->vfile_isSymLink() ) {
 			dir.setPath( panel->virtualPath().path() + "/" + ( *name ) );
-			if ( dir.entryList(QDir::All | QDir::System | QDir::Hidden ).count() > 2 ) {
+			if ( dir.entryList(QDir::TypeMask | QDir::System | QDir::Hidden ).count() > 2 ) {
 				switch ( KMessageBox::warningYesNoCancel( krApp,
 																		i18n( "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete All?</p></qt>" ).arg(*name),
 																		QString::null, i18n( "&Skip" ), i18n( "&Delete All" ) ) ) {

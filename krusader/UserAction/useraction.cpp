@@ -143,16 +143,16 @@ void UserAction::readFromElement( const QDomElement& element, ReadMode mode, KrA
            continue;
          }
 
-         if ( mode == ignoreDoublicated && krApp->actionCollection()->action( name.latin1() ) )
+         if ( mode == ignoreDoublicated && krApp->actionCollection()->action( name.toLatin1() ) )
             continue;
 
          QString basename = name + "_%1";
          int i = 0;
          // appent a counter till the name is unique... (this checks every action, not only useractions)
-         while ( krApp->actionCollection()->action( name.latin1() ) )
+         while ( krApp->actionCollection()->action( name.toLatin1() ) )
             name = basename.arg( ++i );
 
-         KrAction* act = new KrAction( krApp->actionCollection(), name.latin1() );
+         KrAction* act = new KrAction( krApp->actionCollection(), name.toLatin1() );
          if ( act->xmlRead( e ) ) {
             _actions.append( act );
             if ( list )

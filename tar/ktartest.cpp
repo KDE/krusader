@@ -11,7 +11,7 @@ void recursive_print( const KTarDirectory * dir, const QString & path )
   for( ; it != l.end(); ++it )
   {
     const KTarEntry* entry = dir->entry( (*it) );
-    printf("mode=%07o %s %s %s%s\n", entry->permissions(), entry->user().latin1(), entry->group().latin1(), path.latin1(), (*it).latin1());
+    printf("mode=%07o %s %s %s%s\n", entry->permissions(), entry->user().toLatin1(), entry->group().toLatin1(), path.toLatin1(), (*it).toLatin1());
     if (entry->isDirectory())
       recursive_print( (KTarDirectory *)entry, path+(*it)+"/" );
   }
@@ -84,15 +84,15 @@ int main( int argc, char** argv )
     QByteArray arr( f->data() );
     printf("SIZE=%i\n",arr.size() );
     QString str( arr );
-    printf("DATA=%s\n", str.latin1());
+    printf("DATA=%s\n", str.toLatin1());
 
     /*
     // This is what KGzipDev::readAll could do, if QIODevice::readAll was virtual....
     QByteArray array(1024);
     int n;
-    while ( ( n = dev.readBlock( array.data(), array.size() ) ) )
+    while ( ( n = dev.read( array.data(), array.size() ) ) )
     {
-        kdDebug() << "readBlock returned " << n << endl << endl;
+        kdDebug() << "read returned " << n << endl << endl;
         QCString s(array,n+1); // Terminate with 0 before printing
         printf("%s", s.data());
     }
@@ -154,7 +154,7 @@ int main( int argc, char** argv )
     QByteArray arr( f->data() );
     printf("SIZE=%i\n",arr.size() );
     QString str( arr );
-    printf("DATA=%s\n", str.latin1());
+    printf("DATA=%s\n", str.toLatin1());
 
     tar.close();
 
@@ -175,7 +175,7 @@ int main( int argc, char** argv )
       QString str, num;
       str.fill( 'a', i-10 );
       num.setNum( i );
-      num = num.rightJustify( 10, '0' );
+      num = num.rightJustified( 10, '0' );
       tar.writeFile( str+num, "testu", "testg", 3, "hum" );
     }
     // Result of this test : it fails at 482 (instead of 154 previously).

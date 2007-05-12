@@ -120,7 +120,7 @@ void KrRemoteEncodingMenu::slotItemSelected(int id)
 {
   KURL currentURL = ACTIVE_PANEL->virtualPath();
 
-  KConfig config(("kio_" + currentURL.protocol() + "rc").latin1());
+  KConfig config(("kio_" + currentURL.protocol() + "rc").toLatin1());
   QString host = currentURL.host();
 
   if (!popupMenu()->isItemChecked(id))
@@ -147,7 +147,7 @@ void KrRemoteEncodingMenu::slotDefault()
 
   // We have no choice but delete all higher domain level
   // settings here since it affects what will be matched.
-  KConfig config(("kio_" + currentURL.protocol() + "rc").latin1());
+  KConfig config(("kio_" + currentURL.protocol() + "rc").toLatin1());
 
   QStringList partList = QStringList::split('.', currentURL.host(), false);
   if (!partList.isEmpty())

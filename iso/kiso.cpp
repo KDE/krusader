@@ -193,7 +193,7 @@ static int readf(char *buf, int start, int len,void *udata) {
     QIODevice* dev = ( static_cast<KIso*> (udata) )->device();
 
     if (dev->at(start<<11)) {
-        if ((dev->readBlock(buf, len<<11)) != -1) return (len);
+        if ((dev->read(buf, len<<11)) != -1) return (len);
     }
     kdDebug() << "KIso::ReadRequest failed start: " << start << " len: " << len << endl;
 
@@ -361,7 +361,7 @@ bool KIso::openArchive( int mode )
     } else {
         /* If it's a block device, try to query the track layout (for multisession) */
         if (m_startsec == -1 && S_ISBLK(buf.st_mode))
-            trackno=getTracks(m_filename.latin1(),(int*) &tracks);
+            trackno=getTracks(m_filename.toLatin1(),(int*) &tracks);
     }
     uid.setNum(buf.st_uid);
     gid.setNum(buf.st_gid);

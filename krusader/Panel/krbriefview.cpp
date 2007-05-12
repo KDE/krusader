@@ -1157,7 +1157,7 @@ void KrBriefView::quickSearch( const QString & str, int direction ) {
    KConfigGroupSaver grpSvr( _config, "Look&Feel" );
    bool caseSensitive = _config->readBoolEntry( "Case Sensitive Quicksearch", _CaseSensitiveQuicksearch );
    if ( !direction ) {
-      if ( caseSensitive ? item->name().startsWith( str ) : item->name().lower().startsWith( str.lower() ) )
+      if ( caseSensitive ? item->name().startsWith( str ) : item->name().toLower().startsWith( str.toLower() ) )
          return ;
       direction = 1;
    }
@@ -1168,7 +1168,7 @@ void KrBriefView::quickSearch( const QString & str, int direction ) {
          item = ( direction > 0 ) ? getFirst() : getLast();
       if ( item == startItem )
          return ;
-      if ( caseSensitive ? item->name().startsWith( str ) : item->name().lower().startsWith( str.lower() ) ) {
+      if ( caseSensitive ? item->name().startsWith( str ) : item->name().toLower().startsWith( str.toLower() ) ) {
 			setCurrentItem( item->name() );
 			makeItemVisible( item );
          return ;
@@ -1296,7 +1296,7 @@ void KrBriefView::initProperties() {
 	for (QStringList::iterator i = atomicExtensions.begin(); i != atomicExtensions.end(); )
 	{
 		QString & ext = *i;
-		ext = ext.stripWhiteSpace();
+		ext = ext.trimmed();
 		if (!ext.length())
 		{
 			i = atomicExtensions.remove(i);

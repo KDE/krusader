@@ -114,7 +114,7 @@ public:
 	}
 	
 	QString getErrorMsg() {
-		if( errorMsg.stripWhiteSpace().isEmpty() )
+		if( errorMsg.trimmed().isEmpty() )
 			return outputMsg.right( 500 );
 		else
 			return errorMsg.right( 500 );

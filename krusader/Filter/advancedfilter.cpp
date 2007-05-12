@@ -482,7 +482,7 @@ bool AdvancedFilter::fillQuery( KRQuery *query )
 
   // size calculations ////////////////////////////////////////////////
   if ( biggerThanEnabled->isChecked() &&
-      !(biggerThanAmount->text().simplifyWhiteSpace()).isEmpty() ) {
+      !(biggerThanAmount->text().simplified()).isEmpty() ) {
     minSize = biggerThanAmount->text().toULong();
     switch ( biggerThanType->currentItem() ) {
       case 1 : minSize *= 1024;
@@ -493,7 +493,7 @@ bool AdvancedFilter::fillQuery( KRQuery *query )
     query->setMinimumFileSize( minSize );
   }
   if ( smallerThanEnabled->isChecked() &&
-      !(smallerThanAmount->text().simplifyWhiteSpace()).isEmpty()) {
+      !(smallerThanAmount->text().simplified()).isEmpty()) {
     maxSize = smallerThanAmount->text().toULong();
     switch (smallerThanType->currentItem()) {
       case 1 : maxSize *= 1024;
@@ -514,8 +514,8 @@ bool AdvancedFilter::fillQuery( KRQuery *query )
   // date calculations ////////////////////////////////////////////////////
   if (modifiedBetweenEnabled->isChecked()) {
     // first, if both dates are empty, than don't use them
-    if ( !(modifiedBetweenData1->text().simplifyWhiteSpace().isEmpty() &&
-          modifiedBetweenData2->text().simplifyWhiteSpace().isEmpty()) ) {
+    if ( !(modifiedBetweenData1->text().simplified().isEmpty() &&
+          modifiedBetweenData2->text().simplified().isEmpty()) ) {
       // check if date is valid
       QDate d1 = KGlobal::locale()->readDate(modifiedBetweenData1->text());
       if (!d1.isValid()) { invalidDateMessage(modifiedBetweenData1); return false; }
@@ -537,7 +537,7 @@ bool AdvancedFilter::fillQuery( KRQuery *query )
       query->setOlderThan( olderTime );
     }
   } else if (notModifiedAfterEnabled->isChecked()) {
-    if ( !notModifiedAfterData->text().simplifyWhiteSpace().isEmpty() ) {
+    if ( !notModifiedAfterData->text().simplified().isEmpty() ) {
       QDate d = KGlobal::locale()->readDate(notModifiedAfterData->text());
       if (!d.isValid()) { invalidDateMessage(notModifiedAfterData); return false; }
       time_t olderTime;
@@ -545,11 +545,11 @@ bool AdvancedFilter::fillQuery( KRQuery *query )
       query->setOlderThan( olderTime );
     }
   } else if (modifiedInTheLastEnabled->isChecked()) {
-    if ( !(modifiedInTheLastData->text().simplifyWhiteSpace().isEmpty() &&
-          notModifiedInTheLastData->text().simplifyWhiteSpace().isEmpty()) ) {
+    if ( !(modifiedInTheLastData->text().simplified().isEmpty() &&
+          notModifiedInTheLastData->text().simplified().isEmpty()) ) {
       QDate d1 = QDate::currentDate(); QDate d2 = QDate::currentDate();
-      if (!modifiedInTheLastData->text().simplifyWhiteSpace().isEmpty()) {
-        int tmp1 = modifiedInTheLastData->text().simplifyWhiteSpace().toInt();
+      if (!modifiedInTheLastData->text().simplified().isEmpty()) {
+        int tmp1 = modifiedInTheLastData->text().simplified().toInt();
         switch (modifiedInTheLastType->currentItem()) {
           case 1 : tmp1 *= 7;
                    break;
@@ -563,8 +563,8 @@ bool AdvancedFilter::fillQuery( KRQuery *query )
         qdate2time_t(&newerTime, d1, true);
         query->setNewerThan( newerTime );
       }
-      if (!notModifiedInTheLastData->text().simplifyWhiteSpace().isEmpty()) {
-        int tmp2 = notModifiedInTheLastData->text().simplifyWhiteSpace().toInt();
+      if (!notModifiedInTheLastData->text().simplified().isEmpty()) {
+        int tmp2 = notModifiedInTheLastData->text().simplified().toInt();
         switch (notModifiedInTheLastType->currentItem()) {
           case 1 : tmp2 *= 7;
                    break;
@@ -578,8 +578,8 @@ bool AdvancedFilter::fillQuery( KRQuery *query )
         qdate2time_t(&olderTime, d2, true);
         query->setOlderThan( olderTime );
       }
-      if ( !modifiedInTheLastData->text().simplifyWhiteSpace().isEmpty() &&
-           !notModifiedInTheLastData->text().simplifyWhiteSpace().isEmpty() ) {
+      if ( !modifiedInTheLastData->text().simplified().isEmpty() &&
+           !notModifiedInTheLastData->text().simplified().isEmpty() ) {
         if (d1 > d2) {
           KMessageBox::detailedError(this, i18n("Dates are inconsistent!"),
             i18n("The date on top is later than the date on the bottom. Please re-enter the dates, so that the top date will be earlier than the bottom date."));

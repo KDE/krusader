@@ -63,7 +63,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, WFla
     height =  height + 5*(height > 14) + 6;
     selection->setGeometry( QRect( 12, 48, 377, height) );
     selection->setEditable( TRUE );
-    selection->setInsertionPolicy( QComboBox::AtTop );
+    selection->setInsertPolicy( QComboBox::AtTop );
     selection->setAutoCompletion( TRUE );
 
     QWidget* Layout7 = new QWidget( this, "Layout7" );

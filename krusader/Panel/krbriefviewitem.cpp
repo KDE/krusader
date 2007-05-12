@@ -79,8 +79,8 @@ int KrBriefViewItem::compare(QIconViewItem *i ) const {
 
   if( ignoreCase )
   {
-    text0  = text0.lower();
-    itext0 = itext0.lower();
+    text0  = text0.toLower();
+    itext0 = itext0.toLower();
   }
 
   if ( isHidden() ) {

@@ -81,7 +81,7 @@ KMountMan::KMountMan() : QObject(), Operational( false ), waiting(false), mountM
 		nonmount_fs_mntpoint += nonmount;
 		// simplify the white space
 		for ( QStringList::Iterator it = nonmount_fs_mntpoint.begin(); it != nonmount_fs_mntpoint.end(); ++it ) {
-			*it = (*it).simplifyWhiteSpace();
+			*it = (*it).simplified();
 		}
 	}
 	

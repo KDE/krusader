@@ -802,7 +802,7 @@ bool kio_krarcProtocol::initDirDict(const KURL&url, bool forced){
 			// the arj list is ended with a ------ line.
 			if( line.startsWith("----------") ) break;
 		}
-		parseLine(lineNo++,line.stripWhiteSpace(),temp.file());
+		parseLine(lineNo++,line.trimmed(),temp.file());
 	}
 	// close and delete our file
 	temp.file()->close();
@@ -856,7 +856,7 @@ UDSEntry* kio_krarcProtocol::findFileEntry(const KURL& url){
 }
 
 QString kio_krarcProtocol::nextWord(QString &s,char d) {
-	s=s.stripWhiteSpace();
+	s=s.trimmed();
 	int j=s.find(d,0);
 	QString temp=s.left(j); // find the leftmost word.
 	s.remove(0,j);
@@ -987,8 +987,8 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*) {
 		
 		if( perm.length() == 7 ) // windows rar permission format
 		{
-			bool isDir  = ( perm.at(1).lower() == 'd' );
-			bool isReadOnly = ( perm.at(2).lower() == 'r' );
+			bool isDir  = ( perm.at(1).toLower() == 'd' );
+			bool isReadOnly = ( perm.at(2).toLower() == 'r' );
 			
 			perm = isDir ? "drwxr-xr-x" : "-rw-r--r--";
 			
@@ -1145,8 +1145,8 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*) {
 		
 		// permissions
 		perm = nextWord(line);
-		bool isDir  = ( perm.at(0).lower() == 'd' );
-		bool isReadOnly = ( perm.at(1).lower() == 'r' );
+		bool isDir  = ( perm.at(0).toLower() == 'd' );
+		bool isReadOnly = ( perm.at(1).toLower() == 'r' );
 		perm = isDir ? "drwxr-xr-x" : "-rw-r--r--";
 		if( isReadOnly )
 			perm.at( 2 ) = '-';
@@ -1416,7 +1416,7 @@ QString kio_krarcProtocol::detectArchive( bool &encrypted, QString fileName ) {
 	QFile arcFile( fileName );
 	if ( arcFile.open( IO_ReadOnly ) ) {
 		char buffer[ 1024 ];
-		long sizeMax = arcFile.readBlock( buffer, sizeof( buffer ) );
+		long sizeMax = arcFile.read( buffer, sizeof( buffer ) );
 		arcFile.close();
 		
 		for( int i=0; i < autoDetectElems; i++ ) {
@@ -1563,7 +1563,7 @@ void kio_krarcProtocol::checkOutputForPassword( KProcess *proc,char *buf,int len
 	QStringList lines = QStringList::split( '\n', checkable );
 	lastData = lines[ lines.count() - 1 ];
 	for( unsigned i=0; i != lines.count(); i++ ) {
-		QString line = lines[ i ].stripWhiteSpace().lower();
+		QString line = lines[ i ].trimmed().toLower();
 		int ndx = line.find( "testing" );
 		if( ndx >=0 )
 			line.truncate( ndx );

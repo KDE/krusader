@@ -357,7 +357,7 @@ void vfs::vfs_calcSpaceLocal(QString name ,KIO::filesize_t *totalSize,unsigned l
     if ( !dir.exists() ) return;
     
     ++(*totalDirs);
-    dir.setFilter(QDir::All | QDir::System | QDir::Hidden);
+    dir.setFilter(QDir::TypeMask | QDir::System | QDir::Hidden);
     dir.setSorting(QDir::Name | QDir::DirsFirst);
 
     // recurse on all the files in the directory

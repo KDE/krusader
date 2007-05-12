@@ -125,7 +125,7 @@ public:
 
         if( frac_part )
         {
-          frac = QString( "%1" ).arg( frac_part ).rightJustify( 3, '0' );
+          frac = QString( "%1" ).arg( frac_part ).rightJustified( 3, '0' );
           frac = "." + frac;
           while( frac.endsWith("0") )
             frac.truncate( frac.length() - 1 );

@@ -104,7 +104,7 @@ void KDiskFreeSp::dfDone()
   while ( !t.eof() ) {
     QString u,v;
     s=t.readLine();
-    s=s.simplifyWhiteSpace();
+    s=s.simplified();
     if ( !s.isEmpty() ) {
       //kdDebug(kfile_area) << "GOT: [" << s << "]" << endl;
 
@@ -112,7 +112,7 @@ void KDiskFreeSp::dfDone()
 	if ( !t.eof() ) {       // just appends the next line
             v=t.readLine();
             s=s.append(v);
-            s=s.simplifyWhiteSpace();
+            s=s.simplified();
             //kdDebug(kfile_area) << "SPECIAL GOT: [" << s << "]" << endl;
 	 }//if silly linefeed
 
@@ -142,7 +142,7 @@ void KDiskFreeSp::dfDone()
 
 
       s=s.remove(0,s.find(BLANK)+1 );  // delete the capacity 94%
-      QString mountPoint = s.stripWhiteSpace();
+      QString mountPoint = s.trimmed();
       //kdDebug(kfile_area) << "    MountPoint:       [" << mountPoint << "]" << endl;
 
       if ( mountPoint == m_mountPoint )

@@ -79,7 +79,7 @@ public:
 	}
 	
 	QString getErrorMsg() {
-		if( errorMsg.stripWhiteSpace().isEmpty() )
+		if( errorMsg.trimmed().isEmpty() )
 			return outputMsg.right( 500 );
 		else
 			return errorMsg.right( 500 );
@@ -125,7 +125,7 @@ public slots:
 		QStringList lines = QStringList::split( '\n', checkable );
 		lastData = lines[ lines.count() - 1 ];
 		for( unsigned i=0; i != lines.count(); i++ ) {
-			QString line = lines[ i ].stripWhiteSpace().lower();
+			QString line = lines[ i ].trimmed().toLower();
 			int ndx = line.find( "testing" );
 			if( ndx >=0 )
 				line.truncate( ndx );

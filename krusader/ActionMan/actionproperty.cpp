@@ -205,7 +205,7 @@ void ActionProperty::updateAction( KrAction *action ) {
       cbCategory->setCurrentText( _action->category() );
    }
 
-   _action->setName( leDistinctName->text().latin1() );
+   _action->setName( leDistinctName->text().toLatin1() );
    _action->setText( leTitle->text() );
    _action->setToolTip( leTooltip->text() );
    _action->setWhatsThis( textDescription->text() );
@@ -429,23 +429,23 @@ void ActionProperty::removeFile() {
 
 
 bool ActionProperty::validProperties() {
-  if ( leDistinctName->text().simplifyWhiteSpace().isEmpty() ) {
+  if ( leDistinctName->text().simplified().isEmpty() ) {
     KMessageBox::error( this, i18n("Please set a unique name for the useraction") );
     leDistinctName->setFocus();
     return false;
   }
-  if ( leTitle->text().simplifyWhiteSpace().isEmpty() ) {
+  if ( leTitle->text().simplified().isEmpty() ) {
     KMessageBox::error( this, i18n("Please set a title for the menu entry") );
     leTitle->setFocus();
     return false;
   }
-  if ( leCommandline->text().simplifyWhiteSpace().isEmpty() ) {
+  if ( leCommandline->text().simplified().isEmpty() ) {
     KMessageBox::error( this, i18n("Command line is empty") );
     leCommandline->setFocus();
     return false;
   }
   if ( leDistinctName->isEnabled() )
-    if ( krApp->actionCollection()->action( leDistinctName->text().latin1() ) ) {
+    if ( krApp->actionCollection()->action( leDistinctName->text().toLatin1() ) ) {
       KMessageBox::error( this,
       		i18n("There already is an action with this name\n"
       		"If you don't have such an useraction the name is used by Krusader for an internal action")

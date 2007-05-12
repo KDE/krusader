@@ -51,40 +51,40 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   QVBoxLayout *layout = new QVBoxLayout( this, 11, 6, "SynchronizeDialogLayout" );
 
   cbRightToLeft = new QCheckBox( i18n( "Right to left: Copy 1 file", "Right to left: Copy %n files", leftCopyNr) + " " +
-                                 i18n( "(1 byte)", "(%n bytes)", KRpermHandler::parseSize( leftCopySize ).stripWhiteSpace().toInt() ),
+                                 i18n( "(1 byte)", "(%n bytes)", KRpermHandler::parseSize( leftCopySize ).trimmed().toInt() ),
                                  this, "labelRightToLeft" );
   cbRightToLeft->setChecked( leftCopyNr != 0 );
   cbRightToLeft->setEnabled( leftCopyNr != 0 );
   layout->addWidget( cbRightToLeft );
 
   lbRightToLeft = new QLabel( "\t" + i18n( "Ready: %1/1 file, %3/%4", "Ready: %1/%n files, %3/%4", leftCopyNr).arg( 0 )
-                             .arg( 0 ).arg( KRpermHandler::parseSize( leftCopySize ).stripWhiteSpace() ),
+                             .arg( 0 ).arg( KRpermHandler::parseSize( leftCopySize ).trimmed() ),
                              this, "lbRightToLeft" );
   lbRightToLeft->setEnabled( leftCopyNr != 0 );
   layout->addWidget( lbRightToLeft );
 
   cbLeftToRight = new QCheckBox( i18n( "Left to right: Copy 1 file", "Left to right: Copy %n files", rightCopyNr) + " " +
-                                 i18n( "(1 byte)", "(%n bytes)", KRpermHandler::parseSize( rightCopySize ).stripWhiteSpace().toInt() ),
+                                 i18n( "(1 byte)", "(%n bytes)", KRpermHandler::parseSize( rightCopySize ).trimmed().toInt() ),
                                  this, "cbLeftToRight" );
   cbLeftToRight->setChecked( rightCopyNr != 0 );
   cbLeftToRight->setEnabled( rightCopyNr != 0 );
   layout->addWidget( cbLeftToRight );
 
   lbLeftToRight = new QLabel( "\t" + i18n( "Ready: %1/1 file, %3/%4", "Ready: %1/%n files, %3/%4", rightCopyNr ).arg( 0 )
-                             .arg( 0 ).arg( KRpermHandler::parseSize( rightCopySize ).stripWhiteSpace() ),
+                             .arg( 0 ).arg( KRpermHandler::parseSize( rightCopySize ).trimmed() ),
                              this, "lbLeftToRight" );
   lbLeftToRight->setEnabled( rightCopyNr != 0 );
   layout->addWidget( lbLeftToRight );
 
   cbDeletable = new QCheckBox( i18n( "Left: Delete 1 file", "Left: Delete %n files", deleteNr) + " " +
-                               i18n( "(1 byte)", "(%n bytes)", KRpermHandler::parseSize( deleteSize ).stripWhiteSpace().toInt() ),
+                               i18n( "(1 byte)", "(%n bytes)", KRpermHandler::parseSize( deleteSize ).trimmed().toInt() ),
                                this, "cbDeletable" );
   cbDeletable->setChecked( deleteNr != 0 );
   cbDeletable->setEnabled( deleteNr != 0 );
   layout->addWidget( cbDeletable );
 
   lbDeletable   = new QLabel( "\t" + i18n( "Ready: %1/1 file, %3/%4", "Ready: %1/%n files, %3/%4", deleteNr ).arg( 0 )
-                             .arg( 0 ).arg( KRpermHandler::parseSize( deleteSize ).stripWhiteSpace() ),
+                             .arg( 0 ).arg( KRpermHandler::parseSize( deleteSize ).trimmed() ),
                              this, "lbDeletable" );
   lbDeletable->setEnabled( deleteNr != 0 );
   layout->addWidget( lbDeletable );
@@ -156,14 +156,14 @@ void SynchronizeDialog::processedSizes( int leftNr, KIO::filesize_t leftSize, in
                                         KIO::filesize_t rightSize, int delNr, KIO::filesize_t delSize )
 {
   lbRightToLeft->setText( i18n( "\tReady: %1/%2 files, %3/%4" ).arg( leftNr ).arg( leftCopyNr )
-                          .arg( KRpermHandler::parseSize( leftSize ).stripWhiteSpace() )
-                          .arg( KRpermHandler::parseSize( leftCopySize ).stripWhiteSpace() ) );
+                          .arg( KRpermHandler::parseSize( leftSize ).trimmed() )
+                          .arg( KRpermHandler::parseSize( leftCopySize ).trimmed() ) );
   lbLeftToRight->setText( i18n( "\tReady: %1/%2 files, %3/%4" ).arg( rightNr ).arg( rightCopyNr )
-                          .arg( KRpermHandler::parseSize( rightSize ).stripWhiteSpace() )
-                          .arg( KRpermHandler::parseSize( rightCopySize ).stripWhiteSpace() ) );
+                          .arg( KRpermHandler::parseSize( rightSize ).trimmed() )
+                          .arg( KRpermHandler::parseSize( rightCopySize ).trimmed() ) );
   lbDeletable->setText  ( i18n( "\tReady: %1/%2 files, %3/%4" ).arg( delNr ).arg( deleteNr )
-                          .arg( KRpermHandler::parseSize( delSize ).stripWhiteSpace() )
-                          .arg( KRpermHandler::parseSize( deleteSize ).stripWhiteSpace() ) );
+                          .arg( KRpermHandler::parseSize( delSize ).trimmed() )
+                          .arg( KRpermHandler::parseSize( deleteSize ).trimmed() ) );
 
   KIO::filesize_t totalSum      = leftCopySize + rightCopySize + deleteSize;
   KIO::filesize_t processedSum  = leftSize + rightSize + delSize;

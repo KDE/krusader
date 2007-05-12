@@ -415,7 +415,7 @@ bool PackGUIBase::extraProperties( QMap<QString,QString> & inMap ) {
       inMap[ "CompressionLevel" ] = QString("%1").arg( compressionSlider->value() );
     }
 
-    QString cmdArgs = commandLineSwitches->currentText().stripWhiteSpace();
+    QString cmdArgs = commandLineSwitches->currentText().trimmed();
     if( !cmdArgs.isEmpty() ) {
       bool firstChar = true;
       QChar quote = '\0';

@@ -33,7 +33,7 @@ bool QFileHack::open ( int m ) {
     m |= IO_Async; //On linux, set O_NONBLOCK, opens CD-ROMs faster
 #endif
     ret=QFile::open(m);
-    if (ret && isSequentialAccess() ) {
+    if (ret && isSequential() ) {
         setType(IO_Direct);
     }
     return ret;

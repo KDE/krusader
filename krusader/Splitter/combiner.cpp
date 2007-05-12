@@ -120,7 +120,7 @@ void Combiner::combineSplitFileFinished(KIO::Job *job)
       int ndx = splitFileContent[i].find( '=' );    
       if( ndx == -1 )
         continue;      
-      QString token = splitFileContent[i].left( ndx ).stripWhiteSpace();
+      QString token = splitFileContent[i].left( ndx ).trimmed();
       QString value = splitFileContent[i].mid( ndx + 1 );      
     
       if( token == "filename" )
@@ -130,12 +130,12 @@ void Combiner::combineSplitFileFinished(KIO::Job *job)
       }
       else if( token == "size" ) 
       {
-        sscanf( value.stripWhiteSpace().ascii(), "%llu", &expectedSize );
+        sscanf( value.trimmed().ascii(), "%llu", &expectedSize );
         hasSize = true;
       }
       if( token == "crc32" )
       {
-        expectedCrcSum   = value.stripWhiteSpace().rightJustify( 8, '0' );
+        expectedCrcSum   = value.trimmed().rightJustified( 8, '0' );
         hasCrc = true;
       }
     }
@@ -174,14 +174,14 @@ void Combiner::openNextFile()
       
       do
       {
-        ch = name.at( pos ).latin1() + 1;
+        ch = name.at( pos ).toLatin1() + 1;
         if( ch == QChar( 'Z' + 1 ) )
           ch = 'A';
         if( ch == QChar( 'z' + 1 ) )
           ch = 'a';
         name[ pos ] = ch;
         pos--;
-      } while( pos >=0 && ch.upper() == QChar( 'A' ) );
+      } while( pos >=0 && ch.toUpper() == QChar( 'A' ) );
       
       readURL.setFileName( name );
     }    
@@ -189,7 +189,7 @@ void Combiner::openNextFile()
   else
   {
     QString index( "%1" );      /* determining the filename */
-    index = index.arg(++fileCounter).rightJustify( 3, '0' );
+    index = index.arg(++fileCounter).rightJustified( 3, '0' );
     readURL = baseURL;
     readURL.setFileName( baseURL.fileName() + "." + index );
   }
@@ -261,12 +261,12 @@ void Combiner::combineReceiveFinished(KIO::Job *job)
 
     if( hasValidSplitFile )
     {
-      QString crcResult = QString( "%1" ).arg( crcContext->result(), 0, 16 ).upper().stripWhiteSpace()
-                                         .rightJustify(8, '0');
+      QString crcResult = QString( "%1" ).arg( crcContext->result(), 0, 16 ).toUpper().trimmed()
+                                         .rightJustified(8, '0');
       
       if( receivedSize != expectedSize )
         error = i18n("Incorrect filesize! The file might have been corrupted!");
-      else if ( crcResult != expectedCrcSum.upper().stripWhiteSpace() )
+      else if ( crcResult != expectedCrcSum.toUpper().trimmed() )
         error = i18n("Incorrect CRC checksum! The file might have been corrupted!");
     }
     return;

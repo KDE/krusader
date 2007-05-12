@@ -78,7 +78,7 @@ void KRdirWatch::addDir(QString path, bool checkPermissions){
   qfi.setFile(path);
 
   temp->path = dir.path();
-  temp->count = dir.entryList(QDir::All | QDir::AccessMask).count();
+  temp->count = dir.entryList(QDir::TypeMask | QDir::AccessMask).count();
   temp->lastModified = qfi.lastModified();
 
   watched.append(temp);
@@ -102,7 +102,7 @@ void KRdirWatch::checkDirs(){
       return;
     }
     dt = qfi.lastModified();
-    count = dir.entryList(QDir::All | QDir::AccessMask).count();
+    count = dir.entryList(QDir::TypeMask | QDir::AccessMask).count();
     // check for changes
     if(it->lastModified!=dt || it->count!=count){
       changed = true;

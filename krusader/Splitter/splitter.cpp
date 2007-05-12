@@ -127,8 +127,8 @@ void Splitter::splitReceiveFinished(KIO::Job *job)
     return;
   }
 
-  QString crcResult = QString( "%1" ).arg( crcContext->result(), 0, 16 ).upper().stripWhiteSpace()
-                                     .rightJustify(8, '0');
+  QString crcResult = QString( "%1" ).arg( crcContext->result(), 0, 16 ).toUpper().trimmed()
+                                     .rightJustified(8, '0');
 
   splitFile = QString( "filename=%1\n" ).arg( fileName.fileName()     )+
               QString( "size=%1\n" )    .arg( KIO::number( fileSize ) )+
@@ -143,7 +143,7 @@ void Splitter::splitReceivePercent (KIO::Job *, unsigned long percent)
 void Splitter::splitCreateWriteJob()
 {
   QString index( "%1" );                   /* making the splitted filename */
-  index = index.arg(++fileNumber).rightJustify( 3, '0' );
+  index = index.arg(++fileNumber).rightJustified( 3, '0' );
   QString outFileName = fileName.fileName() + "." + index;
   
   writeURL = destinationDir;

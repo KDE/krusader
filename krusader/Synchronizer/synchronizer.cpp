@@ -1079,7 +1079,7 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
 #if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
           if( !item->rightACL().isNull() )
           {
-            acl_t acl = acl_from_text( item->rightACL().latin1() );
+            acl_t acl = acl_from_text( item->rightACL().toLatin1() );
             if( acl && !acl_valid( acl ) )
               acl_set_file( leftURL.path( -1 ).local8Bit(), ACL_TYPE_ACCESS, acl );
             if( acl )
@@ -1120,7 +1120,7 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
 #if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
           if( !item->leftACL().isNull() )
           {
-            acl_t acl = acl_from_text( item->leftACL().latin1() );
+            acl_t acl = acl_from_text( item->leftACL().toLatin1() );
             if( acl && !acl_valid( acl ) )
               acl_set_file( rightURL.path( -1 ).local8Bit(), ACL_TYPE_ACCESS, acl );
             if( acl )

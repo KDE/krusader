@@ -369,7 +369,7 @@ TagString exp_Path::expFunc( const ListPanel* panel, const QStringList& paramete
    else
       result = panel->func->files()->vfs_getOrigin().path() + "/";
          
-   if ( parameter[0].lower() == "no" )  // don't escape spaces
+   if ( parameter[0].toLower() == "no" )  // don't escape spaces
       return TagString(result);
    else
       return TagString(bashquote(result));
@@ -386,13 +386,13 @@ TagString exp_Count::expFunc( const ListPanel* panel, const QStringList& paramet
    NEED_PANEL
    
    int n = -1;
-   if ( parameter[ 0 ].isEmpty() || parameter[ 0 ].lower() == "all" )
+   if ( parameter[ 0 ].isEmpty() || parameter[ 0 ].toLower() == "all" )
       n = panel->view->numDirs() + panel->view->numFiles();
-   else if ( parameter[ 0 ].lower() == "files" )
+   else if ( parameter[ 0 ].toLower() == "files" )
       n = panel->view->numFiles();
-   else if ( parameter[ 0 ].lower() == "dirs" )
+   else if ( parameter[ 0 ].toLower() == "dirs" )
       n = panel->view->numDirs();
-   else if ( parameter[ 0 ].lower() == "selected" )
+   else if ( parameter[ 0 ].toLower() == "selected" )
       n = panel->view->numSelected();
    else {
       setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: Bad argument to Count: %1 is not valid item specifier").arg(parameter[0]) ));
@@ -428,7 +428,7 @@ TagString exp_Current::expFunc( const ListPanel* panel, const QStringList& param
 
    QString result;
    
-   if ( parameter[0].lower() == "yes" )  // ommit the current path
+   if ( parameter[0].toLower() == "yes" )  // ommit the current path
       result = item;
    else {
       KURL url = panel->func->files()->vfs_getFile( item );
@@ -438,7 +438,7 @@ TagString exp_Current::expFunc( const ListPanel* panel, const QStringList& param
          result = url.path();
    }
 
-   if ( parameter[1].lower() == "no" )  // don't escape spaces
+   if ( parameter[1].toLower() == "no" )  // don't escape spaces
       return result;
    else
       return bashquote(result);
@@ -469,11 +469,11 @@ TagString exp_List::expFunc( const ListPanel* panel, const QStringList& paramete
    
    return separateAndQuote(
    		fileList(panel,
-   			parameter.empty() ? QString::null : parameter[0].lower(),
-   			mask, parameter.count() > 2 ? parameter[2].lower()=="yes" : false,
+   			parameter.empty() ? QString::null : parameter[0].toLower(),
+   			mask, parameter.count() > 2 ? parameter[2].toLower()=="yes" : false,
    			useUrl, exp, "List"),
    		parameter.count() > 1 ? parameter[1] : " ",
-   		parameter.count() > 4 ? parameter[4].lower()=="yes" : true);
+   		parameter.count() > 4 ? parameter[4].toLower()=="yes" : true);
 }
 
 exp_ListFile::exp_ListFile() {
@@ -508,11 +508,11 @@ TagString exp_ListFile::expFunc( const ListPanel* panel, const QStringList& para
     QTextStream stream( tmpFile.file() );
     stream << separateAndQuote(
     		fileList(panel,
-    			parameter.empty() ? QString::null : parameter[0].lower(),
-    			mask, parameter.count()>2 ? parameter[2].lower()=="yes" : false,
+    			parameter.empty() ? QString::null : parameter[0].toLower(),
+    			mask, parameter.count()>2 ? parameter[2].toLower()=="yes" : false,
     			useUrl, exp, "ListFile"),
     		parameter.count() > 1 ? parameter[1] : "\n",
-    		parameter.count() > 4 ? parameter[4].lower()=="yes" : true)
+    		parameter.count() > 4 ? parameter[4].toLower()=="yes" : true)
     	 << "\n";
     tmpFile.close();
 
@@ -536,11 +536,11 @@ TagString exp_Select::expFunc( const ListPanel* panel, const QStringList& parame
     else
        mask = KRQuery( parameter[0] );
 
-    if ( parameter[1].lower() == "add")
+    if ( parameter[1].toLower() == "add")
        panel->view->select( mask );
-    else if ( parameter[1].lower() == "remove")
+    else if ( parameter[1].toLower() == "remove")
        panel->view->unselect( mask );
-    else { // parameter[1].lower() == "set" or isEmpty() or whatever
+    else { // parameter[1].toLower() == "set" or isEmpty() or whatever
        panel->view->unselect( KRQuery( "*" ) );
        panel->view->select( mask );
     }
@@ -560,7 +560,7 @@ TagString exp_Goto::expFunc( const ListPanel* panel, const QStringList& paramete
    NEED_PANEL
    
    bool newTab = false;
-   if ( parameter[1].lower() == "yes" )
+   if ( parameter[1].toLower() == "yes" )
       newTab = true;
    
    if ( newTab ) {
@@ -785,11 +785,11 @@ TagString exp_Each::expFunc( const ListPanel* panel, const QStringList& paramete
 
    TagString ret;
    QStringList l = fileList(panel,
-   		parameter.empty() ? QString::null : parameter[0].lower(),
-   		mask, parameter.count() > 1 && parameter[1].lower()=="yes",
+   		parameter.empty() ? QString::null : parameter[0].toLower(),
+   		mask, parameter.count() > 1 && parameter[1].toLower()=="yes",
    		useUrl, exp, "Each");
 
-   if(!(parameter.count()<=3 || parameter[3].lower()!="yes"))
+   if(!(parameter.count()<=3 || parameter[3].toLower()!="yes"))
       transform(l.begin(),l.end(),l.begin(),bashquote);
 
    ret.insertTag(0,l);
@@ -833,13 +833,13 @@ TagString exp_ColSort::expFunc( const ListPanel* panel, const QStringList& param
    #define MODE_OUT krOut << QString( "mode: %1" ).arg( mode, 0, 2 ) << endl; // displays mode in base-2
    //MODE_OUT
       
-   if ( parameter.count() <= 1 || ( parameter[1].lower() != "asc" && parameter[1].lower() != "desc" ) ) {  //default == toggle
+   if ( parameter.count() <= 1 || ( parameter[1].toLower() != "asc" && parameter[1].toLower() != "desc" ) ) {  //default == toggle
       if ( mode & KrViewProperties::Descending )
          mode &= ~KrViewProperties::Descending; // == asc
       else
          mode |= KrViewProperties::Descending; // == desc
    } else
-   if ( parameter[1].lower() == "asc" ) {
+   if ( parameter[1].toLower() == "asc" ) {
       mode &= ~KrViewProperties::Descending;
    }
    else { // == desc
@@ -853,31 +853,31 @@ TagString exp_ColSort::expFunc( const ListPanel* panel, const QStringList& param
    
    MODE_OUT
    
-   if ( parameter[0].lower() == "name" ) {
+   if ( parameter[0].toLower() == "name" ) {
       mode |= KrViewProperties::Name;
    } else
-   if ( parameter[0].lower() == "ext" ) {
+   if ( parameter[0].toLower() == "ext" ) {
       mode |= KrViewProperties::Ext;
    } else
-   if ( parameter[0].lower() == "type" ) {
+   if ( parameter[0].toLower() == "type" ) {
       mode |= KrViewProperties::Type;
    } else
-   if ( parameter[0].lower() == "size" ) {
+   if ( parameter[0].toLower() == "size" ) {
       mode |= KrViewProperties::Size;
    } else
-   if ( parameter[0].lower() == "modified" ) {
+   if ( parameter[0].toLower() == "modified" ) {
       mode |= KrViewProperties::Modified;
    } else
-   if ( parameter[0].lower() == "perms" ) {
+   if ( parameter[0].toLower() == "perms" ) {
       mode |= KrViewProperties::Permissions;
    } else
-   if ( parameter[0].lower() == "rwx" ) {
+   if ( parameter[0].toLower() == "rwx" ) {
       mode |= KrViewProperties::KrPermissions;
    } else
-   if ( parameter[0].lower() == "owner" ) {
+   if ( parameter[0].toLower() == "owner" ) {
       mode |= KrViewProperties::Owner;
    } else
-   if ( parameter[0].lower() == "group" ) {
+   if ( parameter[0].toLower() == "group" ) {
       mode |= KrViewProperties::Group;
    } else {
       setError(exp, Error(Error::S_WARNING,Error::C_ARGUMENT,i18n("Expander: unknown column specified for %_ColSort(%1)%").arg(parameter[0]) ));
@@ -955,16 +955,16 @@ TagString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, c
    KJS::ExecState *exec = krJS->globalExec();
 
    QString jsReturn = QString::null;
-   if ( parameter[1].lower() == "yes" )	// to stay compatible with the old-style parameter
+   if ( parameter[1].toLower() == "yes" )	// to stay compatible with the old-style parameter
       jsReturn = "cmd";
    else {
       QStringList jsVariables = QStringList::split( ';', parameter[1] );
       QString jsVariable, jsValue;
       for ( QStringList::Iterator it = jsVariables.begin(); it != jsVariables.end(); ++it ) {
-         jsVariable = (*it).section('=', 0, 0).stripWhiteSpace();
+         jsVariable = (*it).section('=', 0, 0).trimmed();
          jsValue = (*it).section('=', 1);
          if ( jsVariable == "return" )
-            jsReturn = jsValue.stripWhiteSpace();
+            jsReturn = jsValue.trimmed();
          else
             krJS->putValue( jsVariable, KJSEmbed::convertToValue(exec, jsValue ) );
       }
@@ -1094,7 +1094,7 @@ TagString Expander::expandCurrent( const QString& stringToExpand, bool useUrl ) 
         TagStringList parameter = separateParameter( &exp, useUrl );
         if ( error() )
            return QString::null;
-        char panelIndicator = exp.lower()[0].latin1();
+        char panelIndicator = exp.toLower()[0].toLatin1();
         exp.replace( 0, 1, "" );
         for ( i = 0; i < placeholderCount(); ++i )
            if ( exp == placeholder( i )->expression() ) {
@@ -1155,13 +1155,13 @@ TagStringList Expander::separateParameter( QString* const exp, bool useUrl ) {
       unsigned int idx = 0;
       begin = 0;
       while ( idx < result.length() ) {
-         if ( result[ idx ].latin1() == '\\' ) {
-            if ( result[ idx+1 ].latin1() == '"')
+         if ( result[ idx ].toLatin1() == '\\' ) {
+            if ( result[ idx+1 ].toLatin1() == '"')
                result.replace( idx, 1, "" );
          }
-         if ( result[ idx ].latin1() == '"' )
+         if ( result[ idx ].toLatin1() == '"' )
             inQuotes = !inQuotes;
-         if ( result[ idx ].latin1() == ',' && !inQuotes ) {
+         if ( result[ idx ].toLatin1() == ',' && !inQuotes ) {
             parameter1.append( result.mid( begin, idx - begin) );
             begin = idx + 1;
 //             krOut << " ---- parameter: " << parameter.join(";") << endl;
@@ -1171,7 +1171,7 @@ TagStringList Expander::separateParameter( QString* const exp, bool useUrl ) {
       parameter1.append( result.mid( begin, idx - begin) );  //don't forget the last one
       
       for (QStringList::Iterator it = parameter1.begin(); it != parameter1.end(); ++it) {
-         *it = (*it).stripWhiteSpace();
+         *it = (*it).trimmed();
          if ( (*it).left(1) == "\"" )
             *it = (*it).mid(1, (*it).length() - 2 );
          parameter.push_back(expandCurrent( *it, useUrl ));
@@ -1196,7 +1196,7 @@ int Expander::findEnd( const QString& str, int start ) {
    bool inQuotes = false;
    int depth=1;
    while ( idx < str.length() ) {
-      switch (str[ idx ].latin1()) {
+      switch (str[ idx ].toLatin1()) {
       case '\\':
          idx ++;
          break;

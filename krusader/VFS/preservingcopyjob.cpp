@@ -268,7 +268,7 @@ void PreservingCopyJob::slotCopyingDone( KIO::Job *, const KURL &from, const KUR
 #if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
       if( !attrs.acl.isNull() )
       {
-        acl_t acl = acl_from_text( attrs.acl.latin1() );
+        acl_t acl = acl_from_text( attrs.acl.toLatin1() );
         if( acl && !acl_valid( acl ) )
           acl_set_file( to.path( -1 ).local8Bit(), ACL_TYPE_ACCESS, acl );
         if( acl )

@@ -157,10 +157,10 @@ void KCMDLine::slotRun() {
 
   cmdLine->addToHistory(command1);
 
-  if ( command1.simplifyWhiteSpace().left( 3 ) == "cd " ) { // cd command effect the active panel
-    QString dir = command1.right( command1.length() - command1.find( " " ) ).stripWhiteSpace();
+  if ( command1.simplified().left( 3 ) == "cd " ) { // cd command effect the active panel
+    QString dir = command1.right( command1.length() - command1.find( " " ) ).trimmed();
     if ( dir == "~" )
-      dir = QDir::homeDirPath();
+      dir = QDir::homePath();
     else
       if ( dir.left( 1 ) != "/" && !dir.contains( ":/" ) )
         dir = panelPath + ( panelPath == "/" ? "" : "/" ) + dir;

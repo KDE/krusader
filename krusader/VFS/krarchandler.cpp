@@ -633,7 +633,7 @@ QString KRarcHandler::detectArchive( bool &encrypted, QString fileName, bool che
 	QFile arcFile( fileName );
 	if ( arcFile.open( IO_ReadOnly ) ) {
 		char buffer[ 1024 ];
-		long sizeMax = arcFile.readBlock( buffer, sizeof( buffer ) );
+		long sizeMax = arcFile.read( buffer, sizeof( buffer ) );
 		arcFile.close();
 		
 		for( int i=0; i < autoDetectElems; i++ ) {
