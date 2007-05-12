@@ -6,9 +6,9 @@
 
 #include <kdebug.h>
 
-#define debug   kdDebug
-#define error   kdError
-#define fatal   kdFatal
-#define warning kdWarning
+#define debug   kDebug
+#define error   kError
+#define fatal   kFatal
+#define warning kWarning
 
 #endif

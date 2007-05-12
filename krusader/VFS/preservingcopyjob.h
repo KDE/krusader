@@ -31,9 +31,10 @@
 #ifndef __PRESERVING_COPY_JOB_H__
 #define __PRESERVING_COPY_JOB_H__
 
-#include "config.h"
+//#include "config.h"
 #include <time.h>
 #include <kio/jobclasses.h>
+#include <kio/copyjob.h>
 #include <qmap.h>
 #include <q3valuelist.h>
 
@@ -57,28 +58,27 @@ public:
 	QString  acl;
 };
 
-class PreservingCopyJob : public KIO::CopyJob
-{
+class PreservingCopyJob : public KIO::CopyJob {
   Q_OBJECT
 
 public:
 
-  PreservingCopyJob( const KURL::List& src, const KURL& dest, CopyMode mode, bool asMethod, bool showProgressInfo );
+  PreservingCopyJob( const KUrl::List& src, const KUrl& dest, CopyMode mode, bool asMethod, bool showProgressInfo );
 
-  static KIO::CopyJob *createCopyJob( PreserveMode pmode, const KURL::List& src, const KURL& dest, CopyMode mode, bool asMethod, bool showProgressInfo );
+  static KIO::CopyJob *createCopyJob( PreserveMode pmode, const KUrl::List& src, const KUrl& dest, CopyMode mode, bool asMethod, bool showProgressInfo );
 
 public slots:
   void slotAboutToCreate (KIO::Job *, const Q3ValueList< KIO::CopyInfo > &);
-  void slotCopyingDone( KIO::Job *, const KURL &, const KURL &, bool, bool);
+  void slotCopyingDone( KIO::Job *, const KUrl &, const KUrl &, bool, bool);
   void slotFinished();
   virtual void slotResult( Job *job );
   void slotListEntries(KIO::Job *job, const KIO::UDSEntryList &list);
   
 private:
-  QMap<KURL, Attributes> fileAttributes;
-  QMap<KIO::Job *, KURL> pendingJobs;
-  Q3ValueList<KURL>       directoriesToStamp;
-  Q3ValueList<KURL>       originalDirectories;
+  QMap<KUrl, Attributes> fileAttributes;
+  QMap<KIO::Job *, KUrl> pendingJobs;
+  Q3ValueList<KUrl>       directoriesToStamp;
+  Q3ValueList<KUrl>       originalDirectories;
 };
 
 #endif /* __PRESERVING_COPY_JOB_H__ */

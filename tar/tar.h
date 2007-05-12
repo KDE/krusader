@@ -30,15 +30,15 @@ public:
 	ArchiveProtocol( const Q3CString &pool, const Q3CString &app );
 	virtual ~ArchiveProtocol();
 
-	virtual void listDir( const KURL & url );
-	virtual void stat( const KURL & url );
-	virtual void get( const KURL & url );
-	virtual void put( const KURL& url, int permissions, bool overwrite, bool resume );
-	virtual void mkdir(const KURL& url,int permissions);
+	virtual void listDir( const KUrl & url );
+	virtual void stat( const KUrl & url );
+	virtual void get( const KUrl & url );
+	virtual void put( const KUrl& url, int permissions, bool overwrite, bool resume );
+	virtual void mkdir(const KUrl& url,int permissions);
 
 protected:
 	void createUDSEntry( const KArchiveEntry * tarEntry, KIO::UDSEntry & entry );
-	bool checkNewFile( const KURL & url, QString & path );
+	bool checkNewFile( const KUrl & url, QString & path );
 
 	KArchive * m_archiveFile;
 	QString m_archiveName;

@@ -46,7 +46,7 @@ class DiskUsageGUI : public QDialog
   Q_OBJECT
   
 public:
-  DiskUsageGUI( KURL openDir, QWidget* parent=0, const char *name = 0 );
+  DiskUsageGUI( KUrl openDir, QWidget* parent=0, const char *name = 0 );
   ~DiskUsageGUI();
   
 
@@ -69,7 +69,7 @@ protected:
   virtual void               resizeEvent( QResizeEvent *e );
   
   DiskUsage                 *diskUsage;
-  KURL                       baseDirectory;
+  KUrl                       baseDirectory;
   
   KSqueezedTextLabel        *status;
   

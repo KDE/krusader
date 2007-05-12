@@ -61,17 +61,17 @@ void KRdirWatch::addDir(QString path, bool checkPermissions){
 
   krDirEntry* temp = new krDirEntry;
   if (!dir.cd(path)){ // if it's not a dir or don't exist - don't add it
-    //kdDebug() << "KRDirWatch: can't watch " + path +", (don't exist)" << endl;
+    //kDebug() << "KRDirWatch: can't watch " + path +", (don't exist)" << endl;
     return;
   }
   if( checkPermissions ) {
     // if we can't read it - don't bother
     if (getgid() != 0 && !KRpermHandler::fileReadable(path) ){
-      //kdDebug() << "KRDirWatch: can't watch " + path +", (not readable)" << endl;
+      //kDebug() << "KRDirWatch: can't watch " + path +", (not readable)" << endl;
       return;
     }
     if (!KRpermHandler::fileWriteable(path) ){ // read-only directorys can't be changed
-      //kdDebug() << "KRDirWatch: not watching " + path +", (read-only directory)" << endl;
+      //kDebug() << "KRDirWatch: not watching " + path +", (read-only directory)" << endl;
       return;
     }
   }

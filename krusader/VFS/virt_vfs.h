@@ -33,15 +33,15 @@ public:
 	~virt_vfs();
 	
 	/// Copy a file to the vfs (physical).
-	void vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "",  PreserveMode pmode = PM_DEFAULT );	
+	void vfs_addFiles(KUrl::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "",  PreserveMode pmode = PM_DEFAULT );	
 	/// Remove a file from the vfs (physical)
 	void vfs_delFiles(QStringList *fileNames);	
 	/// Remove a file from the collection (only its link, not the file)
 	void vfs_removeFiles(QStringList *fileNames);	
 	/// Return a list of URLs for multiple files	
-	KURL::List* vfs_getFiles(QStringList* names);
+	KUrl::List* vfs_getFiles(QStringList* names);
 	/// Return a URL to a single file	
-	KURL vfs_getFile(const QString& name);
+	KUrl vfs_getFile(const QString& name);
 	/// Create a new directory
 	void vfs_mkdir(const QString& name);
 	/// Rename file
@@ -63,10 +63,10 @@ protected:
 	/// return the URLs DB
 	KConfig*  getVirtDB();
 
-	bool populateVfsList(const KURL& origin, bool showHidden);
-	vfile* stat(const KURL& url);
+	bool populateVfsList(const KUrl& origin, bool showHidden);
+	vfile* stat(const KUrl& url);
 	
-	static Q3Dict<KURL::List> virtVfsDict;
+	static Q3Dict<KUrl::List> virtVfsDict;
 	static KConfig* virt_vfs_db;
 	bool busy;
 	QString path;

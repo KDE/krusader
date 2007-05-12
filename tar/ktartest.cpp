@@ -38,7 +38,7 @@ int main( int argc, char** argv )
   KInstance instance("ktartest");
 
   QString command = argv[1];
-  kdDebug() << "main: command=" << command << endl;
+  kDebug() << "main: command=" << command << endl;
   if ( command == "list" )
   {
     KTarGz tar( argv[2] );
@@ -92,7 +92,7 @@ int main( int argc, char** argv )
     int n;
     while ( ( n = dev.read( array.data(), array.size() ) ) )
     {
-        kdDebug() << "read returned " << n << endl << endl;
+        kDebug() << "read returned " << n << endl << endl;
         QCString s(array,n+1); // Terminate with 0 before printing
         printf("%s", s.data());
     }
@@ -104,7 +104,7 @@ int main( int argc, char** argv )
   }
   else if (command == "readwrite" )
   {
-    kdDebug() << " --- readwrite --- " << endl;
+    kDebug() << " --- readwrite --- " << endl;
     KTarGz tar( argv[2] );
 
     if ( !tar.open( QIODevice::WriteOnly ) )

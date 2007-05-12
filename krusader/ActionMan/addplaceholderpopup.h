@@ -13,7 +13,7 @@
 #ifndef ADDPLACEHOLDERPOPUP_H
 #define ADDPLACEHOLDERPOPUP_H
 
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <kdialogbase.h>
 #include "../UserAction/expander.h"
 //Added by qt3to4:
@@ -25,7 +25,7 @@ class QToolButton;
 class QCheckBox;
 class KComboBox;
 class KrBookmarkButton;
-class KURL;
+class KUrl;
 class KIntSpinBox;
 
 
@@ -33,7 +33,7 @@ class KIntSpinBox;
  * This reads Expander::placeholder[] and fills a popup for easy access to the UserAction Placeholder
  * @author Jonas Bähr (http://www.jonas-baehr.de), Shie Erlich
  */
-class AddPlaceholderPopup : public KPopupMenu {
+class AddPlaceholderPopup : public KMenu {
 
 public:
    AddPlaceholderPopup( QWidget *parent );
@@ -54,7 +54,7 @@ protected:
    QString getParameter( exp_placeholder* currentPlaceholder );
    
 private:
-   KPopupMenu *_activeSub, *_otherSub, *_leftSub, *_rightSub, *_independentSub;
+   KMenu *_activeSub, *_otherSub, *_leftSub, *_rightSub, *_independentSub;
 };
 
 

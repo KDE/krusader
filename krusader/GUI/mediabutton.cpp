@@ -53,7 +53,7 @@
 #include <kmimetype.h>
 #include <kprotocolinfo.h>
 #include <kfileitem.h>
-#include <kprocess.h>
+#include <k3process.h>
 #include <qcursor.h>
 
 #ifdef Q_OS_LINUX
@@ -133,7 +133,7 @@ void MediaButton::slotAboutToHide() {
 }
 
 void MediaButton::createListWithMedia() {
-	KIO::ListJob *job = KIO::listDir( KURL( "media:/" ), false );
+	KIO::ListJob *job = KIO::listDir( KUrl( "media:/" ), false );
 	connect( job, SIGNAL( entries( KIO::Job*, const KIO::UDSEntryList& ) ),
 		this, SLOT( slotEntries( KIO::Job*, const KIO::UDSEntryList& ) ) );
 	connect( job, SIGNAL( result( KIO::Job* ) ),
@@ -153,7 +153,7 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 	
 	while( it != end )
 	{
-		KURL url;
+		KUrl url;
 		QString text;
 		QString mime;
 		QString localPath;
@@ -164,10 +164,10 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 		for( ; it2 != (*it).end(); it2++ ) {
 			switch ((*it2).m_uds) {
 			case KIO::UDS_NAME:
-				text = KURL::decode_string((*it2).m_str);
+				text = KUrl::decode_string((*it2).m_str);
 				break;
 			case KIO::UDS_URL:
-				url = KURL::fromPathOrURL(  (*it2).m_str );
+				url = KUrl::fromPathOrUrl(  (*it2).m_str );
 				break;
 			case KIO::UDS_MIME_TYPE:
 				mime = (*it2).m_str;
@@ -190,7 +190,7 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 			
 			if( mounted && !localPath.isEmpty() )
 			{
-				url = KURL::fromPathOrURL( localPath );
+				url = KUrl::fromPathOrUrl( localPath );
 				if( !text.contains( url.path() ) )
 					text += "  [" + url.path() + "]";
 			}
@@ -215,7 +215,7 @@ void MediaButton::slotListResult( KIO::Job * ) {
 	busy = false;
 }
 
-KURL MediaButton::getLocalPath( const KURL &url, KMountPoint::List *mountList ) {
+KUrl MediaButton::getLocalPath( const KUrl &url, KMountPoint::List *mountList ) {
 	KMountPoint::List mountListRef;
 	if( mountList == 0 ) {
 		mountListRef = KMountPoint::currentMountPoints();
@@ -228,7 +228,7 @@ KURL MediaButton::getLocalPath( const KURL &url, KMountPoint::List *mountList ) 
 		if( name == url.fileName() ) {
 			QString point = (*it)->mountPoint();
 			if( !point.isEmpty() )
-				return KURL::fromPathOrURL( point );
+				return KUrl::fromPathOrUrl( point );
 		}
 	}
 	return url;
@@ -375,7 +375,7 @@ void MediaButton::slotPopupActivated( int elem ) {
 }
 
 void MediaButton::gettingSpaceData(const QString &mountPoint, unsigned long kBSize, unsigned long, unsigned long ) {
-	KURL mediaURL = KURL::fromPathOrURL( mountPoint );
+	KUrl mediaURL = KUrl::fromPathOrUrl( mountPoint );
 	
 	KIO::filesize_t size = kBSize;
 	size *= 1024;
@@ -429,7 +429,7 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 		return;
 	
 	int overwrite = -1;
-	KURL mountURL = KURL::fromPathOrURL( mp->mountPoint() );
+	KUrl mountURL = KUrl::fromPathOrUrl( mp->mountPoint() );
 	
 	for( unsigned i=0; i != urls.size(); i++ ) 
 		if( urls[ i ].equals( mountURL, true ) ) {
@@ -482,7 +482,7 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 	}
 	
 	if( isMounted ) {
-		KDiskFreeSp *sp = KDiskFreeSp::findUsageInfo( mp->mountPoint() );
+		KDiskFreeSpace *sp = KDiskFreeSpace::findUsageInfo( mp->mountPoint() );
 		connect( sp, SIGNAL( foundMountPoint( const QString &, unsigned long, unsigned long, unsigned long ) ),
 		         this, SLOT( gettingSpaceData( const QString&, unsigned long, unsigned long, unsigned long ) ) );
 	}
@@ -491,9 +491,9 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 	
 	if( overwrite == -1 ) {
 		int index = popupMenu->count();
-		urls.append( KURL::fromPathOrURL( mp->mountPoint() ) );
+		urls.append( KUrl::fromPathOrUrl( mp->mountPoint() ) );
 		mimes.append( mime );
-		mediaUrls.append( KURL() );
+		mediaUrls.append( KUrl() );
 		quasiMounted.append( false );
 		popupMenu->insertItem( pixmap, name + "  [" + mp->mountPoint() + "]" + extSpc, index, index );
 	}
@@ -580,9 +580,9 @@ void MediaButton::rightClickMenu( int index ) {
 bool MediaButton::mount( int index ) {
 	if ( (unsigned)index < mimes.count() ) {
 		if( !mediaUrls[ index ].isEmpty() ) {
-			KProcess proc;
+			K3Process proc;
 			proc << KrServices::fullPathName( "kio_media_mounthelper" ) << "-m" << mediaUrls[ index ].url();
-			proc.start( KProcess::DontCare );
+			proc.start( K3Process::DontCare );
 		} else {
 			krMtMan.mount( urls[ index ].path(), false );
 		}
@@ -593,9 +593,9 @@ bool MediaButton::mount( int index ) {
 bool MediaButton::umount( int index ) {
 	if ( (unsigned)index < mimes.count() ) {
 		if( !mediaUrls[ index ].isEmpty() ) {
-			KProcess proc;
+			K3Process proc;
 			proc << KrServices::fullPathName( "kio_media_mounthelper" ) << "-u" << mediaUrls[ index ].url();
-			proc.start( KProcess::DontCare );
+			proc.start( K3Process::DontCare );
 		} else {
 			krMtMan.unmount( urls[ index ].path(), false );
 		}
@@ -606,9 +606,9 @@ bool MediaButton::umount( int index ) {
 bool MediaButton::eject( int index ) {
 	if ( (unsigned)index < mimes.count() ) {
 		if( !mediaUrls[ index ].isEmpty() ) {
-			KProcess proc;
+			K3Process proc;
 			proc << KrServices::fullPathName( "kio_media_mounthelper" ) << "-e" << mediaUrls[ index ].url();
-			proc.start( KProcess::DontCare );
+			proc.start( K3Process::DontCare );
 		} else {
 			krMtMan.eject( urls[ index ].path() );
 		}
@@ -634,7 +634,7 @@ void MediaButton::slotTimeout() {
 					break;
 				}
 		} else {
-			KURL uri = getLocalPath( mediaUrls[ index ], &mountList );
+			KUrl uri = getLocalPath( mediaUrls[ index ], &mountList );
 			if(  uri.isLocalFile() ) {
 				urls[ index ] = uri;
 				mounted = true;

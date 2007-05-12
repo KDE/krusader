@@ -31,7 +31,7 @@ KrVfsHandler::KrVfsHandler(){
 KrVfsHandler::~KrVfsHandler(){
 }
 
-vfs::VFS_TYPE KrVfsHandler::getVfsType(const KURL& url){
+vfs::VFS_TYPE KrVfsHandler::getVfsType(const KUrl& url){
   QString protocol = url.protocol();
 
   if( ( protocol == "krarc" || protocol == "tar" || protocol == "zip" ) &&
@@ -48,7 +48,7 @@ vfs::VFS_TYPE KrVfsHandler::getVfsType(const KURL& url){
 	return vfs::ERROR;
 }
 
-vfs* KrVfsHandler::getVfs(const KURL& url,QObject* parent,vfs* oldVfs){
+vfs* KrVfsHandler::getVfs(const KUrl& url,QObject* parent,vfs* oldVfs){
 	vfs::VFS_TYPE newType,oldType = vfs::ERROR;
 
 	if(oldVfs) oldType = oldVfs->vfs_getType();

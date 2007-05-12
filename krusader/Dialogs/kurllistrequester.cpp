@@ -37,7 +37,7 @@
 #include <Q3GridLayout>
 #include <QKeyEvent>
 #include <kfiledialog.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <kiconloader.h>
 #include <klocale.h>
 #include <kmessagebox.h>
@@ -75,7 +75,7 @@ KURLListRequester::KURLListRequester( QWidget *parent, const char * name ) : QWi
 
   // add shell completion
     
-  completion.setMode( KURLCompletion::FileCompletion );
+  completion.setMode( KUrlCompletion::FileCompletion );
   urlLineEdit->setCompletionObject( &completion );
   
   // connection table
@@ -107,15 +107,15 @@ void KURLListRequester::slotAdd()
 
 void KURLListRequester::slotBrowse()
 {
-  KURL url = KFileDialog::getExistingURL( QString::null, this );
+  KUrl url = KFileDialog::getExistingURL( QString::null, this );
   if( !url.isEmpty())
-    urlLineEdit->setText( vfs::pathOrURL( url ) );
+    urlLineEdit->setText( vfs::pathOrUrl( url ) );
   urlLineEdit->setFocus();
 }
 
 void KURLListRequester::keyPressEvent(QKeyEvent *e)
 {
-  if( e->key() == Key_Delete )
+  if( e->key() == Qt::Key_Delete )
   {
     if( urlListBox->hasFocus() )
     {
@@ -148,7 +148,7 @@ void KURLListRequester::slotRightClicked( Q3ListBoxItem *item )
   if( item == 0 )
     return;
     
-  KPopupMenu popupMenu( this );
+  KMenu popupMenu( this );
   popupMenu.insertItem( i18n( "Delete" ), DELETE_ITEM_ID );
   
   switch( popupMenu.exec( QCursor::pos() ) )
@@ -162,9 +162,9 @@ void KURLListRequester::slotRightClicked( Q3ListBoxItem *item )
   }
 }
 
-KURL::List KURLListRequester::urlList()
+KUrl::List KURLListRequester::urlList()
 {
-  KURL::List urls;
+  KUrl::List urls;
   
   QString text = urlLineEdit->text().simplified();
   if (!text.isEmpty())
@@ -172,7 +172,7 @@ KURL::List KURLListRequester::urlList()
     QString error = QString::null;
     emit checkValidity( text, error );
     if( error.isNull() )
-      urls.append( vfs::fromPathOrURL( text ) );
+      urls.append( vfs::fromPathOrUrl( text ) );
   }
     
   Q3ListBoxItem *item = urlListBox->firstItem();
@@ -183,7 +183,7 @@ KURL::List KURLListRequester::urlList()
     QString error = QString::null;
     emit checkValidity( text, error );    
     if( error.isNull() )
-      urls.append( vfs::fromPathOrURL( text ) );
+      urls.append( vfs::fromPathOrUrl( text ) );
       
     item = item->next();
   }
@@ -191,15 +191,15 @@ KURL::List KURLListRequester::urlList()
   return urls;
 }
 
-void KURLListRequester::setUrlList( KURL::List urlList )
+void KURLListRequester::setUrlList( KUrl::List urlList )
 {
   urlLineEdit->clear();
   urlListBox->clear();
 
-  KURL::List::iterator it;
+  KUrl::List::iterator it;
     
   for ( it = urlList.begin(); it != urlList.end(); ++it )
-    urlListBox->insertItem( vfs::pathOrURL(*it) );
+    urlListBox->insertItem( vfs::pathOrUrl(*it) );
 }
 
 #include "kurllistrequester.moc"

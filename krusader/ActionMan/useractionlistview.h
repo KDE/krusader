@@ -12,7 +12,7 @@
 #ifndef USERACTIONLISTVIEW_H
 #define USERACTIONLISTVIEW_H
 
-#include <klistview.h>
+#include <k3listview.h>
 
 class KrAction;
 class QString;
@@ -22,7 +22,7 @@ class QDomDocument;
 /**
  * @author Jonas Bähr
  */
-class UserActionListView : public KListView {
+class UserActionListView : public K3ListView {
 public:
    UserActionListView( QWidget* parent = 0, const char* name = 0 );
    ~UserActionListView();
@@ -58,7 +58,7 @@ protected:
 /**
  * @author Jonas Bähr
  */
-class UserActionListViewItem : public KListViewItem {
+class UserActionListViewItem : public K3ListViewItem {
 public:
    UserActionListViewItem( Q3ListView* view, KrAction* action );
    UserActionListViewItem( Q3ListViewItem* item, KrAction* action );

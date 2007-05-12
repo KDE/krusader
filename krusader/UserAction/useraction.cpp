@@ -12,7 +12,7 @@
 
 #include <kdebug.h>
 #include <kurl.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <kstandarddirs.h>
 #include <kmessagebox.h>
 
@@ -43,14 +43,14 @@ void UserAction::setAvailability() {
    setAvailability( ACTIVE_FUNC->files()->vfs_getFile( ACTIVE_PANEL->view->getCurrentItem() ) );
 }
 
-void UserAction::setAvailability( const KURL& currentURL ) {
-   //kdDebug() << "UserAction::setAvailability currendFile: " << currentURL.url() << endl;
+void UserAction::setAvailability( const KUrl& currentURL ) {
+   //kDebug() << "UserAction::setAvailability currendFile: " << currentURL.url() << endl;
    // disable the entries that should not appear in this folder
    for ( KrAction* action = _actions.first(); action; action = _actions.next() )
       action->setEnabled( action->isAvailable( currentURL ) );
 }
 
-void UserAction::populateMenu( KPopupMenu* menu ) {
+void UserAction::populateMenu( KMenu* menu ) {
    for ( KrAction* action = _actions.first(); action; action = _actions.next() )
       if ( ! action->isPlugged( menu ) )
          action->plug( menu );
@@ -89,9 +89,9 @@ void UserAction::readFromFile( const QString& filename, ReadMode mode, KrActionL
   QDomDocument* doc = new QDomDocument( ACTION_DOCTYPE );
   QFile file( filename );
   if( file.open( QIODevice::ReadOnly ) ) {
-    //kdDebug() << "UserAction::readFromFile - " << filename << "could be opened" << endl;
+    //kDebug() << "UserAction::readFromFile - " << filename << "could be opened" << endl;
     if( ! doc->setContent( &file ) ) {
-      //kdDebug() << "UserAction::readFromFile - content set - failed" << endl;
+      //kDebug() << "UserAction::readFromFile - content set - failed" << endl;
       // if the file doesn't exist till now, the content CAN be set but is empty.
       // if the content can't be set, the file exists and is NOT an xml-file.
       file.close();
@@ -117,7 +117,7 @@ void UserAction::readFromFile( const QString& filename, ReadMode mode, KrActionL
       delete doc;
     }
 
-  } // if ( file.open( IO_ReadOnly ) )
+  } // if ( file.open( QIODevice::ReadOnly ) )
   else {
       KMessageBox::error( MAIN_VIEW,
       		i18n( "Unable to open actionfile %1").arg( filename ),

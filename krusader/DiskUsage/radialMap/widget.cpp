@@ -24,7 +24,7 @@ RadialMap::Widget::Widget( QWidget *parent, const char *name )
    : QWidget( parent, name, Qt::WNoAutoErase )
    , m_tree( 0 )
    , m_focus( 0 )
-   , m_tip( KCursor::handCursor().bitmap()->height() ) //needs to know cursor height
+   , m_tip( Qt::PointingHandCursor.bitmap()->height() ) //needs to know cursor height
    , m_rootSegment( 0 ) //TODO we don't delete it, *shrug*
 {
    setBackgroundColor( Qt::white );
@@ -42,13 +42,13 @@ RadialMap::Widget::path() const
    return m_tree->fullPath();
 }
 
-KURL
+KUrl
 RadialMap::Widget::url( File const * const file ) const
 {
    if( file == 0 && m_tree == 0 )
-      return KURL();
+      return KUrl();
 
-   return KURL::fromPathOrURL( file ? file->fullPath() : m_tree->fullPath() );
+   return KUrl::fromPathOrUrl( file ? file->fullPath() : m_tree->fullPath() );
 }
 
 void
@@ -62,7 +62,7 @@ RadialMap::Widget::invalidate( const bool b )
       //disable mouse tracking
       setMouseTracking( false );
 
-      KURL urlInv = url();
+      KUrl urlInv = url();
 
       //ensure this class won't think we have a map still
       m_tree  = 0;

@@ -33,8 +33,8 @@
 
 #include <kdialogbase.h>
 #include <kcombobox.h>
-#include <klistview.h>
-#include <kprocess.h>
+#include <k3listview.h>
+#include <k3process.h>
 #include <qcheckbox.h>
 //Added by qt3to4:
 #include <QKeyEvent>
@@ -56,8 +56,8 @@ public:
   void              reset();
 
 public slots:
-  void              processStdout(KProcess *, char *, int);
-  void              processStderr(KProcess *proc, char *buffer, int length);
+  void              processStdout(K3Process *, char *, int);
+  void              processStderr(K3Process *proc, char *buffer, int length);
   void              slotRightClick(Q3ListViewItem *);
   void              slotDoubleClick(Q3ListViewItem *);
   void              updateFinished();
@@ -81,22 +81,22 @@ private:
 
   QString           pattern;
   
-  KHistoryCombo    *locateSearchFor;
-  KListView        *resultList;
+  KHistoryComboBox    *locateSearchFor;
+  K3ListView        *resultList;
   QString           remaining;
-  KListViewItem    *lastItem;
+  K3ListViewItem    *lastItem;
 
   QString           collectedErr;
   
   long              findOptions;
   QString           findPattern;
-  KListViewItem    *findCurrentItem;
+  K3ListViewItem    *findCurrentItem;
 
   QCheckBox        *dontSearchInPath;
   QCheckBox        *existingFiles;
   QCheckBox        *caseSensitive;
 
-  static KProcess  *updateProcess;
+  static K3Process  *updateProcess;
 };
 
 #endif /* __LOCATE_H__ */

@@ -34,7 +34,7 @@
 #include "krviewitem.h"
 #include <sys/types.h>
 #include "../VFS/vfile.h"
-#include <klistview.h>
+#include <k3listview.h>
 #include <qpointer.h>
 //Added by qt3to4:
 #include <QPixmap>
@@ -44,13 +44,13 @@
 class QPixmap;
 class KrDetailedView;
 
-class KrDetailedViewItem : public KListViewItem, public KrViewItem {
+class KrDetailedViewItem : public K3ListViewItem, public KrViewItem {
 friend class KrDetailedView;
 friend class KrCalcSpaceDialog;
 public:
 	KrDetailedViewItem(KrDetailedView *parent, Q3ListViewItem *after, vfile *vf);
-	inline bool isSelected() const { return KListViewItem::isSelected(); }
-	inline void setSelected(bool s) { KListViewItem::setSelected(s); }
+	inline bool isSelected() const { return K3ListViewItem::isSelected(); }
+	inline void setSelected(bool s) { K3ListViewItem::setSelected(s); }
 	int compare(Q3ListViewItem *i,int col,bool ascending ) const;
 	void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align);
 	void repaintItem();
@@ -62,7 +62,7 @@ public:
 protected:
 	// text() was made protected in order to catch every place where text(x) is used
 	// to gain unlawful information on the object
-	virtual inline QString text(int column) const { return KListViewItem::text(column); }
+	virtual inline QString text(int column) const { return K3ListViewItem::text(column); }
 
 private:
 	static const QColor & setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2);

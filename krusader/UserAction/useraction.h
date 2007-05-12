@@ -20,8 +20,8 @@ class QDomElement;
 class QString;
 class QStringList;
 class KrAction;
-class KURL;
-class KPopupMenu;
+class KUrl;
+class KMenu;
 
 /**
  * Useractions are Krusaders backend for user-defined actions on current/selected files in its panels
@@ -83,13 +83,13 @@ public:
    * same as above but check for a specitic file
    * @param currentURL Check for this file
    */
-  void setAvailability(const KURL& currentURL);
+  void setAvailability(const KUrl& currentURL);
   
   /**
-   * Fills a KPopupMenu with all available UserActions in the list
+   * Fills a KMenu with all available UserActions in the list
    * @param  popupmenu to populate
    */
-  void populateMenu(KPopupMenu* menu);
+  void populateMenu(KMenu* menu);
 
    QStringList allCategories();
    QStringList allNames();

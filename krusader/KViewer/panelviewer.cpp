@@ -31,7 +31,7 @@ Q3WidgetStack( parent ), mimes( 0 ), cpart( 0 ) {
 	mimes->setAutoDelete( true );
 	cpart = 0;
 	fallback = new QLabel( i18n( "No file selected or selected file can't be displayed." ), this );
-	fallback->setAlignment( AlignCenter | ExpandTabs | WordBreak );
+	fallback->setAlignment( Qt::AlignCenter | ExpandTabs | WordBreak );
 	addWidget( fallback );
 	raiseWidget( fallback );
 }
@@ -53,7 +53,7 @@ PanelViewerBase( parent ) {
 PanelViewer::~PanelViewer() {
 }
 
-KParts::ReadOnlyPart* PanelViewer::openURL( const KURL &url, KrViewer::Mode mode ) {
+KParts::ReadOnlyPart* PanelViewer::openURL( const KUrl &url, KrViewer::Mode mode ) {
 	emit urlChanged( this, url );
 	closeURL();
 	curl = url;
@@ -124,8 +124,8 @@ KParts::ReadOnlyPart* PanelViewer::getPart( QString mimetype ) {
 	if ( part ) {
 		KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject( part );
 		if ( ext ) {
-			connect( ext, SIGNAL( openURLRequestDelayed( const KURL &, const KParts::URLArgs & ) ), this, SLOT( openURL( const KURL & ) ) );
-			connect( ext, SIGNAL( openURLRequestDelayed( const KURL &, const KParts::URLArgs & ) ), this, SIGNAL( openURLRequest( const KURL & ) ) );
+			connect( ext, SIGNAL( openURLRequestDelayed( const KUrl &, const KParts::URLArgs & ) ), this, SLOT( openURL( const KUrl & ) ) );
+			connect( ext, SIGNAL( openURLRequestDelayed( const KUrl &, const KParts::URLArgs & ) ), this, SIGNAL( openURLRequest( const KUrl & ) ) );
 		}
 	}
 	return part;
@@ -203,7 +203,7 @@ PanelViewerBase( parent ) {
 PanelEditor::~PanelEditor() {
 }
 
-KParts::ReadOnlyPart* PanelEditor::openURL( const KURL &url, KrViewer::Mode mode ) {
+KParts::ReadOnlyPart* PanelEditor::openURL( const KUrl &url, KrViewer::Mode mode ) {
 	emit urlChanged( this, url );
 	closeURL();
 	curl = url;
@@ -287,8 +287,8 @@ KParts::ReadWritePart* PanelEditor::getPart( QString mimetype ) {
 	if ( part ) {
 		KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject( part );
 		if ( ext ) {
-			connect( ext, SIGNAL( openURLRequestDelayed( const KURL &, const KParts::URLArgs & ) ), this, SLOT( openURL( const KURL & ) ) );
-			connect( ext, SIGNAL( openURLRequestDelayed( const KURL &, const KParts::URLArgs & ) ), this, SIGNAL( openURLRequest( const KURL & ) ) );
+			connect( ext, SIGNAL( openURLRequestDelayed( const KUrl &, const KParts::URLArgs & ) ), this, SLOT( openURL( const KUrl & ) ) );
+			connect( ext, SIGNAL( openURLRequestDelayed( const KUrl &, const KParts::URLArgs & ) ), this, SIGNAL( openURLRequest( const KUrl & ) ) );
 		}
 	}
 	return part;

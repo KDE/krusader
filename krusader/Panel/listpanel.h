@@ -42,21 +42,20 @@
 #include <qstring.h>
 #include <qpixmap.h>
 #include <qtoolbutton.h>
-#include <q3popupmenu.h>
 #include <qdir.h>
 #include <qpixmapcache.h>
 #include <qicon.h>
 #include <q3ptrstack.h>
 #include <q3textbrowser.h>
 //Added by qt3to4:
+#include <Q3ListView>
 #include <QDropEvent>
 #include <QShowEvent>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3ValueList>
 #include <QHideEvent>
 #include <QKeyEvent>
 #include <QEvent>
-#include <keditcl.h>
 #include <klineedit.h>
 #include <qpointer.h>
 #include "krview.h"
@@ -69,7 +68,7 @@ class vfs;
 class vfile;
 class KRdirWatch;
 class KrView;
-class KURLRequester;
+class KUrlRequester;
 class BookmarksButton;
 class KrQuickSearch;
 class DirHistoryButton;
@@ -91,12 +90,12 @@ public:
    // constructor create the panel, but DOESN'T fill it with data, use start()
    ListPanel( QString panelType, QWidget *parent, bool &left, const char *name = 0 );
    ~ListPanel();
-   void start( KURL url = KURL(), bool immediate = false );
+   void start( KUrl url = KUrl(), bool immediate = false );
    
    const QString & getType() { return panelType; }
    void changeType( const QString & );
    
-   KURL virtualPath() const;
+   KUrl virtualPath() const;
 	QString realPath() const;
    QString getCurrentName();
    void getSelectedNames( QStringList* fileNames ) {
@@ -105,7 +104,7 @@ public:
    void setPanelToolbar();
    bool isLeft() {return _left;}
    void jumpBack();
-   void setJumpBack( KURL url );
+   void setJumpBack( KUrl url );
 
 public slots:
    void gotStats( const QString &mountPoint, unsigned long kBSize, unsigned long kBUsed, unsigned long kBAvail); // displays filesystem status
@@ -119,7 +118,7 @@ public slots:
    void slotUpdate();			                  // when the vfs finish to update...
    void slotUpdateTotals();
    void slotStartUpdate();                   // internal
-   void slotGetStats( const KURL& url );          // get the disk-free stats
+   void slotGetStats( const KUrl& url );          // get the disk-free stats
    void setFilter( KrViewProperties::FilterSpec f );
    void slotFocusAndCDRoot();
    void slotFocusAndCDHome();
@@ -179,11 +178,11 @@ public:
    KRQuery filterMask;
    QPixmap currDragPix;
    Q3ListViewItem *currDragItem;
-   KDiskFreeSp* statsAgent;
+   KDiskFreeSpace* statsAgent;
    KrSqueezedTextLabel *status, *totals;
    KrQuickSearch *quickSearch;
-   KURLRequester *origin;
-   Q3GridLayout *layout;
+   KUrlRequester *origin;
+   QGridLayout *layout;
    QToolButton *cdRootButton;
    QToolButton *cdHomeButton;
    QToolButton *cdUpButton;
@@ -202,8 +201,8 @@ public:
    Q3Header * header;
 
 protected:
-   KURL _realPath; // named with _ to keep realPath() compatability
-   KURL _jumpBackURL;
+   KUrl _realPath; // named with _ to keep realPath() compatability
+   KUrl _jumpBackURL;
    
 	
 private:

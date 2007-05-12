@@ -87,7 +87,7 @@ bool SynchronizerDirList::load( const QString &urlIn, bool wait ) {
     return false;
 
   currentUrl = urlIn;
-  KURL url = vfs::fromPathOrURL( urlIn );
+  KUrl url = vfs::fromPathOrUrl( urlIn );
 
   if( fileIterator == 0 )
     fileIterator = new Q3DictIterator<vfile> ( *this );
@@ -140,7 +140,7 @@ bool SynchronizerDirList::load( const QString &urlIn, bool wait ) {
 
       QString mime = QString::null;
 
-      KURL fileURL = KURL::fromPathOrURL( fullName );
+      KUrl fileURL = KUrl::fromPathOrUrl( fullName );
 
       vfile* item=new vfile(name,stat_p.st_size,perm,stat_p.st_mtime,symLink,stat_p.st_uid,
                         stat_p.st_gid,mime,symlinkDest,stat_p.st_mode);

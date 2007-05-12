@@ -78,7 +78,8 @@ AdvancedFilter::AdvancedFilter( FilterTabs *tabs, QWidget *parent, const char *n
   biggerThanAmount->setSizePolicy( QSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed, biggerThanAmount->sizePolicy().hasHeightForWidth() ) );
   sizeLayout->addWidget( biggerThanAmount, 0, 1 );
 
-  biggerThanType = new KComboBox( false, sizeGroup, "biggerThanType" );
+  biggerThanType = new KComboBox( false, sizeGroup );
+  biggerThanType->setObjectName( "biggerThanType" );
   biggerThanType->insertItem( i18n( "Bytes" ) );
   biggerThanType->insertItem( i18n( "KB" ) );
   biggerThanType->insertItem( i18n( "MB" ) );
@@ -94,7 +95,8 @@ AdvancedFilter::AdvancedFilter( FilterTabs *tabs, QWidget *parent, const char *n
   smallerThanAmount->setSizePolicy( QSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed, smallerThanAmount->sizePolicy().hasHeightForWidth() ) );
   sizeLayout->addWidget( smallerThanAmount, 0, 4 );
 
-  smallerThanType = new KComboBox( false, sizeGroup, "smallerThanType" );
+  smallerThanType = new KComboBox( false, sizeGroup );
+  smallerThanType->setObjectName( "smallerThanType" );
   smallerThanType->insertItem( i18n( "Bytes" ) );
   smallerThanType->insertItem( i18n( "KB" ) );
   smallerThanType->insertItem( i18n( "MB" ) );

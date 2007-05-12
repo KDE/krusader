@@ -16,7 +16,7 @@
  ***************************************************************************/
 
 #include <klocale.h>
-#include <kprocess.h>
+#include <k3process.h>
 #include <kshred.h>
 #include <krun.h>
 #include <kiconloader.h>
@@ -33,6 +33,7 @@
 #include "../panelmanager.h"
 //Added by qt3to4:
 #include <QPixmap>
+#include <ktoolinvocation.h>
 
 void KrPopupMenu::run(const QPoint &pos, ListPanel *panel) {
 	KrPopupMenu menu(panel);
@@ -40,7 +41,7 @@ void KrPopupMenu::run(const QPoint &pos, ListPanel *panel) {
 	menu.performAction(result);
 }
 
-KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(parent), panel(thePanel), empty(false), 
+KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), panel(thePanel), empty(false), 
 	multipleSelections(false),actions(0) {
 #ifdef __LIBKONQ__
 	konqMenu = 0;
@@ -112,7 +113,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
    _items.setAutoDelete( true );
    for ( KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it ) {
 		vfile *file = panel->func->files()->vfs_search(((*it)->name()));
-		KURL url = file->vfile_getUrl();
+		KUrl url = file->vfile_getUrl();
 		_items.append( new KFileItem( url,  file->vfile_getMime(), file->vfile_getMode() ) );
    }
    
@@ -223,8 +224,8 @@ void KrPopupMenu::addCreateNewMenu() {
 }
 
 void KrPopupMenu::performAction(int id) {
-   KURL u;
-   KURL::List lst;
+   KUrl u;
+   KUrl::List lst;
 
    switch ( id ) {
          case - 1 : // the user clicked outside of the menu
@@ -261,11 +262,11 @@ void KrPopupMenu::performAction(int id) {
          case SHRED_ID :
             if ( KMessageBox::warningContinueCancel( krApp,
                  i18n("<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone forever!</qt>").arg(item->name()),
-                 QString::null, KStdGuiItem::cont(), "Shred" ) == KMessageBox::Continue )
+                 QString::null, KStandardGuiItem::cont(), "Shred" ) == KMessageBox::Continue )
                KShred::shred( panel->func->files() ->vfs_getFile( item->name() ).path( -1 ) );
          	break;
          case OPEN_KONQ_ID :
-         	kapp->startServiceByDesktopName( "konqueror", panel->func->files() ->vfs_getFile( item->name() ).url() );
+         	KToolInvocation::startServiceByDesktopName( "konqueror", panel->func->files() ->vfs_getFile( item->name() ).url() );
          	break;
          case CHOOSE_ID : // open-with dialog
          	u = panel->func->files() ->vfs_getFile( item->name() );
@@ -326,7 +327,7 @@ void KrPopupMenu::performAction(int id) {
          case OPEN_TERM_ID :
          	QString save = getcwd( 0, 0 );
          	chdir( panel->func->files() ->vfs_getFile( item->name() ).path( -1 ).local8Bit() );
-				KProcess proc;
+				K3Process proc;
 				{
 				KConfigGroupSaver saver(krConfig, "General");
          	QString term = krConfig->readEntry( "Terminal", _Terminal );
@@ -337,7 +338,7 @@ void KrPopupMenu::performAction(int id) {
 					proc << "&";
             	proc.setUseShell( true );
          	}
-         	if ( !proc.start( KProcess::DontCare ) )
+         	if ( !proc.start( K3Process::DontCare ) )
                KMessageBox::sorry( krApp, i18n( "Can't open \"%1\"" ).arg(term) );
 				} // group-saver is blown out of scope here
          	chdir( save.local8Bit() );

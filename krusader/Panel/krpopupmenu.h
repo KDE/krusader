@@ -1,7 +1,7 @@
 #ifndef KRPOPUPMENU_H
 #define KRPOPUPMENU_H
 
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <kurl.h>
 #include <kuserprofile.h>
 #include "listpanel.h"
@@ -15,7 +15,7 @@
 #endif
 
 // should be renamed to KrContextMenu or similar
-class KrPopupMenu : public KPopupMenu {
+class KrPopupMenu : public KMenu {
 	Q_OBJECT
 public:
 	static void run(const QPoint &pos, ListPanel *panel);
@@ -64,7 +64,7 @@ protected:
 private:
 	ListPanel *panel;
 	bool empty, multipleSelections;
-	KPopupMenu openWith, linkPopup, createNewPopup;
+	KMenu openWith, linkPopup, createNewPopup;
    KrPreviewPopup preview;
    KActionCollection *actions;
    KrViewItemList items; // list of selected items

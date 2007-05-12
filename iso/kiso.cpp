@@ -69,11 +69,11 @@ static int getTracks(const char *fname,int *tracks) {
     struct cdrom_tochdr tochead;
     struct cdrom_tocentry tocentry;
 
-    kdDebug() << "getTracks open:" << fname << endl;
+    kDebug() << "getTracks open:" << fname << endl;
     fd=open(fname, O_RDONLY | O_NONBLOCK);
     if (fd > 0) {
         if (ioctl(fd,CDROMREADTOCHDR,&tochead)!=-1) {
-            kdDebug() << "getTracks first track:" << tochead.cdth_trk0
+            kDebug() << "getTracks first track:" << tochead.cdth_trk0
                 << " last track " << tochead.cdth_trk1 << endl;
             for (i=tochead.cdth_trk0;i<=tochead.cdth_trk1;i++) {
                 if (ret>99) break;
@@ -81,7 +81,7 @@ static int getTracks(const char *fname,int *tracks) {
                 tocentry.cdte_track=i;
                 tocentry.cdte_format=CDROM_LBA;
                 if (ioctl(fd,CDROMREADTOCENTRY,&tocentry)<0) break;
-                kdDebug() << "getTracks got track " << i << " starting at: " <<
+                kDebug() << "getTracks got track " << i << " starting at: " <<
                     tocentry.cdte_addr.lba << endl;
                 if ((tocentry.cdte_ctrl & 0x4) == 0x4) {
                     tracks[ret<<1]=tocentry.cdte_addr.lba;
@@ -116,7 +116,7 @@ KIso::KIso( const QString& filename, const QString & _mimetype )
     if ( mimetype.isEmpty() )
     {
         mimetype = KMimeType::findByFileContent( filename )->name();
-        kdDebug() << "KIso::KIso mimetype=" << mimetype << endl;
+        kDebug() << "KIso::KIso mimetype=" << mimetype << endl;
 
         // Don't move to prepareDevice - the other constructor theoretically allows ANY filter
         if ( mimetype == "application/x-tgz" || mimetype == "application/x-targz" || // the latter is deprecated but might still be around
@@ -195,7 +195,7 @@ static int readf(char *buf, int start, int len,void *udata) {
     if (dev->at(start<<11)) {
         if ((dev->read(buf, len<<11)) != -1) return (len);
     }
-    kdDebug() << "KIso::ReadRequest failed start: " << start << " len: " << len << endl;
+    kDebug() << "KIso::ReadRequest failed start: " << start << " len: " << len << endl;
 
     return -1;
 }
@@ -350,7 +350,7 @@ bool KIso::openArchive( int mode )
 
     tracks[0]=0;
     if (m_startsec>0) tracks[0]=m_startsec;
-    kdDebug() << " m_startsec: " << m_startsec << endl;
+    kDebug() << " m_startsec: " << m_startsec << endl;
     /* We'll use the permission and user/group of the 'host' file except
      * in Rock Ridge, where the permissions are stored on the file system
      */
@@ -367,7 +367,7 @@ bool KIso::openArchive( int mode )
     gid.setNum(buf.st_gid);
     access = buf.st_mode & ~S_IFMT;
 
-    kdDebug() << "KIso::openArchive number of tracks: " << trackno << endl;
+    kDebug() << "KIso::openArchive number of tracks: " << trackno << endl;
 
     if (trackno==0) trackno=1;
     for (i=0;i<trackno;i++) {
@@ -384,7 +384,7 @@ bool KIso::openArchive( int mode )
 
         desc=ReadISO9660(&readf,tracks[i<<1],this);
         if (!desc) {
-            kdDebug() << "KIso::openArchive no volume descriptors" << endl;
+            kDebug() << "KIso::openArchive no volume descriptors" << endl;
             continue;
         }
 

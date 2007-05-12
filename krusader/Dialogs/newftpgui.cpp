@@ -77,7 +77,8 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags
 
     QStringList protocols = KProtocolInfo::protocols();
 
-    prefix = new KComboBox( FALSE, grid_host, "protocol" );
+    prefix = new KComboBox( FALSE, grid_host );
+    prefix->setObjectName( "protocol" );
     if( protocols.contains("ftp") )
       prefix->insertItem( i18n( "ftp://" ) );
     if( protocols.contains("smb") )
@@ -92,7 +93,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags
     connect( prefix,SIGNAL(activated(const QString& )),
                this,SLOT(slotTextChanged(const QString& )));
 
-    url = new KHistoryCombo( grid_host, "url" );
+    url = new KHistoryComboBox( grid_host, "url" );
     url->setMaximumHeight( 20 );
     url->setMaxCount( 25 );
     url->setDuplicatesEnabled( false );

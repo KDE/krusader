@@ -62,7 +62,7 @@ typedef Q3Dict<void> Properties;
 class DUListView;
 class DULines;
 class DUFilelight;
-class KPopupMenu;
+class KMenu;
 class LoaderWidget;
 
 class DiskUsage : public Q3WidgetStack
@@ -73,7 +73,7 @@ public:
   DiskUsage( QString confGroup, QWidget *parent = 0, char *name = 0);
   ~DiskUsage();
   
-  void       load( KURL dirName );
+  void       load( KUrl dirName );
   void       close();
   void       stopLoad();
   bool       isLoading()     { return loading; }
@@ -97,7 +97,7 @@ public:
   
   QString    getToolTip( File * );
   
-  void       rightClickMenu( File *, KPopupMenu * = 0, QString = QString::null );
+  void       rightClickMenu( File *, KMenu * = 0, QString = QString::null );
   
   void       changeDirectory( Directory *dir );
   
@@ -106,7 +106,7 @@ public:
   
   QPixmap    getIcon( QString mime );
   
-  KURL       getBaseURL() { return baseURL; }
+  KUrl       getBaseURL() { return baseURL; }
   
 public slots:  
   void       dirUp();
@@ -143,7 +143,7 @@ protected:
   void       createStatus();
   void       executeAction( int, File * = 0 );
   
-  KURL       baseURL;             //< the base URL of loading
+  KUrl       baseURL;             //< the base URL of loading
 
   DUListView                *listView;
   DULines                   *lineView;
@@ -186,7 +186,7 @@ public:
   LoaderWidget( QWidget *parent = 0, const char *name = 0 );
   
   void init();
-  void setCurrentURL( KURL url );
+  void setCurrentURL( KUrl url );
   void setValues( int fileNum, int dirNum, KIO::filesize_t total );  
   bool wasCancelled()  { return cancelled; }
   

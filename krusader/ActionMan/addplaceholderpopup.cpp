@@ -49,13 +49,13 @@
 #define EXECUTABLE_ID		0xFFFF
 
 
-AddPlaceholderPopup::AddPlaceholderPopup( QWidget *parent ) : KPopupMenu( parent ) {
+AddPlaceholderPopup::AddPlaceholderPopup( QWidget *parent ) : KMenu( parent ) {
 
-   _activeSub = new KPopupMenu( this );
-   _otherSub = new KPopupMenu( this );
-   _leftSub = new KPopupMenu( this );
-   _rightSub = new KPopupMenu( this );
-   _independentSub = new KPopupMenu( this );
+   _activeSub = new KMenu( this );
+   _otherSub = new KMenu( this );
+   _leftSub = new KMenu( this );
+   _rightSub = new KMenu( this );
+   _independentSub = new KMenu( this );
 
    insertItem( i18n( "Active panel" ), _activeSub );
    insertItem( i18n( "Other panel" ), _otherSub );
@@ -174,7 +174,7 @@ ParameterDialog::ParameterDialog( const exp_placeholder* currentPlaceholder, QWi
          _parameter.append( new ParameterText( currentPlaceholder->parameter( i ), plainPage() ) );
    }
    
-   Q3Frame * line = new Q3Frame( plainPage() );
+   QFrame * line = new Q3Frame( plainPage() );
    line->setFrameShape( Q3Frame::HLine );
    line->setFrameShadow( Q3Frame::Sunken );
 
@@ -441,7 +441,7 @@ ParameterGoto::ParameterGoto( const exp_parameter& parameter, QWidget* parent ) 
    Q3HBox * hbox = new Q3HBox( this );
    hbox->setSpacing( 6 );
    _lineEdit = new KLineEdit( hbox );
-   _lineEdit->setCompletionObject( new KURLCompletion( KURLCompletion::DirCompletion ) );
+   _lineEdit->setCompletionObject( new KUrlCompletion( KUrlCompletion::DirCompletion ) );
    _dirButton = new QToolButton( hbox );
    KIconLoader *iconLoader = new KIconLoader();
   _dirButton->setPixmap( iconLoader->loadIcon( "fileopen", KIcon::Toolbar, 16 ) );

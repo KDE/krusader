@@ -73,11 +73,11 @@ KRQuery KRSpWidgets::getMask(QString caption, bool nameOnly ) {
 }
 
 /////////////////////////// newFTP ////////////////////////////////////////
-KURL KRSpWidgets::newFTP() {
+KUrl KRSpWidgets::newFTP() {
 	newFTPSub *p=new newFTPSub();
 	p->exec();
-	if (p->url->currentText()=="") return KURL(); // empty url
-	KURL url;
+	if (p->url->currentText()=="") return KUrl(); // empty url
+	KUrl url;
 	
 	QString protocol = p->prefix->currentText();
 	protocol.truncate(protocol.length() - 3); // remove the trailing ://
@@ -302,7 +302,7 @@ void QuickNavLineEdit::mouseMoveEvent( QMouseEvent *m) {
 			if (_pop) delete _pop;
 			_pop = KPassivePopup::message( i18n("Quick Navigation"),
 				"<qt>" + i18n("Already at <i>%1</i>").arg(tx.left(idx)) + "</qt>",
-				*(KCursor::handCursor().bitmap()), this);
+				*(Qt::PointingHandCursor.bitmap()), this);
 
 			_dummyDisplayed=true;
 			_numOfSelectedChars=0;
@@ -313,7 +313,7 @@ void QuickNavLineEdit::mouseMoveEvent( QMouseEvent *m) {
 
 			_pop = KPassivePopup::message( i18n("Quick Navigation"),
 				"<qt>" + i18n("Click to go to <i>%1</i>").arg(tx.left(idx)) + "</qt>",
-				*(KCursor::handCursor().bitmap()), this );
+				*(Qt::PointingHandCursor.bitmap()), this );
 		}
 	KLineEdit::mouseMoveEvent(m);
 }

@@ -70,7 +70,7 @@ normal_vfs::normal_vfs(QObject* panel):vfs(panel), watcher(0) {
   vfs_type=NORMAL;
 }
 
-bool normal_vfs::populateVfsList(const KURL& origin, bool showHidden){
+bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
 	QString path = origin.path(-1);
 	
 	// set the writable attribute to true, if that's not the case - the KIO job
@@ -142,14 +142,14 @@ bool normal_vfs::populateVfsList(const KURL& origin, bool showHidden){
 }
 
 // copy a file to the vfs (physical)	
-void normal_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir, PreserveMode pmode ){
+void normal_vfs::vfs_addFiles(KUrl::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir, PreserveMode pmode ){
   //if( watcher ) watcher->stopScan(); // we will refresh manually this time...	
   if( watcher ) {
     delete watcher;   // stopScan is buggy, leaves reference on the directory, that's why we delete the watcher
     watcher = 0;
   }
 
-  KURL dest;
+  KUrl dest;
   dest.setPath(vfs_workingDir()+"/"+dir);
 
   KIO::Job* job = PreservingCopyJob::createCopyJob( pmode, *fileUrls,dest,mode,false,true );
@@ -162,8 +162,8 @@ void normal_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,Q
 
 // remove a file from the vfs (physical)
 void normal_vfs::vfs_delFiles(QStringList *fileNames){
-	KURL::List filesUrls;
-	KURL url;
+	KUrl::List filesUrls;
+	KUrl url;
 	QDir local( vfs_workingDir() );
 	vfile* vf;
 
@@ -199,16 +199,16 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames){
 }
 
 // return a path to the file
-KURL normal_vfs::vfs_getFile(const QString& name){	
+KUrl normal_vfs::vfs_getFile(const QString& name){	
   QString url;
 	if ( vfs_workingDir() == "/" ) url = "/"+name;
 	else url = vfs_workingDir()+"/"+name;
 
-	return vfs::fromPathOrURL(url);
+	return vfs::fromPathOrUrl(url);
 }
 
-KURL::List* normal_vfs::vfs_getFiles(QStringList* names){
-  KURL::List* urls = new KURL::List();
+KUrl::List* normal_vfs::vfs_getFiles(QStringList* names){
+  KUrl::List* urls = new KUrl::List();
   for(QStringList::Iterator name = names->begin(); name != names->end(); ++name){
     urls->append( vfs_getFile(*name) );
   }
@@ -222,8 +222,8 @@ void normal_vfs::vfs_mkdir(const QString& name){
 }
 
 void normal_vfs::vfs_rename(const QString& fileName,const QString& newName){
-  KURL::List fileUrls;
-  KURL url , dest;
+  KUrl::List fileUrls;
+  KUrl url , dest;
 
   //if( watcher ) watcher->stopScan(); // we will refresh manually this time...	
   if( watcher ) {
@@ -250,7 +250,7 @@ vfile* normal_vfs::vfileFromName(const QString& name){
 	bool symLink= S_ISLNK(stat_p.st_mode);
 	if( S_ISDIR(stat_p.st_mode) ) perm[0] = 'd';
 	
-	KURL mimeUrl = fromPathOrURL(path);
+	KUrl mimeUrl = fromPathOrUrl(path);
 	QString mime=QString::null;
 
 	char symDest[256];
@@ -365,7 +365,7 @@ bool normal_vfs::burstRefresh(const QString& path ){
 		}
 		disconnect( &refreshTimer, SIGNAL( timeout() ), this, SLOT( vfs_slotRefresh() ) );
 		connect( &refreshTimer, SIGNAL( timeout() ), this, SLOT( vfs_slotRefresh() ) );
-		postponedRefreshURL = fromPathOrURL(path);
+		postponedRefreshURL = fromPathOrUrl(path);
 		return true;
 	}
 	return false;
@@ -373,14 +373,14 @@ bool normal_vfs::burstRefresh(const QString& path ){
 
 void normal_vfs::vfs_slotDirty(const QString& path){ 
 	if( disableRefresh ){
-		postponedRefreshURL = fromPathOrURL(path);
+		postponedRefreshURL = fromPathOrUrl(path);
 		return;
 	}
 	
 	if( burstRefresh( path ) )
 		return;        
 	
-	KURL url = fromPathOrURL(path);
+	KUrl url = fromPathOrUrl(path);
 	QString name = url.fileName();
 	
 	// do we have it already ?
@@ -395,7 +395,7 @@ void normal_vfs::vfs_slotDirty(const QString& path){
 
 void normal_vfs::vfs_slotCreated(const QString& path){  
 	if( disableRefresh ){
-		postponedRefreshURL = fromPathOrURL(path);
+		postponedRefreshURL = fromPathOrUrl(path);
 		return;
 	}	
 	
@@ -403,7 +403,7 @@ void normal_vfs::vfs_slotCreated(const QString& path){
 		return;        
 	
 	
-	KURL url = fromPathOrURL(path);
+	KUrl url = fromPathOrUrl(path);
 	QString name = url.fileName();	
 	// if it's in the CVS - it's an update not new file
 	if( vfs_search(name) )
@@ -416,7 +416,7 @@ void normal_vfs::vfs_slotCreated(const QString& path){
 
 void normal_vfs::vfs_slotDeleted(const QString& path){ 
 	if( disableRefresh ){
-		postponedRefreshURL = fromPathOrURL(path);
+		postponedRefreshURL = fromPathOrUrl(path);
 		return;
 	}
 	
@@ -424,7 +424,7 @@ void normal_vfs::vfs_slotDeleted(const QString& path){
 		return;        
 	
 	
-	KURL url = fromPathOrURL(path);
+	KUrl url = fromPathOrUrl(path);
 	QString name = url.fileName();
 	
 	// if it's not in the CVS - do nothing

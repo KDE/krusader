@@ -32,7 +32,7 @@ class DirHistoryQueue : public QObject  {
 public: 
 	DirHistoryQueue(ListPanel* p);
 	~DirHistoryQueue();
-	KURL::List urlQueue;
+	KUrl::List urlQueue;
 //  bool checkPath(const QString& path);
 //  void RemovePath(const QString& path);
 
@@ -40,7 +40,7 @@ public slots: // Public slots
   /** No descriptions */
   void slotPathChanged(ListPanel* p);
 private:
-//	void addUrl(const KURL& url);
+//	void addUrl(const KUrl& url);
 	ListPanel* panel;
 };
 

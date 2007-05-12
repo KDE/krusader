@@ -30,7 +30,7 @@
 // QT includes
 #include <q3textstream.h> 
 // KDE includes
-#include <kprocess.h>
+#include <k3process.h>
 #include <ktempfile.h>
 #include <klocale.h>
 #include <kmessagebox.h>
@@ -69,10 +69,10 @@ QStringList KRarcHandler::supportedPackers() {
   if ( KrServices::cmdExist( "dpkg"  ) ) packers.append( "dpkg"  );
   if ( KrServices::cmdExist( "7z"  ) || KrServices::cmdExist( "7za" ) ) packers.append( "7z"  );
   if ( KrServices::cmdExist( "rpm"   ) && KrServices::cmdExist( "rpm2cpio" ) ) packers.append( "rpm" );
-  // kdDebug() << "Supported Packers:" << endl;
+  // kDebug() << "Supported Packers:" << endl;
   //QStringList::Iterator it;
   //for( it = packers.begin(); it != packers.end(); ++it )
-  // kdDebug() << *it << endl;
+  // kDebug() << *it << endl;
 
   return packers;
   }
@@ -190,7 +190,7 @@ long KRarcHandler::arcFileCount( QString archive, QString type, QString password
   list << lister << KrServices::quote( archive ) << ">" << tmpFile.name() ;
   if( type == "-ace" && QFile( "/dev/ptmx" ).exists() )  // Don't remove, unace crashes if missing!!!
     list<< "<" << "/dev/ptmx";
-  list.start( KProcess::NotifyOnExit, KProcess::AllOutput );
+  list.start( K3Process::NotifyOnExit, K3Process::AllOutput );
   while ( list.isRunning() ) {
     usleep( 1000 );
     qApp->processEvents();
@@ -257,7 +257,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
 
     KrShellProcess cpio;
     cpio << KrServices::fullPathName( "rpm2cpio" ) << " " + KrServices::quote( archive ) << " > " << cpioName;
-    cpio.start(KProcess::Block, KProcess::AllOutput );
+    cpio.start(K3Process::Block, K3Process::AllOutput );
     if( !cpio.normalExit() || !checkStatus( "cpio", cpio.exitStatus() ) ) {
       KMessageBox::detailedError (krApp, i18n( "Failed to convert rpm (%1) to cpio!" ).arg( archive ), 
                                   cpio.getErrorMsg(), i18n("Error" ) );
@@ -274,7 +274,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
 
     KrShellProcess dpkg;
     dpkg << KrServices::fullPathName( "dpkg" ) << " --fsys-tarfile " + KrServices::quote( archive ) << " > " << cpioName;
-    dpkg.start(KProcess::Block, KProcess::AllOutput );
+    dpkg.start(K3Process::Block, K3Process::AllOutput );
     if( !dpkg.normalExit() || !checkStatus( "-deb", dpkg.exitStatus() ) ) {
       KMessageBox::detailedError (krApp, i18n( "Failed to convert deb (%1) to tar!" ).arg( archive ), 
                                   dpkg.getErrorMsg(), i18n("Error" ) );
@@ -312,15 +312,15 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
   // tell the user to wait
   krApp->startWaiting( i18n( "Unpacking File(s)" ), count, true );
   if ( count != 0 ) {
-    connect( &proc, SIGNAL( receivedStdout( KProcess*, char*, int ) ),
-             krApp, SLOT( incProgress( KProcess*, char*, int ) ) );
+    connect( &proc, SIGNAL( receivedStdout( K3Process*, char*, int ) ),
+             krApp, SLOT( incProgress( K3Process*, char*, int ) ) );
     if( type == "-rpm" )
-      connect( &proc, SIGNAL( receivedStderr( KProcess*, char*, int ) ),
-               krApp, SLOT( incProgress( KProcess*, char*, int ) ) );
+      connect( &proc, SIGNAL( receivedStderr( K3Process*, char*, int ) ),
+               krApp, SLOT( incProgress( K3Process*, char*, int ) ) );
   }
 
   // start the unpacking process
-  proc.start( KProcess::NotifyOnExit, KProcess::AllOutput );
+  proc.start( K3Process::NotifyOnExit, K3Process::AllOutput );
   while ( proc.isRunning() ) {
     usleep( 1000 );
     qApp->processEvents();
@@ -382,11 +382,11 @@ bool KRarcHandler::test( QString archive, QString type, QString password, long c
   
   // tell the user to wait
   krApp->startWaiting( i18n( "Testing Archive" ), count, true );
-  if ( count != 0 ) connect( &proc, SIGNAL( receivedStdout( KProcess*, char*, int ) ),
-                               krApp, SLOT( incProgress( KProcess*, char*, int ) ) );
+  if ( count != 0 ) connect( &proc, SIGNAL( receivedStdout( K3Process*, char*, int ) ),
+                               krApp, SLOT( incProgress( K3Process*, char*, int ) ) );
 
   // start the unpacking process
-  proc.start( KProcess::NotifyOnExit, KProcess::AllOutput );
+  proc.start( K3Process::NotifyOnExit, K3Process::AllOutput );
   while ( proc.isRunning() ) {
     usleep( 1000 );
     qApp->processEvents();
@@ -489,11 +489,11 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
   // tell the user to wait
   krApp->startWaiting( i18n( "Packing File(s)" ), count, true );
   if ( count != 0 )
-    connect( &proc, SIGNAL( receivedStdout( KProcess*, char*, int ) ),
-             krApp, SLOT( incProgress( KProcess*, char*, int ) ) );
+    connect( &proc, SIGNAL( receivedStdout( K3Process*, char*, int ) ),
+             krApp, SLOT( incProgress( K3Process*, char*, int ) ) );
 
   // start the packing process
-  proc.start( KProcess::NotifyOnExit, KProcess::AllOutput );
+  proc.start( K3Process::NotifyOnExit, K3Process::AllOutput );
   while ( proc.isRunning() ) {
     usleep( 1000 );
     qApp->processEvents();
@@ -576,7 +576,7 @@ QString KRarcHandler::getPassword( QString path ) {
 	return "";
 }
 
-bool KRarcHandler::isArchive(const KURL& url) {
+bool KRarcHandler::isArchive(const KUrl& url) {
 	QString protocol = url.protocol();
 	if (arcProtocols.find(protocol) != arcProtocols.end())
 		return true;
@@ -722,7 +722,7 @@ QString KRarcHandler::detectArchive( bool &encrypted, QString fileName, bool che
 						Kr7zEncryptionChecker proc;
 						proc << KrServices::fullPathName( "7z" ) << " -y t";
 						proc << KrServices::quote( fileName );
-						proc.start(KProcess::Block,KProcess::AllOutput);
+						proc.start(K3Process::Block,K3Process::AllOutput);
 						encrypted = proc.isEncrypted();
 					}
 				}

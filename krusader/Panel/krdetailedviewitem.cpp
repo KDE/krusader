@@ -60,7 +60,7 @@ int KrDetailedViewItem::expHeight = 0;
 #endif // FASTER
 
 KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, Q3ListViewItem *after, vfile *vf):
-	KListViewItem(parent, after), KrViewItem(vf, parent->properties()) {
+	K3ListViewItem(parent, after), KrViewItem(vf, parent->properties()) {
 #ifdef FASTER
 	initiated = false;
 	// get the expected height of an item - should be done only once
@@ -94,7 +94,7 @@ void KrDetailedViewItem::setup() {
 	// idea: when not having pixmaps in the first place, the height of the item is smaller then with
 	// the pixmap. when the pixmap is inserted, the item resizes, thereby making ensureItemVisible()
 	// become 'confused' and stop working. therefore, we set the correct height here and avoid the issue
-	KListViewItem::setup();
+	K3ListViewItem::setup();
 	setHeight(expHeight);
 }
 #endif
@@ -181,10 +181,10 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
   
   QColorGroup _cg(cg);
 
-   // This is ugly! I had to dublicate KListViewItem::paintCell() code, as the
-   // KListViewItem::paintCell() overwrites my color settings. So KrDetailedViewItem::paintCell
-   // must dublicate the KListViewItem::paintCell() code, do the required color settings
-   // and call QListViewItem::paintCell() afterwards (the base class of KListViewItem).
+   // This is ugly! I had to dublicate K3ListViewItem::paintCell() code, as the
+   // K3ListViewItem::paintCell() overwrites my color settings. So KrDetailedViewItem::paintCell
+   // must dublicate the K3ListViewItem::paintCell() code, do the required color settings
+   // and call QListViewItem::paintCell() afterwards (the base class of K3ListViewItem).
    // This tabooed in the object oriented heaven, but necessary here. Blame the KDE team for
    // this really poor paintCell implementation!
    
@@ -196,9 +196,9 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
    }
    else if (isAlternate())
         if (listView()->viewport()->backgroundMode()==Qt::FixedColor)
-             _cg.setColor(QColorGroup::Background, static_cast< KListView* >(listView())->alternateBackground());
+             _cg.setColor(QColorGroup::Background, static_cast< K3ListView* >(listView())->alternateBackground());
        else
-             _cg.setColor(QColorGroup::Base, static_cast< KListView* >(listView())->alternateBackground());
+             _cg.setColor(QColorGroup::Base, static_cast< K3ListView* >(listView())->alternateBackground());
 
   // end of uglyness
 

@@ -18,19 +18,21 @@
 #define PANELTABBAR_H
 
 #include <kurl.h>
-#include <qtabbar.h>
 #include <q3valuelist.h>
 //Added by qt3to4:
 #include <QResizeEvent>
 #include <QMouseEvent>
 #include <QDragMoveEvent>
 #include <QDragEnterEvent>
+#include <QTabBar>
+#include <QVariant>
 
 class QMouseEvent;
 class KAction;
 class KActionMenu;
 class ListPanel;
 
+#if 0
 /**
  * Extends QTab to include a pointer to the panel contained in this tab
  */
@@ -41,6 +43,7 @@ public:
 
   ListPanel *panel;
 };
+#endif
 
 /**
  * This class extends QTabBar such that right-clicking on a tab pops-up a menu
@@ -81,7 +84,7 @@ signals:
   /**
    * emitted when the user right-clicks and selects an action that creates a new tab
    */
-  void newTab(const KURL& path);
+  void newTab(const KUrl& path);
 
 protected:
   void mousePressEvent( QMouseEvent* );

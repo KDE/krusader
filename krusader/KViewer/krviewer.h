@@ -50,10 +50,10 @@ public:
 	
 	enum Mode{Generic,Text,Hex};
 
-	static void view( KURL url, QWidget * parent = krApp );
-	static void view( KURL url, Mode mode, bool new_window, QWidget * parent = krApp );
-	static void edit( KURL url, QWidget * parent );
-	static void edit( KURL url, Mode mode=Text, int new_window=-1, QWidget * parent = krApp );
+	static void view( KUrl url, QWidget * parent = krApp );
+	static void view( KUrl url, Mode mode, bool new_window, QWidget * parent = krApp );
+	static void edit( KUrl url, QWidget * parent );
+	static void edit( KUrl url, Mode mode=Text, int new_window=-1, QWidget * parent = krApp );
 	
 	virtual bool eventFilter ( QObject * watched, QEvent * e );
 
@@ -70,7 +70,7 @@ public slots:
 	void copy();
 
 	void tabChanged(QWidget* w);
-	void tabURLChanged( PanelViewerBase * pvb, const KURL &url );
+	void tabURLChanged( PanelViewerBase * pvb, const KUrl &url );
 	void tabCloseRequest(QWidget *w);
 	void tabCloseRequest();
 

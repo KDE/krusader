@@ -36,9 +36,9 @@ public:
     kio_isoProtocol( const Q3CString &pool, const Q3CString &app );
     virtual ~kio_isoProtocol();
 
-    virtual void listDir( const KURL & url );
-    virtual void stat( const KURL & url );
-    virtual void get( const KURL & url );
+    virtual void listDir( const KUrl & url );
+    virtual void stat( const KUrl & url );
+    virtual void get( const KUrl & url );
 
 protected:
     void getFile( const KIsoFile *isoFileEntry, const QString &path );

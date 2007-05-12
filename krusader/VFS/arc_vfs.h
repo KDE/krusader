@@ -36,7 +36,7 @@
 #include <q3valuestack.h>
 //Added by qt3to4:
 #include <Q3ValueList>
-#include <kprocess.h>
+#include <k3process.h>
 #include <qfile.h>
 #include <q3progressdialog.h>
 
@@ -49,12 +49,12 @@ public:
  ~arc_vfs();
 	
 	// copy a file to the vfs (physical)
-	void    vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify=0,QString dir = "",  PreserveMode pmode = PM_DEFAULT );	
+	void    vfs_addFiles(KUrl::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify=0,QString dir = "",  PreserveMode pmode = PM_DEFAULT );	
 	// remove a file from the vfs (physical)
 	void 		vfs_delFiles(QStringList *fileNames);	
 	// return a path to the file
 	QString vfs_getFile(QString name);
-	KURL::List* vfs_getFiles(QStringList* names);
+	KUrl::List* vfs_getFiles(QStringList* names);
 	// make dir
 	void vfs_mkdir(QString name);
 	// rename file

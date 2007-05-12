@@ -13,13 +13,13 @@
 #ifndef USERACTIONPOPUPMENU_H
 #define USERACTIONPOPUPMENU_H
 
-#include <kpopupmenu.h>
+#include <kmenu.h>
 
-class KURL;
+class KUrl;
 
-class UserActionPopupMenu : public KPopupMenu {
+class UserActionPopupMenu : public KMenu {
 public:
-   UserActionPopupMenu( KURL currentURL, QWidget *parent = 0 );
+   UserActionPopupMenu( KUrl currentURL, QWidget *parent = 0 );
 };
 
 #endif // ifndef USERACTIONPOPUPMENU_H

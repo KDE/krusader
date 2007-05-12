@@ -26,9 +26,9 @@
 #include <kurl.h>
 #include <kio/global.h>
 #include <kio/slavebase.h>
-#include <kprocess.h>
+#include <k3process.h>
 
-class KProcess;
+class K3Process;
 class KFileItem;
 class Q3CString;
 
@@ -37,24 +37,24 @@ Q_OBJECT
 public:
 	kio_krarcProtocol(const Q3CString &pool_socket, const Q3CString &app_socket);
 	virtual ~kio_krarcProtocol();
-	virtual void stat( const KURL & url );
-	virtual void get(const KURL& url);
-	virtual void put(const KURL& url,int permissions,bool overwrite,bool resume);
-	virtual void mkdir(const KURL& url,int permissions);
-	virtual void listDir(const KURL& url);
-	virtual void del(KURL const & url, bool isFile);
-	virtual void copy (const KURL &src, const KURL &dest, int permissions, bool overwrite);
+	virtual void stat( const KUrl & url );
+	virtual void get(const KUrl& url);
+	virtual void put(const KUrl& url,int permissions,bool overwrite,bool resume);
+	virtual void mkdir(const KUrl& url,int permissions);
+	virtual void listDir(const KUrl& url);
+	virtual void del(KUrl const & url, bool isFile);
+	virtual void copy (const KUrl &src, const KUrl &dest, int permissions, bool overwrite);
 
 public slots:
-	void receivedData(KProcess* proc,char* buf,int len);
-	void checkOutputForPassword( KProcess*,char*,int );
+	void receivedData(K3Process* proc,char* buf,int len);
+	void checkOutputForPassword( K3Process*,char*,int );
 
 protected:
-	virtual bool   initDirDict(const KURL& url,bool forced = false);
+	virtual bool   initDirDict(const KUrl& url,bool forced = false);
 	virtual bool   initArcParameters();
 	QString detectArchive( bool &encrypted, QString fileName );
 	virtual void parseLine(int lineNo, QString line, QFile* temp);
-	virtual bool setArcFile(const KURL& url);
+	virtual bool setArcFile(const KUrl& url);
 	virtual QString getPassword();
 	virtual void invalidatePassword();
 
@@ -67,7 +67,7 @@ protected:
 	QString copyCmd; ///< copy to file command.
 
 private:
-	void get(const KURL& url, int tries);
+	void get(const KUrl& url, int tries);
 	/** checks if the exit code is OK. */
 	bool checkStatus( int exitCode );
 	/** service function for parseLine. */
@@ -75,9 +75,9 @@ private:
 	/** translate permittion string to mode_t. */
 	mode_t parsePermString(QString perm);
 	/** return the name of the directory inside the archive. */
-	QString findArcDirectory(const KURL& url);
+	QString findArcDirectory(const KUrl& url);
 	/** find the UDSEntry of a file in a directory. */
-	KIO::UDSEntry* findFileEntry(const KURL& url);
+	KIO::UDSEntry* findFileEntry(const KUrl& url);
 	/** add a new directory (file list container). */
 	KIO::UDSEntryList* addNewDir(QString path);
 	QString fullPathName( QString name );
@@ -103,14 +103,14 @@ private:
 	QString encryptedArchPath;
 };
 
-class KrShellProcess : public KShellProcess {
+class KrShellProcess : public K3ShellProcess {
 	Q_OBJECT
 public:
-	KrShellProcess() : KShellProcess(), errorMsg( QString::null ), outputMsg( QString::null ) {
-		connect(this,SIGNAL(receivedStderr(KProcess*,char*,int)),
-				this,SLOT(receivedErrorMsg(KProcess*,char*,int)) );
-		connect(this,SIGNAL(receivedStdout(KProcess*,char*,int)),
-				this,SLOT(receivedOutputMsg(KProcess*,char*,int)) );
+	KrShellProcess() : K3ShellProcess(), errorMsg( QString::null ), outputMsg( QString::null ) {
+		connect(this,SIGNAL(receivedStderr(K3Process*,char*,int)),
+				this,SLOT(receivedErrorMsg(K3Process*,char*,int)) );
+		connect(this,SIGNAL(receivedStdout(K3Process*,char*,int)),
+				this,SLOT(receivedOutputMsg(K3Process*,char*,int)) );
 	}
 	
 	QString getErrorMsg() {
@@ -121,14 +121,14 @@ public:
 	}
 	
 public slots:
-	void receivedErrorMsg(KProcess*, char *buf, int len) {
+	void receivedErrorMsg(K3Process*, char *buf, int len) {
 		errorMsg += QString::fromLocal8Bit( buf, len );
 		if( errorMsg.length() > 500 )
 			errorMsg = errorMsg.right( 500 );
 		receivedOutputMsg( 0, buf, len );
 	}
 	
-	void receivedOutputMsg(KProcess*, char *buf, int len) {
+	void receivedOutputMsg(K3Process*, char *buf, int len) {
 		outputMsg += QString::fromLocal8Bit( buf, len );
 		if( outputMsg.length() > 500 )
 			outputMsg = outputMsg.right( 500 );

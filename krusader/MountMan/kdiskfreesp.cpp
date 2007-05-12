@@ -29,7 +29,7 @@
 #include <Q3CString>
 
 #include <kdebug.h>
-#include <kprocess.h>
+#include <k3process.h>
 #include <kio/global.h>
 
 #include "kdiskfreesp.moc"
@@ -44,14 +44,14 @@
 /***************************************************************************
   * constructor
 **/
-KDiskFreeSp::KDiskFreeSp(QObject *parent, const char *name)
+KDiskFreeSpace::KDiskFreeSpace(QObject *parent, const char *name)
     : QObject(parent,name)
 {
-    dfProc = new KProcess(); Q_CHECK_PTR(dfProc);
+    dfProc = new K3Process(); Q_CHECK_PTR(dfProc);
     dfProc->setEnvironment("LANGUAGE", "C");
-    connect( dfProc, SIGNAL(receivedStdout(KProcess *, char *, int) ),
-             this, SLOT (receivedDFStdErrOut(KProcess *, char *, int)) );
-    connect(dfProc,SIGNAL(processExited(KProcess *) ),
+    connect( dfProc, SIGNAL(receivedStdout(K3Process *, char *, int) ),
+             this, SLOT (receivedDFStdErrOut(K3Process *, char *, int)) );
+    connect(dfProc,SIGNAL(processExited(K3Process *) ),
             this, SLOT(dfDone() ) );
 
     readingDFStdErrOut=false;
@@ -61,7 +61,7 @@ KDiskFreeSp::KDiskFreeSp(QObject *parent, const char *name)
 /***************************************************************************
   * destructor
 **/
-KDiskFreeSp::~KDiskFreeSp()
+KDiskFreeSpace::~KDiskFreeSpace()
 {
     delete dfProc;
 }
@@ -69,7 +69,7 @@ KDiskFreeSp::~KDiskFreeSp()
 /***************************************************************************
   * is called, when the df-command writes on StdOut
 **/
-void KDiskFreeSp::receivedDFStdErrOut(KProcess *, char *data, int len)
+void KDiskFreeSpace::receivedDFStdErrOut(K3Process *, char *data, int len)
 {
   Q3CString tmp(data,len+1);  // adds a zero-byte
   dfStringErrOut.append(tmp);
@@ -78,7 +78,7 @@ void KDiskFreeSp::receivedDFStdErrOut(KProcess *, char *data, int len)
 /***************************************************************************
   * reads the df-commands results
 **/
-int KDiskFreeSp::readDF( const QString & mountPoint )
+int KDiskFreeSpace::readDF( const QString & mountPoint )
 {
   if (readingDFStdErrOut || dfProc->isRunning())
     return -1;
@@ -86,8 +86,8 @@ int KDiskFreeSp::readDF( const QString & mountPoint )
   dfStringErrOut=""; // yet no data received
   dfProc->clearArguments();
   (*dfProc) << QString::fromLocal8Bit(DF_COMMAND) << QString::fromLocal8Bit(DF_ARGS) << mountPoint;
-  if (!dfProc->start( KProcess::NotifyOnExit, KProcess::AllOutput ))
-     kdError() << "could not execute ["<< DF_COMMAND << "]" << endl;
+  if (!dfProc->start( K3Process::NotifyOnExit, K3Process::AllOutput ))
+     kError() << "could not execute ["<< DF_COMMAND << "]" << endl;
   return 1;
 }
 
@@ -95,34 +95,34 @@ int KDiskFreeSp::readDF( const QString & mountPoint )
 /***************************************************************************
   * is called, when the df-command has finished
 **/
-void KDiskFreeSp::dfDone()
+void KDiskFreeSpace::dfDone()
 {
   readingDFStdErrOut=true;
 
   Q3TextStream t (dfStringErrOut, QIODevice::ReadOnly);
   QString s=t.readLine();
   if ( (s.isEmpty()) || ( s.left(10) != QString::fromLatin1("Filesystem") ) )
-    kdError() << "Error running df command... got [" << s << "]" << endl;
+    kError() << "Error running df command... got [" << s << "]" << endl;
   while ( !t.eof() ) {
     QString u,v;
     s=t.readLine();
     s=s.simplified();
     if ( !s.isEmpty() ) {
-      //kdDebug(kfile_area) << "GOT: [" << s << "]" << endl;
+      //kDebug(kfile_area) << "GOT: [" << s << "]" << endl;
 
       if (s.find(BLANK)<0)      // devicename was too long, rest in next line
 	if ( !t.eof() ) {       // just appends the next line
             v=t.readLine();
             s=s.append(v);
             s=s.simplified();
-            //kdDebug(kfile_area) << "SPECIAL GOT: [" << s << "]" << endl;
+            //kDebug(kfile_area) << "SPECIAL GOT: [" << s << "]" << endl;
 	 }//if silly linefeed
 
-      //kdDebug(kfile_area) << "[" << s << "]" << endl;
+      //kDebug(kfile_area) << "[" << s << "]" << endl;
 
       //QString deviceName = s.left(s.find(BLANK));
       s=s.remove(0,s.find(BLANK)+1 );
-      //kdDebug(kfile_area) << "    DeviceName:    [" << deviceName << "]" << endl;
+      //kDebug(kfile_area) << "    DeviceName:    [" << deviceName << "]" << endl;
 
       if (!NO_FS_TYPE)
           s=s.remove(0,s.find(BLANK)+1 ); // eat fs type
@@ -130,26 +130,26 @@ void KDiskFreeSp::dfDone()
       u=s.left(s.find(BLANK));
       unsigned long kBSize = u.toULong();
       s=s.remove(0,s.find(BLANK)+1 );
-      //kdDebug(kfile_area) << "    Size:       [" << kBSize << "]" << endl;
+      //kDebug(kfile_area) << "    Size:       [" << kBSize << "]" << endl;
 
       u=s.left(s.find(BLANK));
       unsigned long kBUsed = u.toULong();
       s=s.remove(0,s.find(BLANK)+1 );
-      //kdDebug(kfile_area) << "    Used:       [" << kBUsed << "]" << endl;
+      //kDebug(kfile_area) << "    Used:       [" << kBUsed << "]" << endl;
 
       u=s.left(s.find(BLANK));
       unsigned long kBAvail = u.toULong();
       s=s.remove(0,s.find(BLANK)+1 );
-      //kdDebug(kfile_area) << "    Avail:       [" << kBAvail << "]" << endl;
+      //kDebug(kfile_area) << "    Avail:       [" << kBAvail << "]" << endl;
 
 
       s=s.remove(0,s.find(BLANK)+1 );  // delete the capacity 94%
       QString mountPoint = s.trimmed();
-      //kdDebug(kfile_area) << "    MountPoint:       [" << mountPoint << "]" << endl;
+      //kDebug(kfile_area) << "    MountPoint:       [" << mountPoint << "]" << endl;
 
       if ( mountPoint == m_mountPoint )
       {
-        //kdDebug(kfile_area) << "Found mount point. Emitting" << endl;
+        //kDebug(kfile_area) << "Found mount point. Emitting" << endl;
         emit foundMountPoint( mountPoint, kBSize, kBUsed, kBAvail );
         emit foundMountPoint( kBSize, kBUsed, kBAvail, mountPoint ); // sic!
       }
@@ -161,9 +161,9 @@ void KDiskFreeSp::dfDone()
   delete this;
 }
 
-KDiskFreeSp * KDiskFreeSp::findUsageInfo( const QString & path )
+KDiskFreeSpace * KDiskFreeSpace::findUsageInfo( const QString & path )
 {	
-    KDiskFreeSp * job = new KDiskFreeSp;
+    KDiskFreeSpace * job = new KDiskFreeSpace;
     QString mountPoint = KIO::findPathMountPoint( path );
     job->readDF( mountPoint );
     return job;

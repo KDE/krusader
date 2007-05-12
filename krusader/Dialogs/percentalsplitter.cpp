@@ -134,13 +134,13 @@ void PercentalSplitter::setRubberband ( int p ) {
     int scr = QApplication::desktop()->screenNumber( this );
       
     if( label == 0 ) {
-      label = new QLabel( QApplication::desktop()->screen( scr ), "SplitterPercent", WStyle_StaysOnTop | 
-                          WStyle_Customize | WStyle_NoBorder | WStyle_Tool | WX11BypassWM );
+      label = new QLabel( QApplication::desktop()->screen( scr ), "SplitterPercent", Qt::WStyle_StaysOnTop | 
+                          Qt::WStyle_Customize | Qt::WStyle_NoBorder | Qt::WStyle_Tool | WX11BypassWM );
       label->setMargin(1);
       label->setAutoMask( FALSE );
       label->setFrameStyle( Q3Frame::Plain | Q3Frame::Box );
       label->setLineWidth( 1 );
-      label->setAlignment( AlignAuto | AlignTop );
+      label->setAlignment( AlignAuto | Qt::AlignTop );
       label->setIndent(0);
 
       QFontMetrics fm = label->fontMetrics();

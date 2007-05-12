@@ -36,7 +36,7 @@
 #include <kio/job.h>
 #include <qfileinfo.h>
 
-Combiner::Combiner( QWidget* parent,  KURL baseURLIn, KURL destinationURLIn, bool unixNamingIn ) :
+Combiner::Combiner( QWidget* parent,  KUrl baseURLIn, KUrl destinationURLIn, bool unixNamingIn ) :
   Q3ProgressDialog( parent, "Krusader::Combiner", true, 0 ), baseURL( baseURLIn ), destinationURL( destinationURLIn ), 
   hasValidSplitFile( false ), fileCounter ( 0 ), permissions( -1 ), receivedSize( 0 ),
   combineReadJob( 0 ), combineWriteJob( 0 ), unixNaming( unixNamingIn )
@@ -59,7 +59,7 @@ Combiner::~Combiner()
 void Combiner::combine()
 {
   setCaption( i18n("Krusader::Combining...") );
-  setLabelText( i18n("Combining the file %1...").arg( vfs::pathOrURL( baseURL ) ));
+  setLabelText( i18n("Combining the file %1...").arg( vfs::pathOrUrl( baseURL ) ));
 
     /* check whether the .crc file exists */
   splURL = baseURL;
@@ -71,7 +71,7 @@ void Combiner::combine()
   {
     int ret = KMessageBox::questionYesNo(0, i18n("The CRC information file (%1) is missing!\n"
         "Validity checking is impossible without it. Continue combining?")
-        .arg( vfs::pathOrURL( splURL ) ) );
+        .arg( vfs::pathOrUrl( splURL ) ) );
 
     if( ret == KMessageBox::No )
     {
@@ -107,7 +107,7 @@ void Combiner::combineSplitFileFinished(KIO::Job *job)
   QString error;
   
   if( job->error() )
-    error = i18n("Error at reading the CRC file (%1)!").arg( vfs::pathOrURL( splURL ) );
+    error = i18n("Error at reading the CRC file (%1)!").arg( vfs::pathOrUrl( splURL ) );
   else
   {
     splitFile.remove( '\r' ); // Windows compatibility
@@ -254,7 +254,7 @@ void Combiner::combineReceiveFinished(KIO::Job *job)
     {
       combineAbortJobs();
       KMessageBox::questionYesNo(0, i18n("Can't open the first split file of %1!")
-                                 .arg( vfs::pathOrURL( baseURL ) ) );
+                                 .arg( vfs::pathOrUrl( baseURL ) ) );
       emit reject();
       return;
     }    
@@ -293,7 +293,7 @@ void Combiner::combineSendFinished(KIO::Job *job)
   if( job->error() )    /* any error occurred? */
   {
     combineAbortJobs();
-    KMessageBox::error(0, i18n("Error writing file %1!").arg( vfs::pathOrURL( writeURL ) ) );
+    KMessageBox::error(0, i18n("Error writing file %1!").arg( vfs::pathOrUrl( writeURL ) ) );
     emit reject();
     return;
   }

@@ -31,7 +31,7 @@
 #include <qdir.h>
 // KDE includes
 #include <kmessagebox.h>
-#include <kprocess.h>
+#include <k3process.h>
 // Krusader includes
 #include "temp_vfs.h"
 #include "../krusader.h"
@@ -58,14 +58,14 @@ temp_vfs::temp_vfs( QString origin, QString type, QWidget* panel, bool ):
 temp_vfs::~temp_vfs(){
 	if( vfs_type == "-iso" ){
 		// unmount the ISO image
-    KShellProcess umount;
+    K3ShellProcess umount;
 		umount << "umount -f" << tmpDir;
-    umount.start(KProcess::Block);
+    umount.start(K3Process::Block);
 	}
  	// delete the temp dir
- 	KShellProcess proc;
+ 	K3ShellProcess proc;
  	proc << "rm -rf" << tmpDir;
- 	proc.start(KProcess::DontCare);
+ 	proc.start(K3Process::DontCare);
 }
 
 // return the working dir
@@ -78,8 +78,8 @@ QString temp_vfs::vfs_workingDir(){
   return tmpDir+path;
 }
 
-bool temp_vfs::vfs_refresh(const KURL& origin){
-  KURL backup = vfs_origin;
+bool temp_vfs::vfs_refresh(const KUrl& origin){
+  KUrl backup = vfs_origin;
   vfs_origin = origin;
   vfs_origin.adjustPath(-1);
   // get the directory...
@@ -106,22 +106,22 @@ void temp_vfs::handleAceArj(QString origin, QString type){
 
 void temp_vfs::handleRpm(QString origin){
 	// then extract the cpio archive from the rpm
-	KShellProcess rpm;
+	K3ShellProcess rpm;
   rpm << "rpm2cpio"<<"\""+origin+"\""+" > "+tmpDir+"/contents.cpio";
-  rpm.start(KProcess::Block);
+  rpm.start(K3Process::Block);
 	// and write a nice header
 	rpm.clearArguments();
 	rpm << "rpm -qip"<<"\""+origin+"\""+" > "+tmpDir+"/header.txt";
-	rpm.start(KProcess::Block);
+	rpm.start(K3Process::Block);
 	// and a file list
 	rpm.clearArguments();
 	rpm << "rpm -lpq"<<"\""+origin+"\""+" > "+tmpDir+"/filelist.txt";
-	rpm.start(KProcess::Block);
+	rpm.start(K3Process::Block);
 }
 
 void temp_vfs::handleIso(QString origin){
 	// mount the ISO image
-	KShellProcess mount;
+	K3ShellProcess mount;
 	mount << KrServices::fullPathName( "mount" ) << "-o loop" << origin << tmpDir;
-	mount.start(KProcess::Block);
+	mount.start(K3Process::Block);
 }

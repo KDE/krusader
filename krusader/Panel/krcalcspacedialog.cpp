@@ -172,9 +172,9 @@ void KrCalcSpaceDialog::exec(){
 	m_thread->start(); // start the thread
 	if (m_autoClose){ // autoclose
 		// set the cursor to busy mode and wait 3 seconds or until the thread finishes
-		krApp->setCursor( KCursor::waitCursor() );
+		krApp->setCursor( Qt::WaitCursor );
 		bool result = m_thread->wait(3000);
-		krApp->setCursor( KCursor::arrowCursor() );  // return the cursor to normal mode
+		krApp->setCursor( Qt::ArrowCursor );  // return the cursor to normal mode
 		if (result) return;// thread finished: do not show the dialog
 		showResult(); // fill the invisible dialog with usefull data
 	}

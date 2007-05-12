@@ -50,11 +50,11 @@
 
 class KCMDModeButton;
 
-class KrHistoryCombo: public KHistoryCombo {
+class KrHistoryCombo: public KHistoryComboBox {
   Q_OBJECT
 
   public:
-    KrHistoryCombo(QWidget *parent): KHistoryCombo(parent) {}
+    KrHistoryCombo(QWidget *parent): KHistoryComboBox(parent) {}
 
   protected:
     void keyPressEvent( QKeyEvent *e );

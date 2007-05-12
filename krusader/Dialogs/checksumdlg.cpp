@@ -8,7 +8,7 @@
 #include <Q3HBoxLayout>
 #include <Q3GridLayout>
 #include <klineedit.h>
-#include <klistview.h>
+#include <k3listview.h>
 #include <qpixmap.h>
 #include <kcursor.h>
 #include <kmessagebox.h>
@@ -27,7 +27,7 @@
 #include <kstandarddirs.h>
 
 class CS_Tool; // forward
-typedef void PREPARE_PROC_FUNC(KProcess& proc, CS_Tool *self, const QStringList& files, 
+typedef void PREPARE_PROC_FUNC(K3Process& proc, CS_Tool *self, const QStringList& files, 
 	const QString checksumFile, bool recursive, const QString& stdoutFileName, 
 	const QString& stderrFileName,	const QString& type=QString::null);
 typedef QStringList GET_FAILED_FUNC(const QStringList& stdOut, const QStringList& stdErr);
@@ -54,7 +54,7 @@ public:
 };
 
 // handles md5sum and sha1sum
-void sumCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files, 
+void sumCreateFunc(K3Process& proc, CS_Tool *self, const QStringList& files, 
 	const QString, bool recursive, const QString& stdoutFileName, 
 	const QString& stderrFileName, const QString&) {
 	proc.setUseShell(true, "/bin/bash");
@@ -63,7 +63,7 @@ void sumCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
 	proc << files << "1>" << stdoutFileName << "2>" << stderrFileName;	
 }
 
-void sumVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& /* files */, 
+void sumVerifyFunc(K3Process& proc, CS_Tool *self, const QStringList& /* files */, 
 	const QString checksumFile, bool recursive, const QString& stdoutFileName, 
 	const QString& stderrFileName, const QString& /* type */) {
 	proc.setUseShell(true, "/bin/bash");
@@ -89,7 +89,7 @@ QStringList sumFailedFunc(const QStringList& stdOut, const QStringList& stdErr) 
 }
 
 // handles *deep binaries
-void deepCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files, 
+void deepCreateFunc(K3Process& proc, CS_Tool *self, const QStringList& files, 
 	const QString, bool recursive, const QString& stdoutFileName, 
 	const QString& stderrFileName, const QString&) {
 	proc.setUseShell(true, "/bin/bash");
@@ -98,7 +98,7 @@ void deepCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
 	proc << "-l" << files << "1>" << stdoutFileName << "2>" << stderrFileName;
 }
 
-void deepVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& files, 
+void deepVerifyFunc(K3Process& proc, CS_Tool *self, const QStringList& files, 
 	const QString checksumFile, bool recursive, const QString& stdoutFileName, 
 	const QString& stderrFileName, const QString&) {
 	proc.setUseShell(true, "/bin/bash");
@@ -113,7 +113,7 @@ QStringList deepFailedFunc(const QStringList& stdOut, const QStringList&/* stdEr
 }
 
 // handles cfv binary
-void cfvCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files, 
+void cfvCreateFunc(K3Process& proc, CS_Tool *self, const QStringList& files, 
 	const QString, bool recursive, const QString& stdoutFileName, 
 	const QString& stderrFileName, const QString& type) {
 	proc.setUseShell(true, "/bin/bash");
@@ -122,7 +122,7 @@ void cfvCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
 	proc << "-t" << type << "-f-" << "-U" << files << "1>" << stdoutFileName << "2>" << stderrFileName;	
 }
 
-void cfvVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& /* files */, 
+void cfvVerifyFunc(K3Process& proc, CS_Tool *self, const QStringList& /* files */, 
 	const QString checksumFile, bool recursive, const QString& stdoutFileName, 
 	const QString& stderrFileName, const QString&type) {
 	proc.setUseShell(true, "/bin/bash");
@@ -242,7 +242,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	++row;
 	
 	// file list
-	KListBox *lb = new KListBox(plainPage());
+	K3ListBox *lb = new K3ListBox(plainPage());
 	lb->insertStringList(files);
 	layout->addMultiCellWidget(lb, row, row, 0, 1);
 	++row;
@@ -265,14 +265,14 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	// else implied: run the process
 	tmpOut = new KTempFile(locateLocal("tmp", "krusader"), ".stdout" );
 	tmpErr = new KTempFile(locateLocal("tmp", "krusader"), ".stderr" );
-	KProcess proc;
+	K3Process proc;
 	CS_Tool *mytool = tools.at(method->currentItem());
 	mytool->create(proc, mytool, KrServices::quote(files), QString::null, containFolders, 
 		tmpOut->name(), tmpErr->name(), method->currentText());
 	
 	krApp->startWaiting(i18n("Calculating checksums ..."), 0, true);	
-	QApplication::setOverrideCursor( KCursor::waitCursor() );
-	bool r = proc.start(KProcess::NotifyOnExit, KProcess::AllOutput);
+	QApplication::setOverrideCursor( Qt::WaitCursor );
+	bool r = proc.start(K3Process::NotifyOnExit, K3Process::AllOutput);
 	if (r) while ( proc.isRunning() ) {
 		usleep( 500 );
 		qApp->processEvents();
@@ -343,7 +343,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	++row;
 	
 	// file list
-	KListBox *lb = new KListBox(plainPage());
+	K3ListBox *lb = new K3ListBox(plainPage());
 	lb->insertStringList(files);
 	layout->addMultiCellWidget(lb, row, row, 0, 1);
 	++row;
@@ -352,7 +352,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	Q3HBoxLayout *hlayout2 = new Q3HBoxLayout(layout, KDialogBase::spacingHint());
 	QLabel *l2 = new QLabel(i18n("Checksum file:"), plainPage());
 	hlayout2->addWidget(l2);
-	KURLRequester *checksumFileReq = new KURLRequester( plainPage() );
+	KUrlRequester *checksumFileReq = new KUrlRequester( plainPage() );
 	if (!checksumFile.isEmpty())
 		checksumFileReq->setURL(checksumFile);
 	checksumFileReq->fileDialog()->setURL(path);
@@ -384,11 +384,11 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	// else implied: run the process
 	tmpOut = new KTempFile(locateLocal("tmp", "krusader"), ".stdout" );
 	tmpErr = new KTempFile(locateLocal("tmp", "krusader"), ".stderr" );
-	KProcess proc;
+	K3Process proc;
 	mytool->verify(proc, mytool, KrServices::quote(files), KrServices::quote(file), containFolders, tmpOut->name(), tmpErr->name(), extension);
 	krApp->startWaiting(i18n("Verifying checksums ..."), 0, true);	
-	QApplication::setOverrideCursor( KCursor::waitCursor() );
-	bool r = proc.start(KProcess::NotifyOnExit, KProcess::AllOutput);
+	QApplication::setOverrideCursor( Qt::WaitCursor );
+	bool r = proc.start(K3Process::NotifyOnExit, K3Process::AllOutput);
 	if (r) while ( proc.isRunning() ) {
 		usleep( 500 );
   		qApp->processEvents();
@@ -453,7 +453,7 @@ VerifyResultDlg::VerifyResultDlg(const QStringList& failed):
 		QLabel *l3 = new QLabel(i18n("The following files have failed:"), plainPage());
 		layout->addMultiCellWidget(l3, row, row, 0, 1);
 		++row;
-		KListBox *lb2 = new KListBox(plainPage());
+		K3ListBox *lb2 = new K3ListBox(plainPage());
 		lb2->insertStringList(failed);
 		layout->addMultiCellWidget(lb2, row, row, 0, 1);
 		++row;
@@ -493,7 +493,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 			layout->addMultiCellWidget(l2, row, row, 0, 1);
 			++row;
 		}
-		KListView *lv = new KListView(plainPage());
+		K3ListView *lv = new K3ListView(plainPage());
 		if(standardFormat){
 			lv->addColumn(i18n("Hash"));
 			lv->addColumn(i18n("File"));
@@ -505,9 +505,9 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 			QString line = (*it);
 			if(standardFormat) {
 				int space = line.find(' ');
-				new KListViewItem(lv, line.left(space), line.mid(space+2));
+				new K3ListViewItem(lv, line.left(space), line.mid(space+2));
 			} else {
-				new KListViewItem(lv, line);
+				new K3ListViewItem(lv, line);
 			}	
 		}
 		layout->addMultiCellWidget(lv, row, row, 0, 1);
@@ -515,7 +515,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 	}
 
 	if (errors) {
-		Q3Frame *line1 = new Q3Frame( plainPage() );
+		QFrame *line1 = new Q3Frame( plainPage() );
 		line1->setGeometry( QRect( 60, 210, 501, 20 ) );
 		line1->setFrameShape( Q3Frame::HLine );
 		line1->setFrameShadow( Q3Frame::Sunken );
@@ -525,14 +525,14 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 		QLabel *l3 = new QLabel(i18n("Here are the errors received:"), plainPage());
 		layout->addMultiCellWidget(l3, row, row, 0, 1);
 		++row;
-		KListBox *lb = new KListBox(plainPage());
+		K3ListBox *lb = new K3ListBox(plainPage());
 		lb->insertStringList(stdErr);
 		layout->addMultiCellWidget(lb, row, row, 0, 1);
 		++row;
 	}
 
 	// save checksum to disk, if any hashes are found
-	KURLRequester *checksumFile=0;
+	KUrlRequester *checksumFile=0;
 	QCheckBox *saveFileCb=0;
 	if (successes) {
 		Q3HBoxLayout *hlayout2 = new Q3HBoxLayout(layout, KDialogBase::spacingHint());
@@ -540,7 +540,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 		saveFileCb->setChecked(true);
 		hlayout2->addWidget(saveFileCb);
 
-		checksumFile = new KURLRequester( suggestedFilename, plainPage() );
+		checksumFile = new KUrlRequester( suggestedFilename, plainPage() );
 		hlayout2->addWidget(checksumFile, Qt::AlignLeft);
 		layout->addMultiCellLayout(hlayout2, row, row,0,1, Qt::AlignLeft);
 		++row;

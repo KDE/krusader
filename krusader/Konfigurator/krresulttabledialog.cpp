@@ -81,7 +81,7 @@ KrResultTableDialog::KrResultTableDialog( QWidget *parent, DialogType type,
   _topLayout->addWidget(_resultTable);
 
   // +++ Separator +++
-  KSeparator* hSep = new KSeparator(Q3Frame::HLine, _page);
+  KSeparator* hSep = new KSeparator(Qt::Horizontal, _page);
   hSep->setMargin(5);
   _topLayout->addWidget(hSep);
 

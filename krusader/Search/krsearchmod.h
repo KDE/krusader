@@ -53,13 +53,13 @@ public:
   KRSearchMod(const KRQuery *q);
   ~KRSearchMod();
 
-  void scanURL( KURL url );
+  void scanURL( KUrl url );
   void start();
   void stop();
   
 private:
-  void scanLocalDir( KURL url );
-  void scanRemoteDir( KURL url );
+  void scanLocalDir( KUrl url );
+  void scanRemoteDir( KUrl url );
 
 signals:
   void finished();
@@ -71,8 +71,8 @@ private slots:
 
 private:
   bool stopSearch;
-  Q3ValueStack<KURL> scannedUrls;
-  Q3ValueStack<KURL> unScannedUrls;
+  Q3ValueStack<KUrl> scannedUrls;
+  Q3ValueStack<KUrl> unScannedUrls;
   KRQuery *query;
   QStringList results;
   

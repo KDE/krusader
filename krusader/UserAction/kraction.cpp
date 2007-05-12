@@ -50,13 +50,13 @@ KDialogBase( parent, 0, false, caption, KDialogBase::User1 | KDialogBase::Ok | K
 _stdout(0), _stderr(0), _currentTextEdit(0) {
 
    setButtonOK( i18n( "Close" ) );
-   enableButtonOK( false ); // disable the close button, until the process finishes
+   enableButtonOk( false ); // disable the close button, until the process finishes
 
    setButtonCancel( KGuiItem(i18n("Kill"), i18n( "Kill the running process" )) );
 
    setButtonText(KDialogBase::User1, i18n("Save as") );
 
-   Q3VBox *page = makeVBoxMainWidget();
+   KVBox *page = makeVBoxMainWidget();
    // do we need to separate stderr and stdout?
    if ( enableStderr ) {
       QSplitter *splitt = new QSplitter( QSplitter::Vertical, page );
@@ -104,7 +104,7 @@ _stdout(0), _stderr(0), _currentTextEdit(0) {
    connect( useFixedFont, SIGNAL( toggled(bool) ), SLOT( toggleFixedFont(bool) ) );
 }
 
-void KrActionProcDlg::addStderr( KProcess *, char *buffer, int buflen ) {
+void KrActionProcDlg::addStderr( K3Process *, char *buffer, int buflen ) {
    if (_stderr)
       _stderr->append( QString::fromLatin1( buffer, buflen ) );
    else {
@@ -114,7 +114,7 @@ void KrActionProcDlg::addStderr( KProcess *, char *buffer, int buflen ) {
    }
 }
 
-void KrActionProcDlg::addStdout( KProcess *, char *buffer, int buflen ) {
+void KrActionProcDlg::addStdout( K3Process *, char *buffer, int buflen ) {
    _stdout->append( QString::fromLatin1( buffer, buflen ) );
 }
 
@@ -176,11 +176,11 @@ void KrActionProcDlg::currentTextEditChanged() {
 ////////////////////////////////////  KrActionProc  ////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-KrActionProc::KrActionProc( KrActionBase* action ) : QObject(), _action( action ), _proc( new KProcess(this) ), _output( 0 ) {
+KrActionProc::KrActionProc( KrActionBase* action ) : QObject(), _action( action ), _proc( new K3Process(this) ), _output( 0 ) {
    _proc->setUseShell( true );
 
-   connect( _proc, SIGNAL( processExited( KProcess* ) ),
-            this, SLOT( processExited( KProcess* ) ) ) ;
+   connect( _proc, SIGNAL( processExited( K3Process* ) ),
+            this, SLOT( processExited( K3Process* ) ) ) ;
 }
 
 KrActionProc::~KrActionProc() {
@@ -230,15 +230,15 @@ void KrActionProc::start( QStringList cmdLineList ) {
             if ( _action->user().isEmpty() )
                ( *_proc ) << term << cmd;
             else
-//                ( *_proc )  << "kdesu" << "-u" << *_properties->user() << "-c" << KProcess::quote("konsole --noclose -e " + KProcess::quote(cmd) );
-               ( *_proc )  << "kdesu" << "-u" << _action->user() << "-c" << KProcess::quote( term + " " + cmd );
+//                ( *_proc )  << "kdesu" << "-u" << *_properties->user() << "-c" << K3Process::quote("konsole --noclose -e " + K3Process::quote(cmd) );
+               ( *_proc )  << "kdesu" << "-u" << _action->user() << "-c" << K3Process::quote( term + " " + cmd );
          } else { // no terminal, no output collection, start&forget
             if ( _action->user().isEmpty() )
                ( *_proc ) << cmd;
             else
-               ( *_proc ) << "kdesu" << "-u" << _action->user() << "-c" << KProcess::quote(cmd);
+               ( *_proc ) << "kdesu" << "-u" << _action->user() << "-c" << K3Process::quote(cmd);
          }
-         _proc->start( KProcess::NotifyOnExit, ( KProcess::Communication ) ( KProcess::Stdout | KProcess::Stderr ) );
+         _proc->start( K3Process::NotifyOnExit, ( K3Process::Communication ) ( K3Process::Stdout | K3Process::Stderr ) );
       }
    }
    else { // collect output
@@ -247,8 +247,8 @@ void KrActionProc::start( QStringList cmdLineList ) {
          separateStderr = true;
       _output = new KrActionProcDlg( _action->text(), separateStderr );
       // connect the output to the dialog
-      connect( _proc, SIGNAL( receivedStderr( KProcess*, char*, int ) ), _output, SLOT( addStderr( KProcess*, char *, int ) ) );
-      connect( _proc, SIGNAL( receivedStdout( KProcess*, char*, int ) ), _output, SLOT( addStdout( KProcess*, char *, int ) ) );
+      connect( _proc, SIGNAL( receivedStderr( K3Process*, char*, int ) ), _output, SLOT( addStderr( K3Process*, char *, int ) ) );
+      connect( _proc, SIGNAL( receivedStdout( K3Process*, char*, int ) ), _output, SLOT( addStdout( K3Process*, char *, int ) ) );
       connect( _output, SIGNAL( cancelClicked() ), this, SLOT( kill() ) );
       _output->show();
       for ( QStringList::Iterator it = cmdLineList.begin(); it != cmdLineList.end(); ++it) {
@@ -263,16 +263,16 @@ void KrActionProc::start( QStringList cmdLineList ) {
          ( *_proc ) << cmd;
       else
          // "-t" is nessesary that kdesu displays the terminal-output of the command
-         ( *_proc ) << "kdesu" << "-t" << "-u" << _action->user() << "-c" << KProcess::quote(cmd);
-      _proc->start( KProcess::NotifyOnExit, ( KProcess::Communication ) ( KProcess::Stdout | KProcess::Stderr ) );
+         ( *_proc ) << "kdesu" << "-t" << "-u" << _action->user() << "-c" << K3Process::quote(cmd);
+      _proc->start( K3Process::NotifyOnExit, ( K3Process::Communication ) ( K3Process::Stdout | K3Process::Stderr ) );
    }
 
 }
 
-void KrActionProc::processExited( KProcess * ) {
+void KrActionProc::processExited( K3Process * ) {
    // enable the 'close' button on the dialog (if active), disable 'kill' button
    if ( _output ) {
-      _output->enableButtonOK( true );
+      _output->enableButtonOk( true );
       _output->enableButtonCancel( false);
    }
    delete this; // banzai!!
@@ -292,14 +292,14 @@ KrAction::~KrAction() {
    krUserAction->removeKrAction( this ); // Importent! Else Krusader will crash when writing the actions to file
 }
 
-bool KrAction::isAvailable( const KURL& currentURL ) {
+bool KrAction::isAvailable( const KUrl& currentURL ) {
    bool available = true; //show per default (FIXME: make the default an attribute of <availability>)
    
    //check protocol
    if ( ! _showonlyProtocol.empty() ) {
       available = false;
       for ( QStringList::Iterator it = _showonlyProtocol.begin(); it != _showonlyProtocol.end(); ++it ) {
-         //kdDebug() << "KrAction::isAvailable currendProtocol: " << currentURL.protocol() << " =?= " << *it << endl;
+         //kDebug() << "KrAction::isAvailable currendProtocol: " << currentURL.protocol() << " =?= " << *it << endl;
          if ( currentURL.protocol() == *it ) {  // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
             available = true;
             break;

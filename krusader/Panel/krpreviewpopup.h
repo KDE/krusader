@@ -33,7 +33,7 @@ public:
 	KrPreviewPopup();
 	~KrPreviewPopup();
 
-	void setUrls(const KURL::List* urls);
+	void setUrls(const KUrl::List* urls);
 public slots:
 	void addPreview(const KFileItem* file,const QPixmap& preview);
 	void view(int id);
@@ -42,7 +42,7 @@ protected:
 	KFileItemList files;
 	int id;
 	bool noPreview;
-	KURL::List availablePreviews;
+	KUrl::List availablePreviews;
 };
 
 #endif

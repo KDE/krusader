@@ -32,7 +32,7 @@ A
 
 #include "krview.h"
 #include "krviewitem.h"
-#include <kiconview.h>
+#include <k3iconview.h>
 #include <qtimer.h>
 //Added by qt3to4:
 #include <QDragMoveEvent>
@@ -57,12 +57,12 @@ class Q3Header;
 
 /**
  * KrBriefView implements everthing and anything regarding a brief view in a filemananger.
- * IT MUST USE KrViewItem as the children to it's *KIconView. KrBriefView and KrViewItem are
+ * IT MUST USE KrViewItem as the children to it's *K3IconView. KrBriefView and KrViewItem are
  * tightly coupled and the view will not work with other kinds of items.
  * Apart from this, the view is self-reliant and you can use the vast interface to get whatever
  * information is necessery from it.
  */
-class KrBriefView: public KIconView, public KrView {
+class KrBriefView: public K3IconView, public KrView {
 	friend class KrBriefViewItem;
 	Q_OBJECT
 public:
@@ -83,8 +83,8 @@ public:
 	virtual void updateView();
 	virtual void updateItem(KrViewItem* item );
 	virtual void clear();
-	virtual void sort()                        { if( sortDirection() ) sortOrderChanged();KIconView::sort( true ); }
-	virtual void sort( bool ascending )        { if( sortDirection() != ascending ) sortOrderChanged();KIconView::sort( ascending ); }
+	virtual void sort()                        { if( sortDirection() ) sortOrderChanged();K3IconView::sort( true ); }
+	virtual void sort( bool ascending )        { if( sortDirection() != ascending ) sortOrderChanged();K3IconView::sort( ascending ); }
 	virtual void prepareForActive();
 	virtual void prepareForPassive();
 	virtual void saveSettings() {}

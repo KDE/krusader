@@ -33,9 +33,8 @@
 #define KRUSADERVIEW_H
 
 // KDE includes
-#include <klistview.h>
+#include <k3listview.h>
 #include <klocale.h>
-#include <kaccel.h>
 #include <kapplication.h>
 #include <kparts/part.h>
 

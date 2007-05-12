@@ -49,7 +49,7 @@
 #include <Q3GridLayout>
 #include <Q3Frame>
 #include <kmessagebox.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <qcursor.h>
 #include <qeventloop.h>
 #include <kfinddialog.h>
@@ -69,22 +69,22 @@
 #define COPY_SELECTED_TO_CLIPBOARD  95
 //////////////////////////////////////////////////////////
 
-class LocateListView : public KListView
+class LocateListView : public K3ListView
 {
 public:
-  LocateListView( QWidget * parent, const char * name = 0 ) : KListView( parent, name )
+  LocateListView( QWidget * parent, const char * name = 0 ) : K3ListView( parent, name )
   {
   }
 
   void startDrag()
   {
-    KURL::List urls;
+    KUrl::List urls;
 
     Q3ListViewItem * item = firstChild();
     while( item )
     {
       if( item->isSelected() )
-         urls.push_back( vfs::fromPathOrURL( item->text( 0 ) ) );
+         urls.push_back( vfs::fromPathOrUrl( item->text( 0 ) ) );
 
       item = item->nextSibling();
     }
@@ -98,7 +98,7 @@ public:
   }
 };
 
-KProcess *  LocateDlg::updateProcess = 0;
+K3Process *  LocateDlg::updateProcess = 0;
 LocateDlg * LocateDlg::LocateDialog = 0;
 
 LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KDialogBase::User2 | KDialogBase::User3 | KDialogBase::Close,
@@ -113,7 +113,7 @@ LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KD
   
   Q3HBox *hbox = new Q3HBox( widget, "locateHBox" );
   QLabel *label = new QLabel( i18n( "Search for:" ), hbox, "locateLabel" );
-  locateSearchFor = new KHistoryCombo( false, hbox, "locateSearchFor" );
+  locateSearchFor = new KHistoryComboBox( false, hbox, "locateSearchFor" );
   label->setBuddy( locateSearchFor );
   krConfig->setGroup("Locate");
   QStringList list = krConfig->readListEntry("Search For");
@@ -175,7 +175,7 @@ LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KD
   {
     if( updateProcess->isRunning() )
     {
-      connect( updateProcess, SIGNAL(processExited(KProcess *)), this, SLOT(updateFinished()));
+      connect( updateProcess, SIGNAL(processExited(K3Process *)), this, SLOT(updateFinished()));
       enableButton( KDialogBase::User2, false );
     }
     else
@@ -202,12 +202,12 @@ void LocateDlg::slotUser2()   /* The Update DB button */
   {
     krConfig->setGroup("Locate");
 
-    updateProcess = new KProcess();
+    updateProcess = new K3Process();
     *updateProcess << KrServices::fullPathName( "updatedb" );
     *updateProcess << KrServices::separateArgs( krConfig->readEntry( "UpdateDB Arguments", "" ) );
     
-    connect( updateProcess, SIGNAL(processExited(KProcess *)), this, SLOT(updateFinished()));
-    updateProcess->start(KProcess::NotifyOnExit);
+    connect( updateProcess, SIGNAL(processExited(K3Process *)), this, SLOT(updateFinished()));
+    updateProcess->start(K3Process::NotifyOnExit);
     enableButton( KDialogBase::User2, false );
   }
 }
@@ -250,11 +250,11 @@ void LocateDlg::slotUser3()   /* The locate button */
 
   stopping = false;
   
-  KProcess locateProc;
-  connect( &locateProc, SIGNAL( receivedStdout(KProcess *, char *, int) ),
-            this, SLOT( processStdout(KProcess *, char *, int) ) );
-  connect( &locateProc, SIGNAL( receivedStderr(KProcess *, char *, int) ),
-            this, SLOT( processStderr(KProcess *, char *, int) ) );
+  K3Process locateProc;
+  connect( &locateProc, SIGNAL( receivedStdout(K3Process *, char *, int) ),
+            this, SLOT( processStdout(K3Process *, char *, int) ) );
+  connect( &locateProc, SIGNAL( receivedStderr(K3Process *, char *, int) ),
+            this, SLOT( processStderr(K3Process *, char *, int) ) );
 
   locateProc << KrServices::fullPathName( "locate" );
   if( !isCs )
@@ -267,7 +267,7 @@ void LocateDlg::slotUser3()   /* The locate button */
     pattern = pattern + "*";
   
   collectedErr = "";
-  bool result = !locateProc.start( KProcess::Block, KProcess::AllOutput );
+  bool result = !locateProc.start( K3Process::Block, K3Process::AllOutput );
   if( !collectedErr.isEmpty() && ( !locateProc.normalExit() || locateProc.exitStatus() ) )
   {
      KMessageBox::error( krApp, i18n( "Locate produced the following error message:\n\n" ) + collectedErr );
@@ -288,7 +288,7 @@ void LocateDlg::slotUser3()   /* The locate button */
   }
 }
 
-void LocateDlg::processStdout(KProcess *proc, char *buffer, int length)
+void LocateDlg::processStdout(K3Process *proc, char *buffer, int length)
 {
   char *buf = new char[ length+1 ];
   memcpy( buf, buffer, length );
@@ -325,9 +325,9 @@ void LocateDlg::processStdout(KProcess *proc, char *buffer, int length)
       }
       
       if( lastItem )    
-        lastItem = new KListViewItem( resultList, lastItem, *it );
+        lastItem = new K3ListViewItem( resultList, lastItem, *it );
       else
-        lastItem = new KListViewItem( resultList, *it );
+        lastItem = new K3ListViewItem( resultList, *it );
 
       lastItem->setDragEnabled( true );
     }
@@ -339,7 +339,7 @@ void LocateDlg::processStdout(KProcess *proc, char *buffer, int length)
   qApp->processEvents();
 }
 
-void LocateDlg::processStderr(KProcess *, char *buffer, int length)
+void LocateDlg::processStderr(K3Process *, char *buffer, int length)
 {
   char *buf = new char[ length+1 ];
   memcpy( buf, buffer, length );
@@ -355,7 +355,7 @@ void LocateDlg::slotRightClick(Q3ListViewItem *item)
     return;
 
   // create the menu
-  KPopupMenu popup;
+  KMenu popup;
   popup.insertTitle(i18n("Locate"));
 
   popup.insertItem(i18n("View (F3)"), VIEW_ID);
@@ -402,7 +402,7 @@ void LocateDlg::slotDoubleClick(Q3ListViewItem *item)
     dirName.truncate( dirName.findRev( '/' ) );
   }
     
-  ACTIVE_FUNC->openUrl(vfs::fromPathOrURL( dirName ), fileName );
+  ACTIVE_FUNC->openUrl(vfs::fromPathOrUrl( dirName ), fileName );
   KDialogBase::accept();
 }
 
@@ -417,30 +417,30 @@ void LocateDlg::keyPressEvent( QKeyEvent *e )
 
   switch ( e->key() )
   {
-  case Key_M :
+  case Qt::Key_M :
     if( e->state() == ControlButton )
     {
       resultList->setFocus();
       e->accept();
     }
     break;
-  case Key_F3 :
+  case Qt::Key_F3 :
     if( resultList->currentItem() )
       operate( resultList->currentItem(), VIEW_ID );
     break;
-  case Key_F4 :
+  case Qt::Key_F4 :
     if( resultList->currentItem() )
       operate( resultList->currentItem(), EDIT_ID );
     break;
-  case Key_N :
+  case Qt::Key_N :
     if ( e->state() == ControlButton )
       operate( resultList->currentItem(), FIND_NEXT_ID );
     break;
-  case Key_P :
+  case Qt::Key_P :
     if ( e->state() == ControlButton )
       operate( resultList->currentItem(), FIND_PREV_ID );
     break;
-  case Key_F :
+  case Qt::Key_F :
     if ( e->state() == ControlButton )
       operate( resultList->currentItem(), FIND_ID );
     break;
@@ -451,9 +451,9 @@ void LocateDlg::keyPressEvent( QKeyEvent *e )
 
 void LocateDlg::operate( Q3ListViewItem *item, int task )
 {
-  KURL name;
+  KUrl name;
   if( item != 0 )
-    name = vfs::fromPathOrURL( item->text( 0 ) );
+    name = vfs::fromPathOrUrl( item->text( 0 ) );
   
   switch ( task )
   {
@@ -479,11 +479,11 @@ void LocateDlg::operate( Q3ListViewItem *item, int task )
       krConfig->writeEntry( "Find Options", findOptions = dlg.options() );
       krConfig->writeEntry( "Find Patterns", list );
 
-      if( !( findOptions & KFindDialog::FromCursor ) )
-        resultList->setCurrentItem( ( findOptions & KFindDialog::FindBackwards ) ?
+      if( !( findOptions & KFind::FromCursor ) )
+        resultList->setCurrentItem( ( findOptions & KFind::FindBackwards ) ?
                                     resultList->lastItem() : resultList->firstChild() );
 
-      findCurrentItem = (KListViewItem *)resultList->currentItem();
+      findCurrentItem = (K3ListViewItem *)resultList->currentItem();
       
       if( find() && findCurrentItem )
         resultList->setCurrentItem( findCurrentItem );
@@ -497,9 +497,9 @@ void LocateDlg::operate( Q3ListViewItem *item, int task )
   case FIND_PREV_ID:
     {
       if( task == FIND_PREV_ID )
-        findOptions ^= KFindDialog::FindBackwards;
+        findOptions ^= KFind::FindBackwards;
       
-      findCurrentItem = (KListViewItem *)resultList->currentItem();
+      findCurrentItem = (K3ListViewItem *)resultList->currentItem();
       nextLine();
 
       if( find() && findCurrentItem )
@@ -510,18 +510,18 @@ void LocateDlg::operate( Q3ListViewItem *item, int task )
       resultList->ensureItemVisible( resultList->currentItem() );
 
       if( task == FIND_PREV_ID )
-        findOptions ^= KFindDialog::FindBackwards;
+        findOptions ^= KFind::FindBackwards;
     }
     break;
   case COPY_SELECTED_TO_CLIPBOARD:
     {
-      KURL::List urls;
+      KUrl::List urls;
 
       Q3ListViewItem * item = resultList->firstChild();
       while( item )
       {
         if( item->isSelected() )
-           urls.push_back( vfs::fromPathOrURL( item->text( 0 ) ) );
+           urls.push_back( vfs::fromPathOrUrl( item->text( 0 ) ) );
 
         item = item->nextSibling();
       }
@@ -539,10 +539,10 @@ void LocateDlg::operate( Q3ListViewItem *item, int task )
 
 void LocateDlg::nextLine()
 {
-  if( findOptions & KFindDialog::FindBackwards )
-    findCurrentItem = (KListViewItem *)findCurrentItem->itemAbove();
+  if( findOptions & KFind::FindBackwards )
+    findCurrentItem = (K3ListViewItem *)findCurrentItem->itemAbove();
   else
-    findCurrentItem = (KListViewItem *)findCurrentItem->itemBelow();
+    findCurrentItem = (K3ListViewItem *)findCurrentItem->itemBelow();
 }
 
 bool LocateDlg::find()
@@ -551,14 +551,14 @@ bool LocateDlg::find()
   {
     QString item = findCurrentItem->text( 0 );
 
-    if( findOptions & KFindDialog::RegularExpression )
+    if( findOptions & KFind::RegularExpression )
     {
-      if( item.contains( QRegExp( findPattern, findOptions & KFindDialog::CaseSensitive ) ) )
+      if( item.contains( QRegExp( findPattern, findOptions & KFind::CaseSensitive ) ) )
         return true;
     }
     else
     {
-      if( item.contains( findPattern, findOptions & KFindDialog::CaseSensitive ) )
+      if( item.contains( findPattern, findOptions & KFind::CaseSensitive ) )
         return true;
     }
     
@@ -571,7 +571,7 @@ bool LocateDlg::find()
 void LocateDlg::feedToListBox()
 {
   virt_vfs v(0,true);
-  v.vfs_refresh( KURL( "/" ) );
+  v.vfs_refresh( KUrl( "/" ) );
   
   krConfig->setGroup( "Locate" );  
   int listBoxNum = krConfig->readNumEntry( "Feed To Listbox Counter", 1 );  
@@ -593,18 +593,18 @@ void LocateDlg::feedToListBox()
        return;
   }
     
-  KURL::List urlList;
+  KUrl::List urlList;
   Q3ListViewItem * item = resultList->firstChild();
   while( item )
   {
-    urlList.push_back( vfs::fromPathOrURL( item->text( 0 ) ) );
+    urlList.push_back( vfs::fromPathOrUrl( item->text( 0 ) ) );
     item = item->nextSibling();
   }
-  KURL url = KURL::fromPathOrURL(QString("virt:/")+ queryName);
+  KUrl url = KUrl::fromPathOrUrl(QString("virt:/")+ queryName);
   v.vfs_refresh( url );
   v.vfs_addFiles( &urlList, KIO::CopyJob::Copy, 0 );
   //ACTIVE_FUNC->openUrl(url);  
-  ACTIVE_MNG->slotNewTab(url.prettyURL());
+  ACTIVE_MNG->slotNewTab(url.prettyUrl());
   accept();
 }
 

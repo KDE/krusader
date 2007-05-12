@@ -53,7 +53,7 @@ DiskUsageViewer::~ DiskUsageViewer()
   }
 }
 
-void DiskUsageViewer::openURL( KURL url )
+void DiskUsageViewer::openURL( KUrl url )
 {
   if( diskUsage == 0 )
   {
@@ -75,7 +75,7 @@ void DiskUsageViewer::openURL( KURL url )
 
   url.setPath( url.path( -1 ) );
   
-  KURL baseURL = diskUsage->getBaseURL();
+  KUrl baseURL = diskUsage->getBaseURL();
   if( !diskUsage->isLoading() && !baseURL.isEmpty() )
   {
     if( url.protocol() == baseURL.protocol() && ( !url.hasHost() || url.host() == baseURL.host() ) )

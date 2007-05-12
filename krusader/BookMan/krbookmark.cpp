@@ -16,7 +16,7 @@ static const char* NAME_DEVICES = I18N_NOOP("Devices");
 static const char* NAME_VIRTUAL = I18N_NOOP("Virtual Filesystem");
 static const char* NAME_LAN = I18N_NOOP("Local Network");
 
-KrBookmark::KrBookmark(QString name, KURL url, KActionCollection *parent, QString icon, QString actionName ):
+KrBookmark::KrBookmark(QString name, KUrl url, KActionCollection *parent, QString icon, QString actionName ):
 	KAction(name, 0, 0, 0, parent, actionName.isNull() ? BM_NAME(name).toLatin1() : BM_NAME(actionName).toLatin1()), 
 	_url(url), _folder(false), _separator(false) {
 	connect(this, SIGNAL(activated()), this, SLOT(activatedProxy()));

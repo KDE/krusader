@@ -83,8 +83,8 @@ public:
   KURLListRequester *dontSearchIn;
   Q3HBoxLayout *middleLayout;
 
-  KHistoryCombo* searchFor;
-  KHistoryCombo* containsText;
+  KHistoryComboBox* searchFor;
+  KHistoryComboBox* containsText;
 
   KComboBox* ofType;
 

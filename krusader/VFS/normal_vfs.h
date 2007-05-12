@@ -52,13 +52,13 @@ public:
  ~normal_vfs(){if( watcher ) delete watcher;}
 
 	/// Copy a file to the vfs (physical).
-	virtual void vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "", PreserveMode pmode = PM_DEFAULT );
+	virtual void vfs_addFiles(KUrl::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "", PreserveMode pmode = PM_DEFAULT );
 	/// Remove a file from the vfs (physical)
 	virtual void vfs_delFiles(QStringList *fileNames);
 	/// Return a list of URLs for multiple files
-	virtual KURL::List* vfs_getFiles(QStringList* names);
+	virtual KUrl::List* vfs_getFiles(QStringList* names);
 	/// Return a URL to a single file
-	virtual KURL vfs_getFile(const QString& name);
+	virtual KUrl vfs_getFile(const QString& name);
 	/// Create a new directory
 	virtual void vfs_mkdir(const QString& name);
 	/// Rename file
@@ -78,7 +78,7 @@ public slots:
 
 protected:
 	/// Re-reads files and stats and fills the vfile list
-	virtual bool populateVfsList(const KURL& origin, bool showHidden);
+	virtual bool populateVfsList(const KUrl& origin, bool showHidden);
 
 	QTimer refreshTimer;         //< Timer to exclude sudden refreshes
 	KDirWatch *watcher;          //< The internal dir watcher - use to detect changes in directories

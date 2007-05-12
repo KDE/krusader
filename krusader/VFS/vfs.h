@@ -63,13 +63,13 @@ public:
 	virtual			~vfs();
 
 	/// Copy a file to the vfs (physical).
-	virtual void vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "", PreserveMode pmode = PM_DEFAULT)=0;	
+	virtual void vfs_addFiles(KUrl::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "", PreserveMode pmode = PM_DEFAULT)=0;	
 	/// Remove a file from the vfs (physical)
 	virtual void vfs_delFiles(QStringList *fileNames)=0;	
 	/// Return a list of URLs for multiple files	
-	virtual KURL::List* vfs_getFiles(QStringList* names)=0;
+	virtual KUrl::List* vfs_getFiles(QStringList* names)=0;
 	/// Return a URL to a single file	
-	virtual KURL vfs_getFile(const QString& name)=0;
+	virtual KUrl vfs_getFile(const QString& name)=0;
 	/// Create a new directory
 	virtual void vfs_mkdir(const QString& name)=0;
 	/// Rename file
@@ -92,7 +92,7 @@ public:
 	/// The number of files in the VFS
 	inline unsigned long vfs_noOfFiles() { return vfs_filesP->count(); }
 	/// Returns the VFS url.
-	inline KURL vfs_getOrigin()          { return vfs_origin;          }
+	inline KUrl vfs_getOrigin()          { return vfs_origin;          }
 	/// Return the VFS type.
 	inline VFS_TYPE vfs_getType()        { return vfs_type;            }
 	/// Returns true if vfs is busy
@@ -110,13 +110,13 @@ public:
 	/// process the application events               
 	virtual bool vfs_isDeleting()    { return deleteRequested; }
    // KDE FTP proxy bug correction
-   static KURL fromPathOrURL( const QString &originIn );
-   static QString pathOrURL( const KURL &originIn, int trailingSlash = 0 );
+   static KUrl fromPathOrUrl( const QString &originIn );
+   static QString pathOrUrl( const KUrl &originIn, int trailingSlash = 0 );
 
 
 public slots:
 	/// Re-reads files and stats and fills the vfile list
-	bool vfs_refresh(const KURL& origin);
+	bool vfs_refresh(const KUrl& origin);
 	/// Used to refresh the VFS when a job finishs. it calls the refresh() slot
 	/// or display a error message if the job fails
 	bool vfs_refresh(KIO::Job* job);
@@ -128,7 +128,7 @@ public slots:
 signals:
 	void startUpdate(); //< emitted when the VFS starts to refresh its list of vfiles.
 	void startJob(KIO::Job* job);
-	void incrementalRefreshFinished( const KURL& ); //< emitted when the incremental refresh was finished
+	void incrementalRefreshFinished( const KUrl& ); //< emitted when the incremental refresh was finished
 	void addedVfile(vfile* vf);
 	void deletedVfile(const QString& name);
 	void updatedVfile(vfile* vf);
@@ -137,7 +137,7 @@ signals:
 
 protected:
 	/// Feel the vfs dictionary with vfiles, must be implemented for each vfs
-	virtual bool populateVfsList(const KURL& origin, bool showHidden) = 0;
+	virtual bool populateVfsList(const KUrl& origin, bool showHidden) = 0;
 	/// Called by populateVfsList for each file
 	void foundVfile( vfile *vf ) { vfs_tempFilesP->insert(vf->vfile_getName(),vf); }
 	/// Set the vfile list pointer
@@ -150,15 +150,15 @@ protected:
 	inline void removeFromList(QString name){ vfs_filesP->remove(name); }
 
 	/// Deletes a vfile from the list.
-	void calculateURLSize(KURL url,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool * stop);
+	void calculateURLSize(KUrl url,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool * stop);
         
 	VFS_TYPE      vfs_type;     //< the vfs type.
-	KURL          vfs_origin;   //< the path or file the VFS originates from.
+	KUrl          vfs_origin;   //< the path or file the VFS originates from.
 	bool          vfs_busy;     //< true if vfs is busy with refreshing
 	bool quietMode;             //< if true the vfs won't display error messages or emit signals
 	bool disableRefresh;        //< true if refresh is disabled
 	bool isWritable;            //< true if it's writable
-	KURL postponedRefreshURL;   //< true if vfs_refresh() was called when refresh is disabled.
+	KUrl postponedRefreshURL;   //< true if vfs_refresh() was called when refresh is disabled.
 	bool invalidated;           //< the content of the cache is invalidated
 	bool panelConnected;        //< indicates that there's a panel connected. Important for disabling the dir watcher
 	

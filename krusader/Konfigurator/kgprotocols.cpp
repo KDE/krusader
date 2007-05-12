@@ -173,7 +173,7 @@ void KgProtocols::loadMimes()
 {
   KMimeType::List mimes = KMimeType::allMimeTypes();
   
-  for( Q3ValueListIterator<KMimeType::Ptr> it = mimes.begin(); it != mimes.end(); it++ )
+  for( KMimeType::List::const_iterator it = mimes.begin(); it != mimes.end(); it++ )
     mimeList->insertItem( (*it)->name() );
     
   mimeList->sort();

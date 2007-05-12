@@ -30,12 +30,12 @@ public:
 	VirtProtocol( const Q3CString &pool, const Q3CString &app );
 	virtual ~VirtProtocol();
 
-	virtual void listDir ( const KURL & url );
-	virtual void stat    ( const KURL & url );
-	virtual void get    ( const KURL & url );
-	virtual void mkdir(const KURL& url,int permissions);
-	virtual void copy( const KURL &src, const KURL &dest, int permissions, bool overwrite );
-	virtual void del    (KURL const & url, bool isFile);
+	virtual void listDir ( const KUrl & url );
+	virtual void stat    ( const KUrl & url );
+	virtual void get    ( const KUrl & url );
+	virtual void mkdir(const KUrl& url,int permissions);
+	virtual void copy( const KUrl &src, const KUrl &dest, int permissions, bool overwrite );
+	virtual void del    (KUrl const & url, bool isFile);
 
 protected:
 	bool lock();
@@ -43,14 +43,14 @@ protected:
 	bool save();
 	bool load();
 
-	void local_entry(const KURL& url,KIO::UDSEntry& entry);
+	void local_entry(const KUrl& url,KIO::UDSEntry& entry);
 	bool addDir(QString& path);
 
 
-	static Q3Dict<KURL::List> kioVirtDict;
+	static Q3Dict<KUrl::List> kioVirtDict;
 	static KConfig* kio_virt_db;
 
-	bool rewriteURL(const KURL&, KURL&);
+	bool rewriteURL(const KUrl&, KUrl&);
 
 };
 

@@ -30,7 +30,7 @@
 
 #include "dufilelight.h"
 #include "radialMap/radialMap.h"
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <klocale.h>
 #include <kinputdialog.h>
 //Added by qt3to4:
@@ -42,7 +42,7 @@
 DUFilelight::DUFilelight( DiskUsage *usage, const char *name )
   : RadialMap::Widget( usage, name ), diskUsage( usage ), currentDir( 0 ), refreshNeeded( true )
 {
-   setFocusPolicy( QWidget::StrongFocus );
+   setFocusPolicy( Qt::StrongFocus );
 
    connect( diskUsage, SIGNAL( enteringDirectory( Directory * ) ), this, SLOT( slotDirChanged( Directory * ) ) );
    connect( diskUsage, SIGNAL( clearing() ), this, SLOT( clear() ) );
@@ -95,11 +95,11 @@ void DUFilelight::mousePressEvent( QMouseEvent *event )
      if( focus && !focus->isFake() && focus->file() != currentDir )
        file = (File *)focus->file();
 
-     KPopupMenu filelightPopup;
-     filelightPopup.insertItem( i18n("Zoom In"),  this, SLOT( zoomIn() ), Key_Plus );
-     filelightPopup.insertItem( i18n("Zoom Out"), this, SLOT( zoomOut() ), Key_Minus );
+     KMenu filelightPopup;
+     filelightPopup.insertItem( i18n("Zoom In"),  this, SLOT( zoomIn() ), Qt::Key_Plus );
+     filelightPopup.insertItem( i18n("Zoom Out"), this, SLOT( zoomOut() ), Qt::Key_Minus );
      
-     KPopupMenu schemePopup;           
+     KMenu schemePopup;           
      schemePopup.insertItem( i18n("Rainbow"),       this, SLOT( schemeRainbow() ) );
      schemePopup.insertItem( i18n("High Contrast"), this, SLOT( schemeHighContrast() ) );
      schemePopup.insertItem( i18n("KDE"),           this, SLOT( schemeKDE() ) );

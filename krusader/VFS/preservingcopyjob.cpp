@@ -79,15 +79,15 @@ Attributes::Attributes( time_t tIn, QString user, QString group, mode_t modeIn, 
   acl = aclIn;
 }
 
-PreservingCopyJob::PreservingCopyJob( const KURL::List& src, const KURL& dest, CopyMode mode,
+PreservingCopyJob::PreservingCopyJob( const KUrl::List& src, const KUrl& dest, CopyMode mode,
   bool asMethod, bool showProgressInfo ) : KIO::CopyJob( src, dest, mode, asMethod, showProgressInfo )
 {
   if( dest.isLocalFile() )
   {
     connect( this, SIGNAL( aboutToCreate (KIO::Job *, const Q3ValueList< KIO::CopyInfo > &) ),
              this, SLOT( slotAboutToCreate (KIO::Job *, const Q3ValueList< KIO::CopyInfo > &) ) );
-    connect( this, SIGNAL( copyingDone( KIO::Job *, const KURL &, const KURL &, bool, bool) ),
-             this, SLOT( slotCopyingDone( KIO::Job *, const KURL &, const KURL &, bool, bool) ) );
+    connect( this, SIGNAL( copyingDone( KIO::Job *, const KUrl &, const KUrl &, bool, bool) ),
+             this, SLOT( slotCopyingDone( KIO::Job *, const KUrl &, const KUrl &, bool, bool) ) );
     connect( this, SIGNAL( result( KIO::Job * ) ),
              this, SLOT( slotFinished() ) );
   }
@@ -158,7 +158,7 @@ void PreservingCopyJob::slotAboutToCreate( KIO::Job */*job*/, const Q3ValueList<
 void PreservingCopyJob::slotResult( Job *job ) {
   if( !job->error() ) {
     if( job->inherits( "KIO::StatJob" ) ) {       /* Unfortunately KIO forgets to set times when the file is in the */
-      KURL url = ((KIO::SimpleJob *)job)->url();  /* base directory. That's why we capture every StatJob and set the */
+      KUrl url = ((KIO::SimpleJob *)job)->url();  /* base directory. That's why we capture every StatJob and set the */
                                                 /* time manually. */
       KIO::UDSEntry entry = static_cast<KIO::StatJob*>(job)->statResult();      
       KFileItem kfi(entry, url );
@@ -187,7 +187,7 @@ void PreservingCopyJob::slotListEntries(KIO::Job *job, const KIO::UDSEntryList &
   KIO::UDSEntryListConstIterator it = list.begin();
   KIO::UDSEntryListConstIterator end = list.end();
   for (; it != end; ++it) {
-    KURL url = ((KIO::SimpleJob *)job)->url();
+    KUrl url = ((KIO::SimpleJob *)job)->url();
     QString relName, user, group;
     time_t mtime = (time_t)-1;
     mode_t mode = 0755;
@@ -201,7 +201,7 @@ void PreservingCopyJob::slotListEntries(KIO::Job *job, const KIO::UDSEntryList &
           relName = (*it2).m_str;
         break;
       case KIO::UDS_URL:
-        relName = KURL((*it2).m_str).fileName();
+        relName = KUrl((*it2).m_str).fileName();
         break;
       case KIO::UDS_MODIFICATION_TIME:
         mtime = (time_t)((*it2).m_long);
@@ -228,7 +228,7 @@ void PreservingCopyJob::slotListEntries(KIO::Job *job, const KIO::UDSEntryList &
   }
 }
 
-void PreservingCopyJob::slotCopyingDone( KIO::Job *, const KURL &from, const KURL &to, bool postpone, bool)
+void PreservingCopyJob::slotCopyingDone( KIO::Job *, const KUrl &from, const KUrl &to, bool postpone, bool)
 {
   if( postpone ) { // the directories are stamped at the last step, so if it's a directory, we postpone
     unsigned i=0;
@@ -283,14 +283,14 @@ void PreservingCopyJob::slotCopyingDone( KIO::Job *, const KURL &from, const KUR
 
 void PreservingCopyJob::slotFinished() {
   for( unsigned i=0; i != directoriesToStamp.count(); i++ ) {
-    KURL from = originalDirectories[ i ];
-    KURL to = directoriesToStamp[ i ];
+    KUrl from = originalDirectories[ i ];
+    KUrl to = directoriesToStamp[ i ];
 
     slotCopyingDone( 0, from, to, false, false );
   }
 }
 
-KIO::CopyJob * PreservingCopyJob::createCopyJob( PreserveMode pmode, const KURL::List& src, const KURL& dest, CopyMode mode, bool asMethod, bool showProgressInfo )
+KIO::CopyJob * PreservingCopyJob::createCopyJob( PreserveMode pmode, const KUrl::List& src, const KUrl& dest, CopyMode mode, bool asMethod, bool showProgressInfo )
 {
   if( ! dest.isLocalFile() )
     pmode = PM_NONE;

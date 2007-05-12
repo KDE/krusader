@@ -66,7 +66,7 @@ int kdemain( int argc, char **argv ){
 	KInstance instance( "kio_krarc" );
 	
 	if (argc != 4) {
-		kdWarning() << "Usage: kio_krarc  protocol domain-socket1 domain-socket2" << endl;
+		kWarning() << "Usage: kio_krarc  protocol domain-socket1 domain-socket2" << endl;
 		exit(-1);
 	}
 	
@@ -99,11 +99,11 @@ kio_krarcProtocol::~kio_krarcProtocol(){
 	// delete the temp directory
 	KrShellProcess proc;
 	proc << "rm -rf "<< arcTempDir;
-	proc.start(KProcess::Block);
+	proc.start(K3Process::Block);
 }
 
 /* ---------------------------------------------------------------------------------- */
-void kio_krarcProtocol::receivedData(KProcess*,char* buf,int len){
+void kio_krarcProtocol::receivedData(K3Process*,char* buf,int len){
 	QByteArray d(len);
 	d.setRawData(buf,len);
 	data(d);
@@ -112,7 +112,7 @@ void kio_krarcProtocol::receivedData(KProcess*,char* buf,int len){
 	decompressedLen += len;
 }
 
-void kio_krarcProtocol::mkdir(const KURL& url,int permissions){
+void kio_krarcProtocol::mkdir(const KUrl& url,int permissions){
 	KRDEBUG(url.path());
 	
 	if( !setArcFile( url ) ) {
@@ -158,7 +158,7 @@ void kio_krarcProtocol::mkdir(const KURL& url,int permissions){
 	proc << putCmd << convertName( arcFile->url().path() ) + " " << convertFileName( tmpDir.mid(arcTempDir.length()) );
 	infoMessage(i18n("Creating %1 ...").arg( url.fileName() ) );
 	QDir::setCurrent(arcTempDir);
-	proc.start(KProcess::Block,KProcess::AllOutput);
+	proc.start(K3Process::Block,K3Process::AllOutput);
 	
 	// delete the temp directory
 	QDir().rmdir(arcTempDir);
@@ -173,7 +173,7 @@ void kio_krarcProtocol::mkdir(const KURL& url,int permissions){
 	finished();
 }
 
-void kio_krarcProtocol::put(const KURL& url,int permissions,bool overwrite,bool resume){
+void kio_krarcProtocol::put(const KUrl& url,int permissions,bool overwrite,bool resume){
 	KRDEBUG(url.path());
 	if( !setArcFile( url ) ) {
 		error(ERR_CANNOT_ENTER_DIRECTORY,url.path());
@@ -229,7 +229,7 @@ void kio_krarcProtocol::put(const KURL& url,int permissions,bool overwrite,bool 
 	proc << putCmd << convertName( arcFile->url().path() )+ " " <<convertFileName( tmpFile.mid(arcTempDir.length()) );
 	infoMessage(i18n("Packing %1 ...").arg( url.fileName() ) );
 	QDir::setCurrent(arcTempDir);
-	proc.start(KProcess::Block,KProcess::AllOutput);
+	proc.start(K3Process::Block,K3Process::AllOutput);
 	// remove the file
 	QFile::remove(tmpFile);
 
@@ -242,11 +242,11 @@ void kio_krarcProtocol::put(const KURL& url,int permissions,bool overwrite,bool 
 	finished();
 }
 
-void kio_krarcProtocol::get(const KURL& url ){
+void kio_krarcProtocol::get(const KUrl& url ){
 	get( url, TRIES_WITH_PASSWORDS );
 }
 
-void kio_krarcProtocol::get(const KURL& url, int tries ){
+void kio_krarcProtocol::get(const KUrl& url, int tries ){
 	bool decompressToFile = false;
 	KRDEBUG(url.path());
 	
@@ -278,7 +278,7 @@ void kio_krarcProtocol::get(const KURL& url, int tries ){
 	if( !extArcReady && arcType == "rpm"){
 		KrShellProcess cpio;
 		cpio << "rpm2cpio" << convertName( arcFile->url().path(-1) ) << " > " << arcTempDir+"contents.cpio";
-		cpio.start(KProcess::Block,KProcess::AllOutput);
+		cpio.start(K3Process::Block,K3Process::AllOutput);
 		if( !cpio.normalExit() || cpio.exitStatus() != 0 )  {
 			error(ERR_COULD_NOT_READ,url.path() + "\n\n" + cpio.getErrorMsg() );
 			return;
@@ -289,7 +289,7 @@ void kio_krarcProtocol::get(const KURL& url, int tries ){
 	if ( !extArcReady && arcType == "deb" ) {
 		KrShellProcess dpkg;
 		dpkg << cmd + " --fsys-tarfile" << convertName( arcFile->url().path( -1 ) ) << " > " << arcTempDir + "contents.cpio";
-		dpkg.start( KProcess::Block, KProcess::AllOutput );
+		dpkg.start( K3Process::Block, K3Process::AllOutput );
 		if( !dpkg.normalExit() || dpkg.exitStatus() != 0 )  {
 			error(ERR_COULD_NOT_READ,url.path() + "\n\n" + dpkg.getErrorMsg() );
 			return;
@@ -316,13 +316,13 @@ void kio_krarcProtocol::get(const KURL& url, int tries ){
 		emit mimeType( mt->name() );
 		proc << getCmd << convertName( arcFile->url().path() )+" ";
 		if( arcType != "gzip" && arcType != "bzip2" ) proc << convertFileName( file );
-		connect(&proc,SIGNAL(receivedStdout(KProcess*,char*,int)),
-				this,SLOT(receivedData(KProcess*,char*,int)) );
+		connect(&proc,SIGNAL(receivedStdout(K3Process*,char*,int)),
+				this,SLOT(receivedData(K3Process*,char*,int)) );
 	}
 	infoMessage(i18n("Unpacking %1 ...").arg( url.fileName() ) );
 	// change the working directory to our arcTempDir
 	QDir::setCurrent(arcTempDir);
-	proc.start(KProcess::Block,KProcess::AllOutput);
+	proc.start(K3Process::Block,K3Process::AllOutput);
 	
 	if( !extArcReady && !decompressToFile ) {  
 		if( !proc.normalExit() || !checkStatus( proc.exitStatus() ) || ( arcType != "bzip2" && expectedSize != decompressedLen ) ) {
@@ -431,7 +431,7 @@ void kio_krarcProtocol::get(const KURL& url, int tries ){
 	finished();
 }
 
-void kio_krarcProtocol::del(KURL const & url, bool isFile){
+void kio_krarcProtocol::del(KUrl const & url, bool isFile){
 	KRDEBUG(url.path());
 	
 	if( !setArcFile( url ) ) {
@@ -462,7 +462,7 @@ void kio_krarcProtocol::del(KURL const & url, bool isFile){
 	KrShellProcess proc;
 	proc << delCmd << convertName( arcFile->url().path() )+" " << convertFileName( file );
 	infoMessage(i18n("Deleting %1 ...").arg( url.fileName() ) );
-	proc.start(KProcess::Block, KProcess::AllOutput);
+	proc.start(K3Process::Block, K3Process::AllOutput);
 	if( !proc.normalExit() || !checkStatus( proc.exitStatus() ) )  {
 		error(ERR_COULD_NOT_WRITE,url.path() + "\n\n" + proc.getErrorMsg() );
 		return;
@@ -472,7 +472,7 @@ void kio_krarcProtocol::del(KURL const & url, bool isFile){
 	finished();
 }
 
-void kio_krarcProtocol::stat( const KURL & url ){  
+void kio_krarcProtocol::stat( const KUrl & url ){  
 	KRDEBUG(url.path());
 	if( !setArcFile( url ) ) {
 		error(ERR_CANNOT_ENTER_DIRECTORY,url.path());
@@ -489,7 +489,7 @@ void kio_krarcProtocol::stat( const KURL & url ){
 		return;
 	}    
 	QString path = url.path(-1);
-	KURL newUrl = url;
+	KUrl newUrl = url;
 	
 	// but treat the archive itself as the archive root
 	if( path == arcFile->url().path(-1) ){
@@ -512,7 +512,7 @@ void kio_krarcProtocol::stat( const KURL & url ){
 	} else error( KIO::ERR_DOES_NOT_EXIST, path );
 }
 
-void kio_krarcProtocol::copy (const KURL &url, const KURL &dest, int, bool overwrite) {
+void kio_krarcProtocol::copy (const KUrl &url, const KUrl &dest, int, bool overwrite) {
 	KRDEBUG(url.path());
   
 	// KDE HACK: opening the password dlg in copy causes error for the COPY, and further problems
@@ -558,7 +558,7 @@ void kio_krarcProtocol::copy (const KURL &url, const KURL &dest, int, bool overw
 				proc << "<" << "/dev/ptmx"; 
 			
 			infoMessage(i18n("Unpacking %1 ...").arg( url.fileName() ) );
-			proc.start(KProcess::Block, KProcess::AllOutput);
+			proc.start(K3Process::Block, K3Process::AllOutput);
 			if( !proc.normalExit() || !checkStatus( proc.exitStatus() ) )  {
 				error(KIO::ERR_COULD_NOT_WRITE, dest.path(-1) + "\n\n" + proc.getErrorMsg() );
 				return;
@@ -577,7 +577,7 @@ void kio_krarcProtocol::copy (const KURL &url, const KURL &dest, int, bool overw
 	error(  ERR_UNSUPPORTED_ACTION, unsupportedActionErrorString(mProtocol, CMD_COPY));
 }
 
-void kio_krarcProtocol::listDir(const KURL& url){
+void kio_krarcProtocol::listDir(const KUrl& url){
 	KRDEBUG(url.path());
 	if( !setArcFile( url ) ) {
 		error(ERR_CANNOT_ENTER_DIRECTORY,url.path());
@@ -594,7 +594,7 @@ void kio_krarcProtocol::listDir(const KURL& url){
 	// it might be a real dir !
 	if( QFileInfo(path).exists() ){
 		if( QFileInfo(path).isDir() ){
-			KURL redir;
+			KUrl redir;
 			redir.setPath( url.path() );
 			redirection(redir);
 			finished();
@@ -621,7 +621,7 @@ void kio_krarcProtocol::listDir(const KURL& url){
 	finished();
 }
 
-bool kio_krarcProtocol::setArcFile(const KURL& url){
+bool kio_krarcProtocol::setArcFile(const KUrl& url){
 	QString path = url.path();
 	time_t currTime = time( 0 );
 	archiveChanged = true;
@@ -656,7 +656,7 @@ bool kio_krarcProtocol::setArcFile(const KURL& url){
 			if( qfi.exists() && !qfi.isDir() ){
 				KDE_struct_stat stat_p;
 				KDE_lstat(newPath.left(pos).local8Bit(),&stat_p);
-				arcFile = new KFileItem(KURL::fromPathOrURL( newPath.left(pos) ),QString::null,stat_p.st_mode);
+				arcFile = new KFileItem(KUrl::fromPathOrUrl( newPath.left(pos) ),QString::null,stat_p.st_mode);
 				break;
 			}
 		}
@@ -696,7 +696,7 @@ bool kio_krarcProtocol::setArcFile(const KURL& url){
 	return initArcParameters();
 }
 
-bool kio_krarcProtocol::initDirDict(const KURL&url, bool forced){
+bool kio_krarcProtocol::initDirDict(const KUrl&url, bool forced){
 	// set the archive location
 	//if( !setArcFile(url.path()) ) return false;
 	// no need to rescan the archive if it's not changed
@@ -717,7 +717,7 @@ bool kio_krarcProtocol::initDirDict(const KURL&url, bool forced){
 			proc << listCmd << convertName( arcFile->url().path(-1) ) <<" > " << temp.name();
 		if( arcType == "ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
 			proc << "<" << "/dev/ptmx";
-		proc.start(KProcess::Block,KProcess::AllOutput);
+		proc.start(K3Process::Block,K3Process::AllOutput);
 		if( !proc.normalExit() || !checkStatus( proc.exitStatus() ) ) return false;
 	}
 	// clear the dir dictionary
@@ -813,7 +813,7 @@ bool kio_krarcProtocol::initDirDict(const KURL&url, bool forced){
 	return true;
 }
 
-QString kio_krarcProtocol::findArcDirectory(const KURL& url){
+QString kio_krarcProtocol::findArcDirectory(const KUrl& url){
 	QString path = url.path();
 	if( path.right(1) == "/" ) path.truncate(path.length()-1);
 	
@@ -827,7 +827,7 @@ QString kio_krarcProtocol::findArcDirectory(const KURL& url){
 	return arcDir;
 }
 
-UDSEntry* kio_krarcProtocol::findFileEntry(const KURL& url){
+UDSEntry* kio_krarcProtocol::findFileEntry(const KUrl& url){
 	QString arcDir = findArcDirectory(url);
 	if( arcDir.isEmpty() ) return 0;
 	
@@ -1519,9 +1519,9 @@ QString kio_krarcProtocol::detectArchive( bool &encrypted, QString fileName ) {
 						
 						KrShellProcess proc;
 						proc << testCmd << convertName( fileName );
-						connect( &proc, SIGNAL( receivedStdout(KProcess*,char*,int) ),
-						         this, SLOT( checkOutputForPassword( KProcess*,char*,int ) ) );
-						proc.start(KProcess::Block,KProcess::AllOutput);
+						connect( &proc, SIGNAL( receivedStdout(K3Process*,char*,int) ),
+						         this, SLOT( checkOutputForPassword( K3Process*,char*,int ) ) );
+						proc.start(K3Process::Block,K3Process::AllOutput);
 						encrypted = this->encrypted;
 						
 						if( encrypted )
@@ -1554,7 +1554,7 @@ QString kio_krarcProtocol::detectArchive( bool &encrypted, QString fileName ) {
 	return QString::null;
 }
 
-void kio_krarcProtocol::checkOutputForPassword( KProcess *proc,char *buf,int len ) {
+void kio_krarcProtocol::checkOutputForPassword( K3Process *proc,char *buf,int len ) {
 	QByteArray d(len);
 	d.setRawData(buf,len);
 	QString data =  QString( d );
@@ -1593,7 +1593,7 @@ void kio_krarcProtocol::invalidatePassword() {
 	authInfo.keepPassword = true;
 	authInfo.verifyPath = true;
 	QString fileName = arcFile->url().path(-1);
-	authInfo.url = KURL::fromPathOrURL( "/" );
+	authInfo.url = KUrl::fromPathOrUrl( "/" );
 	authInfo.url.setHost( fileName /*.replace('/','_')*/ );
 	authInfo.url.setProtocol( "krarc" );
 	
@@ -1617,7 +1617,7 @@ QString kio_krarcProtocol::getPassword() {
 	authInfo.keepPassword = true;
 	authInfo.verifyPath = true;
 	QString fileName = arcFile->url().path(-1);
-	authInfo.url = KURL::fromPathOrURL( "/" );
+	authInfo.url = KUrl::fromPathOrUrl( "/" );
 	authInfo.url.setHost( fileName /*.replace('/','_')*/ );
 	authInfo.url.setProtocol( "krarc" );
 	

@@ -54,7 +54,7 @@
 #include <qeventloop.h>
 #include <qpushbutton.h>
 #include <qdatetime.h>
-#include <kprocess.h>
+#include <k3process.h>
 #include <kdialogbase.h>
 #include <kprogress.h>
 #include <qlayout.h>
@@ -128,8 +128,8 @@ int Synchronizer::compare( QString leftURL, QString rightURL, KRQuery *query, bo
 
   this->query = query;
 
-  leftURL = KURLCompletion::replacedPath( leftURL, true, true );
-  rightURL = KURLCompletion::replacedPath( rightURL, true, true );
+  leftURL = KUrlCompletion::replacedPath( leftURL, true, true );
+  rightURL = KUrlCompletion::replacedPath( rightURL, true, true );
 
   if( !leftURL.endsWith("/" ))  leftURL+="/";
   if( !rightURL.endsWith("/" )) rightURL+="/";
@@ -509,8 +509,8 @@ SynchronizerFileItem * Synchronizer::addDuplicateItem( SynchronizerFileItem *par
                                          (TaskType)(task + uncertain), isDir, isTemp );
 
   if( uncertain == TT_UNKNOWN ) {
-    KURL leftURL  = vfs::fromPathOrURL( leftDir.isEmpty() ? leftBaseDir + leftName : leftBaseDir + leftDir + "/" + leftName );
-    KURL rightURL = vfs::fromPathOrURL( rightDir.isEmpty() ? rightBaseDir + rightName : rightBaseDir + rightDir + "/" + rightName );
+    KUrl leftURL  = vfs::fromPathOrUrl( leftDir.isEmpty() ? leftBaseDir + leftName : leftBaseDir + leftDir + "/" + leftName );
+    KUrl rightURL = vfs::fromPathOrUrl( rightDir.isEmpty() ? rightBaseDir + rightName : rightBaseDir + rightDir + "/" + rightName );
     stack.append( new CompareContentTask( this, item, leftURL, rightURL, leftSize ) );
   }
 
@@ -948,8 +948,8 @@ void Synchronizer::executeTask( SynchronizerFileItem * task )
   if( !rightDirName.isEmpty() )
     rightDirName += "/";
 
-  KURL leftURL  = vfs::fromPathOrURL( leftBaseDir + leftDirName + task->leftName() );
-  KURL rightURL = vfs::fromPathOrURL( rightBaseDir + rightDirName + task->rightName() );
+  KUrl leftURL  = vfs::fromPathOrUrl( leftBaseDir + leftDirName + task->leftName() );
+  KUrl rightURL = vfs::fromPathOrUrl( rightBaseDir + rightDirName + task->rightName() );
 
   switch( task->task() )
   {
@@ -963,9 +963,9 @@ void Synchronizer::executeTask( SynchronizerFileItem * task )
     }
     else
     {
-      KURL destURL( leftURL );
+      KUrl destURL( leftURL );
       if( !task->destination().isNull() )
-        destURL = vfs::fromPathOrURL( task->destination() );
+        destURL = vfs::fromPathOrUrl( task->destination() );
 
       if( task->rightLink().isNull() ) {
         KIO::FileCopyJob *job = KIO::file_copy(rightURL, destURL, -1,
@@ -992,9 +992,9 @@ void Synchronizer::executeTask( SynchronizerFileItem * task )
     }
     else
     {
-      KURL destURL( rightURL );
+      KUrl destURL( rightURL );
       if( !task->destination().isNull() )
-        destURL = vfs::fromPathOrURL( task->destination() );
+        destURL = vfs::fromPathOrUrl( task->destination() );
 
       if( task->leftLink().isNull() ) {
         KIO::FileCopyJob *job = KIO::file_copy(leftURL, destURL, -1,
@@ -1042,8 +1042,8 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
 
   QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
   QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
-  KURL leftURL  = vfs::fromPathOrURL( leftBaseDir + leftDirName + item->leftName() );
-  KURL rightURL = vfs::fromPathOrURL( rightBaseDir + rightDirName + item->rightName() );
+  KUrl leftURL  = vfs::fromPathOrUrl( leftBaseDir + leftDirName + item->leftName() );
+  KUrl rightURL = vfs::fromPathOrUrl( rightBaseDir + rightDirName + item->rightName() );
 
   do {
     if( !job->error() )
@@ -1152,7 +1152,7 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
           qApp->setMainWidget( syncDlgWidget );
 
           result = Observer::self()->open_RenameDlg ( job, i18n("File Already Exists"),
-            vfs::pathOrURL( rightURL ), vfs::pathOrURL( leftURL ),
+            vfs::pathOrUrl( rightURL ), vfs::pathOrUrl( leftURL ),
             (KIO::RenameDlg_Mode)( KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI ), newDest,
             item->rightSize(), item->leftSize(), (time_t)-1, (time_t)-1,
             item->rightDate(), item->leftDate());
@@ -1165,7 +1165,7 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
           qApp->setMainWidget( syncDlgWidget );
 
           result = Observer::self()->open_RenameDlg ( job, i18n("File Already Exists"),
-            vfs::pathOrURL( leftURL ), vfs::pathOrURL( rightURL ),
+            vfs::pathOrUrl( leftURL ), vfs::pathOrUrl( rightURL ),
             (KIO::RenameDlg_Mode)( KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI ), newDest,
             item->leftSize(), item->rightSize(), (time_t)-1, (time_t)-1,
             item->leftDate(), item->rightDate());
@@ -1210,16 +1210,16 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
         {
         case TT_COPY_TO_LEFT:
           error = i18n("Error at copying file %1 to %2!")
-                       .arg( vfs::pathOrURL( rightURL ) )
-                       .arg( vfs::pathOrURL( leftURL ) );
+                       .arg( vfs::pathOrUrl( rightURL ) )
+                       .arg( vfs::pathOrUrl( leftURL ) );
           break;
         case TT_COPY_TO_RIGHT:
           error = i18n("Error at copying file %1 to %2!")
-                       .arg( vfs::pathOrURL( leftURL ) )
-                       .arg( vfs::pathOrURL( rightURL ) );
+                       .arg( vfs::pathOrUrl( leftURL ) )
+                       .arg( vfs::pathOrUrl( rightURL ) );
           break;
         case TT_DELETE:
-          error = i18n("Error at deleting file %1!").arg( vfs::pathOrURL( leftURL ) );
+          error = i18n("Error at deleting file %1!").arg( vfs::pathOrUrl( leftURL ) );
           break;
         default:
           break;
@@ -1334,7 +1334,7 @@ public:
   {
     showButton(KDialogBase::Close, false);
 
-    Q3Frame* mainWidget = plainPage();
+    QFrame* mainWidget = plainPage();
     Q3VBoxLayout* layout = new Q3VBoxLayout(mainWidget, 10);
 
     QLabel *mLabel = new QLabel(text, mainWidget);
@@ -1377,7 +1377,7 @@ private:
 
 void Synchronizer::synchronizeWithKGet()
 {
-  bool isLeftLocal = vfs::fromPathOrURL( leftBaseDirectory() ).isLocalFile();
+  bool isLeftLocal = vfs::fromPathOrUrl( leftBaseDirectory() ).isLocalFile();
   KgetProgressDialog *progDlg = 0;
   int  processedCount = 0, totalCount = 0;
 
@@ -1391,7 +1391,7 @@ void Synchronizer::synchronizeWithKGet()
   {
     if( item->isMarked() )
     {
-      KURL downloadURL, destURL;
+      KUrl downloadURL, destURL;
       QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
       QString rightDirName    = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
       QString destDir;
@@ -1407,18 +1407,18 @@ void Synchronizer::synchronizeWithKGet()
 
       if( item->task() == TT_COPY_TO_RIGHT && !isLeftLocal )
       {
-        downloadURL = vfs::fromPathOrURL( leftBaseDirectory() + leftDirName + item->leftName() );
+        downloadURL = vfs::fromPathOrUrl( leftBaseDirectory() + leftDirName + item->leftName() );
         destDir     = rightBaseDirectory() + rightDirName;
-        destURL     = vfs::fromPathOrURL( destDir + item->rightName() );
+        destURL     = vfs::fromPathOrUrl( destDir + item->rightName() );
 
         if( item->isDir() )
           destDir += item->leftName();
       }
       if( item->task() == TT_COPY_TO_LEFT && isLeftLocal )
       {
-        downloadURL = vfs::fromPathOrURL( rightBaseDirectory() + rightDirName + item->rightName() );
+        downloadURL = vfs::fromPathOrUrl( rightBaseDirectory() + rightDirName + item->rightName() );
         destDir     = leftBaseDirectory() + leftDirName;
-        destURL     = vfs::fromPathOrURL( destDir + item->leftName() );
+        destURL     = vfs::fromPathOrUrl( destDir + item->leftName() );
 
         if( item->isDir() )
           destDir += item->rightName();
@@ -1434,7 +1434,7 @@ void Synchronizer::synchronizeWithKGet()
         if( QFile( destURL.path() ).exists() )
           QFile( destURL.path() ).remove();
 
-        QString source = downloadURL.prettyURL();
+        QString source = downloadURL.prettyUrl();
         if( source.contains( '@' ) >= 2 ) /* is this an ftp proxy URL? */
         {
           int lastAt = source.findRev( '@' );
@@ -1444,10 +1444,10 @@ void Synchronizer::synchronizeWithKGet()
           source = startString+endString;
         }
 
-        KProcess p;
+        K3Process p;
 
         p << KrServices::fullPathName( "kget" ) << source << destURL.path();
-        if (!p.start(KProcess::Block))
+        if (!p.start(K3Process::Block))
           KMessageBox::error(parentWidget,i18n("Error executing ")+KrServices::fullPathName( "kget" )+" !");
         else
           p.detach();

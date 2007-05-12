@@ -29,7 +29,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 UserActionListView::UserActionListView( QWidget * parent, const char * name )
- : KListView( parent, name )
+ : K3ListView( parent, name )
 {
    addColumn( i18n("Title") );
    //addColumn( i18n("Identifier") );
@@ -85,7 +85,7 @@ UserActionListViewItem* UserActionListView::insertAction( KrAction* action ) {
    else {
       Q3ListViewItem* categoryItem = findCategoryItem( action->category() );
       if ( ! categoryItem ) {
-         categoryItem = new KListViewItem( this, action->category() ); // create the new category item it not already present
+         categoryItem = new K3ListViewItem( this, action->category() ); // create the new category item it not already present
          categoryItem->setSelectable( false );
       }
       item = new UserActionListViewItem( categoryItem, action );
@@ -177,13 +177,13 @@ void UserActionListView::removeSelectedActions() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 UserActionListViewItem::UserActionListViewItem( Q3ListView* view, KrAction* action )
- : KListViewItem( view )
+ : K3ListViewItem( view )
 {
    setAction( action );
 }
 
 UserActionListViewItem::UserActionListViewItem( Q3ListViewItem* item, KrAction * action )
- : KListViewItem( item )
+ : K3ListViewItem( item )
 {
    setAction( action );
 }
@@ -214,7 +214,7 @@ void UserActionListViewItem::update() {
       return;
 
    if ( ! _action->icon().isEmpty() )
-      setPixmap( COL_TITLE, KGlobal::iconLoader()->loadIcon( _action->icon(), KIcon::Small ) );
+      setPixmap( COL_TITLE, KIconLoader::global()->loadIcon( _action->icon(), KIcon::Small ) );
    setText( COL_TITLE, _action->text() );
    setText( COL_NAME, _action->name() );
 }
@@ -222,7 +222,7 @@ void UserActionListViewItem::update() {
 int UserActionListViewItem::compare( Q3ListViewItem* i, int col, bool ascending ) const {
 // FIXME some how this only produces bullshit :-/
 //   if ( i->text( COL_NAME ).isEmpty() ) { // categories only have titles
-//      //kdDebug() << "this->title: " << text(COL_TITLE) << " |=|   i->title: " << i->text(COL_TITLE)  << endl;
+//      //kDebug() << "this->title: " << text(COL_TITLE) << " |=|   i->title: " << i->text(COL_TITLE)  << endl;
 //       return ( ascending ? -1 : 1 ); // <0 means this is smaller then i
 //    }
 //    else

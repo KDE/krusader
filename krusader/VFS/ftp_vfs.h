@@ -45,13 +45,13 @@ public:
 	~ftp_vfs();
 
 	/// Copy a file to the vfs (physical).
-	virtual void vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "", PreserveMode pmode = PM_DEFAULT );
+	virtual void vfs_addFiles(KUrl::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "", PreserveMode pmode = PM_DEFAULT );
 	/// Remove a file from the vfs (physical)
 	virtual void vfs_delFiles(QStringList *fileNames);
 	/// Return a list of URLs for multiple files
-	virtual KURL::List* vfs_getFiles(QStringList* names);
+	virtual KUrl::List* vfs_getFiles(QStringList* names);
 	/// Return a URL to a single file
-	virtual KURL vfs_getFile(const QString& name);
+	virtual KUrl vfs_getFile(const QString& name);
 	/// Create a new directory
 	virtual void vfs_mkdir(const QString& name);
 	/// Rename file
@@ -63,15 +63,15 @@ public slots:
 	/// Handles new files from the dir lister
 	void slotAddFiles(KIO::Job * job, const KIO::UDSEntryList& entries);
 	/// Redirection signal handlers
-	void slotRedirection(KIO::Job *, const KURL &url);
-	void slotPermanentRedirection(KIO::Job*,const KURL&,const KURL& newUrl);
+	void slotRedirection(KIO::Job *, const KUrl &url);
+	void slotPermanentRedirection(KIO::Job*,const KUrl&,const KUrl& newUrl);
 	/// Called when the dir listing job is finished (for better or worst)
 	void slotListResult(KIO::Job *job);
 	/// Active the dir listing job
-	bool populateVfsList(const KURL& origin, bool showHidden);
+	bool populateVfsList(const KUrl& origin, bool showHidden);
 
 protected:
-	KURL origin_backup;         //< used to backup the old URL when refreshing to a new one,
+	KUrl origin_backup;         //< used to backup the old URL when refreshing to a new one,
 	bool busy;
 	bool listError;     
 };

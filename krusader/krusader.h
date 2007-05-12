@@ -40,10 +40,9 @@
 // KDE includes
 #include <kapplication.h>
 #include <kparts/mainwindow.h>
-#include <kstdaction.h>
+#include <kstandardaction.h>
 #include <kaction.h>
 #include <kconfig.h>
-#include <kaccel.h>
 #include <qstringlist.h>
 #include <q3textstream.h>
 //Added by qt3to4:
@@ -53,7 +52,6 @@
 #include <QResizeEvent>
 #include <QHideEvent>
 #include <kdebug.h>
-#include <dcopobject.h>
 
 #ifdef __KJSEMBED__
 class KrJS;
@@ -62,7 +60,7 @@ class KrJS;
 class KrusaderStatus;
 class KRPleaseWaitHandler;
 class KrusaderView;
-class KProcess;
+class K3Process;
 class KRslots;
 class KIconLoader;
 class KSystemTray;
@@ -75,9 +73,9 @@ class PopularUrls;
 class QueueManager;
 
 //static QTextOStream krOut(stdout);
-#define krOut kdDebug(50010)
+#define krOut kDebug(50010)
 
-class Krusader : public KParts::MainWindow, public DCOPObject {
+class Krusader : public KParts::MainWindow /* PORTME , public DCOPObject */ {
     Q_OBJECT
   public:
     Krusader();
@@ -96,7 +94,7 @@ class Krusader : public KParts::MainWindow, public DCOPObject {
 
   public slots:
     // increase the internal progress bar
-    void incProgress( KProcess *, char *buffer, int buflen );
+    void incProgress( K3Process *, char *buffer, int buflen );
     void statusBarUpdate( QString& mess );
     // in use by Krusader only
     void saveSettings();
@@ -141,18 +139,18 @@ class Krusader : public KParts::MainWindow, public DCOPObject {
     static KAction *actPopularUrls, *actLocationBar, *actJumpBack, *actSetJumpBack, *actCreateChecksum, *actMatchChecksum;
     static KAction *actDetailedView, *actBriefView, *actCopy, *actPaste;
     static KToggleAction *actToggleTerminal, *actVerticalMode;
-    static KRadioAction *actSelectNewerAndSingle, *actSelectNewer, *actSelectSingle, 
+    static KAction *actSelectNewerAndSingle, *actSelectNewer, *actSelectSingle, 
                         *actSelectDifferentAndSingle, *actSelectDifferent;
     /** actions for setting the execution mode of commands from commanddline */
-    static KRadioAction *actExecStartAndForget,
+    static KAction *actExecStartAndForget,
                         *actExecCollectSeparate,*actExecCollectTogether,
                         *actExecTerminalExternal,*actExecTerminalEmbedded;
     KToggleAction *actToggleFnkeys, *actToggleCmdline, *actShowToolBar,
                   *actShowStatusBar, *actToggleHidden, *actCompareDirs;
 
-    static KRadioAction **compareArray[];
+    static KAction **compareArray[];
     /** actions for setting the execution mode of commands from commanddline */
-    static KRadioAction **execTypeArray[];
+    static KAction **execTypeArray[];
 
     // return a path to a temp dir or file we can use.
     QString getTempDir();
@@ -166,9 +164,9 @@ class Krusader : public KParts::MainWindow, public DCOPObject {
 
     KrusaderStatus *status;
     KRslots *slot;
-    KAccel *accels; // global accelerators
+    //KAccel *accels; // global accelerators ===> PORTME
     
-    static KPopupMenu *userActionMenu;
+    static KMenu *userActionMenu;
     static UserMenu *userMenu;
     static UserAction *userAction;
 	 static KrBookmarkHandler *bookman;

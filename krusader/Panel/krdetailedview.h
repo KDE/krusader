@@ -30,7 +30,7 @@ A
 #ifndef KRDETAILEDVIEW_H
 #define KRDETAILEDVIEW_H
 
-#include <klistview.h>
+#include <k3listview.h>
 #include <ksqueezedtextlabel.h>
 #include <klocale.h>
 #include <qwidget.h>
@@ -71,12 +71,12 @@ class KrDetailedViewItem;
 
 /**
  * KrDetailedView implements everthing and anything regarding a detailed view in a filemananger.
- * IT MUST USE KrViewItem as the children to it's *KListView. KrDetailedView and KrViewItem are
+ * IT MUST USE KrViewItem as the children to it's *K3ListView. KrDetailedView and KrViewItem are
  * tightly coupled and the view will not work with other kinds of items.
  * Apart from this, the view is self-reliant and you can use the vast interface to get whatever
  * information is necessery from it.
  */
-class KrDetailedView : public KListView, public KrView {
+class KrDetailedView : public K3ListView, public KrView {
    Q_OBJECT
    friend class KrDetailedViewItem;
 
@@ -86,8 +86,8 @@ public:
    virtual int column( KrDetailedViewProperties::ColumnType type );
    virtual inline KrViewItem *getFirst() { return dynamic_cast<KrViewItem*>( firstChild() ); }
    virtual inline KrViewItem *getLast() { return dynamic_cast<KrViewItem*>( lastChild() ); }
-   virtual inline KrViewItem *getNext( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<KListViewItem*>( current ) ->itemBelow() ); }
-   virtual inline KrViewItem *getPrev( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<KListViewItem*>( current ) ->itemAbove() ); }
+   virtual inline KrViewItem *getNext( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<K3ListViewItem*>( current ) ->itemBelow() ); }
+   virtual inline KrViewItem *getPrev( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<K3ListViewItem*>( current ) ->itemAbove() ); }
    virtual inline KrViewItem *getCurrentKrViewItem() { return dynamic_cast<KrViewItem*>( currentItem() ); }
    virtual KrViewItem *getKrViewItemAt( const QPoint &vp );
    virtual inline KrViewItem *findItemByName( const QString &name ) { return dynamic_cast<KrViewItem*>( findItem( name, 0 ) ); }
@@ -98,12 +98,12 @@ public:
    virtual void updateView();
    virtual void updateItem(KrViewItem* item);
    virtual void clear();
-   virtual void sort() { KListView::sort(); }
+   virtual void sort() { K3ListView::sort(); }
    virtual void setSortMode( KrViewProperties::SortSpec mode );
    virtual void prepareForActive();
    virtual void prepareForPassive();
-   virtual inline void saveSettings() { KListView::saveLayout( _config, nameInKConfig() ); }
-   virtual inline void restoreSettings() { KListView::restoreLayout( _config, nameInKConfig() ); }
+   virtual inline void saveSettings() { K3ListView::saveLayout( _config, nameInKConfig() ); }
+   virtual inline void restoreSettings() { K3ListView::restoreLayout( _config, nameInKConfig() ); }
 
 signals:
    void middleButtonClicked( KrViewItem *item );

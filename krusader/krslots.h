@@ -45,7 +45,7 @@
 #include "GUI/mediabutton.h"
 
 class ListPanel;
-class KURL;
+class KUrl;
 
 class KRslots : public QObject {
     Q_OBJECT
@@ -61,7 +61,7 @@ class KRslots : public QObject {
     void matchChecksum();
     void sendFileByEmail( QString filename );
     void compareContent();
-    void compareContent( KURL, KURL );
+    void compareContent( KUrl, KUrl );
     void rightclickMenu();
     void insertFileName(bool full_path);
     void rootKrusader();
@@ -91,7 +91,7 @@ class KRslots : public QObject {
     /** called by actExec* actions to choose the built-in command line mode */
     void execTypeSetup();
     void refresh();
-    void refresh( const KURL& u );
+    void refresh( const KUrl& u );
     void properties();
     void back();
     void slotPack();
@@ -136,7 +136,7 @@ class KRslots : public QObject {
 	 }
     void cmdlinePopup() { MAIN_VIEW->cmdLine->popup(); }
     void duplicateTab();
-    void newTab(const KURL& url = KURL());
+    void newTab(const KUrl& url = KUrl());
     void newTab(KrViewItem *item);
     void closeTab();
     void nextTab();

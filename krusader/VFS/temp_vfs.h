@@ -44,7 +44,7 @@ public:
 
 public slots:
 	// actually reads files and stats
-	bool vfs_refresh(const KURL& origin);
+	bool vfs_refresh(const KUrl& origin);
 
 protected:
 	void handleAceArj(QString origin, QString type);

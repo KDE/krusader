@@ -16,7 +16,7 @@ template <class T> class Chain;
 class Directory;
 class File;
 namespace KIO { class Job; }
-class KURL;
+class KUrl;
 
 namespace RadialMap
 {
@@ -62,7 +62,7 @@ namespace RadialMap
         Widget( QWidget* = 0, const char* = 0 );
 
         QString path() const;
-        KURL url( File const * const = 0 ) const;
+        KUrl url( File const * const = 0 ) const;
 
         bool isValid() const { return m_tree != 0; }
 
@@ -82,8 +82,8 @@ namespace RadialMap
         void createFromCache( const Directory* );
 
     signals:
-        void activated( const KURL& );
-        void invalidated( const KURL& );
+        void activated( const KUrl& );
+        void invalidated( const KUrl& );
         void created( const Directory* );
         void mouseHover( const QString& );
 

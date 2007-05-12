@@ -41,12 +41,12 @@ void UserMenu::update() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-UserMenuGui::UserMenuGui( UserMenu *, QWidget * parent ) : KPopupMenu( parent ) {
+UserMenuGui::UserMenuGui( UserMenu *, QWidget * parent ) : KMenu( parent ) {
    createMenu();
 }
 
 void UserMenuGui::createMenu() {
-//    kdDebug() << "UserMenuGui::createMenu called" << endl;
+//    kDebug() << "UserMenuGui::createMenu called" << endl;
    clear();
    insertTitle( i18n("User Menu") );
 

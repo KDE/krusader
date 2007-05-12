@@ -32,20 +32,20 @@
 //Added by qt3to4:
 #include <Q3CString>
 
-class KProcess;
+class K3Process;
 
 /**
  * This class parses the output of "df" to find the disk usage
  * information for a given partition (mount point).
  */
-class KDiskFreeSp : public QObject
+class KDiskFreeSpace : public QObject
 {  Q_OBJECT
 public:
-   KDiskFreeSp( QObject *parent=0, const char *name=0 );
+   KDiskFreeSpace( QObject *parent=0, const char *name=0 );
    /**
     * Destructor - this object autodeletes itself when it's done
     */
-   ~KDiskFreeSp();
+   ~KDiskFreeSpace();
    /**
     * Call this to fire a search on the disk usage information
     * for @p mountPoint. foundMountPoint will be emitted
@@ -61,7 +61,7 @@ public:
     * if this mount point is found, with the info requested.
     * done is emitted in any case.
     */
-   static KDiskFreeSp * findUsageInfo( const QString & path );
+   static KDiskFreeSpace * findUsageInfo( const QString & path );
 
 signals:
    void foundMountPoint( const QString & mountPoint, unsigned long kBSize, unsigned long kBUsed, unsigned long kBAvail );
@@ -73,11 +73,11 @@ signals:
    void done();
 
 private slots:
-   void receivedDFStdErrOut(KProcess *, char *data, int len);
+   void receivedDFStdErrOut(K3Process *, char *data, int len);
    void dfDone();
 
 private:
-  KProcess         *dfProc;
+  K3Process         *dfProc;
   Q3CString          dfStringErrOut;
   QString           m_mountPoint;
   bool              readingDFStdErrOut;

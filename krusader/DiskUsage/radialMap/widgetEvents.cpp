@@ -11,7 +11,7 @@
 #include <kio/job.h>     //::mousePressEvent()
 #include <klocale.h>
 #include <kmessagebox.h> //::mousePressEvent()
-#include <kpopupmenu.h>  //::mousePressEvent()
+#include <kmenu.h>  //::mousePressEvent()
 #include <krun.h>        //::mousePressEvent()
 #include <math.h>        //::segmentAt()
 #include <qapplication.h>//QApplication::setOverrideCursor()
@@ -122,7 +122,7 @@ RadialMap::Widget::mouseMoveEvent( QMouseEvent *e )
    {
       if( m_focus != oldFocus ) //if not same as last time
       {
-         setCursor( KCursor::handCursor() );
+         setCursor( Qt::PointingHandCursor );
          m_tip.updateTip( m_focus->file(), m_tree );
          emit mouseHover( m_focus->file()->fullPath() );
 
@@ -150,12 +150,12 @@ RadialMap::Widget::mousePressEvent( QMouseEvent *e )
 
    if( m_focus && !m_focus->isFake() )
    {
-      const KURL url   = Widget::url( m_focus->file() );
+      const KUrl url   = Widget::url( m_focus->file() );
       const bool isDir = m_focus->file()->isDir();
 
       if( e->button() == Qt::RightButton )
       {
-         KPopupMenu popup;
+         KMenu popup;
          popup.insertTitle( m_focus->file()->fullPath( m_tree ) );
 
          if( isDir )
@@ -191,17 +191,17 @@ RadialMap::Widget::mousePressEvent( QMouseEvent *e )
 
          case 4:
          {
-            const KURL url = Widget::url( m_focus->file() );
+            const KUrl url = Widget::url( m_focus->file() );
             const QString message = ( m_focus->file()->isDir()
                ? i18n( "<qt>The directory at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</b> deleted!</qt>" )
-               : i18n( "<qt><i>'%1'</i> will be <b>permanently</b> deleted!</qt>" )).arg( url.prettyURL() );
+               : i18n( "<qt><i>'%1'</i> will be <b>permanently</b> deleted!</qt>" )).arg( url.prettyUrl() );
             const int userIntention = KMessageBox::warningContinueCancel( this, message, QString::null, KGuiItem( i18n("&Delete"), "editdelete" ) );
 
             if( userIntention == KMessageBox::Continue ) {
                KIO::Job *job = KIO::del( url );
                job->setWindow( this );
                connect( job, SIGNAL(result( KIO::Job* )), SLOT(deleteJobFinished( KIO::Job* )) );
-               QApplication::setOverrideCursor( KCursor::workingCursor() );
+               QApplication::setOverrideCursor( Qt::BusyCursor );
             }
          }
 

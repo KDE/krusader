@@ -38,7 +38,7 @@
 #include <Q3Frame>
 #include <QLabel>
 #include <QKeyEvent>
-#include <kprocess.h>
+#include <k3process.h>
 #include <qicon.h>
 #include <q3whatsthis.h>
 #include <unistd.h>
@@ -78,7 +78,7 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
   layout->addWidget( path, 0, 0 );
 
   // and editable command line
-  completion.setMode( KURLCompletion::FileCompletion );
+  completion.setMode( KUrlCompletion::FileCompletion );
   cmdLine = new KrHistoryCombo( this );
   cmdLine->setMaxCount(100);  // remember 100 commands
   cmdLine->setDuplicatesEnabled( false );
@@ -229,28 +229,28 @@ void KCMDLine::setText(QString text) {
  
 void KrHistoryCombo::keyPressEvent( QKeyEvent *e ) {
    switch (e->key()) {
-      case Key_Enter:
-      case Key_Return:
+      case Qt::Key_Enter:
+      case Qt::Key_Return:
          if (e->state() & ControlButton) {
            SLOTS->insertFileName( ( e->state() & ShiftButton ) != 0 );
            break;
          }
-         KHistoryCombo::keyPressEvent(e);
+         KHistoryComboBox::keyPressEvent(e);
          break;
-      case Key_Down:
+      case Qt::Key_Down:
          if (e->state()  == ( ControlButton | ShiftButton ) ) {
             MAIN_VIEW->focusTerminalEmulator();
             return;
          } else
-            KHistoryCombo::keyPressEvent(e);
+            KHistoryComboBox::keyPressEvent(e);
          break;
-      case Key_Up:
+      case Qt::Key_Up:
          if (e->state() == ControlButton || e->state() == ( ControlButton | ShiftButton ) ) {
             emit returnToPanel();
             return;
          }
       default:
-      KHistoryCombo::keyPressEvent(e);
+      KHistoryComboBox::keyPressEvent(e);
    }
 }
 

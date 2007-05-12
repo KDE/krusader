@@ -52,7 +52,7 @@ public:
 	KRSpWidgets();
 
   static KRQuery getMask( QString caption, bool nameOnly=false ); // get file-mask for (un)selecting files
-  static KURL newFTP();
+  static KUrl newFTP();
 
 private:
   static Q3StrList maskList;  // used by KRMaskChoiceSub 

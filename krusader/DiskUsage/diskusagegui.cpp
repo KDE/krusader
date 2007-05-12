@@ -44,7 +44,7 @@
 #include <klocale.h>
 #include <qtooltip.h>
 
-DiskUsageGUI::DiskUsageGUI( KURL openDir, QWidget* parent, const char *name ) 
+DiskUsageGUI::DiskUsageGUI( KUrl openDir, QWidget* parent, const char *name ) 
   : QDialog( parent, name, false, 0 ), exitAtFailure( true )
 {  
   setCaption( i18n("Krusader::Disk Usage") );
@@ -221,7 +221,7 @@ bool DiskUsageGUI::newSearch()
 { 
   // ask the user for the copy dest
   
-  KURL tmp = KChooseDir::getDir(i18n( "Viewing the usage of directory:" ), baseDirectory, baseDirectory);
+  KUrl tmp = KChooseDir::getDir(i18n( "Viewing the usage of directory:" ), baseDirectory, baseDirectory);
   if (tmp.isEmpty()) return false;
   baseDirectory = tmp;
   

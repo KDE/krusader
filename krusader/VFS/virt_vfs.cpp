@@ -33,7 +33,7 @@
 
 #define VIRT_VFS_DB "virt_vfs.db"
 
-Q3Dict<KURL::List> virt_vfs::virtVfsDict;
+Q3Dict<KUrl::List> virt_vfs::virtVfsDict;
 KConfig* virt_vfs::virt_vfs_db=0;
 
 virt_vfs::virt_vfs( QObject* panel, bool quiet ) : vfs( panel, quiet ) {
@@ -50,23 +50,23 @@ virt_vfs::virt_vfs( QObject* panel, bool quiet ) : vfs( panel, quiet ) {
 
 virt_vfs::~virt_vfs() {}
 
-bool virt_vfs::populateVfsList( const KURL& origin, bool /*showHidden*/ ) {
+bool virt_vfs::populateVfsList( const KUrl& origin, bool /*showHidden*/ ) {
 	vfs_origin = origin;
 	vfs_origin.adjustPath(-1);
 	path = origin.path( -1 ).mid( 1 );
 	if ( path.isEmpty() ) path = "/";
 
-	KURL::List* urlList = virtVfsDict[ path ];
+	KUrl::List* urlList = virtVfsDict[ path ];
 	if ( !urlList ) {
-		urlList = new KURL::List();
+		urlList = new KUrl::List();
 		virtVfsDict.insert( path, urlList );
-		virtVfsDict[ "/" ] ->append( KURL::fromPathOrURL( "virt:/" + path ) );
+		virtVfsDict[ "/" ] ->append( KUrl::fromPathOrUrl( "virt:/" + path ) );
 	}
 	
 	if ( urlList->isEmpty() ) return true;
-	KURL::List::iterator it;
+	KUrl::List::iterator it;
 	for ( it = urlList->begin() ; it != urlList->end() ; /*++it*/ ) {
-		KURL url = *it;
+		KUrl url = *it;
 		// translate url->vfile and remove urls that no longer exist from the list
 		vfile* vf = stat(url);
 		if ( !vf ) {
@@ -81,14 +81,14 @@ bool virt_vfs::populateVfsList( const KURL& origin, bool /*showHidden*/ ) {
 	return true;
 }
 
-void virt_vfs::vfs_addFiles( KURL::List *fileUrls, KIO::CopyJob::CopyMode /*mode*/, QObject* /*toNotify*/, QString /*dir*/, PreserveMode /*pmode*/ ) {
+void virt_vfs::vfs_addFiles( KUrl::List *fileUrls, KIO::CopyJob::CopyMode /*mode*/, QObject* /*toNotify*/, QString /*dir*/, PreserveMode /*pmode*/ ) {
 	if ( path == "/" ) {
 		if ( !quietMode )
 			KMessageBox::error( krApp, i18n( "You can't copy files directly to the 'virt:/' directory.\nYou can create a sub directory and copy your files into it." ), i18n( "Error" ) );
 		return ;
 	}
 	
-	KURL::List* urlList = virtVfsDict[ path ];
+	KUrl::List* urlList = virtVfsDict[ path ];
 	for( unsigned i=0; i != fileUrls->count(); i++ ) {
 		if( !urlList->contains( (*fileUrls)[ i ] ) )
 			urlList->push_back( (*fileUrls)[ i ] );
@@ -108,8 +108,8 @@ void virt_vfs::vfs_delFiles( QStringList *fileNames ) {
 		return ;
 	}
 
-	KURL::List filesUrls;
-	KURL url;
+	KUrl::List filesUrls;
+	KUrl url;
 
 	// names -> urls
 	for ( uint i = 0 ; i < fileNames->count(); ++i ) {
@@ -140,7 +140,7 @@ void virt_vfs::vfs_removeFiles( QStringList *fileNames ) {
 	
 	// removing the URLs from the collection
 	for ( uint i = 0 ; i < fileNames->count(); ++i ) {
-		KURL::List* urlList = virtVfsDict[ path ];
+		KUrl::List* urlList = virtVfsDict[ path ];
 		if( urlList )
 			urlList->remove( vfs_getFile( ( *fileNames ) [ i ] ) );
 	}
@@ -148,9 +148,9 @@ void virt_vfs::vfs_removeFiles( QStringList *fileNames ) {
 	vfs_refresh();
 }
 
-KURL::List* virt_vfs::vfs_getFiles( QStringList* names ) {
-	KURL url;
-	KURL::List* urls = new KURL::List();
+KUrl::List* virt_vfs::vfs_getFiles( QStringList* names ) {
+	KUrl url;
+	KUrl::List* urls = new KUrl::List();
 	for ( QStringList::Iterator name = names->begin(); name != names->end(); ++name ) {
 		url = vfs_getFile( *name );
 		urls->append( url );
@@ -158,11 +158,11 @@ KURL::List* virt_vfs::vfs_getFiles( QStringList* names ) {
 	return urls;
 }
 
-KURL virt_vfs::vfs_getFile( const QString& name ) {
+KUrl virt_vfs::vfs_getFile( const QString& name ) {
 	vfile * vf = vfs_search( name );
-	if ( !vf ) return KURL(); // empty
+	if ( !vf ) return KUrl(); // empty
 
-	KURL url = vf->vfile_getUrl();
+	KUrl url = vf->vfile_getUrl();
 	if ( vf->vfile_isDir() ) url.adjustPath( + 1 );
 	return url;
 }
@@ -173,7 +173,7 @@ void virt_vfs::vfs_mkdir( const QString& name ) {
 			KMessageBox::error( krApp, i18n( "Creating new directories is allowed only in the 'virt:/' directory." ), i18n( "Error" ) );
 		return ;
 	}
-	KURL::List* temp = new KURL::List();
+	KUrl::List* temp = new KUrl::List();
 	virtVfsDict.insert( name, temp );
 	virtVfsDict[ "/" ] ->append( QString( "virt:/" )+name );
 
@@ -181,8 +181,8 @@ void virt_vfs::vfs_mkdir( const QString& name ) {
 }
 
 void virt_vfs::vfs_rename( const QString& fileName, const QString& newName ) {
-	KURL::List fileUrls;
-	KURL url , dest;
+	KUrl::List fileUrls;
+	KUrl url , dest;
 
 	vfile* vf = vfs_search( fileName );
 	if ( !vf ) return ; // not found
@@ -198,7 +198,7 @@ void virt_vfs::vfs_rename( const QString& fileName, const QString& newName ) {
 	url = vf->vfile_getUrl();
 	fileUrls.append( url );
 
-	dest = fromPathOrURL( newName );
+	dest = fromPathOrUrl( newName );
 	// add the new url to the list
 	// the the list is refreshed only existing files remain -
 	// so we don't have to worry if the job was successful
@@ -214,7 +214,7 @@ void virt_vfs::slotStatResult( KIO::Job* job ) {
 	busy = false;
 }
 
-vfile* virt_vfs::stat( const KURL& url ) {
+vfile* virt_vfs::stat( const KUrl& url ) {
 	if( url.protocol() == "virt" ){
 		QString path = url.path().mid(1);
 		if( path.isEmpty() ) path = "/";
@@ -248,7 +248,7 @@ vfile* virt_vfs::stat( const KURL& url ) {
 	if( url.isLocalFile() )
 		name = url.path();
 	else
-		name = url.prettyURL();
+		name = url.prettyUrl();
 
 	KIO::filesize_t size = kfi->size();
 	time_t mtime = kfi->time( KIO::UDS_MODIFICATION_TIME );
@@ -291,12 +291,12 @@ bool virt_vfs::save(){
 	KConfig* db = getVirtDB();
 	
 	db->setGroup("virt_db");
-	Q3DictIterator<KURL::List> it( virtVfsDict ); // See QDictIterator
+	Q3DictIterator<KUrl::List> it( virtVfsDict ); // See QDictIterator
 	for( ; it.current(); ++it ){
-		KURL::List::iterator url;
+		KUrl::List::iterator url;
 		QStringList entry;
 		for ( url = it.current()->begin() ; url != it.current()->end() ; ++url ) {
-			entry.append( (*url).prettyURL() );
+			entry.append( (*url).prettyUrl() );
 		}
 		db->writeEntry(it.currentKey(),entry);
 	}
@@ -312,14 +312,14 @@ bool virt_vfs::restore(){
 	
 	QMap<QString, QString> map = db->entryMap("virt_db");
 	QMap<QString, QString>::Iterator it;
-	KURL::List* urlList;
+	KUrl::List* urlList;
 	for ( it = map.begin(); it != map.end(); ++it ) {
-		urlList = new KURL::List( db->readListEntry(it.key()) );
+		urlList = new KUrl::List( db->readListEntry(it.key()) );
 		virtVfsDict.insert( it.key(),urlList );
 	}
 
 	if( !virtVfsDict["/" ]){
-		urlList = new KURL::List();
+		urlList = new KUrl::List();
 		virtVfsDict.insert( "/", urlList );	
 	}
 		
@@ -329,7 +329,7 @@ bool virt_vfs::restore(){
 void virt_vfs::vfs_calcSpace( QString name , KIO::filesize_t* totalSize, unsigned long* totalFiles, unsigned long* totalDirs, bool* stop ) {
 	if ( stop && *stop ) return ;
 	if( path == "/" ) {
-		KURL::List* urlList = virtVfsDict[ name ];
+		KUrl::List* urlList = virtVfsDict[ name ];
 		if ( urlList )
 			for( unsigned i=0; (i != urlList->size()) && !(*stop); i++ )
 				calculateURLSize( (*urlList)[ i ], totalSize, totalFiles, totalDirs, stop );

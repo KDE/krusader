@@ -68,7 +68,7 @@ public slots:
   void slotListResult( KIO::Job* );
 
 signals:
-  void openUrl(const KURL&);
+  void openUrl(const KUrl&);
 
 protected:
   bool eventFilter( QObject *o, QEvent *e );
@@ -77,7 +77,7 @@ private:
   void createListWithMedia();
   void createListWithoutMedia();
 
-  KURL getLocalPath( const KURL &, KMountPoint::List * list = 0 );
+  KUrl getLocalPath( const KUrl &, KMountPoint::List * list = 0 );
   bool mount( int );
   bool umount( int );
   bool eject( int );
@@ -96,8 +96,8 @@ private:
   bool        newTabAfterMount;
   int         maxMountWait;
 
-  Q3ValueList<KURL>    urls;
-  Q3ValueList<KURL>    mediaUrls;
+  Q3ValueList<KUrl>    urls;
+  Q3ValueList<KUrl>    mediaUrls;
   Q3ValueList<QString> mimes;
   Q3ValueList<bool>    quasiMounted;
 

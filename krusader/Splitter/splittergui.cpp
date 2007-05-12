@@ -51,7 +51,7 @@ PredefinedDevice SplitterGUI::predefinedDevices[] = {
   {i18n( "700 MB (CD-R)" ), 700*0x100000}
   };
 
-SplitterGUI::SplitterGUI( QWidget* parent,  KURL fileURL, KURL defaultDir ) :
+SplitterGUI::SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir ) :
     QDialog( parent, "Krusader::SplitterGUI", true, 0 ), 
     userDefinedSize ( 0x100000 ), lastSelectedDevice( 0 ), resultCode( QDialog::Rejected )
 {
@@ -62,12 +62,12 @@ SplitterGUI::SplitterGUI( QWidget* parent,  KURL fileURL, KURL defaultDir ) :
   grid->setMargin( 11 );
 
   QLabel *splitterLabel = new QLabel( this, "SplitterLabel" );
-  splitterLabel->setText( i18n( "Split the file %1 to directory:"  ).arg( vfs::pathOrURL( fileURL ) ) );
+  splitterLabel->setText( i18n( "Split the file %1 to directory:"  ).arg( vfs::pathOrUrl( fileURL ) ) );
   splitterLabel->setMinimumWidth( 400 );
   grid->addWidget( splitterLabel,0 ,0 );
 
-  urlReq = new KURLRequester( this, "DestinationDirectory" );
-  urlReq->setURL( vfs::pathOrURL( defaultDir ) );
+  urlReq = new KUrlRequester( this, "DestinationDirectory" );
+  urlReq->setURL( vfs::pathOrUrl( defaultDir ) );
   urlReq->setMode( KFile::Directory );
   grid->addWidget( urlReq, 1 ,0 );
 
@@ -193,7 +193,7 @@ void SplitterGUI::predefinedComboActivated( int item )
 
 void SplitterGUI::splitPressed()
 {
-  if( !vfs::fromPathOrURL( urlReq->url() ).isValid() )
+  if( !vfs::fromPathOrUrl( urlReq->url() ).isValid() )
   {
     KMessageBox::error( this, i18n("The directory path URL is malformed!") );
     return;

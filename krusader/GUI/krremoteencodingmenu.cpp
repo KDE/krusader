@@ -29,7 +29,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <kcharsets.h>
 #include <kio/slaveconfig.h>
 #include <dcopclient.h>
@@ -58,7 +58,7 @@ void KrRemoteEncodingMenu::slotAboutToShow()
   for (unsigned i =  0; i < popupMenu()->count(); i++)
     popupMenu()->setItemChecked(popupMenu()->idAt(i), false);
 
-  KURL currentURL = ACTIVE_PANEL->virtualPath();
+  KUrl currentURL = ACTIVE_PANEL->virtualPath();
 
   QString charset = KIO::SlaveConfig::self()->configData(currentURL.protocol(), currentURL.host(), DATA_KEY);
   if (!charset.isEmpty())
@@ -69,10 +69,10 @@ void KrRemoteEncodingMenu::slotAboutToShow()
       if ((*it).find(charset) != -1)
         break;
 
-//     kdDebug() << k_funcinfo << "URL=" << currentURL << " charset=" << charset << endl;
+//     kDebug() << k_funcinfo << "URL=" << currentURL << " charset=" << charset << endl;
 
     if (it == encodingNames.end())
-      kdWarning() << k_funcinfo << "could not find entry for charset=" << charset << endl;
+      kWarning() << k_funcinfo << "could not find entry for charset=" << charset << endl;
     else
       popupMenu()->setItemChecked(id, true);
   }
@@ -85,7 +85,7 @@ void KrRemoteEncodingMenu::loadSettings()
   settingsLoaded = true;
   encodingNames = KGlobal::charsets()->descriptiveEncodingNames();
 
-  KPopupMenu *menu = popupMenu();
+  KMenu *menu = popupMenu();
   menu->clear();
 
   QStringList::ConstIterator it;
@@ -112,13 +112,13 @@ int KrRemoteEncodingMenu::plug( QWidget *widget, int index )
 
 void KrRemoteEncodingMenu::slotCheckEnabled()
 {
-  KURL currentURL = ACTIVE_PANEL->virtualPath();
+  KUrl currentURL = ACTIVE_PANEL->virtualPath();
   setEnabled( currentURL.protocol() == "ftp" || currentURL.protocol() == "sftp" || currentURL.protocol() == "fish" );
 }
 
 void KrRemoteEncodingMenu::slotItemSelected(int id)
 {
-  KURL currentURL = ACTIVE_PANEL->virtualPath();
+  KUrl currentURL = ACTIVE_PANEL->virtualPath();
 
   KConfig config(("kio_" + currentURL.protocol() + "rc").toLatin1());
   QString host = currentURL.host();
@@ -143,7 +143,7 @@ void KrRemoteEncodingMenu::slotReload()
 
 void KrRemoteEncodingMenu::slotDefault()
 {
-  KURL currentURL = ACTIVE_PANEL->virtualPath();
+  KUrl currentURL = ACTIVE_PANEL->virtualPath();
 
   // We have no choice but delete all higher domain level
   // settings here since it affects what will be matched.
@@ -173,7 +173,7 @@ void KrRemoteEncodingMenu::slotDefault()
 
     for (QStringList::Iterator it = domains.begin(); it != domains.end(); it++)
     {
-//    kdDebug() << k_funcinfo << "Domain to remove: " << *it << endl;
+//    kDebug() << k_funcinfo << "Domain to remove: " << *it << endl;
       if (config.hasGroup(*it))
         config.deleteGroup(*it);
       else if (config.hasKey(*it))
@@ -192,7 +192,7 @@ void KrRemoteEncodingMenu::updateKIOSlaves()
   DCOPClient *client = new DCOPClient();
 
   if (!client->attach())
-    kdDebug() << "Can't connect with DCOP server." << endl;
+    kDebug() << "Can't connect with DCOP server." << endl;
 
   QByteArray data;
   QDataStream stream(data, QIODevice::WriteOnly);

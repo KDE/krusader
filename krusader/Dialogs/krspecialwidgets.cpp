@@ -103,7 +103,7 @@ void KRFSDisplay::paintEvent( QPaintEvent * ) {
       paint.drawText( 10, 37, "(" + realName + ")" );
       if ( mounted ) {  // incase the filesystem is already mounted
          // second, the capacity
-         paint.drawText( 10, 70, i18n( "Capacity: " ) + KIO::convertSizeFromKB( totalSpace ) );
+         paint.drawText( 10, 70, i18n( "Capacity: " ) + KIO::convertSizeFromKiB( totalSpace ) );
          // third, the 2 boxes (used, free)
          QPen systemPen = paint.pen();
          paint.setPen( Qt::black );
@@ -113,8 +113,8 @@ void KRFSDisplay::paintEvent( QPaintEvent * ) {
          paint.fillRect( 11, 111, 8, 8, QBrush( Qt::white ) );
          // now, the text for the boxes
          paint.setPen( systemPen );
-         paint.drawText( 25, 100, i18n( "Used: " ) + KIO::convertSizeFromKB( totalSpace - freeSpace ) );
-         paint.drawText( 25, 120, i18n( "Free: " ) + KIO::convertSizeFromKB( freeSpace ) );
+         paint.drawText( 25, 100, i18n( "Used: " ) + KIO::convertSizeFromKiB( totalSpace - freeSpace ) );
+         paint.drawText( 25, 120, i18n( "Free: " ) + KIO::convertSizeFromKiB( freeSpace ) );
          // first, create the empty pie
          // bottom...
          paint.setPen( Qt::black );
@@ -221,15 +221,15 @@ void KrQuickSearch::myKeyPressEvent( QKeyEvent *e ) {
          case Qt::Key_Left:
          emit stop( e );
          break;
-         case Key_Down:
+         case Qt::Key_Down:
          otherMatching( text(), 1 );
          break;
-         case Key_Up:
+         case Qt::Key_Up:
          otherMatching( text(), -1 );
          break;
-         case Key_Insert:
-         case Key_Home:
-         case Key_End:
+         case Qt::Key_Insert:
+         case Qt::Key_Home:
+         case Qt::Key_End:
          process( e );
          break;
          default:

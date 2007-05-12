@@ -18,12 +18,12 @@ email                :
 #ifndef USERMENU_H
 #define USERMENU_H
 
-#include <kpopupmenu.h>
+#include <kmenu.h>
 
 class QWidget;
 class UserMenu;
 
-class UserMenuGui: public KPopupMenu {
+class UserMenuGui: public KMenu {
    public:
       UserMenuGui( UserMenu* menu, QWidget *parent = 0 );
       void run();

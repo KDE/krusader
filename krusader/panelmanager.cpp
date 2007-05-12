@@ -49,7 +49,7 @@ QWidget( parent, "PanelManager" ), _layout( 0 ), _left( left ),
    _tabbar = new PanelTabBar( this );
    connect( _tabbar, SIGNAL( changePanel( ListPanel* ) ), this, SLOT( slotChangePanel( ListPanel * ) ) );
    connect( _tabbar, SIGNAL( closeCurrentTab() ), this, SLOT( slotCloseTab() ) );
-   connect( _tabbar, SIGNAL( newTab( const KURL& ) ), this, SLOT( slotNewTab( const KURL& ) ) );
+   connect( _tabbar, SIGNAL( newTab( const KUrl& ) ), this, SLOT( slotNewTab( const KUrl& ) ) );
 
    _layout->addMultiCellWidget( _stack, 0, 0, 0, 2 );
    _layout->addWidget( _newTab, 1, 0 );
@@ -91,7 +91,7 @@ ListPanel* PanelManager::createPanel( QString type, bool setCurrent ) {
    return p;
 }
 
-void PanelManager::startPanel( ListPanel *panel, const KURL& path ) {
+void PanelManager::startPanel( ListPanel *panel, const KUrl& path ) {
    panel->start( path );
 }
 
@@ -102,7 +102,7 @@ void PanelManager::saveSettings( KConfig *config, const QString& key, bool local
    while (cnt < _tabbar->count()) {
       PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt(i));
       if (t && t->panel) {
-         l << ( localOnly ? t->panel->realPath() : vfs::pathOrURL( t->panel->virtualPath() ) );
+         l << ( localOnly ? t->panel->realPath() : vfs::pathOrUrl( t->panel->virtualPath() ) );
          types << t->panel->getType();
          ++cnt;
       }
@@ -137,7 +137,7 @@ void PanelManager::loadSettings( KConfig *config, const QString& key ) {
          t->panel->otherPanel = _other;
          _other->otherPanel = t->panel;
          t->panel->func->files()->vfs_enableRefresh( true );
-         t->panel->func->immediateOpenUrl( vfs::fromPathOrURL( l[ i ] ) );
+         t->panel->func->immediateOpenUrl( vfs::fromPathOrUrl( l[ i ] ) );
       }
       ++i;
    }
@@ -146,10 +146,10 @@ void PanelManager::loadSettings( KConfig *config, const QString& key ) {
      slotCloseTab( --totalTabs );
       
    for(; i < (int)l.count(); i++ )
-     slotNewTab( vfs::fromPathOrURL(l[i]), false, types[ i ] );
+     slotNewTab( vfs::fromPathOrUrl(l[i]), false, types[ i ] );
 }
 
-void PanelManager::slotNewTab(const KURL& url, bool setCurrent, QString type) {
+void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, QString type) {
    if( type.isNull() )
    {
        krConfig->setGroup( "Look&Feel" );

@@ -4,13 +4,13 @@
 //Added by qt3to4:
 #include <Q3GridLayout>
 #include <Q3ValueList>
-#include <klistview.h>
+#include <k3listview.h>
 #include <kiconloader.h>
-#include <klistviewsearchline.h>
+#include <k3listviewsearchline.h>
 #include <q3header.h>
 #include <qlayout.h>
 #include <qlabel.h>
-#include <ktoolbarbutton.h>
+
 #include "../krusader.h"
 #include "../krslots.h"
 #include "popularurls.h"
@@ -49,7 +49,7 @@ void PopularUrls::save() {
 	Q3ValueList<int> rankList;
 	UrlNodeP p = head;
 	while (p) {
-		urlList << p->url.prettyURL();
+		urlList << p->url.prettyUrl();
 		rankList << p->rank;
 		p = p->next;
 	}
@@ -72,7 +72,7 @@ void PopularUrls::load() {
 	Q3ValueList<int>::Iterator rit;
 	for (uit=urlList.begin(), rit=rankList.begin(); uit!=urlList.end() && rit!=rankList.end(); ++uit, ++rit) {
 		UrlNodeP node = new UrlNode;
-		node->url = KURL::fromPathOrURL( *uit );
+		node->url = KUrl::fromPathOrUrl( *uit );
 		node->rank = *rit;
 		appendNode(node);
 		ranks.insert(*uit, node);
@@ -81,9 +81,9 @@ void PopularUrls::load() {
 
 
 // returns a url list with the 'max' top popular urls 
-KURL::List PopularUrls::getMostPopularUrls(int max) {
+KUrl::List PopularUrls::getMostPopularUrls(int max) {
 	// get at most 'max' urls
-	KURL::List list;
+	KUrl::List list;
 	UrlNodeP p = head;
 	int tmp = 0;
 	if (maxUrls < max) max = maxUrls; // don't give more than maxUrls
@@ -98,8 +98,8 @@ KURL::List PopularUrls::getMostPopularUrls(int max) {
 
 // adds a url to the list, or increase rank of an existing url, making
 // sure to bump it up the list if needed
-void PopularUrls::addUrl(const KURL& url) {
-	KURL tmpurl = url;
+void PopularUrls::addUrl(const KUrl& url) {
+	KUrl tmpurl = url;
 	tmpurl.adjustPath(1); // make a uniform trailing slash policy
 	UrlNodeP pnode;
 	
@@ -221,7 +221,7 @@ void PopularUrls::dumpList() {
 }
 
 void PopularUrls::showDialog() {
-	KURL::List list = getMostPopularUrls(maxUrls);
+	KUrl::List list = getMostPopularUrls(maxUrls);
 	dlg->run(list);
 	if (dlg->result() == -1) return;
 	SLOTS->refresh(list[dlg->result()]);
@@ -234,7 +234,7 @@ PopularUrlsDlg::PopularUrlsDlg():
 	Q3GridLayout *layout = new Q3GridLayout( plainPage(), 0, KDialog::spacingHint() );
 	
 	// listview to contain the urls
-	urls = new KListView(plainPage());
+	urls = new K3ListView(plainPage());
 	urls->header()->hide();
 	urls->addColumn("");
 	urls->setSorting(-1);
@@ -243,7 +243,7 @@ PopularUrlsDlg::PopularUrlsDlg():
 	// quick search
 	QToolButton *btn = new QToolButton(plainPage());
 	btn->setIconSet(SmallIcon("locationbar_erase"));
-	search = new KListViewSearchLine(plainPage(), urls);
+	search = new K3ListViewSearchLine(plainPage(), urls);
 	search->setTrapReturnKey(true);
 	QLabel *lbl = new QLabel(search, i18n(" &Search: "), plainPage());
 
@@ -288,13 +288,13 @@ PopularUrlsDlg::~PopularUrlsDlg() {
 	delete urls;
 }
 
-void PopularUrlsDlg::run(KURL::List list) {
+void PopularUrlsDlg::run(KUrl::List list) {
 	// populate the listview
 	urls->clear();
-	KURL::List::Iterator it;
+	KUrl::List::Iterator it;
 	for (it = list.begin(); it!=list.end(); ++it) {
-		KListViewItem *item = new KListViewItem(urls, urls->lastItem());
-		item->setText(0, (*it).isLocalFile() ? (*it).path() : (*it).prettyURL());
+		K3ListViewItem *item = new K3ListViewItem(urls, urls->lastItem());
+		item->setText(0, (*it).isLocalFile() ? (*it).path() : (*it).prettyUrl());
 		item->setPixmap(0, (*it).isLocalFile() ? SmallIcon("folder") : SmallIcon("folder_html"));
 	}
 	//urls->setCurrentItem(urls->firstChild());

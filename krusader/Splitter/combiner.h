@@ -42,12 +42,12 @@ class Combiner : public Q3ProgressDialog
   Q_OBJECT
 
 private:
-  KURL            splURL;
-  KURL            readURL;
-  KURL            writeURL;
+  KUrl            splURL;
+  KUrl            readURL;
+  KUrl            writeURL;
 
-  KURL            baseURL;
-  KURL            destinationURL;
+  KUrl            baseURL;
+  KUrl            destinationURL;
   CRC32          *crcContext;
   QByteArray      transferArray;
 
@@ -70,7 +70,7 @@ private:
   bool            unixNaming;
   
 public:
-  Combiner( QWidget* parent,  KURL baseURLIn, KURL destinationURLIn, bool unixNamingIn=false );
+  Combiner( QWidget* parent,  KUrl baseURLIn, KUrl destinationURLIn, bool unixNamingIn=false );
   ~Combiner();
 
   void combine();

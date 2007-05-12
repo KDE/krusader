@@ -41,7 +41,7 @@
 // KDE includes
 #include <kmessagebox.h>
 #include <klocale.h>
-#include <kprocess.h>
+#include <k3process.h>
 #include <kio/jobclasses.h>
 #include <q3progressdialog.h>
 #include <kglobalsettings.h>
@@ -66,7 +66,7 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
 	if ( type == "tarz" ) type = "-tgz";
 	
 	// set the cursor to busy mode
-  if (!quietMode) krApp->setCursor(KCursor::waitCursor());
+  if (!quietMode) krApp->setCursor(Qt::WaitCursor);
 
   // set the writable attribute
 	isWritable = KRpermHandler::fileWriteable(origin);
@@ -155,9 +155,9 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
   }
   if( type == "+rpm" ){
 		// extract the cpio archive from the rpm
-		KShellProcess rpm;
+		K3ShellProcess rpm;
   	rpm << "rpm2cpio"<<"\""+arcFile+"\""+" > "+tmpDir+"/contents.cpio";
-  	rpm.start(KProcess::Block);
+  	rpm.start(K3Process::Block);
 		arcFile = tmpDir+"/contents.cpio";
 	}
 	if(type == "cpio" || type == "+rpm" ){
@@ -181,7 +181,7 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
 
 	getDirs();
 	// set the cursor to normal mode
-  if (!quietMode) krApp->setCursor(KCursor::arrowCursor());
+  if (!quietMode) krApp->setCursor(Qt::ArrowCursor);
 }
 
 // return the working dir
@@ -195,24 +195,24 @@ QString arc_vfs::vfs_workingDir(){
 
 arc_vfs::~arc_vfs(){
   // set the cursor to busy mode
-  if (!quietMode) krApp->setCursor(KCursor::waitCursor());
+  if (!quietMode) krApp->setCursor(Qt::WaitCursor);
 	// don't touch messed-up archives
 	if(!error) repack();
   // delete the temp dir
-  KShellProcess proc;
+  K3ShellProcess proc;
   proc<<"rm"<<"-rf"<<tmpDir;
-  proc.start(KProcess::Block);
+  proc.start(K3Process::Block);
 
 	// set the cursor to normal mode
-  if (!quietMode) krApp->setCursor(KCursor::arrowCursor());
+  if (!quietMode) krApp->setCursor(Qt::ArrowCursor);
 }	
 
 bool arc_vfs::getDirs(){
   if( !listCmd.isEmpty() ){
     // write the temp file
-    KShellProcess proc;
+    K3ShellProcess proc;
     proc << cmd << listCmd << "\""+arcFile+"\"" <<" > " << tmpDir+"/tempfilelist";
-    proc.start(KProcess::Block);
+    proc.start(K3Process::Block);
     if( !proc.normalExit() || !proc.exitStatus() == 0 ){
       if (!quietMode) KMessageBox::error(krApp, i18n("<qt>Can't read <b>%1</b>. Archive "
                       "might be corrupted!</qt>").arg(arcFile.mid(arcFile.findRev('/')+1)));
@@ -264,7 +264,7 @@ bool arc_vfs::getDirs(){
 
 
 // copy a file to the vfs (physical)
-void arc_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir, PreserveMode /*pmode*/ ){
+void arc_vfs::vfs_addFiles(KUrl::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir, PreserveMode /*pmode*/ ){
   if ( addCmd.isEmpty() ) return;
 
   // get the path inside the archive
@@ -280,7 +280,7 @@ void arc_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObj
 
   changed = true; //rescan the archive
 	
-	KURL dest;
+	KUrl dest;
 	dest.setPath(tmpDir+path+dir);
 
   KIO::Job* job = new KIO::CopyJob(*fileUrls,dest,mode,false,true);
@@ -297,7 +297,7 @@ void arc_vfs::vfs_delFiles(QStringList *fileNames){
   // the repack() will delete them for us
   krConfig->setGroup("General");
 	if( krConfig->readBoolEntry("Move To Trash",_MoveToTrash) ) {
-	  KURL::List* filesUrls = vfs_getFiles(fileNames); // extract
+	  KUrl::List* filesUrls = vfs_getFiles(fileNames); // extract
 	  changed = true;
 	
 	  KIO::Job *job = new KIO::CopyJob(*filesUrls,KGlobalSettings::trashPath(),KIO::CopyJob::Move,false,true );
@@ -318,10 +318,10 @@ void arc_vfs::vfs_delFiles(QStringList *fileNames){
       processName(*name,&files,&totalSizeVal,&totalFilesVal);
 
 
-		KShellProcess proc1 , proc2;
+		K3ShellProcess proc1 , proc2;
 		krApp->startWaiting(i18n("Deleting Files..."),files.count()+ignoreLines);
-	  connect(&proc1,SIGNAL(receivedStdout(KProcess*,char*,int)),
-            krApp, SLOT(incProgress(KProcess*,char*,int)) );
+	  connect(&proc1,SIGNAL(receivedStdout(K3Process*,char*,int)),
+            krApp, SLOT(incProgress(K3Process*,char*,int)) );
 
     proc1 <<  delCmd << "\""+arcFile+"\"";
     proc2 << "rm -rf";
@@ -330,7 +330,7 @@ void arc_vfs::vfs_delFiles(QStringList *fileNames){
       proc2 << tmpDir+"/"+(*files.at(i));
 			extFiles.remove(*files.at(i++));
 			if ( i%MAX_FILES==0 || i==files.count() ){
-				proc1.start(KProcess::NotifyOnExit,KProcess::AllOutput);
+				proc1.start(K3Process::NotifyOnExit,K3Process::AllOutput);
     		proc2.start();
         while( proc1.isRunning() || proc2.isRunning() ) qApp->processEvents(); // busy wait - need to find something better...
         proc1.clearArguments() ; proc2.clearArguments();
@@ -359,9 +359,9 @@ QString arc_vfs::vfs_getFile(QString name){
   return tmpDir+"/"+path+name;
 }
 
-KURL::List* arc_vfs::vfs_getFiles(QStringList* names){
-  KURL url;
-  KURL::List* urls = new KURL::List();
+KUrl::List* arc_vfs::vfs_getFiles(QStringList* names){
+  KUrl url;
+  KUrl::List* urls = new KUrl::List();
 
   // get the current file path
   QString path = vfs_origin.right((vfs_origin.length()-vfs_origin.findRev('\\'))-1);
@@ -394,16 +394,16 @@ KURL::List* arc_vfs::vfs_getFiles(QStringList* names){
   // unpack ( if needed )
 	if ( files.count() > 0 ){
 		krApp->startWaiting(i18n("Unpacking Files"),files.count()+ignoreLines);
-    KShellProcess proc;
-	  connect(&proc,SIGNAL(receivedStdout(KProcess*,char*,int)),
-            krApp, SLOT(incProgress(KProcess*,char*,int)) );
+    K3ShellProcess proc;
+	  connect(&proc,SIGNAL(receivedStdout(K3Process*,char*,int)),
+            krApp, SLOT(incProgress(K3Process*,char*,int)) );
 		
 		proc << cmd << getCmd << "\""+arcFile+"\"";
   	if( vfs_type == "gzip" || vfs_type == "zip2" ) proc << ">";
 		for(unsigned int i=0 ; i < files.count() ; ){
   		proc << (prefix+*files.at(i++));
 			if ( i%MAX_FILES==0 || i==files.count() ){
-				proc.start(KProcess::NotifyOnExit,KProcess::AllOutput);
+				proc.start(K3Process::NotifyOnExit,K3Process::AllOutput);
         while( proc.isRunning() ) qApp->processEvents();
 				proc.clearArguments();
 				proc << cmd << getCmd << "\""+arcFile+"\"";
@@ -431,7 +431,7 @@ void arc_vfs::vfs_mkdir(QString name){
 	
 // rename file
 void arc_vfs::vfs_rename(QString fileName,QString newName){
-	KURL::List temp;
+	KUrl::List temp;
 	temp.append(vfs_getFile(fileName));
   QString path = vfs_origin.right((vfs_origin.length()-vfs_origin.findRev('\\'))-1);
   if(path.left(1)=="/") path.remove(0,1);
@@ -440,7 +440,7 @@ void arc_vfs::vfs_rename(QString fileName,QString newName){
   QDir(tmpDir).mkdir(path);
   changed = true; //rescan the archive
 
-	KURL dest;
+	KUrl dest;
 	dest.setPath(tmpDir+path+"/"+newName);
 
   KIO::Job* job = new KIO::CopyJob(temp,dest,KIO::CopyJob::Move,false,false);
@@ -540,7 +540,7 @@ void arc_vfs::getFilesToDelete(QStringList* filesToDelete,QString){
 void arc_vfs::getExtFiles(QString dir_name){
 	register DIR* dir = opendir(tmpDir.local8Bit()+"/"+dir_name.local8Bit());
   if(!dir){
-    kdWarning() << "faild to opendir(): " << tmpDir.local8Bit()+"/"+dir_name.local8Bit() << endl;
+    kWarning() << "faild to opendir(): " << tmpDir.local8Bit()+"/"+dir_name.local8Bit() << endl;
 		return ;
 	}
 
@@ -575,16 +575,16 @@ void arc_vfs::repack(){
 		QStringList filesToDelete;
 		getFilesToDelete(&filesToDelete);
 		if( !filesToDelete.isEmpty() ){
-			KShellProcess delProc;
+			K3ShellProcess delProc;
   		krApp->startWaiting(i18n("Deleting Files..."),filesToDelete.count()+ignoreLines);
-	 		connect(&delProc,SIGNAL(receivedStdout(KProcess*,char*,int)),
-               krApp, SLOT(incProgress(KProcess*,char*,int)) );
+	 		connect(&delProc,SIGNAL(receivedStdout(K3Process*,char*,int)),
+               krApp, SLOT(incProgress(K3Process*,char*,int)) );
 
 			delProc << delCmd << "\""+arcFile+"\"";
 			for( unsigned int i=0 ; i < filesToDelete.count() ;){
 				delProc << (*filesToDelete.at(i++));
 				if( i%MAX_FILES==0 || i==filesToDelete.count() ){
-  	  		delProc.start(KProcess::NotifyOnExit,KProcess::AllOutput);
+  	  		delProc.start(K3Process::NotifyOnExit,K3Process::AllOutput);
     			while( delProc.isRunning() )  qApp->processEvents();
 					delProc.clearArguments();
 		    	delProc << delCmd << "\""+arcFile+"\"";
@@ -599,14 +599,14 @@ void arc_vfs::repack(){
     QStringList filesToPack;
 		getFilesToPack(&filesToPack);
 		if( !filesToPack.isEmpty() ){
-			KShellProcess addProc;
+			K3ShellProcess addProc;
 			krApp->startWaiting(i18n("Repacking..."),filesToPack.count()+ignoreLines);
-    	connect(&addProc,SIGNAL(receivedStdout(KProcess*,char*,int)),
-            krApp, SLOT(incProgress(KProcess*,char*,int)) );
+    	connect(&addProc,SIGNAL(receivedStdout(K3Process*,char*,int)),
+            krApp, SLOT(incProgress(K3Process*,char*,int)) );
 
 			if( vfs_type=="gzip" || vfs_type=="zip2" ){
       	addProc << addCmd << *filesToPack.at(0)<< ">" << "\""+arcFile+"\"";
-				addProc.start(KProcess::NotifyOnExit);
+				addProc.start(K3Process::NotifyOnExit);
       	while( addProc.isRunning() ) qApp->processEvents();
      	}
     	else {
@@ -614,7 +614,7 @@ void arc_vfs::repack(){
     		for( unsigned int i=0 ; i<filesToPack.count(); ){
       		addProc << "\""+prefix+(*filesToPack.at(i++))+"\"";
 					if( i%MAX_FILES==0 || i==filesToPack.count() ){
-      			addProc.start(KProcess::NotifyOnExit,KProcess::AllOutput);
+      			addProc.start(K3Process::NotifyOnExit,K3Process::AllOutput);
       			while( addProc.isRunning() ) qApp->processEvents(); // busy wait - need to find something better...
         		addProc.clearArguments();
 		    		addProc << addCmd << "\""+arcFile+"\"";

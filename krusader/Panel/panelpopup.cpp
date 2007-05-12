@@ -117,8 +117,8 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
    // create the tree part ----------
 	tree = new KFileTreeView( stack );
 	tree->setAcceptDrops(true);
-	connect(tree, SIGNAL(dropped (QWidget *, QDropEvent *, KURL::List &, KURL &)), 
-		this, SLOT(slotDroppedOnTree(QWidget *, QDropEvent *, KURL::List&, KURL& )));
+	connect(tree, SIGNAL(dropped (QWidget *, QDropEvent *, KUrl::List &, KUrl &)), 
+		this, SLOT(slotDroppedOnTree(QWidget *, QDropEvent *, KUrl::List&, KUrl& )));
    stack->addWidget( tree, Tree );
    tree->addColumn( "" );
 	// add ~
@@ -145,14 +145,14 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	
 	panelviewer = new PanelViewer(stack);
 	stack->addWidget(panelviewer, View);
-	connect(panelviewer, SIGNAL(openURLRequest(const KURL &)), this, SLOT(handleOpenURLRequest(const KURL &)));
+	connect(panelviewer, SIGNAL(openURLRequest(const KUrl &)), this, SLOT(handleOpenURLRequest(const KUrl &)));
 	
 	// create the disk usage view
 	
 	diskusage = new DiskUsageViewer( stack );
 	diskusage->setStatusLabel( dataLine, i18n("Disk Usage: ") );
 	stack->addWidget( diskusage, DskUsage );
-	connect(diskusage, SIGNAL(openURLRequest(const KURL &)), this, SLOT(handleOpenURLRequest(const KURL &)));
+	connect(diskusage, SIGNAL(openURLRequest(const KUrl &)), this, SLOT(handleOpenURLRequest(const KUrl &)));
 	
 	// create the quick-panel part ----
 	
@@ -273,13 +273,13 @@ void PanelPopup::saveSizes() {
     krConfig->writeEntry( "Right PanelPopup Splitter Sizes", splitterSizes );
 }
 
-void PanelPopup::handleOpenURLRequest(const KURL &url) {
+void PanelPopup::handleOpenURLRequest(const KUrl &url) {
   if (KMimeType::findByURL(url.url())->name() == "inode/directory") ACTIVE_PANEL->func->openUrl(url);
 }
 
 
 void PanelPopup::tabSelected( int id ) {
-	KURL url = "";
+	KUrl url = "";
 	if ( ACTIVE_PANEL && ACTIVE_PANEL->func && ACTIVE_PANEL->func->files() && ACTIVE_PANEL->view ) {
 		url = ACTIVE_PANEL->func->files()->vfs_getFile( ACTIVE_PANEL->view->getCurrentItem());
 	}
@@ -319,7 +319,7 @@ void PanelPopup::tabSelected( int id ) {
 }
 
 // decide which part to update, if at all
-void PanelPopup::update( KURL url ) {
+void PanelPopup::update( KUrl url ) {
    if ( isHidden() || url.url()=="" ) return ; // failsafe
 
    KFileItemList lst;
@@ -337,7 +337,7 @@ void PanelPopup::update( KURL url ) {
 			if( url.fileName() == ".." )
 				url.setFileName( "" );
 			if (KMimeType::findByURL(url.url())->name() != "inode/directory")
-				url = url.upURL();
+				url = url.upUrl();
 			dataLine->setText( i18n("Disk Usage: ")+url.fileName() );
 			diskusage->openURL(url);
          break;
@@ -371,11 +371,11 @@ void PanelPopup::quickSelectStore() {
         krConfig->writeEntry( "Predefined Selections", lst );
 }
 
-void PanelPopup::slotDroppedOnTree(QWidget *widget, QDropEvent *e, KURL::List &lst, KURL &) {
+void PanelPopup::slotDroppedOnTree(QWidget *widget, QDropEvent *e, KUrl::List &lst, KUrl &) {
 	// KFileTreeView is buggy: when dropped, it might not give us the correct
 	// destination, but actually, it's parent. workaround: don't use
 	// the destination in the signal, but take the current item
-	KURL dest = tree->currentURL();
+	KUrl dest = tree->currentURL();
 	
 	// ask the user what to do: copy, move or link?
    Q3PopupMenu popup( this );

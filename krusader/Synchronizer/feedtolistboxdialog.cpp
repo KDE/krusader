@@ -54,7 +54,7 @@
 
 FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent,  const char *name, Synchronizer *sync,
     Q3ListView *syncL, bool equOK) : KDialogBase( parent, name, true, i18n( "Krusader::Feed to listbox" ),
-    KDialogBase::Ok | KDialogBase::Cancel | KDialogBase::User1, Ok, true, KStdGuiItem::clear() ),
+    KDialogBase::Ok | KDialogBase::Cancel | KDialogBase::User1, Ok, true, KStandardGuiItem::clear() ),
     synchronizer( sync ), syncList( syncL ), equalAllowed( equOK ), accepted( false ) {
   
   // autodetecting the parameters
@@ -93,7 +93,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent,  const char *name, Syn
   // guessing the collection name
 
   virt_vfs v(0,true);
-  if( !v.vfs_refresh( KURL( "virt:/" ) ) )
+  if( !v.vfs_refresh( KUrl( "virt:/" ) ) )
     return;
 
   krConfig->setGroup( "Synchronize" );
@@ -160,7 +160,7 @@ void FeedToListBoxDialog::slotOk() {
   int side = sideCombo->currentItem();
   bool selected = cbSelected->isChecked();
   QString name = lineEdit->text();
-  KURL::List urlList;
+  KUrl::List urlList;
 
   Q3ListViewItemIterator it( syncList );
   for( ;it.current(); it++ ) {
@@ -176,25 +176,25 @@ void FeedToListBoxDialog::slotOk() {
 
     if( ( side == S_BOTH || side == S_LEFT ) && syncItem->existsInLeft() ) {
       QString leftDirName = syncItem->leftDirectory().isEmpty() ? "" : syncItem->leftDirectory() + "/";
-      KURL leftURL = vfs::fromPathOrURL( synchronizer->leftBaseDirectory() + leftDirName + syncItem->leftName() );
+      KUrl leftURL = vfs::fromPathOrUrl( synchronizer->leftBaseDirectory() + leftDirName + syncItem->leftName() );
       urlList.push_back( leftURL );
     }
 
     if( ( side == S_BOTH || side == S_RIGHT ) && syncItem->existsInRight() ) {
       QString rightDirName = syncItem->rightDirectory().isEmpty() ? "" : syncItem->rightDirectory() + "/";
-      KURL leftURL = vfs::fromPathOrURL( synchronizer->rightBaseDirectory() + rightDirName + syncItem->rightName() );
+      KUrl leftURL = vfs::fromPathOrUrl( synchronizer->rightBaseDirectory() + rightDirName + syncItem->rightName() );
       urlList.push_back( leftURL );
     }
   }
 
-  KURL url = KURL::fromPathOrURL(QString("virt:/")+ name);
+  KUrl url = KUrl::fromPathOrUrl(QString("virt:/")+ name);
   virt_vfs v(0,true);
   if( !v.vfs_refresh( url ) ) {
-    KMessageBox::error( parentWidget(), i18n( "Cannot open %1!" ).arg( url.prettyURL() ) );
+    KMessageBox::error( parentWidget(), i18n( "Cannot open %1!" ).arg( url.prettyUrl() ) );
     return;
   }
   v.vfs_addFiles( &urlList, KIO::CopyJob::Copy, 0 );
-  ACTIVE_MNG->slotNewTab(url.prettyURL());
+  ACTIVE_MNG->slotNewTab(url.prettyUrl());
   accepted = true;
   accept();
 }

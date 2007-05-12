@@ -97,7 +97,7 @@ void KRPleaseWaitHandler::stopWait(){
   dlg=0;
   cycleMutex=incMutex=false;
 	// return cursor to normal arrow
-	krApp->setCursor(KCursor::arrowCursor());
+	krApp->setCursor(Qt::ArrowCursor);
 }
 
 
@@ -144,7 +144,7 @@ void KRPleaseWaitHandler::incProgress(int i){
   incMutex=false;
 }
 
-void KRPleaseWaitHandler::incProgress( KProcess *, char *buffer, int buflen ) {
+void KRPleaseWaitHandler::incProgress( K3Process *, char *buffer, int buflen ) {
    int howMuch = 0;
    for ( int i = 0 ; i < buflen; ++i )
       if ( buffer[ i ] == '\n' )

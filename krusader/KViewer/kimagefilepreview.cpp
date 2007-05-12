@@ -58,16 +58,16 @@ KrusaderImageFilePreview::~KrusaderImageFilePreview() {
 
 void KrusaderImageFilePreview::showPreview() {
 	// Pass a copy since clearPreview() will clear currentURL
-	KURL url = currentURL;
+	KUrl url = currentURL;
 	showPreview( url, true );
 }
 
 // called via KPreviewWidgetBase interface
-void KrusaderImageFilePreview::showPreview( const KURL& url ) {
+void KrusaderImageFilePreview::showPreview( const KUrl& url ) {
 	showPreview( url, false );
 }
 
-void KrusaderImageFilePreview::showPreview( const KURL &url, bool force ) {
+void KrusaderImageFilePreview::showPreview( const KUrl &url, bool force ) {
 	if ( !url.isValid() ) {
 		clearPreview();
 		return ;
@@ -100,8 +100,8 @@ QSize KrusaderImageFilePreview::sizeHint() const {
 	return QSize( 20, 200 ); // otherwise it ends up huge???
 }
 
-KIO::PreviewJob * KrusaderImageFilePreview::createJob( const KURL& url, int w, int h ) {
-	KURL::List urls;
+KIO::PreviewJob * KrusaderImageFilePreview::createJob( const KUrl& url, int w, int h ) {
+	KUrl::List urls;
 	urls.append( url );
 	return KIO::filePreview( urls, w, h, 0, 0, true, false );
 }
@@ -131,7 +131,7 @@ void KrusaderImageFilePreview::clearPreview() {
 	}
 
 	imageLabel->clear();
-	currentURL = KURL();
+	currentURL = KUrl();
 }
 
 void KrusaderImageFilePreview::virtual_hook( int id, void* data ) {

@@ -106,8 +106,8 @@ void CompareTask::slotOtherFinished( bool result ) {
     m_state = ST_STATE_READY;
 }
 
-CompareContentTask::CompareContentTask( Synchronizer *syn, SynchronizerFileItem *itemIn, const KURL &leftURLIn,
-                                        const KURL &rightURLIn, KIO::filesize_t sizeIn ) : SynchronizerTask(), 
+CompareContentTask::CompareContentTask( Synchronizer *syn, SynchronizerFileItem *itemIn, const KUrl &leftURLIn,
+                                        const KUrl &rightURLIn, KIO::filesize_t sizeIn ) : SynchronizerTask(), 
                                         leftURL( leftURLIn ), rightURL( rightURLIn ),
                                         size( sizeIn ), errorPrinted(false), leftReadJob( 0 ),
                                         rightReadJob( 0 ), compareArray(), item( itemIn ), timer( 0 ),
@@ -300,8 +300,8 @@ void CompareContentTask::slotFinished(KIO::Job *job)
   {
     errorPrinted = true;
     KMessageBox::error(parentWidget, i18n("IO error at comparing file %1 with %2!")
-                       .arg( vfs::pathOrURL( leftURL ) )
-                       .arg( vfs::pathOrURL( rightURL ) ) );
+                       .arg( vfs::pathOrUrl( leftURL ) )
+                       .arg( vfs::pathOrUrl( rightURL ) ) );
   }
 
   if( leftReadJob == 0 && rightReadJob == 0 )

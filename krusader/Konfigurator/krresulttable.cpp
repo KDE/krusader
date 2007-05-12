@@ -179,7 +179,7 @@ bool KrArchiverResultTable::addRow(SearchObject* search, Q3GridLayout* grid)
   Archiver* arch = dynamic_cast<Archiver*>(search);
 
   // Name column
-  _label = new KURLLabel(arch->getWebsite(), arch->getSearchName(), this);
+  _label = new KUrlLabel(arch->getWebsite(), arch->getSearchName(), this);
   _label->setMargin(5);
   _label->setAlignment(Qt::AlignTop);
   grid->addWidget(_label, _numRows, 0);
@@ -333,7 +333,7 @@ bool KrToolResultTable::addRow(SearchObject* search, Q3GridLayout* grid)
   Q3VBox* toolBox = new Q3VBox(this);
   for( Q3ValueVector<Application*>::Iterator it=_apps.begin(); it!=_apps.end(); it++ )
   {
-    KURLLabel* l = new KURLLabel( (*it)->getWebsite(), (*it)->getAppName(), toolBox);
+    KUrlLabel* l = new KUrlLabel( (*it)->getWebsite(), (*it)->getAppName(), toolBox);
     l->setAlignment(Qt::AlignLeft | Qt::AlignTop);
     l->setMargin(5);
     connect(l, SIGNAL(leftClickedURL(const QString&)),

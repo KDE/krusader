@@ -25,7 +25,7 @@ class QLineEdit;
 class QPushButton;
 class QSpinBox;
 class KComboBox;
-class KHistoryCombo;
+class KHistoryComboBox;
 
 class newFTPGUI : public QDialog {
     Q_OBJECT
@@ -47,7 +47,7 @@ public:
     QLabel* PixmapLabel1;
     QLabel* TextLabel3;
     QLineEdit* username;
-    KHistoryCombo* url;
+    KHistoryComboBox* url;
 
 public slots:
     void slotTextChanged(const QString& string);

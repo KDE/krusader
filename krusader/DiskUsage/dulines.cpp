@@ -43,7 +43,7 @@
 #include <qfontmetrics.h>
 #include <qtimer.h>
 #include <qtooltip.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 
 class DULinesItem : public Q3ListViewItem
 {
@@ -431,22 +431,22 @@ void DULines::keyPressEvent( QKeyEvent *e )
 {
   switch ( e->key() )
   {
-  case Key_Return :
-  case Key_Enter :
+  case Qt::Key_Return :
+  case Qt::Key_Enter :
     if( doubleClicked( currentItem() ) )
       return;
     break;
-  case Key_Left :
-  case Key_Right :
-  case Key_Up :
-  case Key_Down :
+  case Qt::Key_Left :
+  case Qt::Key_Right :
+  case Qt::Key_Up :
+  case Qt::Key_Down :
     if( e->state() == ShiftButton )
     {
       e->ignore();
       return;
     }
     break;
-  case Key_Delete :
+  case Qt::Key_Delete :
     e->ignore();
     return;
   }
@@ -460,7 +460,7 @@ void DULines::slotRightClicked( Q3ListViewItem *item )
   if ( item && item->text( 0 ) != ".." )
     file = ((DULinesItem *)item)->getFile();
 
-  KPopupMenu linesPopup;    
+  KMenu linesPopup;    
   int lid = linesPopup.insertItem( i18n("Show file sizes"), this, SLOT( slotShowFileSizes() ) );
   linesPopup.setItemChecked( lid, showFileSize );
     

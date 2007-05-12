@@ -65,7 +65,7 @@ RadialMap::Map::make( const Directory *tree, bool refresh )
     //   even if it makes it a lie?
 
     //slow operation so set the wait cursor
-    QApplication::setOverrideCursor( KCursor::waitCursor() );
+    QApplication::setOverrideCursor( Qt::WaitCursor );
 
     {
         //build a signature of visible components
@@ -267,7 +267,7 @@ RadialMap::Map::aaPaint()
 {
     //paint() is called during continuous processes
     //aaPaint() is not and is slower so set overidecursor (make sets it too)
-    QApplication::setOverrideCursor( KCursor::waitCursor() );
+    QApplication::setOverrideCursor( Qt::WaitCursor );
     paint( Config::antiAliasFactor );
     QApplication::restoreOverrideCursor();
 }

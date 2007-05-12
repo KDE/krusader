@@ -42,12 +42,12 @@ A
 //Added by qt3to4:
 #include <Q3GridLayout>
 #include <Q3ValueList>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <qbitmap.h>
 #include <kmessagebox.h>
 #include <qlayout.h>
 #include <q3groupbox.h>
-#include <kprocess.h>
+#include <k3process.h>
 #include <qcursor.h>
 #include <kdebug.h>
 #include <kguiitem.h>
@@ -56,7 +56,7 @@ A
 
 #if defined(BSD)
 #include <kmountpoint.h>
-#include <kmdcodec.h>
+#include <kcodecs.h>
 #else
 #define MTAB	"/etc/mtab"
 #endif
@@ -167,7 +167,7 @@ void KMountManGUI::getSpaceData() {
 			--numOfMountPoints;
 			continue;
 		}
-      KDiskFreeSp *sp = KDiskFreeSp::findUsageInfo( ( *it ) ->mountPoint() );
+      KDiskFreeSpace *sp = KDiskFreeSpace::findUsageInfo( ( *it ) ->mountPoint() );
       connect( sp, SIGNAL( foundMountPoint( const QString &, unsigned long, unsigned long, unsigned long ) ),
                this, SLOT( gettingSpaceData( const QString&, unsigned long, unsigned long, unsigned long ) ) );
       connect( sp, SIGNAL( done() ), this, SLOT( gettingSpaceData() ) );
@@ -204,8 +204,8 @@ void KMountManGUI::gettingSpaceData( const QString &mountPoint, unsigned long kB
 void KMountManGUI::addItemToMountList( Q3ListView *lst, fsData &fs ) {
    bool mtd = fs.mounted();
 
-   QString tSize = QString( "%1" ).arg( KIO::convertSizeFromKB( fs.totalBlks() ) );
-   QString fSize = QString( "%1" ).arg( KIO::convertSizeFromKB( fs.freeBlks() ) );
+   QString tSize = QString( "%1" ).arg( KIO::convertSizeFromKiB( fs.totalBlks() ) );
+   QString fSize = QString( "%1" ).arg( KIO::convertSizeFromKiB( fs.freeBlks() ) );
    QString sPrct = QString( "%1%" ).arg( 100 - ( fs.usedPerct() ) );
    Q3ListViewItem *item = new Q3ListViewItem( lst, fs.name(),
                          fs.type(), fs.mntPoint(),
@@ -273,10 +273,10 @@ void KMountManGUI::doubleClicked( Q3ListViewItem *i ) {
 		return; // we don't want to refresh to swap, do we ?
 		 
    // change the active panel to this mountpoint
-   connect( ( QObject* ) this, SIGNAL( refreshPanel( const KURL & ) ), ( QObject* ) SLOTS,
-            SLOT( refresh( const KURL & ) ) );
-   emit refreshPanel( vfs::fromPathOrURL( i->text(2) ) ); // text(2) ? so ugly ... 
-   disconnect( this, SIGNAL( refreshPanel( const KURL & ) ), 0, 0 );
+   connect( ( QObject* ) this, SIGNAL( refreshPanel( const KUrl & ) ), ( QObject* ) SLOTS,
+            SLOT( refresh( const KUrl & ) ) );
+   emit refreshPanel( vfs::fromPathOrUrl( i->text(2) ) ); // text(2) ? so ugly ... 
+   disconnect( this, SIGNAL( refreshPanel( const KUrl & ) ), 0, 0 );
    slotClose();
 }
 
@@ -330,7 +330,7 @@ void KMountManGUI::clicked( Q3ListViewItem *item, const QPoint& pos, int /* col 
       exit( 0 );
    }
    // create the menu
-   KPopupMenu popup;
+   KMenu popup;
    popup.insertTitle( i18n( "MountMan" ) );
    if ( !system->mounted() ) {
       popup.insertItem( i18n( "Mount" ), MOUNT_ID );

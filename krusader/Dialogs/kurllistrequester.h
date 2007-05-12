@@ -47,8 +47,8 @@ class KURLListRequester : public QWidget
 public:
   KURLListRequester( QWidget *parent = 0, const char * name = 0 );  
   
-  KURL::List   urlList();
-  void         setUrlList( KURL::List );
+  KUrl::List   urlList();
+  void         setUrlList( KUrl::List );
   
   KLineEdit   *lineEdit()    {return urlLineEdit;}
   Q3ListBox    *listBox()     {return urlListBox;}
@@ -72,7 +72,7 @@ protected:
   QToolButton  *urlAddBtn;
   QToolButton  *urlBrowseBtn;
   
-  KURLCompletion completion;
+  KUrlCompletion completion;
 };
 
 #endif /* __KURLLISTREQUESTER_H__ */

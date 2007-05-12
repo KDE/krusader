@@ -118,15 +118,15 @@ public:
   bool followLinks() { return followLinksP; }
 
   // sets the folders where the searcher will search
-  void setSearchInDirs( const KURL::List &urls );
+  void setSearchInDirs( const KUrl::List &urls );
   // gets the folders where the searcher searches
-  const KURL::List & searchInDirs() { return whereToSearch; }
+  const KUrl::List & searchInDirs() { return whereToSearch; }
   // sets the folders where search is not permitted
-  void setDontSearchInDirs( const KURL::List &urls );
+  void setDontSearchInDirs( const KUrl::List &urls );
   // gets the folders where search is not permitted
-  const KURL::List & dontSearchInDirs() { return whereNotToSearch; }
+  const KUrl::List & dontSearchInDirs() { return whereNotToSearch; }
   // checks if a URL is excluded
-  bool isExcluded( const KURL &url );
+  bool isExcluded( const KUrl &url );
   // gives whether we search for content
   bool isContentSearched() const { return !contain.isEmpty(); }
   
@@ -169,8 +169,8 @@ protected:
   bool recurse;                  // if true recurse ob sub-dirs...
   bool followLinksP;
 
-  KURL::List whereToSearch;     // directorys to search
-  KURL::List whereNotToSearch;  // directorys NOT to search
+  KUrl::List whereToSearch;     // directorys to search
+  KUrl::List whereNotToSearch;  // directorys NOT to search
 
 signals:
   void status( const QString &name );
@@ -181,7 +181,7 @@ private:
   bool checkPerm(QString perm) const;
   bool checkType(QString mime) const;
   bool containsContent( QString file ) const;
-  bool containsContent( KURL url ) const;
+  bool containsContent( KUrl url ) const;
   bool checkBuffer( const char *buffer, int len ) const;
   bool checkLines( QString line ) const;
   bool checkTimer() const;

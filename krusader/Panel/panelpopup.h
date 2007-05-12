@@ -37,20 +37,20 @@ public:
 	void saveSizes();
 
 public slots:
-   void update(KURL url);
+   void update(KUrl url);
 	void show();
 	void hide();
 	
 signals:
-	void selection(const KURL &url);
+	void selection(const KUrl &url);
 	void hideMe();
    
 protected slots:	
 	virtual void setFocus();
 	void tabSelected(int id);
 	void treeSelection(Q3ListViewItem*);
-	void slotDroppedOnTree(QWidget *widget, QDropEvent *e, KURL::List &lst, KURL &);
-	void handleOpenURLRequest(const KURL &url);
+	void slotDroppedOnTree(QWidget *widget, QDropEvent *e, KUrl::List &lst, KUrl &);
+	void handleOpenURLRequest(const KUrl &url);
 	void quickSelect();
 	void quickSelect(const QString &);
         void quickSelectStore();

@@ -154,7 +154,7 @@ private:
 
 class Directory;
 class QString;
-class KURL;
+class KUrl;
 
 class File
 {

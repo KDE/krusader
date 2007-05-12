@@ -32,9 +32,9 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "kmountman.h" 
 // KDE includes
 #include <kmessagebox.h>
-#include <kprocess.h>
+#include <k3process.h>
 #include <klocale.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <kdebug.h>
 
 // Krusader includes
@@ -190,9 +190,9 @@ void KMountMan::autoMount( QString path ) {
 }
 
 void KMountMan::eject( QString mntPoint ) {
-   KShellProcess proc;
+   K3ShellProcess proc;
    proc << KrServices::fullPathName( "eject" ) << "'" + mntPoint + "'";
-   proc.start( KProcess::Block );
+   proc.start( K3Process::Block );
    if ( !proc.normalExit() || proc.exitStatus() != 0 )         // if we failed with eject
       KMessageBox::information( 0, i18n( "Error ejecting device! You need to have 'eject' in your path." ), i18n( "Error" ), "CantExecuteEjectWarning" );
 }

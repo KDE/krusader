@@ -33,7 +33,7 @@
 
 // KDE includes
 #include <kdialog.h>
-#include <kanimwidget.h>
+#include <kanimatedbutton.h>
 #include <kurlrequesterdlg.h>
 #include <kdatepicker.h>
 #include <kdialogbase.h>
@@ -53,7 +53,7 @@
  * Used for asking the user for a folder.
  * example:
  * \code
- * KURL u = KChooseDir::getDir("target folder", "/suggested/path", ACTIVE_PANEL->virtualPath());
+ * KUrl u = KChooseDir::getDir("target folder", "/suggested/path", ACTIVE_PANEL->virtualPath());
  * if (u.isEmpty()) { 
  *   // user canceled (either by pressing cancel, or esc
  * } else {
@@ -69,30 +69,30 @@ public:
 	 * \param cwd - a path which is the current working directory (usually ACTIVE_PANEL->virtualPath()).
 	 *              this is used for completion of partial urls
 	 */
-	static KURL getDir(QString text,const KURL& url, const KURL& cwd);
-	static KURL getDir(QString text,const KURL& url, const KURL& cwd, bool & preserveAttrs );
-	static KURL getDir(QString text,const KURL& url, const KURL& cwd, bool & preserveAttrs, KURL &baseURL );
+	static KUrl getDir(QString text,const KUrl& url, const KUrl& cwd);
+	static KUrl getDir(QString text,const KUrl& url, const KUrl& cwd, bool & preserveAttrs );
+	static KUrl getDir(QString text,const KUrl& url, const KUrl& cwd, bool & preserveAttrs, KUrl &baseURL );
 };
 
-class KURLRequesterDlgForCopy : public KDialogBase {
+class KUrlRequesterDlgForCopy : public KDialogBase {
   Q_OBJECT
 public:
-	KURLRequesterDlgForCopy( const QString& url, const QString& text, bool presAttrs,
-				QWidget *parent, const char *name, bool modal=true, KURL baseURL = KURL() );
-	KURLRequesterDlgForCopy();
+	KUrlRequesterDlgForCopy( const QString& url, const QString& text, bool presAttrs,
+				QWidget *parent, const char *name, bool modal=true, KUrl baseURL = KUrl() );
+	KUrlRequesterDlgForCopy();
 
-	KURL selectedURL() const;
-	KURL baseURL() const;
+	KUrl selectedURL() const;
+	KUrl baseURL() const;
 	bool preserveAttrs();
 	bool copyDirStructure();
         
-	KURLRequester *urlRequester();
+	KUrlRequester *urlRequester();
 private slots:
 	void slotClear();
 	void slotTextChanged(const QString &);
 	void slotDirStructCBChanged();
 private:
-	KURLRequester *urlRequester_;
+	KUrlRequester *urlRequester_;
 	QComboBox *baseUrlCombo;
 	QCheckBox *preserveAttrsCB;
 	QCheckBox *copyDirStructureCB;

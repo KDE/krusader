@@ -46,14 +46,14 @@ public:
   DiskUsageViewer( QWidget *parent = 0, char *name = 0 );
   ~DiskUsageViewer();
   
-  void openURL( KURL url );
+  void openURL( KUrl url );
   void closeURL();
   void setStatusLabel( QLabel *statLabel, QString pref );
 
   inline DiskUsage * getWidget() { return diskUsage; }
   
 signals:
-  void openURLRequest(const KURL &);
+  void openURLRequest(const KUrl &);
   
 protected slots:
   void slotUpdateStatus( QString status = QString() );

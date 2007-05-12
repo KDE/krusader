@@ -29,7 +29,7 @@ DirHistoryQueue::~DirHistoryQueue() {}
 
 /** No descriptions */
 void DirHistoryQueue::slotPathChanged( ListPanel* p ) {
-	KURL url = p->virtualPath();
+	KUrl url = p->virtualPath();
 	// already in the queue ?
 	if(  urlQueue.findIndex( url ) >= 0 ){
 		// remove it !
@@ -45,7 +45,7 @@ void DirHistoryQueue::slotPathChanged( ListPanel* p ) {
 }
 
 #if 0
-void DirHistoryQueue::addUrl(const KURL& url){
+void DirHistoryQueue::addUrl(const KUrl& url){
 	if ( pathQueue.findIndex( path ) == -1 ) {
 		if ( pathQueue.size() > 12 ) {
 			// remove the oldest entry
@@ -67,10 +67,10 @@ void DirHistoryQueue::RemovePath( const QString& path ) {
 }
 
 bool DirHistoryQueue::checkPath( const QString& path ) {
-	KURL url( path );
+	KUrl url( path );
 
 	QString p = url.path();
-	//  kdDebug() << "url:" << p <<  ", file: " << url.fileName() << ", dir: " << url.directory() <<  endl;
+	//  kDebug() << "url:" << p <<  ", file: " << url.fileName() << ", dir: " << url.directory() <<  endl;
 	if ( url.protocol() == "file" ) {
 		QDir dir( path );
 		if ( !dir.exists() ) {

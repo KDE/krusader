@@ -39,18 +39,18 @@ class KrusaderImageFilePreview : public KPreviewWidgetBase {
 		virtual QSize sizeHint() const;
 
 	public slots:
-		virtual void showPreview( const KURL &url );
+		virtual void showPreview( const KUrl &url );
 		virtual void clearPreview();
 
 	protected slots:
 		void showPreview();
-		void showPreview( const KURL& url, bool force );
+		void showPreview( const KUrl& url, bool force );
 
 		virtual void gotPreview( const KFileItem*, const QPixmap& );
 
 	protected:
 		virtual void resizeEvent( QResizeEvent *e );
-		virtual KIO::PreviewJob * createJob( const KURL& url,
+		virtual KIO::PreviewJob * createJob( const KUrl& url,
 		                                     int w, int h );
 
 	private slots:
@@ -58,7 +58,7 @@ class KrusaderImageFilePreview : public KPreviewWidgetBase {
 		virtual void slotFailed( const KFileItem* );
 
 	private:
-		KURL currentURL;
+		KUrl currentURL;
 		QTimer *timer;
 		QLabel *imageLabel;
 		QLabel *infoLabel;

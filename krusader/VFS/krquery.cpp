@@ -386,7 +386,7 @@ bool KRQuery::containsContent( QString file ) const
   return false;
 }
 
-bool KRQuery::containsContent( KURL url ) const
+bool KRQuery::containsContent( KUrl url ) const
 {
   KIO::TransferJob *contentReader = KIO::get( url, false, false );
   connect(contentReader, SIGNAL(data(KIO::Job *, const QByteArray &)),
@@ -599,7 +599,7 @@ void KRQuery::setMimeType( const QString &typeIn, QStringList customList )
   customType = customList;
 }
 
-bool KRQuery::isExcluded( const KURL &url )
+bool KRQuery::isExcluded( const KUrl &url )
 {
   for ( unsigned int i = 0; i < whereNotToSearch.count(); ++i )
     if( whereNotToSearch [ i ].isParentOf( url ) || url.equals( whereNotToSearch [ i ], true ) )
@@ -611,20 +611,20 @@ bool KRQuery::isExcluded( const KURL &url )
   return false;
 }
 
-void KRQuery::setSearchInDirs( const KURL::List &urls ) { 
+void KRQuery::setSearchInDirs( const KUrl::List &urls ) { 
   whereToSearch.clear();
   for( unsigned int i = 0; i < urls.count(); ++i ) {
     QString url = urls[ i ].url();
-    KURL completed = vfs::fromPathOrURL( KURLCompletion::replacedPath( url, true, true ) );
+    KUrl completed = vfs::fromPathOrUrl( KUrlCompletion::replacedPath( url, true, true ) );
     whereToSearch.append( completed );
   }
 }
 
-void KRQuery::setDontSearchInDirs( const KURL::List &urls ) { 
+void KRQuery::setDontSearchInDirs( const KUrl::List &urls ) { 
   whereNotToSearch.clear();
   for( unsigned int i = 0; i < urls.count(); ++i ) {
     QString url = urls[ i ].url();
-    KURL completed = vfs::fromPathOrURL( KURLCompletion::replacedPath( url, true, true ) );
+    KUrl completed = vfs::fromPathOrUrl( KUrlCompletion::replacedPath( url, true, true ) );
     whereNotToSearch.append( completed );
   }
 }

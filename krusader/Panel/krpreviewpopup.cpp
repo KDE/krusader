@@ -29,7 +29,7 @@ KrPreviewPopup::KrPreviewPopup(): id(1),noPreview(true){
 	connect(this,SIGNAL(activated(int)),this,SLOT(view(int)));
 }
 
-void KrPreviewPopup::setUrls(const KURL::List* urls){
+void KrPreviewPopup::setUrls(const KUrl::List* urls){
 	//insertItem(i18n("Configure preview"),0);
 	insertItem(i18n("Preview not available"),0);
 
@@ -62,7 +62,7 @@ void KrPreviewPopup::addPreview(const KFileItem* file,const QPixmap& preview){
 void KrPreviewPopup::view(int id){
 	if( id==0 ) return;
 	else {
-		KURL url = *(availablePreviews.at(id-1));
+		KUrl url = *(availablePreviews.at(id-1));
 		KrViewer::view(url);
 	}
 }

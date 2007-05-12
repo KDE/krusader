@@ -32,7 +32,7 @@
 
 #include <qstringlist.h>
 #include <qobject.h>
-#include <kprocess.h>
+#include <k3process.h>
 #include <kurl.h>
 #include <kwallet.h>
 
@@ -54,7 +54,7 @@ public:
   // return the a list of supported packers
   static QStringList supportedPackers();
   // true - if the url is an archive (ie: tar:/home/test/file.tar.bz2)
-  static bool isArchive(const KURL& url);
+  static bool isArchive(const KUrl& url);
   // used to determine the type of the archive
   static QString getType( bool &encrypted, QString fileName, QString mime, bool checkEncrypted = true );
   // queries the password from the user
@@ -68,14 +68,14 @@ private:
   static KWallet::Wallet * wallet;
 };
 
-class KrShellProcess : public KShellProcess {
+class KrShellProcess : public K3ShellProcess {
 	Q_OBJECT
 public:
-	KrShellProcess() : KShellProcess(), errorMsg( QString::null ), outputMsg( QString::null ) {
-		connect(this,SIGNAL(receivedStderr(KProcess*,char*,int)),
-				this,SLOT(receivedErrorMsg(KProcess*,char*,int)) );
-		connect(this,SIGNAL(receivedStdout(KProcess*,char*,int)),
-				this,SLOT(receivedOutputMsg(KProcess*,char*,int)) );
+	KrShellProcess() : K3ShellProcess(), errorMsg( QString::null ), outputMsg( QString::null ) {
+		connect(this,SIGNAL(receivedStderr(K3Process*,char*,int)),
+				this,SLOT(receivedErrorMsg(K3Process*,char*,int)) );
+		connect(this,SIGNAL(receivedStdout(K3Process*,char*,int)),
+				this,SLOT(receivedOutputMsg(K3Process*,char*,int)) );
 	}
 	
 	QString getErrorMsg() {
@@ -86,14 +86,14 @@ public:
 	}
 	
 public slots:
-	void receivedErrorMsg(KProcess*, char *buf, int len) {
+	void receivedErrorMsg(K3Process*, char *buf, int len) {
 		errorMsg += QString::fromLocal8Bit( buf, len );
 		if( errorMsg.length() > 500 )
 			errorMsg = errorMsg.right( 500 );
 		receivedOutputMsg( 0, buf, len );
 	}
 	
-	void receivedOutputMsg(KProcess*, char *buf, int len) {
+	void receivedOutputMsg(K3Process*, char *buf, int len) {
 		outputMsg += QString::fromLocal8Bit( buf, len );
 		if( outputMsg.length() > 500 )
 			outputMsg = outputMsg.right( 500 );
@@ -109,12 +109,12 @@ class Kr7zEncryptionChecker : public KrShellProcess {
 	
 public:
 	Kr7zEncryptionChecker() : KrShellProcess(), encrypted( false ), lastData() {
-		connect(this,SIGNAL(receivedStdout(KProcess*,char*,int)),
-				this,SLOT(processStdout(KProcess*,char*,int)) );
+		connect(this,SIGNAL(receivedStdout(K3Process*,char*,int)),
+				this,SLOT(processStdout(K3Process*,char*,int)) );
 	}
 
 public slots:
-	void processStdout( KProcess *proc,char *buf,int len ) {
+	void processStdout( K3Process *proc,char *buf,int len ) {
 		QByteArray d(len);
 		d.setRawData(buf,len);
 		QString data =  QString( d );

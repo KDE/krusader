@@ -137,8 +137,8 @@ void KrusaderView::slotCurrentChanged( QString p ) {
   if ( konsole_part != 0L && konsole_part->widget() != 0L ) {
 	 KConfigGroupSaver grp(krConfig, "General");
     if (krConfig->readBoolEntry("Send CDs", _SendCDs)) // hopefully, this is cached in kconfig
-        if( !konsole_part->url().equals( KURL( p ), true ) )
-           konsole_part->openURL( KURL( p ) );
+        if( !konsole_part->url().equals( KUrl( p ), true ) )
+           konsole_part->openURL( KUrl( p ) );
   }
 }
 
@@ -287,7 +287,7 @@ void KrusaderView::switchFullScreenTE()
 bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
   if( e->type() == QEvent::AccelOverride && konsole_part && konsole_part->widget() == watched ) {
     QKeyEvent *ke = (QKeyEvent *)e;
-    if( ( ke->key() ==  Key_Insert ) && ( ke->state()  == ShiftButton ) ) {
+    if( ( ke->key() ==  Qt::Key_Insert ) && ( ke->state()  == ShiftButton ) ) {
       ke->accept();
       return true;
     }
@@ -306,13 +306,13 @@ bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
         return true;
     }
 
-    if( ( ke->key() == Key_Enter || ke->key() == Key_Return ) && ( ( ke->state() & ~ShiftButton ) == ControlButton ) ) {
+    if( ( ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return ) && ( ( ke->state() & ~ShiftButton ) == ControlButton ) ) {
 
       QString filename = ACTIVE_PANEL->view->getCurrentItem();
       if( filename == QString::null || filename == ".." )
         return true;
       if( ke->state() & ShiftButton ) {
-        QString path=vfs::pathOrURL( ACTIVE_FUNC->files()->vfs_getOrigin(), 1 );
+        QString path=vfs::pathOrUrl( ACTIVE_FUNC->files()->vfs_getOrigin(), 1 );
         filename = path+filename;
       }
 
@@ -321,11 +321,11 @@ bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
       QKeyEvent keyEvent( QEvent::KeyPress, 0, -1, 0, QString( " " ) + filename + QString( " " ));
       QApplication::sendEvent( konsole_part->widget(), &keyEvent );
       return true;
-    } else if( ( ke->key() ==  Key_Down ) && ( ke->state() == ControlButton ) ) {
+    } else if( ( ke->key() ==  Qt::Key_Down ) && ( ke->state() == ControlButton ) ) {
       if( cmdLine->isVisible() )
         cmdLine->setFocus();
       return true;
-    } else if( ( ( ke->key() ==  Key_Up ) && ( ke->state()  == ControlButton ) ) || 
+    } else if( ( ( ke->key() ==  Qt::Key_Up ) && ( ke->state()  == ControlButton ) ) || 
                ( ke->state()  == ( ControlButton | ShiftButton ) ) ) {
       ACTIVE_PANEL->slotFocusOnMe();
       return true;

@@ -52,7 +52,7 @@ class VirtualCopyJob : public KIO::Job
   Q_OBJECT
 
 public:
-  VirtualCopyJob( const QStringList *names, vfs * vfs, const KURL& dest, const KURL& baseURL,
+  VirtualCopyJob( const QStringList *names, vfs * vfs, const KUrl& dest, const KUrl& baseURL,
                   PreserveMode pmode, KIO::CopyJob::CopyMode mode, bool asMethod, bool showProgressInfo );
 
 protected:
@@ -70,9 +70,9 @@ protected slots:
   void slotMkdirResult( KIO::Job * );
   void slotCopyResult( KIO::Job * );
 
-  void slotCopying(KIO::Job *, const KURL &, const KURL &);
-  void slotMoving(KIO::Job *, const KURL &, const KURL &);
-  void slotCreatingDir(KIO::Job *, const KURL &);
+  void slotCopying(KIO::Job *, const KUrl &, const KUrl &);
+  void slotMoving(KIO::Job *, const KUrl &, const KUrl &);
+  void slotCreatingDir(KIO::Job *, const KUrl &);
   
   void slotProcessedFiles (KIO::Job *, unsigned long);
   void slotProcessedDirs (KIO::Job *, unsigned long);
@@ -97,16 +97,16 @@ private:
   unsigned long            m_tempFiles;
   unsigned long            m_tempSubdirs;  
     
-  Q3ValueList<KURL>         m_dirsToGetSize;
+  Q3ValueList<KUrl>         m_dirsToGetSize;
   
-  Q3Dict<KURL::List>        m_filesToCopy;
+  Q3Dict<KUrl::List>        m_filesToCopy;
   
   QMap<QString,int>        m_size;
   QMap<QString,int>        m_filenum;
   QMap<QString,int>        m_subdirs;
   
-  KURL                     m_baseURL;
-  KURL                     m_dest;
+  KUrl                     m_baseURL;
+  KUrl                     m_dest;
   PreserveMode             m_pmode;
   KIO::CopyJob::CopyMode   m_mode;
   bool                     m_asMethod;
@@ -116,7 +116,7 @@ private:
   
   QTimer                   m_reportTimer;
   
-  KURL                     m_current;
+  KUrl                     m_current;
   QString                  m_currentDir;
   
   QStringList              m_dirStack;

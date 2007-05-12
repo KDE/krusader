@@ -14,7 +14,7 @@
 #define KRACTION_H
 
 #include <kaction.h>
-#include <kprocess.h>
+#include <k3process.h>
 #include <kdialogbase.h>
 #include "kractionbase.h"
 
@@ -39,7 +39,7 @@ class KrAction: public KAction, public KrActionBase {
        * @param currentURL Check for this file
        * @return true if the KrAction if available
        */
-      bool isAvailable( const KURL& currentURL );
+      bool isAvailable( const KUrl& currentURL );
 
       bool xmlRead( const QDomElement& element );
       QDomElement xmlDump( QDomDocument& doc ) const;
@@ -125,8 +125,8 @@ class KrActionProcDlg: public KDialogBase {
       KrActionProcDlg( QString caption, bool enableStderr = false, QWidget *parent = 0 );
 
    protected slots:
-      void addStderr( KProcess *proc, char *buffer, int buflen );
-      void addStdout( KProcess *proc, char *buffer, int buflen );
+      void addStderr( K3Process *proc, char *buffer, int buflen );
+      void addStdout( K3Process *proc, char *buffer, int buflen );
       void toggleFixedFont( bool state );
       void slotUser1(); ///< This is used to save the buffer to disc
 
@@ -153,11 +153,11 @@ class KrActionProc: public QObject {
 
    protected slots:
       void kill() { _proc->kill( SIGINT ); }
-      void processExited( KProcess *proc );
+      void processExited( K3Process *proc );
 
    private:
       KrActionBase* _action;
-      KProcess *_proc;
+      K3Process *_proc;
       QString _stdout;
       QString _stderr;
       KrActionProcDlg *_output;

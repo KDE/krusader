@@ -60,17 +60,17 @@ void DirHistoryButton::openPopup() {
 }
 /** No descriptions */
 void DirHistoryButton::slotPopup() {
-	//  kdDebug() << "History slot" << endl;
+	//  kDebug() << "History slot" << endl;
 }
 /** No descriptions */
 void DirHistoryButton::slotAboutToShow() {
-	//  kdDebug() << "about to show" << endl;
+	//  kDebug() << "about to show" << endl;
 	popupMenu->clear();
-	KURL::List::iterator it;
+	KUrl::List::iterator it;
 
 	int id = 0;
 	for ( it = historyQueue->urlQueue.begin(); it != historyQueue->urlQueue.end(); ++it ) {
-		popupMenu->insertItem( (*it).prettyURL(), id++ );
+		popupMenu->insertItem( (*it).prettyUrl(), id++ );
 	}
 	if ( id > 0 ) {
 		popupMenu->setItemChecked( 0, true );

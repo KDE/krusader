@@ -33,7 +33,7 @@
 
 #include <klocale.h>
 #include <qtooltip.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <qcursor.h>
 #include <kinputdialog.h>
 #include <kiconloader.h>
@@ -63,7 +63,7 @@ void ProfileManager::profilePopup()
   #define OVERWRITE_ENTRY_ID  4000
   
   // create the menu
-  KPopupMenu popup, removePopup, overwritePopup;
+  KMenu popup, removePopup, overwritePopup;
   popup.insertTitle(i18n("Profiles"));
   
   for( unsigned i=0; i != profileList.count() ; i++ )

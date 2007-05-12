@@ -344,7 +344,7 @@ void KonfiguratorEditBox::slotSetDefaults(QObject *)
 ///////////////////////////////
 
 KonfiguratorURLRequester::KonfiguratorURLRequester( QString cls, QString name, QString dflt,
-    QWidget *parent, const char *widgetName, bool rst, int pg ) : KURLRequester( parent, widgetName ),
+    QWidget *parent, const char *widgetName, bool rst, int pg ) : KUrlRequester( parent, widgetName ),
     defaultValue( dflt )
 {
   ext = new KonfiguratorExtension( this, cls, name, rst, pg );

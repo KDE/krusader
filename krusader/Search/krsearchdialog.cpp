@@ -52,7 +52,7 @@
 #include <QResizeEvent>
 #include <QCloseEvent>
 #include <kmessagebox.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <qcursor.h>
 #include <qclipboard.h>
 #include <q3header.h>
@@ -68,7 +68,7 @@ public:
 
   void startDrag() 
   {
-    KURL::List urls;
+    KUrl::List urls;
 
     Q3ListViewItem * item = firstChild();
     while( item )
@@ -77,7 +77,7 @@ public:
       {
          QString name = item->text(1);
          name += (name.endsWith( "/" ) ? item->text(0) : "/" + item->text(0) );
-         urls.push_back( vfs::fromPathOrURL( name ) );
+         urls.push_back( vfs::fromPathOrUrl( name ) );
       }
       item = item->nextSibling();
     }
@@ -297,7 +297,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
     generalFilter->searchInArchives->setChecked( lastSearchInArchives );
     generalFilter->followLinks->setChecked( lastFollowSymLinks );
     // the path in the active panel should be the default search location
-    generalFilter->searchIn->lineEdit()->setText( ACTIVE_PANEL->virtualPath().prettyURL() );
+    generalFilter->searchIn->lineEdit()->setText( ACTIVE_PANEL->virtualPath().prettyUrl() );
   }
   else
     profileManager->loadProfile( profile ); // important: call this _after_ you've connected profileManager ot the loadFromProfile!!
@@ -441,7 +441,7 @@ void KrSearchDialog::stopSearch() {
 }
 
 void KrSearchDialog::resultDoubleClicked(Q3ListViewItem* i) {
-  ACTIVE_FUNC->openUrl(vfs::fromPathOrURL(i->text(1)),i->text(0));
+  ACTIVE_FUNC->openUrl(vfs::fromPathOrUrl(i->text(1)),i->text(0));
   showMinimized();
 }
 
@@ -474,21 +474,21 @@ void KrSearchDialog::keyPressEvent(QKeyEvent *e)
 {
   KKey pressedKey( e );
 
-  if( isSearching && e->key() == Key_Escape ) /* at searching we must not close the window */
+  if( isSearching && e->key() == Qt::Key_Escape ) /* at searching we must not close the window */
   {
     stopSearch();         /* so we simply stop searching */
     return;
   }
   if( resultsList->hasFocus() )
   {
-    if( e->key() == Key_F4 )
+    if( e->key() == Qt::Key_F4 )
     {
       if (!generalFilter->containsText->currentText().isEmpty() && QApplication::clipboard()->text() != generalFilter->containsText->currentText())
         QApplication::clipboard()->setText(generalFilter->containsText->currentText());
       editCurrent();
       return;
     }
-    else if( e->key() == Key_F3 )
+    else if( e->key() == Qt::Key_F3 )
     {
       if (!generalFilter->containsText->currentText().isEmpty() && QApplication::clipboard()->text() != generalFilter->containsText->currentText())
         QApplication::clipboard()->setText(generalFilter->containsText->currentText());
@@ -512,7 +512,7 @@ void KrSearchDialog::editCurrent()
   {
     QString name = current->text(1);
     name += (name.endsWith( "/" ) ? current->text(0) : "/" + current->text(0) );
-    KURL url = vfs::fromPathOrURL( name );
+    KUrl url = vfs::fromPathOrUrl( name );
     KrViewer::edit( url, this );
   }
 }
@@ -524,7 +524,7 @@ void KrSearchDialog::viewCurrent()
   {
     QString name = current->text(1);
     name += (name.endsWith( "/" ) ? current->text(0) : "/" + current->text(0) );
-    KURL url = vfs::fromPathOrURL( name );
+    KUrl url = vfs::fromPathOrUrl( name );
     KrViewer::view( url, this );
   }
 }
@@ -540,7 +540,7 @@ void KrSearchDialog::rightClickMenu(Q3ListViewItem *item, const QPoint&, int)
     return;
 
   // create the menu
-  KPopupMenu popup;
+  KMenu popup;
   popup.insertTitle(i18n("Krusader Search"));
 
   popup.insertItem(i18n("View File (F3)"),            VIEW_FILE_ID);
@@ -569,7 +569,7 @@ void KrSearchDialog::rightClickMenu(Q3ListViewItem *item, const QPoint&, int)
 void KrSearchDialog::feedToListBox()
 {
   virt_vfs v(0,true);
-  v.vfs_refresh( KURL( "/" ) );
+  v.vfs_refresh( KUrl( "/" ) );
 
   krConfig->setGroup( "Search" );
   int listBoxNum = krConfig->readNumEntry( "Feed To Listbox Counter", 1 );
@@ -591,26 +591,26 @@ void KrSearchDialog::feedToListBox()
        return;
   }
 
-  KURL::List urlList;
+  KUrl::List urlList;
   Q3ListViewItem * item = resultsList->firstChild();
   while( item )
   {
     QString name = item->text(1);
     name += (name.endsWith( "/" ) ? item->text(0) : "/" + item->text(0) );
-    urlList.push_back( vfs::fromPathOrURL( name ) );
+    urlList.push_back( vfs::fromPathOrUrl( name ) );
     item = item->nextSibling();
   }
-  KURL url = KURL::fromPathOrURL( QString("virt:/") + queryName );
+  KUrl url = KUrl::fromPathOrUrl( QString("virt:/") + queryName );
   v.vfs_refresh( url );
   v.vfs_addFiles( &urlList, KIO::CopyJob::Copy, 0 );
   //ACTIVE_FUNC->openUrl(url);
-  ACTIVE_MNG->slotNewTab(url.prettyURL());
+  ACTIVE_MNG->slotNewTab(url.prettyUrl());
   closeDialog();
 }
 
 void KrSearchDialog::copyToClipBoard()
 {
-  KURL::List urls;
+  KUrl::List urls;
 
   Q3ListViewItem * item = resultsList->firstChild();
   while( item )
@@ -619,7 +619,7 @@ void KrSearchDialog::copyToClipBoard()
     {
        QString name = item->text(1);
        name += (name.endsWith( "/" ) ? item->text(0) : "/" + item->text(0) );
-       urls.push_back( vfs::fromPathOrURL( name ) );
+       urls.push_back( vfs::fromPathOrUrl( name ) );
     }
     item = item->nextSibling();
   }

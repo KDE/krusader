@@ -11,7 +11,7 @@ public:
 	void openPopup();
 
 signals:
-	void openUrl(const KURL &url);
+	void openUrl(const KUrl &url);
 
 protected slots:
 	void populate();

@@ -47,7 +47,7 @@ extern "C" { int kdemain( int argc, char **argv ); }
 	fclose(f);\
 }
 
-QDict<KURL::List> VirtProtocol::kioVirtDict;
+QDict<KUrl::List> VirtProtocol::kioVirtDict;
 KConfig* VirtProtocol::kio_virt_db;
 
 int kdemain( int argc, char **argv ) {
@@ -72,7 +72,7 @@ VirtProtocol::~VirtProtocol() {
 	delete kio_virt_db;
 }
 
-void VirtProtocol::del(KURL const & /*url */, bool /* isFile */ ){
+void VirtProtocol::del(KUrl const & /*url */, bool /* isFile */ ){
 //	KRDEBUG(url.path());
 	
 	messageBox(KIO::SlaveBase::QuestionYesNo,
@@ -85,7 +85,7 @@ void VirtProtocol::del(KURL const & /*url */, bool /* isFile */ ){
 	finished();
 }
 
-void VirtProtocol::copy( const KURL &src, const KURL &dest, int /* permissions */, bool /* overwrite */ ){
+void VirtProtocol::copy( const KUrl &src, const KUrl &dest, int /* permissions */, bool /* overwrite */ ){
 	QString path = dest.path( -1 ).mid( 1 );
 	path = path.left(path.findRev("/"));
 	if ( path.isEmpty() ) path = "/";
@@ -108,12 +108,12 @@ bool VirtProtocol::addDir(QString& path){
 	QString name = path.mid(path.findRev("/")+1);
 
 	if( addDir(updir) ){ 
-		KURL url;
+		KUrl url;
 		if( updir == "/" ) url = QString("virt:/")+name;
 		else url = QString("virt:/")+updir+"/"+name;
 		kioVirtDict[ updir ]->append( url );
 
-		KURL::List* temp = new KURL::List();
+		KUrl::List* temp = new KUrl::List();
 		kioVirtDict.replace( path, temp );
 
 		return true;
@@ -121,7 +121,7 @@ bool VirtProtocol::addDir(QString& path){
 	return false;
 }
 
-void VirtProtocol::mkdir(const KURL& url,int){
+void VirtProtocol::mkdir(const KUrl& url,int){
 	if( url.protocol() != VIRT_PROTOCOL ){
 		redirection(url);
 		finished();
@@ -143,7 +143,7 @@ void VirtProtocol::mkdir(const KURL& url,int){
 	finished();
 }
 
-void VirtProtocol::listDir( const KURL & url ) {
+void VirtProtocol::listDir( const KUrl & url ) {
 	if( url.protocol() != VIRT_PROTOCOL ){
 		redirection(url);
 		finished();
@@ -155,16 +155,16 @@ void VirtProtocol::listDir( const KURL & url ) {
 	QString path = url.path( -1 ).mid( 1 );
 	if ( path.isEmpty() ) path = "/";
 
-	KURL::List* urlList = kioVirtDict[ path ];
+	KUrl::List* urlList = kioVirtDict[ path ];
 	if ( !urlList ) {
 		error(ERR_CANNOT_ENTER_DIRECTORY,url.path());
 		return;
 	}
 
 	UDSEntryList dirList;
-	KURL::List::iterator it;
+	KUrl::List::iterator it;
 	for ( it = urlList->begin() ; it != urlList->end() ; ++it ) {
-		KURL entry_url = *it;
+		KUrl entry_url = *it;
 		// translate url->UDS_ENTRY
 		UDSEntry entry;
 		if( entry_url.protocol() == VIRT_PROTOCOL ){
@@ -173,7 +173,7 @@ void VirtProtocol::listDir( const KURL & url ) {
 			UDSAtom atom;
 
 			atom.m_uds = UDS_NAME;
-			atom.m_str = url.isLocalFile() ? url.path() : entry_url.prettyURL();
+			atom.m_str = url.isLocalFile() ? url.path() : entry_url.prettyUrl();
 			entry.append(atom);
 	
 			atom.m_uds = UDS_URL;
@@ -190,7 +190,7 @@ void VirtProtocol::listDir( const KURL & url ) {
 	finished();
 }
 
-void VirtProtocol::stat( const KURL & url ) {
+void VirtProtocol::stat( const KUrl & url ) {
 	if( url.protocol() != VIRT_PROTOCOL ){
 		redirection(url);
 		finished();
@@ -205,7 +205,7 @@ void VirtProtocol::stat( const KURL & url ) {
 	finished();
 }
 
-void VirtProtocol::get( const KURL & url ) {
+void VirtProtocol::get( const KUrl & url ) {
 	if( url.protocol() != VIRT_PROTOCOL ){
 		redirection(url);
 		finished();
@@ -215,7 +215,7 @@ void VirtProtocol::get( const KURL & url ) {
 	finished();
 }
 
-bool VirtProtocol::rewriteURL(const KURL& /* src */, KURL&){ 
+bool VirtProtocol::rewriteURL(const KUrl& /* src */, KUrl&){ 
 	return true; 
 }
 
@@ -225,9 +225,9 @@ bool VirtProtocol::save(){
 	KConfig* db = new KConfig(VIRT_VFS_DB,false,"data");;
 	
 	db->setGroup("virt_db");
-	QDictIterator<KURL::List> it( kioVirtDict ); // See QDictIterator
+	QDictIterator<KUrl::List> it( kioVirtDict ); // See QDictIterator
 	for( ; it.current(); ++it ){
-		KURL::List::iterator url;
+		KUrl::List::iterator url;
 		QStringList entry;
 		for ( url = it.current()->begin() ; url != it.current()->end() ; ++url ) {
 			entry.append( (*url).url() );
@@ -251,14 +251,14 @@ bool VirtProtocol::load(){
 	
 	QMap<QString, QString> map = db->entryMap("virt_db");
 	QMap<QString, QString>::Iterator it;
-	KURL::List* urlList;
+	KUrl::List* urlList;
 	for ( it = map.begin(); it != map.end(); ++it ) {
-		urlList = new KURL::List( db->readListEntry(it.key()) );
+		urlList = new KUrl::List( db->readListEntry(it.key()) );
 		kioVirtDict.replace( it.key(),urlList );
 	}
 
 	if( !kioVirtDict["/" ]){
-		urlList = new KURL::List();
+		urlList = new KUrl::List();
 		kioVirtDict.replace( "/", urlList );	
 	}
 
@@ -269,7 +269,7 @@ bool VirtProtocol::load(){
 	return true;
 }
 
-void VirtProtocol::local_entry(const KURL& url,UDSEntry& entry){
+void VirtProtocol::local_entry(const KUrl& url,UDSEntry& entry){
 	QString path = url.path( -1 ).mid( 1 );
 	if ( path.isEmpty() ) path = "/";
 

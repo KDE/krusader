@@ -112,7 +112,7 @@ public:
    
 public:
   // if rightDirectory is null, leftDirectory is actually the profile name to load
-  SynchronizerGUI(QWidget* parent,  KURL leftDirectory, KURL rightDirectory = QString::null, QStringList selList = QStringList() );
+  SynchronizerGUI(QWidget* parent,  KUrl leftDirectory, KUrl rightDirectory = QString::null, QStringList selList = QStringList() );
   SynchronizerGUI(QWidget* parent,  QString profile );
   ~SynchronizerGUI();
 
@@ -144,7 +144,7 @@ protected slots:
   void connectFilters( const QString & );  
 
 private:
-  void initGUI(QWidget* parent, QString profile, KURL leftURL, KURL rightURL, QStringList selList);
+  void initGUI(QWidget* parent, QString profile, KUrl leftURL, KUrl rightURL, QStringList selList);
   
   QString convertTime(time_t time) const;
   void    setMarkFlags();
@@ -165,9 +165,9 @@ protected:
   
   QTabWidget    *synchronizerTabs;  
   
-  KHistoryCombo *leftLocation;
-  KHistoryCombo *rightLocation;
-  KHistoryCombo *fileFilter;
+  KHistoryComboBox *leftLocation;
+  KHistoryComboBox *rightLocation;
+  KHistoryComboBox *fileFilter;
   
   Q3ListView     *syncList;
   Synchronizer   synchronizer;

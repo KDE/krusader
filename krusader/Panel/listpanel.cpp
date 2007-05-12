@@ -39,7 +39,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <Q3HBoxLayout>
 #include <QKeyEvent>
 #include <Q3ValueList>
-#include <Q3GridLayout>
 #include <QPixmap>
 #include <Q3Frame>
 #include <QDropEvent>
@@ -53,8 +52,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <qregexp.h> 
 #include <qsplitter.h>
 // KDE includes
-#include <kpopupmenu.h>
-#include <kprocess.h>
+#include <kmenu.h>
+#include <k3process.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 #include <kmimetype.h>
@@ -114,7 +113,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 typedef Q3ValueList<KServiceOffer> OfferList;
 
-#define URL(X) KURL::fromPathOrURL(X)
+#define URL(X) KUrl::fromPathOrUrl(X)
 
 /////////////////////////////////////////////////////
 // 					The list panel constructor       //
@@ -125,11 +124,11 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left, const char *n
 
    func = new ListPanelFunc( this );
    setAcceptDrops( true );
-   layout = new Q3GridLayout( this, 3, 3 );
+   layout = new QGridLayout( this, 3, 3 );
 
    mediaButton = new MediaButton( this, "mediaButton" );
    connect( mediaButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
-   connect( mediaButton, SIGNAL( openUrl( const KURL& ) ), func, SLOT( openUrl( const KURL& ) ) );
+   connect( mediaButton, SIGNAL( openUrl( const KUrl& ) ), func, SLOT( openUrl( const KUrl& ) ) );
 
    status = new KrSqueezedTextLabel( this );
    krConfig->setGroup( "Look&Feel" );
@@ -152,11 +151,11 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left, const char *n
    dirHistoryQueue = new DirHistoryQueue( this );
    historyButton = new DirHistoryButton( dirHistoryQueue, this, "historyButton" );
    connect( historyButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
-   connect( historyButton, SIGNAL( openUrl( const KURL& ) ), func, SLOT( openUrl( const KURL& ) ) );
+   connect( historyButton, SIGNAL( openUrl( const KUrl& ) ), func, SLOT( openUrl( const KUrl& ) ) );
 
 	bookmarksButton = new KrBookmarkButton(this);
 	connect( bookmarksButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
-   connect( bookmarksButton, SIGNAL( openUrl( const KURL& ) ), func, SLOT( openUrl( const KURL& ) ) );
+   connect( bookmarksButton, SIGNAL( openUrl( const KUrl& ) ), func, SLOT( openUrl( const KUrl& ) ) );
 	Q3WhatsThis::add
       ( bookmarksButton, i18n( "Open menu with bookmarks. You can also add "
                                "current location to the list, edit bookmarks "
@@ -211,7 +210,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left, const char *n
 	}
 	
 	QuickNavLineEdit *qnle = new QuickNavLineEdit(this);
-   origin = new KURLRequester( qnle, hbox );
+   origin = new KUrlRequester( qnle, hbox );
    QPixmap pixMap = origin->button() ->iconSet() ->pixmap( QIcon::Small, QIcon::Normal );
    origin->button() ->setFixedSize( pixMap.width() + 4, pixMap.height() + 4 );
    Q3WhatsThis::add
@@ -282,7 +281,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left, const char *n
 	
 	// add a popup
 	popup = new PanelPopup(splt, left);
-	connect(popup, SIGNAL(selection(const KURL&)), SLOTS, SLOT(refresh(const KURL&)));
+	connect(popup, SIGNAL(selection(const KUrl&)), SLOTS, SLOT(refresh(const KUrl&)));
 	connect(popup, SIGNAL(hideMe()), this, SLOT(togglePanelPopup()));
 	popup->hide();
 	
@@ -389,7 +388,7 @@ bool ListPanel::eventFilter ( QObject * watched, QEvent * e ) {
 	if( e->type() == QEvent::KeyPress && origin->lineEdit() == watched ) {
 		QKeyEvent *ke = (QKeyEvent *)e;
 		
-		if( ( ke->key() ==  Key_Down ) && ( ke->state() == ControlButton ) ) {
+		if( ( ke->key() ==  Qt::Key_Down ) && ( ke->state() == ControlButton ) ) {
 			slotFocusOnMe();
 			return true;
 		}
@@ -426,7 +425,7 @@ void ListPanel::togglePanelPopup() {
 	}
 }
 
-KURL ListPanel::virtualPath() const {
+KUrl ListPanel::virtualPath() const {
 	return func->files()->vfs_getOrigin(); 
 }
 
@@ -642,8 +641,8 @@ void ListPanel::slotFocusOnMe() {
 
 // this is used to start the panel, AFTER setOther() has been used
 //////////////////////////////////////////////////////////////////
-void ListPanel::start( KURL url, bool immediate ) {
-   KURL virt;
+void ListPanel::start( KUrl url, bool immediate ) {
+   KUrl virt;
    
    virt = url;
    
@@ -672,12 +671,12 @@ void ListPanel::slotStartUpdate() {
 		slotFocusOnMe();
 	}
 
-   setCursor( KCursor::workingCursor() );
+   setCursor( Qt::BusyCursor );
    view->clear();
 
    if ( func->files() ->vfs_getType() == vfs::NORMAL )
       _realPath = virtualPath();
-   this->origin->setURL( vfs::pathOrURL( virtualPath() ) );
+   this->origin->setURL( vfs::pathOrUrl( virtualPath() ) );
    emit pathChanged( this );
    emit cmdLineUpdate( realPath() );	// update the command line
 
@@ -688,7 +687,7 @@ void ListPanel::slotStartUpdate() {
       otherPanel->slotUpdate();
    }
    // return cursor to normal arrow
-   setCursor( KCursor::arrowCursor() );
+   setCursor( Qt::ArrowCursor );
    slotUpdateTotals();
 	krApp->popularUrls->addUrl(virtualPath());
 }
@@ -698,7 +697,7 @@ void ListPanel::slotUpdate() {
    QString protocol = func->files() ->vfs_getOrigin().protocol();
    bool isFtp = ( protocol == "ftp" || protocol == "smb" || protocol == "sftp" || protocol == "fish" );
 
-   QString origin = virtualPath().prettyURL(-1);
+   QString origin = virtualPath().prettyUrl(-1);
    if ( origin.right( 1 ) != "/" && !( ( func->files() ->vfs_getType() == vfs::FTP ) && isFtp &&
                                        origin.find( '/', origin.find( ":/" ) + 3 ) == -1 ) ) {
       view->addItems( func->files() );
@@ -709,7 +708,7 @@ void ListPanel::slotUpdate() {
 }
 
 
-void ListPanel::slotGetStats( const KURL& url ) {
+void ListPanel::slotGetStats( const KUrl& url ) {
    if ( !url.isLocalFile() ) {
       status->setText( i18n( "No space information on non-local filesystems" ) );
       return ;
@@ -734,7 +733,7 @@ void ListPanel::slotGetStats( const KURL& url ) {
 #endif
 
    status->setText( i18n( "Mt.Man: working ..." ) );
-	statsAgent = KDiskFreeSp::findUsageInfo( path );
+	statsAgent = KDiskFreeSpace::findUsageInfo( path );
    connect( statsAgent, SIGNAL( foundMountPoint( const QString &, unsigned long, unsigned long, unsigned long ) ),
             this, SLOT( gotStats( const QString &, unsigned long, unsigned long, unsigned long ) ) );
 }
@@ -756,8 +755,8 @@ void ListPanel::gotStats( const QString &mountPoint, unsigned long kBSize,
 	}
 	
 	QString stats = i18n( "%1 free out of %2 (%3%) on %4 [ (%5) ]" )
-        .arg( KIO::convertSizeFromKB( kBAvail ) )
-        .arg( KIO::convertSizeFromKB( kBSize ) ).arg( perc )
+        .arg( KIO::convertSizeFromKiB( kBAvail ) )
+        .arg( KIO::convertSizeFromKiB( kBSize ) ).arg( perc )
         .arg( mountPoint ).arg( fstype );
 	status->setText( stats );
 }
@@ -821,7 +820,7 @@ void ListPanel::handleDropOnView( QDropEvent *e, QWidget *widget ) {
    }
    //////////////////////////////////////////////////////////////////////////////
    // decode the data
-   KURL::List URLs;
+   KUrl::List URLs;
    if ( !KURLDrag::decode( e, URLs ) ) {
       e->ignore(); // not for us to handle!
       return ;
@@ -836,7 +835,7 @@ void ListPanel::handleDropOnView( QDropEvent *e, QWidget *widget ) {
 
    KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy;
 
-   // the KURL::List is finished, let's go
+   // the KUrl::List is finished, let's go
    // --> display the COPY/MOVE/LINK menu
    Q3PopupMenu popup( this );
    popup.insertItem( i18n( "Copy Here" ), 1 );
@@ -872,7 +871,7 @@ void ListPanel::handleDropOnView( QDropEvent *e, QWidget *widget ) {
 }
 
 void ListPanel::startDragging( QStringList names, QPixmap px ) {
-   KURL::List * urls = func->files() ->vfs_getFiles( &names );
+   KUrl::List * urls = func->files() ->vfs_getFiles( &names );
 
    if ( urls->isEmpty() ) { // avoid draging empty urls
       delete urls;
@@ -931,8 +930,8 @@ void ListPanel::prepareToDelete() {
 
 void ListPanel::keyPressEvent( QKeyEvent *e ) {
    switch ( e->key() ) {
-         case Key_Enter :
-         case Key_Return :
+         case Qt::Key_Enter :
+         case Qt::Key_Return :
          if ( e->state() & ControlButton ) {
          	if (e->state() & AltButton) {
          		vfile *vf = func->files()->vfs_search(view->getCurrentKrViewItem()->name());
@@ -942,17 +941,17 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
             }
          } else e->ignore();
          break;
-         case Key_Right :
-         case Key_Left :
+         case Qt::Key_Right :
+         case Qt::Key_Left :
          if ( e->state() == ControlButton ) {
             // user pressed CTRL+Right/Left - refresh other panel to the selected path if it's a
             // directory otherwise as this one
-            if ( ( _left && e->key() == Key_Right ) || ( !_left && e->key() == Key_Left ) ) {
-               KURL newPath;
+            if ( ( _left && e->key() == Qt::Key_Right ) || ( !_left && e->key() == Qt::Key_Left ) ) {
+               KUrl newPath;
                KrViewItem *it = view->getCurrentKrViewItem();
 
                if( it->name() == ".." ) {
-                  newPath = func->files()->vfs_getOrigin().upURL();
+                  newPath = func->files()->vfs_getOrigin().upUrl();
                } else {
                   vfile *v = func->getVFile( it );
                   if ( v && v->vfile_isDir() && v->vfile_getName() != ".." ) {
@@ -968,7 +967,7 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
             e->ignore();
          break;
 
-         case Key_Down :
+         case Qt::Key_Down :
          if ( e->state() == ControlButton ) { // give the keyboard focus to the command line
             if ( MAIN_VIEW->cmdLine->isVisible() )
                MAIN_VIEW->cmdLineFocus();
@@ -981,7 +980,7 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
             e->ignore();
          break;
 
-			case Key_Up :
+			case Qt::Key_Up :
           if ( e->state() == ControlButton ) { // give the keyboard focus to the command line
             origin->lineEdit()->setFocus();
             return ;
@@ -1104,7 +1103,7 @@ void ListPanel::jumpBack() {
 	func->openUrl( _jumpBackURL );
 }
 
-void ListPanel::setJumpBack( KURL url ) {
+void ListPanel::setJumpBack( KUrl url ) {
 	_jumpBackURL = url;
 }
 

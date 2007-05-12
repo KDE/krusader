@@ -5,7 +5,7 @@
 #include <kiconloader.h>
 #include <kaction.h>
 #include <klocale.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <kdebug.h>
 
 KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent) {
@@ -27,7 +27,7 @@ KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent) {
 }
 
 void KrBookmarkButton::populate() {
-	krBookMan->populate(static_cast<KPopupMenu*>(popup()));
+	krBookMan->populate(static_cast<KMenu*>(popup()));
 }
 
 void KrBookmarkButton::openPopup() {

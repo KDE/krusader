@@ -52,7 +52,7 @@ vfs::vfs(QObject* panel, bool quiet): vfs_busy(false), quietMode(quiet),disableR
 	if ( panel ){
 		panelConnected = true;
 		connect(this,SIGNAL(startUpdate()),panel,SLOT(slotStartUpdate()));
-		connect(this,SIGNAL(incrementalRefreshFinished( const KURL& )),panel,SLOT(slotGetStats( const KURL& )));
+		connect(this,SIGNAL(incrementalRefreshFinished( const KUrl& )),panel,SLOT(slotGetStats( const KUrl& )));
 	}
 	else quietMode = true;
 }
@@ -84,7 +84,7 @@ bool vfs::vfs_refresh(KIO::Job* job){
 	return vfs_refresh(vfs_origin);
 }
 
-KURL vfs::fromPathOrURL( const QString &originIn )
+KUrl vfs::fromPathOrUrl( const QString &originIn )
 {
   QString password, loginName, origin = originIn;
   bool bugfix = false;
@@ -111,7 +111,7 @@ KURL vfs::fromPathOrURL( const QString &originIn )
       }
     }
   }
-  KURL url = KURL::fromPathOrURL( origin );
+  KUrl url = KUrl::fromPathOrUrl( origin );
   if(loginName.isEmpty()) loginName = url.user();
   if(password.isEmpty())  password  = url.pass();
   if(bugfix){
@@ -122,11 +122,11 @@ KURL vfs::fromPathOrURL( const QString &originIn )
   return url;
 }
 
-QString vfs::pathOrURL( const KURL &originIn, int trailingSlash )
+QString vfs::pathOrUrl( const KUrl &originIn, int trailingSlash )
 {
   if( originIn.isLocalFile() )
     return originIn.path( trailingSlash );
-  return originIn.prettyURL( trailingSlash );
+  return originIn.prettyUrl( trailingSlash );
 }  
 
 void vfs::setVfsFilesP(vfileDict* dict){
@@ -219,7 +219,7 @@ bool vfs::vfs_refresh(){
 	return res; 
 }
 
-bool vfs::vfs_refresh(const KURL& origin){
+bool vfs::vfs_refresh(const KUrl& origin){
 	if( vfs_busy )
 		return false;
 	
@@ -260,7 +260,7 @@ void vfs::vfs_enableRefresh(bool enable){
 	if (disableRefresh == !enable) return; // if gets called twice by mistake
 	disableRefresh = quietMode = !enable;
 	if( enable && !postponedRefreshURL.isEmpty() ) vfs_refresh( postponedRefreshURL );
-	postponedRefreshURL = KURL();
+	postponedRefreshURL = KUrl();
 }
 
 void vfs::clear()
@@ -305,7 +305,7 @@ void vfs::vfs_calcSpace( QString name , KIO::filesize_t* totalSize, unsigned lon
 	calculateURLSize( vfs_getFile( name ), totalSize, totalFiles, totalDirs, stop );
 }        
         
-void vfs::calculateURLSize( KURL url,  KIO::filesize_t* totalSize, unsigned long* totalFiles, unsigned long* totalDirs, bool* stop ) {
+void vfs::calculateURLSize( KUrl url,  KIO::filesize_t* totalSize, unsigned long* totalFiles, unsigned long* totalDirs, bool* stop ) {
 	if ( stop && *stop ) return ;        
 	kds_busy = stop;
 	kds_totalSize  = totalSize ;

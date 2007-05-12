@@ -84,7 +84,7 @@ protected:
 	void addItemToMountList( Q3ListView *lst, fsData &fs );
 		
 signals:
-   void refreshPanel( const KURL & );
+   void refreshPanel( const KUrl & );
 	void finishedGettingSpaceData();
 
 private:

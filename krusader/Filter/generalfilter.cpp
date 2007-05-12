@@ -74,7 +74,7 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
   searchForLabel->setText( i18n( "Search &for:" ) );
   nameGroupLayout->addWidget( searchForLabel, 0, 0 );
 
-  searchFor = new KHistoryCombo( false, nameGroup, "searchFor" );
+  searchFor = new KHistoryComboBox( false, nameGroup, "searchFor" );
   searchFor->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)7, (QSizePolicy::SizeType)0, searchFor->sizePolicy().hasHeightForWidth() ) );
   searchFor->setEditable( true );
   searchFor->setDuplicatesEnabled( false );
@@ -90,7 +90,8 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
   searchType->setText( i18n( "&Of type:" ) );
   nameGroupLayout->addWidget( searchType, 1, 0 );
 
-  ofType = new KComboBox( false, nameGroup, "ofType" );
+  ofType = new KComboBox( false, nameGroup );
+  ofType->setObjectName( "ofType" );
   ofType->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)7, (QSizePolicy::SizeType)0, ofType->sizePolicy().hasHeightForWidth() ) );
   ofType->setEditable( false );
   searchType->setBuddy(ofType);
@@ -214,7 +215,7 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
   containsLabel->setText( i18n( "&Text:" ) );
   containsTextLayout->addWidget( containsLabel );
 
-  containsText = new KHistoryCombo( false, containsGroup, "containsText" );
+  containsText = new KHistoryComboBox( false, containsGroup, "containsText" );
   containsText->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)7, (QSizePolicy::SizeType)0, containsText->sizePolicy().hasHeightForWidth() ) );
   containsText->setDuplicatesEnabled( false );
   containsText->setMaxCount( 25 );

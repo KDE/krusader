@@ -67,12 +67,12 @@ private:
   SplitterSpinBox *spinBox;
   QComboBox       *deviceCombo;
   QComboBox       *sizeCombo;
-  KURLRequester   *urlReq;
+  KUrlRequester   *urlReq;
   
 public:
-  SplitterGUI( QWidget* parent,  KURL fileURL, KURL defaultDir );
+  SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir );
 
-  KURL    getDestinationDir()     {return vfs::fromPathOrURL( urlReq->url() );}
+  KUrl    getDestinationDir()     {return vfs::fromPathOrUrl( urlReq->url() );}
   KIO::filesize_t getSplitSize()  {return spinBox->longValue();}
   int     result()                {return resultCode;}
 

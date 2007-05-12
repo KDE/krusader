@@ -28,7 +28,7 @@
 #include <kactionclasses.h>
 #include <klocale.h>
 #include <kiconloader.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 
 #include <kdebug.h>
 //Added by qt3to4:

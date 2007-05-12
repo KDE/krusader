@@ -114,7 +114,7 @@ public:
   bool addRow(SearchObject* search, Q3GridLayout* grid);
 
 protected:
-  KURLLabel* _nameLabel;
+  KUrlLabel* _nameLabel;
 
 protected slots:
   void website(const QString&);

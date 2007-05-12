@@ -137,12 +137,12 @@ void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
 	}
 }
 
-void ftp_vfs::slotPermanentRedirection( KIO::Job*, const KURL&, const KURL& newUrl ) {
+void ftp_vfs::slotPermanentRedirection( KIO::Job*, const KUrl&, const KUrl& newUrl ) {
 	vfs_origin = newUrl;
 	vfs_origin.adjustPath(-1);
 }
 
-void ftp_vfs::slotRedirection( KIO::Job *, const KURL &url ) {
+void ftp_vfs::slotRedirection( KIO::Job *, const KUrl &url ) {
 	// update the origin
 	vfs_origin = url;
 	vfs_origin.adjustPath(-1);
@@ -158,7 +158,7 @@ void ftp_vfs::slotListResult( KIO::Job *job ) {
 	busy = false;
 }
 
-bool ftp_vfs::populateVfsList( const KURL& origin, bool showHidden ) {
+bool ftp_vfs::populateVfsList( const KUrl& origin, bool showHidden ) {
 	QString errorMsg = QString::null;
 	if ( !origin.isValid() )
 		errorMsg = i18n( "Malformed URL:\n%1" ).arg( origin.url() );
@@ -187,10 +187,10 @@ bool ftp_vfs::populateVfsList( const KURL& origin, bool showHidden ) {
 	KIO::Job *job = KIO::listDir( vfs_origin, false, showHidden );
 	connect( job, SIGNAL( entries( KIO::Job*, const KIO::UDSEntryList& ) ),
 	         this, SLOT( slotAddFiles( KIO::Job*, const KIO::UDSEntryList& ) ) );
-	connect( job, SIGNAL( redirection( KIO::Job*, const KURL& ) ),
-	         this, SLOT( slotRedirection( KIO::Job*, const KURL& ) ) );
-	connect( job, SIGNAL( permanentRedirection( KIO::Job*, const KURL&, const KURL& ) ),
-	         this, SLOT( slotPermanentRedirection( KIO::Job*, const KURL&, const KURL& ) ) );
+	connect( job, SIGNAL( redirection( KIO::Job*, const KUrl& ) ),
+	         this, SLOT( slotRedirection( KIO::Job*, const KUrl& ) ) );
+	connect( job, SIGNAL( permanentRedirection( KIO::Job*, const KUrl&, const KUrl& ) ),
+	         this, SLOT( slotPermanentRedirection( KIO::Job*, const KUrl&, const KUrl& ) ) );
 
 	connect( job, SIGNAL( result( KIO::Job* ) ),
 	         this, SLOT( slotListResult( KIO::Job* ) ) );
@@ -211,8 +211,8 @@ bool ftp_vfs::populateVfsList( const KURL& origin, bool showHidden ) {
 
 
 // copy a file to the vfs (physical)
-void ftp_vfs::vfs_addFiles( KURL::List *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir,  PreserveMode /*pmode*/ ) {
-	KURL destUrl = vfs_origin;
+void ftp_vfs::vfs_addFiles( KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir,  PreserveMode /*pmode*/ ) {
+	KUrl destUrl = vfs_origin;
 
 	if ( dir != "" ) {
 		destUrl.addPath( dir );
@@ -232,8 +232,8 @@ void ftp_vfs::vfs_addFiles( KURL::List *fileUrls, KIO::CopyJob::CopyMode mode, Q
 
 // remove a file from the vfs (physical)
 void ftp_vfs::vfs_delFiles( QStringList *fileNames ) {
-	KURL::List filesUrls;
-	KURL url;
+	KUrl::List filesUrls;
+	KUrl url;
 
 	// names -> urls
 	for ( uint i = 0 ; i < fileNames->count(); ++i ) {
@@ -247,9 +247,9 @@ void ftp_vfs::vfs_delFiles( QStringList *fileNames ) {
 }
 
 
-KURL::List* ftp_vfs::vfs_getFiles( QStringList* names ) {
-	KURL url;
-	KURL::List* urls = new KURL::List();
+KUrl::List* ftp_vfs::vfs_getFiles( QStringList* names ) {
+	KUrl url;
+	KUrl::List* urls = new KUrl::List();
 	for ( QStringList::Iterator name = names->begin(); name != names->end(); ++name ) {
 		url = vfs_getFile( *name );
 		urls->append( url );
@@ -259,17 +259,17 @@ KURL::List* ftp_vfs::vfs_getFiles( QStringList* names ) {
 
 
 // return a path to the file
-KURL ftp_vfs::vfs_getFile( const QString& name ) {
+KUrl ftp_vfs::vfs_getFile( const QString& name ) {
 	vfile * vf = vfs_search( name );
-	if ( !vf ) return KURL(); // empty
+	if ( !vf ) return KUrl(); // empty
 
-	KURL url = vf->vfile_getUrl();
+	KUrl url = vf->vfile_getUrl();
 	if ( vf->vfile_isDir() ) url.adjustPath( + 1 );
 	return url;
 }
 
 void ftp_vfs::vfs_mkdir( const QString& name ) {
-	KURL url = vfs_origin;
+	KUrl url = vfs_origin;
 	url.addPath( name );
 
 	KIO::SimpleJob* job = KIO::mkdir( url );
@@ -277,13 +277,13 @@ void ftp_vfs::vfs_mkdir( const QString& name ) {
 }
 
 void ftp_vfs::vfs_rename( const QString& fileName, const QString& newName ) {
-	KURL::List fileUrls;
-	KURL oldUrl = vfs_origin;
+	KUrl::List fileUrls;
+	KUrl oldUrl = vfs_origin;
 	oldUrl.addPath( fileName ) ;
 
 	fileUrls.append( oldUrl );
 
-	KURL newUrl = vfs_origin;
+	KUrl newUrl = vfs_origin;
 	newUrl.addPath( newName );
 
 	KIO::Job *job = new KIO::CopyJob( fileUrls, newUrl, KIO::CopyJob::Move, true, true );

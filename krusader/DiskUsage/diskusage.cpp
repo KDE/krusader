@@ -39,7 +39,7 @@
 #include <QResizeEvent>
 #include <QEvent>
 #include <klocale.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <kmimetype.h>
 #include <kmessagebox.h>
 #include <kglobalsettings.h>
@@ -187,9 +187,9 @@ void LoaderWidget::init()
   cancelled = false;
 }
 
-void LoaderWidget::setCurrentURL( KURL url )
+void LoaderWidget::setCurrentURL( KUrl url )
 {
-  searchedDirectory->setText( vfs::pathOrURL( url, 1) );
+  searchedDirectory->setText( vfs::pathOrUrl( url, 1) );
 }
 
 void LoaderWidget::setValues( int fileNum, int dirNum, KIO::filesize_t total )
@@ -239,7 +239,7 @@ DiskUsage::~DiskUsage()
     delete filelightView;
 }
 
-void DiskUsage::load( KURL baseDir )
+void DiskUsage::load( KUrl baseDir )
 {
   if( searchVfs && !searchVfs->vfs_canDelete() ) {
     return;
@@ -255,7 +255,7 @@ void DiskUsage::load( KURL baseDir )
   baseURL = baseDir;
   baseURL.setPath( baseDir.path( -1 ) );
 
-  root = new Directory( baseURL.fileName(), vfs::pathOrURL( baseDir ) );
+  root = new Directory( baseURL.fileName(), vfs::pathOrUrl( baseDir ) );
 
   directoryStack.clear();
   parentStack.clear();
@@ -335,7 +335,7 @@ void DiskUsage::slotLoadDirectory()
 
         contentMap.insert( dirToCheck, currentParent );
 
-        KURL url = baseURL;
+        KUrl url = baseURL;
 
         if( !dirToCheck.isEmpty() )
           url.addPath( dirToCheck );
@@ -414,14 +414,14 @@ void DiskUsage::dirUp()
       changeDirectory( (Directory *)(currentDirectory->parent()) );
     else
     {
-      KURL up = baseURL.upURL();
+      KUrl up = baseURL.upUrl();
 
       if( KMessageBox::questionYesNo( this, i18n( "Stepping into the parent directory requires "
                                                   "loading the content of the \"%1\" URL. Do you wish "
                                                   "to continue?" )
-                                            .arg( vfs::pathOrURL( up ) ),
-                                            i18n( "Krusader::DiskUsage" ), KStdGuiItem::yes(),
-                                            KStdGuiItem::no(), "DiskUsageLoadParentDir"
+                                            .arg( vfs::pathOrUrl( up ) ),
+                                            i18n( "Krusader::DiskUsage" ), KStandardGuiItem::yes(),
+                                            KStandardGuiItem::no(), "DiskUsageLoadParentDir"
                                             ) == KMessageBox::Yes )
         load( up );
     }
@@ -467,7 +467,7 @@ File * DiskUsage::getFile( QString path )
 
 void DiskUsage::clear()
 {
-  baseURL = KURL();
+  baseURL = KUrl();
   emit clearing();
   propertyMap.clear();
   contentMap.clear();
@@ -592,7 +592,7 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
 
   krConfig->setGroup( "General" );
   bool trash = krConfig->readBoolEntry( "Move To Trash", _MoveToTrash );
-  KURL url = vfs::fromPathOrURL( file->fullPath() );
+  KUrl url = vfs::fromPathOrUrl( file->fullPath() );
 
   if( calcPercents )
   {
@@ -658,7 +658,7 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
   }
   else
   {
-    job = new KIO::DeleteJob( vfs::fromPathOrURL( file->fullPath() ), false, false);
+    job = new KIO::DeleteJob( vfs::fromPathOrUrl( file->fullPath() ), false, false);
   }
 
   deleting = true;    // during qApp->processEvent strange things can occur
@@ -728,12 +728,12 @@ void DiskUsage::createStatus()
   if( dirEntry == 0 )
     return;
 
-  KURL url = baseURL;
+  KUrl url = baseURL;
   if( dirEntry != root )
       url.addPath( dirEntry->directory() );
 
   emit status( i18n( "Current directory:%1,  Total size:%2,  Own size:%3" )
-               .arg( vfs::pathOrURL( url, -1 ) )
+               .arg( vfs::pathOrUrl( url, -1 ) )
                .arg( " "+KRpermHandler::parseSize( dirEntry->size() ) )
                .arg( " "+KRpermHandler::parseSize( dirEntry->ownSize() ) ) );
 }
@@ -754,9 +754,9 @@ Directory* DiskUsage::getCurrentDir()
   return currentDirectory;
 }
 
-void DiskUsage::rightClickMenu( File *fileItem, KPopupMenu *addPopup, QString addPopupName )
+void DiskUsage::rightClickMenu( File *fileItem, KMenu *addPopup, QString addPopupName )
 {
-  KPopupMenu popup( this );
+  KMenu popup( this );
 
   popup.insertTitle( i18n("Disk Usage"));
 
@@ -788,7 +788,7 @@ void DiskUsage::rightClickMenu( File *fileItem, KPopupMenu *addPopup, QString ad
     popup.changeItem( ADDITIONAL_POPUP_ID, addPopupName );
   }
 
-  KPopupMenu viewPopup;
+  KMenu viewPopup;
   viewPopup.insertItem(i18n("Lines"),      LINES_VIEW_ID);
   viewPopup.setAccel( Qt::CTRL + Qt::Key_L, LINES_VIEW_ID );
   viewPopup.insertItem(i18n("Detailed"),   DETAILED_VIEW_ID);
@@ -841,7 +841,7 @@ void DiskUsage::executeAction( int action, File * fileItem )
         uri = fileItem->fullPath();
       else
         uri = currentDirectory->fullPath();
-      ACTIVE_FUNC->openUrl(vfs::fromPathOrURL( uri ));
+      ACTIVE_FUNC->openUrl(vfs::fromPathOrUrl( uri ));
     }
     break;
   case LINES_VIEW_ID:
@@ -869,93 +869,93 @@ void DiskUsage::keyPressEvent( QKeyEvent *e )
   {
     switch ( e->key() )
     {
-    case Key_E:
+    case Qt::Key_E:
       if( e->state() == ControlButton )
       {
         executeAction( EXCLUDE_ID, getCurrentFile() );
         return;
       }
-    case Key_D:
+    case Qt::Key_D:
       if( e->state() == ControlButton )
       {
         executeAction( DETAILED_VIEW_ID );
         return;
       }
-    case Key_F:
+    case Qt::Key_F:
       if( e->state() == ControlButton )
       {
         executeAction( FILELIGHT_VIEW_ID );
         return;
       }
-    case Key_I:
+    case Qt::Key_I:
       if( e->state() == ControlButton )
       {
         executeAction( INCLUDE_ALL_ID );
         return;
       }
       break;
-    case Key_L:
+    case Qt::Key_L:
       if( e->state() == ControlButton )
       {
         executeAction( LINES_VIEW_ID );
         return;
       }
-    case Key_N:
+    case Qt::Key_N:
       if( e->state() == ControlButton )
       {
         executeAction( NEW_SEARCH_ID );
         return;
       }
       break;
-    case Key_R:
+    case Qt::Key_R:
       if( e->state() == ControlButton )
       {
         executeAction( REFRESH_ID );
         return;
       }
       break;
-    case Key_Up:
+    case Qt::Key_Up:
       if( e->state() == ShiftButton )
       {
         executeAction( PARENT_DIR_ID );
         return;
       }
       break;
-    case Key_Down:
+    case Qt::Key_Down:
       if( e->state() == ShiftButton )
       {
         executeAction( STEP_INTO_ID );
         return;
       }
       break;
-    case Key_Left:
+    case Qt::Key_Left:
       if( e->state() == ShiftButton )
       {
         executeAction( PREVIOUS_VIEW_ID );
         return;
       }
       break;
-    case Key_Right:
+    case Qt::Key_Right:
       if( e->state() == ShiftButton )
       {
         executeAction( NEXT_VIEW_ID );
         return;
       }
       break;
-    case Key_Delete:
+    case Qt::Key_Delete:
       if( !e->state() )
       {
         executeAction( DELETE_ID, getCurrentFile() );
         return;
       }
-    case Key_Plus:
+    case Qt::Key_Plus:
       if( activeView == VIEW_FILELIGHT )
       {
         filelightView->zoomIn();
         return;
       }
       break;
-    case Key_Minus:
+    case Qt::Key_Minus:
       if( activeView == VIEW_FILELIGHT )
       {
         filelightView->zoomOut();
@@ -1116,9 +1116,9 @@ bool DiskUsage::event( QEvent * e )
     {
       switch ( ke->key() )
       {
-        case Key_Delete:
-        case Key_Plus:
-        case Key_Minus:
+        case Qt::Key_Delete:
+        case Qt::Key_Plus:
+        case Qt::Key_Minus:
           ke->accept();
           break;
       }
@@ -1126,10 +1126,10 @@ bool DiskUsage::event( QEvent * e )
     {
       switch ( ke->key() )
       {
-        case Key_Left:
-        case Key_Right:
-        case Key_Up:
-        case Key_Down:
+        case Qt::Key_Left:
+        case Qt::Key_Right:
+        case Qt::Key_Up:
+        case Qt::Key_Down:
           ke->accept();
           break;
       }
@@ -1137,13 +1137,13 @@ bool DiskUsage::event( QEvent * e )
     {
       switch ( ke->key() )
       {
-        case Key_D:
-        case Key_E:
-        case Key_F:
-        case Key_I:
-        case Key_L:
-        case Key_N:
-        case Key_R:
+        case Qt::Key_D:
+        case Qt::Key_E:
+        case Qt::Key_F:
+        case Qt::Key_I:
+        case Qt::Key_L:
+        case Qt::Key_N:
+        case Qt::Key_R:
           ke->accept();
           break;
       }

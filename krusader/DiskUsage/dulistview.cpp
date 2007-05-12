@@ -258,22 +258,22 @@ void DUListView::keyPressEvent( QKeyEvent *e )
 {
   switch ( e->key() )
   {
-  case Key_Return :
-  case Key_Enter :
+  case Qt::Key_Return :
+  case Qt::Key_Enter :
     if( doubleClicked( currentItem() ) )
       return;
     break;
-  case Key_Left :
-  case Key_Right :
-  case Key_Up :
-  case Key_Down :
+  case Qt::Key_Left :
+  case Qt::Key_Right :
+  case Qt::Key_Up :
+  case Qt::Key_Down :
     if( e->state() == ShiftButton )
     {
       e->ignore();
       return;
     }
     break;
-  case Key_Delete :
+  case Qt::Key_Delete :
     e->ignore();
     return;
   }

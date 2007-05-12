@@ -34,7 +34,7 @@
 #include "krviewitem.h"
 #include <sys/types.h>
 #include "../VFS/vfile.h"
-#include <kiconview.h>
+#include <k3iconview.h>
 #include <qpointer.h>
 //Added by qt3to4:
 #include <QPixmap>
@@ -44,13 +44,13 @@
 class QPixmap;
 class KrBriefView;
 
-class KrBriefViewItem : public KIconViewItem, public KrViewItem {
+class KrBriefViewItem : public K3IconViewItem, public KrViewItem {
 friend class KrBriefView;
 friend class KrCalcSpaceDialog;
 public:
 	KrBriefViewItem(KrBriefView *parent, Q3IconViewItem *after, vfile *vf);
-	inline bool isSelected() const { return KIconViewItem::isSelected(); }
-	inline void setSelected(bool s) { KIconViewItem::setSelected(s); }
+	inline bool isSelected() const { return K3IconViewItem::isSelected(); }
+	inline void setSelected(bool s) { K3IconViewItem::setSelected(s); }
 	inline void cancelRename() { removeRenameBox(); }
 	int compare(Q3IconViewItem *i) const;
 	virtual void repaintItem();

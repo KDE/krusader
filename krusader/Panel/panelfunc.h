@@ -45,9 +45,9 @@ public slots:
 	inline vfile* getVFile(KrViewItem *item) { return files()->vfs_search(item->name()); }
 	inline vfile* getVFile(const QString& name) { return files()->vfs_search(name); }
 	void execute(QString&);
-	void openUrl(const KURL& path, const QString& nameToMakeCurrent = QString::null);
+	void openUrl(const KUrl& path, const QString& nameToMakeCurrent = QString::null);
 	void openUrl(const QString& path, const QString& nameToMakeCurrent = QString::null);
-   void immediateOpenUrl( const KURL& path);
+   void immediateOpenUrl( const KUrl& path);
    void doOpenUrl();
 	void refresh();
 	void rename(const QString &oldname, const QString &newname);
@@ -90,15 +90,15 @@ public:
 	inline ListPanelFunc* otherFunc(){ return panel->otherPanel->func; }
 
 private:
-	KURL getVirtualBaseURL();
+	KUrl getVirtualBaseURL();
 
 protected:
 	ListPanel*           panel;     // our ListPanel
-	Q3ValueStack<KURL>    urlStack;  // Path stack for the "back" button
+	Q3ValueStack<KUrl>    urlStack;  // Path stack for the "back" button
 	bool                 inRefresh; // true when we are in refresh()
 	vfs*                 vfsP;      // pointer to vfs.
 	QTimer               delayTimer;
-	KURL                 delayURL;
+	KUrl                 delayURL;
 	QString              nameToMakeCurrent;
 };
 

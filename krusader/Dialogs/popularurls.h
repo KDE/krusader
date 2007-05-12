@@ -19,7 +19,7 @@
 typedef struct _UrlNode* UrlNodeP;
 typedef struct _UrlNode {
 	UrlNodeP prev;
-	KURL url;
+	KUrl url;
 	int rank;
 	UrlNodeP next;
 } UrlNode;
@@ -33,8 +33,8 @@ public:
 	~PopularUrls();
 	void save();
 	void load();
-	void addUrl(const KURL& url);
-	KURL::List getMostPopularUrls(int max);
+	void addUrl(const KUrl& url);
+	KUrl::List getMostPopularUrls(int max);
 
 public slots:	
 	void showDialog(); 
@@ -58,15 +58,15 @@ private:
 	PopularUrlsDlg *dlg;
 };
 
-class KListView;
-class KListViewSearchLine;
+class K3ListView;
+class K3ListViewSearchLine;
 
 class PopularUrlsDlg: public KDialogBase {
 	Q_OBJECT
 public:
 	PopularUrlsDlg();
 	~PopularUrlsDlg();
-	void run(KURL::List list); // use this to open the dialog
+	void run(KUrl::List list); // use this to open the dialog
 	inline int result() const { return selection; } // returns index 0 - topmost, or -1
 	
 
@@ -75,8 +75,8 @@ protected slots:
 	void slotItemSelected(Q3ListViewItem *it);
 	
 private:
-	KListView *urls;
-	KListViewSearchLine *search;
+	K3ListView *urls;
+	K3ListViewSearchLine *search;
 	int selection;
 };
 

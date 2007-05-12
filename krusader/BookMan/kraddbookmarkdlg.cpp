@@ -11,7 +11,7 @@
 #include <kiconloader.h>
 #include <kdebug.h>
 
-KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KURL url):
+KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KUrl url):
 	KDialogBase(KDialogBase::Swallow, i18n("Add Bookmark"),
 				 KDialogBase::User1 | KDialogBase::Ok | KDialogBase::Cancel, KDialogBase::Ok, parent) {
 	// create the 'new folder' button
@@ -27,7 +27,7 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KURL url):
 	// name and url
 	QLabel *lb1 = new QLabel(i18n("Name:"), page);
 	_name = new KLineEdit(page);
-	_name->setText(url.prettyURL()); // default name is the url
+	_name->setText(url.prettyUrl()); // default name is the url
 	_name->selectAll(); // make the text selected
 	layout->addWidget(lb1, 0, 0);	
 	layout->addWidget(_name, 0, 1);
@@ -36,7 +36,7 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KURL url):
 	_url = new KLineEdit(page);
 	layout->addWidget(lb2, 1, 0);	
 	layout->addWidget(_url, 1, 1);
-	_url->setText(url.prettyURL()); // set the url in the field
+	_url->setText(url.prettyUrl()); // set the url in the field
 
 	// create in linedit and button
 	QLabel *lb3 = new QLabel(i18n("Create in:"), page);
@@ -64,13 +64,13 @@ void KrAddBookmarkDlg::toggleCreateIn(bool show) {
 
 // creates the widget that lets you decide where to put the new bookmark
 QWidget *KrAddBookmarkDlg::createInWidget() {
-	_createIn = new KListView(this);
+	_createIn = new K3ListView(this);
 	_createIn->addColumn("Folders");
 	_createIn->header()->hide();
 	_createIn->setRootIsDecorated(true);
 	_createIn->setAlternateBackground(QColor()); // disable alternate coloring 
 	
-	KListViewItem *item = new KListViewItem(_createIn, i18n("Bookmarks"));
+	K3ListViewItem *item = new K3ListViewItem(_createIn, i18n("Bookmarks"));
 	item->setOpen(true);
 	item->setSelected(true);
 	_xr[item] = krBookMan->_root;
@@ -85,14 +85,14 @@ QWidget *KrAddBookmarkDlg::createInWidget() {
 
 void KrAddBookmarkDlg::createInSelection(Q3ListViewItem *item) {
 	if (item) {
-		_folder->setText(_xr[static_cast<KListViewItem*>(item)]->text());
+		_folder->setText(_xr[static_cast<K3ListViewItem*>(item)]->text());
 	}
 }
 
-void KrAddBookmarkDlg::populateCreateInWidget(KrBookmark *root, KListViewItem *parent) {
+void KrAddBookmarkDlg::populateCreateInWidget(KrBookmark *root, K3ListViewItem *parent) {
 	for (KrBookmark *bm = root->children().first(); bm; bm = root->children().next()) {
 		if (bm->isFolder()) {
-			KListViewItem *item = new KListViewItem(parent, bm->text());
+			K3ListViewItem *item = new K3ListViewItem(parent, bm->text());
 			item->setOpen(true);
 			_xr[item] = bm;
 			populateCreateInWidget(bm, item);
@@ -107,9 +107,9 @@ void KrAddBookmarkDlg::newFolder() {
 		return;
 	// add to the list in bookman
 	KrBookmark *bm = new KrBookmark(newFolder);
-	krBookMan->addBookmark(bm, _xr[static_cast<KListViewItem*>(_createIn->selectedItem())]);
+	krBookMan->addBookmark(bm, _xr[static_cast<K3ListViewItem*>(_createIn->selectedItem())]);
 	// fix the gui
-	KListViewItem *item = new KListViewItem(_createIn->selectedItem(), bm->text());
+	K3ListViewItem *item = new K3ListViewItem(_createIn->selectedItem(), bm->text());
 	_xr[item] = bm;
 
 	_createIn->setCurrentItem(item);

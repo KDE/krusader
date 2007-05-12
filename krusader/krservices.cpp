@@ -192,25 +192,25 @@ QString KrServices::escape( QString name ) {
 
 
 // ------- KEasyProcess
-KEasyProcess::KEasyProcess(QObject *parent, const char *name): KProcess(parent, name) {
+KEasyProcess::KEasyProcess(QObject *parent, const char *name): K3Process(parent, name) {
 	init();
 }
 
-KEasyProcess::KEasyProcess(): KProcess() {
+KEasyProcess::KEasyProcess(): K3Process() {
 	init();
 }
 
 void KEasyProcess::init() {
-	connect(this, SIGNAL(receivedStdout(KProcess *, char *, int)),
-		this, SLOT(receivedStdout(KProcess *, char *, int)));
-	connect(this, SIGNAL(receivedStderr(KProcess *, char *, int)),
-		this, SLOT(receivedStderr(KProcess *, char *, int)));
+	connect(this, SIGNAL(receivedStdout(K3Process *, char *, int)),
+		this, SLOT(receivedStdout(K3Process *, char *, int)));
+	connect(this, SIGNAL(receivedStderr(K3Process *, char *, int)),
+		this, SLOT(receivedStderr(K3Process *, char *, int)));
 }
 
-void KEasyProcess::receivedStdout (KProcess * /* proc */, char *buffer, int buflen) {
+void KEasyProcess::receivedStdout (K3Process * /* proc */, char *buffer, int buflen) {
 	_stdout+=QString::fromLocal8Bit(buffer, buflen);
 }
 
-void KEasyProcess::receivedStderr (KProcess * /* proc */, char *buffer, int buflen) {
+void KEasyProcess::receivedStderr (K3Process * /* proc */, char *buffer, int buflen) {
 	_stderr+=QString::fromLocal8Bit(buffer, buflen);
 }

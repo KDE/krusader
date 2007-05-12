@@ -39,7 +39,7 @@
 #include <kdebug.h>
 #include <klargefile.h>
 #include <khtml_part.h>
-#include <kprocess.h>
+#include <k3process.h>
 #include <kfileitem.h> 
 // Krusader includes
 #include "krviewer.h"
@@ -60,7 +60,7 @@ KrViewer::KrViewer( QWidget *parent, const char *name ) :
 KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ), returnFocusTo( 0 ), returnFocusTab( 0 ),
                                     reservedKeys(), reservedKeyIDs() {
 
-	//setWFlags(WType_TopLevel | WDestructiveClose);
+	//setWFlags(Qt::WType_TopLevel | WDestructiveClose);
 	setXMLFile( "krviewer.rc" ); // kpart-related xml file
 	setHelpMenuEnabled( false );
 
@@ -82,28 +82,28 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ), retur
 //	"filesaveas"
 	setCentralWidget( &tabBar );
 
-	printAction = KStdAction::print( this, SLOT( print() ), 0, 0 );
-	copyAction = KStdAction::copy( this, SLOT( copy() ), 0, 0 );
+	printAction = KStandardAction::print( this, SLOT( print() ), 0, 0 );
+	copyAction = KStandardAction::copy( this, SLOT( copy() ), 0, 0 );
 
 	viewerMenu = new Q3PopupMenu( this );
-	viewerMenu->insertItem( i18n( "&Generic viewer" ), this, SLOT( viewGeneric() ), CTRL + SHIFT + Key_G, 1 );
-	viewerMenu->insertItem( i18n( "&Text viewer" ), this, SLOT( viewText() ), CTRL + SHIFT + Key_T, 2 );
-	viewerMenu->insertItem( i18n( "&Hex viewer" ), this, SLOT( viewHex() ), CTRL + SHIFT + Key_H, 3 );
+	viewerMenu->insertItem( i18n( "&Generic viewer" ), this, SLOT( viewGeneric() ), CTRL + SHIFT + Qt::Key_G, 1 );
+	viewerMenu->insertItem( i18n( "&Text viewer" ), this, SLOT( viewText() ), CTRL + SHIFT + Qt::Key_T, 2 );
+	viewerMenu->insertItem( i18n( "&Hex viewer" ), this, SLOT( viewHex() ), CTRL + SHIFT + Qt::Key_H, 3 );
 	viewerMenu->insertSeparator();
-	viewerMenu->insertItem( i18n( "Text &editor" ), this, SLOT( editText() ), CTRL + SHIFT + Key_E, 4 );
+	viewerMenu->insertItem( i18n( "Text &editor" ), this, SLOT( editText() ), CTRL + SHIFT + Qt::Key_E, 4 );
 	viewerMenu->insertSeparator();
-	viewerMenu->insertItem( i18n( "&Next tab" ), this, SLOT( nextTab() ), ALT+Key_Right );
-	viewerMenu->insertItem( i18n( "&Previous tab" ), this, SLOT( prevTab() ), ALT+Key_Left );
+	viewerMenu->insertItem( i18n( "&Next tab" ), this, SLOT( nextTab() ), ALT+Qt::Key_Right );
+	viewerMenu->insertItem( i18n( "&Previous tab" ), this, SLOT( prevTab() ), ALT+Qt::Key_Left );
 
-	detachActionIndex = viewerMenu->insertItem( i18n( "&Detach tab" ), this, SLOT( detachTab() ), CTRL + SHIFT + Key_D );
+	detachActionIndex = viewerMenu->insertItem( i18n( "&Detach tab" ), this, SLOT( detachTab() ), CTRL + SHIFT + Qt::Key_D );
 	//no point in detaching only one tab..
 	viewerMenu->setItemEnabled(detachActionIndex,false);	
 	viewerMenu->insertSeparator();
 	viewerMenu->insertItem( printAction->text(), this, SLOT( print() ), printAction->shortcut() );
 	viewerMenu->insertItem( copyAction->text(), this, SLOT( copy() ), copyAction->shortcut() );
 	viewerMenu->insertSeparator();
-	tabCloseID = viewerMenu->insertItem( i18n( "&Close current tab" ), this, SLOT( tabCloseRequest() ), Key_Escape );
-	closeID = viewerMenu->insertItem( i18n( "&Quit" ), this, SLOT( close() ), CTRL + Key_Q );
+	tabCloseID = viewerMenu->insertItem( i18n( "&Close current tab" ), this, SLOT( tabCloseRequest() ), Qt::Key_Escape );
+	closeID = viewerMenu->insertItem( i18n( "&Quit" ), this, SLOT( close() ), CTRL + Qt::Key_Q );
 
 	//toolBar() ->insertLined("Edit:",1,"",this,"",true ,i18n("Enter an URL to edit and press enter"));
 	
@@ -207,10 +207,10 @@ bool KrViewer::eventFilter (  QObject * /* watched */, QEvent * e )
 }
 void KrViewer::keyPressEvent( QKeyEvent *e ) {
 	switch ( e->key() ) {
-		case Key_F10:
+		case Qt::Key_F10:
 			close();
 			break;
-		case Key_Escape:
+		case Qt::Key_Escape:
 			tabCloseRequest();
 			break;
 		default:
@@ -239,7 +239,7 @@ KrViewer* KrViewer::getViewer(bool new_window){
 	}
 }	
 
-void KrViewer::view( KURL url, QWidget * parent ) {
+void KrViewer::view( KUrl url, QWidget * parent ) {
 	Mode defaultMode = Generic;
 	bool defaultWindow = false;
 
@@ -255,7 +255,7 @@ void KrViewer::view( KURL url, QWidget * parent ) {
 	view(url,defaultMode,defaultWindow, parent );
 }
 
-void KrViewer::view( KURL url, Mode mode,  bool new_window, QWidget * parent ) {
+void KrViewer::view( KUrl url, Mode mode,  bool new_window, QWidget * parent ) {
 	KrViewer* viewer = getViewer(new_window);
 
 	PanelViewerBase* viewWidget = new PanelViewer(&viewer->tabBar);
@@ -266,11 +266,11 @@ void KrViewer::view( KURL url, Mode mode,  bool new_window, QWidget * parent ) {
 	viewer->returnFocusTab = viewWidget;
 }
 
-void KrViewer::edit( KURL url, QWidget * parent ) {
+void KrViewer::edit( KUrl url, QWidget * parent ) {
 	edit( url, Text, -1, parent );
 }
 
-void KrViewer::edit( KURL url, Mode mode, int new_window, QWidget * parent ) {
+void KrViewer::edit( KUrl url, Mode mode, int new_window, QWidget * parent ) {
 	krConfig->setGroup( "General" );
 	QString edit = krConfig->readEntry( "Editor", _Editor );
 	
@@ -278,13 +278,13 @@ void KrViewer::edit( KURL url, Mode mode, int new_window, QWidget * parent ) {
 		new_window = krConfig->readBoolEntry( "View In Separate Window",_ViewInSeparateWindow );
 
 	if ( edit != "internal editor" ) {
-		KProcess proc;
+		K3Process proc;
 		// if the file is local, pass a normal path and not a url. this solves
 		// the problem for editors that aren't url-aware
 		if ( url.isLocalFile() )
 			proc << QStringList::split( ' ', edit ) << url.path();
-		else proc << QStringList::split( ' ', edit ) << url.prettyURL();
-		if ( !proc.start( KProcess::DontCare ) )
+		else proc << QStringList::split( ' ', edit ) << url.prettyUrl();
+		if ( !proc.start( K3Process::DontCare ) )
 			KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + edit + "\"" );
 		return ;
 	}
@@ -302,8 +302,8 @@ void KrViewer::edit( KURL url, Mode mode, int new_window, QWidget * parent ) {
 void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KParts::Part* part){
 	if( !part ) return;
 
-	KURL url = pvb->url();
-	setCaption( msg+": " + url.prettyURL() );
+	KUrl url = pvb->url();
+	setCaption( msg+": " + url.prettyUrl() );
 
 	QIcon icon = QIcon(krLoader->loadIcon(iconName,KIcon::Small));
 
@@ -311,7 +311,7 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 	manager.setActivePart( part );
 	tabBar.insertTab(pvb,icon,url.fileName()+"("+msg+")");	
 	tabBar.setCurrentPage(tabBar.indexOf(pvb));
-	tabBar.setTabToolTip(pvb,msg+": " + url.prettyURL());
+	tabBar.setTabToolTip(pvb,msg+": " + url.prettyUrl());
 
 	updateActions( pvb );
 
@@ -323,14 +323,14 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 	show();
 	tabBar.show();
 	
-	connect( pvb, SIGNAL( urlChanged( PanelViewerBase *, const KURL & ) ), 
-	         this,  SLOT( tabURLChanged(PanelViewerBase *, const KURL & ) ) );
+	connect( pvb, SIGNAL( urlChanged( PanelViewerBase *, const KUrl & ) ), 
+	         this,  SLOT( tabURLChanged(PanelViewerBase *, const KUrl & ) ) );
 }
 
-void KrViewer::tabURLChanged( PanelViewerBase *pvb, const KURL & url ) {
+void KrViewer::tabURLChanged( PanelViewerBase *pvb, const KUrl & url ) {
 	QString msg = pvb->isEditor() ? i18n( "Editing" ) : i18n( "Viewing" );
 	tabBar.setTabLabel( pvb, url.fileName()+"("+msg+")" );
-	tabBar.setTabToolTip(pvb,msg+": " + url.prettyURL());
+	tabBar.setTabToolTip(pvb,msg+": " + url.prettyUrl());
 }
 
 void KrViewer::tabChanged(QWidget* w){
@@ -553,7 +553,7 @@ void KrViewer::updateActions( PanelViewerBase * pvb ) {
 }
 
 #if 0
-bool KrViewer::editGeneric( QString mimetype, KURL _url ) {
+bool KrViewer::editGeneric( QString mimetype, KUrl _url ) {
 	KParts::ReadWritePart * kedit_part = 0L;
 	KLibFactory *factory = 0;
 	KTrader::OfferList offers = KTrader::self() ->query( mimetype );
@@ -605,15 +605,15 @@ bool KrViewer::viewGeneric() {
 	QString mimetype = KMimeType::findByURL( url ) ->name();
 	// ugly hack: don't try to get a part for an XML file, it usually don't work
 	if ( mimetype == "text/xml" ) return false;
-	if ( url.prettyURL().startsWith( "man:" ) ) mimetype = "text/html";
+	if ( url.prettyUrl().startsWith( "man:" ) ) mimetype = "text/html";
 	if ( mimetype == "text/plain" )
 		viewerMenu->setItemEnabled( 1, false );
 
 	if ( !generic_part ) {
 		if ( mimetype.contains( "html" ) ) {
 			KHTMLPart * p = new KHTMLPart( this, 0, 0, 0, KHTMLPart::BrowserViewGUI );
-			connect( p->browserExtension(), SIGNAL( openURLRequest( const KURL &, const KParts::URLArgs & ) ),
-			         this, SLOT( handleOpenURLRequest( const KURL &, const KParts::URLArgs & ) ) );
+			connect( p->browserExtension(), SIGNAL( openURLRequest( const KUrl &, const KParts::URLArgs & ) ),
+			         this, SLOT( handleOpenURLRequest( const KUrl &, const KParts::URLArgs & ) ) );
 			/* At JavaScript self.close() the KHTMLPart destroys itself.  */
 			/* After destruction, just close the window */
 			connect( p, SIGNAL( destroyed() ), this, SLOT( close() ) );

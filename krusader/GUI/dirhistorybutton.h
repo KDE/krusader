@@ -52,7 +52,7 @@ public slots: // Public slots
   void slotPopupActivated(int id);
 signals: // Signals
   /** No descriptions */
-  void openUrl(const KURL&);
+  void openUrl(const KUrl&);
 };
 
 #endif

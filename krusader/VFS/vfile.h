@@ -98,7 +98,7 @@ public:
 	inline uid_t            vfile_getUid()     const { return vfile_ownerId;        }
 	inline gid_t            vfile_getGid()     const { return vfile_groupId;        }
 	inline time_t           vfile_getTime_t()  const { return vfile_time_t;         }
-	inline const KURL&      vfile_getUrl()     const { return vfile_url;            }
+	inline const KUrl&      vfile_getUrl()     const { return vfile_url;            }
   
 	const QString&          vfile_getMime(bool fast=false);
 	const QString&          vfile_getOwner();
@@ -115,7 +115,7 @@ public:
 	 * displayed size of the viewitem and thus the vfile. For INTERNAL USE !
 	 */
 	inline void             vfile_setSize(KIO::filesize_t size) {vfile_size = size;}
-	inline void             vfile_setUrl(const KURL& url)       {vfile_url = url;  }
+	inline void             vfile_setUrl(const KUrl& url)       {vfile_url = url;  }
 
 	inline void             vfile_setIcon(const QString& icn)   {vfile_icon = icn; }
 	inline QString          vfile_getIcon();
@@ -140,7 +140,7 @@ protected:
 	bool             vfile_symLink;  //< true if the file is a symlink
 	QString          vfile_mimeType; //< file mimetype
 	QString          vfile_symDest;  //< if it's a sym link - its detination
-	KURL             vfile_url;      //< file URL - empty by default
+	KUrl             vfile_url;      //< file URL - empty by default
 	QString          vfile_icon;     //< the name of the icon file
 	bool             vfile_isdir;    //< flag, if it's a directory
 	int              vfile_rwx;      //< flag, showing read, write, execute properties
@@ -157,7 +157,7 @@ QString vfile::vfile_getIcon(){
       if ( mime == "Broken Link !" )
          vfile_icon = "file_broken";
       else {
-         vfile_icon = KMimeType::mimeType( mime ) ->icon( QString::null, true );
+         vfile_icon = KMimeType::mimeType( mime ) ->iconName();
       }		
 	}
 	return vfile_icon;

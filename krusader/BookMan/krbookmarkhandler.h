@@ -7,7 +7,7 @@
 //Added by qt3to4:
 #include <QEvent>
 #include <Q3PopupMenu>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <kurl.h>
 #include <q3ptrdict.h>
 #include <q3valuelist.h>
@@ -24,9 +24,9 @@ class KrBookmarkHandler: public QObject {
 public:
 	KrBookmarkHandler();
 	~KrBookmarkHandler();
-	void populate(KPopupMenu *menu);
+	void populate(KMenu *menu);
 	void addBookmark(KrBookmark *bm, KrBookmark *parent = 0);
-	void bookmarkCurrent(KURL url);
+	void bookmarkCurrent(KUrl url);
 
 protected:
 	void deleteBookmark(KrBookmark *bm);
@@ -37,7 +37,7 @@ protected:
 	void exportToFileFolder(QDomDocument &doc, QDomElement &parent, KrBookmark *folder);
 	void exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm);
 	void clearBookmarks(KrBookmark *root);
-	void buildMenu(KrBookmark *parent, KPopupMenu *menu);
+	void buildMenu(KrBookmark *parent, KMenu *menu);
 
 	bool eventFilter( QObject *obj, QEvent *ev );
 	
@@ -49,7 +49,7 @@ protected:
 protected slots:
 	void menuOperation(int id);
 	void bookmarksChanged(const QString&, const QString&);
-	void slotActivated(const KURL& url);
+	void slotActivated(const KUrl& url);
 
 private:
 	KActionCollection *_collection, *_privateCollection;
@@ -58,7 +58,7 @@ private:
 	KBookmarkManager *manager;
 	bool _middleClick; // if true, the user clicked the middle button to open the bookmark
 	
-	QPointer<KPopupMenu>            _mainBookmarkPopup; // main bookmark popup menu
+	QPointer<KMenu>            _mainBookmarkPopup; // main bookmark popup menu
 	Q3ValueList<int>                    _specialBookmarkIDs; // the ID list of the special bookmarks
 	Q3PtrDict<QMap<int,KrBookmark*> >   _bookmarkIDTable;    // the IDs of the bookmarks
 };

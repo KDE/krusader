@@ -23,7 +23,7 @@
 
 // ------------------------ for internal use
 #define BOOKMARKS_FILE	"krusader/krbookmarks.xml"
-#define CONNECT_BM(X)	{ disconnect(X, SIGNAL(activated(const KURL&)), 0, 0); connect(X, SIGNAL(activated(const KURL&)), this, SLOT(slotActivated(const KURL&))); }
+#define CONNECT_BM(X)	{ disconnect(X, SIGNAL(activated(const KUrl&)), 0, 0); connect(X, SIGNAL(activated(const KUrl&)), this, SLOT(slotActivated(const KUrl&))); }
 											
 KrBookmarkHandler::KrBookmarkHandler(): QObject(0), _middleClick(false), _mainBookmarkPopup( 0 ), _specialBookmarkIDs(), _bookmarkIDTable() {
 	// create our own action collection and make the shortcuts apply only to parent
@@ -59,7 +59,7 @@ void KrBookmarkHandler::menuOperation(int id) {
 	}
 }
 
-void KrBookmarkHandler::bookmarkCurrent(KURL url) {
+void KrBookmarkHandler::bookmarkCurrent(KUrl url) {
 	KrAddBookmarkDlg dlg(krApp, url);
 	if (dlg.exec() == KDialog::Accepted) {
 		KrBookmark *bm = new KrBookmark(dlg.name(), dlg.url(), _collection);
@@ -108,7 +108,7 @@ void KrBookmarkHandler::exportToFileBookmark(QDomDocument &doc, QDomElement &whe
 	else {
 		QDomElement bookmark = doc.createElement("bookmark");
 		// url
-		bookmark.setAttribute("href", bm->url().prettyURL());
+		bookmark.setAttribute("href", bm->url().prettyUrl());
 		// icon
 		bookmark.setAttribute("icon", bm->icon());
 		// title
@@ -202,7 +202,7 @@ bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *paren
 	// ok: got name and url, let's add a bookmark
 	KrBookmark *bm = KrBookmark::getExistingBookmark(path+name, _collection);
 	if (!bm) {
-		bm = new KrBookmark(name, vfs::fromPathOrURL( url ), _collection, icon, path+name);
+		bm = new KrBookmark(name, vfs::fromPathOrUrl( url ), _collection, icon, path+name);
 	parent->children().append(bm);
 	}
 
@@ -275,7 +275,7 @@ SUCCESS:
 	file.close();
 }
 
-void KrBookmarkHandler::populate(KPopupMenu *menu) {
+void KrBookmarkHandler::populate(KMenu *menu) {
 	_mainBookmarkPopup = menu;
 	menu->clear();
 	_bookmarkIDTable.clear();
@@ -283,14 +283,14 @@ void KrBookmarkHandler::populate(KPopupMenu *menu) {
 	buildMenu(_root, menu);
 }
 
-void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
+void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu) {
 	static int inSecondaryMenu = 0; // used to know if we're on the top menu
 
 	// run the loop twice, in order to put the folders on top. stupid but easy :-)
 	// note: this code drops the separators put there by the user
 	for (KrBookmark *bm = parent->children().first(); bm; bm = parent->children().next()) {
 		if (!bm->isFolder()) continue;
-		KPopupMenu *newMenu = new KPopupMenu(menu);
+		KMenu *newMenu = new KMenu(menu);
 		int id = menu->insertItem(QIcon(krLoader->loadIcon(bm->icon(), KIcon::Small)),
 									bm->text(), newMenu, -1 /* dummy id */, -1 /* end of list */);
 		
@@ -331,18 +331,18 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 			menu->insertSeparator();
 			
 			// add the popular links submenu
-			KPopupMenu *newMenu = new KPopupMenu(menu);
+			KMenu *newMenu = new KMenu(menu);
 			itemIndex = menu->insertItem(QIcon(krLoader->loadIcon("bookmark_folder", KIcon::Small)),
 										i18n("Popular URLs"), newMenu, -1 /* dummy id */, -1 /* end of list */);
 			_specialBookmarkIDs.append( itemIndex );
 			// add the top 15 urls
 			#define MAX 15
-			KURL::List list = krApp->popularUrls->getMostPopularUrls(MAX);
-			KURL::List::Iterator it;
+			KUrl::List list = krApp->popularUrls->getMostPopularUrls(MAX);
+			KUrl::List::Iterator it;
 			for (it = list.begin(); it != list.end(); ++it) {
 				QString name;
 				if ((*it).isLocalFile()) name = (*it).path();
-				else name = (*it).prettyURL();
+				else name = (*it).prettyUrl();
 				// note: these bookmark are put into the private collection
 				// as to not spam the general collection
 				KrBookmark *bm = KrBookmark::getExistingBookmark(name, _privateCollection);
@@ -570,7 +570,7 @@ void KrBookmarkHandler::rightClicked( Q3PopupMenu *menu, int /*id*/, KrBookmark 
 // used to monitor middle clicks. if mid is found, then the
 // bookmark is opened in a new tab. ugly, but easier than overloading
 // KAction and KActionCollection.
-void KrBookmarkHandler::slotActivated(const KURL& url) {
+void KrBookmarkHandler::slotActivated(const KUrl& url) {
 	if (_middleClick)
 		SLOTS->newTab(url);
 	else SLOTS->refresh(url);

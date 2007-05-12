@@ -231,7 +231,7 @@ protected:
 // KonfiguratorURLRequester class
 ///////////////////////////////
 
-class KonfiguratorURLRequester : public KURLRequester
+class KonfiguratorURLRequester : public KUrlRequester
 {
   Q_OBJECT
 

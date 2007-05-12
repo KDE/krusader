@@ -34,7 +34,7 @@
 #include <QDragMoveEvent>
 #include <kdebug.h>
 
-#define DISPLAY(X)	(X.isLocalFile() ? X.path() : X.prettyURL())
+#define DISPLAY(X)	(X.isLocalFile() ? X.path() : X.prettyUrl())
 
 PanelTabBar::PanelTabBar(QWidget *parent): QTabBar(parent), _maxTabLength(0) {
   _panelActionMenu = new KActionMenu( i18n("Panel"), this );
@@ -51,14 +51,16 @@ PanelTabBar::PanelTabBar(QWidget *parent): QTabBar(parent), _maxTabLength(0) {
 }
 
 void PanelTabBar::mousePressEvent( QMouseEvent* e ) {
-  QTab* clickedTab = selectTab( e->pos() );
-  if( !clickedTab ) { // clicked on nothing ...
+  int clickedTab = tabAt(e->pos());
+  if (-1 == clickedTab) { // clicked on nothing ...
     QTabBar::mousePressEvent(e);
     return;
   }
-  // else implied
-  setCurrentTab( clickedTab );
-  emit changePanel(dynamic_cast<PanelTab*>(clickedTab)->panel);
+
+  setCurrentIndex( clickedTab );
+
+  ListPanel *panel = static_cast<ListPanel*>(tabData(clickedTab));
+  emit changePanel(panel);
 
   if ( e->button() == Qt::RightButton ) {
     // show the popup menu
@@ -66,8 +68,8 @@ void PanelTabBar::mousePressEvent( QMouseEvent* e ) {
   } else
   if ( e->button() == Qt::LeftButton ) { // we need to change tabs
     // first, find the correct panel to load
-    int id = currentTab();
-    ListPanel *listpanel = dynamic_cast<PanelTab*>(tab(id))->panel;
+    int id = currentIndex();
+    ListPanel *listpanel = static_cast<ListPanel*>(tabData(id));
     emit changePanel(listpanel);
   } else
   if (e->button() == Qt::MidButton) { // close the current tab
@@ -81,11 +83,12 @@ void PanelTabBar::insertAction( KAction* action ) {
 }
 
 int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent ) {
-  int newId = addTab(new PanelTab(squeeze(DISPLAY(panel->virtualPath())), panel));
+  int newId = addTab(squeeze(DISPLAY(panel->virtualPath())));
+  setTabData(newId, panel);
 
   // make sure all tabs lengths are correct
   for (int i=0; i<count(); i++)
-    tabAt(i)->setText(squeeze(DISPLAY(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath()), i));
+    setTabText(i, squeeze(DISPLAY(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath()), i));
   layoutTabs();
   
   if( setCurrent )
@@ -96,7 +99,8 @@ int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent ) {
     krCloseTab->setEnabled(true);
   }
 
-  connect(dynamic_cast<PanelTab*>(tab(newId))->panel, SIGNAL(pathChanged(ListPanel*)),
+
+connect(static_cast<ListPanel*>(tabData(newId)), SIGNAL(pathChanged(ListPanel*)),
           this, SLOT(updateTab(ListPanel*)));
 
   return newId;
@@ -104,17 +108,17 @@ int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent ) {
 
 ListPanel* PanelTabBar::removeCurrentPanel(ListPanel* &panelToDelete) {
   int id = currentTab();
-  ListPanel *oldp = dynamic_cast<PanelTab*>(tab(id))->panel; // old panel to kill later
-  disconnect(dynamic_cast<PanelTab*>(tab(id))->panel);
+  ListPanel *oldp = static_cast<ListPanel*>(tabData(id)); // old panel to kill later
+  disconnect(oldp);
   removeTab(tab(id));
 
   for (int i=0; i<count(); i++)
-    tabAt(i)->setText(squeeze(DISPLAY(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath()), i));
+    setTabText(i, squeeze(DISPLAY(static_cast<ListPanel*>(tabData(i))->virtualPath()), i));
   layoutTabs();
 
   // setup current one
   id = currentTab();
-  ListPanel *p = dynamic_cast<PanelTab*>(tab(id))->panel;
+  ListPanel *p = static_cast<ListPanel*>(tabData(id));
   // disable close action?
   if (count()==1) {
     krCloseTab->setEnabled(false);
@@ -127,8 +131,8 @@ ListPanel* PanelTabBar::removeCurrentPanel(ListPanel* &panelToDelete) {
 void PanelTabBar::updateTab(ListPanel *panel) {
   // find which is the correct tab
   for (int i=0; i<count(); i++) {
-    if (dynamic_cast<PanelTab*>(tabAt(i))->panel == panel) {
-      tabAt(i)->setText(squeeze(DISPLAY(panel->virtualPath()),i));
+    if (static_cast<ListPanel*>(tabData(i)) == panel) {
+      setTabText(i, squeeze(DISPLAY(panel->virtualPath()),i));
       break;
     }
   }
@@ -136,7 +140,7 @@ void PanelTabBar::updateTab(ListPanel *panel) {
 
 void PanelTabBar::duplicateTab() {
   int id = currentTab();
-  emit newTab(dynamic_cast<PanelTab*>(tab(id))->panel->virtualPath());
+  emit newTab(static_cast<ListPanel*>(tabData(id))->virtualPath());
 }
 
 void PanelTabBar::closeTab() {
@@ -236,7 +240,7 @@ void PanelTabBar::resizeEvent ( QResizeEvent *e ) {
     QTabBar::resizeEvent( e );
      
     for (int i=0; i<count(); i++)
-      tabAt(i)->setText(squeeze(DISPLAY(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath()), i));
+	    tabAt(i)->setText(squeeze(DISPLAY(static_cast<ListPanel*>(tabData(i))->virtualPath()), i));
     layoutTabs();
 }
 
@@ -246,7 +250,7 @@ void PanelTabBar::dragEnterEvent(QDragEnterEvent *e) {
 	if (!t) return;
 	if (tab(currentTab()) != t) {
 		setCurrentTab(t);
-		emit changePanel(dynamic_cast<PanelTab*>(t)->panel);
+		emit changePanel(static_cast<ListPanel*>(tabData(t)));
 	}
 }
 
@@ -255,13 +259,9 @@ void PanelTabBar::dragMoveEvent(QDragMoveEvent *e) {
 	if (!t) return;
 	if (tab(currentTab()) != t) {
 		setCurrentTab(t);
-		emit changePanel(dynamic_cast<PanelTab*>(t)->panel);
+		emit changePanel(static_cast<ListPanel*>(tabData(t)));
 	}
 }
 
-// -----------------------------> PanelTab <----------------------------
-
-PanelTab::PanelTab(const QString & text): QTab(text) {}
-PanelTab::PanelTab(const QString & text, ListPanel *p): QTab(text), panel(p) {}
 
 #include "paneltabbar.moc"

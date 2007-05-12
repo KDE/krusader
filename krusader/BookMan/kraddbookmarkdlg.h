@@ -7,20 +7,20 @@
 #include <kurl.h>
 #include <klineedit.h>
 #include <qmap.h>
-#include <klistview.h>
+#include <k3listview.h>
 #include <qtoolbutton.h>
 
 class KrAddBookmarkDlg: public KDialogBase {
 	Q_OBJECT
 public:
-	KrAddBookmarkDlg(QWidget *parent, KURL url = 0);
-	KURL url() const { return vfs::fromPathOrURL(_url->text()); }
+	KrAddBookmarkDlg(QWidget *parent, KUrl url = 0);
+	KUrl url() const { return vfs::fromPathOrUrl(_url->text()); }
 	QString name() const { return _name->text(); }
-	KrBookmark *folder() const { return _xr[static_cast<KListViewItem*>(_createIn->selectedItem())]; }
+	KrBookmark *folder() const { return _xr[static_cast<K3ListViewItem*>(_createIn->selectedItem())]; }
 
 protected:
 	QWidget *createInWidget();
-	void populateCreateInWidget(KrBookmark *root, KListViewItem *parent);
+	void populateCreateInWidget(KrBookmark *root, K3ListViewItem *parent);
 
 protected slots:
 	void toggleCreateIn(bool show);
@@ -31,8 +31,8 @@ private:
 	KLineEdit *_name;
 	KLineEdit *_url;
 	KLineEdit *_folder;
-	KListView *_createIn;
-	QMap<KListViewItem*, KrBookmark*> _xr;
+	K3ListView *_createIn;
+	QMap<K3ListViewItem*, KrBookmark*> _xr;
 	QToolButton *_createInBtn;
 };
 

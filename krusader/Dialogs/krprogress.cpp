@@ -36,7 +36,7 @@
 #include <kiconloader.h>
 #include <kpushbutton.h>
 #include <kstdguiitem.h>
-#include <kwin.h>
+#include <kwindowsystem.h>
 
 #include <kio/jobclasses.h>
 
@@ -48,11 +48,11 @@ KrProgress::KrProgress( KIO::Job* job )
   m_iTotalSize(0), m_iTotalFiles(0), m_iTotalDirs(0),
   m_iProcessedSize(0), m_iProcessedDirs(0), m_iProcessedFiles(0){
 
-#ifdef Q_WS_X11 //FIXME(E): Remove once all the KWin::foo calls have been ported to QWS
+#ifdef Q_WS_X11 //FIXME(E): Remove once all the KWindowSystem::foo calls have been ported to QWS
   // Set a useful icon for this window!
-  KWin::setIcons( winId(),
-          KGlobal::iconLoader()->loadIcon( "filesave", KIcon::NoGroup, 32 ),
-          KGlobal::iconLoader()->loadIcon( "filesave", KIcon::NoGroup, 16 ) );
+  KWindowSystem::setIcons( winId(),
+          KIconLoader::global()->loadIcon( "filesave", KIcon::NoGroup, 32 ),
+          KIconLoader::global()->loadIcon( "filesave", KIcon::NoGroup, 16 ) );
 #endif
 
   Q3VBoxLayout *topLayout = new Q3VBoxLayout( this, KDialog::marginHint(),
@@ -90,7 +90,7 @@ KrProgress::KrProgress( KIO::Job* job )
   progressLabel = new QLabel( this );
 /*  progressLabel->setSizePolicy( QSizePolicy( QSizePolicy::MinimumExpanding,
                                              QSizePolicy::Preferred ) );*/
-  progressLabel->setAlignment( QLabel::AlignRight );
+  progressLabel->setAlignment( QLabel::Qt::AlignRight );
   hBox->addWidget( progressLabel );
 
   hBox = new Q3HBoxLayout();
@@ -109,7 +109,7 @@ KrProgress::KrProgress( KIO::Job* job )
 
   hBox->addStretch(1);
 
-  KPushButton *pb = new KPushButton( KStdGuiItem::cancel(), this );
+  KPushButton *pb = new KPushButton( KStandardGuiItem::cancel(), this );
   connect( pb, SIGNAL( clicked() ), SLOT( slotStop() ) );
   hBox->addWidget( pb );
 
@@ -136,8 +136,8 @@ KrProgress::KrProgress( KIO::Job* job )
   // change to modal & move to Krusader's center
     QPoint center((krApp->width()-width())/2,(krApp->height()-height())/2);
   center = center+(krApp->pos());
-  reparent(krApp,WType_Modal,center);
-  //setWFlags(WType_Modal);
+  reparent(krApp,Qt::WType_Modal,center);
+  //setWFlags(Qt::WType_Modal);
   //move((krApp->width()-width())/2,(krApp->height()-height())/2);
   show();
 }
@@ -187,7 +187,7 @@ void KrProgress::slotPercent( KIO::Job*, unsigned long percent ){
 void KrProgress::slotInfoMessage( KIO::Job*, const QString & msg )
 {
   speedLabel->setText( msg );
-  speedLabel->setAlignment( speedLabel->alignment() & ~Qt::WordBreak );
+  speedLabel->setAlignment( speedLabel->alignment() & ~Qt::TextWordWrap );
 }
 
 

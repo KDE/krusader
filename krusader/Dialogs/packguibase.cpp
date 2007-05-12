@@ -257,7 +257,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     TextLabel8->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
     hbox_7->addWidget( TextLabel8 );
 
-    commandLineSwitches = new KHistoryCombo( advancedWidget, "commandLineSwitches" );
+    commandLineSwitches = new KHistoryComboBox( advancedWidget, "commandLineSwitches" );
     commandLineSwitches->setMaxCount(25);  // remember 25 items
     commandLineSwitches->setDuplicatesEnabled(false);
     krConfig->setGroup("Archives");
