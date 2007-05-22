@@ -5,13 +5,14 @@
 # This file is distributed under the same license as the Krusader package
 #
 # Spiros Georgaras <sngeorgaras@otenet.gr>, 2005, 2006, 2007.
+# Spiros Georgaras <sng@hellug.gr>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.80.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2007-03-19 20:16+0100\n"
-"PO-Revision-Date: 2007-04-18 22:30+0300\n"
-"Last-Translator: Spiros Georgaras <sngeorgaras@otenet.gr>\n"
+"POT-Creation-Date: 2007-03-27 15:16+0200\n"
+"PO-Revision-Date: 2007-05-22 15:49+0300\n"
+"Last-Translator: Spiros Georgaras <sng@hellug.gr>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -152,7 +153,8 @@ msgstr ""
 
 #: ActionMan/actionpropertybase.cpp:418 GUI/kcmdline.cpp:102
 msgid "Add <b>Placeholders</b> for the selected files in the panel."
-msgstr "Προσθήκη <b>Δεσμευτικού θέσης </b> για τα επιλεγμένα αρχεία του πίνακα."
+msgstr ""
+"Προσθήκη <b>Δεσμευτικού θέσης </b> για τα επιλεγμένα αρχεία του πίνακα."
 
 #: GUI/kfnkeys.cpp:50
 msgid "F2 Term  "
@@ -440,7 +442,8 @@ msgstr "Η συμπίεση απέτυχε: "
 
 #: VFS/krarchandler.cpp:548
 msgid "This archive is encrypted, please supply the password:"
-msgstr "Η αρχειοθήκη είναι κρυπτογραφημένη, παρακαλώ δώστε τον κωδικό πρόσβασης:"
+msgstr ""
+"Η αρχειοθήκη είναι κρυπτογραφημένη, παρακαλώ δώστε τον κωδικό πρόσβασης:"
 
 #: KrJS/krjs.cpp:65
 msgid ""
@@ -518,15 +521,25 @@ msgid ""
 "code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to "
 "'<code>*text*</code>'.</p>"
 msgstr ""
-"<p>Εδώ καθορίζονται τα κριτήρια φιλτραρίσματος του ονόματος αρχείου.</p><p>Μπορείτε να "
-"χρησιμοποιήσετε χαρακτήρες μπαλαντέρ. Πολλαπλά μοτίβα χωρίζονται με ένα κενό χαρακτήρα (σημαίνει λογικό Ή) "
-"ενώ τα μοτίβα δεν περιλαμβάνονται στην αναζήτηση με τη χρήση του χαρακτήρα διασωλήνωσης.</p><p>Αν "
-"το μοτίβο τελειώνει με μία κάθετο (<code>*μοτίβο*/</code>), το μοτίβο θα χρησιμοποιηθεί στην αναδρομική αναζήτηση καταλόγων.<ul><li><code>μοτίβο</"
-"code> - σημαίνει ότι θα γίνει αναζήτηση για τα αρχεία/καταλόγους που το όνομά τους ταιριάζει με το <code>μοτίβο</"
-"code>. Η αναδρομική αναζήτηση σαρώνει όλους τους υποκαταλόγους ανεξάρτητα από την τιμή του <code>μοτίβου</code></li><li><code>μοτίβο/</code> - σημαίνει ότι θα γίνει αναζήτηση σε όλα τα αρχεία/καταλόγους, αλλά η αναδρομική αναζήτηση περιλαμβάνει/απορρίπτει τους καταλόγους που ταιριάζουν με το <code>μοτίβο</code></li></ul><p></p><p>Επιτρέπεται η χρήση εισαγωγικών για ονόματα που περιέχουν κενούς χαρακτήρες. Με χρήση του όρου <code>"
-"\"Program&nbsp;Files\"</code>, θα γίνει αναζήτηση για όλα τα αρχεία/καταλόγους που το όνομά τους είναι το <code>Program&nbsp;Files</code>.</p><p>Παραδείγματα:<ul><code><li>*.o</"
-"li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</li></"
-"code></ul><b>Note</b>: ο όρος αναζήτησης '<code>κείμενο</code>' είναι αντίστοιχος του '<code>*κείμενο*</code>'.</p>"
+"<p>Εδώ καθορίζονται τα κριτήρια φιλτραρίσματος του ονόματος αρχείου.</"
+"p><p>Μπορείτε να χρησιμοποιήσετε χαρακτήρες μπαλαντέρ. Πολλαπλά μοτίβα "
+"χωρίζονται με ένα κενό χαρακτήρα (σημαίνει λογικό Ή) ενώ τα μοτίβα δεν "
+"περιλαμβάνονται στην αναζήτηση με τη χρήση του χαρακτήρα διασωλήνωσης.</"
+"p><p>Αν το μοτίβο τελειώνει με μία κάθετο (<code>*μοτίβο*/</code>), το "
+"μοτίβο θα χρησιμοποιηθεί στην αναδρομική αναζήτηση καταλόγων."
+"<ul><li><code>μοτίβο</code> - σημαίνει ότι θα γίνει αναζήτηση για τα αρχεία/"
+"καταλόγους που το όνομά τους ταιριάζει με το <code>μοτίβο</code>. Η "
+"αναδρομική αναζήτηση σαρώνει όλους τους υποκαταλόγους ανεξάρτητα από την "
+"τιμή του <code>μοτίβου</code></li><li><code>μοτίβο/</code> - σημαίνει ότι θα "
+"γίνει αναζήτηση σε όλα τα αρχεία/καταλόγους, αλλά η αναδρομική αναζήτηση "
+"περιλαμβάνει/απορρίπτει τους καταλόγους που ταιριάζουν με το <code>μοτίβο</"
+"code></li></ul><p></p><p>Επιτρέπεται η χρήση εισαγωγικών για ονόματα που "
+"περιέχουν κενούς χαρακτήρες. Με χρήση του όρου <code>\"Program&nbsp;Files\"</"
+"code>, θα γίνει αναζήτηση για όλα τα αρχεία/καταλόγους που το όνομά τους "
+"είναι το <code>Program&nbsp;Files</code>.</p><p>Παραδείγματα:<ul><code><li>*."
+"o</li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</"
+"li></code></ul><b>Note</b>: ο όρος αναζήτησης '<code>κείμενο</code>' είναι "
+"αντίστοιχος του '<code>*κείμενο*</code>'.</p>"
 
 #: Filter/generalfilter.cpp:86
 msgid "&Of type:"
@@ -789,7 +802,9 @@ msgstr "Ο απαιτούμενος ορισμός πίνακα λείπει σ�
 
 #: UserAction/expander.cpp:70
 msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
-msgstr "Επεκτάτης: Εσφαλμένο όρισμα στο %1. Το %2 δεν είναι έγκυρο διακριτικό αντικειμένου"
+msgstr ""
+"Επεκτάτης: Εσφαλμένο όρισμα στο %1. Το %2 δεν είναι έγκυρο διακριτικό "
+"αντικειμένου"
 
 #: UserAction/expander.cpp:357
 msgid "Panel's Path..."
@@ -811,7 +826,9 @@ msgstr "Μετρητής:"
 
 #: UserAction/expander.cpp:398
 msgid "Expander: Bad argument to Count: %1 is not valid item specifier"
-msgstr "Επεκτάτης: Εσφαλμένο όρισμα στο Μετρητή. Το %1 δεν είναι έγκυρο διακριτικό αντικειμένου"
+msgstr ""
+"Επεκτάτης: Εσφαλμένο όρισμα στο Μετρητή. Το %1 δεν είναι έγκυρο διακριτικό "
+"αντικειμένου"
 
 #: UserAction/expander.cpp:407
 msgid "Filter Mask (*.h, *.cpp, etc.)"
@@ -910,11 +927,13 @@ msgstr "Τι να αντιγραφεί:"
 
 #: UserAction/expander.cpp:633
 msgid "Append to current clipboard content with this separator (optional):"
-msgstr "Προσθήκη στα περιεχόμενα του προχείρου με αυτό το διαχωριστικό (προαιρετικό):"
+msgstr ""
+"Προσθήκη στα περιεχόμενα του προχείρου με αυτό το διαχωριστικό (προαιρετικό):"
 
 #: UserAction/expander.cpp:639
 msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
-msgstr "Επεκτάτης: Το %Each% μπορεί να μην είναι το δεύτερο όρισμα του %Clipboard%"
+msgstr ""
+"Επεκτάτης: Το %Each% μπορεί να μην είναι το δεύτερο όρισμα του %Clipboard%"
 
 #: UserAction/expander.cpp:652
 msgid "Copy a File/Folder..."
@@ -979,7 +998,8 @@ msgstr "Φόρτωση ενός προφίλ πίνακα..."
 
 #: UserAction/expander.cpp:758
 msgid "Expander: no profile specified for %_Profile(profile)%; abort..."
-msgstr "Επεκτάτης: Δεν καθορίστηκε προφίλ για το %_Profile(profile)%. Εγκατάλειψη..."
+msgstr ""
+"Επεκτάτης: Δεν καθορίστηκε προφίλ για το %_Profile(profile)%. Εγκατάλειψη..."
 
 #: UserAction/expander.cpp:769
 msgid "Separate Program Call for Each..."
@@ -1018,8 +1038,8 @@ msgid ""
 "Expander: Value %1 out of range for %_PanelSize(percent)%. The first "
 "parameter has to be >0 and <100"
 msgstr ""
-"Επεκτάτης: Η τιμή %1 είναι εκτός ορίων για το %_PanelSize(percent)%. Η "
-"πρώτη παράμετρος πρέπει να είναι >0 και <100"
+"Επεκτάτης: Η τιμή %1 είναι εκτός ορίων για το %_PanelSize(percent)%. Η πρώτη "
+"παράμετρος πρέπει να είναι >0 και <100"
 
 #: UserAction/expander.cpp:934
 msgid "Execute a JavaScript Extension..."
@@ -1035,8 +1055,8 @@ msgid ""
 "i.e. \"return=return_var;foo=bar\", consult the handbook for more information"
 msgstr ""
 "Ορισμός μεταβλητών για την εκτέλεση (προαιρετικό).\n"
-"π.χ. \"return=return_var;foo=bar\". Συμβουλευτείτε το εγχειρίδιο για περισσότερες "
-"πληροφορίες"
+"π.χ. \"return=return_var;foo=bar\". Συμβουλευτείτε το εγχειρίδιο για "
+"περισσότερες πληροφορίες"
 
 #: UserAction/expander.cpp:942
 msgid "Expander: no script specified for %_Script(script)%"
@@ -1171,11 +1191,16 @@ msgstr "Η εξαγωγή απέτυχε!"
 msgid ""
 "Support for more than one command doesn't work in a terminal. Only the first "
 "is executed in the terminal."
-msgstr "Η υποστήριξη για παραπάνω από μία εντολή δε λειτουργεί στο τερματικό. Θα εκτελεστεί μόνο η πρώτη."
+msgstr ""
+"Η υποστήριξη για παραπάνω από μία εντολή δε λειτουργεί στο τερματικό. Θα "
+"εκτελεστεί μόνο η πρώτη."
 
 #: UserAction/kraction.cpp:204
-msgid "Embedded terminal emulator does not work, using output collection instead."
-msgstr "Ο ενσωματωμένος εξομοιωτής τερματικού δε λειτουργεί. Θα χρησιμοποιηθεί η συλλογή της εξόδου."
+msgid ""
+"Embedded terminal emulator does not work, using output collection instead."
+msgstr ""
+"Ο ενσωματωμένος εξομοιωτής τερματικού δε λειτουργεί. Θα χρησιμοποιηθεί η "
+"συλλογή της εξόδου."
 
 #: UserAction/useraction.cpp:100
 msgid "The file %1 does not contain valid UserActions.\n"
@@ -1266,7 +1291,8 @@ msgstr "Καθαρισμός της γραμμής τοποθεσίας"
 
 #: Panel/listpanel.cpp:206
 msgid "Use superb KDE file dialog to choose location. "
-msgstr "Χρήση του εξαιρετικού διαλόγου αρχείων του KDE για την επιλογή τοποθεσίας. "
+msgstr ""
+"Χρήση του εξαιρετικού διαλόγου αρχείων του KDE για την επιλογή τοποθεσίας. "
 
 #: Panel/listpanel.cpp:211
 msgid ""
@@ -1451,11 +1477,13 @@ msgstr " σε:"
 
 #: Panel/panelpopup.cpp:66
 msgid "Tree Panel: a tree view of the local file system"
-msgstr "Πίνακα δέντρου: προβολή της δεντρικής δομής του τοπικού συστήματος αρχείων"
+msgstr ""
+"Πίνακα δέντρου: προβολή της δεντρικής δομής του τοπικού συστήματος αρχείων"
 
 #: Panel/panelpopup.cpp:74
 msgid "Preview Panel: display a preview of the current file"
-msgstr "Πίνακας προεπισκόπησης: εμφάνιση της προεπισκόπησης του τρέχοντος αρχείου"
+msgstr ""
+"Πίνακας προεπισκόπησης: εμφάνιση της προεπισκόπησης του τρέχοντος αρχείου"
 
 #: Panel/panelpopup.cpp:81
 msgid "Quick Panel: quick way to perform actions"
@@ -2747,7 +2775,8 @@ msgstr ""
 "Παρακαλώ ενημερώστε τους προγραμματιστές"
 
 #: MountMan/kmountmangui.cpp:326
-msgid "MountMan has an internal error. Please notify the developers. Thank you."
+msgid ""
+"MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Εσωτερικό σφάλμα του MountMan\n"
 "Παρακαλώ ενημερώστε τους προγραμματιστές. Ευχαριστώ."
@@ -2770,7 +2799,7 @@ msgstr "Σπύρος Γεωργαράς"
 msgid ""
 "_: EMAIL OF TRANSLATORS\n"
 "Your emails"
-msgstr "sngeorgaras@otenet.gr"
+msgstr "sng@hellug.gr"
 
 #: main.cpp:51
 msgid ""
@@ -2820,7 +2849,8 @@ msgstr "Η εφαρμογή εκτελείται ήδη!\n"
 
 #: krusaderview.cpp:86
 msgid "Function keys allow performing fast operations on files."
-msgstr "Τα πλήκτρα λειτουργιών σας επιτρέπουν τη γρήγορη εκτέλεση εντολών στα αρχεία."
+msgstr ""
+"Τα πλήκτρα λειτουργιών σας επιτρέπουν τη γρήγορη εκτέλεση εντολών στα αρχεία."
 
 #: Dialogs/krdialogs.cpp:146
 msgid "Preserve attributes (only for local targets)"
@@ -3119,8 +3149,10 @@ msgid "Legacy import completed"
 msgstr "Η εισαγωγή της κληροδοτημένης μορφής ολοκληρώθηκε"
 
 #: Dialogs/krkeydialog.cpp:134
-msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
-msgstr "<qt>Το αρχείο <b>%1</b> υπάρχει ήδη. Θέλετε να το αντικαταστήσετε;</qt>"
+msgid ""
+"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgstr ""
+"<qt>Το αρχείο <b>%1</b> υπάρχει ήδη. Θέλετε να το αντικαταστήσετε;</qt>"
 
 #: Dialogs/krkeydialog.cpp:143
 msgid "<qt>Can't open <b>%1</b> for writing!</qt>"
@@ -3309,7 +3341,8 @@ msgstr ""
 
 #: Dialogs/checksumdlg.cpp:336
 msgid "About to verify checksum for the following files"
-msgstr "Πρόκειται να γίνει επαλήθευση του αθροίσματος ελέγχου για τα ακόλουθα αρχεία"
+msgstr ""
+"Πρόκειται να γίνει επαλήθευση του αθροίσματος ελέγχου για τα ακόλουθα αρχεία"
 
 #: Dialogs/checksumdlg.cpp:350
 msgid "Checksum file:"
@@ -3448,12 +3481,15 @@ msgid "Delete selected useractions"
 msgstr "Αφαίρεση των επιλεγμένων ενεργειών χρήστη"
 
 #: ActionMan/useractionpage.cpp:126
-msgid "The current action has been modified. Do you want to apply these changes?"
-msgstr "Η τρέχουσα ενέργεια έχει τροποποιηθεί. Θέλετε να εφαρμοστούν οι αλλαγές;"
+msgid ""
+"The current action has been modified. Do you want to apply these changes?"
+msgstr ""
+"Η τρέχουσα ενέργεια έχει τροποποιηθεί. Θέλετε να εφαρμοστούν οι αλλαγές;"
 
 #: ActionMan/useractionpage.cpp:203
 msgid "Are you sure that you want to remove all selected actions?"
-msgstr "Είστε σίγουροι ότι θέλετε να αφαιρέσετε όλες τις επιλεγμένες ενέργειες;"
+msgstr ""
+"Είστε σίγουροι ότι θέλετε να αφαιρέσετε όλες τις επιλεγμένες ενέργειες;"
 
 #: ActionMan/useractionpage.cpp:204
 msgid "Remove selected actions?"
@@ -3799,7 +3835,8 @@ msgstr "Δια&γραφή"
 #: ActionMan/actionpropertybase.cpp:438 ActionMan/actionpropertybase.cpp:440
 #: ActionMan/actionpropertybase.cpp:445
 msgid "Show the <b>Useraction</b> only for the values defined here."
-msgstr "Εμφάνιση της <b>Ενέργειας χρήστη</b> μόνο για τις τιμές που ορίζονται εδώ."
+msgstr ""
+"Εμφάνιση της <b>Ενέργειας χρήστη</b> μόνο για τις τιμές που ορίζονται εδώ."
 
 #: ActionMan/actionpropertybase.cpp:439
 msgid "Protocol"
@@ -3944,7 +3981,8 @@ msgstr "Θύρα:   "
 
 #: RemoteMan/remotemanbase.cpp:235
 msgid "* Warning: Storing your password is not secure !!!"
-msgstr "* Προειδοποίηση: Η αποθήκευση του κωδικού πρόσβασής σας δεν είναι ασφαλής!!!"
+msgstr ""
+"* Προειδοποίηση: Η αποθήκευση του κωδικού πρόσβασής σας δεν είναι ασφαλής!!!"
 
 #: UserMenu/usermenu.cpp:51
 msgid "User Menu"
@@ -3968,7 +4006,8 @@ msgstr "&Φίλτρο αρχείων:"
 
 #: Synchronizer/synchronizergui.cpp:1148
 msgid "The left base directory used during the synchronisation process."
-msgstr "Ο αριστερός βασικός κατάλογος που θα χρησιμοποιηθεί για το συγχρονισμό."
+msgstr ""
+"Ο αριστερός βασικός κατάλογος που θα χρησιμοποιηθεί για το συγχρονισμό."
 
 #: Synchronizer/synchronizergui.cpp:1181
 msgid "The right base directory used during the synchronisation process."
@@ -3980,7 +4019,8 @@ msgstr "Αναδρομικά στους υποκαταλόγους"
 
 #: Synchronizer/synchronizergui.cpp:1190
 msgid "Compare not only the base directories but their subdirectories as well."
-msgstr "Σύγκριση όχι μόνο των βασικών καταλόγων αλλά και των υποκαταλόγων τους."
+msgstr ""
+"Σύγκριση όχι μόνο των βασικών καταλόγων αλλά και των υποκαταλόγων τους."
 
 #: Synchronizer/synchronizergui.cpp:1191
 msgid "Follow symlinks"
@@ -4025,7 +4065,7 @@ msgstr ""
 "<p><b>Ασύμμετρη λειτουργία</b></p><p>Η αριστερή πλευρά είναι ο κατάλογος "
 "προορισμού και η δεξιά ο κατάλογος προέλευσης. Αρχεία που υπάρχουν μόνο στον "
 "αριστερό κατάλογο θα διαγραφούν, ενώ όσα διαφέρουν θα αντιγραφούν από τα "
-"αριστερά στα δεξιά.</p><p><b>Σημείωση</b>: χρήσιμο όταν ενημερώνετε έναν "
+"δεξιά στα αριστερά.</p><p><b>Σημείωση</b>: χρήσιμο όταν ενημερώνετε έναν "
 "κατάλογο από έναν εξυπηρετητή αρχείων.</p>"
 
 #: Synchronizer/synchronizergui.cpp:1204
@@ -4186,7 +4226,8 @@ msgstr "&Δεξιός κατάλογος:"
 
 #: Synchronizer/synchronizergui.cpp:1629
 msgid "URL must be the descendant of either the left or the right base URL!"
-msgstr "Το URL θα πρέπει να είναι απόγονος του αριστερού ή του δεξιού βασικού URL!"
+msgstr ""
+"Το URL θα πρέπει να είναι απόγονος του αριστερού ή του δεξιού βασικού URL!"
 
 #: Synchronizer/synchronizergui.cpp:1688
 msgid "Synchronize Directories"
@@ -4269,9 +4310,8 @@ msgid ""
 "The synchronizer window contains data from a previous compare. If you exit, "
 "this data will be lost. Do you really want to exit?"
 msgstr ""
-"Το παράθυρο συγχρονισμού περιέχει δεδομένα από προηγούμενη σύγκριση. "
-"Αν το κλείσετε, αυτά τα δεδομένα θα χαθούν. Θέλετε πραγματικά να γίνει "
-"τερματισμός;"
+"Το παράθυρο συγχρονισμού περιέχει δεδομένα από προηγούμενη σύγκριση. Αν το "
+"κλείσετε, αυτά τα δεδομένα θα χαθούν. Θέλετε πραγματικά να γίνει τερματισμός;"
 
 #: Synchronizer/synchronizertask.cpp:134 Synchronizer/synchronizertask.cpp:141
 msgid "Error at opening %1!"
@@ -4619,7 +4659,8 @@ msgstr "Krusader::Χρήση δίσκου"
 
 #: DiskUsage/diskusage.cpp:596
 msgid "Do you really want to move this item to the trash?"
-msgstr "Θέλετε πραγματικά να μετακινήσετε αυτό το αντικείμενο στον κάδο απορριμμάτων;"
+msgstr ""
+"Θέλετε πραγματικά να μετακινήσετε αυτό το αντικείμενο στον κάδο απορριμμάτων;"
 
 #: DiskUsage/diskusage.cpp:599
 msgid "Do you really want to delete this item?"
@@ -4846,11 +4887,13 @@ msgstr "Δεκαεξαδική προβολή"
 
 #: Konfigurator/kggeneral.cpp:99
 msgid "View the file in hex-mode (better for binary files)"
-msgstr "Εμφάνιση του αρχείου σε δεκαεξαδική μορφή (καλύτερο για δυαδικά αρχεία)"
+msgstr ""
+"Εμφάνιση του αρχείου σε δεκαεξαδική μορφή (καλύτερο για δυαδικά αρχεία)"
 
 #: Konfigurator/kggeneral.cpp:104
 msgid "Internal editor and viewer opens each file in a separate window"
-msgstr "Ο εσωτερικός επεξεργαστής και προβολέας ανοίγει το κάθε σε ξεχωριστό παράθυρο"
+msgstr ""
+"Ο εσωτερικός επεξεργαστής και προβολέας ανοίγει το κάθε σε ξεχωριστό παράθυρο"
 
 #: Konfigurator/kggeneral.cpp:105
 msgid ""
@@ -4896,7 +4939,8 @@ msgid "Searching for tools..."
 msgstr "Αναζήτηση για εργαλεία..."
 
 #: Konfigurator/kggeneral.cpp:187
-msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid ""
+"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Σιγουρευτείτε ότι εγκαθιστάτε τα νέα εργαλεία στο <code>$PATH</code> σας (π."
 "χ. /usr/bin)"
@@ -4925,7 +4969,8 @@ msgstr ""
 
 #: Konfigurator/krresulttable.cpp:127
 msgid "rpm found, but cpio not found which is required for unpacking"
-msgstr "Το rpm βρέθηκε, αλλά όχι και το cpio, το οποίο απαιτείται για την αποσυμπίεση"
+msgstr ""
+"Το rpm βρέθηκε, αλλά όχι και το cpio, το οποίο απαιτείται για την αποσυμπίεση"
 
 #: Konfigurator/krresulttable.cpp:130 Konfigurator/krresulttable.cpp:283
 msgid "Found"
@@ -5116,7 +5161,8 @@ msgstr "Τερματικό πλήρους οθόνης (όπως στο mc)"
 
 #: Konfigurator/kglookfeel.cpp:90
 msgid "Terminal is shown instead of the Krusader window (full screen)."
-msgstr "Εμφανίζεται το τερματικό αντί του παραθύρου του Krusader (πλήρης οθόνη)"
+msgstr ""
+"Εμφανίζεται το τερματικό αντί του παραθύρου του Krusader (πλήρης οθόνη)"
 
 #: Konfigurator/kglookfeel.cpp:99
 msgid "Quicksearch"
@@ -5297,7 +5343,8 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Κουμπί εναλλαγής συγχρονισμένης περιήγησης"
 
 #: Konfigurator/kglookfeel.cpp:214
-msgid "Each directory change in the panel is also performed in the other panel."
+msgid ""
+"Each directory change in the panel is also performed in the other panel."
 msgstr "Κάθε αλλαγή στον κατάλογο του πίνακα γίνεται και στον άλλο πίνακα."
 
 #: Konfigurator/kglookfeel.cpp:234
@@ -5403,7 +5450,8 @@ msgstr "Επιλογή με το αριστερό πλήκτρο του ποντ
 
 #: Konfigurator/kglookfeel.cpp:286
 msgid "If checked, left clicking an item will select it."
-msgstr "Αν ενεργοποιηθεί, κάνοντας αριστερό κλικ σε ένα αντικείμενο θα το επιλέγει."
+msgstr ""
+"Αν ενεργοποιηθεί, κάνοντας αριστερό κλικ σε ένα αντικείμενο θα το επιλέγει."
 
 #: Konfigurator/kglookfeel.cpp:288
 msgid "Left mouse button preserves selection"
@@ -5437,7 +5485,8 @@ msgstr "Επιλογή με το δεξί πλήκτρο του ποντικιο
 
 #: Konfigurator/kglookfeel.cpp:295
 msgid "If checked, right clicking an item will select it."
-msgstr "Αν ενεργοποιηθεί, κάνοντας δεξί κλικ σε ένα αντικείμενο θα το επιλέγει."
+msgstr ""
+"Αν ενεργοποιηθεί, κάνοντας δεξί κλικ σε ένα αντικείμενο θα το επιλέγει."
 
 #: Konfigurator/kglookfeel.cpp:297
 msgid "Right mouse button preserves selection"
@@ -5555,7 +5604,8 @@ msgstr ""
 "παραμέτρων."
 
 #: Konfigurator/kgadvanced.cpp:65
-msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgid ""
+"Don't use KDE's media protocol for media button (if it's buggy or missing)"
 msgstr "Να μη χρησιμοποιηθεί το πρωτόκολλο media του KDE για το κουμπί μέσων"
 
 #: Konfigurator/kgadvanced.cpp:65
@@ -6219,7 +6269,8 @@ msgid "Test archive before unpacking"
 msgstr "Έλεγχος αρχειοθήκης πριν την αποσυμπίεση"
 
 #: Konfigurator/kgarchives.cpp:96
-msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid ""
+"Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Κάποιες κατεστραμμένες αρχειοθήκες ίσως οδηγήσουν σε κατάρρευση της "
 "εφαρμογής. Γι' αυτό προτείνεται να ενεργοποιηθεί ο έλεγχος."
@@ -6229,7 +6280,8 @@ msgid "Searching for packers..."
 msgstr "Αναζήτηση εργαλείων συμπίεσης..."
 
 #: Konfigurator/kgarchives.cpp:114
-msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid ""
+"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Σιγουρευτείτε ότι εγκαθιστάτε τα νέα εργαλεία συμπίεσης στο <code>$PATH</"
 "code> σας (π.χ. /usr/bin)"
@@ -6506,7 +6558,8 @@ msgid "Not a valid CRC file!"
 msgstr "Μη έγκυρο αρχείο CRC!"
 
 #: Splitter/combiner.cpp:152
-msgid "Validity checking is impossible without a good CRC file. Continue combining?"
+msgid ""
+"Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Ο έλεγχος εγκυρότητας είναι αδύνατος χωρίς ένα 'καλό' αρχείο CRC. Να "
 "συνεχιστεί η ένωση;"
@@ -6546,4 +6599,3 @@ msgstr "Σφάλμα ανάγνωσης του αρχείου %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Σφάλμα εγγραφής του αρχείου %1!"
-
