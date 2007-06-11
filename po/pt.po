@@ -1,4 +1,3 @@
-# translation of pt.po to
 # Translation of krusader.pot to Portuguese
 #
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
@@ -10,12 +9,12 @@
 # Bruno Queiros <brunomiguelqueiros@sapo.pt>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: pt\n"
+"Project-Id-Version: krusader-1.80.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2007-03-27 15:16+0200\n"
 "PO-Revision-Date: 2007-06-10 00:15+0100\n"
 "Last-Translator: Bruno Queiros <brunomiguelqueiros@sapo.pt>\n"
-"Language-Team:  <pt@li.org>\n"
+"Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -303,7 +302,8 @@ msgstr ""
 
 #: VFS/arc_vfs.cpp:217
 msgid "<qt>Can't read <b>%1</b>. Archive might be corrupted!</qt>"
-msgstr "<qt>Não foi possível ler <b>%1</b>. O arquivo pode estar corrupto!</qt>"
+msgstr ""
+"<qt>Não foi possível ler <b>%1</b>. O arquivo pode estar corrupto!</qt>"
 
 #: VFS/arc_vfs.cpp:322 VFS/arc_vfs.cpp:579
 msgid "Deleting Files..."
@@ -517,14 +517,23 @@ msgid ""
 "code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to "
 "'<code>*text*</code>'.</p>"
 msgstr ""
-"<p>O criterio da filtragem dos nomes de ficheiro é definido aqui.</p><p>Você pode utilizar caracteres especiais. Vários padrões são separados por espaços (equivalente a OU lógico) "
-"e padrões são excluídos da pesquisa através da utilização do símbolo pipe.</p><p>Se o padrão é terminado com uma barra (slash) (<code>*pattern*/</code>), significa que o padrão diz respeito a pesquisas recursivas de directórios.<ul><li><code>pattern</"
-"code> - significa procurar os ficheiros/directórios cujo nome é <code>pattern</"
-"code>, pesquisa recursiva procura em todos os subdirectórios independentemente do valor de  <code>pattern</code></li><li><code>pattern/</code> - significa procurar todos os ficheiros/directórios, mas pesquisa recursiva procura através/exclui os directórios que o nome é <code>pattern</code></li></ul><p></p><p>Pode-se usar aspas para nomes que contêm espaços. Filtro <code>"
-"\"Ficheiros&nbsp;Programas\"</code> procura ficheiros/directórios cujo nome seja <code>Ficheiros&nbsp;Program</code>.</p><p>Exemplos:<ul><code><li>*.o</"
+"<p>O criterio da filtragem dos nomes de ficheiro é definido aqui.</p><p>Você "
+"pode utilizar caracteres especiais. Vários padrões são separados por espaços "
+"(equivalente a OU lógico) e padrões são excluídos da pesquisa através da "
+"utilização do símbolo pipe.</p><p>Se o padrão é terminado com uma barra "
+"(slash) (<code>*pattern*/</code>), significa que o padrão diz respeito a "
+"pesquisas recursivas de directórios.<ul><li><code>pattern</code> - significa "
+"procurar os ficheiros/directórios cujo nome é <code>pattern</code>, pesquisa "
+"recursiva procura em todos os subdirectórios independentemente do valor de  "
+"<code>pattern</code></li><li><code>pattern/</code> - significa procurar "
+"todos os ficheiros/directórios, mas pesquisa recursiva procura através/"
+"exclui os directórios que o nome é <code>pattern</code></li></ul><p></"
+"p><p>Pode-se usar aspas para nomes que contêm espaços. Filtro <code>"
+"\"Ficheiros&nbsp;Programas\"</code> procura ficheiros/directórios cujo nome "
+"seja <code>Ficheiros&nbsp;Program</code>.</p><p>Exemplos:<ul><code><li>*.o</"
 "li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</li></"
-"code></ul><b>Nota</b>: o termo de procura '<code>texto</code>' é equivalente a "
-"'<code>*texto*</code>'.</p>"
+"code></ul><b>Nota</b>: o termo de procura '<code>texto</code>' é equivalente "
+"a '<code>*texto*</code>'.</p>"
 
 #: Filter/generalfilter.cpp:86
 msgid "&Of type:"
@@ -786,7 +795,8 @@ msgstr "Falta uma especificação do painel necessária no expansor %1"
 
 #: UserAction/expander.cpp:70
 msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
-msgstr "Expansor: Argumento inválido em %1: %2 não é um especificador de item válido"
+msgstr ""
+"Expansor: Argumento inválido em %1: %2 não é um especificador de item válido"
 
 #: UserAction/expander.cpp:357
 msgid "Panel's Path..."
@@ -808,7 +818,9 @@ msgstr "Contar:"
 
 #: UserAction/expander.cpp:398
 msgid "Expander: Bad argument to Count: %1 is not valid item specifier"
-msgstr "Expansor: Argumento inválido em Contar: %1 não é um especificador de item válido"
+msgstr ""
+"Expansor: Argumento inválido em Contar: %1 não é um especificador de item "
+"válido"
 
 #: UserAction/expander.cpp:407
 msgid "Filter Mask (*.h, *.cpp, etc.)"
@@ -978,7 +990,8 @@ msgstr "Carregar um Perfil Painel..."
 
 #: UserAction/expander.cpp:758
 msgid "Expander: no profile specified for %_Profile(profile)%; abort..."
-msgstr "Expansor: nenhum perfil especificado para %_Prfile(profile)%, abortar..."
+msgstr ""
+"Expansor: nenhum perfil especificado para %_Prfile(profile)%, abortar..."
 
 #: UserAction/expander.cpp:769
 msgid "Separate Program Call for Each..."
@@ -1016,7 +1029,9 @@ msgstr "Escolha o novo tamanho em percentagem:"
 msgid ""
 "Expander: Value %1 out of range for %_PanelSize(percent)%. The first "
 "parameter has to be >0 and <100"
-msgstr "Expansor: Valor %1 fora de alcance para %_PanelSize(percent)%. o primeiro parâmetro tem que ser >0 e <100"
+msgstr ""
+"Expansor: Valor %1 fora de alcance para %_PanelSize(percent)%. o primeiro "
+"parâmetro tem que ser >0 e <100"
 
 #: UserAction/expander.cpp:934
 msgid "Execute a JavaScript Extension..."
@@ -1167,11 +1182,16 @@ msgstr "Exportação falhou!"
 msgid ""
 "Support for more than one command doesn't work in a terminal. Only the first "
 "is executed in the terminal."
-msgstr "Suporte para mais que um comando não funciona num terminal. Apenas o primeiro é executado no terminal."
+msgstr ""
+"Suporte para mais que um comando não funciona num terminal. Apenas o "
+"primeiro é executado no terminal."
 
 #: UserAction/kraction.cpp:204
-msgid "Embedded terminal emulator does not work, using output collection instead."
-msgstr "Emulador de terminal embebido não funciona, utilizando coleção de saída em vez disso."
+msgid ""
+"Embedded terminal emulator does not work, using output collection instead."
+msgstr ""
+"Emulador de terminal embebido não funciona, utilizando coleção de saída em "
+"vez disso."
 
 #: UserAction/useraction.cpp:100
 msgid "The file %1 does not contain valid UserActions.\n"
@@ -1261,7 +1281,8 @@ msgstr "Limpar a barra de localização"
 
 #: Panel/listpanel.cpp:206
 msgid "Use superb KDE file dialog to choose location. "
-msgstr "Usar o soberbo diálogo de ficheiros do KDE para escolher a localização. "
+msgstr ""
+"Usar o soberbo diálogo de ficheiros do KDE para escolher a localização. "
 
 #: Panel/listpanel.cpp:211
 msgid ""
@@ -1668,7 +1689,8 @@ msgstr "Só pode editar ligações em sistemas de ficheiros locais"
 
 #: Panel/panelfunc.cpp:281
 msgid "The current file is not a link, so I can't redirect it."
-msgstr "O ficheiro actual não é uma ligação, por isso não posso redireccioná-lo."
+msgstr ""
+"O ficheiro actual não é uma ligação, por isso não posso redireccioná-lo."
 
 #: Panel/panelfunc.cpp:288
 msgid "Link Redirection"
@@ -1913,7 +1935,8 @@ msgstr "%1, tipo de arquivo desconhecido"
 
 #: Panel/panelfunc.cpp:1147
 msgid "Cannot cut a virtual URL collection to the clipboard!"
-msgstr "Impossível de cortar uma colecção virtual URL para a área de transferência!"
+msgstr ""
+"Impossível de cortar uma colecção virtual URL para a área de transferência!"
 
 #: Panel/panelfunc.cpp:1149
 msgid "Cannot copy a virtual URL collection onto the clipboard!"
@@ -2660,7 +2683,8 @@ msgstr "Nome da pasta:"
 
 #: MountMan/kmountman.cpp:197
 msgid "Error ejecting device! You need to have 'eject' in your path."
-msgstr "Erro ao ejectar o dispositivo ! Tem que ter o 'eject' na sua localização."
+msgstr ""
+"Erro ao ejectar o dispositivo ! Tem que ter o 'eject' na sua localização."
 
 #: MountMan/kmountman.cpp:224
 msgid "%1 ZB"
@@ -2737,8 +2761,10 @@ msgstr ""
 "Contacte os criadores"
 
 #: MountMan/kmountmangui.cpp:326
-msgid "MountMan has an internal error. Please notify the developers. Thank you."
-msgstr "MountMan tem um erro interno. Por favor contacte os criadores. Obrigado."
+msgid ""
+"MountMan has an internal error. Please notify the developers. Thank you."
+msgstr ""
+"MountMan tem um erro interno. Por favor contacte os criadores. Obrigado."
 
 #: MountMan/kmountmangui.cpp:331
 msgid "MountMan"
@@ -3104,8 +3130,10 @@ msgid "Legacy import completed"
 msgstr "Importação legacy completa"
 
 #: Dialogs/krkeydialog.cpp:134
-msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
-msgstr "<qt>O ficheiro <b>%1</b> já existe.Tem a certeza que quer substituí-lo?</qt>"
+msgid ""
+"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgstr ""
+"<qt>O ficheiro <b>%1</b> já existe.Tem a certeza que quer substituí-lo?</qt>"
 
 #: Dialogs/krkeydialog.cpp:143
 msgid "<qt>Can't open <b>%1</b> for writing!</qt>"
@@ -3430,7 +3458,8 @@ msgid "Delete selected useractions"
 msgstr "Remover acçõesutilizador seleccionadas"
 
 #: ActionMan/useractionpage.cpp:126
-msgid "The current action has been modified. Do you want to apply these changes?"
+msgid ""
+"The current action has been modified. Do you want to apply these changes?"
 msgstr "A acção actual foi modificada. Quer aplicar estas alterações?"
 
 #: ActionMan/useractionpage.cpp:203
@@ -3774,7 +3803,8 @@ msgstr "E&liminar"
 #: ActionMan/actionpropertybase.cpp:438 ActionMan/actionpropertybase.cpp:440
 #: ActionMan/actionpropertybase.cpp:445
 msgid "Show the <b>Useraction</b> only for the values defined here."
-msgstr "Mostrar a <b>Acçãoutilizador</b> apenas para os valores definidos aqui."
+msgstr ""
+"Mostrar a <b>Acçãoutilizador</b> apenas para os valores definidos aqui."
 
 #: ActionMan/actionpropertybase.cpp:439
 msgid "Protocol"
@@ -3807,7 +3837,8 @@ msgstr "Confirmar cada chamada do programa separadamente"
 
 #: ActionMan/actionpropertybase.cpp:456
 msgid "Allows to tweak the <i>Command</i> before it is executed."
-msgstr "Isto permite que você altere o <i>Comando</i> antes de ele ser executado."
+msgstr ""
+"Isto permite que você altere o <i>Comando</i> antes de ele ser executado."
 
 #: ActionMan/actionpropertybase.cpp:457
 msgid "Run as different user:"
@@ -3943,11 +3974,13 @@ msgstr "Filtro de &Ficheiros:"
 
 #: Synchronizer/synchronizergui.cpp:1148
 msgid "The left base directory used during the synchronisation process."
-msgstr "O directório base esquerdo utilizado durante o processo de sincronização."
+msgstr ""
+"O directório base esquerdo utilizado durante o processo de sincronização."
 
 #: Synchronizer/synchronizergui.cpp:1181
 msgid "The right base directory used during the synchronisation process."
-msgstr "O directório base direito utilizado durante o processo de sincronização."
+msgstr ""
+"O directório base direito utilizado durante o processo de sincronização."
 
 #: Synchronizer/synchronizergui.cpp:1188
 msgid "Recurse subdirectories"
@@ -3971,7 +4004,8 @@ msgstr "Comparar por conteúdo"
 
 #: Synchronizer/synchronizergui.cpp:1197
 msgid "Compare duplicated files with same size by content."
-msgstr "Compara os ficheiros duplicados com o mesmo tamanho, pelo seu conteúdo."
+msgstr ""
+"Compara os ficheiros duplicados com o mesmo tamanho, pelo seu conteúdo."
 
 #: Synchronizer/synchronizergui.cpp:1198
 msgid "Ignore Date"
@@ -4021,7 +4055,9 @@ msgstr "Mostrar opções (&h)"
 
 #: Synchronizer/synchronizergui.cpp:1232
 msgid "Show files marked to <i>Copy from left to right</i> (CTRL+L)."
-msgstr "Mostrar os ficheiros marcados para <i>Copiar da esquerda para a direita</i> (CTRL+L)."
+msgstr ""
+"Mostrar os ficheiros marcados para <i>Copiar da esquerda para a direita</i> "
+"(CTRL+L)."
 
 #: Synchronizer/synchronizergui.cpp:1241
 msgid "Show files considered to be identical (CTRL+E)."
@@ -4033,7 +4069,9 @@ msgstr "Mostra os ficheiros excluídos (CTRL+D)."
 
 #: Synchronizer/synchronizergui.cpp:1259
 msgid "Show files marked to <i>Copy from right to left</i> (CTRL+R)."
-msgstr "Mostra os ficheiros marcados para <i>Copiar da direita para a esquerda</i> (CTRL+R)."
+msgstr ""
+"Mostra os ficheiros marcados para <i>Copiar da direita para a esquerda</i> "
+"(CTRL+R)."
 
 #: Synchronizer/synchronizergui.cpp:1268
 msgid "Show files marked to delete. (CTRL+T)"
@@ -4243,7 +4281,9 @@ msgstr "O sincronizador não tem nada para fazer!"
 msgid ""
 "The synchronizer window contains data from a previous compare. If you exit, "
 "this data will be lost. Do you really want to exit?"
-msgstr "A janela do sincronizador contém informações de uma comparação anterior. Se sair, esta informação será perdida. Deseja mesmo sair?"
+msgstr ""
+"A janela do sincronizador contém informações de uma comparação anterior. Se "
+"sair, esta informação será perdida. Deseja mesmo sair?"
 
 #: Synchronizer/synchronizertask.cpp:134 Synchronizer/synchronizertask.cpp:141
 msgid "Error at opening %1!"
@@ -4858,14 +4898,16 @@ msgstr "Directório temporário:"
 
 #: Konfigurator/kggeneral.cpp:167
 msgid "Note: you must have full permissions for the temporary directory!"
-msgstr "Nota: Você tem que ter permissões totais para o directório temporário !"
+msgstr ""
+"Nota: Você tem que ter permissões totais para o directório temporário !"
 
 #: Konfigurator/kggeneral.cpp:186
 msgid "Searching for tools..."
 msgstr "Procurando ferramentas..."
 
 #: Konfigurator/kggeneral.cpp:187
-msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid ""
+"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Certifique-se que instala novas ferramentas na sua <code>$PATH</code> (ex. /"
 "usr/bin)"
@@ -4894,7 +4936,8 @@ msgstr ""
 
 #: Konfigurator/krresulttable.cpp:127
 msgid "rpm found, but cpio not found which is required for unpacking"
-msgstr "rpm encontrado, mas cpio não encontrado e é necessário para a extracção"
+msgstr ""
+"rpm encontrado, mas cpio não encontrado e é necessário para a extracção"
 
 #: Konfigurator/krresulttable.cpp:130 Konfigurator/krresulttable.cpp:283
 msgid "Found"
@@ -5151,7 +5194,8 @@ msgstr "Usar tamanho de ficheiro humanamente legível"
 
 #: Konfigurator/kglookfeel.cpp:154
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
-msgstr "Tamanho de ficheiros são mostrados em B, KB, MB and GB, não só em bytes."
+msgstr ""
+"Tamanho de ficheiros são mostrados em B, KB, MB and GB, não só em bytes."
 
 #: Konfigurator/kglookfeel.cpp:155
 msgid "Show hidden files"
@@ -5264,8 +5308,10 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Botão modificador para navegação-sincronizada"
 
 #: Konfigurator/kglookfeel.cpp:214
-msgid "Each directory change in the panel is also performed in the other panel."
-msgstr "Cada alteração no directório num painel também é feita no outro painel."
+msgid ""
+"Each directory change in the panel is also performed in the other panel."
+msgstr ""
+"Cada alteração no directório num painel também é feita no outro painel."
 
 #: Konfigurator/kglookfeel.cpp:234
 msgid "Selection Mode"
@@ -5399,7 +5445,8 @@ msgstr "O botão direito do rato selecciona"
 
 #: Konfigurator/kglookfeel.cpp:295
 msgid "If checked, right clicking an item will select it."
-msgstr "Se seleccionado, clicando com o botão direito num item irá seleccioná-lo."
+msgstr ""
+"Se seleccionado, clicando com o botão direito num item irá seleccioná-lo."
 
 #: Konfigurator/kglookfeel.cpp:297
 msgid "Right mouse button preserves selection"
@@ -5515,7 +5562,8 @@ msgstr ""
 "<b>fstab</b>, tenta montá-lo com os parâmetros lá definidos."
 
 #: Konfigurator/kgadvanced.cpp:65
-msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgid ""
+"Don't use KDE's media protocol for media button (if it's buggy or missing)"
 msgstr ""
 "Não utilize o protocolo de média do KDE para o botão de média ( se este tem "
 "erros ou não está presente)"
@@ -6103,7 +6151,8 @@ msgstr ""
 
 #: Konfigurator/kgarchives.cpp:54
 msgid "Krusader transparently handles the following types of archives:"
-msgstr "Krusader trabalha transparentemente com os seguintes tipos de arquivos:"
+msgstr ""
+"Krusader trabalha transparentemente com os seguintes tipos de arquivos:"
 
 #: Konfigurator/kgarchives.cpp:59
 msgid "Tar"
@@ -6176,7 +6225,8 @@ msgid "Test archive before unpacking"
 msgstr "Testar arquivos antes de extrai-los"
 
 #: Konfigurator/kgarchives.cpp:96
-msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid ""
+"Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Arquivos corruptos podem causar instabilidade no sistema, por isso um teste "
 "é sugerido."
@@ -6186,7 +6236,8 @@ msgid "Searching for packers..."
 msgstr "Procurando por compactadores..."
 
 #: Konfigurator/kgarchives.cpp:114
-msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid ""
+"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Certifique-se que instala novos compactadores na sua <code>$PATH</code> "
 "(ex. /usr/bin)"
@@ -6461,7 +6512,8 @@ msgid "Not a valid CRC file!"
 msgstr "Ficheiro CRC inválido!"
 
 #: Splitter/combiner.cpp:152
-msgid "Validity checking is impossible without a good CRC file. Continue combining?"
+msgid ""
+"Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Verificação da validade é impossível sem um bom ficheiro de CRC. Continuo a "
 "junção?"
@@ -6501,4 +6553,3 @@ msgstr "Erro a ler o ficheiro%1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Erro a escrever no ficheiro %1!"
-
