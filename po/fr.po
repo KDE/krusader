@@ -1,24 +1,25 @@
 # Translation of krusader.pot to French
+#
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
 # Copyright (C) 2004-2007, Krusader Krew
 # This file is distributed under the same license as the Krusader package
+#
 # Rene-Pierre Lehmann <ripi@lepi.org>, 2002.
 # Frank Schoolmeesters <frank_schoolmeesters@fastmail.fm>, 2004.
 # Guillerm David <dguillerm@gmail.com>, 2005, 2006.
-#
-#
+# Tourneur Henry-Nicolas <henry.nicolas@tourneur.be>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.80.0-beta2\n"
+"Project-Id-Version: krusader_v1.80-beta2\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2007-03-27 15:16+0200\n"
-"PO-Revision-Date: 2006-06-20 22:55+0200\n"
-"Last-Translator: Guillerm David <dguillerm@gmail.com>\n"
-"Language-Team: French <krusader-i18n@googlegroups.com>\n"
+"PO-Revision-Date: 2007-06-20 12:59+0200\n"
+"Last-Translator: Tourneur Henry-Nicolas <henry.nicolas@tourneur.be>\n"
+"Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.2\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: GUI/dirhistorybutton.cpp:35
 msgid "Open the directory history list"
@@ -424,7 +425,7 @@ msgstr "Impossible de décompresser %1!"
 
 #: VFS/krarchandler.cpp:340 VFS/krarchandler.cpp:509
 msgid "User cancelled."
-msgstr ""
+msgstr "Action arrêtée par l'utilisateur."
 
 #: VFS/krarchandler.cpp:384
 msgid "Testing Archive"
@@ -463,7 +464,7 @@ msgid ""
 "%4"
 msgstr ""
 "Dans %1:\n"
-"Eception JavaScript '%2' à la ligne %3\n"
+"Exception JavaScript '%2' à la ligne %3\n"
 "%4"
 
 #: KrJS/krjs.cpp:68 KrJS/krjs.cpp:73
@@ -779,6 +780,7 @@ msgstr ""
 #, c-format
 msgid "Needed panel specification missing in expander %1"
 msgstr ""
+"Les spécifications nécessaires au panneau sont manquantes dans l'extenseur %1"
 
 #: UserAction/expander.cpp:70
 msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
@@ -858,7 +860,7 @@ msgstr "Séparateur entre les items (optionnel)"
 
 #: UserAction/expander.cpp:504
 msgid "Expander: tempfile couldn't be opened (%1)"
-msgstr ""
+msgstr "Extenseur: Le fichier temporaire ne peut être ouvert (%1)"
 
 #: UserAction/expander.cpp:524
 #, fuzzy
@@ -892,7 +894,7 @@ msgstr "Ouvrir l'endroit dans un nouvel onglet"
 
 #: UserAction/expander.cpp:593
 msgid "Ask Parameter from User..."
-msgstr ""
+msgstr "Demander le paramètre à l'utilisateur ..."
 
 #: UserAction/expander.cpp:596
 #, fuzzy
@@ -920,7 +922,7 @@ msgstr "Copier vers le presse-papiers"
 
 #: UserAction/expander.cpp:632 UserAction/expander.cpp:655
 msgid "What to copy:"
-msgstr ""
+msgstr "Quoi copier :"
 
 #: UserAction/expander.cpp:633
 #, fuzzy
@@ -931,6 +933,7 @@ msgstr ""
 #: UserAction/expander.cpp:639
 msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
 msgstr ""
+"Extenseur: %Each% ne devrait pas être le second argument de %Clipboard%"
 
 #: UserAction/expander.cpp:652
 #, fuzzy
@@ -944,11 +947,11 @@ msgstr "Où celà doit-il être copié"
 
 #: UserAction/expander.cpp:663
 msgid "Expander: %Each% may not be in the second argument of %Copy%"
-msgstr ""
+msgstr "Extenseur: %Each% ne devrait pas être le second argument de %Move%"
 
 #: UserAction/expander.cpp:673
 msgid "Expander: invalid URL's in %_Copy(\"src\", \"dest\")%"
-msgstr ""
+msgstr "Extenseur: URL invalide dans %_Copy(\"src\",\"dest\")%"
 
 #: UserAction/expander.cpp:684
 #, fuzzy
@@ -967,11 +970,11 @@ msgstr "Nouveau nom/cible"
 
 #: UserAction/expander.cpp:694
 msgid "%Each% may not be in the second argument of %Move%"
-msgstr ""
+msgstr "%Each% ne devrait pas être le second argument de %Move%"
 
 #: UserAction/expander.cpp:704
 msgid "Expander: invalid URL's in %_Move(\"src\", \"dest\")%"
-msgstr ""
+msgstr "Extenseur: URL invalide dans %Move(\"src\",\"dest\")%"
 
 #: UserAction/expander.cpp:715
 #, fuzzy
@@ -986,7 +989,7 @@ msgstr "Choisir un profil"
 
 #: UserAction/expander.cpp:722
 msgid "Expander: no profile specified for %_Sync(profile)%"
-msgstr ""
+msgstr "Extenseur: pas de profile spécifié pour %_Sync(profile)%"
 
 #: UserAction/expander.cpp:733
 #, fuzzy
@@ -995,7 +998,7 @@ msgstr "Ouvrir un profil de recherche"
 
 #: UserAction/expander.cpp:740
 msgid "Expander: no profile specified for %_NewSearch(profile)%"
-msgstr ""
+msgstr "Extenseur: pas de profile spécifié pour %_NewSearch(profile)%"
 
 #: UserAction/expander.cpp:751
 #, fuzzy
@@ -1005,6 +1008,7 @@ msgstr "Charger un profil pour un panneau"
 #: UserAction/expander.cpp:758
 msgid "Expander: no profile specified for %_Profile(profile)%; abort..."
 msgstr ""
+"Extenseur: pas de profile spécifié pour %_Profile(profile); annulation ..."
 
 #: UserAction/expander.cpp:769
 #, fuzzy
@@ -1028,11 +1032,11 @@ msgstr "Choisir la séquence de tri"
 
 #: UserAction/expander.cpp:811
 msgid "Expander: no column specified for %_ColSort(column)%"
-msgstr ""
+msgstr "Extenseur: pas de colonne renseignée pour %_ColSort(colunm)%"
 
 #: UserAction/expander.cpp:883
 msgid "Expander: unknown column specified for %_ColSort(%1)%"
-msgstr ""
+msgstr "inconnu"
 
 #: UserAction/expander.cpp:895
 #, fuzzy
@@ -1049,6 +1053,8 @@ msgid ""
 "Expander: Value %1 out of range for %_PanelSize(percent)%. The first "
 "parameter has to be >0 and <100"
 msgstr ""
+"Extenseur : Valeur %1 hors des limites pour %_PanelSize(percent)%. Le "
+"premier paramètre doit être compris entre 0 et 100"
 
 #: UserAction/expander.cpp:934
 #, fuzzy
@@ -1070,7 +1076,7 @@ msgstr ""
 
 #: UserAction/expander.cpp:942
 msgid "Expander: no script specified for %_Script(script)%"
-msgstr ""
+msgstr "Extenseur: pas de script spécifier pour %_Script(script)%"
 
 #: UserAction/expander.cpp:984
 #, fuzzy
@@ -1094,12 +1100,12 @@ msgstr "Choisir un mode fenetré"
 
 #: UserAction/expander.cpp:995
 msgid "Expander: no file to view in %_View(filename)%"
-msgstr ""
+msgstr "Vue"
 
 #: UserAction/expander.cpp:1032
 #, c-format
 msgid "%Each% is not allowed in parameter to %1"
-msgstr ""
+msgstr "%Each% n'est pas admit comme paramètre pour %1"
 
 #: UserAction/expander.cpp:1053
 msgid "Expander: Bad panel specifier %1 in placeholder %2"
@@ -1108,15 +1114,15 @@ msgstr ""
 #: UserAction/expander.cpp:1082
 #, c-format
 msgid "Error: unterminated % in Expander::expandCurrent"
-msgstr ""
+msgstr "Erreur"
 
 #: UserAction/expander.cpp:1112
 msgid "Error: unrecognized %%%1%2%% in Expander::expand"
-msgstr ""
+msgstr "Erreur"
 
 #: UserAction/expander.cpp:1148
 msgid "Error: missing ')' in Expander::separateParameter"
-msgstr ""
+msgstr "Erreur"
 
 #: UserAction/kractionbase.cpp:51
 msgid "Confirm execution"
@@ -1141,7 +1147,7 @@ msgstr "Tuer le process en cours"
 
 #: UserAction/kraction.cpp:54
 msgid "Save as"
-msgstr ""
+msgstr "Enregistrer sous"
 
 #: UserAction/kraction.cpp:63
 msgid "Standard Output (stdout)"
@@ -1157,7 +1163,7 @@ msgstr "Sortie"
 
 #: UserAction/kraction.cpp:98
 msgid "Use font with fixed width"
-msgstr ""
+msgstr "Utiliser des dontes à largeur fixe"
 
 #: UserAction/kraction.cpp:132
 #, fuzzy
@@ -1208,11 +1214,16 @@ msgid ""
 "Support for more than one command doesn't work in a terminal. Only the first "
 "is executed in the terminal."
 msgstr ""
+"Le support de plus d'une commande ne fonctionne pas dans un terminal. "
+"Seulement la première sera éxecutée."
 
 #: UserAction/kraction.cpp:204
+#, fuzzy
 msgid ""
 "Embedded terminal emulator does not work, using output collection instead."
 msgstr ""
+"L'émulateur de terminal améliorer ne fonctionne pas, utilisation du "
+"ramasseur de sortie à la place."
 
 #: UserAction/useraction.cpp:100
 msgid "The file %1 does not contain valid UserActions.\n"
@@ -1882,6 +1893,10 @@ msgid ""
 "<qt>Do you really want to delete these %n items <b>physically</b> (not just "
 "removing them from the virtual items)?</qt>"
 msgstr ""
+"_n: <qt>Voulez vous réellement supprimer cet objet <b>physiquement</b> (ne "
+"pas simplement le retirer des objets virtuels) ?</qt>\n"
+"<qt>Voulez vous réellement supprimer ces %n objets <b>physiquement</b> (ne "
+"pas simplement les retirer des objets virtuels) ?</qt>"
 
 #: Panel/panelfunc.cpp:657
 #, c-format
@@ -1979,10 +1994,12 @@ msgstr "%1, type d'archive inconnu"
 #: Panel/panelfunc.cpp:1147
 msgid "Cannot cut a virtual URL collection to the clipboard!"
 msgstr ""
+"Impossible de couper l'URL d'une collection virtuelle vers le presse-papier !"
 
 #: Panel/panelfunc.cpp:1149
 msgid "Cannot copy a virtual URL collection onto the clipboard!"
 msgstr ""
+"Impossible de copier l'URL d'une collection virtuelle vers le presse-papier !"
 
 #: Locate/locate.cpp:101 Locate/locate.cpp:241 Search/krsearchdialog.cpp:135
 #: Synchronizer/synchronizergui.cpp:1455
@@ -2278,7 +2295,7 @@ msgstr "Marquer &Différent"
 
 #: krusader.cpp:635
 msgid "Start and &Forget"
-msgstr ""
+msgstr "Démarrer puis mettre en arrière plan"
 
 #: krusader.cpp:639
 #, fuzzy
@@ -2287,7 +2304,7 @@ msgstr "Séparer la sortie erreur standard"
 
 #: krusader.cpp:643
 msgid "Display &Mixed Standard and Error Output"
-msgstr ""
+msgstr "Erreur Sortie"
 
 #: krusader.cpp:647
 #, fuzzy
@@ -2462,7 +2479,7 @@ msgstr "Selectionner Charset distant"
 
 #: krusader.cpp:754
 msgid "Start Terminal Here"
-msgstr ""
+msgstr "Terminal"
 
 #: krusader.cpp:756
 #, fuzzy
@@ -2869,7 +2886,7 @@ msgid ""
 "Your names"
 msgstr ""
 "_: NOM DES TRADUCTEURS\n"
-"Dirk Eshler Guillerm David "
+"Dirk Eshler Guillerm David ,Tourneur"
 
 #: _translatorinfo.cpp:3
 msgid ""
@@ -2877,7 +2894,7 @@ msgid ""
 "Your emails"
 msgstr ""
 "_: EMAIL DES TRADUCTEURS\n"
-"deschler@users.sourceforge.net dguillerm@gmail.com"
+"deschler@users.sourceforge.net dguillerm@gmail.com,henry.nicolas@tourneur.be"
 
 #: main.cpp:51
 msgid ""
@@ -2923,7 +2940,7 @@ msgstr ""
 
 #: main.cpp:202
 msgid "Application already running!\n"
-msgstr ""
+msgstr "L'application est déjà en cours d'éxecution !\n"
 
 #: krusaderview.cpp:86
 msgid "Function keys allow performing fast operations on files."
@@ -3169,7 +3186,7 @@ msgstr "Non monté."
 msgid ""
 "*.keymap|Krusader keymaps\n"
 "*|all files"
-msgstr ""
+msgstr "Krusader"
 
 #: Dialogs/krkeydialog.cpp:41
 msgid "Import shortcuts"
@@ -3194,14 +3211,17 @@ msgid "Select a keymap file"
 msgstr "Sélectionner un thème de couleur"
 
 #: Dialogs/krkeydialog.cpp:71
+#, fuzzy
 msgid ""
 "This file does not seem to be a valid keymap.\n"
 "It may be a keymap using a legacy format. The import can't be undone!"
 msgstr ""
+"Ce fichier ne semble pas avoir un valide codage du clavier.\n"
+"Ce doit être un vieux format de codage. L'importation sera irréversible !"
 
 #: Dialogs/krkeydialog.cpp:73
 msgid "Try to import legacy format?"
-msgstr ""
+msgstr "Essayer d'importer d'anciens formats ?"
 
 #: Dialogs/krkeydialog.cpp:74
 #, fuzzy
@@ -3219,7 +3239,7 @@ msgstr ""
 
 #: Dialogs/krkeydialog.cpp:122
 msgid "Please restart this dialog in order to see the changes"
-msgstr ""
+msgstr "Veuillez redémarrer ce dialogue afin de voire les changements"
 
 #: Dialogs/krkeydialog.cpp:123
 msgid "Legacy import completed"
@@ -3266,11 +3286,11 @@ msgstr "Définir le taux de compression"
 
 #: Dialogs/packguibase.cpp:189
 msgid "MIN"
-msgstr ""
+msgstr "MIN"
 
 #: Dialogs/packguibase.cpp:190
 msgid "MAX"
-msgstr ""
+msgstr "MAX"
 
 #: Dialogs/packguibase.cpp:211
 msgid "Password"
@@ -3294,7 +3314,7 @@ msgstr "Ok"
 
 #: Dialogs/packguibase.cpp:333
 msgid "No password specified"
-msgstr ""
+msgstr "Pas de mot de passe spécifié"
 
 #: Dialogs/packguibase.cpp:338
 msgid "The passwords are equal"
@@ -4215,7 +4235,7 @@ msgstr "Lister les fichiers qui existent dans un seul panneau"
 
 #: Synchronizer/synchronizergui.cpp:1293
 msgid "The compare results of the synchronizer (CTRL+M)."
-msgstr ""
+msgstr "Les résultats de comparaison du synchroniseur (CTRL + M)."
 
 #: Synchronizer/synchronizergui.cpp:1325
 msgid "<=>"
@@ -4265,7 +4285,7 @@ msgstr "Afficher les fichiers cachés"
 
 #: Synchronizer/synchronizergui.cpp:1422
 msgid "Profile manager (Ctrl+P)."
-msgstr ""
+msgstr "Gestionnaire de profile (CTRL + P)."
 
 #: Synchronizer/synchronizergui.cpp:1429
 #, fuzzy
@@ -4430,6 +4450,9 @@ msgid ""
 "The synchronizer window contains data from a previous compare. If you exit, "
 "this data will be lost. Do you really want to exit?"
 msgstr ""
+"La fenêtre du synchronizer contient des données de la comparaison "
+"précédente. SI vous quittez, ces données seront perdues. Voulez-vous "
+"vraiment quitter ?"
 
 #: Synchronizer/synchronizertask.cpp:134 Synchronizer/synchronizertask.cpp:141
 msgid "Error at opening %1!"
@@ -4890,7 +4913,7 @@ msgstr "&Visualiser"
 #: rc.cpp:15
 #, no-c-format
 msgid "&Go"
-msgstr ""
+msgstr "&Aller"
 
 #. i18n: file krusaderui.rc line 88
 #: rc.cpp:18
@@ -4920,7 +4943,7 @@ msgstr "Mode d'exécution"
 #: rc.cpp:30
 #, no-c-format
 msgid "&Window"
-msgstr ""
+msgstr "Fe&nêtre"
 
 #. i18n: file krusaderui.rc line 158
 #: rc.cpp:33
@@ -5034,7 +5057,7 @@ msgstr ""
 
 #: Konfigurator/kggeneral.cpp:115
 msgid "Atomic extensions:"
-msgstr ""
+msgstr "Exenstions atomiques :"
 
 #: Konfigurator/kggeneral.cpp:143
 msgid "Terminal:"
@@ -5076,17 +5099,19 @@ msgstr ""
 
 #: Konfigurator/kggeneral.cpp:195
 msgid "Add new atomic extension"
-msgstr ""
+msgstr "Ajouter"
 
 #: Konfigurator/kggeneral.cpp:195
 msgid "Extension: "
-msgstr ""
+msgstr "Extension :"
 
 #: Konfigurator/kggeneral.cpp:200
 msgid ""
 "Atomic extensions must start with '.'\n"
 " and must contain at least one more '.' character"
 msgstr ""
+"Les extensions atomiques doivent commencer avec un «.»<br> et doivent "
+"contenir au moins un autre «.»"
 
 #: Konfigurator/krresulttable.cpp:121
 msgid "unarj not found, but arj found, which will be used for unpacking"
@@ -5266,6 +5291,9 @@ msgid ""
 "Commander like renaming of just the name, without extension, uncheck this "
 "option."
 msgstr ""
+"Quand vous renommez un fichier, l'entierté du texte est sélectionné. "
+"Décocher cette option si vous voulez un comportement similaire à celui de "
+"Total Commander, renommer uniquement le nom, sans l'extension."
 
 #: Konfigurator/kglookfeel.cpp:89
 msgid "Use full path tab names"
@@ -5281,11 +5309,11 @@ msgstr ""
 
 #: Konfigurator/kglookfeel.cpp:90
 msgid "Fullscreen terminal (mc-style)"
-msgstr ""
+msgstr "Terminal en mode plein écran (style mc)"
 
 #: Konfigurator/kglookfeel.cpp:90
 msgid "Terminal is shown instead of the Krusader window (full screen)."
-msgstr ""
+msgstr "Terminal Krusader."
 
 #: Konfigurator/kglookfeel.cpp:99
 #, fuzzy
@@ -5397,7 +5425,7 @@ msgstr "Panneau gauche"
 
 #: Konfigurator/kglookfeel.cpp:175
 msgid "Brief"
-msgstr ""
+msgstr "Bref"
 
 #: Konfigurator/kglookfeel.cpp:188
 msgid "Panel Toolbar"
@@ -5702,7 +5730,7 @@ msgid ""
 "<ul><li>User preserving if you are root</li><li>Group preserving if you are "
 "root or member of the group</li><li>Preserving the timestamp</li></"
 "ul><b>Note</b>: This can slow down the copy process."
-msgstr ""
+msgstr "Krusader<ul><li></li><li> Groupe</li><li></li></ul><b> Note</b>."
 
 #: Konfigurator/kgadvanced.cpp:64
 msgid "Automount filesystems"
@@ -5719,13 +5747,13 @@ msgstr ""
 #: Konfigurator/kgadvanced.cpp:65
 msgid ""
 "Don't use KDE's media protocol for media button (if it's buggy or missing)"
-msgstr ""
+msgstr "KDE"
 
 #: Konfigurator/kgadvanced.cpp:65
 msgid ""
 "Select if your media protocol is buggy (in some older KDE versions), or not "
 "present (no kdebase package installed)."
-msgstr ""
+msgstr "KDE."
 
 #: Konfigurator/kgadvanced.cpp:74
 msgid "MountMan won't (un)mount the following mount-points:"
@@ -5935,13 +5963,15 @@ msgstr ""
 
 #: Konfigurator/kgcolors.cpp:62
 msgid "Dim the colors of the inactive panel"
-msgstr ""
+msgstr "Adoucir les couleurs du panneau inactif"
 
 #: Konfigurator/kgcolors.cpp:62
 msgid ""
 "<p>The colors of the inactive panel are calculated by a dim color and a dim "
 "factor.</p>"
 msgstr ""
+"<p>Les couleurs du panneau incatif sont calculées à partir d'une couleur "
+"adoucie et d'un facteur d'adoucissement</p>"
 
 #: Konfigurator/kgcolors.cpp:89
 msgid "Active"
@@ -6052,7 +6082,7 @@ msgstr "Identique comme actif"
 
 #: Konfigurator/kgcolors.cpp:168
 msgid "Dim target color:"
-msgstr ""
+msgstr "Couleur d'adoucissement :"
 
 #: Konfigurator/kgcolors.cpp:171
 #, fuzzy
@@ -6220,11 +6250,11 @@ msgstr "Afficher un message d'accueil audémarrage de Krusader."
 
 #: Konfigurator/kgstartup.cpp:73
 msgid "Single instance mode"
-msgstr ""
+msgstr "Mode de fonctionnement avec une seule instance"
 
 #: Konfigurator/kgstartup.cpp:73
 msgid "Only one Krusader instance is allowed to run."
-msgstr ""
+msgstr "Krusader."
 
 #: Konfigurator/kgstartup.cpp:83
 msgid "User Interface"
@@ -6304,13 +6334,13 @@ msgstr ""
 
 #: Konfigurator/kgstartup.cpp:95
 msgid "Start to tray"
-msgstr ""
+msgstr "Démarrer en minimisant dans la boite à miniature"
 
 #: Konfigurator/kgstartup.cpp:95
 msgid ""
 "Krusader starts to tray (if minimize to tray is set), without showing the "
 "main window"
-msgstr ""
+msgstr "Krusader"
 
 #: Konfigurator/kgarchives.cpp:54
 msgid "Krusader transparently handles the following types of archives:"
@@ -6410,10 +6440,14 @@ msgid "Information"
 msgstr "Confirmations"
 
 #: Konfigurator/kguseractions.cpp:53
+#, fuzzy
 msgid ""
 "Here you can configure settings about useractions.\n"
 "To set up, configure and manage your useractions please use ActionMan."
 msgstr ""
+"Ici vous pouvez configurer les \"actions utilisateur\".<br>Pour ajouter, "
+"configurer et gérer vos \"actions utilisateur\", veuillez utiliser le "
+"gestionnaire d'action."
 
 #: Konfigurator/kguseractions.cpp:57
 #, fuzzy
@@ -6431,7 +6465,7 @@ msgstr "Terminal pour les actions utilisateur:"
 
 #: Konfigurator/kguseractions.cpp:78
 msgid "Output collection"
-msgstr ""
+msgstr "Sortie"
 
 #: Konfigurator/kguseractions.cpp:83
 #, fuzzy
@@ -6440,11 +6474,11 @@ msgstr "Police:"
 
 #: Konfigurator/kguseractions.cpp:89
 msgid "Font with fixed width:"
-msgstr ""
+msgstr "Fontes à largeur fixe :"
 
 #: Konfigurator/kguseractions.cpp:95
 msgid "Use fixed width font as default"
-msgstr ""
+msgstr "Utiliser des fontes à largeur fixe par défaut"
 
 #: krslots.cpp:106
 msgid ""
@@ -6715,186 +6749,3 @@ msgstr "Erreur de lecture du fichier %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Erreur lors de l'écriture de %1!"
-
-#~ msgid "If pressed, Krusader executes command line in a terminal."
-#~ msgstr "Si activé, Krusader exécute la ligne de commande dans un terminal."
-
-#~ msgid ""
-#~ "The 'run in terminal' button allows Krusader to run console (or otherwise "
-#~ "non-graphical) programs in a terminal of your choice. If it's pressed, "
-#~ "terminal mode is active."
-#~ msgstr ""
-#~ "Le boutton 'exécuter dans un terminal' permet à Krusader d'exécuter des "
-#~ "programmes en mode texte dans le terminal de votre choix. Il suffit de "
-#~ "cliquer sur le bouton pour activer le mode terminal."
-
-#~ msgid "This terminal will close in 1 hour.."
-#~ msgstr "Le terminal va fermer dans une heure.."
-
-#~ msgid "count all:"
-#~ msgstr "Tout compter:"
-
-#~ msgid "Ask the user for a parameter"
-#~ msgstr "Demander à l'utilisateur un paramètre"
-
-#~ msgid "Copy to clipboard"
-#~ msgstr "Copier vers le presse-papiers"
-
-#~ msgid "What should be copied"
-#~ msgstr "Ce qui doit être copié"
-
-#~ msgid ""
-#~ "<p>The filename filtering criteria is defined here.</p><p>You can make "
-#~ "use of wildcards. Multiple patterns are separated by space and patterns "
-#~ "are excluded from the search using the pipe symbol.</p><p>Examples:"
-#~ "<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</"
-#~ "li><li>* | CVS/ .svn/</li></code></ul><b>Note</b>: the search term "
-#~ "'<code>text</code>' is equivalent to '<code>*text*</code>'.</p>"
-#~ msgstr ""
-#~ "<p>Le critère de filtre des fichiers est défini ici.<p>Vous pouvez "
-#~ "utilisez des caractères spéciaux (wildcards). Les chaînes multiples sont "
-#~ "séparées par un espace et les chaînes sont exclues de la recherche en "
-#~ "utilisant le symbole pipe.<p>Exemples:<ul><code><li>*.o</li><li>*.h *.c??"
-#~ "</li><li>*.cpp *.h | *.moc.cpp</li></code></ul><b>Note</b>: le chaîne de "
-#~ "recherche '<code>texte</code>' est équivalente à '<code>*texte*</code>'.</"
-#~ "p>"
-
-#~ msgid "Can't Read "
-#~ msgstr "Impossible de lire "
-
-#~ msgid "Directory "
-#~ msgstr "Répertoire "
-
-#~ msgid "The Archive "
-#~ msgstr "L'archive "
-
-#~ msgid " already exists. Do you want to overwrite the archive ?\n"
-#~ msgstr " existe déjà. Voulez vous écraser l'archive ?\n"
-
-#~ msgid "Mark &Newer"
-#~ msgstr "Marquer &Nouveau"
-
-#~ msgid "Mark &Single"
-#~ msgstr "Marquer &Unique"
-
-#~ msgid "trash"
-#~ msgstr "corbeille"
-
-#~ msgid "delete"
-#~ msgstr "supprimer"
-
-#~ msgid "Are you sure you want to "
-#~ msgstr "Êtes vous sûr de vouloir "
-
-#~ msgid "Marked foreground:"
-#~ msgstr "Sélectionné (texte):"
-
-#~ msgid "Marked background:"
-#~ msgstr "Sélectionné (fond):"
-
-#~ msgid "Same as marked background"
-#~ msgstr "Identique fond sélectionné"
-
-#~ msgid "Marked 2"
-#~ msgstr "Sélectionné 2"
-
-#~ msgid "Marked 1"
-#~ msgstr "Sélectionné 1"
-
-#~ msgid "new symlink"
-#~ msgstr "lien symbolique"
-
-#~ msgid "Text file"
-#~ msgstr "Fichier texte"
-
-#~ msgid "Are you sure you want to shred "
-#~ msgstr "Êtes-vous sûr de vouloir détruire"
-
-#~ msgid "Calculate &Occupied Space..."
-#~ msgstr "Calculer l'espace &occupé..."
-
-#~ msgid "&Terminal..."
-#~ msgstr "&Terminal..."
-
-#~ msgid "Close tab"
-#~ msgstr "Fermer l'onglet"
-
-#~ msgid "F2 - Open a terminal"
-#~ msgstr "F2 Ouvre une console"
-
-#~ msgid "F3 - View a file"
-#~ msgstr "F3 - Visualiser un fichier  "
-
-#~ msgid "F4 - Edit a file"
-#~ msgstr "F4 - Éditer un fichier "
-
-#~ msgid "F5 - Copy"
-#~ msgstr "F5 - Copier"
-
-#~ msgid "F6 - Move"
-#~ msgstr "F6 - Déplacer"
-
-#~ msgid "F7 - Mkdir"
-#~ msgstr "F7 - Créer Répertoire"
-
-#~ msgid "F8 - Delete"
-#~ msgstr "F8 - Supprimer"
-
-#~ msgid "F9 - Rename"
-#~ msgstr "F9 - Renommer"
-
-#~ msgid "F10 - Quit"
-#~ msgstr "F10 - Quitter"
-
-#~ msgid "&Mark"
-#~ msgstr "&Sélection"
-
-#~ msgid "&Commands"
-#~ msgstr "&Commandes"
-
-#~ msgid "Toolbar"
-#~ msgstr "Barre d'outils"
-
-#~ msgid "Keybindings"
-#~ msgstr "Raccourcis clavier"
-
-#, fuzzy
-#~ msgid "Mouse mode"
-#~ msgstr "Mode hexadécimal"
-
-#~ msgid "Select a shortcuts file"
-#~ msgstr "Sélectionner un fichier de raccourci"
-
-#~ msgid "Panels"
-#~ msgstr "Panneaux"
-
-#~ msgid "Single click / Double click Selection:"
-#~ msgstr "Sélection Clic simple / Clic double:"
-
-#~ msgid "Mouse Selection Mode:"
-#~ msgstr "Mode de sélection à la souris:"
-
-#~ msgid ""
-#~ "Change all attributes (time, owner, group) of local files according to "
-#~ "the source one. This can slow down the copy process."
-#~ msgstr ""
-#~ "Changer tous les attributs (heure, propriétaire, group) des fichiers "
-#~ "locaux suivant la source une. Cela peut ralentir la copie."
-
-#~ msgid "Reset"
-#~ msgstr "Réinitialiser"
-
-#~ msgid "New Action"
-#~ msgstr "Nouvelle action"
-
-#~ msgid "Remove Action"
-#~ msgstr "Supprime l'action"
-
-#~ msgid "Export Action"
-#~ msgstr "Exporter l'action"
-
-#~ msgid "Action to Clipboard"
-#~ msgstr "Action vers le presse-papier"
-
-#~ msgid "Action from Clipboard"
-#~ msgstr "Action à partir du presse-papier"
