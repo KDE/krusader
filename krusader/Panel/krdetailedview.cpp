@@ -556,6 +556,33 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
          processEvent = false;
          e->accept();
        }
+
+       if( !KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection() && KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0)
+       {
+         if( (e->state() & ControlButton) && !(e->state() & AltButton) )
+         {
+            if( newCurrent )
+            {
+               newCurrent->setSelected(!newCurrent->isSelected());
+               newCurrent->repaint();
+               selectionChanged = true;
+               callDefaultHandler = false;
+               e->accept();
+            }
+         }
+         else if( !(e->state() & ControlButton) && !(e->state() & AltButton) )
+         {
+            clearSelection();
+            if( newCurrent )
+            {
+               newCurrent->setSelected( true );
+               newCurrent->repaint();
+            }
+            selectionChanged = true;
+            callDefaultHandler = false;
+            e->accept();
+         }
+       }
      }
      else
      {
