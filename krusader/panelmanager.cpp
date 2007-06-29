@@ -96,23 +96,27 @@ void PanelManager::startPanel( ListPanel *panel, const KURL& path ) {
 void PanelManager::saveSettings( KConfig *config, const QString& key, bool localOnly ) {
    QStringList l;
    QStringList types;
+   QValueList<int> props;
    int i=0, cnt=0;
    while (cnt < _tabbar->count()) {
       PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt(i));
       if (t && t->panel) {
          l << ( localOnly ? t->panel->realPath() : vfs::pathOrURL( t->panel->virtualPath() ) );
          types << t->panel->getType();
+         props << t->panel->getProperties();
          ++cnt;
       }
       ++i;
    }
    config->writePathEntry( key, l );
    config->writeEntry( key + " Types", types );
+   config->writeEntry( key + " Props", props );
 }
 
 void PanelManager::loadSettings( KConfig *config, const QString& key ) {
    QStringList l = config->readPathListEntry( key );
    QStringList types = config->readListEntry( key + " Types" );
+   QValueList<int> props = config->readIntListEntry( key + " Props" );
    
    if( l.count() < 1 )
      return;
@@ -122,6 +126,8 @@ void PanelManager::loadSettings( KConfig *config, const QString& key ) {
       KConfigGroupSaver saver( config, "Look&Feel");
       types << krConfig->readEntry( "Default Panel Type", _DefaultPanelType );
    }
+   while( props.count() < l.count() )
+      props << 0;
    
    int i=0, totalTabs = _tabbar->count();
    
@@ -132,6 +138,7 @@ void PanelManager::loadSettings( KConfig *config, const QString& key ) {
       {
          if( t->panel->getType() != types[ i ] )
            t->panel->changeType( types[ i ] );
+         t->panel->setProperties( props[ i ] );
          t->panel->otherPanel = _other;
          _other->otherPanel = t->panel;
          t->panel->func->files()->vfs_enableRefresh( true );
@@ -144,16 +151,16 @@ void PanelManager::loadSettings( KConfig *config, const QString& key ) {
      slotCloseTab( --totalTabs );
       
    for(; i < (int)l.count(); i++ )
-     slotNewTab( vfs::fromPathOrURL(l[i]), false, types[ i ] );
+     slotNewTab( vfs::fromPathOrURL(l[i]), false, types[ i ], props[ i ] );
 }
 
-void PanelManager::slotNewTab(const KURL& url, bool setCurrent, QString type) {
+void PanelManager::slotNewTab(const KURL& url, bool setCurrent, QString type, int props ) {
    if( type.isNull() )
    {
        krConfig->setGroup( "Look&Feel" );
        type = krConfig->readEntry( "Default Panel Type", _DefaultPanelType );
    }
-   ListPanel *p = createPanel( type, setCurrent );   
+   ListPanel *p = createPanel( type, setCurrent );
    // update left/right pointers
    p->otherPanel = _other;
    if( setCurrent )
@@ -162,6 +169,7 @@ void PanelManager::slotNewTab(const KURL& url, bool setCurrent, QString type) {
      _other->otherPanel = _self;
    }
    startPanel( p, url );
+   p->setProperties( props );
 }
 
 void PanelManager::slotNewTab() {

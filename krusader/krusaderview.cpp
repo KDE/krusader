@@ -53,7 +53,9 @@
 KrusaderView::KrusaderView( QWidget *parent ) : QWidget( parent, "KrusaderView" ), activePanel(0), 
 								konsole_part( 0L ) {}
 
-void KrusaderView::start( QStringList leftTabs, QStringList leftTypes, int leftActiveTab, QStringList rightTabs, QStringList rightTypes, int rightActiveTab ) {
+void KrusaderView::start( QStringList leftTabs, QStringList leftTypes, QValueList<int> leftProps, int leftActiveTab,
+                          QStringList rightTabs, QStringList rightTypes, QValueList<int> rightProps, int rightActiveTab, 
+                          bool leftSideActive ) {
   ////////////////////////////////
   // make a 1x1 mainLayout, it will auto-expand:
   mainLayout = new QGridLayout( this, 1, 1 );
@@ -114,15 +116,22 @@ void KrusaderView::start( QStringList leftTabs, QStringList leftTypes, int leftA
   leftMng->startPanel( left, leftTabs[ 0 ] );
   activePanel = left;
   activePanel->slotFocusOnMe();  // left starts out active
+  left->setProperties( leftProps[ 0 ] );
+  right->setProperties( rightProps[ 0 ] );
      
   for(unsigned int i = 1; i < leftTabs.count(); i++ )
-    leftMng->slotNewTab( leftTabs[ i ], false, leftTypes[ i ] );
+    leftMng->slotNewTab( leftTabs[ i ], false, leftTypes[ i ], leftProps[ i ] );
 
   for(unsigned int j = 1; j < rightTabs.count(); j++ )
-    rightMng->slotNewTab( rightTabs[ j ], false, rightTypes[ j ] );
+    rightMng->slotNewTab( rightTabs[ j ], false, rightTypes[ j ], rightProps[ j ] );
        
   leftMng->setActiveTab( leftActiveTab );
   rightMng->setActiveTab( rightActiveTab );
+
+  if( leftSideActive )
+    MAIN_VIEW->left->slotFocusOnMe();
+  else
+    MAIN_VIEW->right->slotFocusOnMe();
 }
 
 // updates the command line whenever current panel changes

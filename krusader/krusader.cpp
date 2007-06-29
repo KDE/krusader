@@ -268,18 +268,22 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
    QString defaultType = krConfig->readEntry( "Default Panel Type", _DefaultPanelType );
 
    krConfig->setGroup( "Startup" );
-   QStringList leftTabs = krConfig->readPathListEntry( "Left Tab Bar" );
-   QStringList rightTabs = krConfig->readPathListEntry( "Right Tab Bar" );
-   QStringList leftTabTypes = krConfig->readListEntry( "Left Tab Bar Types" );
-   QStringList rightTabTypes = krConfig->readListEntry( "Right Tab Bar Types" );
-   int         leftActiveTab = krConfig->readNumEntry( "Left Active Tab", 0 );
-   int         rightActiveTab = krConfig->readNumEntry( "Right Active Tab", 0 );
-   QString     startProfile = krConfig->readEntry("Starter Profile Name", QString::null );
+   QStringList     leftTabs = krConfig->readPathListEntry( "Left Tab Bar" );
+   QStringList     rightTabs = krConfig->readPathListEntry( "Right Tab Bar" );
+   QStringList     leftTabTypes = krConfig->readListEntry( "Left Tab Bar Types" );
+   QStringList     rightTabTypes = krConfig->readListEntry( "Right Tab Bar Types" );
+   QValueList<int> leftTabProps = krConfig->readIntListEntry( "Left Tab Bar Props" );
+   QValueList<int> rightTabProps = krConfig->readIntListEntry( "Right Tab Bar Props" );
+   int             leftActiveTab = krConfig->readNumEntry( "Left Active Tab", 0 );
+   int             rightActiveTab = krConfig->readNumEntry( "Right Active Tab", 0 );
+   QString         startProfile = krConfig->readEntry("Starter Profile Name", QString::null );
+   bool            leftActive = krConfig->readBoolEntry( "Left Side Is Active", false );
    
    // get command-line arguments
    if ( args->isSet( "left" ) ) {
       leftTabs = QStringList::split( ',', args->getOption( "left" ) );
       leftTabTypes.clear();
+      leftTabProps.clear();
 
       leftActiveTab = 0;
 
@@ -295,6 +299,7 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
    if ( args->isSet( "right" ) ) {
       rightTabs = QStringList::split( ',', args->getOption( "right" ) );
       rightTabTypes.clear();
+      rightTabProps.clear();
 
       rightActiveTab = 0;
 
@@ -312,6 +317,10 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
       leftTabTypes += defaultType;
    while( rightTabTypes.count() < rightTabs.count() )
       rightTabTypes += defaultType;
+   while( leftTabProps.count() < leftTabs.count() )
+      leftTabProps += 0;
+   while( rightTabProps.count() < rightTabs.count() )
+      rightTabProps += 0;
 
    if ( args->isSet( "profile" ) )
     startProfile = args->getOption( "profile" );
@@ -319,8 +328,10 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
    if( !startProfile.isEmpty() ) {
       leftTabs.clear();
       leftTabTypes.clear();
+      leftTabProps.clear();
       rightTabs.clear();   
       rightTabTypes.clear();   
+      rightTabProps.clear();
       leftActiveTab = rightActiveTab = 0;
    }
 
@@ -328,15 +339,18 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
    {
      leftTabs.push_back( QDir::homeDirPath() );
      leftTabTypes.push_back( defaultType );
+     leftTabProps.push_back( 0 );
    }
    if( rightTabs.count() == 0 )
    {
      rightTabs.push_back( QDir::homeDirPath() );
      rightTabTypes.push_back( defaultType );
+     rightTabProps.push_back( 0 );
    }
 
    // starting the panels
-   mainView->start( leftTabs, leftTabTypes, leftActiveTab, rightTabs, rightTabTypes, rightActiveTab );
+   mainView->start( leftTabs, leftTabTypes, leftTabProps, leftActiveTab, rightTabs, 
+                    rightTabTypes, rightTabProps, rightActiveTab, leftActive );
 
    // create the user menu
    userMenu = new UserMenu( this );
@@ -835,6 +849,7 @@ void Krusader::saveSettings() {
    config->setGroup( "Startup" );   
    config->writeEntry( "Left Active Tab", mainView->leftMng->activeTab() );
    config->writeEntry( "Right Active Tab", mainView->rightMng->activeTab() );
+   config->writeEntry( "Left Side Is Active", MAIN_VIEW->activePanel->isLeft() );
    mainView->leftMng->saveSettings( krConfig, "Left Tab Bar" );
    mainView->rightMng->saveSettings( krConfig, "Right Tab Bar" );
    

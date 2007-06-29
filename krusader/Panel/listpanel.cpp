@@ -373,6 +373,22 @@ ListPanel::~ListPanel() {
    delete layout;
 }
 
+int ListPanel::getProperties()
+{
+   int props = 0;
+   if( syncBrowseButton->state() == SYNCBROWSE_CD )
+      props |= PROP_SYNC_BUTTON_ON;
+   return props;
+}
+
+void ListPanel::setProperties( int prop )
+{
+   if( prop & PROP_SYNC_BUTTON_ON )
+       syncBrowseButton->setOn( true );
+   else
+       syncBrowseButton->setOn( false );
+}
+
 bool ListPanel::eventFilter ( QObject * watched, QEvent * e ) {
 	if( e->type() == QEvent::KeyPress && origin->lineEdit() == watched ) {
 		QKeyEvent *ke = (QKeyEvent *)e;

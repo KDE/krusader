@@ -57,6 +57,8 @@
 // use our version of it, until kde fixes theirs
 #include "../MountMan/kdiskfreesp.h"
 
+#define PROP_SYNC_BUTTON_ON               1
+
 class vfs;
 class vfile;
 class KRdirWatch;
@@ -98,6 +100,9 @@ public:
    bool isLeft() {return _left;}
    void jumpBack();
    void setJumpBack( KURL url );
+
+   int  getProperties();
+   void setProperties( int );
 
 public slots:
    void gotStats( const QString &mountPoint, unsigned long kBSize, unsigned long kBUsed, unsigned long kBAvail); // displays filesystem status
