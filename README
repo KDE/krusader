@@ -1,4 +1,4 @@
-Krusader 1.80.0-beta2 "Last Unstable Stone"
+Krusader 1.80.0 "Final 3rd Stone"
 ===========================================
 Well, here we are!
 
@@ -25,7 +25,7 @@ your distribution. For more information is available on our website at
 http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1407
 ------------------------------------------------------------------------
 
-Krusader 1.80.0-beta2 contains plenty of changes, bug fixes and updates
+Krusader 1.80.0 contains plenty of changes, bug fixes and updates
 in response to reports and requests from our users. The highlights are:
 
 - Full support for ACL permissions like properties, preserve
@@ -44,6 +44,10 @@ in response to reports and requests from our users. The highlights are:
 - Complete list of changes and enhancements is in the ChangeLog
 - Next cycle with all our energy and efforts begins for Krusader on
   KDE4
+
+Changes since Krusader 1.80.0-beta2
+- Many bugfixes
+- Translation updates
 
 Changes since Krusader 1.80.0-beta1 (but not limited to):
 
@@ -102,6 +106,10 @@ http://krusader.sourceforge.net/handbook/installation.html
 The FAQ are available at:
 http://krusader.sourceforge.net/handbook/faq.html
 
+Mac OS-X port
+-------------
+There is a Mac OS-X port with the help of finkproject.org
+http://pdb.finkproject.org/pdb/package.php/krusader
 
 
 To checkout the Krusader KDE3 version from cvs:
@@ -109,7 +117,7 @@ To checkout the Krusader KDE3 version from cvs:
 $ cvs -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader login
 $ cvs -z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader \
   co krusader_kde3
-  
+
 (Note: updates from within the modules directory do not need the -d
 parameter)
 
