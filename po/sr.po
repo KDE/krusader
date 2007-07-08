@@ -9,11 +9,11 @@
 # Sasa Tomic <sasa.tomic.forwarded@gmail.com>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.80.0-beta2\n"
+"Project-Id-Version: krusader-1.80.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2007-03-27 15:16+0200\n"
-"PO-Revision-Date: 2007-02-26 13:32+0100\n"
-"Last-Translator: Sasa Tomic <sasa.tomic.forwarded@gmail.com>\n"
+"PO-Revision-Date: 2007-06-30 23:59+0200\n"
+"Last-Translator: Sasa Tomic <tomic80@gmail.com>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -792,47 +792,41 @@ msgstr ""
 #: UserAction/expander.cpp:55
 #, c-format
 msgid "Needed panel specification missing in expander %1"
-msgstr ""
+msgstr "Неопходни спецификатор панела недостаје у проширивачу %1"
 
 #: UserAction/expander.cpp:70
 msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
-msgstr ""
+msgstr "Проширивач: лош аргумент за %1: %2 није валидни спецификатор ставке"
 
 #: UserAction/expander.cpp:357
-#, fuzzy
 msgid "Panel's Path..."
-msgstr "путања панела"
+msgstr "Путања панела..."
 
 #: UserAction/expander.cpp:360 UserAction/expander.cpp:422
 #: UserAction/expander.cpp:456 UserAction/expander.cpp:488
 #: UserAction/expander.cpp:775
-#, fuzzy
 msgid "Automatically escape spaces"
 msgstr "Аутоматски избегни размаке"
 
 #: UserAction/expander.cpp:380
-#, fuzzy
 msgid "Number of..."
-msgstr "број ..."
+msgstr "Број..."
 
 #: UserAction/expander.cpp:383
-#, fuzzy
 msgid "Count:"
-msgstr "Монтирај"
+msgstr "Бројач:"
 
 #: UserAction/expander.cpp:398
 msgid "Expander: Bad argument to Count: %1 is not valid item specifier"
-msgstr ""
+msgstr "Проширивач: Лош аргумент Бројачу: %1 није валидан спецификатор"
 
 #: UserAction/expander.cpp:407
-#, fuzzy
 msgid "Filter Mask (*.h, *.cpp, etc.)"
-msgstr "маска филтера: *.h, *.cpp, итд."
+msgstr "Маска филтера: (*.h, *.cpp, итд.)"
 
 #: UserAction/expander.cpp:418
-#, fuzzy
 msgid "Current File (!= Selected File)..."
-msgstr "тренутни фајл (!= означени фајл)"
+msgstr "Тренутни фајл (!= означени фајл)..."
 
 #: UserAction/expander.cpp:421 UserAction/expander.cpp:454
 #: UserAction/expander.cpp:486 UserAction/expander.cpp:773
@@ -840,29 +834,24 @@ msgid "Omit the current path (optional)"
 msgstr "Изостави тренутну путању (опционо)"
 
 #: UserAction/expander.cpp:449
-#, fuzzy
 msgid "Item List of..."
-msgstr "Листа ставки ..."
+msgstr "Ставка листа од ..."
 
 #: UserAction/expander.cpp:452 UserAction/expander.cpp:484
 #: UserAction/expander.cpp:772
-#, fuzzy
 msgid "Which items:"
-msgstr "Које ставке"
+msgstr "Које ставке:"
 
 #: UserAction/expander.cpp:453
-#, fuzzy
 msgid "Separator between the items (optional):"
-msgstr "Раздвајач између ставки (опционо)"
+msgstr "Раздвајач између ставки (опционо):"
 
 #: UserAction/expander.cpp:455 UserAction/expander.cpp:487
 #: UserAction/expander.cpp:774
-#, fuzzy
 msgid "Mask (optional, all but 'Selected'):"
-msgstr "Маска (опционо, све сем „Означено“)"
+msgstr "Маска (опционо, све сем „Означено“):"
 
 #: UserAction/expander.cpp:481
-#, fuzzy
 msgid "Filename of an Item List..."
 msgstr "Назив фајла листе ставки..."
 
@@ -872,264 +861,235 @@ msgstr "Раздвајач између ставки (опционо)"
 
 #: UserAction/expander.cpp:504
 msgid "Expander: tempfile couldn't be opened (%1)"
-msgstr ""
+msgstr "Проширивач: привремени фајл није могао да се отвори (%1)"
 
 #: UserAction/expander.cpp:524
-#, fuzzy
 msgid "Manipulate the Selection..."
-msgstr "Манипулисање избором"
+msgstr "Манипулисање избором..."
 
 #: UserAction/expander.cpp:527
-#, fuzzy
 msgid "Selection mask:"
-msgstr "Маска избора"
+msgstr "Маска избора:"
 
 #: UserAction/expander.cpp:528
-#, fuzzy
 msgid "Manipulate in which way:"
-msgstr "Манипулисање у коју страну"
+msgstr "Манипулисање на који начин:"
 
 #: UserAction/expander.cpp:553
-#, fuzzy
 msgid "Jump to a Location..."
-msgstr "Скочи на локацију"
+msgstr "Скочи на локацију..."
 
 #: UserAction/expander.cpp:556
-#, fuzzy
 msgid "Choose a path:"
-msgstr "Молимо вас одаберите путању"
+msgstr "Изаберите путању:"
 
 #: UserAction/expander.cpp:557
-#, fuzzy
 msgid "Open location in a new tab"
-msgstr "отвори локацију у новом језичку"
+msgstr "Отвори локацију у новом језичку"
 
 #: UserAction/expander.cpp:593
 msgid "Ask Parameter from User..."
-msgstr ""
+msgstr "Питај корисника за параметар..."
 
 #: UserAction/expander.cpp:596
-#, fuzzy
 msgid "Question:"
-msgstr "Питање"
+msgstr "Питање:"
 
 #: UserAction/expander.cpp:597
-#, fuzzy
 msgid "Preset (optional):"
-msgstr "Преподешено (опционо)"
+msgstr "Преподешено (опционо):"
 
 #: UserAction/expander.cpp:598
-#, fuzzy
 msgid "Caption (optional):"
-msgstr "Натпис (опционо)"
+msgstr "Натпис (опционо):"
 
 #: UserAction/expander.cpp:604
 msgid "User Action"
 msgstr "Корисничка акција"
 
 #: UserAction/expander.cpp:629
-#, fuzzy
 msgid "Copy to Clipboard..."
-msgstr "Копирај у клипборд"
+msgstr "Копирај у клипборд..."
 
 #: UserAction/expander.cpp:632 UserAction/expander.cpp:655
 msgid "What to copy:"
-msgstr ""
+msgstr "Шта да се копира:"
 
 #: UserAction/expander.cpp:633
-#, fuzzy
 msgid "Append to current clipboard content with this separator (optional):"
-msgstr "Додај на тренутни клипборд-садржај са овим раздвајачем (опционо)"
+msgstr "Додај на тренутни садржај клипборда са овим раздвајачем (опционо):"
 
 #: UserAction/expander.cpp:639
 msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
-msgstr ""
+msgstr "Проширивач: %Each% не може да буде други аргумент за %Clipboard%"
 
 #: UserAction/expander.cpp:652
-#, fuzzy
 msgid "Copy a File/Folder..."
-msgstr "Копирај фајл/фасциклу"
+msgstr "Копирај фајл/фасциклу..."
 
 #: UserAction/expander.cpp:656
-#, fuzzy
 msgid "Where to copy:"
-msgstr "Где треба бити копирано"
+msgstr "Где да се копира:"
 
 #: UserAction/expander.cpp:663
 msgid "Expander: %Each% may not be in the second argument of %Copy%"
-msgstr ""
+msgstr "Проширивач: %Each% не може да буде други аргумент за %Copy%"
 
 #: UserAction/expander.cpp:673
 msgid "Expander: invalid URL's in %_Copy(\"src\", \"dest\")%"
-msgstr ""
+msgstr "Проширивач: невалидни URL-ови у %_Copy(\"src\", \"dest\")%"
 
 #: UserAction/expander.cpp:684
-#, fuzzy
 msgid "Move/Rename a File/Folder..."
-msgstr "Премести/преименуј фајл/фасциклу"
+msgstr "Премести/преименуј фајл/фасциклу..."
 
 #: UserAction/expander.cpp:687
-#, fuzzy
 msgid "What to move/rename:"
-msgstr "Шта премештено/преименовано"
+msgstr "Шта да се премести/преименује"
 
 #: UserAction/expander.cpp:688
-#, fuzzy
 msgid "New target/name:"
-msgstr "Нова мета/име"
+msgstr "Нова мета/име:"
 
 #: UserAction/expander.cpp:694
 msgid "%Each% may not be in the second argument of %Move%"
-msgstr ""
+msgstr "%Each% не може да буде други аргумент за %Move%"
 
 #: UserAction/expander.cpp:704
 msgid "Expander: invalid URL's in %_Move(\"src\", \"dest\")%"
-msgstr ""
+msgstr "Проширивач: невалидни URL-ови у %_Move(\"src\", \"dest\")%"
 
 #: UserAction/expander.cpp:715
-#, fuzzy
 msgid "Load a Synchronizer Profile..."
-msgstr "Отвори синхронизатор-профил"
+msgstr "Учитај профил синхронизатора..."
 
 #: UserAction/expander.cpp:718 UserAction/expander.cpp:736
 #: UserAction/expander.cpp:754
-#, fuzzy
 msgid "Choose a profile:"
-msgstr "Одабери профил"
+msgstr "Одабери профил:"
 
 #: UserAction/expander.cpp:722
 msgid "Expander: no profile specified for %_Sync(profile)%"
-msgstr ""
+msgstr "Проширивач: профил није специфициран за %_Sync(profile)%"
 
 #: UserAction/expander.cpp:733
-#, fuzzy
 msgid "Load a Searchmodule Profile..."
-msgstr "Отвори модултражења-профил"
+msgstr "Учитај профил модула тражења..."
 
 #: UserAction/expander.cpp:740
 msgid "Expander: no profile specified for %_NewSearch(profile)%"
-msgstr ""
+msgstr "Проширивач: профил није специфициран за %_NewSearch(profile)%"
 
 #: UserAction/expander.cpp:751
-#, fuzzy
 msgid "Load a Panel Profile..."
-msgstr "Учитај профил-панела"
+msgstr "Учитај профил панела..."
 
 #: UserAction/expander.cpp:758
 msgid "Expander: no profile specified for %_Profile(profile)%; abort..."
-msgstr ""
+msgstr "Проширивач: профил није специфициран за %_Profile(profile)%; откажи..."
 
 #: UserAction/expander.cpp:769
-#, fuzzy
 msgid "Separate Program Call for Each..."
 msgstr "Раздвоји позив програма за сваки..."
 
 #: UserAction/expander.cpp:801
-#, fuzzy
 msgid "Set Sorting for This Panel..."
-msgstr "Постави сортирање за овај панел"
+msgstr "Постави сортирање за овај панел..."
 
 #: UserAction/expander.cpp:804
-#, fuzzy
 msgid "Choose a column:"
-msgstr "Одаберите колону"
+msgstr "Одабери колону:"
 
 #: UserAction/expander.cpp:805
-#, fuzzy
 msgid "Choose a sort sequence:"
-msgstr "Одаберите секвенцу сортирања"
+msgstr "Одабери секвенцу сортирања:"
 
 #: UserAction/expander.cpp:811
 msgid "Expander: no column specified for %_ColSort(column)%"
-msgstr ""
+msgstr "Проширивач: колона није специфицирана за %_ColSort(column)%"
 
 #: UserAction/expander.cpp:883
 msgid "Expander: unknown column specified for %_ColSort(%1)%"
-msgstr ""
+msgstr "Проширивач: непозната колона специфицирана за %_ColSort(%1)%"
 
 #: UserAction/expander.cpp:895
-#, fuzzy
 msgid "Set Relation Between the Panels..."
-msgstr "Постави релацију између два панела"
+msgstr "Постави релацију између панела..."
 
 #: UserAction/expander.cpp:898
-#, fuzzy
 msgid "Set the new size in percent:"
-msgstr "Постави нову величину у процентима"
+msgstr "Постави нову величину у процентима:"
 
 #: UserAction/expander.cpp:910
 msgid ""
 "Expander: Value %1 out of range for %_PanelSize(percent)%. The first "
 "parameter has to be >0 and <100"
 msgstr ""
+"Проширивач: вредност %1 је изван опсега за %_PanelSize(percent)%. Први "
+"параметар мора да буде >0 и <100"
 
 #: UserAction/expander.cpp:934
-#, fuzzy
 msgid "Execute a JavaScript Extension..."
-msgstr "Извршава JavaScript проширење"
+msgstr "Изврши JavaScript проширење..."
 
 #: UserAction/expander.cpp:937
 msgid "Location of the script"
 msgstr "Локација скрипта"
 
 #: UserAction/expander.cpp:938
-#, fuzzy
 msgid ""
 "Set some variables for the execution (optional).\n"
 "i.e. \"return=return_var;foo=bar\", consult the handbook for more information"
 msgstr ""
 "Поставите неке променљиве за извршавање (опционо).\n"
-"нпр. „return=cmd;foo=bar“, консултујте документацију за још информација"
+"нпр. „return=return_var;foo=bar“, консултујте документацију за још "
+"информација"
 
 #: UserAction/expander.cpp:942
 msgid "Expander: no script specified for %_Script(script)%"
-msgstr ""
+msgstr "Проширивач: скрипт није специфициран за %_Script(script)%"
 
 #: UserAction/expander.cpp:984
-#, fuzzy
 msgid "View File with Krusader's Internal Viewer..."
-msgstr "Прегледај фајл помоћу интерног прегледача Krusader-а"
+msgstr "Прегледај фајл помоћу интерног прегледача Krusader-а..."
 
 #: UserAction/expander.cpp:987
-#, fuzzy
 msgid "Which file to view (normally '%aCurrent%'):"
-msgstr "Који фајл се прегледа (обично '%aCurrent%')"
+msgstr "Који фајл се прегледа (обично '%aCurrent%'):"
 
 #: UserAction/expander.cpp:988
-#, fuzzy
 msgid "Choose a view mode:"
-msgstr "Одабери режим прегледања"
+msgstr "Одабери режим прегледања:"
 
 #: UserAction/expander.cpp:991
-#, fuzzy
 msgid "Choose a window mode:"
-msgstr "Одабери режим прозора"
+msgstr "Одабери режим прозора:"
 
 #: UserAction/expander.cpp:995
 msgid "Expander: no file to view in %_View(filename)%"
-msgstr ""
+msgstr "Проширивач: нема фајла жа прегледање у %_View(filename)%"
 
 #: UserAction/expander.cpp:1032
 #, c-format
 msgid "%Each% is not allowed in parameter to %1"
-msgstr ""
+msgstr "%Each% није валидно као параметар за %1"
 
 #: UserAction/expander.cpp:1053
 msgid "Expander: Bad panel specifier %1 in placeholder %2"
-msgstr ""
+msgstr "Проширивач: лош спецификатор панела %1 у шаблону %2"
 
 #: UserAction/expander.cpp:1082
 #, c-format
 msgid "Error: unterminated % in Expander::expandCurrent"
-msgstr ""
+msgstr "Грешка: незавршен % у Expander::expandCurrent"
 
 #: UserAction/expander.cpp:1112
 msgid "Error: unrecognized %%%1%2%% in Expander::expand"
-msgstr ""
+msgstr "Грешка: непрепознат %%%1%2%% у Expander::expand"
 
 #: UserAction/expander.cpp:1148
 msgid "Error: missing ')' in Expander::separateParameter"
-msgstr ""
+msgstr "Грешка: недостаје ')' у Expander::separateParameter"
 
 #: UserAction/kractionbase.cpp:51
 msgid "Confirm execution"
@@ -1219,11 +1179,14 @@ msgid ""
 "Support for more than one command doesn't work in a terminal. Only the first "
 "is executed in the terminal."
 msgstr ""
+"Подршка за више од једне команде не ради у терминалу. Само ће прва бити "
+"извршена у терминалу."
 
 #: UserAction/kraction.cpp:204
 msgid ""
 "Embedded terminal emulator does not work, using output collection instead."
 msgstr ""
+"Угњеждени емулатор терминала не ради, као замену користим скупљање излаза..."
 
 #: UserAction/useraction.cpp:100
 msgid "The file %1 does not contain valid UserActions.\n"
@@ -2061,9 +2024,8 @@ msgid "Find previous (Ctrl+P)"
 msgstr "Нађи претходни (Ctrl+P)"
 
 #: Locate/locate.cpp:368 Search/krsearchdialog.cpp:541
-#, fuzzy
 msgid "Copy selected to clipboard"
-msgstr "Копирај корисничке акције у клипборд"
+msgstr "Копирај изабрано у клипборд"
 
 #: Locate/locate.cpp:487 Locate/locate.cpp:504
 msgid "Search string not found!"
@@ -2259,26 +2221,23 @@ msgstr "Означи &различите"
 
 #: krusader.cpp:635
 msgid "Start and &Forget"
-msgstr ""
+msgstr "Почни и &заборави"
 
 #: krusader.cpp:639
-#, fuzzy
 msgid "Display &Separated Standard and Error Output"
-msgstr "Одвоји стандардне грешке"
+msgstr "&Одвојено прикажи стандардни и излаз грешке"
 
 #: krusader.cpp:643
 msgid "Display &Mixed Standard and Error Output"
-msgstr ""
+msgstr "&Спојено прикажи стандардни и излаз грешке"
 
 #: krusader.cpp:647
-#, fuzzy
 msgid "Start in &New Terminal"
-msgstr "Покрени &терминал"
+msgstr "Покрени у новом &терминалу"
 
 #: krusader.cpp:651
-#, fuzzy
 msgid "Send to &Embedded Terminal Emulator"
-msgstr "Прикажи &емулатор терминала"
+msgstr "Пошаљи у &угњежђеном емулатору терминала"
 
 #: krusader.cpp:663
 msgid "Start &Terminal"
@@ -3420,9 +3379,8 @@ msgid "File"
 msgstr "Фајл"
 
 #: Dialogs/checksumdlg.cpp:499
-#, fuzzy
 msgid "File and hash"
-msgstr "Име фајла"
+msgstr "Фајл и хеш"
 
 #: Dialogs/checksumdlg.cpp:522
 msgid "Here are the errors received:"
@@ -3910,9 +3868,8 @@ msgid "Panel independent"
 msgstr "Независно од панела"
 
 #: ActionMan/addplaceholderpopup.cpp:60
-#, fuzzy
 msgid "Choose executable..."
-msgstr "Извршно"
+msgstr "Изабери извршни фајл..."
 
 #: ActionMan/addplaceholderpopup.cpp:135
 msgid "User Action Parameter Dialog"
@@ -4168,9 +4125,8 @@ msgid "Time shift (right-left):"
 msgstr "Тотални померај (десно-лево):"
 
 #: Synchronizer/synchronizergui.cpp:1408
-#, fuzzy
 msgid "Ignore hidden files"
-msgstr "Прикажи скривене фајлове"
+msgstr "Игнориши скривене фајлове"
 
 #: Synchronizer/synchronizergui.cpp:1422
 msgid "Profile manager (Ctrl+P)."
@@ -4273,14 +4229,12 @@ msgid "&Compare Files"
 msgstr "&Упореди фајлове"
 
 #: Synchronizer/synchronizergui.cpp:1714
-#, fuzzy
 msgid "C&opy selected to clipboard (left)"
-msgstr "Копирај корисничке акције у клипборд"
+msgstr "&Копирај изабрано у клипборд (лево)"
 
 #: Synchronizer/synchronizergui.cpp:1715
-#, fuzzy
 msgid "Co&py selected to clipboard (right)"
-msgstr "Копирај корисничке акције у клипборд"
+msgstr "Ко&пирај изабрано у клипборд (десно)"
 
 #: Synchronizer/synchronizergui.cpp:1719
 msgid "&Select items"
@@ -4793,9 +4747,9 @@ msgstr "&Подешавања"
 
 #. i18n: file krusaderui.rc line 127
 #: rc.cpp:27
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Command Execution Mode Se&tup"
-msgstr "Режим извршавања"
+msgstr "Подешавање режима извршавања команди"
 
 #. i18n: file krusaderui.rc line 141
 #: rc.cpp:30
@@ -6565,30 +6519,3 @@ msgstr "Грешка при читању фајла %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Грешка при писању фајла %1!"
-
-#~ msgid "If pressed, Krusader executes command line in a terminal."
-#~ msgstr "Уколико је притиснуто, Krusader извршава наредбу у терминалу."
-
-#~ msgid ""
-#~ "The 'run in terminal' button allows Krusader to run console (or otherwise "
-#~ "non-graphical) programs in a terminal of your choice. If it's pressed, "
-#~ "terminal mode is active."
-#~ msgstr ""
-#~ "Дугме „Покрени у терминалу“ омогућава Krusader-у да покрене конзолне (или "
-#~ "на други начин не-графичке) програме у терминалу по вашем избору. Уколико "
-#~ "је притиснуто, терминалски режим је активан."
-
-#~ msgid "This terminal will close in 1 hour.."
-#~ msgstr "Овај терминал ће се затворити за 1 сат..."
-
-#~ msgid "count all:"
-#~ msgstr "броји све:"
-
-#~ msgid "Ask the user for a parameter"
-#~ msgstr "Питај корисника за параметар"
-
-#~ msgid "Copy to clipboard"
-#~ msgstr "Копирај у клипборд"
-
-#~ msgid "What should be copied"
-#~ msgstr "Шта треба бити копирано"
