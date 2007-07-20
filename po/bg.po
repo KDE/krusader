@@ -3,11 +3,11 @@
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
 # Copyright (C) 2004-2007, Krusader Krew
 # This file is distributed under the same license as the Krusader package
-# Milen Ivanov <milen.kerat@gmail.com>, 2004, 2005, 2006.
+# Milen Ivanov <milen.kerat@gmail.com>, 2004, 2005, 2006, 2007.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.80.0-beta2\n"
+"Project-Id-Version: krusader-1.80.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2007-03-27 15:16+0200\n"
 "PO-Revision-Date: 2005-12-04 10:30+0200\n"
@@ -514,6 +514,22 @@ msgid ""
 "code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to "
 "'<code>*text*</code>'.</p>"
 msgstr ""
+"<p>Критерият за филтриране на файловете се дефинира тук.</p><p>Можете да "
+"използвате глобални символи. Няколко шаблона се разделят от интервал "
+"(означава логическо ИЛИ), а се изключват от търсенето със символа за програмен "
+"канал (pipe).</p><p>Ако шаблонът завършва с наклонена черта (<code>*шаблон*/</code>) "
+"това означава, че шаблона е свързан с рекурсивно търсене в директории.<ul><li>"
+"<code>шаблон</code> - означава да се търсят тези файлове/директории, чието име е "
+"<code>шаблон</code>, рекурсивно търсене се осъществява през всички поддиректории, "
+"независимо от стойността на <code>шаблон</code></li><li><code>шаблон</code> - "
+"означава да се търсят всички файлове/директории, но рекурсивното търсене се "
+"извършва през/не през директориите, чието име е <code>шаблон</code></li></ul>"
+"<p></p><p>За имена, които съдържат интервал може да се използват кавички. "
+"Филтърът <code>\"Програма&nbsp;Файлове\"</code> осъществява търсене за тези "
+"файлове/директории, чието име е <code>\"Програма&nbsp;Файлове\"</code>."
+"</p><p>Примери:<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h | *.moc."
+"cpp</li><li>* | CVS/ .svn/</li></code></ul><b>Забележка</b>: изразът за търсене "
+"'<code>текст</code>' е равностоен на '<code>*текст*</code>'.</p>"
 
 #: Filter/generalfilter.cpp:86
 msgid "&Of type:"
@@ -770,47 +786,41 @@ msgstr ""
 #: UserAction/expander.cpp:55
 #, c-format
 msgid "Needed panel specification missing in expander %1"
-msgstr ""
+msgstr "Необходимите уточнения за панела липсват в експандер %1"
 
 #: UserAction/expander.cpp:70
 msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
-msgstr ""
+msgstr "Експандер: Неправилен аргумент за %1: %2 е невалиден елементен определител"
 
 #: UserAction/expander.cpp:357
-#, fuzzy
 msgid "Panel's Path..."
-msgstr "път до панела"
+msgstr "Път в панела..."
 
 #: UserAction/expander.cpp:360 UserAction/expander.cpp:422
 #: UserAction/expander.cpp:456 UserAction/expander.cpp:488
 #: UserAction/expander.cpp:775
-#, fuzzy
 msgid "Automatically escape spaces"
 msgstr "Автоматично пропуска интервали"
 
 #: UserAction/expander.cpp:380
-#, fuzzy
 msgid "Number of..."
-msgstr "брой на ..."
+msgstr "Брой на..."
 
 #: UserAction/expander.cpp:383
-#, fuzzy
 msgid "Count:"
-msgstr "Монтиране"
+msgstr "Брой:"
 
 #: UserAction/expander.cpp:398
 msgid "Expander: Bad argument to Count: %1 is not valid item specifier"
-msgstr ""
+msgstr "Експандер: Неправилен аргумент за Брой: %1 е невалиден елементен определител"
 
 #: UserAction/expander.cpp:407
-#, fuzzy
 msgid "Filter Mask (*.h, *.cpp, etc.)"
-msgstr "маска на филтъра: *.h, *.cpp"
+msgstr "Маска на филтъра (*.h, *.cpp, etc.)"
 
 #: UserAction/expander.cpp:418
-#, fuzzy
 msgid "Current File (!= Selected File)..."
-msgstr "текущ файл (!= избран файл)"
+msgstr "Текущ файл (!= избран файл)..."
 
 #: UserAction/expander.cpp:421 UserAction/expander.cpp:454
 #: UserAction/expander.cpp:486 UserAction/expander.cpp:773
@@ -818,31 +828,26 @@ msgid "Omit the current path (optional)"
 msgstr "Пропускане на текущия път (по избор)"
 
 #: UserAction/expander.cpp:449
-#, fuzzy
 msgid "Item List of..."
-msgstr "Списък с елементи на..."
+msgstr "Списък от елементи на..."
 
 #: UserAction/expander.cpp:452 UserAction/expander.cpp:484
 #: UserAction/expander.cpp:772
-#, fuzzy
 msgid "Which items:"
-msgstr "Кои елементи"
+msgstr "Кои елементи:"
 
 #: UserAction/expander.cpp:453
-#, fuzzy
 msgid "Separator between the items (optional):"
-msgstr "Разделител между елементите (по избор)"
+msgstr "Разделител между елементите (по избор):"
 
 #: UserAction/expander.cpp:455 UserAction/expander.cpp:487
 #: UserAction/expander.cpp:774
-#, fuzzy
 msgid "Mask (optional, all but 'Selected'):"
-msgstr "Маска (по избор; за всички, освен 'Избрани')"
+msgstr "Маска (по избор, за всички, освен 'Избрани'):"
 
 #: UserAction/expander.cpp:481
-#, fuzzy
 msgid "Filename of an Item List..."
-msgstr "Файл със списък с елементи ..."
+msgstr "Файл със списък с елементи..."
 
 #: UserAction/expander.cpp:485
 msgid "Separator between the items (optional)"
@@ -850,264 +855,234 @@ msgstr "Разделител между елементите (по избор)"
 
 #: UserAction/expander.cpp:504
 msgid "Expander: tempfile couldn't be opened (%1)"
-msgstr ""
+msgstr "Експандер: не може да бъде отворен временен файл (%1)"
 
 #: UserAction/expander.cpp:524
-#, fuzzy
 msgid "Manipulate the Selection..."
-msgstr "Обработване на селекцията:"
+msgstr "Обработване на селекцията..."
 
 #: UserAction/expander.cpp:527
-#, fuzzy
 msgid "Selection mask:"
-msgstr "Маска за селекцията"
+msgstr "Маска за селекцията:"
 
 #: UserAction/expander.cpp:528
-#, fuzzy
 msgid "Manipulate in which way:"
-msgstr "Обработване по начин"
+msgstr "Обработване по начин:"
 
 #: UserAction/expander.cpp:553
-#, fuzzy
 msgid "Jump to a Location..."
-msgstr "Преход към местоположение"
+msgstr "Преход към местоположение..."
 
 #: UserAction/expander.cpp:556
-#, fuzzy
 msgid "Choose a path:"
-msgstr "моля, определете път"
+msgstr "Определете път:"
 
 #: UserAction/expander.cpp:557
-#, fuzzy
 msgid "Open location in a new tab"
-msgstr "отваряне на местоположението в нов подпрозорец"
+msgstr "Отваряне на местоположението в нов подпрозорец"
 
 #: UserAction/expander.cpp:593
 msgid "Ask Parameter from User..."
-msgstr ""
+msgstr "Получаване на параметър от потребителя..."
 
 #: UserAction/expander.cpp:596
-#, fuzzy
 msgid "Question:"
-msgstr "Въпрос"
+msgstr "Въпрос:"
 
 #: UserAction/expander.cpp:597
-#, fuzzy
 msgid "Preset (optional):"
-msgstr "Preset (по избор)"
+msgstr "Preset (по избор):"
 
 #: UserAction/expander.cpp:598
-#, fuzzy
 msgid "Caption (optional):"
-msgstr "Caption (по избор)"
+msgstr "Caption (по избор):"
 
 #: UserAction/expander.cpp:604
 msgid "User Action"
 msgstr "Потребителско действие"
 
 #: UserAction/expander.cpp:629
-#, fuzzy
 msgid "Copy to Clipboard..."
-msgstr "Копиране в клипборда"
+msgstr "Копиране в клипборда..."
 
 #: UserAction/expander.cpp:632 UserAction/expander.cpp:655
 msgid "What to copy:"
-msgstr ""
+msgstr "Копиране на:"
 
 #: UserAction/expander.cpp:633
-#, fuzzy
 msgid "Append to current clipboard content with this separator (optional):"
-msgstr "Прибавяне към съдържанието на клипборда с този разделител (по избор)"
+msgstr "Прибавяне към съдържанието на клипборда с този разделител (по избор):"
 
 #: UserAction/expander.cpp:639
 msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
-msgstr ""
+msgstr "Експандер: %Each% не може да е втори аргумент на %Clipboard%"
 
 #: UserAction/expander.cpp:652
-#, fuzzy
 msgid "Copy a File/Folder..."
-msgstr "Копиране на файл/папка"
+msgstr "Копиране на файл/папка..."
 
 #: UserAction/expander.cpp:656
-#, fuzzy
 msgid "Where to copy:"
-msgstr "Къде би трябвало да се копира"
+msgstr "Копиране къде:"
 
 #: UserAction/expander.cpp:663
 msgid "Expander: %Each% may not be in the second argument of %Copy%"
-msgstr ""
+msgstr "Експандер: %Each% не може да е втори аргумент на %Copy%"
 
 #: UserAction/expander.cpp:673
 msgid "Expander: invalid URL's in %_Copy(\"src\", \"dest\")%"
-msgstr ""
+msgstr "Експандер: невалидни URL-и в %_Copy(\"src\", \"dest\")%"
 
 #: UserAction/expander.cpp:684
-#, fuzzy
 msgid "Move/Rename a File/Folder..."
-msgstr "Преместване/Преименуване на файл/папка"
+msgstr "Преместване/Преименуване на файл/папка..."
 
 #: UserAction/expander.cpp:687
-#, fuzzy
 msgid "What to move/rename:"
-msgstr "Какво е преместено/преименувано"
+msgstr "Какво да се премества/преименува:"
 
 #: UserAction/expander.cpp:688
-#, fuzzy
 msgid "New target/name:"
-msgstr "Нов обект/име"
+msgstr "Нов обект/име:"
 
 #: UserAction/expander.cpp:694
 msgid "%Each% may not be in the second argument of %Move%"
-msgstr ""
+msgstr "%Each% не може да е втори аргумент на %Move%"
 
 #: UserAction/expander.cpp:704
 msgid "Expander: invalid URL's in %_Move(\"src\", \"dest\")%"
-msgstr ""
+msgstr "Експандер: невалидни URL-и в %_Move(\"src\", \"dest\")%"
 
 #: UserAction/expander.cpp:715
-#, fuzzy
 msgid "Load a Synchronizer Profile..."
-msgstr "Отваряне профила на синхронизатора"
+msgstr "Зареждане профил на синхронизатор..."
 
 #: UserAction/expander.cpp:718 UserAction/expander.cpp:736
 #: UserAction/expander.cpp:754
-#, fuzzy
 msgid "Choose a profile:"
-msgstr "Изберете профил"
+msgstr "Изберете профил:"
 
 #: UserAction/expander.cpp:722
 msgid "Expander: no profile specified for %_Sync(profile)%"
-msgstr ""
+msgstr "Експандер: не е зададен профил за %_Sync(profile)%"
 
 #: UserAction/expander.cpp:733
-#, fuzzy
 msgid "Load a Searchmodule Profile..."
-msgstr "Отваряне профила на модула за търсене"
+msgstr "Зареждане профил на модула за търсене..."
 
 #: UserAction/expander.cpp:740
 msgid "Expander: no profile specified for %_NewSearch(profile)%"
-msgstr ""
+msgstr "Експандер: не е зададен профил за %_NewSearch(profile)%"
 
 #: UserAction/expander.cpp:751
-#, fuzzy
 msgid "Load a Panel Profile..."
-msgstr "Зареждане профил на панел"
+msgstr "Зареждане профил на панел..."
 
 #: UserAction/expander.cpp:758
 msgid "Expander: no profile specified for %_Profile(profile)%; abort..."
-msgstr ""
+msgstr "Експандер: не е зададен профил за %_Profile(profile)%; прекъсване..."
 
 #: UserAction/expander.cpp:769
-#, fuzzy
 msgid "Separate Program Call for Each..."
 msgstr "Разделяне на програмното извикване за всяко..."
 
 #: UserAction/expander.cpp:801
-#, fuzzy
 msgid "Set Sorting for This Panel..."
-msgstr "Настройка на подреждането за този панел"
+msgstr "Настройка на подреждането за този панел..."
 
 #: UserAction/expander.cpp:804
-#, fuzzy
 msgid "Choose a column:"
-msgstr "Изберете колона"
+msgstr "Изберете колона:"
 
 #: UserAction/expander.cpp:805
-#, fuzzy
 msgid "Choose a sort sequence:"
-msgstr "Изберете реда на подреждане"
+msgstr "Изберете реда на подреждане:"
 
 #: UserAction/expander.cpp:811
 msgid "Expander: no column specified for %_ColSort(column)%"
-msgstr ""
+msgstr "Експандер: не е зададена колона за %_ColSort(column)%"
 
 #: UserAction/expander.cpp:883
 msgid "Expander: unknown column specified for %_ColSort(%1)%"
-msgstr ""
+msgstr "Експандер: зададена е неизвестна колона за %_ColSort(%1)%"
 
 #: UserAction/expander.cpp:895
-#, fuzzy
 msgid "Set Relation Between the Panels..."
-msgstr "Установете връзката между двата панела"
+msgstr "Установете връзката между панелите..."
 
 #: UserAction/expander.cpp:898
-#, fuzzy
 msgid "Set the new size in percent:"
-msgstr "Установете новият размер в проценти"
+msgstr "Установете новият размер в проценти:"
 
 #: UserAction/expander.cpp:910
 msgid ""
 "Expander: Value %1 out of range for %_PanelSize(percent)%. The first "
 "parameter has to be >0 and <100"
 msgstr ""
+"Експандер: стойност %1 за %_PanelSize(percent)% е извън диапазон. Първият "
+"параметър трябва да е >0 и <100"
 
 #: UserAction/expander.cpp:934
-#, fuzzy
 msgid "Execute a JavaScript Extension..."
-msgstr "Изпълняване на JavaScript разширение"
+msgstr "Изпълняване на JavaScript разширение..."
 
 #: UserAction/expander.cpp:937
 msgid "Location of the script"
 msgstr "Местоположение на скрипта"
 
 #: UserAction/expander.cpp:938
-#, fuzzy
 msgid ""
 "Set some variables for the execution (optional).\n"
 "i.e. \"return=return_var;foo=bar\", consult the handbook for more information"
 msgstr ""
-"Установяване на променливи за изпълнението (опция).\n"
-"напр. \"return=cmd;foo=bar\", за информация вижте наръчника"
+"Установяване на променливи за изпълнението (по избор).\n"
+"напр. \"return=return_var;foo=bar\", за повече информация вижте наръчника"
 
 #: UserAction/expander.cpp:942
 msgid "Expander: no script specified for %_Script(script)%"
-msgstr ""
+msgstr "Експандер: не е зададен скрипт за %_Script(script)%"
 
 #: UserAction/expander.cpp:984
-#, fuzzy
 msgid "View File with Krusader's Internal Viewer..."
-msgstr "Преглед на файла с вградения визуализатор"
+msgstr "Преглед на файла с вградения визуализатор..."
 
 #: UserAction/expander.cpp:987
-#, fuzzy
 msgid "Which file to view (normally '%aCurrent%'):"
-msgstr "Преглед на кой файл (обикновено '%aCurrent%')"
+msgstr "Преглед на кой файл (обикновено '%aCurrent%'):"
 
 #: UserAction/expander.cpp:988
-#, fuzzy
 msgid "Choose a view mode:"
-msgstr "Изберете режим преглед"
+msgstr "Изберете режим преглед:"
 
 #: UserAction/expander.cpp:991
-#, fuzzy
 msgid "Choose a window mode:"
-msgstr "Изберете режим прозорец"
+msgstr "Изберете вид на прозореца:"
 
 #: UserAction/expander.cpp:995
 msgid "Expander: no file to view in %_View(filename)%"
-msgstr ""
+msgstr "Експандер: не е зададен файл за преглед в %_View(filename)%"
 
 #: UserAction/expander.cpp:1032
 #, c-format
 msgid "%Each% is not allowed in parameter to %1"
-msgstr ""
+msgstr "%Each% не е позволен за параметър на %1"
 
 #: UserAction/expander.cpp:1053
 msgid "Expander: Bad panel specifier %1 in placeholder %2"
-msgstr ""
+msgstr "Експандер: Неправилен определител за панел %1 в заместител %2"
 
 #: UserAction/expander.cpp:1082
 #, c-format
 msgid "Error: unterminated % in Expander::expandCurrent"
-msgstr ""
+msgstr "Грешка: непрекратен % в Expander::expandCurrent"
 
 #: UserAction/expander.cpp:1112
 msgid "Error: unrecognized %%%1%2%% in Expander::expand"
-msgstr ""
+msgstr "Грешка: неразпознат %%%1%2%% в Expander::expand"
 
 #: UserAction/expander.cpp:1148
 msgid "Error: missing ')' in Expander::separateParameter"
-msgstr ""
+msgstr "Грешка: липсваща ')' в Expander::separateParameter"
 
 #: UserAction/kractionbase.cpp:51
 msgid "Confirm execution"
@@ -1124,7 +1099,7 @@ msgstr "Затваряне"
 
 #: UserAction/kraction.cpp:52
 msgid "Kill"
-msgstr "Убиване"
+msgstr "Прекратяване"
 
 #: UserAction/kraction.cpp:52
 msgid "Kill the running process"
@@ -1168,7 +1143,7 @@ msgstr ""
 
 #: UserAction/kraction.cpp:140
 msgid "Overwrite or append?"
-msgstr "Презаписване или добавяне?"
+msgstr "Презапис или добавяне?"
 
 #: ActionMan/useractionpage.cpp:248 ActionMan/useractionpage.cpp:257
 #: Dialogs/checksumdlg.cpp:573 Dialogs/krkeydialog.cpp:135
@@ -1197,11 +1172,14 @@ msgid ""
 "Support for more than one command doesn't work in a terminal. Only the first "
 "is executed in the terminal."
 msgstr ""
+"Няма поддръжка за изпълнение на повече от една команда в терминал. Ще бъде "
+"изпълнена само първата команда."
 
 #: UserAction/kraction.cpp:204
 msgid ""
 "Embedded terminal emulator does not work, using output collection instead."
 msgstr ""
+"Вградения терминален емулатор не работи, вместо това се използва изхода."
 
 #: UserAction/useraction.cpp:100
 msgid "The file %1 does not contain valid UserActions.\n"
@@ -2030,9 +2008,8 @@ msgid "Find previous (Ctrl+P)"
 msgstr "Търсене предишен (Ctrl+P)"
 
 #: Locate/locate.cpp:368 Search/krsearchdialog.cpp:541
-#, fuzzy
 msgid "Copy selected to clipboard"
-msgstr "Копиране на действията в клипборда"
+msgstr "Копиране на избраното в клипборда"
 
 #: Locate/locate.cpp:487 Locate/locate.cpp:504
 msgid "Search string not found!"
@@ -2108,14 +2085,12 @@ msgid "Show Terminal &Emulator"
 msgstr "Терминален ем&улатор"
 
 #: krusader.cpp:558
-#, fuzzy
 msgid "&Detailed View"
-msgstr "Подробен изглед"
+msgstr "&Подробен изглед"
 
 #: krusader.cpp:561
-#, fuzzy
 msgid "&Brief View"
-msgstr "Линеен изглед"
+msgstr "&Кратък изглед"
 
 #: krusader.cpp:564
 msgid "Show &Hidden Files"
@@ -2231,26 +2206,23 @@ msgstr "Маркиране на &различните"
 
 #: krusader.cpp:635
 msgid "Start and &Forget"
-msgstr ""
+msgstr "Пусни и &забрави"
 
 #: krusader.cpp:639
-#, fuzzy
 msgid "Display &Separated Standard and Error Output"
-msgstr "Отделя стандартната грешка"
+msgstr "Показване &отделно на стандартния изход и изхода за грешки"
 
 #: krusader.cpp:643
 msgid "Display &Mixed Standard and Error Output"
-msgstr ""
+msgstr "Показване на &смесен стандартен изход и изход за грешки"
 
 #: krusader.cpp:647
-#, fuzzy
 msgid "Start in &New Terminal"
-msgstr "Стартиране на &терминал"
+msgstr "Стартиране в &Нов терминал"
 
 #: krusader.cpp:651
-#, fuzzy
 msgid "Send to &Embedded Terminal Emulator"
-msgstr "Терминален ем&улатор"
+msgstr "Изпращане във вградения терминален ем&улатор"
 
 #: krusader.cpp:663
 msgid "Start &Terminal"
@@ -2577,7 +2549,7 @@ msgid ""
 "You cannot search for text (grep) while doing a search that includes "
 "archives."
 msgstr ""
-"След като избрахте търсене в архиви, ето и някои ограничения:\n"
+"След като избрахте търсене и в архиви, ето и някои ограничения:\n"
 "Не можете да търсите за текст (grep), когато претърсвате архиви."
 
 #: Search/krsearchdialog.cpp:433
@@ -2658,7 +2630,7 @@ msgstr "Локална мрежа"
 
 #: BookMan/krbookmark.cpp:16 BookMan/krbookmarkhandler.cpp:491
 msgid "Virtual Filesystem"
-msgstr "Виртуални файлови системи"
+msgstr "Виртуална файлова система"
 
 #: BookMan/krbookmarkhandler.cpp:493
 msgid "Jump back"
@@ -2921,7 +2893,7 @@ msgstr "%1/s ( %2 оставащо )"
 #: Dialogs/packgui.cpp:53
 #, c-format
 msgid "Pack %1"
-msgstr "Архивиране na %1"
+msgstr "Архивиране на %1"
 
 #: Dialogs/packgui.cpp:55
 #, c-format
@@ -3171,11 +3143,11 @@ msgstr "Установяване ниво на компресия"
 
 #: Dialogs/packguibase.cpp:189
 msgid "MIN"
-msgstr ""
+msgstr "МИН"
 
 #: Dialogs/packguibase.cpp:190
 msgid "MAX"
-msgstr ""
+msgstr "МАКС"
 
 #: Dialogs/packguibase.cpp:211
 msgid "Password"
@@ -3198,9 +3170,8 @@ msgid "Ok"
 msgstr "Ок"
 
 #: Dialogs/packguibase.cpp:333
-#, fuzzy
 msgid "No password specified"
-msgstr "Нужна е парола"
+msgstr "Не е поставена парола"
 
 #: Dialogs/packguibase.cpp:338
 msgid "The passwords are equal"
@@ -3279,7 +3250,6 @@ msgstr ""
 "подходящ инструмент. Моля, проверете настройките в <b>Зависимости</b>.</qt>"
 
 #: Dialogs/checksumdlg.cpp:219 Dialogs/checksumdlg.cpp:320
-#, fuzzy
 msgid ""
 "<qt><b>Note</b>: you've selected directories, and probably have no recursive "
 "checksum tool installed. Krusader currently supports <i>md5deep, sha1deep, "
@@ -3287,7 +3257,7 @@ msgid ""
 msgstr ""
 "<qt><b>Забележка</b>: избрали сте директории и вероятно нямате инсталиран "
 "инструмент за рекурсивно пресмятане на контролна сума. Krusader поддържа "
-"<i>md5deep, sha1deep, sha256deep и tigerdeep</i></qt>"
+"<i>md5deep, sha1deep, sha256deep, tigerdeep и cfv</i></qt>"
 
 #: Dialogs/checksumdlg.cpp:235
 msgid "About to calculate checksum for the following files"
@@ -3311,7 +3281,7 @@ msgstr "<qt>Възникна грешка при изпълнение на <b>%1
 
 #: Dialogs/checksumdlg.cpp:297 Dialogs/checksumdlg.cpp:408
 msgid "Error reading stdout or stderr"
-msgstr "Грешка при четене на стандартните изход или грешка"
+msgstr "Грешка при четене на stdout или stderr"
 
 #: Dialogs/checksumdlg.cpp:312 Dialogs/checksumdlg.cpp:430
 msgid "Verify Checksum"
@@ -3386,9 +3356,8 @@ msgid "File"
 msgstr "Файл"
 
 #: Dialogs/checksumdlg.cpp:499
-#, fuzzy
 msgid "File and hash"
-msgstr "Име на файл"
+msgstr "Файл и хеш"
 
 #: Dialogs/checksumdlg.cpp:522
 msgid "Here are the errors received:"
@@ -3491,7 +3460,7 @@ msgstr ""
 
 #: ActionMan/useractionpage.cpp:247
 msgid "Overwrite or merge?"
-msgstr "Презаписване или обединяване?"
+msgstr "Презапис или обединяване?"
 
 #: ActionMan/useractionpage.cpp:249
 msgid "Merge"
@@ -3881,9 +3850,8 @@ msgid "Panel independent"
 msgstr "Независимо от панела"
 
 #: ActionMan/addplaceholderpopup.cpp:60
-#, fuzzy
 msgid "Choose executable..."
-msgstr "Изпълним файл"
+msgstr "Изберете изпълним файл..."
 
 #: ActionMan/addplaceholderpopup.cpp:135
 msgid "User Action Parameter Dialog"
@@ -3978,9 +3946,8 @@ msgid "Directory Comparison"
 msgstr "Сравняване на директории"
 
 #: Synchronizer/synchronizergui.cpp:1126
-#, fuzzy
 msgid "File &Filter:"
-msgstr "Файлов филтър:"
+msgstr "Файлов &филтър:"
 
 #: Synchronizer/synchronizergui.cpp:1148
 msgid "The left base directory used during the synchronisation process."
@@ -4058,34 +4025,28 @@ msgstr ""
 "файлови системи.</p>"
 
 #: Synchronizer/synchronizergui.cpp:1211
-#, fuzzy
 msgid "S&how options"
-msgstr "Възможности на обозначаване"
+msgstr "Възмо&жности на обозначаване"
 
 #: Synchronizer/synchronizergui.cpp:1232
-#, fuzzy
 msgid "Show files marked to <i>Copy from left to right</i> (CTRL+L)."
-msgstr "Обозначава файловете, маркирани за <i>копиране от ляво на дясно</i>."
+msgstr "Обозначава файловете, маркирани за <i>копиране от ляво на дясно</i> (CTRL+L)."
 
 #: Synchronizer/synchronizergui.cpp:1241
-#, fuzzy
 msgid "Show files considered to be identical (CTRL+E)."
-msgstr "Обозначава файловете, преценени като идентични."
+msgstr "Обозначава файловете, преценени като идентични (CTRL+E)."
 
 #: Synchronizer/synchronizergui.cpp:1250
-#, fuzzy
 msgid "Show excluded files (CTRL+D)."
-msgstr "Обозначава отхвърлените файлове."
+msgstr "Обозначава отхвърлените файлове (CTRL+D)."
 
 #: Synchronizer/synchronizergui.cpp:1259
-#, fuzzy
 msgid "Show files marked to <i>Copy from right to left</i> (CTRL+R)."
-msgstr "Обозначава файловете, маркирани за <i>копиране от дясно на ляво</i>."
+msgstr "Обозначава файловете, маркирани за <i>копиране от дясно на ляво</i> (CTRL+R)."
 
 #: Synchronizer/synchronizergui.cpp:1268
-#, fuzzy
 msgid "Show files marked to delete. (CTRL+T)"
-msgstr "Обозначава файловете, маркирани за изтриване."
+msgstr "Обозначава файловете, маркирани за изтриване. (CTRL+T)"
 
 #: Synchronizer/synchronizergui.cpp:1272
 msgid "Duplicates"
@@ -4105,7 +4066,7 @@ msgstr "Обозначава файловете, които съществува
 
 #: Synchronizer/synchronizergui.cpp:1293
 msgid "The compare results of the synchronizer (CTRL+M)."
-msgstr ""
+msgstr "Резултатите от сравняването със синхронизатора (CTRL+M)."
 
 #: Synchronizer/synchronizergui.cpp:1325
 msgid "<=>"
@@ -4148,18 +4109,16 @@ msgid "Time shift (right-left):"
 msgstr "Смяна на време (ляво-дясно):"
 
 #: Synchronizer/synchronizergui.cpp:1408
-#, fuzzy
 msgid "Ignore hidden files"
-msgstr "Показване на скритите файлове"
+msgstr "Игнориране на скритите файлове"
 
 #: Synchronizer/synchronizergui.cpp:1422
 msgid "Profile manager (Ctrl+P)."
-msgstr ""
+msgstr "Управление на профилите (Ctrl+P)."
 
 #: Synchronizer/synchronizergui.cpp:1429
-#, fuzzy
 msgid "Swap sides (Ctrl+S)."
-msgstr "Разменяне на страните."
+msgstr "Разменяне на страните (Ctrl+S)."
 
 #: Synchronizer/synchronizergui.cpp:1439
 msgid "Compare"
@@ -4178,44 +4137,36 @@ msgid "Synchronize"
 msgstr "Синхронизация"
 
 #: Synchronizer/synchronizergui.cpp:1578
-#, fuzzy
 msgid "Selected files from targ&et directory:"
-msgstr "Избрани файлове от директория-цел:"
+msgstr "Избрани файлове от директория &цел:"
 
 #: Synchronizer/synchronizergui.cpp:1579
-#, fuzzy
 msgid "Selected files from sou&rce directory:"
-msgstr "Избрани файлове от директория-източник:"
+msgstr "Избрани файлове от директория и&зточник:"
 
 #: Synchronizer/synchronizergui.cpp:1583
-#, fuzzy
 msgid "Selected files from &left directory:"
-msgstr "Избрани файлове от лявата директория:"
+msgstr "Избрани файлове от &лявата директория:"
 
 #: Synchronizer/synchronizergui.cpp:1584
-#, fuzzy
 msgid "Selected files from &right directory:"
-msgstr "Избрани файлове от дясната директория:"
+msgstr "Избрани файлове от &дясната директория:"
 
 #: Synchronizer/synchronizergui.cpp:1588
-#, fuzzy
 msgid "Targ&et directory:"
-msgstr "Директория назначение:"
+msgstr "Директория &цел:"
 
 #: Synchronizer/synchronizergui.cpp:1589
-#, fuzzy
 msgid "Sou&rce directory:"
-msgstr "Директория източник:"
+msgstr "Директория и&зточник:"
 
 #: Synchronizer/synchronizergui.cpp:1593
-#, fuzzy
 msgid "&Left directory:"
-msgstr "Лява директория:"
+msgstr "&Лява директория:"
 
 #: Synchronizer/synchronizergui.cpp:1594
-#, fuzzy
 msgid "&Right directory:"
-msgstr "Дясна директория:"
+msgstr "&Дясна директория:"
 
 #: Synchronizer/synchronizergui.cpp:1629
 msgid "URL must be the descendant of either the left or the right base URL!"
@@ -4226,79 +4177,64 @@ msgid "Synchronize Directories"
 msgstr "Синхронизация на директории"
 
 #: Synchronizer/synchronizergui.cpp:1690
-#, fuzzy
 msgid "E&xclude"
-msgstr "Изключване"
+msgstr "Изкл&ючване"
 
 #: Synchronizer/synchronizergui.cpp:1692
-#, fuzzy
 msgid "Restore ori&ginal operation"
-msgstr "Възстановяване първоначалното действие"
+msgstr "Възстановяване първона&чалното действие"
 
 #: Synchronizer/synchronizergui.cpp:1694
-#, fuzzy
 msgid "Re&verse direction"
-msgstr "Смяна на посоката"
+msgstr "С&мяна на посоката"
 
 #: Synchronizer/synchronizergui.cpp:1696
-#, fuzzy
 msgid "Copy from &right to left"
-msgstr "Копиране от дясно на ляво"
+msgstr "Копиране от &дясно на ляво"
 
 #: Synchronizer/synchronizergui.cpp:1698
-#, fuzzy
 msgid "Copy from &left to right"
-msgstr "Копиране от ляво на дясно"
+msgstr "Копиране от &ляво на дясно"
 
 #: Synchronizer/synchronizergui.cpp:1700
-#, fuzzy
 msgid "&Delete (left single)"
-msgstr "Изтриване (остава единичен)"
+msgstr "&Изтриване (остава единичен)"
 
 #: Synchronizer/synchronizergui.cpp:1705
-#, fuzzy
 msgid "V&iew left file"
-msgstr "Преглед левия файл"
+msgstr "Пре&глед левия файл"
 
 #: Synchronizer/synchronizergui.cpp:1707
-#, fuzzy
 msgid "Vi&ew right file"
-msgstr "Преглед десния файл"
+msgstr "Пр&еглед десния файл"
 
 #: Synchronizer/synchronizergui.cpp:1709
-#, fuzzy
 msgid "&Compare Files"
-msgstr "Сравняване на файлове"
+msgstr "&Сравняване на файлове"
 
 #: Synchronizer/synchronizergui.cpp:1714
-#, fuzzy
 msgid "C&opy selected to clipboard (left)"
-msgstr "Копиране на действията в клипборда"
+msgstr "К&опиране на избраните в клипборда (отляво)"
 
 #: Synchronizer/synchronizergui.cpp:1715
-#, fuzzy
 msgid "Co&py selected to clipboard (right)"
-msgstr "Копиране на действията в клипборда"
+msgstr "Коп&иране на избраните в клипборда (отдясно)"
 
 #: Synchronizer/synchronizergui.cpp:1719
-#, fuzzy
 msgid "&Select items"
-msgstr "Избор на обекти"
+msgstr "И&збор на обекти"
 
 #: Synchronizer/synchronizergui.cpp:1721
-#, fuzzy
 msgid "Deselec&t items"
-msgstr "Отказ на избора на обекти"
+msgstr "От&каз на избора на обекти"
 
 #: Synchronizer/synchronizergui.cpp:1723
-#, fuzzy
 msgid "I&nvert selection"
-msgstr "Инвертиране избора"
+msgstr "И&нвертиране избора"
 
 #: Synchronizer/synchronizergui.cpp:1734
-#, fuzzy
 msgid "Synchronize with &KGet"
-msgstr "Синхронизация с KGet"
+msgstr "Син&хронизация с KGet"
 
 #: Synchronizer/synchronizergui.cpp:1798
 msgid "Select items"
@@ -4317,6 +4253,8 @@ msgid ""
 "The synchronizer window contains data from a previous compare. If you exit, "
 "this data will be lost. Do you really want to exit?"
 msgstr ""
+"В прозореца на синхронизаторът има данни от предишно сравняване. Ако го "
+"затворите, тези данни ще бъдат загубени. Искате ли да продължите?"
 
 #: Synchronizer/synchronizertask.cpp:134 Synchronizer/synchronizertask.cpp:141
 msgid "Error at opening %1!"
@@ -4385,14 +4323,12 @@ msgid "Confirm overwrites"
 msgstr "Потвърждаване презапис"
 
 #: Synchronizer/synchronizedialog.cpp:110
-#, fuzzy
 msgid "&Start"
-msgstr "Старт"
+msgstr "&Старт"
 
 #: Synchronizer/synchronizedialog.cpp:114
-#, fuzzy
 msgid "&Pause"
-msgstr "Пауза"
+msgstr "&Пауза"
 
 #: Synchronizer/synchronizedialog.cpp:158
 #: Synchronizer/synchronizedialog.cpp:161
@@ -4662,7 +4598,7 @@ msgstr ""
 
 #: DiskUsage/diskusage.cpp:415
 msgid "Krusader::DiskUsage"
-msgstr "Заето място"
+msgstr "Krusader::Заето място"
 
 #: DiskUsage/diskusage.cpp:596
 msgid "Do you really want to move this item to the trash?"
@@ -4772,7 +4708,7 @@ msgstr "&Давай"
 
 #. i18n: file krusaderui.rc line 88
 #: rc.cpp:18
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "User&actions"
 msgstr "&Потребителски действия"
 
@@ -4790,9 +4726,9 @@ msgstr "&Настройки"
 
 #. i18n: file krusaderui.rc line 127
 #: rc.cpp:27
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "Command Execution Mode Se&tup"
-msgstr "Режим на изпълнение"
+msgstr "Н&астройки на режима на изпълнение"
 
 #. i18n: file krusaderui.rc line 141
 #: rc.cpp:30
@@ -4894,9 +4830,8 @@ msgid "View the file in hex-mode (better for binary files)"
 msgstr "Преглед на файла в 16-ичен режим (подходящ за двоични файлове)"
 
 #: Konfigurator/kggeneral.cpp:104
-#, fuzzy
 msgid "Internal editor and viewer opens each file in a separate window"
-msgstr "Визуализаторът отваря всеки файл в отделен прозорец"
+msgstr "Вградения редактор и визуализаторът отваря всеки файл в отделен прозорец"
 
 #: Konfigurator/kggeneral.cpp:105
 msgid ""
@@ -4908,7 +4843,7 @@ msgstr ""
 
 #: Konfigurator/kggeneral.cpp:115
 msgid "Atomic extensions:"
-msgstr ""
+msgstr "Atomic разширения:"
 
 #: Konfigurator/kggeneral.cpp:143
 msgid "Terminal:"
@@ -4947,18 +4882,19 @@ msgstr ""
 
 #: Konfigurator/kggeneral.cpp:195
 msgid "Add new atomic extension"
-msgstr ""
+msgstr "Добавяне на ново atomic разширение"
 
 #: Konfigurator/kggeneral.cpp:195
-#, fuzzy
 msgid "Extension: "
-msgstr "Разширение"
+msgstr "Разширение: "
 
 #: Konfigurator/kggeneral.cpp:200
 msgid ""
 "Atomic extensions must start with '.'\n"
 " and must contain at least one more '.' character"
 msgstr ""
+"Atomic разширенията трябва да започват с '.'\n"
+"и трябва да съдържат поне още един знак '.'"
 
 #: Konfigurator/krresulttable.cpp:121
 msgid "unarj not found, but arj found, which will be used for unpacking"
@@ -5259,13 +5195,12 @@ msgstr ""
 "xr-x) в колоната за правата."
 
 #: Konfigurator/kglookfeel.cpp:172
-#, fuzzy
 msgid "Default panel type:"
-msgstr "Левия панел"
+msgstr "Вид панел по подразбиране:"
 
 #: Konfigurator/kglookfeel.cpp:175
 msgid "Brief"
-msgstr ""
+msgstr "Кратък"
 
 #: Konfigurator/kglookfeel.cpp:188
 msgid "Panel Toolbar"
@@ -5658,7 +5593,7 @@ msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:125
 msgid "Arguments of updatedb:"
-msgstr "Аргументи на updatedb"
+msgstr "Аргументи на updatedb:"
 
 #: Konfigurator/kgprotocols.cpp:67
 msgid "Links"
@@ -6142,7 +6077,6 @@ msgid "Save last position, size and panel settings"
 msgstr "Запазване на последното разположение, размер и настройки на панела"
 
 #: Konfigurator/kgstartup.cpp:94
-#, fuzzy
 msgid ""
 "<p>At startup, the main window will resize itself to the size it was when "
 "last shutdown. It will also appear in the same location of the screen, "
@@ -6153,7 +6087,7 @@ msgstr ""
 "<p>Когато бъде стартиран, основният прозорец ще бъде със същите размери, при "
 "които е бил затворен. Той също ще се появи на същото място на екрана, със "
 "същото подреждане на и в панелите.</p><p>Ако тази настройка е изключена, "
-"можете да използвате меню <i>Настройки -> Запис на разположение</i> за ръчно "
+"можете да използвате меню <i>Прозорец -> Запис на разположение</i> за ръчно "
 "запомняне на размера и разположението при стартиране.</p>"
 
 #: Konfigurator/kgstartup.cpp:95
@@ -6270,8 +6204,8 @@ msgid ""
 "To set up, configure and manage your useractions please use ActionMan."
 msgstr ""
 "Тук можете да нагласите настройките за потребителските действия.\n"
-"За да установите, настроите и променяте вашите потребителски действия,\n"
-"моля използвайте Управлението на потебителските действия."
+"За да ги установите, настроите и промените, моля използвайте\n"
+"моля използвайте Управлението на потребителските действия."
 
 #: Konfigurator/kguseractions.cpp:57
 msgid "Start ActionMan"
