@@ -24,9 +24,9 @@
 CWD=$(pwd)
 TMP=${TMP:-/tmp/pkgs}
 
-VERSION=1.70.1
+VERSION=1.80.0
 ARCH=${ARCH:-i486}
-BUILD=5
+BUILD=1
 
 if [ -z "$SLKCFLAGS" ]; then
   if [ "$ARCH" = "i486" ]; then
@@ -76,6 +76,7 @@ CXXFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/usr \
   --sysconfdir=/etc/kde \
+  --mandir=/usr/man \
   --disable-debug \
   --program-prefix="" \
   --program-suffix="" \
