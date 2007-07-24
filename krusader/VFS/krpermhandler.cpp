@@ -45,6 +45,7 @@
 #include <qdatetime.h>
 #include <qdir.h> 
 // krusader includes
+#include <kdeversion.h>
 #include "krpermhandler.h"
 #include "../resources.h"
 
@@ -279,7 +280,12 @@ bool KRpermHandler::fileExist( QString path, QString name ) {
 }
 
 QString KRpermHandler::parseSize( KIO::filesize_t val ) {
-	return KGlobal::locale()->formatNumber(QString::number(val), false, 0);	
+#if (KDE_VERSION_MAJOR >= 3) && (KDE_VERSION_MINOR >= 5)
+	return KGlobal::locale()->formatNumber(QString::number(val), false, 0);
+#else
+	return  KGlobal::locale()->formatNumber(val);
+#endif
+
 #if 0
 	QString temp;
 	temp.sprintf( "%llu", val );
