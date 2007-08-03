@@ -1,7 +1,8 @@
 The Krusader Handbook ChangeLog
 -------------------------------
 
-
+FIXED: workaround for DBLATEX 0.2.5-1, it doesn't accept "&amp" to display "&" 
+       in the <contrib> tag, so i changed it to "and"
 FIXED: removed all <guimenu> tags inside <title>, no additional tags 
        needed inside <title>, it looks bad in HTML version (stylesheet)
 

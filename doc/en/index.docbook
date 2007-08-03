@@ -415,10 +415,13 @@ This is a workaround, i have no idea why the <author> tag doesn't show the <cont
 on the index page.
 Frank.
 -->
+
+<!-- NOTE: DBLATEX doesn't accept "&amp" to display "&" in the <contrib> tag, so i changed it to "and" -->
+
       <othercredit role="developer">
         <firstname>Frank</firstname>
         <surname>Schoolmeesters</surname>
-        <contrib>Documentation &amp; Marketing
+        <contrib>Documentation and Marketing
         coordinator</contrib>
         <affiliation>
           <address>
@@ -429,7 +432,7 @@ Frank.
       <othercredit role="reviewer">
         <firstname>Richard</firstname>
         <surname>Holt</surname>
-        <contrib>Documentation &amp; Proofing</contrib>
+        <contrib>Documentation and Proofing</contrib>
         <affiliation>
           <address>
             <email>richard.holt@gmail.com</email>
@@ -440,7 +443,7 @@ Frank.
         <firstname>Matej</firstname>
         <surname>
         Urban&ccaron;i&ccaron;</surname>
-        <contrib>Marketing &amp; Product
+        <contrib>Marketing and Product
         Research</contrib>
         <affiliation>
           <address>
@@ -471,7 +474,7 @@ Frank.
       <othercredit role="developer">
         <firstname>Dirk</firstname>
         <surname>Eschler</surname>
-        <contrib>Webmaster &amp; i18n
+        <contrib>Webmaster and i18n
         coordinator</contrib>
         <affiliation>
           <address>
