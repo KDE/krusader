@@ -1,36 +1,34 @@
-# Spec file for Krusader-1.80.0 on Fedora 7 by Marcin Garski <mgarski[AT]post.pl>
+# Spec file for Krusader-1.80.0 on Fedora 6 by Marcin Garski <mgarski[AT]post.pl>
 # http://cvs.fedoraproject.org/viewcvs/rpms/krusader/devel/?root=extras
 # http://download.fedoraproject.org/pub/fedora/linux/extras/development/SRPMS/repoview/krusader.html
 # http://download.fedoraproject.org/pub/fedora/linux/extras/development/i386/repoview/krusader.html
+# http://download.fedora.redhat.com/pub/fedora/linux/extras/6/x86_64/repoview/krusader.html
 
-Name:           krusader
-Version:        1.80.0
-Release:        1%{?dist}
-Summary:        An advanced twin-panel (commander-style) file-manager for KDE
+Name:		krusader
+Version:	1.80.0
+Release:	1%{?dist}
+Summary:	An advanced twin-panel (commander-style) file-manager for KDE
 
-Group:          Applications/File
-License:        GPL
-URL:            http://krusader.sourceforge.net/
-Source0:        http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Group:		Applications/File
+License:	GPL
+URL:		http://krusader.sourceforge.net/
+Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  kdelibs-devel kdebase-devel kdebindings-devel
-BuildRequires:  libpng-devel gamin-devel libacl-devel
-BuildRequires:  desktop-file-utils automake gettext
+BuildRequires:	kdelibs-devel kdebase-devel kdebindings-devel
+BuildRequires:	libpng-devel gamin-devel libacl-devel
+BuildRequires:	desktop-file-utils automake gettext
 
 %description
-Krusader is an advanced twin-panel (commander-style) file-manager for KDE
-(similar to Midnight or Total Commander) but with many extras.
-It provides all the file-management features you could possibly want.
+Krusader is an advanced twin panel (commander style) file manager for KDE and
+other desktops in the *nix world, similar to Midnight or Total Commander.
+It provides all the file management features you could possibly want.
 Plus: extensive archive handling, mounted filesystem support, FTP, advanced
-search module, viewer/editor, directory synchronisation, file content
-comparisons, powerful batch renaming and much much more.
-It supports the following archive formats: tar, zip, bzip2, gzip, rar, ace,
-arj and rpm and can handle other KIOSlaves such as smb:// or fish://
-It is (almost) completely customizable, very user friendly, fast and looks
-great on your desktop! :-)
-
-You should give it a try.
+search module, an internal viewer/editor, directory synchronisation,
+file content comparisons, powerful batch renaming and much much more.
+It supports a wide variety of archive formats and can handle other KIO slaves
+such as smb or fish. It is (almost) completely customizable, very user
+friendly, fast and looks great on your desktop! You should give it a try.
 
 %prep
 %setup -q
@@ -39,27 +37,19 @@ You should give it a try.
 unset QTDIR || : ; . %{_sysconfdir}/profile.d/qt.sh
 
 %configure \
-       --disable-rpath \
-       --disable-debug \
-       --disable-dependency-tracking
+	--disable-rpath \
+	--disable-debug \
+	--disable-dependency-tracking
 make %{?_smp_mflags}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 
-desktop-file-install --vendor fedora --delete-original \
-       --dir $RPM_BUILD_ROOT%{_datadir}/applications/kde \
-       $RPM_BUILD_ROOT%{_datadir}/applications/kde/*.desktop
-
 # Make symlink relative
 pushd $RPM_BUILD_ROOT%{_docdir}/HTML/en/krusader/
 ln -sf ../common
 popd
-
-# Fix FAQ encoding
-iconv -f ISO-8859-1 -t UTF-8 < FAQ > FAQ.tmp
-mv -f FAQ.tmp FAQ
 
 %find_lang %{name}
 
@@ -68,12 +58,12 @@ update-desktop-database &> /dev/null ||:
 
 touch --no-create %{_datadir}/icons/crystalsvg || :
 if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-       %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
+	%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
 fi
 
 touch --no-create %{_datadir}/icons/locolor || :
 if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-       %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/locolor || :
+	%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/locolor || :
 fi
 
 %postun
@@ -81,18 +71,18 @@ update-desktop-database &> /dev/null ||:
 
 touch --no-create %{_datadir}/icons/crystalsvg || :
 if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-       %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
+	%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
 fi
 
 touch --no-create %{_datadir}/icons/locolor || :
 if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-       %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/locolor || :
+	%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/locolor || :
 fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f %name.lang
+%files -f %{name}.lang
 %defattr(-,root,root,-)
 %doc doc/actions_tutorial.txt AUTHORS ChangeLog COPYING CVSNEWS FAQ README TODO
 %{_bindir}/krusader
@@ -108,8 +98,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/*.protocol
 
 %changelog
-* Thu May 03 2007 Marcin Garski <mgarski[AT]post.pl> 1.80.0-1
-- Updated to version 1.80.0
+* Thu Aug 02 2007 Marcin Garski <mgarski[AT]post.pl> 1.80.0-1
+- Update to 1.80.0 (#249903)
+- Preserve upstream .desktop vendor
 
 * Fri Apr 20 2007 Marcin Garski <mgarski[AT]post.pl> 1.80.0-0.1.beta2
 - Updated to version 1.80.0-beta2
@@ -152,7 +143,7 @@ rm -rf $RPM_BUILD_ROOT
 - Include .la files
 - Include actions_tutorial.txt
 - Fix krusader_root-mode.desktop file to show only in KDE and under System
- category
+  category
 - Fix compile warnings
 
 * Fri Aug 12 2005 Marcin Garski <mgarski[AT]post.pl> 1.60.0-2
