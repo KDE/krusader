@@ -190,8 +190,9 @@ KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") : ki18n("Kr
   KrusaderApp app;
 
   {
-    KConfigGroupSaver saver(app.config(), "Look&Feel");
-    bool singleInstanceMode = app.config()->readBoolEntry( "Single Instance Mode", _SingleInstanceMode );
+#if 0 // TODO: fix this using DBUS
+    KConfigGroup cfg = app.config()->group("Look&Feel");
+    bool singleInstanceMode = cfg.readBoolEntry( "Single Instance Mode", _SingleInstanceMode );
 
     // register with the dcop server
     DCOPClient* client = KApplication::kApplication() ->dcopClient();
@@ -207,14 +208,15 @@ KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") : ki18n("Kr
 
       return 1;
     }
+#endif
   }
     
   // splash screen - if the user wants one
   KSplashScreen *splash = 0;
   { // don't remove bracket
-  KConfigGroupSaver saver(app.config(), "Look&Feel");
-  if (app.config()->readBoolEntry( "Show splashscreen", _ShowSplashScreen )) {
-  	QString splashFilename = locate( "data", "krusader/splash.png" );
+  KConfigGroup cfg = app.sessionConfig()->group("Look&Feel");
+  if (cfg.readEntry( "Show splashscreen", _ShowSplashScreen )) {
+	QString splashFilename = KStandardDirs::locate( "data", "krusader/splash.png" );
   	QPixmap pixmap( splashFilename );
   	if (!pixmap.isNull()) {
     		splash = new KSplashScreen( pixmap );

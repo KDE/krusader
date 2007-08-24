@@ -155,7 +155,7 @@ void PanelTabBar::closeTab() {
 QString PanelTabBar::squeeze(QString text, int index) {
   QString originalText = text;
   
-  QString lastGroup = krConfig->group();  
+  QString lastGroup = krConfig->group();
   krConfig->setGroup( "Look&Feel" );
   bool longNames = krConfig->readBoolEntry( "Fullpath Tab Names", _FullPathTabNames );
   krConfig->setGroup( lastGroup );
