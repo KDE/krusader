@@ -33,6 +33,7 @@
 #ifndef LISTPANEL_H
 #define LISTPANEL_H
 
+#include <Q3ListView>
 #include <kpropsdlg.h>
 #include <kfileitem.h>
 #include <kurl.h>
@@ -47,8 +48,6 @@
 #include <qicon.h>
 #include <q3ptrstack.h>
 #include <q3textbrowser.h>
-//Added by qt3to4:
-#include <Q3ListView>
 #include <QDropEvent>
 #include <QShowEvent>
 #include <QGridLayout>

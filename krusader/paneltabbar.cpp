@@ -17,22 +17,16 @@
 
 #include "paneltabbar.h"
 #include "Panel/listpanel.h"
-//#include "krusaderview.h"
-//#include "krslots.h"
 #include "defaults.h"
 #include <kaction.h>
 #include <klocale.h>
 #include <kmenu.h>
 #include <kshortcut.h>
 #include <qevent.h>
-//#include <q3widgetstack.h>
 #include <qfontmetrics.h>
 #include <qtooltip.h>
-//Added by qt3to4:
 #include <QResizeEvent>
-//#include <QDragEnterEvent>
 #include <QMouseEvent>
-//#include <QDragMoveEvent>
 #include <kdebug.h>
 #include <kactionmenu.h>
 
