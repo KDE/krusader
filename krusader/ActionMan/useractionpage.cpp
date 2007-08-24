@@ -91,7 +91,7 @@ UserActionPage::UserActionPage( QWidget* parent )
    			"become available in the current session immediately.\n"
    			"When closing ActionMan, you will be asked to save the changes permanently."
    		),
-  		QString::null,	// caption
+  		QString(),	// caption
   		"show UserAction help"	//dontShowAgainName for the config
   	);
 */
@@ -218,7 +218,7 @@ void UserActionPage::slotRemoveAction() {
 }
 
 void UserActionPage::slotImport() {
-   QString filename = KFileDialog::getOpenFileName(QString::null, i18n(FILE_FILTER), this);
+   QString filename = KFileDialog::getOpenFileName(QString(), i18n(FILE_FILTER), this);
    if ( filename.isEmpty() )
       return;
 
@@ -236,7 +236,7 @@ void UserActionPage::slotExport() {
    if ( ! dynamic_cast<UserActionListViewItem*>( actionTree->currentItem() ) )
       return;
 
-   QString filename = KFileDialog::getSaveFileName(QString::null, i18n(FILE_FILTER), this);
+   QString filename = KFileDialog::getSaveFileName(QString(), i18n(FILE_FILTER), this);
    if ( filename.isEmpty() )
       return;
 

@@ -45,7 +45,7 @@
 #include <qcheckbox.h>
 #include <kstandarddirs.h>
 
-QString remoteMan::url=QString::null;
+QString remoteMan::url=QString();
 
 remoteMan::remoteMan() : remoteManBase(0,0,true), currentItem(0) {
   // Read the connection list from the configuration file and re-create the tree
@@ -318,8 +318,8 @@ void remoteMan::connection() {
   }
   // build a url
   if (anonymous->isChecked()) {
-    userName->setText(QString::null);
-    password->setText(QString::null);
+    userName->setText(QString());
+    password->setText(QString());
   } else {
     userName->setText(userName->text().simplified());
     password->setText(password->text().simplified());
@@ -371,14 +371,14 @@ void remoteMan::removeSession() {
 void remoteMan::accept() {
   refreshData();  // make sure all is updated
   tree2config();  // write the sessions to a configuration file
-  url=QString::null; // this signals getHost() we didn't click CONNECT
+  url=QString(); // this signals getHost() we didn't click CONNECT
   remoteManBase::accept();  // tidy up
 }
 
 void remoteMan::reject() {
   refreshData();  // make sure all is updated
   tree2config();  // write the sessions to a configuration file
-  url=QString::null; // this signals getHost() we didn't click CONNECT
+  url=QString(); // this signals getHost() we didn't click CONNECT
   remoteManBase::reject();
 }
 

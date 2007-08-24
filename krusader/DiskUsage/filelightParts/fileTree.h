@@ -183,9 +183,9 @@ public:
     m_mimeType( mimeTypeIn ), m_excluded( false ), m_percent( -1 ) {}
     
   File( const QString &nameIn, FileSize sizeIn )
-  : m_parent( 0 ), m_name( nameIn ), m_directory( QString::null ), m_size( sizeIn ), m_ownSize( sizeIn ), m_mode( 0 ), 
-    m_owner( QString::null ), m_group( QString::null ), m_perm( QString::null ), m_time( -1 ), 
-    m_symLink( false ), m_mimeType( QString::null ), m_excluded( false ), m_percent( -1 ) 
+  : m_parent( 0 ), m_name( nameIn ), m_directory( QString() ), m_size( sizeIn ), m_ownSize( sizeIn ), m_mode( 0 ), 
+    m_owner( QString() ), m_group( QString() ), m_perm( QString() ), m_time( -1 ), 
+    m_symLink( false ), m_mimeType( QString() ), m_excluded( false ), m_percent( -1 ) 
   {
   }
   

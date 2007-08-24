@@ -98,7 +98,7 @@ void Synchronizer::reset()
   leftCopyNr = rightCopyNr = deleteNr = 0;
   leftCopySize = rightCopySize = deleteSize = 0;
   comparedDirs = fileCount = 0;
-  leftBaseDir = rightBaseDir = QString::null;
+  leftBaseDir = rightBaseDir = QString();
   resultList.clear();
   temporaryList.clear();
   stack.clear();
@@ -428,8 +428,8 @@ SynchronizerFileItem * Synchronizer::addLeftOnlyItem( SynchronizerFileItem *pare
                                     const QString &group, mode_t mode, const QString &acl, bool isDir, 
                                     bool isTemp )
 {
-  return addItem( parent, file_name, file_name, dir, dir, true, false, size, 0, date, 0, link, QString::null,
-                  owner, QString::null, group, QString::null, mode, (mode_t)-1, acl, QString::null,
+  return addItem( parent, file_name, file_name, dir, dir, true, false, size, 0, date, 0, link, QString(),
+                  owner, QString(), group, QString(), mode, (mode_t)-1, acl, QString(),
                   asymmetric ? TT_DELETE : TT_COPY_TO_RIGHT, isDir, isTemp );
 }
 
@@ -439,8 +439,8 @@ SynchronizerFileItem * Synchronizer::addRightOnlyItem( SynchronizerFileItem *par
                                     const QString &group, mode_t mode, const QString &acl, bool isDir,
                                     bool isTemp )
 {
-  return addItem( parent, file_name, file_name, dir, dir, false, true, 0, size, 0, date, QString::null, link,
-                  QString::null, owner, QString::null, group, (mode_t)-1, mode, QString::null, acl,
+  return addItem( parent, file_name, file_name, dir, dir, false, true, 0, size, 0, date, QString(), link,
+                  QString(), owner, QString(), group, (mode_t)-1, mode, QString(), acl,
                   TT_COPY_TO_LEFT, isDir, isTemp );
 }
 
@@ -1328,8 +1328,8 @@ QString Synchronizer::rightBaseDirectory()
 class KgetProgressDialog : public KDialogBase
 {
 public:
-  KgetProgressDialog( QWidget *parent=0, const char *name=0, const QString &caption=QString::null,
-                    const QString &text=QString::null, bool modal=false) : KDialogBase( KDialogBase::Plain,
+  KgetProgressDialog( QWidget *parent=0, const char *name=0, const QString &caption=QString(),
+                    const QString &text=QString(), bool modal=false) : KDialogBase( KDialogBase::Plain,
                     caption, KDialogBase::User1 | KDialogBase::Cancel, KDialogBase::Cancel, parent, name, modal )
   {
     showButton(KDialogBase::Close, false);
@@ -1490,7 +1490,7 @@ QString Synchronizer::readLink( const vfile * file ) {
   if( file->vfile_isSymLink() )
     return file->vfile_getSymDest();
   else
-    return QString::null;
+    return QString();
 }
 
 #include "synchronizer.moc"

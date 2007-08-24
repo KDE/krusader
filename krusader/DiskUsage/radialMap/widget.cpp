@@ -38,7 +38,7 @@ QString
 RadialMap::Widget::path() const
 {
    if( m_tree == 0 )
-      return QString::null;
+      return QString();
    return m_tree->fullPath();
 }
 

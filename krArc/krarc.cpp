@@ -80,14 +80,14 @@ int kdemain( int argc, char **argv ){
 
 kio_krarcProtocol::kio_krarcProtocol(const Q3CString &pool_socket, const Q3CString &app_socket)
 	: SlaveBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(0L),extArcReady(false),
-		password(QString::null) {
+		password(QString()) {
 	
 	krConfig = new KConfig( "krusaderrc" );
 	krConfig->setGroup( "Dependencies" );
 	
 	dirDict.setAutoDelete(true);
 	
-	arcTempDir = locateLocal("tmp",QString::null);
+	arcTempDir = locateLocal("tmp",QString());
 	QString dirName = "krArc"+QDateTime::currentDateTime().toString(Qt::ISODate);
 	dirName.replace(QRegExp(":"),"_");
 	QDir(arcTempDir).mkdir(dirName);
@@ -630,10 +630,10 @@ bool kio_krarcProtocol::setArcFile(const KUrl& url){
 	if( arcFile && arcFile->url().path(-1) == path.left(arcFile->url().path(-1).length()) ){
 		newArchiveURL = false;        
 		// Has it changed ?
-		KFileItem* newArcFile = new KFileItem(arcFile->url(),QString::null,arcFile->mode());
+		KFileItem* newArcFile = new KFileItem(arcFile->url(),QString(),arcFile->mode());
 		if( !newArcFile->cmp( *arcFile ) ){
 			delete arcFile;
-			password = QString::null;
+			password = QString();
 			extArcReady = false;
 			arcFile = newArcFile;
 		} else { // same old file
@@ -646,7 +646,7 @@ bool kio_krarcProtocol::setArcFile(const KUrl& url){
 		extArcReady = false;
 		if( arcFile ){
 			delete arcFile;
-			password = QString::null;
+			password = QString();
 			arcFile = 0L;
 		}
 		QString newPath = path;
@@ -656,7 +656,7 @@ bool kio_krarcProtocol::setArcFile(const KUrl& url){
 			if( qfi.exists() && !qfi.isDir() ){
 				KDE_struct_stat stat_p;
 				KDE_lstat(newPath.left(pos).local8Bit(),&stat_p);
-				arcFile = new KFileItem(KUrl::fromPathOrUrl( newPath.left(pos) ),QString::null,stat_p.st_mode);
+				arcFile = new KFileItem(KUrl::fromPathOrUrl( newPath.left(pos) ),QString(),stat_p.st_mode);
 				break;
 			}
 		}
@@ -708,7 +708,7 @@ bool kio_krarcProtocol::initDirDict(const KUrl&url, bool forced){
 	
 	// write the temp file
 	KrShellProcess proc;
-	KTempFile temp( QString::null, "tmp" );
+	KTempFile temp( QString(), "tmp" );
 	temp.setAutoDelete(true);
 	if( arcType != "bzip2" ){
 		if( arcType == "rpm" )
@@ -818,7 +818,7 @@ QString kio_krarcProtocol::findArcDirectory(const KUrl& url){
 	if( path.right(1) == "/" ) path.truncate(path.length()-1);
 	
 	if( !initDirDict(url) ){
-		return QString::null;
+		return QString();
 	}
 	QString arcDir = path.mid(arcFile->url().path().length());
 	arcDir.truncate(arcDir.findRev("/"));
@@ -939,14 +939,14 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*) {
 	UDSEntry entry;
 	UDSAtom atom;
 	
-	QString owner        = QString::null;
-	QString group        = QString::null;
-	QString symlinkDest  = QString::null;
-	QString perm         = QString::null;
+	QString owner        = QString();
+	QString group        = QString();
+	QString symlinkDest  = QString();
+	QString perm         = QString();
 	mode_t mode          = 0666;
 	size_t size          = 0;
 	time_t time          = ::time(0);
-	QString fullName     = QString::null;
+	QString fullName     = QString();
 	
 	if(arcType == "zip"){
 		// permissions
@@ -1248,8 +1248,8 @@ bool kio_krarcProtocol::initArcParameters() {
 		copyCmd = fullPathName( "unzip" ) + " -jo ";
 		
 		if( KStandardDirs::findExe( "zip" ).isEmpty() ) {
-			delCmd  = QString::null;
-			putCmd  = QString::null;
+			delCmd  = QString();
+			putCmd  = QString();
 		} else {
 			delCmd  = fullPathName( "zip" ) + " -d ";
 			putCmd  = fullPathName( "zip" ) + " -ry ";
@@ -1266,8 +1266,8 @@ bool kio_krarcProtocol::initArcParameters() {
 			listCmd = fullPathName( "unrar" ) + " -c- -v v ";
 			getCmd  = fullPathName( "unrar" ) + " p -ierr -idp -c- -y ";
 			copyCmd = fullPathName( "unrar" ) + " e -y ";
-			delCmd  = QString::null;
-			putCmd  = QString::null;
+			delCmd  = QString();
+			putCmd  = QString();
 		} else {
 			cmd     = fullPathName( "rar" );
 			listCmd = fullPathName( "rar" ) + " -c- -v v ";
@@ -1289,23 +1289,23 @@ bool kio_krarcProtocol::initArcParameters() {
 		cmd     = fullPathName( "rpm" );
 		listCmd = fullPathName( "rpm" ) + " --dump -lpq ";
 		getCmd  = fullPathName( "cpio" ) + " --force-local --no-absolute-filenames -iuvdF";
-		delCmd  = QString::null;
-		putCmd  = QString::null;
-		copyCmd = QString::null;
+		delCmd  = QString();
+		putCmd  = QString();
+		copyCmd = QString();
 	} else if(arcType == "gzip") {
 		cmd     = fullPathName( "gzip" );
 		listCmd = fullPathName( "gzip" ) + " -l";
 		getCmd  = fullPathName( "gzip" ) + " -dc";
-		copyCmd = QString::null;
-		delCmd  = QString::null;
-		putCmd  = QString::null;
+		copyCmd = QString();
+		delCmd  = QString();
+		putCmd  = QString();
 	} else if(arcType == "bzip2") {
 		cmd     = fullPathName( "bzip2" );
 		listCmd = fullPathName( "bzip2" );
 		getCmd  = fullPathName( "bzip2" ) + " -dc";
-		copyCmd = QString::null;
-		delCmd  = QString::null;
-		putCmd  = QString::null;
+		copyCmd = QString();
+		delCmd  = QString();
+		putCmd  = QString();
 	} else if(arcType == "arj"){
 		cmd     = fullPathName( "arj" );
 		listCmd = fullPathName( "arj" ) + " v -y -v ";
@@ -1330,8 +1330,8 @@ bool kio_krarcProtocol::initArcParameters() {
 		listCmd = fullPathName( "unace" ) + " v";
 		getCmd  = fullPathName( "unace" ) + " e -o ";
 		copyCmd = fullPathName( "unace" ) + " e -o ";
-		delCmd  = QString::null;
-		putCmd  = QString::null;
+		delCmd  = QString();
+		putCmd  = QString();
 		if( !getPassword().isEmpty() ) {
 			getCmd += "-p'"+password+"' ";
 			copyCmd += "-p'"+password+"' ";
@@ -1340,9 +1340,9 @@ bool kio_krarcProtocol::initArcParameters() {
 		cmd = fullPathName("dpkg");
 		listCmd = fullPathName("dpkg")+" -c";
 		getCmd = fullPathName("tar")+" xvf ";
-		copyCmd = QString::null;
-		delCmd = QString::null;
-		putCmd = QString::null;	
+		copyCmd = QString();
+		delCmd = QString();
+		putCmd = QString();	
 	} else if (arcType == "7z") {
 		cmd = fullPathName( "7z" );
 		if( KStandardDirs::findExe(cmd).isEmpty() )
@@ -1364,12 +1364,12 @@ bool kio_krarcProtocol::initArcParameters() {
 		}
 	}
 	else {
-		cmd     = QString::null;
-		listCmd = QString::null;
-		getCmd  = QString::null;
-		copyCmd = QString::null;
-		delCmd  = QString::null;
-		putCmd  = QString::null;
+		cmd     = QString();
+		listCmd = QString();
+		getCmd  = QString();
+		copyCmd = QString();
+		delCmd  = QString();
+		putCmd  = QString();
 	}
 
 	if( KStandardDirs::findExe(cmd).isEmpty() ){
@@ -1551,7 +1551,7 @@ QString kio_krarcProtocol::detectArchive( bool &encrypted, QString fileName ) {
 			}
 		}
 	}
-	return QString::null;
+	return QString();
 }
 
 void kio_krarcProtocol::checkOutputForPassword( K3Process *proc,char *buf,int len ) {
@@ -1597,7 +1597,7 @@ void kio_krarcProtocol::invalidatePassword() {
 	authInfo.url.setHost( fileName /*.replace('/','_')*/ );
 	authInfo.url.setProtocol( "krarc" );
 	
-	password = QString::null;
+	password = QString();
 	
 	cacheAuthentication( authInfo );
 }
@@ -1626,7 +1626,7 @@ QString kio_krarcProtocol::getPassword() {
 		return ( password = authInfo.password );
 	}
 	
-	authInfo.password = QString::null;
+	authInfo.password = QString();
 	
 	if ( openPassDlg( authInfo, i18n("Accessing the file requires password.") ) && !authInfo.password.isNull() ) {
 		KRDEBUG( authInfo.password );

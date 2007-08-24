@@ -135,7 +135,7 @@ void Konfigurator::slotApply()
   {
     restartGUI = true;
 //    KMessageBox::information(this,i18n("Changes to the GUI will be updated next time you run Krusader."),
-//     QString::null,"konfigGUInotify");
+//     QString(),"konfigGUInotify");
   }
 
    // really ugly, but reload the Fn keys just in case - csaba: any better idea?
@@ -196,7 +196,7 @@ bool Konfigurator::slotPageSwitch()
       {
         restartGUI = true;
 //        KMessageBox::information(this,i18n("Changes to the GUI will be updated next time you run Krusader."),
-//          QString::null,"konfigGUInotify");
+//          QString(),"konfigGUInotify");
       }
       break;
     default:

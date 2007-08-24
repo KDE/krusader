@@ -56,7 +56,7 @@ Attributes::Attributes()
   uid = (uid_t)-1;
   gid = (gid_t)-1;
   mode = (mode_t)-1;
-  acl = QString::null;
+  acl = QString();
 }
 
 Attributes::Attributes( time_t tIn, uid_t uIn, gid_t gIn, mode_t modeIn, const QString & aclIn ) 
@@ -166,7 +166,7 @@ void PreservingCopyJob::slotResult( Job *job ) {
 #if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
       fileAttributes[ url ] = Attributes( kfi.time( KIO::UDS_MODIFICATION_TIME ), kfi.user(), kfi.group(), kfi.mode(), kfi.ACL().asString() );
 #else
-      fileAttributes[ url ] = Attributes( kfi.time( KIO::UDS_MODIFICATION_TIME ), kfi.user(), kfi.group(), kfi.mode(), QString::null );
+      fileAttributes[ url ] = Attributes( kfi.time( KIO::UDS_MODIFICATION_TIME ), kfi.user(), kfi.group(), kfi.mode(), QString() );
 #endif
     }
   }

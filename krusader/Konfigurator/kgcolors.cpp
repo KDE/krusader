@@ -196,16 +196,16 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
 
   offset = endOfPanelColors = itemList.count();
 
-  addColorSelector( "Synchronizer Equals Foreground", i18n( "Equals foreground:" ), Qt::black, QString::null, &KDEDefaultFore, 1 );
-  addColorSelector( "Synchronizer Equals Background", i18n( "Equals background:" ), KGlobalSettings::baseColor(), QString::null, &KDEDefaultBase, 1 );
-  addColorSelector( "Synchronizer Differs Foreground", i18n( "Differing foreground:" ), Qt::red, QString::null, &KDEDefaultFore, 1 );
-  addColorSelector( "Synchronizer Differs Background", i18n( "Differing background:" ), KGlobalSettings::baseColor(), QString::null, &KDEDefaultBase, 1 );
-  addColorSelector( "Synchronizer LeftCopy Foreground", i18n( "Copy to left foreground:" ), Qt::blue, QString::null, &KDEDefaultFore, 1 );
-  addColorSelector( "Synchronizer LeftCopy Background", i18n( "Copy to left background:" ), KGlobalSettings::baseColor(), QString::null, &KDEDefaultBase, 1 );
-  addColorSelector( "Synchronizer RightCopy Foreground", i18n( "Copy to right foreground:" ), Qt::darkGreen, QString::null, &KDEDefaultFore, 1 );
-  addColorSelector( "Synchronizer RightCopy Background", i18n( "Copy to right background:" ), KGlobalSettings::baseColor(), QString::null, &KDEDefaultBase, 1 );
-  addColorSelector( "Synchronizer Delete Foreground", i18n( "Delete foreground:" ), Qt::white, QString::null, &KDEDefaultFore, 1 );
-  addColorSelector( "Synchronizer Delete Background", i18n( "Delete background:" ), Qt::red, QString::null, &KDEDefaultBase, 1 );
+  addColorSelector( "Synchronizer Equals Foreground", i18n( "Equals foreground:" ), Qt::black, QString(), &KDEDefaultFore, 1 );
+  addColorSelector( "Synchronizer Equals Background", i18n( "Equals background:" ), KGlobalSettings::baseColor(), QString(), &KDEDefaultBase, 1 );
+  addColorSelector( "Synchronizer Differs Foreground", i18n( "Differing foreground:" ), Qt::red, QString(), &KDEDefaultFore, 1 );
+  addColorSelector( "Synchronizer Differs Background", i18n( "Differing background:" ), KGlobalSettings::baseColor(), QString(), &KDEDefaultBase, 1 );
+  addColorSelector( "Synchronizer LeftCopy Foreground", i18n( "Copy to left foreground:" ), Qt::blue, QString(), &KDEDefaultFore, 1 );
+  addColorSelector( "Synchronizer LeftCopy Background", i18n( "Copy to left background:" ), KGlobalSettings::baseColor(), QString(), &KDEDefaultBase, 1 );
+  addColorSelector( "Synchronizer RightCopy Foreground", i18n( "Copy to right foreground:" ), Qt::darkGreen, QString(), &KDEDefaultFore, 1 );
+  addColorSelector( "Synchronizer RightCopy Background", i18n( "Copy to right background:" ), KGlobalSettings::baseColor(), QString(), &KDEDefaultBase, 1 );
+  addColorSelector( "Synchronizer Delete Foreground", i18n( "Delete foreground:" ), Qt::white, QString(), &KDEDefaultFore, 1 );
+  addColorSelector( "Synchronizer Delete Background", i18n( "Delete background:" ), Qt::red, QString(), &KDEDefaultBase, 1 );
 
   colorsGrid->addWidget(createSpacer(colorsGrp, ""), itemList.count() - offset, 1);
 
@@ -506,7 +506,7 @@ void KgColors::slotImportColors() {
 	QString basedir = KGlobal::dirs()->findResourceDir("appdata", "total_commander.keymap");
 	// let the user select a file to load
 	QString file = KFileDialog::getOpenFileName(basedir, "*.color", 0, i18n("Select a color-scheme file"));
-	if (file == QString::null) return;
+	if (file == QString()) return;
 	QFile f(file);
 	if (!f.open(QIODevice::ReadOnly)) {
 		KMessageBox::error(this, i18n("Error: unable to read from file"), i18n("Error"));
@@ -519,8 +519,8 @@ void KgColors::slotImportColors() {
 }
 
 void KgColors::slotExportColors() {
-	QString file = KFileDialog::getSaveFileName(QString::null, "*", 0, i18n("Select a color scheme file"));
-	if (file == QString::null) return;
+	QString file = KFileDialog::getSaveFileName(QString(), "*", 0, i18n("Select a color scheme file"));
+	if (file == QString()) return;
 	QFile f(file);
 	if (f.exists() && KMessageBox::warningContinueCancel(this,
 		i18n("File ")+file+i18n(" already exists. Are you sure you want to overwrite it?"),

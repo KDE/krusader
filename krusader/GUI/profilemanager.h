@@ -52,7 +52,7 @@ public:
 public slots:
   void profilePopup();
   
-  void newProfile( QString defaultName = QString::null );
+  void newProfile( QString defaultName = QString() );
   void deleteProfile( QString name );
   void overwriteProfile( QString name );
   bool loadProfile( QString name );  

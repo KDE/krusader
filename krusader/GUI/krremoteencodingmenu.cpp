@@ -196,7 +196,7 @@ void KrRemoteEncodingMenu::updateKIOSlaves()
 
   QByteArray data;
   QDataStream stream(data, QIODevice::WriteOnly);
-  stream << QString::null;
+  stream << QString();
   client->send("*", "KIO::Scheduler", "reparseSlaveConfiguration(QString)", data);
   delete client;
 

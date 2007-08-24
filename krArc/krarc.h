@@ -106,7 +106,7 @@ private:
 class KrShellProcess : public K3ShellProcess {
 	Q_OBJECT
 public:
-	KrShellProcess() : K3ShellProcess(), errorMsg( QString::null ), outputMsg( QString::null ) {
+	KrShellProcess() : K3ShellProcess(), errorMsg( QString() ), outputMsg( QString() ) {
 		connect(this,SIGNAL(receivedStderr(K3Process*,char*,int)),
 				this,SLOT(receivedErrorMsg(K3Process*,char*,int)) );
 		connect(this,SIGNAL(receivedStdout(K3Process*,char*,int)),

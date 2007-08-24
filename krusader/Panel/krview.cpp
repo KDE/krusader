@@ -68,8 +68,8 @@ void KrViewOperator::startDrag() {
 
 // ----------------------------- krview
 
-KrView::KrView( KConfig *cfg ) : _config( cfg ), _widget(0), _nameToMakeCurrent( QString::null ), _nameToMakeCurrentIfAdded( QString::null ),
-_numSelected( 0 ), _count( 0 ), _numDirs( 0 ), _countSize( 0 ), _selectedSize( 0 ), _properties(0), _focused( false ), _nameInKConfig(QString::null) {
+KrView::KrView( KConfig *cfg ) : _config( cfg ), _widget(0), _nameToMakeCurrent( QString() ), _nameToMakeCurrentIfAdded( QString() ),
+_numSelected( 0 ), _count( 0 ), _numDirs( 0 ), _countSize( 0 ), _selectedSize( 0 ), _properties(0), _focused( false ), _nameInKConfig(QString()) {
 }
 
 KrView::~KrView() {
@@ -141,7 +141,7 @@ void KrView::getSelectedItems( QStringList *names ) {
 
    // if all else fails, take the current item
 	QString item = getCurrentItem();
-   if ( names->empty() && item!=QString::null && item!=".." ) names->append( item );
+   if ( names->empty() && item!=QString() && item!=".." ) names->append( item );
 }
 
 void KrView::getSelectedKrViewItems( KrViewItemList *items ) {
@@ -150,7 +150,7 @@ void KrView::getSelectedKrViewItems( KrViewItemList *items ) {
 
    // if all else fails, take the current item
 	QString item = getCurrentItem();
-   if ( items->empty() && item!=QString::null && item!=".." ) items->append( getCurrentKrViewItem() );
+   if ( items->empty() && item!=QString() && item!=".." ) items->append( getCurrentKrViewItem() );
 }
 
 QString KrView::statistics() {
@@ -236,7 +236,7 @@ QString KrView::firstUnmarkedBelowCurrent() {
       while ( iterator && iterator->isSelected() )
          iterator = getPrev( iterator );
    }
-   if ( !iterator ) return QString::null;
+   if ( !iterator ) return QString();
    return iterator->name();
 }
 
@@ -277,7 +277,7 @@ KrViewItem *KrView::addItem( vfile *vf ) {
 	}
    if (item->name() == nameToMakeCurrentIfAdded() ) {
 		setCurrentItem(item->name());
-		setNameToMakeCurrentIfAdded(QString::null);
+		setNameToMakeCurrentIfAdded(QString());
 		makeItemVisible( item );
 	}
 	

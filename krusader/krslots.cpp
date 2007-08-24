@@ -115,7 +115,7 @@ void KRslots::sendFileByEmail(QString filename) {
 
   if ( vfs::fromPathOrUrl( mailProg ).fileName() == "kmail") {
     proc << "kmail" << "--subject \""+i18n("Sending file: ")+
-            filename.mid(filename.findRev('/')+1)+"\"" << QString::null +
+            filename.mid(filename.findRev('/')+1)+"\"" << QString() +
             "--attach "+"\"" + filename + "\"";
   }
 
@@ -191,7 +191,7 @@ void KRslots::compareContent( KUrl url1, KUrl url2 )
     return;
   }
 
-  QString tmp1 = QString::null, tmp2 = QString::null;
+  QString tmp1 = QString(), tmp2 = QString();
   
   if (!url1.isLocalFile()) {
     if( !KIO::NetAccess::download( url1, tmp1, 0 ) ){
@@ -208,8 +208,8 @@ void KRslots::compareContent( KUrl url1, KUrl url2 )
     }
   } else tmp2 = url2.path();
 
-  KrProcess *p = new KrProcess( tmp1 != url1.path() ? tmp1 : QString::null,
-                                tmp2 != url2.path() ? tmp2 : QString::null );
+  KrProcess *p = new KrProcess( tmp1 != url1.path() ? tmp1 : QString(),
+                                tmp2 != url2.path() ? tmp2 : QString() );
   *p << diffProg << tmp1 << tmp2;
   if (!p->start(K3Process::DontCare))
     KMessageBox::error(0,i18n("Error executing ")+diffProg+" !");
@@ -284,7 +284,7 @@ void KRslots::toggleTerminal() {
 void KRslots::insertFileName(bool full_path)
 {
   QString filename = ACTIVE_PANEL->view->getCurrentItem();
-  if( filename == QString::null )
+  if( filename == QString() )
     return;
   
   if( full_path ){
@@ -468,7 +468,7 @@ void KRslots::runRemoteMan() {
                                         "done, press the bookmark button, select 'Add bookmark' and that's it!"));
 
   QString host=remoteMan::getHost();
-	if (host==QString::null) return;
+	if (host==QString()) return;
 	// otherwise, attempt a connection
 	ACTIVE_FUNC->openUrl(vfs::fromPathOrUrl(host));
 }
@@ -705,7 +705,7 @@ void KRslots::slotCombine(){
   KUrl          baseURL;
   bool          unixStyle = false;
   bool          windowsStyle = false;
-  QString       commonName = QString::null;
+  QString       commonName = QString();
   unsigned int  commonLength = 0;
 
   ((ListPanel*)ACTIVE_PANEL)->getSelectedNames(&list);

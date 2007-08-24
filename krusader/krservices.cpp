@@ -32,7 +32,7 @@ bool KrServices::cmdExist(QString cmdName)
   QString lastGroup = krConfig->group();
 
   krConfig->setGroup( "Dependencies" );
-  if( QFile( krConfig->readEntry( cmdName, QString::null )).exists() )
+  if( QFile( krConfig->readEntry( cmdName, QString() )).exists() )
   {
     krConfig->setGroup( lastGroup );
     return true;
@@ -69,8 +69,8 @@ QString KrServices::fullPathName( QString name, QString confName )
   if( confName.isNull() )
     confName = name;
 
-  krConfig->setGroup( "Dependencies" );
-  if( QFile( supposedName = krConfig->readEntry( confName, "" )).exists() )
+  KConfigGroup config = krConfig->group( "Dependencies" );
+  if( QFile( supposedName = config.readEntry( confName, QString() )).exists() )
   {
     krConfig->setGroup( lastGroup );
     return supposedName;
@@ -192,7 +192,7 @@ QString KrServices::escape( QString name ) {
 
 
 // ------- KEasyProcess
-KEasyProcess::KEasyProcess(QObject *parent, const char *name): K3Process(parent, name) {
+KEasyProcess::KEasyProcess(QObject *parent, const char *name): K3Process(parent) {
 	init();
 }
 

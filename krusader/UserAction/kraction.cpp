@@ -132,7 +132,7 @@ void KrActionProcDlg::toggleFixedFont( bool state ) {
 }
 
 void KrActionProcDlg::slotUser1() {
-   QString filename = KFileDialog::getSaveFileName(QString::null, i18n("*.txt|Text files\n*|all files"), this);
+   QString filename = KFileDialog::getSaveFileName(QString(), i18n("*.txt|Text files\n*|all files"), this);
    if ( filename.isEmpty() )
       return;
    QFile file( filename );

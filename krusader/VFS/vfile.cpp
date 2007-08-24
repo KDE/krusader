@@ -59,11 +59,11 @@ vfile::vfile(const QString& name,	                  // useful construtor
 {
 	vfile_name=name;
 	vfile_size=size;
-	vfile_owner=QString::null;
+	vfile_owner=QString();
 	vfile_ownerId=owner;  
-	vfile_group=QString::null;
+	vfile_group=QString();
 	vfile_groupId=group;
-	vfile_userName=QString::null;
+	vfile_userName=QString();
 	vfile_perm=perm;
 	vfile_time_t=mtime;
 	vfile_symLink=symLink;
@@ -147,7 +147,7 @@ char vfile::vfile_isExecutable() const {
 }
 
 const QString& vfile::vfile_getMime(bool fast){
-	if( vfile_mimeType == QString::null ){ // mimetype == "" is OK so don't check mimetype.empty() !
+	if( vfile_mimeType == QString() ){ // mimetype == "" is OK so don't check mimetype.empty() !
 		vfile_mimeType = KMimeType::findByURL( vfile_getUrl(),vfile_getMode(),vfile_getUrl().isLocalFile(),fast)->name();
 		if( vfile_mimeType.contains("directory") ) vfile_perm[0] = 'd', vfile_isdir = true;
 	}

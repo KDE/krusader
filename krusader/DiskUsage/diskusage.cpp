@@ -977,7 +977,7 @@ QPixmap DiskUsage::getIcon( QString mime )
     if ( mime == "Broken Link !" )
       icon = FL_LOADICON( "file_broken" );
     else
-      icon = FL_LOADICON( KMimeType::mimeType( mime ) ->icon( QString::null, true ) );
+      icon = FL_LOADICON( KMimeType::mimeType( mime ) ->icon( QString(), true ) );
 
     // insert it into the cache
     QPixmapCache::insert( mime, icon );

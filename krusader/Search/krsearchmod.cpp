@@ -144,7 +144,7 @@ void KRSearchMod::scanLocalDir( KUrl urlToScan )
 
     KUrl url = vfs::fromPathOrUrl( dir + name );
 
-    QString mime = QString::null;
+    QString mime = QString();
     if ( query->searchInArchives() || !query->hasMimeType() )
       mime = KMimeType::findByURL( url, stat_p.st_mode, true, false ) ->name();
 

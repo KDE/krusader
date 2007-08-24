@@ -69,8 +69,8 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
   if (PS("arj")) typeData->insertItem("arj");
   if (PS("7z")) typeData->insertItem("7z");
   // set the last used packer as the top one
-  QString tmp=krConfig->readEntry("lastUsedPacker",QString::null);
-  if (tmp!=QString::null) {
+  QString tmp=krConfig->readEntry("lastUsedPacker",QString());
+  if (tmp!=QString()) {
     for (unsigned int i=0; i< typeData->listBox()->count(); ++i)
       if (typeData->listBox()->item(i)->text() == tmp) {
         typeData->listBox()->removeItem(i);
@@ -92,7 +92,7 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
 
 void PackGUI::browse() {
   QString temp=KFileDialog::getExistingDirectory(dirData->text(),0,i18n("Please select a directory"));
-  if (temp != QString::null)
+  if (temp != QString())
 			dirData->setText(temp);
 }
 
@@ -111,9 +111,9 @@ void PackGUI::accept() {
 }
 
 void PackGUI::reject() {
-  filename=QString::null;
-  destination=QString::null;
-  type=QString::null;
+  filename=QString();
+  destination=QString();
+  type=QString();
   PackGUIBase::reject();
 }
 

@@ -50,7 +50,7 @@ public:
 	virtual void vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool * stop);
 	
 	/// Return the VFS working dir
-	QString vfs_workingDir(){ return QString::null; }
+	QString vfs_workingDir(){ return QString(); }
 	
 protected slots:
 	void slotStatResult(KIO::Job *job);

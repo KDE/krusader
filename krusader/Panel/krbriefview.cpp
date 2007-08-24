@@ -322,7 +322,7 @@ void KrBriefView::delItem( const QString &name ) {
 QString KrBriefView::getCurrentItem() const {
    Q3IconViewItem * it = currentItem();
    if ( !it )
-      return QString::null;
+      return QString();
    else
       return dynamic_cast<KrViewItem*>( it ) ->name();
 }
@@ -571,7 +571,7 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
    {
      dragStartPos = QPoint( -1, -1 );
 
-     QString name = QString::null;    // will the file be deleted by the mouse event?
+     QString name = QString();    // will the file be deleted by the mouse event?
      if( newCurrent )                 // save the name of the file
        name = static_cast<KrBriefViewItem*>( newCurrent ) ->name();
 

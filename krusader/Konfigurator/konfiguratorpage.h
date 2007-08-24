@@ -137,7 +137,7 @@ public:
     */
   KonfiguratorCheckBox    *createCheckBox( QString cls, QString name, bool dflt,
                                            QString text, QWidget *parent=0, bool rst=false,
-                                           QString toolTip = QString::null, int pg=FIRST_PAGE );
+                                           QString toolTip = QString(), int pg=FIRST_PAGE );
 
   /**
     * Adds a new spinbox item to the page.
@@ -286,7 +286,7 @@ public:
     *
     * @return             reference to the newly created frame
     */
-  Q3GroupBox               *createFrame( QString text = QString::null, QWidget *parent=0,
+  Q3GroupBox               *createFrame( QString text = QString(), QWidget *parent=0,
                                            const char *widgetName=0 );
 
   /**

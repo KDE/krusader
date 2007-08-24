@@ -164,13 +164,13 @@ void KrColorSettingsImpl::loadFromConfig()
 	names = KrColorSettingNames::getNumNames();
 	for ( QStringList::Iterator it = names.begin(); it != names.end(); ++it )
 	{
-		if (krConfig->readEntry(*it) != QString::null)
+		if (krConfig->readEntry(*it) != QString())
 			m_numValues[*it] = krConfig->readNumEntry(*it);
 	}
 	names = KrColorSettingNames::getBoolNames();
 	for ( QStringList::Iterator it = names.begin(); it != names.end(); ++it )
 	{
-		if (krConfig->readEntry(*it) != QString::null)
+		if (krConfig->readEntry(*it) != QString())
 			m_boolValues[*it] = krConfig->readBoolEntry(*it);
 	}
 }

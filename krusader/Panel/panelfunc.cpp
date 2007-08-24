@@ -682,7 +682,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 			if ( dir.entryList(QDir::TypeMask | QDir::System | QDir::Hidden ).count() > 2 ) {
 				switch ( KMessageBox::warningYesNoCancel( krApp,
 																		i18n( "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete All?</p></qt>" ).arg(*name),
-																		QString::null, i18n( "&Skip" ), i18n( "&Delete All" ) ) ) {
+																		QString(), i18n( "&Skip" ), i18n( "&Delete All" ) ) ) {
 						case KMessageBox::Cancel :
 						return ;
 						case KMessageBox::No :
@@ -741,7 +741,7 @@ void ListPanelFunc::execute( QString& name ) {
 
 	if ( vf->vfile_isDir() ) {
 		origin = files() ->vfs_getFile( name );
-		panel->view->setNameToMakeCurrent( QString::null );
+		panel->view->setNameToMakeCurrent( QString() );
 		openUrl( origin );
 	} else if ( !protocol.isEmpty() ) {
 		KUrl path = files() ->vfs_getFile( vf->vfile_getName() );
@@ -775,7 +775,7 @@ void ListPanelFunc::pack() {
 		defaultName = fileNames.first();
 	// ask the user for archive name and packer
 	new PackGUI( defaultName, vfs::pathOrUrl( panel->otherPanel->virtualPath(), -1 ), fileNames.count(), fileNames.first() );
-	if ( PackGUI::type == QString::null )
+	if ( PackGUI::type == QString() )
 		return ; // the user canceled
 
 	// check for partial URLs	
@@ -800,7 +800,7 @@ void ListPanelFunc::pack() {
 		return;                
 	}        
 	else {
-		tempDestFile = new KTempFile( QString::null, "." + PackGUI::type );
+		tempDestFile = new KTempFile( QString(), "." + PackGUI::type );
 		tempDestFile->setAutoDelete( true );
 		arcFile = tempDestFile->name();
 		QFile::remove
@@ -812,7 +812,7 @@ void ListPanelFunc::pack() {
 		if( PackGUI::type == "zip" ) {
 			msg = i18n( "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?</p><p>Zip will replace identically named entries in the zip archive or add entries for new names.</p></qt>").arg(PackGUI::filename).arg(PackGUI::type);
 		}
-		if ( KMessageBox::warningContinueCancel( krApp,msg,QString::null,i18n( "&Overwrite" ))
+		if ( KMessageBox::warningContinueCancel( krApp,msg,QString(),i18n( "&Overwrite" ))
 		        == KMessageBox::Cancel )
 			return ; // stop operation
 	}
@@ -871,7 +871,7 @@ void ListPanelFunc::testArchive() {
 		return ; // safety
 
 	KUrl arcURL = files() ->vfs_getFile( arcName );
-	QString url = QString::null;
+	QString url = QString();
 
 	// download the file if it's on a remote filesystem
 	if ( !arcURL.isLocalFile() ) {
@@ -893,7 +893,7 @@ void ListPanelFunc::testArchive() {
 		return ;
 	}
 	
-	QString password = encrypted ? KRarcHandler::getPassword( url ) : QString::null;
+	QString password = encrypted ? KRarcHandler::getPassword( url ) : QString();
 	
 	// test the archive
 	if ( KRarcHandler::test( url, type, password ) )
@@ -934,7 +934,7 @@ void ListPanelFunc::unpack() {
 
 		// download the file if it's on a remote filesystem
 		KUrl arcURL = files() ->vfs_getFile( arcName );
-		QString url = QString::null;
+		QString url = QString();
 		if ( !arcURL.isLocalFile() ) {
 			url = locateLocal( "tmp", QString( arcName ) );
 			if ( !KIO::NetAccess::download( arcURL, url, 0 ) ) {
@@ -967,7 +967,7 @@ void ListPanelFunc::unpack() {
 			continue;
 		}
 		
-		QString password = encrypted ? KRarcHandler::getPassword( url ) : QString::null;
+		QString password = encrypted ? KRarcHandler::getPassword( url ) : QString();
 		
 		// unpack the files
 		KRarcHandler::unpack( url, type, password, dest.path( -1 ) );
@@ -1023,7 +1023,7 @@ void ListPanelFunc::matchChecksum() {
 		KRQuery(MatchChecksumDlg::checksumTypesFilter)
 	);
 	MatchChecksumDlg dlg(args, folders, panel->realPath(), 
-		(checksumFiles.size()==1 ? checksumFiles[0]->vfile_getUrl().prettyUrl() : QString::null));
+		(checksumFiles.size()==1 ? checksumFiles[0]->vfile_getUrl().prettyUrl() : QString()));
 }
 
 void ListPanelFunc::calcSpace() {
@@ -1059,7 +1059,7 @@ void ListPanelFunc::FTPDisconnect() {
 	// you can disconnect only if connected !
 	if ( files() ->vfs_getType() == vfs::FTP ) {
 		krFTPDiss->setEnabled( false );
-		panel->view->setNameToMakeCurrent( QString::null );
+		panel->view->setNameToMakeCurrent( QString() );
 		openUrl( panel->realPath() ); // open the last local URL
 	}
 }

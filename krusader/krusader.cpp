@@ -281,7 +281,7 @@ Krusader::Krusader() : KParts::MainWindow(0,0,Qt::WType_TopLevel|Qt::WDestructiv
    QStringList rightTabTypes = krConfig->readListEntry( "Right Tab Bar Types" );
    int         leftActiveTab = krConfig->readNumEntry( "Left Active Tab", 0 );
    int         rightActiveTab = krConfig->readNumEntry( "Right Active Tab", 0 );
-   QString     startProfile = krConfig->readEntry("Starter Profile Name", QString::null );
+   QString     startProfile = krConfig->readEntry("Starter Profile Name", QString() );
    
    // get command-line arguments
    if ( args->isSet( "left" ) ) {
@@ -297,7 +297,7 @@ Krusader::Krusader() : KParts::MainWindow(0,0,Qt::WType_TopLevel|Qt::WDestructiv
         if( !leftTabs[ i ].startsWith( "/" ) && leftTabs[ i ].find( ":/" ) < 0 )
           leftTabs[ i ] = QDir::currentPath() + "/" + leftTabs[ i ];
       }
-      startProfile = QString::null;
+      startProfile = QString();
    }
    if ( args->isSet( "right" ) ) {
       rightTabs = QStringList::split( ',', args->getOption( "right" ) );
@@ -312,7 +312,7 @@ Krusader::Krusader() : KParts::MainWindow(0,0,Qt::WType_TopLevel|Qt::WDestructiv
         if( !rightTabs[ i ].startsWith( "/" ) && rightTabs[ i ].find( ":/" ) < 0 )
           rightTabs[ i ] = QDir::currentPath() + "/" + rightTabs[ i ];
       }
-      startProfile = QString::null;
+      startProfile = QString();
    }
 
    while( leftTabTypes.count() < leftTabs.count() )
@@ -514,10 +514,10 @@ void Krusader::setupAccels() {
 #if 0 // PORTME
    accels = new KAccel( this );
 	 // SHIFT+F3
-   accels->insert( "F3_ViewDlg", i18n( "F3 View Dialog" ), QString::null,
+   accels->insert( "F3_ViewDlg", i18n( "F3 View Dialog" ), QString(),
                    SHIFT + Qt::Key_F3, SLOTS, SLOT( viewDlg() ) );
    // Tab
-   accels->insert( "Tab-Switch panel", i18n( "Tab: switch panel" ), QString::null,
+   accels->insert( "Tab-Switch panel", i18n( "Tab: switch panel" ), QString(),
                    Qt::Key_Tab, mainView, SLOT( panelSwitch() ) );
 #endif
 
@@ -1190,7 +1190,7 @@ QString Krusader::getTempDir() {
 
    if ( !QDir( tmpDir ).isReadable() ) {
       KMessageBox::error( krApp, "Could not create a temporary directory. Handling of Archives will not be possible until this is fixed." );
-      return QString::null;
+      return QString();
    }
    return tmpDir;
 }

@@ -102,8 +102,8 @@ void KrAddBookmarkDlg::populateCreateInWidget(KrBookmark *root, K3ListViewItem *
 
 void KrAddBookmarkDlg::newFolder() {
 	// get the name
-	QString newFolder = KInputDialog::getText(i18n("New Folder"), i18n("Folder name:"), QString::null, 0, this);
-	if (newFolder == QString::null)
+	QString newFolder = KInputDialog::getText(i18n("New Folder"), i18n("Folder name:"), QString(), 0, this);
+	if (newFolder == QString())
 		return;
 	// add to the list in bookman
 	KrBookmark *bm = new KrBookmark(newFolder);

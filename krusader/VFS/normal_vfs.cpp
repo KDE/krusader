@@ -251,7 +251,7 @@ vfile* normal_vfs::vfileFromName(const QString& name){
 	if( S_ISDIR(stat_p.st_mode) ) perm[0] = 'd';
 	
 	KUrl mimeUrl = fromPathOrUrl(path);
-	QString mime=QString::null;
+	QString mime=QString();
 
 	char symDest[256];
 	bzero(symDest,256); 
@@ -282,7 +282,7 @@ vfile* normal_vfs::vfileFromName(const QString& name){
 
 void normal_vfs::getACL( vfile *file, QString &acl, QString &defAcl )
 {
-	acl = defAcl = QString::null;
+	acl = defAcl = QString();
 #if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
 	Q3CString fileName = file->vfile_getUrl().path( -1 ).local8Bit();
 #if HAVE_NON_POSIX_ACL_EXTENSIONS
@@ -334,7 +334,7 @@ QString normal_vfs::getACL( const QString & path, int type )
 	}
 	
 	if( acl == 0 )
-		return QString::null;
+		return QString();
 	
 	char *aclString = acl_to_text( acl, 0 );
 	QString ret = QString::fromLatin1( aclString );
@@ -343,7 +343,7 @@ QString normal_vfs::getACL( const QString & path, int type )
 	
 	return ret;
 #else
-	return QString::null;
+	return QString();
 #endif
 }
 

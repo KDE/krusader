@@ -62,7 +62,7 @@ public:
     Tool = 2
   };
 
-  KrResultTableDialog(QWidget *parent, DialogType type, const QString& caption, const QString& heading, const QString& headerIcon=QString::null, const QString& hint=QString::null);
+  KrResultTableDialog(QWidget *parent, DialogType type, const QString& caption, const QString& heading, const QString& headerIcon=QString(), const QString& hint=QString());
   virtual ~KrResultTableDialog();
 
   const QString& getHeading() const { return _heading; }

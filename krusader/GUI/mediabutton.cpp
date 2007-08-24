@@ -184,7 +184,7 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 		
 		if( text != "." && text != ".." ) {
 			int index = popupMenu->count();
-			QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mime ) ->icon( QString::null, true ) );
+			QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mime ) ->icon( QString(), true ) );
 			
 			mediaUrls.append( url );
 			
@@ -267,7 +267,7 @@ void MediaButton::createListWithoutMedia() {
 
 QString MediaButton::detectType( KMountPoint *mp )
 {
-	QString typeName = QString::null;
+	QString typeName = QString();
 #ifdef Q_OS_LINUX
 	// Guessing device types by mount point is not exactly accurate...
 	// Do something accurate first, and fall back if necessary.
@@ -390,7 +390,7 @@ void MediaButton::gettingSpaceData(const QString &mountPoint, unsigned long kBSi
 					mimes[ i ] = mimes[ i ].replace( "_mounted", "_unmounted" );
 				}
 				
-				QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mimes[ i ] ) ->icon( QString::null, true ) );
+				QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mimes[ i ] ) ->icon( QString(), true ) );
 				popupMenu->changeItem( i, pixmap, popupMenu->text( i ) );
 			}
 			else if( mimes[ i ].contains( "hdd_" ) )
@@ -487,7 +487,7 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 		         this, SLOT( gettingSpaceData( const QString&, unsigned long, unsigned long, unsigned long ) ) );
 	}
 	
-	QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mime ) ->icon( QString::null, true ) );
+	QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mime ) ->icon( QString(), true ) );
 	
 	if( overwrite == -1 ) {
 		int index = popupMenu->count();
@@ -670,7 +670,7 @@ void MediaButton::slotTimeout() {
 		if( mimes[ index ].contains( "_unmounted" ) && mounted )
 			mimes[ index ] = mimes[ index ].replace( "_unmounted", "_mounted" );
 		
-		QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mimes[ index ] ) ->icon( QString::null, true ) );
+		QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mimes[ index ] ) ->icon( QString(), true ) );
 		popupMenu->changeItem( index, pixmap, text );
 		
 		if( ((int)index == waitingForMount) && mounted ) {

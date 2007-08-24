@@ -482,7 +482,7 @@ void ListPanel::slotFocusAndCDOther() {
 
 void ListPanel::slotFocusAndCDHome() {
    slotFocusOnMe();
-   func->openUrl( QString( "~" ), QString::null );
+   func->openUrl( QString( "~" ), QString() );
 }
 
 void ListPanel::slotFocusAndCDup() {
@@ -492,7 +492,7 @@ void ListPanel::slotFocusAndCDup() {
 
 void ListPanel::slotFocusAndCDRoot() {
    slotFocusOnMe();
-   func->openUrl( QString( "/" ), QString::null );
+   func->openUrl( QString( "/" ), QString() );
 }
 
 void ListPanel::select( KRQuery query, bool select) {
@@ -921,7 +921,7 @@ QString ListPanel::getCurrentName() {
    if ( name != ".." )
       return name;
    else
-      return QString::null;
+      return QString();
 }
 
 void ListPanel::prepareToDelete() {

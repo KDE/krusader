@@ -136,7 +136,7 @@ KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd, bool &pre
 
 KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy( const QString& urlName, const QString& _text, bool presAttrs, QWidget *parent,
                                                   const char *name, bool modal, KUrl baseURL )
-			:   KDialogBase( Plain, QString::null, Ok|Cancel|User1, Ok, parent, name, modal, true, KStandardGuiItem::clear() ),
+			:   KDialogBase( Plain, QString(), Ok|Cancel|User1, Ok, parent, name, modal, true, KStandardGuiItem::clear() ),
 			baseUrlCombo( 0 ), copyDirStructureCB( 0 ) {
 	
 	Q3VBoxLayout * topLayout = new Q3VBoxLayout( plainPage(), 0, spacingHint() );

@@ -36,7 +36,7 @@ KrBriefViewItem::KrBriefViewItem(KrBriefView *parent, Q3IconViewItem *after, vfi
 	// in that case, create a special vfile for that item, and delete it, if needed
 	if (!_vf) {
 		dummyVfile = true;
-		_vf = new vfile("..", 0, "drw-r--r--", 0, false, 0, 0, QString::null, QString::null, 0);
+		_vf = new vfile("..", 0, "drw-r--r--", 0, false, 0, 0, QString(), QString(), 0);
 		
 		setText("..");
 		if ( PROPS->displayIcons )

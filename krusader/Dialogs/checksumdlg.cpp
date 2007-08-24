@@ -29,7 +29,7 @@
 class CS_Tool; // forward
 typedef void PREPARE_PROC_FUNC(K3Process& proc, CS_Tool *self, const QStringList& files, 
 	const QString checksumFile, bool recursive, const QString& stdoutFileName, 
-	const QString& stderrFileName,	const QString& type=QString::null);
+	const QString& stderrFileName,	const QString& type=QString());
 typedef QStringList GET_FAILED_FUNC(const QStringList& stdOut, const QStringList& stdErr);
 
 class CS_Tool {
@@ -267,7 +267,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	tmpErr = new KTempFile(locateLocal("tmp", "krusader"), ".stderr" );
 	K3Process proc;
 	CS_Tool *mytool = tools.at(method->currentItem());
-	mytool->create(proc, mytool, KrServices::quote(files), QString::null, containFolders, 
+	mytool->create(proc, mytool, KrServices::quote(files), QString(), containFolders, 
 		tmpOut->name(), tmpErr->name(), method->currentText());
 	
 	krApp->startWaiting(i18n("Calculating checksums ..."), 0, true);	
@@ -575,7 +575,7 @@ bool ChecksumResultsDlg::saveChecksum(const QStringList& data, QString filename)
 		i18n("File %1 already exists.\nAre you sure you want to overwrite it?").arg(filename),
 		i18n("Warning"), i18n("Overwrite")) != KMessageBox::Continue) {
 		// find a better name to save to
-		filename = KFileDialog::getSaveFileName(QString::null, "*", 0, i18n("Select a file to save to"));
+		filename = KFileDialog::getSaveFileName(QString(), "*", 0, i18n("Select a file to save to"));
 		if (filename.simplified().isEmpty()) return false;
 	} 
 	QFile file(filename);

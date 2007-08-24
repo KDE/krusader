@@ -373,7 +373,7 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
 QString KrDetailedView::getCurrentItem() const {
    Q3ListViewItem * it = currentItem();
    if ( !it )
-      return QString::null;
+      return QString();
    else
       return dynamic_cast<KrViewItem*>( it ) ->name();
 }
@@ -656,7 +656,7 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
    {
      dragStartPos = QPoint( -1, -1 );
 
-     QString name = QString::null;    // will the file be deleted by the mouse event?
+     QString name = QString();    // will the file be deleted by the mouse event?
      if( newCurrent )                 // save the name of the file
        name = static_cast<KrDetailedViewItem*>( newCurrent ) ->name();
 
@@ -1155,7 +1155,7 @@ void KrDetailedView::rename( Q3ListViewItem * item, int c ) {
    // copy the contents of the EXT column over to the name
    if ( COLUMN( Extention ) != -1 ) {
       item->setText( COLUMN( Name ), static_cast<KrDetailedViewItem*>( item ) ->name() );
-      item->setText( COLUMN( Extention ), QString::null );
+      item->setText( COLUMN( Extention ), QString() );
       repaintItem( item );
    }
 

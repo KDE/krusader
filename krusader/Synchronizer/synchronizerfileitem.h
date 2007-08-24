@@ -109,7 +109,7 @@ class SynchronizerFileItem
                        m_rightOwner( rightOwner ), m_leftGroup( leftGroup ), m_rightGroup( rightGroup ),
                        m_leftMode( leftMode ), m_rightMode( rightMode ), m_leftACL( leftACL ),
                        m_rightACL( rightACL ), m_task( tsk ), m_isDir( isDir ), m_parent(parent),
-                       m_userData( 0 ), m_overWrite( false ), m_destination( QString::null ), 
+                       m_userData( 0 ), m_overWrite( false ), m_destination( QString() ), 
                        m_temporary( tmp ), m_originalTask( tsk ) {}
 
     inline bool                   isMarked()              {return m_marked;}

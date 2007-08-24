@@ -88,7 +88,7 @@ KUrl KRSpWidgets::newFTP() {
 	int uriStart = uri.findRev( '@' ); /* lets the user enter user and password in the URI field */
 	if( uriStart != -1 ) {
 		QString uriUser = uri.left( uriStart );
-		QString uriPsw = QString::null;
+		QString uriPsw = QString();
 		uri = uri.mid( uriStart + 1 );
 
 		int pswStart = uriUser.find( ':' ); /* getting the password name from the URL */
@@ -105,7 +105,7 @@ KUrl KRSpWidgets::newFTP() {
 	}
 
 	QString host = uri;               /* separating the hostname and path from the uri */
-	QString path = QString::null;
+	QString path = QString();
 	int pathStart = uri.find( "/" );
 	if( pathStart != -1 ) {
 		path = host.mid( pathStart );

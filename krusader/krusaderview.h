@@ -85,7 +85,7 @@ public slots:
   void focusTerminalEmulator();
   void switchFullScreenTE();
   
-  void profiles( QString profileName = QString::null );  
+  void profiles( QString profileName = QString() );  
   void loadPanelProfiles( QString group );
   void savePanelProfiles( QString group );
 

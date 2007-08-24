@@ -125,7 +125,7 @@ bool ArchiveProtocol::checkNewFile( const KUrl & url, QString & path ) {
 	// Find where the tar file is in the full path
 	int pos = 0;
 	QString archiveFile;
-	path = QString::null;
+	path = QString();
 
 	int len = fullPath.length();
 	if ( len != 0 && fullPath[ len - 1 ] != '/' )

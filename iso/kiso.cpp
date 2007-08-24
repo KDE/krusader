@@ -297,7 +297,7 @@ void KIso::addBoot(struct el_torito_boot_descriptor* bootdesc) {
     
     entry=new KIsoFile( this, "Catalog", dirent->permissions() & ~S_IFDIR,
         dirent->date(), dirent->adate(), dirent->cdate(),
-        dirent->user(), dirent->group(), QString::null,
+        dirent->user(), dirent->group(), QString(),
         isonum_731(bootdesc->boot_catalog)<<11, 2048 );
     dirent->addEntry(entry);
     if (!ReadBootTable(&readf,isonum_731(bootdesc->boot_catalog),&boot,this)) {
@@ -310,7 +310,7 @@ void KIso::addBoot(struct el_torito_boot_descriptor* bootdesc) {
             if (i>1) path += " (" + QString::number(i) + ")";
             entry=new KIsoFile( this, path, dirent->permissions() & ~S_IFDIR,
                 dirent->date(), dirent->adate(), dirent->cdate(),
-                dirent->user(), dirent->group(), QString::null,
+                dirent->user(), dirent->group(), QString(),
                 isonum_731(((struct default_entry*) be->data)->start)<<11, size<<9 );
             dirent->addEntry(entry);
             be=be->next;
@@ -375,10 +375,10 @@ bool KIso::openArchive( int mode )
         c_b=1;c_i=1;c_j=1;       
         root=rootDir();
         if (trackno>1) {
-            path=QString::null;
+            path=QString();
             QTextOStream(&path) << "Track " << tracks[(i<<1)+1];
             root = new KIsoDirectory( this, path, access | S_IFDIR,
-                buf.st_mtime, buf.st_atime, buf.st_ctime, uid, gid, QString::null );
+                buf.st_mtime, buf.st_atime, buf.st_ctime, uid, gid, QString() );
             rootDir()->addEntry(root);
         }
 
@@ -398,7 +398,7 @@ bool KIso::openArchive( int mode )
                         if (c_b>1) path += " (" + QString::number(c_b) + ")";
                         
                         dirent = new KIsoDirectory( this, path, access | S_IFDIR,
-                            buf.st_mtime, buf.st_atime, buf.st_ctime, uid, gid, QString::null );
+                            buf.st_mtime, buf.st_atime, buf.st_ctime, uid, gid, QString() );
                         root->addEntry(dirent);
                         
                         addBoot(bootdesc);
@@ -418,7 +418,7 @@ bool KIso::openArchive( int mode )
                         if (c_i>1) path += " (" + QString::number(c_i) + ")";
                     }
                     dirent = new KIsoDirectory( this, path, access | S_IFDIR,
-                        buf.st_mtime, buf.st_atime, buf.st_ctime, uid, gid, QString::null );
+                        buf.st_mtime, buf.st_atime, buf.st_ctime, uid, gid, QString() );
                     root->addEntry(dirent);
                     level=0;
                     mycallb(idr, this );

@@ -50,7 +50,7 @@ public:
      * Do not use application/x-tgz or so. Only the compression layer !
      * If the mimetype is ommitted, it will be determined from the filename.
      */
-    KIso( const QString& filename, const QString & mimetype = QString::null );
+    KIso( const QString& filename, const QString & mimetype = QString() );
 
     /**
      * Creates an instance that operates on the given device.

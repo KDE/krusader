@@ -252,8 +252,8 @@ void KrProgress::setDestVisible( bool visible )
   }
   else
   {
-    destInvite->setText( QString::null );
-    destLabel->setText( QString::null );
+    destInvite->setText( QString() );
+    destLabel->setText( QString() );
   }
 }
 

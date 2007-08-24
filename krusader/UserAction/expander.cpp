@@ -42,7 +42,7 @@
 #include <functional>
 using namespace std;
 
-#define NEED_PANEL	if (panel==0) { panelMissingError(_expression,exp); return QString::null; }
+#define NEED_PANEL	if (panel==0) { panelMissingError(_expression,exp); return QString(); }
 
 #include "tstring.h"
 
@@ -70,7 +70,7 @@ QStringList exp_placeholder::fileList(const ListPanel* const panel,const QString
       panel->view->getSelectedItems( &items );
    else {
       setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: Bad argument to %1: %2 is not valid item specifier").arg(error,type) ) );
-      return QString::null;
+      return QString();
    }
    if ( !ommitPath ) {  // add the current path
       // translate to urls using vfs
@@ -398,7 +398,7 @@ TagString exp_Count::expFunc( const ListPanel* panel, const QStringList& paramet
       n = panel->view->numSelected();
    else {
       setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: Bad argument to Count: %1 is not valid item specifier").arg(parameter[0]) ));
-      return QString::null;
+      return QString();
    }
 
    return TagString(QString("%1").arg( n ));
@@ -471,7 +471,7 @@ TagString exp_List::expFunc( const ListPanel* panel, const QStringList& paramete
    
    return separateAndQuote(
    		fileList(panel,
-   			parameter.empty() ? QString::null : parameter[0].toLower(),
+   			parameter.empty() ? QString() : parameter[0].toLower(),
    			mask, parameter.count() > 2 ? parameter[2].toLower()=="yes" : false,
    			useUrl, exp, "List"),
    		parameter.count() > 1 ? parameter[1] : " ",
@@ -504,13 +504,13 @@ TagString exp_ListFile::expFunc( const ListPanel* panel, const QStringList& para
    
     if ( tmpFile.status() != 0 ) {
       setError(exp, Error(Error::S_FATAL,Error::C_WORLD, i18n("Expander: tempfile couldn't be opened (%1)" ).arg(strerror( tmpFile.status() )) ));
-      return QString::null;
+      return QString();
     }
     
     Q3TextStream stream( tmpFile.file() );
     stream << separateAndQuote(
     		fileList(panel,
-    			parameter.empty() ? QString::null : parameter[0].toLower(),
+    			parameter.empty() ? QString() : parameter[0].toLower(),
     			mask, parameter.count()>2 ? parameter[2].toLower()=="yes" : false,
     			useUrl, exp, "ListFile"),
     		parameter.count() > 1 ? parameter[1] : "\n",
@@ -547,7 +547,7 @@ TagString exp_Select::expFunc( const ListPanel* panel, const QStringList& parame
        panel->view->select( mask );
     }
 
-   return QString::null;  // this doesn't return anything, that's normal!
+   return QString();  // this doesn't return anything, that's normal!
 }
 
 exp_Goto::exp_Goto() {
@@ -576,7 +576,7 @@ TagString exp_Goto::expFunc( const ListPanel* panel, const QStringList& paramete
       const_cast<ListPanel*>(panel)->slotFocusOnMe();
    }
    
-   return QString::null;  // this doesn't return anything, that's normal!
+   return QString();  // this doesn't return anything, that's normal!
 }
 
 /*
@@ -607,7 +607,7 @@ TagString exp_Ask::expFunc( const ListPanel*, const QStringList& parameter, cons
    else
       caption = parameter[2];
    if ( parameter.count() <= 1 || parameter[1].isEmpty() )
-      preset = QString::null;
+      preset = QString();
    else
       preset = parameter[1];
    
@@ -622,7 +622,7 @@ TagString exp_Ask::expFunc( const ListPanel*, const QStringList& parameter, cons
       return result;
    else {
 		 setError(exp, Error(Error::S_ERROR,Error::C_USER,"User cancelled") );
-      return QString::null;
+      return QString();
 	 }
 }
 
@@ -639,14 +639,14 @@ TagString exp_Clipboard::expFunc( const ListPanel*, const TagStringList& paramet
 	QStringList lst=splitEach(parameter[0]);
 	if(!parameter[1].isSimple()) {
 		setError(exp,Error(Error::S_FATAL,Error::C_SYNTAX,i18n("Expander: %Each% may not be in the second argument of %Clipboard%")));
-		return QString::null;
+		return QString();
 	}
     if ( parameter.count() <= 1 || parameter[1].string().isEmpty() || KApplication::clipboard()->text().isEmpty() )
        KApplication::clipboard()->setText( lst.join("\n") );
     else
        KApplication::clipboard()->setText( KApplication::clipboard()->text() + parameter[1].string() + lst.join("\n") );
 
-   return QString::null;  // this doesn't return anything, that's normal!
+   return QString();  // this doesn't return anything, that's normal!
 }
 
 exp_Copy::exp_Copy() {
@@ -663,7 +663,7 @@ TagString exp_Copy::expFunc( const ListPanel*, const TagStringList& parameter, c
    QStringList lst=splitEach( parameter[0] );
    if(!parameter[1].isSimple()) {
       setError(exp,Error(Error::S_FATAL,Error::C_SYNTAX,i18n("Expander: %Each% may not be in the second argument of %Copy%")));
-      return QString::null;
+      return QString();
    }
    KUrl::List src;
    for(QStringList::const_iterator it=lst.begin(),end=lst.end();it!=end;++it)
@@ -673,12 +673,12 @@ TagString exp_Copy::expFunc( const ListPanel*, const TagStringList& parameter, c
 
    if ( !dest.isValid() || find_if(src.constBegin(),src.constEnd(),not1(mem_fun_ref(&KUrl::isValid) ))!=src.end()) {
       setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: invalid URL's in %_Copy(\"src\", \"dest\")%") ));
-      return QString::null;
+      return QString();
    }
 
    PreservingCopyJob::createCopyJob( PM_DEFAULT, src, dest, KIO::CopyJob::Copy, false, true );
 
-   return QString::null;  // this doesn't return everything, that's normal!
+   return QString();  // this doesn't return everything, that's normal!
 }
 
 exp_Move::exp_Move() {
@@ -694,7 +694,7 @@ TagString exp_Move::expFunc( const ListPanel*, const TagStringList& parameter, c
    QStringList lst=splitEach( parameter[0] );
    if(!parameter[1].isSimple()) {
       setError(exp,Error(Error::S_FATAL,Error::C_SYNTAX,i18n("%Each% may not be in the second argument of %Move%")));
-      return QString::null;
+      return QString();
    }
    KUrl::List src;
    for(QStringList::const_iterator it=lst.begin(),end=lst.end();it!=end;++it)
@@ -704,12 +704,12 @@ TagString exp_Move::expFunc( const ListPanel*, const TagStringList& parameter, c
 
    if ( !dest.isValid() || find_if(src.constBegin(),src.constEnd(),not1(mem_fun_ref(&KUrl::isValid) ))!=src.end()) {
       setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: invalid URL's in %_Move(\"src\", \"dest\")%") ));
-      return QString::null;
+      return QString();
    }
 
    PreservingCopyJob::createCopyJob( PM_DEFAULT, src, dest, KIO::CopyJob::Move, false, true );
 
-   return QString::null;  // this doesn't return anything, that's normal!
+   return QString();  // this doesn't return anything, that's normal!
 }
 
 exp_Sync::exp_Sync() {
@@ -722,12 +722,12 @@ exp_Sync::exp_Sync() {
 TagString exp_Sync::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
    if ( parameter[0].isEmpty() ) {
       setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: no profile specified for %_Sync(profile)%") ));
-      return QString::null;
+      return QString();
    }
 
    new SynchronizerGUI( 0, parameter[0] );
 
-   return QString::null;  // this doesn't return everything, that's normal!
+   return QString();  // this doesn't return everything, that's normal!
 }
 
 exp_NewSearch::exp_NewSearch() {
@@ -740,12 +740,12 @@ exp_NewSearch::exp_NewSearch() {
 TagString exp_NewSearch::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
    if ( parameter[0].isEmpty() ) {
       setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: no profile specified for %_NewSearch(profile)%") ));
-      return QString::null;
+      return QString();
    }
 
    new KrSearchDialog( parameter[0], krApp );
 
-   return QString::null;  // this doesn't return everything, that's normal!
+   return QString();  // this doesn't return everything, that's normal!
 }
 
 exp_Profile::exp_Profile() {
@@ -758,12 +758,12 @@ exp_Profile::exp_Profile() {
 TagString exp_Profile::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
    if ( parameter[0].isEmpty() ) {
       setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: no profile specified for %_Profile(profile)%; abort...") ));
-      return QString::null;
+      return QString();
    }
    
    MAIN_VIEW->profiles( parameter[0] );
 
-   return QString::null;  // this doesn't return everything, that's normal!
+   return QString();  // this doesn't return everything, that's normal!
 }
 
 exp_Each::exp_Each() {
@@ -787,7 +787,7 @@ TagString exp_Each::expFunc( const ListPanel* panel, const QStringList& paramete
 
    TagString ret;
    QStringList l = fileList(panel,
-   		parameter.empty() ? QString::null : parameter[0].toLower(),
+   		parameter.empty() ? QString() : parameter[0].toLower(),
    		mask, parameter.count() > 1 && parameter[1].toLower()=="yes",
    		useUrl, exp, "Each");
 
@@ -811,7 +811,7 @@ TagString exp_ColSort::expFunc( const ListPanel* panel, const QStringList& param
 
    if ( parameter[0].isEmpty() ) {
       setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: no column specified for %_ColSort(column)%") ));
-      return QString::null;
+      return QString();
    }
    
    int mode = (int) panel->view->sortMode();
@@ -883,13 +883,13 @@ TagString exp_ColSort::expFunc( const ListPanel* panel, const QStringList& param
       mode |= KrViewProperties::Group;
    } else {
       setError(exp, Error(Error::S_WARNING,Error::C_ARGUMENT,i18n("Expander: unknown column specified for %_ColSort(%1)%").arg(parameter[0]) ));
-      return QString::null;
+      return QString();
    }
    
    //MODE_OUT
    panel->view->setSortMode( (KrViewProperties::SortSpec)mode );
 //   krOut << "end: exp_ColSort::expFunc" << endl;
-   return QString::null;  // this doesn't return anything, that's normal!
+   return QString();  // this doesn't return anything, that's normal!
 }
 
 exp_PanelSize::exp_PanelSize() {
@@ -910,7 +910,7 @@ TagString exp_PanelSize::expFunc( const ListPanel* panel, const QStringList& par
    
    if ( newSize < 0 || newSize > 100 ) {
       setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: Value %1 out of range for %_PanelSize(percent)%. The first parameter has to be >0 and <100").arg(newSize)) );
-      return QString::null;
+      return QString();
    }
 
     Q3ValueList<int> panelSizes = MAIN_VIEW->horiz_splitter->sizes();
@@ -927,7 +927,7 @@ TagString exp_PanelSize::expFunc( const ListPanel* panel, const QStringList& par
     
     MAIN_VIEW->horiz_splitter->setSizes( panelSizes );
 
-   return QString::null;  // this doesn't return everything, that's normal!
+   return QString();  // this doesn't return everything, that's normal!
 }
 
 #ifdef __KJSEMBED__
@@ -942,7 +942,7 @@ exp_Script::exp_Script() {
 TagString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
    if ( parameter[0].isEmpty() ) {
       setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: no script specified for %_Script(script)%")) );
-      return QString::null;
+      return QString();
    }
 
    QString filename = parameter[0];
@@ -956,7 +956,7 @@ TagString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, c
 
    KJS::ExecState *exec = krJS->globalExec();
 
-   QString jsReturn = QString::null;
+   QString jsReturn = QString();
    if ( parameter[1].toLower() == "yes" )	// to stay compatible with the old-style parameter
       jsReturn = "cmd";
    else {
@@ -977,7 +977,7 @@ TagString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, c
    if ( ! jsReturn.isEmpty() )
       return krJS->getValue( jsReturn ).toString( krJS->globalExec() ).qstring();
    else
-      return QString::null;
+      return QString();
 }
 #endif
 
@@ -995,7 +995,7 @@ exp_View::exp_View() {
 TagString exp_View::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
    if ( parameter[0].isEmpty() ) {
 			setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: no file to view in %_View(filename)%")) );
-      return QString::null;
+      return QString();
    }
 
    QString viewMode, windowMode;
@@ -1017,7 +1017,7 @@ TagString exp_View::expFunc( const ListPanel*, const QStringList& parameter, con
    //TODO: Call the viewer with viewMode and windowMode. Filename is in parameter[0].
    // It would be nice if parameter[0] could also be a space-separated filename-list (provided if the first parameter is %aList(selected)%)
 
-   return QString::null;  // this doesn't return everything, that's normal!
+   return QString();  // this doesn't return everything, that's normal!
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1032,7 +1032,7 @@ TagString exp_simpleplaceholder::expFunc( const ListPanel* p, const TagStringLis
 			lst.push_back((*it).string());
 		else {
 			setError(exp,Error(Error::S_FATAL,Error::C_SYNTAX,i18n("%Each% is not allowed in parameter to %1").arg(description())));
-			return QString::null;
+			return QString();
 		}
 	return expFunc(p,lst,useUrl,exp);
 }
@@ -1072,7 +1072,7 @@ void Expander::expand( const QString& stringToExpand, bool useUrl ) {
 
 TagString Expander::expandCurrent( const QString& stringToExpand, bool useUrl ) {
    TagString result;
-	 QString exp = QString::null;
+	 QString exp = QString();
    TagString tmpResult;
    int begin, end, i;
 //    int brackets = 0;
@@ -1082,7 +1082,7 @@ TagString Expander::expandCurrent( const QString& stringToExpand, bool useUrl ) 
       if ( ( begin = stringToExpand.find( '%', idx ) ) == -1 ) break;
       if ( ( end = findEnd( stringToExpand, begin ) ) == -1 ) {
          setError(Error(Error::S_FATAL,Error::C_SYNTAX,i18n("Error: unterminated % in Expander::expandCurrent")) );
-         return QString::null;
+         return QString();
       }
 
       result += stringToExpand.mid( idx, begin - idx ); // copy until the start of %exp%
@@ -1095,7 +1095,7 @@ TagString Expander::expandCurrent( const QString& stringToExpand, bool useUrl ) 
       else {
         TagStringList parameter = separateParameter( &exp, useUrl );
         if ( error() )
-           return QString::null;
+           return QString();
         char panelIndicator = exp.toLower()[0].toLatin1();
         exp.replace( 0, 1, "" );
         for ( i = 0; i < placeholderCount(); ++i )
@@ -1103,7 +1103,7 @@ TagString Expander::expandCurrent( const QString& stringToExpand, bool useUrl ) 
 //               kDebug() << "---------------------------------------" << endl;
               tmpResult = placeholder( i )->expFunc( getPanel( panelIndicator,placeholder(i),*this ), parameter, useUrl, *this );
               if ( error() ) {
-                 return QString::null;
+                 return QString();
               }
               else
                  result += tmpResult;
@@ -1112,7 +1112,7 @@ TagString Expander::expandCurrent( const QString& stringToExpand, bool useUrl ) 
            }
          if ( i == placeholderCount() ) { // didn't find an expander
             setError(Error(Error::S_FATAL,Error::C_SYNTAX,i18n("Error: unrecognized %%%1%2%% in Expander::expand").arg(panelIndicator).arg(exp)) );
-           return QString::null;
+           return QString();
          }
       } //else
       idx = end + 1;

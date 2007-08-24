@@ -68,8 +68,8 @@ class Application : public SearchObject
 {
 public:
   Application();
-  Application(const QString& searchName, bool found, const QString& appName, const QString& website=QString::null, const QString& note=QString::null);
-  Application(const QString& searchName, const QString& website, bool found, const QString& note=QString::null);
+  Application(const QString& searchName, bool found, const QString& appName, const QString& website=QString(), const QString& note=QString());
+  Application(const QString& searchName, const QString& website, bool found, const QString& note=QString());
   virtual ~Application();
 
   const QString& getWebsite() const { return _website; }
@@ -95,7 +95,7 @@ class Archiver : public Application
 {
 public:
   Archiver();
-  Archiver(const QString& searchName, const QString& website, bool found, bool isPacker, bool isUnpacker, const QString& note=QString::null);
+  Archiver(const QString& searchName, const QString& website, bool found, bool isPacker, bool isUnpacker, const QString& note=QString());
   ~Archiver();
 
   const bool getIsPacker() const { return _isPacker; }
@@ -117,7 +117,7 @@ protected:
 class ApplicationGroup : public SearchObject
 {
 public:
-  ApplicationGroup(const QString& searchName, bool foundGroup, const Q3ValueVector<Application*>& apps, const QString& note=QString::null);
+  ApplicationGroup(const QString& searchName, bool foundGroup, const Q3ValueVector<Application*>& apps, const QString& note=QString());
   ~ApplicationGroup();
 
   const Q3ValueVector<Application*>& getAppVec() const { return _apps; }

@@ -185,7 +185,7 @@ long KRarcHandler::arcFileCount( QString archive, QString type, QString password
 
   // count the number of files in the archive
   long count = 1;
-  KTempFile tmpFile( /*"tmp"*/ QString::null, "krusader-unpack" ); // commented out as it created files in the current dir!
+  KTempFile tmpFile( /*"tmp"*/ QString(), "krusader-unpack" ); // commented out as it created files in the current dir!
   KrShellProcess list;
   list << lister << KrServices::quote( archive ) << ">" << tmpFile.name() ;
   if( type == "-ace" && QFile( "/dev/ptmx" ).exists() )  // Don't remove, unace crashes if missing!!!
@@ -208,7 +208,7 @@ long KRarcHandler::arcFileCount( QString archive, QString type, QString password
   }
 
   Q3TextStream *stream = tmpFile.textStream();
-  while ( stream && stream->readLine() != QString::null ) ++count;
+  while ( stream && stream->readLine() != QString() ) ++count;
   tmpFile.unlink();
 
   //make sure you call stopWait after this function return...
@@ -233,7 +233,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
   if ( count == 1 ) count = 0 ;
 
   // choose the right packer for the job
-  QString packer, cpioName = QString::null;
+  QString packer, cpioName = QString();
 
   // set the right packer to do the job
   if ( type == "-zip" ) packer = KrServices::fullPathName( "unzip" ) + " -o" ;
@@ -251,7 +251,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
                                       KrServices::fullPathName( "unarj" ) + " x";
   else if ( type == "-7z" )  packer = KrServices::fullPathName( "7z" ) + " -y x";
   else if ( type == "-rpm" ) {
-    QString tempDir = locateLocal("tmp",QString::null);
+    QString tempDir = locateLocal("tmp",QString());
 
     cpioName = tempDir+"/contents.cpio";
 
@@ -268,7 +268,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
     packer = KrServices::fullPathName( "cpio" ) + " --force-local --no-absolute-filenames -iuvdF";
   }
   else if ( type == "-deb" ) {
-    QString tempDir = locateLocal("tmp",QString::null);
+    QString tempDir = locateLocal("tmp",QString());
 
     cpioName = tempDir+"/contents.tar";
 
@@ -417,7 +417,7 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
   else if ( type == "7z" ) {  packer = KrServices::fullPathName( "7z" ) + " -y a"; type = "-7z"; } 
   else return false;
 
-  QString password = QString::null;
+  QString password = QString();
   
   if( extraProps.count( "Password" ) > 0 ) {
     password = extraProps[ "Password" ];
@@ -436,7 +436,7 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
           packer += " -p'" + password + "'";
       }
       else
-        password = QString::null;
+        password = QString();
     }
   }
 
@@ -749,7 +749,7 @@ QString KRarcHandler::detectArchive( bool &encrypted, QString fileName, bool che
 			}
 		}
 	}
-	return QString::null;
+	return QString();
 }
 
 #include "krarchandler.moc"

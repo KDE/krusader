@@ -1078,7 +1078,7 @@ public:
 
 SynchronizerGUI::SynchronizerGUI(QWidget* parent,  KUrl leftURL, KUrl rightURL, QStringList selList ) :
     QDialog( parent, "Krusader::SynchronizerGUI", false, 0 ) {
-   initGUI( parent, QString::null, leftURL, rightURL, selList );
+   initGUI( parent, QString(), leftURL, rightURL, selList );
 }
 
 SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString profile ) :

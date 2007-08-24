@@ -53,20 +53,20 @@
 
 // set the defaults
 KRQuery::KRQuery(): QObject(), matchesCaseSensitive(true), bNull( true ),
-                    contain(QString::null),containCaseSensetive(true),
+                    contain(QString()),containCaseSensetive(true),
                     containWholeWord(false),containOnRemote(false),
                     minSize(0),maxSize(0),newerThen(0),olderThen(0),
-                    owner(QString::null),group(QString::null),perm(QString::null),
-                    type(QString::null),inArchive(false),recurse(true),
+                    owner(QString()),group(QString()),perm(QString()),
+                    type(QString()),inArchive(false),recurse(true),
                     followLinksP(true), receivedBuffer( 0 ), processEventsConnected(0)  {}
 
 // set the defaults
 KRQuery::KRQuery( const QString &name, bool matchCase ) : QObject(),
-                    bNull( true ),contain(QString::null),containCaseSensetive(true),
+                    bNull( true ),contain(QString()),containCaseSensetive(true),
                     containWholeWord(false), containOnRemote(false),
                     minSize(0),maxSize(0),newerThen(0),olderThen(0),
-                    owner(QString::null),group(QString::null),perm(QString::null),
-                    type(QString::null),inArchive(false),recurse(true),
+                    owner(QString()),group(QString()),perm(QString()),
+                    type(QString()),inArchive(false),recurse(true),
                     followLinksP(true), receivedBuffer( 0 ), processEventsConnected(0) {
   setNameFilter( name, matchCase );
 }
@@ -382,7 +382,7 @@ bool KRQuery::containsContent( QString file ) const
   if( checkBuffer( buffer, 0 ) )
     return true;
 
-  lastSuccessfulGrep = QString::null; // nothing was found
+  lastSuccessfulGrep = QString(); // nothing was found
   return false;
 }
 

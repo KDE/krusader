@@ -125,7 +125,7 @@ void KrKeyDialog::importLegacyShortcuts( const QString& file ) {
 }
 
 void KrKeyDialog::slotExportShortcuts() {
-   QString filename = KFileDialog::getSaveFileName( QString::null, i18n(FILE_FILTER), 0, i18n("Select a keymap file") );
+   QString filename = KFileDialog::getSaveFileName( QString(), i18n(FILE_FILTER), 0, i18n("Select a keymap file") );
    if ( filename.isEmpty() )
       return;
    QFile f( filename );

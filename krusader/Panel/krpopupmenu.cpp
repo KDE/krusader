@@ -86,7 +86,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
    // check if all the list have the same mimetype
    for ( unsigned int i = 1; i < items.size(); ++i ) {
       if ( panel->func->getVFile(( *items.at( i ) )) ->vfile_getMime() != mime ) {
-         mime = QString::null;
+         mime = QString();
          break;
       }
    }
@@ -262,7 +262,7 @@ void KrPopupMenu::performAction(int id) {
          case SHRED_ID :
             if ( KMessageBox::warningContinueCancel( krApp,
                  i18n("<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone forever!</qt>").arg(item->name()),
-                 QString::null, KStandardGuiItem::cont(), "Shred" ) == KMessageBox::Continue )
+                 QString(), KStandardGuiItem::cont(), "Shred" ) == KMessageBox::Continue )
                KShred::shred( panel->func->files() ->vfs_getFile( item->name() ).path( -1 ) );
          	break;
          case OPEN_KONQ_ID :

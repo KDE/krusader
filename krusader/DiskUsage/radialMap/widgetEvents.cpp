@@ -138,7 +138,7 @@ RadialMap::Widget::mouseMoveEvent( QMouseEvent *e )
       m_tip.hide();
       update();
 
-      emit mouseHover( QString::null );
+      emit mouseHover( QString() );
    }
 }
 
@@ -195,7 +195,7 @@ RadialMap::Widget::mousePressEvent( QMouseEvent *e )
             const QString message = ( m_focus->file()->isDir()
                ? i18n( "<qt>The directory at <i>'%1'</i> will be <b>recursively</b> and <b>permanently</b> deleted!</qt>" )
                : i18n( "<qt><i>'%1'</i> will be <b>permanently</b> deleted!</qt>" )).arg( url.prettyUrl() );
-            const int userIntention = KMessageBox::warningContinueCancel( this, message, QString::null, KGuiItem( i18n("&Delete"), "editdelete" ) );
+            const int userIntention = KMessageBox::warningContinueCancel( this, message, QString(), KGuiItem( i18n("&Delete"), "editdelete" ) );
 
             if( userIntention == KMessageBox::Continue ) {
                KIO::Job *job = KIO::del( url );

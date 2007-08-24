@@ -48,7 +48,7 @@ public:
   virtual int activeSubPage();
   
 private:
-  void addApplication( QString name, Q3GridLayout *grid, int row, QWidget *parent, int page, QString additionalList=QString::null );
+  void addApplication( QString name, Q3GridLayout *grid, int row, QWidget *parent, int page, QString additionalList=QString() );
   
 public slots:
   void slotApply( QObject *obj, QString cls, QString name );

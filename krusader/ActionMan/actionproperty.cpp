@@ -281,8 +281,8 @@ void ActionProperty::addPlaceholder() {
 
 
 void ActionProperty::addStartpath() {
-   QString folder = KFileDialog::getExistingDirectory(QString::null, this);
-   if (folder != QString::null) {
+   QString folder = KFileDialog::getExistingDirectory(QString(), this);
+   if (folder != QString()) {
       leStartpath->setText( folder );
    }
 }
@@ -325,8 +325,8 @@ void ActionProperty::removeProtocol() {
 }
 
 void ActionProperty::addPath() {
-   QString folder = KFileDialog::getExistingDirectory(QString::null, this);
-   if (folder != QString::null) {
+   QString folder = KFileDialog::getExistingDirectory(QString(), this);
+   if (folder != QString()) {
      lbShowonlyPath->insertItem( folder );
      setModified();
    }

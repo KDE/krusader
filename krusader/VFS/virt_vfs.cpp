@@ -256,7 +256,7 @@ vfile* virt_vfs::stat( const KUrl& url ) {
 	mode_t mode = kfi->mode() | kfi->permissions();
 	QString perm = KRpermHandler::mode2QString( mode );
 // set the mimetype
-	QString mime = QString::null;
+	QString mime = QString();
 	QString symDest = "";
 	if ( symLink ) {
 		symDest = kfi->linkDest();

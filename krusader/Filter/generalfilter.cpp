@@ -356,7 +356,7 @@ bool GeneralFilter::fillQuery( KRQuery *query )
 
   if (ofType->currentText()!=i18n("All Files"))
     query->setMimeType( ofType->currentText() );
-  else query->setMimeType( QString::null );
+  else query->setMimeType( QString() );
 
   if ( properties & FilterTabs::HasRecurseOptions )
   {

@@ -74,7 +74,7 @@ KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, Q3ListViewItem *a
 	// in that case, create a special vfile for that item, and delete it, if needed
 	if (!_vf) {
 		dummyVfile = true;
-		_vf = new vfile("..", 0, "drw-r--r--", 0, false, 0, 0, QString::null, QString::null, 0);
+		_vf = new vfile("..", 0, "drw-r--r--", 0, false, 0, 0, QString(), QString(), 0);
 		
 		setText(COLUMN(Name), "..");
 		setText(COLUMN(Size), i18n("<DIR>") );
@@ -118,7 +118,7 @@ void KrDetailedViewItem::repaintItem() {
       setText(id, dateTime());
     if ((id = COLUMN(KrPermissions)) != -1) {
       // first, build the krusader permissions
-      tmp=QString::null;
+      tmp=QString();
       switch (_vf->vfile_isReadable()){
         case ALLOWED_PERM: tmp+='r'; break;
         case UNKNOWN_PERM: tmp+='?'; break;

@@ -92,7 +92,7 @@ void KURLListRequester::slotAdd()
   QString text = urlLineEdit->text().simplified();
   if( text.length() )
   {  
-    QString error = QString::null;    
+    QString error = QString();    
     emit checkValidity( text, error );
     
     if( !error.isNull() )
@@ -107,7 +107,7 @@ void KURLListRequester::slotAdd()
 
 void KURLListRequester::slotBrowse()
 {
-  KUrl url = KFileDialog::getExistingURL( QString::null, this );
+  KUrl url = KFileDialog::getExistingURL( QString(), this );
   if( !url.isEmpty())
     urlLineEdit->setText( vfs::pathOrUrl( url ) );
   urlLineEdit->setFocus();
@@ -169,7 +169,7 @@ KUrl::List KURLListRequester::urlList()
   QString text = urlLineEdit->text().simplified();
   if (!text.isEmpty())
   {
-    QString error = QString::null;
+    QString error = QString();
     emit checkValidity( text, error );
     if( error.isNull() )
       urls.append( vfs::fromPathOrUrl( text ) );
@@ -180,7 +180,7 @@ KUrl::List KURLListRequester::urlList()
   {    
     QString text = item->text().simplified();
     
-    QString error = QString::null;
+    QString error = QString();
     emit checkValidity( text, error );    
     if( error.isNull() )
       urls.append( vfs::fromPathOrUrl( text ) );

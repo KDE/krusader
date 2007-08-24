@@ -110,7 +110,7 @@ void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
 				if( vfs_origin.host().isEmpty() )
 					currentUser = KRpermHandler::uid2user( getuid() );
 				else {
-					currentUser = ""; // empty, but not QString::null
+					currentUser = ""; // empty, but not QString()
 				}
 			}
 #if KDE_IS_VERSION(3,5,0)
@@ -159,7 +159,7 @@ void ftp_vfs::slotListResult( KIO::Job *job ) {
 }
 
 bool ftp_vfs::populateVfsList( const KUrl& origin, bool showHidden ) {
-	QString errorMsg = QString::null;
+	QString errorMsg = QString();
 	if ( !origin.isValid() )
 		errorMsg = i18n( "Malformed URL:\n%1" ).arg( origin.url() );
 	if ( !KProtocolInfo::supportsListing( origin ) ) {

@@ -96,13 +96,13 @@ AddPlaceholderPopup::AddPlaceholderPopup( QWidget *parent ) : KMenu( parent ) {
 QString AddPlaceholderPopup::getPlaceholder( const QPoint& pos ) {
    int res = exec( pos );
    if ( res == -1 )
-      return QString::null;
+      return QString();
 
    // add the selected flag to the command line
    if ( res == EXECUTABLE_ID ) { // did the user need an executable ?
       // select an executable
-      QString filename = KFileDialog::getOpenFileName(QString::null, QString::null, this);
-      if (filename != QString::null)
+      QString filename = KFileDialog::getOpenFileName(QString(), QString(), this);
+      if (filename != QString())
          return filename + " "; // with extra space
          //return filename; // without extra space
    } else { // user selected something from the menus
@@ -110,7 +110,7 @@ QString AddPlaceholderPopup::getPlaceholder( const QPoint& pos ) {
       const exp_placeholder* currentPlaceholder = expander.placeholder( res & ~( ACTIVE_MASK | OTHER_MASK | LEFT_MASK | RIGHT_MASK | INDEPENDENT_MASK ) );
 //       if ( &currentPlaceholder->expFunc == 0 ) {
 //          KMessageBox::sorry( this, "BOFH Excuse #93:\nFeature not yet implemented" );
-//          return QString::null;
+//          return QString();
 //       } 
       ParameterDialog* parameterDialog = new ParameterDialog( currentPlaceholder, this );
       QString panel, parameter = parameterDialog->getParameter();
@@ -129,7 +129,7 @@ QString AddPlaceholderPopup::getPlaceholder( const QPoint& pos ) {
       //return "%" + panel + currentPlaceholder->expression() + parameter + "% "; // with extra space
       return "%" + panel + currentPlaceholder->expression() + parameter + "%"; // without extra space
    }
-	return QString::null;
+	return QString();
 }
 
 
@@ -183,10 +183,10 @@ ParameterDialog::ParameterDialog( const exp_placeholder* currentPlaceholder, QWi
 
 QString ParameterDialog::getParameter() {
    if ( _parameterCount == 0 ) // meaning no parameters
-      return QString::null;
+      return QString();
 
   if ( exec() == -1 )
-     return QString::null;
+     return QString();
 
   int lastParameter = _parameterCount;
   while ( --lastParameter > -1 ) {
@@ -195,7 +195,7 @@ QString ParameterDialog::getParameter() {
   }
 
   if ( lastParameter < 0) // all parameters have default-values
-     return QString::null;
+     return QString();
 
   QString parameter = "(";
   for ( int i = 0; i <= lastParameter; ++i ) {
@@ -269,10 +269,10 @@ QString ParameterPlaceholder::text() {
    return _lineEdit->text();
 }
 QString ParameterPlaceholder::preset() {
-   return QString::null;
+   return QString();
 } 
 void ParameterPlaceholder::reset() {
-   _lineEdit->setText( QString::null );
+   _lineEdit->setText( QString() );
 } 
 bool ParameterPlaceholder::valid() {
    if ( _lineEdit->text().isEmpty() )
@@ -299,12 +299,12 @@ ParameterYes::ParameterYes( const exp_parameter& parameter, QWidget* parent ) : 
 
 QString ParameterYes::text() {
    if ( _checkBox->isChecked() )
-      return QString::null;
+      return QString();
    else
       return "No";
 } 
 QString ParameterYes::preset() {
-   return QString::null;
+   return QString();
 } 
 void ParameterYes::reset() {
    _checkBox->setChecked( true );
@@ -327,10 +327,10 @@ QString ParameterNo::text() {
    if ( _checkBox->isChecked() )
       return "Yes";
    else
-      return QString::null;
+      return QString();
 } 
 QString ParameterNo::preset() {
-   return QString::null;
+   return QString();
 } 
 void ParameterNo::reset() {
    _checkBox->setChecked( false );
@@ -359,10 +359,10 @@ QString ParameterFile::text() {
    return _lineEdit->text();
 }
 QString ParameterFile::preset() {
-   return QString::null;
+   return QString();
 } 
 void ParameterFile::reset() {
-   _lineEdit->setText( QString::null );
+   _lineEdit->setText( QString() );
 } 
 bool ParameterFile::valid() {
    if ( _lineEdit->text().isEmpty() )
@@ -371,7 +371,7 @@ bool ParameterFile::valid() {
       return true;
 } 
 void ParameterFile::addFile() {
-   QString filename = KFileDialog::getOpenFileName(QString::null, QString::null, this);
+   QString filename = KFileDialog::getOpenFileName(QString(), QString(), this);
    _lineEdit->insert( filename );
 }
 
@@ -455,10 +455,10 @@ QString ParameterGoto::text() {
    return _lineEdit->text();
 }
 QString ParameterGoto::preset() {
-   return QString::null;
+   return QString();
 } 
 void ParameterGoto::reset() {
-   _lineEdit->setText( QString::null );
+   _lineEdit->setText( QString() );
 } 
 bool ParameterGoto::valid() {
    if ( _lineEdit->text().isEmpty() )
@@ -467,7 +467,7 @@ bool ParameterGoto::valid() {
       return true;
 } 
 void ParameterGoto::setDir() {
-   QString folder = KFileDialog::getExistingDirectory(QString::null, this);
+   QString folder = KFileDialog::getExistingDirectory(QString(), this);
    _lineEdit->setText( folder );
 }
 void ParameterGoto::addPlaceholder() {

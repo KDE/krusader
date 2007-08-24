@@ -64,9 +64,9 @@ public:
             
     public:
       SyncViewItem( SynchronizerFileItem *item, QColor txt, QColor base, Q3ListView * parent, Q3ListViewItem *after, QString label1,
-                    QString label2 = QString::null, QString label3 = QString::null, QString label4 = QString::null,
-                    QString label5 = QString::null, QString label6 = QString::null,
-                    QString label7 = QString::null, QString label8 = QString::null ) :
+                    QString label2 = QString(), QString label3 = QString(), QString label4 = QString(),
+                    QString label5 = QString(), QString label6 = QString(),
+                    QString label7 = QString(), QString label8 = QString() ) :
                       Q3ListViewItem( parent, after, label1, label2, label3, label4, label5, label6,
                                      label7, label8 ), syncItemRef( item ), lastItemRef( 0 ), textColor( txt ), baseColor( base )
       {
@@ -75,9 +75,9 @@ public:
       }
       
       SyncViewItem( SynchronizerFileItem *item, QColor txt, QColor base, Q3ListViewItem * parent, Q3ListViewItem *after, QString label1,
-                    QString label2 = QString::null, QString label3 = QString::null, QString label4 = QString::null,
-                    QString label5 = QString::null, QString label6 = QString::null,
-                    QString label7 = QString::null, QString label8 = QString::null ) :
+                    QString label2 = QString(), QString label3 = QString(), QString label4 = QString(),
+                    QString label5 = QString(), QString label6 = QString(),
+                    QString label7 = QString(), QString label8 = QString() ) :
                       Q3ListViewItem( parent, after, label1, label2, label3, label4, label5, label6,
                                      label7, label8 ), syncItemRef( item ), lastItemRef( 0 ), textColor( txt ), baseColor( base )
       {
@@ -112,7 +112,7 @@ public:
    
 public:
   // if rightDirectory is null, leftDirectory is actually the profile name to load
-  SynchronizerGUI(QWidget* parent,  KUrl leftDirectory, KUrl rightDirectory = QString::null, QStringList selList = QStringList() );
+  SynchronizerGUI(QWidget* parent,  KUrl leftDirectory, KUrl rightDirectory = QString(), QStringList selList = QStringList() );
   SynchronizerGUI(QWidget* parent,  QString profile );
   ~SynchronizerGUI();
 

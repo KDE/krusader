@@ -309,7 +309,7 @@ bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
     if( ( ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return ) && ( ( ke->state() & ~ShiftButton ) == ControlButton ) ) {
 
       QString filename = ACTIVE_PANEL->view->getCurrentItem();
-      if( filename == QString::null || filename == ".." )
+      if( filename == QString() || filename == ".." )
         return true;
       if( ke->state() & ShiftButton ) {
         QString path=vfs::pathOrUrl( ACTIVE_FUNC->files()->vfs_getOrigin(), 1 );

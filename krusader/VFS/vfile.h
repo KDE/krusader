@@ -80,8 +80,8 @@ public:
 	      const QString& symDest,
 	      const mode_t  mode,
 	      const int rwx = -1,
-	      const QString& aclString = QString::null,
-	      const QString& aclDfltString = QString::null );
+	      const QString& aclString = QString(),
+	      const QString& aclDfltString = QString() );
 	
 	bool        operator==(const vfile& vf) const;
 	vfile&      operator= (const vfile& vf); 

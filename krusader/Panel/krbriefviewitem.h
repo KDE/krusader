@@ -64,7 +64,7 @@ public:
 protected:
 	virtual void paintItem(QPainter *p, const QColorGroup &cg);
 	virtual void paintFocus(QPainter *p, const QColorGroup &cg);
-	virtual void calcRect ( const QString & text_ = QString::null );
+	virtual void calcRect ( const QString & text_ = QString() );
 
 private:
 #ifdef FASTER
