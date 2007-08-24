@@ -4,6 +4,8 @@ find_package(KDE4 REQUIRED)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
 add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS} -DQT3_SUPPORT=1)
+add_definitions( -DVERSION="2.0-alpha" )
+add_definitions( -DRELEASE_NAME="Initial version." )
 
 link_directories(${KDE4_LIB_DIR})
 
