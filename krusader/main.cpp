@@ -55,15 +55,6 @@ static const char *description =
 	I18N_NOOP("Krusader\nTwin-Panel File Manager for KDE");
 // INSERT A DESCRIPTION FOR YOUR APPLICATION HERE
 
-static KCmdLineOptions options[] =
-{
-  { "left <path>", I18N_NOOP("Start left panel at <path>"), 0},
-  { "right <path>", I18N_NOOP("Start right panel at <path>"), 0},
-  { "profile <panel-profile>", I18N_NOOP("Load this profile on startup"), 0},
-  { 0, 0, 0 }
-  // INSERT YOUR COMMANDLINE OPTIONS HERE
-};
-
 static void sigterm_handler(int i)
 {
   fprintf(stderr,"Signal: %d\n",i);
@@ -122,70 +113,76 @@ int main(int argc, char *argv[]) {
     "http://www.krusader.org",
     "krusader@users.sourceforge.net");
 
-  aboutData.addAuthor("Rafi Yanai","Author", "yanai@users.sourceforge.net");
-  aboutData.addAuthor("Shie Erlich","Author", "erlich@users.sourceforge.net");
-  aboutData.addAuthor("Karai Csaba", "Developer", "ckarai@users.sourceforge.net", 0);
-  aboutData.addAuthor("Heiner Eichmann","Developer", "h.eichmann@gmx.de", 0);  
-  aboutData.addAuthor("Jonas Baehr", "Developer", "jonas.baehr@web.de", 0);
-  aboutData.addAuthor("Dirk Eschler", "Webmaster and i18n coordinator", "deschler@users.sourceforge.net", 0);
-  aboutData.addAuthor("Frank Schoolmeesters", "Documentation and marketing coordinator", "frank_schoolmeesters@yahoo.com", 0);
-  aboutData.addAuthor("Richard Holt", "Documentation & Proofing", "richard.holt@gmail.com", 0);
-  aboutData.addAuthor("Matej Urbancic", " Marketing & Product Research", "matej.urban@gmail.com", 0);
-  aboutData.addCredit("Václav Juza", "QA, bug-hunting, patches and general help", "vaclavjuza@gmail.com", 0);
-  aboutData.addCredit("Jiri Palecek", "QA, bug-hunting, patches and general help", "jpalecek@web.de", 0);
-  aboutData.addCredit("Andrew Neupokoev", "Killer Logo and Icons for Krusader (contest winner)", "doom-blue@yandex.ru", 0);
-  aboutData.addCredit("The UsefulArts Organization", "Icon for krusader", "mail@usefularts.rg", 0);
-  aboutData.addCredit("Gábor Lehel", "Viewer module for 3rd Hand", "illissius@gmail.com", 0);
-  aboutData.addCredit("Mark Eatough", "Handbook Proof-Reader", "markeatough@yahoo.com", 0);
-  aboutData.addCredit("Jan Halasa", "The old Bookmark Module", "xhalasa@fi.muni.cz", 0);
-  aboutData.addCredit("Hans Loeffler", "Dir history button", 0, 0);
-  aboutData.addCredit("Szombathelyi György", "ISO KIO slave", 0, 0);
-  aboutData.addCredit("Jan Willem van de Meent (Adios)", "Icons for Krusader", "janwillem@lorentz.leidenuniv.nl", 0);
-  aboutData.addCredit("Mikolaj Machowski", "Usability and QA", "<mikmach@wp.pl>", 0);
-  aboutData.addCredit("Cristi Dumitrescu","QA, bug-hunting, patches and general help","cristid@chip.ro",0);
-  aboutData.addCredit("Aurelien Gateau","patch for KViewer","aurelien.gateau@free.fr",0);
-  aboutData.addCredit("Milan Brabec","the first patch ever !","mbrabec@volny.cz",0);
-  aboutData.addCredit("Asim Husanovic","Bosnian translation","asim@megatel.ba",0);
-  aboutData.addCredit("Doutor Zero","Brazilian Portuguese","doutor.zero@gmail.com",0);
-  aboutData.addCredit("Milen Ivanov","Bulgarian translation","milen.ivanov@abv.bg",0);
-  aboutData.addCredit("Quim Perez","Catalan translation","noguer@osona.com",0);
-  aboutData.addCredit("Jinghua Luo","Chinese Simplified translation","luojinghua@msn.com",0);
-  aboutData.addCredit("Mitek","Old Czech translation","mitek@email.cz",0);
-  aboutData.addCredit("Martin Sixta","Old Czech translation","lukumo84@seznam.cz",0);
-  aboutData.addCredit("Vaclav Juza","Czech translation","VaclavJuza@gmail.com",0);
-  aboutData.addCredit("Anders Bruun Olsen", "Old Danish translation", "anders@bruun-olsen.net", 0);
-  aboutData.addCredit("Peter H. Sorensen", "Danish translation", "peters@skydebanen.net", 0);
-  aboutData.addCredit("Frank Schoolmeesters","Dutch translation","frank_schoolmeesters@yahoo.com",0);
-  aboutData.addCredit("Rene-Pierre Lehmann","Old French translation","ripi@lepi.org",0);
-  aboutData.addCredit("David Guillerm","French translation","dguillerm@gmail.com",0);
-  aboutData.addCredit("Christoph Thielecke","Old German translation","crissi99@gmx.de",0);
-  aboutData.addCredit("Dirk Eschler", "German translation", "deschler@users.sourceforge.net", 0);
-  aboutData.addCredit("Spiros Georgaras", "Greek translation", "sngeorgaras@gmail.com", 0);
-  aboutData.addCredit("Kukk Zoltan","Old Hungarian translation","kukkzoli@freemail.hu",0);
-  aboutData.addCredit("Arpad Biro","Hungarian translation","biro_arpad@yahoo.com",0);
-  aboutData.addCredit("Giuseppe Bordoni", "Italian translation", "geppo@geppozone.com", 0);
-  aboutData.addCredit("Hideki Kimura", "Japanese translation", "hangyo1973@gmail.com", 0);
-  aboutData.addCredit("UTUMI Hirosi", "Old Japanese translation", "utuhiro@mx12.freecom.ne.jp", 0);
-  aboutData.addCredit("Dovydas Sankauskas", "Lithuanian translation", "laisve@gmail.com", 0);
-  aboutData.addCredit("Bruno Queiros", "Portuguese translation", "brunoqueiros@portugalmail.com", 0);
-  aboutData.addCredit("Lukasz Janyst","Old Polish translation","ljan@wp.pl",0);
-  aboutData.addCredit("Pawel Salawa","Polish translation","boogie@myslenice.one.pl",0);
-  aboutData.addCredit("Tomek Grzejszczyk","Polish translation","tgrzej@onet.eu",0);
-  aboutData.addCredit("Dmitry A. Bugay","Russian translation","sam@vhnet.ru",0);
-  aboutData.addCredit("Dmitry Chernyak","Old Russian translation","chernyak@mail.ru",0);
-  aboutData.addCredit("Sasa Tomic","Serbian translation","stomic@gmx.net",0);
-  aboutData.addCredit("Zdenko Podobna","Slovak translation","zdpo@mailbox.sk",0);
-  aboutData.addCredit("Matej Urbancic","Slovenian translation","matej.urban@gmail.com",0);
-  aboutData.addCredit("Rafael Munoz","Old Spanish translation","muror@hotpop.com",0);
-  aboutData.addCredit("Alejandro Araiza Alvarado","Spanish translation","mebrelith@gmail.com",0);
-  aboutData.addCredit("Erik Johanssen","Old Swedish translation","erre@telia.com",0);
-  aboutData.addCredit("Anders Linden","Old Swedish translation","connyosis@gmx.net",0);
-  aboutData.addCredit("Peter Landgren","Swedish translation","peter.talken@telia.com",0);
-  aboutData.addCredit("Bekir Sonat","Turkish translation","bekirsonat@kde.org.tr",0);
-  aboutData.addCredit("Ivan Petrouchtchak","Ukrainian translation","connyosis@gmx.net",0);
+  aboutData.addAuthor(ki18n("Rafi Yanai"),ki18n("Author"), "yanai@users.sourceforge.net");
+  aboutData.addAuthor(ki18n("Shie Erlich"),ki18n("Author"), "erlich@users.sourceforge.net");
+  aboutData.addAuthor(ki18n("Karai Csaba"), ki18n("Developer"), "ckarai@users.sourceforge.net", 0);
+  aboutData.addAuthor(ki18n("Heiner Eichmann"), ki18n("Developer"), "h.eichmann@gmx.de", 0);  
+  aboutData.addAuthor(ki18n("Jonas Baehr"), ki18n("Developer"), "jonas.baehr@web.de", 0);
+  aboutData.addAuthor(ki18n("Dirk Eschler"), ki18n("Webmaster and i18n coordinator"), "deschler@users.sourceforge.net", 0);
+  aboutData.addAuthor(ki18n("Frank Schoolmeesters"), ki18n("Documentation and marketing coordinator"), "frank_schoolmeesters@yahoo.com", 0);
+  aboutData.addAuthor(ki18n("Richard Holt"), ki18n("Documentation & Proofing"), "richard.holt@gmail.com", 0);
+  aboutData.addAuthor(ki18n("Matej Urbancic"), ki18n(" Marketing & Product Research"), "matej.urban@gmail.com", 0);
+  aboutData.addCredit(ki18n("Václav Juza"), ki18n("QA, bug-hunting, patches and general help"), "vaclavjuza@gmail.com", 0);
+  aboutData.addCredit(ki18n("Jiri Palecek"), ki18n("QA, bug-hunting, patches and general help"), "jpalecek@web.de", 0);
+  aboutData.addCredit(ki18n("Andrew Neupokoev"), ki18n("Killer Logo and Icons for Krusader (contest winner)"), "doom-blue@yandex.ru", 0);
+  aboutData.addCredit(ki18n("The UsefulArts Organization"), ki18n("Icon for krusader"), "mail@usefularts.rg", 0);
+  aboutData.addCredit(ki18n("Gábor Lehel"), ki18n("Viewer module for 3rd Hand"), "illissius@gmail.com", 0);
+  aboutData.addCredit(ki18n("Mark Eatough"), ki18n("Handbook Proof-Reader"), "markeatough@yahoo.com", 0);
+  aboutData.addCredit(ki18n("Jan Halasa"), ki18n("The old Bookmark Module"), "xhalasa@fi.muni.cz", 0);
+  aboutData.addCredit(ki18n("Hans Loeffler"), ki18n("Dir history button"), 0, 0);
+  aboutData.addCredit(ki18n("Szombathelyi György"), ki18n("ISO KIO slave"), 0, 0);
+  aboutData.addCredit(ki18n("Jan Willem van de Meent (Adios)"), ki18n("Icons for Krusader"), "janwillem@lorentz.leidenuniv.nl", 0);
+  aboutData.addCredit(ki18n("Mikolaj Machowski"), ki18n("Usability and QA"), "<mikmach@wp.pl>", 0);
+  aboutData.addCredit(ki18n("Cristi Dumitrescu"),ki18n("QA, bug-hunting, patches and general help"),"cristid@chip.ro",0);
+  aboutData.addCredit(ki18n("Aurelien Gateau"),ki18n("patch for KViewer"),"aurelien.gateau@free.fr",0);
+  aboutData.addCredit(ki18n("Milan Brabec"),ki18n("the first patch ever !"),"mbrabec@volny.cz",0);
+  aboutData.addCredit(ki18n("Asim Husanovic"),ki18n("Bosnian translation"),"asim@megatel.ba",0);
+  aboutData.addCredit(ki18n("Doutor Zero"),ki18n("Brazilian Portuguese"),"doutor.zero@gmail.com",0);
+  aboutData.addCredit(ki18n("Milen Ivanov"),ki18n("Bulgarian translation"),"milen.ivanov@abv.bg",0);
+  aboutData.addCredit(ki18n("Quim Perez"),ki18n("Catalan translation"),"noguer@osona.com",0);
+  aboutData.addCredit(ki18n("Jinghua Luo"),ki18n("Chinese Simplified translation"),"luojinghua@msn.com",0);
+  aboutData.addCredit(ki18n("Mitek"),ki18n("Old Czech translation"),"mitek@email.cz",0);
+  aboutData.addCredit(ki18n("Martin Sixta"),ki18n("Old Czech translation"),"lukumo84@seznam.cz",0);
+  aboutData.addCredit(ki18n("Vaclav Juza"),ki18n("Czech translation"),"VaclavJuza@gmail.com",0);
+  aboutData.addCredit(ki18n("Anders Bruun Olsen"), ki18n("Old Danish translation"), "anders@bruun-olsen.net", 0);
+  aboutData.addCredit(ki18n("Peter H. Sorensen"), ki18n("Danish translation"), "peters@skydebanen.net", 0);
+  aboutData.addCredit(ki18n("Frank Schoolmeesters"),ki18n("Dutch translation"),"frank_schoolmeesters@yahoo.com",0);
+  aboutData.addCredit(ki18n("Rene-Pierre Lehmann"),ki18n("Old French translation"),"ripi@lepi.org",0);
+  aboutData.addCredit(ki18n("David Guillerm"),ki18n("French translation"),"dguillerm@gmail.com",0);
+  aboutData.addCredit(ki18n("Christoph Thielecke"),ki18n("Old German translation"),"crissi99@gmx.de",0);
+  aboutData.addCredit(ki18n("Dirk Eschler"), ki18n("German translation"), "deschler@users.sourceforge.net", 0);
+  aboutData.addCredit(ki18n("Spiros Georgaras"), ki18n("Greek translation"), "sngeorgaras@gmail.com", 0);
+  aboutData.addCredit(ki18n("Kukk Zoltan"),ki18n("Old Hungarian translation"),"kukkzoli@freemail.hu",0);
+  aboutData.addCredit(ki18n("Arpad Biro"),ki18n("Hungarian translation"),"biro_arpad@yahoo.com",0);
+  aboutData.addCredit(ki18n("Giuseppe Bordoni"), ki18n("Italian translation"), "geppo@geppozone.com", 0);
+  aboutData.addCredit(ki18n("Hideki Kimura"), ki18n("Japanese translation"), "hangyo1973@gmail.com", 0);
+  aboutData.addCredit(ki18n("UTUMI Hirosi"), ki18n("Old Japanese translation"), "utuhiro@mx12.freecom.ne.jp", 0);
+  aboutData.addCredit(ki18n("Dovydas Sankauskas"), ki18n("Lithuanian translation"), "laisve@gmail.com", 0);
+  aboutData.addCredit(ki18n("Bruno Queiros"), ki18n("Portuguese translation"), "brunoqueiros@portugalmail.com", 0);
+  aboutData.addCredit(ki18n("Lukasz Janyst"),ki18n("Old Polish translation"),"ljan@wp.pl",0);
+  aboutData.addCredit(ki18n("Pawel Salawa"),ki18n("Polish translation"),"boogie@myslenice.one.pl",0);
+  aboutData.addCredit(ki18n("Tomek Grzejszczyk"),ki18n("Polish translation"),"tgrzej@onet.eu",0);
+  aboutData.addCredit(ki18n("Dmitry A. Bugay"),ki18n("Russian translation"),"sam@vhnet.ru",0);
+  aboutData.addCredit(ki18n("Dmitry Chernyak"),ki18n("Old Russian translation"),"chernyak@mail.ru",0);
+  aboutData.addCredit(ki18n("Sasa Tomic"),ki18n("Serbian translation"),"stomic@gmx.net",0);
+  aboutData.addCredit(ki18n("Zdenko Podobna"),ki18n("Slovak translation"),"zdpo@mailbox.sk",0);
+  aboutData.addCredit(ki18n("Matej Urbancic"),ki18n("Slovenian translation"),"matej.urban@gmail.com",0);
+  aboutData.addCredit(ki18n("Rafael Munoz"),ki18n("Old Spanish translation"),"muror@hotpop.com",0);
+  aboutData.addCredit(ki18n("Alejandro Araiza Alvarado"),ki18n("Spanish translation"),"mebrelith@gmail.com",0);
+  aboutData.addCredit(ki18n("Erik Johanssen"),ki18n("Old Swedish translation"),"erre@telia.com",0);
+  aboutData.addCredit(ki18n("Anders Linden"),ki18n("Old Swedish translation"),"connyosis@gmx.net",0);
+  aboutData.addCredit(ki18n("Peter Landgren"),ki18n("Swedish translation"),"peter.talken@telia.com",0);
+  aboutData.addCredit(ki18n("Bekir Sonat"),ki18n("Turkish translation"),"bekirsonat@kde.org.tr",0);
+  aboutData.addCredit(ki18n("Ivan Petrouchtchak"),ki18n("Ukrainian translation"),"connyosis@gmx.net",0);
 
   // Command line arguments ...
   KCmdLineArgs::init( argc, argv, &aboutData );
+
+  KCmdLineOptions options;
+  options.add( "left <path>", ki18n("Start left panel at <path>") );
+  options.add( "right <path>", ki18n("Start right panel at <path>") );
+  options.add( "profile <panel-profile>", ki18n("Load this profile on startup") );
+
   KCmdLineArgs::addCmdLineOptions( options ); // Add our own options.
 
   // check for command line arguments
