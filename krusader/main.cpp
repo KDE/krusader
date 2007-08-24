@@ -31,6 +31,7 @@
 // KDE includes
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
+#include <kactionmenu.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
 #include <ksplashscreen.h>
