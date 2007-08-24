@@ -38,7 +38,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kmessagebox.h>
 #include <kaction.h>
 #include <kcursor.h>
-#include <ksystemtray.h>
+#include <ksystemtrayicon.h>
 #include <kmenubar.h>
 #include <kapplication.h>
 #include <kcmdlineargs.h>
@@ -46,11 +46,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <klocale.h>
 #include <kacceleratormanager.h>
 #include <kwindowsystem.h>
-
-#if KDE_IS_VERSION(3,2,0)
-#include <kactionclasses.h>
-#endif
-
 #include <kdeversion.h> 
 // QT includes
 #include <qpixmap.h>
@@ -358,7 +353,7 @@ Krusader::Krusader() : KParts::MainWindow(0,0,Qt::WType_TopLevel|Qt::WDestructiv
                                           "about file below mouse pointer." ) );
 
    // This enables Krusader to show a tray icon
-   sysTray = new KSystemTray( this );
+   sysTray = new KSystemTrayIcon( this );
    // Krusader::privIcon() returns either "krusader_blue" or "krusader_red" if the user got root-privileges
    sysTray->setPixmap( iconLoader->loadIcon( privIcon(), KIcon::Panel, 22 ) );
    sysTray->hide();

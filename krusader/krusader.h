@@ -63,7 +63,7 @@ class KrusaderView;
 class K3Process;
 class KRslots;
 class KIconLoader;
-class KSystemTray;
+class KSystemTrayIcon;
 class UserMenu;
 class UserAction;
 class Expander;
@@ -180,7 +180,7 @@ class Krusader : public KParts::MainWindow /* PORTME , public DCOPObject */ {
     void changeMessage( QString );
 
   private:
-    KSystemTray *sysTray;
+    KSystemTrayIcon *sysTray;
     QPoint       oldPos;
     QSize        oldSize;
     bool         isStarting;
