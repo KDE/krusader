@@ -32,18 +32,6 @@ class KAction;
 class KActionMenu;
 class ListPanel;
 
-#if 0
-/**
- * Extends QTab to include a pointer to the panel contained in this tab
- */
-class PanelTab: public QTab {
-public:
-  PanelTab(const QString & text);
-  PanelTab(const QString & text, ListPanel *p);
-
-  ListPanel *panel;
-};
-#endif
 
 /**
  * This class extends QTabBar such that right-clicking on a tab pops-up a menu
@@ -90,8 +78,10 @@ protected:
   void mousePressEvent( QMouseEvent* );
   void insertAction( KAction* );
   QString squeeze(QString text, int index=-1);
+#if 0 // TODO: fix this
   virtual void dragEnterEvent(QDragEnterEvent *);
   virtual void dragMoveEvent(QDragMoveEvent *);
+#endif
   virtual void resizeEvent ( QResizeEvent *e );
 
 protected slots:

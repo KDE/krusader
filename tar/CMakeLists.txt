@@ -6,8 +6,6 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 set(kio_tar_PART_SRCS tar.cc )
 
-kde4_automoc(${kio_tar_PART_SRCS})
-
 kde4_add_plugin(kio_tar ${kio_tar_PART_SRCS})
 
 target_link_libraries(kio_tar  ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS} )
@@ -18,8 +16,6 @@ install(TARGETS kio_tar DESTINATION ${PLUGIN_INSTALL_DIR} )
 ########### next target ###############
 
 set(ktartest_SRCS ktartest.cpp )
-
-kde4_automoc(${ktartest_SRCS})
 
 if(KDE4_BUILD_TESTS)
 

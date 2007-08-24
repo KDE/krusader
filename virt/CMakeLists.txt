@@ -6,8 +6,6 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 set(kio_virt_PART_SRCS virt.cc )
 
-kde4_automoc(${kio_virt_PART_SRCS})
-
 kde4_add_plugin(kio_virt ${kio_virt_PART_SRCS})
 
 target_link_libraries(kio_virt  ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS} )

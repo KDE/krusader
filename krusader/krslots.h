@@ -53,7 +53,7 @@ class KRslots : public QObject {
   public:
     enum compareMode { full } ;
 
-    KRslots(QObject *parent): QObject(parent, "KRslots") {}
+    KRslots(QObject *parent): QObject(parent) {}
     ~KRslots() {}
 
   public slots:

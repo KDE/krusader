@@ -7,7 +7,7 @@ add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 
 link_directories(${KDE4_LIB_DIR})
 
-include(ConvenienceLibs.cmake)
+# include(ConvenienceLibs.cmake)
 
 # include(ManualStuff.cmake)
 

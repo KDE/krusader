@@ -35,18 +35,16 @@ set(krusader_SRCS
    krslots.cpp 
    kicons.cpp )
 
-kde4_automoc(${krusader_SRCS})
-
 kde4_add_executable(krusader ${krusader_SRCS})
 
-target_link_libraries(krusader  ${KDE4_KDECORE_LIBS} ${KDE4_KPARTS_LIBS} ${KDE4_KHTML_LIBS} ${KDE4_KDEUI_LIBS} )
+target_link_libraries(krusader  ${KDE4_KDECORE_LIBS} BookMan Dialogs DiskUsage radialmap filelightparts GUI Konfigurator KViewer MountMan Panel Queue RemoteMan VFS Search Splitter Synchronizer UserMenu Locate UserAction ActionMan KViewer Filter Dialogs GUI ${KDE4_KPARTS_LIBS} ${KDE4_KHTML_LIBS} ${KDE4_KDEUI_LIBS} )
 
 install(TARGETS krusader DESTINATION ${BIN_INSTALL_DIR})
 
 
 ########### install files ###############
 
-install( FILES  krusader.desktop  	krusader_root-mode.desktop DESTINATION ${XDG_APPS_DIR} )
+install( FILES  krusader.desktop  	krusader_root-mode.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
 install( FILES  krusaderui.rc  	midnight_commander.color  	total_commander.color  	total_commander.keymap  	total_commander.keymap.info  	useraction_examples.xml  	splash.png DESTINATION ${DATA_INSTALL_DIR}/krusader )
 
 kde4_install_icons( ${ICON_INSTALL_DIR} )

@@ -80,6 +80,7 @@ class KrBookmarkButton;
 class KPushButton;
 class ListPanelFunc;
 class Q3Header;
+class QSplitter;
 
 class ListPanel : public QWidget {
    friend class ListPanelFunc;

@@ -31,7 +31,7 @@ public:
 	TagString_t right(unsigned) const;
 	void insert(uint,const QString& s);
 	int find ( QChar c, int index = 0, bool cs = TRUE ) const {
-		return str.find(c,index,cs);
+		return str.indexOf(c,index, (cs ? Qt::CaseSensitive : Qt::CaseInsensitive));
 	}
 	TagString_t& operator+=(const TagString_t& s);
 	typename taglist::const_iterator tagsBegin() const { return tags.begin(); }

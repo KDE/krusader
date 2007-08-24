@@ -22,6 +22,7 @@
 #include <qstringlist.h>
 #include <qmap.h>
 #include <k3process.h>
+#include <q3textstream.h>
 
 /**
   *@author Shie Erlich & Rafi Yanai

@@ -13,8 +13,6 @@ set(kio_iso_PART_SRCS
    kiso.cpp 
    iso.cpp )
 
-kde4_automoc(${kio_iso_PART_SRCS})
-
 kde4_add_plugin(kio_iso ${kio_iso_PART_SRCS})
 
 target_link_libraries(kio_iso  ${KDE4_KDECORE_LIBS} isofs ${KDE4_KIO_LIBS} )

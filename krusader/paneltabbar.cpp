@@ -33,6 +33,8 @@
 #include <QMouseEvent>
 #include <QDragMoveEvent>
 #include <kdebug.h>
+#include <kactionmenu.h>
+
 
 #define DISPLAY(X)	(X.isLocalFile() ? X.path() : X.prettyUrl())
 
@@ -47,7 +49,7 @@ PanelTabBar::PanelTabBar(QWidget *parent): QTabBar(parent), _maxTabLength(0) {
   insertAction(krCloseTab);
   krCloseTab->setEnabled(false); //can't close a single tab
 
-  setShape(QTabBar::TriangularBelow);
+  setShape(QTabBar::TriangularSouth);
 }
 
 void PanelTabBar::mousePressEvent( QMouseEvent* e ) {
@@ -59,17 +61,17 @@ void PanelTabBar::mousePressEvent( QMouseEvent* e ) {
 
   setCurrentIndex( clickedTab );
 
-  ListPanel *panel = static_cast<ListPanel*>(tabData(clickedTab));
+  ListPanel *panel = (ListPanel*)tabData(clickedTab).toLongLong();
   emit changePanel(panel);
 
   if ( e->button() == Qt::RightButton ) {
     // show the popup menu
-    _panelActionMenu->popup( e->globalPos() );
+    _panelActionMenu->popupMenu()->popup( e->globalPos() );
   } else
   if ( e->button() == Qt::LeftButton ) { // we need to change tabs
     // first, find the correct panel to load
     int id = currentIndex();
-    ListPanel *listpanel = static_cast<ListPanel*>(tabData(id));
+    ListPanel *listpanel = (ListPanel*)tabData(id).toLongLong();
     emit changePanel(listpanel);
   } else
   if (e->button() == Qt::MidButton) { // close the current tab
@@ -79,20 +81,22 @@ void PanelTabBar::mousePressEvent( QMouseEvent* e ) {
 }
 
 void PanelTabBar::insertAction( KAction* action ) {
-  _panelActionMenu->insert( action );
+  _panelActionMenu->addAction( action );
 }
 
 int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent ) {
   int newId = addTab(squeeze(DISPLAY(panel->virtualPath())));
-  setTabData(newId, panel);
+  QVariant v;
+  v.setValue((long long)panel);
+  setTabData(newId, v);
 
   // make sure all tabs lengths are correct
   for (int i=0; i<count(); i++)
-    setTabText(i, squeeze(DISPLAY(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath()), i));
-  layoutTabs();
+    setTabText(i, squeeze(DISPLAY(((ListPanel*)tabData(i).toLongLong())->virtualPath()), i));
+// layoutTabs();
   
   if( setCurrent )
-    setCurrentTab(newId);
+    setCurrentIndex(newId);
 
   // enable close-tab action
   if (count()>1) {
@@ -100,25 +104,25 @@ int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent ) {
   }
 
 
-connect(static_cast<ListPanel*>(tabData(newId)), SIGNAL(pathChanged(ListPanel*)),
+connect((ListPanel*)tabData(newId).toLongLong(), SIGNAL(pathChanged(ListPanel*)),
           this, SLOT(updateTab(ListPanel*)));
 
   return newId;
 }
 
 ListPanel* PanelTabBar::removeCurrentPanel(ListPanel* &panelToDelete) {
-  int id = currentTab();
-  ListPanel *oldp = static_cast<ListPanel*>(tabData(id)); // old panel to kill later
+  int id = currentIndex();
+  ListPanel *oldp = (ListPanel*)tabData(id).toLongLong(); // old panel to kill later
   disconnect(oldp);
-  removeTab(tab(id));
+  removeTab(id);
 
   for (int i=0; i<count(); i++)
-    setTabText(i, squeeze(DISPLAY(static_cast<ListPanel*>(tabData(i))->virtualPath()), i));
-  layoutTabs();
+    setTabText(i, squeeze(DISPLAY(((ListPanel*)tabData(i).toLongLong())->virtualPath()), i));
+  //layoutTabs();
 
   // setup current one
-  id = currentTab();
-  ListPanel *p = static_cast<ListPanel*>(tabData(id));
+  id = currentIndex();
+  ListPanel *p = (ListPanel*)tabData(id).toLongLong();
   // disable close action?
   if (count()==1) {
     krCloseTab->setEnabled(false);
@@ -131,7 +135,7 @@ ListPanel* PanelTabBar::removeCurrentPanel(ListPanel* &panelToDelete) {
 void PanelTabBar::updateTab(ListPanel *panel) {
   // find which is the correct tab
   for (int i=0; i<count(); i++) {
-    if (static_cast<ListPanel*>(tabData(i)) == panel) {
+    if ((ListPanel*)tabData(i).toLongLong() == panel) {
       setTabText(i, squeeze(DISPLAY(panel->virtualPath()),i));
       break;
     }
@@ -139,8 +143,8 @@ void PanelTabBar::updateTab(ListPanel *panel) {
 }
 
 void PanelTabBar::duplicateTab() {
-  int id = currentTab();
-  emit newTab(static_cast<ListPanel*>(tabData(id))->virtualPath());
+  int id = currentIndex();
+  emit newTab(((ListPanel*)tabData(id).toLongLong())->virtualPath());
 }
 
 void PanelTabBar::closeTab() {
@@ -166,14 +170,14 @@ QString PanelTabBar::squeeze(QString text, int index) {
       QString shortName;
                     
       if( text.contains( ":/" ) )
-        shortName = text.left( text.find( ":/" ) ) + ":";
+        shortName = text.left( text.indexOf( ":/" ) ) + ":";
     
-      shortName += text.mid( text.findRev( "/" ) + 1 );      
+      shortName += text.mid( text.lastIndexOf( "/" ) + 1 );      
       text = shortName;
     }
     
     if( index >= 0 )
-      setToolTip( index, originalText );
+      setTabToolTip( index, originalText );
     
     index = -1;
   }
@@ -219,7 +223,7 @@ QString PanelTabBar::squeeze(QString text, int index) {
     }
 
     if( index >= 0 )
-      setToolTip( index, originalText );
+      setTabToolTip( index, originalText );
 
     if (letters < 5) {
     	// too few letters added -> we give up squeezing
@@ -229,8 +233,8 @@ QString PanelTabBar::squeeze(QString text, int index) {
 	    return squeezedText;
     }
   } else {
-    if( index >= 0 )
-      removeToolTip( index );
+    //if( index >= 0 )
+    //  removeTabToolTip( index );
       
     return text;
   };
@@ -240,28 +244,28 @@ void PanelTabBar::resizeEvent ( QResizeEvent *e ) {
     QTabBar::resizeEvent( e );
      
     for (int i=0; i<count(); i++)
-	    tabAt(i)->setText(squeeze(DISPLAY(static_cast<ListPanel*>(tabData(i))->virtualPath()), i));
-    layoutTabs();
+	    setTabText(i, squeeze(DISPLAY(((ListPanel*)tabData(i).toLongLong())->virtualPath()), i));
+    //layoutTabs();
 }
 
-
+#if 0 // TODO: fix this
 void PanelTabBar::dragEnterEvent(QDragEnterEvent *e) {
 	QTab *t = selectTab(e->pos());
 	if (!t) return;
-	if (tab(currentTab()) != t) {
-		setCurrentTab(t);
-		emit changePanel(static_cast<ListPanel*>(tabData(t)));
+	if (tab(currentIndex()) != t) {
+		setCurrentIndex(t);
+		emit changePanel(static_cast<ListPanel*>((ListPanel*)tabData(t)));
 	}
 }
 
 void PanelTabBar::dragMoveEvent(QDragMoveEvent *e) {
 	QTab *t = selectTab(e->pos());
 	if (!t) return;
-	if (tab(currentTab()) != t) {
-		setCurrentTab(t);
-		emit changePanel(static_cast<ListPanel*>(tabData(t)));
+	if (tab(currentIndex()) != t) {
+		setCurrentIndex(t);
+		emit changePanel(static_cast<ListPanel*>((ListPanel*)tabData(t)));
 	}
 }
-
+#endif
 
 #include "paneltabbar.moc"

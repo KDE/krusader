@@ -44,7 +44,7 @@
 // KDE includes
 #include <klineedit.h>
 #include <kshellcompletion.h>
-#include <kcombobox.h>
+#include <khistorycombobox.h>
 
 #include "../UserAction/kractionbase.h"
 
@@ -86,8 +86,8 @@ class KCMDLine : public QWidget, KrActionBase {
     void slotReturnFocus(); // returns keyboard focus to panel
     void slotRun();
     void addPlaceholder();
-    void addText( QString text ) { cmdLine->setCurrentText( cmdLine->currentText() + text ); }
-    void popup() { cmdLine->popup(); }
+    void addText( QString text ) { cmdLine->setCurrentItem( cmdLine->currentText() + text ); }
+    void popup() { cmdLine->showPopup(); }
 
 
   private:
