@@ -38,6 +38,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <qeventloop.h>
+#include <QAbstractEventDispatcher>
 //Added by qt3to4:
 #include <QPixmap>
 #include <Q3CString>
@@ -51,15 +52,11 @@
 #include <kstartupinfo.h>
 #include <stdlib.h>
 
-static const char *description =
-	I18N_NOOP("Krusader\nTwin-Panel File Manager for KDE");
-// INSERT A DESCRIPTION FOR YOUR APPLICATION HERE
-
 static void sigterm_handler(int i)
 {
   fprintf(stderr,"Signal: %d\n",i);
 
-  QApplication::eventLoop()->wakeUp();
+  QAbstractEventDispatcher::instance()->wakeUp();
   KApplication::exit( - 15 );
 }
 
@@ -98,17 +95,19 @@ int main(int argc, char *argv[]) {
   }
 // ============ end icon-stuff ===========
 
+  KLocalizedString description = ki18n( "Krusader\nTwin-Panel File Manager for KDE" );
+
   // ABOUT data information
 #ifdef RELEASE_NAME
   QString versionName = QString("%1 \"%2\"").arg(VERSION).arg(RELEASE_NAME);
 #else
-  QString versionName = VERSION;
+  QString versionName = QString( VERSION );
 #endif
-  KAboutData aboutData( "krusader", ( geteuid() ? I18N_NOOP("Krusader") :
-                        I18N_NOOP("Krusader - ROOT PRIVILEGES")),
-    versionName.toLatin1(), description, KAboutData::License_GPL,
-    "(c) 2000-2003, Shie Erlich, Rafi Yanai\n(c) 2004-2007, Krusader Krew",
-    I18N_NOOP("Feedback\nhttp://www.krusader.org/phpBB/\n\n"
+  KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") :
+                        ki18n("Krusader - ROOT PRIVILEGES")),
+    versionName.latin1(), description, KAboutData::License_GPL,
+    ki18n("(c) 2000-2003, Shie Erlich, Rafi Yanai\n(c) 2004-2007, Krusader Krew"),
+    ki18n("Feedback\nhttp://www.krusader.org/phpBB/\n\n"
               "IRC\nserver: irc.freenode.net, channel: #krusader"),
     "http://www.krusader.org",
     "krusader@users.sourceforge.net");
