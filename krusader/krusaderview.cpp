@@ -38,6 +38,8 @@
 #include <kstatusbar.h>
 #include <kmenubar.h>
 #include <kshortcut.h>
+#include <ktoolbar.h>
+#include <ktoggleaction.h>
 // Krusader includes
 #include "krusaderview.h"
 #include "krusader.h"
@@ -64,7 +66,7 @@ void KrusaderView::start( QStringList leftTabs, QStringList leftTypes, int leftA
   mainLayout = new Q3GridLayout( this, 1, 1 );
   // vertical splitter
   vert_splitter = new QSplitter( this ); // splits between panels and terminal/cmdline
-  vert_splitter->setOrientation( QObject::Vertical );
+  vert_splitter->setOrientation( Qt::Vertical );
   // horizontal splitter
   horiz_splitter = new PercentalSplitter( vert_splitter );
   ( terminal_dock = new Q3HBox( vert_splitter ) ) ->hide(); // create it hidden
@@ -135,10 +137,10 @@ void KrusaderView::start( QStringList leftTabs, QStringList leftTypes, int leftA
 void KrusaderView::slotCurrentChanged( QString p ) {
   cmdLine->setCurrent( p );
   if ( konsole_part != 0L && konsole_part->widget() != 0L ) {
-	 KConfigGroupSaver grp(krConfig, "General");
-    if (krConfig->readBoolEntry("Send CDs", _SendCDs)) // hopefully, this is cached in kconfig
-        if( !konsole_part->url().equals( KUrl( p ), true ) )
-           konsole_part->openURL( KUrl( p ) );
+	 KConfigGroup cfg = krConfig->group("General");
+    if (cfg.readEntry("Send CDs", _SendCDs)) // hopefully, this is cached in kconfig
+        if( !konsole_part->url().equals( KUrl( p ), KUrl::CompareWithoutTrailingSlash ) )
+           konsole_part->openUrl( KUrl( p ) );
   }
 }
 
@@ -158,7 +160,7 @@ void KrusaderView::createTE() {
       QWidget *focusW = qApp->focusWidget();
       // Create the part
       konsole_part = ( KParts::ReadOnlyPart * )
-                          factory->create( terminal_dock, "konsolepart",
+                          factory->create( (QObject*)terminal_dock, /*"konsolepart",*/
                                            "KParts::ReadOnlyPart" );
       if( konsole_part ) { //loaded successfully
         connect( konsole_part, SIGNAL( destroyed() ),
@@ -185,8 +187,8 @@ void KrusaderView::panelSwitch() { activePanel->otherPanel->slotFocusOnMe(); }
 void KrusaderView::slotSetActivePanel( ListPanel *p ) { activePanel = p; }
 
 void KrusaderView::slotTerminalEmulator( bool show ) {
-  KConfigGroupSaver grp(krConfig, "Look&Feel");
-  bool fullscreen = krConfig->readBoolEntry("Fullscreen Terminal Emulator", false);
+  KConfigGroup cfg = krConfig->group("Look&Feel");
+  bool fullscreen = cfg.readEntry("Fullscreen Terminal Emulator", false);
   static bool fnKeysShown=true; // first time init. should be overridden
   static bool cmdLineShown=true;
   static bool statusBarShown=true;
@@ -275,8 +277,8 @@ void KrusaderView::focusTerminalEmulator()
 void KrusaderView::switchFullScreenTE()
 {
   if( terminal_dock->isVisible() && konsole_part && konsole_part->widget() && konsole_part->widget()->isVisible() ) {
-    KConfigGroup grp(krConfig, "Look&Feel");
-    bool fullscreen=grp.readBoolEntry("Fullscreen Terminal Emulator", false);
+    KConfigGroup grp = krConfig->group("Look&Feel");
+    bool fullscreen=grp.readEntry("Fullscreen Terminal Emulator", false);
     slotTerminalEmulator( false );
     grp.writeEntry("Fullscreen Terminal Emulator", !fullscreen);
     slotTerminalEmulator( true );
@@ -287,31 +289,31 @@ void KrusaderView::switchFullScreenTE()
 bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
   if( e->type() == QEvent::AccelOverride && konsole_part && konsole_part->widget() == watched ) {
     QKeyEvent *ke = (QKeyEvent *)e;
-    if( ( ke->key() ==  Qt::Key_Insert ) && ( ke->state()  == ShiftButton ) ) {
+    if( ( ke->key() ==  Qt::Key_Insert ) && ( ke->state()  == Qt::ShiftButton ) ) {
       ke->accept();
       return true;
     }
   }
   else if( e->type() == QEvent::KeyPress && konsole_part && konsole_part->widget() == watched ) {
     QKeyEvent *ke = (QKeyEvent *)e;
-    KKey pressedKey( ke );
+    int pressedKey = (ke->key() | ke->modifiers());
 
     if( Krusader::actToggleTerminal->shortcut().contains( pressedKey ) ) {
-        Krusader::actToggleTerminal->activate();
+        Krusader::actToggleTerminal->activate(QAction::Trigger);
         return true;
     }
 
     if( Krusader::actSwitchFullScreenTE->shortcut().contains( pressedKey ) ) {
-        Krusader::actSwitchFullScreenTE->activate();
+        Krusader::actSwitchFullScreenTE->activate(QAction::Trigger);
         return true;
     }
 
-    if( ( ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return ) && ( ( ke->state() & ~ShiftButton ) == ControlButton ) ) {
+    if( ( ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return ) && ( ( ke->state() & ~Qt::ShiftButton ) == Qt::ControlButton ) ) {
 
       QString filename = ACTIVE_PANEL->view->getCurrentItem();
       if( filename == QString() || filename == ".." )
         return true;
-      if( ke->state() & ShiftButton ) {
+      if( ke->state() & Qt::ShiftButton ) {
         QString path=vfs::pathOrUrl( ACTIVE_FUNC->files()->vfs_getOrigin(), 1 );
         filename = path+filename;
       }
@@ -321,12 +323,12 @@ bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
       QKeyEvent keyEvent( QEvent::KeyPress, 0, -1, 0, QString( " " ) + filename + QString( " " ));
       QApplication::sendEvent( konsole_part->widget(), &keyEvent );
       return true;
-    } else if( ( ke->key() ==  Qt::Key_Down ) && ( ke->state() == ControlButton ) ) {
+    } else if( ( ke->key() ==  Qt::Key_Down ) && ( ke->state() == Qt::ControlButton ) ) {
       if( cmdLine->isVisible() )
         cmdLine->setFocus();
       return true;
-    } else if( ( ( ke->key() ==  Qt::Key_Up ) && ( ke->state()  == ControlButton ) ) || 
-               ( ke->state()  == ( ControlButton | ShiftButton ) ) ) {
+    } else if( ( ( ke->key() ==  Qt::Key_Up ) && ( ke->state()  == Qt::ControlButton ) ) || 
+               ( ke->state()  == ( Qt::ControlButton | Qt::ShiftButton ) ) ) {
       ACTIVE_PANEL->slotFocusOnMe();
       return true;
     } else if( Krusader::actPaste->shortcut().contains( pressedKey ) ) {
@@ -398,9 +400,9 @@ void KrusaderView::savePanelProfiles( QString group )
 }
 
 void KrusaderView::toggleVerticalMode() {
-	if (horiz_splitter->orientation() == QSplitter::Vertical)
-		horiz_splitter->setOrientation(QSplitter::Horizontal);
-	else horiz_splitter->setOrientation(QSplitter::Vertical);
+	if (horiz_splitter->orientation() == Qt::Vertical)
+		horiz_splitter->setOrientation(Qt::Horizontal);
+	else horiz_splitter->setOrientation(Qt::Vertical);
 }
 
 #include "krusaderview.moc"
