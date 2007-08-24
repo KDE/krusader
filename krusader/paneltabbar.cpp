@@ -105,6 +105,12 @@ connect((ListPanel*)tabData(newId).toLongLong(), SIGNAL(pathChanged(ListPanel*))
   return newId;
 }
 
+ListPanel* PanelTabBar::getPanel(int tabIdx) {
+  QVariant v = tabData(tabIdx);
+  if (v.isNull()) return 0;
+  return (ListPanel*)v.toLongLong();
+}
+
 ListPanel* PanelTabBar::removeCurrentPanel(ListPanel* &panelToDelete) {
   int id = currentIndex();
   ListPanel *oldp = (ListPanel*)tabData(id).toLongLong(); // old panel to kill later

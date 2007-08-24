@@ -48,6 +48,9 @@ public slots:
    * called by PanelManager with an already created panel, and creates the corrosponding tab
    */
   int addPanel(ListPanel *panel, bool setCurrent = true );
+
+  ListPanel* getPanel(int tabIdx);
+
   /**
    * when the user changes the current path in a panel, this method updates the tab accordingly
    */

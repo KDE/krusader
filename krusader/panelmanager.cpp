@@ -100,10 +100,10 @@ void PanelManager::saveSettings( KConfig *config, const QString& key, bool local
    QStringList types;
    int i=0, cnt=0;
    while (cnt < _tabbar->count()) {
-      PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt(i));
-      if (t && t->panel) {
-         l << ( localOnly ? t->panel->realPath() : vfs::pathOrUrl( t->panel->virtualPath() ) );
-         types << t->panel->getType();
+      ListPanel *panel = _tabbar->getPanel(i);
+      if (panel) {
+         l << ( localOnly ? panel->realPath() : vfs::pathOrUrl( panel->virtualPath() ) );
+         types << panel->getType();
          ++cnt;
       }
       ++i;
@@ -121,7 +121,7 @@ void PanelManager::loadSettings( KConfig *config, const QString& key ) {
      
    while( types.count() < l.count() )
    {
-      KConfigGroupSaver saver( config, "Look&Feel");
+      KConfigGroup cg = config->group("Look&Feel");
       types << krConfig->readEntry( "Default Panel Type", _DefaultPanelType );
    }
    
@@ -129,15 +129,15 @@ void PanelManager::loadSettings( KConfig *config, const QString& key ) {
    
    while (i < totalTabs && i < (int)l.count() ) 
    {
-      PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt(i));
-      if (t && t->panel) 
+		ListPanel *panel = _tabbar->getPanel(i);
+      if (panel) 
       {
-         if( t->panel->getType() != types[ i ] )
-           t->panel->changeType( types[ i ] );
-         t->panel->otherPanel = _other;
-         _other->otherPanel = t->panel;
-         t->panel->func->files()->vfs_enableRefresh( true );
-         t->panel->func->immediateOpenUrl( vfs::fromPathOrUrl( l[ i ] ) );
+         if( panel->getType() != types[ i ] )
+         	panel->changeType( types[ i ] );
+         panel->otherPanel = _other;
+         _other->otherPanel = panel;
+         panel->func->files()->vfs_enableRefresh( true );
+         panel->func->immediateOpenUrl( vfs::fromPathOrUrl( l[ i ] ) );
       }
       ++i;
    }
@@ -194,23 +194,23 @@ void PanelManager::slotCloseTab() {
 }
 
 void PanelManager::slotCloseTab( int index ) {
-   PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt( index ));
-   if (t && t->panel) 
+   ListPanel *panel = _tabbar->getPanel(index);
+   if (panel) 
    {
-      ListPanel *oldp = t->panel;
+      ListPanel *oldp = panel;
       disconnect( oldp );
-      if( t->identifier() == _tabbar->currentTab() )
+      if( index == _tabbar->currentIndex() )
       {
-         PanelTab *newCurrent = dynamic_cast<PanelTab*>( _tabbar->tabAt( 0 ) );
-         if( newCurrent != 0 )
+			ListPanel *newCurrentPanel = _tabbar->getPanel(0);
+         if( newCurrentPanel != 0 )
          {
-            _tabbar->setCurrentTab( newCurrent );
-            _self = newCurrent->panel;
+            _tabbar->setCurrentIndex( 0 );
+            _self = newCurrentPanel;
             _self->otherPanel = _other;
             _other->otherPanel = _self;
          }
       }  
-      _tabbar->removeTab( t );
+      _tabbar->removeTab( index );
 
       _stack->removeWidget( oldp );
       deletePanel( oldp );
@@ -231,29 +231,23 @@ void PanelManager::slotRefreshActions() {
 
 int PanelManager::activeTab()
 {
-  return _tabbar->indexOf( _tabbar->currentTab() );
+  return _tabbar->currentIndex();
 }
 
 void PanelManager::setActiveTab( int panelIndex )
 {
-  QTab *current = _tabbar->tabAt( panelIndex );
-  if( current == 0 )
-    return;  
-  _tabbar->setCurrentTab( current );
-  slotChangePanel ( dynamic_cast<PanelTab*>( _tabbar->tabAt( panelIndex ) )->panel );
+	_tabbar->setCurrentIndex(panelIndex);
+	slotChangePanel ( _tabbar->getPanel(panelIndex) );
 }
 
 void PanelManager::setCurrentTab( int panelIndex )
 {
-  PanelTab *current = dynamic_cast<PanelTab*>(_tabbar->tabAt( panelIndex ) );
-  if( current == 0 )
-    return;  
-  _tabbar->setCurrentTab( current );
-  _self = current->panel;
-  _self->otherPanel = _other;
-  _other->otherPanel = _self;
-
-  _stack->raiseWidget( _self );
+	_tabbar->setCurrentIndex( panelIndex );
+	_self = _tabbar->getPanel(panelIndex);
+	_self->otherPanel = _other;
+	_other->otherPanel = _self;
+	
+	_stack->raiseWidget( _self );
 }
 
 void PanelManager::slotRecreatePanels() {
@@ -261,9 +255,9 @@ void PanelManager::slotRecreatePanels() {
    
    for( int i = 0; i != _tabbar->count(); i++ )
    {
-     PanelTab *updatedPanel = dynamic_cast<PanelTab*>(_tabbar->tabAt( i ) );
+		ListPanel *updatedPanel = _tabbar->getPanel(i);
      
-     ListPanel *oldPanel = updatedPanel->panel;
+     ListPanel *oldPanel = updatedPanel;
      QString type = oldPanel->getType();
      ListPanel *newPanel = new ListPanel( type, _stack, _left );
      _stack->addWidget( newPanel, i );
@@ -276,7 +270,7 @@ void PanelManager::slotRecreatePanels() {
      newPanel->otherPanel = _other;
      if( _other->otherPanel == oldPanel )
        _other->otherPanel = newPanel;         
-     updatedPanel->panel = newPanel;
+     updatedPanel = newPanel;
      newPanel->start( oldPanel->virtualPath(), true );          
      if( _self == oldPanel )
      {
@@ -293,28 +287,28 @@ void PanelManager::slotRecreatePanels() {
 }
 
 void PanelManager::slotNextTab() {
-   int currTab = _tabbar->currentTab();
-	int nextInd = (_tabbar->indexOf(currTab) == _tabbar->count()-1 ? 0 : _tabbar->indexOf(currTab)+1);
-	ListPanel *nextp = dynamic_cast<PanelTab*>(_tabbar->tabAt(nextInd))->panel;
-	_tabbar->setCurrentTab(_tabbar->tabAt(nextInd));	
-	slotChangePanel(nextp);   
+   int currTab = _tabbar->currentIndex();
+	int nextInd = (currTab == _tabbar->count()-1 ? 0 : currTab+1);
+	ListPanel *nextp = _tabbar->getPanel(nextInd);
+	_tabbar->setCurrentTab(nextInd);
+	slotChangePanel(nextp);
 }
 
 
 void PanelManager::slotPreviousTab() {
-   int currTab = _tabbar->currentTab();
-	int nextInd = (_tabbar->indexOf(currTab) == 0 ? _tabbar->count()-1 : _tabbar->indexOf(currTab)-1);
-	ListPanel *nextp = dynamic_cast<PanelTab*>(_tabbar->tabAt(nextInd))->panel;
-	_tabbar->setCurrentTab(_tabbar->tabAt(nextInd));	
+   int currTab = _tabbar->currentIndex();
+	int nextInd = (currTab == 0 ? _tabbar->count()-1 : currTab-1);
+	ListPanel *nextp = _tabbar->getPanel(nextInd);
+	_tabbar->setCurrentTab(nextInd);	
 	slotChangePanel(nextp);   
 }
 
 void PanelManager::refreshAllTabs( bool invalidate ) {
    int i=0;
    while (i < _tabbar->count()) {
-      PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt(i));
-      if (t && t->panel && t->panel->func ) {
-         vfs * vfs = t->panel->func->files();
+		ListPanel *panel = _tabbar->getPanel(i);
+      if (panel && panel->func ) {
+         vfs * vfs = panel->func->files();
          if( vfs ) {
             if( invalidate )
                vfs->vfs_invalidate();
