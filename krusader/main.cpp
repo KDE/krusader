@@ -38,30 +38,32 @@
 #include <unistd.h>
 #include <signal.h>
 #include <qeventloop.h>
-#include <QAbstractEventDispatcher>
 //Added by qt3to4:
 #include <QPixmap>
 #include <Q3CString>
+#include <QAbstractEventDispatcher>
 
 // Krusader includes
 #include "krusader.h"
 #include "krslots.h"
 #include "krusaderapp.h"
 #include "defaults.h"
-#include <dcopclient.h>
 #include <kstartupinfo.h>
 #include <stdlib.h>
+
+static const char *description = "Krusader\nTwin-Panel File Manager for KDE";
 
 static void sigterm_handler(int i)
 {
   fprintf(stderr,"Signal: %d\n",i);
 
-  QAbstractEventDispatcher::instance()->wakeUp();
+  QAbstractEventDispatcher *instance = QAbstractEventDispatcher::instance();
+  if (instance)
+		instance->wakeUp();
   KApplication::exit( - 15 );
 }
 
 int main(int argc, char *argv[]) {
-
 // ============ begin icon-stuff ===========
 // If the user has no icon specified over the commandline we set up uor own.
 // this is acording to the users privileges. The icons are in Krusader::privIcon()
@@ -95,22 +97,20 @@ int main(int argc, char *argv[]) {
   }
 // ============ end icon-stuff ===========
 
-  KLocalizedString description = ki18n( "Krusader\nTwin-Panel File Manager for KDE" );
-
   // ABOUT data information
+#define STRINGIFY(TEXT)		#TEXT
 #ifdef RELEASE_NAME
-  QString versionName = QString("%1 \"%2\"").arg(VERSION).arg(RELEASE_NAME);
+  const char *versionName = qPrintable(QString("%1 \"%2\"").arg(STRINGIFY(VERSION)).arg(STRINGIFY(RELEASE_NAME)));
 #else
-  QString versionName = QString( VERSION );
+  const char *versionName = STRINGIFY(VERSION);
 #endif
-  KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") :
-                        ki18n("Krusader - ROOT PRIVILEGES")),
-    versionName.latin1(), description, KAboutData::License_GPL,
-    ki18n("(c) 2000-2003, Shie Erlich, Rafi Yanai\n(c) 2004-2007, Krusader Krew"),
-    ki18n("Feedback\nhttp://www.krusader.org/phpBB/\n\n"
-              "IRC\nserver: irc.freenode.net, channel: #krusader"),
-    "http://www.krusader.org",
-    "krusader@users.sourceforge.net");
+#undef STRINGIFY
+
+KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") : ki18n("Krusader - ROOT PRIVILEGES")),
+    versionName, ki18n(description), KAboutData::License_GPL_V2,
+    ki18n("(c) 2000-2003, Shie Erlich, Rafi Yanai\n(c) 2004-2007, Krusader Krew"), 
+    ki18n("Feedback:\nhttp://www.krusader.org/phpBB/\n\nIRC\nserver: irc.freenode.net, channel: #krusader"),
+    "http://www.krusader.org");
 
   aboutData.addAuthor(ki18n("Rafi Yanai"),ki18n("Author"), "yanai@users.sourceforge.net");
   aboutData.addAuthor(ki18n("Shie Erlich"),ki18n("Author"), "erlich@users.sourceforge.net");

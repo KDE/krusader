@@ -2,6 +2,7 @@
 #define KRBOOKMARK_BUTTON_H
 
 #include <qtoolbutton.h>
+#include <kactionmenu.h>
 #include "krbookmarkhandler.h"
 
 class KrBookmarkButton: public QToolButton {
