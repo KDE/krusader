@@ -233,7 +233,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	// title (icon+text)	
 	Q3HBoxLayout *hlayout = new Q3HBoxLayout(layout, KDialog::spacingHint());
 	QLabel *p = new QLabel(plainPage());
-	p->setPixmap(krLoader->loadIcon("binary", KIcon::Desktop, 32));
+	p->setPixmap(krLoader->loadIcon("binary", K3Icon::Desktop, 32));
 	hlayout->addWidget(p);
 	QLabel *l1 = new QLabel(i18n("About to calculate checksum for the following files") + 
 		(containFolders ? i18n(" and folders:") : ":"), plainPage());
@@ -334,7 +334,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	// title (icon+text)	
 	Q3HBoxLayout *hlayout = new Q3HBoxLayout(layout, KDialog::spacingHint());
 	QLabel *p = new QLabel(plainPage());
-	p->setPixmap(krLoader->loadIcon("binary", KIcon::Desktop, 32));
+	p->setPixmap(krLoader->loadIcon("binary", K3Icon::Desktop, 32));
 	hlayout->addWidget(p);
 	QLabel *l1 = new QLabel(i18n("About to verify checksum for the following files") +
 		(containFolders ? i18n(" and folders:") : ":"), plainPage());
@@ -440,7 +440,7 @@ VerifyResultDlg::VerifyResultDlg(const QStringList& failed):
 	// create the icon and title
 	Q3HBoxLayout *hlayout = new Q3HBoxLayout(layout, KDialog::spacingHint());
 	QLabel p(plainPage());
-	p.setPixmap(krLoader->loadIcon(errors ? "messagebox_critical" : "messagebox_info", KIcon::Desktop, 32));
+	p.setPixmap(krLoader->loadIcon(errors ? "messagebox_critical" : "messagebox_info", K3Icon::Desktop, 32));
 	hlayout->addWidget(&p);
 	
 	QLabel *l1 = new QLabel((errors ? i18n("Errors were detected while verifying the checksums") :
@@ -478,7 +478,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 	// create the icon and title
 	Q3HBoxLayout *hlayout = new Q3HBoxLayout(layout, KDialog::spacingHint());
 	QLabel p(plainPage());
-	p.setPixmap(krLoader->loadIcon(errors ? "messagebox_critical" : "messagebox_info", KIcon::Desktop, 32));
+	p.setPixmap(krLoader->loadIcon(errors ? "messagebox_critical" : "messagebox_info", K3Icon::Desktop, 32));
 	hlayout->addWidget(&p);
 	
 	QLabel *l1 = new QLabel((errors ? i18n("Errors were detected while creating the checksums") :

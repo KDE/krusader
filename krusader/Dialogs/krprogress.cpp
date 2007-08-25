@@ -51,8 +51,8 @@ KrProgress::KrProgress( KIO::Job* job )
 #ifdef Q_WS_X11 //FIXME(E): Remove once all the KWindowSystem::foo calls have been ported to QWS
   // Set a useful icon for this window!
   KWindowSystem::setIcons( winId(),
-          KIconLoader::global()->loadIcon( "filesave", KIcon::NoGroup, 32 ),
-          KIconLoader::global()->loadIcon( "filesave", KIcon::NoGroup, 16 ) );
+          KIconLoader::global()->loadIcon( "filesave", K3Icon::NoGroup, 32 ),
+          KIconLoader::global()->loadIcon( "filesave", K3Icon::NoGroup, 16 ) );
 #endif
 
   Q3VBoxLayout *topLayout = new Q3VBoxLayout( this, KDialog::marginHint(),

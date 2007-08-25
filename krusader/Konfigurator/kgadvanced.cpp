@@ -40,15 +40,15 @@
 #include <kdeversion.h>
 #include <kprotocolinfo.h>
 
-KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
-      KonfiguratorPage( first, parent, name )
+KgAdvanced::KgAdvanced( bool first, QWidget* parent ) :
+      KonfiguratorPage( first, parent )
 {
   Q3GridLayout *kgAdvancedLayout = new Q3GridLayout( parent );
   kgAdvancedLayout->setSpacing( 6 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
   
-  Q3GroupBox *generalGrp = createFrame( i18n( "General" ), parent, "kgAdvGeneralGrp" );
+  Q3GroupBox *generalGrp = createFrame( i18n( "General" ), parent );
   Q3GridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
 #if KDE_IS_VERSION( 3,5,1 )
@@ -75,7 +75,7 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
   generalGrid->addWidget( generals, 1, 0 );
 
   addLabel( generalGrid, 2, 0, i18n( "MountMan won't (un)mount the following mount-points:" ),
-            generalGrp, "KgAdvLabel2" );
+            generalGrp );
   KonfiguratorEditBox *nonMountPoints = createEditBox( "Advanced", "Nonmount Points", _NonMountPoints, generalGrp, false );
   generalGrid->addWidget( nonMountPoints, 2, 1 );
  
@@ -88,11 +88,11 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
 
   //  ----------------------- CONFIRMATIONS GROUPBOX -------------------------------
   
-  Q3GroupBox *confirmGrp = createFrame( i18n( "Confirmations" ), parent, "confirmGrp" );
+  Q3GroupBox *confirmGrp = createFrame( i18n( "Confirmations" ), parent );
   Q3GridLayout *confirmGrid = createGridLayout( confirmGrp->layout() );
 
   addLabel( confirmGrid, 0, 0, "\n"+i18n( "Request user confirmation for the following operations:" )+"\n",
-            confirmGrp, "KgAdvLabel1" );
+            confirmGrp );
 
   KONFIGURATOR_CHECKBOX_PARAM confirmations[] =
   //   cfg_class  cfg_name                default             text                                          restart ToolTip
@@ -112,7 +112,7 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
 
   //  ------------------------ FINE-TUNING GROUPBOX --------------------------------
 
-  Q3GroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), parent, "kgFineTuneGrp" );
+  Q3GroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), parent );
   Q3GridLayout *fineTuneGrid = createGridLayout( fineTuneGrp->layout() );
   fineTuneGrid->setAlignment( Qt::AlignLeft | Qt::AlignTop );
   
@@ -126,7 +126,7 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
   fineTuneGrid->addWidget( spinBox, 0, 1 );
 
   addLabel( fineTuneGrid, 1, 0, i18n( "Arguments of updatedb:" ),
-            fineTuneGrp, "KgAdvLabel1" );
+            fineTuneGrp );
   KonfiguratorEditBox *updatedbArgs = createEditBox( "Locate", "UpdateDB Arguments", "", fineTuneGrp, false );
   fineTuneGrid->addWidget( updatedbArgs, 1, 1 );
     

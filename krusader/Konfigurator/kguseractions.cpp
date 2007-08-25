@@ -41,14 +41,14 @@
 #include <QLabel>
 
 
-KgUserActions::KgUserActions( bool first, QWidget* parent,  const char* name ) :
-  KonfiguratorPage( first, parent, name )
+KgUserActions::KgUserActions( bool first, QWidget* parent ) :
+  KonfiguratorPage( first, parent )
 {
    Q3GridLayout *kgUserActionLayout = new Q3GridLayout( parent, 2, 1,
    		0 /* margin */, 6 /* spacing */, "kgUserActionLayout" );
 
    // ============= Info Group =============
-   Q3GroupBox *InfoGroup = createFrame( i18n( "Information" ), parent, "kgUserActionInfoGroup" );
+   Q3GroupBox *InfoGroup = createFrame( i18n( "Information" ), parent );
    Q3GridLayout *InfoGrid = createGridLayout( InfoGroup->layout() );
 
    // terminal for the UserActions
@@ -57,14 +57,14 @@ KgUserActions::KgUserActions( bool first, QWidget* parent,  const char* name ) :
    		"To set up, configure and manage your useractions please use ActionMan."
    		), InfoGroup, "InformationLabel" );
    InfoGrid->addWidget( labelInfo, 0, 0 );
-   KPushButton *actionmanButton = new KPushButton( i18n("Start ActionMan"), InfoGroup, "actionmanButton");
+   KPushButton *actionmanButton = new KPushButton( i18n("Start ActionMan"), InfoGroup );
    connect( actionmanButton, SIGNAL( clicked() ), SLOT( startActionMan() ) );
    InfoGrid->addWidget( actionmanButton, 1, 0 );
 
    kgUserActionLayout->addWidget( InfoGroup, 0 ,0 );
 
    // ============= Terminal Group =============
-   Q3GroupBox *terminalGroup = createFrame( i18n( "Terminal execution" ), parent, "kgUserActionTerminalGroup" );
+   Q3GroupBox *terminalGroup = createFrame( i18n( "Terminal execution" ), parent );
    Q3GridLayout *terminalGrid = createGridLayout( terminalGroup->layout() );
 
    // terminal for the UserActions
@@ -78,7 +78,7 @@ KgUserActions::KgUserActions( bool first, QWidget* parent,  const char* name ) :
    kgUserActionLayout->addWidget( terminalGroup, 1 ,0 );
 
    // ============= Outputcollection Group =============
-   Q3GroupBox *outputGroup = createFrame( i18n( "Output collection" ), parent, "kgUserActionOutputGroup" );
+   Q3GroupBox *outputGroup = createFrame( i18n( "Output collection" ), parent );
    Q3GridLayout *outputGrid = createGridLayout( outputGroup->layout() );
 
    Q3HBox *hbox;

@@ -291,7 +291,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu) {
 	for (KrBookmark *bm = parent->children().first(); bm; bm = parent->children().next()) {
 		if (!bm->isFolder()) continue;
 		KMenu *newMenu = new KMenu(menu);
-		int id = menu->insertItem(QIcon(krLoader->loadIcon(bm->icon(), KIcon::Small)),
+		int id = menu->insertItem(QIcon(krLoader->loadIcon(bm->icon(), K3Icon::Small)),
 									bm->text(), newMenu, -1 /* dummy id */, -1 /* end of list */);
 		
 		if( !_bookmarkIDTable.find( menu ) )
@@ -332,7 +332,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu) {
 			
 			// add the popular links submenu
 			KMenu *newMenu = new KMenu(menu);
-			itemIndex = menu->insertItem(QIcon(krLoader->loadIcon("bookmark_folder", KIcon::Small)),
+			itemIndex = menu->insertItem(QIcon(krLoader->loadIcon("bookmark_folder", K3Icon::Small)),
 										i18n("Popular URLs"), newMenu, -1 /* dummy id */, -1 /* end of list */);
 			_specialBookmarkIDs.append( itemIndex );
 			// add the top 15 urls
@@ -399,10 +399,10 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu) {
 		if( !hasJumpback )
 			menu->insertSeparator();
 		
-		itemIndex = menu->insertItem(krLoader->loadIcon("bookmark_add", KIcon::Small),
+		itemIndex = menu->insertItem(krLoader->loadIcon("bookmark_add", K3Icon::Small),
 			i18n("Bookmark Current"), BookmarkCurrent);
 		_specialBookmarkIDs.append( itemIndex );
-		itemIndex = menu->insertItem(krLoader->loadIcon("bookmark", KIcon::Small),
+		itemIndex = menu->insertItem(krLoader->loadIcon("bookmark", K3Icon::Small),
 			i18n("Manage Bookmarks"), ManageBookmarks);
 		_specialBookmarkIDs.append( itemIndex );
 	
@@ -539,10 +539,10 @@ void KrBookmarkHandler::rightClickOnSpecialBookmark() {
 void KrBookmarkHandler::rightClicked( Q3PopupMenu *menu, int /*id*/, KrBookmark * bm ) {
 	Q3PopupMenu popup( _mainBookmarkPopup );
 	
-	popup.insertItem( krLoader->loadIcon( "fileopen", KIcon::Panel ), i18n( "Open" ), OPEN_ID );
-	popup.insertItem( krLoader->loadIcon( "tab_new", KIcon::Panel ), i18n( "Open in a new tab" ), OPEN_NEW_TAB_ID );
+	popup.insertItem( krLoader->loadIcon( "fileopen", K3Icon::Panel ), i18n( "Open" ), OPEN_ID );
+	popup.insertItem( krLoader->loadIcon( "tab_new", K3Icon::Panel ), i18n( "Open in a new tab" ), OPEN_NEW_TAB_ID );
 	popup.insertSeparator();
-	popup.insertItem( krLoader->loadIcon( "editdelete", KIcon::Panel ), i18n( "Delete" ), DELETE_ID );
+	popup.insertItem( krLoader->loadIcon( "editdelete", K3Icon::Panel ), i18n( "Delete" ), DELETE_ID );
 	
 	connect( menu, SIGNAL( highlighted( int ) ), &popup, SLOT( close() ) );
 	connect( menu, SIGNAL( activated( int ) ), &popup, SLOT( close() ) );

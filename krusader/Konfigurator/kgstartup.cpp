@@ -39,19 +39,19 @@
 #include <Q3GridLayout>
 #include <QLabel>
 
-KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
-  KonfiguratorPage( first, parent, name ), profileCombo( 0 )
+KgStartup::KgStartup( bool first, QWidget* parent ) :
+  KonfiguratorPage( first, parent ), profileCombo( 0 )
 {
   Q3GridLayout *kgStartupLayout = new Q3GridLayout( parent );
   kgStartupLayout->setSpacing( 6 );
 
   //  --------------------------- PANELS GROUPBOX ----------------------------------
 
-  Q3GroupBox *panelsGrp = createFrame( i18n( "General" ), parent, "panelsGrp" );
+  Q3GroupBox *panelsGrp = createFrame( i18n( "General" ), parent );
   Q3GridLayout *panelsGrid = createGridLayout( panelsGrp->layout() );
 
   QString s = "<p><img src='toolbar|kr_profile'></p>" + i18n( "Defines the panel profile used at startup. A panel profile contains:<ul><li>all the tabs paths</li><li>the current tab</li><li>the active panel</li></ul><b>&lt;Last session&gt;</b> is a special panel profile which is saved automatically when Krusader is closed.");
-  QLabel *label = addLabel( panelsGrid, 0, 0, i18n( "Startup profile:" ), panelsGrp, "Startup session" );
+  QLabel *label = addLabel( panelsGrid, 0, 0, i18n( "Startup profile:" ), panelsGrp );
   Q3WhatsThis::add( label, s );
   Q3WhatsThis::add( panelsGrp, s );
 
@@ -68,7 +68,7 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
   panelsGrid->addWidget( profileCombo, 0, 1 );
 
   //------------------------------------------------
-  panelsGrid->addMultiCellWidget( createLine( panelsGrp, "lookSep3" ), 1, 1, 0, 1 );
+  panelsGrid->addMultiCellWidget( createLine( panelsGrp ), 1, 1, 0, 1 );
 
   KONFIGURATOR_CHECKBOX_PARAM settings[] =
     { //   cfg_class  cfg_name                default             text                              restart tooltip
@@ -83,7 +83,7 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
 
   //  ------------------------ USERINTERFACE GROUPBOX ------------------------------
 
-  Q3GroupBox *uiGrp = createFrame( i18n( "User Interface" ), parent, "uiGrp" );
+  Q3GroupBox *uiGrp = createFrame( i18n( "User Interface" ), parent );
   Q3GridLayout *uiGrid = createGridLayout( uiGrp->layout() );
 
   KONFIGURATOR_CHECKBOX_PARAM uiCheckBoxes[] =

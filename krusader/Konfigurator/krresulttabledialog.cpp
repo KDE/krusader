@@ -37,10 +37,14 @@
 KrResultTableDialog::KrResultTableDialog( QWidget *parent, DialogType type,
   const QString& caption, const QString& heading, const QString& headerIcon,
   const QString& hint)
-  : KDialog( parent, "KrSearchResultDialog", true, caption, KDialog::Help|KDialog::Ok,
-                 KDialog::Ok, false )
+  : KDialog( parent, 0 )
 
 {
+  setButtons( KDialog::Help | KDialog::Ok );
+  setDefaultButton( KDialog::Ok );
+  setCaption( caption );
+  setWindowModality( Qt::WindowModal );
+
   _page = new QWidget(this);
   setMainWidget(_page);
   _topLayout = new Q3VBoxLayout(_page, 0, spacingHint());
@@ -50,7 +54,7 @@ KrResultTableDialog::KrResultTableDialog( QWidget *parent, DialogType type,
   // prepare the icon
   _iconBox = new Q3HBox(_page, "_iconBox");
   _iconLabel = new QLabel(_iconBox, "iconLabel");
-  _iconLabel->setPixmap(krLoader->loadIcon(headerIcon, KIcon::Desktop, 32));
+  _iconLabel->setPixmap(krLoader->loadIcon(headerIcon, K3Icon::Desktop, 32));
   _iconLabel->setMinimumWidth(fontMetrics().maxWidth()*20);
   _iconLabel->setAlignment( Qt::AlignLeft | Qt::AlignVCenter );
   _iconLabel->setFixedSize( _iconLabel->sizeHint() );
@@ -82,7 +86,7 @@ KrResultTableDialog::KrResultTableDialog( QWidget *parent, DialogType type,
 
   // +++ Separator +++
   KSeparator* hSep = new KSeparator(Qt::Horizontal, _page);
-  hSep->setMargin(5);
+  hSep->setContentsMargins(5,5,5,5);
   _topLayout->addWidget(hSep);
 
   // +++ Hint +++

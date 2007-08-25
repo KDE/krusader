@@ -55,7 +55,7 @@ public:
   bool isGUIRestartNeeded() { return restartGUI; }
 
 protected:
-  void newContent(KonfiguratorPage *widget);// adds widget into newPage and connects to slot
+  void newPage(KonfiguratorPage *, const QString &, const QString &, const KIcon & );// adds widget and connects to slot
   void createLayout( int startPage );
 
 protected slots:
@@ -67,13 +67,10 @@ protected slots:
   void slotRestorePage();
 
 private:
-  int  searchPage( int pageNum );
-
-private:
-  Q3PtrList<KonfiguratorPage>  kgFrames;
+  Q3PtrList<KPageWidgetItem>  kgPages;
   KPageDialog                *widget;
   bool                        firstTime;
-  int                         lastPage;
+  KPageWidgetItem            *lastPage;
   bool                        internalCall;
   QTimer                      restoreTimer;
   bool                        restartGUI;

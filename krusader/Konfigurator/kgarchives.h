@@ -38,7 +38,7 @@ class KgArchives : public KonfiguratorPage
   Q_OBJECT
 
 public:
-  KgArchives( bool first, QWidget* parent=0,  const char* name=0 );
+  KgArchives( bool first, QWidget* parent=0 );
   virtual bool apply();
   virtual void setDefaults();
 

@@ -179,13 +179,13 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left, const char *n
 	// a cancel button for the inplace refresh mechanism
 	inlineRefreshCancelButton = new KPushButton(this);
 	inlineRefreshCancelButton->setFixedSize( 22, 20 );
-	inlineRefreshCancelButton->setPixmap(krLoader->loadIcon("cancel", KIcon::Toolbar, 16));
+	inlineRefreshCancelButton->setPixmap(krLoader->loadIcon("cancel", K3Icon::Toolbar, 16));
 	connect(inlineRefreshCancelButton, SIGNAL(clicked()), this, SLOT(inlineRefreshCancel()));
 
 	// a quick button to open the popup panel
 	popupBtn = new QToolButton( this, "popupbtn" );
 	popupBtn->setFixedSize( 22, 20 );
-	popupBtn->setPixmap(krLoader->loadIcon("1uparrow", KIcon::Toolbar, 16));
+	popupBtn->setPixmap(krLoader->loadIcon("1uparrow", K3Icon::Toolbar, 16));
 	connect(popupBtn, SIGNAL(clicked()), this, SLOT(togglePanelPopup()));
 	QToolTip::add(  popupBtn, i18n( "Open the popup panel" ) );
 	totalsLayout->addWidget(totals);
@@ -205,7 +205,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left, const char *n
 	bool clearButton = krConfig->readBoolEntry("Clear Location Bar Visible", _ClearLocation);
 	if (clearButton){
 		clearOrigin = new QToolButton(hbox, "clearorigin");
-		clearOrigin->setPixmap(krLoader->loadIcon("locationbar_erase", KIcon::Toolbar, 16));
+		clearOrigin->setPixmap(krLoader->loadIcon("locationbar_erase", K3Icon::Toolbar, 16));
 		QToolTip::add(  clearOrigin, i18n( "Clear the location bar" ) );
 	}
 	
@@ -408,13 +408,13 @@ void ListPanel::togglePanelPopup() {
 		}
 		
 		popup->show();
-		popupBtn->setPixmap(krLoader->loadIcon("1downarrow", KIcon::Toolbar, 16));
+		popupBtn->setPixmap(krLoader->loadIcon("1downarrow", K3Icon::Toolbar, 16));
 		QToolTip::add(  popupBtn, i18n( "Close the popup panel" ) );
 	} else {
 		popupSizes.clear();
 		popupSizes = dynamic_cast<QSplitter*>(popup->parent())->sizes();
 		popup->hide();
-		popupBtn->setPixmap(krLoader->loadIcon("1uparrow", KIcon::Toolbar, 16));
+		popupBtn->setPixmap(krLoader->loadIcon("1uparrow", K3Icon::Toolbar, 16));
 		QToolTip::add(  popupBtn, i18n( "Open the popup panel" ) );
 		
 		Q3ValueList<int> lst;

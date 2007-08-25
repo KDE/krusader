@@ -326,7 +326,7 @@ public:
     * Sample:<br><br>
     * QHBox *hbox = new QHBox( myParent, "hbox" );<br>
     * createSpinBox( "class", "spin", 5, 1, 10, hbox );<br>
-    * createSpacer( hbox, "mySpacer" );<br>
+    * createSpacer( hbox );<br>
     * myLayout->addWidget( hbox, 0, 0 );
     *
     * @param  parent      Reference to the parent widget

@@ -45,8 +45,8 @@
 #include "../krusader.h"
 #include "../kicons.h"
 
-KgGeneral::KgGeneral( bool first, QWidget* parent,  const char* name ) :
-      KonfiguratorPage( first, parent, name )
+KgGeneral::KgGeneral( bool first, QWidget* parent ) :
+      KonfiguratorPage( first, parent )
 {
 if( first )  
     slotFindTools();
@@ -56,7 +56,7 @@ if( first )
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
 
-  Q3GroupBox *generalGrp = createFrame( i18n( "General" ), parent, "kgGenGeneralGrp" );
+  Q3GroupBox *generalGrp = createFrame( i18n( "General" ), parent );
   Q3GridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
   KONFIGURATOR_NAME_VALUE_TIP deleteMode[] =
@@ -65,7 +65,7 @@ if( first )
      { i18n( "Move to trash" ), "true",  i18n( "Files will be moved to trash when deleted." ) }};
 
   KonfiguratorRadioButtons *trashRadio = createRadioButtonGroup( "General", "Move To Trash",
-      _MoveToTrash ? "true" : "false", 2, 0, deleteMode, 2, generalGrp, "myRadio", false );
+      _MoveToTrash ? "true" : "false", 2, 0, deleteMode, 2, generalGrp, false );
   generalGrid->addMultiCellWidget( trashRadio, 0, 0, 0, 1 );
 
   KonfiguratorCheckBox *checkBox = createCheckBox( "General", "Mimetype Magic", _MimetypeMagic,
@@ -73,7 +73,7 @@ if( first )
                      i18n( "Mimetype magic allows better distinction of file types, but is slower." ) );
   generalGrid->addMultiCellWidget( checkBox, 1, 1, 0, 1 );
 
-  Q3Frame *line1 = createLine( generalGrp, "line1" );
+  Q3Frame *line1 = createLine( generalGrp );
   generalGrid->addMultiCellWidget( line1, 2, 2, 0, 1 );
 
   // editor
@@ -86,7 +86,7 @@ if( first )
   QLabel *label2 = new QLabel( i18n( "Hint: use 'internal editor' if you want to use Krusader's fast built-in editor" ), generalGrp, "EditorLabel" );
   generalGrid->addMultiCellWidget( label2, 4, 4, 0, 1 );
 
-Q3Frame *line2 = createLine( generalGrp, "line2" );
+Q3Frame *line2 = createLine( generalGrp );
   generalGrid->addMultiCellWidget( line2, 5, 5, 0, 1 );
 
   // viewer
@@ -102,7 +102,7 @@ Q3Frame *line2 = createLine( generalGrp, "line2" );
      { i18n( "Text mode" ), "text",  i18n( "View the file in text-only mode" ) }, 
      { i18n( "Hex mode" ), "hex",  i18n( "View the file in hex-mode (better for binary files)" ) } };
   createRadioButtonGroup( "General", "Default Viewer Mode",
-      "generic", 0, 3, viewMode, 3, vbox, "myRadio2", false );
+      "generic", 0, 3, viewMode, 3, vbox, false );
 
   createCheckBox( "General", "View In Separate Window", _ViewInSeparateWindow,
                      i18n( "Internal editor and viewer opens each file in a separate window" ), vbox, false,
@@ -111,7 +111,7 @@ Q3Frame *line2 = createLine( generalGrp, "line2" );
   generalGrid->addMultiCellWidget(hbox2, 6, 8, 0, 1);
 
   // atomic extensions
-  Q3Frame * frame21 = createLine( hbox2, "line2.1", true );
+  Q3Frame * frame21 = createLine( hbox2, true );
   frame21->setMinimumWidth( 15 );
   Q3VBox * vbox2 = new Q3VBox( hbox2 );
 
@@ -121,13 +121,13 @@ Q3Frame *line2 = createLine( generalGrp, "line2" );
   int size = QFontMetrics( atomLabel->font() ).height();
 
   QToolButton *addButton = new QToolButton( hbox3, "addBtnList" );
-  QPixmap icon = krLoader->loadIcon("add",KIcon::Desktop, size );
+  QPixmap icon = krLoader->loadIcon("add",K3Icon::Desktop, size );
   addButton->setFixedSize( icon.width() + 4, icon.height() + 4 );
   addButton->setPixmap( icon );
   connect( addButton, SIGNAL( clicked() ), this, SLOT( slotAddExtension() ) );
 
   QToolButton *removeButton = new QToolButton( hbox3, "removeBtnList" );
-  icon = krLoader->loadIcon("remove",KIcon::Desktop, size );
+  icon = krLoader->loadIcon("remove",K3Icon::Desktop, size );
   removeButton->setFixedSize( icon.width() + 4, icon.height() + 4 );
   removeButton->setPixmap( icon );
   connect( removeButton, SIGNAL( clicked() ), this, SLOT( slotRemoveExtension() ) );
@@ -140,7 +140,7 @@ Q3Frame *line2 = createLine( generalGrp, "line2" );
   listBox = createListBox( "Look&Feel", "Atomic Extensions", 
       defaultAtomicExtensions, vbox2, true, false );
 
-  Q3Frame *line3 = createLine( generalGrp, "line3" );
+  Q3Frame *line3 = createLine( generalGrp );
   generalGrid->addMultiCellWidget( line3, 9, 9, 0, 1 );
 
 	// terminal
@@ -155,7 +155,7 @@ Q3Frame *line2 = createLine( generalGrp, "line2" );
                      i18n( "When checked, whenever the panel is changed (for example, by pressing TAB), krusader changes the current directory in the terminal emulator." ) );
   generalGrid->addMultiCellWidget( checkBox1, 11, 11, 0, 1 );
 
-  Q3Frame *line31 = createLine( generalGrp, "line4" );
+  Q3Frame *line31 = createLine( generalGrp );
   generalGrid->addMultiCellWidget( line31, 12, 12, 0, 1 );
 
 	// temp dir
@@ -179,7 +179,7 @@ Q3Frame *line2 = createLine( generalGrp, "line2" );
 void KgGeneral::applyTempDir(QObject *obj,QString cls, QString name)
 {
   KonfiguratorURLRequester *urlReq = (KonfiguratorURLRequester *)obj;
-  QString value = QDir(urlReq->url()).path();
+  QString value = QDir(urlReq->url().prettyUrl()).path();
 
   krConfig->setGroup( cls );
   krConfig->writeEntry( name, value );

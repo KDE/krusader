@@ -32,7 +32,7 @@
 #include "../UserAction/kraction.h"
 #include "../krusader.h"
 
-#define ICON(N)		KIconLoader::global()->loadIcon(N, KIcon::Toolbar)
+#define ICON(N)		KIconLoader::global()->loadIcon(N, K3Icon::Toolbar)
 //This is the filter in the KFileDialog of Import/Export:
 static const char* FILE_FILTER = I18N_NOOP("*.xml|xml-files\n*|all files");
 

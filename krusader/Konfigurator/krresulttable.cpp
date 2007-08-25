@@ -238,7 +238,7 @@ bool KrArchiverResultTable::addRow(SearchObject* search, Q3GridLayout* grid)
 
 void KrArchiverResultTable::website(const QString& url)
 {
-  (void) new KRun(url);
+  (void) new KRun( KUrl( url ), this );
 }
 
 // -----------------------------------------------------------------------------
@@ -376,5 +376,5 @@ bool KrToolResultTable::addRow(SearchObject* search, Q3GridLayout* grid)
 
 void KrToolResultTable::website(const QString& url)
 {
-  (void) new KRun(url);
+  (void) new KRun( KUrl(url), this );
 }

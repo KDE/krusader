@@ -41,7 +41,7 @@ class KgProtocols : public KonfiguratorPage
   Q_OBJECT
 
 public:
-  KgProtocols( bool first, QWidget* parent=0,  const char* name=0 );
+  KgProtocols( bool first, QWidget* parent=0 );
 
   virtual void loadInitialValues();
   virtual void setDefaults();
