@@ -66,7 +66,7 @@ Konfigurator::Konfigurator( bool f, int startPage ) : KDialog(0,0,true,"Konfigur
 {
   setPlainCaption(i18n("Konfigurator - Creating Your Own Krusader"));
   kgFrames.setAutoDelete(true);
-  widget=new KJanusWidget(this,0,KJanusWidget::IconList);
+  widget=new KPageDialog(this,0,KPageDialog::IconList);
 
   setButtonCancel(i18n("Close"));
 

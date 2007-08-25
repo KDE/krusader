@@ -38,7 +38,7 @@
 #include <q3listview.h>
 //Added by qt3to4:
 #include <Q3Frame>
-#include <kjanuswidget.h>
+#include <kpagedialog.h>
 #include <qtimer.h>
 #include <kurl.h>
 #include <q3valuelist.h>
@@ -90,7 +90,7 @@ signals:
 private:
    KRFSDisplay *info;
    Q3Frame *mainPage;
-   KJanusWidget *widget;
+   KPageDialog *widget;
    Q3ListView *mountList;
    QTimer *watcher;
    QDateTime lastMtab;

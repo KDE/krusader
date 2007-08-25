@@ -38,7 +38,7 @@
 //Added by qt3to4:
 #include <Q3PtrList>
 #include <kdialog.h>
-#include <kjanuswidget.h>
+#include <kpagedialog.h>
 #include <qtimer.h>
 
 class QLineEdit;
@@ -71,7 +71,7 @@ private:
 
 private:
   Q3PtrList<KonfiguratorPage>  kgFrames;
-  KJanusWidget               *widget;
+  KPageDialog                *widget;
   bool                        firstTime;
   int                         lastPage;
   bool                        internalCall;

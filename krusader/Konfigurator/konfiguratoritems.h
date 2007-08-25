@@ -38,6 +38,7 @@
 #include <qpushbutton.h>
 #include <qradiobutton.h>
 #include <q3ptrlist.h>
+#include <q3listbox.h>
 #include <q3valuelist.h>
 #include <q3valuevector.h>
 #include <q3buttongroup.h>

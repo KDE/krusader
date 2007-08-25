@@ -73,7 +73,7 @@ info( 0 ), mountList( 0 ) {
    setButtonOK( i18n( "&Close" ) );
    showButtonApply( false ); showButtonCancel( false );
    setPlainCaption( i18n( "MountMan - Your Mount-Manager" ) );
-   widget = new KJanusWidget( this, 0, KJanusWidget::Tabbed );
+   widget = new KPageDialog( this, 0, KPageDialog::Tabbed );
    createLayout();
    setMainWidget( widget );
    widget->setMinimumSize( widget->sizeHint().width() + mountList->columnWidth( 5 ),
