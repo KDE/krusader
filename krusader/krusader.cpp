@@ -35,8 +35,10 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <sys/types.h>
 #endif
 // KDE includes
+#include <kactioncollection.h>
 #include <kmessagebox.h>
 #include <kaction.h>
+#include <ktoggleaction.h>
 #include <kcursor.h>
 #include <ksystemtrayicon.h>
 #include <kmenubar.h>
@@ -64,6 +66,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QShowEvent>
 #include <QHideEvent>
 #include <Q3CString>
+#include <QDesktopWidget>
 #include <krandom.h>
 // Krusader includes
 #include "krusader.h"
@@ -211,7 +214,7 @@ Krusader::Krusader() : KParts::MainWindow(0,0,Qt::WType_TopLevel|Qt::WDestructiv
    // parse command line arguments
    KCmdLineArgs * args = KCmdLineArgs::parsedArgs();
 
-   kapp->ref(); // FIX: krusader exits at closing the viewer when minimized to tray
+   KGlobal::ref(); // FIX: krusader exits at closing the viewer when minimized to tray
 
    // create the "krusader"
    App = this;
@@ -355,7 +358,7 @@ Krusader::Krusader() : KParts::MainWindow(0,0,Qt::WType_TopLevel|Qt::WDestructiv
    // This enables Krusader to show a tray icon
    sysTray = new KSystemTrayIcon( this );
    // Krusader::privIcon() returns either "krusader_blue" or "krusader_red" if the user got root-privileges
-   sysTray->setPixmap( iconLoader->loadIcon( privIcon(), K3Icon::Panel, 22 ) );
+   sysTray->setIcon( iconLoader->loadIcon( privIcon(), K3Icon::Panel, 22 ) );
    sysTray->hide();
 
    connect( sysTray, SIGNAL( quitSelected() ), this, SLOT( setDirectExit() ) );
@@ -387,12 +390,12 @@ Krusader::Krusader() : KParts::MainWindow(0,0,Qt::WType_TopLevel|Qt::WDestructiv
 		slot->runKonfigurator( true );
 	
    if (!runKonfig) {
-		config->setGroup( "Private" );
-		if ( krConfig->readBoolEntry( "Maximized" ) )
-			restoreWindowSize(config);
+		KConfigGroup cfg = config->group( "Private" );
+		if ( cfg.readEntry( "Maximized", false ) )
+			restoreWindowSize(cfg);
 		else {
-			move( oldPos = krConfig->readPointEntry( "Start Position", _StartPosition ) );
-			resize( oldSize = krConfig->readSizeEntry( "Start Size", _StartSize ));
+			move( oldPos = cfg.readEntry( "Start Position", _StartPosition ) );
+			resize( oldSize = cfg.readEntry( "Start Size", _StartSize ));
 		}
 	}
 	
@@ -421,7 +424,8 @@ bool Krusader::versionControl() {
 #define FIRST_RUN	"First Time"
    bool retval = false;
    // create config file
-   config = KGlobal::config();
+	// TODO: according to docs, KGlobal::config() should return KConfig*, but in reality (in beta1), it returns KSharedPtr<KConfig> or something ?!
+   config = KGlobal::config().data(); 
    bool firstRun = config->readBoolEntry(FIRST_RUN, true);
 
 #if 0      
@@ -488,7 +492,7 @@ void Krusader::hideEvent ( QHideEvent *e ) {
    if ( actWnd )
       isModalTopWidget = actWnd->isModal();
 
-   if ( showTrayIcon  && !isModalTopWidget  && KWindowSystem::windowInfo( winId() ).isOnCurrentDesktop() ) {
+   if ( showTrayIcon  && !isModalTopWidget  && KWindowSystem::windowInfo( winId(), NET::WMDesktop ).isOnCurrentDesktop() ) {
       sysTray->show();
       hide(); // needed to make sure krusader is removed from
       // the taskbar when minimizing (system tray issue)
@@ -535,39 +539,62 @@ void Krusader::setupActions() {
    int compareMode = krConfig->readNumEntry( "Compare Mode", 0 );
    int cmdExecMode =  krConfig->readNumEntry( "Command Execution Mode", 0 );
 
-   KStandardAction::home( SLOTS, SLOT( home() ), actionCollection(), "std_home" )->setText( i18n("Home") ); /*->setShortcut(Qt::Key_QuoteLeft);*/
-   new KAction( i18n( "&Reload" ), "reload", CTRL + Qt::Key_R, SLOTS, SLOT( refresh() ), actionCollection(), "std_redisplay" );
-   actShowToolBar = KStandardAction::showToolbar( SLOTS, SLOT( toggleToolbar() ), actionCollection(), "std_toolbar" );
-   new KToggleAction( i18n("Show Actions Toolbar"), 0, SLOTS, SLOT( toggleActionsToolbar() ),
-                      actionCollection(), "toggle actions toolbar" );
-   actShowStatusBar = KStandardAction::showStatusbar( SLOTS, SLOT( toggleStatusbar() ), actionCollection(), "std_statusbar" );
-   KStandardAction::quit( this, SLOT( slotClose() ), actionCollection(), "std_quit" );
-   KStandardAction::configureToolbars( SLOTS, SLOT( configToolbar() ), actionCollection(), "std_config_toolbar" );
-   KStandardAction::keyBindings( SLOTS, SLOT( configKeys() ), actionCollection(), "std_config_keys" );
+   KStandardAction::home( SLOTS, SLOT( home() ), actionCollection()/*, "std_home"*/ )->setText( i18n("Home") ); /*->setShortcut(Qt::Key_QuoteLeft);*/
 
-   KStandardAction::cut( SLOTS, SLOT( cut() ), actionCollection(), "std_cut" )->setText( i18n("Cut to Clipboard") );
-   (actCopy = KStandardAction::copy( SLOTS, SLOT( copy() ), actionCollection(), "std_copy" ))->setText( i18n("Copy to Clipboard") );
-   (actPaste = KStandardAction::paste( SLOTS, SLOT( paste() ), actionCollection(), "std_paste" ))->setText( i18n("Paste from Clipboard") );
+	KAction *reloadAct = new KAction(KIcon("reload"), i18n( "&Reload" ), this);
+	reloadAct->setShortcut(Qt::CTRL + Qt::Key_R);
+	connect(reloadAct, SIGNAL(triggered(bool)), SLOTS, SLOT(refresh()));
+	actionCollection()->addAction("std_redisplay", reloadAct);
+
+   actShowToolBar = (KToggleAction*)KStandardAction::create( KStandardAction::ShowToolbar, SLOTS, SLOT( toggleToolbar() ), actionCollection()/*, "std_toolbar"*/ );
+
+	KToggleAction *toggleActToolbar = new KToggleAction(i18n("Show Actions Toolbar"), this);
+	connect(toggleActToolbar, SIGNAL(triggered(bool)), SLOTS, SLOT(toggleActionsToolbar()));
+	actionCollection()->addAction("toggle actions toolbar", toggleActToolbar );
+   
+   actShowStatusBar = KStandardAction::showStatusbar( SLOTS, SLOT( toggleStatusbar() ), actionCollection() );
+   KStandardAction::quit( this, SLOT( slotClose() ), actionCollection() );
+   KStandardAction::configureToolbars( SLOTS, SLOT( configToolbar() ), actionCollection() );
+   KStandardAction::keyBindings( SLOTS, SLOT( configKeys() ), actionCollection() );
+
+   KStandardAction::cut( SLOTS, SLOT( cut() ), actionCollection() )->setText( i18n("Cut to Clipboard") );
+   (actCopy = KStandardAction::copy( SLOTS, SLOT( copy() ), actionCollection() ))->setText( i18n("Copy to Clipboard") );
+   (actPaste = KStandardAction::paste( SLOTS, SLOT( paste() ), actionCollection() ))->setText( i18n("Paste from Clipboard") );
 
    // the toggle actions
-   actToggleFnkeys = new KToggleAction( i18n( "Show &FN Keys Bar" ), 0, SLOTS,
-                                        SLOT( toggleFnkeys() ), actionCollection(), "toggle fn bar" );
+   actToggleFnkeys = new KToggleAction( i18n( "Show &FN Keys Bar" ), this);
+	connect(actToggleFnkeys, SIGNAL(triggered(bool)), SLOTS, SLOT( toggleFnkeys() ));
+	actionCollection()->addAction("toggle fn bar", actToggleFnkeys );
    actToggleFnkeys->setChecked( true );
-   actToggleCmdline = new KToggleAction( i18n( "Show &Command Line" ), 0, SLOTS,
-                                         SLOT( toggleCmdline() ), actionCollection(), "toggle command line" );
+
+
+   actToggleCmdline = new KToggleAction( i18n( "Show &Command Line" ), this);
+	connect(actToggleCmdline, SIGNAL(triggered(bool)), SLOTS, SLOT( toggleCmdline() ));
+	actionCollection()->addAction("toggle command line", actToggleCmdline);
    actToggleCmdline->setChecked( true );
-   actToggleTerminal = new KToggleAction( i18n( "Show Terminal &Emulator" ), ALT + CTRL + Qt::Key_T, SLOTS,
-                                          SLOT( toggleTerminal() ), actionCollection(), "toggle terminal emulator" );
+
+   actToggleTerminal = new KToggleAction( i18n( "Show Terminal &Emulator" ), this);
+	actToggleTerminal->setShortcut(Qt::ALT + Qt::CTRL + Qt::Key_T);
+	connect(actToggleTerminal, SIGNAL(triggered(bool)), SLOTS, SLOT( toggleTerminal() ));
+	actionCollection()->addAction("toggle terminal emulator", actToggleTerminal );
    actToggleTerminal->setChecked( false );
 
-   actDetailedView = new KAction( i18n( "&Detailed View" ), ALT + SHIFT + Qt::Key_D, SLOTS,
-                                SLOT( setDetailedView() ), actionCollection(), "detailed_view" );
+   actDetailedView = new KAction( i18n( "&Detailed View" ), this);
+	actDetailedView->setShortcut(Qt::ALT + Qt::SHIFT + Qt::Key_D);
+	connect(actDetailedView, SIGNAL(triggered(bool)), SLOTS, SLOT( setDetailedView() ));
+	actionCollection()->addAction("detailed_view", actDetailedView );
 
-   actBriefView = new KAction( i18n( "&Brief View" ), ALT + SHIFT + Qt::Key_B, SLOTS,
-                                SLOT( setBriefView() ), actionCollection(), "brief_view" );
+	actBriefView = new KAction( i18n( "&Brief View" ), this);
+	actBriefView->setShortcut(Qt::ALT + Qt::SHIFT + Qt::Key_B);
+	connect(actBriefView, SIGNAL(triggered(bool)), SLOTS, SLOT( setBriefView() ));
+	actionCollection()->addAction("brief_view", actBriefView );
 
-   actToggleHidden = new KToggleAction( i18n( "Show &Hidden Files" ), CTRL + Qt::Key_Period, SLOTS,
-                                        SLOT( toggleHidden() ), actionCollection(), "toggle hidden files" );
+	actToggleHidden = new KToggleAction( i18n( "Show &Hidden Files" ), this);
+	actToggleHidden->setShortcut(Qt::CTRL + Qt::Key_Period);
+	connect(actToggleHidden, SIGNAL(triggered(bool)), SLOTS, SLOT( toggleHidden() ));
+	actionCollection()->addAction("toggle hidden files", actToggleHidden );
+
+
    actSwapPanels = new KAction( i18n( "S&wap Panels" ), CTRL + Qt::Key_U, SLOTS,
                                 SLOT( swapPanels() ), actionCollection(), "swap panels" );
    actSwapSides = new KAction( i18n( "Sw&ap Sides" ), CTRL + SHIFT + Qt::Key_U, SLOTS,

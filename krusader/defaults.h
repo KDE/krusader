@@ -211,9 +211,9 @@
 
 /////////////////////// [Private]
 // Start Position /////
-#define _StartPosition new QPoint(QApplication::desktop()->width()/2 - mainView->sizeHint().width()/2,QApplication::desktop()->height()/2 - 250) 
+#define _StartPosition QPoint(QApplication::desktop()->width()/2 - mainView->sizeHint().width()/2,QApplication::desktop()->height()/2 - 250) 
 // Start Size /////////
-#define _StartSize     new QSize(mainView->sizeHint().width(),500) 
+#define _StartSize     QSize(mainView->sizeHint().width(),500) 
 // Panel Size /////////
 #define _PanelSize     0 
 // Terminal Size //////
