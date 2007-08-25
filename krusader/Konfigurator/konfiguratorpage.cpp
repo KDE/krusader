@@ -38,8 +38,8 @@
 #include "../krusader.h"
 #include <q3whatsthis.h>
 
-KonfiguratorPage::KonfiguratorPage( bool firstTime, QWidget* parent,  const char* name ) :
-  Q3Frame( parent, name ), firstCall( firstTime )
+KonfiguratorPage::KonfiguratorPage( bool firstTime, QWidget* parent ) :
+  Q3Frame( parent ), firstCall( firstTime )
 {
 }
 
@@ -104,7 +104,7 @@ KonfiguratorCheckBox* KonfiguratorPage::createCheckBox( QString cls, QString nam
     bool dflt, QString text, QWidget *parent, bool rst, QString toolTip, int pg )
 {
   KonfiguratorCheckBox *checkBox = new KonfiguratorCheckBox( cls, name, dflt, text,
-                                 parent, QString(cls + "/" + name).ascii(), rst, pg );
+                                 parent, rst, pg );
   if( !toolTip.isEmpty() )
     Q3WhatsThis::add( checkBox, toolTip );
   
@@ -116,7 +116,7 @@ KonfiguratorSpinBox* KonfiguratorPage::createSpinBox(  QString cls, QString name
     int dflt, int min, int max, QWidget *parent, bool rst, int pg )
 {
   KonfiguratorSpinBox *spinBox = new KonfiguratorSpinBox( cls, name, dflt, min, max,
-                                 parent, QString(cls + "/" + name).ascii(), rst, pg );
+                                 parent, rst, pg );
 
   registerObject( spinBox->extension() );
   return spinBox;
@@ -126,7 +126,7 @@ KonfiguratorEditBox* KonfiguratorPage::createEditBox(  QString cls, QString name
     QString dflt, QWidget *parent, bool rst, int pg )
 {
   KonfiguratorEditBox *editBox = new KonfiguratorEditBox( cls, name, dflt, parent,
-                                        QString(cls + "/" + name).ascii(), rst, pg );
+                                        rst, pg );
 
   registerObject( editBox->extension() );
   return editBox;
@@ -136,7 +136,7 @@ KonfiguratorListBox* KonfiguratorPage::createListBox(  QString cls, QString name
     QStringList dflt, QWidget *parent, bool rst, int pg )
 {
   KonfiguratorListBox *listBox = new KonfiguratorListBox( cls, name, dflt, parent,
-                                        QString(cls + "/" + name).ascii(), rst, pg );
+                                        rst, pg );
 
   registerObject( listBox->extension() );
   return listBox;
@@ -146,16 +146,15 @@ KonfiguratorURLRequester* KonfiguratorPage::createURLRequester(  QString cls, QS
     QString dflt, QWidget *parent, bool rst, int pg )
 {
   KonfiguratorURLRequester *urlRequester = new KonfiguratorURLRequester( cls, name, dflt,
-                                        parent, QString(cls + "/" + name).ascii(), rst, pg );
+                                        parent, rst, pg );
 
   registerObject( urlRequester->extension() );
   return urlRequester;
 }
 
-Q3GroupBox* KonfiguratorPage::createFrame( QString text, QWidget *parent,
-                                          const char *widgetName )
+Q3GroupBox* KonfiguratorPage::createFrame( QString text, QWidget *parent )
 {
-  Q3GroupBox *groupBox = new Q3GroupBox( parent, widgetName );
+  Q3GroupBox *groupBox = new Q3GroupBox( parent );
   groupBox->setFrameShape( Q3GroupBox::Box );
   groupBox->setFrameShadow( Q3GroupBox::Sunken );
   if( !text.isNull() )
@@ -176,16 +175,16 @@ Q3GridLayout* KonfiguratorPage::createGridLayout( QLayout *parent )
 }
 
 QLabel* KonfiguratorPage::addLabel( Q3GridLayout *layout, int x, int y, QString label,
-                                    QWidget *parent, const char *widgetName )
+                                    QWidget *parent )
 {
-  QLabel *lbl = new QLabel( label, parent, widgetName );
+  QLabel *lbl = new QLabel( label, parent );
   layout->addWidget( lbl, x, y );
   return lbl;
 }
 
-QWidget* KonfiguratorPage::createSpacer( QWidget *parent, const char *widgetName )
+QWidget* KonfiguratorPage::createSpacer( QWidget *parent )
 {
-  QWidget *widget = new QWidget( parent, widgetName );
+  QWidget *widget = new QWidget( parent );
   Q3HBoxLayout *hboxlayout = new Q3HBoxLayout( widget );
   QSpacerItem* spacer = new QSpacerItem( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
   hboxlayout->addItem( spacer );
@@ -194,9 +193,9 @@ QWidget* KonfiguratorPage::createSpacer( QWidget *parent, const char *widgetName
 
 KonfiguratorCheckBoxGroup* KonfiguratorPage::createCheckBoxGroup( int sizex, int sizey,
     KONFIGURATOR_CHECKBOX_PARAM *params, int paramNum, QWidget *parent,
-    const char *widgetName, int pg )
+    int pg )
 {
-  KonfiguratorCheckBoxGroup *groupWidget = new KonfiguratorCheckBoxGroup( parent, widgetName );
+  KonfiguratorCheckBoxGroup *groupWidget = new KonfiguratorCheckBoxGroup( parent );
   Q3GridLayout *layout = new Q3GridLayout( groupWidget );
   layout->setSpacing( 6 );
   layout->setMargin( 0 );
@@ -229,9 +228,9 @@ KonfiguratorCheckBoxGroup* KonfiguratorPage::createCheckBoxGroup( int sizex, int
 
 KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup( QString cls,
     QString name, QString dflt, int sizex, int sizey, KONFIGURATOR_NAME_VALUE_TIP *params,
-    int paramNum, QWidget *parent, const char *widgetName, bool rst, int pg )
+    int paramNum, QWidget *parent, bool rst, int pg )
 {
-  KonfiguratorRadioButtons *radioWidget = new KonfiguratorRadioButtons( cls, name, dflt, parent, widgetName, rst, pg );
+  KonfiguratorRadioButtons *radioWidget = new KonfiguratorRadioButtons( cls, name, dflt, parent, rst, pg );
   radioWidget->setFrameShape( Q3ButtonGroup::NoFrame );
   radioWidget->setFrameShadow( Q3ButtonGroup::Sunken );
   radioWidget->setTitle( "" );
@@ -248,8 +247,7 @@ KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup( QString cls,
 
   for( int i=0; i != paramNum; i++ )
   {
-    QRadioButton *radBtn = new QRadioButton( params[i].text, radioWidget,
-                        QString( cls + "/" + name + "/" + params[i].value ).ascii() );
+    QRadioButton *radBtn = new QRadioButton( params[i].text, radioWidget );
 
     if( !params[i].tooltip.isEmpty() )
       Q3WhatsThis::add( radBtn, params[i].tooltip );
@@ -279,7 +277,7 @@ KonfiguratorFontChooser *KonfiguratorPage::createFontChooser( QString cls, QStri
   QFont *dflt, QWidget *parent, bool rst, int pg )
 {
   KonfiguratorFontChooser *fontChooser = new KonfiguratorFontChooser( cls, name, dflt, parent,
-                                        QString(cls + "/" + name).ascii(), rst, pg );
+                                        rst, pg );
 
   registerObject( fontChooser->extension() );
   return fontChooser;
@@ -289,16 +287,15 @@ KonfiguratorComboBox *KonfiguratorPage::createComboBox(  QString cls, QString na
     KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum, QWidget *parent, bool rst, bool editable, int pg )
 {
   KonfiguratorComboBox *comboBox = new KonfiguratorComboBox( cls, name, dflt, params,
-                                        paramNum, parent, QString(cls + "/" + name).ascii(),
-                                        rst, editable, pg );
+                                        paramNum, parent, rst, editable, pg );
 
   registerObject( comboBox->extension() );
   return comboBox;
 }
 
-Q3Frame* KonfiguratorPage::createLine( QWidget *parent, const char *widgetName, bool vertical )
+Q3Frame* KonfiguratorPage::createLine( QWidget *parent, bool vertical )
 {
-  Q3Frame *line = new Q3Frame( parent, widgetName );
+  Q3Frame *line = new Q3Frame( parent );
   line->setFrameStyle( ( vertical ? Q3Frame::VLine : Q3Frame::HLine ) | Q3Frame::Sunken );
   return line;
 }
@@ -330,7 +327,7 @@ KonfiguratorColorChooser *KonfiguratorPage::createColorChooser( QString cls, QSt
                                                                 ADDITIONAL_COLOR *addColPtr, int addColNum, int pg )
 {
   KonfiguratorColorChooser *colorChooser = new KonfiguratorColorChooser( cls, name, dflt,  parent,
-                                        QString(cls + "/" + name).ascii(), rst, addColPtr, addColNum, pg );
+                                        rst, addColPtr, addColNum, pg );
 
   registerObject( colorChooser->extension() );
   return colorChooser;

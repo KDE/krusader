@@ -43,7 +43,7 @@ class KgDependencies : public KonfiguratorPage
   Q_OBJECT
 
 public:
-  KgDependencies( bool first, QWidget* parent=0,  const char* name=0 );
+  KgDependencies( bool first, QWidget* parent=0 );
 
   virtual int activeSubPage();
   

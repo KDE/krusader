@@ -37,13 +37,14 @@
 #include <klocale.h>
 #include <q3hbox.h>
 #include <kmessagebox.h>
+#include <kurl.h>
 
 #define PAGE_GENERAL   0
 #define PAGE_PACKERS   1
 #define PAGE_CHECKSUM  2
 
-KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name ) :
-      KonfiguratorPage( first, parent, name )
+KgDependencies::KgDependencies( bool first, QWidget* parent ) :
+      KonfiguratorPage( first, parent )
 {
   Q3GridLayout *kgDependenciesLayout = new Q3GridLayout( parent );
   kgDependenciesLayout->setSpacing( 6 );
@@ -134,7 +135,7 @@ void KgDependencies::addApplication( QString name, Q3GridLayout *grid, int row, 
       }
   }
 
-  addLabel( grid, row, 0, name, parent, (QString( "label:" )+name).ascii() );
+  addLabel( grid, row, 0, name, parent );
 
   KonfiguratorURLRequester *fullPath = createURLRequester( "Dependencies", name, dflt, parent, false, page );
   connect( fullPath->extension(), SIGNAL( applyManually( QObject *, QString, QString ) ),
@@ -147,7 +148,7 @@ void KgDependencies::slotApply( QObject *obj, QString cls, QString name )
   KonfiguratorURLRequester *urlRequester = (KonfiguratorURLRequester *) obj;
 
   krConfig->setGroup( cls );
-  krConfig->writeEntry( name, urlRequester->url() );
+  krConfig->writeEntry( name, urlRequester->url().pathOrUrl() );
 
   QString usedPath = KrServices::fullPathName( name );
 
@@ -156,11 +157,11 @@ void KgDependencies::slotApply( QObject *obj, QString cls, QString name )
     krConfig->writeEntry( name, usedPath );
     if( usedPath.isEmpty() )
       KMessageBox::error( this, i18n( "The %1 path is incorrect, no valid path found." )
-                          .arg( urlRequester->url() ) );
+                          .arg( urlRequester->url().pathOrUrl() ) );
     else
       KMessageBox::error( this, i18n( "The %1 path is incorrect, %2 used instead." )
-                          .arg( urlRequester->url() ).arg( usedPath ) );
-    urlRequester->setURL( usedPath );
+                          .arg( urlRequester->url().pathOrUrl() ).arg( usedPath ) );
+    urlRequester->setUrl( KUrl( usedPath ) );
   }
 }
 

@@ -45,7 +45,7 @@ class KgColors : public KonfiguratorPage
   Q_OBJECT
 
 public:
-  KgColors( bool first, QWidget* parent=0,  const char* name=0 );
+  KgColors( bool first, QWidget* parent=0 );
 
   bool apply();
 

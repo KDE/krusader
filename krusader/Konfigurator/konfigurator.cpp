@@ -59,20 +59,25 @@
 #include "kguseractions.h"
 #include "kgprotocols.h"
 
-Konfigurator::Konfigurator( bool f, int startPage ) : KDialog(0,0,true,"Konfigurator",
-      KDialog::Help | KDialog::User1 | KDialog::Apply | KDialog::Cancel,
-      KDialog::User1, false, i18n("Defaults") ), firstTime(f), internalCall( false ),
+Konfigurator::Konfigurator( bool f, int startPage ) : KDialog( (QWidget *)0, 0 ), firstTime(f), internalCall( false ),
       restartGUI( false )
 {
+  setButtons( KDialog::Help | KDialog::User1 | KDialog::Apply | KDialog::Cancel );
+  setDefaultButton( KDialog::User1 );
+  setCaption( i18n( "Konfigurator" ) );
+  setButtonGuiItem( KDialog::User1, KGuiItem( i18n("Defaults") ) );
+  setWindowModality( Qt::WindowModal );
+
   setPlainCaption(i18n("Konfigurator - Creating Your Own Krusader"));
   kgFrames.setAutoDelete(true);
-  widget=new KPageDialog(this,0,KPageDialog::IconList);
+  widget=new KPageDialog(this);
+  widget->setFaceType(KPageDialog::List);
 
-  setButtonCancel(i18n("Close"));
+  setButtonGuiItem( KDialog::Cancel, KGuiItem( i18n("Close") ) );
 
   setHelp("konfigurator");
   
-  connect( widget, SIGNAL( aboutToShowPage(QWidget *) ), this, SLOT( slotPageSwitch() ) );
+  connect( widget, SIGNAL( currentPageChanged( KPageWidgetItem *, KPageWidgetItem * ) ), this, SLOT( slotPageSwitch() ) );
   connect( &restoreTimer, SIGNAL(timeout()), this, SLOT(slotRestorePage()));
   connect( this, SIGNAL( applyClicked() ), this, SLOT( slotApply() ) );
   connect( this, SIGNAL( cancelClicked() ), this, SLOT( slotCancel() ) );
@@ -121,7 +126,7 @@ void Konfigurator::createLayout( int startPage )
   newContent(new KgProtocols(firstTime, widget->addPage(i18n("Protocols"),
     i18n("Link mimes to protocols"), QPixmap(krLoader->loadIcon("about_kde",KIcon::Desktop,32)))));
         
-  widget->showPage( widget->pageIndex( kgFrames.at( startPage )->parentWidget() ) );
+  widget->setCurrentPage( widget->pageIndex( kgFrames.at( startPage )->parentWidget() ) );
   slotApplyEnable();
 }
 
@@ -218,7 +223,7 @@ void Konfigurator::slotRestorePage()
   if( lastPage != widget->activePageIndex() )
   {
     internalCall = true;
-    widget->showPage( lastPage );
+    widget->setCurrentPage( lastPage );
   }
 }
 

@@ -60,9 +60,8 @@ public:
   *
   * @param firstTime    this parameter is true if it is the first call of Konfigurator
   * @param parent       reference to the parent widget
-  * @param name         name of the newly generated Konfigurator page widget
   */
-  KonfiguratorPage( bool firstTime, QWidget* parent,  const char* name );
+  KonfiguratorPage( bool firstTime, QWidget* parent );
 
   /**
     * Applies the changes in the Konfigurator page.
@@ -282,12 +281,10 @@ public:
     *
     * @param  text        The text written out onto the frame
     * @param  parent      Reference to the parent widget
-    * @param  widgetName  The name of the widget
     *
     * @return             reference to the newly created frame
     */
-  Q3GroupBox               *createFrame( QString text = QString(), QWidget *parent=0,
-                                           const char *widgetName=0 );
+  Q3GroupBox               *createFrame( QString text = QString(), QWidget *parent=0 );
 
   /**
     * Creates a new QGridLayout element and sets its margins.
@@ -317,12 +314,11 @@ public:
     * @param  y           the row to which the label will be placed
     * @param  label       the text of the label
     * @param  parent      Reference to the parent widget
-    * @param  widgetName  The name of the newly generated label widget
     *
     * @return             reference to the newly created label
     */
   QLabel                  *addLabel( Q3GridLayout *layout, int x, int y, QString label,
-                                           QWidget *parent=0, const char *widgetName=0 );
+                                           QWidget *parent=0 );
 
   /**
     * Creates a spacer object (for justifying in QHBox).
@@ -334,11 +330,10 @@ public:
     * myLayout->addWidget( hbox, 0, 0 );
     *
     * @param  parent      Reference to the parent widget
-    * @param  widgetName  The name of the newly generated label widget
     *
     * @return             reference to the newly created spacer widget
     */
-  QWidget                 *createSpacer( QWidget *parent=0, const char *widgetName=0 );
+  QWidget                 *createSpacer( QWidget *parent=0 );
 
   /**
     * Creates a separator line.
@@ -348,12 +343,11 @@ public:
     * myLayout->addWidget( myLine, 1, 0 );<br>
     *
     * @param  parent      Reference to the parent widget
-    * @param  widgetName  The name of the newly generated label widget
     * @param  vertical    Means vertical line
     *
     * @return             reference to the newly created spacer widget
     */
-  Q3Frame                  *createLine( QWidget *parent=0, const char *widgetName=0, bool vertical = false );
+  Q3Frame                  *createLine( QWidget *parent=0, bool vertical = false );
 
   /**
     * Creates a checkbox group. A checkbox group contains a lot of checkboxes.
@@ -380,14 +374,13 @@ public:
     * @param  params      pointer to the checkbox array
     * @param  paramNum    number of the checkbox elements
     * @param  parent      Reference to the parent widget
-    * @param  widgetName  The name of the newly created checkbox group widget
     * @param  pg          The subpage of a Konfigurator page (because of setDefaults)
     *
     * @return             reference to the newly created checkbox group widget
     */
   KonfiguratorCheckBoxGroup *createCheckBoxGroup( int sizex, int sizey,
                                            KONFIGURATOR_CHECKBOX_PARAM *params, int paramNum,
-                                           QWidget *parent=0, const char *widgetName=0, int pg=FIRST_PAGE );
+                                           QWidget *parent=0, int pg=FIRST_PAGE );
   /**
     * Creates a radio button group. A radio button group contains a lot of radio buttons.
     * The grouped buttons are embedded into one widget, which can be placed anywhere
@@ -416,7 +409,6 @@ public:
     * @param  params      pointer to the checkbox array
     * @param  paramNum    number of the checkbox elements
     * @param  parent      Reference to the parent widget
-    * @param  widgetName  The name of the newly created button group widget
     * @param  rst         The change of this parameter requires Krusader restart
     * @param  pg          The subpage of a Konfigurator page (because of setDefaults)
     *
@@ -425,7 +417,7 @@ public:
   KonfiguratorRadioButtons *createRadioButtonGroup( QString cls, QString name, 
                                            QString dflt, int sizex, int sizey,
                                            KONFIGURATOR_NAME_VALUE_TIP *params, int paramNum,
-                                           QWidget *parent=0, const char *widgetName=0, bool rst=false, int pg=FIRST_PAGE );
+                                           QWidget *parent=0, bool rst=false, int pg=FIRST_PAGE );
 
   /**
     * This function is used to insert new, unknown items into KonfiguratorPage. The

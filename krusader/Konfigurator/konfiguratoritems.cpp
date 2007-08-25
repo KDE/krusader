@@ -95,7 +95,7 @@ bool KonfiguratorExtension::isChanged()
 ///////////////////////////////
 
 KonfiguratorCheckBox::KonfiguratorCheckBox( QString cls, QString name, bool dflt, QString text,
-    QWidget *parent, const char *widgetName, bool rst, int pg ) : QCheckBox( text, parent, widgetName ),
+    QWidget *parent, bool rst, int pg ) : QCheckBox( text, parent ),
     defaultValue( dflt )
 {
   ext = new KonfiguratorExtension( this, cls, name, rst, pg );
@@ -135,7 +135,7 @@ void KonfiguratorCheckBox::slotSetDefaults(QObject *)
 ///////////////////////////////
 
 KonfiguratorSpinBox::KonfiguratorSpinBox( QString cls, QString name, int dflt, int min, int max,
-    QWidget *parent, const char *widgetName, bool rst, int pg ) : QSpinBox( parent, widgetName ),
+    QWidget *parent, bool rst, int pg ) : QSpinBox( parent ),
     defaultValue( dflt )
 {
   ext = new KonfiguratorExtension( this, cls, name, rst, pg );
@@ -207,8 +207,8 @@ KonfiguratorCheckBox * KonfiguratorCheckBoxGroup::find( QString name )
 ///////////////////////////////
 
 KonfiguratorRadioButtons::KonfiguratorRadioButtons( QString cls, QString name,
-    QString dflt, QWidget *parent, const char *widgetName, bool rst, int pg ) :
-    Q3ButtonGroup( parent, widgetName ), defaultValue( dflt )
+    QString dflt, QWidget *parent, bool rst, int pg ) :
+    Q3ButtonGroup( parent ), defaultValue( dflt )
 {
   ext = new KonfiguratorExtension( this, cls, name, rst, pg );
   connect( ext, SIGNAL( applyAuto(QObject *,QString, QString) ), this, SLOT( slotApply(QObject *,QString, QString) ) );
@@ -302,7 +302,7 @@ void KonfiguratorRadioButtons::slotSetDefaults(QObject *)
 ///////////////////////////////
 
 KonfiguratorEditBox::KonfiguratorEditBox( QString cls, QString name, QString dflt,
-    QWidget *parent, const char *widgetName, bool rst, int pg ) : QLineEdit( parent, widgetName ),
+    QWidget *parent, bool rst, int pg ) : QLineEdit( parent ),
     defaultValue( dflt )
 {
   ext = new KonfiguratorExtension( this, cls, name, rst, pg );
@@ -344,7 +344,7 @@ void KonfiguratorEditBox::slotSetDefaults(QObject *)
 ///////////////////////////////
 
 KonfiguratorURLRequester::KonfiguratorURLRequester( QString cls, QString name, QString dflt,
-    QWidget *parent, const char *widgetName, bool rst, int pg ) : KUrlRequester( parent, widgetName ),
+    QWidget *parent, bool rst, int pg ) : KUrlRequester( parent ),
     defaultValue( dflt )
 {
   ext = new KonfiguratorExtension( this, cls, name, rst, pg );
@@ -366,7 +366,7 @@ KonfiguratorURLRequester::~KonfiguratorURLRequester()
 void KonfiguratorURLRequester::loadInitialValue()
 {
   krConfig->setGroup( ext->getCfgClass() );
-  setURL( krConfig->readEntry( ext->getCfgName(), defaultValue ) );
+  setUrl( krConfig->readEntry( ext->getCfgName(), defaultValue ) );
   ext->setChanged( false );
 }
 
@@ -379,14 +379,14 @@ void KonfiguratorURLRequester::slotApply(QObject *,QString cls, QString name)
 void KonfiguratorURLRequester::slotSetDefaults(QObject *)
 {
   if( url() != defaultValue )
-    setURL( defaultValue );
+    setUrl( defaultValue );
 }
 
 // KonfiguratorFontChooser class
 ///////////////////////////////
 
 KonfiguratorFontChooser::KonfiguratorFontChooser( QString cls, QString name, QFont *dflt,
-  QWidget *parent, const char *widgetName, bool rst, int pg ) : Q3HBox ( parent, widgetName ),
+  QWidget *parent, bool rst, int pg ) : Q3HBox ( parent ),
     defaultValue( dflt )
 {
   ext = new KonfiguratorExtension( this, cls, name, rst, pg );
@@ -413,7 +413,7 @@ KonfiguratorFontChooser::~KonfiguratorFontChooser()
 void KonfiguratorFontChooser::loadInitialValue()
 {
   krConfig->setGroup( ext->getCfgClass() );
-  font = krConfig->readFontEntry( ext->getCfgName(), defaultValue );
+  font = krConfig->readEntry( ext->getCfgName(), *defaultValue );
   ext->setChanged( false );
   setFont();
 }
@@ -450,7 +450,7 @@ void KonfiguratorFontChooser::slotBrowseFont()
 
 KonfiguratorComboBox::KonfiguratorComboBox( QString cls, QString name, QString dflt,
     KONFIGURATOR_NAME_VALUE_PAIR *listIn, int listInLen, QWidget *parent,
-    const char *widgetName, bool rst, bool editable, int pg ) : QComboBox ( parent, widgetName ),
+    bool rst, bool editable, int pg ) : QComboBox ( parent ),
     defaultValue( dflt ), listLen( listInLen )
 {
   list = new KONFIGURATOR_NAME_VALUE_PAIR[ listInLen ];
@@ -528,8 +528,8 @@ void KonfiguratorComboBox::slotSetDefaults(QObject *)
 ///////////////////////////////
 
 KonfiguratorColorChooser::KonfiguratorColorChooser( QString cls, QString name, QColor dflt,
-    QWidget *parent, const char *widgetName, bool rst, ADDITIONAL_COLOR *addColPtr,
-    int addColNum, int pg ) : QComboBox ( parent, widgetName ),
+    QWidget *parent, bool rst, ADDITIONAL_COLOR *addColPtr,
+    int addColNum, int pg ) : QComboBox ( parent ),
     defaultValue( dflt ), disableColorChooser( true )
 {
   ext = new KonfiguratorExtension( this, cls, name, rst, pg );
@@ -605,7 +605,7 @@ void KonfiguratorColorChooser::addColor( QString text, QColor color )
 void KonfiguratorColorChooser::loadInitialValue()
 {
   krConfig->setGroup( ext->getCfgClass() );
-  QString selected = krConfig->readEntry( ext->getCfgName(), "" );
+  QString selected = krConfig->readEntry( ext->getCfgName(), QString( "" ) );
   setValue( selected );
   ext->setChanged( false );
 }
@@ -669,7 +669,7 @@ void KonfiguratorColorChooser::setValue( QString value )
     {
       krConfig->setGroup( ext->getCfgClass() );
       krConfig->writeEntry( "TmpColor", value );
-      QColor color = krConfig->readColorEntry( "TmpColor", &defaultValue );
+      QColor color = krConfig->readEntry( "TmpColor", defaultValue );
       customValue = color;
       krConfig->deleteEntry( "TmpColor" );
 
@@ -742,7 +742,7 @@ QColor KonfiguratorColorChooser::getColor()
 ///////////////////////////////
 
 KonfiguratorListBox::KonfiguratorListBox( QString cls, QString name, QStringList dflt,
-    QWidget *parent, const char *widgetName, bool rst, int pg ) : Q3ListBox( parent, widgetName ),
+    QWidget *parent, bool rst, int pg ) : Q3ListBox( parent ),
     defaultValue( dflt )
 {
   ext = new KonfiguratorExtension( this, cls, name, rst, pg );

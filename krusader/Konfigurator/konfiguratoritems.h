@@ -111,7 +111,7 @@ class KonfiguratorCheckBox : public QCheckBox
 
 public:
   KonfiguratorCheckBox( QString cls, QString name, bool dflt, QString text,
-                        QWidget *parent=0, const char *widgetName=0, bool rst=false, int pg=FIRST_PAGE );
+                        QWidget *parent=0, bool rst=false, int pg=FIRST_PAGE );
   ~KonfiguratorCheckBox();
 
   inline KonfiguratorExtension *extension()   {return ext;}
@@ -135,7 +135,7 @@ class KonfiguratorSpinBox : public QSpinBox
 
 public:
   KonfiguratorSpinBox( QString cls, QString name, int dflt, int min, int max,
-                       QWidget *parent=0, const char *widgetName=0, bool rst=false, int pg=FIRST_PAGE );
+                       QWidget *parent=0, bool rst=false, int pg=FIRST_PAGE );
   ~KonfiguratorSpinBox();
 
   inline KonfiguratorExtension *extension()   {return ext;}
@@ -176,7 +176,7 @@ class KonfiguratorRadioButtons : public Q3ButtonGroup
 
 public:
   KonfiguratorRadioButtons( QString cls, QString name, QString dflt, QWidget *parent=0,
-                            const char *widgetName=0, bool rst=false, int pg=FIRST_PAGE );
+                            bool rst=false, int pg=FIRST_PAGE );
   ~KonfiguratorRadioButtons();
 
   inline KonfiguratorExtension *extension()   {return ext;}
@@ -213,7 +213,7 @@ class KonfiguratorEditBox : public QLineEdit
 
 public:
   KonfiguratorEditBox( QString cls, QString name, QString dflt, QWidget *parent=0,
-                       const char *widgetName=0, bool rst=false, int pg=FIRST_PAGE );
+                       bool rst=false, int pg=FIRST_PAGE );
   ~KonfiguratorEditBox();
 
   inline KonfiguratorExtension *extension()   {return ext;}
@@ -238,7 +238,7 @@ class KonfiguratorURLRequester : public KUrlRequester
 
 public:
   KonfiguratorURLRequester( QString cls, QString name, QString dflt, QWidget *parent=0,
-                       const char *widgetName=0, bool rst=false, int pg=FIRST_PAGE );
+                       bool rst=false, int pg=FIRST_PAGE );
   ~KonfiguratorURLRequester();
 
   inline KonfiguratorExtension *extension()   {return ext;}
@@ -262,7 +262,7 @@ class KonfiguratorFontChooser : public Q3HBox
 
 public:
   KonfiguratorFontChooser( QString cls, QString name, QFont *dflt, QWidget *parent=0,
-                            const char *widgetName=0, bool rst=false, int pg=FIRST_PAGE );
+                            bool rst=false, int pg=FIRST_PAGE );
   ~KonfiguratorFontChooser();
 
   inline KonfiguratorExtension *extension()   {return ext;}
@@ -313,7 +313,7 @@ class KonfiguratorComboBox : public QComboBox
 public:
   KonfiguratorComboBox( QString cls, QString name, QString dflt,
                         KONFIGURATOR_NAME_VALUE_PAIR *listIn, int listInLen,
-                        QWidget *parent=0, const char *widgetName=0,
+                        QWidget *parent=0,
                         bool rst=false,  bool editable=false, int pg=FIRST_PAGE );
   ~KonfiguratorComboBox();
 
@@ -350,7 +350,7 @@ class KonfiguratorColorChooser : public QComboBox
 
 public:
   KonfiguratorColorChooser( QString cls, QString name, QColor dflt,
-                            QWidget *parent=0, const char *widgetName=0, bool rst=false,
+                            QWidget *parent=0, bool rst=false,
                             ADDITIONAL_COLOR *addColPtr = 0, int addColNum = 0, int pg=FIRST_PAGE );
   ~KonfiguratorColorChooser();
 
@@ -395,7 +395,7 @@ class KonfiguratorListBox : public Q3ListBox
 
 public:
   KonfiguratorListBox( QString cls, QString name, QStringList dflt,
-                        QWidget *parent=0, const char *widgetName=0,
+                        QWidget *parent=0,
                         bool rst=false,  int pg=FIRST_PAGE );
   ~KonfiguratorListBox();
 

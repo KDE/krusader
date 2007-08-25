@@ -44,15 +44,15 @@
 #include <QLabel>
 #include <Q3GridLayout>
 
-KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
-      KonfiguratorPage( first, parent, name ), offset( 0 )
+KgColors::KgColors( bool first, QWidget* parent ) :
+      KonfiguratorPage( first, parent ), offset( 0 )
 {
   Q3GridLayout *kgColorsLayout = new Q3GridLayout( parent );
   kgColorsLayout->setSpacing( 6 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
 
-  Q3GroupBox *generalGrp = createFrame( i18n( "General" ), parent, "kgColorsGeneralGrp" );
+  Q3GroupBox *generalGrp = createFrame( i18n( "General" ), parent );
   Q3GridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
   generalGrid->setSpacing( 0 );
@@ -80,7 +80,7 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
 
   //  -------------------------- COLORS GROUPBOX ----------------------------------
 
-  Q3GroupBox *colorsFrameGrp = createFrame( i18n( "Colors" ), hbox, "kgColorsColorsGrp" );
+  Q3GroupBox *colorsFrameGrp = createFrame( i18n( "Colors" ), hbox );
   Q3GridLayout *colorsFrameGrid = createGridLayout( colorsFrameGrp->layout() );
   colorsFrameGrid->setSpacing( 0 );
   colorsFrameGrid->setMargin( 3 );
@@ -115,7 +115,7 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   addColorSelector( "Marked Current Foreground",         i18n( "Selected current foreground:" ),          Qt::white,                                    i18n( "Not used" ), &sameAsMarkedForegnd, 1);
   addColorSelector( "Current Background",         i18n( "Current background:" ),          Qt::white, i18n( "Not used" ), &sameAsBckgnd, 1                             );
 
-  colorsGrid->addWidget(createSpacer(colorsGrp, ""), itemList.count() - offset, 1);
+  colorsGrid->addWidget(createSpacer(colorsGrp), itemList.count() - offset, 1);
 
   connect( getColorSelector( "Foreground" ), SIGNAL( colorChanged() ), this, SLOT( slotForegroundChanged() ) );
   connect( getColorSelector( "Background" ), SIGNAL( colorChanged() ), this, SLOT( slotBackgroundChanged() ) );
@@ -152,7 +152,7 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   addColorSelector( "Inactive Marked Current Foreground",          i18n( "Selected current foreground:" ),          getColorSelector( "Marked Current Foreground" )->getColor(), i18n( "Same as active" ), &sameAsInactMarkedForegnd, 1 );
   addColorSelector( "Inactive Current Background",          i18n( "Current background:" ),          getColorSelector( "Current Background" )->getColor(), i18n( "Same as active" ), &sameAsInactBckgnd, 1 );
 
-  colorsGrid->addWidget(createSpacer(normalInactiveWidget, ""), itemList.count() - offset, 1);
+  colorsGrid->addWidget(createSpacer(normalInactiveWidget), itemList.count() - offset, 1);
 
   connect( getColorSelector( "Inactive Foreground" ), SIGNAL( colorChanged() ), this, SLOT( slotInactiveForegroundChanged() ) );
   connect( getColorSelector( "Inactive Background" ), SIGNAL( colorChanged() ), this, SLOT( slotInactiveBackgroundChanged() ) );
@@ -172,13 +172,13 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   addColorSelector( "Dim Target Color", i18n( "Dim target color:" ), Qt::white);
 
   int index = itemList.count() - offset;
-  labelList.append( addLabel( colorsGrid, index, 0, i18n("Dim factor:"), colorsGrp, QString( "ColorsLabel%1" ).arg( index ).ascii() ) );
+  labelList.append( addLabel( colorsGrid, index, 0, i18n("Dim factor:"), colorsGrp ) );
   dimFactor = createSpinBox("Colors", "Dim Factor", 100, 0, 100, colorsGrp);
   dimFactor->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
   connect( dimFactor, SIGNAL( valueChanged( int ) ), this, SLOT( generatePreview() ) );
   colorsGrid->addWidget( dimFactor, index++, 1 );
 
-  colorsGrid->addWidget(createSpacer(dimmedInactiveWidget, ""), itemList.count() + 1 - offset, 1);
+  colorsGrid->addWidget(createSpacer(dimmedInactiveWidget), itemList.count() + 1 - offset, 1);
 
   inactiveColorStack->addWidget( dimmedInactiveWidget );
 
@@ -207,13 +207,13 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   addColorSelector( "Synchronizer Delete Foreground", i18n( "Delete foreground:" ), Qt::white, QString(), &KDEDefaultFore, 1 );
   addColorSelector( "Synchronizer Delete Background", i18n( "Delete background:" ), Qt::red, QString(), &KDEDefaultBase, 1 );
 
-  colorsGrid->addWidget(createSpacer(colorsGrp, ""), itemList.count() - offset, 1);
+  colorsGrid->addWidget(createSpacer(colorsGrp), itemList.count() - offset, 1);
 
   colorsFrameGrid->addWidget( colorTabWidget, 0, 0 );
 
   //  -------------------------- PREVIEW GROUPBOX ----------------------------------
 
-  previewGrp = createFrame( i18n( "Preview" ), hbox, "kgColorsPreviewGrp" );
+  previewGrp = createFrame( i18n( "Preview" ), hbox );
   previewGrid = createGridLayout( previewGrp->layout() );
 
   preview = new Q3ListView( previewGrp, "colorPreView" );
@@ -233,7 +233,7 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   kgColorsLayout->addWidget(importBtn,2,0);
   exportBtn = new KPushButton(i18n("Export color-scheme"),parent);
   kgColorsLayout->addWidget(exportBtn,2,1);
-  kgColorsLayout->addWidget(createSpacer(parent, ""), 2,2);
+  kgColorsLayout->addWidget(createSpacer(parent), 2,2);
   connect(importBtn, SIGNAL(clicked()), this, SLOT(slotImportColors()));
   connect(exportBtn, SIGNAL(clicked()), this, SLOT(slotExportColors()));
 
@@ -245,7 +245,7 @@ int KgColors::addColorSelector( QString cfgName, QString name, QColor dflt, QStr
 {
   int index = itemList.count() - offset;
 
-  labelList.append( addLabel( colorsGrid, index, 0, name, colorsGrp, QString( "ColorsLabel%1" ).arg( index ).ascii() ) );
+  labelList.append( addLabel( colorsGrid, index, 0, name, colorsGrp ) );
   KonfiguratorColorChooser *chooser = createColorChooser( "Colors", cfgName, dflt, colorsGrp, false, addColor, addColNum );
   chooser->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
 
@@ -432,7 +432,7 @@ void KgColors::generatePreview()
 
     // copy over local settings to color settings instance, which does not affect the persisted krConfig settings
     Q3ValueList<QString> names = KrColorSettings::getColorNames();
-    for ( QStringList::Iterator it = names.begin(); it != names.end(); ++it )
+    for ( Q3ValueList<QString>::Iterator it = names.begin(); it != names.end(); ++it )
     {
         KonfiguratorColorChooser * chooser = getColorSelector( *it );
         if (!chooser)
@@ -523,8 +523,8 @@ void KgColors::slotExportColors() {
 	if (file == QString()) return;
 	QFile f(file);
 	if (f.exists() && KMessageBox::warningContinueCancel(this,
-		i18n("File ")+file+i18n(" already exists. Are you sure you want to overwrite it?"),
-		i18n("Warning"), i18n("Overwrite")) != KMessageBox::Continue) return;
+		i18n("File %1 already exists. Are you sure you want to overwrite it?").arg( file ),
+		i18n("Warning"), KGuiItem( i18n("Overwrite") ) ) != KMessageBox::Continue) return;
 	if (!f.open(QIODevice::WriteOnly)) {
 		KMessageBox::error(this, i18n("Error: unable to write to file"), i18n("Error"));
 		return;
