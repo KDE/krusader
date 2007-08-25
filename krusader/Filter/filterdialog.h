@@ -31,13 +31,13 @@
 #ifndef FILTERDIALOG_H
 #define FILTERDIALOG_H 
 
-#include <kdialogbase.h>
+#include <kdialog.h>
 #include "../VFS/krquery.h"
 
 class FilterTabs;
 class GeneralFilter;
 
-class FilterDialog : public KDialogBase
+class FilterDialog : public KDialog
 {
   Q_OBJECT
 

@@ -37,7 +37,7 @@
 #include <Q3GridLayout>
 
 FilterDialog::FilterDialog(  QWidget *parent, const char *name )
-    : KDialogBase( parent, name, true, i18n("Krusader::Choose Files"), Ok|Cancel )
+    : KDialog( parent, name, true, i18n("Krusader::Choose Files"), Ok|Cancel )
 {
   Q3GridLayout *filterGrid = new Q3GridLayout( this->layout() );
   filterGrid->setSpacing( 6 );
@@ -55,6 +55,7 @@ FilterDialog::FilterDialog(  QWidget *parent, const char *name )
   generalFilter->searchFor->setFocus();
 
   connect( filterTabs, SIGNAL( closeRequest(bool) ), this, SLOT( slotCloseRequest(bool) ) );
+  connect( this, SIGNAL( okClicked() ), this, SLOT( slotOk() ) );
 
   exec();
 }
@@ -79,7 +80,7 @@ void FilterDialog::slotOk()
 {
   if( filterTabs->fillQuery( &query ) )
   {
-    KDialogBase::slotOk();
+    KDialog::slotOk();
     return;
   }
 

@@ -94,7 +94,7 @@ void KrCalcSpaceDialog::CalcThread::stop(){
 }
 
 KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, ListPanel * files, const QStringList & items, bool autoclose) :
-	KDialogBase(parent, "KrCalcSpaceDialog", true, i18n("Calculate Occupied Space"), Ok|Cancel),
+	KDialog(parent, "KrCalcSpaceDialog", true, i18n("Calculate Occupied Space"), Ok|Cancel),
 	m_autoClose(autoclose), m_canceled(false), m_timerCounter(0){
 	// the dialog: The Ok button is hidden until it is needed
 	showButtonOK(false);
@@ -108,6 +108,8 @@ KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, ListPanel * files, const Q
 	showResult(); // fill m_label with something usefull
 	topLayout->addWidget( m_label );
 	topLayout->addStretch(10);
+
+	connect( this, SIGNAL( cancelClicked() ), this, SLOT( slotCancel() ) );
 }
 
 void KrCalcSpaceDialog::calculationFinished(){
@@ -159,7 +161,7 @@ void KrCalcSpaceDialog::showResult(){
 void KrCalcSpaceDialog::slotCancel(){
 	m_thread->stop(); // notify teh thread to stop
 	m_canceled = true; // set the cancel flag
-	KDialogBase::slotCancel(); // close the dialog
+	KDialog::slotCancel(); // close the dialog
 }
 
 KrCalcSpaceDialog::~KrCalcSpaceDialog(){
@@ -181,7 +183,7 @@ void KrCalcSpaceDialog::exec(){
 	// prepare and start the poll timer
 	connect(m_pollTimer, SIGNAL(timeout()), this, SLOT(timer()));
 	m_pollTimer->start(100);
-	KDialogBase::exec(); // show the dialog
+	KDialog::exec(); // show the dialog
 }
 /* --=={ End of patch by Heiner <h.eichmann@gmx.de> }==-- */
 

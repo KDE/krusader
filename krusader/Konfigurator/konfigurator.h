@@ -37,14 +37,14 @@
 #include <qwidget.h>
 //Added by qt3to4:
 #include <Q3PtrList>
-#include <kdialogbase.h>
+#include <kdialog.h>
 #include <kjanuswidget.h>
 #include <qtimer.h>
 
 class QLineEdit;
 class QString;
 
-class Konfigurator : public KDialogBase
+class Konfigurator : public KDialog
 {
    Q_OBJECT
 

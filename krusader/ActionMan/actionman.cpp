@@ -21,13 +21,15 @@
 
 
 ActionMan::ActionMan( QWidget * parent )
- : KDialogBase( parent, "ActionMan", true /*modal*/, "ActionMan - Manage your useractions",  KDialogBase::Apply | KDialogBase::Close )
+ : KDialog( parent, "ActionMan", true /*modal*/, "ActionMan - Manage your useractions",  KDialog::Apply | KDialog::Close )
 {
    setPlainCaption(i18n("ActionMan - Manage Your Useractions"));
 
    userActionPage = new UserActionPage( this );
    setMainWidget( userActionPage );
 
+   connect( this, SIGNAL( applyClicked() ), this, SLOT( slotApply() ) );
+   connect( this, SIGNAL( closeClicked() ), this, SLOT( slotClose() ) );
    connect( userActionPage, SIGNAL( changed() ), SLOT( slotEnableApplyButton() ) );
    connect( userActionPage, SIGNAL( applied() ), SLOT( slotDisableApplyButton() ) );
    enableButtonApply( false );

@@ -211,7 +211,7 @@ static Q3PtrList<CS_Tool> getTools(bool folders) {
 // ------------- CreateChecksumDlg
 
 CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolders, const QString& path):
-	KDialogBase(Plain, i18n("Create Checksum"), Ok | Cancel, Ok, krApp) {
+	KDialog(Plain, i18n("Create Checksum"), Ok | Cancel, Ok, krApp) {
 	
 	Q3PtrList<CS_Tool> tools = getTools(containFolders);
 
@@ -226,12 +226,12 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	}
 	
 	Q3GridLayout *layout = new Q3GridLayout( plainPage(), 1, 1,
-		KDialogBase::marginHint(), KDialogBase::spacingHint());
+		KDialog::marginHint(), KDialog::spacingHint());
 	
 	int row=0;
 		
 	// title (icon+text)	
-	Q3HBoxLayout *hlayout = new Q3HBoxLayout(layout, KDialogBase::spacingHint());
+	Q3HBoxLayout *hlayout = new Q3HBoxLayout(layout, KDialog::spacingHint());
 	QLabel *p = new QLabel(plainPage());
 	p->setPixmap(krLoader->loadIcon("binary", KIcon::Desktop, 32));
 	hlayout->addWidget(p);
@@ -248,7 +248,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	++row;
 
 	// checksum method
-	Q3HBoxLayout *hlayout2 = new Q3HBoxLayout(layout, KDialogBase::spacingHint());
+	Q3HBoxLayout *hlayout2 = new Q3HBoxLayout(layout, KDialog::spacingHint());
 	QLabel *l2 = new QLabel(i18n("Select the checksum method:"), plainPage());
 	hlayout2->addWidget(l2);
 	KComboBox *method = new KComboBox(plainPage());
@@ -312,7 +312,7 @@ QString MatchChecksumDlg::checksumTypesFilter;
 
 MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders, 
 	const QString& path, const QString& checksumFile):
-	KDialogBase(Plain, i18n("Verify Checksum"), Ok | Cancel, Ok, krApp) {
+	KDialog(Plain, i18n("Verify Checksum"), Ok | Cancel, Ok, krApp) {
 	
 	Q3PtrList<CS_Tool> tools = getTools(containFolders);
 
@@ -327,12 +327,12 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	}
 	
 	Q3GridLayout *layout = new Q3GridLayout( plainPage(), 1, 1,
-		KDialogBase::marginHint(), KDialogBase::spacingHint());
+		KDialog::marginHint(), KDialog::spacingHint());
 	
 	int row=0;
 		
 	// title (icon+text)	
-	Q3HBoxLayout *hlayout = new Q3HBoxLayout(layout, KDialogBase::spacingHint());
+	Q3HBoxLayout *hlayout = new Q3HBoxLayout(layout, KDialog::spacingHint());
 	QLabel *p = new QLabel(plainPage());
 	p->setPixmap(krLoader->loadIcon("binary", KIcon::Desktop, 32));
 	hlayout->addWidget(p);
@@ -349,7 +349,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	++row;
 
 	// checksum file
-	Q3HBoxLayout *hlayout2 = new Q3HBoxLayout(layout, KDialogBase::spacingHint());
+	Q3HBoxLayout *hlayout2 = new Q3HBoxLayout(layout, KDialog::spacingHint());
 	QLabel *l2 = new QLabel(i18n("Checksum file:"), plainPage());
 	hlayout2->addWidget(l2);
 	KUrlRequester *checksumFileReq = new KUrlRequester( plainPage() );
@@ -430,15 +430,15 @@ bool MatchChecksumDlg::verifyChecksumFile(QString path,  QString& extension) {
 
 // ------------- VerifyResultDlg
 VerifyResultDlg::VerifyResultDlg(const QStringList& failed):
-	KDialogBase(Plain, i18n("Verify Checksum"), Close, Close, krApp) {
+	KDialog(Plain, i18n("Verify Checksum"), Close, Close, krApp) {
 	Q3GridLayout *layout = new Q3GridLayout( plainPage(), 1, 1,
-		KDialogBase::marginHint(), KDialogBase::spacingHint());
+		KDialog::marginHint(), KDialog::spacingHint());
 
 	bool errors = failed.size()>0;
 	int row = 0;
 	
 	// create the icon and title
-	Q3HBoxLayout *hlayout = new Q3HBoxLayout(layout, KDialogBase::spacingHint());
+	Q3HBoxLayout *hlayout = new Q3HBoxLayout(layout, KDialog::spacingHint());
 	QLabel p(plainPage());
 	p.setPixmap(krLoader->loadIcon(errors ? "messagebox_critical" : "messagebox_info", KIcon::Desktop, 32));
 	hlayout->addWidget(&p);
@@ -466,9 +466,9 @@ VerifyResultDlg::VerifyResultDlg(const QStringList& failed):
 
 ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringList& stdErr,
 	const QString& suggestedFilename, const QString& binary, const QString& /* type */, bool standardFormat):
-	KDialogBase(Plain, i18n("Create Checksum"), Ok | Cancel, Ok, krApp), _binary(binary) {
+	KDialog(Plain, i18n("Create Checksum"), Ok | Cancel, Ok, krApp), _binary(binary) {
 	Q3GridLayout *layout = new Q3GridLayout( plainPage(), 1, 1,
-		KDialogBase::marginHint(), KDialogBase::spacingHint());
+		KDialog::marginHint(), KDialog::spacingHint());
 
 	// md5 tools display errors into stderr, so we'll use that to determine the result of the job
 	bool errors = stdErr.size()>0;
@@ -476,7 +476,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 	int row = 0;
 	
 	// create the icon and title
-	Q3HBoxLayout *hlayout = new Q3HBoxLayout(layout, KDialogBase::spacingHint());
+	Q3HBoxLayout *hlayout = new Q3HBoxLayout(layout, KDialog::spacingHint());
 	QLabel p(plainPage());
 	p.setPixmap(krLoader->loadIcon(errors ? "messagebox_critical" : "messagebox_info", KIcon::Desktop, 32));
 	hlayout->addWidget(&p);
@@ -535,7 +535,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 	KUrlRequester *checksumFile=0;
 	QCheckBox *saveFileCb=0;
 	if (successes) {
-		Q3HBoxLayout *hlayout2 = new Q3HBoxLayout(layout, KDialogBase::spacingHint());
+		Q3HBoxLayout *hlayout2 = new Q3HBoxLayout(layout, KDialog::spacingHint());
 		saveFileCb = new QCheckBox(i18n("Save checksum to file:"), plainPage());
 		saveFileCb->setChecked(true);
 		hlayout2->addWidget(saveFileCb);

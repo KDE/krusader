@@ -3,14 +3,14 @@
 
 #include "krbookmark.h"
 #include "../VFS/vfs.h"
-#include <kdialogbase.h>
+#include <kdialog.h>
 #include <kurl.h>
 #include <klineedit.h>
 #include <qmap.h>
 #include <k3listview.h>
 #include <qtoolbutton.h>
 
-class KrAddBookmarkDlg: public KDialogBase {
+class KrAddBookmarkDlg: public KDialog {
 	Q_OBJECT
 public:
 	KrAddBookmarkDlg(QWidget *parent, KUrl url = 0);

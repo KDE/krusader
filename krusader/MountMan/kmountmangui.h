@@ -34,7 +34,7 @@
 #define KMOUNTMANGUI_H
 
 #include <sys/param.h>
-#include <kdialogbase.h>
+#include <kdialog.h>
 #include <q3listview.h>
 //Added by qt3to4:
 #include <Q3Frame>
@@ -55,7 +55,7 @@ class KRdirWatch;
 // forward definitions
 class fsData;
 
-class KMountManGUI : public KDialogBase {
+class KMountManGUI : public KDialog {
    Q_OBJECT
 
    enum Pages {

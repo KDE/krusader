@@ -10,7 +10,7 @@
 //
 //
 
-#include <kdialogbase.h>
+#include <kdialog.h>
 #include <kdebug.h>
 #include <klocale.h>
 #include <kinputdialog.h>
@@ -46,7 +46,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 #include <qlayout.h>
 KrActionProcDlg::KrActionProcDlg( QString caption, bool enableStderr, QWidget *parent ) :
-KDialogBase( parent, 0, false, caption, KDialogBase::User1 | KDialogBase::Ok | KDialogBase::Cancel, KDialogBase::Cancel ),
+KDialog( parent, 0, false, caption, KDialog::User1 | KDialog::Ok | KDialog::Cancel, KDialog::Cancel ),
 _stdout(0), _stderr(0), _currentTextEdit(0) {
 
    setButtonOK( i18n( "Close" ) );
@@ -54,7 +54,7 @@ _stdout(0), _stderr(0), _currentTextEdit(0) {
 
    setButtonCancel( KGuiItem(i18n("Kill"), i18n( "Kill the running process" )) );
 
-   setButtonText(KDialogBase::User1, i18n("Save as") );
+   setButtonText(KDialog::User1, i18n("Save as") );
 
    KVBox *page = makeVBoxMainWidget();
    // do we need to separate stderr and stdout?
@@ -93,15 +93,17 @@ _stdout(0), _stderr(0), _currentTextEdit(0) {
    bool startupState = krConfig->readBoolEntry( "Use Fixed Font", _UserActions_UseFixedFont );
    toggleFixedFont( startupState );
 
-   // HACK This fetches the layout of the buttonbox from KDialogBase, although it is not accessable with KDialogBase's API
+   // HACK This fetches the layout of the buttonbox from KDialog, although it is not accessable with KDialog's API
    // None the less it's quite save to use since this implementation hasn't changed since KDE-3.3 (I haven't looked at earlier
    // versions since we don't support them) and now all work is done in KDE-4.
-   QWidget* buttonBox = static_cast<QWidget*>( actionButton(KDialogBase::Ok)->parent() );
+   QWidget* buttonBox = static_cast<QWidget*>( actionButton(KDialog::Ok)->parent() );
    Q3BoxLayout* buttonBoxLayout = static_cast<Q3BoxLayout*>( buttonBox->layout() );
    QCheckBox* useFixedFont = new QCheckBox( i18n("Use font with fixed width"), buttonBox );
    buttonBoxLayout->insertWidget( 0, useFixedFont );
    useFixedFont->setChecked( startupState );
    connect( useFixedFont, SIGNAL( toggled(bool) ), SLOT( toggleFixedFont(bool) ) );
+
+   connect( this, SIGNAL( user1Clicked() ), this, SLOT( slotUser1() ) );
 }
 
 void KrActionProcDlg::addStderr( K3Process *, char *buffer, int buflen ) {

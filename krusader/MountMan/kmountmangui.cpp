@@ -64,7 +64,7 @@ A
 // use our version of it until kde fixes theirs
 #include "kdiskfreesp.h"
 
-KMountManGUI::KMountManGUI() : KDialogBase( krApp, 0, true, "Mount.Man" ),
+KMountManGUI::KMountManGUI() : KDialog( krApp, 0, true, "Mount.Man" ),
 info( 0 ), mountList( 0 ) {
 	watcher = new QTimer( this );
    connect( watcher, SIGNAL( timeout() ), this, SLOT( checkMountChange() ) );

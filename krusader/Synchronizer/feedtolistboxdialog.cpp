@@ -53,10 +53,13 @@
 #define  S_BOTH        2
 
 FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent,  const char *name, Synchronizer *sync,
-    Q3ListView *syncL, bool equOK) : KDialogBase( parent, name, true, i18n( "Krusader::Feed to listbox" ),
-    KDialogBase::Ok | KDialogBase::Cancel | KDialogBase::User1, Ok, true, KStandardGuiItem::clear() ),
+    Q3ListView *syncL, bool equOK) : KDialog( parent, name, true, i18n( "Krusader::Feed to listbox" ),
+    KDialog::Ok | KDialog::Cancel | KDialog::User1, Ok, true, KStandardGuiItem::clear() ),
     synchronizer( sync ), syncList( syncL ), equalAllowed( equOK ), accepted( false ) {
   
+  connect( this, SIGNAL( user1Clicked() ), this, SLOT( slotUser1() ) );
+  connect( this, SIGNAL( cancelClicked() ), this, SLOT( slotCancel() ) );
+
   // autodetecting the parameters
 
   int selectedNum = 0;

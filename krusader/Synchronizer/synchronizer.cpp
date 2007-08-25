@@ -46,7 +46,7 @@
 #include <Q3Frame>
 #include <Q3VBoxLayout>
 #include <kio/job.h>
-#include <kdialogbase.h>
+#include <kdialog.h>
 #include <kio/observer.h>
 #include <kio/renamedlg.h>
 #include <kio/skipdlg.h>
@@ -55,7 +55,7 @@
 #include <qpushbutton.h>
 #include <qdatetime.h>
 #include <k3process.h>
-#include <kdialogbase.h>
+#include <kdialog.h>
 #include <kprogress.h>
 #include <qlayout.h>
 #include <kurlcompletion.h>
@@ -1325,14 +1325,14 @@ QString Synchronizer::rightBaseDirectory()
   return rightBaseDir;
 }
 
-class KgetProgressDialog : public KDialogBase
+class KgetProgressDialog : public KDialog
 {
 public:
   KgetProgressDialog( QWidget *parent=0, const char *name=0, const QString &caption=QString(),
-                    const QString &text=QString(), bool modal=false) : KDialogBase( KDialogBase::Plain,
-                    caption, KDialogBase::User1 | KDialogBase::Cancel, KDialogBase::Cancel, parent, name, modal )
+                    const QString &text=QString(), bool modal=false) : KDialog( KDialog::Plain,
+                    caption, KDialog::User1 | KDialog::Cancel, KDialog::Cancel, parent, name, modal )
   {
-    showButton(KDialogBase::Close, false);
+    showButton(KDialog::Close, false);
 
     QFrame* mainWidget = plainPage();
     Q3VBoxLayout* layout = new Q3VBoxLayout(mainWidget, 10);
@@ -1343,9 +1343,12 @@ public:
     mProgressBar = new KProgress(mainWidget);
     layout->addWidget(mProgressBar);
 
-    setButtonText( KDialogBase::User1, i18n( "Pause" ) );
+    setButtonText( KDialog::User1, i18n( "Pause" ) );
 
     mCancelled = mPaused = false;
+
+    connect( this, SIGNAL( user1Clicked() ), this, SLOT( slotUser1() ) );
+    connect( this, SIGNAL( cancelClicked() ), this, SLOT( slotCancel() ) );
   }
 
   KProgress *progressBar() { return mProgressBar; }
@@ -1353,16 +1356,16 @@ public:
   void slotUser1()
   {
     if( ( mPaused = !mPaused ) == false )
-      setButtonText( KDialogBase::User1, i18n( "Pause" ) );
+      setButtonText( KDialog::User1, i18n( "Pause" ) );
     else
-      setButtonText( KDialogBase::User1, i18n( "Resume" ) );
+      setButtonText( KDialog::User1, i18n( "Resume" ) );
   }
 
   void slotCancel()
   {
     mCancelled = true;
 
-    KDialogBase::slotCancel();
+    KDialog::slotCancel();
   }
 
   bool wasCancelled()      { return mCancelled; }

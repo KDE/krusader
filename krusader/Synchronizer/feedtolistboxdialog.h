@@ -31,7 +31,7 @@
 #ifndef __FEED_TO_LISTBOX_DIALOG__
 #define __FEED_TO_LISTBOX_DIALOG__
 
-#include <kdialogbase.h>
+#include <kdialog.h>
 
 class Synchronizer;
 class QCheckBox;
@@ -39,7 +39,7 @@ class QLineEdit;
 class QComboBox;
 class Q3ListView;
 
-class FeedToListBoxDialog : public KDialogBase {
+class FeedToListBoxDialog : public KDialog {
   Q_OBJECT
   
   public:

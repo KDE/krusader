@@ -136,7 +136,7 @@ KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd, bool &pre
 
 KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy( const QString& urlName, const QString& _text, bool presAttrs, QWidget *parent,
                                                   const char *name, bool modal, KUrl baseURL )
-			:   KDialogBase( Plain, QString(), Ok|Cancel|User1, Ok, parent, name, modal, true, KStandardGuiItem::clear() ),
+			:   KDialog( Plain, QString(), Ok|Cancel|User1, Ok, parent, name, modal, true, KStandardGuiItem::clear() ),
 			baseUrlCombo( 0 ), copyDirStructureCB( 0 ) {
 	
 	Q3VBoxLayout * topLayout = new Q3VBoxLayout( plainPage(), 0, spacingHint() );
@@ -180,7 +180,7 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy( const QString& urlName, const 
 		SLOT(slotTextChanged(const QString&)) );
 	bool state = !urlName.isEmpty();
 	enableButtonOk( state );
-	enableButton( KDialogBase::User1, state );
+	enableButton( KDialog::User1, state );
 	connect( this, SIGNAL( user1Clicked() ), SLOT( slotClear() ) );
 }
 
@@ -200,7 +200,7 @@ bool KUrlRequesterDlgForCopy::copyDirStructure() {
 void KUrlRequesterDlgForCopy::slotTextChanged(const QString & text) {
 	bool state = !text.trimmed().isEmpty();
 	enableButtonOk( state );
-	enableButton( KDialogBase::User1, state );
+	enableButton( KDialog::User1, state );
 }
 
 void KUrlRequesterDlgForCopy::slotClear() {

@@ -40,7 +40,7 @@
 //Added by qt3to4:
 #include <Q3VBoxLayout>
 
-#include <kdialogbase.h>
+#include <kdialog.h>
 #include <kiconloader.h>
 #include <kglobalsettings.h>
 #include <klocale.h>
@@ -52,7 +52,7 @@
 /**
 @author Dirk Eschler <deschler@users.sourceforge.net>
 */
-class KrResultTableDialog : public KDialogBase
+class KrResultTableDialog : public KDialog
 {
 public:
 

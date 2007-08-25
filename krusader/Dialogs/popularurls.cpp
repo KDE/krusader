@@ -230,7 +230,7 @@ void PopularUrls::showDialog() {
 
 // ===================================== PopularUrlsDlg ======================================
 PopularUrlsDlg::PopularUrlsDlg(): 
-	KDialogBase(Plain, i18n("Popular Urls"), Close, KDialogBase::NoDefault, krApp) {
+	KDialog(Plain, i18n("Popular Urls"), Close, KDialog::NoDefault, krApp) {
 	Q3GridLayout *layout = new Q3GridLayout( plainPage(), 0, KDialog::spacingHint() );
 	
 	// listview to contain the urls

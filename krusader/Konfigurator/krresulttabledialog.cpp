@@ -37,8 +37,8 @@
 KrResultTableDialog::KrResultTableDialog( QWidget *parent, DialogType type,
   const QString& caption, const QString& heading, const QString& headerIcon,
   const QString& hint)
-  : KDialogBase( parent, "KrSearchResultDialog", true, caption, KDialogBase::Help|KDialogBase::Ok,
-                 KDialogBase::Ok, false )
+  : KDialog( parent, "KrSearchResultDialog", true, caption, KDialog::Help|KDialog::Ok,
+                 KDialog::Ok, false )
 
 {
   _page = new QWidget(this);

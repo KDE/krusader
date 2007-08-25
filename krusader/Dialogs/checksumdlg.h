@@ -1,13 +1,13 @@
 #ifndef CHECKSUMDLG_H
 #define CHECKSUMDLG_H
 
-#include <kdialogbase.h>
+#include <kdialog.h>
 #include <q3valuelist.h>
 
 class KTempFile;
 extern void initChecksumModule();
 
-class CreateChecksumDlg: public KDialogBase {
+class CreateChecksumDlg: public KDialog {
 public:
 	CreateChecksumDlg(const QStringList& files, bool containFolders, const QString& path);
 
@@ -16,7 +16,7 @@ private:
 };
 
 
-class MatchChecksumDlg: public KDialogBase {
+class MatchChecksumDlg: public KDialog {
 public:
 	MatchChecksumDlg(const QStringList& files, bool containFolders, 
 		const QString& path, const QString& checksumFile=QString());
@@ -31,7 +31,7 @@ private:
 };
 
 
-class ChecksumResultsDlg: public KDialogBase {
+class ChecksumResultsDlg: public KDialog {
 public:
 	ChecksumResultsDlg(const QStringList& stdOut, const QStringList& stdErr,
 		const QString& suggestedFilename, const QString& binary, const QString& type,
@@ -46,7 +46,7 @@ private:
 };
 
 
-class VerifyResultDlg: public KDialogBase {
+class VerifyResultDlg: public KDialog {
 public:
 	VerifyResultDlg(const QStringList& failed);
 };

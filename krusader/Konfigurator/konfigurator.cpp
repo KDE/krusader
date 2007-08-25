@@ -59,9 +59,9 @@
 #include "kguseractions.h"
 #include "kgprotocols.h"
 
-Konfigurator::Konfigurator( bool f, int startPage ) : KDialogBase(0,0,true,"Konfigurator",
-      KDialogBase::Help | KDialogBase::User1 | KDialogBase::Apply | KDialogBase::Cancel,
-      KDialogBase::User1, false, i18n("Defaults") ), firstTime(f), internalCall( false ),
+Konfigurator::Konfigurator( bool f, int startPage ) : KDialog(0,0,true,"Konfigurator",
+      KDialog::Help | KDialog::User1 | KDialog::Apply | KDialog::Cancel,
+      KDialog::User1, false, i18n("Defaults") ), firstTime(f), internalCall( false ),
       restartGUI( false )
 {
   setPlainCaption(i18n("Konfigurator - Creating Your Own Krusader"));
@@ -74,6 +74,9 @@ Konfigurator::Konfigurator( bool f, int startPage ) : KDialogBase(0,0,true,"Konf
   
   connect( widget, SIGNAL( aboutToShowPage(QWidget *) ), this, SLOT( slotPageSwitch() ) );
   connect( &restoreTimer, SIGNAL(timeout()), this, SLOT(slotRestorePage()));
+  connect( this, SIGNAL( applyClicked() ), this, SLOT( slotApply() ) );
+  connect( this, SIGNAL( cancelClicked() ), this, SLOT( slotCancel() ) );
+  connect( this, SIGNAL( user1Clicked() ), this, SLOT( slotUser1() ) );
   
   createLayout( startPage );
   setMainWidget(widget);

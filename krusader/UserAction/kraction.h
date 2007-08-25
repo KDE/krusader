@@ -15,7 +15,7 @@
 
 #include <kaction.h>
 #include <k3process.h>
-#include <kdialogbase.h>
+#include <kdialog.h>
 #include "kractionbase.h"
 
 class UserActionProperties;
@@ -119,7 +119,7 @@ class QFont;
  * This displays the output of a process
  * @author Shie Erlich, Jonas Bähr
  */
-class KrActionProcDlg: public KDialogBase {
+class KrActionProcDlg: public KDialog {
       Q_OBJECT
    public:
       KrActionProcDlg( QString caption, bool enableStderr = false, QWidget *parent = 0 );

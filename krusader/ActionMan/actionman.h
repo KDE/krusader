@@ -13,11 +13,11 @@
 #ifndef ACTIONMAN_H
 #define ACTIONMAN_H
 
-#include <kdialogbase.h>
+#include <kdialog.h>
 
 class UserActionPage;
 
-class ActionMan : public KDialogBase {
+class ActionMan : public KDialog {
 Q_OBJECT
 public:
    ActionMan( QWidget* parent=0 );

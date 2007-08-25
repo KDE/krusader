@@ -101,8 +101,8 @@ public:
 K3Process *  LocateDlg::updateProcess = 0;
 LocateDlg * LocateDlg::LocateDialog = 0;
 
-LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KDialogBase::User2 | KDialogBase::User3 | KDialogBase::Close,
-      KDialogBase::User3, false, i18n("Stop"), i18n("Update DB"), i18n("Locate") ), isFeedToListBox( false )
+LocateDlg::LocateDlg() : KDialog(0,0,false,"Locate", KDialog::User1 | KDialog::User2 | KDialog::User3 | KDialog::Close,
+      KDialog::User3, false, i18n("Stop"), i18n("Update DB"), i18n("Locate") ), isFeedToListBox( false )
 {
   QWidget *widget=new QWidget(this, "locateMainWidget");
   Q3GridLayout *grid = new Q3GridLayout( widget );
@@ -162,6 +162,9 @@ LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KD
            this, SLOT(slotDoubleClick(Q3ListViewItem *)));
   connect( resultList,SIGNAL(returnPressed(Q3ListViewItem *)),
            this, SLOT(slotDoubleClick(Q3ListViewItem *)));
+  connect( this, SIGNAL( user1Clicked() ), this, SLOT( slotUser1() ) );
+  connect( this, SIGNAL( user2Clicked() ), this, SLOT( slotUser2() ) );
+  connect( this, SIGNAL( user3Clicked() ), this, SLOT( slotUser3() ) );
            
   grid->addWidget( resultList, 3, 0 );
 
@@ -169,14 +172,14 @@ LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KD
   line2->setFrameStyle( Q3Frame::HLine | Q3Frame::Sunken );
   grid->addWidget( line2, 4, 0 );
 
-  enableButton( KDialogBase::User1, false );  /* disable the stop button */
+  enableButton( KDialog::User1, false );  /* disable the stop button */
 
   if( updateProcess )
   {
     if( updateProcess->isRunning() )
     {
       connect( updateProcess, SIGNAL(processExited(K3Process *)), this, SLOT(updateFinished()));
-      enableButton( KDialogBase::User2, false );
+      enableButton( KDialog::User2, false );
     }
     else
       updateFinished();
@@ -208,7 +211,7 @@ void LocateDlg::slotUser2()   /* The Update DB button */
     
     connect( updateProcess, SIGNAL(processExited(K3Process *)), this, SLOT(updateFinished()));
     updateProcess->start(K3Process::NotifyOnExit);
-    enableButton( KDialogBase::User2, false );
+    enableButton( KDialog::User2, false );
   }
 }
 
@@ -216,7 +219,7 @@ void LocateDlg::updateFinished()
 {
   delete updateProcess;
   updateProcess = 0;
-  enableButton( KDialogBase::User2, true );
+  enableButton( KDialog::User2, true );
 }
 
 void LocateDlg::slotUser3()   /* The locate button */
@@ -240,9 +243,9 @@ void LocateDlg::slotUser3()   /* The locate button */
   lastItem = 0;
   remaining = "";
 
-  enableButton( KDialogBase::User3, false );  /* disable the locate button */
-  enableButton( KDialogBase::User1, true );   /* enable the stop button */
-  setButtonText( KDialogBase::User1, i18n( "Stop" ) ); /* the button behaves as stop */
+  enableButton( KDialog::User3, false );  /* disable the locate button */
+  enableButton( KDialog::User1, true );   /* enable the stop button */
+  setButtonText( KDialog::User1, i18n( "Stop" ) ); /* the button behaves as stop */
   isFeedToListBox = false;
   resultList->setFocus();
 
@@ -275,15 +278,15 @@ void LocateDlg::slotUser3()   /* The locate button */
   {
      KMessageBox::error( krApp, i18n( "Error during the start of 'locate' process!" ) );
   }
-  enableButton( KDialogBase::User3, true );  /* enable the locate button */
+  enableButton( KDialog::User3, true );  /* enable the locate button */
   
   if( resultList->childCount() == 0 )
   {
     locateSearchFor->setFocus();
-    enableButton( KDialogBase::User1, false ); /* disable the stop button */
+    enableButton( KDialog::User1, false ); /* disable the stop button */
     isFeedToListBox = false;
   }else{
-    setButtonText( KDialogBase::User1, i18n("Feed to listbox") ); /* feed to listbox */
+    setButtonText( KDialog::User1, i18n("Feed to listbox") ); /* feed to listbox */
     isFeedToListBox = true;
   }
 }
@@ -403,7 +406,7 @@ void LocateDlg::slotDoubleClick(Q3ListViewItem *item)
   }
     
   ACTIVE_FUNC->openUrl(vfs::fromPathOrUrl( dirName ), fileName );
-  KDialogBase::accept();
+  KDialog::accept();
 }
 
 void LocateDlg::keyPressEvent( QKeyEvent *e )

@@ -137,7 +137,7 @@ QString AddPlaceholderPopup::getPlaceholder( const QPoint& pos ) {
 /////////////////////////////// ParameterDialog ////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-ParameterDialog::ParameterDialog( const exp_placeholder* currentPlaceholder, QWidget *parent ) : KDialogBase( Plain, i18n("User Action Parameter Dialog"), Default | Ok, Ok, parent ) {
+ParameterDialog::ParameterDialog( const exp_placeholder* currentPlaceholder, QWidget *parent ) : KDialog( Plain, i18n("User Action Parameter Dialog"), Default | Ok, Ok, parent ) {
    _parameter.clear();
    _parameterCount = currentPlaceholder->parameterCount();
    
@@ -178,7 +178,8 @@ ParameterDialog::ParameterDialog( const exp_placeholder* currentPlaceholder, QWi
    line->setFrameShape( Q3Frame::HLine );
    line->setFrameShadow( Q3Frame::Sunken );
 
-   connect( this, SIGNAL(defaultClicked()), this, SLOT(reset()) );
+   connect( this, SIGNAL( defaultClicked() ), this, SLOT(reset()) );
+   connect( this, SIGNAL( okClicked() ), this, SLOT( slotOk() ) );
 }
 
 QString ParameterDialog::getParameter() {

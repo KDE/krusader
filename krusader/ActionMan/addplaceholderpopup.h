@@ -14,7 +14,7 @@
 #define ADDPLACEHOLDERPOPUP_H
 
 #include <kmenu.h>
-#include <kdialogbase.h>
+#include <kdialog.h>
 #include "../UserAction/expander.h"
 //Added by qt3to4:
 #include <Q3ValueList>
@@ -31,7 +31,7 @@ class KIntSpinBox;
 
 /**
  * This reads Expander::placeholder[] and fills a popup for easy access to the UserAction Placeholder
- * @author Jonas Bähr (http://www.jonas-baehr.de), Shie Erlich
+ * @author Jonas Bï¿½hr (http://www.jonas-baehr.de), Shie Erlich
  */
 class AddPlaceholderPopup : public KMenu {
 
@@ -64,7 +64,7 @@ private:
 
 /**
  *  abstract baseclass for all Parameter widgets
- * @author Jonas Bähr (http://www.jonas-baehr.de)
+ * @author Jonas Bï¿½hr (http://www.jonas-baehr.de)
  */
 class ParameterBase : public QWidget {
 public:
@@ -296,7 +296,7 @@ private:
  *  Opens a dialog for the parameter. Depending on the default (preset) a differend widget is used.
  *  See Parameter-Classes for details
  */
-class ParameterDialog : public KDialogBase {
+class ParameterDialog : public KDialog {
 Q_OBJECT
 public:
    ParameterDialog( const exp_placeholder* currentPlaceholder, QWidget *parent );

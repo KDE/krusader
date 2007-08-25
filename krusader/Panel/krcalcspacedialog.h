@@ -35,7 +35,7 @@
 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
 
 // KDE Includes
-#include <kdialogbase.h>
+#include <kdialog.h>
 #include <kio/jobclasses.h>
 // Qt Includes
 #include <qthread.h>
@@ -53,7 +53,7 @@ class KrView;
    avoid a short appearence if the result was found quickly. Computes teh result in
    a different thread.
  */
-class KrCalcSpaceDialog : public KDialogBase{
+class KrCalcSpaceDialog : public KDialog{
 	Q_OBJECT
 	/* Thread which does the actual calculation. Deletes itself, if no longer
 	   needed. Creator must call finished(), if the thread is no longer needed.

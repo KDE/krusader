@@ -4,7 +4,7 @@
 #include <qobject.h>
 #include <kurl.h>
 #include <q3dict.h>
-#include <kdialogbase.h>
+#include <kdialog.h>
 
 // the class holds a list of most popular links in a dual data structure
 // * linked list, with head and tail: for fast append/prepend support
@@ -61,7 +61,7 @@ private:
 class K3ListView;
 class K3ListViewSearchLine;
 
-class PopularUrlsDlg: public KDialogBase {
+class PopularUrlsDlg: public KDialog {
 	Q_OBJECT
 public:
 	PopularUrlsDlg();

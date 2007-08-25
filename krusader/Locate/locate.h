@@ -31,7 +31,7 @@
 #ifndef __LOCATE_H__
 #define __LOCATE_H__
 
-#include <kdialogbase.h>
+#include <kdialog.h>
 #include <kcombobox.h>
 #include <k3listview.h>
 #include <k3process.h>
@@ -39,7 +39,7 @@
 //Added by qt3to4:
 #include <QKeyEvent>
 
-class LocateDlg : public KDialogBase
+class LocateDlg : public KDialog
 {
   Q_OBJECT
   

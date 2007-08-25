@@ -12,12 +12,14 @@
 #include <kdebug.h>
 
 KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KUrl url):
-	KDialogBase(KDialogBase::Swallow, i18n("Add Bookmark"),
-				 KDialogBase::User1 | KDialogBase::Ok | KDialogBase::Cancel, KDialogBase::Ok, parent) {
+	KDialog(KDialog::Swallow, i18n("Add Bookmark"),
+				 KDialog::User1 | KDialog::Ok | KDialog::Cancel, KDialog::Ok, parent) {
 	// create the 'new folder' button
-	setButtonText(KDialogBase::User1, i18n("New Folder"));
-	showButton(KDialogBase::User1, false); // hide it until _createIn is shown
-	connect(this, SIGNAL(user1Clicked()), this, SLOT(newFolder()));
+	setButtonText(KDialog::User1, i18n("New Folder"));
+	showButton(KDialog::User1, false); // hide it until _createIn is shown
+	connect( this, SIGNAL( user1Clicked() ), this, SLOT(newFolder()));
+	connect( this, SIGNAL( okClicked() ), this, SLOT( slotOk() ) );
+	connect( this, SIGNAL( cancelClicked() ), this, SLOT( slotCancel() ) );
 
 	// create the main widget
 	QWidget *page = new QWidget(this);
@@ -58,7 +60,7 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KUrl url):
 
 void KrAddBookmarkDlg::toggleCreateIn(bool show) {
 	_createInBtn->setPixmap(krLoader->loadIcon(show ? "up" :"down", KIcon::Small));
-	showButton(KDialogBase::User1, show);
+	showButton(KDialog::User1, show);
 	setDetails(show);
 }
 

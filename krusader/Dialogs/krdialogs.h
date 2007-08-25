@@ -36,7 +36,7 @@
 #include <kanimatedbutton.h>
 #include <kurlrequesterdlg.h>
 #include <kdatepicker.h>
-#include <kdialogbase.h>
+#include <kdialog.h>
 // QT includes
 #include <qlineedit.h>
 #include <qlayout.h>
@@ -74,7 +74,7 @@ public:
 	static KUrl getDir(QString text,const KUrl& url, const KUrl& cwd, bool & preserveAttrs, KUrl &baseURL );
 };
 
-class KUrlRequesterDlgForCopy : public KDialogBase {
+class KUrlRequesterDlgForCopy : public KDialog {
   Q_OBJECT
 public:
 	KUrlRequesterDlgForCopy( const QString& url, const QString& text, bool presAttrs,
