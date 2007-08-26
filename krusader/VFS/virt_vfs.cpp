@@ -24,6 +24,8 @@
 #include <kmessagebox.h>
 #include <klocale.h>
 #include <kio/directorysizejob.h>
+#include <kio/deletejob.h>
+#include <kio/copyjob.h>
 #include <kstandarddirs.h>
 
 #include "krpermhandler.h"
@@ -124,7 +126,7 @@ void virt_vfs::vfs_delFiles( QStringList *fileNames ) {
 		job = KIO::trash( filesUrls, true );
 		connect( job, SIGNAL( result( KIO::Job* ) ), krApp, SLOT( changeTrashIcon() ) );
 	} else
-		job = KIO::DeleteJob::del( filesUrls, false, true );
+		job = KIO::del( filesUrls, false, true );
 
 	// refresh will remove the deleted files...
 	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( vfs_refresh( KIO::Job* ) ) );
@@ -200,7 +202,7 @@ void virt_vfs::vfs_rename( const QString& fileName, const QString& newName ) {
 	// so we don't have to worry if the job was successful
 	virtVfsDict[ path ] ->append( dest );
 
-	KIO::Job *job = new KIO::CopyJob( fileUrls, dest, KIO::CopyJob::Move, true, false );
+	KIO::Job *job = new KIO::CopyJob( fileUrls, dest, KIO::CopyJob::Move, true );
 	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( vfs_refresh( KIO::Job* ) ) );
 }
 
@@ -227,12 +229,12 @@ vfile* virt_vfs::stat( const KUrl& url ) {
 		KIO::StatJob* statJob = KIO::stat( url, false );
 		connect( statJob, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotStatResult( KIO::Job* ) ) );
 		while ( busy && vfs_processEvents() );
-		if( entry.isEmpty()  ) return 0; // statJob failed
+		if( entry.count() == 0 ) return 0; // statJob failed
 		
 		kfi = new KFileItem(entry, url, true );
 	}
 	
-	if ( !kfi->time( KIO::UDS_MODIFICATION_TIME ) ){
+	if ( !kfi->time( KIO::UDSEntry::UDS_MODIFICATION_TIME ) ){
 		 delete kfi;
 		 return 0; // file not found		
 	}
@@ -247,7 +249,7 @@ vfile* virt_vfs::stat( const KUrl& url ) {
 		name = url.prettyUrl();
 
 	KIO::filesize_t size = kfi->size();
-	time_t mtime = kfi->time( KIO::UDS_MODIFICATION_TIME );
+	time_t mtime = kfi->time( KIO::UDSEntry::UDS_MODIFICATION_TIME );
 	bool symLink = kfi->isLink();
 	mode_t mode = kfi->mode() | kfi->permissions();
 	QString perm = KRpermHandler::mode2QString( mode );
@@ -278,7 +280,7 @@ vfile* virt_vfs::stat( const KUrl& url ) {
 
 KConfig*  virt_vfs::getVirtDB(){
 	if( !virt_vfs_db ){
-		virt_vfs_db = new KConfig(VIRT_VFS_DB,false,"data");
+		virt_vfs_db = new KConfig("data",VIRT_VFS_DB,KConfig::NoGlobals);
 	}
 	return virt_vfs_db; 
 }

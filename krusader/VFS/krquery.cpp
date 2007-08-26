@@ -237,7 +237,7 @@ bool KRQuery::match( KFileItem *kfi ) const {
   if ( kfi->isDir() ) 
     perm[ 0 ] = 'd';
 
-  vfile temp( kfi->text(), kfi->size(), perm, kfi->time( KIO::UDS_MODIFICATION_TIME ),
+  vfile temp( kfi->text(), kfi->size(), perm, kfi->time( KIO::UDSEntry::UDS_MODIFICATION_TIME ),
               kfi->isLink(), kfi->user(), kfi->group(), kfi->user(), 
               kfi->mimetype(), kfi->linkDest(), mode );
 

@@ -190,7 +190,7 @@ void SynchronizerDirList::slotEntries( KIO::Job * job, const KIO::UDSEntryList& 
       if ( kfi.isDir() ) 
         perm[ 0 ] = 'd';
 
-      vfile *item = new vfile( kfi.text(), kfi.size(), perm, kfi.time( KIO::UDS_MODIFICATION_TIME ),
+      vfile *item = new vfile( kfi.text(), kfi.size(), perm, kfi.time( KIO::UDSEntry::UDS_MODIFICATION_TIME ),
           kfi.isLink(), kfi.user(), kfi.group(), kfi.user(), 
           kfi.mimetype(), kfi.linkDest(), mode, rwx
 #if defined( HAVE_POSIX_ACL )

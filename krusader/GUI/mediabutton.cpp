@@ -163,18 +163,18 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 		
 		for( ; it2 != (*it).end(); it2++ ) {
 			switch ((*it2).m_uds) {
-			case KIO::UDS_NAME:
+			case KIO::UDSEntry::UDS_NAME:
 				text = KUrl::decode_string((*it2).m_str);
 				break;
-			case KIO::UDS_URL:
+			case KIO::UDSEntry::UDS_URL:
 				url = KUrl::fromPathOrUrl(  (*it2).m_str );
 				break;
-			case KIO::UDS_MIME_TYPE:
+			case KIO::UDSEntry::UDS_MIME_TYPE:
 				mime = (*it2).m_str;
 				if( !mime.endsWith( "unmounted" ) )
 					mounted = true;
 				break;
-			case KIO::UDS_LOCAL_PATH:
+			case KIO::UDSEntry::UDS_LOCAL_PATH:
 				localPath = (*it2).m_str;
 				break;
 			}

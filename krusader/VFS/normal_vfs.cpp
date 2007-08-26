@@ -187,7 +187,7 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames){
 	  connect(job,SIGNAL(result(KIO::Job*)),SLOTS,SLOT(changeTrashIcon()));
 	}
 	else
-	  job = KIO::DeleteJob::del(filesUrls, false, true);
+	  job = KIO::del(filesUrls, false, true);
 	
 	connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)));
 }
@@ -229,7 +229,7 @@ void normal_vfs::vfs_rename(const QString& fileName,const QString& newName){
   fileUrls.append(url);
   dest.setPath(vfs_workingDir()+"/"+newName);
 
-  KIO::Job *job = new KIO::CopyJob(fileUrls,dest,KIO::CopyJob::Move,true,false );
+  KIO::Job *job = new KIO::CopyJob(fileUrls,dest,KIO::CopyJob::Move, true );
   connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)));
 }
 

@@ -87,7 +87,7 @@ void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
 		if ( name.isEmpty() || name == "." || name == ".." ) continue;
 
 		KIO::filesize_t size = kfi.size();
-		time_t mtime = kfi.time( KIO::UDS_MODIFICATION_TIME );
+		time_t mtime = kfi.time( KIO::UDSEntry::UDS_MODIFICATION_TIME );
 		bool symLink = kfi.isLink();
 		mode_t mode = kfi.mode() | kfi.permissions();
 		QString perm = KRpermHandler::mode2QString( mode );
@@ -216,7 +216,10 @@ void ftp_vfs::vfs_addFiles( KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode, Q
 		}
 	}
 
-	KIO::Job* job = new KIO::CopyJob( *fileUrls, destUrl, mode, false, true );
+	KIO::Job* job = new KIO::CopyJob( *fileUrls, destUrl, mode, false );
+	job->setUiDelegate(new JobUiDelegate);
+	KIO::getJobTracker()->registerJob(job);
+
 	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( vfs_refresh( KIO::Job* ) ) );
 	if ( mode == KIO::CopyJob::Move )  // notify the other panel
 		connect( job, SIGNAL( result( KIO::Job* ) ), toNotify, SLOT( vfs_refresh( KIO::Job* ) ) );
@@ -234,7 +237,7 @@ void ftp_vfs::vfs_delFiles( QStringList *fileNames ) {
 		url.addPath( filename );
 		filesUrls.append( url );
 	}
-	KIO::Job *job = KIO::DeleteJob::del( filesUrls, false, true );
+	KIO::Job *job = KIO::del( filesUrls, false, true );
 	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( vfs_refresh( KIO::Job* ) ) );
 }
 
@@ -278,7 +281,7 @@ void ftp_vfs::vfs_rename( const QString& fileName, const QString& newName ) {
 	KUrl newUrl = vfs_origin;
 	newUrl.addPath( newName );
 
-	KIO::Job *job = new KIO::CopyJob( fileUrls, newUrl, KIO::CopyJob::Move, true, true );
+	KIO::Job *job = new KIO::CopyJob( fileUrls, newUrl, KIO::CopyJob::Move, true );
 	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( vfs_refresh( KIO::Job* ) ) );
 }
 

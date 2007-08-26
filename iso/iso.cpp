@@ -335,12 +335,12 @@ void kio_isoProtocol::stat( const KUrl & url )
         }
         // Real directory. Return just enough information for KRun to work
         UDSAtom atom;
-        atom.m_uds = KIO::UDS_NAME;
+        atom.m_uds = KIO::UDSEntry::UDS_NAME;
         atom.m_str = url.fileName();
         entry.append( atom );
         kDebug()  << "kio_isoProtocol::stat returning name=" << url.fileName() << endl;
 
-        atom.m_uds = KIO::UDS_FILE_TYPE;
+        atom.m_uds = KIO::UDSEntry::UDS_FILE_TYPE;
         atom.m_long = buff.st_mode & S_IFMT;
         entry.append( atom );
 

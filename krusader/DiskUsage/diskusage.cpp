@@ -654,7 +654,7 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
   }
   else
   {
-    job = KIO::DeleteJob::del( vfs::fromPathOrUrl( file->fullPath() ), false, false);
+    job = KIO::del( vfs::fromPathOrUrl( file->fullPath() ), false, false);
   }
 
   deleting = true;    // during qApp->processEvent strange things can occur

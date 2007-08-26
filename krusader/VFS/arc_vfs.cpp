@@ -443,7 +443,7 @@ void arc_vfs::vfs_rename(QString fileName,QString newName){
 	KUrl dest;
 	dest.setPath(tmpDir+path+"/"+newName);
 
-  KIO::Job* job = new KIO::CopyJob(temp,dest,KIO::CopyJob::Move,false,false);
+  KIO::Job* job = KIO::move(temp,dest,false);
   connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)) );
 }
 

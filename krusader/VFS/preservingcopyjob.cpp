@@ -164,9 +164,9 @@ void PreservingCopyJob::slotResult( Job *job ) {
       KFileItem kfi(entry, url );
     
 #if defined( HAVE_POSIX_ACL )
-      fileAttributes[ url ] = Attributes( kfi.time( KIO::UDS_MODIFICATION_TIME ), kfi.user(), kfi.group(), kfi.mode(), kfi.ACL().asString() );
+      fileAttributes[ url ] = Attributes( kfi.time( KIO::UDSEntry::UDS_MODIFICATION_TIME ), kfi.user(), kfi.group(), kfi.mode(), kfi.ACL().asString() );
 #else
-      fileAttributes[ url ] = Attributes( kfi.time( KIO::UDS_MODIFICATION_TIME ), kfi.user(), kfi.group(), kfi.mode(), QString() );
+      fileAttributes[ url ] = Attributes( kfi.time( KIO::UDSEntry::UDS_MODIFICATION_TIME ), kfi.user(), kfi.group(), kfi.mode(), QString() );
 #endif
     }
   }
@@ -196,27 +196,27 @@ void PreservingCopyJob::slotListEntries(KIO::Job *job, const KIO::UDSEntryList &
     KIO::UDSEntry::ConstIterator it2 = (*it).begin();
     for( ; it2 != (*it).end(); it2++ ) {
       switch ((*it2).m_uds) {
-      case KIO::UDS_NAME:
+      case KIO::UDSEntry::UDS_NAME:
         if( relName.isEmpty() )
           relName = (*it2).m_str;
         break;
-      case KIO::UDS_URL:
+      case KIO::UDSEntry::UDS_URL:
         relName = KUrl((*it2).m_str).fileName();
         break;
-      case KIO::UDS_MODIFICATION_TIME:
+      case KIO::UDSEntry::UDS_MODIFICATION_TIME:
         mtime = (time_t)((*it2).m_long);
         break;
-      case KIO::UDS_USER:
+      case KIO::UDSEntry::UDS_USER:
         user = (*it2).m_str;
         break;
-      case KIO::UDS_GROUP:
+      case KIO::UDSEntry::UDS_GROUP:
         group = (*it2).m_str;
         break;
-      case KIO::UDS_ACCESS:
+      case KIO::UDSEntry::UDS_ACCESS:
         mode = (*it2).m_long;
         break;
 #if defined( HAVE_POSIX_ACL )
-      case KIO::UDS_ACL_STRING:
+      case KIO::UDSEntry::UDS_ACL_STRING:
         acl = (*it2).m_str;
         break;
 #endif
