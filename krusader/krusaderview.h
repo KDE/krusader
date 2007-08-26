@@ -67,7 +67,7 @@ public:
   void cmdLineUnFocus();// return focus from command line to active panel
   inline PanelManager *activeManager() const { return (activePanel==left ? leftMng : rightMng); }
   inline PanelManager *inactiveManager() const { return (activePanel==left ? rightMng : leftMng); }
-  Q3ValueList<int> getTerminalEmulatorSplitterSizes();
+  QList<int> getTerminalEmulatorSplitterSizes();
   virtual bool eventFilter ( QObject * watched, QEvent * e );
   /** if the KonsolePart for the Terminal Emulator is not yet loaded, load it */
   void createTE();

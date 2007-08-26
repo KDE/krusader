@@ -35,10 +35,13 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <sys/types.h>
 #endif
 // KDE includes
+#include <kxmlguifactory.h>
 #include <kactioncollection.h>
 #include <kmessagebox.h>
 #include <kaction.h>
+#include <ktoolbar.h>
 #include <ktoggleaction.h>
+#include <ktoolbarpopupaction.h>
 #include <kcursor.h>
 #include <ksystemtrayicon.h>
 #include <kmenubar.h>
@@ -545,7 +548,7 @@ void Krusader::setupActions() {
 
 
    // second, the KDE standard action
-   //KStandardAction::up( SLOTS, SLOT( dirUp() ), actionCollection(), "std_up" )->setShortcut(Qt::Key_Backspace);
+   KStandardAction::up( SLOTS, SLOT( dirUp() ), actionCollection() )->setShortcut(Qt::Key_Backspace);
    /* Shortcut disabled because of the Terminal Emulator bug. */
    krConfig->setGroup( "Private" );
    int compareMode = krConfig->readNumEntry( "Compare Mode", 0 );
@@ -647,10 +650,12 @@ void Krusader::setupActions() {
    NEW_KACTION(actHomeTerminal, i18n( "Start &Terminal" ), "terminal", 0, SLOTS, SLOT( homeTerminal() ), "terminal@home" );
    NEW_KACTION(actFTPDisconnect, i18n( "Disconnect &from Net" ), "kr_ftp_disconnect", Qt::SHIFT + Qt::CTRL + Qt::Key_F, SLOTS, SLOT( FTPDisconnect() ), "ftp disconnect" );
    
-	actMountMan = new KToolBarPopupAction( i18n( "&MountMan..." ), "kr_mountman", Qt::ALT + Qt::Key_Slash,
-                                          SLOTS, SLOT( runMountMan() ), actionCollection(), "mountman" );
+	actMountMan = new KToolBarPopupAction( KIcon("kr_mountman"), i18n( "&MountMan..." ), this);
+	actMountMan->setShortcut(Qt::ALT + Qt::Key_Slash);
+	connect(actMountMan, SIGNAL(triggered(bool)), SLOTS, SLOT( runMountMan() ));
    connect( ( ( KToolBarPopupAction* ) actMountMan ) ->popupMenu(), SIGNAL( aboutToShow() ),
             mountMan, SLOT( quickList() ) );
+	actionCollection()->addAction("mountman", actMountMan);
 
    NEW_KACTION(actFind, i18n( "&Search..." ), "filefind", Qt::CTRL + Qt::Key_S, SLOTS, SLOT( search() ), "find" );
    NEW_KACTION(actLocate, i18n( "&Locate..." ), "find", Qt::SHIFT+ Qt::CTRL + Qt::Key_L, SLOTS, SLOT( locate() ), "locate" );
@@ -668,76 +673,50 @@ void Krusader::setupActions() {
    NEW_KACTION(actCompare, i18n( "Compare b&y Content..." ), "kmultiple", 0, SLOTS, SLOT( compareContent() ), "compare" );
    NEW_KACTION(actMultiRename, i18n( "Multi &Rename..." ), "krename", Qt::SHIFT + Qt::Key_F9, SLOTS, SLOT( multiRename() ), "multirename" );
    
-	KAction *t3, *t4, *t5, *t6, *t7, *t8, *t9, *t10, *t11, *t12, *t13, *t14, *t15;
+	KAction *t3, *t4, *t5, *t6, *t7, *t8, *t9, *t10, *t11, *t12, *t13, *t14, *t15, *t16;
 	NEW_KACTION(t3, i18n( "Right-click Menu" ), 0, Qt::Key_Menu, SLOTS, SLOT( rightclickMenu() ), "rightclick menu" );
    NEW_KACTION(t4, i18n( "Right Bookmarks" ), 0, Qt::ALT + Qt::Key_Right,SLOTS, SLOT( openRightBookmarks() ), "right bookmarks" );
    NEW_KACTION(t5, i18n( "Left Bookmarks" ), 0, Qt::ALT + Qt::Key_Left, SLOTS, SLOT( openLeftBookmarks() ), "left bookmarks" );
    NEW_KACTION(t6, i18n( "Bookmarks" ), 0, Qt::CTRL + Qt::Key_D, SLOTS, SLOT( openBookmarks() ), "bookmarks" );
-   NEW_KACTION(t7, i18n( "Bookmark Current" ), 0, Qt::CTRL + SHIFT + Qt::Key_D, SLOTS, SLOT( bookmarkCurrent() ), "bookmark current" );
+   NEW_KACTION(t7, i18n( "Bookmark Current" ), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_D, SLOTS, SLOT( bookmarkCurrent() ), "bookmark current" );
    NEW_KACTION(t8, i18n( "History" ), 0, Qt::CTRL + Qt::Key_H, SLOTS, SLOT( openHistory() ), "history" );
    NEW_KACTION(t9, i18n( "Sync Panels" ), 0, Qt::ALT + Qt::Key_O, SLOTS, SLOT( syncPanels() ), "sync panels");
    NEW_KACTION(t10, i18n( "Left History" ), 0, Qt::ALT + Qt::CTRL + Qt::Key_Left, SLOTS, SLOT( openLeftHistory() ), "left history" );
-   NEW_KACTION(t11, new KAction( i18n( "Right History" ), ALT + CTRL + Qt::Key_Right,
-                SLOTS, SLOT( openRightHistory() ), actionCollection(), "right history" );
-   new KAction( i18n( "Media" ), CTRL + Qt::Key_M,
-                SLOTS, SLOT( openMedia() ), actionCollection(), "media" );
-   new KAction( i18n( "Left Media" ), CTRL + SHIFT + Qt::Key_Left,
-                SLOTS, SLOT( openLeftMedia() ), actionCollection(), "left media" );
-   new KAction( i18n( "Right Media" ), CTRL + SHIFT + Qt::Key_Right,
-                SLOTS, SLOT( openRightMedia() ), actionCollection(), "right media" );
-   new KAction( i18n( "New Symlink..." ), CTRL + ALT + Qt::Key_S,
-                SLOTS, SLOT( newSymlink() ), actionCollection(), "new symlink");
-   new KToggleAction( i18n( "Toggle Popup Panel" ), ALT + Qt::Key_Down, SLOTS,
-                            SLOT( togglePopupPanel() ), actionCollection(), "toggle popup panel" );
-   actVerticalMode = new KToggleAction( i18n( "Vertical Mode" ), "view_top_bottom", ALT + CTRL + Qt::Key_R, MAIN_VIEW, 
-                                        SLOT( toggleVerticalMode() ), actionCollection(), "toggle vertical mode" );
-   actNewTab = new KAction( i18n( "New Tab" ), "tab_new", ALT + CTRL + Qt::Key_N, SLOTS,
-                            SLOT( newTab() ), actionCollection(), "new tab" );
-   actDupTab = new KAction( i18n( "Duplicate Current Tab" ), "tab_duplicate", ALT + CTRL + SHIFT + Qt::Key_N, SLOTS,
-                            SLOT( duplicateTab() ), actionCollection(), "duplicate tab" );
-   actCloseTab = new KAction( i18n( "Close Current Tab" ), "tab_remove", CTRL + Qt::Key_W, SLOTS,
-                              SLOT( closeTab() ), actionCollection(), "close tab" );
-   actNextTab  = new KAction( i18n( "Next Tab" ), SHIFT + Qt::Key_Right, SLOTS,
-                              SLOT( nextTab() ), actionCollection(), "next tab" );
-   actPreviousTab  = new KAction( i18n( "Previous Tab" ), SHIFT + Qt::Key_Left, SLOTS,
-                                  SLOT( previousTab() ), actionCollection(), "previous tab" );
-/*
+   NEW_KACTION(t11, i18n( "Right History" ), 0, Qt::ALT + Qt::CTRL + Qt::Key_Right, SLOTS, SLOT( openRightHistory() ), "right history" );
+	NEW_KACTION(t12, i18n( "Media" ), 0, Qt::CTRL + Qt::Key_M, SLOTS, SLOT( openMedia() ), "media" );
+   NEW_KACTION(t13, i18n( "Left Media" ), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Left, SLOTS, SLOT( openLeftMedia() ), "left media" );
+   NEW_KACTION(t14, i18n( "Right Media" ), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Right, SLOTS, SLOT( openRightMedia() ), "right media" );
+   NEW_KACTION(t15, i18n( "New Symlink..." ), 0, Qt::CTRL + Qt::ALT + Qt::Key_S, SLOTS, SLOT( newSymlink() ), "new symlink");
+ 	NEW_KTOGGLEACTION(t16, i18n( "Toggle Popup Panel" ), 0, Qt::ALT + Qt::Key_Down, SLOTS, SLOT( togglePopupPanel() ), "toggle popup panel" );
+   NEW_KTOGGLEACTION(actVerticalMode, i18n( "Vertical Mode" ), "view_top_bottom", Qt::ALT + Qt::CTRL + Qt::Key_R, MAIN_VIEW, SLOT( toggleVerticalMode() ), "toggle vertical mode" );
+   NEW_KACTION(actNewTab, i18n( "New Tab" ), "tab_new", Qt::ALT + Qt::CTRL + Qt::Key_N, SLOTS, SLOT( newTab() ), "new tab" );
+	NEW_KACTION(actDupTab, i18n( "Duplicate Current Tab" ), "tab_duplicate", Qt::ALT + Qt::CTRL + Qt::SHIFT + Qt::Key_N, SLOTS, SLOT( duplicateTab() ), "duplicate tab" );
+   NEW_KACTION(actCloseTab, i18n( "Close Current Tab" ), "tab_remove", Qt::CTRL + Qt::Key_W, SLOTS, SLOT( closeTab() ), "close tab" );
+   NEW_KACTION(actNextTab, i18n( "Next Tab" ), 0, Qt::SHIFT + Qt::Key_Right, SLOTS, SLOT( nextTab() ), "next tab" );
+   NEW_KACTION(actPreviousTab, i18n( "Previous Tab" ), 0, Qt::SHIFT + Qt::Key_Left, SLOTS, SLOT( previousTab() ), "previous tab" );
+#if 0
    actUserMenu = new KAction( i18n( "User Menu" ), ALT + Qt::Key_QuoteLeft, SLOTS,
                               SLOT( userMenu() ), actionCollection(), "user menu" );
-*/
-   actManageUseractions = new KAction( i18n( "Manage User Actions..." ), 0, SLOTS,
-                              SLOT( manageUseractions() ), actionCollection(), "manage useractions" );
-   new KrRemoteEncodingMenu(i18n("Select Remote Charset"), "charset", actionCollection(), "changeremoteencoding");
+#endif
+   NEW_KACTION(actManageUseractions, i18n( "Manage User Actions..." ), 0, 0, SLOTS, SLOT( manageUseractions() ), "manage useractions" );
+   
+	new KrRemoteEncodingMenu(i18n("Select Remote Charset"), "charset", actionCollection(), "changeremoteencoding");
 
    // setup the Fn keys
-   actF2 = new KAction( i18n( "Start Terminal Here" ), "terminal", Qt::Key_F2,
-                        SLOTS, SLOT( terminal() ) , actionCollection(), "F2_Terminal" );
-   actF3 = new KAction( i18n( "View File" ), Qt::Key_F3,
-                        SLOTS, SLOT( view() ) , actionCollection(), "F3_View" );
-   actF4 = new KAction( i18n( "Edit File" ), Qt::Key_F4,
-                        SLOTS, SLOT( edit() ) , actionCollection(), "F4_Edit" );
-   actF5 = new KAction( i18n( "Copy..." ), Qt::Key_F5,
-                        SLOTS, SLOT( copyFiles() ) , actionCollection(), "F5_Copy" );
-   actF6 = new KAction( i18n( "Move..." ), Qt::Key_F6,
-                        SLOTS, SLOT( moveFiles() ) , actionCollection(), "F6_Move" );
-   actF7 = new KAction( i18n( "New Directory..." ), "folder_new", Qt::Key_F7,
-                        SLOTS, SLOT( mkdir() ) , actionCollection(), "F7_Mkdir" );
-   actF8 = new KAction( i18n( "Delete" ), "editdelete", Qt::Key_F8,
-                        SLOTS, SLOT( deleteFiles() ) , actionCollection(), "F8_Delete" );
-   actF9 = new KAction( i18n( "Rename" ), Qt::Key_F9,
-                        SLOTS, SLOT( rename() ) , actionCollection(), "F9_Rename" );
-   actF10 = new KAction( i18n( "Quit" ), Qt::Key_F10,
-                         this, SLOT( slotClose() ) , actionCollection(), "F10_Quit" );
-   actPopularUrls = new KAction( i18n("Popular URLs..."), CTRL+Qt::Key_Z,
-                                 popularUrls, SLOT( showDialog() ), actionCollection(), "Popular_Urls");
-   actLocationBar = new KAction( i18n("Go to Location Bar"), CTRL+Qt::Key_L,
-                                 SLOTS, SLOT( slotLocationBar() ), actionCollection(), "location_bar");
-   actJumpBack = new KAction( i18n("Jump Back"), "kr_jumpback", CTRL+Qt::Key_J,
-                              SLOTS, SLOT( slotJumpBack() ), actionCollection(), "jump_back");
-   actSetJumpBack = new KAction( i18n("Set Jump Back Point"), "kr_setjumpback", CTRL+SHIFT+Qt::Key_J,
-                                 SLOTS, SLOT( slotSetJumpBack() ), actionCollection(), "set_jump_back");
-   actSwitchFullScreenTE = new KAction( i18n( "Toggle Fullwidget Terminal Emulator" ), 0, CTRL + Qt::Key_F,
-                                        MAIN_VIEW, SLOT( switchFullScreenTE() ), actionCollection(), "switch_fullscreen_te" );
+   NEW_KACTION(actF2, i18n( "Start Terminal Here" ), "terminal", Qt::Key_F2, SLOTS, SLOT( terminal() ) , "F2_Terminal" );
+   NEW_KACTION(actF3, i18n( "View File" ), 0, Qt::Key_F3, SLOTS, SLOT( view() ), "F3_View" );
+   NEW_KACTION(actF4, i18n( "Edit File" ), 0, Qt::Key_F4, SLOTS, SLOT( edit() ) , "F4_Edit" );
+   NEW_KACTION(actF5, i18n( "Copy..." ), 0, Qt::Key_F5, SLOTS, SLOT( copyFiles() ) , "F5_Copy" );
+   NEW_KACTION(actF6, i18n( "Move..." ), 0, Qt::Key_F6, SLOTS, SLOT( moveFiles() ) , "F6_Move" );
+   NEW_KACTION(actF7, i18n( "New Directory..." ), "folder_new", Qt::Key_F7, SLOTS, SLOT( mkdir() ) , "F7_Mkdir" );
+   NEW_KACTION(actF8, i18n( "Delete" ), "editdelete", Qt::Key_F8, SLOTS, SLOT( deleteFiles() ) , "F8_Delete" );
+   NEW_KACTION(actF9, i18n( "Rename" ), 0, Qt::Key_F9, SLOTS, SLOT( rename() ) , "F9_Rename" );
+   NEW_KACTION(actF10, i18n( "Quit" ), 0, Qt::Key_F10, this, SLOT( slotClose() ) , "F10_Quit" );
+   NEW_KACTION(actPopularUrls, i18n("Popular URLs..."), 0, Qt::CTRL + Qt::Key_Z, popularUrls, SLOT( showDialog() ), "Popular_Urls");
+   NEW_KACTION(actLocationBar, i18n("Go to Location Bar"), 0, Qt::CTRL + Qt::Key_L, SLOTS, SLOT( slotLocationBar() ), "location_bar");
+   NEW_KACTION(actJumpBack, i18n("Jump Back"), "kr_jumpback", Qt::CTRL + Qt::Key_J, SLOTS, SLOT( slotJumpBack() ), "jump_back");
+   NEW_KACTION(actSetJumpBack, i18n("Set Jump Back Point"), "kr_setjumpback", Qt::CTRL + Qt::SHIFT + Qt::Key_J,SLOTS, SLOT( slotSetJumpBack() ), "set_jump_back");
+   NEW_KACTION(actSwitchFullScreenTE, i18n( "Toggle Fullwidget Terminal Emulator" ), 0, Qt::CTRL + Qt::Key_F, MAIN_VIEW, SLOT( switchFullScreenTE() ), "switch_fullscreen_te" );
 
    // and at last we can set the tool-tips
    actSelect->setToolTip( i18n( "Select files using a filter" ) );
@@ -761,47 +740,49 @@ void Krusader::setupActions() {
 ///////////////////////////////////////////////////////////////////////////
 
 void Krusader::savePosition() {
-   config->setGroup( "Private" );
-   config->writeEntry( "Maximized", isMaximized() );
+   KConfigGroup cfg = config->group( "Private" );
+   cfg.writeEntry( "Maximized", isMaximized() );
    if (isMaximized())
-      saveWindowSize(config);
+      saveWindowSize(config->group("Private"));
    else {
-      config->writeEntry( "Start Position", isMaximized() ? oldPos : pos() );
-      config->writeEntry( "Start Size", isMaximized() ? oldSize : size() );
+      cfg.writeEntry( "Start Position", isMaximized() ? oldPos : pos() );
+      cfg.writeEntry( "Start Size", isMaximized() ? oldSize : size() );
    }
-   config->writeEntry( "Panel Size", mainView->vert_splitter->sizes() [ 0 ] );
-   config->writeEntry( "Terminal Size", mainView->vert_splitter->sizes() [ 1 ] );
-   Q3ValueList<int> lst = mainView->horiz_splitter->sizes();
-   config->writeEntry( "Splitter Sizes", lst );
+   cfg.writeEntry( "Panel Size", mainView->vert_splitter->sizes() [ 0 ] );
+   cfg.writeEntry( "Terminal Size", mainView->vert_splitter->sizes() [ 1 ] );
+   QList<int> lst = mainView->horiz_splitter->sizes();
+   cfg.writeEntry( "Splitter Sizes", lst );
    mainView->left->popup->saveSizes();
    mainView->right->popup->saveSizes();
    if( !MAIN_VIEW->getTerminalEmulatorSplitterSizes().isEmpty() )
-     config->writeEntry( "Terminal Emulator Splitter Sizes", MAIN_VIEW->getTerminalEmulatorSplitterSizes() );
+     cfg.writeEntry( "Terminal Emulator Splitter Sizes", MAIN_VIEW->getTerminalEmulatorSplitterSizes() );
    
    // save view settings ---> fix when we have tabbed-browsing
    mainView->left->view->saveSettings();
    mainView->right->view->saveSettings();
    
-   config->setGroup( "Startup" );
-   config->writeEntry( "Vertical Mode", actVerticalMode->isChecked());
+   cfg = config->group( "Startup" );
+   cfg.writeEntry( "Vertical Mode", actVerticalMode->isChecked());
    config->sync();
 }
 
 void Krusader::saveSettings() {
-   toolBar() ->saveSettings( krConfig, "Private" );
-   toolBar("actionsToolBar")->saveSettings( krConfig, "Actions Toolbar" );
-   config->setGroup( "Startup" );   
-   config->writeEntry( "Left Active Tab", mainView->leftMng->activeTab() );
-   config->writeEntry( "Right Active Tab", mainView->rightMng->activeTab() );
+	KConfigGroup cfg = krConfig->group("Private");
+   toolBar() ->saveSettings( cfg );
+	cfg = krConfig->group("Actions Toolbar");
+   toolBar("actionsToolBar")->saveSettings( cfg );
+   cfg = config->group( "Startup" );
+   cfg.writeEntry( "Left Active Tab", mainView->leftMng->activeTab() );
+   cfg.writeEntry( "Right Active Tab", mainView->rightMng->activeTab() );
    mainView->leftMng->saveSettings( krConfig, "Left Tab Bar" );
    mainView->rightMng->saveSettings( krConfig, "Right Tab Bar" );
    
-   bool rememberpos = config->readBoolEntry( "Remember Position", _RememberPos );
-   bool uisavesettings = config->readBoolEntry( "UI Save Settings", _UiSave );
+   bool rememberpos = cfg.readEntry( "Remember Position", _RememberPos );
+   bool uisavesettings = cfg.readEntry( "UI Save Settings", _UiSave );
 
    // save the popup panel's page of the CURRENT tab
-   config->writeEntry( "Left Panel Popup", mainView->left->popup->currentPage() );
-   config->writeEntry( "Right Panel Popup", mainView->right->popup->currentPage() );
+   cfg.writeEntry( "Left Panel Popup", mainView->left->popup->currentPage() );
+   cfg.writeEntry( "Right Panel Popup", mainView->right->popup->currentPage() );
 
    // save size and position
    if ( rememberpos || uisavesettings ) {
@@ -810,14 +791,14 @@ void Krusader::saveSettings() {
 
    // save the gui
    if ( uisavesettings ) {
-      config->setGroup( "Startup" );
-      config->writeEntry( "Show status bar", actShowStatusBar->isChecked() );
-      config->writeEntry( "Show tool bar", actShowToolBar->isChecked() );
-      config->writeEntry( "Show FN Keys", actToggleFnkeys->isChecked() );
-      config->writeEntry( "Show Cmd Line", actToggleCmdline->isChecked() );
-      config->writeEntry( "Show Terminal Emulator", actToggleTerminal->isChecked() );
-      config->writeEntry( "Vertical Mode", actVerticalMode->isChecked());
-      config->writeEntry( "Start To Tray", isHidden());
+      cfg = krConfig->group( "Startup" );
+      cfg.writeEntry( "Show status bar", actShowStatusBar->isChecked() );
+      cfg.writeEntry( "Show tool bar", actShowToolBar->isChecked() );
+      cfg.writeEntry( "Show FN Keys", actToggleFnkeys->isChecked() );
+      cfg.writeEntry( "Show Cmd Line", actToggleCmdline->isChecked() );
+      cfg.writeEntry( "Show Terminal Emulator", actToggleTerminal->isChecked() );
+      cfg.writeEntry( "Vertical Mode", actVerticalMode->isChecked());
+      cfg.writeEntry( "Start To Tray", isHidden());
    }
 
    // save popular links
@@ -830,9 +811,9 @@ void Krusader::refreshView() {
    delete mainView;
    mainView = new KrusaderView( this );
    setCentralWidget( mainView );
-   config->setGroup( "Private" );
-   resize( krConfig->readSizeEntry( "Start Size", _StartSize ) );
-   move( krConfig->readPointEntry( "Start Position", _StartPosition ) );
+   KConfigGroup cfg = config->group( "Private" );
+   resize( cfg.readEntry( "Start Size", _StartSize ) );
+   move( cfg.readEntry( "Start Position", _StartPosition ) );
    mainView->show();
    show();
 }
@@ -858,100 +839,124 @@ void Krusader::slotClose() {
    close();
 }
 
-bool Krusader::queryClose() {
-   if( isStarting || isExiting )
-     return false;
-   
-   if( kapp->sessionSaving() ) // KDE is logging out, accept the close
-   { 
-     saveSettings();
+bool Krusader::queryClose()
+{
+	if ( isStarting || isExiting )
+		return false;
 
-     // PORTME: kapp->dcopClient()->registerAs( KApplication::kApplication()->name(), true );
+	if ( kapp->sessionSaving() ) // KDE is logging out, accept the close
+	{
+		saveSettings();
 
-     kapp->deref(); // FIX: krusader exits at closing the viewer when minimized to tray
-     kapp->deref(); // and close the application
-     return isExiting = true;              // this will also kill the pending jobs
-   }
-   
-   krConfig->setGroup( "Look&Feel" );
-   if( !directExit && krConfig->readBoolEntry( "Single Instance Mode", _SingleInstanceMode ) && 
-                      krConfig->readBoolEntry( "Minimize To Tray", _MinimizeToTray ) ) {
-     hide();
-     return false;
-   }
+		// PORTME: kapp->dcopClient()->registerAs( KApplication::kApplication()->name(), true );
 
-   // the shutdown process can be cancelled. That's why
-   // the directExit variable is set to normal here.
-   directExit = false;
+		KGlobal::deref(); // FIX: krusader exits at closing the viewer when minimized to tray
+		KGlobal::deref(); // and close the application
+		return isExiting = true;              // this will also kill the pending jobs
+	}
 
-   bool quit = true;
-   
-   if ( krConfig->readBoolEntry( "Warn On Exit", _WarnOnExit ) ) {
-      switch ( KMessageBox::warningYesNo( this,
-                                          i18n( "Are you sure you want to quit?" ) ) ) {
-            case KMessageBox::Yes :
-            quit = true;
-            break;
-            case KMessageBox::No :
-            quit = false;
-            break;
-            default:
-            quit = false;
-      }
-   }
-   if ( quit ) {
-      /* First try to close the child windows, because it's the safer
-         way to avoid crashes, then close the main window.
-         If closing a child is not successful, then we cannot let the
-         main window close. */
+	KConfigGroup cfg = krConfig->group ( "Look&Feel" );
+	if ( !directExit && cfg.readEntry ( "Single Instance Mode", _SingleInstanceMode ) &&
+	        cfg.readEntry ( "Minimize To Tray", _MinimizeToTray ) )
+	{
+		hide();
+		return false;
+	}
 
-      for(;;) {
-        QWidgetList * list = QApplication::topLevelWidgets();
-        QWidget *activeModal = QApplication::activeModalWidget();
-        QWidget *w = list->first();
+	// the shutdown process can be cancelled. That's why
+	// the directExit variable is set to normal here.
+	directExit = false;
 
-        if( activeModal && activeModal != this && activeModal != menuBar() && activeModal != sysTray && list->contains( activeModal ) && !activeModal->isHidden() )
-          w = activeModal;
-        else {
-          while(w && (w==this || w==sysTray || w->isHidden() || w==menuBar()) )
-            w = list->next();
-        }
-        delete list;
+	bool quit = true;
 
-        if(!w) break;
-        bool hid = false;
+	if ( cfg.readEntry ( "Warn On Exit", _WarnOnExit ) )
+	{
+		switch ( KMessageBox::warningYesNo ( this,
+		                                     i18n ( "Are you sure you want to quit?" ) ) )
+		{
+			case KMessageBox::Yes :
+				quit = true;
+				break;
+			case KMessageBox::No :
+				quit = false;
+				break;
+			default:
+				quit = false;
+		}
+	}
+	if ( quit )
+	{
+		/* First try to close the child windows, because it's the safer
+		   way to avoid crashes, then close the main window.
+		   If closing a child is not successful, then we cannot let the
+		   main window close. */
 
-        if( w->inherits( "KDialog" ) ) { // KDE is funny and rejects the close event for
-          w->hide();                         // playing a fancy animation with the CANCEL button.
-          hid = true;                        // if we hide the widget, KDialog accepts the close event
-        }
+		for ( ;; )
+		{
+			QWidgetList list = QApplication::topLevelWidgets();
+			QWidget *activeModal = QApplication::activeModalWidget();
+			QWidget *w = list.at ( 0 );
 
-        if( !w->close() ) {
-          if( hid )
-            w->show();
+			if ( activeModal &&
+			        activeModal != this &&
+			        activeModal != menuBar() &&
+			        /*activeModal != sysTray && ==> TODO: commented since KSystemTrayIcon is no longer a QWidget  */
+			        list.contains ( activeModal ) &&
+			        !activeModal->isHidden() )
+			{
+				w = activeModal;
+			}
+			else
+			{
+				for ( int i=1; i<list.count(); ++i )
+				{
+					w = list.at ( i );
+					if ( ! ( w && ( w==this || /* w==sysTray ||*/ w->isHidden() || w==menuBar() ) ) )
+						break;
 
-          if( w->inherits( "QDialog" ) )
-            fprintf( stderr, "Failed to close: %s\n", w->className() );
-  
-          return false;
-        }
-      }
-   
-      saveSettings();
+					// original code was
+					// while(w && (w==this || /* w==sysTray ||*/ w->isHidden() || w==menuBar()) )
+					//		w = list.next();
+				}
+			}
 
-      isExiting = true;
-      hide();        // hide
+			if ( !w ) break;
+			bool hid = false;
 
-      // Changes the name of the application. Single instance mode requires unique appid.
-      // As Krusader is exiting, we release that unique appid, so new Krusader instances
-      // can be started.
-      //PORTME: kapp->dcopClient()->registerAs( KApplication::kApplication()->name(), true );
+			if ( w->inherits ( "KDialog" ) )
+			{ // KDE is funny and rejects the close event for
+				w->hide();                         // playing a fancy animation with the CANCEL button.
+				hid = true;                        // if we hide the widget, KDialog accepts the close event
+			}
 
-      kapp->deref(); // FIX: krusader exits at closing the viewer when minimized to tray
-      kapp->deref(); // and close the application
-      return false;  // don't let the main widget close. It stops the pendig copies!
-   } else
-      return false;
+			if ( !w->close() )
+			{
+				if ( hid )
+					w->show();
+
+				if ( w->inherits ( "QDialog" ) )
+					fprintf ( stderr, "Failed to close: %s\n", w->className() );
+
+				return false;
+			}
+		}
+
+		saveSettings();
+
+		isExiting = true;
+		hide();        // hide
+
+		// Changes the name of the application. Single instance mode requires unique appid.
+		// As Krusader is exiting, we release that unique appid, so new Krusader instances
+		// can be started.
+		//PORTME: kapp->dcopClient()->registerAs( KApplication::kApplication()->name(), true );
+
+		KGlobal::deref(); // FIX: krusader exits at closing the viewer when minimized to tray
+		KGlobal::deref(); // and close the application
+		return false;  // don't let the main widget close. It stops the pendig copies!
+	}
+	else
+		return false;
 }
 
 // the please wait dialog functions
@@ -988,9 +993,11 @@ void Krusader::updateGUI( bool enforce ) {
    if ( userActionMenu )
       userAction->populateMenu( userActionMenu );
    
-   toolBar() ->applySettings( krConfig, "Private" );
-	
-	toolBar("actionsToolBar") ->applySettings( krConfig, "Actions Toolbar" );
+	KConfigGroup cfg = krConfig->group("Private");
+   toolBar() ->applySettings( cfg );
+
+	cfg = krConfig->group( "Actions Toolbar" );	
+	toolBar("actionsToolBar") ->applySettings( cfg );
 	static_cast<KToggleAction*>(actionCollection()->action("toggle actions toolbar"))->
 		setChecked(toolBar("actionsToolBar")->isVisible());
 	
@@ -1035,9 +1042,9 @@ void Krusader::updateGUI( bool enforce ) {
       if ( config->readBoolEntry( "Show Terminal Emulator", _ShowTerminalEmulator ) ) {
         mainView->slotTerminalEmulator( true ); // create konsole_part
         KConfigGroup grp(krConfig, "Private" );
-        Q3ValueList<int> lst;
-        lst.append( grp.readNumEntry( "Panel Size", _PanelSize ) );
-        lst.append( grp.readNumEntry( "Terminal Size", _TerminalSize ) );
+        QList<int> lst;
+        lst.append( grp.readEntry( "Panel Size", _PanelSize ) );
+        lst.append( grp.readEntry( "Terminal Size", _TerminalSize ) );
         mainView->vert_splitter->setSizes( lst );
         config->setGroup( "Startup" );
       } else if ( actExecTerminalEmbedded->isChecked() ) {

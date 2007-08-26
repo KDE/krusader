@@ -345,7 +345,7 @@ bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
   return false;
 }
 
-Q3ValueList<int> KrusaderView::getTerminalEmulatorSplitterSizes() {
+QList<int> KrusaderView::getTerminalEmulatorSplitterSizes() {
   if( terminal_dock->isVisible() )
     return vert_splitter->sizes();
   else
