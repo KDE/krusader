@@ -524,6 +524,18 @@ void Krusader::setupAccels() {
 
 // <patch> Moving from Pixmap actions to generic filenames - thanks to Carsten Pfeiffer
 void Krusader::setupActions() {
+#define NEW_KACTION(VAR, TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME) \
+	VAR = new KAction( KIcon(ICON_NAME), TEXT, this); \
+	VAR->setShortcut(SHORTCUT); \
+	connect(VAR, SIGNAL(triggered(bool)), RECV_OBJ, SLOT_NAME); \
+	actionCollection()->addAction(NAME, VAR);
+
+#define NEW_KTOGGLEACTION(VAR, TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME) \
+	VAR = new KToggleAction( KIcon(ICON_NAME), TEXT, this); \
+	VAR->setShortcut(SHORTCUT); \
+	connect(VAR, SIGNAL(triggered(bool)), RECV_OBJ, SLOT_NAME); \
+	actionCollection()->addAction(NAME, VAR);
+
    // first come the TODO actions
    //actSync =       0;//new KAction(i18n("S&yncronize Dirs"),                         0, this, 0, actionCollection(), "sync dirs");
    //actNewTool =    0;//new KAction(i18n("&Add a new tool"),                          0, this, 0, actionCollection(), "add tool");
@@ -541,16 +553,13 @@ void Krusader::setupActions() {
 
    KStandardAction::home( SLOTS, SLOT( home() ), actionCollection()/*, "std_home"*/ )->setText( i18n("Home") ); /*->setShortcut(Qt::Key_QuoteLeft);*/
 
-	KAction *reloadAct = new KAction(KIcon("reload"), i18n( "&Reload" ), this);
-	reloadAct->setShortcut(Qt::CTRL + Qt::Key_R);
-	connect(reloadAct, SIGNAL(triggered(bool)), SLOTS, SLOT(refresh()));
-	actionCollection()->addAction("std_redisplay", reloadAct);
+	KAction *reloadAct;
+	NEW_KACTION(reloadAct, i18n( "&Reload" ), "reload", Qt::CTRL + Qt::Key_R, SLOTS, SLOT(refresh()), "std_redisplay");
 
    actShowToolBar = (KToggleAction*)KStandardAction::create( KStandardAction::ShowToolbar, SLOTS, SLOT( toggleToolbar() ), actionCollection()/*, "std_toolbar"*/ );
 
-	KToggleAction *toggleActToolbar = new KToggleAction(i18n("Show Actions Toolbar"), this);
-	connect(toggleActToolbar, SIGNAL(triggered(bool)), SLOTS, SLOT(toggleActionsToolbar()));
-	actionCollection()->addAction("toggle actions toolbar", toggleActToolbar );
+	KToggleAction *toggleActToolbar;
+	NEW_KTOGGLEACTION(toggleActToolbar, i18n("Show Actions Toolbar"), 0, 0, SLOTS, SLOT(toggleActionsToolbar()), "toggle actions toolbar");
    
    actShowStatusBar = KStandardAction::showStatusbar( SLOTS, SLOT( toggleStatusbar() ), actionCollection() );
    KStandardAction::quit( this, SLOT( slotClose() ), actionCollection() );
@@ -562,100 +571,54 @@ void Krusader::setupActions() {
    (actPaste = KStandardAction::paste( SLOTS, SLOT( paste() ), actionCollection() ))->setText( i18n("Paste from Clipboard") );
 
    // the toggle actions
-   actToggleFnkeys = new KToggleAction( i18n( "Show &FN Keys Bar" ), this);
-	connect(actToggleFnkeys, SIGNAL(triggered(bool)), SLOTS, SLOT( toggleFnkeys() ));
-	actionCollection()->addAction("toggle fn bar", actToggleFnkeys );
-   actToggleFnkeys->setChecked( true );
+	NEW_KTOGGLEACTION(actToggleFnkeys, i18n( "Show &FN Keys Bar" ), 0, 0, SLOTS,  SLOT( toggleFnkeys() ), "toggle fn bar");
 
+	NEW_KTOGGLEACTION(actToggleCmdline, i18n( "Show &Command Line" ), 0, 0, SLOTS, SLOT( toggleCmdline() ), "toggle command line");
 
-   actToggleCmdline = new KToggleAction( i18n( "Show &Command Line" ), this);
-	connect(actToggleCmdline, SIGNAL(triggered(bool)), SLOTS, SLOT( toggleCmdline() ));
-	actionCollection()->addAction("toggle command line", actToggleCmdline);
-   actToggleCmdline->setChecked( true );
+	NEW_KTOGGLEACTION(actToggleTerminal, i18n( "Show Terminal &Emulator" ), 0, Qt::ALT + Qt::CTRL + Qt::Key_T, SLOTS, SLOT( toggleTerminal() ), "toggle terminal emulator");
+   
+   NEW_KACTION(actDetailedView, i18n( "&Detailed View" ), 0, Qt::ALT + Qt::SHIFT + Qt::Key_D, SLOTS, SLOT( setDetailedView() ), "detailed_view");
 
-   actToggleTerminal = new KToggleAction( i18n( "Show Terminal &Emulator" ), this);
-	actToggleTerminal->setShortcut(Qt::ALT + Qt::CTRL + Qt::Key_T);
-	connect(actToggleTerminal, SIGNAL(triggered(bool)), SLOTS, SLOT( toggleTerminal() ));
-	actionCollection()->addAction("toggle terminal emulator", actToggleTerminal );
-   actToggleTerminal->setChecked( false );
+	NEW_KACTION(actBriefView, i18n( "&Brief View" ), 0, Qt::ALT + Qt::SHIFT + Qt::Key_B, SLOTS, SLOT( setBriefView() ), "brief_view");
 
-   actDetailedView = new KAction( i18n( "&Detailed View" ), this);
-	actDetailedView->setShortcut(Qt::ALT + Qt::SHIFT + Qt::Key_D);
-	connect(actDetailedView, SIGNAL(triggered(bool)), SLOTS, SLOT( setDetailedView() ));
-	actionCollection()->addAction("detailed_view", actDetailedView );
+	NEW_KTOGGLEACTION(actToggleHidden, i18n( "Show &Hidden Files" ), 0, Qt::CTRL + Qt::Key_Period, SLOTS, SLOT( toggleHidden() ), "toggle hidden files");
 
-	actBriefView = new KAction( i18n( "&Brief View" ), this);
-	actBriefView->setShortcut(Qt::ALT + Qt::SHIFT + Qt::Key_B);
-	connect(actBriefView, SIGNAL(triggered(bool)), SLOTS, SLOT( setBriefView() ));
-	actionCollection()->addAction("brief_view", actBriefView );
+	NEW_KACTION(actSwapPanels, i18n( "S&wap Panels" ), 0, Qt::CTRL + Qt::Key_U, SLOTS, SLOT( swapPanels() ), "swap panels");
 
-	actToggleHidden = new KToggleAction( i18n( "Show &Hidden Files" ), this);
-	actToggleHidden->setShortcut(Qt::CTRL + Qt::Key_Period);
-	connect(actToggleHidden, SIGNAL(triggered(bool)), SLOTS, SLOT( toggleHidden() ));
-	actionCollection()->addAction("toggle hidden files", actToggleHidden );
-
-
-   actSwapPanels = new KAction( i18n( "S&wap Panels" ), CTRL + Qt::Key_U, SLOTS,
-                                SLOT( swapPanels() ), actionCollection(), "swap panels" );
-   actSwapSides = new KAction( i18n( "Sw&ap Sides" ), CTRL + SHIFT + Qt::Key_U, SLOTS,
-                                SLOT( toggleSwapSides() ), actionCollection(), "toggle swap sides" );
-   krConfig->setGroup( "Look&Feel" );
-   actToggleHidden->setChecked( krConfig->readBoolEntry( "Show Hidden", _ShowHidden ) );
+	NEW_KACTION(actSwapSides, i18n( "Sw&ap Sides" ), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_U, SLOTS, SLOT( toggleSwapSides() ), "toggle swap sides" );
+   actToggleHidden->setChecked( krConfig->group( "Look&Feel" ).readEntry( "Show Hidden", _ShowHidden ) );
 
    // and then the DONE actions
-   actCmdlinePopup = new KAction( i18n( "popup cmdline" ), 0, CTRL + Qt::Key_Slash, SLOTS,
-                                  SLOT( cmdlinePopup() ), actionCollection(), "cmdline popup" );
-   /* Shortcut disabled because of the Terminal Emulator bug. */
-   actDirUp = new KAction( i18n( "Up" ), "up", CTRL+Qt::Key_PageUp /*Qt::Key_Backspace*/, SLOTS, SLOT( dirUp() ), actionCollection(), "dirUp" );
-   new KAction( i18n( "&New Text File..." ), "filenew", SHIFT + Qt::Key_F4, SLOTS, SLOT( editDlg() ), actionCollection(), "edit_new_file" );
-   new KAction( i18n( "Start &Root Mode Krusader" ), "krusader_root", ALT + Qt::Key_K, SLOTS, SLOT( rootKrusader() ), actionCollection(), "root krusader" );
+	NEW_KACTION(actCmdlinePopup, i18n( "popup cmdline" ), 0, Qt::CTRL + Qt::Key_Slash, SLOTS, SLOT( cmdlinePopup() ), "cmdline popup" );
+   
+	/* Shortcut disabled because of the Terminal Emulator bug. */
+   NEW_KACTION(actDirUp, i18n( "Up" ), "up", Qt::CTRL + Qt::Key_PageUp /*Qt::Key_Backspace*/, SLOTS, SLOT( dirUp() ), "dirUp" );
 
-   actTest = new KAction( i18n( "T&est Archive" ), "ark", ALT + Qt::Key_E,
-                          SLOTS, SLOT( testArchive() ), actionCollection(), "test archives" );
-   //actFTPConnect = new KAction( i18n( "&Net Connections" ), "domtreeviewer", 0,
-   //                             SLOTS, SLOT( runRemoteMan() ), actionCollection(), "ftp connect" );
-   actFTPNewConnect = new KAction( i18n( "New Net &Connection..." ), "connect_creating", CTRL + Qt::Key_N,
-                                   SLOTS, SLOT( newFTPconnection() ), actionCollection(), "ftp new connection" );
-   actProfiles = new KAction( i18n( "Pro&files" ), "kr_profile", ALT + Qt::Key_L,
-                                   MAIN_VIEW, SLOT( profiles() ), actionCollection(), "profile" );
-   actCalculate = new KAction( i18n( "Calculate &Occupied Space" ), "kcalc", 0,
-                               SLOTS, SLOT( calcSpace() ), actionCollection(), "calculate" );
-   actCreateChecksum = new KAction( i18n( "Create Checksum..." ), "binary", 0,
-                               SLOTS, SLOT( createChecksum() ), actionCollection(), "create checksum" );
-   actMatchChecksum = new KAction( i18n( "Verify Checksum..." ), "match_checksum", 0,
-                               SLOTS, SLOT( matchChecksum() ), actionCollection(), "match checksum" );
-   actProperties = new KAction( i18n( "&Properties..." ), 0, ALT+Qt::Key_Enter,
-                                SLOTS, SLOT( properties() ), actionCollection(), "properties" );
-   actPack = new KAction( i18n( "Pac&k..." ), "kr_arc_pack", ALT + Qt::Key_P,
-                          SLOTS, SLOT( slotPack() ), actionCollection(), "pack" );
-   actUnpack = new KAction( i18n( "&Unpack..." ), "kr_arc_unpack", ALT + Qt::Key_U,
-                            SLOTS, SLOT( slotUnpack() ), actionCollection() , "unpack" );
-   actSplit = new KAction( i18n( "Sp&lit File..." ), "kr_split", CTRL + Qt::Key_P,
-                           SLOTS, SLOT( slotSplit() ), actionCollection(), "split" );
-   actCombine = new KAction( i18n( "Com&bine Files..." ), "kr_combine", CTRL + Qt::Key_B,
-                             SLOTS, SLOT( slotCombine() ), actionCollection() , "combine" );
-   actSelect = new KAction( i18n( "Select &Group..." ), "kr_select", CTRL + Qt::Key_Plus,
-                            SLOTS, SLOT( markGroup() ), actionCollection(), "select group" );
-   actSelectAll = new KAction( i18n( "&Select All" ), "kr_selectall", ALT + Qt::Key_Plus,
-                               SLOTS, SLOT( markAll() ), actionCollection(), "select all" );
-   actUnselect = new KAction( i18n( "&Unselect Group..." ), "kr_unselect", CTRL + Qt::Key_Minus,
-                              SLOTS, SLOT( unmarkGroup() ), actionCollection(), "unselect group" );
-   actUnselectAll = new KAction( i18n( "U&nselect All" ), "kr_unselectall", ALT + Qt::Key_Minus,
-                                 SLOTS, SLOT( unmarkAll() ), actionCollection(), "unselect all" );
-   actInvert = new KAction( i18n( "&Invert Selection" ), "kr_invert", ALT + Qt::Key_Asterisk,
-                            SLOTS, SLOT( invert() ), actionCollection(), "invert" );
-   actCompDirs = new KAction( i18n( "&Compare Directories" ), "view_left_right", ALT + Qt::Key_C,
-                              SLOTS, SLOT( compareDirs() ), actionCollection(), "compare dirs" );
-   actSelectNewerAndSingle = new KAction( i18n( "&Select Newer and Single" ), 0,
-                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "select_newer_and_single" );
-   actSelectNewer = new KAction( i18n( "Select &Newer" ), 0,
-                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "select_newer" );
-   actSelectSingle = new KAction( i18n( "Select &Single" ), 0,
-                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "select_single" );
-   actSelectDifferentAndSingle = new KAction( i18n( "Select Different &and Single" ), 0,
-                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "select_different_and_single" );
-   actSelectDifferent = new KAction( i18n( "Select &Different" ), 0,
-                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "select_different" );
+	KAction *tmp1, *tmp2;
+   NEW_KACTION( tmp1, i18n( "&New Text File..." ), "filenew", Qt::SHIFT + Qt::Key_F4, SLOTS, SLOT( editDlg() ), "edit_new_file" );
+   NEW_KACTION( tmp2, i18n( "Start &Root Mode Krusader" ), "krusader_root", Qt::ALT + Qt::Key_K, SLOTS, SLOT( rootKrusader() ), "root krusader" );
+   NEW_KACTION(actTest, i18n( "T&est Archive" ), "ark", Qt::ALT + Qt::Key_E, SLOTS, SLOT( testArchive() ), "test archives" );
+   NEW_KACTION(actFTPNewConnect, i18n( "New Net &Connection..." ), "connect_creating", Qt::CTRL + Qt::Key_N, SLOTS, SLOT( newFTPconnection() ), "ftp new connection" );
+	NEW_KACTION(actProfiles, i18n( "Pro&files" ), "kr_profile", Qt::ALT + Qt::Key_L, MAIN_VIEW, SLOT( profiles() ), "profile" );
+	NEW_KACTION(actCalculate, i18n( "Calculate &Occupied Space" ), "kcalc", 0, SLOTS, SLOT( calcSpace() ), "calculate" );
+	NEW_KACTION(actCreateChecksum, i18n( "Create Checksum..." ), "binary", 0, SLOTS, SLOT( createChecksum() ), "create checksum" );
+   NEW_KACTION(actMatchChecksum, i18n( "Verify Checksum..." ), "match_checksum", 0, SLOTS, SLOT( matchChecksum() ), "match checksum" );
+   NEW_KACTION(actProperties, i18n( "&Properties..." ), 0, Qt::ALT+Qt::Key_Enter, SLOTS, SLOT( properties() ), "properties" );
+   NEW_KACTION(actPack, i18n( "Pac&k..." ), "kr_arc_pack", Qt::ALT + Qt::Key_P, SLOTS, SLOT( slotPack() ), "pack" );
+   NEW_KACTION(actUnpack, i18n( "&Unpack..." ), "kr_arc_unpack", Qt::ALT + Qt::Key_U, SLOTS, SLOT( slotUnpack() ), "unpack" );
+   NEW_KACTION(actSplit, i18n( "Sp&lit File..." ), "kr_split", Qt::CTRL + Qt::Key_P, SLOTS, SLOT( slotSplit() ), "split" );
+   NEW_KACTION(actCombine, i18n( "Com&bine Files..." ), "kr_combine", Qt::CTRL + Qt::Key_B, SLOTS, SLOT( slotCombine() ), "combine" );
+   NEW_KACTION(actSelect, i18n( "Select &Group..." ), "kr_select", Qt::CTRL + Qt::Key_Plus, SLOTS, SLOT( markGroup() ), "select group" );
+   NEW_KACTION(actSelectAll, i18n( "&Select All" ), "kr_selectall", Qt::ALT + Qt::Key_Plus, SLOTS, SLOT( markAll() ), "select all" );
+   NEW_KACTION(actUnselect, i18n( "&Unselect Group..." ), "kr_unselect", Qt::CTRL + Qt::Key_Minus, SLOTS, SLOT( unmarkGroup() ), "unselect group" );
+   NEW_KACTION(actUnselectAll, i18n( "U&nselect All" ), "kr_unselectall", Qt::ALT + Qt::Key_Minus, SLOTS, SLOT( unmarkAll() ), "unselect all" );
+   NEW_KACTION(actInvert, i18n( "&Invert Selection" ), "kr_invert", Qt::ALT + Qt::Key_Asterisk, SLOTS, SLOT( invert() ), "invert" );
+   NEW_KACTION(actCompDirs, i18n( "&Compare Directories" ), "view_left_right", Qt::ALT + Qt::Key_C, SLOTS, SLOT( compareDirs() ), "compare dirs" );
+   NEW_KACTION(actSelectNewerAndSingle, i18n( "&Select Newer and Single" ), 0, 0, SLOTS, SLOT( compareSetup() ), "select_newer_and_single" );
+   NEW_KACTION(actSelectNewer, i18n( "Select &Newer" ), 0, 0, SLOTS, SLOT( compareSetup() ), "select_newer" );
+   NEW_KACTION(actSelectSingle, i18n( "Select &Single" ), 0, 0, SLOTS, SLOT( compareSetup() ), "select_single" );
+   NEW_KACTION(actSelectDifferentAndSingle, i18n( "Select Different &and Single" ), 0, 0, SLOTS, SLOT( compareSetup() ), "select_different_and_single" );
+   NEW_KACTION(actSelectDifferent,  i18n( "Select &Different" ), 0, 0, SLOTS, SLOT( compareSetup() ), "select_different" );
    QActionGroup *selectGroup = new QActionGroup(this);
    selectGroup->setExclusive(true);
    selectGroup->addAction(actSelectNewerAndSingle);
@@ -665,26 +628,11 @@ void Krusader::setupActions() {
    selectGroup->addAction(actSelectDifferent);
    if( compareMode < (int)( sizeof( compareArray ) / sizeof( KAction ** ) ) -1 )
      (*compareArray[ compareMode ])->setChecked( true );
-   actExecStartAndForget = new KAction(
-                                 i18n( "Start and &Forget" ), 0,
-                                 SLOTS, SLOT( execTypeSetup() ),
-                                 actionCollection(), "exec_start_and_forget" );
-   actExecCollectSeparate = new KAction(
-                                 i18n( "Display &Separated Standard and Error Output" ), 0,
-                                 SLOTS, SLOT( execTypeSetup() ),
-                                 actionCollection(), "exec_collect_separate" );
-   actExecCollectTogether = new KAction(
-                                 i18n( "Display &Mixed Standard and Error Output" ), 0,
-                                 SLOTS, SLOT( execTypeSetup() ),
-                                 actionCollection(), "exec_collect_together" );
-   actExecTerminalExternal = new KAction(
-                                 i18n( "Start in &New Terminal" ), 0,
-                                 SLOTS, SLOT( execTypeSetup() ),
-                                 actionCollection(), "exec_terminal_external" );
-   actExecTerminalEmbedded = new KAction(
-                                 i18n( "Send to &Embedded Terminal Emulator" ), 0,
-                                 SLOTS, SLOT( execTypeSetup() ),
-                                 actionCollection(), "exec_terminal_embedded" );
+   NEW_KACTION(actExecStartAndForget, i18n( "Start and &Forget" ), 0, 0, SLOTS, SLOT( execTypeSetup() ), "exec_start_and_forget" );
+   NEW_KACTION(actExecCollectSeparate, i18n( "Display &Separated Standard and Error Output" ), 0, 0, SLOTS, SLOT( execTypeSetup() ), "exec_collect_separate" );
+   NEW_KACTION(actExecCollectTogether, i18n( "Display &Mixed Standard and Error Output" ), 0, 0, SLOTS, SLOT( execTypeSetup() ), "exec_collect_together" );
+   NEW_KACTION(actExecTerminalExternal, i18n( "Start in &New Terminal" ), 0, 0, SLOTS, SLOT( execTypeSetup() ), "exec_terminal_external" );
+   NEW_KACTION(actExecTerminalEmbedded, i18n( "Send to &Embedded Terminal Emulator" ), 0, 0, SLOTS, SLOT( execTypeSetup() ), "exec_terminal_embedded" );
    QActionGroup *actionGroup = new QActionGroup(this);
    actionGroup->setExclusive(true);
    actionGroup->addAction(actExecStartAndForget);
@@ -696,65 +644,40 @@ void Krusader::setupActions() {
      (*execTypeArray[ cmdExecMode ])->setChecked( true );
 
 
-   actHomeTerminal = new KAction( i18n( "Start &Terminal" ), "terminal", 0,
-                                  SLOTS, SLOT( homeTerminal() ), actionCollection(), "terminal@home" );
-   actFTPDisconnect = new KAction( i18n( "Disconnect &from Net" ), "kr_ftp_disconnect", SHIFT + CTRL + Qt::Key_F,
-                                   SLOTS, SLOT( FTPDisconnect() ), actionCollection(), "ftp disconnect" );
-#if KDE_IS_VERSION(3,2,0)	/* new mountman feature is available in kde 3.2 only! */
-   actMountMan = new KToolBarPopupAction( i18n( "&MountMan..." ), "kr_mountman", Qt::ALT + Qt::Key_Slash,
+   NEW_KACTION(actHomeTerminal, i18n( "Start &Terminal" ), "terminal", 0, SLOTS, SLOT( homeTerminal() ), "terminal@home" );
+   NEW_KACTION(actFTPDisconnect, i18n( "Disconnect &from Net" ), "kr_ftp_disconnect", Qt::SHIFT + Qt::CTRL + Qt::Key_F, SLOTS, SLOT( FTPDisconnect() ), "ftp disconnect" );
+   
+	actMountMan = new KToolBarPopupAction( i18n( "&MountMan..." ), "kr_mountman", Qt::ALT + Qt::Key_Slash,
                                           SLOTS, SLOT( runMountMan() ), actionCollection(), "mountman" );
    connect( ( ( KToolBarPopupAction* ) actMountMan ) ->popupMenu(), SIGNAL( aboutToShow() ),
             mountMan, SLOT( quickList() ) );
-#else
-   actMountMan = new KAction( i18n( "&MountMan..." ), "kr_mountman", ALT + Qt::Key_Slash,
-                              SLOTS, SLOT( runMountMan() ), actionCollection(), "mountman" );
-#endif /* KDE 3.2 */
 
-   actFind = new KAction( i18n( "&Search..." ), "filefind", CTRL + Qt::Key_S,
-                          SLOTS, SLOT( search() ), actionCollection(), "find" );
-   actLocate = new KAction( i18n( "&Locate..." ), "find", SHIFT+CTRL + Qt::Key_L,
-                            SLOTS, SLOT( locate() ), actionCollection(), "locate" );
-   actSyncDirs = new KAction( i18n( "Synchronize &Directories..." ), "kr_syncdirs", CTRL + Qt::Key_Y,
-                              SLOTS, SLOT( slotSynchronizeDirs() ), actionCollection(), "sync dirs" );
-   actSyncBrowse = new KAction( i18n( "S&ynchron Directory Changes" ), "kr_syncbrowse_off", ALT + Qt::Key_Y,
-                              SLOTS, SLOT( slotSyncBrowse() ), actionCollection(), "sync browse" );
-   actDiskUsage = new KAction( i18n( "D&isk Usage..." ), "kr_diskusage", ALT + Qt::Key_D,
-                              SLOTS, SLOT( slotDiskUsage() ), actionCollection(), "disk usage" );
-   actKonfigurator = new KAction( i18n( "Configure &Krusader..." ), "configure", 0,
-                                  SLOTS, SLOT( startKonfigurator() ), actionCollection(), "konfigurator" );
-   actBack = new KAction( i18n( "Back" ), "back", 0,
-                          SLOTS, SLOT( back() ), actionCollection(), "back" );
-   actRoot = new KAction( i18n( "Root" ), "top", CTRL + Qt::Key_Backspace,
-                          SLOTS, SLOT( root() ), actionCollection(), "root" );
-   actSavePosition = new KAction( i18n( "Save &Position" ), 0,
-                                  krApp, SLOT( savePosition() ), actionCollection(), "save position" );   
-   actAllFilter = new KAction( i18n( "&All Files" ), SHIFT + Qt::Key_F10,
-                               SLOTS, SLOT( allFilter() ), actionCollection(), "all files" );
+   NEW_KACTION(actFind, i18n( "&Search..." ), "filefind", Qt::CTRL + Qt::Key_S, SLOTS, SLOT( search() ), "find" );
+   NEW_KACTION(actLocate, i18n( "&Locate..." ), "find", Qt::SHIFT+ Qt::CTRL + Qt::Key_L, SLOTS, SLOT( locate() ), "locate" );
+   NEW_KACTION(actSyncDirs, i18n( "Synchronize &Directories..." ), "kr_syncdirs", Qt::CTRL + Qt::Key_Y, SLOTS, SLOT( slotSynchronizeDirs() ), "sync dirs" );
+   NEW_KACTION(actSyncBrowse, i18n( "S&ynchron Directory Changes" ), "kr_syncbrowse_off", Qt::ALT + Qt::Key_Y, SLOTS, SLOT( slotSyncBrowse() ), "sync browse" );
+   NEW_KACTION(actDiskUsage, i18n( "D&isk Usage..." ), "kr_diskusage", Qt::ALT + Qt::Key_D, SLOTS, SLOT( slotDiskUsage() ), "disk usage" );
+   NEW_KACTION(actKonfigurator, i18n( "Configure &Krusader..." ), "configure", 0, SLOTS, SLOT( startKonfigurator() ), "konfigurator" );
+   NEW_KACTION(actBack, i18n( "Back" ), "back", 0, SLOTS, SLOT( back() ), "back" );
+   NEW_KACTION(actRoot, i18n( "Root" ), "top", Qt::CTRL + Qt::Key_Backspace, SLOTS, SLOT( root() ), "root" );
+   NEW_KACTION(actSavePosition, i18n( "Save &Position" ), 0, 0, krApp, SLOT( savePosition() ), "save position" );   
+   NEW_KACTION(actAllFilter, i18n( "&All Files" ), 0, Qt::SHIFT + Qt::Key_F10, SLOTS, SLOT( allFilter() ), "all files" );
    //actExecFilter = new KAction( i18n( "&Executables" ), SHIFT + Qt::Key_F11,
    //                             SLOTS, SLOT( execFilter() ), actionCollection(), "exec files" );
-   actCustomFilter = new KAction( i18n( "&Custom" ), SHIFT + Qt::Key_F12,
-                                  SLOTS, SLOT( customFilter() ), actionCollection(), "custom files" );
-   actCompare = new KAction( i18n( "Compare b&y Content..." ), "kmultiple", 0,
-                             SLOTS, SLOT( compareContent() ), actionCollection(), "compare" );
-   actMultiRename = new KAction( i18n( "Multi &Rename..." ), "krename", SHIFT + Qt::Key_F9,
-                                 SLOTS, SLOT( multiRename() ), actionCollection(), "multirename" );
-   new KAction( i18n( "Right-click Menu" ), Qt::Key_Menu,
-                SLOTS, SLOT( rightclickMenu() ), actionCollection(), "rightclick menu" );
-   new KAction( i18n( "Right Bookmarks" ), ALT + Qt::Key_Right,
-                SLOTS, SLOT( openRightBookmarks() ), actionCollection(), "right bookmarks" );
-   new KAction( i18n( "Left Bookmarks" ), ALT + Qt::Key_Left,
-                SLOTS, SLOT( openLeftBookmarks() ), actionCollection(), "left bookmarks" );
-   new KAction( i18n( "Bookmarks" ), CTRL + Qt::Key_D,
-                SLOTS, SLOT( openBookmarks() ), actionCollection(), "bookmarks" );
-   new KAction( i18n( "Bookmark Current" ), CTRL + SHIFT + Qt::Key_D,
-                SLOTS, SLOT( bookmarkCurrent() ), actionCollection(), "bookmark current" );
-   new KAction( i18n( "History" ), CTRL + Qt::Key_H,
-                SLOTS, SLOT( openHistory() ), actionCollection(), "history" );
-   new KAction( i18n( "Sync Panels" ), ALT + Qt::Key_O,
-                SLOTS, SLOT( syncPanels() ), actionCollection(), "sync panels");
-   new KAction( i18n( "Left History" ), ALT + CTRL + Qt::Key_Left,
-                SLOTS, SLOT( openLeftHistory() ), actionCollection(), "left history" );
-   new KAction( i18n( "Right History" ), ALT + CTRL + Qt::Key_Right,
+   NEW_KACTION(actCustomFilter, i18n( "&Custom" ), 0, Qt::SHIFT + Qt::Key_F12, SLOTS, SLOT( customFilter() ), "custom files" );
+   NEW_KACTION(actCompare, i18n( "Compare b&y Content..." ), "kmultiple", 0, SLOTS, SLOT( compareContent() ), "compare" );
+   NEW_KACTION(actMultiRename, i18n( "Multi &Rename..." ), "krename", Qt::SHIFT + Qt::Key_F9, SLOTS, SLOT( multiRename() ), "multirename" );
+   
+	KAction *t3, *t4, *t5, *t6, *t7, *t8, *t9, *t10, *t11, *t12, *t13, *t14, *t15;
+	NEW_KACTION(t3, i18n( "Right-click Menu" ), 0, Qt::Key_Menu, SLOTS, SLOT( rightclickMenu() ), "rightclick menu" );
+   NEW_KACTION(t4, i18n( "Right Bookmarks" ), 0, Qt::ALT + Qt::Key_Right,SLOTS, SLOT( openRightBookmarks() ), "right bookmarks" );
+   NEW_KACTION(t5, i18n( "Left Bookmarks" ), 0, Qt::ALT + Qt::Key_Left, SLOTS, SLOT( openLeftBookmarks() ), "left bookmarks" );
+   NEW_KACTION(t6, i18n( "Bookmarks" ), 0, Qt::CTRL + Qt::Key_D, SLOTS, SLOT( openBookmarks() ), "bookmarks" );
+   NEW_KACTION(t7, i18n( "Bookmark Current" ), 0, Qt::CTRL + SHIFT + Qt::Key_D, SLOTS, SLOT( bookmarkCurrent() ), "bookmark current" );
+   NEW_KACTION(t8, i18n( "History" ), 0, Qt::CTRL + Qt::Key_H, SLOTS, SLOT( openHistory() ), "history" );
+   NEW_KACTION(t9, i18n( "Sync Panels" ), 0, Qt::ALT + Qt::Key_O, SLOTS, SLOT( syncPanels() ), "sync panels");
+   NEW_KACTION(t10, i18n( "Left History" ), 0, Qt::ALT + Qt::CTRL + Qt::Key_Left, SLOTS, SLOT( openLeftHistory() ), "left history" );
+   NEW_KACTION(t11, new KAction( i18n( "Right History" ), ALT + CTRL + Qt::Key_Right,
                 SLOTS, SLOT( openRightHistory() ), actionCollection(), "right history" );
    new KAction( i18n( "Media" ), CTRL + Qt::Key_M,
                 SLOTS, SLOT( openMedia() ), actionCollection(), "media" );
