@@ -380,7 +380,7 @@ void MediaButton::gettingSpaceData(const QString &mountPoint, unsigned long kBSi
 	QString sizeText = KIO::convertSize( size );
 	
 	for( unsigned i=0; i != urls.size(); i++ ) {
-		if( mediaURL.equals( urls[ i ], true ) ) {
+		if( mediaURL.equals( urls[ i ], KUrl::CompareWithoutTrailingSlash ) ) {
 			if( kBSize == 0 ) { // if df gives 0, it means the device is quasy umounted
 				QString mime = mimes[ i ];
 				if( mimes[ i ].endsWith( "_mounted" ) ) {
@@ -430,7 +430,7 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 	KUrl mountURL = KUrl::fromPathOrUrl( mp->mountPoint() );
 	
 	for( unsigned i=0; i != urls.size(); i++ ) 
-		if( urls[ i ].equals( mountURL, true ) ) {
+		if( urls[ i ].equals( mountURL, KUrl::CompareWithoutTrailingSlash ) ) {
 			overwrite = i;
 			break;
 		}

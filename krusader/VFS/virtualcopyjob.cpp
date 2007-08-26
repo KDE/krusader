@@ -157,12 +157,12 @@ void VirtualCopyJob::statNextDir() {
 	
 	m_currentDir = KUrl::relativeUrl( m_baseURL, dirToCheck.upUrl() );
 	
-	KDirSize* kds  = KDirSize::dirSizeJob( dirToCheck );
+	KIO::DirectorySizeJob* kds  = KIO::directorySize( dirToCheck );
 	connect( kds, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotKdsResult( KIO::Job* ) ) );
 }
 
 void VirtualCopyJob::slotKdsResult( KIO::Job * job ) {
-	KDirSize* kds = static_cast<KDirSize*>(job);
+	KIO::DirectorySizeJob* kds = static_cast<DirectorySizeJob*>(job);
 	m_totalSize += kds->totalSize();
 	m_totalFiles += kds->totalFiles();
 	m_totalSubdirs += kds->totalSubdirs();
@@ -196,7 +196,7 @@ void VirtualCopyJob::slotStatResult( KIO::Job *job ) {
 	KUrl url = (static_cast<KIO::SimpleJob*>(job) )->url();
 	
 	if ( job && job->error() ) {
-		if( job->error() == KIO::ERR_DOES_NOT_EXIST && !url.equals( url.upUrl(),true ) ) {
+		if( job->error() == KIO::ERR_DOES_NOT_EXIST && !url.equals( url.upUrl(),KUrl::CompareWithoutTrailingSlash ) ) {
 			m_dirStack.push_back( url.fileName() );
 			KIO::Job *job = KIO::stat( url.upUrl() );
 			connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotStatResult( KIO::Job* ) ) );

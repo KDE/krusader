@@ -37,6 +37,7 @@
 //Added by qt3to4:
 #include <Q3ValueList>
 #include <kapplication.h>
+#include <kio/directorysizejob.h>
 #include <klargefile.h>
 #include <qdir.h>
 #include "vfs.h"
@@ -122,7 +123,7 @@ KUrl vfs::fromPathOrUrl( const QString &originIn )
   return url;
 }
 
-QString vfs::pathOrUrl( const KUrl &originIn, int trailingSlash )
+QString vfs::pathOrUrl( const KUrl &originIn, KUrl::AdjustPathOption trailingSlash )
 {
   if( originIn.isLocalFile() )
     return originIn.path( trailingSlash );
@@ -229,7 +230,7 @@ bool vfs::vfs_refresh(const KUrl& origin){
 		return true;
 	}
 
-	if( !invalidated && origin.equals(vfs_getOrigin(),true) ) return vfs_refresh();
+	if( !invalidated && origin.equals(vfs_getOrigin(),KUrl::CompareWithoutTrailingSlash) ) return vfs_refresh();
 	
 	vfs_busy = true;
 	
@@ -289,10 +290,9 @@ void vfs::vfs_requestDelete() {
 }
 
 /// to be implemented
-#include <kio/directorysizejob.h>
 void vfs::slotKdsResult( KIO::Job* job){
 	if( job && !job->error() ){
-		KDirSize* kds = static_cast<KDirSize*>(job);
+		KIO::DirectorySizeJob* kds = static_cast<KIO::DirectorySizeJob*>(job);
 		*kds_totalSize += kds->totalSize();
 		*kds_totalFiles += kds->totalFiles();
 		*kds_totalDirs += kds->totalSubdirs();
@@ -319,7 +319,7 @@ void vfs::calculateURLSize( KUrl url,  KIO::filesize_t* totalSize, unsigned long
 		KIO::StatJob* statJob = KIO::stat( url, false );
 		connect( statJob, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotStatResultArrived( KIO::Job* ) ) );
 		while ( !(*stop) && stat_busy ) {usleep(1000);}
-		if( entry.isEmpty()  ) return; // statJob failed
+		if( entry.count() == 0 ) return; // statJob failed
 		KFileItem kfi(entry, url, true );        
 		if( kfi.isFile() || kfi.isLink() ) {
 			*totalFiles++;
@@ -328,7 +328,7 @@ void vfs::calculateURLSize( KUrl url,  KIO::filesize_t* totalSize, unsigned long
 		}
 	}
 	
-	KDirSize* kds  = KDirSize::dirSizeJob( url );
+	KIO::DirectorySizeJob* kds  = KIO::directorySize( url );
 	connect( kds, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotKdsResult( KIO::Job* ) ) );
 	while ( !(*stop) ){ 
 		// we are in a sepetate thread - so sleeping is OK

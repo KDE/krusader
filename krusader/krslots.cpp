@@ -288,7 +288,7 @@ void KRslots::insertFileName(bool full_path)
     return;
   
   if( full_path ){
-    QString path=vfs::pathOrUrl( ACTIVE_FUNC->files()->vfs_getOrigin(), 1 );
+    QString path=vfs::pathOrUrl( ACTIVE_FUNC->files()->vfs_getOrigin(), KUrl::AddTrailingSlash );
     filename = path+filename;
   }
 
@@ -619,7 +619,7 @@ void KRslots::editDlg(){
 
     KrViewer::edit( dest );
     
-    if( dest.upUrl().equals( ACTIVE_PANEL->virtualPath(), true ) )
+    if( dest.upUrl().equals( ACTIVE_PANEL->virtualPath(), KUrl::CompareWithoutTrailingSlash ) )
       refresh();
 }
 
@@ -690,7 +690,7 @@ void KRslots::slotSplit()
 
   if( splitterGUI.result() == QDialog::Accepted )
   {
-    bool splitToOtherPanel = ( splitterGUI.getDestinationDir().equals( ACTIVE_PANEL->otherPanel->virtualPath(), true ) );
+    bool splitToOtherPanel = ( splitterGUI.getDestinationDir().equals( ACTIVE_PANEL->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) );
 
     Splitter split( MAIN_VIEW, fileURL, splitterGUI.getDestinationDir() );
     split.split( splitterGUI.getSplitSize() );
@@ -816,7 +816,7 @@ void KRslots::slotCombine(){
                                  ACTIVE_PANEL->otherPanel->virtualPath(), ACTIVE_PANEL->virtualPath());
   if ( dest.isEmpty() ) return ; // the user canceled
 
-  bool combineToOtherPanel = ( dest.equals( ACTIVE_PANEL->otherPanel->virtualPath(), true ) );
+  bool combineToOtherPanel = ( dest.equals( ACTIVE_PANEL->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) );
 
   Combiner combine( MAIN_VIEW, baseURL, dest, unixStyle );
   combine.combine();

@@ -189,7 +189,7 @@ void LoaderWidget::init()
 
 void LoaderWidget::setCurrentURL( KUrl url )
 {
-  searchedDirectory->setText( vfs::pathOrUrl( url, 1) );
+  searchedDirectory->setText( vfs::pathOrUrl( url, KUrl::AddTrailingSlash) );
 }
 
 void LoaderWidget::setValues( int fileNum, int dirNum, KIO::filesize_t total )
@@ -729,7 +729,7 @@ void DiskUsage::createStatus()
       url.addPath( dirEntry->directory() );
 
   emit status( i18n( "Current directory:%1,  Total size:%2,  Own size:%3" )
-               .arg( vfs::pathOrUrl( url, -1 ) )
+               .arg( vfs::pathOrUrl( url, KUrl::RemoveTrailingSlash ) )
                .arg( " "+KRpermHandler::parseSize( dirEntry->size() ) )
                .arg( " "+KRpermHandler::parseSize( dirEntry->ownSize() ) ) );
 }

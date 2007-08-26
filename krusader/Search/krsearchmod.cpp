@@ -232,9 +232,9 @@ void KRSearchMod::scanRemoteDir( KUrl url )
     if( query->match( vf ) )
     {
       // if we got here - we got a winner
-      results.append( vfs::pathOrUrl( fileURL, -1 ) );
+      results.append( vfs::pathOrUrl( fileURL, KUrl::RemoveTrailingSlash ) );
       
-      emit found( fileURL.fileName(), vfs::pathOrUrl( fileURL.upUrl(), -1 ), vf->vfile_getSize(), vf->vfile_getTime_t(), vf->vfile_getPerm(), query->foundText() );
+      emit found( fileURL.fileName(), vfs::pathOrUrl( fileURL.upUrl(), KUrl::RemoveTrailingSlash ), vf->vfile_getSize(), vf->vfile_getTime_t(), vf->vfile_getPerm(), query->foundText() );
     }
 
     if( timer.elapsed() >= EVENT_PROCESS_DELAY ) {

@@ -446,7 +446,7 @@ void KrViewer::checkModified(){
 	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentPage() );
 	if( !pvb ) return;
 
-	if( !pvb->part()->url().equals( pvb->url(), true ) ) {
+	if( !pvb->part()->url().equals( pvb->url(), KUrl::CompareWithoutTrailingSlash ) ) {
 		pvb->setUrl( pvb->part()->url() );
 	}
 

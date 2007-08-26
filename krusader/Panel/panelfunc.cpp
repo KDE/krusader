@@ -122,7 +122,7 @@ void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn ) {
 	}
 
 	// if we are not refreshing to current URL
-	bool is_equal_url = files() ->vfs_getOrigin().equals( url, true );
+	bool is_equal_url = files() ->vfs_getOrigin().equals( url, KUrl::CompareWithoutTrailingSlash );
 	
 	if ( !is_equal_url ) {
 		// change the cursor to busy
@@ -452,11 +452,11 @@ void ListPanelFunc::moveFiles() {
 		// keep the directory structure for virtual paths
 		VirtualCopyJob *vjob = new VirtualCopyJob( &fileNames, files(), dest, virtualBaseURL, pmode, KIO::CopyJob::Move, false, true );
 		connect( vjob, SIGNAL( result( KIO::Job* ) ), this, SLOT( refresh() ) );
-		if ( dest.equals( panel->otherPanel->virtualPath(), true ) )
+		if ( dest.equals( panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) )
 			connect( vjob, SIGNAL( result( KIO::Job* ) ), panel->otherPanel->func, SLOT( refresh() ) );
 	}
 	// if we are not moving to the other panel :
-	else if ( !dest.equals( panel->otherPanel->virtualPath(), true ) ) {
+	else if ( !dest.equals( panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) ) {
 		// you can rename only *one* file not a batch,
 		// so a batch dest must alwayes be a directory
 		if ( fileNames.count() > 1 ) dest.adjustPath(KUrl::AddTrailingSlash);
@@ -465,7 +465,7 @@ void ListPanelFunc::moveFiles() {
 		// refresh our panel when done
 		connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( refresh() ) );
 		// and if needed the other panel as well
-		if ( dest.equals( panel->otherPanel->virtualPath(), true ) )
+		if ( dest.equals( panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) )
 			connect( job, SIGNAL( result( KIO::Job* ) ), panel->otherPanel->func, SLOT( refresh() ) );
 
 	} else { // let the other panel do the dirty job
@@ -553,7 +553,7 @@ KUrl ListPanelFunc::getVirtualBaseURL() {
 		do {
 			KUrl oldBase = base;
 			base = base.upUrl();
-			if( oldBase.equals( base, true ) )
+			if( oldBase.equals( base, KUrl::CompareWithoutTrailingSlash ) )
 				return KUrl();
 			if( base.isParentOf( (*fileUrls)[ i ] ) )
 				break;
@@ -600,18 +600,18 @@ void ListPanelFunc::copyFiles() {
 		// keep the directory structure for virtual paths
 		VirtualCopyJob *vjob = new VirtualCopyJob( &fileNames, files(), dest, virtualBaseURL, pmode, KIO::CopyJob::Copy, false, true );
 		connect( vjob, SIGNAL( result( KIO::Job* ) ), this, SLOT( refresh() ) );
-		if ( dest.equals( panel->otherPanel->virtualPath(), true ) )
+		if ( dest.equals( panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) )
 			connect( vjob, SIGNAL( result( KIO::Job* ) ), panel->otherPanel->func, SLOT( refresh() ) );
 	}
 	// if we are  not copying to the other panel :
-	else if ( !dest.equals( panel->otherPanel->virtualPath(), true ) ) {
+	else if ( !dest.equals( panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) ) {
 		// you can rename only *one* file not a batch,
 		// so a batch dest must alwayes be a directory
 		if ( fileNames.count() > 1 ) dest.adjustPath(KUrl::AddTrailingSlash);
 		KIO::Job* job = PreservingCopyJob::createCopyJob( pmode, *fileUrls, dest, KIO::CopyJob::Copy, false, true );
 		job->setAutoErrorHandlingEnabled( true );
-		if ( dest.equals( panel->virtualPath(), true ) ||
-			dest.upUrl().equals( panel->virtualPath(), true ) )
+		if ( dest.equals( panel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) ||
+			dest.upUrl().equals( panel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) )
 			// refresh our panel when done
 			connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( refresh() ) );
 	// let the other panel do the dirty job
@@ -649,7 +649,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 		if ( !reallyDelete && trash && files() ->vfs_getType() == vfs::NORMAL ) {
 			s = i18n( "Do you really want to move this item to the trash?", "Do you really want to move these %n items to the trash?", fileNames.count() );
 			b = i18n( "&Trash" );
-		} else if( files() ->vfs_getType() == vfs::VIRT && files()->vfs_getOrigin().equals( KUrl("virt:/"), true ) ) {
+		} else if( files() ->vfs_getType() == vfs::VIRT && files()->vfs_getOrigin().equals( KUrl("virt:/"), KUrl::CompareWithoutTrailingSlash ) ) {
 			s = i18n( "Do you really want to delete this virtual item (physical files stay untouched)?", "Do you really want to delete these virtual items (physical files stay untouched)?", fileNames.count() );
 			b = i18n( "&Delete" );
 		} else if( files() ->vfs_getType() == vfs::VIRT ) {
@@ -774,7 +774,7 @@ void ListPanelFunc::pack() {
 	if ( fileNames.count() == 1 )
 		defaultName = fileNames.first();
 	// ask the user for archive name and packer
-	new PackGUI( defaultName, vfs::pathOrUrl( panel->otherPanel->virtualPath(), -1 ), fileNames.count(), fileNames.first() );
+	new PackGUI( defaultName, vfs::pathOrUrl( panel->otherPanel->virtualPath(), KUrl::RemoveTrailingSlash ), fileNames.count(), fileNames.first() );
 	if ( PackGUI::type == QString() )
 		return ; // the user canceled
 
@@ -923,7 +923,7 @@ void ListPanelFunc::unpack() {
 	KUrl dest = KChooseDir::getDir(s, panel->otherPanel->virtualPath(), panel->virtualPath());
 	if ( dest.isEmpty() ) return ; // the user canceled
 
-	bool packToOtherPanel = ( dest.equals( panel->otherPanel->virtualPath(), true ) );
+	bool packToOtherPanel = ( dest.equals( panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) );
 
 	for ( unsigned int i = 0; i < fileNames.count(); ++i ) {
 		QString arcName = fileNames[ i ];
@@ -1144,7 +1144,7 @@ vfs* ListPanelFunc::files() {
 
 
 void ListPanelFunc::copyToClipboard( bool move ) {
-	if( files()->vfs_getOrigin().equals( KUrl("virt:/"), true ) ) {
+	if( files()->vfs_getOrigin().equals( KUrl("virt:/"), KUrl::CompareWithoutTrailingSlash ) ) {
 		if( move )
 			KMessageBox::error( krApp, i18n( "Cannot cut a virtual URL collection to the clipboard!" ) );
 		else

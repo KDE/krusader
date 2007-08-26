@@ -61,7 +61,7 @@
 #include <qdir.h>
 
 KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd) {
-	KUrlRequesterDlg *dlg = new KUrlRequesterDlg( vfs::pathOrUrl( url, 1 ),text,krApp,"");
+	KUrlRequesterDlg *dlg = new KUrlRequesterDlg( vfs::pathOrUrl( url, KUrl::AddTrailingSlash ),text,krApp,"");
 	dlg->urlRequester()->completionObject()->setDir(cwd.url());
 	KUrl u;
 	if (dlg->exec() == QDialog::Accepted) {
@@ -83,7 +83,7 @@ KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd) {
 }
 
 KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd, bool &preserveAttrs ) {
-	KUrlRequesterDlgForCopy *dlg = new KUrlRequesterDlgForCopy( vfs::pathOrUrl( url, 1 ),text, preserveAttrs, krApp,"" );
+	KUrlRequesterDlgForCopy *dlg = new KUrlRequesterDlgForCopy( vfs::pathOrUrl( url, KUrl::AddTrailingSlash ),text, preserveAttrs, krApp,"" );
 	dlg->urlRequester()->completionObject()->setDir(cwd.url());
 	KUrl u;
 	if (dlg->exec() == QDialog::Accepted) {
@@ -106,7 +106,7 @@ KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd, bool &pre
 }
 
 KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd, bool &preserveAttrs, KUrl &baseURL ) {
-	KUrlRequesterDlgForCopy *dlg = new KUrlRequesterDlgForCopy( vfs::pathOrUrl( url, 1 ),text, preserveAttrs, krApp,"", true, baseURL );
+	KUrlRequesterDlgForCopy *dlg = new KUrlRequesterDlgForCopy( vfs::pathOrUrl( url, KUrl::AddTrailingSlash ),text, preserveAttrs, krApp,"", true, baseURL );
 	dlg->urlRequester()->completionObject()->setDir(cwd.url());
 	KUrl u;
 	if (dlg->exec() == QDialog::Accepted) {
@@ -170,7 +170,7 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy( const QString& urlName, const 
 			baseUrlCombo->insertItem( baseURLText );
 			tempOld = temp;
 			temp = temp.upUrl();
-		}while( !tempOld.equals( temp, true ) );
+		}while( !tempOld.equals( temp, KUrl::CompareWithoutTrailingSlash ) );
 		baseUrlCombo->setCurrentItem( 0 );
 		
 		topLayout->addWidget( hbox );

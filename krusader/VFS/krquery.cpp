@@ -602,7 +602,7 @@ void KRQuery::setMimeType( const QString &typeIn, QStringList customList )
 bool KRQuery::isExcluded( const KUrl &url )
 {
   for ( unsigned int i = 0; i < whereNotToSearch.count(); ++i )
-    if( whereNotToSearch [ i ].isParentOf( url ) || url.equals( whereNotToSearch [ i ], true ) )
+    if( whereNotToSearch [ i ].isParentOf( url ) || url.equals( whereNotToSearch [ i ], KUrl::CompareWithoutTrailingSlash ) )
       return true;
 
   if( !matchDirName( url.fileName() ) )

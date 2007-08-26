@@ -314,7 +314,7 @@ bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
       if( filename == QString() || filename == ".." )
         return true;
       if( ke->state() & Qt::ShiftButton ) {
-        QString path=vfs::pathOrUrl( ACTIVE_FUNC->files()->vfs_getOrigin(), 1 );
+        QString path=vfs::pathOrUrl( ACTIVE_FUNC->files()->vfs_getOrigin(), KUrl::AddTrailingSlash );
         filename = path+filename;
       }
 

@@ -111,7 +111,7 @@ public:
 	virtual bool vfs_isDeleting()    { return deleteRequested; }
    // KDE FTP proxy bug correction
    static KUrl fromPathOrUrl( const QString &originIn );
-   static QString pathOrUrl( const KUrl &originIn, int trailingSlash = 0 );
+   static QString pathOrUrl( const KUrl &originIn, KUrl::AdjustPathOption trailingSlash = KUrl::LeaveTrailingSlash );
 
 
 public slots:
@@ -163,7 +163,7 @@ protected:
 	bool panelConnected;        //< indicates that there's a panel connected. Important for disabling the dir watcher
 	
 protected slots:
-	/// The slot for the KDirSize job
+	/// The slot for the KIO::DirectorySizeJob
 	void slotKdsResult(KIO::Job *job);
 	void slotStatResultArrived(KIO::Job *job);
         
