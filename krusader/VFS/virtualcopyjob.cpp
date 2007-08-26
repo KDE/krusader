@@ -35,7 +35,7 @@
 #include <kio/observer.h>
 #include <kio/global.h>
 #include <kio/jobclasses.h>
-#include <kdirsize.h>
+#include <kio/directorysizejob.h>
 
 #define REPORT_TIMEOUT 200
 

@@ -290,7 +290,7 @@ void vfs::vfs_requestDelete() {
 
 /// to be implemented
 #if KDE_IS_VERSION(3,3,0)
-#include <kdirsize.h>
+#include <kio/directorysizejob.h>
 void vfs::slotKdsResult( KIO::Job* job){
 	if( job && !job->error() ){
 		KDirSize* kds = static_cast<KDirSize*>(job);

@@ -242,7 +242,7 @@ void ftp_vfs::vfs_delFiles( QStringList *fileNames ) {
 		url.addPath( filename );
 		filesUrls.append( url );
 	}
-	KIO::Job *job = new KIO::DeleteJob( filesUrls, false, true );
+	KIO::Job *job = KIO::DeleteJob::del( filesUrls, false, true );
 	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( vfs_refresh( KIO::Job* ) ) );
 }
 

@@ -84,7 +84,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
 	vfs_origin = origin;
 	vfs_origin.adjustPath(KUrl::RemoveTrailingSlash);
 	vfs_origin.setProtocol("file"); // do not remove !
-	vfs_origin.cleanPath(-1);
+	vfs_origin.cleanPath();
 	
 	// check that the new origin exists
 	if ( !QDir(path).exists() )
@@ -193,7 +193,7 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames){
 	  connect(job,SIGNAL(result(KIO::Job*)),SLOTS,SLOT(changeTrashIcon()));
 	}
 	else
-	  job = new KIO::DeleteJob(filesUrls, false, true);
+	  job = KIO::DeleteJob::del(filesUrls, false, true);
 	
 	connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)));
 }

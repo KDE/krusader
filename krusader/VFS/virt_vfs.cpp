@@ -23,7 +23,7 @@
 #include <kurl.h>
 #include <kmessagebox.h>
 #include <klocale.h>
-#include <kdirsize.h>
+#include <kio/directorysizejob.h>
 #include <kstandarddirs.h>
 
 #include "krpermhandler.h"
@@ -128,7 +128,7 @@ void virt_vfs::vfs_delFiles( QStringList *fileNames ) {
 #endif
 		connect( job, SIGNAL( result( KIO::Job* ) ), krApp, SLOT( changeTrashIcon() ) );
 	} else
-		job = new KIO::DeleteJob( filesUrls, false, true );
+		job = KIO::DeleteJob::del( filesUrls, false, true );
 
 	// refresh will remove the deleted files...
 	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( vfs_refresh( KIO::Job* ) ) );
