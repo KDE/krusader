@@ -13,7 +13,7 @@
 class KrAddBookmarkDlg: public KDialog {
 	Q_OBJECT
 public:
-	KrAddBookmarkDlg(QWidget *parent, KUrl url = 0);
+	KrAddBookmarkDlg(QWidget *parent, KUrl url = KUrl());
 	KUrl url() const { return vfs::fromPathOrUrl(_url->text()); }
 	QString name() const { return _name->text(); }
 	KrBookmark *folder() const { return _xr[static_cast<K3ListViewItem*>(_createIn->selectedItem())]; }

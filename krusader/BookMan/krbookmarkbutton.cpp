@@ -16,7 +16,7 @@ KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent) {
 	setPopupDelay(10); // 0.01 seconds press
 	setAcceptDrops(false);
 
-	acmBookmarks = new KActionMenu(i18n("Bookmarks"), "bookmark", 0, 0);
+	acmBookmarks = new KActionMenu(KIcon("bookmark"), i18n("Bookmarks"), 0);
 	acmBookmarks->setDelayed(false);
 	acmBookmarks->popupMenu()->setKeyboardShortcutsEnabled(true);
 	acmBookmarks->popupMenu()->setKeyboardShortcutsExecute(true);

@@ -46,6 +46,7 @@
 #include <Q3HBoxLayout>
 #include <kcombobox.h>
 #include <kshellcompletion.h>
+#include <khistorycombobox.h>
 
 class GeneralFilter : public QWidget, public FilterBase
 {

@@ -13,7 +13,8 @@ public:
 	KrBookmark(QString name, KUrl url, KActionCollection *parent, QString icon = "", QString actionName = QString() );
 	KrBookmark(QString name, QString icon = ""); // creates a folder
 	// text() and setText() to change the name of the bookmark
-	// icon() and setIcon() to change icons (by name)
+	// icon() and setIcon() to change icons
+	inline const QString& iconName() const { return _icon; }
 	inline const KUrl& url() const { return _url; }
 	inline void setURL(const KUrl& url) { _url = url; }
 	inline bool isFolder() const { return _folder; }
