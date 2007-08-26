@@ -125,7 +125,7 @@ void KRSearchMod::scanURL( KUrl url )
 
 void KRSearchMod::scanLocalDir( KUrl urlToScan )
 {
-  QString dir = urlToScan.path( 1 );
+  QString dir = urlToScan.path( KUrl::AddTrailingSlash );
 
   DIR* d = opendir( dir.local8Bit() );
   if ( !d ) return ;

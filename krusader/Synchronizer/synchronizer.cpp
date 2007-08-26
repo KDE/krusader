@@ -1058,7 +1058,7 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
           timestamp.actime = time( 0 );
           timestamp.modtime = item->rightDate() - timeOffset;
 
-          utime( (const char *)( leftURL.path( -1 ).local8Bit() ), &timestamp );
+          utime( (const char *)( leftURL.path( KUrl::RemoveTrailingSlash ).local8Bit() ), &timestamp );
 
           uid_t newOwnerID = (uid_t)-1; // chown(2) : -1 means no change
           if ( !item->rightOwner().isEmpty() )
@@ -1074,17 +1074,17 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
             if ( g != 0L )
               newGroupID = g->gr_gid;
           }
-          chown( (const char *)( leftURL.path( -1 ).local8Bit() ), newOwnerID, (gid_t)-1 );
-          chown( (const char *)( leftURL.path( -1 ).local8Bit() ), (uid_t)-1, newGroupID );
+          chown( (const char *)( leftURL.path( KUrl::RemoveTrailingSlash ).local8Bit() ), newOwnerID, (gid_t)-1 );
+          chown( (const char *)( leftURL.path( KUrl::RemoveTrailingSlash ).local8Bit() ), (uid_t)-1, newGroupID );
 
-          chmod( (const char *)( leftURL.path( -1 ).local8Bit() ), item->rightMode() & 07777 );
+          chmod( (const char *)( leftURL.path( KUrl::RemoveTrailingSlash ).local8Bit() ), item->rightMode() & 07777 );
 
 #if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
           if( !item->rightACL().isNull() )
           {
             acl_t acl = acl_from_text( item->rightACL().toLatin1() );
             if( acl && !acl_valid( acl ) )
-              acl_set_file( leftURL.path( -1 ).local8Bit(), ACL_TYPE_ACCESS, acl );
+              acl_set_file( leftURL.path( KUrl::RemoveTrailingSlash ).local8Bit(), ACL_TYPE_ACCESS, acl );
             if( acl )
               acl_free( acl );
           }
@@ -1099,7 +1099,7 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
           timestamp.actime = time( 0 );
           timestamp.modtime = item->leftDate() + timeOffset;
 
-          utime( (const char *)( rightURL.path( -1 ).local8Bit() ), &timestamp );
+          utime( (const char *)( rightURL.path( KUrl::RemoveTrailingSlash ).local8Bit() ), &timestamp );
 
           uid_t newOwnerID = (uid_t)-1; // chown(2) : -1 means no change
           if ( !item->leftOwner().isEmpty() )
@@ -1115,17 +1115,17 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
             if ( g != 0L )
               newGroupID = g->gr_gid;
           }
-          chown( (const char *)( rightURL.path( -1 ).local8Bit() ), newOwnerID, (uid_t)-1 );
-          chown( (const char *)( rightURL.path( -1 ).local8Bit() ), (uid_t)-1, newGroupID );
+          chown( (const char *)( rightURL.path( KUrl::RemoveTrailingSlash ).local8Bit() ), newOwnerID, (uid_t)-1 );
+          chown( (const char *)( rightURL.path( KUrl::RemoveTrailingSlash ).local8Bit() ), (uid_t)-1, newGroupID );
 
-          chmod( (const char *)( rightURL.path( -1 ).local8Bit() ), item->leftMode() & 07777 );
+          chmod( (const char *)( rightURL.path( KUrl::RemoveTrailingSlash ).local8Bit() ), item->leftMode() & 07777 );
 
 #if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
           if( !item->leftACL().isNull() )
           {
             acl_t acl = acl_from_text( item->leftACL().toLatin1() );
             if( acl && !acl_valid( acl ) )
-              acl_set_file( rightURL.path( -1 ).local8Bit(), ACL_TYPE_ACCESS, acl );
+              acl_set_file( rightURL.path( KUrl::RemoveTrailingSlash ).local8Bit(), ACL_TYPE_ACCESS, acl );
             if( acl )
               acl_free( acl );
           }

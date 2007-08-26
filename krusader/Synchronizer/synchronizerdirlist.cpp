@@ -95,7 +95,7 @@ bool SynchronizerDirList::load( const QString &urlIn, bool wait ) {
   clear();
 
   if( url.isLocalFile() ) {
-    QString path = url.path( -1 );
+    QString path = url.path( KUrl::RemoveTrailingSlash );
     DIR* dir = opendir(path.local8Bit());
     if(!dir)  {
       KMessageBox::error(parentWidget, i18n("Can't open the %1 directory!").arg( path ), i18n("Error"));

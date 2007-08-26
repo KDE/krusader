@@ -99,11 +99,11 @@ void PreservingCopyJob::slotAboutToCreate( KIO::Job */*job*/, const Q3ValueList<
   
     if( (*it).uSource.isLocalFile() ) {
       KDE_struct_stat stat_p;
-      KDE_lstat( (*it).uSource.path(-1).local8Bit(),&stat_p);    /* getting the date information */
+      KDE_lstat( (*it).uSource.path(KUrl::RemoveTrailingSlash).local8Bit(),&stat_p);    /* getting the date information */
       
       QString aclStr;
 #if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
-      acl_t acl = acl_get_file( (*it).uSource.path(-1).local8Bit(), ACL_TYPE_ACCESS );
+      acl_t acl = acl_get_file( (*it).uSource.path(KUrl::RemoveTrailingSlash).local8Bit(), ACL_TYPE_ACCESS );
 
       bool aclExtended = false;
       if( acl )
@@ -232,10 +232,10 @@ void PreservingCopyJob::slotCopyingDone( KIO::Job *, const KUrl &from, const KUr
 {
   if( postpone ) { // the directories are stamped at the last step, so if it's a directory, we postpone
     unsigned i=0;
-    QString path = to.path( -1 );
+    QString path = to.path( KUrl::RemoveTrailingSlash );
 
     for( ; i != directoriesToStamp.count(); i++ ) // sort the URL-s to avoid parent time stamp modification
-      if( path >= directoriesToStamp[ i ].path( -1 ) )
+      if( path >= directoriesToStamp[ i ].path( KUrl::RemoveTrailingSlash ) )
         break;
 
     directoriesToStamp.insert( directoriesToStamp.at( i ), to );
@@ -256,23 +256,23 @@ void PreservingCopyJob::slotCopyingDone( KIO::Job *, const KUrl &from, const KUr
         timestamp.actime  = time( 0 );
         timestamp.modtime = mtime;
 
-        utime( (const char *)( to.path( -1 ).local8Bit() ), &timestamp );
+        utime( (const char *)( to.path( KUrl::RemoveTrailingSlash ).local8Bit() ), &timestamp );
       }
 
       if( attrs.uid != (uid_t)-1 )
-        chown( (const char *)( to.path( -1 ).local8Bit() ), attrs.uid, (gid_t)-1 );
+        chown( (const char *)( to.path( KUrl::RemoveTrailingSlash ).local8Bit() ), attrs.uid, (gid_t)-1 );
       if( attrs.gid != (gid_t)-1 )
-        chown( (const char *)( to.path( -1 ).local8Bit() ), (uid_t)-1, attrs.gid );
+        chown( (const char *)( to.path( KUrl::RemoveTrailingSlash ).local8Bit() ), (uid_t)-1, attrs.gid );
 
       if( attrs.mode != (mode_t) -1 )
-        chmod( (const char *)( to.path( -1 ).local8Bit() ), attrs.mode );
+        chmod( (const char *)( to.path( KUrl::RemoveTrailingSlash ).local8Bit() ), attrs.mode );
 
 #if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
       if( !attrs.acl.isNull() )
       {
         acl_t acl = acl_from_text( attrs.acl.toLatin1() );
         if( acl && !acl_valid( acl ) )
-          acl_set_file( to.path( -1 ).local8Bit(), ACL_TYPE_ACCESS, acl );
+          acl_set_file( to.path( KUrl::RemoveTrailingSlash ).local8Bit(), ACL_TYPE_ACCESS, acl );
         if( acl )
           acl_free( acl );
       }

@@ -65,7 +65,7 @@ public:
 	virtual void vfs_rename(const QString& fileName,const QString& newName);
 
 	/// return the VFS working dir
-	virtual QString vfs_workingDir() { return vfs_origin.path(-1); }
+	virtual QString vfs_workingDir() { return vfs_origin.path(KUrl::RemoveTrailingSlash); }
 
 	/// Get ACL permissions
 	static void getACL( vfile *file, QString &acl, QString &defAcl );

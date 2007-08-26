@@ -86,7 +86,7 @@ void VirtProtocol::del(KUrl const & /*url */, bool /* isFile */ ){
 }
 
 void VirtProtocol::copy( const KUrl &src, const KUrl &dest, int /* permissions */, bool /* overwrite */ ){
-	QString path = dest.path( -1 ).mid( 1 );
+	QString path = dest.path( KUrl::RemoveTrailingSlash ).mid( 1 );
 	path = path.left(path.findRev("/"));
 	if ( path.isEmpty() ) path = "/";
 
@@ -128,7 +128,7 @@ void VirtProtocol::mkdir(const KUrl& url,int){
 		return;
 	}
 
-	QString path = url.path( -1 ).mid( 1 );
+	QString path = url.path( KUrl::RemoveTrailingSlash ).mid( 1 );
 	if ( path.isEmpty() ) path = "/";
 
 	if( kioVirtDict[ path ] ){
@@ -152,7 +152,7 @@ void VirtProtocol::listDir( const KUrl & url ) {
 
 	load();	
 
-	QString path = url.path( -1 ).mid( 1 );
+	QString path = url.path( KUrl::RemoveTrailingSlash ).mid( 1 );
 	if ( path.isEmpty() ) path = "/";
 
 	KUrl::List* urlList = kioVirtDict[ path ];
@@ -270,7 +270,7 @@ bool VirtProtocol::load(){
 }
 
 void VirtProtocol::local_entry(const KUrl& url,UDSEntry& entry){
-	QString path = url.path( -1 ).mid( 1 );
+	QString path = url.path( KUrl::RemoveTrailingSlash ).mid( 1 );
 	if ( path.isEmpty() ) path = "/";
 
 	UDSAtom atom;

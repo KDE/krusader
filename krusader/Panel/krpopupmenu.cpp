@@ -171,11 +171,11 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
 	
 	// ---------- mount/umount/eject
    if ( panel->func->files() ->vfs_getType() == vfs::NORMAL && vf->vfile_isDir() && !multipleSelections ) {
-      if ( krMtMan.getStatus( panel->func->files() ->vfs_getFile( item->name() ).path( -1 ) ) == KMountMan::MOUNTED )
+      if ( krMtMan.getStatus( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) ) == KMountMan::MOUNTED )
          insertItem( i18n( "Unmount" ), UNMOUNT_ID );
-      else if ( krMtMan.getStatus( panel->func->files() ->vfs_getFile( item->name() ).path( -1 ) ) == KMountMan::NOT_MOUNTED )
+      else if ( krMtMan.getStatus( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) ) == KMountMan::NOT_MOUNTED )
          insertItem( i18n( "Mount" ), MOUNT_ID );
-      if ( krMtMan.ejectable( panel->func->files() ->vfs_getFile( item->name() ).path( -1 ) ) )
+      if ( krMtMan.ejectable( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) ) )
          insertItem( i18n( "Eject" ), EJECT_ID );
    }
    
@@ -257,13 +257,13 @@ void KrPopupMenu::performAction(int id) {
          	panel->func->deleteFiles( true );
          	break;
          case EJECT_ID :
-         	KMountMan::eject( panel->func->files() ->vfs_getFile( item->name() ).path( -1 ) );
+         	KMountMan::eject( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) );
          	break;
          case SHRED_ID :
             if ( KMessageBox::warningContinueCancel( krApp,
                  i18n("<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone forever!</qt>").arg(item->name()),
                  QString(), KStandardGuiItem::cont(), "Shred" ) == KMessageBox::Continue )
-               KShred::shred( panel->func->files() ->vfs_getFile( item->name() ).path( -1 ) );
+               KShred::shred( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) );
          	break;
          case OPEN_KONQ_ID :
          	KToolInvocation::startServiceByDesktopName( "konqueror", panel->func->files() ->vfs_getFile( item->name() ).url() );
@@ -274,7 +274,7 @@ void KrPopupMenu::performAction(int id) {
          	KRun::displayOpenWithDialog( lst );
          	break;
          case MOUNT_ID :
-         	krMtMan.mount( panel->func->files() ->vfs_getFile( item->name() ).path( -1 ) );
+         	krMtMan.mount( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) );
          	break;
          case NEW_LINK_ID :
          	panel->func->krlink( false );
@@ -286,7 +286,7 @@ void KrPopupMenu::performAction(int id) {
          	panel->func->redirectLink();
          	break;
          case UNMOUNT_ID :
-         	krMtMan.unmount( panel->func->files() ->vfs_getFile( item->name() ).path( -1 ) );
+         	krMtMan.unmount( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) );
          	break;
          case COPY_CLIP_ID :
          	panel->func->copyToClipboard();
@@ -326,7 +326,7 @@ void KrPopupMenu::performAction(int id) {
          	break;
          case OPEN_TERM_ID :
          	QString save = getcwd( 0, 0 );
-         	chdir( panel->func->files() ->vfs_getFile( item->name() ).path( -1 ).local8Bit() );
+         	chdir( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ).local8Bit() );
 				K3Process proc;
 				{
 				KConfigGroupSaver saver(krConfig, "General");

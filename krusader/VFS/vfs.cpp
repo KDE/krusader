@@ -313,7 +313,7 @@ void vfs::calculateURLSize( KUrl url,  KIO::filesize_t* totalSize, unsigned long
 	kds_totalDirs  = totalDirs;
 
 	if( url.isLocalFile() ) {
-		vfs_calcSpaceLocal( url.path(-1), totalSize, totalFiles, totalDirs, stop );
+		vfs_calcSpaceLocal( url.path(KUrl::RemoveTrailingSlash), totalSize, totalFiles, totalDirs, stop );
 		return;
 	} else {
 		stat_busy = true;

@@ -48,7 +48,7 @@ VirtualCopyJob::VirtualCopyJob( const QStringList *names, vfs * vfs, const KUrl&
 		m_state( ST_STARTING ), m_reportTimer(), m_current(), m_currentDir(), m_dirStack() {
 	
 	m_filesToCopy.setAutoDelete( true );
-	m_dest.adjustPath( 1 );
+	m_dest.adjustPath( KUrl::AddTrailingSlash );
 	
 	vfile * file = vfs->vfs_getFirstFile();
 	while( file ) {
@@ -209,7 +209,7 @@ void VirtualCopyJob::slotStatResult( KIO::Job *job ) {
 	}
 	
 	if( m_dirStack.count() ) {
-		url.adjustPath( 1 );
+		url.adjustPath( KUrl::AddTrailingSlash );
 		url.addPath( m_dirStack.last() );
 		m_dirStack.pop_back();
 		
@@ -231,7 +231,7 @@ void VirtualCopyJob::slotMkdirResult( KIO::Job *job ) {
 	}
 	
 	if( m_dirStack.count() ) {
-		url.adjustPath( 1 );
+		url.adjustPath( KUrl::AddTrailingSlash );
 		url.addPath( m_dirStack.last() );
 		m_dirStack.pop_back();
 	

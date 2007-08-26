@@ -277,7 +277,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries ){
 	// for RPM files extract the cpio file first
 	if( !extArcReady && arcType == "rpm"){
 		KrShellProcess cpio;
-		cpio << "rpm2cpio" << convertName( arcFile->url().path(-1) ) << " > " << arcTempDir+"contents.cpio";
+		cpio << "rpm2cpio" << convertName( arcFile->url().path(KUrl::RemoveTrailingSlash) ) << " > " << arcTempDir+"contents.cpio";
 		cpio.start(K3Process::Block,K3Process::AllOutput);
 		if( !cpio.normalExit() || cpio.exitStatus() != 0 )  {
 			error(ERR_COULD_NOT_READ,url.path() + "\n\n" + cpio.getErrorMsg() );
@@ -303,7 +303,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries ){
 	if( extArcReady ){
 		proc << getCmd << arcTempDir+"contents.cpio " << convertName( "*"+file );
 	} else if( arcType == "arj" || arcType == "ace" || arcType == "7z" ) {
-		proc << getCmd << convertName( arcFile->url().path(-1) )+ " " << convertFileName( file );
+		proc << getCmd << convertName( arcFile->url().path(KUrl::RemoveTrailingSlash) )+ " " << convertFileName( file );
 		if( arcType == "ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
 		proc << "<" << "/dev/ptmx"; 
 		file = url.fileName();
@@ -488,11 +488,11 @@ void kio_krarcProtocol::stat( const KUrl & url ){
 		i18n("Accessing files is not supported with the %1 archives").arg(arcType) );
 		return;
 	}    
-	QString path = url.path(-1);
+	QString path = url.path(KUrl::RemoveTrailingSlash);
 	KUrl newUrl = url;
 	
 	// but treat the archive itself as the archive root
-	if( path == arcFile->url().path(-1) ){
+	if( path == arcFile->url().path(KUrl::RemoveTrailingSlash) ){
 		newUrl.setPath(path+"/");
 		path = newUrl.path();
 	}
@@ -543,7 +543,7 @@ void kio_krarcProtocol::copy (const KUrl &url, const KUrl &dest, int, bool overw
 			
 			QString file = url.path().mid(arcFile->url().path().length()+1);
 			
-			QString destDir = dest.path( -1 );
+			QString destDir = dest.path( KUrl::RemoveTrailingSlash );
 			if( !QDir( destDir ).exists() ) {
 				int ndx = destDir.findRev( '/' );
 				if( ndx != -1 )
@@ -553,18 +553,18 @@ void kio_krarcProtocol::copy (const KUrl &url, const KUrl &dest, int, bool overw
 			QDir::setCurrent( destDir.local8Bit() );
 			
 			KrShellProcess proc;
-			proc << copyCmd << convertName( arcFile->url().path(-1) )+" " << convertFileName( file );
+			proc << copyCmd << convertName( arcFile->url().path(KUrl::RemoveTrailingSlash) )+" " << convertFileName( file );
 			if( arcType == "ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
 				proc << "<" << "/dev/ptmx"; 
 			
 			infoMessage(i18n("Unpacking %1 ...").arg( url.fileName() ) );
 			proc.start(K3Process::Block, K3Process::AllOutput);
 			if( !proc.normalExit() || !checkStatus( proc.exitStatus() ) )  {
-				error(KIO::ERR_COULD_NOT_WRITE, dest.path(-1) + "\n\n" + proc.getErrorMsg() );
+				error(KIO::ERR_COULD_NOT_WRITE, dest.path(KUrl::RemoveTrailingSlash) + "\n\n" + proc.getErrorMsg() );
 				return;
 			}
-			if( !QFileInfo( dest.path(-1) ).exists() ) {
-				error( KIO::ERR_COULD_NOT_WRITE, dest.path(-1) );
+			if( !QFileInfo( dest.path(KUrl::RemoveTrailingSlash) ).exists() ) {
+				error( KIO::ERR_COULD_NOT_WRITE, dest.path(KUrl::RemoveTrailingSlash) );
 				return;
 			}
 			
@@ -627,7 +627,7 @@ bool kio_krarcProtocol::setArcFile(const KUrl& url){
 	archiveChanged = true;
 	newArchiveURL = true;
 	// is the file already set ?
-	if( arcFile && arcFile->url().path(-1) == path.left(arcFile->url().path(-1).length()) ){
+	if( arcFile && arcFile->url().path(KUrl::RemoveTrailingSlash) == path.left(arcFile->url().path(KUrl::RemoveTrailingSlash).length()) ){
 		newArchiveURL = false;        
 		// Has it changed ?
 		KFileItem* newArcFile = new KFileItem(arcFile->url(),QString(),arcFile->mode());
@@ -677,7 +677,7 @@ bool kio_krarcProtocol::setArcFile(const KUrl& url){
 		archiveChanged = true;
 	archiveChanging = ( currTime == arcFile->time( UDS_MODIFICATION_TIME ) );
 	
-	arcPath = arcFile->url().path(-1);
+	arcPath = arcFile->url().path(KUrl::RemoveTrailingSlash);
 	arcType = detectArchive( encrypted, arcPath );
 	
 	if( arcType == "tbz" )
@@ -714,7 +714,7 @@ bool kio_krarcProtocol::initDirDict(const KUrl&url, bool forced){
 		if( arcType == "rpm" )
 			proc << listCmd << convertName( arcPath ) <<" > " << temp.name();
 		else        
-			proc << listCmd << convertName( arcFile->url().path(-1) ) <<" > " << temp.name();
+			proc << listCmd << convertName( arcFile->url().path(KUrl::RemoveTrailingSlash) ) <<" > " << temp.name();
 		if( arcType == "ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
 			proc << "<" << "/dev/ptmx";
 		proc.start(K3Process::Block,K3Process::AllOutput);
@@ -836,7 +836,7 @@ UDSEntry* kio_krarcProtocol::findFileEntry(const KUrl& url){
 		return 0;
 	}
 	QString name = url.path();
-	if( arcFile->url().path(-1) == url.path(-1) ) name = "."; // the "/" case
+	if( arcFile->url().path(KUrl::RemoveTrailingSlash) == url.path(KUrl::RemoveTrailingSlash) ) name = "."; // the "/" case
 	else{
 		if( name.right(1) == "/" ) name.truncate(name.length()-1);
 		name = name.mid(name.findRev("/")+1);
@@ -1581,7 +1581,7 @@ void kio_krarcProtocol::checkOutputForPassword( K3Process *proc,char *buf,int le
 }
 
 void kio_krarcProtocol::invalidatePassword() {
-	KRDEBUG( arcFile->url().path(-1) + "/" );
+	KRDEBUG( arcFile->url().path(KUrl::RemoveTrailingSlash) + "/" );
 	
 	if( !encrypted )
 		return;
@@ -1592,7 +1592,7 @@ void kio_krarcProtocol::invalidatePassword() {
 	authInfo.readOnly = true;
 	authInfo.keepPassword = true;
 	authInfo.verifyPath = true;
-	QString fileName = arcFile->url().path(-1);
+	QString fileName = arcFile->url().path(KUrl::RemoveTrailingSlash);
 	authInfo.url = KUrl::fromPathOrUrl( "/" );
 	authInfo.url.setHost( fileName /*.replace('/','_')*/ );
 	authInfo.url.setProtocol( "krarc" );
@@ -1616,7 +1616,7 @@ QString kio_krarcProtocol::getPassword() {
 	authInfo.readOnly = true;
 	authInfo.keepPassword = true;
 	authInfo.verifyPath = true;
-	QString fileName = arcFile->url().path(-1);
+	QString fileName = arcFile->url().path(KUrl::RemoveTrailingSlash);
 	authInfo.url = KUrl::fromPathOrUrl( "/" );
 	authInfo.url.setHost( fileName /*.replace('/','_')*/ );
 	authInfo.url.setProtocol( "krarc" );

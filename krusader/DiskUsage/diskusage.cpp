@@ -253,7 +253,7 @@ void DiskUsage::load( KUrl baseDir )
   clear();
 
   baseURL = baseDir;
-  baseURL.setPath( baseDir.path( -1 ) );
+  baseURL.setPath( baseDir.path( KUrl::RemoveTrailingSlash ) );
 
   root = new Directory( baseURL.fileName(), vfs::pathOrUrl( baseDir ) );
 

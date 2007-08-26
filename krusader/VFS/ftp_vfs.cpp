@@ -139,13 +139,13 @@ void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
 
 void ftp_vfs::slotPermanentRedirection( KIO::Job*, const KUrl&, const KUrl& newUrl ) {
 	vfs_origin = newUrl;
-	vfs_origin.adjustPath(-1);
+	vfs_origin.adjustPath(KUrl::RemoveTrailingSlash);
 }
 
 void ftp_vfs::slotRedirection( KIO::Job *, const KUrl &url ) {
 	// update the origin
 	vfs_origin = url;
-	vfs_origin.adjustPath(-1);
+	vfs_origin.adjustPath(KUrl::RemoveTrailingSlash);
 }
 
 void ftp_vfs::slotListResult( KIO::Job *job ) {
@@ -177,13 +177,13 @@ bool ftp_vfs::populateVfsList( const KUrl& origin, bool showHidden ) {
 	busy = true;
 
 	vfs_origin = origin;
-	vfs_origin.adjustPath(-1);
+	vfs_origin.adjustPath(KUrl::RemoveTrailingSlash);
 
 	//QTimer::singleShot( 0,this,SLOT(startLister()) );
 	listError = false;
 	// Open the directory	marked by origin
 	krConfig->setGroup( "Look&Feel" );
-	//vfs_origin.adjustPath(+1);
+	//vfs_origin.adjustPath(KUrl::AddTrailingSlash);
 	KIO::Job *job = KIO::listDir( vfs_origin, false, showHidden );
 	connect( job, SIGNAL( entries( KIO::Job*, const KIO::UDSEntryList& ) ),
 	         this, SLOT( slotAddFiles( KIO::Job*, const KIO::UDSEntryList& ) ) );
@@ -219,7 +219,7 @@ void ftp_vfs::vfs_addFiles( KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode, Q
 		destUrl.cleanPath();  // removes the '..', '.' and extra slashes from the URL.
 
 		if ( destUrl.protocol() == "tar" || destUrl.protocol() == "zip" || destUrl.protocol() == "krarc" ) {
-			if ( QDir( destUrl.path( -1 ) ).exists() )
+			if ( QDir( destUrl.path( KUrl::RemoveTrailingSlash ) ).exists() )
 				destUrl.setProtocol( "file" );  // if we get out from the archive change the protocol
 		}
 	}
@@ -264,7 +264,7 @@ KUrl ftp_vfs::vfs_getFile( const QString& name ) {
 	if ( !vf ) return KUrl(); // empty
 
 	KUrl url = vf->vfile_getUrl();
-	if ( vf->vfile_isDir() ) url.adjustPath( + 1 );
+	if ( vf->vfile_isDir() ) url.adjustPath( KUrl::AddTrailingSlash );
 	return url;
 }
 

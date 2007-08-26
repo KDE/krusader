@@ -100,7 +100,7 @@ KUrl::List PopularUrls::getMostPopularUrls(int max) {
 // sure to bump it up the list if needed
 void PopularUrls::addUrl(const KUrl& url) {
 	KUrl tmpurl = url;
-	tmpurl.adjustPath(1); // make a uniform trailing slash policy
+	tmpurl.adjustPath(KUrl::AddTrailingSlash); // make a uniform trailing slash policy
 	UrlNodeP pnode;
 	
 	decreaseRanks();

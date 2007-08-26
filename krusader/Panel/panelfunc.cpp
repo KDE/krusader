@@ -148,7 +148,7 @@ void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn ) {
 	bool refreshFailed = true; // assume the worst
 	while ( true ) {
 		KUrl u = urlStack.pop();
-		//u.adjustPath(-1); // remove trailing "/"
+		//u.adjustPath(KUrl::RemoveTrailingSlash); // remove trailing "/"
 		u.cleanPath(); // Resolves "." and ".." components in path.
 		v = KrVfsHandler::getVfs( u, panel, files() );
 		if ( !v )
@@ -277,7 +277,7 @@ void ListPanelFunc::redirectLink() {
 	if ( !vf )
 		return ;
 
-	QString file = files() ->vfs_getFile( vf->vfile_getName() ).path( -1 );
+	QString file = files() ->vfs_getFile( vf->vfile_getName() ).path( KUrl::RemoveTrailingSlash );
 	QString currentLink = vf->vfile_getSymDest();
 	if ( currentLink.isEmpty() ) {
 		KMessageBox::sorry( krApp, i18n( "The current file is not a link, so I can't redirect it." ) );
@@ -332,7 +332,7 @@ void ListPanelFunc::krlink( bool sym ) {
 		linkName = files() ->vfs_workingDir() + "/" + linkName;
 
 	if ( linkName.contains( "/" ) )
-		name = files() ->vfs_getFile( name ).path( -1 );
+		name = files() ->vfs_getFile( name ).path( KUrl::RemoveTrailingSlash );
 
 	if ( sym ) {
 		if ( symlink( name.local8Bit(), linkName.local8Bit() ) == -1 )
@@ -459,7 +459,7 @@ void ListPanelFunc::moveFiles() {
 	else if ( !dest.equals( panel->otherPanel->virtualPath(), true ) ) {
 		// you can rename only *one* file not a batch,
 		// so a batch dest must alwayes be a directory
-		if ( fileNames.count() > 1 ) dest.adjustPath(1);
+		if ( fileNames.count() > 1 ) dest.adjustPath(KUrl::AddTrailingSlash);
 		KIO::Job* job = PreservingCopyJob::createCopyJob( pmode, *fileUrls, dest, KIO::CopyJob::Move, false, true );
 		job->setAutoErrorHandlingEnabled( true );
 		// refresh our panel when done
@@ -607,7 +607,7 @@ void ListPanelFunc::copyFiles() {
 	else if ( !dest.equals( panel->otherPanel->virtualPath(), true ) ) {
 		// you can rename only *one* file not a batch,
 		// so a batch dest must alwayes be a directory
-		if ( fileNames.count() > 1 ) dest.adjustPath(1);
+		if ( fileNames.count() > 1 ) dest.adjustPath(KUrl::AddTrailingSlash);
 		KIO::Job* job = PreservingCopyJob::createCopyJob( pmode, *fileUrls, dest, KIO::CopyJob::Copy, false, true );
 		job->setAutoErrorHandlingEnabled( true );
 		if ( dest.equals( panel->virtualPath(), true ) ||
@@ -881,7 +881,7 @@ void ListPanelFunc::testArchive() {
 			return ;
 		}
 	} else
-		url = arcURL.path( -1 );
+		url = arcURL.path( KUrl::RemoveTrailingSlash );
 
 	QString mime = files() ->vfs_search( arcName ) ->vfile_getMime();
 	bool encrypted = false;
@@ -902,7 +902,7 @@ void ListPanelFunc::testArchive() {
 		KMessageBox::error( krApp, i18n( "%1, test failed!" ).arg( arcName ) );
 
 	// remove the downloaded file if necessary
-	if ( url != arcURL.path( -1 ) )
+	if ( url != arcURL.path( KUrl::RemoveTrailingSlash ) )
 		QFile( url ).remove();
 }
 
@@ -942,10 +942,10 @@ void ListPanelFunc::unpack() {
 				continue;
 			}
 		} else
-			url = arcURL.path( -1 );
+			url = arcURL.path( KUrl::RemoveTrailingSlash );
 
 		// if the destination is in remote directory use temporary one instead
-		dest.adjustPath(1);
+		dest.adjustPath(KUrl::AddTrailingSlash);
 		KUrl originalDestURL;
 		KTempDir *tempDir = 0;
 
@@ -970,19 +970,19 @@ void ListPanelFunc::unpack() {
 		QString password = encrypted ? KRarcHandler::getPassword( url ) : QString();
 		
 		// unpack the files
-		KRarcHandler::unpack( url, type, password, dest.path( -1 ) );
+		KRarcHandler::unpack( url, type, password, dest.path( KUrl::RemoveTrailingSlash ) );
 
 		// remove the downloaded file if necessary
-		if ( url != arcURL.path( -1 ) )
+		if ( url != arcURL.path( KUrl::RemoveTrailingSlash ) )
 			QFile( url ).remove();
 
 		// copy files to the destination directory at remote files
 		if ( tempDir ) {
-			QStringList nameList = QDir( dest.path( -1 ) ).entryList();
+			QStringList nameList = QDir( dest.path( KUrl::RemoveTrailingSlash ) ).entryList();
 			KUrl::List urlList;
 			for ( unsigned int i = 0; i != nameList.count(); i++ )
 				if ( nameList[ i ] != "." && nameList[ i ] != ".." )
-					urlList.append( vfs::fromPathOrUrl( dest.path( 1 ) + nameList[ i ] ) );
+					urlList.append( vfs::fromPathOrUrl( dest.path( KUrl::AddTrailingSlash ) + nameList[ i ] ) );
 			if ( urlList.count() > 0 )
 				KIO::NetAccess::dircopy( urlList, originalDestURL, 0 );
 			delete tempDir;

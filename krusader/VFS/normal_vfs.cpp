@@ -71,7 +71,7 @@ normal_vfs::normal_vfs(QObject* panel):vfs(panel), watcher(0) {
 }
 
 bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
-	QString path = origin.path(-1);
+	QString path = origin.path(KUrl::RemoveTrailingSlash);
 	
 	// set the writable attribute to true, if that's not the case - the KIO job
 	// will give the warnings and errors
@@ -82,7 +82,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
 
 	// set the origin...
 	vfs_origin = origin;
-	vfs_origin.adjustPath(-1);
+	vfs_origin.adjustPath(KUrl::RemoveTrailingSlash);
 	vfs_origin.setProtocol("file"); // do not remove !
 	vfs_origin.cleanPath(-1);
 	
@@ -134,7 +134,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
 		connect(watcher,SIGNAL(dirty(const QString&)),this,SLOT(vfs_slotDirty(const QString&)));
 		connect(watcher,SIGNAL(created(const QString&)),this, SLOT(vfs_slotCreated(const QString&)));
 		connect(watcher,SIGNAL(deleted(const QString&)),this, SLOT(vfs_slotDeleted(const QString&)));	
-		watcher->addDir(vfs_getOrigin().path(-1),true); //start watching the new dir
+		watcher->addDir(vfs_getOrigin().path(KUrl::RemoveTrailingSlash),true); //start watching the new dir
 		watcher->startScan(true);
 	}
 
@@ -284,7 +284,7 @@ void normal_vfs::getACL( vfile *file, QString &acl, QString &defAcl )
 {
 	acl = defAcl = QString();
 #if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
-	Q3CString fileName = file->vfile_getUrl().path( -1 ).local8Bit();
+	Q3CString fileName = file->vfile_getUrl().path( KUrl::RemoveTrailingSlash ).local8Bit();
 #if HAVE_NON_POSIX_ACL_EXTENSIONS
 	if ( acl_extended_file( fileName.data() ) )
 	{
@@ -357,7 +357,7 @@ void normal_vfs::vfs_slotRefresh()
 }
 
 bool normal_vfs::burstRefresh(const QString& path ){
-	if( path == vfs_getOrigin().path(-1) ) {
+	if( path == vfs_getOrigin().path(KUrl::RemoveTrailingSlash) ) {
 		if( !refreshTimer.isActive() ) {
 			// the directory itself is dirty - full refresh is needed
 			QTimer::singleShot(0, this, SLOT( vfs_slotRefresh() ) ); // safety: dirty signal comes from KDirWatch!

@@ -73,14 +73,14 @@ void DiskUsageViewer::openURL( KUrl url )
     diskUsage->setView( view );   
   }
 
-  url.setPath( url.path( -1 ) );
+  url.setPath( url.path( KUrl::RemoveTrailingSlash ) );
   
   KUrl baseURL = diskUsage->getBaseURL();
   if( !diskUsage->isLoading() && !baseURL.isEmpty() )
   {
     if( url.protocol() == baseURL.protocol() && ( !url.hasHost() || url.host() == baseURL.host() ) )
     {
-      QString baseStr = baseURL.path( 1 ), urlStr = url.path( 1 );
+      QString baseStr = baseURL.path( KUrl::AddTrailingSlash ), urlStr = url.path( KUrl::AddTrailingSlash );
     
       if( urlStr.startsWith( baseStr ) )
       {

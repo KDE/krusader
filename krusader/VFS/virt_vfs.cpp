@@ -52,8 +52,8 @@ virt_vfs::~virt_vfs() {}
 
 bool virt_vfs::populateVfsList( const KUrl& origin, bool /*showHidden*/ ) {
 	vfs_origin = origin;
-	vfs_origin.adjustPath(-1);
-	path = origin.path( -1 ).mid( 1 );
+	vfs_origin.adjustPath(KUrl::RemoveTrailingSlash);
+	path = origin.path( KUrl::RemoveTrailingSlash ).mid( 1 );
 	if ( path.isEmpty() ) path = "/";
 
 	KUrl::List* urlList = virtVfsDict[ path ];
@@ -163,7 +163,7 @@ KUrl virt_vfs::vfs_getFile( const QString& name ) {
 	if ( !vf ) return KUrl(); // empty
 
 	KUrl url = vf->vfile_getUrl();
-	if ( vf->vfile_isDir() ) url.adjustPath( + 1 );
+	if ( vf->vfile_isDir() ) url.adjustPath( KUrl::AddTrailingSlash );
 	return url;
 }
 
