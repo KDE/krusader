@@ -23,11 +23,7 @@
 
 using namespace KIO;
 
-#if KDE_IS_VERSION(3,4,0)
 extern "C" { int KDE_EXPORT kdemain( int argc, char **argv ); }
-#else
-extern "C" { int kdemain( int argc, char **argv ); }
-#endif
 
 int kdemain( int argc, char **argv ) {
 	KInstance instance( "kio_tar" );

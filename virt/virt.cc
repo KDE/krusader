@@ -35,11 +35,7 @@ using namespace KIO;
 #define VIRT_VFS_DB "virt_vfs.db"
 #define VIRT_PROTOCOL "virt"
 
-#if KDE_IS_VERSION(3,4,0)
 extern "C" { int KDE_EXPORT kdemain( int argc, char **argv ); }
-#else
-extern "C" { int kdemain( int argc, char **argv ); }
-#endif
 
 #define KrDEBUG(X...){\
 	FILE* f = fopen("/tmp/kio_virt.log","a+");\

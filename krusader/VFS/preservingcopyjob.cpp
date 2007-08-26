@@ -43,7 +43,7 @@
 #include <grp.h>
 
 
-#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+#if defined( HAVE_POSIX_ACL )
 #include <sys/acl.h>
 #ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
 #include <acl/libacl.h>
@@ -102,7 +102,7 @@ void PreservingCopyJob::slotAboutToCreate( KIO::Job */*job*/, const Q3ValueList<
       KDE_lstat( (*it).uSource.path(KUrl::RemoveTrailingSlash).local8Bit(),&stat_p);    /* getting the date information */
       
       QString aclStr;
-#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+#if defined( HAVE_POSIX_ACL )
       acl_t acl = acl_get_file( (*it).uSource.path(KUrl::RemoveTrailingSlash).local8Bit(), ACL_TYPE_ACCESS );
 
       bool aclExtended = false;
@@ -163,7 +163,7 @@ void PreservingCopyJob::slotResult( Job *job ) {
       KIO::UDSEntry entry = static_cast<KIO::StatJob*>(job)->statResult();      
       KFileItem kfi(entry, url );
     
-#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+#if defined( HAVE_POSIX_ACL )
       fileAttributes[ url ] = Attributes( kfi.time( KIO::UDS_MODIFICATION_TIME ), kfi.user(), kfi.group(), kfi.mode(), kfi.ACL().asString() );
 #else
       fileAttributes[ url ] = Attributes( kfi.time( KIO::UDS_MODIFICATION_TIME ), kfi.user(), kfi.group(), kfi.mode(), QString() );
@@ -215,7 +215,7 @@ void PreservingCopyJob::slotListEntries(KIO::Job *job, const KIO::UDSEntryList &
       case KIO::UDS_ACCESS:
         mode = (*it2).m_long;
         break;
-#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+#if defined( HAVE_POSIX_ACL )
       case KIO::UDS_ACL_STRING:
         acl = (*it2).m_str;
         break;
@@ -267,7 +267,7 @@ void PreservingCopyJob::slotCopyingDone( KIO::Job *, const KUrl &from, const KUr
       if( attrs.mode != (mode_t) -1 )
         chmod( (const char *)( to.path( KUrl::RemoveTrailingSlash ).local8Bit() ), attrs.mode );
 
-#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+#if defined( HAVE_POSIX_ACL )
       if( !attrs.acl.isNull() )
       {
         acl_t acl = acl_from_text( attrs.acl.toLatin1() );

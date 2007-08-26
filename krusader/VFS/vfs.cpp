@@ -289,7 +289,6 @@ void vfs::vfs_requestDelete() {
 }
 
 /// to be implemented
-#if KDE_IS_VERSION(3,3,0)
 #include <kio/directorysizejob.h>
 void vfs::slotKdsResult( KIO::Job* job){
 	if( job && !job->error() ){
@@ -378,11 +377,6 @@ void vfs::slotStatResultArrived( KIO::Job* job ) {
 	else entry = static_cast<KIO::StatJob*>(job)->statResult();
 	stat_busy = false;
 }
-        
-#else
-void vfs::slotKdsResult(KIO::Job *job){/* empty */}
-void vfs::vfs_calcSpace( QString /*name*/ , KIO::filesize_t* /*totalSize*/, unsigned long* /*totalFiles*/, unsigned long* /*totalDirs*/, bool* /*stop*/ ) {/* empty*/}
-#endif
 
 Q3ValueList<vfile*> vfs::vfs_search(const KRQuery& filter) {
 	Q3ValueList<vfile*> result;

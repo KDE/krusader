@@ -649,11 +649,7 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
 
   if( trash )
   {
-#if KDE_IS_VERSION(3,4,0)
     job = KIO::trash( url, true );
-#else
-    job = new KIO::CopyJob( url,KGlobalSettings::trashPath(),KIO::CopyJob::Move,false,true );
-#endif
     connect(job,SIGNAL(result(KIO::Job*)),krApp,SLOT(changeTrashIcon()));
   }
   else

@@ -75,9 +75,7 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ), retur
 	         this, SLOT( tabCloseRequest(QWidget*) ) );
 
 	tabBar.setTabReorderingEnabled(false);
-#if KDE_IS_VERSION(3,4,0)
 	tabBar.setAutomaticResizeTabs(true);
-#endif
 //	"edit"
 //	"filesaveas"
 	setCentralWidget( &tabBar );

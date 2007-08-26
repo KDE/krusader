@@ -8,11 +8,7 @@
 
 #define BM_NAME(X)		(QString("Bookmark:")+X)
 
-#if KDE_IS_VERSION(3,4,0)
 static const char* NAME_DEVICES = I18N_NOOP("Media");
-#else
-static const char* NAME_DEVICES = I18N_NOOP("Devices");
-#endif
 static const char* NAME_VIRTUAL = I18N_NOOP("Virtual Filesystem");
 static const char* NAME_LAN = I18N_NOOP("Local Network");
 
@@ -49,11 +45,7 @@ KrBookmark* KrBookmark::getExistingBookmark(QString actionName, KActionCollectio
 KrBookmark* KrBookmark::devices(KActionCollection *collection) {
 	KrBookmark *bm = getExistingBookmark(i18n(NAME_DEVICES), collection);	
 	if (!bm) {
-#if KDE_IS_VERSION(3,4,0)
 		bm = new KrBookmark(i18n(NAME_DEVICES), "media:/", collection);
-#else
-		bm = new KrBookmark(i18n(NAME_DEVICES), "devices:/", collection);
-#endif
 		bm->setIconSet(krLoader->loadIcon("blockdevice", K3Icon::Small));
 	}
 	return bm;

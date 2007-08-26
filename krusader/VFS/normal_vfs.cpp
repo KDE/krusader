@@ -57,12 +57,10 @@
 #include "../krslots.h"
 
 // header files for ACL
-#if KDE_IS_VERSION(3,5,0)
 #ifdef HAVE_POSIX_ACL
 #include <sys/acl.h>
 #ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
 #include <acl/libacl.h>
-#endif
 #endif
 #endif
 
@@ -185,11 +183,7 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames){
 	// delete of move to trash ?
 	krConfig->setGroup("General");
 	if( krConfig->readBoolEntry("Move To Trash",_MoveToTrash) ){
-#if KDE_IS_VERSION(3,4,0)
 	  job = KIO::trash(filesUrls, true );
-#else
-	  job = new KIO::CopyJob(filesUrls,KGlobalSettings::trashPath(),KIO::CopyJob::Move,false,true );
-#endif
 	  connect(job,SIGNAL(result(KIO::Job*)),SLOTS,SLOT(changeTrashIcon()));
 	}
 	else
@@ -283,7 +277,7 @@ vfile* normal_vfs::vfileFromName(const QString& name){
 void normal_vfs::getACL( vfile *file, QString &acl, QString &defAcl )
 {
 	acl = defAcl = QString();
-#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+#if defined( HAVE_POSIX_ACL )
 	Q3CString fileName = file->vfile_getUrl().path( KUrl::RemoveTrailingSlash ).local8Bit();
 #if HAVE_NON_POSIX_ACL_EXTENSIONS
 	if ( acl_extended_file( fileName.data() ) )
@@ -300,7 +294,7 @@ void normal_vfs::getACL( vfile *file, QString &acl, QString &defAcl )
 
 QString normal_vfs::getACL( const QString & path, int type )
 {
-#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+#if defined( HAVE_POSIX_ACL )
 	acl_t acl = 0;
 	// do we have an acl for the file, and/or a default acl for the dir, if it is one?
 	if ( ( acl = acl_get_file( path.data(), type ) ) != 0 )

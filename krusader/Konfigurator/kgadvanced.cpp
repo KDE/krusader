@@ -51,11 +51,7 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent ) :
   Q3GroupBox *generalGrp = createFrame( i18n( "General" ), parent );
   Q3GridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
-#if KDE_IS_VERSION( 3,5,1 )
   bool dontUseMedia = false;
-#else
-  bool dontUseMedia = true;
-#endif
 
   bool isMediaProtocolPresent = KProtocolInfo::isKnownProtocol( QString( "media" ) );
   if( !isMediaProtocolPresent )

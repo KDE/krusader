@@ -174,11 +174,9 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 				if( !mime.endsWith( "unmounted" ) )
 					mounted = true;
 				break;
-#if KDE_IS_VERSION(3,4,0)
 			case KIO::UDS_LOCAL_PATH:
 				localPath = (*it2).m_str;
 				break;
-#endif
 			}
 		}
 		
@@ -446,12 +444,7 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 	QString extSpc = ( isMounted && type == "hdd" ) ? extraSpaces : "";
 	/* WORKAROUND CODE END */
 		
-#if KDE_IS_VERSION(3,4,0)
 	QString mimeBase = "media/";
-#else
-	QString mimeBase = "kdedevice/";
-#endif
-	
 	QString mime = mimeBase + type + mountString;
 	
 	if( type == "hdd" )

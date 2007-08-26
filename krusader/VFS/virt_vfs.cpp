@@ -121,11 +121,7 @@ void virt_vfs::vfs_delFiles( QStringList *fileNames ) {
 	// delete of move to trash ?
 	krConfig->setGroup( "General" );
 	if ( krConfig->readBoolEntry( "Move To Trash", _MoveToTrash ) ) {
-#if KDE_IS_VERSION(3,4,0)
 		job = KIO::trash( filesUrls, true );
-#else
-		job = new KIO::CopyJob( filesUrls, KGlobalSettings::trashPath(), KIO::CopyJob::Move, false, true );
-#endif
 		connect( job, SIGNAL( result( KIO::Job* ) ), krApp, SLOT( changeTrashIcon() ) );
 	} else
 		job = KIO::DeleteJob::del( filesUrls, false, true );

@@ -51,7 +51,6 @@ bool KrJS::runFile(const QString & filename) {
               we can catch it here and handle it with c++
             */
             {
-#if KDE_IS_VERSION(3,4,0)
             KJS::Object exception = jsres.value().toObject(exec);
             int line = int( exception.get( exec, KJS::Identifier("line") ).toNumber(exec) );
             QString type = exception.get( exec, KJS::Identifier("name") ).toString(exec).qstring();
@@ -67,12 +66,6 @@ bool KrJS::runFile(const QString & filename) {
 		),	//text
 		i18n("JavaScript error"), 	//caption
 		KMessageBox::Dangerous) ;
-#else
-            KMessageBox::error ( 0,	//parent
-		QString(i18n("In %1:\nThere is an error in the JavaScript")).arg(filename),	//text
-		i18n("JavaScript error"), 	//caption
-		KMessageBox::Dangerous) ;
-#endif
             break;
             }
          default:

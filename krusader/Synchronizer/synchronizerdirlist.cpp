@@ -41,7 +41,7 @@
 #include <kdeversion.h>
 
 
-#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+#if defined( HAVE_POSIX_ACL )
 #include <sys/acl.h>
 #ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
 #include <acl/libacl.h>
@@ -193,7 +193,7 @@ void SynchronizerDirList::slotEntries( KIO::Job * job, const KIO::UDSEntryList& 
       vfile *item = new vfile( kfi.text(), kfi.size(), perm, kfi.time( KIO::UDS_MODIFICATION_TIME ),
           kfi.isLink(), kfi.user(), kfi.group(), kfi.user(), 
           kfi.mimetype(), kfi.linkDest(), mode, rwx
-#if KDE_IS_VERSION(3,5,0) && defined( HAVE_POSIX_ACL )
+#if defined( HAVE_POSIX_ACL )
                                               , kfi.ACL().asString()
 #endif
                                                                      );

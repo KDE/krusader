@@ -234,7 +234,6 @@ const KIO::UDSEntry vfile::vfile_getEntry() {
 		entry.append(atom);
 	}
 
-#if KDE_IS_VERSION(3,5,0)
 	if( !vfile_acl_loaded )
 		vfile_loadACL();
 	if( vfile_has_acl ) {
@@ -256,7 +255,6 @@ const KIO::UDSEntry vfile::vfile_getEntry() {
 			entry.append(atom);
 		}
 	}
-#endif
 
 	return entry;
 }

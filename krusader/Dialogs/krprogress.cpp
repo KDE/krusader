@@ -231,12 +231,8 @@ void KrProgress::slotSpeed( KIO::Job*, unsigned long bytes_per_second )
   if ( bytes_per_second == 0 ) {
     speedLabel->setText( i18n( "Working") );
   } else {
-#if KDE_IS_VERSION(3,4,0)
     unsigned int seconds = KIO::calculateRemainingSeconds( m_iTotalSize, m_iProcessedSize, bytes_per_second );
 	 QString remaining = KIO::convertSeconds(seconds);
-#else
-    QString remaining = KIO::calculateRemaining( m_iTotalSize, m_iProcessedSize, bytes_per_second ).toString();
-#endif
     speedLabel->setText( i18n( "%1/s ( %2 remaining )").arg( KIO::convertSize( bytes_per_second )).arg( remaining ) );
   }
 }
