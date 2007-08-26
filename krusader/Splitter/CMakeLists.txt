@@ -4,6 +4,14 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 ########### next target ###############
 
+set( Splitter_SRCS
+	crc32.cpp
+	splittergui.cpp
+	splitter.cpp
+	combiner.cpp )
+
+kde4_add_library(Splitter ${Splitter_SRCS} )
+
 
 ########### install files ###############
 

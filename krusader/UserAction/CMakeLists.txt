@@ -4,6 +4,14 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 ########### next target ###############
 
+set( UserAction_SRCS
+	kraction.cpp
+	expander.cpp
+	useractionpopupmenu.cpp
+	kractionbase.cpp )
+
+kde4_add_library(UserAction ${UserAction_SRCS} )
+
 
 ########### install files ###############
 

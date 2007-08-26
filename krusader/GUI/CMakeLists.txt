@@ -4,6 +4,19 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 ########### next target ###############
 
+set( GUI_SRCS
+	dirhistoryqueue.cpp 
+	dirhistorybutton.cpp 
+	krusaderstatus.cpp 
+	kfnkeys.cpp 
+	kcmdline.cpp 
+	syncbrowsebutton.cpp 
+	profilemanager.cpp 
+	krremoteencodingmenu.cpp 
+	mediabutton.cpp 
+	kcmdmodebutton.cpp )
+
+kde4_add_library(GUI ${GUI_SRCS} )
 
 ########### install files ###############
 

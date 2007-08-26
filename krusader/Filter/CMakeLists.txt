@@ -4,6 +4,14 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 ########### next target ###############
 
+set( Filter_SRCS
+	advancedfilter.cpp
+	generalfilter.cpp
+	filtertabs.cpp
+	filterdialog.cpp )
+
+kde4_add_library(Filter ${Filter_SRCS} )
+
 
 ########### install files ###############
 

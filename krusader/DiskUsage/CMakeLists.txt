@@ -7,6 +7,15 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 ########### next target ###############
 
+set( DiskUsage_SRCS
+	diskusagegui.cpp
+	diskusage.cpp
+	dulistview.cpp
+	dulines.cpp
+	dufilelight.cpp )
+
+kde4_add_library(DiskUsage ${DiskUsage_SRCS} )
+
 
 ########### install files ###############
 

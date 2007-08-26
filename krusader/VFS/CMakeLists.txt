@@ -4,6 +4,22 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 ########### next target ###############
 
+set( VFS_SRCS
+	krvfshandler.cpp
+	virt_vfs.cpp 
+	vfs.cpp 
+	vfile.cpp 
+	temp_vfs.cpp 
+	normal_vfs.cpp 
+	krpermhandler.cpp 
+	krdirwatch.cpp 
+	krarchandler.cpp 
+	preservingcopyjob.cpp 
+	virtualcopyjob.cpp 
+	ftp_vfs.cpp 
+	krquery.cpp )
+
+kde4_add_library(VFS ${VFS_SRCS} )
 
 ########### install files ###############
 

@@ -4,6 +4,12 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 ########### next target ###############
 
+set( Search_SRCS
+	krsearchmod.cpp
+	krsearchdialog.cpp )
+
+kde4_add_library(Search ${Search_SRCS} )
+
 
 ########### install files ###############
 

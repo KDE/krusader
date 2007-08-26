@@ -4,6 +4,15 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 ########### next target ###############
 
+set( ActionMan_SRCS
+	actionman.cpp
+	actionpropertybase.ui
+	actionproperty.cpp
+	addplaceholderpopup.cpp
+	useractionlistview.cpp
+	useractionpage.cpp )
+
+kde4_add_library(ActionMan ${ActionMan_SRCS} )
 
 ########### install files ###############
 

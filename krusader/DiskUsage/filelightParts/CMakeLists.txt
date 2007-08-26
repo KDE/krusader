@@ -4,6 +4,12 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 ########### next target ###############
 
+set( filelightParts_SRCS
+	Config.cpp
+	fileTree.cpp )
+
+kde4_add_library(filelightParts ${filelightParts_SRCS} )
+
 
 ########### install files ###############
 

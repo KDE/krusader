@@ -4,6 +4,11 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 ########### next target ###############
 
+set( KrJS_SRCS
+	krjs.cpp )
+
+kde4_add_library(KrJS ${KrJS_SRCS} )
+
 
 ########### install files ###############
 

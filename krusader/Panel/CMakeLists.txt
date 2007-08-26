@@ -5,6 +5,26 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 ########### next target ###############
 
 
+set( Panel_SRCS
+	krcolorcache.cpp 
+	krcalcspacedialog.cpp 
+	krpopupmenu.cpp 
+	krpreviewpopup.cpp 
+	krview.cpp 
+	krviewitem.cpp 
+	krdetailedviewitem.cpp 
+	krdetailedview.cpp 
+	panelfunc.cpp 
+	listpanel.cpp 
+	panelpopup.cpp 
+	krdrag.cpp 
+	krselectionmode.cpp 
+	krbriefview.cpp 
+	krbriefviewitem.cpp )
+
+kde4_add_library(Panel ${Panel_SRCS} )
+
+
 ########### install files ###############
 
 

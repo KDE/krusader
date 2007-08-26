@@ -4,6 +4,12 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 ########### next target ###############
 
+set( RemoteMan_SRCS
+	remoteman.cpp
+	remotemanbase.cpp )
+
+kde4_add_library(RemoteMan ${RemoteMan_SRCS} )
+
 
 ########### install files ###############
 

@@ -4,6 +4,11 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 ########### next target ###############
 
+set( Locate_SRCS
+	locate.cpp )
+
+kde4_add_library(Locate ${Locate_SRCS} )
+
 
 ########### install files ###############
 

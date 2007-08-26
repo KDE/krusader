@@ -4,6 +4,13 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 ########### next target ###############
 
+set( MountMan_SRCS
+	kmountmangui.cpp
+	kmountman.cpp
+	kdiskfreesp.cpp )
+
+kde4_add_library(MountMan ${MountMan_SRCS} )
+
 
 ########### install files ###############
 

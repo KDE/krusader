@@ -4,6 +4,10 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 ########### next target ###############
 
+set( UserMenu_SRCS
+	usermenu.cpp )
+
+kde4_add_library(UserMenu ${UserMenu_SRCS} )
 
 ########### install files ###############
 

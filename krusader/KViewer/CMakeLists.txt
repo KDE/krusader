@@ -4,6 +4,14 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 ########### next target ###############
 
+set( KViewer_SRCS
+	krviewer.cpp
+	kimagefilepreview.cpp
+	panelviewer.cpp
+	diskusageviewer.cpp )
+
+kde4_add_library(KViewer ${KViewer_SRCS} )
+
 
 ########### install files ###############
 

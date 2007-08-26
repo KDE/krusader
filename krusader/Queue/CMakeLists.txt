@@ -4,6 +4,12 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 ########### next target ###############
 
+set( Queue_SRCS
+	queue.cpp
+	queue_mgr.cpp
+	queuewidget.cpp )
+
+kde4_add_library(Queue ${Queue_SRCS} )
 
 ########### install files ###############
 
