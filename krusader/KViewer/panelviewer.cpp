@@ -16,7 +16,7 @@
 #include <kfileitem.h>
 #include <kio/netaccess.h>
 #include <qfile.h>
-#include <klargefile.h>
+#include <kde_file.h>
 #include "panelviewer.h"
 
 #define DICTSIZE 211

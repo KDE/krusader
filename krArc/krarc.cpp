@@ -35,7 +35,7 @@
 #include <klocale.h>
 #include <kurl.h>
 #include <ktempfile.h>
-#include <klargefile.h>
+#include <kde_file.h>
 #include <kstandarddirs.h>
 #include <kio/job.h>
 #include <ktar.h>

@@ -44,7 +44,7 @@
 #include <klocale.h>
 #include <kglobalsettings.h>
 #include <kdebug.h>
-#include <klargefile.h>
+#include <kde_file.h>
 #include <kfileitem.h>
 // Krusader includes
 #include "normal_vfs.h"

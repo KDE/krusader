@@ -32,7 +32,7 @@
 #include "../defaults.h"
 #include "../krusader.h"
 #include <utime.h>
-#include <klargefile.h>
+#include <kde_file.h>
 #include <kio/job.h>
 #include <kio/jobclasses.h>
 #include <kfileitem.h>

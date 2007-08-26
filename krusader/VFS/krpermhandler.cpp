@@ -40,7 +40,7 @@
 #include <time.h>
 #include <klocale.h>
 #include <kglobal.h>
-#include <klargefile.h> 
+#include <kde_file.h> 
 // Qt includes
 #include <qdatetime.h>
 #include <qdir.h> 

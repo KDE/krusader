@@ -38,7 +38,7 @@
 #include <Q3ValueList>
 #include <kapplication.h>
 #include <kio/directorysizejob.h>
-#include <klargefile.h>
+#include <kde_file.h>
 #include <qdir.h>
 #include "vfs.h"
 #include "../krusader.h"
@@ -274,7 +274,7 @@ bool vfs::vfs_processEvents() {
 	if( deleteRequested )
 		return false;        
 	deletePossible = false;
-	qApp->eventLoop() ->processEvents( QEventLoop::AllEvents | QEventLoop::WaitForMore );
+	qApp->processEvents( QEventLoop::AllEvents | QEventLoop::WaitForMore );
 	deletePossible = true;        
 	if( deleteRequested ) {
 		emit deleteAllowed();
@@ -362,11 +362,12 @@ void vfs::vfs_calcSpaceLocal(QString name ,KIO::filesize_t *totalSize,unsigned l
     dir.setSorting(QDir::Name | QDir::DirsFirst);
 
     // recurse on all the files in the directory
-    QFileInfoList* fileList = const_cast<QFileInfoList*>(dir.entryInfoList());
-    for (QFileInfo* qfiP = fileList->first(); qfiP != 0; qfiP = fileList->next()){
+    QFileInfoList fileList = dir.entryInfoList();
+    for (int k=0; k != fileList.size(); k++){
       if ( *stop ) return;
-      if (qfiP->fileName() != "." && qfiP->fileName() != "..")
-        vfs_calcSpaceLocal(name+"/"+qfiP->fileName(),totalSize,totalFiles,totalDirs,stop);
+      QFileInfo qfiP = fileList[ k ];
+      if (qfiP.fileName() != "." && qfiP.fileName() != "..")
+        vfs_calcSpaceLocal(name+"/"+qfiP.fileName(),totalSize,totalFiles,totalDirs,stop);
     }
   }
 }

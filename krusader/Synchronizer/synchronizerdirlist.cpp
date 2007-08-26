@@ -35,7 +35,7 @@
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kfileitem.h>
-#include <klargefile.h>
+#include <kde_file.h>
 #include <qapplication.h>
 #include <qdir.h>
 #include <kdeversion.h>

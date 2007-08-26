@@ -47,7 +47,7 @@
 #include <kglobalsettings.h>
 #include <kmimetype.h>
 #include <kcursor.h>
-#include <klargefile.h>
+#include <kde_file.h>
 // krusader includes
 #include "arc_vfs.h"
 #include "krpermhandler.h"

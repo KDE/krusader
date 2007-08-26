@@ -37,7 +37,7 @@
 #include <kio/job.h>
 #include <kstatusbar.h>
 #include <kdebug.h>
-#include <klargefile.h>
+#include <kde_file.h>
 #include <khtml_part.h>
 #include <k3process.h>
 #include <kfileitem.h> 
