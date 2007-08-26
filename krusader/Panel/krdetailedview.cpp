@@ -836,6 +836,11 @@ void KrDetailedView::contentsDragMoveEvent( QDragMoveEvent * e ) {
    K3ListView::contentsDragMoveEvent( e );
 }
 
+void KrDetailedView::inputMethodEvent(QInputMethodEvent *e) {
+	// TODO: the following 3 functions should somehow fit into this one. Csaba, did you implement this one?
+}
+
+#if 0
 void KrDetailedView::imStartEvent(QIMEvent* e)
 {
   if ( ACTIVE_PANEL->quickSearch->isShown() ) {
@@ -878,6 +883,8 @@ void KrDetailedView::imComposeEvent(QIMEvent* e)
     return ;
   }
 }
+
+#endif
 
 // TODO: for brief mode, move as much of this as possible to the viewOperator
 void KrDetailedView::keyPressEvent( QKeyEvent * e ) {

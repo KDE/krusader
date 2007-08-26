@@ -27,12 +27,11 @@
 #include <Q3PopupMenu>
 #include <QFocusEvent>
 #include <kparts/mainwindow.h>
-#include <ktempfile.h>
 #include <kparts/partmanager.h>
 #include <kparts/browserextension.h>
 #include <qpointer.h>
 #include <ktabwidget.h>
-
+#include <ktemporaryfile.h>
 #include "../krusader.h"
 
 
@@ -97,7 +96,7 @@ private:
 
 	KParts::PartManager manager;
 	Q3PopupMenu* viewerMenu;
-	KTempFile tmpFile;
+	KTemporaryFile tmpFile;
 	KTabWidget tabBar;
 	QPointer<QWidget> returnFocusTo;
 	PanelViewerBase * returnFocusTab;

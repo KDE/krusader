@@ -72,9 +72,9 @@ private:
 public:
   SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir );
 
-  KUrl    getDestinationDir()     {return vfs::fromPathOrUrl( urlReq->url() );}
-  KIO::filesize_t getSplitSize()  {return spinBox->longValue();}
-  int     result()                {return resultCode;}
+  KUrl    getDestinationDir()     { return vfs::fromPathOrUrl( urlReq->url().prettyUrl() ); /* TODO: is prettyURL what we need? */ }
+  KIO::filesize_t getSplitSize()  { return spinBox->longValue(); }
+  int     result()                { return resultCode; }
 
 public slots:
   virtual void sizeComboActivated( int item );
@@ -97,14 +97,14 @@ public:
       setMaxValue( 0x7FFFFFFF );     /* setting the minimum and maximum values */
       setMinValue( 1 );
       QDoubleValidator *dval = new QDoubleValidator( this );
-      setValidator ( dval );
+      lineEdit()->setValidator ( dval );
     }
 
     void setLongValue( KIO::filesize_t valueIn ) {
       value = valueIn;
       if( value == 0 )
         value++;
-      updateDisplay();
+      /// TODO: updateDisplay();
     }
     
     KIO::filesize_t longValue() {
@@ -150,7 +150,7 @@ public:
     void setDivision( KIO::filesize_t div )
     {
       division = div;
-      updateDisplay();
+      // TODO: updateDisplay();
     }
     
   public slots:
@@ -161,7 +161,7 @@ public:
     
       if( value + division > value )
         value += division;
-      updateDisplay();
+      // TODO: updateDisplay();
     }
     
     void stepDown()
@@ -172,7 +172,7 @@ public:
         value = 1;
       else
         value -= division;
-      updateDisplay();     
+      // TODO: updateDisplay();     
     }
   };
 };

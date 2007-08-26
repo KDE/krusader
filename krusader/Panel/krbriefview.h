@@ -74,7 +74,7 @@ public:
 	virtual inline KrViewItem *getPrev( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<Q3IconViewItem*>( current ) ->prevItem() ); }
 	virtual inline KrViewItem *getCurrentKrViewItem() { return dynamic_cast<KrViewItem*>( currentItem() ); }
 	virtual KrViewItem *getKrViewItemAt(const QPoint &vp);
-	virtual inline KrViewItem *findItemByName(const QString &name) { return dynamic_cast<KrViewItem*>( findItem( name, Qt::ExactMatch ) ); }
+	virtual inline KrViewItem *findItemByName(const QString &name) { return dynamic_cast<KrViewItem*>( findItem( name, K3IconView::ExactMatch ) ); }
 	virtual void addItems(vfs* v, bool addUpDir = true);
 	virtual void delItem(const QString &);
 	virtual QString getCurrentItem() const;
@@ -107,9 +107,6 @@ protected:
 	void redrawColumns();
 
 	virtual void keyPressEvent( QKeyEvent *e );
-	virtual void imStartEvent( QIMEvent* e );
-	virtual void imEndEvent( QIMEvent *e );
-	virtual void imComposeEvent( QIMEvent *e );
 	virtual void contentsMousePressEvent( QMouseEvent *e );
 	virtual void contentsMouseReleaseEvent (QMouseEvent *e);
 	virtual void contentsMouseMoveEvent ( QMouseEvent * e );

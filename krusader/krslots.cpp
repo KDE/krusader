@@ -39,16 +39,16 @@
 #include <Q3ValueList>
 #include <QEvent>
 // KDE includes
+#include <ktoggleaction.h>
+#include <ktoolbar.h>
 #include <klocale.h>
 #include <k3process.h>
 #include <kmessagebox.h>
-#include <klineeditdlg.h>
-#include <kdirnotify_stub.h>
 #include <kio/netaccess.h>
 #include <kedittoolbar.h>
 #include <kdeversion.h>
 #include <kcmdlineargs.h>
-#include <KViewer/krviewer.h>
+#include "KViewer/krviewer.h"
 
 #ifdef __KJSEMBED__
 #include "KrJS/krjs.h"

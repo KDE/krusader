@@ -12,13 +12,13 @@
 #ifndef KRKEYDIALOG_H
 #define KRKEYDIALOG_H
 
-#include <kkeydialog.h>
+#include <kshortcutsdialog.h>
 
 /**
  * @short KDE's KKeyDialog extended by the ability to export/import shortcuts
  * @author Jonas Bähr
  */
-class KrKeyDialog : protected KKeyDialog
+class KrKeyDialog : protected KShortcutsDialog
 {
 Q_OBJECT
 public:
@@ -31,7 +31,7 @@ private slots:
 
 private:
     void importLegacyShortcuts( const QString& file );
-    KKeyChooser* _chooser;
+    KShortcutsEditor* _chooser;
 };
 
 #endif
