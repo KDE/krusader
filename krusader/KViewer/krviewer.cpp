@@ -600,7 +600,7 @@ bool KrViewer::editText( bool create ) {
 }
 
 bool KrViewer::viewGeneric() {
-	QString mimetype = KMimeType::findByURL( url ) ->name();
+	QString mimetype = KMimeType::findByUrl( url ) ->name();
 	// ugly hack: don't try to get a part for an XML file, it usually don't work
 	if ( mimetype == "text/xml" ) return false;
 	if ( url.prettyUrl().startsWith( "man:" ) ) mimetype = "text/html";

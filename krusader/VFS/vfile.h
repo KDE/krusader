@@ -36,6 +36,7 @@
 #include <sys/types.h>
 // KDE includes
 #include <kio/global.h>
+#include <kio/udsentry.h>
 #include <kmimetype.h>
 
 #define PERM_ALL          -2

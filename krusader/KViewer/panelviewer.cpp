@@ -59,7 +59,7 @@ KParts::ReadOnlyPart* PanelViewer::openURL( const KUrl &url, KrViewer::Mode mode
 	curl = url;
 
 	if( mode == KrViewer::Generic ){
-		cmimetype = KMimeType::findByURL( curl ) ->name();
+		cmimetype = KMimeType::findByUrl( curl ) ->name();
 		cpart = ( *mimes ) [ cmimetype ];
 		if ( !cpart ){
 			cpart = getPart( cmimetype );
@@ -209,7 +209,7 @@ KParts::ReadOnlyPart* PanelEditor::openURL( const KUrl &url, KrViewer::Mode mode
 	curl = url;
 
 	if( mode == KrViewer::Generic ){
-		cmimetype = KMimeType::findByURL( curl ) ->name();
+		cmimetype = KMimeType::findByUrl( curl ) ->name();
 		cpart = ( *mimes ) [ cmimetype ];
 		if ( !cpart ){ 
 			cpart = getPart( cmimetype );

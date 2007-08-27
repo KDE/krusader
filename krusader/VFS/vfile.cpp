@@ -148,7 +148,7 @@ char vfile::vfile_isExecutable() const {
 
 const QString& vfile::vfile_getMime(bool fast){
 	if( vfile_mimeType == QString() ){ // mimetype == "" is OK so don't check mimetype.empty() !
-		vfile_mimeType = KMimeType::findByURL( vfile_getUrl(),vfile_getMode(),vfile_getUrl().isLocalFile(),fast)->name();
+		vfile_mimeType = KMimeType::findByUrl( vfile_getUrl(),vfile_getMode(),vfile_getUrl().isLocalFile(),fast)->name();
 		if( vfile_mimeType.contains("directory") ) vfile_perm[0] = 'd', vfile_isdir = true;
 	}
 	return vfile_mimeType;
@@ -190,70 +190,30 @@ void vfile::vfile_loadACL()
 
 const KIO::UDSEntry vfile::vfile_getEntry() {
 	KIO::UDSEntry entry;
-	KIO::UDSAtom atom;
 
-	atom.m_uds = KIO::UDSEntry::UDS_NAME;
-	atom.m_str = vfile_getName();
-	entry.append(atom);
+	entry.insert(KIO::UDSEntry::UDS_NAME, vfile_getName());
+	entry.insert(KIO::UDSEntry::UDS_SIZE, vfile_getSize());
+	entry.insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, vfile_getTime_t());
+	entry.insert(KIO::UDSEntry::UDS_USER, vfile_getOwner());
+	entry.insert(KIO::UDSEntry::UDS_GROUP, vfile_getGroup());
+	entry.insert(KIO::UDSEntry::UDS_MIME_TYPE, vfile_getMime());
+	entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, vfile_getMode() & S_IFMT);
+	entry.insert(KIO::UDSEntry::UDS_ACCESS, vfile_getMode() & 07777 );
+	entry.insert(KIO::UDSEntry::UDS_MIME_TYPE, vfile_getMime());
 
-	atom.m_uds = KIO::UDSEntry::UDS_SIZE;
-	atom.m_long = vfile_getSize();
-	entry.append(atom);
-
-	atom.m_uds = KIO::UDSEntry::UDS_MODIFICATION_TIME;
-	atom.m_long = vfile_getTime_t();
-	entry.append(atom);
-
-	atom.m_uds = KIO::UDSEntry::UDS_USER;
-	atom.m_str = vfile_getOwner();
-	entry.append(atom);
-
-	atom.m_uds = KIO::UDSEntry::UDS_GROUP;
-	atom.m_str = vfile_getGroup(); 
-	entry.append(atom);
-
-	atom.m_uds = KIO::UDSEntry::UDS_MIME_TYPE;
-	atom.m_str = vfile_getMime();
-	entry.append(atom);
-
-	atom.m_uds = KIO::UDSEntry::UDS_FILE_TYPE;
-	atom.m_long = vfile_getMode() & S_IFMT;
-	entry.append(atom);
-
-	atom.m_uds = KIO::UDSEntry::UDS_ACCESS;
-	atom.m_long = vfile_getMode() & 07777; // keep permissions only
-	entry.append( atom );
-
-	atom.m_uds = KIO::UDSEntry::UDS_MIME_TYPE;
-	atom.m_str = vfile_getMime();
-	entry.append(atom);
-
-	if( vfile_isSymLink() ){
-		atom.m_uds = KIO::UDSEntry::UDS_LINK_DEST;
-		atom.m_str = vfile_getSymDest();
-		entry.append(atom);
-	}
+	if( vfile_isSymLink() )
+		entry.insert(KIO::UDSEntry::UDS_LINK_DEST, vfile_getSymDest());
 
 	if( !vfile_acl_loaded )
 		vfile_loadACL();
 	if( vfile_has_acl ) {
-		atom.m_uds = KIO::UDSEntry::UDS_EXTENDED_ACL;
-		atom.m_long = 1;
-		entry.append( atom );
+		entry.insert( KIO::UDSEntry::UDS_EXTENDED_ACL, 1 );
 		
 		if( !vfile_acl.isNull() )
-		{
-			atom.m_uds = KIO::UDSEntry::UDS_ACL_STRING;
-			atom.m_str = vfile_acl;
-			entry.append(atom);
-		}
+			entry.insert(KIO::UDSEntry::UDS_ACL_STRING, vfile_acl);
 		
 		if( !vfile_def_acl.isNull() )
-		{
-			atom.m_uds = KIO::UDSEntry::UDS_DEFAULT_ACL_STRING;
-			atom.m_str = vfile_acl;
-			entry.append(atom);
-		}
+			entry.insert(KIO::UDSEntry::UDS_DEFAULT_ACL_STRING, vfile_acl);
 	}
 
 	return entry;

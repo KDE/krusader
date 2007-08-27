@@ -856,7 +856,7 @@ void arc_vfs::parseLine(QString line, QFile* temp){
   if(name.length() < 1) return;
 
 
-  QString mime = KMimeType::findByURL( "/"+name,0,true,true)->name();
+  QString mime = KMimeType::findByUrl( "/"+name,0,true,true)->name();
   vfile* vf=new vfile(name,size,perm,mtime,link,owner,group,mime,dest,mode);
   vfile* vf2 = vfs_search(name);
   if(vf2 != 0) vfs_removeFromList(vf2);

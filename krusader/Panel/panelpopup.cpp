@@ -274,7 +274,7 @@ void PanelPopup::saveSizes() {
 }
 
 void PanelPopup::handleOpenURLRequest(const KUrl &url) {
-  if (KMimeType::findByURL(url.url())->name() == "inode/directory") ACTIVE_PANEL->func->openUrl(url);
+  if (KMimeType::findByUrl(url.url())->name() == "inode/directory") ACTIVE_PANEL->func->openUrl(url);
 }
 
 
@@ -336,7 +336,7 @@ void PanelPopup::update( KUrl url ) {
       case DskUsage:
 			if( url.fileName() == ".." )
 				url.setFileName( "" );
-			if (KMimeType::findByURL(url.url())->name() != "inode/directory")
+			if (KMimeType::findByUrl(url.url())->name() != "inode/directory")
 				url = url.upUrl();
 			dataLine->setText( i18n("Disk Usage: ")+url.fileName() );
 			diskusage->openURL(url);
