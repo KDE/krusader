@@ -31,10 +31,10 @@
 #include <q3textstream.h> 
 // KDE includes
 #include <k3process.h>
-#include <ktempfile.h>
+#include <k3tempfile.h>
 #include <klocale.h>
 #include <kmessagebox.h>
-#include <kio/passdlg.h> 
+#include <kio/passworddialog.h> 
 #include <qfile.h>
 #include <kstandarddirs.h>
 #include <ktar.h>
@@ -42,6 +42,7 @@
 // Krusader includes
 #include "krarchandler.h"
 #include "../krusader.h"
+#include "../krusaderview.h"
 #include "../defaults.h"
 #include "../krservices.h"
 #include "../Dialogs/krpleasewait.h"
@@ -185,7 +186,7 @@ long KRarcHandler::arcFileCount( QString archive, QString type, QString password
 
   // count the number of files in the archive
   long count = 1;
-  KTempFile tmpFile( /*"tmp"*/ QString(), "krusader-unpack" ); // commented out as it created files in the current dir!
+  K3TempFile tmpFile( /*"tmp"*/ QString(), "krusader-unpack" ); // commented out as it created files in the current dir!
   KrShellProcess list;
   list << lister << KrServices::quote( archive ) << ">" << tmpFile.name() ;
   if( type == "-ace" && QFile( "/dev/ptmx" ).exists() )  // Don't remove, unace crashes if missing!!!
@@ -207,7 +208,7 @@ long KRarcHandler::arcFileCount( QString archive, QString type, QString password
     return 0;
   }
 
-  Q3TextStream *stream = tmpFile.textStream();
+  QTextStream *stream = tmpFile.textStream();
   while ( stream && stream->readLine() != QString() ) ++count;
   tmpFile.unlink();
 
@@ -251,7 +252,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
                                       KrServices::fullPathName( "unarj" ) + " x";
   else if ( type == "-7z" )  packer = KrServices::fullPathName( "7z" ) + " -y x";
   else if ( type == "-rpm" ) {
-    QString tempDir = locateLocal("tmp",QString());
+    QString tempDir = KStandardDirs::locateLocal("tmp",QString());
 
     cpioName = tempDir+"/contents.cpio";
 
@@ -268,7 +269,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
     packer = KrServices::fullPathName( "cpio" ) + " --force-local --no-absolute-filenames -iuvdF";
   }
   else if ( type == "-deb" ) {
-    QString tempDir = locateLocal("tmp",QString());
+    QString tempDir = KStandardDirs::locateLocal("tmp",QString());
 
     cpioName = tempDir+"/contents.tar";
 
@@ -531,7 +532,12 @@ QString KRarcHandler::getPassword( QString path ) {
 			wallet = 0;
 		}
 		if( wallet == 0 )
-			wallet = KWallet::Wallet::openWallet( KWallet::Wallet::NetworkWallet() );
+		{
+			QWidget * actWindow = QApplication::activeWindow();
+			if( actWindow == 0 )
+				actWindow = MAIN_VIEW;
+			wallet = KWallet::Wallet::openWallet( KWallet::Wallet::NetworkWallet(), actWindow->winId() );
+		}
 		if ( wallet && wallet->hasFolder( KWallet::Wallet::PasswordFolder() ) ) {
 			wallet->setFolder( KWallet::Wallet::PasswordFolder() );
 			QMap<QString,QString> map;
@@ -556,7 +562,12 @@ QString KRarcHandler::getPassword( QString path ) {
 				wallet = 0;
 			}
 			if ( !wallet )
-				wallet = KWallet::Wallet::openWallet( KWallet::Wallet::NetworkWallet() );
+			{
+				QWidget * actWindow = QApplication::activeWindow();
+				if( actWindow == 0 )
+					actWindow = MAIN_VIEW;
+				wallet = KWallet::Wallet::openWallet( KWallet::Wallet::NetworkWallet(), actWindow->winId() );
+			}
 			if ( wallet ) {
 				bool ok = true;
 				if ( !wallet->hasFolder( KWallet::Wallet::PasswordFolder() ) )

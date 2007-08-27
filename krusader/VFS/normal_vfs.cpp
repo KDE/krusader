@@ -41,6 +41,8 @@
 #include <kmessagebox.h>
 #include <kmimetype.h>
 #include <kio/jobclasses.h>
+#include <kio/deletejob.h>
+#include <kio/jobuidelegate.h>
 #include <klocale.h>
 #include <kglobalsettings.h>
 #include <kdebug.h>
@@ -155,7 +157,7 @@ void normal_vfs::vfs_addFiles(KUrl::List *fileUrls,KIO::CopyJob::CopyMode mode,Q
   if(mode == KIO::CopyJob::Move) // notify the other panel
     connect(job,SIGNAL(result(KIO::Job*)),toNotify,SLOT(vfs_refresh(KIO::Job*)) );
   else
-    job->setAutoErrorHandlingEnabled( true );
+    job->ui()->setAutoErrorHandlingEnabled( true );
 }
 
 // remove a file from the vfs (physical)

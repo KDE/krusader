@@ -65,7 +65,6 @@
 
 class vfs;
 class vfile;
-class KRdirWatch;
 class KrView;
 class KUrlRequester;
 class BookmarksButton;

@@ -39,7 +39,7 @@ KrBookmarkHandler::KrBookmarkHandler(): QObject(0), _middleClick(false), _mainBo
 	importFromFile();
 
 	// hack
-	manager = KBookmarkManager::managerForFile(locateLocal( "data", BOOKMARKS_FILE ), false);
+	manager = KBookmarkManager::managerForFile(KStandardDirs::locateLocal( "data", BOOKMARKS_FILE ), false);
 	connect(manager, SIGNAL(changed(const QString&, const QString& )), this, SLOT(bookmarksChanged(const QString&, const QString& )));
 }
 
@@ -165,7 +165,7 @@ void KrBookmarkHandler::exportToFile() {
 	}
 
 	
-	QString filename = locateLocal( "data", BOOKMARKS_FILE );
+	QString filename = KStandardDirs::locateLocal( "data", BOOKMARKS_FILE );
 	QFile file(filename);
 	if ( file.open( QIODevice::WriteOnly ) ) {
 		Q3TextStream stream( &file );
@@ -244,7 +244,7 @@ bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent
 void KrBookmarkHandler::importFromFile() {
 	clearBookmarks(_root);
 	
-	QString filename = locateLocal( "data", BOOKMARKS_FILE );
+	QString filename = KStandardDirs::locateLocal( "data", BOOKMARKS_FILE );
 	QFile file( filename );
 	if ( !file.open(QIODevice::ReadOnly))
 		return; // no bookmarks file

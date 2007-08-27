@@ -8,7 +8,7 @@
 #include <q3dict.h>
 #include <qlabel.h>
 #include <kmimetype.h>
-#include <ktempfile.h>
+#include <k3tempfile.h>
 #include <klocale.h>
 #include <klibloader.h>
 #include <kuserprofile.h>
@@ -67,7 +67,7 @@ KParts::ReadOnlyPart* PanelViewer::openURL( const KUrl &url, KrViewer::Mode mode
 		}
 	}
 
-	KTempFile tmpFile;
+	K3TempFile tmpFile;
 
 	if( mode == KrViewer::Hex ){
 		if ( !cpart ) cpart = getHexPart();
@@ -143,7 +143,7 @@ KParts::ReadOnlyPart* PanelViewer::getHexPart(){
 	return part;
 }
 
-void PanelViewer::oldHexViewer(KTempFile& tmpFile) {
+void PanelViewer::oldHexViewer(K3TempFile& tmpFile) {
 	QString file;
 	// files that are not local must first be downloaded
 	if ( !curl.isLocalFile() ) {

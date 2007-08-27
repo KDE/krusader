@@ -6,7 +6,7 @@
 #include <q3widgetstack.h>
 #include <kparts/part.h>
 #include <kio/job.h>
-#include <ktempfile.h>
+#include <k3tempfile.h>
 #include <q3dict.h>
 #include <qlabel.h>
 
@@ -59,7 +59,7 @@ public:
 protected:
 	KParts::ReadOnlyPart *getPart( QString mimetype );
 	KParts::ReadOnlyPart*  getHexPart();
-	void oldHexViewer(KTempFile& tmpFile);
+	void oldHexViewer(K3TempFile& tmpFile);
 };
 
 class PanelEditor: public PanelViewerBase {

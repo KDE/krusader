@@ -49,7 +49,6 @@
 #define  WATCHER_DELAY    3000
 
 class KRFSDisplay;
-class KRdirWatch;
 
 
 // forward definitions

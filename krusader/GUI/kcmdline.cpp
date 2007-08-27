@@ -60,7 +60,7 @@
 #include <qimage.h>
 #include <qstringlist.h>
 #include <qsizepolicy.h>
-#include <ktempfile.h> 
+#include <k3tempfile.h> 
 
 KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name ) {
   Q3GridLayout * layout = new Q3GridLayout( this, 1, 4 );

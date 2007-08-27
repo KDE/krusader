@@ -34,7 +34,7 @@
 #include <kinstance.h>
 #include <klocale.h>
 #include <kurl.h>
-#include <ktempfile.h>
+#include <k3tempfile.h>
 #include <kde_file.h>
 #include <kstandarddirs.h>
 #include <kio/job.h>
@@ -87,7 +87,7 @@ kio_krarcProtocol::kio_krarcProtocol(const Q3CString &pool_socket, const Q3CStri
 	
 	dirDict.setAutoDelete(true);
 	
-	arcTempDir = locateLocal("tmp",QString());
+	arcTempDir = KStandardDirs::locateLocal("tmp",QString());
 	QString dirName = "krArc"+QDateTime::currentDateTime().toString(Qt::ISODate);
 	dirName.replace(QRegExp(":"),"_");
 	QDir(arcTempDir).mkdir(dirName);
@@ -708,7 +708,7 @@ bool kio_krarcProtocol::initDirDict(const KUrl&url, bool forced){
 	
 	// write the temp file
 	KrShellProcess proc;
-	KTempFile temp( QString(), "tmp" );
+	K3TempFile temp( QString(), "tmp" );
 	temp.setAutoDelete(true);
 	if( arcType != "bzip2" ){
 		if( arcType == "rpm" )
@@ -1628,7 +1628,7 @@ QString kio_krarcProtocol::getPassword() {
 	
 	authInfo.password = QString();
 	
-	if ( openPassDlg( authInfo, i18n("Accessing the file requires password.") ) && !authInfo.password.isNull() ) {
+	if ( openPasswordDialog( authInfo, i18n("Accessing the file requires password.") ) && !authInfo.password.isNull() ) {
 		KRDEBUG( authInfo.password );
 		return ( password = authInfo.password );
 	}

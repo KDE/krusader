@@ -12,7 +12,6 @@ set( VFS_SRCS
 	temp_vfs.cpp 
 	normal_vfs.cpp 
 	krpermhandler.cpp 
-	krdirwatch.cpp 
 	krarchandler.cpp 
 	preservingcopyjob.cpp 
 	virtualcopyjob.cpp 

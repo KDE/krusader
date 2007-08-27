@@ -174,7 +174,7 @@ QDomDocument UserAction::createEmptyDoc() {
 }
 
 bool UserAction::writeActionFile() {
-   QString filename = locateLocal( "data", ACTION_XML );
+   QString filename = KStandardDirs::locateLocal( "data", ACTION_XML );
 
    QDomDocument doc = createEmptyDoc();
    QDomElement root = doc.documentElement();

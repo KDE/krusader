@@ -33,7 +33,7 @@
 #include <kinputdialog.h>
 #include <kstandarddirs.h>
 #include <kmessagebox.h>
-#include <ktempfile.h>
+#include <k3tempfile.h>
 #include <qstringlist.h>
 #include <qclipboard.h>
 //Added by qt3to4:
@@ -500,7 +500,7 @@ TagString exp_ListFile::expFunc( const ListPanel* panel, const QStringList& para
       mask = "*";
    else
       mask = parameter[3];
-   KTempFile tmpFile( locateLocal("tmp", "krusader"), ".itemlist" );
+   K3TempFile tmpFile( KStandardDirs::locateLocal("tmp", "krusader"), ".itemlist" );
    
     if ( tmpFile.status() != 0 ) {
       setError(exp, Error(Error::S_FATAL,Error::C_WORLD, i18n("Expander: tempfile couldn't be opened (%1)" ).arg(strerror( tmpFile.status() )) ));

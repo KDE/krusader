@@ -23,7 +23,7 @@
 #include "../krservices.h"
 #include <q3ptrlist.h>
 #include <qmap.h>
-#include <ktempfile.h>
+#include <k3tempfile.h>
 #include <kstandarddirs.h>
 
 class CS_Tool; // forward
@@ -263,8 +263,8 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 
 	if (exec() != Accepted) return;
 	// else implied: run the process
-	tmpOut = new KTempFile(locateLocal("tmp", "krusader"), ".stdout" );
-	tmpErr = new KTempFile(locateLocal("tmp", "krusader"), ".stderr" );
+	tmpOut = new K3TempFile(KStandardDirs::locateLocal("tmp", "krusader"), ".stdout" );
+	tmpErr = new K3TempFile(KStandardDirs::locateLocal("tmp", "krusader"), ".stderr" );
 	K3Process proc;
 	CS_Tool *mytool = tools.at(method->currentItem());
 	mytool->create(proc, mytool, KrServices::quote(files), QString(), containFolders, 
@@ -382,8 +382,8 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	}
 	
 	// else implied: run the process
-	tmpOut = new KTempFile(locateLocal("tmp", "krusader"), ".stdout" );
-	tmpErr = new KTempFile(locateLocal("tmp", "krusader"), ".stderr" );
+	tmpOut = new K3TempFile(KStandardDirs::locateLocal("tmp", "krusader"), ".stdout" );
+	tmpErr = new K3TempFile(KStandardDirs::locateLocal("tmp", "krusader"), ".stderr" );
 	K3Process proc;
 	mytool->verify(proc, mytool, KrServices::quote(files), KrServices::quote(file), containFolders, tmpOut->name(), tmpErr->name(), extension);
 	krApp->startWaiting(i18n("Verifying checksums ..."), 0, true);	

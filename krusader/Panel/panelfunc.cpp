@@ -43,7 +43,7 @@ A
 #include <kmessagebox.h>
 #include <kcursor.h>
 #include <kstandarddirs.h>
-#include <ktempfile.h>
+#include <k3tempfile.h>
 #include <kurl.h>
 #include <krun.h>
 #include <kinputdialog.h>
@@ -461,7 +461,7 @@ void ListPanelFunc::moveFiles() {
 		// so a batch dest must alwayes be a directory
 		if ( fileNames.count() > 1 ) dest.adjustPath(KUrl::AddTrailingSlash);
 		KIO::Job* job = PreservingCopyJob::createCopyJob( pmode, *fileUrls, dest, KIO::CopyJob::Move, false, true );
-		job->setAutoErrorHandlingEnabled( true );
+		job->ui()->setAutoErrorHandlingEnabled( true );
 		// refresh our panel when done
 		connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( refresh() ) );
 		// and if needed the other panel as well
@@ -609,7 +609,7 @@ void ListPanelFunc::copyFiles() {
 		// so a batch dest must alwayes be a directory
 		if ( fileNames.count() > 1 ) dest.adjustPath(KUrl::AddTrailingSlash);
 		KIO::Job* job = PreservingCopyJob::createCopyJob( pmode, *fileUrls, dest, KIO::CopyJob::Copy, false, true );
-		job->setAutoErrorHandlingEnabled( true );
+		job->ui()->setAutoErrorHandlingEnabled( true );
 		if ( dest.equals( panel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) ||
 			dest.upUrl().equals( panel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) )
 			// refresh our panel when done
@@ -791,7 +791,7 @@ void ListPanelFunc::pack() {
 
 	// on remote URL-s first pack into a temp file then copy to its right place
 	KUrl destURL = vfs::fromPathOrUrl( destDir + PackGUI::filename + "." + PackGUI::type );
-	KTempFile *tempDestFile = 0;
+	K3TempFile *tempDestFile = 0;
 	QString arcFile;
 	if ( destURL.isLocalFile() )
 		arcFile = destURL.path();
@@ -800,7 +800,7 @@ void ListPanelFunc::pack() {
 		return;                
 	}        
 	else {
-		tempDestFile = new KTempFile( QString(), "." + PackGUI::type );
+		tempDestFile = new K3TempFile( QString(), "." + PackGUI::type );
 		tempDestFile->setAutoDelete( true );
 		arcFile = tempDestFile->name();
 		QFile::remove
@@ -875,7 +875,7 @@ void ListPanelFunc::testArchive() {
 
 	// download the file if it's on a remote filesystem
 	if ( !arcURL.isLocalFile() ) {
-		url = locateLocal( "tmp", QString( arcName ) );
+		url = KStandardDirs::locateLocal( "tmp", QString( arcName ) );
 		if ( !KIO::NetAccess::download( arcURL, url, 0 ) ) {
 			KMessageBox::sorry( krApp, i18n( "Krusader is unable to download: " ) + arcURL.fileName() );
 			return ;
@@ -936,7 +936,7 @@ void ListPanelFunc::unpack() {
 		KUrl arcURL = files() ->vfs_getFile( arcName );
 		QString url = QString();
 		if ( !arcURL.isLocalFile() ) {
-			url = locateLocal( "tmp", QString( arcName ) );
+			url = KStandardDirs::locateLocal( "tmp", QString( arcName ) );
 			if ( !KIO::NetAccess::download( arcURL, url, 0 ) ) {
 				KMessageBox::sorry( krApp, i18n( "Krusader is unable to download: " ) + arcURL.fileName() );
 				continue;
