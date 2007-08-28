@@ -44,6 +44,8 @@
 #include <kio/jobclasses.h>
 #include <klocale.h>
 #include <kio/job.h>
+#include <kio/jobuidelegate.h>
+#include <kuiserverjobtracker.h>
 #include <kmessagebox.h>
 #include <kprotocolinfo.h>
 #include <kdebug.h> 
@@ -217,7 +219,7 @@ void ftp_vfs::vfs_addFiles( KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode, Q
 	}
 
 	KIO::Job* job = new KIO::CopyJob( *fileUrls, destUrl, mode, false );
-	job->setUiDelegate(new JobUiDelegate);
+	job->setUiDelegate(new KIO::JobUiDelegate() );
 	KIO::getJobTracker()->registerJob(job);
 
 	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( vfs_refresh( KIO::Job* ) ) );

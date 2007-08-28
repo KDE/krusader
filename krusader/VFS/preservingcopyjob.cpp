@@ -34,7 +34,10 @@
 #include <utime.h>
 #include <kde_file.h>
 #include <kio/job.h>
+#include <kio/global.h>
 #include <kio/jobclasses.h>
+#include <kio/jobuidelegate.h>
+#include <kuiserverjobtracker.h>
 #include <kfileitem.h>
 #include <qfile.h>
 //Added by qt3to4:
@@ -80,8 +83,13 @@ Attributes::Attributes( time_t tIn, QString user, QString group, mode_t modeIn, 
 }
 
 PreservingCopyJob::PreservingCopyJob( const KUrl::List& src, const KUrl& dest, CopyMode mode,
-  bool asMethod, bool showProgressInfo ) : KIO::CopyJob( src, dest, mode, asMethod, showProgressInfo )
+  bool asMethod, bool showProgressInfo ) : KIO::CopyJob( src, dest, mode, asMethod )
 {
+  if( showProgressInfo )
+  {
+     setUiDelegate(new KIO::JobUiDelegate() );
+     KIO::getJobTracker()->registerJob(this);
+  }
   if( dest.isLocalFile() )
   {
     connect( this, SIGNAL( aboutToCreate (KIO::Job *, const Q3ValueList< KIO::CopyInfo > &) ),
