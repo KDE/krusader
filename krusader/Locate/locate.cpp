@@ -311,7 +311,7 @@ void LocateDlg::processStdout(K3Process *proc, char *buffer, int length)
     {
       if( dontSearchPath )
       {
-        QRegExp regExp( pattern, isCs, true );
+        QRegExp regExp( pattern, isCs, QRegExp::Wildcard );
         QString fileName = (*it).trimmed();
         if( fileName.endsWith( "/" ) && fileName != "/" )
           fileName.truncate( fileName.length() -1 );

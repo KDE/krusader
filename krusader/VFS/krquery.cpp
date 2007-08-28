@@ -163,11 +163,10 @@ bool KRQuery::matchCommon( const QString &nameIn, const QStringList &matchList, 
   if( ndx != -1 )                  // but the end of the filename is OK
     name = nameIn.mid( ndx + 1 );
 
-  unsigned int len;
   for ( unsigned int i = 0; i < excludeList.count(); ++i )
   {
-    QRegExp( *excludeList.at( i ), matchesCaseSensitive, true ).match( name, 0, ( int* ) & len );
-    if ( len == name.length() ) return false;
+    if( QRegExp( excludeList[ i ], matchesCaseSensitive, QRegExp::Wildcard ).exactMatch( name ) )
+      return false;
   }
 
   if( matchList.count() == 0 )
@@ -175,8 +174,8 @@ bool KRQuery::matchCommon( const QString &nameIn, const QStringList &matchList, 
 
   for ( unsigned int i = 0; i < matchList.count(); ++i )
   {
-    QRegExp( *matchList.at( i ), matchesCaseSensitive, true ).match( name, 0, ( int* ) & len );
-    if ( len == name.length() ) return true;
+    if( QRegExp( matchList[ i ], matchesCaseSensitive, QRegExp::Wildcard ).exactMatch( name ) )
+      return true;
   }
   return false;
 }

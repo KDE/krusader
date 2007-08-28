@@ -350,7 +350,7 @@ bool KrAction::isAvailable( const KUrl& currentURL ) {
    if ( ! _showonlyFile.empty() ) {
       available = false;
       for ( QStringList::Iterator it = _showonlyFile.begin(); it != _showonlyFile.end(); ++it ) {
-         QRegExp regex = QRegExp( *it, false, true ); // case-sensitive = false; wildcards = true
+         QRegExp regex = QRegExp( *it, false, QRegExp::Wildcard ); // case-sensitive = false; wildcards = true
          if ( regex.exactMatch( currentURL.fileName() ) ) {
             available = true;
             break;
