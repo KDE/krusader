@@ -180,56 +180,50 @@ void PreservingCopyJob::slotResult( Job *job ) {
   }
 
   CopyJob::slotResult( job );
-  
-  for( unsigned j=0; j != subjobs.count(); j++ ) {
-    if( subjobs.at( j )->inherits( "KIO::ListJob" ) ) {
-      disconnect( subjobs.at( j ), SIGNAL( entries (KIO::Job *, const KIO::UDSEntryList &) ),
+
+  QList<KJob*> subjob = subjobs();
+  for( unsigned j=0; j != subjob.count(); j++ ) {
+    if( subjob[ j ]->inherits( "KIO::ListJob" ) ) {
+      disconnect( subjob[ j ], SIGNAL( entries (KIO::Job *, const KIO::UDSEntryList &) ),
                   this, SLOT( slotListEntries (KIO::Job *, const KIO::UDSEntryList &) ) );
-      connect( subjobs.at( j ), SIGNAL( entries (KIO::Job *, const KIO::UDSEntryList &) ),
+      connect( subjob[ j ], SIGNAL( entries (KIO::Job *, const KIO::UDSEntryList &) ),
                   this, SLOT( slotListEntries (KIO::Job *, const KIO::UDSEntryList &) ) );
     }
   }
 }
 
 void PreservingCopyJob::slotListEntries(KIO::Job *job, const KIO::UDSEntryList &list) {
-  KIO::UDSEntryListConstIterator it = list.begin();
-  KIO::UDSEntryListConstIterator end = list.end();
+  KIO::UDSEntryList::const_iterator it = list.begin();
+  KIO::UDSEntryList::const_iterator end = list.end();
   for (; it != end; ++it) {
     KUrl url = ((KIO::SimpleJob *)job)->url();
     QString relName, user, group;
     time_t mtime = (time_t)-1;
     mode_t mode = 0755;
     QString acl;
-    
-    KIO::UDSEntry::ConstIterator it2 = (*it).begin();
-    for( ; it2 != (*it).end(); it2++ ) {
-      switch ((*it2).m_uds) {
-      case KIO::UDSEntry::UDS_NAME:
-        if( relName.isEmpty() )
-          relName = (*it2).m_str;
-        break;
-      case KIO::UDSEntry::UDS_URL:
-        relName = KUrl((*it2).m_str).fileName();
-        break;
-      case KIO::UDSEntry::UDS_MODIFICATION_TIME:
-        mtime = (time_t)((*it2).m_long);
-        break;
-      case KIO::UDSEntry::UDS_USER:
-        user = (*it2).m_str;
-        break;
-      case KIO::UDSEntry::UDS_GROUP:
-        group = (*it2).m_str;
-        break;
-      case KIO::UDSEntry::UDS_ACCESS:
-        mode = (*it2).m_long;
-        break;
+
+    if( (*it).contains( KIO::UDSEntry::UDS_URL ) )
+      relName = KUrl( (*it).stringValue( KIO::UDSEntry::UDS_URL ) ).fileName();
+    else if( (*it).contains( KIO::UDSEntry::UDS_NAME ) )
+      relName = (*it).stringValue( KIO::UDSEntry::UDS_NAME );
+
+    if( (*it).contains( KIO::UDSEntry::UDS_MODIFICATION_TIME ) )
+      mtime = (time_t)((*it).numberValue( KIO::UDSEntry::UDS_MODIFICATION_TIME ));
+
+    if( (*it).contains( KIO::UDSEntry::UDS_USER ) )
+      user = (*it).stringValue( KIO::UDSEntry::UDS_USER );
+
+    if( (*it).contains( KIO::UDSEntry::UDS_GROUP ) )
+      group = (*it).stringValue( KIO::UDSEntry::UDS_GROUP );
+
+    if( (*it).contains( KIO::UDSEntry::UDS_ACCESS ) )
+      mode = ((*it).numberValue( KIO::UDSEntry::UDS_ACCESS ));
+
 #if defined( HAVE_POSIX_ACL )
-      case KIO::UDSEntry::UDS_ACL_STRING:
-        acl = (*it2).m_str;
-        break;
+    if( (*it).contains( KIO::UDSEntry::UDS_ACL_STRING ) )
+      acl = (*it).stringValue( KIO::UDSEntry::UDS_ACL_STRING );
 #endif
-      }
-    }
+
     url.addPath( relName );
 
     fileAttributes[ url ] = Attributes( mtime, user, group, mode, acl );
@@ -318,11 +312,27 @@ KIO::CopyJob * PreservingCopyJob::createCopyJob( PreserveMode pmode, const KUrl:
       if( preserve )
         return new PreservingCopyJob( src, dest, mode, asMethod, showProgressInfo );
       else
-        return new KIO::CopyJob( src, dest, mode, asMethod, showProgressInfo );
+      {
+        KIO::CopyJob *res = new KIO::CopyJob( src, dest, mode, asMethod );
+        if( showProgressInfo )
+        {
+          res->setUiDelegate(new KIO::JobUiDelegate() );
+          KIO::getJobTracker()->registerJob(res);
+        }
+        return res;
+      }
     }
   case PM_NONE:
   default:
-    return new KIO::CopyJob( src, dest, mode, asMethod, showProgressInfo );
+    {
+      KIO::CopyJob *res = new KIO::CopyJob( src, dest, mode, asMethod );
+      if( showProgressInfo )
+      {
+        res->setUiDelegate(new KIO::JobUiDelegate() );
+        KIO::getJobTracker()->registerJob(res);
+      }
+      return res;
+    }
   }
 }
 

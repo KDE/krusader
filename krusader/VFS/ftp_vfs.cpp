@@ -45,15 +45,14 @@
 #include <klocale.h>
 #include <kio/job.h>
 #include <kio/jobuidelegate.h>
+#include <kio/deletejob.h>
 #include <kuiserverjobtracker.h>
 #include <kmessagebox.h>
-#include <kprotocolinfo.h>
+#include <kprotocolmanager.h>
 #include <kdebug.h> 
 // Krusader includes
 #include "ftp_vfs.h"
 #include "krpermhandler.h"
-#include "../Dialogs/krdialogs.h"
-#include "../Dialogs/krprogress.h"
 #include "../krusader.h"
 #include "../defaults.h"
 #include "../resources.h"
@@ -75,8 +74,8 @@ void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
 	if( prot == "krarc" || prot == "tar" || prot == "zip" )
 		rwx = PERM_ALL;
 	
-	KIO::UDSEntryListConstIterator it = entries.begin();
-	KIO::UDSEntryListConstIterator end = entries.end();
+	KIO::UDSEntryList::const_iterator it = entries.begin();
+	KIO::UDSEntryList::const_iterator end = entries.end();
 
 	// as long as u can find files - add them to the vfs
 	for ( ; it != end; ++it ) {
@@ -156,8 +155,8 @@ bool ftp_vfs::populateVfsList( const KUrl& origin, bool showHidden ) {
 	QString errorMsg = QString();
 	if ( !origin.isValid() )
 		errorMsg = i18n( "Malformed URL:\n%1" ).arg( origin.url() );
-	if ( !KProtocolInfo::supportsListing( origin ) ) {
-		if( origin.protocol() == "ftp" && KProtocolInfo::supportsReading( origin ) ) 
+	if ( !KProtocolManager::supportsListing( origin ) ) {
+		if( origin.protocol() == "ftp" && KProtocolManager::supportsReading( origin ) ) 
 			errorMsg = i18n( "Krusader doesn't support FTP access via HTTP.\nIf it is not the case, please check and change the Proxy settings in kcontrol." );
 		else
 			errorMsg = i18n( "Protocol not supported by Krusader:\n%1" ).arg( origin.url() );
@@ -189,11 +188,10 @@ bool ftp_vfs::populateVfsList( const KUrl& origin, bool showHidden ) {
 	connect( job, SIGNAL( result( KIO::Job* ) ),
 	         this, SLOT( slotListResult( KIO::Job* ) ) );
 
-	job->setWindow( krApp );
+	job->ui()->setWindow( krApp );
 
 	if ( !quietMode ) {
 		emit startJob( job );
-		//new KrProgress(job); ==> disabled because of in-panel refresh
 	}
 
 	while ( busy && vfs_processEvents());
@@ -288,7 +286,7 @@ void ftp_vfs::vfs_rename( const QString& fileName, const QString& newName ) {
 }
 
 QString ftp_vfs::vfs_workingDir() {
-	return vfs_origin.url( -1 );
+	return vfs_origin.url( KUrl::RemoveTrailingSlash );
 }
 
 #include "ftp_vfs.moc"

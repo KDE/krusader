@@ -32,16 +32,17 @@
 #include "vfs.h"
 #include "vfile.h"
 #include "../krusader.h"
-#include <kio/observer.h>
 #include <kio/global.h>
 #include <kio/jobclasses.h>
 #include <kio/directorysizejob.h>
+#include <kio/jobuidelegate.h>
+#include <kuiserverjobtracker.h>
 
 #define REPORT_TIMEOUT 200
 
 VirtualCopyJob::VirtualCopyJob( const QStringList *names, vfs * vfs, const KUrl& dest, const KUrl& baseURL, 
 	PreserveMode pmode, KIO::CopyJob::CopyMode mode, bool asMethod, bool showProgressInfo ) :
-		KIO::Job( showProgressInfo ), m_totalSize( 0 ), m_totalFiles( 0 ), m_totalSubdirs( 0 ),
+		KIO::Job(), m_totalSize( 0 ), m_totalFiles( 0 ), m_totalSubdirs( 0 ),
 		m_processedSize( 0 ), m_processedFiles( 0 ), m_processedSubdirs( 0 ), m_tempSize( 0 ), m_tempFiles( 0 ),
 		m_tempSubdirs( 0 ), m_dirsToGetSize(), m_filesToCopy(), m_size(), m_filenum(), m_subdirs(), m_baseURL( baseURL ),
 		m_dest( dest ), m_pmode( pmode ), m_mode( mode ), m_asMethod( asMethod ), m_showProgressInfo( showProgressInfo ),
@@ -83,29 +84,14 @@ VirtualCopyJob::VirtualCopyJob( const QStringList *names, vfs * vfs, const KUrl&
 	}
 	
 	if ( showProgressInfo ) {
-		connect( this, SIGNAL( totalFiles( KIO::Job*, unsigned long ) ),
-			Observer::self(), SLOT( slotTotalFiles( KIO::Job*, unsigned long ) ) );
-		connect( this, SIGNAL( totalDirs( KIO::Job*, unsigned long ) ),
-			Observer::self(), SLOT( slotTotalDirs( KIO::Job*, unsigned long ) ) );
-		connect( this, SIGNAL( processedFiles( KIO::Job*, unsigned long ) ),
-			Observer::self(), SLOT( slotProcessedFiles( KIO::Job*, unsigned long ) ) );
-		connect( this, SIGNAL( processedDirs( KIO::Job*, unsigned long ) ),
-			Observer::self(), SLOT( slotProcessedDirs( KIO::Job*, unsigned long ) ) );
-		connect( this, SIGNAL( percent( KIO::Job*, unsigned long ) ),
-			Observer::self(), SLOT( slotPercent( KIO::Job*, unsigned long ) ) );
+		setUiDelegate(new KIO::JobUiDelegate() );
+		KIO::getJobTracker()->registerJob(this);
 	}
 	
 	QTimer::singleShot( 0, this, SLOT( slotStart() ) );
 }
 
 void VirtualCopyJob::slotStart() {
-	if( m_showProgressInfo ) {
-		if( m_mode == KIO::CopyJob::Move )
-			Observer::self()->slotMoving( this, m_baseURL, m_dest );
-		else
-			Observer::self()->slotCopying( this, m_baseURL, m_dest );
-	}
-	
 	connect(&m_reportTimer,SIGNAL(timeout()),this,SLOT(slotReport()));
 	m_reportTimer.start(REPORT_TIMEOUT,false);
 	
@@ -115,28 +101,23 @@ void VirtualCopyJob::slotStart() {
 void VirtualCopyJob::slotReport() {
 	switch( m_state ) {
 	case ST_CREATING_DIRECTORY:
-		if( m_showProgressInfo ) {
-			Observer::self()->slotCreatingDir( this, m_current );
-			Observer::self()->slotProcessedDirs( this, m_processedSubdirs );
-			emit processedDirs( this, m_processedSubdirs );
-		}
 		break;
 	case ST_CALCULATING_TOTAL_SIZE:
-		emit totalSize( this, m_totalSize );
-		emit totalDirs( this, m_totalSubdirs );
-		emit totalFiles( this, m_totalFiles );
+		setTotalAmount( KJob::Bytes, m_totalSize );
+		setTotalAmount( KJob::Directories, m_totalSubdirs );
+		setTotalAmount( KJob::Files, m_totalFiles );
 		break;
 	case ST_COPYING:
 		{
-			emit processedDirs( this, m_processedSubdirs + m_tempSubdirs );
-			emit processedFiles( this, m_processedFiles + m_tempFiles );
-			setProcessedSize( m_processedSize + m_tempSize );
-			emit processedSize( this, m_processedSize + m_tempSize );
+			setProcessedAmount( KJob::Directories, m_processedSubdirs + m_tempSubdirs );
+			setProcessedAmount( KJob::Files, m_processedFiles + m_tempFiles );
+			setProcessedAmount( KJob::Bytes, m_processedSize + m_tempSize );
+			
 			double percDbl = ((double)( m_processedSize + m_tempSize )/(double)m_totalSize) * 100. + 0.5;
 			unsigned long perc = (long)percDbl;
 			if( perc > 100 )
 				perc = 100;
-			emit percent( this, perc );
+			setPercent( perc );
 			break;
 		}
 	default:
@@ -162,7 +143,7 @@ void VirtualCopyJob::statNextDir() {
 }
 
 void VirtualCopyJob::slotKdsResult( KIO::Job * job ) {
-	KIO::DirectorySizeJob* kds = static_cast<DirectorySizeJob*>(job);
+	KIO::DirectorySizeJob* kds = static_cast<KIO::DirectorySizeJob*>(job);
 	m_totalSize += kds->totalSize();
 	m_totalFiles += kds->totalFiles();
 	m_totalSubdirs += kds->totalSubdirs();
@@ -287,18 +268,12 @@ void VirtualCopyJob::directoryFinished( const QString &name ) {
 }
 
 void VirtualCopyJob::slotCopying(KIO::Job *, const KUrl &from, const KUrl &to) {
-	if( m_showProgressInfo )
-		Observer::self()->slotCopying( this, from, to );
 }
 
 void VirtualCopyJob::slotMoving(KIO::Job *, const KUrl &from, const KUrl &to) {
-	if( m_showProgressInfo )
-		Observer::self()->slotMoving( this, from, to );
 }
 
 void VirtualCopyJob::slotCreatingDir(KIO::Job *, const KUrl &to) {
-	if( m_showProgressInfo )
-		Observer::self()->slotCreatingDir( this, to );
 }
   
 void VirtualCopyJob::slotProcessedFiles (KIO::Job *, unsigned long filenum) {
