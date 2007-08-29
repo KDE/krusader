@@ -55,6 +55,7 @@
 #include <kcombobox.h>
 #include <kmessagebox.h>
 #include <kio/global.h>
+#include <khistorycombobox.h>
 #include "../krusader.h"
 
 /* 
@@ -208,7 +209,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     hbox_5->addWidget( vline, 0, 1 );
 
 
-    Q3GridLayout * passwordGrid = new Q3GridLayout;
+    Q3GridLayout * passwordGrid = new Q3GridLayout( hbox_5 );
     passwordGrid->setSpacing( 6 );
     passwordGrid->setMargin( 0 );
 
@@ -257,7 +258,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     TextLabel8->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
     hbox_7->addWidget( TextLabel8 );
 
-    commandLineSwitches = new KHistoryComboBox( advancedWidget, "commandLineSwitches" );
+    commandLineSwitches = new KHistoryComboBox( advancedWidget );
     commandLineSwitches->setMaxCount(25);  // remember 25 items
     commandLineSwitches->setDuplicatesEnabled(false);
     krConfig->setGroup("Archives");

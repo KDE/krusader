@@ -55,7 +55,7 @@ public:
   static KUrl newFTP();
 
 private:
-  static Q3StrList maskList;  // used by KRMaskChoiceSub 
+  static QStringList maskList;  // used by KRMaskChoiceSub 
 };
 
 /////////////////////////// newFTPSub ///////////////////////////////////////
@@ -92,8 +92,8 @@ protected:
 
 class QuickNavLineEdit: public KLineEdit {
 public:
-	QuickNavLineEdit(const QString &string, QWidget *parent, const char *name=0);
- 	QuickNavLineEdit(QWidget *parent=0, const char *name=0);
+	QuickNavLineEdit(const QString &string, QWidget *parent);
+ 	QuickNavLineEdit(QWidget *parent=0);
  	virtual ~QuickNavLineEdit() {}
 	static int findCharFromPos(const QString &, const QFontMetrics &, int pos);
 protected:

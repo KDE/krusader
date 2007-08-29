@@ -28,6 +28,7 @@
 #include <kprotocolinfo.h>
 #include <kcombobox.h>
 #include <kiconloader.h>
+#include <khistorycombobox.h>
 #include "../krusader.h"
 
 
@@ -93,7 +94,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags
     connect( prefix,SIGNAL(activated(const QString& )),
                this,SLOT(slotTextChanged(const QString& )));
 
-    url = new KHistoryComboBox( grid_host, "url" );
+    url = new KHistoryComboBox( grid_host );
     url->setMaximumHeight( 20 );
     url->setMaxCount( 25 );
     url->setDuplicatesEnabled( false );

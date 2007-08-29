@@ -40,19 +40,21 @@
 #include <qcheckbox.h>
 #include <q3listbox.h>
 #include <qspinbox.h>
+#include <qnamespace.h>
 //Added by qt3to4:
 #include <QMouseEvent>
 #include <Q3StrList>
 #include <QEvent>
 #include <klocale.h>
 #include <kcombobox.h>
+#include <khistorycombobox.h>
 #include <kiconloader.h>
 #include <kcursor.h>
 #include <qbitmap.h>
 #include "../resources.h"
 
 ///////////////////// initiation of the static members ////////////////////////
-Q3StrList KRSpWidgets::maskList;
+QStringList KRSpWidgets::maskList;
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -155,12 +157,11 @@ KRMaskChoiceSub::KRMaskChoiceSub() : KRMaskChoice(0,0,true) {
   label->setText(i18n("Enter a selection:"));
   // the predefined selections list
   krConfig->setGroup("Private");
-  Q3StrList lst;
-  int i=krConfig->readListEntry("Predefined Selections",lst);
-  if (i>0) preSelections->insertStrList(lst);
+  QStringList lst = krConfig->readEntry("Predefined Selections",QStringList());
+  if (lst.size()>0) preSelections->insertStringList(lst);
   // the combo-box tweaks
   selection->setDuplicatesEnabled(false);
-  selection->insertStrList(KRSpWidgets::maskList);
+  selection->insertStringList(KRSpWidgets::maskList);
   selection->lineEdit()->setText("*");
   selection->lineEdit()->selectAll();
   selection->setFocus();
@@ -173,10 +174,9 @@ void KRMaskChoiceSub::reject() {
 
 void KRMaskChoiceSub::accept() {
   bool add = true;
-  char *tmp;
   // make sure we don't have that already
-  for ( tmp = KRSpWidgets::maskList.first(); tmp ; tmp = KRSpWidgets::maskList.next() )
-    if (QString(tmp).simplified() == selection->currentText().simplified()) {
+  for ( int i=0; i != KRSpWidgets::maskList.count(); i++ )
+    if (KRSpWidgets::maskList[ i ].simplified() == selection->currentText().simplified()) {
       // break if we found one such as this
       add = false;
       break;
@@ -233,11 +233,11 @@ void KRMaskChoiceSub::acceptFromList(Q3ListBoxItem *i) {
 
 ////////////////////////// QuickNavLineEdit ////////////////////
 
-QuickNavLineEdit::QuickNavLineEdit(const QString &string, QWidget *parent, const char *name):
-	KLineEdit(string, parent, name) { init(); }
+QuickNavLineEdit::QuickNavLineEdit(const QString &string, QWidget *parent ):
+	KLineEdit(string, parent ) { init(); }
 	
-QuickNavLineEdit::QuickNavLineEdit(QWidget *parent, const char *name): 
-	KLineEdit(parent, name) { init(); }
+QuickNavLineEdit::QuickNavLineEdit(QWidget *parent ): 
+	KLineEdit(parent ) { init(); }
 
 int QuickNavLineEdit::findCharFromPos(const QString & str, const QFontMetrics & metrics, int pos)
 {
@@ -261,7 +261,7 @@ void QuickNavLineEdit::leaveEvent(QEvent *) {
 }
 
 void QuickNavLineEdit::mousePressEvent( QMouseEvent *m ) {
-	if (m->state()!=ControlButton) clearAll();
+	if ( m->modifiers() != Qt::ControlModifier ) clearAll();
 	else
 	{
 		if (!_numOfSelectedChars)
@@ -291,7 +291,7 @@ int QuickNavLineEdit::charCount(const QMouseEvent * const m,QString * const str)
 }
 
 void QuickNavLineEdit::mouseMoveEvent( QMouseEvent *m) {
-	if (m->state()!=ControlButton) { // works only with ctrl pressed
+	if (m->modifiers() != Qt::ControlModifier) { // works only with ctrl pressed
 		clearAll();
 		KLineEdit::mouseMoveEvent(m);
 		return;
@@ -302,7 +302,7 @@ void QuickNavLineEdit::mouseMoveEvent( QMouseEvent *m) {
 			if (_pop) delete _pop;
 			_pop = KPassivePopup::message( i18n("Quick Navigation"),
 				"<qt>" + i18n("Already at <i>%1</i>").arg(tx.left(idx)) + "</qt>",
-				*(Qt::PointingHandCursor.bitmap()), this);
+				*(QCursor(Qt::PointingHandCursor).bitmap()), this);
 
 			_dummyDisplayed=true;
 			_numOfSelectedChars=0;
@@ -313,7 +313,7 @@ void QuickNavLineEdit::mouseMoveEvent( QMouseEvent *m) {
 
 			_pop = KPassivePopup::message( i18n("Quick Navigation"),
 				"<qt>" + i18n("Click to go to <i>%1</i>").arg(tx.left(idx)) + "</qt>",
-				*(Qt::PointingHandCursor.bitmap()), this );
+				*(QCursor(Qt::PointingHandCursor).bitmap()), this );
 		}
 	KLineEdit::mouseMoveEvent(m);
 }
