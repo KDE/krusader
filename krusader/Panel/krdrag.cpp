@@ -29,21 +29,21 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 ***************************************************************************/
 
 #include "krdrag.h"
-#include <kurldrag.h>
+#include <k3urldrag.h>
 //Added by qt3to4:
 #include <Q3StrList>
 #include <Q3CString>
 
 KRDrag * KRDrag::newDrag( const KUrl::List & urls, bool move, QWidget * dragSource, const char* name )
 {
-    // See KURLDrag::newDrag
+    // See K3URLDrag::newDrag
     Q3StrList uris;
     KUrl::List::ConstIterator uit = urls.begin();
     KUrl::List::ConstIterator uEnd = urls.end();
     // Get each URL encoded in utf8 - and since we get it in escaped
     // form on top of that, .toLatin1() is fine.
     for ( ; uit != uEnd ; ++uit )
-        uris.append( KURLDrag::urlToString( *uit ).toLatin1() );
+        uris.append( K3URLDrag::urlToString( *uit ).toLatin1() );
     return new KRDrag( uris, move, dragSource, name );
 }
 
@@ -78,7 +78,7 @@ QByteArray KRDrag::encodedData( const char* mime ) const
     {
       QStringList uris;
       for (QStrListIterator it(m_urls); *it; ++it)
-          uris.append(KURLDrag::stringToUrl(*it).prettyUrl());
+          uris.append(K3URLDrag::stringToUrl(*it).prettyUrl());
       Q3CString s = uris.join( "\n" ).local8Bit();
       if( uris.count() > 1 )
           s.append( "\n" );

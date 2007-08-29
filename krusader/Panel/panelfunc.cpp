@@ -80,7 +80,7 @@ A
 #include "../GUI/syncbrowsebutton.h"
 #include "../Queue/queue_mgr.h"
 #include "krdrag.h"
-#include <kurldrag.h>
+#include <k3urldrag.h>
 
 //////////////////////////////////////////////////////////
 //////          ----------      List Panel -------------                ////////
@@ -1174,8 +1174,8 @@ void ListPanelFunc::pasteFromClipboard() {
 	QClipboard * cb = QApplication::clipboard();
 	QMimeSource * data = cb->data();
 	KUrl::List urls;
-	if ( KURLDrag::canDecode( data ) ) {
-		KURLDrag::decode( data, urls );
+	if ( K3URLDrag::canDecode( data ) ) {
+		K3URLDrag::decode( data, urls );
 		bool cutSelection = KRDrag::decodeIsCutSelection( data );
 
 		KUrl destUrl = panel->virtualPath();

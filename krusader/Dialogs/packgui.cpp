@@ -37,6 +37,8 @@
 #include <qstringlist.h>
 #include <qlabel.h>
 #include <qpushbutton.h>
+#include <qcombobox.h>
+#include <khistorycombobox.h>
 
 #define PS(x) lst.contains(x)>0
 
@@ -52,7 +54,7 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
   if(noOfFiles == 1)
     TextLabel1->setText( i18n("Pack %1").arg(filename) );
   else
-    TextLabel1->setText( i18n("Pack %n file", "Pack %n files", noOfFiles) );
+    TextLabel1->setText( i18np("Pack %1 file", "Pack %1 files", noOfFiles) );
 
   // now, according to the Konfigurator, fill the combobox with the information
   // about what kind of packing we can do
@@ -71,10 +73,10 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
   // set the last used packer as the top one
   QString tmp=krConfig->readEntry("lastUsedPacker",QString());
   if (tmp!=QString()) {
-    for (unsigned int i=0; i< typeData->listBox()->count(); ++i)
-      if (typeData->listBox()->item(i)->text() == tmp) {
-        typeData->listBox()->removeItem(i);
-        typeData->listBox()->insertItem(tmp,0);
+    for (unsigned int i=0; i< typeData->count(); ++i)
+      if (typeData->itemText( i ) == tmp) {
+        typeData->removeItem(i);
+        typeData->insertItem(tmp,0);
         break;
       }
   }
@@ -84,7 +86,7 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
   dirData->setText(defaultPath);
   nameData->setText(defaultName);
   nameData->setFocus();
-  if (typeData->listBox()->count()==0) // if no packers are availble
+  if (typeData->count()==0) // if no packers are availble
     okButton->setEnabled(false);
   setGeometry(krApp->x()+krApp->width()/2-width()/2,krApp->y()+krApp->height()/2-height()/2,width(),height());
 	exec();

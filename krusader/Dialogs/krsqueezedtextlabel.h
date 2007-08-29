@@ -22,7 +22,7 @@ NEW: a special setText() method allows to choose which part of the string should
 class KrSqueezedTextLabel : public KSqueezedTextLabel {
 Q_OBJECT
   public:
-    KrSqueezedTextLabel(QWidget *parent = 0, const char *name = 0);
+    KrSqueezedTextLabel(QWidget *parent = 0);
     ~KrSqueezedTextLabel();
 
     void enableDrops( bool flag );
@@ -40,6 +40,8 @@ Q_OBJECT
     virtual void dropEvent(QDropEvent *e);
     virtual void dragEnterEvent(QDragEnterEvent *e);
     void squeezeTextToLabel(int index=-1, int length=-1);
+
+   QString fullText;
 
   private:
     bool  acceptDrops;

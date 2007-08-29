@@ -56,7 +56,7 @@
 #include <qcursor.h>
 #include <qclipboard.h>
 #include <q3header.h>
-#include <kurldrag.h>
+#include <k3urldrag.h>
 #include <../kicons.h>
 
 class SearchListView : public Q3ListView
@@ -85,7 +85,7 @@ public:
     if( urls.count() == 0 )
       return;
 
-    KURLDrag *d = new KURLDrag(urls, this);
+    K3URLDrag *d = new K3URLDrag(urls, this);
     d->setPixmap( FL_LOADICON( "file" ), QPoint( -7, 0 ) );
     d->dragCopy();
   }
@@ -627,7 +627,7 @@ void KrSearchDialog::copyToClipBoard()
   if( urls.count() == 0 )
     return;
 
-  KURLDrag *d = new KURLDrag(urls, this);
+  K3URLDrag *d = new K3URLDrag(urls, this);
   d->setPixmap( FL_LOADICON( "file" ), QPoint( -7, 0 ) );
   QApplication::clipboard()->setData( d );
 }

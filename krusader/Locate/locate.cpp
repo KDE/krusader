@@ -57,7 +57,7 @@
 #include <qregexp.h>
 #include <qdir.h>
 #include <qclipboard.h>
-#include <kurldrag.h>
+#include <k3urldrag.h>
 #include <../kicons.h>
 
 // these are the values that will exist in the menu
@@ -92,7 +92,7 @@ public:
     if( urls.count() == 0 )
       return;
 
-    KURLDrag *d = new KURLDrag(urls, this);
+    K3URLDrag *d = new K3URLDrag(urls, this);
     d->setPixmap( FL_LOADICON( "file" ), QPoint( -7, 0 ) );
     d->dragCopy();
   }
@@ -532,7 +532,7 @@ void LocateDlg::operate( Q3ListViewItem *item, int task )
       if( urls.count() == 0 )
         return;
 
-      KURLDrag *d = new KURLDrag(urls, this);
+      K3URLDrag *d = new K3URLDrag(urls, this);
       d->setPixmap( FL_LOADICON( "file" ), QPoint( -7, 0 ) );
       QApplication::clipboard()->setData( d );
     }

@@ -1,6 +1,6 @@
 #include "krsqueezedtextlabel.h"
 #include <kstringhandler.h>
-#include <kurldrag.h>
+#include <k3urldrag.h>
 #include <qtooltip.h>
 //Added by qt3to4:
 #include <QMouseEvent>
@@ -8,8 +8,8 @@
 #include <QDragEnterEvent>
 #include <QLabel>
 
-KrSqueezedTextLabel::KrSqueezedTextLabel(QWidget *parent, const char *name):
-  KSqueezedTextLabel(parent, name), acceptDrops( false ), _index(-1), _length(-1) {
+KrSqueezedTextLabel::KrSqueezedTextLabel(QWidget *parent):
+  KSqueezedTextLabel(parent), acceptDrops( false ), _index(-1), _length(-1) {
 }
 
 
@@ -32,7 +32,7 @@ void KrSqueezedTextLabel::dropEvent(QDropEvent *e) {
 
 void KrSqueezedTextLabel::dragEnterEvent(QDragEnterEvent *e) {
   if( acceptDrops )
-    e->accept( KURLDrag::canDecode( e ) );
+    e->accept( K3URLDrag::canDecode( e ) );
   else
     KSqueezedTextLabel::dragEnterEvent( e );
 }
@@ -69,7 +69,7 @@ void KrSqueezedTextLabel::squeezeTextToLabel(int index, int length) {
 			QLabel::setText(fullText);
 
 			QToolTip::remove( this );
-			QToolTip::hide();
+			QToolTip::hideText();
 		}
 	}
 }

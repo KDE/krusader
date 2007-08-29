@@ -6,7 +6,6 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 set( Dialogs_SRCS
 	krsqueezedtextlabel.cpp
-	krprogress.cpp
 	packgui.cpp
 	packguibase.cpp
 	newftpgui.cpp

@@ -64,7 +64,7 @@
 #include <q3header.h>
 #include <qspinbox.h>
 #include <kinputdialog.h>
-#include <kurldrag.h>
+#include <k3urldrag.h>
 #include <qclipboard.h>
 
 static const char * const right_arrow_button_data[] = {
@@ -1070,7 +1070,7 @@ public:
     if( urls.count() == 0 )
       return;
 
-    KURLDrag *d = new KURLDrag(urls, this);
+    K3URLDrag *d = new K3URLDrag(urls, this);
     d->setPixmap( FL_LOADICON( isLeft ? "2leftarrow" : "2rightarrow" ), QPoint( -7, 0 ) );
     d->dragCopy();
   }
@@ -2479,7 +2479,7 @@ void SynchronizerGUI::copyToClipboard( bool isLeft )
   if( urls.count() == 0 )
     return;
 
-  KURLDrag *d = new KURLDrag(urls, this);
+  K3URLDrag *d = new K3URLDrag(urls, this);
   d->setPixmap( FL_LOADICON( isLeft ? "2leftarrow" : "2rightarrow" ), QPoint( -7, 0 ) );
   QApplication::clipboard()->setData( d );
 }

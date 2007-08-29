@@ -36,6 +36,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <klocale.h>
 #include <kmenu.h>
 #include <kdebug.h>
+#include <kio/jobuidelegate.h>
+#include <kuiserverjobtracker.h>
 
 // Krusader includes
 #include "../krusader.h"
@@ -44,7 +46,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../krservices.h"
 #include "kmountmangui.h"
 #include <unistd.h>
-#include "../Dialogs/krprogress.h"
 #include "../VFS/krpermhandler.h"
 
 #ifdef _OS_SOLARIS_
@@ -128,7 +129,8 @@ void KMountMan::mount( QString mntPoint, bool blocking ) {
 	if (blocking)
 	   waiting = true; // prepare to block
 	KIO::SimpleJob *job = KIO::mount(false, m->mountType().local8Bit(), m->mountedFrom(), m->mountPoint(), false);
-	new KrProgress(job);
+	setUiDelegate(new KIO::JobUiDelegate() );
+	KIO::getJobTracker()->registerJob(this);
 	connect(job, SIGNAL(result(KIO::Job* )), this, SLOT(jobResult(KIO::Job* )));
 	while (blocking && waiting) {
 		qApp->processEvents();
@@ -140,7 +142,8 @@ void KMountMan::unmount( QString mntPoint, bool blocking ) {
 	if (blocking)
 	   waiting = true; // prepare to block
 	KIO::SimpleJob *job = KIO::unmount(mntPoint, false);
-	new KrProgress(job);
+	setUiDelegate(new KIO::JobUiDelegate() );
+	KIO::getJobTracker()->registerJob(this);
 	connect(job, SIGNAL(result(KIO::Job* )), this, SLOT(jobResult(KIO::Job* )));
 	while (blocking && waiting) {
 		qApp->processEvents();
