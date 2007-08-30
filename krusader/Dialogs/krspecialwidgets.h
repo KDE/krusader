@@ -106,17 +106,11 @@ class KRPieSlice {
 class KrQuickSearch: public KLineEdit {
       Q_OBJECT
    public:
-      KrQuickSearch(QWidget *parent, const char * name = 0);
+      KrQuickSearch(QWidget *parent);
       void addText(const QString &str) { setText(text()+str); }
       void myKeyPressEvent(QKeyEvent *e);
-      void myIMStartEvent(QIMEvent* e) {
-        imStartEvent(e);
-      }
-      void myIMEndEvent(QIMEvent* e) {
-        imEndEvent(e);
-      }
-      void myIMComposeEvent(QIMEvent* e) {
-        imComposeEvent(e);
+      void myInputMethodEvent(QInputMethodEvent* e) {
+        inputMethodEvent(e);
       }
 
    signals:

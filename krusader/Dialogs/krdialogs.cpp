@@ -61,7 +61,7 @@
 #include <qdir.h>
 
 KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd) {
-	KUrlRequesterDlg *dlg = new KUrlRequesterDlg( vfs::pathOrUrl( url, KUrl::AddTrailingSlash ),text,krApp,"");
+	KUrlRequesterDialog *dlg = new KUrlRequesterDialog( vfs::pathOrUrl( url, KUrl::AddTrailingSlash ),text,krApp);
 	dlg->urlRequester()->completionObject()->setDir(cwd.url());
 	KUrl u;
 	if (dlg->exec() == QDialog::Accepted) {
@@ -83,7 +83,7 @@ KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd) {
 }
 
 KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd, bool &preserveAttrs ) {
-	KUrlRequesterDlgForCopy *dlg = new KUrlRequesterDlgForCopy( vfs::pathOrUrl( url, KUrl::AddTrailingSlash ),text, preserveAttrs, krApp,"" );
+	KUrlRequesterDlgForCopy *dlg = new KUrlRequesterDlgForCopy( vfs::pathOrUrl( url, KUrl::AddTrailingSlash ),text, preserveAttrs, krApp );
 	dlg->urlRequester()->completionObject()->setDir(cwd.url());
 	KUrl u;
 	if (dlg->exec() == QDialog::Accepted) {
@@ -106,7 +106,7 @@ KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd, bool &pre
 }
 
 KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd, bool &preserveAttrs, KUrl &baseURL ) {
-	KUrlRequesterDlgForCopy *dlg = new KUrlRequesterDlgForCopy( vfs::pathOrUrl( url, KUrl::AddTrailingSlash ),text, preserveAttrs, krApp,"", true, baseURL );
+	KUrlRequesterDlgForCopy *dlg = new KUrlRequesterDlgForCopy( vfs::pathOrUrl( url, KUrl::AddTrailingSlash ),text, preserveAttrs, krApp, true, baseURL );
 	dlg->urlRequester()->completionObject()->setDir(cwd.url());
 	KUrl u;
 	if (dlg->exec() == QDialog::Accepted) {
@@ -135,30 +135,35 @@ KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd, bool &pre
 }
 
 KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy( const QString& urlName, const QString& _text, bool presAttrs, QWidget *parent,
-                                                  const char *name, bool modal, KUrl baseURL )
-			:   KDialog( Plain, QString(), Ok|Cancel|User1, Ok, parent, name, modal, true, KStandardGuiItem::clear() ),
-			baseUrlCombo( 0 ), copyDirStructureCB( 0 ) {
+                                                  bool modal, KUrl baseURL )
+		:   KDialog( parent ), baseUrlCombo( 0 ), copyDirStructureCB( 0 ) {
 	
-	Q3VBoxLayout * topLayout = new Q3VBoxLayout( plainPage(), 0, spacingHint() );
+	setButtons( KDialog::Ok | KDialog::User1 | KDialog::Cancel );
+	setDefaultButton( KDialog::Ok );
+	setButtonGuiItem( KDialog::User1, KStandardGuiItem::clear() );
+	setWindowModality( Qt::WindowModal );
+	showButtonSeparator( true );
 
-	QLabel * label = new QLabel( _text, plainPage() );
+	Q3VBoxLayout * topLayout = new Q3VBoxLayout( this, 0, spacingHint() );
+
+	QLabel * label = new QLabel( _text, this );
 	topLayout->addWidget( label );
 
-	urlRequester_ = new KUrlRequester( urlName, plainPage(), "urlRequester" );
+	urlRequester_ = new KUrlRequester( urlName, this );
 	urlRequester_->setMinimumWidth( urlRequester_->sizeHint().width() * 3 );
 	topLayout->addWidget( urlRequester_ );
-	preserveAttrsCB = new QCheckBox(i18n("Preserve attributes (only for local targets)"), plainPage());
+	preserveAttrsCB = new QCheckBox(i18n("Preserve attributes (only for local targets)"), this);
 	preserveAttrsCB->setChecked( presAttrs );
 	topLayout->addWidget( preserveAttrsCB );
 	if( !baseURL.isEmpty() ) {
-		QFrame *line = new Q3Frame( plainPage(), "sepLine" );
+		QFrame *line = new Q3Frame( this, "sepLine" );
 		line->setFrameStyle( Q3Frame::HLine | Q3Frame::Sunken );
 		topLayout->addWidget( line );
-		copyDirStructureCB = new QCheckBox(i18n("Keep virtual directory structure"), plainPage());
+		copyDirStructureCB = new QCheckBox(i18n("Keep virtual directory structure"), this);
 		connect( copyDirStructureCB, SIGNAL( toggled( bool ) ), this, SLOT( slotDirStructCBChanged() ) );
 		copyDirStructureCB->setChecked( false );
 		topLayout->addWidget( copyDirStructureCB );
-		Q3HBox * hbox = new Q3HBox( plainPage(), "copyDirStructure" );
+		Q3HBox * hbox = new Q3HBox( this, "copyDirStructure" );
 		new QLabel( i18n("Base URL:"),  hbox, "baseURLLabel" );
 		
 		baseUrlCombo = new QComboBox( hbox, "baseUrlRequester" );
@@ -213,7 +218,7 @@ void KUrlRequesterDlgForCopy::slotDirStructCBChanged() {
 
 KUrl KUrlRequesterDlgForCopy::selectedURL() const {
 	if ( result() == QDialog::Accepted ) {
-		KUrl url = KUrl::fromPathOrUrl( urlRequester_->url() );
+		KUrl url = urlRequester_->url();
 		if( url.isValid() )
 			KRecentDocument::add(url);                                
 		return url;
@@ -232,8 +237,10 @@ KUrl KUrlRequesterDlgForCopy::baseURL() const {
 	return vfs::fromPathOrUrl( baseUrlCombo->currentText() );
 }
 
-KRGetDate::KRGetDate(QDate date, QWidget *parent, const char *name) : KDialog(parent, name,true,Qt::WStyle_DialogBorder) {
-  dateWidget = new KDatePicker(this, date);
+KRGetDate::KRGetDate(QDate date, QWidget *parent) : KDialog(parent,Qt::WStyle_DialogBorder) {
+  setWindowModality( Qt::WindowModal );
+  dateWidget = new KDatePicker(this);
+  dateWidget->setDate( date );
   dateWidget->resize(dateWidget->sizeHint());
   setMinimumSize(dateWidget->sizeHint());
   setMaximumSize(dateWidget->sizeHint());

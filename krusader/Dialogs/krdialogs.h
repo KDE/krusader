@@ -34,7 +34,7 @@
 // KDE includes
 #include <kdialog.h>
 #include <kanimatedbutton.h>
-#include <kurlrequesterdlg.h>
+#include <kurlrequesterdialog.h>
 #include <kdatepicker.h>
 #include <kdialog.h>
 // QT includes
@@ -77,7 +77,7 @@ class KUrlRequesterDlgForCopy : public KDialog {
   Q_OBJECT
 public:
 	KUrlRequesterDlgForCopy( const QString& url, const QString& text, bool presAttrs,
-				QWidget *parent, const char *name, bool modal=true, KUrl baseURL = KUrl() );
+				QWidget *parent, bool modal=true, KUrl baseURL = KUrl() );
 	KUrlRequesterDlgForCopy();
 
 	KUrl selectedURL() const;
@@ -100,7 +100,7 @@ private:
 class KRGetDate : public KDialog {
   Q_OBJECT
 public:
-  KRGetDate(QDate date=QDate::currentDate(), QWidget *parent = 0, const char *name = 0);
+  KRGetDate(QDate date=QDate::currentDate(), QWidget *parent = 0);
   QDate getDate();
 
 private slots:

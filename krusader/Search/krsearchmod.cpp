@@ -46,7 +46,6 @@
 #include <q3textstream.h>
 #include <qregexp.h>
 #include <kde_file.h>
-#include <kurlrequesterdlg.h>
 
 #include <kmimetype.h>
 

@@ -150,8 +150,7 @@ void KRFSDisplay::paintEvent( QPaintEvent * ) {
 
 ////////////////////////////////////////////////////////////////////////////////
 KRPie::KRPie( KIO::filesize_t _totalSize, QWidget *parent ) : QWidget( parent, 0 ), totalSize( _totalSize ) {
-   slices.setAutoDelete( true ); // kill items when they are removed
-   slices.append( new KRPieSlice( 100, Qt::yellow, "DEFAULT" ) );
+   slices.push_back( KRPieSlice( 100, Qt::yellow, "DEFAULT" ) );
    sizeLeft = totalSize;
    resize( 300, 300 );
 }
@@ -161,11 +160,11 @@ void KRPie::paintEvent( QPaintEvent * ) {
    // now create the slices
    KRPieSlice *slice;
    float sAngle = STARTANGLE;
-   for ( slice = slices.first(); slice != 0; slice = slices.next() ) {
-      paint.setBrush( slice->getColor() );
-      paint.setPen( slice->getColor() );
+   for ( int ndx=0; ndx != slices.count(); ndx++ ) {
+      paint.setBrush( slice[ndx].getColor() );
+      paint.setPen( slice[ndx].getColor() );
       // angles are negative to create a clock-wise drawing of slices
-      float angle = -( slice->getPerct() / 100 * 360 ) * 16;
+      float angle = -( slice[ndx].getPerct() / 100 * 360 ) * 16;
       for ( int i = 1; i < Z_HEIGHT; ++i )
          paint.drawPie( LEFT, BOTTOM + i, WIDTH, HEIGHT, ( int ) sAngle, ( int ) angle );
       sAngle += angle;
@@ -175,11 +174,11 @@ void KRPie::paintEvent( QPaintEvent * ) {
    // for (int i=1; i<Z_HEIGHT; ++i)
    //  paint.drawPie(LEFT,BOTTOM+i,WIDTH,HEIGHT,sAngle,360*16-(STARTANGLE-sAngle));
    sAngle = STARTANGLE;
-   for ( slice = slices.first(); slice != 0; slice = slices.next() ) {
-      paint.setBrush( slice->getColor() );
-      paint.setPen( slice->getColor() );
+   for ( int ndx=0; ndx != slices.count(); ndx++ ) {
+      paint.setBrush( slice[ndx].getColor() );
+      paint.setPen( slice[ndx].getColor() );
       // angles are negative to create a clock-wise drawing of slices
-      float angle = -( slice->getPerct() / 100 * 360 ) * 16;
+      float angle = -( slice[ndx].getPerct() / 100 * 360 ) * 16;
       paint.drawPie( LEFT, BOTTOM, WIDTH, HEIGHT, ( int ) sAngle, ( int ) angle );
       sAngle += angle;
    }
@@ -199,15 +198,15 @@ void KRPie::paintEvent( QPaintEvent * ) {
 void KRPie::addSlice( KIO::filesize_t size, QString label ) {
    int i = ( slices.count() % 12 );
    slices.removeLast();
-   slices.append( new KRPieSlice( size * 100 / totalSize, colors[ i ], label ) );
+   slices.push_back( KRPieSlice( size * 100 / totalSize, colors[ i ], label ) );
    sizeLeft -= size;
-   slices.append( new KRPieSlice( sizeLeft * 100 / totalSize, Qt::yellow, "DEFAULT" ) );
+   slices.push_back( KRPieSlice( sizeLeft * 100 / totalSize, Qt::yellow, "DEFAULT" ) );
 }
 
 ////////////////////////////////////////////////////
 /////////////////// KrQuickSearch  /////////////////
 ////////////////////////////////////////////////////
-KrQuickSearch::KrQuickSearch( QWidget *parent, const char * name ) : KLineEdit( parent, name ) {}
+KrQuickSearch::KrQuickSearch( QWidget *parent ) : KLineEdit( parent ) {}
 
 void KrQuickSearch::myKeyPressEvent( QKeyEvent *e ) {
    switch ( e->key() ) {

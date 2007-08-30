@@ -36,6 +36,7 @@
 //Added by qt3to4:
 #include <QLabel>
 #include <QCloseEvent>
+#include <Q3ProgressBar>
 #include <unistd.h>
 #include "../krusader.h"
 #include "klocale.h"
@@ -130,7 +131,7 @@ void KRPleaseWaitHandler::cycleProgress(){
 }
 
 void KRPleaseWaitHandler::killJob(){
-	if( !job.isNull() ) job->kill(false);
+	if( !job.isNull() ) job->kill();
 	stopWait();
 	_wasCancelled = true;
 }
