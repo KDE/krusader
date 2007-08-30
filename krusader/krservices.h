@@ -22,7 +22,7 @@
 #include <qstringlist.h>
 #include <qmap.h>
 #include <k3process.h>
-#include <q3textstream.h>
+#include <qtextstream.h>
 
 /**
   *@author Shie Erlich & Rafi Yanai
@@ -39,7 +39,7 @@ public:
 	static QStringList  separateArgs( QString args );
 	static QString      registerdProtocol(QString mimetype);
 	static void         clearProtocolCache();
-	static bool         fileToStringList(Q3TextStream *stream, QStringList& target, bool keepEmptyLines=false);
+	static bool         fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines=false);
 	static QString		  quote( QString name );
 	static QStringList  quote( const QStringList& names );
 

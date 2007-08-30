@@ -13,6 +13,7 @@
 
 #include <qlayout.h>
 #include <q3whatsthis.h>
+#include <q3boxlayout.h>
 #include <klocale.h>
 #include <kpushbutton.h>
 #include <kmessagebox.h>
@@ -20,8 +21,8 @@
 #include <kglobal.h>
 #include <kstandarddirs.h>
 #include <kconfig.h>
-#include <kactionshortcutlist.h>
 #include <kdebug.h>
+#include <kactioncollection.h>
 
 #include "../krusader.h"
 
@@ -29,13 +30,13 @@
 static const char* FILE_FILTER = I18N_NOOP("*.keymap|Krusader keymaps\n*|all files");
 
 
-KrKeyDialog::KrKeyDialog( QWidget * parent ) : KKeyDialog( false /* allow letter shortcuts */, parent ) {
-   insert( krApp->actionCollection() );
+KrKeyDialog::KrKeyDialog( QWidget * parent ) : KShortcutsDialog( KShortcutsEditor::AllActions, KShortcutsEditor::LetterShortcutsDisallowed /* allow letter shortcuts */, parent ) {
+   addCollection( krApp->actionCollection() );
 
    // HACK This fetches the layout of the buttonbox from KDialog, although it is not accessable with KDialog's API
    // None the less it's quite save to use since this implementation hasn't changed since KDE-3.3 (I haven't looked at earlier
    // versions since we don't support them) and now all work is done in KDE-4.
-   QWidget* buttonBox = static_cast<QWidget*>( actionButton(KDialog::Ok)->parent() );
+   QWidget* buttonBox = static_cast<QWidget*>( button(KDialog::Ok)->parent() );
    Q3BoxLayout* buttonBoxLayout = static_cast<Q3BoxLayout*>( buttonBox->layout() );
 
    KPushButton* importButton = new KPushButton( i18n("Import shortcuts"), buttonBox );
@@ -49,7 +50,7 @@ KrKeyDialog::KrKeyDialog( QWidget * parent ) : KKeyDialog( false /* allow letter
    connect( exportButton, SIGNAL( clicked() ), SLOT( slotExportShortcuts() ) );
 
    // Also quite HACK 'isch but unfortunately KKeyDialog don't giveus access to this widget
-   _chooser = static_cast<KKeyChooser*>( mainWidget() );
+   _chooser = static_cast<KShortcutsEditor*>( mainWidget() );
 
    configure( true /* SaveSettings */ ); // this runs the dialog
 }
@@ -65,13 +66,14 @@ void KrKeyDialog::slotImportShortcuts() {
    if ( filename.isEmpty() )
       return;
 
-   KConfig conf( filename, true /*read only*/, false /*no KDEGlobal*/ );
+   KConfig conf( filename, KConfig::NoGlobals /*no KDEGlobal*/ );
    if ( ! conf.hasGroup("Shortcuts") ) {
       int answer = KMessageBox::warningContinueCancel( this,	//parent
 		i18n("This file does not seem to be a valid keymap.\n"
 			"It may be a keymap using a legacy format. The import can't be undone!"),	//text
 		i18n("Try to import legacy format?"), 	//caption
-		i18n("Import anyway"),	//Label for the continue-button
+		KGuiItem( i18n("Import anyway") ),	//Label for the continue-button
+		KStandardGuiItem::cancel(),
 		"Confirm Import Legacy Shortcuts"	//dontAskAgainName (for the config-file)
 	);
       if ( answer == KMessageBox::Continue )
@@ -80,7 +82,7 @@ void KrKeyDialog::slotImportShortcuts() {
          return;
    }
    else
-      _chooser->syncToConfig( "Shortcuts", &conf, false /* don't delete shortcuts of actions not listed in conf */ );
+      _chooser->save();
 }
 
 void KrKeyDialog::importLegacyShortcuts( const QString& file ) {
@@ -105,7 +107,7 @@ void KrKeyDialog::importLegacyShortcuts( const QString& file ) {
 	char *actionName;
 	QDataStream stream(&f);
 	int key;
-	KAction *action;
+	QAction *action;
 	while (!stream.atEnd()) {
 		stream >> actionName >> key;
 		action = krApp->actionCollection()->action(actionName);
@@ -132,7 +134,7 @@ void KrKeyDialog::slotExportShortcuts() {
    if ( f.exists() &&
    		KMessageBox::warningContinueCancel( this, 
 		i18n("<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>").arg(filename),
-		i18n("Warning"), i18n("Overwrite") )
+		i18n("Warning"), KGuiItem( i18n("Overwrite") ) )
 	!= KMessageBox::Continue)
 	return;
    if ( f.open( QIODevice::WriteOnly ) )
@@ -144,12 +146,12 @@ void KrKeyDialog::slotExportShortcuts() {
       return;
    }
 
-   KConfig conf( filename, false /*read only*/, false /*no KDEGlobal*/ );
+   KConfig conf( filename, KConfig::NoGlobals );
+   KConfigGroup cg = conf.group( "Shortcuts" );
 
    // unfortunately we can't use this function since it only writes the actions which are different from default.
    //krApp->actionCollection()->writeShortcutSettings( "Shortcuts", &conf );
-   KActionShortcutList list( krApp->actionCollection() );
-   list.writeSettings( "Shortcuts", &conf, true /* write all actions */ );
+   krApp->actionCollection()->writeSettings( &cg, true /* write all actions */ );
    // That does KActionShortcutList::writeSettings for us
    //conf.sync(); // write back all changes
 }

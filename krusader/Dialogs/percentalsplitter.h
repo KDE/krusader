@@ -34,8 +34,6 @@
 #include <qsplitter.h> 
 #include <qlabel.h> 
 
-class PercentalSplitterToolTip;
-
 class PercentalSplitter : public QSplitter {
   Q_OBJECT
   
@@ -46,10 +44,9 @@ public:
   QString toolTipString( int p = -1 );
   
 protected:
-  virtual void setRubberband ( int p );
+  virtual void setRubberBand ( int p );
   
 private:
-  PercentalSplitterToolTip * toolTip;
   QLabel * label;
   int opaqueOldPos;
   QPoint labelLocation;

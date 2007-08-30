@@ -37,42 +37,11 @@
 #include <Q3ValueList>
 #include <Q3Frame>
 
-class PercentalSplitterToolTip : public QToolTip {
-public:
-  PercentalSplitterToolTip( QWidget * parent ) : QToolTip( parent ) {
-  }
-  
-  virtual ~PercentalSplitterToolTip() {
-    remove( parentWidget() );
-  }
-  
-  void maybeTip( const QPoint & point ) {
-    if( parentWidget()->inherits( "PercentalSplitter" ) ) {
-      PercentalSplitter *splitter = (PercentalSplitter *)parentWidget();
-      
-      QString tipString = splitter->toolTipString();
-      QRect rect = QRect( parentWidget()->rect() );
-
-      if( splitter->orientation() == Qt::Vertical ) {
-        rect.setY( splitter->sizes()[ 0 ] );
-        rect.setHeight( splitter->handleWidth() );
-      }
-      else {
-        rect.setX( splitter->sizes()[ 0 ] );
-        rect.setWidth( splitter->handleWidth() );
-      }
-      if( rect.contains( point ) )
-        tip( rect, tipString );
-    }
-  }
-};
-
 PercentalSplitter::PercentalSplitter( QWidget * parent, const char * name ) : QSplitter( parent, name ), label( 0 ), opaqueOldPos( -1 ) {
-  toolTip = new PercentalSplitterToolTip( this );
+  setToolTip( toolTipString() );
 }  
   
 PercentalSplitter::~PercentalSplitter() {
-  delete toolTip;
 }
   
 QString PercentalSplitter::toolTipString( int p ) {
@@ -86,112 +55,9 @@ QString PercentalSplitter::toolTipString( int p ) {
   return QString();
 }
   
-void PercentalSplitter::setRubberband ( int p ) {  
-  if( p == opaqueOldPos )
-    return;
-
-  QPainter paint( this );
-  paint.setPen( gray );
-  paint.setBrush( gray );
-  paint.setRasterOp( XorROP );
-  QRect r = contentsRect();
-  const int rBord = 3; // customizable?
-  int hw = handleWidth();
-    
-  if( orientation() == Qt::Horizontal ) {
-    if ( opaqueOldPos >= 0 ) {
-      if( label == 0 )
-        paint.drawRect( opaqueOldPos + hw / 2 - rBord, r.y(), 2 * rBord, r.height() );
-      else {
-        QPoint labelLoc = mapFromGlobal( labelLocation );
-        if( labelLoc.y() > r.y() )
-          paint.drawRect( opaqueOldPos + hw / 2 - rBord, r.y(), 2 * rBord, labelLoc.y() );
-        if( labelLoc.y() + label->height() < r.height() )
-          paint.drawRect( opaqueOldPos + hw / 2 - rBord, labelLoc.y() + label->height(), 2 * rBord, r.height() - labelLoc.y() - label->height() );
-      }
-    }
-  } else {
-    if ( opaqueOldPos >= 0 ) {
-      if( label == 0 )
-        paint.drawRect( r.x(), opaqueOldPos + hw / 2 - rBord, r.width(), 2 * rBord );
-      else {
-        QPoint labelLoc = mapFromGlobal( labelLocation );
-        if( labelLoc.x() > r.x() )
-          paint.drawRect( r.x(), opaqueOldPos + hw / 2 - rBord, labelLoc.x(), 2 * rBord );
-        if( labelLoc.x() + label->width() < r.width() )
-          paint.drawRect( labelLoc.x() + label->width(), opaqueOldPos + hw / 2 - rBord, r.width() - labelLoc.x() - label->width(), 2 * rBord );
-      }
-    }
-  }
-
-  if( p < 0 ) {
-    if( label ) {
-      delete label;
-      label = 0;
-    }
-  }
-  else {
-    int scr = QApplication::desktop()->screenNumber( this );
-      
-    if( label == 0 ) {
-      label = new QLabel( QApplication::desktop()->screen( scr ), "SplitterPercent", Qt::WStyle_StaysOnTop | 
-                          Qt::WStyle_Customize | Qt::WStyle_NoBorder | Qt::WStyle_Tool | WX11BypassWM );
-      label->setMargin(1);
-      label->setAutoMask( FALSE );
-      label->setFrameStyle( Q3Frame::Plain | Q3Frame::Box );
-      label->setLineWidth( 1 );
-      label->setAlignment( AlignAuto | Qt::AlignTop );
-      label->setIndent(0);
-
-      QFontMetrics fm = label->fontMetrics();
-      label->setMinimumWidth( fm.width( "99.99%" ) + 5 );
-
-      label->polish();
-    }
-
-    label->setText( toolTipString( p ) );
-    label->adjustSize();
-
-    if( orientation() == Qt::Horizontal ) {
-      labelLocation = mapToGlobal( QPoint( p - label->width()/2, r.y() + r.height()/2 ) );
-      if( labelLocation.x() < 0 )
-        labelLocation.setX( 0 );
-    } else {
-      labelLocation = mapToGlobal( QPoint( r.x() + r.width()/2, p - label->height()/2 ) );
-      if( labelLocation.y() < 0 )
-        labelLocation.setY( 0 );
-    }
-
-#ifdef Q_WS_MAC
-    QRect screen = QApplication::desktop()->availableGeometry( scr );
-#else
-    QRect screen = QApplication::desktop()->screenGeometry( scr );
-#endif
-
-    QPoint labelLoc = mapFromGlobal( labelLocation );
-    if( orientation() == Qt::Horizontal ) {
-      if( labelLocation.x() + label->width() > screen.width() )
-        labelLocation.setX( screen.width() - label->width() );
-      label->move( labelLocation );
-      label->show();
-    
-      if( labelLoc.y() > r.y() )
-        paint.drawRect( p + hw / 2 - rBord, r.y(), 2 * rBord, labelLoc.y() );
-      if( labelLoc.y() + label->height() < r.height() )
-        paint.drawRect( p + hw / 2 - rBord, labelLoc.y() + label->height(), 2 * rBord, r.height() - labelLoc.y() - label->height() );
-    } else {
-      if( labelLocation.y() + label->height() > screen.height() )
-        labelLocation.setY( screen.height() - label->height() );
-      label->move( labelLocation );
-      label->show();
-    
-      if( labelLoc.x() > r.x() )
-        paint.drawRect( r.x(), p + hw / 2 - rBord, labelLoc.x(), 2 * rBord );
-      if( labelLoc.x() + label->width() < r.width() )
-        paint.drawRect( labelLoc.x() + label->width(), p + hw / 2 - rBord, r.width() - labelLoc.x() - label->width(), 2 * rBord );
-    }
-  }
-  opaqueOldPos = p;
+void PercentalSplitter::setRubberBand ( int p ) {  
+  QSplitter::setRubberBand( p );
+  setToolTip( toolTipString() );
 }
 
 #include "percentalsplitter.moc"

@@ -3,7 +3,7 @@
 #include <qpushbutton.h>
 //Added by qt3to4:
 #include <Q3GridLayout>
-#include <Q3ValueList>
+#include <qlist.h>
 #include <k3listview.h>
 #include <kiconloader.h>
 #include <k3listviewsearchline.h>
@@ -46,7 +46,7 @@ void PopularUrls::save() {
 	KConfigGroup svr = krConfig->group("Private");
 	// prepare the string list containing urls and int list with ranks
 	QStringList urlList;
-	Q3ValueList<int> rankList;
+	QList<int> rankList;
 	UrlNodeP p = head;
 	while (p) {
 		urlList << p->url.prettyUrl();
@@ -230,22 +230,27 @@ void PopularUrls::showDialog() {
 
 // ===================================== PopularUrlsDlg ======================================
 PopularUrlsDlg::PopularUrlsDlg(): 
-	KDialog(Plain, i18n("Popular Urls"), Close, KDialog::NoDefault, krApp) {
-	Q3GridLayout *layout = new Q3GridLayout( plainPage(), 0, KDialog::spacingHint() );
+	KDialog( krApp) {
+	setButtons( KDialog::Close );
+	setDefaultButton( KDialog::NoDefault );
+	setCaption( i18n("Popular Urls") );
+	setWindowModality( Qt::WindowModal );
+	
+	Q3GridLayout *layout = new Q3GridLayout( this, 0, KDialog::spacingHint() );
 	
 	// listview to contain the urls
-	urls = new K3ListView(plainPage());
+	urls = new K3ListView(this);
 	urls->header()->hide();
 	urls->addColumn("");
 	urls->setSorting(-1);
 	urls->setVScrollBarMode(Q3ScrollView::AlwaysOn);
 	
 	// quick search
-	QToolButton *btn = new QToolButton(plainPage());
+	QToolButton *btn = new QToolButton(this);
 	btn->setIconSet(SmallIcon("locationbar_erase"));
-	search = new K3ListViewSearchLine(plainPage(), urls);
+	search = new K3ListViewSearchLine(this, urls);
 	search->setTrapReturnKey(true);
-	QLabel *lbl = new QLabel(search, i18n(" &Search: "), plainPage());
+	QLabel *lbl = new QLabel(search, i18n(" &Search: "), this);
 
 	layout->addWidget(btn,0,0);
 	layout->addWidget(lbl,0,1);
@@ -254,7 +259,7 @@ PopularUrlsDlg::PopularUrlsDlg():
 	setMaximumSize(600, 500);
 	
 	setTabOrder(search, urls);
-	setTabOrder(urls, actionButton(Close));
+	setTabOrder((QWidget *)urls, (QWidget *)button(KDialog::Close));
 	
 	connect(urls, SIGNAL(executed(Q3ListViewItem*)), 
 		this, SLOT(slotItemSelected(Q3ListViewItem*)));
