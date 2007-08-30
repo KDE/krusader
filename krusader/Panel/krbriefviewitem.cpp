@@ -25,7 +25,7 @@ KrBriefViewItem::KrBriefViewItem(KrBriefView *parent, Q3IconViewItem *after, vfi
 	initiated = false;
 	// get the expected height of an item - should be done only once
 	if (expHeight == 0) {
-		KConfigGroupSaver svr(krConfig, "Look&Feel");
+		KConfigGroup svr = krConfig->group( "Look&Feel" );
   		expHeight = 2 + (krConfig->readEntry("Filelist Icon Size",_FilelistIconSize)).toInt();
 	}
 	if( PROPS->displayIcons )

@@ -87,7 +87,7 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
   cmdLine->setCompletionObject( &completion );
   cmdLine->setSizePolicy(QSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed));
   // load the history
-  KConfigGroupSaver grpSvr( krConfig, "Private" );
+  KConfigGroup grpSvr = krConfig->group( "Private" );
   QStringList list = krConfig->readListEntry( "cmdline history" );
   cmdLine->setHistoryItems( list );
 
@@ -147,7 +147,7 @@ void KCMDLine::setCurrent( const QString &p ) {
 }
 
 KCMDLine::~KCMDLine() {
-   KConfigGroupSaver grpSvr( krConfig, "Private" );
+   KConfigGroup grpSvr = krConfig->group( "Private" );
    QStringList list = cmdLine->historyItems();
    //krOut << list[0] << endl;
    krConfig->writeEntry( "cmdline history", list );

@@ -140,7 +140,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
          insertItem( i18n( "Rename" ), RENAME_ID );
   
       // -------- MOVE TO TRASH
-      KConfigGroupSaver saver(krConfig, "General");
+      KConfigGroup saver = krConfig->group("General");
       bool trash = krConfig->readBoolEntry( "Move To Trash", _MoveToTrash );
       if( trash )
         insertItem( i18n( "Move to Trash" ), TRASH_ID );
@@ -329,7 +329,7 @@ void KrPopupMenu::performAction(int id) {
          	chdir( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ).local8Bit() );
 				K3Process proc;
 				{
-				KConfigGroupSaver saver(krConfig, "General");
+				KConfigGroup saver = krConfig->group("General");
          	QString term = krConfig->readEntry( "Terminal", _Terminal );
          	proc << KrServices::separateArgs( term );
          	if ( !panel->func->getVFile(item)->vfile_isDir() ) proc << "-e" << item->name();

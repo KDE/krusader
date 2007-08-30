@@ -56,7 +56,7 @@ KURLListRequester::KURLListRequester( QWidget *parent, const char * name ) : QWi
   urlListRequesterGrid->setSpacing( 0 );
   urlListRequesterGrid->setMargin( 0 );
     
-  urlLineEdit = new KLineEdit( this, "urlLineEdit" );
+  urlLineEdit = new KLineEdit( this );
   urlListRequesterGrid->addWidget( urlLineEdit, 0, 0 );
       
   urlListBox = new Q3ListBox( this, "urlListBox" );
@@ -107,7 +107,7 @@ void KURLListRequester::slotAdd()
 
 void KURLListRequester::slotBrowse()
 {
-  KUrl url = KFileDialog::getExistingURL( QString(), this );
+  KUrl url = KFileDialog::getOpenUrl( KUrl(), QString(), this );
   if( !url.isEmpty())
     urlLineEdit->setText( vfs::pathOrUrl( url ) );
   urlLineEdit->setFocus();
@@ -149,16 +149,14 @@ void KURLListRequester::slotRightClicked( Q3ListBoxItem *item )
     return;
     
   KMenu popupMenu( this );
-  popupMenu.insertItem( i18n( "Delete" ), DELETE_ITEM_ID );
+  QAction * menuAction = popupMenu.addAction( i18n( "Delete" ) );
   
-  switch( popupMenu.exec( QCursor::pos() ) )
+  if( menuAction == popupMenu.exec( QCursor::pos() ) )
   {
-  case DELETE_ITEM_ID:
     if( item->isSelected() )
       deleteSelectedItems();
     else
       urlListBox->removeItem( urlListBox->index( item ) );
-    break;
   }
 }
 

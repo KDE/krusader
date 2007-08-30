@@ -101,8 +101,8 @@ KrBriefView::KrBriefView( Q3Header * headerIn, QWidget *parent, bool &left, KCon
 void KrBriefView::setup() {
    lastSwushPosition = 0;
       
-   // use the {} so that KConfigGroupSaver will work correctly!
-   KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+   // use the {} so that KConfigGroup will work correctly!
+   KConfigGroup grpSvr = _config->group( "Look&Feel" );
    setFont( _config->readFontEntry( "Filelist Font", _FilelistFont ) );
    // decide on single click/double click selection
    if ( _config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) &&
@@ -386,7 +386,7 @@ void KrBriefView::prepareForActive() {
 void KrBriefView::prepareForPassive() {
    KrView::prepareForPassive();
    CANCEL_TWO_CLICK_RENAME;
-   KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+   KConfigGroup grpSvr = _config->group( "Look&Feel" );
    if ( _config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
       if ( MAIN_VIEW ) {
          if ( ACTIVE_PANEL ) {
@@ -518,7 +518,7 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
    }
 
    // stop quick search in case a mouse click occured
-   KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+   KConfigGroup grpSvr = _config->group( "Look&Feel" );
    if ( _config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
       if ( MAIN_VIEW ) {
          if ( ACTIVE_PANEL ) {
@@ -773,7 +773,7 @@ void KrBriefView::imStartEvent(QIMEvent* e)
     ACTIVE_PANEL->quickSearch->myIMStartEvent( e );
     return ;
   }else {
-    KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+   KConfigGroup grpSvr = _config->group( "Look&Feel" );
     if ( !_config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) )
       K3IconView::imStartEvent( e );
     else {
@@ -1079,7 +1079,7 @@ void KrBriefView::keyPressEvent( QKeyEvent * e ) {
             //if ( _config->readBoolEntry( "Do Quicksearch", _DoQuicksearch ) ) {
                // are we using krusader's classic quicksearch, or wincmd style?
                {
-						KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+						KConfigGroup grpSvr = _config->group( "Look&Feel" );
 						if ( !_config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) )
 							K3IconView::keyPressEvent( e );
 						else {
@@ -1136,7 +1136,7 @@ void KrBriefView::renameCurrentItem() {
    rename( static_cast<Q3IconViewItem*>( it ) );
    // if applicable, select only the name without extension
 /* TODO:
-   KConfigGroupSaver svr(krConfig,"Look&Feel");
+   KConfigGroup svr = krConfig->group( "Look&Feel" );
    if (!krConfig->readBoolEntry("Rename Selects Extension", true)) {
      if (it->hasExtension() && !it->VF->vfile_isDir() ) 
        renameLineEdit()->setSelection(0, it->name().findRev(it->extension())-1);
@@ -1162,7 +1162,7 @@ void KrBriefView::quickSearch( const QString & str, int direction ) {
    KrViewItem * item = getCurrentKrViewItem();
    if (!item)
       return;
-   KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+   KConfigGroup grpSvr = _config->group( "Look&Feel" );
    bool caseSensitive = _config->readBoolEntry( "Case Sensitive Quicksearch", _CaseSensitiveQuicksearch );
    if ( !direction ) {
       if ( caseSensitive ? item->name().startsWith( str ) : item->name().toLower().startsWith( str.toLower() ) )
@@ -1284,7 +1284,7 @@ void KrBriefView::initProperties() {
 	_properties = new KrBriefViewProperties;
 	_properties->filter = KrViewProperties::All;
 	_properties->filterMask = KRQuery( "*" );
-	KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+	KConfigGroup grpSvr = _config->group( "Look&Feel" );
 	_properties->displayIcons = _config->readBoolEntry( "With Icons", _WithIcons );
 	bool dirsByNameAlways = _config->readBoolEntry("Always sort dirs by name", false);
 	_properties->sortMode = static_cast<KrViewProperties::SortSpec>( KrViewProperties::Name |
