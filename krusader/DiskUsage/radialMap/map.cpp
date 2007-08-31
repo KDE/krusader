@@ -132,7 +132,7 @@ RadialMap::Map::resize( const QRect &rect )
 
         //resize the pixmap
         size += MAP_2MARGIN;
-        KPixmap::resize( size, size );
+        QPixmap::resize( size, size );
 
         if( m_signature != NULL )
         {
@@ -295,7 +295,7 @@ RadialMap::Map::paint( unsigned int scaleFactor )
       rect.setCoords( x1, y1, x2, y2 );
 
       step *= scaleFactor;
-      KPixmap::resize( this->size() * (int)scaleFactor );
+      QPixmap::resize( this->size() * (int)scaleFactor );
    }
    else if( m_ringBreadth != MAX_RING_BREADTH && m_ringBreadth != MIN_RING_BREADTH ) {
       excess = rect.width() % m_ringBreadth;

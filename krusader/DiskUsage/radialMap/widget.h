@@ -22,7 +22,7 @@ namespace RadialMap
 {
     class Segment;
 
-    class Map : public KPixmap
+    class Map : public QPixmap
     {
     public:
         Map();

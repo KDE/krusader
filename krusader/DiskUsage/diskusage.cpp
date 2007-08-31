@@ -38,12 +38,14 @@
 #include <Q3Frame>
 #include <QResizeEvent>
 #include <QEvent>
+#include <QHash>
 #include <klocale.h>
 #include <kmenu.h>
 #include <kmimetype.h>
 #include <kmessagebox.h>
 #include <kglobalsettings.h>
 #include <kio/job.h>
+#include <kio/deletejob.h>
 #include <qpushbutton.h>
 #include <q3hbox.h>
 #include <qapplication.h>
@@ -145,7 +147,7 @@ LoaderWidget::LoaderWidget( QWidget *parent, const char *name ) : Q3ScrollView( 
   synchGrid->addWidget( totalSize, 3, 1 );
 
   int width;
-  searchedDirectory = new KSqueezedTextLabel( loaderBox, "searchedDirectory" );
+  searchedDirectory = new KSqueezedTextLabel( loaderBox );
   searchedDirectory->setFrameShape( QLabel::StyledPanel );
   searchedDirectory->setFrameShadow( QLabel::Sunken );
   searchedDirectory->setMinimumWidth( width = QFontMetrics(searchedDirectory->font()).width("W") * 30 );
@@ -612,7 +614,7 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
       name.append( file->fullPath() );
       // show message
       // note: i'm using continue and not yes/no because the yes/no has cancel as default button
-      if ( KMessageBox::warningContinueCancelList( krApp, s, name, i18n( "Warning" ), b ) != KMessageBox::Continue )
+      if ( KMessageBox::warningContinueCancelList( krApp, s, name, i18n( "Warning" ), KGuiItem( b ) ) != KMessageBox::Continue )
         return 0;
     }
 
@@ -754,55 +756,81 @@ void DiskUsage::rightClickMenu( File *fileItem, KMenu *addPopup, QString addPopu
 {
   KMenu popup( this );
 
-  popup.insertTitle( i18n("Disk Usage"));
+  popup.setTitle( i18n("Disk Usage"));
+
+  QHash<void *, int> actionHash;
 
   if( fileItem != 0 )
   {
-    popup.insertItem(  i18n("Delete"),          DELETE_ID);
-    popup.setAccel( Qt::Key_Delete, DELETE_ID );
-    popup.insertItem(  i18n("Exclude"),         EXCLUDE_ID);
-    popup.setAccel( Qt::CTRL + Qt::Key_E, EXCLUDE_ID );
-    popup.insertSeparator();
+    QAction * actDelete = popup.addAction( i18n("Delete") );
+    actionHash[ actDelete ] = DELETE_ID;
+    actDelete->setShortcut( Qt::Key_Delete );
+    QAction * actExclude = popup.addAction( i18n("Exclude") );
+    actionHash[ actExclude ] = EXCLUDE_ID;
+    actExclude->setShortcut( Qt::CTRL + Qt::Key_E );
+    popup.addSeparator();
   }
 
-  popup.insertItem(  i18n("Up one directory"),  PARENT_DIR_ID);
-  popup.setAccel( Qt::SHIFT + Qt::Key_Up, PARENT_DIR_ID );
-  popup.insertItem(  i18n("New search"),        NEW_SEARCH_ID);
-  popup.setAccel( Qt::CTRL + Qt::Key_N, NEW_SEARCH_ID );
-  popup.insertItem(  i18n("Refresh"),           REFRESH_ID);
-  popup.setAccel( Qt::CTRL + Qt::Key_R, REFRESH_ID );
-  popup.insertItem(  i18n("Include all"),       INCLUDE_ALL_ID);
-  popup.setAccel( Qt::CTRL + Qt::Key_I, INCLUDE_ALL_ID );
-  popup.insertItem(  i18n("Step into"),         STEP_INTO_ID);
-  popup.setAccel( Qt::SHIFT + Qt::Key_Down, STEP_INTO_ID );
-  popup.insertSeparator();
+  QAction * myAct = popup.addAction( i18n("Up one directory") );
+  actionHash[ myAct ] = PARENT_DIR_ID;
+  myAct->setShortcut( Qt::SHIFT + Qt::Key_Up );
+
+  myAct = popup.addAction( i18n("New search") );
+  actionHash[ myAct ] = NEW_SEARCH_ID;
+  myAct->setShortcut( Qt::CTRL + Qt::Key_N );
+
+  myAct = popup.addAction( i18n("Refresh") );
+  actionHash[ myAct ] = REFRESH_ID;
+  myAct->setShortcut( Qt::CTRL + Qt::Key_R );
+
+  myAct = popup.addAction( i18n("Include all") );
+  actionHash[ myAct ] = INCLUDE_ALL_ID;
+  myAct->setShortcut( Qt::CTRL + Qt::Key_I);
+
+  myAct = popup.addAction( i18n("Step into") );
+  actionHash[ myAct ] = STEP_INTO_ID;
+  myAct->setShortcut( Qt::SHIFT + Qt::Key_Down );
+
+  popup.addSeparator();
 
 
   if( addPopup != 0 )
   {
-    popup.insertItem( QPixmap(), addPopup, ADDITIONAL_POPUP_ID );
-    popup.changeItem( ADDITIONAL_POPUP_ID, addPopupName );
+    QAction * menu = popup.addMenu( addPopup );
+    menu->setText( addPopupName );
   }
 
   KMenu viewPopup;
-  viewPopup.insertItem(i18n("Lines"),      LINES_VIEW_ID);
-  viewPopup.setAccel( Qt::CTRL + Qt::Key_L, LINES_VIEW_ID );
-  viewPopup.insertItem(i18n("Detailed"),   DETAILED_VIEW_ID);
-  viewPopup.setAccel( Qt::CTRL + Qt::Key_D, DETAILED_VIEW_ID );
-  viewPopup.insertItem(i18n("Filelight"),  FILELIGHT_VIEW_ID);
-  viewPopup.setAccel( Qt::CTRL + Qt::Key_F, FILELIGHT_VIEW_ID );
-  viewPopup.insertSeparator();
-  viewPopup.insertItem(i18n("Next"),       NEXT_VIEW_ID);
-  viewPopup.setAccel( Qt::SHIFT + Qt::Key_Right, NEXT_VIEW_ID );
-  viewPopup.insertItem(i18n("Previous"),   PREVIOUS_VIEW_ID);
-  viewPopup.setAccel( Qt::SHIFT + Qt::Key_Left, PREVIOUS_VIEW_ID );
 
-  popup.insertItem( QPixmap(), &viewPopup, VIEW_POPUP_ID );
-  popup.changeItem( VIEW_POPUP_ID, i18n( "View" ) );
+  myAct = viewPopup.addAction( i18n("Lines") );
+  actionHash[ myAct ] = LINES_VIEW_ID;
+  myAct->setShortcut( Qt::CTRL + Qt::Key_L );
 
-  int result=popup.exec(QCursor::pos());
+  myAct = viewPopup.addAction( i18n("Detailed") );
+  actionHash[ myAct ] = DETAILED_VIEW_ID;
+  myAct->setShortcut( Qt::CTRL + Qt::Key_D );
 
-  executeAction( result, fileItem );
+  myAct = viewPopup.addAction( i18n("Filelight") );
+  actionHash[ myAct ] = FILELIGHT_VIEW_ID;
+  myAct->setShortcut( Qt::CTRL + Qt::Key_F );
+
+  viewPopup.addSeparator();
+
+  myAct = viewPopup.addAction( i18n("Next") );
+  actionHash[ myAct ] = NEXT_VIEW_ID;
+  myAct->setShortcut( Qt::SHIFT + Qt::Key_Right );
+
+  myAct = viewPopup.addAction( i18n("Previous") );
+  actionHash[ myAct ] = PREVIOUS_VIEW_ID;
+  myAct->setShortcut( Qt::SHIFT + Qt::Key_Left );
+
+  QAction * menu = popup.addMenu( &viewPopup );
+  menu->setText( i18n( "View" ) );
+
+  QAction * res = popup.exec(QCursor::pos());
+
+  if( actionHash.contains( res ) )
+    executeAction( actionHash[ res ], fileItem );
 }
 
 void DiskUsage::executeAction( int action, File * fileItem )
@@ -973,7 +1001,7 @@ QPixmap DiskUsage::getIcon( QString mime )
     if ( mime == "Broken Link !" )
       icon = FL_LOADICON( "file_broken" );
     else
-      icon = FL_LOADICON( KMimeType::mimeType( mime ) ->icon( QString(), true ) );
+      icon = FL_LOADICON( KMimeType::mimeType( mime ) ->iconName() );
 
     // insert it into the cache
     QPixmapCache::insert( mime, icon );
@@ -1108,7 +1136,7 @@ bool DiskUsage::event( QEvent * e )
   {
     QKeyEvent* ke = (QKeyEvent*) e;
 
-    if ( ke->modifiers() == Qt::NoModifier || ke->modifiers() == Keypad )
+    if ( ke->modifiers() == Qt::NoModifier || ke->modifiers() == Qt::KeypadModifier )
     {
       switch ( ke->key() )
       {

@@ -4,7 +4,7 @@
 #ifndef SEGMENTTIP_H
 #define SEGMENTTIP_H
 
-#include <kpixmap.h>
+#include <qpixmap.h>
 #include <qwidget.h>
 //Added by qt3to4:
 #include <QEvent>
@@ -27,7 +27,7 @@ namespace RadialMap
         virtual bool event( QEvent* );
 
         uint    m_cursorHeight;
-        KPixmap m_pixmap;
+        QPixmap m_pixmap;
         QString m_text;
     };
 }
