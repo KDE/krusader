@@ -289,7 +289,7 @@ void KrusaderView::switchFullScreenTE()
 bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
   if( e->type() == QEvent::AccelOverride && konsole_part && konsole_part->widget() == watched ) {
     QKeyEvent *ke = (QKeyEvent *)e;
-    if( ( ke->key() ==  Qt::Key_Insert ) && ( ke->state()  == Qt::ShiftButton ) ) {
+    if( ( ke->key() ==  Qt::Key_Insert ) && ( ke->modifiers()  == Qt::ShiftModifier ) ) {
       ke->accept();
       return true;
     }
@@ -308,12 +308,12 @@ bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
         return true;
     }
 
-    if( ( ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return ) && ( ( ke->state() & ~Qt::ShiftButton ) == Qt::ControlButton ) ) {
+    if( ( ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return ) && ( ( ke->modifiers() & ~Qt::ShiftModifier ) == Qt::ControlModifier ) ) {
 
       QString filename = ACTIVE_PANEL->view->getCurrentItem();
       if( filename == QString() || filename == ".." )
         return true;
-      if( ke->state() & Qt::ShiftButton ) {
+      if( ke->modifiers() & Qt::ShiftModifier ) {
         QString path=vfs::pathOrUrl( ACTIVE_FUNC->files()->vfs_getOrigin(), KUrl::AddTrailingSlash );
         filename = path+filename;
       }
@@ -323,12 +323,12 @@ bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
       QKeyEvent keyEvent( QEvent::KeyPress, 0, -1, 0, QString( " " ) + filename + QString( " " ));
       QApplication::sendEvent( konsole_part->widget(), &keyEvent );
       return true;
-    } else if( ( ke->key() ==  Qt::Key_Down ) && ( ke->state() == Qt::ControlButton ) ) {
+    } else if( ( ke->key() ==  Qt::Key_Down ) && ( ke->modifiers() == Qt::ControlModifier ) ) {
       if( cmdLine->isVisible() )
         cmdLine->setFocus();
       return true;
-    } else if( ( ( ke->key() ==  Qt::Key_Up ) && ( ke->state()  == Qt::ControlButton ) ) || 
-               ( ke->state()  == ( Qt::ControlButton | Qt::ShiftButton ) ) ) {
+    } else if( ( ( ke->key() ==  Qt::Key_Up ) && ( ke->modifiers()  == Qt::ControlModifier ) ) || 
+               ( ke->modifiers()  == ( Qt::ControlModifier | Qt::ShiftModifier ) ) ) {
       ACTIVE_PANEL->slotFocusOnMe();
       return true;
     } else if( Krusader::actPaste->shortcut().contains( pressedKey ) ) {

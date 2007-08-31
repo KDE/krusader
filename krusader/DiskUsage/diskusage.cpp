@@ -866,80 +866,80 @@ void DiskUsage::keyPressEvent( QKeyEvent *e )
     switch ( e->key() )
     {
     case Qt::Key_E:
-      if( e->state() == ControlButton )
+      if( e->modifiers() == Qt::ControlModifier )
       {
         executeAction( EXCLUDE_ID, getCurrentFile() );
         return;
       }
     case Qt::Key_D:
-      if( e->state() == ControlButton )
+      if( e->modifiers() == Qt::ControlModifier )
       {
         executeAction( DETAILED_VIEW_ID );
         return;
       }
     case Qt::Key_F:
-      if( e->state() == ControlButton )
+      if( e->modifiers() == Qt::ControlModifier )
       {
         executeAction( FILELIGHT_VIEW_ID );
         return;
       }
     case Qt::Key_I:
-      if( e->state() == ControlButton )
+      if( e->modifiers() == Qt::ControlModifier )
       {
         executeAction( INCLUDE_ALL_ID );
         return;
       }
       break;
     case Qt::Key_L:
-      if( e->state() == ControlButton )
+      if( e->modifiers() == Qt::ControlModifier )
       {
         executeAction( LINES_VIEW_ID );
         return;
       }
     case Qt::Key_N:
-      if( e->state() == ControlButton )
+      if( e->modifiers() == Qt::ControlModifier )
       {
         executeAction( NEW_SEARCH_ID );
         return;
       }
       break;
     case Qt::Key_R:
-      if( e->state() == ControlButton )
+      if( e->modifiers() == Qt::ControlModifier )
       {
         executeAction( REFRESH_ID );
         return;
       }
       break;
     case Qt::Key_Up:
-      if( e->state() == ShiftButton )
+      if( e->modifiers() == Qt::ShiftModifier )
       {
         executeAction( PARENT_DIR_ID );
         return;
       }
       break;
     case Qt::Key_Down:
-      if( e->state() == ShiftButton )
+      if( e->modifiers() == Qt::ShiftModifier )
       {
         executeAction( STEP_INTO_ID );
         return;
       }
       break;
     case Qt::Key_Left:
-      if( e->state() == ShiftButton )
+      if( e->modifiers() == Qt::ShiftModifier )
       {
         executeAction( PREVIOUS_VIEW_ID );
         return;
       }
       break;
     case Qt::Key_Right:
-      if( e->state() == ShiftButton )
+      if( e->modifiers() == Qt::ShiftModifier )
       {
         executeAction( NEXT_VIEW_ID );
         return;
       }
       break;
     case Qt::Key_Delete:
-      if( !e->state() )
+      if( !e->modifiers() )
       {
         executeAction( DELETE_ID, getCurrentFile() );
         return;
@@ -1108,7 +1108,7 @@ bool DiskUsage::event( QEvent * e )
   {
     QKeyEvent* ke = (QKeyEvent*) e;
 
-    if ( ke->state() == NoButton || ke->state() == Keypad )
+    if ( ke->modifiers() == Qt::NoModifier || ke->modifiers() == Keypad )
     {
       switch ( ke->key() )
       {
@@ -1118,7 +1118,7 @@ bool DiskUsage::event( QEvent * e )
           ke->accept();
           break;
       }
-    }else if( ke->state() == ShiftButton )
+    }else if( ke->modifiers() == Qt::ShiftModifier )
     {
       switch ( ke->key() )
       {
@@ -1129,7 +1129,7 @@ bool DiskUsage::event( QEvent * e )
           ke->accept();
           break;
       }
-    }else if ( ke->state() & ControlButton )
+    }else if ( ke->modifiers() & Qt::ControlModifier )
     {
       switch ( ke->key() )
       {

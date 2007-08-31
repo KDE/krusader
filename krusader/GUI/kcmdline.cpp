@@ -231,21 +231,21 @@ void KrHistoryCombo::keyPressEvent( QKeyEvent *e ) {
    switch (e->key()) {
       case Qt::Key_Enter:
       case Qt::Key_Return:
-         if (e->state() & ControlButton) {
-           SLOTS->insertFileName( ( e->state() & ShiftButton ) != 0 );
+         if (e->modifiers() & Qt::ControlModifier) {
+           SLOTS->insertFileName( ( e->modifiers() & Qt::ShiftModifier ) != 0 );
            break;
          }
          KHistoryComboBox::keyPressEvent(e);
          break;
       case Qt::Key_Down:
-         if (e->state()  == ( ControlButton | ShiftButton ) ) {
+         if (e->modifiers()  == ( Qt::ControlModifier | Qt::ShiftModifier ) ) {
             MAIN_VIEW->focusTerminalEmulator();
             return;
          } else
             KHistoryComboBox::keyPressEvent(e);
          break;
       case Qt::Key_Up:
-         if (e->state() == ControlButton || e->state() == ( ControlButton | ShiftButton ) ) {
+         if (e->modifiers() == Qt::ControlModifier || e->modifiers() == ( Qt::ControlModifier | Qt::ShiftModifier ) ) {
             emit returnToPanel();
             return;
          }

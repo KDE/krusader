@@ -388,7 +388,7 @@ bool ListPanel::eventFilter ( QObject * watched, QEvent * e ) {
 	if( e->type() == QEvent::KeyPress && origin->lineEdit() == watched ) {
 		QKeyEvent *ke = (QKeyEvent *)e;
 		
-		if( ( ke->key() ==  Qt::Key_Down ) && ( ke->state() == ControlButton ) ) {
+		if( ( ke->key() ==  Qt::Key_Down ) && ( ke->modifiers() == Qt::ControlModifier ) ) {
 			slotFocusOnMe();
 			return true;
 		}
@@ -932,18 +932,18 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
    switch ( e->key() ) {
          case Qt::Key_Enter :
          case Qt::Key_Return :
-         if ( e->state() & ControlButton ) {
-         	if (e->state() & AltButton) {
+         if ( e->modifiers() & Qt::ControlModifier ) {
+         	if (e->modifiers() & Qt::AltModifier) {
          		vfile *vf = func->files()->vfs_search(view->getCurrentKrViewItem()->name());
          		if (vf && vf->vfile_isDir()) SLOTS->newTab(vf->vfile_getUrl());
          	} else {
-					SLOTS->insertFileName( ( e->state() & ShiftButton ) != 0 );
+					SLOTS->insertFileName( ( e->modifiers() & Qt::ShiftModifier ) != 0 );
             }
          } else e->ignore();
          break;
          case Qt::Key_Right :
          case Qt::Key_Left :
-         if ( e->state() == ControlButton ) {
+         if ( e->modifiers() == Qt::ControlModifier ) {
             // user pressed CTRL+Right/Left - refresh other panel to the selected path if it's a
             // directory otherwise as this one
             if ( ( _left && e->key() == Qt::Key_Right ) || ( !_left && e->key() == Qt::Key_Left ) ) {
@@ -968,20 +968,20 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
          break;
 
          case Qt::Key_Down :
-         if ( e->state() == ControlButton ) { // give the keyboard focus to the command line
+         if ( e->modifiers() == Qt::ControlModifier ) { // give the keyboard focus to the command line
             if ( MAIN_VIEW->cmdLine->isVisible() )
                MAIN_VIEW->cmdLineFocus();
             else 
                MAIN_VIEW->focusTerminalEmulator();
             return ;
-         } else if ( e->state() == ( ControlButton | ShiftButton ) ) { // give the keyboard focus to TE
+         } else if ( e->modifiers() == ( Qt::ControlModifier | Qt::ShiftModifier ) ) { // give the keyboard focus to TE
            MAIN_VIEW->focusTerminalEmulator();
          } else
             e->ignore();
          break;
 
 			case Qt::Key_Up :
-          if ( e->state() == ControlButton ) { // give the keyboard focus to the command line
+          if ( e->modifiers() == Qt::ControlModifier ) { // give the keyboard focus to the command line
             origin->lineEdit()->setFocus();
             return ;
           } else
@@ -991,7 +991,7 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
          default:
          // if we got this, it means that the view is not doing
          // the quick search thing, so send the characters to the commandline, if normal key
-         if ( e->state() == NoButton )
+         if ( e->modifiers() == Qt::NoModifier )
             MAIN_VIEW->cmdLine->addText( e->text() );
 
          //e->ignore();

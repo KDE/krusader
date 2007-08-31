@@ -1032,7 +1032,7 @@ public:
 
   void contentsMouseMoveEvent ( QMouseEvent * e )
   {
-    isLeft = (( e->state() & ShiftButton ) == 0 );
+    isLeft = (( e->modifiers() & Qt::ShiftModifier ) == 0 );
     Q3ListView::contentsMouseMoveEvent( e );
   }
   void startDrag() 
@@ -2211,7 +2211,7 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
   {
   case Qt::Key_M :
     {
-      if( e->state() == ControlButton )
+      if( e->modifiers() == Qt::ControlModifier )
       {
         syncList->setFocus();
         e->accept();        
@@ -2235,7 +2235,7 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
       if( item->isDir() )
         return;
 
-      if ( e->state() == ShiftButton && item->existsInRight() )
+      if ( e->modifiers() == Qt::ShiftModifier && item->existsInRight() )
       {
         KUrl rightURL = vfs::fromPathOrUrl( synchronizer.rightBaseDirectory() + rightDirName + item->rightName() );
         if( isedit )
@@ -2244,7 +2244,7 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
           KrViewer::view( rightURL, this ); // view the file
         return;
       }
-      else if ( e->state() == 0 && item->existsInLeft() )
+      else if ( e->modifiers() == 0 && item->existsInLeft() )
       {
         KUrl leftURL  = vfs::fromPathOrUrl( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
         if( isedit )
@@ -2256,7 +2256,7 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
     }
     break;
   case Qt::Key_U :
-    if( e->state() != ControlButton )
+    if( e->modifiers() != Qt::ControlModifier )
       break;
     e->accept();
     swapSides();

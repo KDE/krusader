@@ -267,7 +267,7 @@ void DUListView::keyPressEvent( QKeyEvent *e )
   case Qt::Key_Right :
   case Qt::Key_Up :
   case Qt::Key_Down :
-    if( e->state() == ShiftButton )
+    if( e->modifiers() == Qt::ShiftModifier )
     {
       e->ignore();
       return;

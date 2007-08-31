@@ -454,10 +454,10 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
    if (e->button() == RightButton)
    {
 	if (KrSelectionMode::getSelectionHandler()->rightButtonSelects() || 
-		(((e->state() & ShiftButton) || (e->state() & ControlButton))) && KrSelectionMode::getSelectionHandler()->shiftCtrlRightButtonSelects())
+		(((e->modifiers() & Qt::ShiftModifier) || (e->modifiers() & Qt::ControlModifier))) && KrSelectionMode::getSelectionHandler()->shiftCtrlRightButtonSelects())
      {
-       if (KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection() && !(e->state() & ShiftButton)
-          && !(e->state() & ControlButton) && !(e->state() & AltButton))
+       if (KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection() && !(e->modifiers() & Qt::ShiftModifier)
+          && !(e->modifiers() & Qt::ControlModifier) && !(e->modifiers() & Qt::AltModifier))
        {
          if (newCurrent)
          {
@@ -486,11 +486,11 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
    {
      dragStartPos = e->pos();
 	  if (KrSelectionMode::getSelectionHandler()->leftButtonSelects() || 
-	  		(((e->state() & ShiftButton) || (e->state() & ControlButton))) &&
+	  		(((e->modifiers() & Qt::ShiftModifier) || (e->modifiers() & Qt::ControlModifier))) &&
 			KrSelectionMode::getSelectionHandler()->shiftCtrlLeftButtonSelects())
      {
-       if (KrSelectionMode::getSelectionHandler()->leftButtonPreservesSelection() && !(e->state() & ShiftButton)
-          && !(e->state() & ControlButton) && !(e->state() & AltButton))
+       if (KrSelectionMode::getSelectionHandler()->leftButtonPreservesSelection() && !(e->modifiers() & Qt::ShiftModifier)
+          && !(e->modifiers() & Qt::ControlModifier) && !(e->modifiers() & Qt::AltModifier))
        {
          if (newCurrent)
          {
@@ -512,7 +512,7 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
    }
 
    modifierPressed = false;
-   if ( (e->state() & ShiftButton) || (e->state() & ControlButton) || (e->state() & AltButton) ) {
+   if ( (e->modifiers() & Qt::ShiftModifier) || (e->modifiers() & Qt::ControlModifier) || (e->modifiers() & Qt::AltModifier) ) {
       CANCEL_TWO_CLICK_RENAME;
       modifierPressed = true;
    }
@@ -535,8 +535,8 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
    	op()->emitNeedFocus();
    setFocus();
 
-   if (processEvent && ( (e->state() & ShiftButton) || (e->state() & ControlButton) || (e->state() & AltButton) ) && !KrSelectionMode::getSelectionHandler()->useQTSelection()){
-      if ( oldCurrent && newCurrent && oldCurrent != newCurrent && e->state() & ShiftButton ) {
+   if (processEvent && ( (e->modifiers() & Qt::ShiftModifier) || (e->modifiers() & Qt::ControlModifier) || (e->modifiers() & Qt::AltModifier) ) && !KrSelectionMode::getSelectionHandler()->useQTSelection()){
+      if ( oldCurrent && newCurrent && oldCurrent != newCurrent && e->modifiers() & Qt::ShiftModifier ) {
          int oldPos = oldCurrent->index();
          int newPos = newCurrent->index();
          Q3IconViewItem *top = 0, *bottom = 0;
@@ -560,7 +560,7 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
          Q3IconView::setCurrentItem( newCurrent );
          callDefaultHandler = false;
       }
-      if( e->state() & ShiftButton )
+      if( e->modifiers() & Qt::ShiftModifier )
          callDefaultHandler = false;
    }
 	
@@ -644,11 +644,11 @@ void KrBriefView::contentsMouseMoveEvent ( QMouseEvent * e ) {
       CANCEL_TWO_CLICK_RENAME;
 
    if ( dragStartPos != QPoint( -1, -1 ) &&
-        e->state() & LeftButton && ( dragStartPos - e->pos() ).manhattanLength() > QApplication::startDragDistance() )
+        e->modifiers() & LeftButton && ( dragStartPos - e->pos() ).manhattanLength() > QApplication::startDragDistance() )
       startDrag();
    if (KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection() 
       && KrSelectionMode::getSelectionHandler()->rightButtonSelects() 
-      && KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0 && e->state() == Qt::RightButton)
+      && KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0 && e->modifiers() == Qt::RightButton)
       {
          Q3IconViewItem *newItem = findItem( e->pos() );
          e->accept();
@@ -819,13 +819,13 @@ void KrBriefView::keyPressEvent( QKeyEvent * e ) {
    }
    switch ( e->key() ) {
          case Qt::Key_Up :
-         if ( e->state() == ControlButton ) { // let the panel handle it - jump to the Location Bar
+         if ( e->modifiers() == Qt::ControlModifier ) { // let the panel handle it - jump to the Location Bar
             e->ignore();
             break;
          } else if (!KrSelectionMode::getSelectionHandler()->useQTSelection()) {
             Q3IconViewItem * i = currentItem();
             if ( !i ) break;
-            if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+            if ( e->modifiers() == Qt::ShiftModifier ) setSelected( i, !i->isSelected(), true );
             i = i->prevItem();
          	if ( i ) {
 					Q3IconView::setCurrentItem( i );
@@ -834,13 +834,13 @@ void KrBriefView::keyPressEvent( QKeyEvent * e ) {
          } else K3IconView::keyPressEvent(e);
          break;
          case Qt::Key_Down :
-         if ( e->state() == ControlButton || e->state() == ( ControlButton | ShiftButton ) ) { // let the panel handle it - jump to command line
+         if ( e->modifiers() == Qt::ControlModifier || e->modifiers() == ( Qt::ControlModifier | Qt::ShiftModifier ) ) { // let the panel handle it - jump to command line
             e->ignore();
             break;
          } else if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
             Q3IconViewItem * i = currentItem();
             if ( !i ) break;
-            if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+            if ( e->modifiers() == Qt::ShiftModifier ) setSelected( i, !i->isSelected(), true );
             i = i->nextItem();
          if ( i ) {Q3IconView::setCurrentItem( i ); Q3IconView::ensureItemVisible( i ); }
          } else K3IconView::keyPressEvent(e);
@@ -866,7 +866,7 @@ void KrBriefView::keyPressEvent( QKeyEvent * e ) {
          } else K3IconView::keyPressEvent(e);
          break;
          case Qt::Key_Home:  if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
-            if ( e->state() & ShiftButton )  /* Shift+Home */
+            if ( e->modifiers() & Qt::ShiftModifier )  /* Shift+Home */
             {
                clearSelection();
                K3IconView::keyPressEvent( e );
@@ -880,7 +880,7 @@ void KrBriefView::keyPressEvent( QKeyEvent * e ) {
          } else K3IconView::keyPressEvent(e);
          break;
          case Qt::Key_End:  if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
-            if ( e->state() & ShiftButton )  /* Shift+End */
+            if ( e->modifiers() & Qt::ShiftModifier )  /* Shift+End */
             {
                clearSelection();
                K3IconView::keyPressEvent( e );
@@ -900,7 +900,7 @@ void KrBriefView::keyPressEvent( QKeyEvent * e ) {
          break;
          case Qt::Key_Enter :
          case Qt::Key_Return : {
-            if ( e->state() & ControlButton )         // let the panel handle it
+            if ( e->modifiers() & Qt::ControlModifier )         // let the panel handle it
                e->ignore();
             else {
                KrViewItem * i = getCurrentKrViewItem();
@@ -910,7 +910,7 @@ void KrBriefView::keyPressEvent( QKeyEvent * e ) {
             break;
          }
          case Qt::Key_QuoteLeft :          // Terminal Emulator bugfix
-         if ( e->state() == ControlButton ) { // let the panel handle it
+         if ( e->modifiers() == Qt::ControlModifier ) { // let the panel handle it
             e->ignore();
             break;
          } else {          // a normal click - do a lynx-like moving thing
@@ -919,7 +919,7 @@ void KrBriefView::keyPressEvent( QKeyEvent * e ) {
          }
          break;
          case Qt::Key_Right :
-         if ( e->state() == ControlButton ) { // let the panel handle it
+         if ( e->modifiers() == Qt::ControlModifier ) { // let the panel handle it
             e->ignore();
             break;
          } else if (!KrSelectionMode::getSelectionHandler()->useQTSelection()) {
@@ -931,25 +931,25 @@ void KrBriefView::keyPressEvent( QKeyEvent * e ) {
             int minY = i->y() - i->height() / 2;
             int minX  = i->width() / 2 + i->x();
 
-            if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+            if ( e->modifiers() == Qt::ShiftModifier ) setSelected( i, !i->isSelected(), true );
 
             while( i && i->x() <= minX )
             {
-              if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+              if ( e->modifiers() == Qt::ShiftModifier ) setSelected( i, !i->isSelected(), true );
               newCurrent = i;
               i = i->nextItem();
             }
 
             while( i && i->y() < minY )
             {
-              if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+              if ( e->modifiers() == Qt::ShiftModifier ) setSelected( i, !i->isSelected(), true );
               newCurrent = i;
               i = i->nextItem();
             }
 
             if( i )
             {
-              if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+              if ( e->modifiers() == Qt::ShiftModifier ) setSelected( i, !i->isSelected(), true );
               newCurrent = i;
             }
 
@@ -961,7 +961,7 @@ void KrBriefView::keyPressEvent( QKeyEvent * e ) {
          } else K3IconView::keyPressEvent(e);
          break;
          case Qt::Key_Backspace :                         // Terminal Emulator bugfix
-         if ( e->state() == ControlButton || e->state() == ShiftButton ) { // let the panel handle it
+         if ( e->modifiers() == Qt::ControlModifier || e->modifiers() == Qt::ShiftModifier ) { // let the panel handle it
             e->ignore();
             break;
          } else {          // a normal click - do a lynx-like moving thing
@@ -969,7 +969,7 @@ void KrBriefView::keyPressEvent( QKeyEvent * e ) {
             return ;         // safety
          }
          case Qt::Key_Left :
-         if ( e->state() == ControlButton ) { // let the panel handle it
+         if ( e->modifiers() == Qt::ControlModifier ) { // let the panel handle it
             e->ignore();
             break;
          } else if (!KrSelectionMode::getSelectionHandler()->useQTSelection()) {
@@ -981,24 +981,24 @@ void KrBriefView::keyPressEvent( QKeyEvent * e ) {
             int maxY = i->y() + i->height() / 2;
             int maxX  = i->x() - i->width() / 2;
 
-            if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+            if ( e->modifiers() == Qt::ShiftModifier ) setSelected( i, !i->isSelected(), true );
 
             while( i && i->x() >= maxX )
             {
-              if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+              if ( e->modifiers() == Qt::ShiftModifier ) setSelected( i, !i->isSelected(), true );
               newCurrent = i;
               i = i->prevItem();
             }
 
             while( i && i->y() > maxY )
             {
-              if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+              if ( e->modifiers() == Qt::ShiftModifier ) setSelected( i, !i->isSelected(), true );
               newCurrent = i;
               i = i->prevItem();
             }
             if( i )
             {
-              if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected(), true );
+              if ( e->modifiers() == Qt::ShiftModifier ) setSelected( i, !i->isSelected(), true );
               newCurrent = i;
             }
 
@@ -1011,7 +1011,7 @@ void KrBriefView::keyPressEvent( QKeyEvent * e ) {
          break;
 
          case Qt::Key_Delete :                   // kill file
-         SLOTS->deleteFiles( e->state() == ShiftButton || e->state() == ControlButton );
+         SLOTS->deleteFiles( e->modifiers() == Qt::ShiftModifier || e->modifiers() == Qt::ControlModifier );
 				
          break ;
          case Qt::Key_Insert : {
@@ -1059,7 +1059,7 @@ void KrBriefView::keyPressEvent( QKeyEvent * e ) {
             break ;
          }
          case Qt::Key_A :                 // mark all
-         if ( e->state() == ControlButton ) {
+         if ( e->modifiers() == Qt::ControlModifier ) {
             K3IconView::keyPressEvent( e );
             updateView();
             break;
@@ -1433,7 +1433,7 @@ QMouseEvent * KrBriefView::transformMouseEvent( QMouseEvent * e )
 		
 		if( mouseEvent )
 			delete mouseEvent;
-		return mouseEvent = new QMouseEvent( e->type(), newPos, glPos, e->button(), e->state() );
+		return mouseEvent = new QMouseEvent( e->type(), newPos, glPos, e->button(), e->modifiers() );
 	}
 	
 	return e;
