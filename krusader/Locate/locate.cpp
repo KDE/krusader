@@ -39,6 +39,7 @@
 #include "../VFS/virt_vfs.h"
 #include "../KViewer/krviewer.h"
 #include "../panelmanager.h"
+#include "../kicons.h"
 #include <klocale.h>
 #include <q3hbox.h>
 #include <qlabel.h>
@@ -53,12 +54,13 @@
 #include <qcursor.h>
 #include <qeventloop.h>
 #include <kfinddialog.h>
+#include <kfind.h>
 #include <kinputdialog.h>
 #include <qregexp.h>
 #include <qdir.h>
 #include <qclipboard.h>
 #include <k3urldrag.h>
-#include <../kicons.h>
+#include <qfont.h>
 
 // these are the values that will exist in the menu
 #define VIEW_ID                     90
@@ -72,7 +74,7 @@
 class LocateListView : public K3ListView
 {
 public:
-  LocateListView( QWidget * parent, const char * name = 0 ) : K3ListView( parent, name )
+  LocateListView( QWidget * parent ) : K3ListView( parent )
   {
   }
 
@@ -101,9 +103,16 @@ public:
 K3Process *  LocateDlg::updateProcess = 0;
 LocateDlg * LocateDlg::LocateDialog = 0;
 
-LocateDlg::LocateDlg() : KDialog(0,0,false,"Locate", KDialog::User1 | KDialog::User2 | KDialog::User3 | KDialog::Close,
-      KDialog::User3, false, i18n("Stop"), i18n("Update DB"), i18n("Locate") ), isFeedToListBox( false )
+LocateDlg::LocateDlg() : KDialog( 0 ), isFeedToListBox( false )
 {
+  setButtons( KDialog::User1 | KDialog::User2 | KDialog::User3 | KDialog::Close );
+  setDefaultButton( KDialog::User3 );
+  setCaption( i18n("Locate") );
+  setWindowModality( Qt::NonModal );
+  setButtonGuiItem( KDialog::User1, KGuiItem( i18n("Stop") ) );
+  setButtonGuiItem( KDialog::User2, KGuiItem( i18n("Update DB") ) );
+  setButtonGuiItem( KDialog::User3, KGuiItem( i18n("Locate") ) );
+
   QWidget *widget=new QWidget(this, "locateMainWidget");
   Q3GridLayout *grid = new Q3GridLayout( widget );
   grid->setSpacing( 6 );
@@ -113,7 +122,7 @@ LocateDlg::LocateDlg() : KDialog(0,0,false,"Locate", KDialog::User1 | KDialog::U
   
   Q3HBox *hbox = new Q3HBox( widget, "locateHBox" );
   QLabel *label = new QLabel( i18n( "Search for:" ), hbox, "locateLabel" );
-  locateSearchFor = new KHistoryComboBox( false, hbox, "locateSearchFor" );
+  locateSearchFor = new KHistoryComboBox( false, hbox );
   label->setBuddy( locateSearchFor );
   krConfig->setGroup("Locate");
   QStringList list = krConfig->readListEntry("Search For");
@@ -144,7 +153,7 @@ LocateDlg::LocateDlg() : KDialog(0,0,false,"Locate", KDialog::User1 | KDialog::U
   resultList=new LocateListView( widget );  // create the main container
 
   krConfig->setGroup("Look&Feel");
-  resultList->setFont(krConfig->readFontEntry("Filelist Font",_FilelistFont));
+  resultList->setFont(krConfig->readEntry("Filelist Font",*_FilelistFont));
 
   resultList->setAllColumnsShowFocus(true);
   resultList->setVScrollBarMode(Q3ScrollView::Auto);
@@ -359,36 +368,39 @@ void LocateDlg::slotRightClick(Q3ListViewItem *item)
 
   // create the menu
   KMenu popup;
-  popup.insertTitle(i18n("Locate"));
+  popup.setTitle(i18n("Locate"));
 
-  popup.insertItem(i18n("View (F3)"), VIEW_ID);
-  popup.insertItem(i18n("Edit (F4)"), EDIT_ID);
+  QAction * actView = popup.addAction(i18n("View (F3)") );
+  QAction * actEdit = popup.addAction(i18n("Edit (F4)") );
+  popup.addSeparator();
 
-  popup.insertSeparator();
+  QAction * actFind = popup.addAction(i18n("Find (Ctrl+F)") );
+  QAction * actNext = popup.addAction(i18n("Find next (Ctrl+N)") );
+  QAction * actPrev = popup.addAction(i18n("Find previous (Ctrl+P)") );
+  popup.addSeparator();
 
-  popup.insertItem(i18n("Find (Ctrl+F)"), FIND_ID);
-  popup.insertItem(i18n("Find next (Ctrl+N)"), FIND_NEXT_ID);
-  popup.insertItem(i18n("Find previous (Ctrl+P)"), FIND_PREV_ID);
-
-  popup.insertSeparator();
-
-  popup.insertItem(i18n("Copy selected to clipboard"), COPY_SELECTED_TO_CLIPBOARD);
+  QAction * actClip = popup.addAction(i18n("Copy selected to clipboard") );
 
 
-  int result=popup.exec(QCursor::pos());
+  QAction * result = popup.exec(QCursor::pos());
 
-  // check out the user's option
-  switch (result)
-  {
-  case VIEW_ID:
-  case EDIT_ID:
-  case FIND_ID:
-  case FIND_NEXT_ID:
-  case FIND_PREV_ID:
-  case COPY_SELECTED_TO_CLIPBOARD:
-    operate( item, result );
-    break;
-  }
+  int ret = -1;
+
+  if( result == actView )
+    ret = VIEW_ID;
+  else if( result == actEdit )
+    ret = EDIT_ID;
+  else if( result == actFind )
+    ret = FIND_ID;
+  else if( result == actNext )
+    ret = FIND_NEXT_ID;
+  else if( result == actPrev )
+    ret = FIND_PREV_ID;
+  else if( result == actClip )
+    ret = COPY_SELECTED_TO_CLIPBOARD;
+
+  if( ret != - 1 )
+    operate( item, ret );
 }
 
 void LocateDlg::slotDoubleClick(Q3ListViewItem *item)
@@ -411,7 +423,7 @@ void LocateDlg::slotDoubleClick(Q3ListViewItem *item)
 
 void LocateDlg::keyPressEvent( QKeyEvent *e )
 {
-  if( Krusader::actCopy->shortcut().contains( KKey( e ) ) )
+  if( Krusader::actCopy->shortcut().contains( QKeySequence( e->key() ) ) )
   {
     operate( 0, COPY_SELECTED_TO_CLIPBOARD );
     e->accept();
@@ -421,7 +433,7 @@ void LocateDlg::keyPressEvent( QKeyEvent *e )
   switch ( e->key() )
   {
   case Qt::Key_M :
-    if( e->state() == ControlButton )
+    if( e->modifiers() == Qt::ControlModifier )
     {
       resultList->setFocus();
       e->accept();
@@ -436,15 +448,15 @@ void LocateDlg::keyPressEvent( QKeyEvent *e )
       operate( resultList->currentItem(), EDIT_ID );
     break;
   case Qt::Key_N :
-    if ( e->state() == ControlButton )
+    if ( e->modifiers() == Qt::ControlModifier )
       operate( resultList->currentItem(), FIND_NEXT_ID );
     break;
   case Qt::Key_P :
-    if ( e->state() == ControlButton )
+    if ( e->modifiers() == Qt::ControlModifier )
       operate( resultList->currentItem(), FIND_PREV_ID );
     break;
   case Qt::Key_F :
-    if ( e->state() == ControlButton )
+    if ( e->modifiers() == Qt::ControlModifier )
       operate( resultList->currentItem(), FIND_ID );
     break;
   }
@@ -469,17 +481,17 @@ void LocateDlg::operate( Q3ListViewItem *item, int task )
   case FIND_ID:
     {
       krConfig->setGroup("Locate");
-      long options = krConfig->readNumEntry("Find Options", 0);
+      long options = krConfig->readEntry("Find Options", (long long)0);
       QStringList list = krConfig->readListEntry("Find Patterns");
       
-      KFindDialog dlg( this, "locateFindDialog", options, list );
+      KFindDialog dlg( this, options, list );
       if ( dlg.exec() != QDialog::Accepted )
         return;
 
       if( list.first() != ( findPattern = dlg.pattern() ) )
         list.push_front( dlg.pattern() );
         
-      krConfig->writeEntry( "Find Options", findOptions = dlg.options() );
+      krConfig->writeEntry( "Find Options", (long long)(findOptions = dlg.options() ) );
       krConfig->writeEntry( "Find Patterns", list );
 
       if( !( findOptions & KFind::FromCursor ) )
