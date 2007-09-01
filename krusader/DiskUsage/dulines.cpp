@@ -177,6 +177,7 @@ private:
   unsigned int italicTextPos;
 };
 
+/*  TODO
 class DULinesToolTip : public QToolTip
 {
 public:
@@ -217,7 +218,7 @@ void DULinesToolTip::maybeTip( const QPoint &pos )
     File *fileItem = ((DULinesItem *)item)->getFile();
     tip( r, diskUsage->getToolTip( fileItem ) );
   }
-}
+}*/
 
 DULines::DULines( DiskUsage *usage, const char *name )
   : Q3ListView( usage, name ), diskUsage( usage ), refreshNeeded( false )
@@ -250,7 +251,7 @@ DULines::DULines( DiskUsage *usage, const char *name )
   
   setSorting( 1 );
   
-  toolTip = new DULinesToolTip( diskUsage, viewport(), this );
+//  toolTip = new DULinesToolTip( diskUsage, viewport(), this );
 
   connect( diskUsage, SIGNAL( enteringDirectory( Directory * ) ), this, SLOT( slotDirChanged( Directory * ) ) );
   connect( diskUsage, SIGNAL( clearing() ), this, SLOT( clear() ) );
