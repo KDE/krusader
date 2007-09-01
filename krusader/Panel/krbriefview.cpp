@@ -451,7 +451,7 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
    
    Q3IconViewItem * oldCurrent = currentItem();
    Q3IconViewItem *newCurrent = findItem( e->pos() );
-   if (e->button() == RightButton)
+   if (e->button() == Qt::RightButton)
    {
 	if (KrSelectionMode::getSelectionHandler()->rightButtonSelects() || 
 		(((e->modifiers() & Qt::ShiftModifier) || (e->modifiers() & Qt::ControlModifier))) && KrSelectionMode::getSelectionHandler()->shiftCtrlRightButtonSelects())
@@ -482,7 +482,7 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
        e->accept();
      }
    }
-   if (e->button() == LeftButton)
+   if (e->button() == Qt::LeftButton)
    {
      dragStartPos = e->pos();
 	  if (KrSelectionMode::getSelectionHandler()->leftButtonSelects() || 
@@ -610,7 +610,7 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
 }
 
 void KrBriefView::contentsMouseReleaseEvent( QMouseEvent * e ) {
-  if (e->button() == RightButton)
+  if (e->button() == Qt::RightButton)
     contextMenuTimer.stop();
   
   e = transformMouseEvent( e );
@@ -644,7 +644,7 @@ void KrBriefView::contentsMouseMoveEvent ( QMouseEvent * e ) {
       CANCEL_TWO_CLICK_RENAME;
 
    if ( dragStartPos != QPoint( -1, -1 ) &&
-        e->modifiers() & LeftButton && ( dragStartPos - e->pos() ).manhattanLength() > QApplication::startDragDistance() )
+        e->buttons() & Qt::LeftButton && ( dragStartPos - e->pos() ).manhattanLength() > QApplication::startDragDistance() )
       startDrag();
    if (KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection() 
       && KrSelectionMode::getSelectionHandler()->rightButtonSelects() 

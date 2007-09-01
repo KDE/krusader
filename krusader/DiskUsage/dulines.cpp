@@ -414,7 +414,7 @@ bool DULines::doubleClicked( Q3ListViewItem * item )
 
 void DULines::contentsMouseDoubleClickEvent ( QMouseEvent * e )
 {
-  if ( e || e->button() == LeftButton )
+  if ( e || e->button() == Qt::LeftButton )
   {
     QPoint vp = contentsToViewport(e->pos());
     Q3ListViewItem * item = itemAt( vp );

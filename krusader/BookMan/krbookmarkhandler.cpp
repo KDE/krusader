@@ -436,7 +436,7 @@ void KrBookmarkHandler::bookmarksChanged(const QString&, const QString&) {
 bool KrBookmarkHandler::eventFilter( QObject *obj, QEvent *ev ) {
 	if (ev->type() == QEvent::MouseButtonRelease) {
 		switch (static_cast<QMouseEvent*>(ev)->button()) {
-			case RightButton:
+			case Qt::RightButton:
 				_middleClick = false;
 				if( obj->inherits( "QPopupMenu" ) ) {
 					int id = static_cast<Q3PopupMenu*>(obj)->idAt( static_cast<QMouseEvent*>(ev)->pos() );
@@ -455,10 +455,10 @@ bool KrBookmarkHandler::eventFilter( QObject *obj, QEvent *ev ) {
 						}
 					}
 				}
-			case LeftButton:
+			case Qt::LeftButton:
 				_middleClick = false;
 				break;
-			case MidButton:
+			case Qt::MidButton:
 				_middleClick = true;
 				break;
 			default:

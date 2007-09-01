@@ -540,7 +540,7 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
 
    Q3ListViewItem * oldCurrent = currentItem();
    Q3ListViewItem *newCurrent = itemAt( contentsToViewport( e->pos() ) );
-   if (e->button() == RightButton)
+   if (e->button() == Qt::RightButton)
    {
 	if (KrSelectionMode::getSelectionHandler()->rightButtonSelects() || 
 		(((e->modifiers() & Qt::ShiftModifier) || (e->modifiers() & Qt::ControlModifier))) && KrSelectionMode::getSelectionHandler()->shiftCtrlRightButtonSelects())
@@ -571,7 +571,7 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
        e->accept();
      }
    }
-   if (e->button() == LeftButton)
+   if (e->button() == Qt::LeftButton)
    {
      dragStartPos = e->pos();
 	  if (KrSelectionMode::getSelectionHandler()->leftButtonSelects() || 
@@ -695,7 +695,7 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
 }
 
 void KrDetailedView::contentsMouseReleaseEvent( QMouseEvent * e ) {
-  if (e->button() == RightButton)
+  if (e->button() == Qt::RightButton)
     contextMenuTimer.stop();
   K3ListView::contentsMouseReleaseEvent( e );
 
@@ -723,7 +723,7 @@ void KrDetailedView::contentsMouseMoveEvent ( QMouseEvent * e ) {
    if ( ( singleClicked || renameTimer.isActive() ) && itemAt( contentsToViewport( e->pos() ) ) != clickedItem )
       CANCEL_TWO_CLICK_RENAME;
    if ( dragStartPos != QPoint( -1, -1 ) &&
-        e->modifiers() & LeftButton && ( dragStartPos - e->pos() ).manhattanLength() > QApplication::startDragDistance() )
+        e->buttons() & Qt::LeftButton && ( dragStartPos - e->pos() ).manhattanLength() > QApplication::startDragDistance() )
       startDrag();
    if (KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection() 
       && KrSelectionMode::getSelectionHandler()->rightButtonSelects() 

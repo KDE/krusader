@@ -242,7 +242,7 @@ bool DUListView::doubleClicked( Q3ListViewItem * item )
 
 void DUListView::contentsMouseDoubleClickEvent ( QMouseEvent * e )
 {
-  if ( e || e->button() == LeftButton )
+  if ( e || e->button() == Qt::LeftButton )
   {
     QPoint vp = contentsToViewport(e->pos());
     Q3ListViewItem * item = itemAt( vp );
