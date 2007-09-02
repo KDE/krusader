@@ -38,6 +38,7 @@
 #include "../Dialogs/krdialogs.h"
 #include "../VFS/virt_vfs.h"
 #include "../KViewer/krviewer.h"
+#include "../kicons.h"
 #include "krsearchmod.h"
 #include "krsearchdialog.h"
 
@@ -57,7 +58,6 @@
 #include <qclipboard.h>
 #include <q3header.h>
 #include <k3urldrag.h>
-#include <../kicons.h>
 
 class SearchListView : public Q3ListView
 {
@@ -173,7 +173,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   foundLabel->setText( i18n( "Found 0 matches." ) );
   resultLabelLayout->addWidget( foundLabel );
 
-  searchingLabel = new KSqueezedTextLabel( resultTab, "searchingLabel" );
+  searchingLabel = new KSqueezedTextLabel( resultTab );
   searchingLabel->setFrameShape( QLabel::StyledPanel );
   searchingLabel->setFrameShadow( QLabel::Sunken );
   searchingLabel->setText( "" );
@@ -288,7 +288,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
     // load the last used values
     generalFilter->searchFor->setEditText( lastSearchText );
     generalFilter->searchFor->lineEdit()->selectAll();
-    generalFilter->ofType->setCurrentItem( lastSearchType );
+    generalFilter->ofType->setCurrentIndex( lastSearchType );
     generalFilter->searchForCase->setChecked( lastSearchForCase );
     generalFilter->remoteContentSearch->setChecked( lastRemoteContentSearch );
     generalFilter->containsWholeWord->setChecked( lastContainsWholeWord );
@@ -326,7 +326,7 @@ void KrSearchDialog::closeDialog( bool isAccept )
   krConfig->writeEntry("Perm Width",  resultsList->columnWidth( 4 ) );
 
   lastSearchText = generalFilter->searchFor->currentText();
-  lastSearchType = generalFilter->ofType->currentItem();
+  lastSearchType = generalFilter->ofType->currentIndex();
   lastSearchForCase = generalFilter->searchForCase->isChecked();
   lastRemoteContentSearch = generalFilter->remoteContentSearch->isChecked();
   lastContainsWholeWord = generalFilter->containsWholeWord->isChecked();
@@ -472,8 +472,6 @@ void KrSearchDialog::closeEvent(QCloseEvent *e)
 
 void KrSearchDialog::keyPressEvent(QKeyEvent *e)
 {
-  KKey pressedKey( e );
-
   if( isSearching && e->key() == Qt::Key_Escape ) /* at searching we must not close the window */
   {
     stopSearch();         /* so we simply stop searching */
@@ -495,7 +493,7 @@ void KrSearchDialog::keyPressEvent(QKeyEvent *e)
       viewCurrent();
       return;
     }
-    else if( Krusader::actCopy->shortcut().contains( pressedKey ) )
+    else if( Krusader::actCopy->shortcut().contains( QKeySequence( e->key() ) ) )
     {
       copyToClipBoard();
       return;
@@ -541,29 +539,21 @@ void KrSearchDialog::rightClickMenu(Q3ListViewItem *item, const QPoint&, int)
 
   // create the menu
   KMenu popup;
-  popup.insertTitle(i18n("Krusader Search"));
+  popup.setTitle(i18n("Krusader Search"));
 
-  popup.insertItem(i18n("View File (F3)"),            VIEW_FILE_ID);
-  popup.insertItem(i18n("Edit File (F4)"),            EDIT_FILE_ID);
-  popup.insertItem(i18n("Copy selected to clipboard"),COPY_SELECTED_TO_CLIPBOARD);
+  QAction *actView = popup.addAction(i18n("View File (F3)"));
+  QAction *actEdit = popup.addAction(i18n("Edit File (F4)"));
+  QAction *actClip = popup.addAction(i18n("Copy selected to clipboard"));
 
-  int result=popup.exec(QCursor::pos());
+  QAction *result=popup.exec(QCursor::pos());
 
   // check out the user's option
-  switch (result)
-  {
-    case VIEW_FILE_ID:
-      viewCurrent();
-      break;
-    case EDIT_FILE_ID:
-      editCurrent();
-      break;
-    case COPY_SELECTED_TO_CLIPBOARD:
-      copyToClipBoard();
-      break;
-    default:    // the user clicked outside of the menu
-      break;
-  }
+  if( result == actView )
+    viewCurrent();
+  else if( result == actEdit )
+    editCurrent();
+  else if( result == actClip )
+    copyToClipBoard();
 }
 
 void KrSearchDialog::feedToListBox()

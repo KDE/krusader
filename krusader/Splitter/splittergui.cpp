@@ -36,6 +36,7 @@
 //Added by qt3to4:
 #include <Q3GridLayout>
 #include <Q3HBoxLayout>
+#include <Q3HBox>
 #include <Q3Frame>
 #include <QKeyEvent>
 #include <kmessagebox.h>
@@ -66,8 +67,8 @@ SplitterGUI::SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir ) :
   splitterLabel->setMinimumWidth( 400 );
   grid->addWidget( splitterLabel,0 ,0 );
 
-  urlReq = new KUrlRequester( this, "DestinationDirectory" );
-  urlReq->setURL( vfs::pathOrUrl( defaultDir ) );
+  urlReq = new KUrlRequester( this );
+  urlReq->setUrl( vfs::pathOrUrl( defaultDir ) );
   urlReq->setMode( KFile::Directory );
   grid->addWidget( urlReq, 1 ,0 );
 
@@ -193,7 +194,7 @@ void SplitterGUI::predefinedComboActivated( int item )
 
 void SplitterGUI::splitPressed()
 {
-  if( !vfs::fromPathOrUrl( urlReq->url() ).isValid() )
+  if( !urlReq->url().isValid() )
   {
     KMessageBox::error( this, i18n("The directory path URL is malformed!") );
     return;

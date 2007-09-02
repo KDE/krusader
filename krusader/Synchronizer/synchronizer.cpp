@@ -34,7 +34,6 @@
 #include "../krservices.h"
 #include "../VFS/vfs.h"
 #include "../VFS/krquery.h"
-#include "config.h"
 #include <kurl.h>
 #include <kmessagebox.h>
 #include <klocale.h>
@@ -46,18 +45,19 @@
 #include <Q3Frame>
 #include <Q3VBoxLayout>
 #include <kio/job.h>
+#include <kio/deletejob.h>
+#include <kio/jobuidelegate.h>
 #include <kdialog.h>
-#include <kio/observer.h>
 #include <kio/renamedlg.h>
-#include <kio/skipdlg.h>
+#include <kio/skipdialog.h>
 #include <unistd.h>
 #include <qeventloop.h>
 #include <qpushbutton.h>
 #include <qdatetime.h>
 #include <k3process.h>
 #include <kdialog.h>
-#include <kprogress.h>
 #include <qlayout.h>
+#include <qprogressbar.h>
 #include <kurlcompletion.h>
 
 #include <sys/types.h>
@@ -1140,7 +1140,7 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
     {
       if( job->error() == KIO::ERR_FILE_ALREADY_EXIST && item->task() != TT_DELETE )
       {
-        KIO::RenameDlg_Result result;
+        KIO::RenameDialog_Result result;
         QString newDest;
 
         if( autoSkip )
@@ -1151,9 +1151,9 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
           QWidget *mainWidget = qApp->mainWidget(); // WORKAROUND, don't give focus to the main widget
           qApp->setMainWidget( syncDlgWidget );
 
-          result = Observer::self()->open_RenameDlg ( job, i18n("File Already Exists"),
+          result = job->ui()->askFileRename( job, i18n("File Already Exists"),
             vfs::pathOrUrl( rightURL ), vfs::pathOrUrl( leftURL ),
-            (KIO::RenameDlg_Mode)( KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI ), newDest,
+            (KIO::RenameDialog_Mode)( KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI ), newDest,
             item->rightSize(), item->leftSize(), (time_t)-1, (time_t)-1,
             item->rightDate(), item->leftDate());
 
@@ -1164,9 +1164,9 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
           QWidget *mainWidget = qApp->mainWidget(); // WORKAROUND, don't give focus to the main widget
           qApp->setMainWidget( syncDlgWidget );
 
-          result = Observer::self()->open_RenameDlg ( job, i18n("File Already Exists"),
+          result = job->ui()->askFileRename( job, i18n("File Already Exists"),
             vfs::pathOrUrl( leftURL ), vfs::pathOrUrl( rightURL ),
-            (KIO::RenameDlg_Mode)( KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI ), newDest,
+            (KIO::RenameDialog_Mode)( KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI ), newDest,
             item->leftSize(), item->rightSize(), (time_t)-1, (time_t)-1,
             item->leftDate(), item->rightDate());
 
@@ -1228,7 +1228,7 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
         QWidget *mainWidget = qApp->mainWidget(); // WORKAROUND, don't give focus to the main widget
         qApp->setMainWidget( syncDlgWidget );
 
-        KIO::SkipDlg_Result result = Observer::self()->open_SkipDlg( job, true, error );
+        KIO::SkipDialog_Result result = job->ui()->askSkip( job, true, error );
 
         qApp->setMainWidget( mainWidget );
 
@@ -1328,19 +1328,24 @@ QString Synchronizer::rightBaseDirectory()
 class KgetProgressDialog : public KDialog
 {
 public:
-  KgetProgressDialog( QWidget *parent=0, const char *name=0, const QString &caption=QString(),
-                    const QString &text=QString(), bool modal=false) : KDialog( KDialog::Plain,
-                    caption, KDialog::User1 | KDialog::Cancel, KDialog::Cancel, parent, name, modal )
+  KgetProgressDialog( QWidget *parent=0, const QString &caption=QString(),
+                    const QString &text=QString(), bool modal=false) : KDialog( parent )
   {
+    if( caption.isEmpty() )
+      setCaption( caption );
+    setButtons( KDialog::User1 | KDialog::Cancel );
+    setDefaultButton( KDialog::Cancel );
+    setWindowModality( modal ? Qt::WindowModal : Qt::NonModal );
+
     showButton(KDialog::Close, false);
 
-    QFrame* mainWidget = plainPage();
+    QWidget* mainWidget = this;
     Q3VBoxLayout* layout = new Q3VBoxLayout(mainWidget, 10);
 
     QLabel *mLabel = new QLabel(text, mainWidget);
     layout->addWidget(mLabel);
 
-    mProgressBar = new KProgress(mainWidget);
+    mProgressBar = new QProgressBar(mainWidget);
     layout->addWidget(mProgressBar);
 
     setButtonText( KDialog::User1, i18n( "Pause" ) );
@@ -1348,10 +1353,10 @@ public:
     mCancelled = mPaused = false;
 
     connect( this, SIGNAL( user1Clicked() ), this, SLOT( slotUser1() ) );
-    connect( this, SIGNAL( cancelClicked() ), this, SLOT( slotCancel() ) );
+    connect( this, SIGNAL( cancelClicked() ), this, SLOT( reject() ) );
   }
 
-  KProgress *progressBar() { return mProgressBar; }
+  QProgressBar *progressBar() { return mProgressBar; }
 
   void slotUser1()
   {
@@ -1365,16 +1370,16 @@ public:
   {
     mCancelled = true;
 
-    KDialog::slotCancel();
+    KDialog::reject();
   }
 
   bool wasCancelled()      { return mCancelled; }
   bool isPaused()          { return mPaused; }
 
 private:
-  KProgress *mProgressBar;
-  bool       mCancelled;
-  bool       mPaused;
+  QProgressBar *mProgressBar;
+  bool          mCancelled;
+  bool          mPaused;
 };
 
 
@@ -1401,9 +1406,9 @@ void Synchronizer::synchronizeWithKGet()
 
       if( progDlg == 0 )
       {
-        progDlg = new KgetProgressDialog( krApp, "Synchronizer Progress Dlg", i18n("Krusader::Synchronizer"),
+        progDlg = new KgetProgressDialog( krApp, i18n("Krusader::Synchronizer"),
                                           i18n( "Feeding the URLs to Kget" ), true );
-        progDlg->progressBar()->setTotalSteps( totalCount );
+        progDlg->progressBar()->setMaximum( totalCount );
         progDlg->show();
         qApp->processEvents();
       }
@@ -1438,7 +1443,7 @@ void Synchronizer::synchronizeWithKGet()
           QFile( destURL.path() ).remove();
 
         QString source = downloadURL.prettyUrl();
-        if( source.contains( '@' ) >= 2 ) /* is this an ftp proxy URL? */
+        if( source.indexOf( '@' ) >= 2 ) /* is this an ftp proxy URL? */
         {
           int lastAt = source.findRev( '@' );
           QString startString = source.left( lastAt );
@@ -1456,7 +1461,7 @@ void Synchronizer::synchronizeWithKGet()
           p.detach();
       }
 
-      progDlg->progressBar()->setProgress( ++processedCount );
+      progDlg->progressBar()->setValue( ++processedCount );
 
       do
       {

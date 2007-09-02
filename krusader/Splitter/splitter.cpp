@@ -104,7 +104,7 @@ void Splitter::splitDataReceived(KIO::Job *, const QByteArray &byteArray)
   if( noValidWriteJob )
     splitCreateWriteJob();
 
-  transferArray = byteArray.copy();
+  transferArray = QByteArray( byteArray.data(), byteArray.length());
   if(splitWriteJob)
   {
     splitReadJob->suspend();    /* start writing */

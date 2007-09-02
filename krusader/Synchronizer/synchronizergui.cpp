@@ -66,6 +66,7 @@
 #include <kinputdialog.h>
 #include <k3urldrag.h>
 #include <qclipboard.h>
+#include <qhash.h>
 
 static const char * const right_arrow_button_data[] = {
 "18 18 97 2",
@@ -1142,15 +1143,15 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   krConfig->setGroup("Synchronize");
 
-  leftLocation = new KHistoryComboBox(false, compareDirs, "SynchronizerHistoryLeft");
+  leftLocation = new KHistoryComboBox(false, compareDirs );
   leftLocation->setMaxCount(25);  // remember 25 items
   leftLocation->setDuplicatesEnabled( false );
   leftLocation->setEditable( true );
   leftLocation->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Fixed);
   QStringList list = krConfig->readListEntry("Left Directory History");
   leftLocation->setHistoryItems(list);
-  KUrlRequester *leftUrlReq = new KUrlRequester( leftLocation, compareDirs, "LeftDirectory" );
-  leftUrlReq->setURL( vfs::pathOrUrl( leftURL ) );
+  KUrlRequester *leftUrlReq = new KUrlRequester( leftLocation, compareDirs );
+  leftUrlReq->setUrl( vfs::pathOrUrl( leftURL ) );
   leftUrlReq->setMode( KFile::Directory );
   leftUrlReq->setMinimumWidth( 250 );
   grid->addWidget( leftUrlReq, 1 ,0 );
@@ -1159,7 +1160,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   leftLocation->setEnabled( !hasSelectedFiles );
   leftDirLabel->setBuddy( leftLocation );
 
-  fileFilter = new KHistoryComboBox(false, compareDirs, "SynchronizerFilter");
+  fileFilter = new KHistoryComboBox(false, compareDirs);
   fileFilter->setMaxCount(25);  // remember 25 items
   fileFilter->setDuplicatesEnabled( false );
   fileFilter->setMinimumWidth( 100 );
@@ -1175,15 +1176,15 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   Q3WhatsThis::add(fileFilter, wtFilter);
   Q3WhatsThis::add(filterLabel, wtFilter);
 
-  rightLocation = new KHistoryComboBox(compareDirs, "SynchronizerHistoryRight");
+  rightLocation = new KHistoryComboBox(compareDirs);
   rightLocation->setMaxCount(25);  // remember 25 items
   rightLocation->setDuplicatesEnabled( false );
   rightLocation->setEditable( true );
   rightLocation->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Fixed);
   list = krConfig->readListEntry("Right Directory History");
   rightLocation->setHistoryItems(list);
-  KUrlRequester *rightUrlReq = new KUrlRequester( rightLocation, compareDirs, "RightDirectory" );
-  rightUrlReq->setURL( vfs::pathOrUrl( rightURL ) );
+  KUrlRequester *rightUrlReq = new KUrlRequester( rightLocation, compareDirs );
+  rightUrlReq->setUrl( vfs::pathOrUrl( rightURL ) );
   rightUrlReq->setMode( KFile::Directory );
   rightUrlReq->setMinimumWidth( 250 );
   grid->addWidget( rightUrlReq, 1 ,2 );
@@ -1302,7 +1303,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   Q3WhatsThis::add( syncList, i18n( "The compare results of the synchronizer (CTRL+M)." ) );
 
   krConfig->setGroup("Look&Feel");
-  syncList->setFont(krConfig->readFontEntry("Filelist Font",_FilelistFont));
+  syncList->setFont(krConfig->readEntry("Filelist Font",*_FilelistFont));
 
   syncList->setAllColumnsShowFocus(true);
   syncList->setMultiSelection(true);
@@ -1544,15 +1545,15 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
     QString foreEntry = QString( "Synchronizer " ) + COLOR_NAMES[ clr ] + QString( " Foreground" );
     QString bckgEntry = QString( "Synchronizer " ) + COLOR_NAMES[ clr ] + QString( " Background" );
 
-    if( krConfig->readEntry( foreEntry ) == "KDE default" )
+    if( krConfig->readEntry( foreEntry, QString() ) == "KDE default" )
       foreGrounds[ clr ] = QColor();
     else
-      foreGrounds[ clr ] = krConfig->readColorEntry( foreEntry, &FORE_DFLTS[ clr ] );
+      foreGrounds[ clr ] = krConfig->readEntry( foreEntry, FORE_DFLTS[ clr ] );
 
-    if( krConfig->readEntry( bckgEntry ) == "KDE default" )
+    if( krConfig->readEntry( bckgEntry, QString() ) == "KDE default" )
       backGrounds[ clr ] = QColor();
     else
-      backGrounds[ clr ] = krConfig->readColorEntry( bckgEntry, &BCKG_DFLTS[ clr ] );
+      backGrounds[ clr ] = krConfig->readEntry( bckgEntry, BCKG_DFLTS[ clr ] );
   }
   if( backGrounds[ TT_EQUALS ].isValid() )
     syncList->setPaletteBackgroundColor( backGrounds[ TT_EQUALS ] );
@@ -1694,43 +1695,51 @@ void SynchronizerGUI::rightMouseClicked(Q3ListViewItem *itemIn)
 
   // create the menu
   KMenu popup;
-  popup.insertTitle(i18n("Synchronize Directories"));
+  QAction *myact;
+  QHash< QAction *, int > actHash;
 
-  popup.insertItem(i18n("E&xclude"),EXCLUDE_ID);
-  popup.setItemEnabled(EXCLUDE_ID, true );
-  popup.insertItem(i18n("Restore ori&ginal operation"),RESTORE_ID);
-  popup.setItemEnabled(RESTORE_ID, true );
-  popup.insertItem(i18n("Re&verse direction"),REVERSE_DIR_ID);
-  popup.setItemEnabled(REVERSE_DIR_ID, true );
-  popup.insertItem(i18n("Copy from &right to left"),COPY_TO_LEFT_ID);
-  popup.setItemEnabled(COPY_TO_LEFT_ID, true );
-  popup.insertItem(i18n("Copy from &left to right"),COPY_TO_RIGHT_ID);
-  popup.setItemEnabled(COPY_TO_RIGHT_ID, true );
-  popup.insertItem(i18n("&Delete (left single)"),DELETE_ID);
-  popup.setItemEnabled(DELETE_ID, true );
+  popup.setTitle(i18n("Synchronize Directories"));
 
-  popup.insertSeparator();
+  myact = popup.addAction(i18n("E&xclude"));
+  actHash[ myact ] = EXCLUDE_ID;
+  myact = popup.addAction(i18n("Restore ori&ginal operation"));
+  actHash[ myact ] = RESTORE_ID;
+  myact = popup.addAction(i18n("Re&verse direction"));
+  actHash[ myact ] = REVERSE_DIR_ID;
+  myact = popup.addAction(i18n("Copy from &right to left"));
+  actHash[ myact ] = COPY_TO_LEFT_ID;
+  myact = popup.addAction(i18n("Copy from &left to right"));
+  actHash[ myact ] = COPY_TO_RIGHT_ID;
+  myact = popup.addAction(i18n("&Delete (left single)"));
+  actHash[ myact ] = DELETE_ID;
 
-  popup.insertItem(i18n("V&iew left file"),VIEW_LEFT_FILE_ID);
-  popup.setItemEnabled(VIEW_LEFT_FILE_ID, !isDir && item->existsInLeft() );
-  popup.insertItem(i18n("Vi&ew right file"),VIEW_RIGHT_FILE_ID);
-  popup.setItemEnabled(VIEW_RIGHT_FILE_ID, !isDir && item->existsInRight() );
-  popup.insertItem(i18n("&Compare Files"),COMPARE_FILES_ID);
-  popup.setItemEnabled(COMPARE_FILES_ID, !isDir && isDuplicate );
+  popup.addSeparator();
+
+  myact = popup.addAction(i18n("V&iew left file"));
+  myact->setEnabled(!isDir && item->existsInLeft() );
+  actHash[ myact ] = VIEW_LEFT_FILE_ID;
+  myact = popup.addAction(i18n("Vi&ew right file"));
+  myact->setEnabled(!isDir && item->existsInRight() );
+  actHash[ myact ] = VIEW_RIGHT_FILE_ID;
+  myact = popup.addAction(i18n("&Compare Files"));
+  myact->setEnabled(!isDir && isDuplicate );
+  actHash[ myact ] = COMPARE_FILES_ID;
   
-  popup.insertSeparator();
+  popup.addSeparator();
   
-  popup.insertItem(i18n("C&opy selected to clipboard (left)"),COPY_CLPBD_LEFT_ID);
-  popup.insertItem(i18n("Co&py selected to clipboard (right)"),COPY_CLPBD_RIGHT_ID);
+  myact = popup.addAction(i18n("C&opy selected to clipboard (left)"));
+  actHash[ myact ] = COPY_CLPBD_LEFT_ID;
+  myact = popup.addAction(i18n("Co&py selected to clipboard (right)"));
+  actHash[ myact ] = COPY_CLPBD_RIGHT_ID;
 
-  popup.insertSeparator();
+  popup.addSeparator();
 
-  popup.insertItem(i18n("&Select items"),SELECT_ITEMS_ID);
-  popup.setItemEnabled(SELECT_ITEMS_ID, true );
-  popup.insertItem(i18n("Deselec&t items"),DESELECT_ITEMS_ID);
-  popup.setItemEnabled(DESELECT_ITEMS_ID, true );
-  popup.insertItem(i18n("I&nvert selection"),INVERT_SELECTION_ID);
-  popup.setItemEnabled(INVERT_SELECTION_ID, true );
+  myact = popup.addAction(i18n("&Select items"));
+  actHash[ myact ] = SELECT_ITEMS_ID;
+  myact = popup.addAction(i18n("Deselec&t items"));
+  actHash[ myact ] = DESELECT_ITEMS_ID;
+  myact = popup.addAction(i18n("I&nvert selection"));
+  actHash[ myact ] = INVERT_SELECTION_ID;
 
   KUrl leftBDir = vfs::fromPathOrUrl( synchronizer.leftBaseDirectory() );
   KUrl rightBDir = vfs::fromPathOrUrl( synchronizer.rightBaseDirectory() );
@@ -1739,12 +1748,16 @@ void SynchronizerGUI::rightMouseClicked(Q3ListViewItem *itemIn)
     ( ( !leftBDir.isLocalFile() && rightBDir.isLocalFile() && btnLeftToRight->isOn() ) ||
       ( leftBDir.isLocalFile() && !rightBDir.isLocalFile() && btnRightToLeft->isOn() ) ) )
   {
-    popup.insertSeparator();
-    popup.insertItem(i18n("Synchronize with &KGet"),SYNCH_WITH_KGET_ID);
-    popup.setItemEnabled(SYNCH_WITH_KGET_ID, true );
+    popup.addSeparator();
+    myact = popup.addAction(i18n("Synchronize with &KGet"));
+    actHash[ myact ] = SYNCH_WITH_KGET_ID;
   }
 
-  int result=popup.exec(QCursor::pos());
+  QAction * res = popup.exec(QCursor::pos());
+
+  int result=-1;
+  if( actHash.contains( res ) )
+    result = actHash[ res ]; 
 
   // check out the user's option
   switch (result)
@@ -1967,7 +1980,7 @@ void SynchronizerGUI::stop()
 
 void SynchronizerGUI::feedToListBox()
 {
-  FeedToListBoxDialog listBox( this, "feedToListBoxDialog", &synchronizer, syncList, btnEquals->isOn() );
+  FeedToListBoxDialog listBox( this, &synchronizer, syncList, btnEquals->isOn() );
   if( listBox.isAccepted() )
     closeDialog();
 }

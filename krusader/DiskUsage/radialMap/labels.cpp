@@ -264,7 +264,7 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
 
         prevRightY = ty - fmh - fmhD4; //must be after above's "continue"
 
-        qs = KStringHandler::cPixelSqueeze( (*it)->segment->file()->name(), fm, width() - x2 );
+        qs = fm.elidedText( (*it)->segment->file()->name(), Qt::ElideMiddle, width() - x2 );
 
         x3 = width() - fm.width( qs )
              - LABEL_HMARGIN //outer margin
@@ -285,7 +285,7 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
 
         prevLeftY = ty + fmh - fmhD4;
 
-        qs = KStringHandler::cPixelSqueeze( (*it)->segment->file()->name(), fm, x2 );
+        qs = fm.elidedText( (*it)->segment->file()->name(), Qt::ElideMiddle, x2 );
 
         //**** needs a little tweaking:
 

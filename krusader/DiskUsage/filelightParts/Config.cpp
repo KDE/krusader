@@ -2,6 +2,7 @@
 #include "Config.h"
 #include <kconfig.h>
 #include <kglobal.h>
+#include <ksharedconfig.h>
 
 
 bool Config::varyLabelFontSizes = true;
@@ -16,7 +17,7 @@ Filelight::MapScheme Config::scheme;
 inline KConfig&
 Filelight::Config::kconfig()
 {
-    KConfig *config = KGlobal::config();
+    KSharedConfigPtr config = KGlobal::config();
     config->setGroup( "DiskUsage" );
     return *config;
 }
@@ -46,5 +47,5 @@ Filelight::Config::write()
     config.writeEntry( "contrast", contrast );
     config.writeEntry( "antiAliasFactor", antiAliasFactor );
     config.writeEntry( "minFontPitch", minFontPitch );
-    config.writeEntry( "scheme", scheme );
+    config.writeEntry( "scheme", (int)scheme );
 }

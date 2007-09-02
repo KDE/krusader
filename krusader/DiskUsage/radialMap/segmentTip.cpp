@@ -26,7 +26,7 @@ SegmentTip::SegmentTip( uint h )
 }
 
 void
-SegmentTip::moveto( QPoint p, const QWidget &canvas, bool placeAbove )
+SegmentTip::moveto( QPoint p, QWidget &canvas, bool placeAbove )
 {
   //**** this function is very slow and seems to be visibly influenced by operations like mapFromGlobal() (who knows why!)
   //  ** so any improvements are much desired
@@ -60,7 +60,8 @@ SegmentTip::moveto( QPoint p, const QWidget &canvas, bool placeAbove )
   const QRect intersection( alphaMaskRect.intersect( canvas.rect() ) );
 
   m_pixmap.resize( size() ); //move to updateTip once you are sure it can never be null
-  bitBlt( &m_pixmap, offset, &canvas, intersection, Qt::CopyROP );
+  //bitBlt( &m_pixmap, offset, &canvas, intersection, Qt::CopyROP );
+  QPainter( &m_pixmap ).drawPixmap( offset, QPixmap::grabWidget( &canvas, intersection ));
 
   QPainter paint( &m_pixmap );
     paint.setPen( Qt::black );
@@ -132,8 +133,8 @@ SegmentTip::event( QEvent *e )
         break;
     case QEvent::Paint:
     {
-        //QPainter( this ).drawPixmap( 0, 0, m_pixmap );
-        bitBlt( this, 0, 0, &m_pixmap );
+        // bitBlt( this, 0, 0, &m_pixmap );
+        QPainter( this ).drawPixmap( 0, 0, m_pixmap );
         return true;
     }
     default:

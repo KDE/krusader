@@ -9,6 +9,8 @@
 #include <kiconeffect.h> //::mousePressEvent()
 #include <kiconloader.h> //::mousePressEvent()
 #include <kio/job.h>     //::mousePressEvent()
+#include <kio/deletejob.h>
+#include <kio/jobuidelegate.h>
 #include <klocale.h>
 #include <kmessagebox.h> //::mousePressEvent()
 #include <kmenu.h>  //::mousePressEvent()
@@ -122,7 +124,7 @@ RadialMap::Widget::mouseMoveEvent( QMouseEvent *e )
    {
       if( m_focus != oldFocus ) //if not same as last time
       {
-         setCursor( Qt::PointingHandCursor );
+         setCursor( QCursor( Qt::PointingHandCursor ) );
          m_tip.updateTip( m_focus->file(), m_tree );
          emit mouseHover( m_focus->file()->fullPath() );
 
@@ -156,40 +158,40 @@ RadialMap::Widget::mousePressEvent( QMouseEvent *e )
       if( e->button() == Qt::RightButton )
       {
          KMenu popup;
-         popup.insertTitle( m_focus->file()->fullPath( m_tree ) );
+         popup.setTitle( m_focus->file()->fullPath( m_tree ) );
+
+         QAction * actKonq = 0, * actKonsole = 0, *actViewMag = 0, * actFileOpen = 0, * actEditDel = 0;
 
          if( isDir )
          {
-            popup.insertItem( SmallIconSet( "konqueror" ), i18n( "Open &Konqueror Here" ), 0 );
+           actKonq = popup.addAction( SmallIconSet( "konqueror" ), i18n( "Open &Konqueror Here" ) );
             if( url.protocol() == "file" )
-               popup.insertItem( SmallIconSet( "konsole" ), i18n( "Open &Konsole Here" ), 1 );
+               actKonsole = popup.addAction( SmallIconSet( "konsole" ), i18n( "Open &Konsole Here" ) );
 
             if( m_focus->file() != m_tree )
             {
-               popup.insertSeparator();
-               popup.insertItem( SmallIconSet( "viewmag" ), i18n( "&Center Map Here" ), 2 );
+               popup.addSeparator();
+               actViewMag = popup.addAction( SmallIconSet( "viewmag" ), i18n( "&Center Map Here" ) );
             }
          }
-         else popup.insertItem( SmallIconSet( "fileopen" ), i18n( "&Open" ), 3 );
+         else
+           actFileOpen = popup.addAction( SmallIconSet( "fileopen" ), i18n( "&Open" ) );
 
-         popup.insertSeparator();
-         popup.insertItem( SmallIconSet( "editdelete" ), i18n( "&Delete" ), 4 );
+         popup.addSeparator();
+         actEditDel = popup.addAction( SmallIconSet( "editdelete" ), i18n( "&Delete" ) );
 
-         switch( popup.exec( e->globalPos(), 1 ) ) {
-         case 0:
+         QAction * result = popup.exec( e->globalPos() );
+         if( result == 0 )
+           result = (QAction *)-1;  // sanity
+
+         if( result == actKonq )
             //KRun::runCommand will show an error message if there was trouble
-            KRun::runCommand( QString( "kfmclient openURL '%1'" ).arg( url.url() ) );
-            break;
-
-         case 1:
-            KRun::runCommand( QString( "konsole --workdir '%1'" ).arg( url.url() ) );
-            break;
-
-         case 2:
-         case 3:
+            KRun::runCommand( QString( "kfmclient openURL '%1'" ).arg( url.url() ), this );
+         else if( result == actKonsole )
+            KRun::runCommand( QString( "konsole --workdir '%1'" ).arg( url.url() ), this );
+         else if( result == actViewMag || result == actFileOpen )
             goto sectionTwo;
-
-         case 4:
+         else if( result == actEditDel )
          {
             const KUrl url = Widget::url( m_focus->file() );
             const QString message = ( m_focus->file()->isDir()
@@ -199,16 +201,14 @@ RadialMap::Widget::mousePressEvent( QMouseEvent *e )
 
             if( userIntention == KMessageBox::Continue ) {
                KIO::Job *job = KIO::del( url );
-               job->setWindow( this );
+               job->ui()->setWindow( this );
                connect( job, SIGNAL(result( KIO::Job* )), SLOT(deleteJobFinished( KIO::Job* )) );
                QApplication::setOverrideCursor( Qt::BusyCursor );
             }
          }
-
-         default:
+         else
             //ensure m_focus is set for new mouse position
             sendFakeMouseEvent();
-         }
 
       } else {
 

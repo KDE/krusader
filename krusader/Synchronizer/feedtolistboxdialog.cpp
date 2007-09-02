@@ -52,13 +52,20 @@
 #define  S_RIGHT       1
 #define  S_BOTH        2
 
-FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent,  const char *name, Synchronizer *sync,
-    Q3ListView *syncL, bool equOK) : KDialog( parent, name, true, i18n( "Krusader::Feed to listbox" ),
-    KDialog::Ok | KDialog::Cancel | KDialog::User1, Ok, true, KStandardGuiItem::clear() ),
+FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
+    Q3ListView *syncL, bool equOK) : KDialog( parent ),
     synchronizer( sync ), syncList( syncL ), equalAllowed( equOK ), accepted( false ) {
-  
+
+  setCaption( i18n( "Krusader::Feed to listbox" ) );
+  setButtons( KDialog::Ok | KDialog::Cancel | KDialog::User1 );
+  setDefaultButton( KDialog::Ok );
+  setWindowModality( Qt::WindowModal );
+  showButtonSeparator( true );
+  setButtonGuiItem( KDialog::User1, KStandardGuiItem::clear() );
+
   connect( this, SIGNAL( user1Clicked() ), this, SLOT( slotUser1() ) );
-  connect( this, SIGNAL( cancelClicked() ), this, SLOT( slotCancel() ) );
+  connect( this, SIGNAL( cancelClicked() ), this, SLOT( reject() ) );
+  connect( this, SIGNAL( okClicked() ), this, SLOT( slotOk() ) );
 
   // autodetecting the parameters
 

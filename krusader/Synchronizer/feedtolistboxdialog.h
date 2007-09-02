@@ -43,7 +43,7 @@ class FeedToListBoxDialog : public KDialog {
   Q_OBJECT
   
   public:
-    FeedToListBoxDialog( QWidget*,  const char*, Synchronizer *, Q3ListView *, bool);
+    FeedToListBoxDialog( QWidget*, Synchronizer *, Q3ListView *, bool);
     virtual ~FeedToListBoxDialog() {};
 
     bool isAccepted() {return accepted;};

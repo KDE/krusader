@@ -20,7 +20,7 @@ namespace RadialMap
         SegmentTip( uint );
 
         void updateTip( const File*, const Directory* );
-        void moveto( QPoint, const QWidget&, bool );
+        void moveto( QPoint, QWidget&, bool );
 
     private:
         virtual bool eventFilter( QObject*, QEvent* );

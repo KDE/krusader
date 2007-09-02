@@ -213,7 +213,7 @@ void Combiner::combineDataReceived(KIO::Job *, const QByteArray &byteArray)
     return;
 
   crcContext->update( (unsigned char *)byteArray.data(), byteArray.size() );
-  transferArray = byteArray.copy();
+  transferArray = QByteArray( byteArray.data(), byteArray.length());
 
   receivedSize += byteArray.size();
 

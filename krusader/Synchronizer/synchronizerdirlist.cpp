@@ -171,8 +171,8 @@ bool SynchronizerDirList::load( const QString &urlIn, bool wait ) {
 
 void SynchronizerDirList::slotEntries( KIO::Job * job, const KIO::UDSEntryList& entries ) 
 {
-  KIO::UDSEntryListConstIterator it = entries.begin();
-  KIO::UDSEntryListConstIterator end = entries.end();
+  KIO::UDSEntryList::const_iterator it = entries.begin();
+  KIO::UDSEntryList::const_iterator end = entries.end();
 
   int rwx = -1;
   QString prot = (( KIO::ListJob *)job )->url().protocol();

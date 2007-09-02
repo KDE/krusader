@@ -24,7 +24,7 @@ RadialMap::Widget::Widget( QWidget *parent, const char *name )
    : QWidget( parent, name, Qt::WNoAutoErase )
    , m_tree( 0 )
    , m_focus( 0 )
-   , m_tip( Qt::PointingHandCursor.bitmap()->height() ) //needs to know cursor height
+   , m_tip( QCursor( Qt::PointingHandCursor ).bitmap()->height() ) //needs to know cursor height
    , m_rootSegment( 0 ) //TODO we don't delete it, *shrug*
 {
    setBackgroundColor( Qt::white );
