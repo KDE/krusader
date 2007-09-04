@@ -53,7 +53,7 @@ DirHistoryButton::DirHistoryButton( DirHistoryQueue* hQ, QWidget *parent, const 
 DirHistoryButton::~DirHistoryButton() {}
 
 void DirHistoryButton::openPopup() {
-	Q3PopupMenu * pP = popup();
+	QMenu * pP = popup();
 	if ( pP ) {
 		popup() ->exec( mapToGlobal( QPoint( 0, height() ) ) );
 	}

@@ -700,7 +700,7 @@ void Krusader::setupActions() {
 #endif
    NEW_KACTION(actManageUseractions, i18n( "Manage User Actions..." ), 0, 0, SLOTS, SLOT( manageUseractions() ), "manage useractions" );
    
-	new KrRemoteEncodingMenu(i18n("Select Remote Charset"), "charset", actionCollection(), "changeremoteencoding");
+	new KrRemoteEncodingMenu(i18n("Select Remote Charset"), "charset", actionCollection() );
 
    // setup the Fn keys
    NEW_KACTION(actF2, i18n( "Start Terminal Here" ), "terminal", Qt::Key_F2, SLOTS, SLOT( terminal() ) , "F2_Terminal" );

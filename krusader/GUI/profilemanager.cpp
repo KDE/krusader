@@ -64,28 +64,32 @@ void ProfileManager::profilePopup()
   
   // create the menu
   KMenu popup, removePopup, overwritePopup;
-  popup.insertTitle(i18n("Profiles"));
+  popup.setTitle(i18n("Profiles"));
   
   for( unsigned i=0; i != profileList.count() ; i++ )
   {
     krConfig->setGroup( profileType + " - " + profileList[i] ); 
     QString name = krConfig->readEntry( "Name" );
-    popup.insertItem( name, LOAD_ENTRY_ID + i );
-    removePopup.insertItem( name, REMOVE_ENTRY_ID + i );
-    overwritePopup.insertItem( name, OVERWRITE_ENTRY_ID + i );
+    popup.addAction( name )->setData( QVariant( (int)( LOAD_ENTRY_ID + i ) ) );
+    removePopup.addAction( name )->setData( QVariant( (int)( REMOVE_ENTRY_ID + i ) ) );
+    overwritePopup.addAction( name )->setData( QVariant( (int)( OVERWRITE_ENTRY_ID + i ) ) );
   }
 
-  popup.insertSeparator();
+  popup.addSeparator();
   
   if( profileList.count() )
   {
-    popup.insertItem( i18n("Remove entry"), &removePopup );
-    popup.insertItem( i18n("Overwrite entry"), &overwritePopup );
+    popup.addMenu( &removePopup )->setText( i18n("Remove entry") );
+    popup.addMenu( &overwritePopup )->setText( i18n("Overwrite entry") );
   }
   
-  popup.insertItem(i18n("Add new entry"),ADD_NEW_ENTRY_ID);
+  popup.addAction(i18n("Add new entry") )->setData( QVariant( (int)( ADD_NEW_ENTRY_ID) ) );
 
-  unsigned result=popup.exec(QCursor::pos());
+
+  unsigned result = 0;
+  QAction * res = popup.exec(QCursor::pos());
+  if( res->data().canConvert<int>() )
+    result = res->data().toInt();
 
   // check out the user's selection
   if( result == ADD_NEW_ENTRY_ID )

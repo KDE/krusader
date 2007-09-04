@@ -25,16 +25,16 @@
 #include "../krusader.h"
 #include "../krusaderview.h"
 
-#include <kactionclasses.h>
 #include <klocale.h>
 #include <kiconloader.h>
 #include <kmenu.h>
+#include <kactionmenu.h>
 
 #include <kdebug.h>
 //Added by qt3to4:
 #include <Q3PopupMenu>
 
-KCMDModeButton::KCMDModeButton( QWidget *parent, const char *name ) : QToolButton( parent, name ) {
+KCMDModeButton::KCMDModeButton( QWidget *parent ) : QToolButton( parent ) {
   setFixedSize( 22, 20 );
 /* // from the old terminal-button:
   setTextLabel( i18n( "If pressed, Krusader executes command line in a terminal." ) );
@@ -46,13 +46,13 @@ KCMDModeButton::KCMDModeButton( QWidget *parent, const char *name ) : QToolButto
 */
   setIconSet( SmallIcon( "konsole" ) );
   adjustSize();
-  action = new KActionMenu( i18n("Execution mode") );
+  action = new KActionMenu( i18n("Execution mode"), this );
   Q_CHECK_PTR( action );
   for( int i=0; Krusader::execTypeArray[i] != 0; i++ )
   {
-    action->insert( *Krusader::execTypeArray[i] );
+    action->addAction( *Krusader::execTypeArray[i] );
   }
-  Q3PopupMenu *pP = action->popupMenu();
+  QMenu *pP = action->popupMenu();
   Q_CHECK_PTR( pP );
   setPopup( pP );
   setPopupDelay( 10 );
@@ -65,7 +65,7 @@ KCMDModeButton::~KCMDModeButton() {
 
 /** called when clicked to the button */
 void KCMDModeButton::openPopup() {
-  Q3PopupMenu * pP = popup();
+  QMenu * pP = popup();
   if ( pP ) {
     popup() ->exec( mapToGlobal( QPoint( 0, 0 ) ) );
   }

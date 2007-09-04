@@ -1,3 +1,4 @@
+
 /***************************************************************************
                          mediabutton.cpp  -  description
                              -------------------
@@ -148,8 +149,8 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 {
 	KMountPoint::List mountList = KMountPoint::currentMountPoints();
 	
-	KIO::UDSEntryListConstIterator it = entries.begin();
-	KIO::UDSEntryListConstIterator end = entries.end();
+	KIO::UDSEntryList::const_iterator it = entries.begin();
+	KIO::UDSEntryList::const_iterator end = entries.end();
 	
 	while( it != end )
 	{
@@ -159,30 +160,22 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 		QString localPath;
 		bool mounted = false;
 		
-		KIO::UDSEntry::ConstIterator it2 = (*it).begin();
-		
-		for( ; it2 != (*it).end(); it2++ ) {
-			switch ((*it2).m_uds) {
-			case KIO::UDSEntry::UDS_NAME:
-				text = KUrl::decode_string((*it2).m_str);
-				break;
-			case KIO::UDSEntry::UDS_URL:
-				url = KUrl::fromPathOrUrl(  (*it2).m_str );
-				break;
-			case KIO::UDSEntry::UDS_MIME_TYPE:
-				mime = (*it2).m_str;
-				if( !mime.endsWith( "unmounted" ) )
-					mounted = true;
-				break;
-			case KIO::UDSEntry::UDS_LOCAL_PATH:
-				localPath = (*it2).m_str;
-				break;
-			}
+		if( (*it).contains( KIO::UDSEntry::UDS_NAME ) )
+			text = KUrl::decode_string( (*it).stringValue( KIO::UDSEntry::UDS_NAME ) );
+		if( (*it).contains( KIO::UDSEntry::UDS_URL ) )
+			url = KUrl( (*it).stringValue( KIO::UDSEntry::UDS_URL ) );
+		if( (*it).contains( KIO::UDSEntry::UDS_MIME_TYPE ) )
+		{
+			mime = (*it).stringValue( KIO::UDSEntry::UDS_MIME_TYPE );
+			if( !mime.endsWith( "unmounted" ) )
+				mounted = true;
 		}
-		
+		if( (*it).contains( KIO::UDSEntry::UDS_LOCAL_PATH ) )
+			localPath = (*it).stringValue( KIO::UDSEntry::UDS_LOCAL_PATH );
+
 		if( text != "." && text != ".." ) {
 			int index = popupMenu->count();
-			QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mime ) ->icon( QString(), true ) );
+			QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mime ) ->iconName() );
 			
 			mediaUrls.append( url );
 			
@@ -199,7 +192,9 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 					text += "  [" + url.path() + "]";
 			}
 			
-			popupMenu->insertItem( pixmap, text, index, index );
+			QAction *act = popupMenu->addAction( pixmap, text );
+			act->setData( QVariant( index ) );
+			idActionMap[ index ] = act;
 			
 			urls.append( url );
 			mimes.append( mime );
@@ -254,12 +249,12 @@ void MediaButton::createListWithoutMedia() {
 	
 	KMountPoint::List possibleMountList = KMountPoint::possibleMountPoints();
 	for (KMountPoint::List::iterator it = possibleMountList.begin(); it != possibleMountList.end(); ++it) {
-		addMountPoint( *it, false );
+		addMountPoint( &(*(*it)), false );
 	}
 	
 	KMountPoint::List mountList = KMountPoint::currentMountPoints();
 	for (KMountPoint::List::iterator it = mountList.begin(); it != mountList.end(); ++it) {
-		addMountPoint( *it, true );
+		addMountPoint( &(*(*it)), true );
 	}
 }
 
@@ -388,18 +383,18 @@ void MediaButton::gettingSpaceData(const QString &mountPoint, unsigned long kBSi
 					mimes[ i ] = mimes[ i ].replace( "_mounted", "_unmounted" );
 				}
 				
-				QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mimes[ i ] ) ->icon( QString(), true ) );
-				popupMenu->changeItem( i, pixmap, popupMenu->text( i ) );
+				QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mimes[ i ] ) ->iconName() );
+				idActionMap[ i ]->setIcon( pixmap );
 			}
 			else if( mimes[ i ].contains( "hdd_" ) )
-				popupMenu->changeItem( i, sizeText + " " + popupMenu->text( i ).trimmed() );
+				idActionMap[ i ]->setText( sizeText + " " + popupMenu->text( i ).trimmed() );
 			return;
 		}
 	}
 }
 
 void MediaButton::openPopup() {
-	Q3PopupMenu * pP = popup();
+	QMenu * pP = popup();
 	if ( pP ) {
 		popup() ->exec( mapToGlobal( QPoint( 0, height() ) ) );
 	}
@@ -480,7 +475,7 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 		         this, SLOT( gettingSpaceData( const QString&, unsigned long, unsigned long, unsigned long ) ) );
 	}
 	
-	QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mime ) ->icon( QString(), true ) );
+	QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mime ) ->iconName() );
 	
 	if( overwrite == -1 ) {
 		int index = popupMenu->count();
@@ -488,11 +483,14 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 		mimes.append( mime );
 		mediaUrls.append( KUrl() );
 		quasiMounted.append( false );
-		popupMenu->insertItem( pixmap, name + "  [" + mp->mountPoint() + "]" + extSpc, index, index );
+		QAction * act = popupMenu->addAction( pixmap, name + "  [" + mp->mountPoint() + "]" + extSpc );
+		act->setData( QVariant( index ) );
+		idActionMap[ index ] = act;
 	}
 	else {
 		mimes[ overwrite ] = mime;
-		popupMenu->changeItem( overwrite, pixmap, name + "  [" + mp->mountPoint() + "]" + extSpc );
+		idActionMap[ overwrite ]->setIcon( pixmap );
+		idActionMap[ overwrite ]->setText( name + "  [" + mp->mountPoint() + "]" + extSpc );
 	}
 }
 
@@ -502,7 +500,10 @@ bool MediaButton::eventFilter( QObject *o, QEvent *e ) {
 			QMouseEvent *m = (QMouseEvent *)e;
 			if( m->button() == Qt::RightButton ) {
 				if( e->type() == QEvent::MouseButtonPress ) {
-					int id = popupMenu->idAt( m->pos() );
+					QAction * act = popupMenu->actionAt( m->pos() );
+					int id = -1;
+					if( act && act->data().canConvert<int>() )
+						id = act->data().toInt();
 					if( id != -1 )
 						rightClickMenu( id );
 				}
@@ -663,8 +664,9 @@ void MediaButton::slotTimeout() {
 		if( mimes[ index ].contains( "_unmounted" ) && mounted )
 			mimes[ index ] = mimes[ index ].replace( "_unmounted", "_mounted" );
 		
-		QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mimes[ index ] ) ->icon( QString(), true ) );
-		popupMenu->changeItem( index, pixmap, text );
+		QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mimes[ index ] ) ->iconName() );
+		idActionMap[ index ]->setIcon( pixmap );
+		idActionMap[ index ]->setText( text );
 		
 		if( ((int)index == waitingForMount) && mounted ) {
 			waitingForMount = -1;

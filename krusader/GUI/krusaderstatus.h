@@ -45,7 +45,7 @@
 class KrusaderStatus : public KStatusBar {
    Q_OBJECT
 public: 
-	KrusaderStatus(QWidget *parent=0, const char *name=0);
+	KrusaderStatus(QWidget *parent=0);
 	~KrusaderStatus();
 
 private:

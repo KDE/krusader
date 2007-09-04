@@ -34,8 +34,8 @@
 #include "../resources.h"
 
 
-KrusaderStatus::KrusaderStatus(QWidget *parent, const char *name ):
-  KStatusBar(parent,name){
+KrusaderStatus::KrusaderStatus(QWidget *parent):
+  KStatusBar(parent){
 	insertItem(i18n("Ready."), S_READY_ID);
 	setMaximumHeight(QFontMetrics(font()).height()+2);
 }

@@ -36,14 +36,15 @@
 #include <kurl.h>
 #include <klibloader.h>
 #include <kaction.h>
+#include <kactionmenu.h>
 
 class KrRemoteEncodingMenu: public KActionMenu
 {
   Q_OBJECT
 public:
-  KrRemoteEncodingMenu (const QString &text, const QString &icon, QObject *parent=0, const char *name=0);
+  KrRemoteEncodingMenu (const QString &text, const QString &icon, QObject *parent=0);
 
-  virtual int plug( QWidget *widget, int index = -1);
+// TODO:  virtual int plug( QWidget *widget, int index = -1);
 
 protected slots:
 

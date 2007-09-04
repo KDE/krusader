@@ -41,6 +41,7 @@
 #include <q3valuelist.h>
 #include <kmountpoint.h>
 #include <qtimer.h>
+#include <qmap.h>
 
 /**
   *@author Csaba Karai
@@ -104,6 +105,8 @@ private:
   QString extraSpaces;  //prevents from increasing the size of the widget
 
   QTimer      mountCheckerTimer;
+
+  QMap<int,QAction *>  idActionMap;
 };
 
 #endif /* MEDIABUTTON_H */

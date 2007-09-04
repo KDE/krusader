@@ -29,22 +29,22 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "krremoteencodingmenu.h"
+
 #include <kmenu.h>
 #include <kcharsets.h>
 #include <kio/slaveconfig.h>
-#include <dcopclient.h>
 
 #include "../krusader.h"
 #include "../krusaderview.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
-
-#include "krremoteencodingmenu.h"
+#include "../kicons.h"
 
 #define DATA_KEY    QString::fromLatin1("Charset")
 
-KrRemoteEncodingMenu::KrRemoteEncodingMenu(const QString &text, const QString &icon, QObject *parent, const char *name) :
-  KActionMenu( text, icon, parent, name ), settingsLoaded( false )
+KrRemoteEncodingMenu::KrRemoteEncodingMenu(const QString &text, const QString &icon, QObject *parent) :
+  KActionMenu( KIcon( icon, krLoader ), text, parent ), settingsLoaded( false )
 {
   connect(popupMenu(), SIGNAL(aboutToShow()), this, SLOT(slotAboutToShow()));
 }
@@ -99,6 +99,7 @@ void KrRemoteEncodingMenu::loadSettings()
   defaultID = count;
 }
 
+/* TODO:
 int KrRemoteEncodingMenu::plug( QWidget *widget, int index )
 {
   if( widget->inherits( "QPopupMenu" ) )
@@ -109,6 +110,7 @@ int KrRemoteEncodingMenu::plug( QWidget *widget, int index )
 
   return KActionMenu::plug( widget, index );
 }
+*/
 
 void KrRemoteEncodingMenu::slotCheckEnabled()
 {
@@ -188,6 +190,7 @@ void KrRemoteEncodingMenu::slotDefault()
 
 void KrRemoteEncodingMenu::updateKIOSlaves()
 {
+#if 0 // TODO: correct KrRemoteEncodingMenu
   // Inform running io-slaves about the change...
   DCOPClient *client = new DCOPClient();
 
@@ -199,6 +202,7 @@ void KrRemoteEncodingMenu::updateKIOSlaves()
   stream << QString();
   client->send("*", "KIO::Scheduler", "reparseSlaveConfiguration(QString)", data);
   delete client;
+#endif
 
   // Reload the page with the new charset
   QTimer::singleShot( 500, ACTIVE_FUNC, SLOT( refresh() ) );
