@@ -155,6 +155,7 @@ krusaderlocal_DATA = \
 	krusaderui.rc \
 	midnight_commander.color \
 	total_commander.color \
+	dos_navigator.color \
 	total_commander.keymap \
 	total_commander.keymap.info \
 	useraction_examples.xml \
