@@ -95,23 +95,23 @@ private:
 	static KrViewer* getViewer(bool new_window);	
 
 	KParts::PartManager manager;
-	Q3PopupMenu* viewerMenu;
+	QMenu* viewerMenu;
 	KTemporaryFile tmpFile;
 	KTabWidget tabBar;
 	QPointer<QWidget> returnFocusTo;
 	PanelViewerBase * returnFocusTab;
 	
-	int detachActionIndex;
+	QAction *detachAction;
 
 	KAction *printAction;
 	KAction *copyAction;
 
-	int tabCloseID;
-	int closeID;
+	QAction *tabClose;
+	QAction *closeAct;
 
 	static Q3PtrList<KrViewer> viewers; // the first viewer is the active one
 	Q3ValueList<int>    reservedKeys;   // the reserved key sequences
-	Q3ValueList<int>    reservedKeyIDs; // the IDs of the reserved keys
+	Q3ValueList<QAction *> reservedKeyActions; // the IDs of the reserved keys
 };
 
 class Invoker : public QObject {

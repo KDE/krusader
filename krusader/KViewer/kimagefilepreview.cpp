@@ -134,8 +134,4 @@ void KrusaderImageFilePreview::clearPreview() {
 	currentURL = KUrl();
 }
 
-void KrusaderImageFilePreview::virtual_hook( int id, void* data ) {
-	KPreviewWidgetBase::virtual_hook( id, data );
-}
-
 #include "kimagefilepreview.moc"

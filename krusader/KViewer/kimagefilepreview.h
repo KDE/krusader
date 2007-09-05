@@ -63,8 +63,6 @@ class KrusaderImageFilePreview : public KPreviewWidgetBase {
 		QLabel *imageLabel;
 		QLabel *infoLabel;
 		KIO::PreviewJob *m_job;
-	protected:
-		virtual void virtual_hook( int id, void* data );
 	private:
 		class KrusaderImageFilePreviewPrivate;
 		KrusaderImageFilePreviewPrivate *d;

@@ -41,6 +41,7 @@
 #include <khtml_part.h>
 #include <k3process.h>
 #include <kfileitem.h> 
+#include <ktoolbar.h>
 // Krusader includes
 #include "krviewer.h"
 #include "../krusader.h"
@@ -58,14 +59,13 @@ Q3PtrList<KrViewer> KrViewer::viewers;
 
 KrViewer::KrViewer( QWidget *parent, const char *name ) :
 KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ), returnFocusTo( 0 ), returnFocusTab( 0 ),
-                                    reservedKeys(), reservedKeyIDs() {
+                                    reservedKeys(), reservedKeyActions() {
 
 	//setWFlags(Qt::WType_TopLevel | WDestructiveClose);
 	setXMLFile( "krviewer.rc" ); // kpart-related xml file
 	setHelpMenuEnabled( false );
 
 	setAutoSaveSettings( "KrViewerWindow", true );
-	tmpFile.setAutoDelete( true );
 
 	connect( &manager, SIGNAL( activePartChanged( KParts::Part* ) ),
 	         this, SLOT( createGUI( KParts::Part* ) ) );
@@ -80,28 +80,29 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ), retur
 //	"filesaveas"
 	setCentralWidget( &tabBar );
 
-	printAction = KStandardAction::print( this, SLOT( print() ), 0, 0 );
-	copyAction = KStandardAction::copy( this, SLOT( copy() ), 0, 0 );
+	printAction = KStandardAction::print( this, SLOT( print() ), 0 );
+	copyAction = KStandardAction::copy( this, SLOT( copy() ), 0 );
 
-	viewerMenu = new Q3PopupMenu( this );
-	viewerMenu->insertItem( i18n( "&Generic viewer" ), this, SLOT( viewGeneric() ), CTRL + SHIFT + Qt::Key_G, 1 );
-	viewerMenu->insertItem( i18n( "&Text viewer" ), this, SLOT( viewText() ), CTRL + SHIFT + Qt::Key_T, 2 );
-	viewerMenu->insertItem( i18n( "&Hex viewer" ), this, SLOT( viewHex() ), CTRL + SHIFT + Qt::Key_H, 3 );
-	viewerMenu->insertSeparator();
-	viewerMenu->insertItem( i18n( "Text &editor" ), this, SLOT( editText() ), CTRL + SHIFT + Qt::Key_E, 4 );
-	viewerMenu->insertSeparator();
-	viewerMenu->insertItem( i18n( "&Next tab" ), this, SLOT( nextTab() ), ALT+Qt::Key_Right );
-	viewerMenu->insertItem( i18n( "&Previous tab" ), this, SLOT( prevTab() ), ALT+Qt::Key_Left );
+	viewerMenu = new QMenu( this );
+	viewerMenu->addAction( i18n( "&Generic viewer" ), this, SLOT( viewGeneric() ))->setShortcut( Qt::CTRL + Qt::SHIFT + Qt::Key_G );
+	viewerMenu->addAction( i18n( "&Text viewer" ), this, SLOT( viewText() ))->setShortcut( Qt::CTRL + Qt::SHIFT + Qt::Key_T );
+	viewerMenu->addAction( i18n( "&Hex viewer" ), this, SLOT( viewHex() ))->setShortcut( Qt::CTRL + Qt::SHIFT + Qt::Key_H );
+	viewerMenu->addSeparator();
+	viewerMenu->addAction( i18n( "Text &editor" ), this, SLOT( editText() ))->setShortcut( Qt::CTRL + Qt::SHIFT + Qt::Key_E );
+	viewerMenu->addSeparator();
+	viewerMenu->addAction( i18n( "&Next tab" ), this, SLOT( nextTab() ))->setShortcut( Qt::ALT+Qt::Key_Right );
+	viewerMenu->addAction( i18n( "&Previous tab" ), this, SLOT( prevTab() ))->setShortcut( Qt::ALT+Qt::Key_Left );
 
-	detachActionIndex = viewerMenu->insertItem( i18n( "&Detach tab" ), this, SLOT( detachTab() ), CTRL + SHIFT + Qt::Key_D );
+	detachAction = viewerMenu->addAction( i18n( "&Detach tab" ), this, SLOT( detachTab() ));
+	detachAction->setShortcut( Qt::CTRL + Qt::SHIFT + Qt::Key_D );
 	//no point in detaching only one tab..
-	viewerMenu->setItemEnabled(detachActionIndex,false);	
-	viewerMenu->insertSeparator();
-	viewerMenu->insertItem( printAction->text(), this, SLOT( print() ), printAction->shortcut() );
-	viewerMenu->insertItem( copyAction->text(), this, SLOT( copy() ), copyAction->shortcut() );
-	viewerMenu->insertSeparator();
-	tabCloseID = viewerMenu->insertItem( i18n( "&Close current tab" ), this, SLOT( tabCloseRequest() ), Qt::Key_Escape );
-	closeID = viewerMenu->insertItem( i18n( "&Quit" ), this, SLOT( close() ), CTRL + Qt::Key_Q );
+	detachAction->setEnabled(false);	
+	viewerMenu->addSeparator();
+	viewerMenu->addAction( printAction->text(), this, SLOT( print() ))->setShortcut( printAction->shortcut().primary() );
+	viewerMenu->addAction( copyAction->text(), this, SLOT( copy() ))->setShortcut( copyAction->shortcut().primary() );
+	viewerMenu->addSeparator();
+	( tabClose = viewerMenu->addAction( i18n( "&Close current tab" ), this, SLOT( tabCloseRequest() )))->setShortcut( Qt::Key_Escape );
+	( closeAct = viewerMenu->addAction( i18n( "&Quit" ), this, SLOT( close() )))->setShortcut( Qt::CTRL + Qt::Key_Q );
 
 	//toolBar() ->insertLined("Edit:",1,"",this,"",true ,i18n("Enter an URL to edit and press enter"));
 	
@@ -130,7 +131,7 @@ void KrViewer::createGUI( KParts::Part* part ) {
 	         this, SLOT( slotSetStatusBarText( const QString& ) ) );
 
 	KParts::MainWindow::createGUI( part );
-	toolBar() ->insertLineSeparator(0);
+	toolBar()->insertSeparator(actions().first());
 
 	PanelViewerBase *pvb = getPanelViewerBase( part );
 	if( pvb )
@@ -142,17 +143,21 @@ void KrViewer::createGUI( KParts::Part* part ) {
 	// the KParts part may override the viewer shortcuts. We prevent it
 	// by installing an event filter on the menuBar() and the part
 	reservedKeys.clear();
-	reservedKeyIDs.clear();
+	reservedKeyActions.clear();
 	
+	QList<QAction *> list = viewerMenu->actions();
 	// getting the key sequences of the viewer menu
-	for( unsigned w=0; w != viewerMenu->count(); w++ )
+	for( unsigned w=0; w != list.count(); w++ )
 	{
-		int id = viewerMenu->idAt( w );
-		QKeySequence sequence = viewerMenu->accel( id );
-		if( sequence.count() > 0 )
+		QAction *act = list[ w ];
+		QList<QKeySequence> sequences = act->shortcuts();
+		if( !sequences.isEmpty() )
 		{
-			reservedKeys.push_back( sequence[ 0 ] );
-			reservedKeyIDs.push_back( id );
+			for( int i=0; i != sequences.count(); i++ )
+			{
+				reservedKeys.push_back( sequences[ i ] );
+				reservedKeyActions.push_back( act );
+			}
 		}
 	}
 	
@@ -175,18 +180,17 @@ bool KrViewer::eventFilter (  QObject * /* watched */, QEvent * e )
 		{
 			ke->accept();
 			
-			int id = reservedKeyIDs[ reservedKeys.findIndex( ke->key() ) ];
-			if( id != -1 )
+			QAction *act = reservedKeyActions[ reservedKeys.findIndex( ke->key() ) ];
+			if( act != 0 )
 			{
 				// don't activate the close functions immediately!
 				// it can cause crash
-				if( id == tabCloseID )
+				if( act == tabClose )
 					QTimer::singleShot( 0, this, SLOT( tabCloseRequest() ) );
-				else if( id == closeID )
+				else if( act == closeAct )
 					QTimer::singleShot( 0, this, SLOT( close() ) );
 				else {
-					int index = viewerMenu->indexOf( id );
-					viewerMenu->activateItemAt( index );
+					act->activate( QAction::Trigger );
 				}
 			}
 			return true;
@@ -315,7 +319,7 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 
 	// now we can offer the option to detach tabs (we have more than one)
 	if( tabBar.count() > 1 ){
-		viewerMenu->setItemEnabled(detachActionIndex,true);	
+		detachAction->setEnabled(true);	
 	}
 
 	show();
@@ -373,7 +377,7 @@ void KrViewer::tabCloseRequest(QWidget *w){
 		return;
 	} else if( tabBar.count() == 1 ){
 		//no point in detaching only one tab..
-		viewerMenu->setItemEnabled(detachActionIndex,false);
+		detachAction->setEnabled(false);
 	}
 
 	if( returnFocusToThisWidget ){ 
@@ -494,7 +498,7 @@ void KrViewer::detachTab(){
 	
 	if( tabBar.count() == 1 ) {
 		//no point in detaching only one tab..
-		viewerMenu->setItemEnabled(detachActionIndex,false);
+		detachAction->setEnabled(false);
 	}
 	
 	pvb->reparent(&viewer->tabBar,QPoint(0,0));
@@ -539,14 +543,14 @@ PanelViewerBase * KrViewer::getPanelViewerBase( KParts::Part * part ) {
 
 void KrViewer::updateActions( PanelViewerBase * pvb ) {
 	if( pvb->isEditor() ) {
-		printAction->unplugAll();
-		copyAction->unplugAll();
+		printAction->setVisible(false);
+		copyAction->setVisible(false);
 	}
 	else {
-		if( !printAction->isPlugged( toolBar() ) )
-			printAction->plug( toolBar(), 0 );
-		if( !copyAction->isPlugged( toolBar() ) )
-			copyAction->plug( toolBar(), 1 );
+		if( !printAction->isVisible() )
+			printAction->setVisible( true );
+		if( !copyAction->isVisible() )
+			copyAction->setVisible( true );
 	}
 }
 
