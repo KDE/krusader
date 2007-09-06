@@ -11,7 +11,8 @@
 #include <k3tempfile.h>
 #include <klocale.h>
 #include <klibloader.h>
-#include <kuserprofile.h>
+#include <kservicetypeprofile.h>
+#include <kmimetypetrader.h>
 #include <kdebug.h>
 #include <kfileitem.h>
 #include <kio/netaccess.h>
@@ -31,14 +32,14 @@ Q3WidgetStack( parent ), mimes( 0 ), cpart( 0 ) {
 	mimes->setAutoDelete( true );
 	cpart = 0;
 	fallback = new QLabel( i18n( "No file selected or selected file can't be displayed." ), this );
-	fallback->setAlignment( Qt::AlignCenter | ExpandTabs | WordBreak );
+	fallback->setAlignment( Qt::AlignCenter | Qt::ExpandTabs | Qt::WordBreak );
 	addWidget( fallback );
 	raiseWidget( fallback );
 }
 
 PanelViewerBase::~PanelViewerBase() {
 //	cpart->queryClose();
-	closeURL();
+	closeUrl();
 	mimes->clear();
 	delete mimes;
 	delete fallback;
@@ -53,9 +54,9 @@ PanelViewerBase( parent ) {
 PanelViewer::~PanelViewer() {
 }
 
-KParts::ReadOnlyPart* PanelViewer::openURL( const KUrl &url, KrViewer::Mode mode ) {
+KParts::ReadOnlyPart* PanelViewer::openUrl( const KUrl &url, KrViewer::Mode mode ) {
 	emit urlChanged( this, url );
-	closeURL();
+	closeUrl();
 	curl = url;
 
 	if( mode == KrViewer::Generic ){
@@ -81,7 +82,7 @@ KParts::ReadOnlyPart* PanelViewer::openURL( const KUrl &url, KrViewer::Mode mode
 		addWidget( cpart->widget() );
 		raiseWidget( cpart->widget() );
 	}
-	if ( cpart && cpart->openURL( curl ) ){
+	if ( cpart && cpart->openUrl( curl ) ){
 		curl = url; /* needed because of the oldHexViewer */
 		return cpart;
 	}
@@ -91,9 +92,9 @@ KParts::ReadOnlyPart* PanelViewer::openURL( const KUrl &url, KrViewer::Mode mode
 	}
 }
 
-bool PanelViewer::closeURL() {
+bool PanelViewer::closeUrl() {
 	raiseWidget( fallback );
-	if ( cpart && cpart->closeURL() ) {
+	if ( cpart && cpart->closeUrl() ) {
 		cpart = 0;
 		return true;
 	}
@@ -103,7 +104,7 @@ bool PanelViewer::closeURL() {
 KParts::ReadOnlyPart* PanelViewer::getPart( QString mimetype ) {
 	KParts::ReadOnlyPart * part = 0L;
 	KLibFactory *factory = 0;
-	KService::Ptr ptr = KServiceTypeProfile::preferredService( mimetype, "KParts/ReadOnlyPart" );
+	KService::Ptr ptr = KMimeTypeTrader::self()->preferredService( mimetype, "KParts/ReadOnlyPart" );
 	if ( ptr ) {
 		QStringList args;
 		QVariant argsProp = ptr->property( "X-KDE-BrowserView-Args" );
@@ -117,15 +118,15 @@ KParts::ReadOnlyPart* PanelViewer::getPart( QString mimetype ) {
 			factory = KLibLoader::self() ->factory( ptr->library().toLatin1() );
 			if ( factory ) {
 				part = static_cast<KParts::ReadOnlyPart *>( factory->create( this,
-				        ptr->name().toLatin1(), QString( "KParts::ReadOnlyPart" ).toLatin1(), args ) );
+				        QString( "KParts::ReadOnlyPart" ).toLatin1(), args ) );
 			}
 		}
 	}
 	if ( part ) {
 		KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject( part );
 		if ( ext ) {
-			connect( ext, SIGNAL( openURLRequestDelayed( const KUrl &, const KParts::URLArgs & ) ), this, SLOT( openURL( const KUrl & ) ) );
-			connect( ext, SIGNAL( openURLRequestDelayed( const KUrl &, const KParts::URLArgs & ) ), this, SIGNAL( openURLRequest( const KUrl & ) ) );
+			connect( ext, SIGNAL( openUrlRequestDelayed( const KUrl &, const KParts::URLArgs & ) ), this, SLOT( openUrl( const KUrl & ) ) );
+			connect( ext, SIGNAL( openUrlRequestDelayed( const KUrl &, const KParts::URLArgs & ) ), this, SIGNAL( openUrlRequest( const KUrl & ) ) );
 		}
 	}
 	return part;
@@ -137,7 +138,7 @@ KParts::ReadOnlyPart* PanelViewer::getHexPart(){
 	KLibFactory * factory = KLibLoader::self() ->factory( "libkhexedit2part" );
 	if ( factory ) {
 		// Create the part
-		part = ( KParts::ReadOnlyPart * ) factory->create( this, "hexedit2part","KParts::ReadOnlyPart" );
+		part = ( KParts::ReadOnlyPart * ) factory->create( this, "KParts::ReadOnlyPart" );
 	}
 
 	return part;
@@ -203,9 +204,9 @@ PanelViewerBase( parent ) {
 PanelEditor::~PanelEditor() {
 }
 
-KParts::ReadOnlyPart* PanelEditor::openURL( const KUrl &url, KrViewer::Mode mode ) {
+KParts::ReadOnlyPart* PanelEditor::openUrl( const KUrl &url, KrViewer::Mode mode ) {
 	emit urlChanged( this, url );
-	closeURL();
+	closeUrl();
 	curl = url;
 
 	if( mode == KrViewer::Generic ){
@@ -234,7 +235,7 @@ KParts::ReadOnlyPart* PanelEditor::openURL( const KUrl &url, KrViewer::Mode mode
 	connect( statJob, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotStatResult( KIO::Job* ) ) );
 	busy = true;
 	while ( busy ) qApp->processEvents();
-	if( !entry.isEmpty() ) {
+	if( entry.count() != 0 ) {
 		KFileItem file( entry, url );
 		if( file.isReadable() ) create = false;
 	}
@@ -243,7 +244,7 @@ KParts::ReadOnlyPart* PanelEditor::openURL( const KUrl &url, KrViewer::Mode mode
 		if( static_cast<KParts::ReadWritePart *>(cpart)->saveAs( curl ) ) return cpart;
 	}
 	else {
-		if ( cpart->openURL( curl ) ) return cpart;
+		if ( cpart->openUrl( curl ) ) return cpart;
 	}
 	return 0;
 }
@@ -253,10 +254,10 @@ bool PanelEditor::queryClose() {
 	return static_cast<KParts::ReadWritePart *>(cpart)->queryClose();
 }
 
-bool PanelEditor::closeURL() {
+bool PanelEditor::closeUrl() {
 	if ( !cpart ) return false;
 	
-	static_cast<KParts::ReadWritePart *>(cpart)->closeURL( false );
+	static_cast<KParts::ReadWritePart *>(cpart)->closeUrl( false );
 	
 	raiseWidget( fallback );
 	cpart = 0;
@@ -266,7 +267,7 @@ bool PanelEditor::closeURL() {
 KParts::ReadWritePart* PanelEditor::getPart( QString mimetype ) {
 	KParts::ReadWritePart * part = 0L;
 	KLibFactory *factory = 0;
-	KService::Ptr ptr = KServiceTypeProfile::preferredService( mimetype, "KParts/ReadWritePart" );
+	KService::Ptr ptr = KMimeTypeTrader::self()->preferredService( mimetype, "KParts/ReadWritePart" );
 	if ( ptr ) {
 		QStringList args;
 		QVariant argsProp = ptr->property( "X-KDE-BrowserView-Args" );
@@ -280,15 +281,15 @@ KParts::ReadWritePart* PanelEditor::getPart( QString mimetype ) {
 			factory = KLibLoader::self() ->factory( ptr->library().toLatin1() );
 			if ( factory ) {
 				part = static_cast<KParts::ReadWritePart *>( factory->create( this,
-				        ptr->name().toLatin1(), QString( "KParts::ReadWritePart" ).toLatin1(), args ) );
+				        QString( "KParts::ReadWritePart" ).toLatin1(), args ) );
 			}
 		}
 	}
 	if ( part ) {
 		KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject( part );
 		if ( ext ) {
-			connect( ext, SIGNAL( openURLRequestDelayed( const KUrl &, const KParts::URLArgs & ) ), this, SLOT( openURL( const KUrl & ) ) );
-			connect( ext, SIGNAL( openURLRequestDelayed( const KUrl &, const KParts::URLArgs & ) ), this, SIGNAL( openURLRequest( const KUrl & ) ) );
+			connect( ext, SIGNAL( openUrlRequestDelayed( const KUrl &, const KParts::URLArgs & ) ), this, SLOT( openUrl( const KUrl & ) ) );
+			connect( ext, SIGNAL( openUrlRequestDelayed( const KUrl &, const KParts::URLArgs & ) ), this, SIGNAL( openUrlRequest( const KUrl & ) ) );
 		}
 	}
 	return part;

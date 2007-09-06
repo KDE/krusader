@@ -261,7 +261,7 @@ void KrViewer::view( KUrl url, Mode mode,  bool new_window, QWidget * parent ) {
 	KrViewer* viewer = getViewer(new_window);
 
 	PanelViewerBase* viewWidget = new PanelViewer(&viewer->tabBar);
-	KParts::Part* part = viewWidget->openURL(url,mode);
+	KParts::Part* part = viewWidget->openUrl(url,mode);
 	viewer->addTab(viewWidget,i18n( "Viewing" ),VIEW_ICON,part);
 
 	viewer->returnFocusTo = parent;
@@ -294,7 +294,7 @@ void KrViewer::edit( KUrl url, Mode mode, int new_window, QWidget * parent ) {
 	KrViewer* viewer = getViewer(new_window);
 
 	PanelViewerBase* editWidget = new PanelEditor(&viewer->tabBar);
-	KParts::Part* part = editWidget->openURL(url,mode);
+	KParts::Part* part = editWidget->openUrl(url,mode);
 	viewer->addTab(editWidget,i18n("Editing"),EDIT_ICON,part);
 	
 	viewer->returnFocusTo = parent;
@@ -360,7 +360,7 @@ void KrViewer::tabCloseRequest(QWidget *w){
 		
 	manager.removePart(pvb->part());
 	
-	pvb->closeURL();
+	pvb->closeUrl();
 	
 	tabBar.removePage(w);
 
@@ -413,7 +413,7 @@ void KrViewer::viewGeneric(){
 	if( !pvb ) return;
 
 	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
-	KParts::Part* part = viewerWidget->openURL(pvb->url(),Generic);
+	KParts::Part* part = viewerWidget->openUrl(pvb->url(),Generic);
 	addTab(viewerWidget,i18n("Viewing"),VIEW_ICON,part);
 }
 
@@ -422,7 +422,7 @@ void KrViewer::viewText(){
 	if( !pvb ) return;
 
 	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
-	KParts::Part* part = viewerWidget->openURL(pvb->url(),Text);
+	KParts::Part* part = viewerWidget->openUrl(pvb->url(),Text);
 	addTab(viewerWidget,i18n("Viewing"),VIEW_ICON,part);
 }
 
@@ -431,7 +431,7 @@ void KrViewer::viewHex(){
 	if( !pvb ) return;
 
 	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
-	KParts::Part* part = viewerWidget->openURL(pvb->url(),Hex);
+	KParts::Part* part = viewerWidget->openUrl(pvb->url(),Hex);
 	addTab(viewerWidget,i18n("Viewing"),VIEW_ICON,part);
 }
 
@@ -440,7 +440,7 @@ void KrViewer::editText(){
 	if( !pvb ) return;
 
 	PanelViewerBase* editWidget = new PanelEditor(&tabBar);
-	KParts::Part* part = editWidget->openURL(pvb->url(),Text);
+	KParts::Part* part = editWidget->openUrl(pvb->url(),Text);
 	addTab(editWidget,i18n("Editing"),EDIT_ICON,part);
 }
 
@@ -573,7 +573,7 @@ bool KrViewer::editGeneric( QString mimetype, KUrl _url ) {
 			kedit_part = static_cast<KParts::ReadWritePart *>( factory->create( this,
 			             ptr->name().toLatin1(), "KParts::ReadWritePart" ) );
 			if ( kedit_part )
-				if ( kedit_part->openURL( _url ) ) break;
+				if ( kedit_part->openUrl( _url ) ) break;
 				else {
 					delete kedit_part;
 					kedit_part = 0L;
@@ -614,13 +614,13 @@ bool KrViewer::viewGeneric() {
 	if ( !generic_part ) {
 		if ( mimetype.contains( "html" ) ) {
 			KHTMLPart * p = new KHTMLPart( this, 0, 0, 0, KHTMLPart::BrowserViewGUI );
-			connect( p->browserExtension(), SIGNAL( openURLRequest( const KUrl &, const KParts::URLArgs & ) ),
-			         this, SLOT( handleOpenURLRequest( const KUrl &, const KParts::URLArgs & ) ) );
+			connect( p->browserExtension(), SIGNAL( openUrlRequest( const KUrl &, const KParts::URLArgs & ) ),
+			         this, SLOT( handleOpenUrlRequest( const KUrl &, const KParts::URLArgs & ) ) );
 			/* At JavaScript self.close() the KHTMLPart destroys itself.  */
 			/* After destruction, just close the window */
 			connect( p, SIGNAL( destroyed() ), this, SLOT( close() ) );
 
-			p-> openURL( url );
+			p-> openUrl( url );
 			generic_part = p;
 		} else {
 			generic_part = static_cast<KParts::ReadOnlyPart*>( getPart( url, mimetype, true ) );

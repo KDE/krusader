@@ -26,12 +26,12 @@ public:
 	virtual bool isEditor() = 0;
 
 public slots:
-	virtual KParts::ReadOnlyPart* openURL( const KUrl&, KrViewer::Mode=KrViewer::Generic ){ return 0;} 
-	virtual bool closeURL(){ return false; }
+	virtual KParts::ReadOnlyPart* openUrl( const KUrl&, KrViewer::Mode=KrViewer::Generic ){ return 0;} 
+	virtual bool closeUrl(){ return false; }
 	virtual bool queryClose() { return true; }
 
 signals:
-	void openURLRequest( const KUrl &url );
+	void openUrlRequest( const KUrl &url );
 	void urlChanged( PanelViewerBase *, const KUrl & );
 
 protected:
@@ -47,8 +47,8 @@ protected:
 class PanelViewer: public PanelViewerBase {
 	Q_OBJECT
 public slots:
-	KParts::ReadOnlyPart* openURL( const KUrl &url, KrViewer::Mode mode=KrViewer::Generic );
-	bool closeURL();
+	KParts::ReadOnlyPart* openUrl( const KUrl &url, KrViewer::Mode mode=KrViewer::Generic );
+	bool closeUrl();
 
 public:
 	PanelViewer( QWidget *parent = 0 );
@@ -69,8 +69,8 @@ public:
 	virtual bool isEditor() { return true; }
 
 public slots:
-	KParts::ReadOnlyPart* openURL( const KUrl &url, KrViewer::Mode mode=KrViewer::Generic );
-	bool closeURL();
+	KParts::ReadOnlyPart* openUrl( const KUrl &url, KrViewer::Mode mode=KrViewer::Generic );
+	bool closeUrl();
 	bool queryClose();
 	void slotStatResult( KIO::Job* job );
 

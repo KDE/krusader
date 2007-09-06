@@ -53,7 +53,7 @@ DiskUsageViewer::~ DiskUsageViewer()
   }
 }
 
-void DiskUsageViewer::openURL( KUrl url )
+void DiskUsageViewer::openUrl( KUrl url )
 {
   if( diskUsage == 0 )
   {
@@ -100,7 +100,7 @@ void DiskUsageViewer::openURL( KUrl url )
   diskUsage->load( url );
 }
 
-void DiskUsageViewer::closeURL()
+void DiskUsageViewer::closeUrl()
 {
   if( diskUsage )
     diskUsage->close();
