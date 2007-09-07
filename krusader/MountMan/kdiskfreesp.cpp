@@ -31,6 +31,7 @@
 #include <kdebug.h>
 #include <k3process.h>
 #include <kio/global.h>
+#include <kmountpoint.h>
 
 #include "kdiskfreesp.moc"
 
@@ -164,7 +165,8 @@ void KDiskFreeSpace::dfDone()
 KDiskFreeSpace * KDiskFreeSpace::findUsageInfo( const QString & path )
 {	
     KDiskFreeSpace * job = new KDiskFreeSpace;
-    QString mountPoint = KIO::findPathMountPoint( path );
-    job->readDF( mountPoint );
+    KMountPoint::List current = KMountPoint::currentMountPoints();
+    KMountPoint::Ptr ptr = current.findByPath( path );
+    job->readDF( ptr->mountPoint() );
     return job;
 }

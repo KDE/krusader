@@ -82,7 +82,7 @@ protected slots:
 	
 protected:
 	// used internally
-	static KMountPoint *findInListByMntPoint(KMountPoint::List &lst, QString value); 
+	static KSharedPtr<KMountPoint> findInListByMntPoint(KMountPoint::List &lst, QString value); 
    void toggleMount( QString mntPoint ); 
 		
 private:

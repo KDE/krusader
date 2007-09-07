@@ -88,7 +88,7 @@ signals:
 
 private:
    KRFSDisplay *info;
-   Q3Frame *mainPage;
+   QWidget *mainPage;
    KPageDialog *widget;
    Q3ListView *mountList;
    QTimer *watcher;

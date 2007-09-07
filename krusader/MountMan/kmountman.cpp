@@ -38,6 +38,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kdebug.h>
 #include <kio/jobuidelegate.h>
 #include <kuiserverjobtracker.h>
+#include <ktoolbarpopupaction.h>
 
 // Krusader includes
 #include "../krusader.h"
@@ -105,15 +106,15 @@ void KMountMan::mainWindow() {
    mountManGui = 0; /* for sanity */
 }
 
-KMountPoint *KMountMan::findInListByMntPoint(KMountPoint::List &lst, QString value) {
-	KMountPoint *m;
+KSharedPtr<KMountPoint> KMountMan::findInListByMntPoint(KMountPoint::List &lst, QString value) {
+	KSharedPtr<KMountPoint> m;
 	for (KMountPoint::List::iterator it = lst.begin(); it != lst.end(); ++it) {
 		m = *it;
 		if (m->mountPoint() == value)
 			return m;
 	}
 	
-	return 0;
+	return KSharedPtr<KMountPoint>();
 }
 
 void KMountMan::jobResult(KIO::Job *job) {
@@ -124,13 +125,13 @@ void KMountMan::jobResult(KIO::Job *job) {
 
 void KMountMan::mount( QString mntPoint, bool blocking ) {
 	KMountPoint::List possible = KMountPoint::possibleMountPoints(KMountPoint::NeedMountOptions);
-	KMountPoint *m = findInListByMntPoint(possible, mntPoint);
-	if (!m) return;
+	KSharedPtr<KMountPoint> m = findInListByMntPoint(possible, mntPoint);
+	if (!((bool)m)) return;
 	if (blocking)
 	   waiting = true; // prepare to block
 	KIO::SimpleJob *job = KIO::mount(false, m->mountType().local8Bit(), m->mountedFrom(), m->mountPoint(), false);
-	setUiDelegate(new KIO::JobUiDelegate() );
-	KIO::getJobTracker()->registerJob(this);
+	job->setUiDelegate(new KIO::JobUiDelegate() );
+	KIO::getJobTracker()->registerJob(job);
 	connect(job, SIGNAL(result(KIO::Job* )), this, SLOT(jobResult(KIO::Job* )));
 	while (blocking && waiting) {
 		qApp->processEvents();
@@ -142,8 +143,8 @@ void KMountMan::unmount( QString mntPoint, bool blocking ) {
 	if (blocking)
 	   waiting = true; // prepare to block
 	KIO::SimpleJob *job = KIO::unmount(mntPoint, false);
-	setUiDelegate(new KIO::JobUiDelegate() );
-	KIO::getJobTracker()->registerJob(this);
+	job->setUiDelegate(new KIO::JobUiDelegate() );
+	KIO::getJobTracker()->registerJob(job);
 	connect(job, SIGNAL(result(KIO::Job* )), this, SLOT(jobResult(KIO::Job* )));
 	while (blocking && waiting) {
 		qApp->processEvents();
@@ -153,18 +154,18 @@ void KMountMan::unmount( QString mntPoint, bool blocking ) {
 
 KMountMan::mntStatus KMountMan::getStatus( QString mntPoint ) {	
 	KMountPoint::List::iterator it;
-   KMountPoint *m;
+   KSharedPtr<KMountPoint> m;
 	
 	// 1: is it already mounted
 	KMountPoint::List current = KMountPoint::currentMountPoints();
 	m = findInListByMntPoint(current, mntPoint);
-	if (m) 
+	if ((bool)m) 
 		return MOUNTED;
 	
 	// 2: is it a mount point but not mounted?
 	KMountPoint::List possible = KMountPoint::possibleMountPoints();
 	m = findInListByMntPoint(possible, mntPoint);
-	if (m) 
+	if ((bool)m) 
 		return NOT_MOUNTED;
 	
 	// 3: unknown
@@ -204,7 +205,7 @@ void KMountMan::eject( QString mntPoint ) {
 bool KMountMan::ejectable( QString path ) {
 #if !defined(BSD) && !defined(_OS_SOLARIS_)
 	KMountPoint::List possible = KMountPoint::possibleMountPoints();
-	KMountPoint *m = findInListByMntPoint(possible, path);
+	KSharedPtr<KMountPoint> m = findInListByMntPoint(possible, path);
 	if (m && (m->mountType()=="iso9660" || m->mountedFrom().left(7)=="/dev/cd"))
 			return KrServices::cmdExist( "eject" );
 #endif
@@ -268,7 +269,7 @@ void KMountMan::quickList() {
    _actions = new QString[ possible.size() ];
 
    KMountPoint::List::iterator it;
-   KMountPoint *m;
+   KSharedPtr<KMountPoint> m;
    int idx;
    for ( it = possible.begin(), idx = 0; it != possible.end(); ++it, ++idx ) {
       m = *it;

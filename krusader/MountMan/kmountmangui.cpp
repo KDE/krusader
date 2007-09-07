@@ -51,6 +51,7 @@ A
 #include <qcursor.h>
 #include <kdebug.h>
 #include <kguiitem.h>
+#include <kpagedialog.h>
 #include <qfileinfo.h>
 #include <sys/param.h>
 
@@ -64,16 +65,20 @@ A
 // use our version of it until kde fixes theirs
 #include "kdiskfreesp.h"
 
-KMountManGUI::KMountManGUI() : KDialog( krApp, 0, true, "Mount.Man" ),
-info( 0 ), mountList( 0 ) {
+KMountManGUI::KMountManGUI() : KDialog( krApp ), info( 0 ), mountList( 0 ) {
+   setCaption( i18n("Mount.Man") );
+   setWindowModality( Qt::WindowModal );
+
 	watcher = new QTimer( this );
    connect( watcher, SIGNAL( timeout() ), this, SLOT( checkMountChange() ) );
 
    connect( this, SIGNAL( finishedGettingSpaceData() ), this, SLOT( updateList() ) );
-   setButtonOK( i18n( "&Close" ) );
-   showButtonApply( false ); showButtonCancel( false );
+   setButtonGuiItem(KDialog::Ok, KGuiItem( i18n( "&Close" ) ) );
+   showButton( KDialog::Apply, false );
+   showButton( KDialog::Cancel, false );
    setPlainCaption( i18n( "MountMan - Your Mount-Manager" ) );
-   widget = new KPageDialog( this, 0, KPageDialog::Tabbed );
+   widget = new KPageDialog( this );
+   widget->setFaceType( KPageDialog::Tabbed );
    createLayout();
    setMainWidget( widget );
    widget->setMinimumSize( widget->sizeHint().width() + mountList->columnWidth( 5 ),
@@ -101,9 +106,9 @@ KMountManGUI::~KMountManGUI() {
 }
 
 void KMountManGUI::createLayout() {
-   mainPage = widget->addPage( i18n( "Filesystems" ), 0 );
+   KPageWidgetItem * item = widget->addPage( mainPage = new QWidget( this ), i18n( "Filesystems" ) );
    createMainPage();
-   widget->showPage( Filesystems );
+   widget->setCurrentPage( item );
 }
 
 void KMountManGUI::createMainPage() {
@@ -117,7 +122,7 @@ void KMountManGUI::createMainPage() {
    Q3GridLayout *layout = new Q3GridLayout( mainPage, 1, 1 );
    mountList = new Q3ListView( mainPage );  // create the main container
    krConfig->setGroup( "Look&Feel" );
-   mountList->setFont( krConfig->readFontEntry( "Filelist Font", _FilelistFont ) );
+   mountList->setFont( krConfig->readEntry( "Filelist Font", *_FilelistFont ) );
    mountList->setAllColumnsShowFocus( true );
    mountList->setMultiSelection( false );
    mountList->setSelectionMode( Q3ListView::Single );
@@ -185,8 +190,8 @@ void KMountManGUI::gettingSpaceData() {
 
 void KMountManGUI::gettingSpaceData( const QString &mountPoint, unsigned long kBSize,
                                      unsigned long /*kBUsed*/, unsigned long kBAvail ) {
-   KMountPoint *m = KMountMan::findInListByMntPoint( mounted, mountPoint );
-   if ( !m ) { // this should never never never happen!
+   KSharedPtr<KMountPoint> m = KMountMan::findInListByMntPoint( mounted, mountPoint );
+   if ( !( (bool)m ) ) { // this should never never never happen!
       KMessageBox::error( 0, i18n( "Critical Error" ),
                           i18n( "Internal error in MountMan\nPlease email the developers" ) );
       exit( 1 );
@@ -277,7 +282,7 @@ void KMountManGUI::doubleClicked( Q3ListViewItem *i ) {
             SLOT( refresh( const KUrl & ) ) );
    emit refreshPanel( vfs::fromPathOrUrl( i->text(2) ) ); // text(2) ? so ugly ... 
    disconnect( this, SIGNAL( refreshPanel( const KUrl & ) ), 0, 0 );
-   slotClose();
+   close();
 }
 
 // when user clicks on a filesystem, change information
@@ -331,27 +336,35 @@ void KMountManGUI::clicked( Q3ListViewItem *item, const QPoint& pos, int /* col 
    }
    // create the menu
    KMenu popup;
-   popup.insertTitle( i18n( "MountMan" ) );
+   popup.setTitle( i18n( "MountMan" ) );
    if ( !system->mounted() ) {
-      popup.insertItem( i18n( "Mount" ), MOUNT_ID );
+      QAction *mountAct = popup.addAction( i18n( "Mount" ) );
+      mountAct->setData( QVariant( MOUNT_ID ) );
 		bool enable = !(krMtMan.nonmountFilesystem(system->type(), system->mntPoint()));
-		popup.setItemEnabled( MOUNT_ID, enable);
+		mountAct->setEnabled( enable);
 	} else {
-		popup.insertItem( i18n( "Unmount" ), UNMOUNT_ID );
+		QAction * umountAct =  popup.addAction( i18n( "Unmount" ) );
+		umountAct->setData( QVariant( UNMOUNT_ID ) );
 		bool enable = !(krMtMan.nonmountFilesystem(system->type(), system->mntPoint()));
-		popup.setItemEnabled( UNMOUNT_ID, enable);
+		umountAct->setEnabled( enable);
 	}
    if ( krMtMan.ejectable( system->mntPoint() ) )
       //  if (system->type()=="iso9660" || krMtMan.followLink(system->name()).left(2)=="cd")
-      popup.insertItem( i18n( "Eject" ), EJECT_ID );
+      popup.addAction( i18n( "Eject" ) )->setData( QVariant( EJECT_ID ) );
    else {
-      popup.insertItem( i18n( "Format" ), FORMAT_ID );
-      popup.setItemEnabled( FORMAT_ID, false );
+      QAction *formatAct = popup.addAction( i18n( "Format" ) );
+      formatAct->setData( QVariant( FORMAT_ID ) );
+      formatAct->setEnabled( false );
    }
 
    QString mountPoint = system->mntPoint();
 
-   int result = popup.exec( pos );
+   QAction * res = popup.exec( pos );
+   int result = -1;
+
+   if( res && res->data().canConvert<int>() )
+     result = res->data().toInt();
+
    // check out the user's option
    switch ( result ) {
          case - 1 : return ;     // the user clicked outside of the menu
