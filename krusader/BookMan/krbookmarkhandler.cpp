@@ -25,21 +25,19 @@
 #define BOOKMARKS_FILE	"krusader/krbookmarks.xml"
 #define CONNECT_BM(X)	{ disconnect(X, SIGNAL(activated(const KUrl&)), 0, 0); connect(X, SIGNAL(activated(const KUrl&)), this, SLOT(slotActivated(const KUrl&))); }
 											
-KrBookmarkHandler::KrBookmarkHandler(): QObject(0), _middleClick(false), _mainBookmarkPopup( 0 ), _specialBookmarkIDs(), _bookmarkIDTable() {
+KrBookmarkHandler::KrBookmarkHandler(): QObject(0), _middleClick(false), _mainBookmarkPopup( 0 ), _specialBookmarks() {
 	// create our own action collection and make the shortcuts apply only to parent
-	_privateCollection = new KActionCollection(krApp, "private collection");
+	_privateCollection = new KActionCollection((QObject *)krApp);
 	_collection = krApp->actionCollection();
 
 	// create _root: father of all bookmarks. it is a dummy bookmark and never shown
 	_root = new KrBookmark(i18n("Bookmarks"));
 	
-	_bookmarkIDTable.setAutoDelete( true );
-	
 	// load bookmarks 
 	importFromFile();
 
 	// hack
-	manager = KBookmarkManager::managerForFile(KStandardDirs::locateLocal( "data", BOOKMARKS_FILE ), false);
+	manager = KBookmarkManager::managerForFile(KStandardDirs::locateLocal( "data", BOOKMARKS_FILE ), "krusader");
 	connect(manager, SIGNAL(changed(const QString&, const QString& )), this, SLOT(bookmarksChanged(const QString&, const QString& )));
 }
 
@@ -48,15 +46,8 @@ KrBookmarkHandler::~KrBookmarkHandler() {
 	delete _privateCollection;
 }
 
-void KrBookmarkHandler::menuOperation(int id) {
-	switch (id) {
-		case BookmarkCurrent:
-			bookmarkCurrent(ACTIVE_PANEL->virtualPath());
-			break;
-		case ManageBookmarks:
-			manager->slotEditBookmarks();
-			break;
-	}
+void KrBookmarkHandler::slotBookmarkCurrent() {
+	bookmarkCurrent(ACTIVE_PANEL->virtualPath());
 }
 
 void KrBookmarkHandler::bookmarkCurrent(KUrl url) {
@@ -81,7 +72,8 @@ void KrBookmarkHandler::deleteBookmark(KrBookmark *bm) {
 	if( bm->isFolder() )
 		clearBookmarks( bm ); // remove the child bookmarks
 	removeReferences( _root, bm );
-	bm->unplugAll();
+	foreach (QWidget *w, bm->associatedWidgets())
+		w->removeAction(bm);
 	delete bm;
 	
 	exportToFile();
@@ -110,7 +102,7 @@ void KrBookmarkHandler::exportToFileBookmark(QDomDocument &doc, QDomElement &whe
 		// url
 		bookmark.setAttribute("href", bm->url().prettyUrl());
 		// icon
-		bookmark.setAttribute("icon", bm->icon());
+		bookmark.setAttribute("icon", bm->iconName());
 		// title
 		QDomElement title = doc.createElement("title");	
 		title.appendChild(doc.createTextNode(bm->text()));
@@ -124,7 +116,7 @@ void KrBookmarkHandler::exportToFileFolder(QDomDocument &doc, QDomElement &paren
 	for (KrBookmark *bm = folder->children().first(); bm; bm = folder->children().next()) {
 		if (bm->isFolder()) {
 			QDomElement newFolder = doc.createElement("folder");
-			newFolder.setAttribute("icon", bm->icon());
+			newFolder.setAttribute("icon", bm->iconName());
 			parent.appendChild(newFolder);
 			QDomElement title = doc.createElement("title");
 			title.appendChild(doc.createTextNode(bm->text()));
@@ -278,8 +270,7 @@ SUCCESS:
 void KrBookmarkHandler::populate(KMenu *menu) {
 	_mainBookmarkPopup = menu;
 	menu->clear();
-	_bookmarkIDTable.clear();
-	_specialBookmarkIDs.clear();
+	_specialBookmarks.clear();
 	buildMenu(_root, menu);
 }
 
@@ -291,12 +282,9 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu) {
 	for (KrBookmark *bm = parent->children().first(); bm; bm = parent->children().next()) {
 		if (!bm->isFolder()) continue;
 		KMenu *newMenu = new KMenu(menu);
-		int id = menu->insertItem(QIcon(krLoader->loadIcon(bm->icon(), K3Icon::Small)),
-									bm->text(), newMenu, -1 /* dummy id */, -1 /* end of list */);
-		
-		if( !_bookmarkIDTable.find( menu ) )
-			_bookmarkIDTable.insert( menu, new QMap<int, KrBookmark *> );
-		(*_bookmarkIDTable[ menu ])[ id ] = bm;
+		newMenu->setIcon( QIcon(krLoader->loadIcon(bm->iconName(), K3Icon::Small)) );
+		newMenu->setTitle( bm->text() );
+		menu->addMenu( newMenu );
 		
 		++inSecondaryMenu;
 		buildMenu(bm, newMenu);
@@ -305,16 +293,11 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu) {
 	for (KrBookmark *bm = parent->children().first(); bm; bm = parent->children().next()) {
 		if (bm->isFolder()) continue;
 		if (bm->isSeparator() ) {
-			menu->insertSeparator();
+			menu->addSeparator();
 			continue;
 		}
-		int itemIndex = bm->plug(menu, -1 /* end of list */);
+		menu->addAction( bm );
 		CONNECT_BM(bm);
-		
-		int id = bm->itemId( itemIndex );
-		if( !_bookmarkIDTable.find( menu ) )
-			_bookmarkIDTable.insert( menu, new QMap<int, KrBookmark *> );
-		(*_bookmarkIDTable[ menu ])[ id ] = bm;
 	}
 
 	if (!inSecondaryMenu) {
@@ -328,13 +311,14 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu) {
 		int itemIndex;
 		
 		if( hasPopularURLs ) {
-			menu->insertSeparator();
+			menu->addSeparator();
 			
 			// add the popular links submenu
 			KMenu *newMenu = new KMenu(menu);
-			itemIndex = menu->insertItem(QIcon(krLoader->loadIcon("bookmark_folder", K3Icon::Small)),
-										i18n("Popular URLs"), newMenu, -1 /* dummy id */, -1 /* end of list */);
-			_specialBookmarkIDs.append( itemIndex );
+			newMenu->setTitle( i18n("Popular URLs") );
+			newMenu->setIcon( QIcon(krLoader->loadIcon("bookmark_folder", K3Icon::Small)) );
+			QAction *bmfAct  = menu->addMenu( newMenu );
+			_specialBookmarks.append( bmfAct );
 			// add the top 15 urls
 			#define MAX 15
 			KUrl::List list = krApp->popularUrls->getMostPopularUrls(MAX);
@@ -348,67 +332,66 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu) {
 				KrBookmark *bm = KrBookmark::getExistingBookmark(name, _privateCollection);
 				if (!bm)
 					bm = new KrBookmark(name, *it, _privateCollection);
-				bm->plug(newMenu);
+				newMenu->addAction( bm );
 				CONNECT_BM(bm);
 			}
 			
-			newMenu->insertSeparator();
-			krPopularUrls->plug(newMenu);
+			newMenu->addSeparator();
+			newMenu->addAction( krPopularUrls );
 			newMenu->installEventFilter(this);
 		}
 		
 		// do we need to add special bookmarks?
 		if (SPECIAL_BOOKMARKS) {
 			if( hasDevices || hasLan || hasVirtualFS || hasJumpback )
-				menu->insertSeparator();
+				menu->addSeparator();
 			
 			KrBookmark *bm;
 			
 			// note: special bookmarks are not kept inside the _bookmarks list and added ad-hoc
 			if( hasDevices ) {
 				bm = KrBookmark::devices(_collection);
-				itemIndex = bm->plug(menu);
-				_specialBookmarkIDs.append( bm->itemId( itemIndex ) );
+				menu->addAction(bm);
+				_specialBookmarks.append( bm );
 				CONNECT_BM(bm);
 			}
 			
 			if( hasLan ) {
 				bm = KrBookmark::lan(_collection);
-				itemIndex = bm->plug(menu);
-				_specialBookmarkIDs.append( bm->itemId( itemIndex ) );
+				menu->addAction(bm);
+				_specialBookmarks.append( bm );
 				CONNECT_BM(bm);
 			}
 			
 			if( hasVirtualFS ) {
 				bm = KrBookmark::virt(_collection);
-				itemIndex = bm->plug(menu);
-				_specialBookmarkIDs.append( bm->itemId( itemIndex ) );
+				menu->addAction(bm);
+				_specialBookmarks.append( bm );
 				CONNECT_BM(bm);
 			}
 			
 			if( hasJumpback ) {
 				// add the jump-back button
-				itemIndex = krJumpBack->plug(menu);
-				_specialBookmarkIDs.append( krJumpBack->itemId( itemIndex ) );
-				menu->insertSeparator();
-				itemIndex = krSetJumpBack->plug(menu);
-				_specialBookmarkIDs.append( krSetJumpBack->itemId( itemIndex ) );
+				menu->addAction(krJumpBack);
+				_specialBookmarks.append( krJumpBack );
+				menu->addSeparator();
+				menu->addAction(krSetJumpBack);
+				_specialBookmarks.append( krSetJumpBack );
 			}
 		} 
 		
 		if( !hasJumpback )
-			menu->insertSeparator();
+			menu->addSeparator();
 		
-		itemIndex = menu->insertItem(krLoader->loadIcon("bookmark_add", K3Icon::Small),
-			i18n("Bookmark Current"), BookmarkCurrent);
-		_specialBookmarkIDs.append( itemIndex );
-		itemIndex = menu->insertItem(krLoader->loadIcon("bookmark", K3Icon::Small),
-			i18n("Manage Bookmarks"), ManageBookmarks);
-		_specialBookmarkIDs.append( itemIndex );
+		QAction *bmAddAct = menu->addAction(krLoader->loadIcon("bookmark_add", K3Icon::Small),
+			i18n("Bookmark Current"), this, SLOT( slotBookmarkCurrent() ) );
+		_specialBookmarks.append( bmAddAct );
+		QAction *bmAct = menu->addAction(krLoader->loadIcon("bookmark", K3Icon::Small),
+			i18n("Manage Bookmarks"), manager, SLOT( slotEditBookmarks() ) );
+		_specialBookmarks.append( bmAct );
 	
 		// make sure the menu is connected to us
-		disconnect(menu, SIGNAL(activated(int)), 0, 0);
-		connect(menu, SIGNAL(activated(int)), this, SLOT(menuOperation(int)));
+		disconnect(menu, SIGNAL(triggered(QAction *)), 0, 0);
 	}
 
 	menu->installEventFilter(this);
@@ -420,7 +403,8 @@ void KrBookmarkHandler::clearBookmarks(KrBookmark *root) {
 		if (bm->isFolder())
 			clearBookmarks(bm);
 		else {
-			bm->unplugAll();
+			foreach (QWidget *w, bm->associatedWidgets())
+				w->removeAction(bm);
 			delete bm;
 		}
 
@@ -438,21 +422,19 @@ bool KrBookmarkHandler::eventFilter( QObject *obj, QEvent *ev ) {
 		switch (static_cast<QMouseEvent*>(ev)->button()) {
 			case Qt::RightButton:
 				_middleClick = false;
-				if( obj->inherits( "QPopupMenu" ) ) {
-					int id = static_cast<Q3PopupMenu*>(obj)->idAt( static_cast<QMouseEvent*>(ev)->pos() );
+				if( obj->inherits( "QMenu" ) ) {
+					QMenu * menu = static_cast<QMenu*>(obj);
+					QAction * act = menu->actionAt( static_cast<QMouseEvent*>(ev)->pos() );
 					
-					if( obj == _mainBookmarkPopup && _specialBookmarkIDs.contains( id ) ) {
+					if( obj == _mainBookmarkPopup && _specialBookmarks.contains( act ) ) {
 						rightClickOnSpecialBookmark();
 						return true;
 					}
 					
-					if( _bookmarkIDTable.find( obj ) ) {
-						QMap<int, KrBookmark*> * table = _bookmarkIDTable[ obj ];
-						if( table && table->count( id ) ) {
-							KrBookmark *bm = (*table)[ id ];
-							rightClicked( static_cast<Q3PopupMenu*>(obj), id, bm );
-							return true;
-						}
+					KrBookmark * bm = dynamic_cast<KrBookmark*>( act );
+					if( bm != 0 ) {
+						rightClicked( menu, bm );
+						return true;
 					}
 				}
 			case Qt::LeftButton:
@@ -536,7 +518,7 @@ void KrBookmarkHandler::rightClickOnSpecialBookmark() {
 #define OPEN_NEW_TAB_ID   100201
 #define DELETE_ID         100202
 
-void KrBookmarkHandler::rightClicked( Q3PopupMenu *menu, int /*id*/, KrBookmark * bm ) {
+void KrBookmarkHandler::rightClicked( QMenu *menu, KrBookmark * bm ) {
 	Q3PopupMenu popup( _mainBookmarkPopup );
 	
 	popup.insertItem( krLoader->loadIcon( "fileopen", K3Icon::Panel ), i18n( "Open" ), OPEN_ID );

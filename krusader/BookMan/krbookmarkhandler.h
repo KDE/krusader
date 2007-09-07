@@ -41,13 +41,13 @@ protected:
 
 	bool eventFilter( QObject *obj, QEvent *ev );
 	
-	void rightClicked( Q3PopupMenu *menu, int id, KrBookmark *bm );
+	void rightClicked( QMenu *menu, KrBookmark *bm );
 	void rightClickOnSpecialBookmark();
 	
 	void removeReferences( KrBookmark *root, KrBookmark *bmToRemove );
 	
 protected slots:
-	void menuOperation(int id);
+	void slotBookmarkCurrent();
 	void bookmarksChanged(const QString&, const QString&);
 	void slotActivated(const KUrl& url);
 
@@ -59,8 +59,7 @@ private:
 	bool _middleClick; // if true, the user clicked the middle button to open the bookmark
 	
 	QPointer<KMenu>            _mainBookmarkPopup; // main bookmark popup menu
-	Q3ValueList<int>                    _specialBookmarkIDs; // the ID list of the special bookmarks
-	Q3PtrDict<QMap<int,KrBookmark*> >   _bookmarkIDTable;    // the IDs of the bookmarks
+	QList<QAction *>           _specialBookmarks; // the action list of the special bookmarks
 };
 
 #endif // KRBOOKMARK_HANDLER_H

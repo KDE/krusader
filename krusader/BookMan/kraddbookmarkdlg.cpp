@@ -12,8 +12,11 @@
 #include <kdebug.h>
 
 KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KUrl url):
-	KDialog(KDialog::Swallow, i18n("Add Bookmark"),
-				 KDialog::User1 | KDialog::Ok | KDialog::Cancel, KDialog::Ok, parent) {
+	KDialog(parent) {
+	setButtons( KDialog::User1 | KDialog::Ok | KDialog::Cancel );
+	setDefaultButton( KDialog::Ok );
+	setCaption( i18n("Add Bookmark") );
+	setWindowModality( Qt::WindowModal );
 	// create the 'new folder' button
 	setButtonText(KDialog::User1, i18n("New Folder"));
 	showButton(KDialog::User1, false); // hide it until _createIn is shown
@@ -61,7 +64,7 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KUrl url):
 void KrAddBookmarkDlg::toggleCreateIn(bool show) {
 	_createInBtn->setPixmap(krLoader->loadIcon(show ? "up" :"down", K3Icon::Small));
 	showButton(KDialog::User1, show);
-	setDetails(show);
+	setDetailsWidgetVisible(show);
 }
 
 // creates the widget that lets you decide where to put the new bookmark
