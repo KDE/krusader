@@ -5,6 +5,8 @@
 #include <q3dict.h>
 //Added by qt3to4:
 #include <Q3ValueList>
+#include <qcolor.h>
+#include <qpalette.h>
 
 /*
 Design goals: Color calculation is done on one place only. Configuration through krConfig OR through local settings.

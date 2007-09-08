@@ -49,11 +49,11 @@ class KrColorSettingNames
 	static QMap<QString, bool> s_boolNames;
 	static void initialize();
 public:
-	static Q3ValueList<QString> getColorNames();
+	static QStringList getColorNames();
 	static bool isColorNameValid(const QString & settingName);
-	static Q3ValueList<QString> getNumNames();
+	static QStringList getNumNames();
 	static bool isNumNameValid(const QString & settingName);
-	static Q3ValueList<QString> getBoolNames();
+	static QStringList getBoolNames();
 	static bool isBoolNameValid(const QString & settingName);
 } krColorSettingNames;
 
@@ -101,7 +101,7 @@ void KrColorSettingNames::initialize()
 	s_boolNames["Dim Inactive Colors"] = true;
 }
 
-Q3ValueList<QString> KrColorSettingNames::getColorNames()
+QStringList KrColorSettingNames::getColorNames()
 {
 	initialize();
 	return s_colorNames.keys();
@@ -113,7 +113,7 @@ bool KrColorSettingNames::isColorNameValid(const QString & settingName)
 	return s_colorNames.contains(settingName);
 }
 
-Q3ValueList<QString> KrColorSettingNames::getNumNames()
+QStringList KrColorSettingNames::getNumNames()
 {
 	initialize();
 	return s_numNames.keys();
@@ -125,7 +125,7 @@ bool KrColorSettingNames::isNumNameValid(const QString & settingName)
 	return s_numNames.contains(settingName);
 }
 
-Q3ValueList<QString> KrColorSettingNames::getBoolNames()
+QStringList KrColorSettingNames::getBoolNames()
 {
 	initialize();
 	return s_boolNames.keys();
@@ -155,22 +155,22 @@ class KrColorSettingsImpl
 void KrColorSettingsImpl::loadFromConfig()
 {
 	krConfig->setGroup("Colors");
-	Q3ValueList<QString> names = KrColorSettingNames::getColorNames();
+	QStringList names = KrColorSettingNames::getColorNames();
 	for ( QStringList::Iterator it = names.begin(); it != names.end(); ++it )
 	{
-		m_colorTextValues[*it] = krConfig->readEntry(*it, "");
-		m_colorValues[*it] = krConfig->readColorEntry(*it);
+		m_colorTextValues[*it] = krConfig->readEntry(*it, QString());
+		m_colorValues[*it] = krConfig->readEntry(*it, QColor() );
 	}
 	names = KrColorSettingNames::getNumNames();
 	for ( QStringList::Iterator it = names.begin(); it != names.end(); ++it )
 	{
-		if (krConfig->readEntry(*it) != QString())
+		if (krConfig->readEntry(*it, QString()) != QString())
 			m_numValues[*it] = krConfig->readNumEntry(*it);
 	}
 	names = KrColorSettingNames::getBoolNames();
 	for ( QStringList::Iterator it = names.begin(); it != names.end(); ++it )
 	{
-		if (krConfig->readEntry(*it) != QString())
+		if (krConfig->readEntry(*it, QString()) != QString())
 			m_boolValues[*it] = krConfig->readBoolEntry(*it);
 	}
 }
@@ -198,7 +198,7 @@ const KrColorSettings & KrColorSettings::operator= (const KrColorSettings & src)
 {
 	if (this == & src)
 		return * this;
-	Q3ValueList<QString> names = KrColorSettingNames::getColorNames();
+	QStringList names = KrColorSettingNames::getColorNames();
 	for ( QStringList::Iterator it = names.begin(); it != names.end(); ++it )
 	{
 		m_impl->m_colorTextValues[*it] = src.m_impl->m_colorTextValues[*it];
@@ -518,7 +518,7 @@ QColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
 const QColor & KrColorCacheImpl::setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2)
 {
    #define sqr(x) ((x)*(x))
-   int contrast = sqr(Qt::color1.Qt::red() - background.Qt::red()) + sqr(Qt::color1.Qt::green() - background.Qt::green()) + sqr(Qt::color1.Qt::blue() - background.Qt::blue());
+   int contrast = sqr(color1.red() - background.red()) + sqr(color1.green() - background.green()) + sqr(color1.blue() - background.blue());
 
    // if the contrast between background and color1 is too small, take color2 instead.
    if (contrast < 1000)
