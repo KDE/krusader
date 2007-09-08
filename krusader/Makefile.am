@@ -154,7 +154,9 @@ krusaderlocaldir = $(kde_datadir)/krusader
 krusaderlocal_DATA = \
 	krusaderui.rc \
 	midnight_commander.color \
+	midnight_cmd_AHamann.color \
 	total_commander.color \
+	total_cmd_pleasent.color \
 	dos_navigator.color \
 	total_commander.keymap \
 	total_commander.keymap.info \
