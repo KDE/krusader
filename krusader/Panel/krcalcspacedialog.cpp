@@ -33,6 +33,7 @@ A
 #include <qtimer.h>
 #include <qlayout.h>
 #include <qlabel.h>
+#include <qmutex.h>
 //Added by qt3to4:
 #include <Q3VBoxLayout>
 // KDE Includes
@@ -51,7 +52,7 @@ KrCalcSpaceDialog::CalcThread::CalcThread(KrCalcSpaceDialog * parent, ListPanel 
 	  m_view(panel->view), m_parent(parent), m_threadInUse(true), m_stop(false) {}
 
 void KrCalcSpaceDialog::CalcThread::cleanUp(){
-	if (m_threadInUse || !finished())
+	if (m_threadInUse || !isFinished())
 		m_synchronizeUsageAccess.unlock();
 	else{
 		m_synchronizeUsageAccess.unlock(); // prevents a resource leak
@@ -94,10 +95,13 @@ void KrCalcSpaceDialog::CalcThread::stop(){
 }
 
 KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, ListPanel * files, const QStringList & items, bool autoclose) :
-	KDialog(parent, "KrCalcSpaceDialog", true, i18n("Calculate Occupied Space"), Ok|Cancel),
-	m_autoClose(autoclose), m_canceled(false), m_timerCounter(0){
+	KDialog(parent), m_autoClose(autoclose), m_canceled(false), m_timerCounter(0){
+	setButtons( KDialog::Ok | KDialog::Cancel );
+	setDefaultButton( KDialog::Ok );
+	setCaption( i18n("Calculate Occupied Space") );
+	setWindowModality( Qt::WindowModal );
 	// the dialog: The Ok button is hidden until it is needed
-	showButtonOK(false);
+	showButton(KDialog::Ok, false);
 	m_thread = new CalcThread(this, files, items);
 	m_pollTimer = new QTimer(this);
 	QWidget * mainWidget = new QWidget( this );
@@ -109,7 +113,7 @@ KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, ListPanel * files, const Q
 	topLayout->addWidget( m_label );
 	topLayout->addStretch(10);
 
-	connect( this, SIGNAL( cancelClicked() ), this, SLOT( slotCancel() ) );
+	connect( this, SIGNAL( cancelClicked() ), this, SLOT( reject() ) );
 }
 
 void KrCalcSpaceDialog::calculationFinished(){
@@ -119,8 +123,8 @@ void KrCalcSpaceDialog::calculationFinished(){
 		return;
 	}
 	// otherwise hide cancel and show ok button
-	showButtonCancel(false);
-	showButtonOK(true);
+	showButton(KDialog::Cancel, false);
+	showButton(KDialog::Ok, true);
 	showResult(); // and show final result
 }
 
@@ -130,7 +134,7 @@ void KrCalcSpaceDialog::calculationFinished(){
  */
 void KrCalcSpaceDialog::timer(){
 	// thread finished?
-	if (m_thread->finished()){
+	if (m_thread->isFinished()){
 		// close dialog or switch buttons
 		calculationFinished();
 		m_pollTimer->stop(); // stop the polling. No longer needed
@@ -152,16 +156,16 @@ void KrCalcSpaceDialog::showResult(){
   if (m_thread->getTotalSize() >= 1024)
      msg += " (" + KRpermHandler::parseSize( m_thread->getTotalSize() ) + "bytes)";
   msg += "\n";
-  msg += i18n("in %n directory", "in %n directories", m_thread->getTotalDirs() );
+  msg += i18np("in %1 directory", "in %1 directories", m_thread->getTotalDirs() );
   msg += " ";
-  msg += i18n("and %n file", "and %n files", m_thread->getTotalFiles() );
+  msg += i18np("and %1 file", "and %1 files", m_thread->getTotalFiles() );
   m_label->setText(msg);
 }
 
 void KrCalcSpaceDialog::slotCancel(){
 	m_thread->stop(); // notify teh thread to stop
 	m_canceled = true; // set the cancel flag
-	KDialog::slotCancel(); // close the dialog
+	KDialog::reject(); // close the dialog
 }
 
 KrCalcSpaceDialog::~KrCalcSpaceDialog(){

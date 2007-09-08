@@ -53,8 +53,8 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
 
   Q3VBoxLayout *layout = new Q3VBoxLayout( this, 11, 6, "SynchronizeDialogLayout" );
 
-  cbRightToLeft = new QCheckBox( i18np( "Right to left: Copy 1 file", "Right to left: Copy %n files", leftCopyNr) + " " +
-                                 i18np( "(1 byte)", "(%n bytes)", KRpermHandler::parseSize( leftCopySize ).trimmed().toInt() ),
+  cbRightToLeft = new QCheckBox( i18np( "Right to left: Copy 1 file", "Right to left: Copy %1 files", leftCopyNr) + " " +
+                                 i18np( "(1 byte)", "(%1 bytes)", KRpermHandler::parseSize( leftCopySize ).trimmed().toInt() ),
                                  this );
   cbRightToLeft->setChecked( leftCopyNr != 0 );
   cbRightToLeft->setEnabled( leftCopyNr != 0 );
@@ -66,8 +66,8 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   lbRightToLeft->setEnabled( leftCopyNr != 0 );
   layout->addWidget( lbRightToLeft );
 
-  cbLeftToRight = new QCheckBox( i18np( "Left to right: Copy 1 file", "Left to right: Copy %n files", rightCopyNr) + " " +
-                                 i18np( "(1 byte)", "(%n bytes)", KRpermHandler::parseSize( rightCopySize ).trimmed().toInt() ),
+  cbLeftToRight = new QCheckBox( i18np( "Left to right: Copy 1 file", "Left to right: Copy %1 files", rightCopyNr) + " " +
+                                 i18np( "(1 byte)", "(%1 bytes)", KRpermHandler::parseSize( rightCopySize ).trimmed().toInt() ),
                                  this, "cbLeftToRight" );
   cbLeftToRight->setChecked( rightCopyNr != 0 );
   cbLeftToRight->setEnabled( rightCopyNr != 0 );
@@ -79,8 +79,8 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   lbLeftToRight->setEnabled( rightCopyNr != 0 );
   layout->addWidget( lbLeftToRight );
 
-  cbDeletable = new QCheckBox( i18np( "Left: Delete 1 file", "Left: Delete %n files", deleteNr) + " " +
-                               i18np( "(1 byte)", "(%n bytes)", KRpermHandler::parseSize( deleteSize ).trimmed().toInt() ),
+  cbDeletable = new QCheckBox( i18np( "Left: Delete 1 file", "Left: Delete %1 files", deleteNr) + " " +
+                               i18np( "(1 byte)", "(%1 bytes)", KRpermHandler::parseSize( deleteSize ).trimmed().toInt() ),
                                this, "cbDeletable" );
   cbDeletable->setChecked( deleteNr != 0 );
   cbDeletable->setEnabled( deleteNr != 0 );
