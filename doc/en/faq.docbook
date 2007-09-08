@@ -1041,6 +1041,23 @@
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_no_part">
+          <para>How don't add ".part" suffix when copying files via ftp?</para>
+        </question>
+        <answer>
+          <para>When uploading files a <filename>.part</filename> suffix is added to the filename,
+                once the upload is complete the filename is renamed automagically 
+                to remove the <filename>.part</filename> suffix.
+                This works great but sometimes some ftp-servers don't allow a rename operation.
+                You can solve this by unchecking the checkbox 
+                <guilabel>Mark partially uploaded files</guilabel> in &kde;'s control center. 
+                The checkbox is located at <guilabel>Internet &and; Network -> Connection Preferences</guilabel>.</para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
       <qandaentry>
         <question id="faqu_close_connection">
           <para>How can I close a remote connection
@@ -1168,32 +1185,48 @@
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
+
       <qandaentry>
-        <question id="faqu_handbook">
-          <para>Why doesn't the handbook work?</para>
+        <question id="faqu_konfigurator">
+          <para>Where is Konfigurator, do i need to install the &kde; Desktop Enviroment to use it?</para>
         </question>
         <answer>
-          <para>This error will happen on &debian; (or
-          &debian; based) distro with the
-          krusader_1.51-1_i386.deb package. You will see the next
-          error message if you try to open the handbook: "The
-          requested help file could not be found. Check that you
-          have installed the documentation." To fix it go to 
-          <filename>
-          /usr/share/doc/kde/HTML/en/krusader/</filename>, you will
-          see the 
-          <filename>foo.docbook.gz</filename> files. Now, you need
-          to extract all these files with root privileges
-          ("File-&gt;Unpack" with &krusader;)
-          to create 
-          <filename>foo.docbook</filename> files. Now the handbook
-          will work. This error is fixed in the
-          krusader_1.60.0-1_i386.deb package and higher
-          versions.</para>
+          <para><link linkend="konfigurator">Konfigurator</link> is &krusader;s configuration module,
+                when you have installed &krusader; than you have also Konfigurator.
+                For some reason some people think it's an other &kde; application, but it is not, so
+                you don't need to install the &kde; Desktop Enviroment to use Konfigurator.
+                When runnig &krusader;, use 
+                <menuchoice>
+                 <guimenu>Settings</guimenu>
+                 <guimenuitem>Configure &krusader;</guimenuitem>
+                </menuchoice>, and it will start 
+                <link linkend="konfigurator">Konfigurator</link>. 
+                Please read the manual, &krusader; has many many configuration options, 
+                a lot of things can be customized to your needs with <link linkend="konfigurator">Konfigurator</link>. 
+          </para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_equal_lookandfeel">
+          <para>How can I set the look &amp; feel of 2
+          different users to be the same?</para>
+        </question>
+        <answer>
+          <para>Presuming that the current setup is the good
+          configuration, you can copy the configuration to the
+          other user. 
+          <screen><prompt>#</prompt> <userinput><command>cp ~/.kde/share/config/krusaderrc /home/foo_user/.kde/share/config</command></userinput></screen>
+          And when the other user is Root use: 
+          <screen><prompt>#</prompt> <userinput><command>cp ~/.kde/share/config/krusaderrc /root/.kde/share/config</command></userinput></screen>
+          </para>
+          <para></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
       <qandaentry>
         <question id="faqu_save_last_location">
           <para>Why doesn't "save last location" work?</para>
@@ -1221,23 +1254,34 @@
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
+
       <qandaentry>
-        <question id="faqu_equal_lookandfeel">
-          <para>How can I set the look &amp; feel of 2
-          different users to be the same?</para>
+        <question id="faqu_handbook">
+          <para>Why doesn't the handbook work?</para>
         </question>
         <answer>
-          <para>Presuming that the current setup is the good
-          configuration, you can copy the configuration to the
-          other user. 
-          <screen><prompt>#</prompt> <userinput><command>cp ~/.kde/share/config/krusaderrc /home/foo_user/.kde/share/config</command></userinput></screen>
-          And when the other user is Root use: 
-          <screen><prompt>#</prompt> <userinput><command>cp ~/.kde/share/config/krusaderrc /root/.kde/share/config</command></userinput></screen>
-          </para>
+          <para>This error will happen on &debian; (or
+          &debian; based) distro with the
+          krusader_1.51-1_i386.deb package. You will see the next
+          error message if you try to open the handbook: "The
+          requested help file could not be found. Check that you
+          have installed the documentation." To fix it go to 
+          <filename>
+          /usr/share/doc/kde/HTML/en/krusader/</filename>, you will
+          see the 
+          <filename>foo.docbook.gz</filename> files. Now, you need
+          to extract all these files with root privileges
+          ("File-&gt;Unpack" with &krusader;)
+          to create 
+          <filename>foo.docbook</filename> files. Now the handbook
+          will work. This error is fixed in the
+          krusader_1.60.0-1_i386.deb package and higher
+          versions.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
+
     </qandaset>
   </sect1>
   <sect1 id="faq_general">
