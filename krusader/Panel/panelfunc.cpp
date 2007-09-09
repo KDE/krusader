@@ -39,7 +39,6 @@ A
 #include <klocale.h>
 #include <k3process.h>
 #include <kpropertiesdialog.h>
-#include <kopenwith.h>
 #include <kmessagebox.h>
 #include <kcursor.h>
 #include <kstandarddirs.h>
@@ -49,6 +48,7 @@ A
 #include <kinputdialog.h>
 #include <kdebug.h>
 #include <kio/netaccess.h>
+#include <kio/jobuidelegate.h>
 #include <kstandarddirs.h>
 #include <ktempdir.h> 
 #include <kurlrequester.h>
@@ -88,7 +88,7 @@ A
 
 ListPanelFunc::ListPanelFunc( ListPanel *parent ) :
 panel( parent ), inRefresh( false ), vfsP( 0 ) {
-	urlStack.push( "file:/" );
+	urlStack.push_back( KUrl( "file:/" ) );
 	connect( &delayTimer, SIGNAL( timeout() ), this, SLOT( doOpenUrl() ) );
 }
 
@@ -141,13 +141,13 @@ void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn ) {
 	}
 
 	vfs* v = 0;
-	if ( !urlStack.top().equals( url ) )
-		urlStack.push( url );
+	if ( !urlStack.last().equals( url ) )
+		urlStack.push_back( url );
 	// count home many urls is in the stack, so later on, we'll know if the refresh was a success
-	uint stackSize = urlStack.size();
+	uint stackSize = urlStack.count();
 	bool refreshFailed = true; // assume the worst
 	while ( true ) {
-		KUrl u = urlStack.pop();
+		KUrl u = urlStack.takeLast();
 		//u.adjustPath(KUrl::RemoveTrailingSlash); // remove trailing "/"
 		u.cleanPath(); // Resolves "." and ".." components in path.
 		v = KrVfsHandler::getVfs( u, panel, files() );
@@ -185,12 +185,12 @@ void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn ) {
 
 	// if we popped exactly 1 url from the stack, it means the url we were
 	// given was refreshed successfully.
-	if (stackSize == urlStack.size() + 1)
+	if (stackSize == urlStack.count() + 1)
 		refreshFailed = false;
 
 	// update the urls stack
-	if ( !files() ->vfs_getOrigin().equals( urlStack.top() ) ) {
-		urlStack.push( files() ->vfs_getOrigin() );
+	if ( !files() ->vfs_getOrigin().equals( urlStack.last() ) ) {
+		urlStack.push_back( files() ->vfs_getOrigin() );
 	}
 	// disconnect older signals
 	disconnect( files(), SIGNAL( addedVfile( vfile* ) ), 0, 0 );
@@ -214,7 +214,7 @@ void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn ) {
 	// see if the open url operation failed, and if so, 
 	// put the attempted url in the origin bar and let the user change it
 	if (refreshFailed) {
-		panel->origin->setURL(urlIn.prettyUrl());
+		panel->origin->setUrl(urlIn.prettyUrl());
 		panel->origin->setFocus();
 	}
 }
@@ -259,9 +259,9 @@ void ListPanelFunc::goBack() {
 	if ( urlStack.isEmpty() )
 		return ;
 
-	if ( urlStack.top().equals( files() ->vfs_getOrigin() ) )
-		urlStack.pop();
-	openUrl( urlStack.top(), files() ->vfs_getOrigin().fileName() );
+	if ( urlStack.last().equals( files() ->vfs_getOrigin() ) )
+		urlStack.pop_back();
+	openUrl( urlStack.last(), files() ->vfs_getOrigin().fileName() );
 
 	if ( urlStack.isEmpty() )
 		krBack->setEnabled( false );
@@ -427,7 +427,7 @@ void ListPanelFunc::moveFiles() {
   if( fileNames.count() == 1 )
     s = i18n("Move %1 to:").arg(fileNames.first());
   else
-    s = i18n("Move %n file to:", "Move %n files to:", fileNames.count());
+    s = i18np("Move %1 file to:", "Move %1 files to:", fileNames.count());
 
 		// ask the user for the copy dest
 		virtualBaseURL = getVirtualBaseURL();
@@ -582,7 +582,7 @@ void ListPanelFunc::copyFiles() {
   if( fileNames.count() == 1 )
     s = i18n("Copy %1 to:").arg(fileNames.first());
   else
-    s = i18n("Copy %n file to:", "Copy %n files to:", fileNames.count());
+    s = i18np("Copy %1 file to:", "Copy %1 files to:", fileNames.count());
 
 		// ask the user for the copy dest
 		virtualBaseURL = getVirtualBaseURL();
@@ -647,23 +647,23 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 		QString s, b;
 
 		if ( !reallyDelete && trash && files() ->vfs_getType() == vfs::NORMAL ) {
-			s = i18n( "Do you really want to move this item to the trash?", "Do you really want to move these %n items to the trash?", fileNames.count() );
+			s = i18np( "Do you really want to move this item to the trash?", "Do you really want to move these %1 items to the trash?", fileNames.count() );
 			b = i18n( "&Trash" );
 		} else if( files() ->vfs_getType() == vfs::VIRT && files()->vfs_getOrigin().equals( KUrl("virt:/"), KUrl::CompareWithoutTrailingSlash ) ) {
-			s = i18n( "Do you really want to delete this virtual item (physical files stay untouched)?", "Do you really want to delete these virtual items (physical files stay untouched)?", fileNames.count() );
+			s = i18np( "Do you really want to delete this virtual item (physical files stay untouched)?", "Do you really want to delete these virtual items (physical files stay untouched)?", fileNames.count() );
 			b = i18n( "&Delete" );
 		} else if( files() ->vfs_getType() == vfs::VIRT ) {
-			s = i18n( "<qt>Do you really want to delete this item <b>physically</b> (not just removing it from the virtual items)?</qt>", "<qt>Do you really want to delete these %n items <b>physically</b> (not just removing them from the virtual items)?</qt>", fileNames.count() );
+			s = i18np( "<qt>Do you really want to delete this item <b>physically</b> (not just removing it from the virtual items)?</qt>", "<qt>Do you really want to delete these %1 items <b>physically</b> (not just removing them from the virtual items)?</qt>", fileNames.count() );
 			b = i18n( "&Delete" );
 		} else {
-			s = i18n( "Do you really want to delete this item?", "Do you really want to delete these %n items?", fileNames.count() );
+			s = i18np( "Do you really want to delete this item?", "Do you really want to delete these %1 items?", fileNames.count() );
 			b = i18n( "&Delete" );
 		}
 
 		// show message
 		// note: i'm using continue and not yes/no because the yes/no has cancel as default button
 		if ( KMessageBox::warningContinueCancelList( krApp, s, fileNames,
-                                                     i18n( "Warning" ), b ) != KMessageBox::Continue )
+                                                     i18n( "Warning" ), KGuiItem( b ) ) != KMessageBox::Continue )
 			return ;
 	}
 	//we want to warn the user about non empty dir
@@ -682,7 +682,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 			if ( dir.entryList(QDir::TypeMask | QDir::System | QDir::Hidden ).count() > 2 ) {
 				switch ( KMessageBox::warningYesNoCancel( krApp,
 																		i18n( "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete All?</p></qt>" ).arg(*name),
-																		QString(), i18n( "&Skip" ), i18n( "&Delete All" ) ) ) {
+																		QString(), KGuiItem( i18n( "&Skip" )), KGuiItem( i18n( "&Delete All" ) ) ) ) {
 						case KMessageBox::Cancel :
 						return ;
 						case KMessageBox::No :
@@ -787,7 +787,7 @@ void ListPanelFunc::pack() {
 	if( !destDir.endsWith( "/" ) )
 		destDir += "/";
 	
-	bool packToOtherPanel = ( destDir == panel->otherPanel->virtualPath().prettyUrl(1) );
+	bool packToOtherPanel = ( destDir == panel->otherPanel->virtualPath().prettyUrl(KUrl::AddTrailingSlash) );
 
 	// on remote URL-s first pack into a temp file then copy to its right place
 	KUrl destURL = vfs::fromPathOrUrl( destDir + PackGUI::filename + "." + PackGUI::type );
@@ -812,7 +812,7 @@ void ListPanelFunc::pack() {
 		if( PackGUI::type == "zip" ) {
 			msg = i18n( "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?</p><p>Zip will replace identically named entries in the zip archive or add entries for new names.</p></qt>").arg(PackGUI::filename).arg(PackGUI::type);
 		}
-		if ( KMessageBox::warningContinueCancel( krApp,msg,QString(),i18n( "&Overwrite" ))
+		if ( KMessageBox::warningContinueCancel( krApp,msg,QString(),KGuiItem( i18n( "&Overwrite" )))
 		        == KMessageBox::Cancel )
 			return ; // stop operation
 	}
@@ -835,7 +835,6 @@ void ListPanelFunc::pack() {
 		arcDir = files() ->vfs_workingDir();
 	else {
 		tempDir = new KTempDir();
-		tempDir->setAutoDelete( true );
 		arcDir = tempDir->name();
 		KUrl::List *urlList = files() ->vfs_getFiles( &fileNames );
 		KIO::NetAccess::dircopy( *urlList, vfs::fromPathOrUrl( arcDir ), 0 );
@@ -917,7 +916,7 @@ void ListPanelFunc::unpack() {
   if(fileNames.count() == 1)
     s = i18n("Unpack %1 to:").arg(fileNames[0]);
   else
-    s = i18n("Unpack %n file to:", "Unpack %n files to:", fileNames.count());
+    s = i18np("Unpack %1 file to:", "Unpack %1 files to:", fileNames.count());
 
 	// ask the user for the copy dest
 	KUrl dest = KChooseDir::getDir(s, panel->otherPanel->virtualPath(), panel->virtualPath());
@@ -952,7 +951,6 @@ void ListPanelFunc::unpack() {
 		if ( !dest.isLocalFile() ) {
 			originalDestURL = dest;
 			tempDir = new KTempDir();
-			tempDir->setAutoDelete( true );
 			dest = tempDir->name();
 		}
 
@@ -1080,22 +1078,24 @@ void ListPanelFunc::properties() {
 	if ( names.isEmpty() )
 		return ;  // no names...
 	KFileItemList fi;
-	fi.setAutoDelete( true );
 
 	for ( unsigned int i = 0 ; i < names.count() ; ++i ) {
 		vfile* vf = files() ->vfs_search( names[ i ] );
 		if ( !vf )
 			continue;
 		KUrl url = files()->vfs_getFile( names[i] );
-		fi.append( new KFileItem( vf->vfile_getEntry(), url ) );
+		fi.push_back( new KFileItem( vf->vfile_getEntry(), url ) );
 	}
 
 	if ( fi.isEmpty() )
 		return ;
 
 	// Show the properties dialog
-	KPropertiesDialog *dlg = new KPropertiesDialog( fi );
+	KPropertiesDialog *dlg = new KPropertiesDialog( fi, krApp );
 	connect( dlg, SIGNAL( applied() ), SLOTS, SLOT( refresh() ) );
+	
+	while (!fi.isEmpty())
+		delete fi.takeFirst();
 }
 
 void ListPanelFunc::refreshActions() {
@@ -1138,7 +1138,7 @@ ListPanelFunc::~ListPanelFunc() {
 
 vfs* ListPanelFunc::files() {
 	if ( !vfsP )
-		vfsP = KrVfsHandler::getVfs( "/", panel, 0 );
+		vfsP = KrVfsHandler::getVfs( KUrl( "/" ), panel, 0 );
 	return vfsP;
 }
 

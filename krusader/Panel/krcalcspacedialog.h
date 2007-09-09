@@ -36,6 +36,7 @@
 
 // KDE Includes
 #include <kdialog.h>
+#include <qmutex.h>
 #include <kio/jobclasses.h>
 // Qt Includes
 #include <qthread.h>

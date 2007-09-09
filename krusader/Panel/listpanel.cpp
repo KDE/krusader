@@ -59,8 +59,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kmimetype.h>
 #include <kurl.h>
 #include <ktrader.h>
-#include <kopenwith.h>
-#include <kuserprofile.h>
 #include <kiconloader.h>
 #include <kcursor.h>
 #include <kmessagebox.h>
@@ -132,8 +130,8 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left, const char *n
 
    status = new KrSqueezedTextLabel( this );
    krConfig->setGroup( "Look&Feel" );
-   status->setFont( krConfig->readFontEntry( "Filelist Font", _FilelistFont ) );
-   status->setBackgroundMode( PaletteBackground );
+   status->setFont( krConfig->readEntry( "Filelist Font", *_FilelistFont ) );
+   status->setBackgroundMode( Qt::PaletteBackground );
    status->setFrameStyle( Q3Frame::Box | Q3Frame::Raised );
    status->setLineWidth( 1 );		// a nice 3D touch :-)
    status->setText( "" );        // needed for initialization code!
@@ -164,9 +162,9 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left, const char *n
    Q3HBoxLayout *totalsLayout = new Q3HBoxLayout;
 	totals = new KrSqueezedTextLabel( this );
    krConfig->setGroup( "Look&Feel" );
-   totals->setFont( krConfig->readFontEntry( "Filelist Font", _FilelistFont ) );
+   totals->setFont( krConfig->readEntry( "Filelist Font", *_FilelistFont ) );
    totals->setFrameStyle( Q3Frame::Box | Q3Frame::Raised );
-   totals->setBackgroundMode( PaletteBackground );
+   totals->setBackgroundMode( Qt::PaletteBackground );
    totals->setLineWidth( 1 );		// a nice 3D touch :-)
    totals->setMaximumHeight( sheight );
    totals->enableDrops( true );
@@ -194,7 +192,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left, const char *n
    
    quickSearch = new KrQuickSearch( this );
    krConfig->setGroup( "Look&Feel" );
-   quickSearch->setFont( krConfig->readFontEntry( "Filelist Font", _FilelistFont ) );
+   quickSearch->setFont( krConfig->readEntry( "Filelist Font", *_FilelistFont ) );
    quickSearch->setFrameStyle( Q3Frame::Box | Q3Frame::Raised );
    quickSearch->setLineWidth( 1 );		// a nice 3D touch :-)
    quickSearch->setMaximumHeight( sheight );
@@ -215,8 +213,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left, const char *n
    origin->button() ->setFixedSize( pixMap.width() + 4, pixMap.height() + 4 );
    Q3WhatsThis::add
       ( origin, i18n( "Use superb KDE file dialog to choose location. " ) );
-   origin->setShowLocalProtocol( false );
-   origin->lineEdit() ->setURLDropsEnabled( true );
+   origin->lineEdit() ->setUrlDropsEnabled( true );
    origin->lineEdit() ->installEventFilter( this );
    Q3WhatsThis::add
       ( origin->lineEdit(), i18n( "Name of directory where you are. You can also "
@@ -271,7 +268,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left, const char *n
 	// create a splitter to hold the view and the popup
 	splt = new PercentalSplitter(this);
 	splt->setChildrenCollapsible(true);
-	splt->setOrientation(QObject::Vertical);
+	splt->setOrientation(Qt::Vertical);
 
 	createView();
 	
@@ -676,7 +673,7 @@ void ListPanel::slotStartUpdate() {
 
    if ( func->files() ->vfs_getType() == vfs::NORMAL )
       _realPath = virtualPath();
-   this->origin->setURL( vfs::pathOrUrl( virtualPath() ) );
+   this->origin->setUrl( vfs::pathOrUrl( virtualPath() ) );
    emit pathChanged( this );
    emit cmdLineUpdate( realPath() );	// update the command line
 
@@ -697,7 +694,7 @@ void ListPanel::slotUpdate() {
    QString protocol = func->files() ->vfs_getOrigin().protocol();
    bool isFtp = ( protocol == "ftp" || protocol == "smb" || protocol == "sftp" || protocol == "fish" );
 
-   QString origin = virtualPath().prettyUrl(-1);
+   QString origin = virtualPath().prettyUrl(KUrl::RemoveTrailingSlash);
    if ( origin.right( 1 ) != "/" && !( ( func->files() ->vfs_getType() == vfs::FTP ) && isFtp &&
                                        origin.find( '/', origin.find( ":/" ) + 3 ) == -1 ) ) {
       view->addItems( func->files() );
@@ -1066,7 +1063,7 @@ void ListPanel::slotJobStarted(KIO::Job* job) {
 
 void ListPanel::inlineRefreshCancel() {
 	if (inlineRefreshJob) {
-		inlineRefreshJob->kill(false);
+		inlineRefreshJob->kill();
 		inlineRefreshJob = 0;
 	}
 }
