@@ -77,7 +77,7 @@ QByteArray KRDrag::encodedData( const char* mime ) const
     else if ( mimetype == "text/plain" )
     {
       QStringList uris;
-      for (QStrListIterator it(m_urls); *it; ++it)
+      for (Q3StrListIterator it(m_urls); *it; ++it)
           uris.append(K3URLDrag::stringToUrl(*it).prettyUrl());
       Q3CString s = uris.join( "\n" ).local8Bit();
       if( uris.count() > 1 )

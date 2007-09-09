@@ -5,6 +5,8 @@
 #include "../defaults.h"
 #include "../krslots.h"
 #include "panelfunc.h"
+#include "krview.h"
+#include "krviewitem.h"
 #include <qtooltip.h>
 #include <q3buttongroup.h>
 #include <qtoolbutton.h>
@@ -14,14 +16,12 @@
 #include <Q3Frame>
 #include <Q3StrList>
 #include <Q3PopupMenu>
-#include <kfiletreeview.h>
+#include <k3filetreeview.h>
 #include <klocale.h>
 #include <qcursor.h>
 #include <qlayout.h>
 #include <qlabel.h>
 #include <q3header.h>
-#include <krview.h>
-#include <krviewitem.h>
 #include <klineedit.h>
 #include <kio/jobclasses.h>
 #include "../KViewer/kimagefilepreview.h"
@@ -36,9 +36,9 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	// loading the splitter sizes
 	krConfig->setGroup( "Private" );
 	if( left )
-		splitterSizes = krConfig->readIntListEntry( "Left PanelPopup Splitter Sizes" );
+		splitterSizes = krConfig->readEntry( "Left PanelPopup Splitter Sizes", QList<int>() );
 	else
-		splitterSizes = krConfig->readIntListEntry( "Right PanelPopup Splitter Sizes" );
+		splitterSizes = krConfig->readEntry( "Right PanelPopup Splitter Sizes", QList<int>() );
 	
 	if( splitterSizes.count() < 2 ) {
 		splitterSizes.clear();
@@ -51,9 +51,9 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	dataLine->setText("blah blah");
 	connect( dataLine, SIGNAL( clicked() ), this, SLOT( setFocus() ) );
 	krConfig->setGroup( "Look&Feel" );
-   dataLine->setFont( krConfig->readFontEntry( "Filelist Font", _FilelistFont ) );
+   dataLine->setFont( krConfig->readEntry( "Filelist Font", *_FilelistFont ) );
    // --- hack: setup colors to be the same as an inactive panel
-	dataLine->setBackgroundMode( PaletteBackground );
+	dataLine->setBackgroundMode( Qt::PaletteBackground );
 	QPalette q( dataLine->palette() );
    q.setColor( QColorGroup::Foreground, KGlobalSettings::textColor() );
    q.setColor( QColorGroup::Background, KGlobalSettings::baseColor() );
@@ -115,7 +115,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
    stack = new Q3WidgetStack( this );
 
    // create the tree part ----------
-	tree = new KFileTreeView( stack );
+	tree = new K3FileTreeView( stack );
 	tree->setAcceptDrops(true);
 	connect(tree, SIGNAL(dropped (QWidget *, QDropEvent *, KUrl::List &, KUrl &)), 
 		this, SLOT(slotDroppedOnTree(QWidget *, QDropEvent *, KUrl::List&, KUrl& )));
@@ -126,7 +126,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	tree->setDirOnlyMode( tree->branch(i18n("Home")), true);
 	tree->branch(i18n("Home"))->setChildRecurse(false);
 	// add /
-	tree->addBranch( "/", i18n( "Root" ) );
+	tree->addBranch( KUrl( "/" ), i18n( "Root" ) );
    tree->setDirOnlyMode( tree->branch( i18n( "Root" ) ), true );
 	tree->setShowFolderOpenPixmap(true);
 	tree->branch( i18n( "Root" ) ) ->setChildRecurse(false);
@@ -145,14 +145,14 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	
 	panelviewer = new PanelViewer(stack);
 	stack->addWidget(panelviewer, View);
-	connect(panelviewer, SIGNAL(openURLRequest(const KUrl &)), this, SLOT(handleOpenURLRequest(const KUrl &)));
+	connect(panelviewer, SIGNAL(openUrlRequest(const KUrl &)), this, SLOT(handleOpenUrlRequest(const KUrl &)));
 	
 	// create the disk usage view
 	
 	diskusage = new DiskUsageViewer( stack );
 	diskusage->setStatusLabel( dataLine, i18n("Disk Usage: ") );
 	stack->addWidget( diskusage, DskUsage );
-	connect(diskusage, SIGNAL(openURLRequest(const KUrl &)), this, SLOT(handleOpenURLRequest(const KUrl &)));
+	connect(diskusage, SIGNAL(openUrlRequest(const KUrl &)), this, SLOT(handleOpenUrlRequest(const KUrl &)));
 	
 	// create the quick-panel part ----
 	
@@ -163,10 +163,9 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	quickSelectCombo = new KComboBox( quickPanel );
 	quickSelectCombo->setEditable( true );
 	krConfig->setGroup( "Private" );
-	Q3StrList lst;
-	int i = krConfig->readListEntry( "Predefined Selections", lst );
-	if ( i > 0 )
-		quickSelectCombo->insertStrList( lst );
+	QStringList lst = krConfig->readEntry( "Predefined Selections", QStringList() );
+	if ( lst.count() > 0 )
+		quickSelectCombo->addItems( lst );
 	quickSelectCombo->setCurrentText( "*" );
 	quickSelectCombo->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred ) );
 
@@ -232,8 +231,8 @@ void PanelPopup::hide() {
     splitterSizes = splitter->sizes();
   QWidget::hide();
   _hidden = true;
-  if (stack->id(stack->visibleWidget()) == View) panelviewer->closeURL();
-  if (stack->id(stack->visibleWidget()) == DskUsage) diskusage->closeURL();
+  if (stack->id(stack->visibleWidget()) == View) panelviewer->closeUrl();
+  if (stack->id(stack->visibleWidget()) == DskUsage) diskusage->closeUrl();
 }
 
 void PanelPopup::setFocus() {
@@ -273,13 +272,13 @@ void PanelPopup::saveSizes() {
     krConfig->writeEntry( "Right PanelPopup Splitter Sizes", splitterSizes );
 }
 
-void PanelPopup::handleOpenURLRequest(const KUrl &url) {
+void PanelPopup::handleOpenUrlRequest(const KUrl &url) {
   if (KMimeType::findByUrl(url.url())->name() == "inode/directory") ACTIVE_PANEL->func->openUrl(url);
 }
 
 
 void PanelPopup::tabSelected( int id ) {
-	KUrl url = "";
+	KUrl url;
 	if ( ACTIVE_PANEL && ACTIVE_PANEL->func && ACTIVE_PANEL->func->files() && ACTIVE_PANEL->view ) {
 		url = ACTIVE_PANEL->func->files()->vfs_getFile( ACTIVE_PANEL->view->getCurrentItem());
 	}
@@ -315,7 +314,7 @@ void PanelPopup::tabSelected( int id ) {
 				diskusage->getWidget()->visibleWidget()->setFocus();
 			break;
 	}
-	if (id != View) panelviewer->closeURL();  
+	if (id != View) panelviewer->closeUrl();  
 }
 
 // decide which part to update, if at all
@@ -330,7 +329,7 @@ void PanelPopup::update( KUrl url ) {
 			dataLine->setText( i18n("Preview: ")+url.fileName() );
 			break;
       case View:
-			panelviewer->openURL(url);
+			panelviewer->openUrl(url);
 			dataLine->setText( i18n("View: ")+url.fileName() );
 			break;
       case DskUsage:
@@ -339,7 +338,7 @@ void PanelPopup::update( KUrl url ) {
 			if (KMimeType::findByUrl(url.url())->name() != "inode/directory")
 				url = url.upUrl();
 			dataLine->setText( i18n("Disk Usage: ")+url.fileName() );
-			diskusage->openURL(url);
+			diskusage->openUrl(url);
          break;
       case Tree:  // nothing to do      
          break;
@@ -349,7 +348,7 @@ void PanelPopup::update( KUrl url ) {
 // ------------------- tree
 
 void PanelPopup::treeSelection(Q3ListViewItem*) {
-	emit selection(tree->currentURL());
+	emit selection(tree->currentUrl());
 	//emit hideMe();
 }
 
@@ -372,10 +371,10 @@ void PanelPopup::quickSelectStore() {
 }
 
 void PanelPopup::slotDroppedOnTree(QWidget *widget, QDropEvent *e, KUrl::List &lst, KUrl &) {
-	// KFileTreeView is buggy: when dropped, it might not give us the correct
+	// K3FileTreeView is buggy: when dropped, it might not give us the correct
 	// destination, but actually, it's parent. workaround: don't use
 	// the destination in the signal, but take the current item
-	KUrl dest = tree->currentURL();
+	KUrl dest = tree->currentUrl();
 	
 	// ask the user what to do: copy, move or link?
    Q3PopupMenu popup( this );

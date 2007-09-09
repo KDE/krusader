@@ -17,7 +17,7 @@ class Q3ButtonGroup;
 class QLabel;
 class Q3ListViewItem;
 class QSplitter;
-class KFileTreeView;
+class K3FileTreeView;
 class QToolButton;
 class KrSqueezedTextLabel;
 class KLineEdit;
@@ -50,7 +50,7 @@ protected slots:
 	void tabSelected(int id);
 	void treeSelection(Q3ListViewItem*);
 	void slotDroppedOnTree(QWidget *widget, QDropEvent *e, KUrl::List &lst, KUrl &);
-	void handleOpenURLRequest(const KUrl &url);
+	void handleOpenUrlRequest(const KUrl &url);
 	void quickSelect();
 	void quickSelect(const QString &);
         void quickSelectStore();
@@ -62,14 +62,14 @@ protected:
 	KrusaderImageFilePreview *viewer;
 	KrSqueezedTextLabel *dataLine;
 	QPointer<KIO::PreviewJob> pjob;
-	KFileTreeView *tree;
+	K3FileTreeView *tree;
 	QToolButton *treeBtn, *previewBtn, *quickBtn, *viewerBtn, *duBtn;
 	Q3ButtonGroup *btns;
 	KLineEdit *quickFilter;
 	KComboBox *quickSelectCombo;
 	PanelViewer *panelviewer;
 	DiskUsageViewer *diskusage;
-	Q3ValueList<int> splitterSizes;
+	QList<int> splitterSizes;
 	QSplitter *splitter;
 };
 

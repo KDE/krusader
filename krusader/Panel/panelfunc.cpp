@@ -1160,7 +1160,7 @@ void ListPanelFunc::copyToClipboard( bool move ) {
 
 	KUrl::List* fileUrls = files() ->vfs_getFiles( &fileNames );
 	if ( fileUrls ) {
-		KRDrag * urlData = KRDrag::newDrag( *fileUrls, move, krApp->mainView, "krusader" );
+		KRDrag * urlData = KRDrag::newDrag( *fileUrls, move, krApp->mainView );
 		QApplication::clipboard() ->setData( urlData );
 		
 		if( move && files()->vfs_getType() == vfs::VIRT )
