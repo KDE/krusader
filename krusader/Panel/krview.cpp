@@ -36,6 +36,7 @@
 #include <qpixmapcache.h>
 #include <qdir.h>
 #include <qbitmap.h>
+#include <qpainter.h>
 //Added by qt3to4:
 #include <QPixmap>
 #include <kmimetype.h>
@@ -110,7 +111,8 @@ QPixmap KrView::getIcon( vfile *vf /*, KRListItem::cmpColor color*/ ) {
    // if it's a symlink - add an arrow overlay
    if ( vf->vfile_isSymLink() ) {
       QPixmap link( link_xpm );
-      bitBlt ( &icon, 0, icon.height() - 11, &link, 0, 21, 10, 11, Qt::CopyROP, false );
+      // bitBlt ( &icon, 0, icon.height() - 11, &link, 0, 21, 10, 11, Qt::CopyROP, false );
+      QPainter( &icon ).drawPixmap( 0, icon.height() - 11, link, 0, 21, 10, 11 );
       icon.setMask( icon.createHeuristicMask( false ) );
    }
 

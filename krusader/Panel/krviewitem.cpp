@@ -49,7 +49,7 @@ QString KrViewItem::description() const {
 	if (dummyVfile) return i18n("Climb up the directory tree");
 	// else is implied
 	QString text = _vf->vfile_getName();
-	QString comment = KMimeType::mimeType(_vf->vfile_getMime())->comment(text, false);
+	QString comment = KMimeType::mimeType(_vf->vfile_getMime())->comment(_vf->vfile_getUrl());
 	QString myLinkDest = _vf->vfile_getSymDest();
 	KIO::filesize_t mySize = _vf->vfile_getSize();
 	
