@@ -55,6 +55,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #define VF	 getVfile()
 
 
+/* TODO
 class KrBriefViewToolTip : public QToolTip
 {
 public:
@@ -84,7 +85,7 @@ void KrBriefViewToolTip::maybeTip( const QPoint &pos )
   r.setTopLeft( view->contentsToViewport( r.topLeft() ) );
   if( width > item->textRect().width() )
     tip( r, item->text() );
-}
+} */
 
 
 KrBriefView::KrBriefView( Q3Header * headerIn, QWidget *parent, bool &left, KConfig *cfg, const char *name ):
@@ -95,7 +96,7 @@ KrBriefView::KrBriefView( Q3Header * headerIn, QWidget *parent, bool &left, KCon
 	krConfig->setGroup("Private");
 	if (krConfig->readBoolEntry("Enable Input Method", true))
 		setInputMethodEnabled(true);
-	toolTip = new KrBriefViewToolTip( this, viewport() );
+//	toolTip = new KrBriefViewToolTip( this, viewport() ); TODO
 }
 
 void KrBriefView::setup() {
@@ -103,7 +104,7 @@ void KrBriefView::setup() {
       
    // use the {} so that KConfigGroup will work correctly!
    KConfigGroup grpSvr = _config->group( "Look&Feel" );
-   setFont( _config->readFontEntry( "Filelist Font", _FilelistFont ) );
+   setFont( _config->readEntry( "Filelist Font", *_FilelistFont ) );
    // decide on single click/double click selection
    if ( _config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) &&
            KGlobalSettings::singleClick() ) {
@@ -349,7 +350,7 @@ void KrBriefView::slotClicked( Q3IconViewItem *item ) {
 
    if ( !modifierPressed ) {
       if ( singleClicked && !renameTimer.isActive() ) {
-         KConfig * config = KGlobal::config();
+         KSharedConfigPtr config = KGlobal::config();
          config->setGroup( "KDE" );
          int doubleClickInterval = config->readNumEntry( "DoubleClickInterval", 400 );
 
@@ -767,6 +768,11 @@ void KrBriefView::contentsDragLeaveEvent ( QDragLeaveEvent *e )
      dynamic_cast<KrBriefViewItem *>( oldDragItem )->repaint();
 }
 
+void KrBriefView::inputMethodEvent(QInputMethodEvent *e) {
+	// TODO: the following 3 functions should somehow fit into this one. Csaba, did you implement this one?
+}
+
+#if 0
 void KrBriefView::imStartEvent(QIMEvent* e)
 {
   if ( ACTIVE_PANEL->quickSearch->isShown() ) {
@@ -809,6 +815,7 @@ void KrBriefView::imComposeEvent(QIMEvent* e)
     return ;
   }
 }
+#endif
 
 void KrBriefView::keyPressEvent( QKeyEvent * e ) {
    if ( !e || !firstItem() )
@@ -1327,17 +1334,22 @@ void KrBriefView::initProperties() {
 void KrBriefView::setColumnNr()
 {
   KMenu popup( this );
-  popup.insertTitle( i18n("Columns"));
+  popup.setTitle( i18n("Columns"));
   
   int COL_ID = 14700;
 
   for( int i=1; i <= MAX_COLS; i++ )
   {
-    popup.insertItem( QString( "%1" ).arg( i ), COL_ID + i );
-    popup.setItemChecked( COL_ID + i, PROPS->numberOfColumns == i );
+    QAction *act = popup.addAction( QString( "%1" ).arg( i ) );
+    act->setData( QVariant( COL_ID + i ) );
+    act->setCheckable( true );
+    act->setChecked( PROPS->numberOfColumns == i );
   }
   
-  int result=popup.exec(QCursor::pos());
+  QAction * res = popup.exec(QCursor::pos());
+  int result= -1;
+  if( res->data().canConvert<int>() )
+    result = res->data().toInt();
 
   krConfig->setGroup( nameInKConfig() );
   

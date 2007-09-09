@@ -107,6 +107,7 @@ protected:
 	void redrawColumns();
 
 	virtual void keyPressEvent( QKeyEvent *e );
+	virtual void inputMethodEvent(QInputMethodEvent *e);
 	virtual void contentsMousePressEvent( QMouseEvent *e );
 	virtual void contentsMouseReleaseEvent (QMouseEvent *e);
 	virtual void contentsMouseMoveEvent ( QMouseEvent * e );
