@@ -17,10 +17,10 @@
 
 #include <klocale.h>
 #include <k3process.h>
-#include <kshred.h>
 #include <krun.h>
 #include <kiconloader.h>
 #include <kmessagebox.h>
+#include <kmimetypetrader.h>
 #include "../krservices.h"
 #include "../defaults.h"
 #include "../MountMan/kmountman.h"
@@ -37,7 +37,10 @@
 
 void KrPopupMenu::run(const QPoint &pos, ListPanel *panel) {
 	KrPopupMenu menu(panel);
-	int result = menu.exec(pos);
+	QAction * res = menu.exec(pos);
+	int result = -1;
+	if( res && res->data().canConvert<int>() )
+		result = res->data().toInt();
 	menu.performAction(result);
 }
 
@@ -50,7 +53,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
    panel->view->getSelectedKrViewItems( &items );
    if ( items.empty() ) {
    	addCreateNewMenu();
-   	insertSeparator();
+   	addSeparator();
    	addEmptyMenuEntries();
       return;
 	} else if ( items.size() > 1 ) multipleSelections = true;
@@ -59,15 +62,19 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
    vfile *vf = panel->func->getVFile(item);
    
    // ------------ the OPEN option - open prefered service
-   insertItem( i18n("Open/Run"), OPEN_ID );
+   QAction * openAct = addAction( i18n("Open/Run") );
+   openAct->setData( QVariant( OPEN_ID ) );
    if ( !multipleSelections ) { // meaningful only if one file is selected
-		changeItem( OPEN_ID, item->icon(), vf->vfile_isExecutable() && !vf->vfile_isDir() ? i18n("Run") : i18n("Open") );
+      openAct->setIcon( item->icon() );
+      openAct->setText( vf->vfile_isExecutable() && !vf->vfile_isDir() ? i18n("Run") : i18n("Open") );
       // open in a new tab (if folder)
       if ( vf->vfile_isDir() ) {
-         insertItem( i18n( "Open in New Tab" ), OPEN_TAB_ID );
-         changeItem( OPEN_TAB_ID, krLoader->loadIcon( "tab_new", K3Icon::Panel ), i18n( "Open in New Tab" ) );
+         QAction * openTab = addAction( i18n( "Open in New Tab" ) );
+         openTab->setData( QVariant( OPEN_TAB_ID ) );
+         openTab->setIcon( krLoader->loadIcon( "tab_new", K3Icon::Panel ) );
+         openTab->setText( i18n( "Open in New Tab" ) );
       }
-      insertSeparator();
+      addSeparator();
    }
 
    // ------------- Preview - normal vfs only ?
@@ -76,7 +83,9 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
       QStringList names;
       panel->getSelectedNames( &names );
       preview.setUrls( panel->func->files() ->vfs_getFiles( &names ) );
-      insertItem( i18n("Preview"), &preview, PREVIEW_ID );
+      QAction *pAct = addMenu( &preview );
+      pAct->setData( QVariant( PREVIEW_ID ) );
+      pAct->setText( i18n("Preview") );
    }
 
    // -------------- Open with: try to find-out which apps can open the file
@@ -91,26 +100,26 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
       }
    }
    if ( !mime.isEmpty() ) {
-      offers = KServiceTypeProfile::offers( mime );
+      offers = KMimeTypeTrader::self()->query( mime );
       for ( unsigned int i = 0; i < offers.count(); ++i ) {
-         KService::Ptr service = offers[ i ].service();
+         KSharedPtr<KService> service = offers[ i ];
          if ( service->isValid() && service->type() == "Application" ) {
-            openWith.insertItem( service->name(), SERVICE_LIST_ID + i );
-            openWith.changeItem( SERVICE_LIST_ID + i, service->pixmap( K3Icon::Small ), service->name() );
+            openWith.addAction( krLoader->loadIcon( service->icon(), K3Icon::Small ), service->name() )->setData( QVariant( SERVICE_LIST_ID + i ) );
          }
       }
-      openWith.insertSeparator();
+      openWith.addSeparator();
       if ( vf->vfile_isDir() )
-         openWith.insertItem( krLoader->loadIcon( "konsole", K3Icon::Small ), i18n( "Terminal" ), OPEN_TERM_ID );
-      openWith.insertItem( i18n( "Other..." ), CHOOSE_ID );
-      insertItem( QPixmap(), &openWith, OPEN_WITH_ID );
-      changeItem( OPEN_WITH_ID, i18n( "Open With" ) );
-      insertSeparator();
+         openWith.addAction( krLoader->loadIcon( "konsole", K3Icon::Small ), i18n( "Terminal" ))->setData( QVariant( OPEN_TERM_ID ) );
+      openWith.addAction( i18n( "Other..." ) )->setData( QVariant( CHOOSE_ID ) );
+      QAction *owAct = addMenu( &openWith );
+      owAct->setData( QVariant( OPEN_WITH_ID ) );
+      owAct->setText( i18n( "Open With" ) );
+      addSeparator();
    }
 	
 	// --------------- user actions
-   insertItem( i18n("User Actions"), new UserActionPopupMenu( panel->func->files()->vfs_getFile( item->name() ).url() ) );
-   _items.setAutoDelete( true );
+   QAction *uAct = addMenu( new UserActionPopupMenu( panel->func->files()->vfs_getFile( item->name() ).url() ) );
+   uAct->setText( i18n("User Actions") );
    for ( KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it ) {
 		vfile *file = panel->func->files()->vfs_search(((*it)->name()));
 		KUrl url = file->vfile_getUrl();
@@ -122,88 +131,93 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
    actions = new KActionCollection(this);
 	konqMenu = new KonqPopupMenu( KonqBookmarkManager::self(), _items, panel->func->files()->vfs_getOrigin(), *actions, 0, this, 
                            KonqPopupMenu::NoFlags, KParts::BrowserExtension::DefaultPopupItems );
-   insertItem( QPixmap(), konqMenu, KONQ_MENU_ID );
-   changeItem( KONQ_MENU_ID, i18n( "Konqueror Menu" ) );
+   QAction * konqAct = addMenu( konqMenu );
+   konqAct->setData( QVariant( KONQ_MENU_ID ) );
+   konqAct->setText( i18n( "Konqueror Menu" ) );
 #endif
    
 	// ------------- 'create new' submenu
    addCreateNewMenu();
-	insertSeparator();
+	addSeparator();
    
    // ---------- COPY
-   insertItem( i18n( "Copy..." ), COPY_ID );
+   addAction( i18n( "Copy..." ) )->setData( QVariant( COPY_ID ) );
    if ( panel->func->files() ->vfs_isWritable() ) {
       // ------- MOVE
-      insertItem( i18n( "Move..." ), MOVE_ID );
+      addAction( i18n( "Move..." ) )->setData( QVariant( MOVE_ID ) );
       // ------- RENAME - only one file
       if ( !multipleSelections )
-         insertItem( i18n( "Rename" ), RENAME_ID );
+         addAction( i18n( "Rename" ) )->setData( QVariant( RENAME_ID ) );
   
       // -------- MOVE TO TRASH
       KConfigGroup saver = krConfig->group("General");
       bool trash = krConfig->readBoolEntry( "Move To Trash", _MoveToTrash );
       if( trash )
-        insertItem( i18n( "Move to Trash" ), TRASH_ID );
+        addAction( i18n( "Move to Trash" ) )->setData( QVariant( TRASH_ID ) );
       // -------- DELETE
-      insertItem( i18n( "Delete" ), DELETE_ID );
+      addAction( i18n( "Delete" ) )->setData( QVariant( DELETE_ID ) );
       // -------- SHRED - only one file
-      if ( panel->func->files() ->vfs_getType() == vfs::NORMAL &&
+/*      if ( panel->func->files() ->vfs_getType() == vfs::NORMAL &&
             !vf->vfile_isDir() && !multipleSelections )
-         insertItem( i18n( "Shred" ), SHRED_ID );
+         addAction( i18n( "Shred" ) )->setData( QVariant( SHRED_ID ) );*/
    }
    
    // ---------- link handling
    // create new shortcut or redirect links - only on local directories:
    if ( panel->func->files() ->vfs_getType() == vfs::NORMAL ) {
-      insertSeparator();
-      linkPopup.insertItem( i18n( "New Symlink..." ), NEW_SYMLINK_ID );
-      linkPopup.insertItem( i18n( "New Hardlink..." ), NEW_LINK_ID );
+      addSeparator();
+      linkPopup.addAction( i18n( "New Symlink..." ) )->setData( QVariant( NEW_SYMLINK_ID ) );
+      linkPopup.addAction( i18n( "New Hardlink..." ) )->setData( QVariant( NEW_LINK_ID ) );
       if ( panel->func->getVFile(item)->vfile_isSymLink() )
-         linkPopup.insertItem( i18n( "Redirect Link..." ), REDIRECT_LINK_ID);
-      insertItem( QPixmap(), &linkPopup, LINK_HANDLING_ID );
-      changeItem( LINK_HANDLING_ID, i18n( "Link Handling" ) );
+         linkPopup.addAction( i18n( "Redirect Link..." ) )->setData( QVariant( REDIRECT_LINK_ID) );
+      QAction *linkAct = addMenu( &linkPopup );
+      linkAct->setData( QVariant( LINK_HANDLING_ID ) );
+      linkAct->setText( i18n( "Link Handling" ) );
    }
-   insertSeparator();
+   addSeparator();
 
    // ---------- calculate space
    if ( panel->func->files() ->vfs_getType() == vfs::NORMAL && ( vf->vfile_isDir() || multipleSelections ) )
-      krCalculate->plug( this );
+      addAction( krCalculate  );
 	
 	// ---------- mount/umount/eject
    if ( panel->func->files() ->vfs_getType() == vfs::NORMAL && vf->vfile_isDir() && !multipleSelections ) {
       if ( krMtMan.getStatus( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) ) == KMountMan::MOUNTED )
-         insertItem( i18n( "Unmount" ), UNMOUNT_ID );
+         addAction( i18n( "Unmount" ) )->setData( QVariant( UNMOUNT_ID ) );
       else if ( krMtMan.getStatus( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) ) == KMountMan::NOT_MOUNTED )
-         insertItem( i18n( "Mount" ), MOUNT_ID );
+         addAction( i18n( "Mount" ) )->setData( QVariant( MOUNT_ID ) );
       if ( krMtMan.ejectable( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) ) )
-         insertItem( i18n( "Eject" ), EJECT_ID );
+         addAction( i18n( "Eject" ) )->setData( QVariant( EJECT_ID ) );
    }
    
    // --------- send by mail
    if ( Krusader::supportedTools().contains( "MAIL" ) && !vf->vfile_isDir() ) {
-      insertItem( i18n( "Send by Email" ), SEND_BY_EMAIL_ID );
+      addAction( i18n( "Send by Email" ) )->setData( QVariant( SEND_BY_EMAIL_ID ) );
    }
    
    // --------- synchronize
    if ( panel->view->numSelected() ) {
-      insertItem( i18n( "Synchronize Selected Files..." ), SYNC_SELECTED_ID );
+      addAction( i18n( "Synchronize Selected Files..." ) )->setData( QVariant( SYNC_SELECTED_ID ) );
    }
    
    // --------- copy/paste
-   insertSeparator();
-   insertItem( i18n( "Copy to Clipboard" ), COPY_CLIP_ID );
+   addSeparator();
+   addAction( i18n( "Copy to Clipboard" ) )->setData( QVariant( COPY_CLIP_ID ) );
    if ( panel->func->files() ->vfs_isWritable() )
    {
-     insertItem( i18n( "Cut to Clipboard" ), MOVE_CLIP_ID );
-     insertItem( i18n( "Paste from Clipboard" ), PASTE_CLIP_ID );
+     addAction( i18n( "Cut to Clipboard" ) )->setData( QVariant( MOVE_CLIP_ID ) );
+     addAction( i18n( "Paste from Clipboard" ) )->setData( QVariant( PASTE_CLIP_ID ) );
    }
-   insertSeparator();
+   addSeparator();
    
    // --------- properties
-   krProperties->plug( this );
+   addAction( krProperties );
 }
 
 KrPopupMenu::~KrPopupMenu() {
+	for( int i=0; i != _items.count(); i++ )
+		delete _items[ i ];
+	_items.clear();
 	if (actions) delete actions;
 #ifdef __LIBKONQ__
 	if (konqMenu) delete konqMenu;
@@ -211,15 +225,16 @@ KrPopupMenu::~KrPopupMenu() {
 }
 
 void KrPopupMenu::addEmptyMenuEntries() {
-	insertItem( i18n( "Paste from Clipboard" ), PASTE_CLIP_ID );
+	addAction( i18n( "Paste from Clipboard" ) )->setData( QVariant( PASTE_CLIP_ID ) );
 }
 
 void KrPopupMenu::addCreateNewMenu() {
-	createNewPopup.insertItem( krLoader->loadIcon( "folder", K3Icon::Small ), i18n("Folder..."), MKDIR_ID);
-	createNewPopup.insertItem( krLoader->loadIcon( "txt", K3Icon::Small ), i18n("Text File..."), NEW_TEXT_FILE_ID);
+	createNewPopup.addAction( krLoader->loadIcon( "folder", K3Icon::Small ), i18n("Folder...") )->setData( QVariant( MKDIR_ID) );
+	createNewPopup.addAction( krLoader->loadIcon( "txt", K3Icon::Small ), i18n("Text File...") )->setData( QVariant( NEW_TEXT_FILE_ID) );
 	
-	insertItem( QPixmap(), &createNewPopup, CREATE_NEW_ID);
-	changeItem( CREATE_NEW_ID, i18n( "Create New" ) );
+	QAction *newAct = addMenu( &createNewPopup );
+	newAct->setData( QVariant( CREATE_NEW_ID) );
+	newAct->setText( i18n( "Create New" ) );
 	
 }
 
@@ -238,7 +253,7 @@ void KrPopupMenu::performAction(int id) {
          case OPEN_ID :
          	for ( KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it ) {
             	u = panel->func->files()->vfs_getFile( ( *it ) ->name() );
-            	KRun::runURL( u, panel->func->getVFile(item)->vfile_getMime() );
+            	KRun::runUrl( u, panel->func->getVFile(item)->vfile_getMime(), parentWidget() );
          	}
          	break;
          case COPY_ID :
@@ -259,19 +274,19 @@ void KrPopupMenu::performAction(int id) {
          case EJECT_ID :
          	KMountMan::eject( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) );
          	break;
-         case SHRED_ID :
+/*         case SHRED_ID :
             if ( KMessageBox::warningContinueCancel( krApp,
                  i18n("<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone forever!</qt>").arg(item->name()),
-                 QString(), KStandardGuiItem::cont(), "Shred" ) == KMessageBox::Continue )
+                 QString(), KStandardGuiItem::cont(), KStandardGuiItem::cancel(), "Shred" ) == KMessageBox::Continue )
                KShred::shred( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) );
-         	break;
+         	break;*/
          case OPEN_KONQ_ID :
          	KToolInvocation::startServiceByDesktopName( "konqueror", panel->func->files() ->vfs_getFile( item->name() ).url() );
          	break;
          case CHOOSE_ID : // open-with dialog
          	u = panel->func->files() ->vfs_getFile( item->name() );
          	lst.append( u );
-         	KRun::displayOpenWithDialog( lst );
+         	KRun::displayOpenWithDialog( lst, parentWidget() );
          	break;
          case MOUNT_ID :
          	krMtMan.mount( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) );
@@ -349,8 +364,8 @@ void KrPopupMenu::performAction(int id) {
    if ( id >= SERVICE_LIST_ID ) {
       QStringList names;
       panel->getSelectedNames( &names );
-      KRun::run( *( offers[ id - SERVICE_LIST_ID ].service() ),
-                 *( panel->func->files() ->vfs_getFiles( &names ) ) );
+      KRun::run( *( offers[ id - SERVICE_LIST_ID ] ),
+                 *( panel->func->files() ->vfs_getFiles( &names ) ), parentWidget() );
    }
 }
 

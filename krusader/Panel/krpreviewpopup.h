@@ -18,7 +18,7 @@
 #ifndef KRPREVIEWPOPUP_H
 #define KRPREVIEWPOPUP_H
 
-#include <q3popupmenu.h>
+#include <qmenu.h>
 #include <qpixmap.h>
 #include <kfileitem.h>
 #include <kurl.h>
@@ -27,7 +27,7 @@
   *@author Shie Erlich & Rafi Yanai
   */
 
-class KrPreviewPopup : public Q3PopupMenu {
+class KrPreviewPopup : public QMenu {
 	Q_OBJECT
 public: 
 	KrPreviewPopup();
@@ -35,11 +35,11 @@ public:
 
 	void setUrls(const KUrl::List* urls);
 public slots:
-	void addPreview(const KFileItem* file,const QPixmap& preview);
-	void view(int id);
+	void addPreview(const KFileItem& file,const QPixmap& preview);
+	void view(QAction *);
 
 protected:
-	KFileItemList files;
+	QList<KFileItem> files;
 	int id;
 	bool noPreview;
 	KUrl::List availablePreviews;

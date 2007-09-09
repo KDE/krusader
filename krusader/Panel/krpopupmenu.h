@@ -3,7 +3,6 @@
 
 #include <kmenu.h>
 #include <kurl.h>
-#include <kuserprofile.h>
 #include "listpanel.h"
 #include "krpreviewpopup.h"
 #include "../UserAction/useractionpopupmenu.h"
@@ -70,7 +69,7 @@ private:
    KrViewItemList items; // list of selected items
    KrViewItem *item; // the (first) selected item
    KFileItemList _items;
-   Q3ValueList<KServiceOffer> offers;
+   KService::List offers;
 #ifdef __LIBKONQ__
    KonqPopupMenu *konqMenu;
 #endif

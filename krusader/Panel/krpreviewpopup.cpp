@@ -19,14 +19,13 @@
 #include "krpreviewpopup.h"
 #include <kdebug.h>
 #include <klocale.h>
-#include <keditcl.h>
 #include "../KViewer/krviewer.h"
 #include "../krusader.h"
 //Added by qt3to4:
 #include <QPixmap>
 
 KrPreviewPopup::KrPreviewPopup(): id(1),noPreview(true){
-	connect(this,SIGNAL(activated(int)),this,SLOT(view(int)));
+	connect(this,SIGNAL(triggered(QAction *)),this,SLOT(view(QAction *)));
 }
 
 void KrPreviewPopup::setUrls(const KUrl::List* urls){
@@ -37,32 +36,31 @@ void KrPreviewPopup::setUrls(const KUrl::List* urls){
 	QStringList plugins = KIO::PreviewJob::availablePlugins();
 
 	for( unsigned int i=0; i< urls->count(); ++i){
-		KFileItem* kfi = new KFileItem(KFileItem::Unknown,KFileItem::Unknown,*(urls->at(i)));
-		files.append(kfi);
+		files.push_back( KFileItem(KFileItem::Unknown,KFileItem::Unknown,(*urls)[ i ] ) );
 	}
 
 	pjob = new KIO::PreviewJob(files,200,200,200,1,true,true,0);
-	connect(pjob,SIGNAL(gotPreview(const KFileItem*,const QPixmap&)),
-          this,SLOT(addPreview(const KFileItem*,const QPixmap&)));
+	connect(pjob,SIGNAL(gotPreview(const KFileItem&,const QPixmap&)),
+          this,SLOT(addPreview(const KFileItem&,const QPixmap&)));
 }
 
 KrPreviewPopup::~KrPreviewPopup(){}
 
-void KrPreviewPopup::addPreview(const KFileItem* file,const QPixmap& preview){
+void KrPreviewPopup::addPreview(const KFileItem& file,const QPixmap& preview){
 	if(noPreview){
 		removeItem(0);
 		noPreview = false;
 	}
-	insertItem(preview,id);
-  insertItem(file->text(),id++);
-	insertSeparator();
-	availablePreviews.append(file->url());
+	addAction(preview, QString())->setData( QVariant(id) );
+	addAction(file.text())->setData( QVariant(id++) );
+	addSeparator();
+	availablePreviews.push_back(file.url());
 }
 
-void KrPreviewPopup::view(int id){
-	if( id==0 ) return;
-	else {
-		KUrl url = *(availablePreviews.at(id-1));
+void KrPreviewPopup::view(QAction *clicked){
+	if( clicked && clicked->data().canConvert<int>() ) {
+		int id = clicked->data().toInt();
+		KUrl url = availablePreviews[ id-1 ];
 		KrViewer::view(url);
 	}
 }
