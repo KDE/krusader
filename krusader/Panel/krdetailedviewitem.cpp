@@ -238,7 +238,7 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
 const QColor & KrDetailedViewItem::setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2)
 {
    #define sqr(x) ((x)*(x))
-   int contrast = sqr(Qt::color1.Qt::red() - background.Qt::red()) + sqr(Qt::color1.Qt::green() - background.Qt::green()) + sqr(Qt::color1.Qt::blue() - background.Qt::blue());
+   int contrast = sqr(color1.red() - background.red()) + sqr(color1.green() - background.green()) + sqr(color1.blue() - background.blue());
 
    // if the contrast between background and color1 is too small, take color2 instead.
    if (contrast < 1000)

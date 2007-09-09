@@ -53,13 +53,13 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QEvent>
 #include <QDropEvent>
 #include <QDragMoveEvent>
-#include <kprogress.h>
 #include <kstatusbar.h>
 #include <kinputdialog.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 #include <kmenu.h>
 #include <q3dict.h>
+#include <qstyle.h>
 
 //////////////////////////////////////////////////////////////////////////
 //  The following is KrDetailedView's settings in KConfig:
@@ -94,8 +94,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 QString KrDetailedView::ColumnName[ KrDetailedViewProperties::MAX_COLUMNS ];
 
-KrDetailedView::KrDetailedView( QWidget *parent, bool &left, KConfig *cfg, const char *name ) :
-      K3ListView( parent, name ), KrView( cfg ), _currDragItem( 0L ), currentlyRenamedItem( 0 ),
+KrDetailedView::KrDetailedView( QWidget *parent, bool &left, KConfig *cfg ) :
+      K3ListView( parent ), KrView( cfg ), _currDragItem( 0L ), currentlyRenamedItem( 0 ),
       pressedItem( 0 ) {
 	setWidget( this );
 	_nameInKConfig=QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ;
@@ -121,7 +121,7 @@ void KrDetailedView::setup() {
    /////////////////////////////// listview ////////////////////////////////////
    { // use the {} so that KConfigGroup will work correctly!
       KConfigGroup grpSvr = _config->group( "Look&Feel" );
-      setFont( _config->readFontEntry( "Filelist Font", _FilelistFont ) );
+      setFont( _config->readEntry( "Filelist Font", *_FilelistFont ) );
       // decide on single click/double click selection
       if ( _config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) &&
            KGlobalSettings::singleClick() ) {
@@ -438,7 +438,7 @@ void KrDetailedView::slotClicked( Q3ListViewItem *item ) {
 
    if ( !modifierPressed ) {
       if ( singleClicked && !renameTimer.isActive() ) {
-         KConfig * config = KGlobal::config();
+         KSharedConfigPtr config = KGlobal::config();
          config->setGroup( "KDE" );
          int doubleClickInterval = config->readNumEntry( "DoubleClickInterval", 400 );
 
@@ -815,8 +815,15 @@ QRect KrDetailedView::drawItemHighlighter(QPainter *painter, Q3ListViewItem *ite
     r = itemRect(item);
 
     if (painter)
-       style().drawPrimitive(QStyle::PE_FocusRect, painter, r, colorGroup(),
-                             QStyle::State_FocusAtBorder, colorGroup().highlight());
+    {
+//      style().drawPrimitive(QStyle::PE_FrameFocusRect, painter, r, colorGroup(),
+//                            QStyle::State_FocusAtBorder, colorGroup().highlight());
+      QStyleOptionFocusRect option;
+      option.initFrom(this);
+      option.backgroundColor = colorGroup().highlight();
+
+      style()->drawPrimitive(QStyle::PE_FrameFocusRect, &option, painter, this);
+    }
   }
   return r;
 }
@@ -1421,7 +1428,7 @@ void KrDetailedView::initProperties() {
 void KrDetailedView::selectColumns()
 {
   KMenu popup( this );
-  popup.insertTitle( i18n("Columns"));
+  popup.setTitle( i18n("Columns"));
   
   bool refresh = false;
   
@@ -1434,31 +1441,50 @@ void KrDetailedView::selectColumns()
   bool hasOwner     = COLUMN( Owner ) != -1;
   bool hasGroup     = COLUMN( Group ) != -1;
   
-  popup.insertItem( i18n( "Ext" ), COLUMN_POPUP_IDS + KrDetailedViewProperties::Extention );
-  popup.setItemChecked( COLUMN_POPUP_IDS + KrDetailedViewProperties::Extention, hasExtention );
+  QAction *extAct = popup.addAction( i18n( "Ext" ) );
+  extAct->setData( QVariant( COLUMN_POPUP_IDS + KrDetailedViewProperties::Extention ) );
+  extAct->setCheckable( true );
+  extAct->setChecked( hasExtention );
 
-  popup.insertItem( i18n( "Type" ), COLUMN_POPUP_IDS + KrDetailedViewProperties::Mime );
-  popup.setItemChecked( COLUMN_POPUP_IDS + KrDetailedViewProperties::Mime, hasMime );
+  QAction *typeAct = popup.addAction( i18n( "Type" ) );
+  typeAct->setData( QVariant( COLUMN_POPUP_IDS + KrDetailedViewProperties::Mime ) );
+  typeAct->setCheckable( true );
+  typeAct->setChecked( hasMime );
 
-  popup.insertItem( i18n( "Size" ), COLUMN_POPUP_IDS + KrDetailedViewProperties::Size );
-  popup.setItemChecked( COLUMN_POPUP_IDS + KrDetailedViewProperties::Size, hasSize );
+  QAction *sizeAct = popup.addAction( i18n( "Size" ) );
+  sizeAct->setData( QVariant( COLUMN_POPUP_IDS + KrDetailedViewProperties::Size ) );
+  sizeAct->setCheckable( true );
+  sizeAct->setChecked( hasSize );
 
-  popup.insertItem( i18n( "Modified" ), COLUMN_POPUP_IDS + KrDetailedViewProperties::DateTime );
-  popup.setItemChecked( COLUMN_POPUP_IDS + KrDetailedViewProperties::DateTime, hasDate );
+  QAction *modifAct = popup.addAction( i18n( "Modified" ) );
+  modifAct->setData( QVariant( COLUMN_POPUP_IDS + KrDetailedViewProperties::DateTime ) );
+  modifAct->setCheckable( true );
+  modifAct->setChecked( hasDate );
 
-  popup.insertItem( i18n( "Perms" ), COLUMN_POPUP_IDS + KrDetailedViewProperties::Permissions );
-  popup.setItemChecked( COLUMN_POPUP_IDS + KrDetailedViewProperties::Permissions, hasPerms );
+  QAction *permAct = popup.addAction( i18n( "Perms" ) );
+  permAct->setData( QVariant( COLUMN_POPUP_IDS + KrDetailedViewProperties::Permissions ) );
+  permAct->setCheckable( true );
+  permAct->setChecked( hasPerms );
 
-  popup.insertItem( i18n( "rwx" ), COLUMN_POPUP_IDS + KrDetailedViewProperties::KrPermissions );
-  popup.setItemChecked( COLUMN_POPUP_IDS + KrDetailedViewProperties::KrPermissions, hasKrPerms );      
+  QAction *rwxAct = popup.addAction( i18n( "rwx" ) );
+  rwxAct->setData( QVariant( COLUMN_POPUP_IDS + KrDetailedViewProperties::KrPermissions ) );
+  rwxAct->setCheckable( true );
+  rwxAct->setChecked( hasKrPerms );
 
-  popup.insertItem( i18n( "Owner" ), COLUMN_POPUP_IDS + KrDetailedViewProperties::Owner );
-  popup.setItemChecked( COLUMN_POPUP_IDS + KrDetailedViewProperties::Owner, hasOwner );      
+  QAction *ownerAct = popup.addAction( i18n( "Owner" ) );
+  ownerAct->setData( QVariant( COLUMN_POPUP_IDS + KrDetailedViewProperties::Owner ) );
+  ownerAct->setCheckable( true );
+  ownerAct->setChecked( hasOwner );
 
-  popup.insertItem( i18n( "Group" ), COLUMN_POPUP_IDS + KrDetailedViewProperties::Group );
-  popup.setItemChecked( COLUMN_POPUP_IDS + KrDetailedViewProperties::Group, hasGroup );        
+  QAction *groupAct = popup.addAction( i18n( "Group" ) );
+  groupAct->setData( QVariant( COLUMN_POPUP_IDS + KrDetailedViewProperties::Group ) );
+  groupAct->setCheckable( true );
+  groupAct->setChecked( hasGroup );
   
-  int result=popup.exec(QCursor::pos());
+  QAction *res = popup.exec(QCursor::pos());
+  int result= -1;
+  if( res->data().canConvert<int>() )
+    result = res->data().toInt();
 
   krConfig->setGroup( nameInKConfig() );
   

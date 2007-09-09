@@ -81,7 +81,7 @@ class KrDetailedView : public K3ListView, public KrView {
    friend class KrDetailedViewItem;
 
 public:
-   KrDetailedView( QWidget *parent, bool &left, KConfig *cfg = krConfig, const char *name = 0 );
+   KrDetailedView( QWidget *parent, bool &left, KConfig *cfg = krConfig );
    virtual ~KrDetailedView();
    virtual int column( KrDetailedViewProperties::ColumnType type );
    virtual inline KrViewItem *getFirst() { return dynamic_cast<KrViewItem*>( firstChild() ); }
