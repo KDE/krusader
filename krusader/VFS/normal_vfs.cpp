@@ -134,7 +134,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
 		connect(watcher,SIGNAL(dirty(const QString&)),this,SLOT(vfs_slotDirty(const QString&)));
 		connect(watcher,SIGNAL(created(const QString&)),this, SLOT(vfs_slotCreated(const QString&)));
 		connect(watcher,SIGNAL(deleted(const QString&)),this, SLOT(vfs_slotDeleted(const QString&)));	
-		watcher->addDir(vfs_getOrigin().path(KUrl::RemoveTrailingSlash),true); //start watching the new dir
+		watcher->addDir(vfs_getOrigin().path(KUrl::RemoveTrailingSlash), KDirWatch::WatchFiles); //start watching the new dir
 		watcher->startScan(true);
 	}
 
@@ -231,7 +231,7 @@ void normal_vfs::vfs_rename(const QString& fileName,const QString& newName){
   fileUrls.append(url);
   dest.setPath(vfs_workingDir()+"/"+newName);
 
-  KIO::Job *job = new KIO::CopyJob(fileUrls,dest,KIO::CopyJob::Move, true );
+  KIO::Job *job = KIO::move(fileUrls,dest, true );
   connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)));
 }
 

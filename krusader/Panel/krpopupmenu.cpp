@@ -34,6 +34,7 @@
 //Added by qt3to4:
 #include <QPixmap>
 #include <ktoolinvocation.h>
+#include <kactioncollection.h>
 
 void KrPopupMenu::run(const QPoint &pos, ListPanel *panel) {
 	KrPopupMenu menu(panel);

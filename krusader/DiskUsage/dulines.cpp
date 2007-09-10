@@ -272,7 +272,7 @@ DULines::~DULines()
   krConfig->writeEntry("L Name Width",      columnWidth( 2 ) );
   krConfig->writeEntry("L Show File Size",  showFileSize );
   
-  delete toolTip;
+  //delete toolTip;
 }
 
 void DULines::slotDirChanged( Directory *dirEntry )

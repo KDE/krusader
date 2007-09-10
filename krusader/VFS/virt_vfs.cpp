@@ -202,7 +202,7 @@ void virt_vfs::vfs_rename( const QString& fileName, const QString& newName ) {
 	// so we don't have to worry if the job was successful
 	virtVfsDict[ path ] ->append( dest );
 
-	KIO::Job *job = new KIO::CopyJob( fileUrls, dest, KIO::CopyJob::Move, true );
+	KIO::Job *job = KIO::move( fileUrls, dest, true );
 	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( vfs_refresh( KIO::Job* ) ) );
 }
 
