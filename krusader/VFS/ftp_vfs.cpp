@@ -216,9 +216,15 @@ void ftp_vfs::vfs_addFiles( KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode, Q
 		}
 	}
 
-	KIO::Job* job = new KIO::CopyJob( *fileUrls, destUrl, mode, false );
-	job->setUiDelegate(new KIO::JobUiDelegate() );
-	KIO::getJobTracker()->registerJob(job);
+	KIO::Job* job = 0;
+	switch( mode ) {
+	case KIO::CopyJob::Copy:
+		job = KIO::copy( *fileUrls, destUrl, true );
+	case KIO::CopyJob::Move:
+		job = KIO::move( *fileUrls, destUrl, true );
+	case KIO::CopyJob::Link:
+		job = KIO::link( *fileUrls, destUrl, true );
+	}
 
 	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( vfs_refresh( KIO::Job* ) ) );
 	if ( mode == KIO::CopyJob::Move )  // notify the other panel
@@ -272,16 +278,13 @@ void ftp_vfs::vfs_mkdir( const QString& name ) {
 }
 
 void ftp_vfs::vfs_rename( const QString& fileName, const QString& newName ) {
-	KUrl::List fileUrls;
 	KUrl oldUrl = vfs_origin;
 	oldUrl.addPath( fileName ) ;
-
-	fileUrls.append( oldUrl );
 
 	KUrl newUrl = vfs_origin;
 	newUrl.addPath( newName );
 
-	KIO::Job *job = new KIO::CopyJob( fileUrls, newUrl, KIO::CopyJob::Move, true );
+	KIO::Job *job = KIO::moveAs( oldUrl, newUrl, false );
 	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( vfs_refresh( KIO::Job* ) ) );
 }
 

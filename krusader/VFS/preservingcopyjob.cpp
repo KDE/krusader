@@ -29,6 +29,11 @@
  ***************************************************************************/
 
 #include "preservingcopyjob.h"
+
+#if 0 
+
+TODO
+
 #include "../defaults.h"
 #include "../krusader.h"
 #include <utime.h>
@@ -333,6 +338,23 @@ KIO::CopyJob * PreservingCopyJob::createCopyJob( PreserveMode pmode, const KUrl:
       }
       return res;
     }
+  }
+}
+
+#endif
+
+
+KIO::CopyJob * PreservingCopyJob::createCopyJob( PreserveMode pmode, const KUrl::List& src, const KUrl& dest, KIO::CopyJob::CopyMode mode, bool /* asMethod */, bool showProgressInfo )
+{
+  switch( mode ) {
+    case KIO::CopyJob::Copy:
+        return KIO::copy( src, dest, showProgressInfo );
+    case KIO::CopyJob::Move:
+        return KIO::move( src, dest, showProgressInfo );
+    case KIO::CopyJob::Link:
+        return KIO::link( src, dest, showProgressInfo );
+    default:
+      return 0;
   }
 }
 

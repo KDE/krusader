@@ -44,6 +44,10 @@ typedef enum {
   PM_DEFAULT       = 2
 } PreserveMode;
 
+#if 0
+
+TODO
+
 
 class Attributes {
 public:
@@ -79,6 +83,14 @@ private:
   QMap<KIO::Job *, KUrl> pendingJobs;
   Q3ValueList<KUrl>       directoriesToStamp;
   Q3ValueList<KUrl>       originalDirectories;
+};
+
+#endif
+
+class PreservingCopyJob { // TODO
+
+public:
+  static KIO::CopyJob *createCopyJob( PreserveMode pmode, const KUrl::List& src, const KUrl& dest, KIO::CopyJob::CopyMode mode, bool /* asMethod */, bool showProgressInfo );
 };
 
 #endif /* __PRESERVING_COPY_JOB_H__ */
