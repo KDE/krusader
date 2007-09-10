@@ -11,7 +11,7 @@ add_subdirectory( Locate )
 add_subdirectory( MountMan )
 add_subdirectory( Queue )
 add_subdirectory( Panel )
-add_subdirectory( RemoteMan )
+### add_subdirectory( RemoteMan ) - deprecated ###
 add_subdirectory( Search )
 add_subdirectory( Splitter )
 add_subdirectory( Synchronizer )
