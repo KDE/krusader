@@ -48,14 +48,14 @@ UserMenuGui::UserMenuGui( UserMenu *, QWidget * parent ) : KMenu( parent ) {
 void UserMenuGui::createMenu() {
 //    kDebug() << "UserMenuGui::createMenu called" << endl;
    clear();
-   insertTitle( i18n("User Menu") );
+   setTitle( i18n("User Menu") );
 
    // read entries from config file.
    readEntries();
 
    // add the "add new entry" command
-   insertSeparator();
-   insertItem( i18n("Manage user actions"), 0 );
+   addSeparator();
+   _manageAction = addAction( i18n("Manage user actions") );
 }
 
 void UserMenuGui::readEntries() {
@@ -66,7 +66,7 @@ void UserMenuGui::readEntries() {
    //FIXME: don't plug ALL useractions into the usermenu. TODO: read the usermenu-strukture from an other file (krusaderrc ?)
    UserAction::KrActionList list = krUserAction->actionList();
    for ( KrAction* action = list.first(); action; action = list.next() )
-      action->plug( this, idx++ );
+      addAction( action );
 
 }
 
@@ -75,10 +75,10 @@ void UserMenuGui::run() {
    // disabled due to conflicts with the toolbar (a check on each file-cursor-movement would be nessesary; hit the performance)
 //    krApp->userAction->setAvailability();
 
-   int idx = exec();
-   if ( idx == -1 ) // nothing was selected
+   QAction * act = exec();
+   if ( act == 0 ) // nothing was selected
      return;
-   if ( idx == 0 ) {
+   if ( act == _manageAction ) {
       Konfigurator konfigurator( false, 7 ); // page 7 are the UserActions
       return;
    }

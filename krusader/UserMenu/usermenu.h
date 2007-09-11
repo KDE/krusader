@@ -22,6 +22,7 @@ email                :
 
 class QWidget;
 class UserMenu;
+class QAction;
 
 class UserMenuGui: public KMenu {
    public:
@@ -31,6 +32,9 @@ class UserMenuGui: public KMenu {
 
    protected:
       void readEntries();
+
+   private:
+      QAction* _manageAction;
 };
 
 class UserMenu : public QWidget {
