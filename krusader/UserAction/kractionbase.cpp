@@ -37,7 +37,7 @@ void KrActionBase::exec() {
 		}
 		commandList=exp.result();
 	} else
-		commandList=command();
+		commandList << command();
    //TODO: query expander for status and may skip the rest of the function
 
    // stop here if the commandline is empty
