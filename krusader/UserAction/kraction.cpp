@@ -16,6 +16,7 @@
 #include <kinputdialog.h>
 #include <q3textedit.h>
 #include <q3vbox.h>
+#include <qboxlayout.h>
 #include <qlayout.h>
 #include <qsplitter.h>
 #include <qpushbutton.h>
@@ -29,6 +30,8 @@
 #include <kurl.h>
 #include <kmessagebox.h>
 #include <kfiledialog.h>
+#include <kvbox.h>
+#include <kpushbutton.h>
 #include "kraction.h"
 #include "expander.h"
 #include "useraction.h"
@@ -46,20 +49,24 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 #include <qlayout.h>
 KrActionProcDlg::KrActionProcDlg( QString caption, bool enableStderr, QWidget *parent ) :
-KDialog( parent, 0, false, caption, KDialog::User1 | KDialog::Ok | KDialog::Cancel, KDialog::Cancel ),
-_stdout(0), _stderr(0), _currentTextEdit(0) {
+        KDialog( parent ), _stdout(0), _stderr(0), _currentTextEdit(0) {
+   setCaption( caption );
+   setButtons( KDialog::User1 | KDialog::Ok | KDialog::Cancel );
+   setDefaultButton( KDialog::Cancel );
+   setWindowModality( Qt::NonModal );
 
-   setButtonOK( i18n( "Close" ) );
+   setButtonGuiItem( KDialog::Ok, KGuiItem( i18n( "Close" ) ) );
    enableButtonOk( false ); // disable the close button, until the process finishes
 
-   setButtonCancel( KGuiItem(i18n("Kill"), i18n( "Kill the running process" )) );
+   setButtonGuiItem( KDialog::Cancel, KGuiItem(i18n("Kill"), i18n( "Kill the running process" )) );
 
    setButtonText(KDialog::User1, i18n("Save as") );
 
-   KVBox *page = makeVBoxMainWidget();
+   KVBox *page = new KVBox( this );
+   setMainWidget( page );
    // do we need to separate stderr and stdout?
    if ( enableStderr ) {
-      QSplitter *splitt = new QSplitter( QSplitter::Vertical, page );
+      QSplitter *splitt = new QSplitter( Qt::Vertical, page );
       // create stdout
       Q3VBox *stdoutBox = new Q3VBox( splitt, "stdout VBox" );
       stdoutBox->setSpacing( 6 );
@@ -88,16 +95,16 @@ _stdout(0), _stderr(0), _currentTextEdit(0) {
       connect( _stderr, SIGNAL( clicked(int, int) ), SLOT( currentTextEditChanged() ) );
 
    krConfig->setGroup( "UserActions" );
-   normalFont = krConfig->readFontEntry( "Normal Font", _UserActions_NormalFont );
-   fixedFont = krConfig->readFontEntry( "Fixed Font", _UserActions_FixedFont );
+   normalFont = krConfig->readEntry( "Normal Font", *_UserActions_NormalFont );
+   fixedFont = krConfig->readEntry( "Fixed Font", *_UserActions_FixedFont );
    bool startupState = krConfig->readBoolEntry( "Use Fixed Font", _UserActions_UseFixedFont );
    toggleFixedFont( startupState );
 
    // HACK This fetches the layout of the buttonbox from KDialog, although it is not accessable with KDialog's API
    // None the less it's quite save to use since this implementation hasn't changed since KDE-3.3 (I haven't looked at earlier
    // versions since we don't support them) and now all work is done in KDE-4.
-   QWidget* buttonBox = static_cast<QWidget*>( actionButton(KDialog::Ok)->parent() );
-   Q3BoxLayout* buttonBoxLayout = static_cast<Q3BoxLayout*>( buttonBox->layout() );
+   QWidget* buttonBox = static_cast<QWidget*>( button(KDialog::Ok)->parent() );
+   QBoxLayout* buttonBoxLayout = static_cast<QBoxLayout*>( buttonBox->layout() );
    QCheckBox* useFixedFont = new QCheckBox( i18n("Use font with fixed width"), buttonBox );
    buttonBoxLayout->insertWidget( 0, useFixedFont );
    useFixedFont->setChecked( startupState );
@@ -143,8 +150,8 @@ void KrActionProcDlg::slotUser1() {
       answer = KMessageBox::warningYesNoCancel( this,	//parent
       		i18n("This file already exists.\nDo you want to overwrite it or append the output?"),	//text
       		i18n("Overwrite or append?"),	//caption
-      		i18n("Overwrite"),	//label for Yes-Button
-      		i18n("Append")	//label for No-Button
+      		KGuiItem( i18n("Overwrite") ),	//label for Yes-Button
+      		KGuiItem( i18n("Append") )	//label for No-Button
       	);
    if ( answer == KMessageBox::Cancel )
       return;
@@ -190,7 +197,8 @@ KrActionProc::~KrActionProc() {
 }
 
 void KrActionProc::start( QString cmdLine ) {
-   QStringList list = cmdLine;
+   QStringList list;
+   list << cmdLine;
    start( list );
 }
 
@@ -285,12 +293,13 @@ void KrActionProc::processExited( K3Process * ) {
 ///////////////////////////////////////  KrAction  ///////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-KrAction::KrAction( KActionCollection *parent, const char* name ) : KAction( parent, name ) {
+KrAction::KrAction( KActionCollection *parent ) : KAction( (QObject *)parent ) {
    connect(this, SIGNAL(activated()), this, SLOT(exec()) );
 }
 
 KrAction::~KrAction() {
-   unplugAll();
+   foreach (QWidget *w, associatedWidgets())
+     w->removeAction(this);
    krUserAction->removeKrAction( this ); // Importent! Else Krusader will crash when writing the actions to file
 }
 
@@ -386,7 +395,7 @@ bool KrAction::xmlRead( const QDomElement& element ) {
          setToolTip( e.text() );
       else
       if ( e.tagName() == "icon" )
-         setIcon( e.text() );
+         setIcon( KIcon( _iconName = e.text() ) );
       else
       if ( e.tagName() == "category" )
          setCategory( e.text() );
@@ -432,8 +441,8 @@ QDomElement KrAction::xmlDump( QDomDocument& doc ) const {
    if ( ! toolTip().isEmpty() )
       TEXT_ELEMENT( "tooltip", toolTip() )
 
-   if ( ! icon().isEmpty() )
-      TEXT_ELEMENT( "icon", icon() )
+   if ( ! _iconName.isEmpty() )
+      TEXT_ELEMENT( "icon", _iconName )
 
    if ( ! category().isEmpty() )
       TEXT_ELEMENT( "category", category() )
@@ -450,8 +459,8 @@ QDomElement KrAction::xmlDump( QDomDocument& doc ) const {
    if ( availabilityElement.hasChildNodes() )
       actionElement.appendChild( availabilityElement );
 
-   if ( ! shortcut().isNull() )
-      TEXT_ELEMENT( "defaultshortcut", shortcut().toStringInternal() )  //.toString() would return a localised string which can't be read again
+   if ( ! shortcut().isEmpty() )
+      TEXT_ELEMENT( "defaultshortcut", shortcut().toString() )  //.toString() would return a localised string which can't be read again
 
    return actionElement;
 } //KrAction::xmlDump

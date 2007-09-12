@@ -31,7 +31,7 @@ class QDomDocument;
 class KrAction: public KAction, public KrActionBase {
    Q_OBJECT
    public:
-      KrAction( KActionCollection *parent, const char* name );
+      KrAction( KActionCollection *parent );
       ~KrAction();
 
       /**
@@ -100,6 +100,7 @@ class KrAction: public KAction, public KrActionBase {
       void readAvailability( const QDomElement& element );
       QDomElement dumpAvailability( QDomDocument& doc ) const;
 
+      QString _iconName;
       QString _category;
       QString _command;
       QString _user;

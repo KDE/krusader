@@ -40,6 +40,7 @@
 #include <Q3ValueList>
 
 #include <functional>
+#include <algorithm>
 using namespace std;
 
 #define NEED_PANEL	if (panel==0) { panelMissingError(_expression,exp); return QString(); }
@@ -70,7 +71,7 @@ QStringList exp_placeholder::fileList(const ListPanel* const panel,const QString
       panel->view->getSelectedItems( &items );
    else {
       setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: Bad argument to %1: %2 is not valid item specifier").arg(error,type) ) );
-      return QString();
+      return QStringList();
    }
    if ( !ommitPath ) {  // add the current path
       // translate to urls using vfs
@@ -1126,7 +1127,9 @@ TagString Expander::expandCurrent( const QString& stringToExpand, bool useUrl ) 
 QStringList Expander::splitEach( TagString stringToSplit ) {
 	if(stringToSplit.isSimple()) {
 // 		krOut << stringToSplit.string() << endl;
-		return stringToSplit.string();
+		QStringList l;
+		l << stringToSplit.string();
+		return l;
 	}
 	pair<uint,QStringList> pl=*stringToSplit.tagsBegin();
 	stringToSplit.eraseTag(stringToSplit.tagsBegin());
