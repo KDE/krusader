@@ -16,6 +16,7 @@
 #include <kaction.h>
 #include <k3process.h>
 #include <kdialog.h>
+#include <qbytearray.h>
 #include "kractionbase.h"
 
 class UserActionProperties;
@@ -31,7 +32,7 @@ class QDomDocument;
 class KrAction: public KAction, public KrActionBase {
    Q_OBJECT
    public:
-      KrAction( KActionCollection *parent );
+      KrAction( KActionCollection *parent, const char * name = 0 );
       ~KrAction();
 
       /**
@@ -113,6 +114,7 @@ class KrAction: public KAction, public KrActionBase {
       QStringList _showonlyMime;
       QStringList _showonlyFile;
 
+      QByteArray  _name;
 };
 
 class QFont;

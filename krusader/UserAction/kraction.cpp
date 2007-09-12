@@ -293,7 +293,12 @@ void KrActionProc::processExited( K3Process * ) {
 ///////////////////////////////////////  KrAction  ///////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-KrAction::KrAction( KActionCollection *parent ) : KAction( (QObject *)parent ) {
+KrAction::KrAction( KActionCollection *parent, const char * name ) : KAction( (QObject *)parent ) {
+   if( name != 0 )
+     _name = name;
+   else
+     _name = "";
+
    connect(this, SIGNAL(activated()), this, SLOT(exec()) );
 }
 
@@ -427,7 +432,7 @@ bool KrAction::xmlRead( const QDomElement& element ) {
 
 QDomElement KrAction::xmlDump( QDomDocument& doc ) const {
    QDomElement actionElement = doc.createElement("action");
-   actionElement.setAttribute( "name", name() );
+   actionElement.setAttribute( "name", (const char *)_name );
 
 #define TEXT_ELEMENT( TAGNAME, TEXT ) \
    { \
