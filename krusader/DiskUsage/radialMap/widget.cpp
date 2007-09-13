@@ -1,6 +1,7 @@
 //Author:    Max Howell <max.howell@methylblue.com>, (C) 2003-4
 //Copyright: See COPYING file that comes with this distribution
 
+#include "fileTree.h"
 #include <kcursor.h>        //ctor
 #include <klocale.h>
 #include <kurl.h>
@@ -14,7 +15,6 @@
 
 #include "Config.h"
 #include "debug.h"
-#include "fileTree.h"
 #include "radialMap.h" //constants
 #include "widget.h"
 
