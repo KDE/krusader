@@ -1,6 +1,6 @@
 
-add_subdirectory( radialMap )
-add_subdirectory( filelightParts )
+include( radialMap/CMakeLists.txt )
+include( filelightParts/CMakeLists.txt )
 
 include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
@@ -14,7 +14,7 @@ set( DiskUsage_SRCS
 	dulines.cpp
 	dufilelight.cpp )
 
-kde4_add_library(DiskUsage ${DiskUsage_SRCS} )
+kde4_add_library(DiskUsage ${DiskUsage_SRCS} ${radialMap_SRCS} ${filelightParts_SRCS} )
 
 
 ########### install files ###############

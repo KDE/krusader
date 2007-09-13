@@ -5,14 +5,12 @@ include_directories( ${CMAKE_SOURCE_DIR}/krusader/DiskUsage/filelightParts ${KDE
 ########### next target ###############
 
 set( radialMap_SRCS
-	widget.cpp
-	builder.cpp
-	map.cpp
-	widgetEvents.cpp
-	labels.cpp
-	segmentTip.cpp )
-
-kde4_add_library(radialMap ${radialMap_SRCS} )
+	radialMap/widget.cpp
+	radialMap/builder.cpp
+	radialMap/map.cpp
+	radialMap/widgetEvents.cpp
+	radialMap/labels.cpp
+	radialMap/segmentTip.cpp )
 
 
 ########### install files ###############
