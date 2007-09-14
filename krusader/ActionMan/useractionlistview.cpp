@@ -29,7 +29,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 UserActionListView::UserActionListView( QWidget * parent, const char * name )
- : K3ListView( parent, name )
+ : K3ListView( parent )
 {
    addColumn( i18n("Title") );
    //addColumn( i18n("Identifier") );
@@ -146,7 +146,7 @@ void UserActionListView::setCurrentItem( Q3ListViewItem* item ) {
 }
 
 QDomDocument UserActionListView::dumpSelectedActions( QDomDocument* mergeDoc ) const {
-   Q3PtrList<Q3ListViewItem> list = selectedItems();
+   QList<Q3ListViewItem*> list = selectedItems();
    QDomDocument doc;
    if ( mergeDoc )
       doc = *mergeDoc;
@@ -154,22 +154,25 @@ QDomDocument UserActionListView::dumpSelectedActions( QDomDocument* mergeDoc ) c
       doc = UserAction::createEmptyDoc();
    QDomElement root = doc.documentElement();
 
-   for ( Q3ListViewItem* item = list.first(); item; item = list.next() )
+   for (int i=0; i<list.size(); ++i) {
+   	Q3ListViewItem* item = list.at(i);
       if ( UserActionListViewItem* actionItem = dynamic_cast<UserActionListViewItem*>( item ) )
          root.appendChild( actionItem->action()->xmlDump( doc ) );
+	}
 
    return doc;
 }
 
 void UserActionListView::removeSelectedActions() {
-   Q3PtrList<Q3ListViewItem> list = selectedItems();
+   QList<Q3ListViewItem*> list = selectedItems();
 
-   for ( Q3ListViewItem* item = list.first(); item; item = list.next() )
+   for (int i=0; i<list.size(); ++i) {
+   	Q3ListViewItem* item = list.at(i);
       if ( UserActionListViewItem* actionItem = dynamic_cast<UserActionListViewItem*>( item ) ) {
          delete actionItem->action(); // remove the action itself
          delete actionItem; // remove the action from the list
       } // if
-
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -213,8 +216,8 @@ void UserActionListViewItem::update() {
    if ( ! _action )
       return;
 
-   if ( ! _action->icon().isEmpty() )
-      setPixmap( COL_TITLE, KIconLoader::global()->loadIcon( _action->icon(), K3Icon::Small ) );
+   if ( ! _action->icon().isNull() )
+      setPixmap( COL_TITLE, KIconLoader::global()->loadIcon( _action->iconName(), K3Icon::Small ) );
    setText( COL_TITLE, _action->text() );
    setText( COL_NAME, _action->name() );
 }

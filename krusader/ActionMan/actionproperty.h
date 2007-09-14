@@ -22,7 +22,7 @@ class KShortcut;
  * Use this widget where ever you need to manipulate a UserAction
  * @author Jonas Bähr (http://www.jonas-baehr.de)
  */
-class ActionProperty : public ActionPropertyBase {
+class ActionProperty : public Ui_ActionPropertyBase {
 	Q_OBJECT 
 public:
 	ActionProperty( QWidget *parent=0, const char *name=0, KrAction *action=0 );
@@ -140,7 +140,7 @@ private slots:
     * This updates the ShortcutButton
     * @internal
     */
-   void changedShortcut(const KShortcut& shortcut);
+   void changedShortcut(const QKeySequence& shortcut);
 };
 
 #endif

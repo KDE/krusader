@@ -21,9 +21,11 @@
 
 
 ActionMan::ActionMan( QWidget * parent )
- : KDialog( parent, "ActionMan", true /*modal*/, "ActionMan - Manage your useractions",  KDialog::Apply | KDialog::Close )
+ : KDialog(parent)
 {
-   setPlainCaption(i18n("ActionMan - Manage Your Useractions"));
+	setWindowModality( Qt::WindowModal );
+   setCaption(i18n("ActionMan - Manage Your Useractions"));
+   setButtons( KDialog::Apply | KDialog::Close );
 
    userActionPage = new UserActionPage( this );
    setMainWidget( userActionPage );

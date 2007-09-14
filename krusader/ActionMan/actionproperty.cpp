@@ -17,6 +17,7 @@
 #include "../UserAction/kraction.h"
 #include "../krusader.h"
 
+#include <kactioncollection.h>
 #include <qtoolbutton.h>
 #include <qcheckbox.h>
 #include <qradiobutton.h>
@@ -27,7 +28,7 @@
 #include <kdebug.h>
 #include <kmessagebox.h>
 #include <kinputdialog.h>
-#include <kkeybutton.h>
+#include <kkeysequencewidget.h>
 #include <kcombobox.h>
 #include <kicondialog.h>
 #include <ktextedit.h>
@@ -36,7 +37,7 @@
 #define ICON(N)		KIconLoader::global()->loadIcon(N, K3Icon::Small)
 
 ActionProperty::ActionProperty( QWidget *parent, const char *name, KrAction *action )
- : ActionPropertyBase( parent, name ), _modified(false)
+ : Ui_ActionPropertyBase(parent, name), _modified(false)
  {
    if ( action ) {
       _action = action;
@@ -63,7 +64,7 @@ ActionProperty::ActionProperty( QWidget *parent, const char *name, KrAction *act
    connect( ButtonNewFile, SIGNAL( clicked() ), this, SLOT( newFile() ) );
    connect( ButtonEditFile, SIGNAL( clicked() ), this, SLOT( editFile() ) );
    connect( ButtonRemoveFile, SIGNAL( clicked() ), this, SLOT( removeFile() ) );
-   connect( KeyButtonShortcut, SIGNAL( capturedShortcut(const KShortcut&) ), this, SLOT( changedShortcut(const KShortcut&) ) );
+   connect( KeyButtonShortcut, SIGNAL( 	keySequenceChanged(const QKeySequence&) ), this, SLOT( changedShortcut(const QKeySequence &) ) );
    // track modifications:
    connect( leDistinctName, SIGNAL( textChanged(const QString&) ), SLOT( setModified() ) );
    connect( leTitle, SIGNAL( textChanged(const QString&) ), SLOT( setModified() ) );
@@ -86,8 +87,8 @@ ActionProperty::ActionProperty( QWidget *parent, const char *name, KrAction *act
 ActionProperty::~ActionProperty() {
 }
 
-void ActionProperty::changedShortcut( const KShortcut& shortcut ) {
-  KeyButtonShortcut->setShortcut( shortcut, false );
+void ActionProperty::changedShortcut( const QKeySequence& shortcut ) {
+  KeyButtonShortcut->setKeySequence( shortcut );
 }
 
 
@@ -104,7 +105,7 @@ void ActionProperty::clear() {
    textDescription->clear();
    leCommandline->clear();
    leStartpath->clear();
-   KeyButtonShortcut->setShortcut( KShortcut(), false );
+   KeyButtonShortcut->clearKeySequence();
 
    lbShowonlyProtocol->clear();
    lbShowonlyPath->clear();
@@ -142,7 +143,7 @@ void ActionProperty::updateGUI( KrAction *action ) {
    textDescription->setText( _action->whatsThis() );
    leCommandline->setText( _action->command() );
    leStartpath->setText( _action->startpath() );
-   KeyButtonShortcut->setShortcut( _action->shortcut(), false );
+   KeyButtonShortcut->setKeySequence( _action->shortcut().primary() );
 
    lbShowonlyProtocol->clear();
    lbShowonlyProtocol->insertStringList( _action->showonlyProtocol() );
@@ -177,7 +178,7 @@ void ActionProperty::updateGUI( KrAction *action ) {
 
    chkConfirmExecution->setChecked( _action->confirmExecution() );
 
-   if ( ! _action->icon().isEmpty() )
+   if ( ! _action->icon().isNull() )
       ButtonIcon->setIcon( _action->icon() );
    else
       ButtonIcon->resetIcon();
@@ -211,7 +212,7 @@ void ActionProperty::updateAction( KrAction *action ) {
    _action->setWhatsThis( textDescription->text() );
    _action->setCommand( leCommandline->text() );
    _action->setStartpath( leStartpath->text() );
-   _action->setShortcut( KeyButtonShortcut->shortcut() );
+   _action->setShortcut( KeyButtonShortcut->keySequence() );
 
    Q3ListBoxItem* lbi = lbShowonlyProtocol->firstItem();
    QStringList list;
@@ -261,7 +262,7 @@ void ActionProperty::updateAction( KrAction *action ) {
 
    _action->setConfirmExecution( chkConfirmExecution->isChecked()  );
 
-   _action->setIcon( ButtonIcon->icon() );
+   _action->setIcon( KIcon(ButtonIcon->icon()) );
 
    _action->setUser( leDifferentUser->text() );
 
@@ -445,7 +446,7 @@ bool ActionProperty::validProperties() {
     return false;
   }
   if ( leDistinctName->isEnabled() )
-    if ( krApp->actionCollection()->action( leDistinctName->text().toLatin1() ) ) {
+    if ( krApp->actionCollection()->action( leDistinctName->text() ) ) {
       KMessageBox::error( this,
       		i18n("There already is an action with this name\n"
       		"If you don't have such an useraction the name is used by Krusader for an internal action")

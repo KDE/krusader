@@ -11,6 +11,7 @@
 //
 #include "useractionpage.h"
 
+#include <kstandardguiitem.h>
 #include <qsplitter.h>
 #include <qlayout.h>
 #include <qtoolbutton.h>
@@ -23,7 +24,6 @@
 #include <kfiledialog.h>
 #include <kiconloader.h>
 #include <klocale.h>
-#include <kclipboard.h>
 
 #include "actionproperty.h"
 #include "useractionlistview.h"
@@ -205,9 +205,10 @@ void UserActionPage::slotRemoveAction() {
    int messageDelete = KMessageBox::warningContinueCancel ( this,	//parent
 		i18n("Are you sure that you want to remove all selected actions?"),	//text
 		i18n("Remove selected actions?"), 	//caption
-		i18n("Remove"),	//Label for the continue-button
+		KStandardGuiItem::remove(),	//Label for the continue-button
+		KStandardGuiItem::cancel(), 
 		"Confirm Remove UserAction",	//dontAskAgainName (for the config-file)
-		KMessageBox::Dangerous) ;
+		KMessageBox::Dangerous | KMessageBox::Notify) ;
 
    if ( messageDelete != KMessageBox::Continue )
       return;
@@ -248,8 +249,8 @@ void UserActionPage::slotExport() {
          answer = KMessageBox::warningYesNoCancel( this,	//parent
          		i18n("This file already contains some useractions.\nDo you want to overwrite it or should it be merged with the selected actions?"),	//text
          		i18n("Overwrite or merge?"),	//caption
-         		i18n("Overwrite"),	//label for Yes-Button
-         		i18n("Merge")	//label for No-Button
+         		KStandardGuiItem::overwrite(),	//label for Yes-Button
+         		KGuiItem(i18n("Merge"))	//label for No-Button
          	);
       file.close();
    }
@@ -257,7 +258,7 @@ void UserActionPage::slotExport() {
       answer = KMessageBox::warningContinueCancel( this,	//parent
       		i18n("This file already exists. Do you want to overwrite it?"),	//text
       		i18n("Overwrite existing file?"),	//caption
-      		i18n("Overwrite")	//label for Continue-Button
+      		KStandardGuiItem::overwrite()	//label for Continue-Button
       	);
 
    if ( answer == KMessageBox::Cancel )
@@ -276,6 +277,7 @@ void UserActionPage::slotExport() {
       );
 }
 
+/*
 void UserActionPage::slotToClip() {
    if ( ! dynamic_cast<UserActionListViewItem*>( actionTree->currentItem() ) )
       return;
@@ -283,7 +285,9 @@ void UserActionPage::slotToClip() {
    QDomDocument doc = actionTree->dumpSelectedActions();
    KApplication::clipboard()->setText( doc.toString() );
 }
+*/
 
+/*
 void UserActionPage::slotFromClip() {
    QDomDocument doc( ACTION_DOCTYPE );
    if ( doc.setContent( KApplication::clipboard()->text() ) ) {
@@ -297,6 +301,7 @@ void UserActionPage::slotFromClip() {
       }
    } // if ( doc.setContent )
 }
+*/
 
 bool UserActionPage::readyToQuit() {
    // Check if the current UserAction has changed

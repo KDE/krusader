@@ -94,12 +94,12 @@ AddPlaceholderPopup::AddPlaceholderPopup( QWidget *parent ) : KMenu( parent ) {
 
 
 QString AddPlaceholderPopup::getPlaceholder( const QPoint& pos ) {
-   int res = exec( pos );
-   if ( res == -1 )
+   QAction *res = exec( pos );
+   if ( res == 0 )
       return QString();
 
    // add the selected flag to the command line
-   if ( res == EXECUTABLE_ID ) { // did the user need an executable ?
+   if ( res->data().toInt() == EXECUTABLE_ID ) { // did the user need an executable ?
       // select an executable
       QString filename = KFileDialog::getOpenFileName(QString(), QString(), this);
       if (filename != QString())
@@ -107,7 +107,7 @@ QString AddPlaceholderPopup::getPlaceholder( const QPoint& pos ) {
          //return filename; // without extra space
    } else { // user selected something from the menus
       Expander expander;
-      const exp_placeholder* currentPlaceholder = expander.placeholder( res & ~( ACTIVE_MASK | OTHER_MASK | LEFT_MASK | RIGHT_MASK | INDEPENDENT_MASK ) );
+      const exp_placeholder* currentPlaceholder = expander.placeholder( res->data().toInt() & ~( ACTIVE_MASK | OTHER_MASK | LEFT_MASK | RIGHT_MASK | INDEPENDENT_MASK ) );
 //       if ( &currentPlaceholder->expFunc == 0 ) {
 //          KMessageBox::sorry( this, "BOFH Excuse #93:\nFeature not yet implemented" );
 //          return QString();
@@ -116,15 +116,15 @@ QString AddPlaceholderPopup::getPlaceholder( const QPoint& pos ) {
       QString panel, parameter = parameterDialog->getParameter();
       delete parameterDialog;
       // indicate the panel with 'a' 'o', 'l', 'r' or '_'.
-      if ( res & ACTIVE_MASK )
+      if ( res->data().toInt() & ACTIVE_MASK )
          panel = "a";
-      else if ( res & OTHER_MASK )
+      else if ( res->data().toInt() & OTHER_MASK )
          panel = "o";
-      else if ( res & LEFT_MASK )
+      else if ( res->data().toInt() & LEFT_MASK )
          panel = "l";
-      else if ( res & RIGHT_MASK )
+      else if ( res->data().toInt() & RIGHT_MASK )
          panel = "r";
-      else if ( res & INDEPENDENT_MASK )
+      else if ( res->data().toInt() & INDEPENDENT_MASK )
          panel = "_";
       //return "%" + panel + currentPlaceholder->expression() + parameter + "% "; // with extra space
       return "%" + panel + currentPlaceholder->expression() + parameter + "%"; // without extra space
@@ -137,44 +137,50 @@ QString AddPlaceholderPopup::getPlaceholder( const QPoint& pos ) {
 /////////////////////////////// ParameterDialog ////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-ParameterDialog::ParameterDialog( const exp_placeholder* currentPlaceholder, QWidget *parent ) : KDialog( Plain, i18n("User Action Parameter Dialog"), Default | Ok, Ok, parent ) {
+ParameterDialog::ParameterDialog( const exp_placeholder* currentPlaceholder, QWidget *parent ) : KDialog(parent) {
+	//KDialog( Plain, i18n("User Action Parameter Dialog"), Default | Ok, Ok, parent ) {
+	setCaption(i18n("User Action Parameter Dialog"));
+	setButtons(Ok | Default);
+	setDefaultButton(Ok);
    _parameter.clear();
    _parameterCount = currentPlaceholder->parameterCount();
    
-   Q3VBoxLayout* layout = new Q3VBoxLayout( plainPage() );
+   QWidget *page = new QWidget(this);
+   setMainWidget(page);
+   Q3VBoxLayout* layout = new Q3VBoxLayout( page );
    layout->setAutoAdd( true );
    layout->setSpacing( 11 );
    
-   new QLabel( i18n("This placeholder allows some parameter:"), plainPage(), "intro" );
+   new QLabel( i18n("This placeholder allows some parameter:"), page, "intro" );
    
    for (int i = 0; i < _parameterCount; ++i ) {
       if ( currentPlaceholder->parameter( i ).preset() == "__placeholder" )
-         _parameter.append( new ParameterPlaceholder( currentPlaceholder->parameter( i ), plainPage() ) );
+         _parameter.append( new ParameterPlaceholder( currentPlaceholder->parameter( i ), page ) );
       else if ( currentPlaceholder->parameter( i ).preset() == "__yes" )
-         _parameter.append( new ParameterYes( currentPlaceholder->parameter( i ), plainPage() ) );
+         _parameter.append( new ParameterYes( currentPlaceholder->parameter( i ), page ) );
       else if ( currentPlaceholder->parameter( i ).preset() == "__no" )
-         _parameter.append( new ParameterNo( currentPlaceholder->parameter( i ), plainPage() ) );
+         _parameter.append( new ParameterNo( currentPlaceholder->parameter( i ), page ) );
       else if ( currentPlaceholder->parameter( i ).preset() == "__file" )
-         _parameter.append( new ParameterFile( currentPlaceholder->parameter( i ), plainPage() ) );
+         _parameter.append( new ParameterFile( currentPlaceholder->parameter( i ), page ) );
       else if ( currentPlaceholder->parameter( i ).preset().find( "__choose" ) != -1 )
-         _parameter.append( new ParameterChoose( currentPlaceholder->parameter( i ), plainPage() ) );
+         _parameter.append( new ParameterChoose( currentPlaceholder->parameter( i ), page ) );
       else if ( currentPlaceholder->parameter( i ).preset() == "__select" )
-         _parameter.append( new ParameterSelect( currentPlaceholder->parameter( i ), plainPage() ) );
+         _parameter.append( new ParameterSelect( currentPlaceholder->parameter( i ), page ) );
       else if ( currentPlaceholder->parameter( i ).preset() == "__goto" )
-         _parameter.append( new ParameterGoto( currentPlaceholder->parameter( i ), plainPage() ) );
+         _parameter.append( new ParameterGoto( currentPlaceholder->parameter( i ), page ) );
       else if ( currentPlaceholder->parameter( i ).preset() == "__syncprofile" )
-         _parameter.append( new ParameterSyncprofile( currentPlaceholder->parameter( i ), plainPage() ) );
+         _parameter.append( new ParameterSyncprofile( currentPlaceholder->parameter( i ), page ) );
       else if ( currentPlaceholder->parameter( i ).preset() == "__searchprofile" )
-         _parameter.append( new ParameterSearch( currentPlaceholder->parameter( i ), plainPage() ) );
+         _parameter.append( new ParameterSearch( currentPlaceholder->parameter( i ), page ) );
       else if ( currentPlaceholder->parameter( i ).preset() == "__panelprofile" )
-         _parameter.append( new ParameterPanelprofile( currentPlaceholder->parameter( i ), plainPage() ) );
+         _parameter.append( new ParameterPanelprofile( currentPlaceholder->parameter( i ), page ) );
       else if ( currentPlaceholder->parameter( i ).preset().find( "__int" ) != -1 )
-         _parameter.append( new ParameterInt( currentPlaceholder->parameter( i ), plainPage() ) );
+         _parameter.append( new ParameterInt( currentPlaceholder->parameter( i ), page ) );
       else
-         _parameter.append( new ParameterText( currentPlaceholder->parameter( i ), plainPage() ) );
+         _parameter.append( new ParameterText( currentPlaceholder->parameter( i ), page ) );
    }
    
-   QFrame * line = new Q3Frame( plainPage() );
+   QFrame * line = new Q3Frame( page );
    line->setFrameShape( Q3Frame::HLine );
    line->setFrameShadow( Q3Frame::Sunken );
 
@@ -411,10 +417,9 @@ ParameterSelect::ParameterSelect( const exp_parameter& parameter, QWidget* paren
    _combobox->setEditable( true );
    
    krConfig->setGroup( "Private" );
-   Q3StrList lst;
-   int i = krConfig->readListEntry( "Predefined Selections", lst );
-   if ( i > 0 )
-      _combobox->insertStrList( lst );
+   QStringList lst = krConfig->readEntry( "Predefined Selections", QStringList() );
+   if ( lst.size() > 0 )
+      _combobox->addItems( lst );
 
    _combobox->setCurrentText( "*" );
 }

@@ -4,9 +4,12 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 ########### next target ###############
 
+### IMPORTANT: actionpropertybase.ui is not used anymore, because of qt3 to qt4 issues
+###            instead, actionpropertybase.h was generated and put into svn :-(
+
 set( ActionMan_SRCS
 	actionman.cpp
-	actionpropertybase.ui
+#	actionpropertybase.ui
 	actionproperty.cpp
 	addplaceholderpopup.cpp
 	useractionlistview.cpp
