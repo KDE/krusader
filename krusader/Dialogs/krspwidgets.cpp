@@ -185,7 +185,7 @@ void KRMaskChoiceSub::accept() {
   if (add)
     KRSpWidgets::maskList.insert(0,selection->currentText().local8Bit());
   // write down the predefined selections list
-  Q3StrList list;
+  QStringList list;
   Q3ListBoxItem *i=preSelections->firstItem();
   while (i!=0) {
     if (i->text().find(i18n("compare mode"))==-1)

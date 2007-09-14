@@ -513,7 +513,7 @@ void Krusader::resizeEvent ( QResizeEvent *e ) {
 }
 
 void Krusader::setupAccels() {
-#if 0 // PORTME
+#if 0 // TODO: PORTME
    accels = new KAccel( this );
 	 // SHIFT+F3
    accels->insert( "F3_ViewDlg", i18n( "F3 View Dialog" ), QString(),
@@ -1178,7 +1178,7 @@ const char* Krusader::privIcon() {
       return "krusader_root";
 }
 
-#if 0 // PORTME
+#if 0 // TODO: PORTME
 bool Krusader::process(const Q3CString &fun, const QByteArray &/* data */, Q3CString &/* replyType */, QByteArray &/* replyData */) {
    if (fun == "moveToTop()") {
       moveToTop();

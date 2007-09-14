@@ -75,7 +75,7 @@ class QueueManager;
 //static QTextOStream krOut(stdout);
 #define krOut kDebug(50010)
 
-class Krusader : public KParts::MainWindow /* PORTME , public DCOPObject */ {
+class Krusader : public KParts::MainWindow /* TODO PORTME , public DCOPObject */ {
     Q_OBJECT
   public:
     Krusader();
@@ -88,8 +88,9 @@ class Krusader : public KParts::MainWindow /* PORTME , public DCOPObject */ {
      */
     static const char* privIcon();
     static QStringList supportedTools(); // find supported tools
-
+#if 0 // TODO: PORTME
     virtual bool process (const Q3CString &fun, const QByteArray &data, Q3CString &replyType, QByteArray &replyData);
+#endif
     void moveToTop();
 
   public slots:
@@ -164,7 +165,7 @@ class Krusader : public KParts::MainWindow /* PORTME , public DCOPObject */ {
 
     KrusaderStatus *status;
     KRslots *slot;
-    //KAccel *accels; // global accelerators ===> PORTME
+    //KAccel *accels; // global accelerators ===> TODO: PORTME
     
     static KMenu *userActionMenu;
     static UserMenu *userMenu;
