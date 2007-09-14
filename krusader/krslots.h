@@ -114,7 +114,6 @@ class KRslots : public QObject {
     void sysInfo();
     void addBookmark();
     void runMountMan();
-    void runRemoteMan();
     void toggleFnkeys();
     void toggleCmdline();
     void changeTrashIcon();
