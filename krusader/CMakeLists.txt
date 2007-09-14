@@ -33,7 +33,8 @@ set(krusader_SRCS
    krusaderview.cpp 
    krusader.cpp 
    krslots.cpp 
-   kicons.cpp )
+   kicons.cpp 
+   krusaderapp.cpp )
 
 kde4_add_executable(krusader ${krusader_SRCS})
 

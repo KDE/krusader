@@ -8,7 +8,8 @@ set( UserAction_SRCS
 	kraction.cpp
 	expander.cpp
 	useractionpopupmenu.cpp
-	kractionbase.cpp )
+	kractionbase.cpp 
+	useraction.cpp )
 
 kde4_add_library(UserAction ${UserAction_SRCS} )
 

@@ -12,6 +12,7 @@
 
 #include <kdebug.h>
 #include <kurl.h>
+#include <kactioncollection.h>
 #include <kmenu.h>
 #include <kstandarddirs.h>
 #include <kmessagebox.h>
@@ -52,8 +53,8 @@ void UserAction::setAvailability( const KUrl& currentURL ) {
 
 void UserAction::populateMenu( KMenu* menu ) {
    for ( KrAction* action = _actions.first(); action; action = _actions.next() )
-      if ( ! action->isPlugged( menu ) )
-         action->plug( menu );
+      if ( !menu->actions().contains(action) )
+         menu->addAction(action);
 }
 
 QStringList UserAction::allCategories() {
@@ -76,13 +77,13 @@ QStringList UserAction::allNames() {
 }
 
 void UserAction::readAllFiles() {
-   QString filename = locate( "data", ACTION_XML ); // locate returns the local file if it exists, else the global one is retrieved.
+   QString filename = KStandardDirs::locate( "data", ACTION_XML ); // locate returns the local file if it exists, else the global one is retrieved.
    if ( ! filename.isEmpty() )
-      readFromFile( locate( "data", ACTION_XML ), renameDoublicated );
+      readFromFile( KStandardDirs::locate( "data", ACTION_XML ), renameDoublicated );
 
-   filename = locate( "data", ACTION_XML_EXAMPLES );
+   filename = KStandardDirs::locate( "data", ACTION_XML_EXAMPLES );
    if ( ! filename.isEmpty() )
-      readFromFile( locate( "data", ACTION_XML_EXAMPLES ), ignoreDoublicated ); // ignore samples which are already in the normal file
+      readFromFile( KStandardDirs::locate( "data", ACTION_XML_EXAMPLES ), ignoreDoublicated ); // ignore samples which are already in the normal file
 }
 
 void UserAction::readFromFile( const QString& filename, ReadMode mode, KrActionList* list ) {
@@ -143,13 +144,13 @@ void UserAction::readFromElement( const QDomElement& element, ReadMode mode, KrA
            continue;
          }
 
-         if ( mode == ignoreDoublicated && krApp->actionCollection()->action( name.toLatin1() ) )
+         if ( mode == ignoreDoublicated && krApp->actionCollection()->action( name ) )
             continue;
 
          QString basename = name + "_%1";
          int i = 0;
          // appent a counter till the name is unique... (this checks every action, not only useractions)
-         while ( krApp->actionCollection()->action( name.toLatin1() ) )
+         while ( krApp->actionCollection()->action( name ) )
             name = basename.arg( ++i );
 
          KrAction* act = new KrAction( krApp->actionCollection(), name.toLatin1() );
