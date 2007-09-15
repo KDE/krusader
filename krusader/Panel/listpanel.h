@@ -87,7 +87,7 @@ public:
 	#define ITEM2VFILE(PANEL_PTR, KRVIEWITEM)		PANEL_PTR->func->files()->vfs_search(KRVIEWITEM->name())
 	#define NAME2VFILE(PANEL_PTR, STRING_NAME)	PANEL_PTR->func->files()->vfs_search(STRING_NAME)
    // constructor create the panel, but DOESN'T fill it with data, use start()
-   ListPanel( QString panelType, QWidget *parent, bool &left, const char *name = 0 );
+   ListPanel( QString panelType, QWidget *parent, bool &left );
    ~ListPanel();
    void start( KUrl url = KUrl(), bool immediate = false );
    

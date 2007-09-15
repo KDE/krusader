@@ -10,7 +10,7 @@
 
 class KConfig;
 class ListPanel;
-class Q3WidgetStack;
+class QStackedWidget;
 class QToolButton;
 
 /**
@@ -68,11 +68,11 @@ class PanelManager: public QWidget {
   private:
     void deletePanel( ListPanel *p );
   
-    Q3GridLayout *_layout;
+    QGridLayout *_layout;
     Q3HBoxLayout *_barLayout;
     bool _left;
     PanelTabBar *_tabbar;
-    Q3WidgetStack *_stack;
+    QStackedWidget *_stack;
     QToolButton *_newTab, *_closeTab;
     ListPanel **_selfPtr, **_otherPtr;
 };

@@ -116,13 +116,15 @@ typedef Q3ValueList<KServiceOffer> OfferList;
 /////////////////////////////////////////////////////
 // 					The list panel constructor       //
 /////////////////////////////////////////////////////
-ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left, const char *name ) :
-      QWidget( parent, name ), panelType( typeIn ), colorMask( 255 ), compareMode( false ), currDragItem( 0 ), statsAgent( 0 ), 
+ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
+      QWidget( parent ), panelType( typeIn ), colorMask( 255 ), compareMode( false ), currDragItem( 0 ), statsAgent( 0 ), 
 		quickSearch( 0 ), cdRootButton( 0 ), cdUpButton( 0 ), popupBtn(0), popup(0),inlineRefreshJob(0), _left( left ) {
 
+   layout = new QGridLayout( this );
    func = new ListPanelFunc( this );
    setAcceptDrops( true );
-   layout = new QGridLayout( this, 3, 3 );
+
+   layout->setContentsMargins( 0, 0, 0, 0 );
 
    mediaButton = new MediaButton( this, "mediaButton" );
    connect( mediaButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
@@ -283,17 +285,18 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left, const char *n
 	popup->hide();
 	
    // finish the layout
-	layout->addMultiCellWidget( hbox, 0, 0, 0, 3 );
+   layout->addWidget( hbox, 0, 0, 1, 4 );
    layout->addWidget( mediaButton, 1, 0 );
    layout->addWidget( status, 1, 1 );
    layout->addWidget( historyButton, 1, 2 );
    layout->addWidget( bookmarksButton, 1, 3 );
-   layout->addMultiCellWidget( header, 2, 2, 0, 3 );
-   layout->addMultiCellWidget( splt, 3, 3, 0, 3 );
-   layout->addMultiCellWidget( quickSearch, 4, 4, 0, 3 );
+   layout->addWidget( header, 2, 0, 1, 4 );
+   layout->addWidget( splt, 3, 0, 1, 4 );
+   layout->addWidget( quickSearch, 4, 0, 1, 4 );
    quickSearch->hide();
-   layout->addMultiCellLayout( totalsLayout, 5, 5, 0, 3 );
+   layout->addLayout( totalsLayout, 5, 0, 1, 4 );
    //filter = ALL;
+   setLayout( layout  );
 }
 
 void ListPanel::createView()

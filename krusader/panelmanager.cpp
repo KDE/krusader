@@ -1,4 +1,4 @@
-#include <q3widgetstack.h>
+#include <qstackedwidget.h>
 #include <qtoolbutton.h>
 //Added by qt3to4:
 #include <Q3GridLayout>
@@ -22,11 +22,12 @@
 #define _other  (*_otherPtr)
 
 PanelManager::PanelManager( QWidget *parent, bool left ) :
-QWidget( parent, "PanelManager" ), _layout( 0 ), _left( left ), 
+QWidget( parent ), _layout( 0 ), _left( left ), 
        _selfPtr( _left ? &MAIN_VIEW->left : &MAIN_VIEW->right ), 
        _otherPtr( _left ? &MAIN_VIEW->right : &MAIN_VIEW->left ) {   
-   _layout = new Q3GridLayout( this, 1, 1 );
-   _stack = new Q3WidgetStack( this );
+   _layout = new QGridLayout( this );
+   _layout->setContentsMargins( 0, 0, 0, 0 );
+   _stack = new QStackedWidget( this );
 
    // new tab button
    _newTab = new QToolButton( this );
@@ -51,10 +52,12 @@ QWidget( parent, "PanelManager" ), _layout( 0 ), _left( left ),
    connect( _tabbar, SIGNAL( closeCurrentTab() ), this, SLOT( slotCloseTab() ) );
    connect( _tabbar, SIGNAL( newTab( const KUrl& ) ), this, SLOT( slotNewTab( const KUrl& ) ) );
 
-   _layout->addMultiCellWidget( _stack, 0, 0, 0, 2 );
+   _layout->addWidget( _stack, 0, 0, 1, 3 );
    _layout->addWidget( _newTab, 1, 0 );
    _layout->addWidget( _tabbar, 1, 1 );
    _layout->addWidget( _closeTab, 1, 2 );
+
+   setLayout( _layout );
 
    if ( HIDE_ON_SINGLE_TAB ) HIDE
       else SHOW
@@ -65,7 +68,7 @@ void PanelManager::slotChangePanel( ListPanel *p ) {
    _self->otherPanel = _other;
    _other->otherPanel = _self;
 
-   _stack->raiseWidget( _self );
+   _stack->setCurrentWidget( _self );
    kapp->processEvents();
    _self->slotFocusOnMe();
 }
@@ -84,7 +87,7 @@ ListPanel* PanelManager::createPanel( QString type, bool setCurrent ) {
       SHOW // needed if we were hidden
    }
    if( setCurrent )
-     _stack->raiseWidget( p );
+     _stack->setCurrentWidget( p );
 
    // connect the activePanelChanged signal to enable/disable actions
    connect( p, SIGNAL( activePanelChanged( ListPanel* ) ), this, SLOT( slotRefreshActions() ) );
@@ -177,7 +180,7 @@ void PanelManager::slotCloseTab() {
    // setup current one
    ListPanel * oldp;
    _self = _tabbar->removeCurrentPanel( oldp );
-   _stack->raiseWidget( _self );
+   _stack->setCurrentWidget( _self );
    _stack->removeWidget( oldp );
    deletePanel( oldp );
 
@@ -247,7 +250,7 @@ void PanelManager::setCurrentTab( int panelIndex )
 	_self->otherPanel = _other;
 	_other->otherPanel = _self;
 	
-	_stack->raiseWidget( _self );
+	_stack->setCurrentWidget( _self );
 }
 
 void PanelManager::slotRecreatePanels() {
@@ -260,7 +263,7 @@ void PanelManager::slotRecreatePanels() {
      ListPanel *oldPanel = updatedPanel;
      QString type = oldPanel->getType();
      ListPanel *newPanel = new ListPanel( type, _stack, _left );
-     _stack->addWidget( newPanel, i );
+     _stack->insertWidget( i, newPanel );
      _stack->removeWidget( oldPanel );
 
      disconnect( oldPanel );

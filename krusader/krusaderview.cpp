@@ -101,12 +101,11 @@ void KrusaderView::start( QStringList leftTabs, QStringList leftTypes, int leftA
 
   // get the last saved sizes of the splitter
   krConfig->setGroup( "Private" );
-  Q3ValueList<int> lst = krConfig->readIntListEntry( "Splitter Sizes" );
-  if ( lst.isEmpty() )
+  QList<int> lst = krConfig->readEntry( "Splitter Sizes", QList<int>() );
+  if ( lst.count() == 0 )
   {
-    lst = horiz_splitter->sizes();
-    int avg = (lst[ 0 ] + lst[ 1 ] )/2;
-    lst[ 0 ] = lst[ 1 ] = avg;
+    lst.push_back( 100 );
+    lst.push_back( 100 );
   }
   horiz_splitter->setSizes( lst );  
 
