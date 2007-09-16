@@ -72,9 +72,10 @@ public:
      */
     QString fileName() { return m_filename; }
 
-    bool writeDir( const QString& , const QString& , const QString& );
-    bool prepareWriting( const QString& , const QString& , const QString& , uint );
-    bool doneWriting( uint );
+    bool writeDir( const QString& , const QString& , const QString&, mode_t, time_t, time_t, time_t );
+    bool writeSymLink(const QString &, const QString &, const QString &, const QString &, mode_t, time_t, time_t, time_t );
+    bool prepareWriting( const QString& , const QString& , const QString& , qint64, mode_t, time_t, time_t, time_t  );
+    bool finishWriting( qint64 );
 
     void setStartSec(int startsec) { m_startsec = startsec; }
     int startSec() { return m_startsec; }
@@ -90,8 +91,12 @@ protected:
      *
      */
     void readParams();
-    virtual bool openArchive( int mode );
+    virtual bool openArchive( QIODevice::OpenMode mode );
     virtual bool closeArchive();
+    virtual bool doWriteDir( const QString&, const QString&, const QString&, mode_t, time_t, time_t, time_t );
+    virtual bool doWriteSymLink(const QString &, const QString &, const QString &, const QString &, mode_t, time_t, time_t, time_t );
+    virtual bool doPrepareWriting( const QString& , const QString& , const QString& , qint64, mode_t, time_t, time_t, time_t  );
+    virtual bool doFinishWriting( qint64 );
 
 private:
     /**
@@ -103,7 +108,9 @@ private:
 
     QString m_filename;
 protected:
+
     virtual void virtual_hook( int id, void* data );
+
 private:
     class KIsoPrivate;
     KIsoPrivate * d;

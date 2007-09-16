@@ -19,6 +19,7 @@
 #include <fcntl.h>
 #include <time.h>
 #include <stdlib.h>
+#include <errno.h>
 
 #include <qdir.h>
 #include <qfile.h>
@@ -31,7 +32,7 @@
 #include <kfileitem.h>
 #include <kdebug.h>
 #include <kmessagebox.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <klocale.h>
 #include <kurl.h>
 #include <k3tempfile.h>
@@ -63,7 +64,7 @@ using namespace KIO;
 extern "C" {
 
 int kdemain( int argc, char **argv ){
-	KInstance instance( "kio_krarc" );
+	KComponentData instance( "kio_krarc", "krusader" );
 	
 	if (argc != 4) {
 		kWarning() << "Usage: kio_krarc  protocol domain-socket1 domain-socket2" << endl;
@@ -221,9 +222,9 @@ void kio_krarcProtocol::put(const KUrl& url,int permissions,bool overwrite,bool 
 	do{
 		dataReq();
 		readResult = readData(buffer);
-		write(fd,buffer.data(),buffer.size());
+		::write(fd,buffer.data(),buffer.size());
  	} while( readResult > 0 );
-	close(fd);
+	::close(fd);
 	// pack the file
 	KrShellProcess proc;
 	proc << putCmd << convertName( arcFile->url().path() )+ " " <<convertFileName( tmpFile.mid(arcTempDir.length()) );
@@ -288,7 +289,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries ){
 	// for DEB files extract the tar file first
 	if ( !extArcReady && arcType == "deb" ) {
 		KrShellProcess dpkg;
-		dpkg << cmd + " --fsys-tarfile" << convertName( arcFile->url().path( -1 ) ) << " > " << arcTempDir + "contents.cpio";
+		dpkg << cmd + " --fsys-tarfile" << convertName( arcFile->url().path( KUrl::RemoveTrailingSlash ) ) << " > " << arcTempDir + "contents.cpio";
 		dpkg.start( K3Process::Block, K3Process::AllOutput );
 		if( !dpkg.normalExit() || dpkg.exitStatus() != 0 )  {
 			error(ERR_COULD_NOT_READ,url.path() + "\n\n" + dpkg.getErrorMsg() );
@@ -404,7 +405,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries ){
 				if (errno == EINTR)
 					continue;
 				error( KIO::ERR_COULD_NOT_READ, url.path());
-				close(fd);
+				::close(fd);
 				return;
 			}
 			if (n == 0)
@@ -418,7 +419,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries ){
 		}
 		
 		data( QByteArray() );
-		close( fd );
+		::close( fd );
 		processedSize( buff.st_size );
 		finished();
 		
@@ -675,7 +676,7 @@ bool kio_krarcProtocol::setArcFile(const KUrl& url){
 	   during that period. */
 	if( archiveChanging )
 		archiveChanged = true;
-	archiveChanging = ( currTime == arcFile->time( UDS_MODIFICATION_TIME ) );
+	archiveChanging = ( currTime == arcFile->time( KIO::UDSEntry::UDS_MODIFICATION_TIME ) );
 	
 	arcPath = arcFile->url().path(KUrl::RemoveTrailingSlash);
 	arcType = detectArchive( encrypted, arcPath );
@@ -728,17 +729,10 @@ bool kio_krarcProtocol::initDirDict(const KUrl&url, bool forced){
 	dirDict.insert("/",root);
 	// and the "/" UDSEntry
 	UDSEntry entry;
-	UDSAtom atom;
-	atom.m_uds = UDS_NAME;
-	atom.m_str = ".";
-	entry.append(atom);
+	entry.insert( KIO::UDSEntry::UDS_NAME, "." );
 	mode_t mode = parsePermString("drwxr-xr-x");
-	atom.m_uds = UDS_FILE_TYPE;
-	atom.m_long = mode & S_IFMT; // keep file type only
-	entry.append( atom );
-	atom.m_uds = UDS_ACCESS;
-	atom.m_long = mode & 07777; // keep permissions only
-	entry.append( atom );
+	entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, mode & S_IFMT ); // keep file type only
+	entry.insert( KIO::UDSEntry::UDS_ACCESS, mode & 07777 ); // keep permissions only
 	
 	root->append(entry);
 	
@@ -843,16 +837,11 @@ UDSEntry* kio_krarcProtocol::findFileEntry(const KUrl& url){
 	}
 	
 	UDSEntryList::iterator entry;
-	UDSEntry::iterator atom;
 	
 	for ( entry = dirList->begin(); entry != dirList->end(); ++entry ){
-		for( atom = (*entry).begin(); atom != (*entry).end(); ++atom ){
-			if( (*atom).m_uds == UDS_NAME ){
-				if((*atom).m_str == name){
-					return &(*entry);
-				} else break;
-			}
-		}
+		if( ( entry->contains( KIO::UDSEntry::UDS_NAME ) ) && 
+		    ( entry->stringValue( KIO::UDSEntry::UDS_NAME ) == name ) )
+			return &(*entry);
 	}
 	return 0;
 }
@@ -902,28 +891,12 @@ UDSEntryList* kio_krarcProtocol::addNewDir(QString path){
 	name = name.left(name.length()-1);
 	
 	UDSEntry entry;
-	UDSAtom atom;
-	atom.m_uds = UDS_NAME;
-	atom.m_str = name;
-	entry.append(atom);
-	
+	entry.insert( KIO::UDSEntry::UDS_NAME, name );
 	mode_t mode = parsePermString("drwxr-xr-x");
-	
-	atom.m_uds = UDS_FILE_TYPE;
-	atom.m_long = mode & S_IFMT; // keep file type only
-	entry.append( atom );
-	
-	atom.m_uds = UDS_ACCESS;
-	atom.m_long = mode & 07777; // keep permissions only
-	entry.append( atom );
-	
-	atom.m_uds = UDS_SIZE;
-	atom.m_long = 0;
-	entry.append( atom );
-	
-	atom.m_uds = UDS_MODIFICATION_TIME;
-	atom.m_long = arcFile->time(UDS_MODIFICATION_TIME);
-	entry.append( atom );
+	entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, mode & S_IFMT ); // keep file type only
+	entry.insert( KIO::UDSEntry::UDS_ACCESS, mode & 07777 ); // keep permissions only
+	entry.insert( KIO::UDSEntry::UDS_SIZE, 0 );
+	entry.insert( KIO::UDSEntry::UDS_MODIFICATION_TIME, arcFile->time(KIO::UDSEntry::UDS_MODIFICATION_TIME) );
 	
 	dir->append(entry);
 	
@@ -937,7 +910,6 @@ UDSEntryList* kio_krarcProtocol::addNewDir(QString path){
 void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*) {
 	UDSEntryList* dir;
 	UDSEntry entry;
-	UDSAtom atom;
 	
 	QString owner        = QString();
 	QString group        = QString();
@@ -995,7 +967,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*) {
 			perm = isDir ? "drwxr-xr-x" : "-rw-r--r--";
 			
 			if( isReadOnly )
-				perm.at( 2 ) = '-';
+				perm[ 2 ] = '-';
 		}        
 		
 		if(perm.length() != 10) perm = (perm.at(0)=='d')? "drwxr-xr-x" : "-rw-r--r--" ;    
@@ -1151,7 +1123,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*) {
 		bool isReadOnly = ( perm.at(1).toLower() == 'r' );
 		perm = isDir ? "drwxr-xr-x" : "-rw-r--r--";
 		if( isReadOnly )
-			perm.at( 2 ) = '-';
+			perm[ 2 ] = '-';
 		
 		mode = parsePermString(perm);
 		
@@ -1173,30 +1145,18 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*) {
 	if(dir == 0) dir = addNewDir(path);
 	QString name = fullName.mid(fullName.findRev("/")+1);
 	// file name
-	atom.m_uds = UDS_NAME;
-	atom.m_str = name;
-	entry.append(atom);
+	entry.insert( KIO::UDSEntry::UDS_NAME, name );
 	// file type
-	atom.m_uds = UDS_FILE_TYPE;
-	atom.m_long = mode & S_IFMT; // keep file type only
-	entry.append( atom );
+	entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, mode & S_IFMT ); // keep file type only
 	// file permissions
-	atom.m_uds = UDS_ACCESS;
-	atom.m_long = mode & 07777; // keep permissions only
-	entry.append( atom );
+	entry.insert( KIO::UDSEntry::UDS_ACCESS, mode & 07777 ); // keep permissions only
 	// file size
-	atom.m_uds = UDS_SIZE;
-	atom.m_long = size;
-	entry.append( atom );
+	entry.insert( KIO::UDSEntry::UDS_SIZE, size );
 	// modification time
-	atom.m_uds = UDS_MODIFICATION_TIME;
-	atom.m_long = time;
-	entry.append( atom );
+	entry.insert( KIO::UDSEntry::UDS_MODIFICATION_TIME, time );
 	// link destination
 	if( !symlinkDest.isEmpty() ){
-		atom.m_uds = UDS_LINK_DEST;
-		atom.m_str = symlinkDest;
-		entry.append( atom );
+		entry.insert( KIO::UDSEntry::UDS_LINK_DEST, symlinkDest );
 	}
 	if( S_ISDIR(mode) ){
 		fullName=fullName+"/";
@@ -1205,35 +1165,30 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*) {
 		else {
 			// try to overwrite an existing entry
 			UDSEntryList::iterator entryIt;
-			UDSEntry::iterator atomIt;
 			
 			for ( entryIt = dir->begin(); entryIt != dir->end(); ++entryIt )
-				for( atomIt = (*entryIt).begin(); atomIt != (*entryIt).end(); ++atomIt )
-					if( (*atomIt).m_uds == UDS_NAME )
-						if((*atomIt).m_str == name) {
-							for( atomIt = (*entryIt).begin(); atomIt != (*entryIt).end(); ++atomIt ) {
-								switch( (*atomIt).m_uds ) {
-								case UDS_MODIFICATION_TIME:
-									(*atomIt).m_long = time;
-									break;
-								case UDS_ACCESS:
-									(*atomIt).m_long = mode & 07777;
-									break;
-								}
-							}
-							return;
-						}
-			return; // there is alreay an entry for this directory
+			{
+				if( entryIt->contains( KIO::UDSEntry::UDS_NAME ) &&
+				    entryIt->stringValue( KIO::UDSEntry::UDS_NAME ) == name )
+				{
+					entryIt->remove( KIO::UDSEntry::UDS_MODIFICATION_TIME );
+					entryIt->insert( KIO::UDSEntry::UDS_MODIFICATION_TIME, time );
+					entryIt->remove( KIO::UDSEntry::UDS_ACCESS );
+					entryIt->insert( KIO::UDSEntry::UDS_ACCESS, mode );
+					return;
+				}
+			}
+			return; // there is already an entry for this directory
 		}
 	}
 	
 	// multi volume archives can add a file twice, use only one
 	UDSEntryList::iterator dirEntryIt;
-	UDSEntry::iterator dirAtomIt;
+	
 	for ( dirEntryIt = dir->begin(); dirEntryIt != dir->end(); ++dirEntryIt )
-		for( dirAtomIt = (*dirEntryIt).begin(); dirAtomIt != (*dirEntryIt).end(); ++dirAtomIt )
-			if( (*dirAtomIt).m_uds == UDS_NAME && (*dirAtomIt).m_str == name )
-				return;
+		if( dirEntryIt->contains( KIO::UDSEntry::UDS_NAME ) &&
+		    dirEntryIt->stringValue( KIO::UDSEntry::UDS_NAME ) == name )
+			return;
 	
 	dir->append(entry);
 }

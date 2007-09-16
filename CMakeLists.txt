@@ -21,7 +21,7 @@ add_subdirectory( pics )
 add_subdirectory( doc )
 add_subdirectory( krArc )
 add_subdirectory( iso )
-add_subdirectory( virt )
+#add_subdirectory( virt ) - not used
 
 message(STATUS "${CMAKE_CURRENT_SOURCE_DIR}: skipped subdir $(TARDIR)")
 include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )

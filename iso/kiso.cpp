@@ -180,7 +180,7 @@ KIso::KIso( QIODevice * dev )
 KIso::~KIso()
 {
     // mjarrett: Closes to prevent ~KArchive from aborting w/o device
-    if( isOpened() )
+    if( isOpen() )
         close();
     if ( !m_filename.isEmpty() )
         delete device(); // we created it ourselves
@@ -332,7 +332,7 @@ void KIso::readParams()
     delete config;
 }
 
-bool KIso::openArchive( int mode )
+bool KIso::openArchive( QIODevice::OpenMode mode )
 {
     iso_vol_desc *desc;
     QString path,tmp,uid,gid;
@@ -439,17 +439,42 @@ bool KIso::closeArchive()
     return true;
 }
 
-bool KIso::writeDir( const QString&, const QString&, const QString& )
+bool KIso::writeDir( const QString&, const QString&, const QString&, mode_t, time_t, time_t, time_t )
 {
     return false;
 }
 
-bool KIso::prepareWriting( const QString&, const QString&, const QString&, uint)
+bool KIso::prepareWriting( const QString&, const QString&, const QString&, qint64, mode_t, time_t, time_t, time_t )
 {
     return false;
 }
 
-bool KIso::doneWriting( uint )
+bool KIso::finishWriting( qint64 )
+{
+    return false;
+}
+
+bool KIso::writeSymLink(const QString &, const QString &, const QString &, const QString &, mode_t, time_t, time_t, time_t )
+{
+    return false;
+}
+
+bool KIso::doWriteDir( const QString&, const QString&, const QString&, mode_t, time_t, time_t, time_t )
+{
+    return false;
+}
+
+bool KIso::doWriteSymLink(const QString &, const QString &, const QString &, const QString &, mode_t, time_t, time_t, time_t )
+{
+    return false;
+}
+
+bool KIso::doPrepareWriting( const QString& , const QString& , const QString& , qint64, mode_t, time_t, time_t, time_t  )
+{
+    return false;
+}
+
+bool KIso::doFinishWriting( qint64 )
 {
     return false;
 }

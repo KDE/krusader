@@ -32,9 +32,9 @@
 #include <Q3CString>
 #include <kurl.h>
 #include <kdebug.h>
-#include <kinstance.h>
-#include <kiso.h>
-#include <kmimemagic.h>
+#include <kcomponentdata.h>
+#include "kiso.h"
+#include <kmimetype.h>
 
 #include <errno.h> // to be removed
 
@@ -62,7 +62,7 @@ extern "C" { int kdemain(int argc, char **argv); }
 
 int kdemain( int argc, char **argv )
 {
-  KInstance instance( "kio_iso" );
+  KComponentData instance( "kio_iso", "krusader" );
 
   kDebug()   << "Starting " << getpid() << endl;
 
@@ -181,55 +181,31 @@ bool kio_isoProtocol::checkNewFile( QString fullPath, QString & path, int starts
 
 void kio_isoProtocol::createUDSEntry( const KArchiveEntry * isoEntry, UDSEntry & entry )
 {
-    UDSAtom atom;
-
     entry.clear();
-    atom.m_uds = UDS_NAME;
-    atom.m_str = isoEntry->name();
-    entry.append(atom);
+    entry.insert( UDSEntry::UDS_NAME, isoEntry->name() );
+    entry.insert( UDSEntry::UDS_FILE_TYPE, isoEntry->permissions() & S_IFMT ); // keep file type only
+    entry.insert( UDSEntry::UDS_ACCESS, isoEntry->permissions() & 07777 ); // keep permissions only
 
-    atom.m_uds = UDS_FILE_TYPE;
-    atom.m_long = isoEntry->permissions() & S_IFMT; // keep file type only
-    entry.append( atom );
-
-    atom.m_uds = UDS_ACCESS;
-    atom.m_long = isoEntry->permissions() & 07777; // keep permissions only
-    entry.append( atom );
-
-    atom.m_uds = UDS_SIZE;
     if (isoEntry->isFile()) {
-        atom.m_long = ((KIsoFile *)isoEntry)->realsize();
-        if (!atom.m_long) atom.m_long = ((KIsoFile *)isoEntry)->size();
+       long long si = ((KIsoFile *)isoEntry)->realsize();
+       if (!si) si = ((KIsoFile *)isoEntry)->size();
+       entry.insert( UDSEntry::UDS_SIZE, si );
     } else {
-        atom.m_long = 0L;
+        entry.insert( UDSEntry::UDS_SIZE, 0L );
     }
-    entry.append( atom );
 
-    atom.m_uds = UDS_USER;
-    atom.m_str = isoEntry->user();
-    entry.append( atom );
+    entry.insert( UDSEntry::UDS_USER, isoEntry->user() );
+    entry.insert( UDSEntry::UDS_GROUP, isoEntry->group() );
+    entry.insert( UDSEntry::UDS_MODIFICATION_TIME, isoEntry->date() );
+    entry.insert( UDSEntry::UDS_ACCESS_TIME, 
+                  isoEntry->isFile() ? ((KIsoFile *)isoEntry)->adate() :
+                                       ((KIsoDirectory *)isoEntry)->adate() );
 
-    atom.m_uds = UDS_GROUP;
-    atom.m_str = isoEntry->group();
-    entry.append( atom );
+    entry.insert( UDSEntry::UDS_CREATION_TIME, 
+                  isoEntry->isFile() ? ((KIsoFile *)isoEntry)->cdate() :
+                                       ((KIsoDirectory *)isoEntry)->cdate() );
 
-    atom.m_uds = UDS_MODIFICATION_TIME;
-    atom.m_long = isoEntry->date();
-    entry.append( atom );
-
-    atom.m_uds = UDS_ACCESS_TIME;
-    atom.m_long = isoEntry->isFile() ? ((KIsoFile *)isoEntry)->adate() :
-                                       ((KIsoDirectory *)isoEntry)->adate();
-    entry.append( atom );
-
-    atom.m_uds = UDS_CREATION_TIME;
-    atom.m_long = isoEntry->isFile() ? ((KIsoFile *)isoEntry)->cdate() :
-                                       ((KIsoDirectory *)isoEntry)->cdate();
-    entry.append( atom );
-
-    atom.m_uds = UDS_LINK_DEST;
-    atom.m_str = isoEntry->symlink();
-    entry.append( atom );
+    entry.insert( UDSEntry::UDS_LINK_DEST, isoEntry->symlink() );
 }
 
 void kio_isoProtocol::listDir( const KUrl & url )
@@ -334,15 +310,10 @@ void kio_isoProtocol::stat( const KUrl & url )
             return;
         }
         // Real directory. Return just enough information for KRun to work
-        UDSAtom atom;
-        atom.m_uds = KIO::UDSEntry::UDS_NAME;
-        atom.m_str = url.fileName();
-        entry.append( atom );
+        entry.insert( UDSEntry::UDS_NAME, url.fileName() );
         kDebug()  << "kio_isoProtocol::stat returning name=" << url.fileName() << endl;
 
-        atom.m_uds = KIO::UDSEntry::UDS_FILE_TYPE;
-        atom.m_long = buff.st_mode & S_IFMT;
-        entry.append( atom );
+        entry.insert( UDSEntry::UDS_FILE_TYPE, buff.st_mode & S_IFMT );
 
         statEntry( entry );
 
@@ -408,11 +379,23 @@ void kio_isoProtocol::getFile( const KIsoFile *isoFileEntry, const QString &path
             nblocks = (fullsize + block_size - 1) >> block_shift;
             ptrblock_bytes = (nblocks+1) * 4;
             pointer_block=isoFileEntry->data( hdr->header_size << 2, ptrblock_bytes );
-            if (pointer_block.size() == ptrblock_bytes &&
-                inbuf.resize(block_size2) &&
-                outbuf.resize(block_size)) {
+            if (pointer_block.size() == ptrblock_bytes )
+            {
+                inbuf.resize(block_size2);
+                if( inbuf.size() )
+                {
+                    outbuf.resize(block_size);
                     
-                pptr = pointer_block.data();
+                    if( outbuf.size() )
+                        pptr = pointer_block.data();
+                    else {
+                        error(KIO::ERR_COULD_NOT_READ, path);
+                        return;
+                    }
+                } else {
+                    error(KIO::ERR_COULD_NOT_READ, path);
+                    return;
+                }
             } else {
                 error(KIO::ERR_COULD_NOT_READ, path);
                 return;
@@ -457,7 +440,7 @@ void kio_isoProtocol::getFile( const KIsoFile *isoFileEntry, const QString &path
 
             if ( bytes > fullsize )
                 bytes = fullsize;
-            fileData.assign(outbuf);
+            fileData = outbuf;
             fileData.resize(bytes);
             fullsize -= bytes;
         } else {
@@ -465,10 +448,13 @@ void kio_isoProtocol::getFile( const KIsoFile *isoFileEntry, const QString &path
             if (fileData.size()==0) break;
         }
         if (!mime) {
-            KMimeMagicResult * result = KMimeMagic::self()->findBufferFileType( fileData, path );
-            kDebug() << "Emitting mimetype " << result->mimeType() << endl;
-            mimeType( result->mimeType() );
-            mime=true;
+            KSharedPtr<KMimeType> result = KMimeType::findByNameAndContent( path, fileData );
+            if( result )
+            {
+                kDebug() << "Emitting mimetype " << result->name() << endl;
+                mimeType( result->name() );
+                mime=true;
+            }
         }
         data(fileData);
         pos+=fileData.size();

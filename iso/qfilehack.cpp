@@ -2,7 +2,7 @@
                           qfilehack.cpp  -  description
                              -------------------
     begin                : Tue Oct 29 2002
-    copyright            : (C) 2002 by Szombathelyi György
+    copyright            : (C) 2002 by Szombathelyi Gyï¿½rgy
     email                : gyurco@users.sourceforge.net
  ***************************************************************************/
 
@@ -26,7 +26,7 @@ QFileHack::QFileHack( const QString & name ) : QFile(name) {
 QFileHack::~QFileHack(){
 }
 
-bool QFileHack::open ( int m ) {
+bool QFileHack::open ( QFile::OpenMode m ) {
     bool ret;
 
 #ifdef __linux__
@@ -34,7 +34,7 @@ bool QFileHack::open ( int m ) {
 #endif
     ret=QFile::open(m);
     if (ret && isSequential() ) {
-        setType(IO_Direct);
+        setOpenMode( m | (QFile::OpenMode)IO_Direct);
     }
     return ret;
 }

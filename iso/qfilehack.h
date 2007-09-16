@@ -2,7 +2,7 @@
                           qfilehack.h  -  description
                              -------------------
     begin                : Tue Oct 29 2002
-    copyright            : (C) 2002 by Szombathelyi György
+    copyright            : (C) 2002 by Szombathelyi Gyï¿½rgy
     email                : gyurco@users.sourceforge.net
  ***************************************************************************/
 
@@ -22,7 +22,7 @@
 #include <qstring.h>
 
 /**
-  *@author Szombathelyi György
+  *@author Szombathelyi Gyï¿½rgy
   * Qt thinks if a file is not S_IFREG, you cannot seek in it. It's false (what about
   * block devices for example?
   */
@@ -32,7 +32,7 @@ public:
     QFileHack();
     QFileHack( const QString & name );
     ~QFileHack();
-    virtual bool open ( int m );
+    virtual bool open ( QFile::OpenMode m );
 };
 
 #endif
