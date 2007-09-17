@@ -908,16 +908,16 @@ bool Krusader::queryClose()
 			}
 			else
 			{
-				for ( int i=1; i<list.count(); ++i )
+				int i=1;
+				for ( ; i<list.count(); ++i )
 				{
 					w = list.at ( i );
 					if ( ! ( w && ( w==this || /* w==sysTray ||*/ w->isHidden() || w==menuBar() ) ) )
 						break;
-
-					// original code was
-					// while(w && (w==this || /* w==sysTray ||*/ w->isHidden() || w==menuBar()) )
-					//		w = list.next();
 				}
+				
+				if( i == list.count() )
+					w = 0;
 			}
 
 			if ( !w ) break;
