@@ -42,12 +42,12 @@
 KgStartup::KgStartup( bool first, QWidget* parent ) :
   KonfiguratorPage( first, parent ), profileCombo( 0 )
 {
-  Q3GridLayout *kgStartupLayout = new Q3GridLayout( parent );
+  Q3GridLayout *kgStartupLayout = new Q3GridLayout( this );
   kgStartupLayout->setSpacing( 6 );
 
   //  --------------------------- PANELS GROUPBOX ----------------------------------
 
-  Q3GroupBox *panelsGrp = createFrame( i18n( "General" ), parent );
+  Q3GroupBox *panelsGrp = createFrame( i18n( "General" ), this );
   Q3GridLayout *panelsGrid = createGridLayout( panelsGrp->layout() );
 
   QString s = "<p><img src='toolbar|kr_profile'></p>" + i18n( "Defines the panel profile used at startup. A panel profile contains:<ul><li>all the tabs paths</li><li>the current tab</li><li>the active panel</li></ul><b>&lt;Last session&gt;</b> is a special panel profile which is saved automatically when Krusader is closed.");
@@ -83,7 +83,7 @@ KgStartup::KgStartup( bool first, QWidget* parent ) :
 
   //  ------------------------ USERINTERFACE GROUPBOX ------------------------------
 
-  Q3GroupBox *uiGrp = createFrame( i18n( "User Interface" ), parent );
+  Q3GroupBox *uiGrp = createFrame( i18n( "User Interface" ), this );
   Q3GridLayout *uiGrid = createGridLayout( uiGrp->layout() );
 
   KONFIGURATOR_CHECKBOX_PARAM uiCheckBoxes[] =

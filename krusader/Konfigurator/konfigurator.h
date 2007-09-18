@@ -44,7 +44,7 @@
 class QLineEdit;
 class QString;
 
-class Konfigurator : public KDialog
+class Konfigurator : public KPageDialog
 {
    Q_OBJECT
 
@@ -68,7 +68,6 @@ protected slots:
 
 private:
   Q3PtrList<KPageWidgetItem>  kgPages;
-  KPageDialog                *widget;
   bool                        firstTime;
   KPageWidgetItem            *lastPage;
   bool                        internalCall;

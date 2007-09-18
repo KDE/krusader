@@ -44,11 +44,11 @@
 KgUserActions::KgUserActions( bool first, QWidget* parent ) :
   KonfiguratorPage( first, parent )
 {
-   Q3GridLayout *kgUserActionLayout = new Q3GridLayout( parent, 2, 1,
+   Q3GridLayout *kgUserActionLayout = new Q3GridLayout( this, 2, 1,
    		0 /* margin */, 6 /* spacing */, "kgUserActionLayout" );
 
    // ============= Info Group =============
-   Q3GroupBox *InfoGroup = createFrame( i18n( "Information" ), parent );
+   Q3GroupBox *InfoGroup = createFrame( i18n( "Information" ), this );
    Q3GridLayout *InfoGrid = createGridLayout( InfoGroup->layout() );
 
    // terminal for the UserActions
@@ -64,7 +64,7 @@ KgUserActions::KgUserActions( bool first, QWidget* parent ) :
    kgUserActionLayout->addWidget( InfoGroup, 0 ,0 );
 
    // ============= Terminal Group =============
-   Q3GroupBox *terminalGroup = createFrame( i18n( "Terminal execution" ), parent );
+   Q3GroupBox *terminalGroup = createFrame( i18n( "Terminal execution" ), this );
    Q3GridLayout *terminalGrid = createGridLayout( terminalGroup->layout() );
 
    // terminal for the UserActions
@@ -78,7 +78,7 @@ KgUserActions::KgUserActions( bool first, QWidget* parent ) :
    kgUserActionLayout->addWidget( terminalGroup, 1 ,0 );
 
    // ============= Outputcollection Group =============
-   Q3GroupBox *outputGroup = createFrame( i18n( "Output collection" ), parent );
+   Q3GroupBox *outputGroup = createFrame( i18n( "Output collection" ), this );
    Q3GridLayout *outputGrid = createGridLayout( outputGroup->layout() );
 
    Q3HBox *hbox;
@@ -102,7 +102,7 @@ KgUserActions::KgUserActions( bool first, QWidget* parent ) :
 }
 
 void KgUserActions::startActionMan() {
-   ActionMan actionMan( static_cast<QWidget*>(parent()) );
+   ActionMan actionMan( static_cast<QWidget*>(this) );
 }
 
 

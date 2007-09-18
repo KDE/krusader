@@ -46,11 +46,11 @@
 KgDependencies::KgDependencies( bool first, QWidget* parent ) :
       KonfiguratorPage( first, parent )
 {
-  Q3GridLayout *kgDependenciesLayout = new Q3GridLayout( parent );
+  Q3GridLayout *kgDependenciesLayout = new Q3GridLayout( this );
   kgDependenciesLayout->setSpacing( 6 );
 
   //  ---------------------------- GENERAL TAB -------------------------------------
-  tabWidget = new QTabWidget( parent, "tabWidget" );
+  tabWidget = new QTabWidget( this, "tabWidget" );
 
   QWidget *general_tab = new QWidget( tabWidget, "tab" );
   tabWidget->insertTab( general_tab, i18n( "General" ) );

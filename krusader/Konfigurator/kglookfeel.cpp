@@ -56,10 +56,10 @@
 KgLookFeel::KgLookFeel( bool first, QWidget* parent ) :
       KonfiguratorPage( first, parent )
 {
-  Q3GridLayout *kgLookAndFeelLayout = new Q3GridLayout( parent );
+  Q3GridLayout *kgLookAndFeelLayout = new Q3GridLayout( this );
   kgLookAndFeelLayout->setSpacing( 6 );
 
-  tabWidget = new QTabWidget( parent, "tabWidget" );
+  tabWidget = new QTabWidget( this, "tabWidget" );
 
   setupOperationTab();
   setupPanelTab();

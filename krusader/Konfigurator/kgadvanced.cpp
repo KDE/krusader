@@ -43,12 +43,12 @@
 KgAdvanced::KgAdvanced( bool first, QWidget* parent ) :
       KonfiguratorPage( first, parent )
 {
-  Q3GridLayout *kgAdvancedLayout = new Q3GridLayout( parent );
+  Q3GridLayout *kgAdvancedLayout = new Q3GridLayout( this );
   kgAdvancedLayout->setSpacing( 6 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
   
-  Q3GroupBox *generalGrp = createFrame( i18n( "General" ), parent );
+  Q3GroupBox *generalGrp = createFrame( i18n( "General" ), this );
   Q3GridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
   bool dontUseMedia = false;
@@ -84,7 +84,7 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent ) :
 
   //  ----------------------- CONFIRMATIONS GROUPBOX -------------------------------
   
-  Q3GroupBox *confirmGrp = createFrame( i18n( "Confirmations" ), parent );
+  Q3GroupBox *confirmGrp = createFrame( i18n( "Confirmations" ), this );
   Q3GridLayout *confirmGrid = createGridLayout( confirmGrp->layout() );
 
   addLabel( confirmGrid, 0, 0, "\n"+i18n( "Request user confirmation for the following operations:" )+"\n",
@@ -108,7 +108,7 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent ) :
 
   //  ------------------------ FINE-TUNING GROUPBOX --------------------------------
 
-  Q3GroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), parent );
+  Q3GroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), this );
   Q3GridLayout *fineTuneGrid = createGridLayout( fineTuneGrp->layout() );
   fineTuneGrid->setAlignment( Qt::AlignLeft | Qt::AlignTop );
   

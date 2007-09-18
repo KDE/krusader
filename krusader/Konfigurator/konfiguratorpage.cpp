@@ -39,7 +39,7 @@
 #include <q3whatsthis.h>
 
 KonfiguratorPage::KonfiguratorPage( bool firstTime, QWidget* parent ) :
-  Q3Frame( parent ), firstCall( firstTime )
+  QFrame( parent ), firstCall( firstTime )
 {
 }
 

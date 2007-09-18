@@ -32,7 +32,7 @@
 #define __KONFIGURATOR_PAGE_H__
  
 #include "konfiguratoritems.h"
-#include <q3frame.h>
+#include <qframe.h>
 #include <q3ptrlist.h>
 #include <q3groupbox.h>
 #include <qlabel.h>
@@ -50,7 +50,7 @@ struct KONFIGURATOR_NAME_VALUE_PAIR;
   *
   * @short The base class of a page in Konfigurator
   */  
-class KonfiguratorPage : public Q3Frame
+class KonfiguratorPage : public QFrame
 {
   Q_OBJECT
    

@@ -227,7 +227,7 @@ void KonfiguratorRadioButtons::addRadioButton( QRadioButton *radioWidget, QStrin
   radioNames.push_back( name );
   radioValues.push_back( value );
 
-  connect( radioWidget, SIGNAL( stateChanged(int) ), ext, SLOT( setChanged() ) );
+  connect( radioWidget, SIGNAL( toggled( bool ) ), ext, SLOT( setChanged() ) );
 }
 
 QRadioButton * KonfiguratorRadioButtons::find( int index )

@@ -62,12 +62,12 @@ QString KgProtocols::defaultTarMimes   = "application/x-tar,application/x-tarz,"
 KgProtocols::KgProtocols( bool first, QWidget* parent ) :
       KonfiguratorPage( first, parent )
 {
-  Q3GridLayout *KgProtocolsLayout = new Q3GridLayout( parent );
+  Q3GridLayout *KgProtocolsLayout = new Q3GridLayout( this );
   KgProtocolsLayout->setSpacing( 6 );
 
   //  -------------------------- LINK VIEW ----------------------------------
   
-  Q3GroupBox *linkGrp = createFrame( i18n( "Links" ), parent );    
+  Q3GroupBox *linkGrp = createFrame( i18n( "Links" ), this );    
   Q3GridLayout *linkGrid = createGridLayout( linkGrp->layout() );
   
   linkList = new Q3ListView( linkGrp, "linkList" );
@@ -80,7 +80,7 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
 
   //  -------------------------- BUTTONS ----------------------------------
 
-  Q3VBox *vbox1 = new Q3VBox( parent, "vbox1" )  ;
+  Q3VBox *vbox1 = new Q3VBox( this, "vbox1" )  ;
   
   addSpacer( vbox1 );
   btnAddProtocol = new QPushButton( vbox1, "btnAddProtocolButton" );
@@ -93,7 +93,7 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
   
   KgProtocolsLayout->addWidget( vbox1, 0 ,1 );
 
-  Q3VBox *vbox2 = new Q3VBox( parent, "vbox2" )  ;
+  Q3VBox *vbox2 = new Q3VBox( this, "vbox2" )  ;
   
   addSpacer( vbox2 );
   btnAddMime = new QPushButton( vbox2, "btnAddMimeButton" );
@@ -108,7 +108,7 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
   
   //  -------------------------- PROTOCOLS LISTBOX ----------------------------------
 
-  Q3GroupBox *protocolGrp = createFrame( i18n( "Protocols" ), parent );    
+  Q3GroupBox *protocolGrp = createFrame( i18n( "Protocols" ), this );    
   Q3GridLayout *protocolGrid = createGridLayout( protocolGrp->layout() );
   
   protocolList = new Q3ListBox( protocolGrp, "protocolList" );
@@ -119,7 +119,7 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
 
   //  -------------------------- MIMES LISTBOX ----------------------------------
 
-  Q3GroupBox *mimeGrp = createFrame( i18n( "Mimes" ), parent );    
+  Q3GroupBox *mimeGrp = createFrame( i18n( "Mimes" ), this );    
   Q3GridLayout *mimeGrid = createGridLayout( mimeGrp->layout() );
   
   mimeList = new Q3ListBox( mimeGrp, "protocolList" );

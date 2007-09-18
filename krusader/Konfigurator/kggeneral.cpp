@@ -51,12 +51,12 @@ KgGeneral::KgGeneral( bool first, QWidget* parent ) :
 if( first )  
     slotFindTools();
 
-  Q3GridLayout *kgGeneralLayout = new Q3GridLayout( parent );
+  Q3GridLayout *kgGeneralLayout = new Q3GridLayout( this );
   kgGeneralLayout->setSpacing( 6 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
 
-  Q3GroupBox *generalGrp = createFrame( i18n( "General" ), parent );
+  Q3GroupBox *generalGrp = createFrame( i18n( "General" ), this );
   Q3GridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
   KONFIGURATOR_NAME_VALUE_TIP deleteMode[] =
