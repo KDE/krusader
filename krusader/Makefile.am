@@ -153,11 +153,13 @@ xdg_apps_DATA = \
 krusaderlocaldir = $(kde_datadir)/krusader
 krusaderlocal_DATA = \
 	krusaderui.rc \
+	alpa-yellow.color \
+	bash.color \
+	dos_navigator.color \
 	midnight_commander.color \
 	midnight_cmd_AHamann.color \
 	total_commander.color \
 	total_cmd_pleasent.color \
-	dos_navigator.color \
 	total_commander.keymap \
 	total_commander.keymap.info \
 	useraction_examples.xml \
