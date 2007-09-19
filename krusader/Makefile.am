@@ -160,6 +160,8 @@ krusaderlocal_DATA = \
 	midnight_cmd_AHamann.color \
 	total_commander.color \
 	total_cmd_pleasent.color \
+	midnight_commander.keymap \
+	midnight_commander.keymap.info \
 	total_commander.keymap \
 	total_commander.keymap.info \
 	useraction_examples.xml \
