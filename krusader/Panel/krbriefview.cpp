@@ -93,8 +93,8 @@ KrBriefView::KrBriefView( Q3Header * headerIn, QWidget *parent, bool &left, KCon
             currentlyRenamedItem( 0 ), pressedItem( 0 ), mouseEvent( 0 ) {
 	setWidget( this );
 	_nameInKConfig = QString( "KrBriefView" ) + QString( ( left ? "Left" : "Right" ) );
-	krConfig->setGroup("Private");
-	if (krConfig->readBoolEntry("Enable Input Method", true))
+	KConfigGroup group( krConfig, "Private" );
+	if ( group.readEntry("Enable Input Method", true))
 		setInputMethodEnabled(true);
 //	toolTip = new KrBriefViewToolTip( this, viewport() ); TODO
 }
@@ -103,10 +103,10 @@ void KrBriefView::setup() {
    lastSwushPosition = 0;
       
    // use the {} so that KConfigGroup will work correctly!
-   KConfigGroup grpSvr = _config->group( "Look&Feel" );
-   setFont( _config->readEntry( "Filelist Font", *_FilelistFont ) );
+   KConfigGroup grpSvr( _config, "Look&Feel" );
+   setFont( grpSvr.readEntry( "Filelist Font", *_FilelistFont ) );
    // decide on single click/double click selection
-   if ( _config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) &&
+   if ( grpSvr.readEntry( "Single Click Selects", _SingleClickSelects ) &&
            KGlobalSettings::singleClick() ) {
       connect( this, SIGNAL( executed( Q3IconViewItem* ) ), this, SLOT( slotExecuted( Q3IconViewItem* ) ) );
    } else {
@@ -126,9 +126,6 @@ void KrBriefView::setup() {
             this, SLOT( slotMouseClicked ( int, Q3IconViewItem *, const QPoint & ) ) );
    connect( &KrColorCache::getColorCache(), SIGNAL( colorsRefreshed() ), this, SLOT( refreshColors() ) );
 
-   // add whatever columns are needed to the listview
-   krConfig->setGroup( nameInKConfig() );
-   
    // determine basic settings for the view
    setAcceptDrops( true );
    setItemsMovable( false );
@@ -351,8 +348,9 @@ void KrBriefView::slotClicked( Q3IconViewItem *item ) {
    if ( !modifierPressed ) {
       if ( singleClicked && !renameTimer.isActive() ) {
          KSharedConfigPtr config = KGlobal::config();
-         config->setGroup( "KDE" );
-         int doubleClickInterval = config->readNumEntry( "DoubleClickInterval", 400 );
+         KConfigGroup group( config, "KDE" );
+
+         int doubleClickInterval = group.readEntry( "DoubleClickInterval", 400 );
 
          int msecsFromLastClick = clickTime.msecsTo( QTime::currentTime() );
 
@@ -387,8 +385,8 @@ void KrBriefView::prepareForActive() {
 void KrBriefView::prepareForPassive() {
    KrView::prepareForPassive();
    CANCEL_TWO_CLICK_RENAME;
-   KConfigGroup grpSvr = _config->group( "Look&Feel" );
-   if ( _config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
+   KConfigGroup grpSvr( _config, "Look&Feel" );
+   if ( grpSvr.readEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
       if ( MAIN_VIEW ) {
          if ( ACTIVE_PANEL ) {
             if ( ACTIVE_PANEL->quickSearch ) {
@@ -519,8 +517,8 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
    }
 
    // stop quick search in case a mouse click occured
-   KConfigGroup grpSvr = _config->group( "Look&Feel" );
-   if ( _config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
+   KConfigGroup grpSvr( _config, "Look&Feel" );
+   if ( grpSvr.readEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
       if ( MAIN_VIEW ) {
          if ( ACTIVE_PANEL ) {
             if ( ACTIVE_PANEL->quickSearch ) {
@@ -779,8 +777,8 @@ void KrBriefView::imStartEvent(QIMEvent* e)
     ACTIVE_PANEL->quickSearch->myIMStartEvent( e );
     return ;
   }else {
-   KConfigGroup grpSvr = _config->group( "Look&Feel" );
-    if ( !_config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) )
+   KConfigGroup grpSvr( _config, "Look&Feel" );
+    if ( !grpSvr.readEntry( "New Style Quicksearch", _NewStyleQuicksearch ) )
       K3IconView::imStartEvent( e );
     else {
 							// first, show the quicksearch if its hidden
@@ -1086,8 +1084,8 @@ void KrBriefView::keyPressEvent( QKeyEvent * e ) {
             //if ( _config->readBoolEntry( "Do Quicksearch", _DoQuicksearch ) ) {
                // are we using krusader's classic quicksearch, or wincmd style?
                {
-						KConfigGroup grpSvr = _config->group( "Look&Feel" );
-						if ( !_config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) )
+						KConfigGroup grpSv( _config, "Look&Feel" );
+						if ( !grpSv.readEntry( "New Style Quicksearch", _NewStyleQuicksearch ) )
 							K3IconView::keyPressEvent( e );
 						else {
 							// first, show the quicksearch if its hidden
@@ -1143,8 +1141,8 @@ void KrBriefView::renameCurrentItem() {
    rename( static_cast<Q3IconViewItem*>( it ) );
    // if applicable, select only the name without extension
 /* TODO:
-   KConfigGroup svr = krConfig->group( "Look&Feel" );
-   if (!krConfig->readBoolEntry("Rename Selects Extension", true)) {
+   KConfigGroup svr( krConfig, "Look&Feel" );
+   if (!svr.readEntry("Rename Selects Extension", true)) {
      if (it->hasExtension() && !it->VF->vfile_isDir() ) 
        renameLineEdit()->setSelection(0, it->name().findRev(it->extension())-1);
    }*/
@@ -1169,8 +1167,8 @@ void KrBriefView::quickSearch( const QString & str, int direction ) {
    KrViewItem * item = getCurrentKrViewItem();
    if (!item)
       return;
-   KConfigGroup grpSvr = _config->group( "Look&Feel" );
-   bool caseSensitive = _config->readBoolEntry( "Case Sensitive Quicksearch", _CaseSensitiveQuicksearch );
+   KConfigGroup grpSvr( _config, "Look&Feel" );
+   bool caseSensitive = grpSvr.readEntry( "Case Sensitive Quicksearch", _CaseSensitiveQuicksearch );
    if ( !direction ) {
       if ( caseSensitive ? item->name().startsWith( str ) : item->name().toLower().startsWith( str.toLower() ) )
          return ;
@@ -1213,8 +1211,8 @@ void KrBriefView::slotMouseClicked( int button, Q3IconViewItem * item, const QPo
 }
 
 void KrBriefView::refreshColors() {
-   krConfig->setGroup("Colors");
-   bool kdeDefault = krConfig->readBoolEntry("KDE Default"); 
+   KConfigGroup group( krConfig, "Colors" );
+   bool kdeDefault = group.readEntry("KDE Default", false);
    if ( !kdeDefault ) {
       // KDE default is not choosen: set the background color (as this paints the empty areas) and the alternate color
       bool isActive = hasFocus();
@@ -1291,23 +1289,23 @@ void KrBriefView::initProperties() {
 	_properties = new KrBriefViewProperties;
 	_properties->filter = KrViewProperties::All;
 	_properties->filterMask = KRQuery( "*" );
-	KConfigGroup grpSvr = _config->group( "Look&Feel" );
-	_properties->displayIcons = _config->readBoolEntry( "With Icons", _WithIcons );
-	bool dirsByNameAlways = _config->readBoolEntry("Always sort dirs by name", false);
+	KConfigGroup grpSvr( _config, "Look&Feel" );
+	_properties->displayIcons = grpSvr.readEntry( "With Icons", _WithIcons );
+	bool dirsByNameAlways = grpSvr.readEntry("Always sort dirs by name", false);
 	_properties->sortMode = static_cast<KrViewProperties::SortSpec>( KrViewProperties::Name |
 			KrViewProperties::Descending | KrViewProperties::DirsFirst | 
 			(dirsByNameAlways ? KrViewProperties::AlwaysSortDirsByName : 0) );
-	if ( !_config->readBoolEntry( "Case Sensative Sort", _CaseSensativeSort ) )
+	if ( !grpSvr.readEntry( "Case Sensative Sort", _CaseSensativeSort ) )
       	_properties->sortMode = static_cast<KrViewProperties::SortSpec>( _properties->sortMode |
 				 KrViewProperties::IgnoreCase );
-	_properties->humanReadableSize = krConfig->readBoolEntry("Human Readable Size", _HumanReadableSize);
+	_properties->humanReadableSize = grpSvr.readEntry("Human Readable Size", _HumanReadableSize);
 	_properties->localeAwareCompareIsCaseSensitive = QString( "a" ).localeAwareCompare( "B" ) > 0; // see KDE bug #40131
 	
 	QStringList defaultAtomicExtensions;
 	defaultAtomicExtensions += ".tar.gz";
 	defaultAtomicExtensions += ".tar.bz2";
 	defaultAtomicExtensions += ".moc.cpp";
-	QStringList atomicExtensions = krConfig->readListEntry("Atomic Extensions", defaultAtomicExtensions);
+	QStringList atomicExtensions = grpSvr.readEntry("Atomic Extensions", defaultAtomicExtensions);
 	for (QStringList::iterator i = atomicExtensions.begin(); i != atomicExtensions.end(); )
 	{
 		QString & ext = *i;
@@ -1323,8 +1321,8 @@ void KrBriefView::initProperties() {
 	}
 	_properties->atomicExtensions = atomicExtensions;
 	
-	_config->setGroup( nameInKConfig() );
-	PROPS->numberOfColumns = _config->readNumEntry( "Number Of Brief Columns", _NumberOfBriefColumns );
+	KConfigGroup group( _config, nameInKConfig() );
+	PROPS->numberOfColumns = group.readEntry( "Number Of Brief Columns", _NumberOfBriefColumns );
 	if( PROPS->numberOfColumns < 1 )
 		PROPS->numberOfColumns = 1;
 	else if( PROPS->numberOfColumns > MAX_COLS )
@@ -1351,11 +1349,11 @@ void KrBriefView::setColumnNr()
   if( res->data().canConvert<int>() )
     result = res->data().toInt();
 
-  krConfig->setGroup( nameInKConfig() );
+  KConfigGroup group( krConfig, nameInKConfig() );
   
   if( result > COL_ID && result <= COL_ID + MAX_COLS )
   {
-    krConfig->writeEntry( "Number Of Brief Columns", result - COL_ID );
+    group.writeEntry( "Number Of Brief Columns", result - COL_ID );
     PROPS->numberOfColumns = result - COL_ID;
     redrawColumns();
   }

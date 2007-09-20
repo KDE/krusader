@@ -368,8 +368,8 @@ void ListPanelFunc::terminal() {
 	chdir( panel->realPath().local8Bit() );
 
 	K3Process proc;
-	krConfig->setGroup( "General" );
-	QString term = krConfig->readEntry( "Terminal", _Terminal );
+	KConfigGroup group( krConfig, "General" );
+	QString term = group.readEntry( "Terminal", _Terminal );
 	proc << KrServices::separateArgs( term );
 
 	if ( term.contains( "konsole" ) )    /* KDE 3.2 bug (konsole is killed by pressing Ctrl+C) */
@@ -419,9 +419,9 @@ void ListPanelFunc::moveFiles() {
 		return ;
 	}
 
-	krConfig->setGroup( "Advanced" );
-	if ( krConfig->readBoolEntry( "Confirm Move", _ConfirmMove ) ) {
-		bool preserveAttrs = krConfig->readBoolEntry( "PreserveAttributes", _PreserveAttributes );
+	KConfigGroup group( krConfig, "Advanced" );
+	if ( group.readEntry( "Confirm Move", _ConfirmMove ) ) {
+		bool preserveAttrs = group.readEntry( "PreserveAttributes", _PreserveAttributes );
 		QString s;
 
   if( fileNames.count() == 1 )
@@ -574,9 +574,9 @@ void ListPanelFunc::copyFiles() {
 	KUrl virtualBaseURL;
 
 	// confirm copy
-	krConfig->setGroup( "Advanced" );
-	if ( krConfig->readBoolEntry( "Confirm Copy", _ConfirmCopy ) ) {
-		bool preserveAttrs = krConfig->readBoolEntry( "PreserveAttributes", _PreserveAttributes );
+	KConfigGroup group( krConfig, "Advanced" );
+	if ( group.readEntry( "Confirm Copy", _ConfirmCopy ) ) {
+		bool preserveAttrs = group.readEntry( "PreserveAttributes", _PreserveAttributes );
 		QString s;
 
   if( fileNames.count() == 1 )
@@ -639,11 +639,11 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 	if ( fileNames.isEmpty() )
 		return ;
 
-	krConfig->setGroup( "General" );
-	bool trash = krConfig->readBoolEntry( "Move To Trash", _MoveToTrash );
+	KConfigGroup gg( krConfig, "General" );
+	bool trash = gg.readEntry( "Move To Trash", _MoveToTrash );
 	// now ask the user if he want to delete:
-	krConfig->setGroup( "Advanced" );
-	if ( krConfig->readBoolEntry( "Confirm Delete", _ConfirmDelete ) ) {
+	KConfigGroup group( krConfig, "Advanced" );
+	if ( group.readEntry( "Confirm Delete", _ConfirmDelete ) ) {
 		QString s, b;
 
 		if ( !reallyDelete && trash && files() ->vfs_getType() == vfs::NORMAL ) {
@@ -668,8 +668,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 	}
 	//we want to warn the user about non empty dir
 	// and files he don't have permission to delete
-	krConfig->setGroup( "Advanced" );
-	bool emptyDirVerify = krConfig->readBoolEntry( "Confirm Unempty Dir", _ConfirmUnemptyDir );
+	bool emptyDirVerify = group.readEntry( "Confirm Unempty Dir", _ConfirmUnemptyDir );
 	emptyDirVerify = ( ( emptyDirVerify ) && ( files() ->vfs_getType() == vfs::NORMAL ) );
 
 	QDir dir;
@@ -707,13 +706,11 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 	// let the vfs do the job...
 	if (reallyDelete) {
 		// if reallyDelete, then make sure nothing gets moved to trash
-		krConfig->setGroup("General");
-		krConfig->writeEntry( "Move To Trash", false );
+		group.writeEntry( "Move To Trash", false );
 	}
 	files() ->vfs_delFiles( &fileNames );
 	if (reallyDelete) {
-		krConfig->setGroup("General");
-		krConfig->writeEntry( "Move To Trash", trash);
+		group.writeEntry( "Move To Trash", trash);
 	}
 }
 

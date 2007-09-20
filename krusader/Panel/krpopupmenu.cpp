@@ -151,8 +151,8 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
          addAction( i18n( "Rename" ) )->setData( QVariant( RENAME_ID ) );
   
       // -------- MOVE TO TRASH
-      KConfigGroup saver = krConfig->group("General");
-      bool trash = krConfig->readBoolEntry( "Move To Trash", _MoveToTrash );
+      KConfigGroup saver( krConfig, "General");
+      bool trash = saver.readEntry( "Move To Trash", _MoveToTrash );
       if( trash )
         addAction( i18n( "Move to Trash" ) )->setData( QVariant( TRASH_ID ) );
       // -------- DELETE
@@ -345,8 +345,8 @@ void KrPopupMenu::performAction(int id) {
          	chdir( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ).local8Bit() );
 				K3Process proc;
 				{
-				KConfigGroup saver = krConfig->group("General");
-         	QString term = krConfig->readEntry( "Terminal", _Terminal );
+				KConfigGroup saver( krConfig, "General");
+         	QString term = saver.readEntry( "Terminal", _Terminal );
          	proc << KrServices::separateArgs( term );
          	if ( !panel->func->getVFile(item)->vfile_isDir() ) proc << "-e" << item->name();
          	if ( term.contains( "konsole" ) ) {   /* KDE 3.2 bug (konsole is killed by pressing Ctrl+C) */

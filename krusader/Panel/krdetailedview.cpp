@@ -99,8 +99,8 @@ KrDetailedView::KrDetailedView( QWidget *parent, bool &left, KConfig *cfg ) :
       pressedItem( 0 ) {
 	setWidget( this );
 	_nameInKConfig=QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ;
-	krConfig->setGroup("Private");
-	if (krConfig->readBoolEntry("Enable Input Method", true))
+	KConfigGroup group( krConfig, "Private" );
+	if (group.readEntry("Enable Input Method", true))
 		setInputMethodEnabled(true);
 }
 
@@ -120,10 +120,10 @@ void KrDetailedView::setup() {
 
    /////////////////////////////// listview ////////////////////////////////////
    { // use the {} so that KConfigGroup will work correctly!
-      KConfigGroup grpSvr = _config->group( "Look&Feel" );
-      setFont( _config->readEntry( "Filelist Font", *_FilelistFont ) );
+      KConfigGroup grpSvr( _config, "Look&Feel" );
+      setFont( grpSvr.readEntry( "Filelist Font", *_FilelistFont ) );
       // decide on single click/double click selection
-      if ( _config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) &&
+      if ( grpSvr.readEntry( "Single Click Selects", _SingleClickSelects ) &&
            KGlobalSettings::singleClick() ) {
          connect( this, SIGNAL( executed( Q3ListViewItem* ) ), this, SLOT( slotExecuted( Q3ListViewItem* ) ) );
       } else {
@@ -146,49 +146,49 @@ void KrDetailedView::setup() {
    }
 
    // add whatever columns are needed to the listview
-   krConfig->setGroup( nameInKConfig() );
+   KConfigGroup group( krConfig, nameInKConfig() );
    
 	newColumn( KrDetailedViewProperties::Name );  // we always have a name
    setColumnWidthMode( COLUMN(Name), Q3ListView::Manual );
-   if ( _config->readBoolEntry( "Ext Column", _ExtColumn ) ) {
+   if ( group.readEntry( "Ext Column", _ExtColumn ) ) {
       newColumn( KrDetailedViewProperties::Extention );
       setColumnWidthMode( COLUMN(Extention), Q3ListView::Manual );
       setColumnWidth( COLUMN(Extention), QFontMetrics( font() ).width( "tar.bz2" ) );
    }
-   if ( _config->readBoolEntry( "Mime Column", _MimeColumn ) ) {
+   if ( group.readEntry( "Mime Column", _MimeColumn ) ) {
       newColumn( KrDetailedViewProperties::Mime );
       setColumnWidthMode( COLUMN(Mime), Q3ListView::Manual );
       setColumnWidth( COLUMN(Mime), QFontMetrics( font() ).width( 'X' ) * 6 );
    }
-   if ( _config->readBoolEntry( "Size Column", _SizeColumn ) ) {
+   if ( group.readEntry( "Size Column", _SizeColumn ) ) {
       newColumn( KrDetailedViewProperties::Size );
       setColumnWidthMode( COLUMN(Size), Q3ListView::Manual );
       setColumnWidth( COLUMN(Size), QFontMetrics( font() ).width( "9" ) * 10 );
       setColumnAlignment( COLUMN(Size), Qt::AlignRight ); // right-align numbers
    }
-   if ( _config->readBoolEntry( "DateTime Column", _DateTimeColumn ) ) {
+   if ( group.readEntry( "DateTime Column", _DateTimeColumn ) ) {
       newColumn( KrDetailedViewProperties::DateTime );
       setColumnWidthMode( COLUMN(DateTime), Q3ListView::Manual );
       //setColumnWidth( column( DateTime ), QFontMetrics( font() ).width( "99/99/99  99:99" ) );
       setColumnWidth( COLUMN(DateTime), QFontMetrics( font() ).width( KGlobal::locale() ->formatDateTime(
                          QDateTime ( QDate( 2099, 12, 29 ), QTime( 23, 59 ) ) ) ) + 3 );
    }
-   if ( _config->readBoolEntry( "Perm Column", _PermColumn ) ) {
+   if ( group.readEntry( "Perm Column", _PermColumn ) ) {
       newColumn( KrDetailedViewProperties::Permissions );
       setColumnWidthMode( COLUMN(Permissions), Q3ListView::Manual );
       setColumnWidth( COLUMN(Permissions), QFontMetrics( font() ).width( "drwxrwxrwx" ) );
    }
-   if ( _config->readBoolEntry( "KrPerm Column", _KrPermColumn ) ) {
+   if ( group.readEntry( "KrPerm Column", _KrPermColumn ) ) {
       newColumn( KrDetailedViewProperties::KrPermissions );
       setColumnWidthMode( COLUMN(KrPermissions), Q3ListView::Manual );
       setColumnWidth( COLUMN(KrPermissions), QFontMetrics( font() ).width( "RWX" ) );
    }
-   if ( _config->readBoolEntry( "Owner Column", _OwnerColumn ) ) {
+   if ( group.readEntry( "Owner Column", _OwnerColumn ) ) {
       newColumn( KrDetailedViewProperties::Owner );
       setColumnWidthMode( COLUMN(Owner), Q3ListView::Manual );
       setColumnWidth( COLUMN(Owner), QFontMetrics( font() ).width( 'X' ) * 6 );
    }
-   if ( _config->readBoolEntry( "Group Column", _GroupColumn ) ) {
+   if ( group.readEntry( "Group Column", _GroupColumn ) ) {
       newColumn( KrDetailedViewProperties::Group );
       setColumnWidthMode( COLUMN(Group), Q3ListView::Manual );
       setColumnWidth( COLUMN(Group), QFontMetrics( font() ).width( 'X' ) * 6 );
@@ -439,8 +439,8 @@ void KrDetailedView::slotClicked( Q3ListViewItem *item ) {
    if ( !modifierPressed ) {
       if ( singleClicked && !renameTimer.isActive() ) {
          KSharedConfigPtr config = KGlobal::config();
-         config->setGroup( "KDE" );
-         int doubleClickInterval = config->readNumEntry( "DoubleClickInterval", 400 );
+         KConfigGroup group( krConfig, "KDE" );
+         int doubleClickInterval = group.readEntry( "DoubleClickInterval", 400 );
 
          int msecsFromLastClick = clickTime.msecsTo( QTime::currentTime() );
 
@@ -477,8 +477,8 @@ void KrDetailedView::prepareForPassive() {
    CANCEL_TWO_CLICK_RENAME;
    if ( renameLineEdit() ->isVisible() )
       renameLineEdit() ->clearFocus();
-   KConfigGroup grpSvr = _config->group( "Look&Feel" );
-   if ( _config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
+   KConfigGroup grpSvr( _config, "Look&Feel" );
+   if ( grpSvr.readEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
       if ( MAIN_VIEW ) {
          if ( ACTIVE_PANEL ) {
             if ( ACTIVE_PANEL->quickSearch ) {
@@ -607,8 +607,8 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
    }
 
    // stop quick search in case a mouse click occured
-   KConfigGroup grpSvr = _config->group( "Look&Feel" );
-   if ( _config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
+   KConfigGroup grpSvr( _config, "Look&Feel" );
+    if ( grpSvr.readEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
       if ( MAIN_VIEW ) {
          if ( ACTIVE_PANEL ) {
             if ( ACTIVE_PANEL->quickSearch ) {
@@ -854,8 +854,8 @@ void KrDetailedView::imStartEvent(QIMEvent* e)
     ACTIVE_PANEL->quickSearch->myIMStartEvent( e );
     return ;
   }else {
-    KConfigGroup grpSvr = _config->group( "Look&Feel" );
-    if ( !_config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) )
+    KConfigGroup grpSvr( _config, "Look&Feel" );
+    if ( !grpSvr.readEntry( "New Style Quicksearch", _NewStyleQuicksearch ) )
       K3ListView::imStartEvent( e );
     else {
 							// first, show the quicksearch if its hidden
@@ -1129,8 +1129,8 @@ mark:       if (KrSelectionMode::getSelectionHandler()->spaceMovesDown())
             //if ( _config->readBoolEntry( "Do Quicksearch", _DoQuicksearch ) ) {
                // are we using krusader's classic quicksearch, or wincmd style?
                {
-						KConfigGroup grpSvr = _config->group( "Look&Feel" );
-						if ( !_config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) )
+						KConfigGroup grpSvr( _config, "Look&Feel" );
+						if ( !grpSvr.readEntry( "New Style Quicksearch", _NewStyleQuicksearch ) )
 							K3ListView::keyPressEvent( e );
 						else {
 							// first, show the quicksearch if its hidden
@@ -1206,8 +1206,8 @@ void KrDetailedView::renameCurrentItem() {
    if ( c >= 0 ) {
       rename( static_cast<Q3ListViewItem*>( it ), c );
       // if applicable, select only the name without extension
-      KConfigGroup svr = krConfig->group( "Look&Feel" );
-      if (!krConfig->readBoolEntry("Rename Selects Extension", true)) {
+      KConfigGroup svr( krConfig, "Look&Feel" );
+      if (!svr.readEntry("Rename Selects Extension", true)) {
 	if (it->hasExtension() && !it->VF->vfile_isDir() ) 
 		renameLineEdit()->setSelection(0, it->name().findRev(it->extension())-1);
       }
@@ -1266,8 +1266,8 @@ void KrDetailedView::quickSearch( const QString & str, int direction ) {
    KrViewItem * item = getCurrentKrViewItem();
    if (!item)
       return;
-   KConfigGroup grpSvr = _config->group( "Look&Feel" );
-   bool caseSensitive = _config->readBoolEntry( "Case Sensitive Quicksearch", _CaseSensitiveQuicksearch );
+   KConfigGroup grpSvr( _config, "Look&Feel" );
+   bool caseSensitive = grpSvr.readEntry( "Case Sensitive Quicksearch", _CaseSensitiveQuicksearch );
    if ( !direction ) {
       if ( caseSensitive ? item->name().startsWith( str ) : item->name().toLower().startsWith( str.toLower() ) )
          return ;
@@ -1311,9 +1311,9 @@ void KrDetailedView::slotMouseClicked( int button, Q3ListViewItem * item, const 
 }
 
 void KrDetailedView::refreshColors() {
-   krConfig->setGroup("Colors");
-   bool kdeDefault = krConfig->readBoolEntry("KDE Default"); 
-   bool alternateBackgroundEnabled = krConfig->readBoolEntry("Enable Alternate Background"); 
+   KConfigGroup group( krConfig, "Colors" );
+   bool kdeDefault = group.readEntry("KDE Default", _KDEDefaultColors);
+   bool alternateBackgroundEnabled = group.readEntry("Enable Alternate Background", _AlternateBackground); 
    if ( !kdeDefault ) {
       // KDE default is not choosen: set the background color (as this paints the empty areas) and the alternate color
       bool isActive = hasFocus();
@@ -1390,25 +1390,25 @@ void KrDetailedView::initOperator() {
 
 void KrDetailedView::initProperties() {
 	_properties = new KrDetailedViewProperties;
-	KConfigGroup grpSvr = _config->group( "Look&Feel" );
+	KConfigGroup grpSvr( _config, "Look&Feel" );
 	for (int i=0; i<KrDetailedViewProperties::MAX_COLUMNS;++i)
 		PROPS->column[i]=-1;	
-	PROPS->displayIcons = _config->readBoolEntry( "With Icons", _WithIcons );
-	bool dirsByNameAlways = _config->readBoolEntry("Always sort dirs by name", false);
+	PROPS->displayIcons = grpSvr.readEntry( "With Icons", _WithIcons );
+	bool dirsByNameAlways = grpSvr.readEntry("Always sort dirs by name", false);
 	PROPS->sortMode = static_cast<KrViewProperties::SortSpec>( KrViewProperties::Name |
 			KrViewProperties::Descending | KrViewProperties::DirsFirst | 
 			(dirsByNameAlways ? KrViewProperties::AlwaysSortDirsByName : 0) );
-	PROPS->numericPermissions = _config->readBoolEntry("Numeric permissions", _NumericPermissions);
-	if ( !_config->readBoolEntry( "Case Sensative Sort", _CaseSensativeSort ) )
+	PROPS->numericPermissions = grpSvr.readEntry("Numeric permissions", _NumericPermissions);
+	if ( !grpSvr.readEntry( "Case Sensative Sort", _CaseSensativeSort ) )
       	PROPS->sortMode = static_cast<KrViewProperties::SortSpec>( _properties->sortMode |
 				 KrViewProperties::IgnoreCase );
-	PROPS->humanReadableSize = krConfig->readBoolEntry("Human Readable Size", _HumanReadableSize);
+	PROPS->humanReadableSize = grpSvr.readEntry("Human Readable Size", _HumanReadableSize);
 	PROPS->localeAwareCompareIsCaseSensitive = QString( "a" ).localeAwareCompare( "B" ) > 0; // see KDE bug #40131
 	QStringList defaultAtomicExtensions;
 	defaultAtomicExtensions += ".tar.gz";
 	defaultAtomicExtensions += ".tar.bz2";
 	defaultAtomicExtensions += ".moc.cpp";
-	QStringList atomicExtensions = krConfig->readListEntry("Atomic Extensions", defaultAtomicExtensions);
+	QStringList atomicExtensions = grpSvr.readEntry("Atomic Extensions", defaultAtomicExtensions);
 	for (QStringList::iterator i = atomicExtensions.begin(); i != atomicExtensions.end(); )
 	{
 		QString & ext = *i;
@@ -1486,40 +1486,40 @@ void KrDetailedView::selectColumns()
   if( res->data().canConvert<int>() )
     result = res->data().toInt();
 
-  krConfig->setGroup( nameInKConfig() );
+  KConfigGroup group( krConfig, nameInKConfig() );
   
   switch( result - COLUMN_POPUP_IDS )
   {
   case KrDetailedViewProperties::Extention:
-    krConfig->writeEntry( "Ext Column", !hasExtention );
+    group.writeEntry( "Ext Column", !hasExtention );
     refresh = true;
     break;
   case KrDetailedViewProperties::Mime:
-    krConfig->writeEntry( "Mime Column", !hasMime );
+    group.writeEntry( "Mime Column", !hasMime );
     refresh = true;
     break;
   case KrDetailedViewProperties::Size:
-    krConfig->writeEntry( "Size Column", !hasSize );
+    group.writeEntry( "Size Column", !hasSize );
     refresh = true;
     break;
   case KrDetailedViewProperties::DateTime:
-    krConfig->writeEntry( "DateTime Column", !hasDate );
+    group.writeEntry( "DateTime Column", !hasDate );
     refresh = true;
     break;
   case KrDetailedViewProperties::Permissions:
-    krConfig->writeEntry( "Perm Column", !hasPerms );
+    group.writeEntry( "Perm Column", !hasPerms );
     refresh = true;
     break;
   case KrDetailedViewProperties::KrPermissions:
-    krConfig->writeEntry( "KrPerm Column", !hasKrPerms );
+    group.writeEntry( "KrPerm Column", !hasKrPerms );
     refresh = true;
     break;
   case KrDetailedViewProperties::Owner:
-    krConfig->writeEntry( "Owner Column", !hasOwner );
+    group.writeEntry( "Owner Column", !hasOwner );
     refresh = true;
     break;
   case KrDetailedViewProperties::Group:
-    krConfig->writeEntry( "Group Column", !hasGroup );
+    group.writeEntry( "Group Column", !hasGroup );
     refresh = true;
     break;
   }

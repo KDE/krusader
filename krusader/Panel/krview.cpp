@@ -93,11 +93,11 @@ void KrView::init() {
 }
 
 QPixmap KrView::getIcon( vfile *vf /*, KRListItem::cmpColor color*/ ) {
-   //krConfig->setGroup("Advanced");
+   // KConfigGroup ag( krConfig, "Advanced");
    //////////////////////////////
    QPixmap icon;
    QString icon_name = vf->vfile_getIcon();
-   //QPixmapCache::setCacheLimit( krConfig->readNumEntry("Icon Cache Size",_IconCacheSize) );
+   //QPixmapCache::setCacheLimit( ag.readEntry("Icon Cache Size",_IconCacheSize) );
 
    if( icon_name.isNull() )
      icon_name="";
@@ -177,8 +177,8 @@ QString KrView::statistics() {
 }
 
 void KrView::changeSelection( const KRQuery& filter, bool select, bool includeDirs ) {
-   KConfigGroup grpSvr = _config->group( "Look&Feel" );
-   bool markDirs = _config->readBoolEntry( "Mark Dirs", _MarkDirs ) || includeDirs;
+   KConfigGroup grpSvr( _config, "Look&Feel" );
+   bool markDirs = grpSvr.readEntry( "Mark Dirs", _MarkDirs ) || includeDirs;
 
    KrViewItem *temp = getCurrentKrViewItem();
    for ( KrViewItem * it = getFirst(); it != 0; it = getNext( it ) ) {
@@ -209,8 +209,8 @@ void KrView::changeSelection( const KRQuery& filter, bool select, bool includeDi
 }
 
 void KrView::invertSelection() {
-   KConfigGroup grpSvr = _config->group( "Look&Feel" );
-   bool markDirs = _config->readBoolEntry( "Mark Dirs", _MarkDirs );
+   KConfigGroup grpSvr( _config, "Look&Feel" );
+   bool markDirs = grpSvr.readEntry( "Mark Dirs", _MarkDirs );
 
    KrViewItem *temp = getCurrentKrViewItem();
    for ( KrViewItem * it = getFirst(); it != 0; it = getNext( it ) ) {

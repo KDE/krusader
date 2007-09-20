@@ -34,11 +34,11 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	Q3GridLayout * layout = new Q3GridLayout(this, 1, 1);
 	
 	// loading the splitter sizes
-	krConfig->setGroup( "Private" );
+	KConfigGroup pg( krConfig, "Private" );
 	if( left )
-		splitterSizes = krConfig->readEntry( "Left PanelPopup Splitter Sizes", QList<int>() );
+		splitterSizes = pg.readEntry( "Left PanelPopup Splitter Sizes", QList<int>() );
 	else
-		splitterSizes = krConfig->readEntry( "Right PanelPopup Splitter Sizes", QList<int>() );
+		splitterSizes = pg.readEntry( "Right PanelPopup Splitter Sizes", QList<int>() );
 	
 	if( splitterSizes.count() < 2 ) {
 		splitterSizes.clear();
@@ -50,8 +50,8 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	dataLine = new KrSqueezedTextLabel(this);
 	dataLine->setText("blah blah");
 	connect( dataLine, SIGNAL( clicked() ), this, SLOT( setFocus() ) );
-	krConfig->setGroup( "Look&Feel" );
-   dataLine->setFont( krConfig->readEntry( "Filelist Font", *_FilelistFont ) );
+	KConfigGroup lg( krConfig, "Look&Feel" );
+   dataLine->setFont( lg.readEntry( "Filelist Font", *_FilelistFont ) );
    // --- hack: setup colors to be the same as an inactive panel
 	dataLine->setBackgroundMode( Qt::PaletteBackground );
 	QPalette q( dataLine->palette() );
@@ -162,8 +162,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	QLabel *selectLabel = new QLabel(i18n("Quick Select"), quickPanel);
 	quickSelectCombo = new KComboBox( quickPanel );
 	quickSelectCombo->setEditable( true );
-	krConfig->setGroup( "Private" );
-	QStringList lst = krConfig->readEntry( "Predefined Selections", QStringList() );
+	QStringList lst = pg.readEntry( "Predefined Selections", QStringList() );
 	if ( lst.count() > 0 )
 		quickSelectCombo->addItems( lst );
 	quickSelectCombo->setCurrentText( "*" );
@@ -203,11 +202,11 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
    // set the wanted widget
 	// ugly: are we left or right?
 	int id;
-	krConfig->setGroup("Startup");
+	KConfigGroup sg( krConfig, "Startup");
 	if (left) {
-		id = krConfig->readNumEntry("Left Panel Popup", _LeftPanelPopup);
+		id = sg.readEntry("Left Panel Popup", _LeftPanelPopup);
 	} else {
-		id = krConfig->readNumEntry("Right Panel Popup", _RightPanelPopup);	
+		id = sg.readEntry("Right Panel Popup", _RightPanelPopup);	
 	}
 	btns->setButton(id);
 
@@ -261,15 +260,15 @@ void PanelPopup::setFocus() {
 }
 
 void PanelPopup::saveSizes() {
-  krConfig->setGroup( "Private" );
+  KConfigGroup group( krConfig, "Private" );
 
   if( !isHidden() )
     splitterSizes = splitter->sizes();
 
   if( _left )
-    krConfig->writeEntry( "Left PanelPopup Splitter Sizes", splitterSizes );
+    group.writeEntry( "Left PanelPopup Splitter Sizes", splitterSizes );
   else
-    krConfig->writeEntry( "Right PanelPopup Splitter Sizes", splitterSizes );
+    group.writeEntry( "Right PanelPopup Splitter Sizes", splitterSizes );
 }
 
 void PanelPopup::handleOpenUrlRequest(const KUrl &url) {
@@ -363,11 +362,11 @@ void PanelPopup::quickSelect(const QString &mask) {
 }
 
 void PanelPopup::quickSelectStore() {
-        krConfig->setGroup( "Private" );
-        QStringList lst = krConfig->readListEntry( "Predefined Selections" );
+	KConfigGroup group( krConfig, "Private" );
+        QStringList lst = group.readEntry( "Predefined Selections", QStringList() );
         if ( lst.find(quickSelectCombo->currentText()) == lst.end() )
            lst.append( quickSelectCombo->currentText() );
-        krConfig->writeEntry( "Predefined Selections", lst );
+        group.writeEntry( "Predefined Selections", lst );
 }
 
 void PanelPopup::slotDroppedOnTree(QWidget *widget, QDropEvent *e, KUrl::List &lst, KUrl &) {

@@ -131,8 +131,8 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
    connect( mediaButton, SIGNAL( openUrl( const KUrl& ) ), func, SLOT( openUrl( const KUrl& ) ) );
 
    status = new KrSqueezedTextLabel( this );
-   krConfig->setGroup( "Look&Feel" );
-   status->setFont( krConfig->readEntry( "Filelist Font", *_FilelistFont ) );
+   KConfigGroup group( krConfig, "Look&Feel" );
+   status->setFont( group.readEntry( "Filelist Font", *_FilelistFont ) );
    status->setBackgroundMode( Qt::PaletteBackground );
    status->setFrameStyle( Q3Frame::Box | Q3Frame::Raised );
    status->setLineWidth( 1 );		// a nice 3D touch :-)
@@ -163,8 +163,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
 										 
    Q3HBoxLayout *totalsLayout = new Q3HBoxLayout;
 	totals = new KrSqueezedTextLabel( this );
-   krConfig->setGroup( "Look&Feel" );
-   totals->setFont( krConfig->readEntry( "Filelist Font", *_FilelistFont ) );
+   totals->setFont( group.readEntry( "Filelist Font", *_FilelistFont ) );
    totals->setFrameStyle( Q3Frame::Box | Q3Frame::Raised );
    totals->setBackgroundMode( Qt::PaletteBackground );
    totals->setLineWidth( 1 );		// a nice 3D touch :-)
@@ -193,8 +192,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
 	totalsLayout->addWidget(popupBtn);
    
    quickSearch = new KrQuickSearch( this );
-   krConfig->setGroup( "Look&Feel" );
-   quickSearch->setFont( krConfig->readEntry( "Filelist Font", *_FilelistFont ) );
+   quickSearch->setFont( group.readEntry( "Filelist Font", *_FilelistFont ) );
    quickSearch->setFrameStyle( Q3Frame::Box | Q3Frame::Raised );
    quickSearch->setLineWidth( 1 );		// a nice 3D touch :-)
    quickSearch->setMaximumHeight( sheight );
@@ -202,7 +200,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
    Q3HBox * hbox = new Q3HBox( this );
 
 	// clear-origin button
-	bool clearButton = krConfig->readBoolEntry("Clear Location Bar Visible", _ClearLocation);
+	bool clearButton = group.readEntry("Clear Location Bar Visible", _ClearLocation);
 	if (clearButton){
 		clearOrigin = new QToolButton(hbox, "clearorigin");
 		clearOrigin->setPixmap(krLoader->loadIcon("locationbar_erase", K3Icon::Toolbar, 16));
@@ -435,36 +433,36 @@ QString ListPanel::realPath() const {
 
 
 void ListPanel::setPanelToolbar() {
-   krConfig->setGroup( "Look&Feel" );
+   KConfigGroup group( krConfig, "Look&Feel" );
 
-   bool panelToolBarVisible = krConfig->readBoolEntry( "Panel Toolbar visible", _PanelToolBar );
+   bool panelToolBarVisible = group.readEntry( "Panel Toolbar visible", _PanelToolBar );
 
-   if ( panelToolBarVisible && ( krConfig->readBoolEntry( "Root Button Visible", _cdRoot ) ) )
+   if ( panelToolBarVisible && ( group.readEntry( "Root Button Visible", _cdRoot ) ) )
       cdRootButton->show();
    else
       cdRootButton->hide();
 
-   if ( panelToolBarVisible && ( krConfig->readBoolEntry( "Home Button Visible", _cdHome ) ) )
+   if ( panelToolBarVisible && ( group.readEntry( "Home Button Visible", _cdHome ) ) )
       cdHomeButton->show();
    else
       cdHomeButton->hide();
 
-   if ( panelToolBarVisible && ( krConfig->readBoolEntry( "Up Button Visible", _cdUp ) ) )
+   if ( panelToolBarVisible && ( group.readEntry( "Up Button Visible", _cdUp ) ) )
       cdUpButton->show();
    else
       cdUpButton->hide();
 
-   if ( panelToolBarVisible && ( krConfig->readBoolEntry( "Equal Button Visible", _cdOther ) ) )
+   if ( panelToolBarVisible && ( group.readEntry( "Equal Button Visible", _cdOther ) ) )
       cdOtherButton->show();
    else
       cdOtherButton->hide();
 
-   if ( !panelToolBarVisible || ( krConfig->readBoolEntry( "Open Button Visible", _Open ) ) )
+   if ( !panelToolBarVisible || ( group.readEntry( "Open Button Visible", _Open ) ) )
       origin->button() ->show();
    else
       origin->button() ->hide();
 
-   if ( panelToolBarVisible && ( krConfig->readBoolEntry( "SyncBrowse Button Visible", _syncBrowseButton ) ) )
+   if ( panelToolBarVisible && ( group.readEntry( "SyncBrowse Button Visible", _syncBrowseButton ) ) )
       syncBrowseButton->show();
    else
       syncBrowseButton->hide();
@@ -529,10 +527,10 @@ void ListPanel::invertSelection() {
 }
 
 void ListPanel::compareDirs() {
-   krConfig->setGroup( "Private" );
-   int compareMode = krConfig->readNumEntry( "Compare Mode", 0 );
-   krConfig->setGroup( "Look&Feel" );
-   bool selectDirs = krConfig->readBoolEntry( "Mark Dirs", false );
+   KConfigGroup pg( krConfig, "Private" );
+   int compareMode = pg.readEntry( "Compare Mode", 0 );
+   KConfigGroup group( krConfig, "Look&Feel" );
+   bool selectDirs = group.readEntry( "Mark Dirs", false );
   
    KrViewItem *item, *otherItem;
   
@@ -585,7 +583,6 @@ void ListPanel::compareDirs() {
 void ListPanel::slotFocusOnMe() {
    // give this VFS the focus (the path bar)
    // we start by calling the KVFS function
-   krConfig->setGroup( "Look&Feel" );
 
    // take care of the 'otherpanel'
    QPalette q( otherPanel->status->palette() );

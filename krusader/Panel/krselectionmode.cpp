@@ -15,8 +15,8 @@ KrSelectionMode* KrSelectionMode::getSelectionHandler()
 	if (__currentSelectionMode) { // don't check krConfig every time
 		return __currentSelectionMode;
 	} else { // nothing yet, set the correct one
-		krConfig->setGroup( "Look&Feel" );
-   	QString mode = krConfig->readEntry("Mouse Selection", "");
+	KConfigGroup group( krConfig, "Look&Feel" );
+   	QString mode = group.readEntry("Mouse Selection", QString("") );
 		switch (mode.toInt()) {
 			case 0:
 				__currentSelectionMode = &originalSelectionMode;
@@ -45,17 +45,17 @@ void KrSelectionMode::resetSelectionHandler() {
 }
 
 void UserSelectionMode::init() {
-	krConfig->setGroup("Custom Selection Mode");
-	_useQTSelection = krConfig->readBoolEntry("QT Selection", _QtSelection);
-	_leftButtonSelects = krConfig->readBoolEntry("Left Selects", _LeftSelects);
-	_leftButtonPreservesSelection = krConfig->readBoolEntry("Left Preserves", _LeftPreserves);
-	_shiftCtrlLeftButtonSelects = krConfig->readBoolEntry("ShiftCtrl Left Selects", _ShiftCtrlLeft);
-	_rightButtonSelects = krConfig->readBoolEntry("Right Selects", _RightSelects);
-	_rightButtonPreservesSelection = krConfig->readBoolEntry("Right Preserves", _RightPreserves);
-	_shiftCtrlRightButtonSelects = krConfig->readBoolEntry("ShiftCtrl Right Selects", _ShiftCtrlRight);
-	_spaceMovesDown = krConfig->readBoolEntry("Space Moves Down", _SpaceMovesDown);
-	_spaceCalculatesDiskSpace = krConfig->readBoolEntry("Space Calc Space", _SpaceCalcSpace);
-	_insertMovesDown = krConfig->readBoolEntry("Insert Moves Down", _InsertMovesDown);
-	_showContextMenu = (krConfig->readBoolEntry("Immediate Context Menu", _ImmediateContextMenu) ? -1 : 500);
+	KConfigGroup group( krConfig, "Custom Selection Mode");
+	_useQTSelection = group.readEntry("QT Selection", _QtSelection);
+	_leftButtonSelects = group.readEntry("Left Selects", _LeftSelects);
+	_leftButtonPreservesSelection = group.readEntry("Left Preserves", _LeftPreserves);
+	_shiftCtrlLeftButtonSelects = group.readEntry("ShiftCtrl Left Selects", _ShiftCtrlLeft);
+	_rightButtonSelects = group.readEntry("Right Selects", _RightSelects);
+	_rightButtonPreservesSelection = group.readEntry("Right Preserves", _RightPreserves);
+	_shiftCtrlRightButtonSelects = group.readEntry("ShiftCtrl Right Selects", _ShiftCtrlRight);
+	_spaceMovesDown = group.readEntry("Space Moves Down", _SpaceMovesDown);
+	_spaceCalculatesDiskSpace = group.readEntry("Space Calc Space", _SpaceCalcSpace);
+	_insertMovesDown = group.readEntry("Insert Moves Down", _InsertMovesDown);
+	_showContextMenu = (group.readEntry("Immediate Context Menu", _ImmediateContextMenu) ? -1 : 500);
 }
 

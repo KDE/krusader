@@ -154,24 +154,24 @@ class KrColorSettingsImpl
 
 void KrColorSettingsImpl::loadFromConfig()
 {
-	krConfig->setGroup("Colors");
+	KConfigGroup group( krConfig, "Colors" );
 	QStringList names = KrColorSettingNames::getColorNames();
 	for ( QStringList::Iterator it = names.begin(); it != names.end(); ++it )
 	{
-		m_colorTextValues[*it] = krConfig->readEntry(*it, QString());
-		m_colorValues[*it] = krConfig->readEntry(*it, QColor() );
+		m_colorTextValues[*it] = group.readEntry(*it, QString());
+		m_colorValues[*it] = group.readEntry(*it, QColor() );
 	}
 	names = KrColorSettingNames::getNumNames();
 	for ( QStringList::Iterator it = names.begin(); it != names.end(); ++it )
 	{
-		if (krConfig->readEntry(*it, QString()) != QString())
-			m_numValues[*it] = krConfig->readNumEntry(*it);
+		if (group.readEntry(*it, QString()) != QString())
+			m_numValues[*it] = group.readEntry(*it, (long long)0 );
 	}
 	names = KrColorSettingNames::getBoolNames();
 	for ( QStringList::Iterator it = names.begin(); it != names.end(); ++it )
 	{
-		if (krConfig->readEntry(*it, QString()) != QString())
-			m_boolValues[*it] = krConfig->readBoolEntry(*it);
+		if (group.readEntry(*it, QString()) != QString())
+			m_boolValues[*it] = group.readEntry(*it, false);
 	}
 }
 
@@ -654,7 +654,6 @@ QColor KrColorCacheImpl::getCurrentMarkedForegroundColor(bool isActive) const
 
 QColor KrColorCacheImpl::dimColor(QColor color, bool /* isBackgroundColor */) const
 {
-	krConfig->setGroup("Colors");
 	int dimFactor = m_colorSettings.getNumValue("Dim Factor", 100);
 	QColor targetColor = m_colorSettings.getColorValue("Dim Target Color");
 	if (!targetColor.isValid())
