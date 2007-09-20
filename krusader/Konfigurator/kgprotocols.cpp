@@ -301,14 +301,14 @@ void KgProtocols::loadInitialValues()
   while( linkList->childCount() != 0 )
     removeProtocol( linkList->firstChild()->text( 0 ) );
   
-  krConfig->setGroup( "Protocols" );
-  QStringList protList = krConfig->readListEntry( "Handled Protocols" );
+  KConfigGroup group( krConfig, "Protocols" );
+  QStringList protList = group.readEntry( "Handled Protocols", QStringList() );
     
   for( QStringList::Iterator it = protList.begin(); it != protList.end(); it++ ) 
   {
     addProtocol( *it );
     
-    QStringList mimes = krConfig->readListEntry( QString( "Mimes For %1" ).arg( *it ) );
+    QStringList mimes = group.readEntry( QString( "Mimes For %1" ).arg( *it ), QStringList() );
     
     for( QStringList::Iterator it2 = mimes.begin(); it2 != mimes.end(); it2++ )
       addMime( *it2, *it );
@@ -345,8 +345,8 @@ void KgProtocols::setDefaults()
 
 bool KgProtocols::isChanged()
 {
-  krConfig->setGroup( "Protocols" );
-  QStringList protList = krConfig->readListEntry( "Handled Protocols" );
+  KConfigGroup group( krConfig, "Protocols" );
+  QStringList protList = group.readEntry( "Handled Protocols", QStringList() );
   
   if( (int)protList.count() != linkList->childCount() )
     return true;
@@ -357,7 +357,7 @@ bool KgProtocols::isChanged()
     if( !protList.contains( item->text( 0 ) ) )
       return true;
       
-    QStringList mimes = krConfig->readListEntry( QString( "Mimes For %1" ).arg( item->text( 0 ) ) );
+    QStringList mimes = group.readEntry( QString( "Mimes For %1" ).arg( item->text( 0 ) ), QStringList() );
     
     if( (int)mimes.count() != item->childCount() )
       return true;
@@ -377,7 +377,7 @@ bool KgProtocols::isChanged()
 
 bool KgProtocols::apply()
 {
-  krConfig->setGroup( "Protocols" );
+  KConfigGroup group( krConfig, "Protocols" );
   
   QStringList protocolList;
   
@@ -393,11 +393,11 @@ bool KgProtocols::apply()
       mimes.append( childs->text( 0 ) );
       childs = childs->nextSibling();
     }
-    krConfig->writeEntry( QString( "Mimes For %1" ).arg( item->text( 0 ) ), mimes );
+    group.writeEntry( QString( "Mimes For %1" ).arg( item->text( 0 ) ), mimes );
     
     item = item->nextSibling();
   }  
-  krConfig->writeEntry( "Handled Protocols", protocolList );
+  group.writeEntry( "Handled Protocols", protocolList );
   krConfig->sync();  
   
   KrServices::clearProtocolCache();
@@ -410,11 +410,11 @@ void KgProtocols::init()
 {
   if( !krConfig->groupList().contains( "Protocols" ) )
   {
-    krConfig->setGroup( "Protocols" );
-    krConfig->writeEntry( "Handled Protocols", defaultProtocols );
-    krConfig->writeEntry( "Mimes For iso",     defaultIsoMimes );
-    krConfig->writeEntry( "Mimes For krarc",   defaultKrarcMimes );
-	 krConfig->writeEntry( "Mimes For tar",     defaultTarMimes );
+    KConfigGroup group( krConfig, "Protocols" );
+    group.writeEntry( "Handled Protocols", defaultProtocols );
+    group.writeEntry( "Mimes For iso",     defaultIsoMimes );
+    group.writeEntry( "Mimes For krarc",   defaultKrarcMimes );
+    group.writeEntry( "Mimes For tar",     defaultTarMimes );
   }
 }
 

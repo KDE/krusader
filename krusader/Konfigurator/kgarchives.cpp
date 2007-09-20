@@ -136,21 +136,21 @@ void KgArchives::disableNonExistingPackers()
   cbs->find( "Do DEB" )->setEnabled(PS("dpkg") && PS("tar") );
   cbs->find( "Do 7z" )->setEnabled( PS("7z") );
 
-  krConfig->setGroup( "Archives" );
-  krConfig->writeEntry( "Supported Packers", lst );
+  KConfigGroup group( krConfig, "Archives" );
+  group.writeEntry( "Supported Packers", lst );
 }
 
 bool KgArchives::apply()
 {
-  krConfig->setGroup( "Archives" );
-  krConfig->writeEntry("Supported Packers",KRarcHandler::supportedPackers());
+  KConfigGroup group( krConfig, "Archives" );
+  group.writeEntry("Supported Packers",KRarcHandler::supportedPackers());
   return KonfiguratorPage::apply();
 }
 
 void KgArchives::setDefaults()
 {
-  krConfig->setGroup( "Archives" );
-  krConfig->writeEntry("Supported Packers",KRarcHandler::supportedPackers());
+  KConfigGroup group( krConfig, "Archives" );
+  group.writeEntry("Supported Packers",KRarcHandler::supportedPackers());
   return KonfiguratorPage::setDefaults();
 }
 

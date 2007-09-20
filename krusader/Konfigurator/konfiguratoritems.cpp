@@ -114,15 +114,14 @@ KonfiguratorCheckBox::~KonfiguratorCheckBox()
 
 void KonfiguratorCheckBox::loadInitialValue()
 {
-  krConfig->setGroup( ext->getCfgClass() );
-  setChecked( krConfig->readBoolEntry( ext->getCfgName(), defaultValue ) );
+  KConfigGroup group( krConfig, ext->getCfgClass() );
+  setChecked( group.readEntry( ext->getCfgName(), defaultValue ) );
   ext->setChanged( false );
 }
 
 void KonfiguratorCheckBox::slotApply(QObject *,QString cls, QString name)
 {
-  krConfig->setGroup( cls );
-  krConfig->writeEntry( name, isChecked() );
+  KConfigGroup( krConfig, cls ).writeEntry( name, isChecked() );
 }
 
 void KonfiguratorCheckBox::slotSetDefaults(QObject *)
@@ -158,15 +157,14 @@ KonfiguratorSpinBox::~KonfiguratorSpinBox()
 
 void KonfiguratorSpinBox::loadInitialValue()
 {
-  krConfig->setGroup( ext->getCfgClass() );
-  setValue( krConfig->readNumEntry( ext->getCfgName(), defaultValue ) );
+  KConfigGroup group( krConfig, ext->getCfgClass() );
+  setValue( group.readEntry( ext->getCfgName(), defaultValue ) );
   ext->setChanged( false );
 }
 
 void KonfiguratorSpinBox::slotApply(QObject *,QString cls, QString name)
 {
-  krConfig->setGroup( cls );
-  krConfig->writeEntry( name, value() );
+  KConfigGroup( krConfig, cls ).writeEntry( name, value() );
 }
 
 void KonfiguratorSpinBox::slotSetDefaults(QObject *)
@@ -267,8 +265,8 @@ void KonfiguratorRadioButtons::selectButton( QString value )
 
 void KonfiguratorRadioButtons::loadInitialValue()
 {
-  krConfig->setGroup( ext->getCfgClass() );
-  QString initValue = krConfig->readEntry( ext->getCfgName(), defaultValue );
+  KConfigGroup group( krConfig, ext->getCfgClass() );
+  QString initValue = group.readEntry( ext->getCfgName(), defaultValue );
 
   selectButton( initValue );
   ext->setChanged( false );
@@ -283,8 +281,7 @@ void KonfiguratorRadioButtons::slotApply(QObject *,QString cls, QString name)
   {
     if( btn->isChecked() )
     {
-      krConfig->setGroup( cls );
-      krConfig->writeEntry( name, radioValues[ cnt ] );
+      KConfigGroup( krConfig, cls ).writeEntry( name, radioValues[ cnt ] );
       break;
     }
 
@@ -322,15 +319,14 @@ KonfiguratorEditBox::~KonfiguratorEditBox()
 
 void KonfiguratorEditBox::loadInitialValue()
 {
-  krConfig->setGroup( ext->getCfgClass() );
-  setText( krConfig->readEntry( ext->getCfgName(), defaultValue ) );
+  KConfigGroup group( krConfig, ext->getCfgClass() );
+  setText( group.readEntry( ext->getCfgName(), defaultValue ) );
   ext->setChanged( false );
 }
 
 void KonfiguratorEditBox::slotApply(QObject *,QString cls, QString name)
 {
-  krConfig->setGroup( cls );
-  krConfig->writeEntry( name, text() );
+  KConfigGroup( krConfig, cls ).writeEntry( name, text() );
 }
 
 void KonfiguratorEditBox::slotSetDefaults(QObject *)
@@ -365,15 +361,14 @@ KonfiguratorURLRequester::~KonfiguratorURLRequester()
 
 void KonfiguratorURLRequester::loadInitialValue()
 {
-  krConfig->setGroup( ext->getCfgClass() );
-  setUrl( krConfig->readEntry( ext->getCfgName(), defaultValue ) );
+  KConfigGroup group( krConfig, ext->getCfgClass() );
+  setUrl( group.readEntry( ext->getCfgName(), defaultValue ) );
   ext->setChanged( false );
 }
 
 void KonfiguratorURLRequester::slotApply(QObject *,QString cls, QString name)
 {
-  krConfig->setGroup( cls );
-  krConfig->writeEntry( name, url() );
+  KConfigGroup( krConfig, cls ).writeEntry( name, url() );
 }
 
 void KonfiguratorURLRequester::slotSetDefaults(QObject *)
@@ -412,8 +407,8 @@ KonfiguratorFontChooser::~KonfiguratorFontChooser()
 
 void KonfiguratorFontChooser::loadInitialValue()
 {
-  krConfig->setGroup( ext->getCfgClass() );
-  font = krConfig->readEntry( ext->getCfgName(), *defaultValue );
+  KConfigGroup group( krConfig, ext->getCfgClass() );
+  font = group.readEntry( ext->getCfgName(), *defaultValue );
   ext->setChanged( false );
   setFont();
 }
@@ -426,8 +421,7 @@ void KonfiguratorFontChooser::setFont()
 
 void KonfiguratorFontChooser::slotApply(QObject *,QString cls, QString name)
 {
-  krConfig->setGroup( cls );
-  krConfig->writeEntry( name, font );
+  KConfigGroup( krConfig, cls ).writeEntry( name, font );
 }
 
 void KonfiguratorFontChooser::slotSetDefaults(QObject *)
@@ -482,8 +476,8 @@ KonfiguratorComboBox::~KonfiguratorComboBox()
 
 void KonfiguratorComboBox::loadInitialValue()
 {
-  krConfig->setGroup( ext->getCfgClass() );
-  QString select = krConfig->readEntry( ext->getCfgName(), defaultValue );
+  KConfigGroup group( krConfig, ext->getCfgClass() );
+  QString select = group.readEntry( ext->getCfgName(), defaultValue );
   selectEntry( select );
   ext->setChanged( false );
 }
@@ -499,8 +493,7 @@ void KonfiguratorComboBox::slotApply(QObject *,QString cls, QString name)
       break;
     }
   
-  krConfig->setGroup( cls );
-  krConfig->writeEntry( name, value );
+  KConfigGroup( krConfig, cls ).writeEntry( name, value );
 }
 
 void KonfiguratorComboBox::selectEntry( QString entry )
@@ -604,8 +597,8 @@ void KonfiguratorColorChooser::addColor( QString text, QColor color )
 
 void KonfiguratorColorChooser::loadInitialValue()
 {
-  krConfig->setGroup( ext->getCfgClass() );
-  QString selected = krConfig->readEntry( ext->getCfgName(), QString( "" ) );
+  KConfigGroup group( krConfig, ext->getCfgClass() );
+  QString selected = group.readEntry( ext->getCfgName(), QString( "" ) );
   setValue( selected );
   ext->setChanged( false );
 }
@@ -640,8 +633,7 @@ void KonfiguratorColorChooser::setDefaultText( QString text )
 
 void KonfiguratorColorChooser::slotApply(QObject *,QString cls, QString name)
 {
-  krConfig->setGroup( cls );
-  krConfig->writeEntry( name, getValue() );
+  KConfigGroup( krConfig, cls ).writeEntry( name, getValue() );
 }
 
 void KonfiguratorColorChooser::setValue( QString value )
@@ -667,11 +659,11 @@ void KonfiguratorColorChooser::setValue( QString value )
 
     if( ! found )
     {
-      krConfig->setGroup( ext->getCfgClass() );
-      krConfig->writeEntry( "TmpColor", value );
-      QColor color = krConfig->readEntry( "TmpColor", defaultValue );
+      KConfigGroup colGroup( krConfig, ext->getCfgClass() );
+      colGroup.writeEntry( "TmpColor", value );
+      QColor color = colGroup.readEntry( "TmpColor", defaultValue );
       customValue = color;
-      krConfig->deleteEntry( "TmpColor" );
+      colGroup.deleteEntry( "TmpColor" );
 
       setCurrentItem( 0 );
       for( unsigned i= 2+additionalColors.size(); i != palette.size(); i++ )
@@ -760,15 +752,14 @@ KonfiguratorListBox::~KonfiguratorListBox()
 
 void KonfiguratorListBox::loadInitialValue()
 {
-  krConfig->setGroup( ext->getCfgClass() );
-  setList( krConfig->readListEntry( ext->getCfgName().ascii(), defaultValue ) );
+  KConfigGroup group( krConfig, ext->getCfgClass() );
+  setList( group.readEntry( ext->getCfgName().ascii(), defaultValue ) );
   ext->setChanged( false );
 }
 
 void KonfiguratorListBox::slotApply(QObject *,QString cls, QString name)
 {
-  krConfig->setGroup( cls );
-  krConfig->writeEntry( name, list() );
+  KConfigGroup( krConfig, cls ).writeEntry( name, list() );
 }
 
 void KonfiguratorListBox::slotSetDefaults(QObject *)

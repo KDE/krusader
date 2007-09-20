@@ -147,14 +147,14 @@ void KgDependencies::slotApply( QObject *obj, QString cls, QString name )
 {
   KonfiguratorURLRequester *urlRequester = (KonfiguratorURLRequester *) obj;
 
-  krConfig->setGroup( cls );
-  krConfig->writeEntry( name, urlRequester->url().pathOrUrl() );
+  KConfigGroup group( krConfig, cls );
+  group.writeEntry( name, urlRequester->url().pathOrUrl() );
 
   QString usedPath = KrServices::fullPathName( name );
 
   if( urlRequester->url() != usedPath )
   {
-    krConfig->writeEntry( name, usedPath );
+    group.writeEntry( name, usedPath );
     if( usedPath.isEmpty() )
       KMessageBox::error( this, i18n( "The %1 path is incorrect, no valid path found." )
                           .arg( urlRequester->url().pathOrUrl() ) );
