@@ -592,15 +592,15 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
   if( file == root )
     return 0;
 
-  krConfig->setGroup( "General" );
-  bool trash = krConfig->readBoolEntry( "Move To Trash", _MoveToTrash );
+  KConfigGroup gg( krConfig, "General" );
+  bool trash = gg.readEntry( "Move To Trash", _MoveToTrash );
   KUrl url = vfs::fromPathOrUrl( file->fullPath() );
 
   if( calcPercents )
   {
     // now ask the user if he want to delete:
-    krConfig->setGroup( "Advanced" );
-    if ( krConfig->readBoolEntry( "Confirm Delete", _ConfirmDelete ) ) {
+    KConfigGroup ga( krConfig, "Advanced" );
+    if ( ga.readEntry( "Confirm Delete", _ConfirmDelete ) ) {
       QString s, b;
       if ( trash && url.isLocalFile() ) {
         s = i18n( "Do you really want to move this item to the trash?" );

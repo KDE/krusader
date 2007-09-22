@@ -101,10 +101,10 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags
     connect( url, SIGNAL( activated( const QString& )),
              url, SLOT( addToHistory( const QString& )));
     // load the history and completion list after creating the history combo
-    krConfig->setGroup("Private");
-    QStringList list = krConfig->readListEntry( "newFTP Completion list" );
+    KConfigGroup group( krConfig, "Private");
+    QStringList list = group.readEntry( "newFTP Completion list", QStringList() );
     url->completionObject()->setItems( list );
-    list = krConfig->readListEntry( "newFTP History list" );
+    list = group.readEntry( "newFTP History list", QStringList() );
     url->setHistoryItems( list );
 
     port = new QSpinBox( grid_host, "port" );

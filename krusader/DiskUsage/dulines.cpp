@@ -231,17 +231,17 @@ DULines::DULines( DiskUsage *usage, const char *name )
 
   int defaultSize = QFontMetrics(font()).width("W");
   
-  krConfig->setGroup( diskUsage->getConfigGroup() ); 
+  KConfigGroup group( krConfig, diskUsage->getConfigGroup() ); 
 
-  showFileSize = krConfig->readBoolEntry( "L Show File Size", true );
+  showFileSize = group.readEntry( "L Show File Size", true );
   
-  int lineWidth  = krConfig->readNumEntry("L Line Width",  defaultSize * 20 );    
+  int lineWidth  = group.readEntry("L Line Width",  defaultSize * 20 );    
   addColumn( i18n("Line View"), lineWidth );
   setColumnWidthMode(0,Q3ListView::Manual);
-  int precentWidth  = krConfig->readNumEntry("L Percent Width",  defaultSize * 6 );    
+  int precentWidth  = group.readEntry("L Percent Width",  defaultSize * 6 );    
   addColumn( i18n("Percent"), precentWidth );
   setColumnWidthMode(1,Q3ListView::Manual);
-  int nameWidth  = krConfig->readNumEntry("L Name Width",  defaultSize * 20 );
+  int nameWidth  = group.readEntry("L Name Width",  defaultSize * 20 );
   addColumn( i18n("Name"), nameWidth );
   setColumnWidthMode(2,Q3ListView::Manual);
   
@@ -266,11 +266,11 @@ DULines::DULines( DiskUsage *usage, const char *name )
 
 DULines::~DULines()
 {
-  krConfig->setGroup( diskUsage->getConfigGroup() ); 
-  krConfig->writeEntry("L Line Width",      columnWidth( 0 ) );
-  krConfig->writeEntry("L Percent Width",   columnWidth( 1 ) );
-  krConfig->writeEntry("L Name Width",      columnWidth( 2 ) );
-  krConfig->writeEntry("L Show File Size",  showFileSize );
+  KConfigGroup group( krConfig, diskUsage->getConfigGroup() ); 
+  group.writeEntry("L Line Width",      columnWidth( 0 ) );
+  group.writeEntry("L Percent Width",   columnWidth( 1 ) );
+  group.writeEntry("L Name Width",      columnWidth( 2 ) );
+  group.writeEntry("L Show File Size",  showFileSize );
   
   //delete toolTip;
 }

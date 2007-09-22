@@ -14,25 +14,24 @@ uint Config::defaultRingDepth = 4;
 Filelight::MapScheme Config::scheme;
 
 
-inline KConfig&
+inline KConfigGroup
 Filelight::Config::kconfig()
 {
     KSharedConfigPtr config = KGlobal::config();
-    config->setGroup( "DiskUsage" );
-    return *config;
+    return KConfigGroup( config, "DiskUsage" );
 }
 
 void
 Filelight::Config::read()
 {
-    const KConfig &config = kconfig();
+    KConfigGroup group = kconfig();
 
-    varyLabelFontSizes = config.readBoolEntry( "varyLabelFontSizes", true );
-    showSmallFiles     = config.readBoolEntry( "showSmallFiles", false );
-    contrast           = config.readNumEntry( "contrast", 50 );
-    antiAliasFactor    = config.readNumEntry( "antiAliasFactor", 2 );
-    minFontPitch       = config.readNumEntry( "minFontPitch", QFont().pointSize() - 3);
-    scheme = (MapScheme) config.readNumEntry( "scheme", 0 );
+    varyLabelFontSizes = group.readEntry( "varyLabelFontSizes", true );
+    showSmallFiles     = group.readEntry( "showSmallFiles", false );
+    contrast           = group.readEntry( "contrast", 50 );
+    antiAliasFactor    = group.readEntry( "antiAliasFactor", 2 );
+    minFontPitch       = group.readEntry( "minFontPitch", QFont().pointSize() - 3);
+    scheme = (MapScheme) group.readEntry( "scheme", 0 );
 
     defaultRingDepth   = 4;
 }
@@ -40,12 +39,12 @@ Filelight::Config::read()
 void
 Filelight::Config::write()
 {
-    KConfig &config = kconfig();
+    KConfigGroup group = kconfig();
 
-    config.writeEntry( "varyLabelFontSizes", varyLabelFontSizes );
-    config.writeEntry( "showSmallFiles", showSmallFiles);
-    config.writeEntry( "contrast", contrast );
-    config.writeEntry( "antiAliasFactor", antiAliasFactor );
-    config.writeEntry( "minFontPitch", minFontPitch );
-    config.writeEntry( "scheme", (int)scheme );
+    group.writeEntry( "varyLabelFontSizes", varyLabelFontSizes );
+    group.writeEntry( "showSmallFiles", showSmallFiles);
+    group.writeEntry( "contrast", contrast );
+    group.writeEntry( "antiAliasFactor", antiAliasFactor );
+    group.writeEntry( "minFontPitch", minFontPitch );
+    group.writeEntry( "scheme", (int)scheme );
 }

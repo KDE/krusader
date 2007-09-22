@@ -4,7 +4,7 @@
 
 #include <qstringlist.h>
 
-class KConfig;
+class KConfigGroup;
 
 
 namespace Filelight
@@ -13,7 +13,7 @@ namespace Filelight
 
     class Config
     {
-        static KConfig& kconfig();
+        static KConfigGroup kconfig();
 
     public:
         static void read();

@@ -54,32 +54,32 @@ DUListView::DUListView( DiskUsage *usage, const char *name )
 
   int defaultSize = QFontMetrics(font()).width("W");
   
-  krConfig->setGroup( diskUsage->getConfigGroup() ); 
-  int nameWidth  = krConfig->readNumEntry("D Name Width",  defaultSize * 20 );    
+  KConfigGroup group( krConfig, diskUsage->getConfigGroup() ); 
+  int nameWidth  = group.readEntry("D Name Width",  defaultSize * 20 );    
   addColumn( i18n("Name"), nameWidth );
   setColumnWidthMode(0,Q3ListView::Manual);
-  int percentWidth  = krConfig->readNumEntry("D Percent Width",  defaultSize * 5 );    
+  int percentWidth  = group.readEntry("D Percent Width",  defaultSize * 5 );    
   addColumn( i18n("Percent"), percentWidth );
   setColumnWidthMode(1,Q3ListView::Manual);
-  int totalSizeWidth  = krConfig->readNumEntry("D Total Size Width",  defaultSize * 10 );    
+  int totalSizeWidth  = group.readEntry("D Total Size Width",  defaultSize * 10 );    
   addColumn( i18n("Total size"), totalSizeWidth );
   setColumnWidthMode(1,Q3ListView::Manual);
-  int ownSizeWidth  = krConfig->readNumEntry("D Own Size Width",  defaultSize * 10 );    
+  int ownSizeWidth  = group.readEntry("D Own Size Width",  defaultSize * 10 );    
   addColumn( i18n("Own size"), ownSizeWidth );
   setColumnWidthMode(2,Q3ListView::Manual);
-  int typeWidth  = krConfig->readNumEntry("D Type Width",  defaultSize * 10 );
+  int typeWidth  = group.readEntry("D Type Width",  defaultSize * 10 );
   addColumn( i18n("Type"), typeWidth );
   setColumnWidthMode(3,Q3ListView::Manual);
-  int dateWidth  = krConfig->readNumEntry("D Date Width",  defaultSize * 10 );
+  int dateWidth  = group.readEntry("D Date Width",  defaultSize * 10 );
   addColumn( i18n("Date"), dateWidth );
   setColumnWidthMode(4,Q3ListView::Manual);
-  int permissionsWidth  = krConfig->readNumEntry("D Permissions Width",  defaultSize * 6 );
+  int permissionsWidth  = group.readEntry("D Permissions Width",  defaultSize * 6 );
   addColumn( i18n("Permissions"), permissionsWidth );
   setColumnWidthMode(5,Q3ListView::Manual);
-  int ownerWidth  = krConfig->readNumEntry("D Owner Width",  defaultSize * 5 );    
+  int ownerWidth  = group.readEntry("D Owner Width",  defaultSize * 5 );    
   addColumn( i18n("Owner"), ownerWidth );
   setColumnWidthMode(6,Q3ListView::Manual);
-  int groupWidth  = krConfig->readNumEntry("D Group Width",  defaultSize * 5 );    
+  int groupWidth  = group.readEntry("D Group Width",  defaultSize * 5 );    
   addColumn( i18n("Group"), groupWidth );
   setColumnWidthMode(7,Q3ListView::Manual);
   
@@ -102,16 +102,16 @@ DUListView::DUListView( DiskUsage *usage, const char *name )
 
 DUListView::~ DUListView()
 {
-  krConfig->setGroup( diskUsage->getConfigGroup() ); 
-  krConfig->writeEntry("D Name Width",        columnWidth( 0 ) );
-  krConfig->writeEntry("D Percent Width",     columnWidth( 1 ) );
-  krConfig->writeEntry("D Total Size Width",  columnWidth( 2 ) );
-  krConfig->writeEntry("D Own Size Width",    columnWidth( 3 ) );
-  krConfig->writeEntry("D Type Width",        columnWidth( 4 ) );
-  krConfig->writeEntry("D Date Width",        columnWidth( 5 ) );
-  krConfig->writeEntry("D Permissions Width", columnWidth( 6 ) );
-  krConfig->writeEntry("D Owner Width",       columnWidth( 7 ) );
-  krConfig->writeEntry("D Group Width",       columnWidth( 8 ) );
+  KConfigGroup group( krConfig, diskUsage->getConfigGroup() ); 
+  group.writeEntry("D Name Width",        columnWidth( 0 ) );
+  group.writeEntry("D Percent Width",     columnWidth( 1 ) );
+  group.writeEntry("D Total Size Width",  columnWidth( 2 ) );
+  group.writeEntry("D Own Size Width",    columnWidth( 3 ) );
+  group.writeEntry("D Type Width",        columnWidth( 4 ) );
+  group.writeEntry("D Date Width",        columnWidth( 5 ) );
+  group.writeEntry("D Permissions Width", columnWidth( 6 ) );
+  group.writeEntry("D Owner Width",       columnWidth( 7 ) );
+  group.writeEntry("D Group Width",       columnWidth( 8 ) );
 }
 
 void DUListView::addDirectory( Directory *dirEntry, Q3ListViewItem *parent )

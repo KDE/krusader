@@ -301,12 +301,12 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu) {
 	}
 
 	if (!inSecondaryMenu) {
-		krConfig->setGroup( "Private" );
-		bool hasPopularURLs = krConfig->readBoolEntry( "BM Popular URLs", true );
-		bool hasDevices     = krConfig->readBoolEntry( "BM Devices",      true );
-		bool hasLan         = krConfig->readBoolEntry( "BM Lan",          true );
-		bool hasVirtualFS   = krConfig->readBoolEntry( "BM Virtual FS",   true );
-		bool hasJumpback    = krConfig->readBoolEntry( "BM Jumpback",     true );
+		KConfigGroup group( krConfig, "Private" );
+		bool hasPopularURLs = group.readEntry( "BM Popular URLs", true );
+		bool hasDevices     = group.readEntry( "BM Devices",      true );
+		bool hasLan         = group.readEntry( "BM Lan",          true );
+		bool hasVirtualFS   = group.readEntry( "BM Virtual FS",   true );
+		bool hasJumpback    = group.readEntry( "BM Jumpback",     true );
 		
 		int itemIndex;
 		
@@ -457,12 +457,12 @@ bool KrBookmarkHandler::eventFilter( QObject *obj, QEvent *ev ) {
 #define JUMP_BACK_ID           100104
 
 void KrBookmarkHandler::rightClickOnSpecialBookmark() {
-	krConfig->setGroup( "Private" );
-	bool hasPopularURLs = krConfig->readBoolEntry( "BM Popular URLs", true );
-	bool hasDevices     = krConfig->readBoolEntry( "BM Devices",      true );
-	bool hasLan         = krConfig->readBoolEntry( "BM Lan",          true );
-	bool hasVirtualFS   = krConfig->readBoolEntry( "BM Virtual FS",   true );
-	bool hasJumpback    = krConfig->readBoolEntry( "BM Jumpback",     true );
+	KConfigGroup group( krConfig, "Private" );
+	bool hasPopularURLs = group.readEntry( "BM Popular URLs", true );
+	bool hasDevices     = group.readEntry( "BM Devices",      true );
+	bool hasLan         = group.readEntry( "BM Lan",          true );
+	bool hasVirtualFS   = group.readEntry( "BM Virtual FS",   true );
+	bool hasJumpback    = group.readEntry( "BM Jumpback",     true );
 	
 	Q3PopupMenu menu( _mainBookmarkPopup );
 	menu.setCaption( i18n( "Enable special bookmarks" ) );
@@ -485,23 +485,21 @@ void KrBookmarkHandler::rightClickOnSpecialBookmark() {
 	int result = menu.exec( QCursor::pos() );
 	bool doCloseMain = true;
 	
-	krConfig->setGroup( "Private" );
-	
 	switch( result ) {
 	case POPULAR_URLS_ID:
-		krConfig->writeEntry( "BM Popular URLs", !hasPopularURLs );
+		group.writeEntry( "BM Popular URLs", !hasPopularURLs );
 		break;
 	case DEVICES_ID:
-		krConfig->writeEntry( "BM Devices", !hasDevices );
+		group.writeEntry( "BM Devices", !hasDevices );
 		break;
 	case LAN_ID:
-		krConfig->writeEntry( "BM Lan", !hasLan );
+		group.writeEntry( "BM Lan", !hasLan );
 		break;
 	case VIRTUAL_FS_ID:
-		krConfig->writeEntry( "BM Virtual FS", !hasVirtualFS );
+		group.writeEntry( "BM Virtual FS", !hasVirtualFS );
 		break;
 	case JUMP_BACK_ID:
-		krConfig->writeEntry( "BM Jumpback", !hasJumpback );
+		group.writeEntry( "BM Jumpback", !hasJumpback );
 		break;
 	default:
 		doCloseMain = false;

@@ -58,8 +58,8 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
 
   // now, according to the Konfigurator, fill the combobox with the information
   // about what kind of packing we can do
-  krConfig->setGroup("Archives");
-  QStringList lst=krConfig->readListEntry("Supported Packers");
+  KConfigGroup group( krConfig, "Archives");
+  QStringList lst=group.readEntry("Supported Packers", QStringList());
   // now, clear the type combo and begin...
   typeData->clear();
   if (PS("tar")) typeData->insertItem("tar");
@@ -71,7 +71,7 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
   if (PS("arj")) typeData->insertItem("arj");
   if (PS("7z")) typeData->insertItem("7z");
   // set the last used packer as the top one
-  QString tmp=krConfig->readEntry("lastUsedPacker",QString());
+  QString tmp=group.readEntry("lastUsedPacker",QString());
   if (tmp!=QString()) {
     for (unsigned int i=0; i< typeData->count(); ++i)
       if (typeData->itemText( i ) == tmp) {
@@ -106,8 +106,8 @@ void PackGUI::accept() {
   destination=dirData->text();
   type=typeData->currentText();
   // write down the packer chosen, to be lastUsedPacker
-  krConfig->setGroup("Archives");
-  krConfig->writeEntry("lastUsedPacker",type);
+  KConfigGroup group( krConfig, "Archives");
+  group.writeEntry("lastUsedPacker",type);
   krConfig->sync();
   PackGUIBase::accept();
 }

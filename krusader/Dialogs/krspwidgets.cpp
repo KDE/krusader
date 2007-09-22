@@ -137,11 +137,11 @@ void newFTPSub::accept() {
   url->addToHistory( url->currentText() );
   // save the history and completion list when the history combo is
   // destroyed
-  krConfig->setGroup("Private");
+  KConfigGroup group( krConfig, "Private");
   QStringList list = url->completionObject()->items();
-  krConfig->writeEntry( "newFTP Completion list", list );
+  group.writeEntry( "newFTP Completion list", list );
   list = url->historyItems();
-  krConfig->writeEntry( "newFTP History list", list );
+  group.writeEntry( "newFTP History list", list );
 
   newFTPGUI::accept();
 }
@@ -156,8 +156,8 @@ KRMaskChoiceSub::KRMaskChoiceSub() : KRMaskChoice(0,0,true) {
   PixmapLabel1->setPixmap(krLoader->loadIcon("kr_select", K3Icon::Desktop, 32));
   label->setText(i18n("Enter a selection:"));
   // the predefined selections list
-  krConfig->setGroup("Private");
-  QStringList lst = krConfig->readEntry("Predefined Selections",QStringList());
+  KConfigGroup group( krConfig, "Private");
+  QStringList lst = group.readEntry("Predefined Selections",QStringList());
   if (lst.size()>0) preSelections->insertStringList(lst);
   // the combo-box tweaks
   selection->setDuplicatesEnabled(false);
@@ -192,8 +192,8 @@ void KRMaskChoiceSub::accept() {
       list.append(i->text().local8Bit());
     i=i->next();
   }
-  krConfig->setGroup("Private");
-  krConfig->writeEntry("Predefined Selections",list);
+  KConfigGroup group( krConfig, "Private");
+  group.writeEntry("Predefined Selections",list);
   KRMaskChoice::accept();
 }
 

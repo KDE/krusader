@@ -261,8 +261,8 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     commandLineSwitches = new KHistoryComboBox( advancedWidget );
     commandLineSwitches->setMaxCount(25);  // remember 25 items
     commandLineSwitches->setDuplicatesEnabled(false);
-    krConfig->setGroup("Archives");
-    QStringList list = krConfig->readListEntry("Command Line Switches");
+    KConfigGroup group( krConfig, "Archives");
+    QStringList list = group.readEntry("Command Line Switches", QStringList() );
     commandLineSwitches->setHistoryItems(list);
 
     hbox_7->addWidget( commandLineSwitches );
@@ -463,8 +463,8 @@ bool PackGUIBase::extraProperties( QMap<QString,QString> & inMap ) {
 
       commandLineSwitches->addToHistory( cmdArgs );
       QStringList list = commandLineSwitches->historyItems();
-      krConfig->setGroup("Archives");
-      krConfig->writeEntry("Command Line Switches", list);
+      KConfigGroup group( krConfig, "Archives");
+      group.writeEntry("Command Line Switches", list);
 
       inMap[ "CommandLineSwitches" ] = cmdArgs;      
     }

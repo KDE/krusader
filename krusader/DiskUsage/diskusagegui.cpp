@@ -116,18 +116,18 @@ DiskUsageGUI::DiskUsageGUI( KUrl openDir, QWidget* parent, const char *name )
   connect( btnDetailed, SIGNAL( clicked() ), this, SLOT( selectListView() ) );
   connect( btnFilelight, SIGNAL( clicked() ), this, SLOT( selectFilelightView() ) );  
   
-  krConfig->setGroup( "DiskUsage" ); 
+  KConfigGroup group( krConfig, "DiskUsage" ); 
   
-  int view = krConfig->readNumEntry( "View",  VIEW_LINES );
+  int view = group.readEntry( "View",  VIEW_LINES );
   if( view < VIEW_LINES || view > VIEW_FILELIGHT )
     view = VIEW_LINES;    
   diskUsage->setView( view );
   
-  sizeX = krConfig->readNumEntry( "Window Width",  QFontMetrics(font()).width("W") * 70 );
-  sizeY = krConfig->readNumEntry( "Window Height", QFontMetrics(font()).height() * 25 );    
+  sizeX = group.readEntry( "Window Width",  QFontMetrics(font()).width("W") * 70 );
+  sizeY = group.readEntry( "Window Height", QFontMetrics(font()).height() * 25 );    
   resize( sizeX, sizeY );
   
-  if( krConfig->readBoolEntry( "Window Maximized",  false ) )
+  if( group.readEntry( "Window Maximized",  false ) )
     showMaximized();
   else  
     show();
@@ -169,11 +169,11 @@ void DiskUsageGUI::resizeEvent( QResizeEvent *e )
 
 void DiskUsageGUI::reject()
 {
-  krConfig->setGroup( "DiskUsage" ); 
-  krConfig->writeEntry("Window Width", sizeX );
-  krConfig->writeEntry("Window Height", sizeY );
-  krConfig->writeEntry("Window Maximized", isMaximized() );
-  krConfig->writeEntry("View", diskUsage->getActiveView() );
+  KConfigGroup group( krConfig, "DiskUsage" ); 
+  group.writeEntry("Window Width", sizeX );
+  group.writeEntry("Window Height", sizeY );
+  group.writeEntry("Window Maximized", isMaximized() );
+  group.writeEntry("View", diskUsage->getActiveView() );
   
   QDialog::reject();
 }
