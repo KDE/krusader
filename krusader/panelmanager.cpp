@@ -98,7 +98,7 @@ void PanelManager::startPanel( ListPanel *panel, const KUrl& path ) {
    panel->start( path );
 }
 
-void PanelManager::saveSettings( KConfig *config, const QString& key, bool localOnly ) {
+void PanelManager::saveSettings( KConfigGroup *config, const QString& key, bool localOnly ) {
    QStringList l;
    QStringList types;
    int i=0, cnt=0;
@@ -115,17 +115,17 @@ void PanelManager::saveSettings( KConfig *config, const QString& key, bool local
    config->writeEntry( key + " Types", types );
 }
 
-void PanelManager::loadSettings( KConfig *config, const QString& key ) {
+void PanelManager::loadSettings( KConfigGroup *config, const QString& key ) {
    QStringList l = config->readPathListEntry( key );
-   QStringList types = config->readListEntry( key + " Types" );
+   QStringList types = config->readEntry( key + " Types", QStringList() );
    
    if( l.count() < 1 )
      return;
      
    while( types.count() < l.count() )
    {
-      KConfigGroup cg = config->group("Look&Feel");
-      types << krConfig->readEntry( "Default Panel Type", _DefaultPanelType );
+      KConfigGroup cg( krConfig, "Look&Feel");
+      types << cg.readEntry( "Default Panel Type", _DefaultPanelType );
    }
    
    int i=0, totalTabs = _tabbar->count();
@@ -155,8 +155,8 @@ void PanelManager::loadSettings( KConfig *config, const QString& key ) {
 void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, QString type) {
    if( type.isNull() )
    {
-       krConfig->setGroup( "Look&Feel" );
-       type = krConfig->readEntry( "Default Panel Type", _DefaultPanelType );
+       KConfigGroup group( krConfig, "Look&Feel");
+       type = group.readEntry( "Default Panel Type", _DefaultPanelType );
    }
    ListPanel *p = createPanel( type, setCurrent );   
    // update left/right pointers

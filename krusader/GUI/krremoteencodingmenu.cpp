@@ -179,7 +179,7 @@ void KrRemoteEncodingMenu::slotDefault()
       if (config.hasGroup(*it))
         config.deleteGroup(*it);
       else if (config.hasKey(*it))
-        config.deleteEntry(*it);
+        KConfigGroup( &config, QString() ).deleteEntry(*it);
     }
   }
   config.sync();

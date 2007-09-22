@@ -100,8 +100,8 @@ void KrusaderView::start( QStringList leftTabs, QStringList leftTypes, int leftA
   mainLayout->activate();
 
   // get the last saved sizes of the splitter
-  krConfig->setGroup( "Private" );
-  QList<int> lst = krConfig->readEntry( "Splitter Sizes", QList<int>() );
+  KConfigGroup group( krConfig, "Private" );
+  QList<int> lst = group.readEntry( "Splitter Sizes", QList<int>() );
   if ( lst.count() == 0 )
   {
     lst.push_back( 100 );
@@ -109,7 +109,7 @@ void KrusaderView::start( QStringList leftTabs, QStringList leftTypes, int leftA
   }
   horiz_splitter->setSizes( lst );  
 
-  verticalSplitterSizes = krConfig->readIntListEntry( "Terminal Emulator Splitter Sizes" );
+  verticalSplitterSizes = group.readEntry( "Terminal Emulator Splitter Sizes", QList<int> () );
     
   show();
 
@@ -372,16 +372,12 @@ void KrusaderView::profiles( QString profileName )
 
 void KrusaderView::loadPanelProfiles( QString group )
 {
-  krConfig->setGroup( group );
-  MAIN_VIEW->leftMng->loadSettings( krConfig, "Left Tabs" );
-  krConfig->setGroup( group );
-  MAIN_VIEW->rightMng->loadSettings( krConfig, "Right Tabs" );
-  krConfig->setGroup( group );
-  MAIN_VIEW->leftMng->setActiveTab( krConfig->readNumEntry( "Left Active Tab", 0 ) );
-  krConfig->setGroup( group );
-  MAIN_VIEW->rightMng->setActiveTab( krConfig->readNumEntry( "Right Active Tab", 0 ) );
-  krConfig->setGroup( group );  
-  if( krConfig->readBoolEntry( "Left Side Is Active", true ) )
+  KConfigGroup ldg( krConfig, group );
+  MAIN_VIEW->leftMng->loadSettings( &ldg, "Left Tabs" );
+  MAIN_VIEW->rightMng->loadSettings( &ldg, "Right Tabs" );
+  MAIN_VIEW->leftMng->setActiveTab( ldg.readEntry( "Left Active Tab", 0 ) );
+  MAIN_VIEW->rightMng->setActiveTab( ldg.readEntry( "Right Active Tab", 0 ) );
+  if( ldg.readEntry( "Left Side Is Active", true ) )
     MAIN_VIEW->left->slotFocusOnMe();
   else
     MAIN_VIEW->right->slotFocusOnMe();
@@ -389,13 +385,13 @@ void KrusaderView::loadPanelProfiles( QString group )
 
 void KrusaderView::savePanelProfiles( QString group )
 {
-  krConfig->setGroup( group );
+  KConfigGroup svr( krConfig, group );
   
-  MAIN_VIEW->leftMng->saveSettings( krConfig, "Left Tabs", false );
-  krConfig->writeEntry( "Left Active Tab", MAIN_VIEW->leftMng->activeTab() );
-  MAIN_VIEW->rightMng->saveSettings( krConfig, "Right Tabs", false );
-  krConfig->writeEntry( "Right Active Tab", MAIN_VIEW->rightMng->activeTab() );
-  krConfig->writeEntry( "Left Side Is Active", MAIN_VIEW->activePanel->isLeft() );
+  MAIN_VIEW->leftMng->saveSettings( &svr, "Left Tabs", false );
+  svr.writeEntry( "Left Active Tab", MAIN_VIEW->leftMng->activeTab() );
+  MAIN_VIEW->rightMng->saveSettings( &svr, "Right Tabs", false );
+  svr.writeEntry( "Right Active Tab", MAIN_VIEW->rightMng->activeTab() );
+  svr.writeEntry( "Left Side Is Active", MAIN_VIEW->activePanel->isLeft() );
 }
 
 void KrusaderView::toggleVerticalMode() {

@@ -29,16 +29,10 @@ QMap<QString,QString>* KrServices::slaveMap=0;
 
 bool KrServices::cmdExist(QString cmdName)
 {
-  QString lastGroup = krConfig->group();
-
-  krConfig->setGroup( "Dependencies" );
-  if( QFile( krConfig->readEntry( cmdName, QString() )).exists() )
-  {
-    krConfig->setGroup( lastGroup );
+  KConfigGroup group( krConfig, "Dependencies" );
+  if( QFile( group.readEntry( cmdName, QString() )).exists() )
     return true;
-  }
 
-  krConfig->setGroup( lastGroup );
   return !detectFullPathName( cmdName ).isEmpty();  
 }
 
@@ -63,27 +57,19 @@ QString KrServices::detectFullPathName(QString name)
 
 QString KrServices::fullPathName( QString name, QString confName )
 {
-  QString lastGroup = krConfig->group();
   QString supposedName;
 
   if( confName.isNull() )
     confName = name;
 
-  KConfigGroup config = krConfig->group( "Dependencies" );
+  KConfigGroup config( krConfig, "Dependencies" );
   if( QFile( supposedName = config.readEntry( confName, QString() )).exists() )
-  {
-    krConfig->setGroup( lastGroup );
     return supposedName;
-  }
 
   if( ( supposedName = detectFullPathName( name ) ).isEmpty() )
-  {
-    krConfig->setGroup( lastGroup );
     return "";
-  }
 
-  krConfig->writeEntry( confName, supposedName );
-  krConfig->setGroup( lastGroup );
+  config.writeEntry( confName, supposedName );
   return supposedName;
 }
 
@@ -136,10 +122,10 @@ QString KrServices::registerdProtocol(QString mimetype){
 	if( slaveMap == 0 ){
 		slaveMap = new QMap<QString,QString>();
 		
-		krConfig->setGroup( "Protocols" );
-		QStringList protList = krConfig->readListEntry( "Handled Protocols" );
+		KConfigGroup group( krConfig, "Protocols" );
+		QStringList protList = group.readEntry( "Handled Protocols", QStringList() );
 		for( QStringList::Iterator it = protList.begin(); it != protList.end(); it++ ){
-			QStringList mimes = krConfig->readListEntry( QString( "Mimes For %1" ).arg( *it ) );
+			QStringList mimes = group.readEntry( QString( "Mimes For %1" ).arg( *it ), QStringList() );
 			for( QStringList::Iterator it2 = mimes.begin(); it2 != mimes.end(); it2++ )
 				(*slaveMap)[*it2] = *it;
   		}

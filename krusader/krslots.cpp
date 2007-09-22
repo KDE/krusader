@@ -343,15 +343,14 @@ void KRslots::matchChecksum()  { ACTIVE_FUNC->matchChecksum(); }
 // run external modules / programs
 void KRslots::runKonfigurator(bool firstTime) {
 
-  krConfig->setGroup( "Look&Feel" );
-  int size = (krConfig->readEntry("Filelist Icon Size",_FilelistIconSize)).toInt();
+  KConfigGroup group( krConfig, "Look&Feel");
+  int size = (group.readEntry("Filelist Icon Size",_FilelistIconSize)).toInt();
   
   Konfigurator *konfigurator = new Konfigurator(firstTime);
 
   if( konfigurator->isGUIRestartNeeded() )
   {
-    krConfig->setGroup( "Look&Feel" );
-    if((krConfig->readEntry("Filelist Icon Size",_FilelistIconSize)).toInt() != size )
+    if((group.readEntry("Filelist Icon Size",_FilelistIconSize)).toInt() != size )
       QPixmapCache::clear();
       
     KrDetailedViewItem::itemHeightChanged(); // needed when icon size / font size changes
@@ -378,10 +377,10 @@ void KRslots::setBriefView() {
 }
 
 void KRslots::toggleHidden(){
-  krConfig->setGroup("Look&Feel");
-  bool show = !krConfig->readBoolEntry("Show Hidden",_ShowHidden);
+  KConfigGroup group( krConfig, "Look&Feel");
+  bool show = !group.readEntry("Show Hidden",_ShowHidden);
   krApp->actToggleHidden->setChecked(show);
-  krConfig->writeEntry("Show Hidden",show);
+  group.writeEntry("Show Hidden",show);
 
   MAIN_VIEW->leftMng->refreshAllTabs( true );
   MAIN_VIEW->rightMng->refreshAllTabs( true );
@@ -426,9 +425,9 @@ void KRslots::toggleSwapSides(){
 
 void KRslots::search() {
 	if ( KrSearchDialog::SearchDialog != 0 ) {
-		krConfig->setGroup( "Search" );
-		if( krConfig->readBoolEntry( "Window Maximized",  false ) )
-	KrSearchDialog::SearchDialog->showMaximized();
+		KConfigGroup group( krConfig, "Search" );
+		if( group.readEntry( "Window Maximized",  false ) )
+			KrSearchDialog::SearchDialog->showMaximized();
 		else
 			KrSearchDialog::SearchDialog->showNormal();
 	
@@ -474,8 +473,8 @@ void KRslots::homeTerminal(){
   chdir (QDir::homePath().local8Bit());
 
   K3Process proc;
-  krConfig->setGroup("General");
-  QString term = krConfig->readEntry("Terminal",_Terminal);
+  KConfigGroup group( krConfig, "General");
+  QString term = group.readEntry("Terminal",_Terminal);
   proc << KrServices::separateArgs( term );
       
   if( term.contains( "konsole" ) )   /* KDE 3.2 bug (konsole is killed by pressing Ctrl+C) */
@@ -857,8 +856,8 @@ void KRslots::compareSetup()
   for( int i=0; Krusader::compareArray[i] != 0; i++ )
     if( (*Krusader::compareArray[i])->isChecked() )
     {
-      krConfig->setGroup( "Private" );
-      krConfig->writeEntry( "Compare Mode", i );
+      KConfigGroup group( krConfig, "Private" );
+      group.writeEntry( "Compare Mode", i );
       break;
     }
 }

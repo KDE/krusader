@@ -101,7 +101,7 @@ public:
   Q3HBox       *terminal_dock;             // docking widget for terminal emulator
   KParts::ReadOnlyPart *konsole_part;     // the actual part pointer
   QSplitter		*horiz_splitter, *vert_splitter;
-  Q3ValueList<int> verticalSplitterSizes;
+  QList<int>		 verticalSplitterSizes;
 
 private:
   Q3GridLayout *mainLayout, *terminal_layout;

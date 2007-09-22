@@ -36,8 +36,8 @@
 #include <QPixmap>
 
 QPixmap FL_LOADICON(QString name) {
-  krConfig->setGroup("Look&Feel");
-  int size = (krConfig->readEntry("Filelist Icon Size",_FilelistIconSize)).toInt();
+  KConfigGroup group( krConfig, "Look&Feel");
+  int size = (group.readEntry("Filelist Icon Size",_FilelistIconSize)).toInt();
   if (size!=22)
     return krLoader->loadIcon(name,K3Icon::Desktop,size);
   // else implied
