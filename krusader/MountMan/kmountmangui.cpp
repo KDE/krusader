@@ -121,8 +121,8 @@ void KMountManGUI::createMainPage() {
    // clean up is finished...
    Q3GridLayout *layout = new Q3GridLayout( mainPage, 1, 1 );
    mountList = new Q3ListView( mainPage );  // create the main container
-   krConfig->setGroup( "Look&Feel" );
-   mountList->setFont( krConfig->readEntry( "Filelist Font", *_FilelistFont ) );
+   KConfigGroup group( krConfig, "Look&Feel" );
+   mountList->setFont( group.readEntry( "Filelist Font", *_FilelistFont ) );
    mountList->setAllColumnsShowFocus( true );
    mountList->setMultiSelection( false );
    mountList->setSelectionMode( Q3ListView::Single );

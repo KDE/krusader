@@ -80,7 +80,7 @@ protected:
 	static QStringList fileList(const ListPanel* const panel,const QString& type,const QString& mask,const bool ommitPath,const bool useUrl,Expander&,const QString&);
 	exp_placeholder();
 	exp_placeholder(const exp_placeholder& p);
-	~exp_placeholder() { }
+	virtual ~exp_placeholder() { }
    QString _expression;
    QString _description;
    Q3ValueList <exp_parameter> _parameter;

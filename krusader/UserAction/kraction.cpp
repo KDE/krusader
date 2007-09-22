@@ -94,10 +94,10 @@ KrActionProcDlg::KrActionProcDlg( QString caption, bool enableStderr, QWidget *p
    if (_stderr)
       connect( _stderr, SIGNAL( clicked(int, int) ), SLOT( currentTextEditChanged() ) );
 
-   krConfig->setGroup( "UserActions" );
-   normalFont = krConfig->readEntry( "Normal Font", *_UserActions_NormalFont );
-   fixedFont = krConfig->readEntry( "Fixed Font", *_UserActions_FixedFont );
-   bool startupState = krConfig->readBoolEntry( "Use Fixed Font", _UserActions_UseFixedFont );
+   KConfigGroup group( krConfig, "UserActions" );
+   normalFont = group.readEntry( "Normal Font", *_UserActions_NormalFont );
+   fixedFont = group.readEntry( "Fixed Font", *_UserActions_FixedFont );
+   bool startupState = group.readEntry( "Use Fixed Font", _UserActions_UseFixedFont );
    toggleFixedFont( startupState );
 
    // HACK This fetches the layout of the buttonbox from KDialog, although it is not accessable with KDialog's API
@@ -234,8 +234,8 @@ void KrActionProc::start( QStringList cmdLineList ) {
       } else { // will start a new process
          // run in terminal
          if ( _action->execType() == KrAction::Terminal ) {
-           krConfig->setGroup( "UserActions" );
-           QString term = krConfig->readEntry( "Terminal", _UserActions_Terminal );
+           KConfigGroup group( krConfig, "UserActions" );
+           QString term = group.readEntry( "Terminal", _UserActions_Terminal );
 
             if ( _action->user().isEmpty() )
                ( *_proc ) << term << cmd;

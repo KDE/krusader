@@ -84,7 +84,7 @@ kio_krarcProtocol::kio_krarcProtocol(const Q3CString &pool_socket, const Q3CStri
 		password(QString()) {
 	
 	krConfig = new KConfig( "krusaderrc" );
-	krConfig->setGroup( "Dependencies" );
+	confGrp = KConfigGroup( krConfig, "Dependencies" );
 	
 	dirDict.setAutoDelete(true);
 	
@@ -1593,7 +1593,7 @@ QString kio_krarcProtocol::getPassword() {
 }
 
 QString kio_krarcProtocol::fullPathName( QString name ) {
-	QString supposedName = krConfig->readEntry( name, name );
+	QString supposedName = confGrp.readEntry( name, name );
 	if( supposedName.isEmpty() )
 		supposedName = name;
 	return escape( supposedName );

@@ -47,8 +47,8 @@ DiskUsageViewer::~ DiskUsageViewer()
 {
   if( diskUsage )
   {
-    krConfig->setGroup( "DiskUsageViewer" );  
-    krConfig->writeEntry( "View", diskUsage->getActiveView() );
+    KConfigGroup group( krConfig, "DiskUsageViewer" );  
+    group.writeEntry( "View", diskUsage->getActiveView() );
     delete diskUsage;
   }
 }
@@ -66,8 +66,8 @@ void DiskUsageViewer::openUrl( KUrl url )
     this->show();
     diskUsage->show();
     
-    krConfig->setGroup( "DiskUsageViewer" );  
-    int view = krConfig->readNumEntry( "View",  VIEW_FILELIGHT );
+    KConfigGroup group( krConfig, "DiskUsageViewer" );  
+    int view = group.readEntry( "View",  VIEW_FILELIGHT );
     if( view < VIEW_LINES || view > VIEW_FILELIGHT )
       view = VIEW_FILELIGHT;    
     diskUsage->setView( view );   

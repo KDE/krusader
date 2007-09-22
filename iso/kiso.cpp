@@ -326,9 +326,10 @@ void KIso::readParams()
     KConfig *config;
 
     config = new KConfig("kio_isorc");
-    
-    showhidden=config->readBoolEntry("showhidden",false);
-    showrr=config->readBoolEntry("showrr",true);
+
+    KConfigGroup group( config, QString() );
+    showhidden=group.readEntry("showhidden",false);
+    showrr=group.readEntry("showrr",true);
     delete config;
 }
 

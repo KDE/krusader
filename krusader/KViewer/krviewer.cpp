@@ -245,10 +245,10 @@ void KrViewer::view( KUrl url, QWidget * parent ) {
 	Mode defaultMode = Generic;
 	bool defaultWindow = false;
 
-	krConfig->setGroup( "General" );
-	defaultWindow = krConfig->readBoolEntry( "View In Separate Window",_ViewInSeparateWindow );
+	KConfigGroup group( krConfig, "General" );
+	defaultWindow = group.readEntry( "View In Separate Window",_ViewInSeparateWindow );
 
-	QString modeString = krConfig->readEntry( "Default Viewer Mode","generic" );
+	QString modeString = group.readEntry( "Default Viewer Mode", QString( "generic" ) );
 
 	if( modeString == "generic" ) defaultMode = Generic;
 	else if( modeString == "text" ) defaultMode = Text;
@@ -273,11 +273,11 @@ void KrViewer::edit( KUrl url, QWidget * parent ) {
 }
 
 void KrViewer::edit( KUrl url, Mode mode, int new_window, QWidget * parent ) {
-	krConfig->setGroup( "General" );
-	QString edit = krConfig->readEntry( "Editor", _Editor );
+	KConfigGroup group( krConfig, "General" );
+	QString edit = group.readEntry( "Editor", _Editor );
 	
 	if( new_window == -1 )
-		new_window = krConfig->readBoolEntry( "View In Separate Window",_ViewInSeparateWindow );
+		new_window = group.readEntry( "View In Separate Window",_ViewInSeparateWindow );
 
 	if ( edit != "internal editor" ) {
 		K3Process proc;

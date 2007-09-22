@@ -98,6 +98,7 @@ private:
 	bool extArcReady;                 //< Used for RPM & DEB files.
 	QString password;                 //< Password for the archives
 	KConfig *krConfig;                //< The configuration file for krusader
+	KConfigGroup confGrp;             //< the 'Dependencies' config group
 	
 	QString lastData;
 	QString encryptedArchPath;

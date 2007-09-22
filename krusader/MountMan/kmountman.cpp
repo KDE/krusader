@@ -78,8 +78,8 @@ KMountMan::KMountMan() : QObject(), Operational( false ), waiting(false), mountM
 	// list of FS that we don't allow to mount/unmount
 	nonmount_fs << "supermount";
 	{
-		KConfigGroup saver = krConfig->group("Advanced");
-		QStringList nonmount = QStringList::split(",", krConfig->readEntry("Nonmount Points", _NonMountPoints));
+		KConfigGroup group( krConfig, "Advanced");
+		QStringList nonmount = QStringList::split(",", group.readEntry("Nonmount Points", _NonMountPoints));
 		nonmount_fs_mntpoint += nonmount;
 		// simplify the white space
 		for ( QStringList::Iterator it = nonmount_fs_mntpoint.begin(); it != nonmount_fs_mntpoint.end(); ++it ) {
