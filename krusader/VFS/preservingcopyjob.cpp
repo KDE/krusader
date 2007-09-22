@@ -310,10 +310,9 @@ KIO::CopyJob * PreservingCopyJob::createCopyJob( PreserveMode pmode, const KUrl:
     return new PreservingCopyJob( src, dest, mode, asMethod, showProgressInfo );
   case PM_DEFAULT:
     {
-      QString group = krConfig->group();
-      krConfig->setGroup( "Advanced" );
-      bool preserve = krConfig->readBoolEntry( "PreserveAttributes", _PreserveAttributes );
-      krConfig->setGroup( group );
+      KConfigGroup grp( krConfig, "Advanced" );
+      bool preserve = grp.readEntry( "PreserveAttributes", _PreserveAttributes );
+
       if( preserve )
         return new PreservingCopyJob( src, dest, mode, asMethod, showProgressInfo );
       else

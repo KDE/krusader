@@ -106,13 +106,13 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
   if( !v.vfs_refresh( KUrl( "virt:/" ) ) )
     return;
 
-  krConfig->setGroup( "Synchronize" );
-  int listBoxNum = krConfig->readNumEntry( "Feed To Listbox Counter", 1 );
+  KConfigGroup group( krConfig, "Synchronize" );
+  int listBoxNum = group.readEntry( "Feed To Listbox Counter", 1 );
   QString queryName;
   do {
     queryName = i18n("Synchronize results")+QString( " %1" ).arg( listBoxNum++ );
   }while( v.vfs_search( queryName ) != 0 );
-  krConfig->writeEntry( "Feed To Listbox Counter", listBoxNum );
+  group.writeEntry( "Feed To Listbox Counter", listBoxNum );
 
   // creating the widget
 

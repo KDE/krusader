@@ -102,8 +102,8 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   hbox->setSpacing( 6 );
 
   cbOverwrite = new QCheckBox( i18n( "Confirm overwrites" ), this, "cbOverWrite" );
-  krConfig->setGroup("Synchronize");
-  cbOverwrite->setChecked( krConfig->readBoolEntry( "Confirm overwrites", _ConfirmOverWrites  ) );
+  KConfigGroup group( krConfig, "Synchronize");
+  cbOverwrite->setChecked( group.readEntry( "Confirm overwrites", _ConfirmOverWrites  ) );
   layout->addWidget( cbOverwrite );
   
   QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -130,7 +130,8 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
 
 SynchronizeDialog::~SynchronizeDialog()
 {
-  krConfig->writeEntry("Confirm overwrites", cbOverwrite->isChecked() );  
+  KConfigGroup group( krConfig, "Synchronize");
+  group.writeEntry("Confirm overwrites", cbOverwrite->isChecked() );  
 }
 
 void SynchronizeDialog::startSynchronization()

@@ -121,8 +121,8 @@ void virt_vfs::vfs_delFiles( QStringList *fileNames ) {
 	KIO::Job *job;
 
 	// delete of move to trash ?
-	krConfig->setGroup( "General" );
-	if ( krConfig->readBoolEntry( "Move To Trash", _MoveToTrash ) ) {
+	KConfigGroup group( krConfig, "General" );
+	if ( group.readEntry( "Move To Trash", _MoveToTrash ) ) {
 		job = KIO::trash( filesUrls, true );
 		connect( job, SIGNAL( result( KIO::Job* ) ), krApp, SLOT( changeTrashIcon() ) );
 	} else
@@ -288,7 +288,7 @@ KConfig*  virt_vfs::getVirtDB(){
 bool virt_vfs::save(){
 	KConfig* db = getVirtDB();
 	
-	db->setGroup("virt_db");
+	KConfigGroup group( krConfig, "virt_db");
 	Q3DictIterator<KUrl::List> it( virtVfsDict ); // See QDictIterator
 	for( ; it.current(); ++it ){
 		KUrl::List::iterator url;
@@ -296,7 +296,7 @@ bool virt_vfs::save(){
 		for ( url = it.current()->begin() ; url != it.current()->end() ; ++url ) {
 			entry.append( (*url).prettyUrl() );
 		}
-		db->writeEntry(it.currentKey(),entry);
+		group.writeEntry(it.currentKey(),entry);
 	}
 	
 	db->sync();
@@ -306,13 +306,13 @@ bool virt_vfs::save(){
 
 bool virt_vfs::restore(){
 	KConfig* db = getVirtDB();
-	db->setGroup("virt_db");
+	KConfigGroup dbGrp( db, "virt_db");
 	
 	QMap<QString, QString> map = db->entryMap("virt_db");
 	QMap<QString, QString>::Iterator it;
 	KUrl::List* urlList;
 	for ( it = map.begin(); it != map.end(); ++it ) {
-		urlList = new KUrl::List( db->readListEntry(it.key()) );
+		urlList = new KUrl::List( dbGrp.readEntry(it.key(), QStringList() ) );
 		virtVfsDict.insert( it.key(),urlList );
 	}
 

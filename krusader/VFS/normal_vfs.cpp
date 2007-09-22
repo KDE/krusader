@@ -93,8 +93,8 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
 		return false;
 	}
     
-	krConfig->setGroup("Advanced");
-	if (krConfig->readBoolEntry("AutoMount",_AutoMount)) krMtMan.autoMount(path);
+	KConfigGroup group( krConfig, "Advanced");
+	if (group.readEntry("AutoMount",_AutoMount)) krMtMan.autoMount(path);
 	
 	DIR* dir = opendir(path.local8Bit());
 	if(!dir) 
@@ -183,8 +183,8 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames){
 	KIO::Job *job;
 	
 	// delete of move to trash ?
-	krConfig->setGroup("General");
-	if( krConfig->readBoolEntry("Move To Trash",_MoveToTrash) ){
+	KConfigGroup group( krConfig, "General");
+	if( group.readEntry("Move To Trash",_MoveToTrash) ){
 	  job = KIO::trash(filesUrls, true );
 	  connect(job,SIGNAL(result(KIO::Job*)),SLOTS,SLOT(changeTrashIcon()));
 	}
@@ -345,8 +345,8 @@ QString normal_vfs::getACL( const QString & path, int type )
 
 void normal_vfs::vfs_slotRefresh()
 {
-	krConfig->setGroup("Advanced");
-	int maxRefreshFrequency = krConfig->readNumEntry("Max Refresh Frequency", 1000);
+	KConfigGroup group( krConfig, "Advanced");
+	int maxRefreshFrequency = group.readEntry("Max Refresh Frequency", 1000);
 	vfs_refresh();
 	disconnect( &refreshTimer, SIGNAL( timeout() ), this, SLOT( vfs_slotRefresh() ) );
 	refreshTimer.start( maxRefreshFrequency, true );

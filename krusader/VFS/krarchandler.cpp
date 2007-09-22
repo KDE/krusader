@@ -80,8 +80,8 @@ QStringList KRarcHandler::supportedPackers() {
 
 bool KRarcHandler::arcSupported( QString type ) {
   // lst will contain the supported unpacker list...
-  krConfig->setGroup( "Archives" );
-  QStringList lst = krConfig->readListEntry( "Supported Packers" );
+  KConfigGroup group( krConfig, "Archives" );
+  QStringList lst = group.readEntry( "Supported Packers", QStringList() );
 
   if ( type == "-zip" && lst.contains( "unzip" ) )
     return true;
@@ -121,22 +121,22 @@ bool KRarcHandler::arcHandled( QString type ) {
   // first check if supported
   if ( !arcSupported( type ) ) return false;
 
-  krConfig->setGroup( "Archives" );
-  if ( ( type == "-tgz" && krConfig->readBoolEntry( "Do GZip" , _DoGZip ) ) ||
-       ( type == "tarz" && krConfig->readBoolEntry( "Do GZip" , _DoGZip ) ) ||
-       ( type == "-tar" && krConfig->readBoolEntry( "Do Tar" , _DoTar ) ) ||
-       ( type == "-tbz" && krConfig->readBoolEntry( "Do BZip2", _DoBZip2 ) ) ||
-       ( type == "gzip" && krConfig->readBoolEntry( "Do GZip" , _DoGZip ) ) ||
-       ( type == "zip2" && krConfig->readBoolEntry( "Do BZip2", _DoBZip2 ) ) ||
-       ( type == "-zip" && krConfig->readBoolEntry( "Do UnZip", _DoUnZip ) ) ||
-       ( type == "-lha" && krConfig->readBoolEntry( "Do Lha", _DoUnZip ) ) ||
-       ( type == "-rar" && krConfig->readBoolEntry( "Do UnRar", _DoUnRar ) ) ||
-       ( type == "-arj" && krConfig->readBoolEntry( "Do UnArj", _DoUnarj ) ) ||
-       ( type == "-ace" && krConfig->readBoolEntry( "Do UnAce", _DoUnAce ) ) ||
-       ( type == "cpio" && krConfig->readBoolEntry( "Do RPM" , _DoRPM ) ) ||
-       ( type == "-rpm" && krConfig->readBoolEntry( "Do RPM"  , _DoRPM   ) ) ||
-       ( type == "-deb" && krConfig->readBoolEntry( "Do DEB"  , _DoDEB   ) ) ||
-       ( type == "-7z"  && krConfig->readBoolEntry( "Do 7z"  , _Do7z ) ) )
+  KConfigGroup group( krConfig, "Archives" );
+  if ( ( type == "-tgz" && group.readEntry( "Do GZip" , _DoGZip ) ) ||
+       ( type == "tarz" && group.readEntry( "Do GZip" , _DoGZip ) ) ||
+       ( type == "-tar" && group.readEntry( "Do Tar" , _DoTar ) ) ||
+       ( type == "-tbz" && group.readEntry( "Do BZip2", _DoBZip2 ) ) ||
+       ( type == "gzip" && group.readEntry( "Do GZip" , _DoGZip ) ) ||
+       ( type == "zip2" && group.readEntry( "Do BZip2", _DoBZip2 ) ) ||
+       ( type == "-zip" && group.readEntry( "Do UnZip", _DoUnZip ) ) ||
+       ( type == "-lha" && group.readEntry( "Do Lha", _DoUnZip ) ) ||
+       ( type == "-rar" && group.readEntry( "Do UnRar", _DoUnRar ) ) ||
+       ( type == "-arj" && group.readEntry( "Do UnArj", _DoUnarj ) ) ||
+       ( type == "-ace" && group.readEntry( "Do UnAce", _DoUnAce ) ) ||
+       ( type == "cpio" && group.readEntry( "Do RPM" , _DoRPM ) ) ||
+       ( type == "-rpm" && group.readEntry( "Do RPM"  , _DoRPM   ) ) ||
+       ( type == "-deb" && group.readEntry( "Do DEB"  , _DoDEB   ) ) ||
+       ( type == "-7z"  && group.readEntry( "Do 7z"  , _Do7z ) ) )
     return true;
   else
     return false;
@@ -219,8 +219,8 @@ long KRarcHandler::arcFileCount( QString archive, QString type, QString password
   }
 
 bool KRarcHandler::unpack( QString archive, QString type, QString password, QString dest ) {
-  krConfig->setGroup( "Archives" );
-  if ( krConfig->readBoolEntry( "Test Before Unpack", _TestBeforeUnpack ) ) {
+  KConfigGroup group( krConfig, "Archives" );
+  if ( group.readEntry( "Test Before Unpack", _TestBeforeUnpack ) ) {
     // test first - or be sorry later...
     if ( type != "-rpm" && type != "-deb" && !test( archive, type, password, 0 ) ) {
       KMessageBox::error( krApp, i18n( "Failed to unpack" ) + " \"" + archive + "\" !" );
@@ -512,8 +512,8 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
     return false;
     }
 
-  krConfig->setGroup( "Archives" );
-  if ( krConfig->readBoolEntry( "Test Archives", _TestArchives ) &&
+  KConfigGroup group( krConfig, "Archives" );
+  if ( group.readEntry( "Test Archives", _TestArchives ) &&
        !test( dest, type, password, count ) ) {
     KMessageBox::error( krApp, i18n( "Failed to pack: " ) + dest, i18n( "Error" ) );
     return false;

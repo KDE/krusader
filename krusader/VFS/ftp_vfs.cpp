@@ -175,7 +175,6 @@ bool ftp_vfs::populateVfsList( const KUrl& origin, bool showHidden ) {
 	//QTimer::singleShot( 0,this,SLOT(startLister()) );
 	listError = false;
 	// Open the directory	marked by origin
-	krConfig->setGroup( "Look&Feel" );
 	//vfs_origin.adjustPath(KUrl::AddTrailingSlash);
 	KIO::Job *job = KIO::listDir( vfs_origin, false, showHidden );
 	connect( job, SIGNAL( entries( KIO::Job*, const KIO::UDSEntryList& ) ),

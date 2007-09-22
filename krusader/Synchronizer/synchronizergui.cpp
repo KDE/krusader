@@ -1141,14 +1141,14 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   rightDirLabel->setAlignment( Qt::AlignHCenter );
   grid->addWidget( rightDirLabel, 0 ,2 );
 
-  krConfig->setGroup("Synchronize");
+  KConfigGroup group( krConfig, "Synchronize");
 
   leftLocation = new KHistoryComboBox(false, compareDirs );
   leftLocation->setMaxCount(25);  // remember 25 items
   leftLocation->setDuplicatesEnabled( false );
   leftLocation->setEditable( true );
   leftLocation->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Fixed);
-  QStringList list = krConfig->readListEntry("Left Directory History");
+  QStringList list = group.readEntry("Left Directory History", QStringList() );
   leftLocation->setHistoryItems(list);
   KUrlRequester *leftUrlReq = new KUrlRequester( leftLocation, compareDirs );
   leftUrlReq->setUrl( vfs::pathOrUrl( leftURL ) );
@@ -1166,7 +1166,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   fileFilter->setMinimumWidth( 100 );
   fileFilter->setMaximumWidth( 100 );
   fileFilter->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
-  list = krConfig->readListEntry("File Filter");
+  list = group.readEntry("File Filter", QStringList());
   fileFilter->setHistoryItems(list);
   fileFilter->setEditText("*");
   grid->addWidget( fileFilter, 1 ,1 );
@@ -1181,7 +1181,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   rightLocation->setDuplicatesEnabled( false );
   rightLocation->setEditable( true );
   rightLocation->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Fixed);
-  list = krConfig->readListEntry("Right Directory History");
+  list = group.readEntry("Right Directory History", QStringList() );
   rightLocation->setHistoryItems(list);
   KUrlRequester *rightUrlReq = new KUrlRequester( rightLocation, compareDirs );
   rightUrlReq->setUrl( vfs::pathOrUrl( rightURL ) );
@@ -1196,23 +1196,23 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   Q3HBox *optionBox  = new Q3HBox( compareDirs );
   Q3Grid *optionGrid = new Q3Grid( 3, optionBox );
   cbSubdirs         = new QCheckBox( i18n( "Recurse subdirectories" ), optionGrid, "cbSubdirs" );
-  cbSubdirs->setChecked( krConfig->readBoolEntry( "Recurse Subdirectories", _RecurseSubdirs  ) );
+  cbSubdirs->setChecked( group.readEntry( "Recurse Subdirectories", _RecurseSubdirs  ) );
   Q3WhatsThis::add( cbSubdirs, i18n( "Compare not only the base directories but their subdirectories as well." ) );
   cbSymlinks        = new QCheckBox( i18n( "Follow symlinks" ), optionGrid, "cbSymlinks" );
-  cbSymlinks->setChecked( krConfig->readBoolEntry( "Follow Symlinks", _FollowSymlinks  ) );
+  cbSymlinks->setChecked( group.readEntry( "Follow Symlinks", _FollowSymlinks  ) );
   cbSymlinks->setEnabled( cbSubdirs->isChecked() );
   Q3WhatsThis::add( cbSymlinks, i18n( "Follow symbolic links during the compare process." ) );
   cbByContent       = new QCheckBox( i18n( "Compare by content" ), optionGrid, "cbByContent" );
-  cbByContent->setChecked( krConfig->readBoolEntry( "Compare By Content", _CompareByContent  ) );
+  cbByContent->setChecked( group.readEntry( "Compare By Content", _CompareByContent  ) );
   Q3WhatsThis::add( cbByContent, i18n( "Compare duplicated files with same size by content." ) );
   cbIgnoreDate      = new QCheckBox( i18n( "Ignore Date" ), optionGrid, "cbIgnoreDate" );
-  cbIgnoreDate->setChecked( krConfig->readBoolEntry( "Ignore Date", _IgnoreDate  ) );
+  cbIgnoreDate->setChecked( group.readEntry( "Ignore Date", _IgnoreDate  ) );
   Q3WhatsThis::add( cbIgnoreDate, i18n( "<p>Ignore date information during the compare process.</p><p><b>Note</b>: useful if the files are located on network filesystems or in archives.</p>" ) );
   cbAsymmetric      = new QCheckBox( i18n( "Asymmetric" ), optionGrid, "cbAsymmetric" );
-  cbAsymmetric->setChecked( krConfig->readBoolEntry( "Asymmetric", _Asymmetric  ) );
+  cbAsymmetric->setChecked( group.readEntry( "Asymmetric", _Asymmetric  ) );
   Q3WhatsThis::add( cbAsymmetric, i18n( "<p><b>Asymmetric mode</b></p><p>The left side is the destination, the right is the source directory. Files existing only in the left directory will be deleted, the other differing ones will be copied from right to left.</p><p><b>Note</b>: useful when updating a directory from a file server.</p>" ) );
   cbIgnoreCase      = new QCheckBox( i18n( "Ignore Case" ), optionGrid, "cbIgnoreCase" );
-  cbIgnoreCase->setChecked( krConfig->readBoolEntry( "Ignore Case", _IgnoreCase ) );
+  cbIgnoreCase->setChecked( group.readEntry( "Ignore Case", _IgnoreCase ) );
   Q3WhatsThis::add( cbIgnoreCase, i18n( "<p>Case insensitive filename compare.</p><p><b>Note</b>: useful when synchronizing Windows filesystems.</p>" ) );
 
   /* =========================== Show options groupbox ============================= */
@@ -1237,7 +1237,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnLeftToRight->setText( "" );
   btnLeftToRight->setPixmap( showLeftToRight );
   btnLeftToRight->setToggleButton( true );
-  btnLeftToRight->setOn( krConfig->readBoolEntry( "LeftToRight Button", _BtnLeftToRight ) );
+  btnLeftToRight->setOn( group.readEntry( "LeftToRight Button", _BtnLeftToRight ) );
   btnLeftToRight->setAccel( Qt::CTRL + Qt::Key_L );
   Q3WhatsThis::add( btnLeftToRight, i18n( "Show files marked to <i>Copy from left to right</i> (CTRL+L)." ) );
   showOptionsLayout->addWidget( btnLeftToRight, 0, 0);
@@ -1246,7 +1246,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnEquals->setText( "" );
   btnEquals->setPixmap( showEquals );
   btnEquals->setToggleButton( true );
-  btnEquals->setOn( krConfig->readBoolEntry( "Equals Button", _BtnEquals ) );
+  btnEquals->setOn( group.readEntry( "Equals Button", _BtnEquals ) );
   btnEquals->setAccel( Qt::CTRL + Qt::Key_E );
   Q3WhatsThis::add( btnEquals, i18n( "Show files considered to be identical (CTRL+E)." ) );
   showOptionsLayout->addWidget( btnEquals, 0, 1);
@@ -1255,7 +1255,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnDifferents->setText( "" );
   btnDifferents->setPixmap( showDifferents );
   btnDifferents->setToggleButton( true );
-  btnDifferents->setOn( krConfig->readBoolEntry( "Differents Button", _BtnDifferents ) );
+  btnDifferents->setOn( group.readEntry( "Differents Button", _BtnDifferents ) );
   btnDifferents->setAccel( Qt::CTRL + Qt::Key_D );
   Q3WhatsThis::add( btnDifferents, i18n( "Show excluded files (CTRL+D)." ) );
   showOptionsLayout->addWidget( btnDifferents, 0, 2);
@@ -1264,7 +1264,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnRightToLeft->setText( "" );
   btnRightToLeft->setPixmap( showRightToLeft );
   btnRightToLeft->setToggleButton( true );
-  btnRightToLeft->setOn( krConfig->readBoolEntry( "RightToLeft Button", _BtnRightToLeft ) );
+  btnRightToLeft->setOn( group.readEntry( "RightToLeft Button", _BtnRightToLeft ) );
   btnRightToLeft->setAccel( Qt::CTRL + Qt::Key_R );
   Q3WhatsThis::add( btnRightToLeft, i18n( "Show files marked to <i>Copy from right to left</i> (CTRL+R)." ) );
   showOptionsLayout->addWidget( btnRightToLeft, 0, 3);
@@ -1273,7 +1273,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnDeletable->setText( "" );
   btnDeletable->setPixmap( showDeletable );
   btnDeletable->setToggleButton( true );
-  btnDeletable->setOn( krConfig->readBoolEntry( "Deletable Button", _BtnDeletable ) );
+  btnDeletable->setOn( group.readEntry( "Deletable Button", _BtnDeletable ) );
   btnDeletable->setAccel( Qt::CTRL + Qt::Key_T );
   Q3WhatsThis::add( btnDeletable, i18n( "Show files marked to delete. (CTRL+T)" ) );
   showOptionsLayout->addWidget( btnDeletable, 0, 4);
@@ -1282,7 +1282,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnDuplicates->setText( i18n("Duplicates") );
   btnDuplicates->setMinimumHeight( btnLeftToRight->height() );
   btnDuplicates->setToggleButton( true );
-  btnDuplicates->setOn( krConfig->readBoolEntry( "Duplicates Button", _BtnDuplicates ) );
+  btnDuplicates->setOn( group.readEntry( "Duplicates Button", _BtnDuplicates ) );
   Q3WhatsThis::add( btnDuplicates, i18n( "Show files that exist on both sides." ) );
   showOptionsLayout->addWidget( btnDuplicates, 0, 5);
 
@@ -1290,7 +1290,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnSingles->setText( i18n("Singles") );
   btnSingles->setMinimumHeight( btnLeftToRight->height() );
   btnSingles->setToggleButton( true );
-  btnSingles->setOn( krConfig->readBoolEntry( "Singles Button", _BtnSingles ) );
+  btnSingles->setOn( group.readEntry( "Singles Button", _BtnSingles ) );
   Q3WhatsThis::add( btnSingles, i18n( "Show files that exist on one side only." ) );
   showOptionsLayout->addWidget( btnSingles, 0, 6);
 
@@ -1302,8 +1302,8 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   syncList=new SynchronizerListView( &synchronizer, synchronizerTab );  // create the main container
   Q3WhatsThis::add( syncList, i18n( "The compare results of the synchronizer (CTRL+M)." ) );
 
-  krConfig->setGroup("Look&Feel");
-  syncList->setFont(krConfig->readEntry("Filelist Font",*_FilelistFont));
+  KConfigGroup gl( krConfig, "Look&Feel");
+  syncList->setFont( gl.readEntry("Filelist Font",*_FilelistFont));
 
   syncList->setAllColumnsShowFocus(true);
   syncList->setMultiSelection(true);
@@ -1319,15 +1319,13 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   j=(i>j ? i : j);
   int typeWidth = j*7/2;
 
-  krConfig->setGroup("Synchronize");
-
-  int leftNameWidth  = krConfig->readNumEntry("Left Name Width",  9*typeWidth/2 );
-  int leftSizeWidth  = krConfig->readNumEntry("Left Size Width",  2*typeWidth );
-  int leftDateWidth  = krConfig->readNumEntry("Left Date Width",  3*typeWidth );
-  int taskTypeWidth  = krConfig->readNumEntry("Task Type Width",  typeWidth );
-  int rightDateWidth = krConfig->readNumEntry("Right Date Width", 3*typeWidth );
-  int rightSizeWidth = krConfig->readNumEntry("Right Size Width", 2*typeWidth );
-  int rightNameWidth = krConfig->readNumEntry("Right Name Width", 4*typeWidth );
+  int leftNameWidth  = group.readEntry("Left Name Width",  9*typeWidth/2 );
+  int leftSizeWidth  = group.readEntry("Left Size Width",  2*typeWidth );
+  int leftDateWidth  = group.readEntry("Left Date Width",  3*typeWidth );
+  int taskTypeWidth  = group.readEntry("Task Type Width",  typeWidth );
+  int rightDateWidth = group.readEntry("Right Date Width", 3*typeWidth );
+  int rightSizeWidth = group.readEntry("Right Size Width", 2*typeWidth );
+  int rightNameWidth = group.readEntry("Right Name Width", 4*typeWidth );
 
   syncList->addColumn(i18n("Name"),leftNameWidth);
   syncList->addColumn(i18n("Size"),leftSizeWidth);
@@ -1376,8 +1374,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   parallelThreadsSpinBox = new QSpinBox( optionsGroup, "parallelThreadsSpinBox" );
   parallelThreadsSpinBox->setMinValue( 1 );
   parallelThreadsSpinBox->setMaxValue( 15 );
-  krConfig->setGroup( "Synchronize" );
-  int parThreads = krConfig->readNumEntry( "Parallel Threads", 1 );
+  int parThreads = group.readEntry( "Parallel Threads", 1 );
   parallelThreadsSpinBox->setValue( parThreads );
 
   optionsLayout->addWidget( parallelThreadsSpinBox, 0, 1 );
@@ -1450,10 +1447,9 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnCompareDirs->setDefault(true);
   buttons->addWidget( btnCompareDirs );
 
-  krConfig->setGroup("Synchronize");
   btnScrollResults = new QPushButton( this, "btnSynchronize" );
   btnScrollResults->setToggleButton( true );
-  btnScrollResults->setOn( krConfig->readBoolEntry( "Scroll Results", _ScrollResults ) );
+  btnScrollResults->setOn( group.readEntry( "Scroll Results", _ScrollResults ) );
   btnScrollResults->hide();
   if( btnScrollResults->isOn() )
     btnScrollResults->setText( i18n( "Quiet" ) );
@@ -1535,7 +1531,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   /* =============================== Loading the colors ================================ */
 
-  krConfig->setGroup("Colors");
+  KConfigGroup gc( krConfig, "Colors");
 
   DECLARE_COLOR_NAME_ARRAY;
   DECLARE_BACKGROUND_DFLTS;
@@ -1545,27 +1541,26 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
     QString foreEntry = QString( "Synchronizer " ) + COLOR_NAMES[ clr ] + QString( " Foreground" );
     QString bckgEntry = QString( "Synchronizer " ) + COLOR_NAMES[ clr ] + QString( " Background" );
 
-    if( krConfig->readEntry( foreEntry, QString() ) == "KDE default" )
+    if( gc.readEntry( foreEntry, QString() ) == "KDE default" )
       foreGrounds[ clr ] = QColor();
     else
-      foreGrounds[ clr ] = krConfig->readEntry( foreEntry, FORE_DFLTS[ clr ] );
+      foreGrounds[ clr ] = gc.readEntry( foreEntry, FORE_DFLTS[ clr ] );
 
-    if( krConfig->readEntry( bckgEntry, QString() ) == "KDE default" )
+    if( gc.readEntry( bckgEntry, QString() ) == "KDE default" )
       backGrounds[ clr ] = QColor();
     else
-      backGrounds[ clr ] = krConfig->readEntry( bckgEntry, BCKG_DFLTS[ clr ] );
+      backGrounds[ clr ] = gc.readEntry( bckgEntry, BCKG_DFLTS[ clr ] );
   }
   if( backGrounds[ TT_EQUALS ].isValid() )
     syncList->setPaletteBackgroundColor( backGrounds[ TT_EQUALS ] );
 
-  krConfig->setGroup("Synchronize");
-  int sx = krConfig->readNumEntry( "Window Width",  -1 );
-  int sy = krConfig->readNumEntry( "Window Height",  -1 );
+  int sx = group.readEntry( "Window Width",  -1 );
+  int sy = group.readEntry( "Window Height",  -1 );
 
   if( sx != -1 && sy != -1 )
     resize( sx, sy );
 
-  if( krConfig->readBoolEntry( "Window Maximized",  false ) )
+  if( group.readEntry( "Window Maximized",  false ) )
       showMaximized();
   else
       show();
@@ -1865,42 +1860,42 @@ void SynchronizerGUI::closeDialog()
   }
 
   QStringList list = leftLocation->historyItems();
-  krConfig->setGroup("Synchronize");
-  krConfig->writeEntry("Left Directory History", list);
+  KConfigGroup group( krConfig, "Synchronize");
+  group.writeEntry("Left Directory History", list);
   list = rightLocation->historyItems();
-  krConfig->writeEntry("Right Directory History", list);
+  group.writeEntry("Right Directory History", list);
   list = fileFilter->historyItems();
-  krConfig->writeEntry("File Filter", list);
+  group.writeEntry("File Filter", list);
 
-  krConfig->writeEntry("Recurse Subdirectories", cbSubdirs->isChecked() );
-  krConfig->writeEntry("Follow Symlinks", cbSymlinks->isChecked() );
-  krConfig->writeEntry("Compare By Content", cbByContent->isChecked() );
-  krConfig->writeEntry("Ignore Date", cbIgnoreDate->isChecked() );
-  krConfig->writeEntry("Asymmetric", cbAsymmetric->isChecked() );
-  krConfig->writeEntry("Ignore Case", cbIgnoreCase->isChecked() );
-  krConfig->writeEntry("LeftToRight Button", btnLeftToRight->isOn() );
-  krConfig->writeEntry("Equals Button", btnEquals->isOn() );
-  krConfig->writeEntry("Differents Button", btnDifferents->isOn() );
-  krConfig->writeEntry("RightToLeft Button", btnRightToLeft->isOn() );
-  krConfig->writeEntry("Deletable Button", btnDeletable->isOn() );
-  krConfig->writeEntry("Duplicates Button", btnDuplicates->isOn() );
-  krConfig->writeEntry("Singles Button", btnSingles->isOn() );
+  group.writeEntry("Recurse Subdirectories", cbSubdirs->isChecked() );
+  group.writeEntry("Follow Symlinks", cbSymlinks->isChecked() );
+  group.writeEntry("Compare By Content", cbByContent->isChecked() );
+  group.writeEntry("Ignore Date", cbIgnoreDate->isChecked() );
+  group.writeEntry("Asymmetric", cbAsymmetric->isChecked() );
+  group.writeEntry("Ignore Case", cbIgnoreCase->isChecked() );
+  group.writeEntry("LeftToRight Button", btnLeftToRight->isOn() );
+  group.writeEntry("Equals Button", btnEquals->isOn() );
+  group.writeEntry("Differents Button", btnDifferents->isOn() );
+  group.writeEntry("RightToLeft Button", btnRightToLeft->isOn() );
+  group.writeEntry("Deletable Button", btnDeletable->isOn() );
+  group.writeEntry("Duplicates Button", btnDuplicates->isOn() );
+  group.writeEntry("Singles Button", btnSingles->isOn() );
 
-  krConfig->writeEntry("Scroll Results", btnScrollResults->isOn() );
+  group.writeEntry("Scroll Results", btnScrollResults->isOn() );
 
-  krConfig->writeEntry("Parallel Threads", parallelThreadsSpinBox->value() );
+  group.writeEntry("Parallel Threads", parallelThreadsSpinBox->value() );
 
-  krConfig->writeEntry("Window Width", sizeX );
-  krConfig->writeEntry("Window Height", sizeY );
-  krConfig->writeEntry("Window Maximized", isMaximized() );
+  group.writeEntry("Window Width", sizeX );
+  group.writeEntry("Window Height", sizeY );
+  group.writeEntry("Window Maximized", isMaximized() );
 
-  krConfig->writeEntry("Left Name Width",  syncList->columnWidth( 0 ) );
-  krConfig->writeEntry("Left Size Width",  syncList->columnWidth( 1 ) );
-  krConfig->writeEntry("Left Date Width",  syncList->columnWidth( 2 ) );
-  krConfig->writeEntry("Task Type Width",  syncList->columnWidth( 3 ) );
-  krConfig->writeEntry("Right Date Width", syncList->columnWidth( 4 ) );
-  krConfig->writeEntry("Right Size Width", syncList->columnWidth( 5 ) );
-  krConfig->writeEntry("Right Name Width", syncList->columnWidth( 6 ) );
+  group.writeEntry("Left Name Width",  syncList->columnWidth( 0 ) );
+  group.writeEntry("Left Size Width",  syncList->columnWidth( 1 ) );
+  group.writeEntry("Left Date Width",  syncList->columnWidth( 2 ) );
+  group.writeEntry("Task Type Width",  syncList->columnWidth( 3 ) );
+  group.writeEntry("Right Date Width", syncList->columnWidth( 4 ) );
+  group.writeEntry("Right Size Width", syncList->columnWidth( 5 ) );
+  group.writeEntry("Right Name Width", syncList->columnWidth( 6 ) );
 
   QDialog::reject();
   
@@ -2330,48 +2325,48 @@ void SynchronizerGUI::loadFromProfile( QString profile )
   btnSynchronize->setEnabled( false );
   btnFeedToListBox->setEnabled( false );
 
-  krConfig->setGroup( profile );
+  KConfigGroup pg( krConfig, profile );
 
   if( !hasSelectedFiles )
   {
-    leftLocation->setCurrentText( krConfig->readEntry( "Left Location" ) );
-    rightLocation->setCurrentText( krConfig->readEntry( "Right Location" ) );
+    leftLocation->setCurrentText( pg.readEntry( "Left Location", QString() ) );
+    rightLocation->setCurrentText( pg.readEntry( "Right Location", QString() ) );
   }
-  fileFilter->setCurrentText( krConfig->readEntry( "Search For" ) );
+  fileFilter->setCurrentText( pg.readEntry( "Search For", QString() ) );
 
-  cbSubdirs->   setChecked( krConfig->readBoolEntry( "Recurse Subdirectories", true ) );
-  cbSymlinks->  setChecked( krConfig->readBoolEntry( "Follow Symlinks", false ) );
-  cbByContent-> setChecked( krConfig->readBoolEntry( "Compare By Content", false ) );
-  cbIgnoreDate->setChecked( krConfig->readBoolEntry( "Ignore Date", false ) );
-  cbAsymmetric->setChecked( krConfig->readBoolEntry( "Asymmetric", false ) );
-  cbIgnoreCase->setChecked( krConfig->readBoolEntry( "Ignore Case", false ) );
+  cbSubdirs->   setChecked( pg.readEntry( "Recurse Subdirectories", true ) );
+  cbSymlinks->  setChecked( pg.readEntry( "Follow Symlinks", false ) );
+  cbByContent-> setChecked( pg.readEntry( "Compare By Content", false ) );
+  cbIgnoreDate->setChecked( pg.readEntry( "Ignore Date", false ) );
+  cbAsymmetric->setChecked( pg.readEntry( "Asymmetric", false ) );
+  cbIgnoreCase->setChecked( pg.readEntry( "Ignore Case", false ) );
 
-  btnScrollResults->setOn( krConfig->readBoolEntry( "Scroll Results", false ) );
+  btnScrollResults->setOn( pg.readEntry( "Scroll Results", false ) );
 
-  btnLeftToRight->setOn( krConfig->readBoolEntry( "Show Left To Right", true ) );
-  btnEquals     ->setOn( krConfig->readBoolEntry( "Show Equals", true ) );
-  btnDifferents ->setOn( krConfig->readBoolEntry( "Show Differents", true ) );
-  btnRightToLeft->setOn( krConfig->readBoolEntry( "Show Right To Left", true ) );
-  btnDeletable  ->setOn( krConfig->readBoolEntry( "Show Deletable", true ) );
-  btnDuplicates ->setOn( krConfig->readBoolEntry( "Show Duplicates", true ) );
-  btnSingles    ->setOn( krConfig->readBoolEntry( "Show Singles", true ) );
+  btnLeftToRight->setOn( pg.readEntry( "Show Left To Right", true ) );
+  btnEquals     ->setOn( pg.readEntry( "Show Equals", true ) );
+  btnDifferents ->setOn( pg.readEntry( "Show Differents", true ) );
+  btnRightToLeft->setOn( pg.readEntry( "Show Right To Left", true ) );
+  btnDeletable  ->setOn( pg.readEntry( "Show Deletable", true ) );
+  btnDuplicates ->setOn( pg.readEntry( "Show Duplicates", true ) );
+  btnSingles    ->setOn( pg.readEntry( "Show Singles", true ) );
 
-  int equalityThreshold = krConfig->readNumEntry( "Equality Threshold", 0 );
+  int equalityThreshold = pg.readEntry( "Equality Threshold", 0 );
   int equalityCombo = 0;
   convertFromSeconds( equalityThreshold, equalityCombo, equalityThreshold );
   equalitySpinBox->setValue( equalityThreshold );
   equalityUnitCombo->setCurrentItem( equalityCombo );
 
-  int timeShift = krConfig->readNumEntry( "Time Shift", 0 );
+  int timeShift = pg.readEntry( "Time Shift", 0 );
   int timeShiftCombo = 0;
   convertFromSeconds( timeShift, timeShiftCombo, timeShift );
   timeShiftSpinBox->setValue( timeShift );
   timeShiftUnitCombo->setCurrentItem( timeShiftCombo );
 
-  int parallelThreads = krConfig->readNumEntry( "Parallel Threads", 1 );
+  int parallelThreads = pg.readEntry( "Parallel Threads", 1 );
   parallelThreadsSpinBox->setValue( parallelThreads );
 
-  bool ignoreHidden = krConfig->readBoolEntry( "Ignore Hidden Files", FALSE );
+  bool ignoreHidden = pg.readEntry( "Ignore Hidden Files", FALSE );
   ignoreHiddenFilesCB->setChecked( ignoreHidden );
   
   refresh();
@@ -2379,34 +2374,34 @@ void SynchronizerGUI::loadFromProfile( QString profile )
 
 void SynchronizerGUI::saveToProfile( QString profile )
 {
-  krConfig->setGroup( profile );
+  KConfigGroup group( krConfig, profile );
 
-  krConfig->writeEntry( "Left Location", leftLocation->currentText() );
-  krConfig->writeEntry( "Search For", fileFilter->currentText() );
-  krConfig->writeEntry( "Right Location", rightLocation->currentText() );
+  group.writeEntry( "Left Location", leftLocation->currentText() );
+  group.writeEntry( "Search For", fileFilter->currentText() );
+  group.writeEntry( "Right Location", rightLocation->currentText() );
 
-  krConfig->writeEntry( "Recurse Subdirectories", cbSubdirs->isChecked() );
-  krConfig->writeEntry( "Follow Symlinks", cbSymlinks->isChecked() );
-  krConfig->writeEntry( "Compare By Content", cbByContent->isChecked() );
-  krConfig->writeEntry( "Ignore Date", cbIgnoreDate->isChecked() );
-  krConfig->writeEntry( "Asymmetric", cbAsymmetric->isChecked() );
-  krConfig->writeEntry( "Ignore Case", cbIgnoreCase->isChecked() );
+  group.writeEntry( "Recurse Subdirectories", cbSubdirs->isChecked() );
+  group.writeEntry( "Follow Symlinks", cbSymlinks->isChecked() );
+  group.writeEntry( "Compare By Content", cbByContent->isChecked() );
+  group.writeEntry( "Ignore Date", cbIgnoreDate->isChecked() );
+  group.writeEntry( "Asymmetric", cbAsymmetric->isChecked() );
+  group.writeEntry( "Ignore Case", cbIgnoreCase->isChecked() );
 
-  krConfig->writeEntry( "Scroll Results", btnScrollResults->isOn() );
+  group.writeEntry( "Scroll Results", btnScrollResults->isOn() );
 
-  krConfig->writeEntry( "Show Left To Right", btnLeftToRight->isOn() );
-  krConfig->writeEntry( "Show Equals", btnEquals->isOn() );
-  krConfig->writeEntry( "Show Differents", btnDifferents->isOn() );
-  krConfig->writeEntry( "Show Right To Left", btnRightToLeft->isOn() );
-  krConfig->writeEntry( "Show Deletable", btnDeletable->isOn() );
-  krConfig->writeEntry( "Show Duplicates", btnDuplicates->isOn() );
-  krConfig->writeEntry( "Show Singles", btnSingles->isOn() );
+  group.writeEntry( "Show Left To Right", btnLeftToRight->isOn() );
+  group.writeEntry( "Show Equals", btnEquals->isOn() );
+  group.writeEntry( "Show Differents", btnDifferents->isOn() );
+  group.writeEntry( "Show Right To Left", btnRightToLeft->isOn() );
+  group.writeEntry( "Show Deletable", btnDeletable->isOn() );
+  group.writeEntry( "Show Duplicates", btnDuplicates->isOn() );
+  group.writeEntry( "Show Singles", btnSingles->isOn() );
 
-  krConfig->writeEntry( "Equality Threshold", convertToSeconds( equalitySpinBox->value(), equalityUnitCombo->currentItem() ) );
-  krConfig->writeEntry( "Time Shift", convertToSeconds( timeShiftSpinBox->value(), timeShiftUnitCombo->currentItem() ) );
-  krConfig->writeEntry( "Parallel Threads", parallelThreadsSpinBox->value() );
+  group.writeEntry( "Equality Threshold", convertToSeconds( equalitySpinBox->value(), equalityUnitCombo->currentItem() ) );
+  group.writeEntry( "Time Shift", convertToSeconds( timeShiftSpinBox->value(), timeShiftUnitCombo->currentItem() ) );
+  group.writeEntry( "Parallel Threads", parallelThreadsSpinBox->value() );
 
-  krConfig->writeEntry( "Ignore Hidden Files", ignoreHiddenFilesCB->isChecked() );
+  group.writeEntry( "Ignore Hidden Files", ignoreHiddenFilesCB->isChecked() );
 }
 
 void SynchronizerGUI::connectFilters( const QString &newString )
