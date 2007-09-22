@@ -636,7 +636,7 @@ bool AdvancedFilter::fillQuery ( KRQuery *query )
 
 void AdvancedFilter::loadFromProfile ( QString name )
 {
-	KConfigGroup cfg = krConfig->group(name);
+	KConfigGroup cfg( krConfig, name);
 
 	smallerThanEnabled->setChecked ( cfg.readEntry ( "Smaller Than Enabled", false ) );
 	smallerThanAmount->setText ( cfg.readEntry ( "Smaller Than Amount", "" ) );
@@ -694,47 +694,47 @@ void AdvancedFilter::loadFromProfile ( QString name )
 
 void AdvancedFilter::saveToProfile ( QString name )
 {
-	krConfig->setGroup ( name );
+	KConfigGroup group( krConfig, name );
 
-	krConfig->writeEntry ( "Smaller Than Enabled", smallerThanEnabled->isChecked() );
-	krConfig->writeEntry ( "Smaller Than Amount", smallerThanAmount->text() );
-	krConfig->writeEntry ( "Smaller Than Type", smallerThanType->currentItem() );
+	group.writeEntry ( "Smaller Than Enabled", smallerThanEnabled->isChecked() );
+	group.writeEntry ( "Smaller Than Amount", smallerThanAmount->text() );
+	group.writeEntry ( "Smaller Than Type", smallerThanType->currentItem() );
 
-	krConfig->writeEntry ( "Bigger Than Enabled", biggerThanEnabled->isChecked() );
-	krConfig->writeEntry ( "Bigger Than Amount", biggerThanAmount->text() );
-	krConfig->writeEntry ( "Bigger Than Type", biggerThanType->currentItem() );
+	group.writeEntry ( "Bigger Than Enabled", biggerThanEnabled->isChecked() );
+	group.writeEntry ( "Bigger Than Amount", biggerThanAmount->text() );
+	group.writeEntry ( "Bigger Than Type", biggerThanType->currentItem() );
 
-	krConfig->writeEntry ( "Modified Between Enabled", modifiedBetweenEnabled->isChecked() );
-	krConfig->writeEntry ( "Not Modified After Enabled", notModifiedAfterEnabled->isChecked() );
-	krConfig->writeEntry ( "Modified In The Last Enabled", modifiedInTheLastEnabled->isChecked() );
+	group.writeEntry ( "Modified Between Enabled", modifiedBetweenEnabled->isChecked() );
+	group.writeEntry ( "Not Modified After Enabled", notModifiedAfterEnabled->isChecked() );
+	group.writeEntry ( "Modified In The Last Enabled", modifiedInTheLastEnabled->isChecked() );
 
-	krConfig->writeEntry ( "Modified Between 1", modifiedBetweenData1->text() );
-	krConfig->writeEntry ( "Modified Between 2", modifiedBetweenData2->text() );
+	group.writeEntry ( "Modified Between 1", modifiedBetweenData1->text() );
+	group.writeEntry ( "Modified Between 2", modifiedBetweenData2->text() );
 
-	krConfig->writeEntry ( "Not Modified After", notModifiedAfterData->text() );
-	krConfig->writeEntry ( "Modified In The Last", modifiedInTheLastData->text() );
-	krConfig->writeEntry ( "Not Modified In The Last", notModifiedInTheLastData->text() );
+	group.writeEntry ( "Not Modified After", notModifiedAfterData->text() );
+	group.writeEntry ( "Modified In The Last", modifiedInTheLastData->text() );
+	group.writeEntry ( "Not Modified In The Last", notModifiedInTheLastData->text() );
 
-	krConfig->writeEntry ( "Modified In The Last Type", modifiedInTheLastType->currentItem() );
-	krConfig->writeEntry ( "Not Modified In The Last Type", notModifiedInTheLastType->currentItem() );
+	group.writeEntry ( "Modified In The Last Type", modifiedInTheLastType->currentItem() );
+	group.writeEntry ( "Not Modified In The Last Type", notModifiedInTheLastType->currentItem() );
 
-	krConfig->writeEntry ( "Belongs To User Enabled", belongsToUserEnabled->isChecked() );
-	krConfig->writeEntry ( "Belongs To Group Enabled", belongsToGroupEnabled->isChecked() );
+	group.writeEntry ( "Belongs To User Enabled", belongsToUserEnabled->isChecked() );
+	group.writeEntry ( "Belongs To Group Enabled", belongsToGroupEnabled->isChecked() );
 
-	krConfig->writeEntry ( "Belongs To User", belongsToUserData->currentText() );
-	krConfig->writeEntry ( "Belongs To Group", belongsToGroupData->currentText() );
+	group.writeEntry ( "Belongs To User", belongsToUserData->currentText() );
+	group.writeEntry ( "Belongs To Group", belongsToGroupData->currentText() );
 
-	krConfig->writeEntry ( "Permissions Enabled", permissionsEnabled->isChecked() );
+	group.writeEntry ( "Permissions Enabled", permissionsEnabled->isChecked() );
 
-	krConfig->writeEntry ( "Owner Write", ownerW->currentItem() );
-	krConfig->writeEntry ( "Owner Read", ownerR->currentItem() );
-	krConfig->writeEntry ( "Owner Execute", ownerX->currentItem() );
-	krConfig->writeEntry ( "Group Write", groupW->currentItem() );
-	krConfig->writeEntry ( "Group Read", groupR->currentItem() );
-	krConfig->writeEntry ( "Group Execute", groupX->currentItem() );
-	krConfig->writeEntry ( "All Write", allW->currentItem() );
-	krConfig->writeEntry ( "All Read", allR->currentItem() );
-	krConfig->writeEntry ( "All Execute", allX->currentItem() );
+	group.writeEntry ( "Owner Write", ownerW->currentItem() );
+	group.writeEntry ( "Owner Read", ownerR->currentItem() );
+	group.writeEntry ( "Owner Execute", ownerX->currentItem() );
+	group.writeEntry ( "Group Write", groupW->currentItem() );
+	group.writeEntry ( "Group Read", groupR->currentItem() );
+	group.writeEntry ( "Group Execute", groupX->currentItem() );
+	group.writeEntry ( "All Write", allW->currentItem() );
+	group.writeEntry ( "All Read", allR->currentItem() );
+	group.writeEntry ( "All Execute", allX->currentItem() );
 }
 
 

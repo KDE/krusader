@@ -298,16 +298,15 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 
 	// load the completion and history lists
 	// ==> search for
-	krConfig->setGroup ( "Search" );
-	QStringList list = krConfig->readListEntry ( "SearchFor Completion" );
+	KConfigGroup group( krConfig, "Search" );
+	QStringList list = group.readEntry ( "SearchFor Completion", QStringList() );
 	searchFor->completionObject()->setItems ( list );
-	list = krConfig->readListEntry ( "SearchFor History" );
+	list = group.readEntry ( "SearchFor History", QStringList() );
 	searchFor->setHistoryItems ( list );
 	// ==> grep
-	krConfig->setGroup ( "Search" );
-	list = krConfig->readListEntry ( "ContainsText Completion" );
+	list = group.readEntry ( "ContainsText Completion", QStringList() );
 	containsText->completionObject()->setItems ( list );
-	list = krConfig->readListEntry ( "ContainsText History" );
+	list = group.readEntry ( "ContainsText History", QStringList() );
 	containsText->setHistoryItems ( list );
 
 	setTabOrder ( searchFor, containsText ); // search for -> content
@@ -319,16 +318,15 @@ GeneralFilter::~GeneralFilter()
 	// save the history combos
 	// ==> search for
 	QStringList list = searchFor->completionObject()->items();
-	krConfig->setGroup ( "Search" );
-	krConfig->writeEntry ( "SearchFor Completion", list );
+	KConfigGroup group( krConfig, "Search" );
+	group.writeEntry ( "SearchFor Completion", list );
 	list = searchFor->historyItems();
-	krConfig->writeEntry ( "SearchFor History", list );
+	group.writeEntry ( "SearchFor History", list );
 	// ==> grep text
 	list = containsText->completionObject()->items();
-	krConfig->setGroup ( "Search" );
-	krConfig->writeEntry ( "ContainsText Completion", list );
+	group.writeEntry ( "ContainsText Completion", list );
 	list = containsText->historyItems();
-	krConfig->writeEntry ( "ContainsText History", list );
+	group.writeEntry ( "ContainsText History", list );
 
 	krConfig->sync();
 }
@@ -395,7 +393,7 @@ void GeneralFilter::queryAccepted()
 
 void GeneralFilter::loadFromProfile ( QString name )
 {
-	KConfigGroup cfg = krConfig->group( name );
+	KConfigGroup cfg( krConfig, name );
 
 	searchForCase->setChecked ( cfg.readEntry ( "Case Sensitive Search", false ) );
 	containsTextCase->setChecked ( cfg.readEntry ( "Case Sensitive Content", false ) );
@@ -442,42 +440,42 @@ void GeneralFilter::loadFromProfile ( QString name )
 
 void GeneralFilter::saveToProfile ( QString name )
 {
-	krConfig->setGroup ( name );
+	KConfigGroup group( krConfig, name );
 
-	krConfig->writeEntry ( "Case Sensitive Search", searchForCase->isChecked() );
-	krConfig->writeEntry ( "Case Sensitive Content", containsTextCase->isChecked() );
-	krConfig->writeEntry ( "Remote Content Search", remoteContentSearch->isChecked() );
-	krConfig->writeEntry ( "Match Whole Word Only", containsWholeWord->isChecked() );
-	krConfig->writeEntry ( "Contains Text", containsText->currentText() );
-	krConfig->writeEntry ( "Search For", searchFor->currentText() );
+	group.writeEntry ( "Case Sensitive Search", searchForCase->isChecked() );
+	group.writeEntry ( "Case Sensitive Content", containsTextCase->isChecked() );
+	group.writeEntry ( "Remote Content Search", remoteContentSearch->isChecked() );
+	group.writeEntry ( "Match Whole Word Only", containsWholeWord->isChecked() );
+	group.writeEntry ( "Contains Text", containsText->currentText() );
+	group.writeEntry ( "Search For", searchFor->currentText() );
 
-	krConfig->writeEntry ( "Mime Type", ofType->currentText() );
+	group.writeEntry ( "Mime Type", ofType->currentText() );
 
 	if ( properties & FilterTabs::HasRecurseOptions )
 	{
-		krConfig->writeEntry ( "Search In Subdirectories", searchInDirs->isChecked() );
-		krConfig->writeEntry ( "Search In Archives", searchInArchives->isChecked() );
-		krConfig->writeEntry ( "Follow Symlinks", followLinks->isChecked() );
+		group.writeEntry ( "Search In Subdirectories", searchInDirs->isChecked() );
+		group.writeEntry ( "Search In Archives", searchInArchives->isChecked() );
+		group.writeEntry ( "Follow Symlinks", followLinks->isChecked() );
 	}
 
 	if ( properties & FilterTabs::HasSearchIn )
 	{
-		krConfig->writeEntry ( "Search In Edit", searchIn->lineEdit()->text() );
+		group.writeEntry ( "Search In Edit", searchIn->lineEdit()->text() );
 
 		QStringList searchInList;
 		for ( Q3ListBoxItem *item = searchIn->listBox()->firstItem(); item != 0; item = item->next() )
 			searchInList.append ( item->text().simplified() );
-		krConfig->writeEntry ( "Search In List", searchInList );
+		group.writeEntry ( "Search In List", searchInList );
 	}
 
 	if ( properties & FilterTabs::HasDontSearchIn )
 	{
-		krConfig->writeEntry ( "Dont Search In Edit", dontSearchIn->lineEdit()->text() );
+		group.writeEntry ( "Dont Search In Edit", dontSearchIn->lineEdit()->text() );
 
 		QStringList dontSearchInList;
 		for ( Q3ListBoxItem *item = dontSearchIn->listBox()->firstItem(); item != 0; item = item->next() )
 			dontSearchInList.append ( item->text().simplified() );
-		krConfig->writeEntry ( "Dont Search In List", dontSearchInList );
+		group.writeEntry ( "Dont Search In List", dontSearchInList );
 	}
 }
 

@@ -207,11 +207,12 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   int j=QFontMetrics(resultsList->font()).width("0");
   j=(i>j ? i : j);
 
-  resultsList->setColumnWidth(0, krConfig->readNumEntry("Name Width", j*14) );
-  resultsList->setColumnWidth(1, krConfig->readNumEntry("Path Width", j*25) );
-  resultsList->setColumnWidth(2, krConfig->readNumEntry("Size Width", j*6) );
-  resultsList->setColumnWidth(3, krConfig->readNumEntry("Date Width", j*7) );
-  resultsList->setColumnWidth(4, krConfig->readNumEntry("Perm Width", j*7) );
+  KConfigGroup group( krConfig, "Search" );
+  resultsList->setColumnWidth(0, group.readEntry("Name Width", j*14) );
+  resultsList->setColumnWidth(1, group.readEntry("Path Width", j*25) );
+  resultsList->setColumnWidth(2, group.readEntry("Size Width", j*6) );
+  resultsList->setColumnWidth(3, group.readEntry("Date Width", j*7) );
+  resultsList->setColumnWidth(4, group.readEntry("Perm Width", j*7) );
   resultsList->setColumnAlignment( 2, Qt::AlignRight );
 
   resultsList->header()->setStretchEnabled( true, 1 );
@@ -266,14 +267,13 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   setTabOrder( mainStopBtn, searcherTabs );
   setTabOrder( searcherTabs, resultsList );
 
-  krConfig->setGroup( "Search" );
-  int sx = krConfig->readNumEntry( "Window Width",  -1 );
-  int sy = krConfig->readNumEntry( "Window Height",  -1 );
+  int sx = group.readEntry( "Window Width",  -1 );
+  int sy = group.readEntry( "Window Height",  -1 );
 
   if( sx != -1 && sy != -1 )
     resize( sx, sy );
 
-  if( krConfig->readBoolEntry( "Window Maximized",  false ) )
+  if( group.readEntry( "Window Maximized",  false ) )
       showMaximized();
   else
       show();
@@ -313,17 +313,17 @@ void KrSearchDialog::closeDialog( bool isAccept )
 
   // saving the searcher state
 
-  krConfig->setGroup( "Search" );
+  KConfigGroup group( krConfig, "Search" );
 
-  krConfig->writeEntry("Window Width", sizeX );
-  krConfig->writeEntry("Window Height", sizeY );
-  krConfig->writeEntry("Window Maximized", isMaximized() );
+  group.writeEntry("Window Width", sizeX );
+  group.writeEntry("Window Height", sizeY );
+  group.writeEntry("Window Maximized", isMaximized() );
 
-  krConfig->writeEntry("Name Width",  resultsList->columnWidth( 0 ) );
-  krConfig->writeEntry("Path Width",  resultsList->columnWidth( 1 ) );
-  krConfig->writeEntry("Size Width",  resultsList->columnWidth( 2 ) );
-  krConfig->writeEntry("Date Width",  resultsList->columnWidth( 3 ) );
-  krConfig->writeEntry("Perm Width",  resultsList->columnWidth( 4 ) );
+  group.writeEntry("Name Width",  resultsList->columnWidth( 0 ) );
+  group.writeEntry("Path Width",  resultsList->columnWidth( 1 ) );
+  group.writeEntry("Size Width",  resultsList->columnWidth( 2 ) );
+  group.writeEntry("Date Width",  resultsList->columnWidth( 3 ) );
+  group.writeEntry("Perm Width",  resultsList->columnWidth( 4 ) );
 
   lastSearchText = generalFilter->searchFor->currentText();
   lastSearchType = generalFilter->ofType->currentIndex();
@@ -561,16 +561,16 @@ void KrSearchDialog::feedToListBox()
   virt_vfs v(0,true);
   v.vfs_refresh( KUrl( "/" ) );
 
-  krConfig->setGroup( "Search" );
-  int listBoxNum = krConfig->readNumEntry( "Feed To Listbox Counter", 1 );
+  KConfigGroup group( krConfig, "Search" );
+  int listBoxNum = group.readEntry( "Feed To Listbox Counter", 1 );
   QString queryName;
   do {
     queryName = i18n("Search results")+QString( " %1" ).arg( listBoxNum++ );
   }while( v.vfs_search( queryName ) != 0 );
-  krConfig->writeEntry( "Feed To Listbox Counter", listBoxNum );
+  group.writeEntry( "Feed To Listbox Counter", listBoxNum );
 
-  krConfig->setGroup( "Advanced" );
-  if ( krConfig->readBoolEntry( "Confirm Feed to Listbox",  _ConfirmFeedToListbox ) ) {
+  KConfigGroup ga( krConfig, "Advanced" );
+  if ( ga.readEntry( "Confirm Feed to Listbox",  _ConfirmFeedToListbox ) ) {
     bool ok;
     queryName = KInputDialog::getText(
                 i18n("Query name"),		// Caption

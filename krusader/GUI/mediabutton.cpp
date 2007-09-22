@@ -106,8 +106,8 @@ MediaButton::~MediaButton() {
 
 void MediaButton::slotAboutToShow() {
 	hasMedia = KProtocolInfo::isKnownProtocol( QString( "media" ) );
-	krConfig->setGroup( "Advanced" );
-	if( krConfig->readBoolEntry( "DontUseMediaProt", !hasMedia ) )
+	KConfigGroup group( krConfig, "Advanced" );
+	if( group.readEntry( "DontUseMediaProt", !hasMedia ) )
 		hasMedia = false;
 	
 	popupMenu->clear();

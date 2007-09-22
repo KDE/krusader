@@ -129,8 +129,8 @@ void KrRemoteEncodingMenu::slotItemSelected(int id)
   {
     QString charset = KGlobal::charsets()->encodingForName( encodingNames[id - 1] );
 
-    config.setGroup(host);
-    config.writeEntry(DATA_KEY, charset);
+    KConfigGroup group( &config, host);
+    group.writeEntry(DATA_KEY, charset);
     config.sync();
 
     // Update the io-slaves...

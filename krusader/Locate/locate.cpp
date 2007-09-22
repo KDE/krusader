@@ -124,8 +124,8 @@ LocateDlg::LocateDlg() : KDialog( 0 ), isFeedToListBox( false )
   QLabel *label = new QLabel( i18n( "Search for:" ), hbox, "locateLabel" );
   locateSearchFor = new KHistoryComboBox( false, hbox );
   label->setBuddy( locateSearchFor );
-  krConfig->setGroup("Locate");
-  QStringList list = krConfig->readListEntry("Search For");
+  KConfigGroup group( krConfig, "Locate");
+  QStringList list = group.readEntry("Search For", QStringList());
   locateSearchFor->setMaxCount(25);  // remember 25 items
   locateSearchFor->setHistoryItems(list);
   locateSearchFor->setEditable( true );
@@ -139,11 +139,11 @@ LocateDlg::LocateDlg() : KDialog( 0 ), isFeedToListBox( false )
   QSpacerItem* spacer = new QSpacerItem( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
   hbox2->layout()->addItem( spacer );
   dontSearchInPath = new QCheckBox( i18n( "Don't search in path" ), hbox2, "dontSearchInPath" );
-  dontSearchInPath->setChecked( krConfig->readBoolEntry("Dont Search In Path") );
+  dontSearchInPath->setChecked( group.readEntry("Dont Search In Path", false) );
   existingFiles = new QCheckBox( i18n( "Show only the existing files" ), hbox2, "existingFiles" );
-  existingFiles->setChecked( krConfig->readBoolEntry("Existing Files") );
+  existingFiles->setChecked( group.readEntry("Existing Files", false) );
   caseSensitive = new QCheckBox( i18n( "Case Sensitive" ), hbox2, "caseSensitive" );
-  caseSensitive->setChecked( krConfig->readBoolEntry("Case Sensitive") );
+  caseSensitive->setChecked( group.readEntry("Case Sensitive", false) );
   grid->addWidget( hbox2, 1, 0 );
 
   Q3Frame *line1 = new Q3Frame( widget, "locateLine1" );
@@ -152,8 +152,8 @@ LocateDlg::LocateDlg() : KDialog( 0 ), isFeedToListBox( false )
 
   resultList=new LocateListView( widget );  // create the main container
 
-  krConfig->setGroup("Look&Feel");
-  resultList->setFont(krConfig->readEntry("Filelist Font",*_FilelistFont));
+  KConfigGroup gl( krConfig, "Look&Feel");
+  resultList->setFont(gl.readEntry("Filelist Font",*_FilelistFont));
 
   resultList->setAllColumnsShowFocus(true);
   resultList->setVScrollBarMode(Q3ScrollView::Auto);
@@ -212,11 +212,11 @@ void LocateDlg::slotUser2()   /* The Update DB button */
 {
   if( !updateProcess )
   {
-    krConfig->setGroup("Locate");
+    KConfigGroup group( krConfig, "Locate");
 
     updateProcess = new K3Process();
     *updateProcess << KrServices::fullPathName( "updatedb" );
-    *updateProcess << KrServices::separateArgs( krConfig->readEntry( "UpdateDB Arguments", "" ) );
+    *updateProcess << KrServices::separateArgs( group.readEntry( "UpdateDB Arguments" ) );
     
     connect( updateProcess, SIGNAL(processExited(K3Process *)), this, SLOT(updateFinished()));
     updateProcess->start(K3Process::NotifyOnExit);
@@ -235,11 +235,11 @@ void LocateDlg::slotUser3()   /* The locate button */
 {
   locateSearchFor->addToHistory(locateSearchFor->currentText());
   QStringList list = locateSearchFor->historyItems();
-  krConfig->setGroup("Locate");
-  krConfig->writeEntry("Search For", list);
-  krConfig->writeEntry("Dont Search In Path", dontSearchPath = dontSearchInPath->isChecked() );
-  krConfig->writeEntry("Existing Files", onlyExist = existingFiles->isChecked() );
-  krConfig->writeEntry("Case Sensitive", isCs = caseSensitive->isChecked() );
+  KConfigGroup group( krConfig, "Locate");
+  group.writeEntry("Search For", list);
+  group.writeEntry("Dont Search In Path", dontSearchPath = dontSearchInPath->isChecked() );
+  group.writeEntry("Existing Files", onlyExist = existingFiles->isChecked() );
+  group.writeEntry("Case Sensitive", isCs = caseSensitive->isChecked() );
 
   if( !KrServices::cmdExist( "locate" ) )
   {
@@ -480,9 +480,9 @@ void LocateDlg::operate( Q3ListViewItem *item, int task )
     break;
   case FIND_ID:
     {
-      krConfig->setGroup("Locate");
-      long options = krConfig->readEntry("Find Options", (long long)0);
-      QStringList list = krConfig->readListEntry("Find Patterns");
+      KConfigGroup group( krConfig, "Locate");
+      long options = group.readEntry("Find Options", (long long)0);
+      QStringList list = group.readEntry("Find Patterns", QStringList());
       
       KFindDialog dlg( this, options, list );
       if ( dlg.exec() != QDialog::Accepted )
@@ -491,8 +491,8 @@ void LocateDlg::operate( Q3ListViewItem *item, int task )
       if( list.first() != ( findPattern = dlg.pattern() ) )
         list.push_front( dlg.pattern() );
         
-      krConfig->writeEntry( "Find Options", (long long)(findOptions = dlg.options() ) );
-      krConfig->writeEntry( "Find Patterns", list );
+      group.writeEntry( "Find Options", (long long)(findOptions = dlg.options() ) );
+      group.writeEntry( "Find Patterns", list );
 
       if( !( findOptions & KFind::FromCursor ) )
         resultList->setCurrentItem( ( findOptions & KFind::FindBackwards ) ?
@@ -588,16 +588,16 @@ void LocateDlg::feedToListBox()
   virt_vfs v(0,true);
   v.vfs_refresh( KUrl( "/" ) );
   
-  krConfig->setGroup( "Locate" );  
-  int listBoxNum = krConfig->readNumEntry( "Feed To Listbox Counter", 1 );  
+  KConfigGroup group( krConfig, "Locate" );  
+  int listBoxNum = group.readEntry( "Feed To Listbox Counter", 1 );  
   QString queryName;
   do {
     queryName = i18n("Locate results")+QString( " %1" ).arg( listBoxNum++ );
   }while( v.vfs_search( queryName ) != 0 );
-  krConfig->writeEntry( "Feed To Listbox Counter", listBoxNum );  
+  group.writeEntry( "Feed To Listbox Counter", listBoxNum );  
   
-  krConfig->setGroup( "Advanced" );
-  if ( krConfig->readBoolEntry( "Confirm Feed to Listbox",  _ConfirmFeedToListbox ) ) {
+  KConfigGroup ga( krConfig, "Advanced" );
+  if ( ga.readEntry( "Confirm Feed to Listbox",  _ConfirmFeedToListbox ) ) {
     bool ok;
     queryName = KInputDialog::getText(
                 i18n("Query name"),		// Caption
