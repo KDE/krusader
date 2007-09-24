@@ -72,7 +72,7 @@ void PopularUrls::load() {
 	QList<int>::Iterator rit;
 	for (uit=urlList.begin(), rit=rankList.begin(); uit!=urlList.end() && rit!=rankList.end(); ++uit, ++rit) {
 		UrlNodeP node = new UrlNode;
-		node->url = KUrl::fromPathOrUrl( *uit );
+		node->url = KUrl( *uit );
 		node->rank = *rit;
 		appendNode(node);
 		ranks.insert(*uit, node);

@@ -300,8 +300,8 @@ void CompareContentTask::slotFinished(KIO::Job *job)
   {
     errorPrinted = true;
     KMessageBox::error(parentWidget, i18n("IO error at comparing file %1 with %2!")
-                       .arg( vfs::pathOrUrl( leftURL ) )
-                       .arg( vfs::pathOrUrl( rightURL ) ) );
+                       .arg( leftURL.pathOrUrl() )
+                       .arg( rightURL.pathOrUrl() ) );
   }
 
   if( leftReadJob == 0 && rightReadJob == 0 )

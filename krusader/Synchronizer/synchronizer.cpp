@@ -509,8 +509,8 @@ SynchronizerFileItem * Synchronizer::addDuplicateItem( SynchronizerFileItem *par
                                          (TaskType)(task + uncertain), isDir, isTemp );
 
   if( uncertain == TT_UNKNOWN ) {
-    KUrl leftURL  = vfs::fromPathOrUrl( leftDir.isEmpty() ? leftBaseDir + leftName : leftBaseDir + leftDir + "/" + leftName );
-    KUrl rightURL = vfs::fromPathOrUrl( rightDir.isEmpty() ? rightBaseDir + rightName : rightBaseDir + rightDir + "/" + rightName );
+    KUrl leftURL  = KUrl( leftDir.isEmpty() ? leftBaseDir + leftName : leftBaseDir + leftDir + "/" + leftName );
+    KUrl rightURL = KUrl( rightDir.isEmpty() ? rightBaseDir + rightName : rightBaseDir + rightDir + "/" + rightName );
     stack.append( new CompareContentTask( this, item, leftURL, rightURL, leftSize ) );
   }
 
@@ -948,8 +948,8 @@ void Synchronizer::executeTask( SynchronizerFileItem * task )
   if( !rightDirName.isEmpty() )
     rightDirName += "/";
 
-  KUrl leftURL  = vfs::fromPathOrUrl( leftBaseDir + leftDirName + task->leftName() );
-  KUrl rightURL = vfs::fromPathOrUrl( rightBaseDir + rightDirName + task->rightName() );
+  KUrl leftURL  = KUrl( leftBaseDir + leftDirName + task->leftName() );
+  KUrl rightURL = KUrl( rightBaseDir + rightDirName + task->rightName() );
 
   switch( task->task() )
   {
@@ -965,7 +965,7 @@ void Synchronizer::executeTask( SynchronizerFileItem * task )
     {
       KUrl destURL( leftURL );
       if( !task->destination().isNull() )
-        destURL = vfs::fromPathOrUrl( task->destination() );
+        destURL = KUrl( task->destination() );
 
       if( task->rightLink().isNull() ) {
         KIO::FileCopyJob *job = KIO::file_copy(rightURL, destURL, -1,
@@ -994,7 +994,7 @@ void Synchronizer::executeTask( SynchronizerFileItem * task )
     {
       KUrl destURL( rightURL );
       if( !task->destination().isNull() )
-        destURL = vfs::fromPathOrUrl( task->destination() );
+        destURL = KUrl( task->destination() );
 
       if( task->leftLink().isNull() ) {
         KIO::FileCopyJob *job = KIO::file_copy(leftURL, destURL, -1,
@@ -1042,8 +1042,8 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
 
   QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
   QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
-  KUrl leftURL  = vfs::fromPathOrUrl( leftBaseDir + leftDirName + item->leftName() );
-  KUrl rightURL = vfs::fromPathOrUrl( rightBaseDir + rightDirName + item->rightName() );
+  KUrl leftURL  = KUrl( leftBaseDir + leftDirName + item->leftName() );
+  KUrl rightURL = KUrl( rightBaseDir + rightDirName + item->rightName() );
 
   do {
     if( !job->error() )
@@ -1152,7 +1152,7 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
           qApp->setMainWidget( syncDlgWidget );
 
           result = job->ui()->askFileRename( job, i18n("File Already Exists"),
-            vfs::pathOrUrl( rightURL ), vfs::pathOrUrl( leftURL ),
+            rightURL.pathOrUrl(), leftURL.pathOrUrl(),
             (KIO::RenameDialog_Mode)( KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI ), newDest,
             item->rightSize(), item->leftSize(), (time_t)-1, (time_t)-1,
             item->rightDate(), item->leftDate());
@@ -1165,7 +1165,7 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
           qApp->setMainWidget( syncDlgWidget );
 
           result = job->ui()->askFileRename( job, i18n("File Already Exists"),
-            vfs::pathOrUrl( leftURL ), vfs::pathOrUrl( rightURL ),
+            leftURL.pathOrUrl(), rightURL.pathOrUrl(),
             (KIO::RenameDialog_Mode)( KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI ), newDest,
             item->leftSize(), item->rightSize(), (time_t)-1, (time_t)-1,
             item->leftDate(), item->rightDate());
@@ -1210,16 +1210,16 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
         {
         case TT_COPY_TO_LEFT:
           error = i18n("Error at copying file %1 to %2!")
-                       .arg( vfs::pathOrUrl( rightURL ) )
-                       .arg( vfs::pathOrUrl( leftURL ) );
+                       .arg( rightURL.pathOrUrl() )
+                       .arg( leftURL.pathOrUrl() );
           break;
         case TT_COPY_TO_RIGHT:
           error = i18n("Error at copying file %1 to %2!")
-                       .arg( vfs::pathOrUrl( leftURL ) )
-                       .arg( vfs::pathOrUrl( rightURL ) );
+                       .arg( leftURL.pathOrUrl() )
+                       .arg( rightURL.pathOrUrl() );
           break;
         case TT_DELETE:
-          error = i18n("Error at deleting file %1!").arg( vfs::pathOrUrl( leftURL ) );
+          error = i18n("Error at deleting file %1!").arg( leftURL.pathOrUrl() );
           break;
         default:
           break;
@@ -1385,7 +1385,7 @@ private:
 
 void Synchronizer::synchronizeWithKGet()
 {
-  bool isLeftLocal = vfs::fromPathOrUrl( leftBaseDirectory() ).isLocalFile();
+  bool isLeftLocal = KUrl( leftBaseDirectory() ).isLocalFile();
   KgetProgressDialog *progDlg = 0;
   int  processedCount = 0, totalCount = 0;
 
@@ -1415,18 +1415,18 @@ void Synchronizer::synchronizeWithKGet()
 
       if( item->task() == TT_COPY_TO_RIGHT && !isLeftLocal )
       {
-        downloadURL = vfs::fromPathOrUrl( leftBaseDirectory() + leftDirName + item->leftName() );
+        downloadURL = KUrl( leftBaseDirectory() + leftDirName + item->leftName() );
         destDir     = rightBaseDirectory() + rightDirName;
-        destURL     = vfs::fromPathOrUrl( destDir + item->rightName() );
+        destURL     = KUrl( destDir + item->rightName() );
 
         if( item->isDir() )
           destDir += item->leftName();
       }
       if( item->task() == TT_COPY_TO_LEFT && isLeftLocal )
       {
-        downloadURL = vfs::fromPathOrUrl( rightBaseDirectory() + rightDirName + item->rightName() );
+        downloadURL = KUrl( rightBaseDirectory() + rightDirName + item->rightName() );
         destDir     = leftBaseDirectory() + leftDirName;
-        destURL     = vfs::fromPathOrUrl( destDir + item->leftName() );
+        destURL     = KUrl( destDir + item->leftName() );
 
         if( item->isDir() )
           destDir += item->rightName();

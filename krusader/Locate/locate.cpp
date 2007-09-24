@@ -86,7 +86,7 @@ public:
     while( item )
     {
       if( item->isSelected() )
-         urls.push_back( vfs::fromPathOrUrl( item->text( 0 ) ) );
+         urls.push_back( KUrl( item->text( 0 ) ) );
 
       item = item->nextSibling();
     }
@@ -417,7 +417,7 @@ void LocateDlg::slotDoubleClick(Q3ListViewItem *item)
     dirName.truncate( dirName.findRev( '/' ) );
   }
     
-  ACTIVE_FUNC->openUrl(vfs::fromPathOrUrl( dirName ), fileName );
+  ACTIVE_FUNC->openUrl(KUrl( dirName ), fileName );
   KDialog::accept();
 }
 
@@ -468,7 +468,7 @@ void LocateDlg::operate( Q3ListViewItem *item, int task )
 {
   KUrl name;
   if( item != 0 )
-    name = vfs::fromPathOrUrl( item->text( 0 ) );
+    name = KUrl( item->text( 0 ) );
   
   switch ( task )
   {
@@ -536,7 +536,7 @@ void LocateDlg::operate( Q3ListViewItem *item, int task )
       while( item )
       {
         if( item->isSelected() )
-           urls.push_back( vfs::fromPathOrUrl( item->text( 0 ) ) );
+           urls.push_back( KUrl( item->text( 0 ) ) );
 
         item = item->nextSibling();
       }
@@ -612,10 +612,10 @@ void LocateDlg::feedToListBox()
   Q3ListViewItem * item = resultList->firstChild();
   while( item )
   {
-    urlList.push_back( vfs::fromPathOrUrl( item->text( 0 ) ) );
+    urlList.push_back( KUrl( item->text( 0 ) ) );
     item = item->nextSibling();
   }
-  KUrl url = KUrl::fromPathOrUrl(QString("virt:/")+ queryName);
+  KUrl url = KUrl(QString("virt:/")+ queryName);
   v.vfs_refresh( url );
   v.vfs_addFiles( &urlList, KIO::CopyJob::Copy, 0 );
   //ACTIVE_FUNC->openUrl(url);  

@@ -77,7 +77,7 @@ public:
       {
          QString name = item->text(1);
          name += (name.endsWith( "/" ) ? item->text(0) : "/" + item->text(0) );
-         urls.push_back( vfs::fromPathOrUrl( name ) );
+         urls.push_back( KUrl( name ) );
       }
       item = item->nextSibling();
     }
@@ -441,7 +441,7 @@ void KrSearchDialog::stopSearch() {
 }
 
 void KrSearchDialog::resultDoubleClicked(Q3ListViewItem* i) {
-  ACTIVE_FUNC->openUrl(vfs::fromPathOrUrl(i->text(1)),i->text(0));
+  ACTIVE_FUNC->openUrl(KUrl(i->text(1)),i->text(0));
   showMinimized();
 }
 
@@ -510,7 +510,7 @@ void KrSearchDialog::editCurrent()
   {
     QString name = current->text(1);
     name += (name.endsWith( "/" ) ? current->text(0) : "/" + current->text(0) );
-    KUrl url = vfs::fromPathOrUrl( name );
+    KUrl url = KUrl( name );
     KrViewer::edit( url, this );
   }
 }
@@ -522,7 +522,7 @@ void KrSearchDialog::viewCurrent()
   {
     QString name = current->text(1);
     name += (name.endsWith( "/" ) ? current->text(0) : "/" + current->text(0) );
-    KUrl url = vfs::fromPathOrUrl( name );
+    KUrl url = KUrl( name );
     KrViewer::view( url, this );
   }
 }
@@ -587,10 +587,10 @@ void KrSearchDialog::feedToListBox()
   {
     QString name = item->text(1);
     name += (name.endsWith( "/" ) ? item->text(0) : "/" + item->text(0) );
-    urlList.push_back( vfs::fromPathOrUrl( name ) );
+    urlList.push_back( KUrl( name ) );
     item = item->nextSibling();
   }
-  KUrl url = KUrl::fromPathOrUrl( QString("virt:/") + queryName );
+  KUrl url = KUrl( QString("virt:/") + queryName );
   v.vfs_refresh( url );
   v.vfs_addFiles( &urlList, KIO::CopyJob::Copy, 0 );
   //ACTIVE_FUNC->openUrl(url);
@@ -609,7 +609,7 @@ void KrSearchDialog::copyToClipBoard()
     {
        QString name = item->text(1);
        name += (name.endsWith( "/" ) ? item->text(0) : "/" + item->text(0) );
-       urls.push_back( vfs::fromPathOrUrl( name ) );
+       urls.push_back( KUrl( name ) );
     }
     item = item->nextSibling();
   }

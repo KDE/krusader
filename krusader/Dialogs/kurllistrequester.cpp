@@ -109,7 +109,7 @@ void KURLListRequester::slotBrowse()
 {
   KUrl url = KFileDialog::getOpenUrl( KUrl(), QString(), this );
   if( !url.isEmpty())
-    urlLineEdit->setText( vfs::pathOrUrl( url ) );
+    urlLineEdit->setText( url.pathOrUrl() );
   urlLineEdit->setFocus();
 }
 
@@ -170,7 +170,7 @@ KUrl::List KURLListRequester::urlList()
     QString error = QString();
     emit checkValidity( text, error );
     if( error.isNull() )
-      urls.append( vfs::fromPathOrUrl( text ) );
+      urls.append( KUrl( text ) );
   }
     
   Q3ListBoxItem *item = urlListBox->firstItem();
@@ -181,7 +181,7 @@ KUrl::List KURLListRequester::urlList()
     QString error = QString();
     emit checkValidity( text, error );    
     if( error.isNull() )
-      urls.append( vfs::fromPathOrUrl( text ) );
+      urls.append( KUrl( text ) );
       
     item = item->next();
   }
@@ -197,7 +197,7 @@ void KURLListRequester::setUrlList( KUrl::List urlList )
   KUrl::List::iterator it;
     
   for ( it = urlList.begin(); it != urlList.end(); ++it )
-    urlListBox->insertItem( vfs::pathOrUrl(*it) );
+    urlListBox->insertItem( it->pathOrUrl() );
 }
 
 #include "kurllistrequester.moc"

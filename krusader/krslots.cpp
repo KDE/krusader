@@ -113,7 +113,7 @@ void KRslots::sendFileByEmail(QString filename) {
 
   K3ShellProcess proc;
 
-  if ( vfs::fromPathOrUrl( mailProg ).fileName() == "kmail") {
+  if ( KUrl( mailProg ).fileName() == "kmail") {
     proc << "kmail" << "--subject \""+i18n("Sending file: ")+
             filename.mid(filename.findRev('/')+1)+"\"" << QString() +
             "--attach "+"\"" + filename + "\"";
@@ -288,7 +288,7 @@ void KRslots::insertFileName(bool full_path)
     return;
   
   if( full_path ){
-    QString path=vfs::pathOrUrl( ACTIVE_FUNC->files()->vfs_getOrigin(), KUrl::AddTrailingSlash );
+    QString path=vfs::pathOrUrl(ACTIVE_FUNC->files()->vfs_getOrigin(), KUrl::AddTrailingSlash );
     filename = path+filename;
   }
 
@@ -321,7 +321,7 @@ void KRslots::markGroup(const QString& mask, bool select) { ACTIVE_PANEL->select
 void KRslots::unmarkGroup()     { ACTIVE_PANEL->select(false,false);         }
 void KRslots::invert()          { ACTIVE_PANEL->invertSelection();           }
 
-void KRslots::root()            { ACTIVE_FUNC->openUrl(vfs::fromPathOrUrl("/"));}
+void KRslots::root()            { ACTIVE_FUNC->openUrl(KUrl("/"));}
 void KRslots::refresh(const KUrl& u){ ACTIVE_FUNC->openUrl(u);        }
 void KRslots::home()            { ACTIVE_FUNC->openUrl(QDir::homePath()); }
 void KRslots::refresh()         { ACTIVE_FUNC->refresh();                    }
@@ -727,7 +727,7 @@ void KRslots::slotCombine(){
       {
         if( windowsStyle )
         {
-          KMessageBox::error(0,i18n("Not a split file %1!").arg( vfs::pathOrUrl( url ) ));
+          KMessageBox::error(0,i18n("Not a split file %1!").arg( url.pathOrUrl() ));
           return;
         }
         unixStyle = true;
@@ -790,14 +790,14 @@ void KRslots::slotCombine(){
 
       if( error )
       {
-        KMessageBox::error(0,i18n("Not a splitted file %1!").arg( vfs::pathOrUrl( url ) ));
+        KMessageBox::error(0,i18n("Not a splitted file %1!").arg( url.pathOrUrl() ));
         return;
       }
     }
   }
 
    // ask the user for the copy dest
-  KUrl dest = KChooseDir::getDir(i18n("Combining %1.* to directory:" ).arg( vfs::pathOrUrl( baseURL ) ),
+  KUrl dest = KChooseDir::getDir(i18n("Combining %1.* to directory:" ).arg( baseURL.pathOrUrl() ),
                                  ACTIVE_PANEL->otherPanel->virtualPath(), ACTIVE_PANEL->virtualPath());
   if ( dest.isEmpty() ) return ; // the user canceled
 

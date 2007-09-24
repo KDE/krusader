@@ -668,9 +668,9 @@ TagString exp_Copy::expFunc( const ListPanel*, const TagStringList& parameter, c
    }
    KUrl::List src;
    for(QStringList::const_iterator it=lst.begin(),end=lst.end();it!=end;++it)
-      src.push_back(vfs::fromPathOrUrl( *it ));
+      src.push_back(KUrl( *it ));
    // or transform(...) ?
-   KUrl dest = vfs::fromPathOrUrl( parameter[1].string() );
+   KUrl dest = KUrl( parameter[1].string() );
 
    if ( !dest.isValid() || find_if(src.constBegin(),src.constEnd(),not1(mem_fun_ref(&KUrl::isValid) ))!=src.end()) {
       setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: invalid URL's in %_Copy(\"src\", \"dest\")%") ));
@@ -699,9 +699,9 @@ TagString exp_Move::expFunc( const ListPanel*, const TagStringList& parameter, c
    }
    KUrl::List src;
    for(QStringList::const_iterator it=lst.begin(),end=lst.end();it!=end;++it)
-   src.push_back(vfs::fromPathOrUrl( *it ));
+   src.push_back(KUrl( *it ));
    // or transform(...) ?
-   KUrl dest = vfs::fromPathOrUrl( parameter[1].string() );
+   KUrl dest = KUrl( parameter[1].string() );
 
    if ( !dest.isValid() || find_if(src.constBegin(),src.constEnd(),not1(mem_fun_ref(&KUrl::isValid) ))!=src.end()) {
       setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: invalid URL's in %_Move(\"src\", \"dest\")%") ));

@@ -48,7 +48,7 @@ RadialMap::Widget::url( File const * const file ) const
    if( file == 0 && m_tree == 0 )
       return KUrl();
 
-   return KUrl::fromPathOrUrl( file ? file->fullPath() : m_tree->fullPath() );
+   return KUrl( file ? file->fullPath() : m_tree->fullPath() );
 }
 
 void

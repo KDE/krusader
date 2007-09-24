@@ -62,7 +62,7 @@ bool virt_vfs::populateVfsList( const KUrl& origin, bool /*showHidden*/ ) {
 	if ( !urlList ) {
 		urlList = new KUrl::List();
 		virtVfsDict.insert( path, urlList );
-		virtVfsDict[ "/" ] ->append( KUrl::fromPathOrUrl( "virt:/" + path ) );
+		virtVfsDict[ "/" ] ->append( KUrl( "virt:/" + path ) );
 	}
 	
 	if ( urlList->isEmpty() ) return true;
@@ -196,7 +196,7 @@ void virt_vfs::vfs_rename( const QString& fileName, const QString& newName ) {
 	url = vf->vfile_getUrl();
 	fileUrls.append( url );
 
-	dest = fromPathOrUrl( newName );
+	dest = KUrl( newName );
 	// add the new url to the list
 	// the the list is refreshed only existing files remain -
 	// so we don't have to worry if the job was successful

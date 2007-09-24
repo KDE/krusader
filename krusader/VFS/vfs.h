@@ -110,7 +110,6 @@ public:
 	/// process the application events               
 	virtual bool vfs_isDeleting()    { return deleteRequested; }
    // KDE FTP proxy bug correction
-   static KUrl fromPathOrUrl( const QString &originIn );
    static QString pathOrUrl( const KUrl &originIn, KUrl::AdjustPathOption trailingSlash = KUrl::LeaveTrailingSlash );
 
 

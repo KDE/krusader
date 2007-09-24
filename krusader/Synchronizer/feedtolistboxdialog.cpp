@@ -186,18 +186,18 @@ void FeedToListBoxDialog::slotOk() {
 
     if( ( side == S_BOTH || side == S_LEFT ) && syncItem->existsInLeft() ) {
       QString leftDirName = syncItem->leftDirectory().isEmpty() ? "" : syncItem->leftDirectory() + "/";
-      KUrl leftURL = vfs::fromPathOrUrl( synchronizer->leftBaseDirectory() + leftDirName + syncItem->leftName() );
+      KUrl leftURL = KUrl( synchronizer->leftBaseDirectory() + leftDirName + syncItem->leftName() );
       urlList.push_back( leftURL );
     }
 
     if( ( side == S_BOTH || side == S_RIGHT ) && syncItem->existsInRight() ) {
       QString rightDirName = syncItem->rightDirectory().isEmpty() ? "" : syncItem->rightDirectory() + "/";
-      KUrl leftURL = vfs::fromPathOrUrl( synchronizer->rightBaseDirectory() + rightDirName + syncItem->rightName() );
+      KUrl leftURL = KUrl( synchronizer->rightBaseDirectory() + rightDirName + syncItem->rightName() );
       urlList.push_back( leftURL );
     }
   }
 
-  KUrl url = KUrl::fromPathOrUrl(QString("virt:/")+ name);
+  KUrl url = KUrl(QString("virt:/")+ name);
   virt_vfs v(0,true);
   if( !v.vfs_refresh( url ) ) {
     KMessageBox::error( parentWidget(), i18n( "Cannot open %1!" ).arg( url.prettyUrl() ) );

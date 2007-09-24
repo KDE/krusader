@@ -111,8 +111,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 typedef Q3ValueList<KServiceOffer> OfferList;
 
-#define URL(X) KUrl::fromPathOrUrl(X)
-
 /////////////////////////////////////////////////////
 // 					The list panel constructor       //
 /////////////////////////////////////////////////////
@@ -644,9 +642,9 @@ void ListPanel::start( KUrl url, bool immediate ) {
    virt = url;
    
    if ( !virt.isValid() )
-      virt = URL("/");
+      virt = KUrl("/");
    if( virt.isLocalFile() ) _realPath = virt;
-   else _realPath = URL("/");
+   else _realPath = KUrl("/");
 
    if( immediate )
      func->immediateOpenUrl( virt );
@@ -673,7 +671,7 @@ void ListPanel::slotStartUpdate() {
 
    if ( func->files() ->vfs_getType() == vfs::NORMAL )
       _realPath = virtualPath();
-   this->origin->setUrl( vfs::pathOrUrl( virtualPath() ) );
+   this->origin->setUrl( virtualPath().pathOrUrl() );
    emit pathChanged( this );
    emit cmdLineUpdate( realPath() );	// update the command line
 

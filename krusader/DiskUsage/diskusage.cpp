@@ -257,7 +257,7 @@ void DiskUsage::load( KUrl baseDir )
   baseURL = baseDir;
   baseURL.setPath( baseDir.path( KUrl::RemoveTrailingSlash ) );
 
-  root = new Directory( baseURL.fileName(), vfs::pathOrUrl( baseDir ) );
+  root = new Directory( baseURL.fileName(), baseDir.pathOrUrl() );
 
   directoryStack.clear();
   parentStack.clear();
@@ -421,7 +421,7 @@ void DiskUsage::dirUp()
       if( KMessageBox::questionYesNo( this, i18n( "Stepping into the parent directory requires "
                                                   "loading the content of the \"%1\" URL. Do you wish "
                                                   "to continue?" )
-                                            .arg( vfs::pathOrUrl( up ) ),
+                                            .arg( up.pathOrUrl() ),
                                             i18n( "Krusader::DiskUsage" ), KStandardGuiItem::yes(),
                                             KStandardGuiItem::no(), "DiskUsageLoadParentDir"
                                             ) == KMessageBox::Yes )
@@ -594,7 +594,7 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
 
   KConfigGroup gg( krConfig, "General" );
   bool trash = gg.readEntry( "Move To Trash", _MoveToTrash );
-  KUrl url = vfs::fromPathOrUrl( file->fullPath() );
+  KUrl url = KUrl( file->fullPath() );
 
   if( calcPercents )
   {
@@ -656,7 +656,7 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
   }
   else
   {
-    job = KIO::del( vfs::fromPathOrUrl( file->fullPath() ), false, false);
+    job = KIO::del( KUrl( file->fullPath() ), false, false);
   }
 
   deleting = true;    // during qApp->processEvent strange things can occur
@@ -865,7 +865,7 @@ void DiskUsage::executeAction( int action, File * fileItem )
         uri = fileItem->fullPath();
       else
         uri = currentDirectory->fullPath();
-      ACTIVE_FUNC->openUrl(vfs::fromPathOrUrl( uri ));
+      ACTIVE_FUNC->openUrl(KUrl( uri ));
     }
     break;
   case LINES_VIEW_ID:

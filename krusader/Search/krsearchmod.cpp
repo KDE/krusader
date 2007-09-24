@@ -113,7 +113,7 @@ void KRSearchMod::scanURL( KUrl url )
       continue;
     scannedUrls.push( urlToCheck );
 
-    emit searching( vfs::pathOrUrl( urlToCheck ) );
+    emit searching( urlToCheck.pathOrUrl() );
 
     if ( urlToCheck.isLocalFile() )
       scanLocalDir( urlToCheck );
@@ -141,7 +141,7 @@ void KRSearchMod::scanLocalDir( KUrl urlToScan )
     KDE_struct_stat stat_p;
     KDE_lstat( ( dir + name ).local8Bit(), &stat_p );
 
-    KUrl url = vfs::fromPathOrUrl( dir + name );
+    KUrl url = KUrl( dir + name );
 
     QString mime = QString();
     if ( query->searchInArchives() || !query->hasMimeType() )
@@ -156,7 +156,7 @@ void KRSearchMod::scanLocalDir( KUrl urlToScan )
     if ( query->isRecursive() )
     {
       if ( S_ISLNK( stat_p.st_mode ) && query->followLinks() )
-        unScannedUrls.push( vfs::fromPathOrUrl( QDir( dir + name ).canonicalPath() ) );
+        unScannedUrls.push( KUrl( QDir( dir + name ).canonicalPath() ) );
       else if ( S_ISDIR( stat_p.st_mode ) )
         unScannedUrls.push( url );
     }

@@ -93,9 +93,9 @@ panel( parent ), inRefresh( false ), vfsP( 0 ) {
 }
 
 void ListPanelFunc::openUrl( const QString& url, const QString& nameToMakeCurrent ) {
-	openUrl( vfs::fromPathOrUrl( 
+	openUrl( KUrl( 
 		// KUrlRequester is buggy: it should return a string containing "/home/shie/downloads"
-		// but it returns "~/downloads" which is parsed incorrectly by vfs::fromPathOrUrl.
+		// but it returns "~/downloads" which is parsed incorrectly by KUrl.
 		// replacedPath should replace ONLY $HOME and environment variables
 		panel->origin->completionObject()->replacedPath(url) )
 		, nameToMakeCurrent );
@@ -787,7 +787,7 @@ void ListPanelFunc::pack() {
 	bool packToOtherPanel = ( destDir == panel->otherPanel->virtualPath().prettyUrl(KUrl::AddTrailingSlash) );
 
 	// on remote URL-s first pack into a temp file then copy to its right place
-	KUrl destURL = vfs::fromPathOrUrl( destDir + PackGUI::filename + "." + PackGUI::type );
+	KUrl destURL = KUrl( destDir + PackGUI::filename + "." + PackGUI::type );
 	K3TempFile *tempDestFile = 0;
 	QString arcFile;
 	if ( destURL.isLocalFile() )
@@ -834,7 +834,7 @@ void ListPanelFunc::pack() {
 		tempDir = new KTempDir();
 		arcDir = tempDir->name();
 		KUrl::List *urlList = files() ->vfs_getFiles( &fileNames );
-		KIO::NetAccess::dircopy( *urlList, vfs::fromPathOrUrl( arcDir ), 0 );
+		KIO::NetAccess::dircopy( *urlList, KUrl( arcDir ), 0 );
 		delete urlList;
 	}
 
@@ -851,7 +851,7 @@ void ListPanelFunc::pack() {
 
 	// copy from the temp file to it's right place
 	if ( tempDestFile ) {
-		KIO::NetAccess::file_move( vfs::fromPathOrUrl( arcFile ), destURL );
+		KIO::NetAccess::file_move( KUrl( arcFile ), destURL );
 		delete tempDestFile;
 	}
 
@@ -977,7 +977,7 @@ void ListPanelFunc::unpack() {
 			KUrl::List urlList;
 			for ( unsigned int i = 0; i != nameList.count(); i++ )
 				if ( nameList[ i ] != "." && nameList[ i ] != ".." )
-					urlList.append( vfs::fromPathOrUrl( dest.path( KUrl::AddTrailingSlash ) + nameList[ i ] ) );
+					urlList.append( KUrl( dest.path( KUrl::AddTrailingSlash ) + nameList[ i ] ) );
 			if ( urlList.count() > 0 )
 				KIO::NetAccess::dircopy( urlList, originalDestURL, 0 );
 			delete tempDir;

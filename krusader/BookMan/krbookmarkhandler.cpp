@@ -194,7 +194,7 @@ bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *paren
 	// ok: got name and url, let's add a bookmark
 	KrBookmark *bm = KrBookmark::getExistingBookmark(path+name, _collection);
 	if (!bm) {
-		bm = new KrBookmark(name, vfs::fromPathOrUrl( url ), _collection, icon, path+name);
+		bm = new KrBookmark(name, KUrl( url ), _collection, icon, path+name);
 	parent->children().append(bm);
 	}
 

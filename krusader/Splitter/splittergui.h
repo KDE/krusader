@@ -162,7 +162,7 @@ private:
 public:
   SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir );
 
-  KUrl    getDestinationDir()     { return vfs::fromPathOrUrl( urlReq->url().prettyUrl() ); /* TODO: is prettyURL what we need? */ }
+  KUrl    getDestinationDir()     { return KUrl( urlReq->url().prettyUrl() ); /* TODO: is prettyURL what we need? */ }
   KIO::filesize_t getSplitSize()  { return spinBox->longValue(); }
   int     result()                { return resultCode; }
 

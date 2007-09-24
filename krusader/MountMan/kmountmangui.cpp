@@ -280,7 +280,7 @@ void KMountManGUI::doubleClicked( Q3ListViewItem *i ) {
    // change the active panel to this mountpoint
    connect( ( QObject* ) this, SIGNAL( refreshPanel( const KUrl & ) ), ( QObject* ) SLOTS,
             SLOT( refresh( const KUrl & ) ) );
-   emit refreshPanel( vfs::fromPathOrUrl( i->text(2) ) ); // text(2) ? so ugly ... 
+   emit refreshPanel( KUrl( i->text(2) ) ); // text(2) ? so ugly ... 
    disconnect( this, SIGNAL( refreshPanel( const KUrl & ) ), 0, 0 );
    close();
 }

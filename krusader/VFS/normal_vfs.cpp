@@ -200,7 +200,7 @@ KUrl normal_vfs::vfs_getFile(const QString& name){
 	if ( vfs_workingDir() == "/" ) url = "/"+name;
 	else url = vfs_workingDir()+"/"+name;
 
-	return vfs::fromPathOrUrl(url);
+	return KUrl(url);
 }
 
 KUrl::List* normal_vfs::vfs_getFiles(QStringList* names){
@@ -246,7 +246,7 @@ vfile* normal_vfs::vfileFromName(const QString& name){
 	bool symLink= S_ISLNK(stat_p.st_mode);
 	if( S_ISDIR(stat_p.st_mode) ) perm[0] = 'd';
 	
-	KUrl mimeUrl = fromPathOrUrl(path);
+	KUrl mimeUrl = KUrl(path);
 	QString mime=QString();
 
 	char symDest[256];
@@ -361,7 +361,7 @@ bool normal_vfs::burstRefresh(const QString& path ){
 		}
 		disconnect( &refreshTimer, SIGNAL( timeout() ), this, SLOT( vfs_slotRefresh() ) );
 		connect( &refreshTimer, SIGNAL( timeout() ), this, SLOT( vfs_slotRefresh() ) );
-		postponedRefreshURL = fromPathOrUrl(path);
+		postponedRefreshURL = KUrl(path);
 		return true;
 	}
 	return false;
@@ -369,14 +369,14 @@ bool normal_vfs::burstRefresh(const QString& path ){
 
 void normal_vfs::vfs_slotDirty(const QString& path){ 
 	if( disableRefresh ){
-		postponedRefreshURL = fromPathOrUrl(path);
+		postponedRefreshURL = KUrl(path);
 		return;
 	}
 	
 	if( burstRefresh( path ) )
 		return;        
 	
-	KUrl url = fromPathOrUrl(path);
+	KUrl url = KUrl(path);
 	QString name = url.fileName();
 	
 	// do we have it already ?
@@ -391,7 +391,7 @@ void normal_vfs::vfs_slotDirty(const QString& path){
 
 void normal_vfs::vfs_slotCreated(const QString& path){  
 	if( disableRefresh ){
-		postponedRefreshURL = fromPathOrUrl(path);
+		postponedRefreshURL = KUrl(path);
 		return;
 	}	
 	
@@ -399,7 +399,7 @@ void normal_vfs::vfs_slotCreated(const QString& path){
 		return;        
 	
 	
-	KUrl url = fromPathOrUrl(path);
+	KUrl url = KUrl(path);
 	QString name = url.fileName();	
 	// if it's in the CVS - it's an update not new file
 	if( vfs_search(name) )
@@ -412,7 +412,7 @@ void normal_vfs::vfs_slotCreated(const QString& path){
 
 void normal_vfs::vfs_slotDeleted(const QString& path){ 
 	if( disableRefresh ){
-		postponedRefreshURL = fromPathOrUrl(path);
+		postponedRefreshURL = KUrl(path);
 		return;
 	}
 	
@@ -420,7 +420,7 @@ void normal_vfs::vfs_slotDeleted(const QString& path){
 		return;        
 	
 	
-	KUrl url = fromPathOrUrl(path);
+	KUrl url = KUrl(path);
 	QString name = url.fileName();
 	
 	// if it's not in the CVS - do nothing

@@ -614,7 +614,7 @@ void KRQuery::setSearchInDirs( const KUrl::List &urls ) {
   whereToSearch.clear();
   for( unsigned int i = 0; i < urls.count(); ++i ) {
     QString url = urls[ i ].url();
-    KUrl completed = vfs::fromPathOrUrl( KUrlCompletion::replacedPath( url, true, true ) );
+    KUrl completed = KUrl( KUrlCompletion::replacedPath( url, true, true ) );
     whereToSearch.append( completed );
   }
 }
@@ -623,7 +623,7 @@ void KRQuery::setDontSearchInDirs( const KUrl::List &urls ) {
   whereNotToSearch.clear();
   for( unsigned int i = 0; i < urls.count(); ++i ) {
     QString url = urls[ i ].url();
-    KUrl completed = vfs::fromPathOrUrl( KUrlCompletion::replacedPath( url, true, true ) );
+    KUrl completed = KUrl( KUrlCompletion::replacedPath( url, true, true ) );
     whereNotToSearch.append( completed );
   }
 }

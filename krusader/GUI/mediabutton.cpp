@@ -181,7 +181,7 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 			
 			if( mounted && !localPath.isEmpty() )
 			{
-				url = KUrl::fromPathOrUrl( localPath );
+				url = KUrl( localPath );
 				if( !text.contains( url.path() ) )
 					text += "  [" + url.path() + "]";
 			}
@@ -221,7 +221,7 @@ KUrl MediaButton::getLocalPath( const KUrl &url, KMountPoint::List *mountList ) 
 		if( name == url.fileName() ) {
 			QString point = (*it)->mountPoint();
 			if( !point.isEmpty() )
-				return KUrl::fromPathOrUrl( point );
+				return KUrl( point );
 		}
 	}
 	return url;
@@ -368,7 +368,7 @@ void MediaButton::slotPopupActivated( int elem ) {
 }
 
 void MediaButton::gettingSpaceData(const QString &mountPoint, unsigned long kBSize, unsigned long, unsigned long ) {
-	KUrl mediaURL = KUrl::fromPathOrUrl( mountPoint );
+	KUrl mediaURL = KUrl( mountPoint );
 	
 	KIO::filesize_t size = kBSize;
 	size *= 1024;
@@ -422,7 +422,7 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 		return;
 	
 	int overwrite = -1;
-	KUrl mountURL = KUrl::fromPathOrUrl( mp->mountPoint() );
+	KUrl mountURL = KUrl( mp->mountPoint() );
 	
 	for( unsigned i=0; i != urls.size(); i++ ) 
 		if( urls[ i ].equals( mountURL, KUrl::CompareWithoutTrailingSlash ) ) {
@@ -479,7 +479,7 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 	
 	if( overwrite == -1 ) {
 		int index = popupMenu->count();
-		urls.append( KUrl::fromPathOrUrl( mp->mountPoint() ) );
+		urls.append( KUrl( mp->mountPoint() ) );
 		mimes.append( mime );
 		mediaUrls.append( KUrl() );
 		quasiMounted.append( false );

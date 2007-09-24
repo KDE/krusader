@@ -105,7 +105,7 @@ void PanelManager::saveSettings( KConfigGroup *config, const QString& key, bool 
    while (cnt < _tabbar->count()) {
       ListPanel *panel = _tabbar->getPanel(i);
       if (panel) {
-         l << ( localOnly ? panel->realPath() : vfs::pathOrUrl( panel->virtualPath() ) );
+         l << ( localOnly ? panel->realPath() : panel->virtualPath().pathOrUrl() );
          types << panel->getType();
          ++cnt;
       }
@@ -140,7 +140,7 @@ void PanelManager::loadSettings( KConfigGroup *config, const QString& key ) {
          panel->otherPanel = _other;
          _other->otherPanel = panel;
          panel->func->files()->vfs_enableRefresh( true );
-         panel->func->immediateOpenUrl( vfs::fromPathOrUrl( l[ i ] ) );
+         panel->func->immediateOpenUrl( KUrl( l[ i ] ) );
       }
       ++i;
    }
@@ -149,7 +149,7 @@ void PanelManager::loadSettings( KConfigGroup *config, const QString& key ) {
      slotCloseTab( --totalTabs );
       
    for(; i < (int)l.count(); i++ )
-     slotNewTab( vfs::fromPathOrUrl(l[i]), false, types[ i ] );
+     slotNewTab( KUrl(l[i]), false, types[ i ] );
 }
 
 void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, QString type) {

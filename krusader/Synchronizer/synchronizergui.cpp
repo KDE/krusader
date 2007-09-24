@@ -1056,13 +1056,13 @@ public:
         if( isLeft && item->existsInLeft() )
         {
           QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
-          KUrl leftURL = vfs::fromPathOrUrl( synchronizer->leftBaseDirectory()  + leftDirName + item->leftName() );
+          KUrl leftURL = KUrl( synchronizer->leftBaseDirectory()  + leftDirName + item->leftName() );
           urls.push_back( leftURL );
         }
         else if( !isLeft && item->existsInRight() )
         {
           QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
-          KUrl rightURL = vfs::fromPathOrUrl( synchronizer->rightBaseDirectory()  + rightDirName + item->rightName() );
+          KUrl rightURL = KUrl( synchronizer->rightBaseDirectory()  + rightDirName + item->rightName() );
           urls.push_back( rightURL );
         }
       }
@@ -1151,7 +1151,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   QStringList list = group.readEntry("Left Directory History", QStringList() );
   leftLocation->setHistoryItems(list);
   KUrlRequester *leftUrlReq = new KUrlRequester( leftLocation, compareDirs );
-  leftUrlReq->setUrl( vfs::pathOrUrl( leftURL ) );
+  leftUrlReq->setUrl( leftURL.pathOrUrl() );
   leftUrlReq->setMode( KFile::Directory );
   leftUrlReq->setMinimumWidth( 250 );
   grid->addWidget( leftUrlReq, 1 ,0 );
@@ -1184,7 +1184,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   list = group.readEntry("Right Directory History", QStringList() );
   rightLocation->setHistoryItems(list);
   KUrlRequester *rightUrlReq = new KUrlRequester( rightLocation, compareDirs );
-  rightUrlReq->setUrl( vfs::pathOrUrl( rightURL ) );
+  rightUrlReq->setUrl( rightURL.pathOrUrl() );
   rightUrlReq->setMode( KFile::Directory );
   rightUrlReq->setMinimumWidth( 250 );
   grid->addWidget( rightUrlReq, 1 ,2 );
@@ -1607,14 +1607,14 @@ void SynchronizerGUI::setCompletion()
 
 void SynchronizerGUI::checkExcludeURLValidity( QString &text, QString &error )
 {
-  KUrl url = vfs::fromPathOrUrl( text );
+  KUrl url = KUrl( text );
   if( KUrl::isRelativeUrl( url.url() ) )
     return;
 
   QString leftBase = leftLocation->currentText();
   if( !leftBase.endsWith( "/" ) )
     leftBase += "/";
-  KUrl leftBaseURL = vfs::fromPathOrUrl( leftBase );
+  KUrl leftBaseURL = KUrl( leftBase );
   if( leftBaseURL.isParentOf( url ) && !url.isParentOf( leftBaseURL) )
   {
     text = KUrl::relativeUrl( leftBaseURL, url );
@@ -1624,7 +1624,7 @@ void SynchronizerGUI::checkExcludeURLValidity( QString &text, QString &error )
   QString rightBase = rightLocation->currentText();
   if( !rightBase.endsWith( "/" ) )
     rightBase += "/";
-  KUrl rightBaseURL = vfs::fromPathOrUrl( rightBase );
+  KUrl rightBaseURL = KUrl( rightBase );
   if( rightBaseURL.isParentOf( url ) && !url.isParentOf( rightBaseURL ) )
   {
     text = KUrl::relativeUrl( rightBaseURL, url );
@@ -1645,8 +1645,8 @@ void SynchronizerGUI::doubleClicked(Q3ListViewItem *itemIn)
   {
     QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
     QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
-    KUrl leftURL  = vfs::fromPathOrUrl( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
-    KUrl rightURL = vfs::fromPathOrUrl( synchronizer.rightBaseDirectory() + rightDirName + item->rightName() );
+    KUrl leftURL  = KUrl( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
+    KUrl rightURL = KUrl( synchronizer.rightBaseDirectory() + rightDirName + item->rightName() );
 
     SLOTS->compareContent( leftURL, rightURL );
   }
@@ -1685,8 +1685,8 @@ void SynchronizerGUI::rightMouseClicked(Q3ListViewItem *itemIn)
   QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
   QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
 
-  KUrl leftURL  = vfs::fromPathOrUrl( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
-  KUrl rightURL = vfs::fromPathOrUrl( synchronizer.rightBaseDirectory() + rightDirName + item->rightName() );
+  KUrl leftURL  = KUrl( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
+  KUrl rightURL = KUrl( synchronizer.rightBaseDirectory() + rightDirName + item->rightName() );
 
   // create the menu
   KMenu popup;
@@ -1736,8 +1736,8 @@ void SynchronizerGUI::rightMouseClicked(Q3ListViewItem *itemIn)
   myact = popup.addAction(i18n("I&nvert selection"));
   actHash[ myact ] = INVERT_SELECTION_ID;
 
-  KUrl leftBDir = vfs::fromPathOrUrl( synchronizer.leftBaseDirectory() );
-  KUrl rightBDir = vfs::fromPathOrUrl( synchronizer.rightBaseDirectory() );
+  KUrl leftBDir = KUrl( synchronizer.leftBaseDirectory() );
+  KUrl rightBDir = KUrl( synchronizer.rightBaseDirectory() );
 
   if( KrServices::cmdExist( "kget" ) &&
     ( ( !leftBDir.isLocalFile() && rightBDir.isLocalFile() && btnLeftToRight->isOn() ) ||
@@ -2245,7 +2245,7 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
 
       if ( e->modifiers() == Qt::ShiftModifier && item->existsInRight() )
       {
-        KUrl rightURL = vfs::fromPathOrUrl( synchronizer.rightBaseDirectory() + rightDirName + item->rightName() );
+        KUrl rightURL = KUrl( synchronizer.rightBaseDirectory() + rightDirName + item->rightName() );
         if( isedit )
           KrViewer::edit( rightURL, this ); // view the file
         else
@@ -2254,7 +2254,7 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
       }
       else if ( e->modifiers() == 0 && item->existsInLeft() )
       {
-        KUrl leftURL  = vfs::fromPathOrUrl( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
+        KUrl leftURL  = KUrl( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
         if( isedit )
           KrViewer::edit( leftURL, this ); // view the file
         else
@@ -2472,13 +2472,13 @@ void SynchronizerGUI::copyToClipboard( bool isLeft )
       if( isLeft && item->existsInLeft() )
       {
         QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
-        KUrl leftURL = vfs::fromPathOrUrl( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
+        KUrl leftURL = KUrl( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
         urls.push_back( leftURL );
       }
       else if( !isLeft && item->existsInRight() )
       {
         QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
-        KUrl rightURL = vfs::fromPathOrUrl( synchronizer.rightBaseDirectory()  + rightDirName + item->rightName() );
+        KUrl rightURL = KUrl( synchronizer.rightBaseDirectory()  + rightDirName + item->rightName() );
         urls.push_back( rightURL );
       }
     }

@@ -65,7 +65,7 @@ KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd) {
 	dlg->urlRequester()->completionObject()->setDir(cwd.url());
 	KUrl u;
 	if (dlg->exec() == QDialog::Accepted) {
-		u = vfs::fromPathOrUrl(dlg->urlRequester()->completionObject()->replacedPath(
+		u = KUrl(dlg->urlRequester()->completionObject()->replacedPath(
 			dlg->urlRequester()->lineEdit()->text()));
 		if (u.isRelativeUrl(u.url())) {
 			KUrl temp = u;
@@ -87,7 +87,7 @@ KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd, bool &pre
 	dlg->urlRequester()->completionObject()->setDir(cwd.url());
 	KUrl u;
 	if (dlg->exec() == QDialog::Accepted) {
-		u = vfs::fromPathOrUrl(dlg->urlRequester()->completionObject()->replacedPath(
+		u = KUrl(dlg->urlRequester()->completionObject()->replacedPath(
 			dlg->urlRequester()->lineEdit()->text()));
 		if (u.isRelativeUrl(u.url())) {
 			KUrl temp = u;
@@ -110,7 +110,7 @@ KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd, bool &pre
 	dlg->urlRequester()->completionObject()->setDir(cwd.url());
 	KUrl u;
 	if (dlg->exec() == QDialog::Accepted) {
-		u = vfs::fromPathOrUrl(dlg->urlRequester()->completionObject()->replacedPath(
+		u = KUrl(dlg->urlRequester()->completionObject()->replacedPath(
 			dlg->urlRequester()->lineEdit()->text()));
 		if (u.isRelativeUrl(u.url())) {
 			KUrl temp = u;
@@ -171,7 +171,7 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy( const QString& urlName, const 
 		baseUrlCombo->setEnabled( copyDirStructureCB->isChecked() );
 		KUrl temp = baseURL, tempOld;
 		do {
-			QString baseURLText = vfs::pathOrUrl( temp );
+			QString baseURLText = temp.pathOrUrl();
 			baseUrlCombo->insertItem( baseURLText );
 			tempOld = temp;
 			temp = temp.upUrl();
@@ -234,7 +234,7 @@ KUrlRequester * KUrlRequesterDlgForCopy::urlRequester() {
 KUrl KUrlRequesterDlgForCopy::baseURL() const {
 	if( baseUrlCombo == 0 )
 		return KUrl();
-	return vfs::fromPathOrUrl( baseUrlCombo->currentText() );
+	return KUrl( baseUrlCombo->currentText() );
 }
 
 KRGetDate::KRGetDate(QDate date, QWidget *parent) : KDialog(parent,Qt::WStyle_DialogBorder) {

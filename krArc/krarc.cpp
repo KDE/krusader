@@ -657,7 +657,7 @@ bool kio_krarcProtocol::setArcFile(const KUrl& url){
 			if( qfi.exists() && !qfi.isDir() ){
 				KDE_struct_stat stat_p;
 				KDE_lstat(newPath.left(pos).local8Bit(),&stat_p);
-				arcFile = new KFileItem(KUrl::fromPathOrUrl( newPath.left(pos) ),QString(),stat_p.st_mode);
+				arcFile = new KFileItem(KUrl( newPath.left(pos) ),QString(),stat_p.st_mode);
 				break;
 			}
 		}
@@ -1548,7 +1548,7 @@ void kio_krarcProtocol::invalidatePassword() {
 	authInfo.keepPassword = true;
 	authInfo.verifyPath = true;
 	QString fileName = arcFile->url().path(KUrl::RemoveTrailingSlash);
-	authInfo.url = KUrl::fromPathOrUrl( "/" );
+	authInfo.url = KUrl( "/" );
 	authInfo.url.setHost( fileName /*.replace('/','_')*/ );
 	authInfo.url.setProtocol( "krarc" );
 	
@@ -1572,7 +1572,7 @@ QString kio_krarcProtocol::getPassword() {
 	authInfo.keepPassword = true;
 	authInfo.verifyPath = true;
 	QString fileName = arcFile->url().path(KUrl::RemoveTrailingSlash);
-	authInfo.url = KUrl::fromPathOrUrl( "/" );
+	authInfo.url = KUrl( "/" );
 	authInfo.url.setHost( fileName /*.replace('/','_')*/ );
 	authInfo.url.setProtocol( "krarc" );
 	
