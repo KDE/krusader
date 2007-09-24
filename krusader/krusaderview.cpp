@@ -154,7 +154,7 @@ void KrusaderView::cmdLineUnFocus() { // return focus to the active panel
 /** if the KonsolePart for the Terminal Emulator is not yet loaded, load it */
 void KrusaderView::createTE() {
   if ( konsole_part == 0L ) {  // konsole part is not yet loaded
-    KLibFactory * factory = KLibLoader::self() ->factory( "libkonsolepart" );
+    KPluginFactory * factory = KLibLoader::self() ->factory( "libkonsolepart" );
     if ( factory ) {
       QWidget *focusW = qApp->focusWidget();
       // Create the part

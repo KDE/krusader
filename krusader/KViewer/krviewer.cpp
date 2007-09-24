@@ -557,7 +557,7 @@ void KrViewer::updateActions( PanelViewerBase * pvb ) {
 #if 0
 bool KrViewer::editGeneric( QString mimetype, KUrl _url ) {
 	KParts::ReadWritePart * kedit_part = 0L;
-	KLibFactory *factory = 0;
+	KPluginFactory *factory = 0;
 	KTrader::OfferList offers = KTrader::self() ->query( mimetype );
 
 	// in theory, we only care about the first one.. but let's try all

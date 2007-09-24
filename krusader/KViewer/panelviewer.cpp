@@ -103,7 +103,7 @@ bool PanelViewer::closeUrl() {
 
 KParts::ReadOnlyPart* PanelViewer::getPart( QString mimetype ) {
 	KParts::ReadOnlyPart * part = 0L;
-	KLibFactory *factory = 0;
+	KPluginFactory *factory = 0;
 	KService::Ptr ptr = KMimeTypeTrader::self()->preferredService( mimetype, "KParts/ReadOnlyPart" );
 	if ( ptr ) {
 		QStringList args;
@@ -125,8 +125,8 @@ KParts::ReadOnlyPart* PanelViewer::getPart( QString mimetype ) {
 	if ( part ) {
 		KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject( part );
 		if ( ext ) {
-			connect( ext, SIGNAL( openUrlRequestDelayed( const KUrl &, const KParts::URLArgs & ) ), this, SLOT( openUrl( const KUrl & ) ) );
-			connect( ext, SIGNAL( openUrlRequestDelayed( const KUrl &, const KParts::URLArgs & ) ), this, SIGNAL( openUrlRequest( const KUrl & ) ) );
+			connect( ext, SIGNAL( openUrlRequestDelayed( const KUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments& ) ), this, SLOT( openUrl( const KUrl & ) ) );
+			connect( ext, SIGNAL( openUrlRequestDelayed( const KUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments& ) ), this, SIGNAL( openUrlRequest( const KUrl & ) ) );
 		}
 	}
 	return part;
@@ -135,7 +135,7 @@ KParts::ReadOnlyPart* PanelViewer::getPart( QString mimetype ) {
 KParts::ReadOnlyPart* PanelViewer::getHexPart(){
 	KParts::ReadOnlyPart * part = 0L;
 
-	KLibFactory * factory = KLibLoader::self() ->factory( "libkhexedit2part" );
+	KPluginFactory * factory = KLibLoader::self() ->factory( "libkhexedit2part" );
 	if ( factory ) {
 		// Create the part
 		part = ( KParts::ReadOnlyPart * ) factory->create( this, "KParts::ReadOnlyPart" );
@@ -266,7 +266,7 @@ bool PanelEditor::closeUrl() {
 
 KParts::ReadWritePart* PanelEditor::getPart( QString mimetype ) {
 	KParts::ReadWritePart * part = 0L;
-	KLibFactory *factory = 0;
+	KPluginFactory *factory = 0;
 	KService::Ptr ptr = KMimeTypeTrader::self()->preferredService( mimetype, "KParts/ReadWritePart" );
 	if ( ptr ) {
 		QStringList args;
@@ -288,8 +288,8 @@ KParts::ReadWritePart* PanelEditor::getPart( QString mimetype ) {
 	if ( part ) {
 		KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject( part );
 		if ( ext ) {
-			connect( ext, SIGNAL( openUrlRequestDelayed( const KUrl &, const KParts::URLArgs & ) ), this, SLOT( openUrl( const KUrl & ) ) );
-			connect( ext, SIGNAL( openUrlRequestDelayed( const KUrl &, const KParts::URLArgs & ) ), this, SIGNAL( openUrlRequest( const KUrl & ) ) );
+			connect( ext, SIGNAL( openUrlRequestDelayed( const KUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments& ) ), this, SLOT( openUrl( const KUrl & ) ) );
+			connect( ext, SIGNAL( openUrlRequestDelayed( const KUrl &, const KParts::OpenUrlArguments&, const KParts::BrowserArguments& ) ), this, SIGNAL( openUrlRequest( const KUrl & ) ) );
 		}
 	}
 	return part;
