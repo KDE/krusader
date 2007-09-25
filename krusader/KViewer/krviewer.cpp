@@ -98,14 +98,14 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ), retur
 	//no point in detaching only one tab..
 	detachAction->setEnabled(false);	
 	viewerMenu->addSeparator();
-	viewerMenu->addAction( printAction->text(), this, SLOT( print() ))->setShortcut( printAction->shortcut().primary() );
-	viewerMenu->addAction( copyAction->text(), this, SLOT( copy() ))->setShortcut( copyAction->shortcut().primary() );
+	viewerMenu->addAction( printAction->icon(), printAction->text(), this, SLOT( print() ))->setShortcut( printAction->shortcut().primary() );
+	toolBar()->addAction( printAction->icon(), printAction->text(), this, SLOT( print() ));
+	viewerMenu->addAction( copyAction->icon(), copyAction->text(), this, SLOT( copy() ))->setShortcut( copyAction->shortcut().primary() );
+	toolBar()->addAction( copyAction->icon(), copyAction->text(), this, SLOT( copy() ) );
 	viewerMenu->addSeparator();
 	( tabClose = viewerMenu->addAction( i18n( "&Close current tab" ), this, SLOT( tabCloseRequest() )))->setShortcut( Qt::Key_Escape );
 	( closeAct = viewerMenu->addAction( i18n( "&Quit" ), this, SLOT( close() )))->setShortcut( Qt::CTRL + Qt::Key_Q );
 
-	//toolBar() ->insertLined("Edit:",1,"",this,"",true ,i18n("Enter an URL to edit and press enter"));
-	
 	tabBar.setHoverCloseButton(true);
 
 	checkModified();
@@ -122,6 +122,7 @@ KrViewer::~KrViewer() {
 }
 
 void KrViewer::createGUI( KParts::Part* part ) {
+	/* TODO: fix the toolbar bugs */
 	if ( part == 0 )   /*     KHTMLPart calls this function with 0 at destruction.    */
 		return ;        /*   Can cause crash after JavaScript self.close() if removed  */
 
@@ -131,7 +132,7 @@ void KrViewer::createGUI( KParts::Part* part ) {
 	         this, SLOT( slotSetStatusBarText( const QString& ) ) );
 
 	KParts::MainWindow::createGUI( part );
-	toolBar()->insertSeparator(actions().first());
+	toolBar()->addSeparator();
 
 	PanelViewerBase *pvb = getPanelViewerBase( part );
 	if( pvb )

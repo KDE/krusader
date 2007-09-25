@@ -117,8 +117,12 @@ KParts::ReadOnlyPart* PanelViewer::getPart( QString mimetype ) {
 		{
 			factory = KLibLoader::self() ->factory( ptr->library().toLatin1() );
 			if ( factory ) {
-				part = static_cast<KParts::ReadOnlyPart *>( factory->create( this,
-				        QString( "KParts::ReadOnlyPart" ).toLatin1(), args ) );
+				if( ptr->serviceTypes().contains( "Browser/View" ) )
+					part = static_cast<KParts::ReadOnlyPart *>( factory->create( this,
+					        QString( "Browser/View" ).toLatin1(), args ) );
+				if( !part )
+					part = static_cast<KParts::ReadOnlyPart *>( factory->create( this,
+					        QString( "KParts::ReadOnlyPart" ).toLatin1(), args ) );
 			}
 		}
 	}
