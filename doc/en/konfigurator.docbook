@@ -321,15 +321,18 @@ HTML_PARSING-->
           <itemizedlist>
             <listitem>
               <para>
-                <guilabel>Name</guilabel>
+                <guilabel>Name</guilabel>: Shows the filename without the part after the last dot, 
+                this latter part is displayed in the Ext column. When the Ext column is made hidden, 
+                the complete filename is shown in the Name column like e.g. &konqueror; does.
               </para>
             </listitem>
             <listitem>
               <para>
               <guilabel>Ext</guilabel>: Shows the last part of the
               filename (the part after the last dot) in the ext
-              column, not as a complete filename in the name column
-              like e.g. &konqueror; does.</para>
+              column, and not as a complete filename in the name column
+              like e.g. &konqueror; does.
+              </para>
             </listitem>
             <listitem>
               <para>
