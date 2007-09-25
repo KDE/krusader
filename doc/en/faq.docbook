@@ -83,7 +83,7 @@
           another window manager. However, the configuration of the
           &krusader; fonts and some behavior is done by
           running 
-          <command>Kcontrol</command>.</para>
+          <command>kcontrol</command>.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
           <para>A lot depends on what you want to do with
@@ -845,12 +845,11 @@
           <guibutton>F1, F2</guibutton> (&etc;) buttons?
           They are not allowing &krusader; to downsize
           as they have a minimum size. Just disable them 
-          <emphasis role="bold">
             <menuchoice>
               <guimenu>View</guimenu>
               <guimenuitem>Show FN Keys Bar</guimenuitem>
             </menuchoice>
-          </emphasis>and you'll be able to resize
+          and you'll be able to resize
           &krusader; to your liking. Since version 1.51
           we have improved this greatly: when downsizing the
           buttons will look like 'F5 ..py'. When the button faces
@@ -991,8 +990,43 @@
   <para> </para> <!-- Empty line to make it more readable -->
   </answer>
 </qandaentry>
-      
-      
+
+<qandaentry>
+  <question id="faqu_jar">
+  <para>Howto executing jar files (and not enter the jar archive)?</para>
+  </question>
+  <answer>
+  <para>Go to the &konfigprotocol-lnk; and remove <guilabel>application/x-jar</guilabel> 
+        from the krarc node, &krusader; should no longer enter the archive.
+        Global file associations are handled by &kde; and not by &krusader;.
+        To assosiate the jar extension:
+        <itemizedlist>
+            <listitem>
+              <para>Open &kde;s control center: <application>kcontrol</application>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+               <menuchoice>
+                 <guimenu>KDE Components</guimenu>
+                 <guimenuitem>File Associations</guimenuitem>
+              </menuchoice>
+              </para>
+            </listitem>
+            <listitem>
+              <para>Enter <filename>jar</filename> as filename pattern
+              </para>
+            </listitem>
+            <listitem>
+              <para>Add <filename>java</filename> as application
+              </para>
+            </listitem>
+           </itemizedlist>
+   </para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+</qandaentry>
+
       <!-- Thanks to Dirk Eschler -->
       <qandaentry>
         <question id="faqu_ftp_firewall">
@@ -1002,13 +1036,11 @@
         <answer>
           <para>This problem often occurs when you are behind a
           firewall or proxy. Open 
-          <emphasis role="bold">
             <menuchoice>
               <guimenu>KDE Control Center</guimenu>
               <guimenuitem>Network</guimenuitem>
               <guimenuitem>Preferences</guimenuitem>
-            </menuchoice>
-          </emphasis>, 
+            </menuchoice>, 
           <guilabel>"Enable Passive Mode (PASV)"</guilabel> has to
           be turned on or off, depending on it's current setting.
           Now try your &FTP; session again to see if it
@@ -1104,14 +1136,12 @@
           want to disable them globally open your &kde;
           &kcontrolcenter; (
           <application>kcontrol</application>): 
-          <emphasis role="bold">
             <menuchoice>
               <guimenu>KDE Control Center</guimenu>
               <guimenuitem>Sound &amp;
               Multimedia</guimenuitem>
               <guimenuitem>System Notifications</guimenuitem>
-            </menuchoice>
-          </emphasis>, 
+            </menuchoice>, 
           <guilabel>Event Source: "KDE System
           Notifications"</guilabel> and uncheck sound items you
           don't like.</para>
@@ -1173,16 +1203,14 @@
           extension, &eg; 
           <filename>README, INSTALL</filename> &etc;. And
           if the viewer opens in hex-mode instead of the usual
-          mode, than you need to configure: 
-          <emphasis role="bold">
+          mode, than you need to configure:
             <menuchoice>
               <guimenu>KDE Control Center</guimenu>
               <guimenuitem>KDE components</guimenuitem>
               <guimenuitem>File Associations</guimenuitem>
               <guimenuitem>Application</guimenuitem>
               <guimenuitem>octet-stream</guimenuitem>
-            </menuchoice>
-          </emphasis>, 
+            </menuchoice>, 
           <guilabel>binary viewer</guilabel> needs to be
           removed.</para>
           <para></para>
