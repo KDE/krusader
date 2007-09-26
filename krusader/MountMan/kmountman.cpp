@@ -256,13 +256,13 @@ void KMountMan::quickList() {
    }
 
    // clear the popup menu
-   ( ( KToolBarPopupAction* ) krMountMan ) ->popupMenu() ->clear();
+   ( ( KToolBarPopupAction* ) krMountMan ) ->menu() ->clear();
 
    // create lists of current and possible mount points
    KMountPoint::List current = KMountPoint::currentMountPoints();
    KMountPoint::List possible = KMountPoint::possibleMountPoints();
 
-   // create a popupmenu, displaying mountpoints with possible actions
+   // create a menu, displaying mountpoints with possible actions
    // also, populate a small array with the actions
    if ( _actions )
       delete[] _actions;
@@ -292,9 +292,9 @@ void KMountMan::quickList() {
                      " (" + m->mountedFrom() + ")";
 
 
-      ( ( KToolBarPopupAction* ) krMountMan ) ->popupMenu() ->insertItem( text, idx );
+      ( ( KToolBarPopupAction* ) krMountMan ) ->menu() ->insertItem( text, idx );
    }
-   connect( ( ( KToolBarPopupAction* ) krMountMan ) ->popupMenu(), SIGNAL( activated( int ) ),
+   connect( ( ( KToolBarPopupAction* ) krMountMan ) ->menu(), SIGNAL( activated( int ) ),
             this, SLOT( delayedPerformAction( int ) ) );
 
 }
@@ -325,7 +325,7 @@ void KMountMan::performAction( int idx ) {
    // free memory
    delete[] _actions;
    _actions = 0L;
-   disconnect( ( ( KToolBarPopupAction* ) krMountMan ) ->popupMenu(), SIGNAL( activated( int ) ), 0, 0 );
+   disconnect( ( ( KToolBarPopupAction* ) krMountMan ) ->menu(), SIGNAL( activated( int ) ), 0, 0 );
 }
 
 #include "kmountman.moc"

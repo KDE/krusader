@@ -651,7 +651,7 @@ void Krusader::setupActions() {
 	actMountMan = new KToolBarPopupAction( KIcon("kr_mountman"), i18n( "&MountMan..." ), this);
 	actMountMan->setShortcut(Qt::ALT + Qt::Key_Slash);
 	connect(actMountMan, SIGNAL(triggered(bool)), SLOTS, SLOT( runMountMan() ));
-   connect( ( ( KToolBarPopupAction* ) actMountMan ) ->popupMenu(), SIGNAL( aboutToShow() ),
+   connect( ( ( KToolBarPopupAction* ) actMountMan ) ->menu(), SIGNAL( aboutToShow() ),
             mountMan, SLOT( quickList() ) );
 	actionCollection()->addAction("mountman", actMountMan);
 

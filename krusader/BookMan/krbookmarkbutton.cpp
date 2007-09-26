@@ -18,10 +18,10 @@ KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent) {
 
 	acmBookmarks = new KActionMenu(KIcon("bookmark"), i18n("Bookmarks"), 0);
 	acmBookmarks->setDelayed(false);
-	acmBookmarks->popupMenu()->setKeyboardShortcutsEnabled(true);
-	acmBookmarks->popupMenu()->setKeyboardShortcutsExecute(true);
+	acmBookmarks->menu()->setKeyboardShortcutsEnabled(true);
+	acmBookmarks->menu()->setKeyboardShortcutsExecute(true);
 
-	setPopup(acmBookmarks->popupMenu());
+	setPopup(acmBookmarks->menu());
 	connect(this, SIGNAL(pressed()), this, SLOT(populate()));
 	populate();
 }
