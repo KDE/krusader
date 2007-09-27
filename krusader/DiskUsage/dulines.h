@@ -45,7 +45,7 @@ class DULines : public Q3ListView
   Q_OBJECT
   
 public:
-  DULines( DiskUsage *usage, const char *name );
+  DULines( DiskUsage *usage );
   ~DULines();
 
   File * getCurrentFile();

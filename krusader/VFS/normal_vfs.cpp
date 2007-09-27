@@ -89,7 +89,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
 	// check that the new origin exists
 	if ( !QDir(path).exists() )
 	{
-		if( !quietMode ) KMessageBox::error(krApp, i18n("Directory %1 does not exist!").arg( path ), i18n("Error"));
+		if( !quietMode ) KMessageBox::error(krApp, i18n("Directory %1 does not exist!", path ), i18n("Error"));
 		return false;
 	}
     
@@ -99,7 +99,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
 	DIR* dir = opendir(path.local8Bit());
 	if(!dir) 
 	{
-		if( !quietMode ) KMessageBox::error(krApp, i18n("Can't open the %1 directory!").arg( path ), i18n("Error"));
+		if( !quietMode ) KMessageBox::error(krApp, i18n("Can't open the %1 directory!", path ), i18n("Error"));
 		return false;
 	}
 

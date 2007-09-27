@@ -120,7 +120,7 @@ class DUListView : public Q3ListView
   Q_OBJECT
   
 public:
-  DUListView( DiskUsage *usage, const char *name );
+  DUListView( DiskUsage *usage );
   ~DUListView();
 
   File * getCurrentFile();

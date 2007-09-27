@@ -157,7 +157,7 @@ int Synchronizer::compare( QString leftURL, QString rightURL, KRQuery *query, bo
   if( !autoScroll )
     refresh( true );
 
-  emit statusInfo( i18n( "Number of files: %1" ).arg( fileCount ) );
+  emit statusInfo( i18n( "Number of files: %1", fileCount ) );
   return fileCount;
 }
 
@@ -188,7 +188,7 @@ void Synchronizer::compareLoop() {
         break;
       case ST_STATE_READY:
       case ST_STATE_ERROR:
-        emit statusInfo( i18n( "Number of compared directories: %1" ).arg( comparedDirs ) );
+        emit statusInfo( i18n( "Number of compared directories: %1", comparedDirs ) );
         stack.removeRef( entry );
         continue;
       default:
@@ -648,7 +648,7 @@ int Synchronizer::refresh(bool nostatus)
   }
 
   if( !nostatus )
-    emit statusInfo( i18n( "Number of files: %1" ).arg( fileCount ) );
+    emit statusInfo( i18n( "Number of files: %1", fileCount ) );
 
   return fileCount;
 }
@@ -1209,17 +1209,15 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
         switch( item->task() )
         {
         case TT_COPY_TO_LEFT:
-          error = i18n("Error at copying file %1 to %2!")
-                       .arg( rightURL.pathOrUrl() )
-                       .arg( leftURL.pathOrUrl() );
+          error = i18n("Error at copying file %1 to %2!",
+                       rightURL.pathOrUrl(), leftURL.pathOrUrl() );
           break;
         case TT_COPY_TO_RIGHT:
-          error = i18n("Error at copying file %1 to %2!")
-                       .arg( leftURL.pathOrUrl() )
-                       .arg( rightURL.pathOrUrl() );
+          error = i18n("Error at copying file %1 to %2!",
+                       leftURL.pathOrUrl(), rightURL.pathOrUrl() );
           break;
         case TT_DELETE:
-          error = i18n("Error at deleting file %1!").arg( leftURL.pathOrUrl() );
+          error = i18n("Error at deleting file %1!", leftURL.pathOrUrl() );
           break;
         default:
           break;

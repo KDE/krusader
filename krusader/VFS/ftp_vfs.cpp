@@ -154,12 +154,12 @@ void ftp_vfs::slotListResult( KIO::Job *job ) {
 bool ftp_vfs::populateVfsList( const KUrl& origin, bool showHidden ) {
 	QString errorMsg = QString();
 	if ( !origin.isValid() )
-		errorMsg = i18n( "Malformed URL:\n%1" ).arg( origin.url() );
+		errorMsg = i18n( "Malformed URL:\n%1", origin.url() );
 	if ( !KProtocolManager::supportsListing( origin ) ) {
 		if( origin.protocol() == "ftp" && KProtocolManager::supportsReading( origin ) ) 
 			errorMsg = i18n( "Krusader doesn't support FTP access via HTTP.\nIf it is not the case, please check and change the Proxy settings in kcontrol." );
 		else
-			errorMsg = i18n( "Protocol not supported by Krusader:\n%1" ).arg( origin.url() );
+			errorMsg = i18n( "Protocol not supported by Krusader:\n%1", origin.url() );
 	}
 
 	if ( !errorMsg.isEmpty() ) {

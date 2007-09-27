@@ -200,7 +200,7 @@ void FeedToListBoxDialog::slotOk() {
   KUrl url = KUrl(QString("virt:/")+ name);
   virt_vfs v(0,true);
   if( !v.vfs_refresh( url ) ) {
-    KMessageBox::error( parentWidget(), i18n( "Cannot open %1!" ).arg( url.prettyUrl() ) );
+    KMessageBox::error( parentWidget(), i18n( "Cannot open %1!", url.prettyUrl() ) );
     return;
   }
   v.vfs_addFiles( &urlList, KIO::CopyJob::Copy, 0 );

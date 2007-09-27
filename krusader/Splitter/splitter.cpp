@@ -67,7 +67,7 @@ void Splitter::split( KIO::filesize_t splitSizeIn )
   splitSize = splitSizeIn;
 
   setCaption( i18n("Krusader::Splitting...") );
-  setLabelText( i18n("Splitting the file %1...").arg( fileName.pathOrUrl() ) );
+  setLabelText( i18n("Splitting the file %1...", fileName.pathOrUrl() ) );
 
   if( file.isDir() )
   {
@@ -122,7 +122,7 @@ void Splitter::splitReceiveFinished(KIO::Job *job)
   if( job->error() )    /* any error occurred? */
   {
     splitAbortJobs();
-    KMessageBox::error(0, i18n("Error reading file %1!").arg( fileName.pathOrUrl() ) );
+    KMessageBox::error(0, i18n("Error reading file %1!", fileName.pathOrUrl() ) );
     emit reject();
     return;
   }
@@ -198,7 +198,7 @@ void Splitter::splitSendFinished(KIO::Job *job)
   if( job->error() )    /* any error occurred? */
   {
     splitAbortJobs();
-    KMessageBox::error(0, i18n("Error writing file %1!").arg( writeURL.pathOrUrl() ) );
+    KMessageBox::error(0, i18n("Error writing file %1!", writeURL.pathOrUrl() ) );
     emit reject();
     return;
   }
@@ -241,7 +241,7 @@ void Splitter::splitFileFinished(KIO::Job *job)
 
   if( job->error() )    /* any error occurred? */
   {
-    KMessageBox::error(0, i18n("Error at writing file %1!").arg( writeURL.pathOrUrl() ) );
+    KMessageBox::error(0, i18n("Error at writing file %1!", writeURL.pathOrUrl() ) );
     emit reject();
     return;
   }

@@ -203,7 +203,7 @@ long KRarcHandler::arcFileCount( QString archive, QString type, QString password
   krApp->stopWait();
   
   if( !list.normalExit() || !checkStatus( type, list.exitStatus() ) ) {
-    KMessageBox::detailedError (krApp, i18n( "Failed to list the content of the archive (%1)!" ).arg( archive ), 
+    KMessageBox::detailedError (krApp, i18n( "Failed to list the content of the archive (%1)!", archive ), 
                                 list.getErrorMsg(), i18n("Error" ) );
     return 0;
   }
@@ -260,7 +260,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
     cpio << KrServices::fullPathName( "rpm2cpio" ) << " " + KrServices::quote( archive ) << " > " << cpioName;
     cpio.start(K3Process::Block, K3Process::AllOutput );
     if( !cpio.normalExit() || !checkStatus( "cpio", cpio.exitStatus() ) ) {
-      KMessageBox::detailedError (krApp, i18n( "Failed to convert rpm (%1) to cpio!" ).arg( archive ), 
+      KMessageBox::detailedError (krApp, i18n( "Failed to convert rpm (%1) to cpio!", archive ), 
                                   cpio.getErrorMsg(), i18n("Error" ) );
       return 0;
     }
@@ -277,7 +277,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
     dpkg << KrServices::fullPathName( "dpkg" ) << " --fsys-tarfile " + KrServices::quote( archive ) << " > " << cpioName;
     dpkg.start(K3Process::Block, K3Process::AllOutput );
     if( !dpkg.normalExit() || !checkStatus( "-deb", dpkg.exitStatus() ) ) {
-      KMessageBox::detailedError (krApp, i18n( "Failed to convert deb (%1) to tar!" ).arg( archive ), 
+      KMessageBox::detailedError (krApp, i18n( "Failed to convert deb (%1) to tar!", archive ), 
                                   dpkg.getErrorMsg(), i18n("Error" ) );
       return 0;
     }
@@ -337,7 +337,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
   
   // check the return value
   if ( !proc.normalExit() || !checkStatus( type, proc.exitStatus() ) ) {
-    KMessageBox::detailedError (krApp, i18n( "Failed to unpack %1!" ).arg( archive ), 
+    KMessageBox::detailedError (krApp, i18n( "Failed to unpack %1!", archive ), 
                                 krApp->wasWaitingCancelled() ? i18n( "User cancelled." ) : 
                                 proc.getErrorMsg(), i18n("Error" ) );
     return false;
@@ -506,7 +506,7 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
 
   // check the return value
   if ( !proc.normalExit() || !checkStatus( type, proc.exitStatus() ) ) {
-    KMessageBox::detailedError (krApp, i18n( "Failed to pack %1!" ).arg( dest ), 
+    KMessageBox::detailedError (krApp, i18n( "Failed to pack %1!", dest ), 
                                 krApp->wasWaitingCancelled() ? i18n( "User cancelled." ) : proc.getErrorMsg(), 
                                 i18n("Error" ) );
     return false;

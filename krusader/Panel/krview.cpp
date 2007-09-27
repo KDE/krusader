@@ -166,10 +166,11 @@ QString KrView::statistics() {
     if (it->getVfile()->vfile_getSize() > 0)
        _countSize += it->getVfile()->vfile_getSize();
    }
-   QString tmp = QString(i18n("%1 out of %2, %3 (%4) out of %5 (%6)"))
-                 .arg( _numSelected ).arg( _count ).arg( KIO::convertSize( _selectedSize ) )
-                 .arg( KRpermHandler::parseSize(_selectedSize) )
-					  .arg( KIO::convertSize( _countSize ) ).arg( KRpermHandler::parseSize(_countSize) );
+   QString tmp = QString(i18n("%1 out of %2, %3 (%4) out of %5 (%6)",
+                              _numSelected, _count, KIO::convertSize( _selectedSize ),
+                              KRpermHandler::parseSize(_selectedSize),
+                              KIO::convertSize( _countSize ),
+                              KRpermHandler::parseSize(_countSize) ) );
 	// notify if we're running a filtered view
 	if (filter() != KrViewProperties::All)
 		tmp = ">> [ " + filterMask().nameFilter() + " ]  "+tmp;

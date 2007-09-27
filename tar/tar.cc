@@ -75,7 +75,7 @@ void ArchiveProtocol::put( const KUrl& url, int, bool, bool resume ){
 
 	if( !m_archiveFile->prepareWriting(filename,user,group,size) ){
 		error(ERR_UNSUPPORTED_ACTION,
-		      i18n("Writing to %1 is not supported").arg(filename) );
+		      i18n("Writing to %1 is not supported", filename) );
 		return;
 	}
 	while( (temp=buffer.dequeue()) ){

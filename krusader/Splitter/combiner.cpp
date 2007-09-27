@@ -59,7 +59,7 @@ Combiner::~Combiner()
 void Combiner::combine()
 {
   setCaption( i18n("Krusader::Combining...") );
-  setLabelText( i18n("Combining the file %1...").arg( baseURL.pathOrUrl() ));
+  setLabelText( i18n("Combining the file %1...", baseURL.pathOrUrl() ));
 
     /* check whether the .crc file exists */
   splURL = baseURL;
@@ -70,8 +70,8 @@ void Combiner::combine()
   if( !file.isReadable() )
   {
     int ret = KMessageBox::questionYesNo(0, i18n("The CRC information file (%1) is missing!\n"
-        "Validity checking is impossible without it. Continue combining?")
-        .arg( splURL.pathOrUrl() ) );
+        "Validity checking is impossible without it. Continue combining?",
+        splURL.pathOrUrl() ) );
 
     if( ret == KMessageBox::No )
     {
@@ -107,7 +107,7 @@ void Combiner::combineSplitFileFinished(KIO::Job *job)
   QString error;
   
   if( job->error() )
-    error = i18n("Error at reading the CRC file (%1)!").arg( splURL.pathOrUrl() );
+    error = i18n("Error at reading the CRC file (%1)!", splURL.pathOrUrl() );
   else
   {
     splitFile.remove( '\r' ); // Windows compatibility
@@ -253,8 +253,8 @@ void Combiner::combineReceiveFinished(KIO::Job *job)
     if( fileCounter == 1 )
     {
       combineAbortJobs();
-      KMessageBox::questionYesNo(0, i18n("Can't open the first split file of %1!")
-                                 .arg( baseURL.pathOrUrl( ) ) );
+      KMessageBox::questionYesNo(0, i18n("Can't open the first split file of %1!",
+                                         baseURL.pathOrUrl( ) ) );
       emit reject();
       return;
     }    
@@ -293,7 +293,7 @@ void Combiner::combineSendFinished(KIO::Job *job)
   if( job->error() )    /* any error occurred? */
   {
     combineAbortJobs();
-    KMessageBox::error(0, i18n("Error writing file %1!").arg( writeURL.pathOrUrl( ) ) );
+    KMessageBox::error(0, i18n("Error writing file %1!", writeURL.pathOrUrl( ) ) );
     emit reject();
     return;
   }

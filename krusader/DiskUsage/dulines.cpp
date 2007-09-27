@@ -220,8 +220,8 @@ void DULinesToolTip::maybeTip( const QPoint &pos )
   }
 }*/
 
-DULines::DULines( DiskUsage *usage, const char *name )
-  : Q3ListView( usage, name ), diskUsage( usage ), refreshNeeded( false )
+DULines::DULines( DiskUsage *usage )
+  : Q3ListView( usage ), diskUsage( usage ), refreshNeeded( false )
 {
   setAllColumnsShowFocus(true);
   setVScrollBarMode(Q3ScrollView::Auto);

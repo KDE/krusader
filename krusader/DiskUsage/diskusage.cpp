@@ -210,10 +210,10 @@ DiskUsage::DiskUsage( QString confGroup, QWidget *parent, char *name ) : Q3Widge
                       currentDirectory( 0 ), root( 0 ), configGroup( confGroup ), loading( false ),
                       abortLoading( false ), clearAfterAbort( false ), deleting( false ), searchVfs( 0 )
 {
-  listView = new DUListView( this, "DU ListView" );
-  lineView = new DULines( this, "DU LineView" );
-  filelightView = new DUFilelight( this, "Filelight canvas" );
-  loaderView = new LoaderWidget( this, "Loading view" );
+  listView = new DUListView( this );
+  lineView = new DULines( this );
+  filelightView = new DUFilelight( this );
+  loaderView = new LoaderWidget( this );
 
   addWidget( listView );
   addWidget( lineView );
@@ -420,8 +420,7 @@ void DiskUsage::dirUp()
 
       if( KMessageBox::questionYesNo( this, i18n( "Stepping into the parent directory requires "
                                                   "loading the content of the \"%1\" URL. Do you wish "
-                                                  "to continue?" )
-                                            .arg( up.pathOrUrl() ),
+                                                  "to continue?", up.pathOrUrl() ),
                                             i18n( "Krusader::DiskUsage" ), KStandardGuiItem::yes(),
                                             KStandardGuiItem::no(), "DiskUsageLoadParentDir"
                                             ) == KMessageBox::Yes )
@@ -618,7 +617,7 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
         return 0;
     }
 
-    emit status( i18n( "Deleting %1..." ).arg( file->name() ) );
+    emit status( i18n( "Deleting %1...", file->name() ) );
   }
 
   if( file == currentDirectory )
@@ -730,10 +729,10 @@ void DiskUsage::createStatus()
   if( dirEntry != root )
       url.addPath( dirEntry->directory() );
 
-  emit status( i18n( "Current directory:%1,  Total size:%2,  Own size:%3" )
-               .arg( vfs::pathOrUrl( url, KUrl::RemoveTrailingSlash ) )
-               .arg( " "+KRpermHandler::parseSize( dirEntry->size() ) )
-               .arg( " "+KRpermHandler::parseSize( dirEntry->ownSize() ) ) );
+  emit status( i18n( "Current directory:%1,  Total size:%2,  Own size:%3",
+                     vfs::pathOrUrl( url, KUrl::RemoveTrailingSlash ),
+                     " "+KRpermHandler::parseSize( dirEntry->size() ),
+                     " "+KRpermHandler::parseSize( dirEntry->ownSize() ) ) );
 }
 
 void DiskUsage::changeDirectory( Directory *dir )

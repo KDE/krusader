@@ -63,7 +63,7 @@ SplitterGUI::SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir ) :
   grid->setMargin( 11 );
 
   QLabel *splitterLabel = new QLabel( this, "SplitterLabel" );
-  splitterLabel->setText( i18n( "Split the file %1 to directory:"  ).arg( fileURL.pathOrUrl() ) );
+  splitterLabel->setText( i18n( "Split the file %1 to directory:", fileURL.pathOrUrl() ) );
   splitterLabel->setMinimumWidth( 400 );
   grid->addWidget( splitterLabel,0 ,0 );
 

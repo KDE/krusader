@@ -55,7 +55,7 @@ Q3ValueList<const exp_placeholder*>& Expander::_placeholder()
 
 void exp_placeholder::panelMissingError(const QString &s, Expander& exp)
 {
-	exp.setError( Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Needed panel specification missing in expander %1").arg(s)) );
+	exp.setError( Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Needed panel specification missing in expander %1", s)) );
 }
 
 QStringList exp_placeholder::fileList(const ListPanel* const panel,const QString& type,const QString& mask,const bool ommitPath,const bool useUrl,Expander& exp,const QString& error)
@@ -70,7 +70,7 @@ QStringList exp_placeholder::fileList(const ListPanel* const panel,const QString
    else if ( type == "selected" )
       panel->view->getSelectedItems( &items );
    else {
-      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: Bad argument to %1: %2 is not valid item specifier").arg(error,type) ) );
+      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: Bad argument to %1: %2 is not valid item specifier", error,type) ) );
       return QStringList();
    }
    if ( !ommitPath ) {  // add the current path
@@ -398,7 +398,7 @@ TagString exp_Count::expFunc( const ListPanel* panel, const QStringList& paramet
    else if ( parameter[ 0 ].toLower() == "selected" )
       n = panel->view->numSelected();
    else {
-      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: Bad argument to Count: %1 is not valid item specifier").arg(parameter[0]) ));
+      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: Bad argument to Count: %1 is not valid item specifier", parameter[0]) ));
       return QString();
    }
 
@@ -504,7 +504,7 @@ TagString exp_ListFile::expFunc( const ListPanel* panel, const QStringList& para
    K3TempFile tmpFile( KStandardDirs::locateLocal("tmp", "krusader"), ".itemlist" );
    
     if ( tmpFile.status() != 0 ) {
-      setError(exp, Error(Error::S_FATAL,Error::C_WORLD, i18n("Expander: tempfile couldn't be opened (%1)" ).arg(strerror( tmpFile.status() )) ));
+      setError(exp, Error(Error::S_FATAL,Error::C_WORLD, i18n("Expander: tempfile couldn't be opened (%1)", strerror( tmpFile.status() )) ));
       return QString();
     }
     
@@ -883,7 +883,7 @@ TagString exp_ColSort::expFunc( const ListPanel* panel, const QStringList& param
    if ( parameter[0].toLower() == "group" ) {
       mode |= KrViewProperties::Group;
    } else {
-      setError(exp, Error(Error::S_WARNING,Error::C_ARGUMENT,i18n("Expander: unknown column specified for %_ColSort(%1)%").arg(parameter[0]) ));
+      setError(exp, Error(Error::S_WARNING,Error::C_ARGUMENT,i18n("Expander: unknown column specified for %_ColSort(%1)%", parameter[0]) ));
       return QString();
    }
    
@@ -910,7 +910,7 @@ TagString exp_PanelSize::expFunc( const ListPanel* panel, const QStringList& par
       newSize = parameter[0].toInt();
    
    if ( newSize < 0 || newSize > 100 ) {
-      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: Value %1 out of range for %_PanelSize(percent)%. The first parameter has to be >0 and <100").arg(newSize)) );
+      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: Value %1 out of range for %_PanelSize(percent)%. The first parameter has to be >0 and <100", newSize)) );
       return QString();
    }
 
@@ -1032,7 +1032,7 @@ TagString exp_simpleplaceholder::expFunc( const ListPanel* p, const TagStringLis
 		if((*it).isSimple())
 			lst.push_back((*it).string());
 		else {
-			setError(exp,Error(Error::S_FATAL,Error::C_SYNTAX,i18n("%Each% is not allowed in parameter to %1").arg(description())));
+			setError(exp,Error(Error::S_FATAL,Error::C_SYNTAX,i18n("%Each% is not allowed in parameter to %1", description())));
 			return QString();
 		}
 	return expFunc(p,lst,useUrl,exp);
@@ -1053,7 +1053,7 @@ ListPanel* Expander::getPanel( const char panelIndicator, const exp_placeholder*
    case '_':
       return 0;
    default:
-		 exp.setError(Error(Error::S_FATAL,Error::C_SYNTAX,i18n("Expander: Bad panel specifier %1 in placeholder %2").arg(panelIndicator).arg(pl->description())));
+		 exp.setError(Error(Error::S_FATAL,Error::C_SYNTAX,i18n("Expander: Bad panel specifier %1 in placeholder %2", panelIndicator, pl->description())));
       return 0;
    }
 }
@@ -1112,7 +1112,7 @@ TagString Expander::expandCurrent( const QString& stringToExpand, bool useUrl ) 
               break;
            }
          if ( i == placeholderCount() ) { // didn't find an expander
-            setError(Error(Error::S_FATAL,Error::C_SYNTAX,i18n("Error: unrecognized %%%1%2%% in Expander::expand").arg(panelIndicator).arg(exp)) );
+            setError(Error(Error::S_FATAL,Error::C_SYNTAX,i18n("Error: unrecognized %%%1%2%% in Expander::expand", panelIndicator, exp)) );
            return QString();
          }
       } //else

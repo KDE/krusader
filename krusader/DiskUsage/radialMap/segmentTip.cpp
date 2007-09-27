@@ -79,7 +79,7 @@ SegmentTip::moveto( QPoint p, QWidget &canvas, bool placeAbove )
 
   move( x, y );
   show();
-  update();
+  repaint();
 }
 
 void
@@ -103,7 +103,7 @@ SegmentTip::updateTip( const File* const file, const Directory* const root )
     {
         double files  = static_cast<const Directory*>(file)->fileCount();
         const uint pc = uint((100 * files) / (double)root->fileCount());
-        QString s3    = i18n( "Files: %1" ).arg( loc->formatNumber( files, 0 ) );
+        QString s3    = i18n( "Files: %1", loc->formatNumber( files, 0 ) );
 
         if( pc > 0 ) s3 += QString( " (%1%)" ).arg( loc->formatNumber( pc, 0 ) );
 

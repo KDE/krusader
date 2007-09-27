@@ -523,7 +523,7 @@ void KgColors::slotExportColors() {
 	if (file == QString()) return;
 	QFile f(file);
 	if (f.exists() && KMessageBox::warningContinueCancel(this,
-		i18n("File %1 already exists. Are you sure you want to overwrite it?").arg( file ),
+		i18n("File %1 already exists. Are you sure you want to overwrite it?", file ),
 		i18n("Warning"), KGuiItem( i18n("Overwrite") ) ) != KMessageBox::Continue) return;
 	if (!f.open(QIODevice::WriteOnly)) {
 		KMessageBox::error(this, i18n("Error: unable to write to file"), i18n("Error"));

@@ -60,7 +60,7 @@ QString KrViewItem::description() const {
 		QString tmp;
 		if ( comment.isEmpty() )	tmp = i18n ( "Symbolic Link" ) ;
 		else if( _vf->vfile_getMime() == "Broken Link !" ) tmp = i18n("(broken link !)");
-		else tmp = i18n("%1 (Link)").arg(comment);
+		else tmp = i18n("%1 (Link)", comment);
 	
 		text += "->";
 	text += myLinkDest;

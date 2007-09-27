@@ -749,10 +749,10 @@ void ListPanel::gotStats( const QString &mountPoint, unsigned long kBSize,
 		}
 	}
 	
-	QString stats = i18n( "%1 free out of %2 (%3%) on %4 [ (%5) ]" )
-        .arg( KIO::convertSizeFromKiB( kBAvail ) )
-        .arg( KIO::convertSizeFromKiB( kBSize ) ).arg( perc )
-        .arg( mountPoint ).arg( fstype );
+	QString stats = i18n( "%1 free out of %2 (%3%) on %4 [ (%5) ]",
+                              KIO::convertSizeFromKiB( kBAvail ),
+                              KIO::convertSizeFromKiB( kBSize ), perc,
+                              mountPoint, fstype );
 	status->setText( stats );
 }
 

@@ -42,8 +42,8 @@
 #include <q3header.h>
 #include <time.h>
 
-DUListView::DUListView( DiskUsage *usage, const char *name ) 
-    : Q3ListView( usage, name ), diskUsage( usage )
+DUListView::DUListView( DiskUsage *usage ) 
+    : Q3ListView( usage ), diskUsage( usage )
 {  
   setAllColumnsShowFocus(true);
   setVScrollBarMode(Q3ScrollView::Auto);

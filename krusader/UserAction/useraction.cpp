@@ -98,7 +98,7 @@ void UserAction::readFromFile( const QString& filename, ReadMode mode, KrActionL
       file.close();
       delete doc; doc = 0;
       KMessageBox::error( MAIN_VIEW,
-      		i18n( "The file %1 does not contain valid UserActions.\n" ).arg( filename ), // text
+      		i18n( "The file %1 does not contain valid UserActions.\n", filename ), // text
       		i18n("UserActions - can't read from file!") // caption
       	);
     }
@@ -109,7 +109,7 @@ void UserAction::readFromFile( const QString& filename, ReadMode mode, KrActionL
       // check if the file got the right root-element (ACTION_ROOT) - this finds out if the xml-file read to the DOM is realy an krusader useraction-file
       if( root.tagName() != ACTION_ROOT ) {
         KMessageBox::error( MAIN_VIEW,
-        	i18n( "The actionfile's root-element isn't called "ACTION_ROOT", using %1").arg( filename ),
+        	i18n( "The actionfile's root-element isn't called "ACTION_ROOT", using %1", filename ),
         	i18n( "UserActions - can't read from file!" )
         );
         delete doc; doc = 0;
@@ -121,7 +121,7 @@ void UserAction::readFromFile( const QString& filename, ReadMode mode, KrActionL
   } // if ( file.open( QIODevice::ReadOnly ) )
   else {
       KMessageBox::error( MAIN_VIEW,
-      		i18n( "Unable to open actionfile %1").arg( filename ),
+      		i18n( "Unable to open actionfile %1", filename ),
       		i18n( "UserActions - can't read from file!" )
       );
    }

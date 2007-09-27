@@ -60,8 +60,8 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   cbRightToLeft->setEnabled( leftCopyNr != 0 );
   layout->addWidget( cbRightToLeft );
 
-  lbRightToLeft = new QLabel( "\t" + i18np( "Ready: %1/1 file, %3/%4", "Ready: %1/%n files, %3/%4", leftCopyNr).arg( 0 )
-                             .arg( 0 ).arg( KRpermHandler::parseSize( leftCopySize ).trimmed() ),
+  lbRightToLeft = new QLabel( "\t" + i18np( "Ready: %1/1 file, %3/%4", "Ready: %1/%n files, %3/%4", leftCopyNr, 0,
+                             0, KRpermHandler::parseSize( leftCopySize ).trimmed() ),
                              this, "lbRightToLeft" );
   lbRightToLeft->setEnabled( leftCopyNr != 0 );
   layout->addWidget( lbRightToLeft );
@@ -73,8 +73,8 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   cbLeftToRight->setEnabled( rightCopyNr != 0 );
   layout->addWidget( cbLeftToRight );
 
-  lbLeftToRight = new QLabel( "\t" + i18np( "Ready: %1/1 file, %3/%4", "Ready: %1/%n files, %3/%4", rightCopyNr ).arg( 0 )
-                             .arg( 0 ).arg( KRpermHandler::parseSize( rightCopySize ).trimmed() ),
+  lbLeftToRight = new QLabel( "\t" + i18np( "Ready: %1/1 file, %3/%4", "Ready: %1/%n files, %3/%4", rightCopyNr, 0,
+                             0, KRpermHandler::parseSize( rightCopySize ).trimmed() ),
                              this, "lbLeftToRight" );
   lbLeftToRight->setEnabled( rightCopyNr != 0 );
   layout->addWidget( lbLeftToRight );
@@ -86,8 +86,8 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   cbDeletable->setEnabled( deleteNr != 0 );
   layout->addWidget( cbDeletable );
 
-  lbDeletable   = new QLabel( "\t" + i18np( "Ready: %1/1 file, %3/%4", "Ready: %1/%n files, %3/%4", deleteNr ).arg( 0 )
-                             .arg( 0 ).arg( KRpermHandler::parseSize( deleteSize ).trimmed() ),
+  lbDeletable   = new QLabel( "\t" + i18np( "Ready: %1/1 file, %3/%4", "Ready: %1/%n files, %3/%4", deleteNr, 0,
+                             0, KRpermHandler::parseSize( deleteSize ).trimmed() ),
                              this, "lbDeletable" );
   lbDeletable->setEnabled( deleteNr != 0 );
   layout->addWidget( lbDeletable );
@@ -159,15 +159,15 @@ void SynchronizeDialog::synchronizationFinished()
 void SynchronizeDialog::processedSizes( int leftNr, KIO::filesize_t leftSize, int rightNr,
                                         KIO::filesize_t rightSize, int delNr, KIO::filesize_t delSize )
 {
-  lbRightToLeft->setText( i18n( "\tReady: %1/%2 files, %3/%4" ).arg( leftNr ).arg( leftCopyNr )
-                          .arg( KRpermHandler::parseSize( leftSize ).trimmed() )
-                          .arg( KRpermHandler::parseSize( leftCopySize ).trimmed() ) );
-  lbLeftToRight->setText( i18n( "\tReady: %1/%2 files, %3/%4" ).arg( rightNr ).arg( rightCopyNr )
-                          .arg( KRpermHandler::parseSize( rightSize ).trimmed() )
-                          .arg( KRpermHandler::parseSize( rightCopySize ).trimmed() ) );
-  lbDeletable->setText  ( i18n( "\tReady: %1/%2 files, %3/%4" ).arg( delNr ).arg( deleteNr )
-                          .arg( KRpermHandler::parseSize( delSize ).trimmed() )
-                          .arg( KRpermHandler::parseSize( deleteSize ).trimmed() ) );
+  lbRightToLeft->setText( i18n( "\tReady: %1/%2 files, %3/%4", leftNr, leftCopyNr,
+                          KRpermHandler::parseSize( leftSize ).trimmed(),
+                          KRpermHandler::parseSize( leftCopySize ).trimmed() ) );
+  lbLeftToRight->setText( i18n( "\tReady: %1/%2 files, %3/%4", rightNr, rightCopyNr,
+                          KRpermHandler::parseSize( rightSize ).trimmed(),
+                          KRpermHandler::parseSize( rightCopySize ).trimmed() ) );
+  lbDeletable->setText  ( i18n( "\tReady: %1/%2 files, %3/%4", delNr, deleteNr,
+                          KRpermHandler::parseSize( delSize ).trimmed(),
+                          KRpermHandler::parseSize( deleteSize ).trimmed() ) );
 
   KIO::filesize_t totalSum      = leftCopySize + rightCopySize + deleteSize;
   KIO::filesize_t processedSum  = leftSize + rightSize + delSize;

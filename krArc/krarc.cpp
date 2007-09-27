@@ -127,7 +127,7 @@ void kio_krarcProtocol::mkdir(const KUrl& url,int permissions){
 	
 	if( putCmd.isEmpty() ){
 		error(ERR_UNSUPPORTED_ACTION,
-		i18n("Creating directories is not supported with %1 archives").arg(arcType) );
+		i18n("Creating directories is not supported with %1 archives", arcType) );
 		return;
 	}
 	
@@ -157,7 +157,7 @@ void kio_krarcProtocol::mkdir(const KUrl& url,int permissions){
 	// pack the directory
 	KrShellProcess proc;
 	proc << putCmd << convertName( arcFile->url().path() ) + " " << convertFileName( tmpDir.mid(arcTempDir.length()) );
-	infoMessage(i18n("Creating %1 ...").arg( url.fileName() ) );
+	infoMessage(i18n("Creating %1 ...", url.fileName() ) );
 	QDir::setCurrent(arcTempDir);
 	proc.start(K3Process::Block,K3Process::AllOutput);
 	
@@ -187,7 +187,7 @@ void kio_krarcProtocol::put(const KUrl& url,int permissions,bool overwrite,bool 
 	
 	if( putCmd.isEmpty() ){
 		error(ERR_UNSUPPORTED_ACTION,
-		i18n("Writing to %1 archives is not supported").arg(arcType) );
+		i18n("Writing to %1 archives is not supported", arcType) );
 		return;
 	} 
 	if( !overwrite && findFileEntry(url) ){
@@ -228,7 +228,7 @@ void kio_krarcProtocol::put(const KUrl& url,int permissions,bool overwrite,bool 
 	// pack the file
 	KrShellProcess proc;
 	proc << putCmd << convertName( arcFile->url().path() )+ " " <<convertFileName( tmpFile.mid(arcTempDir.length()) );
-	infoMessage(i18n("Packing %1 ...").arg( url.fileName() ) );
+	infoMessage(i18n("Packing %1 ...", url.fileName() ) );
 	QDir::setCurrent(arcTempDir);
 	proc.start(K3Process::Block,K3Process::AllOutput);
 	// remove the file
@@ -262,7 +262,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries ){
 	
 	if( getCmd.isEmpty() ){
 		error(ERR_UNSUPPORTED_ACTION,
-		i18n("Retrieving data from %1 archives is not supported").arg(arcType) );
+		i18n("Retrieving data from %1 archives is not supported", arcType) );
 		return;
 	} 
 	UDSEntry* entry = findFileEntry(url);
@@ -320,7 +320,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries ){
 		connect(&proc,SIGNAL(receivedStdout(K3Process*,char*,int)),
 				this,SLOT(receivedData(K3Process*,char*,int)) );
 	}
-	infoMessage(i18n("Unpacking %1 ...").arg( url.fileName() ) );
+	infoMessage(i18n("Unpacking %1 ...", url.fileName() ) );
 	// change the working directory to our arcTempDir
 	QDir::setCurrent(arcTempDir);
 	proc.start(K3Process::Block,K3Process::AllOutput);
@@ -446,7 +446,7 @@ void kio_krarcProtocol::del(KUrl const & url, bool isFile){
 	
 	if( delCmd.isEmpty() ){
 		error(ERR_UNSUPPORTED_ACTION,
-		i18n("Deleting files from %1 archives is not supported").arg(arcType) );
+		i18n("Deleting files from %1 archives is not supported", arcType) );
 		return;
 	}
 	if( !findFileEntry(url) ){
@@ -462,7 +462,7 @@ void kio_krarcProtocol::del(KUrl const & url, bool isFile){
 	}
 	KrShellProcess proc;
 	proc << delCmd << convertName( arcFile->url().path() )+" " << convertFileName( file );
-	infoMessage(i18n("Deleting %1 ...").arg( url.fileName() ) );
+	infoMessage(i18n("Deleting %1 ...", url.fileName() ) );
 	proc.start(K3Process::Block, K3Process::AllOutput);
 	if( !proc.normalExit() || !checkStatus( proc.exitStatus() ) )  {
 		error(ERR_COULD_NOT_WRITE,url.path() + "\n\n" + proc.getErrorMsg() );
@@ -486,7 +486,7 @@ void kio_krarcProtocol::stat( const KUrl & url ){
 	
 	if( listCmd.isEmpty() ){
 		error(ERR_UNSUPPORTED_ACTION,
-		i18n("Accessing files is not supported with the %1 archives").arg(arcType) );
+		i18n("Accessing files is not supported with the %1 archives", arcType) );
 		return;
 	}    
 	QString path = url.path(KUrl::RemoveTrailingSlash);
@@ -558,7 +558,7 @@ void kio_krarcProtocol::copy (const KUrl &url, const KUrl &dest, int, bool overw
 			if( arcType == "ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
 				proc << "<" << "/dev/ptmx"; 
 			
-			infoMessage(i18n("Unpacking %1 ...").arg( url.fileName() ) );
+			infoMessage(i18n("Unpacking %1 ...", url.fileName() ) );
 			proc.start(K3Process::Block, K3Process::AllOutput);
 			if( !proc.normalExit() || !checkStatus( proc.exitStatus() ) )  {
 				error(KIO::ERR_COULD_NOT_WRITE, dest.path(KUrl::RemoveTrailingSlash) + "\n\n" + proc.getErrorMsg() );
@@ -586,7 +586,7 @@ void kio_krarcProtocol::listDir(const KUrl& url){
 	}
 	if( listCmd.isEmpty() ){
 		error(ERR_UNSUPPORTED_ACTION,
-		i18n("Listing directories is not supported for %1 archives").arg(arcType) );
+		i18n("Listing directories is not supported for %1 archives", arcType) );
 		return;
 	}  
 	QString path = url.path();
@@ -1330,7 +1330,7 @@ bool kio_krarcProtocol::initArcParameters() {
 	if( KStandardDirs::findExe(cmd).isEmpty() ){
 		error( KIO::ERR_CANNOT_LAUNCH_PROCESS,
 		cmd+
-		i18n("\nMake sure that the %1 binary are installed properly on your system.").arg(cmd));
+		i18n("\nMake sure that the %1 binary are installed properly on your system.", cmd));
 		KRDEBUG("Failed to find cmd: " << cmd);
 		return false;
 	}

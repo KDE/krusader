@@ -165,7 +165,7 @@ void KrBookmarkHandler::exportToFile() {
 		stream << doc.toString();
 		file.close();
 	} else {
-		KMessageBox::error(krApp, i18n("Unable to write to %1").arg(filename), i18n("Error"));
+		KMessageBox::error(krApp, i18n("Unable to write to %1", filename), i18n("Error"));
 	}
 }
 
@@ -254,14 +254,14 @@ void KrBookmarkHandler::importFromFile() {
 		n = n.nextSibling();
 
 	if (n.isNull() || n.toElement().tagName()!="xbel") {
-		errorMsg = i18n("%1 doesn't seem to be a valid Bookmarks file").arg(filename);
+		errorMsg = i18n("%1 doesn't seem to be a valid Bookmarks file", filename);
 		goto ERROR;
 	} else n = n.firstChild(); // skip the xbel part
 	importFromFileFolder(n, _root, "", &errorMsg);
 	goto SUCCESS;
 	
 ERROR:
-	KMessageBox::error(krApp, i18n("Error reading bookmarks file: %1").arg(errorMsg), i18n( "Error" ));
+	KMessageBox::error(krApp, i18n("Error reading bookmarks file: %1", errorMsg), i18n( "Error" ));
 
 SUCCESS:
 	file.close();

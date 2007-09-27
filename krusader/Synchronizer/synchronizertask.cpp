@@ -131,14 +131,14 @@ void CompareContentTask::start() {
   if( leftURL.isLocalFile() && rightURL.isLocalFile() ) {
     leftFile = new QFile( leftURL.path() );
     if( !leftFile->open( QIODevice::ReadOnly ) ) {
-      KMessageBox::error(parentWidget, i18n("Error at opening %1!").arg( leftURL.path() ));
+      KMessageBox::error(parentWidget, i18n("Error at opening %1!", leftURL.path() ));
       m_state = ST_STATE_ERROR;
       return;
     }
 
     rightFile = new QFile( rightURL.path() );
     if( !rightFile->open( QIODevice::ReadOnly ) ) {
-      KMessageBox::error(parentWidget, i18n("Error at opening %1!").arg( rightURL.path() ));
+      KMessageBox::error(parentWidget, i18n("Error at opening %1!", rightURL.path() ));
       m_state = ST_STATE_ERROR;
       return;
     }
@@ -299,9 +299,8 @@ void CompareContentTask::slotFinished(KIO::Job *job)
   if( job->error() && job->error() != KIO::ERR_USER_CANCELED && !errorPrinted )
   {
     errorPrinted = true;
-    KMessageBox::error(parentWidget, i18n("IO error at comparing file %1 with %2!")
-                       .arg( leftURL.pathOrUrl() )
-                       .arg( rightURL.pathOrUrl() ) );
+    KMessageBox::error(parentWidget, i18n("IO error at comparing file %1 with %2!",
+                       leftURL.pathOrUrl(), rightURL.pathOrUrl() ) );
   }
 
   if( leftReadJob == 0 && rightReadJob == 0 )
@@ -336,7 +335,7 @@ void CompareContentTask::sendStatusMessage()
   double perc = (size == 0) ? 1. : (double)received / (double)size;
   int percent = (int)(perc * 10000. + 0.5);
   QString statstr = QString( "%1.%2%3" ).arg( percent / 100 ).arg( ( percent / 10 )%10 ).arg( percent % 10 ) + "%";
-  setStatusMessage( i18n( "Comparing file %1 (%2)..." ).arg( leftURL.fileName() ).arg( statstr ) );
+  setStatusMessage( i18n( "Comparing file %1 (%2)...", leftURL.fileName(), statstr ) );
   timer->start( 500, true );
 }
 

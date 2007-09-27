@@ -215,7 +215,7 @@ bool arc_vfs::getDirs(){
     proc.start(K3Process::Block);
     if( !proc.normalExit() || !proc.exitStatus() == 0 ){
       if (!quietMode) KMessageBox::error(krApp, i18n("<qt>Can't read <b>%1</b>. Archive "
-                      "might be corrupted!</qt>").arg(arcFile.mid(arcFile.findRev('/')+1)));
+                      "might be corrupted!</qt>", arcFile.mid(arcFile.findRev('/')+1)));
      error = true;
 		 return false;
     }

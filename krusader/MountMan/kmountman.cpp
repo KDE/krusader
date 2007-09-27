@@ -225,24 +225,24 @@ QString KMountMan::convertSize( KIO::filesize_t size ) {
       fsize = ( float ) size / ( float ) 1073741824;
       if ( fsize > 1024 )         // no name for something bigger than tera byte
          // let's call it Zega-Byte, who'll ever find out? :-)
-         s = i18n( "%1 ZB" ).arg( KGlobal::locale() ->formatNumber( fsize / ( float ) 1024, 1 ) );
+         s = i18n( "%1 ZB", KGlobal::locale() ->formatNumber( fsize / ( float ) 1024, 1 ) );
       else
-         s = i18n( "%1 TB" ).arg( KGlobal::locale() ->formatNumber( fsize, 1 ) );
+         s = i18n( "%1 TB", KGlobal::locale() ->formatNumber( fsize, 1 ) );
    }
    // Giga-byte
    else if ( size >= 1048576 ) {
       fsize = ( float ) size / ( float ) 1048576;
-      s = i18n( "%1 GB" ).arg( KGlobal::locale() ->formatNumber( fsize, 1 ) );
+      s = i18n( "%1 GB", KGlobal::locale() ->formatNumber( fsize, 1 ) );
    }
    // Mega-byte
    else if ( size > 1024 ) {
       fsize = ( float ) size / ( float ) 1024;
-      s = i18n( "%1 MB" ).arg( KGlobal::locale() ->formatNumber( fsize, 1 ) );
+      s = i18n( "%1 MB", KGlobal::locale() ->formatNumber( fsize, 1 ) );
    }
    // Kilo-byte
    else {
       fsize = ( float ) size;
-      s = i18n( "%1 KB" ).arg( KGlobal::locale() ->formatNumber( fsize, 0 ) );
+      s = i18n( "%1 KB", KGlobal::locale() ->formatNumber( fsize, 0 ) );
    }
    return s;
 }

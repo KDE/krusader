@@ -156,11 +156,11 @@ void KgDependencies::slotApply( QObject *obj, QString cls, QString name )
   {
     group.writeEntry( name, usedPath );
     if( usedPath.isEmpty() )
-      KMessageBox::error( this, i18n( "The %1 path is incorrect, no valid path found." )
-                          .arg( urlRequester->url().pathOrUrl() ) );
+      KMessageBox::error( this, i18n( "The %1 path is incorrect, no valid path found.",
+                                      urlRequester->url().pathOrUrl() ) );
     else
-      KMessageBox::error( this, i18n( "The %1 path is incorrect, %2 used instead." )
-                          .arg( urlRequester->url().pathOrUrl() ).arg( usedPath ) );
+      KMessageBox::error( this, i18n( "The %1 path is incorrect, %2 used instead.",
+                                      urlRequester->url().pathOrUrl() ).arg( usedPath ) );
     urlRequester->setUrl( KUrl( usedPath ) );
   }
 }

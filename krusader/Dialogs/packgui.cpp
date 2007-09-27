@@ -52,7 +52,7 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
     PackGUIBase(0,0,true) {
   // first, fill the WhatToPack textfield with information
   if(noOfFiles == 1)
-    TextLabel1->setText( i18n("Pack %1").arg(filename) );
+    TextLabel1->setText( i18n("Pack %1", filename) );
   else
     TextLabel1->setText( i18np("Pack %1 file", "Pack %1 files", noOfFiles) );
 

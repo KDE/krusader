@@ -131,7 +131,7 @@ RadialMap::Builder::build( const Directory* const dir, const unsigned int depth,
     {
         //append a segment for unrepresented space - a "fake" segment
 
-        const QString s = i18n( "%1 files: ~ %2" ).arg( KGlobal::locale()->formatNumber( hiddenFileCount, 0 ) ).arg( File::humanReadableSize( hiddenSize/hiddenFileCount ) );
+        const QString s = i18n( "%1 files: ~ %2", KGlobal::locale()->formatNumber( hiddenFileCount, 0 ), File::humanReadableSize( hiddenSize/hiddenFileCount ) );
         (m_signature + depth)->append( new Segment( new File( s, hiddenSize ), a_start, a_end - a_start, true ) );
     }
 
