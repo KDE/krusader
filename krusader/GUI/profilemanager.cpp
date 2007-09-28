@@ -66,7 +66,7 @@ void ProfileManager::profilePopup()
   KMenu popup, removePopup, overwritePopup;
   popup.setTitle(i18n("Profiles"));
   
-  for( unsigned i=0; i != profileList.count() ; i++ )
+  for( int i=0; i != profileList.count() ; i++ )
   {
     KConfigGroup group( krConfig, profileType + " - " + profileList[i] ); 
     QString name = group.readEntry( "Name" );
@@ -86,7 +86,7 @@ void ProfileManager::profilePopup()
   popup.addAction(i18n("Add new entry") )->setData( QVariant( (int)( ADD_NEW_ENTRY_ID) ) );
 
 
-  unsigned result = 0;
+  int result = 0;
   QAction * res = popup.exec(QCursor::pos());
   if( res->data().canConvert<int>() )
     result = res->data().toInt();
@@ -137,7 +137,7 @@ void ProfileManager::newProfile( QString defaultName )
   
 void ProfileManager::deleteProfile( QString name )
 {
-  for( unsigned i=0; i != profileList.count() ; i++ )
+  for( int i=0; i != profileList.count() ; i++ )
   {
     KConfigGroup group( krConfig, profileType + " - " + profileList[ i ] ); 
     QString currentName = group.readEntry( "Name" );
@@ -157,7 +157,7 @@ void ProfileManager::deleteProfile( QString name )
   
 void ProfileManager::overwriteProfile( QString name )
 {
-  for( unsigned i=0; i != profileList.count() ; i++ )
+  for( int i=0; i != profileList.count() ; i++ )
   {
     KConfigGroup group( krConfig, profileType + " - " + profileList[ i ] ); 
     QString currentName = group.readEntry( "Name" );
@@ -172,7 +172,7 @@ void ProfileManager::overwriteProfile( QString name )
 
 bool ProfileManager::loadProfile( QString name )
 {
-  for( unsigned i=0; i != profileList.count() ; i++ )
+  for( int i=0; i != profileList.count() ; i++ )
   {
     KConfigGroup group( krConfig, profileType + " - " + profileList[i] ); 
     QString currentName = group.readEntry( "Name" );
@@ -191,7 +191,7 @@ QStringList ProfileManager::availableProfiles( QString profileType ) {
   QStringList profiles = group.readEntry( profileType, QStringList() );
   QStringList profileNames;
 
-  for( unsigned i=0; i != profiles.count() ; i++ ) {
+  for( int i=0; i != profiles.count() ; i++ ) {
     KConfigGroup pg( krConfig, profileType + " - " + profiles[ i ] ); 
     profileNames.append( pg.readEntry("Name") );
   }

@@ -13,7 +13,7 @@ static const char* NAME_VIRTUAL = I18N_NOOP ( "Virtual Filesystem" );
 static const char* NAME_LAN = I18N_NOOP ( "Local Network" );
 
 KrBookmark::KrBookmark ( QString name, KUrl url, KActionCollection *parent, QString icon, QString actionName ) :
-		KAction ( parent ), _url ( url ), _folder ( false ), _separator ( false ), _icon(icon)
+		KAction ( parent ), _url ( url ), _icon(icon), _folder ( false ), _separator ( false )
 {
 	setText ( actionName.isNull() ? BM_NAME ( name ).toLatin1() : BM_NAME ( actionName ).toLatin1() );
 	parent->addAction ( name, this );

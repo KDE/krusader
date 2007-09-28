@@ -359,7 +359,7 @@ public:
   void          setDefaultColor( QColor dflt );
   void          setDefaultText( QString text );
   QColor        getColor();
-  void          changeAdditionalColor( unsigned int num, QColor color );
+  void          changeAdditionalColor( int num, QColor color );
   QString       getValue();
   bool          isValueRGB();
   void          setValue( QString value );

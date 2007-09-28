@@ -158,13 +158,12 @@ KRPie::KRPie( KIO::filesize_t _totalSize, QWidget *parent ) : QWidget( parent, 0
 void KRPie::paintEvent( QPaintEvent * ) {
    QPainter paint( this );
    // now create the slices
-   KRPieSlice *slice;
    float sAngle = STARTANGLE;
    for ( int ndx=0; ndx != slices.count(); ndx++ ) {
-      paint.setBrush( slice[ndx].getColor() );
-      paint.setPen( slice[ndx].getColor() );
+      paint.setBrush( slices[ndx].getColor() );
+      paint.setPen( slices[ndx].getColor() );
       // angles are negative to create a clock-wise drawing of slices
-      float angle = -( slice[ndx].getPerct() / 100 * 360 ) * 16;
+      float angle = -( slices[ndx].getPerct() / 100 * 360 ) * 16;
       for ( int i = 1; i < Z_HEIGHT; ++i )
          paint.drawPie( LEFT, BOTTOM + i, WIDTH, HEIGHT, ( int ) sAngle, ( int ) angle );
       sAngle += angle;
@@ -175,10 +174,10 @@ void KRPie::paintEvent( QPaintEvent * ) {
    //  paint.drawPie(LEFT,BOTTOM+i,WIDTH,HEIGHT,sAngle,360*16-(STARTANGLE-sAngle));
    sAngle = STARTANGLE;
    for ( int ndx=0; ndx != slices.count(); ndx++ ) {
-      paint.setBrush( slice[ndx].getColor() );
-      paint.setPen( slice[ndx].getColor() );
+      paint.setBrush( slices[ndx].getColor() );
+      paint.setPen( slices[ndx].getColor() );
       // angles are negative to create a clock-wise drawing of slices
-      float angle = -( slice[ndx].getPerct() / 100 * 360 ) * 16;
+      float angle = -( slices[ndx].getPerct() / 100 * 360 ) * 16;
       paint.drawPie( LEFT, BOTTOM, WIDTH, HEIGHT, ( int ) sAngle, ( int ) angle );
       sAngle += angle;
    }

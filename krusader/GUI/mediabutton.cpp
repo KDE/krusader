@@ -374,7 +374,7 @@ void MediaButton::gettingSpaceData(const QString &mountPoint, unsigned long kBSi
 	size *= 1024;
 	QString sizeText = KIO::convertSize( size );
 	
-	for( unsigned i=0; i != urls.size(); i++ ) {
+	for( int i=0; i != urls.size(); i++ ) {
 		if( mediaURL.equals( urls[ i ], KUrl::CompareWithoutTrailingSlash ) ) {
 			if( kBSize == 0 ) { // if df gives 0, it means the device is quasy umounted
 				QString mime = mimes[ i ];
@@ -424,7 +424,7 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 	int overwrite = -1;
 	KUrl mountURL = KUrl( mp->mountPoint() );
 	
-	for( unsigned i=0; i != urls.size(); i++ ) 
+	for( int i=0; i != urls.size(); i++ ) 
 		if( urls[ i ].equals( mountURL, KUrl::CompareWithoutTrailingSlash ) ) {
 			overwrite = i;
 			break;
@@ -572,7 +572,7 @@ void MediaButton::rightClickMenu( int index ) {
 }
 
 bool MediaButton::mount( int index ) {
-	if ( (unsigned)index < mimes.count() ) {
+	if ( index < mimes.count() ) {
 		if( !mediaUrls[ index ].isEmpty() ) {
 			K3Process proc;
 			proc << KrServices::fullPathName( "kio_media_mounthelper" ) << "-m" << mediaUrls[ index ].url();
@@ -585,7 +585,7 @@ bool MediaButton::mount( int index ) {
 }
 
 bool MediaButton::umount( int index ) {
-	if ( (unsigned)index < mimes.count() ) {
+	if ( index < mimes.count() ) {
 		if( !mediaUrls[ index ].isEmpty() ) {
 			K3Process proc;
 			proc << KrServices::fullPathName( "kio_media_mounthelper" ) << "-u" << mediaUrls[ index ].url();
@@ -598,7 +598,7 @@ bool MediaButton::umount( int index ) {
 }
 
 bool MediaButton::eject( int index ) {
-	if ( (unsigned)index < mimes.count() ) {
+	if ( index < mimes.count() ) {
 		if( !mediaUrls[ index ].isEmpty() ) {
 			K3Process proc;
 			proc << KrServices::fullPathName( "kio_media_mounthelper" ) << "-e" << mediaUrls[ index ].url();
@@ -616,7 +616,7 @@ void MediaButton::slotTimeout() {
 	
 	KMountPoint::List mountList = KMountPoint::currentMountPoints();
 	
-	for( unsigned index = 0; index < urls.count(); index++ ) {
+	for( int index = 0; index < urls.count(); index++ ) {
 		bool mounted = false;
 		
 		QString text = popupMenu->text( index );

@@ -39,6 +39,7 @@
 #include <qapplication.h>
 #include <qdir.h>
 #include <kdeversion.h>
+#include <kio/jobuidelegate.h>
 
 
 #if defined( HAVE_POSIX_ACL )
@@ -206,7 +207,7 @@ void SynchronizerDirList::slotEntries( KIO::Job * job, const KIO::UDSEntryList& 
 void SynchronizerDirList::slotListResult( KIO::Job *job ) {
   busy = false;
   if ( job && job->error() ) {
-    job->showErrorDialog( parentWidget );
+    job->ui()->showErrorMessage();
     emit finished( result = false );
     return;
   }

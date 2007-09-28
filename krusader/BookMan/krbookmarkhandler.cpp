@@ -308,8 +308,6 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu) {
 		bool hasVirtualFS   = group.readEntry( "BM Virtual FS",   true );
 		bool hasJumpback    = group.readEntry( "BM Jumpback",     true );
 		
-		int itemIndex;
-		
 		if( hasPopularURLs ) {
 			menu->addSeparator();
 			

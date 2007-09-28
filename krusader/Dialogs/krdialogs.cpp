@@ -141,7 +141,7 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy( const QString& urlName, const 
 	setButtons( KDialog::Ok | KDialog::User1 | KDialog::Cancel );
 	setDefaultButton( KDialog::Ok );
 	setButtonGuiItem( KDialog::User1, KStandardGuiItem::clear() );
-	setWindowModality( Qt::WindowModal );
+	setWindowModality( modal ? Qt::WindowModal : Qt::NonModal );
 	showButtonSeparator( true );
 
 	Q3VBoxLayout * topLayout = new Q3VBoxLayout( this, 0, spacingHint() );

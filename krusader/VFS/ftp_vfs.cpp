@@ -146,7 +146,7 @@ void ftp_vfs::slotListResult( KIO::Job *job ) {
 		// we failed to refresh
 		listError = true;
 		// display error message
-		if ( !quietMode ) job->showErrorDialog( krApp );
+		if ( !quietMode ) job->ui()->showErrorMessage();
 	}
 	busy = false;
 }

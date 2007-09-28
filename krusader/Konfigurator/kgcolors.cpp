@@ -617,13 +617,13 @@ void KgColors::deserialize(QDataStream & stream)
 void KgColors::serializeItem(class QDataStream & stream, const char * name)
 {
    stream << QString(name);
-   if( name == "KDE Default" || name == "Enable Alternate Background" ||
-       name == "Show Current Item Always" || name == "Dim Inactive Colors" )
+   if( strcmp( name, "KDE Default" ) == 0 || strcmp( name, "Enable Alternate Background" ) == 0 ||
+       strcmp( name, "Show Current Item Always" ) == 0 || strcmp( name, "Dim Inactive Colors" ) )
    {
      bool bValue = generals->find( name )->isChecked();
      stream << QString( bValue ? "true" : "false" );
    }
-   else if( name == "Dim Factor" )
+   else if( strcmp( name, "Dim Factor" ) == 0 )
      stream << QString::number(dimFactor->value());
    else
    {

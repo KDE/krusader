@@ -241,5 +241,5 @@ RadialMap::Widget::deleteJobFinished( KIO::Job *job )
    if( !job->error() )
       invalidate();
    else
-      job->showErrorDialog( this );
+      job->ui()->showErrorMessage();
 }

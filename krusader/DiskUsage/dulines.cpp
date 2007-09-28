@@ -174,7 +174,7 @@ private:
   File *file;
   
   bool isTruncated;
-  unsigned int italicTextPos;
+  int italicTextPos;
 };
 
 /*  TODO

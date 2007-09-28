@@ -214,7 +214,7 @@ void PopularUrls::dumpList() {
 	UrlNodeP p = head;
 	printf("====start %d====\n",count);
 	while (p) {
-		printf("%d : %s\n", p->rank, p->url.url().toLatin1());
+		printf("%d : %s\n", p->rank, p->url.url().toLatin1().data());
 		p = p->next;
 	}
 	fflush(stdout);

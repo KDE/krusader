@@ -38,6 +38,7 @@
 #include <Q3ValueList>
 #include <kapplication.h>
 #include <kio/directorysizejob.h>
+#include <kio/jobuidelegate.h>
 #include <kde_file.h>
 #include <qdir.h>
 #include "vfs.h"
@@ -80,7 +81,7 @@ KIO::filesize_t vfs::vfs_totalSize(){
 
 bool vfs::vfs_refresh(KIO::Job* job){
   if(job && job->error()){
-		job->showErrorDialog(krApp);
+		job->ui()->showErrorMessage();
 	}
 	return vfs_refresh(vfs_origin);
 }

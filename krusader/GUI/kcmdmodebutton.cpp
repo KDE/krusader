@@ -31,8 +31,6 @@
 #include <kactionmenu.h>
 
 #include <kdebug.h>
-//Added by qt3to4:
-#include <Q3PopupMenu>
 
 KCMDModeButton::KCMDModeButton( QWidget *parent ) : QToolButton( parent ) {
   setFixedSize( 22, 20 );
@@ -52,7 +50,7 @@ KCMDModeButton::KCMDModeButton( QWidget *parent ) : QToolButton( parent ) {
   {
     action->addAction( *Krusader::execTypeArray[i] );
   }
-  QMenu *pP = action->popupMenu();
+  QMenu *pP = action->menu();
   Q_CHECK_PTR( pP );
   setPopup( pP );
   setPopupDelay( 10 );

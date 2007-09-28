@@ -173,11 +173,11 @@ void KgLookFeel::setupPanelTab() {
   panelGrid->addWidget( createLine( panelGrp ), 4, 0 );
   
   Q3HBox *hbox3 = new Q3HBox( panelGrp, "lookAndFeelHBox3" );
-  QLabel *lbl2 = new QLabel( i18n( "Default panel type:" ), hbox3, "lookAndFeelLabel3" );
+  new QLabel( i18n( "Default panel type:" ), hbox3, "lookAndFeelLabel3" );
   KONFIGURATOR_NAME_VALUE_PAIR panelTypes[] =
     {{ i18n( "Detailed" ),  "Detailed" },
      { i18n( "Brief" ),     "Brief" }};
-  KonfiguratorComboBox *panelCombo = createComboBox( "Look&Feel", "Default Panel Type", _DefaultPanelType, panelTypes, 2, hbox3, false, false, PAGE_PANEL );
+  createComboBox( "Look&Feel", "Default Panel Type", _DefaultPanelType, panelTypes, 2, hbox3, false, false, PAGE_PANEL );
   createSpacer ( hbox3 );
   panelGrid->addWidget( hbox3, 5, 0 );  
 

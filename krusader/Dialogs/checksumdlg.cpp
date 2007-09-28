@@ -81,7 +81,7 @@ QStringList sumFailedFunc(const QStringList& stdOut, const QStringList& stdErr) 
 	result += stdErr;
 	// grep for the ":FAILED" substring
 	const QString tmp = QString(": FAILED").local8Bit();
-	for (uint i=0; i<stdOut.size();++i) {
+	for (int i=0; i<stdOut.size();++i) {
 		if (stdOut[i].find(tmp) != -1)
 			result += stdOut[i];
 	}

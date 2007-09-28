@@ -124,7 +124,7 @@ public slots:
 		
 		QStringList lines = QStringList::split( '\n', checkable );
 		lastData = lines[ lines.count() - 1 ];
-		for( unsigned i=0; i != lines.count(); i++ ) {
+		for( int i=0; i != lines.count(); i++ ) {
 			QString line = lines[ i ].trimmed().toLower();
 			int ndx = line.find( "testing" );
 			if( ndx >=0 )

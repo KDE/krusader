@@ -120,7 +120,7 @@ KSharedPtr<KMountPoint> KMountMan::findInListByMntPoint(KMountPoint::List &lst, 
 void KMountMan::jobResult(KIO::Job *job) {
 	waiting = false;
 	if ( job->error() )
-		job->showErrorDialog( 0 );
+		job->ui()->showErrorMessage();
 }
 
 void KMountMan::mount( QString mntPoint, bool blocking ) {

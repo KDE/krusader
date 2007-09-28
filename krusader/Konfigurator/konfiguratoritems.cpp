@@ -613,7 +613,7 @@ void KonfiguratorColorChooser::setDefaultColor( QColor dflt )
     emit colorChanged();
 }
 
-void KonfiguratorColorChooser::changeAdditionalColor( unsigned int num, QColor color )
+void KonfiguratorColorChooser::changeAdditionalColor( int num, QColor color )
 {
   if( num < additionalColors.size() )
   {
@@ -621,7 +621,7 @@ void KonfiguratorColorChooser::changeAdditionalColor( unsigned int num, QColor c
     additionalColors[num].color = color;
     changeItem( createPixmap( color ), text( 2+num ), 2+num );
 
-    if( (unsigned int)currentItem() == 2+num )
+    if( currentItem() == 2+num )
       emit colorChanged();
   }
 }
@@ -649,7 +649,7 @@ void KonfiguratorColorChooser::setValue( QString value )
   {
     bool found = false;
 
-    for( unsigned j=0; j != additionalColors.size(); j++ )
+    for( int j=0; j != additionalColors.size(); j++ )
       if( additionalColors[j].value == value )
       {
         setCurrentItem( 2 + j );
@@ -666,7 +666,7 @@ void KonfiguratorColorChooser::setValue( QString value )
       colGroup.deleteEntry( "TmpColor" );
 
       setCurrentItem( 0 );
-      for( unsigned i= 2+additionalColors.size(); i != palette.size(); i++ )
+      for( int i= 2+additionalColors.size(); i != palette.size(); i++ )
         if( palette[i] == color )
         {
           setCurrentItem( i );
@@ -688,7 +688,7 @@ QString KonfiguratorColorChooser::getValue()
   QColor color = palette[ currentItem() ];
   if( currentItem() == 1 )    /* it's the default value? */
     return "";
-  else if( currentItem() >= 2 && (unsigned)currentItem() < 2 + additionalColors.size() )
+  else if( currentItem() >= 2 && currentItem() < 2 + additionalColors.size() )
     return additionalColors[ currentItem() - 2 ].value;
   else
     return QString( "%1,%2,%3" ).arg( color.red() ).arg( color.green() ).arg( color.blue() );
@@ -696,7 +696,7 @@ QString KonfiguratorColorChooser::getValue()
 
 bool KonfiguratorColorChooser::isValueRGB()
 {
-  return !( currentItem() >= 1 && (unsigned)currentItem() < 2 + additionalColors.size() );
+  return !( currentItem() >= 1 && currentItem() < 2 + additionalColors.size() );
 }
 
 void KonfiguratorColorChooser::slotSetDefaults(QObject *)

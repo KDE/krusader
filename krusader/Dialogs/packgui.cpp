@@ -73,7 +73,7 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
   // set the last used packer as the top one
   QString tmp=group.readEntry("lastUsedPacker",QString());
   if (tmp!=QString()) {
-    for (unsigned int i=0; i< typeData->count(); ++i)
+    for (int i=0; i< typeData->count(); ++i)
       if (typeData->itemText( i ) == tmp) {
         typeData->removeItem(i);
         typeData->insertItem(tmp,0);

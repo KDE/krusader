@@ -426,7 +426,7 @@ bool PackGUIBase::extraProperties( QMap<QString,QString> & inMap ) {
       bool firstChar = true;
       QChar quote = '\0';
       
-      for( unsigned i=0; i < cmdArgs.length(); i++ ) {
+      for( int i=0; i < cmdArgs.length(); i++ ) {
          QChar ch( cmdArgs[ i ] );
          if( ch.isSpace() )
            continue;

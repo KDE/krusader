@@ -183,7 +183,7 @@ void VirtualCopyJob::slotStatResult( KIO::Job *job ) {
 			connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotStatResult( KIO::Job* ) ) );
 			return;
 		}
-		job->showErrorDialog( krApp );
+		job->ui()->showErrorMessage();
 		directoryFinished( m_currentDir );
 		createNextDir();
 		return;
@@ -205,7 +205,7 @@ void VirtualCopyJob::slotMkdirResult( KIO::Job *job ) {
 	KUrl url = (static_cast<KIO::SimpleJob*>(job) )->url();
 	
 	if ( job && job->error() ) {
-		job->showErrorDialog( krApp );
+		job->ui()->showErrorMessage();
 		directoryFinished( m_currentDir );
 		createNextDir();
 		return;
@@ -246,7 +246,7 @@ void VirtualCopyJob::copyCurrentDir() {
 
 void VirtualCopyJob::slotCopyResult( KIO::Job *job ) {
 	if ( job && job->error() ) {
-		job->showErrorDialog( krApp );
+		job->ui()->showErrorMessage();
 	}
 	
 	directoryFinished( m_currentDir );
