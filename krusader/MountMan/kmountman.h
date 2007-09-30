@@ -78,7 +78,7 @@ public slots:
    void quickList();
 
 protected slots:
-	void jobResult(KIO::Job *job);
+	void jobResult(KJob *job);
 	
 protected:
 	// used internally

@@ -117,10 +117,10 @@ KSharedPtr<KMountPoint> KMountMan::findInListByMntPoint(KMountPoint::List &lst, 
 	return KSharedPtr<KMountPoint>();
 }
 
-void KMountMan::jobResult(KIO::Job *job) {
+void KMountMan::jobResult(KJob *job) {
 	waiting = false;
 	if ( job->error() )
-		job->ui()->showErrorMessage();
+		job->uiDelegate()->showErrorMessage();
 }
 
 void KMountMan::mount( QString mntPoint, bool blocking ) {
@@ -132,7 +132,7 @@ void KMountMan::mount( QString mntPoint, bool blocking ) {
 	KIO::SimpleJob *job = KIO::mount(false, m->mountType().local8Bit(), m->mountedFrom(), m->mountPoint(), false);
 	job->setUiDelegate(new KIO::JobUiDelegate() );
 	KIO::getJobTracker()->registerJob(job);
-	connect(job, SIGNAL(result(KIO::Job* )), this, SLOT(jobResult(KIO::Job* )));
+	connect(job, SIGNAL(result(KJob* )), this, SLOT(jobResult(KJob* )));
 	while (blocking && waiting) {
 		qApp->processEvents();
 		usleep( 1000 );
@@ -145,7 +145,7 @@ void KMountMan::unmount( QString mntPoint, bool blocking ) {
 	KIO::SimpleJob *job = KIO::unmount(mntPoint, false);
 	job->setUiDelegate(new KIO::JobUiDelegate() );
 	KIO::getJobTracker()->registerJob(job);
-	connect(job, SIGNAL(result(KIO::Job* )), this, SLOT(jobResult(KIO::Job* )));
+	connect(job, SIGNAL(result(KJob* )), this, SLOT(jobResult(KJob* )));
 	while (blocking && waiting) {
 		qApp->processEvents();
 		usleep( 1000 );

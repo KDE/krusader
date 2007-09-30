@@ -40,7 +40,7 @@ A
 #include <klocale.h>
 #include <qpixmap.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3ValueList>
 #include <kmenu.h>
 #include <qbitmap.h>
@@ -51,7 +51,6 @@ A
 #include <qcursor.h>
 #include <kdebug.h>
 #include <kguiitem.h>
-#include <kpagedialog.h>
 #include <qfileinfo.h>
 #include <sys/param.h>
 
@@ -77,14 +76,8 @@ KMountManGUI::KMountManGUI() : KDialog( krApp ), info( 0 ), mountList( 0 ) {
    showButton( KDialog::Apply, false );
    showButton( KDialog::Cancel, false );
    setPlainCaption( i18n( "MountMan - Your Mount-Manager" ) );
-   widget = new KPageDialog( this );
-   widget->setFaceType( KPageDialog::Tabbed );
    createLayout();
-   setMainWidget( widget );
-   widget->setMinimumSize( widget->sizeHint().width() + mountList->columnWidth( 5 ),
-                           widget->sizeHint().height() );
-   setMinimumSize( widget->minimumSize().width(), widget->minimumSize().height() );
-   resize( minimumSize() );
+   setMainWidget( mainPage );
 
    // connections
    connect( mountList, SIGNAL( doubleClicked( Q3ListViewItem * ) ), this,
@@ -106,9 +99,8 @@ KMountManGUI::~KMountManGUI() {
 }
 
 void KMountManGUI::createLayout() {
-   KPageWidgetItem * item = widget->addPage( mainPage = new QWidget( this ), i18n( "Filesystems" ) );
+   mainPage = new QWidget( this );
    createMainPage();
-   widget->setCurrentPage( item );
 }
 
 void KMountManGUI::createMainPage() {
@@ -119,7 +111,8 @@ void KMountManGUI::createMainPage() {
       mountList = 0;
    }
    // clean up is finished...
-   Q3GridLayout *layout = new Q3GridLayout( mainPage, 1, 1 );
+   QGridLayout *layout = new QGridLayout( mainPage );
+   layout->setSpacing( 10 );
    mountList = new Q3ListView( mainPage );  // create the main container
    KConfigGroup group( krConfig, "Look&Feel" );
    mountList->setFont( group.readEntry( "Filelist Font", *_FilelistFont ) );
@@ -146,12 +139,16 @@ void KMountManGUI::createMainPage() {
    mountList->setColumnWidthMode( 5, Q3ListView::Maximum );
    // now the list is created, time to fill it with data.
    //=>krMtMan.forceUpdate();
-   Q3GroupBox *box = new Q3GroupBox( "MountMan.Info", mainPage );
+   QGroupBox *box = new QGroupBox( i18n( "MountMan.Info" ), mainPage );
    box->setAlignment( Qt::AlignHCenter );
-   info = new KRFSDisplay( box );
+   QVBoxLayout *vboxl = new QVBoxLayout;
+   vboxl->addWidget( info = new KRFSDisplay( box ) );
    info->resize( info->width(), height() );
+   box->setLayout( vboxl );
    layout->addWidget( box, 0, 0 );
    layout->addWidget( mountList, 0, 1 );
+
+   mainPage->setLayout( layout );
 }
 
 void KMountManGUI::getSpaceData() {
