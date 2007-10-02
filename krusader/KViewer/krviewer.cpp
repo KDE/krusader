@@ -57,8 +57,8 @@
 
 Q3PtrList<KrViewer> KrViewer::viewers;
 
-KrViewer::KrViewer( QWidget *parent, const char *name ) :
-KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ), returnFocusTo( 0 ), returnFocusTab( 0 ),
+KrViewer::KrViewer( QWidget *parent ) :
+KParts::MainWindow( parent, (Qt::WindowFlags)KDE_DEFAULT_WINDOWFLAGS ), manager( this, this ), tabBar( this ), returnFocusTo( 0 ), returnFocusTab( 0 ),
                                     reservedKeys(), reservedKeyActions() {
 
 	//setWFlags(Qt::WType_TopLevel | WDestructiveClose);
@@ -148,7 +148,7 @@ void KrViewer::createGUI( KParts::Part* part ) {
 	
 	QList<QAction *> list = viewerMenu->actions();
 	// getting the key sequences of the viewer menu
-	for( unsigned w=0; w != list.count(); w++ )
+	for( int w=0; w != list.count(); w++ )
 	{
 		QAction *act = list[ w ];
 		QList<QKeySequence> sequences = act->shortcuts();
@@ -332,7 +332,7 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 
 void KrViewer::tabURLChanged( PanelViewerBase *pvb, const KUrl & url ) {
 	QString msg = pvb->isEditor() ? i18n( "Editing" ) : i18n( "Viewing" );
-	tabBar.setTabLabel( pvb, url.fileName()+"("+msg+")" );
+	tabBar.setTabText( tabBar.indexOf( pvb ), url.fileName()+"("+msg+")" );
 	tabBar.setTabToolTip(pvb,msg+": " + url.prettyUrl());
 }
 
@@ -457,7 +457,7 @@ void KrViewer::checkModified(){
 
 	// add a * to modified files.
 	if( pvb->isModified() ){
-		QString label = tabBar.tabLabel(pvb);
+		QString label = tabBar.tabText( tabBar.indexOf( pvb ) );
 		if( !label.startsWith("*" + pvb->part()->url().fileName() ) ){
 			label.prepend("*");
 			QIcon icon = QIcon(krLoader->loadIcon(MODIFIED_ICON,K3Icon::Small));
@@ -467,7 +467,7 @@ void KrViewer::checkModified(){
 	}
 	// remove the * from previously modified files.
 	else {
-		QString label = tabBar.tabLabel(pvb);
+		QString label = tabBar.tabText( tabBar.indexOf( pvb ) );
 		if( label.startsWith("*" + pvb->part()->url().fileName() ) ){
 			label = label.mid( 1 );
 			QIcon icon = QIcon(krLoader->loadIcon(EDIT_ICON,K3Icon::Small));

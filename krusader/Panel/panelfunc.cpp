@@ -144,7 +144,7 @@ void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn ) {
 	if ( !urlStack.last().equals( url ) )
 		urlStack.push_back( url );
 	// count home many urls is in the stack, so later on, we'll know if the refresh was a success
-	uint stackSize = urlStack.count();
+	int stackSize = urlStack.count();
 	bool refreshFailed = true; // assume the worst
 	while ( true ) {
 		KUrl u = urlStack.takeLast();
@@ -544,7 +544,7 @@ KUrl ListPanelFunc::getVirtualBaseURL() {
 	if( base.protocol() == "virt" ) // is it a virtual subfolder?
 		return KUrl();          // --> cannot keep the directory structure
 	
-	for( unsigned i=1; i < fileUrls->count(); i++ ) {
+	for( int i=1; i < fileUrls->count(); i++ ) {
 		if( base.isParentOf( (*fileUrls)[ i ] ) )
 			continue;
 		if( base.protocol() != (*fileUrls)[ i ].protocol() )
@@ -921,7 +921,7 @@ void ListPanelFunc::unpack() {
 
 	bool packToOtherPanel = ( dest.equals( panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) );
 
-	for ( unsigned int i = 0; i < fileNames.count(); ++i ) {
+	for ( int i = 0; i < fileNames.count(); ++i ) {
 		QString arcName = fileNames[ i ];
 		if ( arcName.isNull() )
 			return ;
@@ -975,7 +975,7 @@ void ListPanelFunc::unpack() {
 		if ( tempDir ) {
 			QStringList nameList = QDir( dest.path( KUrl::RemoveTrailingSlash ) ).entryList();
 			KUrl::List urlList;
-			for ( unsigned int i = 0; i != nameList.count(); i++ )
+			for ( int i = 0; i != nameList.count(); i++ )
 				if ( nameList[ i ] != "." && nameList[ i ] != ".." )
 					urlList.append( KUrl( dest.path( KUrl::AddTrailingSlash ) + nameList[ i ] ) );
 			if ( urlList.count() > 0 )
@@ -1076,7 +1076,7 @@ void ListPanelFunc::properties() {
 		return ;  // no names...
 	KFileItemList fi;
 
-	for ( unsigned int i = 0 ; i < names.count() ; ++i ) {
+	for ( int i = 0 ; i < names.count() ; ++i ) {
 		vfile* vf = files() ->vfs_search( names[ i ] );
 		if ( !vf )
 			continue;

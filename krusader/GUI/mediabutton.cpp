@@ -161,7 +161,7 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 		bool mounted = false;
 		
 		if( (*it).contains( KIO::UDSEntry::UDS_NAME ) )
-			text = KUrl::decode_string( (*it).stringValue( KIO::UDSEntry::UDS_NAME ) );
+			text = QUrl::fromPercentEncoding( (*it).stringValue( KIO::UDSEntry::UDS_NAME ).toLatin1() );
 		if( (*it).contains( KIO::UDSEntry::UDS_URL ) )
 			url = KUrl( (*it).stringValue( KIO::UDSEntry::UDS_URL ) );
 		if( (*it).contains( KIO::UDSEntry::UDS_MIME_TYPE ) )

@@ -822,7 +822,7 @@ void ListPanel::handleDropOnView( QDropEvent *e, QWidget *widget ) {
    }
 
    bool isLocal = true;
-   for( unsigned u = 0; u != URLs.count(); u++ )
+   for( int u = 0; u != URLs.count(); u++ )
      if( !URLs[ u ].isLocalFile() ) {
        isLocal = false;
        break;

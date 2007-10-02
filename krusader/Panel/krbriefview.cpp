@@ -766,7 +766,7 @@ void KrBriefView::contentsDragLeaveEvent ( QDragLeaveEvent *e )
      dynamic_cast<KrBriefViewItem *>( oldDragItem )->repaint();
 }
 
-void KrBriefView::inputMethodEvent(QInputMethodEvent *e) {
+void KrBriefView::inputMethodEvent(QInputMethodEvent * /* e */ ) {
 	// TODO: the following 3 functions should somehow fit into this one. Csaba, did you implement this one?
 }
 

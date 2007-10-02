@@ -35,7 +35,7 @@ void KrPreviewPopup::setUrls(const KUrl::List* urls){
 	KIO::PreviewJob* pjob;
 	QStringList plugins = KIO::PreviewJob::availablePlugins();
 
-	for( unsigned int i=0; i< urls->count(); ++i){
+	for( int i=0; i< urls->count(); ++i){
 		files.push_back( KFileItem(KFileItem::Unknown,KFileItem::Unknown,(*urls)[ i ] ) );
 	}
 

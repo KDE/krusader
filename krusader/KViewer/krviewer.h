@@ -87,7 +87,7 @@ protected:
 	virtual void focusInEvent( QFocusEvent * ){ if( viewers.remove( this ) ) viewers.prepend( this ); } // move to first
 
 private:
-	KrViewer( QWidget *parent = 0, const char *name = 0 );
+	KrViewer( QWidget *parent = 0 );
 	void addTab(PanelViewerBase* pvb, QString msg,QString iconName, KParts::Part* part);
 	PanelViewerBase * getPanelViewerBase( KParts::Part* part);
 	void updateActions( PanelViewerBase * base );

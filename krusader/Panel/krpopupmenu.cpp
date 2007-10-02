@@ -94,7 +94,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
    // have the same mimetype !
    QString mime = panel->func->getVFile(item)->vfile_getMime();
    // check if all the list have the same mimetype
-   for ( unsigned int i = 1; i < items.size(); ++i ) {
+   for ( int i = 1; i < items.size(); ++i ) {
       if ( panel->func->getVFile(( *items.at( i ) )) ->vfile_getMime() != mime ) {
          mime = QString();
          break;
@@ -102,9 +102,9 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
    }
    if ( !mime.isEmpty() ) {
       offers = KMimeTypeTrader::self()->query( mime );
-      for ( unsigned int i = 0; i < offers.count(); ++i ) {
+      for ( int i = 0; i < offers.count(); ++i ) {
          KSharedPtr<KService> service = offers[ i ];
-         if ( service->isValid() && service->type() == "Application" ) {
+         if ( service->isValid() && service->isApplication() ) {
             openWith.addAction( krLoader->loadIcon( service->icon(), K3Icon::Small ), service->name() )->setData( QVariant( SERVICE_LIST_ID + i ) );
          }
       }

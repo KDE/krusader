@@ -843,7 +843,7 @@ void KrDetailedView::contentsDragMoveEvent( QDragMoveEvent * e ) {
    K3ListView::contentsDragMoveEvent( e );
 }
 
-void KrDetailedView::inputMethodEvent(QInputMethodEvent *e) {
+void KrDetailedView::inputMethodEvent(QInputMethodEvent * /* e */ ) {
 	// TODO: the following 3 functions should somehow fit into this one. Csaba, did you implement this one?
 }
 
