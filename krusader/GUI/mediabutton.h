@@ -66,7 +66,7 @@ public slots:
   void gettingSpaceData(const QString &mountPoint, unsigned long kBSize, unsigned long kBUsed, unsigned long kBAvail);
   void openPopup();
   void slotEntries( KIO::Job*, const KIO::UDSEntryList& );
-  void slotListResult( KIO::Job* );
+  void slotListResult( KJob* );
 
 signals:
   void openUrl(const KUrl&);

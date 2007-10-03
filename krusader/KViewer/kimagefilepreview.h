@@ -54,7 +54,7 @@ class KrusaderImageFilePreview : public KPreviewWidgetBase {
 		                                     int w, int h );
 
 	private slots:
-		void slotResult( KIO::Job * );
+		void slotResult( KJob * );
 		virtual void slotFailed( const KFileItem* );
 
 	private:

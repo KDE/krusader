@@ -65,10 +65,10 @@ protected slots:
   void slotStart();
   void slotReport();
   
-  void slotKdsResult( KIO::Job * );
-  void slotStatResult( KIO::Job * );
-  void slotMkdirResult( KIO::Job * );
-  void slotCopyResult( KIO::Job * );
+  void slotKdsResult( KJob * );
+  void slotStatResult( KJob * );
+  void slotMkdirResult( KJob * );
+  void slotCopyResult( KJob * );
 
   void slotCopying(KIO::Job *, const KUrl &, const KUrl &);
   void slotMoving(KIO::Job *, const KUrl &, const KUrl &);

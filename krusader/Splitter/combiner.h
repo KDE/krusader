@@ -77,11 +77,11 @@ public:
 
 public slots:
   void combineSplitFileDataReceived(KIO::Job *, const QByteArray &byteArray);
-  void combineSplitFileFinished(KIO::Job *job);
+  void combineSplitFileFinished(KJob *job);
   void combineDataReceived(KIO::Job *, const QByteArray &);
-  void combineReceiveFinished(KIO::Job *);
+  void combineReceiveFinished(KJob *);
   void combineDataSend(KIO::Job *, QByteArray &);
-  void combineSendFinished(KIO::Job *);
+  void combineSendFinished(KJob *);
   void combineWritePercent(KIO::Job *, unsigned long);
 
 private:

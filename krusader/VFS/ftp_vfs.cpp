@@ -225,9 +225,9 @@ void ftp_vfs::vfs_addFiles( KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode, Q
 		job = KIO::link( *fileUrls, destUrl, true );
 	}
 
-	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( vfs_refresh( KIO::Job* ) ) );
+	connect( job, SIGNAL( result( KJob* ) ), this, SLOT( vfs_refresh( KJob* ) ) );
 	if ( mode == KIO::CopyJob::Move )  // notify the other panel
-		connect( job, SIGNAL( result( KIO::Job* ) ), toNotify, SLOT( vfs_refresh( KIO::Job* ) ) );
+		connect( job, SIGNAL( result( KJob* ) ), toNotify, SLOT( vfs_refresh( KJob* ) ) );
 }
 
 // remove a file from the vfs (physical)
@@ -243,7 +243,7 @@ void ftp_vfs::vfs_delFiles( QStringList *fileNames ) {
 		filesUrls.append( url );
 	}
 	KIO::Job *job = KIO::del( filesUrls, false, true );
-	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( vfs_refresh( KIO::Job* ) ) );
+	connect( job, SIGNAL( result( KJob* ) ), this, SLOT( vfs_refresh( KJob* ) ) );
 }
 
 
@@ -273,7 +273,7 @@ void ftp_vfs::vfs_mkdir( const QString& name ) {
 	url.addPath( name );
 
 	KIO::SimpleJob* job = KIO::mkdir( url );
-	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( vfs_refresh( KIO::Job* ) ) );
+	connect( job, SIGNAL( result( KJob* ) ), this, SLOT( vfs_refresh( KJob* ) ) );
 }
 
 void ftp_vfs::vfs_rename( const QString& fileName, const QString& newName ) {
@@ -284,7 +284,7 @@ void ftp_vfs::vfs_rename( const QString& fileName, const QString& newName ) {
 	newUrl.addPath( newName );
 
 	KIO::Job *job = KIO::moveAs( oldUrl, newUrl, false );
-	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( vfs_refresh( KIO::Job* ) ) );
+	connect( job, SIGNAL( result( KJob* ) ), this, SLOT( vfs_refresh( KJob* ) ) );
 }
 
 QString ftp_vfs::vfs_workingDir() {

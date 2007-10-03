@@ -53,7 +53,7 @@ public:
 	QString vfs_workingDir(){ return QString(); }
 	
 protected slots:
-	void slotStatResult(KIO::Job *job);
+	void slotStatResult(KJob *job);
 
 protected:
 	/// Save the dictionary to file

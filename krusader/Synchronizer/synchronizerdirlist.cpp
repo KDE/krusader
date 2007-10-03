@@ -157,8 +157,8 @@ bool SynchronizerDirList::load( const QString &urlIn, bool wait ) {
     KIO::Job *job = KIO::listDir( url, false, true );
     connect( job, SIGNAL( entries( KIO::Job*, const KIO::UDSEntryList& ) ),
              this, SLOT( slotEntries( KIO::Job*, const KIO::UDSEntryList& ) ) );
-    connect( job, SIGNAL( result( KIO::Job* ) ),
-             this, SLOT( slotListResult( KIO::Job* ) ) );
+    connect( job, SIGNAL( result( KJob* ) ),
+             this, SLOT( slotListResult( KJob* ) ) );
     busy = true;
 
     if( !wait )
@@ -204,10 +204,10 @@ void SynchronizerDirList::slotEntries( KIO::Job * job, const KIO::UDSEntryList& 
   }
 }
 
-void SynchronizerDirList::slotListResult( KIO::Job *job ) {
+void SynchronizerDirList::slotListResult( KJob *job ) {
   busy = false;
   if ( job && job->error() ) {
-    job->ui()->showErrorMessage();
+    job->uiDelegate()->showErrorMessage();
     emit finished( result = false );
     return;
   }

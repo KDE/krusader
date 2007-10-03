@@ -137,8 +137,8 @@ void MediaButton::createListWithMedia() {
 	KIO::ListJob *job = KIO::listDir( KUrl( "media:/" ), false );
 	connect( job, SIGNAL( entries( KIO::Job*, const KIO::UDSEntryList& ) ),
 		this, SLOT( slotEntries( KIO::Job*, const KIO::UDSEntryList& ) ) );
-	connect( job, SIGNAL( result( KIO::Job* ) ),
-		this, SLOT( slotListResult( KIO::Job* ) ) );
+	connect( job, SIGNAL( result( KJob* ) ),
+		this, SLOT( slotListResult( KJob* ) ) );
 	busy = true;
 	
 	if( !busy )
@@ -204,7 +204,7 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 	}
 }
 
-void MediaButton::slotListResult( KIO::Job * ) {
+void MediaButton::slotListResult( KJob * ) {
 	busy = false;
 }
 

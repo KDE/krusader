@@ -89,8 +89,8 @@ void Combiner::combine()
 
     connect(combineReadJob, SIGNAL(data(KIO::Job *, const QByteArray &)),
             this, SLOT(combineSplitFileDataReceived(KIO::Job *, const QByteArray &)));
-    connect(combineReadJob, SIGNAL(result(KIO::Job*)),
-            this, SLOT(combineSplitFileFinished(KIO::Job *)));
+    connect(combineReadJob, SIGNAL(result(KJob*)),
+            this, SLOT(combineSplitFileFinished(KJob *)));
   }
 
   exec();
@@ -101,7 +101,7 @@ void Combiner::combineSplitFileDataReceived(KIO::Job *, const QByteArray &byteAr
   splitFile += QString( byteArray );
 }
 
-void Combiner::combineSplitFileFinished(KIO::Job *job)
+void Combiner::combineSplitFileFinished(KJob *job)
 {
   combineReadJob = 0;
   QString error;
@@ -115,7 +115,7 @@ void Combiner::combineSplitFileFinished(KIO::Job *job)
     
     bool hasFileName = false, hasSize = false, hasCrc = false;
     
-    for(unsigned int i = 0; i != splitFileContent.count(); i++ )
+    for( int i = 0; i != splitFileContent.count(); i++ )
     {
       int ndx = splitFileContent[i].find( '=' );    
       if( ndx == -1 )
@@ -199,8 +199,8 @@ void Combiner::openNextFile()
 
   connect(combineReadJob, SIGNAL(data(KIO::Job *, const QByteArray &)),
           this, SLOT(combineDataReceived(KIO::Job *, const QByteArray &)));
-  connect(combineReadJob, SIGNAL(result(KIO::Job*)),
-          this, SLOT(combineReceiveFinished(KIO::Job *)));
+  connect(combineReadJob, SIGNAL(result(KJob*)),
+          this, SLOT(combineReceiveFinished(KJob *)));
   if( hasValidSplitFile )
     connect(combineReadJob, SIGNAL(percent (KIO::Job *, unsigned long)),
                             this, SLOT(combineWritePercent(KIO::Job *, unsigned long)));
@@ -230,8 +230,8 @@ void Combiner::combineDataReceived(KIO::Job *, const QByteArray &byteArray)
 
     connect(combineWriteJob, SIGNAL(dataReq(KIO::Job *, QByteArray &)),
                              this, SLOT(combineDataSend(KIO::Job *, QByteArray &)));
-    connect(combineWriteJob, SIGNAL(result(KIO::Job*)),
-                             this, SLOT(combineSendFinished(KIO::Job *)));
+    connect(combineWriteJob, SIGNAL(result(KJob*)),
+                             this, SLOT(combineSendFinished(KJob *)));
   }  
 
   if( combineWriteJob )
@@ -241,7 +241,7 @@ void Combiner::combineDataReceived(KIO::Job *, const QByteArray &byteArray)
   }
 }
 
-void Combiner::combineReceiveFinished(KIO::Job *job)
+void Combiner::combineReceiveFinished(KJob *job)
 {
   combineReadJob = 0;   /* KIO automatically deletes the object after Finished signal */
     
@@ -286,7 +286,7 @@ void Combiner::combineDataSend(KIO::Job *, QByteArray &byteArray)
   }
 }
 
-void Combiner::combineSendFinished(KIO::Job *job)
+void Combiner::combineSendFinished(KJob *job)
 {
   combineWriteJob = 0;  /* KIO automatically deletes the object after Finished signal */
 

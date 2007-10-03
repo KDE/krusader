@@ -82,8 +82,8 @@ void Splitter::split( KIO::filesize_t splitSizeIn )
     
   connect(splitReadJob, SIGNAL(data(KIO::Job *, const QByteArray &)),
                         this, SLOT(splitDataReceived(KIO::Job *, const QByteArray &)));
-  connect(splitReadJob, SIGNAL(result(KIO::Job*)),
-                        this, SLOT(splitReceiveFinished(KIO::Job *)));
+  connect(splitReadJob, SIGNAL(result(KJob*)),
+                        this, SLOT(splitReceiveFinished(KJob *)));
   connect(splitReadJob, SIGNAL(percent (KIO::Job *, unsigned long)),
                         this, SLOT(splitReceivePercent(KIO::Job *, unsigned long)));
 
@@ -112,7 +112,7 @@ void Splitter::splitDataReceived(KIO::Job *, const QByteArray &byteArray)
   }
 }
 
-void Splitter::splitReceiveFinished(KIO::Job *job)
+void Splitter::splitReceiveFinished(KJob *job)
 {
   splitReadJob = 0;   /* KIO automatically deletes the object after Finished signal */
   
@@ -154,8 +154,8 @@ void Splitter::splitCreateWriteJob()
   outputFileSize = 0;
   connect(splitWriteJob, SIGNAL(dataReq(KIO::Job *, QByteArray &)),
                          this, SLOT(splitDataSend(KIO::Job *, QByteArray &)));
-  connect(splitWriteJob, SIGNAL(result(KIO::Job*)),
-                         this, SLOT(splitSendFinished(KIO::Job *)));
+  connect(splitWriteJob, SIGNAL(result(KJob*)),
+                         this, SLOT(splitSendFinished(KJob *)));
   noValidWriteJob = false;
 }
 
@@ -191,7 +191,7 @@ void Splitter::splitDataSend(KIO::Job *, QByteArray &byteArray)
   }
 }
 
-void Splitter::splitSendFinished(KIO::Job *job)
+void Splitter::splitSendFinished(KJob *job)
 {
   splitWriteJob = 0;  /* KIO automatically deletes the object after Finished signal */
 
@@ -213,8 +213,8 @@ void Splitter::splitSendFinished(KIO::Job *job)
     splitWriteJob = KIO::put( writeURL, permissions, true, false, false );
     connect(splitWriteJob, SIGNAL(dataReq(KIO::Job *, QByteArray &)),
                            this, SLOT(splitFileSend(KIO::Job *, QByteArray &)));
-    connect(splitWriteJob, SIGNAL(result(KIO::Job*)),
-                           this, SLOT(splitFileFinished(KIO::Job *)));
+    connect(splitWriteJob, SIGNAL(result(KJob*)),
+                           this, SLOT(splitFileFinished(KJob *)));
   }
 }
 
@@ -235,7 +235,7 @@ void Splitter::splitFileSend(KIO::Job *, QByteArray &byteArray)
   splitFile = "";
 }
 
-void Splitter::splitFileFinished(KIO::Job *job)
+void Splitter::splitFileFinished(KJob *job)
 {
   splitWriteJob = 0;  /* KIO automatically deletes the object after Finished signal */
 

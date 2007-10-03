@@ -651,7 +651,7 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
   if( trash )
   {
     job = KIO::trash( url, true );
-    connect(job,SIGNAL(result(KIO::Job*)),krApp,SLOT(changeTrashIcon()));
+    connect(job,SIGNAL(result(KJob*)),krApp,SLOT(changeTrashIcon()));
   }
   else
   {

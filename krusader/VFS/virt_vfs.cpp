@@ -124,12 +124,12 @@ void virt_vfs::vfs_delFiles( QStringList *fileNames ) {
 	KConfigGroup group( krConfig, "General" );
 	if ( group.readEntry( "Move To Trash", _MoveToTrash ) ) {
 		job = KIO::trash( filesUrls, true );
-		connect( job, SIGNAL( result( KIO::Job* ) ), krApp, SLOT( changeTrashIcon() ) );
+		connect( job, SIGNAL( result( KJob* ) ), krApp, SLOT( changeTrashIcon() ) );
 	} else
 		job = KIO::del( filesUrls, false, true );
 
 	// refresh will remove the deleted files...
-	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( vfs_refresh( KIO::Job* ) ) );
+	connect( job, SIGNAL( result( KJob* ) ), this, SLOT( vfs_refresh( KJob* ) ) );
 }
 
 void virt_vfs::vfs_removeFiles( QStringList *fileNames ) {
@@ -203,10 +203,10 @@ void virt_vfs::vfs_rename( const QString& fileName, const QString& newName ) {
 	virtVfsDict[ path ] ->append( dest );
 
 	KIO::Job *job = KIO::move( fileUrls, dest, true );
-	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( vfs_refresh( KIO::Job* ) ) );
+	connect( job, SIGNAL( result( KJob* ) ), this, SLOT( vfs_refresh( KJob* ) ) );
 }
 
-void virt_vfs::slotStatResult( KIO::Job* job ) {
+void virt_vfs::slotStatResult( KJob* job ) {
 	if( !job || job->error() ) entry = KIO::UDSEntry();
 	else entry = static_cast<KIO::StatJob*>(job)->statResult();
 	busy = false;
@@ -227,7 +227,7 @@ vfile* virt_vfs::stat( const KUrl& url ) {
 	else {
 		busy = true;
 		KIO::StatJob* statJob = KIO::stat( url, false );
-		connect( statJob, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotStatResult( KIO::Job* ) ) );
+		connect( statJob, SIGNAL( result( KJob* ) ), this, SLOT( slotStatResult( KJob* ) ) );
 		while ( busy && vfs_processEvents() );
 		if( entry.count() == 0 ) return 0; // statJob failed
 		

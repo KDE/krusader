@@ -101,7 +101,7 @@ PreservingCopyJob::PreservingCopyJob( const KUrl::List& src, const KUrl& dest, C
              this, SLOT( slotAboutToCreate (KIO::Job *, const Q3ValueList< KIO::CopyInfo > &) ) );
     connect( this, SIGNAL( copyingDone( KIO::Job *, const KUrl &, const KUrl &, bool, bool) ),
              this, SLOT( slotCopyingDone( KIO::Job *, const KUrl &, const KUrl &, bool, bool) ) );
-    connect( this, SIGNAL( result( KIO::Job * ) ),
+    connect( this, SIGNAL( result( KJob * ) ),
              this, SLOT( slotFinished() ) );
   }
 }

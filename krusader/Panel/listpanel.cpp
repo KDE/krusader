@@ -1048,10 +1048,8 @@ void ListPanel::slotJobStarted(KIO::Job* job) {
 		SLOT( inlineRefreshInfoMessage( KIO::Job*, const QString & ) ) );
 	connect( job, SIGNAL( percent( KIO::Job*, unsigned long ) ),
       SLOT( inlineRefreshPercent( KIO::Job*, unsigned long ) ) );		
-	connect(job,SIGNAL(result(KIO::Job*)),
-         this,SLOT(inlineRefreshListResult(KIO::Job*)));
-	connect(job,SIGNAL(canceled(KIO::Job*)),
-         this,SLOT(inlineRefreshListResult(KIO::Job*)));
+	connect(job,SIGNAL(result(KJob*)),
+         this,SLOT(inlineRefreshListResult(KJob*)));
 			
 	inlineRefreshJob = job;
 	
@@ -1075,7 +1073,7 @@ void ListPanel::inlineRefreshInfoMessage( KIO::Job*, const QString &msg ) {
 	totals->setText(">> " + i18n("Reading: ") + msg);
 }
 
-void ListPanel::inlineRefreshListResult(KIO::Job*) {
+void ListPanel::inlineRefreshListResult(KJob*) {
 	inlineRefreshJob = 0;
 	// reenable everything
 	//static_cast<KrDetailedView*>(view)->setEnabled(true);

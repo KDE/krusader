@@ -81,8 +81,8 @@ void KrusaderImageFilePreview::showPreview( const KUrl &url, bool force ) {
 		int h = imageLabel->contentsRect().height() - 4;
 
 		m_job = createJob( url, w, h );
-		connect( m_job, SIGNAL( result( KIO::Job * ) ),
-		         this, SLOT( slotResult( KIO::Job * ) ) );
+		connect( m_job, SIGNAL( result( KJob * ) ),
+		         this, SLOT( slotResult( KJob * ) ) );
 		connect( m_job, SIGNAL( gotPreview( const KFileItem*,
 		                                    const QPixmap& ) ),
 		         SLOT( gotPreview( const KFileItem*, const QPixmap& ) ) );
@@ -119,7 +119,7 @@ void KrusaderImageFilePreview::slotFailed( const KFileItem* item ) {
 		                                  K3Icon::DisabledState ) );
 }
 
-void KrusaderImageFilePreview::slotResult( KIO::Job *job ) {
+void KrusaderImageFilePreview::slotResult( KJob *job ) {
 	if ( job == m_job )
 		m_job = 0L;
 }

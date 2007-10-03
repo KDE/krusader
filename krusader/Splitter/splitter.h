@@ -73,11 +73,11 @@ private:
 public slots:
   void splitDataReceived(KIO::Job *, const QByteArray &);
   void splitDataSend(KIO::Job *, QByteArray &);
-  void splitSendFinished(KIO::Job *);
-  void splitReceiveFinished(KIO::Job *);
+  void splitSendFinished(KJob *);
+  void splitReceiveFinished(KJob *);
   void splitReceivePercent (KIO::Job *, unsigned long);
   void splitFileSend(KIO::Job *, QByteArray &);
-  void splitFileFinished(KIO::Job *);
+  void splitFileFinished(KJob *);
 };
 
 #endif /* __SPLITTER_H__ */

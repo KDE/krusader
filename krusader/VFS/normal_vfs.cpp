@@ -153,9 +153,9 @@ void normal_vfs::vfs_addFiles(KUrl::List *fileUrls,KIO::CopyJob::CopyMode mode,Q
   dest.setPath(vfs_workingDir()+"/"+dir);
 
   KIO::Job* job = PreservingCopyJob::createCopyJob( pmode, *fileUrls,dest,mode,false,true );
-  connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh()) );
+  connect(job,SIGNAL(result(KJob*)),this,SLOT(vfs_refresh(KJob *)) );
   if(mode == KIO::CopyJob::Move) // notify the other panel
-    connect(job,SIGNAL(result(KIO::Job*)),toNotify,SLOT(vfs_refresh(KIO::Job*)) );
+    connect(job,SIGNAL(result(KJob*)),toNotify,SLOT(vfs_refresh(KJob*)) );
   else
     job->ui()->setAutoErrorHandlingEnabled( true );
 }
@@ -186,12 +186,12 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames){
 	KConfigGroup group( krConfig, "General");
 	if( group.readEntry("Move To Trash",_MoveToTrash) ){
 	  job = KIO::trash(filesUrls, true );
-	  connect(job,SIGNAL(result(KIO::Job*)),SLOTS,SLOT(changeTrashIcon()));
+	  connect(job,SIGNAL(result(KJob*)),SLOTS,SLOT(changeTrashIcon()));
 	}
 	else
 	  job = KIO::del(filesUrls, false, true);
 	
-	connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)));
+	connect(job,SIGNAL(result(KJob*)),this,SLOT(vfs_refresh(KJob*)));
 }
 
 // return a path to the file
@@ -232,7 +232,7 @@ void normal_vfs::vfs_rename(const QString& fileName,const QString& newName){
   dest.setPath(vfs_workingDir()+"/"+newName);
 
   KIO::Job *job = KIO::move(fileUrls,dest, true );
-  connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)));
+  connect(job,SIGNAL(result(KJob*)),this,SLOT(vfs_refresh(KJob*)));
 }
 
 vfile* normal_vfs::vfileFromName(const QString& name){

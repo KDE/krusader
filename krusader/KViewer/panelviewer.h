@@ -72,7 +72,7 @@ public slots:
 	KParts::ReadOnlyPart* openUrl( const KUrl &url, KrViewer::Mode mode=KrViewer::Generic );
 	bool closeUrl();
 	bool queryClose();
-	void slotStatResult( KIO::Job* job );
+	void slotStatResult( KJob* job );
 
 public:
 	PanelEditor( QWidget *parent = 0 );

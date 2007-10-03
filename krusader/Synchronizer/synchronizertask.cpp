@@ -156,10 +156,10 @@ void CompareContentTask::start() {
             this, SLOT(slotDataReceived(KIO::Job *, const QByteArray &)));
     connect(rightReadJob, SIGNAL(data(KIO::Job *, const QByteArray &)),
             this, SLOT(slotDataReceived(KIO::Job *, const QByteArray &)));
-    connect(leftReadJob, SIGNAL(result(KIO::Job*)),
-            this, SLOT(slotFinished(KIO::Job *)));
-    connect(rightReadJob, SIGNAL(result(KIO::Job*)),
-            this, SLOT(slotFinished(KIO::Job *)));
+    connect(leftReadJob, SIGNAL(result(KJob*)),
+            this, SLOT(slotFinished(KJob *)));
+    connect(rightReadJob, SIGNAL(result(KJob*)),
+            this, SLOT(slotFinished(KJob *)));
 
     rightReadJob->suspend();
 
@@ -278,7 +278,7 @@ void CompareContentTask::slotDataReceived(KIO::Job *job, const QByteArray &data)
   }
 }
 
-void CompareContentTask::slotFinished(KIO::Job *job)
+void CompareContentTask::slotFinished(KJob *job)
 {
   KIO::TransferJob *otherJob = ( job == leftReadJob ) ? rightReadJob : leftReadJob;
 

@@ -155,7 +155,7 @@ protected slots:
 	// those handle the in-panel refresh notifications
 	void slotJobStarted(KIO::Job* job);
 	void inlineRefreshInfoMessage( KIO::Job* job, const QString &msg );
-	void inlineRefreshListResult(KIO::Job* job);
+	void inlineRefreshListResult(KJob* job);
 	void inlineRefreshPercent( KIO::Job*, unsigned long );
 	void inlineRefreshCancel();
 

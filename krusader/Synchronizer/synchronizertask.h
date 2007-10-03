@@ -134,7 +134,7 @@ public:
 
 public slots:
   void    slotDataReceived(KIO::Job *job, const QByteArray &data);
-  void    slotFinished(KIO::Job *job);
+  void    slotFinished(KJob *job);
   void    sendStatusMessage();
 
 protected:

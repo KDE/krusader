@@ -451,9 +451,9 @@ void ListPanelFunc::moveFiles() {
 	if( !virtualBaseURL.isEmpty() ) {
 		// keep the directory structure for virtual paths
 		VirtualCopyJob *vjob = new VirtualCopyJob( &fileNames, files(), dest, virtualBaseURL, pmode, KIO::CopyJob::Move, false, true );
-		connect( vjob, SIGNAL( result( KIO::Job* ) ), this, SLOT( refresh() ) );
+		connect( vjob, SIGNAL( result( KJob* ) ), this, SLOT( refresh() ) );
 		if ( dest.equals( panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) )
-			connect( vjob, SIGNAL( result( KIO::Job* ) ), panel->otherPanel->func, SLOT( refresh() ) );
+			connect( vjob, SIGNAL( result( KJob* ) ), panel->otherPanel->func, SLOT( refresh() ) );
 	}
 	// if we are not moving to the other panel :
 	else if ( !dest.equals( panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) ) {
@@ -463,10 +463,10 @@ void ListPanelFunc::moveFiles() {
 		KIO::Job* job = PreservingCopyJob::createCopyJob( pmode, *fileUrls, dest, KIO::CopyJob::Move, false, true );
 		job->ui()->setAutoErrorHandlingEnabled( true );
 		// refresh our panel when done
-		connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( refresh() ) );
+		connect( job, SIGNAL( result( KJob* ) ), this, SLOT( refresh() ) );
 		// and if needed the other panel as well
 		if ( dest.equals( panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) )
-			connect( job, SIGNAL( result( KIO::Job* ) ), panel->otherPanel->func, SLOT( refresh() ) );
+			connect( job, SIGNAL( result( KJob* ) ), panel->otherPanel->func, SLOT( refresh() ) );
 
 	} else { // let the other panel do the dirty job
 		//check if copy is supported
@@ -599,9 +599,9 @@ void ListPanelFunc::copyFiles() {
 	if( !virtualBaseURL.isEmpty() ) {
 		// keep the directory structure for virtual paths
 		VirtualCopyJob *vjob = new VirtualCopyJob( &fileNames, files(), dest, virtualBaseURL, pmode, KIO::CopyJob::Copy, false, true );
-		connect( vjob, SIGNAL( result( KIO::Job* ) ), this, SLOT( refresh() ) );
+		connect( vjob, SIGNAL( result( KJob* ) ), this, SLOT( refresh() ) );
 		if ( dest.equals( panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) )
-			connect( vjob, SIGNAL( result( KIO::Job* ) ), panel->otherPanel->func, SLOT( refresh() ) );
+			connect( vjob, SIGNAL( result( KJob* ) ), panel->otherPanel->func, SLOT( refresh() ) );
 	}
 	// if we are  not copying to the other panel :
 	else if ( !dest.equals( panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) ) {
@@ -613,7 +613,7 @@ void ListPanelFunc::copyFiles() {
 		if ( dest.equals( panel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) ||
 			dest.upUrl().equals( panel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) )
 			// refresh our panel when done
-			connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( refresh() ) );
+			connect( job, SIGNAL( result( KJob* ) ), this, SLOT( refresh() ) );
 	// let the other panel do the dirty job
 	} else {
 		//check if copy is supported

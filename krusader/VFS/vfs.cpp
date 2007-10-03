@@ -79,9 +79,10 @@ KIO::filesize_t vfs::vfs_totalSize(){
 	return temp;                                                     
 }
 
-bool vfs::vfs_refresh(KIO::Job* job){
-  if(job && job->error()){
-		job->ui()->showErrorMessage();
+bool vfs::vfs_refresh(KJob* job){
+  if( job && job->error() ){
+		if( job->uiDelegate() )
+			job->uiDelegate()->showErrorMessage();
 	}
 	return vfs_refresh(vfs_origin);
 }
@@ -253,7 +254,7 @@ void vfs::vfs_requestDelete() {
 }
 
 /// to be implemented
-void vfs::slotKdsResult( KIO::Job* job){
+void vfs::slotKdsResult( KJob* job){
 	if( job && !job->error() ){
 		KIO::DirectorySizeJob* kds = static_cast<KIO::DirectorySizeJob*>(job);
 		*kds_totalSize += kds->totalSize();
@@ -280,7 +281,7 @@ void vfs::calculateURLSize( KUrl url,  KIO::filesize_t* totalSize, unsigned long
 	} else {
 		stat_busy = true;
 		KIO::StatJob* statJob = KIO::stat( url, false );
-		connect( statJob, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotStatResultArrived( KIO::Job* ) ) );
+		connect( statJob, SIGNAL( result( KJob* ) ), this, SLOT( slotStatResultArrived( KJob* ) ) );
 		while ( !(*stop) && stat_busy ) {usleep(1000);}
 		if( entry.count() == 0 ) return; // statJob failed
 		KFileItem kfi(entry, url, true );        
@@ -292,7 +293,7 @@ void vfs::calculateURLSize( KUrl url,  KIO::filesize_t* totalSize, unsigned long
 	}
 	
 	KIO::DirectorySizeJob* kds  = KIO::directorySize( url );
-	connect( kds, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotKdsResult( KIO::Job* ) ) );
+	connect( kds, SIGNAL( result( KJob* ) ), this, SLOT( slotKdsResult( KJob* ) ) );
 	while ( !(*stop) ){ 
 		// we are in a sepetate thread - so sleeping is OK
 		usleep(1000);
@@ -336,7 +337,7 @@ void vfs::vfs_calcSpaceLocal(QString name ,KIO::filesize_t *totalSize,unsigned l
 }
 
         
-void vfs::slotStatResultArrived( KIO::Job* job ) {
+void vfs::slotStatResultArrived( KJob* job ) {
 	if( !job || job->error() ) entry = KIO::UDSEntry();
 	else entry = static_cast<KIO::StatJob*>(job)->statResult();
 	stat_busy = false;

@@ -139,10 +139,10 @@ void VirtualCopyJob::statNextDir() {
 	m_currentDir = KUrl::relativeUrl( m_baseURL, dirToCheck.upUrl() );
 	
 	KIO::DirectorySizeJob* kds  = KIO::directorySize( dirToCheck );
-	connect( kds, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotKdsResult( KIO::Job* ) ) );
+	connect( kds, SIGNAL( result( KJob* ) ), this, SLOT( slotKdsResult( KJob* ) ) );
 }
 
-void VirtualCopyJob::slotKdsResult( KIO::Job * job ) {
+void VirtualCopyJob::slotKdsResult( KJob * job ) {
 	KIO::DirectorySizeJob* kds = static_cast<KIO::DirectorySizeJob*>(job);
 	m_totalSize += kds->totalSize();
 	m_totalFiles += kds->totalFiles();
@@ -170,20 +170,20 @@ void VirtualCopyJob::createNextDir() {
 		m_current.addPath( m_currentDir );
 	
 	KIO::Job *job = KIO::stat( m_current );
-	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotStatResult( KIO::Job* ) ) );
+	connect( job, SIGNAL( result( KJob* ) ), this, SLOT( slotStatResult( KJob* ) ) );
 }
 
-void VirtualCopyJob::slotStatResult( KIO::Job *job ) {
+void VirtualCopyJob::slotStatResult( KJob *job ) {
 	KUrl url = (static_cast<KIO::SimpleJob*>(job) )->url();
 	
 	if ( job && job->error() ) {
 		if( job->error() == KIO::ERR_DOES_NOT_EXIST && !url.equals( url.upUrl(),KUrl::CompareWithoutTrailingSlash ) ) {
 			m_dirStack.push_back( url.fileName() );
 			KIO::Job *job = KIO::stat( url.upUrl() );
-			connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotStatResult( KIO::Job* ) ) );
+			connect( job, SIGNAL( result( KJob* ) ), this, SLOT( slotStatResult( KJob* ) ) );
 			return;
 		}
-		job->ui()->showErrorMessage();
+		job->uiDelegate()->showErrorMessage();
 		directoryFinished( m_currentDir );
 		createNextDir();
 		return;
@@ -195,17 +195,17 @@ void VirtualCopyJob::slotStatResult( KIO::Job *job ) {
 		m_dirStack.pop_back();
 		
 		KIO::Job *mkdir_job = KIO::mkdir( url );
-		connect( mkdir_job, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotMkdirResult( KIO::Job* ) ) );
+		connect( mkdir_job, SIGNAL( result( KJob* ) ), this, SLOT( slotMkdirResult( KJob* ) ) );
 	}
 	else
 		copyCurrentDir();
 }
 
-void VirtualCopyJob::slotMkdirResult( KIO::Job *job ) {
+void VirtualCopyJob::slotMkdirResult( KJob *job ) {
 	KUrl url = (static_cast<KIO::SimpleJob*>(job) )->url();
 	
 	if ( job && job->error() ) {
-		job->ui()->showErrorMessage();
+		job->uiDelegate()->showErrorMessage();
 		directoryFinished( m_currentDir );
 		createNextDir();
 		return;
@@ -217,7 +217,7 @@ void VirtualCopyJob::slotMkdirResult( KIO::Job *job ) {
 		m_dirStack.pop_back();
 	
 		KIO::Job *mkdir_job = KIO::mkdir( url );
-		connect( mkdir_job, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotMkdirResult( KIO::Job* ) ) );
+		connect( mkdir_job, SIGNAL( result( KJob* ) ), this, SLOT( slotMkdirResult( KJob* ) ) );
 	}
 	else
 		copyCurrentDir();
@@ -241,12 +241,12 @@ void VirtualCopyJob::copyCurrentDir() {
 		this, SLOT( slotProcessedDirs (KIO::Job *, unsigned long) ) );
 	connect( copy_job, SIGNAL( processedSize (KIO::Job *, KIO::filesize_t) ),
 		this, SLOT( slotProcessedSize (KIO::Job *, KIO::filesize_t) ) );
-	connect( copy_job, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotCopyResult( KIO::Job* ) ) );
+	connect( copy_job, SIGNAL( result( KJob* ) ), this, SLOT( slotCopyResult( KJob* ) ) );
 }
 
-void VirtualCopyJob::slotCopyResult( KIO::Job *job ) {
+void VirtualCopyJob::slotCopyResult( KJob *job ) {
 	if ( job && job->error() ) {
-		job->ui()->showErrorMessage();
+		job->uiDelegate()->showErrorMessage();
 	}
 	
 	directoryFinished( m_currentDir );

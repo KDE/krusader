@@ -118,7 +118,7 @@ public slots:
 	bool vfs_refresh(const KUrl& origin);
 	/// Used to refresh the VFS when a job finishs. it calls the refresh() slot
 	/// or display a error message if the job fails
-	bool vfs_refresh(KIO::Job* job);
+	bool vfs_refresh(KJob * job);
 	bool vfs_refresh();
 	void vfs_setQuiet(bool beQuiet){ quietMode=beQuiet; }
 	void vfs_enableRefresh(bool enable);        
@@ -163,8 +163,8 @@ protected:
 	
 protected slots:
 	/// The slot for the KIO::DirectorySizeJob
-	void slotKdsResult(KIO::Job *job);
-	void slotStatResultArrived(KIO::Job *job);
+	void slotKdsResult(KJob *job);
+	void slotStatResultArrived(KJob *job);
         
 private:
 	vfileDict*  vfs_filesP;    //< Point to a lists of virtual files (vfile).

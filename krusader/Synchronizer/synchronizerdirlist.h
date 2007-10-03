@@ -55,7 +55,7 @@ public:
 public slots:
 
   void slotEntries( KIO::Job * job, const KIO::UDSEntryList& entries );
-  void slotListResult( KIO::Job *job );
+  void slotListResult( KJob *job );
 
 signals:
   void finished( bool err );

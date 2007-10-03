@@ -236,7 +236,7 @@ KParts::ReadOnlyPart* PanelEditor::openUrl( const KUrl &url, KrViewer::Mode mode
 
 	bool create = true;
 	KIO::StatJob* statJob = KIO::stat( url, false );
-	connect( statJob, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotStatResult( KIO::Job* ) ) );
+	connect( statJob, SIGNAL( result( KJob* ) ), this, SLOT( slotStatResult( KJob* ) ) );
 	busy = true;
 	while ( busy ) qApp->processEvents();
 	if( entry.count() != 0 ) {
@@ -299,7 +299,7 @@ KParts::ReadWritePart* PanelEditor::getPart( QString mimetype ) {
 	return part;
 }
 
-void PanelEditor::slotStatResult( KIO::Job* job ) {
+void PanelEditor::slotStatResult( KJob* job ) {
   if( !job || job->error() ) entry = KIO::UDSEntry();
   else entry = static_cast<KIO::StatJob*>(job)->statResult();
   busy = false;
