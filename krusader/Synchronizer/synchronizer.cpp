@@ -135,7 +135,7 @@ int Synchronizer::compare( QString leftURL, QString rightURL, KRQuery *query, bo
   if( !rightURL.endsWith("/" )) rightURL+="/";
 
   excludedPaths = query->dontSearchInDirs().toStringList();
-  for( unsigned i = 0; i != excludedPaths.count(); i++ )
+  for( int i = 0; i != excludedPaths.count(); i++ )
     if( excludedPaths[ i ].endsWith( "/" ) )
       excludedPaths[ i ].truncate( excludedPaths[ i ].length() - 1 );
 
@@ -957,7 +957,7 @@ void Synchronizer::executeTask( SynchronizerFileItem * task )
     if( task->isDir() )
     {
       KIO::SimpleJob *job = KIO::mkdir( leftURL );
-      connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(slotTaskFinished(KIO::Job*)));
+      connect(job,SIGNAL(result(KJob*)),this,SLOT(slotTaskFinished(KJob*)));
       jobMap[ job ] = task;
       disableNewTasks = true;
     }
@@ -970,14 +970,14 @@ void Synchronizer::executeTask( SynchronizerFileItem * task )
       if( task->rightLink().isNull() ) {
         KIO::FileCopyJob *job = KIO::file_copy(rightURL, destURL, -1,
                                   overWrite || task->overWrite(), false, false );
-        connect(job,SIGNAL(processedSize (KIO::Job *, KIO::filesize_t )), this,
-                    SLOT  (slotProcessedSize (KIO::Job *, KIO::filesize_t )));
-        connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(slotTaskFinished(KIO::Job*)));
+        connect(job,SIGNAL(processedSize (KJob *, qulonglong )), this,
+                    SLOT  (slotProcessedSize (KJob *, qulonglong )));
+        connect(job,SIGNAL(result(KJob*)),this,SLOT(slotTaskFinished(KJob*)));
         jobMap[ job ] = task;
       } else {
         KIO::SimpleJob *job = KIO::symlink( task->rightLink(), destURL,
                                             overWrite || task->overWrite(), false );
-        connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(slotTaskFinished(KIO::Job*)));
+        connect(job,SIGNAL(result(KJob*)),this,SLOT(slotTaskFinished(KJob*)));
         jobMap[ job ] = task;
       }
     }
@@ -986,7 +986,7 @@ void Synchronizer::executeTask( SynchronizerFileItem * task )
     if( task->isDir() )
     {
       KIO::SimpleJob *job = KIO::mkdir( rightURL );
-      connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(slotTaskFinished(KIO::Job*)));
+      connect(job,SIGNAL(result(KJob*)),this,SLOT(slotTaskFinished(KJob*)));
       jobMap[ job ] = task;
       disableNewTasks = true;
     }
@@ -999,14 +999,14 @@ void Synchronizer::executeTask( SynchronizerFileItem * task )
       if( task->leftLink().isNull() ) {
         KIO::FileCopyJob *job = KIO::file_copy(leftURL, destURL, -1,
                                   overWrite || task->overWrite(), false, false );
-        connect(job,SIGNAL(processedSize (KIO::Job *, KIO::filesize_t )), this,
-                    SLOT  (slotProcessedSize (KIO::Job *, KIO::filesize_t )));
-        connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(slotTaskFinished(KIO::Job*)));
+        connect(job,SIGNAL(processedSize (KJob *, qulonglong )), this,
+                    SLOT  (slotProcessedSize (KJob *, qulonglong )));
+        connect(job,SIGNAL(result(KJob*)),this,SLOT(slotTaskFinished(KJob*)));
         jobMap[ job ] = task;
       } else {
         KIO::SimpleJob *job = KIO::symlink( task->leftLink(), destURL,
                                             overWrite || task->overWrite(), false );
-        connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(slotTaskFinished(KIO::Job*)));
+        connect(job,SIGNAL(result(KJob*)),this,SLOT(slotTaskFinished(KJob*)));
         jobMap[ job ] = task;
       }
     }
@@ -1014,7 +1014,7 @@ void Synchronizer::executeTask( SynchronizerFileItem * task )
   case TT_DELETE:
     {
       KIO::DeleteJob *job = KIO::del( leftURL, false );
-      connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(slotTaskFinished(KIO::Job*)));
+      connect(job,SIGNAL(result(KJob*)),this,SLOT(slotTaskFinished(KJob*)));
       jobMap[ job ] = task;
     }
     break;
@@ -1023,7 +1023,7 @@ void Synchronizer::executeTask( SynchronizerFileItem * task )
   }
 }
 
-void Synchronizer::slotTaskFinished(KIO::Job *job )
+void Synchronizer::slotTaskFinished(KJob *job )
 {
   inTaskFinished++;
 
@@ -1151,7 +1151,7 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
           QWidget *mainWidget = qApp->mainWidget(); // WORKAROUND, don't give focus to the main widget
           qApp->setMainWidget( syncDlgWidget );
 
-          result = job->ui()->askFileRename( job, i18n("File Already Exists"),
+          result = ((KIO::Job *)job)->ui()->askFileRename( job, i18n("File Already Exists"),
             rightURL.pathOrUrl(), leftURL.pathOrUrl(),
             (KIO::RenameDialog_Mode)( KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI ), newDest,
             item->rightSize(), item->leftSize(), (time_t)-1, (time_t)-1,
@@ -1164,7 +1164,7 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
           QWidget *mainWidget = qApp->mainWidget(); // WORKAROUND, don't give focus to the main widget
           qApp->setMainWidget( syncDlgWidget );
 
-          result = job->ui()->askFileRename( job, i18n("File Already Exists"),
+          result = ((KIO::Job *)job)->ui()->askFileRename( job, i18n("File Already Exists"),
             leftURL.pathOrUrl(), rightURL.pathOrUrl(),
             (KIO::RenameDialog_Mode)( KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI ), newDest,
             item->leftSize(), item->rightSize(), (time_t)-1, (time_t)-1,
@@ -1226,7 +1226,7 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
         QWidget *mainWidget = qApp->mainWidget(); // WORKAROUND, don't give focus to the main widget
         qApp->setMainWidget( syncDlgWidget );
 
-        KIO::SkipDialog_Result result = job->ui()->askSkip( job, true, error );
+        KIO::SkipDialog_Result result = ((KIO::Job *)job)->ui()->askSkip( job, true, error );
 
         qApp->setMainWidget( mainWidget );
 
@@ -1273,7 +1273,7 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
   }
 }
 
-void Synchronizer::slotProcessedSize( KIO::Job * job , KIO::filesize_t size)
+void Synchronizer::slotProcessedSize( KJob * job , qulonglong size)
 {
   KIO::filesize_t dl = 0, dr = 0, dd = 0;
   SynchronizerFileItem * item = jobMap[ job ];

@@ -60,7 +60,7 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   cbRightToLeft->setEnabled( leftCopyNr != 0 );
   layout->addWidget( cbRightToLeft );
 
-  lbRightToLeft = new QLabel( "\t" + i18np( "Ready: %1/1 file, %3/%4", "Ready: %1/%n files, %3/%4", leftCopyNr, 0,
+  lbRightToLeft = new QLabel( "\t" + i18np( "Ready: %2/1 file, %3/%4", "Ready: %2/%1 files, %3/%4", leftCopyNr, 0,
                              0, KRpermHandler::parseSize( leftCopySize ).trimmed() ),
                              this, "lbRightToLeft" );
   lbRightToLeft->setEnabled( leftCopyNr != 0 );
@@ -73,7 +73,7 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   cbLeftToRight->setEnabled( rightCopyNr != 0 );
   layout->addWidget( cbLeftToRight );
 
-  lbLeftToRight = new QLabel( "\t" + i18np( "Ready: %1/1 file, %3/%4", "Ready: %1/%n files, %3/%4", rightCopyNr, 0,
+  lbLeftToRight = new QLabel( "\t" + i18np( "Ready: %2/1 file, %3/%4", "Ready: %2/%1 files, %3/%4", rightCopyNr, 0,
                              0, KRpermHandler::parseSize( rightCopySize ).trimmed() ),
                              this, "lbLeftToRight" );
   lbLeftToRight->setEnabled( rightCopyNr != 0 );
@@ -86,7 +86,7 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   cbDeletable->setEnabled( deleteNr != 0 );
   layout->addWidget( cbDeletable );
 
-  lbDeletable   = new QLabel( "\t" + i18np( "Ready: %1/1 file, %3/%4", "Ready: %1/%n files, %3/%4", deleteNr, 0,
+  lbDeletable   = new QLabel( "\t" + i18np( "Ready: %2/1 file, %3/%4", "Ready: %2/%1 files, %3/%4", deleteNr, 0,
                              0, KRpermHandler::parseSize( deleteSize ).trimmed() ),
                              this, "lbDeletable" );
   lbDeletable->setEnabled( deleteNr != 0 );

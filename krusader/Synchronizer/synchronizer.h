@@ -101,8 +101,8 @@ class Synchronizer : public QObject
     void    statusInfo( QString );
 
   public slots:
-    void    slotTaskFinished(KIO::Job*);
-    void    slotProcessedSize( KIO::Job * , KIO::filesize_t );
+    void    slotTaskFinished(KJob*);
+    void    slotProcessedSize( KJob * , qulonglong );
     
   private:
     bool                  isDir( const vfile * file );
@@ -193,8 +193,8 @@ class Synchronizer : public QObject
 
   private:
     Q3PtrList<SynchronizerTask>        stack;          // stack for comparing
-    QMap<KIO::Job *,SynchronizerFileItem *> jobMap;   // job maps
-    QMap<KIO::Job *,KIO::filesize_t>  receivedMap;    // the received file size
+    QMap<KJob *,SynchronizerFileItem *> jobMap;   // job maps
+    QMap<KJob *,KIO::filesize_t>      receivedMap;    // the received file size
     SynchronizerFileItem             *lastTask;       // reference to the last stack
     int                               inTaskFinished; // counter of quasy 'threads' in slotTaskFinished
 
