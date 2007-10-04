@@ -163,7 +163,7 @@ bool KRQuery::matchCommon( const QString &nameIn, const QStringList &matchList, 
   if( ndx != -1 )                  // but the end of the filename is OK
     name = nameIn.mid( ndx + 1 );
 
-  for ( unsigned int i = 0; i < excludeList.count(); ++i )
+  for ( int i = 0; i < excludeList.count(); ++i )
   {
     if( QRegExp( excludeList[ i ], matchesCaseSensitive, QRegExp::Wildcard ).exactMatch( name ) )
       return false;
@@ -172,7 +172,7 @@ bool KRQuery::matchCommon( const QString &nameIn, const QStringList &matchList, 
   if( matchList.count() == 0 )
     return true;
 
-  for ( unsigned int i = 0; i < matchList.count(); ++i )
+  for ( int i = 0; i < matchList.count(); ++i )
   {
     if( QRegExp( matchList[ i ], matchesCaseSensitive, QRegExp::Wildcard ).exactMatch( name ) )
       return true;
@@ -236,7 +236,7 @@ bool KRQuery::match( KFileItem *kfi ) const {
   if ( kfi->isDir() ) 
     perm[ 0 ] = 'd';
 
-  vfile temp( kfi->text(), kfi->size(), perm, kfi->time( KIO::UDSEntry::UDS_MODIFICATION_TIME ),
+  vfile temp( kfi->text(), kfi->size(), perm, kfi->time( KFileItem::ModificationTime ).toTime_t(),
               kfi->isLink(), kfi->user(), kfi->group(), kfi->user(), 
               kfi->mimetype(), kfi->linkDest(), mode );
 
@@ -322,7 +322,7 @@ bool KRQuery::checkLines( QString lines ) const
 {
   QStringList list = QStringList::split( '\n', lines );
 
-  for( unsigned int i=0; i != list.count(); i++ ) {
+  for( int i=0; i != list.count(); i++ ) {
     QString line = list[ i ];
 
     int ndx = 0;
@@ -439,8 +439,8 @@ bool KRQuery::checkTimer() const {
 QStringList KRQuery::split( QString str )
 {
   QStringList list;
-  unsigned splitNdx = 0;
-  unsigned startNdx = 0;
+  int splitNdx = 0;
+  int startNdx = 0;
   bool quotation = false;
 
   while( splitNdx < str.length() )
@@ -481,7 +481,7 @@ void KRQuery::setNameFilter( const QString &text, bool cs )
   QString matchText = text;
   QString excludeText;
   
-  unsigned excludeNdx = 0;
+  int excludeNdx = 0;
   bool quotationMark = 0;
   while( excludeNdx < matchText.length() )
   {
@@ -504,7 +504,7 @@ void KRQuery::setNameFilter( const QString &text, bool cs )
       matchText = "*";
   }
 
-  unsigned i;
+  int i;
 
   matches  = split( matchText );
   includedDirs.clear();
@@ -599,7 +599,7 @@ void KRQuery::setMimeType( const QString &typeIn, QStringList customList )
 
 bool KRQuery::isExcluded( const KUrl &url )
 {
-  for ( unsigned int i = 0; i < whereNotToSearch.count(); ++i )
+  for ( int i = 0; i < whereNotToSearch.count(); ++i )
     if( whereNotToSearch [ i ].isParentOf( url ) || url.equals( whereNotToSearch [ i ], KUrl::CompareWithoutTrailingSlash ) )
       return true;
 
@@ -611,7 +611,7 @@ bool KRQuery::isExcluded( const KUrl &url )
 
 void KRQuery::setSearchInDirs( const KUrl::List &urls ) { 
   whereToSearch.clear();
-  for( unsigned int i = 0; i < urls.count(); ++i ) {
+  for( int i = 0; i < urls.count(); ++i ) {
     QString url = urls[ i ].url();
     KUrl completed = KUrl( KUrlCompletion::replacedPath( url, true, true ) );
     whereToSearch.append( completed );
@@ -620,7 +620,7 @@ void KRQuery::setSearchInDirs( const KUrl::List &urls ) {
 
 void KRQuery::setDontSearchInDirs( const KUrl::List &urls ) { 
   whereNotToSearch.clear();
-  for( unsigned int i = 0; i < urls.count(); ++i ) {
+  for( int i = 0; i < urls.count(); ++i ) {
     QString url = urls[ i ].url();
     KUrl completed = KUrl( KUrlCompletion::replacedPath( url, true, true ) );
     whereNotToSearch.append( completed );

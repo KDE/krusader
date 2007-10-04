@@ -91,7 +91,7 @@ void virt_vfs::vfs_addFiles( KUrl::List *fileUrls, KIO::CopyJob::CopyMode /*mode
 	}
 	
 	KUrl::List* urlList = virtVfsDict[ path ];
-	for( unsigned i=0; i != fileUrls->count(); i++ ) {
+	for( int i=0; i != fileUrls->count(); i++ ) {
 		if( !urlList->contains( (*fileUrls)[ i ] ) )
 			urlList->push_back( (*fileUrls)[ i ] );
 	}
@@ -101,7 +101,7 @@ void virt_vfs::vfs_addFiles( KUrl::List *fileUrls, KIO::CopyJob::CopyMode /*mode
 
 void virt_vfs::vfs_delFiles( QStringList *fileNames ) {
 	if ( path == "/" ) {
-		for ( uint i = 0 ; i < fileNames->count(); ++i ) {
+		for ( int i = 0 ; i < fileNames->count(); ++i ) {
 			QString filename = ( *fileNames ) [ i ];
 			virtVfsDict[ "/" ] ->remove( QString("virt:/")+filename );
 			virtVfsDict.remove( filename );
@@ -114,7 +114,7 @@ void virt_vfs::vfs_delFiles( QStringList *fileNames ) {
 	KUrl url;
 
 	// names -> urls
-	for ( uint i = 0 ; i < fileNames->count(); ++i ) {
+	for ( int i = 0 ; i < fileNames->count(); ++i ) {
 		QString filename = ( *fileNames ) [ i ];
 		filesUrls.append( vfs_getFile( filename ) );
 	}
@@ -137,7 +137,7 @@ void virt_vfs::vfs_removeFiles( QStringList *fileNames ) {
 		return; 
 	
 	// removing the URLs from the collection
-	for ( uint i = 0 ; i < fileNames->count(); ++i ) {
+	for ( int i = 0 ; i < fileNames->count(); ++i ) {
 		KUrl::List* urlList = virtVfsDict[ path ];
 		if( urlList )
 			urlList->remove( vfs_getFile( ( *fileNames ) [ i ] ) );
@@ -234,7 +234,7 @@ vfile* virt_vfs::stat( const KUrl& url ) {
 		kfi = new KFileItem(entry, url, true );
 	}
 	
-	if ( !kfi->time( KIO::UDSEntry::UDS_MODIFICATION_TIME ) ){
+	if ( kfi->time( KFileItem::ModificationTime ).isNull() ){
 		 delete kfi;
 		 return 0; // file not found		
 	}
@@ -249,7 +249,7 @@ vfile* virt_vfs::stat( const KUrl& url ) {
 		name = url.prettyUrl();
 
 	KIO::filesize_t size = kfi->size();
-	time_t mtime = kfi->time( KIO::UDSEntry::UDS_MODIFICATION_TIME );
+	time_t mtime = kfi->time( KFileItem::ModificationTime ).toTime_t();
 	bool symLink = kfi->isLink();
 	mode_t mode = kfi->mode() | kfi->permissions();
 	QString perm = KRpermHandler::mode2QString( mode );
@@ -329,7 +329,7 @@ void virt_vfs::vfs_calcSpace( QString name , KIO::filesize_t* totalSize, unsigne
 	if( path == "/" ) {
 		KUrl::List* urlList = virtVfsDict[ name ];
 		if ( urlList )
-			for( unsigned i=0; (i != urlList->size()) && !(*stop); i++ )
+			for( int i=0; (i != urlList->size()) && !(*stop); i++ )
 				calculateURLSize( (*urlList)[ i ], totalSize, totalFiles, totalDirs, stop );
 		return;        
 	}                

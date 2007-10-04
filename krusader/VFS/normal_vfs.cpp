@@ -174,7 +174,7 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames){
 	}
 
 	// names -> urls
-	for(uint i=0 ; i<fileNames->count(); ++i){
+	for(int i=0 ; i<fileNames->count(); ++i){
 		QString filename = (*fileNames)[i];
 		vf = vfs_search(filename);
 		url.setPath( vfs_workingDir()+"/"+filename);

@@ -61,8 +61,7 @@ void UserMenuGui::createMenu() {
 void UserMenuGui::readEntries() {
    // Note: entries are marked 1..n, so that entry 0 is always
    // available. It is used by the "add new entry" command.
-   int idx = 1;
-
+   
    //FIXME: don't plug ALL useractions into the usermenu. TODO: read the usermenu-strukture from an other file (krusaderrc ?)
    UserAction::KrActionList list = krUserAction->actionList();
    for ( KrAction* action = list.first(); action; action = list.next() )

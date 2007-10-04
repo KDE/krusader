@@ -24,7 +24,7 @@ class QDomDocument;
  */
 class UserActionListView : public K3ListView {
 public:
-   UserActionListView( QWidget* parent = 0, const char* name = 0 );
+   UserActionListView( QWidget* parent = 0 );
    ~UserActionListView();
    virtual QSize sizeHint() const;
 

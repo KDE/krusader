@@ -655,7 +655,7 @@ QString KRarcHandler::detectArchive( bool &encrypted, QString fileName, bool che
 			if( endPtr > sizeMax )
 				continue;
 			
-			unsigned int j=0;
+			int j=0;
 			for(; j != detectionString.length(); j++ ) {
 				if( detectionString[ j ] == '?' )
 					continue;

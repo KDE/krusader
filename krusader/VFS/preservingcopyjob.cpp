@@ -343,7 +343,7 @@ KIO::CopyJob * PreservingCopyJob::createCopyJob( PreserveMode pmode, const KUrl:
 #endif
 
 
-KIO::CopyJob * PreservingCopyJob::createCopyJob( PreserveMode pmode, const KUrl::List& src, const KUrl& dest, KIO::CopyJob::CopyMode mode, bool /* asMethod */, bool showProgressInfo )
+KIO::CopyJob * PreservingCopyJob::createCopyJob( PreserveMode /* pmode */, const KUrl::List& src, const KUrl& dest, KIO::CopyJob::CopyMode mode, bool /* asMethod */, bool showProgressInfo )
 {
   switch( mode ) {
     case KIO::CopyJob::Copy:

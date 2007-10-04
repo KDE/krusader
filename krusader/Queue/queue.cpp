@@ -1,4 +1,5 @@
 #include "queue.h"
+#include <kdebug.h>
 
 Queue::Queue(const QString& name): _name(name)
 {
@@ -18,5 +19,5 @@ void Queue::enqueue(KIO::Job *job)
 
 void Queue::dumpQueue()
 {
-	qDebug("Queue: %s", name().toLatin1());
+	kDebug() << "Queue: " << name().toLatin1();
 }

@@ -339,7 +339,7 @@ QString bashquote( QString s ) {
     
     static const QString evilstuff = "\\\"'`()[]{}!?;$&<>| \t\r\n";		// stuff that should get escaped
      
-    for ( unsigned int i = 0; i < evilstuff.length(); ++i )
+    for ( int i = 0; i < evilstuff.length(); ++i )
         s.replace( evilstuff[ i ], ('\\' + evilstuff[ i ]) );
 
     return s;
@@ -1078,7 +1078,7 @@ TagString Expander::expandCurrent( const QString& stringToExpand, bool useUrl ) 
    int begin, end, i;
 //    int brackets = 0;
 //    bool inQuotes = false;
-   unsigned int idx = 0;
+   int idx = 0;
    while ( idx < stringToExpand.length() ) {
       if ( ( begin = stringToExpand.find( '%', idx ) ) == -1 ) break;
       if ( ( end = findEnd( stringToExpand, begin ) ) == -1 ) {
@@ -1157,7 +1157,7 @@ TagStringList Expander::separateParameter( QString* const exp, bool useUrl ) {
       *exp = exp->left( begin );
    
       bool inQuotes = false;
-      unsigned int idx = 0;
+      int idx = 0;
       begin = 0;
       while ( idx < result.length() ) {
          if ( result[ idx ].toLatin1() == '\\' ) {
@@ -1197,7 +1197,7 @@ int Expander::findEnd( const QString& str, int start ) {
    if ( end < bracket || bracket == -1 )
       return end;
       
-   unsigned int idx = bracket+1;
+   int idx = bracket+1;
    bool inQuotes = false;
    int depth=1;
    while ( idx < str.length() ) {

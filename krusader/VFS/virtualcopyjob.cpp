@@ -267,13 +267,13 @@ void VirtualCopyJob::directoryFinished( const QString &name ) {
 	m_subdirs.remove( name );
 }
 
-void VirtualCopyJob::slotCopying(KIO::Job *, const KUrl &from, const KUrl &to) {
+void VirtualCopyJob::slotCopying(KIO::Job *, const KUrl &, const KUrl &) {
 }
 
-void VirtualCopyJob::slotMoving(KIO::Job *, const KUrl &from, const KUrl &to) {
+void VirtualCopyJob::slotMoving(KIO::Job *, const KUrl &, const KUrl &) {
 }
 
-void VirtualCopyJob::slotCreatingDir(KIO::Job *, const KUrl &to) {
+void VirtualCopyJob::slotCreatingDir(KIO::Job *, const KUrl &) {
 }
   
 void VirtualCopyJob::slotProcessedFiles (KIO::Job *, unsigned long filenum) {

@@ -98,7 +98,7 @@ UserActionPage::UserActionPage( QWidget* parent )
    QSplitter *split = new QSplitter( this, "useractionpage splitter");
    layout->addWidget( split, 1000 ); // again a very large stretch-factor to fix the height of the toolbar
 
-   actionTree = new UserActionListView( split, "actionTree" );
+   actionTree = new UserActionListView( split );
    actionProperties = new ActionProperty( split, "actionProperties" );
    actionProperties->setEnabled( false ); // if there are any actions in the list, the first is displayed and this widget is enabled
 

@@ -88,7 +88,7 @@ void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
 		if ( name.isEmpty() || name == "." || name == ".." ) continue;
 
 		KIO::filesize_t size = kfi.size();
-		time_t mtime = kfi.time( KIO::UDSEntry::UDS_MODIFICATION_TIME );
+		time_t mtime = kfi.time( KFileItem::ModificationTime ).toTime_t();
 		bool symLink = kfi.isLink();
 		mode_t mode = kfi.mode() | kfi.permissions();
 		QString perm = KRpermHandler::mode2QString( mode );
@@ -236,7 +236,7 @@ void ftp_vfs::vfs_delFiles( QStringList *fileNames ) {
 	KUrl url;
 
 	// names -> urls
-	for ( uint i = 0 ; i < fileNames->count(); ++i ) {
+	for ( int i = 0 ; i < fileNames->count(); ++i ) {
 		QString filename = ( *fileNames ) [ i ];
 		url = vfs_origin;
 		url.addPath( filename );

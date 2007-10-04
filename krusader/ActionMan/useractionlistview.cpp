@@ -28,7 +28,7 @@
 /////////////////////////////     UserActionListView    /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-UserActionListView::UserActionListView( QWidget * parent, const char * name )
+UserActionListView::UserActionListView( QWidget * parent )
  : K3ListView( parent )
 {
    addColumn( i18n("Title") );
