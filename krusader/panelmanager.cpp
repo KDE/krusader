@@ -258,11 +258,14 @@ void PanelManager::slotRecreatePanels() {
    
    for( int i = 0; i != _tabbar->count(); i++ )
    {
-		ListPanel *updatedPanel = _tabbar->getPanel(i);
+     ListPanel *updatedPanel = _tabbar->getPanel(i);
      
      ListPanel *oldPanel = updatedPanel;
      QString type = oldPanel->getType();
+
      ListPanel *newPanel = new ListPanel( type, _stack, _left );
+     _tabbar->changePanel( i, newPanel );
+
      _stack->insertWidget( i, newPanel );
      _stack->removeWidget( oldPanel );
 

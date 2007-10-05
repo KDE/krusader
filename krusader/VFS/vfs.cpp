@@ -191,6 +191,9 @@ bool vfs::vfs_refresh(const KUrl& origin){
 	if( disableRefresh )
 	{
 		postponedRefreshURL = origin;
+		if( !origin.equals(vfs_getOrigin(),KUrl::CompareWithoutTrailingSlash) )
+			invalidated = true;
+		vfs_origin = origin;
 		return true;
 	}
 

@@ -99,8 +99,7 @@ int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent ) {
   }
 
 
-connect((ListPanel*)tabData(newId).toLongLong(), SIGNAL(pathChanged(ListPanel*)),
-          this, SLOT(updateTab(ListPanel*)));
+  connect(panel, SIGNAL(pathChanged(ListPanel*)), this, SLOT(updateTab(ListPanel*)));
 
   return newId;
 }
@@ -110,6 +109,13 @@ ListPanel* PanelTabBar::getPanel(int tabIdx) {
   if (v.isNull()) return 0;
   return (ListPanel*)v.toLongLong();
 }
+
+void PanelTabBar::changePanel(int tabIdx, ListPanel *panel) {
+  QVariant v;
+  v.setValue((long long)panel);
+  setTabData(tabIdx, v);
+}
+
 
 ListPanel* PanelTabBar::removeCurrentPanel(ListPanel* &panelToDelete) {
   int id = currentIndex();
