@@ -60,7 +60,7 @@ private:
 class KEasyProcess: public K3Process {
 	Q_OBJECT
 public:
-	KEasyProcess(QObject *parent, const char *name=0);
+	KEasyProcess(QObject *parent);
 	KEasyProcess();
 	virtual ~KEasyProcess() {}
 

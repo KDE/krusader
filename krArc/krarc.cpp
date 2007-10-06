@@ -147,7 +147,7 @@ void kio_krarcProtocol::mkdir(const KUrl& url,int permissions){
 	if( tmpDir.right(1) != "/" ) tmpDir = tmpDir+"/";
 	
 	if( permissions == -1 ) permissions = 0777; //set default permissions
-	for( unsigned int i=arcTempDir.length();i<tmpDir.length(); i=tmpDir.find("/",i+1)){
+	for( int i=arcTempDir.length();i<tmpDir.length(); i=tmpDir.find("/",i+1)){
 		::mkdir(tmpDir.left(i).local8Bit(),permissions);
 	}
 	
@@ -199,7 +199,7 @@ void kio_krarcProtocol::put(const KUrl& url,int permissions,bool overwrite,bool 
 	QString tmpFile = arcTempDir + arcDir.mid(1) + url.path().mid(url.path().findRev("/")+1);
 	
 	QString tmpDir = arcTempDir+arcDir.mid(1)+"/";
-	for( unsigned int i=arcTempDir.length();i<tmpDir.length(); i=tmpDir.find("/",i+1)){
+	for( int i=arcTempDir.length();i<tmpDir.length(); i=tmpDir.find("/",i+1)){
 		QDir("/").mkdir(tmpDir.left(i));
 	}
 	int fd;
@@ -676,7 +676,7 @@ bool kio_krarcProtocol::setArcFile(const KUrl& url){
 	   during that period. */
 	if( archiveChanging )
 		archiveChanged = true;
-	archiveChanging = ( currTime == arcFile->time( KIO::UDSEntry::UDS_MODIFICATION_TIME ) );
+	archiveChanging = ( currTime == (time_t)arcFile->time( KFileItem::ModificationTime ).toTime_t() );
 	
 	arcPath = arcFile->url().path(KUrl::RemoveTrailingSlash);
 	arcType = detectArchive( encrypted, arcPath );
@@ -896,7 +896,7 @@ UDSEntryList* kio_krarcProtocol::addNewDir(QString path){
 	entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, mode & S_IFMT ); // keep file type only
 	entry.insert( KIO::UDSEntry::UDS_ACCESS, mode & 07777 ); // keep permissions only
 	entry.insert( KIO::UDSEntry::UDS_SIZE, 0 );
-	entry.insert( KIO::UDSEntry::UDS_MODIFICATION_TIME, arcFile->time(KIO::UDSEntry::UDS_MODIFICATION_TIME) );
+	entry.insert( KIO::UDSEntry::UDS_MODIFICATION_TIME, arcFile->time(KFileItem::ModificationTime ).toTime_t() );
 	
 	dir->append(entry);
 	
@@ -1384,7 +1384,7 @@ QString kio_krarcProtocol::detectArchive( bool &encrypted, QString fileName ) {
 			if( endPtr > sizeMax )
 				continue;
 			
-			unsigned int j=0;
+			int j=0;
 			for(; j != detectionString.length(); j++ ) {
 				if( detectionString[ j ] == '?' )
 					continue;
@@ -1519,7 +1519,7 @@ void kio_krarcProtocol::checkOutputForPassword( K3Process *proc,char *buf,int le
 	
 	QStringList lines = QStringList::split( '\n', checkable );
 	lastData = lines[ lines.count() - 1 ];
-	for( unsigned i=0; i != lines.count(); i++ ) {
+	for( int i=0; i != lines.count(); i++ ) {
 		QString line = lines[ i ].trimmed().toLower();
 		int ndx = line.find( "testing" );
 		if( ndx >=0 )
@@ -1616,7 +1616,7 @@ QString kio_krarcProtocol::convertName( QString name ) {
 QString kio_krarcProtocol::escape( QString name ) {    
 	const QString evilstuff = "\\\"'`()[]{}!?;$&<>| ";		// stuff that should get escaped
 	
-	for ( unsigned int i = 0; i < evilstuff.length(); ++i )
+	for ( int i = 0; i < evilstuff.length(); ++i )
 		name.replace( evilstuff[ i ], ('\\' + evilstuff[ i ]) );
 	
 	return name;

@@ -379,7 +379,7 @@ void kio_isoProtocol::getFile( const KIsoFile *isoFileEntry, const QString &path
             nblocks = (fullsize + block_size - 1) >> block_shift;
             ptrblock_bytes = (nblocks+1) * 4;
             pointer_block=isoFileEntry->data( hdr->header_size << 2, ptrblock_bytes );
-            if (pointer_block.size() == ptrblock_bytes )
+            if ((unsigned long)pointer_block.size() == ptrblock_bytes )
             {
                 inbuf.resize(block_size2);
                 if( inbuf.size() )
@@ -422,7 +422,7 @@ void kio_isoProtocol::getFile( const KIsoFile *isoFileEntry, const QString &path
                 }
 
                 inbuf=isoFileEntry->data(cstart, csize);
-                if (inbuf.size() != csize) {
+                if ((unsigned long)inbuf.size() != csize) {
                     break;
                 }
 

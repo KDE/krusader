@@ -212,7 +212,7 @@ KAction *Krusader::actShowJSConsole = 0;
 #endif
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
-Krusader::Krusader() : KParts::MainWindow(0,0,Qt::WType_TopLevel|Qt::WDestructiveClose|Qt::WStyle_ContextHelp),
+Krusader::Krusader() : KParts::MainWindow(0,Qt::WType_TopLevel|Qt::WDestructiveClose|Qt::WStyle_ContextHelp),
    /* PORTME DCOPObject("Krusader-Interface"),*/ status(NULL), sysTray( 0 ), isStarting( true ), isExiting( false ), directExit( false ) {
    // parse command line arguments
    KCmdLineArgs * args = KCmdLineArgs::parsedArgs();
@@ -292,7 +292,7 @@ Krusader::Krusader() : KParts::MainWindow(0,0,Qt::WType_TopLevel|Qt::WDestructiv
       leftActiveTab = 0;
 
       // make sure left or right are not relative paths
-      for(unsigned int i = 0; i != leftTabs.count(); i++ )
+      for(int i = 0; i != leftTabs.count(); i++ )
       {
         leftTabs[ i ] = leftTabs[ i ].trimmed();
         if( !leftTabs[ i ].startsWith( "/" ) && leftTabs[ i ].find( ":/" ) < 0 )
@@ -307,7 +307,7 @@ Krusader::Krusader() : KParts::MainWindow(0,0,Qt::WType_TopLevel|Qt::WDestructiv
       rightActiveTab = 0;
 
       // make sure left or right are not relative paths
-      for(unsigned int i = 0; i != rightTabs.count(); i++ )
+      for(int i = 0; i != rightTabs.count(); i++ )
       {
         rightTabs[ i ] = rightTabs[ i ].trimmed();
         if( !rightTabs[ i ].startsWith( "/" ) && rightTabs[ i ].find( ":/" ) < 0 )

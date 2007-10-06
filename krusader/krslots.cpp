@@ -691,7 +691,7 @@ void KRslots::slotCombine(){
   bool          unixStyle = false;
   bool          windowsStyle = false;
   QString       commonName = QString();
-  unsigned int  commonLength = 0;
+  int           commonLength = 0;
 
   ((ListPanel*)ACTIVE_PANEL)->getSelectedNames(&list);
   if ( list.isEmpty() )

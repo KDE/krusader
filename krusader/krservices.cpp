@@ -162,7 +162,7 @@ QString KrServices::quote( QString name ) {
 
 QStringList KrServices::quote( const QStringList& names ) {
 	QStringList result;
-	for (unsigned i=0; i<names.size(); ++i)
+	for (int i=0; i<names.size(); ++i)
 		result.append(quote(names[i]));
 	return result;
 }
@@ -170,7 +170,7 @@ QStringList KrServices::quote( const QStringList& names ) {
 QString KrServices::escape( QString name ) {
   const QString evilstuff = "\\\"'`()[]{}!?;$&<>| \t\r\n";		// stuff that should get escaped
      
-    for ( unsigned int i = 0; i < evilstuff.length(); ++i )
+    for ( int i = 0; i < evilstuff.length(); ++i )
         name.replace( evilstuff[ i ], ('\\' + evilstuff[ i ]) );
 
   return name;
@@ -178,7 +178,7 @@ QString KrServices::escape( QString name ) {
 
 
 // ------- KEasyProcess
-KEasyProcess::KEasyProcess(QObject *parent, const char *name): K3Process(parent) {
+KEasyProcess::KEasyProcess(QObject *parent): K3Process(parent) {
 	init();
 }
 
