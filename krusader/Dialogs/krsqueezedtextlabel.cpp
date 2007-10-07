@@ -10,6 +10,7 @@
 
 KrSqueezedTextLabel::KrSqueezedTextLabel(QWidget *parent):
   KSqueezedTextLabel(parent), acceptDrops( false ), _index(-1), _length(-1) {
+  setAutoFillBackground( true );
 }
 
 
@@ -78,6 +79,7 @@ void KrSqueezedTextLabel::setText( const QString &text, int index, int length ) 
 	_index=index;
 	_length=length;
 	fullText = text;
+	KSqueezedTextLabel::setText( fullText );
 	squeezeTextToLabel(_index,_length);
 }
 

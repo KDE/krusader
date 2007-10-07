@@ -131,7 +131,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
    status = new KrSqueezedTextLabel( this );
    KConfigGroup group( krConfig, "Look&Feel" );
    status->setFont( group.readEntry( "Filelist Font", *_FilelistFont ) );
-   status->setBackgroundMode( Qt::PaletteBackground );
+   status->setBackgroundRole( QPalette::Window );
    status->setFrameStyle( Q3Frame::Box | Q3Frame::Raised );
    status->setLineWidth( 1 );		// a nice 3D touch :-)
    status->setText( "" );        // needed for initialization code!
@@ -163,7 +163,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
 	totals = new KrSqueezedTextLabel( this );
    totals->setFont( group.readEntry( "Filelist Font", *_FilelistFont ) );
    totals->setFrameStyle( Q3Frame::Box | Q3Frame::Raised );
-   totals->setBackgroundMode( Qt::PaletteBackground );
+   totals->setBackgroundRole( QPalette::Window );
    totals->setLineWidth( 1 );		// a nice 3D touch :-)
    totals->setMaximumHeight( sheight );
    totals->enableDrops( true );
@@ -584,8 +584,8 @@ void ListPanel::slotFocusOnMe() {
 
    // take care of the 'otherpanel'
    QPalette q( otherPanel->status->palette() );
-   q.setColor( QColorGroup::Foreground, KGlobalSettings::textColor() );
-   q.setColor( QColorGroup::Background, KGlobalSettings::baseColor() );
+   q.setColor( QPalette::WindowText, KGlobalSettings::textColor() );
+   q.setColor( QPalette::Window, KGlobalSettings::baseColor() );
 
    otherPanel->status->setPalette( q );
    otherPanel->totals->setPalette( q );
@@ -593,8 +593,8 @@ void ListPanel::slotFocusOnMe() {
 
    // now, take care of this panel
    QPalette p( status->palette() );
-   p.setColor( QColorGroup::Foreground, KGlobalSettings::highlightedTextColor() );
-   p.setColor( QColorGroup::Background, KGlobalSettings::highlightColor() );
+   p.setColor( QPalette::WindowText, KGlobalSettings::highlightedTextColor() );
+   p.setColor( QPalette::Window, KGlobalSettings::highlightColor() );
    status->setPalette( p );
    totals->setPalette( p );
 
