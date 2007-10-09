@@ -72,6 +72,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kurlrequester.h>
 #include <kurl.h> 
 #include <kmountpoint.h>
+#include <kcolorscheme.h>
 
 // Krusader includes
 #include "../krusader.h"
@@ -584,8 +585,8 @@ void ListPanel::slotFocusOnMe() {
 
    // take care of the 'otherpanel'
    QPalette q( otherPanel->status->palette() );
-   q.setColor( QPalette::WindowText, KGlobalSettings::textColor() );
-   q.setColor( QPalette::Window, KGlobalSettings::baseColor() );
+   q.setColor( QPalette::WindowText, KColorScheme(QPalette::Active, KColorScheme::View).foreground().color() );
+   q.setColor( QPalette::Window, KColorScheme(QPalette::Active, KColorScheme::View).background().color() );
 
    otherPanel->status->setPalette( q );
    otherPanel->totals->setPalette( q );
@@ -593,8 +594,8 @@ void ListPanel::slotFocusOnMe() {
 
    // now, take care of this panel
    QPalette p( status->palette() );
-   p.setColor( QPalette::WindowText, KGlobalSettings::highlightedTextColor() );
-   p.setColor( QPalette::Window, KGlobalSettings::highlightColor() );
+   p.setColor( QPalette::WindowText, KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color() );
+   p.setColor( QPalette::Window, KColorScheme(QPalette::Active, KColorScheme::Selection).background().color() );
    status->setPalette( p );
    totals->setPalette( p );
 

@@ -56,7 +56,7 @@ class FilterTabs : public QObject
     };
 
     static FilterTabs * addTo( QTabWidget *tabWidget, int props = FilterTabs::Default );
-    static KRQuery      getQuery( QWidget *parent = 0, const char *name = 0 );
+    static KRQuery      getQuery( QWidget *parent = 0 );
 
     FilterBase *get( QString name );
 

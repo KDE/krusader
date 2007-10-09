@@ -123,9 +123,9 @@ FilterBase * FilterTabs::get( QString name )
   return 0;
 }
 
-KRQuery FilterTabs::getQuery( QWidget *parent, const char *name )
+KRQuery FilterTabs::getQuery( QWidget *parent )
 {
-  FilterDialog dialog( parent, name );
+  FilterDialog dialog( parent );
   return dialog.getQuery();
 }
 

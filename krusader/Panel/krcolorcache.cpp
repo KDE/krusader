@@ -30,7 +30,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krcolorcache.h"
 #include "../krusader.h"
 #include "../defaults.h"
-#include <kglobalsettings.h> 
+#include <kcolorscheme.h> 
 #include <qfile.h> 
 //Added by qt3to4:
 #include <Q3ValueList>
@@ -405,13 +405,13 @@ QColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
 		// KDE default? Getcolors from KGlobalSettings.
 		bool enableAlternateBackground = m_colorSettings.getBoolValue("Enable Alternate Background", _AlternateBackground);
 		QColor background = enableAlternateBackground && type.m_alternateBackgroundColor ? 
-			KGlobalSettings::alternateBackgroundColor()
-			: KGlobalSettings::baseColor();
+			KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::AlternateBackground).color()
+			: KColorScheme(QPalette::Active, KColorScheme::View).background().color();
 		result.setColor(QColorGroup::Base, background);
 		result.setColor(QColorGroup::Background, background);
-		result.setColor(QColorGroup::Text, KGlobalSettings::textColor());
-		result.setColor(QColorGroup::HighlightedText, KGlobalSettings::highlightedTextColor());
-		result.setColor(QColorGroup::Highlight, KGlobalSettings::highlightColor());
+		result.setColor(QColorGroup::Text, KColorScheme(QPalette::Active, KColorScheme::View).foreground().color() );
+		result.setColor(QColorGroup::HighlightedText, KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color());
+		result.setColor(QColorGroup::Highlight, KColorScheme(QPalette::Active, KColorScheme::Selection).background().color());
 		return result;
 	}
 	bool markCurrentAlways = m_colorSettings.getBoolValue("Show Current Item Always", _ShowCurrentItemAlways);
@@ -528,7 +528,7 @@ const QColor & KrColorCacheImpl::setColorIfContrastIsSufficient(const QColor & b
 
 QColor KrColorCacheImpl::getForegroundColor(bool isActive) const
 {
-	QColor color = KGlobalSettings::textColor();
+	QColor color = KColorScheme(QPalette::Active, KColorScheme::View).foreground().color();
 	SETCOLOR(color, m_colorSettings.getColorValue("Foreground"));
 	if (!isActive) SETCOLOR(color, m_colorSettings.getColorValue("Inactive Foreground"));
 	return color;
@@ -548,7 +548,7 @@ QColor KrColorCacheImpl::getSpecialForegroundColor(const QString & type, bool is
 
 QColor KrColorCacheImpl::getBackgroundColor(bool isActive) const
 {
-	QColor color = KGlobalSettings::baseColor();
+	QColor color = KColorScheme(QPalette::Active, KColorScheme::View).background().color();
 	SETCOLOR(color, m_colorSettings.getColorValue("Background"));
 	if (!isActive) SETCOLOR(color, m_colorSettings.getColorValue("Inactive Background"));
 	return color;
@@ -566,9 +566,9 @@ QColor KrColorCacheImpl::getAlternateBackgroundColor(bool isActive) const
 		m_colorSettings.getColorValue("Alternate Background") 
 		: m_colorSettings.getColorValue("Inactive Alternate Background");
 	if (!color.isValid())
-		color = KGlobalSettings::alternateBackgroundColor();
+		color = KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::AlternateBackground).color();
 	if (!color.isValid())
-		color = KGlobalSettings::baseColor();
+		color = KColorScheme(QPalette::Active, KColorScheme::View).background().color();
 	return color;
 }
 
@@ -578,7 +578,7 @@ QColor KrColorCacheImpl::getMarkedForegroundColor(bool isActive) const
 	if (m_colorSettings.getColorTextValue(colorName) == "transparent")
 		return QColor();
 	if (isActive && m_colorSettings.getColorTextValue(colorName) == "")
-		return KGlobalSettings::highlightedTextColor();
+		return KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color();
 	if (!isActive && m_colorSettings.getColorTextValue(colorName) == "")
 		return getMarkedForegroundColor(true);
 	return m_colorSettings.getColorValue(colorName);
@@ -587,7 +587,7 @@ QColor KrColorCacheImpl::getMarkedForegroundColor(bool isActive) const
 QColor KrColorCacheImpl::getMarkedBackgroundColor(bool isActive) const
 {
 	if (isActive && m_colorSettings.getColorTextValue("Marked Background") == "")
-		return KGlobalSettings::highlightColor();
+		return KColorScheme(QPalette::Active, KColorScheme::Selection).background().color();
 	if (isActive && m_colorSettings.getColorTextValue("Marked Background") == "Background")
 		return getBackgroundColor(true);
 	if (!isActive && m_colorSettings.getColorTextValue("Inactive Marked Background") == "")

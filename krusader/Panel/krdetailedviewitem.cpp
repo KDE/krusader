@@ -191,7 +191,7 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
    const QPixmap *pm = listView()->viewport()->backgroundPixmap();
    if (pm && !pm->isNull())
    {
-         _cg.setBrush(QColorGroup::Base, QBrush(backgroundColor(), *pm));
+         _cg.setBrush(QColorGroup::Base, QBrush(backgroundColor( column ), *pm));
          p->setBrushOrigin( -listView()->contentsX(), -listView()->contentsY() );
    }
    else if (isAlternate())

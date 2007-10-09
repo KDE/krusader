@@ -51,7 +51,7 @@
 #include <Q3Frame>
 #include <Q3VBoxLayout>
 #include <kiconloader.h>
-#include <kglobalsettings.h>
+#include <kcolorscheme.h>
 #include <kcombobox.h>
 #include <kmessagebox.h>
 #include <kio/global.h>
@@ -335,12 +335,12 @@ void PackGUIBase::expand() {
 
 void PackGUIBase::checkConsistency() {
     if( password->text().isEmpty() && passwordAgain->text().isEmpty()) {
-      passwordConsistencyLabel->setPaletteForegroundColor( KGlobalSettings::textColor() );
+      passwordConsistencyLabel->setPaletteForegroundColor( KColorScheme(QPalette::Active, KColorScheme::View).foreground().color() );
       passwordConsistencyLabel->setText( i18n( "No password specified" ) );
     }
     else
     if( password->text() == passwordAgain->text() ) {
-      passwordConsistencyLabel->setPaletteForegroundColor( KGlobalSettings::textColor() );
+      passwordConsistencyLabel->setPaletteForegroundColor( KColorScheme(QPalette::Active, KColorScheme::View).foreground().color() );
       passwordConsistencyLabel->setText( i18n( "The passwords are equal" ) );
     }
     else {

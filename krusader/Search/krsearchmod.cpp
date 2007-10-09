@@ -82,7 +82,7 @@ void KRSearchMod::start()
   KUrl::List whereToSearch = query->searchInDirs();
 
   // search every dir that needs to be searched
-  for ( unsigned int i = 0; i < whereToSearch.count(); ++i )
+  for ( int i = 0; i < whereToSearch.count(); ++i )
       scanURL( whereToSearch [ i ] );
 
   emit finished();

@@ -33,6 +33,7 @@
 //Added by qt3to4:
 #include <Q3GridLayout>
 #include <QLabel>
+#include <kcolorscheme.h>
 using namespace std;
 
 #define PS(x) _supported.contains(x)>0
@@ -87,7 +88,7 @@ void KrResultTable::adjustRow(Q3GridLayout* grid)
 
     // Paint uneven rows in alternate color
     if( ((col/_numColumns)%2) )
-      child->widget()->setPaletteBackgroundColor( KGlobalSettings::baseColor() );
+      child->widget()->setPaletteBackgroundColor( KColorScheme(QPalette::Active, KColorScheme::View).background().color() );
 
     ++it;
     ++col;

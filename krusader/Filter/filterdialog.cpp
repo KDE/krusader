@@ -36,7 +36,7 @@
 //Added by qt3to4:
 #include <Q3GridLayout>
 
-FilterDialog::FilterDialog ( QWidget *parent, const char *name )
+FilterDialog::FilterDialog ( QWidget *parent )
 		: KDialog ( parent )
 {
 	setCaption ( i18n ( "Krusader::Choose Files" ) );

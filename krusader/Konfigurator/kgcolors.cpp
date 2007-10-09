@@ -34,7 +34,7 @@
 #include <kmessagebox.h>
 #include <klocale.h>
 #include <kfiledialog.h>
-#include <kglobalsettings.h>
+#include <kcolorscheme.h>
 #include <kstandarddirs.h>
 #include <q3hbox.h>
 #include <q3header.h>
@@ -98,16 +98,16 @@ KgColors::KgColors( bool first, QWidget* parent ) :
 
   ADDITIONAL_COLOR transparent  = { i18n("Transparent"),       Qt::white, "transparent" };
 
-  addColorSelector( "Foreground",                 i18n( "Foreground:" ),                  KGlobalSettings::textColor()                                                );
+  addColorSelector( "Foreground",                 i18n( "Foreground:" ),                  KColorScheme(QPalette::Active, KColorScheme::View).foreground().color()     );
   addColorSelector( "Directory Foreground",       i18n( "Directory foreground:" ),        getColorSelector( "Foreground" )->getColor(), i18n( "Same as foreground" )  );
   addColorSelector( "Executable Foreground",      i18n( "Executable foreground:" ),       getColorSelector( "Foreground" )->getColor(), i18n( "Same as foreground" )  );
   addColorSelector( "Symlink Foreground",         i18n( "Symbolic link foreground:" ),    getColorSelector( "Foreground" )->getColor(), i18n( "Same as foreground" )  );
   addColorSelector( "Invalid Symlink Foreground", i18n( "Invalid symlink foreground:" ),  getColorSelector( "Foreground" )->getColor(), i18n( "Same as foreground" )  );
-  addColorSelector( "Background",                 i18n( "Background:" ),                  KGlobalSettings::baseColor()                                                );
+  addColorSelector( "Background",                 i18n( "Background:" ),                  KColorScheme(QPalette::Active, KColorScheme::View).background().color()     );
   ADDITIONAL_COLOR sameAsBckgnd = { i18n("Same as background"), getColorSelector( "Background" )->getColor(), "Background" };
-  addColorSelector( "Alternate Background",       i18n( "Alternate background:" ),        KGlobalSettings::alternateBackgroundColor(),"", &sameAsBckgnd, 1            );
-  addColorSelector( "Marked Foreground",          i18n( "Selected foreground:" ),           KGlobalSettings::highlightedTextColor(), "", &transparent, 1                );
-  addColorSelector( "Marked Background",          i18n( "Selected background:" ),           KGlobalSettings::highlightColor(), "", &sameAsBckgnd, 1                     );
+  addColorSelector( "Alternate Background",       i18n( "Alternate background:" ),        KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::AlternateBackground).color(),"", &sameAsBckgnd, 1            );
+  addColorSelector( "Marked Foreground",          i18n( "Selected foreground:" ),         KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color(), "", &transparent, 1                );
+  addColorSelector( "Marked Background",          i18n( "Selected background:" ),         KColorScheme(QPalette::Active, KColorScheme::Selection).background().color(), "", &sameAsBckgnd, 1                     );
   ADDITIONAL_COLOR sameAsAltern = { i18n("Same as alt. background"), getColorSelector( "Alternate Background" )->getColor(), "Alternate Background" };
   addColorSelector( "Alternate Marked Background",i18n( "Alternate selected background:" ), getColorSelector( "Marked Background" )->getColor(), i18n( "Same as selected background" ), &sameAsAltern, 1 );
   addColorSelector( "Current Foreground",         i18n( "Current foreground:" ),          Qt::white,                                    i18n( "Not used" )            );
@@ -191,19 +191,19 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   colorsGrid->setSpacing( 0 );
   colorsGrid->setMargin( 2 );
 
-  ADDITIONAL_COLOR KDEDefaultBase = { i18n("KDE default"), KGlobalSettings::baseColor(), "KDE default" };
-  ADDITIONAL_COLOR KDEDefaultFore = { i18n("KDE default"), KGlobalSettings::textColor(), "KDE default" };
+  ADDITIONAL_COLOR KDEDefaultBase = { i18n("KDE default"), KColorScheme(QPalette::Active, KColorScheme::View).background().color(), "KDE default" };
+  ADDITIONAL_COLOR KDEDefaultFore = { i18n("KDE default"), KColorScheme(QPalette::Active, KColorScheme::View).foreground().color(), "KDE default" };
 
   offset = endOfPanelColors = itemList.count();
 
   addColorSelector( "Synchronizer Equals Foreground", i18n( "Equals foreground:" ), Qt::black, QString(), &KDEDefaultFore, 1 );
-  addColorSelector( "Synchronizer Equals Background", i18n( "Equals background:" ), KGlobalSettings::baseColor(), QString(), &KDEDefaultBase, 1 );
+  addColorSelector( "Synchronizer Equals Background", i18n( "Equals background:" ), KColorScheme(QPalette::Active, KColorScheme::View).background().color(), QString(), &KDEDefaultBase, 1 );
   addColorSelector( "Synchronizer Differs Foreground", i18n( "Differing foreground:" ), Qt::red, QString(), &KDEDefaultFore, 1 );
-  addColorSelector( "Synchronizer Differs Background", i18n( "Differing background:" ), KGlobalSettings::baseColor(), QString(), &KDEDefaultBase, 1 );
+  addColorSelector( "Synchronizer Differs Background", i18n( "Differing background:" ), KColorScheme(QPalette::Active, KColorScheme::View).background().color(), QString(), &KDEDefaultBase, 1 );
   addColorSelector( "Synchronizer LeftCopy Foreground", i18n( "Copy to left foreground:" ), Qt::blue, QString(), &KDEDefaultFore, 1 );
-  addColorSelector( "Synchronizer LeftCopy Background", i18n( "Copy to left background:" ), KGlobalSettings::baseColor(), QString(), &KDEDefaultBase, 1 );
+  addColorSelector( "Synchronizer LeftCopy Background", i18n( "Copy to left background:" ), KColorScheme(QPalette::Active, KColorScheme::View).background().color(), QString(), &KDEDefaultBase, 1 );
   addColorSelector( "Synchronizer RightCopy Foreground", i18n( "Copy to right foreground:" ), Qt::darkGreen, QString(), &KDEDefaultFore, 1 );
-  addColorSelector( "Synchronizer RightCopy Background", i18n( "Copy to right background:" ), KGlobalSettings::baseColor(), QString(), &KDEDefaultBase, 1 );
+  addColorSelector( "Synchronizer RightCopy Background", i18n( "Copy to right background:" ), KColorScheme(QPalette::Active, KColorScheme::View).background().color(), QString(), &KDEDefaultBase, 1 );
   addColorSelector( "Synchronizer Delete Foreground", i18n( "Delete foreground:" ), Qt::white, QString(), &KDEDefaultFore, 1 );
   addColorSelector( "Synchronizer Delete Background", i18n( "Delete background:" ), Qt::red, QString(), &KDEDefaultBase, 1 );
 

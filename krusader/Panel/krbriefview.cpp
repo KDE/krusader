@@ -48,6 +48,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QResizeEvent>
 #include <QMouseEvent>
 #include <QEvent>
+#include <kcolorscheme.h>
 
 #define CANCEL_TWO_CLICK_RENAME {singleClicked = false;renameTimer.stop();}
 #define PROPS	 static_cast<KrBriefViewProperties*>(_properties)	
@@ -1223,7 +1224,7 @@ void KrBriefView::refreshColors() {
       setPaletteBackgroundColor( cg.background() );
    } else {
       // KDE default is choosen: set back the background color
-      setPaletteBackgroundColor( KGlobalSettings::baseColor() );
+      setPaletteBackgroundColor( KColorScheme(QPalette::Active, KColorScheme::View).background().color() );
    }
    slotUpdate();
 }

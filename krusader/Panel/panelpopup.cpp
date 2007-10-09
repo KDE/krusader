@@ -24,6 +24,7 @@
 #include <q3header.h>
 #include <klineedit.h>
 #include <kio/jobclasses.h>
+#include <kcolorscheme.h>
 #include "../KViewer/kimagefilepreview.h"
 #include "../KViewer/panelviewer.h"
 #include "../KViewer/diskusageviewer.h"
@@ -55,8 +56,8 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
    // --- hack: setup colors to be the same as an inactive panel
 	dataLine->setBackgroundRole( QPalette::Window );
 	QPalette q( dataLine->palette() );
-   q.setColor( QPalette::WindowText, KGlobalSettings::textColor() );
-   q.setColor( QPalette::Window, KGlobalSettings::baseColor() );
+   q.setColor( QPalette::WindowText, KColorScheme(QPalette::Active, KColorScheme::View).foreground().color() );
+   q.setColor( QPalette::Window, KColorScheme(QPalette::Active, KColorScheme::View).background().color() );
    dataLine->setPalette( q );
    dataLine->setFrameStyle( Q3Frame::Box | Q3Frame::Raised );
    dataLine->setLineWidth( 1 );		// a nice 3D touch :-)

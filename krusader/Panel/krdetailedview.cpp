@@ -58,6 +58,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kmessagebox.h>
 #include <klocale.h>
 #include <kmenu.h>
+#include <kcolorscheme.h>
 #include <q3dict.h>
 #include <qstyle.h>
 
@@ -1327,9 +1328,9 @@ void KrDetailedView::refreshColors() {
       setAlternateBackground( cg.background() );
    } else {
       // KDE default is choosen: set back the background color
-      setPaletteBackgroundColor( KGlobalSettings::baseColor() );
+      setPaletteBackgroundColor( KColorScheme(QPalette::Active, KColorScheme::View).background().color() );
       // Set the alternate color to its default or to an invalid color, to turn alternate the background off.
-      setAlternateBackground( alternateBackgroundEnabled ? KGlobalSettings::alternateBackgroundColor() : QColor() );
+      setAlternateBackground( alternateBackgroundEnabled ? KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::AlternateBackground).color() : QColor() );
    }
 }
 
