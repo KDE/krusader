@@ -175,7 +175,7 @@ RadialMap::Map::colorise()
             case 2000: //HACK for summary view
 
                if( (*it)->file()->name() == "Used" ) {
-                  cb = QApplication::palette().active().color( QColorGroup::Highlight );
+                  cb = QApplication::palette().highlight().color();
                   cb.hsv( &h, &s1, &v1 );
 
                   if( s1 > 80 )

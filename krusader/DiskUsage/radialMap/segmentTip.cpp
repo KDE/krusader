@@ -69,7 +69,7 @@ SegmentTip::moveto( QPoint p, QWidget &canvas, bool placeAbove )
     paint.drawRect( rect() );
     paint.end();
 
-  m_pixmap = KPixmapEffect::fade( m_pixmap, 0.6, QToolTip::palette().color( QPalette::Active, QColorGroup::Background ) );
+  m_pixmap = KPixmapEffect::fade( m_pixmap, 0.6, QToolTip::palette().color( QPalette::Active, QPalette::Window ) );
 
   paint.begin( &m_pixmap );
   paint.drawText( rect(), Qt::AlignCenter, m_text );

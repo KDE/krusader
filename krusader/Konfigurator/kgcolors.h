@@ -134,6 +134,7 @@ private:
     {
       QColorGroup _cg( cg );
       _cg.setColor( QColorGroup::Base, defaultBackground );
+      _cg.setColor( QPalette::Window, defaultBackground );
       _cg.setColor( QColorGroup::Text, defaultForeground );
       Q3ListViewItem::paintCell(p, _cg, column, width, align);
     }

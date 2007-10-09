@@ -53,10 +53,10 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	KConfigGroup lg( krConfig, "Look&Feel" );
    dataLine->setFont( lg.readEntry( "Filelist Font", *_FilelistFont ) );
    // --- hack: setup colors to be the same as an inactive panel
-	dataLine->setBackgroundMode( Qt::PaletteBackground );
+	dataLine->setBackgroundRole( QPalette::Window );
 	QPalette q( dataLine->palette() );
-   q.setColor( QColorGroup::Foreground, KGlobalSettings::textColor() );
-   q.setColor( QColorGroup::Background, KGlobalSettings::baseColor() );
+   q.setColor( QPalette::WindowText, KGlobalSettings::textColor() );
+   q.setColor( QPalette::Window, KGlobalSettings::baseColor() );
    dataLine->setPalette( q );
    dataLine->setFrameStyle( Q3Frame::Box | Q3Frame::Raised );
    dataLine->setLineWidth( 1 );		// a nice 3D touch :-)

@@ -105,7 +105,10 @@ public:
         if( textColor.isValid() )
           _cg.setColor(QColorGroup::Text, textColor );
         if( baseColor.isValid() )
+        {
+          _cg.setColor(QPalette::Window, baseColor );
           _cg.setColor(QColorGroup::Base, baseColor );
+        }
         Q3ListViewItem::paintCell( p, _cg, column, width, align );
       };
   };

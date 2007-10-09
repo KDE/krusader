@@ -217,6 +217,8 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   previewGrid = createGridLayout( previewGrp->layout() );
 
   preview = new Q3ListView( previewGrp, "colorPreView" );
+  preview->setBackgroundRole( QPalette::Window );
+  preview->setAutoFillBackground( true );
 
   preview->setShowSortIndicator(false);
   preview->setSorting(-1);

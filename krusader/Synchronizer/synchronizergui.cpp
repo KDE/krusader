@@ -1305,6 +1305,9 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   KConfigGroup gl( krConfig, "Look&Feel");
   syncList->setFont( gl.readEntry("Filelist Font",*_FilelistFont));
 
+  syncList->setBackgroundRole( QPalette::Window );
+  syncList->setAutoFillBackground( true );
+
   syncList->setAllColumnsShowFocus(true);
   syncList->setMultiSelection(true);
   syncList->setSelectionMode(Q3ListView::Extended);
