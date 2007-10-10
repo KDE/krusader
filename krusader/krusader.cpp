@@ -355,6 +355,7 @@ Krusader::Krusader() : KParts::MainWindow(0,Qt::WType_TopLevel|Qt::WDestructiveC
 
    // create a status bar
    status = new KrusaderStatus( this );
+   setStatusBar( status );
    Q3WhatsThis::add( status, i18n( "Statusbar will show basic information "
                                           "about file below mouse pointer." ) );
 
