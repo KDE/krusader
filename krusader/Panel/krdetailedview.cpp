@@ -1332,6 +1332,7 @@ void KrDetailedView::refreshColors() {
       // Set the alternate color to its default or to an invalid color, to turn alternate the background off.
       setAlternateBackground( alternateBackgroundEnabled ? KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::AlternateBackground).color() : QColor() );
    }
+   updateView();
 }
 
 bool KrDetailedView::event( QEvent *e ) {
