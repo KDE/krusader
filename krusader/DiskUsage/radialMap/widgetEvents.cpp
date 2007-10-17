@@ -164,21 +164,21 @@ RadialMap::Widget::mousePressEvent( QMouseEvent *e )
 
          if( isDir )
          {
-           actKonq = popup.addAction( SmallIconSet( "konqueror" ), i18n( "Open &Konqueror Here" ) );
+           actKonq = popup.addAction( KIcon( "konqueror" ), i18n( "Open &Konqueror Here" ) );
             if( url.protocol() == "file" )
-               actKonsole = popup.addAction( SmallIconSet( "konsole" ), i18n( "Open &Konsole Here" ) );
+               actKonsole = popup.addAction( KIcon( "konsole" ), i18n( "Open &Konsole Here" ) );
 
             if( m_focus->file() != m_tree )
             {
                popup.addSeparator();
-               actViewMag = popup.addAction( SmallIconSet( "viewmag" ), i18n( "&Center Map Here" ) );
+               actViewMag = popup.addAction( KIcon( "viewmag" ), i18n( "&Center Map Here" ) );
             }
          }
          else
-           actFileOpen = popup.addAction( SmallIconSet( "fileopen" ), i18n( "&Open" ) );
+           actFileOpen = popup.addAction( KIcon( "fileopen" ), i18n( "&Open" ) );
 
          popup.addSeparator();
-         actEditDel = popup.addAction( SmallIconSet( "editdelete" ), i18n( "&Delete" ) );
+         actEditDel = popup.addAction( KIcon( "editdelete" ), i18n( "&Delete" ) );
 
          QAction * result = popup.exec( e->globalPos() );
          if( result == 0 )
