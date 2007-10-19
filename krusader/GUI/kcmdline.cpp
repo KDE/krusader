@@ -92,7 +92,7 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
   cmdLine->setHistoryItems( list );
 
   connect( cmdLine, SIGNAL( returnPressed(const QString &) ), this, SLOT( slotRun() ) );
-  connect( cmdLine, SIGNAL( returnPressed(const QString &) ), cmdLine, SLOT( clearEdit() ) );
+  connect( cmdLine, SIGNAL( returnPressed(const QString &) ), cmdLine->lineEdit(), SLOT( clear() ) );
   connect( cmdLine, SIGNAL( returnToPanel() ), this, SLOT( slotReturnFocus() ));
 
   Q3WhatsThis::add

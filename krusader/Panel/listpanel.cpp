@@ -221,8 +221,8 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
    origin->setMode( KFile::Directory | KFile::ExistingOnly );
    connect( origin, SIGNAL( returnPressed( const QString& ) ), func, SLOT( openUrl( const QString& ) ) );
    connect( origin, SIGNAL( returnPressed( const QString& ) ), this, SLOT( slotFocusOnMe() ) );
-   connect( origin, SIGNAL( urlSelected( const QString& ) ), func, SLOT( openUrl( const QString& ) ) );
-   connect( origin, SIGNAL( urlSelected( const QString& ) ), this, SLOT( slotFocusOnMe() ) );
+   connect( origin, SIGNAL( urlSelected( const KUrl & ) ), func, SLOT( openUrl( const KUrl & ) ) );
+   connect( origin, SIGNAL( urlSelected( const KUrl & ) ), this, SLOT( slotFocusOnMe() ) );
    
 	// this is here on purpose, do not move up!
 	if (clearButton) {
