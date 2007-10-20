@@ -24,7 +24,7 @@
 #include <Q3HBoxLayout>
 #include <QCloseEvent>
 #include <Q3GridLayout>
-#include <Q3Frame>
+#include <QFrame>
 #include <QLabel>
 #include <Q3VBoxLayout>
 
@@ -99,9 +99,9 @@ KrProgress::KrProgress( KIO::Job* job )
   speedLabel = new QLabel(this);
   hBox->addWidget(speedLabel, 1);
 
-  Q3Frame *line = new Q3Frame( this );
-  line->setFrameShape( Q3Frame::HLine );
-  line->setFrameShadow( Q3Frame::Sunken );
+  QFrame *line = new QFrame( this );
+  line->setFrameShape( QFrame::HLine );
+  line->setFrameShadow( QFrame::Sunken );
   topLayout->addWidget( line );
 
   hBox = new Q3HBoxLayout();

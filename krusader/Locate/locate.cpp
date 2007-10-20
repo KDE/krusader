@@ -48,7 +48,7 @@
 //Added by qt3to4:
 #include <QKeyEvent>
 #include <Q3GridLayout>
-#include <Q3Frame>
+#include <QFrame>
 #include <kmessagebox.h>
 #include <kmenu.h>
 #include <qcursor.h>
@@ -146,8 +146,8 @@ LocateDlg::LocateDlg() : KDialog( 0 ), isFeedToListBox( false )
   caseSensitive->setChecked( group.readEntry("Case Sensitive", false) );
   grid->addWidget( hbox2, 1, 0 );
 
-  Q3Frame *line1 = new Q3Frame( widget, "locateLine1" );
-  line1->setFrameStyle( Q3Frame::HLine | Q3Frame::Sunken );
+  QFrame *line1 = new QFrame( widget );
+  line1->setFrameStyle( QFrame::HLine | QFrame::Sunken );
   grid->addWidget( line1, 2, 0 );
 
   resultList=new LocateListView( widget );  // create the main container
@@ -177,8 +177,8 @@ LocateDlg::LocateDlg() : KDialog( 0 ), isFeedToListBox( false )
            
   grid->addWidget( resultList, 3, 0 );
 
-  Q3Frame *line2 = new Q3Frame( widget, "locateLine2" );
-  line2->setFrameStyle( Q3Frame::HLine | Q3Frame::Sunken );
+  QFrame *line2 = new QFrame( widget );
+  line2->setFrameStyle( QFrame::HLine | QFrame::Sunken );
   grid->addWidget( line2, 4, 0 );
 
   enableButton( KDialog::User1, false );  /* disable the stop button */

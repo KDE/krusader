@@ -35,7 +35,7 @@
 //Added by qt3to4:
 #include <QLabel>
 #include <Q3ValueList>
-#include <Q3Frame>
+#include <QFrame>
 
 PercentalSplitter::PercentalSplitter( QWidget * parent, const char * name ) : QSplitter( parent, name ), label( 0 ), opaqueOldPos( -1 ) {
   setToolTip( toolTipString() );

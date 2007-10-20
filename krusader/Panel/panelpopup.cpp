@@ -13,7 +13,7 @@
 //Added by qt3to4:
 #include <QDropEvent>
 #include <Q3GridLayout>
-#include <Q3Frame>
+#include <QFrame>
 #include <Q3StrList>
 #include <Q3PopupMenu>
 #include <k3filetreeview.h>
@@ -59,7 +59,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
    q.setColor( QPalette::WindowText, KColorScheme(QPalette::Active, KColorScheme::View).foreground().color() );
    q.setColor( QPalette::Window, KColorScheme(QPalette::Active, KColorScheme::View).background().color() );
    dataLine->setPalette( q );
-   dataLine->setFrameStyle( Q3Frame::Box | Q3Frame::Raised );
+   dataLine->setFrameStyle( QFrame::Box | QFrame::Raised );
    dataLine->setLineWidth( 1 );		// a nice 3D touch :-)
    int sheight = QFontMetrics( dataLine->font() ).height() + 4;
    dataLine->setMaximumHeight( sheight );

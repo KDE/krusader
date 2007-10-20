@@ -40,7 +40,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QKeyEvent>
 #include <Q3ValueList>
 #include <QPixmap>
-#include <Q3Frame>
+#include <QFrame>
 #include <QDropEvent>
 #include <QHideEvent>
 #include <Q3PopupMenu>
@@ -133,7 +133,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
    KConfigGroup group( krConfig, "Look&Feel" );
    status->setFont( group.readEntry( "Filelist Font", *_FilelistFont ) );
    status->setBackgroundRole( QPalette::Window );
-   status->setFrameStyle( Q3Frame::Box | Q3Frame::Raised );
+   status->setFrameStyle( QFrame::Box | QFrame::Raised );
    status->setLineWidth( 1 );		// a nice 3D touch :-)
    status->setText( "" );        // needed for initialization code!
    status->enableDrops( true );
@@ -163,7 +163,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
    Q3HBoxLayout *totalsLayout = new Q3HBoxLayout;
 	totals = new KrSqueezedTextLabel( this );
    totals->setFont( group.readEntry( "Filelist Font", *_FilelistFont ) );
-   totals->setFrameStyle( Q3Frame::Box | Q3Frame::Raised );
+   totals->setFrameStyle( QFrame::Box | QFrame::Raised );
    totals->setBackgroundRole( QPalette::Window );
    totals->setLineWidth( 1 );		// a nice 3D touch :-)
    totals->setMaximumHeight( sheight );
@@ -192,7 +192,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
    
    quickSearch = new KrQuickSearch( this );
    quickSearch->setFont( group.readEntry( "Filelist Font", *_FilelistFont ) );
-   quickSearch->setFrameStyle( Q3Frame::Box | Q3Frame::Raised );
+   quickSearch->setFrameStyle( QFrame::Box | QFrame::Raised );
    quickSearch->setLineWidth( 1 );		// a nice 3D touch :-)
    quickSearch->setMaximumHeight( sheight );
 

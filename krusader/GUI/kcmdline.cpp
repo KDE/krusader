@@ -35,7 +35,7 @@
 #include <qmessagebox.h>
 //Added by qt3to4:
 #include <Q3GridLayout>
-#include <Q3Frame>
+#include <QFrame>
 #include <QLabel>
 #include <QKeyEvent>
 #include <k3process.h>
@@ -68,7 +68,7 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
   Q3WhatsThis::add
     ( path, i18n( "Name of directory where command will be processed." ) );
   path->setAlignment( Qt::AlignRight );
-  path->setFrameStyle( Q3Frame::Box | Q3Frame::Sunken );
+  path->setFrameStyle( QFrame::Box | QFrame::Sunken );
   path->setLineWidth( 1 );
   path->setFont( KGlobalSettings::generalFont() );
   int height = QFontMetrics( KGlobalSettings::generalFont() ).height();

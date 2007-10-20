@@ -347,7 +347,7 @@ public:
     *
     * @return             reference to the newly created spacer widget
     */
-  Q3Frame                  *createLine( QWidget *parent=0, bool vertical = false );
+  QFrame                   *createLine( QWidget *parent=0, bool vertical = false );
 
   /**
     * Creates a checkbox group. A checkbox group contains a lot of checkboxes.

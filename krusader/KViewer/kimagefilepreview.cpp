@@ -17,7 +17,7 @@
 #include <QPixmap>
 #include <QResizeEvent>
 #include <Q3VBoxLayout>
-#include <Q3Frame>
+#include <QFrame>
 
 #include <kapplication.h>
 #include <kglobal.h>
@@ -40,7 +40,7 @@ m_job( 0L ) {
 	Q3VBoxLayout *vb = new Q3VBoxLayout( this, KDialog::marginHint() );
 
 	imageLabel = new QLabel( this );
-	imageLabel->setFrameStyle( Q3Frame::Panel | Q3Frame::Sunken );
+	imageLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );
 	imageLabel->setAlignment( Qt::AlignHCenter | Qt::AlignVCenter );
 	imageLabel->setSizePolicy( QSizePolicy( QSizePolicy::Preferred, QSizePolicy::Ignored ) );
 	vb->addWidget( imageLabel, 1 );

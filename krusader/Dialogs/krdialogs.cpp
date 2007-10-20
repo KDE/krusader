@@ -38,7 +38,7 @@
 #include <qfontmetrics.h>
 #include <qtooltip.h>
 //Added by qt3to4:
-#include <Q3Frame>
+#include <QFrame>
 #include <QLabel>
 #include <Q3VBoxLayout>
 // KDE includes
@@ -144,26 +144,27 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy( const QString& urlName, const 
 	setWindowModality( modal ? Qt::WindowModal : Qt::NonModal );
 	showButtonSeparator( true );
 
-	Q3VBoxLayout * topLayout = new Q3VBoxLayout( this, 0, spacingHint() );
+	QWidget * widget = new QWidget( this );
+	Q3VBoxLayout * topLayout = new Q3VBoxLayout( widget, 0, spacingHint() );
 
-	QLabel * label = new QLabel( _text, this );
+	QLabel * label = new QLabel( _text, widget );
 	topLayout->addWidget( label );
 
-	urlRequester_ = new KUrlRequester( urlName, this );
+	urlRequester_ = new KUrlRequester( urlName, widget );
 	urlRequester_->setMinimumWidth( urlRequester_->sizeHint().width() * 3 );
 	topLayout->addWidget( urlRequester_ );
-	preserveAttrsCB = new QCheckBox(i18n("Preserve attributes (only for local targets)"), this);
+	preserveAttrsCB = new QCheckBox(i18n("Preserve attributes (only for local targets)"), widget);
 	preserveAttrsCB->setChecked( presAttrs );
 	topLayout->addWidget( preserveAttrsCB );
 	if( !baseURL.isEmpty() ) {
-		QFrame *line = new Q3Frame( this, "sepLine" );
-		line->setFrameStyle( Q3Frame::HLine | Q3Frame::Sunken );
+		QFrame *line = new QFrame( widget );
+		line->setFrameStyle( QFrame::HLine | QFrame::Sunken );
 		topLayout->addWidget( line );
-		copyDirStructureCB = new QCheckBox(i18n("Keep virtual directory structure"), this);
+		copyDirStructureCB = new QCheckBox(i18n("Keep virtual directory structure"), widget);
 		connect( copyDirStructureCB, SIGNAL( toggled( bool ) ), this, SLOT( slotDirStructCBChanged() ) );
 		copyDirStructureCB->setChecked( false );
 		topLayout->addWidget( copyDirStructureCB );
-		Q3HBox * hbox = new Q3HBox( this, "copyDirStructure" );
+		Q3HBox * hbox = new Q3HBox( widget, "copyDirStructure" );
 		new QLabel( i18n("Base URL:"),  hbox, "baseURLLabel" );
 		
 		baseUrlCombo = new QComboBox( hbox, "baseUrlRequester" );
@@ -180,6 +181,9 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy( const QString& urlName, const 
 		
 		topLayout->addWidget( hbox );
 	}
+	widget->setLayout( topLayout );
+	setMainWidget( widget );
+
 	urlRequester_->setFocus();
 	connect( urlRequester_->lineEdit(), SIGNAL(textChanged(const QString&)),
 		SLOT(slotTextChanged(const QString&)) );

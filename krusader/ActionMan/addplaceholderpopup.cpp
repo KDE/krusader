@@ -29,7 +29,7 @@
 #include <qtoolbutton.h>
 //Added by qt3to4:
 #include <Q3HBoxLayout>
-#include <Q3Frame>
+#include <QFrame>
 #include <Q3StrList>
 #include <Q3VBoxLayout>
 #include <klineedit.h>
@@ -180,9 +180,9 @@ ParameterDialog::ParameterDialog( const exp_placeholder* currentPlaceholder, QWi
          _parameter.append( new ParameterText( currentPlaceholder->parameter( i ), page ) );
    }
    
-   QFrame * line = new Q3Frame( page );
-   line->setFrameShape( Q3Frame::HLine );
-   line->setFrameShadow( Q3Frame::Sunken );
+   QFrame * line = new QFrame( page );
+   line->setFrameShape( QFrame::HLine );
+   line->setFrameShadow( QFrame::Sunken );
 
    connect( this, SIGNAL( defaultClicked() ), this, SLOT(reset()) );
    connect( this, SIGNAL( okClicked() ), this, SLOT( slotOk() ) );

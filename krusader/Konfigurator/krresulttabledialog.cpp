@@ -32,7 +32,7 @@
 //Added by qt3to4:
 #include <Q3VBoxLayout>
 #include <QLabel>
-#include <Q3Frame>
+#include <QFrame>
 
 KrResultTableDialog::KrResultTableDialog( QWidget *parent, DialogType type,
   const QString& caption, const QString& heading, const QString& headerIcon,

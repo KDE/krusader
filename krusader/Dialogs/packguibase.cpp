@@ -48,7 +48,7 @@
 //Added by qt3to4:
 #include <Q3HBoxLayout>
 #include <Q3GridLayout>
-#include <Q3Frame>
+#include <QFrame>
 #include <Q3VBoxLayout>
 #include <kiconloader.h>
 #include <kcolorscheme.h>
@@ -203,8 +203,8 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     compressLayout->addStretch( 0 );
     hbox_5->addLayout( compressLayout, 0, 0 );
 
-    Q3Frame *vline = new Q3Frame( advancedWidget, "vline" );
-    vline->setFrameStyle( Q3Frame::VLine | Q3Frame::Sunken );
+    QFrame *vline = new QFrame( advancedWidget );
+    vline->setFrameStyle( QFrame::VLine | QFrame::Sunken );
     vline->setMinimumWidth( 20 );
     hbox_5->addWidget( vline, 0, 1 );
 

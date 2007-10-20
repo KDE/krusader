@@ -37,7 +37,7 @@
 #include <Q3GridLayout>
 #include <Q3HBoxLayout>
 #include <Q3HBox>
-#include <Q3Frame>
+#include <QFrame>
 #include <QKeyEvent>
 #include <kmessagebox.h>
 
@@ -98,8 +98,8 @@ SplitterGUI::SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir ) :
 
   grid->addWidget( splitSizeLine,2 ,0 );
 
-  Q3Frame *separator = new Q3Frame( this, "separatorLine" );
-  separator->setFrameStyle( Q3Frame::HLine | Q3Frame::Sunken );
+  QFrame *separator = new QFrame( this );
+  separator->setFrameStyle( QFrame::HLine | QFrame::Sunken );
   separator->setFixedHeight( separator->sizeHint().height() );
 
   grid->addWidget( separator,3 ,0 );

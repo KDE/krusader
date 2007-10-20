@@ -49,7 +49,7 @@
 #include <Q3GridLayout>
 #include <QKeyEvent>
 #include <Q3HBoxLayout>
-#include <Q3Frame>
+#include <QFrame>
 #include <kurlrequester.h>
 #include <klocale.h>
 #include <q3grid.h>
@@ -1411,8 +1411,8 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   timeShiftUnitCombo->insertItem( i18n( "day" ) );
   optionsLayout->addWidget( timeShiftUnitCombo, 2, 2 );
 
-  Q3Frame *line = new Q3Frame( optionsGroup );
-  line->setFrameStyle( Q3Frame::HLine | Q3Frame::Sunken );
+  QFrame *line = new QFrame( optionsGroup );
+  line->setFrameStyle( QFrame::HLine | QFrame::Sunken );
   optionsLayout->addMultiCellWidget( line, 3, 3, 0, 2 );
 
   ignoreHiddenFilesCB = new QCheckBox( i18n( "Ignore hidden files" ), optionsGroup );

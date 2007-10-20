@@ -146,8 +146,8 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
   } else
     sideCombo->setCurrentItem( 2 );
   
-  Q3Frame *line = new Q3Frame( hbox, "fbVLine" );
-  line->setFrameStyle( Q3Frame::VLine | Q3Frame::Sunken );
+  QFrame *line = new QFrame( hbox );
+  line->setFrameStyle( QFrame::VLine | QFrame::Sunken );
   line->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
   
   cbSelected = new QCheckBox( i18n( "Selected files only" ), hbox, "cbSelected" );

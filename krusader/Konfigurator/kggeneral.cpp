@@ -34,7 +34,7 @@
 #include <qfontmetrics.h>
 //Added by qt3to4:
 #include <Q3GridLayout>
-#include <Q3Frame>
+#include <QFrame>
 #include <QPixmap>
 #include <klocale.h>
 #include <kmessagebox.h>
@@ -73,7 +73,7 @@ if( first )
                      i18n( "Mimetype magic allows better distinction of file types, but is slower." ) );
   generalGrid->addMultiCellWidget( checkBox, 1, 1, 0, 1 );
 
-  Q3Frame *line1 = createLine( generalGrp );
+  QFrame *line1 = createLine( generalGrp );
   generalGrid->addMultiCellWidget( line1, 2, 2, 0, 1 );
 
   // editor
@@ -86,7 +86,7 @@ if( first )
   QLabel *label2 = new QLabel( i18n( "Hint: use 'internal editor' if you want to use Krusader's fast built-in editor" ), generalGrp, "EditorLabel" );
   generalGrid->addMultiCellWidget( label2, 4, 4, 0, 1 );
 
-Q3Frame *line2 = createLine( generalGrp );
+  QFrame *line2 = createLine( generalGrp );
   generalGrid->addMultiCellWidget( line2, 5, 5, 0, 1 );
 
   // viewer
@@ -111,7 +111,7 @@ Q3Frame *line2 = createLine( generalGrp );
   generalGrid->addMultiCellWidget(hbox2, 6, 8, 0, 1);
 
   // atomic extensions
-  Q3Frame * frame21 = createLine( hbox2, true );
+  QFrame * frame21 = createLine( hbox2, true );
   frame21->setMinimumWidth( 15 );
   Q3VBox * vbox2 = new Q3VBox( hbox2 );
 
@@ -140,7 +140,7 @@ Q3Frame *line2 = createLine( generalGrp );
   listBox = createListBox( "Look&Feel", "Atomic Extensions", 
       defaultAtomicExtensions, vbox2, true, false );
 
-  Q3Frame *line3 = createLine( generalGrp );
+  QFrame *line3 = createLine( generalGrp );
   generalGrid->addMultiCellWidget( line3, 9, 9, 0, 1 );
 
 	// terminal
@@ -155,7 +155,7 @@ Q3Frame *line2 = createLine( generalGrp );
                      i18n( "When checked, whenever the panel is changed (for example, by pressing TAB), krusader changes the current directory in the terminal emulator." ) );
   generalGrid->addMultiCellWidget( checkBox1, 11, 11, 0, 1 );
 
-  Q3Frame *line31 = createLine( generalGrp );
+  QFrame *line31 = createLine( generalGrp );
   generalGrid->addMultiCellWidget( line31, 12, 12, 0, 1 );
 
 	// temp dir

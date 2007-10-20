@@ -35,7 +35,7 @@
 #include <QLabel>
 #include <Q3GridLayout>
 #include <QPixmap>
-#include <Q3Frame>
+#include <QFrame>
 #include <QResizeEvent>
 #include <QEvent>
 #include <QHash>
@@ -102,7 +102,7 @@ LoaderWidget::LoaderWidget( QWidget *parent, const char *name ) : Q3ScrollView( 
   loaderBox->layout()->setSpacing( 0 );
   loaderBox->layout()->setMargin( 0 );
   loaderBox->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
-  loaderBox->setFrameStyle( Q3Frame::Panel + Q3Frame::Raised );
+  loaderBox->setFrameStyle( QFrame::Panel + QFrame::Raised );
   loaderBox->setLineWidth( 2 );
 
   Q3GridLayout *synchGrid = new Q3GridLayout( loaderBox->layout() );
@@ -154,8 +154,8 @@ LoaderWidget::LoaderWidget( QWidget *parent, const char *name ) : Q3ScrollView( 
   searchedDirectory->setMaximumWidth( width );
   synchGrid->addMultiCellWidget( searchedDirectory, 4, 4, 0, 1 );
 
-  Q3Frame *line = new Q3Frame( loaderBox, "duLine" );
-  line->setFrameStyle( Q3Frame::HLine | Q3Frame::Sunken );
+  QFrame *line = new QFrame( loaderBox );
+  line->setFrameStyle( QFrame::HLine | QFrame::Sunken );
   synchGrid->addMultiCellWidget( line, 5, 5, 0, 1 );
 
   Q3HBox *hbox = new Q3HBox( loaderBox, "hbox" );

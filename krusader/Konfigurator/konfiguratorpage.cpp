@@ -33,7 +33,7 @@
 //Added by qt3to4:
 #include <Q3HBoxLayout>
 #include <Q3GridLayout>
-#include <Q3Frame>
+#include <QFrame>
 #include <QLabel>
 #include "../krusader.h"
 #include <q3whatsthis.h>
@@ -293,10 +293,10 @@ KonfiguratorComboBox *KonfiguratorPage::createComboBox(  QString cls, QString na
   return comboBox;
 }
 
-Q3Frame* KonfiguratorPage::createLine( QWidget *parent, bool vertical )
+QFrame* KonfiguratorPage::createLine( QWidget *parent, bool vertical )
 {
-  Q3Frame *line = new Q3Frame( parent );
-  line->setFrameStyle( ( vertical ? Q3Frame::VLine : Q3Frame::HLine ) | Q3Frame::Sunken );
+  QFrame *line = new QFrame( parent );
+  line->setFrameStyle( ( vertical ? QFrame::VLine : QFrame::HLine ) | QFrame::Sunken );
   return line;
 }
 

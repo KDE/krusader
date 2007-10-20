@@ -533,10 +533,10 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 	}
 
 	if (errors) {
-		QFrame *line1 = new Q3Frame( this );
+		QFrame *line1 = new QFrame( this );
 		line1->setGeometry( QRect( 60, 210, 501, 20 ) );
-		line1->setFrameShape( Q3Frame::HLine );
-		line1->setFrameShadow( Q3Frame::Sunken );
+		line1->setFrameShape( QFrame::HLine );
+		line1->setFrameShadow( QFrame::Sunken );
 		layout->addMultiCellWidget(line1, row, row, 0, 1);
 		++row;
     
