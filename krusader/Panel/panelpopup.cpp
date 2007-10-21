@@ -188,7 +188,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	qsettingsBtn->setPixmap(krLoader->loadIcon( "configure", K3Icon::Toolbar, 16 ));
 	qsettingsBtn->setFixedSize(20, 20);
 	QToolTip::add( qsettingsBtn, i18n("select group dialog") );
-	connect(qsettingsBtn, SIGNAL(clicked()), krSelect, SLOT(activate()));
+	connect(qsettingsBtn, SIGNAL(clicked()), krSelect, SLOT(trigger()));
 
 	qlayout->addWidget(selectLabel,0,0);
 	qlayout->addWidget(quickSelectCombo,0,1);

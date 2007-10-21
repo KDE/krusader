@@ -49,14 +49,15 @@ public:
 
   static LocateDlg *LocateDialog;
 
-  virtual void      slotUser1();
-  virtual void      slotUser2();
-  virtual void      slotUser3();
   virtual void      feedToListBox();
 
   void              reset();
 
 public slots:
+  virtual void      slotUser1();
+  virtual void      slotUser2();
+  virtual void      slotUser3();
+
   void              processStdout(K3Process *, char *, int);
   void              processStderr(K3Process *proc, char *buffer, int length);
   void              slotRightClick(Q3ListViewItem *);

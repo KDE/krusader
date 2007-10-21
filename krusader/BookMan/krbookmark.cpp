@@ -17,7 +17,7 @@ KrBookmark::KrBookmark ( QString name, KUrl url, KActionCollection *parent, QStr
 {
 	setText ( actionName.isNull() ? BM_NAME ( name ).toLatin1() : BM_NAME ( actionName ).toLatin1() );
 	parent->addAction ( name, this );
-	connect ( this, SIGNAL ( activated() ), this, SLOT ( activatedProxy() ) );
+	connect ( this, SIGNAL ( triggered() ), this, SLOT ( activatedProxy() ) );
 
 	// do we have an icon?
 	if ( !icon.isEmpty() )

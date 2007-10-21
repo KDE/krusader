@@ -299,7 +299,7 @@ KrAction::KrAction( KActionCollection *parent, const char * name ) : KAction( (Q
    else
      _name = "";
 
-   connect(this, SIGNAL(activated()), this, SLOT(exec()) );
+   connect(this, SIGNAL(triggered()), this, SLOT(exec()) );
 }
 
 KrAction::~KrAction() {
