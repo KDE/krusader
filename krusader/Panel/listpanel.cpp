@@ -120,6 +120,9 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
 		quickSearch( 0 ), cdRootButton( 0 ), cdUpButton( 0 ), popupBtn(0), popup(0),inlineRefreshJob(0), _left( left ) {
 
    layout = new QGridLayout( this );
+   layout->setSpacing( 0 );
+   layout->setContentsMargins( 0, 0, 0, 0 );
+
    func = new ListPanelFunc( this );
    setAcceptDrops( true );
 

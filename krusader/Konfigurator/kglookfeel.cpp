@@ -34,7 +34,7 @@
 #include "../Dialogs/krdialogs.h"
 #include <qtabwidget.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QLabel>
 #include <Q3VBoxLayout>
 #include <klocale.h>
@@ -56,7 +56,7 @@
 KgLookFeel::KgLookFeel( bool first, QWidget* parent ) :
       KonfiguratorPage( first, parent )
 {
-  Q3GridLayout *kgLookAndFeelLayout = new Q3GridLayout( this );
+  QGridLayout *kgLookAndFeelLayout = new QGridLayout( this );
   kgLookAndFeelLayout->setSpacing( 6 );
 
   tabWidget = new QTabWidget( this, "tabWidget" );
@@ -76,13 +76,13 @@ void KgLookFeel::setupOperationTab() {
   QWidget *tab = new QWidget( tabWidget, "tab_operation" );
   tabWidget->insertTab( tab, i18n( "Operation" ) );
 
-  Q3GridLayout *lookAndFeelLayout = new Q3GridLayout( tab );
+  QGridLayout *lookAndFeelLayout = new QGridLayout( tab );
   lookAndFeelLayout->setSpacing( 6 );
-  lookAndFeelLayout->setMargin( 11 );
+  lookAndFeelLayout->setContentsMargins( 11, 11, 11, 11 );
 
   // -------------- General -----------------
   Q3GroupBox *lookFeelGrp = createFrame( i18n( "Look && Feel" ), tab );
-  Q3GridLayout *lookFeelGrid = createGridLayout( lookFeelGrp->layout() );
+  QGridLayout *lookFeelGrid = createGridLayout( lookFeelGrp->layout() );
 
   KONFIGURATOR_CHECKBOX_PARAM settings[] =
     { //   cfg_class  cfg_name                default             text                              restart tooltip
@@ -101,7 +101,7 @@ void KgLookFeel::setupOperationTab() {
 
   // -------------- Quicksearch -----------------
   Q3GroupBox *quicksearchGroup = createFrame( i18n( "Quicksearch" ), tab );
-  Q3GridLayout *quicksearchGrid = createGridLayout( quicksearchGroup->layout() );
+  QGridLayout *quicksearchGrid = createGridLayout( quicksearchGroup->layout() );
 
   KONFIGURATOR_CHECKBOX_PARAM quicksearch[] =
    { //   cfg_class  cfg_name                default             text                              restart tooltip
@@ -124,11 +124,11 @@ void KgLookFeel::setupPanelTab() {
   QWidget* tab_panel = new QWidget( tabWidget, "tab_panel" );
   tabWidget->insertTab( tab_panel, i18n( "Panel" ) );
 
-  Q3GridLayout *panelLayout = new Q3GridLayout( tab_panel );
+  QGridLayout *panelLayout = new QGridLayout( tab_panel );
   panelLayout->setSpacing( 6 );
-  panelLayout->setMargin( 11 );
+  panelLayout->setContentsMargins( 11, 11, 11, 11 );
   Q3GroupBox *panelGrp = createFrame( i18n( "Panel settings" ), tab_panel );
-  Q3GridLayout *panelGrid = createGridLayout( panelGrp->layout() );
+  QGridLayout *panelGrid = createGridLayout( panelGrp->layout() );
 
   Q3HBox *hbox = new Q3HBox( panelGrp, "lookAndFeelHBox1" );
   new QLabel( i18n( "Panel font:" ), hbox, "lookAndFeelLabel" );
@@ -193,7 +193,7 @@ void KgLookFeel::setupPanelToolbarTab() {
 
   Q3BoxLayout * panelToolbarVLayout = new Q3VBoxLayout( tab_4 );
   panelToolbarVLayout->setSpacing( 6 );
-  panelToolbarVLayout->setMargin( 11 );
+  panelToolbarVLayout->setContentsMargins( 11, 11, 11, 11 );
 
   KONFIGURATOR_CHECKBOX_PARAM panelToolbarActiveCheckbox[] = 
   //   cfg_class    cfg_name                default        text                          restart tooltip
@@ -204,7 +204,7 @@ void KgLookFeel::setupPanelToolbarTab() {
   connect( panelToolbarActive->find( "Panel Toolbar visible" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotEnablePanelToolbar() ) );
     
   Q3GroupBox * panelToolbarGrp = createFrame( i18n( "Visible Panel Toolbar buttons" ), tab_4 );
-  Q3GridLayout * panelToolbarGrid = createGridLayout( panelToolbarGrp->layout() );
+  QGridLayout * panelToolbarGrid = createGridLayout( panelToolbarGrp->layout() );
 
   KONFIGURATOR_CHECKBOX_PARAM panelToolbarCheckboxes[] = 
     {
@@ -236,15 +236,15 @@ void KgLookFeel::setupPanelToolbarTab() {
 void KgLookFeel::setupMouseModeTab() {
   QWidget *tab_mouse = new QWidget( tabWidget, "tab_mouse" );
   tabWidget->insertTab( tab_mouse, i18n( "Selection Mode" ) );
-  Q3GridLayout *mouseLayout = new Q3GridLayout( tab_mouse );
+  QGridLayout *mouseLayout = new QGridLayout( tab_mouse );
   mouseLayout->setSpacing( 6 );
-  mouseLayout->setMargin( 11 );
+  mouseLayout->setContentsMargins( 11, 11, 11, 11 );
 
   // -------------- General -----------------
   Q3GroupBox *mouseGeneralGroup = createFrame( i18n( "General" ), tab_mouse );
-  Q3GridLayout *mouseGeneralGrid = createGridLayout( mouseGeneralGroup->layout() );
+  QGridLayout *mouseGeneralGrid = createGridLayout( mouseGeneralGroup->layout() );
   mouseGeneralGrid->setSpacing( 0 );
-  mouseGeneralGrid->setMargin( 5 );
+  mouseGeneralGrid->setContentsMargins( 5, 5, 5, 5 );
 
   KONFIGURATOR_NAME_VALUE_TIP mouseSelection[] =
     {
@@ -255,17 +255,17 @@ void KgLookFeel::setupMouseModeTab() {
      	{ i18n( "Custom Selection Mode" ), "3", i18n( "Design your own selection mode!" ) }
      };
   mouseRadio = createRadioButtonGroup( "Look&Feel", "Mouse Selection", "0", 2, 2, mouseSelection, 4, mouseGeneralGroup, true, PAGE_MOUSE );
-  mouseRadio->layout()->setMargin( 0 );
+  mouseRadio->layout()->setContentsMargins( 0, 0, 0, 0 );
   mouseGeneralGrid->addWidget( mouseRadio, 0, 0 );
   connect( mouseRadio, SIGNAL( clicked(int) ), SLOT( slotSelectionModeChanged() ) );
 
-  mouseLayout->addMultiCellWidget( mouseGeneralGroup, 0,0, 0,1 );
+  mouseLayout->addWidget( mouseGeneralGroup, 0, 0, 1, 2 );
 
   // -------------- Details -----------------
   Q3GroupBox *mouseDetailGroup = createFrame( i18n( "Details" ), tab_mouse );
-  Q3GridLayout *mouseDetailGrid = createGridLayout( mouseDetailGroup->layout() );
+  QGridLayout *mouseDetailGrid = createGridLayout( mouseDetailGroup->layout() );
   mouseDetailGrid->setSpacing( 0 );
-  mouseDetailGrid->setMargin( 5 );
+  mouseDetailGrid->setContentsMargins( 5, 5, 5, 5 );
 
    KONFIGURATOR_NAME_VALUE_TIP singleOrDoubleClick[] =
     {
@@ -274,7 +274,7 @@ void KgLookFeel::setupMouseModeTab() {
     	{ i18n( "Obey KDE's global selection policy" ), "1", i18n( "<p>Use KDE's global setting:</p><p><i>KDE Control Center -> Peripherals -> Mouse</i></p>" ) }
     };
   KonfiguratorRadioButtons *clickRadio = createRadioButtonGroup( "Look&Feel", "Single Click Selects", "0", 1, 0, singleOrDoubleClick, 2, mouseDetailGroup, true, PAGE_MOUSE );
-  clickRadio->layout()->setMargin( 0 );
+  clickRadio->layout()->setContentsMargins( 0, 0, 0, 0 );
   mouseDetailGrid->addWidget( clickRadio, 0, 0 );
   
   KONFIGURATOR_CHECKBOX_PARAM mouseCheckboxesParam[] = 
@@ -328,7 +328,7 @@ void KgLookFeel::setupMouseModeTab() {
 
   // -------------- Preview -----------------
   Q3GroupBox *mousePreviewGroup = createFrame( i18n( "Preview" ), tab_mouse );
-  Q3GridLayout *mousePreviewGrid = createGridLayout( mousePreviewGroup->layout() );
+  QGridLayout *mousePreviewGrid = createGridLayout( mousePreviewGroup->layout() );
   // TODO preview
   mousePreview = new Q3ListView( mousePreviewGroup, "mousePreview" );
   mousePreviewGrid->addWidget( mousePreview, 0 ,0 );

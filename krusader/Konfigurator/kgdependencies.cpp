@@ -33,7 +33,7 @@
 #include "../krusader.h"
 #include <qtabwidget.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <klocale.h>
 #include <q3hbox.h>
 #include <kmessagebox.h>
@@ -46,7 +46,7 @@
 KgDependencies::KgDependencies( bool first, QWidget* parent ) :
       KonfiguratorPage( first, parent )
 {
-  Q3GridLayout *kgDependenciesLayout = new Q3GridLayout( this );
+  QGridLayout *kgDependenciesLayout = new QGridLayout( this );
   kgDependenciesLayout->setSpacing( 6 );
 
   //  ---------------------------- GENERAL TAB -------------------------------------
@@ -55,9 +55,9 @@ KgDependencies::KgDependencies( bool first, QWidget* parent ) :
   QWidget *general_tab = new QWidget( tabWidget, "tab" );
   tabWidget->insertTab( general_tab, i18n( "General" ) );
 
-  Q3GridLayout *pathsGrid = new Q3GridLayout( general_tab );
+  QGridLayout *pathsGrid = new QGridLayout( general_tab );
   pathsGrid->setSpacing( 6 );
-  pathsGrid->setMargin( 11 );
+  pathsGrid->setContentsMargins( 11, 11, 11, 11 );
   pathsGrid->setAlignment( Qt::AlignTop );
   
   addApplication( "df",       pathsGrid, 0, general_tab, PAGE_GENERAL );
@@ -77,9 +77,9 @@ KgDependencies::KgDependencies( bool first, QWidget* parent ) :
   QWidget *packers_tab = new QWidget( tabWidget, "tab_3" );
   tabWidget->insertTab( packers_tab, i18n( "Packers" ) );
 
-  Q3GridLayout *archGrid1 = new Q3GridLayout( packers_tab );
+  QGridLayout *archGrid1 = new QGridLayout( packers_tab );
   archGrid1->setSpacing( 6 );
-  archGrid1->setMargin( 11 );
+  archGrid1->setContentsMargins( 11, 11, 11, 11 );
   archGrid1->setAlignment( Qt::AlignTop );
 
   addApplication( "7z",    archGrid1, 0, packers_tab, PAGE_PACKERS, "7za" );
@@ -101,9 +101,9 @@ KgDependencies::KgDependencies( bool first, QWidget* parent ) :
   QWidget *checksum_tab = new QWidget( tabWidget, "tab_4" );
   tabWidget->insertTab( checksum_tab, i18n( "Checksum Utilities" ) );
 
-  Q3GridLayout *archGrid2 = new Q3GridLayout( checksum_tab );
+  QGridLayout *archGrid2 = new QGridLayout( checksum_tab );
   archGrid2->setSpacing( 6 );
-  archGrid2->setMargin( 11 );
+  archGrid2->setContentsMargins( 11, 11, 11, 11 );
   archGrid2->setAlignment( Qt::AlignTop );
 
   addApplication( "md5sum",         archGrid2, 0, checksum_tab, PAGE_CHECKSUM );
@@ -122,7 +122,7 @@ KgDependencies::KgDependencies( bool first, QWidget* parent ) :
   kgDependenciesLayout->addWidget( tabWidget, 0, 0 );
 }
 
-void KgDependencies::addApplication( QString name, Q3GridLayout *grid, int row, QWidget *parent, int page, QString additionalList )
+void KgDependencies::addApplication( QString name, QGridLayout *grid, int row, QWidget *parent, int page, QString additionalList )
 {
   QString dflt = KrServices::fullPathName( name ); /* try to autodetect the full path name */
 

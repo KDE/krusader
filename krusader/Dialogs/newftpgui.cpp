@@ -126,7 +126,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags
     QWidget* Layout6 = new QWidget( this, "Layout6" );
     hbox = new Q3HBoxLayout( Layout6 );
     hbox->setSpacing( 6 );
-    hbox->setMargin( 0 );
+    hbox->setContentsMargins( 0, 0, 0, 0 );
 
 	 hbox->addItem(new QSpacerItem(1,1,QSizePolicy::Expanding));
 	 

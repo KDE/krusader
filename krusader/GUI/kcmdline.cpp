@@ -34,7 +34,7 @@
 #include <unistd.h>
 #include <qmessagebox.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QFrame>
 #include <QLabel>
 #include <QKeyEvent>
@@ -63,7 +63,9 @@
 #include <k3tempfile.h> 
 
 KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name ) {
-  Q3GridLayout * layout = new Q3GridLayout( this, 1, 4 );
+  QGridLayout * layout = new QGridLayout( this );
+  layout->setSpacing( 0 );
+  layout->setContentsMargins( 0, 0, 0, 0 );
   path = new QLabel( this );
   Q3WhatsThis::add
     ( path, i18n( "Name of directory where command will be processed." ) );

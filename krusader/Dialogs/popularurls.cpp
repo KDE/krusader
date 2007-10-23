@@ -2,7 +2,7 @@
 #include <klocale.h>
 #include <qpushbutton.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <qlist.h>
 #include <k3listview.h>
 #include <kiconloader.h>
@@ -236,27 +236,31 @@ PopularUrlsDlg::PopularUrlsDlg():
 	setCaption( i18n("Popular Urls") );
 	setWindowModality( Qt::WindowModal );
 	
-	Q3GridLayout *layout = new Q3GridLayout( this, 0, KDialog::spacingHint() );
+	QWidget * widget = new QWidget( this );
+	QGridLayout *layout = new QGridLayout( widget );
+	layout->setContentsMargins( 0, 0, 0, 0 );
 	
 	// listview to contain the urls
-	urls = new K3ListView(this);
+	urls = new K3ListView(widget);
 	urls->header()->hide();
 	urls->addColumn("");
 	urls->setSorting(-1);
 	urls->setVScrollBarMode(Q3ScrollView::AlwaysOn);
 	
 	// quick search
-	QToolButton *btn = new QToolButton(this);
+	QToolButton *btn = new QToolButton(widget);
 	btn->setIconSet(SmallIcon("locationbar_erase"));
-	search = new K3ListViewSearchLine(this, urls);
+	search = new K3ListViewSearchLine(widget, urls);
 	search->setTrapReturnKey(true);
-	QLabel *lbl = new QLabel(search, i18n(" &Search: "), this);
+	QLabel *lbl = new QLabel(search, i18n(" &Search: "), widget);
 
 	layout->addWidget(btn,0,0);
 	layout->addWidget(lbl,0,1);
 	layout->addWidget(search,0,2);
-	layout->addMultiCellWidget(urls,1,1,0,2);
+	layout->addWidget(urls,1,0,1,3);
 	setMaximumSize(600, 500);
+	
+	setMainWidget( widget );
 	
 	setTabOrder(search, urls);
 	setTabOrder((QWidget *)urls, (QWidget *)button(KDialog::Close));

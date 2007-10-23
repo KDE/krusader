@@ -31,7 +31,7 @@
 #include "krresulttable.h"
 #include <iostream>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QLabel>
 #include <kcolorscheme.h>
 using namespace std;
@@ -49,9 +49,9 @@ KrResultTable::~KrResultTable()
 }
 
 
-Q3GridLayout* KrResultTable::initTable()
+QGridLayout* KrResultTable::initTable()
 {
-  _grid = new Q3GridLayout(this, _numRows, _numColumns);
+  _grid = new QGridLayout(this, _numRows, _numColumns);
   _grid->setColStretch(_numColumns-1, 1); // stretch last column
 
   // +++ Build and add table header +++
@@ -59,7 +59,7 @@ Q3GridLayout* KrResultTable::initTable()
   for( QStringList::Iterator it=_tableHeaders.begin(); it!=_tableHeaders.end(); ++it )
   {
     _label = new QLabel(*it, this);
-    _label->setMargin(5);
+    _label->setContentsMargins(5,5,5,5);
     _grid->addWidget(_label, 0, column);
 
     // Set font
@@ -75,7 +75,7 @@ Q3GridLayout* KrResultTable::initTable()
 }
 
 
-void KrResultTable::adjustRow(Q3GridLayout* grid)
+void KrResultTable::adjustRow(QGridLayout* grid)
 {
   QLayoutIterator it = grid->iterator();
   QLayoutItem *child;
@@ -175,13 +175,13 @@ KrArchiverResultTable::~KrArchiverResultTable()
 }
 
 
-bool KrArchiverResultTable::addRow(SearchObject* search, Q3GridLayout* grid)
+bool KrArchiverResultTable::addRow(SearchObject* search, QGridLayout* grid)
 {
   Archiver* arch = dynamic_cast<Archiver*>(search);
 
   // Name column
   _label = new KUrlLabel(arch->getWebsite(), arch->getSearchName(), this);
-  _label->setMargin(5);
+  _label->setContentsMargins(5,5,5,5);
   _label->setAlignment(Qt::AlignTop);
   grid->addWidget(_label, _numRows, 0);
   connect(_label, SIGNAL(leftClickedURL(const QString&)),
@@ -189,12 +189,12 @@ bool KrArchiverResultTable::addRow(SearchObject* search, Q3GridLayout* grid)
 
   // Found column
   _label = new QLabel( arch->getPath(), this );
-  _label->setMargin(5);
+  _label->setContentsMargins(5,5,5,5);
   grid->addWidget(_label, _numRows, 1);
 
   // Packing column
   _label = new QLabel(this);
-  _label->setMargin(5);
+  _label->setContentsMargins(5,5,5,5);
   _label->setAlignment( Qt::AlignTop );
   if( arch->getIsPacker() && arch->getFound() ) {
     _label->setText( i18n("enabled") );
@@ -208,7 +208,7 @@ bool KrArchiverResultTable::addRow(SearchObject* search, Q3GridLayout* grid)
 
   // Unpacking column
   _label = new QLabel(this);
-  _label->setMargin(5);
+  _label->setContentsMargins(5,5,5,5);
   _label->setAlignment( Qt::AlignTop );
   if( arch->getIsUnpacker() && arch->getFound() ) {
     _label->setText( i18n("enabled") );
@@ -222,7 +222,7 @@ bool KrArchiverResultTable::addRow(SearchObject* search, Q3GridLayout* grid)
 
   // Note column
   _label = new QLabel(arch->getNote(), this);
-  _label->setMargin(5);
+  _label->setContentsMargins(5,5,5,5);
   _label->setAlignment( Qt::AlignTop | Qt::TextWordWrap ); // wrap words
   grid->addWidget(_label, _numRows, 4);
 
@@ -319,14 +319,14 @@ KrToolResultTable::~KrToolResultTable()
 }
 
 
-bool KrToolResultTable::addRow(SearchObject* search, Q3GridLayout* grid)
+bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
 {
   ApplicationGroup* appGroup = dynamic_cast<ApplicationGroup*>(search);
   Q3ValueVector<Application*> _apps = appGroup->getAppVec();
 
   // Name column
   _label = new QLabel(appGroup->getSearchName(), this);
-  _label->setMargin(5);
+  _label->setContentsMargins(5,5,5,5);
   _label->setAlignment( Qt::AlignTop );
   grid->addWidget(_label, _numRows, 0);
 
@@ -336,7 +336,7 @@ bool KrToolResultTable::addRow(SearchObject* search, Q3GridLayout* grid)
   {
     KUrlLabel* l = new KUrlLabel( (*it)->getWebsite(), (*it)->getAppName(), toolBox);
     l->setAlignment(Qt::AlignLeft | Qt::AlignTop);
-    l->setMargin(5);
+    l->setContentsMargins(5,5,5,5);
     connect(l, SIGNAL(leftClickedURL(const QString&)),
                SLOT(website(const QString&)));
   }
@@ -347,14 +347,14 @@ bool KrToolResultTable::addRow(SearchObject* search, Q3GridLayout* grid)
   for( Q3ValueVector<Application*>::Iterator it=_apps.begin(); it!=_apps.end(); it++ )
   {
     _label = new QLabel( (*it)->getPath(), vbox);
-    _label->setMargin(5);
+    _label->setContentsMargins(5,5,5,5);
     _label->setAlignment( Qt::AlignTop );
   }
   grid->addWidget(vbox, _numRows, 2);
 
   // Status column
   _label = new QLabel(this);
-  _label->setMargin(5);
+  _label->setContentsMargins(5,5,5,5);
   _label->setAlignment( Qt::AlignTop );
   if( appGroup->getFoundGroup() ) {
     _label->setText( i18n("enabled") );

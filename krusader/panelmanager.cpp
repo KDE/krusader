@@ -1,7 +1,7 @@
 #include <qstackedwidget.h>
 #include <qtoolbutton.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <klocale.h>
 #include <qimage.h>
 #include <kdebug.h>
@@ -27,6 +27,7 @@ QWidget( parent ), _layout( 0 ), _left( left ),
        _otherPtr( _left ? &MAIN_VIEW->right : &MAIN_VIEW->left ) {   
    _layout = new QGridLayout( this );
    _layout->setContentsMargins( 0, 0, 0, 0 );
+   _layout->setSpacing( 0 );
    _stack = new QStackedWidget( this );
 
    // new tab button

@@ -34,13 +34,14 @@
 #include "../Panel/panelfunc.h"
 #include "diskusageviewer.h"
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QLabel>
 
 DiskUsageViewer::DiskUsageViewer( QWidget *parent, char *name ) 
   : QWidget( parent, name ), diskUsage( 0 ), statusLabel( 0 )
 {
-  layout = new Q3GridLayout( this, 1, 1 );
+  layout = new QGridLayout( this );
+  layout->setContentsMargins( 0, 0, 0, 0 );
 }
 
 DiskUsageViewer::~ DiskUsageViewer()

@@ -40,7 +40,7 @@
 #include <qstringlist.h>
 #include <q3valuevector.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 
 #include <kiconloader.h>
 #include <kglobalsettings.h>
@@ -73,7 +73,7 @@ public:
   *
   * @return bool  True if row was added successfully to rows, else false
   */
-  virtual bool addRow(SearchObject* search, Q3GridLayout* grid) = 0;
+  virtual bool addRow(SearchObject* search, QGridLayout* grid) = 0;
 
 protected:
   QStringList _supported;
@@ -81,7 +81,7 @@ protected:
   int _numColumns;
   int _numRows;
 
-  Q3GridLayout* _grid;
+  QGridLayout* _grid;
   Q3HBox* _iconBox;
   QLabel* _label; // generic label
 
@@ -90,7 +90,7 @@ protected:
   *
   * @return bool  Pointer to the main grid layout
   */
-  Q3GridLayout* initTable();
+  QGridLayout* initTable();
 
   /**
   * Applies settings to each cell of the grid layout
@@ -98,7 +98,7 @@ protected:
   *
   * @param const QGridLayout* grid  The GridLayout
   */
-  void adjustRow(Q3GridLayout* grid);
+  void adjustRow(QGridLayout* grid);
 };
 
 // -----------------------------------------------------------------------------
@@ -111,7 +111,7 @@ public:
   KrArchiverResultTable(QWidget* parent);
   virtual ~KrArchiverResultTable();
 
-  bool addRow(SearchObject* search, Q3GridLayout* grid);
+  bool addRow(SearchObject* search, QGridLayout* grid);
 
 protected:
   KUrlLabel* _nameLabel;
@@ -130,7 +130,7 @@ public:
   KrToolResultTable(QWidget* parent);
   virtual ~KrToolResultTable();
 
-  bool addRow(SearchObject* search, Q3GridLayout* grid);
+  bool addRow(SearchObject* search, QGridLayout* grid);
 
 protected:
   Q3ValueVector<Application*> _apps;

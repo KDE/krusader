@@ -36,7 +36,7 @@
 #include <qlayout.h>
 #include <qlabel.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 
 class DiskUsageViewer : public QWidget
 {
@@ -61,7 +61,7 @@ protected slots:
 
 protected:  
   DiskUsage *diskUsage;
-  Q3GridLayout *layout;
+  QGridLayout *layout;
   
   QLabel *statusLabel;
   QString prefix;

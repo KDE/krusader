@@ -73,7 +73,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, Qt::
     Layout7->setGeometry( QRect( 10, 10, 380, 30 ) ); 
     hbox = new Q3HBoxLayout( Layout7 );
     hbox->setSpacing( 6 );
-    hbox->setMargin( 0 );
+    hbox->setContentsMargins( 0, 0, 0, 0 );
 
     PixmapLabel1 = new QLabel( Layout7, "PixmapLabel1" );
     PixmapLabel1->setScaledContents( TRUE );
@@ -93,7 +93,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, Qt::
     Layout6->setGeometry( QRect( 10, 20, 360, 160 ) ); 
     hbox_2 = new Q3HBoxLayout( Layout6 ); 
     hbox_2->setSpacing( 6 );
-    hbox_2->setMargin( 0 );
+    hbox_2->setContentsMargins( 0, 0, 0, 0 );
 
     preSelections = new Q3ListBox( Layout6, "preSelections" );
     preSelections->setVScrollBarMode( Q3ListBox::AlwaysOn );
@@ -102,7 +102,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, Qt::
 
     vbox = new Q3VBoxLayout; 
     vbox->setSpacing( 6 );
-    vbox->setMargin( 0 );
+    vbox->setContentsMargins( 0, 0, 0, 0 );
 
     PushButton7 = new QPushButton( Layout6, "PushButton7" );
     PushButton7->setText( i18n( "Add"  ) );
@@ -126,7 +126,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, Qt::
     Layout18->setGeometry( QRect( 10, 280, 379, 30 ) ); 
     hbox_3 = new Q3HBoxLayout( Layout18 ); 
     hbox_3->setSpacing( 6 );
-    hbox_3->setMargin( 0 );
+    hbox_3->setContentsMargins( 0, 0, 0, 0 );
     QSpacerItem* spacer_2 = new QSpacerItem( 205, 20, QSizePolicy::Expanding, QSizePolicy::Fixed );
     hbox_3->addItem( spacer_2 );
 

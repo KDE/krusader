@@ -34,7 +34,7 @@
 #include <qdialog.h>
 #include <qmap.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3HBoxLayout>
 #include <Q3VBoxLayout>
 #include <QLabel>
@@ -42,7 +42,7 @@
 
 class Q3VBoxLayout; 
 class Q3HBoxLayout; 
-class Q3GridLayout; 
+class QGridLayout; 
 class QCheckBox;
 class QComboBox;
 class QLabel;
@@ -102,10 +102,10 @@ protected:
     Q3HBoxLayout* hbox_2;
     Q3HBoxLayout* hbox_3;
     Q3HBoxLayout* hbox_4;
-    Q3GridLayout* hbox_5;
+    QGridLayout* hbox_5;
     Q3HBoxLayout* hbox_6;
     Q3HBoxLayout* hbox_7;
-    Q3GridLayout* grid;
+    QGridLayout* grid;
 
 private:
     bool expanded;

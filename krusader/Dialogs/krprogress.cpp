@@ -23,7 +23,7 @@
 //Added by qt3to4:
 #include <Q3HBoxLayout>
 #include <QCloseEvent>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QFrame>
 #include <QLabel>
 #include <Q3VBoxLayout>
@@ -59,7 +59,7 @@ KrProgress::KrProgress( KIO::Job* job )
                                             KDialog::spacingHint() );
   topLayout->addStrut( 360 );   // makes dlg at least that wide
 
-  Q3GridLayout *grid = new Q3GridLayout( 2, 3 );
+  QGridLayout *grid = new QGridLayout;
   topLayout->addLayout(grid);
   grid->addColSpacing(1, KDialog::spacingHint());
   // filenames or action name

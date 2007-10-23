@@ -34,7 +34,7 @@
 #include <qcursor.h>
 #include <qlayout.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QKeyEvent>
 #include <kfiledialog.h>
 #include <kmenu.h>
@@ -52,16 +52,16 @@ KURLListRequester::KURLListRequester( QWidget *parent, const char * name ) : QWi
     
   // Creating the widget
   
-  Q3GridLayout *urlListRequesterGrid = new Q3GridLayout( this );
+  QGridLayout *urlListRequesterGrid = new QGridLayout( this );
   urlListRequesterGrid->setSpacing( 0 );
-  urlListRequesterGrid->setMargin( 0 );
+  urlListRequesterGrid->setContentsMargins( 0, 0, 0, 0 );
     
   urlLineEdit = new KLineEdit( this );
   urlListRequesterGrid->addWidget( urlLineEdit, 0, 0 );
       
   urlListBox = new Q3ListBox( this, "urlListBox" );
   urlListBox->setSelectionMode( Q3ListBox::Extended );
-  urlListRequesterGrid->addMultiCellWidget( urlListBox, 1, 1, 0, 2 );
+  urlListRequesterGrid->addWidget( urlListBox, 1, 0, 1, 3 );
 
   urlAddBtn = new QToolButton( this, "urlAddBtn" );
   urlAddBtn->setText( "" );

@@ -31,7 +31,7 @@
 #include <q3hbox.h>
 #include <qpushbutton.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 
 #include "kgarchives.h"
 #include "krresulttable.h"
@@ -45,13 +45,13 @@
 KgArchives::KgArchives( bool first, QWidget* parent ) :
       KonfiguratorPage( first, parent )
 {
-  Q3GridLayout *kgArchivesLayout = new Q3GridLayout( this );
+  QGridLayout *kgArchivesLayout = new QGridLayout( this );
   kgArchivesLayout->setSpacing( 6 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
 
   Q3GroupBox *generalGrp = createFrame( i18n( "General" ), this );
-  Q3GridLayout *generalGrid = createGridLayout( generalGrp->layout() );
+  QGridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
   addLabel( generalGrid, 0, 0, i18n( "Krusader transparently handles the following types of archives:" ),
             generalGrp );
@@ -89,7 +89,7 @@ KgArchives::KgArchives( bool first, QWidget* parent ) :
   //  ------------------------ FINE-TUNING GROUPBOX --------------------------------
 
   Q3GroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), this );
-  Q3GridLayout *fineTuneGrid = createGridLayout( fineTuneGrp->layout() );
+  QGridLayout *fineTuneGrid = createGridLayout( fineTuneGrp->layout() );
 
   KONFIGURATOR_CHECKBOX_PARAM finetuners[] =
   //   cfg_class  cfg_name                  default           text                                          restart ToolTip

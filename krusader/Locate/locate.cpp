@@ -47,7 +47,7 @@
 #include <qfontmetrics.h>
 //Added by qt3to4:
 #include <QKeyEvent>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QFrame>
 #include <kmessagebox.h>
 #include <kmenu.h>
@@ -114,9 +114,9 @@ LocateDlg::LocateDlg() : KDialog( 0 ), isFeedToListBox( false )
   setButtonGuiItem( KDialog::User3, KGuiItem( i18n("Locate") ) );
 
   QWidget *widget=new QWidget(this, "locateMainWidget");
-  Q3GridLayout *grid = new Q3GridLayout( widget );
+  QGridLayout *grid = new QGridLayout( widget );
   grid->setSpacing( 6 );
-  grid->setMargin( 11 );
+  grid->setContentsMargins( 11, 11, 11, 11 );
 
   setPlainCaption( i18n( "Krusader::Locate" ) );
   

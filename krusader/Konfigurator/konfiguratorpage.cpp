@@ -32,7 +32,7 @@
 #include <qlayout.h>
 //Added by qt3to4:
 #include <Q3HBoxLayout>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QFrame>
 #include <QLabel>
 #include "../krusader.h"
@@ -161,20 +161,20 @@ Q3GroupBox* KonfiguratorPage::createFrame( QString text, QWidget *parent )
     groupBox->setTitle( text );
   groupBox->setColumnLayout(0, Qt::Vertical );
   groupBox->layout()->setSpacing( 0 );
-  groupBox->layout()->setMargin( 0 );
+  groupBox->layout()->setContentsMargins( 0, 0, 0, 0 );
   return groupBox;
 }                                          
 
-Q3GridLayout* KonfiguratorPage::createGridLayout( QLayout *parent )
+QGridLayout* KonfiguratorPage::createGridLayout( QLayout *parent )
 {
-  Q3GridLayout *gridLayout = new Q3GridLayout( parent );
+  QGridLayout *gridLayout = new QGridLayout( parent );
   gridLayout->setAlignment( Qt::AlignTop );
   gridLayout->setSpacing( 6 );
-  gridLayout->setMargin( 11 );
+  gridLayout->setContentsMargins( 11, 11, 11, 11 );
   return gridLayout;
 }
 
-QLabel* KonfiguratorPage::addLabel( Q3GridLayout *layout, int x, int y, QString label,
+QLabel* KonfiguratorPage::addLabel( QGridLayout *layout, int x, int y, QString label,
                                     QWidget *parent )
 {
   QLabel *lbl = new QLabel( label, parent );
@@ -196,9 +196,9 @@ KonfiguratorCheckBoxGroup* KonfiguratorPage::createCheckBoxGroup( int sizex, int
     int pg )
 {
   KonfiguratorCheckBoxGroup *groupWidget = new KonfiguratorCheckBoxGroup( parent );
-  Q3GridLayout *layout = new Q3GridLayout( groupWidget );
+  QGridLayout *layout = new QGridLayout( groupWidget );
   layout->setSpacing( 6 );
-  layout->setMargin( 0 );
+  layout->setContentsMargins( 0, 0, 0, 0 );
   
   int x = 0, y = 0;
   
@@ -238,10 +238,10 @@ KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup( QString cls,
   radioWidget->setRadioButtonExclusive( true );
   radioWidget->setColumnLayout(0, Qt::Vertical );
 
-  Q3GridLayout *layout = new Q3GridLayout( radioWidget->layout() );
+  QGridLayout *layout = new QGridLayout( radioWidget->layout() );
   layout->setAlignment( Qt::AlignTop );
   layout->setSpacing( 6 );
-  layout->setMargin( 0 );
+  layout->setContentsMargins( 0, 0, 0, 0 );
 
   int x = 0, y = 0;
 

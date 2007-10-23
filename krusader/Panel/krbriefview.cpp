@@ -171,7 +171,7 @@ KrBriefView::~KrBriefView() {
 	if( mouseEvent )
 		delete mouseEvent;
 	mouseEvent = 0;
-	delete toolTip;
+//	delete toolTip;
 }
 
 void KrBriefView::resizeEvent ( QResizeEvent * resEvent )

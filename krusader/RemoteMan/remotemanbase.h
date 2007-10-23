@@ -12,14 +12,14 @@
 #include <qvariant.h>
 #include <qdialog.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QEvent>
 #include <Q3HBoxLayout>
 #include <Q3VBoxLayout>
 #include <QLabel>
 class Q3VBoxLayout; 
 class Q3HBoxLayout; 
-class Q3GridLayout; 
+class QGridLayout; 
 class QCheckBox;
 class QComboBox;
 class QLabel;
@@ -73,15 +73,15 @@ public slots:
     virtual void updateName(const QString&);
 
 protected:
-    Q3GridLayout* remoteManBaseLayout;
+    QGridLayout* remoteManBaseLayout;
     Q3VBoxLayout* Layout23;
     Q3HBoxLayout* Layout12;
     Q3VBoxLayout* Layout9;
-    Q3GridLayout* Layout10;
+    QGridLayout* Layout10;
     Q3VBoxLayout* Layout26;
     Q3VBoxLayout* Layout27;
-    Q3GridLayout* layout;
-    Q3GridLayout* Layout11;
+    QGridLayout* layout;
+    QGridLayout* Layout11;
     bool event( QEvent* );
 };
 

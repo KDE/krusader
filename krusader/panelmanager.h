@@ -4,7 +4,7 @@
 #include <qwidget.h>
 #include <qlayout.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3HBoxLayout>
 #include "paneltabbar.h"
 

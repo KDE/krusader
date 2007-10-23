@@ -47,7 +47,7 @@
 #include <q3vbox.h>
 //Added by qt3to4:
 #include <Q3HBoxLayout>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QFrame>
 #include <Q3VBoxLayout>
 #include <kiconloader.h>
@@ -72,13 +72,13 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
 	setName( "PackGUIBase" );
     resize( 430, 140 );
     setCaption( i18n( "Pack" ) );
-    grid = new Q3GridLayout( this );
+    grid = new QGridLayout( this );
     grid->setSpacing( 6 );
-    grid->setMargin( 11 );
+    grid->setContentsMargins( 11, 11, 11, 11 );
 
     hbox = new Q3HBoxLayout;
     hbox->setSpacing( 6 );
-    hbox->setMargin( 0 );
+    hbox->setContentsMargins( 0, 0, 0, 0 );
 
     TextLabel3 = new QLabel( this, "TextLabel3" );
     TextLabel3->setText( i18n( "To archive"  ) );
@@ -97,7 +97,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
 
     hbox_2 = new Q3HBoxLayout;
     hbox_2->setSpacing( 6 );
-    hbox_2->setMargin( 0 );
+    hbox_2->setContentsMargins( 0, 0, 0, 0 );
 
     TextLabel5 = new QLabel( this, "TextLabel5" );
     TextLabel5->setText( i18n( "In directory"  ) );
@@ -116,7 +116,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
 
     hbox_3 = new Q3HBoxLayout;
     hbox_3->setSpacing( 6 );
-    hbox_3->setMargin( 0 );
+    hbox_3->setContentsMargins( 0, 0, 0, 0 );
 
     PixmapLabel1 = new QLabel( this, "PixmapLabel1" );
     PixmapLabel1->setPixmap( krLoader->loadIcon("package", K3Icon::Desktop, 32) );
@@ -133,7 +133,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
 
     hbox_4 = new Q3HBoxLayout;
     hbox_4->setSpacing( 6 );
-    hbox_4->setMargin( 0 );
+    hbox_4->setContentsMargins( 0, 0, 0, 0 );
 
     QSpacerItem* spacer_3 = new QSpacerItem( 20, 26, QSizePolicy::Fixed, QSizePolicy::Expanding );
     hbox_4->addItem( spacer_3 );
@@ -141,14 +141,14 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
 
     advancedWidget = new QWidget( this, "advancedWidget" );
 
-    hbox_5 = new Q3GridLayout( advancedWidget );
+    hbox_5 = new QGridLayout( advancedWidget );
     hbox_5->setSpacing( 6 );
-    hbox_5->setMargin( 0 );
+    hbox_5->setContentsMargins( 0, 0, 0, 0 );
 
 
     Q3VBoxLayout *compressLayout = new Q3VBoxLayout;
     compressLayout->setSpacing( 6 );
-    compressLayout->setMargin( 0 );
+    compressLayout->setContentsMargins( 0, 0, 0, 0 );
 
     multipleVolume = new QCheckBox( i18n( "Multiple volume archive" ), advancedWidget, "multipleVolume" );
     connect( multipleVolume, SIGNAL( toggled( bool ) ), this, SLOT( checkConsistency() ) );
@@ -209,9 +209,9 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     hbox_5->addWidget( vline, 0, 1 );
 
 
-    Q3GridLayout * passwordGrid = new Q3GridLayout( hbox_5 );
+    QGridLayout * passwordGrid = new QGridLayout( hbox_5 );
     passwordGrid->setSpacing( 6 );
-    passwordGrid->setMargin( 0 );
+    passwordGrid->setContentsMargins( 0, 0, 0, 0 );
 
     TextLabel4 = new QLabel( advancedWidget, "TextLabel4" );
     TextLabel4->setText( i18n( "Password"  ) );
@@ -240,10 +240,10 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
 
     passwordConsistencyLabel = new QLabel( advancedWidget, "passwordConsistencyLabel" );
     consistencyHbox->addWidget( passwordConsistencyLabel );
-    passwordGrid->addMultiCellLayout ( consistencyHbox, 2, 2, 0, 1 );
+    passwordGrid->addLayout ( consistencyHbox, 2, 0, 1, 2 );
 
     encryptHeaders = new QCheckBox( i18n( "Encrypt headers" ), advancedWidget, "encryptHeaders" );
-    passwordGrid->addMultiCellWidget ( encryptHeaders, 3, 3, 0, 1 );
+    passwordGrid->addWidget ( encryptHeaders, 3, 0, 1, 2 );
 
     QSpacerItem* spacer_psw = new QSpacerItem( 20, 20, QSizePolicy::Fixed, QSizePolicy::Expanding );
     passwordGrid->addItem( spacer_psw, 4, 0 );
@@ -252,7 +252,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
 
     hbox_7 = new Q3HBoxLayout;
     hbox_7->setSpacing( 6 );
-    hbox_7->setMargin( 0 );
+    hbox_7->setContentsMargins( 0, 0, 0, 0 );
 
     TextLabel8 = new QLabel( i18n( "Command line switches:" ), advancedWidget, "TextLabel8" );
     TextLabel8->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
@@ -267,7 +267,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
 
     hbox_7->addWidget( commandLineSwitches );
     
-    hbox_5->addMultiCellLayout( hbox_7, 1, 1, 0, 2 );
+    hbox_5->addLayout( hbox_7, 1, 0, 1, 3 );
 
 
     advancedWidget->hide();
@@ -277,7 +277,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     
     hbox_6 = new Q3HBoxLayout;
     hbox_6->setSpacing( 6 );
-    hbox_6->setMargin( 0 );
+    hbox_6->setContentsMargins( 0, 0, 0, 0 );
 
     advancedButton = new QPushButton( this, "advancedButton" );
     advancedButton->setText( i18n( "&Advanced" ) + " >>" );

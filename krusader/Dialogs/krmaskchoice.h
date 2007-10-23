@@ -33,12 +33,12 @@
 #include <qdialog.h>
 //Added by qt3to4:
 #include <Q3VBoxLayout>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3HBoxLayout>
 #include <QLabel>
 class Q3VBoxLayout; 
 class Q3HBoxLayout; 
-class Q3GridLayout; 
+class QGridLayout; 
 class QComboBox;
 class Q3GroupBox;
 class QLabel;

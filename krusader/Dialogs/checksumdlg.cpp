@@ -6,7 +6,7 @@
 #include <qcheckbox.h>
 //Added by qt3to4:
 #include <Q3HBoxLayout>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <klineedit.h>
 #include <k3listview.h>
 #include <k3listbox.h>
@@ -230,41 +230,44 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 		return;
 	}
 	
-	Q3GridLayout *layout = new Q3GridLayout( this, 1, 1,
-		KDialog::marginHint(), KDialog::spacingHint());
+	QWidget * widget = new QWidget( this );
+	QGridLayout *layout = new QGridLayout( widget );
+	layout->setContentsMargins( KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint() );
+	layout->setSpacing( KDialog::spacingHint());
 	
 	int row=0;
 		
 	// title (icon+text)	
 	Q3HBoxLayout *hlayout = new Q3HBoxLayout(layout, KDialog::spacingHint());
-	QLabel *p = new QLabel(this);
+	QLabel *p = new QLabel(widget);
 	p->setPixmap(krLoader->loadIcon("binary", K3Icon::Desktop, 32));
 	hlayout->addWidget(p);
 	QLabel *l1 = new QLabel(i18n("About to calculate checksum for the following files") + 
-		(containFolders ? i18n(" and folders:") : ":"), this);
+		(containFolders ? i18n(" and folders:") : ":"), widget);
 	hlayout->addWidget(l1);
-	layout->addMultiCellLayout(hlayout, row, row, 0, 1, Qt::AlignLeft); 
+	layout->addLayout(hlayout, row, 0, 1, 2, Qt::AlignLeft); 
 	++row;
 	
 	// file list
-	K3ListBox *lb = new K3ListBox(this);
+	K3ListBox *lb = new K3ListBox(widget);
 	lb->insertStringList(files);
-	layout->addMultiCellWidget(lb, row, row, 0, 1);
+	layout->addWidget(lb, row, 0, 1, 2);
 	++row;
 
 	// checksum method
 	Q3HBoxLayout *hlayout2 = new Q3HBoxLayout(layout, KDialog::spacingHint());
-	QLabel *l2 = new QLabel(i18n("Select the checksum method:"), this);
+	QLabel *l2 = new QLabel(i18n("Select the checksum method:"), widget);
 	hlayout2->addWidget(l2);
-	KComboBox *method = new KComboBox(this);
+	KComboBox *method = new KComboBox(widget);
 	// -- fill the combo with available methods
 	uint i;
 	for ( i=0; i<tools.count(); ++i )
 		method->insertItem( cs_typeToText[tools.at(i)->type], i);
 	method->setFocus();
 	hlayout2->addWidget(method);	
-	layout->addMultiCellLayout(hlayout2, row, row, 0, 1, Qt::AlignLeft);
+	layout->addLayout(hlayout2, row, 0, 1, 2, Qt::AlignLeft);
 	++row;
+	setMainWidget( widget );
 
 	if (exec() != Accepted) return;
 	// else implied: run the process
@@ -335,39 +338,42 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 		return;
 	}
 	
-	Q3GridLayout *layout = new Q3GridLayout( this, 1, 1,
-		KDialog::marginHint(), KDialog::spacingHint());
+	QWidget * widget = new QWidget( this );
+	QGridLayout *layout = new QGridLayout( widget );
+	layout->setContentsMargins( KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint() );
+	layout->setSpacing( KDialog::spacingHint());
 	
 	int row=0;
 		
 	// title (icon+text)	
 	Q3HBoxLayout *hlayout = new Q3HBoxLayout(layout, KDialog::spacingHint());
-	QLabel *p = new QLabel(this);
+	QLabel *p = new QLabel(widget);
 	p->setPixmap(krLoader->loadIcon("binary", K3Icon::Desktop, 32));
 	hlayout->addWidget(p);
 	QLabel *l1 = new QLabel(i18n("About to verify checksum for the following files") +
-		(containFolders ? i18n(" and folders:") : ":"), this);
+		(containFolders ? i18n(" and folders:") : ":"), widget);
 	hlayout->addWidget(l1);
-	layout->addMultiCellLayout(hlayout, row, row, 0, 1, Qt::AlignLeft); 
+	layout->addLayout(hlayout, row, 0, 1, 2, Qt::AlignLeft); 
 	++row;
 	
 	// file list
-	K3ListBox *lb = new K3ListBox(this);
+	K3ListBox *lb = new K3ListBox(widget);
 	lb->insertStringList(files);
-	layout->addMultiCellWidget(lb, row, row, 0, 1);
+	layout->addWidget(lb, row, 0, 1, 2);
 	++row;
 
 	// checksum file
 	Q3HBoxLayout *hlayout2 = new Q3HBoxLayout(layout, KDialog::spacingHint());
-	QLabel *l2 = new QLabel(i18n("Checksum file:"), this);
+	QLabel *l2 = new QLabel(i18n("Checksum file:"), widget);
 	hlayout2->addWidget(l2);
-	KUrlRequester *checksumFileReq = new KUrlRequester( this );
+	KUrlRequester *checksumFileReq = new KUrlRequester( widget );
 	if (!checksumFile.isEmpty())
 		checksumFileReq->setUrl(checksumFile);
 	checksumFileReq->fileDialog()->setUrl(path);
 	checksumFileReq->setFocus();
 	hlayout2->addWidget(checksumFileReq);
-	layout->addMultiCellLayout(hlayout2, row, row, 0, 1, Qt::AlignLeft);
+	layout->addLayout(hlayout2, row, 0, 1, 2, Qt::AlignLeft);
+	setMainWidget( widget );
 
 	if (exec() != Accepted) return;
 	QString file = checksumFileReq->url().pathOrUrl();
@@ -445,34 +451,37 @@ VerifyResultDlg::VerifyResultDlg(const QStringList& failed):
 	setCaption( i18n("Verify Checksum") );
 	setWindowModality( Qt::WindowModal );
 	
-	Q3GridLayout *layout = new Q3GridLayout( this, 1, 1,
-		KDialog::marginHint(), KDialog::spacingHint());
+	QWidget * widget = new QWidget( this );
+	QGridLayout *layout = new QGridLayout( widget );
+	layout->setContentsMargins( KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint() );
+	layout->setSpacing( KDialog::spacingHint());
 
 	bool errors = failed.size()>0;
 	int row = 0;
 	
 	// create the icon and title
 	Q3HBoxLayout *hlayout = new Q3HBoxLayout(layout, KDialog::spacingHint());
-	QLabel p(this);
+	QLabel p(widget);
 	p.setPixmap(krLoader->loadIcon(errors ? "messagebox_critical" : "messagebox_info", K3Icon::Desktop, 32));
 	hlayout->addWidget(&p);
 	
 	QLabel *l1 = new QLabel((errors ? i18n("Errors were detected while verifying the checksums") :
-		i18n("Checksums were verified successfully")), this);
+		i18n("Checksums were verified successfully")), widget);
 	hlayout->addWidget(l1);
-	layout->addMultiCellLayout(hlayout,row,row,0,1, Qt::AlignLeft);
+	layout->addLayout(hlayout,row,0,1,2, Qt::AlignLeft);
 	++row;
 
 	if (errors) { 
-		QLabel *l3 = new QLabel(i18n("The following files have failed:"), this);
-		layout->addMultiCellWidget(l3, row, row, 0, 1);
+		QLabel *l3 = new QLabel(i18n("The following files have failed:"), widget);
+		layout->addWidget(l3, row, 0, 1, 2);
 		++row;
-		K3ListBox *lb2 = new K3ListBox(this);
+		K3ListBox *lb2 = new K3ListBox(widget);
 		lb2->insertStringList(failed);
-		layout->addMultiCellWidget(lb2, row, row, 0, 1);
+		layout->addWidget(lb2, row, 0, 1, 2);
 		++row;
 	}
 		
+	setMainWidget( widget );
 	exec();
 }
 
@@ -485,8 +494,11 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 	setDefaultButton( KDialog::Ok );
 	setCaption( i18n("Create Checksum") );
 	setWindowModality( Qt::WindowModal );
-	Q3GridLayout *layout = new Q3GridLayout( this, 1, 1,
-		KDialog::marginHint(), KDialog::spacingHint());
+	
+	QWidget * widget = new QWidget( this );
+	QGridLayout *layout = new QGridLayout( widget );
+	layout->setContentsMargins( KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint() );
+	layout->setSpacing( KDialog::spacingHint());
 
 	// md5 tools display errors into stderr, so we'll use that to determine the result of the job
 	bool errors = stdErr.size()>0;
@@ -495,23 +507,23 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 	
 	// create the icon and title
 	Q3HBoxLayout *hlayout = new Q3HBoxLayout(layout, KDialog::spacingHint());
-	QLabel p(this);
+	QLabel p(widget);
 	p.setPixmap(krLoader->loadIcon(errors ? "messagebox_critical" : "messagebox_info", K3Icon::Desktop, 32));
 	hlayout->addWidget(&p);
 	
 	QLabel *l1 = new QLabel((errors ? i18n("Errors were detected while creating the checksums") :
-		i18n("Checksums were created successfully")), this);
+		i18n("Checksums were created successfully")), widget);
 	hlayout->addWidget(l1);
-	layout->addMultiCellLayout(hlayout,row,row,0,1, Qt::AlignLeft);
+	layout->addLayout(hlayout,row,0,1,2, Qt::AlignLeft);
 	++row;
 
 	if (successes) {
 		if (errors) {
-			QLabel *l2 = new QLabel(i18n("Here are the calculated checksums:"), this);
-			layout->addMultiCellWidget(l2, row, row, 0, 1);
+			QLabel *l2 = new QLabel(i18n("Here are the calculated checksums:"), widget);
+			layout->addWidget(l2, row, 0, 1, 2);
 			++row;
 		}
-		K3ListView *lv = new K3ListView(this);
+		K3ListView *lv = new K3ListView(widget);
 		if(standardFormat){
 			lv->addColumn(i18n("Hash"));
 			lv->addColumn(i18n("File"));
@@ -528,24 +540,24 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 				new K3ListViewItem(lv, line);
 			}	
 		}
-		layout->addMultiCellWidget(lv, row, row, 0, 1);
+		layout->addWidget(lv, row, 0, 1, 2);
 		++row;
 	}
 
 	if (errors) {
-		QFrame *line1 = new QFrame( this );
+		QFrame *line1 = new QFrame( widget );
 		line1->setGeometry( QRect( 60, 210, 501, 20 ) );
 		line1->setFrameShape( QFrame::HLine );
 		line1->setFrameShadow( QFrame::Sunken );
-		layout->addMultiCellWidget(line1, row, row, 0, 1);
+		layout->addWidget(line1, row, 0, 1, 2);
 		++row;
     
-		QLabel *l3 = new QLabel(i18n("Here are the errors received:"), this);
-		layout->addMultiCellWidget(l3, row, row, 0, 1);
+		QLabel *l3 = new QLabel(i18n("Here are the errors received:"), widget);
+		layout->addWidget(l3, row, 0, 1, 2);
 		++row;
-		K3ListBox *lb = new K3ListBox(this);
+		K3ListBox *lb = new K3ListBox(widget);
 		lb->insertStringList(stdErr);
-		layout->addMultiCellWidget(lb, row, row, 0, 1);
+		layout->addWidget(lb, row, 0, 1, 2);
 		++row;
 	}
 
@@ -554,13 +566,13 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 	QCheckBox *saveFileCb=0;
 	if (successes) {
 		Q3HBoxLayout *hlayout2 = new Q3HBoxLayout(layout, KDialog::spacingHint());
-		saveFileCb = new QCheckBox(i18n("Save checksum to file:"), this);
+		saveFileCb = new QCheckBox(i18n("Save checksum to file:"), widget);
 		saveFileCb->setChecked(true);
 		hlayout2->addWidget(saveFileCb);
 
-		checksumFile = new KUrlRequester( suggestedFilename, this );
+		checksumFile = new KUrlRequester( suggestedFilename, widget );
 		hlayout2->addWidget(checksumFile, Qt::AlignLeft);
-		layout->addMultiCellLayout(hlayout2, row, row,0,1, Qt::AlignLeft);
+		layout->addLayout(hlayout2, row, 0,1,2, Qt::AlignLeft);
 		++row;
 		connect(saveFileCb, SIGNAL(toggled(bool)), checksumFile, SLOT(setEnabled(bool)));
 		checksumFile->setFocus();
@@ -568,15 +580,16 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 	
 	QCheckBox *onePerFile=0;
 	if (stdOut.size() > 1 && standardFormat) {
-		onePerFile = new QCheckBox(i18n("Checksum file for each source file"), this);
+		onePerFile = new QCheckBox(i18n("Checksum file for each source file"), widget);
 		onePerFile->setChecked(false);
 		// clicking this, disables the 'save as' part
 		connect(onePerFile, SIGNAL(toggled(bool)), saveFileCb, SLOT(toggle()));
 		connect(onePerFile, SIGNAL(toggled(bool)), saveFileCb, SLOT(setDisabled(bool)));
 		connect(onePerFile, SIGNAL(toggled(bool)), checksumFile, SLOT(setDisabled(bool)));
-		layout->addMultiCellWidget(onePerFile, row, row,0,1, Qt::AlignLeft);
+		layout->addWidget(onePerFile, row, 0,1,2, Qt::AlignLeft);
 		++row;
 	}
+	setMainWidget( widget );
 	
 	if (exec() == Accepted && successes) {
 		if (stdOut.size()>1 && standardFormat && onePerFile->isChecked()) {

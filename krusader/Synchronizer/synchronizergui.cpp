@@ -46,7 +46,7 @@
 #include <QLabel>
 #include <QPixmap>
 #include <QMouseEvent>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QKeyEvent>
 #include <Q3HBoxLayout>
 #include <QFrame>
@@ -1101,9 +1101,9 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
     rightURL = KUrl("/");
     
   setCaption( i18n("Krusader::Synchronize Directories") );
-  Q3GridLayout *synchGrid = new Q3GridLayout( this );
+  QGridLayout *synchGrid = new QGridLayout( this );
   synchGrid->setSpacing( 6 );
-  synchGrid->setMargin( 11 );
+  synchGrid->setContentsMargins( 11, 11, 11, 11 );
 
   folderIcon =   QPixmap( ( const char** ) folder_data );
   fileIcon   =   QPixmap( ( const char** ) file_data );
@@ -1113,20 +1113,20 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   /* ============================== Compare groupbox ============================== */
 
   QWidget *synchronizerTab = new QWidget( this, "syncronizerTab" );
-  Q3GridLayout *synchronizerGrid = new Q3GridLayout( synchronizerTab );
+  QGridLayout *synchronizerGrid = new QGridLayout( synchronizerTab );
   synchronizerGrid->setSpacing( 6 );
-  synchronizerGrid->setMargin( 11 );
+  synchronizerGrid->setContentsMargins( 11, 11, 11, 11 );
 
   Q3GroupBox *compareDirs = new Q3GroupBox( synchronizerTab, "SyncCompareDirectories" );
   compareDirs->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed);
   compareDirs->setTitle( i18n( "Directory Comparison" ) );
   compareDirs->setColumnLayout(0, Qt::Vertical );
   compareDirs->layout()->setSpacing( 0 );
-  compareDirs->layout()->setMargin( 0 );
+  compareDirs->layout()->setContentsMargins( 0, 0, 0, 0 );
 
-  Q3GridLayout *grid = new Q3GridLayout( compareDirs->layout() );
+  QGridLayout *grid = new QGridLayout( compareDirs->layout() );
   grid->setSpacing( 6 );
-  grid->setMargin( 11 );
+  grid->setContentsMargins( 11, 11, 11, 11 );
 
   leftDirLabel = new QLabel( compareDirs, "leftDirLabel" );
   leftDirLabel->setAlignment( Qt::AlignHCenter );
@@ -1222,10 +1222,10 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   showOptions->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed);
   showOptions->setColumnLayout(0, Qt::Vertical );
   showOptions->layout()->setSpacing( 0 );
-  showOptions->layout()->setMargin( 0 );
-  Q3GridLayout *showOptionsLayout = new Q3GridLayout( showOptions->layout() );
+  showOptions->layout()->setContentsMargins( 0, 0, 0, 0 );
+  QGridLayout *showOptionsLayout = new QGridLayout( showOptions->layout() );
   showOptionsLayout->setSpacing( 6 );
-  showOptionsLayout->setMargin( 11 );
+  showOptionsLayout->setContentsMargins( 11, 11, 11, 11 );
 
   QPixmap showLeftToRight( ( const char** ) right_arrow_button_data );
   QPixmap showEquals     ( ( const char** ) equals_button_data );
@@ -1294,7 +1294,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   Q3WhatsThis::add( btnSingles, i18n( "Show files that exist on one side only." ) );
   showOptionsLayout->addWidget( btnSingles, 0, 6);
 
-  grid->addMultiCellWidget( optionBox, 2, 2, 0, 2 );
+  grid->addWidget( optionBox, 2, 0, 1, 3 );
 
   synchronizerGrid->addWidget( compareDirs, 0, 0 );
 
@@ -1366,11 +1366,11 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   optionsGroup->setTitle( i18n( "&Options" ) );
   optionsGroup->setColumnLayout(0, Qt::Vertical );
   optionsGroup->layout()->setSpacing( 0 );
-  optionsGroup->layout()->setMargin( 0 );
-  Q3GridLayout *optionsLayout = new Q3GridLayout( optionsGroup->layout() );
+  optionsGroup->layout()->setContentsMargins( 0, 0, 0, 0 );
+  QGridLayout *optionsLayout = new QGridLayout( optionsGroup->layout() );
   optionsLayout->setAlignment( Qt::AlignTop );
   optionsLayout->setSpacing( 6 );
-  optionsLayout->setMargin( 11 );
+  optionsLayout->setContentsMargins( 11, 11, 11, 11 );
 
   QLabel * parallelThreadsLabel = new QLabel( i18n( "Parallel threads:" ), optionsGroup );
   optionsLayout->addWidget( parallelThreadsLabel, 0, 0 );
@@ -1413,10 +1413,10 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   QFrame *line = new QFrame( optionsGroup );
   line->setFrameStyle( QFrame::HLine | QFrame::Sunken );
-  optionsLayout->addMultiCellWidget( line, 3, 3, 0, 2 );
+  optionsLayout->addWidget( line, 3, 0, 1, 3 );
 
   ignoreHiddenFilesCB = new QCheckBox( i18n( "Ignore hidden files" ), optionsGroup );
-  optionsLayout->addMultiCellWidget( ignoreHiddenFilesCB, 4, 4, 0, 2 );
+  optionsLayout->addWidget( ignoreHiddenFilesCB, 4, 0, 1, 3 );
   
   generalFilter->middleLayout->addWidget( optionsGroup );
 
@@ -1425,7 +1425,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   Q3HBoxLayout *buttons = new Q3HBoxLayout;
   buttons->setSpacing( 6 );
-  buttons->setMargin( 0 );
+  buttons->setContentsMargins( 0, 0, 0, 0 );
 
   profileManager = new ProfileManager( "SynchronizerProfile", this, "profileManager" );
   profileManager->setAccel( Qt::CTRL + Qt::Key_P );

@@ -37,7 +37,7 @@
 #include <q3vbox.h>
 #include <q3header.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3VBoxLayout>
 #include <kiconloader.h>
 #include <q3whatsthis.h>
@@ -62,13 +62,13 @@ QString KgProtocols::defaultTarMimes   = "application/x-tar,application/x-tarz,"
 KgProtocols::KgProtocols( bool first, QWidget* parent ) :
       KonfiguratorPage( first, parent )
 {
-  Q3GridLayout *KgProtocolsLayout = new Q3GridLayout( this );
+  QGridLayout *KgProtocolsLayout = new QGridLayout( this );
   KgProtocolsLayout->setSpacing( 6 );
 
   //  -------------------------- LINK VIEW ----------------------------------
   
   Q3GroupBox *linkGrp = createFrame( i18n( "Links" ), this );    
-  Q3GridLayout *linkGrid = createGridLayout( linkGrp->layout() );
+  QGridLayout *linkGrid = createGridLayout( linkGrp->layout() );
   
   linkList = new Q3ListView( linkGrp, "linkList" );
   linkList->addColumn( i18n( "Defined Links" ) );
@@ -76,7 +76,7 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
   linkList->setRootIsDecorated( true );
   
   linkGrid->addWidget( linkList, 0, 0 );
-  KgProtocolsLayout->addMultiCellWidget( linkGrp, 0 ,1, 0, 0 );
+  KgProtocolsLayout->addWidget( linkGrp, 0, 0, 2, 1 );
 
   //  -------------------------- BUTTONS ----------------------------------
 
@@ -109,7 +109,7 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
   //  -------------------------- PROTOCOLS LISTBOX ----------------------------------
 
   Q3GroupBox *protocolGrp = createFrame( i18n( "Protocols" ), this );    
-  Q3GridLayout *protocolGrid = createGridLayout( protocolGrp->layout() );
+  QGridLayout *protocolGrid = createGridLayout( protocolGrp->layout() );
   
   protocolList = new Q3ListBox( protocolGrp, "protocolList" );
   loadListCapableProtocols();
@@ -120,7 +120,7 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
   //  -------------------------- MIMES LISTBOX ----------------------------------
 
   Q3GroupBox *mimeGrp = createFrame( i18n( "Mimes" ), this );    
-  Q3GridLayout *mimeGrid = createGridLayout( mimeGrp->layout() );
+  QGridLayout *mimeGrid = createGridLayout( mimeGrp->layout() );
   
   mimeList = new Q3ListBox( mimeGrp, "protocolList" );
   loadMimes();

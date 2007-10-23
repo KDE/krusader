@@ -31,7 +31,7 @@
 // Qt includes
 #include <q3whatsthis.h> 
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3ValueList>
 #include <QKeyEvent>
 #include <QEvent>
@@ -63,7 +63,9 @@ KrusaderView::KrusaderView( QWidget *parent ) : QWidget( parent, "KrusaderView" 
 void KrusaderView::start( QStringList leftTabs, QStringList leftTypes, int leftActiveTab, QStringList rightTabs, QStringList rightTypes, int rightActiveTab ) {
   ////////////////////////////////
   // make a 1x1 mainLayout, it will auto-expand:
-  mainLayout = new Q3GridLayout( this, 1, 1 );
+  mainLayout = new QGridLayout( this );
+  mainLayout->setContentsMargins( 0, 0, 0, 0 );
+  mainLayout->setSpacing( 0 );
   // vertical splitter
   vert_splitter = new QSplitter( this ); // splits between panels and terminal/cmdline
   vert_splitter->setOrientation( Qt::Vertical );

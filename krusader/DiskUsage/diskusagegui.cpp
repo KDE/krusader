@@ -38,7 +38,7 @@
 #include <q3hbox.h>
 //Added by qt3to4:
 #include <QResizeEvent>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3HBoxLayout>
 #include <QLabel>
 #include <klocale.h>
@@ -53,9 +53,9 @@ DiskUsageGUI::DiskUsageGUI( KUrl openDir, QWidget* parent, const char *name )
   if( !newSearch() )
     return;
   
-  Q3GridLayout *duGrid = new Q3GridLayout( this );
+  QGridLayout *duGrid = new QGridLayout( this );
   duGrid->setSpacing( 6 );
-  duGrid->setMargin( 11 );
+  duGrid->setContentsMargins( 11, 11, 11, 11 );
   
   Q3HBox *duTools = new Q3HBox( this, "duTools" );
   duTools->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );

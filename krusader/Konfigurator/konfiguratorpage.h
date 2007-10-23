@@ -38,7 +38,7 @@
 #include <qlabel.h>
 #include <qlayout.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 
 struct KONFIGURATOR_CHECKBOX_PARAM;
 struct KONFIGURATOR_NAME_VALUE_TIP;
@@ -298,7 +298,7 @@ public:
     *
     * @return             reference to the newly created QGridLayout
     */
-  Q3GridLayout             *createGridLayout( QLayout *parent );
+  QGridLayout             *createGridLayout( QLayout *parent );
 
   /**
     * Adds a new label to a grid layout.
@@ -317,7 +317,7 @@ public:
     *
     * @return             reference to the newly created label
     */
-  QLabel                  *addLabel( Q3GridLayout *layout, int x, int y, QString label,
+  QLabel                  *addLabel( QGridLayout *layout, int x, int y, QString label,
                                            QWidget *parent=0 );
 
   /**

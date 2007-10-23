@@ -37,7 +37,7 @@
 #include <q3listview.h>
 #include <q3widgetstack.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QLabel>
 
 class KgColors : public KonfiguratorPage
@@ -80,13 +80,13 @@ private:
 
 private:
   QWidget                            *colorsGrp;
-  Q3GridLayout                        *colorsGrid;
+  QGridLayout                        *colorsGrid;
   int                                 offset;
   int                                 endOfActiveColors;
   int                                 endOfPanelColors;
 
   Q3GroupBox                          *previewGrp;
-  Q3GridLayout                        *previewGrid;
+  QGridLayout                        *previewGrid;
   QTabWidget                         *colorTabWidget;
 
   Q3WidgetStack                       *inactiveColorStack;

@@ -41,15 +41,15 @@
 #include <qpushbutton.h>
 //Added by qt3to4:
 #include <Q3HBoxLayout>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QLabel>
 
 GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent, const char *name ) : QWidget ( parent, name ),
 		profileManager ( 0 ), fltTabs ( tabs )
 {
-	Q3GridLayout *filterLayout = new Q3GridLayout ( this );
+	QGridLayout *filterLayout = new QGridLayout ( this );
 	filterLayout->setSpacing ( 6 );
-	filterLayout->setMargin ( 11 );
+	filterLayout->setContentsMargins ( 11, 11, 11, 11 );
 
 	this->properties = properties;
 
@@ -59,11 +59,11 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	nameGroup->setTitle ( i18n ( "File name" ) );
 	nameGroup->setColumnLayout ( 0, Qt::Vertical );
 	nameGroup->layout()->setSpacing ( 0 );
-	nameGroup->layout()->setMargin ( 0 );
-	Q3GridLayout *nameGroupLayout = new Q3GridLayout ( nameGroup->layout() );
+	nameGroup->layout()->setContentsMargins ( 0, 0, 0, 0 );
+	QGridLayout *nameGroupLayout = new QGridLayout ( nameGroup->layout() );
 	nameGroupLayout->setAlignment ( Qt::AlignTop );
 	nameGroupLayout->setSpacing ( 6 );
-	nameGroupLayout->setMargin ( 11 );
+	nameGroupLayout->setContentsMargins ( 11, 11, 11, 11 );
 
 	searchForCase = new QCheckBox ( nameGroup, "searchForCase" );
 	searchForCase->setText ( i18n ( "&Case sensitive" ) );
@@ -80,7 +80,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	searchFor->setDuplicatesEnabled ( false );
 	searchFor->setMaxCount ( 25 );
 	searchForLabel->setBuddy ( searchFor );
-	nameGroupLayout->addMultiCellWidget ( searchFor, 0, 0, 1, 2 );
+	nameGroupLayout->addWidget ( searchFor, 0, 1, 1, 2 );
 
 	QString s = "<p><img src='toolbar|find'></p>" + i18n ( "<p>The filename filtering criteria is defined here.</p><p>You can make use of wildcards. Multiple patterns are separated by space (means logical OR) and patterns are excluded from the search using the pipe symbol.</p><p>If the pattern is ended with a slash (<code>*pattern*/</code>), that means that pattern relates to recursive search of directories.<ul><li><code>pattern</code> - means to search those files/directories that name is <code>pattern</code>, recursive search goes through all subdirectories independently of the value of <code>pattern</code></li><li><code>pattern/</code> - means to search all files/directories, but recursive search goes through/excludes the directories that name is <code>pattern</code></li></ul><p></p><p>It's allowed to use quotation marks for names that contain space. Filter <code>\"Program&nbsp;Files\"</code> searches out those files/directories that name is <code>Program&nbsp;Files</code>.</p><p>Examples:<ul><code><li>*.o</li><li>*.h *.c\?\?</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</li></code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to '<code>*text*</code>'.</p>" );
 	Q3WhatsThis::add ( searchFor, s );
@@ -108,7 +108,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 
 	middleLayout = new Q3HBoxLayout();
 	middleLayout->setSpacing ( 6 );
-	middleLayout->setMargin ( 0 );
+	middleLayout->setContentsMargins ( 0, 0, 0, 0 );
 	QSpacerItem* middleSpacer = new QSpacerItem ( 1, 1, QSizePolicy::Fixed, QSizePolicy::Fixed );
 	middleLayout->addItem ( middleSpacer );
 
@@ -120,14 +120,14 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 		profileHandler->setTitle ( i18n ( "&Profile handler" ) );
 		profileHandler->setColumnLayout ( 0, Qt::Vertical );
 		profileHandler->layout()->setSpacing ( 0 );
-		profileHandler->layout()->setMargin ( 0 );
-		Q3GridLayout *profileLayout = new Q3GridLayout ( profileHandler->layout() );
+		profileHandler->layout()->setContentsMargins ( 0, 0, 0, 0 );
+		QGridLayout *profileLayout = new QGridLayout ( profileHandler->layout() );
 		profileLayout->setAlignment ( Qt::AlignTop );
 		profileLayout->setSpacing ( 6 );
-		profileLayout->setMargin ( 11 );
+		profileLayout->setContentsMargins ( 11, 11, 11, 11 );
 
 		profileListBox = new Q3ListBox ( profileHandler, "profileListBox" );
-		profileLayout->addMultiCellWidget ( profileListBox, 0, 3, 0, 0 );
+		profileLayout->addWidget ( profileListBox, 0, 0, 4, 1 );
 
 		profileAddBtn = new QPushButton ( i18n ( "&Add" ), profileHandler, "profileAddBtn" );
 		profileLayout->addWidget ( profileAddBtn, 0, 1 );
@@ -160,11 +160,11 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 		searchInGroup->setTitle ( i18n ( "&Search in" ) );
 		searchInGroup->setColumnLayout ( 0, Qt::Vertical );
 		searchInGroup->layout()->setSpacing ( 0 );
-		searchInGroup->layout()->setMargin ( 0 );
-		Q3GridLayout *searchInLayout = new Q3GridLayout ( searchInGroup->layout() );
+		searchInGroup->layout()->setContentsMargins ( 0, 0, 0, 0 );
+		QGridLayout *searchInLayout = new QGridLayout ( searchInGroup->layout() );
 		searchInLayout->setAlignment ( Qt::AlignTop );
 		searchInLayout->setSpacing ( 6 );
-		searchInLayout->setMargin ( 11 );
+		searchInLayout->setContentsMargins ( 11, 11, 11, 11 );
 
 		searchIn = new KURLListRequester ( searchInGroup, "searchIn" );
 		searchInLayout->addWidget ( searchIn, 0, 0 );
@@ -180,11 +180,11 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 		dontSearchInGroup->setTitle ( i18n ( "&Don't search in" ) );
 		dontSearchInGroup->setColumnLayout ( 0, Qt::Vertical );
 		dontSearchInGroup->layout()->setSpacing ( 0 );
-		dontSearchInGroup->layout()->setMargin ( 0 );
-		Q3GridLayout *dontSearchInLayout = new Q3GridLayout ( dontSearchInGroup->layout() );
+		dontSearchInGroup->layout()->setContentsMargins ( 0, 0, 0, 0 );
+		QGridLayout *dontSearchInLayout = new QGridLayout ( dontSearchInGroup->layout() );
 		dontSearchInLayout->setAlignment ( Qt::AlignTop );
 		dontSearchInLayout->setSpacing ( 6 );
-		dontSearchInLayout->setMargin ( 11 );
+		dontSearchInLayout->setContentsMargins ( 11, 11, 11, 11 );
 
 		dontSearchIn = new KURLListRequester ( dontSearchInGroup, "dontSearchIn" );
 		dontSearchInLayout->addWidget ( dontSearchIn, 0, 0 );
@@ -200,15 +200,15 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	containsGroup->setTitle ( i18n ( "Containing text" ) );
 	containsGroup->setColumnLayout ( 0, Qt::Vertical );
 	containsGroup->layout()->setSpacing ( 0 );
-	containsGroup->layout()->setMargin ( 0 );
-	Q3GridLayout *containsLayout = new Q3GridLayout ( containsGroup->layout() );
+	containsGroup->layout()->setContentsMargins ( 0, 0, 0, 0 );
+	QGridLayout *containsLayout = new QGridLayout ( containsGroup->layout() );
 	containsLayout->setAlignment ( Qt::AlignTop );
 	containsLayout->setSpacing ( 6 );
-	containsLayout->setMargin ( 11 );
+	containsLayout->setContentsMargins ( 11, 11, 11, 11 );
 
 	Q3HBoxLayout *containsTextLayout = new Q3HBoxLayout();
 	containsTextLayout->setSpacing ( 6 );
-	containsTextLayout->setMargin ( 0 );
+	containsTextLayout->setContentsMargins ( 0, 0, 0, 0 );
 
 	QLabel *containsLabel = new QLabel ( containsGroup, "containsLabel" );
 	containsLabel->setSizePolicy ( QSizePolicy ( ( QSizePolicy::SizeType ) 0, ( QSizePolicy::SizeType ) 1, containsLabel->sizePolicy().hasHeightForWidth() ) );
@@ -226,7 +226,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 
 	Q3HBoxLayout *containsCbsLayout = new Q3HBoxLayout();
 	containsCbsLayout->setSpacing ( 6 );
-	containsCbsLayout->setMargin ( 0 );
+	containsCbsLayout->setContentsMargins ( 0, 0, 0, 0 );
 	QSpacerItem* cbSpacer = new QSpacerItem ( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	containsCbsLayout->addItem ( cbSpacer );
 
@@ -260,7 +260,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 
 		Q3HBoxLayout *recurseLayout = new Q3HBoxLayout();
 		recurseLayout->setSpacing ( 6 );
-		recurseLayout->setMargin ( 0 );
+		recurseLayout->setContentsMargins ( 0, 0, 0, 0 );
 		QSpacerItem* recurseSpacer = new QSpacerItem ( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		recurseLayout->addItem ( recurseSpacer );
 

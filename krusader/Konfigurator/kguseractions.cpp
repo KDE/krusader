@@ -37,19 +37,18 @@
 #include <kpushbutton.h>
 #include <kdebug.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QLabel>
 
 
 KgUserActions::KgUserActions( bool first, QWidget* parent ) :
   KonfiguratorPage( first, parent )
 {
-   Q3GridLayout *kgUserActionLayout = new Q3GridLayout( this, 2, 1,
-   		0 /* margin */, 6 /* spacing */, "kgUserActionLayout" );
+   QGridLayout *kgUserActionLayout = new QGridLayout( this );
 
    // ============= Info Group =============
    Q3GroupBox *InfoGroup = createFrame( i18n( "Information" ), this );
-   Q3GridLayout *InfoGrid = createGridLayout( InfoGroup->layout() );
+   QGridLayout *InfoGrid = createGridLayout( InfoGroup->layout() );
 
    // terminal for the UserActions
    QLabel *labelInfo = new QLabel( i18n(
@@ -65,7 +64,7 @@ KgUserActions::KgUserActions( bool first, QWidget* parent ) :
 
    // ============= Terminal Group =============
    Q3GroupBox *terminalGroup = createFrame( i18n( "Terminal execution" ), this );
-   Q3GridLayout *terminalGrid = createGridLayout( terminalGroup->layout() );
+   QGridLayout *terminalGrid = createGridLayout( terminalGroup->layout() );
 
    // terminal for the UserActions
    QLabel *labelTerminal = new QLabel( i18n( "Terminal for UserActions:" ),
@@ -79,7 +78,7 @@ KgUserActions::KgUserActions( bool first, QWidget* parent ) :
 
    // ============= Outputcollection Group =============
    Q3GroupBox *outputGroup = createFrame( i18n( "Output collection" ), this );
-   Q3GridLayout *outputGrid = createGridLayout( outputGroup->layout() );
+   QGridLayout *outputGrid = createGridLayout( outputGroup->layout() );
 
    Q3HBox *hbox;
    hbox = new Q3HBox( outputGroup, "HBoxNormalFont" );

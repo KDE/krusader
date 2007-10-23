@@ -33,7 +33,7 @@
 #include <q3vbox.h>
 #include <qfontmetrics.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QFrame>
 #include <QPixmap>
 #include <klocale.h>
@@ -51,13 +51,13 @@ KgGeneral::KgGeneral( bool first, QWidget* parent ) :
 if( first )  
     slotFindTools();
 
-  Q3GridLayout *kgGeneralLayout = new Q3GridLayout( this );
+  QGridLayout *kgGeneralLayout = new QGridLayout( this );
   kgGeneralLayout->setSpacing( 6 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
 
   Q3GroupBox *generalGrp = createFrame( i18n( "General" ), this );
-  Q3GridLayout *generalGrid = createGridLayout( generalGrp->layout() );
+  QGridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
   KONFIGURATOR_NAME_VALUE_TIP deleteMode[] =
   //            name            value    tooltip
@@ -66,15 +66,15 @@ if( first )
 
   KonfiguratorRadioButtons *trashRadio = createRadioButtonGroup( "General", "Move To Trash",
       _MoveToTrash ? "true" : "false", 2, 0, deleteMode, 2, generalGrp, false );
-  generalGrid->addMultiCellWidget( trashRadio, 0, 0, 0, 1 );
+  generalGrid->addWidget( trashRadio, 0, 0, 1, 2 );
 
   KonfiguratorCheckBox *checkBox = createCheckBox( "General", "Mimetype Magic", _MimetypeMagic,
                      i18n( "Use mimetype magic" ), generalGrp, false,
                      i18n( "Mimetype magic allows better distinction of file types, but is slower." ) );
-  generalGrid->addMultiCellWidget( checkBox, 1, 1, 0, 1 );
+  generalGrid->addWidget( checkBox, 1, 0, 1, 2 );
 
   QFrame *line1 = createLine( generalGrp );
-  generalGrid->addMultiCellWidget( line1, 2, 2, 0, 1 );
+  generalGrid->addWidget( line1, 2, 0, 1, 2 );
 
   // editor
   QLabel *label1 = new QLabel( i18n( "Editor:" ), generalGrp, "EditorLabel" );
@@ -84,10 +84,10 @@ if( first )
   generalGrid->addWidget( urlReq, 3, 1 );
 
   QLabel *label2 = new QLabel( i18n( "Hint: use 'internal editor' if you want to use Krusader's fast built-in editor" ), generalGrp, "EditorLabel" );
-  generalGrid->addMultiCellWidget( label2, 4, 4, 0, 1 );
+  generalGrid->addWidget( label2, 4, 0, 1, 2 );
 
   QFrame *line2 = createLine( generalGrp );
-  generalGrid->addMultiCellWidget( line2, 5, 5, 0, 1 );
+  generalGrid->addWidget( line2, 5, 0, 1, 2 );
 
   // viewer
 
@@ -108,7 +108,7 @@ if( first )
                      i18n( "Internal editor and viewer opens each file in a separate window" ), vbox, false,
                      i18n( "If checked, each file will open in a separate window, otherwise, the viewer will work in a single, tabbed mode" ) );
 
-  generalGrid->addMultiCellWidget(hbox2, 6, 8, 0, 1);
+  generalGrid->addWidget(hbox2, 6, 0, 3, 2);
 
   // atomic extensions
   QFrame * frame21 = createLine( hbox2, true );
@@ -141,7 +141,7 @@ if( first )
       defaultAtomicExtensions, vbox2, true, false );
 
   QFrame *line3 = createLine( generalGrp );
-  generalGrid->addMultiCellWidget( line3, 9, 9, 0, 1 );
+  generalGrid->addWidget( line3, 9, 0, 1, 2 );
 
 	// terminal
   QLabel *label3 = new QLabel( i18n( "Terminal:" ), generalGrp, "TerminalLabel" );
@@ -153,10 +153,10 @@ if( first )
   KonfiguratorCheckBox *checkBox1 = createCheckBox( "General", "Send CDs", _SendCDs,
                      i18n( "Terminal Emulator sends Chdir on panel change" ), generalGrp, false,
                      i18n( "When checked, whenever the panel is changed (for example, by pressing TAB), krusader changes the current directory in the terminal emulator." ) );
-  generalGrid->addMultiCellWidget( checkBox1, 11, 11, 0, 1 );
+  generalGrid->addWidget( checkBox1, 11, 0, 1, 2 );
 
   QFrame *line31 = createLine( generalGrp );
-  generalGrid->addMultiCellWidget( line31, 12, 12, 0, 1 );
+  generalGrid->addWidget( line31, 12, 0, 1, 2 );
 
 	// temp dir
   Q3HBox *hbox = new Q3HBox( generalGrp, "hbox" );
@@ -166,11 +166,11 @@ if( first )
   urlReq3->setMode( KFile::Directory );
   connect( urlReq3->extension(), SIGNAL( applyManually(QObject *,QString, QString) ),
            this, SLOT( applyTempDir(QObject *,QString, QString) ) );
-  generalGrid->addMultiCellWidget( hbox, 13, 13, 0, 1 );
+  generalGrid->addWidget( hbox, 13, 0, 1, 2 );
 
   QLabel *label4 = new QLabel( i18n( "Note: you must have full permissions for the temporary directory!" ),
                                generalGrp, "NoteLabel"  );
-  generalGrid->addMultiCellWidget( label4, 14, 14, 0, 1 );
+  generalGrid->addWidget( label4, 14, 0, 1, 2 );
 
 
   kgGeneralLayout->addWidget( generalGrp, 0 ,0 );

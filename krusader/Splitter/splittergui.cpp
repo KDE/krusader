@@ -34,7 +34,7 @@
 #include <qlayout.h>
 #include <qlabel.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <Q3HBoxLayout>
 #include <Q3HBox>
 #include <QFrame>
@@ -58,9 +58,9 @@ SplitterGUI::SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir ) :
 {
   predefinedDeviceNum = sizeof( predefinedDevices ) / sizeof( PredefinedDevice );
 
-  Q3GridLayout *grid = new Q3GridLayout( this );
+  QGridLayout *grid = new QGridLayout( this );
   grid->setSpacing( 6 );
-  grid->setMargin( 11 );
+  grid->setContentsMargins( 11, 11, 11, 11 );
 
   QLabel *splitterLabel = new QLabel( this, "SplitterLabel" );
   splitterLabel->setText( i18n( "Split the file %1 to directory:", fileURL.pathOrUrl() ) );
@@ -106,7 +106,7 @@ SplitterGUI::SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir ) :
   
   Q3HBoxLayout *splitButtons = new Q3HBoxLayout;
   splitButtons->setSpacing( 6 );
-  splitButtons->setMargin( 0 );
+  splitButtons->setContentsMargins( 0, 0, 0, 0 );
 
   QSpacerItem* spacer2 = new QSpacerItem( 0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum );
   splitButtons->addItem( spacer2 );

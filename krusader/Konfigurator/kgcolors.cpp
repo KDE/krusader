@@ -42,21 +42,21 @@
 //Added by qt3to4:
 #include <Q3ValueList>
 #include <QLabel>
-#include <Q3GridLayout>
+#include <QGridLayout>
 
 KgColors::KgColors( bool first, QWidget* parent ) :
       KonfiguratorPage( first, parent ), offset( 0 )
 {
-  Q3GridLayout *kgColorsLayout = new Q3GridLayout( this );
+  QGridLayout *kgColorsLayout = new QGridLayout( this );
   kgColorsLayout->setSpacing( 6 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
 
   Q3GroupBox *generalGrp = createFrame( i18n( "General" ), this );
-  Q3GridLayout *generalGrid = createGridLayout( generalGrp->layout() );
+  QGridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
   generalGrid->setSpacing( 0 );
-  generalGrid->setMargin( 5 );
+  generalGrid->setContentsMargins( 5, 5, 5, 5 );
 
   KONFIGURATOR_CHECKBOX_PARAM generalSettings[] =
   //  cfg_class  cfg_name                     default                 text                                              restart tooltip
@@ -75,15 +75,15 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   connect( generals->find( "Show Current Item Always" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
   connect( generals->find( "Dim Inactive Colors" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
 
-  kgColorsLayout->addMultiCellWidget( generalGrp, 0 ,0, 0, 2 );
+  kgColorsLayout->addWidget( generalGrp, 0 ,0, 1, 3 );
   Q3HBox *hbox = new Q3HBox( this );
 
   //  -------------------------- COLORS GROUPBOX ----------------------------------
 
   Q3GroupBox *colorsFrameGrp = createFrame( i18n( "Colors" ), hbox );
-  Q3GridLayout *colorsFrameGrid = createGridLayout( colorsFrameGrp->layout() );
+  QGridLayout *colorsFrameGrid = createGridLayout( colorsFrameGrp->layout() );
   colorsFrameGrid->setSpacing( 0 );
-  colorsFrameGrid->setMargin( 3 );
+  colorsFrameGrid->setContentsMargins( 3, 3, 3, 3 );
 
   colorTabWidget = new QTabWidget( colorsFrameGrp, "colorTabWidget" );
 
@@ -92,9 +92,9 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   colorsGrp = new QWidget( colorTabWidget, "colorTab" );
   colorTabWidget->insertTab( colorsGrp, i18n( "Active" ) );
 
-  colorsGrid = new Q3GridLayout( colorsGrp );
+  colorsGrid = new QGridLayout( colorsGrp );
   colorsGrid->setSpacing( 0 );
-  colorsGrid->setMargin( 2 );
+  colorsGrid->setContentsMargins( 2, 2, 2, 2 );
 
   ADDITIONAL_COLOR transparent  = { i18n("Transparent"),       Qt::white, "transparent" };
 
@@ -127,9 +127,9 @@ KgColors::KgColors( bool first, QWidget* parent ) :
 
   colorsGrp = normalInactiveWidget = new QWidget( inactiveColorStack, "colorTab2" );
 
-  colorsGrid = new Q3GridLayout( normalInactiveWidget );
+  colorsGrid = new QGridLayout( normalInactiveWidget );
   colorsGrid->setSpacing( 0 );
-  colorsGrid->setMargin( 2 );
+  colorsGrid->setContentsMargins( 2, 2, 2, 2 );
 
   offset = endOfActiveColors = itemList.count();
 
@@ -165,9 +165,9 @@ KgColors::KgColors( bool first, QWidget* parent ) :
 
   colorsGrp = dimmedInactiveWidget = new QWidget( inactiveColorStack, "colorTab2dimmed" );
 
-  colorsGrid = new Q3GridLayout( dimmedInactiveWidget );
+  colorsGrid = new QGridLayout( dimmedInactiveWidget );
   colorsGrid->setSpacing( 0 );
-  colorsGrid->setMargin( 2 );
+  colorsGrid->setContentsMargins( 2, 2, 2, 2 );
 
   addColorSelector( "Dim Target Color", i18n( "Dim target color:" ), Qt::white);
 
@@ -187,9 +187,9 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   colorsGrp = new QWidget( colorTabWidget, "colorTab3" );
   colorTabWidget->insertTab( colorsGrp, i18n( "Synchronizer" ) );
 
-  colorsGrid = new Q3GridLayout( colorsGrp );
+  colorsGrid = new QGridLayout( colorsGrp );
   colorsGrid->setSpacing( 0 );
-  colorsGrid->setMargin( 2 );
+  colorsGrid->setContentsMargins( 2, 2, 2, 2 );
 
   ADDITIONAL_COLOR KDEDefaultBase = { i18n("KDE default"), KColorScheme(QPalette::Active, KColorScheme::View).background().color(), "KDE default" };
   ADDITIONAL_COLOR KDEDefaultFore = { i18n("KDE default"), KColorScheme(QPalette::Active, KColorScheme::View).foreground().color(), "KDE default" };
@@ -229,7 +229,7 @@ KgColors::KgColors( bool first, QWidget* parent ) :
 
   previewGrid->addWidget( preview, 0 ,0 );
 
-  kgColorsLayout->addMultiCellWidget( hbox, 1 ,1, 0, 2 );
+  kgColorsLayout->addWidget( hbox, 1 , 0, 1,  3 );
 
   importBtn = new KPushButton(i18n("Import color-scheme"),this);
   kgColorsLayout->addWidget(importBtn,2,0);

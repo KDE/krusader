@@ -34,7 +34,7 @@
 #include <q3hbox.h>
 #include <q3whatsthis.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QLabel>
 #include <sys/param.h>
 #include <kdeversion.h>
@@ -43,13 +43,13 @@
 KgAdvanced::KgAdvanced( bool first, QWidget* parent ) :
       KonfiguratorPage( first, parent )
 {
-  Q3GridLayout *kgAdvancedLayout = new Q3GridLayout( this );
+  QGridLayout *kgAdvancedLayout = new QGridLayout( this );
   kgAdvancedLayout->setSpacing( 6 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
   
   Q3GroupBox *generalGrp = createFrame( i18n( "General" ), this );
-  Q3GridLayout *generalGrid = createGridLayout( generalGrp->layout() );
+  QGridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
   bool dontUseMedia = false;
 
@@ -85,7 +85,7 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent ) :
   //  ----------------------- CONFIRMATIONS GROUPBOX -------------------------------
   
   Q3GroupBox *confirmGrp = createFrame( i18n( "Confirmations" ), this );
-  Q3GridLayout *confirmGrid = createGridLayout( confirmGrp->layout() );
+  QGridLayout *confirmGrid = createGridLayout( confirmGrp->layout() );
 
   addLabel( confirmGrid, 0, 0, "\n"+i18n( "Request user confirmation for the following operations:" )+"\n",
             confirmGrp );
@@ -109,7 +109,7 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent ) :
   //  ------------------------ FINE-TUNING GROUPBOX --------------------------------
 
   Q3GroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), this );
-  Q3GridLayout *fineTuneGrid = createGridLayout( fineTuneGrp->layout() );
+  QGridLayout *fineTuneGrid = createGridLayout( fineTuneGrp->layout() );
   fineTuneGrid->setAlignment( Qt::AlignLeft | Qt::AlignTop );
   
   QLabel *label = new QLabel( i18n( "Icon cache size (KB):" ), fineTuneGrp, "iconCacheLabel" );

@@ -33,7 +33,7 @@
 //Added by qt3to4:
 #include <QKeyEvent>
 #include <QLabel>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QPixmap>
 #include <QFrame>
 #include <QResizeEvent>
@@ -91,27 +91,27 @@ LoaderWidget::LoaderWidget( QWidget *parent, const char *name ) : Q3ScrollView( 
   viewport()->setEraseColor( Qt::white );
   widget = new QWidget( parent );
 
-  Q3GridLayout *loaderLayout = new Q3GridLayout( widget );
+  QGridLayout *loaderLayout = new QGridLayout( widget );
   loaderLayout->setSpacing( 0 );
-  loaderLayout->setMargin( 0 );
+  loaderLayout->setContentsMargins( 0, 0, 0, 0 );
 
   Q3GroupBox *loaderBox = new Q3GroupBox( widget, "loaderGroupBox" );
   loaderBox->setFrameShape( Q3GroupBox::Box );
   loaderBox->setFrameShadow( Q3GroupBox::Sunken );
   loaderBox->setColumnLayout(0, Qt::Vertical );
   loaderBox->layout()->setSpacing( 0 );
-  loaderBox->layout()->setMargin( 0 );
+  loaderBox->layout()->setContentsMargins( 0, 0, 0, 0 );
   loaderBox->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
   loaderBox->setFrameStyle( QFrame::Panel + QFrame::Raised );
   loaderBox->setLineWidth( 2 );
 
-  Q3GridLayout *synchGrid = new Q3GridLayout( loaderBox->layout() );
+  QGridLayout *synchGrid = new QGridLayout( loaderBox->layout() );
   synchGrid->setSpacing( 6 );
-  synchGrid->setMargin( 11 );
+  synchGrid->setContentsMargins( 11, 11, 11, 11 );
 
   QLabel *titleLabel = new QLabel( i18n( "Loading Usage Information" ), loaderBox, "titleLabel" );
   titleLabel->setAlignment( Qt::AlignHCenter );
-  synchGrid->addMultiCellWidget( titleLabel, 0, 0, 0, 1 );
+  synchGrid->addWidget( titleLabel, 0, 0, 1, 2 );
 
   QLabel *filesLabel = new QLabel( i18n( "Files:" ), loaderBox, "filesLabel" );
   filesLabel->setFrameShape( QLabel::StyledPanel );
@@ -152,11 +152,11 @@ LoaderWidget::LoaderWidget( QWidget *parent, const char *name ) : Q3ScrollView( 
   searchedDirectory->setFrameShadow( QLabel::Sunken );
   searchedDirectory->setMinimumWidth( width = QFontMetrics(searchedDirectory->font()).width("W") * 30 );
   searchedDirectory->setMaximumWidth( width );
-  synchGrid->addMultiCellWidget( searchedDirectory, 4, 4, 0, 1 );
+  synchGrid->addWidget( searchedDirectory, 4, 0, 1, 2 );
 
   QFrame *line = new QFrame( loaderBox );
   line->setFrameStyle( QFrame::HLine | QFrame::Sunken );
-  synchGrid->addMultiCellWidget( line, 5, 5, 0, 1 );
+  synchGrid->addWidget( line, 5, 0, 1, 2 );
 
   Q3HBox *hbox = new Q3HBox( loaderBox, "hbox" );
   QSpacerItem* spacer = new QSpacerItem( 0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding );

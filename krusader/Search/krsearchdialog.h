@@ -43,7 +43,7 @@
 #include <qwidget.h>
 //Added by qt3to4:
 #include <QResizeEvent>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QLabel>
 #include <QKeyEvent>
 #include <QCloseEvent>
@@ -104,7 +104,7 @@ private:
   
   QTabWidget* searcherTabs;  
   QWidget* resultTab;
-  Q3GridLayout* resultLayout;
+  QGridLayout* resultLayout;
   QLabel* foundLabel;
   KrSqueezedTextLabel *foundTextLabel;
   KSqueezedTextLabel *searchingLabel;

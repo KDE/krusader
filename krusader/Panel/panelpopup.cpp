@@ -12,7 +12,7 @@
 #include <qtoolbutton.h>
 //Added by qt3to4:
 #include <QDropEvent>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QFrame>
 #include <Q3StrList>
 #include <Q3PopupMenu>
@@ -32,7 +32,8 @@
 PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ), 
 	_left( left ), _hidden(true), stack( 0 ), viewer( 0 ), pjob( 0 ), splitterSizes() {
 	splitter = parent;
-	Q3GridLayout * layout = new Q3GridLayout(this, 1, 1);
+	QGridLayout * layout = new QGridLayout(this);
+	layout->setContentsMargins( 0, 0, 0, 0 );
 	
 	// loading the splitter sizes
 	KConfigGroup pg( krConfig, "Private" );
@@ -158,7 +159,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	// create the quick-panel part ----
 	
 	QWidget *quickPanel = new QWidget(stack);
-	Q3GridLayout *qlayout = new Q3GridLayout(quickPanel);	
+	QGridLayout *qlayout = new QGridLayout(quickPanel);	
 	// --- quick select
 	QLabel *selectLabel = new QLabel(i18n("Quick Select"), quickPanel);
 	quickSelectCombo = new KComboBox( quickPanel );
@@ -198,7 +199,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	stack->addWidget(quickPanel, QuickPanel);
 	
 	// -------- finish the layout (General one)
-	layout->addMultiCellWidget(stack,1,1,0,5);
+	layout->addWidget(stack,1,0,1,6);
 	
    // set the wanted widget
 	// ugly: are we left or right?

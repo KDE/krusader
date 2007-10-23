@@ -6,7 +6,7 @@
 #include <qlayout.h>
 #include <qlabel.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <kinputdialog.h>
 #include <kiconloader.h>
 #include <kdebug.h>
@@ -28,7 +28,9 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KUrl url):
 	QWidget *page = new QWidget(this);
 	setMainWidget(page);
 
-	Q3GridLayout *layout = new Q3GridLayout(page, 1, 1, 0, spacingHint()); // expanding
+	QGridLayout *layout = new QGridLayout(page); // expanding
+	layout->setSpacing( spacingHint() );
+	layout->setContentsMargins( 0, 0, 0, 0 );
 	// name and url
 	QLabel *lb1 = new QLabel(i18n("Name:"), page);
 	_name = new KLineEdit(page);

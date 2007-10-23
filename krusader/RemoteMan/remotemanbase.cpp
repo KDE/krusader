@@ -24,7 +24,7 @@
 #include <q3whatsthis.h>
 //Added by qt3to4:
 #include <Q3HBoxLayout>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QEvent>
 #include <Q3VBoxLayout>
 #include <kprotocolinfo.h>
@@ -45,13 +45,13 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, Qt
     resize( 670, 502 ); 
     setCaption( i18n( "RemoteMan: Connection Manager" ) );
     setSizeGripEnabled( TRUE );
-    remoteManBaseLayout = new Q3GridLayout( this );
+    remoteManBaseLayout = new QGridLayout( this );
     remoteManBaseLayout->setSpacing( 6 );
-    remoteManBaseLayout->setMargin( 11 );
+    remoteManBaseLayout->setContentsMargins( 11, 11, 11, 11 );
 
     Layout23 = new Q3VBoxLayout;
     Layout23->setSpacing( 6 );
-    Layout23->setMargin( 0 );
+    Layout23->setContentsMargins( 0, 0, 0, 0 );
 
     TextLabel1 = new QLabel( this, "TextLabel1" );
     TextLabel1->setText( i18n( "Session name:" ) );
@@ -64,7 +64,7 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, Qt
 
     Layout12 = new Q3HBoxLayout;
     Layout12->setSpacing( 6 );
-    Layout12->setMargin( 0 );
+    Layout12->setContentsMargins( 0, 0, 0, 0 );
     QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     Layout12->addItem( spacer );
 
@@ -80,7 +80,7 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, Qt
     closeBtn->setDefault( FALSE );
     Layout12->addWidget( closeBtn );
 
-    remoteManBaseLayout->addMultiCellLayout( Layout12, 7, 7, 0, 1 );
+    remoteManBaseLayout->addLayout( Layout12, 7, 0, 1, 2 );
 
     sessions = new Q3ListView( this, "sessions" );
     sessions->addColumn( i18n( "Sessions" ) );
@@ -91,15 +91,15 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, Qt
     sessions->setHScrollBarMode( Q3ListView::Auto );
     sessions->setRootIsDecorated( TRUE );
 
-    remoteManBaseLayout->addMultiCellWidget( sessions, 0, 6, 0, 0 );
+    remoteManBaseLayout->addWidget( sessions, 0, 0, 7, 1 );
 
     Layout9 = new Q3VBoxLayout;
     Layout9->setSpacing( 6 );
-    Layout9->setMargin( 0 );
+    Layout9->setContentsMargins( 0, 0, 0, 0 );
 
-    Layout10 = new Q3GridLayout;
+    Layout10 = new QGridLayout;
     Layout10->setSpacing( 6 );
-    Layout10->setMargin( 0 );
+    Layout10->setContentsMargins( 0, 0, 0, 0 );
 
     TextLabel1_3_3 = new QLabel( this, "TextLabel1_3_3" );
     TextLabel1_3_3->setText( i18n( "Password:" ) );
@@ -128,7 +128,7 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, Qt
 
     Layout26 = new Q3VBoxLayout;
     Layout26->setSpacing( 6 );
-    Layout26->setMargin( 0 );
+    Layout26->setContentsMargins( 0, 0, 0, 0 );
 
     TextLabel1_3_2 = new QLabel( this, "TextLabel1_3_2" );
     TextLabel1_3_2->setText( i18n( "Remote directory:" ) );
@@ -141,7 +141,7 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, Qt
 
     Layout27 = new Q3VBoxLayout;
     Layout27->setSpacing( 6 );
-    Layout27->setMargin( 0 );
+    Layout27->setContentsMargins( 0, 0, 0, 0 );
 
     TextLabel1_3_2_2 = new QLabel( this, "TextLabel1_3_2_2" );
     TextLabel1_3_2_2->setText( i18n( "Description:" ) );
@@ -152,9 +152,9 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, Qt
 
     remoteManBaseLayout->addLayout( Layout27, 5, 1 );
 
-    layout = new Q3GridLayout;
+    layout = new QGridLayout;
     layout->setSpacing( 6 );
-    layout->setMargin( 0 );
+    layout->setContentsMargins( 0, 0, 0, 0 );
 
     removeBtn = new QPushButton( this, "removeBtn" );
     removeBtn->setText( i18n( "&Remove" ) );
@@ -168,7 +168,7 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, Qt
     connectBtn->setAutoDefault( FALSE );
     connectBtn->setDefault( FALSE );
 
-    layout->addMultiCellWidget( connectBtn, 1, 1, 0, 2 );
+    layout->addWidget( connectBtn, 1, 0, 1, 3 );
 
     newGroupBtn = new QPushButton( this, "newGroupBtn" );
     newGroupBtn->setEnabled( TRUE );
@@ -190,14 +190,14 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, Qt
 
     remoteManBaseLayout->addLayout( layout, 6, 1 );
 
-    Layout11 = new Q3GridLayout;
+    Layout11 = new QGridLayout;
     Layout11->setSpacing( 6 );
-    Layout11->setMargin( 0 );
+    Layout11->setContentsMargins( 0, 0, 0, 0 );
 
     TextLabel1_2 = new QLabel( this, "TextLabel1_2" );
     TextLabel1_2->setText( i18n( "Host:" ) );
 
-    Layout11->addMultiCellWidget( TextLabel1_2, 0, 0, 0, 1 );
+    Layout11->addWidget( TextLabel1_2, 0, 0, 1, 2 );
 
     QStringList protocols = KProtocolInfo::protocols();
 

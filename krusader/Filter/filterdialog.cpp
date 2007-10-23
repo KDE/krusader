@@ -34,7 +34,7 @@
 
 #include <klocale.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 
 FilterDialog::FilterDialog ( QWidget *parent )
 		: KDialog ( parent )
@@ -43,9 +43,9 @@ FilterDialog::FilterDialog ( QWidget *parent )
 	setModal ( true );
 	setButtons ( Ok | Cancel );
 
-	Q3GridLayout *filterGrid = new Q3GridLayout ( this->layout() );
+	QGridLayout *filterGrid = new QGridLayout ( this->layout() );
 	filterGrid->setSpacing ( 6 );
-	filterGrid->setMargin ( 11 );
+	filterGrid->setContentsMargins ( 11, 11, 11, 11 );
 
 	QTabWidget *filterWidget = new QTabWidget ( this, "filterTabs" );
 

@@ -46,7 +46,7 @@
 #include <q3hbox.h>
 #include <q3valuelist.h>
 //Added by qt3to4:
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QEvent>
 
 class PanelManager;
@@ -104,7 +104,7 @@ public:
   QList<int>		 verticalSplitterSizes;
 
 private:
-  Q3GridLayout *mainLayout, *terminal_layout;
+  QGridLayout *mainLayout, *terminal_layout;
 };
 
 #endif

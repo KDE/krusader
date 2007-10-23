@@ -49,7 +49,7 @@
 #include <Q3HBoxLayout>
 #include <QKeyEvent>
 #include <QLabel>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QResizeEvent>
 #include <QCloseEvent>
 #include <kmessagebox.h>
@@ -111,15 +111,15 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
 {
   setCaption( i18n( "Krusader::Search" ) );
 
-  Q3GridLayout* searchBaseLayout = new Q3GridLayout( this );
+  QGridLayout* searchBaseLayout = new QGridLayout( this );
   searchBaseLayout->setSpacing( 6 );
-  searchBaseLayout->setMargin( 11 );
+  searchBaseLayout->setContentsMargins( 11, 11, 11, 11 );
 
   // creating the dialog buttons ( Search, Stop, Close )
 
   Q3HBoxLayout* buttonsLayout = new Q3HBoxLayout();
   buttonsLayout->setSpacing( 6 );
-  buttonsLayout->setMargin( 0 );
+  buttonsLayout->setContentsMargins( 0, 0, 0, 0 );
 
   profileManager = new ProfileManager( "SearcherProfile", this, "profileManager" );
   buttonsLayout->addWidget( profileManager );
@@ -156,15 +156,15 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   generalFilter = (GeneralFilter *)filterTabs->get( "GeneralFilter" );
 
   resultTab = new QWidget( searcherTabs, "resultTab" );
-  resultLayout = new Q3GridLayout( resultTab );
+  resultLayout = new QGridLayout( resultTab );
   resultLayout->setSpacing( 6 );
-  resultLayout->setMargin( 11 );
+  resultLayout->setContentsMargins( 11, 11, 11, 11 );
 
   // creating the result tab
 
   Q3HBoxLayout* resultLabelLayout = new Q3HBoxLayout();
   resultLabelLayout->setSpacing( 6 );
-  resultLabelLayout->setMargin( 0 );
+  resultLabelLayout->setContentsMargins( 0, 0, 0, 0 );
 
   foundLabel = new QLabel( resultTab, "foundLabel" );
   foundLabel->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)1, (QSizePolicy::SizeType)1, foundLabel->sizePolicy().hasHeightForWidth() ) );
@@ -221,7 +221,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
 
   Q3HBoxLayout* foundTextLayout = new Q3HBoxLayout();
   foundTextLayout->setSpacing( 6 );
-  foundTextLayout->setMargin( 0 );
+  foundTextLayout->setContentsMargins( 0, 0, 0, 0 );
   
   QLabel *l1 = new QLabel(resultTab);
   l1->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)1, (QSizePolicy::SizeType)1, l1->sizePolicy().hasHeightForWidth() ) );
