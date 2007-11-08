@@ -185,11 +185,11 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames){
 	// delete of move to trash ?
 	KConfigGroup group( krConfig, "General");
 	if( group.readEntry("Move To Trash",_MoveToTrash) ){
-	  job = KIO::trash(filesUrls, true );
+	  job = KIO::trash(filesUrls);
 	  connect(job,SIGNAL(result(KJob*)),SLOTS,SLOT(changeTrashIcon()));
 	}
 	else
-	  job = KIO::del(filesUrls, false, true);
+	  job = KIO::del(filesUrls);
 	
 	connect(job,SIGNAL(result(KJob*)),this,SLOT(vfs_refresh(KJob*)));
 }
@@ -231,7 +231,7 @@ void normal_vfs::vfs_rename(const QString& fileName,const QString& newName){
   fileUrls.append(url);
   dest.setPath(vfs_workingDir()+"/"+newName);
 
-  KIO::Job *job = KIO::move(fileUrls,dest, true );
+  KIO::Job *job = KIO::move(fileUrls,dest);
   connect(job,SIGNAL(result(KJob*)),this,SLOT(vfs_refresh(KJob*)));
 }
 

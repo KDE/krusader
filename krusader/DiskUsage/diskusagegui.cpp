@@ -61,32 +61,32 @@ DiskUsageGUI::DiskUsageGUI( KUrl openDir, QWidget* parent, const char *name )
   duTools->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
     
   btnNewSearch = new QToolButton( duTools, "btnNewSearch" );
-  btnNewSearch->setIconSet( QIcon(krLoader->loadIcon("fileopen",K3Icon::Desktop)) );
+  btnNewSearch->setIconSet( QIcon(krLoader->loadIcon("fileopen",KIconLoader::Desktop)) );
   QToolTip::add( btnNewSearch, i18n( "Start new disk usage search" ) );
   
   btnRefresh = new QToolButton( duTools, "btnRefresh" );
-  btnRefresh->setIconSet( QIcon(krLoader->loadIcon("reload",K3Icon::Desktop)) );
+  btnRefresh->setIconSet( QIcon(krLoader->loadIcon("reload",KIconLoader::Desktop)) );
   QToolTip::add( btnRefresh, i18n( "Refresh" ) );
 
   btnDirUp = new QToolButton( duTools, "btnDirUp" );
-  btnDirUp->setIconSet( QIcon(krLoader->loadIcon("up",K3Icon::Desktop)) );
+  btnDirUp->setIconSet( QIcon(krLoader->loadIcon("up",KIconLoader::Desktop)) );
   QToolTip::add( btnDirUp, i18n( "Parent directory" ) );
   
   QWidget * separatorWidget = new QWidget( duTools, "separatorWidget" );
   separatorWidget->setMinimumWidth( 10 );
   
   btnLines = new QToolButton( duTools, "btnLines" );
-  btnLines->setIconSet( QIcon(krLoader->loadIcon("leftjust",K3Icon::Desktop)) );
+  btnLines->setIconSet( QIcon(krLoader->loadIcon("leftjust",KIconLoader::Desktop)) );
   btnLines->setToggleButton( true );
   QToolTip::add( btnLines, i18n( "Line view" ) );
 
   btnDetailed = new QToolButton( duTools, "btnDetailed" );
-  btnDetailed->setIconSet( QIcon(krLoader->loadIcon("view_detailed",K3Icon::Desktop)) );
+  btnDetailed->setIconSet( QIcon(krLoader->loadIcon("view_detailed",KIconLoader::Desktop)) );
   btnDetailed->setToggleButton( true );
   QToolTip::add( btnDetailed, i18n( "Detailed view" ) );
 
   btnFilelight = new QToolButton( duTools, "btnFilelight" );
-  btnFilelight->setIconSet( QIcon(krLoader->loadIcon("kr_diskusage",K3Icon::Desktop)) );
+  btnFilelight->setIconSet( QIcon(krLoader->loadIcon("kr_diskusage",KIconLoader::Desktop)) );
   btnFilelight->setToggleButton( true );
   QToolTip::add( btnFilelight, i18n( "Filelight view" ) );
     

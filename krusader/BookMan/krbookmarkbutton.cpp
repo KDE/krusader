@@ -9,7 +9,7 @@
 #include <kdebug.h>
 
 KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent) {
-	QPixmap icon = krLoader->loadIcon("bookmark", K3Icon::Toolbar, 16);
+	QPixmap icon = krLoader->loadIcon("bookmark", KIconLoader::Toolbar, 16);
 	setFixedSize(icon.width() + 4, icon.height() + 4);
 	setPixmap(icon);
 	setTextLabel(i18n("BookMan II"), true);

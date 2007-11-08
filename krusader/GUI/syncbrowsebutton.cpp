@@ -35,8 +35,8 @@ The current version only manages sync-browse and got no mode-switch options.
 SyncBrowseButton::SyncBrowseButton(QWidget *parent, const char *name) : QToolButton(parent,name)
 {
   KIconLoader *iconLoader = new KIconLoader();
-  _icon_on = iconLoader->loadIcon( "kr_syncbrowse_on", K3Icon::Toolbar, 16 );
-  _icon_off = iconLoader->loadIcon( "kr_syncbrowse_off", K3Icon::Toolbar, 16 );
+  _icon_on = iconLoader->loadIcon( "kr_syncbrowse_on", KIconLoader::Toolbar, 16 );
+  _icon_off = iconLoader->loadIcon( "kr_syncbrowse_off", KIconLoader::Toolbar, 16 );
 
   setFixedSize( _icon_off.width() + 4, _icon_off.height() + 4 );
   setPixmap( _icon_off );

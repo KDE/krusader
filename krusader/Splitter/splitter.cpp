@@ -78,7 +78,7 @@ void Splitter::split( KIO::filesize_t splitSizeIn )
   fileSize = 0;
   fileNumber = 0;
 
-  splitReadJob = KIO::get( fileName, false, false );
+  splitReadJob = KIO::get( fileName, KIO::NoReload, KIO::HideProgressInfo );
     
   connect(splitReadJob, SIGNAL(data(KIO::Job *, const QByteArray &)),
                         this, SLOT(splitDataReceived(KIO::Job *, const QByteArray &)));
@@ -150,7 +150,7 @@ void Splitter::splitCreateWriteJob()
   writeURL.addPath( outFileName );
 
       /* creating a write job */
-  splitWriteJob = KIO::put( writeURL, permissions, true, false, false );
+  splitWriteJob = KIO::put( writeURL, permissions, KIO::HideProgressInfo | KIO::Overwrite );
   outputFileSize = 0;
   connect(splitWriteJob, SIGNAL(dataReq(KIO::Job *, QByteArray &)),
                          this, SLOT(splitDataSend(KIO::Job *, QByteArray &)));
@@ -210,7 +210,7 @@ void Splitter::splitSendFinished(KJob *job)
       /* writing the split information file out */
     writeURL      = destinationDir;
     writeURL.addPath( fileName.fileName() + ".crc" );
-    splitWriteJob = KIO::put( writeURL, permissions, true, false, false );
+    splitWriteJob = KIO::put( writeURL, permissions, KIO::HideProgressInfo | KIO::Overwrite );
     connect(splitWriteJob, SIGNAL(dataReq(KIO::Job *, QByteArray &)),
                            this, SLOT(splitFileSend(KIO::Job *, QByteArray &)));
     connect(splitWriteJob, SIGNAL(result(KJob*)),

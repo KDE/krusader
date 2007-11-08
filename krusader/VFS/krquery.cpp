@@ -387,7 +387,7 @@ bool KRQuery::containsContent( QString file ) const
 
 bool KRQuery::containsContent( KUrl url ) const
 {
-  KIO::TransferJob *contentReader = KIO::get( url, false, false );
+  KIO::TransferJob *contentReader = KIO::get( url, KIO::NoReload, KIO::HideProgressInfo );
   connect(contentReader, SIGNAL(data(KIO::Job *, const QByteArray &)),
           this, SLOT(containsContentData(KIO::Job *, const QByteArray &)));
   connect(contentReader, SIGNAL( result( KIO::Job* ) ),

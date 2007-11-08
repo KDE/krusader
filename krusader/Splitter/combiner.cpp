@@ -85,7 +85,7 @@ void Combiner::combine()
   {
     permissions = file.permissions() | QFileInfo::WriteUser;
     
-    combineReadJob = KIO::get( splURL, false, false );
+    combineReadJob = KIO::get( splURL, KIO::NoReload, KIO::HideProgressInfo );
 
     connect(combineReadJob, SIGNAL(data(KIO::Job *, const QByteArray &)),
             this, SLOT(combineSplitFileDataReceived(KIO::Job *, const QByteArray &)));
@@ -195,7 +195,7 @@ void Combiner::openNextFile()
   }
 
       /* creating a write job */
-  combineReadJob = KIO::get( readURL, false, false );
+  combineReadJob = KIO::get( readURL, KIO::NoReload, KIO::HideProgressInfo );
 
   connect(combineReadJob, SIGNAL(data(KIO::Job *, const QByteArray &)),
           this, SLOT(combineDataReceived(KIO::Job *, const QByteArray &)));
@@ -226,7 +226,7 @@ void Combiner::combineDataReceived(KIO::Job *, const QByteArray &byteArray)
     else if( unixNaming )
       writeURL.setFileName( baseURL.fileName() + ".out" );
     
-    combineWriteJob = KIO::put( writeURL, permissions, true, false, false );    
+    combineWriteJob = KIO::put( writeURL, permissions, KIO::HideProgressInfo | KIO::Overwrite );
 
     connect(combineWriteJob, SIGNAL(dataReq(KIO::Job *, QByteArray &)),
                              this, SLOT(combineDataSend(KIO::Job *, QByteArray &)));

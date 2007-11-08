@@ -205,7 +205,7 @@ void kio_isoProtocol::createUDSEntry( const KArchiveEntry * isoEntry, UDSEntry &
                   isoEntry->isFile() ? ((KIsoFile *)isoEntry)->cdate() :
                                        ((KIsoDirectory *)isoEntry)->cdate() );
 
-    entry.insert( UDSEntry::UDS_LINK_DEST, isoEntry->symlink() );
+    entry.insert( UDSEntry::UDS_LINK_DEST, isoEntry->symLinkTarget() );
 }
 
 void kio_isoProtocol::listDir( const KUrl & url )
@@ -499,10 +499,10 @@ void kio_isoProtocol::get( const KUrl & url )
     }
 
     const KIsoFile* isoFileEntry = static_cast<const KIsoFile *>(isoEntry);
-    if ( !isoEntry->symlink().isEmpty() )
+    if ( !isoEntry->symLinkTarget().isEmpty() )
     {
-      kDebug() << "Redirection to " << isoEntry->symlink() << endl;
-      KUrl realURL( url, isoEntry->symlink() );
+      kDebug() << "Redirection to " << isoEntry->symLinkTarget() << endl;
+      KUrl realURL( url, isoEntry->symLinkTarget() );
       kDebug() << "realURL= " << realURL.url() << endl;
       redirection( realURL.url() );
       finished();

@@ -79,7 +79,7 @@ MediaButton::MediaButton( QWidget *parent, const char *name ) : QToolButton( par
 		popupMenu( 0 ), rightMenu( 0 ), hasMedia( false ), waitingForMount( -1 ), mountCheckerTimer()
 	 {
 	KIconLoader * iconLoader = new KIconLoader();
-	QPixmap icon = iconLoader->loadIcon( "blockdevice", K3Icon::Toolbar, 16 );
+	QPixmap icon = iconLoader->loadIcon( "blockdevice", KIconLoader::Toolbar, 16 );
 
 	setFixedSize( icon.width() + 4, icon.height() + 4 );
 	setPixmap( icon );

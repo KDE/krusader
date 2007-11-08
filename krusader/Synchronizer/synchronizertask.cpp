@@ -149,8 +149,8 @@ void CompareContentTask::start() {
 
     localFileCompareCycle();
   } else {
-    leftReadJob = KIO::get( leftURL, false, false );
-    rightReadJob = KIO::get( rightURL, false, false );
+    leftReadJob = KIO::get( leftURL, KIO::NoReload, KIO::HideProgressInfo );
+    rightReadJob = KIO::get( rightURL, KIO::NoReload, KIO::HideProgressInfo );
 
     connect(leftReadJob, SIGNAL(data(KIO::Job *, const QByteArray &)),
             this, SLOT(slotDataReceived(KIO::Job *, const QByteArray &)));

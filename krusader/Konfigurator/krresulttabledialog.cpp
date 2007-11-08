@@ -54,7 +54,7 @@ KrResultTableDialog::KrResultTableDialog( QWidget *parent, DialogType type,
   // prepare the icon
   _iconBox = new Q3HBox(_page, "_iconBox");
   _iconLabel = new QLabel(_iconBox, "iconLabel");
-  _iconLabel->setPixmap(krLoader->loadIcon(headerIcon, K3Icon::Desktop, 32));
+  _iconLabel->setPixmap(krLoader->loadIcon(headerIcon, KIconLoader::Desktop, 32));
   _iconLabel->setMinimumWidth(fontMetrics().maxWidth()*20);
   _iconLabel->setAlignment( Qt::AlignLeft | Qt::AlignVCenter );
   _iconLabel->setFixedSize( _iconLabel->sizeHint() );

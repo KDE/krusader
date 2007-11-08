@@ -347,11 +347,11 @@ KIO::CopyJob * PreservingCopyJob::createCopyJob( PreserveMode /* pmode */, const
 {
   switch( mode ) {
     case KIO::CopyJob::Copy:
-        return KIO::copy( src, dest, showProgressInfo );
+        return KIO::copy( src, dest, showProgressInfo?KIO::DefaultFlags:KIO::HideProgressInfo );
     case KIO::CopyJob::Move:
-        return KIO::move( src, dest, showProgressInfo );
+        return KIO::move( src, dest, showProgressInfo?KIO::DefaultFlags:KIO::HideProgressInfo );
     case KIO::CopyJob::Link:
-        return KIO::link( src, dest, showProgressInfo );
+        return KIO::link( src, dest, showProgressInfo?KIO::DefaultFlags:KIO::HideProgressInfo );
     default:
       return 0;
   }

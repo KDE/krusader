@@ -72,7 +72,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	
 	treeBtn = new QToolButton(this);
 	QToolTip::add(treeBtn, i18n("Tree Panel: a tree view of the local file system"));
-	treeBtn->setPixmap(krLoader->loadIcon( "view_tree", K3Icon::Toolbar, 16 ));
+	treeBtn->setPixmap(krLoader->loadIcon( "view_tree", KIconLoader::Toolbar, 16 ));
 	treeBtn->setFixedSize(20, 20);
 	treeBtn->setToggleButton(true);
 	btns->insert(treeBtn, Tree);
@@ -80,28 +80,28 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	
 	previewBtn = new QToolButton(this);
 	QToolTip::add(previewBtn, i18n("Preview Panel: display a preview of the current file"));
-	previewBtn->setPixmap(krLoader->loadIcon( "thumbnail", K3Icon::Toolbar, 16 ));
+	previewBtn->setPixmap(krLoader->loadIcon( "thumbnail", KIconLoader::Toolbar, 16 ));
 	previewBtn->setFixedSize(20, 20);
 	previewBtn->setToggleButton(true);
 	btns->insert(previewBtn, Preview);
 	
 	quickBtn = new QToolButton(this);
 	QToolTip::add(quickBtn, i18n("Quick Panel: quick way to perform actions"));
-	quickBtn->setPixmap(krLoader->loadIcon( "misc", K3Icon::Toolbar, 16 ));
+	quickBtn->setPixmap(krLoader->loadIcon( "misc", KIconLoader::Toolbar, 16 ));
 	quickBtn->setFixedSize(20, 20);
 	quickBtn->setToggleButton(true);
 	btns->insert(quickBtn, QuickPanel);
 
 	viewerBtn = new QToolButton(this);
 	QToolTip::add(viewerBtn, i18n("View Panel: view the current file"));
-	viewerBtn->setPixmap(krLoader->loadIcon( "viewmag", K3Icon::Toolbar, 16 ));
+	viewerBtn->setPixmap(krLoader->loadIcon( "viewmag", KIconLoader::Toolbar, 16 ));
 	viewerBtn->setFixedSize(20, 20);
 	viewerBtn->setToggleButton(true);
 	btns->insert(viewerBtn, View);	
 		
 	duBtn = new QToolButton(this);
 	QToolTip::add(duBtn, i18n("Disk Usage Panel: view the usage of a directory"));
-	duBtn->setPixmap(krLoader->loadIcon( "kr_diskusage", K3Icon::Toolbar, 16 ));
+	duBtn->setPixmap(krLoader->loadIcon( "kr_diskusage", KIconLoader::Toolbar, 16 ));
 	duBtn->setFixedSize(20, 20);
 	duBtn->setToggleButton(true);
 	btns->insert(duBtn, DskUsage);	
@@ -174,19 +174,19 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 		this, SLOT(quickSelect(const QString& )));
 	
 	QToolButton *qselectBtn = new QToolButton(quickPanel);
-	qselectBtn->setPixmap(krLoader->loadIcon( "kr_selectall", K3Icon::Toolbar, 16 ));
+	qselectBtn->setPixmap(krLoader->loadIcon( "kr_selectall", KIconLoader::Toolbar, 16 ));
 	qselectBtn->setFixedSize(20, 20);
 	QToolTip::add( qselectBtn, i18n("apply the selection") );
 	connect(qselectBtn, SIGNAL(clicked()), this, SLOT(quickSelect()));
 
 	QToolButton *qstoreBtn = new QToolButton(quickPanel);
-	qstoreBtn->setPixmap(krLoader->loadIcon( "filesave", K3Icon::Toolbar, 16 ));
+	qstoreBtn->setPixmap(krLoader->loadIcon( "filesave", KIconLoader::Toolbar, 16 ));
 	qstoreBtn->setFixedSize(20, 20);
 	QToolTip::add( qstoreBtn, i18n("store the current selection") );
 	connect(qstoreBtn, SIGNAL(clicked()), this, SLOT(quickSelectStore()));
 	
 	QToolButton *qsettingsBtn = new QToolButton(quickPanel);
-	qsettingsBtn->setPixmap(krLoader->loadIcon( "configure", K3Icon::Toolbar, 16 ));
+	qsettingsBtn->setPixmap(krLoader->loadIcon( "configure", KIconLoader::Toolbar, 16 ));
 	qsettingsBtn->setFixedSize(20, 20);
 	QToolTip::add( qsettingsBtn, i18n("select group dialog") );
 	connect(qsettingsBtn, SIGNAL(clicked()), krSelect, SLOT(trigger()));
@@ -389,13 +389,13 @@ void PanelPopup::slotDroppedOnTree(QWidget *widget, QDropEvent *e, KUrl::List &l
 	KIO::CopyJob *job;
    switch ( result ) {
          case 1 :
-			job = KIO::copy(lst, dest, true);
+			job = KIO::copy(lst, dest);
          break;
          case 2 :
-			job = KIO::move(lst, dest, true);
+			job = KIO::move(lst, dest);
          break;
          case 3 :
-			job = KIO::link(lst, dest, true);
+			job = KIO::link(lst, dest);
          break;
          case - 1 :         // user pressed outside the menu
          case 4:

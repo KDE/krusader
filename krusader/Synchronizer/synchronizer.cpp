@@ -968,15 +968,15 @@ void Synchronizer::executeTask( SynchronizerFileItem * task )
         destURL = KUrl( task->destination() );
 
       if( task->rightLink().isNull() ) {
-        KIO::FileCopyJob *job = KIO::file_copy(rightURL, destURL, -1,
-                                  overWrite || task->overWrite(), false, false );
+        KIO::FileCopyJob *job = KIO::file_copy(rightURL, destURL, -1, 
+		((overWrite || task->overWrite())?KIO::Overwrite:KIO::DefaultFlags) | KIO::HideProgressInfo );
         connect(job,SIGNAL(processedSize (KJob *, qulonglong )), this,
                     SLOT  (slotProcessedSize (KJob *, qulonglong )));
         connect(job,SIGNAL(result(KJob*)),this,SLOT(slotTaskFinished(KJob*)));
         jobMap[ job ] = task;
       } else {
         KIO::SimpleJob *job = KIO::symlink( task->rightLink(), destURL,
-                                            overWrite || task->overWrite(), false );
+		((overWrite || task->overWrite())?KIO::Overwrite:KIO::DefaultFlags) | KIO::HideProgressInfo );
         connect(job,SIGNAL(result(KJob*)),this,SLOT(slotTaskFinished(KJob*)));
         jobMap[ job ] = task;
       }
@@ -998,14 +998,14 @@ void Synchronizer::executeTask( SynchronizerFileItem * task )
 
       if( task->leftLink().isNull() ) {
         KIO::FileCopyJob *job = KIO::file_copy(leftURL, destURL, -1,
-                                  overWrite || task->overWrite(), false, false );
+		((overWrite || task->overWrite())?KIO::Overwrite:KIO::DefaultFlags) | KIO::HideProgressInfo );
         connect(job,SIGNAL(processedSize (KJob *, qulonglong )), this,
                     SLOT  (slotProcessedSize (KJob *, qulonglong )));
         connect(job,SIGNAL(result(KJob*)),this,SLOT(slotTaskFinished(KJob*)));
         jobMap[ job ] = task;
       } else {
         KIO::SimpleJob *job = KIO::symlink( task->leftLink(), destURL,
-                                            overWrite || task->overWrite(), false );
+		((overWrite || task->overWrite())?KIO::Overwrite:KIO::DefaultFlags) | KIO::HideProgressInfo );
         connect(job,SIGNAL(result(KJob*)),this,SLOT(slotTaskFinished(KJob*)));
         jobMap[ job ] = task;
       }

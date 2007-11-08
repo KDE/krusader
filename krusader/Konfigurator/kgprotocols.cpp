@@ -84,10 +84,10 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
   
   addSpacer( vbox1 );
   btnAddProtocol = new QPushButton( vbox1, "btnAddProtocolButton" );
-  btnAddProtocol->setPixmap( krLoader->loadIcon( "1leftarrow", K3Icon::Small ) );
+  btnAddProtocol->setPixmap( krLoader->loadIcon( "1leftarrow", KIconLoader::Small ) );
   Q3WhatsThis::add( btnAddProtocol, i18n( "Add protocol to the link list." ) );
   btnRemoveProtocol = new QPushButton( vbox1, "btnRemoveProtocolButton" );
-  btnRemoveProtocol->setPixmap( krLoader->loadIcon( "1rightarrow", K3Icon::Small ) );
+  btnRemoveProtocol->setPixmap( krLoader->loadIcon( "1rightarrow", KIconLoader::Small ) );
   Q3WhatsThis::add( btnRemoveProtocol, i18n( "Remove protocol from the link list." ) );
   addSpacer( vbox1 );
   
@@ -97,10 +97,10 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
   
   addSpacer( vbox2 );
   btnAddMime = new QPushButton( vbox2, "btnAddMimeButton" );
-  btnAddMime->setPixmap( krLoader->loadIcon( "1leftarrow", K3Icon::Small ) );
+  btnAddMime->setPixmap( krLoader->loadIcon( "1leftarrow", KIconLoader::Small ) );
   Q3WhatsThis::add( btnAddMime, i18n( "Add mime to the selected protocol on the link list." ) );
   btnRemoveMime = new QPushButton( vbox2, "btnRemoveMimeButton" );
-  btnRemoveMime->setPixmap( krLoader->loadIcon( "1rightarrow", K3Icon::Small ) );
+  btnRemoveMime->setPixmap( krLoader->loadIcon( "1rightarrow", KIconLoader::Small ) );
   Q3WhatsThis::add( btnRemoveMime, i18n( "Remove mime from the link list." ) );
   addSpacer( vbox2 );
   
@@ -212,7 +212,7 @@ void KgProtocols::addProtocol( QString name, bool changeCurrent )
   {
     protocolList->removeItem( protocolList->index( item ) );
     Q3ListViewItem *listViewItem = new Q3ListViewItem( linkList, name );
-    listViewItem->setPixmap( 0, krLoader->loadIcon( "exec", K3Icon::Small ) );
+    listViewItem->setPixmap( 0, krLoader->loadIcon( "exec", KIconLoader::Small ) );
     
     if( changeCurrent )
       linkList->setCurrentItem( listViewItem );
@@ -268,7 +268,7 @@ void KgProtocols::addMime( QString name, QString protocol )
   {
     mimeList->removeItem( mimeList->index( item ) );
     Q3ListViewItem *listViewItem = new Q3ListViewItem( currentListItem, name );
-    listViewItem->setPixmap( 0, krLoader->loadIcon( "mime", K3Icon::Small ) );
+    listViewItem->setPixmap( 0, krLoader->loadIcon( "mime", KIconLoader::Small ) );
     currentListItem->setOpen( true );
   }
 }

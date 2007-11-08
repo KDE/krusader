@@ -27,6 +27,7 @@
 #include <kio/global.h>
 #include <kio/slavebase.h>
 #include <k3process.h>
+#include <kconfiggroup.h>
 
 class K3Process;
 class KFileItem;

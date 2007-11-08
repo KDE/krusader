@@ -650,12 +650,12 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
 
   if( trash )
   {
-    job = KIO::trash( url, true );
+    job = KIO::trash( url );
     connect(job,SIGNAL(result(KJob*)),krApp,SLOT(changeTrashIcon()));
   }
   else
   {
-    job = KIO::del( KUrl( file->fullPath() ), false, false);
+    job = KIO::del( KUrl( file->fullPath() ), KIO::HideProgressInfo);
   }
 
   deleting = true;    // during qApp->processEvent strange things can occur

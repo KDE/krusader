@@ -218,11 +218,11 @@ void ftp_vfs::vfs_addFiles( KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode, Q
 	KIO::Job* job = 0;
 	switch( mode ) {
 	case KIO::CopyJob::Copy:
-		job = KIO::copy( *fileUrls, destUrl, true );
+		job = KIO::copy( *fileUrls, destUrl );
 	case KIO::CopyJob::Move:
-		job = KIO::move( *fileUrls, destUrl, true );
+		job = KIO::move( *fileUrls, destUrl );
 	case KIO::CopyJob::Link:
-		job = KIO::link( *fileUrls, destUrl, true );
+		job = KIO::link( *fileUrls, destUrl );
 	}
 
 	connect( job, SIGNAL( result( KJob* ) ), this, SLOT( vfs_refresh( KJob* ) ) );
@@ -242,7 +242,7 @@ void ftp_vfs::vfs_delFiles( QStringList *fileNames ) {
 		url.addPath( filename );
 		filesUrls.append( url );
 	}
-	KIO::Job *job = KIO::del( filesUrls, false, true );
+	KIO::Job *job = KIO::del( filesUrls );
 	connect( job, SIGNAL( result( KJob* ) ), this, SLOT( vfs_refresh( KJob* ) ) );
 }
 

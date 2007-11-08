@@ -3,6 +3,7 @@
 #include <kconfig.h>
 #include <kglobal.h>
 #include <ksharedconfig.h>
+#include <kconfiggroup.h>
 
 
 bool Config::varyLabelFontSizes = true;

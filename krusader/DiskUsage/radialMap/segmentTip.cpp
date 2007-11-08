@@ -8,7 +8,6 @@
 #include <kglobal.h>
 #include <kglobalsettings.h>
 #include <klocale.h>
-#include <kpixmapeffect.h>
 #include <qpainter.h>
 #include <qtooltip.h>        //for its palette
 //Added by qt3to4:
@@ -69,7 +68,9 @@ SegmentTip::moveto( QPoint p, QWidget &canvas, bool placeAbove )
     paint.drawRect( rect() );
     paint.end();
 
-  m_pixmap = KPixmapEffect::fade( m_pixmap, 0.6, QToolTip::palette().color( QPalette::Active, QPalette::Window ) );
+#if 0 // TODO: PORTME
+  m_pixmap = KImageEffect::fade( m_pixmap, 0.6, QToolTip::palette().color( QPalette::Active, QPalette::Window ) );
+#endif
 
   paint.begin( &m_pixmap );
   paint.drawText( rect(), Qt::AlignCenter, m_text );

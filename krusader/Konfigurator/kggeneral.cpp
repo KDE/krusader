@@ -121,13 +121,13 @@ if( first )
   int size = QFontMetrics( atomLabel->font() ).height();
 
   QToolButton *addButton = new QToolButton( hbox3, "addBtnList" );
-  QPixmap icon = krLoader->loadIcon("add",K3Icon::Desktop, size );
+  QPixmap icon = krLoader->loadIcon("add",KIconLoader::Desktop, size );
   addButton->setFixedSize( icon.width() + 4, icon.height() + 4 );
   addButton->setPixmap( icon );
   connect( addButton, SIGNAL( clicked() ), this, SLOT( slotAddExtension() ) );
 
   QToolButton *removeButton = new QToolButton( hbox3, "removeBtnList" );
-  icon = krLoader->loadIcon("remove",K3Icon::Desktop, size );
+  icon = krLoader->loadIcon("remove",KIconLoader::Desktop, size );
   removeButton->setFixedSize( icon.width() + 4, icon.height() + 4 );
   removeButton->setPixmap( icon );
   connect( removeButton, SIGNAL( clicked() ), this, SLOT( slotRemoveExtension() ) );

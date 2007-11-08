@@ -217,7 +217,7 @@ void UserActionListViewItem::update() {
       return;
 
    if ( ! _action->icon().isNull() )
-      setPixmap( COL_TITLE, KIconLoader::global()->loadIcon( _action->iconName(), K3Icon::Small ) );
+      setPixmap( COL_TITLE, KIconLoader::global()->loadIcon( _action->iconName(), KIconLoader::Small ) );
    setText( COL_TITLE, _action->text() );
    setText( COL_NAME, _action->name() );
 }

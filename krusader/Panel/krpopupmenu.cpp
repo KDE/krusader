@@ -72,7 +72,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
       if ( vf->vfile_isDir() ) {
          QAction * openTab = addAction( i18n( "Open in New Tab" ) );
          openTab->setData( QVariant( OPEN_TAB_ID ) );
-         openTab->setIcon( krLoader->loadIcon( "tab_new", K3Icon::Panel ) );
+         openTab->setIcon( krLoader->loadIcon( "tab_new", KIconLoader::Panel ) );
          openTab->setText( i18n( "Open in New Tab" ) );
       }
       addSeparator();
@@ -105,12 +105,12 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
       for ( int i = 0; i < offers.count(); ++i ) {
          KSharedPtr<KService> service = offers[ i ];
          if ( service->isValid() && service->isApplication() ) {
-            openWith.addAction( krLoader->loadIcon( service->icon(), K3Icon::Small ), service->name() )->setData( QVariant( SERVICE_LIST_ID + i ) );
+            openWith.addAction( krLoader->loadIcon( service->icon(), KIconLoader::Small ), service->name() )->setData( QVariant( SERVICE_LIST_ID + i ) );
          }
       }
       openWith.addSeparator();
       if ( vf->vfile_isDir() )
-         openWith.addAction( krLoader->loadIcon( "konsole", K3Icon::Small ), i18n( "Terminal" ))->setData( QVariant( OPEN_TERM_ID ) );
+         openWith.addAction( krLoader->loadIcon( "konsole", KIconLoader::Small ), i18n( "Terminal" ))->setData( QVariant( OPEN_TERM_ID ) );
       openWith.addAction( i18n( "Other..." ) )->setData( QVariant( CHOOSE_ID ) );
       QAction *owAct = addMenu( &openWith );
       owAct->setData( QVariant( OPEN_WITH_ID ) );
@@ -124,7 +124,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
    for ( KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it ) {
 		vfile *file = panel->func->files()->vfs_search(((*it)->name()));
 		KUrl url = file->vfile_getUrl();
-		_items.append( new KFileItem( url,  file->vfile_getMime(), file->vfile_getMode() ) );
+		_items.append( KFileItem( url,  file->vfile_getMime(), file->vfile_getMode() ) );
    }
    
 #ifdef __LIBKONQ__
@@ -216,8 +216,6 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
 }
 
 KrPopupMenu::~KrPopupMenu() {
-	for( int i=0; i != _items.count(); i++ )
-		delete _items[ i ];
 	_items.clear();
 	if (actions) delete actions;
 #ifdef __LIBKONQ__
@@ -230,8 +228,8 @@ void KrPopupMenu::addEmptyMenuEntries() {
 }
 
 void KrPopupMenu::addCreateNewMenu() {
-	createNewPopup.addAction( krLoader->loadIcon( "folder", K3Icon::Small ), i18n("Folder...") )->setData( QVariant( MKDIR_ID) );
-	createNewPopup.addAction( krLoader->loadIcon( "txt", K3Icon::Small ), i18n("Text File...") )->setData( QVariant( NEW_TEXT_FILE_ID) );
+	createNewPopup.addAction( krLoader->loadIcon( "folder", KIconLoader::Small ), i18n("Folder...") )->setData( QVariant( MKDIR_ID) );
+	createNewPopup.addAction( krLoader->loadIcon( "txt", KIconLoader::Small ), i18n("Text File...") )->setData( QVariant( NEW_TEXT_FILE_ID) );
 	
 	QAction *newAct = addMenu( &createNewPopup );
 	newAct->setData( QVariant( CREATE_NEW_ID) );

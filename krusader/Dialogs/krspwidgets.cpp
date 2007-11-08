@@ -153,7 +153,7 @@ void newFTPSub::reject() {
 
 /////////////////////////// KRMaskChoiceSub ///////////////////////////////
 KRMaskChoiceSub::KRMaskChoiceSub() : KRMaskChoice(0,0,true) {
-  PixmapLabel1->setPixmap(krLoader->loadIcon("kr_select", K3Icon::Desktop, 32));
+  PixmapLabel1->setPixmap(krLoader->loadIcon("kr_select", KIconLoader::Desktop, 32));
   label->setText(i18n("Enter a selection:"));
   // the predefined selections list
   KConfigGroup group( krConfig, "Private");

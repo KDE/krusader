@@ -36,6 +36,7 @@
 #include <kconfig.h>
 #include <kfilterdev.h>
 #include <kfilterbase.h>
+#include <kconfiggroup.h>
 
 #include "kiso.h"
 #include "libisofs/isofs.h"

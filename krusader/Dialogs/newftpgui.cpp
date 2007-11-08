@@ -29,6 +29,7 @@
 #include <kcombobox.h>
 #include <kiconloader.h>
 #include <khistorycombobox.h>
+#include <kconfiggroup.h>
 #include "../krusader.h"
 
 
@@ -61,7 +62,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags
     hbox_image->setSpacing( 6 );
     
     PixmapLabel1 = new QLabel( hbox_image, "PixmapLabel1" );
-    PixmapLabel1->setPixmap( krLoader->loadIcon("network", K3Icon::Desktop, 32) );
+    PixmapLabel1->setPixmap( krLoader->loadIcon("network", KIconLoader::Desktop, 32) );
     PixmapLabel1->setSizePolicy( SIZE_MINIMUM );
 
     TextLabel3 = new QLabel( i18n( "About to connect to..."  ), hbox_image, "TextLabel3" );

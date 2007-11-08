@@ -3,7 +3,7 @@
 
 #include <kcursor.h>         //make()
 #include <kglobalsettings.h> //kdeColours
-#include <kimageeffect.h>    //desaturate()
+#include <kiconeffect.h>     //desaturate()
 #include <qapplication.h>    //make()
 #include <qimage.h>          //make() & paint()
 #include <qfont.h>           //ctor
@@ -48,8 +48,8 @@ RadialMap::Map::invalidate( const bool desaturateTheImage )
     {
         QImage img = this->convertToImage();
 
-        KImageEffect::desaturate( img, 0.7 );
-        KImageEffect::toGray( img, true );
+        KIconEffect::deSaturate( img, 0.7 );
+        KIconEffect::toGray( img, true );
 
         this->convertFromImage( img );
     }

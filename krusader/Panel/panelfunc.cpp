@@ -851,7 +851,7 @@ void ListPanelFunc::pack() {
 
 	// copy from the temp file to it's right place
 	if ( tempDestFile ) {
-		KIO::NetAccess::file_move( KUrl( arcFile ), destURL );
+		KIO::NetAccess::move( KUrl( arcFile ), destURL );
 		delete tempDestFile;
 	}
 
@@ -1081,7 +1081,7 @@ void ListPanelFunc::properties() {
 		if ( !vf )
 			continue;
 		KUrl url = files()->vfs_getFile( names[i] );
-		fi.push_back( new KFileItem( vf->vfile_getEntry(), url ) );
+		fi.push_back( KFileItem( vf->vfile_getEntry(), url ) );
 	}
 
 	if ( fi.isEmpty() )
@@ -1091,8 +1091,6 @@ void ListPanelFunc::properties() {
 	KPropertiesDialog *dlg = new KPropertiesDialog( fi, krApp );
 	connect( dlg, SIGNAL( applied() ), SLOTS, SLOT( refresh() ) );
 	
-	while (!fi.isEmpty())
-		delete fi.takeFirst();
 }
 
 void ListPanelFunc::refreshActions() {

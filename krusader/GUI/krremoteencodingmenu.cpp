@@ -178,8 +178,10 @@ void KrRemoteEncodingMenu::slotDefault()
 //    kDebug() << k_funcinfo << "Domain to remove: " << *it << endl;
       if (config.hasGroup(*it))
         config.deleteGroup(*it);
+#if 0 // TODO: PORTME
       else if (config.hasKey(*it))
         KConfigGroup( &config, QString() ).deleteEntry(*it);
+#endif
     }
   }
   config.sync();

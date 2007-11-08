@@ -123,10 +123,10 @@ void virt_vfs::vfs_delFiles( QStringList *fileNames ) {
 	// delete of move to trash ?
 	KConfigGroup group( krConfig, "General" );
 	if ( group.readEntry( "Move To Trash", _MoveToTrash ) ) {
-		job = KIO::trash( filesUrls, true );
+		job = KIO::trash( filesUrls );
 		connect( job, SIGNAL( result( KJob* ) ), krApp, SLOT( changeTrashIcon() ) );
 	} else
-		job = KIO::del( filesUrls, false, true );
+		job = KIO::del( filesUrls );
 
 	// refresh will remove the deleted files...
 	connect( job, SIGNAL( result( KJob* ) ), this, SLOT( vfs_refresh( KJob* ) ) );
@@ -202,7 +202,7 @@ void virt_vfs::vfs_rename( const QString& fileName, const QString& newName ) {
 	// so we don't have to worry if the job was successful
 	virtVfsDict[ path ] ->append( dest );
 
-	KIO::Job *job = KIO::move( fileUrls, dest, true );
+	KIO::Job *job = KIO::move( fileUrls, dest );
 	connect( job, SIGNAL( result( KJob* ) ), this, SLOT( vfs_refresh( KJob* ) ) );
 }
 
@@ -280,7 +280,8 @@ vfile* virt_vfs::stat( const KUrl& url ) {
 
 KConfig*  virt_vfs::getVirtDB(){
 	if( !virt_vfs_db ){
-		virt_vfs_db = new KConfig("data",VIRT_VFS_DB,KConfig::NoGlobals);
+//		virt_vfs_db = new KConfig("data",VIRT_VFS_DB,KConfig::NoGlobals);
+		virt_vfs_db = new KConfig(VIRT_VFS_DB, KConfig:: CascadeConfig, "data");
 	}
 	return virt_vfs_db; 
 }

@@ -308,7 +308,7 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 	KUrl url = pvb->url();
 	setCaption( msg+": " + url.prettyUrl() );
 
-	QIcon icon = QIcon(krLoader->loadIcon(iconName,K3Icon::Small));
+	QIcon icon = QIcon(krLoader->loadIcon(iconName,KIconLoader::Small));
 
 	manager.addPart( part, this );
 	manager.setActivePart( part );
@@ -460,7 +460,7 @@ void KrViewer::checkModified(){
 		QString label = tabBar.tabText( tabBar.indexOf( pvb ) );
 		if( !label.startsWith("*" + pvb->part()->url().fileName() ) ){
 			label.prepend("*");
-			QIcon icon = QIcon(krLoader->loadIcon(MODIFIED_ICON,K3Icon::Small));
+			QIcon icon = QIcon(krLoader->loadIcon(MODIFIED_ICON,KIconLoader::Small));
 
 			tabBar.changeTab(pvb,icon,label);
 		}
@@ -470,7 +470,7 @@ void KrViewer::checkModified(){
 		QString label = tabBar.tabText( tabBar.indexOf( pvb ) );
 		if( label.startsWith("*" + pvb->part()->url().fileName() ) ){
 			label = label.mid( 1 );
-			QIcon icon = QIcon(krLoader->loadIcon(EDIT_ICON,K3Icon::Small));
+			QIcon icon = QIcon(krLoader->loadIcon(EDIT_ICON,KIconLoader::Small));
 
 			tabBar.changeTab(pvb,icon,label);
 		}		

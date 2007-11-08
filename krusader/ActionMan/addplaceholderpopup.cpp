@@ -358,7 +358,7 @@ ParameterFile::ParameterFile( const exp_parameter& parameter, QWidget* parent ) 
    _lineEdit = new KLineEdit( hbox );
    _button = new QToolButton( hbox);
    KIconLoader *iconLoader = new KIconLoader();
-  _button->setPixmap( iconLoader->loadIcon( "fileopen", K3Icon::Toolbar, 16 ) );
+  _button->setPixmap( iconLoader->loadIcon( "fileopen", KIconLoader::Toolbar, 16 ) );
    connect( _button, SIGNAL(clicked()), this, SLOT(addFile()) );
 }
 
@@ -450,7 +450,7 @@ ParameterGoto::ParameterGoto( const exp_parameter& parameter, QWidget* parent ) 
    _lineEdit->setCompletionObject( new KUrlCompletion( KUrlCompletion::DirCompletion ) );
    _dirButton = new QToolButton( hbox );
    KIconLoader *iconLoader = new KIconLoader();
-  _dirButton->setPixmap( iconLoader->loadIcon( "fileopen", K3Icon::Toolbar, 16 ) );
+  _dirButton->setPixmap( iconLoader->loadIcon( "fileopen", KIconLoader::Toolbar, 16 ) );
    connect( _dirButton, SIGNAL(clicked()), this, SLOT(setDir()) );
    _placeholderButton = new QToolButton( hbox);
    _placeholderButton->setText( i18n("add") );

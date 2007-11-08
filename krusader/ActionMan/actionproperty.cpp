@@ -34,7 +34,7 @@
 #include <ktextedit.h>
 #include <kiconloader.h>
 
-#define ICON(N)		KIconLoader::global()->loadIcon(N, K3Icon::Small)
+#define ICON(N)		KIconLoader::global()->loadIcon(N, KIconLoader::Small)
 
 ActionProperty::ActionProperty( QWidget *parent, const char *name, KrAction *action )
  : Ui_ActionPropertyBase(parent, name), _modified(false)

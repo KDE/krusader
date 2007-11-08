@@ -113,7 +113,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent, const char *
 
 	// Options for date
 
-	QPixmap iconDate = krLoader->loadIcon ( "date", K3Icon::Toolbar, 16 );
+	QPixmap iconDate = krLoader->loadIcon ( "date", KIconLoader::Toolbar, 16 );
 
 	Q3ButtonGroup *dateGroup = new Q3ButtonGroup ( this, "dateGroup" );
 	dateGroup->setTitle ( i18n ( "Date" ) );
