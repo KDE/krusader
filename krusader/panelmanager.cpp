@@ -117,7 +117,7 @@ void PanelManager::saveSettings( KConfigGroup *config, const QString& key, bool 
 }
 
 void PanelManager::loadSettings( KConfigGroup *config, const QString& key ) {
-   QStringList l = config->readPathListEntry( key );
+   QStringList l = config->readPathEntry( key, QStringList() );
    QStringList types = config->readEntry( key + " Types", QStringList() );
    
    if( l.count() < 1 )

@@ -229,7 +229,7 @@ Krusader::Krusader() : KParts::MainWindow(0,Qt::WType_TopLevel|Qt::WDestructiveC
    bool runKonfig = versionControl();
 
    QString message;
-   switch ( config->getConfigState() ) {
+   switch ( config->accessMode() ) {
          case KConfigBase::NoAccess :
          message = "Krusader's configuration file can't be found. Default values will be used.";
          break;
@@ -277,8 +277,8 @@ Krusader::Krusader() : KParts::MainWindow(0,Qt::WType_TopLevel|Qt::WDestructiveC
    QString defaultType = gl.readEntry( "Default Panel Type", _DefaultPanelType );
 
    KConfigGroup gs( krConfig, "Startup" );
-   QStringList leftTabs = gs.readPathListEntry( "Left Tab Bar" );
-   QStringList rightTabs = gs.readPathListEntry( "Right Tab Bar" );
+   QStringList leftTabs = gs.readPathEntry( "Left Tab Bar",QStringList() );
+   QStringList rightTabs = gs.readPathEntry( "Right Tab Bar", QStringList() );
    QStringList leftTabTypes = gs.readEntry( "Left Tab Bar Types", QStringList() );
    QStringList rightTabTypes = gs.readEntry( "Right Tab Bar Types", QStringList() );
    int         leftActiveTab = gs.readEntry( "Left Active Tab", 0 );
