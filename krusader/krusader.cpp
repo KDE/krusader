@@ -246,7 +246,7 @@ Krusader::Krusader() : KParts::MainWindow(0,Qt::WType_TopLevel|Qt::WDestructiveC
 
    // create an icon loader
    iconLoader = KIconLoader::global();
-   iconLoader->addExtraDesktopThemes();
+//   iconLoader->addExtraDesktopThemes();
 
    // create MountMan
    mountMan = new KMountMan();
@@ -548,7 +548,9 @@ void Krusader::setupActions() {
 
 
    // second, the KDE standard action
-   KStandardAction::up( SLOTS, SLOT( dirUp() ), actionCollection() )->setShortcut(Qt::Key_Backspace);
+//PORTME: second shortcut for up: see actDirUp
+//   KStandardAction::up( SLOTS, SLOT( dirUp() ), actionCollection() )->setShortcut(Qt::Key_Backspace);
+
    /* Shortcut disabled because of the Terminal Emulator bug. */
    KConfigGroup group( krConfig, "Private" );
    int compareMode = group.readEntry( "Compare Mode", 0 );
