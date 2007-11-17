@@ -189,7 +189,7 @@ void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn ) {
 		refreshFailed = false;
 
 	// update the urls stack
-	if ( !files() ->vfs_getOrigin().equals( urlStack.last() ) ) {
+	if ( urlStack.isEmpty() || !files() ->vfs_getOrigin().equals( urlStack.last() ) ) {
 		urlStack.push_back( files() ->vfs_getOrigin() );
 	}
 	// disconnect older signals
@@ -217,6 +217,8 @@ void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn ) {
 		panel->origin->setUrl(urlIn.prettyUrl());
 		panel->origin->setFocus();
 	}
+
+	refreshActions();
 }
 
 void ListPanelFunc::openUrl( const KUrl& url, const QString& nameToMakeCurrent ) {
@@ -256,7 +258,7 @@ void ListPanelFunc::doOpenUrl() {
 }
 
 void ListPanelFunc::goBack() {
-	if ( urlStack.isEmpty() )
+	if ( !canGoBack())
 		return ;
 
 	if ( urlStack.last().equals( files() ->vfs_getOrigin() ) )
@@ -1093,6 +1095,10 @@ void ListPanelFunc::properties() {
 	
 }
 
+bool ListPanelFunc::canGoBack() {
+	return (urlStack.count() > 1);
+}
+
 void ListPanelFunc::refreshActions() {
 	vfs::VFS_TYPE vfsType = files() ->vfs_getType();
 
@@ -1113,10 +1119,10 @@ void ListPanelFunc::refreshActions() {
 	  krFTPNew->setEnabled(true);                            // create a new connection
 	  krAllFiles->setEnabled(true);                          // show all files in list
 	  krCustomFiles->setEnabled(true);                       // show a custom set of files
-	  krBack->setEnabled(func->canGoBack());                 // go back
 	  krRoot->setEnabled(true);                              // go all the way up
 	      krExecFiles->setEnabled(true);                         // show only executables
 	*/
+	krBack->setEnabled(canGoBack());	                 // go back
 }
 
 ListPanelFunc::~ListPanelFunc() {

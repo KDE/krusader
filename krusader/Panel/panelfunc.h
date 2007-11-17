@@ -100,6 +100,7 @@ protected:
 	QTimer               delayTimer;
 	KUrl                 delayURL;
 	QString              nameToMakeCurrent;
+	bool                 canGoBack();
 };
 
 #endif
