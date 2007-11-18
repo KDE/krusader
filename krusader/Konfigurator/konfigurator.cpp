@@ -69,7 +69,6 @@ Konfigurator::Konfigurator( bool f, int startPage ) : KPageDialog( (QWidget *)0 
   setWindowModality( Qt::WindowModal );
 
   setPlainCaption(i18n("Konfigurator - Creating Your Own Krusader"));
-  kgPages.setAutoDelete(true);
   setFaceType(KPageDialog::List);
 
   setButtonGuiItem( KDialog::Cancel, KGuiItem( i18n("Close") ) );

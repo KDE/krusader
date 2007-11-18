@@ -67,7 +67,7 @@ protected slots:
   void slotRestorePage();
 
 private:
-  Q3PtrList<KPageWidgetItem>  kgPages;
+  QList<KPageWidgetItem*>     kgPages;
   bool                        firstTime;
   KPageWidgetItem            *lastPage;
   bool                        internalCall;
