@@ -113,7 +113,7 @@
    <Separator/>
    -->
   </Menu>
-  <Menu name="settings" >
+  <Menu name="settings" noMerge="1">
    <text>&amp;Settings</text>
    <!-- Show Menubar -->
    <Action name="options_show_menubar" />
@@ -133,7 +133,7 @@
    </Menu>
    <Separator/>
    <Action name="options_configure_keybinding" />
-   <Action name="options_configure_toolbar" />
+   <Action name="options_configure_toolbars" />
    <!-- <Action name="tools setup" /> -->
    <Action name="konfigurator" />
   </Menu>
