@@ -19,6 +19,7 @@
 #include <unistd.h>
 // QT includes
 #include <qdir.h>
+#include <qtextstream.h>
 // KDE includes
 #include <kdebug.h>
 // Krusader includes
