@@ -98,13 +98,11 @@ int main(int argc, char *argv[]) {
 // ============ end icon-stuff ===========
 
   // ABOUT data information
-#define STRINGIFY(TEXT)		#TEXT
 #ifdef RELEASE_NAME
-  QString versionName = QString("%1 \"%2\"").arg(STRINGIFY(VERSION)).arg(STRINGIFY(RELEASE_NAME));
+  QString versionName = QString("%1 \"%2\"").arg(VERSION).arg(RELEASE_NAME);
 #else
-  QString versionName = STRINGIFY(VERSION);
+  QString versionName = VERSION;
 #endif
-#undef STRINGIFY
 
 KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") : ki18n("Krusader - ROOT PRIVILEGES")),
     versionName.toLocal8Bit(), ki18n(description), KAboutData::License_GPL_V2,
