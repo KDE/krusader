@@ -4,7 +4,7 @@
 // Description: 
 //
 //
-// Author: Jonas Bähr (C) 2004
+// Author: Jonas Bähr (C) 2004, 2007
 //
 // Copyright: See COPYING file that comes with this distribution
 //
@@ -13,7 +13,7 @@
 #ifndef ACTIONPROPERTY_H
 #define ACTIONPROPERTY_H
 
-#include "actionpropertybase.h"
+#include "ui_actionproperty.h"
 
 class KrAction;
 class KShortcut;
@@ -22,7 +22,7 @@ class KShortcut;
  * Use this widget where ever you need to manipulate a UserAction
  * @author Jonas Bähr (http://www.jonas-baehr.de)
  */
-class ActionProperty : public Ui_ActionPropertyBase {
+class ActionProperty : public QWidget, public Ui::ActionProperty {
 	Q_OBJECT 
 public:
 	ActionProperty( QWidget *parent=0, const char *name=0, KrAction *action=0 );

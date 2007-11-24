@@ -4,7 +4,7 @@
 // Description: 
 //
 //
-// Author: Jonas B�r (C) 2004
+// Author: Jonas B�r (C) 2004, 2007
 //
 // Copyright: See COPYING file that comes with this distribution
 //
@@ -37,8 +37,12 @@
 #define ICON(N)		KIconLoader::global()->loadIcon(N, KIconLoader::Small)
 
 ActionProperty::ActionProperty( QWidget *parent, const char *name, KrAction *action )
- : Ui_ActionPropertyBase(parent, name), _modified(false)
+ : QWidget(parent), _modified(false)
  {
+
+   setObjectName(QString::fromUtf8(name));
+   setupUi(this);
+ 
    if ( action ) {
       _action = action;
       updateGUI( _action );
