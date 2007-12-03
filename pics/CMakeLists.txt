@@ -1,6 +1,7 @@
 
 include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
+add_subdirectory( kde3 )
 
 ########### install files ###############
 kde4_install_icons( ${DATA_INSTALL_DIR}/krusader/icons )

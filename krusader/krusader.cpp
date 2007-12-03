@@ -564,7 +564,7 @@ void Krusader::setupActions() {
    KStandardAction::home( SLOTS, SLOT( home() ), actionCollection()/*, "std_home"*/ )->setText( i18n("Home") ); /*->setShortcut(Qt::Key_QuoteLeft);*/
 
 	KAction *reloadAct;
-	NEW_KACTION(reloadAct, i18n( "&Reload" ), "view-refresh", Qt::CTRL + Qt::Key_R, SLOTS, SLOT(refresh()), "std_redisplay");
+	NEW_KACTION(reloadAct, i18n( "&Reload" ), "reload", Qt::CTRL + Qt::Key_R, SLOTS, SLOT(refresh()), "std_redisplay");
 
    actShowToolBar = (KToggleAction*)KStandardAction::create( KStandardAction::ShowToolbar, SLOTS, SLOT( toggleToolbar() ), actionCollection()/*, "std_toolbar"*/ );
 
