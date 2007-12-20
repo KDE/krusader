@@ -134,7 +134,7 @@ void MediaButton::slotAboutToHide() {
 }
 
 void MediaButton::createListWithMedia() {
-	KIO::ListJob *job = KIO::listDir( KUrl( "media:/" ), false );
+	KIO::ListJob *job = KIO::listDir( KUrl( "media:/" ), KIO::HideProgressInfo );
 	connect( job, SIGNAL( entries( KIO::Job*, const KIO::UDSEntryList& ) ),
 		this, SLOT( slotEntries( KIO::Job*, const KIO::UDSEntryList& ) ) );
 	connect( job, SIGNAL( result( KJob* ) ),

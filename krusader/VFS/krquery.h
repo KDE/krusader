@@ -189,7 +189,7 @@ private:
 
 private slots:
   void containsContentData(KIO::Job *, const QByteArray &);
-  void containsContentFinished(KIO::Job*);
+  void containsContentFinished(KJob*);
 
 private:
   QString                  origFilter;

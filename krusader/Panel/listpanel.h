@@ -154,9 +154,9 @@ protected slots:
    void startDragging( QStringList, QPixmap );
 	// those handle the in-panel refresh notifications
 	void slotJobStarted(KIO::Job* job);
-	void inlineRefreshInfoMessage( KIO::Job* job, const QString &msg );
+	void inlineRefreshInfoMessage( KJob* job, const QString &msg );
 	void inlineRefreshListResult(KJob* job);
-	void inlineRefreshPercent( KIO::Job*, unsigned long );
+	void inlineRefreshPercent( KJob*, unsigned long );
 	void inlineRefreshCancel();
 
 signals:

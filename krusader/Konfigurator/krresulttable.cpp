@@ -184,7 +184,7 @@ bool KrArchiverResultTable::addRow(SearchObject* search, QGridLayout* grid)
   _label->setContentsMargins(5,5,5,5);
   _label->setAlignment(Qt::AlignTop);
   grid->addWidget(_label, _numRows, 0);
-  connect(_label, SIGNAL(leftClickedURL(const QString&)),
+  connect(_label, SIGNAL(leftClickedUrl(const QString&)),
                       SLOT(website(const QString&)));
 
   // Found column
@@ -337,7 +337,7 @@ bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
     KUrlLabel* l = new KUrlLabel( (*it)->getWebsite(), (*it)->getAppName(), toolBox);
     l->setAlignment(Qt::AlignLeft | Qt::AlignTop);
     l->setContentsMargins(5,5,5,5);
-    connect(l, SIGNAL(leftClickedURL(const QString&)),
+    connect(l, SIGNAL(leftClickedUrl(const QString&)),
                SLOT(website(const QString&)));
   }
   grid->addWidget(toolBox, _numRows, 1);

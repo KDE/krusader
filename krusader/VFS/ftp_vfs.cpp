@@ -141,12 +141,12 @@ void ftp_vfs::slotRedirection( KIO::Job *, const KUrl &url ) {
 	vfs_origin.adjustPath(KUrl::RemoveTrailingSlash);
 }
 
-void ftp_vfs::slotListResult( KIO::Job *job ) {
+void ftp_vfs::slotListResult( KJob *job ) {
 	if ( job && job->error() ) {
 		// we failed to refresh
 		listError = true;
 		// display error message
-		if ( !quietMode ) job->ui()->showErrorMessage();
+		if ( !quietMode ) job->uiDelegate()->showErrorMessage();
 	}
 	busy = false;
 }
@@ -176,7 +176,7 @@ bool ftp_vfs::populateVfsList( const KUrl& origin, bool showHidden ) {
 	listError = false;
 	// Open the directory	marked by origin
 	//vfs_origin.adjustPath(KUrl::AddTrailingSlash);
-	KIO::Job *job = KIO::listDir( vfs_origin, false, showHidden );
+	KIO::Job *job = KIO::listDir( vfs_origin, KIO::HideProgressInfo, showHidden );
 	connect( job, SIGNAL( entries( KIO::Job*, const KIO::UDSEntryList& ) ),
 	         this, SLOT( slotAddFiles( KIO::Job*, const KIO::UDSEntryList& ) ) );
 	connect( job, SIGNAL( redirection( KIO::Job*, const KUrl& ) ),
@@ -184,8 +184,8 @@ bool ftp_vfs::populateVfsList( const KUrl& origin, bool showHidden ) {
 	connect( job, SIGNAL( permanentRedirection( KIO::Job*, const KUrl&, const KUrl& ) ),
 	         this, SLOT( slotPermanentRedirection( KIO::Job*, const KUrl&, const KUrl& ) ) );
 
-	connect( job, SIGNAL( result( KIO::Job* ) ),
-	         this, SLOT( slotListResult( KIO::Job* ) ) );
+	connect( job, SIGNAL( result( KJob* ) ),
+	         this, SLOT( slotListResult( KJob* ) ) );
 
 	job->ui()->setWindow( krApp );
 

@@ -46,7 +46,7 @@ class KrusaderImageFilePreview : public KPreviewWidgetBase {
 		void showPreview();
 		void showPreview( const KUrl& url, bool force );
 
-		virtual void gotPreview( const KFileItem*, const QPixmap& );
+		virtual void gotPreview( const KFileItem&, const QPixmap& );
 
 	protected:
 		virtual void resizeEvent( QResizeEvent *e );
@@ -55,7 +55,7 @@ class KrusaderImageFilePreview : public KPreviewWidgetBase {
 
 	private slots:
 		void slotResult( KJob * );
-		virtual void slotFailed( const KFileItem* );
+		virtual void slotFailed( const KFileItem& );
 
 	private:
 		KUrl currentURL;

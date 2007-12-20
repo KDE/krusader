@@ -385,13 +385,15 @@ bool KRQuery::containsContent( QString file ) const
   return false;
 }
 
+
+
 bool KRQuery::containsContent( KUrl url ) const
 {
   KIO::TransferJob *contentReader = KIO::get( url, KIO::NoReload, KIO::HideProgressInfo );
   connect(contentReader, SIGNAL(data(KIO::Job *, const QByteArray &)),
           this, SLOT(containsContentData(KIO::Job *, const QByteArray &)));
-  connect(contentReader, SIGNAL( result( KIO::Job* ) ),
-          this, SLOT(containsContentFinished( KIO::Job* ) ) );
+  connect(contentReader, SIGNAL( result( KJob* ) ),
+          this, SLOT(containsContentFinished( KJob* ) ) );
 
   busy = true;
   containsContentResult = false;
@@ -421,7 +423,7 @@ void KRQuery::containsContentData(KIO::Job *job, const QByteArray &array) {
   checkTimer();
 }
 
-void KRQuery::containsContentFinished( KIO::Job * ) {
+void KRQuery::containsContentFinished( KJob * ) {
   busy = false;
 }
 

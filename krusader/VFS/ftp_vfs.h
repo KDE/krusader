@@ -66,7 +66,7 @@ public slots:
 	void slotRedirection(KIO::Job *, const KUrl &url);
 	void slotPermanentRedirection(KIO::Job*,const KUrl&,const KUrl& newUrl);
 	/// Called when the dir listing job is finished (for better or worst)
-	void slotListResult(KIO::Job *job);
+	void slotListResult(KJob *job);
 	/// Active the dir listing job
 	bool populateVfsList(const KUrl& origin, bool showHidden);
 

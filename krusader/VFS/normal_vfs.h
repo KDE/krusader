@@ -33,6 +33,7 @@
 
 // QT includes
 #include <qstring.h>
+#include <QTimer>
 // KDE includes
 #include <kfileitem.h>
 #include <kdirwatch.h>

@@ -83,12 +83,12 @@ void KrusaderImageFilePreview::showPreview( const KUrl &url, bool force ) {
 		m_job = createJob( url, w, h );
 		connect( m_job, SIGNAL( result( KJob * ) ),
 		         this, SLOT( slotResult( KJob * ) ) );
-		connect( m_job, SIGNAL( gotPreview( const KFileItem*,
+		connect( m_job, SIGNAL( gotPreview( const KFileItem&,
 		                                    const QPixmap& ) ),
-		         SLOT( gotPreview( const KFileItem*, const QPixmap& ) ) );
+		         SLOT( gotPreview( const KFileItem&, const QPixmap& ) ) );
 
-		connect( m_job, SIGNAL( failed( const KFileItem* ) ),
-		         this, SLOT( slotFailed( const KFileItem* ) ) );
+		connect( m_job, SIGNAL( failed( const KFileItem& ) ),
+		         this, SLOT( slotFailed( const KFileItem& ) ) );
 	}
 }
 
@@ -106,15 +106,15 @@ KIO::PreviewJob * KrusaderImageFilePreview::createJob( const KUrl& url, int w, i
 	return KIO::filePreview( urls, w, h, 0, 0, true, false );
 }
 
-void KrusaderImageFilePreview::gotPreview( const KFileItem* item, const QPixmap& pm ) {
-	if ( item->url() == currentURL )   // should always be the case
+void KrusaderImageFilePreview::gotPreview( const KFileItem& item, const QPixmap& pm ) {
+	if ( item.url() == currentURL )   // should always be the case
 		imageLabel->setPixmap( pm );
 }
 
-void KrusaderImageFilePreview::slotFailed( const KFileItem* item ) {
-	if ( item->isDir() )
+void KrusaderImageFilePreview::slotFailed( const KFileItem& item ) {
+	if ( item.isDir() )
 		imageLabel->clear();
-	else if ( item->url() == currentURL )   // should always be the case
+	else if ( item.url() == currentURL )   // should always be the case
 		imageLabel->setPixmap( SmallIcon( "file_broken", KIconLoader::SizeLarge,
 		                                  KIconLoader::DisabledState ) );
 }

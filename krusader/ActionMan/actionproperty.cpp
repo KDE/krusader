@@ -81,7 +81,7 @@ ActionProperty::ActionProperty( QWidget *parent, const char *name, KrAction *act
    connect( leStartpath, SIGNAL( textChanged(const QString&) ), SLOT( setModified() ) );
    connect( bgExecType, SIGNAL( clicked(int) ), SLOT( setModified() ) );
    connect( bgAccept, SIGNAL( clicked(int) ), SLOT( setModified() ) );
-   connect( KeyButtonShortcut, SIGNAL( capturedShortcut(const KShortcut&) ), SLOT( setModified() ) );
+   connect( KeyButtonShortcut, SIGNAL( keySequenceChanged(const QKeySequence&) ), SLOT( setModified() ) );
    connect( leDifferentUser, SIGNAL( textChanged(const QString&) ), SLOT( setModified() ) );
    connect( chkDifferentUser, SIGNAL( clicked() ), SLOT( setModified() ) );
    connect( chkConfirmExecution, SIGNAL( clicked() ), SLOT( setModified() ) );
