@@ -33,11 +33,11 @@
 
 #include "crc32.h"
 #include <qstring.h>
-#include <q3progressdialog.h>
+#include <qprogressdialog.h>
 #include <kurl.h>
 #include <kio/jobclasses.h>
 
-class Combiner : public Q3ProgressDialog
+class Combiner : public QProgressDialog
 {
   Q_OBJECT
 
@@ -82,7 +82,7 @@ public slots:
   void combineReceiveFinished(KJob *);
   void combineDataSend(KIO::Job *, QByteArray &);
   void combineSendFinished(KJob *);
-  void combineWritePercent(KIO::Job *, unsigned long);
+  void combineWritePercent(KJob *, unsigned long);
 
 private:
   void openNextFile();

@@ -33,10 +33,9 @@
 
 #include <qdialog.h>
 #include <qstring.h>
-#include <qspinbox.h>
+#include <QDoubleSpinBox>
 #include <qvalidator.h>
 #include <qcombobox.h>
-//Added by qt3to4:
 #include <QKeyEvent>
 #include <kurlrequester.h>
 #include <kio/global.h>
@@ -44,95 +43,43 @@
 
 #include "../VFS/vfs.h"
 
-class SplitterSpinBox : public QSpinBox
+class SplitterSpinBox : public QDoubleSpinBox
 {
   Q_OBJECT
 
 private:
-  KIO::filesize_t division;
-  KIO::filesize_t value;
+  KIO::filesize_t m_division; 
+  mutable KIO::filesize_t m_longValue;
     
 public:
-  SplitterSpinBox ( QWidget * parent = 0, const char * name = 0 ) : QSpinBox( parent, name ), division( 1 ), value( 1 )
+  SplitterSpinBox ( QWidget * parent = 0 ) : QDoubleSpinBox( parent ), m_division( 1 ), m_longValue( 1 )
   {
-    setMaxValue( 0x7FFFFFFF );     /* setting the minimum and maximum values */
-    setMinValue( 1 );
-    QDoubleValidator *dval = new QDoubleValidator( this );
-    lineEdit()->setValidator ( dval );
+    setMinimum( 1 );
+    setMaximum( 9999999999.0 );
   }
 
   void setLongValue( KIO::filesize_t valueIn ) {
-    value = valueIn;
-    if( value == 0 )
-      value++;
-    /// TODO: updateDisplay();
+    m_longValue = valueIn;
+    if( m_longValue == 0 )
+      m_longValue++;
+    setValue ( (double)m_longValue / m_division);
   }
     
-  KIO::filesize_t longValue() {
-    KIO::filesize_t val = (KIO::filesize_t)( division * text().toDouble() + 0.5 ) ;
-    if( val == 0 )
-      val++;
-    return val;
+  KIO::filesize_t longValue() const {
+    return m_longValue;
   }
   
-  QString mapValueToText( int )
+  double valueFromText( const QString& text ) const
   {
-    QString frac("");
-    
-    KIO::filesize_t int_part  = value / division;
-    KIO::filesize_t frac_mod = value % division;
-          
-    if( frac_mod )
-    {
-      KIO::filesize_t frac_part = (KIO::filesize_t)((1000. * frac_mod) /division + 0.5);
-      if( frac_part )
-      {
-        frac = QString( "%1" ).arg( frac_part ).rightJustified( 3, '0' );
-        frac = "." + frac;
-        while( frac.endsWith("0") )
-          frac.truncate( frac.length() - 1 );
-      }
-    }
-
-    return QString( "%1%2" ).arg( int_part ).arg( frac );
-  }
-
-  int mapTextToValue( bool * )
-  {
-    value = longValue();
-    
-    if( value > 0x7FFFFFFF )
-      return 0x7FFFFFFF;
-    else
+    double value = QDoubleSpinBox::valueFromText( text );
+    m_longValue = (KIO::filesize_t)(value * m_division);
       return value;
   }
 
   void setDivision( KIO::filesize_t div )
   {
-    division = div;
-    // TODO: updateDisplay();
-  }
-    
-public slots:
-    
-  void stepUp()
-  {
-    value = longValue();
-    
-    if( value + division > value )
-      value += division;
-    // TODO: updateDisplay();
-  }
-    
-  void stepDown()
-  {
-    value = longValue();
-    
-    if( value < division + 1 )
-      value = 1;
-    else
-      value -= division;
-    // TODO: updateDisplay();     
+    m_division = div;
+    setValue( (double)m_longValue / m_division);
   }
 };
 

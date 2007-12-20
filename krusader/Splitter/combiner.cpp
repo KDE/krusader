@@ -37,7 +37,7 @@
 #include <qfileinfo.h>
 
 Combiner::Combiner( QWidget* parent,  KUrl baseURLIn, KUrl destinationURLIn, bool unixNamingIn ) :
-  Q3ProgressDialog( parent, "Krusader::Combiner", true, 0 ), baseURL( baseURLIn ), destinationURL( destinationURLIn ), 
+  QProgressDialog( parent, 0 ), baseURL( baseURLIn ), destinationURL( destinationURLIn ), 
   hasValidSplitFile( false ), fileCounter ( 0 ), permissions( -1 ), receivedSize( 0 ),
   combineReadJob( 0 ), combineWriteJob( 0 ), unixNaming( unixNamingIn )
 {
@@ -45,9 +45,11 @@ Combiner::Combiner( QWidget* parent,  KUrl baseURLIn, KUrl destinationURLIn, boo
 
   splitFile = "";
   
-  setTotalSteps( 100 );
+  setMaximum( 100 );
   setAutoClose( false );  /* don't close or reset the dialog automatically */
   setAutoReset( false );
+  setLabelText( "Krusader::Combiner" );
+  setWindowModality( Qt::WindowModal );
 }
 
 Combiner::~Combiner()
@@ -202,8 +204,8 @@ void Combiner::openNextFile()
   connect(combineReadJob, SIGNAL(result(KJob*)),
           this, SLOT(combineReceiveFinished(KJob *)));
   if( hasValidSplitFile )
-    connect(combineReadJob, SIGNAL(percent (KIO::Job *, unsigned long)),
-                            this, SLOT(combineWritePercent(KIO::Job *, unsigned long)));
+    connect(combineReadJob, SIGNAL(percent (KJob *, unsigned long)),
+                            this, SLOT(combineWritePercent(KJob *, unsigned long)));
   
 }
 
@@ -319,10 +321,10 @@ void Combiner::combineAbortJobs()
   combineReadJob = combineWriteJob = 0;
 }
 
-void Combiner::combineWritePercent(KIO::Job *, unsigned long)
+void Combiner::combineWritePercent(KJob *, unsigned long)
 {
   int percent = (int)((((double)receivedSize / expectedSize ) * 100. ) + 0.5 );
-  setProgress( percent );
+  setValue ( percent );
 }
 
 #include "combiner.moc"

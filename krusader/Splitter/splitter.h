@@ -33,11 +33,11 @@
 
 #include "crc32.h"
 #include <qstring.h>
-#include <q3progressdialog.h>
+#include <QProgressDialog>
 #include <kurl.h>
 #include <kio/jobclasses.h>
  
-class Splitter : public Q3ProgressDialog
+class Splitter : public QProgressDialog
 {
   Q_OBJECT
   
@@ -75,7 +75,7 @@ public slots:
   void splitDataSend(KIO::Job *, QByteArray &);
   void splitSendFinished(KJob *);
   void splitReceiveFinished(KJob *);
-  void splitReceivePercent (KIO::Job *, unsigned long);
+  void splitReceivePercent (KJob *, unsigned long);
   void splitFileSend(KIO::Job *, QByteArray &);
   void splitFileFinished(KJob *);
 };

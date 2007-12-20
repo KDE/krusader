@@ -33,13 +33,12 @@
 #include <klocale.h>
 #include <qlayout.h>
 #include <qlabel.h>
-//Added by qt3to4:
 #include <QGridLayout>
-#include <Q3HBoxLayout>
-#include <Q3HBox>
+#include <QHBoxLayout>
 #include <QFrame>
 #include <QKeyEvent>
 #include <kmessagebox.h>
+#include <kdebug.h>
 
 PredefinedDevice SplitterGUI::predefinedDevices[] = {
   {i18n( "1.44 MB (3.5\")" ),   1457664},
@@ -72,29 +71,36 @@ SplitterGUI::SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir ) :
   urlReq->setMode( KFile::Directory );
   grid->addWidget( urlReq, 1 ,0 );
 
-  Q3HBox *splitSizeLine = new Q3HBox( this, "splitSizeLine" );
+  QWidget *splitSizeLine = new QWidget( this, "splitSizeLine" );
+  QHBoxLayout * splitSizeLineLayout = new QHBoxLayout;
+  splitSizeLine->setLayout(splitSizeLineLayout);
      
   deviceCombo = new QComboBox( splitSizeLine, "deviceCombo" );
   for( int i=0; i != predefinedDeviceNum; i++ )
     deviceCombo->insertItem( predefinedDevices[i].name );
   deviceCombo->insertItem( i18n( "User Defined" ) );
+  splitSizeLineLayout->addWidget( deviceCombo );
 
   QLabel *spacer = new QLabel( splitSizeLine );
   spacer->setText( " "  );
   spacer->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum );
+  splitSizeLineLayout->addWidget( spacer );
 
   QLabel *bytesPerFile = new QLabel( splitSizeLine, "BytesPerFile" );
   bytesPerFile->setText( i18n( "Max file size:"  ) );
+  splitSizeLineLayout->addWidget( bytesPerFile );
 
-  spinBox = new SplitterSpinBox( splitSizeLine, "spinbox" );
+  spinBox = new SplitterSpinBox( splitSizeLine );
   spinBox->setMinimumWidth( 85 );
   spinBox->setEnabled( false );
+  splitSizeLineLayout->addWidget( spinBox );
     
   sizeCombo = new QComboBox( splitSizeLine, "sizeCombo" );
   sizeCombo->insertItem( i18n( "Byte" ) );
   sizeCombo->insertItem( i18n( "kByte" ) );
   sizeCombo->insertItem( i18n( "MByte" ) );
   sizeCombo->insertItem( i18n( "GByte" ) );
+  splitSizeLineLayout->addWidget( sizeCombo );
 
   grid->addWidget( splitSizeLine,2 ,0 );
 
@@ -104,7 +110,7 @@ SplitterGUI::SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir ) :
 
   grid->addWidget( separator,3 ,0 );
   
-  Q3HBoxLayout *splitButtons = new Q3HBoxLayout;
+  QHBoxLayout *splitButtons = new QHBoxLayout;
   splitButtons->setSpacing( 6 );
   splitButtons->setContentsMargins( 0, 0, 0, 0 );
 
@@ -167,6 +173,7 @@ void SplitterGUI::predefinedComboActivated( int item )
     spinBox->setEnabled( true );
   
   spinBox->setLongValue( capacity );
+  kDebug() << capacity;
   
   if( capacity >= 0x40000000 )           /* Gbyte */
   {

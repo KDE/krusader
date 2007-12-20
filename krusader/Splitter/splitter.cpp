@@ -38,7 +38,7 @@
 #include <qfileinfo.h>
     
 Splitter::Splitter( QWidget* parent,  KUrl fileNameIn, KUrl destinationDirIn ) :
-  Q3ProgressDialog( parent, "Krusader::Splitter", true, 0 ), splitSize( 0 )
+  QProgressDialog( parent, 0 ), splitSize( 0 )
 {
   fileName = fileNameIn;
 
@@ -46,9 +46,11 @@ Splitter::Splitter( QWidget* parent,  KUrl fileNameIn, KUrl destinationDirIn ) :
 
   crcContext = new CRC32();
   
-  setTotalSteps( 100 );
+  setMaximum ( 100 );
   setAutoClose( false );  /* don't close or reset the dialog automatically */
   setAutoReset( false );
+  setLabelText( "Krusader::Splitter" );
+  setWindowModality( Qt::WindowModal );
 }
 
 Splitter::~Splitter()
@@ -84,8 +86,8 @@ void Splitter::split( KIO::filesize_t splitSizeIn )
                         this, SLOT(splitDataReceived(KIO::Job *, const QByteArray &)));
   connect(splitReadJob, SIGNAL(result(KJob*)),
                         this, SLOT(splitReceiveFinished(KJob *)));
-  connect(splitReadJob, SIGNAL(percent (KIO::Job *, unsigned long)),
-                        this, SLOT(splitReceivePercent(KIO::Job *, unsigned long)));
+  connect(splitReadJob, SIGNAL(percent (KJob *, unsigned long)),
+                        this, SLOT(splitReceivePercent(KJob *, unsigned long)));
 
   splitWriteJob = 0;
   noValidWriteJob = true;
@@ -135,9 +137,9 @@ void Splitter::splitReceiveFinished(KJob *job)
               QString( "crc32=%1\n" )   .arg( crcResult );
 }
 
-void Splitter::splitReceivePercent (KIO::Job *, unsigned long percent)
+void Splitter::splitReceivePercent (KJob *, unsigned long percent)
 {
-  setProgress( percent );
+  setValue ( percent );
 }
 
 void Splitter::splitCreateWriteJob()
