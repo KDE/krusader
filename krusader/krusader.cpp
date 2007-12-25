@@ -523,11 +523,14 @@ void Krusader::setupAccels() {
 	 // SHIFT+F3
    accels->insert( "F3_ViewDlg", i18n( "F3 View Dialog" ), QString(),
                    SHIFT + Qt::Key_F3, SLOTS, SLOT( viewDlg() ) );
-   // Tab
-   accels->insert( "Tab-Switch panel", i18n( "Tab: switch panel" ), QString(),
-                   Qt::Key_Tab, mainView, SLOT( panelSwitch() ) );
 #endif
-
+   // Tab
+//   accels->insert( "Tab-Switch panel", i18n( "Tab: switch panel" ), QString(),
+//                   Qt::Key_Tab, mainView, SLOT( panelSwitch() ) );
+	KAction * tab = new KAction( "Tab-Switch panel", this);
+	tab->setShortcut(Qt::Key_Tab);
+	connect(tab, SIGNAL(triggered(bool)), mainView, SLOT( panelSwitch() ));
+	actionCollection()->addAction("tab", tab);
 }
 
 // <patch> Moving from Pixmap actions to generic filenames - thanks to Carsten Pfeiffer
