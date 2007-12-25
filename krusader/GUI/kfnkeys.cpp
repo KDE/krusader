@@ -98,7 +98,7 @@ KFnKeys::KFnKeys(QWidget *parent, char *name): QWidget(parent,name) {
 			QToolTip::add( F10, i18n( "Quit Krusader." ) );
 			connect(F10,SIGNAL(clicked()),krApp, SLOT(slotClose()));
 			SETUP(F10);
-
+/*
     // set a tighter box around the keys
     int h = QFontMetrics(F2->font()).height()+2;
     F2->setMaximumHeight(h); F3->setMaximumHeight(h);
@@ -106,7 +106,7 @@ KFnKeys::KFnKeys(QWidget *parent, char *name): QWidget(parent,name) {
     F6->setMaximumHeight(h); F7->setMaximumHeight(h);
     F8->setMaximumHeight(h); F9->setMaximumHeight(h);
     F10->setMaximumHeight(h);
-    
+*/
 		layout->addWidget(F2,0,0);
 		layout->addWidget(F3,0,1);
 		layout->addWidget(F4,0,2);
