@@ -15,7 +15,7 @@ set(kio_iso_PART_SRCS
 
 kde4_add_plugin(kio_iso ${kio_iso_PART_SRCS} ${libisofs_SRCS} )
 
-target_link_libraries(kio_iso  ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS} )
+target_link_libraries(kio_iso  ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KDE3SUPPORT_LIBS} )
 
 install(TARGETS kio_iso DESTINATION ${PLUGIN_INSTALL_DIR} )
 
