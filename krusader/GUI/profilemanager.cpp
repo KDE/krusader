@@ -88,7 +88,7 @@ void ProfileManager::profilePopup()
 
   int result = 0;
   QAction * res = popup.exec(QCursor::pos());
-  if( res->data().canConvert<int>() )
+  if( res && res->data().canConvert<int>() )
     result = res->data().toInt();
 
   // check out the user's selection
