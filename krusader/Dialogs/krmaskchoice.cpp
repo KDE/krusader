@@ -40,7 +40,7 @@
 #include <q3whatsthis.h>
 #include <qmessagebox.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <Q3VBoxLayout>
 #include <klocale.h>
 #include <qlineedit.h>
@@ -71,7 +71,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, Qt::
 
     QWidget* Layout7 = new QWidget( this, "Layout7" );
     Layout7->setGeometry( QRect( 10, 10, 380, 30 ) ); 
-    hbox = new Q3HBoxLayout( Layout7 );
+    hbox = new QHBoxLayout( Layout7 );
     hbox->setSpacing( 6 );
     hbox->setContentsMargins( 0, 0, 0, 0 );
 
@@ -91,7 +91,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, Qt::
 
     QWidget* Layout6 = new QWidget( GroupBox1, "Layout6" );
     Layout6->setGeometry( QRect( 10, 20, 360, 160 ) ); 
-    hbox_2 = new Q3HBoxLayout( Layout6 ); 
+    hbox_2 = new QHBoxLayout( Layout6 ); 
     hbox_2->setSpacing( 6 );
     hbox_2->setContentsMargins( 0, 0, 0, 0 );
 
@@ -124,7 +124,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, Qt::
 
     QWidget* Layout18 = new QWidget( this, "Layout18" );
     Layout18->setGeometry( QRect( 10, 280, 379, 30 ) ); 
-    hbox_3 = new Q3HBoxLayout( Layout18 ); 
+    hbox_3 = new QHBoxLayout( Layout18 ); 
     hbox_3->setSpacing( 6 );
     hbox_3->setContentsMargins( 0, 0, 0, 0 );
     QSpacerItem* spacer_2 = new QSpacerItem( 205, 20, QSizePolicy::Expanding, QSizePolicy::Fixed );

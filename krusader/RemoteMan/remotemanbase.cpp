@@ -23,7 +23,7 @@
 #include <qtooltip.h>
 #include <q3whatsthis.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QGridLayout>
 #include <QEvent>
 #include <Q3VBoxLayout>
@@ -62,7 +62,7 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, Qt
 
     remoteManBaseLayout->addLayout( Layout23, 0, 1 );
 
-    Layout12 = new Q3HBoxLayout;
+    Layout12 = new QHBoxLayout;
     Layout12->setSpacing( 6 );
     Layout12->setContentsMargins( 0, 0, 0, 0 );
     QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );

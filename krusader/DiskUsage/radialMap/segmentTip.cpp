@@ -62,15 +62,14 @@ SegmentTip::moveto( QPoint p, QWidget &canvas, bool placeAbove )
   //bitBlt( &m_pixmap, offset, &canvas, intersection, Qt::CopyROP );
   QPainter( &m_pixmap ).drawPixmap( offset, QPixmap::grabWidget( &canvas, intersection ));
 
+  QColor col = QToolTip::palette().color( QPalette::Active, QPalette::Window );
+  col.setAlpha( 153 ); // 0.6
+
   QPainter paint( &m_pixmap );
     paint.setPen( Qt::black );
-    paint.setBrush( Qt::NoBrush );
+    paint.setBrush( col );
     paint.drawRect( rect() );
     paint.end();
-
-#if 0 // TODO: PORTME
-  m_pixmap = KImageEffect::fade( m_pixmap, 0.6, QToolTip::palette().color( QPalette::Active, QPalette::Window ) );
-#endif
 
   paint.begin( &m_pixmap );
   paint.drawText( rect(), Qt::AlignCenter, m_text );

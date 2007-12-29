@@ -40,7 +40,7 @@
 #include <q3whatsthis.h>
 #include <qpushbutton.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QGridLayout>
 #include <QLabel>
 
@@ -106,7 +106,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	nameGroupLayout->addWidget ( ofType, 1, 1 );
 	filterLayout->addWidget ( nameGroup, 0, 0 );
 
-	middleLayout = new Q3HBoxLayout();
+	middleLayout = new QHBoxLayout();
 	middleLayout->setSpacing ( 6 );
 	middleLayout->setContentsMargins ( 0, 0, 0, 0 );
 	QSpacerItem* middleSpacer = new QSpacerItem ( 1, 1, QSizePolicy::Fixed, QSizePolicy::Fixed );
@@ -206,7 +206,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	containsLayout->setSpacing ( 6 );
 	containsLayout->setContentsMargins ( 11, 11, 11, 11 );
 
-	Q3HBoxLayout *containsTextLayout = new Q3HBoxLayout();
+	QHBoxLayout *containsTextLayout = new QHBoxLayout();
 	containsTextLayout->setSpacing ( 6 );
 	containsTextLayout->setContentsMargins ( 0, 0, 0, 0 );
 
@@ -224,7 +224,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 
 	containsLayout->addLayout ( containsTextLayout, 0, 0 );
 
-	Q3HBoxLayout *containsCbsLayout = new Q3HBoxLayout();
+	QHBoxLayout *containsCbsLayout = new QHBoxLayout();
 	containsCbsLayout->setSpacing ( 6 );
 	containsCbsLayout->setContentsMargins ( 0, 0, 0, 0 );
 	QSpacerItem* cbSpacer = new QSpacerItem ( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
@@ -258,7 +258,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	{
 		// Options for recursive searching
 
-		Q3HBoxLayout *recurseLayout = new Q3HBoxLayout();
+		QHBoxLayout *recurseLayout = new QHBoxLayout();
 		recurseLayout->setSpacing ( 6 );
 		recurseLayout->setContentsMargins ( 0, 0, 0, 0 );
 		QSpacerItem* recurseSpacer = new QSpacerItem ( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );

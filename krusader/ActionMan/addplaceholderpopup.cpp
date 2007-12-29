@@ -28,7 +28,7 @@
 #include <qlabel.h>
 #include <qtoolbutton.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QFrame>
 #include <Q3StrList>
 #include <Q3VBoxLayout>
@@ -560,7 +560,7 @@ bool ParameterPanelprofile::valid() {
 
 ///////////// ParameterInt
 ParameterInt::ParameterInt( const exp_parameter& parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
-   Q3HBoxLayout* layout = new Q3HBoxLayout( this );
+   QHBoxLayout* layout = new QHBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
    

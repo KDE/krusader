@@ -48,7 +48,7 @@
 #include <QMouseEvent>
 #include <QGridLayout>
 #include <QKeyEvent>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QFrame>
 #include <kurlrequester.h>
 #include <klocale.h>
@@ -1423,7 +1423,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   /* ================================== Buttons =================================== */
 
-  Q3HBoxLayout *buttons = new Q3HBoxLayout;
+  QHBoxLayout *buttons = new QHBoxLayout;
   buttons->setSpacing( 6 );
   buttons->setContentsMargins( 0, 0, 0, 0 );
 

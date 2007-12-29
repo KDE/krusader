@@ -34,10 +34,10 @@
 //Added by qt3to4:
 #include <Q3VBoxLayout>
 #include <QGridLayout>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QLabel>
 class Q3VBoxLayout; 
-class Q3HBoxLayout; 
+class QHBoxLayout; 
 class QGridLayout; 
 class QComboBox;
 class Q3GroupBox;
@@ -72,9 +72,9 @@ public slots:
     virtual void acceptFromList(Q3ListBoxItem *);
 
 protected:
-    Q3HBoxLayout* hbox;
-    Q3HBoxLayout* hbox_2;
-    Q3HBoxLayout* hbox_3;
+    QHBoxLayout* hbox;
+    QHBoxLayout* hbox_2;
+    QHBoxLayout* hbox_3;
     Q3VBoxLayout* vbox;
 };
 

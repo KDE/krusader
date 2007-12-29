@@ -21,7 +21,7 @@
 #include <qtooltip.h>
 #include <qdatetime.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QCloseEvent>
 #include <QGridLayout>
 #include <QFrame>
@@ -78,7 +78,7 @@ KrProgress::KrProgress( KIO::Job* job )
   topLayout->addWidget( m_pProgressBar );
 
   // processed info
-  Q3HBoxLayout *hBox = new Q3HBoxLayout();
+  QHBoxLayout *hBox = new QHBoxLayout();
   topLayout->addLayout(hBox);
 
   sizeLabel = new QLabel(this);
@@ -93,7 +93,7 @@ KrProgress::KrProgress( KIO::Job* job )
   progressLabel->setAlignment( QLabel::Qt::AlignRight );
   hBox->addWidget( progressLabel );
 
-  hBox = new Q3HBoxLayout();
+  hBox = new QHBoxLayout();
   topLayout->addLayout(hBox);
 
   speedLabel = new QLabel(this);
@@ -104,7 +104,7 @@ KrProgress::KrProgress( KIO::Job* job )
   line->setFrameShadow( QFrame::Sunken );
   topLayout->addWidget( line );
 
-  hBox = new Q3HBoxLayout();
+  hBox = new QHBoxLayout();
   topLayout->addLayout(hBox);
 
   hBox->addStretch(1);

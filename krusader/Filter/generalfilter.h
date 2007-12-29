@@ -43,7 +43,7 @@
 #include <qlabel.h>
 #include <q3listbox.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <kcombobox.h>
 #include <kshellcompletion.h>
 #include <khistorycombobox.h>
@@ -82,7 +82,7 @@ public:
 
   KURLListRequester *searchIn;
   KURLListRequester *dontSearchIn;
-  Q3HBoxLayout *middleLayout;
+  QHBoxLayout *middleLayout;
 
   KHistoryComboBox* searchFor;
   KHistoryComboBox* containsText;

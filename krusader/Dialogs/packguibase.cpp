@@ -46,7 +46,7 @@
 #include <q3hbox.h>
 #include <q3vbox.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QGridLayout>
 #include <QFrame>
 #include <Q3VBoxLayout>
@@ -76,7 +76,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     grid->setSpacing( 6 );
     grid->setContentsMargins( 11, 11, 11, 11 );
 
-    hbox = new Q3HBoxLayout;
+    hbox = new QHBoxLayout;
     hbox->setSpacing( 6 );
     hbox->setContentsMargins( 0, 0, 0, 0 );
 
@@ -95,7 +95,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
 
     grid->addLayout( hbox, 1, 0 );
 
-    hbox_2 = new Q3HBoxLayout;
+    hbox_2 = new QHBoxLayout;
     hbox_2->setSpacing( 6 );
     hbox_2->setContentsMargins( 0, 0, 0, 0 );
 
@@ -114,7 +114,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
 
     grid->addLayout( hbox_2, 2, 0 );
 
-    hbox_3 = new Q3HBoxLayout;
+    hbox_3 = new QHBoxLayout;
     hbox_3->setSpacing( 6 );
     hbox_3->setContentsMargins( 0, 0, 0, 0 );
 
@@ -131,7 +131,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     grid->addLayout( hbox_3, 0, 0 );
 
 
-    hbox_4 = new Q3HBoxLayout;
+    hbox_4 = new QHBoxLayout;
     hbox_4->setSpacing( 6 );
     hbox_4->setContentsMargins( 0, 0, 0, 0 );
 
@@ -154,7 +154,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     connect( multipleVolume, SIGNAL( toggled( bool ) ), this, SLOT( checkConsistency() ) );
     compressLayout->addWidget( multipleVolume, 0, 0 );
 
-    Q3HBoxLayout * volumeHbox = new Q3HBoxLayout;
+    QHBoxLayout * volumeHbox = new QHBoxLayout;
 
     QSpacerItem* spacer_5 = new QSpacerItem( 20, 26, QSizePolicy::Fixed, QSizePolicy::Fixed );
     volumeHbox->addItem( spacer_5 );
@@ -181,7 +181,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     connect( setCompressionLevel, SIGNAL( toggled( bool ) ), this, SLOT( checkConsistency() ) );
     compressLayout->addWidget( setCompressionLevel, 0, 0 );
 
-    Q3HBoxLayout * sliderHbox = new Q3HBoxLayout;
+    QHBoxLayout * sliderHbox = new QHBoxLayout;
 
     QSpacerItem* spacer_6 = new QSpacerItem( 20, 26, QSizePolicy::Fixed, QSizePolicy::Fixed );
     sliderHbox->addItem( spacer_6 );
@@ -209,7 +209,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     hbox_5->addWidget( vline, 0, 1 );
 
 
-    QGridLayout * passwordGrid = new QGridLayout( hbox_5 );
+    QGridLayout * passwordGrid = new QGridLayout;
     passwordGrid->setSpacing( 6 );
     passwordGrid->setContentsMargins( 0, 0, 0, 0 );
 
@@ -233,7 +233,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
 
     passwordGrid->addWidget( passwordAgain, 1, 1 );
 
-    Q3HBoxLayout *consistencyHbox = new Q3HBoxLayout;
+    QHBoxLayout *consistencyHbox = new QHBoxLayout;
 
     QSpacerItem* spacer_cons = new QSpacerItem( 48, 20, QSizePolicy::Expanding, QSizePolicy::Fixed );
     consistencyHbox->addItem( spacer_cons );
@@ -250,7 +250,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
 
     hbox_5->addLayout( passwordGrid, 0, 2 );
 
-    hbox_7 = new Q3HBoxLayout;
+    hbox_7 = new QHBoxLayout;
     hbox_7->setSpacing( 6 );
     hbox_7->setContentsMargins( 0, 0, 0, 0 );
 
@@ -275,7 +275,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
 
     grid->addWidget( advancedWidget, 4, 0 );
     
-    hbox_6 = new Q3HBoxLayout;
+    hbox_6 = new QHBoxLayout;
     hbox_6->setSpacing( 6 );
     hbox_6->setContentsMargins( 0, 0, 0, 0 );
 

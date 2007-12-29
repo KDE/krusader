@@ -34,7 +34,7 @@
 
 #include <q3groupbox.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QGridLayout>
 #include <QPixmap>
 #include <klocale.h>
@@ -225,7 +225,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent, const char *
 	ownershipLayout->setSpacing ( 6 );
 	ownershipLayout->setContentsMargins ( 11, 11, 11, 11 );
 
-	Q3HBoxLayout *hboxLayout = new Q3HBoxLayout();
+	QHBoxLayout *hboxLayout = new QHBoxLayout();
 	hboxLayout->setSpacing ( 6 );
 	hboxLayout->setContentsMargins ( 0, 0, 0, 0 );
 

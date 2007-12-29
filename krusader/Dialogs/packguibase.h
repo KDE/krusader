@@ -35,13 +35,13 @@
 #include <qmap.h>
 //Added by qt3to4:
 #include <QGridLayout>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <Q3VBoxLayout>
 #include <QLabel>
 
 
 class Q3VBoxLayout; 
-class Q3HBoxLayout; 
+class QHBoxLayout; 
 class QGridLayout; 
 class QCheckBox;
 class QComboBox;
@@ -98,13 +98,13 @@ public slots:
     void checkConsistency();
 
 protected:
-    Q3HBoxLayout* hbox;
-    Q3HBoxLayout* hbox_2;
-    Q3HBoxLayout* hbox_3;
-    Q3HBoxLayout* hbox_4;
+    QHBoxLayout* hbox;
+    QHBoxLayout* hbox_2;
+    QHBoxLayout* hbox_3;
+    QHBoxLayout* hbox_4;
     QGridLayout* hbox_5;
-    Q3HBoxLayout* hbox_6;
-    Q3HBoxLayout* hbox_7;
+    QHBoxLayout* hbox_6;
+    QHBoxLayout* hbox_7;
     QGridLayout* grid;
 
 private:

@@ -14,11 +14,11 @@
 //Added by qt3to4:
 #include <QGridLayout>
 #include <QEvent>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <Q3VBoxLayout>
 #include <QLabel>
 class Q3VBoxLayout; 
-class Q3HBoxLayout; 
+class QHBoxLayout; 
 class QGridLayout; 
 class QCheckBox;
 class QComboBox;
@@ -75,7 +75,7 @@ public slots:
 protected:
     QGridLayout* remoteManBaseLayout;
     Q3VBoxLayout* Layout23;
-    Q3HBoxLayout* Layout12;
+    QHBoxLayout* Layout12;
     Q3VBoxLayout* Layout9;
     QGridLayout* Layout10;
     Q3VBoxLayout* Layout26;

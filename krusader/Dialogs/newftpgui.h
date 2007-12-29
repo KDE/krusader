@@ -15,10 +15,10 @@
 #include <Q3VBoxLayout>
 #include <QEvent>
 #include <QGridLayout>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QLabel>
 class Q3VBoxLayout; 
-class Q3HBoxLayout; 
+class QHBoxLayout; 
 class QGridLayout; 
 class QLabel;
 class QLineEdit;
@@ -53,7 +53,7 @@ public slots:
     void slotTextChanged(const QString& string);
 
 protected:
-    Q3HBoxLayout* hbox;
+    QHBoxLayout* hbox;
     bool event( QEvent* );
 };
 

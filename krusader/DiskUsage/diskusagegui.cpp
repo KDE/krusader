@@ -39,7 +39,7 @@
 //Added by qt3to4:
 #include <QResizeEvent>
 #include <QGridLayout>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QLabel>
 #include <klocale.h>
 #include <qtooltip.h>
@@ -91,7 +91,7 @@ DiskUsageGUI::DiskUsageGUI( KUrl openDir, QWidget* parent, const char *name )
   QToolTip::add( btnFilelight, i18n( "Filelight view" ) );
     
   QWidget *spacerWidget = new QWidget( duTools, "spacerWidget" );
-  Q3HBoxLayout *hboxlayout = new Q3HBoxLayout( spacerWidget );
+  QHBoxLayout *hboxlayout = new QHBoxLayout( spacerWidget );
   QSpacerItem* spacer = new QSpacerItem( 0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed );
   hboxlayout->addItem( spacer );
   

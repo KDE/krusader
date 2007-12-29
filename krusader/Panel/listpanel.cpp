@@ -36,7 +36,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <qstringlist.h>
 #include <q3strlist.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QKeyEvent>
 #include <Q3ValueList>
 #include <QPixmap>
@@ -163,7 +163,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
                                "current location to the list, edit bookmarks "
                                "or add subfolder to the list." ) );
 										 
-   Q3HBoxLayout *totalsLayout = new Q3HBoxLayout;
+   QHBoxLayout *totalsLayout = new QHBoxLayout;
 	totals = new KrSqueezedTextLabel( this );
    totals->setFont( group.readEntry( "Filelist Font", *_FilelistFont ) );
    totals->setFrameStyle( QFrame::Box | QFrame::Raised );

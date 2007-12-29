@@ -17,7 +17,7 @@
 #include <qtoolbutton.h>
 #include <qtooltip.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <Q3VBoxLayout>
 #include <klineedit.h>
 #include <kmessagebox.h>
@@ -43,7 +43,9 @@ UserActionPage::UserActionPage( QWidget* parent )
    Q3VBoxLayout* layout = new Q3VBoxLayout( this, 0, 6, "UserActionPageLayout" ); // 0px margin, 6px item-spacing
 
    // ======== pseudo-toolbar start ========
-   Q3HBoxLayout* toolbarLayout = new Q3HBoxLayout( layout, 0, 0 ); // neither margin nor spacing for the toolbar with autoRaise
+   QHBoxLayout* toolbarLayout = new QHBoxLayout( layout ); // neither margin nor spacing for the toolbar with autoRaise
+   toolbarLayout->setSpacing( 0 );
+   toolbarLayout->setContentsMargins( 0, 0, 0, 0 );
 
    newButton = new QToolButton( this, "newButton" );
    newButton->setPixmap( ICON("filenew") );

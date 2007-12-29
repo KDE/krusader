@@ -46,7 +46,7 @@
 #include <qregexp.h>
 #include <qfontmetrics.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QKeyEvent>
 #include <QLabel>
 #include <QGridLayout>
@@ -117,7 +117,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
 
   // creating the dialog buttons ( Search, Stop, Close )
 
-  Q3HBoxLayout* buttonsLayout = new Q3HBoxLayout();
+  QHBoxLayout* buttonsLayout = new QHBoxLayout();
   buttonsLayout->setSpacing( 6 );
   buttonsLayout->setContentsMargins( 0, 0, 0, 0 );
 
@@ -162,7 +162,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
 
   // creating the result tab
 
-  Q3HBoxLayout* resultLabelLayout = new Q3HBoxLayout();
+  QHBoxLayout* resultLabelLayout = new QHBoxLayout();
   resultLabelLayout->setSpacing( 6 );
   resultLabelLayout->setContentsMargins( 0, 0, 0, 0 );
 
@@ -219,7 +219,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
 
   resultLayout->addWidget( resultsList, 0, 0 );
 
-  Q3HBoxLayout* foundTextLayout = new Q3HBoxLayout();
+  QHBoxLayout* foundTextLayout = new QHBoxLayout();
   foundTextLayout->setSpacing( 6 );
   foundTextLayout->setContentsMargins( 0, 0, 0, 0 );
   

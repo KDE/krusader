@@ -31,7 +31,7 @@
 #include "konfiguratorpage.h"
 #include <qlayout.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <QGridLayout>
 #include <QFrame>
 #include <QLabel>
@@ -185,7 +185,7 @@ QLabel* KonfiguratorPage::addLabel( QGridLayout *layout, int x, int y, QString l
 QWidget* KonfiguratorPage::createSpacer( QWidget *parent )
 {
   QWidget *widget = new QWidget( parent );
-  Q3HBoxLayout *hboxlayout = new Q3HBoxLayout( widget );
+  QHBoxLayout *hboxlayout = new QHBoxLayout( widget );
   QSpacerItem* spacer = new QSpacerItem( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
   hboxlayout->addItem( spacer );
   return widget;

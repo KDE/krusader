@@ -22,7 +22,7 @@
 #include <qpixmap.h>
 //Added by qt3to4:
 #include <QEvent>
-#include <Q3HBoxLayout>
+#include <QHBoxLayout>
 #include <Q3VBoxLayout>
 #include <klocale.h>
 #include <kprotocolinfo.h>
@@ -125,7 +125,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags
 
     
     QWidget* Layout6 = new QWidget( this, "Layout6" );
-    hbox = new Q3HBoxLayout( Layout6 );
+    hbox = new QHBoxLayout( Layout6 );
     hbox->setSpacing( 6 );
     hbox->setContentsMargins( 0, 0, 0, 0 );
 
