@@ -40,7 +40,7 @@
 //Added by qt3to4:
 #include <QFrame>
 #include <QLabel>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 // KDE includes
 #include <klocale.h>
 #include <kurlcompletion.h>
@@ -145,7 +145,9 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy( const QString& urlName, const 
 	showButtonSeparator( true );
 
 	QWidget * widget = new QWidget( this );
-	Q3VBoxLayout * topLayout = new Q3VBoxLayout( widget, 0, spacingHint() );
+	QVBoxLayout * topLayout = new QVBoxLayout( widget );
+	topLayout->setContentsMargins( 0, 0, 0, 0 );
+	topLayout->setSpacing( spacingHint() );
 
 	QLabel * label = new QLabel( _text, widget );
 	topLayout->addWidget( label );

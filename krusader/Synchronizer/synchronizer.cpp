@@ -43,7 +43,7 @@
 #include <qtimer.h>
 //Added by qt3to4:
 #include <QFrame>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <kio/job.h>
 #include <kio/deletejob.h>
 #include <kio/jobuidelegate.h>
@@ -1338,7 +1338,8 @@ public:
     showButton(KDialog::Close, false);
 
     QWidget* mainWidget = this;
-    Q3VBoxLayout* layout = new Q3VBoxLayout(mainWidget, 10);
+    QVBoxLayout* layout = new QVBoxLayout(mainWidget);
+    layout->setContentsMargins( 10, 10, 10, 10 );
 
     QLabel *mLabel = new QLabel(text, mainWidget);
     layout->addWidget(mLabel);

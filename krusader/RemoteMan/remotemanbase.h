@@ -15,9 +15,9 @@
 #include <QGridLayout>
 #include <QEvent>
 #include <QHBoxLayout>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <QLabel>
-class Q3VBoxLayout; 
+class QVBoxLayout; 
 class QHBoxLayout; 
 class QGridLayout; 
 class QCheckBox;
@@ -74,12 +74,12 @@ public slots:
 
 protected:
     QGridLayout* remoteManBaseLayout;
-    Q3VBoxLayout* Layout23;
+    QVBoxLayout* Layout23;
     QHBoxLayout* Layout12;
-    Q3VBoxLayout* Layout9;
+    QVBoxLayout* Layout9;
     QGridLayout* Layout10;
-    Q3VBoxLayout* Layout26;
-    Q3VBoxLayout* Layout27;
+    QVBoxLayout* Layout26;
+    QVBoxLayout* Layout27;
     QGridLayout* layout;
     QGridLayout* Layout11;
     bool event( QEvent* );

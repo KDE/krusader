@@ -36,7 +36,7 @@
 //Added by qt3to4:
 #include <QGridLayout>
 #include <QLabel>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <klocale.h>
 #include <q3whatsthis.h>
 #include <qvalidator.h>
@@ -191,7 +191,7 @@ void KgLookFeel::setupPanelToolbarTab() {
   QWidget     *tab_4 = new QWidget( tabWidget, "tab_4" );
   tabWidget->insertTab( tab_4, i18n( "Panel Toolbar" ) );
 
-  Q3BoxLayout * panelToolbarVLayout = new Q3VBoxLayout( tab_4 );
+  QBoxLayout * panelToolbarVLayout = new QVBoxLayout( tab_4 );
   panelToolbarVLayout->setSpacing( 6 );
   panelToolbarVLayout->setContentsMargins( 11, 11, 11, 11 );
 

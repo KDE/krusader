@@ -41,7 +41,7 @@
 #include <qmessagebox.h>
 //Added by qt3to4:
 #include <QHBoxLayout>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <klocale.h>
 #include <qlineedit.h>
 
@@ -100,7 +100,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, Qt::
     Q3WhatsThis::add(  preSelections, i18n( "A predefined selection is a file-mask which you use often.\nSome examples are: \"*.c, *.h\", \"*.c, *.o\", etc.\nYou can add these masks to the list by typing them and pressing the Add button.\nDelete removes a predefined selection and Clear removes all of them.\nNotice that the line in which you edit the mask has it's own history, you can scroll it, if needed." ) );
     hbox_2->addWidget( preSelections );
 
-    vbox = new Q3VBoxLayout; 
+    vbox = new QVBoxLayout; 
     vbox->setSpacing( 6 );
     vbox->setContentsMargins( 0, 0, 0, 0 );
 

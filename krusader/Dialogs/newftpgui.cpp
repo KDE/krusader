@@ -23,7 +23,7 @@
 //Added by qt3to4:
 #include <QEvent>
 #include <QHBoxLayout>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <klocale.h>
 #include <kprotocolinfo.h>
 #include <kcombobox.h>
@@ -46,7 +46,9 @@
 newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags fl )
     : QDialog( parent, name, modal, fl ){
     
-    Q3VBoxLayout * layout = new Q3VBoxLayout( this, 11, 6, "newFTPGUI_layout" );
+    QVBoxLayout * layout = new QVBoxLayout( this );
+    layout->setContentsMargins( 11, 11, 11, 11 );
+    layout->setSpacing( 6 );
     layout->setAutoAdd(true);
     
     if ( !name )

@@ -38,7 +38,7 @@
 #include <qstringlist.h>
 #include <q3valuevector.h>
 //Added by qt3to4:
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 
 #include <kdialog.h>
 #include <kiconloader.h>
@@ -79,7 +79,7 @@ protected:
   QLabel* _hintLabel;
   Q3HBox* _iconBox;
   QWidget* _page;
-  Q3VBoxLayout* _topLayout;
+  QVBoxLayout* _topLayout;
   KrResultTable* _resultTable;
 };
 

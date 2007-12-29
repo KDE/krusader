@@ -46,7 +46,7 @@
 #include <qcombobox.h>
 #include <q3frame.h>
 //Added by qt3to4:
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 
 #define  S_LEFT        0
 #define  S_RIGHT       1
@@ -117,7 +117,9 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
   // creating the widget
 
   QWidget *widget=new QWidget(this, "feedToListBoxMainWidget");
-  Q3VBoxLayout *layout = new Q3VBoxLayout( widget, 0, 10, "FeedToListBoxDialogLayout" );
+  QVBoxLayout *layout = new QVBoxLayout( widget );
+  layout->setContentsMargins( 0, 0, 0, 0 );
+  layout->setSpacing( 10 );
     
   QLabel *label = new QLabel( i18n("Here you can name the file collection"), widget, "fbLabel" );
   layout->addWidget( label );    

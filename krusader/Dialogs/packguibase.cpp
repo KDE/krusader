@@ -49,7 +49,7 @@
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QFrame>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <kiconloader.h>
 #include <kcolorscheme.h>
 #include <kcombobox.h>
@@ -146,7 +146,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     hbox_5->setContentsMargins( 0, 0, 0, 0 );
 
 
-    Q3VBoxLayout *compressLayout = new Q3VBoxLayout;
+    QVBoxLayout *compressLayout = new QVBoxLayout;
     compressLayout->setSpacing( 6 );
     compressLayout->setContentsMargins( 0, 0, 0, 0 );
 

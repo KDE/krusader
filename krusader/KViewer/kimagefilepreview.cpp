@@ -16,7 +16,7 @@
 //Added by qt3to4:
 #include <QPixmap>
 #include <QResizeEvent>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <QFrame>
 
 #include <kapplication.h>
@@ -37,7 +37,8 @@
 KrusaderImageFilePreview::KrusaderImageFilePreview( QWidget *parent )
 		: KPreviewWidgetBase( parent ),
 m_job( 0L ) {
-	Q3VBoxLayout *vb = new Q3VBoxLayout( this, KDialog::marginHint() );
+	QVBoxLayout *vb = new QVBoxLayout( this );
+	vb->setContentsMargins( KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint(), KDialog::marginHint() );
 
 	imageLabel = new QLabel( this );
 	imageLabel->setFrameStyle( QFrame::Panel | QFrame::Sunken );

@@ -30,7 +30,7 @@
 
 #include "krresulttabledialog.h"
 //Added by qt3to4:
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <QLabel>
 #include <QFrame>
 
@@ -47,7 +47,9 @@ KrResultTableDialog::KrResultTableDialog( QWidget *parent, DialogType type,
 
   _page = new QWidget(this);
   setMainWidget(_page);
-  _topLayout = new Q3VBoxLayout(_page, 0, spacingHint());
+  _topLayout = new QVBoxLayout(_page);
+  _topLayout->setContentsMargins( 0, 0, 0, 0 );
+  _topLayout->setSpacing( spacingHint());
   _topLayout->setAlignment( Qt::AlignTop );
 
   // +++ Heading +++

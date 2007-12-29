@@ -36,11 +36,11 @@
 //Added by qt3to4:
 #include <QGridLayout>
 #include <QHBoxLayout>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <QLabel>
 
 
-class Q3VBoxLayout; 
+class QVBoxLayout; 
 class QHBoxLayout; 
 class QGridLayout; 
 class QCheckBox;

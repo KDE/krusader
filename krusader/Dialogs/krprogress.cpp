@@ -26,7 +26,7 @@
 #include <QGridLayout>
 #include <QFrame>
 #include <QLabel>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 
 #include <kapplication.h>
 #include <kdialog.h>
@@ -55,8 +55,9 @@ KrProgress::KrProgress( KIO::Job* job )
           KIconLoader::global()->loadIcon( "filesave", KIconLoader::NoGroup, 16 ) );
 #endif
 
-  Q3VBoxLayout *topLayout = new Q3VBoxLayout( this, KDialog::marginHint(),
-                                            KDialog::spacingHint() );
+  QVBoxLayout *topLayout = new QVBoxLayout( this );
+  topLayout->setContentsMargins( KDialog::marginHint(),KDialog::marginHint(),KDialog::marginHint(),KDialog::marginHint() );
+  topLayout->setSpacing( KDialog::spacingHint() );
   topLayout->addStrut( 360 );   // makes dlg at least that wide
 
   QGridLayout *grid = new QGridLayout;

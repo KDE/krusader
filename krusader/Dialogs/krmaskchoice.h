@@ -32,11 +32,11 @@
 
 #include <qdialog.h>
 //Added by qt3to4:
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QLabel>
-class Q3VBoxLayout; 
+class QVBoxLayout; 
 class QHBoxLayout; 
 class QGridLayout; 
 class QComboBox;
@@ -75,7 +75,7 @@ protected:
     QHBoxLayout* hbox;
     QHBoxLayout* hbox_2;
     QHBoxLayout* hbox_3;
-    Q3VBoxLayout* vbox;
+    QVBoxLayout* vbox;
 };
 
 #endif // KRMASKCHOICE_H

@@ -35,7 +35,7 @@
 #include <qlayout.h>
 #include <q3hbox.h>
 //Added by qt3to4:
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <QLabel>
 #include <klocale.h>
 
@@ -51,7 +51,9 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
 {
   setCaption( i18n("Krusader::Synchronize") );
 
-  Q3VBoxLayout *layout = new Q3VBoxLayout( this, 11, 6, "SynchronizeDialogLayout" );
+  QVBoxLayout *layout = new QVBoxLayout( this );
+  layout->setContentsMargins( 11, 11, 11, 11 );
+  layout->setSpacing( 6 );
 
   cbRightToLeft = new QCheckBox( i18np( "Right to left: Copy 1 file", "Right to left: Copy %1 files", leftCopyNr) + " " +
                                  i18np( "(1 byte)", "(%1 bytes)", KRpermHandler::parseSize( leftCopySize ).trimmed().toInt() ),

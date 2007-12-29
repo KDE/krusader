@@ -18,7 +18,7 @@
 #include <qtooltip.h>
 //Added by qt3to4:
 #include <QHBoxLayout>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <klineedit.h>
 #include <kmessagebox.h>
 #include <kfiledialog.h>
@@ -40,7 +40,9 @@ static const char* FILE_FILTER = I18N_NOOP("*.xml|xml-files\n*|all files");
 UserActionPage::UserActionPage( QWidget* parent )
  : QWidget( parent, "UserActionPage" )
 {
-   Q3VBoxLayout* layout = new Q3VBoxLayout( this, 0, 6, "UserActionPageLayout" ); // 0px margin, 6px item-spacing
+   QVBoxLayout* layout = new QVBoxLayout( this );
+   layout->setContentsMargins( 0, 0, 0, 0 );
+   layout->setSpacing( 6 ); // 0px margin, 6px item-spacing
 
    // ======== pseudo-toolbar start ========
    QHBoxLayout* toolbarLayout = new QHBoxLayout( layout ); // neither margin nor spacing for the toolbar with autoRaise

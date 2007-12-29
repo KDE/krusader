@@ -38,7 +38,7 @@
 #include <q3header.h>
 //Added by qt3to4:
 #include <QGridLayout>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <kiconloader.h>
 #include <q3whatsthis.h>
 
@@ -146,7 +146,7 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
 QWidget* KgProtocols::addSpacer( QWidget *parent, const char *widgetName )
 {
   QWidget *widget = new QWidget( parent, widgetName );
-  Q3VBoxLayout *vboxlayout = new Q3VBoxLayout( widget );
+  QVBoxLayout *vboxlayout = new QVBoxLayout( widget );
   QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding );
   vboxlayout->addItem( spacer );
   return widget;

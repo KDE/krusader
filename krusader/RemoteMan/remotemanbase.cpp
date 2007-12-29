@@ -26,7 +26,7 @@
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QEvent>
-#include <Q3VBoxLayout>
+#include <QVBoxLayout>
 #include <kprotocolinfo.h>
 
 
@@ -49,7 +49,7 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, Qt
     remoteManBaseLayout->setSpacing( 6 );
     remoteManBaseLayout->setContentsMargins( 11, 11, 11, 11 );
 
-    Layout23 = new Q3VBoxLayout;
+    Layout23 = new QVBoxLayout;
     Layout23->setSpacing( 6 );
     Layout23->setContentsMargins( 0, 0, 0, 0 );
 
@@ -93,7 +93,7 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, Qt
 
     remoteManBaseLayout->addWidget( sessions, 0, 0, 7, 1 );
 
-    Layout9 = new Q3VBoxLayout;
+    Layout9 = new QVBoxLayout;
     Layout9->setSpacing( 6 );
     Layout9->setContentsMargins( 0, 0, 0, 0 );
 
@@ -126,7 +126,7 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, Qt
 
     remoteManBaseLayout->addLayout( Layout9, 2, 1 );
 
-    Layout26 = new Q3VBoxLayout;
+    Layout26 = new QVBoxLayout;
     Layout26->setSpacing( 6 );
     Layout26->setContentsMargins( 0, 0, 0, 0 );
 
@@ -139,7 +139,7 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, Qt
 
     remoteManBaseLayout->addLayout( Layout26, 4, 1 );
 
-    Layout27 = new Q3VBoxLayout;
+    Layout27 = new QVBoxLayout;
     Layout27->setSpacing( 6 );
     Layout27->setContentsMargins( 0, 0, 0, 0 );
 
