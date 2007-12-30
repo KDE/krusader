@@ -80,18 +80,31 @@ KgUserActions::KgUserActions( bool first, QWidget* parent ) :
    Q3GroupBox *outputGroup = createFrame( i18n( "Output collection" ), this );
    QGridLayout *outputGrid = createGridLayout( outputGroup->layout() );
 
-   Q3HBox *hbox;
-   hbox = new Q3HBox( outputGroup, "HBoxNormalFont" );
-   new QLabel( i18n( "Normal font:" ), hbox, "NormalFontLabel" );
-   createFontChooser( "UserActions", "Normal Font", _UserActions_NormalFont, hbox );
-   createSpacer ( hbox );
-   outputGrid->addWidget( hbox, 2, 0 );
+   QWidget *hboxWidget = new QWidget( outputGroup );
+   QHBoxLayout *hbox = new QHBoxLayout( hboxWidget );
+   QLabel *lbel = new QLabel( i18n( "Normal font:" ), hboxWidget );
+   hbox->addWidget( lbel );
 
-   hbox = new Q3HBox( outputGroup, "HBoxFixedFont" );
-   new QLabel( i18n( "Font with fixed width:" ), hbox, "FixedFontLabel" );
-   createFontChooser( "UserActions", "Fixed Font", _UserActions_FixedFont, hbox );
-   createSpacer ( hbox );
-   outputGrid->addWidget( hbox, 3, 0 );
+   KonfiguratorFontChooser *chser = createFontChooser( "UserActions", "Normal Font", _UserActions_NormalFont, hboxWidget );
+   hbox->addWidget( chser );
+
+   QWidget *spcer = createSpacer ( hboxWidget );
+   hbox->addWidget( spcer );
+   outputGrid->addWidget( hboxWidget, 2, 0 );
+
+   hboxWidget = new QWidget( outputGroup );
+   hbox = new QHBoxLayout( hboxWidget );
+
+   lbel = new QLabel( i18n( "Font with fixed width:" ), hboxWidget );
+   hbox->addWidget( lbel );
+
+   chser = createFontChooser( "UserActions", "Fixed Font", _UserActions_FixedFont, hboxWidget );
+   hbox->addWidget( chser );
+
+   spcer = createSpacer ( hboxWidget );
+   hbox->addWidget( spcer );
+
+   outputGrid->addWidget( hboxWidget, 3, 0 );
 
    KonfiguratorCheckBox *useFixed = createCheckBox( "UserActions", "Use Fixed Font", _UserActions_UseFixedFont,
    		i18n("Use fixed width font as default"), outputGroup );

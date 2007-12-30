@@ -71,7 +71,9 @@ void KrusaderView::start( QStringList leftTabs, QStringList leftTypes, int leftA
   vert_splitter->setOrientation( Qt::Vertical );
   // horizontal splitter
   horiz_splitter = new PercentalSplitter( vert_splitter );
-  ( terminal_dock = new Q3HBox( vert_splitter ) ) ->hide(); // create it hidden
+  ( terminal_dock = new QWidget( vert_splitter ) ) ->hide(); // create it hidden
+  terminal_hbox = new QHBoxLayout( terminal_dock );
+
   // create a command line thing
   cmdLine = new KCMDLine( this );
 
@@ -163,6 +165,13 @@ void KrusaderView::createTE() {
       konsole_part = ( KParts::ReadOnlyPart * )
                           factory->create( (QObject*)terminal_dock, /*"konsolepart",*/
                                            "KParts::ReadOnlyPart" );
+
+      if( konsole_part )
+      {
+        terminal_hbox->addWidget( konsole_part->widget() );
+        terminal_dock->show();
+      }
+
       if( konsole_part ) { //loaded successfully
         connect( konsole_part, SIGNAL( destroyed() ),
                  this, SLOT( killTerminalEmulator() ) );

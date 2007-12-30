@@ -33,7 +33,6 @@
 
 #include <qlabel.h>
 #include <q3vbox.h>
-#include <q3hbox.h>
 #include <qlayout.h>
 #include <qstringlist.h>
 #include <q3valuevector.h>
@@ -77,7 +76,6 @@ protected:
   QLabel* _headingLabel;
   QLabel* _iconLabel;
   QLabel* _hintLabel;
-  Q3HBox* _iconBox;
   QWidget* _page;
   QVBoxLayout* _topLayout;
   KrResultTable* _resultTable;

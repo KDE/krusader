@@ -42,6 +42,7 @@
 #include "feedtolistboxdialog.h"
 #include <qlayout.h>
 //Added by qt3to4:
+#include <q3hbox.h>
 #include <QResizeEvent>
 #include <QLabel>
 #include <QPixmap>

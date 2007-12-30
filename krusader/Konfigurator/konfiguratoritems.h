@@ -46,7 +46,7 @@
 //Added by qt3to4:
 #include <QPixmap>
 #include <kurlrequester.h>
-#include <q3hbox.h>
+#include <qboxlayout.h>
 #include <kfontdialog.h>
 #include <qlabel.h>
 #include <qfont.h>
@@ -256,7 +256,7 @@ protected:
 // KonfiguratorFontChooser class
 ///////////////////////////////
 
-class KonfiguratorFontChooser : public Q3HBox
+class KonfiguratorFontChooser : public QWidget
 {
   Q_OBJECT
 

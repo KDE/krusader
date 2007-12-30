@@ -31,7 +31,6 @@
 #include "kgadvanced.h"
 #include "../defaults.h"
 #include <klocale.h>
-#include <q3hbox.h>
 #include <q3whatsthis.h>
 //Added by qt3to4:
 #include <QGridLayout>

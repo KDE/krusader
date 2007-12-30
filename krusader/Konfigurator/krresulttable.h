@@ -34,7 +34,6 @@
 #include <qstring.h>
 #include <qlabel.h>
 #include <qlayout.h>
-#include <q3hbox.h>
 #include <q3vbox.h>
 #include <q3grid.h>
 #include <qstringlist.h>
@@ -82,7 +81,6 @@ protected:
   int _numRows;
 
   QGridLayout* _grid;
-  Q3HBox* _iconBox;
   QLabel* _label; // generic label
 
   /**

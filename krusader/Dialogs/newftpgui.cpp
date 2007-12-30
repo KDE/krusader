@@ -13,7 +13,6 @@
 #include <qpushbutton.h>
 #include <qspinbox.h>
 #include <qlayout.h>
-#include <q3hbox.h>
 #include <q3grid.h>
 #include <qvariant.h>
 #include <qtooltip.h>
@@ -59,18 +58,20 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags
     setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)5, sizePolicy().hasHeightForWidth() ) );
     setMinimumSize( QSize( 342, 261 ) );
 
-    
-    Q3HBox* hbox_image = new Q3HBox( this, "hbox_image" );
+    QWidget * hbox_image_widget = new QWidget( this );
+    QHBoxLayout* hbox_image = new QHBoxLayout( hbox_image_widget );
     hbox_image->setSpacing( 6 );
     
-    PixmapLabel1 = new QLabel( hbox_image, "PixmapLabel1" );
+    PixmapLabel1 = new QLabel( hbox_image_widget, "PixmapLabel1" );
     PixmapLabel1->setPixmap( krLoader->loadIcon("network", KIconLoader::Desktop, 32) );
     PixmapLabel1->setSizePolicy( SIZE_MINIMUM );
+    hbox_image->addWidget( PixmapLabel1 );
 
-    TextLabel3 = new QLabel( i18n( "About to connect to..."  ), hbox_image, "TextLabel3" );
+    TextLabel3 = new QLabel( i18n( "About to connect to..."  ), hbox_image_widget, "TextLabel3" );
     QFont TextLabel3_font(  TextLabel3->font() );
     TextLabel3_font.setBold( TRUE );
     TextLabel3->setFont( TextLabel3_font );
+    hbox_image->addWidget( TextLabel3 );
 
     
     Q3Grid* grid_host = new Q3Grid( 3, this, "grid_host" );
@@ -98,7 +99,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags
                this,SLOT(slotTextChanged(const QString& )));
 
     url = new KHistoryComboBox( grid_host );
-    url->setMaximumHeight( 20 );
+    //url->setMaximumHeight( 20 );
     url->setMaxCount( 25 );
     url->setDuplicatesEnabled( false );
     connect( url, SIGNAL( activated( const QString& )),

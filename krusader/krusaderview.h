@@ -43,7 +43,6 @@
 #include <qsplitter.h>
 #include <qwidget.h>
 #include <qpushbutton.h>
-#include <q3hbox.h>
 #include <q3valuelist.h>
 //Added by qt3to4:
 #include <QGridLayout>
@@ -98,7 +97,8 @@ public:
   PanelManager *leftMng, *rightMng;       // saving them for panel swaps
   KFnKeys			*fnKeys;										// function keys
   KCMDLine    *cmdLine;                   // command line widget
-  Q3HBox       *terminal_dock;             // docking widget for terminal emulator
+  QWidget     *terminal_dock;             // docking widget for terminal emulator
+  QHBoxLayout *terminal_hbox;             // hbox for terminal_dock
   KParts::ReadOnlyPart *konsole_part;     // the actual part pointer
   QSplitter		*horiz_splitter, *vert_splitter;
   QList<int>		 verticalSplitterSizes;

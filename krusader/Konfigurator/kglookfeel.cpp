@@ -130,24 +130,40 @@ void KgLookFeel::setupPanelTab() {
   Q3GroupBox *panelGrp = createFrame( i18n( "Panel settings" ), tab_panel );
   QGridLayout *panelGrid = createGridLayout( panelGrp->layout() );
 
-  Q3HBox *hbox = new Q3HBox( panelGrp, "lookAndFeelHBox1" );
-  new QLabel( i18n( "Panel font:" ), hbox, "lookAndFeelLabel" );
-  createFontChooser( "Look&Feel", "Filelist Font", _FilelistFont, hbox, true, PAGE_PANEL );
-  createSpacer ( hbox );
-  panelGrid->addWidget( hbox, 0, 0 );
+  QWidget *hboxWidget = new QWidget( panelGrp );
+  QHBoxLayout * hbox = new QHBoxLayout( hboxWidget );
 
-  Q3HBox *hbox2 = new Q3HBox( panelGrp, "lookAndFeelHBox2" );
-  QLabel *lbl1 = new QLabel( i18n( "Filelist icon size:" ), hbox2, "lookAndFeelLabel2" );
+  QLabel *lbl = new QLabel( i18n( "Panel font:" ), hboxWidget );
+  hbox->addWidget( lbl );
+
+  KonfiguratorFontChooser * chsr = createFontChooser( "Look&Feel", "Filelist Font", _FilelistFont, hboxWidget, true, PAGE_PANEL );
+  hbox->addWidget( chsr );
+
+  QWidget *spcr = createSpacer ( hboxWidget );
+  hbox->addWidget( spcr );
+
+  panelGrid->addWidget( hboxWidget, 0, 0 );
+
+  QWidget *hboxWidget2 = new QWidget( panelGrp );
+  QHBoxLayout * hbox2 = new QHBoxLayout( hboxWidget2 );
+
+  QLabel *lbl1 = new QLabel( i18n( "Filelist icon size:" ), hboxWidget2 );
   lbl1->setMinimumWidth( 230 );
+  hbox2->addWidget( lbl1 );
+
   KONFIGURATOR_NAME_VALUE_PAIR iconSizes[] =
     {{ i18n( "16" ),  "16" },
      { i18n( "22" ),  "22" },
      { i18n( "32" ),  "32" },
      { i18n( "48" ),  "48" }};
-  KonfiguratorComboBox *iconCombo = createComboBox( "Look&Feel", "Filelist Icon Size", _FilelistIconSize, iconSizes, 4, hbox2, true, true, PAGE_PANEL );
+  KonfiguratorComboBox *iconCombo = createComboBox( "Look&Feel", "Filelist Icon Size", _FilelistIconSize, iconSizes, 4, hboxWidget2, true, true, PAGE_PANEL );
   iconCombo->lineEdit()->setValidator( new QRegExpValidator( QRegExp( "[1-9]\\d{0,1}" ), iconCombo ) );
-  createSpacer ( hbox2 );
-  panelGrid->addWidget( hbox2, 1, 0 );
+  hbox2->addWidget( iconCombo );
+
+  QWidget * spcr2 = createSpacer ( hboxWidget2 );
+  hbox2->addWidget( spcr2 );
+
+  panelGrid->addWidget( hboxWidget2, 1, 0 );
 
   panelGrid->addWidget( createLine( panelGrp ), 2, 0 );
 
@@ -172,14 +188,20 @@ void KgLookFeel::setupPanelTab() {
   
   panelGrid->addWidget( createLine( panelGrp ), 4, 0 );
   
-  Q3HBox *hbox3 = new Q3HBox( panelGrp, "lookAndFeelHBox3" );
-  new QLabel( i18n( "Default panel type:" ), hbox3, "lookAndFeelLabel3" );
+  QWidget *hboxWidget3 = new QWidget( panelGrp );
+  QHBoxLayout * hbox3 = new QHBoxLayout( hboxWidget3 );
+
+  QLabel *lbl3 = new QLabel( i18n( "Default panel type:" ), hboxWidget3 );
+  hbox3->addWidget( lbl3 );
+
   KONFIGURATOR_NAME_VALUE_PAIR panelTypes[] =
     {{ i18n( "Detailed" ),  "Detailed" },
      { i18n( "Brief" ),     "Brief" }};
-  createComboBox( "Look&Feel", "Default Panel Type", _DefaultPanelType, panelTypes, 2, hbox3, false, false, PAGE_PANEL );
-  createSpacer ( hbox3 );
-  panelGrid->addWidget( hbox3, 5, 0 );  
+  KonfiguratorComboBox * cmb3 = createComboBox( "Look&Feel", "Default Panel Type", _DefaultPanelType, panelTypes, 2, hboxWidget3, false, false, PAGE_PANEL );
+  hbox3->addWidget( cmb3 );
+  QWidget * spcr3 = createSpacer ( hboxWidget3 );
+  hbox3->addWidget( spcr3 );
+  panelGrid->addWidget( hboxWidget3, 5, 0 );  
 
   panelLayout->addWidget( panelGrp, 0, 0 );
 }

@@ -54,18 +54,21 @@ KrResultTableDialog::KrResultTableDialog( QWidget *parent, DialogType type,
 
   // +++ Heading +++
   // prepare the icon
-  _iconBox = new Q3HBox(_page, "_iconBox");
-  _iconLabel = new QLabel(_iconBox, "iconLabel");
+  QWidget *_iconWidget = new QWidget(_page);
+  QHBoxLayout * _iconBox = new QHBoxLayout( _iconWidget );
+  _iconLabel = new QLabel(_iconWidget, "iconLabel");
   _iconLabel->setPixmap(krLoader->loadIcon(headerIcon, KIconLoader::Desktop, 32));
   _iconLabel->setMinimumWidth(fontMetrics().maxWidth()*20);
   _iconLabel->setAlignment( Qt::AlignLeft | Qt::AlignVCenter );
   _iconLabel->setFixedSize( _iconLabel->sizeHint() );
-  _headingLabel = new QLabel(heading, _iconBox);
+  _iconBox->addWidget( _iconLabel );
+  _headingLabel = new QLabel(heading, _iconWidget);
   QFont defFont = KGlobalSettings::generalFont();
   defFont.setBold(true);
   _headingLabel->setFont(defFont);
   _headingLabel->setIndent(10);
-  _topLayout->addWidget(_iconBox);
+  _iconBox->addWidget( _headingLabel );
+  _topLayout->addWidget(_iconWidget);
 
   // +++ Add some space between heading and table +++
   QSpacerItem* hSpacer1 = new QSpacerItem(0, 5);

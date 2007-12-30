@@ -52,7 +52,6 @@
 #include <kdeversion.h>
 #include <qcheckbox.h>
 #include <krecentdocument.h>
-#include <q3hbox.h>
 // Krusader includes
 #include "../krusader.h"
 #include "../resources.h"
@@ -166,12 +165,16 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy( const QString& urlName, const 
 		connect( copyDirStructureCB, SIGNAL( toggled( bool ) ), this, SLOT( slotDirStructCBChanged() ) );
 		copyDirStructureCB->setChecked( false );
 		topLayout->addWidget( copyDirStructureCB );
-		Q3HBox * hbox = new Q3HBox( widget, "copyDirStructure" );
-		new QLabel( i18n("Base URL:"),  hbox, "baseURLLabel" );
+		QWidget *hboxWidget = new QWidget( widget );
+		QHBoxLayout * hbox = new QHBoxLayout( hboxWidget );
+		QLabel * lbl = new QLabel( i18n("Base URL:"),  hboxWidget, "baseURLLabel" );
+		hbox->addWidget( lbl );
 		
-		baseUrlCombo = new QComboBox( hbox, "baseUrlRequester" );
+		baseUrlCombo = new QComboBox( hboxWidget, "baseUrlRequester" );
 		baseUrlCombo->setMinimumWidth( baseUrlCombo->sizeHint().width() * 3 );
 		baseUrlCombo->setEnabled( copyDirStructureCB->isChecked() );
+		hbox->addWidget( baseUrlCombo );
+		
 		KUrl temp = baseURL, tempOld;
 		do {
 			QString baseURLText = temp.pathOrUrl();
@@ -181,7 +184,7 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy( const QString& urlName, const 
 		}while( !tempOld.equals( temp, KUrl::CompareWithoutTrailingSlash ) );
 		baseUrlCombo->setCurrentItem( 0 );
 		
-		topLayout->addWidget( hbox );
+		topLayout->addWidget( hboxWidget );
 	}
 	widget->setLayout( topLayout );
 	setMainWidget( widget );

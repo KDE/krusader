@@ -35,7 +35,6 @@
 //Added by qt3to4:
 #include <QGridLayout>
 #include <klocale.h>
-#include <q3hbox.h>
 #include <kmessagebox.h>
 #include <kurl.h>
 

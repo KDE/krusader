@@ -43,7 +43,6 @@
 #include <qpixmap.h>
 #include <qspinbox.h>
 #include <qslider.h>
-#include <q3hbox.h>
 #include <q3vbox.h>
 //Added by qt3to4:
 #include <QHBoxLayout>
@@ -191,10 +190,15 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     compressionSlider = new QSlider( 1, 9, 1, 5, Qt::Horizontal, sliderVBox, "compressionSlider" );
     compressionSlider->setTickmarks( QSlider::TicksBelow );
 
-    Q3HBox * minmaxHBox = new Q3HBox( sliderVBox );
-    minLabel = new QLabel( i18n("MIN"), minmaxHBox );
-    maxLabel = new QLabel( i18n("MAX"), minmaxHBox );
+    QWidget * minmaxWidget = new QWidget( sliderVBox );
+    QHBoxLayout * minmaxHbox = new QHBoxLayout( minmaxWidget );
+
+    minLabel = new QLabel( i18n("MIN"), minmaxWidget );
+    maxLabel = new QLabel( i18n("MAX"), minmaxWidget );
     maxLabel->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
+
+    minmaxHbox->addWidget( minLabel );
+    minmaxHbox->addWidget( maxLabel );
 
     sliderHbox->addWidget( sliderVBox );
 

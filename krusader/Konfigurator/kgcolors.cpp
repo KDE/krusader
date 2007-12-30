@@ -36,7 +36,6 @@
 #include <kfiledialog.h>
 #include <kcolorscheme.h>
 #include <kstandarddirs.h>
-#include <q3hbox.h>
 #include <q3header.h>
 #include <qtabwidget.h>
 //Added by qt3to4:
@@ -76,11 +75,12 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   connect( generals->find( "Dim Inactive Colors" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
 
   kgColorsLayout->addWidget( generalGrp, 0 ,0, 1, 3 );
-  Q3HBox *hbox = new Q3HBox( this );
+  QWidget *hboxWidget = new QWidget( this );
+  QHBoxLayout *hbox = new QHBoxLayout( hboxWidget );
 
   //  -------------------------- COLORS GROUPBOX ----------------------------------
 
-  Q3GroupBox *colorsFrameGrp = createFrame( i18n( "Colors" ), hbox );
+  Q3GroupBox *colorsFrameGrp = createFrame( i18n( "Colors" ), hboxWidget );
   QGridLayout *colorsFrameGrid = createGridLayout( colorsFrameGrp->layout() );
   colorsFrameGrid->setSpacing( 0 );
   colorsFrameGrid->setContentsMargins( 3, 3, 3, 3 );
@@ -210,10 +210,11 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   colorsGrid->addWidget(createSpacer(colorsGrp), itemList.count() - offset, 1);
 
   colorsFrameGrid->addWidget( colorTabWidget, 0, 0 );
+  hbox->addWidget( colorsFrameGrp );
 
   //  -------------------------- PREVIEW GROUPBOX ----------------------------------
 
-  previewGrp = createFrame( i18n( "Preview" ), hbox );
+  previewGrp = createFrame( i18n( "Preview" ), hboxWidget );
   previewGrid = createGridLayout( previewGrp->layout() );
 
   preview = new Q3ListView( previewGrp, "colorPreView" );
@@ -228,8 +229,10 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   preview->header()->setStretchEnabled( true, 0 );
 
   previewGrid->addWidget( preview, 0 ,0 );
+  hbox->addWidget( previewGrp );
 
-  kgColorsLayout->addWidget( hbox, 1 , 0, 1,  3 );
+
+  kgColorsLayout->addWidget( hboxWidget, 1 , 0, 1,  3 );
 
   importBtn = new KPushButton(i18n("Import color-scheme"),this);
   kgColorsLayout->addWidget(importBtn,2,0);

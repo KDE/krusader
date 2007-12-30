@@ -28,7 +28,6 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <q3hbox.h>
 #include <qpushbutton.h>
 //Added by qt3to4:
 #include <QGridLayout>
@@ -77,11 +76,19 @@ KgArchives::KgArchives( bool first, QWidget* parent ) :
   addLabel( generalGrid, 2, 0, i18n( "The archives that are \"greyed-out\" were unavailable on your\nsystem last time Krusader checked. If you wish Krusader to\nsearch again, click the 'Auto Configure' button." ),
             generalGrp );
 
-  Q3HBox *hbox = new Q3HBox( generalGrp );
-  createSpacer( hbox );
-  QPushButton *btnAutoConfigure = new QPushButton( i18n( "Auto Configure" ), hbox, "kgAutoConfigure" );
-  createSpacer( hbox );
-  generalGrid->addWidget( hbox, 3, 0 );
+  QWidget *hboxWidget = new QWidget( generalGrp );
+  QHBoxLayout *hbox = new QHBoxLayout( hboxWidget );
+
+  QWidget * spcer1 = createSpacer( hboxWidget );
+  hbox->addWidget( spcer1 );
+
+  QPushButton *btnAutoConfigure = new QPushButton( i18n( "Auto Configure" ), hboxWidget );
+  hbox->addWidget( btnAutoConfigure );
+
+  QWidget *spcer2 = createSpacer( hboxWidget );
+  hbox->addWidget( spcer2 );
+
+  generalGrid->addWidget( hboxWidget, 3, 0 );
   connect( btnAutoConfigure, SIGNAL( clicked() ), this, SLOT( slotAutoConfigure() ) );
  
   kgArchivesLayout->addWidget( generalGrp, 0 ,0 );

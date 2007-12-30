@@ -29,7 +29,6 @@
  ***************************************************************************/
 
 #include <qlabel.h>
-#include <q3hbox.h>
 #include <q3vbox.h>
 #include <qfontmetrics.h>
 //Added by qt3to4:
@@ -91,8 +90,10 @@ if( first )
 
   // viewer
 
-  Q3HBox * hbox2 = new Q3HBox( generalGrp );
-  Q3VBox * vbox = new Q3VBox( hbox2 );
+  QWidget * hboxWidget2 = new QWidget( generalGrp );
+  QHBoxLayout * hbox2 = new QHBoxLayout( hboxWidget2 );
+
+  Q3VBox * vbox = new Q3VBox( hboxWidget2 );
 
   new QLabel( i18n("Default viewer mode:"), vbox);
   
@@ -108,25 +109,36 @@ if( first )
                      i18n( "Internal editor and viewer opens each file in a separate window" ), vbox, false,
                      i18n( "If checked, each file will open in a separate window, otherwise, the viewer will work in a single, tabbed mode" ) );
 
-  generalGrid->addWidget(hbox2, 6, 0, 3, 2);
+  hbox2->addWidget( vbox );
+  generalGrid->addWidget(hboxWidget2, 6, 0, 3, 2);
 
   // atomic extensions
-  QFrame * frame21 = createLine( hbox2, true );
+  QFrame * frame21 = createLine( hboxWidget2, true );
   frame21->setMinimumWidth( 15 );
-  Q3VBox * vbox2 = new Q3VBox( hbox2 );
+  hbox2->addWidget( frame21 );
 
-  Q3HBox * hbox3 = new Q3HBox( vbox2 );
-  QLabel * atomLabel = new QLabel( i18n("Atomic extensions:"), hbox3);
+  Q3VBox * vbox2 = new Q3VBox( hboxWidget2 );
+  hbox2->addWidget( vbox2 );
+
+  QWidget * hboxWidget3 = new QWidget( vbox2 );
+  QHBoxLayout * hbox3 = new QHBoxLayout( hboxWidget3 );
+
+  QLabel * atomLabel = new QLabel( i18n("Atomic extensions:"), hboxWidget3);
+  hbox3->addWidget( atomLabel );
 
   int size = QFontMetrics( atomLabel->font() ).height();
 
-  QToolButton *addButton = new QToolButton( hbox3, "addBtnList" );
+  QToolButton *addButton = new QToolButton( hboxWidget3 );
+  hbox3->addWidget( addButton );
+
   QPixmap icon = krLoader->loadIcon("add",KIconLoader::Desktop, size );
   addButton->setFixedSize( icon.width() + 4, icon.height() + 4 );
   addButton->setPixmap( icon );
   connect( addButton, SIGNAL( clicked() ), this, SLOT( slotAddExtension() ) );
 
-  QToolButton *removeButton = new QToolButton( hbox3, "removeBtnList" );
+  QToolButton *removeButton = new QToolButton( hboxWidget3 );
+  hbox3->addWidget( removeButton );
+
   icon = krLoader->loadIcon("remove",KIconLoader::Desktop, size );
   removeButton->setFixedSize( icon.width() + 4, icon.height() + 4 );
   removeButton->setPixmap( icon );
@@ -159,14 +171,17 @@ if( first )
   generalGrid->addWidget( line31, 12, 0, 1, 2 );
 
 	// temp dir
-  Q3HBox *hbox = new Q3HBox( generalGrp, "hbox" );
-  new QLabel( i18n( "Temp Directory:" ), hbox, "TempDirectory" );
+  QWidget *hboxWidget = new QWidget( generalGrp );
+  QHBoxLayout * hbox = new QHBoxLayout( hboxWidget );
+
+  hbox->addWidget( new QLabel( i18n( "Temp Directory:" ), hboxWidget, "TempDirectory" ) );
   KonfiguratorURLRequester *urlReq3 = createURLRequester( "General", "Temp Directory", "/tmp/krusader.tmp",
-                                      hbox, false );
+                                      hboxWidget, false );
   urlReq3->setMode( KFile::Directory );
   connect( urlReq3->extension(), SIGNAL( applyManually(QObject *,QString, QString) ),
            this, SLOT( applyTempDir(QObject *,QString, QString) ) );
-  generalGrid->addWidget( hbox, 13, 0, 1, 2 );
+  hbox->addWidget( urlReq3 );
+  generalGrid->addWidget( hboxWidget, 13, 0, 1, 2 );
 
   QLabel *label4 = new QLabel( i18n( "Note: you must have full permissions for the temporary directory!" ),
                                generalGrp, "NoteLabel"  );

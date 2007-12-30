@@ -381,9 +381,11 @@ void KonfiguratorURLRequester::slotSetDefaults(QObject *)
 ///////////////////////////////
 
 KonfiguratorFontChooser::KonfiguratorFontChooser( QString cls, QString name, QFont *dflt,
-  QWidget *parent, bool rst, int pg ) : Q3HBox ( parent ),
+  QWidget *parent, bool rst, int pg ) : QWidget ( parent ),
     defaultValue( dflt )
 {
+  QHBoxLayout *layout = new QHBoxLayout( this );
+
   ext = new KonfiguratorExtension( this, cls, name, rst, pg );
   connect( ext, SIGNAL( applyAuto(QObject *,QString, QString) ), this, SLOT( slotApply(QObject *,QString, QString) ) );
   connect( ext, SIGNAL( setDefaultsAuto(QObject *) ), this, SLOT( slotSetDefaults(QObject *) ) );
@@ -391,11 +393,14 @@ KonfiguratorFontChooser::KonfiguratorFontChooser( QString cls, QString name, QFo
 
   pLabel = new QLabel( this );
   pLabel->setMinimumWidth( 150 );
+  layout->addWidget( pLabel );
+
   pToolButton = new QToolButton( this );
 
   connect( pToolButton, SIGNAL( clicked() ), this, SLOT( slotBrowseFont() ) );
 
   pToolButton->setIconSet( SmallIcon( "fileopen" ) );
+  layout->addWidget( pToolButton );
 
   loadInitialValue();
 }
