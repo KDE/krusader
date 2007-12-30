@@ -292,6 +292,10 @@ bool KrDetailedView::preDelItem(KrViewItem *item) {
          QKeyEvent escEvent( QEvent::KeyPress, Qt::Key_Escape, 27, 0 );
          QApplication::sendEvent( renameLineEdit(), &escEvent );
       }
+
+      // HACK: there's a bug in Q3ListViewItem, which causes crash at rename
+      // here we remove the item from the list to avoid crash
+      takeItem( viewItem );
    }
    /* KDE HACK END */
    return true;
