@@ -43,7 +43,8 @@
 #include <q3whatsthis.h>
 
 QString KgProtocols::defaultProtocols  = "krarc,iso,tar";
-QString KgProtocols::defaultIsoMimes   = "application/x-iso";
+QString KgProtocols::defaultIsoMimes   = "application/x-iso,application/x-cd-image,"
+                                         "application/x-dvd-image";
 QString KgProtocols::defaultKrarcMimes = "application/x-7z,application/x-7z-compressed,"
                                          "application/x-ace,application/x-ace-compressed,"
                                          "application/x-arj,application/x-arj-compressed,"
@@ -325,7 +326,9 @@ void KgProtocols::setDefaults()
     removeProtocol( linkList->firstChild()->text( 0 ) );
   
   addProtocol( "iso" );
-  addMime( "application/x-iso", "iso" );
+  QStringList isoMimes = QStringList::split( ',', defaultIsoMimes );
+  for( QStringList::Iterator it = isoMimes.begin(); it != isoMimes.end(); it++ )
+    addMime( *it, "iso" );
   
   addProtocol( "krarc" );
   QStringList krarcMimes = QStringList::split( ',', defaultKrarcMimes );

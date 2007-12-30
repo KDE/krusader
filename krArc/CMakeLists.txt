@@ -12,9 +12,9 @@ target_link_libraries(kio_krarc  ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KF
 
 install(TARGETS kio_krarc DESTINATION ${PLUGIN_INSTALL_DIR} )
 
-
 ########### install files ###############
 
+install( FILES krarc.protocol DESTINATION  ${SERVICES_INSTALL_DIR} )
 
 
 

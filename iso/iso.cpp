@@ -44,23 +44,10 @@
 #include "kisodirectory.h"
 #include "iso.h"
 
-typedef struct {
-    char magic[8];
-    char uncompressed_len[4];
-    unsigned char header_size;
-    unsigned char block_size;
-    char reserved[2];   /* Reserved for future use, MBZ */
-} compressed_file_header;
-
-static const unsigned char zisofs_magic[8] = {
-    0x37, 0xE4, 0x53, 0x96, 0xC9, 0xDB, 0xD6, 0x07
-};
-
 using namespace KIO;
+extern "C" {
 
-extern "C" { int kdemain(int argc, char **argv); }
-
-int kdemain( int argc, char **argv )
+int KDE_EXPORT kdemain( int argc, char **argv )
 {
   KComponentData instance( "kio_iso", "krusader" );
 
@@ -78,6 +65,20 @@ int kdemain( int argc, char **argv )
   kDebug()   << "Done" << endl;
   return 0;
 }
+
+} // extern "C"
+
+typedef struct {
+    char magic[8];
+    char uncompressed_len[4];
+    unsigned char header_size;
+    unsigned char block_size;
+    char reserved[2];   /* Reserved for future use, MBZ */
+} compressed_file_header;
+
+static const unsigned char zisofs_magic[8] = {
+    0x37, 0xE4, 0x53, 0x96, 0xC9, 0xDB, 0xD6, 0x07
+};
 
 
 kio_isoProtocol::kio_isoProtocol( const Q3CString &pool, const Q3CString &app ) : SlaveBase( "iso", pool, app )

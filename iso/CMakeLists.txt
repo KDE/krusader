@@ -22,7 +22,8 @@ install(TARGETS kio_iso DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 ########### install files ###############
 
-
+install( FILES iso.protocol DESTINATION  ${SERVICES_INSTALL_DIR} )
+install( FILES kio_isorc DESTINATION  ${CONFIG_INSTALL_DIR} )
 
 
 #original Makefile.am contents follow:
