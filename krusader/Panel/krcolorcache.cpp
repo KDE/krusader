@@ -415,6 +415,15 @@ QColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
 		result.setColor(QColorGroup::Text, KColorScheme(QPalette::Active, KColorScheme::View).foreground().color() );
 		result.setColor(QColorGroup::HighlightedText, KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color());
 		result.setColor(QColorGroup::Highlight, KColorScheme(QPalette::Active, KColorScheme::Selection).background().color());
+
+		if (type.m_currentItem && type.m_activePanel)
+		{
+			QColor currentBackground = KColorScheme(QPalette::Active).background(KColorScheme::ActiveBackground).color();
+			// set the background
+			result.setColor(QColorGroup::Highlight, currentBackground);
+			result.setColor(QColorGroup::Base, currentBackground);
+			result.setColor(QColorGroup::Background, currentBackground);
+		}
 		return result;
 	}
 	bool markCurrentAlways = m_colorSettings.getBoolValue("Show Current Item Always", _ShowCurrentItemAlways);
