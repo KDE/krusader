@@ -328,6 +328,9 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 	
 	connect( pvb, SIGNAL( urlChanged( PanelViewerBase *, const KUrl & ) ), 
 	         this,  SLOT( tabURLChanged(PanelViewerBase *, const KUrl & ) ) );
+	
+	if( part->widget() )
+		part->widget()->setFocus();
 }
 
 void KrViewer::tabURLChanged( PanelViewerBase *pvb, const KUrl & url ) {
@@ -455,25 +458,29 @@ void KrViewer::checkModified(){
 		pvb->setUrl( pvb->part()->url() );
 	}
 
-	// add a * to modified files.
-	if( pvb->isModified() ){
-		QString label = tabBar.tabText( tabBar.indexOf( pvb ) );
-		if( !label.startsWith("*" + pvb->part()->url().fileName() ) ){
-			label.prepend("*");
-			QIcon icon = QIcon(krLoader->loadIcon(MODIFIED_ICON,KIconLoader::Small));
+	bool lastModified = false;
+	QVariant lastModProp = pvb->property( "LastModified" );
+	if( lastModProp.type() == QVariant::Bool )
+		lastModified = lastModProp.toBool();
+	pvb->setProperty( "LastModified", QVariant( pvb->isModified() ) );
 
-			tabBar.changeTab(pvb,icon,label);
-		}
+	// add a * to modified files.
+	if( pvb->isModified() && !lastModified ){
+		int ndx = tabBar.indexOf( pvb );
+		QString label = tabBar.tabText( ndx );
+		label.prepend("*");
+		QIcon icon = QIcon(krLoader->loadIcon(MODIFIED_ICON,KIconLoader::Small));
+		tabBar.setTabText( ndx,label );
+		tabBar.setTabIcon( ndx,icon );
 	}
 	// remove the * from previously modified files.
-	else {
+	else if( !pvb->isModified() && lastModified ) {
+		int ndx = tabBar.indexOf( pvb );
 		QString label = tabBar.tabText( tabBar.indexOf( pvb ) );
-		if( label.startsWith("*" + pvb->part()->url().fileName() ) ){
-			label = label.mid( 1 );
-			QIcon icon = QIcon(krLoader->loadIcon(EDIT_ICON,KIconLoader::Small));
-
-			tabBar.changeTab(pvb,icon,label);
-		}		
+		label = label.mid( 1 );
+		QIcon icon = QIcon(krLoader->loadIcon(EDIT_ICON,KIconLoader::Small));
+		tabBar.setTabText( ndx,label );
+		tabBar.setTabIcon( ndx,icon );
 	}
 }
 
