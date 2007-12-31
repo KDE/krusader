@@ -42,7 +42,6 @@
 #include <qlayout.h>
 #include <qlineedit.h>
 #include <qlabel.h>
-#include <q3hbox.h>
 #include <qcombobox.h>
 #include <q3frame.h>
 //Added by qt3to4:
@@ -129,16 +128,20 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
   lineEdit->selectAll();
   layout->addWidget( lineEdit );  
   
-  Q3HBox *hbox = new Q3HBox( widget, "fbHBox" );
+  QWidget *hboxWidget = new QWidget( widget );
+  QHBoxLayout * hbox = new QHBoxLayout( hboxWidget );
   
-  QLabel *label2 = new QLabel( i18n( "Side to feed:" ), hbox, "fbSideLabel" );  
+  QLabel *label2 = new QLabel( i18n( "Side to feed:" ), hboxWidget, "fbSideLabel" );  
   label2->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
+  hbox->addWidget( label2 );
   
-  sideCombo = new QComboBox( hbox, "fbSideCombo" );
+  sideCombo = new QComboBox( hboxWidget, "fbSideCombo" );
   sideCombo->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
   sideCombo->insertItem( i18n( "Left" ) );
   sideCombo->insertItem( i18n( "Right" ) );
   sideCombo->insertItem( i18n( "Both" ) );
+  hbox->addWidget( sideCombo );
+
   if( leftExistingNum == 0 ) {
     sideCombo->setCurrentItem( 1 );
     sideCombo->setEnabled( false );
@@ -148,16 +151,18 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
   } else
     sideCombo->setCurrentItem( 2 );
   
-  QFrame *line = new QFrame( hbox );
+  QFrame *line = new QFrame( hboxWidget );
   line->setFrameStyle( QFrame::VLine | QFrame::Sunken );
   line->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+  hbox->addWidget( line );
   
-  cbSelected = new QCheckBox( i18n( "Selected files only" ), hbox, "cbSelected" );
+  cbSelected = new QCheckBox( i18n( "Selected files only" ), hboxWidget, "cbSelected" );
   cbSelected->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
   cbSelected->setEnabled( selectedNum != 0 );
   cbSelected->setChecked( selectedNum != 0 );
+  hbox->addWidget( cbSelected );
   
-  layout->addWidget( hbox );      
+  layout->addWidget( hboxWidget );      
     
   setMainWidget(widget);
   

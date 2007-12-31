@@ -42,7 +42,6 @@
 #include "feedtolistboxdialog.h"
 #include <qlayout.h>
 //Added by qt3to4:
-#include <q3hbox.h>
 #include <QResizeEvent>
 #include <QLabel>
 #include <QPixmap>
@@ -1194,8 +1193,12 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   rightLocation->setEnabled( !hasSelectedFiles );
   rightDirLabel->setBuddy( rightLocation );
 
-  Q3HBox *optionBox  = new Q3HBox( compareDirs );
-  Q3Grid *optionGrid = new Q3Grid( 3, optionBox );
+  QWidget *optionWidget  = new QWidget( compareDirs );
+  QHBoxLayout *optionBox = new QHBoxLayout( optionWidget );
+
+  Q3Grid *optionGrid = new Q3Grid( 3, optionWidget );
+  optionBox->addWidget( optionGrid );
+
   cbSubdirs         = new QCheckBox( i18n( "Recurse subdirectories" ), optionGrid, "cbSubdirs" );
   cbSubdirs->setChecked( group.readEntry( "Recurse Subdirectories", _RecurseSubdirs  ) );
   Q3WhatsThis::add( cbSubdirs, i18n( "Compare not only the base directories but their subdirectories as well." ) );
@@ -1218,7 +1221,9 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   /* =========================== Show options groupbox ============================= */
 
-  Q3GroupBox *showOptions  = new Q3GroupBox( optionBox, "SyncOptionBox" );
+  Q3GroupBox *showOptions  = new Q3GroupBox( optionWidget, "SyncOptionBox" );
+  optionBox->addWidget( showOptions );
+
   showOptions->setTitle( i18n( "S&how options" ) );
   showOptions->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed);
   showOptions->setColumnLayout(0, Qt::Vertical );
@@ -1295,7 +1300,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   Q3WhatsThis::add( btnSingles, i18n( "Show files that exist on one side only." ) );
   showOptionsLayout->addWidget( btnSingles, 0, 6);
 
-  grid->addWidget( optionBox, 2, 0, 1, 3 );
+  grid->addWidget( optionWidget, 2, 0, 1, 3 );
 
   synchronizerGrid->addWidget( compareDirs, 0, 0 );
 

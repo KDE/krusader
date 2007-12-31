@@ -24,7 +24,6 @@
 #include "../GUI/profilemanager.h"
 
 #include <qlayout.h>
-#include <q3hbox.h>
 #include <qlabel.h>
 #include <qtoolbutton.h>
 //Added by qt3to4:
@@ -51,42 +50,54 @@
 
 AddPlaceholderPopup::AddPlaceholderPopup( QWidget *parent ) : KMenu( parent ) {
 
-   _activeSub = new KMenu( this );
-   _otherSub = new KMenu( this );
-   _leftSub = new KMenu( this );
-   _rightSub = new KMenu( this );
-   _independentSub = new KMenu( this );
+   _activeSub = new KMenu( i18n( "Active panel" ), this );
+   _otherSub = new KMenu( i18n( "Other panel" ), this );
+   _leftSub = new KMenu( i18n( "Left panel" ), this );
+   _rightSub = new KMenu( i18n( "Right panel" ), this );
+   _independentSub = new KMenu( i18n( "Panel independent" ), this );
 
-   insertItem( i18n( "Active panel" ), _activeSub );
-   insertItem( i18n( "Other panel" ), _otherSub );
-   insertItem( i18n( "Left panel" ), _leftSub );
-   insertItem( i18n( "Right panel" ), _rightSub );
-   insertItem( i18n( "Panel independent" ), _independentSub );
-   _independentSub->insertItem( i18n( "Choose executable..." ), EXECUTABLE_ID );
-   _independentSub->insertSeparator();
+   addMenu( _activeSub );
+   addMenu( _otherSub );
+   addMenu( _leftSub );
+   addMenu( _rightSub );
+   addMenu( _independentSub );
+
+   QAction *chooseExecAct = _independentSub->addAction( i18n( "Choose executable..." ) );
+   chooseExecAct->setData( QVariant( EXECUTABLE_ID ) );
+
+   _independentSub->addSeparator();
 
    // read the expressions array from the user menu and populate menus
    Expander expander;
    for ( int i = 0; i < expander.placeholderCount(); ++i ) {
       if (  expander.placeholder( i )->expression().isEmpty() ) {
          if ( expander.placeholder( i )->needPanel() ) {
-            _activeSub->insertSeparator();
-            _otherSub->insertSeparator();
-            _leftSub->insertSeparator();
-            _rightSub->insertSeparator();
+            _activeSub->addSeparator();
+            _otherSub->addSeparator();
+            _leftSub->addSeparator();
+            _rightSub->addSeparator();
          }
          else
-            _independentSub->insertSeparator();
+            _independentSub->addSeparator();
       }
       else {
+         QAction * action;
+
          if ( expander.placeholder( i )->needPanel() ) {
-            _activeSub->insertItem( i18n( expander.placeholder( i )->description().utf8() ), ( i | ACTIVE_MASK ) );
-            _otherSub->insertItem( i18n( expander.placeholder( i )->description().utf8() ), ( i | OTHER_MASK ) );
-            _leftSub->insertItem( i18n( expander.placeholder( i )->description().utf8() ), ( i | LEFT_MASK ) );
-            _rightSub->insertItem( i18n( expander.placeholder( i )->description().utf8() ), ( i | RIGHT_MASK ) );
+            action = _activeSub->addAction( i18n( expander.placeholder( i )->description().utf8() ) );
+            action->setData( QVariant( i | ACTIVE_MASK ) );
+            action = _otherSub->addAction( i18n( expander.placeholder( i )->description().utf8() ) );
+            action->setData( QVariant( i | OTHER_MASK ) );
+            action = _leftSub->addAction( i18n( expander.placeholder( i )->description().utf8() ) );
+            action->setData( QVariant( i | LEFT_MASK ) );
+            action = _rightSub->addAction( i18n( expander.placeholder( i )->description().utf8() ) );
+            action->setData( QVariant( i | RIGHT_MASK ) );
          }
          else
-            _independentSub->insertItem( i18n( expander.placeholder( i )->description().utf8() ), ( i | INDEPENDENT_MASK ) );
+         {
+            action = _independentSub->addAction( i18n( expander.placeholder( i )->description().utf8() ) );
+            action->setData( QVariant( i | INDEPENDENT_MASK ) );
+         }
       }
    }
 
@@ -264,11 +275,15 @@ ParameterPlaceholder::ParameterPlaceholder( const exp_parameter& parameter, QWid
    layout->setSpacing( 6 );
    
    new QLabel( i18n( parameter.description().utf8() ), this );
-   Q3HBox * hbox = new Q3HBox( this );
+   QWidget * hboxWidget = new QWidget( this );
+   QHBoxLayout * hbox = new QHBoxLayout( hboxWidget );
+
    hbox->setSpacing( 6 );
-   _lineEdit = new KLineEdit( hbox );
-   _button = new QToolButton( hbox);
+   _lineEdit = new KLineEdit( hboxWidget );
+   hbox->addWidget( _lineEdit );
+   _button = new QToolButton( hboxWidget );
    _button->setText( i18n("add") );
+   hbox->addWidget( _button );
    connect( _button, SIGNAL(clicked()), this, SLOT(addPlaceholder()) );
 }
 
@@ -353,10 +368,15 @@ ParameterFile::ParameterFile( const exp_parameter& parameter, QWidget* parent ) 
    layout->setSpacing( 6 );
    
    new QLabel( i18n( parameter.description().utf8() ), this );
-   Q3HBox * hbox = new Q3HBox( this );
+
+   QWidget * hboxWidget = new QWidget( this );
+   QHBoxLayout * hbox = new QHBoxLayout( hboxWidget );
+
    hbox->setSpacing( 6 );
-   _lineEdit = new KLineEdit( hbox );
-   _button = new QToolButton( hbox);
+   _lineEdit = new KLineEdit( hboxWidget );
+   hbox->addWidget( _lineEdit );
+   _button = new QToolButton( hboxWidget );
+   hbox->addWidget( _button );
    KIconLoader *iconLoader = new KIconLoader();
   _button->setPixmap( iconLoader->loadIcon( "fileopen", KIconLoader::Toolbar, 16 ) );
    connect( _button, SIGNAL(clicked()), this, SLOT(addFile()) );
@@ -444,16 +464,22 @@ ParameterGoto::ParameterGoto( const exp_parameter& parameter, QWidget* parent ) 
    layout->setSpacing( 6 );
    
    new QLabel( i18n( parameter.description().utf8() ), this );
-   Q3HBox * hbox = new Q3HBox( this );
+
+   QWidget * hboxWidget = new QWidget( this );
+   QHBoxLayout * hbox = new QHBoxLayout( hboxWidget );
+
    hbox->setSpacing( 6 );
-   _lineEdit = new KLineEdit( hbox );
+   _lineEdit = new KLineEdit( hboxWidget );
    _lineEdit->setCompletionObject( new KUrlCompletion( KUrlCompletion::DirCompletion ) );
-   _dirButton = new QToolButton( hbox );
+   hbox->addWidget( _lineEdit );
+   _dirButton = new QToolButton( hboxWidget );
+   hbox->addWidget( _dirButton );
    KIconLoader *iconLoader = new KIconLoader();
   _dirButton->setPixmap( iconLoader->loadIcon( "fileopen", KIconLoader::Toolbar, 16 ) );
    connect( _dirButton, SIGNAL(clicked()), this, SLOT(setDir()) );
-   _placeholderButton = new QToolButton( hbox);
+   _placeholderButton = new QToolButton( hboxWidget );
    _placeholderButton->setText( i18n("add") );
+   hbox->addWidget( _placeholderButton );
    connect( _placeholderButton, SIGNAL(clicked()), this, SLOT(addPlaceholder()) );
 }
 

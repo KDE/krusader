@@ -39,7 +39,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QHBoxLayout>
 #include <QKeyEvent>
 #include <Q3ValueList>
-#include <q3hbox.h>
 #include <QPixmap>
 #include <QFrame>
 #include <QDropEvent>
@@ -200,18 +199,21 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
    quickSearch->setLineWidth( 1 );		// a nice 3D touch :-)
    quickSearch->setMaximumHeight( sheight );
 
-   Q3HBox * hbox = new Q3HBox( this );
+   QWidget * hboxWidget = new QWidget( this );
+   QHBoxLayout * hbox = new QHBoxLayout( hboxWidget );
 
 	// clear-origin button
 	bool clearButton = group.readEntry("Clear Location Bar Visible", _ClearLocation);
 	if (clearButton){
-		clearOrigin = new QToolButton(hbox, "clearorigin");
+		clearOrigin = new QToolButton(hboxWidget, "clearorigin");
 		clearOrigin->setPixmap(krLoader->loadIcon("locationbar_erase", KIconLoader::Toolbar, 16));
+		hbox->addWidget( clearOrigin );
 		QToolTip::add(  clearOrigin, i18n( "Clear the location bar" ) );
 	}
 	
 	QuickNavLineEdit *qnle = new QuickNavLineEdit(this);
-   origin = new KUrlRequester( qnle, hbox );
+   origin = new KUrlRequester( qnle, hboxWidget );
+   hbox->addWidget( origin );
    QPixmap pixMap = origin->button() ->iconSet() ->pixmap( QIcon::Small, QIcon::Normal );
    origin->button() ->setFixedSize( pixMap.width() + 4, pixMap.height() + 4 );
    Q3WhatsThis::add
@@ -236,32 +238,37 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
 	}
 	//
    
-   cdOtherButton = new QToolButton( hbox, "cdOtherButton" );
+   cdOtherButton = new QToolButton( hboxWidget );
    cdOtherButton->setFixedSize( 20, origin->button() ->height() );
    cdOtherButton->setText( i18n( "=" ) );
+   hbox->addWidget( cdOtherButton );
 	QToolTip::add(  cdOtherButton, i18n( "Equal" ) );
    connect( cdOtherButton, SIGNAL( clicked() ), this, SLOT( slotFocusAndCDOther() ) );
 
-   cdUpButton = new QToolButton( hbox, "cdUpButton" );
+   cdUpButton = new QToolButton( hboxWidget );
    cdUpButton->setFixedSize( 20, origin->button() ->height() );
    cdUpButton->setText( i18n( ".." ) );
+   hbox->addWidget( cdUpButton );
 	QToolTip::add(  cdUpButton, i18n( "Up" ) );
    connect( cdUpButton, SIGNAL( clicked() ), this, SLOT( slotFocusAndCDup() ) );
 
-   cdHomeButton = new QToolButton( hbox, "cdHomeButton" );
+   cdHomeButton = new QToolButton( hboxWidget );
    cdHomeButton->setFixedSize( 20, origin->button() ->height() );
    cdHomeButton->setText( i18n( "~" ) );
+   hbox->addWidget( cdHomeButton );
 	QToolTip::add(  cdHomeButton, i18n( "Home" ) );
    connect( cdHomeButton, SIGNAL( clicked() ), this, SLOT( slotFocusAndCDHome() ) );
 
-   cdRootButton = new QToolButton( hbox, "cdRootButton" );
+   cdRootButton = new QToolButton( hboxWidget );
    cdRootButton->setFixedSize( 20, origin->button() ->height() );
    cdRootButton->setText( i18n( "/" ) );
+   hbox->addWidget( cdRootButton );
 	QToolTip::add(  cdRootButton, i18n( "Root" ) );
    connect( cdRootButton, SIGNAL( clicked() ), this, SLOT( slotFocusAndCDRoot() ) );
 
    // ... creates the button for sync-browsing
-   syncBrowseButton = new SyncBrowseButton( hbox );
+   syncBrowseButton = new SyncBrowseButton( hboxWidget );
+   hbox->addWidget( syncBrowseButton );
 
    setPanelToolbar();
 
@@ -286,7 +293,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
 	popup->hide();
 	
    // finish the layout
-   layout->addWidget( hbox, 0, 0, 1, 4 );
+   layout->addWidget( hboxWidget, 0, 0, 1, 4 );
    layout->addWidget( mediaButton, 1, 0 );
    layout->addWidget( status, 1, 1 );
    layout->addWidget( historyButton, 1, 2 );

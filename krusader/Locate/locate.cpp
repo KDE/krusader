@@ -41,7 +41,6 @@
 #include "../panelmanager.h"
 #include "../kicons.h"
 #include <klocale.h>
-#include <q3hbox.h>
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qfontmetrics.h>
@@ -120,9 +119,15 @@ LocateDlg::LocateDlg() : KDialog( 0 ), isFeedToListBox( false )
 
   setPlainCaption( i18n( "Krusader::Locate" ) );
   
-  Q3HBox *hbox = new Q3HBox( widget, "locateHBox" );
-  QLabel *label = new QLabel( i18n( "Search for:" ), hbox, "locateLabel" );
-  locateSearchFor = new KHistoryComboBox( false, hbox );
+  QWidget *hboxWidget = new QWidget( widget );
+  QHBoxLayout *hbox = new QHBoxLayout( hboxWidget );
+
+  QLabel *label = new QLabel( i18n( "Search for:" ), hboxWidget );
+  hbox->addWidget( label );
+
+  locateSearchFor = new KHistoryComboBox( false, hboxWidget );
+  hbox->addWidget( locateSearchFor );
+
   label->setBuddy( locateSearchFor );
   KConfigGroup group( krConfig, "Locate");
   QStringList list = group.readEntry("Search For", QStringList());
@@ -133,18 +138,27 @@ LocateDlg::LocateDlg() : KDialog( 0 ), isFeedToListBox( false )
   locateSearchFor->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed);
   locateSearchFor->lineEdit()->setFocus();
 
-  grid->addWidget( hbox, 0, 0 );
+  grid->addWidget( hboxWidget, 0, 0 );
 
-  Q3HBox *hbox2 = new Q3HBox( widget, "locateHBox" );
+  QWidget *hboxWidget2 = new QWidget( widget );
+  QHBoxLayout * hbox2 = new QHBoxLayout( hboxWidget2 );
+
   QSpacerItem* spacer = new QSpacerItem( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-  hbox2->layout()->addItem( spacer );
-  dontSearchInPath = new QCheckBox( i18n( "Don't search in path" ), hbox2, "dontSearchInPath" );
+  hbox2->addItem( spacer );
+
+  dontSearchInPath = new QCheckBox( i18n( "Don't search in path" ), hboxWidget2 );
+  hbox2->addWidget( dontSearchInPath );
   dontSearchInPath->setChecked( group.readEntry("Dont Search In Path", false) );
-  existingFiles = new QCheckBox( i18n( "Show only the existing files" ), hbox2, "existingFiles" );
+
+  existingFiles = new QCheckBox( i18n( "Show only the existing files" ), hboxWidget2 );
   existingFiles->setChecked( group.readEntry("Existing Files", false) );
-  caseSensitive = new QCheckBox( i18n( "Case Sensitive" ), hbox2, "caseSensitive" );
+  hbox2->addWidget( existingFiles );
+
+  caseSensitive = new QCheckBox( i18n( "Case Sensitive" ), hboxWidget2 );
   caseSensitive->setChecked( group.readEntry("Case Sensitive", false) );
-  grid->addWidget( hbox2, 1, 0 );
+  hbox2->addWidget( caseSensitive );
+
+  grid->addWidget( hboxWidget2, 1, 0 );
 
   QFrame *line1 = new QFrame( widget );
   line1->setFrameStyle( QFrame::HLine | QFrame::Sunken );

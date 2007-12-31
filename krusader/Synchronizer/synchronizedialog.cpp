@@ -33,7 +33,6 @@
 #include "../krusader.h"
 #include "../defaults.h"
 #include <qlayout.h>
-#include <q3hbox.h>
 //Added by qt3to4:
 #include <QVBoxLayout>
 #include <QLabel>
@@ -100,7 +99,9 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   progress->setMinimumWidth( 400 );
   layout->addWidget( progress );
 
-  Q3HBox *hbox = new Q3HBox( this, "SynchronizeDialogHBox" );
+  QWidget *hboxWidget = new QWidget( this );
+  QHBoxLayout * hbox = new QHBoxLayout( hboxWidget );
+
   hbox->setSpacing( 6 );
 
   cbOverwrite = new QCheckBox( i18n( "Confirm overwrites" ), this, "cbOverWrite" );
@@ -109,19 +110,22 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   layout->addWidget( cbOverwrite );
   
   QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-  hbox->layout()->addItem( spacer );
+  hbox->addItem( spacer );
   
-  btnStart = new QPushButton( hbox, "btnStart" );
+  btnStart = new QPushButton( hboxWidget );
   btnStart->setText( i18n( "&Start" ) );
+  hbox->addWidget( btnStart );
 
-  btnPause = new QPushButton( hbox, "btnPause" );
+  btnPause = new QPushButton( hboxWidget );
   btnPause->setEnabled( false );
   btnPause->setText( i18n( "&Pause" ) );
+  hbox->addWidget( btnPause );
   
-  QPushButton *btnClose = new QPushButton( hbox, "btnClose" );
+  QPushButton *btnClose = new QPushButton( hboxWidget );
   btnClose->setText( i18n( "&Close" ) );
+  hbox->addWidget( btnClose );
 
-  layout->addWidget( hbox );
+  layout->addWidget( hboxWidget );
 
   connect( btnStart,  SIGNAL( clicked() ), this, SLOT( startSynchronization() ) );
   connect( btnPause,  SIGNAL( clicked() ), this, SLOT( pauseOrResume() ) );

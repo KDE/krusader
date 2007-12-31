@@ -47,7 +47,6 @@
 #include <kio/job.h>
 #include <kio/deletejob.h>
 #include <qpushbutton.h>
-#include <q3hbox.h>
 #include <qapplication.h>
 #include <qcursor.h>
 #include <qpixmapcache.h>
@@ -158,12 +157,16 @@ LoaderWidget::LoaderWidget( QWidget *parent, const char *name ) : Q3ScrollView( 
   line->setFrameStyle( QFrame::HLine | QFrame::Sunken );
   synchGrid->addWidget( line, 5, 0, 1, 2 );
 
-  Q3HBox *hbox = new Q3HBox( loaderBox, "hbox" );
+  QWidget *hboxWidget = new QWidget( loaderBox );
+  QHBoxLayout * hbox = new QHBoxLayout( hboxWidget );
+
   QSpacerItem* spacer = new QSpacerItem( 0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding );
-  hbox->layout()->addItem( spacer );
-  QPushButton *cancelButton = new QPushButton( hbox, "cancelButton" );
+  hbox->addItem( spacer );
+  QPushButton *cancelButton = new QPushButton( hboxWidget );
   cancelButton->setText( i18n( "Cancel"  ) );
-  synchGrid->addWidget( hbox, 6, 1 );
+  hbox->addWidget( cancelButton );
+
+  synchGrid->addWidget( hboxWidget, 6, 1 );
 
   loaderLayout->addWidget( loaderBox, 0, 0 );
 
