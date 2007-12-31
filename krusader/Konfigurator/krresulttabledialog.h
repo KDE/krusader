@@ -32,7 +32,6 @@
 #define KRRESULTTABLEDIALOG_H
 
 #include <qlabel.h>
-#include <q3vbox.h>
 #include <qlayout.h>
 #include <qstringlist.h>
 #include <q3valuevector.h>

@@ -29,7 +29,6 @@
  ***************************************************************************/
 
 #include <qlabel.h>
-#include <q3vbox.h>
 #include <qfontmetrics.h>
 //Added by qt3to4:
 #include <QGridLayout>
@@ -93,23 +92,25 @@ if( first )
   QWidget * hboxWidget2 = new QWidget( generalGrp );
   QHBoxLayout * hbox2 = new QHBoxLayout( hboxWidget2 );
 
-  Q3VBox * vbox = new Q3VBox( hboxWidget2 );
+  QWidget * vboxWidget = new QWidget( hboxWidget2 );
+  QVBoxLayout * vbox = new QVBoxLayout( vboxWidget );
 
-  new QLabel( i18n("Default viewer mode:"), vbox);
+  vbox->addWidget( new QLabel( i18n("Default viewer mode:"), vboxWidget) );
   
   KONFIGURATOR_NAME_VALUE_TIP viewMode[] =
   //            name            value    tooltip
     {{ i18n( "Generic mode" ),  "generic", i18n( "Use the system's default viewer" ) },
      { i18n( "Text mode" ), "text",  i18n( "View the file in text-only mode" ) }, 
      { i18n( "Hex mode" ), "hex",  i18n( "View the file in hex-mode (better for binary files)" ) } };
-  createRadioButtonGroup( "General", "Default Viewer Mode",
-      "generic", 0, 3, viewMode, 3, vbox, false );
+  
+  vbox->addWidget( createRadioButtonGroup( "General", "Default Viewer Mode",
+      "generic", 0, 3, viewMode, 3, vboxWidget, false ) );
 
-  createCheckBox( "General", "View In Separate Window", _ViewInSeparateWindow,
-                     i18n( "Internal editor and viewer opens each file in a separate window" ), vbox, false,
-                     i18n( "If checked, each file will open in a separate window, otherwise, the viewer will work in a single, tabbed mode" ) );
+  vbox->addWidget( createCheckBox( "General", "View In Separate Window", _ViewInSeparateWindow,
+                     i18n( "Internal editor and viewer opens each file in a separate window" ), vboxWidget, false,
+                     i18n( "If checked, each file will open in a separate window, otherwise, the viewer will work in a single, tabbed mode" ) ) );
 
-  hbox2->addWidget( vbox );
+  hbox2->addWidget( vboxWidget );
   generalGrid->addWidget(hboxWidget2, 6, 0, 3, 2);
 
   // atomic extensions
@@ -117,10 +118,14 @@ if( first )
   frame21->setMinimumWidth( 15 );
   hbox2->addWidget( frame21 );
 
-  Q3VBox * vbox2 = new Q3VBox( hboxWidget2 );
-  hbox2->addWidget( vbox2 );
+  QWidget * vboxWidget2 = new QWidget( hboxWidget2 );
+  QVBoxLayout * vbox2 = new QVBoxLayout( vboxWidget2 );
 
-  QWidget * hboxWidget3 = new QWidget( vbox2 );
+  hbox2->addWidget( vboxWidget2 );
+
+  QWidget * hboxWidget3 = new QWidget( vboxWidget2 );
+  vbox2->addWidget( hboxWidget3 );
+
   QHBoxLayout * hbox3 = new QHBoxLayout( hboxWidget3 );
 
   QLabel * atomLabel = new QLabel( i18n("Atomic extensions:"), hboxWidget3);
@@ -150,7 +155,8 @@ if( first )
   defaultAtomicExtensions += ".moc.cpp";
 
   listBox = createListBox( "Look&Feel", "Atomic Extensions", 
-      defaultAtomicExtensions, vbox2, true, false );
+      defaultAtomicExtensions, vboxWidget2, true, false );
+  vbox2->addWidget( listBox );
 
   QFrame *line3 = createLine( generalGrp );
   generalGrid->addWidget( line3, 9, 0, 1, 2 );

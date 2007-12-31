@@ -15,7 +15,6 @@
 #include <klocale.h>
 #include <kinputdialog.h>
 #include <q3textedit.h>
-#include <q3vbox.h>
 #include <qboxlayout.h>
 #include <qlayout.h>
 #include <qsplitter.h>
@@ -68,19 +67,25 @@ KrActionProcDlg::KrActionProcDlg( QString caption, bool enableStderr, QWidget *p
    if ( enableStderr ) {
       QSplitter *splitt = new QSplitter( Qt::Vertical, page );
       // create stdout
-      Q3VBox *stdoutBox = new Q3VBox( splitt, "stdout VBox" );
+      QWidget *stdoutWidget = new QWidget( splitt );
+      QVBoxLayout *stdoutBox = new QVBoxLayout( stdoutWidget );
+
       stdoutBox->setSpacing( 6 );
-      new QLabel( i18n( "Standard Output (stdout)" ), stdoutBox );
-      _stdout = new Q3TextEdit( stdoutBox );
+      stdoutBox->addWidget( new QLabel( i18n( "Standard Output (stdout)" ), stdoutWidget ) );
+      _stdout = new Q3TextEdit( stdoutWidget );
       _stdout->setReadOnly( true );
       _stdout->setMinimumWidth( fontMetrics().maxWidth() * 40 );
+      stdoutBox->addWidget( _stdout );
       // create stderr
-      Q3VBox *stderrBox = new Q3VBox( splitt, "stderr VBox" );
+      QWidget *stderrWidget = new QWidget( splitt );
+      QVBoxLayout *stderrBox = new QVBoxLayout( stderrWidget );
+
       stderrBox->setSpacing( 6 );
-      new QLabel( i18n( "Standard Error (stderr)" ), stderrBox );
-      _stderr = new Q3TextEdit( stderrBox );
+      stderrBox->addWidget( new QLabel( i18n( "Standard Error (stderr)" ), stderrWidget ) );
+      _stderr = new Q3TextEdit( stderrWidget );
       _stderr->setReadOnly( true );
       _stderr->setMinimumWidth( fontMetrics().maxWidth() * 40 );
+      stderrBox->addWidget( _stderr );
    } else {
       // create stdout
       new QLabel( i18n( "Output" ), page );

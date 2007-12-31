@@ -34,7 +34,6 @@
 #include <klocale.h>
 #include <kprotocolinfo.h>
 #include <kmimetype.h>
-#include <q3vbox.h>
 #include <q3header.h>
 //Added by qt3to4:
 #include <QGridLayout>
@@ -81,31 +80,39 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
 
   //  -------------------------- BUTTONS ----------------------------------
 
-  Q3VBox *vbox1 = new Q3VBox( this, "vbox1" )  ;
+  QWidget *vbox1Widget = new QWidget( this );
+  QVBoxLayout *vbox1 = new QVBoxLayout( vbox1Widget );
   
   addSpacer( vbox1 );
-  btnAddProtocol = new QPushButton( vbox1, "btnAddProtocolButton" );
+  btnAddProtocol = new QPushButton( vbox1Widget );
   btnAddProtocol->setPixmap( krLoader->loadIcon( "1leftarrow", KIconLoader::Small ) );
   Q3WhatsThis::add( btnAddProtocol, i18n( "Add protocol to the link list." ) );
-  btnRemoveProtocol = new QPushButton( vbox1, "btnRemoveProtocolButton" );
+  vbox1->addWidget( btnAddProtocol );
+
+  btnRemoveProtocol = new QPushButton( vbox1Widget );
   btnRemoveProtocol->setPixmap( krLoader->loadIcon( "1rightarrow", KIconLoader::Small ) );
   Q3WhatsThis::add( btnRemoveProtocol, i18n( "Remove protocol from the link list." ) );
+  vbox1->addWidget( btnRemoveProtocol );
   addSpacer( vbox1 );
   
-  KgProtocolsLayout->addWidget( vbox1, 0 ,1 );
+  KgProtocolsLayout->addWidget( vbox1Widget, 0 ,1 );
 
-  Q3VBox *vbox2 = new Q3VBox( this, "vbox2" )  ;
+  QWidget *vbox2Widget = new QWidget( this );
+  QVBoxLayout *vbox2 = new QVBoxLayout( vbox2Widget );
   
   addSpacer( vbox2 );
-  btnAddMime = new QPushButton( vbox2, "btnAddMimeButton" );
+  btnAddMime = new QPushButton( vbox2Widget );
   btnAddMime->setPixmap( krLoader->loadIcon( "1leftarrow", KIconLoader::Small ) );
   Q3WhatsThis::add( btnAddMime, i18n( "Add mime to the selected protocol on the link list." ) );
-  btnRemoveMime = new QPushButton( vbox2, "btnRemoveMimeButton" );
+  vbox2->addWidget( btnAddMime );
+
+  btnRemoveMime = new QPushButton( vbox2Widget );
   btnRemoveMime->setPixmap( krLoader->loadIcon( "1rightarrow", KIconLoader::Small ) );
   Q3WhatsThis::add( btnRemoveMime, i18n( "Remove mime from the link list." ) );
+  vbox2->addWidget( btnRemoveMime );
   addSpacer( vbox2 );
   
-  KgProtocolsLayout->addWidget( vbox2, 1 ,1 );
+  KgProtocolsLayout->addWidget( vbox2Widget, 1 ,1 );
   
   //  -------------------------- PROTOCOLS LISTBOX ----------------------------------
 
@@ -144,13 +151,9 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
   slotDisableButtons();
 }
   
-QWidget* KgProtocols::addSpacer( QWidget *parent, const char *widgetName )
+void KgProtocols::addSpacer( QBoxLayout *layout )
 {
-  QWidget *widget = new QWidget( parent, widgetName );
-  QVBoxLayout *vboxlayout = new QVBoxLayout( widget );
-  QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding );
-  vboxlayout->addItem( spacer );
-  return widget;
+  layout->addItem( new QSpacerItem( 20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding ) );
 }
 
 void KgProtocols::loadListCapableProtocols()

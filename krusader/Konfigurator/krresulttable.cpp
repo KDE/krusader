@@ -331,26 +331,33 @@ bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
   grid->addWidget(_label, _numRows, 0);
 
   // Tool column
-  Q3VBox* toolBox = new Q3VBox(this);
+  QWidget* toolBoxWidget = new QWidget(this);
+  QVBoxLayout * toolBox = new QVBoxLayout( toolBoxWidget );
+
   for( Q3ValueVector<Application*>::Iterator it=_apps.begin(); it!=_apps.end(); it++ )
   {
-    KUrlLabel* l = new KUrlLabel( (*it)->getWebsite(), (*it)->getAppName(), toolBox);
+    KUrlLabel* l = new KUrlLabel( (*it)->getWebsite(), (*it)->getAppName(), toolBoxWidget);
+    toolBox->addWidget( l );
+
     l->setAlignment(Qt::AlignLeft | Qt::AlignTop);
     l->setContentsMargins(5,5,5,5);
     connect(l, SIGNAL(leftClickedUrl(const QString&)),
                SLOT(website(const QString&)));
   }
-  grid->addWidget(toolBox, _numRows, 1);
+  grid->addWidget(toolBoxWidget, _numRows, 1);
 
   // Found column
-  Q3VBox* vbox = new Q3VBox(this);
+  QWidget* vboxWidget = new QWidget(this);
+  QVBoxLayout * vbox = new QVBoxLayout( vboxWidget );
+
   for( Q3ValueVector<Application*>::Iterator it=_apps.begin(); it!=_apps.end(); it++ )
   {
-    _label = new QLabel( (*it)->getPath(), vbox);
+    _label = new QLabel( (*it)->getPath(), vboxWidget);
     _label->setContentsMargins(5,5,5,5);
     _label->setAlignment( Qt::AlignTop );
+    vbox->addWidget( _label );
   }
-  grid->addWidget(vbox, _numRows, 2);
+  grid->addWidget(vboxWidget, _numRows, 2);
 
   // Status column
   _label = new QLabel(this);

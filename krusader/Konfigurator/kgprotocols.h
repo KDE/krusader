@@ -60,7 +60,7 @@ public slots:
 protected:
   void         loadListCapableProtocols();
   void         loadMimes();
-  QWidget*     addSpacer( QWidget *parent, const char *widgetName = 0);
+  void         addSpacer( QBoxLayout *parent );
   
   void         addProtocol( QString name, bool changeCurrent = false );
   void         removeProtocol( QString name );
