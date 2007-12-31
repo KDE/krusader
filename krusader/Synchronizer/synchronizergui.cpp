@@ -52,7 +52,6 @@
 #include <QFrame>
 #include <kurlrequester.h>
 #include <klocale.h>
-#include <q3grid.h>
 #include <kmenu.h>
 #include <qcursor.h>
 #include <time.h>
@@ -1196,27 +1195,35 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   QWidget *optionWidget  = new QWidget( compareDirs );
   QHBoxLayout *optionBox = new QHBoxLayout( optionWidget );
 
-  Q3Grid *optionGrid = new Q3Grid( 3, optionWidget );
-  optionBox->addWidget( optionGrid );
+  QWidget *optionGridWidget = new QWidget( optionWidget );
+  QGridLayout *optionGrid = new QGridLayout( optionGridWidget );
 
-  cbSubdirs         = new QCheckBox( i18n( "Recurse subdirectories" ), optionGrid, "cbSubdirs" );
+  optionBox->addWidget( optionGridWidget );
+
+  cbSubdirs         = new QCheckBox( i18n( "Recurse subdirectories" ), optionGridWidget );
   cbSubdirs->setChecked( group.readEntry( "Recurse Subdirectories", _RecurseSubdirs  ) );
+  optionGrid->addWidget( cbSubdirs, 0, 0 );
   Q3WhatsThis::add( cbSubdirs, i18n( "Compare not only the base directories but their subdirectories as well." ) );
-  cbSymlinks        = new QCheckBox( i18n( "Follow symlinks" ), optionGrid, "cbSymlinks" );
+  cbSymlinks        = new QCheckBox( i18n( "Follow symlinks" ), optionGridWidget );
   cbSymlinks->setChecked( group.readEntry( "Follow Symlinks", _FollowSymlinks  ) );
   cbSymlinks->setEnabled( cbSubdirs->isChecked() );
+  optionGrid->addWidget( cbSymlinks, 0, 1 );
   Q3WhatsThis::add( cbSymlinks, i18n( "Follow symbolic links during the compare process." ) );
-  cbByContent       = new QCheckBox( i18n( "Compare by content" ), optionGrid, "cbByContent" );
+  cbByContent       = new QCheckBox( i18n( "Compare by content" ), optionGridWidget );
   cbByContent->setChecked( group.readEntry( "Compare By Content", _CompareByContent  ) );
+  optionGrid->addWidget( cbByContent, 0, 2 );
   Q3WhatsThis::add( cbByContent, i18n( "Compare duplicated files with same size by content." ) );
-  cbIgnoreDate      = new QCheckBox( i18n( "Ignore Date" ), optionGrid, "cbIgnoreDate" );
+  cbIgnoreDate      = new QCheckBox( i18n( "Ignore Date" ), optionGridWidget );
   cbIgnoreDate->setChecked( group.readEntry( "Ignore Date", _IgnoreDate  ) );
+  optionGrid->addWidget( cbIgnoreDate, 1, 0 );
   Q3WhatsThis::add( cbIgnoreDate, i18n( "<p>Ignore date information during the compare process.</p><p><b>Note</b>: useful if the files are located on network filesystems or in archives.</p>" ) );
-  cbAsymmetric      = new QCheckBox( i18n( "Asymmetric" ), optionGrid, "cbAsymmetric" );
+  cbAsymmetric      = new QCheckBox( i18n( "Asymmetric" ), optionGridWidget );
   cbAsymmetric->setChecked( group.readEntry( "Asymmetric", _Asymmetric  ) );
+  optionGrid->addWidget( cbAsymmetric, 1, 1 );
   Q3WhatsThis::add( cbAsymmetric, i18n( "<p><b>Asymmetric mode</b></p><p>The left side is the destination, the right is the source directory. Files existing only in the left directory will be deleted, the other differing ones will be copied from right to left.</p><p><b>Note</b>: useful when updating a directory from a file server.</p>" ) );
-  cbIgnoreCase      = new QCheckBox( i18n( "Ignore Case" ), optionGrid, "cbIgnoreCase" );
+  cbIgnoreCase      = new QCheckBox( i18n( "Ignore Case" ), optionGridWidget );
   cbIgnoreCase->setChecked( group.readEntry( "Ignore Case", _IgnoreCase ) );
+  optionGrid->addWidget( cbIgnoreCase, 1, 2 );
   Q3WhatsThis::add( cbIgnoreCase, i18n( "<p>Case insensitive filename compare.</p><p><b>Note</b>: useful when synchronizing Windows filesystems.</p>" ) );
 
   /* =========================== Show options groupbox ============================= */

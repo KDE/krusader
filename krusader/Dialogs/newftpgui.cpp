@@ -13,7 +13,6 @@
 #include <qpushbutton.h>
 #include <qspinbox.h>
 #include <qlayout.h>
-#include <q3grid.h>
 #include <qvariant.h>
 #include <qtooltip.h>
 #include <q3whatsthis.h>
@@ -56,7 +55,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags
     setCaption( i18n( "New Network Connection"  ) );
 //     setSizeGripEnabled( TRUE );
     setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)5, sizePolicy().hasHeightForWidth() ) );
-    setMinimumSize( QSize( 342, 261 ) );
+    //setMinimumSize( QSize( 342, 261 ) );
 
     QWidget * hbox_image_widget = new QWidget( this );
     QHBoxLayout* hbox_image = new QHBoxLayout( hbox_image_widget );
@@ -74,15 +73,17 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags
     hbox_image->addWidget( TextLabel3 );
 
     
-    Q3Grid* grid_host = new Q3Grid( 3, this, "grid_host" );
+    QWidget * grid_host = new QWidget( this );
+    QGridLayout * grid_layout = new QGridLayout( grid_host );
     
-    TextLabel1 = new QLabel( i18n( "Protocol:"  ), grid_host, "TextLabel1" );
-    TextLabel1_22 = new QLabel( i18n( "Host:"), grid_host, "TextLabel_2" );
-    TextLabel1_3 = new QLabel( i18n( "Port:"  ), grid_host, "TextLabel1_3" );
+    grid_layout->addWidget( TextLabel1 = new QLabel( i18n( "Protocol:"  ), grid_host, "TextLabel1" ), 0, 0 );
+    grid_layout->addWidget( TextLabel1_22 = new QLabel( i18n( "Host:"), grid_host, "TextLabel_2" ), 0, 1 );
+    grid_layout->addWidget( TextLabel1_3 = new QLabel( i18n( "Port:"  ), grid_host, "TextLabel1_3" ), 0, 2 );
 
     QStringList protocols = KProtocolInfo::protocols();
 
     prefix = new KComboBox( FALSE, grid_host );
+    grid_layout->addWidget( prefix, 1, 0 );
     prefix->setObjectName( "protocol" );
     if( protocols.contains("ftp") )
       prefix->insertItem( i18n( "ftp://" ) );
@@ -99,6 +100,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags
                this,SLOT(slotTextChanged(const QString& )));
 
     url = new KHistoryComboBox( grid_host );
+    grid_layout->addWidget( url );
     //url->setMaximumHeight( 20 );
     url->setMaxCount( 25 );
     url->setDuplicatesEnabled( false );
@@ -113,6 +115,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags
 
     port = new QSpinBox( grid_host, "port" );
     port->setMaxValue( 65535 );
+    grid_layout->addWidget( port, 1, 2 );
 #if QT_VERSION < 300
     port->setFrameShadow( QSpinBox::Sunken );
 #endif
