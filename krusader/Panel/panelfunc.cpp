@@ -107,7 +107,7 @@ void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn ) {
 
 	// check for special cases first - don't refresh here !
 	// you may call openUrl or vfs_refresh()
-	if ( !url.isValid() ) {
+	if ( !url.isValid() || url.isRelative() ) {
 		if ( url.url() == "~" ) {
 			return openUrl( QDir::homePath() );
 		} else if ( !url.url().startsWith( "/" ) ) {
@@ -230,16 +230,20 @@ void ListPanelFunc::openUrl( const KUrl& url, const QString& nameToMakeCurrent )
 		if( ! inSync ){
 			inSync = true;
 			//do sync-browse stuff....
-			KUrl otherDir = OTHER_PANEL->virtualPath();
+			ListPanel *other_panel = OTHER_PANEL;
+			KUrl otherDir = other_panel->virtualPath();
+			QString otherText = other_panel->origin->lineEdit()->text();
+			
 			OTHER_FUNC->files() ->vfs_setQuiet( true );
 			// the trailing slash is nessesary because krusader provides Dir's without it
 			// we can't use openUrl because the delay don't allow a check if the panel has realy changed!
 			OTHER_FUNC->immediateOpenUrl( KUrl::relativeUrl( panel->virtualPath().url() + "/", url.url() ) );
 			OTHER_FUNC->files() ->vfs_setQuiet( false );
 			// now we need to test ACTIVE_PANEL because the openURL has changed the active panel!!
-			if ( ACTIVE_PANEL->virtualPath().equals( otherDir ) ) {
+			if ( other_panel->virtualPath().equals( otherDir ) ) {
 				// deactivating the sync-browse if syncbrowse not possible
 				panel->syncBrowseButton->setOn( false );
+				other_panel->origin->lineEdit()->setText( otherText );
 			}
 			inSync = false;
 		}
