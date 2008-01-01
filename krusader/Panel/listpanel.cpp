@@ -328,6 +328,8 @@ void ListPanel::createView()
 			dynamic_cast<KrBriefView*>( view ), SLOT( stopQuickSearch( QKeyEvent* ) ) );
 		connect( quickSearch, SIGNAL( process( QKeyEvent* ) ),
 			dynamic_cast<KrBriefView*>( view ), SLOT( handleQuickSearchEvent( QKeyEvent* ) ) );
+		
+		dynamic_cast<KrBriefView*>( view )->viewport()->show();
 	} else { /* Detailed */
 		panelType = "Detailed";
 		view = new KrDetailedView( splt, _left, krConfig );
@@ -344,6 +346,8 @@ void ListPanel::createView()
 			dynamic_cast<KrDetailedView*>( view ), SLOT( stopQuickSearch( QKeyEvent* ) ) );
 		connect( quickSearch, SIGNAL( process( QKeyEvent* ) ),
 			dynamic_cast<KrDetailedView*>( view ), SLOT( handleQuickSearchEvent( QKeyEvent* ) ) );
+		
+		dynamic_cast<KrDetailedView*>( view )->viewport()->show();
 	}
 
    connect( view->op(), SIGNAL( renameItem( const QString &, const QString & ) ),
