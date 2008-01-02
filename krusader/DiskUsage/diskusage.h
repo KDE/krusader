@@ -70,7 +70,7 @@ class DiskUsage : public Q3WidgetStack
   Q_OBJECT
   
 public:
-  DiskUsage( QString confGroup, QWidget *parent = 0, char *name = 0);
+  DiskUsage( QString confGroup, QWidget *parent = 0);
   ~DiskUsage();
   
   void       load( KUrl dirName );
@@ -183,7 +183,7 @@ class LoaderWidget : public Q3ScrollView
   Q_OBJECT
   
 public:
-  LoaderWidget( QWidget *parent = 0, const char *name = 0 );
+  LoaderWidget( QWidget *parent = 0 );
   
   void init();
   void setCurrentURL( KUrl url );

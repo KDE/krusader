@@ -66,7 +66,7 @@ class KrHistoryCombo: public KHistoryComboBox {
 class KCMDLine : public QWidget, KrActionBase {
     Q_OBJECT
   public:
-    KCMDLine( QWidget *parent = 0, const char *name = 0 );
+    KCMDLine( QWidget *parent = 0 );
     ~KCMDLine();
     void setCurrent( const QString & );
     //virtual methods from KrActionBase

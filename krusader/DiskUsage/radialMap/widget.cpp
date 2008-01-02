@@ -20,8 +20,8 @@
 
 
 
-RadialMap::Widget::Widget( QWidget *parent, const char *name )
-   : QWidget( parent, name, Qt::WNoAutoErase )
+RadialMap::Widget::Widget( QWidget *parent )
+   : QWidget( parent, Qt::WNoAutoErase )
    , m_tree( 0 )
    , m_focus( 0 )
    , m_tip( QFontMetrics( font() ).height() ) //needs to know cursor height

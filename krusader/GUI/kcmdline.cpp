@@ -62,7 +62,7 @@
 #include <qsizepolicy.h>
 #include <k3tempfile.h> 
 
-KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name ) {
+KCMDLine::KCMDLine( QWidget *parent ) : QWidget( parent ) {
   QGridLayout * layout = new QGridLayout( this );
   layout->setSpacing( 0 );
   layout->setContentsMargins( 0, 0, 0, 0 );

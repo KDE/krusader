@@ -39,7 +39,7 @@ class UserMenuGui: public KMenu {
 
 class UserMenu : public QWidget {
    public:
-      UserMenu( QWidget *parent = 0, const char *name = 0 );
+      UserMenu( QWidget *parent = 0 );
       void exec();
       void update();
    

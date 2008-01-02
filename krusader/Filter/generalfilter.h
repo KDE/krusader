@@ -53,7 +53,7 @@ class GeneralFilter : public QWidget, public FilterBase
   Q_OBJECT
 
 public:
-  GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent = 0, const char *name = 0 );
+  GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent = 0 );
   ~GeneralFilter();
 
   virtual bool          fillQuery( KRQuery *query );

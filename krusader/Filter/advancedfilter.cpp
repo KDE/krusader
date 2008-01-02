@@ -50,7 +50,7 @@
 #define USERSFILE  QString("/etc/passwd")
 #define GROUPSFILE QString("/etc/group")
 
-AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent, const char *name ) : QWidget ( parent, name ), fltTabs ( tabs )
+AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget ( parent ), fltTabs ( tabs )
 {
 	QGridLayout *filterLayout = new QGridLayout ( this );
 	filterLayout->setSpacing ( 6 );

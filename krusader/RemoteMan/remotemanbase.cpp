@@ -37,8 +37,8 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
  */
-remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, Qt::WFlags fl )
-    : QDialog( parent, name, modal, fl )
+remoteManBase::remoteManBase( QWidget* parent, bool modal, Qt::WFlags fl )
+    : QDialog( parent, 0, modal, fl )
 {
     if ( !name )
 	setName( "remoteManBase" );

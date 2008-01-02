@@ -128,7 +128,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
 
    layout->setContentsMargins( 0, 0, 0, 0 );
 
-   mediaButton = new MediaButton( this, "mediaButton" );
+   mediaButton = new MediaButton( this );
    connect( mediaButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
    connect( mediaButton, SIGNAL( openUrl( const KUrl& ) ), func, SLOT( openUrl( const KUrl& ) ) );
 

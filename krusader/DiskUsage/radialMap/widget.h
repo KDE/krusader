@@ -59,7 +59,7 @@ namespace RadialMap
     Q_OBJECT
 
     public:
-        Widget( QWidget* = 0, const char* = 0 );
+        Widget( QWidget* = 0 );
 
         QString path() const;
         KUrl url( File const * const = 0 ) const;

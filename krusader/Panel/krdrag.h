@@ -40,10 +40,10 @@ class KRDrag : public Q3UriDrag
 {
     Q_OBJECT
 public:
-    static KRDrag * newDrag( const KUrl::List & urls, bool move, QWidget * dragSource = 0, const char* name = 0 );
+    static KRDrag * newDrag( const KUrl::List & urls, bool move, QWidget * dragSource = 0 );
 
 protected:
-    KRDrag( const Q3StrList & urls, bool move, QWidget * dragSource, const char* name );
+    KRDrag( const Q3StrList & urls, bool move, QWidget * dragSource );
 
 public:
     virtual ~KRDrag() {}

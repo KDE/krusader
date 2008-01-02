@@ -89,8 +89,8 @@ void KrBriefViewToolTip::maybeTip( const QPoint &pos )
 } */
 
 
-KrBriefView::KrBriefView( Q3Header * headerIn, QWidget *parent, bool &left, KConfig *cfg, const char *name ):
-	K3IconView(parent, name), KrView( cfg ), header( headerIn ), _currDragItem( 0 ),
+KrBriefView::KrBriefView( Q3Header * headerIn, QWidget *parent, bool &left, KConfig *cfg ):
+	K3IconView(parent), KrView( cfg ), header( headerIn ), _currDragItem( 0 ),
             currentlyRenamedItem( 0 ), pressedItem( 0 ), mouseEvent( 0 ) {
 	setWidget( this );
 	_nameInKConfig = QString( "KrBriefView" ) + QString( ( left ? "Left" : "Right" ) );

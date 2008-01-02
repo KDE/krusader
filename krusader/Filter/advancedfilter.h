@@ -46,7 +46,7 @@ class AdvancedFilter : public QWidget, public FilterBase
   Q_OBJECT
 
 public:
-  AdvancedFilter( FilterTabs *tabs, QWidget *parent = 0, const char *name = 0 );
+  AdvancedFilter( FilterTabs *tabs, QWidget *parent = 0 );
 
   virtual void          queryAccepted() {}
   virtual bool          fillQuery( KRQuery *query );

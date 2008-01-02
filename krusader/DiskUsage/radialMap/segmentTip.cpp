@@ -18,7 +18,7 @@
 namespace RadialMap {
 
 SegmentTip::SegmentTip( uint h )
-  : QWidget( 0, 0, Qt::WNoAutoErase | Qt::WStyle_Customize | Qt::WStyle_NoBorder | Qt::WStyle_Tool | Qt::WStyle_StaysOnTop | Qt::WX11BypassWM )
+  : QWidget( 0, Qt::WNoAutoErase | Qt::WStyle_Customize | Qt::WStyle_NoBorder | Qt::WStyle_Tool | Qt::WStyle_StaysOnTop | Qt::WX11BypassWM )
   , m_cursorHeight( -h )
 {
    setBackgroundMode( Qt::NoBackground );

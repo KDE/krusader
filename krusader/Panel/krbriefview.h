@@ -66,7 +66,7 @@ class KrBriefView: public K3IconView, public KrView {
 	friend class KrBriefViewItem;
 	Q_OBJECT
 public:
-	KrBriefView( Q3Header *header, QWidget *parent, bool &left, KConfig *cfg = krConfig, const char *name = 0 );
+	KrBriefView( Q3Header *header, QWidget *parent, bool &left, KConfig *cfg = krConfig );
 	virtual ~KrBriefView();
 	virtual inline KrViewItem *getFirst() { return dynamic_cast<KrViewItem*>( firstItem() ); }
 	virtual inline KrViewItem *getLast() { return dynamic_cast<KrViewItem*>( lastItem() ); }

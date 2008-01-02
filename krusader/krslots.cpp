@@ -884,7 +884,7 @@ void KRslots::togglePopupPanel() {
 
 void KRslots::slotDiskUsage()
 {
-  DiskUsageGUI du( ACTIVE_FUNC->files()->vfs_getOrigin(), MAIN_VIEW, "DiskUsage" );
+  DiskUsageGUI du( ACTIVE_FUNC->files()->vfs_getOrigin(), MAIN_VIEW );
 }
 
 // when window becomes focused, enable the refresh in the visible panels

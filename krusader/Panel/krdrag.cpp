@@ -34,7 +34,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <Q3StrList>
 #include <Q3CString>
 
-KRDrag * KRDrag::newDrag( const KUrl::List & urls, bool move, QWidget * dragSource, const char* name )
+KRDrag * KRDrag::newDrag( const KUrl::List & urls, bool move, QWidget * dragSource )
 {
     // See K3URLDrag::newDrag
     Q3StrList uris;
@@ -44,11 +44,11 @@ KRDrag * KRDrag::newDrag( const KUrl::List & urls, bool move, QWidget * dragSour
     // form on top of that, .toLatin1() is fine.
     for ( ; uit != uEnd ; ++uit )
         uris.append( K3URLDrag::urlToString( *uit ).toLatin1() );
-    return new KRDrag( uris, move, dragSource, name );
+    return new KRDrag( uris, move, dragSource );
 }
 
-KRDrag::KRDrag( const Q3StrList & urls, bool move, QWidget * dragSource, const char* name )
-  : Q3UriDrag( urls, dragSource, name ),
+KRDrag::KRDrag( const Q3StrList & urls, bool move, QWidget * dragSource )
+  : Q3UriDrag( urls, dragSource ),
     m_bCutSelection( move ), m_urls( urls )
 {}
 

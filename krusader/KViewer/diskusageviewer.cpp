@@ -37,8 +37,8 @@
 #include <QGridLayout>
 #include <QLabel>
 
-DiskUsageViewer::DiskUsageViewer( QWidget *parent, char *name ) 
-  : QWidget( parent, name ), diskUsage( 0 ), statusLabel( 0 )
+DiskUsageViewer::DiskUsageViewer( QWidget *parent ) 
+  : QWidget( parent ), diskUsage( 0 ), statusLabel( 0 )
 {
   layout = new QGridLayout( this );
   layout->setContentsMargins( 0, 0, 0, 0 );

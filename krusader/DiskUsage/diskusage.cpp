@@ -85,7 +85,7 @@
 
 #define MAX_FILENUM         100
 
-LoaderWidget::LoaderWidget( QWidget *parent, const char *name ) : Q3ScrollView( parent, name ), cancelled( false )
+LoaderWidget::LoaderWidget( QWidget *parent ) : Q3ScrollView( parent ), cancelled( false )
 {
   viewport()->setEraseColor( Qt::white );
   widget = new QWidget( parent );
@@ -209,7 +209,7 @@ void LoaderWidget::slotCancelled()
   cancelled = true;
 }
 
-DiskUsage::DiskUsage( QString confGroup, QWidget *parent, char *name ) : Q3WidgetStack( parent, name ),
+DiskUsage::DiskUsage( QString confGroup, QWidget *parent ) : Q3WidgetStack( parent ),
                       currentDirectory( 0 ), root( 0 ), configGroup( confGroup ), loading( false ),
                       abortLoading( false ), clearAfterAbort( false ), deleting( false ), searchVfs( 0 )
 {

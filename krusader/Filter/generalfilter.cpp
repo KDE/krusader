@@ -44,7 +44,7 @@
 #include <QGridLayout>
 #include <QLabel>
 
-GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent, const char *name ) : QWidget ( parent, name ),
+GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent ) : QWidget ( parent ),
 		profileManager ( 0 ), fltTabs ( tabs )
 {
 	QGridLayout *filterLayout = new QGridLayout ( this );

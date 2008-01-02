@@ -29,7 +29,7 @@ void UserMenu::exec() {
    _popup->run();
 }
 
-UserMenu::UserMenu( QWidget * parent, const char * name ) : QWidget( parent, name ) {
+UserMenu::UserMenu( QWidget * parent ) : QWidget( parent ) {
    _popup = new UserMenuGui(this);
 }
 

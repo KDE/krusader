@@ -35,7 +35,7 @@ class remoteManBase : public QDialog
     Q_OBJECT
 
 public:
-    remoteManBase( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    remoteManBase( QWidget* parent = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
     ~remoteManBase();
 
     QLabel* TextLabel1;

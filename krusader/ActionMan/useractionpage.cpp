@@ -103,7 +103,7 @@ UserActionPage::UserActionPage( QWidget* parent )
    layout->addWidget( split, 1000 ); // again a very large stretch-factor to fix the height of the toolbar
 
    actionTree = new UserActionListView( split );
-   actionProperties = new ActionProperty( split, "actionProperties" );
+   actionProperties = new ActionProperty( split );
    actionProperties->setEnabled( false ); // if there are any actions in the list, the first is displayed and this widget is enabled
 
    connect(  actionTree, SIGNAL( currentChanged(Q3ListViewItem*) ), SLOT( slotChangeCurrent() ) );

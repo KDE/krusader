@@ -53,7 +53,7 @@ class KMountPoint;
 class MediaButton : public QToolButton  {
    Q_OBJECT
 public: 
-  MediaButton(QWidget *parent=0, const char *name=0);
+  MediaButton(QWidget *parent=0);
   ~MediaButton();
 
   QString detectType( KMountPoint *mp );

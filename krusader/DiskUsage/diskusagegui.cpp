@@ -43,8 +43,8 @@
 #include <klocale.h>
 #include <qtooltip.h>
 
-DiskUsageGUI::DiskUsageGUI( KUrl openDir, QWidget* parent, const char *name ) 
-  : QDialog( parent, name, false, 0 ), exitAtFailure( true )
+DiskUsageGUI::DiskUsageGUI( KUrl openDir, QWidget* parent ) 
+  : QDialog( parent ), exitAtFailure( true )
 {  
   setCaption( i18n("Krusader::Disk Usage") );
   

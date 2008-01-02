@@ -75,7 +75,7 @@
 
 
 
-MediaButton::MediaButton( QWidget *parent, const char *name ) : QToolButton( parent, name ),
+MediaButton::MediaButton( QWidget *parent ) : QToolButton( parent ),
 		popupMenu( 0 ), rightMenu( 0 ), hasMedia( false ), waitingForMount( -1 ), mountCheckerTimer()
 	 {
 	KIconLoader * iconLoader = new KIconLoader();
