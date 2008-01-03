@@ -115,15 +115,15 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
 
   // creating the widget
 
-  QWidget *widget=new QWidget(this, "feedToListBoxMainWidget");
+  QWidget *widget=new QWidget(this);
   QVBoxLayout *layout = new QVBoxLayout( widget );
   layout->setContentsMargins( 0, 0, 0, 0 );
   layout->setSpacing( 10 );
     
-  QLabel *label = new QLabel( i18n("Here you can name the file collection"), widget, "fbLabel" );
+  QLabel *label = new QLabel( i18n("Here you can name the file collection"), widget );
   layout->addWidget( label );    
   
-  lineEdit = new QLineEdit( widget, "fbLineEdit" );
+  lineEdit = new QLineEdit( widget );
   lineEdit->setText( queryName );
   lineEdit->selectAll();
   layout->addWidget( lineEdit );  
@@ -131,11 +131,11 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
   QWidget *hboxWidget = new QWidget( widget );
   QHBoxLayout * hbox = new QHBoxLayout( hboxWidget );
   
-  QLabel *label2 = new QLabel( i18n( "Side to feed:" ), hboxWidget, "fbSideLabel" );  
+  QLabel *label2 = new QLabel( i18n( "Side to feed:" ), hboxWidget );  
   label2->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
   hbox->addWidget( label2 );
   
-  sideCombo = new QComboBox( hboxWidget, "fbSideCombo" );
+  sideCombo = new QComboBox( hboxWidget );
   sideCombo->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
   sideCombo->insertItem( i18n( "Left" ) );
   sideCombo->insertItem( i18n( "Right" ) );
@@ -156,7 +156,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
   line->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
   hbox->addWidget( line );
   
-  cbSelected = new QCheckBox( i18n( "Selected files only" ), hboxWidget, "cbSelected" );
+  cbSelected = new QCheckBox( i18n( "Selected files only" ), hboxWidget );
   cbSelected->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
   cbSelected->setEnabled( selectedNum != 0 );
   cbSelected->setChecked( selectedNum != 0 );

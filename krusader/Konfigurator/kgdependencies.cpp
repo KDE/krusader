@@ -49,9 +49,9 @@ KgDependencies::KgDependencies( bool first, QWidget* parent ) :
   kgDependenciesLayout->setSpacing( 6 );
 
   //  ---------------------------- GENERAL TAB -------------------------------------
-  tabWidget = new QTabWidget( this, "tabWidget" );
+  tabWidget = new QTabWidget( this );
 
-  QWidget *general_tab = new QWidget( tabWidget, "tab" );
+  QWidget *general_tab = new QWidget( tabWidget );
   tabWidget->insertTab( general_tab, i18n( "General" ) );
 
   QGridLayout *pathsGrid = new QGridLayout( general_tab );
@@ -73,7 +73,7 @@ KgDependencies::KgDependencies( bool first, QWidget* parent ) :
   addApplication( "updatedb", pathsGrid,11, general_tab, PAGE_GENERAL );
 
   //  ---------------------------- PACKERS TAB -------------------------------------
-  QWidget *packers_tab = new QWidget( tabWidget, "tab_3" );
+  QWidget *packers_tab = new QWidget( tabWidget );
   tabWidget->insertTab( packers_tab, i18n( "Packers" ) );
 
   QGridLayout *archGrid1 = new QGridLayout( packers_tab );
@@ -97,7 +97,7 @@ KgDependencies::KgDependencies( bool first, QWidget* parent ) :
   addApplication( "zip",   archGrid1,13, packers_tab, PAGE_PACKERS );
 
   //  ---------------------------- CHECKSUM TAB -------------------------------------
-  QWidget *checksum_tab = new QWidget( tabWidget, "tab_4" );
+  QWidget *checksum_tab = new QWidget( tabWidget );
   tabWidget->insertTab( checksum_tab, i18n( "Checksum Utilities" ) );
 
   QGridLayout *archGrid2 = new QGridLayout( checksum_tab );

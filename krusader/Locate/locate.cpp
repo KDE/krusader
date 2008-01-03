@@ -112,7 +112,7 @@ LocateDlg::LocateDlg() : KDialog( 0 ), isFeedToListBox( false )
   setButtonGuiItem( KDialog::User2, KGuiItem( i18n("Update DB") ) );
   setButtonGuiItem( KDialog::User3, KGuiItem( i18n("Locate") ) );
 
-  QWidget *widget=new QWidget(this, "locateMainWidget");
+  QWidget *widget=new QWidget(this);
   QGridLayout *grid = new QGridLayout( widget );
   grid->setSpacing( 6 );
   grid->setContentsMargins( 11, 11, 11, 11 );

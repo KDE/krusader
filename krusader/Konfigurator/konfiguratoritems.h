@@ -156,8 +156,8 @@ protected:
 class KonfiguratorCheckBoxGroup : public QWidget
 {
 public:
-  KonfiguratorCheckBoxGroup( QWidget * parent = 0, const char * name = 0 ) :
-    QWidget( parent, name ) {};
+  KonfiguratorCheckBoxGroup( QWidget * parent = 0 ) :
+    QWidget( parent ) {};
 
   void                    add( KonfiguratorCheckBox * );
   KonfiguratorCheckBox *  find( int index );

@@ -41,16 +41,15 @@
  
  #define SIZE_MINIMUM	QSizePolicy( (QSizePolicy::SizeType)0, (QSizePolicy::SizeType)0 )
  
-newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags fl )
-    : QDialog( parent, name, modal, fl ){
+newFTPGUI::newFTPGUI( QWidget* parent )
+    : QDialog( parent ){
     
+    setModal( true );
     QVBoxLayout * layout = new QVBoxLayout( this );
     layout->setContentsMargins( 11, 11, 11, 11 );
     layout->setSpacing( 6 );
     layout->setAutoAdd(true);
     
-    if ( !name )
-    setName( "newFTPGUI" );
     resize( 342, 261 );
     setCaption( i18n( "New Network Connection"  ) );
 //     setSizeGripEnabled( TRUE );
@@ -61,12 +60,12 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags
     QHBoxLayout* hbox_image = new QHBoxLayout( hbox_image_widget );
     hbox_image->setSpacing( 6 );
     
-    PixmapLabel1 = new QLabel( hbox_image_widget, "PixmapLabel1" );
+    PixmapLabel1 = new QLabel( hbox_image_widget );
     PixmapLabel1->setPixmap( krLoader->loadIcon("network", KIconLoader::Desktop, 32) );
     PixmapLabel1->setSizePolicy( SIZE_MINIMUM );
     hbox_image->addWidget( PixmapLabel1 );
 
-    TextLabel3 = new QLabel( i18n( "About to connect to..."  ), hbox_image_widget, "TextLabel3" );
+    TextLabel3 = new QLabel( i18n( "About to connect to..."  ), hbox_image_widget );
     QFont TextLabel3_font(  TextLabel3->font() );
     TextLabel3_font.setBold( TRUE );
     TextLabel3->setFont( TextLabel3_font );
@@ -76,9 +75,9 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags
     QWidget * grid_host = new QWidget( this );
     QGridLayout * grid_layout = new QGridLayout( grid_host );
     
-    grid_layout->addWidget( TextLabel1 = new QLabel( i18n( "Protocol:"  ), grid_host, "TextLabel1" ), 0, 0 );
-    grid_layout->addWidget( TextLabel1_22 = new QLabel( i18n( "Host:"), grid_host, "TextLabel_2" ), 0, 1 );
-    grid_layout->addWidget( TextLabel1_3 = new QLabel( i18n( "Port:"  ), grid_host, "TextLabel1_3" ), 0, 2 );
+    grid_layout->addWidget( TextLabel1 = new QLabel( i18n( "Protocol:"  ), grid_host ), 0, 0 );
+    grid_layout->addWidget( TextLabel1_22 = new QLabel( i18n( "Host:"), grid_host ), 0, 1 );
+    grid_layout->addWidget( TextLabel1_3 = new QLabel( i18n( "Port:"  ), grid_host ), 0, 2 );
 
     QStringList protocols = KProtocolInfo::protocols();
 
@@ -113,7 +112,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags
     list = group.readEntry( "newFTP History list", QStringList() );
     url->setHistoryItems( list );
 
-    port = new QSpinBox( grid_host, "port" );
+    port = new QSpinBox( grid_host );
     port->setMaxValue( 65535 );
     grid_layout->addWidget( port, 1, 2 );
 #if QT_VERSION < 300
@@ -123,21 +122,21 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags
     port->setSizePolicy( SIZE_MINIMUM );
 
 
-    TextLabel1_2 = new QLabel( i18n( "Username:"  ), this, "TextLabel1_2" );
+    TextLabel1_2 = new QLabel( i18n( "Username:"  ), this );
     username = new QLineEdit( this, "username" );
-    TextLabel1_2_2 = new QLabel( i18n( "Password:"  ), this, "TextLabel1_2_2" );
+    TextLabel1_2_2 = new QLabel( i18n( "Password:"  ), this );
     password = new QLineEdit( this, "password" );
     password->setEchoMode( QLineEdit::Password );
 
     
-    QWidget* Layout6 = new QWidget( this, "Layout6" );
+    QWidget* Layout6 = new QWidget( this );
     hbox = new QHBoxLayout( Layout6 );
     hbox->setSpacing( 6 );
     hbox->setContentsMargins( 0, 0, 0, 0 );
 
 	 hbox->addItem(new QSpacerItem(1,1,QSizePolicy::Expanding));
 	 
-    connectBtn = new QPushButton( i18n( "&Connect"  ), Layout6, "connectBtn" );
+    connectBtn = new QPushButton( i18n( "&Connect"  ), Layout6 );
     connectBtn->setAutoDefault( TRUE );
     connectBtn->setDefault( TRUE );
     hbox->addWidget( connectBtn );
@@ -146,7 +145,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, Qt::WFlags
     //saveBtn->setAutoDefault( TRUE );
     //hbox->addWidget( saveBtn );
 
-    cancelBtn = new QPushButton( i18n( "&Cancel"  ), Layout6, "cancelBtn" );
+    cancelBtn = new QPushButton( i18n( "&Cancel"  ), Layout6 );
     cancelBtn->setAutoDefault( TRUE );
     hbox->addWidget( cancelBtn );
 

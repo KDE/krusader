@@ -45,7 +45,7 @@ class KURLListRequester : public QWidget
   Q_OBJECT
   
 public:
-  KURLListRequester( QWidget *parent = 0, const char * name = 0 );  
+  KURLListRequester( QWidget *parent = 0 );  
   
   KUrl::List   urlList();
   void         setUrlList( KUrl::List );

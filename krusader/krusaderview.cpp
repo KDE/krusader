@@ -57,7 +57,7 @@
 #include "krservices.h"
 #include <qclipboard.h>
 
-KrusaderView::KrusaderView( QWidget *parent ) : QWidget( parent, "KrusaderView" ), activePanel(0), 
+KrusaderView::KrusaderView( QWidget *parent ) : QWidget( parent ), activePanel(0), 
 								konsole_part( 0L ) {}
 
 void KrusaderView::start( QStringList leftTabs, QStringList leftTypes, int leftActiveTab, QStringList rightTabs, QStringList rightTypes, int rightActiveTab ) {

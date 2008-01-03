@@ -55,7 +55,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 
 	// Options for name filtering
 
-	Q3GroupBox *nameGroup = new Q3GroupBox ( this, "nameGroup" );
+	Q3GroupBox *nameGroup = new Q3GroupBox ( this );
 	nameGroup->setTitle ( i18n ( "File name" ) );
 	nameGroup->setColumnLayout ( 0, Qt::Vertical );
 	nameGroup->layout()->setSpacing ( 0 );
@@ -65,12 +65,12 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	nameGroupLayout->setSpacing ( 6 );
 	nameGroupLayout->setContentsMargins ( 11, 11, 11, 11 );
 
-	searchForCase = new QCheckBox ( nameGroup, "searchForCase" );
+	searchForCase = new QCheckBox ( nameGroup );
 	searchForCase->setText ( i18n ( "&Case sensitive" ) );
 	searchForCase->setChecked ( false );
 	nameGroupLayout->addWidget ( searchForCase, 1, 2 );
 
-	QLabel *searchForLabel = new QLabel ( nameGroup, "searchForLabel" );
+	QLabel *searchForLabel = new QLabel ( nameGroup );
 	searchForLabel->setText ( i18n ( "Search &for:" ) );
 	nameGroupLayout->addWidget ( searchForLabel, 0, 0 );
 
@@ -86,7 +86,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	Q3WhatsThis::add ( searchFor, s );
 	Q3WhatsThis::add ( searchForLabel, s );
 
-	QLabel *searchType = new QLabel ( nameGroup, "searchType" );
+	QLabel *searchType = new QLabel ( nameGroup );
 	searchType->setText ( i18n ( "&Of type:" ) );
 	nameGroupLayout->addWidget ( searchType, 1, 0 );
 
@@ -116,7 +116,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	{
 		// The profile handler
 
-		Q3GroupBox *profileHandler = new Q3GroupBox ( this, "profileHandler" );
+		Q3GroupBox *profileHandler = new Q3GroupBox ( this );
 		profileHandler->setTitle ( i18n ( "&Profile handler" ) );
 		profileHandler->setColumnLayout ( 0, Qt::Vertical );
 		profileHandler->layout()->setSpacing ( 0 );
@@ -126,21 +126,21 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 		profileLayout->setSpacing ( 6 );
 		profileLayout->setContentsMargins ( 11, 11, 11, 11 );
 
-		profileListBox = new Q3ListBox ( profileHandler, "profileListBox" );
+		profileListBox = new Q3ListBox ( profileHandler );
 		profileLayout->addWidget ( profileListBox, 0, 0, 4, 1 );
 
-		profileAddBtn = new QPushButton ( i18n ( "&Add" ), profileHandler, "profileAddBtn" );
+		profileAddBtn = new QPushButton ( i18n ( "&Add" ), profileHandler );
 		profileLayout->addWidget ( profileAddBtn, 0, 1 );
 
-		profileLoadBtn = new QPushButton ( i18n ( "&Load" ), profileHandler, "profileLoadBtn" );
+		profileLoadBtn = new QPushButton ( i18n ( "&Load" ), profileHandler );
 		profileLoadBtn->setEnabled ( false );
 		profileLayout->addWidget ( profileLoadBtn, 1, 1 );
 
-		profileOverwriteBtn = new QPushButton ( i18n ( "&Overwrite" ), profileHandler, "profileOverwriteBtn" );
+		profileOverwriteBtn = new QPushButton ( i18n ( "&Overwrite" ), profileHandler );
 		profileOverwriteBtn->setEnabled ( false );
 		profileLayout->addWidget ( profileOverwriteBtn, 2, 1 );
 
-		profileRemoveBtn = new QPushButton ( i18n ( "&Remove" ), profileHandler, "profileRemoveBtn" );
+		profileRemoveBtn = new QPushButton ( i18n ( "&Remove" ), profileHandler );
 		profileRemoveBtn->setEnabled ( false );
 		profileLayout->addWidget ( profileRemoveBtn, 3, 1 );
 
@@ -156,7 +156,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	{
 		// Options for search in
 
-		Q3GroupBox *searchInGroup = new Q3GroupBox ( this, "searchInGroup" );
+		Q3GroupBox *searchInGroup = new Q3GroupBox ( this );
 		searchInGroup->setTitle ( i18n ( "&Search in" ) );
 		searchInGroup->setColumnLayout ( 0, Qt::Vertical );
 		searchInGroup->layout()->setSpacing ( 0 );
@@ -166,7 +166,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 		searchInLayout->setSpacing ( 6 );
 		searchInLayout->setContentsMargins ( 11, 11, 11, 11 );
 
-		searchIn = new KURLListRequester ( searchInGroup, "searchIn" );
+		searchIn = new KURLListRequester ( searchInGroup );
 		searchInLayout->addWidget ( searchIn, 0, 0 );
 
 		middleLayout->addWidget ( searchInGroup );
@@ -176,7 +176,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	{
 		// Options for don't search in
 
-		Q3GroupBox *dontSearchInGroup = new Q3GroupBox ( this, "dontSearchInGroup" );
+		Q3GroupBox *dontSearchInGroup = new Q3GroupBox ( this );
 		dontSearchInGroup->setTitle ( i18n ( "&Don't search in" ) );
 		dontSearchInGroup->setColumnLayout ( 0, Qt::Vertical );
 		dontSearchInGroup->layout()->setSpacing ( 0 );
@@ -186,7 +186,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 		dontSearchInLayout->setSpacing ( 6 );
 		dontSearchInLayout->setContentsMargins ( 11, 11, 11, 11 );
 
-		dontSearchIn = new KURLListRequester ( dontSearchInGroup, "dontSearchIn" );
+		dontSearchIn = new KURLListRequester ( dontSearchInGroup );
 		dontSearchInLayout->addWidget ( dontSearchIn, 0, 0 );
 
 		middleLayout->addWidget ( dontSearchInGroup );
@@ -196,7 +196,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 
 	// Options for containing text
 
-	Q3GroupBox *containsGroup = new Q3GroupBox ( this, "containsGroup" );
+	Q3GroupBox *containsGroup = new Q3GroupBox ( this );
 	containsGroup->setTitle ( i18n ( "Containing text" ) );
 	containsGroup->setColumnLayout ( 0, Qt::Vertical );
 	containsGroup->layout()->setSpacing ( 0 );
@@ -210,7 +210,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	containsTextLayout->setSpacing ( 6 );
 	containsTextLayout->setContentsMargins ( 0, 0, 0, 0 );
 
-	QLabel *containsLabel = new QLabel ( containsGroup, "containsLabel" );
+	QLabel *containsLabel = new QLabel ( containsGroup );
 	containsLabel->setSizePolicy ( QSizePolicy ( ( QSizePolicy::SizeType ) 0, ( QSizePolicy::SizeType ) 1, containsLabel->sizePolicy().hasHeightForWidth() ) );
 	containsLabel->setText ( i18n ( "&Text:" ) );
 	containsTextLayout->addWidget ( containsLabel );
@@ -230,7 +230,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	QSpacerItem* cbSpacer = new QSpacerItem ( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	containsCbsLayout->addItem ( cbSpacer );
 
-	remoteContentSearch = new QCheckBox ( containsGroup, "remoteContentSearch" );
+	remoteContentSearch = new QCheckBox ( containsGroup );
 	remoteContentSearch->setSizePolicy ( QSizePolicy ( ( QSizePolicy::SizeType ) 5, ( QSizePolicy::SizeType ) 0, remoteContentSearch->sizePolicy().hasHeightForWidth() ) );
 	remoteContentSearch->setText ( i18n ( "&Remote content search" ) );
 	remoteContentSearch->setChecked ( false );
@@ -238,13 +238,13 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	if ( ! ( properties & FilterTabs::HasRemoteContentSearch ) )
 		remoteContentSearch->hide();
 
-	containsWholeWord = new QCheckBox ( containsGroup, "containsWholeWord" );
+	containsWholeWord = new QCheckBox ( containsGroup );
 	containsWholeWord->setSizePolicy ( QSizePolicy ( ( QSizePolicy::SizeType ) 5, ( QSizePolicy::SizeType ) 0, containsWholeWord->sizePolicy().hasHeightForWidth() ) );
 	containsWholeWord->setText ( i18n ( "&Match whole word only" ) );
 	containsWholeWord->setChecked ( false );
 	containsCbsLayout->addWidget ( containsWholeWord );
 
-	containsTextCase = new QCheckBox ( containsGroup, "containsTextCase" );
+	containsTextCase = new QCheckBox ( containsGroup );
 	containsTextCase->setSizePolicy ( QSizePolicy ( ( QSizePolicy::SizeType ) 5, ( QSizePolicy::SizeType ) 0, containsTextCase->sizePolicy().hasHeightForWidth() ) );
 	containsTextCase->setText ( i18n ( "Cas&e sensitive" ) );
 	containsTextCase->setChecked ( true );
@@ -264,16 +264,16 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 		QSpacerItem* recurseSpacer = new QSpacerItem ( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 		recurseLayout->addItem ( recurseSpacer );
 
-		searchInDirs = new QCheckBox ( this, "searchInDirs" );
+		searchInDirs = new QCheckBox ( this );
 		searchInDirs->setText ( i18n ( "Search in s&ubdirectories" ) );
 		searchInDirs->setChecked ( true );
 		recurseLayout->addWidget ( searchInDirs );
 
-		searchInArchives = new QCheckBox ( this, "searchInArchives" );
+		searchInArchives = new QCheckBox ( this );
 		searchInArchives->setText ( i18n ( "Search in arch&ives" ) );
 		recurseLayout->addWidget ( searchInArchives );
 
-		followLinks = new QCheckBox ( this, "followLinks" );
+		followLinks = new QCheckBox ( this );
 		followLinks->setText ( i18n ( "Follow &links" ) );
 		recurseLayout->addWidget ( followLinks );
 

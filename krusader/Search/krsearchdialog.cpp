@@ -106,8 +106,8 @@ bool KrSearchDialog::lastSearchInArchives = false;
 bool KrSearchDialog::lastFollowSymLinks = false;
 
 // class starts here /////////////////////////////////////////
-KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* name, bool modal, Qt::WFlags fl )
-                : QDialog( parent, name, modal, fl ), query(0), searcher(0)
+KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent )
+                : QDialog( parent ), query(0), searcher(0)
 {
   setCaption( i18n( "Krusader::Search" ) );
 

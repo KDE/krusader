@@ -59,7 +59,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent ) :
   QGridLayout *kgLookAndFeelLayout = new QGridLayout( this );
   kgLookAndFeelLayout->setSpacing( 6 );
 
-  tabWidget = new QTabWidget( this, "tabWidget" );
+  tabWidget = new QTabWidget( this );
 
   setupOperationTab();
   setupPanelTab();
@@ -73,7 +73,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent ) :
 //  ---------------------------- OPERATION TAB -------------------------------------
 // ---------------------------------------------------------------------------------------
 void KgLookFeel::setupOperationTab() {
-  QWidget *tab = new QWidget( tabWidget, "tab_operation" );
+  QWidget *tab = new QWidget( tabWidget );
   tabWidget->insertTab( tab, i18n( "Operation" ) );
 
   QGridLayout *lookAndFeelLayout = new QGridLayout( tab );
@@ -121,7 +121,7 @@ void KgLookFeel::setupOperationTab() {
 //  ---------------------------- PANEL TAB -------------------------------------
 // ----------------------------------------------------------------------------------
 void KgLookFeel::setupPanelTab() {
-  QWidget* tab_panel = new QWidget( tabWidget, "tab_panel" );
+  QWidget* tab_panel = new QWidget( tabWidget );
   tabWidget->insertTab( tab_panel, i18n( "Panel" ) );
 
   QGridLayout *panelLayout = new QGridLayout( tab_panel );
@@ -210,7 +210,7 @@ void KgLookFeel::setupPanelTab() {
 //  -------------------------- Panel Toolbar TAB ----------------------------------
 // -----------------------------------------------------------------------------------
 void KgLookFeel::setupPanelToolbarTab() {
-  QWidget     *tab_4 = new QWidget( tabWidget, "tab_4" );
+  QWidget     *tab_4 = new QWidget( tabWidget );
   tabWidget->insertTab( tab_4, i18n( "Panel Toolbar" ) );
 
   QBoxLayout * panelToolbarVLayout = new QVBoxLayout( tab_4 );
@@ -256,7 +256,7 @@ void KgLookFeel::setupPanelToolbarTab() {
 //  -------------------------- Mouse TAB ----------------------------------
 // ---------------------------------------------------------------------------
 void KgLookFeel::setupMouseModeTab() {
-  QWidget *tab_mouse = new QWidget( tabWidget, "tab_mouse" );
+  QWidget *tab_mouse = new QWidget( tabWidget );
   tabWidget->insertTab( tab_mouse, i18n( "Selection Mode" ) );
   QGridLayout *mouseLayout = new QGridLayout( tab_mouse );
   mouseLayout->setSpacing( 6 );
@@ -352,7 +352,7 @@ void KgLookFeel::setupMouseModeTab() {
   Q3GroupBox *mousePreviewGroup = createFrame( i18n( "Preview" ), tab_mouse );
   QGridLayout *mousePreviewGrid = createGridLayout( mousePreviewGroup->layout() );
   // TODO preview
-  mousePreview = new Q3ListView( mousePreviewGroup, "mousePreview" );
+  mousePreview = new Q3ListView( mousePreviewGroup );
   mousePreviewGrid->addWidget( mousePreview, 0 ,0 );
   mousePreviewGroup->setEnabled(false); // TODO re-enable once the preview is implemented
   // ------------------------------------------

@@ -35,8 +35,8 @@
 #include <QGridLayout>
 #include <QLabel>
 
-KgWelcome::KgWelcome( bool first, QWidget* parent,  const char* name ) :
-  KonfiguratorPage( first, parent, name )
+KgWelcome::KgWelcome( bool first, QWidget* parent ) :
+  KonfiguratorPage( first, parent )
 {
   QGridLayout *kgWelcomeLayout = new QGridLayout( parent );
   kgWelcomeLayout->setSpacing( 6 );

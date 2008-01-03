@@ -163,7 +163,7 @@ void KRFSDisplay::paintEvent( QPaintEvent * ) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-KRPie::KRPie( KIO::filesize_t _totalSize, QWidget *parent ) : QWidget( parent, 0 ), totalSize( _totalSize ) {
+KRPie::KRPie( KIO::filesize_t _totalSize, QWidget *parent ) : QWidget( parent ), totalSize( _totalSize ) {
    slices.push_back( KRPieSlice( 100, Qt::yellow, "DEFAULT" ) );
    sizeLeft = totalSize;
    resize( 300, 300 );

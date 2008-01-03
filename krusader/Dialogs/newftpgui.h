@@ -30,7 +30,7 @@ class KHistoryComboBox;
 class newFTPGUI : public QDialog {
     Q_OBJECT
 public:
-    newFTPGUI( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    newFTPGUI( QWidget* parent = 0 );
     ~newFTPGUI();
 
     QLabel* TextLabel1;

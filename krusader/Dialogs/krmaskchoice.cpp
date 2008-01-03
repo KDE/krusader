@@ -52,16 +52,15 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
  */
-KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, Qt::WFlags fl )
-    : QDialog( parent, name, modal, fl )
+KRMaskChoice::KRMaskChoice( QWidget* parent )
+    : QDialog( parent )
 {
-    if ( !name )
-	setName( "KRMaskChoice" );
+    setModal( true );
     resize( 401, 314 );
     setCaption( i18n( "Choose Files"  ) );
     setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)5 ) );
 
-    selection = new QComboBox( FALSE, this, "selection" );
+    selection = new QComboBox( FALSE, this );
     int height = QFontMetrics( selection->font() ).height();
     height =  height + 5*(height > 14) + 6;
     selection->setGeometry( QRect( 12, 48, 377, height) );
@@ -69,33 +68,33 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, Qt::
     selection->setInsertPolicy( QComboBox::InsertAtTop );
     selection->setAutoCompletion( TRUE );
 
-    QWidget* Layout7 = new QWidget( this, "Layout7" );
+    QWidget* Layout7 = new QWidget( this );
     Layout7->setGeometry( QRect( 10, 10, 380, 30 ) ); 
     hbox = new QHBoxLayout( Layout7 );
     hbox->setSpacing( 6 );
     hbox->setContentsMargins( 0, 0, 0, 0 );
 
-    PixmapLabel1 = new QLabel( Layout7, "PixmapLabel1" );
+    PixmapLabel1 = new QLabel( Layout7 );
     PixmapLabel1->setScaledContents( TRUE );
     PixmapLabel1->setMaximumSize( QSize( 31, 31 ) );
 	// now, add space for the pixmap    
     hbox->addWidget( PixmapLabel1 );
 
-    label = new QLabel( Layout7, "label" );
+    label = new QLabel( Layout7 );
     label->setText( i18n( "Select the following files:"  ) );
     hbox->addWidget( label );
 
-    GroupBox1 = new Q3GroupBox( this, "GroupBox1" );
+    GroupBox1 = new Q3GroupBox( this );
     GroupBox1->setGeometry( QRect( 11, 77, 379, 190 ) );
     GroupBox1->setTitle( i18n( "Predefined Selections"  ) );
 
-    QWidget* Layout6 = new QWidget( GroupBox1, "Layout6" );
+    QWidget* Layout6 = new QWidget( GroupBox1 );
     Layout6->setGeometry( QRect( 10, 20, 360, 160 ) ); 
     hbox_2 = new QHBoxLayout( Layout6 ); 
     hbox_2->setSpacing( 6 );
     hbox_2->setContentsMargins( 0, 0, 0, 0 );
 
-    preSelections = new Q3ListBox( Layout6, "preSelections" );
+    preSelections = new Q3ListBox( Layout6 );
     preSelections->setVScrollBarMode( Q3ListBox::AlwaysOn );
     Q3WhatsThis::add(  preSelections, i18n( "A predefined selection is a file-mask which you use often.\nSome examples are: \"*.c, *.h\", \"*.c, *.o\", etc.\nYou can add these masks to the list by typing them and pressing the Add button.\nDelete removes a predefined selection and Clear removes all of them.\nNotice that the line in which you edit the mask has it's own history, you can scroll it, if needed." ) );
     hbox_2->addWidget( preSelections );
@@ -104,17 +103,17 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, Qt::
     vbox->setSpacing( 6 );
     vbox->setContentsMargins( 0, 0, 0, 0 );
 
-    PushButton7 = new QPushButton( Layout6, "PushButton7" );
+    PushButton7 = new QPushButton( Layout6 );
     PushButton7->setText( i18n( "Add"  ) );
     QToolTip::add(  PushButton7, i18n( "Adds the selection in the line-edit to the list" ) );
     vbox->addWidget( PushButton7 );
 
-    PushButton7_2 = new QPushButton( Layout6, "PushButton7_2" );
+    PushButton7_2 = new QPushButton( Layout6 );
     PushButton7_2->setText( i18n( "Delete"  ) );
     QToolTip::add(  PushButton7_2, i18n( "Delete the marked selection from the list" ) );
     vbox->addWidget( PushButton7_2 );
 
-    PushButton7_3 = new QPushButton( Layout6, "PushButton7_3" );
+    PushButton7_3 = new QPushButton( Layout6 );
     PushButton7_3->setText( i18n( "Clear"  ) );
     QToolTip::add(  PushButton7_3, i18n( "Clears the entire list of selections" ) );
     vbox->addWidget( PushButton7_3 );
@@ -122,7 +121,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, Qt::
     vbox->addItem( spacer );
     hbox_2->addLayout( vbox );
 
-    QWidget* Layout18 = new QWidget( this, "Layout18" );
+    QWidget* Layout18 = new QWidget( this );
     Layout18->setGeometry( QRect( 10, 280, 379, 30 ) ); 
     hbox_3 = new QHBoxLayout( Layout18 ); 
     hbox_3->setSpacing( 6 );
@@ -130,11 +129,11 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, Qt::
     QSpacerItem* spacer_2 = new QSpacerItem( 205, 20, QSizePolicy::Expanding, QSizePolicy::Fixed );
     hbox_3->addItem( spacer_2 );
 
-    PushButton3 = new QPushButton( Layout18, "PushButton3" );
+    PushButton3 = new QPushButton( Layout18 );
     PushButton3->setText( i18n( "OK"  ) );
     hbox_3->addWidget( PushButton3 );
 
-    PushButton3_2 = new QPushButton( Layout18, "PushButton3_2" );
+    PushButton3_2 = new QPushButton( Layout18 );
     PushButton3_2->setText( i18n( "Cancel"  ) );
     hbox_3->addWidget( PushButton3_2 );
 

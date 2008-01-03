@@ -38,10 +38,10 @@
 #include <QLabel>
 #include <klocale.h>
 
-SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool modal, Qt::WFlags fl,
+SynchronizeDialog::SynchronizeDialog( QWidget* parent,
                                       Synchronizer *sync, int pleftCopyNr, KIO::filesize_t pleftCopySize,
                                       int prightCopyNr, KIO::filesize_t prightCopySize, int pdeleteNr,
-                                      KIO::filesize_t pdeleteSize, int parThreads ) : QDialog( parent, name, modal, fl ),
+                                      KIO::filesize_t pdeleteSize, int parThreads ) : QDialog( parent ),
                                       synchronizer( sync ), leftCopyNr ( pleftCopyNr ),
                                       leftCopySize( pleftCopySize ), rightCopyNr ( prightCopyNr ),
                                       rightCopySize( prightCopySize ), deleteNr( pdeleteNr ),
@@ -49,6 +49,7 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
                                       isPause( true ), syncStarted( false )
 {
   setCaption( i18n("Krusader::Synchronize") );
+  setModal( true );
 
   QVBoxLayout *layout = new QVBoxLayout( this );
   layout->setContentsMargins( 11, 11, 11, 11 );

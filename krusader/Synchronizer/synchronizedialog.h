@@ -44,7 +44,7 @@ class SynchronizeDialog : QDialog
   Q_OBJECT
   
   public:
-    SynchronizeDialog(  QWidget*,  const char*, bool, Qt::WFlags, Synchronizer *sync,
+    SynchronizeDialog(  QWidget*, Synchronizer *sync,
                         int, KIO::filesize_t, int, KIO::filesize_t, int, KIO::filesize_t, int);
     ~SynchronizeDialog();
 

@@ -128,7 +128,7 @@ KUrl KRSpWidgets::newFTP() {
   return url;
 }
 
-newFTPSub::newFTPSub() : newFTPGUI(0,0,true) {
+newFTPSub::newFTPSub() : newFTPGUI(0) {
   url->setFocus();
   setGeometry(krApp->x()+krApp->width()/2-width()/2,krApp->y()+krApp->height()/2-height()/2,width(),height());
 }
@@ -152,7 +152,7 @@ void newFTPSub::reject() {
 }
 
 /////////////////////////// KRMaskChoiceSub ///////////////////////////////
-KRMaskChoiceSub::KRMaskChoiceSub() : KRMaskChoice(0,0,true) {
+KRMaskChoiceSub::KRMaskChoiceSub() : KRMaskChoice(0) {
   PixmapLabel1->setPixmap(krLoader->loadIcon("kr_select", KIconLoader::Desktop, 32));
   label->setText(i18n("Enter a selection:"));
   // the predefined selections list

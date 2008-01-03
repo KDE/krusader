@@ -85,11 +85,11 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   colorsFrameGrid->setSpacing( 0 );
   colorsFrameGrid->setContentsMargins( 3, 3, 3, 3 );
 
-  colorTabWidget = new QTabWidget( colorsFrameGrp, "colorTabWidget" );
+  colorTabWidget = new QTabWidget( colorsFrameGrp );
 
   connect( colorTabWidget, SIGNAL( currentChanged ( QWidget * ) ), this, SLOT( generatePreview() ) );
 
-  colorsGrp = new QWidget( colorTabWidget, "colorTab" );
+  colorsGrp = new QWidget( colorTabWidget );
   colorTabWidget->insertTab( colorsGrp, i18n( "Active" ) );
 
   colorsGrid = new QGridLayout( colorsGrp );
@@ -122,10 +122,10 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   connect( getColorSelector( "Alternate Background" ), SIGNAL( colorChanged() ), this, SLOT( slotAltBackgroundChanged() ) );
   connect( getColorSelector( "Marked Background" ), SIGNAL( colorChanged() ), this, SLOT( slotMarkedBackgroundChanged() ) );
 
-  inactiveColorStack = new Q3WidgetStack( colorTabWidget, "colorTab2" );
+  inactiveColorStack = new Q3WidgetStack( colorTabWidget );
   colorTabWidget->insertTab( inactiveColorStack, i18n( "Inactive" ) );
 
-  colorsGrp = normalInactiveWidget = new QWidget( inactiveColorStack, "colorTab2" );
+  colorsGrp = normalInactiveWidget = new QWidget( inactiveColorStack );
 
   colorsGrid = new QGridLayout( normalInactiveWidget );
   colorsGrid->setSpacing( 0 );
@@ -163,7 +163,7 @@ KgColors::KgColors( bool first, QWidget* parent ) :
 
   inactiveColorStack->addWidget( normalInactiveWidget );
 
-  colorsGrp = dimmedInactiveWidget = new QWidget( inactiveColorStack, "colorTab2dimmed" );
+  colorsGrp = dimmedInactiveWidget = new QWidget( inactiveColorStack );
 
   colorsGrid = new QGridLayout( dimmedInactiveWidget );
   colorsGrid->setSpacing( 0 );
@@ -184,7 +184,7 @@ KgColors::KgColors( bool first, QWidget* parent ) :
 
   inactiveColorStack->raiseWidget( normalInactiveWidget );
 
-  colorsGrp = new QWidget( colorTabWidget, "colorTab3" );
+  colorsGrp = new QWidget( colorTabWidget );
   colorTabWidget->insertTab( colorsGrp, i18n( "Synchronizer" ) );
 
   colorsGrid = new QGridLayout( colorsGrp );
@@ -217,7 +217,7 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   previewGrp = createFrame( i18n( "Preview" ), hboxWidget );
   previewGrid = createGridLayout( previewGrp->layout() );
 
-  preview = new Q3ListView( previewGrp, "colorPreView" );
+  preview = new Q3ListView( previewGrp );
   preview->setBackgroundRole( QPalette::Window );
   preview->setAutoFillBackground( true );
 

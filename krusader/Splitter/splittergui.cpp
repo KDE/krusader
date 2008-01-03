@@ -52,16 +52,17 @@ PredefinedDevice SplitterGUI::predefinedDevices[] = {
   };
 
 SplitterGUI::SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir ) :
-    QDialog( parent, "Krusader::SplitterGUI", true, 0 ), 
+    QDialog( parent ), 
     userDefinedSize ( 0x100000 ), lastSelectedDevice( 0 ), resultCode( QDialog::Rejected )
 {
+  setModal( true );
   predefinedDeviceNum = sizeof( predefinedDevices ) / sizeof( PredefinedDevice );
 
   QGridLayout *grid = new QGridLayout( this );
   grid->setSpacing( 6 );
   grid->setContentsMargins( 11, 11, 11, 11 );
 
-  QLabel *splitterLabel = new QLabel( this, "SplitterLabel" );
+  QLabel *splitterLabel = new QLabel( this );
   splitterLabel->setText( i18n( "Split the file %1 to directory:", fileURL.pathOrUrl() ) );
   splitterLabel->setMinimumWidth( 400 );
   grid->addWidget( splitterLabel,0 ,0 );
@@ -71,11 +72,11 @@ SplitterGUI::SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir ) :
   urlReq->setMode( KFile::Directory );
   grid->addWidget( urlReq, 1 ,0 );
 
-  QWidget *splitSizeLine = new QWidget( this, "splitSizeLine" );
+  QWidget *splitSizeLine = new QWidget( this );
   QHBoxLayout * splitSizeLineLayout = new QHBoxLayout;
   splitSizeLine->setLayout(splitSizeLineLayout);
      
-  deviceCombo = new QComboBox( splitSizeLine, "deviceCombo" );
+  deviceCombo = new QComboBox( splitSizeLine );
   for( int i=0; i != predefinedDeviceNum; i++ )
     deviceCombo->insertItem( predefinedDevices[i].name );
   deviceCombo->insertItem( i18n( "User Defined" ) );
@@ -95,7 +96,7 @@ SplitterGUI::SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir ) :
   spinBox->setEnabled( false );
   splitSizeLineLayout->addWidget( spinBox );
     
-  sizeCombo = new QComboBox( splitSizeLine, "sizeCombo" );
+  sizeCombo = new QComboBox( splitSizeLine );
   sizeCombo->insertItem( i18n( "Byte" ) );
   sizeCombo->insertItem( i18n( "kByte" ) );
   sizeCombo->insertItem( i18n( "MByte" ) );
@@ -117,11 +118,11 @@ SplitterGUI::SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir ) :
   QSpacerItem* spacer2 = new QSpacerItem( 0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum );
   splitButtons->addItem( spacer2 );
 
-  QPushButton *splitBtn = new QPushButton( this, "splitBtn" );
+  QPushButton *splitBtn = new QPushButton( this );
   splitBtn->setText( i18n("&Split") );
   splitButtons->addWidget( splitBtn );
   
-  QPushButton *cancelBtn = new QPushButton( this, "cancelBtn" );
+  QPushButton *cancelBtn = new QPushButton( this );
   cancelBtn->setText( i18n("&Cancel") );
   splitButtons->addWidget( cancelBtn );
 

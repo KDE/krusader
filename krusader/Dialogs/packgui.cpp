@@ -49,7 +49,7 @@ QString PackGUI::type=0;
 QMap<QString, QString> PackGUI::extraProps;
 
 PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QString filename) :
-    PackGUIBase(0,0,true) {
+    PackGUIBase(0) {
   // first, fill the WhatToPack textfield with information
   if(noOfFiles == 1)
     TextLabel1->setText( i18n("Pack %1", filename) );

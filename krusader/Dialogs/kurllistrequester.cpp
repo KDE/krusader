@@ -44,7 +44,7 @@
 
 #define DELETE_ITEM_ID    100
 
-KURLListRequester::KURLListRequester( QWidget *parent, const char * name ) : QWidget( parent, name )
+KURLListRequester::KURLListRequester( QWidget *parent ) : QWidget( parent )
 {
   KIconLoader *iconLoader = new KIconLoader();
   QPixmap imageAdd = iconLoader->loadIcon( "1downarrow", KIconLoader::Panel, 16 );

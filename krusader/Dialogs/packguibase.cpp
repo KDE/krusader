@@ -63,11 +63,10 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
  */
-PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WFlags fl )
-    : QDialog( parent, name, modal, fl ), expanded( false )
+PackGUIBase::PackGUIBase( QWidget* parent )
+    : QDialog( parent ), expanded( false )
 {
-    if ( !name )
-	setName( "PackGUIBase" );
+    setModal( true );
     resize( 430, 140 );
     setCaption( i18n( "Pack" ) );
     grid = new QGridLayout( this );
@@ -78,14 +77,14 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     hbox->setSpacing( 6 );
     hbox->setContentsMargins( 0, 0, 0, 0 );
 
-    TextLabel3 = new QLabel( this, "TextLabel3" );
+    TextLabel3 = new QLabel( this );
     TextLabel3->setText( i18n( "To archive"  ) );
     hbox->addWidget( TextLabel3 );
 
-    nameData = new QLineEdit( this, "nameData" );
+    nameData = new QLineEdit( this );
     hbox->addWidget( nameData );
 
-    typeData = new QComboBox( FALSE, this, "typeData" );
+    typeData = new QComboBox( FALSE, this );
     typeData->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)1, (QSizePolicy::SizeType)0 ) );
     connect( typeData, SIGNAL( activated( const QString & ) ), this,  SLOT( checkConsistency() ) );
     connect( typeData, SIGNAL( highlighted( const QString & ) ), this,  SLOT( checkConsistency() ) );
@@ -97,14 +96,14 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     hbox_2->setSpacing( 6 );
     hbox_2->setContentsMargins( 0, 0, 0, 0 );
 
-    TextLabel5 = new QLabel( this, "TextLabel5" );
+    TextLabel5 = new QLabel( this );
     TextLabel5->setText( i18n( "In directory"  ) );
     hbox_2->addWidget( TextLabel5 );
 
-    dirData = new QLineEdit( this, "dirData" );
+    dirData = new QLineEdit( this );
     hbox_2->addWidget( dirData );
 
-    browseButton = new QToolButton( this, "browseButton" );
+    browseButton = new QToolButton( this );
     browseButton->setIconSet( SmallIcon( "fileopen" ) );
     hbox_2->addWidget( browseButton );
     QSpacerItem* spacer = new QSpacerItem( 48, 20, QSizePolicy::Fixed, QSizePolicy::Fixed );
@@ -116,13 +115,13 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     hbox_3->setSpacing( 6 );
     hbox_3->setContentsMargins( 0, 0, 0, 0 );
 
-    PixmapLabel1 = new QLabel( this, "PixmapLabel1" );
+    PixmapLabel1 = new QLabel( this );
     PixmapLabel1->setPixmap( krLoader->loadIcon("package", KIconLoader::Desktop, 32) );
     PixmapLabel1->setScaledContents( TRUE );
     PixmapLabel1->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)0, (QSizePolicy::SizeType)0 ) );
     hbox_3->addWidget( PixmapLabel1 );
 
-    TextLabel1 = new QLabel( this, "TextLabel1" );
+    TextLabel1 = new QLabel( this );
     TextLabel1->setText( i18n( "Pack"  ) );
     hbox_3->addWidget( TextLabel1 );
 
@@ -137,7 +136,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     hbox_4->addItem( spacer_3 );
     grid->addLayout( hbox_4, 3, 0 );
 
-    advancedWidget = new QWidget( this, "advancedWidget" );
+    advancedWidget = new QWidget( this );
 
     hbox_5 = new QGridLayout( advancedWidget );
     hbox_5->setSpacing( 6 );
@@ -148,7 +147,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     compressLayout->setSpacing( 6 );
     compressLayout->setContentsMargins( 0, 0, 0, 0 );
 
-    multipleVolume = new QCheckBox( i18n( "Multiple volume archive" ), advancedWidget, "multipleVolume" );
+    multipleVolume = new QCheckBox( i18n( "Multiple volume archive" ), advancedWidget );
     connect( multipleVolume, SIGNAL( toggled( bool ) ), this, SLOT( checkConsistency() ) );
     compressLayout->addWidget( multipleVolume, 0, 0 );
 
@@ -157,16 +156,16 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     QSpacerItem* spacer_5 = new QSpacerItem( 20, 26, QSizePolicy::Fixed, QSizePolicy::Fixed );
     volumeHbox->addItem( spacer_5 );
 
-    TextLabel7 = new QLabel( i18n("Size:" ), advancedWidget, "TextLabel7" );
+    TextLabel7 = new QLabel( i18n("Size:" ), advancedWidget );
     volumeHbox->addWidget( TextLabel7 );
     
-    volumeSpinBox = new QSpinBox( advancedWidget, "volumeSpinBox" );
+    volumeSpinBox = new QSpinBox( advancedWidget );
     volumeSpinBox->setMinValue( 1 );
     volumeSpinBox->setMaxValue( 9999 );
     volumeSpinBox->setValue( 1440 );
     volumeHbox->addWidget( volumeSpinBox );
 
-    volumeUnitCombo = new QComboBox( FALSE, advancedWidget, "volumeUnitCombo" );
+    volumeUnitCombo = new QComboBox( FALSE, advancedWidget );
     volumeUnitCombo->insertItem( "B" );
     volumeUnitCombo->insertItem( "KB" );
     volumeUnitCombo->insertItem( "MB" );
@@ -175,7 +174,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
 
     compressLayout->addLayout ( volumeHbox );
 
-    setCompressionLevel = new QCheckBox( i18n( "Set compression level" ), advancedWidget, "multipleVolume" );
+    setCompressionLevel = new QCheckBox( i18n( "Set compression level" ), advancedWidget );
     connect( setCompressionLevel, SIGNAL( toggled( bool ) ), this, SLOT( checkConsistency() ) );
     compressLayout->addWidget( setCompressionLevel, 0, 0 );
 
@@ -220,21 +219,21 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     passwordGrid->setSpacing( 6 );
     passwordGrid->setContentsMargins( 0, 0, 0, 0 );
 
-    TextLabel4 = new QLabel( advancedWidget, "TextLabel4" );
+    TextLabel4 = new QLabel( advancedWidget );
     TextLabel4->setText( i18n( "Password"  ) );
     passwordGrid->addWidget( TextLabel4, 0, 0 );
 
-    password = new QLineEdit( advancedWidget, "password" );
+    password = new QLineEdit( advancedWidget );
     password->setEchoMode( QLineEdit::Password );
     connect( password, SIGNAL( textChanged ( const QString & ) ), this, SLOT( checkConsistency() ) );
 
     passwordGrid->addWidget( password, 0, 1 );
 
-    TextLabel6 = new QLabel( advancedWidget, "TextLabel6" );
+    TextLabel6 = new QLabel( advancedWidget );
     TextLabel6->setText( i18n( "Again"  ) );
     passwordGrid->addWidget( TextLabel6, 1, 0 );
 
-    passwordAgain = new QLineEdit( advancedWidget, "password" );
+    passwordAgain = new QLineEdit( advancedWidget );
     passwordAgain->setEchoMode( QLineEdit::Password );
     connect( passwordAgain, SIGNAL( textChanged ( const QString & ) ), this, SLOT( checkConsistency() ) );
 
@@ -245,11 +244,11 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     QSpacerItem* spacer_cons = new QSpacerItem( 48, 20, QSizePolicy::Expanding, QSizePolicy::Fixed );
     consistencyHbox->addItem( spacer_cons );
 
-    passwordConsistencyLabel = new QLabel( advancedWidget, "passwordConsistencyLabel" );
+    passwordConsistencyLabel = new QLabel( advancedWidget );
     consistencyHbox->addWidget( passwordConsistencyLabel );
     passwordGrid->addLayout ( consistencyHbox, 2, 0, 1, 2 );
 
-    encryptHeaders = new QCheckBox( i18n( "Encrypt headers" ), advancedWidget, "encryptHeaders" );
+    encryptHeaders = new QCheckBox( i18n( "Encrypt headers" ), advancedWidget );
     passwordGrid->addWidget ( encryptHeaders, 3, 0, 1, 2 );
 
     QSpacerItem* spacer_psw = new QSpacerItem( 20, 20, QSizePolicy::Fixed, QSizePolicy::Expanding );
@@ -261,7 +260,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     hbox_7->setSpacing( 6 );
     hbox_7->setContentsMargins( 0, 0, 0, 0 );
 
-    TextLabel8 = new QLabel( i18n( "Command line switches:" ), advancedWidget, "TextLabel8" );
+    TextLabel8 = new QLabel( i18n( "Command line switches:" ), advancedWidget );
     TextLabel8->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
     hbox_7->addWidget( TextLabel8 );
 
@@ -286,19 +285,19 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, Qt::WF
     hbox_6->setSpacing( 6 );
     hbox_6->setContentsMargins( 0, 0, 0, 0 );
 
-    advancedButton = new QPushButton( this, "advancedButton" );
+    advancedButton = new QPushButton( this );
     advancedButton->setText( i18n( "&Advanced" ) + " >>" );
     hbox_6->addWidget( advancedButton );
 
     QSpacerItem* spacer_2 = new QSpacerItem( 140, 20, QSizePolicy::Expanding, QSizePolicy::Fixed );
     hbox_6->addItem( spacer_2 );
 
-    okButton = new QPushButton( this, "okButton" );
+    okButton = new QPushButton( this );
     okButton->setText( i18n( "Ok"  ) );
     okButton->setDefault( true );
     hbox_6->addWidget( okButton );
 
-    cancelButton = new QPushButton( this, "cancelButton" );
+    cancelButton = new QPushButton( this );
     cancelButton->setText( i18n( "Cancel"  ) );
     hbox_6->addWidget( cancelButton );
 

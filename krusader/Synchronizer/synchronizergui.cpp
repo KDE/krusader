@@ -1107,16 +1107,16 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   folderIcon =   QPixmap( ( const char** ) folder_data );
   fileIcon   =   QPixmap( ( const char** ) file_data );
 
-  synchronizerTabs = new QTabWidget( this, "synchronizerTabs" );
+  synchronizerTabs = new QTabWidget( this );
 
   /* ============================== Compare groupbox ============================== */
 
-  QWidget *synchronizerTab = new QWidget( this, "syncronizerTab" );
+  QWidget *synchronizerTab = new QWidget( this );
   QGridLayout *synchronizerGrid = new QGridLayout( synchronizerTab );
   synchronizerGrid->setSpacing( 6 );
   synchronizerGrid->setContentsMargins( 11, 11, 11, 11 );
 
-  Q3GroupBox *compareDirs = new Q3GroupBox( synchronizerTab, "SyncCompareDirectories" );
+  Q3GroupBox *compareDirs = new Q3GroupBox( synchronizerTab );
   compareDirs->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed);
   compareDirs->setTitle( i18n( "Directory Comparison" ) );
   compareDirs->setColumnLayout(0, Qt::Vertical );
@@ -1127,16 +1127,16 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   grid->setSpacing( 6 );
   grid->setContentsMargins( 11, 11, 11, 11 );
 
-  leftDirLabel = new QLabel( compareDirs, "leftDirLabel" );
+  leftDirLabel = new QLabel( compareDirs );
   leftDirLabel->setAlignment( Qt::AlignHCenter );
   grid->addWidget( leftDirLabel, 0 ,0 );
 
-  QLabel *filterLabel = new QLabel( compareDirs, "filterLabel" );
+  QLabel *filterLabel = new QLabel( compareDirs );
   filterLabel->setText( i18n( "File &Filter:" ) );
   filterLabel->setAlignment( Qt::AlignHCenter );
   grid->addWidget( filterLabel, 0 ,1 );
 
-  rightDirLabel = new QLabel( compareDirs, "rightDirLabel" );
+  rightDirLabel = new QLabel( compareDirs );
   rightDirLabel->setAlignment( Qt::AlignHCenter );
   grid->addWidget( rightDirLabel, 0 ,2 );
 
@@ -1228,7 +1228,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   /* =========================== Show options groupbox ============================= */
 
-  Q3GroupBox *showOptions  = new Q3GroupBox( optionWidget, "SyncOptionBox" );
+  Q3GroupBox *showOptions  = new Q3GroupBox( optionWidget );
   optionBox->addWidget( showOptions );
 
   showOptions->setTitle( i18n( "S&how options" ) );
@@ -1246,7 +1246,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   QPixmap showRightToLeft( ( const char** ) left_arrow_button_data );
   QPixmap showDeletable  ( ( const char** ) trash_button_data );
 
-  btnLeftToRight = new QPushButton( showOptions, "btnLeftToRight" );
+  btnLeftToRight = new QPushButton( showOptions );
   btnLeftToRight->setText( "" );
   btnLeftToRight->setPixmap( showLeftToRight );
   btnLeftToRight->setToggleButton( true );
@@ -1255,7 +1255,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   Q3WhatsThis::add( btnLeftToRight, i18n( "Show files marked to <i>Copy from left to right</i> (CTRL+L)." ) );
   showOptionsLayout->addWidget( btnLeftToRight, 0, 0);
 
-  btnEquals = new QPushButton( showOptions, "btnEquals" );
+  btnEquals = new QPushButton( showOptions );
   btnEquals->setText( "" );
   btnEquals->setPixmap( showEquals );
   btnEquals->setToggleButton( true );
@@ -1264,7 +1264,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   Q3WhatsThis::add( btnEquals, i18n( "Show files considered to be identical (CTRL+E)." ) );
   showOptionsLayout->addWidget( btnEquals, 0, 1);
 
-  btnDifferents = new QPushButton( showOptions, "btnDifferents" );
+  btnDifferents = new QPushButton( showOptions );
   btnDifferents->setText( "" );
   btnDifferents->setPixmap( showDifferents );
   btnDifferents->setToggleButton( true );
@@ -1273,7 +1273,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   Q3WhatsThis::add( btnDifferents, i18n( "Show excluded files (CTRL+D)." ) );
   showOptionsLayout->addWidget( btnDifferents, 0, 2);
 
-  btnRightToLeft = new QPushButton( showOptions, "btnRightToLeft" );
+  btnRightToLeft = new QPushButton( showOptions );
   btnRightToLeft->setText( "" );
   btnRightToLeft->setPixmap( showRightToLeft );
   btnRightToLeft->setToggleButton( true );
@@ -1282,7 +1282,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   Q3WhatsThis::add( btnRightToLeft, i18n( "Show files marked to <i>Copy from right to left</i> (CTRL+R)." ) );
   showOptionsLayout->addWidget( btnRightToLeft, 0, 3);
 
-  btnDeletable = new QPushButton( showOptions, "btnDeletable" );
+  btnDeletable = new QPushButton( showOptions );
   btnDeletable->setText( "" );
   btnDeletable->setPixmap( showDeletable );
   btnDeletable->setToggleButton( true );
@@ -1291,7 +1291,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   Q3WhatsThis::add( btnDeletable, i18n( "Show files marked to delete. (CTRL+T)" ) );
   showOptionsLayout->addWidget( btnDeletable, 0, 4);
 
-  btnDuplicates = new QPushButton( showOptions, "btnDuplicates" );
+  btnDuplicates = new QPushButton( showOptions );
   btnDuplicates->setText( i18n("Duplicates") );
   btnDuplicates->setMinimumHeight( btnLeftToRight->height() );
   btnDuplicates->setToggleButton( true );
@@ -1299,7 +1299,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   Q3WhatsThis::add( btnDuplicates, i18n( "Show files that exist on both sides." ) );
   showOptionsLayout->addWidget( btnDuplicates, 0, 5);
 
-  btnSingles = new QPushButton( showOptions, "btnSingles" );
+  btnSingles = new QPushButton( showOptions );
   btnSingles->setText( i18n("Singles") );
   btnSingles->setMinimumHeight( btnLeftToRight->height() );
   btnSingles->setToggleButton( true );
@@ -1375,7 +1375,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   // creating the time shift, equality threshold, hidden files options
 
-  Q3GroupBox *optionsGroup = new Q3GroupBox( generalFilter, "options" );
+  Q3GroupBox *optionsGroup = new Q3GroupBox( generalFilter );
   optionsGroup->setTitle( i18n( "&Options" ) );
   optionsGroup->setColumnLayout(0, Qt::Vertical );
   optionsGroup->layout()->setSpacing( 0 );
@@ -1387,7 +1387,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   QLabel * parallelThreadsLabel = new QLabel( i18n( "Parallel threads:" ), optionsGroup );
   optionsLayout->addWidget( parallelThreadsLabel, 0, 0 );
-  parallelThreadsSpinBox = new QSpinBox( optionsGroup, "parallelThreadsSpinBox" );
+  parallelThreadsSpinBox = new QSpinBox( optionsGroup );
   parallelThreadsSpinBox->setMinValue( 1 );
   parallelThreadsSpinBox->setMaxValue( 15 );
   int parThreads = group.readEntry( "Parallel Threads", 1 );
@@ -1398,11 +1398,11 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   QLabel * equalityLabel = new QLabel( i18n( "Equality threshold:" ), optionsGroup );
   optionsLayout->addWidget( equalityLabel, 1, 0 );
 
-  equalitySpinBox = new QSpinBox( optionsGroup, "equalitySpinBox" );
+  equalitySpinBox = new QSpinBox( optionsGroup );
   equalitySpinBox->setMaxValue( 9999 );
   optionsLayout->addWidget( equalitySpinBox, 1, 1 );
 
-  equalityUnitCombo = new QComboBox( optionsGroup, "equalityUnitCombo" );
+  equalityUnitCombo = new QComboBox( optionsGroup );
   equalityUnitCombo->insertItem( i18n( "sec" ) );
   equalityUnitCombo->insertItem( i18n( "min" ) );
   equalityUnitCombo->insertItem( i18n( "hour" ) );
@@ -1412,12 +1412,12 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   QLabel * timeShiftLabel = new QLabel( i18n( "Time shift (right-left):" ), optionsGroup );
   optionsLayout->addWidget( timeShiftLabel, 2, 0 );
 
-  timeShiftSpinBox = new QSpinBox( optionsGroup, "timeShiftSpinBox" );
+  timeShiftSpinBox = new QSpinBox( optionsGroup );
   timeShiftSpinBox->setMinValue( -9999 );
   timeShiftSpinBox->setMaxValue( 9999 );
   optionsLayout->addWidget( timeShiftSpinBox, 2, 1 );
 
-  timeShiftUnitCombo = new QComboBox( optionsGroup, "timeShiftUnitCombo" );
+  timeShiftUnitCombo = new QComboBox( optionsGroup );
   timeShiftUnitCombo->insertItem( i18n( "sec" ) );
   timeShiftUnitCombo->insertItem( i18n( "min" ) );
   timeShiftUnitCombo->insertItem( i18n( "hour" ) );
@@ -2177,7 +2177,7 @@ void SynchronizerGUI::synchronize()
     return;
   }
 
-  SynchronizeDialog *sd = new SynchronizeDialog( this, "SychDialog", true, 0, &synchronizer,
+  SynchronizeDialog *sd = new SynchronizeDialog( this, &synchronizer,
                                                  copyToLeftNr, copyToLeftSize, copyToRightNr,
                                                  copyToRightSize, deleteNr, deleteSize,
                                                  parallelThreadsSpinBox->value() );
