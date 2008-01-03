@@ -34,7 +34,7 @@ class DirHistoryQueue;
 class DirHistoryButton : public QToolButton  {
    Q_OBJECT
 public: 
-  DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent=0, const char *name=0);
+  DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent=0);
   ~DirHistoryButton();
 
   void openPopup();

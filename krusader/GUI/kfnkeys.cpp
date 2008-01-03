@@ -40,7 +40,7 @@
 #include "../defaults.h"
 #include "../krslots.h"
 
-KFnKeys::KFnKeys(QWidget *parent, char *name): QWidget(parent,name) {
+KFnKeys::KFnKeys(QWidget *parent): QWidget(parent) {
 		////////////////////////////////
 #define SETUP(TARGET) {\
 	TARGET->setMinimumWidth(45);\

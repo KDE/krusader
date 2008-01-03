@@ -62,7 +62,7 @@
 class SearchListView : public Q3ListView
 {
 public:
-  SearchListView( QWidget * parent, const char * name ) : Q3ListView( parent, name )
+  SearchListView( QWidget * parent ) : Q3ListView( parent )
   {
   }
 
@@ -121,28 +121,28 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   buttonsLayout->setSpacing( 6 );
   buttonsLayout->setContentsMargins( 0, 0, 0, 0 );
 
-  profileManager = new ProfileManager( "SearcherProfile", this, "profileManager" );
+  profileManager = new ProfileManager( "SearcherProfile", this );
   buttonsLayout->addWidget( profileManager );
 
   QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
   buttonsLayout->addItem( spacer );
 
-  mainFeedToListBoxBtn = new QPushButton( this, "mainFeedToListBoxBtn" );
+  mainFeedToListBoxBtn = new QPushButton( this );
   mainFeedToListBoxBtn->setText( i18n( "Feed to listbox" ) );
   mainFeedToListBoxBtn->setEnabled(false);
   buttonsLayout->addWidget( mainFeedToListBoxBtn );
 
-  mainSearchBtn = new QPushButton( this, "mainSearchBtn" );
+  mainSearchBtn = new QPushButton( this );
   mainSearchBtn->setText( i18n( "Search" ) );
   mainSearchBtn->setDefault(true);
   buttonsLayout->addWidget( mainSearchBtn );
 
-  mainStopBtn = new QPushButton( this, "mainStopBtn" );
+  mainStopBtn = new QPushButton( this );
   mainStopBtn->setEnabled( false );
   mainStopBtn->setText( i18n( "Stop" ) );
   buttonsLayout->addWidget( mainStopBtn );
 
-  mainCloseBtn = new QPushButton( this, "mainCloseBtn" );
+  mainCloseBtn = new QPushButton( this );
   mainCloseBtn->setText( i18n( "Close" ) );
   buttonsLayout->addWidget( mainCloseBtn );
 
@@ -150,12 +150,12 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
 
   // creating the searcher tabs
 
-  searcherTabs = new QTabWidget( this, "searcherTabs" );
+  searcherTabs = new QTabWidget( this );
 
   filterTabs = FilterTabs::addTo( searcherTabs, FilterTabs::Default | FilterTabs::HasRemoteContentSearch );
   generalFilter = (GeneralFilter *)filterTabs->get( "GeneralFilter" );
 
-  resultTab = new QWidget( searcherTabs, "resultTab" );
+  resultTab = new QWidget( searcherTabs );
   resultLayout = new QGridLayout( resultTab );
   resultLayout->setSpacing( 6 );
   resultLayout->setContentsMargins( 11, 11, 11, 11 );
@@ -166,7 +166,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   resultLabelLayout->setSpacing( 6 );
   resultLabelLayout->setContentsMargins( 0, 0, 0, 0 );
 
-  foundLabel = new QLabel( resultTab, "foundLabel" );
+  foundLabel = new QLabel( resultTab );
   foundLabel->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)1, (QSizePolicy::SizeType)1, foundLabel->sizePolicy().hasHeightForWidth() ) );
   foundLabel->setFrameShape( QLabel::StyledPanel );
   foundLabel->setFrameShadow( QLabel::Sunken );
@@ -183,7 +183,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
 
   // creating the result list view
 
-  resultsList = new SearchListView( resultTab, "resultsList" );
+  resultsList = new SearchListView( resultTab );
   resultsList->addColumn( i18n( "Name" ) );
   resultsList->addColumn( i18n( "Location" ) );
   resultsList->addColumn( i18n( "Size" ) );

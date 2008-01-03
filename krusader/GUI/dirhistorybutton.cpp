@@ -28,7 +28,7 @@
 
 #include <kdebug.h>
 
-DirHistoryButton::DirHistoryButton( DirHistoryQueue* hQ, QWidget *parent, const char *name ) : QToolButton( parent, name ) {
+DirHistoryButton::DirHistoryButton( DirHistoryQueue* hQ, QWidget *parent ) : QToolButton( parent ) {
 	KIconLoader * iconLoader = new KIconLoader();
 	QPixmap icon = iconLoader->loadIcon( "history", KIconLoader::Toolbar, 16 );
 

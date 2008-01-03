@@ -1440,30 +1440,30 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   buttons->setSpacing( 6 );
   buttons->setContentsMargins( 0, 0, 0, 0 );
 
-  profileManager = new ProfileManager( "SynchronizerProfile", this, "profileManager" );
+  profileManager = new ProfileManager( "SynchronizerProfile", this );
   profileManager->setAccel( Qt::CTRL + Qt::Key_P );
   Q3WhatsThis::add( profileManager, i18n( "Profile manager (Ctrl+P)." ) );
   buttons->addWidget( profileManager );
 
   QPixmap swapSides( ( const char** ) swap_sides_data );
-  btnSwapSides = new QPushButton( this, "btnSwapSides" );
+  btnSwapSides = new QPushButton( this );
   btnSwapSides->setPixmap( swapSides );
   btnSwapSides->setAccel( Qt::CTRL + Qt::Key_S );
   Q3WhatsThis::add( btnSwapSides, i18n( "Swap sides (Ctrl+S)." ) );
   buttons->addWidget( btnSwapSides );
 
-  statusLabel = new QLabel( this, "statusLabel" );
+  statusLabel = new QLabel( this );
   buttons->addWidget( statusLabel );
 
   QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
   buttons->addItem( spacer );
 
-  btnCompareDirs = new QPushButton( this, "btnCompareDirs" );
+  btnCompareDirs = new QPushButton( this );
   btnCompareDirs->setText( i18n( "Compare" ) );
   btnCompareDirs->setDefault(true);
   buttons->addWidget( btnCompareDirs );
 
-  btnScrollResults = new QPushButton( this, "btnSynchronize" );
+  btnScrollResults = new QPushButton( this );
   btnScrollResults->setToggleButton( true );
   btnScrollResults->setOn( group.readEntry( "Scroll Results", _ScrollResults ) );
   btnScrollResults->hide();
@@ -1473,23 +1473,23 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
     btnScrollResults->setText( i18n( "Scroll Results" ) );
   buttons->addWidget( btnScrollResults );
 
-  btnStopComparing = new QPushButton( this, "btnStopComparing" );
+  btnStopComparing = new QPushButton( this );
   btnStopComparing->setText( i18n( "Stop" ) );
   btnStopComparing->setEnabled(false);
   buttons->addWidget( btnStopComparing );
 
-  btnFeedToListBox = new QPushButton( this, "btnFeedToListBox" );
+  btnFeedToListBox = new QPushButton( this );
   btnFeedToListBox->setText( i18n( "Feed to listbox" ) );
   btnFeedToListBox->setEnabled(false);
   btnFeedToListBox->hide();
   buttons->addWidget( btnFeedToListBox );
   
-  btnSynchronize = new QPushButton( this, "btnSynchronize" );
+  btnSynchronize = new QPushButton( this );
   btnSynchronize->setText( i18n( "Synchronize" ) );
   btnSynchronize->setEnabled(false);
   buttons->addWidget( btnSynchronize );
 
-  QPushButton *btnCloseSync = new QPushButton( this, "btnCloseSync" );
+  QPushButton *btnCloseSync = new QPushButton( this );
   btnCloseSync->setText( i18n( "Close" ) );
   buttons->addWidget( btnCloseSync );
 

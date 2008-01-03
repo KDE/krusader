@@ -151,7 +151,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
 
    // ... create the history button
    dirHistoryQueue = new DirHistoryQueue( this );
-   historyButton = new DirHistoryButton( dirHistoryQueue, this, "historyButton" );
+   historyButton = new DirHistoryButton( dirHistoryQueue, this );
    connect( historyButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
    connect( historyButton, SIGNAL( openUrl( const KUrl& ) ), func, SLOT( openUrl( const KUrl& ) ) );
 

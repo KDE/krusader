@@ -1,7 +1,7 @@
 /***************************************************************************
                           syncbrowsebutton.h  -  description
                              -------------------
-    copyright            : (C) 2004 by Jonas Bähr
+    copyright            : (C) 2004 by Jonas Bï¿½hr
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -51,7 +51,7 @@ The current version only manages sync-browse and got no mode-switch options.
 class SyncBrowseButton : public QToolButton  {
    Q_OBJECT
 public: 
-  SyncBrowseButton(QWidget *parent=0, const char *name=0);
+  SyncBrowseButton(QWidget *parent=0);
   ~SyncBrowseButton();
   
   int state();

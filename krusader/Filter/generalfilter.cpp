@@ -144,7 +144,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 		profileRemoveBtn->setEnabled ( false );
 		profileLayout->addWidget ( profileRemoveBtn, 3, 1 );
 
-		profileManager = new ProfileManager ( "SelectionProfile", this, "selectionProfileManager" );
+		profileManager = new ProfileManager ( "SelectionProfile", this );
 		profileManager->hide();
 
 		middleLayout->addWidget ( profileHandler );
