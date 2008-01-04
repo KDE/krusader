@@ -162,7 +162,7 @@ ParameterDialog::ParameterDialog( const exp_placeholder* currentPlaceholder, QWi
    layout->setAutoAdd( true );
    layout->setSpacing( 11 );
    
-   new QLabel( i18n("This placeholder allows some parameter:"), page, "intro" );
+   new QLabel( i18n("This placeholder allows some parameter:"), page );
    
    for (int i = 0; i < _parameterCount; ++i ) {
       if ( currentPlaceholder->parameter( i ).preset() == "__placeholder" )

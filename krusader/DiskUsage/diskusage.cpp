@@ -94,7 +94,7 @@ LoaderWidget::LoaderWidget( QWidget *parent ) : Q3ScrollView( parent ), cancelle
   loaderLayout->setSpacing( 0 );
   loaderLayout->setContentsMargins( 0, 0, 0, 0 );
 
-  Q3GroupBox *loaderBox = new Q3GroupBox( widget, "loaderGroupBox" );
+  Q3GroupBox *loaderBox = new Q3GroupBox( widget );
   loaderBox->setFrameShape( Q3GroupBox::Box );
   loaderBox->setFrameShadow( Q3GroupBox::Sunken );
   loaderBox->setColumnLayout(0, Qt::Vertical );
@@ -108,38 +108,38 @@ LoaderWidget::LoaderWidget( QWidget *parent ) : Q3ScrollView( parent ), cancelle
   synchGrid->setSpacing( 6 );
   synchGrid->setContentsMargins( 11, 11, 11, 11 );
 
-  QLabel *titleLabel = new QLabel( i18n( "Loading Usage Information" ), loaderBox, "titleLabel" );
+  QLabel *titleLabel = new QLabel( i18n( "Loading Usage Information" ), loaderBox );
   titleLabel->setAlignment( Qt::AlignHCenter );
   synchGrid->addWidget( titleLabel, 0, 0, 1, 2 );
 
-  QLabel *filesLabel = new QLabel( i18n( "Files:" ), loaderBox, "filesLabel" );
+  QLabel *filesLabel = new QLabel( i18n( "Files:" ), loaderBox );
   filesLabel->setFrameShape( QLabel::StyledPanel );
   filesLabel->setFrameShadow( QLabel::Sunken );
   synchGrid->addWidget( filesLabel, 1, 0 );
 
-  QLabel *directoriesLabel = new QLabel( i18n( "Directories:" ), loaderBox, "directoriesLabel" );
+  QLabel *directoriesLabel = new QLabel( i18n( "Directories:" ), loaderBox );
   directoriesLabel->setFrameShape( QLabel::StyledPanel );
   directoriesLabel->setFrameShadow( QLabel::Sunken );
   synchGrid->addWidget( directoriesLabel, 2, 0 );
 
-  QLabel *totalSizeLabel = new QLabel( i18n( "Total Size:" ), loaderBox, "totalSizeLabel" );
+  QLabel *totalSizeLabel = new QLabel( i18n( "Total Size:" ), loaderBox );
   totalSizeLabel->setFrameShape( QLabel::StyledPanel );
   totalSizeLabel->setFrameShadow( QLabel::Sunken );
   synchGrid->addWidget( totalSizeLabel, 3, 0 );
 
-  files = new QLabel( loaderBox, "files" );
+  files = new QLabel( loaderBox );
   files->setFrameShape( QLabel::StyledPanel );
   files->setFrameShadow( QLabel::Sunken );
   files->setAlignment( Qt::AlignRight );
   synchGrid->addWidget( files, 1, 1 );
 
-  directories = new QLabel( loaderBox, "directories" );
+  directories = new QLabel( loaderBox );
   directories->setFrameShape( QLabel::StyledPanel );
   directories->setFrameShadow( QLabel::Sunken );
   directories->setAlignment( Qt::AlignRight );
   synchGrid->addWidget( directories, 2, 1 );
 
-  totalSize = new QLabel( loaderBox, "totalSize" );
+  totalSize = new QLabel( loaderBox );
   totalSize->setFrameShape( QLabel::StyledPanel );
   totalSize->setFrameShadow( QLabel::Sunken );
   totalSize->setAlignment( Qt::AlignRight );

@@ -58,7 +58,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 
 	// Options for size
 
-	Q3GroupBox *sizeGroup = new Q3GroupBox ( this, "sizeGroup" );
+	Q3GroupBox *sizeGroup = new Q3GroupBox ( this );
 	sizeGroup->setSizePolicy ( QSizePolicy ( ( QSizePolicy::SizeType ) 5, ( QSizePolicy::SizeType ) 1, sizeGroup->sizePolicy().hasHeightForWidth() ) );
 	sizeGroup->setTitle ( i18n ( "Size" ) );
 	sizeGroup->setColumnLayout ( 0, Qt::Vertical );
@@ -69,34 +69,32 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	sizeLayout->setSpacing ( 6 );
 	sizeLayout->setContentsMargins ( 11, 11, 11, 11 );
 
-	biggerThanEnabled = new QCheckBox ( sizeGroup, "biggerThanEnabled" );
+	biggerThanEnabled = new QCheckBox ( sizeGroup );
 	biggerThanEnabled->setText ( i18n ( "&Bigger than" ) );
 	sizeLayout->addWidget ( biggerThanEnabled, 0, 0 );
 
-	biggerThanAmount = new QLineEdit ( sizeGroup, "biggerThanAmount" );
+	biggerThanAmount = new QLineEdit ( sizeGroup );
 	biggerThanAmount->setEnabled ( false );
 	biggerThanAmount->setSizePolicy ( QSizePolicy ( QSizePolicy::Fixed, QSizePolicy::Fixed, biggerThanAmount->sizePolicy().hasHeightForWidth() ) );
 	sizeLayout->addWidget ( biggerThanAmount, 0, 1 );
 
 	biggerThanType = new KComboBox ( false, sizeGroup );
-	biggerThanType->setObjectName ( "biggerThanType" );
 	biggerThanType->insertItem ( i18n ( "Bytes" ) );
 	biggerThanType->insertItem ( i18n ( "KB" ) );
 	biggerThanType->insertItem ( i18n ( "MB" ) );
 	biggerThanType->setEnabled ( false );
 	sizeLayout->addWidget ( biggerThanType, 0, 2 );
 
-	smallerThanEnabled = new QCheckBox ( sizeGroup, "smallerThanEnabled" );
+	smallerThanEnabled = new QCheckBox ( sizeGroup );
 	smallerThanEnabled->setText ( i18n ( "&Smaller than" ) );
 	sizeLayout->addWidget ( smallerThanEnabled, 0, 3 );
 
-	smallerThanAmount = new QLineEdit ( sizeGroup, "smallerThanAmount" );
+	smallerThanAmount = new QLineEdit ( sizeGroup );
 	smallerThanAmount->setEnabled ( false );
 	smallerThanAmount->setSizePolicy ( QSizePolicy ( QSizePolicy::Fixed, QSizePolicy::Fixed, smallerThanAmount->sizePolicy().hasHeightForWidth() ) );
 	sizeLayout->addWidget ( smallerThanAmount, 0, 4 );
 
 	smallerThanType = new KComboBox ( false, sizeGroup );
-	smallerThanType->setObjectName ( "smallerThanType" );
 	smallerThanType->insertItem ( i18n ( "Bytes" ) );
 	smallerThanType->insertItem ( i18n ( "KB" ) );
 	smallerThanType->insertItem ( i18n ( "MB" ) );
@@ -115,7 +113,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 
 	QPixmap iconDate = krLoader->loadIcon ( "date", KIconLoader::Toolbar, 16 );
 
-	Q3ButtonGroup *dateGroup = new Q3ButtonGroup ( this, "dateGroup" );
+	Q3ButtonGroup *dateGroup = new Q3ButtonGroup ( this );
 	dateGroup->setTitle ( i18n ( "Date" ) );
 	dateGroup->setExclusive ( true );
 	dateGroup->setColumnLayout ( 0, Qt::Vertical );
@@ -126,66 +124,66 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	dateLayout->setSpacing ( 6 );
 	dateLayout->setContentsMargins ( 11, 11, 11, 11 );
 
-	modifiedBetweenEnabled = new QRadioButton ( dateGroup, "modifiedBetweenEnabled" );
+	modifiedBetweenEnabled = new QRadioButton ( dateGroup );
 	modifiedBetweenEnabled->setText ( i18n ( "&Modified between" ) );
 	dateGroup->insert ( modifiedBetweenEnabled, 0 );
 
 	dateLayout->addWidget ( modifiedBetweenEnabled, 0, 0, 1, 2 );
 
-	modifiedBetweenData1 = new QLineEdit ( dateGroup, "modifiedBetweenData1" );
+	modifiedBetweenData1 = new QLineEdit ( dateGroup );
 	modifiedBetweenData1->setEnabled ( false );
 	modifiedBetweenData1->setText ( "" );
 	dateLayout->addWidget ( modifiedBetweenData1, 0, 2, 1, 2 );
 
-	modifiedBetweenBtn1 = new QToolButton ( dateGroup, "modifiedBetweenBtn1" );
+	modifiedBetweenBtn1 = new QToolButton ( dateGroup );
 	modifiedBetweenBtn1->setEnabled ( false );
 	modifiedBetweenBtn1->setText ( "" );
 	modifiedBetweenBtn1->setPixmap ( iconDate );
 	dateLayout->addWidget ( modifiedBetweenBtn1, 0, 4 );
 
-	QLabel *andLabel = new QLabel ( dateGroup, "andLabel" );
+	QLabel *andLabel = new QLabel ( dateGroup );
 	andLabel->setText ( i18n ( "an&d" ) );
 	dateLayout->addWidget ( andLabel, 0, 5 );
 
-	modifiedBetweenData2 = new QLineEdit ( dateGroup, "modifiedBetweenData2" );
+	modifiedBetweenData2 = new QLineEdit ( dateGroup );
 	modifiedBetweenData2->setEnabled ( false );
 	modifiedBetweenData2->setText ( "" );
 	andLabel->setBuddy ( modifiedBetweenData2 );
 	dateLayout->addWidget ( modifiedBetweenData2, 0, 6 );
 
-	modifiedBetweenBtn2 = new QToolButton ( dateGroup, "modifiedBetweenBtn2" );
+	modifiedBetweenBtn2 = new QToolButton ( dateGroup );
 	modifiedBetweenBtn2->setEnabled ( false );
 	modifiedBetweenBtn2->setText ( "" );
 	modifiedBetweenBtn2->setPixmap ( iconDate );
 	dateLayout->addWidget ( modifiedBetweenBtn2, 0, 7 );
 
-	notModifiedAfterEnabled = new QRadioButton ( dateGroup, "notModifiedAfterEnabled" );
+	notModifiedAfterEnabled = new QRadioButton ( dateGroup );
 	notModifiedAfterEnabled->setText ( i18n ( "&Not modified after" ) );
 	dateGroup->insert ( notModifiedAfterEnabled, 0 );
 	dateLayout->addWidget ( notModifiedAfterEnabled, 1, 0, 1, 2  );
 
-	notModifiedAfterData = new QLineEdit ( dateGroup, "notModifiedAfterData" );
+	notModifiedAfterData = new QLineEdit ( dateGroup );
 	notModifiedAfterData->setEnabled ( false );
 	notModifiedAfterData->setText ( "" );
 	dateLayout->addWidget ( notModifiedAfterData, 1, 2, 1, 2 );
 
-	notModifiedAfterBtn = new QToolButton ( dateGroup, "notModifiedAfterBtn" );
+	notModifiedAfterBtn = new QToolButton ( dateGroup );
 	notModifiedAfterBtn->setEnabled ( false );
 	notModifiedAfterBtn->setText ( "" );
 	notModifiedAfterBtn->setPixmap ( iconDate );
 	dateLayout->addWidget ( notModifiedAfterBtn, 1, 4 );
 
-	modifiedInTheLastEnabled = new QRadioButton ( dateGroup, "modifiedInTheLastEnabled" );
+	modifiedInTheLastEnabled = new QRadioButton ( dateGroup );
 	modifiedInTheLastEnabled->setText ( i18n ( "Mod&ified in the last" ) );
 	dateGroup->insert ( modifiedInTheLastEnabled, 0 );
 	dateLayout->addWidget ( modifiedInTheLastEnabled, 2, 0 );
 
-	modifiedInTheLastData = new QLineEdit ( dateGroup, "modifiedInTheLastData" );
+	modifiedInTheLastData = new QLineEdit ( dateGroup );
 	modifiedInTheLastData->setEnabled ( false );
 	modifiedInTheLastData->setText ( "" );
 	dateLayout->addWidget ( modifiedInTheLastData, 2, 2 );
 
-	modifiedInTheLastType = new QComboBox ( false, dateGroup, "modifiedInTheLastType" );
+	modifiedInTheLastType = new QComboBox ( false, dateGroup );
 	modifiedInTheLastType->insertItem ( i18n ( "days" ) );
 	modifiedInTheLastType->insertItem ( i18n ( "weeks" ) );
 	modifiedInTheLastType->insertItem ( i18n ( "months" ) );
@@ -193,17 +191,17 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	modifiedInTheLastType->setEnabled ( false );
 	dateLayout->addWidget ( modifiedInTheLastType, 2, 3, 1, 2 );
 
-	notModifiedInTheLastData = new QLineEdit ( dateGroup, "notModifiedInTheLastData" );
+	notModifiedInTheLastData = new QLineEdit ( dateGroup );
 	notModifiedInTheLastData->setEnabled ( false );
 	notModifiedInTheLastData->setText ( "" );
 	dateLayout->addWidget ( notModifiedInTheLastData, 3, 2 );
 
-	QLabel *notModifiedInTheLastLbl = new QLabel ( dateGroup, "notModifiedInTheLastLbl" );
+	QLabel *notModifiedInTheLastLbl = new QLabel ( dateGroup );
 	notModifiedInTheLastLbl->setText ( i18n ( "No&t modified in the last" ) );
 	notModifiedInTheLastLbl->setBuddy ( notModifiedInTheLastData );
 	dateLayout->addWidget ( notModifiedInTheLastLbl, 3, 0 );
 
-	notModifiedInTheLastType = new QComboBox ( false, dateGroup, "notModifiedInTheLastType" );
+	notModifiedInTheLastType = new QComboBox ( false, dateGroup );
 	notModifiedInTheLastType->insertItem ( i18n ( "days" ) );
 	notModifiedInTheLastType->insertItem ( i18n ( "weeks" ) );
 	notModifiedInTheLastType->insertItem ( i18n ( "months" ) );
@@ -215,7 +213,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 
 	// Options for ownership
 
-	Q3GroupBox *ownershipGroup = new Q3GroupBox ( this, "ownershipGroup" );
+	Q3GroupBox *ownershipGroup = new Q3GroupBox ( this );
 	ownershipGroup->setTitle ( i18n ( "Ownership" ) );
 	ownershipGroup->setColumnLayout ( 0, Qt::Vertical );
 	ownershipGroup->layout()->setSpacing ( 0 );
@@ -229,36 +227,36 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	hboxLayout->setSpacing ( 6 );
 	hboxLayout->setContentsMargins ( 0, 0, 0, 0 );
 
-	belongsToUserEnabled = new QCheckBox ( ownershipGroup, "belongsToUserEnabled" );
+	belongsToUserEnabled = new QCheckBox ( ownershipGroup );
 	belongsToUserEnabled->setText ( i18n ( "Belongs to &user" ) );
 	hboxLayout->addWidget ( belongsToUserEnabled );
 
-	belongsToUserData = new QComboBox ( false, ownershipGroup, "belongsToUserData" );
+	belongsToUserData = new QComboBox ( false, ownershipGroup );
 	belongsToUserData->setEnabled ( false );
 	belongsToUserData->setEditable ( false );
 	hboxLayout->addWidget ( belongsToUserData );
 
-	belongsToGroupEnabled = new QCheckBox ( ownershipGroup, "belongsToGroupEnabled" );
+	belongsToGroupEnabled = new QCheckBox ( ownershipGroup );
 	belongsToGroupEnabled->setText ( i18n ( "Belongs to gr&oup" ) );
 	hboxLayout->addWidget ( belongsToGroupEnabled );
 
-	belongsToGroupData = new QComboBox ( false, ownershipGroup, "belongsToGroupData" );
+	belongsToGroupData = new QComboBox ( false, ownershipGroup );
 	belongsToGroupData->setEnabled ( false );
 	belongsToGroupData->setEditable ( false );
 	hboxLayout->addWidget ( belongsToGroupData );
 
 	ownershipLayout->addLayout ( hboxLayout, 0, 0, 1, 4 );
 
-	permissionsEnabled = new QCheckBox ( ownershipGroup, "permissionsEnabled" );
+	permissionsEnabled = new QCheckBox ( ownershipGroup );
 	permissionsEnabled->setText ( i18n ( "P&ermissions" ) );
 	ownershipLayout->addWidget ( permissionsEnabled, 1, 0 );
 
-	Q3GroupBox *ownerGroup = new Q3GroupBox ( ownershipGroup, "ownerGroup" );
+	Q3GroupBox *ownerGroup = new Q3GroupBox ( ownershipGroup );
 	QHBoxLayout *ownerHBox = new QHBoxLayout( ownerGroup );
 	ownerGroup->setTitle ( i18n ( "O&wner" ) );
 	int width = 2*height + height / 2;
 
-	ownerR = new QComboBox ( false, ownerGroup, "ownerR" );
+	ownerR = new QComboBox ( false, ownerGroup );
 	ownerR->insertItem ( i18n ( "?" ) );
 	ownerR->insertItem ( i18n ( "r" ) );
 	ownerR->insertItem ( i18n ( "-" ) );
@@ -266,7 +264,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	ownerR->setGeometry ( QRect ( 10, 20, width, height+6 ) );
 	ownerHBox->addWidget( ownerR );
 
-	ownerW = new QComboBox ( false, ownerGroup, "ownerW" );
+	ownerW = new QComboBox ( false, ownerGroup );
 	ownerW->insertItem ( i18n ( "?" ) );
 	ownerW->insertItem ( i18n ( "w" ) );
 	ownerW->insertItem ( i18n ( "-" ) );
@@ -274,7 +272,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	ownerW->setGeometry ( QRect ( 10 + width, 20, width, height+6 ) );
 	ownerHBox->addWidget( ownerW );
 
-	ownerX = new QComboBox ( false, ownerGroup, "ownerX" );
+	ownerX = new QComboBox ( false, ownerGroup );
 	ownerX->insertItem ( i18n ( "?" ) );
 	ownerX->insertItem ( i18n ( "x" ) );
 	ownerX->insertItem ( i18n ( "-" ) );
@@ -284,11 +282,11 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 
 	ownershipLayout->addWidget ( ownerGroup, 1, 1 );
 
-	Q3GroupBox *groupGroup = new Q3GroupBox ( ownershipGroup, "groupGroup" );
+	Q3GroupBox *groupGroup = new Q3GroupBox ( ownershipGroup );
 	QHBoxLayout *groupHBox = new QHBoxLayout( groupGroup );
 	groupGroup->setTitle ( i18n ( "Grou&p" ) );
 
-	groupR = new QComboBox ( false, groupGroup, "groupR" );
+	groupR = new QComboBox ( false, groupGroup );
 	groupR->insertItem ( i18n ( "?" ) );
 	groupR->insertItem ( i18n ( "r" ) );
 	groupR->insertItem ( i18n ( "-" ) );
@@ -296,7 +294,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	groupR->setGeometry ( QRect ( 10, 20, width, height+6 ) );
 	groupHBox->addWidget( groupR );
 
-	groupW = new QComboBox ( false, groupGroup, "groupW" );
+	groupW = new QComboBox ( false, groupGroup );
 	groupW->insertItem ( i18n ( "?" ) );
 	groupW->insertItem ( i18n ( "w" ) );
 	groupW->insertItem ( i18n ( "-" ) );
@@ -304,7 +302,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	groupW->setGeometry ( QRect ( 10 + width, 20, width, height+6 ) );
 	groupHBox->addWidget( groupW );
 
-	groupX = new QComboBox ( false, groupGroup, "groupX" );
+	groupX = new QComboBox ( false, groupGroup );
 	groupX->insertItem ( i18n ( "?" ) );
 	groupX->insertItem ( i18n ( "x" ) );
 	groupX->insertItem ( i18n ( "-" ) );
@@ -314,11 +312,11 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 
 	ownershipLayout->addWidget ( groupGroup, 1, 2 );
 
-	Q3GroupBox *allGroup = new Q3GroupBox ( ownershipGroup, "allGroup" );
+	Q3GroupBox *allGroup = new Q3GroupBox ( ownershipGroup );
 	QHBoxLayout *allHBox = new QHBoxLayout( allGroup );
 	allGroup->setTitle ( i18n ( "A&ll" ) );
 
-	allR = new QComboBox ( false, allGroup, "allR" );
+	allR = new QComboBox ( false, allGroup );
 	allR->insertItem ( i18n ( "?" ) );
 	allR->insertItem ( i18n ( "r" ) );
 	allR->insertItem ( i18n ( "-" ) );
@@ -326,7 +324,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	allR->setGeometry ( QRect ( 10, 20, width, height+6 ) );
 	allHBox->addWidget( allR );
 
-	allW = new QComboBox ( false, allGroup, "allW" );
+	allW = new QComboBox ( false, allGroup );
 	allW->insertItem ( i18n ( "?" ) );
 	allW->insertItem ( i18n ( "w" ) );
 	allW->insertItem ( i18n ( "-" ) );
@@ -334,7 +332,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	allW->setGeometry ( QRect ( 10 + width, 20, width, height+6 ) );
 	allHBox->addWidget( allW );
 
-	allX = new QComboBox ( false, allGroup, "allX" );
+	allX = new QComboBox ( false, allGroup );
 	allX->insertItem ( i18n ( "?" ) );
 	allX->insertItem ( i18n ( "x" ) );
 	allX->insertItem ( i18n ( "-" ) );
@@ -344,7 +342,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 
 	ownershipLayout->addWidget ( allGroup, 1, 3 );
 
-	QLabel *infoLabel = new QLabel ( ownershipGroup, "TextLabel4" );
+	QLabel *infoLabel = new QLabel ( ownershipGroup );
 	QFont infoLabel_font ( infoLabel->font() );
 	infoLabel_font.setFamily ( "adobe-helvetica" );
 	infoLabel_font.setItalic ( true );

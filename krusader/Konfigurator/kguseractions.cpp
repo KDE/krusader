@@ -54,7 +54,7 @@ KgUserActions::KgUserActions( bool first, QWidget* parent ) :
    QLabel *labelInfo = new QLabel( i18n(
    		"Here you can configure settings about useractions.\n"
    		"To set up, configure and manage your useractions please use ActionMan."
-   		), InfoGroup, "InformationLabel" );
+   		), InfoGroup );
    InfoGrid->addWidget( labelInfo, 0, 0 );
    KPushButton *actionmanButton = new KPushButton( i18n("Start ActionMan"), InfoGroup );
    connect( actionmanButton, SIGNAL( clicked() ), SLOT( startActionMan() ) );
@@ -68,7 +68,7 @@ KgUserActions::KgUserActions( bool first, QWidget* parent ) :
 
    // terminal for the UserActions
    QLabel *labelTerminal = new QLabel( i18n( "Terminal for UserActions:" ),
-   		terminalGroup, "TerminalLabel" );
+   		terminalGroup );
    terminalGrid->addWidget( labelTerminal, 0, 0 );
    KonfiguratorURLRequester *urlReqUserActions = createURLRequester( "UserActions",
    		"Terminal", _UserActions_Terminal, terminalGroup, false );

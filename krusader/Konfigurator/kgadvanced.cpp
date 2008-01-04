@@ -111,7 +111,7 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent ) :
   QGridLayout *fineTuneGrid = createGridLayout( fineTuneGrp->layout() );
   fineTuneGrid->setAlignment( Qt::AlignLeft | Qt::AlignTop );
   
-  QLabel *label = new QLabel( i18n( "Icon cache size (KB):" ), fineTuneGrp, "iconCacheLabel" );
+  QLabel *label = new QLabel( i18n( "Icon cache size (KB):" ), fineTuneGrp );
   Q3WhatsThis::add( label, i18n( "The icon cache size influences how fast the contents of a panel can be displayed. However, too large a cache might consume your memory." ) );
   fineTuneGrid->addWidget( label, 0, 0 );
   KonfiguratorSpinBox *spinBox = createSpinBox( "Advanced", "Icon Cache Size", _IconCacheSize,

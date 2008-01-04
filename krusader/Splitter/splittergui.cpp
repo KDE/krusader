@@ -87,7 +87,7 @@ SplitterGUI::SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir ) :
   spacer->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum );
   splitSizeLineLayout->addWidget( spacer );
 
-  QLabel *bytesPerFile = new QLabel( splitSizeLine, "BytesPerFile" );
+  QLabel *bytesPerFile = new QLabel( splitSizeLine );
   bytesPerFile->setText( i18n( "Max file size:"  ) );
   splitSizeLineLayout->addWidget( bytesPerFile );
 

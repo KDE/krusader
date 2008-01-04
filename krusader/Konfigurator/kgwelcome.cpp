@@ -44,7 +44,7 @@ KgWelcome::KgWelcome( bool first, QWidget* parent ) :
   QString pix=KGlobal::dirs()->findResource("appdata","konfig_small.jpg");
   QPixmap image0( pix );
   
-  QLabel *pixmapLabel = new QLabel( parent, "pixmapLabel" );
+  QLabel *pixmapLabel = new QLabel( parent );
   pixmapLabel->setPixmap( image0 );
   pixmapLabel->setScaledContents( TRUE );
 

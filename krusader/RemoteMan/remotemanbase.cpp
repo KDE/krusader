@@ -53,11 +53,11 @@ remoteManBase::remoteManBase( QWidget* parent, bool modal, Qt::WFlags fl )
     Layout23->setSpacing( 6 );
     Layout23->setContentsMargins( 0, 0, 0, 0 );
 
-    TextLabel1 = new QLabel( this, "TextLabel1" );
+    TextLabel1 = new QLabel( this );
     TextLabel1->setText( i18n( "Session name:" ) );
     Layout23->addWidget( TextLabel1 );
 
-    sessionName = new QLineEdit( this, "sessionName" );
+    sessionName = new QLineEdit( this );
     Layout23->addWidget( sessionName );
 
     remoteManBaseLayout->addLayout( Layout23, 0, 1 );
@@ -68,13 +68,13 @@ remoteManBase::remoteManBase( QWidget* parent, bool modal, Qt::WFlags fl )
     QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     Layout12->addItem( spacer );
 
-    moreBtn = new QPushButton( this, "moreBtn" );
+    moreBtn = new QPushButton( this );
     moreBtn->setText( i18n( "&More" ) );
     moreBtn->setAutoDefault( FALSE );
     moreBtn->setDefault( FALSE );
     Layout12->addWidget( moreBtn );
 
-    closeBtn = new QPushButton( this, "closeBtn" );
+    closeBtn = new QPushButton( this );
     closeBtn->setText( i18n( "&Close" ) );
     closeBtn->setAutoDefault( FALSE );
     closeBtn->setDefault( FALSE );
@@ -82,7 +82,7 @@ remoteManBase::remoteManBase( QWidget* parent, bool modal, Qt::WFlags fl )
 
     remoteManBaseLayout->addLayout( Layout12, 7, 0, 1, 2 );
 
-    sessions = new Q3ListView( this, "sessions" );
+    sessions = new Q3ListView( this );
     sessions->addColumn( i18n( "Sessions" ) );
     sessions->header()->setClickEnabled( FALSE, sessions->header()->count() - 1 );
     sessions->header()->setResizeEnabled( FALSE, sessions->header()->count() - 1 );
@@ -101,26 +101,26 @@ remoteManBase::remoteManBase( QWidget* parent, bool modal, Qt::WFlags fl )
     Layout10->setSpacing( 6 );
     Layout10->setContentsMargins( 0, 0, 0, 0 );
 
-    TextLabel1_3_3 = new QLabel( this, "TextLabel1_3_3" );
+    TextLabel1_3_3 = new QLabel( this );
     TextLabel1_3_3->setText( i18n( "Password:" ) );
 
     Layout10->addWidget( TextLabel1_3_3, 0, 1 );
 
-    password = new QLineEdit( this, "password" );
+    password = new QLineEdit( this );
 
     Layout10->addWidget( password, 1, 1 );
 
-    TextLabel1_3 = new QLabel( this, "TextLabel1_3" );
+    TextLabel1_3 = new QLabel( this );
     TextLabel1_3->setText( i18n( "User name:" ) );
 
     Layout10->addWidget( TextLabel1_3, 0, 0 );
 
-    userName = new QLineEdit( this, "userName" );
+    userName = new QLineEdit( this );
 
     Layout10->addWidget( userName, 1, 0 );
     Layout9->addLayout( Layout10 );
 
-    anonymous = new QCheckBox( this, "anonymous" );
+    anonymous = new QCheckBox( this );
     anonymous->setText( i18n( "Anonymous" ) );
     Layout9->addWidget( anonymous );
 
@@ -130,11 +130,11 @@ remoteManBase::remoteManBase( QWidget* parent, bool modal, Qt::WFlags fl )
     Layout26->setSpacing( 6 );
     Layout26->setContentsMargins( 0, 0, 0, 0 );
 
-    TextLabel1_3_2 = new QLabel( this, "TextLabel1_3_2" );
+    TextLabel1_3_2 = new QLabel( this );
     TextLabel1_3_2->setText( i18n( "Remote directory:" ) );
     Layout26->addWidget( TextLabel1_3_2 );
 
-    remoteDir = new QLineEdit( this, "remoteDir" );
+    remoteDir = new QLineEdit( this );
     Layout26->addWidget( remoteDir );
 
     remoteManBaseLayout->addLayout( Layout26, 4, 1 );
@@ -143,11 +143,11 @@ remoteManBase::remoteManBase( QWidget* parent, bool modal, Qt::WFlags fl )
     Layout27->setSpacing( 6 );
     Layout27->setContentsMargins( 0, 0, 0, 0 );
 
-    TextLabel1_3_2_2 = new QLabel( this, "TextLabel1_3_2_2" );
+    TextLabel1_3_2_2 = new QLabel( this );
     TextLabel1_3_2_2->setText( i18n( "Description:" ) );
     Layout27->addWidget( TextLabel1_3_2_2 );
 
-    description = new Q3MultiLineEdit( this, "description" );
+    description = new Q3MultiLineEdit( this );
     Layout27->addWidget( description );
 
     remoteManBaseLayout->addLayout( Layout27, 5, 1 );
@@ -156,21 +156,21 @@ remoteManBase::remoteManBase( QWidget* parent, bool modal, Qt::WFlags fl )
     layout->setSpacing( 6 );
     layout->setContentsMargins( 0, 0, 0, 0 );
 
-    removeBtn = new QPushButton( this, "removeBtn" );
+    removeBtn = new QPushButton( this );
     removeBtn->setText( i18n( "&Remove" ) );
     removeBtn->setAutoDefault( FALSE );
     removeBtn->setDefault( FALSE );
 
     layout->addWidget( removeBtn, 0, 2 );
 
-    connectBtn = new QPushButton( this, "connectBtn" );
+    connectBtn = new QPushButton( this );
     connectBtn->setText( i18n( "Co&nnect" ) );
     connectBtn->setAutoDefault( FALSE );
     connectBtn->setDefault( FALSE );
 
     layout->addWidget( connectBtn, 1, 0, 1, 3 );
 
-    newGroupBtn = new QPushButton( this, "newGroupBtn" );
+    newGroupBtn = new QPushButton( this );
     newGroupBtn->setEnabled( TRUE );
     newGroupBtn->setText( i18n( "New &Group" ) );
     newGroupBtn->setAutoDefault( FALSE );
@@ -179,7 +179,7 @@ remoteManBase::remoteManBase( QWidget* parent, bool modal, Qt::WFlags fl )
 
     layout->addWidget( newGroupBtn, 0, 0 );
 
-    addBtn = new QPushButton( this, "addBtn" );
+    addBtn = new QPushButton( this );
     addBtn->setEnabled( TRUE );
     addBtn->setText( i18n( "New Connec&tion" ) );
     addBtn->setAutoDefault( FALSE );
@@ -194,14 +194,14 @@ remoteManBase::remoteManBase( QWidget* parent, bool modal, Qt::WFlags fl )
     Layout11->setSpacing( 6 );
     Layout11->setContentsMargins( 0, 0, 0, 0 );
 
-    TextLabel1_2 = new QLabel( this, "TextLabel1_2" );
+    TextLabel1_2 = new QLabel( this );
     TextLabel1_2->setText( i18n( "Host:" ) );
 
     Layout11->addWidget( TextLabel1_2, 0, 0, 1, 2 );
 
     QStringList protocols = KProtocolInfo::protocols();
 
-    protocol = new QComboBox( FALSE, this, "protocol" );
+    protocol = new QComboBox( FALSE, this );
     if( protocols.contains("ftp") )
       protocol->insertItem( i18n( "ftp://" ) );
     if( protocols.contains("smb") )
@@ -214,26 +214,26 @@ remoteManBase::remoteManBase( QWidget* parent, bool modal, Qt::WFlags fl )
 
     Layout11->addWidget( protocol, 1, 0 );
 
-    hostName = new QLineEdit( this, "hostName" );
+    hostName = new QLineEdit( this );
     hostName->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)7, (QSizePolicy::SizeType)0, hostName->sizePolicy().hasHeightForWidth() ) );
     hostName->setMinimumSize( QSize( 0, 0 ) );
 
     Layout11->addWidget( hostName, 1, 1 );
 
-    portNum = new QSpinBox( this, "portNum" );
+    portNum = new QSpinBox( this );
     portNum->setMaxValue( 99999 );
     portNum->setValue( 21 );
 
     Layout11->addWidget( portNum, 1, 2 );
 
-    TextLabel1_2_2 = new QLabel( this, "TextLabel1_2_2" );
+    TextLabel1_2_2 = new QLabel( this );
     TextLabel1_2_2->setText( i18n( "Port:   " ) );
 
     Layout11->addWidget( TextLabel1_2_2, 0, 2 );
 
     remoteManBaseLayout->addLayout( Layout11, 1, 1 );
 
-    TextLabel1_4 = new QLabel( this, "TextLabel1_4" );
+    TextLabel1_4 = new QLabel( this );
     QFont TextLabel1_4_font(  TextLabel1_4->font() );
     TextLabel1_4_font.setPointSize( 10 );
     TextLabel1_4->setFont( TextLabel1_4_font );

@@ -75,13 +75,13 @@ if( first )
   generalGrid->addWidget( line1, 2, 0, 1, 2 );
 
   // editor
-  QLabel *label1 = new QLabel( i18n( "Editor:" ), generalGrp, "EditorLabel" );
+  QLabel *label1 = new QLabel( i18n( "Editor:" ), generalGrp );
   generalGrid->addWidget( label1, 3, 0 );
   KonfiguratorURLRequester *urlReq = createURLRequester( "General", "Editor", "internal editor",
                                       generalGrp, false );
   generalGrid->addWidget( urlReq, 3, 1 );
 
-  QLabel *label2 = new QLabel( i18n( "Hint: use 'internal editor' if you want to use Krusader's fast built-in editor" ), generalGrp, "EditorLabel" );
+  QLabel *label2 = new QLabel( i18n( "Hint: use 'internal editor' if you want to use Krusader's fast built-in editor" ), generalGrp );
   generalGrid->addWidget( label2, 4, 0, 1, 2 );
 
   QFrame *line2 = createLine( generalGrp );
@@ -162,7 +162,7 @@ if( first )
   generalGrid->addWidget( line3, 9, 0, 1, 2 );
 
 	// terminal
-  QLabel *label3 = new QLabel( i18n( "Terminal:" ), generalGrp, "TerminalLabel" );
+  QLabel *label3 = new QLabel( i18n( "Terminal:" ), generalGrp );
   generalGrid->addWidget( label3, 10, 0 );
   KonfiguratorURLRequester *urlReq2 = createURLRequester( "General", "Terminal", "konsole",
                                       generalGrp, false );
@@ -180,7 +180,7 @@ if( first )
   QWidget *hboxWidget = new QWidget( generalGrp );
   QHBoxLayout * hbox = new QHBoxLayout( hboxWidget );
 
-  hbox->addWidget( new QLabel( i18n( "Temp Directory:" ), hboxWidget, "TempDirectory" ) );
+  hbox->addWidget( new QLabel( i18n( "Temp Directory:" ), hboxWidget ) );
   KonfiguratorURLRequester *urlReq3 = createURLRequester( "General", "Temp Directory", "/tmp/krusader.tmp",
                                       hboxWidget, false );
   urlReq3->setMode( KFile::Directory );

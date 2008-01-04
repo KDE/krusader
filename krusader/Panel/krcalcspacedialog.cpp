@@ -109,7 +109,7 @@ KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, ListPanel * files, const Q
 	topLayout->setContentsMargins( 0, 0, 0, 0 );
 	topLayout->setSpacing( spacingHint() );
 
-	m_label = new QLabel( "", mainWidget, "caption" );
+	m_label = new QLabel( "", mainWidget );
 	showResult(); // fill m_label with something usefull
 	topLayout->addWidget( m_label );
 	topLayout->addStretch(10);

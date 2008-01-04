@@ -167,10 +167,10 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy( const QString& urlName, const 
 		topLayout->addWidget( copyDirStructureCB );
 		QWidget *hboxWidget = new QWidget( widget );
 		QHBoxLayout * hbox = new QHBoxLayout( hboxWidget );
-		QLabel * lbl = new QLabel( i18n("Base URL:"),  hboxWidget, "baseURLLabel" );
+		QLabel * lbl = new QLabel( i18n("Base URL:"),  hboxWidget );
 		hbox->addWidget( lbl );
 		
-		baseUrlCombo = new QComboBox( hboxWidget, "baseUrlRequester" );
+		baseUrlCombo = new QComboBox( hboxWidget );
 		baseUrlCombo->setMinimumWidth( baseUrlCombo->sizeHint().width() * 3 );
 		baseUrlCombo->setEnabled( copyDirStructureCB->isChecked() );
 		hbox->addWidget( baseUrlCombo );

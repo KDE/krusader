@@ -64,33 +64,33 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,
 
   lbRightToLeft = new QLabel( "\t" + i18np( "Ready: %2/1 file, %3/%4", "Ready: %2/%1 files, %3/%4", leftCopyNr, 0,
                              0, KRpermHandler::parseSize( leftCopySize ).trimmed() ),
-                             this, "lbRightToLeft" );
+                             this );
   lbRightToLeft->setEnabled( leftCopyNr != 0 );
   layout->addWidget( lbRightToLeft );
 
   cbLeftToRight = new QCheckBox( i18np( "Left to right: Copy 1 file", "Left to right: Copy %1 files", rightCopyNr) + " " +
                                  i18np( "(1 byte)", "(%1 bytes)", KRpermHandler::parseSize( rightCopySize ).trimmed().toInt() ),
-                                 this, "cbLeftToRight" );
+                                 this );
   cbLeftToRight->setChecked( rightCopyNr != 0 );
   cbLeftToRight->setEnabled( rightCopyNr != 0 );
   layout->addWidget( cbLeftToRight );
 
   lbLeftToRight = new QLabel( "\t" + i18np( "Ready: %2/1 file, %3/%4", "Ready: %2/%1 files, %3/%4", rightCopyNr, 0,
                              0, KRpermHandler::parseSize( rightCopySize ).trimmed() ),
-                             this, "lbLeftToRight" );
+                             this );
   lbLeftToRight->setEnabled( rightCopyNr != 0 );
   layout->addWidget( lbLeftToRight );
 
   cbDeletable = new QCheckBox( i18np( "Left: Delete 1 file", "Left: Delete %1 files", deleteNr) + " " +
                                i18np( "(1 byte)", "(%1 bytes)", KRpermHandler::parseSize( deleteSize ).trimmed().toInt() ),
-                               this, "cbDeletable" );
+                               this );
   cbDeletable->setChecked( deleteNr != 0 );
   cbDeletable->setEnabled( deleteNr != 0 );
   layout->addWidget( cbDeletable );
 
   lbDeletable   = new QLabel( "\t" + i18np( "Ready: %2/1 file, %3/%4", "Ready: %2/%1 files, %3/%4", deleteNr, 0,
                              0, KRpermHandler::parseSize( deleteSize ).trimmed() ),
-                             this, "lbDeletable" );
+                             this );
   lbDeletable->setEnabled( deleteNr != 0 );
   layout->addWidget( lbDeletable );
 
