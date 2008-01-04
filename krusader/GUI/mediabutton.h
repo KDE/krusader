@@ -47,7 +47,7 @@
   *@author Csaba Karai
   */
 
-class Q3PopupMenu;
+class QMenu;
 class KMountPoint;
 
 class MediaButton : public QToolButton  {
@@ -62,7 +62,7 @@ public slots:
   void slotAboutToShow();
   void slotAboutToHide();
   void slotTimeout();
-  void slotPopupActivated( int );
+  void slotPopupActivated( QAction * );
   void gettingSpaceData(const QString &mountPoint, unsigned long kBSize, unsigned long kBUsed, unsigned long kBAvail);
   void openPopup();
   void slotEntries( KIO::Job*, const KIO::UDSEntryList& );
@@ -87,8 +87,8 @@ private:
 
   void addMountPoint( KMountPoint *mp, bool isMounted );
 
-  Q3PopupMenu *popupMenu;
-  Q3PopupMenu *rightMenu;
+  QMenu *popupMenu;
+  QMenu *rightMenu;
 
   bool        hasMedia;
   bool        busy;

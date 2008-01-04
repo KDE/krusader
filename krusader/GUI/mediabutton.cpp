@@ -87,15 +87,15 @@ MediaButton::MediaButton( QWidget *parent ) : QToolButton( parent ),
 	setPopupDelay( 1 ); // immediate press
 	setAcceptDrops( false );
 
-	popupMenu = new Q3PopupMenu( this );
+	popupMenu = new QMenu( this );
 	popupMenu->installEventFilter( this );
 	Q_CHECK_PTR( popupMenu );
 
-	setPopup( popupMenu );
+	setMenu( popupMenu );
 
 	connect( popupMenu, SIGNAL( aboutToShow() ), this, SLOT( slotAboutToShow() ) );
 	connect( popupMenu, SIGNAL( aboutToHide() ), this, SLOT( slotAboutToHide() ) );
-	connect( popupMenu, SIGNAL( activated( int ) ), this, SLOT( slotPopupActivated( int ) ) );
+	connect( popupMenu, SIGNAL( triggered( QAction * ) ), this, SLOT( slotPopupActivated( QAction * ) ) );
 
 	connect( &mountCheckerTimer, SIGNAL( timeout() ), this, SLOT( slotTimeout() ) );
 }
@@ -355,16 +355,20 @@ QString MediaButton::detectType( KMountPoint *mp )
 	return typeName;
 }
 
-void MediaButton::slotPopupActivated( int elem ) {
-	if( !quasiMounted[ elem ] && mimes[ elem ].endsWith( "_unmounted" ) ) {
-		mount( elem );
-		waitingForMount = elem;
-		maxMountWait = 20;
-		newTabAfterMount = false;
-		mountCheckerTimer.start( 1000, true );
-		return;
+void MediaButton::slotPopupActivated( QAction * action ) {
+	if( action && action->data().canConvert<int>() )
+	{
+		int elem = action->data().toInt();
+		if( !quasiMounted[ elem ] && mimes[ elem ].endsWith( "_unmounted" ) ) {
+			mount( elem );
+			waitingForMount = elem;
+			maxMountWait = 20;
+			newTabAfterMount = false;
+			mountCheckerTimer.start( 1000, true );
+			return;
+		}
+		emit openUrl( urls[ elem ] );
 	}
-	emit openUrl( urls[ elem ] );
 }
 
 void MediaButton::gettingSpaceData(const QString &mountPoint, unsigned long kBSize, unsigned long, unsigned long ) {
@@ -387,7 +391,7 @@ void MediaButton::gettingSpaceData(const QString &mountPoint, unsigned long kBSi
 				idActionMap[ i ]->setIcon( pixmap );
 			}
 			else if( mimes[ i ].contains( "hdd_" ) )
-				idActionMap[ i ]->setText( sizeText + " " + popupMenu->text( i ).trimmed() );
+				idActionMap[ i ]->setText( sizeText + " " + idActionMap[ i ]->text().trimmed() );
 			return;
 		}
 	}
@@ -523,17 +527,31 @@ void MediaButton::rightClickMenu( int index ) {
 	bool ejectable = mime.contains( "dvd_" ) || mime.contains( "dvdwriter_" ) || mime.contains( "cdrom_" ) || mime.contains( "cdwriter_" );
 	bool mounted = mime.contains( "_mounted" );
 	
-	Q3PopupMenu * myMenu = rightMenu = new Q3PopupMenu( popupMenu );
-	myMenu->insertItem( i18n( "Open" ), 1 );
-	myMenu->insertItem( i18n( "Open in a new tab" ), 2 );
-	myMenu->insertSeparator();
-	if( !mounted )
-		myMenu->insertItem( i18n( "Mount" ), 3 );
-	else
-		myMenu->insertItem( i18n( "Unmount" ), 4 );
-	if( ejectable )
-		myMenu->insertItem( i18n( "Eject" ), 5 );
-	int result = myMenu->exec( QCursor::pos() );
+	QMenu * myMenu = rightMenu = new QMenu( popupMenu );
+	QAction * actOpen = myMenu->addAction( i18n( "Open" ) );
+	actOpen->setData( QVariant( 1 ) );
+	QAction * actOpenNewTab = myMenu->addAction( i18n( "Open in a new tab" ) );
+	actOpenNewTab->setData( QVariant( 2 ) );
+
+	myMenu->addSeparator();
+	if( !mounted ) {
+		QAction * actMount = myMenu->addAction( i18n( "Mount" ) );
+		actMount->setData( QVariant( 3 ) );
+	} else {
+		QAction * actUnmount = myMenu->addAction( i18n( "Unmount" ) );
+		actUnmount->setData( QVariant( 4 ) );
+	}
+	if( ejectable ) {
+		QAction * actEject = myMenu->addAction( i18n( "Eject" ) );
+		actEject->setData( QVariant( 5 ) );
+	}
+
+	QAction *act = myMenu->exec( QCursor::pos() );
+
+	int result = -1;
+	if( act != 0 && act->data().canConvert<int>() )
+		result = act->data().toInt();
+
 	delete myMenu;
 	if( rightMenu == myMenu )
 		rightMenu = 0;
@@ -619,7 +637,7 @@ void MediaButton::slotTimeout() {
 	for( int index = 0; index < urls.count(); index++ ) {
 		bool mounted = false;
 		
-		QString text = popupMenu->text( index );
+		QString text = idActionMap[ index ]->text();
 		
 		if( mediaUrls[ index ].isEmpty() ) {
 			for (KMountPoint::List::iterator it = mountList.begin(); it != mountList.end(); ++it)
