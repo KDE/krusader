@@ -39,7 +39,7 @@
 #include <q3header.h>
 #include <qtabwidget.h>
 //Added by qt3to4:
-#include <Q3ValueList>
+#include <QList>
 #include <QLabel>
 #include <QGridLayout>
 
@@ -271,7 +271,7 @@ int KgColors::addColorSelector( QString cfgName, QString name, QColor dflt, QStr
 
 KonfiguratorColorChooser *KgColors::getColorSelector( QString name )
 {
-  Q3ValueList<QString>::iterator it;
+  QList<QString>::iterator it;
   int position = 0;
 
   for( it = itemNames.begin(); it != itemNames.end(); it++, position++ )
@@ -283,7 +283,7 @@ KonfiguratorColorChooser *KgColors::getColorSelector( QString name )
 
 QLabel *KgColors::getSelectorLabel( QString name )
 {
-  Q3ValueList<QString>::iterator it;
+  QList<QString>::iterator it;
   int position = 0;
 
   for( it = itemNames.begin(); it != itemNames.end(); it++, position++ )
@@ -436,8 +436,8 @@ void KgColors::generatePreview()
     KrColorSettings colorSettings;
 
     // copy over local settings to color settings instance, which does not affect the persisted krConfig settings
-    Q3ValueList<QString> names = KrColorSettings::getColorNames();
-    for ( Q3ValueList<QString>::Iterator it = names.begin(); it != names.end(); ++it )
+    QList<QString> names = KrColorSettings::getColorNames();
+    for ( QList<QString>::Iterator it = names.begin(); it != names.end(); ++it )
     {
         KonfiguratorColorChooser * chooser = getColorSelector( *it );
         if (!chooser)

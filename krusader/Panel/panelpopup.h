@@ -4,7 +4,6 @@
 #include <qwidget.h>
 #include <q3widgetstack.h>
 #include <qpixmap.h>
-#include <q3valuelist.h>
 //Added by qt3to4:
 #include <QDropEvent>
 #include <QLabel>

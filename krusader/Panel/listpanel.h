@@ -51,7 +51,7 @@
 #include <QDropEvent>
 #include <QShowEvent>
 #include <QGridLayout>
-#include <Q3ValueList>
+#include <QList>
 #include <QHideEvent>
 #include <QKeyEvent>
 #include <QEvent>
@@ -206,7 +206,7 @@ protected:
 	
 private:
    bool &_left;
-	Q3ValueList<int> popupSizes;
+   QList<int> popupSizes;
 };
 
 #endif

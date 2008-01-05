@@ -18,7 +18,6 @@
 #define PANELTABBAR_H
 
 #include <kurl.h>
-//#include <q3valuelist.h>
 //Added by qt3to4:
 //#include <QResizeEvent>
 //#include <QMouseEvent>

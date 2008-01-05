@@ -39,7 +39,7 @@
 #include <qradiobutton.h>
 #include <q3ptrlist.h>
 #include <q3listbox.h>
-#include <q3valuelist.h>
+#include <qlist.h>
 #include <q3valuevector.h>
 #include <q3buttongroup.h>
 #include <qlineedit.h>
@@ -195,8 +195,8 @@ public slots:
 
 protected:
   Q3PtrList<QRadioButton>  radioButtons;
-  Q3ValueList<QString>   radioValues;
-  Q3ValueList<QString>   radioNames;
+  QList<QString>   radioValues;
+  QList<QString>   radioNames;
 
   QString         defaultValue;
   Q3ButtonGroup    *buttonGroup;

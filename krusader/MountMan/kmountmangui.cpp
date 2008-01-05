@@ -41,7 +41,7 @@ A
 #include <qpixmap.h>
 //Added by qt3to4:
 #include <QGridLayout>
-#include <Q3ValueList>
+#include <QList>
 #include <kmenu.h>
 #include <qbitmap.h>
 #include <kmessagebox.h>
@@ -231,7 +231,7 @@ void KMountManGUI::addItemToMountList( Q3ListView *lst, fsData &fs ) {
 void KMountManGUI::updateList() {
    mountList->clear();
    // this handles the mounted ones
-	for ( Q3ValueList<fsData>::iterator it = fileSystems.begin(); it != fileSystems.end() ; ++it ) {
+	for ( QList<fsData>::iterator it = fileSystems.begin(); it != fileSystems.end() ; ++it ) {
 		if (krMtMan.invalidFilesystem((*it).type())) {
 			continue;
 		}
@@ -287,7 +287,7 @@ void KMountManGUI::changeActive( Q3ListViewItem *i ) {
 	if ( !i ) return ;
    fsData *system = 0;
 	
-	for (Q3ValueList<fsData>::Iterator it = fileSystems.begin(); it != fileSystems.end(); ++it) {
+	for (QList<fsData>::Iterator it = fileSystems.begin(); it != fileSystems.end(); ++it) {
 		// the only thing which is unique is the mount point
 		if ((*it).mntPoint() == i->text(2)) { // text(2) ? ugly ugly ugly
 			system = &(*it);
@@ -319,7 +319,7 @@ void KMountManGUI::clicked( Q3ListViewItem *item, const QPoint& pos, int /* col 
 	if ( !item ) return ;
 	
 	fsData *system = 0;
-   for (Q3ValueList<fsData>::Iterator it = fileSystems.begin(); it != fileSystems.end(); ++it) {
+   for (QList<fsData>::Iterator it = fileSystems.begin(); it != fileSystems.end(); ++it) {
 		// the only thing which is unique is the mount point
 		if ((*it).mntPoint() == item->text(2)) { // text(2) ? ugly ugly ugly
 			system = &(*it);

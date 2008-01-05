@@ -38,7 +38,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 //Added by qt3to4:
 #include <QHBoxLayout>
 #include <QKeyEvent>
-#include <Q3ValueList>
+#include <QList>
 #include <QPixmap>
 #include <QFrame>
 #include <QDropEvent>
@@ -110,7 +110,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <konqbookmarkmanager.h>
 #endif
 
-typedef Q3ValueList<KServiceOffer> OfferList;
+typedef QList<KServiceOffer> OfferList;
 
 /////////////////////////////////////////////////////
 // 					The list panel constructor       //
@@ -414,7 +414,7 @@ void ListPanel::togglePanelPopup() {
 		if (popupSizes.count() > 0) {
 			dynamic_cast<QSplitter*>(popup->parent())->setSizes(popupSizes);
 		} else { // on the first time, resize to 50%
-			Q3ValueList<int> lst;
+			QList<int> lst;
 			lst << height()/2 << height()/2;
 			dynamic_cast<QSplitter*>(popup->parent())->setSizes(lst);
 		}
@@ -429,7 +429,7 @@ void ListPanel::togglePanelPopup() {
 		popupBtn->setPixmap(krLoader->loadIcon("1uparrow", KIconLoader::Toolbar, 16));
 		QToolTip::add(  popupBtn, i18n( "Open the popup panel" ) );
 		
-		Q3ValueList<int> lst;
+		QList<int> lst;
 		lst << height() << 0;
 		dynamic_cast<QSplitter*>(popup->parent())->setSizes(lst);
 		if( ACTIVE_PANEL )

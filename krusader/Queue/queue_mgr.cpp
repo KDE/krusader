@@ -1,6 +1,6 @@
 #include "queue_mgr.h"
 //Added by qt3to4:
-#include <Q3ValueList>
+#include <QList>
 
 const QString QueueManager::defaultName="default";
 QMap<QString, Queue*> QueueManager::_queues;
@@ -26,7 +26,7 @@ Queue* QueueManager::queue(const QString& queueName)
 	return _queues[queueName];
 }
 
-Q3ValueList<QString> QueueManager::queues() const
+QList<QString> QueueManager::queues() const
 {
 	return _queues.keys();
 }

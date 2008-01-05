@@ -32,7 +32,7 @@
 #include <q3whatsthis.h> 
 //Added by qt3to4:
 #include <QGridLayout>
-#include <Q3ValueList>
+#include <QList>
 #include <QKeyEvent>
 #include <QEvent>
 #include <kstatusbar.h>
@@ -219,7 +219,7 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
       konsole_part->widget()->hide(); // hide the widget to prevent from resize
 
     terminal_dock->hide();
-    Q3ValueList<int> newSizes;
+    QList<int> newSizes;
     newSizes.push_back( vert_splitter->height() );
     newSizes.push_back( 0 );
     vert_splitter->setSizes( newSizes );

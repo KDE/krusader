@@ -35,7 +35,7 @@
 #include "vfs.h"
 #include <q3valuestack.h>
 //Added by qt3to4:
-#include <Q3ValueList>
+#include <QList>
 #include <k3process.h>
 #include <qfile.h>
 #include <q3progressdialog.h>
@@ -74,7 +74,7 @@ protected:
   QString arcFile;  // the archive file URL
   bool changed;     // true if repack changed the archive
   QList<arc_dir> dirList;
-  Q3ValueList<extFile> extFiles; // the name, time & size of files unpacked from this archive
+  QList<extFile> extFiles; // the name, time & size of files unpacked from this archive
 
   void processName(const QString& name,QStringList *urls,KIO::filesize_t *totalSize,unsigned long *totalFiles );
   bool getDirs();   // fill the dir list

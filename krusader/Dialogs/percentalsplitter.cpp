@@ -34,7 +34,7 @@
 #include <qapplication.h>
 //Added by qt3to4:
 #include <QLabel>
-#include <Q3ValueList>
+#include <QList>
 #include <QFrame>
 
 PercentalSplitter::PercentalSplitter( QWidget * parent ) : QSplitter( parent ), label( 0 ), opaqueOldPos( -1 ) {
@@ -45,7 +45,7 @@ PercentalSplitter::~PercentalSplitter() {
 }
   
 QString PercentalSplitter::toolTipString( int p ) {
-  Q3ValueList<int> values = sizes();  
+  QList<int> values = sizes();
   if( values.count() == 2 && ( values[ 0 ] + values[ 1 ]  != 0 ) ) {
     if( p < 0 )
       p = values[ 0 ];

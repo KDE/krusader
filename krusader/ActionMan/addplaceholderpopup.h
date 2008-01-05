@@ -17,7 +17,7 @@
 #include <kdialog.h>
 #include "../UserAction/expander.h"
 //Added by qt3to4:
-#include <Q3ValueList>
+#include <QList>
 
 class QString;
 class KLineEdit;
@@ -308,7 +308,7 @@ public:
    QString getParameter();
 
 private:
-   typedef Q3ValueList<ParameterBase*> ParameterList;
+   typedef QList<ParameterBase*> ParameterList;
    ParameterList _parameter;
    int _parameterCount;
 private slots:

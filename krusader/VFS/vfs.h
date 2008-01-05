@@ -32,7 +32,7 @@
 
 // QT includes
 #include <qstring.h>
-#include <q3valuelist.h>
+#include <qlist.h>
 #include <qobject.h>
 #include <q3dict.h>
 // KDE includes
@@ -86,7 +86,7 @@ public:
 	/// Return vfile* or 0 if not found
 	inline vfile* vfs_search(const QString& name){ return (*vfs_filesP)[name]; } 
 	/// Return an empty vfile* list if not found
-	Q3ValueList<vfile*> vfs_search(const KRQuery& filter);
+	QList<vfile*> vfs_search(const KRQuery& filter);
 	/// The total size of all the files in the VFS,
 	KIO::filesize_t vfs_totalSize();
 	/// The number of files in the VFS

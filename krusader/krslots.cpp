@@ -36,7 +36,7 @@
 #include <qpixmapcache.h>
 //Added by qt3to4:
 #include <QKeyEvent>
-#include <Q3ValueList>
+#include <QList>
 #include <QEvent>
 // KDE includes
 #include <ktoggleaction.h>
@@ -395,7 +395,7 @@ void KRslots::swapPanels(){
 }
 
 void KRslots::toggleSwapSides(){
-  Q3ValueList<int> lst = MAIN_VIEW->horiz_splitter->sizes();
+  QList<int> lst = MAIN_VIEW->horiz_splitter->sizes();
 
   MAIN_VIEW->horiz_splitter->moveToLast( MAIN_VIEW->leftMng );
 

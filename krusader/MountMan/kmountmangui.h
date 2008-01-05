@@ -40,7 +40,7 @@
 #include <QFrame>
 #include <qtimer.h>
 #include <kurl.h>
-#include <q3valuelist.h>
+#include <qlist.h>
 #include <kmountpoint.h>
 #include <qdatetime.h>
 #include "kmountman.h"
@@ -93,8 +93,8 @@ private:
    QDateTime lastMtab;
 	// used for the getSpace - gotSpace functions
 	KMountPoint::List possible, mounted;
-	Q3ValueList<fsData> fileSystems;
-	Q3ValueList<fsData> fileSystemsTemp;  // first collect to a temporary place
+	QList<fsData> fileSystems;
+	QList<fsData> fileSystemsTemp;  // first collect to a temporary place
 	int numOfMountPoints;
 };
 

@@ -35,7 +35,7 @@
 #include <q3dict.h>
 //Added by qt3to4:
 #include <QDropEvent>
-#include <Q3ValueList>
+#include <QList>
 #include "../krusader.h"
 #include "../VFS/vfile.h"
 #include "../VFS/vfs.h"
@@ -45,7 +45,7 @@
 
 class KrView;
 class KrViewItem;
-typedef Q3ValueList<KrViewItem*> KrViewItemList;
+typedef QList<KrViewItem*> KrViewItemList;
 
 // KrViewProperties
 // This class is an interface class between KrView and KrViewItem

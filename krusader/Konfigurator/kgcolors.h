@@ -33,7 +33,7 @@
 
 #include "konfiguratorpage.h"
 #include <q3ptrlist.h>
-#include <q3valuelist.h>
+#include <qlist.h>
 #include <q3listview.h>
 #include <q3widgetstack.h>
 //Added by qt3to4:
@@ -98,7 +98,7 @@ private:
 
   Q3PtrList<QLabel>                    labelList;
   Q3PtrList<KonfiguratorColorChooser>  itemList;
-  Q3ValueList<QString>                 itemNames;
+  QList<QString>                 itemNames;
 
   Q3ListView                          *preview;
   KPushButton *importBtn, *exportBtn;

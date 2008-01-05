@@ -2,7 +2,6 @@
 #define CHECKSUMDLG_H
 
 #include <kdialog.h>
-#include <q3valuelist.h>
 
 class K3TempFile;
 extern void initChecksumModule();

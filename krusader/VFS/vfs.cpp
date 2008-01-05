@@ -35,7 +35,7 @@
 #include <time.h>
 #include <qeventloop.h>
 //Added by qt3to4:
-#include <Q3ValueList>
+#include <QList>
 #include <kapplication.h>
 #include <kio/directorysizejob.h>
 #include <kio/jobuidelegate.h>
@@ -346,8 +346,8 @@ void vfs::slotStatResultArrived( KJob* job ) {
 	stat_busy = false;
 }
 
-Q3ValueList<vfile*> vfs::vfs_search(const KRQuery& filter) {
-	Q3ValueList<vfile*> result;
+QList<vfile*> vfs::vfs_search(const KRQuery& filter) {
+	QList<vfile*> result;
 	for ( vfile *vf = vfs_getFirstFile(); vf != 0 ; vf = vfs_getNextFile() )
 		if (filter.match(vf)) 
 			result.append(vf);

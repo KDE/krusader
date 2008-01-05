@@ -36,7 +36,7 @@
 #include <kio/jobclasses.h>
 #include <kio/copyjob.h>
 #include <qmap.h>
-#include <q3valuelist.h>
+#include <qlist.h>
 
 typedef enum {
   PM_NONE          = 0,
@@ -72,7 +72,7 @@ public:
   static KIO::CopyJob *createCopyJob( PreserveMode pmode, const KUrl::List& src, const KUrl& dest, CopyMode mode, bool asMethod, bool showProgressInfo );
 
 public slots:
-  void slotAboutToCreate (KIO::Job *, const Q3ValueList< KIO::CopyInfo > &);
+  void slotAboutToCreate (KIO::Job *, const QList< KIO::CopyInfo > &);
   void slotCopyingDone( KIO::Job *, const KUrl &, const KUrl &, bool, bool);
   void slotFinished();
   virtual void slotResult( Job *job );
@@ -81,8 +81,8 @@ public slots:
 private:
   QMap<KUrl, Attributes> fileAttributes;
   QMap<KIO::Job *, KUrl> pendingJobs;
-  Q3ValueList<KUrl>       directoriesToStamp;
-  Q3ValueList<KUrl>       originalDirectories;
+  QList<KUrl>       directoriesToStamp;
+  QList<KUrl>       originalDirectories;
 };
 
 #endif

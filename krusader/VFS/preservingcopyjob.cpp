@@ -46,7 +46,7 @@ TODO
 #include <kfileitem.h>
 #include <qfile.h>
 //Added by qt3to4:
-#include <Q3ValueList>
+#include <QList>
 #include <pwd.h>
 #include <grp.h>
 
@@ -97,8 +97,8 @@ PreservingCopyJob::PreservingCopyJob( const KUrl::List& src, const KUrl& dest, C
   }
   if( dest.isLocalFile() )
   {
-    connect( this, SIGNAL( aboutToCreate (KIO::Job *, const Q3ValueList< KIO::CopyInfo > &) ),
-             this, SLOT( slotAboutToCreate (KIO::Job *, const Q3ValueList< KIO::CopyInfo > &) ) );
+    connect( this, SIGNAL( aboutToCreate (KIO::Job *, const QList< KIO::CopyInfo > &) ),
+             this, SLOT( slotAboutToCreate (KIO::Job *, const QList< KIO::CopyInfo > &) ) );
     connect( this, SIGNAL( copyingDone( KIO::Job *, const KUrl &, const KUrl &, bool, bool) ),
              this, SLOT( slotCopyingDone( KIO::Job *, const KUrl &, const KUrl &, bool, bool) ) );
     connect( this, SIGNAL( result( KJob * ) ),
@@ -106,9 +106,9 @@ PreservingCopyJob::PreservingCopyJob( const KUrl::List& src, const KUrl& dest, C
   }
 }
 
-void PreservingCopyJob::slotAboutToCreate( KIO::Job */*job*/, const Q3ValueList< KIO::CopyInfo > &files )
+void PreservingCopyJob::slotAboutToCreate( KIO::Job */*job*/, const QList< KIO::CopyInfo > &files )
 {
-  for ( Q3ValueList< KIO::CopyInfo >::ConstIterator it = files.begin(); it != files.end(); ++it ) {
+  for ( QList< KIO::CopyInfo >::ConstIterator it = files.begin(); it != files.end(); ++it ) {
   
     if( (*it).uSource.isLocalFile() ) {
       KDE_struct_stat stat_p;

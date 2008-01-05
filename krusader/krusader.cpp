@@ -58,7 +58,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <qdir.h>
 #include <qprinter.h>
 #include <q3progressdialog.h>
-#include <q3valuelist.h>
 #include <q3whatsthis.h> 
 #include <qwidget.h>
 #include <qdatetime.h>

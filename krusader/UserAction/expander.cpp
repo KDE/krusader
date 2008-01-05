@@ -37,7 +37,7 @@
 #include <qstringlist.h>
 #include <qclipboard.h>
 //Added by qt3to4:
-#include <Q3ValueList>
+#include <QList>
 
 #include <functional>
 #include <algorithm>
@@ -47,9 +47,9 @@ using namespace std;
 
 #include "tstring.h"
 
-Q3ValueList<const exp_placeholder*>& Expander::_placeholder()
+QList<const exp_placeholder*>& Expander::_placeholder()
 {
-	static Q3ValueList<const exp_placeholder*> ret;
+	static QList<const exp_placeholder*> ret;
 	return ret;
 }
 
@@ -914,7 +914,7 @@ TagString exp_PanelSize::expFunc( const ListPanel* panel, const QStringList& par
       return QString();
    }
 
-    Q3ValueList<int> panelSizes = MAIN_VIEW->horiz_splitter->sizes();
+    QList<int> panelSizes = MAIN_VIEW->horiz_splitter->sizes();
     int totalSize = panelSizes[0] + panelSizes[1];
     
     if ( panel == LEFT_PANEL ) {

@@ -4,7 +4,7 @@
 #include <qobject.h>
 #include <q3dict.h>
 //Added by qt3to4:
-#include <Q3ValueList>
+#include <QList>
 #include <qcolor.h>
 #include <qpalette.h>
 
@@ -43,19 +43,19 @@ public:
 	const KrColorSettings & operator= (const KrColorSettings &);
 
 	static bool isColorNameValid(const QString & settingName);
-	static Q3ValueList<QString> getColorNames();
+	static QList<QString> getColorNames();
 	bool setColorValue(const QString & settingName, const QColor & color);
 	QColor getColorValue(const QString & settingName) const;
 	bool setColorTextValue(const QString & settingName, const QString & colorText);
 	QString getColorTextValue(const QString & settingName) const;
 
 	static bool isNumNameValid(const QString & settingName);
-	static Q3ValueList<QString> getNumNames();
+	static QList<QString> getNumNames();
 	bool setNumValue(const QString & settingName, int value);
 	int getNumValue(const QString & settingName, int defaultValue = 0) const;
 
 	static bool isBoolNameValid(const QString & settingName);
-	static Q3ValueList<QString> getBoolNames();
+	static QList<QString> getBoolNames();
 	bool setBoolValue(const QString & settingName, bool value);
 	int getBoolValue(const QString & settingName, bool defaultValue = false) const;
 };

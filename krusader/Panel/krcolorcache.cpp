@@ -33,7 +33,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kcolorscheme.h> 
 #include <qfile.h> 
 //Added by qt3to4:
-#include <Q3ValueList>
+#include <QList>
 
 
 // Macro: set target = col, if col is valid
@@ -218,7 +218,7 @@ const KrColorSettings & KrColorSettings::operator= (const KrColorSettings & src)
 	return * this;
 }
 
-Q3ValueList<QString> KrColorSettings::getColorNames()
+QList<QString> KrColorSettings::getColorNames()
 {
 	return KrColorSettingNames::getColorNames();
 }
@@ -270,7 +270,7 @@ QString KrColorSettings::getColorTextValue(const QString & settingName) const
 	return m_impl->m_colorTextValues[settingName];
 }
 
-Q3ValueList<QString> KrColorSettings::getNumNames()
+QList<QString> KrColorSettings::getNumNames()
 {
 	return KrColorSettingNames::getNumNames();
 }
@@ -303,7 +303,7 @@ int KrColorSettings::getNumValue(const QString & settingName, int defaultValue) 
 	return m_impl->m_numValues[settingName];
 }
 
-Q3ValueList<QString> KrColorSettings::getBoolNames()
+QList<QString> KrColorSettings::getBoolNames()
 {
 	return KrColorSettingNames::getBoolNames();
 }

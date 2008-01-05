@@ -35,10 +35,10 @@
 #include <qtoolbutton.h>
 //Added by qt3to4:
 #include <QEvent>
-#include <Q3PopupMenu>
+#include <QMenu>
 #include <kurl.h>
 #include <kio/jobclasses.h>
-#include <q3valuelist.h>
+#include <qlist.h>
 #include <kmountpoint.h>
 #include <qtimer.h>
 #include <qmap.h>
@@ -97,10 +97,10 @@ private:
   bool        newTabAfterMount;
   int         maxMountWait;
 
-  Q3ValueList<KUrl>    urls;
-  Q3ValueList<KUrl>    mediaUrls;
-  Q3ValueList<QString> mimes;
-  Q3ValueList<bool>    quasiMounted;
+  QList<KUrl>    urls;
+  QList<KUrl>    mediaUrls;
+  QList<QString> mimes;
+  QList<bool>    quasiMounted;
 
   QString extraSpaces;  //prevents from increasing the size of the widget
 

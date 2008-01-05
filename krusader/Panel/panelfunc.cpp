@@ -34,7 +34,7 @@ A
 #include <qeventloop.h>
 #include <qclipboard.h> 
 //Added by qt3to4:
-#include <Q3ValueList>
+#include <QList>
 // KDE Includes
 #include <klocale.h>
 #include <k3process.h>
@@ -1020,7 +1020,7 @@ void ListPanelFunc::matchChecksum() {
 	QStringList args;
 	bool folders;
 	checksum_wrapper(panel, args, folders);
-	Q3ValueList<vfile*> checksumFiles = files()->vfs_search(
+	QList<vfile*> checksumFiles = files()->vfs_search(
 		KRQuery(MatchChecksumDlg::checksumTypesFilter)
 	);
 	MatchChecksumDlg dlg(args, folders, panel->realPath(), 

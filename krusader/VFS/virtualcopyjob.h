@@ -33,7 +33,7 @@
 
 #include <kio/job.h>
 #include "preservingcopyjob.h"
-#include <q3valuelist.h>
+#include <qlist.h>
 #include <qtimer.h>
 #include <q3dict.h>
 #include <qmap.h>
@@ -97,7 +97,7 @@ private:
   unsigned long            m_tempFiles;
   unsigned long            m_tempSubdirs;  
     
-  Q3ValueList<KUrl>         m_dirsToGetSize;
+  QList<KUrl>              m_dirsToGetSize;
   
   Q3Dict<KUrl::List>        m_filesToCopy;
   

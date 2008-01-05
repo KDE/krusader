@@ -22,7 +22,7 @@
 #include <q3ptrlist.h>
 //Added by qt3to4:
 #include <QEvent>
-#include <Q3ValueList>
+#include <QList>
 #include <QKeyEvent>
 #include <Q3PopupMenu>
 #include <QFocusEvent>
@@ -110,8 +110,8 @@ private:
 	QAction *closeAct;
 
 	static Q3PtrList<KrViewer> viewers; // the first viewer is the active one
-	Q3ValueList<int>    reservedKeys;   // the reserved key sequences
-	Q3ValueList<QAction *> reservedKeyActions; // the IDs of the reserved keys
+	QList<int>    reservedKeys;   // the reserved key sequences
+	QList<QAction *> reservedKeyActions; // the IDs of the reserved keys
 };
 
 class Invoker : public QObject {

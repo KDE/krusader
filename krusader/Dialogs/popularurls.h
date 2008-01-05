@@ -4,7 +4,6 @@
 #include <qobject.h>
 #include <kurl.h>
 #include <q3dict.h>
-#include <q3valuelist.h>
 #include <kdialog.h>
 
 // the class holds a list of most popular links in a dual data structure

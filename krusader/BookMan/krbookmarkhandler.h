@@ -10,7 +10,6 @@
 #include <kmenu.h>
 #include <kurl.h>
 #include <q3ptrdict.h>
-#include <q3valuelist.h>
 #include <qdom.h>
 #include <qmap.h>
 
