@@ -14,6 +14,7 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kinputdialog.h>
+#include <kactioncollection.h>
 #include <q3textedit.h>
 #include <qboxlayout.h>
 #include <qlayout.h>
@@ -298,11 +299,13 @@ void KrActionProc::processExited( K3Process * ) {
 ///////////////////////////////////////  KrAction  ///////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-KrAction::KrAction( KActionCollection *parent, const char * name ) : KAction( (QObject *)parent ) {
-   if( name != 0 )
+KrAction::KrAction( KActionCollection *parent, QString name ) : KAction( (QObject *)parent ) {
+   if( !name.isNull() )
      _name = name;
    else
      _name = "";
+
+   parent->addAction( _name, this );
 
    connect(this, SIGNAL(triggered()), this, SLOT(exec()) );
 }
@@ -437,7 +440,7 @@ bool KrAction::xmlRead( const QDomElement& element ) {
 
 QDomElement KrAction::xmlDump( QDomDocument& doc ) const {
    QDomElement actionElement = doc.createElement("action");
-   actionElement.setAttribute( "name", (const char *)_name );
+   actionElement.setAttribute( "name", _name );
 
 #define TEXT_ELEMENT( TAGNAME, TEXT ) \
    { \

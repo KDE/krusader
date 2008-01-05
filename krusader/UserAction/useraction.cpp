@@ -153,7 +153,7 @@ void UserAction::readFromElement( const QDomElement& element, ReadMode mode, KrA
          while ( krApp->actionCollection()->action( name ) )
             name = basename.arg( ++i );
 
-         KrAction* act = new KrAction( krApp->actionCollection(), name.toLatin1() );
+         KrAction* act = new KrAction( krApp->actionCollection(), name );
          if ( act->xmlRead( e ) ) {
             _actions.append( act );
             if ( list )

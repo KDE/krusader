@@ -32,7 +32,7 @@ class QDomDocument;
 class KrAction: public KAction, public KrActionBase {
    Q_OBJECT
    public:
-      KrAction( KActionCollection *parent, const char * name = 0 );
+      KrAction( KActionCollection *parent, QString name = QString::null );
       ~KrAction();
 
       /**
@@ -116,7 +116,7 @@ class KrAction: public KAction, public KrActionBase {
       QStringList _showonlyMime;
       QStringList _showonlyFile;
 
-      QByteArray  _name;
+      QString  _name;
 };
 
 class QFont;
