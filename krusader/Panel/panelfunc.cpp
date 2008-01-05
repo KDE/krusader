@@ -1096,7 +1096,7 @@ void ListPanelFunc::properties() {
 	// Show the properties dialog
 	KPropertiesDialog *dlg = new KPropertiesDialog( fi, krApp );
 	connect( dlg, SIGNAL( applied() ), SLOTS, SLOT( refresh() ) );
-	
+	dlg->show();
 }
 
 bool ListPanelFunc::canGoBack() {
