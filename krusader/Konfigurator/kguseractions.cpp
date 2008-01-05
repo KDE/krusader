@@ -47,8 +47,8 @@ KgUserActions::KgUserActions( bool first, QWidget* parent ) :
    QGridLayout *kgUserActionLayout = new QGridLayout( this );
 
    // ============= Info Group =============
-   Q3GroupBox *InfoGroup = createFrame( i18n( "Information" ), this );
-   QGridLayout *InfoGrid = createGridLayout( InfoGroup->layout() );
+   QGroupBox *InfoGroup = createFrame( i18n( "Information" ), this );
+   QGridLayout *InfoGrid = createGridLayout( InfoGroup );
 
    // terminal for the UserActions
    QLabel *labelInfo = new QLabel( i18n(
@@ -63,8 +63,8 @@ KgUserActions::KgUserActions( bool first, QWidget* parent ) :
    kgUserActionLayout->addWidget( InfoGroup, 0 ,0 );
 
    // ============= Terminal Group =============
-   Q3GroupBox *terminalGroup = createFrame( i18n( "Terminal execution" ), this );
-   QGridLayout *terminalGrid = createGridLayout( terminalGroup->layout() );
+   QGroupBox *terminalGroup = createFrame( i18n( "Terminal execution" ), this );
+   QGridLayout *terminalGrid = createGridLayout( terminalGroup );
 
    // terminal for the UserActions
    QLabel *labelTerminal = new QLabel( i18n( "Terminal for UserActions:" ),
@@ -77,8 +77,8 @@ KgUserActions::KgUserActions( bool first, QWidget* parent ) :
    kgUserActionLayout->addWidget( terminalGroup, 1 ,0 );
 
    // ============= Outputcollection Group =============
-   Q3GroupBox *outputGroup = createFrame( i18n( "Output collection" ), this );
-   QGridLayout *outputGrid = createGridLayout( outputGroup->layout() );
+   QGroupBox *outputGroup = createFrame( i18n( "Output collection" ), this );
+   QGridLayout *outputGrid = createGridLayout( outputGroup );
 
    QWidget *hboxWidget = new QWidget( outputGroup );
    QHBoxLayout *hbox = new QHBoxLayout( hboxWidget );

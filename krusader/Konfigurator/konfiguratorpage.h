@@ -34,7 +34,7 @@
 #include "konfiguratoritems.h"
 #include <qframe.h>
 #include <q3ptrlist.h>
-#include <q3groupbox.h>
+#include <qgroupbox.h>
 #include <qlabel.h>
 #include <qlayout.h>
 //Added by qt3to4:
@@ -284,21 +284,21 @@ public:
     *
     * @return             reference to the newly created frame
     */
-  Q3GroupBox               *createFrame( QString text = QString(), QWidget *parent=0 );
+  QGroupBox               *createFrame( QString text = QString(), QWidget *parent=0 );
 
   /**
     * Creates a new QGridLayout element and sets its margins.
     *
     * Sample:<br><br>
     * QGroupBox *myGroup = createFrame( i18n( "MyFrameName" ), parentWidget, "frameName" );<br>
-    * QGridLayout *myLayout = createGridLayout( myGroup->layout() );<br>
+    * QGridLayout *myLayout = createGridLayout( myGroup ) );<br>
     * myLayout->addWidget( myGroup, 0, 0 );
     *
     * @param  parent      Reference to the parent layout
     *
     * @return             reference to the newly created QGridLayout
     */
-  QGridLayout             *createGridLayout( QLayout *parent );
+  QGridLayout             *createGridLayout( QWidget *parent );
 
   /**
     * Adds a new label to a grid layout.

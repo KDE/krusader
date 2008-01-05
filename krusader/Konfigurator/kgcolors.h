@@ -85,7 +85,7 @@ private:
   int                                 endOfActiveColors;
   int                                 endOfPanelColors;
 
-  Q3GroupBox                          *previewGrp;
+  QGroupBox                          *previewGrp;
   QGridLayout                        *previewGrid;
   QTabWidget                         *colorTabWidget;
 

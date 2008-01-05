@@ -51,8 +51,8 @@ KgColors::KgColors( bool first, QWidget* parent ) :
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
 
-  Q3GroupBox *generalGrp = createFrame( i18n( "General" ), this );
-  QGridLayout *generalGrid = createGridLayout( generalGrp->layout() );
+  QGroupBox *generalGrp = createFrame( i18n( "General" ), this );
+  QGridLayout *generalGrid = createGridLayout( generalGrp );
 
   generalGrid->setSpacing( 0 );
   generalGrid->setContentsMargins( 5, 5, 5, 5 );
@@ -80,8 +80,8 @@ KgColors::KgColors( bool first, QWidget* parent ) :
 
   //  -------------------------- COLORS GROUPBOX ----------------------------------
 
-  Q3GroupBox *colorsFrameGrp = createFrame( i18n( "Colors" ), hboxWidget );
-  QGridLayout *colorsFrameGrid = createGridLayout( colorsFrameGrp->layout() );
+  QGroupBox *colorsFrameGrp = createFrame( i18n( "Colors" ), hboxWidget );
+  QGridLayout *colorsFrameGrid = createGridLayout( colorsFrameGrp );
   colorsFrameGrid->setSpacing( 0 );
   colorsFrameGrid->setContentsMargins( 3, 3, 3, 3 );
 
@@ -215,7 +215,7 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   //  -------------------------- PREVIEW GROUPBOX ----------------------------------
 
   previewGrp = createFrame( i18n( "Preview" ), hboxWidget );
-  previewGrid = createGridLayout( previewGrp->layout() );
+  previewGrid = createGridLayout( previewGrp );
 
   preview = new Q3ListView( previewGrp );
   preview->setBackgroundRole( QPalette::Window );

@@ -54,8 +54,8 @@ if( first )
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
 
-  Q3GroupBox *generalGrp = createFrame( i18n( "General" ), this );
-  QGridLayout *generalGrid = createGridLayout( generalGrp->layout() );
+  QGroupBox *generalGrp = createFrame( i18n( "General" ), this );
+  QGridLayout *generalGrid = createGridLayout( generalGrp );
 
   KONFIGURATOR_NAME_VALUE_TIP deleteMode[] =
   //            name            value    tooltip

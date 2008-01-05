@@ -50,7 +50,7 @@
 #include <qapplication.h>
 #include <qcursor.h>
 #include <qpixmapcache.h>
-#include <q3groupbox.h>
+#include <qgroupbox.h>
 #include <qpointer.h>
 #include "diskusage.h"
 #include "../VFS/krpermhandler.h"
@@ -94,17 +94,14 @@ LoaderWidget::LoaderWidget( QWidget *parent ) : Q3ScrollView( parent ), cancelle
   loaderLayout->setSpacing( 0 );
   loaderLayout->setContentsMargins( 0, 0, 0, 0 );
 
-  Q3GroupBox *loaderBox = new Q3GroupBox( widget );
-  loaderBox->setFrameShape( Q3GroupBox::Box );
-  loaderBox->setFrameShadow( Q3GroupBox::Sunken );
-  loaderBox->setColumnLayout(0, Qt::Vertical );
-  loaderBox->layout()->setSpacing( 0 );
-  loaderBox->layout()->setContentsMargins( 0, 0, 0, 0 );
+  QFrame *loaderBox = new QFrame( widget );
+  loaderBox->setFrameShape( QFrame::Box );
+  loaderBox->setFrameShadow( QFrame::Sunken );
   loaderBox->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
   loaderBox->setFrameStyle( QFrame::Panel + QFrame::Raised );
   loaderBox->setLineWidth( 2 );
 
-  QGridLayout *synchGrid = new QGridLayout( loaderBox->layout() );
+  QGridLayout *synchGrid = new QGridLayout( loaderBox );
   synchGrid->setSpacing( 6 );
   synchGrid->setContentsMargins( 11, 11, 11, 11 );
 

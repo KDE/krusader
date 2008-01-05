@@ -55,12 +55,9 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 
 	// Options for name filtering
 
-	Q3GroupBox *nameGroup = new Q3GroupBox ( this );
+	QGroupBox *nameGroup = new QGroupBox ( this );
 	nameGroup->setTitle ( i18n ( "File name" ) );
-	nameGroup->setColumnLayout ( 0, Qt::Vertical );
-	nameGroup->layout()->setSpacing ( 0 );
-	nameGroup->layout()->setContentsMargins ( 0, 0, 0, 0 );
-	QGridLayout *nameGroupLayout = new QGridLayout ( nameGroup->layout() );
+	QGridLayout *nameGroupLayout = new QGridLayout ( nameGroup );
 	nameGroupLayout->setAlignment ( Qt::AlignTop );
 	nameGroupLayout->setSpacing ( 6 );
 	nameGroupLayout->setContentsMargins ( 11, 11, 11, 11 );
@@ -116,12 +113,9 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	{
 		// The profile handler
 
-		Q3GroupBox *profileHandler = new Q3GroupBox ( this );
+		QGroupBox *profileHandler = new QGroupBox ( this );
 		profileHandler->setTitle ( i18n ( "&Profile handler" ) );
-		profileHandler->setColumnLayout ( 0, Qt::Vertical );
-		profileHandler->layout()->setSpacing ( 0 );
-		profileHandler->layout()->setContentsMargins ( 0, 0, 0, 0 );
-		QGridLayout *profileLayout = new QGridLayout ( profileHandler->layout() );
+		QGridLayout *profileLayout = new QGridLayout ( profileHandler );
 		profileLayout->setAlignment ( Qt::AlignTop );
 		profileLayout->setSpacing ( 6 );
 		profileLayout->setContentsMargins ( 11, 11, 11, 11 );
@@ -156,12 +150,9 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	{
 		// Options for search in
 
-		Q3GroupBox *searchInGroup = new Q3GroupBox ( this );
+		QGroupBox *searchInGroup = new QGroupBox ( this );
 		searchInGroup->setTitle ( i18n ( "&Search in" ) );
-		searchInGroup->setColumnLayout ( 0, Qt::Vertical );
-		searchInGroup->layout()->setSpacing ( 0 );
-		searchInGroup->layout()->setContentsMargins ( 0, 0, 0, 0 );
-		QGridLayout *searchInLayout = new QGridLayout ( searchInGroup->layout() );
+		QGridLayout *searchInLayout = new QGridLayout ( searchInGroup );
 		searchInLayout->setAlignment ( Qt::AlignTop );
 		searchInLayout->setSpacing ( 6 );
 		searchInLayout->setContentsMargins ( 11, 11, 11, 11 );
@@ -176,12 +167,9 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	{
 		// Options for don't search in
 
-		Q3GroupBox *dontSearchInGroup = new Q3GroupBox ( this );
+		QGroupBox *dontSearchInGroup = new QGroupBox ( this );
 		dontSearchInGroup->setTitle ( i18n ( "&Don't search in" ) );
-		dontSearchInGroup->setColumnLayout ( 0, Qt::Vertical );
-		dontSearchInGroup->layout()->setSpacing ( 0 );
-		dontSearchInGroup->layout()->setContentsMargins ( 0, 0, 0, 0 );
-		QGridLayout *dontSearchInLayout = new QGridLayout ( dontSearchInGroup->layout() );
+		QGridLayout *dontSearchInLayout = new QGridLayout ( dontSearchInGroup );
 		dontSearchInLayout->setAlignment ( Qt::AlignTop );
 		dontSearchInLayout->setSpacing ( 6 );
 		dontSearchInLayout->setContentsMargins ( 11, 11, 11, 11 );
@@ -196,12 +184,9 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 
 	// Options for containing text
 
-	Q3GroupBox *containsGroup = new Q3GroupBox ( this );
+	QGroupBox *containsGroup = new QGroupBox ( this );
 	containsGroup->setTitle ( i18n ( "Containing text" ) );
-	containsGroup->setColumnLayout ( 0, Qt::Vertical );
-	containsGroup->layout()->setSpacing ( 0 );
-	containsGroup->layout()->setContentsMargins ( 0, 0, 0, 0 );
-	QGridLayout *containsLayout = new QGridLayout ( containsGroup->layout() );
+	QGridLayout *containsLayout = new QGridLayout ( containsGroup );
 	containsLayout->setAlignment ( Qt::AlignTop );
 	containsLayout->setSpacing ( 6 );
 	containsLayout->setContentsMargins ( 11, 11, 11, 11 );

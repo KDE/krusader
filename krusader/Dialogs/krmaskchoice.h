@@ -40,7 +40,7 @@ class QVBoxLayout;
 class QHBoxLayout; 
 class QGridLayout; 
 class QComboBox;
-class Q3GroupBox;
+class QGroupBox;
 class QLabel;
 class Q3ListBox;
 class Q3ListBoxItem;
@@ -57,7 +57,7 @@ public:
     QComboBox* selection;
     QLabel* PixmapLabel1;
     QLabel* label;
-    Q3GroupBox* GroupBox1;
+    QGroupBox* GroupBox1;
     Q3ListBox* preSelections;
     QPushButton* PushButton7;
     QPushButton* PushButton7_2;

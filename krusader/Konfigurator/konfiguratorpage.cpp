@@ -152,20 +152,15 @@ KonfiguratorURLRequester* KonfiguratorPage::createURLRequester(  QString cls, QS
   return urlRequester;
 }
 
-Q3GroupBox* KonfiguratorPage::createFrame( QString text, QWidget *parent )
+QGroupBox* KonfiguratorPage::createFrame( QString text, QWidget *parent )
 {
-  Q3GroupBox *groupBox = new Q3GroupBox( parent );
-  groupBox->setFrameShape( Q3GroupBox::Box );
-  groupBox->setFrameShadow( Q3GroupBox::Sunken );
+  QGroupBox *groupBox = new QGroupBox( parent );
   if( !text.isNull() )
     groupBox->setTitle( text );
-  groupBox->setColumnLayout(0, Qt::Vertical );
-  groupBox->layout()->setSpacing( 0 );
-  groupBox->layout()->setContentsMargins( 0, 0, 0, 0 );
   return groupBox;
-}                                          
+}
 
-QGridLayout* KonfiguratorPage::createGridLayout( QLayout *parent )
+QGridLayout* KonfiguratorPage::createGridLayout( QWidget *parent )
 {
   QGridLayout *gridLayout = new QGridLayout( parent );
   gridLayout->setAlignment( Qt::AlignTop );

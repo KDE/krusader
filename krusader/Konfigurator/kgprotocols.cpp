@@ -67,8 +67,8 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
 
   //  -------------------------- LINK VIEW ----------------------------------
   
-  Q3GroupBox *linkGrp = createFrame( i18n( "Links" ), this );    
-  QGridLayout *linkGrid = createGridLayout( linkGrp->layout() );
+  QGroupBox *linkGrp = createFrame( i18n( "Links" ), this );    
+  QGridLayout *linkGrid = createGridLayout( linkGrp );
   
   linkList = new Q3ListView( linkGrp, "linkList" );
   linkList->addColumn( i18n( "Defined Links" ) );
@@ -116,8 +116,8 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
   
   //  -------------------------- PROTOCOLS LISTBOX ----------------------------------
 
-  Q3GroupBox *protocolGrp = createFrame( i18n( "Protocols" ), this );    
-  QGridLayout *protocolGrid = createGridLayout( protocolGrp->layout() );
+  QGroupBox *protocolGrp = createFrame( i18n( "Protocols" ), this );    
+  QGridLayout *protocolGrid = createGridLayout( protocolGrp );
   
   protocolList = new Q3ListBox( protocolGrp, "protocolList" );
   loadListCapableProtocols();
@@ -127,8 +127,8 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
 
   //  -------------------------- MIMES LISTBOX ----------------------------------
 
-  Q3GroupBox *mimeGrp = createFrame( i18n( "Mimes" ), this );    
-  QGridLayout *mimeGrid = createGridLayout( mimeGrp->layout() );
+  QGroupBox *mimeGrp = createFrame( i18n( "Mimes" ), this );    
+  QGridLayout *mimeGrid = createGridLayout( mimeGrp );
   
   mimeList = new Q3ListBox( mimeGrp, "protocolList" );
   loadMimes();

@@ -32,7 +32,7 @@
 #include "advancedfilter.h"
 #include "../Dialogs/krdialogs.h"
 
-#include <q3groupbox.h>
+#include <qgroupbox.h>
 //Added by qt3to4:
 #include <QHBoxLayout>
 #include <QGridLayout>
@@ -58,13 +58,10 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 
 	// Options for size
 
-	Q3GroupBox *sizeGroup = new Q3GroupBox ( this );
-	sizeGroup->setSizePolicy ( QSizePolicy ( ( QSizePolicy::SizeType ) 5, ( QSizePolicy::SizeType ) 1, sizeGroup->sizePolicy().hasHeightForWidth() ) );
+	QGroupBox *sizeGroup = new QGroupBox ( this );
+	sizeGroup->setSizePolicy ( QSizePolicy ( QSizePolicy::Preferred, QSizePolicy::Minimum, sizeGroup->sizePolicy().hasHeightForWidth() ) );
 	sizeGroup->setTitle ( i18n ( "Size" ) );
-	sizeGroup->setColumnLayout ( 0, Qt::Vertical );
-	sizeGroup->layout()->setSpacing ( 0 );
-	sizeGroup->layout()->setContentsMargins ( 0, 0, 0, 0 );
-	QGridLayout *sizeLayout = new QGridLayout ( sizeGroup->layout() );
+	QGridLayout *sizeLayout = new QGridLayout ( sizeGroup );
 	sizeLayout->setAlignment ( Qt::AlignTop );
 	sizeLayout->setSpacing ( 6 );
 	sizeLayout->setContentsMargins ( 11, 11, 11, 11 );
@@ -213,12 +210,9 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 
 	// Options for ownership
 
-	Q3GroupBox *ownershipGroup = new Q3GroupBox ( this );
+	QGroupBox *ownershipGroup = new QGroupBox ( this );
 	ownershipGroup->setTitle ( i18n ( "Ownership" ) );
-	ownershipGroup->setColumnLayout ( 0, Qt::Vertical );
-	ownershipGroup->layout()->setSpacing ( 0 );
-	ownershipGroup->layout()->setContentsMargins ( 0, 0, 0, 0 );
-	QGridLayout *ownershipLayout = new QGridLayout ( ownershipGroup->layout() );
+	QGridLayout *ownershipLayout = new QGridLayout ( ownershipGroup );
 	ownershipLayout->setAlignment ( Qt::AlignTop );
 	ownershipLayout->setSpacing ( 6 );
 	ownershipLayout->setContentsMargins ( 11, 11, 11, 11 );
@@ -251,7 +245,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	permissionsEnabled->setText ( i18n ( "P&ermissions" ) );
 	ownershipLayout->addWidget ( permissionsEnabled, 1, 0 );
 
-	Q3GroupBox *ownerGroup = new Q3GroupBox ( ownershipGroup );
+	QGroupBox *ownerGroup = new QGroupBox ( ownershipGroup );
 	QHBoxLayout *ownerHBox = new QHBoxLayout( ownerGroup );
 	ownerGroup->setTitle ( i18n ( "O&wner" ) );
 	int width = 2*height + height / 2;
@@ -282,7 +276,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 
 	ownershipLayout->addWidget ( ownerGroup, 1, 1 );
 
-	Q3GroupBox *groupGroup = new Q3GroupBox ( ownershipGroup );
+	QGroupBox *groupGroup = new QGroupBox ( ownershipGroup );
 	QHBoxLayout *groupHBox = new QHBoxLayout( groupGroup );
 	groupGroup->setTitle ( i18n ( "Grou&p" ) );
 
@@ -312,7 +306,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 
 	ownershipLayout->addWidget ( groupGroup, 1, 2 );
 
-	Q3GroupBox *allGroup = new Q3GroupBox ( ownershipGroup );
+	QGroupBox *allGroup = new QGroupBox ( ownershipGroup );
 	QHBoxLayout *allHBox = new QHBoxLayout( allGroup );
 	allGroup->setTitle ( i18n ( "A&ll" ) );
 

@@ -81,8 +81,8 @@ void KgLookFeel::setupOperationTab() {
   lookAndFeelLayout->setContentsMargins( 11, 11, 11, 11 );
 
   // -------------- General -----------------
-  Q3GroupBox *lookFeelGrp = createFrame( i18n( "Look && Feel" ), tab );
-  QGridLayout *lookFeelGrid = createGridLayout( lookFeelGrp->layout() );
+  QGroupBox *lookFeelGrp = createFrame( i18n( "Look && Feel" ), tab );
+  QGridLayout *lookFeelGrid = createGridLayout( lookFeelGrp );
 
   KONFIGURATOR_CHECKBOX_PARAM settings[] =
     { //   cfg_class  cfg_name                default             text                              restart tooltip
@@ -100,8 +100,8 @@ void KgLookFeel::setupOperationTab() {
   lookAndFeelLayout->addWidget( lookFeelGrp, 0, 0 );
 
   // -------------- Quicksearch -----------------
-  Q3GroupBox *quicksearchGroup = createFrame( i18n( "Quicksearch" ), tab );
-  QGridLayout *quicksearchGrid = createGridLayout( quicksearchGroup->layout() );
+  QGroupBox *quicksearchGroup = createFrame( i18n( "Quicksearch" ), tab );
+  QGridLayout *quicksearchGrid = createGridLayout( quicksearchGroup );
 
   KONFIGURATOR_CHECKBOX_PARAM quicksearch[] =
    { //   cfg_class  cfg_name                default             text                              restart tooltip
@@ -127,8 +127,8 @@ void KgLookFeel::setupPanelTab() {
   QGridLayout *panelLayout = new QGridLayout( tab_panel );
   panelLayout->setSpacing( 6 );
   panelLayout->setContentsMargins( 11, 11, 11, 11 );
-  Q3GroupBox *panelGrp = createFrame( i18n( "Panel settings" ), tab_panel );
-  QGridLayout *panelGrid = createGridLayout( panelGrp->layout() );
+  QGroupBox *panelGrp = createFrame( i18n( "Panel settings" ), tab_panel );
+  QGridLayout *panelGrid = createGridLayout( panelGrp );
 
   QWidget *hboxWidget = new QWidget( panelGrp );
   QHBoxLayout * hbox = new QHBoxLayout( hboxWidget );
@@ -225,8 +225,8 @@ void KgLookFeel::setupPanelToolbarTab() {
   panelToolbarActive = createCheckBoxGroup( 1, 0, panelToolbarActiveCheckbox, 1, tab_4, PAGE_PANELTOOLBAR);
   connect( panelToolbarActive->find( "Panel Toolbar visible" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotEnablePanelToolbar() ) );
     
-  Q3GroupBox * panelToolbarGrp = createFrame( i18n( "Visible Panel Toolbar buttons" ), tab_4 );
-  QGridLayout * panelToolbarGrid = createGridLayout( panelToolbarGrp->layout() );
+  QGroupBox * panelToolbarGrp = createFrame( i18n( "Visible Panel Toolbar buttons" ), tab_4 );
+  QGridLayout * panelToolbarGrid = createGridLayout( panelToolbarGrp );
 
   KONFIGURATOR_CHECKBOX_PARAM panelToolbarCheckboxes[] = 
     {
@@ -263,8 +263,8 @@ void KgLookFeel::setupMouseModeTab() {
   mouseLayout->setContentsMargins( 11, 11, 11, 11 );
 
   // -------------- General -----------------
-  Q3GroupBox *mouseGeneralGroup = createFrame( i18n( "General" ), tab_mouse );
-  QGridLayout *mouseGeneralGrid = createGridLayout( mouseGeneralGroup->layout() );
+  QGroupBox *mouseGeneralGroup = createFrame( i18n( "General" ), tab_mouse );
+  QGridLayout *mouseGeneralGrid = createGridLayout( mouseGeneralGroup );
   mouseGeneralGrid->setSpacing( 0 );
   mouseGeneralGrid->setContentsMargins( 5, 5, 5, 5 );
 
@@ -284,8 +284,8 @@ void KgLookFeel::setupMouseModeTab() {
   mouseLayout->addWidget( mouseGeneralGroup, 0, 0, 1, 2 );
 
   // -------------- Details -----------------
-  Q3GroupBox *mouseDetailGroup = createFrame( i18n( "Details" ), tab_mouse );
-  QGridLayout *mouseDetailGrid = createGridLayout( mouseDetailGroup->layout() );
+  QGroupBox *mouseDetailGroup = createFrame( i18n( "Details" ), tab_mouse );
+  QGridLayout *mouseDetailGrid = createGridLayout( mouseDetailGroup );
   mouseDetailGrid->setSpacing( 0 );
   mouseDetailGrid->setContentsMargins( 5, 5, 5, 5 );
 
@@ -349,8 +349,8 @@ void KgLookFeel::setupMouseModeTab() {
   slotSelectionModeChanged();
 
   // -------------- Preview -----------------
-  Q3GroupBox *mousePreviewGroup = createFrame( i18n( "Preview" ), tab_mouse );
-  QGridLayout *mousePreviewGrid = createGridLayout( mousePreviewGroup->layout() );
+  QGroupBox *mousePreviewGroup = createFrame( i18n( "Preview" ), tab_mouse );
+  QGridLayout *mousePreviewGrid = createGridLayout( mousePreviewGroup );
   // TODO preview
   mousePreview = new Q3ListView( mousePreviewGroup );
   mousePreviewGrid->addWidget( mousePreview, 0 ,0 );

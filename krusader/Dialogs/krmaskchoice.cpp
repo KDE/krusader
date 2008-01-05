@@ -30,7 +30,7 @@
 #include "krmaskchoice.h"
 
 #include <qcombobox.h>
-#include <q3groupbox.h>
+#include <qgroupbox.h>
 #include <qlabel.h>
 #include <q3listbox.h>
 #include <qpushbutton.h>
@@ -84,11 +84,14 @@ KRMaskChoice::KRMaskChoice( QWidget* parent )
     label->setText( i18n( "Select the following files:"  ) );
     hbox->addWidget( label );
 
-    GroupBox1 = new Q3GroupBox( this );
+    GroupBox1 = new QGroupBox( this );
     GroupBox1->setGeometry( QRect( 11, 77, 379, 190 ) );
     GroupBox1->setTitle( i18n( "Predefined Selections"  ) );
+    QHBoxLayout * gbLayout = new QHBoxLayout( GroupBox1 );
 
     QWidget* Layout6 = new QWidget( GroupBox1 );
+    gbLayout->addWidget( Layout6 );
+
     Layout6->setGeometry( QRect( 10, 20, 360, 160 ) ); 
     hbox_2 = new QHBoxLayout( Layout6 ); 
     hbox_2->setSpacing( 6 );

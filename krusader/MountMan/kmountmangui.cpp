@@ -46,7 +46,7 @@ A
 #include <qbitmap.h>
 #include <kmessagebox.h>
 #include <qlayout.h>
-#include <q3groupbox.h>
+#include <qgroupbox.h>
 #include <k3process.h>
 #include <qcursor.h>
 #include <kdebug.h>

@@ -47,8 +47,8 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent ) :
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
   
-  Q3GroupBox *generalGrp = createFrame( i18n( "General" ), this );
-  QGridLayout *generalGrid = createGridLayout( generalGrp->layout() );
+  QGroupBox *generalGrp = createFrame( i18n( "General" ), this );
+  QGridLayout *generalGrid = createGridLayout( generalGrp );
 
   bool dontUseMedia = false;
 
@@ -83,8 +83,8 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent ) :
 
   //  ----------------------- CONFIRMATIONS GROUPBOX -------------------------------
   
-  Q3GroupBox *confirmGrp = createFrame( i18n( "Confirmations" ), this );
-  QGridLayout *confirmGrid = createGridLayout( confirmGrp->layout() );
+  QGroupBox *confirmGrp = createFrame( i18n( "Confirmations" ), this );
+  QGridLayout *confirmGrid = createGridLayout( confirmGrp );
 
   addLabel( confirmGrid, 0, 0, "\n"+i18n( "Request user confirmation for the following operations:" )+"\n",
             confirmGrp );
@@ -107,8 +107,8 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent ) :
 
   //  ------------------------ FINE-TUNING GROUPBOX --------------------------------
 
-  Q3GroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), this );
-  QGridLayout *fineTuneGrid = createGridLayout( fineTuneGrp->layout() );
+  QGroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), this );
+  QGridLayout *fineTuneGrid = createGridLayout( fineTuneGrp );
   fineTuneGrid->setAlignment( Qt::AlignLeft | Qt::AlignTop );
   
   QLabel *label = new QLabel( i18n( "Icon cache size (KB):" ), fineTuneGrp );

@@ -42,6 +42,7 @@
 #include "feedtolistboxdialog.h"
 #include <qlayout.h>
 //Added by qt3to4:
+#include <qgroupbox.h>
 #include <QResizeEvent>
 #include <QLabel>
 #include <QPixmap>
@@ -1116,14 +1117,11 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   synchronizerGrid->setSpacing( 6 );
   synchronizerGrid->setContentsMargins( 11, 11, 11, 11 );
 
-  Q3GroupBox *compareDirs = new Q3GroupBox( synchronizerTab );
+  QGroupBox *compareDirs = new QGroupBox( synchronizerTab );
   compareDirs->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed);
   compareDirs->setTitle( i18n( "Directory Comparison" ) );
-  compareDirs->setColumnLayout(0, Qt::Vertical );
-  compareDirs->layout()->setSpacing( 0 );
-  compareDirs->layout()->setContentsMargins( 0, 0, 0, 0 );
 
-  QGridLayout *grid = new QGridLayout( compareDirs->layout() );
+  QGridLayout *grid = new QGridLayout( compareDirs );
   grid->setSpacing( 6 );
   grid->setContentsMargins( 11, 11, 11, 11 );
 
@@ -1228,15 +1226,13 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   /* =========================== Show options groupbox ============================= */
 
-  Q3GroupBox *showOptions  = new Q3GroupBox( optionWidget );
+  QGroupBox *showOptions  = new QGroupBox( optionWidget );
   optionBox->addWidget( showOptions );
 
   showOptions->setTitle( i18n( "S&how options" ) );
   showOptions->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed);
-  showOptions->setColumnLayout(0, Qt::Vertical );
-  showOptions->layout()->setSpacing( 0 );
-  showOptions->layout()->setContentsMargins( 0, 0, 0, 0 );
-  QGridLayout *showOptionsLayout = new QGridLayout( showOptions->layout() );
+
+  QGridLayout *showOptionsLayout = new QGridLayout( showOptions );
   showOptionsLayout->setSpacing( 6 );
   showOptionsLayout->setContentsMargins( 11, 11, 11, 11 );
 
@@ -1375,12 +1371,10 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   // creating the time shift, equality threshold, hidden files options
 
-  Q3GroupBox *optionsGroup = new Q3GroupBox( generalFilter );
+  QGroupBox *optionsGroup = new QGroupBox( generalFilter );
   optionsGroup->setTitle( i18n( "&Options" ) );
-  optionsGroup->setColumnLayout(0, Qt::Vertical );
-  optionsGroup->layout()->setSpacing( 0 );
-  optionsGroup->layout()->setContentsMargins( 0, 0, 0, 0 );
-  QGridLayout *optionsLayout = new QGridLayout( optionsGroup->layout() );
+
+  QGridLayout *optionsLayout = new QGridLayout( optionsGroup );
   optionsLayout->setAlignment( Qt::AlignTop );
   optionsLayout->setSpacing( 6 );
   optionsLayout->setContentsMargins( 11, 11, 11, 11 );

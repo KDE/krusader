@@ -38,7 +38,7 @@
 
 #include <qwidget.h>
 #include <qlayout.h>
-#include <q3groupbox.h>
+#include <qgroupbox.h>
 #include <qcheckbox.h>
 #include <qlabel.h>
 #include <q3listbox.h>
