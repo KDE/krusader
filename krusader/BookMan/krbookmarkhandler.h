@@ -61,4 +61,6 @@ private:
 	QList<QAction *>           _specialBookmarks; // the action list of the special bookmarks
 };
 
+Q_DECLARE_METATYPE(KrBookmark *);
+
 #endif // KRBOOKMARK_HANDLER_H

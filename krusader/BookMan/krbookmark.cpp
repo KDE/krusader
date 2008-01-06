@@ -13,10 +13,11 @@ static const char* NAME_VIRTUAL = I18N_NOOP ( "Virtual Filesystem" );
 static const char* NAME_LAN = I18N_NOOP ( "Local Network" );
 
 KrBookmark::KrBookmark ( QString name, KUrl url, KActionCollection *parent, QString icon, QString actionName ) :
-		KAction ( parent ), _url ( url ), _icon(icon), _folder ( false ), _separator ( false )
+		KAction ( parent ), _url ( url ), _icon(icon), _folder ( false ), _separator ( false ), _autoDelete( true )
 {
-	setText ( actionName.isNull() ? BM_NAME ( name ).toLatin1() : BM_NAME ( actionName ).toLatin1() );
-	parent->addAction ( name, this );
+	QString actName = actionName.isNull() ? BM_NAME ( name ) : BM_NAME ( actionName );
+	setText ( name );
+	parent->addAction ( actName, this );
 	connect ( this, SIGNAL ( triggered() ), this, SLOT ( activatedProxy() ) );
 
 	// do we have an icon?
@@ -36,14 +37,23 @@ KrBookmark::KrBookmark ( QString name, KUrl url, KActionCollection *parent, QStr
 			else setIcon ( KIcon("folder_html") );
 		}
 	}
-
-	_children.setAutoDelete ( true );
 }
 
 KrBookmark::KrBookmark ( QString name, QString icon ) :
-		KAction ( KIcon(icon), name, 0 ), _icon(icon), _folder ( true ), _separator ( false )
+		KAction ( KIcon(icon), name, 0 ), _icon(icon), _folder ( true ), _separator ( false ), _autoDelete( false )
 {
 	setIcon ( KIcon(icon=="" ? "folder" : icon) );
+}
+
+KrBookmark::~KrBookmark()
+{
+  if( _autoDelete )
+  {
+    QListIterator<KrBookmark *> it(_children);
+    while (it.hasNext())
+      delete it.next();
+    _children.clear();
+  }
 }
 
 KrBookmark* KrBookmark::getExistingBookmark ( QString actionName, KActionCollection *collection )

@@ -21,8 +21,8 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KUrl url):
 	setButtonText(KDialog::User1, i18n("New Folder"));
 	showButton(KDialog::User1, false); // hide it until _createIn is shown
 	connect( this, SIGNAL( user1Clicked() ), this, SLOT(newFolder()));
-	connect( this, SIGNAL( okClicked() ), this, SLOT( slotOk() ) );
-	connect( this, SIGNAL( cancelClicked() ), this, SLOT( slotCancel() ) );
+	connect( this, SIGNAL( okClicked() ), this, SLOT( accept() ) );
+	connect( this, SIGNAL( cancelClicked() ), this, SLOT( reject() ) );
 
 	// create the main widget
 	QWidget *page = new QWidget(this);
@@ -97,7 +97,10 @@ void KrAddBookmarkDlg::createInSelection(Q3ListViewItem *item) {
 }
 
 void KrAddBookmarkDlg::populateCreateInWidget(KrBookmark *root, K3ListViewItem *parent) {
-	for (KrBookmark *bm = root->children().first(); bm; bm = root->children().next()) {
+	QListIterator<KrBookmark *> it( root->children() );
+	while (it.hasNext())
+	{
+		KrBookmark *bm = it.next();
 		if (bm->isFolder()) {
 			K3ListViewItem *item = new K3ListViewItem(parent, bm->text());
 			item->setOpen(true);

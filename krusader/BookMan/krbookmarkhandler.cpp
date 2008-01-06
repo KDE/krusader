@@ -79,15 +79,16 @@ void KrBookmarkHandler::deleteBookmark(KrBookmark *bm) {
 }
 
 void KrBookmarkHandler::removeReferences( KrBookmark *root, KrBookmark *bmToRemove ) {
-	int index = root->children().find( bmToRemove );
+	int index = root->children().indexOf( bmToRemove );
 	if( index >= 0 )
-		root->children().take( index );
+		root->children().removeAt( index );
 	
-	KrBookmark *bm = root->children().first();
-	while (bm) {
+	QListIterator<KrBookmark *> it( root->children() );
+	while (it.hasNext())
+	{
+		KrBookmark *bm = it.next();
 		if (bm->isFolder())
 			removeReferences(bm, bmToRemove);
-		bm = root->children().next();
 	}
 }
 
@@ -112,7 +113,11 @@ void KrBookmarkHandler::exportToFileBookmark(QDomDocument &doc, QDomElement &whe
 }
 
 void KrBookmarkHandler::exportToFileFolder(QDomDocument &doc, QDomElement &parent, KrBookmark *folder) {
-	for (KrBookmark *bm = folder->children().first(); bm; bm = folder->children().next()) {
+	QListIterator<KrBookmark *> it(folder->children());
+	while (it.hasNext())
+	{
+		KrBookmark *bm = it.next();
+		
 		if (bm->isFolder()) {
 			QDomElement newFolder = doc.createElement("folder");
 			newFolder.setAttribute("icon", bm->iconName());
@@ -278,18 +283,29 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu) {
 
 	// run the loop twice, in order to put the folders on top. stupid but easy :-)
 	// note: this code drops the separators put there by the user
-	for (KrBookmark *bm = parent->children().first(); bm; bm = parent->children().next()) {
+	QListIterator<KrBookmark *> it( parent->children() );
+	while (it.hasNext())
+	{
+		KrBookmark *bm = it.next();
+		
 		if (!bm->isFolder()) continue;
 		KMenu *newMenu = new KMenu(menu);
 		newMenu->setIcon( QIcon(krLoader->loadIcon(bm->iconName(), KIconLoader::Small)) );
 		newMenu->setTitle( bm->text() );
-		menu->addMenu( newMenu );
+		QAction *menuAction = menu->addMenu( newMenu );
+		QVariant v;
+		v.setValue<KrBookmark *>( bm );
+		menuAction->setData( v );
 		
 		++inSecondaryMenu;
 		buildMenu(bm, newMenu);
 		--inSecondaryMenu;
 	}
-	for (KrBookmark *bm = parent->children().first(); bm; bm = parent->children().next()) {
+	
+	it.toFront();
+	while (it.hasNext())
+	{
+		KrBookmark *bm = it.next();
 		if (bm->isFolder()) continue;
 		if (bm->isSeparator() ) {
 			menu->addSeparator();
@@ -395,8 +411,11 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu) {
 }
 
 void KrBookmarkHandler::clearBookmarks(KrBookmark *root) {
-	KrBookmark *bm = root->children().first();
-	while (bm) {	
+	QList<KrBookmark *>::iterator it = root->children().begin();
+	while ( it != root->children().end() )
+	{
+		KrBookmark *bm = *it;
+		
 		if (bm->isFolder())
 			clearBookmarks(bm);
 		else {
@@ -404,10 +423,9 @@ void KrBookmarkHandler::clearBookmarks(KrBookmark *root) {
 				w->removeAction(bm);
 			delete bm;
 		}
-
-		bm = root->children().next();
+		
+		it = root->children().erase( it );
 	}
-	root->children().clear();
 }
 
 void KrBookmarkHandler::bookmarksChanged(const QString&, const QString&) {
@@ -432,6 +450,9 @@ bool KrBookmarkHandler::eventFilter( QObject *obj, QEvent *ev ) {
 					if( bm != 0 ) {
 						rightClicked( menu, bm );
 						return true;
+					} else if( act && act->data().canConvert<KrBookmark *>() ){
+						KrBookmark * bm = act->data().value<KrBookmark *> ();
+						rightClicked( menu, bm );
 					}
 				}
 			case Qt::LeftButton:
@@ -516,9 +537,12 @@ void KrBookmarkHandler::rightClickOnSpecialBookmark() {
 void KrBookmarkHandler::rightClicked( QMenu *menu, KrBookmark * bm ) {
 	Q3PopupMenu popup( _mainBookmarkPopup );
 	
-	popup.insertItem( krLoader->loadIcon( "fileopen", KIconLoader::Panel ), i18n( "Open" ), OPEN_ID );
-	popup.insertItem( krLoader->loadIcon( "tab_new", KIconLoader::Panel ), i18n( "Open in a new tab" ), OPEN_NEW_TAB_ID );
-	popup.insertSeparator();
+	if( !bm->isFolder() )
+	{
+		popup.insertItem( krLoader->loadIcon( "fileopen", KIconLoader::Panel ), i18n( "Open" ), OPEN_ID );
+		popup.insertItem( krLoader->loadIcon( "tab_new", KIconLoader::Panel ), i18n( "Open in a new tab" ), OPEN_NEW_TAB_ID );
+		popup.insertSeparator();
+	}
 	popup.insertItem( krLoader->loadIcon( "editdelete", KIconLoader::Panel ), i18n( "Delete" ), DELETE_ID );
 	
 	connect( menu, SIGNAL( highlighted( int ) ), &popup, SLOT( close() ) );
