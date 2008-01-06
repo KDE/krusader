@@ -22,7 +22,7 @@
 #include <qfileinfo.h>
 #include <kurlrequester.h>
 #include "../krservices.h"
-#include <q3ptrlist.h>
+#include <qlist.h>
 #include <qmap.h>
 #include <k3tempfile.h>
 #include <kstandarddirs.h>
@@ -51,7 +51,7 @@ public:
 
 class CS_ToolByType {
 public:
-	Q3PtrList<CS_Tool> tools, r_tools; // normal and recursive tools	
+	QList<CS_Tool *> tools, r_tools; // normal and recursive tools	
 };
 
 // handles md5sum and sha1sum
@@ -196,11 +196,11 @@ void initChecksumModule() {
 
 // returns a list of tools which can work with recursive or non-recursive mode and are installed
 // note: only 1 tool from each type is suggested
-static Q3PtrList<CS_Tool> getTools(bool folders) {
-	Q3PtrList<CS_Tool> result;
+static QList<CS_Tool *> getTools(bool folders) {
+	QList<CS_Tool *> result;
 	uint i;
 	for (i=0; i < sizeof(cs_tools)/sizeof(CS_Tool); ++i) {
-		if (result.last() && result.last()->type == cs_tools[i].type) continue; // 1 from each type please
+		if (!result.isEmpty() && result.last()->type == cs_tools[i].type) continue; // 1 from each type please
 		if (folders && !cs_tools[i].recursive) continue;
 		if (KrServices::cmdExist(cs_tools[i].binary))
 			result.append(&cs_tools[i]);
@@ -218,7 +218,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	setCaption( i18n("Create Checksum") );
 	setWindowModality( Qt::WindowModal );
 	
-	Q3PtrList<CS_Tool> tools = getTools(containFolders);
+	QList<CS_Tool *> tools = getTools(containFolders);
 
 	if (tools.count() == 0) { // nothing was suggested?!
 		QString error = i18n("<qt>Can't calculate checksum since no supported tool was found. "
@@ -262,7 +262,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	hlayout2->addWidget(l2);
 	KComboBox *method = new KComboBox(widget);
 	// -- fill the combo with available methods
-	uint i;
+	int i;
 	for ( i=0; i<tools.count(); ++i )
 		method->insertItem( cs_typeToText[tools.at(i)->type], i);
 	method->setFocus();
@@ -328,7 +328,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	setCaption( i18n("Verify Checksum") );
 	setWindowModality( Qt::WindowModal );
 	
-	Q3PtrList<CS_Tool> tools = getTools(containFolders);
+	QList<CS_Tool *> tools = getTools(containFolders);
 
 	if (tools.count() == 0) { // nothing was suggested?!
 		QString error = i18n("<qt>Can't verify checksum since no supported tool was found. "
@@ -388,7 +388,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	}
 	
 	// do we have a tool for that extension?
-	uint i;
+	int i;
 	CS_Tool *mytool = 0;
 	for ( i=0; i < tools.count(); ++i )
 		if (cs_typeToText[tools.at(i)->type] == extension.toLower()) {

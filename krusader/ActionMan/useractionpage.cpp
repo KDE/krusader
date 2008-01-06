@@ -229,8 +229,10 @@ void UserActionPage::slotImport() {
 
    UserAction::KrActionList newActions;
    krUserAction->readFromFile( filename, UserAction::renameDoublicated, &newActions );
-   for ( KrAction* action = newActions.first(); action; action = newActions.next() )
-      actionTree->insertAction( action );
+
+   QListIterator<KrAction *> it( newActions );
+   while (it.hasNext())
+      actionTree->insertAction( it.next() );
 
    if ( newActions.count() > 0 ) {
       apply();

@@ -64,8 +64,10 @@ void UserMenuGui::readEntries() {
    
    //FIXME: don't plug ALL useractions into the usermenu. TODO: read the usermenu-strukture from an other file (krusaderrc ?)
    UserAction::KrActionList list = krUserAction->actionList();
-   for ( KrAction* action = list.first(); action; action = list.next() )
-      addAction( action );
+   
+   QListIterator<KrAction *> it( list );
+   while (it.hasNext())
+      addAction( it.next() );
 
 }
 

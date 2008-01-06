@@ -20,7 +20,12 @@
 
 UserActionPopupMenu::UserActionPopupMenu( KUrl currentURL, QWidget *parent ) : KMenu( parent ) {
    UserAction::KrActionList list = krUserAction->actionList();
-   for ( KrAction* action = list.first(); action; action = list.next() )
-      if ( action->isAvailable( currentURL ) )
+
+   QListIterator<KrAction *> it( list );
+   while (it.hasNext())
+   {
+     KrAction * action = it.next();
+     if ( action->isAvailable( currentURL ) )
          addAction( action );
+   }
 }

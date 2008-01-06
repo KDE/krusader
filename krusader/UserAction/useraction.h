@@ -13,7 +13,7 @@
 #ifndef USERACTION_H
 #define USERACTION_H
 
-#include <q3ptrlist.h>
+#include <qlist.h>
 
 class QDomDocument;
 class QDomElement;
@@ -42,7 +42,7 @@ class KMenu;
 class UserAction {
 public:
 
-  typedef Q3PtrList<KrAction> KrActionList;
+  typedef QList<KrAction *> KrActionList;
 
   enum ReadMode { renameDoublicated, ignoreDoublicated };
 

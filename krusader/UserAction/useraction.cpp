@@ -30,7 +30,6 @@
 
 
 UserAction::UserAction() {
-   _actions.setAutoDelete( false ); // the actions are "owned" by Krusader's KActionCollection, so they should not be deleted
    krOut << "Initialisising useractions..." << endl;
    readAllFiles();
    krOut << _actions.count() << " useractions read." << endl;
@@ -47,33 +46,49 @@ void UserAction::setAvailability() {
 void UserAction::setAvailability( const KUrl& currentURL ) {
    //kDebug() << "UserAction::setAvailability currendFile: " << currentURL.url() << endl;
    // disable the entries that should not appear in this folder
-   for ( KrAction* action = _actions.first(); action; action = _actions.next() )
+   QListIterator<KrAction *> it( _actions );
+   while (it.hasNext())
+   {
+      KrAction * action = it.next();
       action->setEnabled( action->isAvailable( currentURL ) );
+   }
 }
 
 void UserAction::populateMenu( KMenu* menu ) {
-   for ( KrAction* action = _actions.first(); action; action = _actions.next() )
+   QListIterator<KrAction *> it( _actions );
+   while (it.hasNext())
+   {
+      KrAction * action = it.next();
       if ( !menu->actions().contains(action) )
          menu->addAction(action);
+   }
 }
 
 QStringList UserAction::allCategories() {
    QStringList actionCategories;
 
-   for ( KrAction* action = _actions.first(); action; action = _actions.next() )
+   QListIterator<KrAction *> it( _actions );
+   while (it.hasNext())
+   {
+      KrAction * action = it.next();
       if ( actionCategories.find( action->category() ) == actionCategories.end() )
          actionCategories.append( action->category() );
+   }
 
-  return actionCategories;
+   return actionCategories;
 }
 
 QStringList UserAction::allNames() {
    QStringList actionNames;
 
-   for ( KrAction* action = _actions.first(); action; action = _actions.next() )
+   QListIterator<KrAction *> it( _actions );
+   while (it.hasNext())
+   {
+      KrAction * action = it.next();
       actionNames.append( action->name() );
+   }
 
-  return actionNames;
+   return actionNames;
 }
 
 void UserAction::readAllFiles() {
@@ -179,8 +194,13 @@ bool UserAction::writeActionFile() {
 
    QDomDocument doc = createEmptyDoc();
    QDomElement root = doc.documentElement();
-   for ( KrAction* action = _actions.first(); action; action = _actions.next() )
+
+   QListIterator<KrAction *> it( _actions );
+   while (it.hasNext())
+   {
+      KrAction * action = it.next();
       root.appendChild( action->xmlDump( doc ) );
+   }
 
    return writeToFile( doc, filename );
 }

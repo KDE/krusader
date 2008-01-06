@@ -53,8 +53,10 @@ QSize UserActionListView::sizeHint() const {
 void UserActionListView::update() {
    clear();
    UserAction::KrActionList list = krUserAction->actionList();
-   for ( KrAction* action = list.first(); action; action = list.next() )
-      insertAction( action );
+
+   QListIterator<KrAction *> it( list );
+   while (it.hasNext())
+      insertAction( it.next() );
    //sort(); // this is done automaticly
 }
 

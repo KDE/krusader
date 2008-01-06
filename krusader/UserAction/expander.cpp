@@ -366,13 +366,13 @@ TagString exp_Path::expFunc( const ListPanel* panel, const QStringList& paramete
    NEED_PANEL
    
    QString result;
-   
+
    if ( useUrl )
       result = panel->func->files()->vfs_getOrigin().url() + "/";
    else
       result = panel->func->files()->vfs_getOrigin().path() + "/";
          
-   if ( parameter[0].toLower() == "no" )  // don't escape spaces
+   if ( parameter.count() > 0 && parameter[0].toLower() == "no" )  // don't escape spaces
       return TagString(result);
    else
       return TagString(bashquote(result));
@@ -389,7 +389,7 @@ TagString exp_Count::expFunc( const ListPanel* panel, const QStringList& paramet
    NEED_PANEL
    
    int n = -1;
-   if ( parameter[ 0 ].isEmpty() || parameter[ 0 ].toLower() == "all" )
+   if ( parameter.count() == 0 || parameter[ 0 ].isEmpty() || parameter[ 0 ].toLower() == "all" )
       n = panel->view->numDirs() + panel->view->numFiles();
    else if ( parameter[ 0 ].toLower() == "files" )
       n = panel->view->numFiles();
@@ -431,7 +431,7 @@ TagString exp_Current::expFunc( const ListPanel* panel, const QStringList& param
 
    QString result;
    
-   if ( parameter[0].toLower() == "yes" )  // ommit the current path
+   if ( parameter.count() > 0 && parameter[0].toLower() == "yes" )  // ommit the current path
       result = item;
    else {
       KUrl url = panel->func->files()->vfs_getFile( item );
@@ -441,7 +441,7 @@ TagString exp_Current::expFunc( const ListPanel* panel, const QStringList& param
          result = url.path();
    }
 
-   if ( parameter[1].toLower() == "no" )  // don't escape spaces
+   if ( parameter.count() > 1 && parameter[1].toLower() == "no" )  // don't escape spaces
       return result;
    else
       return bashquote(result);
@@ -472,7 +472,7 @@ TagString exp_List::expFunc( const ListPanel* panel, const QStringList& paramete
    
    return separateAndQuote(
    		fileList(panel,
-   			parameter.empty() ? QString() : parameter[0].toLower(),
+   			parameter.isEmpty() ? QString() : parameter[0].toLower(),
    			mask, parameter.count() > 2 ? parameter[2].toLower()=="yes" : false,
    			useUrl, exp, "List"),
    		parameter.count() > 1 ? parameter[1] : " ",
@@ -511,7 +511,7 @@ TagString exp_ListFile::expFunc( const ListPanel* panel, const QStringList& para
     Q3TextStream stream( tmpFile.file() );
     stream << separateAndQuote(
     		fileList(panel,
-    			parameter.empty() ? QString() : parameter[0].toLower(),
+    			parameter.isEmpty() ? QString() : parameter[0].toLower(),
     			mask, parameter.count()>2 ? parameter[2].toLower()=="yes" : false,
     			useUrl, exp, "ListFile"),
     		parameter.count() > 1 ? parameter[1] : "\n",
@@ -539,9 +539,9 @@ TagString exp_Select::expFunc( const ListPanel* panel, const QStringList& parame
     else
        mask = KRQuery( parameter[0] );
 
-    if ( parameter[1].toLower() == "add")
+    if ( parameter.count() > 1 && parameter[1].toLower() == "add")
        panel->view->select( mask );
-    else if ( parameter[1].toLower() == "remove")
+    else if ( parameter.count() > 1 && parameter[1].toLower() == "remove")
        panel->view->unselect( mask );
     else { // parameter[1].toLower() == "set" or isEmpty() or whatever
        panel->view->unselect( KRQuery( "*" ) );
@@ -563,9 +563,14 @@ TagString exp_Goto::expFunc( const ListPanel* panel, const QStringList& paramete
    NEED_PANEL
    
    bool newTab = false;
-   if ( parameter[1].toLower() == "yes" )
+   if ( parameter.count() > 1 && parameter[1].toLower() == "yes" )
       newTab = true;
    
+   if ( parameter.count() == 0 ) {
+     setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT, i18n("Expander: at least 1 parameter is required for Goto!" ) ));
+     return QString();
+   }
+
    if ( newTab ) {
       if ( panel == LEFT_PANEL)
          krApp->mainView->leftMng->slotNewTab( parameter[0] );
@@ -603,6 +608,11 @@ exp_Ask::exp_Ask() {
 TagString exp_Ask::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
    QString caption, preset, result;
    
+   if ( parameter.count() == 0 ) {
+     setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT, i18n("Expander: at least 1 parameter is required for Ask!" ) ));
+     return QString();
+   }
+
    if ( parameter.count() <= 2 || parameter[2].isEmpty() )
       caption = i18n("User Action");
    else
@@ -637,8 +647,13 @@ exp_Clipboard::exp_Clipboard() {
 }
 TagString exp_Clipboard::expFunc( const ListPanel*, const TagStringList& parameter, const bool&, Expander& exp ) const {
 //    kDebug() << "Expander::exp_Clipboard, parameter[0]: '" << parameter[0] << "', Clipboard: " << KApplication::clipboard()->text() << endl;
+	if ( parameter.count() == 0 ) {
+		setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT, i18n("Expander: at least 1 parameter is required for Clipboard!" ) ));
+		return QString();
+	}
+
 	QStringList lst=splitEach(parameter[0]);
-	if(!parameter[1].isSimple()) {
+	if( parameter.count() > 1 && !parameter[1].isSimple()) {
 		setError(exp,Error(Error::S_FATAL,Error::C_SYNTAX,i18n("Expander: %Each% may not be in the second argument of %Clipboard%")));
 		return QString();
 	}
@@ -659,6 +674,10 @@ exp_Copy::exp_Copy() {
    addParameter( exp_parameter( i18n("Where to copy:"), "__placeholder", true ) );
 }
 TagString exp_Copy::expFunc( const ListPanel*, const TagStringList& parameter, const bool&, Expander& exp ) const {
+   if ( parameter.count() < 2 ) {
+      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT, i18n("Expander: at least 2 parameter is required for Copy!" ) ));
+      return QString();
+   }
 
    // basically the parameter can already be used as URL, but since KUrl has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is neccesary:
    QStringList lst=splitEach( parameter[0] );
@@ -691,6 +710,11 @@ exp_Move::exp_Move() {
    addParameter( exp_parameter( i18n("New target/name:"), "__placeholder", true ) );
 }                    
 TagString exp_Move::expFunc( const ListPanel*, const TagStringList& parameter, const bool& , Expander& exp ) const {
+   if ( parameter.count() < 2 ) {
+      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT, i18n("Expander: at least 2 parameter is required for Move!" ) ));
+      return QString();
+   }
+
    // basically the parameter can already be used as URL, but since KUrl has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is neccesary:
    QStringList lst=splitEach( parameter[0] );
    if(!parameter[1].isSimple()) {
@@ -721,7 +745,7 @@ exp_Sync::exp_Sync() {
    addParameter( exp_parameter( i18n("Choose a profile:"), "__syncprofile", true ) );
 }
 TagString exp_Sync::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
-   if ( parameter[0].isEmpty() ) {
+   if ( parameter.count() == 0 || parameter[0].isEmpty() ) {
       setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: no profile specified for %_Sync(profile)%") ));
       return QString();
    }
@@ -739,7 +763,7 @@ exp_NewSearch::exp_NewSearch() {
    addParameter( exp_parameter( i18n("Choose a profile:"), "__searchprofile", true ) );
 }
 TagString exp_NewSearch::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
-   if ( parameter[0].isEmpty() ) {
+   if ( parameter.count() == 0 || parameter[0].isEmpty() ) {
       setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: no profile specified for %_NewSearch(profile)%") ));
       return QString();
    }
@@ -757,7 +781,7 @@ exp_Profile::exp_Profile() {
    addParameter( exp_parameter( i18n("Choose a profile:"), "__panelprofile", true ) );
 }
 TagString exp_Profile::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
-   if ( parameter[0].isEmpty() ) {
+   if ( parameter.count() == 0 || parameter[0].isEmpty() ) {
       setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: no profile specified for %_Profile(profile)%; abort...") ));
       return QString();
    }
@@ -810,7 +834,7 @@ exp_ColSort::exp_ColSort() {
 TagString exp_ColSort::expFunc( const ListPanel* panel, const QStringList& parameter, const bool&, Expander& exp ) const {
    NEED_PANEL
 
-   if ( parameter[0].isEmpty() ) {
+   if ( parameter.count() == 0 || parameter[0].isEmpty() ) {
       setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: no column specified for %_ColSort(column)%") ));
       return QString();
    }
@@ -854,7 +878,7 @@ TagString exp_ColSort::expFunc( const ListPanel* panel, const QStringList& param
    // clear all column-infromation:
    mode &= ~( KrViewProperties::Name | KrViewProperties::Ext | KrViewProperties::Size | KrViewProperties::Type | KrViewProperties::Modified | KrViewProperties::Permissions | KrViewProperties::KrPermissions | KrViewProperties::Owner | KrViewProperties::Group );
    
-   MODE_OUT
+   //MODE_OUT
    
    if ( parameter[0].toLower() == "name" ) {
       mode |= KrViewProperties::Name;
@@ -904,7 +928,7 @@ TagString exp_PanelSize::expFunc( const ListPanel* panel, const QStringList& par
    NEED_PANEL
    int newSize;
    
-   if ( parameter[0].isEmpty() )
+   if ( parameter.count() == 0 || parameter[0].isEmpty() )
       newSize = 50;	//default is 50%
    else
       newSize = parameter[0].toInt();
@@ -941,7 +965,7 @@ exp_Script::exp_Script() {
    addParameter( exp_parameter( i18n("Set some variables for the execution (optional).\ni.e. \"return=return_var;foo=bar\", consult the handbook for more information"), "", false ) );
 }
 TagString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
-   if ( parameter[0].isEmpty() ) {
+   if ( parameter.count() == 0 || parameter[0].isEmpty() ) {
       setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: no script specified for %_Script(script)%")) );
       return QString();
    }
@@ -994,7 +1018,7 @@ exp_View::exp_View() {
    addParameter( exp_parameter( i18n("Choose a window mode:"), "__choose:tab;window", false ) );
 }
 TagString exp_View::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
-   if ( parameter[0].isEmpty() ) {
+   if ( parameter.count() == 0 || parameter[0].isEmpty() ) {
 			setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: no file to view in %_View(filename)%")) );
       return QString();
    }
