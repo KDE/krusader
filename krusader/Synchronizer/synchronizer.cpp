@@ -41,13 +41,13 @@
 #include <qregexp.h>
 #include <qdir.h>
 #include <qtimer.h>
+#include <QTime>
 //Added by qt3to4:
 #include <QFrame>
 #include <QVBoxLayout>
 #include <kio/job.h>
 #include <kio/deletejob.h>
 #include <kio/jobuidelegate.h>
-#include <kdialog.h>
 #include <kio/renamedlg.h>
 #include <kio/skipdialog.h>
 #include <unistd.h>
@@ -81,10 +81,28 @@
 
 Synchronizer::Synchronizer() : displayUpdateCount( 0 ), markEquals( true ), 
         markDiffers ( true ), markCopyToLeft( true ), markCopyToRight( true ), markDeletable( true ),
-        stack(), jobMap(), receivedMap(), parentWidget( 0 )
+        stack(), jobMap(), receivedMap(), parentWidget( 0 ), resultListIt( resultList )
 {
-  resultList.setAutoDelete( true );
-  stack.setAutoDelete( true );
+}
+
+Synchronizer::~Synchronizer()
+{
+  clearLists();
+}
+
+void Synchronizer::clearLists()
+{
+  QListIterator<SynchronizerFileItem *> i1(resultList);
+  while (i1.hasNext())
+    delete i1.next();
+  resultList.clear();
+
+  QListIterator<SynchronizerTask *> i2(stack);
+  while (i2.hasNext())
+    delete i2.next();
+  stack.clear();
+
+  temporaryList.clear();
 }
 
 void Synchronizer::reset()
@@ -99,17 +117,14 @@ void Synchronizer::reset()
   leftCopySize = rightCopySize = deleteSize = 0;
   comparedDirs = fileCount = 0;
   leftBaseDir = rightBaseDir = QString();
-  resultList.clear();
-  temporaryList.clear();
-  stack.clear();
+  clearLists();
 }
 
 int Synchronizer::compare( QString leftURL, QString rightURL, KRQuery *query, bool subDirs,
                             bool symLinks, bool igDate, bool asymm, bool cmpByCnt, bool igCase, 
                             bool autoSc, QStringList &selFiles, int equThres, int timeOffs, int parThreads, bool hiddenFiles )
 {
-  resultList.clear();
-  temporaryList.clear();
+  clearLists();
 
   recurseSubDirs = subDirs;
   followSymLinks = symLinks;
@@ -144,12 +159,13 @@ int Synchronizer::compare( QString leftURL, QString rightURL, KRQuery *query, bo
   stack.append( new CompareTask( 0, leftBaseDir = leftURL, rightBaseDir = rightURL, "", "", ignoreHidden ) );
   compareLoop();
 
-  SynchronizerFileItem *item = temporaryList.first();
-  while( item )
+  QListIterator<SynchronizerFileItem *> it(temporaryList);
+  while (it.hasNext())
   {
+    SynchronizerFileItem * item = it.next();
+
     if( item->isTemporary() )
       delete item;
-    item = temporaryList.next();
   }
   temporaryList.clear();
 
@@ -189,7 +205,8 @@ void Synchronizer::compareLoop() {
       case ST_STATE_READY:
       case ST_STATE_ERROR:
         emit statusInfo( i18n( "Number of compared directories: %1", comparedDirs ) );
-        stack.removeRef( entry );
+        stack.removeAll( entry );
+        delete entry;
         continue;
       default:
         break;
@@ -198,6 +215,10 @@ void Synchronizer::compareLoop() {
     if( !stack.isEmpty() )
       qApp->processEvents();
   }
+
+  QListIterator<SynchronizerTask *> it(stack);
+  while (it.hasNext())
+    delete it.next();
   stack.clear();
 }
 
@@ -624,10 +645,11 @@ int Synchronizer::refresh(bool nostatus)
 {
   fileCount = 0;
 
-  SynchronizerFileItem *item = resultList.first();
-
-  while( item )
+  QListIterator<SynchronizerFileItem *> it(resultList);
+  while (it.hasNext())
   {
+    SynchronizerFileItem * item = it.next();
+
     bool marked = isMarked( item->task(), item->existsInLeft() && item->existsInRight() );
     item->setMarked( marked );
 
@@ -636,15 +658,13 @@ int Synchronizer::refresh(bool nostatus)
       markParentDirectories( item );
       fileCount++;
     }
-
-    item = resultList.next();
   }
 
-  item = resultList.first();
-  while( item )
+  it.toFront();
+  while( it.hasNext() )
   {
+    SynchronizerFileItem * item = it.next();
     emit markChanged( item, false );
-    item = resultList.next();
   }
 
   if( !nostatus )
@@ -665,14 +685,14 @@ void Synchronizer::operate( SynchronizerFileItem *item,
     QString rightDirName = ( item->rightDirectory() == "" ) ?
                         item->rightName() : item->rightDirectory() + "/" + item->rightName() ;
 
-    item = resultList.first();
-    while( item )
+    QListIterator<SynchronizerFileItem *> it(resultList);
+    while (it.hasNext())
     {
+      SynchronizerFileItem * item = it.next();
+
       if( item->leftDirectory() == leftDirName || item->leftDirectory().startsWith( leftDirName + "/" ) ||
           item->rightDirectory() == rightDirName || item->rightDirectory().startsWith( rightDirName + "/" ) )
         executeOperation( item );
-
-      item = resultList.next();
     }
   }
 }
@@ -808,10 +828,11 @@ bool Synchronizer::totalSizes( int * leftCopyNr, KIO::filesize_t *leftCopySize, 
   *leftCopySize = *rightCopySize = *deletableSize = 0;
   *leftCopyNr = *rightCopyNr = *deleteNr = 0;
 
-  SynchronizerFileItem *item = resultList.first();
-
-  while( item )
+  QListIterator<SynchronizerFileItem *> it(resultList);
+  while (it.hasNext())
   {
+    SynchronizerFileItem * item = it.next();
+
     if( item->isMarked() )
     {
       switch( item->task() )
@@ -835,7 +856,6 @@ bool Synchronizer::totalSizes( int * leftCopyNr, KIO::filesize_t *leftCopySize, 
         break;
       }
     }
-    item = resultList.next();
   }
 
   return hasAnythingToDo;
@@ -847,12 +867,12 @@ void Synchronizer::swapSides()
   leftBaseDir = rightBaseDir;
   rightBaseDir = leftTmp;
 
-  SynchronizerFileItem *item = resultList.first();
-
-  while( item )
+  QListIterator<SynchronizerFileItem *> it(resultList);
+  while (it.hasNext())
   {
+    SynchronizerFileItem * item = it.next();
+
     item->swap( asymmetric );
-    item = resultList.next();
   }
 }
 
@@ -887,13 +907,13 @@ void Synchronizer::synchronize( QWidget *syncWdg, bool leftCopyEnabled, bool rig
     jobMap.clear();
     receivedMap.clear();
 
-    resultList.first();
+    resultListIt = resultList;
     synchronizeLoop();
 }
 
 void Synchronizer::synchronizeLoop() {
   if( disableNewTasks ) {
-    if( resultList.current() == 0 && jobMap.count() == 0 )
+    if( !resultListIt.hasNext() && jobMap.count() == 0 )
       emit synchronizationFinished();
     return;
   }
@@ -913,11 +933,13 @@ void Synchronizer::synchronizeLoop() {
 
 SynchronizerFileItem * Synchronizer::getNextTask() {
   TaskType task;
-  SynchronizerFileItem * currentTask = resultList.current();
+  SynchronizerFileItem * currentTask;
 
   do {
-    if( currentTask == 0 )
+    if( !resultListIt.hasNext() )
       return 0;
+
+    currentTask = resultListIt.next();
 
     if( currentTask->isMarked() )
     {
@@ -930,11 +952,8 @@ SynchronizerFileItem * Synchronizer::getNextTask() {
       else if( deleteEnabled && task == TT_DELETE )
         break;
     }
-
-    currentTask = resultList.next();
   }while( true );
 
-  resultList.next();
   return lastTask = currentTask;
 }
 
@@ -1323,63 +1342,51 @@ QString Synchronizer::rightBaseDirectory()
   return rightBaseDir;
 }
 
-class KgetProgressDialog : public KDialog
+KgetProgressDialog::KgetProgressDialog( QWidget *parent, const QString &caption,
+                    const QString &text, bool modal) : KDialog( parent )
 {
-public:
-  KgetProgressDialog( QWidget *parent=0, const QString &caption=QString(),
-                    const QString &text=QString(), bool modal=false) : KDialog( parent )
-  {
-    if( caption.isEmpty() )
-      setCaption( caption );
-    setButtons( KDialog::User1 | KDialog::Cancel );
-    setDefaultButton( KDialog::Cancel );
-    setWindowModality( modal ? Qt::WindowModal : Qt::NonModal );
+  if( caption.isEmpty() )
+    setCaption( caption );
+  setButtons( KDialog::User1 | KDialog::Cancel );
+  setDefaultButton( KDialog::Cancel );
+  setModal( modal );
 
-    showButton(KDialog::Close, false);
+  showButton(KDialog::Close, false);
 
-    QWidget* mainWidget = this;
-    QVBoxLayout* layout = new QVBoxLayout(mainWidget);
-    layout->setContentsMargins( 10, 10, 10, 10 );
+  QWidget* mainWidget = new QWidget( this );
+  QVBoxLayout* layout = new QVBoxLayout(mainWidget);
+  layout->setContentsMargins( 10, 10, 10, 10 );
 
-    QLabel *mLabel = new QLabel(text, mainWidget);
-    layout->addWidget(mLabel);
+  QLabel *mLabel = new QLabel(text, mainWidget);
+  layout->addWidget(mLabel);
 
-    mProgressBar = new QProgressBar(mainWidget);
-    layout->addWidget(mProgressBar);
+  mProgressBar = new QProgressBar(mainWidget);
+  layout->addWidget(mProgressBar);
 
+  setButtonText( KDialog::User1, i18n( "Pause" ) );
+
+  mCancelled = mPaused = false;
+
+  connect( this, SIGNAL( user1Clicked() ), this, SLOT( slotUser1() ) );
+  connect( this, SIGNAL( cancelClicked() ), this, SLOT( reject() ) );
+
+  setMainWidget( mainWidget );
+}
+
+void KgetProgressDialog::slotUser1()
+{
+  if( ( mPaused = !mPaused ) == false )
     setButtonText( KDialog::User1, i18n( "Pause" ) );
+  else
+    setButtonText( KDialog::User1, i18n( "Resume" ) );
+}
 
-    mCancelled = mPaused = false;
+void KgetProgressDialog::slotCancel()
+{
+  mCancelled = true;
 
-    connect( this, SIGNAL( user1Clicked() ), this, SLOT( slotUser1() ) );
-    connect( this, SIGNAL( cancelClicked() ), this, SLOT( reject() ) );
-  }
-
-  QProgressBar *progressBar() { return mProgressBar; }
-
-  void slotUser1()
-  {
-    if( ( mPaused = !mPaused ) == false )
-      setButtonText( KDialog::User1, i18n( "Pause" ) );
-    else
-      setButtonText( KDialog::User1, i18n( "Resume" ) );
-  }
-
-  void slotCancel()
-  {
-    mCancelled = true;
-
-    KDialog::reject();
-  }
-
-  bool wasCancelled()      { return mCancelled; }
-  bool isPaused()          { return mPaused; }
-
-private:
-  QProgressBar *mProgressBar;
-  bool          mCancelled;
-  bool          mPaused;
-};
+  KDialog::reject();
+}
 
 
 void Synchronizer::synchronizeWithKGet()
@@ -1388,14 +1395,16 @@ void Synchronizer::synchronizeWithKGet()
   KgetProgressDialog *progDlg = 0;
   int  processedCount = 0, totalCount = 0;
 
-  SynchronizerFileItem *item = resultList.first();
-  for(; item; item = resultList.next() )
-    if( item->isMarked() )
+  QListIterator<SynchronizerFileItem *> it(resultList);
+  while (it.hasNext())
+    if( it.next()->isMarked() )
       totalCount++;
 
-  item = resultList.first();
-  while( item )
+  it.toFront();
+  while( it.hasNext() )
   {
+    SynchronizerFileItem * item = it.next();
+
     if( item->isMarked() )
     {
       KUrl downloadURL, destURL;
@@ -1462,6 +1471,10 @@ void Synchronizer::synchronizeWithKGet()
 
       progDlg->progressBar()->setValue( ++processedCount );
 
+      QTime t;
+      t.start();
+      bool canExit = false;
+
       do
       {
         qApp->processEvents();
@@ -1469,15 +1482,16 @@ void Synchronizer::synchronizeWithKGet()
         if( progDlg->wasCancelled() )
           break;
 
-        if( progDlg->isPaused() )
-          usleep( 100000 );
+        canExit = ( t.elapsed() > 100 );
 
-      }while( progDlg->isPaused() );
+        if( progDlg->isPaused() || !canExit )
+          usleep( 10000 );
+
+      }while( progDlg->isPaused() || !canExit );
 
       if( progDlg->wasCancelled() )
         break;
     }
-    item = resultList.next();
   }
 
   if( progDlg )
@@ -1498,6 +1512,14 @@ QString Synchronizer::readLink( const vfile * file ) {
     return file->vfile_getSymDest();
   else
     return QString();
+}
+
+SynchronizerFileItem *Synchronizer::getItemAt( unsigned ndx )
+{
+  if( ndx < (unsigned)resultList.count() )
+    return resultList.at(ndx);
+  else
+    return 0;
 }
 
 #include "synchronizer.moc"

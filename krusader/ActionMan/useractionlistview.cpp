@@ -13,7 +13,6 @@
 
 #include <klocale.h>
 #include <kiconloader.h>
-#include <q3ptrlist.h>
 #include <qdom.h>
 
 #include "../krusader.h"

@@ -6,7 +6,6 @@
 #include "../VFS/vfs.h"
 #include <kiconloader.h>
 #include <kmessagebox.h>
-#include <q3ptrlist.h>
 //Added by qt3to4:
 #include <QMouseEvent>
 #include <Q3PopupMenu>

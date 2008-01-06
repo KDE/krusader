@@ -38,8 +38,9 @@
 #include <qmap.h>
 #include <qcolor.h>
 //Added by qt3to4:
-#include <Q3PtrList>
+#include <QList>
 #include <kio/job.h>
+#include <kdialog.h>
 
 class KRQuery;
 class vfile;
@@ -60,6 +61,7 @@ class Synchronizer : public QObject
   
   public:
     Synchronizer();
+    ~Synchronizer();
     int     compare( QString leftURL, QString rightURL, KRQuery *query, bool subDirs, bool symLinks,
                      bool igDate, bool asymm, bool cmpByCnt, bool igCase, bool autoSc, QStringList &selFiles,
                      int equThres, int timeOffs, int parThreads, bool hiddenFiles );
@@ -75,6 +77,7 @@ class Synchronizer : public QObject
     void    resume();
     void    swapSides();
     void    reset();
+    void    clearLists();
 
     void    exclude( SynchronizerFileItem * );
     void    restore( SynchronizerFileItem * );
@@ -87,7 +90,7 @@ class Synchronizer : public QObject
     QString rightBaseDirectory();
     static QString getTaskTypeName( TaskType taskType );
 
-    SynchronizerFileItem *getItemAt( unsigned ndx ) {return resultList.at(ndx);}
+    SynchronizerFileItem *getItemAt( unsigned ndx );
 
     void     setParentWidget( QWidget * widget )    {parentWidget = widget;}
     void     compareContentResult( SynchronizerFileItem * item, bool result );
@@ -152,8 +155,8 @@ class Synchronizer : public QObject
     bool                              cmpByContent;   // compare the files by content
     bool                              ignoreCase;     // case insensitive synchronization for Windows fs
     bool                              autoScroll;     // automatic update of the directory
-    Q3PtrList<SynchronizerFileItem>    resultList;     // the found files
-    Q3PtrList<SynchronizerFileItem>    temporaryList;  // temporary files
+    QList<SynchronizerFileItem *>     resultList;     // the found files
+    QList<SynchronizerFileItem *>     temporaryList;  // temporary files
     QString                           leftBaseDir;    // the left-side base directory
     QString                           rightBaseDir;   // the right-side base directory
     QStringList                       excludedPaths;  // list of the excluded paths
@@ -192,7 +195,7 @@ class Synchronizer : public QObject
     int                               fileCount;      // the number of counted files
 
   private:
-    Q3PtrList<SynchronizerTask>        stack;          // stack for comparing
+    QList<SynchronizerTask *>         stack;          // stack for comparing
     QMap<KJob *,SynchronizerFileItem *> jobMap;   // job maps
     QMap<KJob *,KIO::filesize_t>      receivedMap;    // the received file size
     SynchronizerFileItem             *lastTask;       // reference to the last stack
@@ -201,6 +204,32 @@ class Synchronizer : public QObject
     QStringList                       selectedFiles;  // the selected files to compare
     QWidget                          *parentWidget;   // the parent widget
     QWidget                          *syncDlgWidget;  // the synchronizer dialog widget
+    QListIterator<SynchronizerFileItem *> resultListIt; // iterator for result list
+};
+
+class QProgressBar;
+
+class KgetProgressDialog : public KDialog
+{
+  Q_OBJECT
+
+public:
+  KgetProgressDialog( QWidget *parent=0, const QString &caption=QString(),
+                    const QString &text=QString(), bool modal=false);
+
+  QProgressBar *progressBar() { return mProgressBar; }
+
+public slots:
+  void slotUser1();
+  void slotCancel();
+
+  bool wasCancelled()      { return mCancelled; }
+  bool isPaused()          { return mPaused; }
+
+private:
+  QProgressBar *mProgressBar;
+  bool          mCancelled;
+  bool          mPaused;
 };
 
 #endif /* __SYNCHRONIZER_H__ */

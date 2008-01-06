@@ -47,56 +47,37 @@ bool KonfiguratorPage::apply()
 {
   bool restartNeeded = false;
 
-  KonfiguratorExtension *item = itemList.first();
+  for( QList<KonfiguratorExtension *>::iterator item = itemList.begin(); item != itemList.end(); item ++ )
+    restartNeeded = (*item)->apply() || restartNeeded;
 
-  while( item )
-  {
-    restartNeeded = item->apply() || restartNeeded;
-    item = itemList.next();
-  }
-
-  krConfig->sync();  
+  krConfig->sync();
   return restartNeeded;
 }
 
 void KonfiguratorPage::setDefaults()
 {
-  KonfiguratorExtension *item = itemList.first();
   int activePage = activeSubPage();
 
-  while( item )
+  for( QList<KonfiguratorExtension *>::iterator item = itemList.begin(); item != itemList.end(); item ++ )
   {
-    if( item->subPage() == activePage )
-      item->setDefaults();
-    item = itemList.next();
+    if( (*item)->subPage() == activePage )
+      (*item)->setDefaults();
   }
 }
 
 void KonfiguratorPage::loadInitialValues()
 {
-  KonfiguratorExtension *item = itemList.first();
-
-  while( item )
-  {
-    item->loadInitialValue();
-    item = itemList.next();
-  }
+  for( QList<KonfiguratorExtension *>::iterator item = itemList.begin(); item != itemList.end(); item ++ )
+    (*item)->loadInitialValue();
 }
 
 bool KonfiguratorPage::isChanged()
 {
-  KonfiguratorExtension *currentItem = itemList.current();  /* save the current pointer */
   bool isChanged = false;
 
-  KonfiguratorExtension *item = itemList.first();
+  for( QList<KonfiguratorExtension *>::iterator item = itemList.begin(); item != itemList.end(); item ++ )
+    isChanged = isChanged || (*item)->isChanged();
 
-  while( item )
-  {
-    isChanged = isChanged || item->isChanged();
-    item = itemList.next();
-  }
-
-  itemList.find( currentItem );  /* restore the current pointer */
   return isChanged;
 }
 
@@ -297,24 +278,19 @@ QFrame* KonfiguratorPage::createLine( QWidget *parent, bool vertical )
 
 void KonfiguratorPage::registerObject( KonfiguratorExtension *item )
 {
-  KonfiguratorExtension *currentItem = itemList.current();
-  
-  itemList.append( item );
+  itemList.push_back( item );
   connect( item, SIGNAL( sigChanged( bool ) ), this, SIGNAL ( sigChanged( ) ) );
-
-  itemList.find( currentItem );
 }
 
 void KonfiguratorPage::removeObject( KonfiguratorExtension *item )
 {
-  if( item == itemList.current() )
-  {
-    itemList.remove();
-    if( itemList.current() != itemList.getFirst() )
-      itemList.prev();
-  }
-  else
-    itemList.removeRef( item );
+    int ndx = itemList.indexOf( item );
+    if( ndx != -1 )
+    {
+      QList<KonfiguratorExtension *>::iterator it = itemList.begin() + ndx;
+      delete *it;
+      itemList.erase( it );
+    }
 }
 
 KonfiguratorColorChooser *KonfiguratorPage::createColorChooser( QString cls, QString name, QColor dflt,

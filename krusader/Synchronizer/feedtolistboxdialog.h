@@ -48,7 +48,7 @@ class FeedToListBoxDialog : public KDialog {
 
     bool isAccepted() {return accepted;};
 
-  protected:
+  protected slots:
     void slotUser1();
     void slotOk();
 

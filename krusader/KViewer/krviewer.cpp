@@ -21,7 +21,6 @@
 #include <qtimer.h>
 //Added by qt3to4:
 #include <QKeyEvent>
-#include <Q3PtrList>
 #include <QEvent>
 // KDE includes
 #include <kmenubar.h>
@@ -55,7 +54,7 @@
 #define MODIFIED_ICON "filesaveas"
 
 
-Q3PtrList<KrViewer> KrViewer::viewers;
+QList<KrViewer *> KrViewer::viewers;
 
 KrViewer::KrViewer( QWidget *parent ) :
 KParts::MainWindow( parent, (Qt::WindowFlags)KDE_DEFAULT_WINDOWFLAGS ), manager( this, this ), tabBar( this ), returnFocusTo( 0 ), returnFocusTab( 0 ),
@@ -116,7 +115,7 @@ KrViewer::~KrViewer() {
 	disconnect( &manager, SIGNAL( activePartChanged( KParts::Part* ) ),
 	            this, SLOT( createGUI( KParts::Part* ) ) );
 
-	viewers.remove( this );
+	viewers.removeAll( this );
 	delete printAction;
 	delete copyAction;
 }
@@ -224,7 +223,7 @@ void KrViewer::keyPressEvent( QKeyEvent *e ) {
 
 KrViewer* KrViewer::getViewer(bool new_window){
 	if( !new_window ){
-		if( !viewers.first() ){	
+		if( viewers.isEmpty() ){	
 			viewers.prepend( new KrViewer() ); // add to first (active)
 		}
 		else {
@@ -348,7 +347,7 @@ void KrViewer::tabChanged(QWidget* w){
 	}
 	
 	// set this viewer to be the main viewer
-	if( viewers.remove( this ) ) viewers.prepend( this ); // move to first
+	if( viewers.removeAll( this ) ) viewers.prepend( this ); // move to first
 }
 
 void KrViewer::tabCloseRequest(QWidget *w){
@@ -519,7 +518,7 @@ void KrViewer::detachTab(){
 
 void KrViewer::windowActivationChange ( bool /* oldActive */ ) {
 	if( isActiveWindow() )
-		if( viewers.remove( this ) ) viewers.prepend( this ); // move to first
+		if( viewers.removeAll( this ) ) viewers.prepend( this ); // move to first
 }
 
 void KrViewer::print() {

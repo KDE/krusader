@@ -33,7 +33,6 @@
  
 #include "konfiguratoritems.h"
 #include <qframe.h>
-#include <q3ptrlist.h>
 #include <qgroupbox.h>
 #include <qlabel.h>
 #include <qlayout.h>
@@ -475,7 +474,7 @@ signals:
   void  sigChanged();
   
 protected:
-  Q3PtrList<KonfiguratorExtension> itemList;
+  QList<KonfiguratorExtension *> itemList;
 
 private:
   bool  firstCall;

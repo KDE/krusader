@@ -35,7 +35,6 @@ A
 #include <qwidget.h>
 #include <qpainter.h>
 #include <qcolor.h>
-#include <q3ptrlist.h>
 //Added by qt3to4:
 #include <QKeyEvent>
 #include <QPaintEvent>

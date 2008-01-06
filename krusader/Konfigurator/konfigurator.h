@@ -36,7 +36,6 @@
 #include "konfiguratorpage.h"
 #include <qwidget.h>
 //Added by qt3to4:
-#include <Q3PtrList>
 #include <kdialog.h>
 #include <kpagedialog.h>
 #include <qtimer.h>

@@ -37,7 +37,6 @@
 #include <qdialog.h>
 #include <qlabel.h>
 #include <q3dict.h>
-#include <q3ptrlist.h>
 #include <q3ptrdict.h>
 #include <q3valuestack.h>
 #include <q3ptrstack.h>

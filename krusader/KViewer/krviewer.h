@@ -19,7 +19,6 @@
 #define KRVIEWER_H
 
 #include <qwidget.h>
-#include <q3ptrlist.h>
 //Added by qt3to4:
 #include <QEvent>
 #include <QList>
@@ -109,7 +108,7 @@ private:
 	QAction *tabClose;
 	QAction *closeAct;
 
-	static Q3PtrList<KrViewer> viewers; // the first viewer is the active one
+	static QList<KrViewer *> viewers; // the first viewer is the active one
 	QList<int>    reservedKeys;   // the reserved key sequences
 	QList<QAction *> reservedKeyActions; // the IDs of the reserved keys
 };

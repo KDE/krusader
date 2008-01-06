@@ -58,34 +58,34 @@ FilterTabs * FilterTabs::addTo( QTabWidget *tabWidget, int props )
 
 void FilterTabs::saveToProfile( QString name )
 {
-  FilterBase *filter = filterList.first();
-
-  while( filter )
+  QListIterator<FilterBase *> it(filterList);
+  while (it.hasNext())
   {
+    FilterBase *filter = it.next();
+
     filter->saveToProfile( name );
-    filter = filterList.next();
   }
 }
 
 void FilterTabs::loadFromProfile( QString name )
 {
-  FilterBase *filter = filterList.first();
-
-  while( filter )
+  QListIterator<FilterBase *> it(filterList);
+  while (it.hasNext())
   {
+    FilterBase *filter = it.next();
+
     filter->loadFromProfile( name );
-    filter = filterList.next();
   }
 }
 
 void FilterTabs::acceptQuery()
 {
-  FilterBase *filter = filterList.first();
-
-  while( filter )
+  QListIterator<FilterBase *> it(filterList);
+  while (it.hasNext())
   {
+    FilterBase *filter = it.next();
+
     filter->queryAccepted();
-    filter = filterList.next();
   }
 }
 
@@ -110,14 +110,13 @@ bool FilterTabs::fillQuery( KRQuery *query )
 
 FilterBase * FilterTabs::get( QString name )
 {
-  FilterBase *filter = filterList.first();
-
-  while( filter )
+  QListIterator<FilterBase *> it(filterList);
+  while (it.hasNext())
   {
+    FilterBase *filter = it.next();
+
     if( filter->name() == name )
       return filter;
-
-    filter = filterList.next();
   }
 
   return 0;
