@@ -300,10 +300,10 @@ void KgColors::slotDisable()
   importBtn->setEnabled(!enabled);
   exportBtn->setEnabled(!enabled);
 
-  for( int i = 0; labelList.at( i ) && i < endOfPanelColors ; i++ )
+  for( int i = 0; i < labelList.count() && i < endOfPanelColors ; i++ )
     labelList.at( i )->setEnabled( !enabled );
 
-  for( int j = 0; itemList.at( j ) && j < endOfPanelColors ; j++ )
+  for( int j = 0; j < itemList.count() && j < endOfPanelColors ; j++ )
     itemList.at( j )->setEnabled( !enabled );
 
   generals->find("Enable Alternate Background")->setEnabled( enabled );

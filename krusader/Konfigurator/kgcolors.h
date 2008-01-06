@@ -32,7 +32,6 @@
 #define __KGCOLORS_H__
 
 #include "konfiguratorpage.h"
-#include <q3ptrlist.h>
 #include <qlist.h>
 #include <q3listview.h>
 #include <q3widgetstack.h>
@@ -96,9 +95,9 @@ private:
 
   KonfiguratorCheckBoxGroup          *generals;
 
-  Q3PtrList<QLabel>                    labelList;
-  Q3PtrList<KonfiguratorColorChooser>  itemList;
-  QList<QString>                 itemNames;
+  QList<QLabel *>                     labelList;
+  QList<KonfiguratorColorChooser *>   itemList;
+  QList<QString>                      itemNames;
 
   Q3ListView                          *preview;
   KPushButton *importBtn, *exportBtn;

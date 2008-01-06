@@ -37,7 +37,6 @@
 #include <qspinbox.h>
 #include <qpushbutton.h>
 #include <qradiobutton.h>
-#include <q3ptrlist.h>
 #include <q3listbox.h>
 #include <qlist.h>
 #include <q3valuevector.h>
@@ -164,7 +163,7 @@ public:
   KonfiguratorCheckBox *  find( QString name );
 
 private:
-  Q3PtrList<KonfiguratorCheckBox>  checkBoxList;
+  QList<KonfiguratorCheckBox *>  checkBoxList;
 };
 
 // KonfiguratorRadioButtons class
@@ -194,7 +193,7 @@ public slots:
   void slotSetDefaults(QObject *);
 
 protected:
-  Q3PtrList<QRadioButton>  radioButtons;
+  QList<QRadioButton *>  radioButtons;
   QList<QString>   radioValues;
   QList<QString>   radioNames;
 

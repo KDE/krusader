@@ -183,18 +183,20 @@ void KonfiguratorCheckBoxGroup::add( KonfiguratorCheckBox *checkBox )
 
 KonfiguratorCheckBox * KonfiguratorCheckBoxGroup::find( int index )
 {
+  if( index < 0 || index >= checkBoxList.count() )
+    return 0;
   return checkBoxList.at( index );
 }
 
 KonfiguratorCheckBox * KonfiguratorCheckBoxGroup::find( QString name )
 {
-  KonfiguratorCheckBox *checkBox = checkBoxList.first();
-
-  while( checkBox )
+  QListIterator<KonfiguratorCheckBox *> it(checkBoxList);
+  while (it.hasNext())
   {
+    KonfiguratorCheckBox * checkBox = it.next();
+
     if( checkBox->extension()->getCfgName() == name )
       return checkBox;
-    checkBox = checkBoxList.next();
   }
 
   return 0;
@@ -230,6 +232,9 @@ void KonfiguratorRadioButtons::addRadioButton( QRadioButton *radioWidget, QStrin
 
 QRadioButton * KonfiguratorRadioButtons::find( int index )
 {
+  if( index < 0 || index >= radioButtons.count() )
+    return 0;
+
   return radioButtons.at( index );
 }
 
@@ -245,21 +250,22 @@ QRadioButton * KonfiguratorRadioButtons::find( QString name )
 void KonfiguratorRadioButtons::selectButton( QString value )
 {
   int cnt = 0;
-  QRadioButton *btn  = radioButtons.first();
 
-  while( btn )
+  QListIterator<QRadioButton *> it(radioButtons);
+  while (it.hasNext())
   {
+    QRadioButton * btn = it.next();
+
     if( value == radioValues[ cnt ] )
     {
       btn->setChecked( true );
       return;
     }
 
-    btn = radioButtons.next();
     cnt++;
   }
 
-  if( radioButtons.first() )
+  if( !radioButtons.isEmpty() )
     radioButtons.first()->setChecked( true );
 }
 
@@ -274,18 +280,19 @@ void KonfiguratorRadioButtons::loadInitialValue()
 
 void KonfiguratorRadioButtons::slotApply(QObject *,QString cls, QString name)
 {
-  QRadioButton *btn  = radioButtons.first();
   int cnt = 0;
 
-  while( btn )
+  QListIterator<QRadioButton *> it(radioButtons);
+  while (it.hasNext())
   {
+    QRadioButton * btn = it.next();
+
     if( btn->isChecked() )
     {
       KConfigGroup( krConfig, cls ).writeEntry( name, radioValues[ cnt ] );
       break;
     }
 
-    btn = radioButtons.next();
     cnt++;
   }
 }

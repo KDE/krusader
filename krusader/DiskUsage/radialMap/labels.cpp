@@ -5,7 +5,7 @@
 #include <qfont.h>
 #include <qfontmetrics.h>
 #include <qpainter.h>
-#include <q3ptrlist.h>
+#include <qlist.h>
 
 #include "Config.h"
 #include "fileTree.h"
@@ -33,27 +33,47 @@ namespace RadialMap
         QString qs;
     };
 
-    class LabelList : public Q3PtrList<Label>
+    class LabelList : public QList<Label *>
     {
-    protected:
-        int compareItems( Q3PtrCollection::Item item1, Q3PtrCollection::Item item2 )
+
+    public:
+        ~LabelList()
         {
+          QListIterator<Label *> it( *this );
+          while (it.hasNext())
+            delete it.next();
+        }
+
+        void inSort( Label * label1 )
+        {
+          for(QList<Label *>::iterator it( begin() ); it != end(); it++ )
+          {
+            Label * label2 = *it;
+            bool ins = false;
+
             //you add 1440 to work round the fact that later you want the circle split vertically
             //and as it is you start at 3 o' clock. It's to do with rightPrevY, stops annoying bug
 
-            int a1 = ((Label*)item1)->a + 1440;
-            int a2 = ((Label*)item2)->a + 1440;
+            int a1 = label1->a + 1440;
+            int a2 = label2->a + 1440;
 
             if( a1 == a2 )
-            return 0;
+              ins = true;
 
             if( a1 > 5760 ) a1 -= 5760;
             if( a2 > 5760 ) a2 -= 5760;
 
-            if( a1 > a2 )
-            return 1;
+            if( a1 < a2 )
+              ins = true;
 
-            return -1;
+            if( ins )
+            {
+               insert( it, label1 );
+               return;
+            }
+          }
+
+          append( label1 );
         }
     };
 }
@@ -64,8 +84,7 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
 {
   //we are a friend of RadialMap::Map
 
-  LabelList list; list.setAutoDelete( true );
-  Q3PtrListIterator<Label> it( list );
+  LabelList list;
   unsigned int startLevel = 0;
 
 
@@ -125,30 +144,36 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
   //2. Check to see if any adjacent labels are too close together
   //   if so, remove the least significant labels
 
-  it.toFirst();
-  Q3PtrListIterator<Label> jt( it );
-  ++jt;
+  int itn = 0;
+  int jtn = 1;
 
-  while( jt ) //**** no need to check _it_ as jt will be NULL if _it_ was too
+  while( jtn < list.count() )
   {
     //this method is fairly efficient
 
-    if( (*it)->tooClose( (*jt)->a ) )
+    if( list[ itn ]->tooClose( list[ jtn ]->a ) )
     {
-      if( (*it)->lvl > (*jt)->lvl )
+      if( list[ itn ]->lvl > list[ jtn ]->lvl )
       {
-          list.remove( *it );
-          it = jt;
+          delete list[ itn ];
+          list.removeAt( itn );
+          jtn--;
+          itn = jtn;
       }
       else
-          list.remove( *jt );
+      {
+          delete list[ jtn ];
+          list.removeAt( jtn );
+      }
     }
     else
-      ++it;
+      ++itn;
 
-    jt = it;
-    ++jt;
+    jtn = itn;
+    ++jtn;
   }
+
+  LabelList::iterator it = list.begin();
 
   //used in next two steps
   bool varySizes;
@@ -163,7 +188,7 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
       //determine current range of levels to draw for
       unsigned int range = 0;
 
-      for( it.toFirst(); it != 0; ++it )
+      for( it = list.begin(); it != list.end(); ++it )
       {
         unsigned int lvl = (*it)->lvl;
         if( lvl > range )
@@ -213,7 +238,7 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
 
     QFont font;
 
-    for( it.toFirst(); it != 0; ++it )
+    for( it = list.begin(); it != list.end(); ++it )
     {
       //** bear in mind that text is drawn with QPoint param as BOTTOM left corner of text box
       if( varySizes ) font.setPointSize( sizes[(*it)->lvl] );
@@ -258,7 +283,8 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
         {
           //skip this strut
           //**** don't duplicate this code
-          list.remove( *it ); //will delete the label and set it to list.current() which _should_ be the next ptr
+          delete *it;
+          it = list.erase( it ); //will delete the label and set it to list.current() which _should_ be the next ptr
           break;
         }
 
@@ -279,7 +305,8 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
         if( x2 < 0 || ty > height() || x2 > x1 )
         {
           //skip this strut
-          list.remove( *it ); //will delete the label and set it to list.current() which _should_ be the next ptr
+          delete *it;
+          it = list.erase( it ); //will delete the label and set it to list.current() which _should_ be the next ptr
           break;
         }
 
@@ -314,14 +341,14 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
     //**** in rare case that deleted label was last label in top level
     //     and last in labelList too, this will not work as expected (not critical)
 
-  } while( it != 0 );
+  } while( it != list.end() );
 
 
   //5. Render labels
 
   paint.setPen( QPen( Qt::black, 1 ) );
 
-    for( it.toFirst(); it != 0; ++it )
+    for( it = list.begin(); it != list.end(); ++it )
     {
       if( varySizes )
       {

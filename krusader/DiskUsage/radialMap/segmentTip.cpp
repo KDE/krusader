@@ -65,10 +65,16 @@ SegmentTip::moveto( QPoint p, QWidget &canvas, bool placeAbove )
   QColor col = QToolTip::palette().color( QPalette::Active, QPalette::Window );
   col.setAlpha( 153 ); // 0.6
 
+  QRect rct = rect();
+  if( rct.width() )
+    rct.setWidth( rct.width() - 1 );
+  if( rct.height() )
+    rct.setHeight( rct.height() - 1 );
+
   QPainter paint( &m_pixmap );
     paint.setPen( Qt::black );
     paint.setBrush( col );
-    paint.drawRect( rect() );
+    paint.drawRect( rct );
     paint.end();
 
   paint.begin( &m_pixmap );
