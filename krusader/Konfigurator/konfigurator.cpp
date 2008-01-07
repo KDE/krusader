@@ -75,7 +75,7 @@ Konfigurator::Konfigurator( bool f, int startPage ) : KPageDialog( (QWidget *)0 
 
   setHelp("konfigurator");
   
-  connect( this, SIGNAL( currentPageChanged( KPageWidgetItem *, KPageWidgetItem * ) ), this, SLOT( slotPageSwitch() ) );
+  connect( this, SIGNAL( currentPageChanged( KPageWidgetItem *, KPageWidgetItem * ) ), this, SLOT( slotPageSwitch( KPageWidgetItem *, KPageWidgetItem * ) ) );
   connect( &restoreTimer, SIGNAL(timeout()), this, SLOT(slotRestorePage()));
   connect( this, SIGNAL( applyClicked() ), this, SLOT( slotApply() ) );
   connect( this, SIGNAL( cancelClicked() ), this, SLOT( slotCancel() ) );
@@ -146,7 +146,7 @@ void Konfigurator::slotApply()
 void Konfigurator::slotCancel()
 {
   lastPage = currentPage();
-  if( slotPageSwitch() )
+  if( slotPageSwitch( lastPage, lastPage ) )
     reject();
 }
 
@@ -156,16 +156,19 @@ void Konfigurator::slotApplyEnable()
   enableButtonApply( ((KonfiguratorPage *)(lastPage->widget()))->isChanged() );
 }
 
-bool Konfigurator::slotPageSwitch()
+bool Konfigurator::slotPageSwitch( KPageWidgetItem *current, KPageWidgetItem *before )
 {
-  KonfiguratorPage *currentPg = (KonfiguratorPage *)(currentPage()->widget());
+  if( before == 0 )
+    return true;
+
+  KonfiguratorPage *currentPg = (KonfiguratorPage *)(before->widget());
 
   if( internalCall )
   {
     internalCall = false;
     return true;
   }
-  
+
   if( currentPg->isChanged() )
   {
     int result = KMessageBox::questionYesNoCancel( 0, i18n("The current page has been changed. Do you want to apply changes?" ));
@@ -188,7 +191,7 @@ bool Konfigurator::slotPageSwitch()
   }
 
   enableButtonApply( currentPg->isChanged() );
-  lastPage = currentPage();
+  lastPage = current;
   return true;
 }
 

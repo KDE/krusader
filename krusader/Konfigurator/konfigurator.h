@@ -62,7 +62,7 @@ protected slots:
   void slotApply();   // actually used for defaults
   void slotCancel();
   void slotApplyEnable();
-  bool slotPageSwitch();
+  bool slotPageSwitch(  KPageWidgetItem *, KPageWidgetItem * );
   void slotRestorePage();
 
 private:
