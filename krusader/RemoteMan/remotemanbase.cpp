@@ -38,8 +38,9 @@
  *  TRUE to construct a modal dialog.
  */
 remoteManBase::remoteManBase( QWidget* parent, bool modal, Qt::WFlags fl )
-    : QDialog( parent, 0, modal, fl )
+    : QDialog( parent, fl )
 {
+    setModal( modal );
     if ( !name )
 	setName( "remoteManBase" );
     resize( 670, 502 ); 
