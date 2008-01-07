@@ -59,16 +59,16 @@ KURLListRequester::KURLListRequester( QWidget *parent ) : QWidget( parent )
   urlLineEdit = new KLineEdit( this );
   urlListRequesterGrid->addWidget( urlLineEdit, 0, 0 );
       
-  urlListBox = new Q3ListBox( this, "urlListBox" );
+  urlListBox = new Q3ListBox( this );
   urlListBox->setSelectionMode( Q3ListBox::Extended );
   urlListRequesterGrid->addWidget( urlListBox, 1, 0, 1, 3 );
 
-  urlAddBtn = new QToolButton( this, "urlAddBtn" );
+  urlAddBtn = new QToolButton( this );
   urlAddBtn->setText( "" );
   urlAddBtn->setPixmap( imageAdd );
   urlListRequesterGrid->addWidget( urlAddBtn, 0, 1 );
     
-  urlBrowseBtn = new QToolButton( this, "urlBrowseBtn" );
+  urlBrowseBtn = new QToolButton( this );
   urlBrowseBtn->setText( "" );
   urlBrowseBtn->setPixmap( imageFolder );
   urlListRequesterGrid->addWidget( urlBrowseBtn, 0, 2 );

@@ -184,7 +184,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
 	connect(inlineRefreshCancelButton, SIGNAL(clicked()), this, SLOT(inlineRefreshCancel()));
 
 	// a quick button to open the popup panel
-	popupBtn = new QToolButton( this, "popupbtn" );
+	popupBtn = new QToolButton( this );
 	popupBtn->setFixedSize( 22, 20 );
 	popupBtn->setPixmap(krLoader->loadIcon("1uparrow", KIconLoader::Toolbar, 16));
 	connect(popupBtn, SIGNAL(clicked()), this, SLOT(togglePanelPopup()));
@@ -205,7 +205,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
 	// clear-origin button
 	bool clearButton = group.readEntry("Clear Location Bar Visible", _ClearLocation);
 	if (clearButton){
-		clearOrigin = new QToolButton(hboxWidget, "clearorigin");
+		clearOrigin = new QToolButton(hboxWidget);
 		clearOrigin->setPixmap(krLoader->loadIcon("locationbar_erase", KIconLoader::Toolbar, 16));
 		hbox->addWidget( clearOrigin );
 		QToolTip::add(  clearOrigin, i18n( "Clear the location bar" ) );

@@ -101,7 +101,7 @@ KCMDLine::KCMDLine( QWidget *parent ) : QWidget( parent ) {
     ( cmdLine, i18n( "<qt><p>Well, it's actually quite simple: You type your command here and Krusader obeys.</p><p><b>Tip</b>: Move within command line history with &lt;Up&gt; and &lt;Down&gt; arrows.</p></qt>" ) );
   layout->addWidget( cmdLine, 0, 1 );
 
-  buttonAddPlaceholder = new QToolButton( this, "ButtonAddPlaceholder" );
+  buttonAddPlaceholder = new QToolButton( this );
   buttonAddPlaceholder->setFixedSize(22,20);
   buttonAddPlaceholder->adjustSize();
   buttonAddPlaceholder->setPixmap( SmallIcon( "add" ) );

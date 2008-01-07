@@ -29,7 +29,7 @@ class PopularUrlsDlg;
 class PopularUrls : public QObject {
 	Q_OBJECT
 public:
-	PopularUrls(QObject *parent = 0, const char *name = 0);
+	PopularUrls(QObject *parent = 0);
 	~PopularUrls();
 	void save();
 	void load();

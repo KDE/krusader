@@ -141,7 +141,7 @@ newFTPGUI::newFTPGUI( QWidget* parent )
     connectBtn->setDefault( TRUE );
     hbox->addWidget( connectBtn );
 
-    //saveBtn = new QPushButton( i18n( "&Save"  ), Layout6, "saveBtn" );
+    //saveBtn = new QPushButton( i18n( "&Save"  ), Layout6 );
     //saveBtn->setAutoDefault( TRUE );
     //hbox->addWidget( saveBtn );
 

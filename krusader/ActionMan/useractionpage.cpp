@@ -49,32 +49,32 @@ UserActionPage::UserActionPage( QWidget* parent )
    toolbarLayout->setSpacing( 0 );
    toolbarLayout->setContentsMargins( 0, 0, 0, 0 );
 
-   newButton = new QToolButton( this, "newButton" );
+   newButton = new QToolButton( this );
    newButton->setPixmap( ICON("filenew") );
    newButton->setAutoRaise(true);
    QToolTip::add( newButton, i18n("Create new useraction") );
 
-   importButton = new QToolButton( this, "importButton" );
+   importButton = new QToolButton( this );
    importButton->setPixmap( ICON("fileimport") );
    importButton->setAutoRaise(true);
    QToolTip::add( importButton, i18n("Import useractions") );
 
-   exportButton = new QToolButton( this, "exportButton" );
+   exportButton = new QToolButton( this );
    exportButton->setPixmap( ICON("fileexport") );
    exportButton->setAutoRaise(true);
    QToolTip::add( exportButton, i18n("Export useractions") );
 
-   copyButton = new QToolButton( this, "copyButton" );
+   copyButton = new QToolButton( this );
    copyButton->setPixmap( ICON("editcopy") );
    copyButton->setAutoRaise(true);
    QToolTip::add( copyButton, i18n("Copy useractions to clipboard") );
 
-   pasteButton = new QToolButton( this, "pasteButton" );
+   pasteButton = new QToolButton( this );
    pasteButton->setPixmap( ICON("editpaste") );
    pasteButton->setAutoRaise(true);
    QToolTip::add( pasteButton, i18n("Paste useractions from clipboard") );
 
-   removeButton = new QToolButton( this, "removeButton" );
+   removeButton = new QToolButton( this );
    removeButton->setPixmap( ICON("editdelete") );
    removeButton->setAutoRaise(true);
    QToolTip::add( removeButton, i18n("Delete selected useractions") );
@@ -99,7 +99,7 @@ UserActionPage::UserActionPage( QWidget* parent )
   		"show UserAction help"	//dontShowAgainName for the config
   	);
 */
-   QSplitter *split = new QSplitter( this, "useractionpage splitter");
+   QSplitter *split = new QSplitter( this );
    layout->addWidget( split, 1000 ); // again a very large stretch-factor to fix the height of the toolbar
 
    actionTree = new UserActionListView( split );

@@ -45,8 +45,8 @@
 /***************************************************************************
   * constructor
 **/
-KDiskFreeSpace::KDiskFreeSpace(QObject *parent, const char *name)
-    : QObject(parent,name)
+KDiskFreeSpace::KDiskFreeSpace(QObject *parent)
+    : QObject(parent)
 {
     dfProc = new K3Process(); Q_CHECK_PTR(dfProc);
     dfProc->setEnvironment("LANGUAGE", "C");

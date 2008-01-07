@@ -41,7 +41,7 @@ class K3Process;
 class KDiskFreeSpace : public QObject
 {  Q_OBJECT
 public:
-   KDiskFreeSpace( QObject *parent=0, const char *name=0 );
+   KDiskFreeSpace( QObject *parent=0 );
    /**
     * Destructor - this object autodeletes itself when it's done
     */

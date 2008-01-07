@@ -36,7 +36,7 @@
 #include <klocale.h>
 
 FilterTabs::FilterTabs( int properties, QTabWidget *tabWidget, QObject *parent ) :
-    QObject( parent, 0 )
+    QObject( parent )
 {
   this->tabWidget = tabWidget;
 

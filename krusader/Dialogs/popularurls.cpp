@@ -19,7 +19,7 @@
 #define INCREASE			2
 #define DECREASE			1
 
-PopularUrls::PopularUrls(QObject *parent, const char *name) : QObject(parent, name), 
+PopularUrls::PopularUrls(QObject *parent) : QObject(parent), 
 	head(0), tail(0), count(0) {
 	dlg = new PopularUrlsDlg();
 }
