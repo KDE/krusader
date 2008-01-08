@@ -21,7 +21,6 @@
 #include <qlayout.h>
 #include <qvariant.h>
 #include <qtooltip.h>
-#include <q3whatsthis.h>
 //Added by qt3to4:
 #include <QHBoxLayout>
 #include <QGridLayout>

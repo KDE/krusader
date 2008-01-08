@@ -38,7 +38,6 @@
 #include <qlayout.h>
 #include <qvariant.h>
 #include <qtooltip.h>
-#include <q3whatsthis.h>
 #include <qimage.h>
 #include <qpixmap.h>
 #include <qspinbox.h>

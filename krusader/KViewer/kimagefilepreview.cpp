@@ -11,7 +11,6 @@
 #include <qlabel.h>
 #include <qcombobox.h>
 #include <qcheckbox.h>
-#include <q3whatsthis.h>
 #include <qtimer.h>
 //Added by qt3to4:
 #include <QPixmap>

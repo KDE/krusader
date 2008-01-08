@@ -34,7 +34,6 @@
 #include <klocale.h>
 #include <kglobalsettings.h>
 #include <qfontmetrics.h>
-#include <q3whatsthis.h>
 #include "kfnkeys.h"
 #include "../krusader.h"
 #include "../defaults.h"

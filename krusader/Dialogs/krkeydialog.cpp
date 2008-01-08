@@ -12,7 +12,6 @@
 #include "krkeydialog.h"
 
 #include <qlayout.h>
-#include <q3whatsthis.h>
 #include <q3boxlayout.h>
 #include <klocale.h>
 #include <kpushbutton.h>
@@ -40,12 +39,12 @@ KrKeyDialog::KrKeyDialog( QWidget * parent ) : KShortcutsDialog( KShortcutsEdito
    Q3BoxLayout* buttonBoxLayout = static_cast<Q3BoxLayout*>( buttonBox->layout() );
 
    KPushButton* importButton = new KPushButton( i18n("Import shortcuts"), buttonBox );
-   Q3WhatsThis::add( importButton, i18n( "Load a keybinding profile, e.g., total_commander.keymap" ) );
+   importButton->setWhatsThis( i18n( "Load a keybinding profile, e.g., total_commander.keymap" ) );
    buttonBoxLayout->insertWidget( 1, importButton ); // the defaults-button should stay on position 0
    connect( importButton, SIGNAL( clicked() ), SLOT( slotImportShortcuts() ) );
 
    KPushButton* exportButton = new KPushButton( i18n("Export shortcuts"), buttonBox );
-   Q3WhatsThis::add( exportButton, i18n( "Save current keybindings in a keymap file." ) );
+   exportButton->setWhatsThis( i18n( "Save current keybindings in a keymap file." ) );
    buttonBoxLayout->insertWidget( 2, exportButton );
    connect( exportButton, SIGNAL( clicked() ), SLOT( slotExportShortcuts() ) );
 

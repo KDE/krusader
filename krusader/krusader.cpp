@@ -58,7 +58,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <qdir.h>
 #include <qprinter.h>
 #include <q3progressdialog.h>
-#include <q3whatsthis.h> 
 #include <qwidget.h>
 #include <qdatetime.h>
 #include <QActionGroup>
@@ -356,7 +355,7 @@ Krusader::Krusader() : KParts::MainWindow(0,Qt::WType_TopLevel|Qt::WDestructiveC
    // create a status bar
    status = new KrusaderStatus( this );
    setStatusBar( status );
-   Q3WhatsThis::add( status, i18n( "Statusbar will show basic information "
+   status->setWhatsThis( i18n( "Statusbar will show basic information "
                                           "about file below mouse pointer." ) );
 
    // This enables Krusader to show a tray icon

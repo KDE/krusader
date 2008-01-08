@@ -32,7 +32,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <sys/param.h>
 // QT includes
 #include <qbitmap.h>
-#include <q3whatsthis.h>
 #include <qstringlist.h>
 #include <q3strlist.h>
 //Added by qt3to4:
@@ -142,8 +141,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
    status->enableDrops( true );
    int sheight = QFontMetrics( status->font() ).height() + 4;
    status->setMaximumHeight( sheight );
-   Q3WhatsThis::add
-      ( status, i18n( "The statusbar displays information about the FILESYSTEM "
+   status->setWhatsThis( i18n( "The statusbar displays information about the FILESYSTEM "
                       "which holds your current directory: Total size, free space, "
                       "type of filesystem, etc." ) );
    connect( status, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
@@ -158,8 +156,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
 	bookmarksButton = new KrBookmarkButton(this);
 	connect( bookmarksButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
    connect( bookmarksButton, SIGNAL( openUrl( const KUrl& ) ), func, SLOT( openUrl( const KUrl& ) ) );
-	Q3WhatsThis::add
-      ( bookmarksButton, i18n( "Open menu with bookmarks. You can also add "
+	bookmarksButton->setWhatsThis( i18n( "Open menu with bookmarks. You can also add "
                                "current location to the list, edit bookmarks "
                                "or add subfolder to the list." ) );
 										 
@@ -171,8 +168,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
    totals->setLineWidth( 1 );		// a nice 3D touch :-)
    totals->setMaximumHeight( sheight );
    totals->enableDrops( true );
-   Q3WhatsThis::add
-      ( totals, i18n( "The totals bar shows how many files exist, "
+   totals->setWhatsThis( i18n( "The totals bar shows how many files exist, "
                       "how many selected and the bytes math" ) );
    connect( totals, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
    connect( totals, SIGNAL( dropped( QDropEvent *) ), this, SLOT( handleDropOnTotals(QDropEvent *) ) );  
@@ -216,12 +212,10 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
    hbox->addWidget( origin );
    QPixmap pixMap = origin->button() ->iconSet() ->pixmap( QIcon::Small, QIcon::Normal );
    origin->button() ->setFixedSize( pixMap.width() + 4, pixMap.height() + 4 );
-   Q3WhatsThis::add
-      ( origin, i18n( "Use superb KDE file dialog to choose location. " ) );
+   origin->setWhatsThis( i18n( "Use superb KDE file dialog to choose location. " ) );
    origin->lineEdit() ->setUrlDropsEnabled( true );
    origin->lineEdit() ->installEventFilter( this );
-   Q3WhatsThis::add
-      ( origin->lineEdit(), i18n( "Name of directory where you are. You can also "
+   origin->lineEdit()->setWhatsThis( i18n( "Name of directory where you are. You can also "
                                   "enter name of desired location to move there. "
                                   "Use of Net protocols like ftp or fish is possible." ) );
    origin->setMode( KFile::Directory | KFile::ExistingOnly );

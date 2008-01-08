@@ -37,7 +37,6 @@
 #include <kfiledialog.h>
 #include <kmessagebox.h>
 #include <kiconloader.h>
-#include <q3whatsthis.h>
 #include <qpushbutton.h>
 //Added by qt3to4:
 #include <QHBoxLayout>
@@ -80,8 +79,8 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	nameGroupLayout->addWidget ( searchFor, 0, 1, 1, 2 );
 
 	QString s = "<p><img src='toolbar|find'></p>" + i18n ( "<p>The filename filtering criteria is defined here.</p><p>You can make use of wildcards. Multiple patterns are separated by space (means logical OR) and patterns are excluded from the search using the pipe symbol.</p><p>If the pattern is ended with a slash (<code>*pattern*/</code>), that means that pattern relates to recursive search of directories.<ul><li><code>pattern</code> - means to search those files/directories that name is <code>pattern</code>, recursive search goes through all subdirectories independently of the value of <code>pattern</code></li><li><code>pattern/</code> - means to search all files/directories, but recursive search goes through/excludes the directories that name is <code>pattern</code></li></ul><p></p><p>It's allowed to use quotation marks for names that contain space. Filter <code>\"Program&nbsp;Files\"</code> searches out those files/directories that name is <code>Program&nbsp;Files</code>.</p><p>Examples:<ul><code><li>*.o</li><li>*.h *.c\?\?</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</li></code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to '<code>*text*</code>'.</p>" );
-	Q3WhatsThis::add ( searchFor, s );
-	Q3WhatsThis::add ( searchForLabel, s );
+	searchFor->setWhatsThis( s );
+	searchForLabel->setWhatsThis( s );
 
 	QLabel *searchType = new QLabel ( nameGroup );
 	searchType->setText ( i18n ( "&Of type:" ) );

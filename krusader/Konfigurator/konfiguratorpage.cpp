@@ -36,7 +36,6 @@
 #include <QFrame>
 #include <QLabel>
 #include "../krusader.h"
-#include <q3whatsthis.h>
 
 KonfiguratorPage::KonfiguratorPage( bool firstTime, QWidget* parent ) :
   QFrame( parent ), firstCall( firstTime )
@@ -87,7 +86,7 @@ KonfiguratorCheckBox* KonfiguratorPage::createCheckBox( QString cls, QString nam
   KonfiguratorCheckBox *checkBox = new KonfiguratorCheckBox( cls, name, dflt, text,
                                  parent, rst, pg );
   if( !toolTip.isEmpty() )
-    Q3WhatsThis::add( checkBox, toolTip );
+    checkBox->setWhatsThis( toolTip );
   
   registerObject( checkBox->extension() );
   return checkBox;
@@ -226,7 +225,7 @@ KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup( QString cls,
     QRadioButton *radBtn = new QRadioButton( params[i].text, radioWidget );
 
     if( !params[i].tooltip.isEmpty() )
-      Q3WhatsThis::add( radBtn, params[i].tooltip );
+      radBtn->setWhatsThis( params[i].tooltip );
 
     layout->addWidget( radBtn, y, x );
 

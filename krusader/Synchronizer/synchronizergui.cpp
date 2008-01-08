@@ -59,7 +59,6 @@
 #include <kmessagebox.h>
 #include <kio/netaccess.h>
 #include <qeventloop.h>
-#include <q3whatsthis.h>
 #include <qregexp.h>
 #include <q3header.h>
 #include <qspinbox.h>
@@ -1152,7 +1151,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   leftUrlReq->setMode( KFile::Directory );
   leftUrlReq->setMinimumWidth( 250 );
   grid->addWidget( leftUrlReq, 1 ,0 );
-  Q3WhatsThis::add( leftLocation, i18n( "The left base directory used during the synchronisation process." ) );
+  leftLocation->setWhatsThis( i18n( "The left base directory used during the synchronisation process." ) );
   leftUrlReq->setEnabled( !hasSelectedFiles );
   leftLocation->setEnabled( !hasSelectedFiles );
   leftDirLabel->setBuddy( leftLocation );
@@ -1170,8 +1169,8 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   filterLabel->setBuddy( fileFilter );
 
   QString wtFilter = "<p><img src='toolbar|find'></p>" + i18n("<p>The filename filtering criteria is defined here.</p><p>You can make use of wildcards. Multiple patterns are separated by space (means logical OR) and patterns are excluded from the search using the pipe symbol.</p><p>If the pattern is ended with a slash (<code>*pattern*/</code>), that means that pattern relates to recursive search of directories.<ul><li><code>pattern</code> - means to search those files/directories that name is <code>pattern</code>, recursive search goes through all subdirectories independently of the value of <code>pattern</code></li><li><code>pattern/</code> - means to search all files/directories, but recursive search goes through/excludes the directories that name is <code>pattern</code></li></ul><p></p><p>It's allowed to use quotation marks for names that contain space. Filter <code>\"Program&nbsp;Files\"</code> searches out those files/directories that name is <code>Program&nbsp;Files</code>.</p><p>Examples:<ul><code><li>*.o</li><li>*.h *.c\?\?</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</li></code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to '<code>*text*</code>'.</p>");
-  Q3WhatsThis::add(fileFilter, wtFilter);
-  Q3WhatsThis::add(filterLabel, wtFilter);
+  fileFilter->setWhatsThis( wtFilter);
+  filterLabel->setWhatsThis( wtFilter);
 
   rightLocation = new KHistoryComboBox(compareDirs);
   rightLocation->setMaxCount(25);  // remember 25 items
@@ -1185,7 +1184,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   rightUrlReq->setMode( KFile::Directory );
   rightUrlReq->setMinimumWidth( 250 );
   grid->addWidget( rightUrlReq, 1 ,2 );
-  Q3WhatsThis::add( rightLocation, i18n( "The right base directory used during the synchronisation process." ) );
+  rightLocation->setWhatsThis( i18n( "The right base directory used during the synchronisation process." ) );
   rightUrlReq->setEnabled( !hasSelectedFiles );
   rightLocation->setEnabled( !hasSelectedFiles );
   rightDirLabel->setBuddy( rightLocation );
@@ -1201,28 +1200,28 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   cbSubdirs         = new QCheckBox( i18n( "Recurse subdirectories" ), optionGridWidget );
   cbSubdirs->setChecked( group.readEntry( "Recurse Subdirectories", _RecurseSubdirs  ) );
   optionGrid->addWidget( cbSubdirs, 0, 0 );
-  Q3WhatsThis::add( cbSubdirs, i18n( "Compare not only the base directories but their subdirectories as well." ) );
+  cbSubdirs->setWhatsThis( i18n( "Compare not only the base directories but their subdirectories as well." ) );
   cbSymlinks        = new QCheckBox( i18n( "Follow symlinks" ), optionGridWidget );
   cbSymlinks->setChecked( group.readEntry( "Follow Symlinks", _FollowSymlinks  ) );
   cbSymlinks->setEnabled( cbSubdirs->isChecked() );
   optionGrid->addWidget( cbSymlinks, 0, 1 );
-  Q3WhatsThis::add( cbSymlinks, i18n( "Follow symbolic links during the compare process." ) );
+  cbSymlinks->setWhatsThis( i18n( "Follow symbolic links during the compare process." ) );
   cbByContent       = new QCheckBox( i18n( "Compare by content" ), optionGridWidget );
   cbByContent->setChecked( group.readEntry( "Compare By Content", _CompareByContent  ) );
   optionGrid->addWidget( cbByContent, 0, 2 );
-  Q3WhatsThis::add( cbByContent, i18n( "Compare duplicated files with same size by content." ) );
+  cbByContent->setWhatsThis( i18n( "Compare duplicated files with same size by content." ) );
   cbIgnoreDate      = new QCheckBox( i18n( "Ignore Date" ), optionGridWidget );
   cbIgnoreDate->setChecked( group.readEntry( "Ignore Date", _IgnoreDate  ) );
   optionGrid->addWidget( cbIgnoreDate, 1, 0 );
-  Q3WhatsThis::add( cbIgnoreDate, i18n( "<p>Ignore date information during the compare process.</p><p><b>Note</b>: useful if the files are located on network filesystems or in archives.</p>" ) );
+  cbIgnoreDate->setWhatsThis( i18n( "<p>Ignore date information during the compare process.</p><p><b>Note</b>: useful if the files are located on network filesystems or in archives.</p>" ) );
   cbAsymmetric      = new QCheckBox( i18n( "Asymmetric" ), optionGridWidget );
   cbAsymmetric->setChecked( group.readEntry( "Asymmetric", _Asymmetric  ) );
   optionGrid->addWidget( cbAsymmetric, 1, 1 );
-  Q3WhatsThis::add( cbAsymmetric, i18n( "<p><b>Asymmetric mode</b></p><p>The left side is the destination, the right is the source directory. Files existing only in the left directory will be deleted, the other differing ones will be copied from right to left.</p><p><b>Note</b>: useful when updating a directory from a file server.</p>" ) );
+  cbAsymmetric->setWhatsThis( i18n( "<p><b>Asymmetric mode</b></p><p>The left side is the destination, the right is the source directory. Files existing only in the left directory will be deleted, the other differing ones will be copied from right to left.</p><p><b>Note</b>: useful when updating a directory from a file server.</p>" ) );
   cbIgnoreCase      = new QCheckBox( i18n( "Ignore Case" ), optionGridWidget );
   cbIgnoreCase->setChecked( group.readEntry( "Ignore Case", _IgnoreCase ) );
   optionGrid->addWidget( cbIgnoreCase, 1, 2 );
-  Q3WhatsThis::add( cbIgnoreCase, i18n( "<p>Case insensitive filename compare.</p><p><b>Note</b>: useful when synchronizing Windows filesystems.</p>" ) );
+  cbIgnoreCase->setWhatsThis( i18n( "<p>Case insensitive filename compare.</p><p><b>Note</b>: useful when synchronizing Windows filesystems.</p>" ) );
 
   /* =========================== Show options groupbox ============================= */
 
@@ -1248,7 +1247,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnLeftToRight->setToggleButton( true );
   btnLeftToRight->setOn( group.readEntry( "LeftToRight Button", _BtnLeftToRight ) );
   btnLeftToRight->setAccel( Qt::CTRL + Qt::Key_L );
-  Q3WhatsThis::add( btnLeftToRight, i18n( "Show files marked to <i>Copy from left to right</i> (CTRL+L)." ) );
+  btnLeftToRight->setWhatsThis( i18n( "Show files marked to <i>Copy from left to right</i> (CTRL+L)." ) );
   showOptionsLayout->addWidget( btnLeftToRight, 0, 0);
 
   btnEquals = new QPushButton( showOptions );
@@ -1257,7 +1256,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnEquals->setToggleButton( true );
   btnEquals->setOn( group.readEntry( "Equals Button", _BtnEquals ) );
   btnEquals->setAccel( Qt::CTRL + Qt::Key_E );
-  Q3WhatsThis::add( btnEquals, i18n( "Show files considered to be identical (CTRL+E)." ) );
+  btnEquals->setWhatsThis( i18n( "Show files considered to be identical (CTRL+E)." ) );
   showOptionsLayout->addWidget( btnEquals, 0, 1);
 
   btnDifferents = new QPushButton( showOptions );
@@ -1266,7 +1265,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnDifferents->setToggleButton( true );
   btnDifferents->setOn( group.readEntry( "Differents Button", _BtnDifferents ) );
   btnDifferents->setAccel( Qt::CTRL + Qt::Key_D );
-  Q3WhatsThis::add( btnDifferents, i18n( "Show excluded files (CTRL+D)." ) );
+  btnDifferents->setWhatsThis( i18n( "Show excluded files (CTRL+D)." ) );
   showOptionsLayout->addWidget( btnDifferents, 0, 2);
 
   btnRightToLeft = new QPushButton( showOptions );
@@ -1275,7 +1274,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnRightToLeft->setToggleButton( true );
   btnRightToLeft->setOn( group.readEntry( "RightToLeft Button", _BtnRightToLeft ) );
   btnRightToLeft->setAccel( Qt::CTRL + Qt::Key_R );
-  Q3WhatsThis::add( btnRightToLeft, i18n( "Show files marked to <i>Copy from right to left</i> (CTRL+R)." ) );
+  btnRightToLeft->setWhatsThis( i18n( "Show files marked to <i>Copy from right to left</i> (CTRL+R)." ) );
   showOptionsLayout->addWidget( btnRightToLeft, 0, 3);
 
   btnDeletable = new QPushButton( showOptions );
@@ -1284,7 +1283,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnDeletable->setToggleButton( true );
   btnDeletable->setOn( group.readEntry( "Deletable Button", _BtnDeletable ) );
   btnDeletable->setAccel( Qt::CTRL + Qt::Key_T );
-  Q3WhatsThis::add( btnDeletable, i18n( "Show files marked to delete. (CTRL+T)" ) );
+  btnDeletable->setWhatsThis( i18n( "Show files marked to delete. (CTRL+T)" ) );
   showOptionsLayout->addWidget( btnDeletable, 0, 4);
 
   btnDuplicates = new QPushButton( showOptions );
@@ -1292,7 +1291,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnDuplicates->setMinimumHeight( btnLeftToRight->height() );
   btnDuplicates->setToggleButton( true );
   btnDuplicates->setOn( group.readEntry( "Duplicates Button", _BtnDuplicates ) );
-  Q3WhatsThis::add( btnDuplicates, i18n( "Show files that exist on both sides." ) );
+  btnDuplicates->setWhatsThis( i18n( "Show files that exist on both sides." ) );
   showOptionsLayout->addWidget( btnDuplicates, 0, 5);
 
   btnSingles = new QPushButton( showOptions );
@@ -1300,7 +1299,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnSingles->setMinimumHeight( btnLeftToRight->height() );
   btnSingles->setToggleButton( true );
   btnSingles->setOn( group.readEntry( "Singles Button", _BtnSingles ) );
-  Q3WhatsThis::add( btnSingles, i18n( "Show files that exist on one side only." ) );
+  btnSingles->setWhatsThis( i18n( "Show files that exist on one side only." ) );
   showOptionsLayout->addWidget( btnSingles, 0, 6);
 
   grid->addWidget( optionWidget, 2, 0, 1, 3 );
@@ -1309,7 +1308,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   /* ========================= Synchronization list view ========================== */
   syncList=new SynchronizerListView( &synchronizer, synchronizerTab );  // create the main container
-  Q3WhatsThis::add( syncList, i18n( "The compare results of the synchronizer (CTRL+M)." ) );
+  syncList->setWhatsThis( i18n( "The compare results of the synchronizer (CTRL+M)." ) );
 
   KConfigGroup gl( krConfig, "Look&Feel");
   syncList->setFont( gl.readEntry("Filelist Font",*_FilelistFont));
@@ -1436,14 +1435,14 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   profileManager = new ProfileManager( "SynchronizerProfile", this );
   profileManager->setAccel( Qt::CTRL + Qt::Key_P );
-  Q3WhatsThis::add( profileManager, i18n( "Profile manager (Ctrl+P)." ) );
+  profileManager->setWhatsThis( i18n( "Profile manager (Ctrl+P)." ) );
   buttons->addWidget( profileManager );
 
   QPixmap swapSides( ( const char** ) swap_sides_data );
   btnSwapSides = new QPushButton( this );
   btnSwapSides->setPixmap( swapSides );
   btnSwapSides->setAccel( Qt::CTRL + Qt::Key_S );
-  Q3WhatsThis::add( btnSwapSides, i18n( "Swap sides (Ctrl+S)." ) );
+  btnSwapSides->setWhatsThis( i18n( "Swap sides (Ctrl+S)." ) );
   buttons->addWidget( btnSwapSides );
 
   statusLabel = new QLabel( this );

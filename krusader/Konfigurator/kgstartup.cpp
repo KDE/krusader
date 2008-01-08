@@ -34,7 +34,6 @@
 #include "../krusader.h"
 #include <klocale.h>
 #include <klineedit.h>
-#include <q3whatsthis.h>
 //Added by qt3to4:
 #include <QGridLayout>
 #include <QLabel>
@@ -52,8 +51,8 @@ KgStartup::KgStartup( bool first, QWidget* parent ) :
 
   QString s = "<p><img src='toolbar|kr_profile'></p>" + i18n( "Defines the panel profile used at startup. A panel profile contains:<ul><li>all the tabs paths</li><li>the current tab</li><li>the active panel</li></ul><b>&lt;Last session&gt;</b> is a special panel profile which is saved automatically when Krusader is closed.");
   QLabel *label = addLabel( panelsGrid, 0, 0, i18n( "Startup profile:" ), panelsGrp );
-  Q3WhatsThis::add( label, s );
-  Q3WhatsThis::add( panelsGrp, s );
+  label->setWhatsThis( s );
+  panelsGrp->setWhatsThis( s );
 
   QStringList profileList = ProfileManager::availableProfiles( "Panel" );
   profileList.push_front( "<" + i18n( "Last session" ) + ">" );

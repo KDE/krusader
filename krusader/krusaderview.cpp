@@ -29,7 +29,6 @@
 ***************************************************************************/
 
 // Qt includes
-#include <q3whatsthis.h> 
 //Added by qt3to4:
 #include <QGridLayout>
 #include <QList>
@@ -93,8 +92,7 @@ void KrusaderView::start( QStringList leftTabs, QStringList leftTypes, int leftA
   // create the function keys widget
   fnKeys = new KFnKeys( this );
   fnKeys->hide();
-  Q3WhatsThis::add
-    ( fnKeys, i18n( "Function keys allow performing fast "
+  fnKeys->setWhatsThis( i18n( "Function keys allow performing fast "
                     "operations on files." ) );
 
   // and insert the whole thing into the main layout... at last

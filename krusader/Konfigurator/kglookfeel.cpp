@@ -38,7 +38,6 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <klocale.h>
-#include <q3whatsthis.h>
 #include <qvalidator.h>
 #include <q3listview.h>
 #include <kmessagebox.h>

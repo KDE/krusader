@@ -40,7 +40,6 @@
 #include <QKeyEvent>
 #include <k3process.h>
 #include <qicon.h>
-#include <q3whatsthis.h>
 #include <unistd.h>
 #include "../krusader.h"
 #include "../kicons.h"
@@ -67,8 +66,7 @@ KCMDLine::KCMDLine( QWidget *parent ) : QWidget( parent ) {
   layout->setSpacing( 0 );
   layout->setContentsMargins( 0, 0, 0, 0 );
   path = new QLabel( this );
-  Q3WhatsThis::add
-    ( path, i18n( "Name of directory where command will be processed." ) );
+  path->setWhatsThis( i18n( "Name of directory where command will be processed." ) );
   path->setAlignment( Qt::AlignRight );
   path->setFrameStyle( QFrame::Box | QFrame::Sunken );
   path->setLineWidth( 1 );
@@ -97,8 +95,7 @@ KCMDLine::KCMDLine( QWidget *parent ) : QWidget( parent ) {
   connect( cmdLine, SIGNAL( returnPressed(const QString &) ), cmdLine->lineEdit(), SLOT( clear() ) );
   connect( cmdLine, SIGNAL( returnToPanel() ), this, SLOT( slotReturnFocus() ));
 
-  Q3WhatsThis::add
-    ( cmdLine, i18n( "<qt><p>Well, it's actually quite simple: You type your command here and Krusader obeys.</p><p><b>Tip</b>: Move within command line history with &lt;Up&gt; and &lt;Down&gt; arrows.</p></qt>" ) );
+  cmdLine->setWhatsThis( i18n( "<qt><p>Well, it's actually quite simple: You type your command here and Krusader obeys.</p><p><b>Tip</b>: Move within command line history with &lt;Up&gt; and &lt;Down&gt; arrows.</p></qt>" ) );
   layout->addWidget( cmdLine, 0, 1 );
 
   buttonAddPlaceholder = new QToolButton( this );
@@ -106,7 +103,7 @@ KCMDLine::KCMDLine( QWidget *parent ) : QWidget( parent ) {
   buttonAddPlaceholder->adjustSize();
   buttonAddPlaceholder->setPixmap( SmallIcon( "add" ) );
   connect( buttonAddPlaceholder, SIGNAL( clicked() ), this, SLOT( addPlaceholder() ) );
-  Q3WhatsThis::add( buttonAddPlaceholder, i18n( "Add <b>Placeholders</b> for the selected files in the panel." ) );
+  buttonAddPlaceholder->setWhatsThis( i18n( "Add <b>Placeholders</b> for the selected files in the panel." ) );
 
   layout->addWidget( buttonAddPlaceholder, 0, 2 );
 

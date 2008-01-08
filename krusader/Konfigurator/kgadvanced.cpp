@@ -31,7 +31,6 @@
 #include "kgadvanced.h"
 #include "../defaults.h"
 #include <klocale.h>
-#include <q3whatsthis.h>
 //Added by qt3to4:
 #include <QGridLayout>
 #include <QLabel>
@@ -112,11 +111,11 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent ) :
   fineTuneGrid->setAlignment( Qt::AlignLeft | Qt::AlignTop );
   
   QLabel *label = new QLabel( i18n( "Icon cache size (KB):" ), fineTuneGrp );
-  Q3WhatsThis::add( label, i18n( "The icon cache size influences how fast the contents of a panel can be displayed. However, too large a cache might consume your memory." ) );
+  label->setWhatsThis( i18n( "The icon cache size influences how fast the contents of a panel can be displayed. However, too large a cache might consume your memory." ) );
   fineTuneGrid->addWidget( label, 0, 0 );
   KonfiguratorSpinBox *spinBox = createSpinBox( "Advanced", "Icon Cache Size", _IconCacheSize,
                                                 1, 8192, fineTuneGrp, false );
-  Q3WhatsThis::add( spinBox, i18n( "The icon cache size influences how fast the contents of a panel can be displayed. However, too large a cache might consume your memory." ) );
+  spinBox->setWhatsThis( i18n( "The icon cache size influences how fast the contents of a panel can be displayed. However, too large a cache might consume your memory." ) );
   spinBox->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed);
   fineTuneGrid->addWidget( spinBox, 0, 1 );
 

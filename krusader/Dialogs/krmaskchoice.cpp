@@ -37,7 +37,6 @@
 #include <qlayout.h>
 #include <qvariant.h>
 #include <qtooltip.h>
-#include <q3whatsthis.h>
 #include <qmessagebox.h>
 //Added by qt3to4:
 #include <QHBoxLayout>
@@ -99,7 +98,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent )
 
     preSelections = new Q3ListBox( Layout6 );
     preSelections->setVScrollBarMode( Q3ListBox::AlwaysOn );
-    Q3WhatsThis::add(  preSelections, i18n( "A predefined selection is a file-mask which you use often.\nSome examples are: \"*.c, *.h\", \"*.c, *.o\", etc.\nYou can add these masks to the list by typing them and pressing the Add button.\nDelete removes a predefined selection and Clear removes all of them.\nNotice that the line in which you edit the mask has it's own history, you can scroll it, if needed." ) );
+    preSelections->setWhatsThis( i18n( "A predefined selection is a file-mask which you use often.\nSome examples are: \"*.c, *.h\", \"*.c, *.o\", etc.\nYou can add these masks to the list by typing them and pressing the Add button.\nDelete removes a predefined selection and Clear removes all of them.\nNotice that the line in which you edit the mask has it's own history, you can scroll it, if needed." ) );
     hbox_2->addWidget( preSelections );
 
     vbox = new QVBoxLayout; 

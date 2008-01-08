@@ -43,7 +43,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../panelmanager.h"
 #include <qlayout.h>
 #include <qdir.h>
-#include <q3whatsthis.h>
 #include <q3header.h>
 #include <qstyle.h>
 //Added by qt3to4:
