@@ -32,7 +32,6 @@
 #include "profilemanager.h"
 
 #include <klocale.h>
-#include <qtooltip.h>
 #include <kmenu.h>
 #include <qcursor.h>
 #include <kinputdialog.h>
@@ -44,7 +43,7 @@ ProfileManager::ProfileManager( QString profileType, QWidget * parent )
   setText( "" );
   KIconLoader *iconLoader = new KIconLoader();
   setPixmap( iconLoader->loadIcon( "kr_profile", KIconLoader::Toolbar, 16 ) );
-  QToolTip::add( this, i18n( "Profiles" ) );
+  setToolTip( i18n( "Profiles" ) );
   
   this->profileType = profileType;
   

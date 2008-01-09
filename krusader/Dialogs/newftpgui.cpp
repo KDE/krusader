@@ -14,7 +14,6 @@
 #include <qspinbox.h>
 #include <qlayout.h>
 #include <qvariant.h>
-#include <qtooltip.h>
 #include <qimage.h>
 #include <qpixmap.h>
 //Added by qt3to4:

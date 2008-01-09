@@ -29,7 +29,6 @@
  ***************************************************************************/
 
 #include "percentalsplitter.h"
-#include <qtooltip.h>
 #include <qpainter.h>
 #include <qapplication.h>
 //Added by qt3to4:

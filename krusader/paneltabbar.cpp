@@ -24,7 +24,6 @@
 #include <kshortcut.h>
 #include <qevent.h>
 #include <qfontmetrics.h>
-#include <qtooltip.h>
 #include <QResizeEvent>
 #include <QMouseEvent>
 #include <kdebug.h>

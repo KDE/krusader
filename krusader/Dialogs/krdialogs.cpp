@@ -36,7 +36,6 @@
 #include <qwidget.h>
 #include <qapplication.h>
 #include <qfontmetrics.h>
-#include <qtooltip.h>
 //Added by qt3to4:
 #include <QFrame>
 #include <QLabel>

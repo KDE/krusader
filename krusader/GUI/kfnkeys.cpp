@@ -28,7 +28,6 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qtooltip.h>
 //Added by qt3to4:
 #include <QGridLayout>
 #include <klocale.h>
@@ -50,51 +49,51 @@ KFnKeys::KFnKeys(QWidget *parent): QWidget(parent) {
 		layout->setContentsMargins( 0, 0, 0, 0 );
 		layout->setSpacing( 0 );
     F2=new QPushButton( i18n("F2 Term  ") ,this);
-      QToolTip::add( F2, "<qt>" + i18n( "<p>Open terminal in current directory.</p>"
+      F2->setToolTip( "<qt>" + i18n( "<p>Open terminal in current directory.</p>"
                      "<p>The terminal can be defined in Konfigurator, "
                      "default is <b>konsole</b>.</p>" ) + "</qt>" );
       connect(F2,SIGNAL(clicked()), SLOTS, SLOT(terminal()));
       SETUP(F2);
 			
 		F3=new QPushButton( i18n("F3 View  ") ,this);	
-			QToolTip::add( F3, i18n( "Open file in viewer." ) );
+			F3->setToolTip( i18n( "Open file in viewer." ) );
 			connect(F3,SIGNAL(clicked()), SLOTS, SLOT(view()));
 			SETUP(F3);
 		
 		F4=new QPushButton( i18n("F4 Edit  ") ,this);
-			QToolTip::add( F4, "<qt>" + i18n( "<p>Edit file.</p>"
+			F4->setToolTip( "<qt>" + i18n( "<p>Edit file.</p>"
 									   "<p>The editor can be defined in Konfigurator, "
 									   "default is <b>internal editor</b>.</p>" ) + "</qt>" );
 			connect(F4,SIGNAL(clicked()), SLOTS, SLOT(edit()));
 			SETUP(F4);
 			
 		F5=new QPushButton( i18n("F5 Copy  ") ,this);	
-			QToolTip::add( F5, i18n( "Copy file from one panel to the other." ) );
+			F5->setToolTip( i18n( "Copy file from one panel to the other." ) );
 			connect(F5,SIGNAL(clicked()), SLOTS, SLOT(copyFiles()));
 			SETUP(F5);
 			
 		F6=new QPushButton( i18n("F6 Move") ,this);
-			QToolTip::add( F6, i18n( "Move file from one panel to the other." ) );
+			F6->setToolTip( i18n( "Move file from one panel to the other." ) );
 			connect(F6,SIGNAL(clicked()), SLOTS, SLOT(moveFiles()));
 			SETUP(F6);
 			
 		F7=new QPushButton( i18n("F7 Mkdir ") ,this);	
-			QToolTip::add( F7, i18n( "Create directory in current panel." ) );
+			F7->setToolTip( i18n( "Create directory in current panel." ) );
 			connect(F7,SIGNAL(clicked()), SLOTS, SLOT(mkdir()));
 			SETUP(F7);
 			
 		F8=new QPushButton( i18n("F8 Delete") ,this);
-			QToolTip::add( F8, i18n( "Delete file, directory, etc." ) );
+			F8->setToolTip( i18n( "Delete file, directory, etc." ) );
 			connect(F8,SIGNAL(clicked()), SLOTS, SLOT(deleteFiles()));
 			SETUP(F8);
 			
 		F9=new QPushButton( i18n("F9 Rename") ,this);	
-			QToolTip::add( F9, i18n( "Rename file, directory, etc." ) );
+			F9->setToolTip( i18n( "Rename file, directory, etc." ) );
 			connect(F9,SIGNAL(clicked()), SLOTS, SLOT(rename()));
 			SETUP(F9);
 			
 		F10=new QPushButton( i18n("F10 Quit ") ,this);
-			QToolTip::add( F10, i18n( "Quit Krusader." ) );
+			F10->setToolTip( i18n( "Quit Krusader." ) );
 			connect(F10,SIGNAL(clicked()),krApp, SLOT(slotClose()));
 			SETUP(F10);
 /*

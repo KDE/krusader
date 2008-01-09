@@ -42,7 +42,6 @@
 #include <qpainter.h>
 #include <qfontmetrics.h>
 #include <qtimer.h>
-#include <qtooltip.h>
 #include <kmenu.h>
 
 class DULinesItem : public Q3ListViewItem

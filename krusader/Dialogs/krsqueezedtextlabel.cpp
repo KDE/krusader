@@ -64,12 +64,12 @@ void KrSqueezedTextLabel::squeezeTextToLabel(int index, int length) {
 			}
 			QLabel::setText(sqtext);
 
-			QToolTip::remove( this );
-			QToolTip::add( this, fullText );
+			setToolTip( QString::null );
+			setToolTip( fullText );
 		} else {
 			QLabel::setText(fullText);
 
-			QToolTip::remove( this );
+			setToolTip( QString::null );
 			QToolTip::hideText();
 		}
 	}

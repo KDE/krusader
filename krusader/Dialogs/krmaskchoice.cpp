@@ -36,7 +36,6 @@
 #include <qpushbutton.h>
 #include <qlayout.h>
 #include <qvariant.h>
-#include <qtooltip.h>
 #include <qmessagebox.h>
 //Added by qt3to4:
 #include <QHBoxLayout>
@@ -107,17 +106,17 @@ KRMaskChoice::KRMaskChoice( QWidget* parent )
 
     PushButton7 = new QPushButton( Layout6 );
     PushButton7->setText( i18n( "Add"  ) );
-    QToolTip::add(  PushButton7, i18n( "Adds the selection in the line-edit to the list" ) );
+    PushButton7->setToolTip( i18n( "Adds the selection in the line-edit to the list" ) );
     vbox->addWidget( PushButton7 );
 
     PushButton7_2 = new QPushButton( Layout6 );
     PushButton7_2->setText( i18n( "Delete"  ) );
-    QToolTip::add(  PushButton7_2, i18n( "Delete the marked selection from the list" ) );
+    PushButton7_2->setToolTip( i18n( "Delete the marked selection from the list" ) );
     vbox->addWidget( PushButton7_2 );
 
     PushButton7_3 = new QPushButton( Layout6 );
     PushButton7_3->setText( i18n( "Clear"  ) );
-    QToolTip::add(  PushButton7_3, i18n( "Clears the entire list of selections" ) );
+    PushButton7_3->setToolTip( i18n( "Clears the entire list of selections" ) );
     vbox->addWidget( PushButton7_3 );
     QSpacerItem* spacer = new QSpacerItem( 20, 54, QSizePolicy::Fixed, QSizePolicy::Expanding );
     vbox->addItem( spacer );

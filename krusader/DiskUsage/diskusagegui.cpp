@@ -41,7 +41,6 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <klocale.h>
-#include <qtooltip.h>
 
 DiskUsageGUI::DiskUsageGUI( KUrl openDir, QWidget* parent ) 
   : QDialog( parent ), exitAtFailure( true )
@@ -63,17 +62,17 @@ DiskUsageGUI::DiskUsageGUI( KUrl openDir, QWidget* parent )
   btnNewSearch = new QToolButton( duTools );
   btnNewSearch->setIconSet( QIcon(krLoader->loadIcon("fileopen",KIconLoader::Desktop)) );
   duHBox->addWidget( btnNewSearch );
-  QToolTip::add( btnNewSearch, i18n( "Start new disk usage search" ) );
+  btnNewSearch->setToolTip( i18n( "Start new disk usage search" ) );
   
   btnRefresh = new QToolButton( duTools );
   btnRefresh->setIconSet( QIcon(krLoader->loadIcon("reload",KIconLoader::Desktop)) );
   duHBox->addWidget( btnRefresh );
-  QToolTip::add( btnRefresh, i18n( "Refresh" ) );
+  btnRefresh->setToolTip( i18n( "Refresh" ) );
 
   btnDirUp = new QToolButton( duTools );
   btnDirUp->setIconSet( QIcon(krLoader->loadIcon("up",KIconLoader::Desktop)) );
   duHBox->addWidget( btnDirUp );
-  QToolTip::add( btnDirUp, i18n( "Parent directory" ) );
+  btnDirUp->setToolTip( i18n( "Parent directory" ) );
   
   QWidget * separatorWidget = new QWidget( duTools );
   separatorWidget->setMinimumWidth( 10 );
@@ -83,19 +82,19 @@ DiskUsageGUI::DiskUsageGUI( KUrl openDir, QWidget* parent )
   btnLines->setIconSet( QIcon(krLoader->loadIcon("leftjust",KIconLoader::Desktop)) );
   btnLines->setToggleButton( true );
   duHBox->addWidget( btnLines );
-  QToolTip::add( btnLines, i18n( "Line view" ) );
+  btnLines->setToolTip( i18n( "Line view" ) );
 
   btnDetailed = new QToolButton( duTools );
   btnDetailed->setIconSet( QIcon(krLoader->loadIcon("view_detailed",KIconLoader::Desktop)) );
   btnDetailed->setToggleButton( true );
   duHBox->addWidget( btnDetailed );
-  QToolTip::add( btnDetailed, i18n( "Detailed view" ) );
+  btnDetailed->setToolTip( i18n( "Detailed view" ) );
 
   btnFilelight = new QToolButton( duTools );
   btnFilelight->setIconSet( QIcon(krLoader->loadIcon("kr_diskusage",KIconLoader::Desktop)) );
   btnFilelight->setToggleButton( true );
   duHBox->addWidget( btnFilelight );
-  QToolTip::add( btnFilelight, i18n( "Filelight view" ) );
+  btnFilelight->setToolTip( i18n( "Filelight view" ) );
     
   QWidget *spacerWidget = new QWidget( duTools );
   duHBox->addWidget( spacerWidget );

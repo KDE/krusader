@@ -63,7 +63,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kmessagebox.h>
 #include <kstandarddirs.h>
 #include <kglobalsettings.h>
-#include <qtooltip.h>
 #include <kdeversion.h>
 #include <qimage.h>
 #include <qtabbar.h>
@@ -184,7 +183,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
 	popupBtn->setFixedSize( 22, 20 );
 	popupBtn->setPixmap(krLoader->loadIcon("1uparrow", KIconLoader::Toolbar, 16));
 	connect(popupBtn, SIGNAL(clicked()), this, SLOT(togglePanelPopup()));
-	QToolTip::add(  popupBtn, i18n( "Open the popup panel" ) );
+	popupBtn->setToolTip( i18n( "Open the popup panel" ) );
 	totalsLayout->addWidget(totals);
 	totalsLayout->addWidget(inlineRefreshCancelButton); inlineRefreshCancelButton->hide();
 	totalsLayout->addWidget(popupBtn);
@@ -204,7 +203,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
 		clearOrigin = new QToolButton(hboxWidget);
 		clearOrigin->setPixmap(krLoader->loadIcon("locationbar_erase", KIconLoader::Toolbar, 16));
 		hbox->addWidget( clearOrigin );
-		QToolTip::add(  clearOrigin, i18n( "Clear the location bar" ) );
+		clearOrigin->setToolTip( i18n( "Clear the location bar" ) );
 	}
 	
 	QuickNavLineEdit *qnle = new QuickNavLineEdit(this);
@@ -236,28 +235,28 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
    cdOtherButton->setFixedSize( 20, origin->button() ->height() );
    cdOtherButton->setText( i18n( "=" ) );
    hbox->addWidget( cdOtherButton );
-	QToolTip::add(  cdOtherButton, i18n( "Equal" ) );
+	cdOtherButton->setToolTip( i18n( "Equal" ) );
    connect( cdOtherButton, SIGNAL( clicked() ), this, SLOT( slotFocusAndCDOther() ) );
 
    cdUpButton = new QToolButton( hboxWidget );
    cdUpButton->setFixedSize( 20, origin->button() ->height() );
    cdUpButton->setText( i18n( ".." ) );
    hbox->addWidget( cdUpButton );
-	QToolTip::add(  cdUpButton, i18n( "Up" ) );
+	cdUpButton->setToolTip( i18n( "Up" ) );
    connect( cdUpButton, SIGNAL( clicked() ), this, SLOT( slotFocusAndCDup() ) );
 
    cdHomeButton = new QToolButton( hboxWidget );
    cdHomeButton->setFixedSize( 20, origin->button() ->height() );
    cdHomeButton->setText( i18n( "~" ) );
    hbox->addWidget( cdHomeButton );
-	QToolTip::add(  cdHomeButton, i18n( "Home" ) );
+	cdHomeButton->setToolTip( i18n( "Home" ) );
    connect( cdHomeButton, SIGNAL( clicked() ), this, SLOT( slotFocusAndCDHome() ) );
 
    cdRootButton = new QToolButton( hboxWidget );
    cdRootButton->setFixedSize( 20, origin->button() ->height() );
    cdRootButton->setText( i18n( "/" ) );
    hbox->addWidget( cdRootButton );
-	QToolTip::add(  cdRootButton, i18n( "Root" ) );
+	cdRootButton->setToolTip( i18n( "Root" ) );
    connect( cdRootButton, SIGNAL( clicked() ), this, SLOT( slotFocusAndCDRoot() ) );
 
    // ... creates the button for sync-browsing
@@ -415,13 +414,13 @@ void ListPanel::togglePanelPopup() {
 		
 		popup->show();
 		popupBtn->setPixmap(krLoader->loadIcon("1downarrow", KIconLoader::Toolbar, 16));
-		QToolTip::add(  popupBtn, i18n( "Close the popup panel" ) );
+		popupBtn->setToolTip( i18n( "Close the popup panel" ) );
 	} else {
 		popupSizes.clear();
 		popupSizes = dynamic_cast<QSplitter*>(popup->parent())->sizes();
 		popup->hide();
 		popupBtn->setPixmap(krLoader->loadIcon("1uparrow", KIconLoader::Toolbar, 16));
-		QToolTip::add(  popupBtn, i18n( "Open the popup panel" ) );
+		popupBtn->setToolTip( i18n( "Open the popup panel" ) );
 		
 		QList<int> lst;
 		lst << height() << 0;
