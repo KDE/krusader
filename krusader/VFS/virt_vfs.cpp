@@ -288,8 +288,8 @@ KConfig*  virt_vfs::getVirtDB(){
 
 bool virt_vfs::save(){
 	KConfig* db = getVirtDB();
+	KConfigGroup group( db, "virt_db");
 	
-	KConfigGroup group( krConfig, "virt_db");
 	Q3DictIterator<KUrl::List> it( virtVfsDict ); // See QDictIterator
 	for( ; it.current(); ++it ){
 		KUrl::List::iterator url;
@@ -297,7 +297,8 @@ bool virt_vfs::save(){
 		for ( url = it.current()->begin() ; url != it.current()->end() ; ++url ) {
 			entry.append( (*url).prettyUrl() );
 		}
-		group.writeEntry(it.currentKey(),entry);
+		// KDE 4.0 workaround, Item_ is added as KConfig fails on 1 char names (such as /)
+		group.writeEntry( "Item_" + it.currentKey(),entry);
 	}
 	
 	db->sync();
@@ -314,7 +315,9 @@ bool virt_vfs::restore(){
 	KUrl::List* urlList;
 	for ( it = map.begin(); it != map.end(); ++it ) {
 		urlList = new KUrl::List( dbGrp.readEntry(it.key(), QStringList() ) );
-		virtVfsDict.insert( it.key(),urlList );
+		// KDE 4.0 workaround, Item_ is removed (KConfig fails on 1 char names (such as /))
+		QString key = it.key().mid( 5 ); // remove Item_
+		virtVfsDict.insert( key,urlList );
 	}
 
 	if( !virtVfsDict["/" ]){
