@@ -38,6 +38,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <qeventloop.h>
+#include <QtDBus/QtDBus>
 //Added by qt3to4:
 #include <QPixmap>
 #include <Q3CString>
@@ -187,32 +188,36 @@ KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") : ki18n("Kr
   // create the application
   KrusaderApp app;
 
-  {
-#if 0 // TODO: fix this using DBUS
-    KConfigGroup cfg = app.config()->group("Look&Feel");
-    bool singleInstanceMode = cfg.readBoolEntry( "Single Instance Mode", _SingleInstanceMode );
+  KConfigGroup cfg( KGlobal::config().data(), "Look&Feel");
+  bool singleInstanceMode = cfg.readEntry( "Single Instance Mode", _SingleInstanceMode );
 
-    // register with the dcop server
-    DCOPClient* client = KApplication::kApplication() ->dcopClient();
-    if ( !client->attach() )
-       exit( 0 );
-    Q3CString regName = client->registerAs( KApplication::kApplication() ->name(), !singleInstanceMode );
-    if( singleInstanceMode && regName != KApplication::kApplication()->name() ) {
-      fprintf( stderr, i18n( "Application already running!\n" ).ascii() );
+  QString appName = "krusader";
+  if( !singleInstanceMode )
+    appName += QString( "%1" ).arg( getpid() );
 
-      DCOPClient::mainClient()->send( KApplication::kApplication() ->name(), "Krusader-Interface",
-                                    "moveToTop()", QByteArray() );
-      KStartupInfo::appStarted();
-
-      return 1;
-    }
-#endif
+  if (!QDBusConnection::sessionBus().isConnected()) {
+            fprintf(stderr, "Cannot connect to the D-BUS session bus.\n"
+                            "To start it, run:\n"
+                            "\teval `dbus-launch --auto-syntax`\n");
   }
-    
+
+  QDBusInterface remoteApp( "org.krusader", "/Instances/" + appName,
+                            "org.krusader.Instance" );
+  QDBusReply<bool> reply = remoteApp.call("isRunning");
+
+  if( !reply.isValid() )
+    fprintf( stderr, "DBus Error: %s, %s\n", reply.error().name().ascii(), reply.error().message().ascii() );
+
+  if( reply.isValid() && (bool)reply ) {
+    fprintf( stderr, i18n( "Application already running!\n" ).local8Bit() );
+    KStartupInfo::appStarted();
+    return 1;
+  }
+
   // splash screen - if the user wants one
   KSplashScreen *splash = 0;
   { // don't remove bracket
-  KConfigGroup cfg = app.sessionConfig()->group("Look&Feel");
+  KConfigGroup cfg( KGlobal::config().data(), "Look&Feel");
   if (cfg.readEntry( "Show splashscreen", _ShowSplashScreen )) {
 	QString splashFilename = KStandardDirs::locate( "data", "krusader/splash.png" );
   	QPixmap pixmap( splashFilename );
@@ -223,8 +228,19 @@ KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") : ki18n("Kr
   }
   } // don't remove bracket
 
+  Krusader::AppName = appName;
   Krusader krusader;
   
+  QDBusConnection dbus = QDBusConnection::sessionBus();
+  if( !dbus.registerService( "org.krusader" ) )
+  {
+    fprintf( stderr, "DBus Error: %s, %s\n", dbus.lastError().name().ascii(), dbus.lastError().message().ascii() );
+  }
+  if( !dbus.registerObject( "/Instances/" + appName, &krusader, QDBusConnection::ExportScriptableSlots ) )
+  {
+    fprintf( stderr, "DBus Error: %s, %s\n", dbus.lastError().name().ascii(), dbus.lastError().message().ascii() );
+  }
+
   // catching SIGTERM, SIGHUP, SIGQUIT
   signal(SIGTERM,sigterm_handler);
   signal(SIGPIPE,sigterm_handler);

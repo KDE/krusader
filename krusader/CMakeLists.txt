@@ -36,6 +36,8 @@ set(krusader_SRCS
    kicons.cpp 
    krusaderapp.cpp )
 
+qt4_add_dbus_adaptor(krusader_SRCS org.krusader.Instance.xml krusader.h Krusader)
+
 kde4_add_executable(krusader ${krusader_SRCS})
 
 target_link_libraries(krusader  ${KDE4_KDECORE_LIBS} BookMan Dialogs DiskUsage GUI Konfigurator KViewer MountMan Panel Queue VFS Search Splitter Synchronizer UserMenu Locate UserAction ActionMan KViewer Filter Dialogs GUI ${KDE4_KPARTS_LIBS} ${KDE4_KHTML_LIBS} ${KDE4_KDEUI_LIBS} ${KDE4_KFILE_LIBS} ${KDE4_KDE3SUPPORT_LIBS} )

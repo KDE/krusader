@@ -69,6 +69,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <Q3CString>
 #include <QDesktopWidget>
 #include <krandom.h>
+#include <QtDBus/QtDBus>
 // Krusader includes
 #include "krusader.h"
 #include "kicons.h"
@@ -108,6 +109,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 // define the static members
 Krusader *Krusader::App = 0;
+QString   Krusader::AppName;
+
 KAction *Krusader::actProperties = 0;
 KAction *Krusader::actPack = 0;
 KAction *Krusader::actUnpack = 0;
@@ -211,7 +214,7 @@ KAction *Krusader::actShowJSConsole = 0;
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader() : KParts::MainWindow(0,Qt::WType_TopLevel|Qt::WDestructiveClose|Qt::WStyle_ContextHelp),
-   /* PORTME DCOPObject("Krusader-Interface"),*/ status(NULL), sysTray( 0 ), isStarting( true ), isExiting( false ), directExit( false ) {
+   status(NULL), sysTray( 0 ), isStarting( true ), isExiting( false ), directExit( false ) {
    // parse command line arguments
    KCmdLineArgs * args = KCmdLineArgs::parsedArgs();
 
@@ -856,8 +859,13 @@ bool Krusader::queryClose()
 	{
 		saveSettings();
 
-		// PORTME: kapp->dcopClient()->registerAs( KApplication::kApplication()->name(), true );
-
+		// Removes the DBUS registration of the application. Single instance mode requires unique appid.
+		// As Krusader is exiting, we release that unique appid, so new Krusader instances
+		// can be started.
+		
+		QDBusConnection dbus = QDBusConnection::sessionBus();
+		dbus.unregisterObject( "/Instances/" + Krusader::AppName );
+		
 		KGlobal::deref(); // FIX: krusader exits at closing the viewer when minimized to tray
 		KGlobal::deref(); // and close the application
 		return isExiting = true;              // this will also kill the pending jobs
@@ -954,10 +962,12 @@ bool Krusader::queryClose()
 		isExiting = true;
 		hide();        // hide
 
-		// Changes the name of the application. Single instance mode requires unique appid.
+		// Removes the DBUS registration of the application. Single instance mode requires unique appid.
 		// As Krusader is exiting, we release that unique appid, so new Krusader instances
 		// can be started.
-		//PORTME: kapp->dcopClient()->registerAs( KApplication::kApplication()->name(), true );
+		
+		QDBusConnection dbus = QDBusConnection::sessionBus();
+		dbus.unregisterObject( "/Instances/" + Krusader::AppName );
 
 		KGlobal::deref(); // FIX: krusader exits at closing the viewer when minimized to tray
 		KGlobal::deref(); // and close the application
@@ -1183,23 +1193,17 @@ const char* Krusader::privIcon() {
       return "krusader_root";
 }
 
-#if 0 // TODO: PORTME
-bool Krusader::process(const Q3CString &fun, const QByteArray &/* data */, Q3CString &/* replyType */, QByteArray &/* replyData */) {
-   if (fun == "moveToTop()") {
-      moveToTop();
-      return true;
-   } else {
-      fprintf( stderr, "Processing DCOP call failed. Function unknown!\n" );
-      return false;
-   }
-}
-#endif
-
 void Krusader::moveToTop() {
    if( isHidden() )
      show();
 
    KWindowSystem::forceActiveWindow( winId() );
+}
+
+bool Krusader::isRunning()
+{
+   moveToTop();
+   return true;
 }
 
 #include "krusader.moc"

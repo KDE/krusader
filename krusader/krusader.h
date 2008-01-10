@@ -76,8 +76,10 @@ class QueueManager;
 //static QTextOStream krOut(stdout);
 #define krOut kDebug(50010)
 
-class Krusader : public KParts::MainWindow /* TODO PORTME , public DCOPObject */ {
+class Krusader : public KParts::MainWindow {
     Q_OBJECT
+    Q_CLASSINFO("D-Bus Interface", "org.krusader.Instance")
+
   public:
     Krusader();
     virtual ~Krusader();
@@ -119,8 +121,12 @@ class Krusader : public KParts::MainWindow /* TODO PORTME , public DCOPObject */
     void moveEvent ( QMoveEvent * );
     void resizeEvent ( QResizeEvent * );
 
+  public Q_SLOTS:
+    Q_SCRIPTABLE bool isRunning();
+
   public:
     static Krusader *App;       // a kApp style pointer
+    static QString   AppName;   // the name of the application
     KMountMan *mountMan;  // krusader's Mount Manager
     KrusaderView *mainView;  // The GUI
     KConfig *config;    // allow everyone to access the config
