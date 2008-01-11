@@ -416,7 +416,7 @@ QColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
 		result.setColor(QColorGroup::HighlightedText, KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color());
 		result.setColor(QColorGroup::Highlight, KColorScheme(QPalette::Active, KColorScheme::Selection).background().color());
 
-		if (type.m_currentItem && type.m_activePanel)
+/*		if (type.m_currentItem && type.m_activePanel)
 		{
 			QColor currentBackground = KColorScheme(QPalette::Active).background(KColorScheme::ActiveBackground).color();
 			// set the background
@@ -424,7 +424,7 @@ QColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
 			result.setColor(QColorGroup::Base, currentBackground);
 			result.setColor(QColorGroup::Background, currentBackground);
 		}
-		return result;
+		return result;*/
 	}
 	bool markCurrentAlways = m_colorSettings.getBoolValue("Show Current Item Always", _ShowCurrentItemAlways);
 	bool dimBackground = m_colorSettings.getBoolValue("Dim Inactive Colors", false);

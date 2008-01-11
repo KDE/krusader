@@ -235,6 +235,30 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
 	}
 }
 
+void KrDetailedViewItem::paintFocus(QPainter *p, const QColorGroup &cg, const QRect &r)
+{
+   QRect rn = r;
+   if( rn.width() )
+     rn.setWidth( rn.width() - 1 );
+   if( rn.height() )
+     rn.setHeight( rn.height() - 1 );
+
+   KrColorItemType colorItemType;
+   colorItemType.m_activePanel = (dynamic_cast<KrView *>(listView()) == ACTIVE_PANEL->view);
+   colorItemType.m_alternateBackgroundColor = isAlternate();
+   colorItemType.m_currentItem = (listView()->currentItem() == this);
+   colorItemType.m_selectedItem = isSelected();
+   colorItemType.m_fileType = KrColorItemType::File;
+   QColorGroup _cg(cg);
+   KrColorCache::getColorCache().getColors(_cg, colorItemType);
+   QColor col = _cg.color( QColorGroup::Text );
+
+   QPen pen( col );
+   pen.setStyle( Qt::DotLine );
+   p->setPen( pen );
+   p->drawRect( rn );
+}
+
 const QColor & KrDetailedViewItem::setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2)
 {
    #define sqr(x) ((x)*(x))

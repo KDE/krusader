@@ -53,6 +53,7 @@ public:
 	inline void setSelected(bool s) { K3ListViewItem::setSelected(s); }
 	int compare(Q3ListViewItem *i,int col,bool ascending ) const;
 	void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align);
+	void paintFocus(QPainter *p, const QColorGroup &cg, const QRect &r);
 	void repaintItem();
 	static void itemHeightChanged(); // force the items to resize when icon/font size change
 #ifdef FASTER		
