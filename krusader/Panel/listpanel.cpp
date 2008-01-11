@@ -33,7 +33,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 // QT includes
 #include <qbitmap.h>
 #include <qstringlist.h>
-#include <q3strlist.h>
 //Added by qt3to4:
 #include <QHBoxLayout>
 #include <QKeyEvent>
@@ -42,7 +41,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QFrame>
 #include <QDropEvent>
 #include <QHideEvent>
-#include <Q3PopupMenu>
 #include <QEvent>
 #include <QShowEvent>
 #include <k3urldrag.h>
@@ -841,16 +839,30 @@ void ListPanel::handleDropOnView( QDropEvent *e, QWidget *widget ) {
 
    // the KUrl::List is finished, let's go
    // --> display the COPY/MOVE/LINK menu
-   Q3PopupMenu popup( this );
-   popup.insertItem( i18n( "Copy Here" ), 1 );
-   if ( func->files() ->vfs_isWritable() )
-      popup.insertItem( i18n( "Move Here" ), 2 );
-   if ( func->files() ->vfs_getType() == vfs::NORMAL &&
-         isLocal )
-      popup.insertItem( i18n( "Link Here" ), 3 );
-   popup.insertItem( i18n( "Cancel" ), 4 );
+
+   QMenu popup( this );
+   QAction * act;
+
+   act = popup.addAction( i18n( "Copy Here" ) );
+   act->setData( QVariant( 1 ) );
+   if ( func->files() ->vfs_isWritable() ) {
+      act = popup.addAction( i18n( "Move Here" ) );
+      act->setData( QVariant( 2 ) );
+   }
+   if ( func->files() ->vfs_getType() == vfs::NORMAL && isLocal ) {
+      act = popup.addAction( i18n( "Link Here" ) );
+      act->setData( QVariant( 3 ) );
+   }
+   act = popup.addAction( i18n( "Cancel" ) );
+   act->setData( QVariant( 4 ) );
+
    QPoint tmp = widget->mapToGlobal( e->pos() );
-   int result = popup.exec( tmp );
+
+   int result = -1;
+   QAction * res = popup.exec( tmp );
+   if( res && res->data().canConvert<int> () )
+      result = res->data().toInt();
+
    switch ( result ) {
          case 1 :
          mode = KIO::CopyJob::Copy;
@@ -861,9 +873,8 @@ void ListPanel::handleDropOnView( QDropEvent *e, QWidget *widget ) {
          case 3 :
          mode = KIO::CopyJob::Link;
          break;
-         case - 1 :         // user pressed outside the menu
-         case 4:
-         return ; // cancel was pressed;
+         default :         // user pressed outside the menu
+         return ;          // or cancel was pressed;
    }
 
    QString dir = "";

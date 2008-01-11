@@ -17,7 +17,6 @@
 // Qt includes
 #include <qdatastream.h>
 #include <qfile.h>
-#include <q3popupmenu.h> 
 #include <qtimer.h>
 //Added by qt3to4:
 #include <QKeyEvent>

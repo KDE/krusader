@@ -8,7 +8,6 @@
 #include <kmessagebox.h>
 //Added by qt3to4:
 #include <QMouseEvent>
-#include <Q3PopupMenu>
 #include <QEvent>
 #include <kactioncollection.h>
 #include <klocale.h>
@@ -482,25 +481,40 @@ void KrBookmarkHandler::rightClickOnSpecialBookmark() {
 	bool hasVirtualFS   = group.readEntry( "BM Virtual FS",   true );
 	bool hasJumpback    = group.readEntry( "BM Jumpback",     true );
 	
-	Q3PopupMenu menu( _mainBookmarkPopup );
+	QMenu menu( _mainBookmarkPopup );
 	menu.setCaption( i18n( "Enable special bookmarks" ) );
-	menu.setCheckable( true );
 	
-	menu.insertItem( i18n( "Popular URLs" ), POPULAR_URLS_ID );
-	menu.setItemChecked( POPULAR_URLS_ID, hasPopularURLs );
-	menu.insertItem( i18n( "Devices" ), DEVICES_ID );
-	menu.setItemChecked( DEVICES_ID, hasDevices );
-	menu.insertItem( i18n( "Local Network" ), LAN_ID );
-	menu.setItemChecked( LAN_ID, hasLan );
-	menu.insertItem( i18n( "Virtual Filesystem" ), VIRTUAL_FS_ID );
-	menu.setItemChecked( VIRTUAL_FS_ID, hasVirtualFS );
-	menu.insertItem( i18n( "Jump back" ), JUMP_BACK_ID );
-	menu.setItemChecked( JUMP_BACK_ID, hasJumpback );
+	QAction *act;
+	
+	act = menu.addAction( i18n( "Popular URLs" ) );
+	act->setData( QVariant( POPULAR_URLS_ID ) );
+	act->setCheckable( true );
+	act->setChecked( hasPopularURLs );
+	act = menu.addAction( i18n( "Devices" ) );
+	act->setData( QVariant( DEVICES_ID ) );
+	act->setCheckable( true );
+	act->setChecked( hasDevices );
+	act = menu.addAction( i18n( "Local Network" ) );
+	act->setData( QVariant( LAN_ID ) );
+	act->setCheckable( true );
+	act->setChecked( hasLan );
+	act = menu.addAction( i18n( "Virtual Filesystem" ) );
+	act->setData( QVariant( VIRTUAL_FS_ID ) );
+	act->setCheckable( true );
+	act->setChecked( hasVirtualFS );
+	act = menu.addAction( i18n( "Jump back" ) );
+	act->setData( QVariant( JUMP_BACK_ID ) );
+	act->setCheckable( true );
+	act->setChecked( hasJumpback );
 	
 	connect( _mainBookmarkPopup, SIGNAL( highlighted( int ) ), &menu, SLOT( close() ) );
 	connect( _mainBookmarkPopup, SIGNAL( activated( int ) ), &menu, SLOT( close() ) );
 	
-	int result = menu.exec( QCursor::pos() );
+	int result = -1;
+	QAction *res = menu.exec( QCursor::pos() );
+	if( res && res->data().canConvert<int>() )
+		result = res->data().toInt();
+	
 	bool doCloseMain = true;
 	
 	switch( result ) {
@@ -535,20 +549,27 @@ void KrBookmarkHandler::rightClickOnSpecialBookmark() {
 #define DELETE_ID         100202
 
 void KrBookmarkHandler::rightClicked( QMenu *menu, KrBookmark * bm ) {
-	Q3PopupMenu popup( _mainBookmarkPopup );
+	QMenu popup( _mainBookmarkPopup );
+	QAction * act;
 	
 	if( !bm->isFolder() )
 	{
-		popup.insertItem( krLoader->loadIcon( "fileopen", KIconLoader::Panel ), i18n( "Open" ), OPEN_ID );
-		popup.insertItem( krLoader->loadIcon( "tab_new", KIconLoader::Panel ), i18n( "Open in a new tab" ), OPEN_NEW_TAB_ID );
-		popup.insertSeparator();
+		act = popup.addAction( krLoader->loadIcon( "fileopen", KIconLoader::Panel ), i18n( "Open" ));
+		act->setData( QVariant( OPEN_ID ) );
+		act = popup.addAction( krLoader->loadIcon( "tab_new", KIconLoader::Panel ), i18n( "Open in a new tab" ) );
+		act->setData( QVariant( OPEN_NEW_TAB_ID ) );
+		popup.addSeparator();
 	}
-	popup.insertItem( krLoader->loadIcon( "editdelete", KIconLoader::Panel ), i18n( "Delete" ), DELETE_ID );
+	act = popup.addAction( krLoader->loadIcon( "editdelete", KIconLoader::Panel ), i18n( "Delete" ) );
+	act->setData( QVariant( DELETE_ID ) );
 	
 	connect( menu, SIGNAL( highlighted( int ) ), &popup, SLOT( close() ) );
 	connect( menu, SIGNAL( activated( int ) ), &popup, SLOT( close() ) );
 	
-	int result = popup.exec( QCursor::pos() );
+	int result = -1;
+	QAction *res = popup.exec( QCursor::pos() );
+	if( res && res->data().canConvert<int> () )
+		result = res->data().toInt();
 	
 	popup.close();
 	if( _mainBookmarkPopup && result >= OPEN_ID && result <= DELETE_ID ) {

@@ -43,7 +43,6 @@
 #include <qnamespace.h>
 //Added by qt3to4:
 #include <QMouseEvent>
-#include <Q3StrList>
 #include <QEvent>
 #include <klocale.h>
 #include <kcombobox.h>

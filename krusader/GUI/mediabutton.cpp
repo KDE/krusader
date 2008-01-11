@@ -37,7 +37,6 @@
 #include "../MountMan/kdiskfreesp.h"
 #include "../MountMan/kmountman.h"
 
-#include <q3popupmenu.h>
 #include <qfile.h>
 #include <qfontmetrics.h>
 //Added by qt3to4:

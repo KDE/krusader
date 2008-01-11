@@ -29,7 +29,6 @@
 //Added by qt3to4:
 #include <QHBoxLayout>
 #include <QFrame>
-#include <Q3StrList>
 #include <QVBoxLayout>
 #include <klineedit.h>
 #include <qcheckbox.h>

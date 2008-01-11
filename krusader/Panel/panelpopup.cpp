@@ -13,8 +13,7 @@
 #include <QDropEvent>
 #include <QGridLayout>
 #include <QFrame>
-#include <Q3StrList>
-#include <Q3PopupMenu>
+#include <QMenu>
 #include <k3filetreeview.h>
 #include <klocale.h>
 #include <qcursor.h>
@@ -377,28 +376,38 @@ void PanelPopup::slotDroppedOnTree(QWidget *widget, QDropEvent *e, KUrl::List &l
 	KUrl dest = tree->currentUrl();
 	
 	// ask the user what to do: copy, move or link?
-   Q3PopupMenu popup( this );
-   popup.insertItem( i18n( "Copy Here" ), 1 );
-   popup.insertItem( i18n( "Move Here" ), 2 );
-   popup.insertItem( i18n( "Link Here" ), 3 );
-   popup.insertItem( i18n( "Cancel" ), 4 );
-	QPoint tmp = widget->mapToGlobal( e->pos() );
-   int result = popup.exec( QCursor::pos() );
-	
-	KIO::CopyJob *job;
+   QMenu popup( this );
+   QAction * act;
+
+   act = popup.addAction( i18n( "Copy Here" ) );
+   act->setData( QVariant( 1 ) );
+   act = popup.addAction( i18n( "Move Here" ) );
+   act->setData( QVariant( 2 ) );
+   act = popup.addAction( i18n( "Link Here" ) );
+   act->setData( QVariant( 3 ) );
+   act = popup.addAction( i18n( "Cancel" ) );
+   act->setData( QVariant( 4 ) );
+
+   QPoint tmp = widget->mapToGlobal( e->pos() );
+
+   int result = -1;
+   QAction * res = popup.exec( QCursor::pos() );
+   if( res && res->data().canConvert<int> () )
+     result = res->data().toInt();
+
+   KIO::CopyJob *job;
    switch ( result ) {
          case 1 :
-			job = KIO::copy(lst, dest);
+         job = KIO::copy(lst, dest);
          break;
          case 2 :
-			job = KIO::move(lst, dest);
+         job = KIO::move(lst, dest);
          break;
          case 3 :
-			job = KIO::link(lst, dest);
+         job = KIO::link(lst, dest);
          break;
-         case - 1 :         // user pressed outside the menu
-         case 4:
-         return ; // cancel was pressed;
+         default :         // user pressed outside the menu
+         return ;          // or cancel was pressed;
    }
 }
 

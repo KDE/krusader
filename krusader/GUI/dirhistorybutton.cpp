@@ -19,7 +19,7 @@
 #include "dirhistoryqueue.h"
 
 #include "../VFS/vfs.h"
-#include <q3popupmenu.h>
+#include <qmenu.h>
 #include <qdir.h>
 //Added by qt3to4:
 #include <QPixmap>
@@ -38,7 +38,7 @@ DirHistoryButton::DirHistoryButton( DirHistoryQueue* hQ, QWidget *parent ) : QTo
 	setPopupDelay( 10 ); // 0.01 seconds press
 	setAcceptDrops( false );
 
-	popupMenu = new Q3PopupMenu( this );
+	popupMenu = new QMenu( this );
 	Q_CHECK_PTR( popupMenu );
 
 	setPopup( popupMenu );
@@ -47,7 +47,7 @@ DirHistoryButton::DirHistoryButton( DirHistoryQueue* hQ, QWidget *parent ) : QTo
 	historyQueue = hQ;
 
 	connect( popupMenu, SIGNAL( aboutToShow() ), this, SLOT( slotAboutToShow() ) );
-	connect( popupMenu, SIGNAL( activated( int ) ), this, SLOT( slotPopupActivated( int ) ) );
+	connect( popupMenu, SIGNAL( triggered( QAction * ) ), this, SLOT( slotPopupActivated( QAction * ) ) );
 }
 
 DirHistoryButton::~DirHistoryButton() {}
@@ -68,17 +68,26 @@ void DirHistoryButton::slotAboutToShow() {
 	popupMenu->clear();
 	KUrl::List::iterator it;
 
+	QAction * first = 0;
 	int id = 0;
 	for ( it = historyQueue->urlQueue.begin(); it != historyQueue->urlQueue.end(); ++it ) {
-		popupMenu->insertItem( (*it).prettyUrl(), id++ );
+		QAction * act = popupMenu->addAction( (*it).prettyUrl() );
+		if( id == 0 )
+			first = act;
+		act->setData( QVariant( id++ ) );
 	}
-	if ( id > 0 ) {
-		popupMenu->setItemChecked( 0, true );
+	if ( first ) {
+		first->setCheckable( true );
+		first->setChecked( true );
 	}
 }
 /** No descriptions */
-void DirHistoryButton::slotPopupActivated( int id ) {
-	emit openUrl( historyQueue->urlQueue[ id ] );
+void DirHistoryButton::slotPopupActivated( QAction * action ) {
+	if( action && action->data().canConvert<int>() )
+	{
+		int id = action->data().toInt();
+		emit openUrl( historyQueue->urlQueue[ id ] );
+	}
 }
 
 #include "dirhistorybutton.moc"

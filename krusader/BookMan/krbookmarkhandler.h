@@ -6,7 +6,6 @@
 #include <qpointer.h>
 //Added by qt3to4:
 #include <QEvent>
-#include <Q3PopupMenu>
 #include <kmenu.h>
 #include <kurl.h>
 #include <q3ptrdict.h>

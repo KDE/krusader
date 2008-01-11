@@ -21,10 +21,10 @@
 #include <qwidget.h>
 #include <qtoolbutton.h>
 //Added by qt3to4:
-#include <Q3PopupMenu>
 #include <kurl.h>
 
-class Q3PopupMenu;
+class QMenu;
+class QAction;
 class DirHistoryQueue;
 
 /**
@@ -40,7 +40,7 @@ public:
   void openPopup();
 
 private:
-  Q3PopupMenu* popupMenu;
+  QMenu* popupMenu;
   DirHistoryQueue* historyQueue;
   
 public slots: // Public slots
@@ -49,7 +49,7 @@ public slots: // Public slots
   /** No descriptions */
   void slotAboutToShow();
   /** No descriptions */
-  void slotPopupActivated(int id);
+  void slotPopupActivated( QAction * );
 signals: // Signals
   /** No descriptions */
   void openUrl(const KUrl&);

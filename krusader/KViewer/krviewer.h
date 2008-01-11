@@ -23,7 +23,6 @@
 #include <QEvent>
 #include <QList>
 #include <QKeyEvent>
-#include <Q3PopupMenu>
 #include <QFocusEvent>
 #include <kparts/mainwindow.h>
 #include <kparts/partmanager.h>
@@ -38,7 +37,6 @@
   *@author Shie Erlich & Rafi Yanai
   */
 
-class Q3PopupMenu;
 class PanelViewerBase;
 
 class KrViewer : public KParts::MainWindow {
