@@ -122,6 +122,7 @@ KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") : ki18n("Kr
   aboutData.addAuthor(ki18n("Matej Urbancic"), ki18n(" Marketing & Product Research"), "matej.urban@gmail.com", 0);
   aboutData.addCredit(ki18n("Václav Juza"), ki18n("QA, bug-hunting, patches and general help"), "vaclavjuza@gmail.com", 0);
   aboutData.addCredit(ki18n("Jiri Palecek"), ki18n("QA, bug-hunting, patches and general help"), "jpalecek@web.de", 0);
+  aboutData.addCredit(ki18n("Jiri Klement"),ki18n("Important help in KDE 4 porting"),0,0);
   aboutData.addCredit(ki18n("Andrew Neupokoev"), ki18n("Killer Logo and Icons for Krusader (contest winner)"), "doom-blue@yandex.ru", 0);
   aboutData.addCredit(ki18n("The UsefulArts Organization"), ki18n("Icon for krusader"), "mail@usefularts.rg", 0);
   aboutData.addCredit(ki18n("Gábor Lehel"), ki18n("Viewer module for 3rd Hand"), "illissius@gmail.com", 0);
