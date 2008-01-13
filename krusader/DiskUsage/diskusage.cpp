@@ -602,10 +602,10 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
     if ( ga.readEntry( "Confirm Delete", _ConfirmDelete ) ) {
       QString s, b;
       if ( trash && url.isLocalFile() ) {
-        s = i18n( "Do you really want to move this item to the trash?" );
+        s = i18nc( "singularOnly", "Do you really want to move this item to the trash?" );
         b = i18n( "&Trash" );
       } else {
-        s = i18n( "Do you really want to delete this item?" );
+        s = i18nc( "singularOnly", "Do you really want to delete this item?" );
         b = i18n( "&Delete" );
       }
 
