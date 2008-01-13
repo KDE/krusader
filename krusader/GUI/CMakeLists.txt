@@ -13,6 +13,7 @@ set( GUI_SRCS
 	syncbrowsebutton.cpp 
 	profilemanager.cpp 
 	krremoteencodingmenu.cpp 
+	krtreewidget.cpp
 	mediabutton.cpp 
 	kcmdmodebutton.cpp )
 

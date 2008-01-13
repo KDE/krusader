@@ -33,6 +33,7 @@
 #include "../krusaderview.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
+#include "../GUI/krtreewidget.h"
 #include "../defaults.h"
 #include "../krservices.h"
 #include "../VFS/vfs.h"
@@ -44,6 +45,8 @@
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qfontmetrics.h>
+#include <qtreewidget.h>
+#include <qheaderview.h>
 //Added by qt3to4:
 #include <QKeyEvent>
 #include <QGridLayout>
@@ -70,24 +73,26 @@
 #define COPY_SELECTED_TO_CLIPBOARD  95
 //////////////////////////////////////////////////////////
 
-class LocateListView : public K3ListView
+class LocateListView : public KrTreeWidget
 {
 public:
-  LocateListView( QWidget * parent ) : K3ListView( parent )
+  LocateListView( QWidget * parent ) : KrTreeWidget( parent )
   {
+    setAlternatingRowColors( true );
   }
 
-  void startDrag()
+  void startDrag( Qt::DropActions supportedActs )
   {
     KUrl::List urls;
+    QList<QTreeWidgetItem *> list = selectedItems () ;
 
-    Q3ListViewItem * item = firstChild();
-    while( item )
+    QListIterator<QTreeWidgetItem *> it( list );
+    
+    while( it.hasNext() )
     {
-      if( item->isSelected() )
-         urls.push_back( KUrl( item->text( 0 ) ) );
+      QTreeWidgetItem * item = it.next();
 
-      item = item->nextSibling();
+      urls.push_back( KUrl( item->text( 0 ) ) );
     }
 
     if( urls.count() == 0 )
@@ -165,26 +170,27 @@ LocateDlg::LocateDlg() : KDialog( 0 ), isFeedToListBox( false )
   grid->addWidget( line1, 2, 0 );
 
   resultList=new LocateListView( widget );  // create the main container
+  resultList->setColumnCount( 1 );
+  resultList->setHeaderLabel( i18n("Results") );
+
+  resultList->setColumnWidth( 0, QFontMetrics(resultList->font()).width("W") * 60 );
 
   KConfigGroup gl( krConfig, "Look&Feel");
   resultList->setFont(gl.readEntry("Filelist Font",*_FilelistFont));
 
-  resultList->setAllColumnsShowFocus(true);
-  resultList->setVScrollBarMode(Q3ScrollView::Auto);
-  resultList->setHScrollBarMode(Q3ScrollView::Auto);
-  resultList->setShowSortIndicator(false);
-  resultList->setSorting(-1);
-  resultList->setSelectionMode( Q3ListView::Extended );
+  resultList->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+  resultList->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+  resultList->header()->setSortIndicatorShown(false);
+  resultList->setSortingEnabled( false );
+  resultList->setSelectionMode( QAbstractItemView::ExtendedSelection );
+  resultList->setDragEnabled( true );
 
-  resultList->addColumn( i18n("Results"), QFontMetrics(resultList->font()).width("W") * 60 );
-  resultList->setColumnWidthMode(0,Q3ListView::Maximum);
-
-  connect( resultList,SIGNAL(rightButtonPressed(Q3ListViewItem *, const QPoint &, int)),
-           this, SLOT(slotRightClick(Q3ListViewItem *)));
-  connect( resultList,SIGNAL(doubleClicked(Q3ListViewItem *)),
-           this, SLOT(slotDoubleClick(Q3ListViewItem *)));
-  connect( resultList,SIGNAL(returnPressed(Q3ListViewItem *)),
-           this, SLOT(slotDoubleClick(Q3ListViewItem *)));
+  connect( resultList,SIGNAL(itemRightClicked(QTreeWidgetItem *, int)),
+           this, SLOT(slotRightClick(QTreeWidgetItem *)));
+  connect( resultList,SIGNAL(itemDoubleClicked(QTreeWidgetItem *, int)),
+           this, SLOT(slotDoubleClick(QTreeWidgetItem *)));
+  connect( resultList,SIGNAL(itemActivated(QTreeWidgetItem *, int)),
+           this, SLOT(slotDoubleClick(QTreeWidgetItem *)));
   connect( this, SIGNAL( user1Clicked() ), this, SLOT( slotUser1() ) );
   connect( this, SIGNAL( user2Clicked() ), this, SLOT( slotUser2() ) );
   connect( this, SIGNAL( user3Clicked() ), this, SLOT( slotUser3() ) );
@@ -303,7 +309,7 @@ void LocateDlg::slotUser3()   /* The locate button */
   }
   enableButton( KDialog::User3, true );  /* enable the locate button */
   
-  if( resultList->childCount() == 0 )
+  if( resultList->topLevelItemCount() == 0 )
   {
     locateSearchFor->setFocus();
     enableButton( KDialog::User1, false ); /* disable the stop button */
@@ -351,11 +357,11 @@ void LocateDlg::processStdout(K3Process *proc, char *buffer, int length)
       }
       
       if( lastItem )    
-        lastItem = new K3ListViewItem( resultList, lastItem, *it );
+        lastItem = new QTreeWidgetItem( resultList, lastItem );
       else
-        lastItem = new K3ListViewItem( resultList, *it );
+        lastItem = new QTreeWidgetItem( resultList );
 
-      lastItem->setDragEnabled( true );
+      lastItem->setText( 0, *it );
     }
   }
 
@@ -375,7 +381,7 @@ void LocateDlg::processStderr(K3Process *, char *buffer, int length)
   delete []buf;  
 }
 
-void LocateDlg::slotRightClick(Q3ListViewItem *item)
+void LocateDlg::slotRightClick(QTreeWidgetItem *item)
 {
   if ( !item )
     return;
@@ -417,7 +423,7 @@ void LocateDlg::slotRightClick(Q3ListViewItem *item)
     operate( item, ret );
 }
 
-void LocateDlg::slotDoubleClick(Q3ListViewItem *item)
+void LocateDlg::slotDoubleClick(QTreeWidgetItem *item)
 {
   if ( !item )
     return;
@@ -437,7 +443,7 @@ void LocateDlg::slotDoubleClick(Q3ListViewItem *item)
 
 void LocateDlg::keyPressEvent( QKeyEvent *e )
 {
-  if( Krusader::actCopy->shortcut().contains( QKeySequence( e->key() ) ) )
+  if( Krusader::actCopy->shortcut().contains( QKeySequence( e->key() | e->modifiers() ) ) )
   {
     operate( 0, COPY_SELECTED_TO_CLIPBOARD );
     e->accept();
@@ -478,7 +484,7 @@ void LocateDlg::keyPressEvent( QKeyEvent *e )
   QDialog::keyPressEvent( e );
 }
 
-void LocateDlg::operate( Q3ListViewItem *item, int task )
+void LocateDlg::operate( QTreeWidgetItem *item, int task )
 {
   KUrl name;
   if( item != 0 )
@@ -502,24 +508,30 @@ void LocateDlg::operate( Q3ListViewItem *item, int task )
       if ( dlg.exec() != QDialog::Accepted )
         return;
 
-      if( list.first() != ( findPattern = dlg.pattern() ) )
+      QString first = QString::null;
+      if( list.count() != 0 )
+        first = list.first();
+      if( first != ( findPattern = dlg.pattern() ) )
         list.push_front( dlg.pattern() );
         
       group.writeEntry( "Find Options", (long long)(findOptions = dlg.options() ) );
       group.writeEntry( "Find Patterns", list );
 
-      if( !( findOptions & KFind::FromCursor ) )
+      if( !( findOptions & KFind::FromCursor ) && resultList->topLevelItemCount() )
         resultList->setCurrentItem( ( findOptions & KFind::FindBackwards ) ?
-                                    resultList->lastItem() : resultList->firstChild() );
+                                    resultList->topLevelItem( resultList->topLevelItemCount()-1 ) : resultList->topLevelItem( 0 ) );
 
-      findCurrentItem = (K3ListViewItem *)resultList->currentItem();
+      findCurrentItem = resultList->currentItem();
       
       if( find() && findCurrentItem )
+      {
+        resultList->selectionModel()->clearSelection(); // HACK: QT 4 is not able to paint the focus frame because of a bug
         resultList->setCurrentItem( findCurrentItem );
+      }
       else
-        KMessageBox::information( 0, i18n( "Search string not found!" ) );
+        KMessageBox::information( this, i18n( "Search string not found!" ) );
         
-      resultList->ensureItemVisible( resultList->currentItem() );
+      resultList->scrollTo( resultList->currentIndex() );
     }
     break;      
   case FIND_NEXT_ID:
@@ -528,15 +540,18 @@ void LocateDlg::operate( Q3ListViewItem *item, int task )
       if( task == FIND_PREV_ID )
         findOptions ^= KFind::FindBackwards;
       
-      findCurrentItem = (K3ListViewItem *)resultList->currentItem();
+      findCurrentItem = resultList->currentItem();
       nextLine();
 
       if( find() && findCurrentItem )
+      {
+        resultList->selectionModel()->clearSelection(); // HACK: QT 4 is not able to paint the focus frame because of a bug
         resultList->setCurrentItem( findCurrentItem );
+      }
       else
-        KMessageBox::information( 0, i18n( "Search string not found!" ) );
+        KMessageBox::information( this, i18n( "Search string not found!" ) );
 
-      resultList->ensureItemVisible( resultList->currentItem() );
+      resultList->scrollTo( resultList->currentIndex() );
 
       if( task == FIND_PREV_ID )
         findOptions ^= KFind::FindBackwards;
@@ -546,13 +561,12 @@ void LocateDlg::operate( Q3ListViewItem *item, int task )
     {
       KUrl::List urls;
 
-      Q3ListViewItem * item = resultList->firstChild();
-      while( item )
-      {
-        if( item->isSelected() )
-           urls.push_back( KUrl( item->text( 0 ) ) );
+      QTreeWidgetItemIterator it(resultList);
+      while (*it) {
+        if( (*it)->isSelected() )
+           urls.push_back( KUrl( (*it)->text( 0 ) ) );
 
-        item = item->nextSibling();
+        it++;
       }
 
       if( urls.count() == 0 )
@@ -569,9 +583,9 @@ void LocateDlg::operate( Q3ListViewItem *item, int task )
 void LocateDlg::nextLine()
 {
   if( findOptions & KFind::FindBackwards )
-    findCurrentItem = (K3ListViewItem *)findCurrentItem->itemAbove();
+    findCurrentItem = resultList->itemAbove( findCurrentItem );
   else
-    findCurrentItem = (K3ListViewItem *)findCurrentItem->itemBelow();
+    findCurrentItem = resultList->itemBelow( findCurrentItem );
 }
 
 bool LocateDlg::find()
@@ -617,17 +631,17 @@ void LocateDlg::feedToListBox()
                 i18n("Query name"),		// Caption
                 i18n("Here you can name the file collection"),	// Questiontext
                 queryName,	// Default
-                &ok );
+                &ok, this );
      if ( ! ok)
        return;
   }
     
   KUrl::List urlList;
-  Q3ListViewItem * item = resultList->firstChild();
-  while( item )
-  {
+  QTreeWidgetItemIterator it(resultList);
+  while (*it) {
+    QTreeWidgetItem * item = *it;
     urlList.push_back( KUrl( item->text( 0 ) ) );
-    item = item->nextSibling();
+    it++;
   }
   KUrl url = KUrl(QString("virt:/")+ queryName);
   v.vfs_refresh( url );
@@ -639,6 +653,7 @@ void LocateDlg::feedToListBox()
 
 void LocateDlg::reset()
 {
+  setDefaultButton( KDialog::User3 ); // KDE HACK, it's a bug, that the default button is lost somehow
   locateSearchFor->lineEdit()->setFocus();
   locateSearchFor->lineEdit()->selectAll();
 }

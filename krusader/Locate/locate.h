@@ -33,12 +33,14 @@
 
 #include <kdialog.h>
 #include <kcombobox.h>
-#include <k3listview.h>
 #include <k3process.h>
 #include <khistorycombobox.h>
 #include <qcheckbox.h>
 //Added by qt3to4:
 #include <QKeyEvent>
+
+class KrTreeWidget;
+class QTreeWidgetItem;
 
 class LocateDlg : public KDialog
 {
@@ -60,15 +62,15 @@ public slots:
 
   void              processStdout(K3Process *, char *, int);
   void              processStderr(K3Process *proc, char *buffer, int length);
-  void              slotRightClick(Q3ListViewItem *);
-  void              slotDoubleClick(Q3ListViewItem *);
+  void              slotRightClick(QTreeWidgetItem *);
+  void              slotDoubleClick(QTreeWidgetItem *);
   void              updateFinished();
   
 protected:
   virtual void      keyPressEvent( QKeyEvent * );
   
 private:
-  void              operate( Q3ListViewItem *item, int task );
+  void              operate( QTreeWidgetItem *item, int task );
 
   bool              find();
   void              nextLine();
@@ -83,22 +85,22 @@ private:
 
   QString           pattern;
   
-  KHistoryComboBox    *locateSearchFor;
-  K3ListView        *resultList;
+  KHistoryComboBox *locateSearchFor;
+  KrTreeWidget     *resultList;
   QString           remaining;
-  K3ListViewItem    *lastItem;
+  QTreeWidgetItem  *lastItem;
 
   QString           collectedErr;
   
   long              findOptions;
   QString           findPattern;
-  K3ListViewItem    *findCurrentItem;
+  QTreeWidgetItem  *findCurrentItem;
 
   QCheckBox        *dontSearchInPath;
   QCheckBox        *existingFiles;
   QCheckBox        *caseSensitive;
 
-  static K3Process  *updateProcess;
+  static K3Process *updateProcess;
 };
 
 #endif /* __LOCATE_H__ */

@@ -53,10 +53,12 @@
 #include <time.h>
 #include <qstring.h>
 #include <qtabwidget.h>
-#include <q3listview.h>
 #include <qstringlist.h>
 #include <kglobal.h>
 #include <klocale.h>
+
+class QTreeWidget;
+class QTreeWidgetItem;
 
 class KrSearchDialog : public QDialog  {
    Q_OBJECT
@@ -74,12 +76,12 @@ public slots:
   void copyToClipBoard();
   void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm, QString foundText);
   void closeDialog( bool isAccept = true );
-  void resultDoubleClicked(Q3ListViewItem*);
-  void resultClicked(Q3ListViewItem*);
+  void resultDoubleClicked(QTreeWidgetItem*);
+  void resultClicked(QTreeWidgetItem*);
 
   virtual void keyPressEvent(QKeyEvent *e);
   virtual void closeEvent(QCloseEvent *e);
-  virtual void rightClickMenu(Q3ListViewItem*, const QPoint&, int);
+  virtual void rightClickMenu( QTreeWidgetItem* );
   virtual void resizeEvent( QResizeEvent *e );
 
 protected slots:
@@ -109,7 +111,7 @@ private:
   KrSqueezedTextLabel *foundTextLabel;
   KSqueezedTextLabel *searchingLabel;
   
-  Q3ListView* resultsList;
+  QTreeWidget* resultsList;
 
   KRQuery *query;
   KRSearchMod *searcher;
@@ -129,61 +131,6 @@ private:
   
   int            sizeX;
   int            sizeY;
-};
-
-class ResultListViewItem : public Q3ListViewItem
-{
-public:
-  ResultListViewItem( Q3ListView *resultsList, QString name, QString where, KIO::filesize_t size, 
-                      QDateTime date, QString perm ) : Q3ListViewItem( resultsList, name, where, 
-                      KRpermHandler::parseSize(size), 
-                      KGlobal::locale()->formatDateTime( date ), perm )
-  {
-    fileSize = size;
-    fileDate = date;
-    setDragEnabled( true );
-  }  
-
-  void setFoundText(QString text) { _foundText=text; }
-  const QString& foundText() const { return _foundText; }
-  
-  virtual int compare(Q3ListViewItem *i,int col,bool ascending ) const
-  {
-    if( col == 2 ) {
-      ResultListViewItem *other = (ResultListViewItem *)i;
-      KIO::filesize_t otherSize = other->getSize();
-      
-      if( fileSize == otherSize )
-        return 0;
-      if( fileSize > otherSize )
-        return 1;
-      return -1;
-    }
-    if( col == 3 ) {
-      ResultListViewItem *other = (ResultListViewItem *)i;
-      QDateTime otherDate = other->getDate();
-      
-      if( fileDate == otherDate )
-        return 0;
-      if( fileDate > otherDate )
-        return 1;
-      return -1;
-    }
-    return Q3ListViewItem::compare( i, col, ascending );
-  }
-
-  KIO::filesize_t getSize() {
-    return fileSize;
-  }
-
-  QDateTime getDate() {
-    return fileDate;
-  }
-  
-private:
-  KIO::filesize_t fileSize;
-  QDateTime       fileDate;
-  QString _foundText;
 };
 
 #endif
