@@ -39,11 +39,11 @@ public:
 	virtual ~kio_krarcProtocol();
 	virtual void stat( const KUrl & url );
 	virtual void get(const KUrl& url);
-	virtual void put(const KUrl& url,int permissions,bool overwrite,bool resume);
+	virtual void put(const KUrl& url,int permissions, KIO::JobFlags flags);
 	virtual void mkdir(const KUrl& url,int permissions);
 	virtual void listDir(const KUrl& url);
 	virtual void del(KUrl const & url, bool isFile);
-	virtual void copy (const KUrl &src, const KUrl &dest, int permissions, bool overwrite);
+	virtual void copy (const KUrl &src, const KUrl &dest, int permissions, KIO::JobFlags flags);
 
 public slots:
 	void receivedData(K3Process* proc,char* buf,int len);

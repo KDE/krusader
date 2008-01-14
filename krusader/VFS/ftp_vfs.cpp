@@ -219,10 +219,13 @@ void ftp_vfs::vfs_addFiles( KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode, Q
 	switch( mode ) {
 	case KIO::CopyJob::Copy:
 		job = KIO::copy( *fileUrls, destUrl );
+		break;
 	case KIO::CopyJob::Move:
 		job = KIO::move( *fileUrls, destUrl );
+		break;
 	case KIO::CopyJob::Link:
 		job = KIO::link( *fileUrls, destUrl );
+		break;
 	}
 
 	connect( job, SIGNAL( result( KJob* ) ), this, SLOT( vfs_refresh( KJob* ) ) );

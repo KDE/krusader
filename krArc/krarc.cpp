@@ -39,6 +39,7 @@
 #include <kde_file.h>
 #include <kstandarddirs.h>
 #include <kio/job.h>
+#include <kio/jobclasses.h>
 #include <ktar.h>
 
 #include <iostream>
@@ -48,6 +49,9 @@
 #define TRIES_WITH_PASSWORDS   3
 
 #if 0
+
+#include <q3textstream.h>
+
 #define KRDEBUG(X...) do{   \
 	QFile f("/tmp/debug");    \
 	f.open(QIODevice::WriteOnly | QIODevice::Append);     \
@@ -174,8 +178,12 @@ void kio_krarcProtocol::mkdir(const KUrl& url,int permissions){
 	finished();
 }
 
-void kio_krarcProtocol::put(const KUrl& url,int permissions,bool overwrite,bool resume){
+void kio_krarcProtocol::put(const KUrl& url,int permissions, KIO::JobFlags flags){
 	KRDEBUG(url.path());
+	
+	bool overwrite = !!( flags & KIO::Overwrite );
+	bool resume = !!( flags & KIO::Resume );
+	
 	if( !setArcFile( url ) ) {
 		error(ERR_CANNOT_ENTER_DIRECTORY,url.path());
 		return;
@@ -198,7 +206,10 @@ void kio_krarcProtocol::put(const KUrl& url,int permissions,bool overwrite,bool 
 	QString arcDir  = findArcDirectory(url);
 	QString tmpFile = arcTempDir + arcDir.mid(1) + url.path().mid(url.path().findRev("/")+1);
 	
-	QString tmpDir = arcTempDir+arcDir.mid(1)+"/";
+	QString tmpDir = arcTempDir+arcDir.mid(1);
+	if( !tmpDir.endsWith( "/" ) )
+		tmpDir += "/";
+	
 	for( int i=arcTempDir.length();i<tmpDir.length(); i=tmpDir.find("/",i+1)){
 		QDir("/").mkdir(tmpDir.left(i));
 	}
@@ -513,9 +524,10 @@ void kio_krarcProtocol::stat( const KUrl & url ){
 	} else error( KIO::ERR_DOES_NOT_EXIST, path );
 }
 
-void kio_krarcProtocol::copy (const KUrl &url, const KUrl &dest, int, bool overwrite) {
+void kio_krarcProtocol::copy (const KUrl &url, const KUrl &dest, int, KIO::JobFlags flags) {
 	KRDEBUG(url.path());
-  
+        bool overwrite = !!(flags & KIO::Overwrite );
+
 	// KDE HACK: opening the password dlg in copy causes error for the COPY, and further problems
 	// that's why encrypted files are not allowed to copy
 	if( !encrypted && dest.isLocalFile() )
