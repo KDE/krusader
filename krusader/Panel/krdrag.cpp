@@ -32,7 +32,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <k3urldrag.h>
 //Added by qt3to4:
 #include <Q3StrList>
-#include <Q3CString>
+#include <QByteArray>
 
 KRDrag * KRDrag::newDrag( const KUrl::List & urls, bool move, QWidget * dragSource )
 {
@@ -66,11 +66,11 @@ const char* KRDrag::format( int i ) const
 QByteArray KRDrag::encodedData( const char* mime ) const
 {
     QByteArray a;
-    Q3CString mimetype( mime );
+    QByteArray mimetype( mime );
     if ( mimetype == "text/uri-list" )
         return Q3UriDrag::encodedData( mime );
     else if ( mimetype == "application/x-kde-cutselection" ) {
-        Q3CString s ( m_bCutSelection ? "1" : "0" );
+        QByteArray s ( m_bCutSelection ? "1" : "0" );
         a.resize( s.length() + 1 ); // trailing zero
         memcpy( a.data(), s.data(), s.length() + 1 );
     }
@@ -79,7 +79,7 @@ QByteArray KRDrag::encodedData( const char* mime ) const
       QStringList uris;
       for (Q3StrListIterator it(m_urls); *it; ++it)
           uris.append(K3URLDrag::stringToUrl(*it).prettyUrl());
-      Q3CString s = uris.join( "\n" ).local8Bit();
+      QByteArray s = uris.join( "\n" ).local8Bit();
       if( uris.count() > 1 )
           s.append( "\n" );
       a.resize( s.length() + 1 ); // trailing zero

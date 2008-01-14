@@ -27,7 +27,7 @@
 #include <qregexp.h>
 #include <qdir.h>
 //Added by qt3to4:
-#include <Q3CString>
+#include <QByteArray>
 
 #include <kfileitem.h>
 #include <kdebug.h>
@@ -79,7 +79,7 @@ int kdemain( int argc, char **argv ){
 
 } // extern "C" 
 
-kio_krarcProtocol::kio_krarcProtocol(const Q3CString &pool_socket, const Q3CString &app_socket)
+kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
 	: SlaveBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(0L),extArcReady(false),
 		password(QString()) {
 	
@@ -350,7 +350,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries ){
 		}
 		// the follwing block is ripped from KDE file KIO::Slave
 		// $Id: krarc.cpp,v 1.43 2007/01/13 13:39:51 ckarai Exp $
-		Q3CString _path( QFile::encodeName(arcTempDir+file) );
+		QByteArray _path( QFile::encodeName(arcTempDir+file) );
 		KDE_struct_stat buff;
 		if( KDE_lstat( _path.data(), &buff ) == -1 ) {
 			if ( errno == EACCES )

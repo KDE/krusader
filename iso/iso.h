@@ -2,7 +2,7 @@
                                 iso.h
                              -------------------
     begin                : Oct 25 2002
-    copyright            : (C) 2002 by Szombathelyi György
+    copyright            : (C) 2002 by Szombathelyi Gyï¿½rgy
     email                : gyurco@users.sourceforge.net
  ***************************************************************************/
 
@@ -26,14 +26,14 @@
 #include <sys/types.h>
 #include "kisofile.h"
 //Added by qt3to4:
-#include <Q3CString>
+#include <QByteArray>
 
 class KIso;
 
 class kio_isoProtocol : public KIO::SlaveBase
 {
 public:
-    kio_isoProtocol( const Q3CString &pool, const Q3CString &app );
+    kio_isoProtocol( const QByteArray &pool, const QByteArray &app );
     virtual ~kio_isoProtocol();
 
     virtual void listDir( const KUrl & url );

@@ -27,7 +27,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#include <q3cstring.h>
 #include <qdir.h>
 #include <qfile.h>
 #include <kdebug.h>

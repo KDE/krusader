@@ -29,7 +29,7 @@
 #include <kde_file.h>
 #include <qfile.h>
 //Added by qt3to4:
-#include <Q3CString>
+#include <QByteArray>
 #include <kurl.h>
 #include <kdebug.h>
 #include <kcomponentdata.h>
@@ -81,7 +81,7 @@ static const unsigned char zisofs_magic[8] = {
 };
 
 
-kio_isoProtocol::kio_isoProtocol( const Q3CString &pool, const Q3CString &app ) : SlaveBase( "iso", pool, app )
+kio_isoProtocol::kio_isoProtocol( const QByteArray &pool, const QByteArray &app ) : SlaveBase( "iso", pool, app )
 {
   kDebug() << "kio_isoProtocol::kio_isoProtocol" << endl;
   m_isoFile = 0L;
@@ -216,7 +216,7 @@ void kio_isoProtocol::listDir( const KUrl & url )
     QString path;
     if ( !checkNewFile( url.path(), path, url.hasRef() ? url.htmlRef().toInt() : -1 ) )
     {
-        Q3CString _path( QFile::encodeName(url.path()));
+        QByteArray _path( QFile::encodeName(url.path()));
         kDebug()  << "Checking (stat) on " << _path << endl;
         struct stat buff;
         if ( ::stat( _path.data(), &buff ) == -1 || !S_ISDIR( buff.st_mode ) ) {
@@ -302,7 +302,7 @@ void kio_isoProtocol::stat( const KUrl & url )
     {
         // We may be looking at a real directory - this happens
         // when pressing up after being in the root of an archive
-        Q3CString _path( QFile::encodeName(url.path()));
+        QByteArray _path( QFile::encodeName(url.path()));
         kDebug()  << "kio_isoProtocol::stat (stat) on " << _path << endl;
         struct stat buff;
         if ( ::stat( _path.data(), &buff ) == -1 || !S_ISDIR( buff.st_mode ) ) {

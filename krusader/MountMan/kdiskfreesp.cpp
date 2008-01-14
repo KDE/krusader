@@ -26,7 +26,7 @@
 #include <qfile.h>
 #include <q3textstream.h>
 //Added by qt3to4:
-#include <Q3CString>
+#include <QByteArray>
 
 #include <kdebug.h>
 #include <k3process.h>
@@ -72,7 +72,7 @@ KDiskFreeSpace::~KDiskFreeSpace()
 **/
 void KDiskFreeSpace::receivedDFStdErrOut(K3Process *, char *data, int len)
 {
-  Q3CString tmp(data,len+1);  // adds a zero-byte
+  QByteArray tmp(data,len+1);  // adds a zero-byte
   dfStringErrOut.append(tmp);
 }
 

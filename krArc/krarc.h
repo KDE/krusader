@@ -18,7 +18,6 @@
 #define __krarc_h__
 
 #include <qstring.h>
-#include <q3cstring.h>
 #include <q3dict.h>
 #include <qfile.h>
 #include <sys/types.h>
@@ -31,12 +30,12 @@
 
 class K3Process;
 class KFileItem;
-class Q3CString;
+class QByteArray;
 
 class kio_krarcProtocol : public QObject, public KIO::SlaveBase {
 Q_OBJECT
 public:
-	kio_krarcProtocol(const Q3CString &pool_socket, const Q3CString &app_socket);
+	kio_krarcProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
 	virtual ~kio_krarcProtocol();
 	virtual void stat( const KUrl & url );
 	virtual void get(const KUrl& url);

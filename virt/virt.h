@@ -21,13 +21,13 @@
 #include <sys/types.h>
 #include <q3dict.h>
 //Added by qt3to4:
-#include <Q3CString>
+#include <QByteArray>
 #include <kconfig.h>
 #include <kio/slavebase.h>
 
 class VirtProtocol : public KIO::SlaveBase {
 public:
-	VirtProtocol( const Q3CString &pool, const Q3CString &app );
+	VirtProtocol( const QByteArray &pool, const QByteArray &app );
 	virtual ~VirtProtocol();
 
 	virtual void listDir ( const KUrl & url );

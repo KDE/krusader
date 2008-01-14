@@ -36,7 +36,7 @@
 #include <qdir.h>
 #include <qtimer.h>
 //Added by qt3to4:
-#include <Q3CString>
+#include <QByteArray>
 // KDE includes
 #include <kmessagebox.h>
 #include <kmimetype.h>
@@ -237,7 +237,7 @@ void normal_vfs::vfs_rename(const QString& fileName,const QString& newName){
 
 vfile* normal_vfs::vfileFromName(const QString& name){
 	QString path = vfs_workingDir()+"/"+name;
-	Q3CString fileName = path.local8Bit();
+	QByteArray fileName = path.local8Bit();
 	
 	KDE_struct_stat stat_p;
 	KDE_lstat(fileName.data(),&stat_p);
@@ -280,7 +280,7 @@ void normal_vfs::getACL( vfile *file, QString &acl, QString &defAcl )
 {
 	acl = defAcl = QString();
 #if defined( HAVE_POSIX_ACL )
-	Q3CString fileName = file->vfile_getUrl().path( KUrl::RemoveTrailingSlash ).local8Bit();
+	QByteArray fileName = file->vfile_getUrl().path( KUrl::RemoveTrailingSlash ).local8Bit();
 #if HAVE_NON_POSIX_ACL_EXTENSIONS
 	if ( acl_extended_file( fileName.data() ) )
 	{

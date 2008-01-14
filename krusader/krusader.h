@@ -48,7 +48,6 @@
 #include <q3textstream.h>
 //Added by qt3to4:
 #include <QMoveEvent>
-#include <Q3CString>
 #include <QShowEvent>
 #include <QResizeEvent>
 #include <QHideEvent>
@@ -91,9 +90,7 @@ class Krusader : public KParts::MainWindow {
      */
     static const char* privIcon();
     static QStringList supportedTools(); // find supported tools
-#if 0 // TODO: PORTME
-    virtual bool process (const Q3CString &fun, const QByteArray &data, Q3CString &replyType, QByteArray &replyData);
-#endif
+
     void moveToTop();
 
   public slots:
