@@ -34,7 +34,6 @@
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qstringlist.h>
-#include <q3valuevector.h>
 //Added by qt3to4:
 #include <QVBoxLayout>
 

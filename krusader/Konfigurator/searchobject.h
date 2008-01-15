@@ -32,7 +32,7 @@
 #define SEARCHOBJECT_H
 
 #include <qstring.h>
-#include <q3valuevector.h>
+#include <qlist.h>
 #include "../krservices.h"
 
 /**
@@ -117,14 +117,14 @@ protected:
 class ApplicationGroup : public SearchObject
 {
 public:
-  ApplicationGroup(const QString& searchName, bool foundGroup, const Q3ValueVector<Application*>& apps, const QString& note=QString());
+  ApplicationGroup(const QString& searchName, bool foundGroup, const QList<Application*>& apps, const QString& note=QString());
   ~ApplicationGroup();
 
-  const Q3ValueVector<Application*>& getAppVec() const { return _apps; }
+  const QList<Application*>& getAppVec() const { return _apps; }
   const bool getFoundGroup() const { return _foundGroup; }
 
 protected:
-  Q3ValueVector<Application*> _apps;
+  QList<Application*> _apps;
   bool _foundGroup;
 };
 

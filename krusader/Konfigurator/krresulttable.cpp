@@ -33,6 +33,7 @@
 //Added by qt3to4:
 #include <QGridLayout>
 #include <QLabel>
+#include <qlist.h>
 #include <kcolorscheme.h>
 using namespace std;
 
@@ -250,7 +251,7 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
 {
   _supported = Krusader::supportedTools(); // get list of available tools
 
-  Q3ValueVector<Application*> vecDiff, vecMail, vecRename, vecChecksum;
+  QList<Application*> vecDiff, vecMail, vecRename, vecChecksum;
   Application* kdiff3         = new Application("kdiff3",        "http://kdiff3.sourceforge.net/", KrServices::cmdExist("kdiff3"));
   Application* kompare        = new Application("kompare",       "http://www.caffeinated.me.uk/kompare/", KrServices::cmdExist("kompare"));
   Application* xxdiff         = new Application("xxdiff",        "http://xxdiff.sourceforge.net/", KrServices::cmdExist("xxdiff"));
@@ -322,7 +323,7 @@ KrToolResultTable::~KrToolResultTable()
 bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
 {
   ApplicationGroup* appGroup = dynamic_cast<ApplicationGroup*>(search);
-  Q3ValueVector<Application*> _apps = appGroup->getAppVec();
+  QList<Application*> _apps = appGroup->getAppVec();
 
   // Name column
   _label = new QLabel(appGroup->getSearchName(), this);
@@ -334,7 +335,7 @@ bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
   QWidget* toolBoxWidget = new QWidget(this);
   QVBoxLayout * toolBox = new QVBoxLayout( toolBoxWidget );
 
-  for( Q3ValueVector<Application*>::Iterator it=_apps.begin(); it!=_apps.end(); it++ )
+  for( QList<Application*>::Iterator it=_apps.begin(); it!=_apps.end(); it++ )
   {
     KUrlLabel* l = new KUrlLabel( (*it)->getWebsite(), (*it)->getAppName(), toolBoxWidget);
     toolBox->addWidget( l );
@@ -350,7 +351,7 @@ bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
   QWidget* vboxWidget = new QWidget(this);
   QVBoxLayout * vbox = new QVBoxLayout( vboxWidget );
 
-  for( Q3ValueVector<Application*>::Iterator it=_apps.begin(); it!=_apps.end(); it++ )
+  for( QList<Application*>::Iterator it=_apps.begin(); it!=_apps.end(); it++ )
   {
     _label = new QLabel( (*it)->getPath(), vboxWidget);
     _label->setContentsMargins(5,5,5,5);

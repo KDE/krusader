@@ -35,7 +35,7 @@
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qstringlist.h>
-#include <q3valuevector.h>
+#include <qlist.h>
 //Added by qt3to4:
 #include <QGridLayout>
 
@@ -129,7 +129,7 @@ public:
   bool addRow(SearchObject* search, QGridLayout* grid);
 
 protected:
-  Q3ValueVector<Application*> _apps;
+  QList<Application*> _apps;
 
 protected slots:
   void website(const QString&);

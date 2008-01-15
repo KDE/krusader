@@ -94,7 +94,7 @@ Archiver::~Archiver()
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
-ApplicationGroup::ApplicationGroup(const QString& searchName, bool foundGroup, const Q3ValueVector<Application*>& apps, const QString& note)
+ApplicationGroup::ApplicationGroup(const QString& searchName, bool foundGroup, const QList<Application*>& apps, const QString& note)
  : SearchObject(searchName, foundGroup, note),
    _apps(apps),
   _foundGroup(foundGroup)

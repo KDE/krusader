@@ -39,7 +39,6 @@
 #include <qradiobutton.h>
 #include <q3listbox.h>
 #include <qlist.h>
-#include <q3valuevector.h>
 #include <q3buttongroup.h>
 #include <qlineedit.h>
 //Added by qt3to4:
@@ -379,8 +378,8 @@ private:
 protected:
   QColor                          defaultValue;
   QColor                          customValue;
-  Q3ValueVector<QColor>            palette;
-  Q3ValueVector<ADDITIONAL_COLOR>  additionalColors;
+  QList<QColor>                   palette;
+  QList<ADDITIONAL_COLOR>         additionalColors;
   KonfiguratorExtension          *ext;
   bool                            disableColorChooser;
 };
