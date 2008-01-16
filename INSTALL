@@ -1,3 +1,39 @@
+Krusader installation instructions on KDE4.0
+--------------------------------------------
+
+Note
+----
+From version Krusader-2.0.0 and higher is KDE-4 only.
+
+
+Note
+----
+"krusader_kde4.tar.gz" is the supposed name of the krusader tarball (it will be probably a different one ;)
+
+
+ You can download the latest available krusader-2.x from SVN with the next command:
+ $ svn co https://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4
+
+
+Compile instructions
+--------------------
+DCMAKE_INSTALL_PREFIX is the location of the KDE DQT_INCLUDES
+
+$ tar -xvf krusader_kde4.tar.gz
+$ cd  krusader_kde4
+$ cmake  -DCMAKE_INSTALL_PREFIX=/usr/ -DQT_INCLUDES=/usr/share/qt4/include
+$ make
+$ make install
+$ ./configure
+
+
+
+######################################################
+
+
+OLD INSTALL INSTRUCTIONS FOR KDE3
+
+
 --------------------------------------------
 - Documentation version:  1.80.0
 - Documentation date:  2007-05-03
