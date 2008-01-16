@@ -1232,7 +1232,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   showOptions->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed);
 
   QGridLayout *showOptionsLayout = new QGridLayout( showOptions );
-  showOptionsLayout->setSpacing( 6 );
+  showOptionsLayout->setSpacing( 4 );
   showOptionsLayout->setContentsMargins( 11, 11, 11, 11 );
 
   QPixmap showLeftToRight( ( const char** ) right_arrow_button_data );
@@ -1248,6 +1248,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnLeftToRight->setOn( group.readEntry( "LeftToRight Button", _BtnLeftToRight ) );
   btnLeftToRight->setAccel( Qt::CTRL + Qt::Key_L );
   btnLeftToRight->setWhatsThis( i18n( "Show files marked to <i>Copy from left to right</i> (CTRL+L)." ) );
+  btnLeftToRight->setFixedSize( showLeftToRight.width() + 15, showLeftToRight.height() + 15 );
   showOptionsLayout->addWidget( btnLeftToRight, 0, 0);
 
   btnEquals = new QPushButton( showOptions );
@@ -1257,6 +1258,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnEquals->setOn( group.readEntry( "Equals Button", _BtnEquals ) );
   btnEquals->setAccel( Qt::CTRL + Qt::Key_E );
   btnEquals->setWhatsThis( i18n( "Show files considered to be identical (CTRL+E)." ) );
+  btnEquals->setFixedSize( showEquals.width() + 15, showEquals.height() + 15 );
   showOptionsLayout->addWidget( btnEquals, 0, 1);
 
   btnDifferents = new QPushButton( showOptions );
@@ -1266,6 +1268,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnDifferents->setOn( group.readEntry( "Differents Button", _BtnDifferents ) );
   btnDifferents->setAccel( Qt::CTRL + Qt::Key_D );
   btnDifferents->setWhatsThis( i18n( "Show excluded files (CTRL+D)." ) );
+  btnDifferents->setFixedSize( showDifferents.width() + 15, showDifferents.height() + 15 );
   showOptionsLayout->addWidget( btnDifferents, 0, 2);
 
   btnRightToLeft = new QPushButton( showOptions );
@@ -1275,6 +1278,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnRightToLeft->setOn( group.readEntry( "RightToLeft Button", _BtnRightToLeft ) );
   btnRightToLeft->setAccel( Qt::CTRL + Qt::Key_R );
   btnRightToLeft->setWhatsThis( i18n( "Show files marked to <i>Copy from right to left</i> (CTRL+R)." ) );
+  btnRightToLeft->setFixedSize( showRightToLeft.width() + 15, showRightToLeft.height() + 15 );
   showOptionsLayout->addWidget( btnRightToLeft, 0, 3);
 
   btnDeletable = new QPushButton( showOptions );
@@ -1284,10 +1288,12 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnDeletable->setOn( group.readEntry( "Deletable Button", _BtnDeletable ) );
   btnDeletable->setAccel( Qt::CTRL + Qt::Key_T );
   btnDeletable->setWhatsThis( i18n( "Show files marked to delete. (CTRL+T)" ) );
+  btnDeletable->setFixedSize( showDeletable.width() + 15, showDeletable.height() + 15 );
   showOptionsLayout->addWidget( btnDeletable, 0, 4);
 
   btnDuplicates = new QPushButton( showOptions );
   btnDuplicates->setText( i18n("Duplicates") );
+  btnDuplicates->setFixedWidth( QFontMetrics( btnDuplicates->font() ).width( btnDuplicates->text() ) + 15 );
   btnDuplicates->setMinimumHeight( btnLeftToRight->height() );
   btnDuplicates->setToggleButton( true );
   btnDuplicates->setOn( group.readEntry( "Duplicates Button", _BtnDuplicates ) );
@@ -1296,6 +1302,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   btnSingles = new QPushButton( showOptions );
   btnSingles->setText( i18n("Singles") );
+  btnSingles->setFixedWidth( QFontMetrics( btnSingles->font() ).width( btnSingles->text() ) + 15 );
   btnSingles->setMinimumHeight( btnLeftToRight->height() );
   btnSingles->setToggleButton( true );
   btnSingles->setOn( group.readEntry( "Singles Button", _BtnSingles ) );
@@ -1330,7 +1337,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   j=(i>j ? i : j);
   int typeWidth = j*7/2;
 
-  int leftNameWidth  = group.readEntry("Left Name Width",  9*typeWidth/2 );
+  int leftNameWidth  = group.readEntry("Left Name Width",  4*typeWidth );
   int leftSizeWidth  = group.readEntry("Left Size Width",  2*typeWidth );
   int leftDateWidth  = group.readEntry("Left Date Width",  3*typeWidth );
   int taskTypeWidth  = group.readEntry("Task Type Width",  typeWidth );
@@ -1443,6 +1450,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnSwapSides->setPixmap( swapSides );
   btnSwapSides->setAccel( Qt::CTRL + Qt::Key_S );
   btnSwapSides->setWhatsThis( i18n( "Swap sides (Ctrl+S)." ) );
+  btnSwapSides->setFixedWidth( swapSides.width() + 15 );
   buttons->addWidget( btnSwapSides );
 
   statusLabel = new QLabel( this );
