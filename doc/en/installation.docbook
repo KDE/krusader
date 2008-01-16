@@ -379,19 +379,17 @@
     </sect2>
     <sect2 id="krusader_svn">
       <title>Subversion</title>
-      <para>&subversion-url; will probably be used for
+      <para>&subversion-url; is used for
       the &krusader; 2.x series for &kde;4.
       it is also possible to
       &browse-svn-repo-url;.</para>
       <para>To check out the latest &krusader; 1.x for
-      &kde; 3 from SVN: (NOTE: at moment of writing it is
-      recommend to use CVS for krusader_kde3, since krusader_kde3
-      is developed in CVS and not in SVN) 
-      <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde3</option></userinput></screen>
+      &kde; 3 from SVN: (NOTE: at moment of writing use CVS for krusader_kde3, since krusader_kde3
+      is developed in CVS and NOT in SVN, currently you will get an old version in SVN) 
+      <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde3</option></userinput></screen>
       To check out the latest &krusader; 2.x
-      for &kde; 4 from SVN: (NOTE: not yet available at
-      moment of writing) 
-      <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4</option></userinput></screen>
+      for &kde; 4 from SVN:
+      <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4</option></userinput></screen>
       </para>
     </sect2>
     <sect2 id="krusader_old">
