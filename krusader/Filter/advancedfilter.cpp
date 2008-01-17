@@ -37,6 +37,7 @@
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QPixmap>
+#include <qtextstream.h>
 #include <klocale.h>
 #include <qlayout.h>
 #include <qlabel.h>
@@ -472,8 +473,8 @@ void AdvancedFilter::fillList ( QComboBox *list, QString filename )
 		return;
 	}
 	// and read it into the temporary array
-	Q3TextStream t ( &data );
-	while ( !data.atEnd() )
+	QTextStream t ( &data );
+	while ( !t.atEnd() )
 	{
 		QString s = t.readLine();
 		QString name = s.left ( s.find ( ':' ) );

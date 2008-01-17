@@ -30,7 +30,6 @@ A
 #include <unistd.h> 
 // Qt Includes
 #include <qdir.h>
-#include <q3textstream.h>
 #include <qeventloop.h>
 #include <qclipboard.h> 
 //Added by qt3to4:

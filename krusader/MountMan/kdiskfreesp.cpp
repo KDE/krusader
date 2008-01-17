@@ -24,7 +24,7 @@
 
 #include "kdiskfreesp.h"
 #include <qfile.h>
-#include <q3textstream.h>
+#include <qtextstream.h>
 //Added by qt3to4:
 #include <QByteArray>
 
@@ -100,11 +100,11 @@ void KDiskFreeSpace::dfDone()
 {
   readingDFStdErrOut=true;
 
-  Q3TextStream t (dfStringErrOut, QIODevice::ReadOnly);
+  QTextStream t (dfStringErrOut, QIODevice::ReadOnly);
   QString s=t.readLine();
   if ( (s.isEmpty()) || ( s.left(10) != QString::fromLatin1("Filesystem") ) )
     kError() << "Error running df command... got [" << s << "]" << endl;
-  while ( !t.eof() ) {
+  while ( !t.atEnd() ) {
     QString u,v;
     s=t.readLine();
     s=s.simplified();
@@ -112,7 +112,7 @@ void KDiskFreeSpace::dfDone()
       //kDebug(kfile_area) << "GOT: [" << s << "]" << endl;
 
       if (s.find(BLANK)<0)      // devicename was too long, rest in next line
-	if ( !t.eof() ) {       // just appends the next line
+	if ( !t.atEnd() ) {       // just appends the next line
             v=t.readLine();
             s=s.append(v);
             s=s.simplified();

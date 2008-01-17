@@ -40,6 +40,7 @@
 #include <qfile.h>
 #include <qfontmetrics.h>
 //Added by qt3to4:
+#include <qtextstream.h>
 #include <QPixmap>
 #include <QMouseEvent>
 #include <QEvent>
@@ -279,7 +280,7 @@ QString MediaButton::detectType( KMountPoint *mp )
 		QFile m(QString("/proc/ide/") + devname + "/media");
 		if(m.open(QIODevice::ReadOnly))
 		{
-			Q3TextStream in(&m);
+			QTextStream in(&m);
 			QString buf=in.readLine();
 			if(buf.contains("cdrom"))
 				isCd=true;

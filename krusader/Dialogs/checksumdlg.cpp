@@ -14,7 +14,7 @@
 #include <kcursor.h>
 #include <kmessagebox.h>
 #include <qfile.h>
-#include <q3textstream.h>
+#include <qtextstream.h>
 #include <kfiledialog.h>
 #include <q3frame.h>
 #include <kiconloader.h>
@@ -622,7 +622,7 @@ bool ChecksumResultsDlg::saveChecksum(const QStringList& data, QString filename)
 			file.errorString());
 		return false;
 	}
-	Q3TextStream stream(&file);
+	QTextStream stream(&file);
 	for ( QStringList::ConstIterator it = data.constBegin(); it != data.constEnd(); ++it)
 		stream << *it << "\n";
 	file.close();

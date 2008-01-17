@@ -50,12 +50,12 @@
 
 #if 0
 
-#include <q3textstream.h>
+#include <qtextstream.h>
 
 #define KRDEBUG(X...) do{   \
 	QFile f("/tmp/debug");    \
 	f.open(QIODevice::WriteOnly | QIODevice::Append);     \
-	Q3TextStream stream( &f ); \
+	QTextStream stream( &f ); \
   stream << "Pid:" << (int)getpid() << " " <<__FUNCTION__<<"(" <<__LINE__<<"): "; \
   stream << X << endl;      \
 	f.close();                \

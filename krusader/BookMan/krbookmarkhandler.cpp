@@ -7,6 +7,7 @@
 #include <kiconloader.h>
 #include <kmessagebox.h>
 //Added by qt3to4:
+#include <qtextstream.h>
 #include <QMouseEvent>
 #include <QEvent>
 #include <kactioncollection.h>
@@ -163,8 +164,8 @@ void KrBookmarkHandler::exportToFile() {
 	QString filename = KStandardDirs::locateLocal( "data", BOOKMARKS_FILE );
 	QFile file(filename);
 	if ( file.open( QIODevice::WriteOnly ) ) {
-		Q3TextStream stream( &file );
-		stream.setEncoding(stream.UnicodeUTF8);
+		QTextStream stream( &file );
+		stream.setCodec( "UTF-8" );
 		stream << doc.toString();
 		file.close();
 	} else {

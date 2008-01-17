@@ -13,6 +13,7 @@
 
 #include <qlayout.h>
 #include <q3boxlayout.h>
+#include <qtextstream.h>
 #include <klocale.h>
 #include <kpushbutton.h>
 #include <kmessagebox.h>
@@ -91,7 +92,7 @@ void KrKeyDialog::importLegacyShortcuts( const QString& file ) {
 	// check if there's an info file with the keymap
 	QFile info(file+".info");
 	if (info.open(QIODevice::ReadOnly)) {
-		Q3TextStream stream(&info);
+		QTextStream stream(&info);
 		QStringList infoText = QStringList::split("\n", stream.read());
 		if (KMessageBox::questionYesNoList(krApp, i18n("The following information was attached to the keymap. Do you really want to import this keymap?"), infoText)!=KMessageBox::Yes)
 			return;

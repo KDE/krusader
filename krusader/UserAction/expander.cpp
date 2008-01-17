@@ -37,6 +37,7 @@
 #include <qstringlist.h>
 #include <qclipboard.h>
 //Added by qt3to4:
+#include <qtextstream.h>
 #include <QList>
 
 #include <functional>
@@ -508,7 +509,7 @@ TagString exp_ListFile::expFunc( const ListPanel* panel, const QStringList& para
       return QString();
     }
     
-    Q3TextStream stream( tmpFile.file() );
+    QTextStream stream( tmpFile.file() );
     stream << separateAndQuote(
     		fileList(panel,
     			parameter.isEmpty() ? QString() : parameter[0].toLower(),

@@ -37,7 +37,6 @@
 #include "krarchandler.h"
 #include "krpermhandler.h"
 
-#include <q3textstream.h>
 #include <qtextcodec.h>
 #include <qregexp.h>
 #include <kde_file.h>

@@ -28,7 +28,6 @@
 *                                                                         *
 ***************************************************************************/ 
 // QT includes
-#include <q3textstream.h> 
 // KDE includes
 #include <k3process.h>
 #include <k3tempfile.h>

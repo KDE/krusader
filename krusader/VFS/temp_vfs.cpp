@@ -56,7 +56,7 @@ temp_vfs::temp_vfs( QString origin, QString type, QWidget* panel, bool ):
 }
 
 temp_vfs::~temp_vfs(){
-	if( vfs_type == "-iso" ){
+	if( 1 /*vfs_type == "-iso"*/ ){
 		// unmount the ISO image
     K3ShellProcess umount;
 		umount << "umount -f" << tmpDir;

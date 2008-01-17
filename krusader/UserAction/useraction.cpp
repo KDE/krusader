@@ -16,6 +16,7 @@
 #include <kmenu.h>
 #include <kstandarddirs.h>
 #include <kmessagebox.h>
+#include <qtextstream.h>
 
 #include <qstring.h>
 #include <qdom.h>
@@ -218,8 +219,8 @@ bool UserAction::writeToFile( const QDomDocument& doc, const QString& filename )
    }
 */
 
-   Q3TextStream ts( &file );
-   ts.setEncoding(ts.UnicodeUTF8);
+   QTextStream ts( &file );
+   ts.setCodec("UTF-8");
    ts << doc.toString();
 
    file.close();

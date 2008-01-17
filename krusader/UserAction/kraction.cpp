@@ -16,6 +16,7 @@
 #include <kinputdialog.h>
 #include <kactioncollection.h>
 #include <q3textedit.h>
+#include <qtextstream.h>
 #include <qboxlayout.h>
 #include <qlayout.h>
 #include <qsplitter.h>
@@ -175,7 +176,7 @@ void KrActionProcDlg::slotUser1() {
       return;
    }
 
-   Q3TextStream stream( &file );
+   QTextStream stream( &file );
    stream << _currentTextEdit->text();
    file.close();
 }
