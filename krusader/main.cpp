@@ -205,7 +205,8 @@ KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") : ki18n("Kr
                             "org.krusader.Instance" );
   QDBusReply<bool> reply = remoteApp.call("isRunning");
 
-  if( !reply.isValid() )
+  if( !reply.isValid() && reply.error().type() != QDBusError::ServiceUnknown && 
+                          reply.error().type() != QDBusError::UnknownObject )
     fprintf( stderr, "DBus Error: %s, %s\n", reply.error().name().ascii(), reply.error().message().ascii() );
 
   if( reply.isValid() && (bool)reply ) {
@@ -232,7 +233,7 @@ KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") : ki18n("Kr
   Krusader krusader;
   
   QDBusConnection dbus = QDBusConnection::sessionBus();
-  if( !dbus.registerService( "org.krusader" ) )
+  if( !dbus.interface()->isServiceRegistered( "org.krusader" ) && !dbus.registerService( "org.krusader" ) )
   {
     fprintf( stderr, "DBus Error: %s, %s\n", dbus.lastError().name().ascii(), dbus.lastError().message().ascii() );
   }
