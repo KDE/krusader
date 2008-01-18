@@ -25,8 +25,13 @@
     <primary>Configure</primary>
     <secondary>Krusader</secondary>
   </indexterm>
-  <para>Konfigurator is &krusader;'s configuration
-  center. There you can modify the way &krusader; works
+  <para>Konfigurator is &krusader;s configuration
+  center. When runnig &krusader;, use 
+                <menuchoice>
+                 <guimenu>Settings</guimenu>
+                 <guimenuitem>Configure &krusader;</guimenuitem>
+                </menuchoice>, and it will start Konfigurator.
+  There you can modify the way &krusader; works
   and customize it to your own needs. At any time, pressing the 
   <guibutton>Apply</guibutton> button applies the changes, pressing 
   <guibutton>Close</guibutton> closes Konfigurator, and pressing 
@@ -35,6 +40,13 @@
   containing items related to that page. For some changes to the
   &GUI;, you have to close and restart
   &krusader;.</para>
+
+<note>
+ <para>Since &krusader;-1.80.0 the &keybindigs-lnk; and &main-toolbar-lnk;-&actions-toolbar-lnk; 
+       have reiceived their own configuration windows and so they are not a part anymore of Konfigurator,
+       you can configure them now via the &settingsmenu-lnk;.</para>
+</note>
+
   <sect1 id="konfig-startup">
     <title>Startup</title>
     <!-- OLD
@@ -171,15 +183,11 @@
     <title>Look and Feel</title>
     <para>Here you can determine the look and feel of things -
     which means finetuning the application to your needs. The page
-    is divided into five tabs: 
+    is divided into four tabs: 
     <guilabel>Operation</guilabel>, 
     <guilabel>Panel</guilabel>, 
-    <guilabel>Toolbar</guilabel>, 
-    <guilabel>Key-bindings</guilabel> and 
-    <guilabel>Panel Toolbar</guilabel>. Since 
-    <guilabel>Toolbar</guilabel> and 
-    <guilabel>Key-bindings</guilabel> are standard &kde;
-    tools, we will focus on the other sections:</para>
+    <guilabel>Panel Toolbar</guilabel> and 
+    <guilabel>Selection Mode</guilabel>:</para>
     <!-- OLD
 <screenshot>
   <screeninfo>Look &amp; Feel configurtarion</screeninfo>
@@ -313,15 +321,18 @@ HTML_PARSING-->
           <itemizedlist>
             <listitem>
               <para>
-                <guilabel>Name</guilabel>
+                <guilabel>Name</guilabel>: Shows the filename without the part after the last dot, 
+                this latter part is displayed in the Ext column. When the Ext column is made hidden, 
+                the complete filename is shown in the Name column like e.g. &konqueror; does.
               </para>
             </listitem>
             <listitem>
               <para>
               <guilabel>Ext</guilabel>: Shows the last part of the
               filename (the part after the last dot) in the ext
-              column, not as a complete filename in the name column
-              like e.g. &konqueror; does.</para>
+              column, and not as a complete filename in the name column
+              like e.g. &konqueror; does.
+              </para>
             </listitem>
             <listitem>
               <para>

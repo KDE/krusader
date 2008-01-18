@@ -1,9 +1,23 @@
 The Krusader Handbook ChangeLog
 -------------------------------
 
-1.80.0 "Final 3 Stones"
+ UPDATED: Handbook update from CVS krusader_kde3 to SVN krusader_kde4 at 18 january 2008
+
+ ADDED: KDE4.0 installation instructions
+ ADDED: Howto executing jar files (and not enter the jar archive)?
+ ADDED: FAQ  How don't add ".part" suffix when copying files via ftp?
+ ADDED: FAQ  Where is Konfigurator?
+
+ UPDATED: Howto diplay the complete filename in the Name column (by hiding ext column)
+
+FIXED: workaround for DBLATEX 0.2.5-1, it doesn't accept "&amp" to display "&" 
+       in the <contrib> tag, so i changed it to "and"
+FIXED: removed all <guimenu> tags inside <title>, no additional tags 
+       needed inside <title>, it looks bad in HTML version (stylesheet)
+
+1.80.0 "Final 3rd Stone"
 ==================================
-Date: 2007-??-??
+Date: 2007-07-05 scheduled release date
 
 
  ADDED: Terminal Emulator, paste with SHIFT+INSERT and CTRL+V
@@ -17,7 +31,7 @@ Date: 2007-??-??
 
  ADDED: Terminal Emulator keybindings in a separate section
  
- UPDATED: MacOS install instructions, thanks to Catalin Hritcu
+ UPDATED: MacOS install instructions and fink repository, thanks to Catalin Hritcu
  UPDATED: screenshots
  UPDATED: make the Synchronizer chapter more readable and more undertandable 
  UPDATED: Command Line / Terminal Emulator chapter
