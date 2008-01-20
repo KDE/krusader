@@ -34,7 +34,7 @@
 #include <qapplication.h>
 #include <qtooltip.h>
 
-KrTreeWidget::KrTreeWidget( QWidget * parent )
+KrTreeWidget::KrTreeWidget( QWidget * parent ) : QTreeWidget( parent ), _inResize( false )
 {
   setRootIsDecorated( false );
   setSortingEnabled( true );
@@ -48,18 +48,44 @@ bool KrTreeWidget::event ( QEvent * event )
   switch (event->type()) {
   case QEvent::Resize:
     {
-      if( _stretchingColumn != -1 && columnCount() )
+      QResizeEvent * re = (QResizeEvent *)event;
+      if( !_inResize && re->oldSize() != re->size() )
       {
-        QResizeEvent *re = static_cast<QResizeEvent*>(event);
-        if( re->size() == re->oldSize() )
-          break;
+        if( _stretchingColumn != -1 && columnCount() )
+        {
+          QList< int > columnsSizes;
+          int oldSize = 0;
 
-        int ndx1 = header()->visualIndex( _stretchingColumn );
-        int ndx2 = columnCount() - 1;
-        header()->swapSections( ndx1, ndx2 );
-        bool res = QTreeWidget::event( event );
-        header()->swapSections( ndx1, ndx2 );
-        return res;
+          for( int i=0; i != header()->count(); i++ ) {
+             columnsSizes.append( header()->sectionSize( i ) );
+             oldSize += header()->sectionSize( i );
+          }
+
+          bool res = QTreeWidget::event( event );
+
+          int newSize = viewport()->width();
+          int delta = newSize - oldSize;
+
+          if( delta )
+          {
+            _inResize = true;
+
+            for( int i=0; i != header()->count(); i++ ) {
+               if( i == _stretchingColumn )
+               {
+                 int newNs = columnsSizes[ i ] + delta;
+                 if( newNs < 8 )
+                   newNs = 8;
+                 header()->resizeSection( i, newNs );
+               } else if( header()->sectionSize( i ) != columnsSizes[ i ] )
+               {
+                 header()->resizeSection( i, columnsSizes[ i ] );
+               }
+            }
+            _inResize = false;
+          }
+          return res;
+        }
       }
       break;
     }
@@ -72,9 +98,13 @@ bool KrTreeWidget::event ( QEvent * event )
         QPoint pos = viewport()->mapFromGlobal( he->globalPos() );
 
         QTreeWidgetItem * item = itemAt( pos );
+
         int column = columnAt( pos.x() );
 
         if ( item ) {
+            if( !item->toolTip( column ).isEmpty() )
+              break;
+
             QString tip = item->text( column );
 
             int textMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin) + 1;

@@ -32,7 +32,6 @@
 #include "../kicons.h"
 #include "../krusader.h"
 #include "../VFS/krpermhandler.h"
-#include <q3header.h>
 //Added by qt3to4:
 #include <QPixmap>
 #include <QMouseEvent>
@@ -42,128 +41,136 @@
 #include <qpainter.h>
 #include <qfontmetrics.h>
 #include <qtimer.h>
+#include <qapplication.h>
+#include <qheaderview.h>
 #include <kmenu.h>
+#include <QItemDelegate>
+#include <qtooltip.h>
 
-class DULinesItem : public Q3ListViewItem
+class DULinesItemDelegate : public QItemDelegate
 {
 public:
-  DULinesItem( DiskUsage *diskUsageIn, File *fileItem, Q3ListView * parent, QString label1, 
-               QString label2, QString label3, unsigned int italicPos ) : Q3ListViewItem( parent, label1, label2, label3 ), 
-               diskUsage( diskUsageIn ), file( fileItem ), isTruncated( false ), italicTextPos( italicPos ) {}
-  DULinesItem( DiskUsage *diskUsageIn, File *fileItem, Q3ListView * parent, Q3ListViewItem * after, 
-               QString label1, QString label2, QString label3, unsigned int italicPos ) : Q3ListViewItem( parent, after, label1, 
-               label2, label3 ), diskUsage( diskUsageIn ), file( fileItem ), isTruncated( false ), italicTextPos( italicPos ) {}
-  
-  virtual int compare ( Q3ListViewItem * i, int col, bool ascending ) const 
+
+   DULinesItemDelegate( QObject *parent = 0 ) : QItemDelegate( parent ) {}
+
+   virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+   {
+     QItemDelegate::paint( painter, option, index );
+
+     QVariant value = index.data(Qt::UserRole);
+     if( value.isValid() )
+     {
+       QString text = value.toString();
+
+       value = index.data(Qt::DisplayRole);
+       QString display;
+       if( value.isValid() )
+         display = value.toString();
+
+       QSize iconSize;
+       value = index.data(Qt::DecorationRole);
+       if (value.isValid())
+         iconSize = qvariant_cast<QIcon>(value).actualSize(option.decorationSize);
+
+       painter->save();
+       painter->setClipRect( option.rect );
+
+       QPalette::ColorGroup cg = option.state & QStyle::State_Enabled
+                                 ? QPalette::Normal : QPalette::Disabled;
+       if (cg == QPalette::Normal && !(option.state & QStyle::State_Active))
+          cg = QPalette::Inactive;
+       if (option.state & QStyle::State_Selected) {
+          painter->setPen(option.palette.color(cg, QPalette::HighlightedText));
+       } else {
+          painter->setPen(option.palette.color(cg, QPalette::Text));
+       }
+
+       QFont fnt = option.font;
+       fnt.setItalic( true );
+       painter->setFont( fnt );
+
+       QFontMetrics fm( fnt );
+       QString renderedText = text;
+
+       int textMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin);
+       int pos = 3*textMargin + option.fontMetrics.width( display ) + iconSize.width();
+
+       bool truncd = false;
+
+       QRect rct = option.rect;
+       if( rct.width() > pos )
+       {
+         rct.setX( rct.x() + pos );
+
+         if( fm.width( renderedText ) > rct.width() )
+         {
+           truncd = true;
+
+           int points = fm.width( "..." );
+
+           while( !renderedText.isEmpty() && ( fm.width( renderedText ) + points > rct.width() ) )
+             renderedText.truncate( renderedText.length() -1 );
+
+           renderedText += "...";
+         }
+
+         painter->drawText( rct, Qt::AlignLeft, renderedText );
+       } else
+         truncd = true;
+
+       if( truncd )
+         ((QAbstractItemModel *)index.model())->setData( index, QVariant( display + "  " + text ), Qt::ToolTipRole );
+       else
+         ((QAbstractItemModel *)index.model())->setData( index, QVariant(), Qt::ToolTipRole );
+
+       painter->restore();
+     }
+   }
+};
+
+class DULinesItem : public QTreeWidgetItem
+{
+public:
+  DULinesItem( DiskUsage *diskUsageIn, File *fileItem, QTreeWidget * parent, QString label1, 
+               QString label2, QString label3 ) : QTreeWidgetItem( parent ), 
+               diskUsage( diskUsageIn ), file( fileItem )
   {
-    if( text(0) == ".." ) return ascending ? -1 : 1;
-    if( i->text(0) == "..") return ascending ? 1 : -1;
-    
-    DULinesItem *compWith = dynamic_cast< DULinesItem * >( i );
-        
-    QString buf1,buf2;
-    
-    switch( col )
-    {
-    case 0:    
-    case 1:
-      buf1.sprintf("%025llu",file->size());
-      buf2.sprintf("%025llu",compWith->file->size());
-      return -QString::compare( buf1, buf2 );
-    default:    
-      return Q3ListViewItem::compare( i, col, ascending );
-    }
+     setText( 0, label1 );
+     setText( 1, label2 );
+     setText( 2, label3 );
+
+     setTextAlignment( 1, Qt::AlignRight );
   }
-
-  virtual void paintCell( QPainter * p, const QColorGroup & cg, int column, int width, int align )
+  DULinesItem( DiskUsage *diskUsageIn, File *fileItem, QTreeWidget * parent, QTreeWidgetItem * after, 
+               QString label1, QString label2, QString label3 ) : QTreeWidgetItem( parent, after ), 
+               diskUsage( diskUsageIn ), file( fileItem )
   {
-    if( column == 2 )
-    {
-      if ( isSelected() ) 
-        p->fillRect( 0, 0, width, height(), cg.brush( QColorGroup::Highlight ) );
-      else
-        p->fillRect( 0, 0, width, height(), cg.brush( QColorGroup::Base ) );
-        
-      Q3ListView *lv = listView();
-      
-      int pos = lv->itemMargin();      
-            
-      const QPixmap *icon = pixmap( column );
-      if( icon )
-      {
-        int iconWidth = icon->width() + lv->itemMargin();
-        int xo = pos;
-        int yo = ( height() - icon->height() ) / 2;
+     setText( 0, label1 );
+     setText( 1, label2 );
+     setText( 2, label3 );
 
-        p->drawPixmap( xo, yo, *icon );
-        
-        pos += iconWidth;
-      }
-    
-      QFontMetrics fm( p->fontMetrics() );
-      
-      if( isSelected() )
-        p->setPen( cg.highlightedText() );
-      else
-        p->setPen( cg.text() );
-      
-      QString t = text( column );
-      QString b;
-      
-      if( t.length() > italicTextPos )
-      {
-        b = t.mid( italicTextPos );
-        t.truncate( italicTextPos );
-      }
-      
-      isTruncated = false;
-      if( !t.isEmpty() )
-      {
-        int remWidth = width-pos;
-        
-        if( fm.width( t ) > remWidth )
-        {
-          while( !t.isEmpty() )
-          {
-            t.truncate( t.length() - 1 );
-            if( fm.width( t + "..." ) <= remWidth )
-              break;
-          }          
-          t += "...";
-          isTruncated = true;
-        }
-        
-        p->drawText( pos, 0, width, height(), align, t );
-        pos += fm.width( t );
-      }
-                    
-      if( !b.isEmpty() && !isTruncated )
-      {
-        QFont font( p->font() );
-        font.setItalic( true );
-        p->setFont( font );
+     setTextAlignment( 1, Qt::AlignRight );
+  }
+  
+  virtual bool operator<(const QTreeWidgetItem &other) const
+  {
+      int column = treeWidget() ? treeWidget()->sortColumn() : 0;
 
-        QFontMetrics fm2( p->fontMetrics() );
-        
-        int remWidth = width-pos;
-        
-        if( fm2.width( b ) > remWidth )
-        {
-          while( !b.isEmpty() )
-          {
-            b.truncate( b.length() - 1 );
-            if( fm2.width( b + "..." ) <= remWidth )
-              break;
-          }          
-          b += "...";
-          isTruncated = true;
-        }
-        
-        p->drawText( pos, 0, width, height(), align, b );
+      if( text( 0 ) == ".." )
+        return true;
+
+      const DULinesItem *compWith = dynamic_cast< const DULinesItem * >( &other );
+      if( compWith == 0 )
+        return false;
+
+      switch( column )
+      {
+      case 0:
+      case 1:
+        return file->size() > compWith->file->size();
+      default:
+        return text(column) < other.text(column);
       }
-    }
-    else
-      Q3ListViewItem::paintCell( p, cg, column, width, align );
   }
     
   inline File * getFile() { return file; }
@@ -171,120 +178,113 @@ public:
 private:
   DiskUsage *diskUsage;
   File *file;
-  
-  bool isTruncated;
-  int italicTextPos;
 };
-
-/*  TODO
-class DULinesToolTip : public QToolTip
-{
-public:
-    DULinesToolTip( DiskUsage *usage, QWidget *parent, Q3ListView *lv );
-    void maybeTip( const QPoint &pos );
-
-    virtual ~DULinesToolTip() {}
-private:
-    Q3ListView *view;
-    DiskUsage *diskUsage;
-};
-
-DULinesToolTip::DULinesToolTip( DiskUsage *usage, QWidget *parent, Q3ListView *lv )
-  : QToolTip( parent ), view( lv ), diskUsage( usage )
-{
-}
-
-void DULinesToolTip::maybeTip( const QPoint &pos )
-{
-  Q3ListViewItem *item = view->itemAt( pos );
-  QPoint contentsPos = view->viewportToContents( pos );
-  if ( !item )
-    return;
-    
-  int col = view->header()->sectionAt( contentsPos.x() );
-
-  int width = item->width( QFontMetrics( view->font() ), view, col );
-    
-  QRect r = view->itemRect( item );
-  int headerPos = view->header()->sectionPos( col );
-  r.setLeft( headerPos );
-  r.setRight( headerPos + view->header()->sectionSize( col ) );
-    
-  if( col != 0 && width > view->columnWidth( col ) )
-    tip( r, item->text( col ) );
-  else if( col == 1 && item->text( 0 ) != ".." )
-  {
-    File *fileItem = ((DULinesItem *)item)->getFile();
-    tip( r, diskUsage->getToolTip( fileItem ) );
-  }
-}*/
 
 DULines::DULines( DiskUsage *usage )
-  : Q3ListView( usage ), diskUsage( usage ), refreshNeeded( false )
+  : KrTreeWidget( usage ), diskUsage( usage ), refreshNeeded( false ), started( false )
 {
+  setItemDelegate( itemDelegate = new DULinesItemDelegate() );
+
   setAllColumnsShowFocus(true);
-  setVScrollBarMode(Q3ScrollView::Auto);
-  setHScrollBarMode(Q3ScrollView::Auto);
-  setShowSortIndicator(true);
-  setTreeStepSize( 10 );
+  setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+  setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+  setIndentation( 10 );
 
   int defaultSize = QFontMetrics(font()).width("W");
   
+  QStringList labels;
+  labels << i18n("Line View");
+  labels << i18n("Percent");
+  labels << i18n("Name");
+  setHeaderLabels( labels );
+
+  header()->setResizeMode( 0, QHeaderView::Interactive );
+  header()->setResizeMode( 1, QHeaderView::Interactive );
+  header()->setResizeMode( 2, QHeaderView::Interactive );
+
   KConfigGroup group( krConfig, diskUsage->getConfigGroup() ); 
 
   showFileSize = group.readEntry( "L Show File Size", true );
+
+  if( group.hasKey( "L State" ) )
+    header()->restoreState( group.readEntry( "L State", QByteArray() ) );
+  else
+  {
+    setColumnWidth(0, defaultSize * 20 );
+    setColumnWidth(1,  defaultSize * 6 );
+    setColumnWidth(2,  defaultSize * 20 );
+  }
+
+  setStretchingColumn( 0 );
   
-  int lineWidth  = group.readEntry("L Line Width",  defaultSize * 20 );    
-  addColumn( i18n("Line View"), lineWidth );
-  setColumnWidthMode(0,Q3ListView::Manual);
-  int precentWidth  = group.readEntry("L Percent Width",  defaultSize * 6 );    
-  addColumn( i18n("Percent"), precentWidth );
-  setColumnWidthMode(1,Q3ListView::Manual);
-  int nameWidth  = group.readEntry("L Name Width",  defaultSize * 20 );
-  addColumn( i18n("Name"), nameWidth );
-  setColumnWidthMode(2,Q3ListView::Manual);
-  
-  setColumnAlignment( 1, Qt::AlignRight );
-  
-  header()->setStretchEnabled( true, 0 );
-  
-  setSorting( 1 );
-  
+  header()->setSortIndicatorShown(true);
+  sortItems( 1, Qt::AscendingOrder );
+
 //  toolTip = new DULinesToolTip( diskUsage, viewport(), this );
 
   connect( diskUsage, SIGNAL( enteringDirectory( Directory * ) ), this, SLOT( slotDirChanged( Directory * ) ) );
   connect( diskUsage, SIGNAL( clearing() ), this, SLOT( clear() ) );
   
-  connect( header(), SIGNAL( sizeChange( int, int, int ) ), this, SLOT( sectionResized( int ) ) );
+  connect( header(), SIGNAL( sectionResized( int, int, int ) ), this, SLOT( sectionResized( int ) ) );
+  connect( header(), SIGNAL( sectionAutoResize ( int, QHeaderView::ResizeMode ) ), this, SLOT( sectionResized( int ) ) );
 
-  connect( this, SIGNAL(rightButtonPressed(Q3ListViewItem *, const QPoint &, int)),
-           this, SLOT( slotRightClicked(Q3ListViewItem *) ) );
+  connect( this, SIGNAL( itemRightClicked ( QTreeWidgetItem*, int ) ),
+           this, SLOT( slotRightClicked(QTreeWidgetItem *) ) );
   connect( diskUsage, SIGNAL( changed( File * ) ), this, SLOT( slotChanged( File * ) ) );
   connect( diskUsage, SIGNAL( deleted( File * ) ), this, SLOT( slotDeleted( File * ) ) );
+
+  started = true;
 }
 
 DULines::~DULines()
 {
   KConfigGroup group( krConfig, diskUsage->getConfigGroup() ); 
-  group.writeEntry("L Line Width",      columnWidth( 0 ) );
-  group.writeEntry("L Percent Width",   columnWidth( 1 ) );
-  group.writeEntry("L Name Width",      columnWidth( 2 ) );
-  group.writeEntry("L Show File Size",  showFileSize );
+  group.writeEntry( "L State", header()->saveState() );
   
-  //delete toolTip;
+  delete itemDelegate;
+}
+
+bool DULines::event ( QEvent * event )
+{
+  switch (event->type()) {
+  case QEvent::ToolTip:
+    {
+      QHelpEvent *he = static_cast<QHelpEvent*>(event);
+
+      if( viewport() )
+      {
+        QPoint pos = viewport()->mapFromGlobal( he->globalPos() );
+
+        QTreeWidgetItem * item = itemAt( pos );
+
+        int column = columnAt( pos.x() );
+
+        if ( item && column == 1 ) {
+            File *fileItem = ((DULinesItem *)item)->getFile();
+            QToolTip::showText(he->globalPos(), diskUsage->getToolTip( fileItem ), this);
+            return true;
+        }
+      }
+    }
+    break;
+  default:
+    break;
+  }
+  return KrTreeWidget::event( event );
 }
 
 void DULines::slotDirChanged( Directory *dirEntry )
 {
   clear();  
   
-  Q3ListViewItem * lastItem = 0;
+  QTreeWidgetItem * lastItem = 0;
     
   if( ! ( dirEntry->parent() == 0 ) )
   {
-    lastItem = new Q3ListViewItem( this, ".." );
-    lastItem->setPixmap( 0, FL_LOADICON( "up" ) );
-    lastItem->setSelectable( false );
+    lastItem = new QTreeWidgetItem( this );
+    lastItem->setText(0, ".." );
+    lastItem->setIcon( 0, FL_LOADICON( "up" ) );
+    lastItem->setFlags( lastItem->flags() & (~Qt::ItemIsSelectable) );
   }
           
   int maxPercent = -1;
@@ -301,24 +301,31 @@ void DULines::slotDirChanged( Directory *dirEntry )
     
     QString fileName = item->name();
     
-    unsigned int italicStart = fileName.length();
-    
-    if( showFileSize )
-      fileName += "  [" + KIO::convertSize( item->size() ) + "]";
-    
     if( lastItem == 0 )
-      lastItem = new DULinesItem( diskUsage, item, this, "", item->percent() + "  ", fileName, italicStart );
+      lastItem = new DULinesItem( diskUsage, item, this, "", item->percent() + "  ", fileName );
     else
-      lastItem = new DULinesItem( diskUsage, item, this, lastItem, "", item->percent() + "  ", fileName, italicStart );
-   
+      lastItem = new DULinesItem( diskUsage, item, this, lastItem, "", item->percent() + "  ", fileName );
+    
     if( item->isExcluded() )
-      lastItem->setVisible( false );
+      lastItem->setHidden( true );
                                     
-    lastItem->setPixmap( 2, diskUsage->getIcon( item->mime() ) );
-    lastItem->setPixmap( 0, createPixmap( item->intPercent(), maxPercent, columnWidth( 0 ) - itemMargin() ) );
+    int textMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin) + 1;
+
+    lastItem->setIcon( 2, diskUsage->getIcon( item->mime() ) );
+    lastItem->setData( 0, Qt::DecorationRole, createPixmap( item->intPercent(), maxPercent, header()->sectionSize( 0 ) - 2 * textMargin ) );
+
+    if( showFileSize )
+      lastItem->setData( 2, Qt::UserRole, "  [" + KIO::convertSize( item->size() ) + "]" );
+
+    QSize size = lastItem->sizeHint( 0 );
+    size.setWidth( 16 );
+    lastItem->setSizeHint( 0, size );
   }
   
-  setCurrentItem( firstChild() );
+  if( topLevelItemCount() > 0 )
+  {
+    setCurrentItem( topLevelItem( 0 ) );
+  }
 }
 
 QPixmap DULines::createPixmap( int percent, int maxPercent, int maxWidth )
@@ -337,6 +344,7 @@ QPixmap DULines::createPixmap( int percent, int maxPercent, int maxWidth )
   
   int size = QFontMetrics(font()).height()-2;
   QRect rect( 0, 0, actualWidth, size );
+  QRect frameRect( 0, 0, actualWidth-1, size-1 );
   QPixmap pixmap( rect.width(), rect.height() );
 
   painter.begin( &pixmap );
@@ -344,7 +352,7 @@ QPixmap DULines::createPixmap( int percent, int maxPercent, int maxWidth )
   
   for( int i = 1; i < actualWidth - 1; i++ )
   {
-    int color = (511*i/maxWidth);
+    int color = (511*i/(maxWidth - 1));
     if( color < 256 )
       pen.setColor( QColor( 255-color, 255, 0 ) );
     else
@@ -356,15 +364,28 @@ QPixmap DULines::createPixmap( int percent, int maxPercent, int maxWidth )
   
   pen.setColor( Qt::black );  
   painter.setPen( pen );
-  painter.drawRect( rect );
+
+  if( actualWidth != 1 )
+    painter.drawRect( frameRect );
+  else
+    painter.drawLine( 0, 0, 0, size );
+
   painter.end();
   pixmap.detach();
   return pixmap;
 }
 
+void DULines::resizeEvent( QResizeEvent * re )
+{
+  KrTreeWidget::resizeEvent( re );
+
+  if( started && ( re->oldSize() != re->size() ) )
+    sectionResized( 0 );
+}
+
 void DULines::sectionResized( int column )
 {
-  if( childCount() == 0 || column != 0 )
+  if( topLevelItemCount() == 0 || column != 0 )
     return;
     
   Directory * currentDir = diskUsage->getCurrentDir();  
@@ -380,16 +401,27 @@ void DULines::sectionResized( int column )
       maxPercent = item->intPercent();
   }
   
-  DULinesItem *duItem = (DULinesItem *)firstChild();
-  while( duItem )
+  QTreeWidgetItemIterator it2( this );
+  while( *it2 )
   {
-    if( duItem->text( 0 ) != ".." )
-      duItem->setPixmap( 0, createPixmap( duItem->getFile()->intPercent(), maxPercent, columnWidth( 0 ) ) );
-    duItem = (DULinesItem *)duItem->nextSibling();
+    QTreeWidgetItem *lvitem = *it2;
+    if( lvitem->text( 0 ) != ".." )
+    {
+      DULinesItem *duItem = dynamic_cast< DULinesItem *> ( lvitem );
+      if( duItem )
+      {
+        int textMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin) + 1;
+        duItem->setData( 0, Qt::DecorationRole, createPixmap( duItem->getFile()->intPercent(), maxPercent, header()->sectionSize( 0 ) - 2 * textMargin ) );
+        QSize size = duItem->sizeHint( 0 );
+        size.setWidth( 16 );
+        duItem->setSizeHint( 0, size );
+      }
+    }
+    it2++;
   }
 }
 
-bool DULines::doubleClicked( Q3ListViewItem * item )
+bool DULines::doubleClicked( QTreeWidgetItem * item )
 {
   if( item )
   {
@@ -412,18 +444,18 @@ bool DULines::doubleClicked( Q3ListViewItem * item )
   return false;
 }
 
-void DULines::contentsMouseDoubleClickEvent ( QMouseEvent * e )
+void DULines::mouseDoubleClickEvent ( QMouseEvent * e )
 {
   if ( e || e->button() == Qt::LeftButton )
   {
-    QPoint vp = contentsToViewport(e->pos());
-    Q3ListViewItem * item = itemAt( vp );
+    QPoint vp = viewport()->mapFromGlobal( e->globalPos());
+    QTreeWidgetItem * item = itemAt( vp );
 
     if( doubleClicked( item ) )
       return;
     
   }
-  Q3ListView::contentsMouseDoubleClickEvent( e );
+  KrTreeWidget::mouseDoubleClickEvent( e );
 }
 
 
@@ -450,10 +482,10 @@ void DULines::keyPressEvent( QKeyEvent *e )
     e->ignore();
     return;
   }
-  Q3ListView::keyPressEvent( e );
+  KrTreeWidget::keyPressEvent( e );
 }
  
-void DULines::slotRightClicked( Q3ListViewItem *item )
+void DULines::slotRightClicked( QTreeWidgetItem *item )
 {
   File * file = 0;
   
@@ -475,7 +507,7 @@ void DULines::slotShowFileSizes()
 
 File * DULines::getCurrentFile()
 {
-  Q3ListViewItem *item = currentItem();
+  QTreeWidgetItem *item = currentItem();
   
   if( item == 0 || item->text( 0 ) == ".." )
     return 0;
@@ -485,14 +517,18 @@ File * DULines::getCurrentFile()
 
 void DULines::slotChanged( File * item )
 {
-  Q3ListViewItem *lvitem = firstChild();
-  while( lvitem )
+  QTreeWidgetItemIterator it( this );
+  while( *it )
   {
+    QTreeWidgetItem *lvitem = *it;
+    it++;
+
     if( lvitem->text( 0 ) != ".." ) {
       DULinesItem *duItem = (DULinesItem *)( lvitem );
       if( duItem->getFile() == item )
       {
-        duItem->setVisible( !item->isExcluded() );
+        setSortingEnabled( false );
+        duItem->setHidden( item->isExcluded() );
         duItem->setText( 1, item->percent() );
         if( !refreshNeeded )
         {
@@ -502,15 +538,17 @@ void DULines::slotChanged( File * item )
         break;
       }
     }
-    lvitem = lvitem->nextSibling();
   }
 }
 
 void DULines::slotDeleted( File * item )
 {
-  Q3ListViewItem *lvitem = firstChild();
-  while( lvitem )
+  QTreeWidgetItemIterator it( this );
+  while( *it )
   {
+    QTreeWidgetItem *lvitem = *it;
+    it++;
+
     if( lvitem->text( 0 ) != ".." ) {
       DULinesItem *duItem = (DULinesItem *)( lvitem );
       if( duItem->getFile() == item )
@@ -519,7 +557,16 @@ void DULines::slotDeleted( File * item )
         break;
       }
     }
-    lvitem = lvitem->nextSibling();
+  }
+}
+
+void DULines::slotRefresh() 
+{ 
+  if( refreshNeeded )
+  {
+    refreshNeeded = false;
+    setSortingEnabled( true );
+    sortItems( 1, Qt::AscendingOrder );
   }
 }
 

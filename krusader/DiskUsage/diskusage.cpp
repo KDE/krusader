@@ -646,7 +646,7 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
   emit deleted( file );
   deleteNr++;
 
-  QPointer<KIO::Job> job;
+  KIO::Job *job;
 
   if( trash )
   {
@@ -662,8 +662,8 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
   grabMouse();        // that's why we disable the mouse and keyboard events
   grabKeyboard();
 
-  while( !job.isNull() )
-    qApp->processEvents();
+  job->exec();
+  delete job;
 
   releaseMouse();
   releaseKeyboard(); 

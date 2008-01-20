@@ -34,6 +34,7 @@
 #define KRTREEWIDGET_H
 
 #include <qtreewidget.h>
+#include <QStyleOptionViewItem>
 
 class KrTreeWidget : public QTreeWidget
 {
@@ -54,7 +55,8 @@ protected:
   virtual void mouseReleaseEvent ( QMouseEvent * event );
 
 private:
-  int _stretchingColumn;
+  int  _stretchingColumn;
+  bool _inResize;
 };
 
 #endif /* KRTREEWIDGET_H */

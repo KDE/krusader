@@ -31,16 +31,18 @@
 #ifndef __DU_LINES_H__
 #define __DU_LINES_H__
 
-#include <q3listview.h>
 #include <qpixmap.h>
 //Added by qt3to4:
 #include <QMouseEvent>
 #include <QKeyEvent>
+#include <QResizeEvent>
 #include "diskusage.h"
+#include "../GUI/krtreewidget.h"
 
 class DULinesToolTip;
+class DULinesItemDelegate;
 
-class DULines : public Q3ListView
+class DULines : public KrTreeWidget
 {
   Q_OBJECT
   
@@ -53,28 +55,32 @@ public:
 public slots:
   void slotDirChanged( Directory *dirEntry );
   void sectionResized( int );
-  void slotRightClicked(Q3ListViewItem *);
+  void slotRightClicked(QTreeWidgetItem *);
   void slotChanged( File * );
   void slotDeleted( File * );
   void slotShowFileSizes();
-  void slotRefresh() { refreshNeeded = false; sectionResized( 0 ); }
+  void slotRefresh();
   
 protected:
   DiskUsage *diskUsage;  
   
-  virtual void contentsMouseDoubleClickEvent ( QMouseEvent * e );
+  virtual bool event ( QEvent * event );
+  virtual void mouseDoubleClickEvent ( QMouseEvent * e );
   virtual void keyPressEvent( QKeyEvent *e );
+  virtual void resizeEvent( QResizeEvent * );
   
 private:
   QPixmap createPixmap( int percent, int maxPercent, int maxWidth );
   
-  bool doubleClicked( Q3ListViewItem * item );
+  bool doubleClicked( QTreeWidgetItem * item );
   
   bool refreshNeeded;
+  bool started;
   
   bool showFileSize;
   
   DULinesToolTip *toolTip;
+  DULinesItemDelegate *itemDelegate;
 };
 
 #endif /* __DU_LINES_H__ */
