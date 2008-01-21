@@ -160,7 +160,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	
 	// create the quick-panel part ----
 	
-	QWidget *quickPanel = new QWidget(stack);
+	quickPanel = new QWidget(stack);
 	QGridLayout *qlayout = new QGridLayout(quickPanel);	
 	// --- quick select
 	QLabel *selectLabel = new QLabel(i18n("Quick Select"), quickPanel);
@@ -172,8 +172,8 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	quickSelectCombo->setCurrentText( "*" );
 	quickSelectCombo->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred ) );
 
-	connect(quickSelectCombo, SIGNAL(returnPressed(const QString& )),
-		this, SLOT(quickSelect(const QString& )));
+	connect(quickSelectCombo->lineEdit(), SIGNAL(returnPressed()),
+		this, SLOT(quickSelect()));
 	
 	QToolButton *qselectBtn = new QToolButton(quickPanel);
 	qselectBtn->setPixmap(krLoader->loadIcon( "kr_selectall", KIconLoader::Toolbar, 16 ));
@@ -303,7 +303,7 @@ void PanelPopup::tabSelected( int id ) {
 			update(url);
 			break;
 		case QuickPanel:
-			stack->setCurrentWidget( quickSelectCombo );
+			stack->setCurrentWidget( quickPanel );
 			dataLine->setText( i18n("Quick Select:") );
 			if( !isHidden() )
 				quickSelectCombo->setFocus();

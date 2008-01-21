@@ -48,7 +48,7 @@ public:
 public slots:
   void slotCloseRequest( bool doAccept );
   
-protected:
+protected slots:
   void slotOk();
 
 private:

@@ -68,6 +68,7 @@ protected:
 	KComboBox *quickSelectCombo;
 	PanelViewer *panelviewer;
 	DiskUsageViewer *diskusage;
+	QWidget *quickPanel;
 	QList<int> splitterSizes;
 	QSplitter *splitter;
 };
