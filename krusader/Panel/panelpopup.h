@@ -2,7 +2,7 @@
 #define _PANELPOPUP_H
 
 #include <qwidget.h>
-#include <q3widgetstack.h>
+#include <qstackedwidget.h>
 #include <qpixmap.h>
 //Added by qt3to4:
 #include <QDropEvent>
@@ -31,7 +31,7 @@ class PanelPopup: public QWidget {
 public:
    PanelPopup( QSplitter *splitter, bool left );
    ~PanelPopup();
-	inline int currentPage() const { return stack->id(stack->visibleWidget()); }
+	inline int currentPage() const { return stack->currentWidget()->property( "KrusaderWidgetId" ).toInt(); }
 
 	void saveSizes();
 
@@ -57,7 +57,7 @@ protected slots:
 protected:
 	bool _left;
 	bool _hidden;
-	Q3WidgetStack *stack;
+	QStackedWidget *stack;
 	KrusaderImageFilePreview *viewer;
 	KrSqueezedTextLabel *dataLine;
 	QPointer<KIO::PreviewJob> pjob;

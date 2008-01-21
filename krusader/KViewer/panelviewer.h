@@ -3,7 +3,7 @@
 
 #include <kurl.h>
 #include <qstring.h>
-#include <q3widgetstack.h>
+#include <qstackedwidget.h>
 #include <kparts/part.h>
 #include <kio/job.h>
 #include <k3tempfile.h>
@@ -13,7 +13,7 @@
 #include "krviewer.h"
 
 
-class PanelViewerBase: public Q3WidgetStack {
+class PanelViewerBase: public QStackedWidget {
 	Q_OBJECT
 
 public:

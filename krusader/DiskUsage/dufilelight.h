@@ -53,7 +53,7 @@ public slots:
   void slotRefresh();
 
 protected slots:  
-  void slotAboutToShow( QWidget *widget );
+  void slotAboutToShow( int );
     
   void schemeRainbow()        { setScheme( Filelight::Rainbow ); }
   void schemeHighContrast()   { setScheme( Filelight::HighContrast ); }

@@ -34,7 +34,7 @@
 #include "konfiguratorpage.h"
 #include <qlist.h>
 #include <q3listview.h>
-#include <q3widgetstack.h>
+#include <qstackedwidget.h>
 //Added by qt3to4:
 #include <QGridLayout>
 #include <QLabel>
@@ -88,7 +88,7 @@ private:
   QGridLayout                        *previewGrid;
   QTabWidget                         *colorTabWidget;
 
-  Q3WidgetStack                       *inactiveColorStack;
+  QStackedWidget                     *inactiveColorStack;
   QWidget                            *normalInactiveWidget;
   QWidget                            *dimmedInactiveWidget;
   KonfiguratorSpinBox                *dimFactor;

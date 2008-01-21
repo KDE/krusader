@@ -206,7 +206,7 @@ void LoaderWidget::slotCancelled()
   cancelled = true;
 }
 
-DiskUsage::DiskUsage( QString confGroup, QWidget *parent ) : Q3WidgetStack( parent ),
+DiskUsage::DiskUsage( QString confGroup, QWidget *parent ) : QStackedWidget( parent ),
                       currentDirectory( 0 ), root( 0 ), configGroup( confGroup ), loading( false ),
                       abortLoading( false ), clearAfterAbort( false ), deleting( false ), searchVfs( 0 )
 {
@@ -883,7 +883,7 @@ void DiskUsage::executeAction( int action, File * fileItem )
     setView( ( activeView + 2 ) % 3 );
     break;
   }
-  visibleWidget()->setFocus();
+  currentWidget()->setFocus();
 }
 
 void DiskUsage::keyPressEvent( QKeyEvent *e )
@@ -987,7 +987,7 @@ void DiskUsage::keyPressEvent( QKeyEvent *e )
       break;
     }
   }
-  Q3WidgetStack::keyPressEvent( e );
+  QStackedWidget::keyPressEvent( e );
 }
 
 QPixmap DiskUsage::getIcon( QString mime )
@@ -1078,20 +1078,20 @@ void DiskUsage::setView( int view )
   switch( view )
   {
   case VIEW_LINES:
-    raiseWidget( lineView );
+    setCurrentWidget( lineView );
     break;
   case VIEW_DETAILED:
-    raiseWidget( listView );
+    setCurrentWidget( listView );
     break;
   case VIEW_FILELIGHT:
-    raiseWidget( filelightView );
+    setCurrentWidget( filelightView );
     break;
   case VIEW_LOADER:
-    raiseWidget( loaderView );
+    setCurrentWidget( loaderView );
     break;
   }
 
-  visibleWidget()->setFocus();
+  currentWidget()->setFocus();
   emit viewChanged( activeView = view );
 }
 
@@ -1172,7 +1172,7 @@ bool DiskUsage::event( QEvent * e )
       }
     }
   }
-  return Q3WidgetStack::event( e );
+  return QStackedWidget::event( e );
 }
 
 #include "diskusage.moc"

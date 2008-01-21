@@ -1,6 +1,6 @@
 #include <kurl.h>
 #include <qstring.h>
-#include <q3widgetstack.h>
+#include <qstackedwidget.h>
 #include <qapplication.h>
 #include <kparts/part.h>
 #include <kparts/browserextension.h>
@@ -25,7 +25,7 @@
 /* ----==={ PanelViewerBase }===---- */
 
 PanelViewerBase::PanelViewerBase( QWidget *parent ) :
-Q3WidgetStack( parent ), mimes( 0 ), cpart( 0 ) {
+QStackedWidget( parent ), mimes( 0 ), cpart( 0 ) {
 	setSizePolicy( QSizePolicy( QSizePolicy::Preferred, QSizePolicy::Ignored ) );
 
 	mimes = new Q3Dict<KParts::ReadOnlyPart>( DICTSIZE, false );
@@ -34,7 +34,7 @@ Q3WidgetStack( parent ), mimes( 0 ), cpart( 0 ) {
 	fallback = new QLabel( i18n( "No file selected or selected file can't be displayed." ), this );
 	fallback->setAlignment( Qt::AlignCenter | Qt::ExpandTabs | Qt::WordBreak );
 	addWidget( fallback );
-	raiseWidget( fallback );
+	setCurrentWidget( fallback );
 }
 
 PanelViewerBase::~PanelViewerBase() {
@@ -80,20 +80,20 @@ KParts::ReadOnlyPart* PanelViewer::openUrl( const KUrl &url, KrViewer::Mode mode
 
 	if ( cpart ) {
 		addWidget( cpart->widget() );
-		raiseWidget( cpart->widget() );
+		setCurrentWidget( cpart->widget() );
 	}
 	if ( cpart && cpart->openUrl( curl ) ){
 		curl = url; /* needed because of the oldHexViewer */
 		return cpart;
 	}
 	else {
-		raiseWidget( fallback );
+		setCurrentWidget( fallback );
 		return 0;
 	}
 }
 
 bool PanelViewer::closeUrl() {
-	raiseWidget( fallback );
+	setCurrentWidget( fallback );
 	if ( cpart && cpart->closeUrl() ) {
 		cpart = 0;
 		return true;
@@ -227,10 +227,10 @@ KParts::ReadOnlyPart* PanelEditor::openUrl( const KUrl &url, KrViewer::Mode mode
 
 	if ( cpart ) {
 		addWidget( cpart->widget() );
-		raiseWidget( cpart->widget() );
+		setCurrentWidget( cpart->widget() );
 	}
 	else {
-		raiseWidget( fallback );
+		setCurrentWidget( fallback );
 		return 0;
 	}
 
@@ -263,7 +263,7 @@ bool PanelEditor::closeUrl() {
 	
 	static_cast<KParts::ReadWritePart *>(cpart)->closeUrl( false );
 	
-	raiseWidget( fallback );
+	setCurrentWidget( fallback );
 	cpart = 0;
 	return true;
 }

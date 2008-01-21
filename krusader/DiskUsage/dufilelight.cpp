@@ -50,12 +50,12 @@ DUFilelight::DUFilelight( DiskUsage *usage )
    connect( diskUsage, SIGNAL( deleted( File * ) ), this, SLOT( slotChanged( File * ) ) );
    connect( diskUsage, SIGNAL( changeFinished()  ), this, SLOT( slotRefresh() ) );
    connect( diskUsage, SIGNAL( deleteFinished()  ), this, SLOT( slotRefresh() ) );
-   connect( diskUsage, SIGNAL( aboutToShow( QWidget * ) ), this, SLOT( slotAboutToShow( QWidget * ) ) );
+   connect( diskUsage, SIGNAL( currentChanged( int ) ), this, SLOT( slotAboutToShow( int ) ) );
 }
 
 void DUFilelight::slotDirChanged( Directory *dir )
 {
-  if( diskUsage->visibleWidget() != this )
+  if( diskUsage->currentWidget() != this )
     return;
     
   if( currentDir != dir )
@@ -204,8 +204,9 @@ void DUFilelight::minFontSize()
   }
 }
 
-void DUFilelight::slotAboutToShow( QWidget *widget )
+void DUFilelight::slotAboutToShow( int ndx )
 { 
+  QWidget *widget = diskUsage->widget( ndx );
   if( widget == this && ( diskUsage->getCurrentDir() != currentDir || refreshNeeded ) )
   {
     refreshNeeded = false;
@@ -219,7 +220,7 @@ void DUFilelight::slotAboutToShow( QWidget *widget )
 
 void DUFilelight::slotRefresh() 
 { 
-  if( diskUsage->visibleWidget() != this )
+  if( diskUsage->currentWidget() != this )
     return;
 
   refreshNeeded = false;

@@ -112,14 +112,15 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	layout->addWidget(duBtn,0,5);
 	
 	// create a widget stack on which to put the parts
-   stack = new Q3WidgetStack( this );
+   stack = new QStackedWidget( this );
 
    // create the tree part ----------
 	tree = new K3FileTreeView( stack );
 	tree->setAcceptDrops(true);
 	connect(tree, SIGNAL(dropped (QWidget *, QDropEvent *, KUrl::List &, KUrl &)), 
 		this, SLOT(slotDroppedOnTree(QWidget *, QDropEvent *, KUrl::List&, KUrl& )));
-   stack->addWidget( tree, Tree );
+	tree->setProperty( "KrusaderWidgetId", QVariant( Tree ) );
+	stack->addWidget( tree );
    tree->addColumn( "" );
 	// add ~
 	tree->addBranch( QDir::home().absolutePath(), i18n("Home"));
@@ -139,19 +140,22 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 
    // create the quickview part ------
 	viewer = new KrusaderImageFilePreview(stack);
-   stack->addWidget( viewer, Preview );
+	viewer->setProperty( "KrusaderWidgetId", QVariant( Preview ) );
+        stack->addWidget( viewer );
 
 	// create the panelview
 	
 	panelviewer = new PanelViewer(stack);
-	stack->addWidget(panelviewer, View);
+	panelviewer->setProperty( "KrusaderWidgetId", QVariant( View ) );
+	stack->addWidget(panelviewer);
 	connect(panelviewer, SIGNAL(openUrlRequest(const KUrl &)), this, SLOT(handleOpenUrlRequest(const KUrl &)));
 	
 	// create the disk usage view
 	
 	diskusage = new DiskUsageViewer( stack );
 	diskusage->setStatusLabel( dataLine, i18n("Disk Usage: ") );
-	stack->addWidget( diskusage, DskUsage );
+	diskusage->setProperty( "KrusaderWidgetId", QVariant( DskUsage ) );
+	stack->addWidget( diskusage );
 	connect(diskusage, SIGNAL(openUrlRequest(const KUrl &)), this, SLOT(handleOpenUrlRequest(const KUrl &)));
 	
 	// create the quick-panel part ----
@@ -194,7 +198,9 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	qlayout->addWidget(qselectBtn,0,2);
 	qlayout->addWidget(qstoreBtn,0,3);
 	qlayout->addWidget(qsettingsBtn,0,4);
-	stack->addWidget(quickPanel, QuickPanel);
+
+	quickPanel->setProperty( "KrusaderWidgetId", QVariant( QuickPanel ) );
+	stack->addWidget(quickPanel);
 	
 	// -------- finish the layout (General one)
 	layout->addWidget(stack,1,0,1,6);
@@ -221,7 +227,7 @@ void PanelPopup::show() {
   if( _hidden )
     splitter->setSizes( splitterSizes );
   _hidden = false;
-  tabSelected( stack->id(stack->visibleWidget()) );
+  tabSelected( currentPage() );
 }
 
 
@@ -230,12 +236,12 @@ void PanelPopup::hide() {
     splitterSizes = splitter->sizes();
   QWidget::hide();
   _hidden = true;
-  if (stack->id(stack->visibleWidget()) == View) panelviewer->closeUrl();
-  if (stack->id(stack->visibleWidget()) == DskUsage) diskusage->closeUrl();
+  if (currentPage() == View) panelviewer->closeUrl();
+  if (currentPage() == DskUsage) diskusage->closeUrl();
 }
 
 void PanelPopup::setFocus() {
-	switch ( stack->id( stack->visibleWidget() ) ) {
+	switch ( currentPage() ) {
 	case Preview:
 		if( !isHidden() )
 			viewer->setFocus();
@@ -245,8 +251,8 @@ void PanelPopup::setFocus() {
 			panelviewer->part()->widget()->setFocus();
 		break;
 	case DskUsage:
-		if( !isHidden() && diskusage->getWidget() && diskusage->getWidget()->visibleWidget() )
-			diskusage->getWidget()->visibleWidget()->setFocus();
+		if( !isHidden() && diskusage->getWidget() && diskusage->getWidget()->currentWidget() )
+			diskusage->getWidget()->currentWidget()->setFocus();
 		break;
 	case Tree:
 		if( !isHidden() )
@@ -282,35 +288,39 @@ void PanelPopup::tabSelected( int id ) {
 		url = ACTIVE_PANEL->func->files()->vfs_getFile( ACTIVE_PANEL->view->getCurrentItem());
 	}
 	
-	stack->raiseWidget( id );
-	
+
 	// if tab is tree, set something logical in the data line
 	switch (id) {
 		case Tree:
+			stack->setCurrentWidget( tree );
 			dataLine->setText( i18n("Tree:") );
 			if( !isHidden() )
 				tree->setFocus();
 			break;
 		case Preview:
+			stack->setCurrentWidget( viewer );
 			dataLine->setText( i18n("Preview:") );
 			update(url);
 			break;
 		case QuickPanel:
+			stack->setCurrentWidget( quickSelectCombo );
 			dataLine->setText( i18n("Quick Select:") );
 			if( !isHidden() )
 				quickSelectCombo->setFocus();
 			break;
 		case View:
+			stack->setCurrentWidget( panelviewer );
 			dataLine->setText( i18n("View:") );
 			update(url);
 			if( !isHidden() && panelviewer->part() && panelviewer->part()->widget() )
 				panelviewer->part()->widget()->setFocus();
 			break;
 		case DskUsage:
+			stack->setCurrentWidget( diskusage );
 			dataLine->setText( i18n("Disk Usage:") );
 			update(url);
-			if( !isHidden() && diskusage->getWidget() && diskusage->getWidget()->visibleWidget() )
-				diskusage->getWidget()->visibleWidget()->setFocus();
+			if( !isHidden() && diskusage->getWidget() && diskusage->getWidget()->currentWidget() )
+				diskusage->getWidget()->currentWidget()->setFocus();
 			break;
 	}
 	if (id != View) panelviewer->closeUrl();  
@@ -322,7 +332,7 @@ void PanelPopup::update( KUrl url ) {
 
    KFileItemList lst;
 
-   switch ( stack->id( stack->visibleWidget() ) ) {
+   switch ( currentPage() ) {
       case Preview:
 			viewer->showPreview(url);
 			dataLine->setText( i18n("Preview: ")+url.fileName() );

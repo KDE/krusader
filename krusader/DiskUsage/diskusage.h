@@ -47,7 +47,7 @@
 #include <QEvent>
 #include <kurl.h>
 #include <ksqueezedtextlabel.h>
-#include <q3widgetstack.h>
+#include <qstackedwidget.h>
 #include <q3scrollview.h>
 #include <qtimer.h>
 
@@ -64,7 +64,7 @@ class DUFilelight;
 class KMenu;
 class LoaderWidget;
 
-class DiskUsage : public Q3WidgetStack
+class DiskUsage : public QStackedWidget
 {
   Q_OBJECT
   

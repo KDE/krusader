@@ -122,7 +122,7 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   connect( getColorSelector( "Alternate Background" ), SIGNAL( colorChanged() ), this, SLOT( slotAltBackgroundChanged() ) );
   connect( getColorSelector( "Marked Background" ), SIGNAL( colorChanged() ), this, SLOT( slotMarkedBackgroundChanged() ) );
 
-  inactiveColorStack = new Q3WidgetStack( colorTabWidget );
+  inactiveColorStack = new QStackedWidget( colorTabWidget );
   colorTabWidget->insertTab( inactiveColorStack, i18n( "Inactive" ) );
 
   colorsGrp = normalInactiveWidget = new QWidget( inactiveColorStack );
@@ -182,7 +182,7 @@ KgColors::KgColors( bool first, QWidget* parent ) :
 
   inactiveColorStack->addWidget( dimmedInactiveWidget );
 
-  inactiveColorStack->raiseWidget( normalInactiveWidget );
+  inactiveColorStack->setCurrentWidget( normalInactiveWidget );
 
   colorsGrp = new QWidget( colorTabWidget );
   colorTabWidget->insertTab( colorsGrp, i18n( "Synchronizer" ) );
@@ -312,9 +312,9 @@ void KgColors::slotDisable()
 
   bool dimmed = !enabled && generals->find("Dim Inactive Colors")->isChecked();
   if( dimmed )
-    inactiveColorStack->raiseWidget( dimmedInactiveWidget );
+    inactiveColorStack->setCurrentWidget( dimmedInactiveWidget );
   else
-    inactiveColorStack->raiseWidget( normalInactiveWidget );
+    inactiveColorStack->setCurrentWidget( normalInactiveWidget );
 
   enabled = enabled || !generals->find( "Show Current Item Always" )->isChecked();
 
