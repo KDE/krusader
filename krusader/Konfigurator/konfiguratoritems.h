@@ -39,7 +39,6 @@
 #include <qradiobutton.h>
 #include <q3listbox.h>
 #include <qlist.h>
-#include <q3buttongroup.h>
 #include <qlineedit.h>
 //Added by qt3to4:
 #include <QPixmap>
@@ -168,7 +167,7 @@ private:
 // KonfiguratorRadioButtons class
 ///////////////////////////////
 
-class KonfiguratorRadioButtons : public Q3ButtonGroup
+class KonfiguratorRadioButtons : public QWidget
 {
   Q_OBJECT
 
@@ -197,7 +196,6 @@ protected:
   QList<QString>   radioNames;
 
   QString         defaultValue;
-  Q3ButtonGroup    *buttonGroup;
 
   KonfiguratorExtension *ext;
 };

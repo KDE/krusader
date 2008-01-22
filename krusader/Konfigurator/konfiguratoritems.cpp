@@ -208,7 +208,7 @@ KonfiguratorCheckBox * KonfiguratorCheckBoxGroup::find( QString name )
 
 KonfiguratorRadioButtons::KonfiguratorRadioButtons( QString cls, QString name,
     QString dflt, QWidget *parent, bool rst, int pg ) :
-    Q3ButtonGroup( parent ), defaultValue( dflt )
+    QWidget( parent ), defaultValue( dflt )
 {
   ext = new KonfiguratorExtension( this, cls, name, rst, pg );
   connect( ext, SIGNAL( applyAuto(QObject *,QString, QString) ), this, SLOT( slotApply(QObject *,QString, QString) ) );

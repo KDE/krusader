@@ -41,7 +41,7 @@
 #include <klocale.h>
 #include <qlayout.h>
 #include <qlabel.h>
-#include <q3buttongroup.h>
+#include <qbuttongroup.h>
 #include <qfile.h>
 #include <kdebug.h>
 #include <kmessagebox.h>
@@ -111,20 +111,18 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 
 	QPixmap iconDate = krLoader->loadIcon ( "date", KIconLoader::Toolbar, 16 );
 
-	Q3ButtonGroup *dateGroup = new Q3ButtonGroup ( this );
+	QGroupBox *dateGroup = new QGroupBox ( this );
+	QButtonGroup *btnGroup = new QButtonGroup( dateGroup );
 	dateGroup->setTitle ( i18n ( "Date" ) );
-	dateGroup->setExclusive ( true );
-	dateGroup->setColumnLayout ( 0, Qt::Vertical );
-	dateGroup->layout()->setSpacing ( 0 );
-	dateGroup->layout()->setContentsMargins ( 0, 0, 0, 0 );
-	QGridLayout *dateLayout = new QGridLayout ( dateGroup->layout() );
+	btnGroup->setExclusive ( true );
+	QGridLayout *dateLayout = new QGridLayout ( dateGroup );
 	dateLayout->setAlignment ( Qt::AlignTop );
 	dateLayout->setSpacing ( 6 );
 	dateLayout->setContentsMargins ( 11, 11, 11, 11 );
 
 	modifiedBetweenEnabled = new QRadioButton ( dateGroup );
 	modifiedBetweenEnabled->setText ( i18n ( "&Modified between" ) );
-	dateGroup->insert ( modifiedBetweenEnabled, 0 );
+	btnGroup->addButton ( modifiedBetweenEnabled );
 
 	dateLayout->addWidget ( modifiedBetweenEnabled, 0, 0, 1, 2 );
 
@@ -157,7 +155,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 
 	notModifiedAfterEnabled = new QRadioButton ( dateGroup );
 	notModifiedAfterEnabled->setText ( i18n ( "&Not modified after" ) );
-	dateGroup->insert ( notModifiedAfterEnabled, 0 );
+	btnGroup->addButton ( notModifiedAfterEnabled );
 	dateLayout->addWidget ( notModifiedAfterEnabled, 1, 0, 1, 2  );
 
 	notModifiedAfterData = new QLineEdit ( dateGroup );
@@ -173,7 +171,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 
 	modifiedInTheLastEnabled = new QRadioButton ( dateGroup );
 	modifiedInTheLastEnabled->setText ( i18n ( "Mod&ified in the last" ) );
-	dateGroup->insert ( modifiedInTheLastEnabled, 0 );
+	btnGroup->addButton ( modifiedInTheLastEnabled );
 	dateLayout->addWidget ( modifiedInTheLastEnabled, 2, 0 );
 
 	modifiedInTheLastData = new QLineEdit ( dateGroup );

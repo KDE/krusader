@@ -206,14 +206,8 @@ KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup( QString cls,
     int paramNum, QWidget *parent, bool rst, int pg )
 {
   KonfiguratorRadioButtons *radioWidget = new KonfiguratorRadioButtons( cls, name, dflt, parent, rst, pg );
-  radioWidget->setFrameShape( Q3ButtonGroup::NoFrame );
-  radioWidget->setFrameShadow( Q3ButtonGroup::Sunken );
-  radioWidget->setTitle( "" );
-  radioWidget->setExclusive( true );
-  radioWidget->setRadioButtonExclusive( true );
-  radioWidget->setColumnLayout(0, Qt::Vertical );
 
-  QGridLayout *layout = new QGridLayout( radioWidget->layout() );
+  QGridLayout *layout = new QGridLayout( radioWidget );
   layout->setAlignment( Qt::AlignTop );
   layout->setSpacing( 6 );
   layout->setContentsMargins( 0, 0, 0, 0 );

@@ -12,7 +12,7 @@
 #include <kio/previewjob.h>
 #include <kurl.h>
 
-class Q3ButtonGroup;
+class QButtonGroup;
 class QLabel;
 class Q3ListViewItem;
 class QSplitter;
@@ -63,7 +63,7 @@ protected:
 	QPointer<KIO::PreviewJob> pjob;
 	K3FileTreeView *tree;
 	QToolButton *treeBtn, *previewBtn, *quickBtn, *viewerBtn, *duBtn;
-	Q3ButtonGroup *btns;
+	QButtonGroup *btns;
 	KLineEdit *quickFilter;
 	KComboBox *quickSelectCombo;
 	PanelViewer *panelviewer;

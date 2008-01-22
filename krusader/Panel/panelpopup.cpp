@@ -7,7 +7,7 @@
 #include "panelfunc.h"
 #include "krview.h"
 #include "krviewitem.h"
-#include <q3buttongroup.h>
+#include <qbuttongroup.h>
 #include <qtoolbutton.h>
 //Added by qt3to4:
 #include <QDropEvent>
@@ -63,17 +63,16 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
    int sheight = QFontMetrics( dataLine->font() ).height() + 4;
    dataLine->setMaximumHeight( sheight );
 	
-	btns = new Q3ButtonGroup(this);
+	btns = new QButtonGroup( this );
 	btns->setExclusive(true);
-	btns->hide();	// it should be invisible
-	connect(btns, SIGNAL(clicked(int)), this, SLOT(tabSelected(int)));
+	connect(btns, SIGNAL(buttonClicked(int)), this, SLOT(tabSelected(int)));
 	
 	treeBtn = new QToolButton(this);
 	treeBtn->setToolTip( i18n("Tree Panel: a tree view of the local file system"));
 	treeBtn->setPixmap(krLoader->loadIcon( "view_tree", KIconLoader::Toolbar, 16 ));
 	treeBtn->setFixedSize(20, 20);
 	treeBtn->setToggleButton(true);
-	btns->insert(treeBtn, Tree);
+	btns->addButton(treeBtn, Tree);
 	
 	
 	previewBtn = new QToolButton(this);
@@ -81,28 +80,28 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	previewBtn->setPixmap(krLoader->loadIcon( "thumbnail", KIconLoader::Toolbar, 16 ));
 	previewBtn->setFixedSize(20, 20);
 	previewBtn->setToggleButton(true);
-	btns->insert(previewBtn, Preview);
+	btns->addButton(previewBtn, Preview);
 	
 	quickBtn = new QToolButton(this);
 	quickBtn->setToolTip( i18n("Quick Panel: quick way to perform actions"));
 	quickBtn->setPixmap(krLoader->loadIcon( "misc", KIconLoader::Toolbar, 16 ));
 	quickBtn->setFixedSize(20, 20);
 	quickBtn->setToggleButton(true);
-	btns->insert(quickBtn, QuickPanel);
+	btns->addButton(quickBtn, QuickPanel);
 
 	viewerBtn = new QToolButton(this);
 	viewerBtn->setToolTip( i18n("View Panel: view the current file"));
 	viewerBtn->setPixmap(krLoader->loadIcon( "viewmag", KIconLoader::Toolbar, 16 ));
 	viewerBtn->setFixedSize(20, 20);
 	viewerBtn->setToggleButton(true);
-	btns->insert(viewerBtn, View);	
+	btns->addButton(viewerBtn, View);	
 		
 	duBtn = new QToolButton(this);
 	duBtn->setToolTip( i18n("Disk Usage Panel: view the usage of a directory"));
 	duBtn->setPixmap(krLoader->loadIcon( "kr_diskusage", KIconLoader::Toolbar, 16 ));
 	duBtn->setFixedSize(20, 20);
 	duBtn->setToggleButton(true);
-	btns->insert(duBtn, DskUsage);	
+	btns->addButton(duBtn, DskUsage);	
 		
 	layout->addWidget(dataLine,0,0);
 	layout->addWidget(treeBtn,0,1);
@@ -214,7 +213,9 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	} else {
 		id = sg.readEntry("Right Panel Popup", _RightPanelPopup);	
 	}
-	btns->setButton(id);
+	QAbstractButton * curr = btns->button(id);
+	if( curr )
+		curr->click();
 
 	hide(); // for not to open the 3rd hand tool at start (selecting the last used tab)
 	tabSelected(id);
