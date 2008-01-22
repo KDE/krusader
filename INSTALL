@@ -19,12 +19,12 @@ Compile instructions
 --------------------
 DCMAKE_INSTALL_PREFIX is the location of the KDE DQT_INCLUDES
 
-$ tar -xvf krusader_kde4.tar.gz
+$ tar -xzvf krusader_kde4.tar.gz
 $ cd  krusader_kde4
 $ cmake  -DCMAKE_INSTALL_PREFIX=/usr/ -DQT_INCLUDES=/usr/share/qt4/include
 $ make
-$ make install
-$ ./configure
+$ su -c "make install"
+
 
 
 
