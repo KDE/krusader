@@ -33,7 +33,6 @@
 
 #include <sys/types.h>
 #include "vfs.h"
-#include <q3valuestack.h>
 //Added by qt3to4:
 #include <QList>
 #include <k3process.h>

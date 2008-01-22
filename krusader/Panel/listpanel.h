@@ -46,7 +46,6 @@
 #include <qdir.h>
 #include <qpixmapcache.h>
 #include <qicon.h>
-#include <q3ptrstack.h>
 #include <q3textbrowser.h>
 #include <QDropEvent>
 #include <QShowEvent>

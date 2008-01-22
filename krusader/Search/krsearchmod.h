@@ -34,7 +34,7 @@
 #define KRSEARCHMOD_H
 
 #include <qobject.h>
-#include <q3valuestack.h>
+#include <qstack.h>
 #include <qstringlist.h>
 #include <qdatetime.h>
 #include <time.h>
@@ -71,8 +71,8 @@ private slots:
 
 private:
   bool stopSearch;
-  Q3ValueStack<KUrl> scannedUrls;
-  Q3ValueStack<KUrl> unScannedUrls;
+  QStack<KUrl> scannedUrls;
+  QStack<KUrl> unScannedUrls;
   KRQuery *query;
   QStringList results;
   

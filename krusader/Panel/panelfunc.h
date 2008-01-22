@@ -35,7 +35,6 @@
 #include "listpanel.h"
 #include "krviewitem.h"
 #include <qobject.h>
-#include <q3valuestack.h>
 #include <qtimer.h>
 
 class ListPanelFunc : public QObject{

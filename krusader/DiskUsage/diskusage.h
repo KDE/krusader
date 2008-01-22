@@ -38,8 +38,7 @@
 #include <qlabel.h>
 #include <q3dict.h>
 #include <q3ptrdict.h>
-#include <q3valuestack.h>
-#include <q3ptrstack.h>
+#include <qstack.h>
 //Added by qt3to4:
 #include <QResizeEvent>
 #include <QPixmap>
@@ -161,8 +160,8 @@ protected:
   bool       clearAfterAbort;
   bool       deleting;
 
-  Q3ValueStack<QString> directoryStack;
-  Q3PtrStack<Directory> parentStack;
+  QStack<QString> directoryStack;
+  QStack<Directory *> parentStack;
 
   vfs       * searchVfs;
   vfile     * currentVfile;
