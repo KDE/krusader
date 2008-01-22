@@ -15,6 +15,7 @@
 #include <qsplitter.h>
 #include <qlayout.h>
 #include <qtoolbutton.h>
+#include <qclipboard.h>
 //Added by qt3to4:
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -282,31 +283,30 @@ void UserActionPage::slotExport() {
       );
 }
 
-/*
 void UserActionPage::slotToClip() {
    if ( ! dynamic_cast<UserActionListViewItem*>( actionTree->currentItem() ) )
       return;
 
    QDomDocument doc = actionTree->dumpSelectedActions();
-   KApplication::clipboard()->setText( doc.toString() );
+   QApplication::clipboard()->setText( doc.toString() );
 }
-*/
 
-/*
 void UserActionPage::slotFromClip() {
    QDomDocument doc( ACTION_DOCTYPE );
-   if ( doc.setContent( KApplication::clipboard()->text() ) ) {
+   if ( doc.setContent( QApplication::clipboard()->text() ) ) {
       QDomElement root = doc.documentElement();
       UserAction::KrActionList newActions;
       krUserAction->readFromElement( root, UserAction::renameDoublicated, &newActions );
-      for ( KrAction* action = newActions.first(); action; action = newActions.next() )
-         actionTree->insertAction( action );
+
+      QListIterator<KrAction *> it( newActions );
+      while (it.hasNext())
+         actionTree->insertAction( it.next() );
+
       if ( newActions.count() > 0 ) {
          apply();
       }
    } // if ( doc.setContent )
 }
-*/
 
 bool UserActionPage::readyToQuit() {
    // Check if the current UserAction has changed

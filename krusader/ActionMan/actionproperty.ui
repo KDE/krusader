@@ -66,7 +66,7 @@
         </widget>
        </item>
        <item row="9" column="2" colspan="2" >
-        <widget class="Q3ButtonGroup" name="bgAccept" >
+        <widget class="KButtonGroup" name="bgAccept" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
            <horstretch>0</horstretch>
@@ -390,7 +390,7 @@ Please consult the handbook to learn more about the syntax.</string>
         </layout>
        </item>
        <item rowspan="2" row="9" column="0" colspan="2" >
-        <widget class="Q3ButtonGroup" name="bgExecType" >
+        <widget class="KButtonGroup" name="bgExecType" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
            <horstretch>0</horstretch>
@@ -455,7 +455,7 @@ Please consult the handbook to learn more about the syntax.</string>
       </attribute>
       <layout class="QGridLayout" >
        <item row="0" column="0" colspan="2" >
-        <widget class="Q3GroupBox" name="gbShowonly" >
+        <widget class="QGroupBox" name="gbShowonly" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
            <horstretch>0</horstretch>
@@ -952,15 +952,9 @@ Please consult the handbook to learn more about the syntax.</string>
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <customwidgets>
   <customwidget>
-   <class>Q3GroupBox</class>
+   <class>KButtonGroup</class>
    <extends>QGroupBox</extends>
-   <header>Qt3Support/Q3GroupBox</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3ButtonGroup</class>
-   <extends>Q3GroupBox</extends>
-   <header>Qt3Support/Q3ButtonGroup</header>
+   <header>kbuttongroup.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

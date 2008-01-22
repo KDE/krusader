@@ -66,10 +66,8 @@ private slots:
    void slotRemoveAction();
    void slotImport();
    void slotExport();
-#if 0 // TODO: PORTME
    void slotToClip();
    void slotFromClip();
-#endif
 };
 
 #endif //USERACTIONPAGE_H
