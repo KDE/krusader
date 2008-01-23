@@ -15,7 +15,7 @@
 #include <klocale.h>
 #include <kinputdialog.h>
 #include <kactioncollection.h>
-#include <q3textedit.h>
+#include <qtextedit.h>
 #include <qtextstream.h>
 #include <qboxlayout.h>
 #include <qlayout.h>
@@ -74,7 +74,7 @@ KrActionProcDlg::KrActionProcDlg( QString caption, bool enableStderr, QWidget *p
 
       stdoutBox->setSpacing( 6 );
       stdoutBox->addWidget( new QLabel( i18n( "Standard Output (stdout)" ), stdoutWidget ) );
-      _stdout = new Q3TextEdit( stdoutWidget );
+      _stdout = new QTextEdit( stdoutWidget );
       _stdout->setReadOnly( true );
       _stdout->setMinimumWidth( fontMetrics().maxWidth() * 40 );
       stdoutBox->addWidget( _stdout );
@@ -84,14 +84,14 @@ KrActionProcDlg::KrActionProcDlg( QString caption, bool enableStderr, QWidget *p
 
       stderrBox->setSpacing( 6 );
       stderrBox->addWidget( new QLabel( i18n( "Standard Error (stderr)" ), stderrWidget ) );
-      _stderr = new Q3TextEdit( stderrWidget );
+      _stderr = new QTextEdit( stderrWidget );
       _stderr->setReadOnly( true );
       _stderr->setMinimumWidth( fontMetrics().maxWidth() * 40 );
       stderrBox->addWidget( _stderr );
    } else {
       // create stdout
       new QLabel( i18n( "Output" ), page );
-      _stdout = new Q3TextEdit( page );
+      _stdout = new QTextEdit( page );
       _stdout->setReadOnly( true );
       _stdout->setMinimumWidth( fontMetrics().maxWidth() * 40 );
    }
