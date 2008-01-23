@@ -905,52 +905,6 @@
       <varlistentry>
         <term>
           <menuchoice>
-            <guimenu>Useractions</guimenu>
-            <guimenuitem>Edit as root</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Allows you to edit a file with kwrite using root
-          permissions.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Useractions</guimenu>
-            <guimenuitem>Mount</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Mounts a new filesystem.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Useractions</guimenu>
-            <guimenuitem>Enqueue in Amarok</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Appends selected item(s) to Amarok playlist.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Useractions</guimenu>
-            <guimenuitem>Copy current item to
-            clipboard</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Copies selected item(s) to the clipboard.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
             <shortcut>
               <keycombo action="simul">
                 <keycap>Win</keycap>
@@ -1031,6 +985,53 @@
       <varlistentry>
         <term>
           <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Edit as root</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Allows you to edit a file with kwrite using root
+          permissions.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Mount</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Mounts a new filesystem.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Enqueue in Amarok</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Appends selected item(s) to Amarok playlist.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Copy current item to
+            clipboard</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Copies selected item(s) to the clipboard.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
             <shortcut>
               <keycombo action="simul">
                 &Shift;<keycap>F5</keycap>
@@ -1046,6 +1047,89 @@
         </listitem>
       </varlistentry>
     </variablelist>
+
+
+<para></para>  <!-- empty line-->
+<para><emphasis role="bold">&krusader;-1.90.0 "Power Stone" additional Useractions</emphasis></para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Search and Replace in file</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>This Useraction uses the &UNIX; standard-tool <command>sed</command> (the stream-editor) so perform 
+              search and replace operations in all selected files
+              It is possible to give a regular expression for both strings.
+              Please note: The sed-command is "s/search/repleace/", so you have to escape the slash when you need it!
+              Useraction contributed by 
+              <ulink url="http://www.kde-files.org/content/show.php/Search+and+Replace?content=36310">Jonas B&auml;hr</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Unmount</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Umount selected directory.
+              Useraction contributed by 
+              <ulink url="http://www.kde-files.org/content/show.php/unmount+filesystem?content=68056">Stefan Endrullis</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Copy as root</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Copy selected files &amp; directories with root privileges, also inside archives!
+              Useraction contributed by 
+              <ulink url="http://www.kde-files.org/content/show.php/Copy+as+root?content=36902">Andrew Svet and MaxiPunkt</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Archive to Dir</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Creates a directory with the current archive name in the other panel before unpacking 
+                the files into it. It uses <command>ark</command> and tries to guess the directory name (archive name 
+                without file extension).
+              Useraction contributed by 
+              <ulink url="http://www.kde-files.org/content/show.php/Archive+to+Dir?content=29760">Dirk Eschler</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Split large mp3</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Splits large mp3's using <command>mp3splt</command>.
+              Useraction contributed by 
+              <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=1010">Andrew Svet</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+  </variablelist>
+
+
   </sect1>
   <sect1 id="tools-menu">
     <title>Tools Menu</title>

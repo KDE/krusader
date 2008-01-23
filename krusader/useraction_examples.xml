@@ -5,42 +5,9 @@
   <title>Equal panel-size</title>
   <tooltip>Sets the ratio between the two panels to 50/50</tooltip>
   <icon>view_left_right</icon>
-  <category>Samples</category>
+  <category>User Interface</category>
   <command>%aPanelSize(&quot;50&quot;)%</command>
   <defaultshortcut>Alt+Ctrl+Equal</defaultshortcut>
- </action>
- <action name="sample_edit_as_root" >
-  <title>Edit as root</title>
-  <tooltip>Edit a file as root</tooltip>
-  <icon>kwrite</icon>
-  <category>Samples</category>
-  <description>Edit a file with root permissions</description>
-  <command run_as="root" >kwrite %aCurrent%</command>
-  <defaultshortcut>Ctrl+E</defaultshortcut>
- </action>
- <action name="sample_newmount" >
-  <title>Mount</title>
-  <tooltip>Mount a new filesystem</tooltip>
-  <icon>hdd_mount</icon>
-  <category>Samples</category>
-  <command executionmode="collect_output" run_as="root" >mount -t %_Ask(&quot;Filesystem Type?&quot;)% %_Ask(&quot;Device ?&quot;)% %_Ask(&quot;Mount Point ?&quot;)%</command>
-  <defaultshortcut>Alt+Ctrl+M</defaultshortcut>
- </action>
- <action name="sample_amarok_enqueue" >
-  <title>Enqueue in Amarok</title>
-  <tooltip>Append selected item(s) to Amarok playlist</tooltip>
-  <icon>amarok</icon>
-  <category>Multimedia</category>
-  <description same_as="tooltip" />
-  <command>amarok --append %aList(&quot;Selected&quot;)%</command>
-  <defaultshortcut>Win+A</defaultshortcut>
- </action>
- <action name="filename_to_clipboard" >
-  <title>Copy current item to clipboard</title>
-  <icon>editpaste</icon>
-  <category>Samples</category>
-  <command>%_Clipboard(&quot;%aCurrent%&quot;)%</command>
-  <defaultshortcut>Alt+Ctrl+C</defaultshortcut>
  </action>
  <action name="sort_by_name" >
   <title>Sort by Name</title>
@@ -78,13 +45,85 @@
   <command>%aColSort(&quot;Modified&quot;)%</command>
   <defaultshortcut>Win+4</defaultshortcut>
  </action>
+ <action name="sample_edit_as_root" >
+  <title>Edit as root</title>
+  <tooltip>Edit a file as root</tooltip>
+  <icon>kwrite</icon>
+  <category>File</category>
+  <description>Edit a file with root permissions</description>
+  <command run_as="root" >kwrite %aCurrent%</command>
+  <defaultshortcut>Ctrl+E</defaultshortcut>
+ </action>
+ <action name="file_root_copy" >
+  <title>Copy as root</title>
+  <tooltip>Copy as root</tooltip>
+  <icon>editcopy</icon>
+  <category>File</category>
+  <description>Copy selected files &amp; directories with root privileges, also inside archives!</description>
+  <command run_as="root" accept="url" >kfmclient copy %aList(&quot;Selected&quot;, &quot; &quot;, &quot;No&quot;)% %oPath%</command>
+ </action>
  <action name="backup_current" >
-  <title>Backup current</title>
+  <title>Backup current file</title>
   <tooltip>Backup current file in current directory</tooltip>
   <icon>filesaveas</icon>
-  <category>System</category>
+  <category>File</category>
   <description>Backups current file in current directory and asks the user for a new filename. By default &quot;.old&quot; is appended to the original filename.</description>
   <command>%_Copy(&quot;%aCurrent%&quot;, &quot;%_Ask(&quot;New filename&quot;, &quot;%aCurrent%.old&quot;)%&quot;)%</command>
   <defaultshortcut>Shift+F5</defaultshortcut>
+ </action>
+ <action name="file_search_replace" >
+  <title>Search and Replace in file</title>
+  <tooltip>Search and replace a string/regex in textfiles with sed</tooltip>
+  <icon>xclipboard</icon>
+  <category>File</category>
+  <description>This UA uses the UNIX standard-tool sed (the stream-editor) so perform search and replace operations in all selected files
+It is possible to give a regular expression for both strings.
+Please note: The sed-command is &quot;s/search/repleace/&quot;, so you have to escape the slash when you need it!</description>
+  <command>sed -i -e 's/%_Ask(&quot;Search for:&quot;)%/%_Ask(&quot;Replace with:&quot;)%/' %aList(&quot;Selected&quot;)%</command>
+ </action>
+ <action name="sample_newmount" >
+  <title>Mount</title>
+  <tooltip>Mount a new filesystem</tooltip>
+  <icon>hdd_mount</icon>
+  <category>System</category>
+  <command run_as="root" executionmode="collect_output" >mount -t %_Ask(&quot;Filesystem Type?&quot;)% %_Ask(&quot;Device ?&quot;)% %_Ask(&quot;Mount Point ?&quot;)%</command>
+  <defaultshortcut>Alt+Ctrl+M</defaultshortcut>
+ </action>
+ <action name="system_umount" >
+  <title>Unmount</title>
+  <tooltip>Umount filesystem of current directory</tooltip>
+  <icon>kcmpartitions</icon>
+  <category>System</category>
+  <command>result=`umount '%aCurrent%' 2>&amp;1`; case &quot;$?&quot; in 0) kdialog --title Krusader --msgbox &quot;Filesystem unmounted&quot;; ;; 1) apps=`lsof | grep '%aCurrent%' | head | cut -d ' ' -f 1`; kdialog --title Krusader --error &quot;Could not unmount filesystem.\n\nIt is still in use by the following applications:\n$apps&quot;; ;; *) kdialog --title Krusader --error &quot;Could not unmount filesystem.\n$result&quot;; ;; esac</command>
+ </action>
+ <action name="archive_archive2dir" >
+  <title>Archive to Dir</title>
+  <tooltip>Creates a directory with the archive name before unpacking</tooltip>
+  <icon>ark</icon>
+  <category>Archive</category>
+  <description>Creates a directory with the current archive name in the other panel before unpacking the files into it. It uses ark and tries to guess the directory name (archive name without file extension).</description>
+  <command>ark --guess-name --extract-to %oPath% %aCurrent%</command>
+ </action>
+ <action name="filename_to_clipboard" >
+  <title>Copy current item to clipboard</title>
+  <icon>editpaste</icon>
+  <category>System</category>
+  <command>%_Clipboard(&quot;%aCurrent%&quot;)%</command>
+  <defaultshortcut>Alt+Ctrl+C</defaultshortcut>
+ </action>
+ <action name="sample_amarok_enqueue" >
+  <title>Enqueue in Amarok</title>
+  <tooltip>Append selected item(s) to Amarok playlist</tooltip>
+  <icon>amarok</icon>
+  <category>Multimedia</category>
+  <command>amarok --append %aList(&quot;Selected&quot;)%</command>
+  <defaultshortcut>Win+A</defaultshortcut>
+ </action>
+ <action name="Multimedia_Split_mp3" >
+  <title>Split large mp3</title>
+  <tooltip>Splits large mp3's using mp3splt</tooltip>
+  <icon>kcmsound</icon>
+  <category>Multimedia</category>
+  <command executionmode="terminal" >mp3splt %aCurrent(&quot;Yes&quot;)%  -c *.cue -a -f -o &quot;@n - @p - @t&quot;</command>
  </action>
 </KrusaderUserActions>
