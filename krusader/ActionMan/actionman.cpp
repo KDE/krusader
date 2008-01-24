@@ -37,6 +37,8 @@ ActionMan::ActionMan( QWidget * parent )
    enableButtonApply( false );
 
    exec();
+
+   krApp->updateUserActions();
 }
 
 ActionMan::~ActionMan() {

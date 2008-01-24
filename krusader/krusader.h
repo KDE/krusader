@@ -99,6 +99,7 @@ class Krusader : public KParts::MainWindow {
     // in use by Krusader only
     void saveSettings();
     void savePosition();
+    void updateUserActions();
     void updateGUI( bool enforce = false );
     void slotClose();
     void setDirectExit() { directExit = true; }

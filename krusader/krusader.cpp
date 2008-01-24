@@ -998,15 +998,19 @@ void Krusader::stopWait() {
    plzWait->stopWait();
 }
 
+void Krusader::updateUserActions() {
+   userActionMenu = (KMenu*) guiFactory()->container( "useractionmenu", this );
+   if ( userActionMenu )
+      userAction->populateMenu( userActionMenu );
+}
+
 void Krusader::updateGUI( bool enforce ) {
    // now, check if we need to create a konsole_part
    // call the XML GUI function to draw the UI
    createGUI( mainView->konsole_part );
    
    // this needs to be called AFTER createGUI() !!!
-   userActionMenu = (KMenu*) guiFactory()->container( "useractionmenu", this );
-   if ( userActionMenu )
-      userAction->populateMenu( userActionMenu );
+   updateUserActions();
    
 	KConfigGroup cfg( krConfig, "Private");
    toolBar() ->applySettings( cfg );
