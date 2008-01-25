@@ -211,8 +211,8 @@ DULines::DULines( DiskUsage *usage )
   else
   {
     setColumnWidth(0, defaultSize * 20 );
-    setColumnWidth(1,  defaultSize * 6 );
-    setColumnWidth(2,  defaultSize * 20 );
+    setColumnWidth(1, defaultSize * 6 );
+    setColumnWidth(2, defaultSize * 20 );
   }
 
   setStretchingColumn( 0 );

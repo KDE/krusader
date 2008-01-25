@@ -110,6 +110,32 @@ bool KrTreeWidget::event ( QEvent * event )
             int textMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin) + 1;
             int requiredWidth = QFontMetrics( font() ).width( tip ) + 2 * textMargin;
 
+            if( column == 0 && indentation() )
+            {
+              int level = 0;
+
+              QTreeWidgetItem *parent = item;
+
+              while( (parent = item->parent()) )
+                level++;
+
+              if( rootIsDecorated() )
+                level++;
+
+              requiredWidth += level * indentation();
+            }
+
+            QIcon icon = item->icon( column );
+            if( !icon.isNull() )
+            {
+              QStyleOptionViewItem opts = viewOptions();
+              QSize iconSize = icon.actualSize(opts.decorationSize);
+              requiredWidth += iconSize.width();
+
+              int pixmapMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin, 0, this) + 1;
+              requiredWidth += 2 * pixmapMargin;
+            }
+
             if( !tip.isEmpty() && ( columnWidth( column ) < requiredWidth ) )
               QToolTip::showText(he->globalPos(), tip, this);
             return true;

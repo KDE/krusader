@@ -45,6 +45,7 @@ public:
   void setStretchingColumn( int col )                {_stretchingColumn = col;}
 
   QModelIndex indexOf( QTreeWidgetItem * item, int col = 0 ) { return indexFromItem( item, col ); }
+  QTreeWidgetItem * item( const QModelIndex & ndx )          { return itemFromIndex( ndx ); }
 
 signals:
   void itemRightClicked( QTreeWidgetItem * it, int column );
