@@ -41,10 +41,13 @@ public:
   PercentalSplitter( QWidget * parent = 0 );  
   virtual ~PercentalSplitter();
   
-  QString toolTipString( int p = -1 );
+  QString toolTipString( int p );
   
 protected:
-  virtual void setRubberBand ( int p );
+  virtual void showEvent ( QShowEvent * event );
+
+protected slots:
+  void slotSplitterMoved ( int pos, int index );
   
 private:
   QLabel * label;
