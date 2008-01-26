@@ -33,10 +33,10 @@
 
 #include "synchronizer.h"
 #include "../GUI/profilemanager.h"
+#include "../GUI/krtreewidget.h"
 #include "../Filter/filtertabs.h"
 #include "../Filter/generalfilter.h"
 #include <qdialog.h>
-#include <q3listview.h>
 //Added by qt3to4:
 #include <QResizeEvent>
 #include <QKeyEvent>
@@ -54,35 +54,57 @@ class SynchronizerGUI : QDialog
    Q_OBJECT
 
 public:
-  class SyncViewItem : public Q3ListViewItem
+  class SyncViewItem : public QTreeWidgetItem
   {
     private:
       SynchronizerFileItem *syncItemRef;
       SyncViewItem         *lastItemRef;
-      QColor                textColor;
-      QColor                baseColor;
             
     public:
-      SyncViewItem( SynchronizerFileItem *item, QColor txt, QColor base, Q3ListView * parent, Q3ListViewItem *after, QString label1,
+      SyncViewItem( SynchronizerFileItem *item, QColor txt, QColor base, QTreeWidget * parent, QTreeWidgetItem *after, QString label1,
                     QString label2 = QString(), QString label3 = QString(), QString label4 = QString(),
                     QString label5 = QString(), QString label6 = QString(),
                     QString label7 = QString(), QString label8 = QString() ) :
-                      Q3ListViewItem( parent, after, label1, label2, label3, label4, label5, label6,
-                                     label7, label8 ), syncItemRef( item ), lastItemRef( 0 ), textColor( txt ), baseColor( base )
+                      QTreeWidgetItem( parent, after ), syncItemRef( item ), lastItemRef( 0 )
       {
+        setText( 0, label1 );
+        setText( 1, label2 );
+        setText( 2, label3 );
+        setText( 3, label4 );
+        setText( 4, label5 );
+        setText( 5, label6 );
+        setText( 6, label7 );
+        setText( 7, label8 );
+
+        setTextAlignment(1, Qt::AlignRight );
+        setTextAlignment(3, Qt::AlignHCenter );
+        setTextAlignment(5, Qt::AlignRight );
         item->setUserData( (void *)this );
-        setDragEnabled( true );
+
+        setColors( txt, base );
       }
       
-      SyncViewItem( SynchronizerFileItem *item, QColor txt, QColor base, Q3ListViewItem * parent, Q3ListViewItem *after, QString label1,
+      SyncViewItem( SynchronizerFileItem *item, QColor txt, QColor base, QTreeWidgetItem * parent, QTreeWidgetItem *after, QString label1,
                     QString label2 = QString(), QString label3 = QString(), QString label4 = QString(),
                     QString label5 = QString(), QString label6 = QString(),
                     QString label7 = QString(), QString label8 = QString() ) :
-                      Q3ListViewItem( parent, after, label1, label2, label3, label4, label5, label6,
-                                     label7, label8 ), syncItemRef( item ), lastItemRef( 0 ), textColor( txt ), baseColor( base )
+                      QTreeWidgetItem( parent, after ), syncItemRef( item ), lastItemRef( 0 )
       {
+        setText( 0, label1 );
+        setText( 1, label2 );
+        setText( 2, label3 );
+        setText( 3, label4 );
+        setText( 4, label5 );
+        setText( 5, label6 );
+        setText( 6, label7 );
+        setText( 7, label8 );
+
+        setTextAlignment(1, Qt::AlignRight );
+        setTextAlignment(3, Qt::AlignHCenter );
+        setTextAlignment(5, Qt::AlignRight );
         item->setUserData( (void *)this );
-        setDragEnabled( true );
+
+        setColors( txt, base );
       }
 
       ~SyncViewItem()
@@ -95,22 +117,17 @@ public:
       inline void                   setLastItem(SyncViewItem*s) {lastItemRef = s;}
       
       void setColors( QColor fore, QColor back ) {
-        textColor = fore;
-        baseColor = back;
-      }
-      
-      void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align)
-      {
-        QColorGroup _cg = cg;
-        if( textColor.isValid() )
-          _cg.setColor(QColorGroup::Text, textColor );
-        if( baseColor.isValid() )
+        QBrush textColor( fore );
+        QBrush baseColor( back );
+
+        for( int i=0; i != columnCount(); i++ )
         {
-          _cg.setColor(QPalette::Window, baseColor );
-          _cg.setColor(QColorGroup::Base, baseColor );
+          if( back.isValid() )
+            setBackground( i, baseColor );
+          if( fore.isValid() )
+            setForeground( i, textColor );
         }
-        Q3ListViewItem::paintCell( p, _cg, column, width, align );
-      };
+      }
   };
    
 public:
@@ -122,8 +139,8 @@ public:
   inline bool wasSynchronization()    {return wasSync;}
 
 public slots:
-  void rightMouseClicked(Q3ListViewItem *);
-  void doubleClicked(Q3ListViewItem *);
+  void rightMouseClicked(QTreeWidgetItem *);
+  void doubleClicked(QTreeWidgetItem *);
   void compare();
   void synchronize();
   void stop();
@@ -172,7 +189,7 @@ protected:
   KHistoryComboBox *rightLocation;
   KHistoryComboBox *fileFilter;
   
-  Q3ListView     *syncList;
+  KrTreeWidget  *syncList;
   Synchronizer   synchronizer;
   
   QCheckBox     *cbSubdirs;

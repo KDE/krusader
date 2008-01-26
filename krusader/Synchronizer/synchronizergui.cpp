@@ -60,7 +60,7 @@
 #include <kio/netaccess.h>
 #include <qeventloop.h>
 #include <qregexp.h>
-#include <q3header.h>
+#include <qheaderview.h>
 #include <qspinbox.h>
 #include <kinputdialog.h>
 #include <k3urldrag.h>
@@ -1019,23 +1019,24 @@ static const char * const swap_sides_data[] = {
 "                                                      ",
 "                                                      "};
 
-class SynchronizerListView : public Q3ListView
+class SynchronizerListView : public KrTreeWidget
 {
 private:
   Synchronizer   *synchronizer;
   bool            isLeft;
   
 public:
-  SynchronizerListView( Synchronizer * sync, QWidget * parent ) : Q3ListView( parent ), synchronizer( sync )
+  SynchronizerListView( Synchronizer * sync, QWidget * parent ) : KrTreeWidget( parent ), synchronizer( sync )
   {
   }
 
-  void contentsMouseMoveEvent ( QMouseEvent * e )
+  void mouseMoveEvent ( QMouseEvent * e )
   {
     isLeft = (( e->modifiers() & Qt::ShiftModifier ) == 0 );
-    Q3ListView::contentsMouseMoveEvent( e );
+    KrTreeWidget::mouseMoveEvent( e );
   }
-  void startDrag() 
+
+  void startDrag( Qt::DropActions supportedActs ) 
   {
     KUrl::List urls;
 
@@ -1046,7 +1047,7 @@ public:
     {
       SynchronizerGUI::SyncViewItem *viewItem = (SynchronizerGUI::SyncViewItem *)currentItem->userData();
 
-      if( !viewItem || !viewItem->isSelected() || !viewItem->isVisible() )
+      if( !viewItem || !viewItem->isSelected() || viewItem->isHidden() )
         continue;
 
       SynchronizerFileItem *item = viewItem->synchronizerItemRef();
@@ -1091,6 +1092,8 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   isComparing = wasClosed = wasSync = false;
   firstResize = true;
   sizeX = sizeY = -1;
+
+  bool equalSizes = false;
 
   hasSelectedFiles = ( selectedFiles.count() != 0 );
 
@@ -1323,47 +1326,54 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   syncList->setBackgroundRole( QPalette::Window );
   syncList->setAutoFillBackground( true );
 
+  QStringList labels;
+  labels << i18n("Name");
+  labels << i18n("Size");
+  labels << i18n("Date");
+  labels << i18n("<=>");
+  labels << i18n("Date");
+  labels << i18n("Size");
+  labels << i18n("Name");
+  syncList->setHeaderLabels( labels );
+
+  syncList->header()->setResizeMode( 0, QHeaderView::Interactive );
+  syncList->header()->setResizeMode( 1, QHeaderView::Interactive );
+  syncList->header()->setResizeMode( 2, QHeaderView::Interactive );
+  syncList->header()->setResizeMode( 3, QHeaderView::Interactive );
+  syncList->header()->setResizeMode( 4, QHeaderView::Interactive );
+  syncList->header()->setResizeMode( 5, QHeaderView::Interactive );
+  syncList->header()->setResizeMode( 6, QHeaderView::Interactive );
+
+  if( group.hasKey( "State" ) )
+    syncList->header()->restoreState( group.readEntry( "State", QByteArray() ) );
+  else
+  {
+    int i=QFontMetrics(syncList->font()).width("W");
+    int j=QFontMetrics(syncList->font()).width("0");
+    j=(i>j ? i : j);
+    int typeWidth = j*7/2;
+
+    syncList->setColumnWidth(0, typeWidth * 4 );
+    syncList->setColumnWidth(1, typeWidth * 2 );
+    syncList->setColumnWidth(2, typeWidth * 3 );
+    syncList->setColumnWidth(3, typeWidth * 1 );
+    syncList->setColumnWidth(4, typeWidth * 3 );
+    syncList->setColumnWidth(5, typeWidth * 2 );
+    syncList->setColumnWidth(6, typeWidth * 4 );
+
+    equalSizes = true;
+  }
+
   syncList->setAllColumnsShowFocus(true);
-  syncList->setMultiSelection(true);
-  syncList->setSelectionMode(Q3ListView::Extended);
-  syncList->setVScrollBarMode(Q3ScrollView::Auto);
-  syncList->setHScrollBarMode(Q3ScrollView::Auto);
-  syncList->setShowSortIndicator(false);
-  syncList->setSorting(-1);
+  syncList->setSelectionMode( QAbstractItemView::ExtendedSelection );
+  syncList->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+  syncList->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+  syncList->header()->setSortIndicatorShown(false);
+  syncList->setSortingEnabled( false );
   syncList->setRootIsDecorated( true );
-  syncList->setTreeStepSize( 10 );
-  int i=QFontMetrics(syncList->font()).width("W");
-  int j=QFontMetrics(syncList->font()).width("0");
-  j=(i>j ? i : j);
-  int typeWidth = j*7/2;
-
-  int leftNameWidth  = group.readEntry("Left Name Width",  4*typeWidth );
-  int leftSizeWidth  = group.readEntry("Left Size Width",  2*typeWidth );
-  int leftDateWidth  = group.readEntry("Left Date Width",  3*typeWidth );
-  int taskTypeWidth  = group.readEntry("Task Type Width",  typeWidth );
-  int rightDateWidth = group.readEntry("Right Date Width", 3*typeWidth );
-  int rightSizeWidth = group.readEntry("Right Size Width", 2*typeWidth );
-  int rightNameWidth = group.readEntry("Right Name Width", 4*typeWidth );
-
-  syncList->addColumn(i18n("Name"),leftNameWidth);
-  syncList->addColumn(i18n("Size"),leftSizeWidth);
-  syncList->addColumn(i18n("Date"),leftDateWidth);
-  syncList->addColumn(i18n("<=>") ,taskTypeWidth);
-  syncList->addColumn(i18n("Date"),rightDateWidth);
-  syncList->addColumn(i18n("Size"),rightSizeWidth);
-  syncList->addColumn(i18n("Name"),rightNameWidth);
-  syncList->setColumnWidthMode(0,Q3ListView::Manual);
-  syncList->setColumnWidthMode(1,Q3ListView::Manual);
-  syncList->setColumnWidthMode(2,Q3ListView::Manual);
-  syncList->setColumnWidthMode(3,Q3ListView::Manual);
-  syncList->setColumnWidthMode(4,Q3ListView::Manual);
-  syncList->setColumnWidthMode(5,Q3ListView::Manual);
-  syncList->setColumnWidthMode(6,Q3ListView::Manual);
-  syncList->setColumnAlignment(1, Qt::AlignRight );
-  syncList->setColumnAlignment(3, Qt::AlignHCenter );
-  syncList->setColumnAlignment(5, Qt::AlignRight );
-
-  syncList->header()->setStretchEnabled( true, 0 );
+  syncList->setIndentation( 10 );
+  syncList->setDragEnabled( true );
+  syncList->setAutoFillBackground( true );
 
   synchronizerGrid->addWidget(syncList,1,0);
 
@@ -1498,14 +1508,13 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   /* =============================== Connect table ================================ */
 
-  connect( syncList,SIGNAL(rightButtonPressed(Q3ListViewItem *, const QPoint &, int)),
-           this, SLOT(rightMouseClicked(Q3ListViewItem *)));
-  connect( syncList,SIGNAL(doubleClicked(Q3ListViewItem *, const QPoint &, int)),
-           this, SLOT(doubleClicked(Q3ListViewItem *)));
+  connect( syncList,SIGNAL(itemRightClicked(QTreeWidgetItem *, int)),
+           this, SLOT(rightMouseClicked(QTreeWidgetItem *)));
+  connect( syncList,SIGNAL(itemDoubleClicked(QTreeWidgetItem *, int)),
+           this, SLOT(doubleClicked(QTreeWidgetItem *)));
+  connect( syncList,SIGNAL(itemActivated(QTreeWidgetItem *, int)),
+           this, SLOT(doubleClicked(QTreeWidgetItem *)));
   
-  connect( syncList,SIGNAL(contextMenuRequested(Q3ListViewItem *, const QPoint &, int)),
-           this, SLOT(rightMouseClicked(Q3ListViewItem *)));
-   
   connect( profileManager, SIGNAL( loadFromProfile( QString ) ), this, SLOT( loadFromProfile( QString ) ) );
   connect( profileManager, SIGNAL( saveToProfile( QString ) ), this, SLOT( saveToProfile( QString ) ) );
 
@@ -1582,6 +1591,18 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   else
       show();
 
+  if( equalSizes )
+  {
+    int newSize6 = syncList->header()->sectionSize( 6 );
+    int newSize0 = syncList->header()->sectionSize( 0 );
+    int delta = newSize6 - newSize0 + ( newSize6 & 1 );
+
+    newSize0 += (delta / 2);
+
+    if( newSize0 > 20 )
+      syncList->header()->resizeSection( 0, newSize0 );
+  }
+
   if( !profileName.isNull() )
     profileManager->loadProfile( profileName );
 
@@ -1651,7 +1672,7 @@ void SynchronizerGUI::checkExcludeURLValidity( QString &text, QString &error )
   error = i18n("URL must be the descendant of either the left or the right base URL!");
 }
 
-void SynchronizerGUI::doubleClicked(Q3ListViewItem *itemIn)
+void SynchronizerGUI::doubleClicked(QTreeWidgetItem *itemIn)
 {
   if (!itemIn)
     return;
@@ -1666,10 +1687,13 @@ void SynchronizerGUI::doubleClicked(Q3ListViewItem *itemIn)
     KUrl rightURL = KUrl( synchronizer.rightBaseDirectory() + rightDirName + item->rightName() );
 
     SLOTS->compareContent( leftURL, rightURL );
+  } else if ( item && item->isDir() )
+  {
+    itemIn->setExpanded( !itemIn->isExpanded() );
   }
 }
 
-void SynchronizerGUI::rightMouseClicked(Q3ListViewItem *itemIn)
+void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn)
 {
   // these are the values that will exist in the menu
   #define EXCLUDE_ID          90
@@ -1788,7 +1812,7 @@ void SynchronizerGUI::rightMouseClicked(Q3ListViewItem *itemIn)
         {
           SyncViewItem *viewItem = (SyncViewItem *)currentItem->userData();
 
-          if( !viewItem || !viewItem->isSelected() || !viewItem->isVisible() )
+          if( !viewItem || !viewItem->isSelected() || viewItem->isHidden() )
             continue;
 
           switch( result )
@@ -1841,17 +1865,30 @@ void SynchronizerGUI::rightMouseClicked(Q3ListViewItem *itemIn)
         {
           SyncViewItem *viewItem = (SyncViewItem *)currentItem->userData();
 
-          if( !viewItem || !viewItem->isVisible() )
+          if( !viewItem || viewItem->isHidden() )
             continue;
 
           if( query.match( currentItem->leftName() ) ||
               query.match( currentItem->rightName() ) )
-            syncList->setSelected( viewItem, result == SELECT_ITEMS_ID );
+            viewItem->setSelected( result == SELECT_ITEMS_ID );
         }
       }
       break;
     case INVERT_SELECTION_ID:
-      syncList->invertSelection();
+      {
+        unsigned              ndx = 0;
+        SynchronizerFileItem  *currentItem;
+
+        while( ( currentItem = synchronizer.getItemAt( ndx++ ) ) != 0 )
+        {
+          SyncViewItem *viewItem = (SyncViewItem *)currentItem->userData();
+
+          if( !viewItem || viewItem->isHidden() )
+            continue;
+
+          viewItem->setSelected( !viewItem->isSelected() );
+        }
+      }
       break;
     case SYNCH_WITH_KGET_ID:
       synchronizer.synchronizeWithKGet();
@@ -1906,13 +1943,7 @@ void SynchronizerGUI::closeDialog()
   group.writeEntry("Window Height", sizeY );
   group.writeEntry("Window Maximized", isMaximized() );
 
-  group.writeEntry("Left Name Width",  syncList->columnWidth( 0 ) );
-  group.writeEntry("Left Size Width",  syncList->columnWidth( 1 ) );
-  group.writeEntry("Left Date Width",  syncList->columnWidth( 2 ) );
-  group.writeEntry("Task Type Width",  syncList->columnWidth( 3 ) );
-  group.writeEntry("Right Date Width", syncList->columnWidth( 4 ) );
-  group.writeEntry("Right Size Width", syncList->columnWidth( 5 ) );
-  group.writeEntry("Right Name Width", syncList->columnWidth( 6 ) );
+  group.writeEntry( "State", syncList->header()->saveState() );
 
   QDialog::reject();
   
@@ -2039,7 +2070,7 @@ void SynchronizerGUI::addFile( SynchronizerFileItem *item )
     dirItem = (SyncViewItem *)item->parent()->userData();
     if( dirItem )
     {
-      dirItem->setOpen( true );
+      dirItem->setExpanded( true );
       listItem = new SyncViewItem(item, textColor, baseColor, dirItem, dirItem->lastItem(), leftName,
                                   leftSize, leftDate, Synchronizer::getTaskTypeName( item->task() ),
                                   rightDate, rightSize, rightName );
@@ -2050,11 +2081,11 @@ void SynchronizerGUI::addFile( SynchronizerFileItem *item )
 
   if( listItem )
   {
-    listItem->setPixmap(0, isDir ? folderIcon : fileIcon);
+    listItem->setIcon(0, isDir ? folderIcon : fileIcon);
     if( !item->isMarked() )
-      listItem->setVisible( false );
+      listItem->setHidden( true );
     else
-      syncList->ensureItemVisible( listItem );
+      syncList->scrollTo( syncList->indexOf( listItem ) );
   }
 }
 
@@ -2064,7 +2095,7 @@ void SynchronizerGUI::markChanged( SynchronizerFileItem *item, bool ensureVisibl
   if( listItem )
   {
     if( !item->isMarked() ) {
-      listItem->setVisible( false );
+      listItem->setHidden( true );
     } else {
       QString leftName="", rightName="", leftDate="", rightDate="", leftSize="", rightSize="";
       bool    isDir = item->isDir();
@@ -2083,18 +2114,18 @@ void SynchronizerGUI::markChanged( SynchronizerFileItem *item, bool ensureVisibl
         rightDate = SynchronizerGUI::convertTime( item->rightDate() );
       }
 
-      listItem->setVisible( true );
+      listItem->setHidden( false );
       listItem->setText( 0, leftName );
       listItem->setText( 1, leftSize );
       listItem->setText( 2, leftDate );
-      listItem->setColors( foreGrounds[ item->task() ], backGrounds[ item->task() ] );
       listItem->setText( 3, Synchronizer::getTaskTypeName( item->task() ) );
       listItem->setText( 4, rightDate );
       listItem->setText( 5, rightSize );
       listItem->setText( 6, rightName );
+      listItem->setColors( foreGrounds[ item->task() ], backGrounds[ item->task() ] );
 
       if( ensureVisible )
-        syncList->ensureItemVisible( listItem );
+        syncList->scrollTo( syncList->indexOf( listItem ) );
     }
   }
 }
@@ -2201,12 +2232,10 @@ void SynchronizerGUI::resizeEvent( QResizeEvent *e )
   if( !firstResize )
   {
     int delta = e->size().width() - e->oldSize().width() + (e->size().width() & 1 );
-    int newSize = syncList->header()->sectionSize( 6 ) + delta/2;
+    int newSize = syncList->header()->sectionSize( 0 ) + delta/2;
 
     if( newSize > 20 )
-      syncList->header()->resizeSection( 6, newSize );
-
-    syncList->header()->adjustHeaderSize();
+      syncList->header()->resizeSection( 0, newSize );
   }
   firstResize = false;
   QDialog::resizeEvent( e );
@@ -2247,7 +2276,7 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
   case Qt::Key_F4 :
     {
       e->accept();
-      Q3ListViewItem *listItem =  syncList->currentItem();
+      QTreeWidgetItem *listItem =  syncList->currentItem();
       if( listItem == 0 )
         break;
 
@@ -2286,29 +2315,6 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
     e->accept();
     swapSides();
     return;
-  case Qt::Key_Enter:
-  case Qt::Key_Return:
-    if( syncList->hasFocus() )
-    {
-        e->accept();
-
-        Q3ListViewItem *listItem =  syncList->currentItem();
-        if( listItem == 0 || !listItem->isVisible() )
-          return;
-        
-        SynchronizerFileItem *item = ((SyncViewItem *)listItem)->synchronizerItemRef();
-        if( item->isDir() ) {
-            listItem->setOpen( !listItem->isOpen() );
-            return;
-        }
-
-        if( !item->existsInLeft() || !item->existsInRight() )
-          return;
-        // call compare
-        doubleClicked( listItem );   
-        return;
-    }
-    break;
   case Qt::Key_Escape:
     if( btnStopComparing->isShown() && btnStopComparing->isEnabled() ) // is it comparing?
     {
@@ -2318,7 +2324,7 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
     else
     {
       e->accept();
-      if( syncList->childCount() != 0 )
+      if( syncList->topLevelItemCount() != 0 )
       {
          int result = KMessageBox::warningYesNo(this, i18n( "The synchronizer window contains data from a previous compare. If you exit, this data will be lost. Do you really want to exit?" ), 
                                                       i18n("Krusader::Synchronize Directories"),
@@ -2480,7 +2486,7 @@ void SynchronizerGUI::copyToClipboard( bool isLeft )
   {
     SynchronizerGUI::SyncViewItem *viewItem = (SynchronizerGUI::SyncViewItem *)currentItem->userData();
 
-    if( !viewItem || !viewItem->isSelected() || !viewItem->isVisible() )
+    if( !viewItem || !viewItem->isSelected() || viewItem->isHidden() )
       continue;
 
     SynchronizerFileItem *item = viewItem->synchronizerItemRef();

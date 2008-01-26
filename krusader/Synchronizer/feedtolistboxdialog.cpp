@@ -43,7 +43,6 @@
 #include <qlineedit.h>
 #include <qlabel.h>
 #include <qcombobox.h>
-#include <q3frame.h>
 //Added by qt3to4:
 #include <QVBoxLayout>
 
@@ -52,7 +51,7 @@
 #define  S_BOTH        2
 
 FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
-    Q3ListView *syncL, bool equOK) : KDialog( parent ),
+    QTreeWidget *syncL, bool equOK) : KDialog( parent ),
     synchronizer( sync ), syncList( syncL ), equalAllowed( equOK ), accepted( false ) {
 
   setCaption( i18n( "Krusader::Feed to listbox" ) );
@@ -73,9 +72,9 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
   int leftExistingNum = 0;
   int rightExistingNum = 0;
 
-  Q3ListViewItemIterator it( syncList );
-  while( it.current() ) {
-    SynchronizerGUI::SyncViewItem *item = (SynchronizerGUI::SyncViewItem *) it.current();
+  QTreeWidgetItemIterator it( syncList );
+  while( *it ) {
+    SynchronizerGUI::SyncViewItem *item = (SynchronizerGUI::SyncViewItem *) *it;
     SynchronizerFileItem *syncItem = item->synchronizerItemRef();
 
     if( syncItem && syncItem->isMarked() ) {
@@ -179,9 +178,9 @@ void FeedToListBoxDialog::slotOk() {
   QString name = lineEdit->text();
   KUrl::List urlList;
 
-  Q3ListViewItemIterator it( syncList );
-  for( ;it.current(); it++ ) {
-    SynchronizerGUI::SyncViewItem *item = (SynchronizerGUI::SyncViewItem *) it.current();
+  QTreeWidgetItemIterator it( syncList );
+  for( ;*it; it++ ) {
+    SynchronizerGUI::SyncViewItem *item = (SynchronizerGUI::SyncViewItem *) *it;
     SynchronizerFileItem *syncItem = item->synchronizerItemRef();
 
     if( !syncItem || !syncItem->isMarked() )

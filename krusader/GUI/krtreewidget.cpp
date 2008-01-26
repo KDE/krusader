@@ -116,7 +116,7 @@ bool KrTreeWidget::event ( QEvent * event )
 
               QTreeWidgetItem *parent = item;
 
-              while( (parent = item->parent()) )
+              while( (parent = parent->parent()) )
                 level++;
 
               if( rootIsDecorated() )
@@ -157,6 +157,9 @@ void KrTreeWidget::mousePressEvent ( QMouseEvent * event )
 
     QTreeWidgetItem * item = itemAt( pos );
     int column = columnAt( pos.x() );
+
+    QTreeWidget::mousePressEvent( event );
+
     emit itemRightClicked( item, column );
   }
   else
