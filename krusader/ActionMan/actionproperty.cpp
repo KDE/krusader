@@ -83,6 +83,7 @@ ActionProperty::ActionProperty( QWidget *parent, KrAction *action )
    connect( leDifferentUser, SIGNAL( textChanged(const QString&) ), SLOT( setModified() ) );
    connect( chkDifferentUser, SIGNAL( clicked() ), SLOT( setModified() ) );
    connect( chkConfirmExecution, SIGNAL( clicked() ), SLOT( setModified() ) );
+   connect( chkSeparateStdError, SIGNAL( clicked() ), SLOT( setModified() ) );
    // The modified-state of the ShowOnly-lists is tracked in the access-functions below
 }
 
