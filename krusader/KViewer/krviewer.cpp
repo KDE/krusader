@@ -37,7 +37,7 @@
 #include <kdebug.h>
 #include <kde_file.h>
 #include <khtml_part.h>
-#include <k3process.h>
+#include <kprocess.h>
 #include <kfileitem.h> 
 #include <ktoolbar.h>
 // Krusader includes
@@ -279,13 +279,14 @@ void KrViewer::edit( KUrl url, Mode mode, int new_window, QWidget * parent ) {
 		new_window = group.readEntry( "View In Separate Window",_ViewInSeparateWindow );
 
 	if ( edit != "internal editor" ) {
-		K3Process proc;
+		KProcess proc;
 		// if the file is local, pass a normal path and not a url. this solves
 		// the problem for editors that aren't url-aware
 		if ( url.isLocalFile() )
 			proc << QStringList::split( ' ', edit ) << url.path();
-		else proc << QStringList::split( ' ', edit ) << url.prettyUrl();
-		if ( !proc.start( K3Process::DontCare ) )
+		else
+			proc << QStringList::split( ' ', edit ) << url.prettyUrl();
+		if ( !proc.startDetached() )
 			KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + edit + "\"" );
 		return ;
 	}
