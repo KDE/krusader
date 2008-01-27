@@ -55,26 +55,4 @@ private:
 
 // TODO: make KrServices a namespace and move it there
 
-// wraps over kprocess, but buffers stdout and stderr and allows easy access to them later
-// note, that you still have to enable stdout,stderr in KEasyProcess::start() for buffering
-// to happen (ie: start(KEasyProcess::Block, KEasyProcess::AllOutput);)
-class KEasyProcess: public K3Process {
-	Q_OBJECT
-public:
-	KEasyProcess(QObject *parent);
-	KEasyProcess();
-	virtual ~KEasyProcess() {}
-
-	const QString& getStdout() const { return _stdout; }
-	const QString& getStderr() const { return _stderr; }
-
-protected slots:
-	void receivedStdout (K3Process *proc, char *buffer, int buflen);
-	void receivedStderr (K3Process *proc, char *buffer, int buflen);
-	void init();
-
-private:
-	QString _stdout, _stderr;
-};
-
 #endif

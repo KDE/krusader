@@ -177,27 +177,3 @@ QString KrServices::escape( QString name ) {
   return name;
 }
 
-
-// ------- KEasyProcess
-KEasyProcess::KEasyProcess(QObject *parent): K3Process(parent) {
-	init();
-}
-
-KEasyProcess::KEasyProcess(): K3Process() {
-	init();
-}
-
-void KEasyProcess::init() {
-	connect(this, SIGNAL(receivedStdout(K3Process *, char *, int)),
-		this, SLOT(receivedStdout(K3Process *, char *, int)));
-	connect(this, SIGNAL(receivedStderr(K3Process *, char *, int)),
-		this, SLOT(receivedStderr(K3Process *, char *, int)));
-}
-
-void KEasyProcess::receivedStdout (K3Process * /* proc */, char *buffer, int buflen) {
-	_stdout+=QString::fromLocal8Bit(buffer, buflen);
-}
-
-void KEasyProcess::receivedStderr (K3Process * /* proc */, char *buffer, int buflen) {
-	_stderr+=QString::fromLocal8Bit(buffer, buflen);
-}
