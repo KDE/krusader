@@ -14,7 +14,7 @@
 #define KRACTION_H
 
 #include <kaction.h>
-#include <k3process.h>
+#include <kprocess.h>
 #include <kdialog.h>
 #include <qbytearray.h>
 #include "kractionbase.h"
@@ -129,9 +129,11 @@ class KrActionProcDlg: public KDialog {
    public:
       KrActionProcDlg( QString caption, bool enableStderr = false, QWidget *parent = 0 );
 
+   public slots:
+      void addStderr(const QString& str);
+      void addStdout(const QString& str);
+
    protected slots:
-      void addStderr( K3Process *proc, char *buffer, int buflen );
-      void addStdout( K3Process *proc, char *buffer, int buflen );
       void toggleFixedFont( bool state );
       void slotUser1(); ///< This is used to save the buffer to disc
 
@@ -157,12 +159,14 @@ class KrActionProc: public QObject {
       void start( QStringList cmdLineList );
 
    protected slots:
-      void kill() { _proc->kill( SIGINT ); }
-      void processExited( K3Process *proc );
+      void kill() { _proc->kill(); }
+      void processExited( int exitCode, QProcess::ExitStatus exitStatus );
+      void addStderr();
+      void addStdout();
 
    private:
       KrActionBase* _action;
-      K3Process *_proc;
+      KProcess *_proc;
       QString _stdout;
       QString _stderr;
       KrActionProcDlg *_output;

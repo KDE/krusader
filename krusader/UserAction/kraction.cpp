@@ -15,6 +15,7 @@
 #include <klocale.h>
 #include <kinputdialog.h>
 #include <kactioncollection.h>
+#include <kshell.h>
 #include <qtextedit.h>
 #include <qtextstream.h>
 #include <qboxlayout.h>
@@ -120,18 +121,18 @@ KrActionProcDlg::KrActionProcDlg( QString caption, bool enableStderr, QWidget *p
    connect( this, SIGNAL( user1Clicked() ), this, SLOT( slotUser1() ) );
 }
 
-void KrActionProcDlg::addStderr( K3Process *, char *buffer, int buflen ) {
+void KrActionProcDlg::addStderr(const QString& str) {
    if (_stderr)
-      _stderr->append( QString::fromLatin1( buffer, buflen ) );
+      _stderr->append(str);
    else {
       _stdout->setItalic(true);
-      _stdout->append( QString::fromLatin1( buffer, buflen ) );
+      _stdout->append(str);
       _stdout->setItalic(false);
    }
 }
 
-void KrActionProcDlg::addStdout( K3Process *, char *buffer, int buflen ) {
-   _stdout->append( QString::fromLatin1( buffer, buflen ) );
+void KrActionProcDlg::addStdout(const QString& str) {
+   _stdout->append(str);
 }
 
 void KrActionProcDlg::toggleFixedFont( bool state ) {
@@ -192,11 +193,9 @@ void KrActionProcDlg::currentTextEditChanged() {
 ////////////////////////////////////  KrActionProc  ////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-KrActionProc::KrActionProc( KrActionBase* action ) : QObject(), _action( action ), _proc( new K3Process(this) ), _output( 0 ) {
-   _proc->setUseShell( true );
-
-   connect( _proc, SIGNAL( processExited( K3Process* ) ),
-            this, SLOT( processExited( K3Process* ) ) ) ;
+KrActionProc::KrActionProc( KrActionBase* action ) : QObject(), _action( action ), _proc( new KProcess(this) ), _output( 0 ) {
+   connect( _proc, SIGNAL( finished( int, QProcess::ExitStatus ) ),
+            this, SLOT( processExited( int, QProcess::ExitStatus ) ) ) ;
 }
 
 KrActionProc::~KrActionProc() {
@@ -210,8 +209,9 @@ void KrActionProc::start( QString cmdLine ) {
 }
 
 void KrActionProc::start( QStringList cmdLineList ) {
-   _proc->clearArguments();
-   QString cmd;
+   _proc->clearProgram(); // this clears the arglist too
+   QString cmd; // This is the command the user wants to execute
+   QStringList shellCmd; // this is the command which is really executed (with  maybe kdesu, maybe konsole, ...)
 
    if ( ! _action->startpath().isEmpty() )
       _proc->setWorkingDirectory( _action->startpath() );
@@ -245,17 +245,17 @@ void KrActionProc::start( QStringList cmdLineList ) {
            QString term = group.readEntry( "Terminal", _UserActions_Terminal );
 
             if ( _action->user().isEmpty() )
-               ( *_proc ) << term << cmd;
+               shellCmd << term << cmd;
             else
-//                ( *_proc )  << "kdesu" << "-u" << *_properties->user() << "-c" << K3Process::quote("konsole --noclose -e " + K3Process::quote(cmd) );
-               ( *_proc )  << "kdesu" << "-u" << _action->user() << "-c" << K3Process::quote( term + " " + cmd );
+               shellCmd  << "kdesu" << "-u" << _action->user() << "-c" << KShell::quoteArg( term + " " + cmd );
          } else { // no terminal, no output collection, start&forget
             if ( _action->user().isEmpty() )
-               ( *_proc ) << cmd;
+               shellCmd << cmd;
             else
-               ( *_proc ) << "kdesu" << "-u" << _action->user() << "-c" << K3Process::quote(cmd);
+               shellCmd << "kdesu" << "-u" << _action->user() << "-c" << KShell::quoteArg(cmd);
          }
-         _proc->start( K3Process::NotifyOnExit, ( K3Process::Communication ) ( K3Process::Stdout | K3Process::Stderr ) );
+         _proc->setShellCommand(shellCmd.join(" "));
+         _proc->start();
       }
    }
    else { // collect output
@@ -264,8 +264,9 @@ void KrActionProc::start( QStringList cmdLineList ) {
          separateStderr = true;
       _output = new KrActionProcDlg( _action->text(), separateStderr );
       // connect the output to the dialog
-      connect( _proc, SIGNAL( receivedStderr( K3Process*, char*, int ) ), _output, SLOT( addStderr( K3Process*, char *, int ) ) );
-      connect( _proc, SIGNAL( receivedStdout( K3Process*, char*, int ) ), _output, SLOT( addStdout( K3Process*, char *, int ) ) );
+      _proc->setOutputChannelMode( KProcess::SeparateChannels );
+      connect( _proc, SIGNAL( readyReadStandardError() ), SLOT( addStderr() ) );
+      connect( _proc, SIGNAL( readyReadStandardOutput() ), SLOT( addStdout() ) );
       connect( _output, SIGNAL( cancelClicked() ), this, SLOT( kill() ) );
       _output->show();
       for ( QStringList::Iterator it = cmdLineList.begin(); it != cmdLineList.end(); ++it) {
@@ -277,22 +278,36 @@ void KrActionProc::start( QStringList cmdLineList ) {
          cmd += *it;
       }
       if ( _action->user().isEmpty() )
-         ( *_proc ) << cmd;
+         shellCmd << cmd;
       else
          // "-t" is nessesary that kdesu displays the terminal-output of the command
-         ( *_proc ) << "kdesu" << "-t" << "-u" << _action->user() << "-c" << K3Process::quote(cmd);
-      _proc->start( K3Process::NotifyOnExit, ( K3Process::Communication ) ( K3Process::Stdout | K3Process::Stderr ) );
+         shellCmd << "kdesu" << "-t" << "-u" << _action->user() << "-c" << KShell::quoteArg(cmd);
+      _proc->setShellCommand(shellCmd.join(" "));
+      _proc->start();
    }
 
 }
 
-void KrActionProc::processExited( K3Process * ) {
+void KrActionProc::processExited( int exitCode, QProcess::ExitStatus exitStatus ) {
    // enable the 'close' button on the dialog (if active), disable 'kill' button
    if ( _output ) {
+      // TODO tell the user the programms exit code
       _output->enableButtonOk( true );
       _output->enableButtonCancel( false);
    }
    delete this; // banzai!!
+}
+
+void KrActionProc::addStderr() {
+   if (_output) {
+      _output->addStderr(QString::fromLocal8Bit(_proc->readAllStandardError().data()));
+   }
+}
+
+void KrActionProc::addStdout() {
+   if (_output) {
+      _output->addStdout(QString::fromLocal8Bit(_proc->readAllStandardOutput().data()));
+   }
 }
 
 
