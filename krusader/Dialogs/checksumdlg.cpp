@@ -1,6 +1,7 @@
 #include "checksumdlg.h"
 #include "../krusader.h"
 #include <klocale.h>
+#include <kprocess.h>
 #include <qlayout.h>
 #include <qlabel.h>
 #include <qcheckbox.h>
@@ -28,9 +29,8 @@
 #include <kstandarddirs.h>
 
 class CS_Tool; // forward
-typedef void PREPARE_PROC_FUNC(K3Process& proc, CS_Tool *self, const QStringList& files, 
-	const QString checksumFile, bool recursive, const QString& stdoutFileName, 
-	const QString& stderrFileName,	const QString& type=QString());
+typedef void PREPARE_PROC_FUNC(KProcess& proc, CS_Tool *self, const QStringList& files,
+	const QString checksumFile, bool recursive, const QString& type=QString());
 typedef QStringList GET_FAILED_FUNC(const QStringList& stdOut, const QStringList& stdErr);
 
 class CS_Tool {
@@ -55,22 +55,18 @@ public:
 };
 
 // handles md5sum and sha1sum
-void sumCreateFunc(K3Process& proc, CS_Tool *self, const QStringList& files, 
-	const QString, bool recursive, const QString& stdoutFileName, 
-	const QString& stderrFileName, const QString&) {
-	proc.setUseShell(true, "/bin/bash");
+void sumCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
+	const QString, bool recursive, const QString&) {
 	proc << KrServices::fullPathName( self->binary );
 	Q_ASSERT(!recursive); 
-	proc << files << "1>" << stdoutFileName << "2>" << stderrFileName;	
+	proc << files;
 }
 
-void sumVerifyFunc(K3Process& proc, CS_Tool *self, const QStringList& /* files */, 
-	const QString checksumFile, bool recursive, const QString& stdoutFileName, 
-	const QString& stderrFileName, const QString& /* type */) {
-	proc.setUseShell(true, "/bin/bash");
+void sumVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& /* files */,
+	const QString checksumFile, bool recursive, const QString& /* type */) {
 	proc << KrServices::fullPathName( self->binary );
 	Q_ASSERT(!recursive);
-	proc << "-c" << checksumFile << "1>" << stdoutFileName << "2>" << stderrFileName;
+	proc << "-c" << checksumFile;
 }
 
 QStringList sumFailedFunc(const QStringList& stdOut, const QStringList& stdErr) {
@@ -90,22 +86,18 @@ QStringList sumFailedFunc(const QStringList& stdOut, const QStringList& stdErr) 
 }
 
 // handles *deep binaries
-void deepCreateFunc(K3Process& proc, CS_Tool *self, const QStringList& files, 
-	const QString, bool recursive, const QString& stdoutFileName, 
-	const QString& stderrFileName, const QString&) {
-	proc.setUseShell(true, "/bin/bash");
+void deepCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
+	const QString, bool recursive, const QString&) {
 	proc << KrServices::fullPathName( self->binary );
 	if (recursive) proc << "-r";
-	proc << "-l" << files << "1>" << stdoutFileName << "2>" << stderrFileName;
+	proc << "-l" << files;
 }
 
-void deepVerifyFunc(K3Process& proc, CS_Tool *self, const QStringList& files, 
-	const QString checksumFile, bool recursive, const QString& stdoutFileName, 
-	const QString& stderrFileName, const QString&) {
-	proc.setUseShell(true, "/bin/bash");
+void deepVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
+	const QString checksumFile, bool recursive, const QString&) {
 	proc << KrServices::fullPathName( self->binary );
 	if (recursive) proc << "-r";
-	proc << "-x" << checksumFile << files << "1>" << stdoutFileName << "2>" << stderrFileName;
+	proc << "-x" << checksumFile << files;
 }
 
 QStringList deepFailedFunc(const QStringList& stdOut, const QStringList&/* stdErr */) {
@@ -114,22 +106,18 @@ QStringList deepFailedFunc(const QStringList& stdOut, const QStringList&/* stdEr
 }
 
 // handles cfv binary
-void cfvCreateFunc(K3Process& proc, CS_Tool *self, const QStringList& files, 
-	const QString, bool recursive, const QString& stdoutFileName, 
-	const QString& stderrFileName, const QString& type) {
-	proc.setUseShell(true, "/bin/bash");
+void cfvCreateFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
+	const QString, bool recursive, const QString& type) {
 	proc << KrServices::fullPathName( self->binary ) << "-C" << "-VV";
 	if (recursive) proc << "-rr";
-	proc << "-t" << type << "-f-" << "-U" << files << "1>" << stdoutFileName << "2>" << stderrFileName;	
+	proc << "-t" << type << "-f-" << "-U" << files;
 }
 
-void cfvVerifyFunc(K3Process& proc, CS_Tool *self, const QStringList& /* files */, 
-	const QString checksumFile, bool recursive, const QString& stdoutFileName, 
-	const QString& stderrFileName, const QString&type) {
-	proc.setUseShell(true, "/bin/bash");
+void cfvVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& /* files */,
+	const QString checksumFile, bool recursive, const QString&type) {
 	proc << KrServices::fullPathName( self->binary ) << "-M";
 	if (recursive) proc << "-rr";
-	proc << "-U" << "-VV" << "-t" << type << "-f" << checksumFile << "1>" << stdoutFileName << "2>" << stderrFileName;// << files;
+	proc << "-U" << "-VV" << "-t" << type << "-f" << checksumFile;// << files;
 }
 
 QStringList cfvFailedFunc(const QStringList& /* stdOut */, const QStringList& stdErr) {
@@ -275,15 +263,20 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	// else implied: run the process
 	tmpOut = new K3TempFile(KStandardDirs::locateLocal("tmp", "krusader"), ".stdout" );
 	tmpErr = new K3TempFile(KStandardDirs::locateLocal("tmp", "krusader"), ".stderr" );
-	K3Process proc;
+	KProcess proc;
 	CS_Tool *mytool = tools.at(method->currentItem());
-	mytool->create(proc, mytool, KrServices::quote(files), QString(), containFolders, 
-		tmpOut->name(), tmpErr->name(), method->currentText());
+	mytool->create(proc, mytool, files, QString(), containFolders, method->currentText());
+	proc.setOutputChannelMode(KProcess::SeparateChannels); // without this the next 2 lines have no effect!
+	proc.setStandardOutputFile(tmpOut->name());
+	proc.setStandardErrorFile(tmpErr->name());
+	proc.setWorkingDirectory(path);
 	
 	krApp->startWaiting(i18n("Calculating checksums ..."), 0, true);	
 	QApplication::setOverrideCursor( Qt::WaitCursor );
-	bool r = proc.start(K3Process::NotifyOnExit, K3Process::AllOutput);
-	if (r) while ( proc.isRunning() ) {
+	proc.start();
+	// TODO make use of asynchronous process starting. waitForStarted(int msec = 30000) is blocking
+	// it would be better to connect to started(), error() and finished()
+	if (proc.waitForStarted()) while ( proc.state() == QProcess::Running ) {
 		usleep( 500 );
 		qApp->processEvents();
 		if (krApp->wasWaitingCancelled()) { // user cancelled
@@ -294,7 +287,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
    };
 	krApp->stopWait();
 	QApplication::restoreOverrideCursor();
-	if (!r || !proc.normalExit()) {	
+	if (proc.exitStatus() != QProcess::NormalExit) {
 		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.</qt>", mytool->binary));
 		return;
 	}
@@ -403,12 +396,19 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	// else implied: run the process
 	tmpOut = new K3TempFile(KStandardDirs::locateLocal("tmp", "krusader"), ".stdout" );
 	tmpErr = new K3TempFile(KStandardDirs::locateLocal("tmp", "krusader"), ".stderr" );
-	K3Process proc;
-	mytool->verify(proc, mytool, KrServices::quote(files), KrServices::quote(file), containFolders, tmpOut->name(), tmpErr->name(), extension);
+	KProcess proc;
+	mytool->verify(proc, mytool, files, file, containFolders, extension);
+	proc.setOutputChannelMode(KProcess::SeparateChannels); // without this the next 2 lines have no effect!
+	proc.setStandardOutputFile(tmpOut->name());
+	proc.setStandardErrorFile(tmpErr->name());
+	proc.setWorkingDirectory(path);
+
 	krApp->startWaiting(i18n("Verifying checksums ..."), 0, true);	
 	QApplication::setOverrideCursor( Qt::WaitCursor );
-	bool r = proc.start(K3Process::NotifyOnExit, K3Process::AllOutput);
-	if (r) while ( proc.isRunning() ) {
+	proc.start();
+	// TODO make use of asynchronous process starting. waitForStarted(int msec = 30000) is blocking
+	// it would be better to connect to started(), error() and finished()
+	if (proc.waitForStarted()) while ( proc.state() == QProcess::Running ) {
 		usleep( 500 );
   		qApp->processEvents();
 		if (krApp->wasWaitingCancelled()) { // user cancelled
@@ -417,7 +417,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 			return;
 		}
    };
-	if (!r || !proc.normalExit()) {	
+	if (proc.exitStatus() != QProcess::NormalExit) {
 		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.</qt>", mytool->binary));
 		return;
 	}
