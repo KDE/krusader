@@ -33,11 +33,11 @@
 
 #include <kdialog.h>
 #include <kcombobox.h>
-#include <k3process.h>
 #include <khistorycombobox.h>
 #include <qcheckbox.h>
 #include <QKeyEvent>
 
+class KProcess;
 class KrTreeWidget;
 class QTreeWidgetItem;
 
@@ -59,8 +59,10 @@ public slots:
   virtual void      slotUser2();
   virtual void      slotUser3();
 
-  void              processStdout(K3Process *, char *, int);
-  void              processStderr(K3Process *proc, char *buffer, int length);
+  void              processStdout();
+  void              processStderr();
+  void              locateFinished();
+  void              locateError();
   void              slotRightClick(QTreeWidgetItem *);
   void              slotDoubleClick(QTreeWidgetItem *);
   void              updateFinished();
@@ -74,8 +76,6 @@ private:
   bool              find();
   void              nextLine();
 
-  bool              stopping;
-  
   bool              dontSearchPath;
   bool              onlyExist;
   bool              isCs;
@@ -99,7 +99,8 @@ private:
   QCheckBox        *existingFiles;
   QCheckBox        *caseSensitive;
 
-  static K3Process *updateProcess;
+  KProcess *locateProc;
+  static KProcess *updateProcess;
 };
 
 #endif /* __LOCATE_H__ */

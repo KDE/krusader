@@ -42,6 +42,7 @@
 #include "../panelmanager.h"
 #include "../kicons.h"
 #include <klocale.h>
+#include <kprocess.h>
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qfontmetrics.h>
@@ -103,7 +104,7 @@ public:
   }
 };
 
-K3Process *  LocateDlg::updateProcess = 0;
+KProcess *  LocateDlg::updateProcess = 0;
 LocateDlg * LocateDlg::LocateDialog = 0;
 
 LocateDlg::LocateDlg() : KDialog( 0 ), isFeedToListBox( false )
@@ -204,9 +205,9 @@ LocateDlg::LocateDlg() : KDialog( 0 ), isFeedToListBox( false )
 
   if( updateProcess )
   {
-    if( updateProcess->isRunning() )
+    if( updateProcess->state() == QProcess::Running )
     {
-      connect( updateProcess, SIGNAL(processExited(K3Process *)), this, SLOT(updateFinished()));
+      connect( updateProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(updateFinished()));
       enableButton( KDialog::User2, false );
     }
     else
@@ -224,7 +225,7 @@ void LocateDlg::slotUser1()   /* The stop / feed to listbox button */
   if( isFeedToListBox )
     feedToListBox();
   else
-    stopping = true;
+    locateProc->kill();
 }
 
 void LocateDlg::slotUser2()   /* The Update DB button */
@@ -233,12 +234,12 @@ void LocateDlg::slotUser2()   /* The Update DB button */
   {
     KConfigGroup group( krConfig, "Locate");
 
-    updateProcess = new K3Process();
+    updateProcess = new KProcess(); // don't set the parent to 'this'! That would cause this process to be deleted once the dialog is closed
     *updateProcess << KrServices::fullPathName( "updatedb" );
     *updateProcess << KrServices::separateArgs( group.readEntry( "UpdateDB Arguments" ) );
     
-    connect( updateProcess, SIGNAL(processExited(K3Process *)), this, SLOT(updateFinished()));
-    updateProcess->start(K3Process::NotifyOnExit);
+    connect( updateProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(updateFinished()));
+    updateProcess->start();
     enableButton( KDialog::User2, false );
   }
 }
@@ -279,18 +280,17 @@ void LocateDlg::slotUser3()   /* The locate button */
 
   qApp->processEvents();
 
-  stopping = false;
-  
-  K3Process locateProc;
-  connect( &locateProc, SIGNAL( receivedStdout(K3Process *, char *, int) ),
-            this, SLOT( processStdout(K3Process *, char *, int) ) );
-  connect( &locateProc, SIGNAL( receivedStderr(K3Process *, char *, int) ),
-            this, SLOT( processStderr(K3Process *, char *, int) ) );
+  locateProc = new KProcess(this);
+  locateProc->setOutputChannelMode(KProcess::SeparateChannels); // default is forwarding to the parent channels
+  connect( locateProc, SIGNAL( readyReadStandardOutput() ), SLOT( processStdout() ) );
+  connect( locateProc, SIGNAL( readyReadStandardError() ), SLOT( processStderr() ) );
+  connect( locateProc, SIGNAL( finished(int, QProcess::ExitStatus) ), SLOT( locateFinished() ) );
+  connect( locateProc, SIGNAL( error(QProcess::ProcessError) ), SLOT( locateError() ) );
 
-  locateProc << KrServices::fullPathName( "locate" );
+  *locateProc << KrServices::fullPathName( "locate" );
   if( !isCs )
-    locateProc << "-i";
-  locateProc << (pattern = locateSearchFor->currentText());
+    *locateProc << "-i";
+  *locateProc << (pattern = locateSearchFor->currentText());
   
   if( !pattern.startsWith( "*" ) )
     pattern = "*" + pattern;
@@ -298,13 +298,21 @@ void LocateDlg::slotUser3()   /* The locate button */
     pattern = pattern + "*";
   
   collectedErr = "";
-  bool result = !locateProc.start( K3Process::Block, K3Process::AllOutput );
-  if( !collectedErr.isEmpty() && ( !locateProc.normalExit() || locateProc.exitStatus() ) )
+  locateProc->start();
+}
+
+void LocateDlg::locateError()
+{
+  if( locateProc->error() == QProcess::FailedToStart )
+    KMessageBox::error( krApp, i18n( "Error during the start of 'locate' process!" ) );
+}
+
+void LocateDlg::locateFinished()
+{
+  if( locateProc->exitStatus() != QProcess::NormalExit || locateProc->exitStatus() )
   {
-     KMessageBox::error( krApp, i18n( "Locate produced the following error message:\n\n" ) + collectedErr );
-  }else if ( result )
-  {
-     KMessageBox::error( krApp, i18n( "Error during the start of 'locate' process!" ) );
+    if( !collectedErr.isEmpty() )
+      KMessageBox::error( krApp, i18n( "Locate produced the following error message:\n\n" ) + collectedErr );
   }
   enableButton( KDialog::User3, true );  /* enable the locate button */
   
@@ -319,21 +327,16 @@ void LocateDlg::slotUser3()   /* The locate button */
   }
 }
 
-void LocateDlg::processStdout(K3Process *proc, char *buffer, int length)
+void LocateDlg::processStdout()
 {
-  char *buf = new char[ length+1 ];
-  memcpy( buf, buffer, length );
-  buf[ length ] = 0;
-
-  remaining += QString::fromLocal8Bit( buf );
-  delete []buf;
+  remaining += QString::fromLocal8Bit( locateProc->readAllStandardOutput() );
 
   QStringList list = QStringList::split("\n", remaining );
   int items = list.size();
 
   for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it )
   {
-    if( --items == 0 && buffer[length-1] != '\n' )
+    if( --items == 0 && !remaining.endsWith('\n') )
       remaining = *it;
     else
     {
@@ -363,21 +366,11 @@ void LocateDlg::processStdout(K3Process *proc, char *buffer, int length)
       lastItem->setText( 0, *it );
     }
   }
-
-  if( stopping )
-    proc->kill( SIGKILL );
-  
-  qApp->processEvents();
 }
 
-void LocateDlg::processStderr(K3Process *, char *buffer, int length)
+void LocateDlg::processStderr()
 {
-  char *buf = new char[ length+1 ];
-  memcpy( buf, buffer, length );
-  buf[ length ] = 0;
-
-  collectedErr += QString::fromLocal8Bit( buf );
-  delete []buf;  
+  collectedErr += QString::fromLocal8Bit( locateProc->readAllStandardError() );
 }
 
 void LocateDlg::slotRightClick(QTreeWidgetItem *item)
