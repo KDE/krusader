@@ -35,7 +35,6 @@
 // QT includes
 #include <qdir.h>
 #include <qtimer.h>
-//Added by qt3to4:
 #include <QByteArray>
 // KDE includes
 #include <kmessagebox.h>

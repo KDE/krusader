@@ -41,7 +41,6 @@
 #include <qpixmap.h>
 #include <qspinbox.h>
 #include <qslider.h>
-//Added by qt3to4:
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QFrame>

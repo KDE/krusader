@@ -32,7 +32,6 @@
 #include "krusader.h"
 #include "defaults.h"
 #include <qstring.h>
-//Added by qt3to4:
 #include <QPixmap>
 
 QPixmap FL_LOADICON(QString name) {

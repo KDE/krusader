@@ -20,7 +20,6 @@
 
 #include <qwidget.h>
 #include <qtoolbutton.h>
-//Added by qt3to4:
 #include <kurl.h>
 
 class QMenu;

@@ -33,7 +33,6 @@
 #include "../kicons.h"
 #include "../VFS/krpermhandler.h"
 #include <qfontmetrics.h>
-//Added by qt3to4:
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <klocale.h>

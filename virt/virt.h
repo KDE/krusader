@@ -20,7 +20,6 @@
 
 #include <sys/types.h>
 #include <q3dict.h>
-//Added by qt3to4:
 #include <QByteArray>
 #include <kconfig.h>
 #include <kio/slavebase.h>

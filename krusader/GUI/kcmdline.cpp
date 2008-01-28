@@ -33,7 +33,6 @@
 #include "stdlib.h"
 #include <unistd.h>
 #include <qmessagebox.h>
-//Added by qt3to4:
 #include <QGridLayout>
 #include <QFrame>
 #include <QLabel>

@@ -35,7 +35,6 @@
 #include "../Dialogs/krdialogs.h"
 
 #include <qtimer.h>
-//Added by qt3to4:
 #include <QResizeEvent>
 #include <QGridLayout>
 #include <QHBoxLayout>

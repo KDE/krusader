@@ -33,7 +33,6 @@
 #include "../Dialogs/krdialogs.h"
 
 #include <qgroupbox.h>
-//Added by qt3to4:
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QPixmap>

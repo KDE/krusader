@@ -34,7 +34,6 @@
 #include <q3progressdialog.h>
 #include <qtimer.h>
 #include <qpointer.h>
-//Added by qt3to4:
 #include <QCloseEvent>
 #include <kio/jobclasses.h>
 

@@ -33,7 +33,6 @@ A
 #include <qtimer.h>
 #include <qlayout.h>
 #include <qlabel.h>
-//Added by qt3to4:
 #include <QVBoxLayout>
 // KDE Includes
 #include <klocale.h>

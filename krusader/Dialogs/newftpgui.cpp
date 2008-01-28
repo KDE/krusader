@@ -16,7 +16,6 @@
 #include <qvariant.h>
 #include <qimage.h>
 #include <qpixmap.h>
-//Added by qt3to4:
 #include <QEvent>
 #include <QHBoxLayout>
 #include <QVBoxLayout>

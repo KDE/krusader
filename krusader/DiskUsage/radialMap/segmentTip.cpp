@@ -10,7 +10,6 @@
 #include <klocale.h>
 #include <qpainter.h>
 #include <qtooltip.h>        //for its palette
-//Added by qt3to4:
 #include <QEvent>
 
 

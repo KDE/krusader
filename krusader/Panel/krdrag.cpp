@@ -30,7 +30,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 #include "krdrag.h"
 #include <k3urldrag.h>
-//Added by qt3to4:
 #include <Q3StrList>
 #include <QByteArray>
 

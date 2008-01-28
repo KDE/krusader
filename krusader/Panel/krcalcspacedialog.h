@@ -40,7 +40,6 @@
 #include <kio/jobclasses.h>
 // Qt Includes
 #include <qthread.h>
-//Added by qt3to4:
 #include <QLabel>
 // Krusader Includes
 #include "../VFS/vfs.h"

@@ -42,7 +42,6 @@
 #include <qcheckbox.h>
 #include <qlabel.h>
 #include <q3listbox.h>
-//Added by qt3to4:
 #include <QHBoxLayout>
 #include <kcombobox.h>
 #include <kshellcompletion.h>

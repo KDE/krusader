@@ -9,7 +9,6 @@
 
 #include <qpainter.h>
 #include <q3pointarray.h>
-//Added by qt3to4:
 #include <QPixmap>
 
 #define PROPS	_viewProperties

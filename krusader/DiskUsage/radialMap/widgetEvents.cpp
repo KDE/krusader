@@ -19,7 +19,6 @@
 #include <qapplication.h>//QApplication::setOverrideCursor()
 #include <qpainter.h>
 #include <qtimer.h>      //::resizeEvent()
-//Added by qt3to4:
 #include <QPaintEvent>
 #include <QResizeEvent>
 #include <QMouseEvent>

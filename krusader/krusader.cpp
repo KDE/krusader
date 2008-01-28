@@ -61,7 +61,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <qwidget.h>
 #include <qdatetime.h>
 #include <QActionGroup>
-//Added by qt3to4:
 #include <QMoveEvent>
 #include <QResizeEvent>
 #include <QShowEvent>

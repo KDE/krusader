@@ -34,7 +34,6 @@
 #include <unistd.h>
 #include <time.h>
 #include <qeventloop.h>
-//Added by qt3to4:
 #include <QList>
 #include <kapplication.h>
 #include <kio/directorysizejob.h>

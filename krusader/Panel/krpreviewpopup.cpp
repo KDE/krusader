@@ -21,7 +21,6 @@
 #include <klocale.h>
 #include "../KViewer/krviewer.h"
 #include "../krusader.h"
-//Added by qt3to4:
 #include <QPixmap>
 
 KrPreviewPopup::KrPreviewPopup(): id(1),noPreview(true){

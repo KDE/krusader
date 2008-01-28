@@ -32,7 +32,6 @@
 #define __DU_LINES_H__
 
 #include <qpixmap.h>
-//Added by qt3to4:
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <QResizeEvent>

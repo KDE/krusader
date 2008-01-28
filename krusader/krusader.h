@@ -45,7 +45,6 @@
 #include <kconfig.h>
 #include <kconfiggroup.h>
 #include <qstringlist.h>
-//Added by qt3to4:
 #include <QMoveEvent>
 #include <QShowEvent>
 #include <QResizeEvent>

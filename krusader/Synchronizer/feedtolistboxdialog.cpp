@@ -43,7 +43,6 @@
 #include <qlineedit.h>
 #include <qlabel.h>
 #include <qcombobox.h>
-//Added by qt3to4:
 #include <QVBoxLayout>
 
 #define  S_LEFT        0

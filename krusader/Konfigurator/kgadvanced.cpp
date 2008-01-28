@@ -31,7 +31,6 @@
 #include "kgadvanced.h"
 #include "../defaults.h"
 #include <klocale.h>
-//Added by qt3to4:
 #include <QGridLayout>
 #include <QLabel>
 #include <sys/param.h>

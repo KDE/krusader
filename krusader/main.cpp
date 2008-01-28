@@ -39,7 +39,6 @@
 #include <signal.h>
 #include <qeventloop.h>
 #include <QtDBus/QtDBus>
-//Added by qt3to4:
 #include <QPixmap>
 #include <QAbstractEventDispatcher>
 

@@ -26,7 +26,6 @@
 #include <qfileinfo.h>
 #include <qregexp.h>
 #include <qdir.h>
-//Added by qt3to4:
 #include <QByteArray>
 
 #include <kfileitem.h>

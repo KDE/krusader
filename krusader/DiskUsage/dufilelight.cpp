@@ -33,7 +33,6 @@
 #include <kmenu.h>
 #include <klocale.h>
 #include <kinputdialog.h>
-//Added by qt3to4:
 #include <QPixmap>
 #include <QMouseEvent>
 

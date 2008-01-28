@@ -32,7 +32,6 @@
 #define __KGDEPENDENCIES_H__
 
 #include "konfiguratorpage.h"
-//Added by qt3to4:
 #include <QGridLayout>
 
 class QTabWidget;

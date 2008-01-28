@@ -5,7 +5,6 @@
 #include <qlayout.h>
 #include <qlabel.h>
 #include <qcheckbox.h>
-//Added by qt3to4:
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <klineedit.h>

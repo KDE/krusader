@@ -35,7 +35,6 @@
 #include <qlist.h>
 #include <q3listview.h>
 #include <qstackedwidget.h>
-//Added by qt3to4:
 #include <QGridLayout>
 #include <QLabel>
 

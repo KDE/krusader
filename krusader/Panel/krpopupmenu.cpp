@@ -31,7 +31,6 @@
 #include "panelfunc.h"
 #include "../krusaderview.h"
 #include "../panelmanager.h"
-//Added by qt3to4:
 #include <QPixmap>
 #include <ktoolinvocation.h>
 #include <kactioncollection.h>

@@ -36,7 +36,6 @@
 #include <klocale.h>
 #include <kpushbutton.h>
 #include <kdebug.h>
-//Added by qt3to4:
 #include <QGridLayout>
 #include <QLabel>
 

@@ -33,7 +33,6 @@
 #include <qpixmap.h>
 #include <qvariant.h>
 #include <q3dict.h>
-//Added by qt3to4:
 #include <QDropEvent>
 #include <QList>
 #include "../krusader.h"

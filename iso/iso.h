@@ -25,7 +25,6 @@
 #include <kio/slavebase.h>
 #include <sys/types.h>
 #include "kisofile.h"
-//Added by qt3to4:
 #include <QByteArray>
 
 class KIso;

@@ -4,7 +4,6 @@
 #include "krbookmark.h"
 #include <qobject.h>
 #include <qpointer.h>
-//Added by qt3to4:
 #include <QEvent>
 #include <kmenu.h>
 #include <kurl.h>

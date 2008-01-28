@@ -34,7 +34,6 @@
 #include <qpainter.h>
 #include <qpen.h>
 #include <qcolordialog.h>
-//Added by qt3to4:
 #include <QPixmap>
 #include <QLabel>
 #include <kiconloader.h>

@@ -39,7 +39,6 @@
 #include <q3dict.h>
 #include <q3ptrdict.h>
 #include <qstack.h>
-//Added by qt3to4:
 #include <QResizeEvent>
 #include <QPixmap>
 #include <QKeyEvent>

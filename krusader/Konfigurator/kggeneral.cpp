@@ -30,7 +30,6 @@
 
 #include <qlabel.h>
 #include <qfontmetrics.h>
-//Added by qt3to4:
 #include <QGridLayout>
 #include <QFrame>
 #include <QPixmap>

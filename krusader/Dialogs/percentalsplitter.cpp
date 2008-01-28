@@ -31,7 +31,6 @@
 #include "percentalsplitter.h"
 #include <qpainter.h>
 #include <qapplication.h>
-//Added by qt3to4:
 #include <QLabel>
 #include <QList>
 #include <QFrame>

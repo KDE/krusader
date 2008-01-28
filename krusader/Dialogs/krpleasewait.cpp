@@ -33,7 +33,6 @@
 #include <qdatetime.h>
 #include <qapplication.h>
 #include <qpushbutton.h>
-//Added by qt3to4:
 #include <QLabel>
 #include <QCloseEvent>
 #include <Q3ProgressBar>

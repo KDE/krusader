@@ -33,7 +33,6 @@
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
 #include "diskusageviewer.h"
-//Added by qt3to4:
 #include <QGridLayout>
 #include <QLabel>
 

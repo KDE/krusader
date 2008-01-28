@@ -34,7 +34,6 @@
 #include <q3progressdialog.h>
 #include <q3listview.h>
 #include <qpixmapcache.h>
-//Added by qt3to4:
 #include <QKeyEvent>
 #include <QList>
 #include <QEvent>

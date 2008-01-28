@@ -33,7 +33,6 @@
 #include <klocale.h>
 #include <qdialog.h>
 #include <qmap.h>
-//Added by qt3to4:
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QVBoxLayout>

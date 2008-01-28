@@ -37,7 +37,6 @@
 #include <qdir.h>
 #include <qbitmap.h>
 #include <qpainter.h>
-//Added by qt3to4:
 #include <QPixmap>
 #include <kmimetype.h>
 #include <klocale.h>

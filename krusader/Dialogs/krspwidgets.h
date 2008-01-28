@@ -30,7 +30,6 @@
 #ifndef KRSPWIDGETS_H
 #define KRSPWIDGETS_H
 
-//Added by qt3to4:
 #include <QMouseEvent>
 #include <QEvent>
 #include <kurl.h>

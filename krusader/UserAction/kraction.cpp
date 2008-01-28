@@ -25,7 +25,6 @@
 #include <qcheckbox.h>
 #include <qfile.h>
 #include <qlabel.h>
-//Added by qt3to4:
 #include <QKeyEvent>
 #include <QEvent>
 #include <kaction.h>

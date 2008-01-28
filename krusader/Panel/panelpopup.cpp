@@ -9,7 +9,6 @@
 #include "krviewitem.h"
 #include <qbuttongroup.h>
 #include <qtoolbutton.h>
-//Added by qt3to4:
 #include <QDropEvent>
 #include <QGridLayout>
 #include <QFrame>

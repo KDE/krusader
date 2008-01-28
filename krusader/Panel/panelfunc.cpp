@@ -32,7 +32,6 @@ A
 #include <qdir.h>
 #include <qeventloop.h>
 #include <qclipboard.h> 
-//Added by qt3to4:
 #include <QList>
 // KDE Includes
 #include <klocale.h>

@@ -2,7 +2,6 @@
 #include <kstringhandler.h>
 #include <k3urldrag.h>
 #include <qtooltip.h>
-//Added by qt3to4:
 #include <QMouseEvent>
 #include <QDropEvent>
 #include <QDragEnterEvent>

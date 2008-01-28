@@ -34,7 +34,6 @@ A
 #include "krviewitem.h"
 #include <k3iconview.h>
 #include <qtimer.h>
-//Added by qt3to4:
 #include <QDragMoveEvent>
 #include <QDropEvent>
 #include <QDragLeaveEvent>

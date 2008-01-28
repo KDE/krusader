@@ -33,7 +33,6 @@
 #include <qpixmap.h>
 #include <qcursor.h>
 #include <qlayout.h>
-//Added by qt3to4:
 #include <QGridLayout>
 #include <QKeyEvent>
 #include <kfiledialog.h>

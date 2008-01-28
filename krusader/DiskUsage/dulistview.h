@@ -32,7 +32,6 @@
 #define __DU_LISTVIEW_H__
 
 #include "../GUI/krtreewidget.h"
-//Added by qt3to4:
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include "diskusage.h"

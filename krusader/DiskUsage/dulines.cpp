@@ -32,7 +32,6 @@
 #include "../kicons.h"
 #include "../krusader.h"
 #include "../VFS/krpermhandler.h"
-//Added by qt3to4:
 #include <QPixmap>
 #include <QMouseEvent>
 #include <QKeyEvent>

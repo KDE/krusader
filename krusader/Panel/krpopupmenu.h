@@ -6,7 +6,6 @@
 #include "listpanel.h"
 #include "krpreviewpopup.h"
 #include "../UserAction/useractionpopupmenu.h"
-//Added by qt3to4:
 #ifdef __LIBKONQ__
 #include <konq_popupmenu.h>
 #include <konqbookmarkmanager.h>

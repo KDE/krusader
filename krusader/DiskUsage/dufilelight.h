@@ -34,7 +34,6 @@
 #include "diskusage.h"
 #include "radialMap/widget.h"
 #include "filelightParts/Config.h"
-//Added by qt3to4:
 #include <QMouseEvent>
 
 class DUFilelight : public RadialMap::Widget

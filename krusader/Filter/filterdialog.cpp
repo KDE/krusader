@@ -33,7 +33,6 @@
 #include "generalfilter.h"
 
 #include <klocale.h>
-//Added by qt3to4:
 #include <QGridLayout>
 
 FilterDialog::FilterDialog ( QWidget *parent )

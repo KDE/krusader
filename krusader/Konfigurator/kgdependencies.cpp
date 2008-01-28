@@ -32,7 +32,6 @@
 #include "../krservices.h"
 #include "../krusader.h"
 #include <qtabwidget.h>
-//Added by qt3to4:
 #include <QGridLayout>
 #include <klocale.h>
 #include <kmessagebox.h>

@@ -36,7 +36,6 @@
 #include <sys/param.h>
 #include <kdialog.h>
 #include <q3listview.h>
-//Added by qt3to4:
 #include <QFrame>
 #include <qtimer.h>
 #include <kurl.h>

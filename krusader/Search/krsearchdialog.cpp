@@ -46,7 +46,6 @@
 #include <kinputdialog.h>
 #include <qregexp.h>
 #include <qfontmetrics.h>
-//Added by qt3to4:
 #include <QHBoxLayout>
 #include <QKeyEvent>
 #include <QLabel>

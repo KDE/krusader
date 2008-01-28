@@ -42,7 +42,6 @@
 #include <qdir.h>
 #include <qtimer.h>
 #include <QTime>
-//Added by qt3to4:
 #include <QFrame>
 #include <QVBoxLayout>
 #include <kio/job.h>

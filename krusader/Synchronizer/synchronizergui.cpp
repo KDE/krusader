@@ -41,7 +41,6 @@
 #include "synchronizedialog.h"
 #include "feedtolistboxdialog.h"
 #include <qlayout.h>
-//Added by qt3to4:
 #include <qgroupbox.h>
 #include <QResizeEvent>
 #include <QLabel>

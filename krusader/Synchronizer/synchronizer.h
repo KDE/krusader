@@ -37,7 +37,6 @@
 #include <q3ptrvector.h>
 #include <qmap.h>
 #include <qcolor.h>
-//Added by qt3to4:
 #include <QList>
 #include <kio/job.h>
 #include <kdialog.h>

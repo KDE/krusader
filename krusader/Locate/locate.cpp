@@ -47,7 +47,6 @@
 #include <qfontmetrics.h>
 #include <qtreewidget.h>
 #include <qheaderview.h>
-//Added by qt3to4:
 #include <QKeyEvent>
 #include <QGridLayout>
 #include <QFrame>

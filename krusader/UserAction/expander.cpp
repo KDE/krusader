@@ -36,7 +36,6 @@
 #include <k3tempfile.h>
 #include <qstringlist.h>
 #include <qclipboard.h>
-//Added by qt3to4:
 #include <qtextstream.h>
 #include <QList>
 

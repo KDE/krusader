@@ -34,7 +34,6 @@
 #include <qwidget.h>
 #include <q3listbox.h>
 #include <qtoolbutton.h>
-//Added by qt3to4:
 #include <QKeyEvent>
 #include <klineedit.h>
 #include <kurl.h>

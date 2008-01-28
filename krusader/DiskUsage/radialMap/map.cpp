@@ -9,7 +9,6 @@
 #include <qfont.h>           //ctor
 #include <qfontmetrics.h>    //ctor
 #include <qpainter.h>
-//Added by qt3to4:
 #include <Q3PointArray>
 
 #include "builder.h"

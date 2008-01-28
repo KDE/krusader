@@ -38,7 +38,6 @@
 #include <kstandarddirs.h>
 #include <q3header.h>
 #include <qtabwidget.h>
-//Added by qt3to4:
 #include <QList>
 #include <QLabel>
 #include <QGridLayout>

@@ -5,7 +5,6 @@
 #include <sys/types.h>
 #include <time.h>
 #include <stdlib.h>
-//Added by qt3to4:
 #include <QPixmap>
 
 #define PROPS	static_cast<const KrViewProperties*>(_viewProperties)

@@ -40,7 +40,6 @@
 #include <q3listbox.h>
 #include <qlist.h>
 #include <qlineedit.h>
-//Added by qt3to4:
 #include <QPixmap>
 #include <kurlrequester.h>
 #include <qboxlayout.h>

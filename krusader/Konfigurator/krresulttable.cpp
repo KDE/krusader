@@ -30,7 +30,6 @@
 
 #include "krresulttable.h"
 #include <iostream>
-//Added by qt3to4:
 #include <QGridLayout>
 #include <QLabel>
 #include <qlist.h>

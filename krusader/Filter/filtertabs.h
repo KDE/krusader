@@ -32,7 +32,6 @@
 #define FILTERTABS_H
 
 #include <qtabwidget.h>
-//Added by qt3to4:
 #include <QList>
 
 #include "filterbase.h"

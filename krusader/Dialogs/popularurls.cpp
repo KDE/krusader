@@ -1,7 +1,6 @@
 #include <kmessagebox.h>
 #include <klocale.h>
 #include <qpushbutton.h>
-//Added by qt3to4:
 #include <QGridLayout>
 #include <qlist.h>
 #include <k3listview.h>

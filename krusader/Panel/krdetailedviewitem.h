@@ -36,7 +36,6 @@
 #include "../VFS/vfile.h"
 #include <k3listview.h>
 #include <qpointer.h>
-//Added by qt3to4:
 #include <QPixmap>
 
 #define FASTER

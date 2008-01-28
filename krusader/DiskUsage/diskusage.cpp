@@ -30,7 +30,6 @@
 
 #include <time.h>
 #include <qlayout.h>
-//Added by qt3to4:
 #include <QKeyEvent>
 #include <QLabel>
 #include <QGridLayout>
