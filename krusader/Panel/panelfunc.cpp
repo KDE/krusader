@@ -36,7 +36,7 @@ A
 #include <QList>
 // KDE Includes
 #include <klocale.h>
-#include <k3process.h>
+#include <kprocess.h>
 #include <kpropertiesdialog.h>
 #include <kmessagebox.h>
 #include <kcursor.h>
@@ -369,24 +369,21 @@ void ListPanelFunc::view() {
 }
 
 void ListPanelFunc::terminal() {
-	QString save = getcwd( 0, 0 );
-	chdir( panel->realPath().local8Bit() );
-
-	K3Process proc;
+	//FIXME nearly identical code is in krpopupmenu.cpp
+	KProcess proc;
 	KConfigGroup group( krConfig, "General" );
 	QString term = group.readEntry( "Terminal", _Terminal );
 	proc << KrServices::separateArgs( term );
-
+	proc.setWorkingDirectory(panel->realPath());
+#if 0 // I _think_ that this is no more nessesary since the process is now allways detached
 	if ( term.contains( "konsole" ) )    /* KDE 3.2 bug (konsole is killed by pressing Ctrl+C) */
 	{                                  /* Please remove the patch if the bug is corrected */
 		proc << "&";
 		proc.setUseShell( true );
 	}
-
-	if ( !proc.start( K3Process::DontCare ) )
+#endif
+	if ( !proc.startDetached() )
 		KMessageBox::sorry( krApp, i18n( "<qt>Can't open <b>%1</b></qt>", term) );
-
-	chdir( save.local8Bit() );
 }
 
 void ListPanelFunc::editFile() {

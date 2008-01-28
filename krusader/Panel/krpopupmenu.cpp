@@ -16,7 +16,7 @@
  ***************************************************************************/
 
 #include <klocale.h>
-#include <k3process.h>
+#include <kprocess.h>
 #include <krun.h>
 #include <kiconloader.h>
 #include <kmessagebox.h>
@@ -339,23 +339,25 @@ void KrPopupMenu::performAction(int id) {
          	}
          	break;
          case OPEN_TERM_ID :
-         	QString save = getcwd( 0, 0 );
-         	chdir( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ).local8Bit() );
-				K3Process proc;
+				//FIXME nearly identical code is in panelfunc.cpp
+				KProcess proc;
 				{
 				KConfigGroup saver( krConfig, "General");
          	QString term = saver.readEntry( "Terminal", _Terminal );
          	proc << KrServices::separateArgs( term );
-         	if ( !panel->func->getVFile(item)->vfile_isDir() ) proc << "-e" << item->name();
+         	proc.setWorkingDirectory(panel->func->files() ->vfs_getFile(item->name()).path());
+         	if ( !panel->func->getVFile(item)->vfile_isDir() )
+         	  proc << "-e" << item->name(); // FIXME this depends on term!!
+#if 0 // I _think_ that this is no more nessesary since the process is now allways detached
          	if ( term.contains( "konsole" ) ) {   /* KDE 3.2 bug (konsole is killed by pressing Ctrl+C) */
          	                                      /* Please remove the patch if the bug is corrected */
 					proc << "&";
             	proc.setUseShell( true );
          	}
-         	if ( !proc.start( K3Process::DontCare ) )
+#endif
+         	if ( !proc.startDetached() )
                KMessageBox::sorry( krApp, i18n( "Can't open \"%1\"", term) );
 				} // group-saver is blown out of scope here
-         	chdir( save.local8Bit() );
          	break;
 	}
    
