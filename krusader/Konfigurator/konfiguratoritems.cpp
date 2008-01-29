@@ -374,7 +374,7 @@ void KonfiguratorURLRequester::loadInitialValue()
 
 void KonfiguratorURLRequester::slotApply(QObject *,QString cls, QString name)
 {
-  KConfigGroup( krConfig, cls ).writeEntry( name, url() );
+  KConfigGroup( krConfig, cls ).writeEntry( name, url().pathOrUrl() );
 }
 
 void KonfiguratorURLRequester::slotSetDefaults(QObject *)
