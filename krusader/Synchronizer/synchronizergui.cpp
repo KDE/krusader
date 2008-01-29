@@ -1509,8 +1509,6 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   connect( syncList,SIGNAL(itemRightClicked(QTreeWidgetItem *, int)),
            this, SLOT(rightMouseClicked(QTreeWidgetItem *)));
-  connect( syncList,SIGNAL(itemDoubleClicked(QTreeWidgetItem *, int)),
-           this, SLOT(doubleClicked(QTreeWidgetItem *)));
   connect( syncList,SIGNAL(itemActivated(QTreeWidgetItem *, int)),
            this, SLOT(doubleClicked(QTreeWidgetItem *)));
   
