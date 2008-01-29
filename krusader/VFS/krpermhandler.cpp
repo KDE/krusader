@@ -50,9 +50,9 @@
 
 Q3Dict<uid_t> *KRpermHandler::passwdCache = 0L;
 Q3Dict<gid_t> *KRpermHandler::groupCache = 0L;
-Q3IntDict<char> *KRpermHandler::currentGroups = 0L;
-Q3IntDict<QString> *KRpermHandler::uidCache = 0L;
-Q3IntDict<QString> *KRpermHandler::gidCache = 0L;
+QHash<int, char>    *KRpermHandler::currentGroups = 0L;
+QHash<int, QString> *KRpermHandler::uidCache = 0L;
+QHash<int, QString> *KRpermHandler::gidCache = 0L;
 
 char KRpermHandler::writeable( QString perm, gid_t gid, uid_t uid, int rwx ) {
 	if( rwx != -1 )
@@ -63,7 +63,7 @@ char KRpermHandler::writeable( QString perm, gid_t gid, uid_t uid, int rwx ) {
 	// first check other permissions.
 	if ( perm[ 8 ] != '-' ) return ALLOWED_PERM;
 	// now check group permission
-	if ( ( perm[ 5 ] != '-' ) && ( currentGroups->find( gid ) ) )
+	if ( ( perm[ 5 ] != '-' ) && ( currentGroups->find( gid ) != currentGroups->end() ) )
 		return ALLOWED_PERM;
 	// the last chance - user permissions
 	if ( ( perm[ 2 ] != '-' ) && ( uid == getuid() ) )
@@ -81,7 +81,7 @@ char KRpermHandler::readable( QString perm, gid_t gid, uid_t uid, int rwx ) {
 	// first check other permissions.
 	if ( perm[ 7 ] != '-' ) return ALLOWED_PERM;
 	// now check group permission
-	if ( ( perm[ 4 ] != '-' ) && ( currentGroups->find( gid ) ) )
+	if ( ( perm[ 4 ] != '-' ) && ( currentGroups->find( gid ) != currentGroups->end() ) )
 		return ALLOWED_PERM;
 	// the last chance - user permissions
 	if ( ( perm[ 1 ] != '-' ) && ( uid == getuid() ) )
@@ -96,7 +96,7 @@ char KRpermHandler::executable( QString perm, gid_t gid, uid_t uid, int rwx ) {
 	// first check other permissions.
 	if ( perm[ 9 ] != '-' ) return ALLOWED_PERM;
 	// now check group permission
-	if ( ( perm[ 6 ] != '-' ) && ( currentGroups->find( gid ) ) )
+	if ( ( perm[ 6 ] != '-' ) && ( currentGroups->find( gid ) != currentGroups->end() ) )
 		return ALLOWED_PERM;
 	// the last chance - user permissions
 	if ( ( perm[ 3 ] != '-' ) && ( uid == getuid() ) )
@@ -168,16 +168,13 @@ void KRpermHandler::init() {
 	// init the groups and user caches
 	passwdCache	= new Q3Dict<uid_t>( 317 );
 	groupCache	= new Q3Dict<gid_t>( 317 );
-	currentGroups = new Q3IntDict<char>( 317 );
-	uidCache = new Q3IntDict<QString>( 317 );
-	gidCache = new Q3IntDict<QString>( 317 );
+	currentGroups = new QHash<int, char>();
+	uidCache = new QHash<int, QString>();
+	gidCache = new QHash<int, QString>();
 
 
 	passwdCache->setAutoDelete( true );
 	groupCache->setAutoDelete( true );
-	currentGroups->setAutoDelete( true );
-	uidCache->setAutoDelete( true );
-	gidCache->setAutoDelete( true );
 
 	// fill the UID cache
 	struct passwd *pass;
@@ -185,7 +182,7 @@ void KRpermHandler::init() {
 	while ( ( pass = getpwent() ) != 0L ) {
 		uid_temp = new uid_t( pass->pw_uid );
 		passwdCache->insert( pass->pw_name, uid_temp );
-		uidCache->insert( pass->pw_uid, new QString( pass->pw_name ) );
+		(*uidCache)[ pass->pw_uid ] = QString( pass->pw_name );
 	}
 	delete pass;
 	endpwent();
@@ -196,18 +193,17 @@ void KRpermHandler::init() {
 	while ( ( gr = getgrent() ) != 0L ) {
 		gid_temp = new gid_t( gr->gr_gid );
 		groupCache->insert( gr->gr_name, gid_temp );
-		gidCache->insert( gr->gr_gid, new QString( gr->gr_name ) );
+		(*gidCache)[ gr->gr_gid ] = QString( gr->gr_name );
 	}
 	delete gr;
 	endgrent();
 
 	// fill the groups for the current user
-	char * t = new char( 1 );
 	for ( int i = 0; i < groupNo; ++i ) {
-		currentGroups->insert( groupList[ i ], t );
+		(*currentGroups)[ groupList[ i ] ] = char( 1 );
 	}
 	// just to be sure add the effective gid...
-	currentGroups->insert( getegid(), t );
+	(*currentGroups)[ getegid() ] = char( 1 );
 }
 
 char KRpermHandler::ftpWriteable ( QString fileOwner, QString userName, QString perm ) {
@@ -336,14 +332,13 @@ uid_t KRpermHandler::user2uid ( QString user ) {
 }
 
 QString KRpermHandler::gid2group( gid_t groupId ) {
-	QString * group = gidCache->find( groupId );
-	if ( group ) return * group;
-	return QString( "???" );
+	if( gidCache->find( groupId ) == gidCache->end() )
+		return QString( "???" );
+	return (*gidCache)[ groupId ];
 }
 
 QString KRpermHandler::uid2user ( uid_t userId ) {
-	QString * user = uidCache->find( userId );
-	if ( user ) return * user;
-	return QString( "???" );
+	if( uidCache->find( userId ) == uidCache->end() )
+		return QString( "???" );
+	return (*uidCache)[ userId ];
 }
-
