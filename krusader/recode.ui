@@ -1,0 +1,297 @@
+<!DOCTYPE UI>
+<UI version="3.3" stdsetdef="1">
+<class>recodeDlg</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>recodeDlg</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>396</width>
+            <height>185</height>
+        </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>3</hsizetype>
+            <vsizetype>10</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+    </property>
+    <property name="caption">
+        <string>Recode file names</string>
+    </property>
+    <property name="sizeGripEnabled">
+        <bool>true</bool>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLayoutWidget" row="9" column="0" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>Layout1</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>0</number>
+                </property>
+                <property name="spacing">
+                    <number>6</number>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>Horizontal Spacing2</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>buttonOk</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;OK</string>
+                    </property>
+                    <property name="accel">
+                        <string></string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>true</bool>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>buttonCancel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Cancel</string>
+                    </property>
+                    <property name="accel">
+                        <string></string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QLabel" row="0" column="1">
+            <property name="name">
+                <cstring>labelInHdr</cstring>
+            </property>
+            <property name="text">
+                <string>INPUT:</string>
+            </property>
+        </widget>
+        <widget class="QLabel" row="0" column="2">
+            <property name="name">
+                <cstring>labelOutHdr</cstring>
+            </property>
+            <property name="text">
+                <string>OUTPUT:</string>
+            </property>
+        </widget>
+        <widget class="QLabel" row="1" column="0">
+            <property name="name">
+                <cstring>labelCharset</cstring>
+            </property>
+            <property name="text">
+                <string>Charset: </string>
+            </property>
+        </widget>
+        <widget class="KComboBox" row="1" column="1">
+            <property name="name">
+                <cstring>boxInCharset</cstring>
+            </property>
+            <property name="editable">
+                <bool>true</bool>
+            </property>
+        </widget>
+        <widget class="KComboBox" row="1" column="2">
+            <property name="name">
+                <cstring>boxOutCharset</cstring>
+            </property>
+            <property name="editable">
+                <bool>true</bool>
+            </property>
+        </widget>
+        <widget class="QLabel" row="2" column="0">
+            <property name="name">
+                <cstring>labelLineend</cstring>
+            </property>
+            <property name="text">
+                <string>End of line: </string>
+            </property>
+        </widget>
+        <widget class="KComboBox" row="2" column="1">
+            <property name="name">
+                <cstring>boxInLineend</cstring>
+            </property>
+            <property name="editable">
+                <bool>false</bool>
+            </property>
+        </widget>
+        <widget class="KComboBox" row="2" column="2">
+            <property name="name">
+                <cstring>boxOutLineend</cstring>
+            </property>
+            <property name="editable">
+                <bool>false</bool>
+            </property>
+        </widget>
+        <widget class="QLabel" row="3" column="0">
+            <property name="name">
+                <cstring>labelMime</cstring>
+            </property>
+            <property name="text">
+                <string>MIME Encoding: </string>
+            </property>
+        </widget>
+        <widget class="KComboBox" row="3" column="1">
+            <property name="name">
+                <cstring>boxInMime</cstring>
+            </property>
+            <property name="editable">
+                <bool>false</bool>
+            </property>
+        </widget>
+        <widget class="KComboBox" row="3" column="2">
+            <property name="name">
+                <cstring>boxOutMime</cstring>
+            </property>
+            <property name="editable">
+                <bool>false</bool>
+            </property>
+        </widget>
+        <widget class="QLabel" row="4" column="0">
+            <property name="name">
+                <cstring>labelDump</cstring>
+            </property>
+            <property name="text">
+                <string>Dump type: </string>
+            </property>
+        </widget>
+        <widget class="KComboBox" row="4" column="1">
+            <property name="name">
+                <cstring>boxInDump</cstring>
+            </property>
+            <property name="editable">
+                <bool>false</bool>
+            </property>
+        </widget>
+        <widget class="KComboBox" row="4" column="2">
+            <property name="name">
+                <cstring>boxOutDump</cstring>
+            </property>
+            <property name="editable">
+                <bool>false</bool>
+            </property>
+        </widget>
+        <widget class="QLabel" row="5" column="0">
+            <property name="name">
+                <cstring>labelLocation</cstring>
+            </property>
+            <property name="text">
+                <string>Location</string>
+            </property>
+        </widget>
+        <widget class="KURLRequester" row="5" column="1">
+            <property name="name">
+                <cstring>locInput</cstring>
+            </property>
+        </widget>
+        <widget class="KURLRequester" row="5" column="2">
+            <property name="name">
+                <cstring>locOutput</cstring>
+            </property>
+        </widget>
+        <widget class="KComboBox" row="6" column="1">
+            <property name="name">
+                <cstring>boxMethod</cstring>
+            </property>
+            <property name="editable">
+                <bool>false</bool>
+            </property>
+        </widget>
+        <widget class="QCheckBox" row="7" column="1">
+            <property name="name">
+                <cstring>checkName</cstring>
+            </property>
+            <property name="text">
+                <cstring>recode file name</cstring>
+            </property>
+            <property name="checked">
+                <bool>true</bool>
+            </property>
+        </widget>
+        <widget class="QCheckBox" row="8" column="1">
+            <property name="name">
+                <cstring>checkContent</cstring>
+            </property>
+            <property name="text">
+                <cstring>recode file contents</cstring>
+            </property>
+            <property name="checked">
+                <bool>false</bool>
+            </property>
+        </widget>
+        <widget class="QCheckBox" row="7" column="2">
+            <property name="name">
+                <cstring>checkDebug</cstring>
+            </property>
+            <property name="text">
+                <cstring>test; only prints the commands</cstring>
+            </property>
+            <property name="checked">
+                <bool>false</bool>
+            </property>
+        </widget>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>buttonOk</sender>
+        <signal>clicked()</signal>
+        <receiver>recodeDlg</receiver>
+        <slot>accept()</slot>
+    </connection>
+    <connection>
+        <sender>buttonCancel</sender>
+        <signal>clicked()</signal>
+        <receiver>recodeDlg</receiver>
+        <slot>reject()</slot>
+    </connection>
+</connections>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>kurlrequester.h</includehint>
+    <includehint>klineedit.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kurlrequester.h</includehint>
+    <includehint>klineedit.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kcombobox.h</includehint>
+    <includehint>klineedit.h</includehint>
+    <includehint>klineedit.h</includehint>
+</includehints>
+</UI>
