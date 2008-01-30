@@ -49,14 +49,17 @@
 #endif
 #endif
 
-SynchronizerDirList::SynchronizerDirList( QWidget *w, bool hidden ) : QObject(), Q3Dict<vfile>(), fileIterator( 0 ),
+SynchronizerDirList::SynchronizerDirList( QWidget *w, bool hidden ) : QObject(), QHash<QString, vfile *>(), fileIterator( 0 ),
                                    parentWidget( w ), busy( false ), result( false ), ignoreHidden( hidden ), currentUrl() {
-  setAutoDelete( true );
 }
 
 SynchronizerDirList::~SynchronizerDirList() {
   if( fileIterator )
     delete fileIterator;
+
+  QHashIterator< QString, vfile *> lit( *this );
+  while( lit.hasNext() )
+    delete lit.next().value();
 }
 
 vfile * SynchronizerDirList::search( const QString &name, bool ignoreCase ) {
@@ -76,11 +79,22 @@ vfile * SynchronizerDirList::search( const QString &name, bool ignoreCase ) {
 }
 
 vfile * SynchronizerDirList::first() {
-  return fileIterator->toFirst();
+  if( fileIterator == 0 )
+    fileIterator = new QHashIterator<QString, vfile *> ( *this );
+
+  fileIterator->toFront();
+  if( fileIterator->hasNext() )
+    return fileIterator->next().value();
+  return 0;
 }
 
 vfile * SynchronizerDirList::next() {
-  return ++(*fileIterator);
+  if( fileIterator == 0 )
+    fileIterator = new QHashIterator<QString, vfile *> ( *this );
+
+  if( fileIterator->hasNext() )
+    return fileIterator->next().value();
+  return 0;
 }
 
 bool SynchronizerDirList::load( const QString &urlIn, bool wait ) {
@@ -90,10 +104,14 @@ bool SynchronizerDirList::load( const QString &urlIn, bool wait ) {
   currentUrl = urlIn;
   KUrl url = KUrl( urlIn );
 
-  if( fileIterator == 0 )
-    fileIterator = new Q3DictIterator<vfile> ( *this );
-
+  QHashIterator< QString, vfile *> lit( *this );
+  while( lit.hasNext() )
+    delete lit.next().value();
   clear();
+  if( fileIterator ) {
+    delete fileIterator;
+    fileIterator = 0;
+  }
 
   if( url.isLocalFile() ) {
     QString path = url.path( KUrl::RemoveTrailingSlash );

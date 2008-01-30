@@ -32,12 +32,12 @@
 #define __SYNCHRONIZER_DIR_LIST_H__
 
 #include <qobject.h>
-#include <q3dict.h>
+#include <qhash.h>
 #include "../VFS/vfile.h"
 #include <kio/job.h>
 
 
-class SynchronizerDirList : public QObject, public Q3Dict<vfile>
+class SynchronizerDirList : public QObject, public QHash<QString, vfile *>
 {
   Q_OBJECT
 
@@ -61,7 +61,7 @@ signals:
   void finished( bool err );
 
 private:
-  Q3DictIterator<vfile> *fileIterator; //< Point to a dictionary of virtual files (vfile).
+  QHashIterator<QString, vfile *> *fileIterator; //< Point to a dictionary of virtual files (vfile).
   QWidget *parentWidget;
   bool     busy;
   bool     result;
