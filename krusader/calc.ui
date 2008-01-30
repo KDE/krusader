@@ -1,0 +1,267 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>calc</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>calc</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>244</width>
+            <height>193</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>JS Calculator</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLCDNumber" row="0" column="0">
+            <property name="name">
+                <cstring>display</cstring>
+            </property>
+            <property name="numDigits">
+                <number>18</number>
+            </property>
+        </widget>
+        <widget class="QLayoutWidget" row="1" column="0">
+            <property name="name">
+                <cstring>layout2</cstring>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QPushButton" row="1" column="3">
+                    <property name="name">
+                        <cstring>plus</cstring>
+                    </property>
+                    <property name="text">
+                        <string>+</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="0" column="4">
+                    <property name="name">
+                        <cstring>all_clear</cstring>
+                    </property>
+                    <property name="text">
+                        <string>AC</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="2" column="3">
+                    <property name="name">
+                        <cstring>minus</cstring>
+                    </property>
+                    <property name="text">
+                        <string>-</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="3" column="2" rowspan="1" colspan="2">
+                    <property name="name">
+                        <cstring>equals</cstring>
+                    </property>
+                    <property name="text">
+                        <string>=</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="1" column="4">
+                    <property name="name">
+                        <cstring>clear</cstring>
+                    </property>
+                    <property name="text">
+                        <string>CL</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="3" column="1">
+                    <property name="name">
+                        <cstring>zero</cstring>
+                    </property>
+                    <property name="text">
+                        <string>0</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="1" column="0">
+                    <property name="name">
+                        <cstring>four</cstring>
+                    </property>
+                    <property name="text">
+                        <string>4</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="0" column="1">
+                    <property name="name">
+                        <cstring>two</cstring>
+                    </property>
+                    <property name="text">
+                        <string>2</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="1" column="1">
+                    <property name="name">
+                        <cstring>five</cstring>
+                    </property>
+                    <property name="text">
+                        <string>5</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="0" column="2">
+                    <property name="name">
+                        <cstring>three</cstring>
+                    </property>
+                    <property name="text">
+                        <string>3</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="2" column="0">
+                    <property name="name">
+                        <cstring>seven</cstring>
+                    </property>
+                    <property name="text">
+                        <string>7</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="1" column="2">
+                    <property name="name">
+                        <cstring>six</cstring>
+                    </property>
+                    <property name="text">
+                        <string>6</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="2" column="1">
+                    <property name="name">
+                        <cstring>eight</cstring>
+                    </property>
+                    <property name="text">
+                        <string>8</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="2" column="2">
+                    <property name="name">
+                        <cstring>nine</cstring>
+                    </property>
+                    <property name="text">
+                        <string>9</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="0" column="0">
+                    <property name="name">
+                        <cstring>one</cstring>
+                    </property>
+                    <property name="text">
+                        <string>1</string>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget class="QPushButton" row="2" column="0">
+            <property name="name">
+                <cstring>setCap</cstring>
+            </property>
+            <property name="text">
+                <string>Set as caption</string>
+            </property>
+        </widget>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>plus</sender>
+        <signal>clicked()</signal>
+        <receiver>calc</receiver>
+        <slot>plus()</slot>
+    </connection>
+    <connection>
+        <sender>minus</sender>
+        <signal>clicked()</signal>
+        <receiver>calc</receiver>
+        <slot>minus()</slot>
+    </connection>
+    <connection>
+        <sender>equals</sender>
+        <signal>clicked()</signal>
+        <receiver>calc</receiver>
+        <slot>equals()</slot>
+    </connection>
+    <connection>
+        <sender>zero</sender>
+        <signal>clicked()</signal>
+        <receiver>calc</receiver>
+        <slot>zero()</slot>
+    </connection>
+    <connection>
+        <sender>four</sender>
+        <signal>clicked()</signal>
+        <receiver>calc</receiver>
+        <slot>four()</slot>
+    </connection>
+    <connection>
+        <sender>two</sender>
+        <signal>clicked()</signal>
+        <receiver>calc</receiver>
+        <slot>two()</slot>
+    </connection>
+    <connection>
+        <sender>five</sender>
+        <signal>clicked()</signal>
+        <receiver>calc</receiver>
+        <slot>five()</slot>
+    </connection>
+    <connection>
+        <sender>three</sender>
+        <signal>clicked()</signal>
+        <receiver>calc</receiver>
+        <slot>three()</slot>
+    </connection>
+    <connection>
+        <sender>seven</sender>
+        <signal>clicked()</signal>
+        <receiver>calc</receiver>
+        <slot>seven()</slot>
+    </connection>
+    <connection>
+        <sender>six</sender>
+        <signal>clicked()</signal>
+        <receiver>calc</receiver>
+        <slot>six()</slot>
+    </connection>
+    <connection>
+        <sender>eight</sender>
+        <signal>clicked()</signal>
+        <receiver>calc</receiver>
+        <slot>eight()</slot>
+    </connection>
+    <connection>
+        <sender>nine</sender>
+        <signal>clicked()</signal>
+        <receiver>calc</receiver>
+        <slot>nine()</slot>
+    </connection>
+    <connection>
+        <sender>one</sender>
+        <signal>clicked()</signal>
+        <receiver>calc</receiver>
+        <slot>one()</slot>
+    </connection>
+</connections>
+<slots>
+    <slot>one()</slot>
+    <slot>two()</slot>
+    <slot>three()</slot>
+    <slot>four()</slot>
+    <slot>five()</slot>
+    <slot>six()</slot>
+    <slot>seven()</slot>
+    <slot>eight()</slot>
+    <slot>nine()</slot>
+    <slot>zero()</slot>
+    <slot>plus()</slot>
+    <slot>minus()</slot>
+    <slot>equals()</slot>
+    <slot>setCap()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>
