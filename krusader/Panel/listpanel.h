@@ -59,9 +59,6 @@
 #include "krview.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
 
-// use our version of it, until kde fixes theirs
-#include "../MountMan/kdiskfreesp.h"
-
 class vfs;
 class vfile;
 class KrView;
@@ -78,6 +75,7 @@ class KPushButton;
 class ListPanelFunc;
 class Q3Header;
 class QSplitter;
+class KDiskFreeSpace;
 
 class ListPanel : public QWidget {
    friend class ListPanelFunc;
@@ -105,7 +103,7 @@ public:
    void setJumpBack( KUrl url );
 
 public slots:
-   void gotStats( const QString &mountPoint, unsigned long kBSize, unsigned long kBUsed, unsigned long kBAvail); // displays filesystem status
+   void gotStats( const QString &mountPoint, quint64 kBSize, quint64 kBUsed, quint64 kBAvail); // displays filesystem status
    void popRightClickMenu( const QPoint& );
    void popEmptyRightClickMenu( const QPoint & );
    void select( KRQuery query, bool select);

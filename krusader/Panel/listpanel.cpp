@@ -50,6 +50,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 // KDE includes
 #include <kmenu.h>
 #include <k3process.h>
+#include <kdiskfreespace.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 #include <kmimetype.h>
@@ -735,12 +736,12 @@ void ListPanel::slotGetStats( const KUrl& url ) {
 
    status->setText( i18n( "Mt.Man: working ..." ) );
 	statsAgent = KDiskFreeSpace::findUsageInfo( path );
-   connect( statsAgent, SIGNAL( foundMountPoint( const QString &, unsigned long, unsigned long, unsigned long ) ),
-            this, SLOT( gotStats( const QString &, unsigned long, unsigned long, unsigned long ) ) );
+   connect( statsAgent, SIGNAL( foundMountPoint( const QString &, quint64, quint64, quint64 ) ),
+            this, SLOT( gotStats( const QString &, quint64, quint64, quint64 ) ) );
 }
 
-void ListPanel::gotStats( const QString &mountPoint, unsigned long kBSize,
-                          unsigned long,  unsigned long kBAvail ) {
+void ListPanel::gotStats( const QString &mountPoint, quint64 kBSize,
+                          quint64,  quint64 kBAvail ) {
 	int perc = 0;
 	if (kBSize != 0) { // make sure that if totalsize==0, then perc=0
 		perc = (int)(((float)kBAvail / (float)kBSize)*100.0);

@@ -34,7 +34,6 @@
 #include "../krservices.h"
 #include "../kicons.h"
 #include "../krslots.h"
-#include "../MountMan/kdiskfreesp.h"
 #include "../MountMan/kmountman.h"
 
 #include <qfile.h>
@@ -54,6 +53,7 @@
 #include <kprotocolinfo.h>
 #include <kfileitem.h>
 #include <k3process.h>
+#include <kdiskfreespace.h>
 #include <qcursor.h>
 
 #ifdef Q_OS_LINUX
@@ -370,7 +370,7 @@ void MediaButton::slotPopupActivated( QAction * action ) {
 	}
 }
 
-void MediaButton::gettingSpaceData(const QString &mountPoint, unsigned long kBSize, unsigned long, unsigned long ) {
+void MediaButton::gettingSpaceData(const QString &mountPoint, quint64 kBSize, quint64, quint64 ) {
 	KUrl mediaURL = KUrl( mountPoint );
 	
 	KIO::filesize_t size = kBSize;
@@ -474,8 +474,8 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 	
 	if( isMounted ) {
 		KDiskFreeSpace *sp = KDiskFreeSpace::findUsageInfo( mp->mountPoint() );
-		connect( sp, SIGNAL( foundMountPoint( const QString &, unsigned long, unsigned long, unsigned long ) ),
-		         this, SLOT( gettingSpaceData( const QString&, unsigned long, unsigned long, unsigned long ) ) );
+		connect( sp, SIGNAL( foundMountPoint( const QString &, quint64, quint64, quint64 ) ),
+		         this, SLOT( gettingSpaceData( const QString&, quint64, quint64, quint64 ) ) );
 	}
 	
 	QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mime ) ->iconName() );

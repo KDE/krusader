@@ -47,6 +47,7 @@ A
 #include <qlayout.h>
 #include <qgroupbox.h>
 #include <k3process.h>
+#include <kdiskfreespace.h>
 #include <qcursor.h>
 #include <kdebug.h>
 #include <kguiitem.h>
@@ -59,9 +60,6 @@ A
 #else
 #define MTAB	"/etc/mtab"
 #endif
-
-// use our version of it until kde fixes theirs
-#include "kdiskfreesp.h"
 
 KMountManGUI::KMountManGUI() : KDialog( krApp ), info( 0 ), mountList( 0 ) {
    setCaption( i18n("Mount.Man") );
@@ -169,8 +167,8 @@ void KMountManGUI::getSpaceData() {
 			continue;
 		}
       KDiskFreeSpace *sp = KDiskFreeSpace::findUsageInfo( ( *it ) ->mountPoint() );
-      connect( sp, SIGNAL( foundMountPoint( const QString &, unsigned long, unsigned long, unsigned long ) ),
-               this, SLOT( gettingSpaceData( const QString&, unsigned long, unsigned long, unsigned long ) ) );
+      connect( sp, SIGNAL( foundMountPoint( const QString &, quint64, quint64, quint64 ) ),
+               this, SLOT( gettingSpaceData( const QString&, quint64, quint64, quint64 ) ) );
       connect( sp, SIGNAL( done() ), this, SLOT( gettingSpaceData() ) );
    }
 }
@@ -184,8 +182,8 @@ void KMountManGUI::gettingSpaceData() {
    }
 }
 
-void KMountManGUI::gettingSpaceData( const QString &mountPoint, unsigned long kBSize,
-                                     unsigned long /*kBUsed*/, unsigned long kBAvail ) {
+void KMountManGUI::gettingSpaceData( const QString &mountPoint, quint64 kBSize,
+                                     quint64 /*kBUsed*/, quint64 kBAvail ) {
    KSharedPtr<KMountPoint> m = KMountMan::findInListByMntPoint( mounted, mountPoint );
    if ( !( (bool)m ) ) { // this should never never never happen!
       KMessageBox::error( 0, i18n( "Critical Error" ),
