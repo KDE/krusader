@@ -48,7 +48,10 @@ QString KrViewItem::description() const {
 	if (dummyVfile) return i18n("Climb up the directory tree");
 	// else is implied
 	QString text = _vf->vfile_getName();
-	QString comment = KMimeType::mimeType(_vf->vfile_getMime())->comment(_vf->vfile_getUrl());
+	QString comment;
+	KMimeType::Ptr mt = KMimeType::mimeType(_vf->vfile_getMime());
+	if( mt )
+		comment = mt->comment(_vf->vfile_getUrl());
 	QString myLinkDest = _vf->vfile_getSymDest();
 	KIO::filesize_t mySize = _vf->vfile_getSize();
 	
@@ -57,8 +60,8 @@ QString KrViewItem::description() const {
 	
 	if (_vf->vfile_isSymLink() ){
 		QString tmp;
-		if ( comment.isEmpty() )	tmp = i18n ( "Symbolic Link" ) ;
-		else if( _vf->vfile_getMime() == "Broken Link !" ) tmp = i18n("(broken link !)");
+		if ( _vf->vfile_getMime() == "Broken Link !" ) tmp = i18n("(broken link !)");
+		else if ( comment.isEmpty() ) tmp = i18n ( "Symbolic Link" ) ;
 		else tmp = i18n("%1 (Link)", comment);
 	
 		text += "->";

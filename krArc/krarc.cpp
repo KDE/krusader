@@ -324,7 +324,8 @@ void kio_krarcProtocol::get(const KUrl& url, int tries ){
 		// Determine the mimetype of the file to be retrieved, and emit it.
 		// This is mandatory in all slaves (for KRun/BrowserRun to work).
 		KMimeType::Ptr mt = KMimeType::findByUrl( arcTempDir+file, 0, false /* NOT local URL */ );
-		emit mimeType( mt->name() );
+		if( mt )
+			emit mimeType( mt->name() );
 		proc << getCmd << convertName( arcFile->url().path() )+" ";
 		if( arcType != "gzip" && arcType != "bzip2" ) proc << convertFileName( file );
 		connect(&proc,SIGNAL(receivedStdout(K3Process*,char*,int)),
@@ -385,7 +386,8 @@ void kio_krarcProtocol::get(const KUrl& url, int tries ){
 		// Determine the mimetype of the file to be retrieved, and emit it.
 		// This is mandatory in all slaves (for KRun/BrowserRun to work).
 		KMimeType::Ptr mt = KMimeType::findByUrl( arcTempDir+file, buff.st_mode, true /* local URL */ );
-		emit mimeType( mt->name() );
+		if( mt )
+			emit mimeType( mt->name() );
 		
 		KIO::filesize_t processed_size = 0;
 		
@@ -511,7 +513,10 @@ void kio_krarcProtocol::stat( const KUrl & url ){
 	if( QFileInfo(path).exists() ){
 		KDE_struct_stat buff;
 		KDE_stat( path.local8Bit(), &buff );
-		QString mime = KMimeType::findByPath(path,buff.st_mode)->name();
+		QString mime;
+		KMimeType::Ptr result = KMimeType::findByPath(path,buff.st_mode);
+		if( result )
+			mime = result->name();
 		statEntry(KFileItem(path,mime,buff.st_mode).entry());
 		finished();
 		return;

@@ -144,7 +144,11 @@ void KRSearchMod::scanLocalDir( KUrl urlToScan )
 
     QString mime = QString();
     if ( query->searchInArchives() || !query->hasMimeType() )
-      mime = KMimeType::findByUrl( url, stat_p.st_mode, true, false ) ->name();
+    {
+      KMimeType::Ptr mt = KMimeType::findByUrl( url, stat_p.st_mode, true, false );
+      if( mt )
+        mime = mt->name();
+    }
 
     // creating a vfile object for matching with krquery
     vfile * vf = new vfile(name, (KIO::filesize_t)stat_p.st_size, KRpermHandler::mode2QString(stat_p.st_mode),

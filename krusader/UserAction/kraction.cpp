@@ -367,20 +367,23 @@ bool KrAction::isAvailable( const KUrl& currentURL ) {
    if ( ! _showonlyMime.empty() ) {
       available = false;
       KMimeType::Ptr mime = KMimeType::findByUrl( currentURL );
-      for ( QStringList::Iterator it = _showonlyMime.begin(); it != _showonlyMime.end(); ++it ) {
-         if ( (*it).contains("/") ) {
-            if ( mime->is( *it ) ) {  // don't use ==; use 'is()' instead, which is aware of inheritence (ie: text/x-makefile is also text/plain)
-               available = true;
-               break;
+      if( mime )
+      {
+         for ( QStringList::Iterator it = _showonlyMime.begin(); it != _showonlyMime.end(); ++it ) {
+            if ( (*it).contains("/") ) {
+               if ( mime->is( *it ) ) {  // don't use ==; use 'is()' instead, which is aware of inheritence (ie: text/x-makefile is also text/plain)
+                  available = true;
+                  break;
+               }
             }
-         }
-         else {
-            if ( mime->name().find( *it ) == 0 ) {  // 0 is the beginning, -1 is not found
-               available = true;
-               break;
+            else {
+               if ( mime->name().find( *it ) == 0 ) {  // 0 is the beginning, -1 is not found
+                  available = true;
+                  break;
+               }
             }
-         }
-      } //for
+         } //for
+      }
    } //check the mime-type: done
    
    //check filename

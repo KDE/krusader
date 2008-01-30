@@ -129,7 +129,9 @@ void DUListView::addDirectory( Directory *dirEntry, QTreeWidgetItem *parent )
     File *item = *it;
     
     KMimeType::Ptr mimePtr = KMimeType::mimeType( item->mime() );
-    QString mime = mimePtr->comment();
+    QString mime;
+    if( mimePtr )
+      mime = mimePtr->comment();
        
     time_t tma = item->time();
     struct tm* t=localtime((time_t *)&tma);

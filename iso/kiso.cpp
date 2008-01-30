@@ -115,7 +115,10 @@ KIso::KIso( const QString& filename, const QString & _mimetype )
     bool forced = true;
     if ( mimetype.isEmpty() )
     {
-        mimetype = KMimeType::findByFileContent( filename )->name();
+        KSharedPtr<KMimeType> result = KMimeType::findByFileContent( filename );
+        if( result )
+           mimetype = result->name();
+
         kDebug() << "KIso::KIso mimetype=" << mimetype << endl;
 
         // Don't move to prepareDevice - the other constructor theoretically allows ANY filter

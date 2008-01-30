@@ -104,7 +104,9 @@ void KrDetailedViewItem::repaintItem() {
     // set text in columns, according to what columns are available
     int id = KrDetailedViewProperties::Unused;
     if ((id = COLUMN(Mime)) != -1) {
-      tmp = KMimeType::mimeType(_vf->vfile_getMime())->comment();
+      KMimeType::Ptr mt = KMimeType::mimeType(_vf->vfile_getMime());
+      if( mt )
+         tmp = mt->comment();
       setText( id, tmp );
     }
     if ((id = COLUMN(Size)) != -1) {

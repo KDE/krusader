@@ -158,7 +158,8 @@ QString vfile::vfile_getIcon(){
       if ( mime == "Broken Link !" )
          vfile_icon = "file_broken";
       else {
-         vfile_icon = KMimeType::mimeType( mime ) ->iconName();
+         KMimeType::Ptr mt = KMimeType::mimeType( mime );
+         vfile_icon = mt ? mt->iconName() : "file_broken";
       }		
 	}
 	return vfile_icon;

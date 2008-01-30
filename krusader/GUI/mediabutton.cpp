@@ -174,7 +174,10 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 
 		if( text != "." && text != ".." ) {
 			int index = popupMenu->count();
-			QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mime ) ->iconName() );
+			KMimeType::Ptr mt = KMimeType::mimeType( mime );
+			QPixmap pixmap;
+			if( mt )
+				pixmap = FL_LOADICON( mt->iconName() );
 			
 			mediaUrls.append( url );
 			
@@ -386,7 +389,11 @@ void MediaButton::gettingSpaceData(const QString &mountPoint, quint64 kBSize, qu
 					mimes[ i ] = mimes[ i ].replace( "_mounted", "_unmounted" );
 				}
 				
-				QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mimes[ i ] ) ->iconName() );
+				KMimeType::Ptr mt = KMimeType::mimeType( mimes[ i ] );
+				QPixmap pixmap;
+				if( mt )
+					pixmap = FL_LOADICON( mt->iconName() );
+				
 				idActionMap[ i ]->setIcon( pixmap );
 			}
 			else if( mimes[ i ].contains( "hdd_" ) )
@@ -478,7 +485,10 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 		         this, SLOT( gettingSpaceData( const QString&, quint64, quint64, quint64 ) ) );
 	}
 	
-	QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mime ) ->iconName() );
+	KMimeType::Ptr mt = KMimeType::mimeType( mime );
+	QPixmap pixmap;
+	if( mt )
+		pixmap = FL_LOADICON( mt->iconName() );
 	
 	if( overwrite == -1 ) {
 		int index = popupMenu->count();
@@ -681,7 +691,10 @@ void MediaButton::slotTimeout() {
 		if( mimes[ index ].contains( "_unmounted" ) && mounted )
 			mimes[ index ] = mimes[ index ].replace( "_unmounted", "_mounted" );
 		
-		QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mimes[ index ] ) ->iconName() );
+		KMimeType::Ptr mt = KMimeType::mimeType( mimes[ index ] );
+		QPixmap pixmap;
+		if( mt )
+			pixmap = FL_LOADICON( mt->iconName() );
 		idActionMap[ index ]->setIcon( pixmap );
 		idActionMap[ index ]->setText( text );
 		

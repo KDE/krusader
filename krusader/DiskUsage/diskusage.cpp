@@ -999,7 +999,13 @@ QPixmap DiskUsage::getIcon( QString mime )
     if ( mime == "Broken Link !" )
       icon = FL_LOADICON( "file_broken" );
     else
-      icon = FL_LOADICON( KMimeType::mimeType( mime ) ->iconName() );
+    {
+      KMimeType::Ptr mt = KMimeType::mimeType( mime );
+      if( mt )
+         icon = FL_LOADICON( mt->iconName() );
+      else
+         icon = FL_LOADICON( "file_broken" );
+    }
 
     // insert it into the cache
     QPixmapCache::insert( mime, icon );
@@ -1050,7 +1056,9 @@ int DiskUsage::calculatePercents( bool emitSig, Directory *dirEntry, int depth )
 QString DiskUsage::getToolTip( File *item )
 {
   KMimeType::Ptr mimePtr = KMimeType::mimeType( item->mime() );
-  QString mime = mimePtr->comment();
+  QString mime;
+  if( mimePtr )
+    mime = mimePtr->comment();
 
   time_t tma = item->time();
   struct tm* t=localtime((time_t *)&tma);

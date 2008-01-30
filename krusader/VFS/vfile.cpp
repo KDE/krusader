@@ -148,7 +148,8 @@ char vfile::vfile_isExecutable() const {
 
 const QString& vfile::vfile_getMime(bool fast){
 	if( vfile_mimeType == QString() ){ // mimetype == "" is OK so don't check mimetype.empty() !
-		vfile_mimeType = KMimeType::findByUrl( vfile_getUrl(),vfile_getMode(),vfile_getUrl().isLocalFile(),fast)->name();
+		KMimeType::Ptr mt = KMimeType::findByUrl( vfile_getUrl(),vfile_getMode(),vfile_getUrl().isLocalFile(),fast);
+		vfile_mimeType = mt ? mt->name() : "Broken Link !";
 		if( vfile_mimeType.contains("directory") ) vfile_perm[0] = 'd', vfile_isdir = true;
 	}
 	return vfile_mimeType;
