@@ -32,7 +32,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "kmountman.h" 
 // KDE includes
 #include <kmessagebox.h>
-#include <k3process.h>
+#include <kprocess.h>
 #include <klocale.h>
 #include <kmenu.h>
 #include <kdebug.h>
@@ -194,11 +194,16 @@ void KMountMan::autoMount( QString path ) {
 }
 
 void KMountMan::eject( QString mntPoint ) {
-   K3ShellProcess proc;
-   proc << KrServices::fullPathName( "eject" ) << "'" + mntPoint + "'";
-   proc.start( K3Process::Block );
-   if ( !proc.normalExit() || proc.exitStatus() != 0 )         // if we failed with eject
-      KMessageBox::information( 0, i18n( "Error ejecting device! You need to have 'eject' in your path." ), i18n( "Error" ), "CantExecuteEjectWarning" );
+   KProcess proc;
+   proc << KrServices::fullPathName( "eject" ) << mntPoint;
+   proc.start();
+   proc.waitForFinished(-1); // -1 msec blocks without timeout
+   if ( proc.exitStatus() != QProcess::NormalExit || proc.exitStatus() != 0 ) // if we failed with eject
+      KMessageBox::information( 0, //parent
+          i18n( "<qt>Error ejecting device!\n You have to configure the path to the 'eject' tool."
+                "Please check the <b>Dependencies</b> page in Krusader's settings.</qt>"),
+          i18n( "Error" ), // caption
+          "CantExecuteEjectWarning" ); // don't-show-again config-key
 }
 
 // returns true if the path is an ejectable mount point (at the moment CDROM)
