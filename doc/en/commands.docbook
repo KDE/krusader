@@ -1101,7 +1101,7 @@
         <term>
           <menuchoice>
             <guimenu>Useractions</guimenu>
-            <guimenuitem>Archive to Dir</guimenuitem>
+            <guimenuitem>Unpack archive to dir</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
@@ -1117,6 +1117,23 @@
         <term>
           <menuchoice>
             <guimenu>Useractions</guimenu>
+            <guimenuitem>(Un)Pack an ar archive (.a, .deb, ...)</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Make an archive or extract from it using the <command>ar</command> utility, which is 
+                used for static libraries <filename>*.a</filename> or &debian; packages 
+                You can extract &debian; packages this way without having <command>dpkg</command> installed.
+                Like <command>tar</command>, <command>ar</command> does not use any compression.
+                Useraction contributed by 
+              <ulink url="http://www.kde-files.org/content/show.php/ar++archive+pack%2Bunpack+with+dialog?content=33333">V&aacute;clav J&uring;za</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
             <guimenuitem>Split large mp3</guimenuitem>
           </menuchoice>
         </term>
@@ -1124,6 +1141,110 @@
           <para>Splits large mp3's using <command>mp3splt</command>.
               Useraction contributed by 
               <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=1010">Andrew Svet</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Encrypt with kgpg</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Encrypts the current file with kpgp (which has to be in your $PATH).
+              Useraction contributed by 
+              <ulink url="http://www.kde-files.org/content/show.php/Encrypt+with+kgpg?content=32505">Dirk Eschler</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Decrypt with kgpg</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Decrypts the current file with kpgp (which has to be in your $PATH).
+              Useraction contributed by 
+              <ulink url="http://www.kde-files.org/content/show.php/Decrypt+with+kgpg?content=32506">Dirk Eschler</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Sign with kgpg</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Signs the current file with kpgp (which has to be in your $PATH).
+              Useraction contributed by 
+              <ulink url="http://www.kde-files.org/content/show.php/Sign+with+kgpg?content=32508">Dirk Eschler</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Sign with kgpg</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Tries to verify the signature of the current file with kpgp (which has to be in your $PATH).
+              Useraction contributed by 
+              <ulink url="http://www.kde-files.org/content/show.php/Verify+signature+with+kgpg?content=32509">Dirk Eschler</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Recode files using GNU recode or iconv</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>A javascript useraction, which converts either file names or their content or both from one 
+                to another character encoding. It processes all selected files and directories in the active panel 
+                (for the directories, recurse their content). You can select, whether a recoded copy is created or 
+                if the file is moved (there is no warranty, so don't test move on any important data)
+                Requirements: You need krusader compiled with javascript support and GNU recode installed.
+                Useraction contributed by 
+               <ulink url="http://www.kde-files.org/content/show.php/recode+files+with+dialog?content=48289">V&aacute;clav J&uring;za</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Mount as root</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>A javascript useraction, Mounts a device with root-privileges. 
+                Requirements: You need krusader compiled with javascript support.
+                Useraction contributed by 
+               <ulink url="http://www.kde-files.org/content/show.php/Root+Mount?content=29744">Jonas B&auml;hr</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Calculator</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>A javascript useraction, a simple calculator. 
+                Requirements: You need krusader compiled with javascript support.
+                Useraction contributed by 
+               <ulink url="http://www.kde-files.org/content/show.php/Demo+Calc?content=29743">Jonas B&auml;hr</ulink>.</para>
         </listitem>
       </varlistentry>
 

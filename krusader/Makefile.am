@@ -167,7 +167,11 @@ krusaderlocal_DATA = \
 	useraction_examples.xml \
 	splash.png
 
-
+# this installs data for example javascript useractions.
+krusaderuajsdir = $(kde_datadir)/krusader/js
+krusaderuajs_DATA = \
+       recode.js \
+       recode.ui
 
 # Jonas: I've no idea how this thing works so I leave it like it was.
 
