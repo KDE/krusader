@@ -89,8 +89,6 @@ kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteA
 	krConfig = new KConfig( "krusaderrc" );
 	confGrp = KConfigGroup( krConfig, "Dependencies" );
 	
-	dirDict.setAutoDelete(true);
-	
 	arcTempDir = KStandardDirs::locateLocal("tmp",QString());
 	QString dirName = "krArc"+QDateTime::currentDateTime().toString(Qt::ISODate);
 	dirName.replace(QRegExp(":"),"_");
@@ -138,7 +136,7 @@ void kio_krarcProtocol::mkdir(const KUrl& url,int permissions){
 		QString arcDir = url.path().mid(arcFile->url().path().length());
 		if( arcDir.right(1) != "/") arcDir = arcDir+"/";
 		
-		if( dirDict.find( arcDir ) == 0 )
+		if( dirDict.find( arcDir ) == dirDict.end() )
 			addNewDir( arcDir );
 		finished();
 		return;
@@ -628,11 +626,11 @@ void kio_krarcProtocol::listDir(const KUrl& url){
 	arcDir.truncate(arcDir.findRev("/"));
 	if(arcDir.right(1) != "/") arcDir = arcDir+"/";
 	
-	UDSEntryList* dirList = dirDict.find(arcDir);
-	if( dirList == 0 ){
+	if( dirDict.find(arcDir) == dirDict.end() ) {
 		error(ERR_CANNOT_ENTER_DIRECTORY,url.path());
 		return;
 	}
+	UDSEntryList* dirList = dirDict[ arcDir ];
 	totalSize(dirList->size());
 	listEntries(*dirList);
 	finished();
@@ -714,6 +712,7 @@ bool kio_krarcProtocol::setArcFile(const KUrl& url){
 }
 
 bool kio_krarcProtocol::initDirDict(const KUrl&url, bool forced){
+	KRDEBUG(url.path());
 	// set the archive location
 	//if( !setArcFile(url.path()) ) return false;
 	// no need to rescan the archive if it's not changed
@@ -738,6 +737,10 @@ bool kio_krarcProtocol::initDirDict(const KUrl&url, bool forced){
 		if( !proc.normalExit() || !checkStatus( proc.exitStatus() ) ) return false;
 	}
 	// clear the dir dictionary
+	
+	QHashIterator< QString, KIO::UDSEntryList *> lit( dirDict );
+	while( lit.hasNext() )
+		delete lit.next().value();
 	dirDict.clear();
 	
 	// add the "/" directory
@@ -841,10 +844,11 @@ UDSEntry* kio_krarcProtocol::findFileEntry(const KUrl& url){
 	QString arcDir = findArcDirectory(url);
 	if( arcDir.isEmpty() ) return 0;
 	
-	UDSEntryList* dirList = dirDict.find(arcDir);
-	if( !dirList ){
+	QHash<QString, KIO::UDSEntryList *>::iterator itef = dirDict.find(arcDir);
+	if( itef == dirDict.end() )
 		return 0;
-	}
+	UDSEntryList* dirList = itef.value();
+	
 	QString name = url.path();
 	if( arcFile->url().path(KUrl::RemoveTrailingSlash) == url.path(KUrl::RemoveTrailingSlash) ) name = "."; // the "/" case
 	else{
@@ -896,8 +900,9 @@ UDSEntryList* kio_krarcProtocol::addNewDir(QString path){
 	UDSEntryList* dir;
 	
 	// check if the current dir exists
-	dir = dirDict.find(path);
-	if(dir != 0) return dir; // dir exists- return it !
+	QHash<QString, KIO::UDSEntryList *>::iterator itef = dirDict.find(path);
+	if( itef != dirDict.end() )
+		return itef.value();
 	
 	// set dir to the parent dir
 	dir = addNewDir(path.left(path.findRev("/",-2)+1));
@@ -1157,8 +1162,12 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*) {
 	if( !fullName.startsWith("/") ) fullName = "/"+fullName;
 	QString path = fullName.left(fullName.findRev("/")+1);
 	// set/create the directory UDSEntryList
-	dir = dirDict.find(path);
-	if(dir == 0) dir = addNewDir(path);
+	QHash<QString, KIO::UDSEntryList *>::iterator itef = dirDict.find( path );
+	if( itef == dirDict.end() )
+		dir = addNewDir(path);
+	else
+		dir = itef.value();
+	
 	QString name = fullName.mid(fullName.findRev("/")+1);
 	// file name
 	entry.insert( KIO::UDSEntry::UDS_NAME, name );
@@ -1176,7 +1185,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*) {
 	}
 	if( S_ISDIR(mode) ){
 		fullName=fullName+"/";
-		if(dirDict.find(fullName) == 0)
+		if(dirDict.find(fullName) == dirDict.end())
 			dirDict.insert(fullName,new UDSEntryList());
 		else {
 			// try to overwrite an existing entry

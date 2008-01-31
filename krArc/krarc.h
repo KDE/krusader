@@ -18,7 +18,7 @@
 #define __krarc_h__
 
 #include <qstring.h>
-#include <q3dict.h>
+#include <qhash.h>
 #include <qfile.h>
 #include <sys/types.h>
 
@@ -85,7 +85,7 @@ private:
 	static QString convertName( QString name );
 	static QString escape( QString name );
 	
-	Q3Dict<KIO::UDSEntryList> dirDict; //< the directoris data structure.
+	QHash<QString, KIO::UDSEntryList *> dirDict; //< the directoris data structure.
 	bool encrypted;                   //< tells whether the archive is encrypted
 	bool archiveChanged;              //< true if the archive was changed.
 	bool archiveChanging;             //< true if the archive is currently changing.
