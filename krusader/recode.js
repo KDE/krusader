@@ -194,7 +194,7 @@ if(m) {
    }else{
       var realCmd = "(\n" + indentString(listCmd) + "\n) | (\n" + indentString(processCmd) + "\n)";
    }
-   cmd = "sh -c " + quoteString("LANG=C; " + realCmd);
+   cmd = "sh -c " + quoteString("LANG=C; cd " + quoteString(srcDir) + "; " + realCmd);
    /*if(debug){
      cmd = "echo " + quoteString(cmd);
    }*/
