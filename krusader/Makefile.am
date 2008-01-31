@@ -171,7 +171,11 @@ krusaderlocal_DATA = \
 krusaderuajsdir = $(kde_datadir)/krusader/js
 krusaderuajs_DATA = \
        recode.js \
-       recode.ui
+       recode.ui \
+       mount.js \
+       mount.ui \
+       calc.js  \
+       calc.ui
 
 # Jonas: I've no idea how this thing works so I leave it like it was.
 
