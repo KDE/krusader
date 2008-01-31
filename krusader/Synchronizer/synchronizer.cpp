@@ -53,7 +53,7 @@
 #include <qeventloop.h>
 #include <qpushbutton.h>
 #include <qdatetime.h>
-#include <k3process.h>
+#include <kprocess.h>
 #include <kdialog.h>
 #include <qlayout.h>
 #include <qprogressbar.h>
@@ -1459,13 +1459,11 @@ void Synchronizer::synchronizeWithKGet()
           source = startString+endString;
         }
 
-        K3Process p;
+        KProcess p;
 
         p << KrServices::fullPathName( "kget" ) << source << destURL.path();
-        if (!p.start(K3Process::Block))
+        if (!p.startDetached())
           KMessageBox::error(parentWidget,i18n("Error executing ")+KrServices::fullPathName( "kget" )+" !");
-        else
-          p.detach();
       }
 
       progDlg->progressBar()->setValue( ++processedCount );
