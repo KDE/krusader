@@ -57,7 +57,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <klocale.h>
 #include <kmenu.h>
 #include <kcolorscheme.h>
-#include <q3dict.h>
 #include <qstyle.h>
 
 //////////////////////////////////////////////////////////////////////////

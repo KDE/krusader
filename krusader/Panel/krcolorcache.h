@@ -2,7 +2,6 @@
 #define KRCOLORCACHE_H
 
 #include <qobject.h>
-#include <q3dict.h>
 #include <QList>
 #include <qcolor.h>
 #include <qpalette.h>

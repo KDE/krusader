@@ -35,7 +35,6 @@
 #include <qstring.h>
 #include <qfileinfo.h>
 #include <sys/types.h>
-#include <q3dict.h>
 #include <qhash.h>
 #include <kio/global.h>
 
@@ -79,11 +78,11 @@ public:
 
 private:
 	// cache for passwd and group entries
-	static Q3Dict<uid_t> 	    *passwdCache;
-  static Q3Dict<gid_t> 	    *groupCache;
-  static QHash<int, char>    *currentGroups;
-  static QHash<int, QString> *uidCache;
-  static QHash<int, QString> *gidCache;
+  static QHash<QString, uid_t> *passwdCache;
+  static QHash<QString, gid_t> *groupCache;
+  static QHash<int, char>      *currentGroups;
+  static QHash<int, QString>   *uidCache;
+  static QHash<int, QString>   *gidCache;
 };
 
 #endif

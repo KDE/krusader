@@ -48,8 +48,8 @@
 #include "krpermhandler.h"
 #include "../resources.h"
 
-Q3Dict<uid_t> *KRpermHandler::passwdCache = 0L;
-Q3Dict<gid_t> *KRpermHandler::groupCache = 0L;
+QHash<QString, uid_t> *KRpermHandler::passwdCache = 0L;
+QHash<QString, gid_t> *KRpermHandler::groupCache = 0L;
 QHash<int, char>    *KRpermHandler::currentGroups = 0L;
 QHash<int, QString> *KRpermHandler::uidCache = 0L;
 QHash<int, QString> *KRpermHandler::gidCache = 0L;
@@ -166,22 +166,16 @@ void KRpermHandler::init() {
 	int groupNo = getgroups( 50, groupList );
 
 	// init the groups and user caches
-	passwdCache	= new Q3Dict<uid_t>( 317 );
-	groupCache	= new Q3Dict<gid_t>( 317 );
+	passwdCache	= new QHash<QString, uid_t>();
+	groupCache	= new QHash<QString, gid_t>();
 	currentGroups = new QHash<int, char>();
 	uidCache = new QHash<int, QString>();
 	gidCache = new QHash<int, QString>();
 
-
-	passwdCache->setAutoDelete( true );
-	groupCache->setAutoDelete( true );
-
 	// fill the UID cache
 	struct passwd *pass;
-	uid_t* uid_temp;
 	while ( ( pass = getpwent() ) != 0L ) {
-		uid_temp = new uid_t( pass->pw_uid );
-		passwdCache->insert( pass->pw_name, uid_temp );
+		passwdCache->insert( pass->pw_name, pass->pw_uid );
 		(*uidCache)[ pass->pw_uid ] = QString( pass->pw_name );
 	}
 	delete pass;
@@ -189,10 +183,8 @@ void KRpermHandler::init() {
 
 	// fill the GID cache
 	struct group *gr;
-	gid_t* gid_temp;
 	while ( ( gr = getgrent() ) != 0L ) {
-		gid_temp = new gid_t( gr->gr_gid );
-		groupCache->insert( gr->gr_name, gid_temp );
+		groupCache->insert( gr->gr_name, gr->gr_gid );
 		(*gidCache)[ gr->gr_gid ] = QString( gr->gr_name );
 	}
 	delete gr;
@@ -321,14 +313,14 @@ time_t KRpermHandler::QString2time( QString date ) {
 }
 
 gid_t KRpermHandler::group2gid( QString group ) {
-	gid_t * gid = groupCache->find( group );
-	if ( gid ) return * gid;
-	return getgid();
+	if( groupCache->find( group ) == groupCache->end() )
+		return getgid();
+	return (*groupCache)[ group ];
 }
 uid_t KRpermHandler::user2uid ( QString user ) {
-	uid_t * uid = passwdCache->find( user );
-	if ( uid ) return * uid;
-	return getuid();
+	if( passwdCache->find( user ) == passwdCache->end() )
+		return getuid();
+	return (*passwdCache)[ user ];
 }
 
 QString KRpermHandler::gid2group( gid_t groupId ) {

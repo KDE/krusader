@@ -28,7 +28,6 @@
 #include <qdatetime.h>
 #include <qstring.h>
 #include <qstringlist.h>
-#include <q3dict.h>
 
 #include "kisofile.h"
 #include "kisodirectory.h"
