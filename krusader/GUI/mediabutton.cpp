@@ -52,7 +52,7 @@
 #include <kmimetype.h>
 #include <kprotocolinfo.h>
 #include <kfileitem.h>
-#include <k3process.h>
+#include <kprocess.h>
 #include <kdiskfreespace.h>
 #include <qcursor.h>
 
@@ -601,9 +601,9 @@ void MediaButton::rightClickMenu( int index ) {
 bool MediaButton::mount( int index ) {
 	if ( index < mimes.count() ) {
 		if( !mediaUrls[ index ].isEmpty() ) {
-			K3Process proc;
+			KProcess proc;
 			proc << KrServices::fullPathName( "kio_media_mounthelper" ) << "-m" << mediaUrls[ index ].url();
-			proc.start( K3Process::DontCare );
+			proc.startDetached();
 		} else {
 			krMtMan.mount( urls[ index ].path(), false );
 		}
@@ -614,9 +614,9 @@ bool MediaButton::mount( int index ) {
 bool MediaButton::umount( int index ) {
 	if ( index < mimes.count() ) {
 		if( !mediaUrls[ index ].isEmpty() ) {
-			K3Process proc;
+			KProcess proc;
 			proc << KrServices::fullPathName( "kio_media_mounthelper" ) << "-u" << mediaUrls[ index ].url();
-			proc.start( K3Process::DontCare );
+			proc.startDetached();
 		} else {
 			krMtMan.unmount( urls[ index ].path(), false );
 		}
@@ -627,9 +627,9 @@ bool MediaButton::umount( int index ) {
 bool MediaButton::eject( int index ) {
 	if ( index < mimes.count() ) {
 		if( !mediaUrls[ index ].isEmpty() ) {
-			K3Process proc;
+			KProcess proc;
 			proc << KrServices::fullPathName( "kio_media_mounthelper" ) << "-e" << mediaUrls[ index ].url();
-			proc.start( K3Process::DontCare );
+			proc.startDetached();
 		} else {
 			krMtMan.eject( urls[ index ].path() );
 		}
