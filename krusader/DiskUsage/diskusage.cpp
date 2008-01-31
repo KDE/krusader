@@ -436,7 +436,9 @@ Directory * DiskUsage::getDirectory( QString dir )
   if( dir.isEmpty() )
     return root;
 
-  return contentMap.find( dir );
+  if( contentMap.find( dir ) == contentMap.end() )
+    return 0;
+  return contentMap[ dir ];
 }
 
 File * DiskUsage::getFile( QString path )

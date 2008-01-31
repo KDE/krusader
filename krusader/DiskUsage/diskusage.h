@@ -36,7 +36,7 @@
 
 #include <qdialog.h>
 #include <qlabel.h>
-#include <q3dict.h>
+#include <qhash.h>
 #include <q3ptrdict.h>
 #include <qstack.h>
 #include <QResizeEvent>
@@ -54,7 +54,7 @@
 #define VIEW_FILELIGHT  2
 #define VIEW_LOADER     3
 
-typedef Q3Dict<void> Properties;
+typedef QHash<QString, void *> Properties;
 
 class DUListView;
 class DULines;
@@ -125,7 +125,7 @@ protected slots:
   void       slotLoadDirectory();
 
 protected:
-  Q3Dict< Directory > contentMap;
+  QHash< QString, Directory * > contentMap;
   Q3PtrDict<Properties> propertyMap;
     
   Directory* currentDirectory;
