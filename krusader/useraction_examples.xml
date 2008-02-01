@@ -86,7 +86,7 @@ Please note: The sed-command is &quot;s/search/repleace/&quot;, so you have to e
   <tooltip>Mount a new filesystem</tooltip>
   <icon>hdd_mount</icon>
   <category>System</category>
-  <command> run_as=&quot;root&quot; executionmode=&quot;collect_output&quot; >mount -t %_Ask(&quot;Filesystem Type?&quot;)% %_Ask(&quot;Device ?&quot;)% %_Ask(&quot;Mount Point ?&quot;)%</command>
+  <command run_as="root" executionmode="collect_output" >mount -t %_Ask(&quot;Filesystem Type?&quot;)% %_Ask(&quot;Device ?&quot;)% %_Ask(&quot;Mount Point ?&quot;)%</command>
   <defaultshortcut>Alt+Ctrl+M</defaultshortcut>
  </action>
  <action name="system_umount" >
@@ -94,7 +94,7 @@ Please note: The sed-command is &quot;s/search/repleace/&quot;, so you have to e
   <tooltip>Umount filesystem of current directory</tooltip>
   <icon>kcmpartitions</icon>
   <category>System</category>
-  <command> run_as=&quot;root&quot; result=`umount '%aCurrent%' 2>&amp;1`; case &quot;$?&quot; in 0) kdialog --title Krusader --msgbox &quot;Filesystem unmounted&quot;; ;; 1) apps=`lsof | grep '%aCurrent%' | head | cut -d ' ' -f 1`; kdialog --title Krusader --error &quot;Could not unmount filesystem.\n\nIt is still in use by the following applications:\n$apps&quot;; ;; *) kdialog --title Krusader --error &quot;Could not unmount filesystem.\n$result&quot;; ;; esac</command>
+  <command run_as="root" executionmode="collect_output" >result=`umount '%aCurrent%' 2>&amp;1`; case &quot;$?&quot; in 0) kdialog --title Krusader --msgbox &quot;Filesystem unmounted&quot;; ;; 1) apps=`lsof | grep '%aCurrent%' | head | cut -d ' ' -f 1`; kdialog --title Krusader --error &quot;Could not unmount filesystem.\n\nIt is still in use by the following applications:\n$apps&quot;; ;; *) kdialog --title Krusader --error &quot;Could not unmount filesystem.\n$result&quot;; ;; esac</command>
  </action>
  <action name="archive_archive2dir" >
   <title>Unpack archive to dir</title>
