@@ -19,6 +19,7 @@
 #define VIRT_VFS_H
 
 #include <kconfig.h>
+#include <q3dict.h>
 
 #include "vfs.h"
 

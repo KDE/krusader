@@ -96,10 +96,7 @@ QString vfs::pathOrUrl( const KUrl &originIn, KUrl::AdjustPathOption trailingSla
 void vfs::setVfsFilesP(vfileDict* dict){
 	vfs_filesP=dict;
 	vfs_tempFilesP = new vfileDict();
-	vfs_tempFilesP->setAutoDelete( true );
-	dict->setAutoDelete(true);
-	if( vfileIterator ) delete vfileIterator;
-	vfileIterator = new Q3DictIterator<vfile>(*dict);
+	vfileIterator = vfs_filesP->begin();
 }
 
 bool vfs::vfs_refresh(){ 
@@ -148,9 +145,10 @@ bool vfs::vfs_refresh(){
 			if( !newVf ){
 				// the file was deleted..
 				emit deletedVfile(name);
-				vfs_filesP->remove(name);
+				delete (*vfs_filesP)[ name ]; 
+				vfileIterator  = vfs_filesP->erase( vfs_filesP->find( name ) );
 				// the remove() advance our iterator ! 
-				vf = vfileIterator->current();
+				vf = *vfileIterator;
 			} else {
 				if( *vf != *newVf ){
 					// the file was changed..
@@ -159,11 +157,15 @@ bool vfs::vfs_refresh(){
 				}
 				vf=vfs_getNextFile();
 			}
+			delete (*vfs_tempFilesP)[ name ]; 
 			vfs_tempFilesP->remove(name);
 		} 
 		// everything thats left is a new file
-		Q3DictIterator<vfile> it(*vfs_tempFilesP);
-		for(vfile* vf=it.toFirst(); vf; vf=(++it)){
+		QHashIterator<QString, vfile *> it(*vfs_tempFilesP);
+		while( it.hasNext() )
+		{
+			vfile *vf = it.next().value();
+			
 			// sanity checking
 			if( !vf || (*vfs_filesP)[vf->vfile_getName()] ) continue;
 			
@@ -233,6 +235,9 @@ void vfs::vfs_enableRefresh(bool enable){
 void vfs::clear()
 {
 	emit cleared();
+	QHashIterator< QString, vfile *> lit( *vfs_filesP );
+	while( lit.hasNext() )
+		delete lit.next().value();
 	vfs_filesP->clear();
 }
 

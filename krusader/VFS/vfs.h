@@ -34,7 +34,7 @@
 #include <qstring.h>
 #include <qlist.h>
 #include <qobject.h>
-#include <q3dict.h>
+#include <qhash.h>
 // KDE includes
 #include <kurl.h>
 #include <kio/jobclasses.h>
@@ -51,7 +51,7 @@
 class vfs: public QObject{
 	Q_OBJECT
 public:
-	typedef Q3Dict<vfile> vfileDict;	
+	typedef QHash<QString, vfile *> vfileDict;	
 	enum VFS_TYPE{ERROR=0,NORMAL,FTP,TEMP,VIRT};
 
 	/**
@@ -98,9 +98,9 @@ public:
 	/// Returns true if vfs is busy
 	inline bool vfs_isBusy()             { return vfs_busy;            }
 	/// Return the first file in the VFS and set the internal iterator to the beginning of the list.
-	inline vfile* vfs_getFirstFile(){ return (vfileIterator ? vfileIterator->toFirst() : 0); }
+	inline vfile* vfs_getFirstFile(){ vfileIterator = vfs_filesP->begin(); return (vfileIterator == vfs_filesP->end() ? 0 : *vfileIterator ); }
 	/// Return the the next file in the list and advance the iterator.
-	inline vfile* vfs_getNextFile() { return (vfileIterator ? ++(*vfileIterator) : 0);  }
+	inline vfile* vfs_getNextFile() { if( vfileIterator == vfs_filesP->end() || ++vfileIterator == vfs_filesP->end() ) return 0; else return *vfileIterator;  }
 	/// returns true if the vfs can be deleted without crash        
 	virtual bool vfs_canDelete() { return deletePossible; } 
 	/// process the application events               
@@ -169,7 +169,7 @@ protected slots:
 private:
 	vfileDict*  vfs_filesP;    //< Point to a lists of virtual files (vfile).
 	vfileDict*  vfs_tempFilesP;//< Temporary files are stored here
-	Q3DictIterator<vfile>* vfileIterator; //< Point to a dictionary of virtual files (vfile).
+	QHash<QString, vfile *>::iterator vfileIterator; //< Point to a dictionary of virtual files (vfile).
 	
 	// used in the calcSpace function
 	bool* kds_busy;
