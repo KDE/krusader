@@ -41,7 +41,7 @@
 #include <ktoggleaction.h>
 #include <ktoolbar.h>
 #include <klocale.h>
-#include <k3process.h>
+#include <kprocess.h>
 #include <kmessagebox.h>
 #include <kio/netaccess.h>
 #include <kedittoolbar.h>
@@ -110,17 +110,16 @@ void KRslots::sendFileByEmail(QString filename) {
     return;
   }
 
-  K3ShellProcess proc;
+  KProcess proc;
 
   if ( KUrl( mailProg ).fileName() == "kmail") {
-    proc << "kmail" << "--subject \""+i18n("Sending file: ")+
-            filename.mid(filename.findRev('/')+1)+"\"" << QString() +
-            "--attach "+"\"" + filename + "\"";
+    proc << mailProg << "--subject"
+         << i18n("Sending file: ") + filename.mid(filename.findRev('/')+1)
+         << "--attach" << filename;
   }
 
-	if (!proc.start(K3Process::DontCare))
+	if (!proc.startDetached())
     KMessageBox::error(0,i18n("Error executing ")+mailProg+" !");
-  else proc.detach();
 }
 
 void KRslots::compareContent() {
@@ -159,7 +158,7 @@ void KRslots::compareContent() {
   compareContent( name1, name2 );
 }
 
-class KrProcess: public K3Process
+class KrProcess: public KProcess
 {
   QString tmp1, tmp2;
   
@@ -168,15 +167,17 @@ public:
   {
     tmp1 = in1;
     tmp2 = in2;
+    connect(this,  SIGNAL(finished(int, QProcess::ExitStatus)), SLOT(processHasExited()));
   }
-  
-  virtual void processHasExited (int )
+
+public slots:
+  void processHasExited()
   {
     if( !tmp1.isEmpty() )
       KIO::NetAccess::removeTempFile( tmp1 );
     if( !tmp2.isEmpty() )
       KIO::NetAccess::removeTempFile( tmp2 );
-    delete this;
+    deleteLater();
   }
 };
 
@@ -210,7 +211,8 @@ void KRslots::compareContent( KUrl url1, KUrl url2 )
   KrProcess *p = new KrProcess( tmp1 != url1.path() ? tmp1 : QString(),
                                 tmp2 != url2.path() ? tmp2 : QString() );
   *p << diffProg << tmp1 << tmp2;
-  if (!p->start(K3Process::DontCare))
+  p->start();
+  if (!p->waitForStarted())
     KMessageBox::error(0,i18n("Error executing ")+diffProg+" !");
 }
 
@@ -468,30 +470,27 @@ void KRslots::runMountMan() {
 }
 
 void KRslots::homeTerminal(){
-  QString save = getcwd(0,0);
-  chdir (QDir::homePath().local8Bit());
-
-  K3Process proc;
+  // FIXME this is the third copy of the code starting a terminal!
+  KProcess proc;
+  proc.setWorkingDirectory(QDir::homePath().local8Bit());
   KConfigGroup group( krConfig, "General");
   QString term = group.readEntry("Terminal",_Terminal);
   proc << KrServices::separateArgs( term );
-      
+#if 0 // I hope this is no longer needed...
   if( term.contains( "konsole" ) )   /* KDE 3.2 bug (konsole is killed by pressing Ctrl+C) */
   {                                  /* Please remove the patch if the bug is corrected */
     proc << "&";
     proc.setUseShell( true );
   }
-  
-  if(!proc.start(K3Process::DontCare))
+#endif
+  if(!proc.startDetached())
     KMessageBox::sorry(krApp,i18n("Can't open ")+"\""+term+"\"");
-
-  chdir(save.local8Bit());
 }
 
 void KRslots::sysInfo(){
-  K3Process proc;
-  proc << "kcmshell" << "System/ksysctrl";
-  if (!proc.start(K3Process::DontCare)){
+  KProcess proc;
+  proc << KrServices::fullPathName("kcmshell") << "System/ksysctrl";
+  if (!proc.startDetached()){
     KMessageBox::sorry(krApp,i18n("Can't find \"KsysCtrl\". Please install KDE admin package"));
   }
 }
@@ -514,15 +513,16 @@ void KRslots::multiRename(){
 		return;
 	}
 
-	K3ShellProcess proc;
+	KProcess proc;
 	proc << pathToRename;
 
 	for( KUrl::List::iterator u=urls->begin(); u != urls->end(); ++u){
     if( QFileInfo((*u).path()).isDir() ) proc << "-r";
-		proc << "\"" + (*u).path() + "\""; // patch thanks to Tobias Vogele
+		proc << (*u).path();
 	}
 
-	proc.start(K3Process::DontCare);
+	if (!proc.startDetached())
+    KMessageBox::error(0,i18n("Error executing %1!").arg(pathToRename));
 	delete urls;
 }
 
@@ -534,12 +534,12 @@ void KRslots::rootKrusader()
     return;
   }
   
-  K3ShellProcess proc;
-  proc << KrServices::fullPathName( "kdesu" ) << QString("'") + KrServices::fullPathName( "krusader" ) +
-       " --left=\"" +MAIN_VIEW->left->func->files()->vfs_getOrigin().url() +
-       "\" --right=\""+MAIN_VIEW->right->func->files()->vfs_getOrigin().url() + "\"'";
+  KProcess proc;
+  proc << KrServices::fullPathName( "kdesu" ) << KrServices::fullPathName( "krusader" )
+       << "--left=" + MAIN_VIEW->left->func->files()->vfs_getOrigin().url()
+       << "--right=" + MAIN_VIEW->right->func->files()->vfs_getOrigin().url();
 
-  proc.start(K3Process::DontCare);
+  proc.startDetached();
 }
 
 // settings slots
