@@ -19,7 +19,7 @@
 #define VIRT_VFS_H
 
 #include <kconfig.h>
-#include <q3dict.h>
+#include <qhash.h>
 
 #include "vfs.h"
 
@@ -67,7 +67,7 @@ protected:
 	bool populateVfsList(const KUrl& origin, bool showHidden);
 	vfile* stat(const KUrl& url);
 	
-	static Q3Dict<KUrl::List> virtVfsDict;
+	static QHash<QString, KUrl::List *> virtVfsDict;
 	static KConfig* virt_vfs_db;
 	bool busy;
 	QString path;

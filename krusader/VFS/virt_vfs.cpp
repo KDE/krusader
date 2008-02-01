@@ -35,14 +35,13 @@
 
 #define VIRT_VFS_DB "virt_vfs.db"
 
-Q3Dict<KUrl::List> virt_vfs::virtVfsDict;
+QHash<QString, KUrl::List *> virt_vfs::virtVfsDict;
 KConfig* virt_vfs::virt_vfs_db=0;
 
 virt_vfs::virt_vfs( QObject* panel, bool quiet ) : vfs( panel, quiet ) {
 	// set the writable attribute
 	isWritable = true;
 
-	virtVfsDict.setAutoDelete( true );
 	if ( virtVfsDict.isEmpty() ) {
 		restore();
 	}
@@ -58,13 +57,16 @@ bool virt_vfs::populateVfsList( const KUrl& origin, bool /*showHidden*/ ) {
 	path = origin.path( KUrl::RemoveTrailingSlash ).mid( 1 );
 	if ( path.isEmpty() ) path = "/";
 
-	KUrl::List* urlList = virtVfsDict[ path ];
-	if ( !urlList ) {
+	KUrl::List* urlList;
+	if( virtVfsDict.find( path ) == virtVfsDict.end() ) {
 		urlList = new KUrl::List();
 		virtVfsDict.insert( path, urlList );
 		virtVfsDict[ "/" ] ->append( KUrl( "virt:/" + path ) );
 	}
+	else
+		urlList = virtVfsDict[ path ];
 	
+	save();
 	if ( urlList->isEmpty() ) return true;
 	KUrl::List::iterator it;
 	for ( it = urlList->begin() ; it != urlList->end() ; /*++it*/ ) {
@@ -79,7 +81,6 @@ bool virt_vfs::populateVfsList( const KUrl& origin, bool /*showHidden*/ ) {
 		foundVfile( vf );
 		++it;
 	}
-	save();
 	return true;
 }
 
@@ -88,6 +89,12 @@ void virt_vfs::vfs_addFiles( KUrl::List *fileUrls, KIO::CopyJob::CopyMode /*mode
 		if ( !quietMode )
 			KMessageBox::error( krApp, i18n( "You can't copy files directly to the 'virt:/' directory.\nYou can create a sub directory and copy your files into it." ), i18n( "Error" ) );
 		return ;
+	}
+	
+	if( virtVfsDict.find( path ) == virtVfsDict.end() ) {
+		KUrl::List *urlList = new KUrl::List();
+		virtVfsDict.insert( path, urlList );
+		virtVfsDict[ "/" ] ->append( KUrl( "virt:/" + path ) );
 	}
 	
 	KUrl::List* urlList = virtVfsDict[ path ];
@@ -104,6 +111,7 @@ void virt_vfs::vfs_delFiles( QStringList *fileNames ) {
 		for ( int i = 0 ; i < fileNames->count(); ++i ) {
 			QString filename = ( *fileNames ) [ i ];
 			virtVfsDict[ "/" ] ->remove( QString("virt:/")+filename );
+			delete virtVfsDict[ filename ];
 			virtVfsDict.remove( filename );
 		}
 		vfs_refresh();
@@ -138,9 +146,10 @@ void virt_vfs::vfs_removeFiles( QStringList *fileNames ) {
 	
 	// removing the URLs from the collection
 	for ( int i = 0 ; i < fileNames->count(); ++i ) {
-		KUrl::List* urlList = virtVfsDict[ path ];
-		if( urlList )
+		if( virtVfsDict.find( path ) != virtVfsDict.end() ) {
+			KUrl::List* urlList = virtVfsDict[ path ];
 			urlList->remove( vfs_getFile( ( *fileNames ) [ i ] ) );
+		}
 	}
 	
 	vfs_refresh();
@@ -288,17 +297,20 @@ KConfig*  virt_vfs::getVirtDB(){
 
 bool virt_vfs::save(){
 	KConfig* db = getVirtDB();
+	db->deleteGroup( "virt_db" );
 	KConfigGroup group( db, "virt_db");
 	
-	Q3DictIterator<KUrl::List> it( virtVfsDict ); // See QDictIterator
-	for( ; it.current(); ++it ){
+	QHashIterator< QString, KUrl::List *> lit( virtVfsDict );
+	while( lit.hasNext() ) {
+		KUrl::List * curr = lit.next().value();
+		
 		KUrl::List::iterator url;
 		QStringList entry;
-		for ( url = it.current()->begin() ; url != it.current()->end() ; ++url ) {
+		for ( url = curr->begin() ; url != curr->end() ; ++url ) {
 			entry.append( (*url).prettyUrl() );
 		}
 		// KDE 4.0 workaround, Item_ is added as KConfig fails on 1 char names (such as /)
-		group.writeEntry( "Item_" + it.currentKey(),entry);
+		group.writeEntry( "Item_" + lit.key(),entry);
 	}
 	
 	db->sync();
