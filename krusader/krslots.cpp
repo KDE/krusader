@@ -114,12 +114,12 @@ void KRslots::sendFileByEmail(QString filename) {
 
   if ( KUrl( mailProg ).fileName() == "kmail") {
     proc << mailProg << "--subject"
-         << i18n("Sending file: ") + filename.mid(filename.findRev('/')+1)
+         << i18n("Sending file: %1", KUrl(filename).fileName())
          << "--attach" << filename;
   }
 
 	if (!proc.startDetached())
-    KMessageBox::error(0,i18n("Error executing ")+mailProg+" !");
+    KMessageBox::error(0, i18n("Error executing %1!", mailProg));
 }
 
 void KRslots::compareContent() {
@@ -195,13 +195,13 @@ void KRslots::compareContent( KUrl url1, KUrl url2 )
   
   if (!url1.isLocalFile()) {
     if( !KIO::NetAccess::download( url1, tmp1, 0 ) ){
-      KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+url1.fileName());
+      KMessageBox::sorry(krApp, i18n("Krusader is unable to download %1", url1.fileName()));
       return;
     }
   } else tmp1 = url1.path();
   if (!url2.isLocalFile()) {
     if( !KIO::NetAccess::download( url2, tmp2, 0 ) ){
-      KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+url2.fileName());
+      KMessageBox::sorry(krApp,i18n("Krusader is unable to download %1", url2.fileName()));
       if( tmp1 != url1.path() )
         KIO::NetAccess::removeTempFile( tmp1 );
       return;
@@ -213,7 +213,7 @@ void KRslots::compareContent( KUrl url1, KUrl url2 )
   *p << diffProg << tmp1 << tmp2;
   p->start();
   if (!p->waitForStarted())
-    KMessageBox::error(0,i18n("Error executing ")+diffProg+" !");
+    KMessageBox::error(0,i18n("Error executing %1!", diffProg));
 }
 
 void KRslots::rightclickMenu() {
@@ -484,7 +484,7 @@ void KRslots::homeTerminal(){
   }
 #endif
   if(!proc.startDetached())
-    KMessageBox::sorry(krApp,i18n("Can't open ")+"\""+term+"\"");
+    KMessageBox::sorry(krApp,i18n("Error executing %1!", term));
 }
 
 void KRslots::sysInfo(){
@@ -522,7 +522,7 @@ void KRslots::multiRename(){
 	}
 
 	if (!proc.startDetached())
-    KMessageBox::error(0,i18n("Error executing %1!").arg(pathToRename));
+    KMessageBox::error(0,i18n("Error executing %1!", pathToRename));
 	delete urls;
 }
 
@@ -539,7 +539,8 @@ void KRslots::rootKrusader()
        << "--left=" + MAIN_VIEW->left->func->files()->vfs_getOrigin().url()
        << "--right=" + MAIN_VIEW->right->func->files()->vfs_getOrigin().url();
 
-  proc.startDetached();
+  if (!proc.startDetached())
+    KMessageBox::error(0,i18n("Error executing %1!", proc.program()[0]));
 }
 
 // settings slots
