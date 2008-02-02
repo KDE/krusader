@@ -183,7 +183,7 @@ private:
   bool containsContent( QString file ) const;
   bool containsContent( KUrl url ) const;
   bool checkBuffer( const char *buffer, int len ) const;
-  bool checkLines( QString line ) const;
+  bool checkLines( const char *buffer, int len ) const;
   bool checkTimer() const;
   QStringList split( QString );
 

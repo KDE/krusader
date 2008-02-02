@@ -267,8 +267,7 @@ void fixFoundTextForDisplay(QString& haystack, int start, int length) {
 bool KRQuery::checkBuffer( const char *buf, int len ) const {
   if( len == 0 )  { // last block?
     if( receivedBuffer ) {
-      bool result = checkLines( QTextCodec::codecForLocale()->toUnicode( receivedBuffer, 
-                                receivedBufferLen ) );
+      bool result = checkLines( receivedBuffer, receivedBufferLen );
       delete []receivedBuffer;
       receivedBuffer = 0;
       return result;
@@ -277,7 +276,7 @@ bool KRQuery::checkBuffer( const char *buf, int len ) const {
   }
 
   int after = len;
-  while( buf[ after-1 ] != '\n' ) {
+  while( buf[ after-1 ] != '\n' && buf[ after-1 ] != 0 ) {
     after--;
     if( after <= 0 || after <= len - MAX_LINE_LEN ) {
       after = len;  // if there's no <ENTER> in MAX_LINE_LEN, we break the line
@@ -287,7 +286,7 @@ bool KRQuery::checkBuffer( const char *buf, int len ) const {
 
   if( receivedBuffer ) {
     int previous = 0;
-    while( previous < after && previous < MAX_LINE_LEN && buf[previous] != '\n' )
+    while( previous < after && previous < MAX_LINE_LEN && buf[previous] != '\n' && buf[previous] != 0 )
       previous++;
 
     char * str = new char[ receivedBufferLen + previous ];
@@ -296,17 +295,16 @@ bool KRQuery::checkBuffer( const char *buf, int len ) const {
     receivedBuffer = 0;
     memcpy( str + receivedBufferLen, buf, previous );
 
-    if( checkLines( QTextCodec::codecForLocale()->toUnicode( str, receivedBufferLen+previous ) ) ) {
+    if( checkLines( str, receivedBufferLen+previous ) ) {
       delete []str;
       return true;
     }
     delete []str;
 
-    if( after > previous && checkLines( QTextCodec::codecForLocale()->
-      toUnicode( buf+previous, after-previous ) ) )
+    if( after > previous && checkLines( buf+previous, after-previous ) )
       return true; 
 
-  } else if( checkLines( QTextCodec::codecForLocale()->toUnicode( buf, after ) ) )
+  } else if( checkLines( buf, after ) )
       return true;
 
   if( after < len ) {
@@ -317,9 +315,32 @@ bool KRQuery::checkBuffer( const char *buf, int len ) const {
   return false;
 }
 
-bool KRQuery::checkLines( QString lines ) const
+bool KRQuery::checkLines( const char * buf, int len ) const
 {
-  QStringList list = QStringList::split( '\n', lines );
+  QStringList list;
+
+  int start = 0;
+  int k = 0;
+  while( k < len )
+  {
+    if( buf[ k ] == 0 || buf[ k ] == '\n' )
+    {
+      if( k != start )
+      {
+        QString line = QTextCodec::codecForLocale()->toUnicode( buf + start, k - start );
+        if( !line.isEmpty() )
+          list << line;
+      }
+      start = k + 1;
+    }
+    k++;
+  }
+  if( start != k )
+  {
+    QString line = QTextCodec::codecForLocale()->toUnicode( buf + start, k - start );
+    if( !line.isEmpty() )
+      list << line;
+  }
 
   for( int i=0; i != list.count(); i++ ) {
     QString line = list[ i ];
