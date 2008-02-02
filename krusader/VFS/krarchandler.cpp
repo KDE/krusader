@@ -313,10 +313,10 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
   krApp->startWaiting( i18n( "Unpacking File(s)" ), count, true );
   if ( count != 0 ) {
     connect( &proc, SIGNAL( receivedStdout( K3Process*, char*, int ) ),
-             krApp, SLOT( incProgress( K3Process*, char*, int ) ) );
+             krApp->plzWait, SLOT( incProgress( K3Process*, char*, int ) ) );
     if( type == "-rpm" )
       connect( &proc, SIGNAL( receivedStderr( K3Process*, char*, int ) ),
-               krApp, SLOT( incProgress( K3Process*, char*, int ) ) );
+               krApp->plzWait, SLOT( incProgress( K3Process*, char*, int ) ) );
   }
 
   // start the unpacking process
@@ -383,7 +383,7 @@ bool KRarcHandler::test( QString archive, QString type, QString password, long c
   // tell the user to wait
   krApp->startWaiting( i18n( "Testing Archive" ), count, true );
   if ( count != 0 ) connect( &proc, SIGNAL( receivedStdout( K3Process*, char*, int ) ),
-                               krApp, SLOT( incProgress( K3Process*, char*, int ) ) );
+                               krApp->plzWait, SLOT( incProgress( K3Process*, char*, int ) ) );
 
   // start the unpacking process
   proc.start( K3Process::NotifyOnExit, K3Process::AllOutput );
@@ -490,7 +490,7 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
   krApp->startWaiting( i18n( "Packing File(s)" ), count, true );
   if ( count != 0 )
     connect( &proc, SIGNAL( receivedStdout( K3Process*, char*, int ) ),
-             krApp, SLOT( incProgress( K3Process*, char*, int ) ) );
+             krApp->plzWait, SLOT( incProgress( K3Process*, char*, int ) ) );
 
   // start the packing process
   proc.start( K3Process::NotifyOnExit, K3Process::AllOutput );

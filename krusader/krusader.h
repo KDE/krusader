@@ -58,7 +58,6 @@ class KrJS;
 class KrusaderStatus;
 class KRPleaseWaitHandler;
 class KrusaderView;
-class K3Process;
 class KRslots;
 class KIconLoader;
 class KSystemTrayIcon;
@@ -92,8 +91,6 @@ class Krusader : public KParts::MainWindow {
     void moveToTop();
 
   public slots:
-    // increase the internal progress bar
-    void incProgress( K3Process *, char *buffer, int buflen );
     void statusBarUpdate( QString& mess );
     // in use by Krusader only
     void saveSettings();

@@ -321,7 +321,7 @@ void arc_vfs::vfs_delFiles(QStringList *fileNames){
 		K3ShellProcess proc1 , proc2;
 		krApp->startWaiting(i18n("Deleting Files..."),files.count()+ignoreLines);
 	  connect(&proc1,SIGNAL(receivedStdout(K3Process*,char*,int)),
-            krApp, SLOT(incProgress(K3Process*,char*,int)) );
+            krApp->plzWait, SLOT(incProgress(K3Process*,char*,int)) );
 
     proc1 <<  delCmd << "\""+arcFile+"\"";
     proc2 << "rm -rf";
@@ -396,7 +396,7 @@ KUrl::List* arc_vfs::vfs_getFiles(QStringList* names){
 		krApp->startWaiting(i18n("Unpacking Files"),files.count()+ignoreLines);
     K3ShellProcess proc;
 	  connect(&proc,SIGNAL(receivedStdout(K3Process*,char*,int)),
-            krApp, SLOT(incProgress(K3Process*,char*,int)) );
+            krApp->plzWait, SLOT(incProgress(K3Process*,char*,int)) );
 		
 		proc << cmd << getCmd << "\""+arcFile+"\"";
   	if( vfs_type == "gzip" || vfs_type == "zip2" ) proc << ">";
@@ -578,7 +578,7 @@ void arc_vfs::repack(){
 			K3ShellProcess delProc;
   		krApp->startWaiting(i18n("Deleting Files..."),filesToDelete.count()+ignoreLines);
 	 		connect(&delProc,SIGNAL(receivedStdout(K3Process*,char*,int)),
-               krApp, SLOT(incProgress(K3Process*,char*,int)) );
+               krApp->plzWait, SLOT(incProgress(K3Process*,char*,int)) );
 
 			delProc << delCmd << "\""+arcFile+"\"";
 			for( unsigned int i=0 ; i < filesToDelete.count() ;){
@@ -602,7 +602,7 @@ void arc_vfs::repack(){
 			K3ShellProcess addProc;
 			krApp->startWaiting(i18n("Repacking..."),filesToPack.count()+ignoreLines);
     	connect(&addProc,SIGNAL(receivedStdout(K3Process*,char*,int)),
-            krApp, SLOT(incProgress(K3Process*,char*,int)) );
+            krApp->plzWait, SLOT(incProgress(K3Process*,char*,int)) );
 
 			if( vfs_type=="gzip" || vfs_type=="zip2" ){
       	addProc << addCmd << *filesToPack.at(0)<< ">" << "\""+arcFile+"\"";

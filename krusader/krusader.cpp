@@ -984,15 +984,6 @@ bool Krusader::wasWaitingCancelled() const {
 	return plzWait->wasCancelled(); 
 }
 
-void Krusader::incProgress( K3Process *, char *buffer, int buflen ) {
-   int howMuch = 0;
-   for ( int i = 0 ; i < buflen; ++i )
-      if ( buffer[ i ] == '\n' )
-         ++howMuch;
-
-   plzWait->incProgress( howMuch );
-}
-
 void Krusader::stopWait() {
    plzWait->stopWait();
 }
