@@ -52,7 +52,7 @@ class PanelManager: public QWidget {
      * Called externally to start a new tab. Example of usage would be the "open in a new tab"
      * action, from the context-menu.
      */
-    void slotNewTab(const KUrl& url, bool setCurrent = true, QString type = QString() );
+    void slotNewTab(const KUrl& url, bool setCurrent = true, QString type = QString(), int props = 0 );
     void slotNewTab();
     void slotNextTab();
     void slotPreviousTab();	 

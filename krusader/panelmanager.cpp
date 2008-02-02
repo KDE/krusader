@@ -101,23 +101,27 @@ void PanelManager::startPanel( ListPanel *panel, const KUrl& path ) {
 void PanelManager::saveSettings( KConfigGroup *config, const QString& key, bool localOnly ) {
    QStringList l;
    QStringList types;
+   QList<int> props;
    int i=0, cnt=0;
    while (cnt < _tabbar->count()) {
       ListPanel *panel = _tabbar->getPanel(i);
       if (panel) {
          l << ( localOnly ? panel->realPath() : panel->virtualPath().pathOrUrl() );
          types << panel->getType();
+         props << panel->getProperties();
          ++cnt;
       }
       ++i;
    }
    config->writePathEntry( key, l );
    config->writeEntry( key + " Types", types );
+   config->writeEntry( key + " Props", props );
 }
 
 void PanelManager::loadSettings( KConfigGroup *config, const QString& key ) {
    QStringList l = config->readPathEntry( key, QStringList() );
    QStringList types = config->readEntry( key + " Types", QStringList() );
+   QList<int> props = config->readEntry( key + " Props", QList<int>() );
    
    if( l.count() < 1 )
      return;
@@ -127,7 +131,9 @@ void PanelManager::loadSettings( KConfigGroup *config, const QString& key ) {
       KConfigGroup cg( krConfig, "Look&Feel");
       types << cg.readEntry( "Default Panel Type", _DefaultPanelType );
    }
-   
+   while( props.count() < l.count() )
+      props << 0;
+
    int i=0, totalTabs = _tabbar->count();
    
    while (i < totalTabs && i < (int)l.count() ) 
@@ -137,6 +143,7 @@ void PanelManager::loadSettings( KConfigGroup *config, const QString& key ) {
       {
          if( panel->getType() != types[ i ] )
          	panel->changeType( types[ i ] );
+         panel->setProperties( props[ i ] );
          panel->otherPanel = _other;
          _other->otherPanel = panel;
          panel->func->files()->vfs_enableRefresh( true );
@@ -149,10 +156,10 @@ void PanelManager::loadSettings( KConfigGroup *config, const QString& key ) {
      slotCloseTab( --totalTabs );
       
    for(; i < (int)l.count(); i++ )
-     slotNewTab( KUrl(l[i]), false, types[ i ] );
+     slotNewTab( KUrl(l[i]), false, types[ i ], props[ i ] );
 }
 
-void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, QString type) {
+void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, QString type, int props) {
    if( type.isNull() )
    {
        KConfigGroup group( krConfig, "Look&Feel");
@@ -167,6 +174,7 @@ void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, QString type) {
      _other->otherPanel = _self;
    }
    startPanel( p, url );
+   p->setProperties( props );
 }
 
 void PanelManager::slotNewTab() {

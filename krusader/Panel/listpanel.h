@@ -59,6 +59,8 @@
 #include "krview.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
 
+#define PROP_SYNC_BUTTON_ON               1
+
 class vfs;
 class vfile;
 class KrView;
@@ -101,6 +103,9 @@ public:
    bool isLeft() {return _left;}
    void jumpBack();
    void setJumpBack( KUrl url );
+
+   int  getProperties();
+   void setProperties( int );
 
 public slots:
    void gotStats( const QString &mountPoint, quint64 kBSize, quint64 kBUsed, quint64 kBAvail); // displays filesystem status
