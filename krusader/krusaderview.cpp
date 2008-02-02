@@ -300,6 +300,11 @@ bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
       ke->accept();
       return true;
     }
+    if( ( ke->modifiers() == Qt::NoModifier || ke->modifiers() == Qt::ShiftModifier ) &&
+        ( ke->key() >= 32 ) && (ke->key() <= 127 ) ) {
+      ke->accept();
+      return true;
+    }
   }
   else if( e->type() == QEvent::KeyPress && konsole_part && konsole_part->widget() == watched ) {
     QKeyEvent *ke = (QKeyEvent *)e;
