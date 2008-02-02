@@ -35,7 +35,7 @@
 #include "preservingcopyjob.h"
 #include <qlist.h>
 #include <qtimer.h>
-#include <q3dict.h>
+#include <qhash.h>
 #include <qmap.h>
 
 class vfs;
@@ -54,6 +54,7 @@ class VirtualCopyJob : public KIO::Job
 public:
   VirtualCopyJob( const QStringList *names, vfs * vfs, const KUrl& dest, const KUrl& baseURL,
                   PreserveMode pmode, KIO::CopyJob::CopyMode mode, bool asMethod, bool showProgressInfo );
+  virtual ~VirtualCopyJob();
 
 protected:
   void statNextDir();
@@ -76,7 +77,7 @@ protected slots:
   
   void slotProcessedFiles (KIO::Job *, unsigned long);
   void slotProcessedDirs (KIO::Job *, unsigned long);
-  void slotProcessedSize (KIO::Job *, KIO::filesize_t);
+  void slotProcessedSize (KJob *, qulonglong);
 
 signals:
   void totalFiles( KIO::Job *job, unsigned long files );
@@ -89,19 +90,19 @@ private:
   unsigned long            m_totalFiles;
   unsigned long            m_totalSubdirs;
 
-  KIO::filesize_t          m_processedSize;
+  qulonglong               m_processedSize;
   unsigned long            m_processedFiles;
   unsigned long            m_processedSubdirs;  
     
-  KIO::filesize_t          m_tempSize;
+  qulonglong               m_tempSize;
   unsigned long            m_tempFiles;
   unsigned long            m_tempSubdirs;  
     
   QList<KUrl>              m_dirsToGetSize;
   
-  Q3Dict<KUrl::List>        m_filesToCopy;
+  QHash<QString, KUrl::List *> m_filesToCopy;
   
-  QMap<QString,int>        m_size;
+  QMap<QString,qulonglong> m_size;
   QMap<QString,int>        m_filenum;
   QMap<QString,int>        m_subdirs;
   
