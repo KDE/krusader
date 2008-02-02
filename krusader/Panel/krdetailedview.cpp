@@ -1586,6 +1586,8 @@ void KrDetailedView::slotSortOrderChanged(int col) {
 		sp = static_cast<KrViewProperties::SortSpec>(sp | KrViewProperties::IgnoreCase);
 	if (sortMode() & KrViewProperties::Descending)
 		sp = static_cast<KrViewProperties::SortSpec>(sp | KrViewProperties::Descending);
+	if (sortMode() & KrViewProperties::AlwaysSortDirsByName)
+		sp = static_cast<KrViewProperties::SortSpec>(sp | KrViewProperties::AlwaysSortDirsByName);
 	// fix the ascending/decending stuff
 	if (sortMode() == sp) {
 		if (sp & KrViewProperties::Descending) 
