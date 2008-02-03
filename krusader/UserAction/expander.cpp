@@ -10,6 +10,8 @@
 //
 //
 
+#include <algorithm>
+
 #include "expander.h"
 
 #include "../krusader.h"
