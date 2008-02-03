@@ -92,10 +92,10 @@ AM_CONDITIONAL(with_tar, test "$with_tar" != "no")
 
 ###################################################
 
-AM_INIT_AUTOMAKE(krusader,1.80.0)
+AM_INIT_AUTOMAKE(krusader,1.90.0)
 # This adds the RELEASE_NAME-Marco to config.h (where also VERSION is defined).
 # It can be used to add a name to a release. If commented out only VERSION is used, see main.cpp
-AH_BOTTOM([#define RELEASE_NAME "Final 3rd Stone"])
+AH_BOTTOM([#define RELEASE_NAME "Power Stone"])
 
 dnl CXXFLAGS="$NOOPT_CXXFLAGS" dnl __kdevelop[noopt]__
 dnl CFLAGS="$NOOPT_CFLAGS" dnl __kdevelop[noopt]__
