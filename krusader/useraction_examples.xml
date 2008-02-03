@@ -96,6 +96,13 @@ Please note: The sed-command is &quot;s/search/repleace/&quot;, so you have to e
   <category>System</category>
   <command run_as="root" executionmode="collect_output" >result=`umount '%aCurrent%' 2>&amp;1`; case &quot;$?&quot; in 0) kdialog --title Krusader --msgbox &quot;Filesystem unmounted&quot;; ;; 1) apps=`lsof | grep '%aCurrent%' | head | cut -d ' ' -f 1`; kdialog --title Krusader --error &quot;Could not unmount filesystem.\n\nIt is still in use by the following applications:\n$apps&quot;; ;; *) kdialog --title Krusader --error &quot;Could not unmount filesystem.\n$result&quot;; ;; esac</command>
  </action>
+ <action name="system_Eject" >
+  <title>Eject cd/dvd</title>
+  <tooltip>Unmounts and ejects current cdrom/dvd</tooltip>
+  <icon>player_eject</icon>
+  <category>System</category>
+  <command>umount %aCurrent% ; /usr/bin/eject -r %aCurrent%</command>
+ </action> 
  <action name="archive_archive2dir" >
   <title>Unpack archive to dir</title>
   <tooltip>Creates a directory with the archive name before unpacking</tooltip>
