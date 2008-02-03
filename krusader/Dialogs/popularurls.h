@@ -3,7 +3,7 @@
 
 #include <qobject.h>
 #include <kurl.h>
-#include <q3dict.h>
+#include <qhash.h>
 #include <kdialog.h>
 
 // the class holds a list of most popular links in a dual data structure
@@ -52,7 +52,7 @@ protected:
 	
 private:
 	UrlNodeP head, tail;
-	Q3Dict<UrlNode> ranks; // actually holds UrlNode*
+	QHash<QString, UrlNode *> ranks; // actually holds UrlNode*
 	int count;
 	static const int maxUrls = 30; 
 	PopularUrlsDlg *dlg;

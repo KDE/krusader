@@ -381,9 +381,9 @@ QString KrDetailedView::getCurrentItem() const {
 }
 
 void KrDetailedView::setCurrentItem( const QString& name ) {
-   KrDetailedViewItem * it = dynamic_cast<KrDetailedViewItem*>(_dict[ name ]);
-   if ( it )
-      K3ListView::setCurrentItem( it );
+   QHash<QString, KrViewItem*>::iterator itr = _dict.find( name );
+   if ( itr != _dict.end() )
+      K3ListView::setCurrentItem( dynamic_cast<KrDetailedViewItem*>( *itr ) );
 }
 
 void KrDetailedView::clear() {
@@ -691,7 +691,7 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
 
      K3ListView::contentsMousePressEvent( e );
 
-     if( name.isEmpty() || _dict.find( name ) == 0 ) // is the file still valid?
+     if( name.isEmpty() || _dict.find( name ) == _dict.end() ) // is the file still valid?
        newCurrent = 0;                // if not, don't do any crash...
    } else {
      // emitting the missing signals from QListView::contentsMousePressEvent();

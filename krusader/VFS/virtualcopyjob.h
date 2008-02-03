@@ -53,8 +53,14 @@ class VirtualCopyJob : public KIO::Job
 
 public:
   VirtualCopyJob( const QStringList *names, vfs * vfs, const KUrl& dest, const KUrl& baseURL,
-                  PreserveMode pmode, KIO::CopyJob::CopyMode mode, bool asMethod, bool showProgressInfo );
+                  PreserveMode pmode, KIO::CopyJob::CopyMode mode, bool showProgressInfo );
   virtual ~VirtualCopyJob();
+
+  inline bool isSkipAll()       { return m_skipAll; }
+  inline void setSkipAll()      { m_skipAll = true; }
+  inline bool isOverwriteAll()  { return m_overwriteAll; }
+  inline void setOverwriteAll() { m_overwriteAll = true; }
+  inline bool isMulti()         { return m_multi; }
 
 protected:
   void statNextDir();
@@ -73,10 +79,8 @@ protected slots:
 
   void slotCopying(KIO::Job *, const KUrl &, const KUrl &);
   void slotMoving(KIO::Job *, const KUrl &, const KUrl &);
-  void slotCreatingDir(KIO::Job *, const KUrl &);
   
-  void slotProcessedFiles (KIO::Job *, unsigned long);
-  void slotProcessedDirs (KIO::Job *, unsigned long);
+  void slotProcessedFiles (KIO::Job *, unsigned long );
   void slotProcessedSize (KJob *, qulonglong);
 
 signals:
@@ -86,6 +90,10 @@ signals:
   void processedDirs( KIO::Job *job, unsigned long dirs );
   
 private:
+  bool                     m_overwriteAll;
+  bool                     m_skipAll;
+  bool                     m_multi;
+
   KIO::filesize_t          m_totalSize;
   unsigned long            m_totalFiles;
   unsigned long            m_totalSubdirs;
@@ -96,7 +104,6 @@ private:
     
   qulonglong               m_tempSize;
   unsigned long            m_tempFiles;
-  unsigned long            m_tempSubdirs;  
     
   QList<KUrl>              m_dirsToGetSize;
   
@@ -110,7 +117,6 @@ private:
   KUrl                     m_dest;
   PreserveMode             m_pmode;
   KIO::CopyJob::CopyMode   m_mode;
-  bool                     m_asMethod;
   bool                     m_showProgressInfo;
   
   State                    m_state;

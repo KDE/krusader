@@ -5,7 +5,7 @@
 #include <kparts/part.h>
 #include <kparts/browserextension.h>
 #include <kmessagebox.h>
-#include <q3dict.h>
+#include <qhash.h>
 #include <qlabel.h>
 #include <kmimetype.h>
 #include <k3tempfile.h>
@@ -27,9 +27,8 @@
 PanelViewerBase::PanelViewerBase( QWidget *parent ) :
 QStackedWidget( parent ), mimes( 0 ), cpart( 0 ) {
 	setSizePolicy( QSizePolicy( QSizePolicy::Preferred, QSizePolicy::Ignored ) );
-
-	mimes = new Q3Dict<KParts::ReadOnlyPart>( DICTSIZE, false );
-	mimes->setAutoDelete( true );
+	
+	mimes = new QHash<QString, KParts::ReadOnlyPart *>();
 	cpart = 0;
 	fallback = new QLabel( i18n( "No file selected or selected file can't be displayed." ), this );
 	fallback->setAlignment( Qt::AlignCenter | Qt::ExpandTabs | Qt::WordBreak );
@@ -40,6 +39,9 @@ QStackedWidget( parent ), mimes( 0 ), cpart( 0 ) {
 PanelViewerBase::~PanelViewerBase() {
 //	cpart->queryClose();
 	closeUrl();
+	QHashIterator< QString, KParts::ReadOnlyPart *> lit( *mimes );
+	while( lit.hasNext() )
+		delete lit.next().value();
 	mimes->clear();
 	delete mimes;
 	delete fallback;
@@ -62,11 +64,12 @@ KParts::ReadOnlyPart* PanelViewer::openUrl( const KUrl &url, KrViewer::Mode mode
 	if( mode == KrViewer::Generic ){
 		KMimeType::Ptr mt = KMimeType::findByUrl( curl );
 		cmimetype = mt ? mt->name() : QString();
-		cpart = ( *mimes ) [ cmimetype ];
-		if ( !cpart ){
+		if( mimes->find( cmimetype ) == mimes->end() ) {
 			cpart = getPart( cmimetype );
 			mimes->insert( cmimetype, cpart );
 		}
+		else
+			cpart = ( *mimes ) [ cmimetype ];
 	}
 
 	K3TempFile tmpFile;
@@ -217,11 +220,12 @@ KParts::ReadOnlyPart* PanelEditor::openUrl( const KUrl &url, KrViewer::Mode mode
 	if( mode == KrViewer::Generic ){
 		KMimeType::Ptr mt = KMimeType::findByUrl( curl );
 		cmimetype = mt ? mt->name() : QString();
-		cpart = ( *mimes ) [ cmimetype ];
-		if ( !cpart ){ 
+		if( mimes->find( cmimetype ) == mimes->end() ) {
 			cpart = getPart( cmimetype );
 			mimes->insert( cmimetype, cpart );
 		}
+		else
+			cpart = ( *mimes ) [ cmimetype ];
 	}
 
 	if ( !cpart ) cpart = getPart( "text/plain" );

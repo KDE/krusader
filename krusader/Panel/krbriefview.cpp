@@ -325,9 +325,9 @@ QString KrBriefView::getCurrentItem() const {
 }
 
 void KrBriefView::setCurrentItem( const QString& name ) {
-   KrBriefViewItem * it = dynamic_cast<KrBriefViewItem*>(_dict[ name ]);
-   if ( it )
-      K3IconView::setCurrentItem( it );
+   QHash<QString, KrViewItem*>::iterator itr = _dict.find( name );
+   if ( itr != _dict.end() )
+      K3IconView::setCurrentItem( dynamic_cast<KrBriefViewItem*>( *itr ) );
 }
 
 void KrBriefView::clear() {
@@ -602,7 +602,7 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
 
      K3IconView::contentsMousePressEvent( e );
 
-     if( name.isEmpty() || _dict.find( name ) == 0 ) // is the file still valid?
+     if( name.isEmpty() || _dict.find( name ) == _dict.end() ) // is the file still valid?
        newCurrent = 0;                // if not, don't do any crash...
    } else {
      // emitting the missing signals from QIconView::contentsMousePressEvent();

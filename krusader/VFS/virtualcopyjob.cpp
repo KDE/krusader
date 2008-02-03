@@ -40,12 +40,89 @@
 
 #define REPORT_TIMEOUT 200
 
+class MyUiDelegate : public KIO::JobUiDelegate {
+public:
+    MyUiDelegate( VirtualCopyJob * ref ) : KIO::JobUiDelegate(), copyJobRef( ref ) {}
+
+    virtual KIO::RenameDialog_Result askFileRename(KJob * job, const QString & caption, const QString& src,
+                                              const QString & dest, KIO::RenameDialog_Mode mode,
+                                              QString& newDest, KIO::filesize_t sizeSrc = (KIO::filesize_t) -1,
+                                              KIO::filesize_t sizeDest = (KIO::filesize_t) -1,
+                                              time_t ctimeSrc = (time_t) -1, time_t ctimeDest = (time_t) -1,
+                                              time_t mtimeSrc = (time_t) -1, time_t mtimeDest = (time_t) -1)
+    {
+       if( copyJobRef->isSkipAll() )
+       {
+         if( mode & KIO::M_MULTI )
+           return KIO::R_AUTO_SKIP;
+         else
+           return KIO::R_SKIP;
+       }
+       if( copyJobRef->isOverwriteAll() )
+       {
+         if( mode & KIO::M_MULTI )
+           return KIO::R_OVERWRITE_ALL;
+         else
+           return KIO::R_OVERWRITE;
+       }
+
+       KIO::RenameDialog_Mode mmode = (KIO::RenameDialog_Mode)0;
+       if( copyJobRef->isMulti() )
+         mmode = (KIO::RenameDialog_Mode)( mmode | KIO::M_MULTI | KIO::M_SKIP );
+       else
+         mmode = (KIO::RenameDialog_Mode)( mmode | KIO::M_SINGLE );
+
+       if( mode & KIO::M_OVERWRITE )
+         mmode = (KIO::RenameDialog_Mode)( mmode | KIO::M_OVERWRITE );
+       if( mode & KIO::M_OVERWRITE_ITSELF )
+         mmode = (KIO::RenameDialog_Mode)( mmode | KIO::M_OVERWRITE_ITSELF );
+
+       KIO::RenameDialog_Result res = KIO::JobUiDelegate::askFileRename( job, caption, src, dest,  mode, newDest, 
+                                                 sizeSrc, sizeDest, ctimeSrc, ctimeDest, mtimeSrc, mtimeDest );
+
+       if( res == KIO::R_AUTO_SKIP ) {
+         copyJobRef->setSkipAll();
+         if( !(mode & KIO::M_MULTI) )
+           res = KIO::R_SKIP;
+       }
+       if( res == KIO::R_OVERWRITE_ALL ) {
+         copyJobRef->setOverwriteAll();
+         if( !(mode & KIO::M_MULTI) )
+           res = KIO::R_OVERWRITE;
+       }
+       return res;
+    }
+
+    virtual KIO::SkipDialog_Result askSkip(KJob * job, bool multi, const QString & error_text)
+    {
+       if( copyJobRef->isSkipAll() )
+       {
+         if( multi )
+           return KIO::S_AUTO_SKIP;
+         else
+           return KIO::S_SKIP;
+       }
+
+       KIO::SkipDialog_Result res = KIO::JobUiDelegate::askSkip( job, copyJobRef->isMulti(), error_text );
+       if( res == KIO::S_AUTO_SKIP ) {
+         copyJobRef->setSkipAll();
+         if( !multi )
+           res = KIO::S_SKIP;
+       }
+
+       return res;
+    }
+
+private:
+	VirtualCopyJob * copyJobRef;
+};
+
 VirtualCopyJob::VirtualCopyJob( const QStringList *names, vfs * vfs, const KUrl& dest, const KUrl& baseURL, 
-	PreserveMode pmode, KIO::CopyJob::CopyMode mode, bool asMethod, bool showProgressInfo ) :
-		KIO::Job(), m_totalSize( 0 ), m_totalFiles( 0 ), m_totalSubdirs( 0 ),
+	PreserveMode pmode, KIO::CopyJob::CopyMode mode, bool showProgressInfo ) : KIO::Job(), m_overwriteAll( false ),
+		m_skipAll( false ), m_multi( false ), m_totalSize( 0 ), m_totalFiles( 0 ), m_totalSubdirs( 0 ),
 		m_processedSize( 0 ), m_processedFiles( 0 ), m_processedSubdirs( 0 ), m_tempSize( 0 ), m_tempFiles( 0 ),
-		m_tempSubdirs( 0 ), m_dirsToGetSize(), m_filesToCopy(), m_size(), m_filenum(), m_subdirs(), m_baseURL( baseURL ),
-		m_dest( dest ), m_pmode( pmode ), m_mode( mode ), m_asMethod( asMethod ), m_showProgressInfo( showProgressInfo ),
+		m_dirsToGetSize(), m_filesToCopy(), m_size(), m_filenum(), m_subdirs(), m_baseURL( baseURL ),
+		m_dest( dest ), m_pmode( pmode ), m_mode( mode ), m_showProgressInfo( showProgressInfo ),
 		m_state( ST_STARTING ), m_reportTimer(), m_current(), m_currentDir(), m_dirStack() {
 	
 	m_dest.adjustPath( KUrl::AddTrailingSlash );
@@ -82,7 +159,7 @@ VirtualCopyJob::VirtualCopyJob( const QStringList *names, vfs * vfs, const KUrl&
 	}
 	
 	if ( showProgressInfo ) {
-		setUiDelegate(new KIO::JobUiDelegate() );
+		setUiDelegate(new MyUiDelegate( this ) );
 		KIO::getJobTracker()->registerJob(this);
 	}
 	
@@ -113,7 +190,7 @@ void VirtualCopyJob::slotReport() {
 		break;
 	case ST_COPYING:
 		{
-			setProcessedAmount( KJob::Directories, m_processedSubdirs + m_tempSubdirs );
+			setProcessedAmount( KJob::Directories, m_processedSubdirs );
 			setProcessedAmount( KJob::Files, m_processedFiles + m_tempFiles );
 			setProcessedAmount( KJob::Bytes, m_processedSize + m_tempSize );
 			
@@ -160,6 +237,9 @@ void VirtualCopyJob::slotKdsResult( KJob * job ) {
 
 void VirtualCopyJob::createNextDir() {
 	m_state = ST_CREATING_DIRECTORY;
+	
+	if( m_totalFiles + m_totalSubdirs > 1 )
+		m_multi = true;
 	
 	QHashIterator<QString, KUrl::List *> diter( m_filesToCopy );
 	if( !diter.hasNext() ) {
@@ -208,7 +288,24 @@ void VirtualCopyJob::slotMkdirResult( KJob *job ) {
 	KUrl url = (static_cast<KIO::SimpleJob*>(job) )->url();
 	
 	if ( job && job->error() ) {
-		job->uiDelegate()->showErrorMessage();
+		if( ui() && !m_skipAll ) {
+			KIO::SkipDialog_Result skipResult = ui()->askSkip( this, m_multi,
+							job->errorString() );
+			switch( skipResult )
+			{
+			case KIO::S_CANCEL:
+				setError( KIO::ERR_USER_CANCELED );
+				emitResult();
+				return;
+			case KIO::S_AUTO_SKIP:
+				m_skipAll = true;
+				break;
+			case KIO::S_SKIP:
+			default:
+				break;
+			}
+		}
+		
 		directoryFinished( m_currentDir );
 		createNextDir();
 		return;
@@ -230,18 +327,16 @@ void VirtualCopyJob::copyCurrentDir() {
 	m_state = ST_COPYING;
 	
 	KIO::CopyJob * copy_job = PreservingCopyJob::createCopyJob( m_pmode, *m_filesToCopy[ m_currentDir ], m_current,
-		m_mode, m_asMethod, false );
+		m_mode, false, false );
+	copy_job->setParentJob( this );
+	copy_job->setUiDelegate(new MyUiDelegate( this ) );
 	
 	connect( copy_job, SIGNAL( copying(KIO::Job *, const KUrl &, const KUrl &) ),
 		this, SLOT( slotCopying(KIO::Job *, const KUrl &, const KUrl &) ) );
 	connect( copy_job, SIGNAL( moving(KIO::Job *, const KUrl &, const KUrl &) ),
 		this, SLOT( slotMoving(KIO::Job *, const KUrl &, const KUrl &) ) );
-	connect( copy_job, SIGNAL( creatingDir(KIO::Job *, const KUrl &) ),
-		this, SLOT( slotCreatingDir(KIO::Job *, const KUrl &) ) );
 	connect( copy_job, SIGNAL( processedFiles (KIO::Job *, unsigned long) ),
 		this, SLOT( slotProcessedFiles (KIO::Job *, unsigned long) ) );
-	connect( copy_job, SIGNAL( processedDirs (KIO::Job *, unsigned long) ),
-		this, SLOT( slotProcessedDirs (KIO::Job *, unsigned long) ) );
 	connect( copy_job, SIGNAL( processedSize (KJob *, qulonglong) ),
 		this, SLOT( slotProcessedSize (KJob *, qulonglong) ) );
 	connect( copy_job, SIGNAL( result( KJob* ) ), this, SLOT( slotCopyResult( KJob* ) ) );
@@ -249,7 +344,17 @@ void VirtualCopyJob::copyCurrentDir() {
 
 void VirtualCopyJob::slotCopyResult( KJob *job ) {
 	if ( job && job->error() ) {
-		job->uiDelegate()->showErrorMessage();
+		setError( job->error() );
+		setErrorText( job->errorText() );
+		
+		if( job->error() == KIO::ERR_USER_CANCELED ) {
+			emitResult();
+			return;
+		}
+		
+		if( uiDelegate() )
+			uiDelegate()->showErrorMessage();
+		setError( 0 );
 	}
 	
 	directoryFinished( m_currentDir );
@@ -264,7 +369,7 @@ void VirtualCopyJob::directoryFinished( const QString &name ) {
 	m_processedFiles += m_filenum[ name ];
 	m_processedSubdirs += m_subdirs[ name ];
 	
-	m_tempSize = m_tempFiles = m_tempSubdirs = 0;
+	m_tempSize = m_tempFiles = 0;
 	
 	m_size.remove( name );
 	m_filenum.remove( name );
@@ -283,15 +388,8 @@ void VirtualCopyJob::slotMoving(KIO::Job *, const KUrl &src, const KUrl &dest) {
 		qMakePair(i18n("Destination"), dest.prettyUrl()));
 }
 
-void VirtualCopyJob::slotCreatingDir(KIO::Job *, const KUrl &) {
-}
-  
 void VirtualCopyJob::slotProcessedFiles (KIO::Job *, unsigned long filenum) {
 	m_tempFiles = filenum;
-}
-
-void VirtualCopyJob::slotProcessedDirs (KIO::Job *, unsigned long subdirs) {
-	m_tempSubdirs = subdirs;
 }
 
 void VirtualCopyJob::slotProcessedSize (KJob *, qulonglong size) {

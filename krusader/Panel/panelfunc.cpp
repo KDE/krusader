@@ -451,7 +451,7 @@ void ListPanelFunc::moveFiles() {
 
 	if( !virtualBaseURL.isEmpty() ) {
 		// keep the directory structure for virtual paths
-		VirtualCopyJob *vjob = new VirtualCopyJob( &fileNames, files(), dest, virtualBaseURL, pmode, KIO::CopyJob::Move, false, true );
+		VirtualCopyJob *vjob = new VirtualCopyJob( &fileNames, files(), dest, virtualBaseURL, pmode, KIO::CopyJob::Move, true );
 		connect( vjob, SIGNAL( result( KJob* ) ), this, SLOT( refresh() ) );
 		if ( dest.equals( panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) )
 			connect( vjob, SIGNAL( result( KJob* ) ), panel->otherPanel->func, SLOT( refresh() ) );
@@ -599,7 +599,7 @@ void ListPanelFunc::copyFiles() {
 
 	if( !virtualBaseURL.isEmpty() ) {
 		// keep the directory structure for virtual paths
-		VirtualCopyJob *vjob = new VirtualCopyJob( &fileNames, files(), dest, virtualBaseURL, pmode, KIO::CopyJob::Copy, false, true );
+		VirtualCopyJob *vjob = new VirtualCopyJob( &fileNames, files(), dest, virtualBaseURL, pmode, KIO::CopyJob::Copy, true );
 		connect( vjob, SIGNAL( result( KJob* ) ), this, SLOT( refresh() ) );
 		if ( dest.equals( panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) )
 			connect( vjob, SIGNAL( result( KJob* ) ), panel->otherPanel->func, SLOT( refresh() ) );

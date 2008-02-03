@@ -7,7 +7,7 @@
 #include <kparts/part.h>
 #include <kio/job.h>
 #include <k3tempfile.h>
-#include <q3dict.h>
+#include <qhash.h>
 #include <qlabel.h>
 
 #include "krviewer.h"
@@ -35,7 +35,7 @@ signals:
 	void urlChanged( PanelViewerBase *, const KUrl & );
 
 protected:
-	Q3Dict<KParts::ReadOnlyPart> *mimes;
+	QHash<QString, KParts::ReadOnlyPart*> *mimes;
 	KParts::ReadOnlyPart *cpart;
 
 	QString cmimetype;

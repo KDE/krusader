@@ -19,7 +19,7 @@
 #define _VIRT_H
 
 #include <sys/types.h>
-#include <q3dict.h>
+#include <qhash.h>
 #include <QByteArray>
 #include <kconfig.h>
 #include <kio/slavebase.h>
@@ -46,7 +46,7 @@ protected:
 	bool addDir(QString& path);
 
 
-	static Q3Dict<KUrl::List> kioVirtDict;
+	static QHash<QString, KUrl::List*> kioVirtDict;
 	static KConfig* kio_virt_db;
 
 	bool rewriteURL(const KUrl&, KUrl&);

@@ -243,11 +243,13 @@ QString KrView::firstUnmarkedBelowCurrent() {
 }
 
 void KrView::delItem(const QString &name) {
-	KrViewItem * it = _dict[ name ];
-   if ( !it ) {
-      krOut << "got signal deletedVfile(" << name << ") but can't find KrViewItem" << endl;
+	QHash<QString, KrViewItem*>::iterator itr = _dict.find( name );
+	if ( itr == _dict.end() ) {
+		krOut << "got signal deletedVfile(" << name << ") but can't find KrViewItem" << endl;
 		return;
-	}	
+	}
+
+	KrViewItem * it = *itr;
 	if (!preDelItem(it)) return; // do not delete this after all
 	
 	// remove from dict
@@ -291,11 +293,12 @@ KrViewItem *KrView::addItem( vfile *vf ) {
 void KrView::updateItem(vfile *vf) {
    // since we're deleting the item, make sure we keep
    // it's properties first and repair it later
-   KrViewItem * it = _dict[ vf->vfile_getName() ];
-   if ( !it ) {
+   QHash<QString, KrViewItem*>::iterator itr = _dict.find( vf->vfile_getName() );
+      if ( itr == _dict.end() ) {
       krOut << "got signal updatedVfile(" << vf->vfile_getName() << ") but can't find KrViewItem" << endl;
    } else {
-		bool selected = it->isSelected();
+      KrViewItem * it = *itr;
+      bool selected = it->isSelected();
       bool current = ( getCurrentKrViewItem() == it );
       delItem( vf->vfile_getName() );
       KrViewItem *updatedItem = addItem( vf );

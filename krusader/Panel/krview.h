@@ -32,7 +32,7 @@
 
 #include <qpixmap.h>
 #include <qvariant.h>
-#include <q3dict.h>
+#include <qhash.h>
 #include <QDropEvent>
 #include <QList>
 #include "../krusader.h"
@@ -239,7 +239,7 @@ protected:
   bool _left;
   KrViewProperties *_properties;
   KrViewOperator *_operator;
-  Q3Dict<KrViewItem> _dict;
+  QHash<QString, KrViewItem*> _dict;
   bool _focused;
   QString _nameInKConfig;
 };

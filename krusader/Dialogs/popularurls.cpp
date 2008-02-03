@@ -110,14 +110,14 @@ void PopularUrls::addUrl(const KUrl& url) {
 		appendNode(pnode);
 		ranks.insert(tmpurl.url(), head);
 	} else {
-		pnode = ranks.find(tmpurl.url());
-		if (!pnode) { // is the added url new? if so, append it
+		if( ranks.find(tmpurl.url()) == ranks.end() ) { // is the added url new? if so, append it
 			pnode = new UrlNode;
 			pnode->rank = STARTING_RANK;
 			pnode->url = tmpurl;
 			appendNode(pnode);
 			ranks.insert(tmpurl.url(), pnode);
 		} else {
+			pnode = ranks[ tmpurl.url() ];
 			pnode->rank += INCREASE;
 		}
 	}
