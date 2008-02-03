@@ -475,7 +475,8 @@ void AdvancedFilter::fillList ( QComboBox *list, QString filename )
 	{
 		QString s = t.readLine();
 		QString name = s.left ( s.find ( ':' ) );
-		list->insertItem ( name );
+		if (!name.startsWith('#'))
+			list->insertItem ( name );
 	}
 }
 
