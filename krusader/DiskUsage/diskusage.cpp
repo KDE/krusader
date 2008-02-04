@@ -222,7 +222,6 @@ DiskUsage::DiskUsage( QString confGroup, QWidget *parent ) : QStackedWidget( par
   setView( VIEW_LINES );
 
   Filelight::Config::read();
-  propertyMap.setAutoDelete( true );
 
   connect( &loadingTimer, SIGNAL( timeout() ), this, SLOT( slotLoadDirectory() ) );
 }
@@ -238,6 +237,10 @@ DiskUsage::~DiskUsage()
     delete lineView;
   if( filelightView )
     delete filelightView;
+
+  QHashIterator< File *, Properties * > lit( propertyMap );
+  while( lit.hasNext() )
+    delete lit.next().value();
 }
 
 void DiskUsage::load( KUrl baseDir )
@@ -471,6 +474,11 @@ void DiskUsage::clear()
 {
   baseURL = KUrl();
   emit clearing();
+
+  QHashIterator< File *, Properties * > lit( propertyMap );
+  while( lit.hasNext() )
+    delete lit.next().value();
+
   propertyMap.clear();
   contentMap.clear();
   if( root )
@@ -692,30 +700,38 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
 
 void * DiskUsage::getProperty( File *item, QString key )
 {
-  Properties * props = propertyMap.find( item );
-  if( props == 0 )
+  QHash< File *, Properties *>::iterator itr = propertyMap.find( item );
+  if( itr == propertyMap.end() )
     return 0;
-  return props->find( key );
+
+  QHash<QString, void *>::iterator it = (*itr)->find( key );
+  if( it == (*itr)->end() )
+    return 0;
+
+  return it.value();
 }
 
 void DiskUsage::addProperty( File *item, QString key, void * prop )
 {
-  Properties * props = propertyMap.find( item );
-  if( props == 0 )
+  Properties *props;
+  QHash< File *, Properties *>::iterator itr = propertyMap.find( item );
+  if( itr == propertyMap.end() )
   {
     props = new Properties();
     propertyMap.insert( item, props );
-  }
+  } else
+    props = *itr;
+
   props->insert( key, prop );
 }
 
 void DiskUsage::removeProperty( File *item, QString key )
 {
-  Properties * props = propertyMap.find( item );
-  if( props == 0 )
+  QHash< File *, Properties *>::iterator itr = propertyMap.find( item );
+  if( itr == propertyMap.end() )
     return;
-  props->remove( key );
-  if( props->count() == 0 )
+  (*itr)->remove( key );
+  if( (*itr)->count() == 0 )
     propertyMap.remove( item );
 }
 

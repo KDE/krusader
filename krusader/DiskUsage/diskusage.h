@@ -37,7 +37,6 @@
 #include <qdialog.h>
 #include <qlabel.h>
 #include <qhash.h>
-#include <q3ptrdict.h>
 #include <qstack.h>
 #include <QResizeEvent>
 #include <QPixmap>
@@ -126,7 +125,7 @@ protected slots:
 
 protected:
   QHash< QString, Directory * > contentMap;
-  Q3PtrDict<Properties> propertyMap;
+  QHash< File *, Properties *> propertyMap;
     
   Directory* currentDirectory;
   KIO::filesize_t currentSize;

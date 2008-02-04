@@ -191,7 +191,7 @@ void DUListView::slotChanged( File * item )
   void * itemPtr = diskUsage->getProperty( item, "ListView-Ref" );
   if( itemPtr == 0 )
     return;
-    
+
   DUListViewItem *duItem = (DUListViewItem *)itemPtr;
   duItem->setHidden( item->isExcluded() );
   duItem->setText( 1, item->percent() );

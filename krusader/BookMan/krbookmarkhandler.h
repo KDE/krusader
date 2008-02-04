@@ -7,7 +7,6 @@
 #include <QEvent>
 #include <kmenu.h>
 #include <kurl.h>
-#include <q3ptrdict.h>
 #include <qdom.h>
 #include <qmap.h>
 
