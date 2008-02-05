@@ -197,12 +197,12 @@ void KMountMan::eject( QString mntPoint ) {
       KMessageBox::information( 0, i18n( "Error ejecting device! You need to have 'eject' in your path." ), i18n( "Error" ), "CantExecuteEjectWarning" );
 }
 
-// returns true if the path is an ejectable mount point (at the moment CDROM)
+// returns true if the path is an ejectable mount point (at the moment CDROM and DVD)
 bool KMountMan::ejectable( QString path ) {
 #if !defined(BSD) && !defined(_OS_SOLARIS_)
 	KMountPoint::List possible = KMountPoint::possibleMountPoints();
 	KMountPoint *m = findInListByMntPoint(possible, path);
-	if (m && (m->mountType()=="iso9660" || m->mountedFrom().left(7)=="/dev/cd"))
+	if (m && (m->mountType()=="iso9660" || m->mountedFrom().left(7)=="/dev/cd" || m->mountedFrom().left(8)=="/dev/dvd"))
 			return KrServices::cmdExist( "eject" );
 #endif
 
