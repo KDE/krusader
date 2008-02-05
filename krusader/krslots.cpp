@@ -41,9 +41,7 @@
 #include <ktoggleaction.h>
 #include <ktoolbar.h>
 #include <klocale.h>
-#include <kprocess.h>
 #include <kmessagebox.h>
-#include <kio/netaccess.h>
 #include <kedittoolbar.h>
 #include <kdeversion.h>
 #include <kcmdlineargs.h>
@@ -157,29 +155,6 @@ void KRslots::compareContent() {
   // but if one of the files isn't local, download them first
   compareContent( name1, name2 );
 }
-
-class KrProcess: public KProcess
-{
-  QString tmp1, tmp2;
-  
-public:
-  KrProcess( QString in1, QString in2 )
-  {
-    tmp1 = in1;
-    tmp2 = in2;
-    connect(this,  SIGNAL(finished(int, QProcess::ExitStatus)), SLOT(processHasExited()));
-  }
-
-public slots:
-  void processHasExited()
-  {
-    if( !tmp1.isEmpty() )
-      KIO::NetAccess::removeTempFile( tmp1 );
-    if( !tmp2.isEmpty() )
-      KIO::NetAccess::removeTempFile( tmp2 );
-    deleteLater();
-  }
-};
 
 void KRslots::compareContent( KUrl url1, KUrl url2 )
 {

@@ -34,6 +34,8 @@
 #define KRSLOTS_H
 
 #include <qobject.h>
+#include <kprocess.h>
+#include <kio/netaccess.h>
 // the 2 following #includes should go away with the ugly stubs on the bottom
 #include "krusader.h"
 #include "krusaderview.h"
@@ -46,6 +48,31 @@
 
 class ListPanel;
 class KUrl;
+
+class KrProcess: public KProcess
+{
+  Q_OBJECT
+
+  QString tmp1, tmp2;
+  
+public:
+  KrProcess( QString in1, QString in2 )
+  {
+    tmp1 = in1;
+    tmp2 = in2;
+    connect(this,  SIGNAL(finished(int, QProcess::ExitStatus)), SLOT(processHasExited()));
+  }
+
+public slots:
+  void processHasExited()
+  {
+    if( !tmp1.isEmpty() )
+      KIO::NetAccess::removeTempFile( tmp1 );
+    if( !tmp2.isEmpty() )
+      KIO::NetAccess::removeTempFile( tmp2 );
+    deleteLater();
+  }
+};
 
 class KRslots : public QObject {
     Q_OBJECT
