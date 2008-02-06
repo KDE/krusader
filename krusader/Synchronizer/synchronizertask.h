@@ -37,7 +37,6 @@
 class Synchronizer;
 class SynchronizerDirList;
 class SynchronizerFileItem;
-class Q3ProgressDialog;
 class QTimer;
 class QFile;
 

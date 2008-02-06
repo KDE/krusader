@@ -9,7 +9,6 @@ set( VFS_SRCS
 	virt_vfs.cpp 
 	vfs.cpp 
 	vfile.cpp 
-	temp_vfs.cpp 
 	normal_vfs.cpp 
 	krpermhandler.cpp 
 	krarchandler.cpp 

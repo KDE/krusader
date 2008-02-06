@@ -31,7 +31,6 @@
 #include <qdir.h>
 #include <qpoint.h>
 #include <qstringlist.h>
-#include <q3progressdialog.h>
 #include <q3listview.h>
 #include <qpixmapcache.h>
 #include <QKeyEvent>
@@ -66,7 +65,6 @@
 #include "Dialogs/krspwidgets.h"
 #include "Dialogs/krkeydialog.h"
 #include "GUI/krusaderstatus.h"
-#include "RemoteMan/remoteman.h"
 #include "Panel/panelfunc.h"
 #include "Konfigurator/konfigurator.h"
 #include "MountMan/kmountman.h"

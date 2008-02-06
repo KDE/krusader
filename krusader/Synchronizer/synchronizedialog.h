@@ -37,7 +37,7 @@
 #include <qpushbutton.h>
 #include <qcheckbox.h>
 #include <qlabel.h>
-#include <q3progressbar.h>
+#include <qprogressbar.h>
 
 class SynchronizeDialog : QDialog
 {
@@ -58,7 +58,7 @@ class SynchronizeDialog : QDialog
     void pauseAccepted();
 
   private:
-    Q3ProgressBar  *progress;
+    QProgressBar  *progress;
     
     QCheckBox     *cbRightToLeft;
     QCheckBox     *cbLeftToRight;

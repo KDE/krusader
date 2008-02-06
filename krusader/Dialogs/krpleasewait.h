@@ -31,7 +31,7 @@
 #ifndef KRPLEASEWAIT_H
 #define KRPLEASEWAIT_H
 
-#include <q3progressdialog.h>
+#include <qprogressdialog.h>
 #include <qtimer.h>
 #include <qpointer.h>
 #include <QCloseEvent>
@@ -64,7 +64,7 @@ private:
 };
 
 
-class KRPleaseWait : public Q3ProgressDialog {
+class KRPleaseWait : public QProgressDialog {
   Q_OBJECT
 public:
 	KRPleaseWait( QString msg, int count = 0 ,bool cancel = false );

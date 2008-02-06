@@ -93,9 +93,10 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,
   lbDeletable->setEnabled( deleteNr != 0 );
   layout->addWidget( lbDeletable );
 
-  progress = new Q3ProgressBar(1000, this);
-  progress->setCenterIndicator(true);
-  progress->setProgress( 0 );
+  progress = new QProgressBar(this);
+  progress->setMaximum( 1000 );
+  progress->setMinimum( 0 );
+  progress->setValue( 0 );
   progress->setMinimumWidth( 400 );
   layout->addWidget( progress );
 
@@ -181,7 +182,7 @@ void SynchronizeDialog::processedSizes( int leftNr, KIO::filesize_t leftSize, in
   if( totalSum == 0 )
     totalSum++;
 
-  progress->setProgress( (int)(((double)processedSum / (double)totalSum )*1000) );
+  progress->setValue( (int)(((double)processedSum / (double)totalSum )*1000) );
 }
 
 void SynchronizeDialog::pauseOrResume()

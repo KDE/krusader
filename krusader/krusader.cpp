@@ -57,7 +57,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <qstringlist.h>
 #include <qdir.h>
 #include <qprinter.h>
-#include <q3progressdialog.h>
 #include <qwidget.h>
 #include <qdatetime.h>
 #include <QActionGroup>
@@ -73,7 +72,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "kicons.h"
 #include "VFS/krpermhandler.h"
 #include "GUI/krusaderstatus.h"
-#include "RemoteMan/remoteman.h"
 #include "Dialogs/krpleasewait.h"
 #include "krusaderview.h"
 #include "Panel/listpanel.h"

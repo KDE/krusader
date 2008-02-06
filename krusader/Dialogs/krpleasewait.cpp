@@ -35,14 +35,15 @@
 #include <qpushbutton.h>
 #include <QLabel>
 #include <QCloseEvent>
-#include <Q3ProgressBar>
+#include <QProgressBar>
 #include <unistd.h>
 #include "../krusader.h"
 #include "klocale.h"
 #include <kcursor.h>
 
 KRPleaseWait::KRPleaseWait( QString msg, int count, bool cancel ):
-	Q3ProgressDialog( cancel ? 0 : krApp,0, !cancel) , inc(true) {
+	QProgressDialog( cancel ? 0 : krApp ) , inc(true) {
+	setModal( !cancel );
 	
 	timer = new QTimer(this);
 	setCaption( i18n( "Krusader::Wait" ) );
@@ -53,8 +54,9 @@ KRPleaseWait::KRPleaseWait( QString msg, int count, bool cancel ):
 	
 	connect( timer,SIGNAL(timeout()), this, SLOT(cycleProgress()));
 
-  Q3ProgressBar* progress = new Q3ProgressBar(count,this);
-  progress->setCenterIndicator(true);
+  QProgressBar* progress = new QProgressBar(this);
+  progress->setMaximum( count );
+  progress->setMinimum( 0 );
 	setBar(progress);
 
 	QLabel* label = new QLabel(this);
@@ -72,21 +74,21 @@ KRPleaseWait::KRPleaseWait( QString msg, int count, bool cancel ):
 void KRPleaseWait::closeEvent ( QCloseEvent * e )
 {
   if( canClose ) {
-    emit cancelled();
+    emit canceled();
     e->accept();
   } else              /* if cancel is not allowed, we disable */
     e->ignore();         /* the window closing [x] also */
 }
 
 void KRPleaseWait::incProgress(int howMuch){
-	setProgress(progress()+howMuch);
+	setValue(value()+howMuch);
 }
 
 void KRPleaseWait::cycleProgress(){
-  if (inc) setProgress(progress()+1);
-  else     setProgress(progress()-1);
-	if ( progress() >= 9 ) inc = false;
-  if ( progress() <= 0 ) inc = true;
+  if (inc) setValue(value()+1);
+  else     setValue(value()-1);
+	if ( value() >= 9 ) inc = false;
+  if ( value() <= 0 ) inc = true;
 }
 
 KRPleaseWaitHandler::KRPleaseWaitHandler() : QObject(), job(), dlg( 0 ) {
@@ -104,19 +106,19 @@ void KRPleaseWaitHandler::stopWait(){
 void KRPleaseWaitHandler::startWaiting( QString msg, int count , bool cancel){
   if ( dlg == 0 ){
     dlg = new KRPleaseWait( msg , count, cancel);
-		connect( dlg,SIGNAL(cancelled()),this,SLOT(killJob()) );
+		connect( dlg,SIGNAL(canceled()),this,SLOT(killJob()) );
   }
   incMutex=cycleMutex=_wasCancelled=false;
-  dlg->setProgress(0);
+  dlg->setValue(0);
 	
 	dlg->setLabelText(msg);
 	if ( count == 0) {
-		dlg->setTotalSteps(10);
+		dlg->setMaximum(10);
 		cycle = true ;
 		cycleProgress();
 	}
   else {
-		dlg->setTotalSteps(count);
+		dlg->setMaximum(count);
   	cycle = false;
 	}
 }
