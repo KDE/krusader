@@ -1134,6 +1134,33 @@
         <term>
           <menuchoice>
             <guimenu>Useractions</guimenu>
+            <guimenuitem>gzip current</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Gzip current file with maximum (9) compression, preserving original file. In case of directory, it is first tarred.
+                Useraction contributed by 
+               <ulink url="http://qa.debian.org/developer.php?login=fboudra@free.fr">Fathi Boudra</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+    <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>tar.gz current</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>tar.gz current file/directory.
+              <ulink url="http://www.kde-files.org/content/show.php/Gzip%2Btar.gz+current+file?content=32522">V&aacute;clav J&uring;za</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
             <guimenuitem>Split large mp3</guimenuitem>
           </menuchoice>
         </term>
@@ -1197,6 +1224,21 @@
           <para>Tries to verify the signature of the current file with kpgp (which has to be in your $PATH).
               Useraction contributed by 
               <ulink url="http://www.kde-files.org/content/show.php/Verify+signature+with+kgpg?content=32509">Dirk Eschler</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+     <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Select from file</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>A javascript useraction, TC-like &quot;load selection from file&quot;. 
+                Use this action on a text file which contains a list of filenames and these files will be selected. 
+                Useraction contributed by 
+              <ulink url="http://www.kde-files.org/content/show.php/Select+from+file?content=54518">Dirk Eschler</ulink>.</para>
         </listitem>
       </varlistentry>
 

@@ -175,7 +175,8 @@ krusaderuajs_DATA = \
        mount.js \
        mount.ui \
        calc.js  \
-       calc.ui
+       calc.ui \
+       select_from_file.js
 
 # Jonas: I've no idea how this thing works so I leave it like it was.
 
