@@ -102,7 +102,7 @@ Please note: The sed-command is &quot;s/search/repleace/&quot;, so you have to e
   <icon>player_eject</icon>
   <category>System</category>
   <command>umount %aCurrent% ; /usr/bin/eject -r %aCurrent%</command>
- </action> 
+ </action>
  <action name="archive_archive2dir" >
   <title>Unpack archive to dir</title>
   <tooltip>Creates a directory with the archive name before unpacking</tooltip>
@@ -124,6 +124,19 @@ Please note: The sed-command is &quot;s/search/repleace/&quot;, so you have to e
   <category>Archive</category>
   <description>Extract an ar archive using the ar utility, which is used for static libraries (*.a) or debian packages (you can extract debian packages this way without having dpkg installed). Like tar, ar does not use any compression.</description>
   <command executionmode="terminal" >sh -c 'A=%_Ask(&quot;Enter the path, where the archive should be unpacked to:&quot;, &quot;%oPath%&quot;, &quot;ar unpack&quot;)% ; cd &quot;$A&quot;; for i in %aList(&quot;Selected&quot;)% ; do ar x &quot;$i&quot;; done '</command>
+ </action>
+ <action name="archive_tgz_current" >
+  <title>tar.gz current</title>
+  <icon>ark</icon>
+  <category>Archive</category>
+  <command>tar cf - %aCurrent(&quot;Yes&quot;)% | gzip -9 >%aCurrent%.tar.gz</command>
+ </action>
+ <action name="archive_gzip_current" >
+  <title>gzip current</title>
+  <tooltip>Gzip current file with maximum (9) compression, preserving original file. In case of directory, it is first tarred.</tooltip>
+  <icon>ark</icon>
+  <category>Archive</category>
+  <command>if [ -d %aCurrent(&quot;Yes&quot;)% ]; then tar cf - %aCurrent(&quot;Yes&quot;)% | gzip -9 >%aCurrent(&quot;Yes&quot;)%.tar.gz; else cat %aCurrent(&quot;Yes&quot;)% | gzip -9 >%aCurrent(&quot;Yes&quot;)%.gz; fi</command>
  </action>
  <action name="filename_to_clipboard" >
   <title>Copy current item to clipboard</title>
