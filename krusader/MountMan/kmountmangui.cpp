@@ -53,6 +53,7 @@ A
 #include <kguiitem.h>
 #include <qfileinfo.h>
 #include <sys/param.h>
+#include <qheaderview.h>
 
 #if defined(BSD)
 #include <kmountpoint.h>
@@ -77,14 +78,14 @@ KMountManGUI::KMountManGUI() : KDialog( krApp ), info( 0 ), mountList( 0 ) {
    setMainWidget( mainPage );
 
    // connections
-   connect( mountList, SIGNAL( doubleClicked( Q3ListViewItem * ) ), this,
-            SLOT( doubleClicked( Q3ListViewItem* ) ) );
-   connect( mountList, SIGNAL( contextMenuRequested( Q3ListViewItem *, const QPoint &, int ) ),
-            this, SLOT( clicked( Q3ListViewItem*, const QPoint&, int ) ) );
-   connect( mountList, SIGNAL( clicked( Q3ListViewItem * ) ), this,
-            SLOT( changeActive( Q3ListViewItem * ) ) );
-   connect( mountList, SIGNAL( selectionChanged( Q3ListViewItem * ) ), this,
-            SLOT( changeActive( Q3ListViewItem * ) ) );
+   connect( mountList, SIGNAL( itemDoubleClicked( QTreeWidgetItem *, int ) ), this,
+            SLOT( doubleClicked( QTreeWidgetItem * ) ) );
+   connect( mountList, SIGNAL( itemRightClicked( QTreeWidgetItem *, int ) ),
+            this, SLOT( clicked( QTreeWidgetItem* ) ) );
+   connect( mountList, SIGNAL( itemClicked( QTreeWidgetItem *, int ) ), this,
+            SLOT( changeActive( QTreeWidgetItem * ) ) );
+   connect( mountList, SIGNAL( itemSelectionChanged() ), this,
+            SLOT( changeActive() ) );
 
    getSpaceData();
    exec();
@@ -93,6 +94,10 @@ KMountManGUI::KMountManGUI() : KDialog( krApp ), info( 0 ), mountList( 0 ) {
 KMountManGUI::~KMountManGUI() {
    watcher->stop();
    delete watcher;
+
+  KConfigGroup group( krConfig, "MountMan" );
+
+  group.writeEntry( "Last State", mountList->header()->saveState() );
 }
 
 void KMountManGUI::createLayout() {
@@ -110,30 +115,51 @@ void KMountManGUI::createMainPage() {
    // clean up is finished...
    QGridLayout *layout = new QGridLayout( mainPage );
    layout->setSpacing( 10 );
-   mountList = new Q3ListView( mainPage );  // create the main container
+   mountList = new KrTreeWidget( mainPage );  // create the main container
    KConfigGroup group( krConfig, "Look&Feel" );
    mountList->setFont( group.readEntry( "Filelist Font", *_FilelistFont ) );
+   mountList->setSelectionMode( QAbstractItemView::SingleSelection );
+   mountList->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+   mountList->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+
+   QStringList labels;
+   labels << i18n( "Name" );
+   labels << i18n( "Type" );
+   labels << i18n( "Mnt.Point" );
+   labels << i18n( "Total Size" );
+   labels << i18n( "Free Size" );
+   labels << i18n( "Free %" );
+   mountList->setHeaderLabels( labels );
+
+   mountList->header()->setResizeMode( 0, QHeaderView::Interactive );
+   mountList->header()->setResizeMode( 1, QHeaderView::Interactive );
+   mountList->header()->setResizeMode( 2, QHeaderView::Interactive );
+   mountList->header()->setResizeMode( 3, QHeaderView::Interactive );
+   mountList->header()->setResizeMode( 4, QHeaderView::Interactive );
+   mountList->header()->setResizeMode( 5, QHeaderView::Interactive );
+
+   KConfigGroup grp( krConfig, "MountMan" );
+   if( grp.hasKey( "Last State" ) )
+      mountList->header()->restoreState( grp.readEntry( "Last State", QByteArray() ) );
+   else
+   {
+     int i = QFontMetrics( mountList->font() ).width( "W" );
+     int j = QFontMetrics( mountList->font() ).width( "0" );
+     j = ( i > j ? i : j );
+
+     mountList->setColumnWidth(0, j*8);
+     mountList->setColumnWidth(1, j*4);
+     mountList->setColumnWidth(2, j*8);
+     mountList->setColumnWidth(3, j*6);
+     mountList->setColumnWidth(4, j*6);
+     mountList->setColumnWidth(5, j*5);
+   }
+
    mountList->setAllColumnsShowFocus( true );
-   mountList->setMultiSelection( false );
-   mountList->setSelectionMode( Q3ListView::Single );
-   mountList->setVScrollBarMode( Q3ScrollView::AlwaysOn );
-   mountList->setHScrollBarMode( Q3ScrollView::Auto );
-   mountList->setShowSortIndicator( true );
-   int i = QFontMetrics( mountList->font() ).width( "W" );
-   int j = QFontMetrics( mountList->font() ).width( "0" );
-   j = ( i > j ? i : j );
-   mountList->addColumn( i18n( "Name" ), j * 8 );
-   mountList->addColumn( i18n( "Type" ), j * 4 );
-   mountList->addColumn( i18n( "Mnt.Point" ), j * 6 );
-   mountList->addColumn( i18n( "Total Size" ), j * 6 );
-   mountList->addColumn( i18n( "Free Size" ), j * 6 );
-   mountList->addColumn( i18n( "Free %" ), j * 5 );
-   mountList->setColumnWidthMode( 0, Q3ListView::Maximum );
-   mountList->setColumnWidthMode( 1, Q3ListView::Maximum );
-   mountList->setColumnWidthMode( 2, Q3ListView::Maximum );
-   mountList->setColumnWidthMode( 3, Q3ListView::Maximum );
-   mountList->setColumnWidthMode( 4, Q3ListView::Maximum );
-   mountList->setColumnWidthMode( 5, Q3ListView::Maximum );
+   mountList->header()->setSortIndicatorShown( true );
+
+   mountList->sortItems( 0, Qt::AscendingOrder );
+
    // now the list is created, time to fill it with data.
    //=>krMtMan.forceUpdate();
    QGroupBox *box = new QGroupBox( i18n( "MountMan.Info" ), mainPage );
@@ -200,16 +226,19 @@ void KMountManGUI::gettingSpaceData( const QString &mountPoint, quint64 kBSize,
    fileSystemsTemp.append( data );
 }
 
-void KMountManGUI::addItemToMountList( Q3ListView *lst, fsData &fs ) {
+void KMountManGUI::addItemToMountList( KrTreeWidget *lst, fsData &fs ) {
    bool mtd = fs.mounted();
 
    QString tSize = QString( "%1" ).arg( KIO::convertSizeFromKiB( fs.totalBlks() ) );
    QString fSize = QString( "%1" ).arg( KIO::convertSizeFromKiB( fs.freeBlks() ) );
    QString sPrct = QString( "%1%" ).arg( 100 - ( fs.usedPerct() ) );
-   Q3ListViewItem *item = new Q3ListViewItem( lst, fs.name(),
-                         fs.type(), fs.mntPoint(),
-                         ( mtd ? tSize : QString( "N/A" ) ), ( mtd ? fSize : QString( "N/A" ) ),
-                         ( mtd ? sPrct : QString( "N/A" ) ) );
+   QTreeWidgetItem *item = new QTreeWidgetItem( lst );
+   item->setText( 0, fs.name() );
+   item->setText( 1, fs.type() );
+   item->setText( 2, fs.mntPoint() );
+   item->setText( 3, ( mtd ? tSize : QString( "N/A" ) ) );
+   item->setText( 4, ( mtd ? fSize : QString( "N/A" ) ) );
+   item->setText( 5, ( mtd ? sPrct : QString( "N/A" ) ) );
    
 	QString id = fs.name().left(7); // only works assuming devices start with  "/dev/XX"
    QPixmap *icon = 0;
@@ -221,7 +250,7 @@ void KMountManGUI::addItemToMountList( Q3ListView *lst, fsData &fs ) {
 		icon = new QPixmap( LOADICON( mtd ? "nfs_mount" : "nfs_unmount" ) );
 	} else icon = new QPixmap( LOADICON( mtd ? "hdd_mount" : "hdd_unmount" ) );
 
-   item->setPixmap( 0, *icon );
+   item->setIcon( 0, *icon );
    delete icon;
 }
 
@@ -267,7 +296,7 @@ void KMountManGUI::checkMountChange() {
    watcher->start( WATCHER_DELAY, true );   // starting the watch timer ( single shot )
 }
 
-void KMountManGUI::doubleClicked( Q3ListViewItem *i ) {
+void KMountManGUI::doubleClicked( QTreeWidgetItem *i ) {
    if ( !i )
 		return; // we don't want to refresh to swap, do we ?
 		 
@@ -279,8 +308,14 @@ void KMountManGUI::doubleClicked( Q3ListViewItem *i ) {
    close();
 }
 
+void KMountManGUI::changeActive() {
+   QList<QTreeWidgetItem *> seld = mountList->selectedItems();
+   if( seld.count() > 0 )
+     changeActive( seld[ 0 ] );
+}
+
 // when user clicks on a filesystem, change information
-void KMountManGUI::changeActive( Q3ListViewItem *i ) {
+void KMountManGUI::changeActive( QTreeWidgetItem *i ) {
 	if ( !i ) return ;
    fsData *system = 0;
 	
@@ -306,7 +341,7 @@ void KMountManGUI::changeActive( Q3ListViewItem *i ) {
 }
 
 // called when right-clicked on a filesystem
-void KMountManGUI::clicked( Q3ListViewItem *item, const QPoint& pos, int /* col */ ) {
+void KMountManGUI::clicked( QTreeWidgetItem *item ) {
    // these are the values that will exist in the menu
 #define MOUNT_ID       90
 #define UNMOUNT_ID     91
@@ -353,7 +388,7 @@ void KMountManGUI::clicked( Q3ListViewItem *item, const QPoint& pos, int /* col 
 
    QString mountPoint = system->mntPoint();
 
-   QAction * res = popup.exec( pos );
+   QAction * res = popup.exec( QCursor::pos() );
    int result = -1;
 
    if( res && res->data().canConvert<int>() )

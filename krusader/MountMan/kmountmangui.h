@@ -35,13 +35,14 @@
 
 #include <sys/param.h>
 #include <kdialog.h>
-#include <q3listview.h>
 #include <QFrame>
 #include <qtimer.h>
 #include <kurl.h>
 #include <qlist.h>
 #include <kmountpoint.h>
 #include <qdatetime.h>
+
+#include "../GUI/krtreewidget.h"
 #include "kmountman.h"
 
 #define  WATCHER_DELAY    3000
@@ -66,9 +67,10 @@ public:
    void createMainPage(); // creator of the main page - filesystems
 
 protected slots:
-   void doubleClicked( Q3ListViewItem * );
-   void clicked( Q3ListViewItem *, const QPoint& pos, int col );
-   void changeActive( Q3ListViewItem * );
+   void doubleClicked( QTreeWidgetItem * );
+   void clicked( QTreeWidgetItem * );
+   void changeActive();
+   void changeActive( QTreeWidgetItem * );
    void checkMountChange(); // check whether the mount table was changed
 
 	void updateList();     // fill-up the filesystems list
@@ -78,7 +80,7 @@ protected slots:
 								quint64 kBUsed, quint64 kBAvail);
 
 protected:
-	void addItemToMountList( Q3ListView *lst, fsData &fs );
+	void addItemToMountList( KrTreeWidget *lst, fsData &fs );
 		
 signals:
    void refreshPanel( const KUrl & );
@@ -87,7 +89,7 @@ signals:
 private:
    KRFSDisplay *info;
    QWidget *mainPage;
-   Q3ListView *mountList;
+   KrTreeWidget *mountList;
    QTimer *watcher;
    QDateTime lastMtab;
 	// used for the getSpace - gotSpace functions
