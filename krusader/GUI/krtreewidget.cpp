@@ -46,6 +46,24 @@ KrTreeWidget::KrTreeWidget( QWidget * parent ) : QTreeWidget( parent ), _inResiz
 bool KrTreeWidget::event ( QEvent * event )
 {
   switch (event->type()) {
+  case QEvent::KeyPress:
+    {
+      // HACK: QT 4 Ctrl+A bug fix: Ctrl+A doesn't work if QTreeWidget contains parent / child items
+      QKeyEvent* ke = (QKeyEvent*) event;
+      if( ke->key() == Qt::Key_A && ke->modifiers() == Qt::ControlModifier )
+      {
+        QAbstractItemView::SelectionMode mode = selectionMode();
+
+        if( mode == QAbstractItemView::ContiguousSelection || mode == QAbstractItemView::ExtendedSelection ||
+            mode == QAbstractItemView::MultiSelection )
+        {
+          selectAll();
+          ke->accept();
+          return true;
+        }
+      }
+    }
+    break;
   case QEvent::Resize:
     {
       QResizeEvent * re = (QResizeEvent *)event;
