@@ -657,6 +657,11 @@ void Krusader::setupActions() {
    NEW_KACTION(actExecCollectTogether, i18n( "Display &Mixed Standard and Error Output" ), 0, 0, SLOTS, SLOT( execTypeSetup() ), "exec_collect_together" );
    NEW_KACTION(actExecTerminalExternal, i18n( "Start in &New Terminal" ), 0, 0, SLOTS, SLOT( execTypeSetup() ), "exec_terminal_external" );
    NEW_KACTION(actExecTerminalEmbedded, i18n( "Send to &Embedded Terminal Emulator" ), 0, 0, SLOTS, SLOT( execTypeSetup() ), "exec_terminal_embedded" );
+   actExecStartAndForget->setCheckable( true );
+   actExecCollectSeparate->setCheckable( true );
+   actExecCollectTogether->setCheckable( true );
+   actExecTerminalExternal->setCheckable( true );
+   actExecTerminalEmbedded->setCheckable( true );
    QActionGroup *actionGroup = new QActionGroup(this);
    actionGroup->setExclusive(true);
    actionGroup->addAction(actExecStartAndForget);

@@ -97,9 +97,9 @@ KrActionProcDlg::KrActionProcDlg( QString caption, bool enableStderr, QWidget *p
    }
 
    _currentTextEdit = _stdout;
-   connect( _stdout, SIGNAL( clicked(int, int) ), SLOT( currentTextEditChanged() ) );
+   connect( _stdout, SIGNAL( textChanged() ), SLOT( currentTextEditChanged() ) );
    if (_stderr)
-      connect( _stderr, SIGNAL( clicked(int, int) ), SLOT( currentTextEditChanged() ) );
+      connect( _stderr, SIGNAL( textChanged() ), SLOT( currentTextEditChanged() ) );
 
    KConfigGroup group( krConfig, "UserActions" );
    normalFont = group.readEntry( "Normal Font", *_UserActions_NormalFont );
