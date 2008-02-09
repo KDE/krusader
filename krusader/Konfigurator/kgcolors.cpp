@@ -36,7 +36,7 @@
 #include <kfiledialog.h>
 #include <kcolorscheme.h>
 #include <kstandarddirs.h>
-#include <q3header.h>
+#include <qheaderview.h>
 #include <qtabwidget.h>
 #include <QList>
 #include <QLabel>
@@ -216,16 +216,17 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   previewGrp = createFrame( i18n( "Preview" ), hboxWidget );
   previewGrid = createGridLayout( previewGrp );
 
-  preview = new Q3ListView( previewGrp );
+  preview = new KrTreeWidget( previewGrp );
   preview->setBackgroundRole( QPalette::Window );
   preview->setAutoFillBackground( true );
 
-  preview->setShowSortIndicator(false);
-  preview->setSorting(-1);
-  preview->setEnabled( false );
+  QStringList labels;
+  labels << i18n( "Colors" );
+  preview->setHeaderLabels( labels );
 
-  preview->addColumn( i18n("Colors") );
-  preview->header()->setStretchEnabled( true, 0 );
+  preview->header()->setSortIndicatorShown(false);
+  preview->setSortingEnabled( false );
+  preview->setEnabled( false );
 
   previewGrid->addWidget( preview, 0 ,0 );
   hbox->addWidget( previewGrp );

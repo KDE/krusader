@@ -32,8 +32,8 @@
 #define __KGCOLORS_H__
 
 #include "konfiguratorpage.h"
+#include "../GUI/krtreewidget.h"
 #include <qlist.h>
-#include <q3listview.h>
 #include <qstackedwidget.h>
 #include <QGridLayout>
 #include <QLabel>
@@ -98,10 +98,10 @@ private:
   QList<KonfiguratorColorChooser *>   itemList;
   QList<QString>                      itemNames;
 
-  Q3ListView                          *preview;
+  KrTreeWidget                       *preview;
   KPushButton *importBtn, *exportBtn;
 
-  class PreviewItem : public Q3ListViewItem
+  class PreviewItem : public QTreeWidgetItem
   {
   private:
     QColor  defaultBackground;
@@ -109,32 +109,36 @@ private:
     QString label;
 
   public:
-    PreviewItem( Q3ListView * parent, QString name ) : Q3ListViewItem( parent, name )
+    PreviewItem( QTreeWidget * parent, QString name ) : QTreeWidgetItem()
     {
+      setText( 0, name );
       defaultBackground = QColor( 255, 255, 255 );
       defaultForeground = QColor( 0, 0, 0 );
       label = name;
+      parent->insertTopLevelItem( 0, this );
     }
 
     void setColor( QColor foregnd, QColor backgnd )
     {
       defaultForeground = foregnd;
       defaultBackground = backgnd;
-      listView()->repaintItem( this );
+
+
+      QBrush textColor( foregnd );
+      QBrush baseColor( backgnd );
+
+      for( int i=0; i != columnCount(); i++ )
+      {
+        if( backgnd.isValid() )
+          setBackground( i, baseColor );
+        if( foregnd.isValid() )
+          setForeground( i, textColor );
+      }
     }
 
     QString text()
     {
       return label;
-    }
-
-    void paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align )
-    {
-      QColorGroup _cg( cg );
-      _cg.setColor( QColorGroup::Base, defaultBackground );
-      _cg.setColor( QPalette::Window, defaultBackground );
-      _cg.setColor( QColorGroup::Text, defaultForeground );
-      Q3ListViewItem::paintCell(p, _cg, column, width, align);
     }
   };
 };
