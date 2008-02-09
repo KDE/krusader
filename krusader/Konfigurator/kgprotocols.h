@@ -32,9 +32,9 @@
 #define __KgProtocols_H__
 
 #include "konfiguratorpage.h"
+#include "../GUI/krtreewidget.h"
 #include <q3listbox.h>
 #include <qpushbutton.h>
-#include <q3listview.h>
  
 class KgProtocols : public KonfiguratorPage
 {
@@ -67,7 +67,7 @@ protected:
   void         addMime( QString name, QString protocol );
   void         removeMime( QString name );
   
-  Q3ListView   *linkList;
+  KrTreeWidget *linkList;
   
   Q3ListBox    *protocolList;
   Q3ListBox    *mimeList;
