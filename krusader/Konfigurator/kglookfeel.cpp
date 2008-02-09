@@ -38,11 +38,11 @@
 #include <QVBoxLayout>
 #include <klocale.h>
 #include <qvalidator.h>
-#include <q3listview.h>
 #include <kmessagebox.h>
 #include <kfiledialog.h>
 #include <kglobal.h>
 #include <kstandarddirs.h>
+#include "../GUI/krtreewidget.h"
 #include "../Panel/krselectionmode.h"
 #include "../Panel/listpanel.h"
 
@@ -277,7 +277,9 @@ void KgLookFeel::setupMouseModeTab() {
   mouseRadio = createRadioButtonGroup( "Look&Feel", "Mouse Selection", "0", 2, 2, mouseSelection, 4, mouseGeneralGroup, true, PAGE_MOUSE );
   mouseRadio->layout()->setContentsMargins( 0, 0, 0, 0 );
   mouseGeneralGrid->addWidget( mouseRadio, 0, 0 );
-  connect( mouseRadio, SIGNAL( clicked(int) ), SLOT( slotSelectionModeChanged() ) );
+
+  for( int i = 0; i != mouseRadio->count(); i++ )
+    connect( mouseRadio->find( i ), SIGNAL( clicked() ), SLOT( slotSelectionModeChanged() ) );
 
   mouseLayout->addWidget( mouseGeneralGroup, 0, 0, 1, 2 );
 
@@ -350,7 +352,7 @@ void KgLookFeel::setupMouseModeTab() {
   QGroupBox *mousePreviewGroup = createFrame( i18n( "Preview" ), tab_mouse );
   QGridLayout *mousePreviewGrid = createGridLayout( mousePreviewGroup );
   // TODO preview
-  mousePreview = new Q3ListView( mousePreviewGroup );
+  mousePreview = new KrTreeWidget( mousePreviewGroup );
   mousePreviewGrid->addWidget( mousePreview, 0 ,0 );
   mousePreviewGroup->setEnabled(false); // TODO re-enable once the preview is implemented
   // ------------------------------------------

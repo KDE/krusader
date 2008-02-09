@@ -33,7 +33,7 @@
 
 #include "konfiguratorpage.h"
 
-class Q3ListView;
+class KrTreeWidget;
 
 class KgLookFeel : public KonfiguratorPage
 {
@@ -51,7 +51,7 @@ protected:
   KonfiguratorCheckBoxGroup *panelToolbarActive;
   KonfiguratorRadioButtons  *mouseRadio;
   KonfiguratorCheckBoxGroup *mouseCheckboxes;
-  Q3ListView* mousePreview;
+  KrTreeWidget* mousePreview;
 
 protected slots:
   void slotDisable();
