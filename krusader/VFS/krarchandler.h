@@ -87,6 +87,7 @@ public:
 	
 public slots:
 	void receivedErrorMsg(K3Process*, char *buf, int len) {
+		emit newErrorLines(countLines(buf, len));
 		errorMsg += QString::fromLocal8Bit( buf, len );
 		if( errorMsg.length() > 500 )
 			errorMsg = errorMsg.right( 500 );
@@ -94,12 +95,25 @@ public slots:
 	}
 	
 	void receivedOutputMsg(K3Process*, char *buf, int len) {
+		emit newOutputLines(countLines(buf, len));
 		outputMsg += QString::fromLocal8Bit( buf, len );
 		if( outputMsg.length() > 500 )
 			outputMsg = outputMsg.right( 500 );
 	}
-	
+
+signals:
+	void newOutputLines(int count);
+	void newErrorLines(int count);
+
 private:
+	int countLines(char* buf, int len) {
+		int lines = 0;
+		for ( int i = 0 ; i < len; ++i )
+			if ( buf[ i ] == '\n' )
+				++lines;
+		return lines;
+	}
+
 	QString errorMsg;
 	QString outputMsg;
 };

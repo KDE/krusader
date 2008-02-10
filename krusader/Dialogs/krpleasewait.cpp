@@ -146,13 +146,4 @@ void KRPleaseWaitHandler::incProgress(int i){
   incMutex=false;
 }
 
-void KRPleaseWaitHandler::incProgress( K3Process *, char *buffer, int buflen ) {
-   int howMuch = 0;
-   for ( int i = 0 ; i < buflen; ++i )
-      if ( buffer[ i ] == '\n' )
-         ++howMuch;
-
-   incProgress( howMuch );
-}
-
 #include "krpleasewait.moc"

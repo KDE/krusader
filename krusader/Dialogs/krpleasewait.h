@@ -37,7 +37,6 @@
 #include <QCloseEvent>
 #include <kio/jobclasses.h>
 
-class K3Process;
 class KRPleaseWait;
 
 class KRPleaseWaitHandler : public QObject {
@@ -52,7 +51,6 @@ public slots:
   void stopWait();
   void cycleProgress();
   void incProgress(int i);
-  void incProgress( K3Process *, char *buffer, int buflen );
   void killJob();
   void setJob(KIO::Job* j);
   bool wasCancelled() const { return _wasCancelled; }
