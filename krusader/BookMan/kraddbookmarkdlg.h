@@ -3,11 +3,11 @@
 
 #include "krbookmark.h"
 #include "../VFS/vfs.h"
+#include "../GUI/krtreewidget.h"
 #include <kdialog.h>
 #include <kurl.h>
 #include <klineedit.h>
 #include <qmap.h>
-#include <k3listview.h>
 #include <qtoolbutton.h>
 
 class KrAddBookmarkDlg: public KDialog {
@@ -16,23 +16,23 @@ public:
 	KrAddBookmarkDlg(QWidget *parent, KUrl url = KUrl());
 	KUrl url() const { return KUrl(_url->text()); }
 	QString name() const { return _name->text(); }
-	KrBookmark *folder() const { return _xr[static_cast<K3ListViewItem*>(_createIn->selectedItem())]; }
+	KrBookmark *folder() const;
 
 protected:
 	QWidget *createInWidget();
-	void populateCreateInWidget(KrBookmark *root, K3ListViewItem *parent);
+	void populateCreateInWidget(KrBookmark *root, QTreeWidgetItem *parent);
 
 protected slots:
 	void toggleCreateIn(bool show);
-	void createInSelection(Q3ListViewItem *item);
+	void slotSelectionChanged();
 	void newFolder();
 	
 private:
 	KLineEdit *_name;
 	KLineEdit *_url;
 	KLineEdit *_folder;
-	K3ListView *_createIn;
-	QMap<K3ListViewItem*, KrBookmark*> _xr;
+	KrTreeWidget *_createIn;
+	QMap<QTreeWidgetItem*, KrBookmark*> _xr;
 	QToolButton *_createInBtn;
 };
 

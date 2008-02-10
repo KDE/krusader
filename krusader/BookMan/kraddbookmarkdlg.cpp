@@ -2,7 +2,7 @@
 #include "../krusader.h"
 #include "krbookmarkhandler.h"
 #include <klocale.h>
-#include <q3header.h>
+#include <qheaderview.h>
 #include <qlayout.h>
 #include <qlabel.h>
 #include <QGridLayout>
@@ -70,39 +70,43 @@ void KrAddBookmarkDlg::toggleCreateIn(bool show) {
 
 // creates the widget that lets you decide where to put the new bookmark
 QWidget *KrAddBookmarkDlg::createInWidget() {
-	_createIn = new K3ListView(this);
-	_createIn->addColumn("Folders");
+	_createIn = new KrTreeWidget(this);
+	_createIn->setHeaderLabel( i18n("Folders") );
 	_createIn->header()->hide();
 	_createIn->setRootIsDecorated(true);
-	_createIn->setAlternateBackground(QColor()); // disable alternate coloring 
+	_createIn->setAlternatingRowColors( false ); // disable alternate coloring 
 	
-	K3ListViewItem *item = new K3ListViewItem(_createIn, i18n("Bookmarks"));
-	item->setOpen(true);
+	QTreeWidgetItem *item = new QTreeWidgetItem(_createIn);
+	item->setText(0, i18n("Bookmarks"));
+	_createIn->expandItem( item );
 	item->setSelected(true);
 	_xr[item] = krBookMan->_root;
 
 	populateCreateInWidget(krBookMan->_root, item);
 	_createIn->setCurrentItem(item);
-	createInSelection(item);
-	connect(_createIn, SIGNAL(selectionChanged(Q3ListViewItem*)), this, SLOT(createInSelection(Q3ListViewItem*)));
+	slotSelectionChanged();
+	connect(_createIn, SIGNAL(itemSelectionChanged()), this, SLOT(slotSelectionChanged()));
 	
 	return _createIn;
 }
 
-void KrAddBookmarkDlg::createInSelection(Q3ListViewItem *item) {
-	if (item) {
-		_folder->setText(_xr[static_cast<K3ListViewItem*>(item)]->text());
+void KrAddBookmarkDlg::slotSelectionChanged() {
+	QList<QTreeWidgetItem *> items = _createIn->selectedItems();
+	
+	if (items.count() > 0 ) {
+		_folder->setText(_xr[ items[ 0 ] ]->text());
 	}
 }
 
-void KrAddBookmarkDlg::populateCreateInWidget(KrBookmark *root, K3ListViewItem *parent) {
+void KrAddBookmarkDlg::populateCreateInWidget(KrBookmark *root, QTreeWidgetItem *parent) {
 	QListIterator<KrBookmark *> it( root->children() );
 	while (it.hasNext())
 	{
 		KrBookmark *bm = it.next();
 		if (bm->isFolder()) {
-			K3ListViewItem *item = new K3ListViewItem(parent, bm->text());
-			item->setOpen(true);
+			QTreeWidgetItem *item = new QTreeWidgetItem(parent);
+			item->setText(0, bm->text());
+			item->treeWidget()->expandItem( item );
 			_xr[item] = bm;
 			populateCreateInWidget(bm, item);
 		}
@@ -114,15 +118,32 @@ void KrAddBookmarkDlg::newFolder() {
 	QString newFolder = KInputDialog::getText(i18n("New Folder"), i18n("Folder name:"), QString(), 0, this);
 	if (newFolder == QString())
 		return;
+	
+	QList<QTreeWidgetItem *> items = _createIn->selectedItems();
+	if( items.count() == 0 )
+		return;
+	
 	// add to the list in bookman
 	KrBookmark *bm = new KrBookmark(newFolder);
-	krBookMan->addBookmark(bm, _xr[static_cast<K3ListViewItem*>(_createIn->selectedItem())]);
+	
+	krBookMan->addBookmark(bm, _xr[ items[ 0 ]]);
 	// fix the gui
-	K3ListViewItem *item = new K3ListViewItem(_createIn->selectedItem(), bm->text());
+	QTreeWidgetItem *item = new QTreeWidgetItem( items[ 0 ] );
+	item->setText(0, bm->text());
 	_xr[item] = bm;
 
 	_createIn->setCurrentItem(item);
 	item->setSelected(true);
 }
+
+KrBookmark * KrAddBookmarkDlg::folder() const
+{
+	QList<QTreeWidgetItem *> items = _createIn->selectedItems();
+	if( items.count() == 0 )
+		return 0;
+	
+	return _xr[ items[ 0 ] ];
+}
+
 
 #include "kraddbookmarkdlg.moc"
