@@ -49,7 +49,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <qsplitter.h>
 // KDE includes
 #include <kmenu.h>
-#include <k3process.h>
 #include <kdiskfreespace.h>
 #include <kmessagebox.h>
 #include <klocale.h>

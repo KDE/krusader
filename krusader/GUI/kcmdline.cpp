@@ -37,7 +37,6 @@
 #include <QFrame>
 #include <QLabel>
 #include <QKeyEvent>
-#include <k3process.h>
 #include <qicon.h>
 #include <unistd.h>
 #include "../krusader.h"

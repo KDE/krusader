@@ -46,7 +46,6 @@ A
 #include <kmessagebox.h>
 #include <qlayout.h>
 #include <qgroupbox.h>
-#include <k3process.h>
 #include <kdiskfreespace.h>
 #include <qcursor.h>
 #include <kdebug.h>

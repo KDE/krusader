@@ -26,6 +26,7 @@
 #include <qmap.h>
 #include <k3tempfile.h>
 #include <kstandarddirs.h>
+#include <unistd.h> // for usleep
 
 class CS_Tool; // forward
 typedef void PREPARE_PROC_FUNC(KProcess& proc, CS_Tool *self, const QStringList& files,

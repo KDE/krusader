@@ -50,7 +50,6 @@ A
 #include <kstandarddirs.h>
 #include <ktempdir.h> 
 #include <kurlrequester.h>
-#include <k3procio.h>
 #include <kdesktopfile.h>
 // Krusader Includes
 #include "panelfunc.h"
