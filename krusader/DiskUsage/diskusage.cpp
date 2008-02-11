@@ -768,7 +768,7 @@ Directory* DiskUsage::getCurrentDir()
   return currentDirectory;
 }
 
-void DiskUsage::rightClickMenu( File *fileItem, KMenu *addPopup, QString addPopupName )
+void DiskUsage::rightClickMenu( const QPoint & pos, File *fileItem, KMenu *addPopup, QString addPopupName )
 {
   KMenu popup( this );
 
@@ -843,7 +843,7 @@ void DiskUsage::rightClickMenu( File *fileItem, KMenu *addPopup, QString addPopu
   QAction * menu = popup.addMenu( &viewPopup );
   menu->setText( i18n( "View" ) );
 
-  QAction * res = popup.exec(QCursor::pos());
+  QAction * res = popup.exec( pos );
 
   if( actionHash.contains( res ) )
     executeAction( actionHash[ res ], fileItem );

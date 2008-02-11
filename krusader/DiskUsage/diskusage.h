@@ -93,7 +93,7 @@ public:
   
   QString    getToolTip( File * );
   
-  void       rightClickMenu( File *, KMenu * = 0, QString = QString() );
+  void       rightClickMenu( const QPoint &, File *, KMenu * = 0, QString = QString() );
   
   void       changeDirectory( Directory *dir );
   

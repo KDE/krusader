@@ -227,8 +227,8 @@ DULines::DULines( DiskUsage *usage )
   connect( header(), SIGNAL( sectionResized( int, int, int ) ), this, SLOT( sectionResized( int ) ) );
   connect( header(), SIGNAL( sectionAutoResize ( int, QHeaderView::ResizeMode ) ), this, SLOT( sectionResized( int ) ) );
 
-  connect( this, SIGNAL( itemRightClicked ( QTreeWidgetItem*, int ) ),
-           this, SLOT( slotRightClicked(QTreeWidgetItem *) ) );
+  connect( this, SIGNAL( itemRightClicked ( QTreeWidgetItem*, const QPoint &, int ) ),
+           this, SLOT( slotRightClicked(QTreeWidgetItem *, const QPoint &) ) );
   connect( diskUsage, SIGNAL( changed( File * ) ), this, SLOT( slotChanged( File * ) ) );
   connect( diskUsage, SIGNAL( deleted( File * ) ), this, SLOT( slotDeleted( File * ) ) );
 
@@ -484,7 +484,7 @@ void DULines::keyPressEvent( QKeyEvent *e )
   KrTreeWidget::keyPressEvent( e );
 }
  
-void DULines::slotRightClicked( QTreeWidgetItem *item )
+void DULines::slotRightClicked( QTreeWidgetItem *item, const QPoint &pos )
 {
   File * file = 0;
   
@@ -495,7 +495,7 @@ void DULines::slotRightClicked( QTreeWidgetItem *item )
   int lid = linesPopup.insertItem( i18n("Show file sizes"), this, SLOT( slotShowFileSizes() ) );
   linesPopup.setItemChecked( lid, showFileSize );
     
-  diskUsage->rightClickMenu( file, &linesPopup, i18n( "Lines" ) );
+  diskUsage->rightClickMenu( pos, file, &linesPopup, i18n( "Lines" ) );
 }
 
 void DULines::slotShowFileSizes()

@@ -1507,8 +1507,8 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   /* =============================== Connect table ================================ */
 
-  connect( syncList,SIGNAL(itemRightClicked(QTreeWidgetItem *, int)),
-           this, SLOT(rightMouseClicked(QTreeWidgetItem *)));
+  connect( syncList,SIGNAL(itemRightClicked(QTreeWidgetItem *, const QPoint &, int)),
+           this, SLOT(rightMouseClicked(QTreeWidgetItem *, const QPoint &)));
   connect( syncList,SIGNAL(itemActivated(QTreeWidgetItem *, int)),
            this, SLOT(doubleClicked(QTreeWidgetItem *)));
   
@@ -1690,7 +1690,7 @@ void SynchronizerGUI::doubleClicked(QTreeWidgetItem *itemIn)
   }
 }
 
-void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn)
+void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &pos)
 {
   // these are the values that will exist in the menu
   #define EXCLUDE_ID          90
@@ -1786,7 +1786,7 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn)
     actHash[ myact ] = SYNCH_WITH_KGET_ID;
   }
 
-  QAction * res = popup.exec(QCursor::pos());
+  QAction * res = popup.exec( pos );
 
   int result=-1;
   if( actHash.contains( res ) )

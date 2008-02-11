@@ -185,8 +185,8 @@ LocateDlg::LocateDlg() : KDialog( 0 ), isFeedToListBox( false )
   resultList->setSelectionMode( QAbstractItemView::ExtendedSelection );
   resultList->setDragEnabled( true );
 
-  connect( resultList,SIGNAL(itemRightClicked(QTreeWidgetItem *, int)),
-           this, SLOT(slotRightClick(QTreeWidgetItem *)));
+  connect( resultList,SIGNAL(itemRightClicked(QTreeWidgetItem *, const QPoint &, int)),
+           this, SLOT(slotRightClick(QTreeWidgetItem *, const QPoint &)));
   connect( resultList,SIGNAL(itemDoubleClicked(QTreeWidgetItem *, int)),
            this, SLOT(slotDoubleClick(QTreeWidgetItem *)));
   connect( resultList,SIGNAL(itemActivated(QTreeWidgetItem *, int)),
@@ -373,7 +373,7 @@ void LocateDlg::processStderr()
   collectedErr += QString::fromLocal8Bit( locateProc->readAllStandardError() );
 }
 
-void LocateDlg::slotRightClick(QTreeWidgetItem *item)
+void LocateDlg::slotRightClick(QTreeWidgetItem *item, const QPoint &pos)
 {
   if ( !item )
     return;
@@ -394,7 +394,7 @@ void LocateDlg::slotRightClick(QTreeWidgetItem *item)
   QAction * actClip = popup.addAction(i18n("Copy selected to clipboard") );
 
 
-  QAction * result = popup.exec(QCursor::pos());
+  QAction * result = popup.exec( pos );
 
   int ret = -1;
 

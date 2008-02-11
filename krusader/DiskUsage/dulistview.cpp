@@ -100,8 +100,8 @@ DUListView::DUListView( DiskUsage *usage )
   connect( diskUsage, SIGNAL( changed( File * ) ), this, SLOT( slotChanged( File * ) ) );
   connect( diskUsage, SIGNAL( deleted( File * ) ), this, SLOT( slotDeleted( File * ) ) );
 
-  connect( this, SIGNAL( itemRightClicked ( QTreeWidgetItem*, int ) ),
-           this, SLOT( slotRightClicked(QTreeWidgetItem *) ) );
+  connect( this, SIGNAL( itemRightClicked ( QTreeWidgetItem*, const QPoint &, int ) ),
+           this, SLOT( slotRightClicked(QTreeWidgetItem *, const QPoint &) ) );
   connect( this, SIGNAL( itemExpanded ( QTreeWidgetItem * ) ), 
            this, SLOT( slotExpanded( QTreeWidgetItem * ) ) ); 
 }
@@ -209,14 +209,14 @@ void DUListView::slotDeleted( File * item )
   delete duItem;
 }
   
-void DUListView::slotRightClicked( QTreeWidgetItem *item )
+void DUListView::slotRightClicked( QTreeWidgetItem *item, const QPoint & pos )
 {
   File * file = 0;
   
   if ( item && item->text( 0 ) != ".." )
     file = ((DUListViewItem *)item)->getFile();
 
-  diskUsage->rightClickMenu( file );
+  diskUsage->rightClickMenu( pos, file );
 }
 
 bool DUListView::doubleClicked( QTreeWidgetItem * item )

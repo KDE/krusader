@@ -54,7 +54,7 @@ public:
 public slots:
   void slotDirChanged( Directory *dirEntry );
   void sectionResized( int );
-  void slotRightClicked(QTreeWidgetItem *);
+  void slotRightClicked(QTreeWidgetItem *, const QPoint &);
   void slotChanged( File * );
   void slotDeleted( File * );
   void slotShowFileSizes();

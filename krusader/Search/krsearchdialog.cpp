@@ -307,7 +307,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent )
   		SLOT( resultClicked(QTreeWidgetItem*) ) );
   connect( resultsList, SIGNAL( itemClicked(QTreeWidgetItem*, int) ), this,
   		SLOT( resultClicked(QTreeWidgetItem*) ) );
-  connect( resultsList, SIGNAL( itemRightClicked ( QTreeWidgetItem*, int ) ), this, SLOT( rightClickMenu( QTreeWidgetItem* ) ) );
+  connect( resultsList, SIGNAL( itemRightClicked ( QTreeWidgetItem*, const QPoint &, int ) ), this, SLOT( rightClickMenu( QTreeWidgetItem*, const QPoint & ) ) );
   connect( mainCloseBtn, SIGNAL( clicked() ), this, SLOT( closeDialog() ) );
   connect( mainFeedToListBoxBtn, SIGNAL( clicked() ), this, SLOT( feedToListBox() ) );
 
@@ -578,7 +578,7 @@ void KrSearchDialog::viewCurrent()
   }
 }
 
-void KrSearchDialog::rightClickMenu( QTreeWidgetItem * item )
+void KrSearchDialog::rightClickMenu( QTreeWidgetItem * item, const QPoint &pos )
 {
   // these are the values that will exist in the menu
   #define EDIT_FILE_ID                110
@@ -596,7 +596,7 @@ void KrSearchDialog::rightClickMenu( QTreeWidgetItem * item )
   QAction *actEdit = popup.addAction(i18n("Edit File (F4)"));
   QAction *actClip = popup.addAction(i18n("Copy selected to clipboard"));
 
-  QAction *result=popup.exec(QCursor::pos());
+  QAction *result=popup.exec( pos );
 
   // check out the user's option
   if( result == actView )

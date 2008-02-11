@@ -120,7 +120,7 @@ void DUFilelight::mousePressEvent( QMouseEvent *event )
 
      filelightPopup.insertItem( i18n("Minimum font size"), this, SLOT( minFontSize() ) );     
           
-     diskUsage->rightClickMenu( file, &filelightPopup, i18n( "Filelight" ) );
+     diskUsage->rightClickMenu( event->globalPos(), file, &filelightPopup, i18n( "Filelight" ) );
      return;     
    }else if( event->button() == Qt::LeftButton )
    {

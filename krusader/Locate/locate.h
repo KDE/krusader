@@ -63,7 +63,7 @@ public slots:
   void              processStderr();
   void              locateFinished();
   void              locateError();
-  void              slotRightClick(QTreeWidgetItem *);
+  void              slotRightClick(QTreeWidgetItem *, const QPoint &);
   void              slotDoubleClick(QTreeWidgetItem *);
   void              updateFinished();
   

@@ -68,7 +68,7 @@ public:
 
 protected slots:
    void doubleClicked( QTreeWidgetItem * );
-   void clicked( QTreeWidgetItem * );
+   void clicked( QTreeWidgetItem *, const QPoint & );
    void changeActive();
    void changeActive( QTreeWidgetItem * );
    void checkMountChange(); // check whether the mount table was changed

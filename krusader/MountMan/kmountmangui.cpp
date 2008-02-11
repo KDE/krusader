@@ -79,8 +79,8 @@ KMountManGUI::KMountManGUI() : KDialog( krApp ), info( 0 ), mountList( 0 ) {
    // connections
    connect( mountList, SIGNAL( itemDoubleClicked( QTreeWidgetItem *, int ) ), this,
             SLOT( doubleClicked( QTreeWidgetItem * ) ) );
-   connect( mountList, SIGNAL( itemRightClicked( QTreeWidgetItem *, int ) ),
-            this, SLOT( clicked( QTreeWidgetItem* ) ) );
+   connect( mountList, SIGNAL( itemRightClicked( QTreeWidgetItem *, const QPoint &, int ) ),
+            this, SLOT( clicked( QTreeWidgetItem*, const QPoint & ) ) );
    connect( mountList, SIGNAL( itemClicked( QTreeWidgetItem *, int ) ), this,
             SLOT( changeActive( QTreeWidgetItem * ) ) );
    connect( mountList, SIGNAL( itemSelectionChanged() ), this,
@@ -340,7 +340,7 @@ void KMountManGUI::changeActive( QTreeWidgetItem *i ) {
 }
 
 // called when right-clicked on a filesystem
-void KMountManGUI::clicked( QTreeWidgetItem *item ) {
+void KMountManGUI::clicked( QTreeWidgetItem *item, const QPoint & pos ) {
    // these are the values that will exist in the menu
 #define MOUNT_ID       90
 #define UNMOUNT_ID     91
@@ -387,7 +387,7 @@ void KMountManGUI::clicked( QTreeWidgetItem *item ) {
 
    QString mountPoint = system->mntPoint();
 
-   QAction * res = popup.exec( QCursor::pos() );
+   QAction * res = popup.exec( pos );
    int result = -1;
 
    if( res && res->data().canConvert<int>() )

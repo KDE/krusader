@@ -179,7 +179,7 @@ public slots:
   void slotDirChanged( Directory * );
   void slotChanged( File * );
   void slotDeleted( File * );
-  void slotRightClicked(QTreeWidgetItem *);
+  void slotRightClicked(QTreeWidgetItem *, const QPoint &);
   void slotExpanded( QTreeWidgetItem * );
     
 protected:

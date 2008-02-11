@@ -138,7 +138,7 @@ public:
   inline bool wasSynchronization()    {return wasSync;}
 
 public slots:
-  void rightMouseClicked(QTreeWidgetItem *);
+  void rightMouseClicked(QTreeWidgetItem *, const QPoint &);
   void doubleClicked(QTreeWidgetItem *);
   void compare();
   void synchronize();

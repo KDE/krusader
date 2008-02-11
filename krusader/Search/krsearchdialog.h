@@ -80,7 +80,7 @@ public slots:
 
   virtual void keyPressEvent(QKeyEvent *e);
   virtual void closeEvent(QCloseEvent *e);
-  virtual void rightClickMenu( QTreeWidgetItem* );
+  virtual void rightClickMenu( QTreeWidgetItem*, const QPoint & );
   virtual void resizeEvent( QResizeEvent *e );
 
 protected slots:

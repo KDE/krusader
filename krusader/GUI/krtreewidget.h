@@ -48,7 +48,7 @@ public:
   QTreeWidgetItem * item( const QModelIndex & ndx )          { return itemFromIndex( ndx ); }
 
 signals:
-  void itemRightClicked( QTreeWidgetItem * it, int column );
+  void itemRightClicked( QTreeWidgetItem * it, const QPoint & pos, int column );
 
 protected:
   virtual bool event ( QEvent * event );
