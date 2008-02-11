@@ -49,6 +49,17 @@ bool KrTreeWidget::event ( QEvent * event )
   // HACK: QT 4 Context menu key isn't handled properly
   case QEvent::ContextMenu:
     {
+      QContextMenuEvent* ce = (QContextMenuEvent*) event;
+
+      if( ce->reason() == QContextMenuEvent::Mouse ) {
+        QPoint pos = viewport()->mapFromGlobal( ce->globalPos() );
+
+        QTreeWidgetItem * item = itemAt( pos );
+        int column = columnAt( pos.x() );
+
+        emit itemRightClicked( item, ce->globalPos(), column );
+        return true;
+      } else {
         if( currentItem() ) {
           QRect r = visualItemRect( currentItem() );
           QPoint p = viewport()->mapToGlobal( QPoint( r.x() + 5, r.y() + 5 ) );
@@ -56,6 +67,7 @@ bool KrTreeWidget::event ( QEvent * event )
           emit itemRightClicked( currentItem(), p, currentColumn() );
           return true;
         }
+      }
     }
     break;
   case QEvent::KeyPress:
@@ -184,29 +196,4 @@ bool KrTreeWidget::event ( QEvent * event )
     break;
   }
   return QTreeWidget::event( event );
-}
-
-void KrTreeWidget::mousePressEvent ( QMouseEvent * event )
-{
-  if( event->button() == Qt::RightButton )
-  {
-    QPoint pos = viewport()->mapFromGlobal( event->globalPos() );
-
-    QTreeWidgetItem * item = itemAt( pos );
-    int column = columnAt( pos.x() );
-
-    QTreeWidget::mousePressEvent( event );
-
-    emit itemRightClicked( item, event->globalPos(), column );
-  }
-  else
-    QTreeWidget::mousePressEvent( event );
-}
-
-void KrTreeWidget::mouseReleaseEvent ( QMouseEvent * event )
-{
-  if( event->button() == Qt::RightButton )
-    return;
-
-  QTreeWidget::mouseReleaseEvent( event );
 }

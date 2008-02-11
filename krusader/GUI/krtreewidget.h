@@ -52,8 +52,6 @@ signals:
 
 protected:
   virtual bool event ( QEvent * event );
-  virtual void mousePressEvent ( QMouseEvent * event );
-  virtual void mouseReleaseEvent ( QMouseEvent * event );
 
 private:
   int  _stretchingColumn;
