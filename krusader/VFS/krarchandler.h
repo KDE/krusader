@@ -32,6 +32,7 @@
 
 #include <qstringlist.h>
 #include <qobject.h>
+#include <kprocess.h>
 #include <k3process.h>
 #include <kurl.h>
 #include <kwallet.h>
@@ -68,37 +69,42 @@ private:
   static KWallet::Wallet * wallet;
 };
 
-class KrShellProcess : public K3ShellProcess {
+/**
+ * A Process which emits how manny lines it is writing to stdout or atderr.
+ */
+class KrLinecountingProcess : public KProcess {
 	Q_OBJECT
 public:
-	KrShellProcess() : K3ShellProcess(), errorMsg( QString() ), outputMsg( QString() ) {
-		connect(this,SIGNAL(receivedStderr(K3Process*,char*,int)),
-				this,SLOT(receivedErrorMsg(K3Process*,char*,int)) );
-		connect(this,SIGNAL(receivedStdout(K3Process*,char*,int)),
-				this,SLOT(receivedOutputMsg(K3Process*,char*,int)) );
+	KrLinecountingProcess() : KProcess() {
+	setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect!
+		connect(this, SIGNAL(readyReadStandardError()), SLOT(receivedError()) );
+		connect(this, SIGNAL(readyReadStandardOutput()), SLOT(receivedOutput()) );
 	}
-	
+
 	QString getErrorMsg() {
-		if( errorMsg.trimmed().isEmpty() )
-			return outputMsg.right( 500 );
+		if( errorData.trimmed().isEmpty() )
+			return QString::fromLocal8Bit(outputData);
 		else
-			return errorMsg.right( 500 );
+			return QString::fromLocal8Bit(errorData);
 	}
 	
 public slots:
-	void receivedErrorMsg(K3Process*, char *buf, int len) {
-		emit newErrorLines(countLines(buf, len));
-		errorMsg += QString::fromLocal8Bit( buf, len );
-		if( errorMsg.length() > 500 )
-			errorMsg = errorMsg.right( 500 );
-		receivedOutputMsg( 0, buf, len );
+	void receivedError() {
+		QByteArray newData(this->readAllStandardError());
+		emit newErrorLines(newData.count('\n'));
+		errorData += newData;
+		if( errorData.length() > 500 )
+			errorData = errorData.right( 500 );
+		receivedOutput(newData);
 	}
 	
-	void receivedOutputMsg(K3Process*, char *buf, int len) {
-		emit newOutputLines(countLines(buf, len));
-		outputMsg += QString::fromLocal8Bit( buf, len );
-		if( outputMsg.length() > 500 )
-			outputMsg = outputMsg.right( 500 );
+	void receivedOutput(QByteArray newData = QByteArray()) {
+		if (newData.isEmpty())
+			newData = this->readAllStandardOutput();
+		emit newOutputLines(newData.count('\n'));
+		outputData += newData;
+		if( outputData.length() > 500 )
+			outputData = outputData.right( 500 );
 	}
 
 signals:
@@ -106,23 +112,15 @@ signals:
 	void newErrorLines(int count);
 
 private:
-	int countLines(char* buf, int len) {
-		int lines = 0;
-		for ( int i = 0 ; i < len; ++i )
-			if ( buf[ i ] == '\n' )
-				++lines;
-		return lines;
-	}
-
-	QString errorMsg;
-	QString outputMsg;
+	QByteArray errorData;
+	QByteArray outputData;
 };
 
-class Kr7zEncryptionChecker : public KrShellProcess {
+class Kr7zEncryptionChecker : public K3ShellProcess {
 	Q_OBJECT
 	
 public:
-	Kr7zEncryptionChecker() : KrShellProcess(), encrypted( false ), lastData() {
+	Kr7zEncryptionChecker() : K3ShellProcess(), encrypted( false ), lastData() {
 		connect(this,SIGNAL(receivedStdout(K3Process*,char*,int)),
 				this,SLOT(processStdout(K3Process*,char*,int)) );
 	}
