@@ -58,8 +58,10 @@ private:
 	PopularUrlsDlg *dlg;
 };
 
-class K3ListView;
-class K3ListViewSearchLine;
+class KrTreeWidget;
+class KTreeWidgetSearchLine;
+class QModelIndex;
+class QTreeWidgetItem;
 
 class PopularUrlsDlg: public KDialog {
 	Q_OBJECT
@@ -71,12 +73,12 @@ public:
 	
 
 protected slots:
-	void slotSearchReturnPressed(const QString&);
-	void slotItemSelected(Q3ListViewItem *it);
+	void slotVisibilityChanged();
+	void slotItemSelected( const QModelIndex & );
 	
 private:
-	K3ListView *urls;
-	K3ListViewSearchLine *search;
+	KrTreeWidget *urls;
+	KTreeWidgetSearchLine *search;
 	int selection;
 };
 

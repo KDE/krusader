@@ -3,15 +3,15 @@
 #include <qpushbutton.h>
 #include <QGridLayout>
 #include <qlist.h>
-#include <k3listview.h>
 #include <kiconloader.h>
-#include <k3listviewsearchline.h>
-#include <q3header.h>
+#include <ktreewidgetsearchline.h>
+#include <qheaderview.h>
 #include <qlayout.h>
 #include <qlabel.h>
 
 #include "../krusader.h"
 #include "../krslots.h"
+#include "../GUI/krtreewidget.h"
 #include "popularurls.h"
 
 #define STARTING_RANK	20
@@ -240,16 +240,16 @@ PopularUrlsDlg::PopularUrlsDlg():
 	layout->setContentsMargins( 0, 0, 0, 0 );
 	
 	// listview to contain the urls
-	urls = new K3ListView(widget);
+	urls = new KrTreeWidget(widget);
+	urls->setHeaderLabel( "" );
 	urls->header()->hide();
-	urls->addColumn("");
-	urls->setSorting(-1);
-	urls->setVScrollBarMode(Q3ScrollView::AlwaysOn);
+	urls->setSortingEnabled( false );
+	urls->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 	
 	// quick search
 	QToolButton *btn = new QToolButton(widget);
 	btn->setIconSet(SmallIcon("locationbar_erase"));
-	search = new K3ListViewSearchLine(widget, urls);
+	search = new KTreeWidgetSearchLine(widget, urls);
 	search->setTrapReturnKey(true);
 	QLabel *lbl = new QLabel(search, i18n(" &Search: "), widget);
 
@@ -264,31 +264,37 @@ PopularUrlsDlg::PopularUrlsDlg():
 	setTabOrder(search, urls);
 	setTabOrder((QWidget *)urls, (QWidget *)button(KDialog::Close));
 	
-	connect(urls, SIGNAL(executed(Q3ListViewItem*)), 
-		this, SLOT(slotItemSelected(Q3ListViewItem*)));
-	connect(urls, SIGNAL(returnPressed(Q3ListViewItem*)), 
-		this, SLOT(slotItemSelected(Q3ListViewItem*)));		
+	connect(urls, SIGNAL(activated( const QModelIndex & )), 
+		this, SLOT(slotItemSelected( const QModelIndex & )));
 	connect(btn, SIGNAL(clicked()), search, SLOT(clear()));
-	connect(search, SIGNAL(returnPressed(const QString&)), 
-		this, SLOT(slotSearchReturnPressed(const QString&)));
+	connect(search, SIGNAL(hiddenChanged(QTreeWidgetItem *, bool)), 
+		this, SLOT(slotVisibilityChanged()));
 }
 
-void PopularUrlsDlg::slotItemSelected(Q3ListViewItem *it) {
-	selection = urls->itemIndex(it);
+void PopularUrlsDlg::slotItemSelected( const QModelIndex & ndx ) {
+	selection = ndx.row();
 	accept();
 }
 
-void PopularUrlsDlg::slotSearchReturnPressed(const QString&) {
-	urls->setFocus();
+void PopularUrlsDlg::slotVisibilityChanged() {
 	// select the first visible item
-	Q3ListViewItemIterator it( urls );
-   while ( it.current() ) {
-		if ( it.current()->isVisible() ) {
-			urls->setSelected(it.current(), true);
-			urls->setCurrentItem(it.current());
+	QList<QTreeWidgetItem *> list = urls->selectedItems();
+	if( list.count() > 0 && !list[0]->isHidden() )
+		return;
+	
+	urls->clearSelection();
+	urls->setCurrentItem( 0 );
+	
+	QTreeWidgetItemIterator it( urls );
+	while( *it ) {
+		if( !(*it)->isHidden() )
+		{
+			(*it)->setSelected( true );
+			urls->setCurrentItem( *it );
 			break;
-		} else ++it;
-	} 
+		}
+		it++;
+	}
 }
 
 PopularUrlsDlg::~PopularUrlsDlg() {
@@ -300,18 +306,22 @@ void PopularUrlsDlg::run(KUrl::List list) {
 	// populate the listview
 	urls->clear();
 	KUrl::List::Iterator it;
+	
+	QTreeWidgetItem * lastItem = 0;
+	
 	for (it = list.begin(); it!=list.end(); ++it) {
-		K3ListViewItem *item = new K3ListViewItem(urls, urls->lastItem());
+		QTreeWidgetItem *item = new QTreeWidgetItem(urls, lastItem );
+		lastItem = item;
 		item->setText(0, (*it).isLocalFile() ? (*it).path() : (*it).prettyUrl());
-		item->setPixmap(0, (*it).isLocalFile() ? SmallIcon("folder") : SmallIcon("folder_html"));
+		item->setIcon(0, (*it).isLocalFile() ? SmallIcon("folder") : SmallIcon("folder_html"));
 	}
-	//urls->setCurrentItem(urls->firstChild());
-	//urls->setSelected(urls->firstChild(), true);
+	
 	setMinimumSize(urls->sizeHint().width()+45, 400);
 	
 	search->clear();
 	search->setFocus();
 	selection = -1;
+	slotVisibilityChanged();
 	exec();
 }
 
