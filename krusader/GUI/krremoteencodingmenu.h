@@ -38,18 +38,17 @@
 #include <kaction.h>
 #include <kactionmenu.h>
 
+class KActionCollection;
+
 class KrRemoteEncodingMenu: public KActionMenu
 {
   Q_OBJECT
 public:
-  KrRemoteEncodingMenu (const QString &text, const QString &icon, QObject *parent=0);
-
-// TODO:  virtual int plug( QWidget *widget, int index = -1);
+  KrRemoteEncodingMenu (const QString &text, const QString &icon, KActionCollection *parent=0);
 
 protected slots:
 
   void slotAboutToShow();
-  void slotCheckEnabled();
 
   void slotItemSelected(int);
   void slotReload();

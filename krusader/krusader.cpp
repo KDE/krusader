@@ -129,6 +129,7 @@ KAction *Krusader::actHomeTerminal = 0;
 KAction *Krusader::actFTPConnect = 0;
 KAction *Krusader::actFTPNewConnect = 0;
 KAction *Krusader::actFTPDisconnect = 0;
+KAction *Krusader::actRemoteEncoding = 0;
 KAction *Krusader::actProfiles = 0;
 KAction *Krusader::actMultiRename = 0;
 KAction *Krusader::actAllFilter = 0;
@@ -726,7 +727,7 @@ void Krusader::setupActions() {
 #endif
    NEW_KACTION(actManageUseractions, i18n( "Manage User Actions..." ), 0, 0, SLOTS, SLOT( manageUseractions() ), "manage useractions" );
    
-	new KrRemoteEncodingMenu(i18n("Select Remote Charset"), "charset", actionCollection() );
+   actRemoteEncoding = new KrRemoteEncodingMenu(i18n("Select Remote Charset"), "charset", actionCollection() );
 
    // setup the Fn keys
    NEW_KACTION(actF2, i18n( "Start Terminal Here" ), "terminal", Qt::Key_F2, SLOTS, SLOT( terminal() ) , "F2_Terminal" );

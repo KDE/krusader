@@ -1105,6 +1105,10 @@ void ListPanelFunc::refreshActions() {
 	//krProperties ->setEnabled( vfsType == vfs::NORMAL || vfsType == vfs::FTP ); // file properties
 	krFTPDiss ->setEnabled( vfsType == vfs::FTP );     // disconnect an FTP session
 	krCreateCS->setEnabled( vfsType == vfs::NORMAL );
+	
+	QString protocol = files()->vfs_getOrigin().protocol();
+	krRemoteEncoding->setEnabled( protocol == "ftp" || protocol == "sftp" || protocol == "fish" );
+	
 	/*
 	  krUnpack->setEnabled(true);                            // unpack archive
 	  krTest->setEnabled(true);                              // test archive

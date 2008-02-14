@@ -132,7 +132,7 @@ class Krusader : public KParts::MainWindow {
     static KAction *actUnselectAll, *actInvert, *actSync, *actDiskUsage, *actSavePosition, *actCompDirs;
     static KAction *actHomeTerminal, *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect, *actProfiles;
     static KAction *actExecFilter, *actCustomFilter, *actMountMan, *actNewTool, *actSwapPanels, *actSwapSides;
-    static KAction *actKonfigurator, *actToolsSetup, *actBack, *actRoot, *actFind, *actDirUp;
+    static KAction *actKonfigurator, *actToolsSetup, *actBack, *actRoot, *actFind, *actDirUp, *actRemoteEncoding;
     static KAction *actSelectColorMask, *actMultiRename, *actAllFilter, *actOpenLeftBm, *actOpenRightBm;
     static KAction *actNewTab, *actDupTab, *actCloseTab, *actPreviousTab, *actNextTab, *actSplit; 
     static KAction *actCombine, *actUserMenu, *actManageUseractions, *actSyncDirs, *actSyncBrowse;
@@ -230,6 +230,7 @@ class Krusader : public KParts::MainWindow {
 #define krFTPConnect      Krusader::App->actFTPConnect     // connect to an ftp
 #define krFTPNew          Krusader::App->actFTPNewConnect  // create a new connection
 #define krFTPDiss         Krusader::App->actFTPDisconnect  // disconnect an FTP session
+#define krRemoteEncoding  Krusader::App->actRemoteEncoding // remote encoding menu
 #define krAllFiles        Krusader::App->actAllFilter      // show all files in list
 #define krExecFiles       Krusader::App->actExecFilter     // show only executables
 #define krCustomFiles     Krusader::App->actCustomFilter   // show a custom set of files

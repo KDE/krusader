@@ -31,9 +31,11 @@
 
 #include "krremoteencodingmenu.h"
 
+#include <kactioncollection.h>
 #include <kmenu.h>
 #include <kcharsets.h>
 #include <kio/slaveconfig.h>
+#include <kio/scheduler.h>
 
 #include "../krusader.h"
 #include "../krusaderview.h"
@@ -43,10 +45,12 @@
 
 #define DATA_KEY    QString::fromLatin1("Charset")
 
-KrRemoteEncodingMenu::KrRemoteEncodingMenu(const QString &text, const QString &icon, QObject *parent) :
+KrRemoteEncodingMenu::KrRemoteEncodingMenu(const QString &text, const QString &icon, KActionCollection *parent) :
   KActionMenu( KIcon( icon, krLoader ), text, parent ), settingsLoaded( false )
 {
   connect(menu(), SIGNAL(aboutToShow()), this, SLOT(slotAboutToShow()));
+
+  parent->addAction("changeremoteencoding", this);
 }
 
 void KrRemoteEncodingMenu::slotAboutToShow()
@@ -99,25 +103,6 @@ void KrRemoteEncodingMenu::loadSettings()
   defaultID = count;
 }
 
-/* TODO:
-int KrRemoteEncodingMenu::plug( QWidget *widget, int index )
-{
-  if( widget->inherits( "QMenu" ) )
-  {
-    connect( widget, SIGNAL(aboutToShow()), this, SLOT(slotCheckEnabled()));
-    slotCheckEnabled();
-  }
-
-  return KActionMenu::plug( widget, index );
-}
-*/
-
-void KrRemoteEncodingMenu::slotCheckEnabled()
-{
-  KUrl currentURL = ACTIVE_PANEL->virtualPath();
-  setEnabled( currentURL.protocol() == "ftp" || currentURL.protocol() == "sftp" || currentURL.protocol() == "fish" );
-}
-
 void KrRemoteEncodingMenu::slotItemSelected(int id)
 {
   KUrl currentURL = ACTIVE_PANEL->virtualPath();
@@ -125,17 +110,14 @@ void KrRemoteEncodingMenu::slotItemSelected(int id)
   KConfig config(("kio_" + currentURL.protocol() + "rc").toLatin1());
   QString host = currentURL.host();
 
-  if (!menu()->isItemChecked(id))
-  {
-    QString charset = KGlobal::charsets()->encodingForName( encodingNames[id - 1] );
+  QString charset = KGlobal::charsets()->encodingForName( encodingNames[id - 1] );
 
-    KConfigGroup group( &config, host);
-    group.writeEntry(DATA_KEY, charset);
-    config.sync();
+  KConfigGroup group( &config, host);
+  group.writeEntry(DATA_KEY, charset);
+  config.sync();
 
-    // Update the io-slaves...
-    updateKIOSlaves();
-  }
+  // Update the io-slaves...
+  updateKIOSlaves();
 }
 
 void KrRemoteEncodingMenu::slotReload()
@@ -149,39 +131,37 @@ void KrRemoteEncodingMenu::slotDefault()
 
   // We have no choice but delete all higher domain level
   // settings here since it affects what will be matched.
-  KConfig config(("kio_" + currentURL.protocol() + "rc").toLatin1());
+  KConfig config ( ( "kio_" + currentURL.protocol() + "rc" ).toLatin1() );
 
-  QStringList partList = QStringList::split('.', currentURL.host(), false);
-  if (!partList.isEmpty())
+  QStringList partList = currentURL.host().split ( '.', QString::SkipEmptyParts );
+  if ( !partList.isEmpty() )
   {
-    partList.remove(partList.begin());
+    partList.erase ( partList.begin() );
 
     QStringList domains;
     // Remove the exact name match...
     domains << currentURL.host();
 
-    while (partList.count())
+    while ( partList.count() )
     {
-      if (partList.count() == 2)
-        if (partList[0].length() <= 2 && partList[1].length() == 2)
+      if ( partList.count() == 2 )
+        if ( partList[0].length() <= 2 && partList[1].length() == 2 )
           break;
 
-      if (partList.count() == 1)
+      if ( partList.count() == 1 )
         break;
 
-      domains << partList.join(".");
-      partList.remove(partList.begin());
+      domains << partList.join ( "." );
+      partList.erase ( partList.begin() );
     }
 
-    for (QStringList::Iterator it = domains.begin(); it != domains.end(); it++)
+    for ( QStringList::Iterator it = domains.begin(); it != domains.end(); ++it )
     {
-//    kDebug() << k_funcinfo << "Domain to remove: " << *it << endl;
-      if (config.hasGroup(*it))
-        config.deleteGroup(*it);
-#if 0 // TODO: PORTME
-      else if (config.hasKey(*it))
-        KConfigGroup( &config, QString() ).deleteEntry(*it);
-#endif
+      kDebug() << "Domain to remove: " << *it;
+      if ( config.hasGroup ( *it ) )
+        config.deleteGroup ( *it );
+      else if ( config.group ( "" ).hasKey ( *it ) )
+        config.group ( "" ).deleteEntry ( *it ); //don't know what group name is supposed to be XXX
     }
   }
   config.sync();
@@ -192,19 +172,7 @@ void KrRemoteEncodingMenu::slotDefault()
 
 void KrRemoteEncodingMenu::updateKIOSlaves()
 {
-#if 0 // TODO: correct KrRemoteEncodingMenu
-  // Inform running io-slaves about the change...
-  DCOPClient *client = new DCOPClient();
-
-  if (!client->attach())
-    kDebug() << "Can't connect with DCOP server." << endl;
-
-  QByteArray data;
-  QDataStream stream(data, QIODevice::WriteOnly);
-  stream << QString();
-  client->send("*", "KIO::Scheduler", "reparseSlaveConfiguration(QString)", data);
-  delete client;
-#endif
+  KIO::Scheduler::emitReparseSlaveConfiguration();
 
   // Reload the page with the new charset
   QTimer::singleShot( 500, ACTIVE_FUNC, SLOT( refresh() ) );
