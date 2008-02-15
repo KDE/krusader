@@ -138,6 +138,56 @@ Please note: The sed-command is &quot;s/search/repleace/&quot;, so you have to e
   <category>Archive</category>
   <command>if [ -d %aCurrent(&quot;Yes&quot;)% ]; then tar cf - %aCurrent(&quot;Yes&quot;)% | gzip -9 >%aCurrent(&quot;Yes&quot;)%.tar.gz; else cat %aCurrent(&quot;Yes&quot;)% | gzip -9 >%aCurrent(&quot;Yes&quot;)%.gz; fi</command>
  </action>
+<action name="archive_7z_current">
+ <title>7zip current</title>
+ <tooltip>Make a 7zip archive containing current file.</tooltip>
+ <icon>ark</icon>
+ <category>Archive</category>
+ <command>rm -f %aCurrent("Yes")%.7z; 7z a -mx=9 -mfb=128 -md=8m %aCurrent("Yes")%.7z %aCurrent("Yes")%
+ </command>
+</action>
+ <action name="archive_pack_lzma" >
+  <title>Lzma current file</title>
+  <tooltip>Lzma current selection and keep input files</tooltip>
+  <icon>ark</icon>
+  <category>Archive</category>
+  <command>lzma -zk %aCurrent%</command>
+ </action>
+ <action name="archive_unpack_lzma" >
+  <title>Unpack current lzma</title>
+  <tooltip>Unpack current lzma and keep original input file</tooltip>
+  <icon>ark</icon>
+  <category>Archive</category>
+  <command>lzma -dk %aCurrent%</command>
+ </action>
+ <action name="archive_tar_lzma" >
+  <title>tar.lzma current</title>
+  <tooltip>tar.lzma current selection</tooltip>
+  <icon>ark</icon>
+  <category>Archive</category>
+  <command>tar cf - %aCurrent(&quot;Yes&quot;)% | lzma -z >%aCurrent%.tar.lzma</command>
+ </action>
+ <action name="archive_unpack_tar_lzma" >
+  <title>Unpack current tar.lzma</title>
+  <tooltip>Unpack current tar.lzma and keep original input file</tooltip>
+  <icon>ark</icon>
+  <category>Archive</category>
+  <command>lzma -dkc %aCurrent% | tar xf -</command>
+ </action>
+ <action name="archive_tar_7z" >
+  <title>tar.7z current</title>
+  <tooltip>tar.7z current selection</tooltip>
+  <icon>ark</icon>
+  <category>Archive</category>
+  <command executionmode="collect_output" >tar cf - %aCurrent(&quot;Yes&quot;)% | 7z a -si %aCurrent%.tar.7z</command>
+ </action>
+ <action name="archive_unpack_tar_7z" >
+  <title>Unpack current tar.7z</title>
+  <tooltip>Unpack current tar.7z</tooltip>
+  <icon>ark</icon>
+  <category>Archive</category>
+  <command executionmode="collect_output" >7z x -so %aCurrent% | tar xf -</command>
+ </action>
  <action name="filename_to_clipboard" >
   <title>Copy current item to clipboard</title>
   <icon>editpaste</icon>
