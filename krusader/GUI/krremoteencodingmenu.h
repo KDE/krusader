@@ -50,9 +50,9 @@ protected slots:
 
   void slotAboutToShow();
 
-  void slotItemSelected(int);
   void slotReload();
   void slotDefault();
+  void slotTriggered ( QAction * );
 
 private:
 
@@ -61,7 +61,6 @@ private:
 
   QStringList encodingNames;
   bool        settingsLoaded;
-  int         defaultID;
 };
 
 #endif /* REMOTEENCODING_MENU_H */

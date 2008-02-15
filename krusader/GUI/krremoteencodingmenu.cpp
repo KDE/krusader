@@ -59,8 +59,9 @@ void KrRemoteEncodingMenu::slotAboutToShow()
     loadSettings();
 
   // uncheck everything
-  for (unsigned i =  0; i < menu()->count(); i++)
-    menu()->setItemChecked(menu()->idAt(i), false);
+  QList<QAction *> acts = menu()->actions();
+  foreach( QAction *act, acts )
+    act->setChecked( false );
 
   KUrl currentURL = ACTIVE_PANEL->virtualPath();
 
@@ -73,15 +74,34 @@ void KrRemoteEncodingMenu::slotAboutToShow()
       if ((*it).find(charset) != -1)
         break;
 
-//     kDebug() << k_funcinfo << "URL=" << currentURL << " charset=" << charset << endl;
+    bool found = false;
 
-    if (it == encodingNames.end())
+    foreach( QAction *act, acts ) {
+      if( act->data().canConvert<int> () ) {
+        int idr = act->data().toInt();
+
+        if( idr == id ) {
+          act->setChecked( found = true );
+          break;
+        }
+      }
+    }
+
+    if( !found )
       kWarning() << k_funcinfo << "could not find entry for charset=" << charset << endl;
-    else
-      menu()->setItemChecked(id, true);
   }
-  else
-    menu()->setItemChecked(defaultID, true);
+  else {
+    foreach( QAction *act, acts ) {
+      if( act->data().canConvert<int> () ) {
+        int idr = act->data().toInt();
+
+        if( idr == -2 ) {
+          act->setChecked( true );
+          break;
+        }
+      }
+    }
+  }
 }
 
 void KrRemoteEncodingMenu::loadSettings()
@@ -90,34 +110,62 @@ void KrRemoteEncodingMenu::loadSettings()
   encodingNames = KGlobal::charsets()->descriptiveEncodingNames();
 
   KMenu *kmenu = menu();
+  disconnect( kmenu, SIGNAL( triggered ( QAction * ) ), this, SLOT( slotTriggered ( QAction * ) ) );
+  connect( kmenu, SIGNAL( triggered ( QAction * ) ), this, SLOT( slotTriggered ( QAction * ) ) );
   kmenu->clear();
 
   QStringList::ConstIterator it;
   int count = 0;
-  for (it = encodingNames.begin(); it != encodingNames.end(); ++it)
-    kmenu->insertItem(*it, this, SLOT(slotItemSelected(int)), 0, ++count);
-  kmenu->insertSeparator();
+  QAction *act;
 
-  kmenu->insertItem(i18n("Reload"), this, SLOT(slotReload()), 0, ++count);
-  kmenu->insertItem(i18n("Default"), this, SLOT(slotDefault()), 0, ++count);
-  defaultID = count;
+  for (it = encodingNames.begin(); it != encodingNames.end(); ++it) {
+    act = kmenu->addAction( *it );
+    act->setData( QVariant( ++count) );
+    act->setCheckable( true );
+  }
+  kmenu->addSeparator();
+
+  act = kmenu->addAction(i18n("Reload"));
+  act->setCheckable( true );
+  act->setData( QVariant( -1 ) );
+
+  act = kmenu->addAction(i18n("Default"));
+  act->setCheckable( true );
+  act->setData( QVariant( -2 ) );
 }
 
-void KrRemoteEncodingMenu::slotItemSelected(int id)
+void KrRemoteEncodingMenu::slotTriggered( QAction * act )
 {
-  KUrl currentURL = ACTIVE_PANEL->virtualPath();
+  if( !act || !act->data().canConvert<int> () )
+    return;
 
-  KConfig config(("kio_" + currentURL.protocol() + "rc").toLatin1());
-  QString host = currentURL.host();
+  int id = act->data().toInt();
 
-  QString charset = KGlobal::charsets()->encodingForName( encodingNames[id - 1] );
+  switch( id )
+  {
+  case -1:
+    slotReload();
+    return;
+  case -2:
+    slotDefault();
+    return;
+  default:
+    {
+      KUrl currentURL = ACTIVE_PANEL->virtualPath();
 
-  KConfigGroup group( &config, host);
-  group.writeEntry(DATA_KEY, charset);
-  config.sync();
+      KConfig config(("kio_" + currentURL.protocol() + "rc").toLatin1());
+      QString host = currentURL.host();
 
-  // Update the io-slaves...
-  updateKIOSlaves();
+      QString charset = KGlobal::charsets()->encodingForName( encodingNames[id - 1] );
+
+      KConfigGroup group( &config, host);
+      group.writeEntry(DATA_KEY, charset);
+      config.sync();
+
+      // Update the io-slaves...
+      updateKIOSlaves();
+    }
+  }
 }
 
 void KrRemoteEncodingMenu::slotReload()
