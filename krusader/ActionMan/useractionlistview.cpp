@@ -20,7 +20,6 @@
 #include "../UserAction/useraction.h"
 
 #define COL_TITLE	0
-#define COL_NAME	1
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,15 +27,17 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 UserActionListView::UserActionListView( QWidget * parent )
- : K3ListView( parent )
+ : KrTreeWidget( parent )
 {
-   addColumn( i18n("Title") );
-   //addColumn( i18n("Identifier") );
-   setResizeMode( Q3ListView::AllColumns );
+   setHeaderLabel( i18n("Title") );
 
    setRootIsDecorated( true );
-   setSelectionMode( Q3ListView::Extended ); // normaly select single items but one may use Ctrl or Shift to select multiple
-   setSorting( COL_TITLE );
+   setSelectionMode( QAbstractItemView::ExtendedSelection ); // normaly select single items but one may use Ctrl or Shift to select multiple
+
+   setSortingEnabled( true );
+   sortItems( COL_TITLE, Qt::AscendingOrder );
+
+   connect( this, SIGNAL( currentItemChanged ( QTreeWidgetItem *, QTreeWidgetItem * ) ), SLOT( slotCurrentItemChanged( QTreeWidgetItem* ) ) );
 
    update();
 }
@@ -57,7 +58,6 @@ void UserActionListView::update() {
    QListIterator<KrAction *> it( list );
    while (it.hasNext())
       insertAction( it.next() );
-   //sort(); // this is done automaticly
 }
 
 void UserActionListView::update( KrAction* action ) {
@@ -71,7 +71,7 @@ void UserActionListView::update( KrAction* action ) {
       if ( current )
          setCurrentItem( item );
       if ( selected )
-         setSelected( item, true );
+         item->setSelected( true );
    }
 }
 
@@ -84,10 +84,11 @@ UserActionListViewItem* UserActionListView::insertAction( KrAction* action ) {
    if ( action->category().isEmpty() )
       item = new UserActionListViewItem( this, action );
    else {
-      Q3ListViewItem* categoryItem = findCategoryItem( action->category() );
+      QTreeWidgetItem* categoryItem = findCategoryItem( action->category() );
       if ( ! categoryItem ) {
-         categoryItem = new K3ListViewItem( this, action->category() ); // create the new category item it not already present
-         categoryItem->setSelectable( false );
+         categoryItem = new QTreeWidgetItem( this ); // create the new category item it not already present
+         categoryItem->setText(0, action->category() );
+         categoryItem->setFlags( Qt::ItemIsEnabled );
       }
       item = new UserActionListViewItem( categoryItem, action );
    }
@@ -96,21 +97,25 @@ UserActionListViewItem* UserActionListView::insertAction( KrAction* action ) {
    return item;
 }
 
-Q3ListViewItem* UserActionListView::findCategoryItem( const QString& category ) {
-   for ( Q3ListViewItem* item = firstChild(); item; item = item->nextSibling() )
-      if ( item->text( COL_TITLE ) == category && item->text( COL_NAME ).isEmpty() ) // because actions must have a name, items without name haveto be categories
-         return item;
-
+QTreeWidgetItem* UserActionListView::findCategoryItem( const QString& category ) {
+   QTreeWidgetItemIterator it(this);
+   while (*it) {
+      if ( (*it)->text( COL_TITLE ) == category && !((*it)->flags() & Qt::ItemIsSelectable) )
+         return *it;
+      it++;
+   }
    return 0;
 }
 
 UserActionListViewItem* UserActionListView::findActionItem( const KrAction* action ) {
-   for ( Q3ListViewItemIterator it( this ); it.current(); ++it ) {
-      if ( UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>( it.current() ) ) {
+   QTreeWidgetItemIterator it(this);
+   while (*it) {
+      if ( UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>( *it ) ) {
          if ( item->action() == action )
             return item;
       }
-   } //for
+      it++;
+   }
    return 0;
 }
 
@@ -125,29 +130,28 @@ void UserActionListView::setCurrentAction( const KrAction* action) {
    UserActionListViewItem* item = findActionItem( action );
    if ( item ) {
       setCurrentItem( item );
-//       setSelected( item, true );
-//       repaintItem( item );
    }
 }
 
 void UserActionListView::setFirstActionCurrent() {
-  for ( Q3ListViewItemIterator it( this ); it.current(); ++it ) {
-    if ( UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>( it.current() ) ) {
+  QTreeWidgetItemIterator it(this);
+  while (*it) {
+    if ( UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>( *it ) ) {
       setCurrentItem( item );
       break;
     }
-  } //for
+    it++;
+  }
 }
 
-void UserActionListView::setCurrentItem( Q3ListViewItem* item ) {
+void UserActionListView::slotCurrentItemChanged( QTreeWidgetItem* item ) {
    if ( ! item )
       return;
-   ensureItemVisible( item );
-   Q3ListView::setCurrentItem( item );
+   scrollTo( indexOf( item ) );
 }
 
 QDomDocument UserActionListView::dumpSelectedActions( QDomDocument* mergeDoc ) const {
-   QList<Q3ListViewItem*> list = selectedItems();
+   QList<QTreeWidgetItem*> list = selectedItems();
    QDomDocument doc;
    if ( mergeDoc )
       doc = *mergeDoc;
@@ -156,48 +160,43 @@ QDomDocument UserActionListView::dumpSelectedActions( QDomDocument* mergeDoc ) c
    QDomElement root = doc.documentElement();
 
    for (int i=0; i<list.size(); ++i) {
-   	Q3ListViewItem* item = list.at(i);
+      QTreeWidgetItem* item = list.at(i);
       if ( UserActionListViewItem* actionItem = dynamic_cast<UserActionListViewItem*>( item ) )
          root.appendChild( actionItem->action()->xmlDump( doc ) );
-	}
+   }
 
    return doc;
 }
 
 void UserActionListView::removeSelectedActions() {
-   QList<Q3ListViewItem*> list = selectedItems();
+   QList<QTreeWidgetItem*> list = selectedItems();
 
    for (int i=0; i<list.size(); ++i) {
-   	Q3ListViewItem* item = list.at(i);
+      QTreeWidgetItem* item = list.at(i);
       if ( UserActionListViewItem* actionItem = dynamic_cast<UserActionListViewItem*>( item ) ) {
          delete actionItem->action(); // remove the action itself
          delete actionItem; // remove the action from the list
       } // if
-	}
+   }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////     UserActionListViewItem    ////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-UserActionListViewItem::UserActionListViewItem( Q3ListView* view, KrAction* action )
- : K3ListViewItem( view )
+UserActionListViewItem::UserActionListViewItem( QTreeWidget* view, KrAction* action )
+ : QTreeWidgetItem( view )
 {
    setAction( action );
 }
 
-UserActionListViewItem::UserActionListViewItem( Q3ListViewItem* item, KrAction * action )
- : K3ListViewItem( item )
+UserActionListViewItem::UserActionListViewItem( QTreeWidgetItem* item, KrAction * action )
+ : QTreeWidgetItem( item )
 {
    setAction( action );
 }
 
 UserActionListViewItem::~UserActionListViewItem() {
-/*   // remove category-item if the last member ofthiscategory disappears
-   if ( QListViewItem* item = dynamic_cast<QListViewItem*>( parent() ) ) {
-      if ( item->childCount() <= 1 )
-         item->deleteLater(); // not possible since not inherited from QObject
-   }*/
 }
 
 
@@ -218,19 +217,18 @@ void UserActionListViewItem::update() {
       return;
 
    if ( ! _action->icon().isNull() )
-      setPixmap( COL_TITLE, KIconLoader::global()->loadIcon( _action->iconName(), KIconLoader::Small ) );
+      setIcon( COL_TITLE, KIconLoader::global()->loadIcon( _action->iconName(), KIconLoader::Small ) );
    setText( COL_TITLE, _action->text() );
-   setText( COL_NAME, _action->name() );
 }
 
-int UserActionListViewItem::compare( Q3ListViewItem* i, int col, bool ascending ) const {
+bool UserActionListViewItem::operator<(const QTreeWidgetItem &other) const {
 // FIXME some how this only produces bullshit :-/
 //   if ( i->text( COL_NAME ).isEmpty() ) { // categories only have titles
 //      //kDebug() << "this->title: " << text(COL_TITLE) << " |=|   i->title: " << i->text(COL_TITLE)  << endl;
 //       return ( ascending ? -1 : 1 ); // <0 means this is smaller then i
 //    }
 //    else
-      return Q3ListViewItem::compare( i, col, ascending );
+      return QTreeWidgetItem::operator<(other);
 }
 
 

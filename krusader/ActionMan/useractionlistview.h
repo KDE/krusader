@@ -12,7 +12,7 @@
 #ifndef USERACTIONLISTVIEW_H
 #define USERACTIONLISTVIEW_H
 
-#include <k3listview.h>
+#include "../GUI/krtreewidget.h"
 
 class KrAction;
 class QString;
@@ -22,7 +22,9 @@ class QDomDocument;
 /**
  * @author Jonas Bähr
  */
-class UserActionListView : public K3ListView {
+class UserActionListView : public KrTreeWidget {
+   Q_OBJECT
+
 public:
    UserActionListView( QWidget* parent = 0 );
    ~UserActionListView();
@@ -47,10 +49,11 @@ public:
    /**
     * makes @e item current and ensures its visibility
     */
-   virtual void setCurrentItem( Q3ListViewItem* item );
+protected slots:
+   void slotCurrentItemChanged( QTreeWidgetItem* );
 
 protected:
-   Q3ListViewItem* findCategoryItem( const QString& category );
+   QTreeWidgetItem* findCategoryItem( const QString& category );
    UserActionListViewItem* findActionItem( const KrAction* action );
 };
 
@@ -58,10 +61,10 @@ protected:
 /**
  * @author Jonas Bähr
  */
-class UserActionListViewItem : public K3ListViewItem {
+class UserActionListViewItem : public QTreeWidgetItem {
 public:
-   UserActionListViewItem( Q3ListView* view, KrAction* action );
-   UserActionListViewItem( Q3ListViewItem* item, KrAction* action );
+   UserActionListViewItem( QTreeWidget* view, KrAction* action );
+   UserActionListViewItem( QTreeWidgetItem* item, KrAction* action );
    ~UserActionListViewItem();
 
    void setAction( KrAction* action );
@@ -71,7 +74,7 @@ public:
    /**
     * This reimplements qt's compare-function in order to have categories on the top of the list
     */
-   int compare ( Q3ListViewItem * i, int col, bool ascending ) const;
+   virtual bool operator<(const QTreeWidgetItem &other) const;
 
 private:
    KrAction* _action;
