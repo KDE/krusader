@@ -745,7 +745,7 @@ QColor KonfiguratorColorChooser::getColor()
 ///////////////////////////////
 
 KonfiguratorListBox::KonfiguratorListBox( QString cls, QString name, QStringList dflt,
-    QWidget *parent, bool rst, int pg ) : Q3ListBox( parent ),
+    QWidget *parent, bool rst, int pg ) : KrListWidget( parent ),
     defaultValue( dflt )
 {
   ext = new KonfiguratorExtension( this, cls, name, rst, pg );
@@ -785,15 +785,15 @@ void KonfiguratorListBox::slotSetDefaults(QObject *)
 void KonfiguratorListBox::setList( QStringList list )
 {
   clear();
-  insertStringList( list );
+  addItems( list );
 }
 
 QStringList KonfiguratorListBox::list()
 {
   QStringList lst;
   
-  for( unsigned i=0; i != count(); i++ )
-    lst += text( i );
+  for( int i=0; i != count(); i++ )
+    lst += item( i )->text();
 
   return lst;
 }
@@ -802,19 +802,19 @@ void KonfiguratorListBox::addItem( const QString & item )
 {
   if( !list().contains( item ) )
   {
-    insertItem( item );
+    KrListWidget::addItem( item );
     ext->setChanged();
   }
 }
 
 void KonfiguratorListBox::removeItem( const QString & item )
 {
-  Q3ListBoxItem * listItem = findItem( item );
-  if( listItem != 0 )
-  {
-    takeItem( listItem );
+  QList<QListWidgetItem *> list = findItems ( item, Qt::MatchExactly );
+  for( int i=0; i != list.count(); i++ )
+    delete list[ i ];
+
+  if( list.count() )
     ext->setChanged();
-  }
 }
 
 #include "konfiguratoritems.moc"

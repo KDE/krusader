@@ -32,7 +32,7 @@
 #define __KURLLISTREQUESTER_H__
 
 #include <qwidget.h>
-#include <q3listbox.h>
+#include "../GUI/krlistwidget.h"
 #include <qtoolbutton.h>
 #include <QKeyEvent>
 #include <klineedit.h>
@@ -49,8 +49,8 @@ public:
   KUrl::List   urlList();
   void         setUrlList( KUrl::List );
   
-  KLineEdit   *lineEdit()    {return urlLineEdit;}
-  Q3ListBox    *listBox()     {return urlListBox;}
+  KLineEdit    *lineEdit()    {return urlLineEdit;}
+  KrListWidget *listBox()     {return urlListBox;}
   
   void         setCompletionDir( QString dir ) { completion.setDir( dir ); }
 
@@ -60,14 +60,14 @@ signals:
 protected slots:
   void         slotAdd();
   void         slotBrowse();
-  void         slotRightClicked( Q3ListBoxItem * );
+  void         slotRightClicked( QListWidgetItem *, const QPoint & );
   
 protected:
   virtual void keyPressEvent(QKeyEvent *e);
   void         deleteSelectedItems();
   
   KLineEdit    *urlLineEdit;
-  Q3ListBox     *urlListBox;
+  KrListWidget *urlListBox;
   QToolButton  *urlAddBtn;
   QToolButton  *urlBrowseBtn;
   

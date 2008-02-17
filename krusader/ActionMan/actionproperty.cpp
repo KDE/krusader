@@ -149,13 +149,13 @@ void ActionProperty::updateGUI( KrAction *action ) {
    KeyButtonShortcut->setKeySequence( _action->shortcut().primary() );
 
    lbShowonlyProtocol->clear();
-   lbShowonlyProtocol->insertStringList( _action->showonlyProtocol() );
+   lbShowonlyProtocol->addItems( _action->showonlyProtocol() );
    lbShowonlyPath->clear();
-   lbShowonlyPath->insertStringList( _action->showonlyPath() );
+   lbShowonlyPath->addItems( _action->showonlyPath() );
    lbShowonlyMime->clear();
-   lbShowonlyMime->insertStringList( _action->showonlyMime() );
+   lbShowonlyMime->addItems( _action->showonlyMime() );
    lbShowonlyFile->clear();
-   lbShowonlyFile->insertStringList( _action->showonlyFile() );
+   lbShowonlyFile->addItems( _action->showonlyFile() );
 
    chkSeparateStdError->setChecked( false );
    switch ( _action->execType() ) {
@@ -217,35 +217,36 @@ void ActionProperty::updateAction( KrAction *action ) {
    _action->setStartpath( leStartpath->text() );
    _action->setShortcut( KeyButtonShortcut->keySequence() );
 
-   Q3ListBoxItem* lbi = lbShowonlyProtocol->firstItem();
    QStringList list;
-   while ( lbi ) {
+
+   for( int i1 = 0; i1 != lbShowonlyProtocol->count(); i1++ ) {
+      QListWidgetItem* lbi = lbShowonlyProtocol->item( i1 );
+
       list << lbi->text();
-      lbi = lbi->next();
    }
    _action->setShowonlyProtocol( list );
 
-   lbi = lbShowonlyPath->firstItem();
    list = QStringList();
-   while ( lbi ) {
+   for( int i1 = 0; i1 != lbShowonlyPath->count(); i1++ ) {
+      QListWidgetItem* lbi = lbShowonlyPath->item( i1 );
+
       list << lbi->text();
-      lbi = lbi->next();
    }
    _action->setShowonlyPath( list );
 
-   lbi = lbShowonlyMime->firstItem();
    list = QStringList();
-   while ( lbi ) {
+   for( int i1 = 0; i1 != lbShowonlyMime->count(); i1++ ) {
+      QListWidgetItem* lbi = lbShowonlyMime->item( i1 );
+
       list << lbi->text();
-      lbi = lbi->next();
    }
    _action->setShowonlyMime( list );
 
-   lbi = lbShowonlyFile->firstItem();
    list = QStringList();
-   while ( lbi ) {
+   for( int i1 = 0; i1 != lbShowonlyFile->count(); i1++ ) {
+      QListWidgetItem* lbi = lbShowonlyFile->item( i1 );
+
       list << lbi->text();
-      lbi = lbi->next();
    }
    _action->setShowonlyFile( list );
 
@@ -294,36 +295,44 @@ void ActionProperty::addStartpath() {
 
 void ActionProperty::newProtocol() {
   bool ok;
+
+  QString currentText;
+  if( lbShowonlyProtocol->currentItem() )
+    currentText = lbShowonlyProtocol->currentItem()->text();
+
   QString text = KInputDialog::getText(
 		i18n( "New protocol" ),
 		i18n( "Set a protocol:" ),
-		lbShowonlyProtocol->currentText(),
+		currentText,
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
-      lbShowonlyProtocol->insertStringList( QStringList::split( ";", text ) );
+      lbShowonlyProtocol->addItems( QStringList::split( ";", text ) );
       setModified();
    }
 }
 
 void ActionProperty::editProtocol() {
-  if (lbShowonlyProtocol->currentItem() == -1)
+  if (lbShowonlyProtocol->currentItem() == 0)
     return;
 
   bool ok;
+
+  QString currentText = lbShowonlyProtocol->currentItem()->text();
+
   QString text = KInputDialog::getText(
 		i18n( "Edit protocol" ),
 		i18n( "Set another protocol:" ),
-		lbShowonlyProtocol->currentText(),
+		currentText,
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
-      lbShowonlyProtocol->changeItem( text, lbShowonlyProtocol->currentItem() );
+      lbShowonlyProtocol->currentItem()->setText( text );
       setModified();
    }
 }
 
 void ActionProperty::removeProtocol() {
-   if (lbShowonlyProtocol->currentItem() != -1) {
-     lbShowonlyProtocol->removeItem( lbShowonlyProtocol->currentItem() );
+   if (lbShowonlyProtocol->currentItem() != 0 ) {
+      delete lbShowonlyProtocol->currentItem();
       setModified();
   }
 }
@@ -331,102 +340,121 @@ void ActionProperty::removeProtocol() {
 void ActionProperty::addPath() {
    QString folder = KFileDialog::getExistingDirectory(QString(), this);
    if (folder != QString()) {
-     lbShowonlyPath->insertItem( folder );
+     lbShowonlyPath->addItem( folder );
      setModified();
    }
 }
 
 void ActionProperty::editPath() {
-  if (lbShowonlyPath->currentItem() == -1)
+  if (lbShowonlyPath->currentItem() == 0)
     return;
 
   bool ok;
+
+  QString currentText = lbShowonlyPath->currentItem()->text();
+
   QString text = KInputDialog::getText(
 		i18n( "Edit path" ),
 		i18n( "Set another path:" ),
-		lbShowonlyPath->currentText(),
+		currentText,
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
-      lbShowonlyPath->changeItem( text, lbShowonlyPath->currentItem() );
+      lbShowonlyPath->currentItem()->setText( text );
       setModified();
    }
 }
 
 void ActionProperty::removePath() {
-   if (lbShowonlyPath->currentItem() != -1) {
-     lbShowonlyPath->removeItem( lbShowonlyPath->currentItem() );
+   if (lbShowonlyPath->currentItem() != 0) {
+     delete lbShowonlyPath->currentItem();
      setModified();
   }
 }
 
 void ActionProperty::addMime() { 
   bool ok;
+
+  QString currentText;
+  if( lbShowonlyMime->currentItem() )
+    currentText = lbShowonlyMime->currentItem()->text();
+
   QString text = KInputDialog::getText(
 		i18n( "New mime-type" ),
 		i18n( "Set a mime-type:" ),
-		lbShowonlyMime->currentText(),
+		currentText,
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
-      lbShowonlyMime->insertStringList( QStringList::split( ";", text ) );
+      lbShowonlyMime->addItems( QStringList::split( ";", text ) );
       setModified();
    }
 }
 
 void ActionProperty::editMime() { 
-  if (lbShowonlyMime->currentItem() == -1)
+  if (lbShowonlyMime->currentItem() == 0)
     return;
 
   bool ok;
+
+  QString currentText = lbShowonlyMime->currentItem()->text();
+
   QString text = KInputDialog::getText(
 		i18n( "Edit mime-type" ),
 		i18n( "Set another mime-type:" ),
-		lbShowonlyMime->currentText(),
+		currentText,
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
-      lbShowonlyMime->changeItem( text, lbShowonlyMime->currentItem() );
+      lbShowonlyMime->currentItem()->setText( text );
       setModified();
    }
 }
 
 void ActionProperty::removeMime() { 
-   if (lbShowonlyMime->currentItem() != -1) {
-     lbShowonlyMime->removeItem( lbShowonlyMime->currentItem() );
+   if (lbShowonlyMime->currentItem() != 0) {
+     delete lbShowonlyMime->currentItem();
      setModified();
   }
 }
 
 void ActionProperty::newFile() {
   bool ok;
+
+  QString currentText;
+  if( lbShowonlyFile->currentItem() )
+    currentText = lbShowonlyFile->currentItem()->text();
+
   QString text = KInputDialog::getText(
 		i18n( "New filename" ),
 		i18n( "Set a filename:" ),
-		lbShowonlyFile->currentText(),
+		currentText,
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
-      lbShowonlyFile->insertStringList( QStringList::split( ";", text ) );
+      lbShowonlyFile->addItems( QStringList::split( ";", text ) );
       setModified();
    }
 }
 
 void ActionProperty::editFile() {
-  if (lbShowonlyFile->currentItem() == -1)
+  if (lbShowonlyFile->currentItem() == 0)
     return;
 
   bool ok;
+
+  QString currentText = lbShowonlyFile->currentItem()->text();
+
   QString text = KInputDialog::getText(
 		i18n( "Edit filename" ),
 		i18n( "Set another filename:" ),
-		lbShowonlyFile->currentText(),
+		currentText,
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
-      lbShowonlyFile->changeItem( text, lbShowonlyFile->currentItem() );
+      lbShowonlyFile->currentItem()->setText( text );
       setModified();
    }
 }
 
 void ActionProperty::removeFile() {
-   if (lbShowonlyFile->currentItem() != -1) {
-     lbShowonlyFile->removeItem( lbShowonlyFile->currentItem() );
+   if (lbShowonlyFile->currentItem() != 0) {
+     delete lbShowonlyFile->currentItem();
      setModified();
   }
 }

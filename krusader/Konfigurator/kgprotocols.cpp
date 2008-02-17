@@ -119,7 +119,7 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
   QGroupBox *protocolGrp = createFrame( i18n( "Protocols" ), this );    
   QGridLayout *protocolGrid = createGridLayout( protocolGrp );
   
-  protocolList = new Q3ListBox( protocolGrp, "protocolList" );
+  protocolList = new KrListWidget( protocolGrp );
   loadListCapableProtocols();
   protocolGrid->addWidget( protocolList, 0, 0 );
 
@@ -130,7 +130,7 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
   QGroupBox *mimeGrp = createFrame( i18n( "Mimes" ), this );    
   QGridLayout *mimeGrid = createGridLayout( mimeGrp );
   
-  mimeList = new Q3ListBox( mimeGrp, "protocolList" );
+  mimeList = new KrListWidget( mimeGrp );
   loadMimes();
   mimeGrid->addWidget( mimeList, 0, 0 );
 
@@ -138,9 +138,9 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
   
   //  -------------------------- CONNECT TABLE ----------------------------------  
   
-  connect( protocolList,      SIGNAL( selectionChanged() ), this, SLOT( slotDisableButtons() ) );
+  connect( protocolList,      SIGNAL( itemSelectionChanged() ), this, SLOT( slotDisableButtons() ) );
   connect( linkList,          SIGNAL( itemSelectionChanged() ), this, SLOT( slotDisableButtons() ) );
-  connect( mimeList,          SIGNAL( selectionChanged() ), this, SLOT( slotDisableButtons() ) );
+  connect( mimeList,          SIGNAL( itemSelectionChanged() ), this, SLOT( slotDisableButtons() ) );
   connect( linkList,          SIGNAL( currentItemChanged ( QTreeWidgetItem *, QTreeWidgetItem * ) ), this, SLOT( slotDisableButtons() ) );
   connect( btnAddProtocol,    SIGNAL( clicked() )         , this, SLOT( slotAddProtocol() ) );
   connect( btnRemoveProtocol, SIGNAL( clicked() )         , this, SLOT( slotRemoveProtocol() ) );
@@ -170,7 +170,7 @@ void KgProtocols::loadListCapableProtocols()
 //    }
     ++it;
   }
-  protocolList->insertStringList( protocols );
+  protocolList->addItems( protocols );
 }
 
 void KgProtocols::loadMimes()
@@ -178,18 +178,18 @@ void KgProtocols::loadMimes()
   KMimeType::List mimes = KMimeType::allMimeTypes();
   
   for( KMimeType::List::const_iterator it = mimes.begin(); it != mimes.end(); it++ )
-    mimeList->insertItem( (*it)->name() );
+    mimeList->addItem( (*it)->name() );
     
-  mimeList->sort();
+  mimeList->sortItems();
 }
 
 void KgProtocols::slotDisableButtons()
 {
-  btnAddProtocol->setEnabled( protocolList->selectedItem() != 0 );
+  btnAddProtocol->setEnabled( protocolList->selectedItems().count() != 0 );
   QTreeWidgetItem *listViewItem = linkList->currentItem();
   bool isProtocolSelected = ( listViewItem == 0 ? false : listViewItem->parent() == 0 );
   btnRemoveProtocol->setEnabled( isProtocolSelected );
-  btnAddMime->setEnabled( listViewItem != 0 && mimeList->selectedItem() != 0 );
+  btnAddMime->setEnabled( listViewItem != 0 && mimeList->selectedItems().count() != 0 );
   btnRemoveMime->setEnabled( listViewItem == 0 ? false : listViewItem->parent() != 0 );
   
   if( linkList->currentItem() == 0 && linkList->topLevelItemCount() != 0 )
@@ -202,10 +202,11 @@ void KgProtocols::slotDisableButtons()
 
 void KgProtocols::slotAddProtocol()
 {
-  Q3ListBoxItem *item = protocolList->selectedItem();
-  if( item )
+  QList<QListWidgetItem *> list = protocolList->selectedItems ();
+
+  if( list.count() > 0 )
   {
-    addProtocol( item->text(), true );
+    addProtocol( list[ 0 ]->text(), true );
     slotDisableButtons();
     emit sigChanged();
   }
@@ -213,10 +214,10 @@ void KgProtocols::slotAddProtocol()
 
 void KgProtocols::addProtocol( QString name, bool changeCurrent )
 {
-  Q3ListBoxItem *item = protocolList->findItem( name, Q3ListBox::ExactMatch );
-  if( item )
+  QList<QListWidgetItem *> list = protocolList->findItems( name, Qt::MatchExactly );
+  if( list.count() > 0 )
   {
-    protocolList->removeItem( protocolList->index( item ) );
+    delete list[ 0 ];
     QTreeWidgetItem *listViewItem = new QTreeWidgetItem( linkList );
     listViewItem->setText( 0, name );
     listViewItem->setIcon( 0, krLoader->loadIcon( "exec", KIconLoader::Small ) );
@@ -249,21 +250,21 @@ void KgProtocols::removeProtocol( QString name )
       removeMime( item->child( 0 )->text( 0 ) );
      
     linkList->takeTopLevelItem( linkList->indexOfTopLevelItem( item ) );
-    protocolList->insertItem( name );
-    protocolList->sort();
+    protocolList->addItem( name );
+    protocolList->sortItems();
   }
 }
 
 void KgProtocols::slotAddMime()
 {
-  Q3ListBoxItem *item = mimeList->selectedItem();
-  if( item && linkList->currentItem() != 0 )
+  QList<QListWidgetItem *> list = mimeList->selectedItems();
+  if( list.count() > 0 && linkList->currentItem() != 0 )
   {
     QTreeWidgetItem *itemToAdd = linkList->currentItem();
     if( itemToAdd->parent() )
       itemToAdd = itemToAdd->parent();
       
-    addMime( item->text(), itemToAdd->text( 0 ) );
+    addMime( list[ 0 ]->text(), itemToAdd->text( 0 ) );
     slotDisableButtons();
     emit sigChanged();
   }
@@ -271,7 +272,7 @@ void KgProtocols::slotAddMime()
 
 void KgProtocols::addMime( QString name, QString protocol )
 {
-  Q3ListBoxItem *item = mimeList->findItem( name, Q3ListBox::ExactMatch );
+  QList<QListWidgetItem *> list = mimeList->findItems( name, Qt::MatchExactly );
 
   QList<QTreeWidgetItem *> itemList = linkList->findItems ( protocol, Qt::MatchExactly | Qt::MatchRecursive, 0 );
 
@@ -279,9 +280,9 @@ void KgProtocols::addMime( QString name, QString protocol )
   if( itemList.count() != 0 )
      currentListItem = itemList[ 0 ];
   
-  if( item && currentListItem && currentListItem->parent() == 0 )
+  if( list.count() > 0 && currentListItem && currentListItem->parent() == 0 )
   {
-    mimeList->removeItem( mimeList->index( item ) );
+    delete list[ 0 ];
     QTreeWidgetItem *listViewItem = new QTreeWidgetItem( currentListItem );
     listViewItem->setText( 0, name );
     listViewItem->setIcon( 0, krLoader->loadIcon( "mime", KIconLoader::Small ) );
@@ -310,8 +311,8 @@ void KgProtocols::removeMime( QString name )
   
   if( currentMimeItem && currentMimeItem->parent() != 0 )
   {
-    mimeList->insertItem( currentMimeItem->text( 0 ) );
-    mimeList->sort();
+    mimeList->addItem( currentMimeItem->text( 0 ) );
+    mimeList->sortItems();
     currentMimeItem->parent()->removeChild( currentMimeItem );
   }
 }

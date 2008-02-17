@@ -1,7 +1,7 @@
 /***************************************************************************
-                                 krmaskchoice.h
+                               krlistwidget.cpp
                              -------------------
-    copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
+    copyright            : (C) 2008+ by Csaba Karai
     email                : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -17,7 +17,7 @@
      88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
      YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
-                                                     H e a d e r    F i l e
+                                                     S o u r c e    F i l e
 
  ***************************************************************************
  *                                                                         *
@@ -27,55 +27,45 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-#ifndef KRMASKCHOICE_H
-#define KRMASKCHOICE_H
 
-#include <qdialog.h>
-#include <QVBoxLayout>
-#include <QGridLayout>
-#include <QHBoxLayout>
-#include <QLabel>
-class QVBoxLayout; 
-class QHBoxLayout; 
-class QGridLayout; 
-class QComboBox;
-class QGroupBox;
-class QLabel;
-class KrListWidget;
-class QListWidgetItem;
-class QPushButton;
+#include "krlistwidget.h"
+#include "krstyleproxy.h"
+#include <qwidget.h>
+#include <qevent.h>
 
-class KRMaskChoice : public QDialog
-{ 
-    Q_OBJECT
+KrListWidget::KrListWidget( QWidget * parent ) : QListWidget( parent ) {
+  setStyle( new KrStyleProxy( style() ) );
+}
 
-public:
-    KRMaskChoice( QWidget* parent = 0 );
-    ~KRMaskChoice();
+bool KrListWidget::event ( QEvent * event )
+{
+  switch (event->type()) {
+  // HACK: QT 4 Context menu key isn't handled properly
+  case QEvent::ContextMenu:
+    {
+      QContextMenuEvent* ce = (QContextMenuEvent*) event;
 
-    QComboBox* selection;
-    QLabel* PixmapLabel1;
-    QLabel* label;
-    QGroupBox* GroupBox1;
-    KrListWidget* preSelections;
-    QPushButton* PushButton7;
-    QPushButton* PushButton7_2;
-    QPushButton* PushButton7_3;
-    QPushButton* PushButton3;
-    QPushButton* PushButton3_2;
+      if( ce->reason() == QContextMenuEvent::Mouse ) {
+        QPoint pos = viewport()->mapFromGlobal( ce->globalPos() );
 
-public slots:
-    virtual void addSelection();
-    virtual void clearSelections();
-    virtual void deleteSelection();
-    virtual void acceptFromList(QListWidgetItem *);
-    virtual void currentItemChanged(QListWidgetItem *);
+        QListWidgetItem * item = itemAt( pos );
 
-protected:
-    QHBoxLayout* hbox;
-    QHBoxLayout* hbox_2;
-    QHBoxLayout* hbox_3;
-    QVBoxLayout* vbox;
-};
+        emit itemRightClicked( item, ce->globalPos() );
+        return true;
+      } else {
+        if( currentItem() ) {
+          QRect r = visualItemRect( currentItem() );
+          QPoint p = viewport()->mapToGlobal( QPoint( r.x() + 5, r.y() + 5 ) );
 
-#endif // KRMASKCHOICE_H
+          emit itemRightClicked( currentItem(), p );
+          return true;
+        }
+      }
+    }
+    break;
+  default:
+    break;
+  }
+
+  return QListWidget::event( event );
+}

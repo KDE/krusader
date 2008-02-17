@@ -38,7 +38,7 @@
 #include <qlabel.h>
 #include <qlineedit.h>
 #include <qcheckbox.h>
-#include <q3listbox.h>
+#include "../GUI/krlistwidget.h"
 #include <qspinbox.h>
 #include <qnamespace.h>
 #include <QMouseEvent>
@@ -156,7 +156,7 @@ KRMaskChoiceSub::KRMaskChoiceSub() : KRMaskChoice(0) {
   // the predefined selections list
   KConfigGroup group( krConfig, "Private");
   QStringList lst = group.readEntry("Predefined Selections",QStringList());
-  if (lst.size()>0) preSelections->insertStringList(lst);
+  if (lst.size()>0) preSelections->addItems(lst);
   // the combo-box tweaks
   selection->setDuplicatesEnabled(false);
   selection->insertStringList(KRSpWidgets::maskList);
@@ -184,12 +184,12 @@ void KRMaskChoiceSub::accept() {
     KRSpWidgets::maskList.insert(0,selection->currentText().local8Bit());
   // write down the predefined selections list
   QStringList list;
-  Q3ListBoxItem *i=preSelections->firstItem();
-  while (i!=0) {
-    if (i->text().find(i18n("compare mode"))==-1)
-      list.append(i->text().local8Bit());
-    i=i->next();
+
+  for( int j=0; j != preSelections->count(); j++ ) {
+    QListWidgetItem *i = preSelections->item( j );
+    list.append(i->text());
   }
+
   KConfigGroup group( krConfig, "Private");
   group.writeEntry("Predefined Selections",list);
   KRMaskChoice::accept();
@@ -198,25 +198,26 @@ void KRMaskChoiceSub::accept() {
 void KRMaskChoiceSub::addSelection() {
   QString temp=selection->currentText();
   bool itemExists=false;
-  Q3ListBoxItem *i=preSelections->firstItem();
+
   // check if the selection already exists
-  while (i!=0)
+  for( int j=0; j != preSelections->count(); j++ ) {
+    QListWidgetItem *i = preSelections->item( j );
+
     if (i->text()==temp) {
       itemExists=true;
       break;
-    } else i=i->next();
+    }
+  }
+
   if (temp!="" && !itemExists) {
-    preSelections->insertItem(selection->currentText());
+    preSelections->addItem(selection->currentText());
     preSelections->update();
   }
 }
 
 void KRMaskChoiceSub::deleteSelection() {
-  if (preSelections->currentItem()!=-1 &&
-      preSelections->currentText().find(i18n("compare mode"))==-1) {
-    preSelections->removeItem(preSelections->currentItem());
-    preSelections->update();
-  }
+  delete preSelections->currentItem();
+  preSelections->update();
 }
 
 void KRMaskChoiceSub::clearSelections() {
@@ -224,9 +225,14 @@ void KRMaskChoiceSub::clearSelections() {
   preSelections->update();
 }
 
-void KRMaskChoiceSub::acceptFromList(Q3ListBoxItem *i) {
+void KRMaskChoiceSub::acceptFromList(QListWidgetItem *i) {
   selection->insertItem(i->text(),0);
   accept();
+}
+
+void KRMaskChoiceSub::currentItemChanged(QListWidgetItem *i) {
+  if( i )
+    selection->setEditText( i->text() );
 }
 
 ////////////////////////// QuickNavLineEdit ////////////////////

@@ -37,7 +37,7 @@
 #include <qspinbox.h>
 #include <qpushbutton.h>
 #include <qradiobutton.h>
-#include <q3listbox.h>
+#include "../GUI/krlistwidget.h"
 #include <qlist.h>
 #include <qlineedit.h>
 #include <QPixmap>
@@ -385,7 +385,7 @@ protected:
 // KonfiguratorListBox class
 ///////////////////////////////
 
-class KonfiguratorListBox : public Q3ListBox
+class KonfiguratorListBox : public KrListWidget
 {
   Q_OBJECT
 

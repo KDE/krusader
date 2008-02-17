@@ -118,7 +118,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 		profileLayout->setSpacing ( 6 );
 		profileLayout->setContentsMargins ( 11, 11, 11, 11 );
 
-		profileListBox = new Q3ListBox ( profileHandler );
+		profileListBox = new KrListWidget ( profileHandler );
 		profileLayout->addWidget ( profileListBox, 0, 0, 4, 1 );
 
 		profileAddBtn = new QPushButton ( i18n ( "&Add" ), profileHandler );
@@ -271,7 +271,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 		connect ( profileLoadBtn,      SIGNAL ( clicked() ) , this, SLOT ( slotLoadBtnClicked() ) );
 		connect ( profileOverwriteBtn, SIGNAL ( clicked() ) , this, SLOT ( slotOverwriteBtnClicked() ) );
 		connect ( profileRemoveBtn,    SIGNAL ( clicked() ) , this, SLOT ( slotRemoveBtnClicked() ) );
-		connect ( profileListBox,      SIGNAL ( doubleClicked ( Q3ListBoxItem * ) ) , this, SLOT ( slotProfileDoubleClicked ( Q3ListBoxItem * ) ) );
+		connect ( profileListBox,      SIGNAL ( itemDoubleClicked ( QListWidgetItem * ) ) , this, SLOT ( slotProfileDoubleClicked ( QListWidgetItem * ) ) );
 		connect ( profileManager,      SIGNAL ( loadFromProfile ( QString ) ), fltTabs, SLOT ( loadFromProfile ( QString ) ) );
 		connect ( profileManager,      SIGNAL ( saveToProfile ( QString ) ), fltTabs, SLOT ( saveToProfile ( QString ) ) );
 	}
@@ -407,7 +407,7 @@ void GeneralFilter::loadFromProfile ( QString name )
 		searchIn->listBox()->clear();
 		QStringList searchInList = cfg.readEntry ( "Search In List", QStringList() );
 		if ( !searchInList.isEmpty() )
-			searchIn->listBox()->insertStringList ( searchInList );
+			searchIn->listBox()->addItems ( searchInList );
 	}
 
 	if ( properties & FilterTabs::HasDontSearchIn )
@@ -417,7 +417,7 @@ void GeneralFilter::loadFromProfile ( QString name )
 		dontSearchIn->listBox()->clear();
 		QStringList dontSearchInList = cfg.readEntry ( "Dont Search In List", QStringList() );
 		if ( !dontSearchInList.isEmpty() )
-			dontSearchIn->listBox()->insertStringList ( dontSearchInList );
+			dontSearchIn->listBox()->addItems ( dontSearchInList );
 	}
 }
 
@@ -446,8 +446,8 @@ void GeneralFilter::saveToProfile ( QString name )
 		group.writeEntry ( "Search In Edit", searchIn->lineEdit()->text() );
 
 		QStringList searchInList;
-		for ( Q3ListBoxItem *item = searchIn->listBox()->firstItem(); item != 0; item = item->next() )
-			searchInList.append ( item->text().simplified() );
+		for ( int i=0; i != searchIn->listBox()->count(); i++ )
+			searchInList.append ( searchIn->listBox()->item( i )->text().simplified() );
 		group.writeEntry ( "Search In List", searchInList );
 	}
 
@@ -456,8 +456,8 @@ void GeneralFilter::saveToProfile ( QString name )
 		group.writeEntry ( "Dont Search In Edit", dontSearchIn->lineEdit()->text() );
 
 		QStringList dontSearchInList;
-		for ( Q3ListBoxItem *item = dontSearchIn->listBox()->firstItem(); item != 0; item = item->next() )
-			dontSearchInList.append ( item->text().simplified() );
+		for ( int i=0; i != dontSearchIn->listBox()->count(); i++ )
+			dontSearchInList.append ( dontSearchIn->listBox()->item( i )->text().simplified() );
 		group.writeEntry ( "Dont Search In List", dontSearchInList );
 	}
 }
@@ -465,7 +465,7 @@ void GeneralFilter::saveToProfile ( QString name )
 void GeneralFilter::refreshProfileListBox()
 {
 	profileListBox->clear();
-	profileListBox->insertStringList ( ProfileManager::availableProfiles ( "SelectionProfile" ) );
+	profileListBox->addItems ( ProfileManager::availableProfiles ( "SelectionProfile" ) );
 
 	if ( profileListBox->count() != 0 )
 	{
@@ -489,14 +489,14 @@ void GeneralFilter::slotAddBtnClicked()
 
 void GeneralFilter::slotOverwriteBtnClicked()
 {
-	Q3ListBoxItem *item = profileListBox->item ( profileListBox->currentItem() );
+	QListWidgetItem *item = profileListBox->currentItem();
 	if ( item != 0 )
 		profileManager->overwriteProfile ( item->text() );
 }
 
 void GeneralFilter::slotRemoveBtnClicked()
 {
-	Q3ListBoxItem *item = profileListBox->item ( profileListBox->currentItem() );
+	QListWidgetItem *item = profileListBox->currentItem();
 	if ( item != 0 )
 	{
 		profileManager->deleteProfile ( item->text() );
@@ -504,7 +504,7 @@ void GeneralFilter::slotRemoveBtnClicked()
 	}
 }
 
-void GeneralFilter::slotProfileDoubleClicked ( Q3ListBoxItem *item )
+void GeneralFilter::slotProfileDoubleClicked ( QListWidgetItem *item )
 {
 	if ( item != 0 )
 	{
@@ -516,7 +516,7 @@ void GeneralFilter::slotProfileDoubleClicked ( Q3ListBoxItem *item )
 
 void GeneralFilter::slotLoadBtnClicked()
 {
-	Q3ListBoxItem *item = profileListBox->item ( profileListBox->currentItem() );
+	QListWidgetItem *item = profileListBox->currentItem();
 	if ( item != 0 )
 		profileManager->loadProfile ( item->text() );
 }

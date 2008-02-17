@@ -568,7 +568,7 @@ Please consult the handbook to learn more about the syntax.</string>
                </widget>
               </item>
               <item rowspan="4" row="0" column="0" >
-               <widget class="K3ListBox" name="lbShowonlyProtocol" >
+               <widget class="KrListWidget" name="lbShowonlyProtocol" >
                 <property name="whatsThis" >
                  <string>Show the &lt;b>Useraction&lt;/b> only for the values defined here.</string>
                 </property>
@@ -582,7 +582,7 @@ Please consult the handbook to learn more about the syntax.</string>
              </attribute>
              <layout class="QGridLayout" >
               <item rowspan="4" row="0" column="0" >
-               <widget class="K3ListBox" name="lbShowonlyPath" >
+               <widget class="KrListWidget" name="lbShowonlyPath" >
                 <property name="whatsThis" >
                  <string>Show the &lt;b>Useraction&lt;/b> only for the values defined here.</string>
                 </property>
@@ -687,7 +687,7 @@ Please consult the handbook to learn more about the syntax.</string>
              </attribute>
              <layout class="QGridLayout" >
               <item rowspan="4" row="0" column="0" >
-               <widget class="K3ListBox" name="lbShowonlyMime" >
+               <widget class="KrListWidget" name="lbShowonlyMime" >
                 <property name="whatsThis" >
                  <string>Show the &lt;b>Useraction&lt;/b> only for the values defined here.</string>
                 </property>
@@ -792,7 +792,7 @@ Please consult the handbook to learn more about the syntax.</string>
              </attribute>
              <layout class="QGridLayout" >
               <item rowspan="4" row="0" column="0" >
-               <widget class="K3ListBox" name="lbShowonlyFile" >
+               <widget class="KrListWidget" name="lbShowonlyFile" >
                 <property name="whatsThis" >
                  <string>Show the &lt;b>Useraction&lt;/b> only for the filenames defined here. The wildcards '&lt;code>?&lt;/code>' and '&lt;code>*&lt;/code>' can be used.</string>
                 </property>
@@ -978,7 +978,8 @@ Please consult the handbook to learn more about the syntax.</string>
    <header>ktextedit.h</header>
   </customwidget>
   <customwidget>
-   <class>K3ListBox</class>
+   <class>KrListWidget</class>
+   <extends>QListWidget</extends>
   </customwidget>
   <customwidget>
    <class>KKeySequenceWidget</class>
@@ -997,10 +998,10 @@ Please consult the handbook to learn more about the syntax.</string>
   <include location="local" >klineedit.h</include>
   <include location="local" >ktextedit.h</include>
   <include location="local" >kkeysequencewidget.h</include>
-  <include location="local" >k3listbox.h</include>
-  <include location="local" >k3listbox.h</include>
-  <include location="local" >k3listbox.h</include>
-  <include location="local" >k3listbox.h</include>
+  <include location="local" >../GUI/krlistwidget.h</include>
+  <include location="local" >../GUI/krlistwidget.h</include>
+  <include location="local" >../GUI/krlistwidget.h</include>
+  <include location="local" >../GUI/krlistwidget.h</include>
   <include location="local" >klineedit.h</include>
  </includes>
  <resources/>

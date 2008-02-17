@@ -77,7 +77,8 @@ public slots:
   void addSelection();
   void deleteSelection();
   void clearSelections();
-  void acceptFromList(Q3ListBoxItem *i);
+  void acceptFromList(QListWidgetItem *i);
+  void currentItemChanged(QListWidgetItem *i);
     
 protected:
   void reject();

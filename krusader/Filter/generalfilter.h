@@ -41,7 +41,7 @@
 #include <qgroupbox.h>
 #include <qcheckbox.h>
 #include <qlabel.h>
-#include <q3listbox.h>
+#include "../GUI/krlistwidget.h"
 #include <QHBoxLayout>
 #include <kcombobox.h>
 #include <kshellcompletion.h>
@@ -67,7 +67,7 @@ public slots:
   void    slotLoadBtnClicked();
   void    slotOverwriteBtnClicked();
   void    slotRemoveBtnClicked();
-  void    slotProfileDoubleClicked( Q3ListBoxItem * );
+  void    slotProfileDoubleClicked( QListWidgetItem * );
   void    refreshProfileListBox();
   
 public:
@@ -90,7 +90,7 @@ public:
 
   KShellCompletion completion;
 
-  Q3ListBox* profileListBox;
+  KrListWidget *profileListBox;
   
   QPushButton *profileAddBtn;
   QPushButton *profileLoadBtn;

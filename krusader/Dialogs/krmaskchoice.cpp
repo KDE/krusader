@@ -28,11 +28,11 @@
  *                                                                         *
  ***************************************************************************/
 #include "krmaskchoice.h"
+#include "../GUI/krlistwidget.h"
 
 #include <qcombobox.h>
 #include <qgroupbox.h>
 #include <qlabel.h>
-#include <q3listbox.h>
 #include <qpushbutton.h>
 #include <qlayout.h>
 #include <qvariant.h>
@@ -94,8 +94,8 @@ KRMaskChoice::KRMaskChoice( QWidget* parent )
     hbox_2->setSpacing( 6 );
     hbox_2->setContentsMargins( 0, 0, 0, 0 );
 
-    preSelections = new Q3ListBox( Layout6 );
-    preSelections->setVScrollBarMode( Q3ListBox::AlwaysOn );
+    preSelections = new KrListWidget( Layout6 );
+    preSelections->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOn );
     preSelections->setWhatsThis( i18n( "A predefined selection is a file-mask which you use often.\nSome examples are: \"*.c, *.h\", \"*.c, *.o\", etc.\nYou can add these masks to the list by typing them and pressing the Add button.\nDelete removes a predefined selection and Clear removes all of them.\nNotice that the line in which you edit the mask has it's own history, you can scroll it, if needed." ) );
     hbox_2->addWidget( preSelections );
 
@@ -145,9 +145,8 @@ KRMaskChoice::KRMaskChoice( QWidget* parent )
     connect( PushButton7_3, SIGNAL( clicked() ), this, SLOT( clearSelections() ) );
     connect( selection, SIGNAL( activated(const QString&) ), selection, SLOT( setEditText(const QString &) ) );
     connect( selection->lineEdit(), SIGNAL( returnPressed() ), this, SLOT( accept() ));
-    connect( preSelections, SIGNAL( doubleClicked(Q3ListBoxItem*) ), this, SLOT( acceptFromList(Q3ListBoxItem *) ) );
-    connect( preSelections, SIGNAL( highlighted(const QString&) ), selection, SLOT( setEditText(const QString &) ) );
-    connect( preSelections, SIGNAL( returnPressed(Q3ListBoxItem*) ), this, SLOT( acceptFromList(Q3ListBoxItem *) ) );
+    connect( preSelections, SIGNAL( currentItemChanged ( QListWidgetItem *, QListWidgetItem * ) ), this, SLOT( currentItemChanged( QListWidgetItem * ) ) );
+    connect( preSelections, SIGNAL( itemActivated(QListWidgetItem*) ), this, SLOT( acceptFromList(QListWidgetItem *) ) );
 }
 
 /*  
@@ -173,9 +172,14 @@ void KRMaskChoice::deleteSelection()
     qWarning( "KRMaskChoice::deleteSelection(): Not implemented yet!" );
 }
 
-void KRMaskChoice::acceptFromList(Q3ListBoxItem *)
+void KRMaskChoice::acceptFromList(QListWidgetItem *)
 {
-    qWarning( "KRMaskChoice::acceptFromList(QListBoxItem *): Not implemented yet!" );
+    qWarning( "KRMaskChoice::acceptFromList(QListWidgetItem *): Not implemented yet!" );
+}
+
+void KRMaskChoice::currentItemChanged(QListWidgetItem *)
+{
+    qWarning( "KRMaskChoice::currentItemChanged(QListWidgetItem *): Not implemented yet!" );
 }
 
 #include "krmaskchoice.moc"

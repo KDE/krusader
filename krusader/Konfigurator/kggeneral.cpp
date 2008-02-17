@@ -228,9 +228,10 @@ void KgGeneral::slotAddExtension()
 
 void KgGeneral::slotRemoveExtension()
 {
-  Q3ListBoxItem * item = listBox->selectedItem();
-  if( item )
-    listBox->removeItem( item->text() );
+  QList<QListWidgetItem *> list = listBox->selectedItems();
+
+  for( int i=0; i != list.count(); i++ )
+    listBox->removeItem( list[ i ]->text() );
 }
 
 #include "kggeneral.moc"

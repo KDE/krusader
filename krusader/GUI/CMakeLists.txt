@@ -14,6 +14,8 @@ set( GUI_SRCS
 	profilemanager.cpp 
 	krremoteencodingmenu.cpp 
 	krtreewidget.cpp
+	krstyleproxy.cpp
+	krlistwidget.cpp
 	mediabutton.cpp 
 	kcmdmodebutton.cpp )
 

@@ -1,8 +1,8 @@
 /***************************************************************************
-                         KgProtocols.h  -  description
+                                krlistwidget.h
                              -------------------
-    copyright            : (C) 2004 by Csaba Karai
-    e-mail               : krusader@users.sourceforge.net
+    copyright            : (C) 2008+ by Csaba Karai
+    email                : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
   Description
@@ -28,59 +28,22 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __KgProtocols_H__
-#define __KgProtocols_H__
+#include <qlistwidget.h>
 
-#include "konfiguratorpage.h"
-#include "../GUI/krtreewidget.h"
-#include "../GUI/krlistwidget.h"
-#include <qpushbutton.h>
- 
-class KgProtocols : public KonfiguratorPage
-{
+#ifndef KRLISTVIEW_H
+#define KRLISTVIEW_H
+
+class KrListWidget : public QListWidget {
   Q_OBJECT
 
 public:
-  KgProtocols( bool first, QWidget* parent=0 );
+  KrListWidget( QWidget * parent = 0 );
 
-  virtual void loadInitialValues();
-  virtual void setDefaults();
-  virtual bool apply();
-  virtual bool isChanged();
-  
-  static  void init();
-  
-public slots:
-  void         slotDisableButtons();  
-  void         slotAddProtocol();
-  void         slotRemoveProtocol();
-  void         slotAddMime();
-  void         slotRemoveMime();
-    
+signals:
+  void itemRightClicked( QListWidgetItem * it, const QPoint & pos );
+
 protected:
-  void         loadListCapableProtocols();
-  void         loadMimes();
-  void         addSpacer( QBoxLayout *parent );
-  
-  void         addProtocol( QString name, bool changeCurrent = false );
-  void         removeProtocol( QString name );
-  void         addMime( QString name, QString protocol );
-  void         removeMime( QString name );
-  
-  KrTreeWidget *linkList;
-  
-  KrListWidget *protocolList;
-  KrListWidget *mimeList;
-  
-  QPushButton *btnAddProtocol;
-  QPushButton *btnRemoveProtocol;
-  QPushButton *btnAddMime;
-  QPushButton *btnRemoveMime;
-  
-  static QString defaultProtocols;
-  static QString defaultIsoMimes;
-  static QString defaultKrarcMimes;
-  static QString defaultTarMimes;
+  virtual bool event ( QEvent * event );
 };
 
-#endif /* __KgProtocols_H__ */
+#endif /* KRLISTVIEW_H */

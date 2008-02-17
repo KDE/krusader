@@ -347,7 +347,7 @@ bool KrAction::isAvailable( const KUrl& currentURL ) {
    } //check protocol: done
       
    //check the Path-list:
-   if ( ! _showonlyPath.empty() ) {
+   if ( available && ! _showonlyPath.empty() ) {
       available = false;
       for ( QStringList::Iterator it = _showonlyPath.begin(); it != _showonlyPath.end(); ++it ) {
          if ( (*it).right(1) == "*" ){
@@ -364,7 +364,7 @@ bool KrAction::isAvailable( const KUrl& currentURL ) {
    } //check the Path-list: done
    
    //check mime-type
-   if ( ! _showonlyMime.empty() ) {
+   if ( available && ! _showonlyMime.empty() ) {
       available = false;
       KMimeType::Ptr mime = KMimeType::findByUrl( currentURL );
       if( mime )
@@ -387,7 +387,7 @@ bool KrAction::isAvailable( const KUrl& currentURL ) {
    } //check the mime-type: done
    
    //check filename
-   if ( ! _showonlyFile.empty() ) {
+   if ( available && ! _showonlyFile.empty() ) {
       available = false;
       for ( QStringList::Iterator it = _showonlyFile.begin(); it != _showonlyFile.end(); ++it ) {
          QRegExp regex = QRegExp( *it, false, QRegExp::Wildcard ); // case-sensitive = false; wildcards = true

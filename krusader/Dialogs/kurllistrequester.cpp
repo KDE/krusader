@@ -58,8 +58,8 @@ KURLListRequester::KURLListRequester( QWidget *parent ) : QWidget( parent )
   urlLineEdit = new KLineEdit( this );
   urlListRequesterGrid->addWidget( urlLineEdit, 0, 0 );
       
-  urlListBox = new Q3ListBox( this );
-  urlListBox->setSelectionMode( Q3ListBox::Extended );
+  urlListBox = new KrListWidget( this );
+  urlListBox->setSelectionMode( QAbstractItemView::ExtendedSelection );
   urlListRequesterGrid->addWidget( urlListBox, 1, 0, 1, 3 );
 
   urlAddBtn = new QToolButton( this );
@@ -82,8 +82,8 @@ KURLListRequester::KURLListRequester( QWidget *parent ) : QWidget( parent )
   connect( urlAddBtn, SIGNAL( clicked() ), this, SLOT( slotAdd() ) );
   connect( urlBrowseBtn, SIGNAL( clicked() ), this, SLOT( slotBrowse() ) );
   connect( urlLineEdit, SIGNAL( returnPressed(const QString&) ), this, SLOT( slotAdd() ) );
-  connect( urlListBox, SIGNAL( rightButtonClicked ( Q3ListBoxItem *, const QPoint & ) ), this,
-                       SLOT( slotRightClicked( Q3ListBoxItem * ) ) );
+  connect( urlListBox, SIGNAL( itemRightClicked( QListWidgetItem *, const QPoint & ) ), this,
+                       SLOT( slotRightClicked( QListWidgetItem *, const QPoint & ) ) );
 }
 
 void KURLListRequester::slotAdd()
@@ -98,7 +98,7 @@ void KURLListRequester::slotAdd()
       KMessageBox::error( this, error );
     else
     {  
-      urlListBox->insertItem( text );
+      urlListBox->addItem( text );
       urlLineEdit->clear();
     }
   }
@@ -128,21 +128,12 @@ void KURLListRequester::keyPressEvent(QKeyEvent *e)
 
 void KURLListRequester::deleteSelectedItems()
 {
-  int i=0;
-  Q3ListBoxItem *item;
-
-  while( (item = urlListBox->item(i)) )
-  {
-    if( item->isSelected() )
-    {
-      urlListBox->removeItem( i );
-      continue;
-    }
-    i++;
-  }
+  QList<QListWidgetItem *> delList = urlListBox->selectedItems();
+  for( int i=0; i != delList.count(); i++ )
+    delete delList[ i ];
 }
 
-void KURLListRequester::slotRightClicked( Q3ListBoxItem *item )
+void KURLListRequester::slotRightClicked( QListWidgetItem *item, const QPoint &pos )
 {
   if( item == 0 )
     return;
@@ -150,12 +141,12 @@ void KURLListRequester::slotRightClicked( Q3ListBoxItem *item )
   KMenu popupMenu( this );
   QAction * menuAction = popupMenu.addAction( i18n( "Delete" ) );
   
-  if( menuAction == popupMenu.exec( QCursor::pos() ) )
+  if( menuAction == popupMenu.exec( pos ) )
   {
     if( item->isSelected() )
       deleteSelectedItems();
     else
-      urlListBox->removeItem( urlListBox->index( item ) );
+      delete item;
   }
 }
 
@@ -171,18 +162,17 @@ KUrl::List KURLListRequester::urlList()
     if( error.isNull() )
       urls.append( KUrl( text ) );
   }
-    
-  Q3ListBoxItem *item = urlListBox->firstItem();
-  while ( item )
+   
+  for( int i=0; i != urlListBox->count(); i++ )
   {    
+    QListWidgetItem *item = urlListBox->item( i );
+
     QString text = item->text().simplified();
     
     QString error = QString();
     emit checkValidity( text, error );    
     if( error.isNull() )
       urls.append( KUrl( text ) );
-      
-    item = item->next();
   }
     
   return urls;
@@ -196,7 +186,7 @@ void KURLListRequester::setUrlList( KUrl::List urlList )
   KUrl::List::iterator it;
     
   for ( it = urlList.begin(); it != urlList.end(); ++it )
-    urlListBox->insertItem( it->pathOrUrl() );
+    urlListBox->addItem( it->pathOrUrl() );
 }
 
 #include "kurllistrequester.moc"
