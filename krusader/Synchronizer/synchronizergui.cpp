@@ -1851,7 +1851,7 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
     case DESELECT_ITEMS_ID:
       {
         KRQuery query = KRSpWidgets::getMask( ( result == SELECT_ITEMS_ID ? i18n("Select items") :
-                                             i18n( "Deselect items" ) ), true );
+                                             i18n( "Deselect items" ) ), true, this );
         if( query.isNull() )
           break;
 

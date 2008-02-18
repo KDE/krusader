@@ -59,12 +59,12 @@ QStringList KRSpWidgets::maskList;
 KRSpWidgets::KRSpWidgets(){
 }
 
-KRQuery KRSpWidgets::getMask(QString caption, bool nameOnly ) {
+KRQuery KRSpWidgets::getMask(QString caption, bool nameOnly, QWidget * parent ) {
   if( !nameOnly ) {
-    return FilterTabs::getQuery();
+    return FilterTabs::getQuery( parent );
   }
   else {
-    KRMaskChoiceSub *p=new KRMaskChoiceSub();
+    KRMaskChoiceSub *p=new KRMaskChoiceSub( parent );
     p->setCaption(caption);
     p->exec();
     if (p->selection->currentText()=="") return KRQuery();
@@ -150,7 +150,7 @@ void newFTPSub::reject() {
 }
 
 /////////////////////////// KRMaskChoiceSub ///////////////////////////////
-KRMaskChoiceSub::KRMaskChoiceSub() : KRMaskChoice(0) {
+KRMaskChoiceSub::KRMaskChoiceSub( QWidget * parent ) : KRMaskChoice( parent ) {
   PixmapLabel1->setPixmap(krLoader->loadIcon("kr_select", KIconLoader::Desktop, 32));
   label->setText(i18n("Enter a selection:"));
   // the predefined selections list
