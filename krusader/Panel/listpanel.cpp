@@ -684,6 +684,11 @@ void ListPanel::slotStartUpdate() {
    this->origin->setURL( vfs::pathOrURL( virtualPath() ) );
    emit pathChanged( this );
    emit cmdLineUpdate( realPath() );	// update the command line
+   // on local file system change the working directory
+   if ( func ->files() ->vfs_getType() == vfs::NORMAL )
+   {
+      chdir( func ->files() ->vfs_getOrigin().path().local8Bit() );
+   }
 
    slotGetStats( virtualPath() );
    slotUpdate();
