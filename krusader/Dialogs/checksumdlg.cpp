@@ -1,5 +1,7 @@
 #include "checksumdlg.h"
 #include "../krusader.h"
+#include "../GUI/krlistwidget.h"
+#include "../GUI/krtreewidget.h"
 #include <klocale.h>
 #include <kprocess.h>
 #include <qlayout.h>
@@ -8,8 +10,6 @@
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <klineedit.h>
-#include <k3listview.h>
-#include <k3listbox.h>
 #include <qpixmap.h>
 #include <kcursor.h>
 #include <kmessagebox.h>
@@ -238,8 +238,8 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	++row;
 	
 	// file list
-	K3ListBox *lb = new K3ListBox(widget);
-	lb->insertStringList(files);
+	KrListWidget *lb = new KrListWidget(widget);
+	lb->addItems(files);
 	layout->addWidget(lb, row, 0, 1, 2);
 	++row;
 
@@ -353,8 +353,8 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	++row;
 	
 	// file list
-	K3ListBox *lb = new K3ListBox(widget);
-	lb->insertStringList(files);
+	KrListWidget *lb = new KrListWidget(widget);
+	lb->addItems(files);
 	layout->addWidget(lb, row, 0, 1, 2);
 	++row;
 
@@ -480,8 +480,8 @@ VerifyResultDlg::VerifyResultDlg(const QStringList& failed):
 		QLabel *l3 = new QLabel(i18n("The following files have failed:"), widget);
 		layout->addWidget(l3, row, 0, 1, 2);
 		++row;
-		K3ListBox *lb2 = new K3ListBox(widget);
-		lb2->insertStringList(failed);
+		KrListWidget *lb2 = new KrListWidget(widget);
+		lb2->addItems(failed);
 		layout->addWidget(lb2, row, 0, 1, 2);
 		++row;
 	}
@@ -529,23 +529,32 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 			layout->addWidget(l2, row, 0, 1, 2);
 			++row;
 		}
-		K3ListView *lv = new K3ListView(widget);
+		KrTreeWidget *lv = new KrTreeWidget(widget);
+		
+		QStringList columns;
 		if(standardFormat){
-			lv->addColumn(i18n("Hash"));
-			lv->addColumn(i18n("File"));
+			columns << i18n("Hash");
+			columns << i18n("File");
 			lv->setAllColumnsShowFocus(true);
 		} else {
-			lv->addColumn(i18n("File and hash"));
+			columns << i18n("File and hash");
 		}
+		lv->setHeaderLabels( columns );
+		
 		for ( QStringList::ConstIterator it = stdOut.begin(); it != stdOut.end(); ++it ) {
 			QString line = (*it);
 			if(standardFormat) {
 				int space = line.find(' ');
-				new K3ListViewItem(lv, line.left(space), line.mid(space+2));
+				QTreeWidgetItem * item = new QTreeWidgetItem( lv );
+				item->setText(0, line.left(space));
+				item->setText(1, line.mid(space+2));
 			} else {
-				new K3ListViewItem(lv, line);
+				QTreeWidgetItem * item = new QTreeWidgetItem( lv );
+				item->setText(0, line);
 			}	
 		}
+		lv->sortItems( standardFormat ? 1 : 0, Qt::Ascending );
+		
 		layout->addWidget(lv, row, 0, 1, 2);
 		++row;
 	}
@@ -561,8 +570,8 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 		QLabel *l3 = new QLabel(i18n("Here are the errors received:"), widget);
 		layout->addWidget(l3, row, 0, 1, 2);
 		++row;
-		K3ListBox *lb = new K3ListBox(widget);
-		lb->insertStringList(stdErr);
+		KrListWidget *lb = new KrListWidget(widget);
+		lb->addItems(stdErr);
 		layout->addWidget(lb, row, 0, 1, 2);
 		++row;
 	}
