@@ -33,9 +33,10 @@
 #include <qstringlist.h>
 #include <qobject.h>
 #include <kprocess.h>
-#include <k3process.h>
 #include <kurl.h>
 #include <kwallet.h>
+#include <unistd.h> // for setsid, see Kr7zEncryptionChecker::setupChildProcess
+#include <signal.h> // for kill
 
 class KRarcHandler: public QObject {
   Q_OBJECT
@@ -116,21 +117,25 @@ private:
 	QByteArray outputData;
 };
 
-class Kr7zEncryptionChecker : public K3ShellProcess {
+class Kr7zEncryptionChecker : public KProcess {
 	Q_OBJECT
 	
 public:
-	Kr7zEncryptionChecker() : K3ShellProcess(), encrypted( false ), lastData() {
-		connect(this,SIGNAL(receivedStdout(K3Process*,char*,int)),
-				this,SLOT(processStdout(K3Process*,char*,int)) );
+	Kr7zEncryptionChecker() : KProcess(), encrypted( false ), lastData() {
+		setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect!
+		connect(this, SIGNAL(readyReadStandardOutput()), SLOT(receivedOutput()) );
 	}
 
+protected:
+  virtual void setupChildProcess() {
+    // This function is called after the fork but for the exec. We create a process group
+    // to work around a broken wrapper script of 7z. Without this only the wrapper is killed.
+    setsid(); // make this process leader of a new process group
+  }
+
 public slots:
-	void processStdout( K3Process *proc,char *buf,int len ) {
-		QByteArray d(len);
-		d.setRawData(buf,len);
-		QString data =  QString( d );
-		d.resetRawData(buf,len);
+	void receivedOutput() {
+		QString data =  QString::fromLocal8Bit(this->readAllStandardOutput());
 		
 		QString checkable = lastData + data;
 		
@@ -146,7 +151,7 @@ public slots:
 			
 			if( line.contains( "password" ) && line.contains( "enter" ) ) {
 				encrypted = true;
-				proc->kill();
+				::kill(- pid(), SIGKILL); // kill the whole process group by giving the negativ PID
 			}
 		}
 	}

@@ -44,6 +44,7 @@
 #include "../defaults.h"
 #include "../krservices.h"
 #include "../Dialogs/krpleasewait.h"
+#include <unistd.h> // for usleep
 
 static QStringList arcProtocols = QStringList::split(";", "tar;bzip;bzip2;gzip;krarc;zip");
 
@@ -739,9 +740,11 @@ QString KRarcHandler::detectArchive( bool &encrypted, QString fileName, bool che
 					if( checkEncrypted ) { // encryption check is expensive
 					                       // check only if it's necessary
 						Kr7zEncryptionChecker proc;
-						proc << KrServices::fullPathName( "7z" ) << " -y t";
-						proc << KrServices::quote( fileName );
-						proc.start(K3Process::Block,K3Process::AllOutput);
+						// TODO encorporate all this in Kr7zEncryptionChecker
+						proc << KrServices::fullPathName( "7z" ) << "-y" << "t";
+						proc << fileName;
+						proc.start();
+						proc.waitForFinished();
 						encrypted = proc.isEncrypted();
 					}
 				}
