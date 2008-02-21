@@ -31,7 +31,6 @@
 #include <qdir.h>
 #include <qpoint.h>
 #include <qstringlist.h>
-#include <q3listview.h>
 #include <qpixmapcache.h>
 #include <QKeyEvent>
 #include <QList>
@@ -190,29 +189,13 @@ void KRslots::compareContent( KUrl url1, KUrl url2 )
 }
 
 void KRslots::rightclickMenu() {
-  if( dynamic_cast<KrDetailedView*>(ACTIVE_PANEL->view) != 0 )
+  if( ACTIVE_PANEL->view->getCurrentKrViewItem() )
   {
-    Q3ListViewItem * currentItem = dynamic_cast<Q3ListViewItem*>(ACTIVE_PANEL->view->getCurrentKrViewItem());
-    if( currentItem )
-    {
-      ACTIVE_PANEL->popRightClickMenu(
-       ACTIVE_PANEL->mapToGlobal(
-         dynamic_cast<K3ListView*>(ACTIVE_PANEL->view)->itemRect( currentItem ).topLeft()
-       )
-      );
-    }
-  }
-  else if( dynamic_cast<KrBriefView*>(ACTIVE_PANEL->view) != 0 )
-  {
-    Q3IconViewItem * currentItem = dynamic_cast<Q3IconViewItem*>(ACTIVE_PANEL->view->getCurrentKrViewItem());
-    if( currentItem )
-    {
-      ACTIVE_PANEL->popRightClickMenu(
-       ACTIVE_PANEL->mapToGlobal(
-         currentItem->rect().topLeft()
-       )
-      );
-    }
+    ACTIVE_PANEL->popRightClickMenu(
+     ACTIVE_PANEL->mapToGlobal(
+       ACTIVE_PANEL->view->getCurrentKrViewItem()->itemRect().topLeft()
+     )
+    );
   }
 }
 

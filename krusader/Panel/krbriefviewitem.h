@@ -60,6 +60,9 @@ public:
 	virtual void setPixmap ( const QPixmap &icon ) { itemIcon = icon;}
 #endif
 
+	virtual QRect itemRect() const { return rect(); }
+
+
 protected:
 	virtual void paintItem(QPainter *p, const QColorGroup &cg);
 	virtual void paintFocus(QPainter *p, const QColorGroup &cg);

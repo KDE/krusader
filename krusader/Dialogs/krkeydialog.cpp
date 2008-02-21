@@ -12,7 +12,6 @@
 #include "krkeydialog.h"
 
 #include <qlayout.h>
-#include <q3boxlayout.h>
 #include <qtextstream.h>
 #include <klocale.h>
 #include <kpushbutton.h>
@@ -37,7 +36,7 @@ KrKeyDialog::KrKeyDialog( QWidget * parent ) : KShortcutsDialog( KShortcutsEdito
    // None the less it's quite save to use since this implementation hasn't changed since KDE-3.3 (I haven't looked at earlier
    // versions since we don't support them) and now all work is done in KDE-4.
    QWidget* buttonBox = static_cast<QWidget*>( button(KDialog::Ok)->parent() );
-   Q3BoxLayout* buttonBoxLayout = static_cast<Q3BoxLayout*>( buttonBox->layout() );
+   QBoxLayout* buttonBoxLayout = static_cast<QBoxLayout*>( buttonBox->layout() );
 
    KPushButton* importButton = new KPushButton( i18n("Import shortcuts"), buttonBox );
    importButton->setWhatsThis( i18n( "Load a keybinding profile, e.g., total_commander.keymap" ) );

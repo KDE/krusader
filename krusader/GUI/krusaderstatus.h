@@ -36,7 +36,6 @@
 // QT includes
 #include <qlabel.h>
 #include <qwidget.h>
-#include <q3frame.h>
 
 // KDE includes
 #include <kstatusbar.h>

@@ -16,7 +16,6 @@
 #include <qfile.h>
 #include <qtextstream.h>
 #include <kfiledialog.h>
-#include <q3frame.h>
 #include <kiconloader.h>
 #include <kcombobox.h>
 #include <qfileinfo.h>

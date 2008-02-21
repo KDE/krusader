@@ -34,7 +34,6 @@
 #include "synchronizertask.h"
 #include "synchronizerfileitem.h"
 #include <qobject.h>
-#include <q3ptrvector.h>
 #include <qmap.h>
 #include <qcolor.h>
 #include <QList>

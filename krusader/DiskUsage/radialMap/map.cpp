@@ -9,7 +9,7 @@
 #include <qfont.h>           //ctor
 #include <qfontmetrics.h>    //ctor
 #include <qpainter.h>
-#include <Q3PointArray>
+#include <QPolygon>
 
 #include "builder.h"
 #include "Config.h"
@@ -325,7 +325,7 @@ RadialMap::Map::paint( unsigned int scaleFactor )
          if( (*it)->hasHiddenChildren() )
          {
             //draw arrow head to indicate undisplayed files/directories
-            Q3PointArray pts( 3 );
+            QPolygon pts( 3 );
             QPoint pos, cpos = rect.center();
             int a[3] = { (*it)->start(), (*it)->length(), 0 };
 

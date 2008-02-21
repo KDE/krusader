@@ -45,7 +45,7 @@
 #include <kurl.h>
 #include <ksqueezedtextlabel.h>
 #include <qstackedwidget.h>
-#include <q3scrollview.h>
+#include <qscrollarea.h>
 #include <qtimer.h>
 
 #define VIEW_LINES      0
@@ -174,7 +174,7 @@ protected:
 };
 
 
-class LoaderWidget : public Q3ScrollView
+class LoaderWidget : public QScrollArea
 {
   Q_OBJECT
   
@@ -190,8 +190,6 @@ public slots:
   void slotCancelled();
   
 protected:
-  virtual void resizeEvent ( QResizeEvent *e );
-  
   QLabel *totalSize;
   QLabel *files;
   QLabel *directories;

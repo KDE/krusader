@@ -58,7 +58,7 @@ public:
 #ifdef FASTER		
 	virtual void setup(); // called when listview needs to know the height of the item
 #endif
-
+        virtual QRect itemRect() const { return listView()->itemRect( this ); }
 protected:
 	// text() was made protected in order to catch every place where text(x) is used
 	// to gain unlawful information on the object

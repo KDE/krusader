@@ -84,7 +84,7 @@
 
 #define MAX_FILENUM         100
 
-LoaderWidget::LoaderWidget( QWidget *parent ) : Q3ScrollView( parent ), cancelled( false )
+LoaderWidget::LoaderWidget( QWidget *parent ) : QScrollArea( parent ), cancelled( false )
 {
   viewport()->setEraseColor( Qt::white );
   widget = new QWidget( parent );
@@ -166,21 +166,10 @@ LoaderWidget::LoaderWidget( QWidget *parent ) : Q3ScrollView( parent ), cancelle
 
   loaderLayout->addWidget( loaderBox, 0, 0 );
 
-  addChild( widget );
+  setWidget( widget );
+  setAlignment( Qt::AlignCenter );
 
   connect( cancelButton, SIGNAL( clicked() ), this, SLOT( slotCancelled() ) );
-}
-
-void LoaderWidget::resizeEvent ( QResizeEvent *e )
-{
-  Q3ScrollView::resizeEvent( e );
-
-  int x = ( viewport()->width() - widget->width() ) / 2;
-  int y = ( viewport()->height() - widget->height() ) / 2;
-  if( x < 0 ) x=0;
-  if( y < 0 ) y=0;
-
-  moveChild( widget, x, y );
 }
 
 void LoaderWidget::init()
