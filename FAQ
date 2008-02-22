@@ -1,7 +1,7 @@
 --------------------------------------------
-- Documentation version:  1.80.0
-- Documentation date:  2007-07-05
-- Parsing date: Wed Aug  8 19:21:35 UTC 2007
+- Documentation version:  1.90.0
+- Documentation date:  2008-03-22
+- Parsing date: Fri Feb 22 21:06:52 UTC 2008
 --------------------------------------------
  
 
@@ -54,6 +54,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 ------------------------------------------------------------------------
 
+
 IMPORTANT: Crashes in Krusader caused by Qt 3.3.5
 *************************************************
 We've been getting a lot of emails and bug reports regarding random
@@ -69,9 +70,9 @@ you either need Qt 3.3.4 or a fixed Qt 3.3.5, depending on your
 distribution. For more information is available on our website at
 http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1407 
 
-------------------------------------------------------------------------
 
-Chapter 12. Frequently Asked Questions (FAQ)
+------------------------------------------------------------------------
+Chapter 13. Frequently Asked Questions (FAQ)
 Table of Contents
   Installation_FAQ
   Usage_FAQ
@@ -118,7 +119,7 @@ Installation FAQ
     You do not need to switch to the KDE window manager to use Krusader; you
     can still use GNOME, AfterStep, XFce or another window manager. However,
     the configuration of the Krusader fonts and some behavior is done by
-    running Kcontrol.
+    running kcontrol.
     A lot depends on what you want to do with Krusader. You should know that
     Krusader uses the KDE KIOSlaves to access remote file systems, and support
     for only a limited number of file system types are shipped with KDElibs,
@@ -377,17 +378,21 @@ Usage FAQ
   8. I_get_the_error_message_"Protocol_not_supported_by_Krusader:_"krarc:/path/
   to/foo-archive",_when_I_try_to_open_foo-Archive,_what_to_do?
   9. What_todo_if_an_extenal_tool_doesn't_seem_to_work?
-  10. Why_do_I_have_trouble_with_my_FTP_connection?
-  11. I_get_"FTP_protocol_not_supported_by_Krusader"_error_when_trying_to_open
+  10. Howto_executing_jar_files_(and_not_enter_the_jar_archive)?
+  11. Why_do_I_have_trouble_with_my_FTP_connection?
+  12. I_get_"FTP_protocol_not_supported_by_Krusader"_error_when_trying_to_open
   a_remote_FTP_directory,_what_to_do?
-  12. How_can_I_close_a_remote_connection_(e.g._a_FTP_connection)?
-  13. I_am_experiencing_problems_with_the_media://_protocol,_why?
-  14. How_can_I_disable_the_default_sounds,_e.g._when_I_do_a_delete_action_?
-  15. Where_is_RemoteMan,_the_remote_connection_manager_?
-  16. Why_doesn't_mimetype_magic_sometimes_work_inside_archives?
-  17. Why_doesn't_the_handbook_work?
-  18. Why_doesn't_"save_last_location"_work?
-  19. How_can_I_set_the_look_&_feel_of_2_different_users_to_be_the_same?
+  13. How_don't_add_".part"_suffix_when_copying_files_via_ftp?
+  14. How_can_I_close_a_remote_connection_(e.g._a_FTP_connection)?
+  15. I_am_experiencing_problems_with_the_media://_protocol,_why?
+  16. How_can_I_disable_the_default_sounds,_e.g._when_I_do_a_delete_action_?
+  17. Where_is_RemoteMan,_the_remote_connection_manager_?
+  18. Why_doesn't_mimetype_magic_sometimes_work_inside_archives?
+  19. Where_is_Konfigurator,_do_i_need_to_install_the_KDE_Desktop_Enviroment_to
+  use_it?
+  20. How_can_I_set_the_look_&_feel_of_2_different_users_to_be_the_same?
+  21. Why_doesn't_"save_last_location"_work?
+  22. Why_doesn't_the_handbook_work?
 1.  Krusader keeps crashing, why?
     We've been receiving a lot of emails and bug reports (December 2005)
     regarding random crashes, especially during file operations such as copy,
@@ -430,7 +435,7 @@ Usage FAQ
 4.  When I try to resize Krusader to make it smaller, I discover that I can't
     resize it below a certain size. Why?
     See the F1, F2 (etc.) buttons? They are not allowing Krusader to downsize
-    as they have a minimum size. Just disable them View->Show FN Keys Barand
+    as they have a minimum size. Just disable them View->Show FN Keys Bar and
     you'll be able to resize Krusader to your liking. Since version 1.51 we
     have improved this greatly: when downsizing the buttons will look like 'F5
     ..py'. When the button faces are too small to read a tooltip will give the
@@ -484,7 +489,16 @@ Usage FAQ
     krusaderrc configuration file and remove it from this location, Restart
     Krusader, Krusader will now start the first start configuration wizard,
     follow these guidelines.
-10. Why do I have trouble with my FTP connection?
+10. Howto executing jar files (and not enter the jar archive)?
+    Go to the Konfigurator_Protocol_page and remove application/x-jar from the
+    krarc node, Krusader should no longer enter the archive. Global file
+    associations are handled by KDE and not by Krusader. To assosiate the jar
+    extension:
+        * Open KDEs control center: kcontrol
+        * KDE Components->File Associations
+        * Enter jar as filename pattern
+        * Add java as application
+11. Why do I have trouble with my FTP connection?
     This problem often occurs when you are behind a firewall or proxy. Open KDE
     Control Center->Network->Preferences, "Enable Passive Mode (PASV)" has to
     be turned on or off, depending on it's current setting. Now try your FTP
@@ -492,26 +506,33 @@ Usage FAQ
     sessions open (using web browsers, etc.), they can cause complications.
     More information can be found in Active_FTP_vs._Passive_FTP,_a_Definitive
     Explanation.
-11. I get "FTP protocol not supported by Krusader" error when trying to open a
+12. I get "FTP protocol not supported by Krusader" error when trying to open a
     remote FTP directory, what to do?
     The reason for this error is that 'FTP via HTTP proxy' feature is not yet
     supported by Krusader. This error may be caused by a misconfiguration of
     the proxy settings in KDE Control Center. Modify the proxy settings to not
     use HTTP proxy and FTP will work.
-12. How can I close a remote connection (e.g. a FTP connection)?
+13. How don't add ".part" suffix when copying files via ftp?
+    When uploading files a .part suffix is added to the filename, once the
+    upload is complete the filename is renamed automagically to remove the
+    .part suffix. This works great but sometimes some ftp-servers don't allow a
+    rename operation. You can solve this by unchecking the checkbox Mark
+    partially uploaded files in KDE's control center. The checkbox is located
+    at Internet and Network->Connection Preferences.
+14. How can I close a remote connection (e.g. a FTP connection)?
     It's explained in the remote_connections_chapter.
-13. I am experiencing problems with the media:// protocol, why?
+15. I am experiencing problems with the media:// protocol, why?
     At the moment of writing the media:// protocol is instable, we need to wait
     until the KDE team corrects it, every other protocol works properly with
     Krusader, only media fails. More information regarding this issue is
     available in our_forum.
-14. How can I disable the default sounds, e.g. when I do a delete action ?
+16. How can I disable the default sounds, e.g. when I do a delete action ?
     Those are the default KDE System sounds, and not related to Krusader. If
     you want to disable them globally open your KDE KDE Control Center
     ( kcontrol): KDE Control Center->Sound & Multimedia->System Notifications,
     Event Source: "KDE System Notifications" and uncheck sound items you don't
     like.
-15. Where is RemoteMan, the remote connection manager ?
+17. Where is RemoteMan, the remote connection manager ?
     RemoteMan has been replaced by our Bookmark Manager since Krusader 1.25-
     beta1. The Bookmark Manager handles local files and remote_URL's the same
     way. RemoteMan was left as a selection until Krusader-1.51 to allow an
@@ -525,13 +546,36 @@ Usage FAQ
           krbookmarks.xml
        5. install Krusader-1.60, it will use krbookmarks.xml or import it if
           needed.
-16. Why doesn't mimetype magic sometimes work inside archives?
+18. Why doesn't mimetype magic sometimes work inside archives?
     When you enter an archive and press F3 to view a file that has no known
     extension, e.g. README, INSTALL etc.. And if the viewer opens in hex-mode
     instead of the usual mode, than you need to configure: KDE Control Center-
     >KDE components->File Associations->Application->octet-stream, binary
     viewer needs to be removed.
-17. Why doesn't the handbook work?
+19. Where is Konfigurator, do i need to install the KDE Desktop Enviroment to
+    use it?
+    Konfigurator is Krusaders configuration module, when you have installed
+    Krusader than you have also Konfigurator. For some reason some people think
+    it's an other KDE application, but it is not, so you don't need to install
+    the KDE Desktop Enviroment to use Konfigurator. When runnig Krusader, use
+    Settings->Configure Krusader, and it will start Konfigurator. Please read
+    the manual, Krusader has many many configuration options, a lot of things
+    can be customized to your needs with Konfigurator.
+20. How can I set the look & feel of 2 different users to be the same?
+    Presuming that the current setup is the good configuration, you can copy
+    the configuration to the other user.
+    # cp ~/.kde/share/config/krusaderrc /home/foo_user/.kde/share/config
+    And when the other user is Root use:
+    # cp ~/.kde/share/config/krusaderrc /root/.kde/share/config
+21. Why doesn't "save last location" work?
+    Unfortunately the 1.70.x version contains a bug. The tabs are not saved if
+    a "Panels Save Settings=Tabs" item is present in the configuration files.
+    The fix is easy:
+        * open and edit ~/.kde/share/config/krusaderrc
+        * remove the "Panels Save Settings" item
+    and it'll work with the <Last Session> feature in Konfigurator. More info
+    can be found in our_forum.
+22. Why doesn't the handbook work?
     This error will happen on Debian� (or Debian� based) distro with the
     krusader_1.51-1_i386.deb package. You will see the next error message if
     you try to open the handbook: "The requested help file could not be found.
@@ -541,20 +585,6 @@ Usage FAQ
     >Unpack" with Krusader) to create foo.docbook files. Now the handbook will
     work. This error is fixed in the krusader_1.60.0-1_i386.deb package and
     higher versions.
-18. Why doesn't "save last location" work?
-    Unfortunately the 1.70.x version contains a bug. The tabs are not saved if
-    a "Panels Save Settings=Tabs" item is present in the configuration files.
-    The fix is easy:
-        * open and edit ~/.kde/share/config/krusaderrc
-        * remove the "Panels Save Settings" item
-    and it'll work with the <Last Session> feature in Konfigurator. More info
-    can be found in our_forum.
-19. How can I set the look & feel of 2 different users to be the same?
-    Presuming that the current setup is the good configuration, you can copy
-    the configuration to the other user.
-    # cp ~/.kde/share/config/krusaderrc /home/foo_user/.kde/share/config
-    And when the other user is Root use:
-    # cp ~/.kde/share/config/krusaderrc /root/.kde/share/config
 General FAQ
   1. How_can_I_report_a_wish,_a_suggestion,_or_a_comment?
   2. How_can_I_send_a_patch?

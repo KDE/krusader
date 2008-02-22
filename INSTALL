@@ -1,7 +1,7 @@
 --------------------------------------------
-- Documentation version:  1.80.0
-- Documentation date:  2007-07-05
-- Parsing date: Wed Aug  8 19:21:35 UTC 2007
+- Documentation version:  1.90.0
+- Documentation date:  2008-03-22
+- Parsing date: Fri Feb 22 21:06:52 UTC 2008
 --------------------------------------------
  
 
@@ -86,7 +86,7 @@ Required KDE version:
       available)
     * Krusader 1.80.0: KDE 3.4 - KDE 3.5
     * Krusader v2.xx.x: KDE 4 - Qt&#8482; 4 The big challenge, a first release
-      in 2007
+      in 2008
 NOTE: there are no installation instructions for KDE4 yet available since at
 moment of writing Krusader was not ported yet to KDE4.
 Platforms:
@@ -235,15 +235,16 @@ the advantages of portage. Please take a look at our Krusader's_Cutting_Edge
 page for more installation details.
 We also provide ViewCVS to browse the CVS repository.
 Subversion
-Subversion will probably be used for the Krusader 2.x series for KDE4. it is
-also possible to Browse_the_Subversion_Repository.
+Subversion is used for the Krusader 2.x series for KDE4. it is also possible to
+Browse_the_Subversion_Repository.
 To check out the latest Krusader 1.x for KDE 3 from SVN: (NOTE: at moment of
-writing it is recommend to use CVS for krusader_kde3, since krusader_kde3 is
-developed in CVS and not in SVN)
-$ svn co https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde3
-To check out the latest Krusader 2.x for KDE 4 from SVN: (NOTE: not yet
-available at moment of writing)
-$ svn co https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4
+writing use CVS for krusader_kde3, since krusader_kde3 is developed in CVS and
+NOT in SVN, currently you will get an old version in SVN)
+$ svn co https://krusader.svn.sourceforge.net/svnroot/krusader/trunk/
+krusader_kde3
+To check out the latest Krusader 2.x for KDE 4 from SVN:
+$ svn co https://krusader.svn.sourceforge.net/svnroot/krusader/trunk/
+krusader_kde4
 Older Releases
 If you are looking for older releases we recommend the Sourceforge_mirrors,
 available from our project page.
@@ -340,7 +341,7 @@ the FAQ. If the problem persists, use the help_request to ask for help.
    4. Copy the sources to the ~/source directory and unpack them.
       $ cp /"your_dir" /krusader-x.xx.tar.gz ~/source
       $ cd ~/source
-      $ tar -xzvfkrusader-x.xx.tar.gz
+      $ tar -xzvf krusader-x.xx.tar.gz
    5. Optional step: if you wish you can delete the tarball at this point as it
       is no longer needed.
       $ rm krusader-x.xx.tar.gz
