@@ -239,6 +239,22 @@ Please note: The sed-command is &quot;s/search/repleace/&quot;, so you have to e
   <category>Encription</category>
   <command>kgpg -V %aCurrent%</command>
  </action>
+ <action name="file_uudecode" >
+  <title>Uudecode</title>
+  <tooltip>Decode current file created with uuencode.</tooltip>
+  <icon>binary</icon>
+  <category>File</category>
+  <description>Decode a file created with uuencode. Requirements: Sharutils</description>
+  <command>uudecode %aCurrent%</command>
+ </action>
+ <action name="file_uuencode" >
+  <title>Uuencode</title>
+  <tooltip>Uuencode current file.</tooltip>
+  <icon>ascii</icon>
+  <category>File</category>
+  <description>Uuencode creates an encoded ASCII copy of a file. Requirements: Sharutils</description>
+  <command>uuencode %aCurrent(&quot;Yes&quot;)% %aCurrent(&quot;Yes&quot;)% > %oPath%\/%_Ask(&quot;Name of output file (without extension):&quot;, &quot;%aCurrent(&quot;Yes&quot;)%&quot;, &quot;uuencode&quot;)%.uue</command>
+ </action>
  <action name="Jscript_select_from_file" >
   <title>Javascript, select from file</title>
   <icon>kr_select</icon>
