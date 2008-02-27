@@ -4,9 +4,9 @@ Well, here we are!
 
 The Krew is finally bringing you the _last_ release of Krusader the
 file manager for the KDE 3.x series. In this release you can expect 
-many new Krusader Extensions sended in by our users + bugfixes.
+many new Krusader Extensions sent in by our users + bugfixes.
 We would like to thank all of the community for keeping us sharp all these
-years till the end and start of our final release cycle.
+years throughout our release cycles. 
 
 IMPORTANT: Crashes in Krusader caused by Qt 3.3.5
 ------------------------------------------------------------------------
@@ -27,79 +27,78 @@ http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1407
 Krusader 1.90.0 contains plenty of changes, bug fixes and updates
 in response to reports and requests from our users. The highlights are:
 
-Basically Krusader-1.90.0 = Krusader-1.80.0 + bugfixes + 
-Krusader Extensions sended in by our loyal users.
-- Improvements:
-  - GCC 4.3 compatibility
-  - KDE 3.2 - KDE 3.5 compatibility
-  - bugfixes
-- Many Krusader Extensions:
-  - Keymaps, use keybindings of other commanders or customized keybindings!
-  - Colormaps, use colors of other commanders or customized colors !
-  - Useractions, create actions for your own needs !
-  - Javascript useractions, create actions with additional javascript power
-    for your own needs !
-  Krusader Extensions highlights:
-  - color schemes: total commander, dos navigator, midnight commander, bash
-  - keymap: midnight commander
-  - Useractions:
-    - Search and Replace in file
-    - Split large mp3 files
-    - Copy as root
-    - Archive foo to dir
-    - lzma and tar.lzma archive support
-    - tar.7z archive support
-    - ar (.a, .deb,...) archive support
-    - kgpg: encrypt, decrypt, sign, verify signature
-    - .uue file support (uuencode and uudecode)
-  - Javascript useractions:
-    - Recode files using iconv or GNU recode
-    - Mount as root
-    - Select from file
-    - Calculator
-- Check the changelog for a complete overview of changes and Extensions.
+Basically, Krusader-1.90.0 = Krusader-1.80.0 + bugfixes + 
+Krusader Extensions sent in by our loyal users. Thanks!
++ Improvements:
+ - GCC 4.3 compatibility
+ - KDE 3.2 through KDE 3.5 compatibility
+ - bugfixes
++ Many Krusader Extensions:
+ - Keymaps, use keybindings of other commanders or customized keybindings!
+ - Colormaps, use colors of other commanders or customized colors!
+ - Useractions, create actions for your own needs!
+ - Javascript useractions, create actions with additional javascript power
+   for your own needs!
+ + Krusader Extensions highlights:
+   - color schemes: Total Commander, Dos Navigator, Midnight Commander, bash
+   - keymap: Midnight Commander
+ + Useractions:
+   - Search and Replace in file
+   - Split large mp3 files
+   - Copy as root
+   - Archive foo to dir
+   - lzma and tar.lzma archive support
+   - tar.7z archive support
+   - ar (.a, .deb,...) archive support
+   - kgpg: encrypt, decrypt, sign, verify signature
+   - .uue file support (uuencode and uudecode)
++ Javascript useractions:
+  - Recode files using iconv or GNU recode
+  - Mount as root
+  - Select from file
+  - Calculator
++ Check the changelog for a complete overview of changes and Extensions.
 
-Krusader 1.80.0 contains plenty of changes, bug fixes and updates
+Krusader 1.80.0 contained many changes, bug fixes and updates
 in response to reports and requests from our users. The highlights are:
 
 - Full support for ACL permissions like properties, preserve
-  attributes, synchronizer and other
+  attributes, synchronizer and others
 - Many terminal emulator enhancements bringing new functions, new
-  usages and new look
+  usages and a new look
 - Many improvements of the UserAction system
 - Countless usability enhancements, especially in Konfigurator and the
-  heavily reordered menubar
+  improved, reordered menubar
 - Comparing in the synchronizer interface and parallel threading over
   slower servers
 - Atomic extensions and ability to rename the filename, without extension
 - Numerous archive enhancements like handling packing and unpacking in
-  the background, encryption support, multiple volume archives, compress
+  the background, encryption support, multiple volume archives, compression
   level
 - Complete list of changes and enhancements is in the ChangeLog
-- Next cycle with all our energy and efforts begins for Krusader on
-  KDE4
+- Next cycle with all our energy and efforts begins for Krusader on KDE4: 
 
 Changes since Krusader 1.80.0-beta2
 - Many bugfixes
 - Translation updates
 
 Changes since Krusader 1.80.0-beta1 (but not limited to):
-
+ 
 - Added the long-awaited brief view! 
-- A GUI to configure the atomic extensions introduced in beta1 
+- A new GUI to configure the atomic extensions introduced in beta1 
 - ACL and documentation related compile fixes 
 - More usability and feature enhancements in the synchronizer, search
   and locate modules
 - Bugfixes all over the place 
 
 Enjoy!
-  Krusader Krew
+Krusader Krew
 
 Notice: if you've got bugs to report, please do so using Krusader's
-        website, and not using KDE's bugzilla (bugs.kde.org).
+        website, and not with KDE's bugzilla (bugs.kde.org).
 
-            as always, enjoy
-                 Krusader Krew.
+             as always, enjoy
+                  Krusader Krew.
 
                       http://www.krusader.org
 
@@ -118,7 +117,7 @@ Installation
 Check the environment variables KDEDIR - QTDIR.
 
 Unpack the tarball and go to the Krusader source directory.
-If you have done a download from CVS you will have to run the following
+If you have downloaded from CVS you will have to run the following
 command to create the "./configure" script:
 $ make -f Makefile.cvs
 
@@ -139,7 +138,7 @@ file. Or read it online at:
 http://krusader.sourceforge.net/handbook/installation.html
 The FAQ are available at:
 http://krusader.sourceforge.net/handbook/faq.html
-
+ 
 Mac OS-X port
 -------------
 There is a Mac OS-X port with the help of finkproject.org
@@ -150,14 +149,13 @@ To checkout the Krusader KDE3 version from cvs:
 ===============================================
 $ cvs -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader login
 $ cvs -z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader \
-  co krusader_kde3
-
+co krusader_kde3
+ 
 (Note: updates from within the modules directory do not need the -d
 parameter)
 
 Or download the nightly tarball from:
 http://krusader.sourceforge.net/cvs.php
-
 
 Klik Krusader
 =============
@@ -165,7 +163,7 @@ If you want to find out if Krusader is right for you and don't want to
 go through the whole installation-compilation process. Thanks to the
 guys at http://klik.atekon.de/ this is possible. After installing the
 klik client, Krusader is just one mouse click away!
-
+ 
 klik://krusader = the krusader release in Debian Stable
 klik://krusader-latest = latest available krusader-stable
 klik://krusader-cvs = snapshot of krusader-cvs
@@ -180,7 +178,6 @@ The Krusader Handbook is available in the Help menu of Krusader.
 Or read it online at:
 http://krusader.sourceforge.net/handbook/index.html
 
-
 Help Krusader
 =============
 http://krusader.sourceforge.net/help.php
@@ -189,7 +186,7 @@ to time we'll post things that need to be done, but can't be done by us.
 If you feel you can help, click the appropriate link on the website.
 All help is welcome.
 Thanks!
-
+ 
 GUI-Translators
 ---------------
 Krusader is currently available in about 27 languages:
@@ -236,7 +233,7 @@ http://sourceforge.net/project/project_donations.php?group_id=6488
 Honestly, we didn't consider donations, until users asked us for a way
 to donate to the project. Developing Krusader can be a full time job at
 times, and even though it is very time consuming, we all enjoy it, and
-want to see the project becomes even better. Donations for this project
+want to see the project become even better. Donations for this project
 will be used for further development of Krusader, be it by purchasing
 hardware, or promoting of the project.
 
@@ -255,7 +252,7 @@ Translation procedure
 Before we release a stable version of Krusader, we bring out at least
 one beta version. From that moment on there is a feature freeze and only
 bugs will be fixed. This means that translators can update their
-translations, for the coming stable. Normally, all the Krusader
+translations for the coming stable. Normally, all the Krusader
 translators will receive an e-mail from Dirk Eschler, to invite you for
 translating Krusader. We will update all foo.po files against
 krusader.pot just before the beta will be released, so that you will
@@ -264,24 +261,24 @@ have to worry anymore about how foo.po must be updated. In the past some
 translators updated foo.po in a wrong way, so they translated obsolete
 messages, we want to prevent this, of course.
 
-With i18n_status and ViewCVS to see the live translation status of
+Use i18n_status and ViewCVS to see the live translation status of
 Krusader!
 http://krusader.sourceforge.net/i18n.php
 http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/krusader/krusader_kde3/po/
-The latest news about the Krusader translations can be in the LATEST
+The latest news about the Krusader translations will be in the LATEST
 NEWS section of the "Krusader translation howto".
 
 New translations
 ----------------
 If your native language is not listed in VIEWCVS, you will have to
-translate Krusader to your native language. Dirk Eschler is the Krusader
+translate Krusader for your language. Dirk Eschler is the Krusader
 i18n coordinator, please contact him if you intend to translate Krusader
 to your native language.
 
 Krusader translation howto
 --------------------------
-We have a very detailed "Krusader translation howto" if you need some
-help. The latest news about the Krusader translations can be in the
+We have a very detailed "Krusader Translation HowTo" if you need some
+help. The latest news about the Krusader translations is in the
 LATEST NEWS section. This allows that even beginners or non-programmers
 can translate Krusader to their native language. Please have a look at
 http://krusader.sourceforge.net/phpBB/viewtopic.php?t=389
@@ -326,35 +323,35 @@ URL's
   http://www.krusader.org
   http://krusader.sourceforge.net  
 - Installation
-  http://krusader.sourceforge.net/handbook/installation.html
+  http://www.krusader.org/handbook/installation.html
 - FAQ
-  http://krusader.sourceforge.net/handbook/faq.html
+  http://www.krusader.org/handbook/faq.html
 - Documentation
-  http://krusader.sourceforge.net/handbook/index.html
+  http://www.krusader.org/handbook/index.html
 - Todolist
-  http://krusader.sourceforge.net/phpBB/viewforum.php?f=10
+  http://www.krusader.org/phpBB/viewforum.php?f=10
 - Buglist
   http://sourceforge.net/tracker/?atid=106488&group_id=6488&func=browse
 - Forum
-  http://krusader.sourceforge.net/phpBB/index.php
+  http://www.krusader.org/phpBB/index.php
 - ChangeLog
-  http://krusader.sourceforge.net/text.php?t=cvs.changelog
+  http://www.krusader.org/text.php?t=cvs.changelog
 - CVSNEWS
-  http://krusader.sourceforge.net/text.php?t=cvs.news
+  http://www.krusader.org/text.php?t=cvs.news
 - Mailing lists
-  http://krusader.sourceforge.net/lists.php
+  http://www.krusader.org/lists.php
 - Donations
   http://sourceforge.net/project/project_donations.php?group_id=6488
 - Translations
-  http://krusader.sourceforge.net/i18n.php
+  http://www.krusader.org/i18n.php
 - Help Krusader
-  http://krusader.sourceforge.net/help.php
+  http://www.krusader.org/help.php
 - Krusader Extensions
   http://www.kde-files.org/index.php?xcontentmode=660x661x662x663
 - Krusader meets OpenUsability 
   http://openusability.org/projects/krusader/    
 - Download pages
-  http://krusader.sourceforge.net/down.php
+  http://www.krusader.org/down.php
   http://sourceforge.net/project/showfiles.php?group_id=6488
 
 
@@ -375,7 +372,7 @@ Krusader Krew:
 - Jonas Baehr, developer
   [jonas baehr * users web de]
 - Frank Schoolmeesters, documentation and marketing coordinator
-  [frank_schoolmeesters * yahoo com]
+ [frank_schoolmeesters * yahoo com]
 - Richard Holt, documentation
   [richard holt * gmail com]
 - Matej Urbancic, Marketing & Product Research
