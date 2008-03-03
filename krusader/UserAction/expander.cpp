@@ -33,7 +33,7 @@
 #include <kinputdialog.h>
 #include <kstandarddirs.h>
 #include <kmessagebox.h>
-#include <k3tempfile.h>
+#include <ktemporaryfile.h>
 #include <qstringlist.h>
 #include <qclipboard.h>
 #include <qtextstream.h>
@@ -501,14 +501,16 @@ TagString exp_ListFile::expFunc( const ListPanel* panel, const QStringList& para
       mask = "*";
    else
       mask = parameter[3];
-   K3TempFile tmpFile( KStandardDirs::locateLocal("tmp", "krusader"), ".itemlist" );
+   KTemporaryFile tmpFile;
+   tmpFile.setAutoRemove(false);
+   tmpFile.setSuffix(".itemlist");
    
-    if ( tmpFile.status() != 0 ) {
-      setError(exp, Error(Error::S_FATAL,Error::C_WORLD, i18n("Expander: tempfile couldn't be opened (%1)", strerror( tmpFile.status() )) ));
+    if (!tmpFile.open()) {
+      setError(exp, Error(Error::S_FATAL,Error::C_WORLD, i18n("Expander: tempfile couldn't be opened (%1)", tmpFile.errorString()) ));
       return QString();
     }
     
-    QTextStream stream( tmpFile.file() );
+    QTextStream stream( &tmpFile );
     stream << separateAndQuote(
     		fileList(panel,
     			parameter.isEmpty() ? QString() : parameter[0].toLower(),
