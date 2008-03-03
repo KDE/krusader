@@ -40,7 +40,7 @@ A
 #include <kmessagebox.h>
 #include <kcursor.h>
 #include <kstandarddirs.h>
-#include <k3tempfile.h>
+#include <ktemporaryfile.h>
 #include <kurl.h>
 #include <krun.h>
 #include <kinputdialog.h>
@@ -788,7 +788,7 @@ void ListPanelFunc::pack() {
 
 	// on remote URL-s first pack into a temp file then copy to its right place
 	KUrl destURL = KUrl( destDir + PackGUI::filename + "." + PackGUI::type );
-	K3TempFile *tempDestFile = 0;
+	KTemporaryFile *tempDestFile = 0;
 	QString arcFile;
 	if ( destURL.isLocalFile() )
 		arcFile = destURL.path();
@@ -797,9 +797,10 @@ void ListPanelFunc::pack() {
 		return;                
 	}        
 	else {
-		tempDestFile = new K3TempFile( QString(), "." + PackGUI::type );
-		tempDestFile->setAutoDelete( true );
-		arcFile = tempDestFile->name();
+		tempDestFile = new KTemporaryFile();
+		tempDestFile->setSuffix( QString(".") + PackGUI::type );
+		tempDestFile->open(); tempDestFile->close(); // nessesary to create the filename
+		arcFile = tempDestFile->fileName();
 		QFile::remove
 			( arcFile );
 	}
