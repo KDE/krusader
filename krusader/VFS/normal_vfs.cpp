@@ -102,6 +102,7 @@ bool normal_vfs::populateVfsList(const KURL& origin, bool showHidden){
 	}
 
   // change directory to the new directory
+        QString save = getcwd( 0, 0 );
 	if (chdir(path.local8Bit()) != 0) {
 		if( !quietMode ) KMessageBox::error(krApp, i18n("Access denied to")+path, i18n("Error"));
 		closedir(dir);
@@ -124,6 +125,7 @@ bool normal_vfs::populateVfsList(const KURL& origin, bool showHidden){
   }
 	// clean up
 	closedir(dir);
+        chdir( save.local8Bit() );
 	
 	if( panelConnected )
 	{
