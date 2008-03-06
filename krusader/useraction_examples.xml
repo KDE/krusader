@@ -262,7 +262,7 @@ Please note: The sed-command is &quot;s/search/repleace/&quot;, so you have to e
   <description>TC-like &quot;load selection from file&quot;. Use this action on a text file which contains a list of filenames and these files will be selected.</description>
   <command>%aSelect(&quot;%_Script(&quot;select_from_file.js&quot;, &quot;return=filelist;file=%aCurrent%&quot;)%&quot;)%</command>
  </action>
- <action name="file_recode_names_1" >
+ <action name="Jscript_file_recode_names" >
   <title>Javascript, recode files using GNU recode</title>
   <icon>charset</icon>
   <category>File</category>
