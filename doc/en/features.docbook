@@ -385,21 +385,31 @@
 <para>
   <itemizedlist>
     <title>New features in the &krusader;-1.90.0 "Power Stone" 
-    release (Final KDE3.x release) </title>
-    <listitem>
-      <para>Basically &krusader;-1.90.0 = &krusader;-1.80.0 + bugfixes + 
+    (The final version for KDE3.x)</title>
+<para>Basically &krusader;-1.90.0 = &krusader;-1.80.0 + bugfixes + 
             <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=1989">Krusader Extensions</ulink> sended in by our users.</para>
-    </listitem>
-    <listitem>
-      <para>GCC 4.3 compatibility</para>
-    </listitem>
-    <listitem>
-      <para>&kde; 3.2 - &kde; 3.5 compatibility</para>
-    </listitem>
+
     <listitem>
       <para>
        <itemizedlist>
-   <para>Many &krusader; Extensions:</para>
+       <para>Improvements:</para>
+          <listitem>
+           <para>GCC 4.3 compatibility.</para>
+          </listitem>
+          <listitem>
+           <para>&kde; 3.2 - &kde; 3.5 compatibility.</para>
+          </listitem>
+          <listitem>
+           <para>bugfixes.</para>
+          </listitem>
+       </itemizedlist>
+      </para>
+    </listitem>
+
+    <listitem>
+      <para>
+       <itemizedlist>
+       <para>Many &krusader; Extensions:</para>
           <listitem>
            <para>Keymaps, use keybindings of other commanders or customized keybindings!</para>
           </listitem>
@@ -415,10 +425,84 @@
        </itemizedlist>
      </para>
     </listitem>
+
     <listitem>
-      <para>For more features, please read the
-      &changelog-url; and
-      &cvsnews-url;.</para>
+      <para>Krusader Extensions highlights:
+       <itemizedlist>
+       <para>Color schemes:</para>
+          <listitem>
+           <para>&tcmd;</para>
+          </listitem>
+          <listitem>
+           <para><trademark class="copyright">Dos Navigator</trademark></para>
+          </listitem>
+          <listitem>
+           <para>Midnight Commander</para>
+          </listitem>
+          <listitem>
+           <para>bash</para>
+          </listitem>
+       </itemizedlist>
+
+       <itemizedlist>
+       <para>Keymap:</para>
+          <listitem>
+           <para>Midnight Commander</para>
+          </listitem>
+       </itemizedlist>
+
+       <itemizedlist>
+       <para>Useractions:</para>
+          <listitem>
+           <para>Search and Replace in file</para>
+          </listitem>
+          <listitem>
+           <para>Split large mp3 files</para>
+          </listitem>
+          <listitem>
+           <para>Archive foo to dir</para>
+          </listitem>
+          <listitem>
+           <para>lzma and tar.lzma archive support</para>
+          </listitem>
+          <listitem>
+           <para>tar.7z archive support</para>
+          </listitem>
+          <listitem>
+           <para>ar (.a, .deb,...) archive support</para>
+          </listitem>
+          <listitem>
+           <para>kgpg: encrypt, decrypt, sign, verify signature</para>
+          </listitem>
+          <listitem>
+           <para>.uue file support (uuencode and uudecode)</para>
+          </listitem>
+       </itemizedlist>
+     </para>
+    </listitem>
+
+    <listitem>
+      <para>
+       <itemizedlist>
+       <para>Javascript useractions:</para>
+          <listitem>
+           <para>Recode files using iconv or GNU recode.</para>
+          </listitem>
+          <listitem>
+           <para>Mount as root.</para>
+          </listitem>
+          <listitem>
+           <para>Select from file.</para>
+          </listitem>
+          <listitem>
+           <para>Calculator.</para>
+          </listitem>
+       </itemizedlist>
+     </para>
+    </listitem>
+
+    <listitem>
+      <para>Check the &changelog-url; for a complete overview of changes.</para>
     </listitem>
   </itemizedlist>
 </para>

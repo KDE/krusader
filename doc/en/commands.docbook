@@ -1052,6 +1052,21 @@
 <para></para>  <!-- empty line-->
 <para><emphasis role="bold">&krusader;-1.90.0 "Power Stone" additional Useractions</emphasis></para>
     <variablelist>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Copy as root</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Copy selected files &amp; directories with root privileges, also inside archives!
+              Useraction contributed by 
+              <ulink url="http://www.kde-files.org/content/show.php/Copy+as+root?content=36902">Andrew Svet and MaxiPunkt</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
       <varlistentry>
         <term>
           <menuchoice>
@@ -1087,13 +1102,105 @@
         <term>
           <menuchoice>
             <guimenu>Useractions</guimenu>
-            <guimenuitem>Copy as root</guimenuitem>
+            <guimenuitem>Eject cd/dvd</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
-          <para>Copy selected files &amp; directories with root privileges, also inside archives!
-              Useraction contributed by 
-              <ulink url="http://www.kde-files.org/content/show.php/Copy+as+root?content=36902">Andrew Svet and MaxiPunkt</ulink>.</para>
+          <para>Unmounts and ejects current cdrom/dvd.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>gzip current</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Gzip current file with maximum (9) compression, preserving original file. In case of directory, it is first tarred.
+                Useraction contributed by 
+               <ulink url="http://qa.debian.org/developer.php?login=fboudra@free.fr">Fathi Boudra</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>7zip current file</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Make a 7zip archive containing current file to other panel.
+                Useraction contributed by 
+               <ulink url="http://www.kde-files.org/content/show.php/7zip+current+file?content=32523">V&aacute;clav J&uring;za</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Lzma current file</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Lzma current file and keep input files to other panel.</para>
+        </listitem>
+      </varlistentry>
+
+    <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>tar.gz current</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>tar.gz current file/directory.
+              <ulink url="http://www.kde-files.org/content/show.php/Gzip%2Btar.gz+current+file?content=32522">V&aacute;clav J&uring;za</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>tar.lzma selected files</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>tar.lzma selected files to other panel.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Pack/Unpack ar archive (.a, .deb, ...)</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Make an archive or extract from it using the <command>ar</command> utility, which is 
+                used for static libraries <filename>*.a</filename> or &debian; packages 
+                You can extract &debian; packages this way without having <command>dpkg</command> installed.
+                Like <command>tar</command>, <command>ar</command> does not use any compression.
+                Useraction contributed by 
+              <ulink url="http://www.kde-files.org/content/show.php/ar++archive+pack%2Bunpack+with+dialog?content=33333">V&aacute;clav J&uring;za</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>tar.7z selected files</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>tar.7z selected files to other panel.</para>
         </listitem>
       </varlistentry>
 
@@ -1117,16 +1224,11 @@
         <term>
           <menuchoice>
             <guimenu>Useractions</guimenu>
-            <guimenuitem>(Un)Pack an ar archive (.a, .deb, ...)</guimenuitem>
+            <guimenuitem>Unpack current tar.7z</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
-          <para>Make an archive or extract from it using the <command>ar</command> utility, which is 
-                used for static libraries <filename>*.a</filename> or &debian; packages 
-                You can extract &debian; packages this way without having <command>dpkg</command> installed.
-                Like <command>tar</command>, <command>ar</command> does not use any compression.
-                Useraction contributed by 
-              <ulink url="http://www.kde-files.org/content/show.php/ar++archive+pack%2Bunpack+with+dialog?content=33333">V&aacute;clav J&uring;za</ulink>.</para>
+          <para>Unpack current tar.7z to other panel.</para>
         </listitem>
       </varlistentry>
 
@@ -1134,26 +1236,35 @@
         <term>
           <menuchoice>
             <guimenu>Useractions</guimenu>
-            <guimenuitem>gzip current</guimenuitem>
+            <guimenuitem>Unpack current tar.lzma</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
-          <para>Gzip current file with maximum (9) compression, preserving original file. In case of directory, it is first tarred.
-                Useraction contributed by 
-               <ulink url="http://qa.debian.org/developer.php?login=fboudra@free.fr">Fathi Boudra</ulink>.</para>
+          <para>Unpack current tar.lzma to other panel and keep original input file.</para>
         </listitem>
       </varlistentry>
 
-    <varlistentry>
+      <varlistentry>
         <term>
           <menuchoice>
             <guimenu>Useractions</guimenu>
-            <guimenuitem>tar.gz current</guimenuitem>
+            <guimenuitem>Unpack current lzma</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
-          <para>tar.gz current file/directory.
-              <ulink url="http://www.kde-files.org/content/show.php/Gzip%2Btar.gz+current+file?content=32522">V&aacute;clav J&uring;za</ulink>.</para>
+          <para>Unpack current lzma to other panel and keep original input file.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Unpack current lzma</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Unpack current lzma to other panel and keep original input file.</para>
         </listitem>
       </varlistentry>
 
@@ -1171,7 +1282,7 @@
         </listitem>
       </varlistentry>
 
-      <varlistentry>
+     <varlistentry>
         <term>
           <menuchoice>
             <guimenu>Useractions</guimenu>
@@ -1217,13 +1328,43 @@
         <term>
           <menuchoice>
             <guimenu>Useractions</guimenu>
-            <guimenuitem>Sign with kgpg</guimenuitem>
+            <guimenuitem>Verify signature with kgpg</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
           <para>Tries to verify the signature of the current file with kpgp (which has to be in your $PATH).
               Useraction contributed by 
               <ulink url="http://www.kde-files.org/content/show.php/Verify+signature+with+kgpg?content=32509">Dirk Eschler</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Decode current file created with uuencode.</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Decode a file created with uuencode. Requirements: Sharutils.
+                Useraction contributed by 
+              <ulink url="http://www.kde-files.org/content/show.php/Uuencode?content=75488">Andrew Svet</ulink>.
+                </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Useractions</guimenu>
+            <guimenuitem>Uuencode current file.</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Uuencode creates an encoded ASCII copy of a file. Requirements: Sharutils.
+                Useraction contributed by 
+              <ulink url="http://www.kde-files.org/content/show.php/Uuencode?content=75488">Andrew Svet</ulink>.
+                </para>
         </listitem>
       </varlistentry>
 
