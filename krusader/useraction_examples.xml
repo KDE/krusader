@@ -105,14 +105,15 @@ Please note: The sed-command is &quot;s/search/repleace/&quot;, so you have to e
  </action>
  <action name="archive_gzip_current" >
   <title>gzip current file</title>
-  <tooltip>Gzip current file with maximum (9) compression, preserving original file. In case of directory, it is first tarred.</tooltip>
+  <tooltip>Make gzip archive containing current file to other panel.</tooltip>
   <icon>ark</icon>
   <category>Archive</category>
+  <description>Gzip current file with maximum (9) compression, preserving original file. In case of directory, it is first tarred.</description>
   <command>if [ -d %aCurrent(&quot;Yes&quot;)% ]; then tar cf - %aCurrent(&quot;Yes&quot;)% | gzip -9 >%oPath%%aCurrent(&quot;Yes&quot;)%.tar.gz; else cat %aCurrent(&quot;Yes&quot;)% | gzip -9 >%oPath%%aCurrent(&quot;Yes&quot;)%.gz; fi</command>
  </action>
  <action name="archive_7z_current" >
   <title>7zip current file</title>
-  <tooltip>Make a 7zip archive containing current file to other panel.</tooltip>
+  <tooltip>Make 7zip archive containing current file to other panel.</tooltip>
   <icon>ark</icon>
   <category>Archive</category>
   <command>rm -f %aCurrent(&quot;Yes&quot;)%.7z; 7z a -mx=9 -mfb=128 -md=8m %oPath%%aCurrent(&quot;Yes&quot;)%.7z %aCurrent(&quot;Yes&quot;)%
@@ -120,27 +121,29 @@ Please note: The sed-command is &quot;s/search/repleace/&quot;, so you have to e
  </action>
  <action name="archive_pack_lzma" >
   <title>Lzma current file</title>
-  <tooltip>Lzma current selection and keep input files to other panel.</tooltip>
+  <tooltip>Make lzma archive containing current file to other panel.</tooltip>
   <icon>ark</icon>
   <category>Archive</category>
+  <description>Lzma current file and keep input files to other panel.</description>
   <command>lzma -zkc %aCurrent% > %oPath%%aCurrent(&quot;Yes&quot;)%.lzma</command>
  </action>
  <action name="archive_tgz_current" >
   <title>tar.gz selected files</title>
-  <tooltip>tar.gz selected files to other panel.</tooltip>
+  <tooltip>Make tar.gz archive containing  selected files to other panel.</tooltip>
   <icon>ark</icon>
   <category>Archive</category>
   <command>tar cf - %aList(&quot;Selected&quot;, &quot; &quot;, &quot;Yes&quot;)% | gzip -9 > %oPath%%aCurrent(&quot;Yes&quot;)%.tar.gz</command>
  </action>
  <action name="archive_tar_lzma" >
   <title>tar.lzma selected files</title>
-  <tooltip>tar.lzma selected files to other panel.</tooltip>
+  <tooltip>Make tar.lzma archive containing  selected files to other panel.</tooltip>
   <icon>ark</icon>
   <category>Archive</category>
   <command>tar cf - %aList(&quot;Selected&quot;, &quot; &quot;, &quot;Yes&quot;)% | lzma -z > %oPath%%aCurrent(&quot;Yes&quot;)%.tar.lzma</command>
  </action>
  <action name="archive_ar_pack" >
-  <title>ar selected files (.a, .deb, ...)</title>
+  <title>ar selected files</title>
+  <tooltip>Make ar  (.a, .deb, ...) archive of selected files to other panel.</tooltip>
   <icon>ark</icon>
   <category>Archive</category>
   <description>Make an archive using the ar utility, which is used for static libraries (*.a) or debian packages. Like tar, ar does not use any compression.</description>
@@ -148,7 +151,7 @@ Please note: The sed-command is &quot;s/search/repleace/&quot;, so you have to e
  </action>
  <action name="archive_tar_7z" >
   <title>tar.7z selected files</title>
-  <tooltip>tar.7z selected files to other panel.</tooltip>
+  <tooltip>Make tar.7z archive containing  selected files to other panel.</tooltip>
   <icon>ark</icon>
   <category>Archive</category>
   <command executionmode="collect_output" >tar cf - %aList(&quot;Selected&quot;, &quot; &quot;, &quot;Yes&quot;)% | 7z a -si %oPath%%aCurrent(&quot;Yes&quot;)%.tar.7z</command>
@@ -170,16 +173,18 @@ Please note: The sed-command is &quot;s/search/repleace/&quot;, so you have to e
  </action>
  <action name="archive_unpack_tar_lzma" >
   <title>Unpack current tar.lzma</title>
-  <tooltip>Unpack current tar.lzma to other panel and keep original input file.</tooltip>
+  <tooltip>Unpack current tar.lzma to other panel.</tooltip>
   <icon>package</icon>
   <category>Archive</category>
+  <description>Unpack current tar.lzma to other panel and keep original input file.</description>
   <command>sh -c 'cd &quot;%oPath%&quot;; lzma -dkc &quot;%aCurrent%&quot; | tar xf -'</command>
  </action>
  <action name="archive_unpack_lzma" >
   <title>Unpack current lzma</title>
-  <tooltip>Unpack current lzma to other panel and keep original input file.</tooltip>
+  <tooltip>Unpack current lzma to other panel.</tooltip>
   <icon>package</icon>
   <category>Archive</category>
+  <description>Unpack current lzma to other panel and keep original input file.</description>
   <command>lzma -dkc %aCurrent% >%oPath%/`basename %aCurrent% .lzma`</command>
  </action>
  <action name="archive_ar_unpack" >
@@ -262,7 +267,7 @@ Please note: The sed-command is &quot;s/search/repleace/&quot;, so you have to e
   <description>TC-like &quot;load selection from file&quot;. Use this action on a text file which contains a list of filenames and these files will be selected.</description>
   <command>%aSelect(&quot;%_Script(&quot;select_from_file.js&quot;, &quot;return=filelist;file=%aCurrent%&quot;)%&quot;)%</command>
  </action>
- <action name="Jscript_file_recode_names" >
+ <action name="Jscript_file_recode_gnu" >
   <title>Javascript, recode files using GNU recode</title>
   <icon>charset</icon>
   <category>File</category>
@@ -271,7 +276,7 @@ Requirements:
 You need krusader compiled with javascript support and GNU recode installed.</description>
   <command executionmode="terminal" >%_Script(&quot;recode.js&quot;, &quot;return=cmd;toProcess=%aList(\&quot;Selected\&quot;, \&quot; \&quot;, \&quot;Yes\&quot;)%;dstDir=%oPath%;srcDir=%aPath%;useRecode=1&quot;)%</command>
  </action>
- <action name="Jscript_file_recode_names" >
+ <action name="Jscript_file_recode_iconv" >
   <title>Javascript, recode files using iconv</title>
   <icon>charset</icon>
   <category>File</category>
