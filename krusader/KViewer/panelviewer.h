@@ -6,12 +6,12 @@
 #include <qstackedwidget.h>
 #include <kparts/part.h>
 #include <kio/job.h>
-#include <k3tempfile.h>
 #include <qhash.h>
 #include <qlabel.h>
 
 #include "krviewer.h"
 
+class KTemporaryFile;
 
 class PanelViewerBase: public QStackedWidget {
 	Q_OBJECT
@@ -59,7 +59,7 @@ public:
 protected:
 	KParts::ReadOnlyPart *getPart( QString mimetype );
 	KParts::ReadOnlyPart*  getHexPart();
-	void oldHexViewer(K3TempFile& tmpFile);
+	void oldHexViewer(KTemporaryFile& tmpFile);
 };
 
 class PanelEditor: public PanelViewerBase {

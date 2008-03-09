@@ -8,7 +8,7 @@
 #include <qhash.h>
 #include <qlabel.h>
 #include <kmimetype.h>
-#include <k3tempfile.h>
+#include <ktemporaryfile.h>
 #include <klocale.h>
 #include <klibloader.h>
 #include <kservicetypeprofile.h>
@@ -72,7 +72,7 @@ KParts::ReadOnlyPart* PanelViewer::openUrl( const KUrl &url, KrViewer::Mode mode
 			cpart = ( *mimes ) [ cmimetype ];
 	}
 
-	K3TempFile tmpFile;
+	KTemporaryFile tmpFile;
 
 	if( mode == KrViewer::Hex ){
 		if ( !cpart ) cpart = getHexPart();
@@ -152,7 +152,7 @@ KParts::ReadOnlyPart* PanelViewer::getHexPart(){
 	return part;
 }
 
-void PanelViewer::oldHexViewer(K3TempFile& tmpFile) {
+void PanelViewer::oldHexViewer(KTemporaryFile& tmpFile) {
 	QString file;
 	// files that are not local must first be downloaded
 	if ( !curl.isLocalFile() ) {
@@ -168,7 +168,8 @@ void PanelViewer::oldHexViewer(K3TempFile& tmpFile) {
 	f_in.open( QIODevice::ReadOnly );
 	QDataStream in( &f_in );
 
-	FILE *out = KDE_fopen( tmpFile.name().local8Bit(), "w" );
+  tmpFile.open(); // else there is no filename
+	FILE *out = KDE_fopen( tmpFile.fileName().local8Bit(), "w" ); // TODO get rid of FILE*
 
 	KIO::filesize_t fileSize = f_in.size();
 	KIO::filesize_t address = 0;
@@ -200,7 +201,7 @@ void PanelViewer::oldHexViewer(K3TempFile& tmpFile) {
 	if ( !curl.isLocalFile() )
 	KIO::NetAccess::removeTempFile( file );
 
-	curl = tmpFile.name();
+	curl = tmpFile.fileName();
 }
 
 /* ----==={ PanelEditor }===---- */
