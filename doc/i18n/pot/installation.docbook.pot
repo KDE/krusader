@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-1.80.03 2007-07-05\n"
+"Project-Id-Version: Krusader-doc-1.90.0 2008-03-13\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2007-07-05 16:27+0000\n"
+"POT-Creation-Date: 2008-03-13 19:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -43,7 +43,7 @@ msgstr ""
 #. Tag: para
 #: installation.docbook:31
 #, no-c-format
-msgid "Required &kde; version: <itemizedlist> <listitem> <para>&krusader; v1.01: &kde; 2</para> </listitem> <listitem> <para>&krusader; v1.02 - 1.40: &kde; 3.0 - &kde; 3.2</para> </listitem> <listitem> <para>&krusader; 1.40: prefers &kde; 3.2 (otherwise all features will not be available)</para> </listitem> <listitem> <para>&krusader; v1.50 - v1.51: &kde; 3.2 - &kde; 3.3 (Konfigurator crash on &kde; 3.4)</para> </listitem> <listitem> <para>&krusader; v1.60.0 - v1.70.0: &kde; 3.3 - &kde; 3.5</para> </listitem> <listitem> <para>&krusader; 1.70.x: prefers &kde; &gt;= 3.4 (otherwise all features will not be available)</para> </listitem> <listitem> <para>&krusader; 1.80.0: &kde; 3.4 - &kde; 3.5</para> </listitem> <listitem> <para>&krusader; v2.xx.x: &kde; 4 - &Qt; 4 The big challenge, a first release in 2007</para> </listitem> </itemizedlist> NOTE: there are no installation instructions for &kde;4 yet available since at moment of writing &krusader; was not ported yet to &kde;4."
+msgid "Required &kde; version: <itemizedlist> <listitem> <para>&krusader; v1.01: &kde; 2</para> </listitem> <listitem> <para>&krusader; v1.02 - 1.40: &kde; 3.0 - &kde; 3.2</para> </listitem> <listitem> <para>&krusader; 1.40: prefers &kde; 3.2 (otherwise all features will not be available)</para> </listitem> <listitem> <para>&krusader; v1.50 - v1.51: &kde; 3.2 - &kde; 3.3 (Konfigurator crash on &kde; 3.4)</para> </listitem> <listitem> <para>&krusader; v1.60.0 - v1.70.0: &kde; 3.3 - &kde; 3.5</para> </listitem> <listitem> <para>&krusader; 1.70.x: prefers &kde; &gt;= 3.4 (otherwise all features will not be available)</para> </listitem> <listitem> <para>&krusader; 1.80.0: &kde; 3.4 - &kde; 3.5</para> </listitem> <listitem> <para>&krusader; v2.xx.x: &kde; 4 - &Qt; 4 The big challenge, a first release in 2008</para> </listitem> </itemizedlist> NOTE: there are no installation instructions for &kde;4 yet available since at moment of writing &krusader; was not ported yet to &kde;4."
 msgstr ""
 
 #. Tag: para
@@ -373,59 +373,59 @@ msgstr ""
 #. Tag: para
 #: installation.docbook:382
 #, no-c-format
-msgid "&subversion-url; will probably be used for the &krusader; 2.x series for &kde;4. it is also possible to &browse-svn-repo-url;."
+msgid "&subversion-url; is used for the &krusader; 2.x series for &kde;4. it is also possible to &browse-svn-repo-url;."
 msgstr ""
 
 #. Tag: para
 #: installation.docbook:386
 #, no-c-format
-msgid "To check out the latest &krusader; 1.x for &kde; 3 from SVN: (NOTE: at moment of writing it is recommend to use CVS for krusader_kde3, since krusader_kde3 is developed in CVS and not in SVN) <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde3</option></userinput></screen> To check out the latest &krusader; 2.x for &kde; 4 from SVN: (NOTE: not yet available at moment of writing)"
+msgid "To check out the latest &krusader; 1.x for &kde; 3 from SVN: (NOTE: at moment of writing use CVS for krusader_kde3, since krusader_kde3 is developed in CVS and NOT in SVN, currently you will get an old version in SVN) <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde3</option></userinput></screen> To check out the latest &krusader; 2.x for &kde; 4 from SVN:"
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:394
+#: installation.docbook:392
 #, no-c-format
-msgid "<prompt>$</prompt> <userinput><command>svn</command> <option>co https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4</option></userinput>"
+msgid "<prompt>$</prompt> <userinput><command>svn</command> <option>co https://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4</option></userinput>"
 msgstr ""
 
 #. Tag: title
-#: installation.docbook:398
+#: installation.docbook:396
 #, no-c-format
 msgid "Older Releases"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:399
+#: installation.docbook:397
 #, no-c-format
 msgid "If you are looking for older releases we recommend the &sfmirrors-url;, available from our project page."
 msgstr ""
 
 #. Tag: title
-#: installation.docbook:405
+#: installation.docbook:403
 #, no-c-format
 msgid "Compiling and Installing"
 msgstr ""
 
 #. Tag: title
-#: installation.docbook:407
+#: installation.docbook:405
 #, no-c-format
 msgid "Compiling &krusader;. What now?"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:408
+#: installation.docbook:406
 #, no-c-format
 msgid "Check the environment variables &kdeqtdir-lnk;."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:410
+#: installation.docbook:408
 #, no-c-format
 msgid "To compile and install &krusader; on your system, type the following in the base directory of the &krusader; package:"
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:413
+#: installation.docbook:411
 #, no-c-format
 msgid ""
       "<prompt>$</prompt> <userinput><command>./configure</command></userinput>
@@ -436,43 +436,43 @@ msgid ""
 msgstr ""
 
 #. Tag: sect2
-#: installation.docbook:416
+#: installation.docbook:414
 #, no-c-format
 msgid "<sect2>&krusaderui-rc-text;</sect2>"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:418
+#: installation.docbook:416
 #, no-c-format
 msgid "Since &krusader; uses <command>autoconf</command> and <command>automake</command> you should have no trouble compiling it. If you run into problems, read the detailed installation instructions below."
 msgstr ""
 
 #. Tag: title
-#: installation.docbook:426
+#: installation.docbook:424
 #, no-c-format
 msgid "Quickstart Installation Tutorial"
 msgstr ""
 
 #. Tag: title
-#: installation.docbook:429
+#: installation.docbook:427
 #, no-c-format
 msgid "Debian"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:430
+#: installation.docbook:428
 #, no-c-format
 msgid "These instructions should work as well on &debian; based distributions like: &ubuntu;, &kubuntu;, &linspire;, &kanotix;, ..."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:433
+#: installation.docbook:431
 #, no-c-format
 msgid "Add the next lines in the <filename>~/.bashrc</filename> configuration file"
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:434
+#: installation.docbook:432
 #, no-c-format
 msgid ""
       "<userinput><command>export</command> <option>QTDIR=/usr</option></userinput>
@@ -483,25 +483,25 @@ msgid ""
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:441 installation.docbook:483 installation.docbook:503
+#: installation.docbook:439 installation.docbook:481 installation.docbook:501
 #, no-c-format
 msgid "Install the <link linkend=\"faqi_missing_libs\">build dependencies</link> for &krusader;"
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:442
+#: installation.docbook:440
 #, no-c-format
 msgid "<prompt>#</prompt> <userinput><command>apt-get</command> <option>build-dep krusader</option></userinput>"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:447
+#: installation.docbook:445
 #, no-c-format
 msgid "<link linkend=\"version_scheme\">Download</link> the &krusader; sourcecode, unpack and enter the <filename>krusader_kde3</filename> directory."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:450
+#: installation.docbook:448
 #, no-c-format
 msgid ""
       "The next command will create <command>./configure</command> <screen>
@@ -512,61 +512,61 @@ msgid ""
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:458
+#: installation.docbook:456
 #, no-c-format
 msgid "Install &krusader; in the <filename>/opt</filename> directory to not overwrite the official &debian; binary <filename>/usr/bin/krusader</filename>, so that <command>krusader</command> will run the official &debian; package and <command>/opt/bin/krusader</command> runs the compiled version. It's recommended to use enable the full debug, so that you can possible problems at us. Run configure."
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:461
+#: installation.docbook:459
 #, no-c-format
 msgid "<prompt>$</prompt> <userinput><command>./configure</command> <option>--prefix=/opt/krusader --enable-debug=full</option></userinput>"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:466
+#: installation.docbook:464
 #, no-c-format
 msgid "Compile &krusader;"
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:467
+#: installation.docbook:465
 #, no-c-format
 msgid "<prompt>$</prompt> <userinput><command>make</command></userinput>"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:472
+#: installation.docbook:470
 #, no-c-format
 msgid "Install Krusader"
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:473
+#: installation.docbook:471
 #, no-c-format
 msgid "<prompt>$</prompt> <userinput><command>su -c</command> <option>\"make install\"</option></userinput>"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:478
+#: installation.docbook:476
 #, no-c-format
 msgid "<command>/opt/bin/krusader</command> runs the compiled &krusader; version."
 msgstr ""
 
 #. Tag: title
-#: installation.docbook:482
+#: installation.docbook:480
 #, no-c-format
 msgid "SuSE"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:484 installation.docbook:504
+#: installation.docbook:482 installation.docbook:502
 #, no-c-format
 msgid "<link linkend=\"version_scheme\">Download</link> the &krusader; sourcecode, unpack and enter the <filename>krusader_kde3</filename> directory. Now you can compile and install &krusader;"
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:486
+#: installation.docbook:484
 #, no-c-format
 msgid ""
       "<prompt>$</prompt> <userinput><command>make -f</command> <option>Makefile.cvs</option></userinput>
@@ -579,25 +579,25 @@ msgid ""
 msgstr ""
 
 #. Tag: title
-#: installation.docbook:496
+#: installation.docbook:494
 #, no-c-format
 msgid "For other Linuxes"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:497
+#: installation.docbook:495
 #, no-c-format
 msgid "Ofcource it's impossible to cover all Linuxes, but here are the general installation instructions."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:499
+#: installation.docbook:497
 #, no-c-format
 msgid "Usually <command>./configure --prefix=/usr</command> should be used, though options like <filename>/opt/krusader</filename> are usually better so that you don't overwrite files that are installed by your package managment system. Please don't use the <filename>/usr/local</filename> directory as it simply won't work."
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:505
+#: installation.docbook:503
 #, no-c-format
 msgid ""
       "<prompt>$</prompt> <userinput><command>make -f</command> <option>Makefile.cvs</option></userinput>
@@ -610,121 +610,121 @@ msgid ""
 msgstr ""
 
 #. Tag: title
-#: installation.docbook:517
+#: installation.docbook:515
 #, no-c-format
 msgid "Detailed Installation Tutorial"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:518
+#: installation.docbook:516
 #, no-c-format
 msgid "The next section will explain how to install &krusader; step by step. Questions about the installation process have been asked many times and especially users new to &Linux; often have problems compiling software from source. Therefore, we are trying to keep the explanations as detailed as possible even if they are mostly not &krusader; specific. Experienced users may easily skip most of the steps."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:526
+#: installation.docbook:524
 #, no-c-format
 msgid "Unfortunately, because not all &Linux; distributions follow the &fhs-url; it is impossible to write a tutorial that would cover all circumstances. However, these guidelines will help you in the right direction."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:532
+#: installation.docbook:530
 #, no-c-format
 msgid "If you encountered problems, please read first this installation procedure and the &faq-lnk;. If the problem persists, use the &help-request-lnk; to ask for help."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:539
+#: installation.docbook:537
 #, no-c-format
 msgid "Install all packages and libraries that are needed for the compilation, please read the &faq-lnk;."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:543
+#: installation.docbook:541
 #, no-c-format
 msgid "If you install &kdevelop;, (almost) everything that you need to compile &krusader; will be installed on your computer. However, if you are not a developer, please follow the instructions and do not use &kdevelop; to compile &krusader;."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:555
+#: installation.docbook:553
 #, no-c-format
 msgid "Open your favourite terminal emulator (&eg; &konsole;)."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:561
+#: installation.docbook:559
 #, no-c-format
 msgid "We recommend you create a separate directory to keep all the sources you compile in. This way you will have a better overview of the installed programs and it will be easier to uninstall them later. <screen><prompt>$</prompt> <userinput><command>mkdir</command> ~/source</userinput></screen> The chosen directory is just an example, any other will work."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:574
+#: installation.docbook:572
 #, no-c-format
 msgid "Copy the sources to the <filename>~/source</filename> directory and unpack them."
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:576
+#: installation.docbook:574
 #, no-c-format
 msgid "<prompt>$</prompt> <userinput><command>cp</command> /<replaceable>\"your_dir\"</replaceable> /krusader-x.xx.tar.gz ~/source</userinput>"
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:577
+#: installation.docbook:575
 #, no-c-format
 msgid "<prompt>$</prompt> <userinput><command>cd</command> ~/source</userinput>"
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:578
+#: installation.docbook:576
 #, no-c-format
-msgid "<prompt>$</prompt> <userinput><command>tar</command> <option>-xzvf</option>krusader-x.xx.tar.gz</userinput>"
+msgid "<prompt>$</prompt> <userinput><command>tar</command> <option>-xzvf</option> krusader-x.xx.tar.gz</userinput>"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:584
+#: installation.docbook:582
 #, no-c-format
 msgid "Optional step: if you wish you can delete the tarball at this point as it is no longer needed."
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:586
+#: installation.docbook:584
 #, no-c-format
 msgid "<prompt>$</prompt> <userinput><command>rm</command> krusader-x.xx.tar.gz</userinput>"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:592
+#: installation.docbook:590
 #, no-c-format
 msgid "Change to the directory containing the sources."
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:593
+#: installation.docbook:591
 #, no-c-format
 msgid "<prompt>$</prompt> <userinput><command>cd</command> krusader-x.xx</userinput>"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:599
+#: installation.docbook:597
 #, no-c-format
 msgid "Check the environment variables <envar>QTDIR</envar>and <envar>KDEDIR</envar>. &krusader;'s <command>./configure</command> script needs to know where the &Qt; and &kde; directories are."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:605
+#: installation.docbook:603
 #, no-c-format
 msgid "<envar>QTDIR</envar>: <replaceable>&lt;path to your Qt installation&gt;</replaceable> &eg; <filename>/usr/lib/qt3</filename> or <filename>/usr/qt3</filename>"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:611
+#: installation.docbook:609
 #, no-c-format
 msgid "<envar>KDEDIR</envar>: <replaceable>&lt;path to your KDE installation&gt;</replaceable> &eg; <filename>/usr</filename> or <filename>/opt/kde3</filename>"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:617
+#: installation.docbook:615
 #, no-c-format
 msgid ""
       "Normally your distribution will set them for you, but experience has shown that some do not. You can easily check the values with the <command>echo</command> command. <screen><prompt>$</prompt> <userinput><command>echo</command> $QTDIR</userinput>/usr/lib/qt3
@@ -739,55 +739,55 @@ msgid ""
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:645
+#: installation.docbook:643
 #, no-c-format
 msgid "<prompt>$</prompt> <userinput><command>export</command> QTDIR=<replaceable>&lt;replace with your QTDIR&gt;</replaceable></userinput>"
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:646
+#: installation.docbook:644
 #, no-c-format
 msgid "<prompt>$</prompt> <userinput><command>export</command> KDEDIR=<replaceable>&lt;replace with your KDEDIR&gt;</replaceable></userinput>"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:649
+#: installation.docbook:647
 #, no-c-format
 msgid "These enviroment variables are only set for the lifetime of your current shell. When you close your terminal and open a new one they will be gone. Assuming &krusader; is not the only &Qt;/&kde; program you want to compile, we recommend to make these settings permanent (&eg; append both export commands to your <filename class=\"directory\">/etc/profile</filename>) file."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:659
+#: installation.docbook:657
 #, no-c-format
 msgid "If you can notdetermine your KDEDIR, <command>kde-config --prefix</command> might help you."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:668
+#: installation.docbook:666
 #, no-c-format
 msgid "If you have downloaded a stable version <filename>\"krusader-x.xx.tar.gz\"</filename> or a beta version <filename>\"krusader-x.xx-betax.tar.gz\"</filename>, you can skip this step. In this case the <filename>./configure</filename> script is provided."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:675
+#: installation.docbook:673
 #, no-c-format
 msgid "If you have downloaded a CVS build or nightly tarball <filename>\"krusader-cvs-yyyy-mm-dd.tar.gz\"</filename>\", you will have to run the following command to create the <filename>./configure</filename> script:"
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:680
+#: installation.docbook:678
 #, no-c-format
 msgid "<prompt>$</prompt> <userinput><command>make</command> <option>-f</option>Makefile.cvs</userinput>"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:682
+#: installation.docbook:680
 #, no-c-format
 msgid "If everything is OK you will see the following output on your screen:"
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:684
+#: installation.docbook:682
 #, no-c-format
 msgid ""
       "<prompt>$</prompt> <userinput><command>make</command> <option>-f</option> Makefile.cvs</userinput>
@@ -824,25 +824,25 @@ msgid ""
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:702
+#: installation.docbook:700
 #, no-c-format
 msgid "You will need to have <application>autoconf 2.52, 2.53 or 2.54</application> and <application>automake 1.6</application> (or higher) to run the <command>make -f Makefile.cvs</command> command"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:710
+#: installation.docbook:708
 #, no-c-format
 msgid "If you encounter problems with this command click <link linkend=\"krusader_cvs\">here</link>. &krusader; provides two nightly builds (snapshots) one with a <filename>./configure</filename> script and one without."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:723
+#: installation.docbook:721
 #, no-c-format
 msgid "Your &Linux; distro &krusader; RPM or DEB package will normally install &krusader; in the <filename>KDEDIR/bin</filename> directory. According to the &fhs-url;, any user installed files go to the <filename>/usr/local</filename> directory. If you wish &krusader; to be installed in another directory, it can be determed with the prefix option. If you do not have root access, <filename>/home/YOUR_USERNAME/.kde</filename> is probably a good choice."
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:735
+#: installation.docbook:733
 #, no-c-format
 msgid ""
       "foo
@@ -897,31 +897,31 @@ msgid ""
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:763
+#: installation.docbook:761
 #, no-c-format
 msgid "This is the output for &Mandrake;-&Linux; 10, other distributions may give a different output."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:767
+#: installation.docbook:765
 #, no-c-format
 msgid "At the end of the <command>./configure</command> script you will find a summary of the most important settings, &eg; where the &krusader; binary will be installed (after the 'make install' command). This part will also display a warning if the environment variables &kdeqtdir-lnk; are empty."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:777
+#: installation.docbook:775
 #, no-c-format
 msgid "Since &krusader;-1.70.0 <command>./configure</command> has two specific &krusader; options: <itemizedlist> <listitem> <para> <userinput> <command>./configure</command> <option>--without-konqueror</option> </userinput>: build &krusader; without support &konqueror;'s servicemenus, default=with. This means that &konqueror;'s right-click menu entries will not be available.</para> </listitem> <listitem> <para> <userinput> <command>./configure</command> <option>--without-javascript</option> </userinput>: build &krusader; without JavaScript support, default=with. This means that the &javascript-console-lnk; will not be available.</para> </listitem> <listitem> <para> <userinput> <command>./configure</command> <option>--without-acl</option> </userinput>: build &krusader; without ACL support default=with. Sometimes this option is needed if you get a ACL compile error when running <command>make</command>.</para> </listitem> </itemizedlist>In the past the support was always compiled in when the headers where found, now you have the choice."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:812
+#: installation.docbook:810
 #, no-c-format
 msgid "Use <userinput> <command>./configure</command> <option>--help</option> </userinput>to see more options or read the <filename>INSTALL</filename> file in the &krusader; sources."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:819
+#: installation.docbook:817
 #, no-c-format
 msgid ""
       "If you used another --prefix= than <filename>$KDEDIR or /usr/local</filename>, it is recommended to do an extra check: <screen><prompt>$</prompt> <userinput><command>kde-config</command> <option>--path exe</option></userinput>
@@ -932,19 +932,19 @@ msgid ""
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:834
+#: installation.docbook:832
 #, no-c-format
 msgid "If <command>./configure</command> fails, take a look at &missing-libs-lnk;."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:842
+#: installation.docbook:840
 #, no-c-format
 msgid "Start the compilation process with the <command>make</command> command. <screen><prompt>$</prompt> <userinput><command>make</command></userinput></screen> This will take about 3 - 40 minutes depending on how fast your computer runs. If everything goes well, it will &eg; end with the following messages:"
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:848
+#: installation.docbook:846
 #, no-c-format
 msgid ""
       "foo
@@ -961,163 +961,163 @@ msgid ""
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:859
+#: installation.docbook:857
 #, no-c-format
 msgid "If <command>./configure</command> was successful and <command>make</command> failed for some reason, continue to read this page. If you can not find a solution to your problem, feel free to post a help request at our &forum-lnk;."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:869
+#: installation.docbook:867
 #, no-c-format
 msgid "If everything is correct, you can now install &krusader;. <screen><prompt>$</prompt> <userinput><command>su -c 'make</command> <option>install'</option></userinput></screen> You will be asked to enter your root password."
 msgstr ""
 
 #. Tag: listitem
-#: installation.docbook:879
+#: installation.docbook:877
 #, no-c-format
 msgid "<listitem>&krusaderui-rc-text;</listitem>"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:883
+#: installation.docbook:881
 #, no-c-format
 msgid "Now you can <link linkend=\"starting-krusader\"> start</link> &krusader;."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:890
+#: installation.docbook:888
 #, no-c-format
 msgid "Optional step: Cleaning up to save disk space. Note: All compiled files created with the <command>make</command>command will be deleted."
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:893
+#: installation.docbook:891
 #, no-c-format
 msgid "<prompt>$</prompt> <userinput><command>make</command> <option>clean</option></userinput>"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:901
+#: installation.docbook:899
 #, no-c-format
 msgid "If you ever want to uninstall &krusader;, use <screen><prompt>$</prompt> <userinput><command>su -c 'make</command> <option>uninstall'</option></userinput></screen> You will be asked to enter your root password."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:910
+#: installation.docbook:908
 #, no-c-format
 msgid "If you followed the installation procedure and still encountered problems installing &krusader;, refer to &faq-lnk;. If the problem persists, use the &help-request-lnk; to ask for help."
 msgstr ""
 
 #. Tag: title
-#: installation.docbook:917
+#: installation.docbook:915
 #, no-c-format
 msgid "Installing on &MacOS;-X"
 msgstr ""
 
 #. Tag: primary
-#: installation.docbook:919
+#: installation.docbook:917
 #, no-c-format
 msgid "&MacOS;-X port"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:922
+#: installation.docbook:920
 #, no-c-format
 msgid "Since June 2006 &krusader; is added into the <ulink url=\"http://pdb.finkproject.org/pdb/package.php/krusader\">&krusader; finkproject.org repository</ulink> Please check this url for the latest information about the &MacOS;-X port, please read the &fink-url; documentation for more information, all information below could be outdated, though they should still work :) From now on the port is maintained by <ulink url=\"http://hritcu.wordpress.com/about/\">Catalin Hritcu</ulink>."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:930
+#: installation.docbook:928
 #, no-c-format
 msgid "Krusader is ported to &MacOS; thanks the &fink-url;-project and Jonas B&auml;hr and &bodo-tasche-url; . Unfortunately the only *stable* kdelib-binaries which &fink-url; has to offer is currenly 3.1.4 which means you need to use &krusader;-1.40 . Unfortunately the &MacOS; X &krusader; port does not have the same power as in a native &Linux;-&kde; environment. To run &krusader; you need also X11, which doesn't interact with the rest of the &MacOS; desktop. We hope that &Qt;4/&kde;4 will solve most of these problems. If you want a more recent Krusader version you need to compile &kde;. With &fink-url; it is rather easy but it takes some CPU cycles."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:944
+#: installation.docbook:942
 #, no-c-format
 msgid "Installation Instructions for &krusader;-1.40"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:947
+#: installation.docbook:945
 #, no-c-format
 msgid "Download and install &fink-url; with the &kde;3.1 binaries provided by fink and read the documentation."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:952
+#: installation.docbook:950
 #, no-c-format
 msgid "Extract the <filename> krusader-1.40.fink.darwin-ppc.tar.bz2</filename> package to <filename>/sw/fink/dist/local/main/</filename> Only root can write here. You may have to create 'local' and 'main'."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:960
+#: installation.docbook:958
 #, no-c-format
 msgid "Run as root: <command>fink install krusader</command>"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:964
+#: installation.docbook:962
 #, no-c-format
 msgid "Follow these instructions if you wish to compile more source code or use a more recent version of &krusader;:"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:969
+#: installation.docbook:967
 #, no-c-format
 msgid "Install &apple-x11-url;"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:972
+#: installation.docbook:970
 #, no-c-format
 msgid "Install the &apple-x11-sdk-url; developer-tools with X11 headers (gcc is included)"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:976
+#: installation.docbook:974
 #, no-c-format
 msgid "Install the fink-base"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:979
+#: installation.docbook:977
 #, no-c-format
 msgid "Compile kdelibs 3.4.1 or higher (fink provides the necessary <filename>.info</filename> files)"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:984
+#: installation.docbook:982
 #, no-c-format
 msgid "Compile the &krusader;-tarball or follow steps 2 and 3 of the previous section if a recent &krusader;-package &eg; <filename> krusader-1.70.0.fink.darwin-ppc.tar.bz2</filename> is available"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:993
+#: installation.docbook:991
 #, no-c-format
 msgid "Follow these instructions if you wish to compile &krusader;-1.80.0 : <orderedlist> <listitem> <para>Install &apple-x11-url;</para> </listitem> <listitem> <para>nstall fink and <ulink url=\"http://fink.sourceforge.net/faq/usage-fink.php#unstable\">enable fink unstable</ulink>.</para> </listitem> <listitem> <para>Compile and install the &kde; bundle in fink: fink install bundle-kde-ssl (if you get “no package found” the previous step did not succeed).</para> </listitem> <listitem> <para>Use <filename>krusader.info</filename> (provided in the &krusader;-sourcecode) and then copy to <filename>/sw/fink/dists/local/main/finkinfo</filename> .</para> </listitem> <listitem> <para>Compile and install &krusader; in fink: <command>fink install krusader</command> </para> </listitem> <listitem> <para>Start X11 (startx) and in xterm run &krusader; </para> </listitem> </orderedlist> Thanks to <ulink url=\"http://hritcu.wordpress.com/2006/08/10/krusader-on-intel-mac/\">Catalin Hritcu </ulink> for these install instructions."
 msgstr ""
 
 #. Tag: title
-#: installation.docbook:1025
+#: installation.docbook:1023
 #, no-c-format
 msgid "Starting &krusader;"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:1026
+#: installation.docbook:1024
 #, no-c-format
 msgid "Type <userinput> <command>krusader</command> </userinput> (lower case) at a command prompt. You can create shortcut on your desktop or create an entry in the (&kde;) menu. Read the previous page and the &faq-lnk; if &krusader; doesn't start."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:1034
+#: installation.docbook:1032
 #, no-c-format
 msgid "When &krusader; is started from the command line, various options can be specified to modify its behavior."
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:1037
+#: installation.docbook:1035
 #, no-c-format
 msgid ""
       "<prompt>$</prompt> <userinput><command>krusader</command></userinput>
@@ -1126,223 +1126,223 @@ msgid ""
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:1041
+#: installation.docbook:1039
 #, no-c-format
 msgid "Do not worry about the messages you get in the &konsole;. These messages are log messages that can be used for debugging &krusader;."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:1045
+#: installation.docbook:1043
 #, no-c-format
 msgid "You can also use <keycombo action=\"simul\">&Alt; <keycap>F2</keycap></keycombo> to open the Run Command dialog box, type <userinput> <command>krusader</command> </userinput> (lower case) and press &Enter; or click on the <guibutton>Run</guibutton> button."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:1054
+#: installation.docbook:1052
 #, no-c-format
 msgid "If &krusader; is installed by an RPM or DEB package then usually &krusader; can be started from the &kmenu;. &eg; on &Mandrake;-&Linux; 10.0 click on the &kicon; button and choose <emphasis role=\"bold\"> <menuchoice> <guimenuitem>Applications</guimenuitem> <guimenuitem>File tools</guimenuitem> <guimenuitem>&krusader;</guimenuitem> </menuchoice> </emphasis>."
 msgstr ""
 
 #. Tag: title
-#: installation.docbook:1067
+#: installation.docbook:1065
 #, no-c-format
 msgid "Command-line options:"
 msgstr ""
 
 #. Tag: term
-#: installation.docbook:1069
+#: installation.docbook:1067
 #, no-c-format
 msgid "<option>--left</option> <replaceable> &lt;path&gt;</replaceable>"
 msgstr ""
 
 #. Tag: action
-#: installation.docbook:1076
+#: installation.docbook:1074
 #, no-c-format
 msgid "start left panel at &lt;path&gt;"
 msgstr ""
 
 #. Tag: term
-#: installation.docbook:1082
+#: installation.docbook:1080
 #, no-c-format
 msgid "<option>--right</option> <replaceable> &lt;path&gt;</replaceable>"
 msgstr ""
 
 #. Tag: action
-#: installation.docbook:1089
+#: installation.docbook:1087
 #, no-c-format
 msgid "start right panel at &lt;path&gt;"
 msgstr ""
 
 #. Tag: term
-#: installation.docbook:1095
+#: installation.docbook:1093
 #, no-c-format
 msgid "<option>--left</option> <replaceable> &lt;path1&gt;,&lt;path2&gt;,&lt;path3&gt;</replaceable>"
 msgstr ""
 
 #. Tag: action
-#: installation.docbook:1102
+#: installation.docbook:1100
 #, no-c-format
 msgid "start left panel at &lt;path1&gt;,&lt;path2&gt;,&lt;path3&gt;, with tabs."
 msgstr ""
 
 #. Tag: term
-#: installation.docbook:1109
+#: installation.docbook:1107
 #, no-c-format
 msgid "<option>--profile</option> <replaceable> &lt;panel-profile&gt;</replaceable>"
 msgstr ""
 
 #. Tag: action
-#: installation.docbook:1116
+#: installation.docbook:1114
 #, no-c-format
 msgid "load a <link linkend=\"panel_profiles\">panel-profile</link> on startup (this overrides the <link linkend=\"konfig-startup\">default startup profile</link>)."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:1125
+#: installation.docbook:1123
 #, no-c-format
 msgid "Examples:"
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:1126
+#: installation.docbook:1124
 #, no-c-format
 msgid "<prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--left=&lt;path&gt; --right=&lt;path&gt;</replaceable></userinput>"
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:1127
+#: installation.docbook:1125
 #, no-c-format
 msgid "<prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--left=/mnt/cdrom --right=ftp://downloads@myserver.net</replaceable></userinput>"
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:1128
+#: installation.docbook:1126
 #, no-c-format
 msgid "<prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--left=&lt;path1&gt;,&lt;path2&gt; --right=&lt;path1&gt;,&lt;path2&gt;,&lt;path3&gt;</replaceable></userinput>"
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:1129
+#: installation.docbook:1127
 #, no-c-format
 msgid "<prompt>$</prompt> <userinput><command>krusader</command><replaceable>--profile &lt;panel-profile&gt;</replaceable></userinput>"
 msgstr ""
 
 #. Tag: screen
-#: installation.docbook:1130
+#: installation.docbook:1128
 #, no-c-format
 msgid "<prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--profile ftp-managment</replaceable></userinput>"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:1132
+#: installation.docbook:1130
 #, no-c-format
 msgid "The standard &Qt; and &kde; command-line options are available, and can be listed by entering <userinput> <command>krusader</command> <option>--help</option> </userinput>."
 msgstr ""
 
 #. Tag: title
-#: installation.docbook:1140
+#: installation.docbook:1138
 #, no-c-format
 msgid "Other command-line options:"
 msgstr ""
 
 #. Tag: option
-#: installation.docbook:1143
+#: installation.docbook:1141
 #, no-c-format
 msgid "--help-qt"
 msgstr ""
 
 #. Tag: action
-#: installation.docbook:1147
+#: installation.docbook:1145
 #, no-c-format
 msgid "List Qt-specific options"
 msgstr ""
 
 #. Tag: option
-#: installation.docbook:1153
+#: installation.docbook:1151
 #, no-c-format
 msgid "--help-kde"
 msgstr ""
 
 #. Tag: action
-#: installation.docbook:1157
+#: installation.docbook:1155
 #, no-c-format
 msgid "List KDE-specific options"
 msgstr ""
 
 #. Tag: option
-#: installation.docbook:1163
+#: installation.docbook:1161
 #, no-c-format
 msgid "--help-all"
 msgstr ""
 
 #. Tag: action
-#: installation.docbook:1167
+#: installation.docbook:1165
 #, no-c-format
 msgid "List all options"
 msgstr ""
 
 #. Tag: option
-#: installation.docbook:1173
+#: installation.docbook:1171
 #, no-c-format
 msgid "--author"
 msgstr ""
 
 #. Tag: action
-#: installation.docbook:1177
+#: installation.docbook:1175
 #, no-c-format
 msgid "Show the authors names"
 msgstr ""
 
 #. Tag: option
-#: installation.docbook:1183
+#: installation.docbook:1181
 #, no-c-format
 msgid "-v,--version"
 msgstr ""
 
 #. Tag: action
-#: installation.docbook:1187
+#: installation.docbook:1185
 #, no-c-format
 msgid "Show the version number"
 msgstr ""
 
 #. Tag: option
-#: installation.docbook:1193
+#: installation.docbook:1191
 #, no-c-format
 msgid "--license"
 msgstr ""
 
 #. Tag: action
-#: installation.docbook:1197
+#: installation.docbook:1195
 #, no-c-format
 msgid "Show license information"
 msgstr ""
 
 #. Tag: title
-#: installation.docbook:1204
+#: installation.docbook:1202
 #, no-c-format
 msgid "Configuring &krusader;"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:1205
+#: installation.docbook:1203
 #, no-c-format
 msgid "When you run &krusader; for the first time, the &krusader; configuration module <link linkend=\"konfigurator\">Konfigurator</link> will show up and allow you to configure &krusader; as well as detect installed packers and tools. You can always run Konfigurator again from the &settingsmenu-lnk;."
 msgstr ""
 
 #. Tag: title
-#: installation.docbook:1214
+#: installation.docbook:1212
 #, no-c-format
 msgid "Making &krusader; the default file manager"
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:1216
+#: installation.docbook:1214
 #, no-c-format
 msgid "To make &krusader; the default file manager in Gnome, <ulink url=\"http://psychocats.net/ubuntu/nonautilusplease\">click here</ulink> for more information."
 msgstr ""
 
 #. Tag: para
-#: installation.docbook:1219
+#: installation.docbook:1217
 #, no-c-format
 msgid "To make &krusader; the default file manager in &kde;, <ulink url=\"http://groups.google.com/group/krusader-devel/browse_thread/thread/8209d785d3ba0ac6\">click here</ulink> for more information."
 msgstr ""
