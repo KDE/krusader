@@ -199,7 +199,7 @@ Please note: The sed-command is &quot;s/search/repleace/&quot;, so you have to e
   <icon>package</icon>
   <tooltip>Unpack multiple zip archives</tooltip>
   <category>Archive</category>
-  <description>Unpack all selected zip archives into seperate folders</description>
+  <description>Unpack all selected zip archives into separate direcories. The new directory name has the same as the zip archive name.</description>
   <command executionmode="collect_output" >for file in %aList("Selected")%; do dir=`basename $file|sed -e 's/.zip//g'`; unzip $file -d %oPath%/$dir; done</command>
  </action>
  <action name="filename_to_clipboard" >
