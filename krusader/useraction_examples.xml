@@ -194,6 +194,14 @@ Please note: The sed-command is &quot;s/search/repleace/&quot;, so you have to e
   <description>Extract an ar archive using the ar utility, which is used for static libraries (*.a) or debian packages (you can extract debian packages this way without having dpkg installed). Like tar, ar does not use any compression.</description>
   <command executionmode="terminal" >sh -c 'A=%_Ask(&quot;Enter the path, where the archive should be unpacked to:&quot;, &quot;%oPath%&quot;, &quot;ar unpack&quot;)% ; cd &quot;$A&quot;; for i in %aList(&quot;Selected&quot;)% ; do ar x &quot;$i&quot;; done '</command>
  </action>
+ <action name="archive_multi_zip_unpack" >
+  <title>Unpack multiple zip arc&amp;hives</title>
+  <icon>package</icon>
+  <tooltip>Unpack multiple zip archives</tooltip>
+  <category>Archive</category>
+  <description>Unpack all selected zip archives into seperate folders</description>
+  <command executionmode="collect_output" >for file in %aList("Selected")%; do dir=`basename $file|sed -e 's/.zip//g'`; unzip $file -d %oPath%/$dir; done</command>
+ </action>
  <action name="filename_to_clipboard" >
   <title>Copy current item to clipboard</title>
   <icon>editpaste</icon>
