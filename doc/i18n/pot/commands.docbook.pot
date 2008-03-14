@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-1.90.0 2008-03-13\n"
+"Project-Id-Version: Krusader-doc-1.90.0 2008-03-14\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2008-03-13 19:13+0000\n"
+"POT-Creation-Date: 2008-03-14 18:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -1057,641 +1057,653 @@ msgstr ""
 #. Tag: menuchoice
 #: commands.docbook:1273
 #, no-c-format
-msgid "<guimenu>Useractions</guimenu> <guimenuitem>Split large mp3</guimenuitem>"
+msgid "<guimenu>Useractions</guimenu> <guimenuitem>Unpack multiple zip archives</guimenuitem>"
 msgstr ""
 
 #. Tag: para
 #: commands.docbook:1279
 #, no-c-format
+msgid "Unpack all selected zip archives into seperate directories. Useraction contributed by <ulink url=\"http://krusader.org/phpBB/viewtopic.php?t=2059\">Ernest Beinrohr (OERNii), and Jonas B&auml;hr</ulink>."
+msgstr ""
+
+#. Tag: menuchoice
+#: commands.docbook:1288
+#, no-c-format
+msgid "<guimenu>Useractions</guimenu> <guimenuitem>Split large mp3</guimenuitem>"
+msgstr ""
+
+#. Tag: para
+#: commands.docbook:1294
+#, no-c-format
 msgid "Splits large mp3's using <command>mp3splt</command>. Useraction contributed by <ulink url=\"http://www.krusader.org/phpBB/viewtopic.php?t=1010\">Andrew Svet</ulink>."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1287
+#: commands.docbook:1302
 #, no-c-format
 msgid "<guimenu>Useractions</guimenu> <guimenuitem>Encrypt with kgpg</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1293
+#: commands.docbook:1308
 #, no-c-format
 msgid "Encrypts the current file with kpgp (which has to be in your $PATH). Useraction contributed by <ulink url=\"http://www.kde-files.org/content/show.php/Encrypt+with+kgpg?content=32505\">Dirk Eschler</ulink>."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1301
+#: commands.docbook:1316
 #, no-c-format
 msgid "<guimenu>Useractions</guimenu> <guimenuitem>Decrypt with kgpg</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1307
+#: commands.docbook:1322
 #, no-c-format
 msgid "Decrypts the current file with kpgp (which has to be in your $PATH). Useraction contributed by <ulink url=\"http://www.kde-files.org/content/show.php/Decrypt+with+kgpg?content=32506\">Dirk Eschler</ulink>."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1315
+#: commands.docbook:1330
 #, no-c-format
 msgid "<guimenu>Useractions</guimenu> <guimenuitem>Sign with kgpg</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1321
+#: commands.docbook:1336
 #, no-c-format
 msgid "Signs the current file with kpgp (which has to be in your $PATH). Useraction contributed by <ulink url=\"http://www.kde-files.org/content/show.php/Sign+with+kgpg?content=32508\">Dirk Eschler</ulink>."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1329
+#: commands.docbook:1344
 #, no-c-format
 msgid "<guimenu>Useractions</guimenu> <guimenuitem>Verify signature with kgpg</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1335
+#: commands.docbook:1350
 #, no-c-format
 msgid "Tries to verify the signature of the current file with kpgp (which has to be in your $PATH). Useraction contributed by <ulink url=\"http://www.kde-files.org/content/show.php/Verify+signature+with+kgpg?content=32509\">Dirk Eschler</ulink>."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1343
+#: commands.docbook:1358
 #, no-c-format
 msgid "<guimenu>Useractions</guimenu> <guimenuitem>Decode current file created with uuencode.</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1349
+#: commands.docbook:1364
 #, no-c-format
 msgid "Decode a file created with uuencode. Requirements: Sharutils. Useraction contributed by <ulink url=\"http://www.kde-files.org/content/show.php/Uuencode?content=75488\">Andrew Svet</ulink>."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1358
+#: commands.docbook:1373
 #, no-c-format
 msgid "<guimenu>Useractions</guimenu> <guimenuitem>Uuencode current file.</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1364
+#: commands.docbook:1379
 #, no-c-format
 msgid "Uuencode creates an encoded ASCII copy of a file. Requirements: Sharutils. Useraction contributed by <ulink url=\"http://www.kde-files.org/content/show.php/Uuencode?content=75488\">Andrew Svet</ulink>."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1373
+#: commands.docbook:1388
 #, no-c-format
 msgid "<guimenu>Useractions</guimenu> <guimenuitem>Select from file</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1379
+#: commands.docbook:1394
 #, no-c-format
 msgid "A javascript useraction, TC-like &quot;load selection from file&quot;. Use this action on a text file which contains a list of filenames and these files will be selected. Useraction contributed by <ulink url=\"http://www.kde-files.org/content/show.php/Select+from+file?content=54518\">Dirk Eschler</ulink>."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1388
+#: commands.docbook:1403
 #, no-c-format
 msgid "<guimenu>Useractions</guimenu> <guimenuitem>Recode files using GNU recode or iconv</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1394
+#: commands.docbook:1409
 #, no-c-format
 msgid "A javascript useraction, which converts either file names or their content or both from one to another character encoding. It processes all selected files and directories in the active panel (for the directories, recurse their content). You can select, whether a recoded copy is created or if the file is moved (there is no warranty, so don't test move on any important data) Requirements: You need krusader compiled with javascript support and GNU recode installed. Useraction contributed by <ulink url=\"http://www.kde-files.org/content/show.php/recode+files+with+dialog?content=48289\">V&aacute;clav J&uring;za</ulink>."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1406
+#: commands.docbook:1421
 #, no-c-format
 msgid "<guimenu>Useractions</guimenu> <guimenuitem>Mount as root</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1412
+#: commands.docbook:1427
 #, no-c-format
 msgid "A javascript useraction, Mounts a device with root-privileges. Requirements: You need krusader compiled with javascript support. Useraction contributed by <ulink url=\"http://www.kde-files.org/content/show.php/Root+Mount?content=29744\">Jonas B&auml;hr</ulink>."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1421
+#: commands.docbook:1436
 #, no-c-format
 msgid "<guimenu>Useractions</guimenu> <guimenuitem>Calculator</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1427
+#: commands.docbook:1442
 #, no-c-format
 msgid "A javascript useraction, a simple calculator. Requirements: You need krusader compiled with javascript support. Useraction contributed by <ulink url=\"http://www.kde-files.org/content/show.php/Demo+Calc?content=29743\">Jonas B&auml;hr</ulink>."
 msgstr ""
 
 #. Tag: title
-#: commands.docbook:1439
+#: commands.docbook:1454
 #, no-c-format
 msgid "Tools Menu"
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1443
+#: commands.docbook:1458
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>S</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Search</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1453
+#: commands.docbook:1468
 #, no-c-format
 msgid "Opens <link linkend=\"krusearcher\">KruSearcher</link> - the Krusader search module."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1460
+#: commands.docbook:1475
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>L</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Locate</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1471
+#: commands.docbook:1486
 #, no-c-format
 msgid "Opens the &locate-lnk; for fast file searching."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1477
+#: commands.docbook:1492
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>Y</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Synchronize Directories</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1487
+#: commands.docbook:1502
 #, no-c-format
 msgid "The &syncdirs-lnk; function compares the left and right panels and shows the differences between them. After the compare function, you can move files/directories so that they can be synchronized."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1496
+#: commands.docbook:1511
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\">&Alt; <keycap>/</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>MountMan</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1506
+#: commands.docbook:1521
 #, no-c-format
 msgid "Opens <link linkend=\"mount-man\">MountMan</link> - the Mount-Manager."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1513
+#: commands.docbook:1528
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\">&Alt; <keycap>D</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Disk Usage</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1523
+#: commands.docbook:1538
 #, no-c-format
 msgid "Opens &diskusage-lnk;."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1528
+#: commands.docbook:1543
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>N</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>New Net Connection</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1538
+#: commands.docbook:1553
 #, no-c-format
 msgid "Opens the <link linkend=\"remote-connections\">New Network Connection</link>dialog to start a &FTP;, SMB, FISH or SFTP connection to a remote host. If you leave the user name and password fields empty, you will login as anonymous. You can <link linkend=\"bookman\">Bookmark</link> these remote sessions."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1550
+#: commands.docbook:1565
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\"> &Shift;&Ctrl; <keycap>F</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Disconnect From Net</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1561
+#: commands.docbook:1576
 #, no-c-format
 msgid "Ends the <link linkend=\"remote-connections\">remote connection</link> in the active panel and returns to the start-up path."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1570
+#: commands.docbook:1585
 #, no-c-format
 msgid "<guimenu>Tools</guimenu> <guimenuitem>Start Terminal</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1576
+#: commands.docbook:1591
 #, no-c-format
 msgid "Opens a terminal window in the default directory (usually your home directory). You can choose your favorite terminal application in the &konfiggereral-lnk;."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1584
+#: commands.docbook:1599
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\"> <keycap>F2</keycap> </keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Start Terminal Here</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1595
+#: commands.docbook:1610
 #, no-c-format
 msgid "Opens a terminal window in the currently browsed directory of the active panel. You can choose your favorite terminal application in the &konfiggereral-lnk;."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1604
+#: commands.docbook:1619
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\">&Alt; <keycap>K</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Start Root Mode Krusader</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1614
+#: commands.docbook:1629
 #, no-c-format
 msgid "Starts &krusader; in &rootmode-lnk; at the same location."
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1617
+#: commands.docbook:1632
 #, no-c-format
 msgid "Be careful when using &krusader; with ROOT PRIVILEGES."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1625
+#: commands.docbook:1640
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\"> &Alt;&Ctrl; <keycap>J</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Javascript Console</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1636
+#: commands.docbook:1651
 #, no-c-format
 msgid "Opens the <link linkend=\"javascript_console\">Javascript Console</link>."
 msgstr ""
 
 #. Tag: title
-#: commands.docbook:1663
+#: commands.docbook:1678
 #, no-c-format
 msgid "Settings Menu"
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1667
+#: commands.docbook:1682
 #, no-c-format
 msgid "<guimenu>View</guimenu> <guimenuitem>Show Toolbar</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1673
+#: commands.docbook:1688
 #, no-c-format
 msgid "Shows the &main-toolbar-lnk; if checked."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1679
+#: commands.docbook:1694
 #, no-c-format
 msgid "<guimenu>View</guimenu> <guimenuitem>Show Actions Toolbar</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1685
+#: commands.docbook:1700
 #, no-c-format
 msgid "Shows the &actions-toolbar-lnk; if checked."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1691
+#: commands.docbook:1706
 #, no-c-format
 msgid "<guimenu>View</guimenu> <guimenuitem>Show Statusbar</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1697
+#: commands.docbook:1712
 #, no-c-format
 msgid "Shows the <link linkend=\"mainwindow\">Statusbar</link> if chosen."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1704
+#: commands.docbook:1719
 #, no-c-format
 msgid "<guimenu>View</guimenu> <guimenuitem>Hide Statusbar</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1710
+#: commands.docbook:1725
 #, no-c-format
 msgid "Hides the <link linkend=\"mainwindow\">Statusbar</link> if chosen."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1717
+#: commands.docbook:1732
 #, no-c-format
 msgid "<guimenu>View</guimenu> <guimenuitem>Show FN Keys bar</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1723
+#: commands.docbook:1738
 #, no-c-format
 msgid "Shows the &fnkeybar-lnk; if checked."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1729
+#: commands.docbook:1744
 #, no-c-format
 msgid "<guimenu>View</guimenu> <guimenuitem>Show Command Line</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1735
+#: commands.docbook:1750
 #, no-c-format
 msgid "Shows the <link linkend=\"cmdline\">Command Line</link> if checked."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1742
+#: commands.docbook:1757
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\"> &Alt;&Ctrl; <keycap>T</keycap></keycombo> </shortcut> <guimenu>View</guimenu> <guimenuitem>Show Terminal Emulator</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1753
+#: commands.docbook:1768
 #, no-c-format
 msgid "Show the <link linkend=\"cmdline\">Terminal Emulator</link> if checked."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1760
+#: commands.docbook:1775
 #, no-c-format
 msgid "<guimenu>Settings</guimenu> <guimenuitem>Configure Shortcuts</guimenuitem>"
 msgstr ""
 
 #. Tag: primary
-#: commands.docbook:1767
+#: commands.docbook:1782
 #, no-c-format
 msgid "Configure"
 msgstr ""
 
 #. Tag: secondary
-#: commands.docbook:1768
+#: commands.docbook:1783
 #, no-c-format
 msgid "Shortcuts"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1770
+#: commands.docbook:1785
 #, no-c-format
 msgid "Opens a dialog which allows you to configure the &krusader; key bindings."
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1772
+#: commands.docbook:1787
 #, no-c-format
 msgid "With the <guibutton>Import shortcuts</guibutton> and <guibutton>Export shortcuts</guibutton> buttons you can load and save a Key-binding profile. This allows &krusader; to have the &tcmd;, &mc;, foo-commander, or your custom Key-bindings. The only limitation is that global &kde; key-bindings and some &krusader; key-bindings can not be changed yet, as well as some features in foo-commander that we either do not have or need. The Key-bindings are stored in <filename>$KDEDIR/share/apps/krusader</filename>, <filename>foo.keymap.info</filename> contains a description, <filename>foo.keymap</filename> is an ini file that holds the Key-bindings. Until &krusader;-1.70.1 this was a binary file, &krusader; is backwards compatible for importing this legacy binary format. If a <filename>*.keymap.info</filename> text file exists, &krusader; will display it, showing additional information regarding the loaded Key-bindings file. Here you have a chance to exit without importing the proposed Key-bindings file."
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1796
+#: commands.docbook:1811
 #, no-c-format
 msgid "A &tcmd; Key-bindings file is provided. Please <link linkend=\"help_krusader\"> upload your favorite Key-bindings schemes</link> so that they become available for the &krusader; community. Thanks!"
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1807
+#: commands.docbook:1822
 #, no-c-format
 msgid "<guimenu>Settings</guimenu> <guimenuitem>Configure Toolbars</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1813
+#: commands.docbook:1828
 #, no-c-format
 msgid "Opens a dialog which allows you to configure the &main-toolbar-lnk; or the &actions-toolbar-lnk;. You can add action buttons of your favourite &useractions-lnk; to the desired toolbar."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1822
+#: commands.docbook:1837
 #, no-c-format
 msgid "<guimenu>Settings</guimenu> <guimenuitem>Configure &krusader;</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1829
+#: commands.docbook:1844
 #, no-c-format
 msgid "Opens <link linkend=\"konfigurator\">Konfigurator</link> - the &krusader; configuration center."
 msgstr ""
 
 #. Tag: title
-#: commands.docbook:1837
+#: commands.docbook:1852
 #, no-c-format
 msgid "Window Menu"
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1841
+#: commands.docbook:1856
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\"> &Alt;&Ctrl; <keycap>N</keycap></keycombo> </shortcut> <guimenu>Window</guimenu> <guimenuitem>New Tab</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1852
+#: commands.docbook:1867
 #, no-c-format
 msgid "Opens a new tab in the active panel."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1857
+#: commands.docbook:1872
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\"> &Alt;&Ctrl;&Shift; <keycap>N</keycap></keycombo> </shortcut> <guimenu>Window</guimenu> <guimenuitem>Duplicate Current Tab</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1868
+#: commands.docbook:1883
 #, no-c-format
 msgid "Opens a new tab that is a duplicate of the active tab in the active panel."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1874
+#: commands.docbook:1889
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>W</keycap></keycombo> </shortcut> <guimenu>Window</guimenu> <guimenuitem>Close Current Tab</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1884
+#: commands.docbook:1899
 #, no-c-format
 msgid "Closes the current tab in the active panel. This command is only available if there is more than one tab in the active panel."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1891
+#: commands.docbook:1906
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\">&Shift; <keycap>Right</keycap></keycombo> </shortcut> <guimenu>Window</guimenu> <guimenuitem>Next Tab</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1901
+#: commands.docbook:1916
 #, no-c-format
 msgid "Navigates to the next tab in the active panel. This command is only available if there is more than one tab in the active panel."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1908
+#: commands.docbook:1923
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\">&Shift; <keycap>Left</keycap></keycombo> </shortcut> <guimenu>Window</guimenu> <guimenuitem>Previous Tab</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1918
+#: commands.docbook:1933
 #, no-c-format
 msgid "Navigates to the previous tab in the active panel. This command is only available if there is more than one tab in the active panel."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1925
+#: commands.docbook:1940
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\">&Alt; <keycap>L</keycap></keycombo> </shortcut> <guimenu>Window</guimenu> <guimenuitem>Profiles</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1935
+#: commands.docbook:1950
 #, no-c-format
 msgid "Opens a menu where <link linkend=\"panel_profiles\">Panel profiles</link> can be saved and restored."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1942
+#: commands.docbook:1957
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>U</keycap></keycombo> </shortcut> <guimenu>Window</guimenu> <guimenuitem>Swap Panels</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1952
+#: commands.docbook:1967
 #, no-c-format
 msgid "The left panel will become the right panel and vice versa, only the current tabs will be swapped."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1958
+#: commands.docbook:1973
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>U</keycap></keycombo> </shortcut> <guimenu>Window</guimenu> <guimenuitem>Swap Sides</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1969
+#: commands.docbook:1984
 #, no-c-format
 msgid "The complete left panel will become the right panel and vice versa, and all tabs will be swapped."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1975
+#: commands.docbook:1990
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\"> &Alt;&Ctrl; <keycap>r</keycap></keycombo> </shortcut> <guimenu>Window</guimenu> <guimenuitem>Vertical Mode</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:1986
+#: commands.docbook:2001
 #, no-c-format
 msgid "Toggles the &list-panel-lnk; between horizontal and vertical mode."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:1992
+#: commands.docbook:2007
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>F</keycap></keycombo> </shortcut> <guimenu>Window</guimenu> <guimenuitem>Toggle Fullwidget Terminal Emulator</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:2003
+#: commands.docbook:2018
 #, no-c-format
 msgid "Toggles full screen mode of the terminal editor. This option is only available when \"Show Terminal Emulator\" is activated."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:2010
+#: commands.docbook:2025
 #, no-c-format
 msgid "<guimenu>Window</guimenu> <guimenuitem>Save Position</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:2016
+#: commands.docbook:2031
 #, no-c-format
 msgid "Saves the current size and position of the &krusader; main window. This action can be automated with <guilabel>\"Save settings on exit\"</guilabel> in &konfigstartpg-lnk;"
 msgstr ""
 
 #. Tag: title
-#: commands.docbook:2026
+#: commands.docbook:2041
 #, no-c-format
 msgid "Help Menu"
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:2030
+#: commands.docbook:2045
 #, no-c-format
 msgid "<guimenu>Help</guimenu> <guimenuitem>Krusader Handbook</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:2036
+#: commands.docbook:2051
 #, no-c-format
 msgid "Opens the &kde; Help system starting at the &krusader; help pages (this document)."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:2043
+#: commands.docbook:2058
 #, no-c-format
 msgid "<shortcut> <keycombo action=\"simul\">&Shift; <keycap>F1</keycap></keycombo> </shortcut> <guimenu>Help</guimenu> <guimenuitem>What's This?</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:2053
+#: commands.docbook:2068
 #, no-c-format
 msgid "The &whatsthis-url; help function changes the mouse cursor to a combination arrow and question mark. Clicking on items within &krusader; will open a help window (if one exists for that particular item) explaining the item function. Use this feature if you want to know more about a specific item. A right-click on an item will also open the &whatsthis-url; help."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:2066
+#: commands.docbook:2081
 #, no-c-format
 msgid "<guimenu>Help</guimenu> <guimenuitem>Report Bug</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:2072
+#: commands.docbook:2087
 #, no-c-format
 msgid "Opens the bug report dialog for sending bug reports via mail."
 msgstr ""
 
 #. Tag: remark
-#: commands.docbook:2076
+#: commands.docbook:2091
 #, no-c-format
 msgid "If you have bugs to report please do not use &kde;'s bugzilla http://bugs.kde.org/, &kde;'s Bug Tracking System. We use Sourceforge.net for reporting and managing our &faqbugreports-lnk;."
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:2083
+#: commands.docbook:2098
 #, no-c-format
 msgid "Wishes, patches, and comments are always <link linkend=\"faqg_wish\">welcome</link>."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:2090
+#: commands.docbook:2105
 #, no-c-format
 msgid "<guimenu>Help</guimenu> <guimenuitem>About Krusader</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:2096
+#: commands.docbook:2111
 #, no-c-format
 msgid "Displays version, author, and license information."
 msgstr ""
 
 #. Tag: menuchoice
-#: commands.docbook:2102
+#: commands.docbook:2117
 #, no-c-format
 msgid "<guimenu>Help</guimenu> <guimenuitem>About KDE</guimenuitem>"
 msgstr ""
 
 #. Tag: para
-#: commands.docbook:2108
+#: commands.docbook:2123
 #, no-c-format
 msgid "Displays the &kde; version and basic information."
 msgstr ""
