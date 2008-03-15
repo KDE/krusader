@@ -33,6 +33,7 @@
 #include "../krusader.h"
 #include <qtabwidget.h>
 #include <QGridLayout>
+#include <QScrollArea>
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kurl.h>
@@ -51,7 +52,10 @@ KgDependencies::KgDependencies( bool first, QWidget* parent ) :
   tabWidget = new QTabWidget( this );
 
   QWidget *general_tab = new QWidget( tabWidget );
-  tabWidget->insertTab( general_tab, i18n( "General" ) );
+  QScrollArea* general_scroll = new QScrollArea( tabWidget );
+  general_scroll->setWidget( general_tab ); // this also sets scrollacrea as the new parent for widget
+  general_scroll->setWidgetResizable( true ); // let the widget use every space available
+  tabWidget->insertTab( general_scroll, i18n( "General" ) );
 
   QGridLayout *pathsGrid = new QGridLayout( general_tab );
   pathsGrid->setSpacing( 6 );
@@ -73,7 +77,10 @@ KgDependencies::KgDependencies( bool first, QWidget* parent ) :
 
   //  ---------------------------- PACKERS TAB -------------------------------------
   QWidget *packers_tab = new QWidget( tabWidget );
-  tabWidget->insertTab( packers_tab, i18n( "Packers" ) );
+  QScrollArea* packers_scroll = new QScrollArea( tabWidget );
+  packers_scroll->setWidget( packers_tab ); // this also sets scrollacrea as the new parent for widget
+  packers_scroll->setWidgetResizable( true ); // let the widget use every space available
+  tabWidget->insertTab( packers_scroll, i18n( "Packers" ) );
 
   QGridLayout *archGrid1 = new QGridLayout( packers_tab );
   archGrid1->setSpacing( 6 );
@@ -97,7 +104,10 @@ KgDependencies::KgDependencies( bool first, QWidget* parent ) :
 
   //  ---------------------------- CHECKSUM TAB -------------------------------------
   QWidget *checksum_tab = new QWidget( tabWidget );
-  tabWidget->insertTab( checksum_tab, i18n( "Checksum Utilities" ) );
+  QScrollArea* checksum_scroll = new QScrollArea( tabWidget );
+  checksum_scroll->setWidget( checksum_tab ); // this also sets scrollacrea as the new parent for widget
+  checksum_scroll->setWidgetResizable( true ); // let the widget use every space available
+  tabWidget->insertTab( checksum_scroll, i18n( "Checksum Utilities" ) );
 
   QGridLayout *archGrid2 = new QGridLayout( checksum_tab );
   archGrid2->setSpacing( 6 );
