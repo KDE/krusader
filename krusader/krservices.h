@@ -23,6 +23,7 @@
 #include <qmap.h>
 
 class QTextStream;
+class QFile;
 
 /**
   *@author Shie Erlich & Rafi Yanai
@@ -40,6 +41,7 @@ public:
 	static QString      registerdProtocol(QString mimetype);
 	static void         clearProtocolCache();
 	static bool         fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines=false);
+	static bool         fileToStringList(QFile *file, QStringList& target, bool keepEmptyLines=false);
 	static QString		  quote( QString name );
 	static QStringList  quote( const QStringList& names );
 

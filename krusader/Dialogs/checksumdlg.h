@@ -3,7 +3,7 @@
 
 #include <kdialog.h>
 
-class K3TempFile;
+class KTemporaryFile;
 extern void initChecksumModule();
 
 class CreateChecksumDlg: public KDialog {
@@ -11,7 +11,7 @@ public:
 	CreateChecksumDlg(const QStringList& files, bool containFolders, const QString& path);
 
 private:
-	K3TempFile *tmpOut, *tmpErr;
+	KTemporaryFile *tmpOut, *tmpErr;
 };
 
 
@@ -26,7 +26,7 @@ protected:
 	bool verifyChecksumFile(QString path, QString& extension);
 
 private:
-	K3TempFile *tmpOut, *tmpErr;
+	KTemporaryFile *tmpOut, *tmpErr;
 };
 
 

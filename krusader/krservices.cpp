@@ -153,6 +153,11 @@ bool KrServices::fileToStringList(QTextStream *stream, QStringList& target, bool
 	return true;
 }
 
+bool KrServices::fileToStringList(QFile *file, QStringList& target, bool keepEmptyLines) {
+  QTextStream stream(file);
+  return fileToStringList(&stream, target, keepEmptyLines);
+}
+
 QString KrServices::quote( QString name ) {
   if( !name.contains( '\'' ) )
     return "'" + name + "'";
