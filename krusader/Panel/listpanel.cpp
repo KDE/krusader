@@ -193,6 +193,8 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
 
    QWidget * hboxWidget = new QWidget( this );
    QHBoxLayout * hbox = new QHBoxLayout( hboxWidget );
+   hbox->setContentsMargins( 0, 0, 0, 0 );
+   hbox->setSpacing( 0 );
 
 	// clear-origin button
 	bool clearButton = group.readEntry("Clear Location Bar Visible", _ClearLocation);

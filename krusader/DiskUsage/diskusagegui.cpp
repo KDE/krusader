@@ -56,6 +56,7 @@ DiskUsageGUI::DiskUsageGUI( KUrl openDir, QWidget* parent )
   
   QWidget *duTools = new QWidget( this );
   QHBoxLayout *duHBox = new QHBoxLayout( duTools );
+  duHBox->setContentsMargins( 0, 0, 0, 0 );
   duTools->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
     
   btnNewSearch = new QToolButton( duTools );

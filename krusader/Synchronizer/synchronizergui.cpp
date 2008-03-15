@@ -1193,6 +1193,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   QWidget *optionWidget  = new QWidget( compareDirs );
   QHBoxLayout *optionBox = new QHBoxLayout( optionWidget );
+  optionBox->setContentsMargins( 0, 0, 0, 0 );
 
   QWidget *optionGridWidget = new QWidget( optionWidget );
   QGridLayout *optionGrid = new QGridLayout( optionGridWidget );

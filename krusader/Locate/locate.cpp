@@ -126,6 +126,7 @@ LocateDlg::LocateDlg() : KDialog( 0 ), isFeedToListBox( false )
   
   QWidget *hboxWidget = new QWidget( widget );
   QHBoxLayout *hbox = new QHBoxLayout( hboxWidget );
+  hbox->setContentsMargins( 0, 0, 0, 0 );
 
   QLabel *label = new QLabel( i18n( "Search for:" ), hboxWidget );
   hbox->addWidget( label );
@@ -147,6 +148,7 @@ LocateDlg::LocateDlg() : KDialog( 0 ), isFeedToListBox( false )
 
   QWidget *hboxWidget2 = new QWidget( widget );
   QHBoxLayout * hbox2 = new QHBoxLayout( hboxWidget2 );
+  hbox2->setContentsMargins( 0, 0, 0, 0 );
 
   QSpacerItem* spacer = new QSpacerItem( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
   hbox2->addItem( spacer );
