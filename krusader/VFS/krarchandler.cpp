@@ -29,7 +29,6 @@
 ***************************************************************************/ 
 // QT includes
 // KDE includes
-#include <k3tempfile.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kio/passworddialog.h> 
