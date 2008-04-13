@@ -42,7 +42,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QHideEvent>
 #include <QEvent>
 #include <QShowEvent>
-#include <k3urldrag.h>
+#include <QDrag>
+#include <QMimeData>
 #include <q3header.h>
 #include <qtimer.h>
 #include <qregexp.h> 
@@ -839,8 +840,8 @@ void ListPanel::handleDropOnView( QDropEvent *e, QWidget *widget ) {
    }
    //////////////////////////////////////////////////////////////////////////////
    // decode the data
-   KUrl::List URLs;
-   if ( !K3URLDrag::decode( e, URLs ) ) {
+   KUrl::List URLs = KUrl::List::fromMimeData( e->mimeData() );
+   if ( URLs.isEmpty() ) {
       e->ignore(); // not for us to handle!
       return ;
    }
@@ -910,9 +911,13 @@ void ListPanel::startDragging( QStringList names, QPixmap px ) {
       return ;
    }
 
-	K3URLDrag *d = new K3URLDrag(*urls, this);
-   d->setPixmap( px, QPoint( -7, 0 ) );
-   d->dragCopy();
+   QDrag *drag = new QDrag(this);
+   QMimeData *mimeData = new QMimeData;
+   mimeData->setImageData( px );
+   urls->populateMimeData(mimeData);
+   drag->setMimeData(mimeData);
+
+   drag->start();
 
    delete urls; // free memory
 }

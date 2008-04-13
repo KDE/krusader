@@ -17,7 +17,6 @@ set( Panel_SRCS
 	panelfunc.cpp 
 	listpanel.cpp 
 	panelpopup.cpp 
-	krdrag.cpp 
 	krselectionmode.cpp 
 	krbriefview.cpp 
 	krbriefviewitem.cpp )

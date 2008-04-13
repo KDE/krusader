@@ -61,7 +61,8 @@
 #include <qregexp.h>
 #include <qdir.h>
 #include <qclipboard.h>
-#include <k3urldrag.h>
+#include <QDrag>
+#include <QMimeData>
 #include <qfont.h>
 
 // these are the values that will exist in the menu
@@ -98,9 +99,13 @@ public:
     if( urls.count() == 0 )
       return;
 
-    K3URLDrag *d = new K3URLDrag(urls, this);
-    d->setPixmap( FL_LOADICON( "file" ), QPoint( -7, 0 ) );
-    d->dragCopy();
+
+    QDrag *drag = new QDrag(this);
+    QMimeData *mimeData = new QMimeData;
+    mimeData->setImageData( FL_LOADICON( "file" ) );
+    urls.populateMimeData(mimeData);
+    drag->setMimeData(mimeData);
+    drag->start();
   }
 };
 
@@ -566,9 +571,11 @@ void LocateDlg::operate( QTreeWidgetItem *item, int task )
       if( urls.count() == 0 )
         return;
 
-      K3URLDrag *d = new K3URLDrag(urls, this);
-      d->setPixmap( FL_LOADICON( "file" ), QPoint( -7, 0 ) );
-      QApplication::clipboard()->setData( d );
+      QMimeData *mimeData = new QMimeData;
+      mimeData->setImageData( FL_LOADICON( "file" ) );
+      urls.populateMimeData(mimeData);
+
+      QApplication::clipboard()->setMimeData( mimeData, QClipboard::Clipboard );
     }
     break;
   }

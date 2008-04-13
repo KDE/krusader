@@ -57,7 +57,8 @@
 #include <qcursor.h>
 #include <qclipboard.h>
 #include <qheaderview.h>
-#include <k3urldrag.h>
+#include <QDrag>
+#include <QMimeData>
 
 class SearchListView : public KrTreeWidget
 {
@@ -130,9 +131,12 @@ public:
     if( urls.count() == 0 )
       return;
 
-    K3URLDrag *d = new K3URLDrag(urls, this);
-    d->setPixmap( FL_LOADICON( "file" ), QPoint( -7, 0 ) );
-    d->dragCopy();
+    QDrag *drag = new QDrag(this);
+    QMimeData *mimeData = new QMimeData;
+    mimeData->setImageData( FL_LOADICON( "file" ) );
+    urls.populateMimeData(mimeData);
+    drag->setMimeData(mimeData);
+    drag->start();
   }
 };
 
@@ -675,9 +679,11 @@ void KrSearchDialog::copyToClipBoard()
   if( urls.count() == 0 )
     return;
 
-  K3URLDrag *d = new K3URLDrag(urls, this);
-  d->setPixmap( FL_LOADICON( "file" ), QPoint( -7, 0 ) );
-  QApplication::clipboard()->setData( d );
+  QMimeData *mimeData = new QMimeData;
+  mimeData->setImageData( FL_LOADICON( "file" ) );
+  urls.populateMimeData(mimeData);
+
+  QApplication::clipboard()->setMimeData( mimeData, QClipboard::Clipboard );
 }
 
 #include "krsearchdialog.moc"

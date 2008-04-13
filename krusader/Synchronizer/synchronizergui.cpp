@@ -62,7 +62,8 @@
 #include <qheaderview.h>
 #include <qspinbox.h>
 #include <kinputdialog.h>
-#include <k3urldrag.h>
+#include <QDrag>
+#include <QMimeData>
 #include <qclipboard.h>
 #include <qhash.h>
 
@@ -1070,9 +1071,12 @@ public:
     if( urls.count() == 0 )
       return;
 
-    K3URLDrag *d = new K3URLDrag(urls, this);
-    d->setPixmap( FL_LOADICON( isLeft ? "2leftarrow" : "2rightarrow" ), QPoint( -7, 0 ) );
-    d->dragCopy();
+    QDrag *drag = new QDrag(this);
+    QMimeData *mimeData = new QMimeData;
+    mimeData->setImageData( FL_LOADICON( isLeft ? "2leftarrow" : "2rightarrow" ) );
+    urls.populateMimeData(mimeData);
+    drag->setMimeData(mimeData);
+    drag->start();
   }
 };
 
@@ -2508,9 +2512,11 @@ void SynchronizerGUI::copyToClipboard( bool isLeft )
   if( urls.count() == 0 )
     return;
 
-  K3URLDrag *d = new K3URLDrag(urls, this);
-  d->setPixmap( FL_LOADICON( isLeft ? "2leftarrow" : "2rightarrow" ), QPoint( -7, 0 ) );
-  QApplication::clipboard()->setData( d );
+  QMimeData *mimeData = new QMimeData;
+  mimeData->setImageData( FL_LOADICON( isLeft ? "2leftarrow" : "2rightarrow" ) );
+  urls.populateMimeData(mimeData);
+
+  QApplication::clipboard()->setMimeData( mimeData, QClipboard::Clipboard );
 }
 
 #include "synchronizergui.moc"

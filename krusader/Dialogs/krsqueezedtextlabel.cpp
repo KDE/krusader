@@ -1,11 +1,11 @@
 #include "krsqueezedtextlabel.h"
 #include <kstringhandler.h>
-#include <k3urldrag.h>
 #include <qtooltip.h>
 #include <QMouseEvent>
 #include <QDropEvent>
 #include <QDragEnterEvent>
 #include <QLabel>
+#include <kurl.h>
 
 KrSqueezedTextLabel::KrSqueezedTextLabel(QWidget *parent):
   KSqueezedTextLabel(parent), acceptDrops( false ), _index(-1), _length(-1) {
@@ -31,8 +31,10 @@ void KrSqueezedTextLabel::dropEvent(QDropEvent *e) {
 }
 
 void KrSqueezedTextLabel::dragEnterEvent(QDragEnterEvent *e) {
-  if( acceptDrops )
-    e->accept( K3URLDrag::canDecode( e ) );
+  if( acceptDrops ) {
+    KUrl::List URLs = KUrl::List::fromMimeData( e->mimeData() );
+    e->accept( !URLs.isEmpty() );
+  }
   else
     KSqueezedTextLabel::dragEnterEvent( e );
 }

@@ -76,8 +76,8 @@ A
 #include "../krservices.h"
 #include "../GUI/syncbrowsebutton.h"
 #include "../Queue/queue_mgr.h"
-#include "krdrag.h"
-#include <k3urldrag.h>
+#include <QDrag>
+#include <QMimeData>
 
 //////////////////////////////////////////////////////////
 //////          ----------      List Panel -------------                ////////
@@ -1164,8 +1164,11 @@ void ListPanelFunc::copyToClipboard( bool move ) {
 
 	KUrl::List* fileUrls = files() ->vfs_getFiles( &fileNames );
 	if ( fileUrls ) {
-		KRDrag * urlData = KRDrag::newDrag( *fileUrls, move, krApp->mainView );
-		QApplication::clipboard() ->setData( urlData );
+		QMimeData *mimeData = new QMimeData;
+		mimeData->setData( "application/x-kde-cutselection", move ? "1" : "0");
+		fileUrls->populateMimeData(mimeData);
+		
+		QApplication::clipboard()->setMimeData( mimeData, QClipboard::Clipboard );
 		
 		if( move && files()->vfs_getType() == vfs::VIRT )
 			( static_cast<virt_vfs*>( files() ) )->vfs_removeFiles( &fileNames );
@@ -1176,17 +1179,23 @@ void ListPanelFunc::copyToClipboard( bool move ) {
 
 void ListPanelFunc::pasteFromClipboard() {
 	QClipboard * cb = QApplication::clipboard();
-	QMimeSource * data = cb->data();
-	KUrl::List urls;
-	if ( K3URLDrag::canDecode( data ) ) {
-		K3URLDrag::decode( data, urls );
-		bool cutSelection = KRDrag::decodeIsCutSelection( data );
-
-		KUrl destUrl = panel->virtualPath();
-
-		files()->vfs_addFiles( &urls, cutSelection ? KIO::CopyJob::Move : KIO::CopyJob::Copy, otherFunc()->files(),
-			"", PM_DEFAULT );
+	
+	bool move = false;
+	const QMimeData *data = cb->mimeData();
+	if ( data->hasFormat( "application/x-kde-cutselection" ) ) {
+		QByteArray a = data->data( "application/x-kde-cutselection" );
+		if ( !a.isEmpty() )
+			move = (a.at(0) == '1'); // true if 1
 	}
+	
+	KUrl::List urls = KUrl::List::fromMimeData( data );
+	if ( urls.isEmpty() )
+		return ;
+	
+	KUrl destUrl = panel->virtualPath();
+	
+	files()->vfs_addFiles( &urls, move ? KIO::CopyJob::Move : KIO::CopyJob::Copy, otherFunc()->files(),
+		"", PM_DEFAULT );
 }
 
 #include "panelfunc.moc"
