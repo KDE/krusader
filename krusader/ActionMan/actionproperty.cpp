@@ -145,6 +145,7 @@ void ActionProperty::updateGUI( KrAction *action ) {
    leTooltip->setText( _action->toolTip() );
    textDescription->setText( _action->whatsThis() );
    leCommandline->setText( _action->command() );
+   leCommandline->home(false);
    leStartpath->setText( _action->startpath() );
    KeyButtonShortcut->setKeySequence( _action->shortcut().primary() );
 
