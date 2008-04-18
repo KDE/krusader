@@ -66,11 +66,9 @@
 using namespace KIO;
 extern "C" {
 
-int kdemain( int argc, char **argv ){
+int KDE_EXPORT kdemain( int argc, char **argv ){
 	KComponentData instance( "kio_krarc", "krusader" );
-	KLocale::setMainCatalog( "krusader" );
-	printf("KRARC KDEMAIN");
-
+	
 	if (argc != 4) {
 		kWarning() << "Usage: kio_krarc  protocol domain-socket1 domain-socket2" << endl;
 		exit(-1);
@@ -87,8 +85,6 @@ int kdemain( int argc, char **argv ){
 kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
 	: SlaveBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(0L),extArcReady(false),
 		password(QString()) {
-	
-	printf("KRARC constructor");
 	
 	krConfig = new KConfig( "krusaderrc" );
 	confGrp = KConfigGroup( krConfig, "Dependencies" );
