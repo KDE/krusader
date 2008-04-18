@@ -26,7 +26,7 @@ using namespace KIO;
 extern "C" { int KDE_EXPORT kdemain( int argc, char **argv ); }
 
 int kdemain( int argc, char **argv ) {
-	KInstance instance( "kio_tar" );
+	KInstance instance( "kio_tar", "krusader" );
 
 	kDebug( 7109 ) << "Starting " << getpid() << endl;
 
