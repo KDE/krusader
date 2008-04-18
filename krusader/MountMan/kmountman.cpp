@@ -206,12 +206,12 @@ void KMountMan::eject( QString mntPoint ) {
           "CantExecuteEjectWarning" ); // don't-show-again config-key
 }
 
-// returns true if the path is an ejectable mount point (at the moment CDROM)
+// returns true if the path is an ejectable mount point (at the moment CDROM and DVD)
 bool KMountMan::ejectable( QString path ) {
 #if !defined(BSD) && !defined(_OS_SOLARIS_)
 	KMountPoint::List possible = KMountPoint::possibleMountPoints();
 	KSharedPtr<KMountPoint> m = findInListByMntPoint(possible, path);
-	if (m && (m->mountType()=="iso9660" || m->mountedFrom().left(7)=="/dev/cd"))
+	if (m && (m->mountType()=="iso9660" || m->mountedFrom().left(7)=="/dev/cd" || m->mountedFrom().left(8)=="/dev/dvd"))
 			return KrServices::cmdExist( "eject" );
 #endif
 
