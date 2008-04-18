@@ -123,6 +123,7 @@ int main(int argc, char *argv[]) {
   aboutData.addAuthor("Karai Csaba", "Developer", "ckarai@users.sourceforge.net", 0);
   aboutData.addAuthor("Heiner Eichmann","Developer", "h.eichmann@gmx.de", 0);  
   aboutData.addAuthor("Jonas Baehr", "Developer", "jonas.baehr@web.de", 0);
+  aboutData.addAuthor("Václav Juza", "Developer", "vaclavjuza@gmail.com", 0);
   aboutData.addAuthor("Dirk Eschler", "Webmaster and i18n coordinator", "deschler@users.sourceforge.net", 0);
   aboutData.addAuthor("Frank Schoolmeesters", "Documentation and marketing coordinator", "frank_schoolmeesters@yahoo.com", 0);
   aboutData.addAuthor("Richard Holt", "Documentation & Proofing", "richard.holt@gmail.com", 0);
