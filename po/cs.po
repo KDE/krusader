@@ -1,25 +1,23 @@
+# translation of cs-new.po to
 # Translation of krusader.pot to Czech
-#
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
 # Copyright (C) 2004-2007, Krusader Krew
-# This file is distributed under the same license as the Krusader package
-#
+# This file is distributed under the same license as the Krusader package#
 # Martin Sixta <lukumo84@seznam.cz>, 2003, 2004.
-# Václav Jůza <vaclavjuza@seznam.cz>, 2005, 2006, 2007.
+# Václav Jůza <vaclavjuza@seznam.cz>, 2005, 2006, 2007, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.80.0-beta2\n"
+"Project-Id-Version: cs-new\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2008-04-16 22:49+0200\n"
-"PO-Revision-Date: 2007-03-27 20:25+0200\n"
-"Last-Translator: Vaclav Juza <vaclavjuza@seznam.cz>\n"
-"Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
+"PO-Revision-Date: 2008-04-17 13:12+0200\n"
+"Last-Translator: \n"
+"Language-Team:  <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n% "
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: Dialogs/krpleasewait.cpp:49
 msgid "Krusader::Wait"
@@ -174,8 +172,7 @@ msgstr "Import starého formátu dokončen"
 
 #: Dialogs/krkeydialog.cpp:135
 #, qt-format
-msgid ""
-"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
 msgstr "<qt>Soubor <b>%1</b> již existuje. Opravdu ho chcete přepsat?</qt>"
 
 #: Dialogs/krkeydialog.cpp:136 Dialogs/checksumdlg.cpp:630
@@ -734,9 +731,8 @@ msgid "Create in:"
 msgstr "Vytvořit v:"
 
 #: BookMan/kraddbookmarkdlg.cpp:74
-#, fuzzy
 msgid "Folders"
-msgstr "Složka..."
+msgstr "Složky"
 
 #: BookMan/kraddbookmarkdlg.cpp:118
 msgid "Folder name:"
@@ -765,8 +761,7 @@ msgstr "&Filtr souborů:"
 #: Synchronizer/synchronizergui.cpp:1160
 #: Synchronizer/synchronizergui.cpp~:1160
 msgid "The left base directory used during the synchronisation process."
-msgstr ""
-"Během synchronizačního procesu se použil základní adresář levého panelu."
+msgstr "Během synchronizačního procesu se použil základní adresář levého panelu."
 
 #: Synchronizer/synchronizergui.cpp:1177
 #: Synchronizer/synchronizergui.cpp~:1177 Filter/generalfilter.cpp:80
@@ -807,8 +802,7 @@ msgstr ""
 #: Synchronizer/synchronizergui.cpp:1193
 #: Synchronizer/synchronizergui.cpp~:1193
 msgid "The right base directory used during the synchronisation process."
-msgstr ""
-"Během synchronizačního procesu se použil základní adresář pravého panelu."
+msgstr "Během synchronizačního procesu se použil základní adresář pravého panelu."
 
 #: Synchronizer/synchronizergui.cpp:1207
 #: Synchronizer/synchronizergui.cpp~:1207
@@ -895,8 +889,7 @@ msgstr "Možnosti po&hledu"
 #: Synchronizer/synchronizergui.cpp:1257
 #: Synchronizer/synchronizergui.cpp~:1257
 msgid "Show files marked to <i>Copy from left to right</i> (CTRL+L)."
-msgstr ""
-"Zobrazit soubory označené pro <i>kopírování zleva doprava</i> (CTRL+L)."
+msgstr "Zobrazit soubory označené pro <i>kopírování zleva doprava</i> (CTRL+L)."
 
 #: Synchronizer/synchronizergui.cpp:1267
 #: Synchronizer/synchronizergui.cpp~:1267
@@ -911,8 +904,7 @@ msgstr "Zobrazit vyloučené soubory (CTRL+D)."
 #: Synchronizer/synchronizergui.cpp:1287
 #: Synchronizer/synchronizergui.cpp~:1287
 msgid "Show files marked to <i>Copy from right to left</i> (CTRL+R)."
-msgstr ""
-"Zobrazit soubory označené pro <i>kopírování zprava doleva</i> (CTRL+R)."
+msgstr "Zobrazit soubory označené pro <i>kopírování zprava doleva</i> (CTRL+R)."
 
 #: Synchronizer/synchronizergui.cpp:1297
 #: Synchronizer/synchronizergui.cpp~:1297
@@ -1284,12 +1276,12 @@ msgstr[2] "(%1 bajtů)"
 
 #: Synchronizer/synchronizedialog.cpp:64 Synchronizer/synchronizedialog.cpp:77
 #: Synchronizer/synchronizedialog.cpp:90
-#, fuzzy, qt-format
+#, qt-format
 msgid "Ready: %2/1 file, %3/%4"
 msgid_plural "Ready: %2/%1 files, %3/%4"
-msgstr[0] "Připraveno: %2/%1 soubor, %4/%5"
-msgstr[1] "Připraveno: %2/%1 soubory, %4/%5"
-msgstr[2] "Připraveno: %2/%1 souborů, %4/%5"
+msgstr[0] "Připraveno: %2/%1 soubor, %3/%4"
+msgstr[1] "Připraveno: %2/%1 soubory, %3/%4"
+msgstr[2] "Připraveno: %2/%1 souborů, %3/%4"
 
 #: Synchronizer/synchronizedialog.cpp:70
 #, qt-format
@@ -1416,9 +1408,9 @@ msgstr "Předávání adres URL programu KGet"
 
 #: Synchronizer/synchronizer.cpp:1466 krslots.cpp:117 krslots.cpp:188
 #: krslots.cpp:443 krslots.cpp:481 krslots.cpp:499
-#, fuzzy, qt-format
+#, qt-format
 msgid "Error executing %1!"
-msgstr "Chyba při spouštění "
+msgstr "Chyba při spouštění %1!"
 
 #: Splitter/combiner.cpp:63
 msgid "Krusader::Combining..."
@@ -1448,8 +1440,7 @@ msgid "Not a valid CRC file!"
 msgstr "Neplatný CRC soubor!"
 
 #: Splitter/combiner.cpp:154
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Kontrola platnosti je nemožná bez platného CRC (kontrolní součet) souboru. "
 "Pokračovat ve slučování?"
@@ -2002,11 +1993,9 @@ msgid "Select a color scheme file"
 msgstr "Vyberte soubor s barevným schématem"
 
 #: Konfigurator/kgcolors.cpp:531
-#, fuzzy, qt-format
+#, qt-format
 msgid "File %1 already exists. Are you sure you want to overwrite it?"
-msgstr ""
-"Soubor %1 již existuje.\n"
-"Opravdu ho chcete přepsat?"
+msgstr "Soubor %1 již existuje. Opravdu ho chcete přepsat?"
 
 #: Konfigurator/kgcolors.cpp:534
 msgid "Error: unable to write to file"
@@ -2166,8 +2155,7 @@ msgstr ""
 "se snažit připojit s určenými parametry."
 
 #: Konfigurator/kgadvanced.cpp:61
-msgid ""
-"Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
 msgstr ""
 "Nepoužívat protokol media z KDE pro tlačítko Media (pokud nefunguje nebo "
 "chybí)"
@@ -2182,8 +2170,7 @@ msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:70
 msgid "MountMan won't (un)mount the following mount-points:"
-msgstr ""
-"Správce připojení disků nebude při(/od)pojovat následující přípojné body:"
+msgstr "Správce připojení disků nebude při(/od)pojovat následující přípojné body:"
 
 #: Konfigurator/kgadvanced.cpp:84
 msgid "Confirmations"
@@ -2265,9 +2252,8 @@ msgid "The %1 path is incorrect, %2 used instead."
 msgstr "Cesta %1 je neplatná, nastavuji cestu na %2."
 
 #: Konfigurator/konfigurator.cpp:66
-#, fuzzy
 msgid "Konfigurator"
-msgstr "Potvrzování"
+msgstr "Konfigurátor"
 
 #: Konfigurator/konfigurator.cpp:67
 msgid "Defaults"
@@ -2640,8 +2626,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Přepínací tlačítko pro synchronizované prohlížení"
 
 #: Konfigurator/kglookfeel.cpp:238
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr "Každá změna v jednom panelu se provede rovněž v protilehlém panelu."
 
 #: Konfigurator/kglookfeel.cpp:258
@@ -2930,8 +2915,7 @@ msgid "Test archive before unpacking"
 msgstr "Zkontrolovat archív před rozbalením"
 
 #: Konfigurator/kgarchives.cpp:104
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Některé poškozené archívy mohou způsobit spadnutí programu. Proto se "
 "doporučuje zapnout testování archívů."
@@ -2946,8 +2930,7 @@ msgid "Searching for packers..."
 msgstr "Hledání archivátorů..."
 
 #: Konfigurator/kgarchives.cpp:122
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Ujistěte se, že instalujete nové archivátory do cesty v <code>$PATH</code> "
 "(např. /usr/bin)"
@@ -2974,8 +2957,7 @@ msgstr "Používat magická čísla MIME typů"
 
 #: Konfigurator/kggeneral.cpp:70
 msgid "Mimetype magic allows better distinction of file types, but is slower."
-msgstr ""
-"Magická čísla poskytují lepší rozlišení typů souborů, ale jsou pomalejší."
+msgstr "Magická čísla poskytují lepší rozlišení typů souborů, ale jsou pomalejší."
 
 #: Konfigurator/kggeneral.cpp:77
 msgid "Editor:"
@@ -3062,8 +3044,7 @@ msgid "Searching for tools..."
 msgstr "Hledání nástrojů ..."
 
 #: Konfigurator/kggeneral.cpp:210
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Ujistěte se, že instalujete nové nástroje do cesty v <code>$PATH</code> "
 "(např. /usr/bin)"
@@ -3239,26 +3220,22 @@ msgstr ""
 "%1"
 
 #: VFS/virtualcopyjob.cpp:380
-#, fuzzy
 msgctxt "@title job"
 msgid "Copying"
-msgstr "Kopírování souborů"
+msgstr "Kopírování"
 
 #: VFS/virtualcopyjob.cpp:381 VFS/virtualcopyjob.cpp:387
-#, fuzzy
 msgid "Source"
-msgstr "Zdroj:"
+msgstr "Zdroj"
 
 #: VFS/virtualcopyjob.cpp:382 VFS/virtualcopyjob.cpp:388
-#, fuzzy
 msgid "Destination"
-msgstr "Cíl:"
+msgstr "Cíl"
 
 #: VFS/virtualcopyjob.cpp:386
-#, fuzzy
 msgctxt "@title job"
 msgid "Moving"
-msgstr "Přesunování souborů"
+msgstr "Přesouvání"
 
 #: VFS/normal_vfs.cpp:91
 #, qt-format
@@ -3469,8 +3446,7 @@ msgstr ""
 "vykoná.jen první."
 
 #: UserAction/kraction.cpp:223
-msgid ""
-"Embedded terminal emulator does not work, using output collection instead."
+msgid "Embedded terminal emulator does not work, using output collection instead."
 msgstr ""
 "Zabudovaný emulátor terminálu nefunguje nebo není nainstalován, použiji "
 "místo něj režim \"Zobrazit smíchaný standardní a chybový výstup\"."
@@ -3487,7 +3463,7 @@ msgstr "Uživatelské akce - nemohu číst ze souboru!"
 
 #: UserAction/useraction.cpp:128
 msgid "The actionfile's root-element isn't called "
-msgstr ""
+msgstr "Nevolá se kořenový element souborů akcí "
 
 #: UserAction/useraction.cpp:140
 #, qt-format
@@ -3609,7 +3585,7 @@ msgstr "Otevřít umístění v nové záložce"
 
 #: UserAction/expander.cpp:572
 msgid "Expander: at least 1 parameter is required for Goto!"
-msgstr ""
+msgstr "Expander: pro Goto je třeba alespoň jeden parametr!"
 
 #: UserAction/expander.cpp:603
 msgid "Ask Parameter from User..."
@@ -3629,7 +3605,7 @@ msgstr "Záhlaví okna (nepovinné):"
 
 #: UserAction/expander.cpp:614
 msgid "Expander: at least 1 parameter is required for Ask!"
-msgstr ""
+msgstr "Expander: pro Ask je třeba alespoň 1 parametr!"
 
 #: UserAction/expander.cpp:619
 msgid "User Action"
@@ -3649,7 +3625,7 @@ msgstr "Přidat k aktuálnímu obsahu schránky s tímto oddělovačem (nepovinn
 
 #: UserAction/expander.cpp:653
 msgid "Expander: at least 1 parameter is required for Clipboard!"
-msgstr ""
+msgstr "Expander: pro Clipboard je třeba alespoň 1 parametr!"
 
 #: UserAction/expander.cpp:659
 msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
@@ -3665,7 +3641,7 @@ msgstr "Kam se má kopírovat:"
 
 #: UserAction/expander.cpp:680
 msgid "Expander: at least 2 parameter is required for Copy!"
-msgstr ""
+msgstr "Expander: pro Copy jsou třeba alespoň 2 parametry!"
 
 #: UserAction/expander.cpp:687
 msgid "Expander: %Each% may not be in the second argument of %Copy%"
@@ -3689,7 +3665,7 @@ msgstr "Nový cíl/název:"
 
 #: UserAction/expander.cpp:716
 msgid "Expander: at least 2 parameter is required for Move!"
-msgstr ""
+msgstr "Expander: pro Move jsou třeba alespoň 2 parametry!"
 
 #: UserAction/expander.cpp:723
 msgid "%Each% may not be in the second argument of %Move%"
@@ -3822,9 +3798,9 @@ msgid "Expander: Bad panel specifier %1 in placeholder %2"
 msgstr "Expander: špatné určení panelu %1 v zástupci %2"
 
 #: UserAction/expander.cpp:1111
-#, fuzzy, c-format
+#, qt-format
 msgid "Error: unterminated % in Expander::expandCurrent"
-msgstr "Chyba: Neukončené %"
+msgstr "Chyba: Neukončené % v Expander::expandCurrent"
 
 #: UserAction/expander.cpp:1141
 #, qt-format
@@ -3918,7 +3894,7 @@ msgstr "Krusader::Zaplnění Disku"
 #: DiskUsage/diskusage.cpp:603
 msgctxt "singularOnly"
 msgid "Do you really want to move this item to the trash?"
-msgstr "Opravdu chcete tuto položku přesunout do koše?"
+msgstr "Opravdu chcete tuto položku vyhodit do koše?"
 
 #: DiskUsage/diskusage.cpp:604 Panel/panelfunc.cpp:651
 #: Panel/panelfunc.cpp~:652
@@ -3930,6 +3906,10 @@ msgctxt "singularOnly"
 msgid "Do you really want to delete this item?"
 msgstr "Opravdu chcete smazat tuto položku?"
 
+# msgid "Do you really want to move this item to the trash?"
+# msgstr "Opravdu chcete tuto položku přesunout do koše?"
+# msgid "Do you really want to delete this item?"
+# msgstr "Opravdu chcete smazat tuto položku?"
 #: DiskUsage/diskusage.cpp:618
 #, qt-format
 msgid "Deleting %1..."
@@ -4631,9 +4611,8 @@ msgstr ""
 "starší než spodní."
 
 #: MountMan/kmountmangui.cpp:65
-#, fuzzy
 msgid "Mount.Man"
-msgstr "MountMan"
+msgstr "Správce připojení"
 
 #: MountMan/kmountmangui.cpp:75
 msgid "MountMan - Your Mount-Manager"
@@ -4656,9 +4635,8 @@ msgid "Free %"
 msgstr "Volno %"
 
 #: MountMan/kmountmangui.cpp:164
-#, fuzzy
 msgid "MountMan.Info"
-msgstr "MountMan"
+msgstr "Správce připojení: Info"
 
 #: MountMan/kmountmangui.cpp:214 MountMan/kmountmangui.cpp:330
 msgid "Critical Error"
@@ -4681,8 +4659,7 @@ msgstr ""
 "Volejte vývojáře (v angličtině samozřejmě :-)."
 
 #: MountMan/kmountmangui.cpp:362
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Správce připojení dospěl k vnitřní chybě. Upozorněte prosím vývojáře. "
 "(anglicky)Děkujeme."
@@ -4696,14 +4673,13 @@ msgid "Format"
 msgstr "Formátovat"
 
 #: MountMan/kmountman.cpp:203
-#, fuzzy
 msgid ""
 "<qt>Error ejecting device!\n"
 " You have to configure the path to the 'eject' tool.Please check the "
 "<b>Dependencies</b> page in Krusader's settings.</qt>"
 msgstr ""
-"<qt>Krusader nemůže na Vašem systému najít nástroj, který zpracuje %1. "
-"Prosím zkontrolujte stránku <b>Závislosti</b> v nastavení Krusaderu.</qt>"
+"<qt>Nepodařilo se vysunout zařízení! \n"
+"Musíte mít nastavenu cestu k nástroji \"eject\" (pokud není v adresáři, který je v systémové proměnné PATH). Prosím zkontrolujte stránku <b>Závislosti</b> v nastavení Krusaderu.</qt>"
 
 #: MountMan/kmountman.cpp:233
 #, qt-format
@@ -4897,8 +4873,7 @@ msgid "Delete selected useractions"
 msgstr "Odstranit označené uživatelské akce"
 
 #: ActionMan/useractionpage.cpp:133
-msgid ""
-"The current action has been modified. Do you want to apply these changes?"
+msgid "The current action has been modified. Do you want to apply these changes?"
 msgstr "Současná akce byla změněna. Chcete použít tyto změny?"
 
 #: ActionMan/useractionpage.cpp:210
@@ -5432,7 +5407,7 @@ msgstr ".."
 
 #: Panel/listpanel.cpp:245 Panel/listpanel.cpp~:245 krusader.cpp:620
 msgid "Up"
-msgstr "Do nadřazeného adresáře"
+msgstr "Nahoru"
 
 #: Panel/listpanel.cpp:250 Panel/listpanel.cpp~:250
 msgid "~"
@@ -5725,9 +5700,9 @@ msgstr ""
 "nainstalujte jej do vaší cesty. Tip: Krusader podporuje KMail."
 
 #: krslots.cpp:112
-#, fuzzy, qt-format
+#, qt-format
 msgid "Sending file: %1"
-msgstr "Posílám soubor: "
+msgstr "Posílám soubor: %1"
 
 #: krslots.cpp:146
 msgid "Don't know which files to compare."
@@ -5755,9 +5730,9 @@ msgstr ""
 "Krusader podporuje kdiff a xxdiff."
 
 #: krslots.cpp:170 krslots.cpp:176
-#, fuzzy, qt-format
+#, qt-format
 msgid "Krusader is unable to download %1"
-msgstr "Krusader nemůže stáhnout: "
+msgstr "Krusader nemůže stáhnout %1 "
 
 #: krslots.cpp:401
 msgid ""
@@ -5849,9 +5824,10 @@ msgid ""
 "(c) 2000-2003, Shie Erlich, Rafi Yanai\n"
 "(c) 2004-2008, Krusader Krew"
 msgstr ""
+"(c) 2000-2003, Shie Erlich, Rafi Yanai\n"
+"(c) 2004-2008, Krusader Krew"
 
 #: main.cpp:109
-#, fuzzy
 msgid ""
 "Feedback:\n"
 "http://www.krusader.org/phpBB/\n"
@@ -5859,7 +5835,7 @@ msgid ""
 "IRC\n"
 "server: irc.freenode.net, channel: #krusader"
 msgstr ""
-"Dotazy a připomínky\n"
+"Dotazy a připomínky:\n"
 "http://www.krusader.org/phpBB/\n"
 "\n"
 "IRC\n"
@@ -5867,462 +5843,455 @@ msgstr ""
 
 #: main.cpp:112
 msgid "Rafi Yanai"
-msgstr ""
+msgstr "Rafi Yanai"
 
 #: main.cpp:112 main.cpp:113
-#, fuzzy
 msgid "Author"
-msgstr "hod"
+msgstr "Autor"
 
 #: main.cpp:113
 msgid "Shie Erlich"
-msgstr ""
+msgstr "Shie Erlich"
 
 #: main.cpp:114
 msgid "Karai Csaba"
-msgstr ""
+msgstr "Karai Csaba"
 
 #: main.cpp:114 main.cpp:115 main.cpp:116
 msgid "Developer"
-msgstr ""
+msgstr "Vývojář"
 
 #: main.cpp:115
 msgid "Heiner Eichmann"
-msgstr ""
+msgstr "Heiner Eichmann"
 
 #: main.cpp:116
 msgid "Jonas Baehr"
-msgstr ""
+msgstr "Jonas Bähr"
 
 #: main.cpp:117 main.cpp:150
 msgid "Dirk Eschler"
-msgstr ""
+msgstr "Dirk Eschler"
 
 #: main.cpp:117
 msgid "Webmaster and i18n coordinator"
-msgstr ""
+msgstr "Správce webu a koordinátor jazykových překladů"
 
 #: main.cpp:118 main.cpp:146
 msgid "Frank Schoolmeesters"
-msgstr ""
+msgstr "Frank Schoolmeesters"
 
 #: main.cpp:118
 msgid "Documentation and marketing coordinator"
-msgstr ""
+msgstr "Dokumentace a koordinování marketingu"
 
 #: main.cpp:119
 msgid "Richard Holt"
-msgstr ""
+msgstr "Richard Holt"
 
 #: main.cpp:119
 msgid "Documentation & Proofing"
-msgstr ""
+msgstr "Dokumentace a zkoušení"
 
 #: main.cpp:120 main.cpp:166
 msgid "Matej Urbancic"
-msgstr ""
+msgstr "Matej Urbančič"
 
 #: main.cpp:120
 msgid " Marketing & Product Research"
-msgstr ""
+msgstr " Marketing & Product Research"
 
 #: main.cpp:121
 msgid "Václav Juza"
-msgstr ""
+msgstr "Václav Jůza"
 
 #: main.cpp:121 main.cpp:122 main.cpp:133
 msgid "QA, bug-hunting, patches and general help"
-msgstr ""
+msgstr "QA, lovení chyb, opravy a celková pomoc"
 
 #: main.cpp:122
 msgid "Jiri Palecek"
-msgstr ""
+msgstr "Jiří Paleček"
 
 #: main.cpp:123
 msgid "Jiri Klement"
-msgstr ""
+msgstr "Jiří Klement"
 
 #: main.cpp:123
 msgid "Important help in KDE 4 porting"
-msgstr ""
+msgstr "Důležitá pomoc při převodu na KDE4"
 
 #: main.cpp:124
 msgid "Andrew Neupokoev"
-msgstr ""
+msgstr "Andrew Neupokoev"
 
 #: main.cpp:124
 msgid "Killer Logo and Icons for Krusader (contest winner)"
-msgstr ""
+msgstr "Bomba logo a ikony pro Krusader (vítěz soutěže)"
 
 #: main.cpp:125
 msgid "The UsefulArts Organization"
-msgstr ""
+msgstr "The UsefulArts Organization (užitečné umění)"
 
 #: main.cpp:125
-#, fuzzy
 msgid "Icon for krusader"
-msgstr "Konfigurovat &Krusader..."
+msgstr "Ikona pro Krusader"
 
 #: main.cpp:126
 msgid "Gábor Lehel"
-msgstr ""
+msgstr "Gábor Lehel"
 
 #: main.cpp:126
 msgid "Viewer module for 3rd Hand"
-msgstr ""
+msgstr "Prohlížecí modul pro třetí ruku"
 
 #: main.cpp:127
 msgid "Mark Eatough"
-msgstr ""
+msgstr "Mark Eatough"
 
 #: main.cpp:127
 msgid "Handbook Proof-Reader"
-msgstr ""
+msgstr "Korektura uživatelské příručky"
 
 #: main.cpp:128
 msgid "Jan Halasa"
-msgstr ""
+msgstr "Jan Halasa"
 
 #: main.cpp:128
 msgid "The old Bookmark Module"
-msgstr ""
+msgstr "Starý modul záložek"
 
 #: main.cpp:129
 msgid "Hans Loeffler"
-msgstr ""
+msgstr "Hans Löffler"
 
 #: main.cpp:129
 msgid "Dir history button"
-msgstr ""
+msgstr "Tlačítko adresářové historie"
 
 #: main.cpp:130
 msgid "Szombathelyi György"
-msgstr ""
+msgstr "Szombathelyi György"
 
 #: main.cpp:130
 msgid "ISO KIO slave"
-msgstr ""
+msgstr "KIO modul ISO"
 
 #: main.cpp:131
 msgid "Jan Willem van de Meent (Adios)"
-msgstr ""
+msgstr "Jan Willem van de Meent (Adios)"
 
 #: main.cpp:131
-#, fuzzy
 msgid "Icons for Krusader"
-msgstr "Konfigurovat &Krusader..."
+msgstr "Ikony pro Krusader"
 
 #: main.cpp:132
 msgid "Mikolaj Machowski"
-msgstr ""
+msgstr "Mikolaj Machowski"
 
 #: main.cpp:132
 msgid "Usability and QA"
-msgstr ""
+msgstr "Použitelnost a QA"
 
 #: main.cpp:133
 msgid "Cristi Dumitrescu"
-msgstr ""
+msgstr "Cristi Dumitrescu"
 
 #: main.cpp:134
 msgid "Aurelien Gateau"
-msgstr ""
+msgstr "Aurelien Gateau"
 
 #: main.cpp:134
-#, fuzzy
 msgid "patch for KViewer"
-msgstr "Hledat soubory"
+msgstr "oprava pro KViewer"
 
 #: main.cpp:135
 msgid "Milan Brabec"
-msgstr ""
+msgstr "Milan Brabec"
 
 #: main.cpp:135
 msgid "the first patch ever !"
-msgstr ""
+msgstr "První patch vůbec!"
 
 #: main.cpp:136
 msgid "Asim Husanovic"
-msgstr ""
+msgstr "Asim Husanovic"
 
 #: main.cpp:136
 msgid "Bosnian translation"
-msgstr ""
+msgstr "Překlad do bosenštniny"
 
 #: main.cpp:137
 msgid "Doutor Zero"
-msgstr ""
+msgstr "Doutor Zero"
 
 #: main.cpp:137
 msgid "Brazilian Portuguese"
-msgstr ""
+msgstr "Překlad do brazilské portugalštiny"
 
 #: main.cpp:138
 msgid "Milen Ivanov"
-msgstr ""
+msgstr "Milen Ivanov"
 
 #: main.cpp:138
 msgid "Bulgarian translation"
-msgstr ""
+msgstr "Překlad do bulharštiny"
 
 #: main.cpp:139
 msgid "Quim Perez"
-msgstr ""
+msgstr "Quim Perez"
 
 #: main.cpp:139
 msgid "Catalan translation"
-msgstr ""
+msgstr "Překlad do katalánštiny"
 
 #: main.cpp:140
 msgid "Jinghua Luo"
-msgstr ""
+msgstr "Jinghua Luo"
 
 #: main.cpp:140
 msgid "Chinese Simplified translation"
-msgstr ""
+msgstr "Překlad do čínštiny"
 
 #: main.cpp:141
-#, fuzzy
 msgid "Mitek"
-msgstr "Titulek"
+msgstr "Mitek"
 
 #: main.cpp:141 main.cpp:142
 msgid "Old Czech translation"
-msgstr ""
+msgstr "Starý překlad do češtiny"
 
 #: main.cpp:142
 msgid "Martin Sixta"
-msgstr ""
+msgstr "Martin Sixta"
 
 #: main.cpp:143
 msgid "Vaclav Juza"
-msgstr ""
+msgstr "Václav Jůza"
 
 #: main.cpp:143
 msgid "Czech translation"
-msgstr ""
+msgstr "Překlad do češtiny"
 
 #: main.cpp:144
 msgid "Anders Bruun Olsen"
-msgstr ""
+msgstr "Anders Bruun Olsen"
 
 #: main.cpp:144
 msgid "Old Danish translation"
-msgstr ""
+msgstr "Starý překlad do dánštiny"
 
 #: main.cpp:145
 msgid "Peter H. Sorensen"
-msgstr ""
+msgstr "Peter H. Sorensen"
 
 #: main.cpp:145
-#, fuzzy
 msgid "Danish translation"
-msgstr "Cíl:"
+msgstr "Překlad do dánštiny"
 
 #: main.cpp:146
 msgid "Dutch translation"
-msgstr ""
+msgstr "Překlad do nizozemštiny"
 
 #: main.cpp:147
 msgid "Rene-Pierre Lehmann"
-msgstr ""
+msgstr "Rene-Pierre Lehmann"
 
 #: main.cpp:147
 msgid "Old French translation"
-msgstr ""
+msgstr "Starý překlad do francouzštiny"
 
 #: main.cpp:148
 msgid "David Guillerm"
-msgstr ""
+msgstr "David Guillerm"
 
 #: main.cpp:148
 msgid "French translation"
-msgstr ""
+msgstr "Překlad do francouzštiny"
 
 #: main.cpp:149
 msgid "Christoph Thielecke"
-msgstr ""
+msgstr "Christoph Thielecke"
 
 #: main.cpp:149
 msgid "Old German translation"
-msgstr ""
+msgstr "Starý překlad do němčiny"
 
 #: main.cpp:150
 msgid "German translation"
-msgstr ""
+msgstr "Překlad do němčiny"
 
 #: main.cpp:151
 msgid "Spiros Georgaras"
-msgstr ""
+msgstr "Spiros Georgaras"
 
 #: main.cpp:151
 msgid "Greek translation"
-msgstr ""
+msgstr "Překlad do řečtiny"
 
 #: main.cpp:152
 msgid "Kukk Zoltan"
-msgstr ""
+msgstr "Kukk Zoltan"
 
 #: main.cpp:152
 msgid "Old Hungarian translation"
-msgstr ""
+msgstr "Starý překlad do maďarštiny"
 
 #: main.cpp:153
 msgid "Arpad Biro"
-msgstr ""
+msgstr "Arpad Biro"
 
 #: main.cpp:153
 msgid "Hungarian translation"
-msgstr ""
+msgstr "Překlad do maďarštiny"
 
 #: main.cpp:154
 msgid "Giuseppe Bordoni"
-msgstr ""
+msgstr "Giuseppe Bordoni"
 
 #: main.cpp:154
 msgid "Italian translation"
-msgstr ""
+msgstr "Překlad do italštiny"
 
 #: main.cpp:155
 msgid "Hideki Kimura"
-msgstr ""
+msgstr "Hideki Kimura"
 
 #: main.cpp:155
 msgid "Japanese translation"
-msgstr ""
+msgstr "Překlad do japonštiny"
 
 #: main.cpp:156
 msgid "UTUMI Hirosi"
-msgstr ""
+msgstr "UTUMI Hirosi"
 
 #: main.cpp:156
 msgid "Old Japanese translation"
-msgstr ""
+msgstr "Starý překlad do japonštiny"
 
 #: main.cpp:157
 msgid "Dovydas Sankauskas"
-msgstr ""
+msgstr "Dovydas Sankauskas"
 
 #: main.cpp:157
 msgid "Lithuanian translation"
-msgstr ""
+msgstr "Překlad do litevštiny"
 
 #: main.cpp:158
 msgid "Bruno Queiros"
-msgstr ""
+msgstr "Bruno Queiros"
 
 #: main.cpp:158
-#, fuzzy
 msgid "Portuguese translation"
-msgstr "Importovat uživatelské akce"
+msgstr "Překlad do evropské portugalštiny"
 
 #: main.cpp:159
 msgid "Lukasz Janyst"
-msgstr ""
+msgstr "Lukasz Janyst"
 
 #: main.cpp:159
 msgid "Old Polish translation"
-msgstr ""
+msgstr "Starý překlad do polštiny"
 
 #: main.cpp:160
 msgid "Pawel Salawa"
-msgstr ""
+msgstr "Pawel Salawa"
 
 #: main.cpp:160 main.cpp:161
 msgid "Polish translation"
-msgstr ""
+msgstr "Překlad do polštiny"
 
 #: main.cpp:161
 msgid "Tomek Grzejszczyk"
-msgstr ""
+msgstr "Tomek Grzejszczyk"
 
 #: main.cpp:162
 msgid "Dmitry A. Bugay"
-msgstr ""
+msgstr "Dmitry A. Bugay"
 
 #: main.cpp:162
 msgid "Russian translation"
-msgstr ""
+msgstr "Překlad do ruštiny"
 
 #: main.cpp:163
 msgid "Dmitry Chernyak"
-msgstr ""
+msgstr "Dmitry Chernyak"
 
 #: main.cpp:163
 msgid "Old Russian translation"
-msgstr ""
+msgstr "Starý překlad do ruštiny"
 
 #: main.cpp:164
 msgid "Sasa Tomic"
-msgstr ""
+msgstr "Sasa Tomic"
 
 #: main.cpp:164
 msgid "Serbian translation"
-msgstr ""
+msgstr "Překlad do srbštiny"
 
 #: main.cpp:165
 msgid "Zdenko Podobna"
-msgstr ""
+msgstr "Zdenko Podobný"
 
 #: main.cpp:165
 msgid "Slovak translation"
-msgstr ""
+msgstr "Překlad do slovenštiny"
 
 #: main.cpp:166
 msgid "Slovenian translation"
-msgstr ""
+msgstr "Překlad do slovinštiny"
 
 #: main.cpp:167
 msgid "Rafael Munoz"
-msgstr ""
+msgstr "Rafael Munoz"
 
 #: main.cpp:167
 msgid "Old Spanish translation"
-msgstr ""
+msgstr "Starý překlad do španělštiny"
 
 #: main.cpp:168
 msgid "Alejandro Araiza Alvarado"
-msgstr ""
+msgstr "Alejandro Araiza Alvarado"
 
 #: main.cpp:168
 msgid "Spanish translation"
-msgstr ""
+msgstr "Překlad do španělštiny"
 
 #: main.cpp:169
 msgid "Erik Johanssen"
-msgstr ""
+msgstr "Erik Johanssen"
 
 #: main.cpp:169 main.cpp:170
 msgid "Old Swedish translation"
-msgstr ""
+msgstr "Starý překlad do švédštiny"
 
 #: main.cpp:170
 msgid "Anders Linden"
-msgstr ""
+msgstr "Anders Linden"
 
 #: main.cpp:171
 msgid "Peter Landgren"
-msgstr ""
+msgstr "Peter Landgren"
 
 #: main.cpp:171
 msgid "Swedish translation"
-msgstr ""
+msgstr "Překlad do švédštiny"
 
 #: main.cpp:172
 msgid "Bekir Sonat"
-msgstr ""
+msgstr "Bekir Sonat"
 
 #: main.cpp:172
 msgid "Turkish translation"
-msgstr ""
+msgstr "Překlad do turečtiny"
 
 #: main.cpp:173
 msgid "Ivan Petrouchtchak"
-msgstr ""
+msgstr "Ivan Petrouchtchak"
 
 #: main.cpp:173
 msgid "Ukrainian translation"
-msgstr ""
+msgstr "Překlad do ukrajinštiny"
 
 #: main.cpp:179
 msgid "Start left panel at <path>"
@@ -6526,8 +6495,7 @@ msgstr ""
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
-msgstr ""
-"<i>Pracovní adresář</i> určí, ve kterém adresáři se <i>Příkaz</i> vykoná."
+msgstr "<i>Pracovní adresář</i> určí, ve kterém adresáři se <i>Příkaz</i> vykoná."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 250
@@ -6834,8 +6802,7 @@ msgstr "Zavřít záložku"
 
 #: krusader.cpp:372
 msgid "Statusbar will show basic information about file below mouse pointer."
-msgstr ""
-"Stavová lišta zobrazí základní informace o souboru pod ukazatelem myši."
+msgstr "Stavová lišta zobrazí základní informace o souboru pod ukazatelem myši."
 
 #: krusader.cpp:454
 msgid ""
@@ -7234,52 +7201,60 @@ msgstr "Jste si jistý, že chcete odejít?"
 #: krarc.cpp:135
 #, qt-format
 msgid "Creating directories is not supported with %1 archives"
-msgstr ""
+msgstr "Vytváření adresářů v %1 archívech není podporováno"
 
+# msgid "Do you really want to move this item to the trash?"
+# msgstr "Opravdu chcete tuto položku přesunout do koše?"
+# msgid "Do you really want to delete this item?"
+# msgstr "Opravdu chcete smazat tuto položku?"
 #: krarc.cpp:165
-#, fuzzy, qt-format
+#, qt-format
 msgid "Creating %1 ..."
 msgstr "Mažu %1 ..."
 
 #: krarc.cpp:199
-#, fuzzy, qt-format
+#, qt-format
 msgid "Writing to %1 archives is not supported"
-msgstr "Přesun do archívu není povolený"
+msgstr "Zápis do %1 archívů není podporován"
 
 #: krarc.cpp:243
-#, fuzzy, qt-format
+#, qt-format
 msgid "Packing %1 ..."
-msgstr "Přebaluji ..."
+msgstr "Balím %1 ..."
 
 #: krarc.cpp:277
 #, qt-format
 msgid "Retrieving data from %1 archives is not supported"
-msgstr ""
+msgstr "Získávání dat z %1 archívů není podporováno"
 
 #: krarc.cpp:336 krarc.cpp:579
-#, fuzzy, qt-format
+#, qt-format
 msgid "Unpacking %1 ..."
-msgstr "Rozbalování"
+msgstr "Rozbalování %1 ..."
 
 #: krarc.cpp:463
 #, qt-format
 msgid "Deleting files from %1 archives is not supported"
-msgstr ""
+msgstr "Mazání souborů z %1 archívů není podporováno"
 
+# msgid "Do you really want to move this item to the trash?"
+# msgstr "Opravdu chcete tuto položku přesunout do koše?"
+# msgid "Do you really want to delete this item?"
+# msgstr "Opravdu chcete smazat tuto položku?"
 #: krarc.cpp:479
-#, fuzzy, qt-format
+#, qt-format
 msgid "Deleting %1 ..."
 msgstr "Mažu %1 ..."
 
 #: krarc.cpp:503
 #, qt-format
 msgid "Accessing files is not supported with the %1 archives"
-msgstr ""
+msgstr "Přístup k souborům v %1 archívech není podporován"
 
 #: krarc.cpp:607
 #, qt-format
 msgid "Listing directories is not supported for %1 archives"
-msgstr ""
+msgstr "Výpis adresářů v %1 archívech není podporován"
 
 #: krarc.cpp:1362
 #, qt-format
@@ -7287,142 +7262,23 @@ msgid ""
 "\n"
 "Make sure that the %1 binary are installed properly on your system."
 msgstr ""
+"\n"
+"Ujistěte se, že máte řádně nainstalován program %1."
 
 #: krarc.cpp:1574 krarc.cpp:1598
 msgid "Krarc Password Dialog"
-msgstr ""
+msgstr "Dialog hesla KrArc"
 
 #: krarc.cpp:1615
 msgid "Accessing the file requires password."
-msgstr ""
+msgstr "Přístup k souborům vyžaduje heslo."
 
 #: tar.cc:57
 msgid "This protocol does not support resuming"
-msgstr ""
+msgstr "Tento protokol nepodporuje znovuzahájení"
 
 #: tar.cc:79
 #, qt-format
 msgid "Writing to %1 is not supported"
-msgstr ""
+msgstr "Zápis do %1 není podporován"
 
-#~ msgid "<qt>Can't read <b>%1</b>. Archive might be corrupted!</qt>"
-#~ msgstr "<qt>Nemohu číst <b>%1</b>. Archiv může být požkozen!</qt>"
-
-#~ msgid "Deleting Files..."
-#~ msgstr "Mažu soubory ..."
-
-#~ msgid "Unpacking Files"
-#~ msgstr "Rozbaluji soubory"
-
-#~ msgid ""
-#~ "In %1:\n"
-#~ "There is an error in the JavaScript"
-#~ msgstr ""
-#~ "V %1:\n"
-#~ "Je zde chyba v Javaskriptu"
-
-#~ msgid "Shred"
-#~ msgstr "Skartovat"
-
-#~ msgid ""
-#~ "<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone "
-#~ "forever!</qt>"
-#~ msgstr ""
-#~ "<qt> Opravdu chcete skartovat <b>%1</b>? Jednou skartovaný soubor je pryč "
-#~ "navždy!</qt>"
-
-#~ msgid "Tab: switch panel"
-#~ msgstr "Záložka: prohodit panel"
-
-#~ msgid "Error ejecting device! You need to have 'eject' in your path."
-#~ msgstr ""
-#~ "Chyba při vysunování zařízení. Musíte mít program 'eject' v adresáři kam "
-#~ "směřuje systémová proměnná PATH."
-
-#~ msgid "Filesystems"
-#~ msgstr "Souborové systémy"
-
-#~ msgid ""
-#~ "Krusader\n"
-#~ "Twin-Panel File Manager for KDE"
-#~ msgstr ""
-#~ "Krusader\n"
-#~ "Dvoupanelový správce souborovů pro KDE"
-
-#~ msgid "%1% of %2 "
-#~ msgstr "%1% z %2 "
-
-#~ msgid "compare mode"
-#~ msgstr "Režim porovnávání"
-
-#~ msgid "Remove"
-#~ msgstr "Odstranit"
-
-#~ msgid "New group"
-#~ msgstr "Nová skupina"
-
-#~ msgid "New session"
-#~ msgstr "Nové sezení"
-
-#~ msgid "Sessions"
-#~ msgstr "Sezení"
-
-#~ msgid "RemoteMan"
-#~ msgstr "Správce síťových spojení"
-
-#~ msgid "Are you sure you want to delete this item ???"
-#~ msgstr "Jste si jistý, že chcete smazat tuto položku"
-
-#~ msgid "RemoteMan: Connection Manager"
-#~ msgstr "RemoteMan: Správce síťových spojení"
-
-#~ msgid "Session name:"
-#~ msgstr "Název sezení:"
-
-#~ msgid "&More"
-#~ msgstr "&Více"
-
-#~ msgid "User name:"
-#~ msgstr "Uživatelské jméno:"
-
-#~ msgid "Anonymous"
-#~ msgstr "Anonymní"
-
-#~ msgid "Remote directory:"
-#~ msgstr "Vzdálený adresář:"
-
-#~ msgid "Co&nnect"
-#~ msgstr "S&pojit"
-
-#~ msgid "New &Group"
-#~ msgstr "Nová &skupina"
-
-#~ msgid "New Connec&tion"
-#~ msgstr "Nové spo&jení"
-
-#~ msgid "Port:   "
-#~ msgstr "Port:   "
-
-#~ msgid "* Warning: Storing your password is not secure !!!"
-#~ msgstr "* Pozor: Uložení hesla není bezpečné !!!"
-
-#~ msgid "File "
-#~ msgstr "Soubor"
-
-#~ msgid " already exists. Are you sure you want to overwrite it?"
-#~ msgstr " již existuje. Opravdu ho chcete přepsat?"
-
-#~ msgid ""
-#~ "Important: RemoteMan has been replaced by our new bookmark manager. The "
-#~ "new manager handles local files and remote URLs the same way. RemoteMan "
-#~ "is being left around to allow an easier transition and give you a chance "
-#~ "to move your bookmarks. IT WILL BE REMOVED SOON!\n"
-#~ "Try the new bookmark-manager: open a new remote connection, once done, "
-#~ "press the bookmark button, select 'Add bookmark' and that's it!"
-#~ msgstr ""
-#~ "Důležité: RemoteMan byl nahrazen novým správcem záložek. Tento nový "
-#~ "správce umí zacházet s lokálními soubory stejným způsobem jako se "
-#~ "vzdálenými odkazy. RemoteMan je zde dočasně ponechán  aby vám usnadnil "
-#~ "přechod na nový systém. BRZY BUDE ODSTRANĚN\n"
-#~ "Vyzkoušejte nového správce záložek: otevřete nové vzdálené spojení, poté "
-#~ "stiskněte tlačítko Záložky a vyberte Přidat k záložkám. A to je vše."
