@@ -9,7 +9,7 @@ EXTRACTRC="${EXTRACTRC:-${PWD}/extractrc}"
 EXTRACTATTR=${EXTRACTATTR:-extractattr}
 PREPARETIPS=${PREPARETIPS:-preparetips}
 export EXTRACTRC EXTRACTATTR PREPARETIPS
-XGETTEXT_FLAGS="--copyright-holder=This_file_is_part_of_KDE --from-code=UTF-8 -C --qt -ci18n -ki18n:1 -ki18nc:1c,2 -ki18np:1,2 -ki18ncp:1c,2,3 -ktr2i18n:1 -kI18N_NOOP:1 -kI18N_NOOP2:1c,2 -kaliasLocale -kki18n:1 -kki18nc:1c,2 -kki18np:1,2 -kki18ncp:1c,2,3 --msgid-bugs-address=http://bugs.kde.org"
+XGETTEXT_FLAGS="--copyright-holder=This_file_is_part_of_the_Krusader --from-code=UTF-8 -C --kde -ci18n -ki18n -ki18nc:1c,2 -ki18np:1,2 -ki18ncp:1c,2,3 -ktr2i18n:1 -kI18N_NOOP:1 -kI18N_NOOP2:1c,2 -kaliasLocale -kki18n:1 -kki18nc:1c,2 -kki18np:1,2 -kki18ncp:1c,2,3 --flag=i18n:1:kde-format --flag=i18nc:2:kde-format --flag=i18np:2:kde-format --flag=i18ncp:3:kde-format  --msgid-bugs-address=krusader-i18n@googlegroups.com"
 export XGETTEXT_FLAGS
 
 > ${podir}/krusader.pot 
