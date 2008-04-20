@@ -134,16 +134,20 @@ KIso::KIso( const QString& filename, const QString & _mimetype )
             QFile file( filename );
             if ( file.open( QIODevice::ReadOnly ) )
             {
-                unsigned char firstByte = file.getch();
-                unsigned char secondByte = file.getch();
-                unsigned char thirdByte = file.getch();
-                if ( firstByte == 0037 && secondByte == 0213 )
+                char firstByte;
+                char secondByte;
+                char thirdByte;
+                file.getChar( &firstByte );
+                file.getChar( &secondByte );
+                file.getChar( &thirdByte );
+                if ( firstByte == 0037 && secondByte == (char)0213 )
                     mimetype = "application/x-gzip";
                 else if ( firstByte == 'B' && secondByte == 'Z' && thirdByte == 'h' )
                     mimetype = "application/x-bzip2";
                 else if ( firstByte == 'P' && secondByte == 'K' && thirdByte == 3 )
                 {
-                    unsigned char fourthByte = file.getch();
+                    char fourthByte;
+                    file.getChar( &fourthByte );
                     if ( fourthByte == 4 )
                         mimetype = "application/x-zip";
                 }
@@ -195,7 +199,7 @@ static int readf(char *buf, int start, int len,void *udata) {
 
     QIODevice* dev = ( static_cast<KIso*> (udata) )->device();
 
-    if (dev->at(start<<11)) {
+    if (dev->seek(start<<11)) {
         if ((dev->read(buf, len<<11)) != -1) return (len);
     }
     kDebug() << "KIso::ReadRequest failed start: " << start << " len: " << len << endl;
@@ -262,7 +266,7 @@ static int mycallb(struct iso_directory_record *idr,void *udata) {
                         if (idr->name[i]) path+=(idr->name[i]);
                     }
                 }
-                if (path.endsWith(".")) path.setLength(path.length()-1);
+                if (path.endsWith(".")) path.resize(path.length()-1);
             }
         }
         if (iso->showrr) FreeRR(&rr);
@@ -358,7 +362,7 @@ bool KIso::openArchive( QIODevice::OpenMode mode )
     /* We'll use the permission and user/group of the 'host' file except
      * in Rock Ridge, where the permissions are stored on the file system
      */
-    if (::stat( m_filename.local8Bit(), &buf )<0) {
+    if (::stat( m_filename.toLocal8Bit(), &buf )<0) {
         /* defaults, if stat fails */
         memset(&buf,0,sizeof(struct stat));
         buf.st_mode=0777;
@@ -380,7 +384,7 @@ bool KIso::openArchive( QIODevice::OpenMode mode )
         root=rootDir();
         if (trackno>1) {
             path=QString();
-            QTextOStream(&path) << "Track " << tracks[(i<<1)+1];
+            QTextStream(&path) << "Track " << tracks[(i<<1)+1];
             root = new KIsoDirectory( this, path, access | S_IFDIR,
                 buf.st_mtime, buf.st_atime, buf.st_ctime, uid, gid, QString() );
             rootDir()->addEntry(root);
@@ -415,7 +419,7 @@ bool KIso::openArchive( QIODevice::OpenMode mode )
                     idr=(struct iso_directory_record*) &( ((struct iso_primary_descriptor*) &desc->data)->root_directory_record);
                     joliet = JolietLevel(&desc->data);
                     if (joliet) {
-                        QTextOStream(&path) << "Joliet level " << joliet;
+                        QTextStream(&path) << "Joliet level " << joliet;
                         if (c_j>1) path += " (" + QString::number(c_j) + ")";
                     } else {
                         path = "ISO9660";

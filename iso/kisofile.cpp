@@ -42,7 +42,7 @@ QByteArray KIsoFile::data(long long pos, int count) const {
     QByteArray r;
     int rlen;
     
-    if ( archive()->device()->at(position()+pos) ) {
+    if ( archive()->device()->seek(position()+pos) ) {
         r.resize( ((pos+count) < size()) ? count : size()-pos);
         if( r.size() )
         {

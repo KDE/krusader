@@ -1,3 +1,4 @@
+add_definitions( -DQT3_SUPPORT=1 -DKDE3_SUPPORT=1)
 
 add_subdirectory( ActionMan )
 add_subdirectory( BookMan )

@@ -25,10 +25,9 @@
 #include <kurl.h>
 #include <kio/global.h>
 #include <kio/slavebase.h>
-#include <k3process.h>
+#include <kprocess.h>
 #include <kconfiggroup.h>
 
-class K3Process;
 class KFileItem;
 class QByteArray;
 
@@ -46,25 +45,25 @@ public:
 	virtual void copy (const KUrl &src, const KUrl &dest, int permissions, KIO::JobFlags flags);
 
 public slots:
-	void receivedData(K3Process* proc,char* buf,int len);
-	void checkOutputForPassword( K3Process*,char*,int );
+	void receivedData(KProcess *, QByteArray &);
+	void checkOutputForPassword( KProcess *, QByteArray & );
 
 protected:
 	virtual bool   initDirDict(const KUrl& url,bool forced = false);
 	virtual bool   initArcParameters();
 	QString detectArchive( bool &encrypted, QString fileName );
-	virtual void parseLine(int lineNo, QString line, QFile* temp);
+	virtual void parseLine(int lineNo, QString line);
 	virtual bool setArcFile(const KUrl& url);
 	virtual QString getPassword();
 	virtual void invalidatePassword();
 
 	// archive specific commands
-	QString cmd;     ///< the archiver name.
-	QString listCmd; ///< list files. 
-	QString getCmd;  ///< unpack files command.
-	QString delCmd;  ///< delete files command.
-	QString putCmd;  ///< add file command.
-	QString copyCmd; ///< copy to file command.
+	QString     cmd;     ///< the archiver name.
+	QStringList listCmd; ///< list files. 
+	QStringList getCmd;  ///< unpack files command.
+	QStringList delCmd;  ///< delete files command.
+	QStringList putCmd;  ///< add file command.
+	QStringList copyCmd; ///< copy to file command.
 
 private:
 	void get(const KUrl& url, int tries);
@@ -81,9 +80,7 @@ private:
 	/** add a new directory (file list container). */
 	KIO::UDSEntryList* addNewDir(QString path);
 	QString fullPathName( QString name );
-	QString convertFileName( QString name );
-	static QString convertName( QString name );
-	static QString escape( QString name );
+	static QString detectFullPathName( QString name );
 	
 	QHash<QString, KIO::UDSEntryList *> dirDict; //< the directoris data structure.
 	bool encrypted;                   //< tells whether the archive is encrypted
@@ -104,40 +101,50 @@ private:
 	QString encryptedArchPath;
 };
 
-class KrShellProcess : public K3ShellProcess {
+class KrLinecountingProcess : public KProcess {
 	Q_OBJECT
 public:
-	KrShellProcess() : K3ShellProcess(), errorMsg( QString() ), outputMsg( QString() ) {
-		connect(this,SIGNAL(receivedStderr(K3Process*,char*,int)),
-				this,SLOT(receivedErrorMsg(K3Process*,char*,int)) );
-		connect(this,SIGNAL(receivedStdout(K3Process*,char*,int)),
-				this,SLOT(receivedOutputMsg(K3Process*,char*,int)) );
+	KrLinecountingProcess() : KProcess() {
+	setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect!
+		connect(this, SIGNAL(readyReadStandardError()), SLOT(receivedError()) );
+		connect(this, SIGNAL(readyReadStandardOutput()), SLOT(receivedOutput()) );
 	}
-	
+
 	QString getErrorMsg() {
-		if( errorMsg.trimmed().isEmpty() )
-			return outputMsg.right( 500 );
+		if( errorData.trimmed().isEmpty() )
+			return QString::fromLocal8Bit(outputData);
 		else
-			return errorMsg.right( 500 );
+			return QString::fromLocal8Bit(errorData);
 	}
 	
 public slots:
-	void receivedErrorMsg(K3Process*, char *buf, int len) {
-		errorMsg += QString::fromLocal8Bit( buf, len );
-		if( errorMsg.length() > 500 )
-			errorMsg = errorMsg.right( 500 );
-		receivedOutputMsg( 0, buf, len );
+	void receivedError() {
+		QByteArray newData(this->readAllStandardError());
+		emit newErrorLines(newData.count('\n'));
+		errorData += newData;
+		if( errorData.length() > 500 )
+			errorData = errorData.right( 500 );
+		receivedOutput(newData);
 	}
 	
-	void receivedOutputMsg(K3Process*, char *buf, int len) {
-		outputMsg += QString::fromLocal8Bit( buf, len );
-		if( outputMsg.length() > 500 )
-			outputMsg = outputMsg.right( 500 );
+	void receivedOutput(QByteArray newData = QByteArray()) {
+		if (newData.isEmpty())
+			newData = this->readAllStandardOutput();
+		emit newOutputLines(newData.count('\n'));
+		emit newOutputData( this, newData );
+		outputData += newData;
+		if( outputData.length() > 500 )
+			outputData = outputData.right( 500 );
 	}
-	
+
+signals:
+	void newOutputLines(int count);
+	void newErrorLines(int count);
+	void newOutputData( KProcess *, QByteArray & );
+
 private:
-	QString errorMsg;
-	QString outputMsg;
+	QByteArray errorData;
+	QByteArray outputData;
 };
 
 #endif
