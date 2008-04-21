@@ -111,11 +111,11 @@ void PreservingCopyJob::slotAboutToCreate( KIO::Job */*job*/, const QList< KIO::
   
     if( (*it).uSource.isLocalFile() ) {
       KDE_struct_stat stat_p;
-      KDE_lstat( (*it).uSource.path(KUrl::RemoveTrailingSlash).local8Bit(),&stat_p);    /* getting the date information */
+      KDE_lstat( (*it).uSource.path(KUrl::RemoveTrailingSlash).toLocal8Bit(),&stat_p);    /* getting the date information */
       
       QString aclStr;
 #if defined( HAVE_POSIX_ACL )
-      acl_t acl = acl_get_file( (*it).uSource.path(KUrl::RemoveTrailingSlash).local8Bit(), ACL_TYPE_ACCESS );
+      acl_t acl = acl_get_file( (*it).uSource.path(KUrl::RemoveTrailingSlash).toLocal8Bit(), ACL_TYPE_ACCESS );
 
       bool aclExtended = false;
       if( acl )
@@ -262,23 +262,23 @@ void PreservingCopyJob::slotCopyingDone( KIO::Job *, const KUrl &from, const KUr
         timestamp.actime  = time( 0 );
         timestamp.modtime = mtime;
 
-        utime( (const char *)( to.path( KUrl::RemoveTrailingSlash ).local8Bit() ), &timestamp );
+        utime( (const char *)( to.path( KUrl::RemoveTrailingSlash ).toLocal8Bit() ), &timestamp );
       }
 
       if( attrs.uid != (uid_t)-1 )
-        chown( (const char *)( to.path( KUrl::RemoveTrailingSlash ).local8Bit() ), attrs.uid, (gid_t)-1 );
+        chown( (const char *)( to.path( KUrl::RemoveTrailingSlash ).toLocal8Bit() ), attrs.uid, (gid_t)-1 );
       if( attrs.gid != (gid_t)-1 )
-        chown( (const char *)( to.path( KUrl::RemoveTrailingSlash ).local8Bit() ), (uid_t)-1, attrs.gid );
+        chown( (const char *)( to.path( KUrl::RemoveTrailingSlash ).toLocal8Bit() ), (uid_t)-1, attrs.gid );
 
       if( attrs.mode != (mode_t) -1 )
-        chmod( (const char *)( to.path( KUrl::RemoveTrailingSlash ).local8Bit() ), attrs.mode );
+        chmod( (const char *)( to.path( KUrl::RemoveTrailingSlash ).toLocal8Bit() ), attrs.mode );
 
 #if defined( HAVE_POSIX_ACL )
       if( !attrs.acl.isNull() )
       {
         acl_t acl = acl_from_text( attrs.acl.toLatin1() );
         if( acl && !acl_valid( acl ) )
-          acl_set_file( to.path( KUrl::RemoveTrailingSlash ).local8Bit(), ACL_TYPE_ACCESS, acl );
+          acl_set_file( to.path( KUrl::RemoveTrailingSlash ).toLocal8Bit(), ACL_TYPE_ACCESS, acl );
         if( acl )
           acl_free( acl );
       }

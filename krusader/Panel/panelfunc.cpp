@@ -206,7 +206,7 @@ void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn ) {
 	
 	// on local file system change the working directory
 	if ( files() ->vfs_getType() == vfs::NORMAL )
-		chdir( files() ->vfs_getOrigin().path().local8Bit() );
+		chdir( files() ->vfs_getOrigin().path().toLocal8Bit() );
 	
 	// see if the open url operation failed, and if so, 
 	// put the attempted url in the origin bar and let the user change it
@@ -297,12 +297,12 @@ void ListPanelFunc::redirectLink() {
 	if ( !ok || newLink == currentLink )
 		return ;
 	// delete the current link
-	if ( unlink( file.local8Bit() ) == -1 ) {
+	if ( unlink( file.toLocal8Bit() ) == -1 ) {
 		KMessageBox::sorry( krApp, i18n( "Can't remove old link: " ) + file );
 		return ;
 	}
 	// try to create a new symlink
-	if ( symlink( newLink.local8Bit(), file.local8Bit() ) == -1 ) {
+	if ( symlink( newLink.toLocal8Bit(), file.toLocal8Bit() ) == -1 ) {
 		KMessageBox:: /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */sorry( krApp, i18n( "Failed to create a new link: " ) + file );
 		return ;
 	}
@@ -338,11 +338,11 @@ void ListPanelFunc::krlink( bool sym ) {
 		name = files() ->vfs_getFile( name ).path( KUrl::RemoveTrailingSlash );
 
 	if ( sym ) {
-		if ( symlink( name.local8Bit(), linkName.local8Bit() ) == -1 )
+		if ( symlink( name.toLocal8Bit(), linkName.toLocal8Bit() ) == -1 )
 			KMessageBox::sorry( krApp, i18n( "Failed to create a new symlink: " ) + linkName +
 			                    i18n( " To: " ) + name );
 	} else {
-		if ( link( name.local8Bit(), linkName.local8Bit() ) == -1 )
+		if ( link( name.toLocal8Bit(), linkName.toLocal8Bit() ) == -1 )
 			KMessageBox::sorry( krApp, i18n( "Failed to create a new link: " ) + linkName +
 			                    i18n( " To: " ) + name );
 	}
@@ -842,9 +842,9 @@ void ListPanelFunc::pack() {
 	// pack the files
 	// we must chdir() first because we supply *names* not URL's
 	QString save = getcwd( 0, 0 );
-	chdir( arcDir.local8Bit() );
+	chdir( arcDir.toLocal8Bit() );
 	KRarcHandler::pack( fileNames, PackGUI::type, arcFile, totalFiles + totalDirs, PackGUI::extraProps );
-	chdir( save.local8Bit() );
+	chdir( save.toLocal8Bit() );
 
 	// delete the temporary directory if created
 	if ( tempDir )

@@ -169,7 +169,7 @@ void PanelViewer::oldHexViewer(KTemporaryFile& tmpFile) {
 	QDataStream in( &f_in );
 
   tmpFile.open(); // else there is no filename
-	FILE *out = KDE_fopen( tmpFile.fileName().local8Bit(), "w" ); // TODO get rid of FILE*
+	FILE *out = KDE_fopen( tmpFile.fileName().toLocal8Bit(), "w" ); // TODO get rid of FILE*
 
 	KIO::filesize_t fileSize = f_in.size();
 	KIO::filesize_t address = 0;

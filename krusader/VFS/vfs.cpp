@@ -313,7 +313,7 @@ void vfs::vfs_calcSpaceLocal(QString name ,KIO::filesize_t *totalSize,unsigned l
   if (name == "/proc") return;
 
   KDE_struct_stat stat_p;                // KDE lstat is necessary as QFileInfo and KFileItem 
-  KDE_lstat(name.local8Bit(),&stat_p);   //         reports wrong size for a symbolic link
+  KDE_lstat(name.toLocal8Bit(),&stat_p);   //         reports wrong size for a symbolic link
   
   if( S_ISLNK(stat_p.st_mode) || !S_ISDIR(stat_p.st_mode) ) { // single files are easy : )
     ++(*totalFiles);
@@ -321,7 +321,7 @@ void vfs::vfs_calcSpaceLocal(QString name ,KIO::filesize_t *totalSize,unsigned l
   }
   else{  // handle directories
     // avoid a nasty crash on un-readable dirs
-    bool readable = ::access( name.local8Bit(), R_OK | X_OK ) == 0;
+    bool readable = ::access( name.toLocal8Bit(), R_OK | X_OK ) == 0;
     if( !readable )
       return;
       

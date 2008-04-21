@@ -107,7 +107,7 @@ char KRpermHandler::executable( QString perm, gid_t gid, uid_t uid, int rwx ) {
 
 bool KRpermHandler::fileWriteable( QString localFile ) {
 	KDE_struct_stat stat_p;
-	if ( KDE_stat( localFile.local8Bit(), &stat_p ) == -1 ) return false;
+	if ( KDE_stat( localFile.toLocal8Bit(), &stat_p ) == -1 ) return false;
 	mode_t m = stat_p.st_mode;
 	QString perm = mode2QString( m );
 	return writeable( perm, stat_p.st_gid, stat_p.st_uid );
@@ -115,7 +115,7 @@ bool KRpermHandler::fileWriteable( QString localFile ) {
 
 bool KRpermHandler::fileReadable( QString localFile ) {
 	KDE_struct_stat stat_p;
-	if ( KDE_stat( localFile.local8Bit(), &stat_p ) == -1 ) return false;
+	if ( KDE_stat( localFile.toLocal8Bit(), &stat_p ) == -1 ) return false;
 	mode_t m = stat_p.st_mode;
 	QString perm = mode2QString( m );
 	return readable( perm, stat_p.st_gid, stat_p.st_uid );
@@ -123,7 +123,7 @@ bool KRpermHandler::fileReadable( QString localFile ) {
 
 bool KRpermHandler::fileExecutable( QString localFile ) {
 	KDE_struct_stat stat_p;
-	if ( KDE_stat( localFile.local8Bit(), &stat_p ) == -1 ) return false;
+	if ( KDE_stat( localFile.toLocal8Bit(), &stat_p ) == -1 ) return false;
 	mode_t m = stat_p.st_mode;
 	QString perm = mode2QString( m );
 	return executable( perm, stat_p.st_gid, stat_p.st_uid );
@@ -238,7 +238,7 @@ char KRpermHandler::ftpExecutable( QString fileOwner, QString userName, QString 
 }
 
 bool KRpermHandler::dirExist( QString path ) {
-	DIR * dir = opendir( path.local8Bit() );
+	DIR * dir = opendir( path.toLocal8Bit() );
 	if ( !dir ) return false;
 	closedir( dir ); // bug fix Karai Csaba (ckarai)
 	return true;
@@ -253,7 +253,7 @@ bool KRpermHandler::fileExist( QString fullPath ) {
 
 bool KRpermHandler::fileExist( QString path, QString name ) {
 	if ( QDir( path ).exists( name ) ) return true;
-	DIR* dir = opendir( path.local8Bit() );
+	DIR* dir = opendir( path.toLocal8Bit() );
 	if ( !dir ) return false;
 	struct dirent* dirEnt;
 	while ( ( dirEnt = readdir( dir ) ) ) {

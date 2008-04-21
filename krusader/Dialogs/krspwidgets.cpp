@@ -181,7 +181,7 @@ void KRMaskChoiceSub::accept() {
     }
 
   if (add)
-    KRSpWidgets::maskList.insert(0,selection->currentText().local8Bit());
+    KRSpWidgets::maskList.insert(0,selection->currentText().toLocal8Bit());
   // write down the predefined selections list
   QStringList list;
 

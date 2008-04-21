@@ -125,7 +125,7 @@ void KRSearchMod::scanLocalDir( KUrl urlToScan )
 {
   QString dir = urlToScan.path( KUrl::AddTrailingSlash );
 
-  DIR* d = opendir( dir.local8Bit() );
+  DIR* d = opendir( dir.toLocal8Bit() );
   if ( !d ) return ;
 
   struct dirent* dirEnt;
@@ -138,7 +138,7 @@ void KRSearchMod::scanLocalDir( KUrl urlToScan )
     if ( name == "." || name == ".." ) continue;
 
     KDE_struct_stat stat_p;
-    KDE_lstat( ( dir + name ).local8Bit(), &stat_p );
+    KDE_lstat( ( dir + name ).toLocal8Bit(), &stat_p );
 
     KUrl url = KUrl( dir + name );
 

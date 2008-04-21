@@ -310,7 +310,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
   if( type == "-ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
     proc.setStandardInputFile("/dev/ptmx");
   
-  proc.setWorkingDirectory( dest.local8Bit() );
+  proc.setWorkingDirectory( dest.toLocal8Bit() );
 
   // tell the user to wait
   krApp->startWaiting( i18n( "Unpacking File(s)" ), count, true );

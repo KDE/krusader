@@ -669,7 +669,7 @@ void KrViewer::viewHex() {
 		f_in.open( QIODevice::ReadOnly );
 		QDataStream in( &f_in );
 
-		FILE *out = KDE_fopen( tmpFile.name().local8Bit(), "w" );
+		FILE *out = KDE_fopen( tmpFile.name().toLocal8Bit(), "w" );
 
 		KIO::filesize_t fileSize = f_in.size();
 		KIO::filesize_t address = 0;

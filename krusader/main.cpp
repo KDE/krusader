@@ -210,7 +210,7 @@ KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") : ki18n("Kr
     fprintf( stderr, "DBus Error: %s, %s\n", reply.error().name().ascii(), reply.error().message().ascii() );
 
   if( reply.isValid() && (bool)reply ) {
-    fprintf( stderr, i18n( "Application already running!\n" ).local8Bit() );
+    fprintf( stderr, i18n( "Application already running!\n" ).toLocal8Bit() );
     KStartupInfo::appStarted();
     return 1;
   }

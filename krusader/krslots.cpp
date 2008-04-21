@@ -428,7 +428,7 @@ void KRslots::runMountMan() {
 void KRslots::homeTerminal(){
   // FIXME this is the third copy of the code starting a terminal!
   KProcess proc;
-  proc.setWorkingDirectory(QDir::homePath().local8Bit());
+  proc.setWorkingDirectory(QDir::homePath().toLocal8Bit());
   KConfigGroup group( krConfig, "General");
   QString term = group.readEntry("Terminal",_Terminal);
   proc << KrServices::separateArgs( term );

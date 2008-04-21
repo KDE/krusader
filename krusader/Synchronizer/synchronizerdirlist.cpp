@@ -115,7 +115,7 @@ bool SynchronizerDirList::load( const QString &urlIn, bool wait ) {
 
   if( url.isLocalFile() ) {
     QString path = url.path( KUrl::RemoveTrailingSlash );
-    DIR* dir = opendir(path.local8Bit());
+    DIR* dir = opendir(path.toLocal8Bit());
     if(!dir)  {
       KMessageBox::error(parentWidget, i18n("Can't open the %1 directory!", path ), i18n("Error"));
       emit finished( result = false );
@@ -134,7 +134,7 @@ bool SynchronizerDirList::load( const QString &urlIn, bool wait ) {
       QString fullName = path + "/" + name;
 
       KDE_struct_stat stat_p;
-      KDE_lstat(fullName.local8Bit(),&stat_p);
+      KDE_lstat(fullName.toLocal8Bit(),&stat_p);
 
       QString perm = KRpermHandler::mode2QString(stat_p.st_mode);
 
@@ -145,7 +145,7 @@ bool SynchronizerDirList::load( const QString &urlIn, bool wait ) {
         char symDest[256];
         bzero(symDest,256); 
         int endOfName=0;
-        endOfName=readlink(fullName.local8Bit(),symDest,256);
+        endOfName=readlink(fullName.toLocal8Bit(),symDest,256);
         if ( endOfName != -1 ) {
           QString absSymDest = symlinkDest = QString::fromLocal8Bit( symDest );
 

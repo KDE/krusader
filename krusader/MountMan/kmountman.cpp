@@ -129,7 +129,7 @@ void KMountMan::mount( QString mntPoint, bool blocking ) {
 	if (!((bool)m)) return;
 	if (blocking)
 	   waiting = true; // prepare to block
-	KIO::SimpleJob *job = KIO::mount(false, m->mountType().local8Bit(), m->mountedFrom(), m->mountPoint(), false);
+	KIO::SimpleJob *job = KIO::mount(false, m->mountType().toLocal8Bit(), m->mountedFrom(), m->mountPoint(), false);
 	job->setUiDelegate(new KIO::JobUiDelegate() );
 	KIO::getJobTracker()->registerJob(job);
 	connect(job, SIGNAL(result(KJob* )), this, SLOT(jobResult(KJob* )));

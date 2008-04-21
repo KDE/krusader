@@ -95,7 +95,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
 	KConfigGroup group( krConfig, "Advanced");
 	if (group.readEntry("AutoMount",_AutoMount)) krMtMan.autoMount(path);
 	
-	DIR* dir = opendir(path.local8Bit());
+	DIR* dir = opendir(path.toLocal8Bit());
 	if(!dir) 
 	{
 		if( !quietMode ) KMessageBox::error(krApp, i18n("Can't open the %1 directory!", path ), i18n("Error"));
@@ -104,7 +104,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
 
   // change directory to the new directory
 	QString save = getcwd( 0, 0 );
-	if (chdir(path.local8Bit()) != 0) {
+	if (chdir(path.toLocal8Bit()) != 0) {
 		if( !quietMode ) KMessageBox::error(krApp, i18n("Access denied to")+path, i18n("Error"));
 		closedir(dir);
 		return false;
@@ -126,7 +126,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
   }
 	// clean up
 	closedir(dir);
-	chdir( save.local8Bit() );
+	chdir( save.toLocal8Bit() );
 	
 	if( panelConnected )
 	{
@@ -238,7 +238,7 @@ void normal_vfs::vfs_rename(const QString& fileName,const QString& newName){
 
 vfile* normal_vfs::vfileFromName(const QString& name){
 	QString path = vfs_workingDir()+"/"+name;
-	QByteArray fileName = path.local8Bit();
+	QByteArray fileName = path.toLocal8Bit();
 	
 	KDE_struct_stat stat_p;
 	KDE_lstat(fileName.data(),&stat_p);
@@ -281,7 +281,7 @@ void normal_vfs::getACL( vfile *file, QString &acl, QString &defAcl )
 {
 	acl = defAcl = QString();
 #if defined( HAVE_POSIX_ACL )
-	QByteArray fileName = file->vfile_getUrl().path( KUrl::RemoveTrailingSlash ).local8Bit();
+	QByteArray fileName = file->vfile_getUrl().path( KUrl::RemoveTrailingSlash ).toLocal8Bit();
 #if HAVE_NON_POSIX_ACL_EXTENSIONS
 	if ( acl_extended_file( fileName.data() ) )
 	{
