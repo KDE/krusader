@@ -45,7 +45,7 @@
 #include "../Dialogs/krpleasewait.h"
 #include <unistd.h> // for usleep
 
-static QStringList arcProtocols = QStringList::split(";", "tar;bzip;bzip2;gzip;krarc;zip");
+static QStringList arcProtocols = QString("tar;bzip;bzip2;gzip;krarc;zip").split(";");
 
 KWallet::Wallet * KRarcHandler::wallet = 0;
 

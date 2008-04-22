@@ -39,7 +39,7 @@ bool KrServices::cmdExist(QString cmdName)
 
 QString KrServices::detectFullPathName(QString name)
 {
-  QStringList path = QStringList::split(":",getenv("PATH"));
+  QStringList path = QString::fromLocal8Bit(getenv("PATH")).split(":");
 
   for ( QStringList::Iterator it = path.begin(); it != path.end(); ++it )
   {

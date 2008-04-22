@@ -135,7 +135,7 @@ void KgDependencies::addApplication( QString name, QGridLayout *grid, int row, Q
   QString dflt = KrServices::fullPathName( name ); /* try to autodetect the full path name */
 
   if( dflt.isEmpty() ) {
-    QStringList list = QStringList::split( ',', additionalList );
+    QStringList list = additionalList.split( ',' );
     for( int i=0; i != list.count(); i++ )
       if( !KrServices::fullPathName( list[ i ] ).isEmpty() ) {
         dflt = KrServices::fullPathName( list[ i ] );

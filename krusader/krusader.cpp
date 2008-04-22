@@ -288,7 +288,7 @@ Krusader::Krusader() : KParts::MainWindow(0,Qt::WType_TopLevel|Qt::WDestructiveC
    
    // get command-line arguments
    if ( args->isSet( "left" ) ) {
-      leftTabs = QStringList::split( ',', args->getOption( "left" ) );
+      leftTabs = args->getOption( "left" ).split( ',' );
       leftTabTypes.clear();
       leftTabProps.clear();
 
@@ -304,7 +304,7 @@ Krusader::Krusader() : KParts::MainWindow(0,Qt::WType_TopLevel|Qt::WDestructiveC
       startProfile = QString();
    }
    if ( args->isSet( "right" ) ) {
-      rightTabs = QStringList::split( ',', args->getOption( "right" ) );
+      rightTabs = args->getOption( "right" ).split( ',' );
       rightTabTypes.clear();
       rightTabProps.clear();
 

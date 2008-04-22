@@ -338,7 +338,7 @@ void LocateDlg::processStdout()
 {
   remaining += QString::fromLocal8Bit( locateProc->readAllStandardOutput() );
 
-  QStringList list = QStringList::split("\n", remaining );
+  QStringList list = remaining.split("\n" );
   int items = list.size();
 
   for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it )

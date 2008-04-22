@@ -282,9 +282,9 @@ void KrViewer::edit( KUrl url, Mode mode, int new_window, QWidget * parent ) {
 		// if the file is local, pass a normal path and not a url. this solves
 		// the problem for editors that aren't url-aware
 		if ( url.isLocalFile() )
-			proc << QStringList::split( ' ', edit ) << url.path();
+			proc << edit.split( ' ' ) << url.path();
 		else
-			proc << QStringList::split( ' ', edit ) << url.prettyUrl();
+			proc << edit.split( ' ' ) << url.prettyUrl();
 		if ( !proc.startDetached() )
 			KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + edit + "\"" );
 		return ;

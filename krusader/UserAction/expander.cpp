@@ -987,7 +987,7 @@ TagString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, c
    if ( parameter[1].toLower() == "yes" )	// to stay compatible with the old-style parameter
       jsReturn = "cmd";
    else {
-      QStringList jsVariables = QStringList::split( ';', parameter[1] );
+      QStringList jsVariables = parameter[1].split( ';' );
       QString jsVariable, jsValue;
       for ( QStringList::Iterator it = jsVariables.begin(); it != jsVariables.end(); ++it ) {
          jsVariable = (*it).section('=', 0, 0).trimmed();

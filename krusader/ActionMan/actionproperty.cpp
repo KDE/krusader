@@ -307,7 +307,7 @@ void ActionProperty::newProtocol() {
 		currentText,
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
-      lbShowonlyProtocol->addItems( QStringList::split( ";", text ) );
+      lbShowonlyProtocol->addItems( text.split( ";" ) );
       setModified();
    }
 }
@@ -385,7 +385,7 @@ void ActionProperty::addMime() {
 		currentText,
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
-      lbShowonlyMime->addItems( QStringList::split( ";", text ) );
+      lbShowonlyMime->addItems( text.split( ";" ) );
       setModified();
    }
 }
@@ -429,7 +429,7 @@ void ActionProperty::newFile() {
 		currentText,
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
-      lbShowonlyFile->addItems( QStringList::split( ";", text ) );
+      lbShowonlyFile->addItems( text.split( ";" ) );
       setModified();
    }
 }

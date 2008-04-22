@@ -113,7 +113,7 @@ void Combiner::combineSplitFileFinished(KJob *job)
   else
   {
     splitFile.remove( '\r' ); // Windows compatibility
-    QStringList splitFileContent = QStringList::split( '\n', splitFile );
+    QStringList splitFileContent = splitFile.split( '\n' );
     
     bool hasFileName = false, hasSize = false, hasCrc = false;
     

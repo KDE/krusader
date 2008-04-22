@@ -417,7 +417,7 @@ ParameterChoose::ParameterChoose( const exp_parameter& parameter, QWidget* paren
    
    new QLabel( i18n( parameter.description().utf8() ), this );
    _combobox = new KComboBox( this );
-   _combobox->insertStringList( QStringList::split( ";", parameter.preset().section(":", 1) ) );
+   _combobox->insertStringList( parameter.preset().section(":", 1).split( ";" ) );
 }
 
 QString ParameterChoose::text() {
@@ -606,7 +606,7 @@ ParameterInt::ParameterInt( const exp_parameter& parameter, QWidget* parent ) : 
    
    new QLabel( i18n( parameter.description().utf8() ), this );
    _spinbox = new KIntSpinBox( this );
-   QStringList para = QStringList::split( ";", parameter.preset().section(":", 1) );
+   QStringList para = parameter.preset().section(":", 1).split( ";" );
    
    _spinbox->setMinValue( para[0].toInt() );
    _spinbox->setMaxValue( para[1].toInt() );

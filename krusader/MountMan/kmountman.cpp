@@ -79,7 +79,7 @@ KMountMan::KMountMan() : QObject(), Operational( false ), waiting(false), mountM
 	nonmount_fs << "supermount";
 	{
 		KConfigGroup group( krConfig, "Advanced");
-		QStringList nonmount = QStringList::split(",", group.readEntry("Nonmount Points", _NonMountPoints));
+		QStringList nonmount = group.readEntry("Nonmount Points", _NonMountPoints).split(",");
 		nonmount_fs_mntpoint += nonmount;
 		// simplify the white space
 		for ( QStringList::Iterator it = nonmount_fs_mntpoint.begin(); it != nonmount_fs_mntpoint.end(); ++it ) {

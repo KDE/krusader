@@ -346,17 +346,17 @@ void KgProtocols::setDefaults()
     removeProtocol( linkList->topLevelItem( 0 )->text( 0 ) );
   
   addProtocol( "iso" );
-  QStringList isoMimes = QStringList::split( ',', defaultIsoMimes );
+  QStringList isoMimes = defaultIsoMimes.split( ',' );
   for( QStringList::Iterator it = isoMimes.begin(); it != isoMimes.end(); it++ )
     addMime( *it, "iso" );
   
   addProtocol( "krarc" );
-  QStringList krarcMimes = QStringList::split( ',', defaultKrarcMimes );
+  QStringList krarcMimes = defaultKrarcMimes.split( ',' );
   for( QStringList::Iterator it = krarcMimes.begin(); it != krarcMimes.end(); it++ )
     addMime( *it, "krarc" );
   
   addProtocol( "tar" );
-  QStringList tarMimes = QStringList::split( ',', defaultTarMimes );
+  QStringList tarMimes = defaultTarMimes.split( ',' );
   for( QStringList::Iterator it = tarMimes.begin(); it != tarMimes.end(); it++ )
     addMime( *it, "tar" );
     

@@ -503,7 +503,7 @@ void ListPanelFunc::mkdir() {
 	if ( !ok || dirName.isEmpty() )
 		return ;
 
-	QStringList dirTree = QStringList::split( "/", dirName );
+	QStringList dirTree = dirName.split( "/" );
 
 	for ( QStringList::Iterator it = dirTree.begin(); it != dirTree.end(); ++it ) {
 		// check if the name is already taken

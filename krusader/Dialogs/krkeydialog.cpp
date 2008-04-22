@@ -92,7 +92,7 @@ void KrKeyDialog::importLegacyShortcuts( const QString& file ) {
 	QFile info(file+".info");
 	if (info.open(QIODevice::ReadOnly)) {
 		QTextStream stream(&info);
-		QStringList infoText = QStringList::split("\n", stream.read());
+		QStringList infoText = stream.read().split("\n");
 		if (KMessageBox::questionYesNoList(krApp, i18n("The following information was attached to the keymap. Do you really want to import this keymap?"), infoText)!=KMessageBox::Yes)
 			return;
 	}

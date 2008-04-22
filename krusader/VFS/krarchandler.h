@@ -139,7 +139,7 @@ public slots:
 		
 		QString checkable = lastData + data;
 		
-		QStringList lines = QStringList::split( '\n', checkable );
+		QStringList lines = checkable.split( '\n' );
 		lastData = lines[ lines.count() - 1 ];
 		for( int i=0; i != lines.count(); i++ ) {
 			QString line = lines[ i ].trimmed().toLower();
