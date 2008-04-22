@@ -83,7 +83,7 @@ void VirtProtocol::del(KUrl const & /*url */, bool /* isFile */ ){
 
 void VirtProtocol::copy( const KUrl &src, const KUrl &dest, int /* permissions */, bool /* overwrite */ ){
 	QString path = dest.path( KUrl::RemoveTrailingSlash ).mid( 1 );
-	path = path.left(path.findRev("/"));
+	path = path.left(path.lastIndexOf("/"));
 	if ( path.isEmpty() ) path = "/";
 
 	if( addDir(path) ){
@@ -100,8 +100,8 @@ bool VirtProtocol::addDir(QString& path){
 
 	QString updir;
 	if( !path.contains("/") ) updir = "/";
-	else updir = path.left(path.findRev("/"));
-	QString name = path.mid(path.findRev("/")+1);
+	else updir = path.left(path.lastIndexOf("/"));
+	QString name = path.mid(path.lastIndexOf("/")+1);
 
 	if( addDir(updir) ){ 
 		KUrl url;

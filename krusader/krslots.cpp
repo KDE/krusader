@@ -671,7 +671,7 @@ void KRslots::slotCombine(){
     if( !unixStyle )
     {
       QString name = url.fileName();
-      int extPos = name.findRev( '.' );
+      int extPos = name.lastIndexOf( '.' );
       QString ext = name.mid( extPos + 1 );
       name.truncate( extPos );
       url.setFileName( name );

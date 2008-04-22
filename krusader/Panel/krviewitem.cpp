@@ -20,7 +20,7 @@ KrViewItem::KrViewItem(vfile *vf, const KrViewProperties* properties):
 	if (vf) {
 		// check if the file has an extension
 		const QString& vfName = vf->vfile_getName();
-		int loc = vfName.findRev('.');
+		int loc = vfName.lastIndexOf('.');
 		if (loc>0) { // avoid mishandling of .bashrc and friend
 			// check if it has one of the predefined 'atomic extensions'
 			for (QStringList::const_iterator i = PROPS->atomicExtensions.begin(); i != PROPS->atomicExtensions.end(); ++i) {

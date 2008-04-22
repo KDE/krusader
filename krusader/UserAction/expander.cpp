@@ -1174,8 +1174,8 @@ TagStringList Expander::separateParameter( QString* const exp, bool useUrl ) {
    QStringList parameter1;
    QString result;
    int begin, end;
-   if ( ( begin = exp->find( '(' ) ) != -1 ) {
-      if ( ( end = exp->findRev( ')' ) ) == -1 ) {
+   if ( ( begin = exp->indexOf( '(' ) ) != -1 ) {
+      if ( ( end = exp->lastIndexOf( ')' ) ) == -1 ) {
          setError(Error(Error::S_FATAL,Error::C_SYNTAX,i18n("Error: missing ')' in Expander::separateParameter") ));
          return TagStringList();
       }

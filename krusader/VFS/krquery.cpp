@@ -158,7 +158,7 @@ bool KRQuery::matchCommon( const QString &nameIn, const QStringList &matchList, 
     return true;
 
   QString name( nameIn );
-  int ndx = nameIn.findRev( '/' ); // virtual filenames may contain '/'
+  int ndx = nameIn.lastIndexOf( '/' ); // virtual filenames may contain '/'
   if( ndx != -1 )                  // but the end of the filename is OK
     name = nameIn.mid( ndx + 1 );
 

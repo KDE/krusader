@@ -447,7 +447,7 @@ bool Krusader::versionControl() {
 
 #if 0      
 	QString oldVerText = nogroup.readEntry( "Version", "10.0" );
-   oldVerText.truncate( oldVerText.findRev( "." ) ); // remove the third dot
+   oldVerText.truncate( oldVerText.lastIndexOf( "." ) ); // remove the third dot
    float oldVer = oldVerText.toFloat();
    // older icompatible version
    if ( oldVer <= 0.9 ) {

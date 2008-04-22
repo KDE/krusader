@@ -247,8 +247,8 @@ bool KRpermHandler::dirExist( QString path ) {
 bool KRpermHandler::fileExist( QString fullPath ) {
 	if ( fullPath.right( 1 ) == "/" ) fullPath = fullPath.left( fullPath.length() - 1 ) ;
 	if ( fullPath.left( 1 ) != "/" ) return fileExist( "/", fullPath );
-	return fileExist( fullPath.left( fullPath.findRev( "/" ) ) ,
-	                  fullPath.mid( fullPath.findRev( "/" ) + 1 ) );
+	return fileExist( fullPath.left( fullPath.lastIndexOf( "/" ) ) ,
+	                  fullPath.mid( fullPath.lastIndexOf( "/" ) + 1 ) );
 }
 
 bool KRpermHandler::fileExist( QString path, QString name ) {

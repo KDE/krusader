@@ -1238,7 +1238,7 @@ void KrDetailedView::renameCurrentItem() {
       KConfigGroup svr( krConfig, "Look&Feel" );
       if (!svr.readEntry("Rename Selects Extension", true)) {
 	if (it->hasExtension() && !it->VF->vfile_isDir() ) 
-		renameLineEdit()->setSelection(0, it->name().findRev(it->extension())-1);
+		renameLineEdit()->setSelection(0, it->name().lastIndexOf(it->extension())-1);
       }
       // signal will be emited when renaming is done, and finalization
       // will occur in inplaceRenameFinished()

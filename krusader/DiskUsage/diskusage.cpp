@@ -440,7 +440,7 @@ File * DiskUsage::getFile( QString path )
 
   QString dir = path;
 
-  int ndx = path.findRev( '/' );
+  int ndx = path.lastIndexOf( '/' );
   QString file = path.mid( ndx + 1 );
 
   if( ndx == -1 )

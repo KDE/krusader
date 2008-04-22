@@ -353,7 +353,7 @@ void LocateDlg::processStdout()
         QString fileName = (*it).trimmed();
         if( fileName.endsWith( "/" ) && fileName != "/" )
           fileName.truncate( fileName.length() -1 );
-        fileName = fileName.mid( fileName.findRev( '/' ) + 1 );
+        fileName = fileName.mid( fileName.lastIndexOf( '/' ) + 1 );
         
         if( !regExp.exactMatch( fileName ) )
           continue;        
@@ -432,8 +432,8 @@ void LocateDlg::slotDoubleClick(QTreeWidgetItem *item)
 
   if( !QDir( dirName ).exists() )
   {
-    fileName = dirName.mid( dirName.findRev( '/' ) + 1 );
-    dirName.truncate( dirName.findRev( '/' ) );
+    fileName = dirName.mid( dirName.lastIndexOf( '/' ) + 1 );
+    dirName.truncate( dirName.lastIndexOf( '/' ) );
   }
     
   ACTIVE_FUNC->openUrl(KUrl( dirName ), fileName );

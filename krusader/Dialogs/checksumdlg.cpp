@@ -446,7 +446,7 @@ bool MatchChecksumDlg::verifyChecksumFile(QString path,  QString& extension) {
 	QFileInfo f(path);
 	if (!f.exists() || f.isDir()) return false;
 	// find the extension
-	extension = path.mid(path.findRev(".")+1);
+	extension = path.mid(path.lastIndexOf(".")+1);
 	
 	// TODO: do we know the extension? if not, ask the user for one
 	
@@ -616,7 +616,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 	
 	if (exec() == Accepted && successes) {
 		if (stdOut.size()>1 && standardFormat && onePerFile->isChecked()) {
-			savePerFile(stdOut, suggestedFilename.mid(suggestedFilename.findRev('.')));
+			savePerFile(stdOut, suggestedFilename.mid(suggestedFilename.lastIndexOf('.')));
 		} else if (saveFileCb->isEnabled() && saveFileCb->isChecked() && !checksumFile->url().isEmpty()) {
 			saveChecksum(stdOut, checksumFile->url().pathOrUrl());
 		}

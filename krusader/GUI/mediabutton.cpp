@@ -219,7 +219,7 @@ KUrl MediaButton::getLocalPath( const KUrl &url, KMountPoint::List *mountList ) 
 	
 	for (KMountPoint::List::iterator it = mountList->begin(); it != mountList->end(); ++it) {
 		QString name = (*it)->mountedFrom();
-		name = name.mid( name.findRev( "/" ) + 1 );
+		name = name.mid( name.lastIndexOf( "/" ) + 1 );
 		if( name == url.fileName() ) {
 			QString point = (*it)->mountPoint();
 			if( !point.isEmpty() )
@@ -664,7 +664,7 @@ void MediaButton::slotTimeout() {
 				{
 					if( text.endsWith( "]" ) )
 					{
-						int ndx = text.findRev( "  [" );
+						int ndx = text.lastIndexOf( "  [" );
 						if( ndx >0 )
 							text.truncate( ndx );
 					}
@@ -676,7 +676,7 @@ void MediaButton::slotTimeout() {
 			{
 				if( text.endsWith( "]" ) )
 				{
-					int ndx = text.findRev( "  [" );
+					int ndx = text.lastIndexOf( "  [" );
 					if( ndx >0 )
 						text.truncate( ndx );
 				}

@@ -1452,7 +1452,7 @@ void Synchronizer::synchronizeWithKGet()
         QString source = downloadURL.prettyUrl();
         if( source.indexOf( '@' ) >= 2 ) /* is this an ftp proxy URL? */
         {
-          int lastAt = source.findRev( '@' );
+          int lastAt = source.lastIndexOf( '@' );
           QString startString = source.left( lastAt );
           QString endString = source.mid( lastAt );
           startString.replace( "@", "%40" );

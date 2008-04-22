@@ -303,8 +303,8 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
   KrLinecountingProcess proc;
   proc << packer << archive;
   if( type == "zip2" || type=="gzip" ){
-    QString arcname = archive.mid(archive.findRev("/")+1);
-    if( arcname.contains(".") ) arcname = arcname.left(arcname.findRev("."));
+    QString arcname = archive.mid(archive.lastIndexOf("/")+1);
+    if( arcname.contains(".") ) arcname = arcname.left(arcname.lastIndexOf("."));
     proc.setStandardOutputFile( dest+"/"+arcname );
   }
   if( type == "-ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!

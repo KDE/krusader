@@ -85,7 +85,7 @@ KUrl KRSpWidgets::newFTP() {
 	QString password = p->password->text().simplified();
 	QString uri = p->url->currentText();
 
-	int uriStart = uri.findRev( '@' ); /* lets the user enter user and password in the URI field */
+	int uriStart = uri.lastIndexOf( '@' ); /* lets the user enter user and password in the URI field */
 	if( uriStart != -1 ) {
 		QString uriUser = uri.left( uriStart );
 		QString uriPsw = QString();
