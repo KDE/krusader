@@ -78,8 +78,8 @@ SplitterGUI::SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir ) :
      
   deviceCombo = new QComboBox( splitSizeLine );
   for( int i=0; i != predefinedDeviceNum; i++ )
-    deviceCombo->insertItem( predefinedDevices[i].name );
-  deviceCombo->insertItem( i18n( "User Defined" ) );
+    deviceCombo->addItem( predefinedDevices[i].name );
+  deviceCombo->addItem( i18n( "User Defined" ) );
   splitSizeLineLayout->addWidget( deviceCombo );
 
   QLabel *spacer = new QLabel( splitSizeLine );
@@ -97,10 +97,10 @@ SplitterGUI::SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir ) :
   splitSizeLineLayout->addWidget( spinBox );
     
   sizeCombo = new QComboBox( splitSizeLine );
-  sizeCombo->insertItem( i18n( "Byte" ) );
-  sizeCombo->insertItem( i18n( "kByte" ) );
-  sizeCombo->insertItem( i18n( "MByte" ) );
-  sizeCombo->insertItem( i18n( "GByte" ) );
+  sizeCombo->addItem( i18n( "Byte" ) );
+  sizeCombo->addItem( i18n( "kByte" ) );
+  sizeCombo->addItem( i18n( "MByte" ) );
+  sizeCombo->addItem( i18n( "GByte" ) );
   splitSizeLineLayout->addWidget( sizeCombo );
 
   grid->addWidget( splitSizeLine,2 ,0 );

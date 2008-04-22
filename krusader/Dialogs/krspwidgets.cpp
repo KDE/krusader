@@ -226,7 +226,7 @@ void KRMaskChoiceSub::clearSelections() {
 }
 
 void KRMaskChoiceSub::acceptFromList(QListWidgetItem *i) {
-  selection->insertItem(i->text(),0);
+  selection->addItem(i->text(),0);
   accept();
 }
 

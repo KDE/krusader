@@ -90,13 +90,13 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	ofType->setSizePolicy ( QSizePolicy ( ( QSizePolicy::SizeType ) 7, ( QSizePolicy::SizeType ) 0, ofType->sizePolicy().hasHeightForWidth() ) );
 	ofType->setEditable ( false );
 	searchType->setBuddy ( ofType );
-	ofType->insertItem ( i18n ( "All Files" ) );
-	ofType->insertItem ( i18n ( "Archives" ) );
-	ofType->insertItem ( i18n ( "Directories" ) );
-	ofType->insertItem ( i18n ( "Image Files" ) );
-	ofType->insertItem ( i18n ( "Text Files" ) );
-	ofType->insertItem ( i18n ( "Video Files" ) );
-	ofType->insertItem ( i18n ( "Audio Files" ) );
+	ofType->addItem ( i18n ( "All Files" ) );
+	ofType->addItem ( i18n ( "Archives" ) );
+	ofType->addItem ( i18n ( "Directories" ) );
+	ofType->addItem ( i18n ( "Image Files" ) );
+	ofType->addItem ( i18n ( "Text Files" ) );
+	ofType->addItem ( i18n ( "Video Files" ) );
+	ofType->addItem ( i18n ( "Audio Files" ) );
 
 	nameGroupLayout->addWidget ( ofType, 1, 1 );
 	filterLayout->addWidget ( nameGroup, 0, 0 );

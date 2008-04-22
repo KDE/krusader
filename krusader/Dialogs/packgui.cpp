@@ -63,13 +63,13 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
   // now, clear the type combo and begin...
   typeData->clear();
   if (PS("tar")) typeData->insertItem("tar");
-  if (PS("tar") && PS("gzip")) typeData->insertItem("tar.gz");
-  if (PS("tar") && PS("bzip2")) typeData->insertItem("tar.bz2");
-  if (PS("zip")) typeData->insertItem("zip");
-  if (PS("rar")) typeData->insertItem("rar");
-  if (PS("lha")) typeData->insertItem("lha");
-  if (PS("arj")) typeData->insertItem("arj");
-  if (PS("7z")) typeData->insertItem("7z");
+  if (PS("tar") && PS("gzip")) typeData->addItem("tar.gz");
+  if (PS("tar") && PS("bzip2")) typeData->addItem("tar.bz2");
+  if (PS("zip")) typeData->addItem("zip");
+  if (PS("rar")) typeData->addItem("rar");
+  if (PS("lha")) typeData->addItem("lha");
+  if (PS("arj")) typeData->addItem("arj");
+  if (PS("7z")) typeData->addItem("7z");
   // set the last used packer as the top one
   QString tmp=group.readEntry("lastUsedPacker",QString());
   if (tmp!=QString()) {

@@ -1417,10 +1417,10 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   optionsLayout->addWidget( equalitySpinBox, 1, 1 );
 
   equalityUnitCombo = new QComboBox( optionsGroup );
-  equalityUnitCombo->insertItem( i18n( "sec" ) );
-  equalityUnitCombo->insertItem( i18n( "min" ) );
-  equalityUnitCombo->insertItem( i18n( "hour" ) );
-  equalityUnitCombo->insertItem( i18n( "day" ) );
+  equalityUnitCombo->addItem( i18n( "sec" ) );
+  equalityUnitCombo->addItem( i18n( "min" ) );
+  equalityUnitCombo->addItem( i18n( "hour" ) );
+  equalityUnitCombo->addItem( i18n( "day" ) );
   optionsLayout->addWidget( equalityUnitCombo, 1, 2 );
 
   QLabel * timeShiftLabel = new QLabel( i18n( "Time shift (right-left):" ), optionsGroup );
@@ -1432,10 +1432,10 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   optionsLayout->addWidget( timeShiftSpinBox, 2, 1 );
 
   timeShiftUnitCombo = new QComboBox( optionsGroup );
-  timeShiftUnitCombo->insertItem( i18n( "sec" ) );
-  timeShiftUnitCombo->insertItem( i18n( "min" ) );
-  timeShiftUnitCombo->insertItem( i18n( "hour" ) );
-  timeShiftUnitCombo->insertItem( i18n( "day" ) );
+  timeShiftUnitCombo->addItem( i18n( "sec" ) );
+  timeShiftUnitCombo->addItem( i18n( "min" ) );
+  timeShiftUnitCombo->addItem( i18n( "hour" ) );
+  timeShiftUnitCombo->addItem( i18n( "day" ) );
   optionsLayout->addWidget( timeShiftUnitCombo, 2, 2 );
 
   QFrame *line = new QFrame( optionsGroup );

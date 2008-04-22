@@ -76,9 +76,9 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	sizeLayout->addWidget ( biggerThanAmount, 0, 1 );
 
 	biggerThanType = new KComboBox ( false, sizeGroup );
-	biggerThanType->insertItem ( i18n ( "Bytes" ) );
-	biggerThanType->insertItem ( i18n ( "KB" ) );
-	biggerThanType->insertItem ( i18n ( "MB" ) );
+	biggerThanType->addItem ( i18n ( "Bytes" ) );
+	biggerThanType->addItem ( i18n ( "KB" ) );
+	biggerThanType->addItem ( i18n ( "MB" ) );
 	biggerThanType->setEnabled ( false );
 	sizeLayout->addWidget ( biggerThanType, 0, 2 );
 
@@ -92,9 +92,9 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	sizeLayout->addWidget ( smallerThanAmount, 0, 4 );
 
 	smallerThanType = new KComboBox ( false, sizeGroup );
-	smallerThanType->insertItem ( i18n ( "Bytes" ) );
-	smallerThanType->insertItem ( i18n ( "KB" ) );
-	smallerThanType->insertItem ( i18n ( "MB" ) );
+	smallerThanType->addItem ( i18n ( "Bytes" ) );
+	smallerThanType->addItem ( i18n ( "KB" ) );
+	smallerThanType->addItem ( i18n ( "MB" ) );
 	smallerThanType->setEnabled ( false );
 	sizeLayout->addWidget ( smallerThanType, 0, 5 );
 
@@ -179,10 +179,10 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	dateLayout->addWidget ( modifiedInTheLastData, 2, 2 );
 
 	modifiedInTheLastType = new QComboBox ( false, dateGroup );
-	modifiedInTheLastType->insertItem ( i18n ( "days" ) );
-	modifiedInTheLastType->insertItem ( i18n ( "weeks" ) );
-	modifiedInTheLastType->insertItem ( i18n ( "months" ) );
-	modifiedInTheLastType->insertItem ( i18n ( "years" ) );
+	modifiedInTheLastType->addItem ( i18n ( "days" ) );
+	modifiedInTheLastType->addItem ( i18n ( "weeks" ) );
+	modifiedInTheLastType->addItem ( i18n ( "months" ) );
+	modifiedInTheLastType->addItem ( i18n ( "years" ) );
 	modifiedInTheLastType->setEnabled ( false );
 	dateLayout->addWidget ( modifiedInTheLastType, 2, 3, 1, 2 );
 
@@ -197,10 +197,10 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	dateLayout->addWidget ( notModifiedInTheLastLbl, 3, 0 );
 
 	notModifiedInTheLastType = new QComboBox ( false, dateGroup );
-	notModifiedInTheLastType->insertItem ( i18n ( "days" ) );
-	notModifiedInTheLastType->insertItem ( i18n ( "weeks" ) );
-	notModifiedInTheLastType->insertItem ( i18n ( "months" ) );
-	notModifiedInTheLastType->insertItem ( i18n ( "years" ) );
+	notModifiedInTheLastType->addItem ( i18n ( "days" ) );
+	notModifiedInTheLastType->addItem ( i18n ( "weeks" ) );
+	notModifiedInTheLastType->addItem ( i18n ( "months" ) );
+	notModifiedInTheLastType->addItem ( i18n ( "years" ) );
 	notModifiedInTheLastType->setEnabled ( false );
 	dateLayout->addWidget ( notModifiedInTheLastType, 3, 3, 1, 2 );
 
@@ -249,25 +249,25 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	int width = 2*height + height / 2;
 
 	ownerR = new QComboBox ( false, ownerGroup );
-	ownerR->insertItem ( i18n ( "?" ) );
-	ownerR->insertItem ( i18n ( "r" ) );
-	ownerR->insertItem ( i18n ( "-" ) );
+	ownerR->addItem ( i18n ( "?" ) );
+	ownerR->addItem ( i18n ( "r" ) );
+	ownerR->addItem ( i18n ( "-" ) );
 	ownerR->setEnabled ( false );
 	ownerR->setGeometry ( QRect ( 10, 20, width, height+6 ) );
 	ownerHBox->addWidget( ownerR );
 
 	ownerW = new QComboBox ( false, ownerGroup );
-	ownerW->insertItem ( i18n ( "?" ) );
-	ownerW->insertItem ( i18n ( "w" ) );
-	ownerW->insertItem ( i18n ( "-" ) );
+	ownerW->addItem ( i18n ( "?" ) );
+	ownerW->addItem ( i18n ( "w" ) );
+	ownerW->addItem ( i18n ( "-" ) );
 	ownerW->setEnabled ( false );
 	ownerW->setGeometry ( QRect ( 10 + width, 20, width, height+6 ) );
 	ownerHBox->addWidget( ownerW );
 
 	ownerX = new QComboBox ( false, ownerGroup );
-	ownerX->insertItem ( i18n ( "?" ) );
-	ownerX->insertItem ( i18n ( "x" ) );
-	ownerX->insertItem ( i18n ( "-" ) );
+	ownerX->addItem ( i18n ( "?" ) );
+	ownerX->addItem ( i18n ( "x" ) );
+	ownerX->addItem ( i18n ( "-" ) );
 	ownerX->setEnabled ( false );
 	ownerX->setGeometry ( QRect ( 10 + 2*width, 20, width, height+6 ) );
 	ownerHBox->addWidget( ownerX );
@@ -279,25 +279,25 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	groupGroup->setTitle ( i18n ( "Grou&p" ) );
 
 	groupR = new QComboBox ( false, groupGroup );
-	groupR->insertItem ( i18n ( "?" ) );
-	groupR->insertItem ( i18n ( "r" ) );
-	groupR->insertItem ( i18n ( "-" ) );
+	groupR->addItem ( i18n ( "?" ) );
+	groupR->addItem ( i18n ( "r" ) );
+	groupR->addItem ( i18n ( "-" ) );
 	groupR->setEnabled ( false );
 	groupR->setGeometry ( QRect ( 10, 20, width, height+6 ) );
 	groupHBox->addWidget( groupR );
 
 	groupW = new QComboBox ( false, groupGroup );
-	groupW->insertItem ( i18n ( "?" ) );
-	groupW->insertItem ( i18n ( "w" ) );
-	groupW->insertItem ( i18n ( "-" ) );
+	groupW->addItem ( i18n ( "?" ) );
+	groupW->addItem ( i18n ( "w" ) );
+	groupW->addItem ( i18n ( "-" ) );
 	groupW->setEnabled ( false );
 	groupW->setGeometry ( QRect ( 10 + width, 20, width, height+6 ) );
 	groupHBox->addWidget( groupW );
 
 	groupX = new QComboBox ( false, groupGroup );
-	groupX->insertItem ( i18n ( "?" ) );
-	groupX->insertItem ( i18n ( "x" ) );
-	groupX->insertItem ( i18n ( "-" ) );
+	groupX->addItem ( i18n ( "?" ) );
+	groupX->addItem ( i18n ( "x" ) );
+	groupX->addItem ( i18n ( "-" ) );
 	groupX->setEnabled ( false );
 	groupX->setGeometry ( QRect ( 10 + 2*width, 20, width, height+6 ) );
 	groupHBox->addWidget( groupX );
@@ -309,25 +309,25 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	allGroup->setTitle ( i18n ( "A&ll" ) );
 
 	allR = new QComboBox ( false, allGroup );
-	allR->insertItem ( i18n ( "?" ) );
-	allR->insertItem ( i18n ( "r" ) );
-	allR->insertItem ( i18n ( "-" ) );
+	allR->addItem ( i18n ( "?" ) );
+	allR->addItem ( i18n ( "r" ) );
+	allR->addItem ( i18n ( "-" ) );
 	allR->setEnabled ( false );
 	allR->setGeometry ( QRect ( 10, 20, width, height+6 ) );
 	allHBox->addWidget( allR );
 
 	allW = new QComboBox ( false, allGroup );
-	allW->insertItem ( i18n ( "?" ) );
-	allW->insertItem ( i18n ( "w" ) );
-	allW->insertItem ( i18n ( "-" ) );
+	allW->addItem ( i18n ( "?" ) );
+	allW->addItem ( i18n ( "w" ) );
+	allW->addItem ( i18n ( "-" ) );
 	allW->setEnabled ( false );
 	allW->setGeometry ( QRect ( 10 + width, 20, width, height+6 ) );
 	allHBox->addWidget( allW );
 
 	allX = new QComboBox ( false, allGroup );
-	allX->insertItem ( i18n ( "?" ) );
-	allX->insertItem ( i18n ( "x" ) );
-	allX->insertItem ( i18n ( "-" ) );
+	allX->addItem ( i18n ( "?" ) );
+	allX->addItem ( i18n ( "x" ) );
+	allX->addItem ( i18n ( "-" ) );
 	allX->setEnabled ( false );
 	allX->setGeometry ( QRect ( 10 + 2*width, 20, width, height+6 ) );
 	allHBox->addWidget( allX );

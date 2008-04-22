@@ -176,7 +176,7 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy( const QString& urlName, const 
 		KUrl temp = baseURL, tempOld;
 		do {
 			QString baseURLText = temp.pathOrUrl();
-			baseUrlCombo->insertItem( baseURLText );
+			baseUrlCombo->addItem( baseURLText );
 			tempOld = temp;
 			temp = temp.upUrl();
 		}while( !tempOld.equals( temp, KUrl::CompareWithoutTrailingSlash ) );

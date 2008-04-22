@@ -251,7 +251,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	// -- fill the combo with available methods
 	int i;
 	for ( i=0; i<tools.count(); ++i )
-		method->insertItem( cs_typeToText[tools.at(i)->type], i);
+		method->addItem( cs_typeToText[tools.at(i)->type], i);
 	method->setFocus();
 	hlayout2->addWidget(method);	
 	layout->addLayout(hlayout2, row, 0, 1, 2, Qt::AlignLeft);

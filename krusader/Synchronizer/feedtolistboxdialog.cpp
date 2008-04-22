@@ -135,9 +135,9 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
   
   sideCombo = new QComboBox( hboxWidget );
   sideCombo->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
-  sideCombo->insertItem( i18n( "Left" ) );
-  sideCombo->insertItem( i18n( "Right" ) );
-  sideCombo->insertItem( i18n( "Both" ) );
+  sideCombo->addItem( i18n( "Left" ) );
+  sideCombo->addItem( i18n( "Right" ) );
+  sideCombo->addItem( i18n( "Both" ) );
   hbox->addWidget( sideCombo );
 
   if( leftExistingNum == 0 ) {

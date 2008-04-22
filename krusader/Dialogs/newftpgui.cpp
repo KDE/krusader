@@ -82,13 +82,13 @@ newFTPGUI::newFTPGUI( QWidget* parent )
     grid_layout->addWidget( prefix, 1, 0 );
     prefix->setObjectName( "protocol" );
     if( protocols.contains("ftp") )
-      prefix->insertItem( i18n( "ftp://" ) );
+      prefix->addItem( i18n( "ftp://" ) );
     if( protocols.contains("smb") )
-      prefix->insertItem( i18n( "smb://" ) );
+      prefix->addItem( i18n( "smb://" ) );
     if( protocols.contains("fish") )
-      prefix->insertItem( i18n( "fish://" ));
+      prefix->addItem( i18n( "fish://" ));
     if( protocols.contains("sftp") )
-      prefix->insertItem( i18n( "sftp://" ));
+      prefix->addItem( i18n( "sftp://" ));
     prefix->setAcceptDrops( FALSE );
     prefix->setEnabled( TRUE );
     prefix->setSizePolicy( SIZE_MINIMUM );

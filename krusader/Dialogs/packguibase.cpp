@@ -163,9 +163,9 @@ PackGUIBase::PackGUIBase( QWidget* parent )
     volumeHbox->addWidget( volumeSpinBox );
 
     volumeUnitCombo = new QComboBox( FALSE, advancedWidget );
-    volumeUnitCombo->insertItem( "B" );
-    volumeUnitCombo->insertItem( "KB" );
-    volumeUnitCombo->insertItem( "MB" );
+    volumeUnitCombo->addItem( "B" );
+    volumeUnitCombo->addItem( "KB" );
+    volumeUnitCombo->addItem( "MB" );
     volumeUnitCombo->setCurrentItem( 1 );
     volumeHbox->addWidget( volumeUnitCombo );
 
