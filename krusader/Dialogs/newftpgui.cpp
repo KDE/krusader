@@ -50,7 +50,9 @@ newFTPGUI::newFTPGUI( QWidget* parent )
     resize( 342, 261 );
     setCaption( i18n( "New Network Connection"  ) );
 //     setSizeGripEnabled( TRUE );
-    setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)5, sizePolicy().hasHeightForWidth() ) );
+    QSizePolicy policy( QSizePolicy::Preferred, QSizePolicy::Preferred);
+    policy.setHeightForWidth( sizePolicy().hasHeightForWidth() );
+    setSizePolicy( policy );
     //setMinimumSize( QSize( 342, 261 ) );
 
     QWidget * hbox_image_widget = new QWidget( this );

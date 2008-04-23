@@ -59,7 +59,9 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	// Options for size
 
 	QGroupBox *sizeGroup = new QGroupBox ( this );
-	sizeGroup->setSizePolicy ( QSizePolicy ( QSizePolicy::Preferred, QSizePolicy::Minimum, sizeGroup->sizePolicy().hasHeightForWidth() ) );
+	QSizePolicy sizeGroupPolicy ( QSizePolicy::Preferred, QSizePolicy::Minimum );
+	sizeGroupPolicy.setHeightForWidth( sizeGroup->sizePolicy().hasHeightForWidth() );
+	sizeGroup->setSizePolicy ( sizeGroupPolicy );
 	sizeGroup->setTitle ( i18n ( "Size" ) );
 	QGridLayout *sizeLayout = new QGridLayout ( sizeGroup );
 	sizeLayout->setAlignment ( Qt::AlignTop );
@@ -72,7 +74,9 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 
 	biggerThanAmount = new QLineEdit ( sizeGroup );
 	biggerThanAmount->setEnabled ( false );
-	biggerThanAmount->setSizePolicy ( QSizePolicy ( QSizePolicy::Fixed, QSizePolicy::Fixed, biggerThanAmount->sizePolicy().hasHeightForWidth() ) );
+	QSizePolicy biggerThanPolicy ( QSizePolicy::Fixed, QSizePolicy::Fixed );
+	biggerThanPolicy.setHeightForWidth( biggerThanAmount->sizePolicy().hasHeightForWidth() );
+	biggerThanAmount->setSizePolicy ( biggerThanPolicy );
 	sizeLayout->addWidget ( biggerThanAmount, 0, 1 );
 
 	biggerThanType = new KComboBox ( false, sizeGroup );
@@ -88,7 +92,9 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 
 	smallerThanAmount = new QLineEdit ( sizeGroup );
 	smallerThanAmount->setEnabled ( false );
-	smallerThanAmount->setSizePolicy ( QSizePolicy ( QSizePolicy::Fixed, QSizePolicy::Fixed, smallerThanAmount->sizePolicy().hasHeightForWidth() ) );
+	QSizePolicy smallerThanPolicy ( QSizePolicy::Fixed, QSizePolicy::Fixed );
+	smallerThanPolicy.setHeightForWidth( smallerThanAmount->sizePolicy().hasHeightForWidth() );
+	smallerThanAmount->setSizePolicy ( smallerThanPolicy );
 	sizeLayout->addWidget ( smallerThanAmount, 0, 4 );
 
 	smallerThanType = new KComboBox ( false, sizeGroup );
@@ -474,9 +480,9 @@ void AdvancedFilter::fillList ( QComboBox *list, QString filename )
 	while ( !t.atEnd() )
 	{
 		QString s = t.readLine();
-		QString name = s.left ( s.find ( ':' ) );
+		QString name = s.left ( s.indexOf ( ':' ) );
 		if (!name.startsWith('#'))
-			list->insertItem ( name );
+			list->addItem ( name );
 	}
 }
 

@@ -257,7 +257,9 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent )
   resultLabelLayout->setContentsMargins( 0, 0, 0, 0 );
 
   foundLabel = new QLabel( resultTab );
-  foundLabel->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)1, (QSizePolicy::SizeType)1, foundLabel->sizePolicy().hasHeightForWidth() ) );
+  QSizePolicy foundpolicy( QSizePolicy::Minimum, QSizePolicy::Minimum);
+  foundpolicy.setHeightForWidth( foundLabel->sizePolicy().hasHeightForWidth() );
+  foundLabel->setSizePolicy( foundpolicy );
   foundLabel->setFrameShape( QLabel::StyledPanel );
   foundLabel->setFrameShadow( QLabel::Sunken );
   foundLabel->setText( i18n( "Found 0 matches." ) );
@@ -282,7 +284,9 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent )
   foundTextLayout->setContentsMargins( 0, 0, 0, 0 );
   
   QLabel *l1 = new QLabel(resultTab);
-  l1->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)1, (QSizePolicy::SizeType)1, l1->sizePolicy().hasHeightForWidth() ) );
+  QSizePolicy l1policy( QSizePolicy::Minimum, QSizePolicy::Minimum);
+  l1policy.setHeightForWidth( l1->sizePolicy().hasHeightForWidth() );
+  l1->setSizePolicy( l1policy );
   l1->setFrameShape( QLabel::StyledPanel );
   l1->setFrameShadow( QLabel::Sunken );
   l1->setText(i18n("Text found:"));

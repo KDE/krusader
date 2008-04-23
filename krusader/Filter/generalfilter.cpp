@@ -70,7 +70,9 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	nameGroupLayout->addWidget ( searchForLabel, 0, 0 );
 
 	searchFor = new KHistoryComboBox ( false, nameGroup/*, "searchFor"*/ );
-	searchFor->setSizePolicy ( QSizePolicy ( ( QSizePolicy::SizeType ) 7, ( QSizePolicy::SizeType ) 0, searchFor->sizePolicy().hasHeightForWidth() ) );
+	QSizePolicy searchForPolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
+	searchForPolicy.setHeightForWidth( searchFor->sizePolicy().hasHeightForWidth() );
+	searchFor->setSizePolicy ( searchForPolicy );
 	searchFor->setEditable ( true );
 	searchFor->setDuplicatesEnabled ( false );
 	searchFor->setMaxCount ( 25 );
@@ -87,7 +89,9 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 
 	ofType = new KComboBox ( false, nameGroup );
 	ofType->setObjectName ( "ofType" );
-	ofType->setSizePolicy ( QSizePolicy ( ( QSizePolicy::SizeType ) 7, ( QSizePolicy::SizeType ) 0, ofType->sizePolicy().hasHeightForWidth() ) );
+	QSizePolicy ofTypePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
+	ofTypePolicy.setHeightForWidth( ofType->sizePolicy().hasHeightForWidth() );
+	ofType->setSizePolicy ( ofTypePolicy );
 	ofType->setEditable ( false );
 	searchType->setBuddy ( ofType );
 	ofType->addItem ( i18n ( "All Files" ) );
@@ -194,12 +198,16 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	containsTextLayout->setContentsMargins ( 0, 0, 0, 0 );
 
 	QLabel *containsLabel = new QLabel ( containsGroup );
-	containsLabel->setSizePolicy ( QSizePolicy ( ( QSizePolicy::SizeType ) 0, ( QSizePolicy::SizeType ) 1, containsLabel->sizePolicy().hasHeightForWidth() ) );
+	QSizePolicy containsLabelPolicy( QSizePolicy::Fixed, QSizePolicy::Minimum );
+	containsLabelPolicy.setHeightForWidth( containsLabel->sizePolicy().hasHeightForWidth() );
+	containsLabel->setSizePolicy ( containsLabelPolicy );
 	containsLabel->setText ( i18n ( "&Text:" ) );
 	containsTextLayout->addWidget ( containsLabel );
 
 	containsText = new KHistoryComboBox ( false, containsGroup/*, "containsText"*/ );
-	containsText->setSizePolicy ( QSizePolicy ( ( QSizePolicy::SizeType ) 7, ( QSizePolicy::SizeType ) 0, containsText->sizePolicy().hasHeightForWidth() ) );
+	QSizePolicy containsTextPolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
+	containsTextPolicy.setHeightForWidth( containsText->sizePolicy().hasHeightForWidth() );
+	containsText->setSizePolicy ( containsTextPolicy );
 	containsText->setDuplicatesEnabled ( false );
 	containsText->setMaxCount ( 25 );
 	containsTextLayout->addWidget ( containsText );
@@ -214,7 +222,9 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	containsCbsLayout->addItem ( cbSpacer );
 
 	remoteContentSearch = new QCheckBox ( containsGroup );
-	remoteContentSearch->setSizePolicy ( QSizePolicy ( ( QSizePolicy::SizeType ) 5, ( QSizePolicy::SizeType ) 0, remoteContentSearch->sizePolicy().hasHeightForWidth() ) );
+	QSizePolicy remoteContentSearchPolicy( QSizePolicy::Preferred, QSizePolicy::Fixed );
+	remoteContentSearchPolicy.setHeightForWidth( remoteContentSearch->sizePolicy().hasHeightForWidth() );
+	remoteContentSearch->setSizePolicy ( remoteContentSearchPolicy );
 	remoteContentSearch->setText ( i18n ( "&Remote content search" ) );
 	remoteContentSearch->setChecked ( false );
 	containsCbsLayout->addWidget ( remoteContentSearch );
@@ -222,13 +232,17 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 		remoteContentSearch->hide();
 
 	containsWholeWord = new QCheckBox ( containsGroup );
-	containsWholeWord->setSizePolicy ( QSizePolicy ( ( QSizePolicy::SizeType ) 5, ( QSizePolicy::SizeType ) 0, containsWholeWord->sizePolicy().hasHeightForWidth() ) );
+	QSizePolicy containsWholeWordPolicy( QSizePolicy::Preferred, QSizePolicy::Fixed );
+	containsWholeWordPolicy.setHeightForWidth( containsWholeWord->sizePolicy().hasHeightForWidth() );
+	containsWholeWord->setSizePolicy ( containsWholeWordPolicy );
 	containsWholeWord->setText ( i18n ( "&Match whole word only" ) );
 	containsWholeWord->setChecked ( false );
 	containsCbsLayout->addWidget ( containsWholeWord );
 
 	containsTextCase = new QCheckBox ( containsGroup );
-	containsTextCase->setSizePolicy ( QSizePolicy ( ( QSizePolicy::SizeType ) 5, ( QSizePolicy::SizeType ) 0, containsTextCase->sizePolicy().hasHeightForWidth() ) );
+	QSizePolicy containsTextCasePolicy( QSizePolicy::Preferred, QSizePolicy::Fixed );
+	containsTextCasePolicy.setHeightForWidth( containsTextCase->sizePolicy().hasHeightForWidth() );
+	containsTextCase->setSizePolicy ( containsTextCasePolicy );
 	containsTextCase->setText ( i18n ( "Cas&e sensitive" ) );
 	containsTextCase->setChecked ( true );
 	containsCbsLayout->addWidget ( containsTextCase );
