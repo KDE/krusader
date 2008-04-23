@@ -172,7 +172,7 @@ void FeedToListBoxDialog::slotUser1() {
 }
 
 void FeedToListBoxDialog::slotOk() {
-  int side = sideCombo->currentItem();
+  int side = sideCombo->currentIndex();
   bool selected = cbSelected->isChecked();
   QString name = lineEdit->text();
   KUrl::List urlList;

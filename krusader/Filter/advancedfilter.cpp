@@ -497,7 +497,7 @@ bool AdvancedFilter::fillQuery ( KRQuery *query )
 	        ! ( biggerThanAmount->text().simplified() ).isEmpty() )
 	{
 		minSize = biggerThanAmount->text().toULong();
-		switch ( biggerThanType->currentItem() )
+		switch ( biggerThanType->currentIndex() )
 		{
 			case 1 : minSize *= 1024;
 				break;
@@ -510,7 +510,7 @@ bool AdvancedFilter::fillQuery ( KRQuery *query )
 	        ! ( smallerThanAmount->text().simplified() ).isEmpty() )
 	{
 		maxSize = smallerThanAmount->text().toULong();
-		switch ( smallerThanType->currentItem() )
+		switch ( smallerThanType->currentIndex() )
 		{
 			case 1 : maxSize *= 1024;
 				break;
@@ -577,7 +577,7 @@ bool AdvancedFilter::fillQuery ( KRQuery *query )
 			if ( !modifiedInTheLastData->text().simplified().isEmpty() )
 			{
 				int tmp1 = modifiedInTheLastData->text().simplified().toInt();
-				switch ( modifiedInTheLastType->currentItem() )
+				switch ( modifiedInTheLastType->currentIndex() )
 				{
 					case 1 : tmp1 *= 7;
 						break;
@@ -594,7 +594,7 @@ bool AdvancedFilter::fillQuery ( KRQuery *query )
 			if ( !notModifiedInTheLastData->text().simplified().isEmpty() )
 			{
 				int tmp2 = notModifiedInTheLastData->text().simplified().toInt();
-				switch ( notModifiedInTheLastType->currentItem() )
+				switch ( notModifiedInTheLastType->currentIndex() )
 				{
 					case 1 : tmp2 *= 7;
 						break;
@@ -701,11 +701,11 @@ void AdvancedFilter::saveToProfile ( QString name )
 
 	group.writeEntry ( "Smaller Than Enabled", smallerThanEnabled->isChecked() );
 	group.writeEntry ( "Smaller Than Amount", smallerThanAmount->text() );
-	group.writeEntry ( "Smaller Than Type", smallerThanType->currentItem() );
+	group.writeEntry ( "Smaller Than Type", smallerThanType->currentIndex() );
 
 	group.writeEntry ( "Bigger Than Enabled", biggerThanEnabled->isChecked() );
 	group.writeEntry ( "Bigger Than Amount", biggerThanAmount->text() );
-	group.writeEntry ( "Bigger Than Type", biggerThanType->currentItem() );
+	group.writeEntry ( "Bigger Than Type", biggerThanType->currentIndex() );
 
 	group.writeEntry ( "Modified Between Enabled", modifiedBetweenEnabled->isChecked() );
 	group.writeEntry ( "Not Modified After Enabled", notModifiedAfterEnabled->isChecked() );
@@ -718,8 +718,8 @@ void AdvancedFilter::saveToProfile ( QString name )
 	group.writeEntry ( "Modified In The Last", modifiedInTheLastData->text() );
 	group.writeEntry ( "Not Modified In The Last", notModifiedInTheLastData->text() );
 
-	group.writeEntry ( "Modified In The Last Type", modifiedInTheLastType->currentItem() );
-	group.writeEntry ( "Not Modified In The Last Type", notModifiedInTheLastType->currentItem() );
+	group.writeEntry ( "Modified In The Last Type", modifiedInTheLastType->currentIndex() );
+	group.writeEntry ( "Not Modified In The Last Type", notModifiedInTheLastType->currentIndex() );
 
 	group.writeEntry ( "Belongs To User Enabled", belongsToUserEnabled->isChecked() );
 	group.writeEntry ( "Belongs To Group Enabled", belongsToGroupEnabled->isChecked() );
@@ -729,15 +729,15 @@ void AdvancedFilter::saveToProfile ( QString name )
 
 	group.writeEntry ( "Permissions Enabled", permissionsEnabled->isChecked() );
 
-	group.writeEntry ( "Owner Write", ownerW->currentItem() );
-	group.writeEntry ( "Owner Read", ownerR->currentItem() );
-	group.writeEntry ( "Owner Execute", ownerX->currentItem() );
-	group.writeEntry ( "Group Write", groupW->currentItem() );
-	group.writeEntry ( "Group Read", groupR->currentItem() );
-	group.writeEntry ( "Group Execute", groupX->currentItem() );
-	group.writeEntry ( "All Write", allW->currentItem() );
-	group.writeEntry ( "All Read", allR->currentItem() );
-	group.writeEntry ( "All Execute", allX->currentItem() );
+	group.writeEntry ( "Owner Write", ownerW->currentIndex() );
+	group.writeEntry ( "Owner Read", ownerR->currentIndex() );
+	group.writeEntry ( "Owner Execute", ownerX->currentIndex() );
+	group.writeEntry ( "Group Write", groupW->currentIndex() );
+	group.writeEntry ( "Group Read", groupR->currentIndex() );
+	group.writeEntry ( "Group Execute", groupX->currentIndex() );
+	group.writeEntry ( "All Write", allW->currentIndex() );
+	group.writeEntry ( "All Read", allR->currentIndex() );
+	group.writeEntry ( "All Execute", allX->currentIndex() );
 }
 
 

@@ -267,7 +267,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	tmpErr->setSuffix(".stderr");
 	tmpErr->open(); // nessesary to create the filename
 	KProcess proc;
-	CS_Tool *mytool = tools.at(method->currentItem());
+	CS_Tool *mytool = tools.at(method->currentIndex());
 	mytool->create(proc, mytool, files, QString(), containFolders, method->currentText());
 	proc.setOutputChannelMode(KProcess::SeparateChannels); // without this the next 2 lines have no effect!
 	proc.setStandardOutputFile(tmpOut->fileName());

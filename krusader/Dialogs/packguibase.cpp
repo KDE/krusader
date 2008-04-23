@@ -400,7 +400,7 @@ bool PackGUIBase::extraProperties( QMap<QString,QString> & inMap ) {
     if( multipleVolume->isEnabled() && multipleVolume->isChecked() ) {
       KIO::filesize_t size = volumeSpinBox->value();
 
-      switch( volumeUnitCombo->currentItem() ) {
+      switch( volumeUnitCombo->currentIndex() ) {
       case 2:
         size *= 1000;
       case 1:

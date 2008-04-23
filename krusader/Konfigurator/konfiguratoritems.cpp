@@ -620,7 +620,7 @@ void KonfiguratorColorChooser::setDefaultColor( QColor dflt )
   palette[1] = defaultValue;
   changeItem( createPixmap( defaultValue ), text( 1 ), 1 );
 
-  if( currentItem() == 1 )
+  if( currentIndex() == 1 )
     emit colorChanged();
 }
 
@@ -632,7 +632,7 @@ void KonfiguratorColorChooser::changeAdditionalColor( int num, QColor color )
     additionalColors[num].color = color;
     changeItem( createPixmap( color ), text( 2+num ), 2+num );
 
-    if( currentItem() == 2+num )
+    if( currentIndex() == 2+num )
       emit colorChanged();
   }
 }
@@ -696,18 +696,18 @@ void KonfiguratorColorChooser::setValue( QString value )
 
 QString KonfiguratorColorChooser::getValue()
 {
-  QColor color = palette[ currentItem() ];
-  if( currentItem() == 1 )    /* it's the default value? */
+  QColor color = palette[ currentIndex() ];
+  if( currentIndex() == 1 )    /* it's the default value? */
     return "";
-  else if( currentItem() >= 2 && currentItem() < 2 + additionalColors.size() )
-    return additionalColors[ currentItem() - 2 ].value;
+  else if( currentIndex() >= 2 && currentIndex() < 2 + additionalColors.size() )
+    return additionalColors[ currentIndex() - 2 ].value;
   else
     return QString( "%1,%2,%3" ).arg( color.red() ).arg( color.green() ).arg( color.blue() );
 }
 
 bool KonfiguratorColorChooser::isValueRGB()
 {
-  return !( currentItem() >= 1 && currentItem() < 2 + additionalColors.size() );
+  return !( currentIndex() >= 1 && currentIndex() < 2 + additionalColors.size() );
 }
 
 void KonfiguratorColorChooser::slotSetDefaults(QObject *)
@@ -738,7 +738,7 @@ void KonfiguratorColorChooser::slotCurrentChanged( int number )
 
 QColor KonfiguratorColorChooser::getColor()
 {
-  return palette[ currentItem() ];
+  return palette[ currentIndex() ];
 }
 
 // KonfiguratorListBox class
