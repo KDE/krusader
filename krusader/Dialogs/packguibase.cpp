@@ -81,7 +81,7 @@ PackGUIBase::PackGUIBase( QWidget* parent )
     nameData = new QLineEdit( this );
     hbox->addWidget( nameData );
 
-    typeData = new QComboBox( FALSE, this );
+    typeData = new QComboBox( this );
     typeData->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)1, (QSizePolicy::SizeType)0 ) );
     connect( typeData, SIGNAL( activated( const QString & ) ), this,  SLOT( checkConsistency() ) );
     connect( typeData, SIGNAL( highlighted( const QString & ) ), this,  SLOT( checkConsistency() ) );
@@ -162,7 +162,7 @@ PackGUIBase::PackGUIBase( QWidget* parent )
     volumeSpinBox->setValue( 1440 );
     volumeHbox->addWidget( volumeSpinBox );
 
-    volumeUnitCombo = new QComboBox( FALSE, advancedWidget );
+    volumeUnitCombo = new QComboBox( advancedWidget );
     volumeUnitCombo->addItem( "B" );
     volumeUnitCombo->addItem( "KB" );
     volumeUnitCombo->addItem( "MB" );

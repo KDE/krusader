@@ -178,7 +178,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	modifiedInTheLastData->setText ( "" );
 	dateLayout->addWidget ( modifiedInTheLastData, 2, 2 );
 
-	modifiedInTheLastType = new QComboBox ( false, dateGroup );
+	modifiedInTheLastType = new QComboBox ( dateGroup );
 	modifiedInTheLastType->addItem ( i18n ( "days" ) );
 	modifiedInTheLastType->addItem ( i18n ( "weeks" ) );
 	modifiedInTheLastType->addItem ( i18n ( "months" ) );
@@ -196,7 +196,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	notModifiedInTheLastLbl->setBuddy ( notModifiedInTheLastData );
 	dateLayout->addWidget ( notModifiedInTheLastLbl, 3, 0 );
 
-	notModifiedInTheLastType = new QComboBox ( false, dateGroup );
+	notModifiedInTheLastType = new QComboBox ( dateGroup );
 	notModifiedInTheLastType->addItem ( i18n ( "days" ) );
 	notModifiedInTheLastType->addItem ( i18n ( "weeks" ) );
 	notModifiedInTheLastType->addItem ( i18n ( "months" ) );
@@ -223,7 +223,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	belongsToUserEnabled->setText ( i18n ( "Belongs to &user" ) );
 	hboxLayout->addWidget ( belongsToUserEnabled );
 
-	belongsToUserData = new QComboBox ( false, ownershipGroup );
+	belongsToUserData = new QComboBox ( ownershipGroup );
 	belongsToUserData->setEnabled ( false );
 	belongsToUserData->setEditable ( false );
 	hboxLayout->addWidget ( belongsToUserData );
@@ -232,7 +232,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	belongsToGroupEnabled->setText ( i18n ( "Belongs to gr&oup" ) );
 	hboxLayout->addWidget ( belongsToGroupEnabled );
 
-	belongsToGroupData = new QComboBox ( false, ownershipGroup );
+	belongsToGroupData = new QComboBox ( ownershipGroup );
 	belongsToGroupData->setEnabled ( false );
 	belongsToGroupData->setEditable ( false );
 	hboxLayout->addWidget ( belongsToGroupData );
@@ -248,7 +248,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	ownerGroup->setTitle ( i18n ( "O&wner" ) );
 	int width = 2*height + height / 2;
 
-	ownerR = new QComboBox ( false, ownerGroup );
+	ownerR = new QComboBox ( ownerGroup );
 	ownerR->addItem ( i18n ( "?" ) );
 	ownerR->addItem ( i18n ( "r" ) );
 	ownerR->addItem ( i18n ( "-" ) );
@@ -256,7 +256,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	ownerR->setGeometry ( QRect ( 10, 20, width, height+6 ) );
 	ownerHBox->addWidget( ownerR );
 
-	ownerW = new QComboBox ( false, ownerGroup );
+	ownerW = new QComboBox ( ownerGroup );
 	ownerW->addItem ( i18n ( "?" ) );
 	ownerW->addItem ( i18n ( "w" ) );
 	ownerW->addItem ( i18n ( "-" ) );
@@ -264,7 +264,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	ownerW->setGeometry ( QRect ( 10 + width, 20, width, height+6 ) );
 	ownerHBox->addWidget( ownerW );
 
-	ownerX = new QComboBox ( false, ownerGroup );
+	ownerX = new QComboBox ( ownerGroup );
 	ownerX->addItem ( i18n ( "?" ) );
 	ownerX->addItem ( i18n ( "x" ) );
 	ownerX->addItem ( i18n ( "-" ) );
@@ -278,7 +278,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	QHBoxLayout *groupHBox = new QHBoxLayout( groupGroup );
 	groupGroup->setTitle ( i18n ( "Grou&p" ) );
 
-	groupR = new QComboBox ( false, groupGroup );
+	groupR = new QComboBox ( groupGroup );
 	groupR->addItem ( i18n ( "?" ) );
 	groupR->addItem ( i18n ( "r" ) );
 	groupR->addItem ( i18n ( "-" ) );
@@ -286,7 +286,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	groupR->setGeometry ( QRect ( 10, 20, width, height+6 ) );
 	groupHBox->addWidget( groupR );
 
-	groupW = new QComboBox ( false, groupGroup );
+	groupW = new QComboBox ( groupGroup );
 	groupW->addItem ( i18n ( "?" ) );
 	groupW->addItem ( i18n ( "w" ) );
 	groupW->addItem ( i18n ( "-" ) );
@@ -294,7 +294,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	groupW->setGeometry ( QRect ( 10 + width, 20, width, height+6 ) );
 	groupHBox->addWidget( groupW );
 
-	groupX = new QComboBox ( false, groupGroup );
+	groupX = new QComboBox ( groupGroup );
 	groupX->addItem ( i18n ( "?" ) );
 	groupX->addItem ( i18n ( "x" ) );
 	groupX->addItem ( i18n ( "-" ) );
@@ -308,7 +308,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	QHBoxLayout *allHBox = new QHBoxLayout( allGroup );
 	allGroup->setTitle ( i18n ( "A&ll" ) );
 
-	allR = new QComboBox ( false, allGroup );
+	allR = new QComboBox ( allGroup );
 	allR->addItem ( i18n ( "?" ) );
 	allR->addItem ( i18n ( "r" ) );
 	allR->addItem ( i18n ( "-" ) );
@@ -316,7 +316,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	allR->setGeometry ( QRect ( 10, 20, width, height+6 ) );
 	allHBox->addWidget( allR );
 
-	allW = new QComboBox ( false, allGroup );
+	allW = new QComboBox ( allGroup );
 	allW->addItem ( i18n ( "?" ) );
 	allW->addItem ( i18n ( "w" ) );
 	allW->addItem ( i18n ( "-" ) );
@@ -324,7 +324,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	allW->setGeometry ( QRect ( 10 + width, 20, width, height+6 ) );
 	allHBox->addWidget( allW );
 
-	allX = new QComboBox ( false, allGroup );
+	allX = new QComboBox ( allGroup );
 	allX->addItem ( i18n ( "?" ) );
 	allX->addItem ( i18n ( "x" ) );
 	allX->addItem ( i18n ( "-" ) );

@@ -57,7 +57,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent )
     setCaption( i18n( "Choose Files"  ) );
     setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)5 ) );
 
-    selection = new QComboBox( FALSE, this );
+    selection = new QComboBox( this );
     int height = QFontMetrics( selection->font() ).height();
     height =  height + 5*(height > 14) + 6;
     selection->setGeometry( QRect( 12, 48, 377, height) );
