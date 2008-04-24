@@ -72,7 +72,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent ) :
 // ---------------------------------------------------------------------------------------
 void KgLookFeel::setupOperationTab() {
   QWidget *tab = new QWidget( tabWidget );
-  tabWidget->insertTab( tab, i18n( "Operation" ) );
+  tabWidget->addTab( tab, i18n( "Operation" ) );
 
   QGridLayout *lookAndFeelLayout = new QGridLayout( tab );
   lookAndFeelLayout->setSpacing( 6 );
@@ -120,7 +120,7 @@ void KgLookFeel::setupOperationTab() {
 // ----------------------------------------------------------------------------------
 void KgLookFeel::setupPanelTab() {
   QWidget* tab_panel = new QWidget( tabWidget );
-  tabWidget->insertTab( tab_panel, i18n( "Panel" ) );
+  tabWidget->addTab( tab_panel, i18n( "Panel" ) );
 
   QGridLayout *panelLayout = new QGridLayout( tab_panel );
   panelLayout->setSpacing( 6 );
@@ -209,7 +209,7 @@ void KgLookFeel::setupPanelTab() {
 // -----------------------------------------------------------------------------------
 void KgLookFeel::setupPanelToolbarTab() {
   QWidget     *tab_4 = new QWidget( tabWidget );
-  tabWidget->insertTab( tab_4, i18n( "Panel Toolbar" ) );
+  tabWidget->addTab( tab_4, i18n( "Panel Toolbar" ) );
 
   QBoxLayout * panelToolbarVLayout = new QVBoxLayout( tab_4 );
   panelToolbarVLayout->setSpacing( 6 );
@@ -255,7 +255,7 @@ void KgLookFeel::setupPanelToolbarTab() {
 // ---------------------------------------------------------------------------
 void KgLookFeel::setupMouseModeTab() {
   QWidget *tab_mouse = new QWidget( tabWidget );
-  tabWidget->insertTab( tab_mouse, i18n( "Selection Mode" ) );
+  tabWidget->addTab( tab_mouse, i18n( "Selection Mode" ) );
   QGridLayout *mouseLayout = new QGridLayout( tab_mouse );
   mouseLayout->setSpacing( 6 );
   mouseLayout->setContentsMargins( 11, 11, 11, 11 );

@@ -41,12 +41,12 @@ FilterTabs::FilterTabs( int properties, QTabWidget *tabWidget, QObject *parent )
   this->tabWidget = tabWidget;
 
   GeneralFilter *generalFilter = new GeneralFilter( this, properties, tabWidget );
-  tabWidget->insertTab( generalFilter, i18n( "&General" ) );
+  tabWidget->addTab( generalFilter, i18n( "&General" ) );
   filterList.append( generalFilter );
   pageNumbers.append( tabWidget->indexOf( generalFilter ) );
 
   AdvancedFilter *advancedFilter = new AdvancedFilter( this, tabWidget );
-  tabWidget->insertTab( advancedFilter, i18n( "&Advanced" ) );
+  tabWidget->addTab( advancedFilter, i18n( "&Advanced" ) );
   filterList.append( advancedFilter );
   pageNumbers.append( tabWidget->indexOf( advancedFilter ) );
 }

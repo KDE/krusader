@@ -89,7 +89,7 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   connect( colorTabWidget, SIGNAL( currentChanged ( QWidget * ) ), this, SLOT( generatePreview() ) );
 
   colorsGrp = new QWidget( colorTabWidget );
-  colorTabWidget->insertTab( colorsGrp, i18n( "Active" ) );
+  colorTabWidget->addTab( colorsGrp, i18n( "Active" ) );
 
   colorsGrid = new QGridLayout( colorsGrp );
   colorsGrid->setSpacing( 0 );
@@ -122,7 +122,7 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   connect( getColorSelector( "Marked Background" ), SIGNAL( colorChanged() ), this, SLOT( slotMarkedBackgroundChanged() ) );
 
   inactiveColorStack = new QStackedWidget( colorTabWidget );
-  colorTabWidget->insertTab( inactiveColorStack, i18n( "Inactive" ) );
+  colorTabWidget->addTab( inactiveColorStack, i18n( "Inactive" ) );
 
   colorsGrp = normalInactiveWidget = new QWidget( inactiveColorStack );
 
@@ -184,7 +184,7 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   inactiveColorStack->setCurrentWidget( normalInactiveWidget );
 
   colorsGrp = new QWidget( colorTabWidget );
-  colorTabWidget->insertTab( colorsGrp, i18n( "Synchronizer" ) );
+  colorTabWidget->addTab( colorsGrp, i18n( "Synchronizer" ) );
 
   colorsGrid = new QGridLayout( colorsGrp );
   colorsGrid->setSpacing( 0 );

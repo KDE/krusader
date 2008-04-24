@@ -1381,7 +1381,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   synchronizerGrid->addWidget(syncList,1,0);
 
-  synchronizerTabs->insertTab( synchronizerTab, i18n( "&Synchronizer" ) );
+  synchronizerTabs->addTab( synchronizerTab, i18n( "&Synchronizer" ) );
   synchGrid->addWidget( synchronizerTabs, 0, 0 );
 
   filterTabs = FilterTabs::addTo( synchronizerTabs, FilterTabs::HasDontSearchIn );

@@ -310,7 +310,7 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 
 	manager.addPart( part, this );
 	manager.setActivePart( part );
-	tabBar.insertTab(pvb,icon,url.fileName()+"("+msg+")");	
+	tabBar.addTab(pvb,icon,url.fileName()+"("+msg+")");	
 	tabBar.setCurrentPage(tabBar.indexOf(pvb));
 	tabBar.setTabToolTip(pvb,msg+": " + url.prettyUrl());
 

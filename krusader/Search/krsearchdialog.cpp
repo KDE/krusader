@@ -299,7 +299,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent )
   foundTextLayout->addWidget( foundTextLabel );
   resultLayout->addLayout(foundTextLayout, 1, 0);
   
-  searcherTabs->insertTab( resultTab, i18n( "&Results" ) );
+  searcherTabs->addTab( resultTab, i18n( "&Results" ) );
 
   searchBaseLayout->addWidget( searcherTabs, 0, 0 );
 
