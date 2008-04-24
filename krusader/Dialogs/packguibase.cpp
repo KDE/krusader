@@ -113,7 +113,7 @@ PackGUIBase::PackGUIBase( QWidget* parent )
     hbox_3->setContentsMargins( 0, 0, 0, 0 );
 
     PixmapLabel1 = new QLabel( this );
-    PixmapLabel1->setPixmap( krLoader->loadIcon("package", KIconLoader::Desktop, 32) );
+    PixmapLabel1->setIcon( krLoader->loadIcon("package", KIconLoader::Desktop, 32) );
     PixmapLabel1->setScaledContents( TRUE );
     PixmapLabel1->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)0, (QSizePolicy::SizeType)0 ) );
     hbox_3->addWidget( PixmapLabel1 );

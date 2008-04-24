@@ -39,7 +39,7 @@ SyncBrowseButton::SyncBrowseButton(QWidget *parent) : QToolButton(parent)
   _icon_off = iconLoader->loadIcon( "kr_syncbrowse_off", KIconLoader::Toolbar, 16 );
 
   setFixedSize( _icon_off.width() + 4, _icon_off.height() + 4 );
-  setPixmap( _icon_off );
+  setIcon( QIcon( _icon_off ) );
   setToggleButton( true );
   
   setTextLabel( i18n( "This button toggles the sync-browse mode.\n"
@@ -54,9 +54,9 @@ SyncBrowseButton::~SyncBrowseButton() {
 
 void SyncBrowseButton::slotToggled( bool on ) {
   if ( on )
-    setPixmap( _icon_on );
+    setIcon( QIcon( _icon_on ) );
   else
-    setPixmap( _icon_off );
+    setIcon( QIcon( _icon_off ) );
 }
 
 int SyncBrowseButton::state() {

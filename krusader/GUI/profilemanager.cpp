@@ -43,7 +43,7 @@ ProfileManager::ProfileManager( QString profileType, QWidget * parent )
   setText( "" );
   KIconLoader *iconLoader = new KIconLoader();
   QPixmap pm = iconLoader->loadIcon( "kr_profile", KIconLoader::Toolbar, 16 );
-  setPixmap( pm );
+  setIcon( QIcon( pm ) );
   setFixedWidth( pm.width() + 15 );
   setToolTip( i18n( "Profiles" ) );
   

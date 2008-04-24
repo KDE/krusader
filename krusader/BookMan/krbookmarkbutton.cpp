@@ -11,7 +11,7 @@
 KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent) {
 	QPixmap icon = krLoader->loadIcon("bookmark", KIconLoader::Toolbar, 16);
 	setFixedSize(icon.width() + 4, icon.height() + 4);
-	setPixmap(icon);
+	setIcon( QIcon( icon ) );
 	setTextLabel(i18n("BookMan II"), true);
 	setPopupDelay(10); // 0.01 seconds press
 	setAcceptDrops(false);

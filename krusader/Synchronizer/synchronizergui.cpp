@@ -1250,7 +1250,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   btnLeftToRight = new QPushButton( showOptions );
   btnLeftToRight->setText( "" );
-  btnLeftToRight->setPixmap( showLeftToRight );
+  btnLeftToRight->setIcon( QIcon( showLeftToRight ) );
   btnLeftToRight->setToggleButton( true );
   btnLeftToRight->setOn( group.readEntry( "LeftToRight Button", _BtnLeftToRight ) );
   btnLeftToRight->setAccel( Qt::CTRL + Qt::Key_L );
@@ -1260,7 +1260,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   btnEquals = new QPushButton( showOptions );
   btnEquals->setText( "" );
-  btnEquals->setPixmap( showEquals );
+  btnEquals->setIcon( QIcon( showEquals ) );
   btnEquals->setToggleButton( true );
   btnEquals->setOn( group.readEntry( "Equals Button", _BtnEquals ) );
   btnEquals->setAccel( Qt::CTRL + Qt::Key_E );
@@ -1270,7 +1270,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   btnDifferents = new QPushButton( showOptions );
   btnDifferents->setText( "" );
-  btnDifferents->setPixmap( showDifferents );
+  btnDifferents->setIcon( QIcon( showDifferents ) );
   btnDifferents->setToggleButton( true );
   btnDifferents->setOn( group.readEntry( "Differents Button", _BtnDifferents ) );
   btnDifferents->setAccel( Qt::CTRL + Qt::Key_D );
@@ -1280,7 +1280,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   btnRightToLeft = new QPushButton( showOptions );
   btnRightToLeft->setText( "" );
-  btnRightToLeft->setPixmap( showRightToLeft );
+  btnRightToLeft->setIcon( QIcon( showRightToLeft ) );
   btnRightToLeft->setToggleButton( true );
   btnRightToLeft->setOn( group.readEntry( "RightToLeft Button", _BtnRightToLeft ) );
   btnRightToLeft->setAccel( Qt::CTRL + Qt::Key_R );
@@ -1290,7 +1290,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   btnDeletable = new QPushButton( showOptions );
   btnDeletable->setText( "" );
-  btnDeletable->setPixmap( showDeletable );
+  btnDeletable->setIcon( QIcon( showDeletable ) );
   btnDeletable->setToggleButton( true );
   btnDeletable->setOn( group.readEntry( "Deletable Button", _BtnDeletable ) );
   btnDeletable->setAccel( Qt::CTRL + Qt::Key_T );
@@ -1461,7 +1461,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   QPixmap swapSides( ( const char** ) swap_sides_data );
   btnSwapSides = new QPushButton( this );
-  btnSwapSides->setPixmap( swapSides );
+  btnSwapSides->setIcon( QIcon( swapSides ) );
   btnSwapSides->setAccel( Qt::CTRL + Qt::Key_S );
   btnSwapSides->setWhatsThis( i18n( "Swap sides (Ctrl+S)." ) );
   btnSwapSides->setFixedWidth( swapSides.width() + 15 );

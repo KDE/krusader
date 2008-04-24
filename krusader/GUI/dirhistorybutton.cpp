@@ -32,7 +32,7 @@ DirHistoryButton::DirHistoryButton( DirHistoryQueue* hQ, QWidget *parent ) : QTo
 	QPixmap icon = iconLoader->loadIcon( "history", KIconLoader::Toolbar, 16 );
 
 	setFixedSize( icon.width() + 4, icon.height() + 4 );
-	setPixmap( icon );
+	setIcon( QIcon( icon ) );
 	setTextLabel( i18n( "Open the directory history list" ), true );
 	setPopupDelay( 10 ); // 0.01 seconds press
 	setAcceptDrops( false );

@@ -228,7 +228,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	QHBoxLayout *hlayout = new QHBoxLayout(layout);
 	hlayout->setSpacing( KDialog::spacingHint() );
 	QLabel *p = new QLabel(widget);
-	p->setPixmap(krLoader->loadIcon("binary", KIconLoader::Desktop, 32));
+	p->setIcon(krLoader->loadIcon("binary", KIconLoader::Desktop, 32));
 	hlayout->addWidget(p);
 	QLabel *l1 = new QLabel(i18n("About to calculate checksum for the following files") + 
 		(containFolders ? i18n(" and folders:") : ":"), widget);
@@ -347,7 +347,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	QHBoxLayout *hlayout = new QHBoxLayout(layout);
 	hlayout->setSpacing( KDialog::spacingHint() );
 	QLabel *p = new QLabel(widget);
-	p->setPixmap(krLoader->loadIcon("binary", KIconLoader::Desktop, 32));
+	p->setIcon(krLoader->loadIcon("binary", KIconLoader::Desktop, 32));
 	hlayout->addWidget(p);
 	QLabel *l1 = new QLabel(i18n("About to verify checksum for the following files") +
 		(containFolders ? i18n(" and folders:") : ":"), widget);
@@ -474,7 +474,7 @@ VerifyResultDlg::VerifyResultDlg(const QStringList& failed):
 	QHBoxLayout *hlayout = new QHBoxLayout(layout);
 	hlayout->setSpacing( KDialog::spacingHint() );
 	QLabel p(widget);
-	p.setPixmap(krLoader->loadIcon(errors ? "messagebox_critical" : "messagebox_info", KIconLoader::Desktop, 32));
+	p.setIcon(krLoader->loadIcon(errors ? "messagebox_critical" : "messagebox_info", KIconLoader::Desktop, 32));
 	hlayout->addWidget(&p);
 	
 	QLabel *l1 = new QLabel((errors ? i18n("Errors were detected while verifying the checksums") :
@@ -521,7 +521,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 	QHBoxLayout *hlayout = new QHBoxLayout(layout);
 	hlayout->setSpacing( KDialog::spacingHint() );
 	QLabel p(widget);
-	p.setPixmap(krLoader->loadIcon(errors ? "messagebox_critical" : "messagebox_info", KIconLoader::Desktop, 32));
+	p.setIcon(krLoader->loadIcon(errors ? "messagebox_critical" : "messagebox_info", KIconLoader::Desktop, 32));
 	hlayout->addWidget(&p);
 	
 	QLabel *l1 = new QLabel((errors ? i18n("Errors were detected while creating the checksums") :

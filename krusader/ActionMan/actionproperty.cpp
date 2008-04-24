@@ -46,8 +46,8 @@ ActionProperty::ActionProperty( QWidget *parent, KrAction *action )
       updateGUI( _action );
    }
 
-   ButtonAddPlaceholder->setPixmap( ICON("add") );
-   ButtonAddStartpath->setPixmap( ICON("fileopen") );
+   ButtonAddPlaceholder->setIcon( ICON("add") );
+   ButtonAddStartpath->setIcon( ICON("fileopen") );
 
    // fill with all existing categories
    cbCategory->insertStringList( krUserAction->allCategories() );

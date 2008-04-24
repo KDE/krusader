@@ -64,12 +64,12 @@ KURLListRequester::KURLListRequester( QWidget *parent ) : QWidget( parent )
 
   urlAddBtn = new QToolButton( this );
   urlAddBtn->setText( "" );
-  urlAddBtn->setPixmap( imageAdd );
+  urlAddBtn->setIcon( QIcon( imageAdd ) );
   urlListRequesterGrid->addWidget( urlAddBtn, 0, 1 );
     
   urlBrowseBtn = new QToolButton( this );
   urlBrowseBtn->setText( "" );
-  urlBrowseBtn->setPixmap( imageFolder );
+  urlBrowseBtn->setIcon( QIcon( imageFolder ) );
   urlListRequesterGrid->addWidget( urlBrowseBtn, 0, 2 );
 
   // add shell completion

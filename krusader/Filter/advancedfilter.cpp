@@ -139,7 +139,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	modifiedBetweenBtn1 = new QToolButton ( dateGroup );
 	modifiedBetweenBtn1->setEnabled ( false );
 	modifiedBetweenBtn1->setText ( "" );
-	modifiedBetweenBtn1->setPixmap ( iconDate );
+	modifiedBetweenBtn1->setIcon ( QIcon( iconDate ) );
 	dateLayout->addWidget ( modifiedBetweenBtn1, 0, 4 );
 
 	QLabel *andLabel = new QLabel ( dateGroup );
@@ -155,7 +155,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	modifiedBetweenBtn2 = new QToolButton ( dateGroup );
 	modifiedBetweenBtn2->setEnabled ( false );
 	modifiedBetweenBtn2->setText ( "" );
-	modifiedBetweenBtn2->setPixmap ( iconDate );
+	modifiedBetweenBtn2->setIcon ( QIcon( iconDate ) );
 	dateLayout->addWidget ( modifiedBetweenBtn2, 0, 7 );
 
 	notModifiedAfterEnabled = new QRadioButton ( dateGroup );
@@ -171,7 +171,7 @@ AdvancedFilter::AdvancedFilter ( FilterTabs *tabs, QWidget *parent ) : QWidget (
 	notModifiedAfterBtn = new QToolButton ( dateGroup );
 	notModifiedAfterBtn->setEnabled ( false );
 	notModifiedAfterBtn->setText ( "" );
-	notModifiedAfterBtn->setPixmap ( iconDate );
+	notModifiedAfterBtn->setIcon ( QIcon( iconDate ) );
 	dateLayout->addWidget ( notModifiedAfterBtn, 1, 4 );
 
 	modifiedInTheLastEnabled = new QRadioButton ( dateGroup );

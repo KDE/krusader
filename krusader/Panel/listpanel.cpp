@@ -173,13 +173,13 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
 	// a cancel button for the inplace refresh mechanism
 	inlineRefreshCancelButton = new KPushButton(this);
 	inlineRefreshCancelButton->setFixedSize( 22, 20 );
-	inlineRefreshCancelButton->setPixmap(krLoader->loadIcon("cancel", KIconLoader::Toolbar, 16));
+	inlineRefreshCancelButton->setIconSet(krLoader->loadIcon("cancel", KIconLoader::Toolbar, 16));
 	connect(inlineRefreshCancelButton, SIGNAL(clicked()), this, SLOT(inlineRefreshCancel()));
 
 	// a quick button to open the popup panel
 	popupBtn = new QToolButton( this );
 	popupBtn->setFixedSize( 22, 20 );
-	popupBtn->setPixmap(krLoader->loadIcon("1uparrow", KIconLoader::Toolbar, 16));
+	popupBtn->setIcon(krLoader->loadIcon("1uparrow", KIconLoader::Toolbar, 16));
 	connect(popupBtn, SIGNAL(clicked()), this, SLOT(togglePanelPopup()));
 	popupBtn->setToolTip( i18n( "Open the popup panel" ) );
 	totalsLayout->addWidget(totals);
@@ -201,7 +201,7 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
 	bool clearButton = group.readEntry("Clear Location Bar Visible", _ClearLocation);
 	if (clearButton){
 		clearOrigin = new QToolButton(hboxWidget);
-		clearOrigin->setPixmap(krLoader->loadIcon("locationbar_erase", KIconLoader::Toolbar, 16));
+		clearOrigin->setIcon(krLoader->loadIcon("locationbar_erase", KIconLoader::Toolbar, 16));
 		hbox->addWidget( clearOrigin );
 		clearOrigin->setToolTip( i18n( "Clear the location bar" ) );
 	}
@@ -429,13 +429,13 @@ void ListPanel::togglePanelPopup() {
 		}
 		
 		popup->show();
-		popupBtn->setPixmap(krLoader->loadIcon("1downarrow", KIconLoader::Toolbar, 16));
+		popupBtn->setIcon(krLoader->loadIcon("1downarrow", KIconLoader::Toolbar, 16));
 		popupBtn->setToolTip( i18n( "Close the popup panel" ) );
 	} else {
 		popupSizes.clear();
 		popupSizes = dynamic_cast<QSplitter*>(popup->parent())->sizes();
 		popup->hide();
-		popupBtn->setPixmap(krLoader->loadIcon("1uparrow", KIconLoader::Toolbar, 16));
+		popupBtn->setIcon(krLoader->loadIcon("1uparrow", KIconLoader::Toolbar, 16));
 		popupBtn->setToolTip( i18n( "Open the popup panel" ) );
 		
 		QList<int> lst;

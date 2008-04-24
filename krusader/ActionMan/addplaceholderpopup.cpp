@@ -384,7 +384,7 @@ ParameterFile::ParameterFile( const exp_parameter& parameter, QWidget* parent ) 
    _button = new QToolButton( hboxWidget );
    hbox->addWidget( _button );
    KIconLoader *iconLoader = new KIconLoader();
-  _button->setPixmap( iconLoader->loadIcon( "fileopen", KIconLoader::Toolbar, 16 ) );
+  _button->setIcon( iconLoader->loadIcon( "fileopen", KIconLoader::Toolbar, 16 ) );
    connect( _button, SIGNAL(clicked()), this, SLOT(addFile()) );
 }
 
@@ -485,7 +485,7 @@ ParameterGoto::ParameterGoto( const exp_parameter& parameter, QWidget* parent ) 
    _dirButton = new QToolButton( hboxWidget );
    hbox->addWidget( _dirButton );
    KIconLoader *iconLoader = new KIconLoader();
-  _dirButton->setPixmap( iconLoader->loadIcon( "fileopen", KIconLoader::Toolbar, 16 ) );
+  _dirButton->setIcon( iconLoader->loadIcon( "fileopen", KIconLoader::Toolbar, 16 ) );
    connect( _dirButton, SIGNAL(clicked()), this, SLOT(setDir()) );
    _placeholderButton = new QToolButton( hboxWidget );
    _placeholderButton->setText( i18n("add") );

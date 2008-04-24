@@ -81,7 +81,7 @@ MediaButton::MediaButton( QWidget *parent ) : QToolButton( parent ),
 	QPixmap icon = iconLoader->loadIcon( "blockdevice", KIconLoader::Toolbar, 16 );
 
 	setFixedSize( icon.width() + 4, icon.height() + 4 );
-	setPixmap( icon );
+	setIcon( QIcon( icon ) );
 	setTextLabel( i18n( "Open the available media list" ), true );
 	setPopupDelay( 1 ); // immediate press
 	setAcceptDrops( false );
