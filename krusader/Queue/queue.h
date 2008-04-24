@@ -3,7 +3,7 @@
 
 #include <qobject.h>
 #include <kio/jobclasses.h>
-#include <list.h>
+#include <QList>
 
 /**
  * Queue can hold anything which inherits KIO::Job, and schedule it, start it, stop etc...
