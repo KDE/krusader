@@ -143,7 +143,7 @@ public slots:
 		lastData = lines[ lines.count() - 1 ];
 		for( int i=0; i != lines.count(); i++ ) {
 			QString line = lines[ i ].trimmed().toLower();
-			int ndx = line.find( "testing" );
+			int ndx = line.indexOf( "testing" );
 			if( ndx >=0 )
 				line.truncate( ndx );
 			if( line.isEmpty() )

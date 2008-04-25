@@ -67,7 +67,7 @@ KrBookmark* KrBookmark::devices ( KActionCollection *collection )
 	if ( !bm )
 	{
 		bm = new KrBookmark ( i18n ( NAME_DEVICES ), KUrl("media:/"), collection );
-		bm->setIconSet ( krLoader->loadIcon ( "blockdevice", KIconLoader::Small ) );
+		bm->setIcon ( krLoader->loadIcon ( "blockdevice", KIconLoader::Small ) );
 	}
 	return bm;
 }
@@ -78,7 +78,7 @@ KrBookmark* KrBookmark::virt ( KActionCollection *collection )
 	if ( !bm )
 	{
 		bm = new KrBookmark ( i18n ( NAME_VIRTUAL ), KUrl("virt:/"), collection );
-		bm->setIconSet ( krLoader->loadIcon ( "pipe", KIconLoader::Small ) );
+		bm->setIcon ( krLoader->loadIcon ( "pipe", KIconLoader::Small ) );
 	}
 	return bm;
 }
@@ -89,7 +89,7 @@ KrBookmark* KrBookmark::lan ( KActionCollection *collection )
 	if ( !bm )
 	{
 		bm = new KrBookmark ( i18n ( NAME_LAN ), KUrl("lan:/"), collection );
-		bm->setIconSet ( krLoader->loadIcon ( "network", KIconLoader::Small ) );
+		bm->setIcon ( krLoader->loadIcon ( "network", KIconLoader::Small ) );
 	}
 	return bm;
 }

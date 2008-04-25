@@ -42,17 +42,12 @@ FilterDialog::FilterDialog ( QWidget *parent )
 	setModal ( true );
 	setButtons ( Ok | Cancel );
 
-	QGridLayout *filterGrid = new QGridLayout ( this->layout() );
-	filterGrid->setSpacing ( 6 );
-	filterGrid->setContentsMargins ( 11, 11, 11, 11 );
-
-	QTabWidget *filterWidget = new QTabWidget ( this, "filterTabs" );
-
+	QTabWidget *filterWidget = new QTabWidget;
+	
 	filterTabs = FilterTabs::addTo ( filterWidget, FilterTabs::HasProfileHandler );
 	generalFilter = ( GeneralFilter * ) filterTabs->get ( "GeneralFilter" );
 	generalFilter->searchFor->setEditText ( "*" );
 
-	filterGrid->addWidget ( filterWidget, 0, 0 );
 	setMainWidget ( filterWidget );
 
 	generalFilter->searchFor->setFocus();
