@@ -99,7 +99,7 @@ bool FilterTabs::fillQuery( KRQuery *query )
     bool result = filter->fillQuery( query );
     if( result == false )
     {
-      tabWidget->setCurrentPage( pageNumbers[ i ] );
+      tabWidget->setCurrentIndex( pageNumbers[ i ] );
       return false;
     }
   }

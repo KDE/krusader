@@ -1968,7 +1968,7 @@ void SynchronizerGUI::compare()
     return;
 
   query.setNameFilter( fileFilter->currentText(), query.isCaseSensitive() );
-  synchronizerTabs->setCurrentPage(0);
+  synchronizerTabs->setCurrentIndex(0);
 
   syncList->clear();
   lastItem = 0;

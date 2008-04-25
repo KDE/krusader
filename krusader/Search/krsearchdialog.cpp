@@ -459,7 +459,7 @@ void KrSearchDialog::startSearch() {
   resultsList->clear();
   searchingLabel->setText("");
   foundLabel->setText(i18n("Found 0 matches."));
-  searcherTabs->setCurrentPage(2); // show the results page
+  searcherTabs->setCurrentIndex(2); // show the results page
   foundTextLabel->setText("");
   qApp->processEvents();
 

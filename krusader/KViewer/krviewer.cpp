@@ -311,7 +311,7 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 	manager.addPart( part, this );
 	manager.setActivePart( part );
 	tabBar.addTab(pvb,icon,url.fileName()+"("+msg+")");	
-	tabBar.setCurrentPage(tabBar.indexOf(pvb));
+	tabBar.setCurrentIndex(tabBar.indexOf(pvb));
 	tabBar.setTabToolTip(pvb,msg+": " + url.prettyUrl());
 
 	updateActions( pvb );
@@ -398,7 +398,7 @@ bool KrViewer::queryClose() {
 		if( !pvb )
 			continue;
 		
-		tabBar.setCurrentPage( i );
+		tabBar.setCurrentIndex( i );
 		
 		if( !pvb->queryClose() )
 			return false;
@@ -484,13 +484,13 @@ void KrViewer::checkModified(){
 
 void KrViewer::nextTab(){
 	int index = (tabBar.currentPageIndex()+1)%tabBar.count();
-	tabBar.setCurrentPage( index );
+	tabBar.setCurrentIndex( index );
 }
 
 void KrViewer::prevTab(){
 	int index = (tabBar.currentPageIndex()-1)%tabBar.count();
 	while( index < 0 ) index+=tabBar.count();
-	tabBar.setCurrentPage( index );
+	tabBar.setCurrentIndex( index );
 }
 
 void KrViewer::detachTab(){
