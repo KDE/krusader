@@ -69,7 +69,6 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   generals->layout()->setSpacing( 5 );
 
   connect( generals->find( "KDE Default" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
-  connect( generals->find( "Enable Alternate Background" ), SIGNAL( stateChanged( int ) ), this, SLOT( generatePreview() ) );
   connect( generals->find( "Show Current Item Always" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
   connect( generals->find( "Dim Inactive Colors" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
 
@@ -85,8 +84,6 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   colorsFrameGrid->setContentsMargins( 3, 3, 3, 3 );
 
   colorTabWidget = new QTabWidget( colorsFrameGrp );
-
-  connect( colorTabWidget, SIGNAL( currentChanged ( QWidget * ) ), this, SLOT( generatePreview() ) );
 
   colorsGrp = new QWidget( colorTabWidget );
   colorTabWidget->addTab( colorsGrp, i18n( "Active" ) );
@@ -174,7 +171,6 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   labelList.append( addLabel( colorsGrid, index, 0, i18n("Dim factor:"), colorsGrp ) );
   dimFactor = createSpinBox("Colors", "Dim Factor", 100, 0, 100, colorsGrp);
   dimFactor->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
-  connect( dimFactor, SIGNAL( valueChanged( int ) ), this, SLOT( generatePreview() ) );
   colorsGrid->addWidget( dimFactor, index++, 1 );
 
   colorsGrid->addWidget(createSpacer(dimmedInactiveWidget), itemList.count() + 1 - offset, 1);
@@ -231,6 +227,9 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   previewGrid->addWidget( preview, 0 ,0 );
   hbox->addWidget( previewGrp );
 
+  connect( generals->find( "Enable Alternate Background" ), SIGNAL( stateChanged( int ) ), this, SLOT( generatePreview() ) );
+  connect( colorTabWidget, SIGNAL( currentChanged ( QWidget * ) ), this, SLOT( generatePreview() ) );
+  connect( dimFactor, SIGNAL( valueChanged( int ) ), this, SLOT( generatePreview() ) );
 
   kgColorsLayout->addWidget( hboxWidget, 1 , 0, 1,  3 );
 
