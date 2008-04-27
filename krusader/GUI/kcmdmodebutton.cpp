@@ -35,7 +35,8 @@
 KCMDModeButton::KCMDModeButton( QWidget *parent ) : QToolButton( parent ) {
   setFixedSize( 22, 20 );
 /* // from the old terminal-button:
-  setTextLabel( i18n( "If pressed, Krusader executes command line in a terminal." ) );
+  setText( i18n( "If pressed, Krusader executes command line in a terminal." ) );
+  setToolTip( i18n( "If pressed, Krusader executes command line in a terminal." ) );
   QWhatsThis::add( terminal, i18n(
                         "The 'run in terminal' button allows Krusader "
                         "to run console (or otherwise non-graphical) "
@@ -53,7 +54,7 @@ KCMDModeButton::KCMDModeButton( QWidget *parent ) : QToolButton( parent ) {
   QMenu *pP = action->menu();
   Q_CHECK_PTR( pP );
   setPopup( pP );
-  setPopupDelay( 10 );
+  setPopupMode( QToolButton::InstantPopup );
   setAcceptDrops( false );
 }
 

@@ -82,8 +82,9 @@ MediaButton::MediaButton( QWidget *parent ) : QToolButton( parent ),
 
 	setFixedSize( icon.width() + 4, icon.height() + 4 );
 	setIcon( QIcon( icon ) );
-	setTextLabel( i18n( "Open the available media list" ), true );
-	setPopupDelay( 1 ); // immediate press
+	setText( i18n( "Open the available media list" ) );
+	setToolTip( i18n( "Open the available media list" ) );
+	setPopupMode( QToolButton::InstantPopup );
 	setAcceptDrops( false );
 
 	popupMenu = new QMenu( this );

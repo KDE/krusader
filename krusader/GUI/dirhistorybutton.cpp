@@ -33,8 +33,9 @@ DirHistoryButton::DirHistoryButton( DirHistoryQueue* hQ, QWidget *parent ) : QTo
 
 	setFixedSize( icon.width() + 4, icon.height() + 4 );
 	setIcon( QIcon( icon ) );
-	setTextLabel( i18n( "Open the directory history list" ), true );
-	setPopupDelay( 10 ); // 0.01 seconds press
+	setText( i18n( "Open the directory history list" ) );
+	setToolTip( i18n( "Open the directory history list" ) );
+	setPopupMode( QToolButton::InstantPopup );
 	setAcceptDrops( false );
 
 	popupMenu = new QMenu( this );
