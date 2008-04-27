@@ -50,7 +50,7 @@ ActionProperty::ActionProperty( QWidget *parent, KrAction *action )
    ButtonAddStartpath->setIcon( ICON("fileopen") );
 
    // fill with all existing categories
-   cbCategory->insertStringList( krUserAction->allCategories() );
+   cbCategory->addItems( krUserAction->allCategories() );
 
    connect( ButtonAddPlaceholder, SIGNAL( clicked() ), this, SLOT( addPlaceholder() ) );
    connect( ButtonAddStartpath, SIGNAL( clicked() ), this, SLOT( addStartpath() ) );
@@ -206,7 +206,7 @@ void ActionProperty::updateAction( KrAction *action ) {
       _action->setCategory( cbCategory->currentText() );
       // Update the category-list
       cbCategory->clear();
-      cbCategory->insertStringList( krUserAction->allCategories() );
+      cbCategory->addItems( krUserAction->allCategories() );
       cbCategory->setCurrentText( _action->category() );
    }
 

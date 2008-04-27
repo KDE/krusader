@@ -415,7 +415,7 @@ ParameterChoose::ParameterChoose( const exp_parameter& parameter, QWidget* paren
    
    layout->addWidget( new QLabel( i18n( parameter.description().utf8() ), this ) );
    layout->addWidget( _combobox = new KComboBox( this ) );
-   _combobox->insertStringList( parameter.preset().section(":", 1).split( ";" ) );
+   _combobox->addItems( parameter.preset().section(":", 1).split( ";" ) );
 }
 
 QString ParameterChoose::text() {
@@ -526,7 +526,7 @@ ParameterSyncprofile::ParameterSyncprofile( const exp_parameter& parameter, QWid
    layout->addWidget( new QLabel( i18n( parameter.description().utf8() ), this ) );
    layout->addWidget( _combobox = new KComboBox( this ) );
    
-   _combobox->insertStringList( ProfileManager::availableProfiles("SynchronizerProfile") );
+   _combobox->addItems( ProfileManager::availableProfiles("SynchronizerProfile") );
 }
 
 QString ParameterSyncprofile::text() {
@@ -551,7 +551,7 @@ ParameterSearch::ParameterSearch( const exp_parameter& parameter, QWidget* paren
    layout->addWidget( new QLabel( i18n( parameter.description().utf8() ), this ) );
    layout->addWidget( _combobox = new KComboBox( this ) );
    
-   _combobox->insertStringList( ProfileManager::availableProfiles("SearcherProfile") );
+   _combobox->addItems( ProfileManager::availableProfiles("SearcherProfile") );
 }
 
 QString ParameterSearch::text() {
@@ -576,7 +576,7 @@ ParameterPanelprofile::ParameterPanelprofile( const exp_parameter& parameter, QW
    layout->addWidget( new QLabel( i18n( parameter.description().utf8() ), this ) );
    layout->addWidget( _combobox = new KComboBox( this ) );
    
-   _combobox->insertStringList( ProfileManager::availableProfiles("Panel") );
+   _combobox->addItems( ProfileManager::availableProfiles("Panel") );
 }
 
 QString ParameterPanelprofile::text() {

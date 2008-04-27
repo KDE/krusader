@@ -91,7 +91,7 @@ KUrl KRSpWidgets::newFTP() {
 		QString uriPsw = QString();
 		uri = uri.mid( uriStart + 1 );
 
-		int pswStart = uriUser.find( ':' ); /* getting the password name from the URL */
+		int pswStart = uriUser.indexOf( ':' ); /* getting the password name from the URL */
 		if( pswStart != -1 ) {
 			uriPsw = uriUser.mid( pswStart + 1 );
 			uriUser = uriUser.left( pswStart );
@@ -106,7 +106,7 @@ KUrl KRSpWidgets::newFTP() {
 
 	QString host = uri;               /* separating the hostname and path from the uri */
 	QString path = QString();
-	int pathStart = uri.find( "/" );
+	int pathStart = uri.indexOf( "/" );
 	if( pathStart != -1 ) {
 		path = host.mid( pathStart );
 		host = host.left( pathStart );
@@ -145,13 +145,13 @@ void newFTPSub::accept() {
 }
 
 void newFTPSub::reject() {
-  url->setCurrentText("");
+  url->lineEdit()->setText("");
   newFTPGUI::reject();
 }
 
 /////////////////////////// KRMaskChoiceSub ///////////////////////////////
 KRMaskChoiceSub::KRMaskChoiceSub( QWidget * parent ) : KRMaskChoice( parent ) {
-  PixmapLabel1->setIcon(krLoader->loadIcon("kr_select", KIconLoader::Desktop, 32));
+  PixmapLabel1->setWindowIcon(krLoader->loadIcon("kr_select", KIconLoader::Desktop, 32));
   label->setText(i18n("Enter a selection:"));
   // the predefined selections list
   KConfigGroup group( krConfig, "Private");
@@ -159,7 +159,7 @@ KRMaskChoiceSub::KRMaskChoiceSub( QWidget * parent ) : KRMaskChoice( parent ) {
   if (lst.size()>0) preSelections->addItems(lst);
   // the combo-box tweaks
   selection->setDuplicatesEnabled(false);
-  selection->insertStringList(KRSpWidgets::maskList);
+  selection->addItems(KRSpWidgets::maskList);
   selection->lineEdit()->setText("*");
   selection->lineEdit()->selectAll();
   selection->setFocus();
@@ -291,7 +291,7 @@ int QuickNavLineEdit::charCount(const QMouseEvent * const m,QString * const str)
 	
 	int numOfChars = findCharFromPos(tx, fontMetrics(), m->x() - 5);
 	if(str) *str=tx;
-	return tx.find('/', numOfChars);
+	return tx.indexOf('/', numOfChars);
 }
 
 void QuickNavLineEdit::mouseMoveEvent( QMouseEvent *m) {
