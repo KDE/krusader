@@ -36,7 +36,7 @@ public:
   DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent=0);
   ~DirHistoryButton();
 
-  void openPopup();
+  void showMenu();
 
 private:
   QMenu* popupMenu;

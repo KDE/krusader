@@ -145,16 +145,16 @@ class KRslots : public QObject {
     void toggleCmdline();
     void changeTrashIcon();
     void multiRename();
-    void openRightBookmarks() { RIGHT_PANEL->slotFocusOnMe(); RIGHT_PANEL->bookmarksButton->openPopup(); }
-    void openLeftBookmarks() { LEFT_PANEL->slotFocusOnMe(); LEFT_PANEL->bookmarksButton->openPopup(); }
-	 void openBookmarks() { ACTIVE_PANEL->bookmarksButton->openPopup(); }
+    void openRightBookmarks() { RIGHT_PANEL->slotFocusOnMe(); RIGHT_PANEL->bookmarksButton->showMenu(); }
+    void openLeftBookmarks() { LEFT_PANEL->slotFocusOnMe(); LEFT_PANEL->bookmarksButton->showMenu(); }
+	 void openBookmarks() { ACTIVE_PANEL->bookmarksButton->showMenu(); }
     void bookmarkCurrent();
-	 void openHistory() { ACTIVE_PANEL->historyButton->openPopup(); }
-    void openLeftHistory() { LEFT_PANEL->historyButton->openPopup(); }
-    void openRightHistory() { RIGHT_PANEL->historyButton->openPopup(); }
-    void openMedia() { ACTIVE_PANEL->mediaButton->openPopup(); }
-    void openLeftMedia() { LEFT_PANEL->mediaButton->openPopup(); }
-    void openRightMedia() { RIGHT_PANEL->mediaButton->openPopup(); }
+	 void openHistory() { ACTIVE_PANEL->historyButton->showMenu(); }
+    void openLeftHistory() { LEFT_PANEL->historyButton->showMenu(); }
+    void openRightHistory() { RIGHT_PANEL->historyButton->showMenu(); }
+    void openMedia() { ACTIVE_PANEL->mediaButton->showMenu(); }
+    void openLeftMedia() { LEFT_PANEL->mediaButton->showMenu(); }
+    void openRightMedia() { RIGHT_PANEL->mediaButton->showMenu(); }
 	 void syncPanels() {
 	 	ListPanel *t = ACTIVE_PANEL;
 		OTHER_FUNC->openUrl(ACTIVE_PANEL->virtualPath());

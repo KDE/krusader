@@ -53,7 +53,7 @@ KCMDModeButton::KCMDModeButton( QWidget *parent ) : QToolButton( parent ) {
   }
   QMenu *pP = action->menu();
   Q_CHECK_PTR( pP );
-  setPopup( pP );
+  setMenu( pP );
   setPopupMode( QToolButton::InstantPopup );
   setAcceptDrops( false );
 }
@@ -63,10 +63,10 @@ KCMDModeButton::~KCMDModeButton() {
 }
 
 /** called when clicked to the button */
-void KCMDModeButton::openPopup() {
-  QMenu * pP = popup();
+void KCMDModeButton::showMenu() {
+  QMenu * pP = menu();
   if ( pP ) {
-    popup() ->exec( mapToGlobal( QPoint( 0, 0 ) ) );
+    menu() ->exec( mapToGlobal( QPoint( 0, 0 ) ) );
   }
 }
 

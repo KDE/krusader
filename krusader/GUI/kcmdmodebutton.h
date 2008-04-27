@@ -42,7 +42,7 @@ public:
   ~KCMDModeButton();
 
   /** Shows the popup menu. Called when clicked to the button */
-  void openPopup();
+  void showMenu();
 
 private:
   /** The menu containing the actions for switching the mode */

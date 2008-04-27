@@ -41,7 +41,7 @@ DirHistoryButton::DirHistoryButton( DirHistoryQueue* hQ, QWidget *parent ) : QTo
 	popupMenu = new QMenu( this );
 	Q_CHECK_PTR( popupMenu );
 
-	setPopup( popupMenu );
+	setMenu( popupMenu );
 	popupMenu->setCheckable( true );
 
 	historyQueue = hQ;
@@ -52,10 +52,10 @@ DirHistoryButton::DirHistoryButton( DirHistoryQueue* hQ, QWidget *parent ) : QTo
 
 DirHistoryButton::~DirHistoryButton() {}
 
-void DirHistoryButton::openPopup() {
-	QMenu * pP = popup();
+void DirHistoryButton::showMenu() {
+	QMenu * pP = menu();
 	if ( pP ) {
-		popup() ->exec( mapToGlobal( QPoint( 0, height() ) ) );
+		menu() ->exec( mapToGlobal( QPoint( 0, height() ) ) );
 	}
 }
 /** No descriptions */

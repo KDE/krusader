@@ -22,18 +22,18 @@ KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent) {
 	acmBookmarks->menu()->setKeyboardShortcutsEnabled(true);
 	acmBookmarks->menu()->setKeyboardShortcutsExecute(true);
 
-	setPopup(acmBookmarks->menu());
+	setMenu(acmBookmarks->menu());
 	connect(this, SIGNAL(pressed()), this, SLOT(populate()));
 	populate();
 }
 
 void KrBookmarkButton::populate() {
-	krBookMan->populate(static_cast<KMenu*>(popup()));
+	krBookMan->populate(static_cast<KMenu*>(menu()));
 }
 
-void KrBookmarkButton::openPopup() {
+void KrBookmarkButton::showMenu() {
 	populate();
-	popup()->exec(mapToGlobal(QPoint(0, height())));
+	menu()->exec(mapToGlobal(QPoint(0, height())));
 }
 
 #include "krbookmarkbutton.moc"

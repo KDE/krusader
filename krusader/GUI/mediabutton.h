@@ -63,7 +63,7 @@ public slots:
   void slotTimeout();
   void slotPopupActivated( QAction * );
   void gettingSpaceData(const QString &mountPoint, quint64 kBSize, quint64 kBUsed, quint64 kBAvail);
-  void openPopup();
+  void showMenu();
   void slotEntries( KIO::Job*, const KIO::UDSEntryList& );
   void slotListResult( KJob* );
 

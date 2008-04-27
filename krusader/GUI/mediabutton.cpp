@@ -404,10 +404,10 @@ void MediaButton::gettingSpaceData(const QString &mountPoint, quint64 kBSize, qu
 	}
 }
 
-void MediaButton::openPopup() {
-	QMenu * pP = popup();
+void MediaButton::showMenu() {
+	QMenu * pP = menu();
 	if ( pP ) {
-		popup() ->exec( mapToGlobal( QPoint( 0, height() ) ) );
+		menu() ->exec( mapToGlobal( QPoint( 0, height() ) ) );
 	}
 }
 
