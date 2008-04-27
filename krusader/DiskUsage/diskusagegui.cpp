@@ -80,19 +80,19 @@ DiskUsageGUI::DiskUsageGUI( KUrl openDir, QWidget* parent )
   
   btnLines = new QToolButton( duTools );
   btnLines->setIconSet( QIcon(krLoader->loadIcon("leftjust",KIconLoader::Desktop)) );
-  btnLines->setToggleButton( true );
+  btnLines->setCheckable( true );
   duHBox->addWidget( btnLines );
   btnLines->setToolTip( i18n( "Line view" ) );
 
   btnDetailed = new QToolButton( duTools );
   btnDetailed->setIconSet( QIcon(krLoader->loadIcon("view_detailed",KIconLoader::Desktop)) );
-  btnDetailed->setToggleButton( true );
+  btnDetailed->setCheckable( true );
   duHBox->addWidget( btnDetailed );
   btnDetailed->setToolTip( i18n( "Detailed view" ) );
 
   btnFilelight = new QToolButton( duTools );
   btnFilelight->setIconSet( QIcon(krLoader->loadIcon("kr_diskusage",KIconLoader::Desktop)) );
-  btnFilelight->setToggleButton( true );
+  btnFilelight->setCheckable( true );
   duHBox->addWidget( btnFilelight );
   btnFilelight->setToolTip( i18n( "Filelight view" ) );
     

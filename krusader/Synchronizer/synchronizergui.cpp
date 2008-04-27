@@ -1251,7 +1251,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnLeftToRight = new QPushButton( showOptions );
   btnLeftToRight->setText( "" );
   btnLeftToRight->setIcon( QIcon( showLeftToRight ) );
-  btnLeftToRight->setToggleButton( true );
+  btnLeftToRight->setCheckable( true );
   btnLeftToRight->setOn( group.readEntry( "LeftToRight Button", _BtnLeftToRight ) );
   btnLeftToRight->setAccel( Qt::CTRL + Qt::Key_L );
   btnLeftToRight->setWhatsThis( i18n( "Show files marked to <i>Copy from left to right</i> (CTRL+L)." ) );
@@ -1261,7 +1261,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnEquals = new QPushButton( showOptions );
   btnEquals->setText( "" );
   btnEquals->setIcon( QIcon( showEquals ) );
-  btnEquals->setToggleButton( true );
+  btnEquals->setCheckable( true );
   btnEquals->setOn( group.readEntry( "Equals Button", _BtnEquals ) );
   btnEquals->setAccel( Qt::CTRL + Qt::Key_E );
   btnEquals->setWhatsThis( i18n( "Show files considered to be identical (CTRL+E)." ) );
@@ -1271,7 +1271,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnDifferents = new QPushButton( showOptions );
   btnDifferents->setText( "" );
   btnDifferents->setIcon( QIcon( showDifferents ) );
-  btnDifferents->setToggleButton( true );
+  btnDifferents->setCheckable( true );
   btnDifferents->setOn( group.readEntry( "Differents Button", _BtnDifferents ) );
   btnDifferents->setAccel( Qt::CTRL + Qt::Key_D );
   btnDifferents->setWhatsThis( i18n( "Show excluded files (CTRL+D)." ) );
@@ -1281,7 +1281,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnRightToLeft = new QPushButton( showOptions );
   btnRightToLeft->setText( "" );
   btnRightToLeft->setIcon( QIcon( showRightToLeft ) );
-  btnRightToLeft->setToggleButton( true );
+  btnRightToLeft->setCheckable( true );
   btnRightToLeft->setOn( group.readEntry( "RightToLeft Button", _BtnRightToLeft ) );
   btnRightToLeft->setAccel( Qt::CTRL + Qt::Key_R );
   btnRightToLeft->setWhatsThis( i18n( "Show files marked to <i>Copy from right to left</i> (CTRL+R)." ) );
@@ -1291,7 +1291,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnDeletable = new QPushButton( showOptions );
   btnDeletable->setText( "" );
   btnDeletable->setIcon( QIcon( showDeletable ) );
-  btnDeletable->setToggleButton( true );
+  btnDeletable->setCheckable( true );
   btnDeletable->setOn( group.readEntry( "Deletable Button", _BtnDeletable ) );
   btnDeletable->setAccel( Qt::CTRL + Qt::Key_T );
   btnDeletable->setWhatsThis( i18n( "Show files marked to delete. (CTRL+T)" ) );
@@ -1302,7 +1302,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnDuplicates->setText( i18n("Duplicates") );
   btnDuplicates->setFixedWidth( QFontMetrics( btnDuplicates->font() ).width( btnDuplicates->text() ) + 15 );
   btnDuplicates->setMinimumHeight( btnLeftToRight->height() );
-  btnDuplicates->setToggleButton( true );
+  btnDuplicates->setCheckable( true );
   btnDuplicates->setOn( group.readEntry( "Duplicates Button", _BtnDuplicates ) );
   btnDuplicates->setWhatsThis( i18n( "Show files that exist on both sides." ) );
   showOptionsLayout->addWidget( btnDuplicates, 0, 5);
@@ -1311,7 +1311,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnSingles->setText( i18n("Singles") );
   btnSingles->setFixedWidth( QFontMetrics( btnSingles->font() ).width( btnSingles->text() ) + 15 );
   btnSingles->setMinimumHeight( btnLeftToRight->height() );
-  btnSingles->setToggleButton( true );
+  btnSingles->setCheckable( true );
   btnSingles->setOn( group.readEntry( "Singles Button", _BtnSingles ) );
   btnSingles->setWhatsThis( i18n( "Show files that exist on one side only." ) );
   showOptionsLayout->addWidget( btnSingles, 0, 6);
@@ -1479,7 +1479,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   buttons->addWidget( btnCompareDirs );
 
   btnScrollResults = new QPushButton( this );
-  btnScrollResults->setToggleButton( true );
+  btnScrollResults->setCheckable( true );
   btnScrollResults->setOn( group.readEntry( "Scroll Results", _ScrollResults ) );
   btnScrollResults->hide();
   if( btnScrollResults->isOn() )

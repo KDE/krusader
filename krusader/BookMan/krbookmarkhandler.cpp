@@ -482,7 +482,7 @@ void KrBookmarkHandler::rightClickOnSpecialBookmark() {
 	bool hasJumpback    = group.readEntry( "BM Jumpback",     true );
 	
 	QMenu menu( _mainBookmarkPopup );
-	menu.setCaption( i18n( "Enable special bookmarks" ) );
+	menu.setTitle( i18n( "Enable special bookmarks" ) );
 	
 	QAction *act;
 	

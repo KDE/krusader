@@ -40,7 +40,7 @@ SyncBrowseButton::SyncBrowseButton(QWidget *parent) : QToolButton(parent)
 
   setFixedSize( _icon_off.width() + 4, _icon_off.height() + 4 );
   setIcon( QIcon( _icon_off ) );
-  setToggleButton( true );
+  setCheckable( true );
   
   setText( i18n( "This button toggles the sync-browse mode.\n"
 			"When active, each directory change is performed in the\n"

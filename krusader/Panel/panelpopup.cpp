@@ -70,7 +70,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	treeBtn->setToolTip( i18n("Tree Panel: a tree view of the local file system"));
 	treeBtn->setIcon(krLoader->loadIcon( "view_tree", KIconLoader::Toolbar, 16 ));
 	treeBtn->setFixedSize(20, 20);
-	treeBtn->setToggleButton(true);
+	treeBtn->setCheckable(true);
 	btns->addButton(treeBtn, Tree);
 	
 	
@@ -78,28 +78,28 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	previewBtn->setToolTip( i18n("Preview Panel: display a preview of the current file"));
 	previewBtn->setIcon(krLoader->loadIcon( "thumbnail", KIconLoader::Toolbar, 16 ));
 	previewBtn->setFixedSize(20, 20);
-	previewBtn->setToggleButton(true);
+	previewBtn->setCheckable(true);
 	btns->addButton(previewBtn, Preview);
 	
 	quickBtn = new QToolButton(this);
 	quickBtn->setToolTip( i18n("Quick Panel: quick way to perform actions"));
 	quickBtn->setIcon(krLoader->loadIcon( "misc", KIconLoader::Toolbar, 16 ));
 	quickBtn->setFixedSize(20, 20);
-	quickBtn->setToggleButton(true);
+	quickBtn->setCheckable(true);
 	btns->addButton(quickBtn, QuickPanel);
 
 	viewerBtn = new QToolButton(this);
 	viewerBtn->setToolTip( i18n("View Panel: view the current file"));
 	viewerBtn->setIcon(krLoader->loadIcon( "viewmag", KIconLoader::Toolbar, 16 ));
 	viewerBtn->setFixedSize(20, 20);
-	viewerBtn->setToggleButton(true);
+	viewerBtn->setCheckable(true);
 	btns->addButton(viewerBtn, View);	
 		
 	duBtn = new QToolButton(this);
 	duBtn->setToolTip( i18n("Disk Usage Panel: view the usage of a directory"));
 	duBtn->setIcon(krLoader->loadIcon( "kr_diskusage", KIconLoader::Toolbar, 16 ));
 	duBtn->setFixedSize(20, 20);
-	duBtn->setToggleButton(true);
+	duBtn->setCheckable(true);
 	btns->addButton(duBtn, DskUsage);	
 		
 	layout->addWidget(dataLine,0,0);

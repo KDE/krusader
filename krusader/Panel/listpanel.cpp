@@ -112,7 +112,7 @@ typedef QList<KServiceOffer> OfferList;
 // 					The list panel constructor       //
 /////////////////////////////////////////////////////
 ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
-      QWidget( parent ), panelType( typeIn ), colorMask( 255 ), compareMode( false ), currDragItem( 0 ), statsAgent( 0 ), 
+      QWidget( parent ), panelType( typeIn ), colorMask( 255 ), compareMode( false ), statsAgent( 0 ), 
 		quickSearch( 0 ), cdRootButton( 0 ), cdUpButton( 0 ), popupBtn(0), popup(0),inlineRefreshJob(0), _left( left ) {
 
    layout = new QGridLayout( this );

@@ -33,7 +33,6 @@
 #ifndef LISTPANEL_H
 #define LISTPANEL_H
 
-#include <Q3ListView>
 #include <kpropsdlg.h>
 #include <kfileitem.h>
 #include <kurl.h>
@@ -178,7 +177,6 @@ public:
    //FilterSpec	   filter;
    KRQuery filterMask;
    QPixmap currDragPix;
-   Q3ListViewItem *currDragItem;
    KDiskFreeSpace* statsAgent;
    KrSqueezedTextLabel *status, *totals;
    KrQuickSearch *quickSearch;
