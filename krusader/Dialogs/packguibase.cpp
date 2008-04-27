@@ -82,7 +82,7 @@ PackGUIBase::PackGUIBase( QWidget* parent )
     hbox->addWidget( nameData );
 
     typeData = new QComboBox( this );
-    typeData->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)1, (QSizePolicy::SizeType)0 ) );
+    typeData->setSizePolicy( QSizePolicy( QSizePolicy::Minimum, QSizePolicy::Fixed ) );
     connect( typeData, SIGNAL( activated( const QString & ) ), this,  SLOT( checkConsistency() ) );
     connect( typeData, SIGNAL( highlighted( const QString & ) ), this,  SLOT( checkConsistency() ) );
     hbox->addWidget( typeData );
@@ -101,7 +101,7 @@ PackGUIBase::PackGUIBase( QWidget* parent )
     hbox_2->addWidget( dirData );
 
     browseButton = new QToolButton( this );
-    browseButton->setIconSet( SmallIcon( "fileopen" ) );
+    browseButton->setIcon( SmallIcon( "fileopen" ) );
     hbox_2->addWidget( browseButton );
     QSpacerItem* spacer = new QSpacerItem( 48, 20, QSizePolicy::Fixed, QSizePolicy::Fixed );
     hbox_2->addItem( spacer );
@@ -113,9 +113,9 @@ PackGUIBase::PackGUIBase( QWidget* parent )
     hbox_3->setContentsMargins( 0, 0, 0, 0 );
 
     PixmapLabel1 = new QLabel( this );
-    PixmapLabel1->setIcon( krLoader->loadIcon("package", KIconLoader::Desktop, 32) );
+    PixmapLabel1->setWindowIcon( krLoader->loadIcon("package", KIconLoader::Desktop, 32) );
     PixmapLabel1->setScaledContents( TRUE );
-    PixmapLabel1->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)0, (QSizePolicy::SizeType)0 ) );
+    PixmapLabel1->setSizePolicy( QSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed ) );
     hbox_3->addWidget( PixmapLabel1 );
 
     TextLabel1 = new QLabel( this );
@@ -157,8 +157,8 @@ PackGUIBase::PackGUIBase( QWidget* parent )
     volumeHbox->addWidget( TextLabel7 );
     
     volumeSpinBox = new QSpinBox( advancedWidget );
-    volumeSpinBox->setMinValue( 1 );
-    volumeSpinBox->setMaxValue( 9999 );
+    volumeSpinBox->setMinimum( 1 );
+    volumeSpinBox->setMaximum( 9999 );
     volumeSpinBox->setValue( 1440 );
     volumeHbox->addWidget( volumeSpinBox );
 
@@ -166,7 +166,7 @@ PackGUIBase::PackGUIBase( QWidget* parent )
     volumeUnitCombo->addItem( "B" );
     volumeUnitCombo->addItem( "KB" );
     volumeUnitCombo->addItem( "MB" );
-    volumeUnitCombo->setCurrentItem( 1 );
+    volumeUnitCombo->setCurrentIndex( 1 );
     volumeHbox->addWidget( volumeUnitCombo );
 
     compressLayout->addLayout ( volumeHbox );
@@ -183,8 +183,12 @@ PackGUIBase::PackGUIBase( QWidget* parent )
     QWidget * sliderVBoxWidget = new QWidget( advancedWidget );
     QVBoxLayout *sliderVBox = new QVBoxLayout( sliderVBoxWidget );
 
-    compressionSlider = new QSlider( 1, 9, 1, 5, Qt::Horizontal, sliderVBoxWidget );
-    compressionSlider->setTickmarks( QSlider::TicksBelow );
+    compressionSlider = new QSlider(Qt::Horizontal, sliderVBoxWidget);
+    compressionSlider->setMinimum(1);
+    compressionSlider->setMaximum(9);
+    compressionSlider->setPageStep(1);
+    compressionSlider->setValue(5);
+    compressionSlider->setTickPosition( QSlider::TicksBelow );
     sliderVBox->addWidget( compressionSlider );
 
     QWidget * minmaxWidget = new QWidget( sliderVBoxWidget );

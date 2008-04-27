@@ -36,7 +36,7 @@
  *  TRUE to construct a modal dialog.
  */
  
- #define SIZE_MINIMUM	QSizePolicy( (QSizePolicy::SizeType)0, (QSizePolicy::SizeType)0 )
+ #define SIZE_MINIMUM	QSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed )
  
 newFTPGUI::newFTPGUI( QWidget* parent )
     : QDialog( parent ){
@@ -112,7 +112,7 @@ newFTPGUI::newFTPGUI( QWidget* parent )
     url->setHistoryItems( list );
 
     port = new QSpinBox( grid_host );
-    port->setMaxValue( 65535 );
+    port->setMaximum( 65535 );
     grid_layout->addWidget( port, 1, 2 );
 #if QT_VERSION < 300
     port->setFrameShadow( QSpinBox::Sunken );

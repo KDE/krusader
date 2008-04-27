@@ -1402,8 +1402,8 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   QLabel * parallelThreadsLabel = new QLabel( i18n( "Parallel threads:" ), optionsGroup );
   optionsLayout->addWidget( parallelThreadsLabel, 0, 0 );
   parallelThreadsSpinBox = new QSpinBox( optionsGroup );
-  parallelThreadsSpinBox->setMinValue( 1 );
-  parallelThreadsSpinBox->setMaxValue( 15 );
+  parallelThreadsSpinBox->setMinimum( 1 );
+  parallelThreadsSpinBox->setMaximum( 15 );
   int parThreads = group.readEntry( "Parallel Threads", 1 );
   parallelThreadsSpinBox->setValue( parThreads );
 
@@ -1413,7 +1413,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   optionsLayout->addWidget( equalityLabel, 1, 0 );
 
   equalitySpinBox = new QSpinBox( optionsGroup );
-  equalitySpinBox->setMaxValue( 9999 );
+  equalitySpinBox->setMaximum( 9999 );
   optionsLayout->addWidget( equalitySpinBox, 1, 1 );
 
   equalityUnitCombo = new QComboBox( optionsGroup );
@@ -1427,8 +1427,8 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   optionsLayout->addWidget( timeShiftLabel, 2, 0 );
 
   timeShiftSpinBox = new QSpinBox( optionsGroup );
-  timeShiftSpinBox->setMinValue( -9999 );
-  timeShiftSpinBox->setMaxValue( 9999 );
+  timeShiftSpinBox->setMinimum( -9999 );
+  timeShiftSpinBox->setMaximum( 9999 );
   optionsLayout->addWidget( timeShiftSpinBox, 2, 1 );
 
   timeShiftUnitCombo = new QComboBox( optionsGroup );
@@ -2380,13 +2380,13 @@ void SynchronizerGUI::loadFromProfile( QString profile )
   int equalityCombo = 0;
   convertFromSeconds( equalityThreshold, equalityCombo, equalityThreshold );
   equalitySpinBox->setValue( equalityThreshold );
-  equalityUnitCombo->setCurrentItem( equalityCombo );
+  equalityUnitCombo->setCurrentIndex( equalityCombo );
 
   int timeShift = pg.readEntry( "Time Shift", 0 );
   int timeShiftCombo = 0;
   convertFromSeconds( timeShift, timeShiftCombo, timeShift );
   timeShiftSpinBox->setValue( timeShift );
-  timeShiftUnitCombo->setCurrentItem( timeShiftCombo );
+  timeShiftUnitCombo->setCurrentIndex( timeShiftCombo );
 
   int parallelThreads = pg.readEntry( "Parallel Threads", 1 );
   parallelThreadsSpinBox->setValue( parallelThreads );

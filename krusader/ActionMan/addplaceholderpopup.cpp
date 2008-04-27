@@ -427,7 +427,7 @@ QString ParameterChoose::preset() {
    return _combobox->text( 0 );
 } 
 void ParameterChoose::reset() {
-   _combobox->setCurrentItem( 0 );
+   _combobox->setCurrentIndex( 0 );
 } 
 bool ParameterChoose::valid() {
       return true;
@@ -539,7 +539,7 @@ QString ParameterSyncprofile::preset() {
    return _combobox->text( 0 );
 } 
 void ParameterSyncprofile::reset() {
-   _combobox->setCurrentItem( 0 );
+   _combobox->setCurrentIndex( 0 );
 } 
 bool ParameterSyncprofile::valid() {
       return true;
@@ -565,7 +565,7 @@ QString ParameterSearch::preset() {
    return _combobox->text( 0 );
 } 
 void ParameterSearch::reset() {
-   _combobox->setCurrentItem( 0 );
+   _combobox->setCurrentIndex( 0 );
 } 
 bool ParameterSearch::valid() {
       return true;
@@ -591,7 +591,7 @@ QString ParameterPanelprofile::preset() {
    return _combobox->text( 0 );
 } 
 void ParameterPanelprofile::reset() {
-   _combobox->setCurrentItem( 0 );
+   _combobox->setCurrentIndex( 0 );
 } 
 bool ParameterPanelprofile::valid() {
       return true;
@@ -608,8 +608,8 @@ ParameterInt::ParameterInt( const exp_parameter& parameter, QWidget* parent ) : 
    _spinbox = new KIntSpinBox( this );
    QStringList para = parameter.preset().section(":", 1).split( ";" );
    
-   _spinbox->setMinValue( para[0].toInt() );
-   _spinbox->setMaxValue( para[1].toInt() );
+   _spinbox->setMinimum( para[0].toInt() );
+   _spinbox->setMaximum( para[1].toInt() );
    _spinbox->setLineStep( para[2].toInt() );
    _spinbox->setValue( para[3].toInt() );
    

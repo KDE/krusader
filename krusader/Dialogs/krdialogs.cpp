@@ -180,7 +180,7 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy( const QString& urlName, const 
 			tempOld = temp;
 			temp = temp.upUrl();
 		}while( !tempOld.equals( temp, KUrl::CompareWithoutTrailingSlash ) );
-		baseUrlCombo->setCurrentItem( 0 );
+		baseUrlCombo->setCurrentIndex( 0 );
 		
 		topLayout->addWidget( hboxWidget );
 	}

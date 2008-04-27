@@ -143,8 +143,8 @@ KonfiguratorSpinBox::KonfiguratorSpinBox( QString cls, QString name, int dflt, i
 
   connect( this, SIGNAL( valueChanged(int) ), ext, SLOT( setChanged() ) );
 
-  setMinValue( min );
-  setMaxValue( max );
+  setMinimum( min );
+  setMaximum( max );
 
   loadInitialValue();
 }
@@ -356,7 +356,7 @@ KonfiguratorURLRequester::KonfiguratorURLRequester( QString cls, QString name, Q
 
   connect( this, SIGNAL( textChanged(const QString &) ), ext, SLOT( setChanged() ) );
 
-  button()->setIconSet( SmallIcon( "fileopen" ) );
+  button()->setIcon( SmallIcon( "fileopen" ) );
   loadInitialValue();
 }
 
@@ -405,7 +405,7 @@ KonfiguratorFontChooser::KonfiguratorFontChooser( QString cls, QString name, QFo
 
   connect( pToolButton, SIGNAL( clicked() ), this, SLOT( slotBrowseFont() ) );
 
-  pToolButton->setIconSet( SmallIcon( "fileopen" ) );
+  pToolButton->setIcon( SmallIcon( "fileopen" ) );
   layout->addWidget( pToolButton );
 
   loadInitialValue();
@@ -512,14 +512,14 @@ void KonfiguratorComboBox::selectEntry( QString entry )
   for( int i=0; i != listLen; i++ )
     if( list[i].value == entry )
     {
-      setCurrentItem( i );
+      setCurrentIndex( i );
       return;
     }
 
   if( editable() )
     lineEdit()->setText( entry );
   else
-    setCurrentItem( 0 );
+    setCurrentIndex( 0 );
 }
 
 void KonfiguratorComboBox::slotSetDefaults(QObject *)
@@ -653,7 +653,7 @@ void KonfiguratorColorChooser::setValue( QString value )
 
   if( value.isEmpty() )
   {
-    setCurrentItem( 1 );
+    setCurrentIndex( 1 );
     customValue = defaultValue;
   }
   else
@@ -663,7 +663,7 @@ void KonfiguratorColorChooser::setValue( QString value )
     for( int j=0; j != additionalColors.size(); j++ )
       if( additionalColors[j].value == value )
       {
-        setCurrentItem( 2 + j );
+        setCurrentIndex( 2 + j );
         found = true;
         break;
       }
@@ -676,11 +676,11 @@ void KonfiguratorColorChooser::setValue( QString value )
       customValue = color;
       colGroup.deleteEntry( "TmpColor" );
 
-      setCurrentItem( 0 );
+      setCurrentIndex( 0 );
       for( int i= 2+additionalColors.size(); i != palette.size(); i++ )
         if( palette[i] == color )
         {
-          setCurrentItem( i );
+          setCurrentIndex( i );
           break;
         }
     }
@@ -713,7 +713,7 @@ bool KonfiguratorColorChooser::isValueRGB()
 void KonfiguratorColorChooser::slotSetDefaults(QObject *)
 {
   ext->setChanged();
-  setCurrentItem( 1 );
+  setCurrentIndex( 1 );
   emit colorChanged();
 }
 

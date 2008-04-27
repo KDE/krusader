@@ -141,13 +141,13 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
   hbox->addWidget( sideCombo );
 
   if( leftExistingNum == 0 ) {
-    sideCombo->setCurrentItem( 1 );
+    sideCombo->setCurrentIndex( 1 );
     sideCombo->setEnabled( false );
   } else if( rightExistingNum == 0 ) {
-    sideCombo->setCurrentItem( 0 );
+    sideCombo->setCurrentIndex( 0 );
     sideCombo->setEnabled( false );
   } else
-    sideCombo->setCurrentItem( 2 );
+    sideCombo->setCurrentIndex( 2 );
   
   QFrame *line = new QFrame( hboxWidget );
   line->setFrameStyle( QFrame::VLine | QFrame::Sunken );

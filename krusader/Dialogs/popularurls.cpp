@@ -248,7 +248,7 @@ PopularUrlsDlg::PopularUrlsDlg():
 	
 	// quick search
 	QToolButton *btn = new QToolButton(widget);
-	btn->setIconSet(SmallIcon("locationbar_erase"));
+	btn->setIcon(SmallIcon("locationbar_erase"));
 	search = new KTreeWidgetSearchLine(widget, urls);
 	search->setTrapReturnKey(true);
 	QLabel *lbl = new QLabel(search, i18n(" &Search: "), widget);

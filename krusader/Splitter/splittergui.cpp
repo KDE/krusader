@@ -178,22 +178,22 @@ void SplitterGUI::predefinedComboActivated( int item )
   
   if( capacity >= 0x40000000 )           /* Gbyte */
   {
-    sizeCombo->setCurrentItem( 3 );
+    sizeCombo->setCurrentIndex( 3 );
     spinBox->setDivision( 0x40000000 );
   }
   else if( capacity >= 0x100000 )        /* Mbyte */
   {
-    sizeCombo->setCurrentItem( 2 );
+    sizeCombo->setCurrentIndex( 2 );
     spinBox->setDivision( 0x100000 );
   }
   else if( capacity >= 0x400 )           /* kbyte */
   {
-    sizeCombo->setCurrentItem( 1 );
+    sizeCombo->setCurrentIndex( 1 );
     spinBox->setDivision( 0x400 );
   }
   else
   {
-    sizeCombo->setCurrentItem( 0 );     /* byte */
+    sizeCombo->setCurrentIndex( 0 );     /* byte */
     spinBox->setDivision( 1 );
   }
   
