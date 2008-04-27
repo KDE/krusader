@@ -60,7 +60,7 @@ Combiner::~Combiner()
 
 void Combiner::combine()
 {
-  setCaption( i18n("Krusader::Combining...") );
+  setWindowTitle( i18n("Krusader::Combining...") );
   setLabelText( i18n("Combining the file %1...", baseURL.pathOrUrl() ));
 
     /* check whether the .crc file exists */

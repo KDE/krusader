@@ -65,7 +65,7 @@ PackGUIBase::PackGUIBase( QWidget* parent )
 {
     setModal( true );
     resize( 430, 140 );
-    setCaption( i18n( "Pack" ) );
+    setWindowTitle( i18n( "Pack" ) );
     grid = new QGridLayout( this );
     grid->setSpacing( 6 );
     grid->setContentsMargins( 11, 11, 11, 11 );

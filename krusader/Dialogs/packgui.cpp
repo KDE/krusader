@@ -62,7 +62,7 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
   QStringList lst=group.readEntry("Supported Packers", QStringList());
   // now, clear the type combo and begin...
   typeData->clear();
-  if (PS("tar")) typeData->insertItem("tar");
+  if (PS("tar")) typeData->addItem("tar");
   if (PS("tar") && PS("gzip")) typeData->addItem("tar.gz");
   if (PS("tar") && PS("bzip2")) typeData->addItem("tar.bz2");
   if (PS("zip")) typeData->addItem("zip");
@@ -76,7 +76,7 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
     for (int i=0; i< typeData->count(); ++i)
       if (typeData->itemText( i ) == tmp) {
         typeData->removeItem(i);
-        typeData->insertItem(tmp,0);
+        typeData->insertItem(0, tmp);
         break;
       }
   }

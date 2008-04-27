@@ -44,7 +44,7 @@
 DiskUsageGUI::DiskUsageGUI( KUrl openDir, QWidget* parent ) 
   : QDialog( parent ), exitAtFailure( true )
 {  
-  setCaption( i18n("Krusader::Disk Usage") );
+  setWindowTitle( i18n("Krusader::Disk Usage") );
   
   baseDirectory = openDir;
   if( !newSearch() )

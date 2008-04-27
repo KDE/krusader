@@ -51,7 +51,7 @@
 #include <qlayout.h>
 KrActionProcDlg::KrActionProcDlg( QString caption, bool enableStderr, QWidget *parent ) :
         KDialog( parent ), _stdout(0), _stderr(0), _currentTextEdit(0) {
-   setCaption( caption );
+   setWindowTitle( caption );
    setButtons( KDialog::User1 | KDialog::Ok | KDialog::Cancel );
    setDefaultButton( KDialog::Cancel );
    setWindowModality( Qt::NonModal );

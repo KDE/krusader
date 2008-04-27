@@ -46,7 +46,7 @@ KRPleaseWait::KRPleaseWait( QString msg, int count, bool cancel ):
 	setModal( !cancel );
 	
 	timer = new QTimer(this);
-	setCaption( i18n( "Krusader::Wait" ) );
+	setWindowTitle( i18n( "Krusader::Wait" ) );
 
 	setMinimumDuration(500);
   setAutoClose(false);

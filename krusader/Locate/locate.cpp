@@ -116,7 +116,7 @@ LocateDlg::LocateDlg() : KDialog( 0 ), isFeedToListBox( false )
 {
   setButtons( KDialog::User1 | KDialog::User2 | KDialog::User3 | KDialog::Close );
   setDefaultButton( KDialog::User3 );
-  setCaption( i18n("Locate") );
+  setWindowTitle( i18n("Locate") );
   setWindowModality( Qt::NonModal );
   setButtonGuiItem( KDialog::User1, KGuiItem( i18n("Stop") ) );
   setButtonGuiItem( KDialog::User2, KGuiItem( i18n("Update DB") ) );

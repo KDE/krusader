@@ -199,7 +199,7 @@ bool KrSearchDialog::lastFollowSymLinks = false;
 KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent )
                 : QDialog( parent ), query(0), searcher(0)
 {
-  setCaption( i18n( "Krusader::Search" ) );
+  setWindowTitle( i18n( "Krusader::Search" ) );
 
   QGridLayout* searchBaseLayout = new QGridLayout( this );
   searchBaseLayout->setSpacing( 6 );

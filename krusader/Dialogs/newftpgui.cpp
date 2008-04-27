@@ -48,7 +48,7 @@ newFTPGUI::newFTPGUI( QWidget* parent )
     layout->setAutoAdd(true);
     
     resize( 342, 261 );
-    setCaption( i18n( "New Network Connection"  ) );
+    setWindowTitle( i18n( "New Network Connection"  ) );
 //     setSizeGripEnabled( TRUE );
     QSizePolicy policy( QSizePolicy::Preferred, QSizePolicy::Preferred);
     policy.setHeightForWidth( sizePolicy().hasHeightForWidth() );

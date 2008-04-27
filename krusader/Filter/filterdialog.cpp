@@ -38,7 +38,7 @@
 FilterDialog::FilterDialog ( QWidget *parent )
 		: KDialog ( parent )
 {
-	setCaption ( i18n ( "Krusader::Choose Files" ) );
+	setWindowTitle ( i18n ( "Krusader::Choose Files" ) );
 	setModal ( true );
 	setButtons ( Ok | Cancel );
 

@@ -47,7 +47,7 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,
                                       deleteSize( pdeleteSize ), parallelThreads( parThreads ),
                                       isPause( true ), syncStarted( false )
 {
-  setCaption( i18n("Krusader::Synchronize") );
+  setWindowTitle( i18n("Krusader::Synchronize") );
   setModal( true );
 
   QVBoxLayout *layout = new QVBoxLayout( this );

@@ -115,7 +115,7 @@ KrProgress::KrProgress( KIO::Job* job )
   resize( sizeHint() );
   setMaximumHeight(sizeHint().height());
 
-  setCaption(i18n("Krusader Progress")); // show something better than kio_uiserver
+  setWindowTitle(i18n("Krusader Progress")); // show something better than kio_uiserver
 
   setJob(job);
   setOnlyClean(false);
@@ -179,7 +179,7 @@ void KrProgress::slotPercent( KIO::Job*, unsigned long percent ){
   m_pProgressBar->setValue( percent );
   tmp.append(i18n(" (Reading)"));
 
-  setCaption( tmp );
+  setWindowTitle( tmp );
 }
 
 

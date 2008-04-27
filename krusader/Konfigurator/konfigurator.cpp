@@ -63,7 +63,7 @@ Konfigurator::Konfigurator( bool f, int startPage ) : KPageDialog( (QWidget *)0 
 {
   setButtons( KDialog::Help | KDialog::User1 | KDialog::Apply | KDialog::Cancel );
   setDefaultButton( KDialog::User1 );
-  setCaption( i18n( "Konfigurator" ) );
+  setWindowTitle( i18n( "Konfigurator" ) );
   setButtonGuiItem( KDialog::User1, KGuiItem( i18n("Defaults") ) );
   setWindowModality( Qt::WindowModal );
 

@@ -65,7 +65,7 @@ KRQuery KRSpWidgets::getMask(QString caption, bool nameOnly, QWidget * parent ) 
   }
   else {
     KRMaskChoiceSub *p=new KRMaskChoiceSub( parent );
-    p->setCaption(caption);
+    p->setWindowTitle(caption);
     p->exec();
     if (p->selection->currentText()=="") return KRQuery();
     else return KRQuery( p->selection->currentText() );

@@ -41,7 +41,7 @@ KrResultTableDialog::KrResultTableDialog( QWidget *parent, DialogType type,
 {
   setButtons( KDialog::Help | KDialog::Ok );
   setDefaultButton( KDialog::Ok );
-  setCaption( caption );
+  setWindowTitle( caption );
   setWindowModality( Qt::WindowModal );
 
   _page = new QWidget(this);

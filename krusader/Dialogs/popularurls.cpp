@@ -232,7 +232,7 @@ PopularUrlsDlg::PopularUrlsDlg():
 	KDialog( krApp) {
 	setButtons( KDialog::Close );
 	setDefaultButton( KDialog::NoDefault );
-	setCaption( i18n("Popular Urls") );
+	setWindowTitle( i18n("Popular Urls") );
 	setWindowModality( Qt::WindowModal );
 	
 	QWidget * widget = new QWidget( this );

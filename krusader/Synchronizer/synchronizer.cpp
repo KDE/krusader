@@ -1345,7 +1345,7 @@ KgetProgressDialog::KgetProgressDialog( QWidget *parent, const QString &caption,
                     const QString &text, bool modal) : KDialog( parent )
 {
   if( caption.isEmpty() )
-    setCaption( caption );
+    setWindowTitle( caption );
   setButtons( KDialog::User1 | KDialog::Cancel );
   setDefaultButton( KDialog::Cancel );
   setModal( modal );

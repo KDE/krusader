@@ -68,7 +68,7 @@ void Splitter::split( KIO::filesize_t splitSizeIn )
   
   splitSize = splitSizeIn;
 
-  setCaption( i18n("Krusader::Splitting...") );
+  setWindowTitle( i18n("Krusader::Splitting...") );
   setLabelText( i18n("Splitting the file %1...", fileName.pathOrUrl() ) );
 
   if( file.isDir() )

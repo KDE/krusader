@@ -14,7 +14,7 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KUrl url):
 	KDialog(parent) {
 	setButtons( KDialog::User1 | KDialog::Ok | KDialog::Cancel );
 	setDefaultButton( KDialog::Ok );
-	setCaption( i18n("Add Bookmark") );
+	setWindowTitle( i18n("Add Bookmark") );
 	setWindowModality( Qt::WindowModal );
 	// create the 'new folder' button
 	setButtonText(KDialog::User1, i18n("New Folder"));

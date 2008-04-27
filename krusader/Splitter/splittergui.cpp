@@ -128,7 +128,7 @@ SplitterGUI::SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir ) :
 
   grid->addLayout( splitButtons,4 ,0 );
         
-  setCaption(i18n("Krusader::Splitter"));
+  setWindowTitle(i18n("Krusader::Splitter"));
 
   connect( sizeCombo, SIGNAL( activated(int) ), this, SLOT( sizeComboActivated( int ) ) );
   connect( deviceCombo, SIGNAL( activated(int) ), this, SLOT( predefinedComboActivated( int ) ) );

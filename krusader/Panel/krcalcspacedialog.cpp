@@ -96,7 +96,7 @@ KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, ListPanel * files, const Q
 	KDialog(parent), m_autoClose(autoclose), m_canceled(false), m_timerCounter(0){
 	setButtons( KDialog::Ok | KDialog::Cancel );
 	setDefaultButton( KDialog::Ok );
-	setCaption( i18n("Calculate Occupied Space") );
+	setWindowTitle( i18n("Calculate Occupied Space") );
 	setWindowModality( Qt::WindowModal );
 	// the dialog: The Ok button is hidden until it is needed
 	showButton(KDialog::Ok, false);

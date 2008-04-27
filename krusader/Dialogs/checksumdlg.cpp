@@ -202,7 +202,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	KDialog(krApp) {
 	setButtons( KDialog::Ok | KDialog::Cancel );
 	setDefaultButton( KDialog::Ok );
-	setCaption( i18n("Create Checksum") );
+	setWindowTitle( i18n("Create Checksum") );
 	setWindowModality( Qt::WindowModal );
 	
 	QList<CS_Tool *> tools = getTools(containFolders);
@@ -321,7 +321,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	KDialog(krApp) {
 	setButtons( KDialog::Ok | KDialog::Cancel );
 	setDefaultButton( KDialog::Ok );
-	setCaption( i18n("Verify Checksum") );
+	setWindowTitle( i18n("Verify Checksum") );
 	setWindowModality( Qt::WindowModal );
 	
 	QList<CS_Tool *> tools = getTools(containFolders);
@@ -459,7 +459,7 @@ VerifyResultDlg::VerifyResultDlg(const QStringList& failed):
 	KDialog(krApp) {
 	setButtons( KDialog::Close );
 	setDefaultButton( KDialog::Close );
-	setCaption( i18n("Verify Checksum") );
+	setWindowTitle( i18n("Verify Checksum") );
 	setWindowModality( Qt::WindowModal );
 	
 	QWidget * widget = new QWidget( this );
@@ -504,7 +504,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 	KDialog(krApp), _binary(binary) {
 	setButtons( KDialog::Ok | KDialog::Cancel );
 	setDefaultButton( KDialog::Ok );
-	setCaption( i18n("Create Checksum") );
+	setWindowTitle( i18n("Create Checksum") );
 	setWindowModality( Qt::WindowModal );
 	
 	QWidget * widget = new QWidget( this );

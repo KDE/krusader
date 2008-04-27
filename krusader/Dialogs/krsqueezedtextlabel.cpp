@@ -33,7 +33,7 @@ void KrSqueezedTextLabel::dropEvent(QDropEvent *e) {
 void KrSqueezedTextLabel::dragEnterEvent(QDragEnterEvent *e) {
   if( acceptDrops ) {
     KUrl::List URLs = KUrl::List::fromMimeData( e->mimeData() );
-    e->accept( !URLs.isEmpty() );
+    e->setAccepted( !URLs.isEmpty() );
   }
   else
     KSqueezedTextLabel::dragEnterEvent( e );

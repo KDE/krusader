@@ -148,7 +148,7 @@ QString AddPlaceholderPopup::getPlaceholder( const QPoint& pos ) {
 
 ParameterDialog::ParameterDialog( const exp_placeholder* currentPlaceholder, QWidget *parent ) : KDialog(parent) {
 	//KDialog( Plain, i18n("User Action Parameter Dialog"), Default | Ok, Ok, parent ) {
-	setCaption(i18n("User Action Parameter Dialog"));
+	setWindowTitle(i18n("User Action Parameter Dialog"));
 	setButtons(Ok | Default);
 	setDefaultButton(Ok);
    _parameter.clear();

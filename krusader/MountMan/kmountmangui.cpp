@@ -62,7 +62,7 @@ A
 #endif
 
 KMountManGUI::KMountManGUI() : KDialog( krApp ), info( 0 ), mountList( 0 ) {
-   setCaption( i18n("Mount.Man") );
+   setWindowTitle( i18n("Mount.Man") );
    setWindowModality( Qt::WindowModal );
 
 	watcher = new QTimer( this );

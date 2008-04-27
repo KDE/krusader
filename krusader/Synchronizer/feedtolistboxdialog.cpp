@@ -53,7 +53,7 @@ FeedToListBoxDialog::FeedToListBoxDialog(QWidget *parent, Synchronizer *sync,
     QTreeWidget *syncL, bool equOK) : KDialog( parent ),
     synchronizer( sync ), syncList( syncL ), equalAllowed( equOK ), accepted( false ) {
 
-  setCaption( i18n( "Krusader::Feed to listbox" ) );
+  setWindowTitle( i18n( "Krusader::Feed to listbox" ) );
   setButtons( KDialog::Ok | KDialog::Cancel | KDialog::User1 );
   setDefaultButton( KDialog::Ok );
   setWindowModality( Qt::WindowModal );

@@ -304,7 +304,7 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 	if( !part ) return;
 
 	KUrl url = pvb->url();
-	setCaption( msg+": " + url.prettyUrl() );
+	setWindowTitle( msg+": " + url.prettyUrl() );
 
 	QIcon icon = QIcon(krLoader->loadIcon(iconName,KIconLoader::Small));
 

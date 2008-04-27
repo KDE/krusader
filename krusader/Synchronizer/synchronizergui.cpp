@@ -1105,7 +1105,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   if( rightURL.isEmpty() )
     rightURL = KUrl("/");
     
-  setCaption( i18n("Krusader::Synchronize Directories") );
+  setWindowTitle( i18n("Krusader::Synchronize Directories") );
   QGridLayout *synchGrid = new QGridLayout( this );
   synchGrid->setSpacing( 6 );
   synchGrid->setContentsMargins( 11, 11, 11, 11 );

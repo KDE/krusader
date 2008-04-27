@@ -54,7 +54,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent )
 {
     setModal( true );
     resize( 401, 314 );
-    setCaption( i18n( "Choose Files"  ) );
+    setWindowTitle( i18n( "Choose Files"  ) );
     setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)5 ) );
 
     selection = new QComboBox( this );
