@@ -45,7 +45,6 @@ newFTPGUI::newFTPGUI( QWidget* parent )
     QVBoxLayout * layout = new QVBoxLayout( this );
     layout->setContentsMargins( 11, 11, 11, 11 );
     layout->setSpacing( 6 );
-    layout->setAutoAdd(true);
     
     resize( 342, 261 );
     setWindowTitle( i18n( "New Network Connection"  ) );
@@ -60,7 +59,7 @@ newFTPGUI::newFTPGUI( QWidget* parent )
     hbox_image->setSpacing( 6 );
     
     PixmapLabel1 = new QLabel( hbox_image_widget );
-    PixmapLabel1->setIcon( krLoader->loadIcon("network", KIconLoader::Desktop, 32) );
+    PixmapLabel1->setWindowIcon( krLoader->loadIcon("network", KIconLoader::Desktop, 32) );
     PixmapLabel1->setSizePolicy( SIZE_MINIMUM );
     hbox_image->addWidget( PixmapLabel1 );
 
@@ -69,6 +68,7 @@ newFTPGUI::newFTPGUI( QWidget* parent )
     TextLabel3_font.setBold( TRUE );
     TextLabel3->setFont( TextLabel3_font );
     hbox_image->addWidget( TextLabel3 );
+    layout->addWidget( hbox_image_widget );
 
     
     QWidget * grid_host = new QWidget( this );
@@ -120,12 +120,17 @@ newFTPGUI::newFTPGUI( QWidget* parent )
     port->setValue( 21 );
     port->setSizePolicy( SIZE_MINIMUM );
 
+    layout->addWidget( grid_host );
 
     TextLabel1_2 = new QLabel( i18n( "Username:"  ), this );
-    username = new QLineEdit( this, "username" );
+    layout->addWidget( TextLabel1_2 );
+    username = new QLineEdit( this );
+    layout->addWidget( username );
     TextLabel1_2_2 = new QLabel( i18n( "Password:"  ), this );
-    password = new QLineEdit( this, "password" );
+    layout->addWidget( TextLabel1_2_2 );
+    password = new QLineEdit( this );
     password->setEchoMode( QLineEdit::Password );
+    layout->addWidget( password );
 
     
     QWidget* Layout6 = new QWidget( this );
@@ -147,6 +152,8 @@ newFTPGUI::newFTPGUI( QWidget* parent )
     cancelBtn = new QPushButton( i18n( "&Cancel"  ), Layout6 );
     cancelBtn->setAutoDefault( TRUE );
     hbox->addWidget( cancelBtn );
+
+    layout->addWidget( Layout6 );
 
     // signals and slots connections
     connect( connectBtn, SIGNAL( clicked() ), this, SLOT( accept() ) );
