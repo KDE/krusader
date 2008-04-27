@@ -1323,6 +1323,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   /* ========================= Synchronization list view ========================== */
   syncList=new SynchronizerListView( &synchronizer, synchronizerTab );  // create the main container
   syncList->setWhatsThis( i18n( "The compare results of the synchronizer (CTRL+M)." ) );
+  syncList->setAutoFillBackground( true );
 
   KConfigGroup gl( krConfig, "Look&Feel");
   syncList->setFont( gl.readEntry("Filelist Font",*_FilelistFont));
@@ -1579,8 +1580,11 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
     else
       backGrounds[ clr ] = gc.readEntry( bckgEntry, BCKG_DFLTS[ clr ] );
   }
-  if( backGrounds[ TT_EQUALS ].isValid() )
-    syncList->setPaletteBackgroundColor( backGrounds[ TT_EQUALS ] );
+  if( backGrounds[ TT_EQUALS ].isValid() ) {
+    QPalette pal = syncList->palette();
+    pal.setColor( QPalette::Base, backGrounds[ TT_EQUALS ] );
+    syncList->setPalette( pal );
+  }
 
   int sx = group.readEntry( "Window Width",  -1 );
   int sy = group.readEntry( "Window Height",  -1 );

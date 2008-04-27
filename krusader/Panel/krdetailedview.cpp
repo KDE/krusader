@@ -1204,8 +1204,12 @@ void KrDetailedView::rename( Q3ListViewItem * item, int c ) {
 
    currentlyRenamedItem = item;
    renameLineEdit()->setBackgroundMode(Qt::FixedColor);
-   renameLineEdit()->setPaletteBackgroundColor(Qt::white);
-   renameLineEdit()->setPaletteForegroundColor(Qt::black);
+
+   QPalette pal = renameLineEdit()->palette();
+   pal.setColor( renameLineEdit()->backgroundRole(), Qt::white);
+   pal.setColor( renameLineEdit()->foregroundRole(), Qt::black);
+   renameLineEdit()->setPalette( pal );
+
    K3ListView::rename( item, c );
    renameLineEdit() ->selectAll();
 }

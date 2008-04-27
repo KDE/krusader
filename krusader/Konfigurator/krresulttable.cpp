@@ -87,8 +87,12 @@ void KrResultTable::adjustRow(QGridLayout* grid)
     child->widget()->setMinimumWidth( child->widget()->sizeHint().width() + 15 );
 
     // Paint uneven rows in alternate color
-    if( ((col/_numColumns)%2) )
-      child->widget()->setPaletteBackgroundColor( KColorScheme(QPalette::Active, KColorScheme::View).background().color() );
+    if( ((col/_numColumns)%2) ) {
+      child->widget()->setAutoFillBackground( true );
+      QPalette pal = child->widget()->palette();
+      pal.setColor( child->widget()->backgroundRole(), KColorScheme(QPalette::Active, KColorScheme::View).background( KColorScheme::AlternateBackground ).color() );
+      child->widget()->setPalette( pal );
+    }
 
     ++it;
     ++col;
@@ -198,10 +202,14 @@ bool KrArchiverResultTable::addRow(SearchObject* search, QGridLayout* grid)
   _label->setAlignment( Qt::AlignTop );
   if( arch->getIsPacker() && arch->getFound() ) {
     _label->setText( i18n("enabled") );
-    _label->setPaletteForegroundColor("darkgreen");
+    QPalette pal = _label->palette();
+    pal.setColor( _label->foregroundRole(), "darkgreen" );
+    _label->setPalette( pal );
   } else if( arch->getIsPacker() && !arch->getFound() ) {
     _label->setText( i18n("disabled") );
-    _label->setPaletteForegroundColor("red");
+    QPalette pal = _label->palette();
+    pal.setColor( _label->foregroundRole(), "red" );
+    _label->setPalette( pal );
   } else
     _label->setText( "" );
   grid->addWidget(_label, _numRows, 2);
@@ -212,10 +220,14 @@ bool KrArchiverResultTable::addRow(SearchObject* search, QGridLayout* grid)
   _label->setAlignment( Qt::AlignTop );
   if( arch->getIsUnpacker() && arch->getFound() ) {
     _label->setText( i18n("enabled") );
-    _label->setPaletteForegroundColor("darkgreen");
+    QPalette pal = _label->palette();
+    pal.setColor( _label->foregroundRole(), "darkgreen" );
+    _label->setPalette( pal );
   } else if( arch->getIsUnpacker() && !arch->getFound() ) {
     _label->setText( i18n("disabled") );
-    _label->setPaletteForegroundColor("red");
+    QPalette pal = _label->palette();
+    pal.setColor( _label->foregroundRole(), "red" );
+    _label->setPalette( pal );
   } else
     _label->setText( "" );
   grid->addWidget(_label, _numRows, 3);
@@ -365,10 +377,14 @@ bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
   _label->setAlignment( Qt::AlignTop );
   if( appGroup->getFoundGroup() ) {
     _label->setText( i18n("enabled") );
-    _label->setPaletteForegroundColor("darkgreen");
+    QPalette pal = _label->palette();
+    pal.setColor( _label->foregroundRole(), "darkgreen" );
+    _label->setPalette( pal );
   } else {
     _label->setText( i18n("disabled") );
-    _label->setPaletteForegroundColor("red");
+    QPalette pal = _label->palette();
+    pal.setColor( _label->foregroundRole(), "red" );
+    _label->setPalette( pal );
   }
   grid->addWidget(_label, _numRows, 3);
 

@@ -341,19 +341,21 @@ void PackGUIBase::expand() {
 }
 
 void PackGUIBase::checkConsistency() {
+    QPalette pal = passwordConsistencyLabel->palette();
     if( password->text().isEmpty() && passwordAgain->text().isEmpty()) {
-      passwordConsistencyLabel->setPaletteForegroundColor( KColorScheme(QPalette::Active, KColorScheme::View).foreground().color() );
+      pal.setColor( passwordConsistencyLabel->foregroundRole(), KColorScheme(QPalette::Active, KColorScheme::View).foreground().color() );
       passwordConsistencyLabel->setText( i18n( "No password specified" ) );
     }
     else
     if( password->text() == passwordAgain->text() ) {
-      passwordConsistencyLabel->setPaletteForegroundColor( KColorScheme(QPalette::Active, KColorScheme::View).foreground().color() );
+      pal.setColor( passwordConsistencyLabel->foregroundRole(), KColorScheme(QPalette::Active, KColorScheme::View).foreground().color() );
       passwordConsistencyLabel->setText( i18n( "The passwords are equal" ) );
     }
     else {
-      passwordConsistencyLabel->setPaletteForegroundColor( Qt::red );
+      pal.setColor( passwordConsistencyLabel->foregroundRole(), Qt::red );
       passwordConsistencyLabel->setText( i18n( "The passwords are different" ) );
     }
+    passwordConsistencyLabel->setPalette( pal );
 
     QString packer = typeData->currentText();
 
