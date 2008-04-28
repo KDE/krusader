@@ -77,7 +77,7 @@ QStringList sumFailedFunc(const QStringList& stdOut, const QStringList& stdErr) 
 	// grep for the ":FAILED" substring
 	const QString tmp = QString(": FAILED").toLocal8Bit();
 	for (int i=0; i<stdOut.size();++i) {
-		if (stdOut[i].find(tmp) != -1)
+		if (stdOut[i].indexOf(tmp) != -1)
 			result += stdOut[i];
 	}
 	
@@ -225,10 +225,10 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	int row=0;
 		
 	// title (icon+text)	
-	QHBoxLayout *hlayout = new QHBoxLayout(layout);
+	QHBoxLayout *hlayout = new QHBoxLayout;
 	hlayout->setSpacing( KDialog::spacingHint() );
 	QLabel *p = new QLabel(widget);
-	p->setIcon(krLoader->loadIcon("binary", KIconLoader::Desktop, 32));
+	p->setPixmap(krLoader->loadIcon("binary", KIconLoader::Desktop, 32));
 	hlayout->addWidget(p);
 	QLabel *l1 = new QLabel(i18n("About to calculate checksum for the following files") + 
 		(containFolders ? i18n(" and folders:") : ":"), widget);
@@ -243,7 +243,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	++row;
 
 	// checksum method
-	QHBoxLayout *hlayout2 = new QHBoxLayout(layout);
+	QHBoxLayout *hlayout2 = new QHBoxLayout;
 	hlayout2->setSpacing( KDialog::spacingHint() );
 	QLabel *l2 = new QLabel(i18n("Select the checksum method:"), widget);
 	hlayout2->addWidget(l2);
@@ -344,10 +344,10 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	int row=0;
 		
 	// title (icon+text)	
-	QHBoxLayout *hlayout = new QHBoxLayout(layout);
+	QHBoxLayout *hlayout = new QHBoxLayout;
 	hlayout->setSpacing( KDialog::spacingHint() );
 	QLabel *p = new QLabel(widget);
-	p->setIcon(krLoader->loadIcon("binary", KIconLoader::Desktop, 32));
+	p->setPixmap(krLoader->loadIcon("binary", KIconLoader::Desktop, 32));
 	hlayout->addWidget(p);
 	QLabel *l1 = new QLabel(i18n("About to verify checksum for the following files") +
 		(containFolders ? i18n(" and folders:") : ":"), widget);
@@ -362,7 +362,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	++row;
 
 	// checksum file
-	QHBoxLayout *hlayout2 = new QHBoxLayout(layout);
+	QHBoxLayout *hlayout2 = new QHBoxLayout;
 	hlayout2->setSpacing( KDialog::spacingHint() );
 	QLabel *l2 = new QLabel(i18n("Checksum file:"), widget);
 	hlayout2->addWidget(l2);
@@ -471,10 +471,10 @@ VerifyResultDlg::VerifyResultDlg(const QStringList& failed):
 	int row = 0;
 	
 	// create the icon and title
-	QHBoxLayout *hlayout = new QHBoxLayout(layout);
+	QHBoxLayout *hlayout = new QHBoxLayout;
 	hlayout->setSpacing( KDialog::spacingHint() );
 	QLabel p(widget);
-	p.setIcon(krLoader->loadIcon(errors ? "messagebox_critical" : "messagebox_info", KIconLoader::Desktop, 32));
+	p.setPixmap(krLoader->loadIcon(errors ? "messagebox_critical" : "messagebox_info", KIconLoader::Desktop, 32));
 	hlayout->addWidget(&p);
 	
 	QLabel *l1 = new QLabel((errors ? i18n("Errors were detected while verifying the checksums") :
@@ -518,10 +518,10 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 	int row = 0;
 	
 	// create the icon and title
-	QHBoxLayout *hlayout = new QHBoxLayout(layout);
+	QHBoxLayout *hlayout = new QHBoxLayout;
 	hlayout->setSpacing( KDialog::spacingHint() );
 	QLabel p(widget);
-	p.setIcon(krLoader->loadIcon(errors ? "messagebox_critical" : "messagebox_info", KIconLoader::Desktop, 32));
+	p.setPixmap(krLoader->loadIcon(errors ? "messagebox_critical" : "messagebox_info", KIconLoader::Desktop, 32));
 	hlayout->addWidget(&p);
 	
 	QLabel *l1 = new QLabel((errors ? i18n("Errors were detected while creating the checksums") :
@@ -551,7 +551,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 		for ( QStringList::ConstIterator it = stdOut.begin(); it != stdOut.end(); ++it ) {
 			QString line = (*it);
 			if(standardFormat) {
-				int space = line.find(' ');
+				int space = line.indexOf(' ');
 				QTreeWidgetItem * item = new QTreeWidgetItem( lv );
 				item->setText(0, line.left(space));
 				item->setText(1, line.mid(space+2));
@@ -560,7 +560,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 				item->setText(0, line);
 			}	
 		}
-		lv->sortItems( standardFormat ? 1 : 0, Qt::Ascending );
+		lv->sortItems( standardFormat ? 1 : 0, Qt::AscendingOrder );
 		
 		layout->addWidget(lv, row, 0, 1, 2);
 		++row;
@@ -587,7 +587,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringL
 	KUrlRequester *checksumFile=0;
 	QCheckBox *saveFileCb=0;
 	if (successes) {
-		QHBoxLayout *hlayout2 = new QHBoxLayout(layout);
+		QHBoxLayout *hlayout2 = new QHBoxLayout;
 		hlayout2->setSpacing( KDialog::spacingHint() );
 		saveFileCb = new QCheckBox(i18n("Save checksum to file:"), widget);
 		saveFileCb->setChecked(true);
@@ -649,7 +649,7 @@ void ChecksumResultsDlg::savePerFile(const QStringList& data, const QString& typ
 	krApp->startWaiting(i18n("Saving checksum files..."), 0);
 	for ( QStringList::ConstIterator it = data.begin(); it != data.end(); ++it ) {
 			QString line = (*it);
-			QString filename = line.mid(line.find(' ')+2)+type;
+			QString filename = line.mid(line.indexOf(' ')+2)+type;
 			QStringList l;
 			l << line;
 			if (!saveChecksum(l, filename)) {

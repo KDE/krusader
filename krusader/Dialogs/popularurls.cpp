@@ -251,7 +251,8 @@ PopularUrlsDlg::PopularUrlsDlg():
 	btn->setIcon(SmallIcon("locationbar_erase"));
 	search = new KTreeWidgetSearchLine(widget, urls);
 	search->setTrapReturnKey(true);
-	QLabel *lbl = new QLabel(search, i18n(" &Search: "), widget);
+	QLabel *lbl = new QLabel( i18n(" &Search: "), widget);
+	lbl->setBuddy( search );
 
 	layout->addWidget(btn,0,0);
 	layout->addWidget(lbl,0,1);

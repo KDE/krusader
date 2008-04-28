@@ -107,14 +107,14 @@ KIO::PreviewJob * KrusaderImageFilePreview::createJob( const KUrl& url, int w, i
 
 void KrusaderImageFilePreview::gotPreview( const KFileItem& item, const QPixmap& pm ) {
 	if ( item.url() == currentURL )   // should always be the case
-		imageLabel->setIcon( pm );
+		imageLabel->setPixmap( pm );
 }
 
 void KrusaderImageFilePreview::slotFailed( const KFileItem& item ) {
 	if ( item.isDir() )
 		imageLabel->clear();
 	else if ( item.url() == currentURL )   // should always be the case
-		imageLabel->setIcon( SmallIcon( "file_broken", KIconLoader::SizeLarge,
+		imageLabel->setPixmap( SmallIcon( "file_broken", KIconLoader::SizeLarge,
 		                                  KIconLoader::DisabledState ) );
 }
 

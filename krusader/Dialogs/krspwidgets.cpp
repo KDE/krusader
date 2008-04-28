@@ -151,7 +151,7 @@ void newFTPSub::reject() {
 
 /////////////////////////// KRMaskChoiceSub ///////////////////////////////
 KRMaskChoiceSub::KRMaskChoiceSub( QWidget * parent ) : KRMaskChoice( parent ) {
-  PixmapLabel1->setWindowIcon(krLoader->loadIcon("kr_select", KIconLoader::Desktop, 32));
+  PixmapLabel1->setPixmap(krLoader->loadIcon("kr_select", KIconLoader::Desktop, 32));
   label->setText(i18n("Enter a selection:"));
   // the predefined selections list
   KConfigGroup group( krConfig, "Private");

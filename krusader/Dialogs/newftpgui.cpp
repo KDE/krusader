@@ -59,7 +59,7 @@ newFTPGUI::newFTPGUI( QWidget* parent )
     hbox_image->setSpacing( 6 );
     
     PixmapLabel1 = new QLabel( hbox_image_widget );
-    PixmapLabel1->setWindowIcon( krLoader->loadIcon("network", KIconLoader::Desktop, 32) );
+    PixmapLabel1->setPixmap( krLoader->loadIcon("network", KIconLoader::Desktop, 32) );
     PixmapLabel1->setSizePolicy( SIZE_MINIMUM );
     hbox_image->addWidget( PixmapLabel1 );
 

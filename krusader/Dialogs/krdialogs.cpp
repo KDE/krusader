@@ -244,7 +244,7 @@ KUrl KUrlRequesterDlgForCopy::baseURL() const {
 	return KUrl( baseUrlCombo->currentText() );
 }
 
-KRGetDate::KRGetDate(QDate date, QWidget *parent) : KDialog(parent,Qt::WStyle_DialogBorder) {
+KRGetDate::KRGetDate(QDate date, QWidget *parent) : KDialog(parent,Qt::MSWindowsFixedSizeDialogHint) {
   setWindowModality( Qt::WindowModal );
   dateWidget = new KDatePicker(this);
   dateWidget->setDate( date );
