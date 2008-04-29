@@ -28,8 +28,10 @@
 void
 RadialMap::Widget::resizeEvent( QResizeEvent* )
 {
-    if( m_map.resize( rect() ) )
-       m_timer.start( 500, true ); //will cause signature to rebuild for new size
+    if( m_map.resize( rect() ) ) {
+       m_timer.setSingleShot( true );
+       m_timer.start( 500 ); //will cause signature to rebuild for new size
+    }
 
     //always do these as they need to be initialised on creation
     m_offset.rx() = (width() - m_map.width()) / 2;

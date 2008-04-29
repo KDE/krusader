@@ -122,7 +122,8 @@ void MediaButton::slotAboutToShow() {
 	else
 		createListWithoutMedia();
 	
-	mountCheckerTimer.start( 1000, true );
+	mountCheckerTimer.setSingleShot( true );
+	mountCheckerTimer.start( 1000 );
 }
 
 void MediaButton::slotAboutToHide() {
@@ -367,7 +368,8 @@ void MediaButton::slotPopupActivated( QAction * action ) {
 			waitingForMount = elem;
 			maxMountWait = 20;
 			newTabAfterMount = false;
-			mountCheckerTimer.start( 1000, true );
+			mountCheckerTimer.setSingleShot( true );
+			mountCheckerTimer.start( 1000 );
 			return;
 		}
 		emit openUrl( urls[ elem ] );
@@ -582,7 +584,8 @@ void MediaButton::rightClickMenu( int index ) {
 			waitingForMount = index;
 			maxMountWait = 20;
 			newTabAfterMount = ( result == 2 );
-			mountCheckerTimer.start( 1000, true );
+			mountCheckerTimer.setSingleShot( true );
+			mountCheckerTimer.start( 1000 );
 		}
 		break;
 	case 3:
@@ -715,7 +718,8 @@ void MediaButton::slotTimeout() {
 		}
 	}
 	
-	mountCheckerTimer.start( 1000, true );
+	mountCheckerTimer.setSingleShot( true );
+	mountCheckerTimer.start( 1000 );
 }
 
 

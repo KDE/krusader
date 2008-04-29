@@ -92,7 +92,8 @@ void KrusaderImageFilePreview::showPreview( const KUrl &url, bool force ) {
 }
 
 void KrusaderImageFilePreview::resizeEvent( QResizeEvent * ) {
-	timer->start( 100, true ); // forces a new preview
+	timer->setSingleShot( true );
+	timer->start( 100 ); // forces a new preview
 }
 
 QSize KrusaderImageFilePreview::sizeHint() const {

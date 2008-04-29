@@ -818,8 +818,10 @@ void KrDetailedView::handleContextMenu( Q3ListViewItem * it, const QPoint & pos,
    contextMenuPoint = QPoint( pos.x(), pos.y() - header() ->height() );
    if (i < 0)
      showContextMenu();
-   else if (i > 0)
-     contextMenuTimer.start(i, true);
+   else if (i > 0) {
+     contextMenuTimer.setSingleShot( true );
+     contextMenuTimer.start(i);
+   }
 }
 
 void KrDetailedView::showContextMenu()

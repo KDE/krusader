@@ -284,13 +284,15 @@ void DiskUsage::load( KUrl baseDir )
   loaderView->setCurrentURL( baseURL );
   loaderView->setValues( fileNum, dirNum, currentSize );
 
-  loadingTimer.start( 0, true );
+  loadingTimer.setSingleShot( true );
+  loadingTimer.start( 0 );
 }
 
 void DiskUsage::slotLoadDirectory()
 {
   if( searchVfs && !searchVfs->vfs_canDelete() ) { // recursive call from slotLoadDirectory?
-    loadingTimer.start( 100, true );               // as it can cause crash, ignore it and wait while
+    loadingTimer.setSingleShot( true );
+    loadingTimer.start( 100 );                     // as it can cause crash, ignore it and wait while
     return;                                        // the recursion finishes
   }
   if( ( currentVfile == 0 && directoryStack.isEmpty() ) || loaderView->wasCancelled() || abortLoading )
@@ -381,7 +383,8 @@ void DiskUsage::slotLoadDirectory()
     }
 
     loaderView->setValues( fileNum, dirNum, currentSize );
-    loadingTimer.start( 0, true );
+    loadingTimer.setSingleShot( true );
+    loadingTimer.start( 0 );
   }
 }
 

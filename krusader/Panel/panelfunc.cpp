@@ -162,7 +162,8 @@ void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn ) {
 			if( vfsP->vfs_isBusy() )
 			{
 				delayURL = url;               /* this function is useful for FTP url-s and bookmarks */
-				delayTimer.start( 100, true );  /* if vfs is busy try refreshing later */
+				delayTimer.setSingleShot( true );
+				delayTimer.start( 100 );  /* if vfs is busy try refreshing later */
 				return;
 			}
 		}
@@ -247,7 +248,8 @@ void ListPanelFunc::openUrl( const KUrl& url, const QString& nameToMakeCurrent )
 	}
 	this->nameToMakeCurrent = nameToMakeCurrent;
 	delayURL = url;               /* this function is useful for FTP url-s and bookmarks */
-	delayTimer.start( 0, true );  /* to avoid qApp->processEvents() deadlock situaltion */
+	delayTimer.setSingleShot( true );
+	delayTimer.start( 0 );  /* to avoid qApp->processEvents() deadlock situaltion */
 }
 
 void ListPanelFunc::refresh() {

@@ -350,7 +350,8 @@ void normal_vfs::vfs_slotRefresh()
 	int maxRefreshFrequency = group.readEntry("Max Refresh Frequency", 1000);
 	vfs_refresh();
 	disconnect( &refreshTimer, SIGNAL( timeout() ), this, SLOT( vfs_slotRefresh() ) );
-	refreshTimer.start( maxRefreshFrequency, true );
+	refreshTimer.setSingleShot( true );
+	refreshTimer.start( maxRefreshFrequency );
 }
 
 bool normal_vfs::burstRefresh(const QString& path ){

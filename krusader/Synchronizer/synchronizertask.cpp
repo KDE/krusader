@@ -145,7 +145,8 @@ void CompareContentTask::start() {
 
     timer = new QTimer( this );
     connect( timer, SIGNAL(timeout()), this, SLOT(sendStatusMessage()) );
-    timer->start( 1000, true );
+    timer->setSingleShot( true );
+    timer->start( 1000 );
 
     localFileCompareCycle();
   } else {
@@ -165,7 +166,8 @@ void CompareContentTask::start() {
 
     timer = new QTimer( this );
     connect( timer, SIGNAL(timeout()), this, SLOT(sendStatusMessage()) );
-    timer->start( 1000, true );
+    timer->setSingleShot( true );
+    timer->start( 1000 );
   }
 }
 
@@ -336,7 +338,8 @@ void CompareContentTask::sendStatusMessage()
   int percent = (int)(perc * 10000. + 0.5);
   QString statstr = QString( "%1.%2%3" ).arg( percent / 100 ).arg( ( percent / 10 )%10 ).arg( percent % 10 ) + "%";
   setStatusMessage( i18n( "Comparing file %1 (%2)...", leftURL.fileName(), statstr ) );
-  timer->start( 500, true );
+  timer->setSingleShot( true );
+  timer->start( 500 );
 }
 
 #include "synchronizertask.moc"

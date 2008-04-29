@@ -174,7 +174,8 @@ VirtualCopyJob::~VirtualCopyJob() {
 
 void VirtualCopyJob::slotStart() {
 	connect(&m_reportTimer,SIGNAL(timeout()),this,SLOT(slotReport()));
-	m_reportTimer.start(REPORT_TIMEOUT,false);
+	m_reportTimer.setSingleShot( false );
+	m_reportTimer.start(REPORT_TIMEOUT);
 	
 	statNextDir();
 }

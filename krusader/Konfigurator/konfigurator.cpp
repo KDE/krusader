@@ -184,7 +184,8 @@ bool Konfigurator::slotPageSwitch( KPageWidgetItem *current, KPageWidgetItem *be
       }
       break;
     default:
-      restoreTimer.start( 0, true );
+      restoreTimer.setSingleShot( true );
+      restoreTimer.start( 0 );
       return false;
     }
   }

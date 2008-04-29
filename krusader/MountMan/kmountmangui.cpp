@@ -286,13 +286,15 @@ void KMountManGUI::updateList() {
       info->setEmpty( true );
       info->repaint();
    }
-   watcher->start( WATCHER_DELAY, true );   // starting the watch timer ( single shot )
+   watcher->setSingleShot( true );
+   watcher->start( WATCHER_DELAY );   // starting the watch timer ( single shot )
 }
 
 void KMountManGUI::checkMountChange() {
 	if (KrMountDetector::getInstance()->hasMountsChanged())
 		getSpaceData();
-   watcher->start( WATCHER_DELAY, true );   // starting the watch timer ( single shot )
+   watcher->setSingleShot( true );
+   watcher->start( WATCHER_DELAY );   // starting the watch timer ( single shot )
 }
 
 void KMountManGUI::doubleClicked( QTreeWidgetItem *i ) {
