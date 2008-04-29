@@ -1324,6 +1324,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   syncList=new SynchronizerListView( &synchronizer, synchronizerTab );  // create the main container
   syncList->setWhatsThis( i18n( "The compare results of the synchronizer (CTRL+M)." ) );
   syncList->setAutoFillBackground( true );
+  syncList->installEventFilter( this );
 
   KConfigGroup gl( krConfig, "Look&Feel");
   syncList->setFont( gl.readEntry("Filelist Font",*_FilelistFont));
@@ -1729,11 +1730,6 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
 
   bool    isDuplicate = item->existsInLeft() && item->existsInRight();
   bool    isDir       = item->isDir();
-  QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
-  QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
-
-  KUrl leftURL  = KUrl( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
-  KUrl rightURL = KUrl( synchronizer.rightBaseDirectory() + rightDirName + item->rightName() );
 
   // create the menu
   KMenu popup;
@@ -1801,8 +1797,19 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
   if( actHash.contains( res ) )
     result = actHash[ res ]; 
 
+  if( result != -1 )
+    executeOperation( item, result );
+}
+
+void SynchronizerGUI::executeOperation( SynchronizerFileItem *item, int op ) {
   // check out the user's option
-  switch (result)
+  QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
+  QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
+
+  KUrl leftURL  = KUrl( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
+  KUrl rightURL = KUrl( synchronizer.rightBaseDirectory() + rightDirName + item->rightName() );
+
+  switch (op)
   {
     case EXCLUDE_ID:
     case RESTORE_ID:
@@ -1821,7 +1828,7 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
           if( !viewItem || !viewItem->isSelected() || viewItem->isHidden() )
             continue;
 
-          switch( result )
+          switch( op )
           {
           case EXCLUDE_ID:
             synchronizer.exclude( viewItem->synchronizerItemRef() );
@@ -1859,7 +1866,7 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
     case SELECT_ITEMS_ID:
     case DESELECT_ITEMS_ID:
       {
-        KRQuery query = KRSpWidgets::getMask( ( result == SELECT_ITEMS_ID ? i18n("Select items") :
+        KRQuery query = KRSpWidgets::getMask( ( op == SELECT_ITEMS_ID ? i18n("Select items") :
                                              i18n( "Deselect items" ) ), true, this );
         if( query.isNull() )
           break;
@@ -1876,7 +1883,7 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
 
           if( query.match( currentItem->leftName() ) ||
               query.match( currentItem->rightName() ) )
-            viewItem->setSelected( result == SELECT_ITEMS_ID );
+            viewItem->setSelected( op == SELECT_ITEMS_ID );
         }
       }
       break;
@@ -2282,6 +2289,7 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
   case Qt::Key_F4 :
     {
       e->accept();
+      syncList->setFocus();
       QTreeWidgetItem *listItem =  syncList->currentItem();
       if( listItem == 0 )
         break;
@@ -2344,6 +2352,72 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
   }
 
   QDialog::keyPressEvent( e );
+}
+
+bool SynchronizerGUI::eventFilter (  QObject * /* watched */, QEvent * e )
+{
+  if( e->type() == QEvent::KeyPress )
+  {
+    QKeyEvent* ke = (QKeyEvent*) e;
+    switch( ke->key() )
+    {
+    case Qt::Key_Down:
+    case Qt::Key_Left:
+    case Qt::Key_Right:
+    case Qt::Key_Up:
+    case Qt::Key_Delete:
+    case Qt::Key_W:
+      {
+        if( ke->key() == Qt::Key_W ) {
+          if( ke->modifiers() != Qt::ControlModifier )
+            return false;
+        } else if( ke->modifiers() != Qt::AltModifier )
+          return false;
+
+        int op = -1;
+        switch( ke->key() ) {
+        case Qt::Key_Down:
+          op = EXCLUDE_ID;
+          break;
+        case Qt::Key_Left:
+          op = COPY_TO_LEFT_ID;
+          break;
+        case Qt::Key_Right:
+          op = COPY_TO_RIGHT_ID;
+          break;
+        case Qt::Key_Up:
+          op = RESTORE_ID;
+          break;
+        case Qt::Key_Delete:
+          op = DELETE_ID;
+          break;
+        case Qt::Key_W:
+          op = REVERSE_DIR_ID;
+          break;
+        }
+
+        ke->accept();
+
+        QTreeWidgetItem *listItem =  syncList->currentItem();
+        if( listItem == 0 )
+          return true;
+
+        SynchronizerFileItem *item = ((SyncViewItem *)listItem)->synchronizerItemRef();
+
+        bool hasSelected = false;
+        QList<QTreeWidgetItem *> selected = syncList->selectedItems();
+        for( int i=0; i != selected.count(); i++ )
+          if( selected[ i ]->isSelected() && !selected[ i ]->isHidden() )
+            hasSelected = true;
+        if( !hasSelected )
+          listItem->setSelected( true );
+
+        executeOperation( item, op );
+        return true;
+      }
+    }
+  }
+  return false;
 }
 
 void SynchronizerGUI::loadFromProfile( QString profile )

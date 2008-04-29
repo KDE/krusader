@@ -76,9 +76,29 @@ bool KrTreeWidget::event ( QEvent * event )
   case QEvent::KeyPress:
     {
       // HACK: QT 4 Ctrl+A bug fix: Ctrl+A doesn't work if QTreeWidget contains parent / child items
+      //       Insert doesn't change the selections for multi selection modes
       QKeyEvent* ke = (QKeyEvent*) event;
       switch( ke->key() )
       {
+      case Qt::Key_Insert:
+        {
+          if( ke->modifiers() != 0 )
+            break;
+
+          QAbstractItemView::SelectionMode mode = selectionMode();
+
+          if( mode != QAbstractItemView::ContiguousSelection && mode != QAbstractItemView::ExtendedSelection &&
+              mode != QAbstractItemView::MultiSelection )
+            break;
+
+          ke->accept();
+
+          if( currentItem() == 0 )
+             return true;
+
+          currentItem()->setSelected( !currentItem()->isSelected() );
+          return true;
+        }
       case Qt::Key_A:
         if( ke->modifiers() == Qt::ControlModifier )
         {

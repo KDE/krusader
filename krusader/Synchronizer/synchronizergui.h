@@ -177,7 +177,10 @@ private:
 protected:
   virtual void keyPressEvent( QKeyEvent * );
   virtual void resizeEvent( QResizeEvent *e );
-  
+  virtual bool eventFilter (  QObject *, QEvent * );
+
+  void executeOperation( SynchronizerFileItem *item, int op );
+
   ProfileManager *profileManager;
   FilterTabs     *filterTabs;
   GeneralFilter  *generalFilter;
