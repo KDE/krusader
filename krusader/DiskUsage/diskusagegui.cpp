@@ -204,20 +204,20 @@ void DiskUsageGUI::slotViewChanged( int view )
   }
   enableButtons( true );
 
-  btnLines->setOn( false );
-  btnDetailed->setOn( false );
-  btnFilelight->setOn( false );
+  btnLines->setChecked( false );
+  btnDetailed->setChecked( false );
+  btnFilelight->setChecked( false );
   
   switch( view )
   {
   case VIEW_LINES:
-    btnLines->setOn( true );
+    btnLines->setChecked( true );
     break;
   case VIEW_DETAILED:
-    btnDetailed->setOn( true );
+    btnDetailed->setChecked( true );
     break;
   case VIEW_FILELIGHT:
-    btnFilelight->setOn( true );
+    btnFilelight->setChecked( true );
     break;
   case VIEW_LOADER:
     break;

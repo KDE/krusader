@@ -400,9 +400,9 @@ int ListPanel::getProperties()
 void ListPanel::setProperties( int prop )
 {
    if( prop & PROP_SYNC_BUTTON_ON )
-       syncBrowseButton->setOn( true );
+       syncBrowseButton->setChecked( true );
    else
-       syncBrowseButton->setOn( false );
+       syncBrowseButton->setChecked( false );
 }
 
 bool ListPanel::eventFilter ( QObject * watched, QEvent * e ) {

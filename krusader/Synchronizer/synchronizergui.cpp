@@ -1252,7 +1252,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnLeftToRight->setText( "" );
   btnLeftToRight->setIcon( QIcon( showLeftToRight ) );
   btnLeftToRight->setCheckable( true );
-  btnLeftToRight->setOn( group.readEntry( "LeftToRight Button", _BtnLeftToRight ) );
+  btnLeftToRight->setChecked( group.readEntry( "LeftToRight Button", _BtnLeftToRight ) );
   btnLeftToRight->setAccel( Qt::CTRL + Qt::Key_L );
   btnLeftToRight->setWhatsThis( i18n( "Show files marked to <i>Copy from left to right</i> (CTRL+L)." ) );
   btnLeftToRight->setFixedSize( showLeftToRight.width() + 15, showLeftToRight.height() + 15 );
@@ -1262,7 +1262,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnEquals->setText( "" );
   btnEquals->setIcon( QIcon( showEquals ) );
   btnEquals->setCheckable( true );
-  btnEquals->setOn( group.readEntry( "Equals Button", _BtnEquals ) );
+  btnEquals->setChecked( group.readEntry( "Equals Button", _BtnEquals ) );
   btnEquals->setAccel( Qt::CTRL + Qt::Key_E );
   btnEquals->setWhatsThis( i18n( "Show files considered to be identical (CTRL+E)." ) );
   btnEquals->setFixedSize( showEquals.width() + 15, showEquals.height() + 15 );
@@ -1272,7 +1272,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnDifferents->setText( "" );
   btnDifferents->setIcon( QIcon( showDifferents ) );
   btnDifferents->setCheckable( true );
-  btnDifferents->setOn( group.readEntry( "Differents Button", _BtnDifferents ) );
+  btnDifferents->setChecked( group.readEntry( "Differents Button", _BtnDifferents ) );
   btnDifferents->setAccel( Qt::CTRL + Qt::Key_D );
   btnDifferents->setWhatsThis( i18n( "Show excluded files (CTRL+D)." ) );
   btnDifferents->setFixedSize( showDifferents.width() + 15, showDifferents.height() + 15 );
@@ -1282,7 +1282,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnRightToLeft->setText( "" );
   btnRightToLeft->setIcon( QIcon( showRightToLeft ) );
   btnRightToLeft->setCheckable( true );
-  btnRightToLeft->setOn( group.readEntry( "RightToLeft Button", _BtnRightToLeft ) );
+  btnRightToLeft->setChecked( group.readEntry( "RightToLeft Button", _BtnRightToLeft ) );
   btnRightToLeft->setAccel( Qt::CTRL + Qt::Key_R );
   btnRightToLeft->setWhatsThis( i18n( "Show files marked to <i>Copy from right to left</i> (CTRL+R)." ) );
   btnRightToLeft->setFixedSize( showRightToLeft.width() + 15, showRightToLeft.height() + 15 );
@@ -1292,7 +1292,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnDeletable->setText( "" );
   btnDeletable->setIcon( QIcon( showDeletable ) );
   btnDeletable->setCheckable( true );
-  btnDeletable->setOn( group.readEntry( "Deletable Button", _BtnDeletable ) );
+  btnDeletable->setChecked( group.readEntry( "Deletable Button", _BtnDeletable ) );
   btnDeletable->setAccel( Qt::CTRL + Qt::Key_T );
   btnDeletable->setWhatsThis( i18n( "Show files marked to delete. (CTRL+T)" ) );
   btnDeletable->setFixedSize( showDeletable.width() + 15, showDeletable.height() + 15 );
@@ -1303,7 +1303,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnDuplicates->setFixedWidth( QFontMetrics( btnDuplicates->font() ).width( btnDuplicates->text() ) + 15 );
   btnDuplicates->setMinimumHeight( btnLeftToRight->height() );
   btnDuplicates->setCheckable( true );
-  btnDuplicates->setOn( group.readEntry( "Duplicates Button", _BtnDuplicates ) );
+  btnDuplicates->setChecked( group.readEntry( "Duplicates Button", _BtnDuplicates ) );
   btnDuplicates->setWhatsThis( i18n( "Show files that exist on both sides." ) );
   showOptionsLayout->addWidget( btnDuplicates, 0, 5);
 
@@ -1312,7 +1312,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnSingles->setFixedWidth( QFontMetrics( btnSingles->font() ).width( btnSingles->text() ) + 15 );
   btnSingles->setMinimumHeight( btnLeftToRight->height() );
   btnSingles->setCheckable( true );
-  btnSingles->setOn( group.readEntry( "Singles Button", _BtnSingles ) );
+  btnSingles->setChecked( group.readEntry( "Singles Button", _BtnSingles ) );
   btnSingles->setWhatsThis( i18n( "Show files that exist on one side only." ) );
   showOptionsLayout->addWidget( btnSingles, 0, 6);
 
@@ -1481,7 +1481,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
   btnScrollResults = new QPushButton( this );
   btnScrollResults->setCheckable( true );
-  btnScrollResults->setOn( group.readEntry( "Scroll Results", _ScrollResults ) );
+  btnScrollResults->setChecked( group.readEntry( "Scroll Results", _ScrollResults ) );
   btnScrollResults->hide();
   if( btnScrollResults->isOn() )
     btnScrollResults->setText( i18n( "Quiet" ) );
@@ -2370,15 +2370,15 @@ void SynchronizerGUI::loadFromProfile( QString profile )
   cbAsymmetric->setChecked( pg.readEntry( "Asymmetric", false ) );
   cbIgnoreCase->setChecked( pg.readEntry( "Ignore Case", false ) );
 
-  btnScrollResults->setOn( pg.readEntry( "Scroll Results", false ) );
+  btnScrollResults->setChecked( pg.readEntry( "Scroll Results", false ) );
 
-  btnLeftToRight->setOn( pg.readEntry( "Show Left To Right", true ) );
-  btnEquals     ->setOn( pg.readEntry( "Show Equals", true ) );
-  btnDifferents ->setOn( pg.readEntry( "Show Differents", true ) );
-  btnRightToLeft->setOn( pg.readEntry( "Show Right To Left", true ) );
-  btnDeletable  ->setOn( pg.readEntry( "Show Deletable", true ) );
-  btnDuplicates ->setOn( pg.readEntry( "Show Duplicates", true ) );
-  btnSingles    ->setOn( pg.readEntry( "Show Singles", true ) );
+  btnLeftToRight->setChecked( pg.readEntry( "Show Left To Right", true ) );
+  btnEquals     ->setChecked( pg.readEntry( "Show Equals", true ) );
+  btnDifferents ->setChecked( pg.readEntry( "Show Differents", true ) );
+  btnRightToLeft->setChecked( pg.readEntry( "Show Right To Left", true ) );
+  btnDeletable  ->setChecked( pg.readEntry( "Show Deletable", true ) );
+  btnDuplicates ->setChecked( pg.readEntry( "Show Duplicates", true ) );
+  btnSingles    ->setChecked( pg.readEntry( "Show Singles", true ) );
 
   int equalityThreshold = pg.readEntry( "Equality Threshold", 0 );
   int equalityCombo = 0;

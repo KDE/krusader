@@ -239,7 +239,7 @@ void ListPanelFunc::openUrl( const KUrl& url, const QString& nameToMakeCurrent )
 			// now we need to test ACTIVE_PANEL because the openURL has changed the active panel!!
 			if ( other_panel->virtualPath().equals( otherDir ) ) {
 				// deactivating the sync-browse if syncbrowse not possible
-				panel->syncBrowseButton->setOn( false );
+				panel->syncBrowseButton->setChecked( false );
 				other_panel->origin->lineEdit()->setText( otherText );
 			}
 			inSync = false;
