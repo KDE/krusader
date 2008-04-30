@@ -239,7 +239,7 @@ QRadioButton * KonfiguratorRadioButtons::find( int index )
 
 QRadioButton * KonfiguratorRadioButtons::find( QString name )
 {
-  int index = radioNames.findIndex( name );
+  int index = radioNames.indexOf( name );
   if( index == -1 )
     return 0;
 

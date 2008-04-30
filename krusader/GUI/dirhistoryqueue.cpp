@@ -31,9 +31,9 @@ DirHistoryQueue::~DirHistoryQueue() {}
 void DirHistoryQueue::slotPathChanged( ListPanel* p ) {
 	KUrl url = p->virtualPath();
 	// already in the queue ?
-	if(  urlQueue.findIndex( url ) >= 0 ){
+	if(  urlQueue.indexOf( url ) >= 0 ){
 		// remove it !
-		urlQueue.remove( url );
+		urlQueue.removeAll( url );
 	}
 	// do we have room for another ?
 	if ( urlQueue.size() > 12 ) {
@@ -46,7 +46,7 @@ void DirHistoryQueue::slotPathChanged( ListPanel* p ) {
 
 #if 0
 void DirHistoryQueue::addUrl(const KUrl& url){
-	if ( pathQueue.findIndex( path ) == -1 ) {
+	if ( pathQueue.indexOf( path ) == -1 ) {
 		if ( pathQueue.size() > 12 ) {
 			// remove the oldest entry
 			pathQueue.pop_back();

@@ -1091,7 +1091,7 @@ void Krusader::updateGUI( bool enforce ) {
 // currently supported tools: DIFF, MAIL, RENAME
 //
 // to use it: QStringList lst = supportedTools();
-//            int i = lst.findIndex("DIFF");
+//            int i = lst.indexOf("DIFF");
 //            if (i!=-1) pathToDiff=lst[i+1];
 QStringList Krusader::supportedTools() {
    QStringList tools;

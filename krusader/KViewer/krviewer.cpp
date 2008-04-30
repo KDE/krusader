@@ -184,7 +184,7 @@ bool KrViewer::eventFilter (  QObject * /* watched */, QEvent * e )
 		{
 			ke->accept();
 			
-			QAction *act = reservedKeyActions[ reservedKeys.findIndex( ke->key() ) ];
+			QAction *act = reservedKeyActions[ reservedKeys.indexOf( ke->key() ) ];
 			if( act != 0 )
 			{
 				// don't activate the close functions immediately!

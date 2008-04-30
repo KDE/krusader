@@ -42,7 +42,6 @@ DirHistoryButton::DirHistoryButton( DirHistoryQueue* hQ, QWidget *parent ) : QTo
 	Q_CHECK_PTR( popupMenu );
 
 	setMenu( popupMenu );
-	popupMenu->setCheckable( true );
 
 	historyQueue = hQ;
 

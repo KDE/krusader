@@ -99,7 +99,7 @@
 void KRslots::sendFileByEmail(QString filename) {
   QString mailProg;
   QStringList lst = Krusader::supportedTools();
-  if (lst.contains("MAIL")) mailProg=lst[lst.findIndex("MAIL") + 1];
+  if (lst.contains("MAIL")) mailProg=lst[lst.indexOf("MAIL") + 1];
   else {
     KMessageBox::error(0,i18n("Krusader can't find a supported mail client. Please install one to your path. Hint: Krusader supports Kmail."));
     return;
@@ -157,7 +157,7 @@ void KRslots::compareContent( KUrl url1, KUrl url2 )
 {
   QString diffProg;
   QStringList lst = Krusader::supportedTools();
-  if (lst.contains("DIFF")) diffProg=lst[lst.findIndex("DIFF") + 1];
+  if (lst.contains("DIFF")) diffProg=lst[lst.indexOf("DIFF") + 1];
   else {
     KMessageBox::error(0,i18n("Krusader can't find any of the supported diff-frontends. Please install one to your path. Hint: Krusader supports Kompare, Kdiff3 and Xxdiff."));
     return;
@@ -453,7 +453,7 @@ void KRslots::sysInfo(){
 
 void KRslots::multiRename(){
 	QStringList lst = Krusader::supportedTools();
-	int i = lst.findIndex("RENAME");
+	int i = lst.indexOf("RENAME");
 	if (i == -1){
   	KMessageBox::sorry(krApp,i18n("Can't find a batch rename tool.\nYou can get Krename at http://www.krename.net"));
   	return;
