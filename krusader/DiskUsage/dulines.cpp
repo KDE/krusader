@@ -492,8 +492,8 @@ void DULines::slotRightClicked( QTreeWidgetItem *item, const QPoint &pos )
     file = ((DULinesItem *)item)->getFile();
 
   KMenu linesPopup;    
-  int lid = linesPopup.insertItem( i18n("Show file sizes"), this, SLOT( slotShowFileSizes() ) );
-  linesPopup.setItemChecked( lid, showFileSize );
+  QAction *act = linesPopup.addAction( i18n("Show file sizes"), this, SLOT( slotShowFileSizes() ) );
+  act->setChecked( showFileSize );
     
   diskUsage->rightClickMenu( pos, file, &linesPopup, i18n( "Lines" ) );
 }

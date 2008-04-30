@@ -23,13 +23,16 @@
 #include "../krusader.h"
 #include <QPixmap>
 
-KrPreviewPopup::KrPreviewPopup(): id(1),noPreview(true){
+KrPreviewPopup::KrPreviewPopup(): prevNotAvailAction( 0 ), id(1),noPreview(true){
 	connect(this,SIGNAL(triggered(QAction *)),this,SLOT(view(QAction *)));
 }
 
 void KrPreviewPopup::setUrls(const KUrl::List* urls){
-	//insertItem(i18n("Configure preview"),0);
-	insertItem(i18n("Preview not available"),0);
+	if( prevNotAvailAction ) {
+		removeAction( prevNotAvailAction );
+		delete prevNotAvailAction;
+	}
+	prevNotAvailAction = addAction(i18n("Preview not available"));
 
 	KIO::PreviewJob* pjob;
 	QStringList plugins = KIO::PreviewJob::availablePlugins();
@@ -43,11 +46,19 @@ void KrPreviewPopup::setUrls(const KUrl::List* urls){
           this,SLOT(addPreview(const KFileItem&,const QPixmap&)));
 }
 
-KrPreviewPopup::~KrPreviewPopup(){}
+KrPreviewPopup::~KrPreviewPopup() {
+	if( prevNotAvailAction )
+		delete prevNotAvailAction;
+	prevNotAvailAction = 0;
+}
 
 void KrPreviewPopup::addPreview(const KFileItem& file,const QPixmap& preview){
 	if(noPreview){
-		removeItem(0);
+		if( prevNotAvailAction ) {
+			removeAction( prevNotAvailAction );
+			delete prevNotAvailAction;
+			prevNotAvailAction = 0;
+		}
 		noPreview = false;
 	}
 	addAction(preview, QString())->setData( QVariant(id) );

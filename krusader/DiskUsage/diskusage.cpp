@@ -86,7 +86,10 @@
 
 LoaderWidget::LoaderWidget( QWidget *parent ) : QScrollArea( parent ), cancelled( false )
 {
-  viewport()->setEraseColor( Qt::white );
+  QPalette palette = viewport()->palette();
+  palette.setColor(viewport()->backgroundRole(), Qt::white);
+  viewport()->setPalette(palette);
+
   widget = new QWidget( parent );
 
   QGridLayout *loaderLayout = new QGridLayout( widget );
@@ -1148,7 +1151,7 @@ bool DiskUsage::event( QEvent * e )
     }
   }
 
-  if ( e->type() == QEvent::AccelOverride )
+  if ( e->type() == QEvent::ShortcutOverride )
   {
     QKeyEvent* ke = (QKeyEvent*) e;
 

@@ -297,28 +297,34 @@ void KMountMan::quickList() {
                      " (" + m->mountedFrom() + ")";
 
 
-      ( ( KToolBarPopupAction* ) krMountMan ) ->menu() ->insertItem( text, idx );
+      QAction * act = ( ( KToolBarPopupAction* ) krMountMan ) ->menu() ->addAction( text );
+      act->setData( QVariant( idx ) );
    }
-   connect( ( ( KToolBarPopupAction* ) krMountMan ) ->menu(), SIGNAL( activated( int ) ),
-            this, SLOT( delayedPerformAction( int ) ) );
+   connect( ( ( KToolBarPopupAction* ) krMountMan ) ->menu(), SIGNAL( triggered( QAction * ) ),
+            this, SLOT( delayedPerformAction( QAction * ) ) );
 
 }
 
-void KMountMan::delayedPerformAction( int idx ) {
+void KMountMan::delayedPerformAction( QAction * act ) {
+   int idx = -1;
+   if( act && act->data().canConvert<int>() )
+     idx = act->data().toInt();
    __delayedIdx = idx;
-   QTimer::singleShot(0, this, SLOT(performAction(int)));   
+
+   if ( idx < 0 )
+      return ;
+
+   QTimer::singleShot(0, this, SLOT(performAction()));   
 }
 
-void KMountMan::performAction( int idx ) {
-   while ( qApp->hasPendingEvents() )
-      qApp->processEvents();
+void KMountMan::performAction() {
+   if( _actions == 0 || __delayedIdx < 0 ) // for sanity
+     return;
 
    // ugly !!! take idx from the value put there by delayedPerformAction so 
    // as to NOT DIE because of a processEvents deadlock!!! @#$@!@
-   idx = __delayedIdx;
-   
-   if ( idx < 0 )
-      return ;
+   int idx = __delayedIdx;
+
    bool domount = _actions[ idx ].left( 3 ) == "_M_";
    QString mountPoint = _actions[ idx ].mid( 3 );
    if ( !domount ) { // umount
@@ -330,7 +336,7 @@ void KMountMan::performAction( int idx ) {
    // free memory
    delete[] _actions;
    _actions = 0L;
-   disconnect( ( ( KToolBarPopupAction* ) krMountMan ) ->menu(), SIGNAL( activated( int ) ), 0, 0 );
+   disconnect( ( ( KToolBarPopupAction* ) krMountMan ) ->menu(), SIGNAL( triggered( QAction * ) ), 0, 0 );
 }
 
 #include "kmountman.moc"

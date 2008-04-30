@@ -33,6 +33,7 @@ A
 // QT includes
 #include <qobject.h>
 #include <qstring.h>
+#include <qaction.h>
 
 // KDE includes
 #include <kdeversion.h>
@@ -73,8 +74,8 @@ public:
    ~KMountMan();
 
 public slots:
-   void delayedPerformAction( int idx );
-   void performAction( int idx );
+   void delayedPerformAction( QAction * );
+   void performAction();
    void quickList();
 
 protected slots:

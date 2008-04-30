@@ -39,6 +39,7 @@ public slots:
 	void view(QAction *);
 
 protected:
+	QAction * prevNotAvailAction;
 	QList<KFileItem> files;
 	int id;
 	bool noPreview;

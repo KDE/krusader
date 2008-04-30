@@ -303,7 +303,7 @@ void KrusaderView::switchFullScreenTE()
 
 
 bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
-  if( e->type() == QEvent::AccelOverride && konsole_part && konsole_part->widget() == watched ) {
+  if( e->type() == QEvent::ShortcutOverride && konsole_part && konsole_part->widget() == watched ) {
     QKeyEvent *ke = (QKeyEvent *)e;
     if( ( ke->key() ==  Qt::Key_Insert ) && ( ke->modifiers()  == Qt::ShiftModifier ) ) {
       ke->accept();

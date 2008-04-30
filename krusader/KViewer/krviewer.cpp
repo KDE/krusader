@@ -160,8 +160,14 @@ void KrViewer::createGUI( KParts::Part* part ) {
 	}
 	
 	// and "fix" the menubar
-	menuBar() ->removeItem( 70 );
-	menuBar() ->insertItem( i18n( "&KrViewer" ), viewerMenu, 70 );
+	QList<QAction *> actList = menuBar()->actions();
+	foreach( QAction * a, actList ) {
+		if( a->data().canConvert<int>() && a->data().toInt() == 70 )
+			menuBar()->removeAction( a );
+	}
+	viewerMenu->setTitle( i18n( "&KrViewer" ) );
+	QAction * act = menuBar() ->addMenu( viewerMenu );
+	act->setData( QVariant( 70 ) );
 	menuBar() ->show();
 	
 	// filtering out the key events
@@ -171,7 +177,7 @@ void KrViewer::createGUI( KParts::Part* part ) {
 
 bool KrViewer::eventFilter (  QObject * /* watched */, QEvent * e )
 {
-	if( e->type() == QEvent::AccelOverride )
+	if( e->type() == QEvent::ShortcutOverride )
 	{
 		QKeyEvent* ke = (QKeyEvent*) e;
 		if( reservedKeys.contains( ke->key() ) )

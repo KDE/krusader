@@ -95,30 +95,33 @@ void DUFilelight::mousePressEvent( QMouseEvent *event )
        file = (File *)focus->file();
 
      KMenu filelightPopup;
-     filelightPopup.insertItem( i18n("Zoom In"),  this, SLOT( zoomIn() ), Qt::Key_Plus );
-     filelightPopup.insertItem( i18n("Zoom Out"), this, SLOT( zoomOut() ), Qt::Key_Minus );
+     filelightPopup.addAction( i18n("Zoom In"),  this, SLOT( zoomIn() ), Qt::Key_Plus );
+     filelightPopup.addAction( i18n("Zoom Out"), this, SLOT( zoomOut() ), Qt::Key_Minus );
      
      KMenu schemePopup;           
-     schemePopup.insertItem( i18n("Rainbow"),       this, SLOT( schemeRainbow() ) );
-     schemePopup.insertItem( i18n("High Contrast"), this, SLOT( schemeHighContrast() ) );
-     schemePopup.insertItem( i18n("KDE"),           this, SLOT( schemeKDE() ) );
+     schemePopup.addAction( i18n("Rainbow"),       this, SLOT( schemeRainbow() ) );
+     schemePopup.addAction( i18n("High Contrast"), this, SLOT( schemeHighContrast() ) );
+     schemePopup.addAction( i18n("KDE"),           this, SLOT( schemeKDE() ) );
 
-     filelightPopup.insertItem( QPixmap(), &schemePopup, SCHEME_POPUP_ID );
-     filelightPopup.changeItem( SCHEME_POPUP_ID, i18n( "Scheme" ) );     
+     filelightPopup.addMenu( &schemePopup );
+     schemePopup.setTitle( i18n( "Scheme" ) );     
 
-     filelightPopup.insertItem( i18n("Increase contrast"), this, SLOT( increaseContrast() ) );
-     filelightPopup.insertItem( i18n("Decrease contrast"), this, SLOT( decreaseContrast() ) );
+     filelightPopup.addAction( i18n("Increase contrast"), this, SLOT( increaseContrast() ) );
+     filelightPopup.addAction( i18n("Decrease contrast"), this, SLOT( decreaseContrast() ) );
           
-     int aid = filelightPopup.insertItem( i18n("Use anti-aliasing" ), this, SLOT( changeAntiAlias() ) );
-     filelightPopup.setItemChecked( aid, Filelight::Config::antiAliasFactor > 1 );
+     QAction * act = filelightPopup.addAction( i18n("Use anti-aliasing" ), this, SLOT( changeAntiAlias() ) );
+     act->setCheckable( true );
+     act->setChecked( Filelight::Config::antiAliasFactor > 1 );
      
-     int sid = filelightPopup.insertItem( i18n("Show small files" ), this, SLOT( showSmallFiles() ) );
-     filelightPopup.setItemChecked( sid, Filelight::Config::showSmallFiles );
+     act = filelightPopup.addAction( i18n("Show small files" ), this, SLOT( showSmallFiles() ) );
+     act->setCheckable( true );
+     act->setChecked( Filelight::Config::showSmallFiles );
      
-     int vid = filelightPopup.insertItem( i18n("Vary label font sizes" ), this, SLOT( varyLabelFontSizes() ) );
-     filelightPopup.setItemChecked( vid, Filelight::Config::varyLabelFontSizes );
+     act = filelightPopup.addAction( i18n("Vary label font sizes" ), this, SLOT( varyLabelFontSizes() ) );
+     act->setCheckable( true );
+     act->setChecked( Filelight::Config::varyLabelFontSizes );
 
-     filelightPopup.insertItem( i18n("Minimum font size"), this, SLOT( minFontSize() ) );     
+     filelightPopup.addAction( i18n("Minimum font size"), this, SLOT( minFontSize() ) );     
           
      diskUsage->rightClickMenu( event->globalPos(), file, &filelightPopup, i18n( "Filelight" ) );
      return;     
