@@ -17,7 +17,7 @@
 #include "sincos.h"
 #include "widget.h"
 
-#define COLOR_GREY QColor( 0, 0, 140, QColor::Hsv )
+#define COLOR_GREY QColor::fromHsv( 0, 0, 140 )
 
 
 RadialMap::Map::Map()
@@ -45,12 +45,12 @@ RadialMap::Map::invalidate( const bool desaturateTheImage )
 
     if( desaturateTheImage )
     {
-        QImage img = this->convertToImage();
+        QImage img = this->toImage();
 
         KIconEffect::deSaturate( img, 0.7 );
         KIconEffect::toGray( img, true );
 
-        this->convertFromImage( img );
+        this->QPixmap::operator=( fromImage( img, Qt::AutoColor ) );
     }
 
     m_visibleDepth = Config::defaultRingDepth;
@@ -131,7 +131,7 @@ RadialMap::Map::resize( const QRect &rect )
 
         //resize the pixmap
         size += MAP_2MARGIN;
-        QPixmap::resize( size, size );
+        this->QPixmap::operator=( QPixmap( size, size ) );
 
         if( m_signature != NULL )
         {
@@ -175,7 +175,7 @@ RadialMap::Map::colorise()
 
                if( (*it)->file()->name() == "Used" ) {
                   cb = QApplication::palette().highlight().color();
-                  cb.hsv( &h, &s1, &v1 );
+                  cb.getHsv( &h, &s1, &v1 );
 
                   if( s1 > 80 )
                      s1 = 80;
@@ -208,7 +208,7 @@ RadialMap::Map::colorise()
                 v1 = (int)(deltaBlue  * a) + kdeColour[1].blue();
 
                 cb.setRgb( h, s1, v1 );
-                cb.hsv( &h, &s1, &v1 );
+                cb.getHsv( &h, &s1, &v1 );
 
                 break;
             }
@@ -286,7 +286,7 @@ RadialMap::Map::paint( unsigned int scaleFactor )
    if( scaleFactor > 1 )
    {
       int x1, y1, x2, y2;
-      rect.coords( &x1, &y1, &x2, &y2 );
+      rect.getCoords( &x1, &y1, &x2, &y2 );
       x1 *= scaleFactor;
       y1 *= scaleFactor;
       x2 *= scaleFactor;
@@ -294,7 +294,7 @@ RadialMap::Map::paint( unsigned int scaleFactor )
       rect.setCoords( x1, y1, x2, y2 );
 
       step *= scaleFactor;
-      QPixmap::resize( this->size() * (int)scaleFactor );
+      QPixmap::operator=(QPixmap( this->size() * (int)scaleFactor ) );
    }
    else if( m_ringBreadth != MAX_RING_BREADTH && m_ringBreadth != MIN_RING_BREADTH ) {
       excess = rect.width() % m_ringBreadth;
@@ -370,7 +370,7 @@ RadialMap::Map::paint( unsigned int scaleFactor )
             paint.setPen( pen );
             QRect rect2 = rect;
             width /= 2;
-            rect2.addCoords( width, width, -width, -width );
+            rect2.adjust( width, width, -width, -width );
             paint.drawArc( rect2, (*it)->start(), (*it)->length() );
             paint.restore();
          }
@@ -382,10 +382,10 @@ RadialMap::Map::paint( unsigned int scaleFactor )
          excess -= 2;
       }
 
-      rect.addCoords( step, step, -step, -step );
+      rect.adjust( step, step, -step, -step );
    }
 
-   //  if( excess > 0 ) rect.addCoords( excess, excess, 0, 0 ); //ugly
+   //  if( excess > 0 ) rect.adjust( excess, excess, 0, 0 ); //ugly
 
    paint.setPen( COLOR_GREY );
    paint.setBrush( Qt::white );
@@ -397,16 +397,16 @@ RadialMap::Map::paint( unsigned int scaleFactor )
       paint.end();
 
       int x1, y1, x2, y2;
-      rect.coords( &x1, &y1, &x2, &y2 );
+      rect.getCoords( &x1, &y1, &x2, &y2 );
       x1 /= scaleFactor;
       y1 /= scaleFactor;
       x2 /= scaleFactor;
       y2 /= scaleFactor;
       rect.setCoords( x1, y1, x2, y2 );
 
-      QImage img = this->convertToImage();
-      img = img.smoothScale( this->size() / (int)scaleFactor );
-      this->convertFromImage( img );
+      QImage img = this->toImage();
+      img = img.scaled(this->size() / (int)scaleFactor, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+      this->QPixmap::operator=( fromImage( img, Qt::AutoColor ) );
 
       paint.begin( this );
       paint.setPen( COLOR_GREY );

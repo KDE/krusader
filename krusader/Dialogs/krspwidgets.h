@@ -99,7 +99,7 @@ protected:
 	void mouseMoveEvent( QMouseEvent *m);
 	void leaveEvent( QEvent * );
 	void mousePressEvent( QMouseEvent *m );
-	inline void clearAll() { _numOfSelectedChars = 0; if (_pop) delete _pop; _dummyDisplayed=false; }
+	inline void clearAll() { _numOfSelectedChars = 0; if (_pop) _pop->deleteLater(); _pop = 0; _dummyDisplayed=false; }
 	void init();
 	
 private:

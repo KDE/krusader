@@ -302,11 +302,12 @@ void QuickNavLineEdit::mouseMoveEvent( QMouseEvent *m) {
 	}
   QString tx;
   int idx=charCount(m,&tx);
+		QPixmap pm =  krLoader->loadIcon("help-hint", KIconLoader::Desktop, 32);
 		if (idx == -1 && !_dummyDisplayed) { // pointing on or after the current directory
 			if (_pop) delete _pop;
 			_pop = KPassivePopup::message( i18n("Quick Navigation"),
 				"<qt>" + i18n("Already at <i>%1</i>", tx.left(idx)) + "</qt>",
-				*(QCursor(Qt::PointingHandCursor).bitmap()), this);
+				pm, this);
 
 			_dummyDisplayed=true;
 			_numOfSelectedChars=0;
@@ -317,7 +318,7 @@ void QuickNavLineEdit::mouseMoveEvent( QMouseEvent *m) {
 
 			_pop = KPassivePopup::message( i18n("Quick Navigation"),
 				"<qt>" + i18n("Click to go to <i>%1</i>", tx.left(idx)) + "</qt>",
-				*(QCursor(Qt::PointingHandCursor).bitmap()), this );
+				pm, this );
 		}
 	KLineEdit::mouseMoveEvent(m);
 }

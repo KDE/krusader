@@ -17,10 +17,10 @@
 namespace RadialMap {
 
 SegmentTip::SegmentTip( uint h )
-  : QWidget( 0, Qt::WNoAutoErase | Qt::WStyle_Customize | Qt::WStyle_NoBorder | Qt::WStyle_Tool | Qt::WStyle_StaysOnTop | Qt::WX11BypassWM )
+  : QWidget( 0, Qt::FramelessWindowHint | Qt::Tool | Qt::WindowStaysOnTopHint | Qt::X11BypassWindowManagerHint )
   , m_cursorHeight( -h )
 {
-   setBackgroundMode( Qt::NoBackground );
+   setAttribute(Qt::WA_NoSystemBackground, true);
 }
 
 void
@@ -57,7 +57,7 @@ SegmentTip::moveto( QPoint p, QWidget &canvas, bool placeAbove )
   const QRect alphaMaskRect( canvas.mapFromGlobal( p ), size() );
   const QRect intersection( alphaMaskRect.intersect( canvas.rect() ) );
 
-  m_pixmap.resize( size() ); //move to updateTip once you are sure it can never be null
+  m_pixmap = QPixmap( size() ); //move to updateTip once you are sure it can never be null
   //bitBlt( &m_pixmap, offset, &canvas, intersection, Qt::CopyROP );
   QPainter( &m_pixmap ).drawPixmap( offset, QPixmap::grabWidget( &canvas, intersection ));
 

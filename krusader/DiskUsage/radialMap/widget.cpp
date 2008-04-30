@@ -11,6 +11,7 @@
 #include <qtimer.h>         //member
 #include <QEvent>
 #include <QMouseEvent>
+#include <QPalette>
 
 #include "Config.h"
 #include "debug.h"
@@ -20,13 +21,15 @@
 
 
 RadialMap::Widget::Widget( QWidget *parent )
-   : QWidget( parent, Qt::WNoAutoErase )
+   : QWidget( parent )
    , m_tree( 0 )
    , m_focus( 0 )
    , m_tip( QFontMetrics( font() ).height() ) //needs to know cursor height
    , m_rootSegment( 0 ) //TODO we don't delete it, *shrug*
 {
-   setBackgroundColor( Qt::white );
+   QPalette pal = palette();
+   pal.setColor(backgroundRole(), Qt::white );
+   setPalette(pal);
 
    connect( this, SIGNAL(created( const Directory* )), SLOT(sendFakeMouseEvent()) );
    connect( this, SIGNAL(created( const Directory* )), SLOT(update()) );
@@ -118,7 +121,7 @@ RadialMap::Widget::createFromCache( const Directory *tree )
 void
 RadialMap::Widget::sendFakeMouseEvent() //slot
 {
-   QMouseEvent me( QEvent::MouseMove, mapFromGlobal( QCursor::pos() ), Qt::NoModifier, Qt::NoModifier );
+   QMouseEvent me( QEvent::MouseMove, mapFromGlobal( QCursor::pos() ), Qt::NoButton, Qt::NoButton, Qt::NoModifier );
    QApplication::sendEvent( this, &me );
 }
 

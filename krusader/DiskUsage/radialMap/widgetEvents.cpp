@@ -130,7 +130,7 @@ RadialMap::Widget::mouseMoveEvent( QMouseEvent *e )
          emit mouseHover( m_focus->file()->fullPath() );
 
          //repaint required to update labels now before transparency is generated
-         repaint( false );
+         repaint();
       }
 
       m_tip.moveto( e->globalPos(), *this, ( p.y() < 0 ) ); //updates tooltip psuedo-tranparent background
