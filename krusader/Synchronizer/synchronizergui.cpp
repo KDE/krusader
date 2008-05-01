@@ -1036,7 +1036,7 @@ public:
     KrTreeWidget::mouseMoveEvent( e );
   }
 
-  void startDrag( Qt::DropActions supportedActs ) 
+  void startDrag( Qt::DropActions /* supportedActs */ ) 
   {
     KUrl::List urls;
 
@@ -1253,7 +1253,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnLeftToRight->setIcon( QIcon( showLeftToRight ) );
   btnLeftToRight->setCheckable( true );
   btnLeftToRight->setChecked( group.readEntry( "LeftToRight Button", _BtnLeftToRight ) );
-  btnLeftToRight->setAccel( Qt::CTRL + Qt::Key_L );
+  btnLeftToRight->setShortcut( Qt::CTRL + Qt::Key_L );
   btnLeftToRight->setWhatsThis( i18n( "Show files marked to <i>Copy from left to right</i> (CTRL+L)." ) );
   btnLeftToRight->setFixedSize( showLeftToRight.width() + 15, showLeftToRight.height() + 15 );
   showOptionsLayout->addWidget( btnLeftToRight, 0, 0);
@@ -1263,7 +1263,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnEquals->setIcon( QIcon( showEquals ) );
   btnEquals->setCheckable( true );
   btnEquals->setChecked( group.readEntry( "Equals Button", _BtnEquals ) );
-  btnEquals->setAccel( Qt::CTRL + Qt::Key_E );
+  btnEquals->setShortcut( Qt::CTRL + Qt::Key_E );
   btnEquals->setWhatsThis( i18n( "Show files considered to be identical (CTRL+E)." ) );
   btnEquals->setFixedSize( showEquals.width() + 15, showEquals.height() + 15 );
   showOptionsLayout->addWidget( btnEquals, 0, 1);
@@ -1273,7 +1273,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnDifferents->setIcon( QIcon( showDifferents ) );
   btnDifferents->setCheckable( true );
   btnDifferents->setChecked( group.readEntry( "Differents Button", _BtnDifferents ) );
-  btnDifferents->setAccel( Qt::CTRL + Qt::Key_D );
+  btnDifferents->setShortcut( Qt::CTRL + Qt::Key_D );
   btnDifferents->setWhatsThis( i18n( "Show excluded files (CTRL+D)." ) );
   btnDifferents->setFixedSize( showDifferents.width() + 15, showDifferents.height() + 15 );
   showOptionsLayout->addWidget( btnDifferents, 0, 2);
@@ -1283,7 +1283,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnRightToLeft->setIcon( QIcon( showRightToLeft ) );
   btnRightToLeft->setCheckable( true );
   btnRightToLeft->setChecked( group.readEntry( "RightToLeft Button", _BtnRightToLeft ) );
-  btnRightToLeft->setAccel( Qt::CTRL + Qt::Key_R );
+  btnRightToLeft->setShortcut( Qt::CTRL + Qt::Key_R );
   btnRightToLeft->setWhatsThis( i18n( "Show files marked to <i>Copy from right to left</i> (CTRL+R)." ) );
   btnRightToLeft->setFixedSize( showRightToLeft.width() + 15, showRightToLeft.height() + 15 );
   showOptionsLayout->addWidget( btnRightToLeft, 0, 3);
@@ -1293,7 +1293,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnDeletable->setIcon( QIcon( showDeletable ) );
   btnDeletable->setCheckable( true );
   btnDeletable->setChecked( group.readEntry( "Deletable Button", _BtnDeletable ) );
-  btnDeletable->setAccel( Qt::CTRL + Qt::Key_T );
+  btnDeletable->setShortcut( Qt::CTRL + Qt::Key_T );
   btnDeletable->setWhatsThis( i18n( "Show files marked to delete. (CTRL+T)" ) );
   btnDeletable->setFixedSize( showDeletable.width() + 15, showDeletable.height() + 15 );
   showOptionsLayout->addWidget( btnDeletable, 0, 4);
@@ -1457,14 +1457,14 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   buttons->setContentsMargins( 0, 0, 0, 0 );
 
   profileManager = new ProfileManager( "SynchronizerProfile", this );
-  profileManager->setAccel( Qt::CTRL + Qt::Key_P );
+  profileManager->setShortcut( Qt::CTRL + Qt::Key_P );
   profileManager->setWhatsThis( i18n( "Profile manager (Ctrl+P)." ) );
   buttons->addWidget( profileManager );
 
   QPixmap swapSides( ( const char** ) swap_sides_data );
   btnSwapSides = new QPushButton( this );
   btnSwapSides->setIcon( QIcon( swapSides ) );
-  btnSwapSides->setAccel( Qt::CTRL + Qt::Key_S );
+  btnSwapSides->setShortcut( Qt::CTRL + Qt::Key_S );
   btnSwapSides->setWhatsThis( i18n( "Swap sides (Ctrl+S)." ) );
   btnSwapSides->setFixedWidth( swapSides.width() + 15 );
   buttons->addWidget( btnSwapSides );
@@ -2006,8 +2006,8 @@ void SynchronizerGUI::compare()
                        &query, cbSubdirs->isChecked(), cbSymlinks->isChecked(),
                        cbIgnoreDate->isChecked(), cbAsymmetric->isChecked(), cbByContent->isChecked(),
                        cbIgnoreCase->isChecked(), btnScrollResults->isChecked(), selectedFiles,
-                       convertToSeconds( equalitySpinBox->value(), equalityUnitCombo->currentItem() ),
-                       convertToSeconds( timeShiftSpinBox->value(), timeShiftUnitCombo->currentItem() ),
+                       convertToSeconds( equalitySpinBox->value(), equalityUnitCombo->currentIndex() ),
+                       convertToSeconds( timeShiftSpinBox->value(), timeShiftUnitCombo->currentIndex() ),
                        parallelThreadsSpinBox->value(), ignoreHiddenFilesCB->isChecked() );
   enableMarkButtons();
   btnStopComparing->setEnabled( isComparing = false );
@@ -2330,7 +2330,7 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
     swapSides();
     return;
   case Qt::Key_Escape:
-    if( btnStopComparing->isShown() && btnStopComparing->isEnabled() ) // is it comparing?
+    if( !btnStopComparing->isHidden() && btnStopComparing->isEnabled() ) // is it comparing?
     {
       e->accept();
       btnStopComparing->animateClick(); // just click the stop button
@@ -2500,8 +2500,8 @@ void SynchronizerGUI::saveToProfile( QString profile )
   group.writeEntry( "Show Duplicates", btnDuplicates->isChecked() );
   group.writeEntry( "Show Singles", btnSingles->isChecked() );
 
-  group.writeEntry( "Equality Threshold", convertToSeconds( equalitySpinBox->value(), equalityUnitCombo->currentItem() ) );
-  group.writeEntry( "Time Shift", convertToSeconds( timeShiftSpinBox->value(), timeShiftUnitCombo->currentItem() ) );
+  group.writeEntry( "Equality Threshold", convertToSeconds( equalitySpinBox->value(), equalityUnitCombo->currentIndex() ) );
+  group.writeEntry( "Time Shift", convertToSeconds( timeShiftSpinBox->value(), timeShiftUnitCombo->currentIndex() ) );
   group.writeEntry( "Parallel Threads", parallelThreadsSpinBox->value() );
 
   group.writeEntry( "Ignore Hidden Files", ignoreHiddenFilesCB->isChecked() );

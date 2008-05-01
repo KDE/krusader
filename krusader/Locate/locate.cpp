@@ -349,7 +349,7 @@ void LocateDlg::processStdout()
     {
       if( dontSearchPath )
       {
-        QRegExp regExp( pattern, isCs, QRegExp::Wildcard );
+        QRegExp regExp( pattern, isCs ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::Wildcard );
         QString fileName = (*it).trimmed();
         if( fileName.endsWith( "/" ) && fileName != "/" )
           fileName.truncate( fileName.length() -1 );
@@ -597,12 +597,12 @@ bool LocateDlg::find()
 
     if( findOptions & KFind::RegularExpression )
     {
-      if( item.contains( QRegExp( findPattern, findOptions & KFind::CaseSensitive ) ) )
+      if( item.contains( QRegExp( findPattern, ((findOptions & KFind::CaseSensitive) != 0) ? Qt::CaseSensitive : Qt::CaseInsensitive ) ) )
         return true;
     }
     else
     {
-      if( item.contains( findPattern, findOptions & KFind::CaseSensitive ) )
+      if( item.contains( findPattern, ((findOptions & KFind::CaseSensitive) != 0 ) ? Qt::CaseSensitive : Qt::CaseInsensitive ) )
         return true;
     }
     

@@ -1166,29 +1166,23 @@ void Synchronizer::slotTaskFinished(KJob *job )
 
         if ( item->task() == TT_COPY_TO_LEFT )
         {
-          QWidget *mainWidget = qApp->mainWidget(); // WORKAROUND, don't give focus to the main widget
-          qApp->setMainWidget( syncDlgWidget );
+          ((KIO::Job *)job)->ui()->setWindow( syncDlgWidget );
 
           result = ((KIO::Job *)job)->ui()->askFileRename( job, i18n("File Already Exists"),
             rightURL.pathOrUrl(), leftURL.pathOrUrl(),
             (KIO::RenameDialog_Mode)( KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI ), newDest,
             item->rightSize(), item->leftSize(), (time_t)-1, (time_t)-1,
             item->rightDate(), item->leftDate());
-
-          qApp->setMainWidget( mainWidget );
         }
         else
         {
-          QWidget *mainWidget = qApp->mainWidget(); // WORKAROUND, don't give focus to the main widget
-          qApp->setMainWidget( syncDlgWidget );
+          ((KIO::Job *)job)->ui()->setWindow( syncDlgWidget );
 
           result = ((KIO::Job *)job)->ui()->askFileRename( job, i18n("File Already Exists"),
             leftURL.pathOrUrl(), rightURL.pathOrUrl(),
             (KIO::RenameDialog_Mode)( KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI ), newDest,
             item->leftSize(), item->rightSize(), (time_t)-1, (time_t)-1,
             item->leftDate(), item->rightDate());
-
-          qApp->setMainWidget( mainWidget );
         }
 
         switch ( result )
@@ -1241,12 +1235,9 @@ void Synchronizer::slotTaskFinished(KJob *job )
           break;
         }
 
-        QWidget *mainWidget = qApp->mainWidget(); // WORKAROUND, don't give focus to the main widget
-        qApp->setMainWidget( syncDlgWidget );
+        ((KIO::Job *)job)->ui()->setWindow( syncDlgWidget );
 
         KIO::SkipDialog_Result result = ((KIO::Job *)job)->ui()->askSkip( job, true, error );
-
-        qApp->setMainWidget( mainWidget );
 
         switch( result )
         {
@@ -1440,7 +1431,7 @@ void Synchronizer::synchronizeWithKGet()
       }
 
       // creating the directory system
-      for( int i=0; i >= 0 ; i= destDir.find('/',i+1) )
+      for( int i=0; i >= 0 ; i= destDir.indexOf('/',i+1) )
         if( !QDir( destDir.left(i) ).exists() )
           QDir().mkdir( destDir.left(i) );
 

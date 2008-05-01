@@ -110,7 +110,7 @@ CompareContentTask::CompareContentTask( Synchronizer *syn, SynchronizerFileItem 
                                         const KUrl &rightURLIn, KIO::filesize_t sizeIn ) : SynchronizerTask(), 
                                         leftURL( leftURLIn ), rightURL( rightURLIn ),
                                         size( sizeIn ), errorPrinted(false), leftReadJob( 0 ),
-                                        rightReadJob( 0 ), compareArray(), item( itemIn ), timer( 0 ),
+                                        rightReadJob( 0 ), compareArray(), owner( -1 ), item( itemIn ), timer( 0 ),
                                         leftFile( 0 ), rightFile( 0 ), received( 0 ), sync( syn ) {
 }
 
@@ -225,17 +225,24 @@ void CompareContentTask::localFileCompareCycle() {
 
 void CompareContentTask::slotDataReceived(KIO::Job *job, const QByteArray &data)
 {
+  int jobowner = ( job == leftReadJob ) ? 1 : 0;
   int bufferLen = compareArray.size();
   int dataLen   = data.size();
 
   if( job == leftReadJob )
     received += dataLen;
 
+  if( jobowner == owner ) {
+    compareArray.append( data );
+    return;
+  }
+
   do
   {
     if( bufferLen == 0 )
     {
-      compareArray.duplicate( data.data(), dataLen );
+      compareArray = QByteArray( data.data(), dataLen );
+      owner = jobowner;
       break;
     }
 
@@ -250,14 +257,17 @@ void CompareContentTask::slotDataReceived(KIO::Job *job, const QByteArray &data)
 
     if( minSize == bufferLen )
     {
-      compareArray.duplicate( data.data() + bufferLen, dataLen - bufferLen );
-      if( dataLen == bufferLen )
+      compareArray = QByteArray( data.data() + bufferLen, dataLen - bufferLen );
+      if( dataLen == bufferLen ) {
+        owner = -1;
         return;
+      }
+      owner = jobowner;
       break;
     }
     else
     {
-      compareArray.duplicate( compareArray.data() + dataLen, bufferLen - dataLen );
+      compareArray = QByteArray( compareArray.data() + dataLen, bufferLen - dataLen );
       return;
     }
 

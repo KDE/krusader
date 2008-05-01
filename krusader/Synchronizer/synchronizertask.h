@@ -153,6 +153,7 @@ private:
   KIO::TransferJob      *leftReadJob;    // compare left read job
   KIO::TransferJob      *rightReadJob;   // compare right read job
   QByteArray             compareArray;   // the array for comparing
+  int                    owner;          // the owner of the compare array
   SynchronizerFileItem  *item;           // the item for content compare
   QTimer                *timer;          // timer to show the process dialog at compare by content
 
