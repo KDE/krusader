@@ -85,7 +85,7 @@ void Combiner::combine()
   }
   else
   {
-    permissions = file.permissions() | QFileInfo::WriteUser;
+    permissions = file.permissions() | QFile::WriteUser;
     
     combineReadJob = KIO::get( splURL, KIO::NoReload, KIO::HideProgressInfo );
 
@@ -119,7 +119,7 @@ void Combiner::combineSplitFileFinished(KJob *job)
     
     for( int i = 0; i != splitFileContent.count(); i++ )
     {
-      int ndx = splitFileContent[i].find( '=' );    
+      int ndx = splitFileContent[i].indexOf( '=' );    
       if( ndx == -1 )
         continue;      
       QString token = splitFileContent[i].left( ndx ).trimmed();
@@ -132,7 +132,7 @@ void Combiner::combineSplitFileFinished(KJob *job)
       }
       else if( token == "size" ) 
       {
-        sscanf( value.trimmed().ascii(), "%llu", &expectedSize );
+        sscanf( value.trimmed().toLocal8Bit(), "%llu", &expectedSize );
         hasSize = true;
       }
       if( token == "crc32" )

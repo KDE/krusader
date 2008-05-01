@@ -64,7 +64,7 @@ void Splitter::split( KIO::filesize_t splitSizeIn )
   KFileItem file(KFileItem::Unknown, KFileItem::Unknown, fileName );
   file.refresh();
 
-  permissions = file.permissions() | QFileInfo::WriteUser;
+  permissions = file.permissions() | QFile::WriteUser;
   
   splitSize = splitSizeIn;
 
@@ -173,8 +173,8 @@ void Splitter::splitDataSend(KIO::Job *, QByteArray &byteArray)
   {
     int shortLen = splitSize - outputFileSize;
     
-    byteArray.duplicate( transferArray.data(), shortLen );
-    transferArray.duplicate( transferArray.data() + shortLen, bufferLen - shortLen );
+    byteArray = QByteArray( transferArray.data(), shortLen );
+    transferArray = QByteArray( transferArray.data() + shortLen, bufferLen - shortLen );
     
     noValidWriteJob = true;   /* close the current segment */
   }
@@ -232,8 +232,8 @@ void Splitter::splitAbortJobs()
 
 void Splitter::splitFileSend(KIO::Job *, QByteArray &byteArray)
 {
-  const char *content = splitFile.ascii();
-  byteArray.duplicate( content, strlen ( content ) );
+  const char *content = splitFile.toLocal8Bit();
+  byteArray = QByteArray( content, strlen ( content ) );
   splitFile = "";
 }
 

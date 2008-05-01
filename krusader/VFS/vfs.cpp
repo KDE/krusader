@@ -147,8 +147,11 @@ bool vfs::vfs_refresh(){
 				emit deletedVfile(name);
 				delete (*vfs_filesP)[ name ]; 
 				vfileIterator  = vfs_filesP->erase( vfs_filesP->find( name ) );
-				// the remove() advance our iterator ! 
-				vf = *vfileIterator;
+				// the remove() advance our iterator !
+				if( vfileIterator ==  vfs_filesP->end() )
+					vf = 0;
+				else
+					vf = *vfileIterator;
 			} else {
 				if( *vf != *newVf ){
 					// the file was changed..
