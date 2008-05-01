@@ -389,7 +389,7 @@ void KRslots::search() {
 			KrSearchDialog::SearchDialog->showNormal();
 	
 		KrSearchDialog::SearchDialog->raise();
-		KrSearchDialog::SearchDialog->setActiveWindow();
+		KrSearchDialog::SearchDialog->activateWindow();
 	} else
 		KrSearchDialog::SearchDialog = new KrSearchDialog();
 }
@@ -407,7 +407,7 @@ void KRslots::locate()
   if ( LocateDlg::LocateDialog != 0 ) {
     LocateDlg::LocateDialog->showNormal();
     LocateDlg::LocateDialog->raise();
-    LocateDlg::LocateDialog->setActiveWindow();
+    LocateDlg::LocateDialog->activateWindow();
     LocateDlg::LocateDialog->reset();
   } else
     LocateDlg::LocateDialog = new LocateDlg();

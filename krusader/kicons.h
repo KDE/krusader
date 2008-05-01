@@ -11,7 +11,7 @@
 // the the icon is resized again to fit into the toolbutton or menu.
 // IMPORTANT: this SHOULD NOT BE USED for actions. If creating an action, just state the file-name
 // of the icon to allow automatic resizing when needed.
-#define LOADICON(X) QIcon(krLoader->loadIcon(X,KIconLoader::Desktop)).pixmap(QIcon::Small,true)
+#define LOADICON(W, X) QIcon(krLoader->loadIcon(X,KIconLoader::Desktop)).pixmap(W->style()->pixelMetric(QStyle::PM_SmallIconSize),QIcon::Normal)
 
 // used only for calls within the kfilelist framework, handles icon sizes
 QPixmap FL_LOADICON(QString name);

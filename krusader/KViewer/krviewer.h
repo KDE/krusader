@@ -80,7 +80,7 @@ protected:
 	virtual bool queryExit();
 	virtual void windowActivationChange ( bool oldActive );
 
-	virtual void focusInEvent( QFocusEvent * ){ if( viewers.remove( this ) ) viewers.prepend( this ); } // move to first
+	virtual void focusInEvent( QFocusEvent * ){ if( viewers.removeAll( this ) ) viewers.prepend( this ); } // move to first
 
 private:
 	KrViewer( QWidget *parent = 0 );

@@ -31,7 +31,8 @@ QStackedWidget( parent ), mimes( 0 ), cpart( 0 ) {
 	mimes = new QHash<QString, KParts::ReadOnlyPart *>();
 	cpart = 0;
 	fallback = new QLabel( i18n( "No file selected or selected file can't be displayed." ), this );
-	fallback->setAlignment( Qt::AlignCenter | Qt::ExpandTabs | Qt::WordBreak );
+	fallback->setAlignment( Qt::Alignment( QFlag( Qt::AlignCenter | Qt::TextExpandTabs ) ) );
+	fallback->setWordWrap( true );
 	addWidget( fallback );
 	setCurrentWidget( fallback );
 }
@@ -179,7 +180,7 @@ void PanelViewer::oldHexViewer(KTemporaryFile& tmpFile) {
 	while ( address < fileSize ) {
 		memset( buf, 0, 16 );
 		int bufSize = ( ( fileSize - address ) > 16 ) ? 16 : ( fileSize - address );
-		in.readRawBytes( buf, bufSize );
+		in.readRawData( buf, bufSize );
 		fprintf( out, "0x%8.8llx: ", address );
 		for ( int i = 0; i < 4; ++i ) {
 			if ( i < ( bufSize / 4 ) ) fprintf( out, "%8.8x ", pBuff[ i ] );

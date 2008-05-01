@@ -242,12 +242,12 @@ void KMountManGUI::addItemToMountList( KrTreeWidget *lst, fsData &fs ) {
 	QString id = fs.name().left(7); // only works assuming devices start with  "/dev/XX"
    QPixmap *icon = 0;
    if ( id == "/dev/fd") {
-      icon = new QPixmap( LOADICON( mtd ? "3floppy_mount" : "3floppy_unmount" ) );
+      icon = new QPixmap( LOADICON( this, mtd ? "3floppy_mount" : "3floppy_unmount" ) );
 	} else if ( id == "/dev/cd" || fs.type() == "iso9660" ) {
-		icon = new QPixmap( LOADICON( mtd ? "cdrom_mount" : "cdrom_unmount" ) );
+		icon = new QPixmap( LOADICON( this, mtd ? "cdrom_mount" : "cdrom_unmount" ) );
    } else if ( fs.type() == "nfs" || fs.type() == "smbfs" ) {
-		icon = new QPixmap( LOADICON( mtd ? "nfs_mount" : "nfs_unmount" ) );
-	} else icon = new QPixmap( LOADICON( mtd ? "hdd_mount" : "hdd_unmount" ) );
+		icon = new QPixmap( LOADICON( this, mtd ? "nfs_mount" : "nfs_unmount" ) );
+	} else icon = new QPixmap( LOADICON( this, mtd ? "hdd_mount" : "hdd_unmount" ) );
 
    item->setIcon( 0, *icon );
    delete icon;

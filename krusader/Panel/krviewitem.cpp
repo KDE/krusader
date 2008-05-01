@@ -55,7 +55,7 @@ QString KrViewItem::description() const {
 	QString myLinkDest = _vf->vfile_getSymDest();
 	KIO::filesize_t mySize = _vf->vfile_getSize();
 	
-	QString text2 = text.copy();
+	QString text2 = text;
 	mode_t m_fileMode = _vf->vfile_getMode();
 	
 	if (_vf->vfile_isSymLink() ){

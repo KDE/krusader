@@ -234,7 +234,7 @@ KrViewer* KrViewer::getViewer(bool new_window){
 			if( viewers.first()->isMinimized() ) // minimized? -> show it again
 				viewers.first()->showNormal();
 			viewers.first()->raise();
-			viewers.first()->setActiveWindow();
+			viewers.first()->activateWindow();
 		}
 		return viewers.first();
 	}
@@ -318,7 +318,7 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 	manager.setActivePart( part );
 	tabBar.addTab(pvb,icon,url.fileName()+"("+msg+")");	
 	tabBar.setCurrentIndex(tabBar.indexOf(pvb));
-	tabBar.setTabToolTip(pvb,msg+": " + url.prettyUrl());
+	tabBar.setTabToolTip(tabBar.indexOf( pvb ),msg+": " + url.prettyUrl());
 
 	updateActions( pvb );
 
@@ -340,7 +340,7 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 void KrViewer::tabURLChanged( PanelViewerBase *pvb, const KUrl & url ) {
 	QString msg = pvb->isEditor() ? i18n( "Editing" ) : i18n( "Viewing" );
 	tabBar.setTabText( tabBar.indexOf( pvb ), url.fileName()+"("+msg+")" );
-	tabBar.setTabToolTip(pvb,msg+": " + url.prettyUrl());
+	tabBar.setTabToolTip(tabBar.indexOf( pvb ),msg+": " + url.prettyUrl());
 }
 
 void KrViewer::tabChanged(QWidget* w){
@@ -375,11 +375,11 @@ void KrViewer::tabCloseRequest(QWidget *w){
 	if( tabBar.count() <= 0 ){
 		if( returnFocusToThisWidget ){ 
 			returnFocusToThisWidget->raise();
-			returnFocusToThisWidget->setActiveWindow();
+			returnFocusToThisWidget->activateWindow();
 		}
 		else {
 			krApp->raise();
-			krApp->setActiveWindow();
+			krApp->activateWindow();
 		}
 		delete this;
 		return;
@@ -390,17 +390,17 @@ void KrViewer::tabCloseRequest(QWidget *w){
 
 	if( returnFocusToThisWidget ){ 
 		returnFocusToThisWidget->raise();
-		returnFocusToThisWidget->setActiveWindow();
+		returnFocusToThisWidget->activateWindow();
 	}
 }
 
 void KrViewer::tabCloseRequest(){
-	tabCloseRequest( tabBar.currentPage() ); 
+	tabCloseRequest( tabBar.currentWidget() ); 
 }
 
 bool KrViewer::queryClose() {
 	for( int i=0; i != tabBar.count(); i++ ) {
-		PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.page( i ) );
+		PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.widget( i ) );
 		if( !pvb )
 			continue;
 		
@@ -417,7 +417,7 @@ bool KrViewer::queryExit() {
 }
 
 void KrViewer::viewGeneric(){
-	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentPage() );
+	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentWidget() );
 	if( !pvb ) return;
 
 	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
@@ -426,7 +426,7 @@ void KrViewer::viewGeneric(){
 }
 
 void KrViewer::viewText(){
-	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentPage() );
+	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentWidget() );
 	if( !pvb ) return;
 
 	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
@@ -435,7 +435,7 @@ void KrViewer::viewText(){
 }
 
 void KrViewer::viewHex(){
-	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentPage() );
+	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentWidget() );
 	if( !pvb ) return;
 
 	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
@@ -444,7 +444,7 @@ void KrViewer::viewHex(){
 }
 
 void KrViewer::editText(){
-	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentPage() );
+	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentWidget() );
 	if( !pvb ) return;
 
 	PanelViewerBase* editWidget = new PanelEditor(&tabBar);
@@ -455,7 +455,7 @@ void KrViewer::editText(){
 void KrViewer::checkModified(){
 	QTimer::singleShot( 1000, this, SLOT(checkModified()) );
 
-	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentPage() );
+	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentWidget() );
 	if( !pvb ) return;
 
 	if( !pvb->part()->url().equals( pvb->url(), KUrl::CompareWithoutTrailingSlash ) ) {
@@ -500,7 +500,7 @@ void KrViewer::prevTab(){
 }
 
 void KrViewer::detachTab(){
-	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentPage() );
+	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentWidget() );
 	if( !pvb ) return;
 
 	KrViewer* viewer = getViewer(true);
@@ -513,7 +513,8 @@ void KrViewer::detachTab(){
 		detachAction->setEnabled(false);
 	}
 	
-	pvb->reparent(&viewer->tabBar,QPoint(0,0));
+	pvb->setParent(&viewer->tabBar);
+	pvb->move(QPoint(0,0));
 
 	if( pvb->isEditor() )
 		viewer->addTab(pvb,i18n( "Editing" ),EDIT_ICON,pvb->part());
@@ -527,7 +528,7 @@ void KrViewer::windowActivationChange ( bool /* oldActive */ ) {
 }
 
 void KrViewer::print() {
-	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentPage() );
+	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentWidget() );
 	if( !pvb ) return;
 	
 	KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject( pvb->part() );
@@ -536,7 +537,7 @@ void KrViewer::print() {
 }
 
 void KrViewer::copy() {
-	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentPage() );
+	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentWidget() );
 	if( !pvb ) return;
 	
 	KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject( pvb->part() );
@@ -546,7 +547,7 @@ void KrViewer::copy() {
 
 PanelViewerBase * KrViewer::getPanelViewerBase( KParts::Part * part ) {
 	for( int i=0; i != tabBar.count(); i++ ) {
-		PanelViewerBase *pvb = static_cast<PanelViewerBase*>( tabBar.page( i ) );
+		PanelViewerBase *pvb = static_cast<PanelViewerBase*>( tabBar.widget( i ) );
 		if( pvb && pvb->part() == part )
 			return pvb;
 	}

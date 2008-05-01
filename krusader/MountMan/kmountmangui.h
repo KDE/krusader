@@ -114,7 +114,7 @@ public:
       return Name;
    }
    inline QString shortName() {
-      return Name.right( Name.length() - Name.find( "/", 1 ) - 1 );
+      return Name.right( Name.length() - Name.indexOf( "/", 1 ) - 1 );
    }
    inline QString type() {
       return Type;

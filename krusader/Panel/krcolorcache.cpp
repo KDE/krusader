@@ -208,11 +208,11 @@ const KrColorSettings & KrColorSettings::operator= (const KrColorSettings & src)
 	}
 	for ( QMap<QString, int>::Iterator it = src.m_impl->m_numValues.begin(); it != src.m_impl->m_numValues.end(); ++it )
 	{
-		m_impl->m_numValues[it.key()] = it.data();
+		m_impl->m_numValues[it.key()] = it.value();
 	}
 	for ( QMap<QString, bool>::Iterator it = src.m_impl->m_boolValues.begin(); it != src.m_impl->m_boolValues.end(); ++it )
 	{
-		m_impl->m_boolValues[it.key()] = it.data();
+		m_impl->m_boolValues[it.key()] = it.value();
 	}
 	return * this;
 }
