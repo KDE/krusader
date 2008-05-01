@@ -356,7 +356,7 @@ KonfiguratorURLRequester::KonfiguratorURLRequester( QString cls, QString name, Q
 
   connect( this, SIGNAL( textChanged(const QString &) ), ext, SLOT( setChanged() ) );
 
-  button()->setIcon( SmallIcon( "fileopen" ) );
+  button()->setIcon( KIcon( SmallIcon( "fileopen" ) ) );
   loadInitialValue();
 }
 
@@ -463,7 +463,7 @@ KonfiguratorComboBox::KonfiguratorComboBox( QString cls, QString name, QString d
   for( int i=0; i != listLen; i++ )
   {
     list[i] = listIn[i];
-    insertItem( list[i].text );
+    addItem( list[i].text );
   }
 
   ext = new KonfiguratorExtension( this, cls, name, rst, pg );
@@ -495,7 +495,7 @@ void KonfiguratorComboBox::loadInitialValue()
 
 void KonfiguratorComboBox::slotApply(QObject *,QString cls, QString name)
 {
-  QString text = editable() ? lineEdit()->text() : currentText();
+  QString text = isEditable() ? lineEdit()->text() : currentText();
   QString value = text;
   
   for( int i=0; i != listLen; i++ )
@@ -516,7 +516,7 @@ void KonfiguratorComboBox::selectEntry( QString entry )
       return;
     }
 
-  if( editable() )
+  if( isEditable() )
     lineEdit()->setText( entry );
   else
     setCurrentIndex( 0 );
@@ -602,7 +602,7 @@ QPixmap KonfiguratorColorChooser::createPixmap( QColor color )
 
 void KonfiguratorColorChooser::addColor( QString text, QColor color )
 {
-  insertItem( createPixmap(color), text );
+  addItem( createPixmap(color), text );
   palette.push_back( color );
 }
 
@@ -618,7 +618,7 @@ void KonfiguratorColorChooser::setDefaultColor( QColor dflt )
 {
   defaultValue = dflt;
   palette[1] = defaultValue;
-  changeItem( createPixmap( defaultValue ), text( 1 ), 1 );
+  setItemIcon( 1, createPixmap( defaultValue ) );
 
   if( currentIndex() == 1 )
     emit colorChanged();
@@ -630,7 +630,7 @@ void KonfiguratorColorChooser::changeAdditionalColor( int num, QColor color )
   {
     palette[2+num] = color;
     additionalColors[num].color = color;
-    changeItem( createPixmap( color ), text( 2+num ), 2+num );
+    setItemIcon( 2+num, createPixmap( color ) );
 
     if( currentIndex() == 2+num )
       emit colorChanged();
@@ -639,7 +639,8 @@ void KonfiguratorColorChooser::changeAdditionalColor( int num, QColor color )
 
 void KonfiguratorColorChooser::setDefaultText( QString text )
 {
-  changeItem( createPixmap( defaultValue ), text, 1 );
+  setItemIcon( 1, createPixmap( defaultValue ) );
+  setItemText( 1, text );
 }
 
 void KonfiguratorColorChooser::slotApply(QObject *,QString cls, QString name)
@@ -687,7 +688,7 @@ void KonfiguratorColorChooser::setValue( QString value )
   }
 
   palette[0] = customValue;
-  changeItem( createPixmap( customValue ), text( 0 ), 0 );
+  setItemIcon( 0, createPixmap( customValue ) );
 
   ext->setChanged();
   emit colorChanged();
@@ -722,13 +723,13 @@ void KonfiguratorColorChooser::slotCurrentChanged( int number )
   ext->setChanged();
   if( number == 0 && !disableColorChooser )
   {
-    QColor color = QColorDialog::getColor ( customValue, this, "ColorDialog" );
+    QColor color = QColorDialog::getColor ( customValue, this );
     if( color.isValid() )
     {
       disableColorChooser = true;
       customValue = color;
       palette[0] = customValue;
-      changeItem( createPixmap( customValue ), text( 0 ), 0 );
+      setItemIcon( 0, createPixmap( customValue ) );
       disableColorChooser = false;
     }
   }
@@ -764,7 +765,7 @@ KonfiguratorListBox::~KonfiguratorListBox()
 void KonfiguratorListBox::loadInitialValue()
 {
   KConfigGroup group( krConfig, ext->getCfgClass() );
-  setList( group.readEntry( ext->getCfgName().ascii(), defaultValue ) );
+  setList( group.readEntry( ext->getCfgName(), defaultValue ) );
   ext->setChanged( false );
 }
 

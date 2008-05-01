@@ -51,8 +51,10 @@ KrResultTable::~KrResultTable()
 
 QGridLayout* KrResultTable::initTable()
 {
-  _grid = new QGridLayout(this, _numRows, _numColumns);
-  _grid->setColStretch(_numColumns-1, 1); // stretch last column
+  _grid = new QGridLayout(this);
+  _grid->setColumnStretch(_numColumns-1, 1); // stretch last column
+  _grid->setContentsMargins( 0, 0, 0, 0 );
+  _grid->setSpacing( 0 );
 
   // +++ Build and add table header +++
   int column = 0;
@@ -77,11 +79,11 @@ QGridLayout* KrResultTable::initTable()
 
 void KrResultTable::adjustRow(QGridLayout* grid)
 {
-  QLayoutIterator it = grid->iterator();
+  int i = 0;
   QLayoutItem *child;
   int col = 0;
 
-  while( (child = it.current()) != 0 )
+  while( (child = grid->itemAt(i)) != 0 )
   {
     // Add some space between columns
     child->widget()->setMinimumWidth( child->widget()->sizeHint().width() + 15 );
@@ -94,7 +96,7 @@ void KrResultTable::adjustRow(QGridLayout* grid)
       child->widget()->setPalette( pal );
     }
 
-    ++it;
+    ++i;
     ++col;
   }
 }
@@ -235,7 +237,8 @@ bool KrArchiverResultTable::addRow(SearchObject* search, QGridLayout* grid)
   // Note column
   _label = new QLabel(arch->getNote(), this);
   _label->setContentsMargins(5,5,5,5);
-  _label->setAlignment( Qt::AlignTop | Qt::TextWordWrap ); // wrap words
+  _label->setAlignment( Qt::AlignTop );
+  _label->setWordWrap( true ); // wrap words
   grid->addWidget(_label, _numRows, 4);
 
   // Apply shared design elements

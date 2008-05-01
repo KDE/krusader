@@ -189,7 +189,7 @@ if( first )
   generalGrid->addWidget( hboxWidget, 13, 0, 1, 2 );
 
   QLabel *label4 = new QLabel( i18n( "Note: you must have full permissions for the temporary directory!" ),
-                               generalGrp, "NoteLabel"  );
+                               generalGrp  );
   generalGrid->addWidget( label4, 14, 0, 1, 2 );
 
 
@@ -219,7 +219,7 @@ void KgGeneral::slotAddExtension()
 
   if( ok )
   {
-    if( !atomExt.startsWith( "." ) || atomExt.find( '.', 1 ) == -1 )
+    if( !atomExt.startsWith( "." ) || atomExt.indexOf( '.', 1 ) == -1 )
       KMessageBox::error(krApp, i18n("Atomic extensions must start with '.'\n and must contain at least one more '.' character"), i18n("Error"));
     else
       listBox->addItem( atomExt );
