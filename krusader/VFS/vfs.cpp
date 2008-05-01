@@ -245,7 +245,7 @@ bool vfs::vfs_processEvents() {
 	if( deleteRequested )
 		return false;        
 	deletePossible = false;
-	qApp->processEvents( QEventLoop::AllEvents | QEventLoop::WaitForMore );
+	qApp->processEvents( QEventLoop::AllEvents | QEventLoop::WaitForMoreEvents );
 	deletePossible = true;        
 	if( deleteRequested ) {
 		emit deleteAllowed();

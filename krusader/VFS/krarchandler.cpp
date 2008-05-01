@@ -552,7 +552,7 @@ QString KRarcHandler::getPassword( QString path ) {
 			if ( wallet->readMap( key, map ) == 0 ) {
 				QMap<QString, QString>::ConstIterator it = map.find( "password" );
 				if ( it != map.end() )
-					password = it.data();
+					password = it.value();
 			}
 		}
 	}
@@ -597,7 +597,7 @@ QString KRarcHandler::getPassword( QString path ) {
 
 bool KRarcHandler::isArchive(const KUrl& url) {
 	QString protocol = url.protocol();
-	if (arcProtocols.find(protocol) != arcProtocols.end())
+	if (arcProtocols.indexOf(protocol) != -1)
 		return true;
 	else return false;	
 }

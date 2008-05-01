@@ -14,7 +14,7 @@ QueueManager::~QueueManager()
 {
 	QMap<QString, Queue*>::iterator it;
  	for (it = _queues.begin(); it != _queues.end(); ++it )
- 		delete it.data();
+ 		delete it.value();
 	_queues.clear();
 }
 

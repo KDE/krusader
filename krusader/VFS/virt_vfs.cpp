@@ -74,7 +74,7 @@ bool virt_vfs::populateVfsList( const KUrl& origin, bool /*showHidden*/ ) {
 		// translate url->vfile and remove urls that no longer exist from the list
 		vfile* vf = stat(url);
 		if ( !vf ) {
-			it = urlList->remove( it );
+			it = urlList->erase( it );
 			// the iterator is advanced automaticly
 			continue;
 		}
@@ -110,7 +110,7 @@ void virt_vfs::vfs_delFiles( QStringList *fileNames ) {
 	if ( path == "/" ) {
 		for ( int i = 0 ; i < fileNames->count(); ++i ) {
 			QString filename = ( *fileNames ) [ i ];
-			virtVfsDict[ "/" ] ->remove( QString("virt:/")+filename );
+			virtVfsDict[ "/" ] ->removeAll( QString("virt:/")+filename );
 			delete virtVfsDict[ filename ];
 			virtVfsDict.remove( filename );
 		}
@@ -148,7 +148,7 @@ void virt_vfs::vfs_removeFiles( QStringList *fileNames ) {
 	for ( int i = 0 ; i < fileNames->count(); ++i ) {
 		if( virtVfsDict.find( path ) != virtVfsDict.end() ) {
 			KUrl::List* urlList = virtVfsDict[ path ];
-			urlList->remove( vfs_getFile( ( *fileNames ) [ i ] ) );
+			urlList->removeAll( vfs_getFile( ( *fileNames ) [ i ] ) );
 		}
 	}
 	
@@ -196,7 +196,7 @@ void virt_vfs::vfs_rename( const QString& fileName, const QString& newName ) {
 
 	if ( path == "/" ) {
 		virtVfsDict[ "/" ] ->append( QString( "virt:/" ) + newName  );
-		virtVfsDict[ "/" ] ->remove( QString( "virt:/" ) + fileName );
+		virtVfsDict[ "/" ] ->removeAll( QString( "virt:/" ) + fileName );
 		virtVfsDict.insert( newName, virtVfsDict.take( fileName ) );
 		vfs_refresh();
 		return ;
@@ -276,7 +276,7 @@ vfile* virt_vfs::stat( const KUrl& url ) {
 	else {
 		QString currentUser = url.user();
 		if ( currentUser.contains( "@" ) )  /* remove the FTP proxy tags from the username */
-			currentUser.truncate( currentUser.find( '@' ) );
+			currentUser.truncate( currentUser.indexOf( '@' ) );
 		if ( currentUser.isEmpty() )
 			currentUser = KRpermHandler::uid2user( getuid() );
 		temp = new vfile( name, size, perm, mtime, symLink, kfi->user(), kfi->group(), currentUser, mime, symDest, mode );

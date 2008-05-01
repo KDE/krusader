@@ -164,7 +164,7 @@ bool KRQuery::matchCommon( const QString &nameIn, const QStringList &matchList, 
 
   for ( int i = 0; i < excludeList.count(); ++i )
   {
-    if( QRegExp( excludeList[ i ], matchesCaseSensitive, QRegExp::Wildcard ).exactMatch( name ) )
+    if( QRegExp( excludeList[ i ], matchesCaseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::Wildcard ).exactMatch( name ) )
       return false;
   }
 
@@ -173,7 +173,7 @@ bool KRQuery::matchCommon( const QString &nameIn, const QStringList &matchList, 
 
   for ( int i = 0; i < matchList.count(); ++i )
   {
-    if( QRegExp( matchList[ i ], matchesCaseSensitive, QRegExp::Wildcard ).exactMatch( name ) )
+    if( QRegExp( matchList[ i ], matchesCaseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::Wildcard ).exactMatch( name ) )
       return true;
   }
   return false;
@@ -349,7 +349,7 @@ bool KRQuery::checkLines( const char * buf, int len ) const
     if ( line.isNull() ) return false;
     if ( containWholeWord )
     {
-      while ( ( ndx = line.find( contain, ndx, containCaseSensetive ) ) != -1 )
+      while ( ( ndx = line.indexOf( contain, ndx, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive ) ) != -1 )
       {
         QChar before = line.at( ndx - 1 );
         QChar after = line.at( ndx + contain.length() );
@@ -363,7 +363,7 @@ bool KRQuery::checkLines( const char * buf, int len ) const
         ndx++;
       }
     }
-    else if ( (ndx = line.find( contain, 0, containCaseSensetive )) != -1 ) {
+    else if ( (ndx = line.indexOf( contain, 0, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive )) != -1 ) {
       lastSuccessfulGrep = line;
       fixFoundTextForDisplay(lastSuccessfulGrep, ndx, contain.length());
       return true;
@@ -534,7 +534,7 @@ void KRQuery::setNameFilter( const QString &text, bool cs )
   for( i=0; i < matches.count(); ) {
     if( matches[ i ].endsWith( "/" ) ) {
       includedDirs.push_back( matches[ i ].left( matches[ i ].length() - 1 ) );
-      matches.remove( matches.at( i ) );
+      matches.removeAll( matches.at( i ) );
       continue;
     }
 
@@ -550,7 +550,7 @@ void KRQuery::setNameFilter( const QString &text, bool cs )
   for( i=0; i < excludes.count(); ) {
     if( excludes[ i ].endsWith( "/" ) ) {
       excludedDirs.push_back( excludes[ i ].left( excludes[ i ].length() - 1 ) );
-      excludes.remove( excludes.at( i ) );
+      excludes.removeAll( excludes.at( i ) );
       continue;
     }
 

@@ -37,6 +37,7 @@
 #include <kio/directorysizejob.h>
 #include <kio/jobuidelegate.h>
 #include <kuiserverjobtracker.h>
+#include <klocale.h>
 
 #define REPORT_TIMEOUT 200
 

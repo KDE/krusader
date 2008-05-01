@@ -106,7 +106,7 @@ void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
 		else {
 			QString currentUser = vfs_origin.user();
 			if ( currentUser.contains( "@" ) )  /* remove the FTP proxy tags from the username */
-				currentUser.truncate( currentUser.find( '@' ) );
+				currentUser.truncate( currentUser.indexOf( '@' ) );
 			if ( currentUser.isEmpty() ) {
 				if( vfs_origin.host().isEmpty() )
 					currentUser = KRpermHandler::uid2user( getuid() );

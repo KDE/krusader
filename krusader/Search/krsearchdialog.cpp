@@ -511,8 +511,8 @@ void KrSearchDialog::resultClicked(QTreeWidgetItem* i) {
 	if (!it->foundText().isEmpty()) {
 		// ugly hack: find the <b> and </b> in the text, then
 		// use it to set the are which we don't want squeezed
-		int idx = it->foundText().find("<b>")-4; // take "<qt>" into account
-		int length = it->foundText().find("</b>")-idx+4;
+		int idx = it->foundText().indexOf("<b>")-4; // take "<qt>" into account
+		int length = it->foundText().indexOf("</b>")-idx+4;
 		foundTextLabel->setText(it->foundText(), idx, length);
 	}
 }
