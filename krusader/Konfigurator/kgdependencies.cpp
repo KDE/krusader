@@ -174,7 +174,7 @@ void KgDependencies::slotApply( QObject *obj, QString cls, QString name )
 }
 
 int KgDependencies::activeSubPage() {
-  return tabWidget->currentPageIndex();
+  return tabWidget->currentIndex();
 }
 
 #include "kgdependencies.moc"

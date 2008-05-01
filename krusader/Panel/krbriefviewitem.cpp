@@ -130,8 +130,15 @@ void KrBriefViewItem::paintItem(QPainter *p, const QColorGroup &cg) {
      colorItemType.m_fileType = KrColorItemType::Executable;
   else
      colorItemType.m_fileType = KrColorItemType::File;
-  KrColorCache::getColorCache().getColors(_cg, colorItemType);
-  
+
+  KrColorGroup cols;
+  KrColorCache::getColorCache().getColors(cols, colorItemType);
+  _cg.setColor(QColorGroup::Base, cols.background());
+  _cg.setColor(QColorGroup::Background, cols.background());
+  _cg.setColor(QColorGroup::Text, cols.text());
+  _cg.setColor(QColorGroup::HighlightedText, cols.highlightedText());
+  _cg.setColor(QColorGroup::Highlight, cols.highlight());
+
   if( _cg.background() != iconView()->paletteBackgroundColor() )
   {
      p->save();

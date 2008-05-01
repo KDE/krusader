@@ -1245,9 +1245,12 @@ void KrBriefView::refreshColors() {
       bool isActive = hasFocus();
       if ( MAIN_VIEW && ACTIVE_PANEL && ACTIVE_PANEL->view )
          isActive = ( static_cast<KrView *>( this ) == ACTIVE_PANEL->view );
-      QColorGroup cg;
+      KrColorGroup cg;
       KrColorCache::getColorCache().getColors(cg, KrColorItemType(KrColorItemType::File, false, isActive, false, false));
       setPaletteBackgroundColor( cg.background() );
+      QPalette pal = palette();
+      pal.setColor( QPalette::Base, cg.background() );
+      setPalette( pal );
    } else {
       // KDE default is choosen: set back the background color
       setPaletteBackgroundColor( KColorScheme(QPalette::Active, KColorScheme::View).background().color() );
@@ -1373,7 +1376,7 @@ void KrBriefView::setColumnNr()
   
   QAction * res = popup.exec(QCursor::pos());
   int result= -1;
-  if( res->data().canConvert<int>() )
+  if( res && res->data().canConvert<int>() )
     result = res->data().toInt();
 
   KConfigGroup group( krConfig, nameInKConfig() );

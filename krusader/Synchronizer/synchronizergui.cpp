@@ -2509,7 +2509,7 @@ void SynchronizerGUI::saveToProfile( QString profile )
 
 void SynchronizerGUI::connectFilters( const QString &newString )
 {
-  if( synchronizerTabs->currentPageIndex() )
+  if( synchronizerTabs->currentIndex() )
     fileFilter->setEditText( newString );
   else
     generalFilter->searchFor->setEditText( newString );

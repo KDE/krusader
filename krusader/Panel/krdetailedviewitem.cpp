@@ -221,7 +221,15 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
      colorItemType.m_fileType = KrColorItemType::Executable;
   else
      colorItemType.m_fileType = KrColorItemType::File;
-  KrColorCache::getColorCache().getColors(_cg, colorItemType);
+
+  KrColorGroup cols;
+  KrColorCache::getColorCache().getColors(cols, colorItemType);
+  _cg.setColor(QColorGroup::Base, cols.background());
+  _cg.setColor(QColorGroup::Background, cols.background());
+  _cg.setColor(QColorGroup::Text, cols.text());
+  _cg.setColor(QColorGroup::HighlightedText, cols.highlightedText());
+  _cg.setColor(QColorGroup::Highlight, cols.highlight());
+
 	// center the <DIR> thing if needed
 	if(column != COLUMN(Size))
 		Q3ListViewItem::paintCell(p, _cg, column, width, align);
@@ -250,9 +258,10 @@ void KrDetailedViewItem::paintFocus(QPainter *p, const QColorGroup &cg, const QR
    colorItemType.m_currentItem = (listView()->currentItem() == this);
    colorItemType.m_selectedItem = isSelected();
    colorItemType.m_fileType = KrColorItemType::File;
-   QColorGroup _cg(cg);
-   KrColorCache::getColorCache().getColors(_cg, colorItemType);
-   QColor col = _cg.color( QColorGroup::Text );
+
+   KrColorGroup cols;
+   KrColorCache::getColorCache().getColors(cols, colorItemType);
+   QColor col = cols.text();
 
    QPen pen( col );
    pen.setStyle( Qt::DotLine );

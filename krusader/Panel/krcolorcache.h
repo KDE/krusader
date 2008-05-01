@@ -80,6 +80,28 @@ All calculated values are cached. The cache is deleted on refreshColors and setC
 colorsRefreshed. getColorCache returns a statis color cached for painting the panels. On the color cache
 setColors should NEVER be called!
 */
+class KrColorGroup {
+public:
+	inline KrColorGroup() : _textColor(), _backgroundColor(), _highlightedTextColor(),
+		 _highlightedBackgroundColor() {}
+	
+	inline const QColor & text() const            { return _textColor; }
+	inline const QColor & background() const      { return _backgroundColor; }
+	inline const QColor & highlight() const       { return _highlightedBackgroundColor; }
+	inline const QColor & highlightedText() const { return _highlightedTextColor; }
+	
+	inline void setText( QColor c )               { _textColor = c; }
+	inline void setBackground( QColor c)          { _backgroundColor = c; }
+	inline void setHighlight( QColor c )          { _highlightedBackgroundColor = c; }
+	inline void setHighlightedText( QColor c )    { _highlightedTextColor = c; }
+
+protected:
+	QColor _textColor;
+	QColor _backgroundColor;
+	QColor _highlightedTextColor;
+	QColor _highlightedBackgroundColor;
+};
+
 class KrColorCache : public QObject
 {
 	Q_OBJECT
@@ -91,7 +113,7 @@ public:
 	KrColorCache();
 	~KrColorCache();
 	static KrColorCache & getColorCache();
-	void getColors(QColorGroup & result, const KrColorItemType & type) const;
+	void getColors(KrColorGroup & result, const KrColorItemType & type) const;
 	static QColor dimColor(const QColor & color, int dim, const QColor & targetColor);
 public slots:
 	void refreshColors();

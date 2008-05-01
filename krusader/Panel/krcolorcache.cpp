@@ -382,9 +382,9 @@ getColors is the only method to call. All other are taken from the previous vers
 class KrColorCacheImpl
 {
 	friend class KrColorCache;
-	QMap<QString, QColorGroup> m_cachedColors;
+	QMap<QString, KrColorGroup> m_cachedColors;
 	KrColorSettings m_colorSettings;
-	QColorGroup getColors(const KrColorItemType & type) const;
+	KrColorGroup getColors(const KrColorItemType & type) const;
 	static const QColor & setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2);
 	QColor getForegroundColor(bool isActive) const;
 	QColor getSpecialForegroundColor(const QString & type, bool isActive) const;
@@ -399,9 +399,9 @@ class KrColorCacheImpl
 	QColor dimColor(QColor color, bool isBackgroundColor) const;
 };
 
-QColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
+KrColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
 {
-	QColorGroup result;
+	KrColorGroup result;
 	if (m_colorSettings.getBoolValue("KDE Default", _KDEDefaultColors))
 	{
 		// KDE default? Getcolors from KGlobalSettings.
@@ -409,11 +409,10 @@ QColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
 		QColor background = enableAlternateBackground && type.m_alternateBackgroundColor ? 
 			KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::AlternateBackground).color()
 			: KColorScheme(QPalette::Active, KColorScheme::View).background().color();
-		result.setColor(QColorGroup::Base, background);
-		result.setColor(QColorGroup::Background, background);
-		result.setColor(QColorGroup::Text, KColorScheme(QPalette::Active, KColorScheme::View).foreground().color() );
-		result.setColor(QColorGroup::HighlightedText, KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color());
-		result.setColor(QColorGroup::Highlight, KColorScheme(QPalette::Active, KColorScheme::Selection).background().color());
+		result.setBackground(background);
+		result.setText( KColorScheme(QPalette::Active, KColorScheme::View).foreground().color() );
+		result.setHighlightedText( KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color());
+		result.setHighlight( KColorScheme(QPalette::Active, KColorScheme::Selection).background().color());
 
 /*		if (type.m_currentItem && type.m_activePanel)
 		{
@@ -458,11 +457,10 @@ QColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
 	}
 
 	// set the background color
-	result.setColor(QColorGroup::Base, background);
-	result.setColor(QColorGroup::Background, background);
+	result.setBackground(background);
 	
 	// set the foreground color
-	result.setColor(QColorGroup::Text, foreground);
+	result.setText(foreground);
 
 	// now the color of a marked item
 	QColor markedBackground = type.m_alternateBackgroundColor ?
@@ -474,8 +472,8 @@ QColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
 		markedForeground = setColorIfContrastIsSufficient(markedBackground, foreground, background);
 
 	// set it in the color group (different group color than normal foreground!)
-	result.setColor(QColorGroup::HighlightedText, markedForeground);
-	result.setColor(QColorGroup::Highlight, markedBackground);
+	result.setHighlightedText(markedForeground);
+	result.setHighlight(markedBackground);
 
 	// In case the current item is a selected one, set the fore- and background colors for the contrast calculation below
 	if (type.m_selectedItem)
@@ -494,9 +492,8 @@ QColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
 			currentBackground = background;
 		
 		// set the background
-		result.setColor(QColorGroup::Highlight, currentBackground);
-		result.setColor(QColorGroup::Base, currentBackground);
-		result.setColor(QColorGroup::Background, currentBackground);
+		result.setHighlight(currentBackground);
+		result.setBackground(currentBackground);
 		
 		QColor color;
 		if (type.m_selectedItem)
@@ -510,18 +507,17 @@ QColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
 		}
 		
 		// set the foreground
-		result.setColor(QColorGroup::Text, color);
-		result.setColor(QColorGroup::HighlightedText, color);
+		result.setText(color);
+		result.setHighlightedText(color);
 	}
 
 	if (dimBackground && !type.m_activePanel)
 	{
 		// if color dimming is choosen, dim the colors for the inactive panel 
-		result.setColor(QColorGroup::Base, dimColor(result.base(), true));
-		result.setColor(QColorGroup::Background, dimColor(result.base(), true));
-		result.setColor(QColorGroup::Text, dimColor(result.text(), false));
-		result.setColor(QColorGroup::HighlightedText, dimColor(result.highlightedText(), false));
-		result.setColor(QColorGroup::Highlight, dimColor(result.highlight(), true));
+		result.setBackground( dimColor(result.background(), true));
+		result.setText( dimColor(result.text(), false));
+		result.setHighlightedText( dimColor(result.highlightedText(), false));
+		result.setHighlight( dimColor(result.highlight(), true));
 	}
 	return result;
 }
@@ -703,7 +699,7 @@ KrColorCache & KrColorCache::getColorCache()
 	return * m_instance;
 }
 
-void KrColorCache::getColors(QColorGroup  & result, const KrColorItemType & type) const
+void KrColorCache::getColors(KrColorGroup  & result, const KrColorItemType & type) const
 {
 	// for the cache lookup: calculate a unique key from the type
 	char hashKey[128];
@@ -739,14 +735,13 @@ void KrColorCache::getColors(QColorGroup  & result, const KrColorItemType & type
 		m_impl->m_cachedColors[hashKey] = m_impl->getColors(type);
 
 	// get color group from cache
-	const QColorGroup & col = m_impl->m_cachedColors[hashKey];
+	const KrColorGroup & col = m_impl->m_cachedColors[hashKey];
 
 	// copy colors in question to result color group
-	result.setColor(QColorGroup::Base, col.base());
-	result.setColor(QColorGroup::Background, col.base());
-	result.setColor(QColorGroup::Text, col.text());
-	result.setColor(QColorGroup::HighlightedText, col.highlightedText());
-	result.setColor(QColorGroup::Highlight, col.highlight());
+	result.setBackground(col.background());
+	result.setText(col.text());
+	result.setHighlightedText(col.highlightedText());
+	result.setHighlight(col.highlight());
 }
 
 QColor KrColorCache::dimColor(const QColor & color, int dim, const QColor & targetColor)

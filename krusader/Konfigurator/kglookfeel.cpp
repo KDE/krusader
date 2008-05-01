@@ -392,7 +392,7 @@ void KgLookFeel::slotSelectionModeChanged() {
 }
 
 int KgLookFeel::activeSubPage() {
-	return tabWidget->currentPageIndex();
+	return tabWidget->currentIndex();
 }
 
 #include "kglookfeel.moc"

@@ -410,7 +410,7 @@ void KgColors::setColorWithDimming(PreviewItem * item, QColor foreground, QColor
 
 void KgColors::generatePreview()
 {
-  int currentPage = colorTabWidget->currentPageIndex();
+  int currentPage = colorTabWidget->currentIndex();
 
   preview->clear();
 
@@ -458,7 +458,14 @@ void KgColors::generatePreview()
     colCache.setColors( colorSettings );
 
     // ask the local color cache for certain color groups and use them to color the preview
-    QColorGroup cg;
+    KrColorGroup cg;
+
+    // setting the background color
+    colCache.getColors(cg, KrColorItemType(KrColorItemType::File, false, isActive, false, false));
+    QPalette pal = preview->palette();
+    pal.setColor( QPalette::Base, cg.background() );
+    preview->setPalette( pal );
+
     colCache.getColors(cg, KrColorItemType(KrColorItemType::Directory, false, isActive, false, false));
     pwDir->setColor( cg.text(), cg.background() );
     colCache.getColors(cg, KrColorItemType(KrColorItemType::File, true, isActive, false, false));
@@ -470,7 +477,7 @@ void KgColors::generatePreview()
     colCache.getColors(cg, KrColorItemType(KrColorItemType::InvalidSymlink, false, isActive, false, false));
     pwInvLink->setColor( cg.text(), cg.background() );
     colCache.getColors(cg, KrColorItemType(KrColorItemType::File, true, isActive, true, false));
-    pwCurrent->setColor( cg.highlightedText(), cg.highlight() );
+    pwCurrent->setColor( cg.text(), cg.background() );
     colCache.getColors(cg, KrColorItemType(KrColorItemType::File, false, isActive, false, true));
     pwMark1->setColor( cg.highlightedText(), cg.highlight() );
     colCache.getColors(cg, KrColorItemType(KrColorItemType::File, true, isActive, false, true));

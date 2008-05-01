@@ -489,12 +489,12 @@ void KrViewer::checkModified(){
 }
 
 void KrViewer::nextTab(){
-	int index = (tabBar.currentPageIndex()+1)%tabBar.count();
+	int index = (tabBar.currentIndex()+1)%tabBar.count();
 	tabBar.setCurrentIndex( index );
 }
 
 void KrViewer::prevTab(){
-	int index = (tabBar.currentPageIndex()-1)%tabBar.count();
+	int index = (tabBar.currentIndex()-1)%tabBar.count();
 	while( index < 0 ) index+=tabBar.count();
 	tabBar.setCurrentIndex( index );
 }

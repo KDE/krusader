@@ -1354,9 +1354,12 @@ void KrDetailedView::refreshColors() {
       bool isActive = hasFocus();
       if ( MAIN_VIEW && ACTIVE_PANEL && ACTIVE_PANEL->view )
          isActive = ( static_cast<KrView *>( this ) == ACTIVE_PANEL->view );
-      QColorGroup cg;
+      KrColorGroup cg;
       KrColorCache::getColorCache().getColors(cg, KrColorItemType(KrColorItemType::File, false, isActive, false, false));
       setPaletteBackgroundColor( cg.background() );
+      QPalette pal = palette();
+      pal.setColor( QPalette::Base, cg.background() );
+      setPalette( pal );
 
       KrColorCache::getColorCache().getColors(cg, KrColorItemType(KrColorItemType::File, true, isActive, false, false));
       setAlternateBackground( cg.background() );
