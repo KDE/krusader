@@ -2,6 +2,7 @@
 #define KRUSADERAPP_H
 
 #include <kapplication.h>
+class QFocusEvent;
 
 // declare a dummy kapplication, just to get Qt's focusin focusout events
 class KrusaderApp: public KApplication {

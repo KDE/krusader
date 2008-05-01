@@ -261,7 +261,7 @@ void KRslots::insertFileName(bool full_path)
   }
   else if(MAIN_VIEW->konsole_part){
     filename = QString( " " ) + filename + QString( " " );
-    QKeyEvent keyEvent( QEvent::KeyPress, 0, -1, 0,  filename);
+    QKeyEvent keyEvent( QEvent::KeyPress, 0, Qt::NoModifier,  filename);
     QApplication::sendEvent( MAIN_VIEW->konsole_part->widget(), &keyEvent );
     MAIN_VIEW->konsole_part->widget()->setFocus();
   }
@@ -354,7 +354,7 @@ void KRslots::swapPanels(){
 void KRslots::toggleSwapSides(){
   QList<int> lst = MAIN_VIEW->horiz_splitter->sizes();
 
-  MAIN_VIEW->horiz_splitter->moveToLast( MAIN_VIEW->leftMng );
+  MAIN_VIEW->horiz_splitter->addWidget( MAIN_VIEW->leftMng );
 
   int old = lst[ 0 ];
   lst[ 0 ] = lst [ 1 ];
@@ -790,9 +790,9 @@ void KRslots::updatePopupPanel(KrViewItem *item) {
 	ListPanel *lp = 0;
 	if (ACTIVE_PANEL->popup->isHidden() &&
 		 ACTIVE_PANEL->otherPanel->popup->isHidden()) return;
-	if (ACTIVE_PANEL->popup->isShown())
+	if (!ACTIVE_PANEL->popup->isHidden())
 		lp = ACTIVE_PANEL;
-	else if (ACTIVE_PANEL->otherPanel->popup->isShown())
+	else if (!ACTIVE_PANEL->otherPanel->popup->isHidden())
 		lp = ACTIVE_PANEL->otherPanel;
 
 	KUrl url;

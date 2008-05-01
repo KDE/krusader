@@ -207,7 +207,7 @@ KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") : ki18n("Kr
 
   if( !reply.isValid() && reply.error().type() != QDBusError::ServiceUnknown && 
                           reply.error().type() != QDBusError::UnknownObject )
-    fprintf( stderr, "DBus Error: %s, %s\n", reply.error().name().ascii(), reply.error().message().ascii() );
+    fprintf( stderr, "DBus Error: %s, %s\n", reply.error().name().toLocal8Bit().constData(), reply.error().message().toLocal8Bit().constData() );
 
   if( reply.isValid() && (bool)reply ) {
     fprintf( stderr, i18n( "Application already running!\n" ).toLocal8Bit() );
@@ -235,11 +235,11 @@ KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") : ki18n("Kr
   QDBusConnection dbus = QDBusConnection::sessionBus();
   if( !dbus.interface()->isServiceRegistered( "org.krusader" ) && !dbus.registerService( "org.krusader" ) )
   {
-    fprintf( stderr, "DBus Error: %s, %s\n", dbus.lastError().name().ascii(), dbus.lastError().message().ascii() );
+    fprintf( stderr, "DBus Error: %s, %s\n", dbus.lastError().name().toLocal8Bit().constData(), dbus.lastError().message().toLocal8Bit().constData() );
   }
   if( !dbus.registerObject( "/Instances/" + appName, &krusader, QDBusConnection::ExportScriptableSlots ) )
   {
-    fprintf( stderr, "DBus Error: %s, %s\n", dbus.lastError().name().ascii(), dbus.lastError().message().ascii() );
+    fprintf( stderr, "DBus Error: %s, %s\n", dbus.lastError().name().toLocal8Bit().constData(), dbus.lastError().message().toLocal8Bit().constData() );
   }
 
   // catching SIGTERM, SIGHUP, SIGQUIT
@@ -251,9 +251,6 @@ KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") : ki18n("Kr
   QObject::connect(&app, SIGNAL(windowActive()), krusader.slot, SLOT(windowActive()));
   QObject::connect(&app, SIGNAL(windowInactive()), krusader.slot, SLOT(windowInactive()));
 
-  // and set krusader to be the main widget in it
-  app.setMainWidget(&krusader);
-  
   // hide splashscreen
   if (splash) {
     splash->finish( &krusader );

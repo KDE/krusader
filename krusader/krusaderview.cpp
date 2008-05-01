@@ -341,7 +341,7 @@ bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
 
       filename = KrServices::quote( filename );
 
-      QKeyEvent keyEvent( QEvent::KeyPress, 0, -1, 0, QString( " " ) + filename + QString( " " ));
+      QKeyEvent keyEvent( QEvent::KeyPress, 0, Qt::NoModifier, QString( " " ) + filename + QString( " " ));
       QApplication::sendEvent( konsole_part->widget(), &keyEvent );
       return true;
     } else if( ( ke->key() ==  Qt::Key_Down ) && ( ke->modifiers() == Qt::ControlModifier ) ) {
@@ -357,7 +357,7 @@ bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
       if ( ! text.isEmpty() )
       {
         text.replace("\n", "\r");
-        QKeyEvent keyEvent(QEvent::KeyPress, 0,-1,0, text);
+        QKeyEvent keyEvent(QEvent::KeyPress, 0,Qt::NoModifier, text);
         QApplication::sendEvent( konsole_part->widget(), &keyEvent );
       }
       return true;

@@ -210,8 +210,10 @@ KAction *Krusader::actShowJSConsole = 0;
 #endif
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
-Krusader::Krusader() : KParts::MainWindow(0,Qt::WType_TopLevel|Qt::WDestructiveClose|Qt::WStyle_ContextHelp),
+Krusader::Krusader() : KParts::MainWindow(0,Qt::Window|Qt::WindowContextHelpButtonHint),
    status(NULL), sysTray( 0 ), isStarting( true ), isExiting( false ), directExit( false ) {
+
+   setAttribute(Qt::WA_DeleteOnClose);
    // parse command line arguments
    KCmdLineArgs * args = KCmdLineArgs::parsedArgs();
 
@@ -298,7 +300,7 @@ Krusader::Krusader() : KParts::MainWindow(0,Qt::WType_TopLevel|Qt::WDestructiveC
       for(int i = 0; i != leftTabs.count(); i++ )
       {
         leftTabs[ i ] = leftTabs[ i ].trimmed();
-        if( !leftTabs[ i ].startsWith( "/" ) && leftTabs[ i ].find( ":/" ) < 0 )
+        if( !leftTabs[ i ].startsWith( "/" ) && leftTabs[ i ].indexOf( ":/" ) < 0 )
           leftTabs[ i ] = QDir::currentPath() + "/" + leftTabs[ i ];
       }
       startProfile = QString();
@@ -314,7 +316,7 @@ Krusader::Krusader() : KParts::MainWindow(0,Qt::WType_TopLevel|Qt::WDestructiveC
       for(int i = 0; i != rightTabs.count(); i++ )
       {
         rightTabs[ i ] = rightTabs[ i ].trimmed();
-        if( !rightTabs[ i ].startsWith( "/" ) && rightTabs[ i ].find( ":/" ) < 0 )
+        if( !rightTabs[ i ].startsWith( "/" ) && rightTabs[ i ].indexOf( ":/" ) < 0 )
           rightTabs[ i ] = QDir::currentPath() + "/" + rightTabs[ i ];
       }
       startProfile = QString();
@@ -476,7 +478,7 @@ void Krusader::statusBarUpdate( QString& mess ) {
    // change the message on the statusbar for 2 seconds
    if (status) // ugly!!!! But as statusBar() creates a status bar if there is no, I have to ask status to prevent 
                // the creation of the KDE default status bar instead of KrusaderStatus.
-      statusBar() ->message( mess, 5000 );
+      statusBar() ->showMessage( mess, 5000 );
 }
 
 void Krusader::showEvent ( QShowEvent * ) {
@@ -968,7 +970,7 @@ bool Krusader::queryClose()
 					w->show();
 
 				if ( w->inherits ( "QDialog" ) )
-					fprintf ( stderr, "Failed to close: %s\n", w->className() );
+					fprintf ( stderr, "Failed to close: %s\n", w->metaObject()->className() );
 
 				return false;
 			}
@@ -1150,7 +1152,7 @@ QString Krusader::getTempDir() {
    QString tmpDir = group.readEntry( "Temp Directory", _TempDirectory );
 
    if ( ! QDir( tmpDir ).exists() ) {
-      for ( int i = 1 ; i != -1 ; i = tmpDir.find( '/', i + 1 ) )
+      for ( int i = 1 ; i != -1 ; i = tmpDir.indexOf( '/', i + 1 ) )
          QDir().mkdir( tmpDir.left( i ) );
       QDir().mkdir( tmpDir );
       chmod( tmpDir.toLocal8Bit(), 0777 );
@@ -1180,7 +1182,7 @@ QString Krusader::getTempFile() {
    QString tmpDir = group.readEntry( "Temp Directory", _TempDirectory );
 
    if ( ! QDir( tmpDir ).exists() ) {
-      for ( int i = 1 ; i != -1 ; i = tmpDir.find( '/', i + 1 ) )
+      for ( int i = 1 ; i != -1 ; i = tmpDir.indexOf( '/', i + 1 ) )
          QDir().mkdir( tmpDir.left( i ) );
       QDir().mkdir( tmpDir );
       chmod( tmpDir.toLocal8Bit(), 0777 );
