@@ -446,7 +446,7 @@ ParameterSelect::ParameterSelect( const exp_parameter& parameter, QWidget* paren
    if ( lst.size() > 0 )
       _combobox->addItems( lst );
 
-   _combobox->setCurrentText( "*" );
+   _combobox->lineEdit()->setText( "*" );
 }
 
 QString ParameterSelect::text() {
@@ -456,7 +456,7 @@ QString ParameterSelect::preset() {
    return "*";
 } 
 void ParameterSelect::reset() {
-   _combobox->setCurrentText( "*" );
+   _combobox->lineEdit()->setText( "*" );
 } 
 bool ParameterSelect::valid() {
       return true;

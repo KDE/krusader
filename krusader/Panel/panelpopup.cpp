@@ -167,7 +167,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	QStringList lst = pg.readEntry( "Predefined Selections", QStringList() );
 	if ( lst.count() > 0 )
 		quickSelectCombo->addItems( lst );
-	quickSelectCombo->setCurrentText( "*" );
+	quickSelectCombo->lineEdit()->setText( "*" );
 	quickSelectCombo->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred ) );
 
 	connect(quickSelectCombo->lineEdit(), SIGNAL(returnPressed()),

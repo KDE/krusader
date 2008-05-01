@@ -1484,7 +1484,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnScrollResults->setCheckable( true );
   btnScrollResults->setChecked( group.readEntry( "Scroll Results", _ScrollResults ) );
   btnScrollResults->hide();
-  if( btnScrollResults->isOn() )
+  if( btnScrollResults->isChecked() )
     btnScrollResults->setText( i18n( "Quiet" ) );
   else
     btnScrollResults->setText( i18n( "Scroll Results" ) );
@@ -1783,8 +1783,8 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
   KUrl rightBDir = KUrl( synchronizer.rightBaseDirectory() );
 
   if( KrServices::cmdExist( "kget" ) &&
-    ( ( !leftBDir.isLocalFile() && rightBDir.isLocalFile() && btnLeftToRight->isOn() ) ||
-      ( leftBDir.isLocalFile() && !rightBDir.isLocalFile() && btnRightToLeft->isOn() ) ) )
+    ( ( !leftBDir.isLocalFile() && rightBDir.isLocalFile() && btnLeftToRight->isChecked() ) ||
+      ( leftBDir.isLocalFile() && !rightBDir.isLocalFile() && btnRightToLeft->isChecked() ) ) )
   {
     popup.addSeparator();
     myact = popup.addAction(i18n("Synchronize with &KGet"));
@@ -1940,15 +1940,15 @@ void SynchronizerGUI::closeDialog()
   group.writeEntry("Ignore Date", cbIgnoreDate->isChecked() );
   group.writeEntry("Asymmetric", cbAsymmetric->isChecked() );
   group.writeEntry("Ignore Case", cbIgnoreCase->isChecked() );
-  group.writeEntry("LeftToRight Button", btnLeftToRight->isOn() );
-  group.writeEntry("Equals Button", btnEquals->isOn() );
-  group.writeEntry("Differents Button", btnDifferents->isOn() );
-  group.writeEntry("RightToLeft Button", btnRightToLeft->isOn() );
-  group.writeEntry("Deletable Button", btnDeletable->isOn() );
-  group.writeEntry("Duplicates Button", btnDuplicates->isOn() );
-  group.writeEntry("Singles Button", btnSingles->isOn() );
+  group.writeEntry("LeftToRight Button", btnLeftToRight->isChecked() );
+  group.writeEntry("Equals Button", btnEquals->isChecked() );
+  group.writeEntry("Differents Button", btnDifferents->isChecked() );
+  group.writeEntry("RightToLeft Button", btnRightToLeft->isChecked() );
+  group.writeEntry("Deletable Button", btnDeletable->isChecked() );
+  group.writeEntry("Duplicates Button", btnDuplicates->isChecked() );
+  group.writeEntry("Singles Button", btnSingles->isChecked() );
 
-  group.writeEntry("Scroll Results", btnScrollResults->isOn() );
+  group.writeEntry("Scroll Results", btnScrollResults->isChecked() );
 
   group.writeEntry("Parallel Threads", parallelThreadsSpinBox->value() );
 
@@ -2005,7 +2005,7 @@ void SynchronizerGUI::compare()
   int fileCount = synchronizer.compare(leftLocation->currentText(), rightLocation->currentText(),
                        &query, cbSubdirs->isChecked(), cbSymlinks->isChecked(),
                        cbIgnoreDate->isChecked(), cbAsymmetric->isChecked(), cbByContent->isChecked(),
-                       cbIgnoreCase->isChecked(), btnScrollResults->isOn(), selectedFiles,
+                       cbIgnoreCase->isChecked(), btnScrollResults->isChecked(), selectedFiles,
                        convertToSeconds( equalitySpinBox->value(), equalityUnitCombo->currentItem() ),
                        convertToSeconds( timeShiftSpinBox->value(), timeShiftUnitCombo->currentItem() ),
                        parallelThreadsSpinBox->value(), ignoreHiddenFilesCB->isChecked() );
@@ -2036,7 +2036,7 @@ void SynchronizerGUI::stop()
 
 void SynchronizerGUI::feedToListBox()
 {
-  FeedToListBoxDialog listBox( this, &synchronizer, syncList, btnEquals->isOn() );
+  FeedToListBoxDialog listBox( this, &synchronizer, syncList, btnEquals->isChecked() );
   if( listBox.isAccepted() )
     closeDialog();
 }
@@ -2181,9 +2181,9 @@ QString SynchronizerGUI::convertTime(time_t time) const
 
 void SynchronizerGUI::setMarkFlags()
 {
-  synchronizer.setMarkFlags( btnRightToLeft->isOn(), btnEquals->isOn(), btnDifferents->isOn(),
-                             btnLeftToRight->isOn(), btnDuplicates->isOn(), btnSingles->isOn(),
-                             btnDeletable->isOn() );
+  synchronizer.setMarkFlags( btnRightToLeft->isChecked(), btnEquals->isChecked(), btnDifferents->isChecked(),
+                             btnLeftToRight->isChecked(), btnDuplicates->isChecked(), btnSingles->isChecked(),
+                             btnDeletable->isChecked() );
 }
 
 void SynchronizerGUI::refresh()
@@ -2265,8 +2265,8 @@ void SynchronizerGUI::swapSides()
   if( btnCompareDirs->isEnabled() )
   {
     QString leftCurrent = leftLocation->currentText();
-    leftLocation->setCurrentText( rightLocation->currentText() );
-    rightLocation->setCurrentText( leftCurrent );
+    leftLocation->lineEdit()->setText( rightLocation->currentText() );
+    rightLocation->lineEdit()->setText( leftCurrent );
     synchronizer.swapSides();
     refresh();
   }
@@ -2432,10 +2432,10 @@ void SynchronizerGUI::loadFromProfile( QString profile )
 
   if( !hasSelectedFiles )
   {
-    leftLocation->setCurrentText( pg.readEntry( "Left Location", QString() ) );
-    rightLocation->setCurrentText( pg.readEntry( "Right Location", QString() ) );
+    leftLocation->lineEdit()->setText( pg.readEntry( "Left Location", QString() ) );
+    rightLocation->lineEdit()->setText( pg.readEntry( "Right Location", QString() ) );
   }
-  fileFilter->setCurrentText( pg.readEntry( "Search For", QString() ) );
+  fileFilter->lineEdit()->setText( pg.readEntry( "Search For", QString() ) );
 
   cbSubdirs->   setChecked( pg.readEntry( "Recurse Subdirectories", true ) );
   cbSymlinks->  setChecked( pg.readEntry( "Follow Symlinks", false ) );
@@ -2490,15 +2490,15 @@ void SynchronizerGUI::saveToProfile( QString profile )
   group.writeEntry( "Asymmetric", cbAsymmetric->isChecked() );
   group.writeEntry( "Ignore Case", cbIgnoreCase->isChecked() );
 
-  group.writeEntry( "Scroll Results", btnScrollResults->isOn() );
+  group.writeEntry( "Scroll Results", btnScrollResults->isChecked() );
 
-  group.writeEntry( "Show Left To Right", btnLeftToRight->isOn() );
-  group.writeEntry( "Show Equals", btnEquals->isOn() );
-  group.writeEntry( "Show Differents", btnDifferents->isOn() );
-  group.writeEntry( "Show Right To Left", btnRightToLeft->isOn() );
-  group.writeEntry( "Show Deletable", btnDeletable->isOn() );
-  group.writeEntry( "Show Duplicates", btnDuplicates->isOn() );
-  group.writeEntry( "Show Singles", btnSingles->isOn() );
+  group.writeEntry( "Show Left To Right", btnLeftToRight->isChecked() );
+  group.writeEntry( "Show Equals", btnEquals->isChecked() );
+  group.writeEntry( "Show Differents", btnDifferents->isChecked() );
+  group.writeEntry( "Show Right To Left", btnRightToLeft->isChecked() );
+  group.writeEntry( "Show Deletable", btnDeletable->isChecked() );
+  group.writeEntry( "Show Duplicates", btnDuplicates->isChecked() );
+  group.writeEntry( "Show Singles", btnSingles->isChecked() );
 
   group.writeEntry( "Equality Threshold", convertToSeconds( equalitySpinBox->value(), equalityUnitCombo->currentItem() ) );
   group.writeEntry( "Time Shift", convertToSeconds( timeShiftSpinBox->value(), timeShiftUnitCombo->currentItem() ) );

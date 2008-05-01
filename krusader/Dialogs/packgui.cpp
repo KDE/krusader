@@ -77,6 +77,7 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
       if (typeData->itemText( i ) == tmp) {
         typeData->removeItem(i);
         typeData->insertItem(0, tmp);
+        typeData->setCurrentIndex( 0 );
         break;
       }
   }

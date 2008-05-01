@@ -159,7 +159,7 @@ void KCMDLine::slotRun() {
   cmdLine->addToHistory(command1);
 
   if ( command1.simplified().left( 3 ) == "cd " ) { // cd command effect the active panel
-    QString dir = command1.right( command1.length() - command1.find( " " ) ).trimmed();
+    QString dir = command1.right( command1.length() - command1.indexOf( " " ) ).trimmed();
     if ( dir == "~" )
       dir = QDir::homePath();
     else
@@ -168,7 +168,7 @@ void KCMDLine::slotRun() {
     SLOTS->refresh( dir );
   } else {
     exec();
-    cmdLine->clearEdit();
+    cmdLine->clearEditText();
   }
 }
 
@@ -220,7 +220,7 @@ bool KCMDLine::doSubstitution() const {
 }
 
 void KCMDLine::setText(QString text) {
-	cmdLine->setCurrentText( text );
+	cmdLine->lineEdit()->setText( text );
 }
  
 void KrHistoryCombo::keyPressEvent( QKeyEvent *e ) {

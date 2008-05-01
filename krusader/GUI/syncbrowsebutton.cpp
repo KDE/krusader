@@ -63,7 +63,7 @@ void SyncBrowseButton::slotToggled( bool on ) {
 }
 
 int SyncBrowseButton::state() {
-  if ( isOn() )
+  if ( isChecked() )
     _state = SYNCBROWSE_CD;
   else
     _state = SYNCBROWSE_OFF;

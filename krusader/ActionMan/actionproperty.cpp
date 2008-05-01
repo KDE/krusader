@@ -102,7 +102,7 @@ void ActionProperty::clear() {
    _modified = true; // The real state is set at the end of this function.
 
    leDistinctName->clear();
-   cbCategory->clearEdit();
+   cbCategory->clearEditText();
    leTitle->clear();
    leTooltip->clear();
    textDescription->clear();
@@ -140,7 +140,7 @@ void ActionProperty::updateGUI( KrAction *action ) {
    _modified = true; // The real state is set at the end of this function.
 
    leDistinctName->setText( _action->name() );
-   cbCategory->setCurrentText( _action->category() );
+   cbCategory->lineEdit()->setText( _action->category() );
    leTitle->setText( _action->text() );
    leTooltip->setText( _action->toolTip() );
    textDescription->setText( _action->whatsThis() );
@@ -207,7 +207,7 @@ void ActionProperty::updateAction( KrAction *action ) {
       // Update the category-list
       cbCategory->clear();
       cbCategory->addItems( krUserAction->allCategories() );
-      cbCategory->setCurrentText( _action->category() );
+      cbCategory->lineEdit()->setText( _action->category() );
    }
 
    _action->setName( leDistinctName->text().toLatin1() );

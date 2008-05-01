@@ -71,7 +71,7 @@ void KrRemoteEncodingMenu::slotAboutToShow()
     int id = 1;
     QStringList::Iterator it;
     for (it = encodingNames.begin(); it != encodingNames.end(); ++it, ++id)
-      if ((*it).find(charset) != -1)
+      if ((*it).indexOf(charset) != -1)
         break;
 
     bool found = false;

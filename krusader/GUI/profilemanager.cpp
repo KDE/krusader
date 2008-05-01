@@ -101,7 +101,7 @@ void ProfileManager::profilePopup()
   }else if( result >= REMOVE_ENTRY_ID && result < REMOVE_ENTRY_ID + profileList.count() )
   { 
     krConfig->deleteGroup( profileType + " - " + profileList[ result - REMOVE_ENTRY_ID ] );    
-    profileList.remove( profileList[ result - REMOVE_ENTRY_ID ] );
+    profileList.removeAll( profileList[ result - REMOVE_ENTRY_ID ] );
   
     KConfigGroup group( krConfig, "Private");
     group.writeEntry( profileType, profileList );
@@ -146,7 +146,7 @@ void ProfileManager::deleteProfile( QString name )
     if( name == currentName )
     {
       krConfig->deleteGroup( profileType + " - " + profileList[ i ] );    
-      profileList.remove( profileList[ i ] );
+      profileList.removeAll( profileList[ i ] );
   
       KConfigGroup pg( krConfig, "Private");
       pg.writeEntry( profileType, profileList );

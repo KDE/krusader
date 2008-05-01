@@ -1,4 +1,3 @@
-
 /***************************************************************************
                          mediabutton.cpp  -  description
                              -------------------
@@ -175,7 +174,7 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 			localPath = (*it).stringValue( KIO::UDSEntry::UDS_LOCAL_PATH );
 
 		if( text != "." && text != ".." ) {
-			int index = popupMenu->count();
+			int index = popupMenu->actions().count();
 			KMimeType::Ptr mt = KMimeType::mimeType( mime );
 			QPixmap pixmap;
 			if( mt )
@@ -316,44 +315,44 @@ QString MediaButton::detectType( KMountPoint *mp )
 		return typeName;
 
 #elif defined(__FreeBSD__)
-	if (-1!=mp->mountedFrom().find("/acd",0,FALSE)) typeName="cdrom";
-	else if (-1!=mp->mountedFrom().find("/scd",0,FALSE)) typeName="cdrom";
-	else if (-1!=mp->mountedFrom().find("/ad",0,FALSE)) typeName="hdd";
-	else if (-1!=mp->mountedFrom().find("/da",0,FALSE)) typeName="hdd";
-	else if (-1!=mp->mountedFrom().find("/afd",0,FALSE)) typeName="zip";
+	if (-1!=mp->mountedFrom().indexOf("/acd",0,Qt::CaseInsensitive)) typeName="cdrom";
+	else if (-1!=mp->mountedFrom().indexOf("/scd",0,Qt::CaseInsensitive)) typeName="cdrom";
+	else if (-1!=mp->mountedFrom().indexOf("/ad",0,Qt::CaseInsensitive)) typeName="hdd";
+	else if (-1!=mp->mountedFrom().indexOf("/da",0,Qt::CaseInsensitive)) typeName="hdd";
+	else if (-1!=mp->mountedFrom().indexOf("/afd",0,Qt::CaseInsensitive)) typeName="zip";
 	else
 #endif
 
     /* Guessing of cdrom and cd recorder devices */
-	if (-1!=mp->mountPoint().find("cdrom",0,FALSE)) typeName="cdrom";
-	else if (-1!=mp->mountedFrom().find("cdrom",0,FALSE)) typeName="cdrom";
-	else if (-1!=mp->mountPoint().find("cdwriter",0,FALSE)) typeName="cdwriter";
-	else if (-1!=mp->mountedFrom().find("cdwriter",0,FALSE)) typeName="cdwriter";
-	else if (-1!=mp->mountedFrom().find("cdrw",0,FALSE)) typeName="cdwriter";
-	else if (-1!=mp->mountPoint().find("cdrw",0,FALSE)) typeName="cdwriter";
-	else if (-1!=mp->mountedFrom().find("cdrecorder",0,FALSE)) typeName="cdwriter";
-	else if (-1!=mp->mountPoint().find("cdrecorder",0,FALSE)) typeName="cdwriter";
-	else if (-1!=mp->mountedFrom().find("dvdrecorder",0,FALSE)) typeName="dvdwriter";
-	else if (-1!=mp->mountPoint().find("dvdrecorder",0,FALSE)) typeName="dvdwriter";
-	else if (-1!=mp->mountPoint().find("dvdwriter",0,FALSE)) typeName="dvdwriter";
-	else if (-1!=mp->mountedFrom().find("dvdwriter",0,FALSE)) typeName="dvdwriter";
-	else if (-1!=mp->mountPoint().find("dvd",0,FALSE)) typeName="dvd";   
-	else if (-1!=mp->mountedFrom().find("dvd",0,FALSE)) typeName="dvd";   
-	else if (-1!=mp->mountedFrom().find("/dev/scd",0,FALSE)) typeName="cdrom";
-	else if (-1!=mp->mountedFrom().find("/dev/sr",0,FALSE)) typeName="cdrom";
+	if (-1!=mp->mountPoint().indexOf("cdrom",0,Qt::CaseInsensitive)) typeName="cdrom";
+	else if (-1!=mp->mountedFrom().indexOf("cdrom",0,Qt::CaseInsensitive)) typeName="cdrom";
+	else if (-1!=mp->mountPoint().indexOf("cdwriter",0,Qt::CaseInsensitive)) typeName="cdwriter";
+	else if (-1!=mp->mountedFrom().indexOf("cdwriter",0,Qt::CaseInsensitive)) typeName="cdwriter";
+	else if (-1!=mp->mountedFrom().indexOf("cdrw",0,Qt::CaseInsensitive)) typeName="cdwriter";
+	else if (-1!=mp->mountPoint().indexOf("cdrw",0,Qt::CaseInsensitive)) typeName="cdwriter";
+	else if (-1!=mp->mountedFrom().indexOf("cdrecorder",0,Qt::CaseInsensitive)) typeName="cdwriter";
+	else if (-1!=mp->mountPoint().indexOf("cdrecorder",0,Qt::CaseInsensitive)) typeName="cdwriter";
+	else if (-1!=mp->mountedFrom().indexOf("dvdrecorder",0,Qt::CaseInsensitive)) typeName="dvdwriter";
+	else if (-1!=mp->mountPoint().indexOf("dvdrecorder",0,Qt::CaseInsensitive)) typeName="dvdwriter";
+	else if (-1!=mp->mountPoint().indexOf("dvdwriter",0,Qt::CaseInsensitive)) typeName="dvdwriter";
+	else if (-1!=mp->mountedFrom().indexOf("dvdwriter",0,Qt::CaseInsensitive)) typeName="dvdwriter";
+	else if (-1!=mp->mountPoint().indexOf("dvd",0,Qt::CaseInsensitive)) typeName="dvd";   
+	else if (-1!=mp->mountedFrom().indexOf("dvd",0,Qt::CaseInsensitive)) typeName="dvd";   
+	else if (-1!=mp->mountedFrom().indexOf("/dev/scd",0,Qt::CaseInsensitive)) typeName="cdrom";
+	else if (-1!=mp->mountedFrom().indexOf("/dev/sr",0,Qt::CaseInsensitive)) typeName="cdrom";
 	
 	/* Guessing of floppy types */
-	else if (-1!=mp->mountedFrom().find("fd",0,FALSE)) {
-		if (-1!=mp->mountedFrom().find("360",0,FALSE)) typeName="floppy5";
-			if (-1!=mp->mountedFrom().find("1200",0,FALSE)) typeName="floppy5";
+	else if (-1!=mp->mountedFrom().indexOf("fd",0,Qt::CaseInsensitive)) {
+		if (-1!=mp->mountedFrom().indexOf("360",0,Qt::CaseInsensitive)) typeName="floppy5";
+			if (-1!=mp->mountedFrom().indexOf("1200",0,Qt::CaseInsensitive)) typeName="floppy5";
 			else typeName="floppy";
 		}
-	else if (-1!=mp->mountPoint().find("floppy",0,FALSE)) typeName="floppy";
+	else if (-1!=mp->mountPoint().indexOf("floppy",0,Qt::CaseInsensitive)) typeName="floppy";
 	
-	else if (-1!=mp->mountPoint().find("zip",0,FALSE)) typeName="zip";
-	else if (-1!=mp->mountType().find("nfs",0,FALSE)) typeName="nfs";
-	else if (-1!=mp->mountType().find("smb",0,FALSE)) typeName="smb";
-	else if (-1!=mp->mountedFrom().find("//",0,FALSE)) typeName="smb";
+	else if (-1!=mp->mountPoint().indexOf("zip",0,Qt::CaseInsensitive)) typeName="zip";
+	else if (-1!=mp->mountType().indexOf("nfs",0,Qt::CaseInsensitive)) typeName="nfs";
+	else if (-1!=mp->mountType().indexOf("smb",0,Qt::CaseInsensitive)) typeName="smb";
+	else if (-1!=mp->mountedFrom().indexOf("//",0,Qt::CaseInsensitive)) typeName="smb";
 	else typeName="hdd";
 	
 	return typeName;
@@ -418,7 +417,7 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 	if( mp->mountPoint() == "/dev/swap" || 
 		mp->mountPoint() == "/dev/pts"  ||
 		mp->mountPoint().startsWith( "/sys/kernel" ) ||
-		mp->mountPoint().find( "/proc" ) == 0 )
+		mp->mountPoint().indexOf( "/proc" ) == 0 )
 		return;
 	if( mp->mountType() == "swap" ||
 		mp->mountType() == "sysfs" ||
@@ -431,7 +430,7 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 		return;
 	if( mp->mountedFrom() == "none" ||
 		mp->mountedFrom() == "tmpfs" ||
-		mp->mountedFrom().find( "shm" )  != -1 )
+		mp->mountedFrom().indexOf( "shm" )  != -1 )
 		return;
 	
 	int overwrite = -1;
@@ -494,7 +493,7 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 		pixmap = FL_LOADICON( mt->iconName() );
 	
 	if( overwrite == -1 ) {
-		int index = popupMenu->count();
+		int index = popupMenu->actions().count();
 		urls.append( KUrl( mp->mountPoint() ) );
 		mimes.append( mime );
 		mediaUrls.append( KUrl() );
