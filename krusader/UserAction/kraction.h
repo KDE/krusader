@@ -48,6 +48,7 @@ class KrAction: public KAction, public KrActionBase {
       QDomElement xmlDump( QDomDocument& doc ) const;
 
       void setName( const char* ) { /* empty reimplementation to prevent a name-change */ };
+      const QString & getName()   { return _name; }
 
       QString category() const { return _category; };
       void setCategory( const QString& category ) { _category = category; };

@@ -72,7 +72,7 @@ QStringList UserAction::allCategories() {
    while (it.hasNext())
    {
       KrAction * action = it.next();
-      if ( actionCategories.find( action->category() ) == actionCategories.end() )
+      if ( actionCategories.indexOf( action->category() ) == -1 )
          actionCategories.append( action->category() );
    }
 
@@ -86,7 +86,7 @@ QStringList UserAction::allNames() {
    while (it.hasNext())
    {
       KrAction * action = it.next();
-      actionNames.append( action->name() );
+      actionNames.append( action->getName() );
    }
 
    return actionNames;

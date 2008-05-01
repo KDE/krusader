@@ -521,7 +521,7 @@ TagString exp_ListFile::expFunc( const ListPanel* panel, const QStringList& para
     	 << "\n";
     tmpFile.close();
 
-   return tmpFile.name();
+   return tmpFile.fileName();
 }
 
 exp_Select::exp_Select() {
@@ -1106,7 +1106,7 @@ TagString Expander::expandCurrent( const QString& stringToExpand, bool useUrl ) 
 //    bool inQuotes = false;
    int idx = 0;
    while ( idx < stringToExpand.length() ) {
-      if ( ( begin = stringToExpand.find( '%', idx ) ) == -1 ) break;
+      if ( ( begin = stringToExpand.indexOf( '%', idx ) ) == -1 ) break;
       if ( ( end = findEnd( stringToExpand, begin ) ) == -1 ) {
          setError(Error(Error::S_FATAL,Error::C_SYNTAX,i18n("Error: unterminated % in Expander::expandCurrent")) );
          return QString();
@@ -1216,10 +1216,10 @@ TagStringList Expander::separateParameter( QString* const exp, bool useUrl ) {
 }
 
 int Expander::findEnd( const QString& str, int start ) {
-   int end = str.find( '%', start + 1 );
+   int end = str.indexOf( '%', start + 1 );
    if ( end == -1 )
       return end;
-   int bracket = str.find( '(', start + 1 );
+   int bracket = str.indexOf( '(', start + 1 );
    if ( end < bracket || bracket == -1 )
       return end;
       

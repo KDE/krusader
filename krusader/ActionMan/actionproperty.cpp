@@ -139,7 +139,7 @@ void ActionProperty::updateGUI( KrAction *action ) {
    // This prevents the changed-signal from being emited during the GUI-update.
    _modified = true; // The real state is set at the end of this function.
 
-   leDistinctName->setText( _action->name() );
+   leDistinctName->setText( _action->getName() );
    cbCategory->lineEdit()->setText( _action->category() );
    leTitle->setText( _action->text() );
    leTooltip->setText( _action->toolTip() );
@@ -213,7 +213,7 @@ void ActionProperty::updateAction( KrAction *action ) {
    _action->setName( leDistinctName->text().toLatin1() );
    _action->setText( leTitle->text() );
    _action->setToolTip( leTooltip->text() );
-   _action->setWhatsThis( textDescription->text() );
+   _action->setWhatsThis( textDescription->toPlainText() );
    _action->setCommand( leCommandline->text() );
    _action->setStartpath( leStartpath->text() );
    _action->setShortcut( KeyButtonShortcut->keySequence() );

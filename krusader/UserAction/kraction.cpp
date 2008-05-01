@@ -124,9 +124,9 @@ void KrActionProcDlg::addStderr(const QString& str) {
    if (_stderr)
       _stderr->append(str);
    else {
-      _stdout->setItalic(true);
+      _stdout->setFontItalic(true);
       _stdout->append(str);
-      _stdout->setItalic(false);
+      _stdout->setFontItalic(false);
    }
 }
 
@@ -177,7 +177,7 @@ void KrActionProcDlg::slotUser1() {
    }
 
    QTextStream stream( &file );
-   stream << _currentTextEdit->text();
+   stream << _currentTextEdit->toPlainText();
    file.close();
 }
 
@@ -235,7 +235,7 @@ void KrActionProc::start( QStringList cmdLineList ) {
       //run in TE
       if ( _action->execType() == KrAction::RunInTE ) {
          //send the commandline contents to the terminal emulator
-         QKeyEvent keyEvent( QEvent::KeyPress, 0, -1, 0,  cmd+"\n");
+         QKeyEvent keyEvent( QEvent::KeyPress, 0, Qt::NoModifier,  cmd+"\n");
          QApplication::sendEvent( MAIN_VIEW->konsole_part->widget(), &keyEvent );     
       } else { // will start a new process
          // run in terminal
@@ -351,7 +351,7 @@ bool KrAction::isAvailable( const KUrl& currentURL ) {
       available = false;
       for ( QStringList::Iterator it = _showonlyPath.begin(); it != _showonlyPath.end(); ++it ) {
          if ( (*it).right(1) == "*" ){
-             if ( currentURL.path().find( (*it).left( (*it).length() - 1 ) ) == 0 ) {
+             if ( currentURL.path().indexOf( (*it).left( (*it).length() - 1 ) ) == 0 ) {
                available = true;
                break;
             }
@@ -377,7 +377,7 @@ bool KrAction::isAvailable( const KUrl& currentURL ) {
                }
             }
             else {
-               if ( mime->name().find( *it ) == 0 ) {  // 0 is the beginning, -1 is not found
+               if ( mime->name().indexOf( *it ) == 0 ) {  // 0 is the beginning, -1 is not found
                   available = true;
                   break;
                }
@@ -390,7 +390,7 @@ bool KrAction::isAvailable( const KUrl& currentURL ) {
    if ( available && ! _showonlyFile.empty() ) {
       available = false;
       for ( QStringList::Iterator it = _showonlyFile.begin(); it != _showonlyFile.end(); ++it ) {
-         QRegExp regex = QRegExp( *it, false, QRegExp::Wildcard ); // case-sensitive = false; wildcards = true
+         QRegExp regex = QRegExp( *it, Qt::CaseInsensitive, QRegExp::Wildcard ); // case-sensitive = false; wildcards = true
          if ( regex.exactMatch( currentURL.fileName() ) ) {
             available = true;
             break;
@@ -449,7 +449,7 @@ bool KrAction::xmlRead( const QDomElement& element ) {
 
       // unknown but not empty
       if ( ! e.tagName().isEmpty() )
-         krOut << "KrAction::xmlRead() - unrecognized tag found: <action name=\"" << name() << "\"><" << e.tagName() << ">" << endl;
+         krOut << "KrAction::xmlRead() - unrecognized tag found: <action name=\"" << _name << "\"><" << e.tagName() << ">" << endl;
 
    } // for ( QDomNode node = action->firstChild(); !node.isNull(); node = node.nextSibling() )
 
@@ -510,7 +510,7 @@ void KrAction::readCommand( const QDomElement& element ) {
    else if ( attr == "collect_output_separate_stderr")
       setExecType( CollectOutputSeparateStderr );
    else
-      krOut << "KrAction::readCommand() - unrecognized attribute value found: <action name=\"" << name() << "\"><command executionmode=\"" << attr << "\""<< endl;
+      krOut << "KrAction::readCommand() - unrecognized attribute value found: <action name=\"" << _name << "\"><command executionmode=\"" << attr << "\""<< endl;
 
    attr = element.attribute( "accept", "local" ); // default: "local"
    if ( attr == "local" )
@@ -518,7 +518,7 @@ void KrAction::readCommand( const QDomElement& element ) {
    else if ( attr == "url")
       setAcceptURLs( true );
    else
-        krOut << "KrAction::readCommand() - unrecognized attribute value found: <action name=\"" << name() << "\"><command accept=\"" << attr << "\""<< endl;
+        krOut << "KrAction::readCommand() - unrecognized attribute value found: <action name=\"" << _name << "\"><command accept=\"" << attr << "\""<< endl;
 
    attr = element.attribute( "confirmexecution", "false" ); // default: "false"
    if ( attr == "true" )
@@ -584,7 +584,7 @@ void KrAction::readAvailability( const QDomElement& element ) {
       if ( e.tagName() == "filename" )
          showlist = & _showonlyFile;
       else {
-         krOut << "KrAction::readAvailability() - unrecognized element found: <action name=\"" << name() << "\"><availability><" << e.tagName() << ">"<< endl;
+         krOut << "KrAction::readAvailability() - unrecognized element found: <action name=\"" << _name << "\"><availability><" << e.tagName() << ">"<< endl;
          showlist = 0;
       }
 

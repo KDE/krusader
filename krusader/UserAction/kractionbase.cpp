@@ -68,7 +68,7 @@ void KrActionBase::exec() {
 
 void KrActionBase::handleError(const Error& err)
 {
-	QErrorMessage::qtHandler()->message(err.what());
+	QErrorMessage::qtHandler()->showMessage(err.what());
 }
 
 KrActionProc* KrActionBase::actionProcFactoryMethod()
