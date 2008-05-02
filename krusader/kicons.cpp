@@ -39,10 +39,7 @@
 QPixmap FL_LOADICON(QString name) {
   KConfigGroup group( krConfig, "Look&Feel");
   int size = (group.readEntry("Filelist Icon Size",_FilelistIconSize)).toInt();
-  if (size!=22)
-    return krLoader->loadIcon(name,KIconLoader::Desktop,size);
-  // else implied
-  return QIcon(krLoader->loadIcon(name,KIconLoader::Desktop,32)).pixmap(MAIN_VIEW->style()->pixelMetric(QStyle::PM_SmallIconSize),true);
+  return krLoader->loadIcon(name,KIconLoader::Desktop,size);
 }
 
 const char * no_xpm[] = {
