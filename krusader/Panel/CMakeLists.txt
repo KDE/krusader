@@ -20,7 +20,8 @@ set( Panel_SRCS
 	panelpopup.cpp 
 	krselectionmode.cpp 
 	krbriefview.cpp 
-	krbriefviewitem.cpp )
+	krbriefviewitem.cpp
+        krviewfactory.cpp )
 
 kde4_add_library(Panel ${Panel_SRCS} )
 

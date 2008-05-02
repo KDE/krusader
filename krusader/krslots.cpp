@@ -44,6 +44,7 @@
 #include <kdeversion.h>
 #include <kcmdlineargs.h>
 #include "KViewer/krviewer.h"
+#include "Panel/krviewfactory.h"
 
 #ifdef __KJSEMBED__
 #include "KrJS/krjs.h"
@@ -56,10 +57,6 @@
 #include "krusaderview.h"
 #include "Panel/listpanel.h"
 #include "Panel/krselectionmode.h"
-#include "Panel/krdetailedview.h"
-#include "Panel/krdetailedviewitem.h"
-#include "Panel/krbriefview.h"
-#include "Panel/krbriefviewitem.h"
 #include "Dialogs/krdialogs.h"
 #include "Dialogs/krspwidgets.h"
 #include "Dialogs/krkeydialog.h"
@@ -309,9 +306,10 @@ void KRslots::runKonfigurator(bool firstTime) {
   {
     if((group.readEntry("Filelist Icon Size",_FilelistIconSize)).toInt() != size )
       QPixmapCache::clear();
-      
-    KrDetailedViewItem::itemHeightChanged(); // needed when icon size / font size changes
-    KrBriefViewItem::itemHeightChanged();
+
+    QList<KrViewInstance *> views = KrViewFactory::registeredViews();
+    foreach( KrViewInstance * inst, views )
+      KrViewFactory::itemHeightChanged( inst->id() );
 
     MAIN_VIEW->leftMng->slotRecreatePanels();
     MAIN_VIEW->rightMng->slotRecreatePanels();
@@ -323,14 +321,34 @@ void KRslots::runKonfigurator(bool firstTime) {
   delete konfigurator;
 }
 
-void KRslots::setDetailedView() {
-  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != "Detailed" )
-    ACTIVE_PANEL->changeType( "Detailed" );
+void KRslots::setView0() {
+  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != Krusader::viewIds[ 0 ] )
+    ACTIVE_PANEL->changeType( Krusader::viewIds[ 0 ] );
 }
 
-void KRslots::setBriefView() {
-  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != "Brief" )
-    ACTIVE_PANEL->changeType( "Brief" );
+void KRslots::setView1() {
+  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != Krusader::viewIds[ 1 ] )
+    ACTIVE_PANEL->changeType( Krusader::viewIds[ 1 ] );
+}
+
+void KRslots::setView2() {
+  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != Krusader::viewIds[ 2 ] )
+    ACTIVE_PANEL->changeType( Krusader::viewIds[ 2 ] );
+}
+
+void KRslots::setView3() {
+  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != Krusader::viewIds[ 3 ] )
+    ACTIVE_PANEL->changeType( Krusader::viewIds[ 3 ] );
+}
+
+void KRslots::setView4() {
+  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != Krusader::viewIds[ 4 ] )
+    ACTIVE_PANEL->changeType( Krusader::viewIds[ 4 ] );
+}
+
+void KRslots::setView5() {
+  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != Krusader::viewIds[ 5 ] )
+    ACTIVE_PANEL->changeType( Krusader::viewIds[ 5 ] );
 }
 
 void KRslots::toggleHidden(){

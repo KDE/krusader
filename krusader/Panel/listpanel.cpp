@@ -44,7 +44,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QShowEvent>
 #include <QDrag>
 #include <QMimeData>
-#include <q3header.h>
 #include <qtimer.h>
 #include <qregexp.h> 
 #include <qsplitter.h>
@@ -88,8 +87,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../Dialogs/krspecialwidgets.h"
 #include "../GUI/kcmdline.h"
 #include "../Dialogs/percentalsplitter.h"
-#include "krdetailedview.h"
-#include "krbriefview.h"
 #include "krpreviewpopup.h"
 #include "../GUI/dirhistorybutton.h"
 #include "../GUI/dirhistoryqueue.h"
@@ -100,6 +97,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../UserAction/useractionpopupmenu.h"
 #include "../Dialogs/popularurls.h"
 #include "krpopupmenu.h"
+#include "krviewfactory.h"
 
 #ifdef __LIBKONQ__
 #include <konq_popupmenu.h>
@@ -111,7 +109,7 @@ typedef QList<KServiceOffer> OfferList;
 /////////////////////////////////////////////////////
 // 					The list panel constructor       //
 /////////////////////////////////////////////////////
-ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
+ListPanel::ListPanel( int typeIn, QWidget *parent, bool &left ) :
       QWidget( parent ), panelType( typeIn ), colorMask( 255 ), compareMode( false ), statsAgent( 0 ), 
 		quickSearch( 0 ), cdRootButton( 0 ), cdUpButton( 0 ), popupBtn(0), popup(0),inlineRefreshJob(0), _left( left ) {
 
@@ -265,9 +263,6 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
 
    setPanelToolbar();
 
-   header = new Q3Header( this );
-   header->hide();
-
 	// create a splitter to hold the view and the popup
 	splt = new PercentalSplitter(this);
 	splt->setChildrenCollapsible(true);
@@ -291,7 +286,6 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
    layout->addWidget( status, 1, 1 );
    layout->addWidget( historyButton, 1, 2 );
    layout->addWidget( bookmarksButton, 1, 3 );
-   layout->addWidget( header, 2, 0, 1, 4 );
    layout->addWidget( splt, 3, 0, 1, 4 );
    layout->addWidget( quickSearch, 4, 0, 1, 4 );
    quickSearch->hide();
@@ -302,44 +296,19 @@ ListPanel::ListPanel( QString typeIn, QWidget *parent, bool &left ) :
 
 void ListPanel::createView()
 {
-	header->hide();
-	if( panelType == "Brief" )
-	{
-		view = new KrBriefView( header, splt, _left, krConfig );
-		view->init();
-		
-		connect( dynamic_cast<KrBriefView*>( view ), SIGNAL( middleButtonClicked( KrViewItem * ) ), SLOTS, SLOT( newTab( KrViewItem * ) ) );
-		connect( dynamic_cast<KrBriefView*>( view ), SIGNAL( currentChanged( KrViewItem * ) ), 
-			SLOTS, SLOT( updatePopupPanel( KrViewItem* ) ) );
+   view = KrViewFactory::createView( panelType, splt, _left, krConfig );
 
-		// connect quicksearch
-		connect( quickSearch, SIGNAL( textChanged( const QString& ) ),
-			dynamic_cast<KrBriefView*>( view ), SLOT( quickSearch( const QString& ) ) );
-		connect( quickSearch, SIGNAL( otherMatching( const QString&, int ) ),
-			dynamic_cast<KrBriefView*>( view ), SLOT( quickSearch( const QString& , int ) ) );
-		connect( quickSearch, SIGNAL( stop( QKeyEvent* ) ),
-			dynamic_cast<KrBriefView*>( view ), SLOT( stopQuickSearch( QKeyEvent* ) ) );
-		connect( quickSearch, SIGNAL( process( QKeyEvent* ) ),
-			dynamic_cast<KrBriefView*>( view ), SLOT( handleQuickSearchEvent( QKeyEvent* ) ) );
-	} else { /* Detailed */
-		panelType = "Detailed";
-		view = new KrDetailedView( splt, _left, krConfig );
-		view->init();
-		connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( middleButtonClicked( KrViewItem * ) ), SLOTS, SLOT( newTab( KrViewItem * ) ) );
-		connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( currentChanged( KrViewItem * ) ), 
-			SLOTS, SLOT( updatePopupPanel( KrViewItem * ) ) );
-		// connect quicksearch
-		connect( quickSearch, SIGNAL( textChanged( const QString& ) ),
-			dynamic_cast<KrDetailedView*>( view ), SLOT( quickSearch( const QString& ) ) );
-		connect( quickSearch, SIGNAL( otherMatching( const QString&, int ) ),
-			dynamic_cast<KrDetailedView*>( view ), SLOT( quickSearch( const QString& , int ) ) );
-		connect( quickSearch, SIGNAL( stop( QKeyEvent* ) ),
-			dynamic_cast<KrDetailedView*>( view ), SLOT( stopQuickSearch( QKeyEvent* ) ) );
-		connect( quickSearch, SIGNAL( process( QKeyEvent* ) ),
-			dynamic_cast<KrDetailedView*>( view ), SLOT( handleQuickSearchEvent( QKeyEvent* ) ) );
-	}
+   view->init();
    view->redraw();
 
+   // connect quicksearch
+   connect( quickSearch, SIGNAL( textChanged( const QString& ) ), view->op(), SIGNAL( quickSearch( const QString& ) ) );
+   connect( quickSearch, SIGNAL( otherMatching( const QString&, int ) ), view->op(), SIGNAL( quickSearch( const QString& , int ) ) );
+   connect( quickSearch, SIGNAL( stop( QKeyEvent* ) ), view->op(), SIGNAL( stopQuickSearch( QKeyEvent* ) ) );
+   connect( quickSearch, SIGNAL( process( QKeyEvent* ) ), view->op(), SIGNAL( handleQuickSearchEvent( QKeyEvent* ) ) );
+
+   connect( view->op(), SIGNAL( middleButtonClicked( KrViewItem * ) ), SLOTS, SLOT( newTab( KrViewItem * ) ) );
+   connect( view->op(), SIGNAL( currentChanged( KrViewItem * ) ), SLOTS, SLOT( updatePopupPanel( KrViewItem* ) ) );
    connect( view->op(), SIGNAL( renameItem( const QString &, const QString & ) ),
             func, SLOT( rename( const QString &, const QString & ) ) );
    connect( view->op(), SIGNAL( executed( QString& ) ), func, SLOT( execute( QString& ) ) );
@@ -353,7 +322,7 @@ void ListPanel::createView()
    connect( view->op(), SIGNAL( gotDrop( QDropEvent * ) ), this, SLOT( handleDropOnView( QDropEvent * ) ) );
 }
 
-void ListPanel::changeType( const QString & type )
+void ListPanel::changeType( int type )
 {
    if( panelType != type )
    {
@@ -363,10 +332,7 @@ void ListPanel::changeType( const QString & type )
 
       slotStartUpdate();
 
-      if( panelType == "Brief" )
-         dynamic_cast<KrBriefView*>( view )->show();
-      else /* Detailed */
-         dynamic_cast<KrDetailedView*>( view )->show();
+      view->redraw();
    }
 }
 
@@ -625,9 +591,13 @@ void ListPanel::slotFocusOnMe() {
    emit activePanelChanged( this );
 
    func->refreshActions();
-   
-   Krusader::actDetailedView->setEnabled( panelType != "Detailed" ); // enable/disable the detailed view action
-   Krusader::actBriefView->setEnabled( panelType != "Brief" );       // enable/disable the brief view action
+
+   if( Krusader::actView0 ) Krusader::actView0->setEnabled( panelType != Krusader::viewIds[ 0 ] );
+   if( Krusader::actView1 ) Krusader::actView1->setEnabled( panelType != Krusader::viewIds[ 1 ] );
+   if( Krusader::actView2 ) Krusader::actView2->setEnabled( panelType != Krusader::viewIds[ 2 ] );
+   if( Krusader::actView3 ) Krusader::actView3->setEnabled( panelType != Krusader::viewIds[ 3 ] );
+   if( Krusader::actView4 ) Krusader::actView4->setEnabled( panelType != Krusader::viewIds[ 4 ] );
+   if( Krusader::actView5 ) Krusader::actView5->setEnabled( panelType != Krusader::viewIds[ 5 ] );
 
    view->refreshColors();
    otherPanel->view->refreshColors();
@@ -1046,7 +1016,6 @@ void ListPanel::panelInactive() {
 
 void ListPanel::slotJobStarted(KIO::Job* job) {
 	// disable the parts of the panel we don't want touched
-	//static_cast<KrDetailedView*>(view)->setEnabled(false);
 	status->setEnabled(false);
 	origin->setEnabled(false);
 	cdRootButton->setEnabled(false);
@@ -1092,7 +1061,6 @@ void ListPanel::inlineRefreshInfoMessage( KJob*, const QString &msg ) {
 void ListPanel::inlineRefreshListResult(KJob*) {
 	inlineRefreshJob = 0;
 	// reenable everything
-	//static_cast<KrDetailedView*>(view)->setEnabled(true);
 	status->setEnabled(true);
 	origin->setEnabled(true);
 	cdRootButton->setEnabled(true);

@@ -58,8 +58,8 @@
 KrusaderView::KrusaderView( QWidget *parent ) : QWidget( parent ), activePanel(0), 
 								konsole_part( 0L ) {}
 
-void KrusaderView::start( QStringList leftTabs, QStringList leftTypes, QList<int> leftProps, int leftActiveTab,
-                          QStringList rightTabs, QStringList rightTypes, QList<int> rightProps, int rightActiveTab,
+void KrusaderView::start( QStringList leftTabs, QList<int> leftTypes, QList<int> leftProps, int leftActiveTab,
+                          QStringList rightTabs, QList<int> rightTypes, QList<int> rightProps, int rightActiveTab,
                           bool leftSideActive ) {
   ////////////////////////////////
   // make a 1x1 mainLayout, it will auto-expand:

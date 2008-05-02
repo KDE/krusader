@@ -31,6 +31,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krdetailedviewitem.h"
 #include "krcolorcache.h"
 #include "krselectionmode.h"
+#include "krviewfactory.h"
 #include "../krusader.h"
 #include "../kicons.h"
 #include "../defaults.h"
@@ -89,6 +90,10 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #define VF	getVfile()
 
 #define COLUMN_POPUP_IDS    91
+
+#define DETAILEDVIEW_ID 0
+KrViewInstance detailedView( DETAILEDVIEW_ID, i18n( "&Detailed View" ), Qt::ALT + Qt::SHIFT + Qt::Key_D,
+                             KrDetailedView::create, KrDetailedViewItem::itemHeightChanged );
 
 QString KrDetailedView::ColumnName[ KrDetailedViewProperties::MAX_COLUMNS ];
 
@@ -224,6 +229,16 @@ void KrDetailedView::setup() {
    refreshColors();
 
    CANCEL_TWO_CLICK_RENAME;
+
+   // connect quicksearch
+   connect( op(), SIGNAL( quickSearch( const QString& ) ),
+     this, SLOT( quickSearch( const QString& ) ) );
+   connect( op(), SIGNAL( quickSearch( const QString& , int ) ),
+     this, SLOT( quickSearch( const QString& , int ) ) );
+   connect( op(), SIGNAL( stopQuickSearch( QKeyEvent* ) ),
+     this, SLOT( stopQuickSearch( QKeyEvent* ) ) );
+   connect( op(), SIGNAL( handleQuickSearchEvent( QKeyEvent* ) ),
+     this, SLOT( handleQuickSearchEvent( QKeyEvent* ) ) );
 }
 
 KrDetailedView::~KrDetailedView() {
@@ -1342,7 +1357,7 @@ void KrDetailedView::setNameToMakeCurrent( Q3ListViewItem * it ) {
 void KrDetailedView::slotMouseClicked( int button, Q3ListViewItem * item, const QPoint&, int ) {
    pressedItem = 0; // if the signals are emitted, don't emit twice at contentsMouseReleaseEvent
    if ( button == Qt::MidButton )
-      emit middleButtonClicked( dynamic_cast<KrViewItem *>( item ) );
+      op()->emitMiddleButtonClicked( dynamic_cast<KrViewItem *>( item ) );
 }
 
 void KrDetailedView::refreshColors() {

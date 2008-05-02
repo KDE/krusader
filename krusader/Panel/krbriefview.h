@@ -33,6 +33,7 @@ A
 #include "krview.h"
 #include "krviewitem.h"
 #include <k3iconview.h>
+#include <q3header.h>
 #include <qtimer.h>
 #include <QDragMoveEvent>
 #include <QDropEvent>
@@ -89,11 +90,9 @@ public:
 	virtual void saveSettings() {}
 	virtual void restoreSettings() {}
 	virtual QString nameInKConfig() {return _nameInKConfig;}
-	virtual void redraw() { viewport()->show(); }
-
-signals:
-	void middleButtonClicked( KrViewItem *item );
-	void currentChanged( KrViewItem *item );
+	virtual void redraw() { ((QWidget *)parent())->show(); header->show(); viewport()->show(); show(); }
+	
+	static KrView* create( QWidget *parent, bool &left, KConfig *cfg );
 
 protected:
 	virtual void setup();
@@ -134,7 +133,7 @@ protected slots:
 	void setNameToMakeCurrent( Q3IconViewItem *it );
 	void sortOrderChanged();
 	void slotRightButtonPressed(Q3IconViewItem*, const QPoint& point);
-	void transformCurrentChanged( Q3IconViewItem * item ) { emit currentChanged( dynamic_cast<KrViewItem *>(item ) ); }
+	void transformCurrentChanged( Q3IconViewItem * item ) { op()->emitCurrentChanged( dynamic_cast<KrViewItem *>(item ) ); }
 
 	/**
 	  * used internally to produce the signal middleButtonClicked()

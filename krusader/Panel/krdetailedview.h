@@ -106,9 +106,7 @@ public:
    virtual inline void restoreSettings() { K3ListView::restoreLayout( _config, nameInKConfig() ); }
    virtual void redraw() { viewport()->show(); header()->show(); show(); }
 
-signals:
-   void middleButtonClicked( KrViewItem *item );
-   void currentChanged( KrViewItem *item );
+   static KrView* create( QWidget *parent, bool &left, KConfig *cfg ) { return new KrDetailedView( parent, left, cfg ); }
 
 protected:
 	virtual void setup();
@@ -148,7 +146,7 @@ protected slots:
 	void sortOrderChanged(int);
 	void slotRightButtonPressed(Q3ListViewItem*, const QPoint& point, int);
 	void slotSortOrderChanged(int col);
-   void transformCurrentChanged( Q3ListViewItem * item ) { emit currentChanged( dynamic_cast<KrViewItem *>(item ) ); }
+   void transformCurrentChanged( Q3ListViewItem * item ) { op()->emitCurrentChanged( dynamic_cast<KrViewItem *>(item ) ); }
 
    /**
     * used internally to produce the signal middleButtonClicked()

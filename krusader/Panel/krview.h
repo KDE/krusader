@@ -93,6 +93,8 @@ public:
    void emitRenameItem(const QString &oldName, const QString &newName) { emit renameItem(oldName, newName); }
    void emitExecuted( QString &name ) { emit executed(name); }
    void emitNeedFocus() { emit needFocus(); }
+   void emitMiddleButtonClicked( KrViewItem *item ) { emit middleButtonClicked( item ); }
+   void emitCurrentChanged( KrViewItem *item ) { emit currentChanged( item ); }
 	
 signals:
 	void selectionChanged();
@@ -104,6 +106,12 @@ signals:
    void renameItem( const QString &oldName, const QString &newName );
    void executed( QString &name );
    void needFocus();
+   void middleButtonClicked( KrViewItem *item );
+   void currentChanged( KrViewItem *item );
+   void quickSearch( const QString& );
+   void quickSearch( const QString& , int );
+   void stopQuickSearch( QKeyEvent* );
+   void handleQuickSearchEvent( QKeyEvent* );
 
 	
 protected:

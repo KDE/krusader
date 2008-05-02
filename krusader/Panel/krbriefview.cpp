@@ -31,6 +31,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krbriefviewitem.h"
 #include "krcolorcache.h"
 #include "krselectionmode.h"
+#include "krviewfactory.h"
 #include "../krusader.h"
 #include "../kicons.h"
 #include "../defaults.h"
@@ -53,6 +54,9 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #define MAX_COLS 5
 #define VF	 getVfile()
 
+#define BRIEFVIEW_ID 1
+KrViewInstance briefView( BRIEFVIEW_ID, i18n( "&Brief View" ), Qt::ALT + Qt::SHIFT + Qt::Key_B,
+                             KrBriefView::create, KrBriefViewItem::itemHeightChanged );
 
 /* TODO
 class KrBriefViewToolTip : public QToolTip
@@ -161,6 +165,16 @@ void KrBriefView::setup() {
 
    header->installEventFilter( this );
    header->show();
+
+   // connect quicksearch
+   connect( op(), SIGNAL( quickSearch( const QString& ) ),
+     this, SLOT( quickSearch( const QString& ) ) );
+   connect( op(), SIGNAL( quickSearch( const QString& , int ) ),
+     this, SLOT( quickSearch( const QString& , int ) ) );
+   connect( op(), SIGNAL( stopQuickSearch( QKeyEvent* ) ),
+     this, SLOT( stopQuickSearch( QKeyEvent* ) ) );
+   connect( op(), SIGNAL( handleQuickSearchEvent( QKeyEvent* ) ),
+     this, SLOT( handleQuickSearchEvent( QKeyEvent* ) ) );
 }
 
 KrBriefView::~KrBriefView() {
@@ -1234,7 +1248,7 @@ void KrBriefView::setNameToMakeCurrent( Q3IconViewItem * it ) {
 void KrBriefView::slotMouseClicked( int button, Q3IconViewItem * item, const QPoint& ) {
    pressedItem = 0; // if the signals are emitted, don't emit twice at contentsMouseReleaseEvent
    if ( button == Qt::MidButton )
-      emit middleButtonClicked( dynamic_cast<KrViewItem *>( item ) );
+      op()->emitMiddleButtonClicked( dynamic_cast<KrViewItem *>( item ) );
 }
 
 void KrBriefView::refreshColors() {
@@ -1477,6 +1491,18 @@ QMouseEvent * KrBriefView::transformMouseEvent( QMouseEvent * e )
 	}
 	
 	return e;
+}
+KrView* KrBriefView::create( QWidget *parent, bool &left, KConfig *cfg ) {
+	QWidget * briefWidget = new QWidget( parent );
+	QVBoxLayout *briefLayout = new QVBoxLayout( briefWidget );
+	briefLayout->setSpacing( 0 );
+	briefLayout->setContentsMargins( 0, 0, 0, 0 );
+	Q3Header * header = new Q3Header( briefWidget );
+	briefLayout->addWidget( header );
+	KrBriefView * view = new KrBriefView( header, parent, left, cfg );
+	briefLayout->addWidget( view );
+	connect( view, SIGNAL( destroyed() ), briefWidget, SLOT( deleteLater() ) );
+	return view;
 }
 
 #include "krbriefview.moc"

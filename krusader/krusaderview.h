@@ -58,8 +58,8 @@ class KrusaderView : public QWidget  {
 public:
 	KrusaderView(QWidget *parent=0);
 	virtual ~KrusaderView(){}
-  void start(QStringList leftTabs, QStringList leftTypes, QList<int> leftProps, int leftActiveTab,
-             QStringList rightTabs, QStringList rightTypes, QList<int> rightProps, int rightActiveTab,
+  void start(QStringList leftTabs, QList<int> leftTypes, QList<int> leftProps, int leftActiveTab,
+             QStringList rightTabs, QList<int> rightTypes, QList<int> rightProps, int rightActiveTab,
              bool leftSideActive);
   void cmdLineFocus();  // command line receive's keyboard focus
   void cmdLineUnFocus();// return focus from command line to active panel

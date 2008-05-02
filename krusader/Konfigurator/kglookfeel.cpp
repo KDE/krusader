@@ -45,6 +45,7 @@
 #include "../GUI/krtreewidget.h"
 #include "../Panel/krselectionmode.h"
 #include "../Panel/listpanel.h"
+#include "../Panel/krviewfactory.h"
 
 #define PAGE_OPERATION     0
 #define PAGE_PANEL         1
@@ -192,10 +193,21 @@ void KgLookFeel::setupPanelTab() {
   QLabel *lbl3 = new QLabel( i18n( "Default panel type:" ), hboxWidget3 );
   hbox3->addWidget( lbl3 );
 
-  KONFIGURATOR_NAME_VALUE_PAIR panelTypes[] =
-    {{ i18n( "Detailed" ),  "Detailed" },
-     { i18n( "Brief" ),     "Brief" }};
-  KonfiguratorComboBox * cmb3 = createComboBox( "Look&Feel", "Default Panel Type", _DefaultPanelType, panelTypes, 2, hboxWidget3, false, false, PAGE_PANEL );
+  QList<KrViewInstance *> views = KrViewFactory::registeredViews();
+  KONFIGURATOR_NAME_VALUE_PAIR panelTypes[ views.count() ];
+
+  QString defType = "0";
+
+  for( int i=0; i != views.count(); i++ ) {
+    KrViewInstance * inst = views[ i ];
+    panelTypes[ i ].text = i18n( inst->description().toUtf8() );
+    panelTypes[ i ].text.replace( "&", "" );
+    panelTypes[ i ].value = QString( "%1" ).arg( inst->id() );
+    if( inst->id() == KrViewFactory::defaultViewId() )
+      defType = QString( "%1" ).arg( inst->id() );
+  }
+
+  KonfiguratorComboBox * cmb3 = createComboBox( "Look&Feel", "Default Panel Type", defType, panelTypes, views.count(), hboxWidget3, false, false, PAGE_PANEL );
   hbox3->addWidget( cmb3 );
   QWidget * spcr3 = createSpacer ( hboxWidget3 );
   hbox3->addWidget( spcr3 );

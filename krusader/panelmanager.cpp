@@ -11,6 +11,7 @@
 #include "Panel/panelfunc.h"
 #include "krusaderview.h"
 #include "defaults.h"
+#include "Panel/krviewfactory.h"
 
 #define HIDE_ON_SINGLE_TAB  false
 
@@ -75,7 +76,7 @@ void PanelManager::slotChangePanel( ListPanel *p ) {
    _self->slotFocusOnMe();
 }
 
-ListPanel* PanelManager::createPanel( QString type, bool setCurrent ) {
+ListPanel* PanelManager::createPanel( int type, bool setCurrent ) {
    // create the panel and add it into the widgetstack
    ListPanel * p = new ListPanel( type, _stack, _left );
    _stack->addWidget( p );
@@ -102,7 +103,7 @@ void PanelManager::startPanel( ListPanel *panel, const KUrl& path ) {
 
 void PanelManager::saveSettings( KConfigGroup *config, const QString& key, bool localOnly ) {
    QStringList l;
-   QStringList types;
+   QList<int> types;
    QList<int> props;
    int i=0, cnt=0;
    while (cnt < _tabbar->count()) {
@@ -122,7 +123,7 @@ void PanelManager::saveSettings( KConfigGroup *config, const QString& key, bool 
 
 void PanelManager::loadSettings( KConfigGroup *config, const QString& key ) {
    QStringList l = config->readPathEntry( key, QStringList() );
-   QStringList types = config->readEntry( key + " Types", QStringList() );
+   QList<int> types = config->readEntry( key + " Types", QList<int>() );
    QList<int> props = config->readEntry( key + " Props", QList<int>() );
    
    if( l.count() < 1 )
@@ -131,7 +132,7 @@ void PanelManager::loadSettings( KConfigGroup *config, const QString& key ) {
    while( types.count() < l.count() )
    {
       KConfigGroup cg( krConfig, "Look&Feel");
-      types << cg.readEntry( "Default Panel Type", _DefaultPanelType );
+      types << cg.readEntry( "Default Panel Type", KrViewFactory::defaultViewId() );
    }
    while( props.count() < l.count() )
       props << 0;
@@ -161,11 +162,10 @@ void PanelManager::loadSettings( KConfigGroup *config, const QString& key ) {
      slotNewTab( KUrl(l[i]), false, types[ i ], props[ i ] );
 }
 
-void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, QString type, int props) {
-   if( type.isNull() )
-   {
+void PanelManager::slotNewTab(const KUrl& url, bool setCurrent, int type, int props) {
+   if( type == -1 ) {
        KConfigGroup group( krConfig, "Look&Feel");
-       type = group.readEntry( "Default Panel Type", _DefaultPanelType );
+       type = group.readEntry( "Default Panel Type", KrViewFactory::defaultViewId() );
    }
    ListPanel *p = createPanel( type, setCurrent );   
    // update left/right pointers
@@ -271,7 +271,7 @@ void PanelManager::slotRecreatePanels() {
      ListPanel *updatedPanel = _tabbar->getPanel(i);
      
      ListPanel *oldPanel = updatedPanel;
-     QString type = oldPanel->getType();
+     int type = oldPanel->getType();
 
      ListPanel *newPanel = new ListPanel( type, _stack, _left );
      _tabbar->changePanel( i, newPanel );

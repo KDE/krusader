@@ -88,6 +88,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krslots.h"
 #include "krservices.h"
 #include "UserAction/useraction.h"
+#include "Panel/krviewfactory.h"
 // This makes gcc-4.1 happy. Warning about possible problem with KrAction's dtor not called
 #include "UserAction/kraction.h"
 #include "UserAction/expander.h"
@@ -177,8 +178,12 @@ KAction *Krusader::actLocationBar = 0;
 KAction *Krusader::actPopularUrls = 0;
 KAction *Krusader::actJumpBack = 0;
 KAction *Krusader::actSetJumpBack = 0;
-KAction *Krusader::actDetailedView = 0;
-KAction *Krusader::actBriefView = 0;
+KAction *Krusader::actView0 = 0;
+KAction *Krusader::actView1 = 0;
+KAction *Krusader::actView2 = 0;
+KAction *Krusader::actView3 = 0;
+KAction *Krusader::actView4 = 0;
+KAction *Krusader::actView5 = 0;
 
 KToggleAction *Krusader::actToggleTerminal = 0;
 KToggleAction *Krusader::actVerticalMode = 0;
@@ -202,6 +207,7 @@ KMenu *Krusader::userActionMenu = 0;
 UserAction *Krusader::userAction = 0;
 UserMenu *Krusader::userMenu = 0;
 KrBookmarkHandler *Krusader::bookman = 0;
+int Krusader::viewIds[ MAX_VIEWS ] = { -1, -1, -1, -1, -1, -1 };
 //QTextOStream *Krusader::_krOut = QTextOStream(::stdout);
 
 #ifdef __KJSEMBED__
@@ -274,13 +280,13 @@ Krusader::Krusader() : KParts::MainWindow(0,Qt::Window|Qt::WindowContextHelpButt
    initChecksumModule();
 
    KConfigGroup gl( krConfig, "Look&Feel");
-   QString defaultType = gl.readEntry( "Default Panel Type", _DefaultPanelType );
+   int defaultType = gl.readEntry( "Default Panel Type", KrViewFactory::defaultViewId() );
 
    KConfigGroup gs( krConfig, "Startup" );
    QStringList leftTabs = gs.readPathEntry( "Left Tab Bar",QStringList() );
    QStringList rightTabs = gs.readPathEntry( "Right Tab Bar", QStringList() );
-   QStringList leftTabTypes = gs.readEntry( "Left Tab Bar Types", QStringList() );
-   QStringList rightTabTypes = gs.readEntry( "Right Tab Bar Types", QStringList() );
+   QList<int>  leftTabTypes = gs.readEntry( "Left Tab Bar Types", QList<int>() );
+   QList<int>  rightTabTypes = gs.readEntry( "Right Tab Bar Types", QList<int>() );
    QList<int>  leftTabProps = gs.readEntry( "Left Tab Bar Props", QList<int>() );
    QList<int>  rightTabProps = gs.readEntry( "Right Tab Bar Props", QList<int>() );
    int         leftActiveTab = gs.readEntry( "Left Active Tab", 0 );
@@ -603,10 +609,41 @@ void Krusader::setupActions() {
 	NEW_KTOGGLEACTION(actToggleCmdline, i18n( "Show &Command Line" ), 0, 0, SLOTS, SLOT( toggleCmdline() ), "toggle command line");
 
 	NEW_KTOGGLEACTION(actToggleTerminal, i18n( "Show Terminal &Emulator" ), 0, Qt::ALT + Qt::CTRL + Qt::Key_T, SLOTS, SLOT( toggleTerminal() ), "toggle terminal emulator");
-   
-   NEW_KACTION(actDetailedView, i18n( "&Detailed View" ), 0, Qt::ALT + Qt::SHIFT + Qt::Key_D, SLOTS, SLOT( setDetailedView() ), "detailed_view");
 
-	NEW_KACTION(actBriefView, i18n( "&Brief View" ), 0, Qt::ALT + Qt::SHIFT + Qt::Key_B, SLOTS, SLOT( setBriefView() ), "brief_view");
+        int cnt = 0;
+        QList<KrViewInstance *> views = KrViewFactory::registeredViews();
+        foreach( KrViewInstance * inst, views )
+        {
+          if( cnt == MAX_VIEWS )
+            break;
+
+          int id = inst->id();
+          viewIds[ cnt ] = id;
+
+          switch( id ) {
+          case 0:
+            NEW_KACTION(actView0, i18n( inst->description().toUtf8() ), 0, inst->shortcut(), SLOTS, SLOT( setView0() ), "view0");
+            break;
+          case 1:
+            NEW_KACTION(actView1, i18n( inst->description().toUtf8() ), 0, inst->shortcut(), SLOTS, SLOT( setView1() ), "view1");
+            break;
+          case 2:
+            NEW_KACTION(actView2, i18n( inst->description().toUtf8() ), 0, inst->shortcut(), SLOTS, SLOT( setView2() ), "view2");
+            break;
+          case 3:
+            NEW_KACTION(actView3, i18n( inst->description().toUtf8() ), 0, inst->shortcut(), SLOTS, SLOT( setView3() ), "view3");
+            break;
+          case 4:
+            NEW_KACTION(actView4, i18n( inst->description().toUtf8() ), 0, inst->shortcut(), SLOTS, SLOT( setView4() ), "view4");
+            break;
+          case 5:
+            NEW_KACTION(actView5, i18n( inst->description().toUtf8() ), 0, inst->shortcut(), SLOTS, SLOT( setView5() ), "view5");
+            break;
+          default:
+            break;
+          }
+          cnt++;
+        }
 
 	NEW_KTOGGLEACTION(actToggleHidden, i18n( "Show &Hidden Files" ), 0, Qt::CTRL + Qt::Key_Period, SLOTS, SLOT( toggleHidden() ), "toggle hidden files");
 

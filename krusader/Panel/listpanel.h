@@ -74,7 +74,6 @@ class SyncBrowseButton;
 class KrBookmarkButton;
 class KPushButton;
 class ListPanelFunc;
-class Q3Header;
 class QSplitter;
 class KDiskFreeSpace;
 
@@ -85,12 +84,12 @@ public:
 	#define ITEM2VFILE(PANEL_PTR, KRVIEWITEM)		PANEL_PTR->func->files()->vfs_search(KRVIEWITEM->name())
 	#define NAME2VFILE(PANEL_PTR, STRING_NAME)	PANEL_PTR->func->files()->vfs_search(STRING_NAME)
    // constructor create the panel, but DOESN'T fill it with data, use start()
-   ListPanel( QString panelType, QWidget *parent, bool &left );
+   ListPanel( int panelType, QWidget *parent, bool &left );
    ~ListPanel();
    void start( KUrl url = KUrl(), bool immediate = false );
    
-   const QString & getType() { return panelType; }
-   void changeType( const QString & );
+   int getType() { return panelType; }
+   void changeType( int );
    
    KUrl virtualPath() const;
 	QString realPath() const;
@@ -168,7 +167,7 @@ signals:
    void finishedDragging();              // currently
 
 public:
-   QString panelType;
+   int panelType;
    ListPanelFunc	*func;
    KrView *view;
    ListPanel	*otherPanel;
@@ -197,7 +196,6 @@ public:
 	KPushButton *inlineRefreshCancelButton;
 	KIO::Job *inlineRefreshJob;
 	QSplitter *splt;
-   Q3Header * header;
 
 protected:
    KUrl _realPath; // named with _ to keep realPath() compatability

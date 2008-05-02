@@ -48,6 +48,7 @@
 #include "krusaderapp.h"
 #include "defaults.h"
 #include <kstartupinfo.h>
+#include <Panel/krviewfactory.h>
 #include <stdlib.h>
 
 static const char *description = "Krusader\nTwin-Panel File Manager for KDE";
@@ -66,6 +67,8 @@ int main(int argc, char *argv[]) {
 // ============ begin icon-stuff ===========
 // If the user has no icon specified over the commandline we set up uor own.
 // this is acording to the users privileges. The icons are in Krusader::privIcon()
+  KrViewFactory::init();
+
 
   bool hasIcon = false;
   int i = 0;

@@ -71,6 +71,7 @@ class QueueManager;
 
 //static QTextOStream krOut(stdout);
 #define krOut kDebug(50010)
+#define MAX_VIEWS 6
 
 class Krusader : public KParts::MainWindow {
     Q_OBJECT
@@ -138,7 +139,7 @@ class Krusader : public KParts::MainWindow {
     static KAction *actCombine, *actUserMenu, *actManageUseractions, *actSyncDirs, *actSyncBrowse;
     static KAction *actF2, *actF3, *actF4, *actF5, *actF6, *actF7, *actF8, *actF9, *actF10;
     static KAction *actPopularUrls, *actLocationBar, *actJumpBack, *actSetJumpBack, *actCreateChecksum, *actMatchChecksum;
-    static KAction *actDetailedView, *actBriefView, *actCopy, *actPaste;
+    static KAction *actView0, *actView1, *actView2, *actView3, *actView4, *actView5, *actCopy, *actPaste;
     static KToggleAction *actToggleTerminal, *actVerticalMode;
     static KAction *actSelectNewerAndSingle, *actSelectNewer, *actSelectSingle, 
                         *actSelectDifferentAndSingle, *actSelectDifferent;
@@ -152,6 +153,7 @@ class Krusader : public KParts::MainWindow {
     static KAction **compareArray[];
     /** actions for setting the execution mode of commands from commanddline */
     static KAction **execTypeArray[];
+    static int viewIds[ MAX_VIEWS ];
 
     // return a path to a temp dir or file we can use.
     QString getTempDir();
