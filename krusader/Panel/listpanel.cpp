@@ -321,8 +321,6 @@ void ListPanel::createView()
 			dynamic_cast<KrBriefView*>( view ), SLOT( stopQuickSearch( QKeyEvent* ) ) );
 		connect( quickSearch, SIGNAL( process( QKeyEvent* ) ),
 			dynamic_cast<KrBriefView*>( view ), SLOT( handleQuickSearchEvent( QKeyEvent* ) ) );
-		
-		dynamic_cast<KrBriefView*>( view )->viewport()->show();
 	} else { /* Detailed */
 		panelType = "Detailed";
 		view = new KrDetailedView( splt, _left, krConfig );
@@ -339,9 +337,8 @@ void ListPanel::createView()
 			dynamic_cast<KrDetailedView*>( view ), SLOT( stopQuickSearch( QKeyEvent* ) ) );
 		connect( quickSearch, SIGNAL( process( QKeyEvent* ) ),
 			dynamic_cast<KrDetailedView*>( view ), SLOT( handleQuickSearchEvent( QKeyEvent* ) ) );
-		
-		dynamic_cast<KrDetailedView*>( view )->viewport()->show();
 	}
+   view->redraw();
 
    connect( view->op(), SIGNAL( renameItem( const QString &, const QString & ) ),
             func, SLOT( rename( const QString &, const QString & ) ) );
@@ -632,31 +629,8 @@ void ListPanel::slotFocusOnMe() {
    Krusader::actDetailedView->setEnabled( panelType != "Detailed" ); // enable/disable the detailed view action
    Krusader::actBriefView->setEnabled( panelType != "Brief" );       // enable/disable the brief view action
 
-   if( panelType == "Brief" )
-   {
-      KrBriefView * v = dynamic_cast<KrBriefView *>( view );
-      if ( v )
-         v->refreshColors();
-   }
-   else /* detailed */
-   {
-      KrDetailedView * v = dynamic_cast<KrDetailedView *>( view );
-      if ( v )
-         v->refreshColors();
-   }
-   
-   if( otherPanel->panelType == "Brief" )
-   {
-      KrBriefView * v = dynamic_cast<KrBriefView *>( otherPanel->view );
-      if ( v )
-         v->refreshColors();
-   }
-   else /* detailed */
-   {   
-      KrDetailedView *v = dynamic_cast<KrDetailedView *>( otherPanel->view );
-      if ( v )
-         v->refreshColors();
-   }
+   view->refreshColors();
+   otherPanel->view->refreshColors();
 }
 
 // this is used to start the panel, AFTER setOther() has been used

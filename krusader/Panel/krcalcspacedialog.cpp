@@ -74,10 +74,9 @@ void KrCalcSpaceDialog::CalcThread::run(){
                 m_files->vfs_calcSpace( *it, &m_currentSize, &m_totalFiles, &m_totalDirs , & m_stop);
                 if (m_stop)
                     break;
-                KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *>(m_view->findItemByName ( *it ) );
+                KrViewItem * viewItem = m_view->findItemByName ( *it );
                 if (viewItem){
-                     KrCalcSpaceDialog::setDirSize(viewItem, m_currentSize);
-                     //viewItem->repaintItem(); // crash in KrDetailedViewItem::repaintItem(): setPixmap(_view->column(KrDetailedView::Name),KrView::getIcon(_vf))
+                     viewItem->setSize( m_currentSize );
                 }
                 m_totalSize += m_currentSize;
                 m_currentSize = 0;

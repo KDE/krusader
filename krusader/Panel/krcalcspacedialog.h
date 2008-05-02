@@ -43,7 +43,6 @@
 #include <QLabel>
 // Krusader Includes
 #include "../VFS/vfs.h"
-#include "krdetailedviewitem.h"
 class ListPanel;
 class KrView;
 
@@ -88,7 +87,6 @@ class KrCalcSpaceDialog : public KDialog{
 	int m_timerCounter; // internal counter. The timer runs faster as the rehresh (see comment there)
 	void calculationFinished(); // called if the calulation is done
 	void showResult(); // show the current result in teh dialog
-	static void setDirSize(KrDetailedViewItem * viewItem, KIO::filesize_t size) {viewItem->setSize(size);}
 protected slots:
 	void timer(); // poll timer was fired
 	void slotCancel(); // cancel was pressed

@@ -41,6 +41,7 @@ class QPixmap;
 
 class KrViewItem {
 	friend class KrView;
+	friend class KrCalcSpaceDialog;
 
 public:
 	virtual const QString& name(bool withExtension=true) const;

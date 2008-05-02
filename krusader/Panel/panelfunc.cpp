@@ -54,7 +54,6 @@ A
 // Krusader Includes
 #include "panelfunc.h"
 #include "krcalcspacedialog.h"
-#include "krdetailedview.h"
 #include "../krusader.h"
 #include "../krslots.h"
 #include "../defaults.h"

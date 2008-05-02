@@ -45,7 +45,6 @@ class KrDetailedView;
 
 class KrDetailedViewItem : public K3ListViewItem, public KrViewItem {
 friend class KrDetailedView;
-friend class KrCalcSpaceDialog;
 public:
 	KrDetailedViewItem(KrDetailedView *parent, Q3ListViewItem *after, vfile *vf);
 	inline bool isSelected() const { return K3ListViewItem::isSelected(); }

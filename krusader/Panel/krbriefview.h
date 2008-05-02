@@ -89,7 +89,7 @@ public:
 	virtual void saveSettings() {}
 	virtual void restoreSettings() {}
 	virtual QString nameInKConfig() {return _nameInKConfig;}
-	virtual void resizeEvent ( QResizeEvent * );
+	virtual void redraw() { viewport()->show(); }
 
 signals:
 	void middleButtonClicked( KrViewItem *item );
@@ -105,6 +105,7 @@ protected:
 	void setColumnNr();
 	void redrawColumns();
 
+	virtual void resizeEvent ( QResizeEvent * );
 	virtual void keyPressEvent( QKeyEvent *e );
 	virtual void inputMethodEvent(QInputMethodEvent *e);
 	virtual void contentsMousePressEvent( QMouseEvent *e );

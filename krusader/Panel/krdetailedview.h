@@ -31,6 +31,7 @@ A
 #define KRDETAILEDVIEW_H
 
 #include <k3listview.h>
+#include <q3header.h>
 #include <ksqueezedtextlabel.h>
 #include <klocale.h>
 #include <qwidget.h>
@@ -103,6 +104,7 @@ public:
    virtual void prepareForPassive();
    virtual inline void saveSettings() { K3ListView::saveLayout( _config, nameInKConfig() ); }
    virtual inline void restoreSettings() { K3ListView::restoreLayout( _config, nameInKConfig() ); }
+   virtual void redraw() { viewport()->show(); header()->show(); show(); }
 
 signals:
    void middleButtonClicked( KrViewItem *item );

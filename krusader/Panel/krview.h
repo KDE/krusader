@@ -117,8 +117,7 @@ protected:
  *
  * You always hold a pointer to KrView, thus you can only use functions declared
  * in this class. If you need something else, either this class is missing something
- * or you are ;-) Using a true name (like dynamic_cast<KrDetailedViewItem*>) should be
- * needed only when doing new(), or connect() - see example in listpanel.cpp
+ * or you are ;-)
  *
  * The functions you'd usually want:
  * 1) getSelectedItems - returns all selected items, or (if none) the current item.
@@ -169,6 +168,8 @@ public:
   virtual void sort() = 0;
   virtual void saveSettings() = 0;
   virtual void restoreSettings() = 0;
+  virtual void refreshColors() = 0;
+  virtual void redraw() = 0;
   virtual void prepareForActive() { _focused = true; }
   virtual void prepareForPassive() { _focused = false; }
   virtual void renameCurrentItem(); // Rename current item. returns immediatly
