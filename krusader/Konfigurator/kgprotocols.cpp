@@ -286,7 +286,9 @@ void KgProtocols::addMime( QString name, QString protocol )
     QTreeWidgetItem *listViewItem = new QTreeWidgetItem( currentListItem );
     listViewItem->setText( 0, name );
     listViewItem->setIcon( 0, krLoader->loadIcon( "mime", KIconLoader::Small ) );
-    linkList->expandItem( currentListItem );
+    //FIXME: The follwing causes crash due to bug in QT 4.3.4 - 4.4.
+    // reenable in the future, when the problem will be fixed.
+    //linkList->expandItem( currentListItem );
   }
 }
 
@@ -319,8 +321,9 @@ void KgProtocols::removeMime( QString name )
 
 void KgProtocols::loadInitialValues()
 {
-  while( linkList->topLevelItemCount() != 0 )
-    removeProtocol( linkList->topLevelItem( 0 )->text( 0 ) );
+  if(linkList->model()->rowCount() > 0)
+    while( linkList->topLevelItemCount() != 0 )
+      removeProtocol( linkList->topLevelItem( 0 )->text( 0 ) );
   
   KConfigGroup group( krConfig, "Protocols" );
   QStringList protList = group.readEntry( "Handled Protocols", QStringList() );
@@ -338,6 +341,7 @@ void KgProtocols::loadInitialValues()
   if( linkList->topLevelItemCount() != 0 )
     linkList->setCurrentItem( linkList->topLevelItem( 0 ) );
   slotDisableButtons();
+  linkList->expandAll();
 }
 
 void KgProtocols::setDefaults()
