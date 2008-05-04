@@ -12,6 +12,7 @@ set( Filter_SRCS
 
 kde4_add_library(Filter ${Filter_SRCS} )
 
+target_link_libraries(Filter Dialogs )
 
 ########### install files ###############
 

@@ -14,6 +14,7 @@ set( Synchronizer_SRCS
 
 kde4_add_library(Synchronizer ${Synchronizer_SRCS} )
 
+target_link_libraries(Synchronizer Dialogs )
 
 ########### install files ###############
 

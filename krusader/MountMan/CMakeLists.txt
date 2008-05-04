@@ -11,6 +11,7 @@ set( MountMan_SRCS
 
 kde4_add_library(MountMan ${MountMan_SRCS} )
 
+target_link_libraries(MountMan Dialogs )
 
 ########### install files ###############
 

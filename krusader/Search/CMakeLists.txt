@@ -10,6 +10,7 @@ set( Search_SRCS
 
 kde4_add_library(Search ${Search_SRCS} )
 
+target_link_libraries(Search Dialogs )
 
 ########### install files ###############
 

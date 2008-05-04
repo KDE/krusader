@@ -23,6 +23,7 @@ set( Panel_SRCS
 
 kde4_add_library(Panel ${Panel_SRCS} )
 
+target_link_libraries(Panel Dialogs GUI KViewer ${KDE4_KDE3SUPPORT_LIBRARY} )
 
 ########### install files ###############
 
