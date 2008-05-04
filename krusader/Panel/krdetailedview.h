@@ -30,6 +30,11 @@ A
 #ifndef KRDETAILEDVIEW_H
 #define KRDETAILEDVIEW_H
 
+#ifndef QT3_SUPPORT
+#define QT3_SUPPORT 1
+#define KDE3_SUPPORT 1
+#endif
+
 #include <k3listview.h>
 #include <q3header.h>
 #include <ksqueezedtextlabel.h>

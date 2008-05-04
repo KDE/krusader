@@ -28,12 +28,12 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "krdetailedviewitem.h"
+#include "krdetailedview.h"
 #include "../krusader.h"
 #include "../defaults.h"
 #include "../kicons.h"
 #include "../krusaderview.h"
-#include "krdetailedviewitem.h"
-#include "krdetailedview.h"
 #include "krcolorcache.h"
 #include "listpanel.h"
 #include "../VFS/krpermhandler.h"

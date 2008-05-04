@@ -10,12 +10,11 @@
 #include <qpointer.h>
 #include <kio/previewjob.h>
 #include <kurl.h>
+#include <qtreeview.h>
 
 class QButtonGroup;
 class QLabel;
-class Q3ListViewItem;
 class QSplitter;
-class K3FileTreeView;
 class QToolButton;
 class KrSqueezedTextLabel;
 class KLineEdit;
@@ -23,6 +22,11 @@ class KComboBox;
 class KrusaderImageFilePreview;
 class PanelViewer;
 class DiskUsageViewer;
+class KrFileTreeView;
+class KDirModel;
+class KDirSortFilterProxyModel;
+class QMimeData;
+class QPoint;
 
 class PanelPopup: public QWidget {
    Q_OBJECT
@@ -46,8 +50,7 @@ signals:
 protected slots:	
 	virtual void setFocus();
 	void tabSelected(int id);
-	void treeSelection(Q3ListViewItem*);
-	void slotDroppedOnTree(QWidget *widget, QDropEvent *e, KUrl::List &lst, KUrl &);
+	void treeSelection();
 	void handleOpenUrlRequest(const KUrl &url);
 	void quickSelect();
 	void quickSelect(const QString &);
@@ -60,7 +63,7 @@ protected:
 	KrusaderImageFilePreview *viewer;
 	KrSqueezedTextLabel *dataLine;
 	QPointer<KIO::PreviewJob> pjob;
-	K3FileTreeView *tree;
+	KrFileTreeView *tree;
 	QToolButton *treeBtn, *previewBtn, *quickBtn, *viewerBtn, *duBtn;
 	QButtonGroup *btns;
 	KLineEdit *quickFilter;
@@ -70,6 +73,44 @@ protected:
 	QWidget *quickPanel;
 	QList<int> splitterSizes;
 	QSplitter *splitter;
+};
+
+
+class KrFileTreeView : public QTreeView
+{
+    friend class KrDirModel;
+    Q_OBJECT
+
+    public:
+        KrFileTreeView(QWidget *parent = 0);
+        virtual ~KrFileTreeView() {}
+
+        KUrl currentUrl() const;
+        KUrl selectedUrl() const;
+        KUrl::List selectedUrls() const;
+        KUrl rootUrl() const;
+
+    public Q_SLOTS:
+        void setDirOnlyMode(bool enabled);
+        void setShowHiddenFiles(bool enabled);
+        void setCurrentUrl(const KUrl &url);
+        void setRootUrl(const KUrl &url);
+
+    Q_SIGNALS:
+        void activated(const KUrl &url);
+        void currentChanged(const KUrl &url);
+
+private Q_SLOTS:
+        void slotActivated(const QModelIndex&);
+        void slotCurrentChanged(const QModelIndex&, const QModelIndex&);
+        void slotExpanded(const QModelIndex&);
+
+private:
+        KUrl urlForProxyIndex(const QModelIndex &index) const;
+        void dropMimeData ( const KUrl::List & lst, const KUrl & url, const QModelIndex & ind );
+
+        KDirModel *mSourceModel;
+        KDirSortFilterProxyModel *mProxyModel;
 };
 
 #endif // _PANELPOPUP_H

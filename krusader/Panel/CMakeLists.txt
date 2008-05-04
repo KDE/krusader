@@ -1,5 +1,3 @@
-add_definitions( -DQT3_SUPPORT=1 -DKDE3_SUPPORT=1)
-
 include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 
@@ -13,12 +11,12 @@ set( Panel_SRCS
 	krpreviewpopup.cpp 
 	krview.cpp 
 	krviewitem.cpp 
-	krdetailedviewitem.cpp 
-	krdetailedview.cpp 
 	panelfunc.cpp 
 	listpanel.cpp 
 	panelpopup.cpp 
 	krselectionmode.cpp 
+	krdetailedviewitem.cpp 
+	krdetailedview.cpp 
 	krbriefview.cpp 
 	krbriefviewitem.cpp
         krviewfactory.cpp )

@@ -30,6 +30,11 @@ A
 #ifndef KRBRIEFVIEW_H
 #define KRBRIEFVIEW_H
 
+#ifndef QT3_SUPPORT
+#define QT3_SUPPORT 1
+#define KDE3_SUPPORT 1
+#endif
+
 #include "krview.h"
 #include "krviewitem.h"
 #include <k3iconview.h>

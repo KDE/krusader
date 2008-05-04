@@ -13,7 +13,6 @@
 #include <QGridLayout>
 #include <QFrame>
 #include <QMenu>
-#include <k3filetreeview.h>
 #include <klocale.h>
 #include <qcursor.h>
 #include <qlayout.h>
@@ -25,6 +24,207 @@
 #include "../KViewer/kimagefilepreview.h"
 #include "../KViewer/panelviewer.h"
 #include "../KViewer/diskusageviewer.h"
+
+#include <QtCore/QDir>
+
+#include <kdirlister.h>
+#include <kdirmodel.h>
+#include <kdirsortfilterproxymodel.h>
+#include <kfileitemdelegate.h>
+#include <QHeaderView>
+
+class KrDirModel : public KDirModel {
+public:
+  KrDirModel( QWidget *parent, KrFileTreeView *ftv) : KDirModel( parent ), fileTreeView( ftv ) {}
+
+protected:
+  virtual bool dropMimeData ( const QMimeData * data, Qt::DropAction /* action */, int /* row */, int /* column */, const QModelIndex & parent ) {
+    KFileItem item = itemForIndex( parent );
+    if( item.isNull() )
+      return false;
+
+    KUrl::List list = KUrl::List::fromMimeData( data );
+    if ( list.isEmpty() )
+      return false;
+
+    fileTreeView->dropMimeData( list, item.url(), parent );
+    return true;
+  }
+
+  virtual Qt::ItemFlags flags ( const QModelIndex & index ) const {
+    Qt::ItemFlags itflags = KDirModel::flags( index );
+    if( index.column() != KDirModel::Name )
+      itflags &= ~Qt::ItemIsDropEnabled;
+    return itflags;
+  }
+private:
+  KrFileTreeView * fileTreeView;
+};
+
+KrFileTreeView::KrFileTreeView(QWidget *parent)
+    : QTreeView(parent)
+{
+    mSourceModel = new KrDirModel(this, this);
+    mProxyModel = new KDirSortFilterProxyModel(this);
+    mProxyModel->setSourceModel(mSourceModel);
+
+    mSourceModel->setDropsAllowed( KDirModel::DropOnDirectory );
+
+    setModel(mProxyModel);
+    setItemDelegate(new KFileItemDelegate(this));
+
+    mSourceModel->dirLister()->openUrl(KUrl(QDir::root().absolutePath()), KDirLister::Keep);
+
+    connect(this, SIGNAL(activated(const QModelIndex&)),
+            this, SLOT(slotActivated(const QModelIndex&)));
+    connect(selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
+            this, SLOT(slotCurrentChanged(const QModelIndex&, const QModelIndex&)));
+
+    connect(mSourceModel, SIGNAL(expand(const QModelIndex&)),
+            this, SLOT(slotExpanded(const QModelIndex&)));
+
+    QFontMetrics fontMetrics(viewport()->font());
+    header()->resizeSection(KDirModel::Name, fontMetrics.width("WWWWWWWWWWWWWWW") );
+}
+
+KUrl KrFileTreeView::urlForProxyIndex(const QModelIndex &index) const
+{
+    const KFileItem item = mSourceModel->itemForIndex(mProxyModel->mapToSource(index));
+
+    return !item.isNull() ? item.url() : KUrl();
+}
+
+void KrFileTreeView::slotActivated(const QModelIndex &index)
+{
+    const KUrl url = urlForProxyIndex(index);
+    if (url.isValid())
+        emit activated(url);
+}
+
+void KrFileTreeView::dropMimeData ( const KUrl::List & lst, const KUrl & url, const QModelIndex & ind ) {
+    QModelIndex ndx = mProxyModel->mapFromSource(ind);
+    QRect rect = visualRect( ndx );
+    QPoint pnt = viewport()->mapToGlobal( QPoint( rect.x(), rect.y() + rect.height() / 2 ) );
+
+    QMenu popup( this );
+    QAction * act;
+
+    act = popup.addAction( i18n( "Copy Here" ) );
+    act->setData( QVariant( 1 ) );
+    act = popup.addAction( i18n( "Move Here" ) );
+    act->setData( QVariant( 2 ) );
+    act = popup.addAction( i18n( "Link Here" ) );
+    act->setData( QVariant( 3 ) );
+    act = popup.addAction( i18n( "Cancel" ) );
+    act->setData( QVariant( 4 ) );
+
+    int result = -1;
+    QAction * res = popup.exec( pnt );
+    if( res && res->data().canConvert<int> () )
+      result = res->data().toInt();
+
+    KIO::CopyJob *job;
+    switch ( result ) {
+          case 1 :
+          job = KIO::copy(lst, url);
+          break;
+          case 2 :
+          job = KIO::move(lst, url);
+          break;
+          case 3 :
+          job = KIO::link(lst, url);
+          break;
+          default :         // user pressed outside the menu
+            return ;          // or cancel was pressed;
+   }
+}
+
+void KrFileTreeView::slotCurrentChanged(const QModelIndex &currentIndex, const QModelIndex&)
+{
+    const KUrl url = urlForProxyIndex(currentIndex);
+    if (url.isValid())
+        emit currentChanged(url);
+}
+
+void KrFileTreeView::slotExpanded(const QModelIndex &baseIndex)
+{
+    QModelIndex index = mProxyModel->mapFromSource(baseIndex);
+
+    selectionModel()->clearSelection();
+    selectionModel()->setCurrentIndex(index, QItemSelectionModel::SelectCurrent);
+    scrollTo(index);
+}
+
+
+KUrl KrFileTreeView::currentUrl() const
+{
+    return urlForProxyIndex(currentIndex());
+}
+
+KUrl KrFileTreeView::selectedUrl() const
+{
+    if (!selectionModel()->hasSelection())
+        return KUrl();
+
+    const QItemSelection selection = selectionModel()->selection();
+    const QModelIndex firstIndex = selection.indexes().first();
+
+    return urlForProxyIndex(firstIndex);
+}
+
+KUrl::List KrFileTreeView::selectedUrls() const
+{
+    KUrl::List urls;
+
+    if (!selectionModel()->hasSelection())
+        return urls;
+
+    const QModelIndexList indexes = selectionModel()->selection().indexes();
+    foreach (const QModelIndex index, indexes) {
+        const KUrl url = urlForProxyIndex(index);
+        if (url.isValid())
+            urls.append(url);
+    }
+
+    return urls;
+}
+
+KUrl KrFileTreeView::rootUrl() const
+{
+    return mSourceModel->dirLister()->url();
+}
+
+void KrFileTreeView::setDirOnlyMode(bool enabled)
+{
+    mSourceModel->dirLister()->setDirOnlyMode(enabled);
+    mSourceModel->dirLister()->openUrl(mSourceModel->dirLister()->url());
+}
+
+void KrFileTreeView::setShowHiddenFiles(bool enabled)
+{
+    mSourceModel->dirLister()->setShowingDotFiles(enabled);
+    mSourceModel->dirLister()->openUrl(mSourceModel->dirLister()->url());
+}
+
+void KrFileTreeView::setCurrentUrl(const KUrl &url)
+{
+    QModelIndex baseIndex = mSourceModel->indexForUrl(url);
+
+    if (!baseIndex.isValid()) {
+        mSourceModel->expandToUrl(url);
+        return;
+    }
+
+    QModelIndex proxyIndex = mProxyModel->mapFromSource(baseIndex);
+    selectionModel()->clearSelection();
+    selectionModel()->setCurrentIndex(proxyIndex, QItemSelectionModel::SelectCurrent);
+    scrollTo(proxyIndex);
+}
+
+void KrFileTreeView::setRootUrl(const KUrl &url)
+{
+    mSourceModel->dirLister()->openUrl(url);
+}
 
 PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ), 
 	_left( left ), _hidden(true), stack( 0 ), viewer( 0 ), pjob( 0 ), splitterSizes() {
@@ -110,33 +310,21 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	layout->addWidget(duBtn,0,5);
 	
 	// create a widget stack on which to put the parts
-   stack = new QStackedWidget( this );
+	stack = new QStackedWidget( this );
 
-   // create the tree part ----------
-	tree = new K3FileTreeView( stack );
+	// create the tree part ----------
+	tree = new KrFileTreeView( stack );
 	tree->setAcceptDrops(true);
-	connect(tree, SIGNAL(dropped (QWidget *, QDropEvent *, KUrl::List &, KUrl &)), 
-		this, SLOT(slotDroppedOnTree(QWidget *, QDropEvent *, KUrl::List&, KUrl& )));
+	tree->setDragDropMode( QTreeView::DropOnly );
+	tree->setDropIndicatorShown( true );
+	
 	tree->setProperty( "KrusaderWidgetId", QVariant( Tree ) );
 	stack->addWidget( tree );
-   tree->addColumn( "" );
-	// add ~
-	tree->addBranch( QDir::home().absolutePath(), i18n("Home"));
-	tree->setDirOnlyMode( tree->branch(i18n("Home")), true);
-	tree->branch(i18n("Home"))->setChildRecurse(false);
-	// add /
-	tree->addBranch( KUrl( "/" ), i18n( "Root" ) );
-   tree->setDirOnlyMode( tree->branch( i18n( "Root" ) ), true );
-	tree->setShowFolderOpenPixmap(true);
-	tree->branch( i18n( "Root" ) ) ->setChildRecurse(false);
-	tree->branch( i18n( "Root" ) ) ->setOpen( true );
-   tree->header() ->setHidden( true );
-	connect(tree, SIGNAL(doubleClicked(Q3ListViewItem*)), this, SLOT(treeSelection(Q3ListViewItem*)));
-   // start listing the tree
-   tree->branch( i18n( "Root" ) ) ->root();
-	tree->branch( i18n( "Home" ) ) ->root();
+	tree->setDirOnlyMode( true );
+	connect(tree, SIGNAL(doubleClicked ( const QModelIndex & )), this, SLOT(treeSelection()));
+	connect(tree, SIGNAL(activated(const KUrl &)), this, SLOT(treeSelection()));
 
-   // create the quickview part ------
+	// create the quickview part ------
 	viewer = new KrusaderImageFilePreview(stack);
 	viewer->setProperty( "KrusaderWidgetId", QVariant( Preview ) );
         stack->addWidget( viewer );
@@ -297,6 +485,8 @@ void PanelPopup::tabSelected( int id ) {
 			dataLine->setText( i18n("Tree:") );
 			if( !isHidden() )
 				tree->setFocus();
+			if( ACTIVE_PANEL )
+				tree->setCurrentUrl( ACTIVE_PANEL->func->files()->vfs_getOrigin() );
 			break;
 		case Preview:
 			stack->setCurrentWidget( viewer );
@@ -360,8 +550,8 @@ void PanelPopup::update( KUrl url ) {
 
 // ------------------- tree
 
-void PanelPopup::treeSelection(Q3ListViewItem*) {
-	emit selection(tree->currentUrl());
+void PanelPopup::treeSelection() {
+	emit selection( tree->currentUrl() );
 	//emit hideMe();
 }
 
@@ -378,51 +568,9 @@ void PanelPopup::quickSelect(const QString &mask) {
 void PanelPopup::quickSelectStore() {
 	KConfigGroup group( krConfig, "Private" );
         QStringList lst = group.readEntry( "Predefined Selections", QStringList() );
-        if ( lst.find(quickSelectCombo->currentText()) == lst.end() )
+        if ( lst.indexOf(quickSelectCombo->currentText()) == -1 )
            lst.append( quickSelectCombo->currentText() );
         group.writeEntry( "Predefined Selections", lst );
-}
-
-void PanelPopup::slotDroppedOnTree(QWidget *widget, QDropEvent *e, KUrl::List &lst, KUrl &) {
-	// K3FileTreeView is buggy: when dropped, it might not give us the correct
-	// destination, but actually, it's parent. workaround: don't use
-	// the destination in the signal, but take the current item
-	KUrl dest = tree->currentUrl();
-	
-	// ask the user what to do: copy, move or link?
-   QMenu popup( this );
-   QAction * act;
-
-   act = popup.addAction( i18n( "Copy Here" ) );
-   act->setData( QVariant( 1 ) );
-   act = popup.addAction( i18n( "Move Here" ) );
-   act->setData( QVariant( 2 ) );
-   act = popup.addAction( i18n( "Link Here" ) );
-   act->setData( QVariant( 3 ) );
-   act = popup.addAction( i18n( "Cancel" ) );
-   act->setData( QVariant( 4 ) );
-
-   QPoint tmp = widget->mapToGlobal( e->pos() );
-
-   int result = -1;
-   QAction * res = popup.exec( QCursor::pos() );
-   if( res && res->data().canConvert<int> () )
-     result = res->data().toInt();
-
-   KIO::CopyJob *job;
-   switch ( result ) {
-         case 1 :
-         job = KIO::copy(lst, dest);
-         break;
-         case 2 :
-         job = KIO::move(lst, dest);
-         break;
-         case 3 :
-         job = KIO::link(lst, dest);
-         break;
-         default :         // user pressed outside the menu
-         return ;          // or cancel was pressed;
-   }
 }
 
 #include "panelpopup.moc"

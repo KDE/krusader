@@ -351,8 +351,12 @@ bool KRQuery::checkLines( const char * buf, int len ) const
     {
       while ( ( ndx = line.indexOf( contain, ndx, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive ) ) != -1 )
       {
-        QChar before = line.at( ndx - 1 );
-        QChar after = line.at( ndx + contain.length() );
+        QChar before = '\n';
+        if( ndx > 0 )
+          before = line.at( ndx - 1 );
+        QChar after = '\n';
+        if( ndx + contain.length() < line.length() ) 
+          after = line.at( ndx + contain.length() );
 
         if ( !before.isLetterOrNumber() && !after.isLetterOrNumber() &&
           after != '_' && before != '_' ) {

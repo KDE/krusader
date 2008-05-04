@@ -31,6 +31,11 @@
 #ifndef KRBRIEFVIEWITEM_H
 #define KRBRIEFVIEWITEM_H
 
+#ifndef QT3_SUPPORT
+#define QT3_SUPPORT 1
+#define KDE3_SUPPORT 1
+#endif
+
 #include "krviewitem.h"
 #include <sys/types.h>
 #include "../VFS/vfile.h"

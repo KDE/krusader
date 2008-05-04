@@ -1,5 +1,5 @@
-#include "krbriefview.h"
 #include "krbriefviewitem.h"
+#include "krbriefview.h"
 #include "../krusaderview.h"
 #include "../defaults.h"
 #include "../kicons.h"
@@ -139,11 +139,13 @@ void KrBriefViewItem::paintItem(QPainter *p, const QColorGroup &cg) {
   _cg.setColor(QColorGroup::HighlightedText, cols.highlightedText());
   _cg.setColor(QColorGroup::Highlight, cols.highlight());
 
-  if( _cg.background() != iconView()->paletteBackgroundColor() )
+  QColor background = isSelected() ? cols.highlight() : cols.background();
+
+  if( background != iconView()->paletteBackgroundColor() )
   {
      p->save();
      p->setPen( Qt::NoPen );
-     p->setBrush( QBrush( _cg.background() ) );
+     p->setBrush( QBrush( background ) );
      p->drawRect( rect() );
      p->restore();
   }

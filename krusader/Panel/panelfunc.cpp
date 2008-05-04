@@ -689,7 +689,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 						emptyDirVerify = false;
 						break;
 						case KMessageBox::Yes :
-						name = fileNames.remove( name );
+						name = fileNames.erase( name );
 						continue;
 				}
 			}

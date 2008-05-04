@@ -186,8 +186,6 @@ ListPanel::ListPanel( int typeIn, QWidget *parent, bool &left ) :
    
    quickSearch = new KrQuickSearch( this );
    quickSearch->setFont( group.readEntry( "Filelist Font", *_FilelistFont ) );
-   quickSearch->setFrameStyle( QFrame::Box | QFrame::Raised );
-   quickSearch->setLineWidth( 1 );		// a nice 3D touch :-)
    quickSearch->setMaximumHeight( sheight );
 
    QWidget * hboxWidget = new QWidget( this );
@@ -207,8 +205,8 @@ ListPanel::ListPanel( int typeIn, QWidget *parent, bool &left ) :
 	QuickNavLineEdit *qnle = new QuickNavLineEdit(this);
    origin = new KUrlRequester( qnle, hboxWidget );
    hbox->addWidget( origin );
-   QPixmap pixMap = origin->button() ->iconSet() ->pixmap( QIcon::Small, QIcon::Normal );
-   origin->button() ->setFixedSize( pixMap.width() + 4, pixMap.height() + 4 );
+   QSize iconSize = QSize(22, 22); // also hardcoded to 22 in the support libs
+   origin->button() ->setFixedSize( iconSize.width() + 4, iconSize.height() + 4 );
    origin->setWhatsThis( i18n( "Use superb KDE file dialog to choose location. " ) );
    origin->lineEdit() ->setUrlDropsEnabled( true );
    origin->lineEdit() ->installEventFilter( this );
@@ -663,7 +661,7 @@ void ListPanel::slotUpdate() {
 
    QString origin = virtualPath().prettyUrl(KUrl::RemoveTrailingSlash);
    if ( origin.right( 1 ) != "/" && !( ( func->files() ->vfs_getType() == vfs::FTP ) && isFtp &&
-                                       origin.find( '/', origin.find( ":/" ) + 3 ) == -1 ) ) {
+                                       origin.indexOf( '/', origin.indexOf( ":/" ) + 3 ) == -1 ) ) {
       view->addItems( func->files() );
    } else
       view->addItems( func->files(), false );

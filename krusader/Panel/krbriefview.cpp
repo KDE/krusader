@@ -206,7 +206,8 @@ void KrBriefView::redrawColumns()
    bool ascending = sortDirection();
    setSorting( false, ascending );
 
-   setGridX( width() / PROPS->numberOfColumns );
+   if( PROPS )
+      setGridX( width() / PROPS->numberOfColumns );
 
    // QT bug, it's important for recalculating the bounding rectangle
    for( Q3IconViewItem * item = firstItem(); item; item = item->nextItem() )
@@ -655,8 +656,6 @@ void KrBriefView::contentsMouseReleaseEvent( QMouseEvent * e ) {
   
   e = transformMouseEvent( e );
   
-  K3IconView::contentsMouseReleaseEvent( e );
-   
   if( pressedItem ) {
     QPoint vp = contentsToViewport( e->pos() );
     Q3IconViewItem *newCurrent = findItem( e->pos() );
@@ -1493,13 +1492,16 @@ QMouseEvent * KrBriefView::transformMouseEvent( QMouseEvent * e )
 	return e;
 }
 KrView* KrBriefView::create( QWidget *parent, bool &left, KConfig *cfg ) {
-	QWidget * briefWidget = new QWidget( parent );
+	QFrame * briefWidget = new QFrame( parent );
+	briefWidget->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
+	briefWidget->setLineWidth(parent->style()->pixelMetric(QStyle::PM_DefaultFrameWidth));
 	QVBoxLayout *briefLayout = new QVBoxLayout( briefWidget );
 	briefLayout->setSpacing( 0 );
 	briefLayout->setContentsMargins( 0, 0, 0, 0 );
 	Q3Header * header = new Q3Header( briefWidget );
 	briefLayout->addWidget( header );
 	KrBriefView * view = new KrBriefView( header, parent, left, cfg );
+	view->setFrameShape( QFrame::NoFrame );
 	briefLayout->addWidget( view );
 	connect( view, SIGNAL( destroyed() ), briefWidget, SLOT( deleteLater() ) );
 	return view;
