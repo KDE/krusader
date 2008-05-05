@@ -44,53 +44,10 @@ typedef enum {
   PM_DEFAULT       = 2
 } PreserveMode;
 
-#if 0
-
-TODO
-
-
-class Attributes {
-public:
-	Attributes();
-	Attributes( time_t tIn, uid_t uIn, gid_t gIn, mode_t modeIn, const QString & aclIn );
-	Attributes( time_t tIn, QString user, QString group, mode_t modeIn, const QString & aclIn );
-
-	time_t   time;
-	uid_t    uid;
-	gid_t    gid;
-	mode_t   mode;
-	QString  acl;
-};
-
-class PreservingCopyJob : public KIO::CopyJob {
-  Q_OBJECT
+class PreservingCopyJob {
 
 public:
-
-  PreservingCopyJob( const KUrl::List& src, const KUrl& dest, CopyMode mode, bool asMethod, bool showProgressInfo );
-
-  static KIO::CopyJob *createCopyJob( PreserveMode pmode, const KUrl::List& src, const KUrl& dest, CopyMode mode, bool asMethod, bool showProgressInfo );
-
-public slots:
-  void slotAboutToCreate (KIO::Job *, const QList< KIO::CopyInfo > &);
-  void slotCopyingDone( KIO::Job *, const KUrl &, const KUrl &, bool, bool);
-  void slotFinished();
-  virtual void slotResult( Job *job );
-  void slotListEntries(KIO::Job *job, const KIO::UDSEntryList &list);
-  
-private:
-  QMap<KUrl, Attributes> fileAttributes;
-  QMap<KIO::Job *, KUrl> pendingJobs;
-  QList<KUrl>       directoriesToStamp;
-  QList<KUrl>       originalDirectories;
-};
-
-#endif
-
-class PreservingCopyJob { // TODO
-
-public:
-  static KIO::CopyJob *createCopyJob( PreserveMode pmode, const KUrl::List& src, const KUrl& dest, KIO::CopyJob::CopyMode mode, bool /* asMethod */, bool showProgressInfo );
+  static KIO::Job *createCopyJob( PreserveMode pmode, const KUrl::List& src, const KUrl& dest, KIO::CopyJob::CopyMode mode, bool /* asMethod */, bool showProgressInfo );
 };
 
 #endif /* __PRESERVING_COPY_JOB_H__ */

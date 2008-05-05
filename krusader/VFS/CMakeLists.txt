@@ -15,7 +15,8 @@ set( VFS_SRCS
 	preservingcopyjob.cpp 
 	virtualcopyjob.cpp 
 	ftp_vfs.cpp 
-	krquery.cpp )
+	krquery.cpp
+        preserveattrcopyjob.cpp )
 
 kde4_add_library(VFS ${VFS_SRCS} )
 

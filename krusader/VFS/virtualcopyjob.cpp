@@ -328,7 +328,7 @@ void VirtualCopyJob::slotMkdirResult( KJob *job ) {
 void VirtualCopyJob::copyCurrentDir() {
 	m_state = ST_COPYING;
 	
-	KIO::CopyJob * copy_job = PreservingCopyJob::createCopyJob( m_pmode, *m_filesToCopy[ m_currentDir ], m_current,
+	KIO::Job * copy_job = PreservingCopyJob::createCopyJob( m_pmode, *m_filesToCopy[ m_currentDir ], m_current,
 		m_mode, false, false );
 	copy_job->setParentJob( this );
 	copy_job->setUiDelegate(new MyUiDelegate( this ) );
