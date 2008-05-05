@@ -344,6 +344,9 @@ void KrViewer::tabURLChanged( PanelViewerBase *pvb, const KUrl & url ) {
 }
 
 void KrViewer::tabChanged(QWidget* w){
+	if( w == 0 )
+		return;
+	
 	manager.setActivePart( static_cast<PanelViewerBase*>(w)->part() );
 	
 	if( static_cast<PanelViewerBase*>(w) != returnFocusTab ) {
