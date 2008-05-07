@@ -63,6 +63,7 @@ void DirHistoryButton::slotPopup() {
 }
 /** No descriptions */
 void DirHistoryButton::slotAboutToShow() {
+	emit aboutToShow();
 	//  kDebug() << "about to show" << endl;
 	popupMenu->clear();
 	KUrl::List::iterator it;

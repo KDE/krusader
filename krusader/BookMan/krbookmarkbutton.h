@@ -13,6 +13,7 @@ public:
 
 signals:
 	void openUrl(const KUrl &url);
+	void aboutToShow();
 
 protected slots:
 	void populate();

@@ -38,6 +38,9 @@ public:
 
   void showMenu();
 
+signals:
+  void aboutToShow();
+
 private:
   QMenu* popupMenu;
   DirHistoryQueue* historyQueue;

@@ -23,7 +23,8 @@ KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent) {
 	acmBookmarks->menu()->setKeyboardShortcutsExecute(true);
 
 	setMenu(acmBookmarks->menu());
-	connect(this, SIGNAL(pressed()), this, SLOT(populate()));
+	connect(acmBookmarks->menu(), SIGNAL( aboutToShow() ), this, SLOT(populate()));
+	connect(acmBookmarks->menu(), SIGNAL( aboutToShow() ), this, SIGNAL( aboutToShow() ) );
 	populate();
 }
 

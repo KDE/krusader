@@ -123,7 +123,7 @@ ListPanel::ListPanel( int typeIn, QWidget *parent, bool &left ) :
    layout->setContentsMargins( 0, 0, 0, 0 );
 
    mediaButton = new MediaButton( this );
-   connect( mediaButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
+   connect( mediaButton, SIGNAL( aboutToShow() ), this, SLOT( slotFocusOnMe() ) );
    connect( mediaButton, SIGNAL( openUrl( const KUrl& ) ), func, SLOT( openUrl( const KUrl& ) ) );
 
    status = new KrSqueezedTextLabel( this );
@@ -145,11 +145,11 @@ ListPanel::ListPanel( int typeIn, QWidget *parent, bool &left ) :
    // ... create the history button
    dirHistoryQueue = new DirHistoryQueue( this );
    historyButton = new DirHistoryButton( dirHistoryQueue, this );
-   connect( historyButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
+   connect( historyButton, SIGNAL( aboutToShow() ), this, SLOT( slotFocusOnMe() ) );
    connect( historyButton, SIGNAL( openUrl( const KUrl& ) ), func, SLOT( openUrl( const KUrl& ) ) );
 
 	bookmarksButton = new KrBookmarkButton(this);
-	connect( bookmarksButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
+	connect( bookmarksButton, SIGNAL( aboutToShow() ), this, SLOT( slotFocusOnMe() ) );
    connect( bookmarksButton, SIGNAL( openUrl( const KUrl& ) ), func, SLOT( openUrl( const KUrl& ) ) );
 	bookmarksButton->setWhatsThis( i18n( "Open menu with bookmarks. You can also add "
                                "current location to the list, edit bookmarks "

@@ -69,6 +69,7 @@ public slots:
 
 signals:
   void openUrl(const KUrl&);
+  void aboutToShow();
 
 protected:
   bool eventFilter( QObject *o, QEvent *e );

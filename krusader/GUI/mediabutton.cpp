@@ -104,6 +104,8 @@ MediaButton::~MediaButton() {
 }
 
 void MediaButton::slotAboutToShow() {
+	emit aboutToShow();
+	
 	hasMedia = KProtocolInfo::isKnownProtocol( QString( "media" ) );
 	KConfigGroup group( krConfig, "Advanced" );
 	if( group.readEntry( "DontUseMediaProt", !hasMedia ) )
