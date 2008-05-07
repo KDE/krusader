@@ -157,7 +157,7 @@ void PreserveAttrCopyJob::slotStart()
 }
 
 // For unit test purposes
-KIO_EXPORT bool kio_resolve_local_urls = true;
+static bool kio_resolve_local_urls = true;
 
 void PreserveAttrCopyJob::slotResultStating( KJob *job )
 {
