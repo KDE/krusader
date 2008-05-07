@@ -419,10 +419,10 @@ bool KrMountDetector::hasMountsChanged() {
    KMountPoint::List mountPoints = KMountPoint::currentMountPoints(KMountPoint::NeedRealDeviceName);
    KMD5 md5;
    for(KMountPoint::List::iterator i = mountPoints.begin(); i != mountPoints.end(); ++i) {
-      md5.update((*i)->mountedFrom().utf8());
-      md5.update((*i)->realDeviceName().utf8());
-      md5.update((*i)->mountPoint().utf8());
-      md5.update((*i)->mountType().utf8());
+      md5.update((*i)->mountedFrom().toUtf8());
+      md5.update((*i)->realDeviceName().toUtf8());
+      md5.update((*i)->mountPoint().toUtf8());
+      md5.update((*i)->mountType().toUtf8());
    }
    QString s = md5.hexDigest();
    bool result = s != checksum;
