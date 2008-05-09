@@ -39,11 +39,16 @@ public slots:
 	void view(QAction *);
 
 protected:
+	virtual void paintEvent(QPaintEvent *e);
+	
 	QAction * prevNotAvailAction;
 	QList<KFileItem> files;
 	int id;
 	bool noPreview;
 	KUrl::List availablePreviews;
+	
+	int maxXSize;
+	int maxYSize;
 };
 
 #endif
