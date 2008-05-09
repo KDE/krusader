@@ -52,7 +52,7 @@ m_job( 0L ) {
 
 KrusaderImageFilePreview::~KrusaderImageFilePreview() {
 	if ( m_job )
-		m_job->kill();
+		m_job->kill( KJob::EmitResult );
 }
 
 void KrusaderImageFilePreview::showPreview() {
@@ -126,7 +126,7 @@ void KrusaderImageFilePreview::slotResult( KJob *job ) {
 
 void KrusaderImageFilePreview::clearPreview() {
 	if ( m_job ) {
-		m_job->kill();
+		m_job->kill( KJob::EmitResult );
 		m_job = 0L;
 	}
 

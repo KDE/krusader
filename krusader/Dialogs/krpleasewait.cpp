@@ -132,7 +132,7 @@ void KRPleaseWaitHandler::cycleProgress(){
 }
 
 void KRPleaseWaitHandler::killJob(){
-	if( !job.isNull() ) job->kill();
+	if( !job.isNull() ) job->kill( KJob::EmitResult );
 	stopWait();
 	_wasCancelled = true;
 }

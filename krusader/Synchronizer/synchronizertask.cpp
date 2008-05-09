@@ -332,9 +332,9 @@ void CompareContentTask::abortContentComparing()
     timer->stop();
 
   if( leftReadJob )
-    leftReadJob->kill();
+    leftReadJob->kill( KJob::EmitResult );
   if( rightReadJob )
-    rightReadJob->kill();
+    rightReadJob->kill( KJob::EmitResult );
 
   if( item->task() >= TT_UNKNOWN )
     sync->compareContentResult( item, false );

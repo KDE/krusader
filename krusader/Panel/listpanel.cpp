@@ -169,7 +169,7 @@ ListPanel::ListPanel( int typeIn, QWidget *parent, bool &left ) :
    connect( totals, SIGNAL( dropped( QDropEvent *) ), this, SLOT( handleDropOnTotals(QDropEvent *) ) );  
    
 	// a cancel button for the inplace refresh mechanism
-	inlineRefreshCancelButton = new KPushButton(this);
+	inlineRefreshCancelButton = new QToolButton(this);
 	inlineRefreshCancelButton->setFixedSize( 22, 20 );
 	inlineRefreshCancelButton->setIcon(krLoader->loadIcon("cancel", KIconLoader::Toolbar, 16));
 	connect(inlineRefreshCancelButton, SIGNAL(clicked()), this, SLOT(inlineRefreshCancel()));
@@ -1042,7 +1042,7 @@ void ListPanel::slotJobStarted(KIO::Job* job) {
 
 void ListPanel::inlineRefreshCancel() {
 	if (inlineRefreshJob) {
-		inlineRefreshJob->kill();
+		inlineRefreshJob->kill( KJob::EmitResult );
 		inlineRefreshJob = 0;
 	}
 }

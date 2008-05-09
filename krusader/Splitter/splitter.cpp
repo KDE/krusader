@@ -223,9 +223,9 @@ void Splitter::splitSendFinished(KJob *job)
 void Splitter::splitAbortJobs()
 {
   if( splitReadJob )
-    splitReadJob->kill();
+    splitReadJob->kill( KJob::EmitResult );
   if( splitWriteJob )
-    splitWriteJob->kill();
+    splitWriteJob->kill( KJob::EmitResult );
 
   splitReadJob = splitWriteJob = 0;
 }

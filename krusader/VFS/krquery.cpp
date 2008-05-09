@@ -429,7 +429,7 @@ bool KRQuery::containsContent( KUrl url ) const
   }
 
   if( busy ) {
-    contentReader->kill();
+    contentReader->kill( KJob::EmitResult );
     busy = false;
   }
 
@@ -441,7 +441,7 @@ void KRQuery::containsContentData(KIO::Job *job, const QByteArray &array) {
   if( checkBuffer( array.data(), array.size() ) ) {
     containsContentResult = true;
     containsContentFinished( job );
-    job->kill();
+    job->kill( KJob::EmitResult );
     return;
   }
   checkTimer();

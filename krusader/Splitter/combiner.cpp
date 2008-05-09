@@ -314,9 +314,9 @@ void Combiner::combineSendFinished(KJob *job)
 void Combiner::combineAbortJobs()
 {
   if( combineReadJob )
-    combineReadJob->kill();
+    combineReadJob->kill( KJob::EmitResult );
   if( combineWriteJob )
-    combineWriteJob->kill();
+    combineWriteJob->kill( KJob::EmitResult );
 
   combineReadJob = combineWriteJob = 0;
 }

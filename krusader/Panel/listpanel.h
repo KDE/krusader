@@ -192,7 +192,7 @@ public:
    DirHistoryButton* historyButton;
    MediaButton *mediaButton;
    SyncBrowseButton *syncBrowseButton;
-	KPushButton *inlineRefreshCancelButton;
+	QToolButton *inlineRefreshCancelButton;
 	KIO::Job *inlineRefreshJob;
 	QSplitter *splt;
 
