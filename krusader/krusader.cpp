@@ -85,6 +85,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "resources.h"
 #include "GUI/kfnkeys.h"
 #include "GUI/kcmdline.h"
+#include "GUI/terminaldock.h"
 #include "krslots.h"
 #include "krservices.h"
 #include "UserAction/useraction.h"
@@ -814,8 +815,6 @@ void Krusader::savePosition() {
       cfg.writeEntry( "Start Position", isMaximized() ? oldPos : pos() );
       cfg.writeEntry( "Start Size", isMaximized() ? oldSize : size() );
    }
-   cfg.writeEntry( "Panel Size", mainView->vert_splitter->sizes() [ 0 ] );
-   cfg.writeEntry( "Terminal Size", mainView->vert_splitter->sizes() [ 1 ] );
    QList<int> lst = mainView->horiz_splitter->sizes();
    cfg.writeEntry( "Splitter Sizes", lst );
    mainView->left->popup->saveSizes();
@@ -1055,19 +1054,20 @@ void Krusader::updateUserActions() {
 void Krusader::updateGUI( bool enforce ) {
    // now, check if we need to create a konsole_part
    // call the XML GUI function to draw the UI
-   createGUI( mainView->konsole_part );
+   createGUI( mainView->terminal_dock->part() );
    
    // this needs to be called AFTER createGUI() !!!
    updateUserActions();
    
-	KConfigGroup cfg( krConfig, "Private");
-   toolBar() ->applySettings( cfg );
+   KConfigGroup cfg_priv( krConfig, "Private");
+   toolBar()->applySettings( cfg_priv );
 
-	cfg = krConfig->group( "Actions Toolbar" );	
-	toolBar("actionsToolBar") ->applySettings( cfg );
+	KConfigGroup cfg_act( krConfig->group( "Actions Toolbar" ) );
+	toolBar("actionsToolBar") ->applySettings( cfg_act );
 	static_cast<KToggleAction*>(actionCollection()->action("toggle actions toolbar"))->
 		setChecked(toolBar("actionsToolBar")->isVisible());
-	
+   
+   KConfigGroup cfg( krConfig, "Startup" );
    if ( enforce ) {
       // now, hide what need to be hidden
       if ( !cfg.readEntry( "Show tool bar", _ShowToolBar ) ) {
@@ -1103,20 +1103,16 @@ void Krusader::updateGUI( bool enforce ) {
       }
       // set vertical mode
       if (cfg.readEntry( "Vertical Mode", false)) {
-      	actVerticalMode->setChecked(true);
-			mainView->toggleVerticalMode();
+        actVerticalMode->setChecked(true);
+        mainView->toggleVerticalMode();
       }
       if ( cfg.readEntry( "Show Terminal Emulator", _ShowTerminalEmulator ) ) {
         mainView->slotTerminalEmulator( true ); // create konsole_part
-        KConfigGroup grp(krConfig, "Private" );
-        QList<int> lst;
-        lst.append( grp.readEntry( "Panel Size", _PanelSize ) );
-        lst.append( grp.readEntry( "Terminal Size", _TerminalSize ) );
-        mainView->vert_splitter->setSizes( lst );
+        mainView->vert_splitter->setSizes( mainView->verticalSplitterSizes );
       } else if ( actExecTerminalEmbedded->isChecked() ) {
         //create (but not show) terminal emulator,
         //if command-line commands are to be run there
-        mainView->createTE();
+        mainView->terminal_dock->initialise();
       }
    }
 	// popular urls

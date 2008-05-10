@@ -68,6 +68,7 @@
 #include "resources.h"
 #include "GUI/kfnkeys.h"
 #include "GUI/kcmdline.h"
+#include "GUI/terminaldock.h"
 #include "GUI/syncbrowsebutton.h"
 #include "VFS/krquery.h"
 #include "Search/krsearchmod.h"
@@ -248,19 +249,17 @@ void KRslots::insertFileName(bool full_path)
 
   filename = KrServices::quote( filename );
 
-  if(MAIN_VIEW->cmdLine->isVisible() || !MAIN_VIEW->konsole_part || !MAIN_VIEW->konsole_part->widget() ||
-    !MAIN_VIEW->konsole_part->widget()->isVisible() ){
+  if(MAIN_VIEW->cmdLine->isVisible() || !MAIN_VIEW->terminal_dock->isTerminalVisible() ){
     QString current = MAIN_VIEW->cmdLine->text();
     if( current.length() != 0 && !current.endsWith( " " ) )
       current += " ";
     MAIN_VIEW->cmdLine->setText( current + filename );
 	MAIN_VIEW->cmdLine->setFocus();
   }
-  else if(MAIN_VIEW->konsole_part){
+  else if(MAIN_VIEW->terminal_dock->isTerminalVisible() ){
     filename = QString( " " ) + filename + QString( " " );
-    QKeyEvent keyEvent( QEvent::KeyPress, 0, Qt::NoModifier,  filename);
-    QApplication::sendEvent( MAIN_VIEW->konsole_part->widget(), &keyEvent );
-    MAIN_VIEW->konsole_part->widget()->setFocus();
+    MAIN_VIEW->terminal_dock->sendInput( filename );
+    MAIN_VIEW->terminal_dock->setFocus();
   }
 }
 
@@ -844,7 +843,7 @@ void KRslots::execTypeSetup()
     {
       if( *Krusader::execTypeArray[i] == Krusader::actExecTerminalEmbedded ){
          // if commands are to be executed in the TE, it must be loaded
-         MAIN_VIEW->createTE();
+         MAIN_VIEW->terminal_dock->initialise();
       }
       KConfigGroup grp(krConfig,  "Private" );
       grp.writeEntry( "Command Execution Mode", i );

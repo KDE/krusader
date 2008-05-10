@@ -47,6 +47,7 @@
 #include "Panel/panelfunc.h"
 #include "GUI/kcmdline.h"
 #include "GUI/kfnkeys.h"
+#include "GUI/terminaldock.h"
 #include "resources.h"
 #include "panelmanager.h"
 #include <klibloader.h> //<>
@@ -55,8 +56,7 @@
 #include "krservices.h"
 #include <qclipboard.h>
 
-KrusaderView::KrusaderView( QWidget *parent ) : QWidget( parent ), activePanel(0), 
-								konsole_part( 0L ) {}
+KrusaderView::KrusaderView( QWidget *parent ) : QWidget( parent ), activePanel(0) {}
 
 void KrusaderView::start( QStringList leftTabs, QList<int> leftTypes, QList<int> leftProps, int leftActiveTab,
                           QStringList rightTabs, QList<int> rightTypes, QList<int> rightProps, int rightActiveTab,
@@ -71,8 +71,7 @@ void KrusaderView::start( QStringList leftTabs, QList<int> leftTypes, QList<int>
   vert_splitter->setOrientation( Qt::Vertical );
   // horizontal splitter
   horiz_splitter = new PercentalSplitter( vert_splitter );
-  ( terminal_dock = new QWidget( vert_splitter ) ) ->hide(); // create it hidden
-  terminal_hbox = new QHBoxLayout( terminal_dock );
+  ( terminal_dock = new TerminalDock( vert_splitter ) ) ->hide(); // create it hidden
 
   // create a command line thing
   cmdLine = new KCMDLine( this );
@@ -145,11 +144,10 @@ void KrusaderView::start( QStringList leftTabs, QList<int> leftTypes, QList<int>
 //////////////////////////////////////////////////////////
 void KrusaderView::slotCurrentChanged( QString p ) {
   cmdLine->setCurrent( p );
-  if ( konsole_part != 0L && konsole_part->widget() != 0L ) {
-	 KConfigGroup cfg = krConfig->group("General");
-    if (cfg.readEntry("Send CDs", _SendCDs)) // hopefully, this is cached in kconfig
-        if( !konsole_part->url().equals( KUrl( p ), KUrl::CompareWithoutTrailingSlash ) )
-           konsole_part->openUrl( KUrl( p ) );
+  KConfigGroup cfg = krConfig->group("General");
+  if (cfg.readEntry("Send CDs", _SendCDs)) // hopefully, this is cached in kconfig
+  {
+    terminal_dock->sendCd( p );
   }
 }
 
@@ -159,43 +157,6 @@ void KrusaderView::cmdLineFocus() {  // command line receive's keyboard focus
 
 void KrusaderView::cmdLineUnFocus() { // return focus to the active panel
   activePanel->slotFocusOnMe();
-}
-
-/** if the KonsolePart for the Terminal Emulator is not yet loaded, load it */
-void KrusaderView::createTE() {
-  if ( konsole_part == 0L ) {  // konsole part is not yet loaded
-    KPluginFactory * factory = KLibLoader::self() ->factory( "libkonsolepart" );
-    if ( factory ) {
-      QWidget *focusW = qApp->focusWidget();
-      // Create the part
-      konsole_part = ( KParts::ReadOnlyPart * )
-                          factory->create( (QObject*)terminal_dock, /*"konsolepart",*/
-                                           "KParts::ReadOnlyPart" );
-
-      if( konsole_part )
-      {
-        terminal_hbox->addWidget( konsole_part->widget() );
-        terminal_dock->show();
-      }
-
-      if( konsole_part ) { //loaded successfully
-        connect( konsole_part, SIGNAL( destroyed() ),
-                 this, SLOT( killTerminalEmulator() ) );
-        qApp->installEventFilter( this );
-      } else {
-        qApp->removeEventFilter( this );
-      }
-      /*the Terminal Emulator may be hidden (if we are creating it only
-        to send command there and see the results later */
-      if( focusW ) {
-        focusW->setFocus();
-      }
-      else {
-        activePanel->slotFocusOnMe();    
-      }
-    } else
-      konsole_part = 0L;
-  }
 }
 
 // Tab - switch focus
@@ -213,16 +174,8 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
 
   if ( !show ) {  // hiding the terminal
     activePanel->slotFocusOnMe();
-    if( terminal_dock->isVisible() && !fullscreen )
+    if( terminal_dock->isTerminalVisible() && !fullscreen )
       verticalSplitterSizes = vert_splitter->sizes();
-
-    // BUGFIX: when the terminal emulator is toggled on, first it is shown in minimum size
-    //         then QSplitter resizes it to the desired size.
-    //         this minimum resize scrolls up the content of the konsole widget
-    // SOLUTION:
-    //         we hide the console widget while the resize ceremony happens, then reenable it
-    if( konsole_part )
-      konsole_part->widget()->hide(); // hide the widget to prevent from resize
 
     terminal_dock->hide();
     QList<int> newSizes;
@@ -245,22 +198,16 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
     return ;
   }
   // else implied
-  createTE();
-  if ( konsole_part ) {      // if we succeeded in creating the konsole
+  terminal_dock->initialise();
+  if ( terminal_dock->isInitialised() ) {      // if we succeeded in creating the konsole
     if( !verticalSplitterSizes.empty() )
       vert_splitter->setSizes( verticalSplitterSizes );
       
     terminal_dock->show();
     slotCurrentChanged( activePanel->realPath() );
 
-    // BUGFIX: TE scrolling bug (see upper)
-    //         show the Konsole part delayed
-    QTimer::singleShot( 0, konsole_part->widget(), SLOT( show() ) );
-
-    if( konsole_part->widget() ) {
-      konsole_part->widget()->setFocus();
-
-    }
+    terminal_dock->setFocus();
+    
     krToggleTerminal->setChecked( true );
     // in full screen mode, we hide everything else, but first, see what was actually shown
     if (fullscreen) {
@@ -286,84 +233,19 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
 
 void KrusaderView::focusTerminalEmulator()
 {
-  if ( MAIN_VIEW->terminal_dock->isVisible() && MAIN_VIEW->konsole_part && MAIN_VIEW->konsole_part->widget() )
-    MAIN_VIEW->konsole_part->widget()->setFocus();
+  if ( terminal_dock->isTerminalVisible() )
+    terminal_dock->setFocus();
 }
 
 void KrusaderView::switchFullScreenTE()
 {
-  if( terminal_dock->isVisible() && konsole_part && konsole_part->widget() && konsole_part->widget()->isVisible() ) {
+  if( terminal_dock->isTerminalVisible() ) {
     KConfigGroup grp = krConfig->group("Look&Feel");
     bool fullscreen=grp.readEntry("Fullscreen Terminal Emulator", false);
     slotTerminalEmulator( false );
     grp.writeEntry("Fullscreen Terminal Emulator", !fullscreen);
     slotTerminalEmulator( true );
   }
-}
-
-
-bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
-  if( e->type() == QEvent::ShortcutOverride && konsole_part && konsole_part->widget() == watched ) {
-    QKeyEvent *ke = (QKeyEvent *)e;
-    if( ( ke->key() ==  Qt::Key_Insert ) && ( ke->modifiers()  == Qt::ShiftModifier ) ) {
-      ke->accept();
-      return true;
-    }
-    if( ( ke->modifiers() == Qt::NoModifier || ke->modifiers() == Qt::ShiftModifier ) &&
-        ( ke->key() >= 32 ) && (ke->key() <= 127 ) ) {
-      ke->accept();
-      return true;
-    }
-  }
-  else if( e->type() == QEvent::KeyPress && konsole_part && konsole_part->widget() == watched ) {
-    QKeyEvent *ke = (QKeyEvent *)e;
-    int pressedKey = (ke->key() | ke->modifiers());
-
-    if( Krusader::actToggleTerminal->shortcut().contains( pressedKey ) ) {
-        Krusader::actToggleTerminal->activate(QAction::Trigger);
-        return true;
-    }
-
-    if( Krusader::actSwitchFullScreenTE->shortcut().contains( pressedKey ) ) {
-        Krusader::actSwitchFullScreenTE->activate(QAction::Trigger);
-        return true;
-    }
-
-    if( ( ke->key() == Qt::Key_Enter || ke->key() == Qt::Key_Return ) && ( ( ke->modifiers() & ~Qt::ShiftModifier ) == Qt::ControlModifier ) ) {
-
-      QString filename = ACTIVE_PANEL->view->getCurrentItem();
-      if( filename == QString() || filename == ".." )
-        return true;
-      if( ke->modifiers() & Qt::ShiftModifier ) {
-        QString path=vfs::pathOrUrl( ACTIVE_FUNC->files()->vfs_getOrigin(), KUrl::AddTrailingSlash );
-        filename = path+filename;
-      }
-
-      filename = KrServices::quote( filename );
-
-      QKeyEvent keyEvent( QEvent::KeyPress, 0, Qt::NoModifier, QString( " " ) + filename + QString( " " ));
-      QApplication::sendEvent( konsole_part->widget(), &keyEvent );
-      return true;
-    } else if( ( ke->key() ==  Qt::Key_Down ) && ( ke->modifiers() == Qt::ControlModifier ) ) {
-      if( cmdLine->isVisible() )
-        cmdLine->setFocus();
-      return true;
-    } else if( ( ( ke->key() ==  Qt::Key_Up ) && ( ke->modifiers()  == Qt::ControlModifier ) ) || 
-               ( ke->modifiers()  == ( Qt::ControlModifier | Qt::ShiftModifier ) ) ) {
-      ACTIVE_PANEL->slotFocusOnMe();
-      return true;
-    } else if( Krusader::actPaste->shortcut().contains( pressedKey ) ) {
-      QString text = QApplication::clipboard()->text();
-      if ( ! text.isEmpty() )
-      {
-        text.replace("\n", "\r");
-        QKeyEvent keyEvent(QEvent::KeyPress, 0,Qt::NoModifier, text);
-        QApplication::sendEvent( konsole_part->widget(), &keyEvent );
-      }
-      return true;
-    }
-  }
-  return false;
 }
 
 QList<int> KrusaderView::getTerminalEmulatorSplitterSizes() {
@@ -374,7 +256,6 @@ QList<int> KrusaderView::getTerminalEmulatorSplitterSizes() {
 }
 
 void KrusaderView::killTerminalEmulator() {
-  konsole_part = 0L;
   slotTerminalEmulator( false );  // hide the docking widget
   krToggleTerminal->setChecked( false );
 }

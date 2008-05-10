@@ -12,14 +12,15 @@
     <absoluteprojectpath>false</absoluteprojectpath>
     <description/>
     <defaultencoding/>
+    <versioncontrol>kdevsubversion</versioncontrol>
   </general>
   <kdevcustomproject>
     <run>
-      <mainprogram>/home/shie/src/krusader_kde4/$APPNAMELC$</mainprogram>
+      <mainprogram>/home/kde-devel/kde/build/KDE/krusader_kde4/krusader/krusader</mainprogram>
       <directoryradio>executable</directoryradio>
       <programargs/>
       <globaldebugarguments/>
-      <globalcwd>/home/shie/src/krusader_kde4</globalcwd>
+      <globalcwd>/home/kde-devel/</globalcwd>
       <useglobalprogram>false</useglobalprogram>
       <terminal>false</terminal>
       <autocompile>false</autocompile>
@@ -29,7 +30,7 @@
     </run>
     <build>
       <buildtool>make</buildtool>
-      <builddir/>
+      <builddir>/home/kde-devel/kde/build/KDE/krusader_kde4</builddir>
     </build>
     <make>
       <abortonerror>true</abortonerror>
@@ -44,6 +45,33 @@
         <default/>
       </environments>
     </make>
+    <filetypes>
+      <filetype>*.java</filetype>
+      <filetype>*.h</filetype>
+      <filetype>*.H</filetype>
+      <filetype>*.hh</filetype>
+      <filetype>*.hxx</filetype>
+      <filetype>*.hpp</filetype>
+      <filetype>*.c</filetype>
+      <filetype>*.C</filetype>
+      <filetype>*.cc</filetype>
+      <filetype>*.cpp</filetype>
+      <filetype>*.c++</filetype>
+      <filetype>*.cxx</filetype>
+      <filetype>Makefile</filetype>
+      <filetype>CMakeLists.txt</filetype>
+    </filetypes>
+    <blacklist/>
+    <other>
+      <prio>0</prio>
+      <otherbin/>
+      <defaulttarget/>
+      <otheroptions/>
+      <selectedenvironment>default</selectedenvironment>
+      <environments>
+        <default/>
+      </environments>
+    </other>
   </kdevcustomproject>
   <kdevdebugger>
     <general>
@@ -55,6 +83,7 @@
       <breakonloadinglibs>true</breakonloadinglibs>
       <separatetty>false</separatetty>
       <floatingtoolbar>false</floatingtoolbar>
+      <raiseGDBOnStart>false</raiseGDBOnStart>
     </general>
     <display>
       <staticmembers>false</staticmembers>
@@ -118,13 +147,13 @@
   </kdevfilecreate>
   <kdevcppsupport>
     <qt>
-      <used>false</used>
-      <version>3</version>
-      <includestyle>3</includestyle>
-      <root></root>
-      <designerintegration>EmbeddedKDevDesigner</designerintegration>
-      <qmake>/usr/bin/qmake</qmake>
-      <designer>/usr/bin/designer</designer>
+      <used>true</used>
+      <version>4</version>
+      <includestyle>4</includestyle>
+      <root>/usr/share/qt3</root>
+      <designerintegration>ExternalDesigner</designerintegration>
+      <qmake>/home/kde-devel/qt/bin/qmake</qmake>
+      <designer>/home/kde-devel/qt/bin/designer</designer>
       <designerpluginpaths/>
     </qt>
     <codecompletion>
@@ -141,14 +170,16 @@
       <statusBarTypeEvaluation>false</statusBarTypeEvaluation>
       <namespaceAliases>std=_GLIBCXX_STD;__gnu_cxx=std</namespaceAliases>
       <processPrimaryTypes>true</processPrimaryTypes>
-      <processFunctionArguments>false</processFunctionArguments>
-      <preProcessAllHeaders>false</preProcessAllHeaders>
+      <processFunctionArguments>true</processFunctionArguments>
+      <preProcessAllHeaders>true</preProcessAllHeaders>
       <parseMissingHeaders>false</parseMissingHeaders>
       <resolveIncludePaths>true</resolveIncludePaths>
       <alwaysParseInBackground>true</alwaysParseInBackground>
       <usePermanentCaching>true</usePermanentCaching>
-      <alwaysIncludeNamespaces>false</alwaysIncludeNamespaces>
+      <alwaysIncludeNamespaces>true</alwaysIncludeNamespaces>
       <includePaths>.;</includePaths>
+      <parseMissingHeadersExperimental>false</parseMissingHeadersExperimental>
+      <resolveIncludePathsUsingMakeExperimental>false</resolveIncludePathsUsingMakeExperimental>
     </codecompletion>
     <creategettersetter>
       <prefixGet/>
@@ -179,6 +210,7 @@
     <tree>
       <hidepatterns>*.o,*.lo,CVS</hidepatterns>
       <hidenonprojectfiles>false</hidenonprojectfiles>
+      <showvcsfields>false</showvcsfields>
     </tree>
   </kdevfileview>
   <ctagspart>
@@ -186,4 +218,11 @@
     <customTagfilePath>/home/shie/src/krusader_kde4/tags</customTagfilePath>
     <activeTagsFiles/>
   </ctagspart>
+  <kdevdocumentation>
+    <projectdoc>
+      <docsystem/>
+      <docurl/>
+      <usermanualurl/>
+    </projectdoc>
+  </kdevdocumentation>
 </kdevelop>

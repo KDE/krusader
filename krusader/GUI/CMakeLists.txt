@@ -1,5 +1,5 @@
 
-include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
+include_directories( ${KDE4_INCLUDE_DIR} ${KDE4_INCLUDES} ${QT_INCLUDES}  )
 
 
 ########### next target ###############
@@ -17,7 +17,8 @@ set( GUI_SRCS
 	krstyleproxy.cpp
 	krlistwidget.cpp
 	mediabutton.cpp 
-	kcmdmodebutton.cpp )
+	kcmdmodebutton.cpp
+	terminaldock.cpp )
 
 kde4_add_library(GUI ${GUI_SRCS} )
 

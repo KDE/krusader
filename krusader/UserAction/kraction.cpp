@@ -36,6 +36,7 @@
 #include "kraction.h"
 #include "expander.h"
 #include "useraction.h"
+#include "../GUI/terminaldock.h"
 #include "../krusader.h"
 #include "../krusaderview.h"
 #include "../defaults.h"
@@ -219,12 +220,12 @@ void KrActionProc::start( QStringList cmdLineList ) {
       KMessageBox::sorry( 0, i18n("Support for more than one command doesn't work in a terminal. Only the first is executed in the terminal.") );
 
    if ( _action->execType() == KrAction::RunInTE
-         && ( MAIN_VIEW->konsole_part == NULL || MAIN_VIEW->konsole_part->widget() == NULL ) ) {
+         && ( ! MAIN_VIEW->terminal_dock->initialise() ) ) {
       KMessageBox::sorry( 0, i18n("Embedded terminal emulator does not work, using output collection instead.") );
    }
 
    if( _action->execType() == KrAction::Normal || _action->execType() == KrAction::Terminal
-       || ( _action->execType() == KrAction::RunInTE && MAIN_VIEW->konsole_part && MAIN_VIEW->konsole_part->widget() )
+       || ( _action->execType() == KrAction::RunInTE && MAIN_VIEW->terminal_dock->isInitialised() )
    ) { // not collect output
       //TODO option to run them in paralell (not available for: collect output)
       for ( QStringList::Iterator it = cmdLineList.begin(); it != cmdLineList.end(); ++it) {
@@ -235,8 +236,7 @@ void KrActionProc::start( QStringList cmdLineList ) {
       //run in TE
       if ( _action->execType() == KrAction::RunInTE ) {
          //send the commandline contents to the terminal emulator
-         QKeyEvent keyEvent( QEvent::KeyPress, 0, Qt::NoModifier,  cmd+"\n");
-         QApplication::sendEvent( MAIN_VIEW->konsole_part->widget(), &keyEvent );     
+        MAIN_VIEW->terminal_dock->sendInput( cmd+"\n" );
       } else { // will start a new process
          // run in terminal
          if ( _action->execType() == KrAction::Terminal ) {

@@ -51,6 +51,7 @@ class ListPanel;
 // forward declaration
 class KFnKeys;
 class KCMDLine;
+class TerminalDock;
 
 class KrusaderView : public QWidget  {
    Q_OBJECT
@@ -66,9 +67,6 @@ public:
   inline PanelManager *activeManager() const { return (activePanel==left ? leftMng : rightMng); }
   inline PanelManager *inactiveManager() const { return (activePanel==left ? rightMng : leftMng); }
   QList<int> getTerminalEmulatorSplitterSizes();
-  virtual bool eventFilter ( QObject * watched, QEvent * e );
-  /** if the KonsolePart for the Terminal Emulator is not yet loaded, load it */
-  void createTE();
   
 public slots:
   void slotCurrentChanged(QString p);
@@ -87,7 +85,6 @@ public slots:
   void loadPanelProfiles( QString group );
   void savePanelProfiles( QString group );
 
-protected slots:
   void killTerminalEmulator();
 
 public:
@@ -96,9 +93,7 @@ public:
   PanelManager *leftMng, *rightMng;       // saving them for panel swaps
   KFnKeys			*fnKeys;										// function keys
   KCMDLine    *cmdLine;                   // command line widget
-  QWidget     *terminal_dock;             // docking widget for terminal emulator
-  QHBoxLayout *terminal_hbox;             // hbox for terminal_dock
-  KParts::ReadOnlyPart *konsole_part;     // the actual part pointer
+  TerminalDock  *terminal_dock;             // docking widget for terminal emulator
   QSplitter		*horiz_splitter, *vert_splitter;
   QList<int>		 verticalSplitterSizes;
 
