@@ -126,7 +126,7 @@
 // Move To Trash //////
 #define _MoveToTrash   false 
 // Terminal ///////////
-#define _Terminal      "konsole"
+#define _Terminal      "konsole --workdir ."
 // Send CDs ///////////
 #define _SendCDs		true
 // Editor /////////////

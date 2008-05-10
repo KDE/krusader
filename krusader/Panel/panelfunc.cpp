@@ -368,21 +368,7 @@ void ListPanelFunc::view() {
 }
 
 void ListPanelFunc::terminal() {
-	//FIXME nearly identical code is in krpopupmenu.cpp
-	KProcess proc;
-	KConfigGroup group( krConfig, "General" );
-	QString term = group.readEntry( "Terminal", _Terminal );
-	proc << KrServices::separateArgs( term );
-	proc.setWorkingDirectory(panel->realPath());
-#if 0 // I _think_ that this is no more nessesary since the process is now allways detached
-	if ( term.contains( "konsole" ) )    /* KDE 3.2 bug (konsole is killed by pressing Ctrl+C) */
-	{                                  /* Please remove the patch if the bug is corrected */
-		proc << "&";
-		proc.setUseShell( true );
-	}
-#endif
-	if ( !proc.startDetached() )
-		KMessageBox::sorry( krApp, i18n( "<qt>Can't open <b>%1</b></qt>", term) );
+	SLOTS->runTerminal( panel->realPath(), QStringList() );
 }
 
 void ListPanelFunc::editFile() {

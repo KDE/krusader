@@ -442,13 +442,16 @@ void KRslots::runMountMan() {
   krApp->mountMan->mainWindow();
 }
 
-void KRslots::homeTerminal(){
-  // FIXME this is the third copy of the code starting a terminal!
+void KRslots::runTerminal( const QString & dir, const QStringList & args ){
   KProcess proc;
-  proc.setWorkingDirectory(QDir::homePath() );
+  proc.setWorkingDirectory( dir );
   KConfigGroup group( krConfig, "General");
   QString term = group.readEntry("Terminal",_Terminal);
   proc << KrServices::separateArgs( term );
+  if( !args.isEmpty() )
+  {
+    proc << "-e" << args; // FIXME this depends on term!! But works in konsole, xterm and gnome-terminal
+  }
 #if 0 // I hope this is no longer needed...
   if( term.contains( "konsole" ) )   /* KDE 3.2 bug (konsole is killed by pressing Ctrl+C) */
   {                                  /* Please remove the patch if the bug is corrected */
@@ -458,6 +461,10 @@ void KRslots::homeTerminal(){
 #endif
   if(!proc.startDetached())
     KMessageBox::sorry(krApp,i18n("Error executing %1!", term));
+}
+
+void KRslots::homeTerminal(){
+  runTerminal( QDir::homePath(), QStringList() );
 }
 
 void KRslots::sysInfo(){

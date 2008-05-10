@@ -163,7 +163,7 @@ if( first )
 	// terminal
   QLabel *label3 = new QLabel( i18n( "Terminal:" ), generalGrp );
   generalGrid->addWidget( label3, 10, 0 );
-  KonfiguratorURLRequester *urlReq2 = createURLRequester( "General", "Terminal", "konsole",
+  KonfiguratorURLRequester *urlReq2 = createURLRequester( "General", "Terminal", _Terminal,
                                       generalGrp, false );
   generalGrid->addWidget( urlReq2, 10, 1 );
 
