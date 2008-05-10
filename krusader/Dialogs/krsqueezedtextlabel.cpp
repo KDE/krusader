@@ -5,6 +5,7 @@
 #include <QDropEvent>
 #include <QDragEnterEvent>
 #include <QLabel>
+#include <QPainter>
 #include <kurl.h>
 
 KrSqueezedTextLabel::KrSqueezedTextLabel(QWidget *parent):
@@ -82,6 +83,15 @@ void KrSqueezedTextLabel::setText( const QString &text, int index, int length ) 
 	fullText = text;
 	KSqueezedTextLabel::setText( fullText );
 	squeezeTextToLabel(_index,_length);
+}
+
+void KrSqueezedTextLabel::paintEvent( QPaintEvent * e ) {
+	QPainter painter( this );
+	
+	QRect cr = contentsRect();
+	painter.fillRect( cr, palette().brush( backgroundRole() ) );
+	
+	KSqueezedTextLabel::paintEvent( e );
 }
 
 #include "krsqueezedtextlabel.moc"

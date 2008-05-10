@@ -10,6 +10,7 @@
 class QMouseEvent;
 class QDropEvent;
 class QDragEnterEvent;
+class QPaintEvent;
 
 /**
 This class overloads KSqueezedTextLabel and simply adds a clicked signal,
@@ -38,6 +39,7 @@ Q_OBJECT
     virtual void mousePressEvent(QMouseEvent *e);
     virtual void dropEvent(QDropEvent *e);
     virtual void dragEnterEvent(QDragEnterEvent *e);
+    virtual void paintEvent( QPaintEvent * e );
     void squeezeTextToLabel(int index=-1, int length=-1);
 
    QString fullText;
