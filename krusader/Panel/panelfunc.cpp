@@ -1146,7 +1146,7 @@ void ListPanelFunc::refreshActions() {
 	krCreateCS->setEnabled( vfsType == vfs::NORMAL );
 	
 	QString protocol = files()->vfs_getOrigin().protocol();
-	krRemoteEncoding->setEnabled( protocol == "ftp" || protocol == "sftp" || protocol == "fish" );
+	krRemoteEncoding->setEnabled( protocol == "ftp" || protocol == "sftp" || protocol == "fish" || protocol == "krarc" );
 	
 	/*
 	  krUnpack->setEnabled(true);                            // unpack archive

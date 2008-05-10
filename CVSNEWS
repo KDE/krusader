@@ -1,11 +1,3 @@
-New feature: new synchronizer shortcuts
-  - CTRL + W : reverse direction
-  - ALT + Down : exclude
-  - ALT + Up : restore original task
-  - ALT + Left : copy to left
-  - ALT + Right : copy to right
-  - ALT + Delete : mark for delete
-
 ------------------------------------------------------------------------
 - Krusader CVSNEWS
 - http://www.krusader.org/text.php?t=CVSNEWS
@@ -14,6 +6,21 @@ New feature: new synchronizer shortcuts
 - It should contain a brief description of new features. In some way an
 - extension to the ChangeLog.
 ------------------------------------------------------------------------
+
+
+New feature: select remote encoding for krarc
+  - the file name encoding for zip, rar, arj, lha can be set from now
+  - as 7z always uses UTF-16, remote encoding will not work for 7z
+  - it's imporant because zip files that were created on Windows can
+    have different encoding
+
+New feature: new synchronizer shortcuts
+  - CTRL + W : reverse direction
+  - ALT + Down : exclude
+  - ALT + Up : restore original task
+  - ALT + Left : copy to left
+  - ALT + Right : copy to right
+  - ALT + Delete : mark for delete
 
 UserActions: Expander: Many fixes, better error handling, sensible
   %_Each&-handling. Finally I managed to implement Jiri's 100k patch for

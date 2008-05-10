@@ -30,6 +30,7 @@
 
 class KFileItem;
 class QByteArray;
+class QTextCodec;
 
 class kio_krarcProtocol : public QObject, public KIO::SlaveBase {
 Q_OBJECT
@@ -56,6 +57,10 @@ protected:
 	virtual bool setArcFile(const KUrl& url);
 	virtual QString getPassword();
 	virtual void invalidatePassword();
+	
+	QString localeEncodedString( QString str );
+	QByteArray encodeString( QString );
+	QString decodeString( char * );
 
 	// archive specific commands
 	QString     cmd;     ///< the archiver name.
@@ -87,6 +92,7 @@ private:
 	bool archiveChanged;              //< true if the archive was changed.
 	bool archiveChanging;             //< true if the archive is currently changing.
 	bool newArchiveURL;               //< true if new archive was entered for the protocol
+	bool noencoding;                   //< 7z files use UTF-16, so encoding is unnecessary
 	KIO::filesize_t decompressedLen;  //< the number of the decompressed bytes
 	KFileItem* arcFile;               //< the archive file item.
 	QString arcPath;                  //< the archive location
@@ -99,6 +105,9 @@ private:
 	
 	QString lastData;
 	QString encryptedArchPath;
+	
+	QString currentCharset;
+	QTextCodec * codec;
 };
 
 class KrLinecountingProcess : public KProcess {
