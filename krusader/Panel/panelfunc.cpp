@@ -29,10 +29,10 @@ A
 ***************************************************************************/
 #include <unistd.h> 
 // Qt Includes
-#include <qdir.h>
 #include <qeventloop.h>
 #include <qclipboard.h> 
 #include <QList>
+#include <QDir>
 // KDE Includes
 #include <klocale.h>
 #include <kprocess.h>
@@ -206,7 +206,7 @@ void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn ) {
 	
 	// on local file system change the working directory
 	if ( files() ->vfs_getType() == vfs::NORMAL )
-		chdir( files() ->vfs_getOrigin().path().toLocal8Bit() );
+		QDir::setCurrent( files() ->vfs_getOrigin().path() );
 	
 	// see if the open url operation failed, and if so, 
 	// put the attempted url in the origin bar and let the user change it
@@ -879,10 +879,10 @@ void ListPanelFunc::pack() {
 
 	// pack the files
 	// we must chdir() first because we supply *names* not URL's
-	QString save = getcwd( 0, 0 );
-	chdir( arcDir.toLocal8Bit() );
+	QString save = QDir::currentPath();
+	QDir::setCurrent( arcDir );
 	KRarcHandler::pack( fileNames, PackGUI::type, arcFile, totalFiles + totalDirs, PackGUI::extraProps );
-	chdir( save.toLocal8Bit() );
+	QDir::setCurrent( save );
 
 	// delete the temporary directory if created
 	if ( tempDir )

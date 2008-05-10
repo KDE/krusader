@@ -33,9 +33,9 @@
 #include <unistd.h>
 #include <dirent.h>
 // QT includes
-#include <qdir.h>
 #include <qtimer.h>
 #include <QByteArray>
+#include <QDir>
 // KDE includes
 #include <kmessagebox.h>
 #include <kmimetype.h>
@@ -103,8 +103,8 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
 	}
 
   // change directory to the new directory
-	QString save = getcwd( 0, 0 );
-	if (chdir(path.toLocal8Bit()) != 0) {
+	QString save = QDir::currentPath();
+	if ( ! QDir::setCurrent( path ) ) {
 		if( !quietMode ) KMessageBox::error(krApp, i18n("Access denied to")+path, i18n("Error"));
 		closedir(dir);
 		return false;
@@ -126,7 +126,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
   }
 	// clean up
 	closedir(dir);
-	chdir( save.toLocal8Bit() );
+	QDir::setCurrent( save );
 	
 	if( panelConnected )
 	{

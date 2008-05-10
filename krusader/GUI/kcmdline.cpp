@@ -139,7 +139,7 @@ void KCMDLine::setCurrent( const QString &p ) {
   completion.setDir( p );
   // make sure our command is executed in the right directory
   // This line is important for Krusader overall functions -> do not remove !
-  chdir( p.toLocal8Bit() );
+  QDir::setCurrent( p );
 }
 
 KCMDLine::~KCMDLine() {

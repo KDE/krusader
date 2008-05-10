@@ -654,7 +654,7 @@ void kio_krarcProtocol::copy (const KUrl &url, const KUrl &dest, int, KIO::JobFl
 					destDir.truncate( ndx+1 );
 			}
 			
-			QDir::setCurrent( destDir.toLocal8Bit() );
+			QDir::setCurrent( destDir );
 			
 			KrLinecountingProcess proc;
 			proc << copyCmd << arcFile->url().path(KUrl::RemoveTrailingSlash) << file;
@@ -676,7 +676,7 @@ void kio_krarcProtocol::copy (const KUrl &url, const KUrl &dest, int, KIO::JobFl
 			
 			processedSize( KFileItem(*entry,url).size() );
 			finished();
-			QDir::setCurrent( "/" ); /* for being able to umount devices after copying*/
+			QDir::setCurrent( QDir::rootPath() ); /* for being able to umount devices after copying*/
 			return;
 		}while( 0 );
 	
