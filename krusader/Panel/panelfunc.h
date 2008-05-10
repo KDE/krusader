@@ -43,7 +43,8 @@ friend class ListPanel;
 public slots:
 	inline vfile* getVFile(KrViewItem *item) { return files()->vfs_search(item->name()); }
 	inline vfile* getVFile(const QString& name) { return files()->vfs_search(name); }
-	void execute(QString&);
+	void execute(const QString&);
+	void goInside(const QString&);
 	void openUrl(const KUrl& path, const QString& nameToMakeCurrent = QString());
 	void openUrl(const QString& path, const QString& nameToMakeCurrent = QString());
    void immediateOpenUrl( const KUrl& path);

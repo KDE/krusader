@@ -309,7 +309,8 @@ void ListPanel::createView()
    connect( view->op(), SIGNAL( currentChanged( KrViewItem * ) ), SLOTS, SLOT( updatePopupPanel( KrViewItem* ) ) );
    connect( view->op(), SIGNAL( renameItem( const QString &, const QString & ) ),
             func, SLOT( rename( const QString &, const QString & ) ) );
-   connect( view->op(), SIGNAL( executed( QString& ) ), func, SLOT( execute( QString& ) ) );
+   connect( view->op(), SIGNAL( executed( const QString& ) ), func, SLOT( execute( const QString& ) ) );
+   connect( view->op(), SIGNAL( goInside( const QString& ) ), func, SLOT( goInside( const QString& ) ) );
    connect( view->op(), SIGNAL( needFocus() ), this, SLOT( slotFocusOnMe() ) );
    connect( view->op(), SIGNAL( selectionChanged() ), this, SLOT( slotUpdateTotals() ) );
    connect( view->op(), SIGNAL( itemDescription( QString& ) ), krApp, SLOT( statusBarUpdate( QString& ) ) );

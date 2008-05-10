@@ -91,7 +91,8 @@ public:
 	void emitContextMenu(const QPoint &point) { emit contextMenu(point); }
 	void emitEmptyContextMenu(const QPoint &point) { emit emptyContextMenu(point); }
    void emitRenameItem(const QString &oldName, const QString &newName) { emit renameItem(oldName, newName); }
-   void emitExecuted( QString &name ) { emit executed(name); }
+   void emitExecuted( const QString &name ) { emit executed(name); }
+   void emitGoInside( const QString &name ) { emit goInside(name); }
    void emitNeedFocus() { emit needFocus(); }
    void emitMiddleButtonClicked( KrViewItem *item ) { emit middleButtonClicked( item ); }
    void emitCurrentChanged( KrViewItem *item ) { emit currentChanged( item ); }
@@ -104,7 +105,8 @@ signals:
    void contextMenu( const QPoint &point );
    void emptyContextMenu( const QPoint& point );
    void renameItem( const QString &oldName, const QString &newName );
-   void executed( QString &name );
+   void executed( const QString &name );
+   void goInside( const QString &name );
    void needFocus();
    void middleButtonClicked( KrViewItem *item );
    void currentChanged( KrViewItem *item );

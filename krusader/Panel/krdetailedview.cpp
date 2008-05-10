@@ -1054,28 +1054,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
             break;
          } else { // just a normal click - do a lynx-like moving thing
             KrViewItem *i = getCurrentKrViewItem();
-            if ( i->name() == ".." ) { // if clicking on the ".." entry
-               SLOTS->dirUp(); // ask krusader to move up a directory
-               return ;
-            }
-            if ( i->VF->vfile_isDir() ) {             // we create a return-pressed event,
-               QString tmp = i->name();
-               op()->emitExecuted(tmp); // thereby emulating a chdir
-            } else if( i->VF->vfile_getUrl().isLocalFile() ) {
-               bool encrypted; 
-               KUrl url = i->VF->vfile_getUrl();
-               QString mime = ((vfile *)(i->VF))->vfile_getMime();
-               QString type = KRarcHandler::getType( encrypted, url.path(), mime, false );
-
-               if( KRarcHandler::arcSupported( type ) ) {
-                 KUrl url = i->VF->vfile_getUrl();
-                 if( type == "-tar" || type == "-tgz" || type == "-tbz" )
-                   url.setProtocol( "tar" );
-                 else
-                   url.setProtocol( "krarc" );
-                 ACTIVE_FUNC->openUrl( url );
-               }
-            }
+            op()->emitGoInside( i->name() );
             return ; // safety
          }
          case Qt::Key_Backspace :                         // Terminal Emulator bugfix

@@ -715,8 +715,45 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 	}
 }
 
+void ListPanelFunc::goInside( const QString& name )
+{
+	if ( name == ".." ) {
+		dirUp();
+		return ;
+	}
+	vfile *vf = files() ->vfs_search( name );
+	if ( vf == 0 )
+		return ;
+	
+	KUrl origin = files() ->vfs_getOrigin();
+	KUrl url = vf->vfile_getUrl();
+	
+	if ( vf->vfile_isDir() ) {             // we create a return-pressed event,
+		execute(name); // thereby emulating a chdir
+	} else if( url.isLocalFile() ) {
+		bool encrypted; 
+		QString mime = vf->vfile_getMime();
+		QString type = KRarcHandler::getType( encrypted, url.path(), mime, false );
+
+		if( KRarcHandler::arcSupported( type ) ) { // archive autodetection
+			if( type == "-tar" || type == "-tgz" || type == "-tbz" )
+				url.setProtocol( "tar" );
+			else
+				url.setProtocol( "krarc" );
+			openUrl( url );
+		} else {
+			QString protocol = KrServices::registerdProtocol( mime );
+			if ( protocol == "iso" )
+			{
+				url.setProtocol( protocol );
+				openUrl( url );
+			}
+		}
+	}
+}
+
 // this is done when you double click on a file
-void ListPanelFunc::execute( QString& name ) {
+void ListPanelFunc::execute( const QString& name ) {
 	if ( name == ".." ) {
 		dirUp();
 		return ;
