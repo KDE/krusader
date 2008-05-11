@@ -57,7 +57,6 @@ public:
 
 class KrBriefViewItem;
 class QDragMoveEvent;
-//class QToolTip;
 class Q3Header;
 
 /**
@@ -177,7 +176,6 @@ private:
 	KrBriefViewItem *currentlyRenamedItem;
 	Q3IconViewItem *pressedItem;
 	QMouseEvent *mouseEvent;
-//	QToolTip *toolTip;
 };
 
 #endif

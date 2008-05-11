@@ -58,39 +58,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 KrViewInstance briefView( BRIEFVIEW_ID, i18n( "&Brief View" ), Qt::ALT + Qt::SHIFT + Qt::Key_B,
                              KrBriefView::create, KrBriefViewItem::itemHeightChanged );
 
-/* TODO
-class KrBriefViewToolTip : public QToolTip
-{
-public:
-    KrBriefViewToolTip( KrBriefView *view, QWidget *parent );
-    void maybeTip( const QPoint &pos );
-
-    virtual ~KrBriefViewToolTip() {}
-private:
-    KrBriefView *view;
-};
-
-KrBriefViewToolTip::KrBriefViewToolTip( KrBriefView *lv, QWidget *parent )
-  : QToolTip( parent ), view( lv )
-{
-}
-
-void KrBriefViewToolTip::maybeTip( const QPoint &pos )
-{
-  Q3IconViewItem *item = view->findItem( view->viewportToContents( pos ) );
-
-  if ( !item )
-    return;
-    
-  int width = QFontMetrics( view->font() ).width( item->text() ) + 4;
-    
-  QRect r = item->rect();
-  r.setTopLeft( view->contentsToViewport( r.topLeft() ) );
-  if( width > item->textRect().width() )
-    tip( r, item->text() );
-} */
-
-
 KrBriefView::KrBriefView( Q3Header * headerIn, QWidget *parent, bool &left, KConfig *cfg ):
 	K3IconView(parent), KrView( cfg ), header( headerIn ), _currDragItem( 0 ),
             currentlyRenamedItem( 0 ), pressedItem( 0 ), mouseEvent( 0 ) {
@@ -99,7 +66,6 @@ KrBriefView::KrBriefView( Q3Header * headerIn, QWidget *parent, bool &left, KCon
 	KConfigGroup group( krConfig, "Private" );
 	if ( group.readEntry("Enable Input Method", true))
 		setInputMethodEnabled(true);
-//	toolTip = new KrBriefViewToolTip( this, viewport() ); TODO
 }
 
 void KrBriefView::setup() {
@@ -125,8 +91,6 @@ void KrBriefView::setup() {
 		this, SLOT(slotRightButtonPressed(Q3IconViewItem*, const QPoint&)));
    connect( this, SIGNAL( currentChanged( Q3IconViewItem* ) ), this, SLOT( setNameToMakeCurrent( Q3IconViewItem* ) ) );
    connect( this, SIGNAL( currentChanged( Q3IconViewItem* ) ), this, SLOT( transformCurrentChanged( Q3IconViewItem* ) ) );
-   connect( this, SIGNAL( mouseButtonClicked ( int, Q3IconViewItem *, const QPoint & ) ),
-            this, SLOT( slotMouseClicked ( int, Q3IconViewItem *, const QPoint & ) ) );
    connect( &KrColorCache::getColorCache(), SIGNAL( colorsRefreshed() ), this, SLOT( refreshColors() ) );
 
    // determine basic settings for the view
@@ -616,10 +580,12 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
      if( newCurrent )                 // save the name of the file
        name = static_cast<KrBriefViewItem*>( newCurrent ) ->name();
 
+     pressedItem = newCurrent;
+
      K3IconView::contentsMousePressEvent( e );
 
      if( name.isEmpty() || _dict.find( name ) == _dict.end() ) // is the file still valid?
-       newCurrent = 0;                // if not, don't do any crash...
+       newCurrent = pressedItem = 0;                // if not, don't do any crash...
    } else {
      // emitting the missing signals from QIconView::contentsMousePressEvent();
      // the right click signal is not emitted as it is used for selection
@@ -664,12 +630,12 @@ void KrBriefView::contentsMouseReleaseEvent( QMouseEvent * e ) {
       // emitting the missing signals from QIconView::contentsMouseReleaseEvent();
       // the right click signal is not emitted as it is used for selection
 
-      if( !newCurrent ) {
+      if( newCurrent ) {
         emit clicked( newCurrent );
         emit clicked( newCurrent, viewport()->mapToGlobal( vp ) );
       }
 
-      emit mouseButtonClicked( e->button(), newCurrent, viewport()->mapToGlobal( vp ) );
+      slotMouseClicked( e->button(), newCurrent, viewport()->mapToGlobal( vp ) );
     }
 
     pressedItem = 0;
