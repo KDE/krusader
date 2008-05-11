@@ -832,10 +832,12 @@ void Krusader::savePosition() {
 }
 
 void Krusader::saveSettings() {
-	KConfigGroup cfg( krConfig, "Private");
+   KConfigGroup cfg( krConfig, "Main Toolbar");
    toolBar() ->saveSettings( cfg );
-	cfg = krConfig->group("Actions Toolbar");
+   
+   cfg = krConfig->group("Actions Toolbar");
    toolBar("actionsToolBar")->saveSettings( cfg );
+
    cfg = config->group( "Startup" );
    cfg.writeEntry( "Left Active Tab", mainView->leftMng->activeTab() );
    cfg.writeEntry( "Right Active Tab", mainView->rightMng->activeTab() );
@@ -1059,13 +1061,13 @@ void Krusader::updateGUI( bool enforce ) {
    // this needs to be called AFTER createGUI() !!!
    updateUserActions();
    
-   KConfigGroup cfg_priv( krConfig, "Private");
-   toolBar()->applySettings( cfg_priv );
+   KConfigGroup cfg_toolbar( krConfig, "Main Toolbar");
+   toolBar()->applySettings( cfg_toolbar );
 
-	KConfigGroup cfg_act( krConfig->group( "Actions Toolbar" ) );
-	toolBar("actionsToolBar") ->applySettings( cfg_act );
-	static_cast<KToggleAction*>(actionCollection()->action("toggle actions toolbar"))->
-		setChecked(toolBar("actionsToolBar")->isVisible());
+   KConfigGroup cfg_act( krConfig->group( "Actions Toolbar" ) );
+   toolBar("actionsToolBar") ->applySettings( cfg_act );
+   static_cast<KToggleAction*>(actionCollection()->action("toggle actions toolbar"))->
+       setChecked(toolBar("actionsToolBar")->isVisible());
    
    KConfigGroup cfg( krConfig, "Startup" );
    if ( enforce ) {
@@ -1115,8 +1117,8 @@ void Krusader::updateGUI( bool enforce ) {
         mainView->terminal_dock->initialise();
       }
    }
-	// popular urls
-	popularUrls->load();
+   // popular urls
+   popularUrls->load();
 
 }
 
