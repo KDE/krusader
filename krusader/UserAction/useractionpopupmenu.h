@@ -4,7 +4,7 @@
 // Description: 
 //
 //
-// Author: Jonas Bähr, (C) 2004
+// Author: Jonas BÃ¤hr, (C) 2004
 //
 // Copyright: See COPYING file that comes with this distribution
 //
@@ -19,7 +19,7 @@ class KUrl;
 
 class UserActionPopupMenu : public KMenu {
 public:
-   UserActionPopupMenu( KUrl currentURL, QWidget *parent = 0 );
+   UserActionPopupMenu( const KUrl &currentURL, QWidget *parent = 0 );
 };
 
 #endif // ifndef USERACTIONPOPUPMENU_H

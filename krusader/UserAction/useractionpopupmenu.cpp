@@ -18,14 +18,6 @@
 #include "useraction.h"
 #include "kraction.h"
 
-UserActionPopupMenu::UserActionPopupMenu( KUrl currentURL, QWidget *parent ) : KMenu( parent ) {
-   UserAction::KrActionList list = krUserAction->actionList();
-
-   QListIterator<KrAction *> it( list );
-   while (it.hasNext())
-   {
-     KrAction * action = it.next();
-     if ( action->isAvailable( currentURL ) )
-         addAction( action );
-   }
+UserActionPopupMenu::UserActionPopupMenu( const KUrl &currentURL, QWidget *parent ) : KMenu( parent ) {
+   krUserAction->populateMenu( this, &currentURL );
 }

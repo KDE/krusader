@@ -1042,7 +1042,12 @@ void Krusader::stopWait() {
 void Krusader::updateUserActions() {
    userActionMenu = (KMenu*) guiFactory()->container( "useractionmenu", this );
    if ( userActionMenu )
-      userAction->populateMenu( userActionMenu );
+   {
+      userActionMenu->clear();
+      userActionMenu->addAction( krApp->actManageUseractions );
+      userActionMenu->addSeparator();
+      userAction->populateMenu( userActionMenu, NULL );
+   }
 }
 
 void Krusader::updateGUI( bool enforce ) {

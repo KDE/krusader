@@ -89,7 +89,7 @@ public:
    * Fills a KMenu with all available UserActions in the list
    * @param  popupmenu to populate
    */
-  void populateMenu(KMenu* menu);
+  void populateMenu(KMenu* menu, const KUrl *currentURL);
 
    QStringList allCategories();
    QStringList allNames();
