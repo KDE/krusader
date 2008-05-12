@@ -167,7 +167,6 @@ class Krusader : public KParts::MainWindow {
 
     KrusaderStatus *status;
     KRslots *slot;
-    //KAccel *accels; // global accelerators ===> TODO: PORTME
     
     static KMenu *userActionMenu;
     static UserMenu *userMenu;

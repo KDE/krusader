@@ -539,15 +539,6 @@ void Krusader::resizeEvent ( QResizeEvent *e ) {
 }
 
 void Krusader::setupAccels() {
-#if 0 // TODO: PORTME
-   accels = new KAccel( this );
-	 // SHIFT+F3
-   accels->insert( "F3_ViewDlg", i18n( "F3 View Dialog" ), QString(),
-                   SHIFT + Qt::Key_F3, SLOTS, SLOT( viewDlg() ) );
-#endif
-   // Tab
-//   accels->insert( "Tab-Switch panel", i18n( "Tab: switch panel" ), QString(),
-//                   Qt::Key_Tab, mainView, SLOT( panelSwitch() ) );
 	KAction * tab = new KAction( "Tab-Switch panel", this);
 	tab->setShortcut(Qt::Key_Tab);
 	connect(tab, SIGNAL(triggered(bool)), mainView, SLOT( panelSwitch() ));
@@ -659,9 +650,10 @@ void Krusader::setupActions() {
 	/* Shortcut disabled because of the Terminal Emulator bug. */
    NEW_KACTION(actDirUp, i18n( "Up" ), "up", Qt::CTRL + Qt::Key_PageUp /*Qt::Key_Backspace*/, SLOTS, SLOT( dirUp() ), "dirUp" );
 
-	KAction *tmp1, *tmp2;
+	KAction *tmp1, *tmp2, *tmp3;
    NEW_KACTION( tmp1, i18n( "&New Text File..." ), "filenew", Qt::SHIFT + Qt::Key_F4, SLOTS, SLOT( editDlg() ), "edit_new_file" );
    NEW_KACTION( tmp2, i18n( "Start &Root Mode Krusader" ), "krusader_root", Qt::ALT + Qt::Key_K, SLOTS, SLOT( rootKrusader() ), "root krusader" );
+   NEW_KACTION( tmp3, i18n( "F3 View Dialog" ), 0, Qt::SHIFT + Qt::Key_F3, SLOTS, SLOT( viewDlg() ), "F3_ViewDlg" );
    NEW_KACTION(actTest, i18n( "T&est Archive" ), "ark", Qt::ALT + Qt::Key_E, SLOTS, SLOT( testArchive() ), "test archives" );
    NEW_KACTION(actFTPNewConnect, i18n( "New Net &Connection..." ), "connect_creating", Qt::CTRL + Qt::Key_N, SLOTS, SLOT( newFTPconnection() ), "ftp new connection" );
 	NEW_KACTION(actProfiles, i18n( "Pro&files" ), "kr_profile", Qt::ALT + Qt::Key_L, MAIN_VIEW, SLOT( profiles() ), "profile" );
