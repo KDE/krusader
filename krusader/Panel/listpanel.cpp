@@ -193,15 +193,6 @@ ListPanel::ListPanel( int typeIn, QWidget *parent, bool &left ) :
    hbox->setContentsMargins( 0, 0, 0, 0 );
    hbox->setSpacing( 0 );
 
-	// clear-origin button
-	bool clearButton = group.readEntry("Clear Location Bar Visible", _ClearLocation);
-	if (clearButton){
-		clearOrigin = new QToolButton(hboxWidget);
-		clearOrigin->setIcon(krLoader->loadIcon("locationbar_erase", KIconLoader::Toolbar, 16));
-		hbox->addWidget( clearOrigin );
-		clearOrigin->setToolTip( i18n( "Clear the location bar" ) );
-	}
-	
 	QuickNavLineEdit *qnle = new QuickNavLineEdit(this);
    origin = new KUrlRequester( qnle, hboxWidget );
    hbox->addWidget( origin );
@@ -218,14 +209,6 @@ ListPanel::ListPanel( int typeIn, QWidget *parent, bool &left ) :
    connect( origin, SIGNAL( returnPressed( const QString& ) ), this, SLOT( slotFocusOnMe() ) );
    connect( origin, SIGNAL( urlSelected( const KUrl & ) ), func, SLOT( openUrl( const KUrl & ) ) );
    connect( origin, SIGNAL( urlSelected( const KUrl & ) ), this, SLOT( slotFocusOnMe() ) );
-   
-	// this is here on purpose, do not move up!
-	if (clearButton) {
-		clearOrigin->setFixedSize( 20, origin->button() ->height() );
-		connect(clearOrigin, SIGNAL(clicked()), origin->lineEdit(), SLOT(clear()));
-		connect(clearOrigin, SIGNAL(clicked()), origin->lineEdit(), SLOT(setFocus()));
-	}
-	//
    
    cdOtherButton = new QToolButton( hboxWidget );
    cdOtherButton->setFixedSize( 20, origin->button() ->height() );

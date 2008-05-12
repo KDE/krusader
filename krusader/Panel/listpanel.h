@@ -185,7 +185,6 @@ public:
    QToolButton *cdUpButton;
    QToolButton *cdOtherButton;
 	QToolButton *popupBtn;
-	QToolButton *clearOrigin;
 	PanelPopup *popup;
    KrBookmarkButton *bookmarksButton;
    DirHistoryQueue* dirHistoryQueue;
