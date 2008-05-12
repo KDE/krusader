@@ -20,6 +20,7 @@
 
 #include <qstring.h>
 #include <qdom.h>
+#include <QHash>
 
 #include "useraction.h"
 #include "kraction.h"
@@ -56,13 +57,47 @@ void UserAction::setAvailability( const KUrl& currentURL ) {
 }
 
 void UserAction::populateMenu( KMenu* menu ) {
-   QListIterator<KrAction *> it( _actions );
-   while (it.hasNext())
+   // I have not found any method in Qt/KDE
+   // for non-recursive searching of childs by name ...
+   QMap<QString, KMenu *> categoryMap;
+   QList<KrAction *> uncategorised;
+   
+   foreach( KrAction* action, _actions )
    {
-      KrAction * action = it.next();
-      if ( !menu->actions().contains(action) )
-         menu->addAction(action);
+      const QString category = action->category();
+      if ( category.isEmpty() )
+      {
+        uncategorised.append( action );
+      }
+      else
+      {
+         if (! categoryMap.contains( category ) )
+         {
+            KMenu *categoryMenu = new KMenu();
+            categoryMenu->setTitle( category ); // use i18n in the future?
+            categoryMenu->setObjectName( category );
+            categoryMap.insert( category, categoryMenu );
+         }
+         KMenu *targetMenu = categoryMap.value( category );
+         targetMenu->addAction( action );
+      }
    }
+   
+   menu->clear();
+   menu->addAction( krApp->actManageUseractions );
+   menu->addSeparator();
+   
+   QMapIterator<QString, KMenu *> mapIter(categoryMap);
+   while ( mapIter.hasNext() )
+   {
+      mapIter.next();
+      menu->addMenu( mapIter.value() );
+   }
+   
+   foreach ( KrAction* action, uncategorised )
+   {
+      menu->addAction( action );
+   };
 }
 
 QStringList UserAction::allCategories() {
