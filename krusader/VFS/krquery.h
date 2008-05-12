@@ -38,6 +38,7 @@
 #include "vfile.h"
 
 class KFileItem;
+class QTextCodec;
 
 class KRQuery : public QObject {
   Q_OBJECT
@@ -74,7 +75,7 @@ public:
   bool isNull() {return bNull;};
 
   // sets the content part of the query
-  void setContent( const QString &content, bool cs=true, bool wholeWord=false, bool remoteSearch=false );
+  void setContent( const QString &content, bool cs=true, bool wholeWord=false, bool remoteSearch=false, QString encoding=QString() );
 
   // sets the minimum file size limit
   void setMinimumFileSize( KIO::filesize_t );
@@ -182,8 +183,8 @@ private:
   bool checkType(QString mime) const;
   bool containsContent( QString file ) const;
   bool containsContent( KUrl url ) const;
-  bool checkBuffer( const char *buffer, int len ) const;
-  bool checkLines( const char *buffer, int len ) const;
+  bool checkBuffer( const char * data, int len ) const;
+  bool checkLine( const QString &line ) const;
   bool checkTimer() const;
   QStringList split( QString );
 
@@ -203,6 +204,12 @@ private:
   mutable KIO::filesize_t  totalBytes;
   mutable int              processEventsConnected;
   mutable QTime            timer;
+
+  QTextCodec *             codec;
+
+  const char *             encodedEnter;
+  int                      encodedEnterLen;
+  QByteArray               encodedEnterArray;
 };
 
 #endif

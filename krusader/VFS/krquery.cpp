@@ -46,9 +46,10 @@
 #include <kurlcompletion.h>
 #include <kio/job.h>
 #include <kfileitem.h>
+#include <qtextcodec.h>
 
 #define  STATUS_SEND_DELAY     250
-#define  MAX_LINE_LEN          500
+#define  MAX_LINE_LEN          1000
 
 // set the defaults
 KRQuery::KRQuery(): QObject(), matchesCaseSensitive(true), bNull( true ),
@@ -57,7 +58,14 @@ KRQuery::KRQuery(): QObject(), matchesCaseSensitive(true), bNull( true ),
                     minSize(0),maxSize(0),newerThen(0),olderThen(0),
                     owner(QString()),group(QString()),perm(QString()),
                     type(QString()),inArchive(false),recurse(true),
-                    followLinksP(true), receivedBuffer( 0 ), processEventsConnected(0)  {}
+                    followLinksP(true), receivedBuffer( 0 ), receivedBufferLen( 0 ), processEventsConnected(0),
+                    codec( QTextCodec::codecForLocale() )  {
+  QChar ch = '\n';
+  QTextCodec::ConverterState state( QTextCodec::IgnoreHeader );
+  encodedEnterArray = codec->fromUnicode( &ch, 1, &state );
+  encodedEnter = encodedEnterArray.data();
+  encodedEnterLen = encodedEnterArray.size();
+}
 
 // set the defaults
 KRQuery::KRQuery( const QString &name, bool matchCase ) : QObject(),
@@ -66,11 +74,18 @@ KRQuery::KRQuery( const QString &name, bool matchCase ) : QObject(),
                     minSize(0),maxSize(0),newerThen(0),olderThen(0),
                     owner(QString()),group(QString()),perm(QString()),
                     type(QString()),inArchive(false),recurse(true),
-                    followLinksP(true), receivedBuffer( 0 ), processEventsConnected(0) {
+                    followLinksP(true), receivedBuffer( 0 ), receivedBufferLen( 0 ), processEventsConnected(0),
+                    codec( QTextCodec::codecForLocale() )  {
+  QChar ch = '\n';
+  QTextCodec::ConverterState state( QTextCodec::IgnoreHeader );
+  encodedEnterArray = codec->fromUnicode( &ch, 1, &state );
+  encodedEnter = encodedEnterArray.data();
+  encodedEnterLen = encodedEnterArray.size();
+
   setNameFilter( name, matchCase );
 }
 
-KRQuery::KRQuery( const KRQuery & that ) : QObject(), receivedBuffer( 0 ), processEventsConnected(0) {
+KRQuery::KRQuery( const KRQuery & that ) : QObject(), receivedBuffer( 0 ), receivedBufferLen( 0 ), processEventsConnected(0) {
   *this = that;
 }
 
@@ -107,6 +122,12 @@ KRQuery& KRQuery::operator=(const KRQuery &old) {
   whereNotToSearch = old.whereNotToSearch;
   origFilter = old.origFilter;
   
+  codec = old.codec;
+
+  encodedEnterArray = old.encodedEnterArray;
+  encodedEnter = encodedEnterArray.data();
+  encodedEnterLen = encodedEnterArray.size();
+
   return *this;
 }
 
@@ -206,10 +227,10 @@ bool KRQuery::match( vfile *vf ) const
     if( (totalBytes = vf->vfile_getSize()) == 0 )
       totalBytes++; // sanity
     receivedBytes = 0;
-    if( receivedBuffer ) {
-      delete []receivedBuffer;
-      receivedBuffer = 0;
-    }
+    if( receivedBuffer )
+      delete receivedBuffer;
+    receivedBuffer = 0;
+    receivedBufferLen = 0;
     fileName = vf->vfile_getName();
     timer.start();
 
@@ -264,114 +285,80 @@ void fixFoundTextForDisplay(QString& haystack, int start, int length) {
   haystack = ("<qt>"+before+"<b>"+text+"</b>"+after+"</qt>" );
 }
 
-bool KRQuery::checkBuffer( const char *buf, int len ) const {
-  if( len == 0 )  { // last block?
-    if( receivedBuffer ) {
-      bool result = checkLines( receivedBuffer, receivedBufferLen );
-      delete []receivedBuffer;
-      receivedBuffer = 0;
-      return result;
+bool KRQuery::checkBuffer( const char * data, int len ) const {
+  bool result = false;
+
+  char * mergedBuffer = new char [ len + receivedBufferLen ];
+  if( receivedBufferLen )
+    memcpy( mergedBuffer, receivedBuffer, receivedBufferLen );
+  if( len )
+    memcpy( mergedBuffer + receivedBufferLen, data, len );
+
+  int maxLen = len + receivedBufferLen;
+  int maxBuffer = maxLen - encodedEnterLen;
+  int lastLinePosition = 0;
+
+  for( int enterIndex = 0; enterIndex < maxBuffer; enterIndex++ ) {
+    if( memcmp( mergedBuffer + enterIndex, encodedEnter, encodedEnterLen ) == 0 ) {
+      QString str = codec->toUnicode( mergedBuffer + lastLinePosition, enterIndex + encodedEnterLen - lastLinePosition );
+      if( str.endsWith( "\n" ) ) {
+        str.chop( 1 );
+        result = result || checkLine( str );
+        lastLinePosition = enterIndex + encodedEnterLen;
+        enterIndex = lastLinePosition;
+        continue;
+      }
     }
-    return false;
   }
 
-  int after = len;
-  while( buf[ after-1 ] != '\n' && buf[ after-1 ] != 0 ) {
-    after--;
-    if( after <= 0 || after <= len - MAX_LINE_LEN ) {
-      after = len;  // if there's no <ENTER> in MAX_LINE_LEN, we break the line
-      break;        // breaking the line causes problems at Unicode characters
-    }
+  if( maxLen - lastLinePosition > MAX_LINE_LEN || len == 0 ) {
+      QString str = codec->toUnicode( mergedBuffer + lastLinePosition, maxLen - lastLinePosition );
+      result = result || checkLine( str );
+      lastLinePosition = maxLen;
   }
 
-  if( receivedBuffer ) {
-    int previous = 0;
-    while( previous < after && previous < MAX_LINE_LEN && buf[previous] != '\n' && buf[previous] != 0 )
-      previous++;
+  delete []receivedBuffer;
+  receivedBuffer = 0;
+  receivedBufferLen = maxLen - lastLinePosition;
 
-    char * str = new char[ receivedBufferLen + previous ];
-    memcpy( str, receivedBuffer, receivedBufferLen );
-    delete []receivedBuffer;
-    receivedBuffer = 0;
-    memcpy( str + receivedBufferLen, buf, previous );
-
-    if( checkLines( str, receivedBufferLen+previous ) ) {
-      delete []str;
-      return true;
-    }
-    delete []str;
-
-    if( after > previous && checkLines( buf+previous, after-previous ) )
-      return true; 
-
-  } else if( checkLines( buf, after ) )
-      return true;
-
-  if( after < len ) {
-    receivedBufferLen = len-after;
+  if( receivedBufferLen ) {
     receivedBuffer = new char [ receivedBufferLen ];
-    memcpy( receivedBuffer, buf+after, receivedBufferLen );
+    memcpy( receivedBuffer, mergedBuffer + lastLinePosition, receivedBufferLen );
   }
-  return false;
+
+  delete []mergedBuffer;
+  return result;
 }
 
-bool KRQuery::checkLines( const char * buf, int len ) const
+bool KRQuery::checkLine( const QString & line ) const
 {
-  QStringList list;
-
-  int start = 0;
-  int k = 0;
-  while( k < len )
+  int ndx = 0;
+  if ( line.isNull() ) return false;
+  if ( containWholeWord )
   {
-    if( buf[ k ] == 0 || buf[ k ] == '\n' )
+    while ( ( ndx = line.indexOf( contain, ndx, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive ) ) != -1 )
     {
-      if( k != start )
-      {
-        QString line = QTextCodec::codecForLocale()->toUnicode( buf + start, k - start );
-        if( !line.isEmpty() )
-          list << line;
-      }
-      start = k + 1;
+      QChar before = '\n';
+      QChar after = '\n';
+
+      if( ndx > 0 )
+        before = line.at( ndx - 1 );
+      if( ndx + contain.length() < line.length() ) 
+        after = line.at( ndx + contain.length() );
+
+      if ( !before.isLetterOrNumber() && !after.isLetterOrNumber() &&
+        after != '_' && before != '_' ) {
+          lastSuccessfulGrep = line;
+          fixFoundTextForDisplay(lastSuccessfulGrep, ndx, contain.length());
+          return true;
+         }
+      ndx++;
     }
-    k++;
   }
-  if( start != k )
-  {
-    QString line = QTextCodec::codecForLocale()->toUnicode( buf + start, k - start );
-    if( !line.isEmpty() )
-      list << line;
-  }
-
-  for( int i=0; i != list.count(); i++ ) {
-    QString line = list[ i ];
-
-    int ndx = 0;
-    if ( line.isNull() ) return false;
-    if ( containWholeWord )
-    {
-      while ( ( ndx = line.indexOf( contain, ndx, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive ) ) != -1 )
-      {
-        QChar before = '\n';
-        if( ndx > 0 )
-          before = line.at( ndx - 1 );
-        QChar after = '\n';
-        if( ndx + contain.length() < line.length() ) 
-          after = line.at( ndx + contain.length() );
-
-        if ( !before.isLetterOrNumber() && !after.isLetterOrNumber() &&
-          after != '_' && before != '_' ) {
-            lastSuccessfulGrep = line;
-            fixFoundTextForDisplay(lastSuccessfulGrep, ndx, contain.length());
-            return true;
-           }
-        ndx++;
-      }
-    }
-    else if ( (ndx = line.indexOf( contain, 0, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive )) != -1 ) {
-      lastSuccessfulGrep = line;
-      fixFoundTextForDisplay(lastSuccessfulGrep, ndx, contain.length());
-      return true;
-    }
+  else if ( (ndx = line.indexOf( contain, 0, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive )) != -1 ) {
+    lastSuccessfulGrep = line;
+    fixFoundTextForDisplay(lastSuccessfulGrep, ndx, contain.length());
+    return true;
   }
   return false;
 }
@@ -565,13 +552,27 @@ void KRQuery::setNameFilter( const QString &text, bool cs )
   }
 }
 
-void KRQuery::setContent( const QString &content, bool cs, bool wholeWord, bool remoteSearch )
+void KRQuery::setContent( const QString &content, bool cs, bool wholeWord, bool remoteSearch, QString encoding )
 {
   bNull = false;
   contain = content;
   containCaseSensetive = cs;
   containWholeWord = wholeWord;
   containOnRemote = remoteSearch;
+
+  if( encoding.isEmpty() )
+    codec = QTextCodec::codecForLocale();
+  else {
+    codec = QTextCodec::codecForName( encoding.toLatin1() );
+    if( codec == 0 )
+      codec = QTextCodec::codecForLocale();
+  }
+
+  QChar ch = '\n';
+  QTextCodec::ConverterState state( QTextCodec::IgnoreHeader );
+  encodedEnterArray = codec->fromUnicode( &ch, 1, &state );
+  encodedEnter = encodedEnterArray.data();
+  encodedEnterLen = encodedEnterArray.size();
 }
 
 void KRQuery::setMinimumFileSize( KIO::filesize_t minimumSize )

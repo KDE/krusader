@@ -41,6 +41,7 @@
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QLabel>
+#include <kcharsets.h>
 
 GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent ) : QWidget ( parent ),
 		profileManager ( 0 ), fltTabs ( tabs )
@@ -218,19 +219,18 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	QHBoxLayout *containsCbsLayout = new QHBoxLayout();
 	containsCbsLayout->setSpacing ( 6 );
 	containsCbsLayout->setContentsMargins ( 0, 0, 0, 0 );
+	
+	QLabel *encLabel = new QLabel( i18n( "Encoding:" ), containsGroup );
+	containsCbsLayout->addWidget ( encLabel );
+	contentEncoding = new QComboBox( containsGroup );
+	contentEncoding->setEditable( false );
+	contentEncoding->addItem( i18n( "Default" ) );
+	contentEncoding->addItems( KGlobal::charsets()->descriptiveEncodingNames() );
+	containsCbsLayout->addWidget ( contentEncoding );
+	
 	QSpacerItem* cbSpacer = new QSpacerItem ( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
 	containsCbsLayout->addItem ( cbSpacer );
-
-	remoteContentSearch = new QCheckBox ( containsGroup );
-	QSizePolicy remoteContentSearchPolicy( QSizePolicy::Preferred, QSizePolicy::Fixed );
-	remoteContentSearchPolicy.setHeightForWidth( remoteContentSearch->sizePolicy().hasHeightForWidth() );
-	remoteContentSearch->setSizePolicy ( remoteContentSearchPolicy );
-	remoteContentSearch->setText ( i18n ( "&Remote content search" ) );
-	remoteContentSearch->setChecked ( false );
-	containsCbsLayout->addWidget ( remoteContentSearch );
-	if ( ! ( properties & FilterTabs::HasRemoteContentSearch ) )
-		remoteContentSearch->hide();
-
+	
 	containsWholeWord = new QCheckBox ( containsGroup );
 	QSizePolicy containsWholeWordPolicy( QSizePolicy::Preferred, QSizePolicy::Fixed );
 	containsWholeWordPolicy.setHeightForWidth( containsWholeWord->sizePolicy().hasHeightForWidth() );
@@ -251,16 +251,25 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 
 	filterLayout->addWidget ( containsGroup, 2, 0 );
 
+	QHBoxLayout *recurseLayout = new QHBoxLayout();
+	recurseLayout->setSpacing ( 6 );
+	recurseLayout->setContentsMargins ( 0, 0, 0, 0 );
+	QSpacerItem* recurseSpacer = new QSpacerItem ( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+	recurseLayout->addItem ( recurseSpacer );
+	
+	remoteContentSearch = new QCheckBox ( containsGroup );
+	QSizePolicy remoteContentSearchPolicy( QSizePolicy::Preferred, QSizePolicy::Fixed );
+	remoteContentSearchPolicy.setHeightForWidth( remoteContentSearch->sizePolicy().hasHeightForWidth() );
+	remoteContentSearch->setSizePolicy ( remoteContentSearchPolicy );
+	remoteContentSearch->setText ( i18n ( "&Remote content search" ) );
+	remoteContentSearch->setChecked ( false );
+	recurseLayout->addWidget ( remoteContentSearch );
+	if ( ! ( properties & FilterTabs::HasRemoteContentSearch ) )
+		remoteContentSearch->hide();
+
 	if ( properties & FilterTabs::HasRecurseOptions )
 	{
 		// Options for recursive searching
-
-		QHBoxLayout *recurseLayout = new QHBoxLayout();
-		recurseLayout->setSpacing ( 6 );
-		recurseLayout->setContentsMargins ( 0, 0, 0, 0 );
-		QSpacerItem* recurseSpacer = new QSpacerItem ( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-		recurseLayout->addItem ( recurseSpacer );
-
 		searchInDirs = new QCheckBox ( this );
 		searchInDirs->setText ( i18n ( "Search in s&ubdirectories" ) );
 		searchInDirs->setChecked ( true );
@@ -274,8 +283,8 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 		followLinks->setText ( i18n ( "Follow &links" ) );
 		recurseLayout->addWidget ( followLinks );
 
-		filterLayout->addLayout ( recurseLayout, 3, 0 );
 	}
+	filterLayout->addLayout ( recurseLayout, 3, 0 );
 
 	// Connection table
 
@@ -344,11 +353,15 @@ bool GeneralFilter::fillQuery ( KRQuery *query )
 
 	bool remoteContent = ( properties & FilterTabs::HasRemoteContentSearch ) ?
 	                     remoteContentSearch->isChecked() : false;
+	
+	QString charset;
+	if( contentEncoding->currentIndex() != 0 )
+		charset = KGlobal::charsets()->encodingForName( contentEncoding->currentText() );
 
 	query->setContent ( containsText->currentText(),
 	                    containsTextCase->isChecked(),
 	                    containsWholeWord->isChecked(),
-	                    remoteContent );
+	                    remoteContent, charset );
 
 	if ( ofType->currentText() !=i18n ( "All Files" ) )
 		query->setMimeType ( ofType->currentText() );
@@ -398,7 +411,16 @@ void GeneralFilter::loadFromProfile ( QString name )
 	containsWholeWord->setChecked ( cfg.readEntry ( "Match Whole Word Only", false ) );
 	containsText->setEditText ( cfg.readEntry ( "Contains Text", "" ) );
 	searchFor->setEditText ( cfg.readEntry ( "Search For", "" ) );
-
+	
+	QString charset = cfg.readEntry ( "Content Encoding", "" );
+	QString desc = KGlobal::charsets()->descriptionForEncoding( charset );
+	contentEncoding->setCurrentIndex( 0 );
+	for( int i=1; i < contentEncoding->count(); i++ )
+		if( contentEncoding->itemText( i ) == desc ) {
+			contentEncoding->setCurrentIndex( i );
+			break;
+		}
+	
 	QString mime = cfg.readEntry ( "Mime Type", "" );
 	for ( int i = ofType->count(); i >= 0; i-- )
 	{
@@ -443,6 +465,12 @@ void GeneralFilter::saveToProfile ( QString name )
 	group.writeEntry ( "Case Sensitive Content", containsTextCase->isChecked() );
 	group.writeEntry ( "Remote Content Search", remoteContentSearch->isChecked() );
 	group.writeEntry ( "Match Whole Word Only", containsWholeWord->isChecked() );
+	
+	QString enc;
+	if( contentEncoding->currentIndex() != 0 )
+		enc = KGlobal::charsets()->encodingForName( contentEncoding->currentText() );
+	group.writeEntry ( "Content Encoding", enc );
+	
 	group.writeEntry ( "Contains Text", containsText->currentText() );
 	group.writeEntry ( "Search For", searchFor->currentText() );
 

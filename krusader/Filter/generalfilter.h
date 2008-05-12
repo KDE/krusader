@@ -71,6 +71,7 @@ public slots:
   void    refreshProfileListBox();
   
 public:
+  QComboBox* contentEncoding;
   QCheckBox* searchForCase;
   QCheckBox* remoteContentSearch;
   QCheckBox* containsTextCase;
