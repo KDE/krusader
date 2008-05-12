@@ -109,10 +109,10 @@ protected:
 
 private:
 	QTextCodec * originalCodec;
-};
+} *krArcCodec;
 
 #define SET_KRCODEC    QTextCodec *origCodec = QTextCodec::codecForLocale(); \
-                       QTextCodec::setCodecForLocale( new KrArcCodec( QTextCodec::codecForLocale() ) );
+                       QTextCodec::setCodecForLocale( krArcCodec );
 #define RESET_KRCODEC  QTextCodec::setCodecForLocale( origCodec );
 
 int KDE_EXPORT kdemain( int argc, char **argv ){
@@ -143,6 +143,8 @@ kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteA
 	dirName.replace(QRegExp(":"),"_");
 	QDir(arcTempDir).mkdir(dirName);
 	arcTempDir = arcTempDir+dirName+"/";
+	
+	krArcCodec = new KrArcCodec( QTextCodec::codecForLocale() );
 }
 
 /* ---------------------------------------------------------------------------------- */
