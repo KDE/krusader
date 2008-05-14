@@ -19,6 +19,7 @@ set( Panel_SRCS
 	krdetailedview.cpp 
 	krbriefview.cpp 
 	krbriefviewitem.cpp
+	krinterview.cpp
         krviewfactory.cpp )
 
 kde4_add_library(Panel ${Panel_SRCS} )
