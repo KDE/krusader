@@ -308,17 +308,21 @@ void KrPopupMenu::performAction(int id) {
          	panel->func->copyToClipboard( true );
          	break;
          case PASTE_CLIP_ID :
-				panel->func->pasteFromClipboard();
+		panel->func->pasteFromClipboard();
          	break;
          case SEND_BY_EMAIL_ID :
-         	SLOTS->sendFileByEmail( panel->func->files() ->vfs_getFile( item->name() ).url() );
-         	break;
-			case MKDIR_ID :
-				SLOTS->mkdir();
-				break;
-			case NEW_TEXT_FILE_ID:
-				SLOTS->editDlg();
-				break;
+		{
+			QStringList fileNames;
+			panel->getSelectedNames( &fileNames );
+	         	SLOTS->sendFileByEmail( *panel->func->files() ->vfs_getFiles( &fileNames ) );
+        	 	break;
+		}
+	case MKDIR_ID :
+		SLOTS->mkdir();
+		break;
+	case NEW_TEXT_FILE_ID:
+		SLOTS->editDlg();
+		break;
          case SYNC_SELECTED_ID :
          	{
 				QStringList selectedNames;

@@ -269,6 +269,7 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
   Application* kdiff3         = new Application("kdiff3",        "http://kdiff3.sourceforge.net/", KrServices::cmdExist("kdiff3"));
   Application* kompare        = new Application("kompare",       "http://www.caffeinated.me.uk/kompare/", KrServices::cmdExist("kompare"));
   Application* xxdiff         = new Application("xxdiff",        "http://xxdiff.sourceforge.net/", KrServices::cmdExist("xxdiff"));
+  Application* thunderbird    = new Application("thunderbird",   "http://www.mozilla.org/", KrServices::cmdExist("thunderbird"));
   Application* kmail          = new Application("kmail",         "http://kmail.kde.org/", KrServices::cmdExist("kmail"));
   Application* krename        = new Application("krename",       "http://www.krename.net/", KrServices::cmdExist("krename"));
   Application* md5sum         = new Application("md5sum",        "http://www.gnu.org/software/textutils/textutils.html", KrServices::cmdExist("md5sum"));
@@ -282,6 +283,7 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
   vecDiff.push_back(kdiff3);
   vecDiff.push_back(kompare);
   vecDiff.push_back(xxdiff);
+  vecMail.push_back(thunderbird);
   vecMail.push_back(kmail);
   vecRename.push_back(krename);
   vecChecksum.push_back(md5sum);
@@ -310,6 +312,7 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
   addRow(rename, _grid);
   addRow(checksum, _grid);
 
+  delete thunderbird;
   delete kmail;
   delete kompare;
   delete kdiff3;

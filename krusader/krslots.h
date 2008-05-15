@@ -86,7 +86,7 @@ class KRslots : public QObject {
   public slots:
     void createChecksum();
     void matchChecksum();
-    void sendFileByEmail( QString filename );
+    void sendFileByEmail( const KUrl::List &filename );
     void compareContent();
     void compareContent( KUrl, KUrl );
     void rightclickMenu();

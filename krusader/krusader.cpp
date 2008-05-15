@@ -1141,10 +1141,14 @@ QStringList Krusader::supportedTools() {
       tools.append( "DIFF" );
       tools.append( KrServices::fullPathName( "xxdiff", "diff utility" ) );
    }
-   // a mailer: kmail
-   if ( KrServices::cmdExist( "kmail" ) ) {
+   // a mailer: kmail or thunderbird
+   if ( KrServices::cmdExist( "thunderbird" ) ) {
       tools.append( "MAIL" );
-      tools.append( KrServices::fullPathName( "kmail" ) );
+      tools.append( KrServices::fullPathName( "thunderbird", "mailer" ) );
+   }
+   else if ( KrServices::cmdExist( "kmail" ) ) {
+      tools.append( "MAIL" );
+      tools.append( KrServices::fullPathName( "kmail", "mailer" ) );
    }
    // rename tool: krename
    if ( KrServices::cmdExist( "krename" ) ) {

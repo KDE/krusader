@@ -94,7 +94,12 @@
 #define ACTIVE_PANEL_MANAGER  (ACTIVE_PANEL == krApp->mainView->left ? krApp->mainView->leftMng : \
                                 krApp->mainView->rightMng)
 
-void KRslots::sendFileByEmail(QString filename) {
+void KRslots::sendFileByEmail(const KUrl::List &urls) {
+  if( urls.count() == 0 ) {
+    KMessageBox::error(0,i18n("No selected files to send!"));
+    return;
+  }
+
   QString mailProg;
   QStringList lst = Krusader::supportedTools();
   if (lst.contains("MAIL")) mailProg=lst[lst.indexOf("MAIL") + 1];
@@ -103,15 +108,32 @@ void KRslots::sendFileByEmail(QString filename) {
     return;
   }
 
+  QString subject, separator;
+  foreach( KUrl url, urls ) {
+    subject += separator + url.fileName();
+    separator=",";
+  }
+  subject = i18np("Sending file: %2", "Sending files: %2", urls.count(), subject);
+
   KProcess proc;
 
   if ( KUrl( mailProg ).fileName() == "kmail") {
     proc << mailProg << "--subject"
-         << i18n("Sending file: %1", KUrl(filename).fileName())
-         << "--attach" << filename;
+         << subject;
+    foreach( KUrl url2, urls )
+         proc << "--attach" << url2.prettyUrl();
+  } else   if ( KUrl( mailProg ).fileName() == "thunderbird") {
+    QString param="attachment=\'";
+    separator = "";
+    foreach( KUrl url2, urls ) {
+      param += separator + url2.prettyUrl();
+      separator=",";
+    }
+    param+="\',subject=\'" + subject + "\'";
+    proc << mailProg << "--compose" << param;
   }
 
-	if (!proc.startDetached())
+  if (!proc.startDetached())
     KMessageBox::error(0, i18n("Error executing %1!", mailProg));
 }
 

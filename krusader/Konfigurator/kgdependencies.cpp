@@ -66,7 +66,7 @@ KgDependencies::KgDependencies( bool first, QWidget* parent ) :
   addApplication( "eject",    pathsGrid, 1, general_tab, PAGE_GENERAL );
   addApplication( "kdesu",    pathsGrid, 2, general_tab, PAGE_GENERAL );
   addApplication( "kget",     pathsGrid, 3, general_tab, PAGE_GENERAL );
-  addApplication( "kmail",    pathsGrid, 4, general_tab, PAGE_GENERAL );
+  addApplication( "mailer",   pathsGrid, 4, general_tab, PAGE_GENERAL );
   addApplication( "diff utility",  pathsGrid, 5, general_tab, PAGE_GENERAL );
   addApplication( "krename",  pathsGrid, 6, general_tab, PAGE_GENERAL );
   addApplication( "krusader", pathsGrid, 7, general_tab, PAGE_GENERAL );
