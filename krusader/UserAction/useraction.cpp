@@ -201,9 +201,11 @@ void UserAction::readFromElement( const QDomElement& element, ReadMode mode, KrA
            continue;
          }
 
-         if ( mode == ignoreDoublicated && ( krApp->actionCollection()->action( name ) 
-                                             || _deletedActions.contains( name ) ) )
-            continue;
+         if ( mode == ignoreDoublicated ) {
+            _defaultActions.insert( name );
+             if ( krApp->actionCollection()->action( name ) || _deletedActions.contains( name ) )
+                continue;
+         }
 
          QString basename = name + "_%1";
          int i = 0;
@@ -213,9 +215,6 @@ void UserAction::readFromElement( const QDomElement& element, ReadMode mode, KrA
 
          KrAction* act = new KrAction( krApp->actionCollection(), name );
          if ( act->xmlRead( e ) ) {
-            if ( mode != ignoreDoublicated ) // ? make a specail param for that?
-               _defaultActions.insert( name );
-
             _actions.append( act );
             if ( list )
                list->append( act );
