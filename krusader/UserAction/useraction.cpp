@@ -41,6 +41,12 @@ UserAction::~UserAction() {
   // KrActions are deleted by Krusader's KActionCollection
 }
 
+void UserAction::removeKrAction( KrAction* action ) {
+   _actions.removeAll( action );
+   if ( _defaultActions.contains( action->getName() ) )
+      _deletedActions.insert( action->getName() );
+}
+
 void UserAction::setAvailability() {
    setAvailability( ACTIVE_FUNC->files()->vfs_getFile( ACTIVE_PANEL->view->getCurrentItem() ) );
 }
@@ -65,24 +71,25 @@ void UserAction::populateMenu( KMenu* menu, const KUrl *currentURL ) {
    foreach( KrAction* action, _actions )
    {
       const QString category = action->category();
-      if ( currentURL == NULL || action->isAvailable( *currentURL ) )
+      if ( ! action->isEnabled() )
+         continue;
+      if ( currentURL != NULL && ! action->isAvailable( *currentURL ) )
+         continue;
+      if ( category.isEmpty() )
       {
-         if ( category.isEmpty() )
+         uncategorised.append( action );
+      }
+      else
+      {
+         if (! categoryMap.contains( category ) )
          {
-            uncategorised.append( action );
+            KMenu *categoryMenu = new KMenu();
+            categoryMenu->setTitle( category ); // use i18n in the future?
+            categoryMenu->setObjectName( category );
+            categoryMap.insert( category, categoryMenu );
          }
-         else
-         {
-            if (! categoryMap.contains( category ) )
-            {
-               KMenu *categoryMenu = new KMenu();
-               categoryMenu->setTitle( category ); // use i18n in the future?
-               categoryMenu->setObjectName( category );
-               categoryMap.insert( category, categoryMenu );
-            }
-            KMenu *targetMenu = categoryMap.value( category );
-            targetMenu->addAction( action );
-         }
+         KMenu *targetMenu = categoryMap.value( category );
+         targetMenu->addAction( action );
       }
    }
    
@@ -194,7 +201,8 @@ void UserAction::readFromElement( const QDomElement& element, ReadMode mode, KrA
            continue;
          }
 
-         if ( mode == ignoreDoublicated && krApp->actionCollection()->action( name ) )
+         if ( mode == ignoreDoublicated && ( krApp->actionCollection()->action( name ) 
+                                             || _deletedActions.contains( name ) ) )
             continue;
 
          QString basename = name + "_%1";
@@ -205,12 +213,24 @@ void UserAction::readFromElement( const QDomElement& element, ReadMode mode, KrA
 
          KrAction* act = new KrAction( krApp->actionCollection(), name );
          if ( act->xmlRead( e ) ) {
+            if ( mode != ignoreDoublicated ) // ? make a specail param for that?
+               _defaultActions.insert( name );
+
             _actions.append( act );
             if ( list )
                list->append( act );
          }
          else
             delete act;
+      }
+      else
+      if ( e.tagName() == "deletedAction" ) {
+         QString name = e.attribute( "name" );
+         if ( name.isEmpty() ) {
+            krOut << "A deleted action without name detected! \nThis is an error in the file.";
+            continue;
+         }
+         _deletedActions.insert( name );
       }
    } // for
 }
@@ -230,6 +250,12 @@ bool UserAction::writeActionFile() {
    QDomDocument doc = createEmptyDoc();
    QDomElement root = doc.documentElement();
 
+   foreach ( QString name, _deletedActions ) {
+      QDomElement element = doc.createElement("deletedAction");
+      element.setAttribute( "name", name );
+      root.appendChild( element );
+   }
+   
    QListIterator<KrAction *> it( _actions );
    while (it.hasNext())
    {

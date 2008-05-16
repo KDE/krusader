@@ -73,7 +73,7 @@ public:
    * removes a KrAction from the internal list but does not delete it.
    * @param action the KrAction which should be removed
    */
-  void removeKrAction( KrAction* action ) { _actions.removeAll( action ); };
+  void removeKrAction( KrAction* action );
   
   /**
    * check for each KrAction if it is available for the currend location / file and disables it if not
@@ -129,6 +129,8 @@ public:
 
 private:
   KrActionList _actions;
+  QSet<QString>  _defaultActions;
+  QSet<QString>  _deletedActions;
 };
 
 
