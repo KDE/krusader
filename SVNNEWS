@@ -1,0 +1,360 @@
+------------------------------------------------------------------------
+- Krusader SVNNEWS
+------------------------------------------------------------------------
+- This file is only intended for krusader-svn.
+- It should contain a brief description of new features. In some way an
+- extension to the ChangeLog.
+------------------------------------------------------------------------
+
+New feature: Krusader is able to send e-mails by thunderbird
+   - one can set up thunderbird as an e-mail sender in the dependencies
+   - from now more than one file can be sent in an attachment
+
+New feature: for content searching (searcher, advanced selection,
+    synchronizer), the content encoding can be given.
+
+New feature: select remote encoding for krarc
+  - the file name encoding for zip, rar, arj, lha can be set from now
+  - as 7z always uses UTF-16, remote encoding will not work for 7z
+  - it's imporant because zip files that were created on Windows can
+    have different encoding
+
+New feature: new synchronizer shortcuts
+  - CTRL + W : reverse direction
+  - ALT + Down : exclude
+  - ALT + Up : restore original task
+  - ALT + Left : copy to left
+  - ALT + Right : copy to right
+  - ALT + Delete : mark for delete
+
+UserActions: Expander: Many fixes, better error handling, sensible
+  %_Each&-handling. Finally I managed to implement Jiri's 100k patch for
+  the useractions. This patch handles the Each-placeholder much better
+  (i.e. allows Each inside Copy and can deal with multiple Each's) and
+  provides a good base for future extensions. Thanks a lot!
+
+New feature: atomic extension. 
+  - Extensions known to be atomic (like tar.gz) are now handled properly
+    both in the panel and during rename. The list of atomic extensions
+    can be provided through "Atomic Extensions" in [Look&Feel] in
+    krusaderrc.
+
+New feature: rename just the filename, without extension
+  - in the look&feel page, disable "rename selects extension", and then,
+    when you rename a file, only the filename will be selected, but not
+    the extension
+
+New feature: full screen terminal (mc style)
+  - if enabled in look&feel, pressing the required shortcut to show
+    the terminal emulator will hide all of krusader, just like midnight
+    commander.
+
+New feature: right click menu for bookmarks
+  - after right clicking on a bookmark, a popup menu appears with
+  
+      Open
+      Open in new tab
+      Delete
+
+    menu items.
+
+New feature: enable/disable the special bookmarks
+  - right click on a special bookmark
+    (Popular URLs, Devices, Local Network, Virtual Filesystem, Jumb
+    back, Set jump back, Bookmark Current or Manage Bookmarks)
+  - a new rightclick menu appears containing the special bookmark items
+    if a menu item is checked then the bookmark is enabled
+  - one can enable/disable separately the following special bookmarks
+      - the "Popular URLs" bookmark
+      - the "Devices" bookmark
+      - the "Local Network" bookmark
+      - the "Virtual Filesystem"
+      - the "Jump back" and "Set jump back" bookmarks
+
+New feature: keeping the directory structure of copying/moving from
+             virtual folders
+  - assume we have 3 URL-s in a virtual subfolder
+    /home/myhome/mydir1/myfile1
+    /home/myhome/mydir1/myfile2
+    /home/myhome/mydir2/myfile3
+  - in the destination folder we would like to get:
+    mydir1/myfile1
+    mydir1/myfile2
+    mydir2/myfile3
+  - Just press F5 for copy (dialog appears)
+    source MUST be a virtual subfolder!
+    target MUST NOT be a virtual folder!
+  - in the dialog, there's a new option:
+    "Keep virtual directory structure"
+  - check it
+  - select /home/myhome/ for base URL
+  - start the copy / move
+
+  - AND: the directory structure will be kept at copying!
+    that's it! :-)
+
+New option in look&feel: directories are always sorted by name
+
+Big cleanup in the UserAction module:
+  - dropped support of "same_as"-attribute in the description-tag
+  - dropped need for a manual name-conflict-resolution, now a nummer is
+    append on double names
+  - reduced the memory-consumption drasticly due to internal changes
+  - added copy actions to clipboard / past actions from clipboard
+  - multiselection for export/remove/copy
+  - renamed the actionfile we provide to useraction_examples.xml,
+    so that we can merge new examples with existing installations
+  - on export one can now choose between overwrite and merge is the
+    file already exists and contains useractions
+  - Actions are now manages with ActionMan; the list is now a
+    categorized tree with icon and title instead of the identifyer.
+  - On the UserAction page in Konfigurator you can now change the
+    Terminal for UserActions and the font for the output-collection.
+
+New archive handling:
+  supports passworded arj, ace, rar, zip
+  step into hidden archives by pressing <RIGHT> on the archive
+  decompressing debian packages by Alt+U
+  using KWallet to store the passwords
+  writes out the error messages of the archiver
+  archive type autodetection by its header (first 512 byte)
+
+-------------------------------- 1.70.0 --------------------------------
+
+New global calculate space function:
+  Used to calculate occupied space inside archives remote FS and in
+  virtual VFS need KDE >= 3.3
+  for local FS the old (and faster) code is still used.
+
+New zip/tar slave - based on KDE's but support writing to archive
+  Modified KDE tar slave (which also handle ZIP archives) to support
+  writing. Compared to kr_arc:
+  Pros: Speed. No need for external binary. Speed. did I mentioned
+  speed?
+  Cons: does not support delete from archive.
+  (You need to change the protocol registration to use this slave)
+
+New configure-switches:
+  --without-konqueror - builds Krusader without Konqueror's servicemenus
+  --without-javascript - builds Krusader without JS support
+  In the past the support was always compiled in when the headers where
+  found.
+
+Jump-Back:
+  If you create a new tab the startup-path is saved. You can now step
+  deep into the dir-tree and Ctrl-J brings you back to your starting
+  position. It's also possible to set the current directory manually as
+  Jump-Back-Point.
+
+-------------------------------- 1.60.0 --------------------------------
+
+Useraction: new placeholder: %_ListFile()%
+  is replaced by path/filename of a temporary file containing a list of
+  items usefull for external scripts
+
+Custom Selection Mode
+
+Popular Links - krusader's answer to google-ranking :-)
+  In the bookmarks menu, you'll see a new submenu called "popular urls"
+  From now on, krusader keeps track of every url you visit (also remote)
+  and keeps a ranking for every url. the more you visit the url, the
+  higher the ranking. clicking the popular links menu displays the top
+  15 links sorted by popularity. the top is the most popular. this is
+  easy for when u need to visit urls often, but don't want to create a
+  bookmark. this is also a better "history" since unlike the 'history'
+  button, this ranking accumulates urls from all tabs.
+
+  also use the two-enter dialog:
+  * open it
+    (ctrl-z or bookmarks->popular urls->popular urls(bottom of list))
+  * type few letter to narrow the search
+  * hit enter (you'll go to the url list)
+  * hit enter again and the panel is refreshed!
+  
+
+Virtual VFS.
+  This is not a virtual folder !
+  but more a container for URL's from different file system.
+  just perfect for displaying search results and so on...
+  Action you perform on the files in this VFS are performed on the
+  'real' files. you don't just delete files from the VFS - you delete
+  them from your hard drive.
+  limitations:: you can't create directories inside a virtual VFS.
+
+Primitive scripting support.
+condition: KJSEmbed is installed (package: KDEbindings)
+  Ctrl+Alt+J opens the JavaScript-console. There you can play around:
+  try 'Krusader.setCaption("Hey Ho, Let's go!");',
+  "Krusader.children();", "Krusader.child("help").slots();",
+  "alert(Krusader.properties())" and "Krusader.child("help").show();"...
+  In addition a new placeholder for the useraction,
+  %_Script(path/to/script.js)% executes an external file.
+  If the path is relative the file will be read from
+  <KDE-app-data>/krusader/js/
+  If a UserAction should execute the return of a script, set the second
+  parameter of %_Script()% to "return=cmd".
+  In this case the Variable 'cmd' will be read.
+  additional the second parameter can be used to pass variables to the
+  script:
+  "return=lala;foo=bar". here the variable foo will have at the
+  beginning of the execution the value 'bar' and the return-variable is
+  called lala instead of cmd. Warning: very alpha!!
+
+krusader has now a new toolbar: actions toolbar. you can show/hide it
+using the view menu --> show actions toolbar. useful to put actions (and
+later bookmarks), put in as a side toolbar with small icons. __you'll
+have to overwrite krusaderui.rc__
+
+color scheme can now be imported/exported. reacable in the colors page
+in konfigurator
+
+disk usage (tools menu + 3rd panel)
+
+changing the coloumns by right clicking on the panel's header
+
+Refresh-in-the-background: from now on, reading a remote url or
+the contents of an archive is done in the background. this means
+that krusader remains responsive and can be used to do whatever you need
+in any other panel or tab.
+
+useraction:new placeholder %_PanelSize%
+  This placeholder can change the ration between the two panels.
+  %aPanelSize("80")% makes the active panel use 80% of krusader's width
+  (height in vertical-mode)
+  ommiting the parameter means 50%
+
+useraction: new placeholder: %_Each%
+  This placeholder splitts the commandline into a list where
+  %_Each(...)% is replaced by one
+  list-item (all, all files, all dirs, all selected). These commands are
+  executed one after another.
+
+Full viewer in the 3rd hand (thanks to illissius)
+
+Shift-DEL will delete a file and not move it to the trash as DEL does.
+(total commander like)
+
+Import/Export keyboard shortcuts from/to a file. want krusader to become
+total commander in a single click? no problem!
+
+Mouse selection modes is back! check out the Look'N'Feel section
+
+-------------------------------- 1.51 ----------------------------------
+
+The long awaited feature: Fn keys can be changed to different shortcuts
+
+Total-commander refresh: when krusader isn't focused, it is not refreshed
+at all.
+
+Pressing ctrl-up arrow from the panel, jumps to the origin bar
+
+-------------------------------- 1.50 ----------------------------------
+
+Human-readable file sizes is implemented (located in look&feel->panel)
+
+From now on, Konqueror's right click menu is imported to Krusader
+
+Cut (ctrl+x), Copy (ctrl+c) and Paste (ctrl+v)
+  are available. They even work with Konqueror.  Please test it.
+
+Compare by content: you can now either:
+  - select (mark) one file in the left panel, and one in the right panel
+  - select exactly two files in the active panel
+  - make sure there is a file in the other panel with the same name as
+    the current file in the active panel
+
+Panel profiles: now it is possible to store environment profiles.
+  An environment profile contains the following:
+  - all the tabs path (left / right)
+  - the current tab   (left / right)
+  - and the selected side (left or right)
+  You can save / restore these tabulator profiles. Please test it.
+
+  Those users who use the CVS version of Krusader, should delete the
+  krusaderui.rc from their home directory, to make the new menu and
+  toolbar items visible.
+  (rm ~/.kde/share/apps/krusader/krusaderui.rc)
+
+Synchronizer:  now you can use the search filters in the synchronizer
+
+Useraction:  removed placeholder 'Bookmark'. It is deprecated now since
+the new bookmark-system can be accessed directly like a user action. If
+you need it anyway, use 'Goto' instead.
+
+TC like searching: if you type 'text' -> results the same as '*text*'
+You can exclude files from the search with '|'
+(ex. '*.cpp *.h | *.moc.cpp' )
+
+Search is possible on remote file systems as well.
+
+If you have filesystems that you don't want to accidentally unmount (or
+mount), just go to Konfigurator->Advanced, and enter a list of mount
+points separated by commas, for example: /, /boot, /tmp) and mountman
+won't try to (un)mount them.
+
+Mountman got a big nose-job ;-) please test it well.
+
+You can now drag'n'drop to the new tree view
+
+Shift+left/right changes tabs (thanks to Dmitry Suzdalev)
+
+New vfs_refresh() function only updates changes when you re-read a panel
+and changes the content without the annoying full redraw effect.
+
+When closing Krusader, the tabs are saved and restored
+
+Synchronizer profiles:
+  Krusader handles synchronizer profiles. In synchronizer press
+  the 'profile' button, and you'll be able to add / load / save / remove
+  synchronizer profiles.
+
+Synchronize with Kget:
+  If you want to synchronize a local directory with an unstable ftp
+  server, Kget is a much better solution than simple file copying. After
+  comparing you may right click on the result list and select
+  'Synchronize with kget' to execute the synchronization, after that the
+  listed files will be downloaded with kget instead of Krusader.
+
+Dropping URLs onto the status / totals line:
+  If a directory contains a lot of subdirectories, it may not be
+  possible to drop the URL onto the panel (on which only directories are
+  visible). Now the URL can be dropped onto the status / totals line
+  instead.
+
+Sync-browsing:
+  With a little toggle-button in the panel-level toolbar the SyncBrowse
+  mode is activated/deactivated.
+  When active, each directory change in the specific panel is performed
+  in the other panel also.
+
+User-Actions:
+  With the user action system the user can make his own actions on files
+  in the panel or access Krusader internal functions with parameters
+  directly using the placeholder.
+  The actions integrate seamless into KDE's action-system, so the
+  standard edit-toolbar/shortcut-dialogs can show/manipulate the user
+  actions, too. The user actions are stored in
+  ~/.kde/share/apps/krusader/useraction.xml (the file-structure is
+  documented in doxygen-headers of UserActionXML) User Actions can be
+  edited/added/im-/exported using a new Konfigurator module (although I
+  plan to move all action-related to a new ActionMan. For more info, see
+  http://www.jonas-baehr.de/forum/Krusader-ideas.txt)
+  Currently, these placeholder are implemented (for details see
+  UserAction/expander.cpp or doxygen):
+    Path       replaced by the panels path
+    Count      replaced by the number of <first parameter>
+    Filter     replaced by the panels filter-mask
+    Current    replaced by the current item
+    List       replaced by a list of all <first paremeter>
+    Select     manipulates the selection in a panel
+    Goto       changes the panels's path to <first parameter>
+    Ask        asks the user for a some text and is replaced by the
+               answer
+    Clipboard  manipulates the clipboard
+    Copy       copies a file, useful for quick, local, backups
+    Sync       opens the Synchronizer with a given profile
+    NewSearch  opens the search-windows with a given profile
+    Profile    loads a given panel-profile
+
+  A GUI-based helper for placeholder-adding is provided.
+  In Path, Current and List spaces are per default automaticly escaped.
