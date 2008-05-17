@@ -1516,7 +1516,7 @@ void KrDetailedView::selectColumns()
   
   QAction *res = popup.exec(QCursor::pos());
   int result= -1;
-  if( res->data().canConvert<int>() )
+  if( res && res->data().canConvert<int>() )
     result = res->data().toInt();
 
   KConfigGroup group( krConfig, nameInKConfig() );
