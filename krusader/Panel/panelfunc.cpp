@@ -1126,7 +1126,7 @@ void ListPanelFunc::refreshActions() {
 	vfs::VFS_TYPE vfsType = files() ->vfs_getType();
 
 	//  set up actions
-	krMultiRename->setEnabled( vfsType == vfs::NORMAL );  // batch rename
+	//krMultiRename->setEnabled( vfsType == vfs::NORMAL );  // batch rename
 	//krProperties ->setEnabled( vfsType == vfs::NORMAL || vfsType == vfs::FTP ); // file properties
 	krFTPDiss ->setEnabled( vfsType == vfs::FTP );     // disconnect an FTP session
 	krCreateCS->setEnabled( vfsType == vfs::NORMAL );
