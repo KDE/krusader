@@ -548,6 +548,7 @@ void KRslots::rootKrusader()
 // settings slots
 void KRslots::configToolbar(){
   KEditToolBar dlg(krApp->factory());
+  connect( &dlg, SIGNAL( newToolBarConfig() ), krApp, SLOT( updateGUI() ) );
   if (dlg.exec()) krApp->updateGUI();
 }
 

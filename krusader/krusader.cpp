@@ -1043,8 +1043,18 @@ void Krusader::updateUserActions() {
    userActionMenu = (KMenu*) guiFactory()->container( "useractionmenu", this );
    if ( userActionMenu )
    {
-      userActionMenu->clear();
-      userActionMenu->addAction( krApp->actManageUseractions );
+      bool hasManageActs = false;
+      QList<QAction *> acts = userActionMenu->actions();
+      foreach( QAction * act, acts ) {
+         if( act->objectName() == "manage useractions" ) {
+            hasManageActs = true;
+            break;
+         }
+      }
+
+      if( !hasManageActs )
+         userActionMenu->addAction( krApp->actManageUseractions );
+
       userActionMenu->addSeparator();
       userAction->populateMenu( userActionMenu, NULL );
    }
