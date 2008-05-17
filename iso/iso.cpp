@@ -28,6 +28,7 @@
 
 #include <kde_file.h>
 #include <qfile.h>
+#include <qdir.h>
 #include <QByteArray>
 #include <kurl.h>
 #include <kdebug.h>
@@ -140,21 +141,34 @@ bool kio_isoProtocol::checkNewFile( QString fullPath, QString & path, int starts
         KDE_struct_stat statbuf;
         if ( KDE_lstat( QFile::encodeName(tryPath), &statbuf ) == 0 && !S_ISDIR(statbuf.st_mode) )
         {
-            isoFile = tryPath;
-            m_mtime = statbuf.st_mtime;
-            m_mode = statbuf.st_mode;
-            path = fullPath.mid( pos + 1 );
-            kDebug()   << "fullPath=" << fullPath << " path=" << path << endl;
-            len = path.length();
-            if ( len > 1 )
-            {
-                if ( path[ len - 1 ] == '/' )
-                    path.truncate( len - 1 );
+            bool isFile = true;
+            if( S_ISLNK( statbuf.st_mode) ) {
+                char symDest[256];
+                bzero(symDest,256); 
+                int endOfName=readlink( QFile::encodeName(tryPath),symDest,256);
+                if ( endOfName != -1 ){
+                    if ( QDir(QString::fromLocal8Bit( symDest ) ).exists() )
+                        isFile=false;
+                }
             }
-            else
-                path = QString::fromLatin1("/");
-            kDebug()   << "Found. isoFile=" << isoFile << " path=" << path << endl;
-            break;
+
+            if( isFile ) {
+                isoFile = tryPath;
+                m_mtime = statbuf.st_mtime;
+                m_mode = statbuf.st_mode;
+                path = fullPath.mid( pos + 1 );
+                kDebug()   << "fullPath=" << fullPath << " path=" << path << endl;
+                len = path.length();
+                if ( len > 1 )
+                {
+                    if ( path[ len - 1 ] == '/' )
+                        path.truncate( len - 1 );
+                }
+                else
+                    path = QString::fromLatin1("/");
+                kDebug()   << "Found. isoFile=" << isoFile << " path=" << path << endl;
+                break;
+            }
         }
     }
     if ( isoFile.isEmpty() )
