@@ -114,7 +114,7 @@ void MediaButton::slotAboutToShow() {
 	popupMenu->clear();
 	urls.clear();
 	mediaUrls.clear();
-	mimes.clear();
+	iconNames.clear();
 	quasiMounted.clear();
 	waitingForMount = -1;
 	
@@ -159,6 +159,7 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 		KUrl url;
 		QString text;
 		QString mime;
+		QString iconName;
 		QString localPath;
 		bool mounted = false;
 		
@@ -179,8 +180,10 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 			int index = popupMenu->actions().count();
 			KMimeType::Ptr mt = KMimeType::mimeType( mime );
 			QPixmap pixmap;
-			if( mt )
+			if( mt ) {
+				iconName = mt->iconName();
 				pixmap = FL_LOADICON( mt->iconName() );
+			}
 			
 			mediaUrls.append( url );
 			
@@ -202,7 +205,7 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 			idActionMap[ index ] = act;
 			
 			urls.append( url );
-			mimes.append( mime );
+			iconNames.append( iconName );
 			quasiMounted.append( false );
 		}
 		++it;
@@ -364,7 +367,7 @@ void MediaButton::slotPopupActivated( QAction * action ) {
 	if( action && action->data().canConvert<int>() )
 	{
 		int elem = action->data().toInt();
-		if( !quasiMounted[ elem ] && mimes[ elem ].endsWith( "_unmounted" ) ) {
+		if( !quasiMounted[ elem ] && iconNames[ elem ].endsWith( "_unmounted" ) ) {
 			mount( elem );
 			waitingForMount = elem;
 			maxMountWait = 20;
@@ -387,20 +390,20 @@ void MediaButton::gettingSpaceData(const QString &mountPoint, quint64 kBSize, qu
 	for( int i=0; i != urls.size(); i++ ) {
 		if( mediaURL.equals( urls[ i ], KUrl::CompareWithoutTrailingSlash ) ) {
 			if( kBSize == 0 ) { // if df gives 0, it means the device is quasy umounted
-				QString mime = mimes[ i ];
-				if( mimes[ i ].endsWith( "_mounted" ) ) {
+				QString iconName = iconNames[ i ];
+				if( iconNames[ i ].endsWith( "_mounted" ) ) {
 					quasiMounted[ i ] = true;
-					mimes[ i ] = mimes[ i ].replace( "_mounted", "_unmounted" );
+					iconNames[ i ] = iconNames[ i ].replace( "_mounted", "_unmounted" );
 				}
 				
-				KMimeType::Ptr mt = KMimeType::mimeType( mimes[ i ] );
+				KMimeType::Ptr mt = KMimeType::mimeType( iconNames[ i ] );
 				QPixmap pixmap;
 				if( mt )
 					pixmap = FL_LOADICON( mt->iconName() );
 				
 				idActionMap[ i ]->setIcon( pixmap );
 			}
-			else if( mimes[ i ].contains( "hdd_" ) )
+			else if( iconNames[ i ].contains( "hdd_" ) )
 				idActionMap[ i ]->setText( sizeText + " " + idActionMap[ i ]->text().trimmed() );
 			return;
 		}
@@ -453,8 +456,8 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 	QString extSpc = ( isMounted && type == "hdd" ) ? extraSpaces : "";
 	/* WORKAROUND CODE END */
 		
-	QString mimeBase = "media/";
-	QString mime = mimeBase + type + mountString;
+	QString iconBase = "kr_";
+	QString iconName = iconBase + type + mountString;
 	
 	if( type == "hdd" )
 		name =  i18n( "Hard Disk" ) ;
@@ -463,13 +466,15 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 	else if( type == "cdwriter" )
 		name = i18n( "CD Recorder" );
 	else if( type == "dvdwriter" ) {
-		mime = mimeBase + "cdwriter" + mountString;
+		iconName = iconBase + "cdwriter" + mountString;
 		name = i18n( "DVD Recorder" );
 	}
 	else if( type == "dvd" )
 		name = i18n( "DVD" );
-	else if( type == "smb" )
+	else if( type == "smb" ) {
+		iconName = iconBase + "nfs" + mountString;
 		name = i18n( "Remote Share" );
+	}
 	else if( type == "nfs" )
 		name = i18n( "Remote Share" );
 	else if( type == "floppy" )
@@ -479,7 +484,7 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 	else if( type == "zip" )
 		name = i18n( "Zip Disk" );
 	else {
-		mime = mimeBase + "hdd" + mountString;
+		iconName = iconBase + "hdd" + mountString;
 		name = i18n( "Unknown" );
 	}
 	
@@ -489,15 +494,12 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 		         this, SLOT( gettingSpaceData( const QString&, quint64, quint64, quint64 ) ) );
 	}
 	
-	KMimeType::Ptr mt = KMimeType::mimeType( mime );
-	QPixmap pixmap;
-	if( mt )
-		pixmap = FL_LOADICON( mt->iconName() );
+	QPixmap pixmap = FL_LOADICON( iconName );
 	
 	if( overwrite == -1 ) {
 		int index = popupMenu->actions().count();
 		urls.append( KUrl( mp->mountPoint() ) );
-		mimes.append( mime );
+		iconNames.append( iconName );
 		mediaUrls.append( KUrl() );
 		quasiMounted.append( false );
 		QAction * act = popupMenu->addAction( pixmap, name + "  [" + mp->mountPoint() + "]" + extSpc );
@@ -505,7 +507,7 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 		idActionMap[ index ] = act;
 	}
 	else {
-		mimes[ overwrite ] = mime;
+		iconNames[ overwrite ] = iconName;
 		idActionMap[ overwrite ]->setIcon( pixmap );
 		idActionMap[ overwrite ]->setText( name + "  [" + mp->mountPoint() + "]" + extSpc );
 	}
@@ -536,9 +538,9 @@ void MediaButton::rightClickMenu( int index ) {
 	if( rightMenu )
 		rightMenu->close();
 	
-	QString mime = mimes[ index ];
-	bool ejectable = mime.contains( "dvd_" ) || mime.contains( "dvdwriter_" ) || mime.contains( "cdrom_" ) || mime.contains( "cdwriter_" );
-	bool mounted = mime.contains( "_mounted" );
+	QString iconName = iconNames[ index ];
+	bool ejectable = iconName.contains( "dvd_" ) || iconName.contains( "dvdwriter_" ) || iconName.contains( "cdrom_" ) || iconName.contains( "cdwriter_" );
+	bool mounted = iconName.contains( "_mounted" );
 	
 	QMenu * myMenu = rightMenu = new QMenu( popupMenu );
 	QAction * actOpen = myMenu->addAction( i18n( "Open" ) );
@@ -604,7 +606,7 @@ void MediaButton::rightClickMenu( int index ) {
 }
 
 bool MediaButton::mount( int index ) {
-	if ( index < mimes.count() ) {
+	if ( index < iconNames.count() ) {
 		if( !mediaUrls[ index ].isEmpty() ) {
 			KProcess proc;
 			proc << KrServices::fullPathName( "kio_media_mounthelper" ) << "-m" << mediaUrls[ index ].url();
@@ -617,7 +619,7 @@ bool MediaButton::mount( int index ) {
 }
 
 bool MediaButton::umount( int index ) {
-	if ( index < mimes.count() ) {
+	if ( index < iconNames.count() ) {
 		if( !mediaUrls[ index ].isEmpty() ) {
 			KProcess proc;
 			proc << KrServices::fullPathName( "kio_media_mounthelper" ) << "-u" << mediaUrls[ index ].url();
@@ -630,7 +632,7 @@ bool MediaButton::umount( int index ) {
 }
 
 bool MediaButton::eject( int index ) {
-	if ( index < mimes.count() ) {
+	if ( index < iconNames.count() ) {
 		if( !mediaUrls[ index ].isEmpty() ) {
 			KProcess proc;
 			proc << KrServices::fullPathName( "kio_media_mounthelper" ) << "-e" << mediaUrls[ index ].url();
@@ -691,15 +693,12 @@ void MediaButton::slotTimeout() {
 		if( quasiMounted[ index ] ) // mounted but not listed with DF
 			mounted = false;
 		
-		if( mimes[ index ].contains( "_mounted" ) && !mounted )
-			mimes[ index ] = mimes[ index ].replace( "_mounted", "_unmounted" );
-		if( mimes[ index ].contains( "_unmounted" ) && mounted )
-			mimes[ index ] = mimes[ index ].replace( "_unmounted", "_mounted" );
+		if( iconNames[ index ].contains( "_mounted" ) && !mounted )
+			iconNames[ index ] = iconNames[ index ].replace( "_mounted", "_unmounted" );
+		if( iconNames[ index ].contains( "_unmounted" ) && mounted )
+			iconNames[ index ] = iconNames[ index ].replace( "_unmounted", "_mounted" );
 		
-		KMimeType::Ptr mt = KMimeType::mimeType( mimes[ index ] );
-		QPixmap pixmap;
-		if( mt )
-			pixmap = FL_LOADICON( mt->iconName() );
+		QPixmap pixmap = FL_LOADICON( iconNames[ index ] );
 		idActionMap[ index ]->setIcon( pixmap );
 		idActionMap[ index ]->setText( text );
 		

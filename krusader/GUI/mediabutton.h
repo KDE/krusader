@@ -99,7 +99,7 @@ private:
 
   QList<KUrl>    urls;
   QList<KUrl>    mediaUrls;
-  QList<QString> mimes;
+  QList<QString> iconNames;
   QList<bool>    quasiMounted;
 
   QString extraSpaces;  //prevents from increasing the size of the widget
