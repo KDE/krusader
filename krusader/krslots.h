@@ -213,6 +213,7 @@ class KRslots : public QObject {
 
     
     void jsConsole();
+    void saveNewToolbarConfig();
 };
 
 #endif

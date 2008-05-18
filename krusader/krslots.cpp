@@ -547,9 +547,17 @@ void KRslots::rootKrusader()
 
 // settings slots
 void KRslots::configToolbar(){
+  KConfigGroup cg(KGlobal::config(), QString());
+  krApp->saveMainWindowSettings(cg);
   KEditToolBar dlg(krApp->factory());
-  connect( &dlg, SIGNAL( newToolBarConfig() ), krApp, SLOT( updateGUI() ) );
+  connect( &dlg, SIGNAL( newToolBarConfig() ), this, SLOT( saveNewToolbarConfig() ) );
   if (dlg.exec()) krApp->updateGUI();
+}
+
+void KRslots::saveNewToolbarConfig() {
+  KConfigGroup cg(KGlobal::config(), QString());
+  krApp->applyMainWindowSettings(cg);
+  krApp->updateGUI();
 }
 
 void KRslots::configKeys(){
