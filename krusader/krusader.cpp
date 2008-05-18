@@ -100,6 +100,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "Dialogs/popularurls.h"
 #include "GUI/krremoteencodingmenu.h"
 #include "Dialogs/checksumdlg.h"
+#include "VFS/vfile.h"
 
 #ifdef __KJSEMBED__
 #include "KrJS/krjs.h"
@@ -282,6 +283,7 @@ Krusader::Krusader() : KParts::MainWindow(0,Qt::Window|Qt::WindowContextHelpButt
 
    KConfigGroup gl( krConfig, "Look&Feel");
    int defaultType = gl.readEntry( "Default Panel Type", KrViewFactory::defaultViewId() );
+   vfile::vfile_loadUserDefinedFolderIcons( gl.readEntry( "Load User Defined Folder Icons", _UserDefinedFolderIcons ) );
 
    KConfigGroup gs( krConfig, "Startup" );
    QStringList leftTabs = gs.readPathEntry( "Left Tab Bar",QStringList() );

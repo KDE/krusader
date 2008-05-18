@@ -75,6 +75,7 @@
 #include "Search/krsearchdialog.h"
 #include "Locate/locate.h"
 #include "VFS/vfs.h"
+#include "VFS/vfile.h"
 #include "panelmanager.h"
 #include "Splitter/splittergui.h"
 #include "Splitter/splitter.h"
@@ -325,6 +326,8 @@ void KRslots::runKonfigurator(bool firstTime) {
 
   if( konfigurator->isGUIRestartNeeded() )
   {
+    vfile::vfile_loadUserDefinedFolderIcons( group.readEntry( "Load User Defined Folder Icons", _UserDefinedFolderIcons ) );
+
     if((group.readEntry("Filelist Icon Size",_FilelistIconSize)).toInt() != size )
       QPixmapCache::clear();
 

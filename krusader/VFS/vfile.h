@@ -122,6 +122,8 @@ public:
 	inline QString          vfile_getIcon();
 
 	virtual ~vfile(){}
+	
+	inline static void      vfile_loadUserDefinedFolderIcons( bool load ) { vfile_userDefinedFolderIcons = load; }
 
 private:
 	void                    vfile_loadACL();
@@ -149,6 +151,8 @@ protected:
 	bool             vfile_has_acl;  //< flag, indicates ACL permissions
 	QString          vfile_acl;      //< ACL permission string
 	QString          vfile_def_acl;  //< ACL default string
+	
+	static bool      vfile_userDefinedFolderIcons;
 };
 
 	
@@ -157,7 +161,7 @@ QString vfile::vfile_getIcon(){
 		QString mime = this->vfile_getMime();
       if ( mime == "Broken Link !" )
          vfile_icon = "file_broken";
-      else {
+      else if( vfile_icon.isEmpty() ) {
          KMimeType::Ptr mt = KMimeType::mimeType( mime );
          vfile_icon = mt ? mt->iconName() : "file_broken";
       }		

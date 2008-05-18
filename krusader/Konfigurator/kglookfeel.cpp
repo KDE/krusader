@@ -169,15 +169,16 @@ void KgLookFeel::setupPanelTab() {
   KONFIGURATOR_CHECKBOX_PARAM panelSettings[] =
   //   cfg_class  cfg_name                default text                                  restart tooltip
     {
-	 {"Look&Feel","With Icons",           _WithIcons,   i18n( "Use icons in the filenames" ), true ,  i18n( "Show the icons for filenames and folders." ) },
-	 {"Look&Feel","Human Readable Size",  _HumanReadableSize, i18n( "Use human-readable file size" ), true ,  i18n( "File sizes are displayed in B, KB, MB and GB, not just in bytes." ) },
-	 {"Look&Feel","Show Hidden",          _ShowHidden,        i18n( "Show hidden files" ),      false,  i18n( "Display files beginning with a dot." ) },
-	 {"Look&Feel","Case Sensative Sort",  _CaseSensativeSort, i18n( "Case sensitive sorting" ), true ,  i18n( "All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default)." ) },
-	 {"Look&Feel","Always sort dirs by name",  false, i18n( "Always sort dirs by name"  ), true,  i18n( "Directories are sorted by name, regardless of the sort column.") },
-	 {"Look&Feel","Numeric permissions",  _NumericPermissions, i18n( "Numeric Permissions"  ), true,  i18n( "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in the permission column.") },
+	 {"Look&Feel","With Icons",                     _WithIcons,              i18n( "Use icons in the filenames" ), true ,  i18n( "Show the icons for filenames and folders." ) },
+	 {"Look&Feel","Load User Defined Folder Icons", _UserDefinedFolderIcons, i18n( "Load the user defined folder icons" ), true ,  i18n( "Load the user defined folder icons (can cause decrease in performance)." ) },
+	 {"Look&Feel","Human Readable Size",            _HumanReadableSize,      i18n( "Use human-readable file size" ), true ,  i18n( "File sizes are displayed in B, KB, MB and GB, not just in bytes." ) },
+	 {"Look&Feel","Show Hidden",                    _ShowHidden,             i18n( "Show hidden files" ),      false,  i18n( "Display files beginning with a dot." ) },
+	 {"Look&Feel","Case Sensative Sort",            _CaseSensativeSort,      i18n( "Case sensitive sorting" ), true ,  i18n( "All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default)." ) },
+	 {"Look&Feel","Always sort dirs by name",       false,                   i18n( "Always sort dirs by name"  ), true,  i18n( "Directories are sorted by name, regardless of the sort column.") },
+	 {"Look&Feel","Numeric permissions",            _NumericPermissions,     i18n( "Numeric Permissions"  ), true,  i18n( "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in the permission column.") },
     };
 
-  KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup( 2, 0, panelSettings, 6 /*count*/, panelGrp, PAGE_PANEL );
+  KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup( 2, 0, panelSettings, 7 /*count*/, panelGrp, PAGE_PANEL );
   
   panelGrid->addWidget( panelSett, 3, 0 );
   

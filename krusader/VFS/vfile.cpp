@@ -38,12 +38,15 @@
 // KDE includes
 #include <kmimetype.h>
 #include <kdeversion.h>
+#include <kdesktopfile.h>
 // Krusader includes
 #include "vfile.h"
 #include "krpermhandler.h"
 #include "normal_vfs.h"
 
 #include <kdebug.h>
+
+bool vfile::vfile_userDefinedFolderIcons = true;
 
 vfile::vfile(const QString& name,	                  // useful construtor
              const KIO::filesize_t size,
@@ -150,7 +153,21 @@ const QString& vfile::vfile_getMime(bool fast){
 	if( vfile_mimeType == QString() ){ // mimetype == "" is OK so don't check mimetype.empty() !
 		KMimeType::Ptr mt = KMimeType::findByUrl( vfile_getUrl(),vfile_getMode(),vfile_getUrl().isLocalFile(),fast);
 		vfile_mimeType = mt ? mt->name() : "Broken Link !";
-		if( vfile_mimeType.contains("directory") ) vfile_perm[0] = 'd', vfile_isdir = true;
+		if( mt )
+			vfile_icon = mt->iconName();
+		if( vfile_mimeType.contains("directory") ) {
+			vfile_perm[0] = 'd', vfile_isdir = true;
+			if( vfile_userDefinedFolderIcons ) {
+				KUrl url = vfile_getUrl();
+				if( url.isLocalFile() ) {
+					QString file = url.path() + "/.directory";
+					KDesktopFile cfg( file );
+					const QString &icon = cfg.readIcon();
+					if( !icon.isEmpty() )
+						vfile_icon = icon;
+				}
+			}
+		}
 	}
 	return vfile_mimeType;
 }
@@ -263,6 +280,7 @@ vfile& vfile::operator= (const vfile& vf){
 	vfile_def_acl    = vf.vfile_def_acl   ;
 	vfile_rwx        = vf.vfile_rwx       ;
 	vfile_acl_loaded = vf.vfile_acl_loaded;
+	vfile_icon       = vf.vfile_icon      ;
 	
 	return (*this);
 } 
