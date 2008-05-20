@@ -194,6 +194,7 @@ bool KrSearchDialog::lastContainsWithCase = true;
 bool KrSearchDialog::lastSearchInSubDirs = true;
 bool KrSearchDialog::lastSearchInArchives = false;
 bool KrSearchDialog::lastFollowSymLinks = false;
+bool KrSearchDialog::lastContainsRegExp = false;
 
 // class starts here /////////////////////////////////////////
 KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent )
@@ -356,6 +357,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent )
     generalFilter->remoteContentSearch->setChecked( lastRemoteContentSearch );
     generalFilter->containsWholeWord->setChecked( lastContainsWholeWord );
     generalFilter->containsTextCase->setChecked( lastContainsWithCase );
+    generalFilter->containsRegExp->setChecked( lastContainsRegExp );
     generalFilter->searchInDirs->setChecked( lastSearchInSubDirs );
     generalFilter->searchInArchives->setChecked( lastSearchInArchives );
     generalFilter->followLinks->setChecked( lastFollowSymLinks );
@@ -390,6 +392,7 @@ void KrSearchDialog::closeDialog( bool isAccept )
   lastRemoteContentSearch = generalFilter->remoteContentSearch->isChecked();
   lastContainsWholeWord = generalFilter->containsWholeWord->isChecked();
   lastContainsWithCase = generalFilter->containsTextCase->isChecked();
+  lastContainsRegExp = generalFilter->containsRegExp->isChecked();
   lastSearchInSubDirs = generalFilter->searchInDirs->isChecked();
   lastSearchInArchives = generalFilter->searchInArchives->isChecked();
   lastFollowSymLinks = generalFilter->followLinks->isChecked();

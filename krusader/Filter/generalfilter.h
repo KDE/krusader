@@ -67,6 +67,8 @@ public slots:
   void    slotLoadBtnClicked();
   void    slotOverwriteBtnClicked();
   void    slotRemoveBtnClicked();
+  void    slotRegExpToggled( bool );
+  void    slotRegExpTriggered( QAction * act );
   void    slotProfileDoubleClicked( QListWidgetItem * );
   void    refreshProfileListBox();
   
@@ -86,6 +88,7 @@ public:
 
   KHistoryComboBox* searchFor;
   KHistoryComboBox* containsText;
+  QToolButton*      containsRegExp;
 
   KComboBox* ofType;
 

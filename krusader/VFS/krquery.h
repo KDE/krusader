@@ -75,7 +75,7 @@ public:
   bool isNull() {return bNull;};
 
   // sets the content part of the query
-  void setContent( const QString &content, bool cs=true, bool wholeWord=false, bool remoteSearch=false, QString encoding=QString() );
+  void setContent( const QString &content, bool cs=true, bool wholeWord=false, bool remoteSearch=false, QString encoding=QString(), bool regExp=false);
 
   // sets the minimum file size limit
   void setMinimumFileSize( KIO::filesize_t );
@@ -151,6 +151,7 @@ protected:
   QString contain;               // file must contain this string
   bool containCaseSensetive;
   bool containWholeWord;
+  bool containRegExp;
   bool containOnRemote;
 
   KIO::filesize_t minSize;

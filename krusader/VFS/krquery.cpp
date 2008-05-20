@@ -54,7 +54,7 @@
 // set the defaults
 KRQuery::KRQuery(): QObject(), matchesCaseSensitive(true), bNull( true ),
                     contain(QString()),containCaseSensetive(true),
-                    containWholeWord(false),containOnRemote(false),
+                    containWholeWord(false),containRegExp(false),containOnRemote(false),
                     minSize(0),maxSize(0),newerThen(0),olderThen(0),
                     owner(QString()),group(QString()),perm(QString()),
                     type(QString()),inArchive(false),recurse(true),
@@ -70,7 +70,7 @@ KRQuery::KRQuery(): QObject(), matchesCaseSensitive(true), bNull( true ),
 // set the defaults
 KRQuery::KRQuery( const QString &name, bool matchCase ) : QObject(),
                     bNull( true ),contain(QString()),containCaseSensetive(true),
-                    containWholeWord(false), containOnRemote(false),
+                    containWholeWord(false),containRegExp(false), containOnRemote(false),
                     minSize(0),maxSize(0),newerThen(0),olderThen(0),
                     owner(QString()),group(QString()),perm(QString()),
                     type(QString()),inArchive(false),recurse(true),
@@ -105,6 +105,7 @@ KRQuery& KRQuery::operator=(const KRQuery &old) {
   contain = old.contain;
   containCaseSensetive = old.containCaseSensetive;
   containWholeWord = old.containWholeWord;
+  containRegExp = old.containRegExp;
   containOnRemote = old.containOnRemote;
   minSize = old.minSize;
   maxSize = old.maxSize;
@@ -333,6 +334,15 @@ bool KRQuery::checkBuffer( const char * data, int len ) const {
 bool KRQuery::checkLine( const QString & line ) const
 {
   int ndx = 0;
+
+  if( containRegExp ) {
+    int ndx = QRegExp( contain, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::RegExp ).indexIn( line );
+    bool result = ndx >= 0;
+    if( result )
+      fixFoundTextForDisplay(lastSuccessfulGrep = line, ndx, contain.length());
+    return result;
+  }
+
   if ( line.isNull() ) return false;
   if ( containWholeWord )
   {
@@ -552,12 +562,13 @@ void KRQuery::setNameFilter( const QString &text, bool cs )
   }
 }
 
-void KRQuery::setContent( const QString &content, bool cs, bool wholeWord, bool remoteSearch, QString encoding )
+void KRQuery::setContent( const QString &content, bool cs, bool wholeWord, bool remoteSearch, QString encoding, bool regExp )
 {
   bNull = false;
   contain = content;
   containCaseSensetive = cs;
   containWholeWord = wholeWord;
+  containRegExp = regExp;
   containOnRemote = remoteSearch;
 
   if( encoding.isEmpty() )

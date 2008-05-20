@@ -40,8 +40,51 @@
 #include <qpushbutton.h>
 #include <QHBoxLayout>
 #include <QGridLayout>
+#include <QMenu>
 #include <QLabel>
 #include <kcharsets.h>
+
+typedef struct
+{
+	const char *description;
+	const char *regExp;
+	int cursorAdjustment;
+} term;
+
+static const term items[] =
+{
+	{ I18N_NOOP("Any Character"),                 ".",        0 },
+	{ I18N_NOOP("Start of Line"),                 "^",        0 },
+	{ I18N_NOOP("End of Line"),                   "$",        0 },
+	{ I18N_NOOP("Set of Characters"),             "[]",       -1 },
+	{ I18N_NOOP("Repeats, Zero or More Times"),   "*",        0 },
+	{ I18N_NOOP("Repeats, One or More Times"),    "+",        0 },
+	{ I18N_NOOP("Optional"),                      "?",        0 },
+	{ I18N_NOOP("Escape"),                        "\\",       0 },
+	{ I18N_NOOP("TAB"),                           "\\t",      0 },
+	{ I18N_NOOP("Newline"),                       "\\n",      0 },
+	{ I18N_NOOP("Carriage Return"),               "\\r",      0 },
+	{ I18N_NOOP("White Space"),                   "\\s",      0 },
+	{ I18N_NOOP("Digit"),                         "\\d",      0 },
+};
+
+class RegExpAction : public QAction
+{
+public:
+	RegExpAction( QObject *parent, const QString &text, const QString &regExp, int cursor )
+		: QAction( text, parent ), mText( text ), mRegExp( regExp ), mCursor( cursor )
+	{
+	}
+	
+	QString text() const { return mText; }
+	QString regExp() const { return mRegExp; }
+	int cursor() const { return mCursor; }
+	
+private:
+	QString mText;
+	QString mRegExp;
+	int mCursor;
+};
 
 GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent ) : QWidget ( parent ),
 		profileManager ( 0 ), fltTabs ( tabs )
@@ -213,6 +256,24 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	containsText->setMaxCount ( 25 );
 	containsTextLayout->addWidget ( containsText );
 	containsLabel->setBuddy ( containsText );
+	
+	containsRegExp = new QToolButton( containsGroup );
+	containsRegExp->setPopupMode( QToolButton::MenuButtonPopup );
+	containsRegExp->setCheckable( true );
+	containsRegExp->setText( i18n( "RegExp" ) );
+	// Populate the popup menu.
+	QMenu *patterns = new QMenu(containsRegExp);
+	for (int i = 0; (unsigned)i < sizeof(items) / sizeof(items[0]); i++)
+	{
+		patterns->addAction(new RegExpAction(patterns, i18n(items[i].description),
+			items[i].regExp, items[i].cursorAdjustment));
+	}
+	connect( containsRegExp, SIGNAL( toggled( bool ) ), this, SLOT( slotRegExpToggled( bool ) ) );
+	connect( containsRegExp, SIGNAL( triggered( QAction * ) ), this, SLOT( slotRegExpTriggered( QAction * ) ) );
+	containsRegExp->setMenu( patterns );
+	patterns->setEnabled( false );
+
+	containsTextLayout->addWidget ( containsRegExp );
 
 	containsLayout->addLayout ( containsTextLayout, 0, 0 );
 
@@ -361,7 +422,7 @@ bool GeneralFilter::fillQuery ( KRQuery *query )
 	query->setContent ( containsText->currentText(),
 	                    containsTextCase->isChecked(),
 	                    containsWholeWord->isChecked(),
-	                    remoteContent, charset );
+	                    remoteContent, charset, containsRegExp->isChecked() );
 
 	if ( ofType->currentText() !=i18n ( "All Files" ) )
 		query->setMimeType ( ofType->currentText() );
@@ -409,6 +470,7 @@ void GeneralFilter::loadFromProfile ( QString name )
 	containsTextCase->setChecked ( cfg.readEntry ( "Case Sensitive Content", false ) );
 	remoteContentSearch->setChecked ( cfg.readEntry ( "Remote Content Search", false ) );
 	containsWholeWord->setChecked ( cfg.readEntry ( "Match Whole Word Only", false ) );
+	containsRegExp->setChecked ( cfg.readEntry ( "Regular Expression", false ) );
 	containsText->setEditText ( cfg.readEntry ( "Contains Text", "" ) );
 	searchFor->setEditText ( cfg.readEntry ( "Search For", "" ) );
 	
@@ -465,6 +527,7 @@ void GeneralFilter::saveToProfile ( QString name )
 	group.writeEntry ( "Case Sensitive Content", containsTextCase->isChecked() );
 	group.writeEntry ( "Remote Content Search", remoteContentSearch->isChecked() );
 	group.writeEntry ( "Match Whole Word Only", containsWholeWord->isChecked() );
+	group.writeEntry ( "Regular Expression", containsRegExp->isChecked() );
 	
 	QString enc;
 	if( contentEncoding->currentIndex() != 0 )
@@ -561,6 +624,22 @@ void GeneralFilter::slotLoadBtnClicked()
 	QListWidgetItem *item = profileListBox->currentItem();
 	if ( item != 0 )
 		profileManager->loadProfile ( item->text() );
+}
+
+void GeneralFilter::slotRegExpToggled( bool state ) {
+	containsWholeWord->setEnabled( !state );
+	containsRegExp->menu()->setEnabled( state );
+}
+
+void GeneralFilter::slotRegExpTriggered( QAction * act ) {
+	if( act == 0 )
+		return;
+	RegExpAction *regAct = dynamic_cast<RegExpAction *>( act );
+	if( regAct == 0 )
+		return;
+	containsText->lineEdit()->insert(regAct->regExp());
+	containsText->lineEdit()->setCursorPosition(containsText->lineEdit()->cursorPosition() + regAct->cursor());
+	containsText->lineEdit()->setFocus();
 }
 
 #include "generalfilter.moc"

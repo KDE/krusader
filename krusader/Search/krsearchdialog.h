@@ -127,6 +127,7 @@ private:
   static bool    lastSearchInSubDirs;
   static bool    lastSearchInArchives;
   static bool    lastFollowSymLinks;
+  static bool    lastContainsRegExp;
   
   int            sizeX;
   int            sizeY;
