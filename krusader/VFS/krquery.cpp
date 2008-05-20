@@ -336,10 +336,11 @@ bool KRQuery::checkLine( const QString & line ) const
   int ndx = 0;
 
   if( containRegExp ) {
-    int ndx = QRegExp( contain, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::RegExp ).indexIn( line );
+    QRegExp rexp( contain, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::RegExp );
+    int ndx = rexp.indexIn( line );
     bool result = ndx >= 0;
     if( result )
-      fixFoundTextForDisplay(lastSuccessfulGrep = line, ndx, contain.length());
+      fixFoundTextForDisplay(lastSuccessfulGrep = line, ndx, rexp.matchedLength());
     return result;
   }
 
