@@ -1235,6 +1235,29 @@ make[1]: Leaving directory `/home/source/krusader_kde3'
 
 <para>You can download the latest available krusader-2.x <link linkend="krusader_svn">from SVN</link>.</para>
 
+<para>Compilation requirements</para>
+<para>The next packages are needed for compiling Krusader,
+if you only run a Krusader binary you don't need these packages.</para>
+<para>
+    <itemizedlist>
+      <listitem>
+        <para>gcc</para>
+      </listitem>
+      <listitem>
+        <para>cmake</para>
+      </listitem>
+      <listitem>
+        <para>gettext (contains msgfmt)</para>
+      </listitem>
+      <listitem>
+        <para>kdelibs5-dev (installs many development libraries for KDE4)</para>
+      </listitem>
+      <listitem>
+        <para>libphonon-dev</para>
+      </listitem>
+    </itemizedlist>
+</para>
+
 <para><command>DCMAKE_INSTALL_PREFIX</command> is the location of the KDE DQT_INCLUDES</para>
 <para>
     <screen>
