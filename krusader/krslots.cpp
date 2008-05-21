@@ -185,21 +185,27 @@ void KRslots::compareContent( KUrl url1, KUrl url2 )
   }
 
   QString tmp1 = QString(), tmp2 = QString();
-  
-  if (!url1.isLocalFile()) {
-    if( !KIO::NetAccess::download( url1, tmp1, 0 ) ){
-      KMessageBox::sorry(krApp, i18n("Krusader is unable to download %1", url1.fileName()));
-      return;
-    }
-  } else tmp1 = url1.path();
-  if (!url2.isLocalFile()) {
-    if( !KIO::NetAccess::download( url2, tmp2, 0 ) ){
-      KMessageBox::sorry(krApp,i18n("Krusader is unable to download %1", url2.fileName()));
-      if( tmp1 != url1.path() )
-        KIO::NetAccess::removeTempFile( tmp1 );
-      return;
-    }
-  } else tmp2 = url2.path();
+
+  // kdiff3 sucks with spaces
+  if( KUrl( diffProg ).fileName() == "kdiff3" && !url1.prettyUrl().contains(" ") && !url2.prettyUrl().contains(" ") ) {
+    tmp1 = url1.prettyUrl();
+    tmp2 = url2.prettyUrl();
+  } else {
+    if (!url1.isLocalFile()) {
+      if( !KIO::NetAccess::download( url1, tmp1, 0 ) ){
+        KMessageBox::sorry(krApp, i18n("Krusader is unable to download %1", url1.fileName()));
+        return;
+      }
+    } else tmp1 = url1.path();
+    if (!url2.isLocalFile()) {
+      if( !KIO::NetAccess::download( url2, tmp2, 0 ) ){
+        KMessageBox::sorry(krApp,i18n("Krusader is unable to download %1", url2.fileName()));
+        if( tmp1 != url1.path() )
+          KIO::NetAccess::removeTempFile( tmp1 );
+        return;
+      }
+    } else tmp2 = url2.path();
+  }
 
   KrProcess *p = new KrProcess( tmp1 != url1.path() ? tmp1 : QString(),
                                 tmp2 != url2.path() ? tmp2 : QString() );
