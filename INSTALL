@@ -69,12 +69,138 @@ if you only run the Krusader binary you don't need to install these packages.
 - libphonon-dev
 
 
-Optional instructions
----------------------
-DCMAKE_INSTALL_PREFIX is the location of the KDE DQT_INCLUDES
+cmake options
+-------------
+-DCMAKE_INSTALL_PREFIX is the location of the KDE DQT_INCLUDES
+-DCMAKE_INSTALL_PREFIX=/usr/ is the location where Krusader will be 
+                             installed with the make command
 
 $ tar -xzvf krusader_kde4.tar.gz
 $ cd  krusader_kde4
 $ cmake  -DCMAKE_INSTALL_PREFIX=/usr/ -DQT_INCLUDES=/usr/share/qt4/include
+
+
+Compilation and installation
+----------------------------
+Compilation will take about 5 to 10 minutes depending on your CPU speed.
+
 $ make
 $ su -c "make install"
+
+
+Uninstall
+---------
+$ su -c "make uninstall"
+
+
+
+FYI
+The output of cmake
+-------------------
+This is the cmake output on Kubuntu 8.04 (KDE 4 Remix)
+
+frank@frank-kubuntu:~/krusader_kde4$ cmake  -DCMAKE_INSTALL_PREFIX=/usr/ -DQT_INCLUDES=/usr/share/qt4/include
+-- Check for working C compiler: /usr/bin/gcc
+-- Check for working C compiler: /usr/bin/gcc -- works
+-- Check size of void*
+-- Check size of void* - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Looking for Q_WS_X11
+-- Looking for Q_WS_X11 - found
+-- Looking for Q_WS_WIN
+-- Looking for Q_WS_WIN - not found.
+-- Looking for Q_WS_QWS
+-- Looking for Q_WS_QWS - not found.
+-- Looking for Q_WS_MAC
+-- Looking for Q_WS_MAC - not found.
+-- Found Qt-Version 4.3.4 (using /usr/bin/qmake)
+-- Looking for XOpenDisplay in /usr/lib/libX11.so;/usr/lib/libXext.so;/usr/lib/libXft.so;/usr/lib/libXau.so;/usr/lib/libXdmcp.so
+-- Looking for XOpenDisplay in /usr/lib/libX11.so;/usr/lib/libXext.so;/usr/lib/libXft.so;/usr/lib/libXau.so;/usr/lib/libXdmcp.so - found
+-- Looking for gethostbyname
+-- Looking for gethostbyname - found
+-- Looking for connect
+-- Looking for connect - found
+-- Looking for remove
+-- Looking for remove - found
+-- Looking for shmat
+-- Looking for shmat - found
+-- Looking for IceConnectionNumber in ICE
+-- Looking for IceConnectionNumber in ICE - found
+-- Found X11: /usr/lib/libX11.so
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Performing Test HAVE_FPIE_SUPPORT
+-- Performing Test HAVE_FPIE_SUPPORT - Success
+-- Performing Test __KDE_HAVE_NO_THREADSAFE_STATICS
+-- Performing Test __KDE_HAVE_NO_THREADSAFE_STATICS - Success
+-- Performing Test __KDE_HAVE_W_OVERLOADED_VIRTUAL
+-- Performing Test __KDE_HAVE_W_OVERLOADED_VIRTUAL - Success
+-- Performing Test __KDE_HAVE_GCC_VISIBILITY
+-- Performing Test __KDE_HAVE_GCC_VISIBILITY - Success
+-- Found KDE 4.0 include dir: /usr/lib/kde4/include
+-- Found KDE 4 library dir: /usr/lib/kde4/lib
+-- Found KDE4 kconfig_compiler preprocessor: /usr/lib/kde4/bin/kconfig_compiler
+-- Found KDE4 automoc: /usr/lib/kde4/bin/kde4automoc
+-- /home/frank/krusader_kde4/krusader: skipped subdir $(KRJSDIR)
+-- Looking for include files HAVE_LIBINTL_H
+-- Looking for include files HAVE_LIBINTL_H - found
+-- Looking for dgettext
+-- Looking for dgettext - found
+-- Found Gettext: built in libc
+-- Found ZLIB: /usr/lib/libz.so
+-- /home/frank/krusader_kde4: skipped subdir $(TARDIR)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/frank/krusader_kde4
+frank@frank-kubuntu:~/krusader_kde4$
+
+
+FYI
+The output of make (partial)
+----------------------------
+frank@frank-kubuntu:~/krusader_kde4$ make
+/usr/bin/cmake -H/home/frank/krusader_kde4 -B/home/frank/krusader_kde4 --check-build-system CMakeFiles/Makefile.cmake 0
+/usr/bin/cmake -E cmake_progress_start /home/frank/krusader_kde4/CMakeFiles 100
+make -f CMakeFiles/Makefile2 all
+make[1]: Entering directory `/home/frank/krusader_kde4'
+make -f krusader/Filter/CMakeFiles/Filter.dir/build.make krusader/Filter/CMakeFiles/Filter.dir/depend
+make[2]: Entering directory `/home/frank/krusader_kde4'
+/usr/bin/cmake -E cmake_progress_report /home/frank/krusader_kde4/CMakeFiles 30
+[  1%] Generating Filter_automoc.cpp
+cd /home/frank/krusader_kde4/krusader/Filter && /usr/lib/kde4/bin/kde4automoc /home/frank/krusader_kde4/krusader/Filter/Filter_automoc.cpp /home/frank/krusader_kde4/krusader/Filter /home/frank/krusader_kde4/krusader/Filter /usr/bin/moc-qt4
+Generating filterdialog.moc
+Generating filtertabs.moc
+Generating advancedfilter.moc
+Generating generalfilter.moc
+Scanning dependencies of target Filter
+cd /home/frank/krusader_kde4 && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/frank/krusader_kde4 /home/frank/krusader_kde4/krusader/Filter /home/frank/krusader_kde4 /home/frank/krusader_kde4/krusader/Filter /home/frank/krusader_kde4/krusader/Filter/CMakeFiles/Filter.dir/DependInfo.cmake
+make[2]: Leaving directory `/home/frank/krusader_kde4'
+make -f krusader/Filter/CMakeFiles/Filter.dir/build.make krusader/Filter/CMakeFiles/Filter.dir/build
+make[2]: Entering directory `/home/frank/krusader_kde4'
+/usr/bin/cmake -E cmake_progress_report /home/frank/krusader_kde4/CMakeFiles 28
+[  2%] Building CXX object krusader/Filter/CMakeFiles/Filter.dir/Filter_automoc.o
+/usr/bin/c++   -Wnon-virtual-dtor -Wno-long-long -ansi -Wundef -Wcast-align -Wchar-subscripts -Wall -W -Wpointer-arith -Wformat-security -fno-exceptions -fno-check-new -fno-common -Woverloaded-virtual -fvisibility=hidden -fvisibility-inlines-hidden -O2 -g -I/home/frank/krusader_kde4/krusader/Filter -I/usr/lib/kde4/include -I/usr/include/qt4/QtDBus -I/usr/include/qt4/QtTest -I/usr/include/qt4/QtUiTools -I/usr/include/qt4/QtScript -I/usr/include/qt4/QtSvg -I/usr/include/qt4/QtXml -I/usr/include/qt4/QtSql -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtDesigner -I/usr/include/qt4/QtAssistant -I/usr/include/qt4/Qt3Support -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtCore -I/usr/include/qt4/Qt -I/usr/share/qt4/mkspecs/default -I/usr/include/qt4   -D_BSD_SOURCE -D_XOPEN_SOURCE=500 -D_BSD_SOURCE -D_GNU_SOURCE -DQT_NO_STL -DQT_NO_CAST_TO_ASCII -D_REENTRANT -DKDE_DEPRECATED_WARNINGS -DVERSION='"2.0.0-beta1"' -DRELEASE_NAME='"Phoenix` Egg"' -o krusader/Filter/CMakeFiles/Filter.dir/Filter_automoc.o -c /home/frank/krusader_kde4/krusader/Filter/Filter_automoc.cpp
+/usr/bin/cmake -E cmake_progress_report /home/frank/krusader_kde4/CMakeFiles
+[  2%] Building CXX object krusader/Filter/CMakeFiles/Filter.dir/advancedfilter.o
+/usr/bin/c++   -Wnon-virtual-dtor -Wno-long-long -ansi -Wundef -Wcast-align -Wchar-subscripts -Wall -W -Wpointer-arith -Wformat-security -fno-exceptions -fno-check-new -fno-common -Woverloaded-virtual -fvisibility=hidden -fvisibility-inlines-hidden -O2 -g -I/home/frank/krusader_kde4/krusader/Filter -I/usr/lib/kde4/include -I/usr/include/qt4/QtDBus -I/usr/include/qt4/QtTest -I/usr/include/qt4/QtUiTools -I/usr/include/qt4/QtScript -I/usr/include/qt4/QtSvg -I/usr/include/qt4/QtXml -I/usr/include/qt4/QtSql -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtDesigner -I/usr/include/qt4/QtAssistant -I/usr/include/qt4/Qt3Support -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtCore -I/usr/include/qt4/Qt -I/usr/share/qt4/mkspecs/default -I/usr/include/qt4   -D_BSD_SOURCE -D_XOPEN_SOURCE=500 -D_BSD_SOURCE -D_GNU_SOURCE -DQT_NO_STL -DQT_NO_CAST_TO_ASCII -D_REENTRANT -DKDE_DEPRECATED_WARNINGS -DVERSION='"2.0.0-beta1"' -DRELEASE_NAME='"Phoenix` Egg"' -o krusader/Filter/CMakeFiles/Filter.dir/advancedfilter.o -c /home/frank/krusader_kde4/krusader/Filter/advancedfilter.cpp
+...
+...
+...
+[100%] Building C object iso/CMakeFiles/kio_iso.dir/libisofs/isofs.o
+/usr/bin/gcc  -Dkio_iso_EXPORTS   -Wno-long-long -std=iso9899:1990 -Wundef -Wcast-align -Werror-implicit-function-declaration -Wchar-subscripts -Wall -W -Wpointer-arith -Wwrite-strings -Wformat-security -Wmissing-format-attribute -fno-common -O2 -g -fPIC -I/home/frank/krusader_kde4/iso -I/usr/lib/kde4/include -I/usr/include/qt4/QtDBus -I/usr/include/qt4/QtTest -I/usr/include/qt4/QtUiTools -I/usr/include/qt4/QtScript -I/usr/include/qt4/QtSvg -I/usr/include/qt4/QtXml -I/usr/include/qt4/QtSql -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtDesigner -I/usr/include/qt4/QtAssistant -I/usr/include/qt4/Qt3Support -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtCore -I/usr/include/qt4/Qt -I/usr/share/qt4/mkspecs/default -I/usr/include/qt4   -D_BSD_SOURCE -D_XOPEN_SOURCE=500 -D_BSD_SOURCE -D_GNU_SOURCE -DQT_NO_STL -DQT_NO_CAST_TO_ASCII -D_REENTRANT -DKDE_DEPRECATED_WARNINGS -DVERSION='"2.0.0-beta1"' -DRELEASE_NAME='"Phoenix` Egg"' -o iso/CMakeFiles/kio_iso.dir/libisofs/isofs.o   -c /home/frank/krusader_kde4/iso/libisofs/isofs.c
+Linking CXX shared module ../lib/kio_iso.so
+cd /home/frank/krusader_kde4/iso && /usr/bin/cmake -P CMakeFiles/kio_iso.dir/cmake_clean_target.cmake
+cd /home/frank/krusader_kde4/iso && /usr/bin/cmake -E cmake_link_script CMakeFiles/kio_iso.dir/link.txt --verbose=1
+/usr/bin/c++  -fPIC   -Wnon-virtual-dtor -Wno-long-long -ansi -Wundef -Wcast-align -Wchar-subscripts -Wall -W -Wpointer-arith -Wformat-security -fno-exceptions -fno-check-new -fno-common -Woverloaded-virtual -fvisibility=hidden -fvisibility-inlines-hidden -O2 -g -Wl,--enable-new-dtags -Wl,--fatal-warnings -Wl,--no-undefined -lc  -shared -Wl,-soname,kio_iso.so -o ../lib/kio_iso.so "CMakeFiles/kio_iso.dir/kio_iso_automoc.o" "CMakeFiles/kio_iso.dir/kisodirectory.o" "CMakeFiles/kio_iso.dir/kisofile.o" "CMakeFiles/kio_iso.dir/qfilehack.o" "CMakeFiles/kio_iso.dir/kiso.o" "CMakeFiles/kio_iso.dir/iso.o" "CMakeFiles/kio_iso.dir/libisofs/isofs.o" -L/usr/lib/kde4/lib -lQtCore -lpthread -lQtNetwork -lQtDBus -lQtXml -lz -lbz2 -lresolv -lkdecore -lQtCore -lpthread -lkdecore -lkdeui -lz -lstreamanalyzer -lstreams -lQtCore -lpthread -lkdecore -lsolid -lXrender -lkio -lz -lQtSvg -lSM -lICE -lX11 -lXext -lXft -lXau -lXdmcp -lXtst -lXcursor -lXfixes -lQtNetwork -lbz2 -lresolv -lQtCore -lpthread -lQtDBus -lQtXml -lQtGui
+make[2]: Leaving directory `/home/frank/krusader_kde4'
+/usr/bin/cmake -E cmake_progress_report /home/frank/krusader_kde4/CMakeFiles  97 98 99 100
+[100%] Built target kio_iso
+make[1]: Leaving directory `/home/frank/krusader_kde4'
+/usr/bin/cmake -E cmake_progress_start /home/frank/krusader_kde4/CMakeFiles 0
+frank@frank-kubuntu:~/krusader_kde4$
+
