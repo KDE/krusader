@@ -96,9 +96,7 @@ KParts::MainWindow( parent, (Qt::WindowFlags)KDE_DEFAULT_WINDOWFLAGS ), manager(
 	detachAction->setEnabled(false);	
 	viewerMenu->addSeparator();
 	viewerMenu->addAction( printAction->icon(), printAction->text(), this, SLOT( print() ))->setShortcut( printAction->shortcut().primary() );
-	toolBar()->addAction( printAction->icon(), printAction->text(), this, SLOT( print() ));
 	viewerMenu->addAction( copyAction->icon(), copyAction->text(), this, SLOT( copy() ))->setShortcut( copyAction->shortcut().primary() );
-	toolBar()->addAction( copyAction->icon(), copyAction->text(), this, SLOT( copy() ) );
 	viewerMenu->addSeparator();
 	( tabClose = viewerMenu->addAction( i18n( "&Close current tab" ), this, SLOT( tabCloseRequest() )))->setShortcut( Qt::Key_Escape );
 	( closeAct = viewerMenu->addAction( i18n( "&Quit" ), this, SLOT( close() )))->setShortcut( Qt::CTRL + Qt::Key_Q );
@@ -384,7 +382,7 @@ void KrViewer::tabCloseRequest(QWidget *w){
 			krApp->raise();
 			krApp->activateWindow();
 		}
-		delete this;
+		this->deleteLater();
 		return;
 	} else if( tabBar.count() == 1 ){
 		//no point in detaching only one tab..
@@ -558,16 +556,18 @@ PanelViewerBase * KrViewer::getPanelViewerBase( KParts::Part * part ) {
 }
 
 void KrViewer::updateActions( PanelViewerBase * pvb ) {
-	if( pvb->isEditor() ) {
-		printAction->setVisible(false);
-		copyAction->setVisible(false);
+	QList<QAction *> actList = toolBar()->actions();
+	bool hasPrint = false, hasCopy = false;
+	foreach( QAction *a, actList ) {
+		if( a->text() == printAction->text() )
+			hasPrint = true;
+		if( a->text() == copyAction->text() )
+			hasCopy = true;
 	}
-	else {
-		if( !printAction->isVisible() )
-			printAction->setVisible( true );
-		if( !copyAction->isVisible() )
-			copyAction->setVisible( true );
-	}
+	if( !hasPrint )
+		toolBar()->addAction( printAction->icon(), printAction->text(), this, SLOT( print() ));
+	if( !hasCopy )
+		toolBar()->addAction( copyAction->icon(), copyAction->text(), this, SLOT( copy() ) );
 }
 
 #if 0
