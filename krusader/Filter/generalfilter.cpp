@@ -145,6 +145,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	ofType->addItem ( i18n ( "Text Files" ) );
 	ofType->addItem ( i18n ( "Video Files" ) );
 	ofType->addItem ( i18n ( "Audio Files" ) );
+	connect( ofType, SIGNAL( currentIndexChanged(int) ), this, SLOT( slotDisable() ) );
 
 	nameGroupLayout->addWidget ( ofType, 1, 1 );
 	filterLayout->addWidget ( nameGroup, 0, 0 );
@@ -205,6 +206,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 
 		searchIn = new KURLListRequester ( searchInGroup );
 		searchInLayout->addWidget ( searchIn, 0, 0 );
+		connect( searchIn, SIGNAL( changed() ), this, SLOT( slotDisable() ) );
 
 		middleLayout->addWidget ( searchInGroup );
 	}
@@ -241,7 +243,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	containsTextLayout->setSpacing ( 6 );
 	containsTextLayout->setContentsMargins ( 0, 0, 0, 0 );
 
-	QLabel *containsLabel = new QLabel ( containsGroup );
+	containsLabel = new QLabel ( containsGroup );
 	QSizePolicy containsLabelPolicy( QSizePolicy::Fixed, QSizePolicy::Minimum );
 	containsLabelPolicy.setHeightForWidth( containsLabel->sizePolicy().hasHeightForWidth() );
 	containsLabel->setSizePolicy ( containsLabelPolicy );
@@ -268,7 +270,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 		patterns->addAction(new RegExpAction(patterns, i18n(items[i].description),
 			items[i].regExp, items[i].cursorAdjustment));
 	}
-	connect( containsRegExp, SIGNAL( toggled( bool ) ), this, SLOT( slotRegExpToggled( bool ) ) );
+	connect( containsRegExp, SIGNAL( toggled( bool ) ), this, SLOT( slotDisable() ) );
 	connect( containsRegExp, SIGNAL( triggered( QAction * ) ), this, SLOT( slotRegExpTriggered( QAction * ) ) );
 	containsRegExp->setMenu( patterns );
 	patterns->setEnabled( false );
@@ -281,7 +283,7 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 	containsCbsLayout->setSpacing ( 6 );
 	containsCbsLayout->setContentsMargins ( 0, 0, 0, 0 );
 	
-	QLabel *encLabel = new QLabel( i18n( "Encoding:" ), containsGroup );
+	encLabel = new QLabel( i18n( "Encoding:" ), containsGroup );
 	containsCbsLayout->addWidget ( encLabel );
 	contentEncoding = new QComboBox( containsGroup );
 	contentEncoding->setEditable( false );
@@ -378,6 +380,8 @@ GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent
 
 	setTabOrder ( searchFor, containsText ); // search for -> content
 	setTabOrder ( containsText, searchType ); // content -> search type
+	
+	slotDisable();
 }
 
 GeneralFilter::~GeneralFilter()
@@ -626,9 +630,31 @@ void GeneralFilter::slotLoadBtnClicked()
 		profileManager->loadProfile ( item->text() );
 }
 
-void GeneralFilter::slotRegExpToggled( bool state ) {
-	containsWholeWord->setEnabled( !state );
-	containsRegExp->menu()->setEnabled( state );
+void GeneralFilter::slotDisable() {
+	bool state = containsRegExp->isChecked();
+	bool global = ofType->currentText() !=i18n ( "Directories" );
+	bool remoteOnly = false;
+	if ( properties & FilterTabs::HasSearchIn )
+	{
+		KUrl::List urlList = searchIn->urlList();
+		remoteOnly = urlList.count() != 0;
+		foreach( KUrl url, urlList )
+			if( url.protocol() == "file" )
+				remoteOnly = false;
+	}
+	
+	containsWholeWord->setEnabled( !state && global );
+	containsRegExp->menu()->setEnabled( state && global );
+	encLabel->setEnabled( global );
+	contentEncoding->setEnabled( global );
+	containsTextCase->setEnabled( global );
+	containsRegExp->setEnabled( global );
+	if ( properties & FilterTabs::HasRemoteContentSearch )
+		remoteContentSearch->setEnabled( global );
+	if ( properties & FilterTabs::HasRecurseOptions )
+		searchInArchives->setEnabled( global && !remoteOnly );
+	containsLabel->setEnabled( global );
+	containsText->setEnabled( global );
 }
 
 void GeneralFilter::slotRegExpTriggered( QAction * act ) {

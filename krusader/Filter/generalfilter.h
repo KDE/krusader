@@ -67,7 +67,7 @@ public slots:
   void    slotLoadBtnClicked();
   void    slotOverwriteBtnClicked();
   void    slotRemoveBtnClicked();
-  void    slotRegExpToggled( bool );
+  void    slotDisable();
   void    slotRegExpTriggered( QAction * act );
   void    slotProfileDoubleClicked( QListWidgetItem * );
   void    refreshProfileListBox();
@@ -91,6 +91,9 @@ public:
   QToolButton*      containsRegExp;
 
   KComboBox* ofType;
+
+  QLabel *encLabel;
+  QLabel *containsLabel;
 
   KShellCompletion completion;
 

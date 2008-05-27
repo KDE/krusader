@@ -56,6 +56,7 @@ public:
 
 signals:
   void         checkValidity( QString &text, QString &error );
+  void         changed();
   
 protected slots:
   void         slotAdd();

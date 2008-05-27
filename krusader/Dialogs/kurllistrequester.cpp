@@ -84,6 +84,7 @@ KURLListRequester::KURLListRequester( QWidget *parent ) : QWidget( parent )
   connect( urlLineEdit, SIGNAL( returnPressed(const QString&) ), this, SLOT( slotAdd() ) );
   connect( urlListBox, SIGNAL( itemRightClicked( QListWidgetItem *, const QPoint & ) ), this,
                        SLOT( slotRightClicked( QListWidgetItem *, const QPoint & ) ) );
+  connect( urlLineEdit, SIGNAL( textChanged ( const QString & ) ), this, SIGNAL( changed() ) );
 }
 
 void KURLListRequester::slotAdd()
@@ -100,6 +101,7 @@ void KURLListRequester::slotAdd()
     {  
       urlListBox->addItem( text );
       urlLineEdit->clear();
+      emit changed();
     }
   }
 }
@@ -131,6 +133,7 @@ void KURLListRequester::deleteSelectedItems()
   QList<QListWidgetItem *> delList = urlListBox->selectedItems();
   for( int i=0; i != delList.count(); i++ )
     delete delList[ i ];
+  emit changed();
 }
 
 void KURLListRequester::slotRightClicked( QListWidgetItem *item, const QPoint &pos )
@@ -145,8 +148,10 @@ void KURLListRequester::slotRightClicked( QListWidgetItem *item, const QPoint &p
   {
     if( item->isSelected() )
       deleteSelectedItems();
-    else
+    else {
       delete item;
+      emit changed();
+    }
   }
 }
 
@@ -187,6 +192,8 @@ void KURLListRequester::setUrlList( KUrl::List urlList )
     
   for ( it = urlList.begin(); it != urlList.end(); ++it )
     urlListBox->addItem( it->pathOrUrl() );
+
+  emit changed();
 }
 
 #include "kurllistrequester.moc"
