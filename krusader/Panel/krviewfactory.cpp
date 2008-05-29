@@ -85,5 +85,5 @@ void KrViewFactory::init()
 {
 	KrViewFactory::registerView( &detailedView );
 	KrViewFactory::registerView( &briefView );
-//	KrViewFactory::registerView( &interView );
+	KrViewFactory::registerView( &interView );
 }

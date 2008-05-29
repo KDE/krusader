@@ -59,6 +59,7 @@ public:
 		
 	// DON'T USE THOSE OUTSIDE THE VIEWS!!!
 	inline const vfile* getVfile() const { return _vf; }
+	inline void setVfile(vfile *vf) { _vf = vf; }
 	inline vfile* getMutableVfile() { return _vf; }
 	inline bool isDummy() const { return dummyVfile; }
 	inline bool isHidden() const { return _hidden; }

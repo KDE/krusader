@@ -19,6 +19,7 @@ set( Panel_SRCS
 	krdetailedview.cpp 
 	krbriefview.cpp 
 	krbriefviewitem.cpp
+	krvfsmodel.cpp
 	krinterview.cpp
         krviewfactory.cpp )
 

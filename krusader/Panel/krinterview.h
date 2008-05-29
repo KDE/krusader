@@ -3,9 +3,13 @@
 
 #include "krview.h"
 
-#include <QListView>
+#include <QTreeView>
+#include <QVector>
 
-class KrInterView : public KrView, public QListView {
+class KrVfsModel;
+class KrInterViewItem;
+
+class KrInterView : public KrView, public QTreeView {
 
 public:
 	KrInterView( QWidget *parent, bool &left, KConfig *cfg = krConfig );
@@ -39,5 +43,9 @@ protected:
 	virtual void setup();
 	virtual void initProperties();
 	virtual void initOperator();
+	
+private:
+	KrVfsModel *_model;
+	QVector<KrInterViewItem*> _items;
 };
 #endif // __krinterview__
