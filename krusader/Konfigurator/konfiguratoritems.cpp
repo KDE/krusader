@@ -356,7 +356,7 @@ KonfiguratorURLRequester::KonfiguratorURLRequester( QString cls, QString name, Q
 
   connect( this, SIGNAL( textChanged(const QString &) ), ext, SLOT( setChanged() ) );
 
-  button()->setIcon( KIcon( SmallIcon( "fileopen" ) ) );
+  button()->setIcon( KIcon( SmallIcon( "document-open" ) ) );
   loadInitialValue();
 }
 
@@ -405,7 +405,7 @@ KonfiguratorFontChooser::KonfiguratorFontChooser( QString cls, QString name, QFo
 
   connect( pToolButton, SIGNAL( clicked() ), this, SLOT( slotBrowseFont() ) );
 
-  pToolButton->setIcon( SmallIcon( "fileopen" ) );
+  pToolButton->setIcon( SmallIcon( "document-open" ) );
   layout->addWidget( pToolButton );
 
   loadInitialValue();

@@ -85,12 +85,12 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
   
   addSpacer( vbox1 );
   btnAddProtocol = new QPushButton( vbox1Widget );
-  btnAddProtocol->setIcon( krLoader->loadIcon( "1leftarrow", KIconLoader::Small ) );
+  btnAddProtocol->setIcon( krLoader->loadIcon( "arrow-left", KIconLoader::Small ) );
   btnAddProtocol->setWhatsThis( i18n( "Add protocol to the link list." ) );
   vbox1->addWidget( btnAddProtocol );
 
   btnRemoveProtocol = new QPushButton( vbox1Widget );
-  btnRemoveProtocol->setIcon( krLoader->loadIcon( "1rightarrow", KIconLoader::Small ) );
+  btnRemoveProtocol->setIcon( krLoader->loadIcon( "arrow-right", KIconLoader::Small ) );
   btnRemoveProtocol->setWhatsThis( i18n( "Remove protocol from the link list." ) );
   vbox1->addWidget( btnRemoveProtocol );
   addSpacer( vbox1 );
@@ -102,12 +102,12 @@ KgProtocols::KgProtocols( bool first, QWidget* parent ) :
   
   addSpacer( vbox2 );
   btnAddMime = new QPushButton( vbox2Widget );
-  btnAddMime->setIcon( krLoader->loadIcon( "1leftarrow", KIconLoader::Small ) );
+  btnAddMime->setIcon( krLoader->loadIcon( "arrow-left", KIconLoader::Small ) );
   btnAddMime->setWhatsThis( i18n( "Add mime to the selected protocol on the link list." ) );
   vbox2->addWidget( btnAddMime );
 
   btnRemoveMime = new QPushButton( vbox2Widget );
-  btnRemoveMime->setIcon( krLoader->loadIcon( "1rightarrow", KIconLoader::Small ) );
+  btnRemoveMime->setIcon( krLoader->loadIcon( "arrow-right", KIconLoader::Small ) );
   btnRemoveMime->setWhatsThis( i18n( "Remove mime from the link list." ) );
   vbox2->addWidget( btnRemoveMime );
   addSpacer( vbox2 );

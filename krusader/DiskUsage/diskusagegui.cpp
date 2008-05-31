@@ -60,17 +60,17 @@ DiskUsageGUI::DiskUsageGUI( KUrl openDir, QWidget* parent )
   duTools->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
     
   btnNewSearch = new QToolButton( duTools );
-  btnNewSearch->setIcon( QIcon(krLoader->loadIcon("fileopen",KIconLoader::Desktop)) );
+  btnNewSearch->setIcon( QIcon(krLoader->loadIcon("document-open",KIconLoader::Desktop)) );
   duHBox->addWidget( btnNewSearch );
   btnNewSearch->setToolTip( i18n( "Start new disk usage search" ) );
   
   btnRefresh = new QToolButton( duTools );
-  btnRefresh->setIcon( QIcon(krLoader->loadIcon("reload",KIconLoader::Desktop)) );
+  btnRefresh->setIcon( QIcon(krLoader->loadIcon("view-refresh",KIconLoader::Desktop)) );
   duHBox->addWidget( btnRefresh );
   btnRefresh->setToolTip( i18n( "Refresh" ) );
 
   btnDirUp = new QToolButton( duTools );
-  btnDirUp->setIcon( QIcon(krLoader->loadIcon("up",KIconLoader::Desktop)) );
+  btnDirUp->setIcon( QIcon(krLoader->loadIcon("go-up",KIconLoader::Desktop)) );
   duHBox->addWidget( btnDirUp );
   btnDirUp->setToolTip( i18n( "Parent directory" ) );
   
@@ -85,7 +85,7 @@ DiskUsageGUI::DiskUsageGUI( KUrl openDir, QWidget* parent )
   btnLines->setToolTip( i18n( "Line view" ) );
 
   btnDetailed = new QToolButton( duTools );
-  btnDetailed->setIcon( QIcon(krLoader->loadIcon("view_detailed",KIconLoader::Desktop)) );
+  btnDetailed->setIcon( QIcon(krLoader->loadIcon("fileview-detailed",KIconLoader::Desktop)) );
   btnDetailed->setCheckable( true );
   duHBox->addWidget( btnDetailed );
   btnDetailed->setToolTip( i18n( "Detailed view" ) );

@@ -177,7 +177,7 @@ ListPanel::ListPanel( int typeIn, QWidget *parent, bool &left ) :
 	// a quick button to open the popup panel
 	popupBtn = new QToolButton( this );
 	popupBtn->setFixedSize( 22, 20 );
-	popupBtn->setIcon(krLoader->loadIcon("1uparrow", KIconLoader::Toolbar, 16));
+	popupBtn->setIcon(krLoader->loadIcon("arrow-up", KIconLoader::Toolbar, 16));
 	connect(popupBtn, SIGNAL(clicked()), this, SLOT(togglePanelPopup()));
 	popupBtn->setToolTip( i18n( "Open the popup panel" ) );
 	totalsLayout->addWidget(totals);
@@ -374,13 +374,13 @@ void ListPanel::togglePanelPopup() {
 		}
 		
 		popup->show();
-		popupBtn->setIcon(krLoader->loadIcon("1downarrow", KIconLoader::Toolbar, 16));
+		popupBtn->setIcon(krLoader->loadIcon("arrow-down", KIconLoader::Toolbar, 16));
 		popupBtn->setToolTip( i18n( "Close the popup panel" ) );
 	} else {
 		popupSizes.clear();
 		popupSizes = dynamic_cast<QSplitter*>(popup->parent())->sizes();
 		popup->hide();
-		popupBtn->setIcon(krLoader->loadIcon("1uparrow", KIconLoader::Toolbar, 16));
+		popupBtn->setIcon(krLoader->loadIcon("arrow-up", KIconLoader::Toolbar, 16));
 		popupBtn->setToolTip( i18n( "Open the popup panel" ) );
 		
 		QList<int> lst;

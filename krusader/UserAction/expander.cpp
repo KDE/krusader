@@ -541,9 +541,9 @@ TagString exp_Select::expFunc( const ListPanel* panel, const QStringList& parame
     else
        mask = KRQuery( parameter[0] );
 
-    if ( parameter.count() > 1 && parameter[1].toLower() == "add")
+    if ( parameter.count() > 1 && parameter[1].toLower() == "list-add")
        panel->view->select( mask );
-    else if ( parameter.count() > 1 && parameter[1].toLower() == "remove")
+    else if ( parameter.count() > 1 && parameter[1].toLower() == "list-remove")
        panel->view->unselect( mask );
     else { // parameter[1].toLower() == "set" or isEmpty() or whatever
        panel->view->unselect( KRQuery( "*" ) );

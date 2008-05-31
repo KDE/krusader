@@ -47,9 +47,9 @@
 
 #include "panelviewer.h"
 
-#define VIEW_ICON     "viewmag"
+#define VIEW_ICON     "zoom-original"
 #define EDIT_ICON     "edit"
-#define MODIFIED_ICON "filesaveas"
+#define MODIFIED_ICON "document-save-as"
 
 
 QList<KrViewer *> KrViewer::viewers;
@@ -74,7 +74,7 @@ KParts::MainWindow( parent, (Qt::WindowFlags)KDE_DEFAULT_WINDOWFLAGS ), manager(
 	tabBar.setTabReorderingEnabled(false);
 	tabBar.setAutomaticResizeTabs(true);
 //	"edit"
-//	"filesaveas"
+//	"document-save-as"
 	setCentralWidget( &tabBar );
 
 	printAction = KStandardAction::print( this, SLOT( print() ), 0 );

@@ -135,7 +135,7 @@ if( first )
   QToolButton *addButton = new QToolButton( hboxWidget3 );
   hbox3->addWidget( addButton );
 
-  QPixmap icon = krLoader->loadIcon("add",KIconLoader::Desktop, size );
+  QPixmap icon = krLoader->loadIcon("list-add",KIconLoader::Desktop, size );
   addButton->setFixedSize( icon.width() + 4, icon.height() + 4 );
   addButton->setIcon( QIcon( icon ) );
   connect( addButton, SIGNAL( clicked() ), this, SLOT( slotAddExtension() ) );
@@ -143,7 +143,7 @@ if( first )
   QToolButton *removeButton = new QToolButton( hboxWidget3 );
   hbox3->addWidget( removeButton );
 
-  icon = krLoader->loadIcon("remove",KIconLoader::Desktop, size );
+  icon = krLoader->loadIcon("list-remove",KIconLoader::Desktop, size );
   removeButton->setFixedSize( icon.width() + 4, icon.height() + 4 );
   removeButton->setIcon( QIcon( icon ) );
   connect( removeButton, SIGNAL( clicked() ), this, SLOT( slotRemoveExtension() ) );

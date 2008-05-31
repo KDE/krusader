@@ -1010,14 +1010,14 @@ QPixmap DiskUsage::getIcon( QString mime )
   {
     // get the icon.
     if ( mime == "Broken Link !" )
-      icon = FL_LOADICON( "file_broken" );
+      icon = FL_LOADICON( "file-broken" );
     else
     {
       KMimeType::Ptr mt = KMimeType::mimeType( mime );
       if( mt )
          icon = FL_LOADICON( mt->iconName() );
       else
-         icon = FL_LOADICON( "file_broken" );
+         icon = FL_LOADICON( "file-broken" );
     }
 
     // insert it into the cache

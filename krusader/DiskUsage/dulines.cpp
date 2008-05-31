@@ -282,7 +282,7 @@ void DULines::slotDirChanged( Directory *dirEntry )
   {
     lastItem = new QTreeWidgetItem( this );
     lastItem->setText(0, ".." );
-    lastItem->setIcon( 0, FL_LOADICON( "up" ) );
+    lastItem->setIcon( 0, FL_LOADICON( "go-up" ) );
     lastItem->setFlags( lastItem->flags() & (~Qt::ItemIsSelectable) );
   }
           

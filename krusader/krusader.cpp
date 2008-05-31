@@ -581,7 +581,7 @@ void Krusader::setupActions() {
    KStandardAction::home( SLOTS, SLOT( home() ), actionCollection()/*, "std_home"*/ )->setText( i18n("Home") ); /*->setShortcut(Qt::Key_QuoteLeft);*/
 
 	KAction *reloadAct;
-	NEW_KACTION(reloadAct, i18n( "&Reload" ), "reload", Qt::CTRL + Qt::Key_R, SLOTS, SLOT(refresh()), "std_redisplay");
+	NEW_KACTION(reloadAct, i18n( "&Reload" ), "view-refresh", Qt::CTRL + Qt::Key_R, SLOTS, SLOT(refresh()), "std_redisplay");
 
    actShowToolBar = (KToggleAction*)KStandardAction::create( KStandardAction::ShowToolbar, SLOTS, SLOT( toggleToolbar() ), actionCollection()/*, "std_toolbar"*/ );
 
@@ -650,10 +650,10 @@ void Krusader::setupActions() {
 	NEW_KACTION(actCmdlinePopup, i18n( "popup cmdline" ), 0, Qt::CTRL + Qt::Key_Slash, SLOTS, SLOT( cmdlinePopup() ), "cmdline popup" );
    
 	/* Shortcut disabled because of the Terminal Emulator bug. */
-   NEW_KACTION(actDirUp, i18n( "Up" ), "up", Qt::CTRL + Qt::Key_PageUp /*Qt::Key_Backspace*/, SLOTS, SLOT( dirUp() ), "dirUp" );
+   NEW_KACTION(actDirUp, i18n( "Up" ), "go-up", Qt::CTRL + Qt::Key_PageUp /*Qt::Key_Backspace*/, SLOTS, SLOT( dirUp() ), "dirUp" );
 
 	KAction *tmp1, *tmp2, *tmp3;
-   NEW_KACTION( tmp1, i18n( "&New Text File..." ), "filenew", Qt::SHIFT + Qt::Key_F4, SLOTS, SLOT( editDlg() ), "edit_new_file" );
+   NEW_KACTION( tmp1, i18n( "&New Text File..." ), "document-new", Qt::SHIFT + Qt::Key_F4, SLOTS, SLOT( editDlg() ), "edit_new_file" );
    NEW_KACTION( tmp2, i18n( "Start &Root Mode Krusader" ), "krusader_root", Qt::ALT + Qt::Key_K, SLOTS, SLOT( rootKrusader() ), "root krusader" );
    NEW_KACTION( tmp3, i18n( "F3 View Dialog" ), 0, Qt::SHIFT + Qt::Key_F3, SLOTS, SLOT( viewDlg() ), "F3_ViewDlg" );
    NEW_KACTION(actTest, i18n( "T&est Archive" ), "ark", Qt::ALT + Qt::Key_E, SLOTS, SLOT( testArchive() ), "test archives" );
@@ -718,14 +718,14 @@ void Krusader::setupActions() {
             mountMan, SLOT( quickList() ) );
 	actionCollection()->addAction("mountman", actMountMan);
 
-   NEW_KACTION(actFind, i18n( "&Search..." ), "filefind", Qt::CTRL + Qt::Key_S, SLOTS, SLOT( search() ), "find" );
-   NEW_KACTION(actLocate, i18n( "&Locate..." ), "find", Qt::SHIFT+ Qt::CTRL + Qt::Key_L, SLOTS, SLOT( locate() ), "locate" );
+   NEW_KACTION(actFind, i18n( "&Search..." ), "system-search", Qt::CTRL + Qt::Key_S, SLOTS, SLOT( search() ), "find" );
+   NEW_KACTION(actLocate, i18n( "&Locate..." ), "edit-find", Qt::SHIFT+ Qt::CTRL + Qt::Key_L, SLOTS, SLOT( locate() ), "locate" );
    NEW_KACTION(actSyncDirs, i18n( "Synchronize &Directories..." ), "kr_syncdirs", Qt::CTRL + Qt::Key_Y, SLOTS, SLOT( slotSynchronizeDirs() ), "sync dirs" );
    NEW_KACTION(actSyncBrowse, i18n( "S&ynchron Directory Changes" ), "kr_syncbrowse_off", Qt::ALT + Qt::Key_Y, SLOTS, SLOT( slotSyncBrowse() ), "sync browse" );
    NEW_KACTION(actDiskUsage, i18n( "D&isk Usage..." ), "kr_diskusage", Qt::ALT + Qt::Key_D, SLOTS, SLOT( slotDiskUsage() ), "disk usage" );
    NEW_KACTION(actKonfigurator, i18n( "Configure &Krusader..." ), "configure", 0, SLOTS, SLOT( startKonfigurator() ), "konfigurator" );
-   NEW_KACTION(actBack, i18n( "Back" ), "back", 0, SLOTS, SLOT( back() ), "back" );
-   NEW_KACTION(actRoot, i18n( "Root" ), "top", Qt::CTRL + Qt::Key_Backspace, SLOTS, SLOT( root() ), "root" );
+   NEW_KACTION(actBack, i18n( "Back" ), "go-previous", 0, SLOTS, SLOT( back() ), "back" );
+   NEW_KACTION(actRoot, i18n( "Root" ), "go-top", Qt::CTRL + Qt::Key_Backspace, SLOTS, SLOT( root() ), "root" );
    NEW_KACTION(actSavePosition, i18n( "Save &Position" ), 0, 0, krApp, SLOT( savePosition() ), "save position" );   
    NEW_KACTION(actAllFilter, i18n( "&All Files" ), 0, Qt::SHIFT + Qt::Key_F10, SLOTS, SLOT( allFilter() ), "all files" );
    //actExecFilter = new KAction( i18n( "&Executables" ), SHIFT + Qt::Key_F11,
@@ -750,9 +750,9 @@ void Krusader::setupActions() {
    NEW_KACTION(t15, i18n( "New Symlink..." ), 0, Qt::CTRL + Qt::ALT + Qt::Key_S, SLOTS, SLOT( newSymlink() ), "new symlink");
  	NEW_KTOGGLEACTION(t16, i18n( "Toggle Popup Panel" ), 0, Qt::ALT + Qt::Key_Down, SLOTS, SLOT( togglePopupPanel() ), "toggle popup panel" );
    NEW_KTOGGLEACTION(actVerticalMode, i18n( "Vertical Mode" ), "view_top_bottom", Qt::ALT + Qt::CTRL + Qt::Key_R, MAIN_VIEW, SLOT( toggleVerticalMode() ), "toggle vertical mode" );
-   NEW_KACTION(actNewTab, i18n( "New Tab" ), "tab_new", Qt::ALT + Qt::CTRL + Qt::Key_N, SLOTS, SLOT( newTab() ), "new tab" );
+   NEW_KACTION(actNewTab, i18n( "New Tab" ), "tab-new", Qt::ALT + Qt::CTRL + Qt::Key_N, SLOTS, SLOT( newTab() ), "new tab" );
 	NEW_KACTION(actDupTab, i18n( "Duplicate Current Tab" ), "tab_duplicate", Qt::ALT + Qt::CTRL + Qt::SHIFT + Qt::Key_N, SLOTS, SLOT( duplicateTab() ), "duplicate tab" );
-   NEW_KACTION(actCloseTab, i18n( "Close Current Tab" ), "tab_remove", Qt::CTRL + Qt::Key_W, SLOTS, SLOT( closeTab() ), "close tab" );
+   NEW_KACTION(actCloseTab, i18n( "Close Current Tab" ), "tab-close", Qt::CTRL + Qt::Key_W, SLOTS, SLOT( closeTab() ), "close tab" );
    NEW_KACTION(actNextTab, i18n( "Next Tab" ), 0, Qt::SHIFT + Qt::Key_Right, SLOTS, SLOT( nextTab() ), "next tab" );
    NEW_KACTION(actPreviousTab, i18n( "Previous Tab" ), 0, Qt::SHIFT + Qt::Key_Left, SLOTS, SLOT( previousTab() ), "previous tab" );
 #if 0
@@ -761,7 +761,7 @@ void Krusader::setupActions() {
 #endif
    NEW_KACTION(actManageUseractions, i18n( "Manage User Actions..." ), 0, 0, SLOTS, SLOT( manageUseractions() ), "manage useractions" );
    
-   actRemoteEncoding = new KrRemoteEncodingMenu(i18n("Select Remote Charset"), "charset", actionCollection() );
+   actRemoteEncoding = new KrRemoteEncodingMenu(i18n("Select Remote Charset"), "character-set", actionCollection() );
 
    // setup the Fn keys
    NEW_KACTION(actF2, i18n( "Start Terminal Here" ), "terminal", Qt::Key_F2, SLOTS, SLOT( terminal() ) , "F2_Terminal" );
@@ -769,8 +769,8 @@ void Krusader::setupActions() {
    NEW_KACTION(actF4, i18n( "Edit File" ), 0, Qt::Key_F4, SLOTS, SLOT( edit() ) , "F4_Edit" );
    NEW_KACTION(actF5, i18n( "Copy..." ), 0, Qt::Key_F5, SLOTS, SLOT( copyFiles() ) , "F5_Copy" );
    NEW_KACTION(actF6, i18n( "Move..." ), 0, Qt::Key_F6, SLOTS, SLOT( moveFiles() ) , "F6_Move" );
-   NEW_KACTION(actF7, i18n( "New Directory..." ), "folder_new", Qt::Key_F7, SLOTS, SLOT( mkdir() ) , "F7_Mkdir" );
-   NEW_KACTION(actF8, i18n( "Delete" ), "editdelete", Qt::Key_F8, SLOTS, SLOT( deleteFiles() ) , "F8_Delete" );
+   NEW_KACTION(actF7, i18n( "New Directory..." ), "folder-new", Qt::Key_F7, SLOTS, SLOT( mkdir() ) , "F7_Mkdir" );
+   NEW_KACTION(actF8, i18n( "Delete" ), "edit-delete", Qt::Key_F8, SLOTS, SLOT( deleteFiles() ) , "F8_Delete" );
    NEW_KACTION(actF9, i18n( "Rename" ), 0, Qt::Key_F9, SLOTS, SLOT( rename() ) , "F9_Rename" );
    NEW_KACTION(actF10, i18n( "Quit" ), 0, Qt::Key_F10, this, SLOT( slotClose() ) , "F10_Quit" );
    NEW_KACTION(actPopularUrls, i18n("Popular URLs..."), 0, Qt::CTRL + Qt::Key_Z, popularUrls, SLOT( showDialog() ), "Popular_Urls");

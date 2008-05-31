@@ -160,10 +160,10 @@ QString vfile::vfile_getIcon(){
 	if( vfile_icon.isEmpty() ){
 		QString mime = this->vfile_getMime();
       if ( mime == "Broken Link !" )
-         vfile_icon = "file_broken";
+         vfile_icon = "file-broken";
       else if( vfile_icon.isEmpty() ) {
          KMimeType::Ptr mt = KMimeType::mimeType( mime );
-         vfile_icon = mt ? mt->iconName() : "file_broken";
+         vfile_icon = mt ? mt->iconName() : "file-broken";
       }		
 	}
 	return vfile_icon;

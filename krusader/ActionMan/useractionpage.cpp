@@ -49,32 +49,32 @@ UserActionPage::UserActionPage( QWidget* parent )
    toolbarLayout->setContentsMargins( 0, 0, 0, 0 );
 
    newButton = new QToolButton( this );
-   newButton->setIcon( ICON("filenew") );
+   newButton->setIcon( ICON("document-new") );
    newButton->setAutoRaise(true);
    newButton->setToolTip( i18n("Create new useraction") );
 
    importButton = new QToolButton( this );
-   importButton->setIcon( ICON("fileimport") );
+   importButton->setIcon( ICON("document-import") );
    importButton->setAutoRaise(true);
    importButton->setToolTip( i18n("Import useractions") );
 
    exportButton = new QToolButton( this );
-   exportButton->setIcon( ICON("fileexport") );
+   exportButton->setIcon( ICON("document-export") );
    exportButton->setAutoRaise(true);
    exportButton->setToolTip( i18n("Export useractions") );
 
    copyButton = new QToolButton( this );
-   copyButton->setIcon( ICON("editcopy") );
+   copyButton->setIcon( ICON("edit-copy") );
    copyButton->setAutoRaise(true);
    copyButton->setToolTip( i18n("Copy useractions to clipboard") );
 
    pasteButton = new QToolButton( this );
-   pasteButton->setIcon( ICON("editpaste") );
+   pasteButton->setIcon( ICON("edit-paste") );
    pasteButton->setAutoRaise(true);
    pasteButton->setToolTip( i18n("Paste useractions from clipboard") );
 
    removeButton = new QToolButton( this );
-   removeButton->setIcon( ICON("editdelete") );
+   removeButton->setIcon( ICON("edit-delete") );
    removeButton->setAutoRaise(true);
    removeButton->setToolTip( i18n("Delete selected useractions") );
 

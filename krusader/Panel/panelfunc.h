@@ -94,7 +94,7 @@ private:
 
 protected:
 	ListPanel*           panel;     // our ListPanel
-	QList<KUrl>          urlStack;  // Path stack for the "back" button
+	QList<KUrl>          urlStack;  // Path stack for the "go-previous" button
 	bool                 inRefresh; // true when we are in refresh()
 	vfs*                 vfsP;      // pointer to vfs.
 	QTimer               delayTimer;

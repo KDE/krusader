@@ -1073,7 +1073,7 @@ public:
 
     QDrag *drag = new QDrag(this);
     QMimeData *mimeData = new QMimeData;
-    mimeData->setImageData( FL_LOADICON( isLeft ? "2leftarrow" : "2rightarrow" ) );
+    mimeData->setImageData( FL_LOADICON( isLeft ? "arrow-left-double" : "arrow-right-double" ) );
     urls.populateMimeData(mimeData);
     drag->setMimeData(mimeData);
     drag->start();
@@ -2591,7 +2591,7 @@ void SynchronizerGUI::copyToClipboard( bool isLeft )
     return;
 
   QMimeData *mimeData = new QMimeData;
-  mimeData->setImageData( FL_LOADICON( isLeft ? "2leftarrow" : "2rightarrow" ) );
+  mimeData->setImageData( FL_LOADICON( isLeft ? "arrow-left-double" : "arrow-right-double" ) );
   urls.populateMimeData(mimeData);
 
   QApplication::clipboard()->setMimeData( mimeData, QClipboard::Clipboard );

@@ -115,7 +115,7 @@ void KrusaderImageFilePreview::slotFailed( const KFileItem& item ) {
 	if ( item.isDir() )
 		imageLabel->clear();
 	else if ( item.url() == currentURL )   // should always be the case
-		imageLabel->setPixmap( SmallIcon( "file_broken", KIconLoader::SizeLarge,
+		imageLabel->setPixmap( SmallIcon( "file-broken", KIconLoader::SizeLarge,
 		                                  KIconLoader::DisabledState ) );
 }
 

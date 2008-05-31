@@ -106,7 +106,7 @@ void Konfigurator::createLayout( int startPage )
   // general
   newPage(new KgGeneral(firstTime, this), i18n("General"), i18n("Basic Operations"), KIcon("configure", krLoader) );
   // advanced
-  newPage(new KgAdvanced(firstTime, this), i18n("Advanced"), i18n("Be sure you know what you're doing!"), KIcon( "messagebox_warning", krLoader) );
+  newPage(new KgAdvanced(firstTime, this), i18n("Advanced"), i18n("Be sure you know what you're doing!"), KIcon( "dialog-warning", krLoader) );
   // archives
   newPage(new KgArchives(firstTime, this), i18n("Archives"), i18n("Customize the way Krusader deals with archives"),
     KIcon("tgz", krLoader));
@@ -118,7 +118,7 @@ void Konfigurator::createLayout( int startPage )
     KIcon("kr_useractions", krLoader ) );
   // protocols
   newPage(new KgProtocols(firstTime, this), i18n("Protocols"), i18n("Link mimes to protocols"),
-    KIcon("about_kde", krLoader ) );
+    KIcon("kde", krLoader ) );
         
   setCurrentPage( kgPages.at( startPage ) );
   slotApplyEnable();

@@ -276,7 +276,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	
 	previewBtn = new QToolButton(this);
 	previewBtn->setToolTip( i18n("Preview Panel: display a preview of the current file"));
-	previewBtn->setIcon(krLoader->loadIcon( "thumbnail", KIconLoader::Toolbar, 16 ));
+	previewBtn->setIcon(krLoader->loadIcon( "thumbnail-show", KIconLoader::Toolbar, 16 ));
 	previewBtn->setFixedSize(20, 20);
 	previewBtn->setCheckable(true);
 	btns->addButton(previewBtn, Preview);
@@ -290,7 +290,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 
 	viewerBtn = new QToolButton(this);
 	viewerBtn->setToolTip( i18n("View Panel: view the current file"));
-	viewerBtn->setIcon(krLoader->loadIcon( "viewmag", KIconLoader::Toolbar, 16 ));
+	viewerBtn->setIcon(krLoader->loadIcon( "zoom-original", KIconLoader::Toolbar, 16 ));
 	viewerBtn->setFixedSize(20, 20);
 	viewerBtn->setCheckable(true);
 	btns->addButton(viewerBtn, View);	
@@ -368,7 +368,7 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 	connect(qselectBtn, SIGNAL(clicked()), this, SLOT(quickSelect()));
 
 	QToolButton *qstoreBtn = new QToolButton(quickPanel);
-	qstoreBtn->setIcon(krLoader->loadIcon( "filesave", KIconLoader::Toolbar, 16 ));
+	qstoreBtn->setIcon(krLoader->loadIcon( "document-save", KIconLoader::Toolbar, 16 ));
 	qstoreBtn->setFixedSize(20, 20);
 	qstoreBtn->setToolTip( i18n("store the current selection") );
 	connect(qstoreBtn, SIGNAL(clicked()), this, SLOT(quickSelectStore()));

@@ -52,7 +52,7 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KUrl url):
 	_folder->setReadOnly(true);
 
 	_createInBtn = new QToolButton(page);
-	_createInBtn->setIcon(krLoader->loadIcon("down", KIconLoader::Small));
+	_createInBtn->setIcon(krLoader->loadIcon("go-down", KIconLoader::Small));
 	_createInBtn->setCheckable(true);
 	connect(_createInBtn, SIGNAL(toggled(bool)), this, SLOT(toggleCreateIn(bool )));
 	layout->addWidget(_createInBtn, 2, 2);
@@ -63,7 +63,7 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KUrl url):
 }
 
 void KrAddBookmarkDlg::toggleCreateIn(bool show) {
-	_createInBtn->setIcon(krLoader->loadIcon(show ? "up" :"down", KIconLoader::Small));
+	_createInBtn->setIcon(krLoader->loadIcon(show ? "go-up" :"go-down", KIconLoader::Small));
 	showButton(KDialog::User1, show);
 	setDetailsWidgetVisible(show);
 }

@@ -39,7 +39,7 @@ KrBriefViewItem::KrBriefViewItem(KrBriefView *parent, Q3IconViewItem *after, vfi
 		
 		setText("..");
 		if ( PROPS->displayIcons )
-			setPixmap( FL_LOADICON( "up" ) );
+			setPixmap( FL_LOADICON( "go-up" ) );
 		setSelectable( false );
 		setDragEnabled( false );
 		setDropEnabled( false );

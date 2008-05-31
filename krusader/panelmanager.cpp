@@ -35,7 +35,7 @@ QWidget( parent ), _layout( 0 ), _left( left ),
    _newTab->setFixedSize( 22, 22 );
    _newTab->setText( i18n( "Open a new tab in home" ) );
    _newTab->setToolTip( i18n( "Open a new tab in home" ) );
-   _newTab->setIcon( SmallIcon( "tab_new" ) );
+   _newTab->setIcon( SmallIcon( "tab-new" ) );
    _newTab->adjustSize();	
    connect( _newTab, SIGNAL( clicked() ), this, SLOT( slotNewTab() ) );
 
@@ -44,7 +44,7 @@ QWidget( parent ), _layout( 0 ), _left( left ),
    _closeTab->setFixedSize( 22, 22 );
    _closeTab->setText( i18n( "Close current tab" ) );
    _closeTab->setToolTip( i18n( "Close current tab" ) );
-   _closeTab->setIcon( SmallIcon( "tab_remove" ) );
+   _closeTab->setIcon( SmallIcon( "tab-close" ) );
    _closeTab->adjustSize();   
    connect( _closeTab, SIGNAL( clicked() ), this, SLOT( slotCloseTab() ) );
    _closeTab->setEnabled( false ); // disabled when there's only 1 tab

@@ -46,7 +46,7 @@
 KURLListRequester::KURLListRequester( QWidget *parent ) : QWidget( parent )
 {
   KIconLoader *iconLoader = new KIconLoader();
-  QPixmap imageAdd = iconLoader->loadIcon( "1downarrow", KIconLoader::Panel, 16 );
+  QPixmap imageAdd = iconLoader->loadIcon( "arrow-down", KIconLoader::Panel, 16 );
   QPixmap imageFolder = iconLoader->loadIcon( "folder", KIconLoader::Panel, 16 );
     
   // Creating the widget

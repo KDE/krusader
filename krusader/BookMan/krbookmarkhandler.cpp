@@ -328,7 +328,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu) {
 			// add the popular links submenu
 			KMenu *newMenu = new KMenu(menu);
 			newMenu->setTitle( i18n("Popular URLs") );
-			newMenu->setIcon( QIcon(krLoader->loadIcon("bookmark_folder", KIconLoader::Small)) );
+			newMenu->setIcon( QIcon(krLoader->loadIcon("folder-bookmarks", KIconLoader::Small)) );
 			QAction *bmfAct  = menu->addMenu( newMenu );
 			_specialBookmarks.append( bmfAct );
 			// add the top 15 urls
@@ -395,7 +395,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu) {
 		if( !hasJumpback )
 			menu->addSeparator();
 		
-		QAction *bmAddAct = menu->addAction(krLoader->loadIcon("bookmark_add", KIconLoader::Small),
+		QAction *bmAddAct = menu->addAction(krLoader->loadIcon("bookmark-new", KIconLoader::Small),
 			i18n("Bookmark Current"), this, SLOT( slotBookmarkCurrent() ) );
 		_specialBookmarks.append( bmAddAct );
 		QAction *bmAct = menu->addAction(krLoader->loadIcon("bookmark", KIconLoader::Small),
@@ -554,13 +554,13 @@ void KrBookmarkHandler::rightClicked( QMenu *menu, KrBookmark * bm ) {
 	
 	if( !bm->isFolder() )
 	{
-		act = popup.addAction( krLoader->loadIcon( "fileopen", KIconLoader::Panel ), i18n( "Open" ));
+		act = popup.addAction( krLoader->loadIcon( "document-open", KIconLoader::Panel ), i18n( "Open" ));
 		act->setData( QVariant( OPEN_ID ) );
-		act = popup.addAction( krLoader->loadIcon( "tab_new", KIconLoader::Panel ), i18n( "Open in a new tab" ) );
+		act = popup.addAction( krLoader->loadIcon( "tab-new", KIconLoader::Panel ), i18n( "Open in a new tab" ) );
 		act->setData( QVariant( OPEN_NEW_TAB_ID ) );
 		popup.addSeparator();
 	}
-	act = popup.addAction( krLoader->loadIcon( "editdelete", KIconLoader::Panel ), i18n( "Delete" ) );
+	act = popup.addAction( krLoader->loadIcon( "edit-delete", KIconLoader::Panel ), i18n( "Delete" ) );
 	act->setData( QVariant( DELETE_ID ) );
 	
 	connect( menu, SIGNAL( highlighted( int ) ), &popup, SLOT( close() ) );

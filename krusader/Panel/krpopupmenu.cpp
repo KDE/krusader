@@ -71,7 +71,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
       if ( vf->vfile_isDir() ) {
          QAction * openTab = addAction( i18n( "Open in New Tab" ) );
          openTab->setData( QVariant( OPEN_TAB_ID ) );
-         openTab->setIcon( krLoader->loadIcon( "tab_new", KIconLoader::Panel ) );
+         openTab->setIcon( krLoader->loadIcon( "tab-new", KIconLoader::Panel ) );
          openTab->setText( i18n( "Open in New Tab" ) );
       }
       addSeparator();
