@@ -19,7 +19,7 @@
 * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
 * MA 02111-1307, USA.                                                     *
 *********************************************************************** -->
-  <title>Installation on KDE3.x</title>
+  <title>Installation of Krusader on KDE4.x</title>
   <indexterm>
     <primary>Installation</primary>
   </indexterm>
@@ -27,7 +27,7 @@
     <title>Requirements</title>
     <para>In order to successfully use the most recent
     &krusader;, you need &kde;libs
-    &gt;= 3.4</para>
+    &gt;= 3.5</para>
     <para>Required &kde; version: 
     <itemizedlist>
       <listitem>
@@ -61,13 +61,15 @@
         &kde; 3.5</para>
       </listitem>
       <listitem>
-        <para>&krusader; v2.xx.x: &kde; 4 -
-        &Qt; 4 The big challenge, a first release in
-        2008</para>
+        <para>&krusader; 1.90.0: &kde; 3.2 -
+        &kde; 3.5</para>
+      </listitem>
+      <listitem>
+        <para>&krusader; v2.x.x: &kde; 4 - &Qt; </para>
       </listitem>
     </itemizedlist>
-    NOTE: there are no installation instructions for &kde;4 yet available since at moment of writing &krusader; 
-    was not ported yet to &kde;4.</para>
+    NOTE: for installation instructions for &krusader;-1.x for &kde; 2 click 
+    <link linkend="kde3_install">here</link>.</para>
     <para>Platforms: 
     <itemizedlist>
       <listitem>
@@ -80,12 +82,11 @@
         (&freebsd;/&netbsd;/&openbsd;/&MacOS;)</para>
       </listitem>
     </itemizedlist></para>
-    <para>&krusader; uses about 3-4 Mbyte of memory to
-    run and about 15 Mbyte of shared memory, which is also used by
-    other processes, but this may vary depending on your platform
-    and configuration. In order to handle archives the archivers
-    must be configured 
-    <link linkend="konfig-dependencies">here</link>.</para>
+    <para>In order to handle archives, checksums and other utilities they must be configured in our
+    <link linkend="konfig-dependencies">configuration tool</link>.
+    When running &krusader; for the first time the available utilities will be autodetected, and
+    a report will be shown in the first lanch wizard. Afterwards additional utilities can be 
+    <link linkend="konfig-dependencies">added/removed/changed</link>.</para>
     <para>A package of popular (un)packers, &krusader;
     itself and add-ons can be found on the
     &krudownload-url;.</para>
@@ -98,7 +99,7 @@
     found on the &kruwebsite-url; .</para>
     <sect2 id="krusader-download">
       <title>&krusader; Downloads</title>
-      <para>it is recommended to use the &krusader; package
+      <para>It is recommended to use the &krusader; package
       that is provided by your distribution.
       &distrowatch-com-url; is a great resource to check
       the availability. If your distribution does not offer
@@ -114,14 +115,10 @@
       <para>Distributions who provide &krusader;: 
       <itemizedlist>
         <listitem>
-          <para>&suse-download-url; &gt;=
-          9.3, Note: please use &krusader;-1.60.0
-          instead of &krusader;-1.51 (might be unstable
-          on &SuSE;9.3-&kde;3.4).</para>
+          <para>&suse-download-url;</para>
         </listitem>
         <listitem>
-          <para>&fedora; via
-          &fedora-extras-url; 
+          <para>&fedora-download-url; via
           <command># yum install krusader</command> will do the job,
           thanks to Marcin Garski. &RedHat; RPM packages
           can usually found on the &krudownload-url; or
@@ -136,7 +133,7 @@
           &debian;", and some of these provide their own
           (incompatible) packages.
           &ubuntu-kubuntu-download-url;,
-          &linspire-download-url;, &knoppix;
+          &linspire-freespire-download-url;, &knoppix;
           4.x DVD, &kanotix;, etc.</para>
         </listitem>
         <listitem>
@@ -510,9 +507,11 @@ Please don't use the <filename>/usr/local</filename> directory as it simply won'
 </sect3>
     
 </sect2>
+
+<!-- install_tutorial -->
     
-    <sect2 id="install_tutorial">
-      <title>Detailed Installation Tutorial</title>
+    <sect2 id="kde3_install">
+      <title>Detailed Installation Tutorial for Krusader on KDE3.</title>
       <para>The next section will explain how to install
       &krusader; step by step. Questions about the
       installation process have been asked many times and
