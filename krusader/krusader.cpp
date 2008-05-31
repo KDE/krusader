@@ -550,13 +550,15 @@ void Krusader::setupAccels() {
 // <patch> Moving from Pixmap actions to generic filenames - thanks to Carsten Pfeiffer
 void Krusader::setupActions() {
 #define NEW_KACTION(VAR, TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME) \
-	VAR = new KAction( KIcon(ICON_NAME), TEXT, this); \
+	if (ICON_NAME == 0) VAR = new KAction(TEXT, this); \
+	else VAR = new KAction( KIcon(ICON_NAME), TEXT, this); \
 	VAR->setShortcut(SHORTCUT); \
 	connect(VAR, SIGNAL(triggered(bool)), RECV_OBJ, SLOT_NAME); \
 	actionCollection()->addAction(NAME, VAR);
 
 #define NEW_KTOGGLEACTION(VAR, TEXT, ICON_NAME, SHORTCUT, RECV_OBJ, SLOT_NAME, NAME) \
-	VAR = new KToggleAction( KIcon(ICON_NAME), TEXT, this); \
+	if (ICON_NAME == 0) VAR = new KToggleAction(TEXT, this); \
+	else VAR = new KToggleAction( KIcon(ICON_NAME), TEXT, this); \
 	VAR->setShortcut(SHORTCUT); \
 	connect(VAR, SIGNAL(triggered(bool)), RECV_OBJ, SLOT_NAME); \
 	actionCollection()->addAction(NAME, VAR);
