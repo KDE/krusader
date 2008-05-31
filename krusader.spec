@@ -1,186 +1,218 @@
-# Spec file for Krusader-1.80.0 on Fedora 7 by Marcin Garski <mgarski[AT]post.pl>
-# http://cvs.fedoraproject.org/viewcvs/rpms/krusader/devel/?root=extras
-# http://download.fedoraproject.org/pub/fedora/linux/extras/development/SRPMS/repoview/krusader.html
-# http://download.fedoraproject.org/pub/fedora/linux/extras/development/i386/repoview/krusader.html
 
-Name:           krusader
-Version:        1.80.0
-Release:        1%{?dist}
-Summary:        An advanced twin-panel (commander-style) file-manager for KDE
+%define name	krusader
+%define version	2.0
+%define snapshot 6014
+%define rel	1
 
-Group:          Applications/File
-License:        GPL
-URL:            http://krusader.sourceforge.net/
-Source0:        http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+%if %snapshot
+%define release	%mkrel 0.svn%snapshot.%rel
+%else
+%define release %mkrel %rel
+%endif
 
-BuildRequires:  kdelibs-devel kdebase-devel kdebindings-devel
-BuildRequires:  libpng-devel gamin-devel libacl-devel
-BuildRequires:  desktop-file-utils automake gettext
+Summary: 	Advanced KDE twin-panel file-manager
+Name: 		%{name}
+Version: 	%{version}
+Release: 	%{release}
+%if %snapshot
+# http://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4
+Source:		%{name}-%{snapshot}.tar.bz2
+%else
+Source: 	http://downloads.sourceforge.net/krusader/%{name}-%{version}.tar.gz
+%endif
+License: 	GPL
+Group: 		File tools
+BuildRoot: 	%{_tmppath}/%{name}-buildroot
+URL: 		http://krusader.sourceforge.net/
+Epoch:		3
+BuildRequires:  kdelibs4-devel
+Obsoletes:	kde3-krusader < 2:1.02-4
+Provides:	kde3-krusader
+# crystalsvg:
+Requires(post):	kdelibs-common
+Requires(postun): kdelibs-common
 
 %description
-Krusader is an advanced twin-panel (commander-style) file-manager for KDE
-(similar to Midnight or Total Commander) but with many extras.
-It provides all the file-management features you could possibly want.
-Plus: extensive archive handling, mounted filesystem support, FTP, advanced
-search module, viewer/editor, directory synchronisation, file content
-comparisons, powerful batch renaming and much much more.
-It supports the following archive formats: tar, zip, bzip2, gzip, rar, ace,
-arj and rpm and can handle other KIOSlaves such as smb:// or fish://
-It is (almost) completely customizable, very user friendly, fast and looks
-great on your desktop! :-)
+Krusader is an advanced twin panel (commander style) file manager
+for KDE and other desktops in the *nix world, similar to Midnight or
+Total Commander. It provides all the file management features you
+could possibly want.
 
-You should give it a try.
+Plus: extensive archive handling, mounted filesystem support, FTP,
+advanced search module, an internal viewer/editor, directory
+synchronisation, file content comparisons, powerful batch renaming
+and much much more. It supports a wide variety of archive formats
+and can handle other KIO slaves such as smb or fish.
 
 %prep
+%if %snapshot
+%setup -q -n %name-%snapshot
+%else
 %setup -q
+%endif
 
 %build
-unset QTDIR || : ; . %{_sysconfdir}/profile.d/qt.sh
-
-%configure \
-       --disable-rpath \
-       --disable-debug \
-       --disable-dependency-tracking
-make %{?_smp_mflags}
+%cmake_kde4
+%make
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
+rm -rf %{buildroot}
+%makeinstall_std -Cbuild
 
-desktop-file-install --vendor fedora --delete-original \
-       --dir $RPM_BUILD_ROOT%{_datadir}/applications/kde \
-       $RPM_BUILD_ROOT%{_datadir}/applications/kde/*.desktop
-
-# Make symlink relative
-pushd $RPM_BUILD_ROOT%{_docdir}/HTML/en/krusader/
-ln -sf ../common
-popd
-
-# Fix FAQ encoding
-iconv -f ISO-8859-1 -t UTF-8 < FAQ > FAQ.tmp
-mv -f FAQ.tmp FAQ
-
-%find_lang %{name}
-
-%post
-update-desktop-database &> /dev/null ||:
-
-touch --no-create %{_datadir}/icons/crystalsvg || :
-if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-       %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
-fi
-
-touch --no-create %{_datadir}/icons/locolor || :
-if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-       %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/locolor || :
-fi
-
-%postun
-update-desktop-database &> /dev/null ||:
-
-touch --no-create %{_datadir}/icons/crystalsvg || :
-if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-       %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
-fi
-
-touch --no-create %{_datadir}/icons/locolor || :
-if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-       %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/locolor || :
-fi
+%find_lang krusader
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f %name.lang
-%defattr(-,root,root,-)
-%doc doc/actions_tutorial.txt AUTHORS ChangeLog COPYING CVSNEWS FAQ README TODO
-%{_bindir}/krusader
-%{_libdir}/kde3/kio_*.*
-%{_datadir}/applications/kde/*krusader*.desktop
-%{_datadir}/apps/konqueror/servicemenus/isoservice.desktop
-%{_datadir}/apps/krusader/
-%{_datadir}/config/kio_isorc
-%{_docdir}/HTML/*/krusader/
-%{_datadir}/icons/crystalsvg/*/apps/*
-%{_datadir}/icons/locolor/*/apps/*
-%{_mandir}/man1/krusader.1*
-%{_datadir}/services/*.protocol
+%post
+%update_menus
+%update_desktop_database
+%update_icon_cache hicolor
+
+%postun
+%clean_menus
+%clean_icon_cache hicolor
+%clean_desktop_database
+
+%files -f krusader.lang
+%defattr(-,root,root)
+%doc README AUTHORS ChangeLog TODO COPYING krusader.lsm
+%doc %{_kde_datadir}/doc/HTML/en/*
+%{_kde_bindir}/krusader
+%{_kde_datadir}/applications/kde4/krusader*.desktop
+%{_kde_datadir}/apps/krusader
+%{_kde_datadir}/kde4/services/*.protocol
+%{_kde_datadir}/config/kio_isorc
+%{_kde_iconsdir}/hicolor/*/apps/krusader*.png
+%{_kde_iconsdir}/locolor/*/apps/krusader*.png
+%{_kde_libdir}/kde4/*.so
+
+
 
 %changelog
-* Thu May 03 2007 Marcin Garski <mgarski[AT]post.pl> 1.80.0-1
-- Updated to version 1.80.0
+* Thu May 29 2008 Anssi Hannula <anssi@mandriva.org> 3:2.0-0.svn6014.1mdv2009.0
++ Revision: 212845
+- new snapshot
 
-* Fri Apr 20 2007 Marcin Garski <mgarski[AT]post.pl> 1.80.0-0.1.beta2
-- Updated to version 1.80.0-beta2
-- Drop X-Fedora category
+* Sun May 04 2008 Anssi Hannula <anssi@mandriva.org> 3:2.0-0.svn2779.1mdv2009.0
++ Revision: 200809
+- new snapshot from KDE4 branch
 
-* Fri Sep 01 2006 Marcin Garski <mgarski[AT]post.pl> 1.70.1-2
-- Rebuild for Fedora Core 6
-- Spec tweak
+* Mon Apr 28 2008 Anssi Hannula <anssi@mandriva.org> 3:1.90.0-1mdv2009.0
++ Revision: 197851
+- new version
+- versionize obsoletes
+- buildrequires acl-devel
+- require kdelibs-common for crystalsvg for rpm scripts
 
-* Sat Jul 29 2006 Marcin Garski <mgarski[AT]post.pl> 1.70.1-1
-- Updated to version 1.70.1 which fix CVE-2006-3816 (#200323)
+* Wed Jan 02 2008 Olivier Blin <oblin@mandriva.com> 3:1.80.0-2mdv2008.1
++ Revision: 140918
+- restore BuildRoot
 
-* Mon Feb 13 2006 Marcin Garski <mgarski[AT]post.pl> 1.70.0-1
-- Remove all patches (merged upstream)
-- Updated to version 1.70.0
+  + Thierry Vignaud <tvignaud@mandriva.com>
+    - kill re-definition of %%buildroot on Pixel's request
 
-* Mon Jan 16 2006 Marcin Garski <mgarski[AT]post.pl> 1.60.1-6
-- Remove --enable-final
+* Sat Aug 25 2007 Anssi Hannula <anssi@mandriva.org> 3:1.80.0-2mdv2008.0
++ Revision: 71406
+- rebuild for new kdelibs
 
-* Mon Jan 16 2006 Marcin Garski <mgarski[AT]post.pl> 1.60.1-5
-- Remove --disable-dependency-tracking
+* Wed Jul 25 2007 Anssi Hannula <anssi@mandriva.org> 3:1.80.0-1mdv2008.0
++ Revision: 55271
+- 1.80.0 final
+- use proper configure macro
+- better description and summary
+- clean .spec
+- do not call update_icon_cache for non-existing theme locolor
 
-* Sun Jan 15 2006 Marcin Garski <mgarski[AT]post.pl> 1.60.1-4
-- Change "/etc/profile.d/qt.sh" to "%%{_sysconfdir}/profile.d/qt.sh"
-- Add --disable-debug --disable-dependency-tracking & --enable-final
 
-* Wed Dec 14 2005 Marcin Garski <mgarski[AT]post.pl> 1.60.1-3
-- Add to BR libacl-devel
+* Wed Apr 04 2007 Laurent Montel <lmontel@mandriva.com> 1.80.0-0.beta2.1mdv2007.1
++ Revision: 150492
+- 1.80.0-beta2
+- Import krusader
 
-* Tue Dec 13 2005 Marcin Garski <mgarski[AT]post.pl> 1.60.1-2
-- Fix for modular X.Org
+* Tue Sep 05 2006 Anssi Hannula <anssi@mandriva.org> 3:1.70.1-1mdv2007.0
+- 1.70.1
+- add missing clean_desktop_database
+- fix icons and legacy menu
+- drop cleaning buildroot in prep section
 
-* Mon Dec 12 2005 Marcin Garski <mgarski[AT]post.pl> 1.60.1-1
-- Updated to version 1.60.1 which fix CVE-2005-3856
+* Mon Jul 03 2006 Nicolas Lécureuil <neoclust@mandriva.org> 3:1.70.0-6mdv2007.0
+- Rebuild for new menu and extensions
+- Use macros for icons
 
-* Sun Oct 23 2005 Marcin Garski <mgarski[AT]post.pl> 1.60.0-4
-- Added update-mime-database and gtk-update-icon-cache (bug #171547)
+* Mon May 22 2006 Laurent MONTEL <lmontel@mandriva.com> 1.70.0-5
+- Rebuild
 
-* Thu Aug 25 2005 Marcin Garski <mgarski[AT]post.pl> 1.60.0-3
-- Include .la files
-- Include actions_tutorial.txt
-- Fix krusader_root-mode.desktop file to show only in KDE and under System
- category
-- Fix compile warnings
+* Thu May 11 2006 Nicolas Lécureuil <neoclust@mandriva.org> 3:1.70.0-4mdk
+- Remove redundant BuildRequires
 
-* Fri Aug 12 2005 Marcin Garski <mgarski[AT]post.pl> 1.60.0-2
-- Spec improvements for Fedora Extras
+* Wed May 10 2006 Nicolas Lécureuil <neoclust@mandriva.org> 3:1.70.0-3mdk
+- Fix BuildRequires
 
-* Wed Aug 10 2005 Marcin Garski <mgarski[AT]post.pl> 1.60.0-1
-- Updated to version 1.60.0 & clean up for Fedora Extras
+* Tue May 09 2006 Laurent MONTEL <lmontel@mandriva.com> 1.70.0-2
+- Rebuild to generate category
 
-* Fri Dec 17 2004 Marcin Garski <mgarski[AT]post.pl> 1.51.fc2kde331
-- Updated to version 1.51
+* Mon Feb 13 2006 Nicolas Lécureuil <neoclust@mandriva.org> 1.70.0-1mdk
+- 1.70
 
-* Sat Nov 11 2004 Marcin Garski <mgarski[AT]post.pl> 1.50.fc2kde331
-- Added Requires:
+* Wed Dec 14 2005 Laurent MONTEL <lmontel@mandriva.com> 1.70.0-beta2.2
+- Use patch from Anssi Hannula <anssi.hannula@gmail.com> to fixing build
+on x86_64 and use mkrel
 
-* Tue Nov 02 2004 Marcin Garski <mgarski[AT]post.pl> 1.50.fc2
-- Updated to version 1.50 & spec cleanup
+* Sun Nov 06 2005 Laurent MONTEL <lmontel@mandriva.com> 1.70.0-beta2.1mdk
+- beta2
 
-* Fri Aug 06 2004 Marcin Garski <mgarski[AT]post.pl> 1.40-1.fc2
-- Updated to version 1.40
+* Sat Oct 29 2005 Nicolas Lécureuil <neoclust@mandriva.org> 1.70.0-beta1.5mdk
+- Add BuildRequires
 
-* Wed Jun 23 2004 Marcin Garski <mgarski[AT]post.pl> 1.40-beta2.fc2
-- Updated to version 1.40-beta2
+* Sat Oct 29 2005 Nicolas Lécureuil <neoclust@mandriva.org> 1.70.0-beta1.4mdk
+- Fix conflict
 
-* Wed Jun 02 2004 Marcin Garski <mgarski[AT]post.pl> 1.40-beta1.fc2
-- Rebuild for Fedora Core 2 & huge spec cleanup
+* Thu Oct 20 2005 Nicolas Lécureuil <neoclust@mandriva.org> 1.70.0-beta1.3mdk
+- Fix conflict
 
-* Mon Nov 17 2003 11:05:00 Marian POPESCU <softexpert[AT]libertysurf.fr> [1.30]
-- Updated to 1.30 release + changed description to match the official one
+* Tue Oct 18 2005 Nicolas Lécureuil <neoclust@mandriva.org> 1.70.0-beta1.2mdk
+- Fix BuildRequires
 
-* Tue Jul 03 2003 17:00:00 Marcin Garski <mgarski[AT]post.pl> [1.20]
-- Initial specfile
+* Tue Oct 18 2005 Laurent MONTEL <lmontel@mandriva.com> 1.70.0-beta1.1mdk
+- 1.70.beta1
+
+* Tue May 03 2005 Laurent MONTEL <lmontel@mandriva.com> 1.60.0-2mdk
+- Fix x64 build fix bug #15728
+
+* Tue Apr 12 2005 Lenny Cartier <lenny@mandrakesoft.com> 1.60.0-1mdk
+- 1.60.0
+
+* Tue Mar 22 2005 Laurent MONTEL <lmontel@mandrakesoft.com> 1.60-0.beta2.1mdk
+- 1.60 beta2
+
+* Fri Mar 04 2005 Laurent MONTEL <lmontel@mandrakesoft.com> 1.60-0.beta1.1mdk
+- 1.60 beta1
+
+* Wed Dec 15 2004 Laurent MONTEL <lmontel@mandrakesoft.com> 1.51-1mdk
+- 1.51
+
+* Tue Nov 02 2004 Laurent MONTEL <lmontel@mandrakesoft.com> 1.50-2mdk
+- Add patch3: fix potential crash
+
+* Mon Nov 01 2004 Laurent MONTEL <lmontel@mandrakesoft.com> 1.50-1mdk
+- 1.50
+
+* Fri Jul 23 2004 Lenny Cartier <lenny@mandrakesoft.com> 1.40-1mdk
+- 1.40
+
+* Tue Jun 29 2004 Laurent MONTEL <lmontel@mandrakesoft.com> 1.40-0.beta2.1mdk
+- beta2
+
+* Mon Jun 07 2004 Angelo Naselli <random_lx@yahoo.com> 1.40-0.beta1.4mdk
+- Fix icon position
+
+* Sat Jun 05 2004 Laurent MONTEL <lmontel@mandrakesoft.com> 1.40-0.beta1.3mdk
+- Rebuild
+
+* Thu May 06 2004 Laurent MONTEL <lmontel@mandrakesoft.com> 1.40-0.beta1.2mdk
+- Update description (patch give by frank_schoolmeesters@fastmail.fm)
+
+* Thu Apr 22 2004 Laurent MONTEL <lmontel@mandrakesoft.com> 1.40-0.beta1.1mdk
+- 1.40beta1
+
