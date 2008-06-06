@@ -27,7 +27,7 @@
     <title>Requirements</title>
     <para>In order to successfully use the most recent
     &krusader;, you need &kde;libs
-    &gt;= 3.5</para>
+    &gt;= 4.0</para>
     <para>Required &kde; version: 
     <itemizedlist>
       <listitem>
@@ -65,7 +65,7 @@
         &kde; 3.5</para>
       </listitem>
       <listitem>
-        <para>&krusader; v2.x.x: &kde; 4 - &Qt; </para>
+        <para>&krusader; v2.x.x: &kde; 4</para>
       </listitem>
     </itemizedlist>
     NOTE: for installation instructions for &krusader;-1.x for &kde; 2 click 
@@ -272,7 +272,7 @@
     <warning>
       <para>These releases are beta releases and will probably
       contain some bugs.</para>
-    </warning>&dev-cvs-note; 
+    </warning>&dev-svn-note; 
     <para>The beta release has 3 goals: 
     <itemizedlist>
       <listitem>
@@ -290,6 +290,8 @@
         &i18n-page-url;.</para>
       </listitem>
     </itemizedlist></para></sect2>
+
+<!-- OUTDATED CVS is DEACTIVATED 
     <sect2 id="krusader_cvs">
       <title>CVS Builds</title>
       <para>
@@ -374,19 +376,49 @@
       <para>We also provide &viewcvs-url; to browse the
       CVS repository.</para>
     </sect2>
+
+-->
+
+
     <sect2 id="krusader_svn">
       <title>Subversion</title>
-      <para>&subversion-url; is used for
-      the &krusader; 2.x series for &kde;4.
-      it is also possible to
-      &browse-svn-repo-url;.</para>
+      
+     <para>&subversion-url; is used for our sourcecode repository.
+      It is also possible to &browse-svn-repo-url;.</para>
+
+      <para>Currently, there are four module options: 
+      <itemizedlist>
+        <listitem>
+          <para>krusader_kde2: the &kde;2 branch, stable
+          but it is basically v1.01 and there are no planned
+          changes</para>
+        </listitem>
+        <listitem>
+          <para>krusader_kde3: the &kde;3 branch, stable
+          but it is basically v1.90.0 and there are no planned
+          changes</para>
+        </listitem>
+        <listitem>
+          <para>krusader_kde4: the &kde;4 branch that we
+          currently use</para>
+        </listitem>
+        <listitem>
+          <para>trunc: the &kde;4 the development version</para>
+        </listitem>
+      </itemizedlist></para>
+
+
       <para>To check out the latest &krusader; 1.x for
-      &kde; 3 from SVN: (NOTE: at moment of writing use CVS for krusader_kde3, since krusader_kde3
-      is developed in CVS and NOT in SVN, currently you will get an old version in SVN) 
-      <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde3</option></userinput></screen>
-      To check out the latest &krusader; 2.x
+      &kde; 3 from SVN:
+      <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://krusader.svn.sourceforge.net/svnroot/krusader/branches/krusader_kde3/</option></userinput></screen>
+
+      To check out the latest &krusader; 2.x for
+      &kde; 4 from SVN:
+      <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://krusader.svn.sourceforge.net/svnroot/krusader/branches/krusader_kde4/</option></userinput></screen>
+
+      To check out the latest developement &krusader; 2.x
       for &kde; 4 from SVN:
-      <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4</option></userinput></screen>
+      <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co http://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4</option></userinput></screen>
       </para>
     </sect2>
     <sect2 id="krusader_old">
@@ -705,7 +737,7 @@ If you haven't done so in a while, run ./configure --help
           </note>
           <tip>
             <para>If you encounter problems with this command click
-            <link linkend="krusader_cvs">here</link>.
+            <link linkend="krusader_svn">here</link>.
             &krusader; provides two nightly builds
             (snapshots) one with a 
             <filename>./configure</filename> script and one
