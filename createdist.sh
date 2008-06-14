@@ -1,7 +1,7 @@
 #!/bin/bash
 
 VERSION=`cat CMakeLists.txt | grep add_definitions | grep 'DVERSION' | awk -F '"' '{print $2; }'`
-DIST_NAME="krusader-kde4-${VERSION}"
+DIST_NAME="krusader-${VERSION}"
 OUTPUT_FILE_NAME="${DIST_NAME}.tar.gz"
 
 rm -rf __KrDist__
@@ -21,7 +21,7 @@ if [ -z "$FILES" ]; then
 fi
 
 if [ -z "$FILES" ]; then
-  echo "Something whent wrong! Can't find version controlled source files"
+  echo "Something went wrong! Can't find version controlled source files"
   exit 1
 fi
 
