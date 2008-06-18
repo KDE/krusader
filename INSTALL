@@ -1,18 +1,25 @@
-Krusader installation instructions for KDE 4.0
+Krusader installation instructions for KDE 4.x
 ----------------------------------------------
 
 Note
 ----
-Krusader-2.0.0 version and higher for KDE 4 only and will not work on KDE 3.
+Krusader-2.0 versions and higher are for KDE 4 only and will not work anymore on KDE 3.
+
 
 SVN development download
 ------------------------
 You can download the latest available krusader-2.x from SVN with the next command:
 $ svn co https://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4
 
+Platforms
+---------
+* All POSIX (Linux®/BSD/UNIX®-like OSes), Solaris™
+* All BSD Platforms (FreeBSD®/NetBSD®/OpenBSD®/Mac® OS)
+* Windows™
 
-The next packages are the names that Debian/Ubuntu uses, other Linux
-distros will probably use similar names.
+
+Installing on Linux® and BSD platforms
+======================================
 
 Krusader dependencies
 ---------------------
@@ -25,7 +32,10 @@ Krusader dependencies
 
 Suggested packages
 ------------------
-These packages are optional but they will make Krusaer much more powerful and useful.
+These packages are optional but they will make Krusader much more powerful and useful.
+
+The next packages are the names that Debian/Ubuntu uses, other Linux
+distros will probably use similar names.
 
 - arj                  archiver for .arj files 
 - ark                  graphical archiving tool for KDE 
@@ -91,6 +101,45 @@ $ su -c "make install"
 Uninstall
 ---------
 $ su -c "make uninstall"
+
+
+Installing on Mac® OS-X
+=======================
+http://www.krusader.org/handbook/mac-port.html
+
+
+Installation on Windows™
+========================
+http://groups.google.com/group/krusader-devel/browse_thread/thread/3507c5dc7b866845
+
+- Installed KDE installer http://winkde.org/pub/kde/ports/win32/installer/
+  (version 0.9.2). During install, Chose developer installation using
+  mingw and c:\kde4 as the installation directory. For all the necessary
+  packages (mingw, dbus, qt4, kdelibs, ...) Check the developer files
+  to be installed. Note that some packages are not in any category and on
+  eneeds to view all to find them.
+
+- created the source directory for krusader and checked out svn
+  (c:/kde4/src/krusader_kde4)
+
+- created the build directory and cd to it
+  (c:/kde4/build/krusader_kde4)
+
+- run cmake (the following should be on one line) in the build directory:
+  c:\kde4\bin\cmake.exe -G "MinGW Makefiles" c:/kde4/src/krusader_kde4
+
+-DCMAKE_INSTALL_PREFIX=c:/kde4 -DCMAKE_INCLUDE_PATH=c:/kde4/include
+ 
+-DCMAKE_LIBRARY_PATH=c:/kde4/lib -DKDEWIN_DIR:PATH=c:/kde4
+
+-DCMAKE_BUILD_TYPE=debugful
+
+- There was a strange problem, that in some cmake modules for qt and kde, 
+  there were wrong hardcoded paths to the installation directory, we had to 
+  change them manually. Check that, if the cmake cannot
+  find some library which is surely installed.
+
+- C:\MinGW\bin\mingw32-make.exe install 
 
 
 
