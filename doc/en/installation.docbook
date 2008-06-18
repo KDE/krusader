@@ -27,7 +27,7 @@
     <title>Requirements</title>
     <para>In order to successfully use the most recent
     &krusader;, you need &kde;libs
-    &gt;= 4.0</para>
+    &gt;= 4.x</para>
     <para>Required &kde; version: 
     <itemizedlist>
       <listitem>
@@ -65,7 +65,7 @@
         &kde; 3.5</para>
       </listitem>
       <listitem>
-        <para>&krusader; v2.x.x: &kde; 4</para>
+        <para>&krusader; v2.x.x: &kde; 4.x</para>
       </listitem>
     </itemizedlist>
     NOTE: for installation instructions for &krusader;-1.x for &kde; 2 click 
@@ -80,6 +80,9 @@
       <listitem>
         <para>All BSD Platforms
         (&freebsd;/&netbsd;/&openbsd;/&MacOS;)</para>
+      </listitem>
+         <listitem>
+        <para>&Windows; XP and Vista</para>
       </listitem>
     </itemizedlist></para>
     <para>In order to handle archives, checksums and other utilities they must be configured in our
@@ -428,9 +431,416 @@
       page.</para>
     </sect2>
   </sect1>
-  <sect1 id="compilation">
-    <title>Compiling and Installing</title>
-    <sect2 id="sourcedownload">
+
+<!-- <chapter id="krusader_kde4_install">
+<title>Installation on KDE4.x</title> -->
+
+<sect1 id="compilation">
+   <title>Krusader installation instructions on KDE4.0</title>
+      <note>
+        <para>From version &krusader;-2.0.0 and higher is &kde;-4 only.</para>
+      </note>
+  
+      <note>
+        <para>At moment of writing &krusader;-2.0.0 is still under development, though it works :)</para>
+      </note>
+
+      <note>
+       <para>Even more details about Krusader compilation-installation can be found in the INSTALL 
+            file of the Krusader source tarball.</para>
+      </note>
+
+<para>"krusader_kde4.tar.gz" is the supposed name of the krusader tarball (it will be probably a different one ;)</para>
+
+<para>You can download the latest available krusader-2.x <link linkend="krusader_svn">from SVN</link>.</para>
+
+<sect2>
+<title>Compilation requirements</title>
+<para>The next packages are needed for compiling Krusader,
+if you only run a Krusader binary you don't need these packages.</para>
+<para>
+    <itemizedlist>
+      <listitem>
+        <para>gcc</para>
+      </listitem>
+      <listitem>
+        <para>cmake</para>
+      </listitem>
+      <listitem>
+        <para>gettext (contains msgfmt)</para>
+      </listitem>
+      <listitem>
+        <para>kdelibs5-dev (installs many development libraries for KDE4)</para>
+      </listitem>
+      <listitem>
+        <para>libphonon-dev</para>
+      </listitem>
+    </itemizedlist>
+</para>
+</sect2>
+
+
+<sect2>
+<title>Krusader dependencies</title>
+<para>The next packages are needed to run the Krusader binary.</para>
+<para>
+    <itemizedlist>
+      <listitem>
+        <para>c libraries</para>
+      </listitem>
+      <listitem>
+        <para>zlib1g-dev: library for implementing the deflate compression method found in gzip and PKZIP</para>
+      </listitem>
+      <listitem>
+        <para>kdelibs5: KDE4 core libraries and binaries for all KDE4 applications</para>
+      </listitem>
+      <listitem>
+        <para>libkjsembed1  Embedded JavaScript library
+              (for the the optional Javascripting function in Krusader) </para>
+      </listitem>
+    </itemizedlist>
+</para>
+</sect2>
+
+<sect2>
+<title>Suggested packages</title>
+<para>These packages are optional but they will make Krusader much more powerful and useful.</para>
+
+<para>The next packages are the names that Debian/Ubuntu uses, other Linux
+distros will probably use similar names.</para>
+<para>
+    <itemizedlist>
+      <listitem>
+        <para>arj: archiver for .arj files </para>
+      </listitem>
+      <listitem>
+        <para>ark: graphical archiving tool for KDE</para>
+      </listitem>
+      <listitem>
+        <para>bzip2: high-quality block-sorting file compressor - utilities</para>
+      </listitem>
+      <listitem>
+        <para>cpio: GNU cpio -- a program to manage archives of files</para>
+      </listitem>
+      <listitem>
+        <para>kdebase-bin: core binaries for the KDE base module</para>
+      </listitem>
+      <listitem>
+        <para>kdebase-bin: core binaries for the KDE base module</para>
+      </listitem>
+      <listitem>
+        <para>kdiff3: compares and merges 2 or 3 files or directories</para>
+      </listitem>
+      <listitem>
+        <para>OR kompare: a KDE GUI for viewing differences between files </para>
+      </listitem>
+      <listitem>
+        <para>OR kompare: a KDE GUI for viewing differences between files </para>
+      </listitem>
+      <listitem>
+        <para>kompare: a KDE GUI for viewing differences between files </para>
+      </listitem>
+      <listitem>
+        <para>khexedit: KDE hex editor</para>
+      </listitem>
+      <listitem>
+        <para>kmail: KDE Email client</para>
+      </listitem>
+      <listitem>
+        <para>khexedit: KDE hex editor</para>
+      </listitem>
+      <listitem>
+        <para>konsole: X terminal emulator for KDE </para>
+      </listitem>
+      <listitem>
+        <para>krename: Powerful batch renamer for KDE</para>
+      </listitem>
+      <listitem>
+        <para>lha: lzh archiver</para>
+      </listitem>
+      <listitem>
+        <para>md5deep: versatile file checksum creator and verifier</para>
+      </listitem>
+      <listitem>
+        <para>cfv: versatile file checksum creator and verifier</para>
+      </listitem>
+      <listitem>
+        <para>p7zip: 7zr file archiver with high compression ratio</para>
+      </listitem>
+      <listitem>
+        <para>rpm: Red Hat package manager</para>
+      </listitem>
+      <listitem>
+        <para>unace: extract, test and view .ace archives</para>
+      </listitem>
+      <listitem>
+        <para>unrar: Unarchiver for .rar files (non-free version)</para>
+      </listitem>
+      <listitem>
+        <para>OR unrar-free: Unarchiver for .rar files</para>
+      </listitem>
+      <listitem>
+        <para>OR rar: Archiver for .rar files</para>
+      </listitem>
+      <listitem>
+        <para>unzip: De-archiver for .zip files</para>
+      </listitem>
+      <listitem>
+        <para>zip: Archiver for .zip files</para>
+      </listitem>
+    </itemizedlist>
+</para>
+</sect2>
+
+
+</sect1>
+
+<sect1 id="kde4_lin_install">
+   <title>Installing on Linux and BSD platforms</title>
+
+<para><command>DCMAKE_INSTALL_PREFIX</command> is the location of the KDE DQT_INCLUDES</para>
+<para>
+    <screen>
+      <prompt>$</prompt> <userinput><command>tar -xzvf</command> <option>krusader_kde4.tar.gz</option></userinput>
+      <prompt>$</prompt> <userinput><command>cd </command> <option>krusader_kde4</option></userinput>
+      <prompt>$</prompt> <userinput><command>cmake </command> <option>-DCMAKE_INSTALL_PREFIX=/usr/ -DQT_INCLUDES=/usr/share/qt4/include</option></userinput>
+      <prompt>$</prompt> <userinput><command>make</command></userinput>
+      <prompt>$</prompt> <userinput><command>su -c </command> <option>"make install"</option></userinput>
+     </screen>
+</para>
+
+<para>Uninstall</para>
+<para>
+    <screen>
+      <prompt>$</prompt> <userinput><command>su -c "make uninstall"</command></userinput>
+     </screen>
+</para>
+
+</sect1>
+
+<sect1 id="kde4_mac_install">
+   <title>Installing on the MAC platform</title>
+
+<para>FIXME</para>
+
+</sect1>
+
+<sect1 id="kde4_win_install">
+   <title>Installing on the Windows platform</title>
+
+<para>Please read the INSTALL file of the Krusader source tarball (FIXME).</para>
+
+</sect1>
+
+
+
+  <sect1 id="starting-krusader">
+    <title>Starting &krusader;</title>
+    <para>Type 
+    <userinput>
+      <command>krusader</command>
+    </userinput> (lower case) at a command prompt. You can create
+    shortcut on your desktop or create an entry in the
+    (&kde;) menu. Read the previous page and the
+    &faq-lnk; if &krusader; doesn't
+    start.</para>
+    <para>When &krusader; is started from the
+    command line, various options can be specified to modify its
+    behavior.</para>
+    <screen>
+    	<prompt>$</prompt> <userinput><command>krusader</command></userinput>
+    	WARNING: Mt.Man: Born, looking around to get familiar. foo</screen>
+    <note>
+      <para>Do not worry about the messages you get in the
+      &konsole;. These messages are log messages that
+      can be used for debugging &krusader;.</para>
+    </note>
+    <para>You can also use 
+    <keycombo action="simul">&Alt;
+    <keycap>F2</keycap></keycombo> to open the Run Command dialog
+    box, type 
+    <userinput>
+      <command>krusader</command>
+    </userinput> (lower case) and press &Enter; or click
+    on the 
+    <guibutton>Run</guibutton> button.</para>
+    <para>If &krusader; is installed by an RPM or DEB
+    package then usually &krusader; can be started from
+    the &kmenu;. &eg; on
+    &Mandrake;-&Linux; 10.0 click on the
+    &kicon; button and choose 
+    <emphasis role="bold">
+      <menuchoice>
+        <guimenuitem>Applications</guimenuitem>
+        <guimenuitem>File tools</guimenuitem>
+        <guimenuitem>&krusader;</guimenuitem>
+      </menuchoice>
+    </emphasis>.</para>
+    <variablelist>
+      <title>Command-line options:</title>
+      <varlistentry>
+        <term>
+          <option>--left</option>
+          <replaceable>
+          &lt;path&gt;</replaceable>
+        </term>
+        <listitem>
+          <para>
+            <action>start left panel at
+            &lt;path&gt;</action>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>--right</option>
+          <replaceable>
+          &lt;path&gt;</replaceable>
+        </term>
+        <listitem>
+          <para>
+            <action>start right panel at
+            &lt;path&gt;</action>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>--left</option>
+          <replaceable>
+          &lt;path1&gt;,&lt;path2&gt;,&lt;path3&gt;</replaceable>
+        </term>
+        <listitem>
+          <para>
+            <action>start left panel at
+            &lt;path1&gt;,&lt;path2&gt;,&lt;path3&gt;,
+            with tabs.</action>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>--profile</option>
+          <replaceable>
+          &lt;panel-profile&gt;</replaceable>
+        </term>
+        <listitem>
+          <para>
+            <action>load a 
+            <link linkend="panel_profiles">panel-profile</link> on
+            startup (this overrides the 
+            <link linkend="konfig-startup">default startup
+            profile</link>).</action>
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>Examples: 
+    <screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--left=&lt;path&gt; --right=&lt;path&gt;</replaceable></userinput></screen>
+    <screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--left=/mnt/cdrom --right=ftp://downloads@myserver.net</replaceable></userinput></screen>
+    <screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--left=&lt;path1&gt;,&lt;path2&gt; --right=&lt;path1&gt;,&lt;path2&gt;,&lt;path3&gt;</replaceable></userinput></screen>
+    <screen><prompt>$</prompt> <userinput><command>krusader</command><replaceable>--profile &lt;panel-profile&gt;</replaceable></userinput></screen>
+    <screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--profile ftp-managment</replaceable></userinput></screen>
+    </para>
+    <para>The standard &Qt; and &kde;
+    command-line options are available, and can be listed by
+    entering 
+    <userinput>
+      <command>krusader</command>
+      <option>--help</option>
+    </userinput>.</para>
+    <variablelist>
+      <title>Other command-line options:</title>
+      <varlistentry>
+        <term>
+          <option>--help-qt</option>
+        </term>
+        <listitem>
+          <para>
+            <action>List Qt-specific options</action>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>--help-kde</option>
+        </term>
+        <listitem>
+          <para>
+            <action>List KDE-specific options</action>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>--help-all</option>
+        </term>
+        <listitem>
+          <para>
+            <action>List all options</action>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>--author</option>
+        </term>
+        <listitem>
+          <para>
+            <action>Show the authors names</action>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>-v,--version</option>
+        </term>
+        <listitem>
+          <para>
+            <action>Show the version number</action>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>--license</option>
+        </term>
+        <listitem>
+          <para>
+            <action>Show license information</action>
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="configuration">
+    <title>Configuring &krusader;</title>
+    <para>When you run &krusader; for the first time,
+    the &krusader; configuration module 
+    <link linkend="konfigurator">Konfigurator</link> will show up
+    and allow you to configure &krusader; as well as
+    detect installed packers and tools. You can always run
+    Konfigurator again from the
+    &settingsmenu-lnk;.</para>
+  </sect1>
+  <sect1 id="default-file-manager">
+    <title>Making &krusader; the default file
+    manager</title>
+    <para>To make &krusader; the default file manager in
+    Gnome, <ulink url="http://psychocats.net/ubuntu/nonautilusplease">click here</ulink> for more information.
+    </para>
+    <para>To make &krusader; the default file manager in
+    &kde;, <ulink url="http://groups.google.com/group/krusader-devel/browse_thread/thread/8209d785d3ba0ac6">click here</ulink> for more information. 
+    </para>
+  </sect1>
+</chapter>
+
+
+<chapter id="krusader_kde3_install">
+<title>Installation on KDE3.x</title>
+  <sect1 id="kde3_compilation">
+    <title>Compiling and Installing Krusader-1.x on KDE3.x</title>
+    <sect2>
     <title>Compiling &krusader;. What now?</title>
     <para>Check the environment variables
     &kdeqtdir-lnk;.</para>
@@ -942,8 +1352,9 @@ make[1]: Leaving directory `/home/source/krusader_kde3'
       &help-request-lnk; to ask for help.</para>
     </sect2>
   </sect1>
+
   <sect1 id="mac-port">
-    <title>Installing on &MacOS;-X</title>
+    <title>Installing on Krusader-1.x on &MacOS;-X with KDE3.x</title>
     <indexterm>
       <primary>&MacOS;-X port</primary>
     </indexterm>
@@ -1047,258 +1458,6 @@ make[1]: Leaving directory `/home/source/krusader_kde3'
     </orderedlist>
     Thanks to <ulink url="http://hritcu.wordpress.com/2006/08/10/krusader-on-intel-mac/">Catalin Hritcu </ulink> for these install instructions.
 </para>
+</sect1>
 
-
-  </sect1>
-  <sect1 id="starting-krusader">
-    <title>Starting &krusader;</title>
-    <para>Type 
-    <userinput>
-      <command>krusader</command>
-    </userinput> (lower case) at a command prompt. You can create
-    shortcut on your desktop or create an entry in the
-    (&kde;) menu. Read the previous page and the
-    &faq-lnk; if &krusader; doesn't
-    start.</para>
-    <para>When &krusader; is started from the
-    command line, various options can be specified to modify its
-    behavior.</para>
-    <screen>
-    	<prompt>$</prompt> <userinput><command>krusader</command></userinput>
-    	WARNING: Mt.Man: Born, looking around to get familiar. foo</screen>
-    <note>
-      <para>Do not worry about the messages you get in the
-      &konsole;. These messages are log messages that
-      can be used for debugging &krusader;.</para>
-    </note>
-    <para>You can also use 
-    <keycombo action="simul">&Alt;
-    <keycap>F2</keycap></keycombo> to open the Run Command dialog
-    box, type 
-    <userinput>
-      <command>krusader</command>
-    </userinput> (lower case) and press &Enter; or click
-    on the 
-    <guibutton>Run</guibutton> button.</para>
-    <para>If &krusader; is installed by an RPM or DEB
-    package then usually &krusader; can be started from
-    the &kmenu;. &eg; on
-    &Mandrake;-&Linux; 10.0 click on the
-    &kicon; button and choose 
-    <emphasis role="bold">
-      <menuchoice>
-        <guimenuitem>Applications</guimenuitem>
-        <guimenuitem>File tools</guimenuitem>
-        <guimenuitem>&krusader;</guimenuitem>
-      </menuchoice>
-    </emphasis>.</para>
-    <variablelist>
-      <title>Command-line options:</title>
-      <varlistentry>
-        <term>
-          <option>--left</option>
-          <replaceable>
-          &lt;path&gt;</replaceable>
-        </term>
-        <listitem>
-          <para>
-            <action>start left panel at
-            &lt;path&gt;</action>
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <option>--right</option>
-          <replaceable>
-          &lt;path&gt;</replaceable>
-        </term>
-        <listitem>
-          <para>
-            <action>start right panel at
-            &lt;path&gt;</action>
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <option>--left</option>
-          <replaceable>
-          &lt;path1&gt;,&lt;path2&gt;,&lt;path3&gt;</replaceable>
-        </term>
-        <listitem>
-          <para>
-            <action>start left panel at
-            &lt;path1&gt;,&lt;path2&gt;,&lt;path3&gt;,
-            with tabs.</action>
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <option>--profile</option>
-          <replaceable>
-          &lt;panel-profile&gt;</replaceable>
-        </term>
-        <listitem>
-          <para>
-            <action>load a 
-            <link linkend="panel_profiles">panel-profile</link> on
-            startup (this overrides the 
-            <link linkend="konfig-startup">default startup
-            profile</link>).</action>
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <para>Examples: 
-    <screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--left=&lt;path&gt; --right=&lt;path&gt;</replaceable></userinput></screen>
-    <screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--left=/mnt/cdrom --right=ftp://downloads@myserver.net</replaceable></userinput></screen>
-    <screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--left=&lt;path1&gt;,&lt;path2&gt; --right=&lt;path1&gt;,&lt;path2&gt;,&lt;path3&gt;</replaceable></userinput></screen>
-    <screen><prompt>$</prompt> <userinput><command>krusader</command><replaceable>--profile &lt;panel-profile&gt;</replaceable></userinput></screen>
-    <screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--profile ftp-managment</replaceable></userinput></screen>
-    </para>
-    <para>The standard &Qt; and &kde;
-    command-line options are available, and can be listed by
-    entering 
-    <userinput>
-      <command>krusader</command>
-      <option>--help</option>
-    </userinput>.</para>
-    <variablelist>
-      <title>Other command-line options:</title>
-      <varlistentry>
-        <term>
-          <option>--help-qt</option>
-        </term>
-        <listitem>
-          <para>
-            <action>List Qt-specific options</action>
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <option>--help-kde</option>
-        </term>
-        <listitem>
-          <para>
-            <action>List KDE-specific options</action>
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <option>--help-all</option>
-        </term>
-        <listitem>
-          <para>
-            <action>List all options</action>
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <option>--author</option>
-        </term>
-        <listitem>
-          <para>
-            <action>Show the authors names</action>
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <option>-v,--version</option>
-        </term>
-        <listitem>
-          <para>
-            <action>Show the version number</action>
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <option>--license</option>
-        </term>
-        <listitem>
-          <para>
-            <action>Show license information</action>
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </sect1>
-  <sect1 id="configuration">
-    <title>Configuring &krusader;</title>
-    <para>When you run &krusader; for the first time,
-    the &krusader; configuration module 
-    <link linkend="konfigurator">Konfigurator</link> will show up
-    and allow you to configure &krusader; as well as
-    detect installed packers and tools. You can always run
-    Konfigurator again from the
-    &settingsmenu-lnk;.</para>
-  </sect1>
-  <sect1 id="default-file-manager">
-    <title>Making &krusader; the default file
-    manager</title>
-    <para>To make &krusader; the default file manager in
-    Gnome, <ulink url="http://psychocats.net/ubuntu/nonautilusplease">click here</ulink> for more information.
-    </para>
-    <para>To make &krusader; the default file manager in
-    &kde;, <ulink url="http://groups.google.com/group/krusader-devel/browse_thread/thread/8209d785d3ba0ac6">click here</ulink> for more information. 
-    </para>
-  </sect1>
-</chapter>
-
-<chapter id="krusader_kde4_install">
-<title>Installation on KDE4.x</title>
-<sect1 id="kde4_install">
-   <title>Krusader installation instructions on KDE4.0</title>
-      <note>
-        <para>From version &krusader;-2.0.0 and higher is &kde;-4 only.</para>
-      </note>
-      <note>
-        <para>At moment of writing &krusader;-2.0.0 is still under development, though it works :)</para>
-      </note>
-
-<para>"krusader_kde4.tar.gz" is the supposed name of the krusader tarball (it will be probably a different one ;)</para>
-
-<para>You can download the latest available krusader-2.x <link linkend="krusader_svn">from SVN</link>.</para>
-
-<para>Compilation requirements</para>
-<para>The next packages are needed for compiling Krusader,
-if you only run a Krusader binary you don't need these packages.</para>
-<para>
-    <itemizedlist>
-      <listitem>
-        <para>gcc</para>
-      </listitem>
-      <listitem>
-        <para>cmake</para>
-      </listitem>
-      <listitem>
-        <para>gettext (contains msgfmt)</para>
-      </listitem>
-      <listitem>
-        <para>kdelibs5-dev (installs many development libraries for KDE4)</para>
-      </listitem>
-      <listitem>
-        <para>libphonon-dev</para>
-      </listitem>
-    </itemizedlist>
-</para>
-
-<para><command>DCMAKE_INSTALL_PREFIX</command> is the location of the KDE DQT_INCLUDES</para>
-<para>
-    <screen>
-      <prompt>$</prompt> <userinput><command>tar -xzvf</command> <option>krusader_kde4.tar.gz</option></userinput>
-      <prompt>$</prompt> <userinput><command>cd </command> <option>krusader_kde4</option></userinput>
-      <prompt>$</prompt> <userinput><command>cmake </command> <option>-DCMAKE_INSTALL_PREFIX=/usr/ -DQT_INCLUDES=/usr/share/qt4/include</option></userinput>
-      <prompt>$</prompt> <userinput><command>make</command></userinput>
-      <prompt>$</prompt> <userinput><command>su -c </command> <option>"make install"</option></userinput>
-     </screen>
-</para>
-
- </sect1>
 </chapter>
