@@ -1,64 +1,53 @@
-Krusader 1.80.0-beta2 "Last Unstable Stone"
-===========================================
+Krusader-2.0.0-beta1 "Phoenix Egg"
+==================================
 Well, here we are!
 
-The Krew is finally bringing you the _last_ release of Krusader the
-file manager. In this release you can expect many new enhancements and
-features oriented to both experts and basic users, finalizing many
-requests, that we owed and many that were sitting on our todo list. We
-would like to thank all of the community for keeping us sharp all these
-years till the end and start of our final release cycle.
+The Krew is happy to present the first release of the Krusader2 series for KDE4.x.
+We have left the solid third stone and have landed on the fourth stone
+to start exploring new possibilties.
+And the first big possibility is already available, this tarball can 
+be compiled and installed on Windows!
 
-IMPORTANT: Crashes in Krusader caused by Qt 3.3.5
-------------------------------------------------------------------------
-We've been getting a lot of emails and bug reports regarding random
-crashes in Krusader, especially during some file operations (copy/move
-etc.). These crashes are related to Qt 3.3.5 and NOT Krusader.
-It seems that Qt 3.3.5 introduced a serious bug which is now causing
-random crashes in many KDE applications including Konqueror. You can
-google for it to find out more. 
+This release is ustable and contains some bugs. Though it works! and
+hard work is done to improve it.
+Other bugs are caused by kde4libs and qt4libs where we can't do much
+about it, except generate bug reports.
 
-As far as we know, Debian and SUSE already posted new Qt binaries that
-fix the problem, and Gentoo has masked Qt 3.3.5 completely.
-As for now, you either need Qt 3.3.4 or a fixed Qt 3.3.5, depending on
-your distribution. For more information is available on our website at
-http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1407
-------------------------------------------------------------------------
+Please send in bug reports and patches to hunt the Krusader bugs down.
 
-Krusader 1.80.0-beta2 contains plenty of changes, bug fixes and updates
-in response to reports and requests from our users. The highlights are:
+Our first goal is to make Krusader-2.0 stable. New features are for
+afterwards, though small improvements are already added in this
+release.
 
-- Full support for ACL permissions like properties, preserve
-  attributes, synchronizer and other
-- Many terminal emulator enhancements bringing new functions, new
-  usages and new look
-- Many improvements of the UserAction system
-- Countless usability enhancements, especially in Konfigurator and the
-  heavily reordered menubar
-- Comparing in the synchronizer interface and parallel threading over
-  slower servers
-- Atomic extensions and ability to rename the filename, without extension
-- Numerous archive enhancements like handling packing and unpacking in
-  the background, encryption support, multiple volume archives, compress
-  level
-- Complete list of changes and enhancements is in the ChangeLog
-- Next cycle with all our energy and efforts begins for Krusader on
-  KDE4
+Many thanks to everyone who has helped to port Krusader from KDE3 to KDE4.
 
-Changes since Krusader 1.80.0-beta1 (but not limited to):
+New features in this release:
+# ported to Windows!
 
-- Added the long-awaited brief view! 
-- A GUI to configure the atomic extensions introduced in beta1 
-- ACL and documentation related compile fixes 
-- More usability and feature enhancements in the synchronizer, search
-  and locate modules
-- Bugfixes all over the place 
+# Krusader is able to send e-mails by thunderbird
+- one can set up thunderbird as an e-mail sender in the dependencies
+- from now more than one file can be sent in an attachment
 
-Enjoy!
-  Krusader Krew
+# For content searching (searcher, advanced selection, synchronizer),
+  the content encoding can be given.
+
+# Select remote encoding for krarc
+- the file name encoding for zip, rar, arj, lha can be set from now
+- as 7z always uses UTF-16, remote encoding will not work for 7z
+- it's imporant because zip files that were created on Windows can
+have different encoding
+
+#  New synchronizer shortcuts
+- CTRL + W : reverse direction
+- ALT + Down : exclude
+- ALT + Up : restore original task
+- ALT + Left : copy to left
+- ALT + Right : copy to right
+- ALT + Delete : mark for delete
+
 
 Notice: if you've got bugs to report, please do so using Krusader's
-        website, and not using KDE's bugzilla (bugs.kde.org).
+       website, and not using KDE's bugzilla (bugs.kde.org).
 
             as always, enjoy
                  Krusader Krew.
@@ -77,19 +66,9 @@ Notice: if you've got bugs to report, please do so using Krusader's
 
 Installation
 ============
-Check the environment variables KDEDIR - QTDIR.
+Please read the INSTALL file for detailed installation instructions.
 
-Unpack the tarball and go to the Krusader source directory.
-If you have done a download from CVS you will have to run the following
-command to create the "./configure" script:
-$ make -f Makefile.cvs
-
-Installation procedure:
-$ ./configure
-$ make
-$ su -c 'make install'
-
-When you install a Krusader cvs or beta version and if Krusader was
+When you install a Krusader svn or beta version and if Krusader was
 previously installed on your computer, there is a possibility that you
 will have to update the krusaderui.rc file. please read the FAQ for more
 info.
@@ -98,27 +77,20 @@ info.
 Need more help?
 For detailed installation instructions, please read the INSTALL and FAQ
 file. Or read it online at:
-http://krusader.sourceforge.net/handbook/installation.html
+http://krusader.org/handbook/installation.html
 The FAQ are available at:
-http://krusader.sourceforge.net/handbook/faq.html
+http://krusader.org/handbook/faq.html
 
 
 
-To checkout the Krusader KDE3 version from cvs:
+To checkout the Krusader-2.x for KDE4 from svn:
 ===============================================
-$ cvs -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader login
-$ cvs -z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader \
-  co krusader_kde3
+$ svn co https://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4
   
-(Note: updates from within the modules directory do not need the -d
-parameter)
-
-Or download the nightly tarball from:
-http://krusader.sourceforge.net/cvs.php
 
 
-Klik Krusader
-=============
+Klik Krusader (currently only for Krusader-1.x)
+===============================================
 If you want to find out if Krusader is right for you and don't want to
 go through the whole installation-compilation process. Thanks to the
 guys at http://klik.atekon.de/ this is possible. After installing the
@@ -136,12 +108,12 @@ Krusader Handbook
 Documentation, detailed install procedure, FAQ, ...
 The Krusader Handbook is available in the Help menu of Krusader.
 Or read it online at:
-http://krusader.sourceforge.net/handbook/index.html
+http://krusader.org/handbook/index.html
 
 
 Help Krusader
 =============
-http://krusader.sourceforge.net/help.php
+http://krusader.org/help.php
 Here you get a chance to contribute to the Krusader project. From time
 to time we'll post things that need to be done, but can't be done by us.
 If you feel you can help, click the appropriate link on the website.
@@ -153,7 +125,7 @@ GUI-Translators
 Krusader is currently available in about 27 languages:
 Some of these translations can use an update, please read the next url
 for more information.
-http://krusader.sourceforge.net/i18n.php
+http://krusader.org/i18n.php
 
 Documentation Translators
 -------------------------
@@ -224,7 +196,7 @@ messages, we want to prevent this, of course.
 
 With i18n_status and ViewCVS to see the live translation status of
 Krusader!
-http://krusader.sourceforge.net/i18n.php
+http://krusader.org/i18n.php
 http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/krusader/krusader_kde3/po/
 The latest news about the Krusader translations can be in the LATEST
 NEWS section of the "Krusader translation howto".
@@ -242,17 +214,17 @@ We have a very detailed "Krusader translation howto" if you need some
 help. The latest news about the Krusader translations can be in the
 LATEST NEWS section. This allows that even beginners or non-programmers
 can translate Krusader to their native language. Please have a look at
-http://krusader.sourceforge.net/phpBB/viewtopic.php?t=389
+http://krusader.org/phpBB/viewtopic.php?t=389
 
-Quickstart procedure for translators updating existing translations
--------------------------------------------------------------------
+Quickstart procedure for translators updating existing translations (kde3)
+--------------------------------------------------------------------------
 1.
 Run KDE in your native language.
 
 2.
 Checkout the latest available version of Krusader from CVS. Or if you
 are not familiar with CVS, download the latest Krusader CVS snapshot
-(nightly tarball) from http://krusader.sourceforge.net/cvs.php, and run:
+(nightly tarball) from http://krusader.org/cvs.php, and run:
 $ make -f Makefile.cvs
 $ ./configure
 $ make
@@ -282,37 +254,37 @@ URL's
 =====
 - Homepage
   http://www.krusader.org
-  http://krusader.sourceforge.net  
+  http://krusader.org  
 - Installation
-  http://krusader.sourceforge.net/handbook/installation.html
+  http://krusader.org/handbook/installation.html
 - FAQ
-  http://krusader.sourceforge.net/handbook/faq.html
+  http://krusader.org/handbook/faq.html
 - Documentation
-  http://krusader.sourceforge.net/handbook/index.html
+  http://krusader.org/handbook/index.html
 - Todolist
-  http://krusader.sourceforge.net/phpBB/viewforum.php?f=10
+  http://krusader.org/phpBB/viewforum.php?f=10
 - Buglist
   http://sourceforge.net/tracker/?atid=106488&group_id=6488&func=browse
 - Forum
-  http://krusader.sourceforge.net/phpBB/index.php
+  http://krusader.org/phpBB/index.php
 - ChangeLog
-  http://krusader.sourceforge.net/text.php?t=cvs.changelog
+  http://krusader.org/text.php?t=cvs.changelog
 - CVSNEWS
-  http://krusader.sourceforge.net/text.php?t=cvs.news
+  http://krusader.org/text.php?t=cvs.news
 - Mailing lists
-  http://krusader.sourceforge.net/lists.php
+  http://krusader.org/lists.php
 - Donations
   http://sourceforge.net/project/project_donations.php?group_id=6488
 - Translations
-  http://krusader.sourceforge.net/i18n.php
+  http://krusader.org/i18n.php
 - Help Krusader
-  http://krusader.sourceforge.net/help.php
+  http://krusader.org/help.php
 - Krusader Extensions
   http://www.kde-files.org/index.php?xcontentmode=660x661x662x663
 - Krusader meets OpenUsability 
   http://openusability.org/projects/krusader/    
 - Download pages
-  http://krusader.sourceforge.net/down.php
+  http://krusader.org/down.php
   http://sourceforge.net/project/showfiles.php?group_id=6488
 
 
@@ -332,6 +304,8 @@ Krusader Krew:
   [h.eichmann * gmx de]
 - Jonas Baehr, developer
   [jonas baehr * users web de]
+- Vaclav Juza
+  [vaclavjuza * seznam.cz]
 - Frank Schoolmeesters, documentation and marketing coordinator
   [frank_schoolmeesters * yahoo com]
 - Richard Holt, documentation
