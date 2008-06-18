@@ -55,7 +55,7 @@ QList<const exp_placeholder*>& Expander::_placeholder()
 
 void exp_placeholder::panelMissingError(const QString &s, Expander& exp)
 {
-	exp.setError( Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Needed panel specification missing in expander %1", s)) );
+	exp.setError( Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT,i18n("Needed panel specification missing in expander %1", s)) );
 }
 
 QStringList exp_placeholder::fileList(const ListPanel* const panel,const QString& type,const QString& mask,const bool ommitPath,const bool useUrl,Expander& exp,const QString& error)
@@ -70,7 +70,7 @@ QStringList exp_placeholder::fileList(const ListPanel* const panel,const QString
    else if ( type == "selected" )
       panel->view->getSelectedItems( &items );
    else {
-      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: Bad argument to %1: %2 is not valid item specifier", error,type) ) );
+      setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT,i18n("Expander: Bad argument to %1: %2 is not valid item specifier", error,type) ) );
       return QStringList();
    }
    if ( !ommitPath ) {  // add the current path
@@ -398,7 +398,7 @@ TagString exp_Count::expFunc( const ListPanel* panel, const QStringList& paramet
    else if ( parameter[ 0 ].toLower() == "selected" )
       n = panel->view->numSelected();
    else {
-      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: Bad argument to Count: %1 is not valid item specifier", parameter[0]) ));
+      setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT,i18n("Expander: Bad argument to Count: %1 is not valid item specifier", parameter[0]) ));
       return QString();
    }
 
@@ -506,7 +506,7 @@ TagString exp_ListFile::expFunc( const ListPanel* panel, const QStringList& para
    tmpFile.setSuffix(".itemlist");
    
     if (!tmpFile.open()) {
-      setError(exp, Error(Error::S_FATAL,Error::C_WORLD, i18n("Expander: tempfile couldn't be opened (%1)", tmpFile.errorString()) ));
+      setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_WORLD, i18n("Expander: tempfile couldn't be opened (%1)", tmpFile.errorString()) ));
       return QString();
     }
     
@@ -569,7 +569,7 @@ TagString exp_Goto::expFunc( const ListPanel* panel, const QStringList& paramete
       newTab = true;
    
    if ( parameter.count() == 0 ) {
-     setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT, i18n("Expander: at least 1 parameter is required for Goto!" ) ));
+     setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT, i18n("Expander: at least 1 parameter is required for Goto!" ) ));
      return QString();
    }
 
@@ -611,7 +611,7 @@ TagString exp_Ask::expFunc( const ListPanel*, const QStringList& parameter, cons
    QString caption, preset, result;
    
    if ( parameter.count() == 0 ) {
-     setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT, i18n("Expander: at least 1 parameter is required for Ask!" ) ));
+     setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT, i18n("Expander: at least 1 parameter is required for Ask!" ) ));
      return QString();
    }
 
@@ -634,7 +634,7 @@ TagString exp_Ask::expFunc( const ListPanel*, const QStringList& parameter, cons
    if (ok)
       return result;
    else {
-		 setError(exp, Error(Error::S_ERROR,Error::C_USER,"User cancelled") );
+		 setError(exp, Error(Error::exp_S_ERROR,Error::exp_C_USER,"User cancelled") );
       return QString();
 	 }
 }
@@ -650,13 +650,13 @@ exp_Clipboard::exp_Clipboard() {
 TagString exp_Clipboard::expFunc( const ListPanel*, const TagStringList& parameter, const bool&, Expander& exp ) const {
 //    kDebug() << "Expander::exp_Clipboard, parameter[0]: '" << parameter[0] << "', Clipboard: " << KApplication::clipboard()->text() << endl;
 	if ( parameter.count() == 0 ) {
-		setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT, i18n("Expander: at least 1 parameter is required for Clipboard!" ) ));
+		setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT, i18n("Expander: at least 1 parameter is required for Clipboard!" ) ));
 		return QString();
 	}
 
 	QStringList lst=splitEach(parameter[0]);
 	if( parameter.count() > 1 && !parameter[1].isSimple()) {
-		setError(exp,Error(Error::S_FATAL,Error::C_SYNTAX,i18n("Expander: %Each% may not be in the second argument of %Clipboard%")));
+		setError(exp,Error(Error::exp_S_FATAL,Error::exp_C_SYNTAX,i18n("Expander: %Each% may not be in the second argument of %Clipboard%")));
 		return QString();
 	}
     if ( parameter.count() <= 1 || parameter[1].string().isEmpty() || KApplication::clipboard()->text().isEmpty() )
@@ -677,14 +677,14 @@ exp_Copy::exp_Copy() {
 }
 TagString exp_Copy::expFunc( const ListPanel*, const TagStringList& parameter, const bool&, Expander& exp ) const {
    if ( parameter.count() < 2 ) {
-      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT, i18n("Expander: at least 2 parameter is required for Copy!" ) ));
+      setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT, i18n("Expander: at least 2 parameter is required for Copy!" ) ));
       return QString();
    }
 
    // basically the parameter can already be used as URL, but since KUrl has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is neccesary:
    QStringList lst=splitEach( parameter[0] );
    if(!parameter[1].isSimple()) {
-      setError(exp,Error(Error::S_FATAL,Error::C_SYNTAX,i18n("Expander: %Each% may not be in the second argument of %Copy%")));
+      setError(exp,Error(Error::exp_S_FATAL,Error::exp_C_SYNTAX,i18n("Expander: %Each% may not be in the second argument of %Copy%")));
       return QString();
    }
    KUrl::List src;
@@ -694,7 +694,7 @@ TagString exp_Copy::expFunc( const ListPanel*, const TagStringList& parameter, c
    KUrl dest = KUrl( parameter[1].string() );
 
    if ( !dest.isValid() || find_if(src.constBegin(),src.constEnd(),not1(mem_fun_ref(&KUrl::isValid) ))!=src.end()) {
-      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: invalid URL's in %_Copy(\"src\", \"dest\")%") ));
+      setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT,i18n("Expander: invalid URL's in %_Copy(\"src\", \"dest\")%") ));
       return QString();
    }
 
@@ -713,14 +713,14 @@ exp_Move::exp_Move() {
 }                    
 TagString exp_Move::expFunc( const ListPanel*, const TagStringList& parameter, const bool& , Expander& exp ) const {
    if ( parameter.count() < 2 ) {
-      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT, i18n("Expander: at least 2 parameter is required for Move!" ) ));
+      setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT, i18n("Expander: at least 2 parameter is required for Move!" ) ));
       return QString();
    }
 
    // basically the parameter can already be used as URL, but since KUrl has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is neccesary:
    QStringList lst=splitEach( parameter[0] );
    if(!parameter[1].isSimple()) {
-      setError(exp,Error(Error::S_FATAL,Error::C_SYNTAX,i18n("%Each% may not be in the second argument of %Move%")));
+      setError(exp,Error(Error::exp_S_FATAL,Error::exp_C_SYNTAX,i18n("%Each% may not be in the second argument of %Move%")));
       return QString();
    }
    KUrl::List src;
@@ -730,7 +730,7 @@ TagString exp_Move::expFunc( const ListPanel*, const TagStringList& parameter, c
    KUrl dest = KUrl( parameter[1].string() );
 
    if ( !dest.isValid() || find_if(src.constBegin(),src.constEnd(),not1(mem_fun_ref(&KUrl::isValid) ))!=src.end()) {
-      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: invalid URL's in %_Move(\"src\", \"dest\")%") ));
+      setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT,i18n("Expander: invalid URL's in %_Move(\"src\", \"dest\")%") ));
       return QString();
    }
 
@@ -748,7 +748,7 @@ exp_Sync::exp_Sync() {
 }
 TagString exp_Sync::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
    if ( parameter.count() == 0 || parameter[0].isEmpty() ) {
-      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: no profile specified for %_Sync(profile)%") ));
+      setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT,i18n("Expander: no profile specified for %_Sync(profile)%") ));
       return QString();
    }
 
@@ -766,7 +766,7 @@ exp_NewSearch::exp_NewSearch() {
 }
 TagString exp_NewSearch::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
    if ( parameter.count() == 0 || parameter[0].isEmpty() ) {
-      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: no profile specified for %_NewSearch(profile)%") ));
+      setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT,i18n("Expander: no profile specified for %_NewSearch(profile)%") ));
       return QString();
    }
 
@@ -784,7 +784,7 @@ exp_Profile::exp_Profile() {
 }
 TagString exp_Profile::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
    if ( parameter.count() == 0 || parameter[0].isEmpty() ) {
-      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: no profile specified for %_Profile(profile)%; abort...") ));
+      setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT,i18n("Expander: no profile specified for %_Profile(profile)%; abort...") ));
       return QString();
    }
    
@@ -837,7 +837,7 @@ TagString exp_ColSort::expFunc( const ListPanel* panel, const QStringList& param
    NEED_PANEL
 
    if ( parameter.count() == 0 || parameter[0].isEmpty() ) {
-      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: no column specified for %_ColSort(column)%") ));
+      setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT,i18n("Expander: no column specified for %_ColSort(column)%") ));
       return QString();
    }
    
@@ -909,7 +909,7 @@ TagString exp_ColSort::expFunc( const ListPanel* panel, const QStringList& param
    if ( parameter[0].toLower() == "group" ) {
       mode |= KrViewProperties::Group;
    } else {
-      setError(exp, Error(Error::S_WARNING,Error::C_ARGUMENT,i18n("Expander: unknown column specified for %_ColSort(%1)%", parameter[0]) ));
+      setError(exp, Error(Error::exp_S_WARNING,Error::exp_C_ARGUMENT,i18n("Expander: unknown column specified for %_ColSort(%1)%", parameter[0]) ));
       return QString();
    }
    
@@ -936,7 +936,7 @@ TagString exp_PanelSize::expFunc( const ListPanel* panel, const QStringList& par
       newSize = parameter[0].toInt();
    
    if ( newSize < 0 || newSize > 100 ) {
-      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: Value %1 out of range for %_PanelSize(percent)%. The first parameter has to be >0 and <100", newSize)) );
+      setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT,i18n("Expander: Value %1 out of range for %_PanelSize(percent)%. The first parameter has to be >0 and <100", newSize)) );
       return QString();
    }
 
@@ -968,7 +968,7 @@ exp_Script::exp_Script() {
 }
 TagString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
    if ( parameter.count() == 0 || parameter[0].isEmpty() ) {
-      setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: no script specified for %_Script(script)%")) );
+      setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT,i18n("Expander: no script specified for %_Script(script)%")) );
       return QString();
    }
 
@@ -1021,7 +1021,7 @@ exp_View::exp_View() {
 }
 TagString exp_View::expFunc( const ListPanel*, const QStringList& parameter, const bool&, Expander& exp ) const {
    if ( parameter.count() == 0 || parameter[0].isEmpty() ) {
-			setError(exp, Error(Error::S_FATAL,Error::C_ARGUMENT,i18n("Expander: no file to view in %_View(filename)%")) );
+			setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT,i18n("Expander: no file to view in %_View(filename)%")) );
       return QString();
    }
 
@@ -1058,7 +1058,7 @@ TagString exp_simpleplaceholder::expFunc( const ListPanel* p, const TagStringLis
 		if((*it).isSimple())
 			lst.push_back((*it).string());
 		else {
-			setError(exp,Error(Error::S_FATAL,Error::C_SYNTAX,i18n("%Each% is not allowed in parameter to %1", description())));
+			setError(exp,Error(Error::exp_S_FATAL,Error::exp_C_SYNTAX,i18n("%Each% is not allowed in parameter to %1", description())));
 			return QString();
 		}
 	return expFunc(p,lst,useUrl,exp);
@@ -1079,7 +1079,7 @@ ListPanel* Expander::getPanel( const char panelIndicator, const exp_placeholder*
    case '_':
       return 0;
    default:
-		 exp.setError(Error(Error::S_FATAL,Error::C_SYNTAX,i18n("Expander: Bad panel specifier %1 in placeholder %2", panelIndicator, pl->description())));
+		 exp.setError(Error(Error::exp_S_FATAL,Error::exp_C_SYNTAX,i18n("Expander: Bad panel specifier %1 in placeholder %2", panelIndicator, pl->description())));
       return 0;
    }
 }
@@ -1108,7 +1108,7 @@ TagString Expander::expandCurrent( const QString& stringToExpand, bool useUrl ) 
    while ( idx < stringToExpand.length() ) {
       if ( ( begin = stringToExpand.indexOf( '%', idx ) ) == -1 ) break;
       if ( ( end = findEnd( stringToExpand, begin ) ) == -1 ) {
-         setError(Error(Error::S_FATAL,Error::C_SYNTAX,i18n("Error: unterminated % in Expander::expandCurrent")) );
+         setError(Error(Error::exp_S_FATAL,Error::exp_C_SYNTAX,i18n("Error: unterminated % in Expander::expandCurrent")) );
          return QString();
       }
 
@@ -1138,7 +1138,7 @@ TagString Expander::expandCurrent( const QString& stringToExpand, bool useUrl ) 
               break;
            }
          if ( i == placeholderCount() ) { // didn't find an expander
-            setError(Error(Error::S_FATAL,Error::C_SYNTAX,i18n("Error: unrecognized %%%1%2%% in Expander::expand", panelIndicator, exp)) );
+            setError(Error(Error::exp_S_FATAL,Error::exp_C_SYNTAX,i18n("Error: unrecognized %%%1%2%% in Expander::expand", panelIndicator, exp)) );
            return QString();
          }
       } //else
@@ -1176,7 +1176,7 @@ TagStringList Expander::separateParameter( QString* const exp, bool useUrl ) {
    int begin, end;
    if ( ( begin = exp->indexOf( '(' ) ) != -1 ) {
       if ( ( end = exp->lastIndexOf( ')' ) ) == -1 ) {
-         setError(Error(Error::S_FATAL,Error::C_SYNTAX,i18n("Error: missing ')' in Expander::separateParameter") ));
+         setError(Error(Error::exp_S_FATAL,Error::exp_C_SYNTAX,i18n("Error: missing ')' in Expander::separateParameter") ));
          return TagStringList();
       }
       result = exp->mid( begin + 1, end - begin - 1 );

@@ -60,7 +60,7 @@
 ftp_vfs::ftp_vfs( QObject* panel ) : vfs( panel ), busy( false ) {
 	// set the writable attribute
 	isWritable = true;
-	vfs_type = FTP;
+	vfs_type = VFS_FTP;
 }
 
 ftp_vfs::~ftp_vfs() {

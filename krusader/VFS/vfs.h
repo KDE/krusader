@@ -52,7 +52,7 @@ class vfs: public QObject{
 	Q_OBJECT
 public:
 	typedef QHash<QString, vfile *> vfileDict;	
-	enum VFS_TYPE{ERROR=0,NORMAL,FTP,VIRT};
+	enum VFS_TYPE{VFS_ERROR=0,VFS_NORMAL,VFS_FTP,VFS_VIRT};
 
 	/**
 	 * Creates a vfs.

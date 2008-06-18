@@ -101,7 +101,7 @@ namespace KIO {
      * @see KIO::link()
      * @see KIO::linkAs()
      */
-    class KIO_EXPORT PreserveAttrCopyJob : public Job {
+    class PreserveAttrCopyJob : public Job {
 
         Q_OBJECT
 

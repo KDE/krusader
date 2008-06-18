@@ -78,7 +78,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
    }
 
    // ------------- Preview - normal vfs only ?
-   if ( panel->func->files()->vfs_getType() == vfs::NORMAL ) {
+   if ( panel->func->files()->vfs_getType() == vfs::VFS_NORMAL ) {
       // create the preview popup
       QStringList names;
       panel->getSelectedNames( &names );
@@ -157,14 +157,14 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
       // -------- DELETE
       addAction( i18n( "Delete" ) )->setData( QVariant( DELETE_ID ) );
       // -------- SHRED - only one file
-/*      if ( panel->func->files() ->vfs_getType() == vfs::NORMAL &&
+/*      if ( panel->func->files() ->vfs_getType() == vfs::VFS_NORMAL &&
             !vf->vfile_isDir() && !multipleSelections )
          addAction( i18n( "Shred" ) )->setData( QVariant( SHRED_ID ) );*/
    }
    
    // ---------- link handling
    // create new shortcut or redirect links - only on local directories:
-   if ( panel->func->files() ->vfs_getType() == vfs::NORMAL ) {
+   if ( panel->func->files() ->vfs_getType() == vfs::VFS_NORMAL ) {
       addSeparator();
       linkPopup.addAction( i18n( "New Symlink..." ) )->setData( QVariant( NEW_SYMLINK_ID ) );
       linkPopup.addAction( i18n( "New Hardlink..." ) )->setData( QVariant( NEW_LINK_ID ) );
@@ -177,11 +177,11 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
    addSeparator();
 
    // ---------- calculate space
-   if ( panel->func->files() ->vfs_getType() == vfs::NORMAL && ( vf->vfile_isDir() || multipleSelections ) )
+   if ( panel->func->files() ->vfs_getType() == vfs::VFS_NORMAL && ( vf->vfile_isDir() || multipleSelections ) )
       addAction( krCalculate  );
 	
 	// ---------- mount/umount/eject
-   if ( panel->func->files() ->vfs_getType() == vfs::NORMAL && vf->vfile_isDir() && !multipleSelections ) {
+   if ( panel->func->files() ->vfs_getType() == vfs::VFS_NORMAL && vf->vfile_isDir() && !multipleSelections ) {
       if ( krMtMan.getStatus( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) ) == KMountMan::MOUNTED )
          addAction( i18n( "Unmount" ) )->setData( QVariant( UNMOUNT_ID ) );
       else if ( krMtMan.getStatus( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) ) == KMountMan::NOT_MOUNTED )

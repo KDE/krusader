@@ -40,6 +40,7 @@
 #include <qdir.h>
 #include <kdeversion.h>
 #include <kio/jobuidelegate.h>
+#include <string.h>
 
 
 #if defined( HAVE_POSIX_ACL )
@@ -143,7 +144,7 @@ bool SynchronizerDirList::load( const QString &urlIn, bool wait ) {
 
       if( symLink ){  // who the link is pointing to ?
         char symDest[256];
-        bzero(symDest,256); 
+        memset(symDest,0,256); 
         int endOfName=0;
         endOfName=readlink(fullName.toLocal8Bit(),symDest,256);
         if ( endOfName != -1 ) {

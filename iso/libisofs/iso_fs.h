@@ -159,57 +159,56 @@ struct iso_directory_record {
 };
 
 /* 8 bit numbers */
-__inline unsigned char isonum_711(char *p);
-__inline char isonum_712(char *p);
+static __inline unsigned char isonum_711(char *p);
+static __inline char isonum_712(char *p);
 
 /* 16 bit numbers */
-__inline unsigned short isonum_721(char *p);
-__inline unsigned short isonum_722(char *p);
-__inline unsigned short isonum_723(char *p);
+static __inline unsigned short isonum_721(char *p);
+static __inline unsigned short isonum_722(char *p);
+static __inline unsigned short isonum_723(char *p);
 
 /* 32 bit numbers */
-__inline unsigned int isonum_731(char *p);
-__inline unsigned int isonum_732(char *p);
-__inline unsigned int isonum_733(char *p);
-
+static __inline unsigned int isonum_731(char *p);
+static __inline unsigned int isonum_732(char *p);
+static __inline unsigned int isonum_733(char *p);
 
 /* 8 bit numbers */
-__inline unsigned char isonum_711(char *p)
+static __inline unsigned char isonum_711(char *p)
 {
 	return *(unsigned char *)p;
 }
-__inline char isonum_712(char *p)
+static __inline char isonum_712(char *p)
 {
 	return *p;
 }
 
 /* 16 bit numbers */
-__inline unsigned short isonum_721(char *p)
+static __inline unsigned short isonum_721(char *p)
 {
 	return le2me_16(*(unsigned short *)p);
 }
-__inline unsigned short isonum_722(char *p)
+static __inline unsigned short isonum_722(char *p)
 {
 	return be2me_16(*(unsigned short *)p);
 }
-__inline unsigned short isonum_723(char *p)
+static __inline unsigned short isonum_723(char *p)
 {
 	/* Ignore bigendian datum due to broken mastering programs */
 	return le2me_16(*(unsigned short *)p);
 }
 
 /* 32 bit numbers */
-__inline unsigned int isonum_731(char *p)
+static __inline unsigned int isonum_731(char *p)
 {
 	return le2me_32(*(unsigned int *)p);
 }
 
-__inline unsigned int isonum_732(char *p)
+static __inline unsigned int isonum_732(char *p)
 {
 	return be2me_32(*(unsigned int *)p);
 }
 
-__inline unsigned int isonum_733(char *p)
+static __inline unsigned int isonum_733(char *p)
 {
 	/* Ignore bigendian datum due to broken mastering programs */
 	return le2me_32(*(unsigned int *)p);

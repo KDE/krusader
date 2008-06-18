@@ -2,7 +2,7 @@ include(FindZLIB)
 
 include( libisofs/CMakeLists.txt )
 
-include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
+include_directories( ${KDE4_INCLUDES} ${QT_INCLUDES}  )
 
 
 ########### next target ###############

@@ -620,7 +620,7 @@ void ListPanel::slotStartUpdate() {
    setCursor( Qt::BusyCursor );
    view->clear();
 
-   if ( func->files() ->vfs_getType() == vfs::NORMAL )
+   if ( func->files() ->vfs_getType() == vfs::VFS_NORMAL )
       _realPath = virtualPath();
    this->origin->setUrl( virtualPath().pathOrUrl() );
    emit pathChanged( this );
@@ -644,7 +644,7 @@ void ListPanel::slotUpdate() {
    bool isFtp = ( protocol == "ftp" || protocol == "smb" || protocol == "sftp" || protocol == "fish" );
 
    QString origin = virtualPath().prettyUrl(KUrl::RemoveTrailingSlash);
-   if ( origin.right( 1 ) != "/" && !( ( func->files() ->vfs_getType() == vfs::FTP ) && isFtp &&
+   if ( origin.right( 1 ) != "/" && !( ( func->files() ->vfs_getType() == vfs::VFS_FTP ) && isFtp &&
                                        origin.indexOf( '/', origin.indexOf( ":/" ) + 3 ) == -1 ) ) {
       view->addItems( func->files() );
    } else
@@ -793,7 +793,7 @@ void ListPanel::handleDropOnView( QDropEvent *e, QWidget *widget ) {
       act = popup.addAction( i18n( "Move Here" ) );
       act->setData( QVariant( 2 ) );
    }
-   if ( func->files() ->vfs_getType() == vfs::NORMAL && isLocal ) {
+   if ( func->files() ->vfs_getType() == vfs::VFS_NORMAL && isLocal ) {
       act = popup.addAction( i18n( "Link Here" ) );
       act->setData( QVariant( 3 ) );
    }

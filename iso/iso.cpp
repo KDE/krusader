@@ -144,7 +144,7 @@ bool kio_isoProtocol::checkNewFile( QString fullPath, QString & path, int starts
             bool isFile = true;
             if( S_ISLNK( statbuf.st_mode) ) {
                 char symDest[256];
-                bzero(symDest,256); 
+                memset(symDest,0,256); 
                 int endOfName=readlink( QFile::encodeName(tryPath),symDest,256);
                 if ( endOfName != -1 ){
                     if ( QDir(QString::fromLocal8Bit( symDest ) ).exists() )

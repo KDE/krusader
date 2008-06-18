@@ -205,7 +205,7 @@ void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn ) {
 	         panel, SLOT( slotCleared() ) );
 	
 	// on local file system change the working directory
-	if ( files() ->vfs_getType() == vfs::NORMAL )
+	if ( files() ->vfs_getType() == vfs::VFS_NORMAL )
 		QDir::setCurrent( files() ->vfs_getOrigin().path() );
 	
 	// see if the open url operation failed, and if so, 
@@ -272,7 +272,7 @@ void ListPanelFunc::goBack() {
 }
 
 void ListPanelFunc::redirectLink() {
-	if ( files() ->vfs_getType() != vfs::NORMAL ) {
+	if ( files() ->vfs_getType() != vfs::VFS_NORMAL ) {
 		KMessageBox::sorry( krApp, i18n( "You can edit links only on local file systems" ) );
 		return ;
 	}
@@ -310,7 +310,7 @@ void ListPanelFunc::redirectLink() {
 }
 
 void ListPanelFunc::krlink( bool sym ) {
-	if ( files() ->vfs_getType() != vfs::NORMAL ) {
+	if ( files() ->vfs_getType() != vfs::VFS_NORMAL ) {
 		KMessageBox::sorry( krApp, i18n( "You can create links only on local file systems" ) );
 		return ;
 	}
@@ -516,7 +516,7 @@ void ListPanelFunc::mkdir() {
 }
 
 KUrl ListPanelFunc::getVirtualBaseURL() {
-	if( files()->vfs_getType() != vfs::VIRT || otherFunc()->files()->vfs_getType() == vfs::VIRT )
+	if( files()->vfs_getType() != vfs::VFS_VIRT || otherFunc()->files()->vfs_getType() == vfs::VFS_VIRT )
 		return KUrl();
 	
 	QStringList fileNames;
@@ -633,13 +633,13 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 	if ( group.readEntry( "Confirm Delete", _ConfirmDelete ) ) {
 		QString s, b;
 
-		if ( !reallyDelete && trash && files() ->vfs_getType() == vfs::NORMAL ) {
+		if ( !reallyDelete && trash && files() ->vfs_getType() == vfs::VFS_NORMAL ) {
 			s = i18np( "Do you really want to move this item to the trash?", "Do you really want to move these %1 items to the trash?", fileNames.count() );
 			b = i18n( "&Trash" );
-		} else if( files() ->vfs_getType() == vfs::VIRT && files()->vfs_getOrigin().equals( KUrl("virt:/"), KUrl::CompareWithoutTrailingSlash ) ) {
+		} else if( files() ->vfs_getType() == vfs::VFS_VIRT && files()->vfs_getOrigin().equals( KUrl("virt:/"), KUrl::CompareWithoutTrailingSlash ) ) {
 			s = i18np( "Do you really want to delete this virtual item (physical files stay untouched)?", "Do you really want to delete these %1 virtual items (physical files stay untouched)?", fileNames.count() );
 			b = i18n( "&Delete" );
-		} else if( files() ->vfs_getType() == vfs::VIRT ) {
+		} else if( files() ->vfs_getType() == vfs::VFS_VIRT ) {
 			s = i18np( "<qt>Do you really want to delete this item <b>physically</b> (not just removing it from the virtual items)?</qt>", "<qt>Do you really want to delete these %1 items <b>physically</b> (not just removing them from the virtual items)?</qt>", fileNames.count() );
 			b = i18n( "&Delete" );
 		} else {
@@ -656,7 +656,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 	//we want to warn the user about non empty dir
 	// and files he don't have permission to delete
 	bool emptyDirVerify = group.readEntry( "Confirm Unempty Dir", _ConfirmUnemptyDir );
-	emptyDirVerify = ( ( emptyDirVerify ) && ( files() ->vfs_getType() == vfs::NORMAL ) );
+	emptyDirVerify = ( ( emptyDirVerify ) && ( files() ->vfs_getType() == vfs::VFS_NORMAL ) );
 
 	QDir dir;
 	for ( QStringList::Iterator name = fileNames.begin(); name != fileNames.end(); ) {
@@ -1077,7 +1077,7 @@ bool ListPanelFunc::calcSpace( const QStringList & items, KIO::filesize_t & tota
 
 void ListPanelFunc::FTPDisconnect() {
 	// you can disconnect only if connected !
-	if ( files() ->vfs_getType() == vfs::FTP ) {
+	if ( files() ->vfs_getType() == vfs::VFS_FTP ) {
 		krFTPDiss->setEnabled( false );
 		panel->view->setNameToMakeCurrent( QString() );
 		openUrl( panel->realPath() ); // open the last local URL
@@ -1126,10 +1126,10 @@ void ListPanelFunc::refreshActions() {
 	vfs::VFS_TYPE vfsType = files() ->vfs_getType();
 
 	//  set up actions
-	//krMultiRename->setEnabled( vfsType == vfs::NORMAL );  // batch rename
-	//krProperties ->setEnabled( vfsType == vfs::NORMAL || vfsType == vfs::FTP ); // file properties
-	krFTPDiss ->setEnabled( vfsType == vfs::FTP );     // disconnect an FTP session
-	krCreateCS->setEnabled( vfsType == vfs::NORMAL );
+	//krMultiRename->setEnabled( vfsType == vfs::VFS_NORMAL );  // batch rename
+	//krProperties ->setEnabled( vfsType == vfs::VFS_NORMAL || vfsType == vfs::VFS_FTP ); // file properties
+	krFTPDiss ->setEnabled( vfsType == vfs::VFS_FTP );     // disconnect an FTP session
+	krCreateCS->setEnabled( vfsType == vfs::VFS_NORMAL );
 	
 	QString protocol = files()->vfs_getOrigin().protocol();
 	krRemoteEncoding->setEnabled( protocol == "ftp" || protocol == "sftp" || protocol == "fish" || protocol == "krarc" );
@@ -1194,7 +1194,7 @@ void ListPanelFunc::copyToClipboard( bool move ) {
 		
 		QApplication::clipboard()->setMimeData( mimeData, QClipboard::Clipboard );
 		
-		if( move && files()->vfs_getType() == vfs::VIRT )
+		if( move && files()->vfs_getType() == vfs::VFS_VIRT )
 			( static_cast<virt_vfs*>( files() ) )->vfs_removeFiles( &fileNames );
 		
 		delete fileUrls;

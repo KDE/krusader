@@ -44,7 +44,7 @@
 #include <ktemporaryfile.h>
 #include <kuiserverjobtracker.h>
 
-#ifdef Q_OS_UNIX
+#if defined(Q_OS_UNIX) || defined(Q_OS_WIN32)
 #include <utime.h>
 #endif
 #include <assert.h>
@@ -52,6 +52,7 @@
 #include <QtCore/QTimer>
 #include <QtCore/QFile>
 #include <sys/stat.h> // mode_t
+#include <sys/types.h>
 #include <QPointer>
 
 #include <pwd.h>

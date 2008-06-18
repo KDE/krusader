@@ -35,20 +35,20 @@ vfs::VFS_TYPE KrVfsHandler::getVfsType(const KUrl& url){
 
   if( ( protocol == "krarc" || protocol == "tar" || protocol == "zip" ) &&
       QDir(url.path(KUrl::RemoveTrailingSlash)).exists() )
-    return vfs::NORMAL;
+    return vfs::VFS_NORMAL;
   
 	if( url.isLocalFile() ){
-		return vfs::NORMAL;
+		return vfs::VFS_NORMAL;
 	}
   else{
-		if(url.protocol() == "virt") return vfs::VIRT;
-		else return vfs::FTP;
+		if(url.protocol() == "virt") return vfs::VFS_VIRT;
+		else return vfs::VFS_FTP;
 	}
-	return vfs::ERROR;
+	return vfs::VFS_ERROR;
 }
 
 vfs* KrVfsHandler::getVfs(const KUrl& url,QObject* parent,vfs* oldVfs){
-	vfs::VFS_TYPE newType,oldType = vfs::ERROR;
+	vfs::VFS_TYPE newType,oldType = vfs::VFS_ERROR;
 
 	if(oldVfs) oldType = oldVfs->vfs_getType();
 	newType = getVfsType(url);
@@ -58,10 +58,10 @@ vfs* KrVfsHandler::getVfs(const KUrl& url,QObject* parent,vfs* oldVfs){
 
 	if( oldType != newType ){
 		switch( newType ){
-		  case (vfs::NORMAL) : newVfs = new normal_vfs(parent); break;
-		  case (vfs::FTP   ) : newVfs = new ftp_vfs(parent)   ; break;
-		  case (vfs::VIRT  ) : newVfs = new virt_vfs(parent)  ; break;
-      case (vfs::ERROR ) : newVfs = 0                       ; break;
+		  case (vfs::VFS_NORMAL) : newVfs = new normal_vfs(parent); break;
+		  case (vfs::VFS_FTP   ) : newVfs = new ftp_vfs(parent)   ; break;
+		  case (vfs::VFS_VIRT  ) : newVfs = new virt_vfs(parent)  ; break;
+      case (vfs::VFS_ERROR ) : newVfs = 0                     ; break;
 		}
   }
 

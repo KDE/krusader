@@ -46,7 +46,7 @@ virt_vfs::virt_vfs( QObject* panel, bool quiet ) : vfs( panel, quiet ) {
 		restore();
 	}
 
-	vfs_type = VIRT;
+	vfs_type = VFS_VIRT;
 }
 
 virt_vfs::~virt_vfs() {}

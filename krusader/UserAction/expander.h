@@ -91,15 +91,15 @@ protected:
 	class Error {
 	public:
 		enum Cause {
-			C_USER, C_SYNTAX, C_WORLD, C_ARGUMENT
+			exp_C_USER, exp_C_SYNTAX, exp_C_WORLD, exp_C_ARGUMENT
 		};
 		enum Severity {
-			S_OK, S_WARNING, S_ERROR, S_FATAL
+			exp_S_OK, exp_S_WARNING, exp_S_ERROR, exp_S_FATAL
 		};
-		Error() : s_(S_OK) {}
+		Error() : s_(exp_S_OK) {}
 		Error(Severity s,Cause c,QString d) : s_(s), c_(c), desc_(d) {}
 		Cause cause() const { return c_; }
-		operator bool() const { return s_!=S_OK; }
+		operator bool() const { return s_!=exp_S_OK; }
 		const QString& what() const { return desc_; }
 	private:
 		Severity s_;

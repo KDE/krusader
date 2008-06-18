@@ -228,7 +228,7 @@ bool vfs::vfs_refresh(const KUrl& origin){
 }
 
 void vfs::vfs_enableRefresh(bool enable){
-	if (vfs_type != NORMAL) return;
+	if (vfs_type != VFS_NORMAL) return;
 	if (disableRefresh == !enable) return; // if gets called twice by mistake
 	disableRefresh = quietMode = !enable;
 	if( enable && !postponedRefreshURL.isEmpty() ) vfs_refresh( postponedRefreshURL );

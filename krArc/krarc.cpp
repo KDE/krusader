@@ -203,7 +203,7 @@ void kio_krarcProtocol::mkdir(const KUrl& url,int permissions){
 	for( int i=0;i<tempDir.length() && i >= 0; i=tempDir.indexOf("/",i+1)){
 		QByteArray newDirs = encodeString( tempDir.left( i ) );
 		newDirs.prepend(arcTempDirEnc);
-		::mkdir( newDirs, permissions);
+		KDE_mkdir( newDirs, permissions);
 	}
 	
 	if( tempDir.endsWith( "/" ) )
@@ -271,7 +271,7 @@ void kio_krarcProtocol::put(const KUrl& url,int permissions, KIO::JobFlags flags
 	for( int i=0;i<tempDir.length() && i >= 0; i=tempDir.indexOf("/",i+1)){
 		QByteArray newDirs = encodeString( tempDir.left( i ) );
 		newDirs.prepend(arcTempDirEnc);
-		::mkdir( newDirs, 0755 );
+		KDE_mkdir( newDirs, 0755 );
 	}
 	
 	int fd;
@@ -993,12 +993,15 @@ mode_t kio_krarcProtocol::parsePermString(QString perm){
 	mode_t mode=0;
 	// file type
 	if(perm[0] == 'd') mode |= S_IFDIR;
+#ifndef Q_WS_WIN	
 	if(perm[0] == 'l') mode |= S_IFLNK;
+#endif	
 	if(perm[0] == '-') mode |= S_IFREG;
 	// owner permissions
 	if(perm[1] != '-') mode |= S_IRUSR;
 	if(perm[2] != '-') mode |= S_IWUSR;
 	if(perm[3] != '-') mode |= S_IXUSR;
+#ifndef Q_WS_WIN	
 	// group permissions
 	if(perm[4] != '-') mode |= S_IRGRP;
 	if(perm[5] != '-') mode |= S_IWGRP;
@@ -1007,7 +1010,7 @@ mode_t kio_krarcProtocol::parsePermString(QString perm){
 	if(perm[7] != '-') mode |= S_IROTH;
 	if(perm[8] != '-') mode |= S_IWOTH;
 	if(perm[9] != '-') mode |= S_IXOTH;
-	
+#endif	
 	return mode;
 }
 
@@ -1147,11 +1150,13 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line) {
 		owner = nextWord(line);
 		group = nextWord(line);
 		// symlink destination
+#ifndef Q_WS_WIN
 		if( S_ISLNK(mode) ){
 			// ignore the next 3 fields
 			nextWord(line); nextWord(line); nextWord(line);
 			symlinkDest = nextWord(line);
 		}
+#endif	
 	}
 	if( arcType == "gzip" ){
 		if( !lineNo ) return; //ignore the first line

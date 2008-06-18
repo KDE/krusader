@@ -1,3 +1,5 @@
+include_directories( ${KDE4_INCLUDES}  )
+
 add_subdirectory( ActionMan )
 add_subdirectory( BookMan )
 add_subdirectory( Dialogs )
@@ -19,7 +21,6 @@ add_subdirectory( UserMenu )
 add_subdirectory( VFS )
 
 message(STATUS "${CMAKE_CURRENT_SOURCE_DIR}: skipped subdir $(KRJSDIR)")
-include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 
 ########### next target ###############

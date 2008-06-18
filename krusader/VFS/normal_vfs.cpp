@@ -27,7 +27,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-#include <strings.h>
+#include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -66,7 +66,7 @@
 #endif
 
 normal_vfs::normal_vfs(QObject* panel):vfs(panel), watcher(0) {
-  vfs_type=NORMAL;
+  vfs_type=VFS_NORMAL;
 }
 
 bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
@@ -251,7 +251,7 @@ vfile* normal_vfs::vfileFromName(const QString& name){
 	QString mime=QString();
 
 	char symDest[256];
-	bzero(symDest,256); 
+	memset(symDest,0,256); 
 	if( S_ISLNK(stat_p.st_mode) ){  // who the link is pointing to ?
 		int endOfName=0;
 		endOfName=readlink(fileName.data(),symDest,256);
