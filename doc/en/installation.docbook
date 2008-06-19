@@ -436,7 +436,7 @@
 <title>Installation on KDE4.x</title> -->
 
 <sect1 id="compilation">
-   <title>Krusader installation instructions on KDE4.0</title>
+   <title>Krusader installation instructions on KDE4.x</title>
       <note>
         <para>From version &krusader;-2.0.0 and higher is &kde;-4 only.</para>
       </note>
@@ -454,31 +454,6 @@
 
 <para>You can download the latest available krusader-2.x <link linkend="krusader_svn">from SVN</link>.</para>
 
-<sect2>
-<title>Compilation requirements</title>
-<para>The next packages are needed for compiling Krusader,
-if you only run a Krusader binary you don't need these packages.</para>
-<para>
-    <itemizedlist>
-      <listitem>
-        <para>gcc</para>
-      </listitem>
-      <listitem>
-        <para>cmake</para>
-      </listitem>
-      <listitem>
-        <para>gettext (contains msgfmt)</para>
-      </listitem>
-      <listitem>
-        <para>kdelibs5-dev (installs many development libraries for KDE4)</para>
-      </listitem>
-      <listitem>
-        <para>libphonon-dev</para>
-      </listitem>
-    </itemizedlist>
-</para>
-</sect2>
-
 
 <sect2>
 <title>Krusader dependencies</title>
@@ -489,14 +464,11 @@ if you only run a Krusader binary you don't need these packages.</para>
         <para>c libraries</para>
       </listitem>
       <listitem>
-        <para>zlib1g-dev: library for implementing the deflate compression method found in gzip and PKZIP</para>
+        <para>kdelibs5 (KDE4 core libraries and binaries for all KDE4 applications)</para>
       </listitem>
       <listitem>
-        <para>kdelibs5: KDE4 core libraries and binaries for all KDE4 applications</para>
-      </listitem>
-      <listitem>
-        <para>libkjsembed1  Embedded JavaScript library
-              (for the the optional Javascripting function in Krusader) </para>
+        <para>libkjsembed1  (Embedded JavaScript library)
+              (for the the optional Javascripting function in Krusader)</para>
       </listitem>
     </itemizedlist>
 </para>
@@ -593,6 +565,39 @@ distros will probably use similar names.</para>
 </sect2>
 
 
+<sect2>
+<title>Compilation requirements</title>
+<para>The next packages are needed for compiling Krusader,
+if you only run a Krusader binary you don't need these packages.</para>
+<para>
+    <itemizedlist>
+      <listitem>
+        <para>gcc (The GNU C compiler)</para>
+      </listitem>
+      <listitem>
+        <para>g++ (The GNU C++ compiler)</para>
+      </listitem>
+      <listitem>
+        <para>cmake (A cross-platform, open-source make system)</para>
+      </listitem>
+      <listitem>
+        <para>zlib1g-dev: (library for implementing the deflate compression method found in gzip and PKZIP)</para>
+      </listitem>
+      <listitem>
+        <para>gettext (contains msgfmt)</para>
+      </listitem>
+      <listitem>
+        <para>kdelibs5-dev (installs many development libraries for KDE4)</para>
+      </listitem>
+      <listitem>
+        <para>libphonon-dev (libphonon-dev cross-platform multimedia framework development)</para>
+      </listitem>
+    </itemizedlist>
+</para>
+</sect2>
+
+
+
 </sect1>
 
 <sect1 id="kde4_lin_install">
@@ -621,14 +626,95 @@ distros will probably use similar names.</para>
 <sect1 id="kde4_mac_install">
    <title>Installing on the MAC platform</title>
 
-<para>FIXME</para>
+<para><link linkend="mac-port">KDE3 install instructions</link> (FIXME)</para>
 
 </sect1>
 
 <sect1 id="kde4_win_install">
    <title>Installing on the Windows platform</title>
 
-<para>Please read the INSTALL file of the Krusader source tarball (FIXME).</para>
+<para>Tested on &Windows; XP, not yet tested on &Windows; Vista but it should work.</para>
+<para>
+    <itemizedlist>
+      <listitem>
+        <para>Install the <ulink url="http://winkde.org/pub/kde/ports/win32/installer/">KDE installer</ulink>, 
+              See also <ulink url="http://windows.kde.org/">windows.kde.org</ulink> , 
+              During install, choose the following option:</para>
+       <itemizedlist>
+        <listitem>
+        <para>installation path in this example was <filename>c:\kde4</filename></para>
+        </listitem>
+        <listitem>
+        <para>install mode: developer installation</para>
+        </listitem>
+        <listitem>
+        <para>compiler mode: mingw</para>
+        </listitem>
+        <listitem>
+        <para>select installation of binary and developement files of the following
+              packages (Note that some packages are not in any category and one
+              needs to view all to find them): mingw, gcc (including g++), cmake, dbus,
+              qt4, kdelibs, kdebase, (TODO: check if this list is complete).</para>
+        </listitem>
+      </itemizedlist> 
+      </listitem>
+      <listitem>
+        <para>Create the source directory for krusader and checked out svn
+              (you can use <ulink url="http://tortoisesvn.net/">TortoiseSVN</ulink> for that )
+              In this example, <filename>c:/kde4/src/krusader_kde4</filename> was used.</para>
+      </listitem>
+      <listitem>
+        <para>Create the directory for generated files and cd to it
+              In this example, <filename>c:/kde4/build/krusader_kde4</filename> was used.</para>
+      </listitem>
+      <listitem>
+        <para>Open the windows terminal (cmd.exe) and go to the build directory
+              <filename>c:</filename>   
+              <filename>cd \kde4\build\krusader_kde4</filename></para>
+      </listitem>
+      <listitem>
+        <para>So as to avoid a cmake error, that it can't find some kde library which is for sure installed,
+              it is necessary to make the following fix:
+              There is a strange problem, that in cmake modules
+              <filename>c:\kde4\share\apps\cmake\modules\KDELibsDependencies.cmake</filename>
+              and
+              <filename>c:\kde4\share\apps\cmake\modules\KDEPimLibsDependencies.cmake</filename>
+              there are wrong hardcoded paths to the installation directory (<filename>D:/kde/kde-mingw</filename>),
+              it is necessary to replace it manually to <filename>c:/kde4</filename>.</para>
+      </listitem>
+      <listitem>
+        <para>Run cmake in the build directory with the following parameters:
+              <filename>c:\kde4\bin\cmake.exe -G "MinGW Makefiles" c:/kde4/src/krusader_kde4 -DCMAKE_INSTALL_PREFIX=c:/kde4 -DCMAKE_INCLUDE_PATH=c:/kde4/include -DCMAKE_LIBRARY_PATH=c:/kde4/lib -DKDEWIN_DIR:PATH=c:/kde4 -DCMAKE_BUILD_TYPE=debugful</filename></para>
+      </listitem>
+      <listitem>
+        <para>Run make from mingw:
+              <filename>C:\MinGW\bin\mingw32-make.exe install</filename></para>
+      </listitem>
+      <listitem>
+        <para>Known severe run-time problems on windows at the moment (19 Jun 2008):
+        <itemizedlist>
+          <listitem>
+           <para>Konfigurator (launched even in the first run)</para>
+         </listitem>
+          <listitem>
+           <para>Slow start before the splashscreen appears</para>
+         </listitem>
+          <listitem>
+           <para>If <filename>C:</filename> is put to the location bar, you get incorrect content of panel.
+                Using file:<filename>///C:/</filename> is more reliable</para>
+         </listitem>
+          <listitem>
+           <para>Not possible to navigate inside ftp</para>
+         </listitem>
+          <listitem>
+           <para>...</para>
+         </listitem>
+        </itemizedlist>
+      </para>
+      </listitem>
+    </itemizedlist>
+</para>
+
 
 </sect1>
 
