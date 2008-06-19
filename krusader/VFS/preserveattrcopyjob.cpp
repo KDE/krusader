@@ -44,7 +44,7 @@
 #include <ktemporaryfile.h>
 #include <kuiserverjobtracker.h>
 
-#if defined(Q_OS_UNIX) || defined(Q_OS_WIN32)
+#if defined(Q_OS_UNIX) || defined(Q_WS_WIN)
 #include <utime.h>
 #endif
 #include <assert.h>
