@@ -15,7 +15,7 @@ Platforms
 ---------
 * All POSIX (Linux®/BSD/UNIX®-like OSes), Solaris™
 * All BSD Platforms (FreeBSD®/NetBSD®/OpenBSD®/Mac® OS)
-* Windows XP™ (not tested on Vista yet bu should probably work)
+* Windows XP® (not yet tested on Vista but it should work)
 
 
 Installing on Linux® and BSD platforms
@@ -24,9 +24,8 @@ Installing on Linux® and BSD platforms
 Krusader dependencies
 ---------------------
 - c libraries
-- zlib1g-dev    library for implementing the deflate compression method found in gzip and PKZIP
-- kdelibs5      KDE4 core libraries and binaries for all KDE4 applications
-- libkjsembed1  Embedded JavaScript library
+- kdelibs5      (KDE4 core libraries and binaries for all KDE4 applications)
+- libkjsembed1  (Embedded JavaScript library)
   (for the the optional Javascripting function in Krusader) 
 
 
@@ -72,11 +71,13 @@ Compilation requirements
 ------------------------
 The next packages are needed for compiling the Krusader sourcecode, 
 if you only run the Krusader binary you don't need to install these packages.
-- gcc
-- cmake
+- gcc (The GNU C compiler)
+- g++ (The GNU C++ compiler)
+- cmake (A cross-platform, open-source make system)
+- zlib1g-dev (library for implementing the deflate compression method found in gzip and PKZIP)
 - gettext (contains msgfmt)
 - kdelibs5-dev (installs many development libraries for KDE4)
-- libphonon-dev
+- libphonon-dev (libphonon-dev cross-platform multimedia framework development)
 
 
 cmake options
@@ -108,6 +109,8 @@ Compilation will take about 5 to 10 minutes depending on your CPU speed.
 
 $ make
 $ su -c "make install"
+or 
+$ sudo make install
 
 
 Uninstall
@@ -120,7 +123,7 @@ Installing on Mac® OS-X
 http://www.krusader.org/handbook/mac-port.html
 
 
-Installation on Windows™
+Installation on Windows®
 ========================
 http://groups.google.com/group/krusader-devel/browse_thread/thread/3507c5dc7b866845
 
@@ -182,11 +185,7 @@ The output of cmake
 -------------------
 This is the cmake output on Kubuntu 8.04 (KDE 4 Remix)
 
-frank@frank-kubuntu:~/krusader_kde4$ cmake  -DCMAKE_INSTALL_PREFIX=/usr/ -DQT_INCLUDES=/usr/share/qt4/include
--- Check for working C compiler: /usr/bin/gcc
--- Check for working C compiler: /usr/bin/gcc -- works
--- Check size of void*
--- Check size of void* - done
+frank@kubuntu:~/krusader_kde4$ cmake -DCMAKE_INSTALL_PREFIX=/usr -DQT_INCLUDES=/usr/share/qt4/include
 -- Check for working CXX compiler: /usr/bin/c++
 -- Check for working CXX compiler: /usr/bin/c++ -- works
 -- Looking for Q_WS_X11
@@ -240,7 +239,10 @@ frank@frank-kubuntu:~/krusader_kde4$ cmake  -DCMAKE_INSTALL_PREFIX=/usr/ -DQT_IN
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/frank/krusader_kde4
-frank@frank-kubuntu:~/krusader_kde4$
+frank@kubuntu:~/krusader_kde4$
+
+
+
 
 
 FYI
