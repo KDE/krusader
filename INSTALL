@@ -15,7 +15,7 @@ Platforms
 ---------
 * All POSIX (Linux®/BSD/UNIX®-like OSes), Solaris™
 * All BSD Platforms (FreeBSD®/NetBSD®/OpenBSD®/Mac® OS)
-* Windows™
+* Windows XP™ (not tested on Vista yet bu should probably work)
 
 
 Installing on Linux® and BSD platforms
@@ -88,6 +88,18 @@ cmake options
 $ tar -xzvf krusader_kde4.tar.gz
 $ cd  krusader_kde4
 $ cmake  -DCMAKE_INSTALL_PREFIX=/usr/ -DQT_INCLUDES=/usr/share/qt4/include
+
+
+Note:
+We had a problem with cmake-2.4 on Kubuntu 8.04 and probably other distro's as well.
+------------
+CMake Error: CPack welcome resource file:
+"/usr/share/cmake/Templates/CPack.GenericWelcome.txt" could not be found.
+------------
+To fix the error:
+$ sudo mkdir /usr/share/cmake/
+$ sudo ln -s /usr/share/cmake-2.4/Templates /usr/share/cmake/Templates
+
 
 
 Compilation and installation
