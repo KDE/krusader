@@ -28,7 +28,7 @@ PanelViewerBase::PanelViewerBase( QWidget *parent ) :
 QStackedWidget( parent ), mimes( 0 ), cpart( 0 ) {
 	setSizePolicy( QSizePolicy( QSizePolicy::Preferred, QSizePolicy::Ignored ) );
 	
-	mimes = new QHash<QString, KParts::ReadOnlyPart *>();
+	mimes = new QHash<QString, QPointer<KParts::ReadOnlyPart> >();
 	cpart = 0;
 	fallback = new QLabel( i18n( "No file selected or selected file can't be displayed." ), this );
 	fallback->setAlignment( Qt::Alignment( QFlag( Qt::AlignCenter | Qt::TextExpandTabs ) ) );
@@ -40,9 +40,12 @@ QStackedWidget( parent ), mimes( 0 ), cpart( 0 ) {
 PanelViewerBase::~PanelViewerBase() {
 //	cpart->queryClose();
 	closeUrl();
-	QHashIterator< QString, KParts::ReadOnlyPart *> lit( *mimes );
-	while( lit.hasNext() )
-		delete lit.next().value();
+	QHashIterator< QString, QPointer<KParts::ReadOnlyPart> > lit( *mimes );
+	while( lit.hasNext() ) {
+		QPointer<KParts::ReadOnlyPart> p = lit.next().value();
+		if( p )
+			delete p;
+	}
 	mimes->clear();
 	delete mimes;
 	delete fallback;
@@ -89,6 +92,7 @@ KParts::ReadOnlyPart* PanelViewer::openUrl( const KUrl &url, KrViewer::Mode mode
 	}
 	if ( cpart && cpart->openUrl( curl ) ){
 		curl = url; /* needed because of the oldHexViewer */
+		connect( cpart, SIGNAL( destroyed() ), this, SLOT( slotCPartDestroyed() ) );
 		return cpart;
 	}
 	else {
@@ -253,23 +257,29 @@ KParts::ReadOnlyPart* PanelEditor::openUrl( const KUrl &url, KrViewer::Mode mode
 	}
 	
 	if( create ){
-		if( static_cast<KParts::ReadWritePart *>(cpart)->saveAs( curl ) ) return cpart;
+		if( static_cast<KParts::ReadWritePart *>(cpart.data())->saveAs( curl ) ) {
+			connect( cpart, SIGNAL( destroyed() ), this, SLOT( slotCPartDestroyed() ) );
+			return cpart;
+		}
 	}
 	else {
-		if ( cpart->openUrl( curl ) ) return cpart;
+		if ( cpart->openUrl( curl ) ) {
+			connect( cpart, SIGNAL( destroyed() ), this, SLOT( slotCPartDestroyed() ) );
+			return cpart;
+		}
 	}
 	return 0;
 }
 
 bool PanelEditor::queryClose() {
 	if ( !cpart ) return true;
-	return static_cast<KParts::ReadWritePart *>(cpart)->queryClose();
+	return static_cast<KParts::ReadWritePart *>(cpart.data())->queryClose();
 }
 
 bool PanelEditor::closeUrl() {
 	if ( !cpart ) return false;
 	
-	static_cast<KParts::ReadWritePart *>(cpart)->closeUrl( false );
+	static_cast<KParts::ReadWritePart *>(cpart.data())->closeUrl( false );
 	
 	setCurrentWidget( fallback );
 	cpart = 0;
@@ -314,7 +324,7 @@ void PanelEditor::slotStatResult( KJob* job ) {
 }
 
 bool PanelEditor::isModified(){
-	return static_cast<KParts::ReadWritePart *>(cpart)->isModified();
+	return static_cast<KParts::ReadWritePart *>(cpart.data())->isModified();
 }
 
 #include "panelviewer.moc"

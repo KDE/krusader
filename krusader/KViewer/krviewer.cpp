@@ -127,7 +127,6 @@ void KrViewer::createGUI( KParts::Part* part ) {
 	         this, SLOT( slotSetStatusBarText( const QString& ) ) );
 
 	KParts::MainWindow::createGUI( part );
-	toolBar()->addSeparator();
 
 	PanelViewerBase *pvb = getPanelViewerBase( part );
 	if( pvb )
@@ -313,7 +312,8 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 	QIcon icon = QIcon(krLoader->loadIcon(iconName,KIconLoader::Small));
 
 	manager.addPart( part, this );
-	manager.setActivePart( part );
+	if( isValidPart( part ) )
+		manager.setActivePart( part );
 	tabBar.addTab(pvb,icon,url.fileName()+"("+msg+")");	
 	tabBar.setCurrentIndex(tabBar.indexOf(pvb));
 	tabBar.setTabToolTip(tabBar.indexOf( pvb ),msg+": " + url.prettyUrl());
@@ -345,7 +345,8 @@ void KrViewer::tabChanged(QWidget* w){
 	if( w == 0 )
 		return;
 	
-	manager.setActivePart( static_cast<PanelViewerBase*>(w)->part() );
+	if( isValidPart( static_cast<PanelViewerBase*>(w)->part() ) )
+		manager.setActivePart( static_cast<PanelViewerBase*>(w)->part() );
 	
 	if( static_cast<PanelViewerBase*>(w) != returnFocusTab ) {
 		returnFocusTo = 0;
@@ -367,7 +368,8 @@ void KrViewer::tabCloseRequest(QWidget *w){
 	if( !pvb->queryClose() )
 		return;
 		
-	manager.removePart(pvb->part());
+	if( pvb->part() && isValidPart( pvb->part() ) )
+		manager.removePart(pvb->part());
 	
 	pvb->closeUrl();
 	
@@ -457,7 +459,7 @@ void KrViewer::checkModified(){
 	QTimer::singleShot( 1000, this, SLOT(checkModified()) );
 
 	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentWidget() );
-	if( !pvb ) return;
+	if( !pvb || !pvb->part() ) return;
 
 	if( !pvb->part()->url().equals( pvb->url(), KUrl::CompareWithoutTrailingSlash ) ) {
 		pvb->setUrl( pvb->part()->url() );
@@ -506,7 +508,8 @@ void KrViewer::detachTab(){
 
 	KrViewer* viewer = getViewer(true);
 
-	manager.removePart(pvb->part());
+	if( pvb->part() && isValidPart( pvb->part() ) )
+		manager.removePart(pvb->part());
 	tabBar.removePage(pvb);
 	
 	if( tabBar.count() == 1 ) {
@@ -530,7 +533,7 @@ void KrViewer::windowActivationChange ( bool /* oldActive */ ) {
 
 void KrViewer::print() {
 	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentWidget() );
-	if( !pvb ) return;
+	if( !pvb || !pvb->part() ) return;
 	
 	KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject( pvb->part() );
 	if( ext && ext->isActionEnabled( "print" ) )
@@ -539,7 +542,7 @@ void KrViewer::print() {
 
 void KrViewer::copy() {
 	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentWidget() );
-	if( !pvb ) return;
+	if( !pvb || !pvb->part() ) return;
 	
 	KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject( pvb->part() );
 	if( ext && ext->isActionEnabled( "copy" ) )
@@ -568,6 +571,14 @@ void KrViewer::updateActions( PanelViewerBase * pvb ) {
 		toolBar()->addAction( printAction->icon(), printAction->text(), this, SLOT( print() ));
 	if( !hasCopy )
 		toolBar()->addAction( copyAction->icon(), copyAction->text(), this, SLOT( copy() ) );
+}
+
+bool KrViewer::isValidPart( KParts::Part* part) {
+	return manager.parts().contains( part );
+}
+
+void KrViewer::partDestroyed( PanelViewerBase * pvb ) {
+	/* not yet used */
 }
 
 #if 0

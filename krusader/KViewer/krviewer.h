@@ -68,6 +68,7 @@ public slots:
 	void tabURLChanged( PanelViewerBase * pvb, const KUrl &url );
 	void tabCloseRequest(QWidget *w);
 	void tabCloseRequest();
+	void partDestroyed( PanelViewerBase * );
 
 	void nextTab();
 	void prevTab();
@@ -87,6 +88,7 @@ private:
 	void addTab(PanelViewerBase* pvb, QString msg,QString iconName, KParts::Part* part);
 	PanelViewerBase * getPanelViewerBase( KParts::Part* part);
 	void updateActions( PanelViewerBase * base );
+	bool isValidPart( KParts::Part* part);
 	
 	static KrViewer* getViewer(bool new_window);	
 

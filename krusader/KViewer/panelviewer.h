@@ -33,10 +33,14 @@ public slots:
 signals:
 	void openUrlRequest( const KUrl &url );
 	void urlChanged( PanelViewerBase *, const KUrl & );
+	void partDestroyed( PanelViewerBase * );
+
+protected slots:
+	void slotCPartDestroyed() { emit partDestroyed( this ); }
 
 protected:
-	QHash<QString, KParts::ReadOnlyPart*> *mimes;
-	KParts::ReadOnlyPart *cpart;
+	QHash<QString, QPointer<KParts::ReadOnlyPart> > *mimes;
+	QPointer<KParts::ReadOnlyPart> cpart;
 
 	QString cmimetype;
 	KUrl curl;
