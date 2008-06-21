@@ -3,19 +3,20 @@ Krusader installation instructions for KDE 4.x
 
 Note
 ----
-Krusader-2.0 versions and higher are for KDE 4 only and will not work anymore on KDE 3.
+Krusader-2.0 versions and higher are for KDE 4.x only and will not work anymore on KDE 3.x
 
 
 SVN development download
 ------------------------
-You can download the latest available krusader-2.x from SVN with the next command:
+You can download the latest available Krusader-2.x from SVN with the next command:
 $ svn co https://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4
+
 
 Platforms
 ---------
 * All POSIX (Linux®/BSD/UNIX®-like OSes), Solaris™
 * All BSD Platforms (FreeBSD®/NetBSD®/OpenBSD®/Mac® OS)
-* Windows XP® (not yet tested on Vista but it should work)
+* Tested on Windows XP®, not yet tested on Windows Vista® but it should work.
 
 
 Installing on Linux® and BSD platforms
@@ -82,9 +83,15 @@ if you only run the Krusader binary you don't need to install these packages.
 
 cmake options
 -------------
--DCMAKE_INSTALL_PREFIX is the location of the KDE DQT_INCLUDES
--DCMAKE_INSTALL_PREFIX=/usr/ is the location where Krusader will be 
-                             installed with the make command
+-DQT_INCLUDES=/usr/share/qt4/include
+ is the location of the QT4 includes
+
+-DCMAKE_INSTALL_PREFIX=/usr/
+ is the location where Krusader will be installed with the make command.
+ An other example is: -DCMAKE_INSTALL_PRFIX=/opt/krusader
+ to install the compiled Krusader in an other directory to not overwrite
+ the Krusader version installed by your package manager. 
+
 
 $ tar -xzvf krusader_kde4.tar.gz
 $ cd  krusader_kde4
@@ -116,16 +123,24 @@ $ sudo make install
 Uninstall
 ---------
 $ su -c "make uninstall"
+or
+$ sudo make uninstall
+
 
 
 Installing on Mac® OS-X
 =======================
+TODO: instructions for Krusader-2.x for KDE4.x
+
+The next url explains howto install Krusader-1.x for KDE3
 http://www.krusader.org/handbook/mac-port.html
 
 
 Installation on Windows®
 ========================
-http://groups.google.com/group/krusader-devel/browse_thread/thread/3507c5dc7b866845
+It's the first time that Krusader compiles on Windows®,
+some work is needs to be done to make it usable on the Windows® platform.
+All feedback is welcome!
 
 - Install the KDE installer http://winkde.org/pub/kde/ports/win32/installer/
   (tested with version 0.9.2). See also http://windows.kde.org/
@@ -171,6 +186,8 @@ http://groups.google.com/group/krusader-devel/browse_thread/thread/3507c5dc7b866
 - Run make from mingw:
   C:\MinGW\bin\mingw32-make.exe install
 
+- Run krusader.exe and enjoy!
+
 - Known severe run-time problems on windows at the moment (19 Jun 2008):
   + Konfigurator crashes (launched even in the first run)
   + Slow start before the splashscreen appears
@@ -186,6 +203,10 @@ The output of cmake
 This is the cmake output on Kubuntu 8.04 (KDE 4 Remix)
 
 frank@kubuntu:~/krusader_kde4$ cmake -DCMAKE_INSTALL_PREFIX=/usr -DQT_INCLUDES=/usr/share/qt4/include
+-- Check for working C compiler: /usr/bin/gcc
+-- Check for working C compiler: /usr/bin/gcc -- works
+-- Check size of void*
+-- Check size of void* - done
 -- Check for working CXX compiler: /usr/bin/c++
 -- Check for working CXX compiler: /usr/bin/c++ -- works
 -- Looking for Q_WS_X11
@@ -240,7 +261,6 @@ frank@kubuntu:~/krusader_kde4$ cmake -DCMAKE_INSTALL_PREFIX=/usr -DQT_INCLUDES=/
 -- Generating done
 -- Build files have been written to: /home/frank/krusader_kde4
 frank@kubuntu:~/krusader_kde4$
-
 
 
 
