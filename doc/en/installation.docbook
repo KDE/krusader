@@ -504,13 +504,10 @@ distros will probably use similar names.</para>
         <para>kdiff3: compares and merges 2 or 3 files or directories</para>
       </listitem>
       <listitem>
-        <para>OR kompare: a KDE GUI for viewing differences between files </para>
+        <para>OR kompare: a KDE GUI for viewing differences between files</para>
       </listitem>
       <listitem>
-        <para>OR kompare: a KDE GUI for viewing differences between files </para>
-      </listitem>
-      <listitem>
-        <para>kompare: a KDE GUI for viewing differences between files </para>
+        <para>OR xxdiff: a graphical file and directories comparison and merge tool</para>
       </listitem>
       <listitem>
         <para>khexedit: KDE hex editor</para>
@@ -603,7 +600,15 @@ if you only run a Krusader binary you don't need these packages.</para>
 <sect1 id="kde4_lin_install">
    <title>Installing on Linux and BSD platforms</title>
 
-<para><command>DCMAKE_INSTALL_PREFIX</command> is the location of the KDE DQT_INCLUDES</para>
+<para><command>-DQT_INCLUDES=/usr/share/qt4/include</command> is the location of the QT4 includes</para>
+
+<para><command>-DCMAKE_INSTALL_PREFIX=/usr/</command> is the location where Krusader will be 
+      installed with the make command.</para>
+ 
+<para>An other example is: <command>-DCMAKE_INSTALL_PRFIX=/opt/krusader</command>
+      to install the compiled Krusader in an other directory to not overwrite
+      the Krusader version installed by your package manager.</para>
+
 <para>
     <screen>
       <prompt>$</prompt> <userinput><command>tar -xzvf</command> <option>krusader_kde4.tar.gz</option></userinput>
@@ -634,6 +639,11 @@ if you only run a Krusader binary you don't need these packages.</para>
    <title>Installing on the Windows platform</title>
 
 <para>Tested on &Windows; XP, not yet tested on &Windows; Vista but it should work.</para>
+
+<para>It's the first time that Krusader compiles on &Windows;,
+      some work needs to be done to make Krusader stable and usable on the &Windows; platform.
+      All feedback is welcome!</para>
+
 <para>
     <itemizedlist>
       <listitem>
@@ -691,10 +701,13 @@ if you only run a Krusader binary you don't need these packages.</para>
               <filename>C:\MinGW\bin\mingw32-make.exe install</filename></para>
       </listitem>
       <listitem>
+        <para>Run <filename>krusader.exe</filename> and enjoy!</para>
+      </listitem>
+      <listitem>
         <para>Known severe run-time problems on windows at the moment (19 Jun 2008):
         <itemizedlist>
           <listitem>
-           <para>Konfigurator (launched even in the first run)</para>
+           <para>Konfigurator crashes (launched even in the first run)</para>
          </listitem>
           <listitem>
            <para>Slow start before the splashscreen appears</para>
