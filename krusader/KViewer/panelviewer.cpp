@@ -257,7 +257,7 @@ KParts::ReadOnlyPart* PanelEditor::openUrl( const KUrl &url, KrViewer::Mode mode
 	}
 	
 	if( create ){
-		if( static_cast<KParts::ReadWritePart *>(cpart.data())->saveAs( curl ) ) {
+		if( static_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->saveAs( curl ) ) {
 			connect( cpart, SIGNAL( destroyed() ), this, SLOT( slotCPartDestroyed() ) );
 			return cpart;
 		}
@@ -273,13 +273,13 @@ KParts::ReadOnlyPart* PanelEditor::openUrl( const KUrl &url, KrViewer::Mode mode
 
 bool PanelEditor::queryClose() {
 	if ( !cpart ) return true;
-	return static_cast<KParts::ReadWritePart *>(cpart.data())->queryClose();
+	return static_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->queryClose();
 }
 
 bool PanelEditor::closeUrl() {
 	if ( !cpart ) return false;
 	
-	static_cast<KParts::ReadWritePart *>(cpart.data())->closeUrl( false );
+	static_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->closeUrl( false );
 	
 	setCurrentWidget( fallback );
 	cpart = 0;
@@ -324,7 +324,7 @@ void PanelEditor::slotStatResult( KJob* job ) {
 }
 
 bool PanelEditor::isModified(){
-	return static_cast<KParts::ReadWritePart *>(cpart.data())->isModified();
+	return static_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->isModified();
 }
 
 #include "panelviewer.moc"
