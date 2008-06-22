@@ -823,8 +823,9 @@ void ListPanelFunc::pack() {
 	else {
 		tempDestFile = new KTemporaryFile();
 		tempDestFile->setSuffix( QString(".") + PackGUI::type );
-		tempDestFile->open(); tempDestFile->close(); // nessesary to create the filename
+		tempDestFile->open();
 		arcFile = tempDestFile->fileName();
+		tempDestFile->close(); // nessesary to create the filename
 		QFile::remove
 			( arcFile );
 	}
