@@ -1,50 +1,109 @@
-Codebase in sync with the KDE3 2.00.0-beta1 release
-====================================================
-
-    PORTED: Krusader to KDE4
+2.0.0-beta1 "Phoenix Egg"
+=========================
 
     ADDED: [ 1962519 ] searching by regexp
     ADDED: [ 1172426 ] loading user defined folder icons (can be turned off)
-    ADDED: posibility to remove default useractions
-    ADDED: thunderbird can be used as the default e-mail sender
-    ADDED: sending more than one file in e-mail is possible
-    ADDED: submenus for categories in UserAction menu and context menu
-    ADDED: character encoding for content search
-    ADDED: select remote encoding for krarc
-    ADDED: new synchronizer shortcuts for modifying the synchronizer tasks
-    ADDED: credit for Václav in the about box
+    ADDED: Posibility to remove default useractions
+    ADDED: Thunderbird can be used as the default e-mail sender
+    ADDED: Sending more than one file in e-mail is possible
+    ADDED: Submenus for categories in UserAction menu and context menu
+    ADDED: Character encoding for content search
+    ADDED: Select remote encoding for krarc
+    ADDED: New synchronizer shortcuts for modifying the synchronizer tasks
 
+     ARCH: Ported to KDE4!
+     ARCH: Removed all dependencies to the Qt3 support libs
+     ARCH: Codebase in sync with last KDE3 release (krusader-1.90.0)
+     ARCH: Added experimental support for the Windows platform
+    
     FIXED: [ 1506205 ] krviewer crash at urls with non-existing redirection
     FIXED: [ 1854760 ] [ 1516619 ] inconsistent search
     FIXED: [ 1920084 ] kdiff3 is allowed to handle remote URL-s
     FIXED: [ 1638817 ] toolbar loses orientation when modified
     FIXED: [ 1578310 ] can't open ISO image by symbolic link
-    FIXED: enabled KRename on remote files
+    FIXED: Enabled KRename on remote files
     FIXED: Right arrow in the detailed view can now go even inside iso files
     FIXED: Konfigurator: Dependency lists are now scrollable
     FIXED: Filter: Don't list comments in user/group chooser
-
-    REMOVED: Clear location button (In KDE4 it is part of the KLineEdit).
-           Thanks Fathi Boudra for the patch.
-
-    I18N: Updated Ukrainian translation (thanks to Yuri Chornoivan)
-    I18N: Updated French translation (thanks Tourneur Henry-Nicolas)
-
-Codebase in sync with the KDE3 1.90.0 release "Power Stone"
-===========================================================
-
     FIXED: Current working directory not returned in populateVfsList
     FIXED: Eject DVD with right-click menu
-    FIXED: Actionman, sometimes the command field is empty (the text was rolled),
-    FIXED: GCC 4.3: missing #includes thanks to Fathi Boudra
+    FIXED: Actionman, sometimes the command field is empty (the text was rolled)
+    FIXED: GCC 4.3: missing #includes (thanks to Fathi Boudra)
+    FIXED: Searcher doesn't always find content in binary files
+    FIXED: [ 1619452 ] Profile doesn't save status of sync-browse mode
+    FIXED: [ 1681270 ] right clicking pops context menu immediately
+    FIXED: [ 1645179 ] shortcut keys are not sent to the terminal
+    FIXED: [ 1736496 ] always sort dirs by name not working
+
+     I18N: Merged krarc.pot and iso.pot into krusader.pot (thanks Vaclav Juza)
+     I18N: Updated Hungarian translation
+     I18N: Updated French translation (thanks Henry Nicolas)
+     I18N: Fixed [ 1725003 ] bad spanish translation
+     I18N: Fixed untranslatable strings (thanks Vaclav Juza)
+     I18N: Updated Ukrainian translation (thanks Yuri Chornoivan)
+     I18N: Updated Catalan translation (thanks Joaquim Perez)
+     I18N: Updated French translation (thanks Tourneur Henry-Nicolas)
+
+  REMOVED: Clear location button (in KDE4 it is part of the KLineEdit)
+           (thanks Fathi Boudra)
+
+
+1.90.0 "Power Stone"
+====================
+
+    ADDED: Useraction, Unpack multiple zip archives
+           (thanks Ernest Beinrohr [OERNii] and Jonas)
+    ADDED: Useraction, uuencode and uudecode (thanks Andrew Svet)
+    ADDED: Useraction, Unpack current tar.7z
+    ADDED: Useraction, tar.7z selected files
+    ADDED: Useraction, Unpack current tar.lzma
+    ADDED: Useraction, tar.lzma selected files
+    ADDED: Useraction, Unpack current lzma
+    ADDED: Useraction, Lzma current file
+    ADDED: Useraction, 7zip current (thanks Vaclav Juza)
+    ADDED: Javascript useraction, select from file
+    ADDED: Useraction, tar.gz selected files (thanks Fathi Boudra)
+    ADDED: Useraction, gzip current (thanks Vaclav Juza)
+    ADDED: Useraction, Eject cd/dvd (thanks Andrew Svet)
+    ADDED: Javascript useraction, calculator
+    ADDED: Javascript useraction, Mount as root
+    ADDED: Javascript useraction, Recode files using GNU recode
+           (thanks Vaclav Juza)
+    ADDED: Javascript useraction, Recode files using iconv
+           (thanks Vaclav Juza)
+    ADDED: Useraction, (Un)Pack an ar archive (.a, .deb,...)
+           (thanks Vaclav Juza)
+    ADDED: Useraction, Verify signature with kgpg
+    ADDED: Useraction, Sign with kgpg
+    ADDED: Useraction, Decrypt with kgpg
+    ADDED: Useraction, Encrypt with kgpg
+    ADDED: Useraction, Split large mp3 (thanks Andrew Svet) 
+    ADDED: Useraction, Archive to Dir
+    ADDED: Useraction, Copy as root (thanks Andrew Svet and MaxiPunkt)
+    ADDED: Useraction, Unmount (thanks Stefan Endrullis)
+    ADDED: Useraction, Search and Replace in file
+    ADDED: Midnight commander keymap (thanks Alejandro Hamann)
+    ADDED: Alpa-yellow color scheme (thanks Aldo Palmeri [alpa])
+    ADDED: Bash color scheme (thanks Alejandro Hamann)
+    ADDED: Improved midnight commander color scheme (thanks Alejandro Hamann)
+    ADDED: Pleasent total commander color scheme
+    ADDED: DOS Navigator color scheme (thanks to Vovan [Koqep])
+
+    FIXED: Useractions, after pwd command current workdir was not changed
+           (thanks Vaclav Juza )
+    FIXED: Eject DVD with right-click menu
+    FIXED: Actionman, sometimes the command field is empty,
+           (thanks Vaclav Juza)
+    FIXED: GCC 4.3: missing #includes (thanks Fathi Boudra)
+    FIXED: krpermhandler.cpp didn't compile on kde 3.2.x
 
      I18N: Updated Catalan translation (thanks Joaquim Perez)
      I18N: Updated French translation (thanks Tourneur Henry-Nicolas)
 
 
-Codebase in sync with the KDE3 1.80.0 release "Final 3rd Stone"
-===============================================================
-
+1.80.0 "Final 3rd Stone"
+========================
+    
     FIXED: searcher doesn't always find content in binary files
     FIXED: [ 1619452 ] Profile doesn't save status of sync-browse mode
     FIXED: [ 1681270 ] right clicking pops context menu immediately
@@ -54,10 +113,6 @@ Codebase in sync with the KDE3 1.80.0 release "Final 3rd Stone"
      I18N: Updated Hungarian translation
      I18N: Updated French translation (thanks Henry Nicolas)
      I18N: Fixed [ 1725003 ] bad spanish translation
-
-Branched of KDE4 development
-============================
-
      I18N: Fixed untranslatable strings, patch by Vaclav Juza, thanks
 
 
