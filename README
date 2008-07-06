@@ -1,53 +1,30 @@
 Krusader-2.0.0-beta1 "Phoenix Egg"
 ==================================
-Well, here we are!
+The Krew is proud to present the first KDE4 release of your favourite file
+manager! This beta is all about porting, all dependencies to the Qt3 support
+libs have been removed. This is also the first release that comes with 
+experimental support for the Windows platform. Who thought that day will ever
+come?
 
-The Krew is proud to present the first beta release of the Krusader2 
-release generation for the KDE4.x.
-We have left the solid third stone and have landed on the fourth stone
-to start exploring new possibilties ;)
-The first big possibility is already available, this tarball can 
-be compiled and installed on Windows!
+Even though this release contains some new features our main focus is to create
+a stable KDE4 version. Overall the release is usable but surely contains bugs
+that haven't been present in prior versions. Please provide us bug reports,
+feedback and patches to make it as solid as the KDE3 version. Many thanks to
+everyone who supported us in the porting process!
 
-This release is usable but contains some bugs on the *nix platforms. 
-Please provide us bugreports, feedback and patches to hunt the bugs down!
+The highlights of this release are:
 
-It's the first time that Krusader compiles on Windows,
-some work needs to be done to make it usable on the Windows platform.
-All feedback is welcome!
-
-Our first goal is to make Krusader-2.0 stable. New features are for
-afterwards, though small improvements are already added in this release.
-
-Many thanks to everyone who has helped to port Krusader from KDE3 to KDE4!
-
-New features in this release:
-# ported to Windows!
-
-# Krusader is able to send e-mails by thunderbird
-- one can set up thunderbird as an e-mail sender in the dependencies
-- from now more than one file can be sent in an attachment
-
-# For content searching (searcher, advanced selection, synchronizer),
-  the content encoding can be given.
-
-# Select remote encoding for krarc
-- the file name encoding for zip, rar, arj, lha can be set from now
-- as 7z always uses UTF-16, remote encoding will not work for 7z
-- it's imporant because zip files that were created on Windows can
-have different encoding
-
-#  New synchronizer shortcuts
-- CTRL + W : reverse direction
-- ALT + Down : exclude
-- ALT + Up : restore original task
-- ALT + Left : copy to left
-- ALT + Right : copy to right
-- ALT + Delete : mark for delete
+- Ported to KDE4 not using any of the Qt3 support libs
+- Experimental support for the Windows platform
+- Send emails with Thunderbird
+- Attach multiple files to emails
+- Submenus for categories in UserAction menu and context menu
+- Select encoding in content search and krarc
+- New synchronizer shortcuts
 
 
 Notice: if you've got bugs to report, please do so using Krusader's
-       website, and not using KDE's bugzilla (bugs.kde.org).
+        website, and not using KDE's bugzilla (bugs.kde.org).
 
             as always, enjoy
                  Krusader Krew.
@@ -83,8 +60,8 @@ http://krusader.org/handbook/faq.html
 
 
 
-To checkout the Krusader-2.x for KDE4 from svn:
-===============================================
+To checkout Krusader-2.x for KDE4 from svn:
+===========================================
 $ svn co https://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4
   
 
