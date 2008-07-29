@@ -80,6 +80,7 @@ ActionProperty::ActionProperty( QWidget *parent, KrAction *action )
    connect( bgExecType, SIGNAL( clicked(int) ), SLOT( setModified() ) );
    connect( bgAccept, SIGNAL( clicked(int) ), SLOT( setModified() ) );
    connect( KeyButtonShortcut, SIGNAL( keySequenceChanged(const QKeySequence&) ), SLOT( setModified() ) );
+   connect( chkEnabled, SIGNAL( clicked() ), SLOT( setModified() ) );
    connect( leDifferentUser, SIGNAL( textChanged(const QString&) ), SLOT( setModified() ) );
    connect( chkDifferentUser, SIGNAL( clicked() ), SLOT( setModified() ) );
    connect( chkConfirmExecution, SIGNAL( clicked() ), SLOT( setModified() ) );
@@ -119,6 +120,8 @@ void ActionProperty::clear() {
    radioNormal->setChecked( true );
 
    radioLocal->setChecked( true );
+   
+   chkEnabled->setChecked( true );
 
    chkConfirmExecution->setChecked( false );
 
@@ -170,6 +173,9 @@ void ActionProperty::updateGUI( KrAction *action ) {
    case KrAction::Terminal:
       radioTerminal->setChecked( true );
       break;
+   case KrAction::RunInTE:
+      radioTE->setChecked( true );
+      break;
    default: // case KrAction::Normal:
       radioNormal->setChecked( true );
       break;
@@ -179,6 +185,8 @@ void ActionProperty::updateGUI( KrAction *action ) {
       radioUrl->setChecked( true );
    else
       radioLocal->setChecked( true );
+   
+   chkEnabled->setChecked( _action->isVisible() );
 
    chkConfirmExecution->setChecked( _action->confirmExecution() );
 
@@ -257,6 +265,8 @@ void ActionProperty::updateAction( KrAction *action ) {
       _action->setExecType( KrAction::CollectOutput );
    else if ( radioTerminal->isChecked() )
       _action->setExecType( KrAction::Terminal );
+   else if ( radioTE->isChecked() )
+      _action->setExecType( KrAction::RunInTE );
    else
       _action->setExecType( KrAction::Normal );
 
@@ -264,6 +274,9 @@ void ActionProperty::updateAction( KrAction *action ) {
       _action->setAcceptURLs( true );
    else
       _action->setAcceptURLs( false );
+   
+   _action->setEnabled( chkEnabled->isChecked() );
+   _action->setVisible( chkEnabled->isChecked() );
 
    _action->setConfirmExecution( chkConfirmExecution->isChecked()  );
 

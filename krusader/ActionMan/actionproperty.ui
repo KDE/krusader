@@ -389,7 +389,20 @@ Please consult the handbook to learn more about the syntax.</string>
          </item>
         </layout>
        </item>
-       <item rowspan="2" row="9" column="0" colspan="2" >
+       <item row="11" column="2" colspan="2" >
+        <widget class="QCheckBox" name="chkEnabled" >
+        <property name="enabled" >
+          <bool>true</bool>
+        </property>
+        <property name="whatsThis" >
+          <string>If not checked, the action is not shown in the menus.</string>
+        </property>
+        <property name="text" >
+          <string>Enabled</string>
+        </property>
+        </widget>
+       </item>
+       <item rowspan="3" row="9" column="0" colspan="2" >
         <widget class="KButtonGroup" name="bgExecType" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
@@ -401,7 +414,7 @@ Please consult the handbook to learn more about the syntax.</string>
           <string>Execution mode</string>
          </property>
          <layout class="QGridLayout" >
-          <item row="2" column="0" >
+          <item row="3" column="0" >
            <widget class="QRadioButton" name="radioCollectOutput" >
             <property name="whatsThis" >
              <string>Collect the output of the executed program.</string>
@@ -411,7 +424,7 @@ Please consult the handbook to learn more about the syntax.</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0" >
+          <item row="4" column="0" >
            <widget class="QCheckBox" name="chkSeparateStdError" >
             <property name="enabled" >
              <bool>false</bool>
@@ -441,6 +454,16 @@ Please consult the handbook to learn more about the syntax.</string>
             </property>
             <property name="text" >
              <string>Run in terminal</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" >
+           <widget class="QRadioButton" name="radioTE" >
+            <property name="whatsThis" >
+             <string>Run the command in the embedded terminal emulator.</string>
+            </property>
+            <property name="text" >
+             <string>Run in the embedded terminal emulator</string>
             </property>
            </widget>
           </item>

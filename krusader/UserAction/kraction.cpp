@@ -413,6 +413,13 @@ bool KrAction::xmlRead( const QDomElement& element ) {
 
    setName( element.attribute( "name" ).toLatin1() );
 */
+   QString attr;
+
+   attr = element.attribute( "enabled", "true" ); // default: "true"
+   if ( attr == "false" ) {
+      setEnabled( false );
+      setVisible( false );
+   }
 
    for ( QDomNode node = element.firstChild(); !node.isNull(); node = node.nextSibling() ) {
       QDomElement e = node.toElement();
@@ -459,6 +466,10 @@ bool KrAction::xmlRead( const QDomElement& element ) {
 QDomElement KrAction::xmlDump( QDomDocument& doc ) const {
    QDomElement actionElement = doc.createElement("action");
    actionElement.setAttribute( "name", _name );
+   
+   if ( ! isVisible() ) {
+      actionElement.setAttribute( "enabled", "false" );
+   }
 
 #define TEXT_ELEMENT( TAGNAME, TEXT ) \
    { \
