@@ -629,14 +629,36 @@ if you only run a Krusader binary you don't need these packages.</para>
 </sect1>
 
 <sect1 id="kde4_mac_install">
-   <title>Installing on the MAC platform</title>
+   <title>Installing on the &MacOS;-X platform</title>
 
-<para><link linkend="mac-port">KDE3 install instructions</link> (FIXME)</para>
+   <itemizedlist>
+      <listitem>
+        <para>Follow the install guidelines of 
+              <ulink url="http://techbase.kde.org/Getting_Started/Build/KDE4/Mac_OS_X">techbase.kde.org</ulink></para>
+      </listitem>
+      <listitem>
+        <para>Install the dependencies (including cmake) with  
+              <ulink url="http://www.finkproject.org/">Fink</ulink>.</para>
+      </listitem>
+      <listitem>
+        <para>Install the &Qt;-4 binaries available from  
+              <ulink url="http://mac.kde.org/">mac.kde.org</ulink></para>
+      </listitem>
+      <listitem>
+        <para>Once kdelibs and it's dependencies are up and running.
+        </para>
+      </listitem>
+      <listitem>
+        <para>Proceed with the step of techbase.kde.org
+              "# Setting_Up_Your_Build_Environment" and 
+              "# Building_kdelibs" (here replacing "kdelibs" by "Krusader" ;-)).</para>
+      </listitem>
+   </itemizedlist>
 
 </sect1>
 
 <sect1 id="kde4_win_install">
-   <title>Installing on the Windows platform</title>
+   <title>Installing on the &Windows; platform</title>
 
 <para>Tested on &Windows; XP, not yet tested on &Windows; Vista but it should work.</para>
 

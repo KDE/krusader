@@ -19,8 +19,8 @@ Platforms
 * Tested on Windows XP®, not yet tested on Windows Vista® but it should work.
 
 
-Installing on Linux® and BSD platforms
-======================================
+Installation on Linux® and BSD platforms
+========================================
 
 Krusader dependencies
 ---------------------
@@ -94,7 +94,7 @@ cmake options
 
 
 $ tar -xzvf krusader_kde4.tar.gz
-$ cd  krusader_kde4
+$ cd krusader_kde4
 $ cmake  -DCMAKE_INSTALL_PREFIX=/usr/ -DQT_INCLUDES=/usr/share/qt4/include
 
 
@@ -128,12 +128,22 @@ $ sudo make uninstall
 
 
 
-Installing on Mac® OS-X
-=======================
-TODO: instructions for Krusader-2.x for KDE4.x
+Installation on Mac® OS-X
+=========================
+Follow the next guidelines 
+http://techbase.kde.org/Getting_Started/Build/KDE4/Mac_OS_X
 
-The next url explains howto install Krusader-1.x for KDE3
-http://www.krusader.org/handbook/mac-port.html
+Install the dependencies (including cmake) with Fink
+http://www.finkproject.org/
+
+Install the Qt-4 binaries available from
+http://mac.kde.org/
+
+Once kdelibs and it's dependencies are up and running.
+
+Proceed with the step of techbase.kde.org
+"#Setting_Up_Your_Build_Environment" and 
+"#Building_kdelibs" (here replacing "kdelibs" by "krusader" ;-))
 
 
 Installation on Windows®
