@@ -86,11 +86,13 @@
    <Action name="set_jump_back" />
    <Action name="jump_back" />
   </Menu>
-  <Menu name="useractionmenu" >
+  <Action name="useractionmenu">
+   <!--
    <text>User&amp;actions</text>
    <Action name="manage useractions" />
    <Separator/>
-  </Menu>
+   -->
+  </Action>
   <Menu name="_tools" ><!-- FIXME tools menu won't show up before the options menu, but does when the name attribute is renamed?! -->
    <text>&amp;Tools</text>
    <Action name="find" />

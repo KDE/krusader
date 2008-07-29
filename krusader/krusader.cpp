@@ -760,6 +760,9 @@ void Krusader::setupActions() {
 #if 0
    actUserMenu = new KAction( i18n( "User Menu" ), ALT + Qt::Key_QuoteLeft, SLOTS,
                               SLOT( userMenu() ), actionCollection(), "user menu" );
+#else
+   actUserMenu = new KActionMenu( i18n( "User&actions" ), this);
+   actionCollection()->addAction( "useractionmenu", actUserMenu );
 #endif
    NEW_KACTION(actManageUseractions, i18n( "Manage User Actions..." ), 0, 0, SLOTS, SLOT( manageUseractions() ), "manage useractions" );
    
@@ -1044,21 +1047,12 @@ void Krusader::stopWait() {
 }
 
 void Krusader::updateUserActions() {
-   userActionMenu = (KMenu*) guiFactory()->container( "useractionmenu", this );
+   KActionMenu *userActionMenu = (KActionMenu *) actUserMenu;
    if ( userActionMenu )
    {
-      bool hasManageActs = false;
-      QList<QAction *> acts = userActionMenu->actions();
-      foreach( QAction * act, acts ) {
-         if( act->objectName() == "manage useractions" ) {
-            hasManageActs = true;
-            break;
-         }
-      }
+      userActionMenu->menu()->clear();
 
-      if( !hasManageActs )
-         userActionMenu->addAction( krApp->actManageUseractions );
-
+      userActionMenu->addAction( krApp->actManageUseractions );
       userActionMenu->addSeparator();
       userAction->populateMenu( userActionMenu, NULL );
    }

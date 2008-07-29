@@ -13,11 +13,13 @@
 #include "useractionpopupmenu.h"
 
 #include <kurl.h>
+#include <klocale.h>
 
 #include "../krusader.h"
 #include "useraction.h"
 #include "kraction.h"
 
-UserActionPopupMenu::UserActionPopupMenu( const KUrl &currentURL, QWidget *parent ) : KMenu( parent ) {
+UserActionPopupMenu::UserActionPopupMenu( const KUrl &currentURL, QWidget *parent )
+  : KActionMenu( i18n("User Actions"), parent ) {
    krUserAction->populateMenu( this, &currentURL );
 }

@@ -118,7 +118,8 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
    }
 	
 	// --------------- user actions
-   QAction *uAct = addMenu( new UserActionPopupMenu( panel->func->files()->vfs_getFile( item->name() ).url() ) );
+   QAction *uAct = new UserActionPopupMenu( panel->func->files()->vfs_getFile( item->name() ).url() );
+   addAction( uAct );
    uAct->setText( i18n("User Actions") );
    for ( KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it ) {
 		vfile *file = panel->func->files()->vfs_search(((*it)->name()));

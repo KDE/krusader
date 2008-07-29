@@ -13,6 +13,7 @@
 #include <kdebug.h>
 #include <kurl.h>
 #include <kactioncollection.h>
+#include <kactionmenu.h>
 #include <kmenu.h>
 #include <kstandarddirs.h>
 #include <kmessagebox.h>
@@ -62,10 +63,10 @@ void UserAction::setAvailability( const KUrl& currentURL ) {
    }
 }
 
-void UserAction::populateMenu( KMenu* menu, const KUrl *currentURL ) {
+void UserAction::populateMenu( KActionMenu* menu, const KUrl *currentURL ) {
    // I have not found any method in Qt/KDE
    // for non-recursive searching of childs by name ...
-   QMap<QString, KMenu *> categoryMap;
+   QMap<QString, KActionMenu *> categoryMap;
    QList<KrAction *> uncategorised;
    
    foreach( KrAction* action, _actions )
@@ -83,21 +84,20 @@ void UserAction::populateMenu( KMenu* menu, const KUrl *currentURL ) {
       {
          if (! categoryMap.contains( category ) )
          {
-            KMenu *categoryMenu = new KMenu();
-            categoryMenu->setTitle( category ); // use i18n in the future?
+            KActionMenu *categoryMenu = new KActionMenu( category, menu );
             categoryMenu->setObjectName( category );
             categoryMap.insert( category, categoryMenu );
          }
-         KMenu *targetMenu = categoryMap.value( category );
+         KActionMenu *targetMenu = categoryMap.value( category );
          targetMenu->addAction( action );
       }
    }
    
-   QMapIterator<QString, KMenu *> mapIter(categoryMap);
+   QMutableMapIterator<QString, KActionMenu *> mapIter(categoryMap);
    while ( mapIter.hasNext() )
    {
       mapIter.next();
-      menu->addMenu( mapIter.value() );
+      menu->addAction( mapIter.value() );
    }
    
    foreach ( KrAction* action, uncategorised )
