@@ -611,7 +611,7 @@ void KrAction::readAvailability( const QDomElement& element ) {
 } //KrAction::readAvailability
 
 QDomElement KrAction::dumpAvailability( QDomDocument& doc ) const {
-   QDomElement availabilityElement = doc.createElement("command");
+   QDomElement availabilityElement = doc.createElement("availability");
 
 # define LIST_ELEMENT( TAGNAME, LIST ) \
    { \
