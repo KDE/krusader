@@ -15,7 +15,9 @@ $ svn co https://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kd
 Platforms
 ---------
 * All POSIX (Linux®/BSD/UNIX®-like OSes), Solaris™
-* All BSD Platforms (FreeBSD®/NetBSD®/OpenBSD®/Mac® OS)
+* All BSD Platforms (FreeBSD®/NetBSD®/OpenBSD®)
+* Tested on Mac® OS X 10.4 "Tiger" on ppc, should work on all versions and
+  architectures  supported by KDE.
 * Tested on Windows XP®, not yet tested on Windows Vista® but it should work.
 
 
@@ -128,22 +130,76 @@ $ sudo make uninstall
 
 
 
-Installation on Mac® OS-X
+Installation on Mac® OS X
 =========================
-Follow the next guidelines 
-http://techbase.kde.org/Getting_Started/Build/KDE4/Mac_OS_X
+With KDE-4 Krusader runs natively on Mac OS X, using it's Aqua user interface
+(No more X11 needed!).
 
-Install the dependencies (including cmake) with Fink
-http://www.finkproject.org/
+Install the required libs and tools
+-----------------------------------
+Install CMake from http://cmake.org/ and allow the installer to create symlinks
+the to command line tools
 
-Install the Qt-4 binaries available from
-http://mac.kde.org/
+Install KDE binaries available from http://mac.kde.org/
+You need at least kdelibs, better kdebase-runtime, and all its dependencies.
 
-Once kdelibs and it's dependencies are up and running.
+Setup the build envorinment
+---------------------------
+These packages install KDE-4 in /opt/kde4, Qt-4 in /opt/qt4 and all the unix
+dependencies in /opt/kde4-deps. These paths need to become part of your
+environment:
 
-Proceed with the step of techbase.kde.org
-"#Setting_Up_Your_Build_Environment" and 
-"#Building_kdelibs" (here replacing "kdelibs" by "krusader" ;-))
+$ export PATH="/opt/qt4/bin:/opt/kde4/bin:/opt/kde4-deps/bin:$PATH"
+$ export CMAKE_LIBRARY_PATH="/opt/kde4-deps/lib"
+$ export CMAKE_INCLUDE_PATH="/opt/kde4-deps/include"
+$ export PKG_CONFIG_PATH="/opt/qt4/lib/"
+
+Build Krusader using GNU make
+-----------------------------
+Now you can proceed with the standard unix build process for Krusader. Note
+that we create a build directory with the suffix ".build" for the compiled
+objects. This tells Spotlight not to index the content of this directory.
+
+$ tar -xzvf krusader_kde4.tar.gz
+$ mkdir krusader.build
+$ cd krusader.build
+$ cmake ../krusader_kde4 -DCMAKE_INSTALL_PREFIX=/opt/kde4/
+$ make
+$ sudo make install
+
+Now you should have a working Krusader.app instide /opt/kde4/bin. See below
+how to create a relocatable aplication bundle.
+
+Build Krusader using XCode
+--------------------------
+An other method is to use Apple's IDE XCode to build Krusader. You have to
+install the Apple Developer Tools and change the commands above to:
+
+$ tar -xzvf krusader_kde4.tar.gz
+$ mkdir krusader_xcode
+$ cd krusader_xcode
+$ cmake ../krusader_kde4 -G Xcode
+$ open Project.xcodeproj
+
+Please consult the XCode manual for details about how to proceed. Any feetback
+is wellcome, since we have no XCode gugu in our team ;-)
+
+Create a relocatable application bundle
+---------------------------------------
+To create a Krusader.app which has all resources embedded (like icons and stuff)
+tell cmake to use an empty directory as installation prefix, let's say /opt/tmp.
+Now build and install Krusader normaly, which should result in a /opt/tmp/share/
+directory. Move this dir into Krusader.app:
+
+$ mv /opt/tmp/share /opt/tmp/bin/Krusader.app/Contents/
+
+As of KDE-4.1 Krusader.app should find it's resources this way as
+"<self>.app/Contents/" is added as possible KDEDIR. If you really need an older
+version of KDE-4, you have to use a wrapper script as described a mail from
+Jonas Bähr to the kde-mac mailing list on 2008-02-03.
+
+We hope to integrate this resource bundling into the normal build process for
+future versions.
 
 
 Installation on Windows®
