@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-1.80.03 2007-05-08\n"
+"Project-Id-Version: Krusader-doc-2.0.0-2 2008-08-03\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2007-05-08 20:27+0000\n"
+"POT-Creation-Date: 2008-08-03 20:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -37,1691 +37,1697 @@ msgstr ""
 #. Tag: para
 #: konfigurator.docbook:28
 #, no-c-format
-msgid "Konfigurator is &krusader;'s configuration center. There you can modify the way &krusader; works and customize it to your own needs. At any time, pressing the <guibutton>Apply</guibutton> button applies the changes, pressing <guibutton>Close</guibutton> closes Konfigurator, and pressing <guibutton>Defaults</guibutton> re-applies &krusader;'s \"factory\" settings. Konfigurator is divided into pages, each containing items related to that page. For some changes to the &GUI;, you have to close and restart &krusader;."
+msgid "Konfigurator is &krusader;s configuration center. When runnig &krusader;, use <menuchoice> <guimenu>Settings</guimenu> <guimenuitem>Configure &krusader;</guimenuitem> </menuchoice>, and it will start Konfigurator. There you can modify the way &krusader; works and customize it to your own needs. At any time, pressing the <guibutton>Apply</guibutton> button applies the changes, pressing <guibutton>Close</guibutton> closes Konfigurator, and pressing <guibutton>Defaults</guibutton> re-applies &krusader;'s \"factory\" settings. Konfigurator is divided into pages, each containing items related to that page. For some changes to the &GUI;, you have to close and restart &krusader;."
+msgstr ""
+
+#. Tag: para
+#: konfigurator.docbook:45
+#, no-c-format
+msgid "Since &krusader;-1.80.0 the &keybindigs-lnk; and &main-toolbar-lnk;-&actions-toolbar-lnk; have reiceived their own configuration windows and so they are not a part anymore of Konfigurator, you can configure them now via the &settingsmenu-lnk;."
 msgstr ""
 
 #. Tag: title
-#: konfigurator.docbook:39
+#: konfigurator.docbook:51
 #, no-c-format
 msgid "Startup"
 msgstr ""
 
 #. Tag: title
-#: konfigurator.docbook:52
+#: konfigurator.docbook:64
 #, no-c-format
 msgid "<title>Startup configuration</title>"
 msgstr ""
 
 #. Tag: phrase
-#: konfigurator.docbook:58
+#: konfigurator.docbook:70
 #, no-c-format
 msgid "<phrase>Startup configuration</phrase>"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:62
+#: konfigurator.docbook:74
 #, no-c-format
 msgid "The startup page determines the way that &krusader; looks (and works) when it is launched. It is divided into two main parts:"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:68 konfigurator.docbook:447 konfigurator.docbook:600 konfigurator.docbook:940
+#: konfigurator.docbook:80 konfigurator.docbook:458 konfigurator.docbook:611 konfigurator.docbook:951
 #, no-c-format
 msgid "<guilabel>General</guilabel>"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:73
+#: konfigurator.docbook:85
 #, no-c-format
 msgid "<guilabel>Startup Profile</guilabel>: Starts the selected <link linkend=\"panel_profiles\">Panel profile</link> at startup. <guilabel>&lt;Last session&gt;</guilabel> is a special Panel Profile, it is saved automatically when closing &krusader;."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:84
+#: konfigurator.docbook:96
 #, no-c-format
 msgid "<guilabel>Show splashscreen</guilabel>: Displays a splash screen when starting &krusader;."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:90
+#: konfigurator.docbook:102
 #, no-c-format
 msgid "<guilabel>Single Instance Mode</guilabel>: Allows only one &krusader; instance to run."
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:99
+#: konfigurator.docbook:111
 #, no-c-format
 msgid "User Interface"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:102
+#: konfigurator.docbook:114
 #, no-c-format
 msgid "Determines which parts of the user interface are visible after start-up."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:106
+#: konfigurator.docbook:118
 #, no-c-format
 msgid "<guilabel>Save settings on exit</guilabel>: If checked, restores the user interface components to their condition when last shut-down."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:112
+#: konfigurator.docbook:124
 #, no-c-format
 msgid "<guilabel>Show toolbar</guilabel>: If checked, &main-toolbar-lnk; is visible after startup."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:118
+#: konfigurator.docbook:130
 #, no-c-format
 msgid "<guilabel>Show statusbar</guilabel>: If checked, the &statusbar-lnk; is visible after start-up."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:124
+#: konfigurator.docbook:136
 #, no-c-format
 msgid "<guilabel>Show function keys</guilabel>: If checked, the &fnkeybar-lnk; is visible after start-up."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:130
+#: konfigurator.docbook:142
 #, no-c-format
 msgid "<guilabel>Show command line</guilabel>: If checked, the &cmdline-lnk; is visible after start-up."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:136
+#: konfigurator.docbook:148
 #, no-c-format
 msgid "<guilabel>Show terminal emulator</guilabel>: If checked, the &termemu-lnk; is visible after start-up."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:142
+#: konfigurator.docbook:154
 #, no-c-format
 msgid "<guilabel>Save last position, size and panel settings</guilabel>: When launched, &krusader; resizes itself to the size it was when last shut-down. &krusader; also appears in the same location on the screen, having panels sorted and aligned as they were. If this option is unchecked, you can use the menu <emphasis role=\"bold\"> <menuchoice> <guimenu>Settings</guimenu> <guimenuitem>Save Position</guimenuitem> </menuchoice> </emphasis> option to manually set &krusader; size and position at start-up."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:160
+#: konfigurator.docbook:172
 #, no-c-format
 msgid "<guilabel>Start to tray</guilabel>: if checked, &krusader; starts to tray (if minimize to tray is set), without showing the main window."
 msgstr ""
 
 #. Tag: title
-#: konfigurator.docbook:171
+#: konfigurator.docbook:183
 #, no-c-format
 msgid "Look and Feel"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:172
+#: konfigurator.docbook:184
 #, no-c-format
-msgid "Here you can determine the look and feel of things - which means finetuning the application to your needs. The page is divided into five tabs: <guilabel>Operation</guilabel>, <guilabel>Panel</guilabel>, <guilabel>Toolbar</guilabel>, <guilabel>Key-bindings</guilabel> and <guilabel>Panel Toolbar</guilabel>. Since <guilabel>Toolbar</guilabel> and <guilabel>Key-bindings</guilabel> are standard &kde; tools, we will focus on the other sections:"
+msgid "Here you can determine the look and feel of things - which means finetuning the application to your needs. The page is divided into four tabs: <guilabel>Operation</guilabel>, <guilabel>Panel</guilabel>, <guilabel>Panel Toolbar</guilabel> and <guilabel>Selection Mode</guilabel>:"
 msgstr ""
 
 #. Tag: title
-#: konfigurator.docbook:204
+#: konfigurator.docbook:212
 #, no-c-format
 msgid "Operation"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:207
+#: konfigurator.docbook:215
 #, no-c-format
 msgid "Look &amp; Feel"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:210
+#: konfigurator.docbook:218
 #, no-c-format
 msgid "<guilabel>Warn on exit</guilabel>: If checked, &krusader; displays an \"Are you sure?\" warning when you try to shut it down; otherwise, it exits without protest."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:217
+#: konfigurator.docbook:225
 #, no-c-format
 msgid "<guilabel>Minimize to tray</guilabel>: If checked, when you minimize &krusader;, its icon will appear in the system tray instead of the taskbar."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:223
+#: konfigurator.docbook:231
 #, no-c-format
 msgid "<guilabel>Autoselect Directories</guilabel>: When <link linkend=\"edit-menu\">you select a group of files</link> (either by using Select Group or by using Select All), &krusader; checks this option. If checked, the directories matching the select criteria are also selected. Otherwise, only files are selected."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:232
+#: konfigurator.docbook:240
 #, no-c-format
 msgid "<guilabel>Rename selects extension</guilabel>: When <link linkend=\"renaming\">you rename a file</link>, the whole text is selected. If you want total commanderlike renaming of just the name, without extension, deselect this item."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:240
+#: konfigurator.docbook:248
 #, no-c-format
 msgid "<guilabel>Use fullpath tab names</guilabel>: If checked, display the full path in the &foldertabs-lnk;; otherwise only the last part of the path is displayed."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:247
+#: konfigurator.docbook:255
 #, no-c-format
 msgid "<guilabel>Fullscreen terminal (mc-style)</guilabel>: Terminal appears instead of the &krusader; window (full screen)."
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:260
+#: konfigurator.docbook:268
 #, no-c-format
 msgid "Quicksearch"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:263
+#: konfigurator.docbook:271
 #, no-c-format
 msgid "<guilabel>New style Quicksearch</guilabel>: The new <link linkend=\"quicksearch\">Quicksearch</link>feature is used."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:269
+#: konfigurator.docbook:277
 #, no-c-format
 msgid "<guilabel>Case Sensitive Quicksearch</guilabel>: When you use the <link linkend=\"quicksearch\">Quicksearch</link>feature: If checked (the &UNIX; default), all files beginning with capital letters appear before files beginning with lower case letters; otherwise, all files beginning with a specified letter (capital or otherwise) will be displayed together."
 msgstr ""
 
 #. Tag: title
-#: konfigurator.docbook:282
+#: konfigurator.docbook:290
 #, no-c-format
 msgid "Panel"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:285
+#: konfigurator.docbook:293
 #, no-c-format
 msgid "<guilabel>Panel font</guilabel>: Allows you to change the font used inside the file lists."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:290
+#: konfigurator.docbook:298
 #, no-c-format
 msgid "<guilabel>Filelist icon size</guilabel>: Allows you to change the size of the icons in the file lists. The available sizes are 16x16, 22x22, 32x32 and 48x48 pixels."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:297
+#: konfigurator.docbook:305
 #, no-c-format
 msgid "<guilabel>Use icons in filenames</guilabel>: If checked, show the icons in file names and folders."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:302
+#: konfigurator.docbook:310
 #, no-c-format
 msgid "<guilabel>Human readable file size</guilabel>: If checked, the file size appears in kB, Mb &etc;, and not in bytes (default)."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:308
+#: konfigurator.docbook:316
 #, no-c-format
 msgid "Since &krusader;-1.70.0 you need to configure the columns with the right click menu in the panel, not in Konfigurator. The left and right panel use their own columns independently. The following columns are available:"
 msgstr ""
 
-#. Tag: guilabel
-#: konfigurator.docbook:316
+#. Tag: para
+#: konfigurator.docbook:323
 #, no-c-format
-msgid "Name"
+msgid "<guilabel>Name</guilabel>: Shows the filename without the part after the last dot, this latter part is displayed in the Ext column. When the Ext column is made hidden, the complete filename is shown in the Name column like e.g. &konqueror; does."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:320
+#: konfigurator.docbook:330
 #, no-c-format
-msgid "<guilabel>Ext</guilabel>: Shows the last part of the filename (the part after the last dot) in the ext column, not as a complete filename in the name column like e.g. &konqueror; does."
+msgid "<guilabel>Ext</guilabel>: Shows the last part of the filename (the part after the last dot) in the ext column, and not as a complete filename in the name column like e.g. &konqueror; does."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:327
+#: konfigurator.docbook:338
 #, no-c-format
 msgid "<guilabel>Type</guilabel>: Shows the mime type field."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:332
+#: konfigurator.docbook:343
 #, no-c-format
 msgid "<guilabel>Size</guilabel>: Shows the size field."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:337
+#: konfigurator.docbook:348
 #, no-c-format
 msgid "<guilabel>Modified</guilabel>: Shows the modified date and time field."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:342
+#: konfigurator.docbook:353
 #, no-c-format
 msgid "<guilabel>Perms</guilabel>: Shows the full permissions &eg; \"rwxr-xr-x\" or as octal numbers '0755' instead with enable/disable <guilabel>Numeric Permissions</guilabel> in Look &amp; Feel <guilabel>Operation</guilabel> Tab."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:351
+#: konfigurator.docbook:362
 #, no-c-format
 msgid "<guilabel>rwx</guilabel>: Shows only the rights of the current user &eg; \"-rw\"."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:356
+#: konfigurator.docbook:367
 #, no-c-format
 msgid "<guilabel>Owner</guilabel>: Shows the owner field."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:361
+#: konfigurator.docbook:372
 #, no-c-format
 msgid "<guilabel>Group</guilabel>: Shows the group field."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:368
+#: konfigurator.docbook:379
 #, no-c-format
 msgid "<guilabel>Show Hidden files</guilabel>: If checked, &krusader; displays the \"dot-files\" which are otherwise hidden."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:374
+#: konfigurator.docbook:385
 #, no-c-format
 msgid "<guilabel>Case Sensitive Sorting</guilabel>: If checked (the &UNIX; default), all files beginning with capital letters appear before files beginning with non-capital letters; otherwise, all files beginning with a specified letter (capital or otherwise) appear together."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:383
+#: konfigurator.docbook:394
 #, no-c-format
 msgid "<guilabel>Always sort dirs by name</guilabel>: Sorts directories by name, regardless of the sort column."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:389
+#: konfigurator.docbook:400
 #, no-c-format
 msgid "<guilabel>Numeric permissions</guilabel>: Permission column (Look &amp; Feel <guilabel>Panel</guilabel>Tab) shows octal numbers '0755' instead of 'rwxr-xr-x'."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:397
+#: konfigurator.docbook:408
 #, no-c-format
 msgid "Uncheck the columns not in use. This allows more space for columns in use."
 msgstr ""
 
 #. Tag: title
-#: konfigurator.docbook:402
+#: konfigurator.docbook:413
 #, no-c-format
 msgid "Panel Toolbar"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:403
+#: konfigurator.docbook:414
 #, no-c-format
 msgid "<guilabel>Panel Toolbar visible</guilabel>: If checked, &krusader; displays the Panel Toolbar."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:406
+#: konfigurator.docbook:417
 #, no-c-format
 msgid "You can make the buttons on the <guilabel>Panel Toolbar</guilabel> visible or hidden:"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:410
+#: konfigurator.docbook:421
 #, no-c-format
 msgid "<guilabel>Clear Location Toolbar</guilabel> button: Clears the &location-toolbar-lnk;"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:415
+#: konfigurator.docbook:426
 #, no-c-format
 msgid "<guilabel>Open</guilabel> button"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:419
+#: konfigurator.docbook:430
 #, no-c-format
 msgid "<guilabel>Equal (=)</guilabel> button"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:423
+#: konfigurator.docbook:434
 #, no-c-format
 msgid "<guilabel>Up (..)</guilabel> button"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:427
+#: konfigurator.docbook:438
 #, no-c-format
 msgid "<guilabel>Home (~)</guilabel> button"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:431
+#: konfigurator.docbook:442
 #, no-c-format
 msgid "<guilabel>Root (/)</guilabel> button"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:435
+#: konfigurator.docbook:446
 #, no-c-format
 msgid "<guilabel>Toggle-button for sync-browsing</guilabel>: If checked, shows the &sync-browsing-lnk; button."
 msgstr ""
 
 #. Tag: title
-#: konfigurator.docbook:443
+#: konfigurator.docbook:454
 #, no-c-format
 msgid "Selection Mode"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:444
+#: konfigurator.docbook:455
 #, no-c-format
 msgid "Here you can configure the selection modes."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:450
+#: konfigurator.docbook:461
 #, no-c-format
 msgid "<guilabel>&krusader; Mode</guilabel>: The way &krusader; has worked from day one. Both mouse keys allow selecting files. To select more than one file, hold the &Ctrl; key and click the &LMB;. Right-click menu appears with a short click on the &RMB;."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:459
+#: konfigurator.docbook:470
 #, no-c-format
 msgid "<guilabel>Konqueror Mode</guilabel>: pressing the &LMB; selects files -- you can click and select multiple files. Right-click menu appears with a short click on the &RMB;."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:468
+#: konfigurator.docbook:479
 #, no-c-format
 msgid "<guilabel>Total commander Mode</guilabel>: Pressing the &RMB; selects multiple files and the right-click menu appears with <guilabel>pressing and holding</guilabel> the &RMB; The &LMB; does not select, but sets the current file without affecting the current selection."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:479
+#: konfigurator.docbook:490
 #, no-c-format
 msgid "<guilabel>Custom Selection Mode</guilabel>: Create your own selection style!"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:486
+#: konfigurator.docbook:497
 #, no-c-format
 msgid "Details"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:489
+#: konfigurator.docbook:500
 #, no-c-format
 msgid "<guilabel>Double-click selects (classic)</guilabel>: A single click on a file will select and focus, a double click opens the file or steps into the directory."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:495
+#: konfigurator.docbook:506
 #, no-c-format
 msgid "<guilabel>Obey KDE global selection policy</guilabel>: Pressing the &LMB; selects files -- Use &kde;'s global setting: &kde; Control Center -&gt; Peripherals -&gt; Mouse."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:503
+#: konfigurator.docbook:514
 #, no-c-format
 msgid "Custom Selection Mode items:"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:507
+#: konfigurator.docbook:518
 #, no-c-format
 msgid "Based on KDE's selection mode"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:512
+#: konfigurator.docbook:523
 #, no-c-format
 msgid "Left mouse button selects"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:517
+#: konfigurator.docbook:528
 #, no-c-format
 msgid "Left mouse button preserves selection"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:523
+#: konfigurator.docbook:534
 #, no-c-format
 msgid "Shift/Ctrl-Left mouse button selects"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:529
+#: konfigurator.docbook:540
 #, no-c-format
 msgid "Right mouse button selects"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:534
+#: konfigurator.docbook:545
 #, no-c-format
 msgid "Right mouse button preserves selection"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:540
+#: konfigurator.docbook:551
 #, no-c-format
 msgid "Shift/Ctrl-Right mouse button selects"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:546
+#: konfigurator.docbook:557
 #, no-c-format
 msgid "Space bar moves down"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:551
+#: konfigurator.docbook:562
 #, no-c-format
 msgid "Space bar calculates diskspace"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:556
+#: konfigurator.docbook:567
 #, no-c-format
 msgid "Insert moves down"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:561
+#: konfigurator.docbook:572
 #, no-c-format
 msgid "Right-clicking shows the context menu immediately"
 msgstr ""
 
 #. Tag: title
-#: konfigurator.docbook:571
+#: konfigurator.docbook:582
 #, no-c-format
 msgid "<title>Colors</title>"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:572
+#: konfigurator.docbook:583
 #, no-c-format
 msgid "This page configures the colors of the &list-panel-lnk; and the &synchronizer-lnk;. The <guilabel>KDE default colors</guilabel> is the default color configuration."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:605
+#: konfigurator.docbook:616
 #, no-c-format
 msgid "<guilabel>Use the default KDE colors</guilabel>: this is the default, it uses &kde; color settings of <command>kcontrol</command>."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:612
+#: konfigurator.docbook:623
 #, no-c-format
 msgid "<guilabel>Use Alternate Background color</guilabel>: If checked, the <guilabel>Background</guilabel> color and the <guilabel>Alternate background</guilabel> color alternates line by line. When you do not use the &kde; default colors, you can configure the alternate colors in the <guilabel>Colors</guilabel> box."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:623
+#: konfigurator.docbook:634
 #, no-c-format
 msgid "<guilabel>Show current item even if not focused</guilabel>: If checked, shows the last cursor position in the non active list panel. This option is only available when you do not use the &kde; default colors."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:631
+#: konfigurator.docbook:642
 #, no-c-format
 msgid "<guilabel>Dim the colors of the inactive panel</guilabel>: If checked, the colors of the inactive panel are dimmed. These settings can be configured in the <guilabel>Inactive</guilabel> tab of the <guilabel>Colors</guilabel> box. This option is only available when you do not use the &kde; default colors."
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:646
+#: konfigurator.docbook:657
 #, no-c-format
 msgid "<guilabel>Colors</guilabel>"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:649
+#: konfigurator.docbook:660
 #, no-c-format
 msgid "Configure the colors the way you like, you can see the result in the <guilabel>Preview</guilabel> section. The following items of the active and inactive panel can be configured:"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:657
+#: konfigurator.docbook:668
 #, no-c-format
 msgid "Foreground"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:662
+#: konfigurator.docbook:673
 #, no-c-format
 msgid "Directory foreground"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:667
+#: konfigurator.docbook:678
 #, no-c-format
 msgid "Executable foreground"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:672
+#: konfigurator.docbook:683
 #, no-c-format
 msgid "Symbolic link foreground"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:677
+#: konfigurator.docbook:688
 #, no-c-format
 msgid "Invalid symlink foreground"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:682
+#: konfigurator.docbook:693
 #, no-c-format
 msgid "Background"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:687
+#: konfigurator.docbook:698
 #, no-c-format
 msgid "Alternate background"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:692
+#: konfigurator.docbook:703
 #, no-c-format
 msgid "Selected foreground"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:697
+#: konfigurator.docbook:708
 #, no-c-format
 msgid "Selected background"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:702
+#: konfigurator.docbook:713
 #, no-c-format
 msgid "Alternate selected background"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:707
+#: konfigurator.docbook:718
 #, no-c-format
 msgid "Current foreground"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:712
+#: konfigurator.docbook:723
 #, no-c-format
 msgid "Selected current foreground"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:717
+#: konfigurator.docbook:728
 #, no-c-format
 msgid "Current background"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:721
+#: konfigurator.docbook:732
 #, no-c-format
 msgid "The following items of the &synchronizer-lnk; can be configured:"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:726
+#: konfigurator.docbook:737
 #, no-c-format
 msgid "Equals foreground"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:731
+#: konfigurator.docbook:742
 #, no-c-format
 msgid "Equals background"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:736
+#: konfigurator.docbook:747
 #, no-c-format
 msgid "Differing foreground"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:741
+#: konfigurator.docbook:752
 #, no-c-format
 msgid "Differing background"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:746
+#: konfigurator.docbook:757
 #, no-c-format
 msgid "Copy to left foreground"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:751 konfigurator.docbook:761
+#: konfigurator.docbook:762 konfigurator.docbook:772
 #, no-c-format
 msgid "Copy to left background"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:756
+#: konfigurator.docbook:767
 #, no-c-format
 msgid "Copy to right foreground"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:766
+#: konfigurator.docbook:777
 #, no-c-format
 msgid "Delete foreground"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:771
+#: konfigurator.docbook:782
 #, no-c-format
 msgid "Delete background"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:779
+#: konfigurator.docbook:790
 #, no-c-format
 msgid "Preview"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:782
+#: konfigurator.docbook:793
 #, no-c-format
 msgid "Here you see a preview of the configured colors."
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:788
+#: konfigurator.docbook:799
 #, no-c-format
 msgid "Color schemes"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:791
+#: konfigurator.docbook:802
 #, no-c-format
 msgid "With the <guibutton>Import Color Scheme</guibutton> and <guibutton>Export Color Scheme</guibutton> buttons you can load and save a Color Scheme profile. This allows &krusader; to use &tcmd;, &mc;, foo-commander or your own custom color profile. The Color Schemes are stored in <filename>$KDEDIR/share/apps/krusader</filename>, the <filename>foo.color</filename> is a binary file that holds the color scheme."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:802
+#: konfigurator.docbook:813
 #, no-c-format
 msgid "&mc; and &tcmd; Color scheme files are provided. Please <link linkend=\"help_krusader\">upload your favorite Color schemes</link> so that they become available for the &krusader; community. Thanks!"
 msgstr ""
 
 #. Tag: title
-#: konfigurator.docbook:813
+#: konfigurator.docbook:824
 #, no-c-format
 msgid "<title>General</title>"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:814
+#: konfigurator.docbook:825
 #, no-c-format
 msgid "Here you configure the basic operations."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:835
+#: konfigurator.docbook:846
 #, no-c-format
 msgid "The following options determine basic aspects of operation:"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:839
+#: konfigurator.docbook:850
 #, no-c-format
 msgid "<guilabel>Delete files/Move to trash</guilabel>: when &krusader; deletes files it can either 'really' delete them or move them to the trash folder, thereby making them available via &kde;'s trash."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:846
+#: konfigurator.docbook:857
 #, no-c-format
 msgid "<guilabel>Use mimetype magic</guilabel>: mime type magic is a mechanism which allows &krusader; to inspect the files in the panels and determine their type even if the file has no identifying extension. For example, if you take an image file - 'image1.jpg' - and rename it to 'image1', &krusader; will still know it's an image file and work with it accordingly. However, this mode of operation is slower (while refreshing the panel, or changing directories), so try &krusader; with and without mime type magic and decide what is best for you."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:860
+#: konfigurator.docbook:871
 #, no-c-format
 msgid "<guilabel>Editor</guilabel>: choose what editor will be used when editing a file (via F4)."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:865
+#: konfigurator.docbook:876
 #, no-c-format
 msgid "<guilabel>Default viewer mode</guilabel>: either generic, text or hex mode."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:870
+#: konfigurator.docbook:881
 #, no-c-format
 msgid "<guilabel>Viewer opens each file in a separate window</guilabel>: you can use the browsing tabs for navigation."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:876
+#: konfigurator.docbook:887
 #, no-c-format
 msgid "<guilabel>Atomic extensions</guilabel>: predefined atomic extensions like <filename>tar.gz</filename> are shown as one part in the <guilabel>Ext Column</guilabel> of the &list-panel-lnk;."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:881
+#: konfigurator.docbook:892
 #, no-c-format
 msgid "<guilabel>Terminal</guilabel>: choose which terminal emulator will be used when &krusader; opens a console window (via F2, or Commands-&gt;Terminal menu option)."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:888
+#: konfigurator.docbook:899
 #, no-c-format
 msgid "<guilabel>Terminal Emulator sends Chdir on a panel change</guilabel>: if unchecked, there will be no <command>cd</command> command sent to the Terminal Emulator if the panel folder changes."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:895
+#: konfigurator.docbook:906
 #, no-c-format
 msgid "<guilabel>Temp Directory</guilabel>: this option selects the base directory for &krusader;'s temporary files. The actual files will be created in separate directories under the 'Temp directory', so that each user running &krusader; will have their own temporary subdirectories under the chosen directory."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:903
+#: konfigurator.docbook:914
 #, no-c-format
 msgid "You must choose a temporary directory to which all users running &krusader; have full permissions!"
 msgstr ""
 
 #. Tag: title
-#: konfigurator.docbook:911
+#: konfigurator.docbook:922
 #, no-c-format
 msgid "Advanced"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:912
+#: konfigurator.docbook:923
 #, no-c-format
 msgid "This page handles more advanced issues, so you should double-check your actions here: modifying settings here"
 msgstr ""
 
 #. Tag: remark
-#: konfigurator.docbook:914
+#: konfigurator.docbook:925
 #, no-c-format
 msgid "makes &krusader; a more powerful AND dangerous tool."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:936
+#: konfigurator.docbook:947
 #, no-c-format
 msgid "The page is divided into three parts:"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:945
+#: konfigurator.docbook:956
 #, no-c-format
 msgid "<guilabel>Preserve attributes for local copy/move (slower)</guilabel>: If checked, &krusader; will try to preserve all attributes (time, owner, group) of the local files according to the source file depending on your <link linkend=\"copying\">permissions</link>."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:954
+#: konfigurator.docbook:965
 #, no-c-format
 msgid "<guilabel>Automount filesystems</guilabel>: this makes &krusader; try to mount a file system before entering it. For example, if you click on <filename class=\"directory\">/mnt/cdrom</filename> (and <filename class=\"directory\"> /mnt/cdrom</filename> appears in <filename class=\"directory\">/etc/fstab</filename> as a mount point), &krusader; will check if it is mounted. If not, it will try and mount it for you and then enter, so that you would see the contents of your cdrom. Note, however, that &krusader; will NOT unmount when exiting <filename class=\"directory\"> /mnt/cdrom</filename>."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:971
+#: konfigurator.docbook:982
 #, no-c-format
 msgid "<guilabel>Do not use KDE media protocol for the Media button (if it is buggy or missing)</guilabel>: If checked, &krusader; will not use &kde; media protocol for the <link linkend=\"list_panel\">Media button</link>. Choose this when the media protocol is buggy (in some older &kde; versions) or if you have no kdebase package installed on your system."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:982
+#: konfigurator.docbook:993
 #, no-c-format
 msgid "<guilabel>MountMan will not (un)mount the following mount points</guilabel>: If you have file systems that you do not want to accidentally unmount (or mount) then enter a list of mount points separated by commas (&eg; <literal>/, /boot, /tmp</literal>) and &mountman-lnk; will not try to (un)mount them."
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:997
+#: konfigurator.docbook:1008
 #, no-c-format
 msgid "Confirmations"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1000
+#: konfigurator.docbook:1011
 #, no-c-format
 msgid "By checking the options in this section, &krusader; will ask for confirmation before doing a specific action; otherwise, the following actions will be done without warning:"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1006
+#: konfigurator.docbook:1017
 #, no-c-format
 msgid "deleting non empty directorie(s)"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1009
+#: konfigurator.docbook:1020
 #, no-c-format
 msgid "deleting file(s)"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1012
+#: konfigurator.docbook:1023
 #, no-c-format
 msgid "copying file(s)"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1015
+#: konfigurator.docbook:1026
 #, no-c-format
 msgid "moving file(s)"
 msgstr ""
 
 #. Tag: guilabel
-#: konfigurator.docbook:1022 konfigurator.docbook:1107
+#: konfigurator.docbook:1033 konfigurator.docbook:1118
 #, no-c-format
 msgid "Fine-Tuning"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1027
+#: konfigurator.docbook:1038
 #, no-c-format
 msgid "<guilabel>Icon Cache Size</guilabel>: &krusader; uses an icon cache, so it will not have to reload icons that have been used before. Of course, as the cache grows bigger, it can store more icons and further speed operations, but the memory footprint of &krusader; will become bigger."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1037
+#: konfigurator.docbook:1048
 #, no-c-format
 msgid "<guilabel>Arguments of updatedb</guilabel>: sets additional arguments for <command>updatedb</command>, please read the manpages for more information."
 msgstr ""
 
 #. Tag: title
-#: konfigurator.docbook:1049
+#: konfigurator.docbook:1060
 #, no-c-format
 msgid "Archives"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1050
+#: konfigurator.docbook:1061
 #, no-c-format
 msgid "This page handles the way &krusader; works with archives. In the <guilabel>General</guilabel> section you will see a list of archive formats. Some are checked and some are grayed-out. The ones that are available (not grayed-out) are supported by &krusader;. If you check them, &krusader; will handle the archives transparently and let you open them as folders; otherwise, &krusader; will attempt to invoke an application which opens archives of that type. If a certain archive is grayed-out, it means that &krusader; could not find the appropriate executables in the configured path. The next archives are supported: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1084
+#: konfigurator.docbook:1095
 #, no-c-format
 msgid "If you have installed a certain archive application (let's say <command>arj</command>) and want &krusader; to know about it, just click the <guibutton>Auto Configure</guibutton> button. &krusader; will search for all supported executables and print a report listing the archive formats that can be handled. If the operation was successful the new archive should be available and checked."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1094
+#: konfigurator.docbook:1105
 #, no-c-format
 msgid "Please install new packagers to your <envar>PATH</envar> (&ie;: <filename>/usr/bin</filename> or <filename>/usr/local/bin</filename> &etc;)"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1099
+#: konfigurator.docbook:1110
 #, no-c-format
 msgid "The full path of the packagers is stored in the &konfigdependencie-lnk; (&eg; to handle ZIP archives, &krusader; needs the <command>unzip</command> and <command>zip</command> executables). It is possible that you need to manually configure the mimes to the protocols in the &konfigprotocol-lnk;."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1110
+#: konfigurator.docbook:1121
 #, no-c-format
 msgid "<guilabel>Allow moving into archives</guilabel>: this option allows you to move files into an archive (as opposed to just copying into the archive). The down side is that if a power failure occurs during the process, the files that were moved might already be deleted, but not yet packed into the archive."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1118
+#: konfigurator.docbook:1129
 #, no-c-format
 msgid "If such a thing happens, the file(s) are NOT LOST. They were actually moved into a subfolder in &krusader;'s <link linkend=\"konfig-general\">temp directory</link>. You can search the directory and recover your files."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1127
+#: konfigurator.docbook:1138
 #, no-c-format
 msgid "<guilabel>Test archives when finished packing</guilabel>: this option automatically runs a test on a newly packed archive. It is safer, but takes longer."
 msgstr ""
 
 #. Tag: title
-#: konfigurator.docbook:1136
+#: konfigurator.docbook:1147
 #, no-c-format
 msgid "Dependencies page"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1137
+#: konfigurator.docbook:1148
 #, no-c-format
 msgid "This page configures the full path of the external applications. It is even possible to configure the full path of &krusader;!"
 msgstr ""
 
 #. Tag: emphasis
-#: konfigurator.docbook:1141
+#: konfigurator.docbook:1152
 #, no-c-format
 msgid "General tab"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1143
+#: konfigurator.docbook:1154
 #, no-c-format
 msgid "Here you can configure the full path of the following external applications:"
 msgstr ""
 
 #. Tag: entry
-#: konfigurator.docbook:1149
+#: konfigurator.docbook:1160
 #, no-c-format
 msgid "application"
 msgstr ""
 
 #. Tag: entry
-#: konfigurator.docbook:1150 konfigurator.docbook:1338 konfigurator.docbook:1562
+#: konfigurator.docbook:1161 konfigurator.docbook:1349 konfigurator.docbook:1573
 #, no-c-format
 msgid "configurable full path"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1155
+#: konfigurator.docbook:1166
 #, no-c-format
 msgid "<command>df</command>"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1161
+#: konfigurator.docbook:1172
 #, no-c-format
 msgid "/bin/df"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1169
+#: konfigurator.docbook:1180
 #, no-c-format
 msgid "eject"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1175
+#: konfigurator.docbook:1186
 #, no-c-format
 msgid "/usr/bin/eject"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1183
+#: konfigurator.docbook:1194
 #, no-c-format
 msgid "kdesu"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1189
+#: konfigurator.docbook:1200
 #, no-c-format
 msgid "/usr/bin/kdesu"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1197
+#: konfigurator.docbook:1208
 #, no-c-format
 msgid "kget"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1203
+#: konfigurator.docbook:1214
 #, no-c-format
 msgid "/usr/bin/kget"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1211
+#: konfigurator.docbook:1222
 #, no-c-format
 msgid "kmail"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1217
+#: konfigurator.docbook:1228
 #, no-c-format
 msgid "/usr/bin/kmail"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1224
+#: konfigurator.docbook:1235
 #, no-c-format
 msgid "diff utility"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1229
+#: konfigurator.docbook:1240
 #, no-c-format
 msgid "/usr/bin/kompare"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1236
+#: konfigurator.docbook:1247
 #, no-c-format
 msgid "krename"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1241
+#: konfigurator.docbook:1252
 #, no-c-format
 msgid "/usr/bin/krename"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1249
+#: konfigurator.docbook:1260
 #, no-c-format
 msgid "krusader"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1255
+#: konfigurator.docbook:1266
 #, no-c-format
 msgid "/usr/bin/krusader"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1263
+#: konfigurator.docbook:1274
 #, no-c-format
 msgid "locate"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1269
+#: konfigurator.docbook:1280
 #, no-c-format
 msgid "/usr/bin/locate"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1277
+#: konfigurator.docbook:1288
 #, no-c-format
 msgid "mount"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1283
+#: konfigurator.docbook:1294
 #, no-c-format
 msgid "/bin/mount"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1291
+#: konfigurator.docbook:1302
 #, no-c-format
 msgid "umount"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1297
+#: konfigurator.docbook:1308
 #, no-c-format
 msgid "/bin/umount"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1305
+#: konfigurator.docbook:1316
 #, no-c-format
 msgid "updatedb"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1311
+#: konfigurator.docbook:1322
 #, no-c-format
 msgid "/usr/bin/updatedb"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1320
+#: konfigurator.docbook:1331
 #, no-c-format
 msgid "By default &kompare; (part of the kdebase package) is used as external diff utility but you can also use your favorite diff utility &eg; &xxdiff-url; or &kdiff3-url;, just fill in the full path and enjoy."
 msgstr ""
 
 #. Tag: emphasis
-#: konfigurator.docbook:1327
+#: konfigurator.docbook:1338
 #, no-c-format
 msgid "Packers tab"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1329
+#: konfigurator.docbook:1340
 #, no-c-format
 msgid "Here you can configure the full path of the following external packers. &krusader; also offers an <link linkend=\"konfig-archives\">auto configure tool</link> for packagers."
 msgstr ""
 
 #. Tag: entry
-#: konfigurator.docbook:1337
+#: konfigurator.docbook:1348
 #, no-c-format
 msgid "packer"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1343
+#: konfigurator.docbook:1354
 #, no-c-format
 msgid "<command>7z</command>"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1349
+#: konfigurator.docbook:1360
 #, no-c-format
 msgid "usr/bin/7z"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1357
+#: konfigurator.docbook:1368
 #, no-c-format
 msgid "<command>arj</command>"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1363
+#: konfigurator.docbook:1374
 #, no-c-format
 msgid "usr/bin/arj"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1371
+#: konfigurator.docbook:1382
 #, no-c-format
 msgid "bzip2"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1377
+#: konfigurator.docbook:1388
 #, no-c-format
 msgid "usr/bin/bzip2"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1385
+#: konfigurator.docbook:1396
 #, no-c-format
 msgid "cpio"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1391
+#: konfigurator.docbook:1402
 #, no-c-format
 msgid "/bin/cpio"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1399
+#: konfigurator.docbook:1410
 #, no-c-format
 msgid "dpkg"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1405
+#: konfigurator.docbook:1416
 #, no-c-format
 msgid "/bin/dpkg"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1413
+#: konfigurator.docbook:1424
 #, no-c-format
 msgid "gzip"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1419
+#: konfigurator.docbook:1430
 #, no-c-format
 msgid "/usr/bin/gzip"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1427
+#: konfigurator.docbook:1438
 #, no-c-format
 msgid "<command>lha</command>"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1433
+#: konfigurator.docbook:1444
 #, no-c-format
 msgid "/usr/bin/lha"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1441
+#: konfigurator.docbook:1452
 #, no-c-format
 msgid "<command>rar</command>"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1447
+#: konfigurator.docbook:1458
 #, no-c-format
 msgid "/usr/bin/rar"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1455
+#: konfigurator.docbook:1466
 #, no-c-format
 msgid "<command>tar</command>"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1461
+#: konfigurator.docbook:1472
 #, no-c-format
 msgid "/bin/tar"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1469
+#: konfigurator.docbook:1480
 #, no-c-format
 msgid "unace"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1475
+#: konfigurator.docbook:1486
 #, no-c-format
 msgid "/usr/bin/unace"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1483
+#: konfigurator.docbook:1494
 #, no-c-format
 msgid "unarj"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1489
+#: konfigurator.docbook:1500
 #, no-c-format
 msgid "/usr/bin/unarj"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1497
+#: konfigurator.docbook:1508
 #, no-c-format
 msgid "unrar"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1503
+#: konfigurator.docbook:1514
 #, no-c-format
 msgid "/usr/bin/unrar"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1511
+#: konfigurator.docbook:1522
 #, no-c-format
 msgid "unzip"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1517
+#: konfigurator.docbook:1528
 #, no-c-format
 msgid "/usr/bin/unzip"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1525
+#: konfigurator.docbook:1536
 #, no-c-format
 msgid "<command>zip</command>"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1531
+#: konfigurator.docbook:1542
 #, no-c-format
 msgid "/usr/bin/zip"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1540
+#: konfigurator.docbook:1551
 #, no-c-format
 msgid "&krusader; may not be compatible with ACE despite our best efforts. Unace uses closed source and contains additional lines that make Unace get into infinite loop if the stdin is redirected to somewhere else. It works in the same manner as 'su', where you cannot enter the password only from the stdin. &krusader; &gt;= 1-51 emulates the command line environment to enable co-operation with Unace, but we have noticed that Unace always changes its output format from release to release, making co-operation almost impossible."
 msgstr ""
 
 #. Tag: emphasis
-#: konfigurator.docbook:1552
+#: konfigurator.docbook:1563
 #, no-c-format
 msgid "Checksum Utilities tab"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1554
+#: konfigurator.docbook:1565
 #, no-c-format
 msgid "Here you can configure the full path of the following external <link linkend=\"checksum\">Checksum Utilities</link>:"
 msgstr ""
 
 #. Tag: entry
-#: konfigurator.docbook:1561
+#: konfigurator.docbook:1572
 #, no-c-format
 msgid "Checksum Utilities"
 msgstr ""
 
 #. Tag: entry
-#: konfigurator.docbook:1563
+#: konfigurator.docbook:1574
 #, no-c-format
 msgid "supported checksums"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1568
+#: konfigurator.docbook:1579
 #, no-c-format
 msgid "md5sum"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1574
+#: konfigurator.docbook:1585
 #, no-c-format
 msgid "/usr/bin/md5sum"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1579 konfigurator.docbook:1613
+#: konfigurator.docbook:1590 konfigurator.docbook:1624
 #, no-c-format
 msgid "<para>md5</para>"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1585
+#: konfigurator.docbook:1596
 #, no-c-format
 msgid "sha1sum"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1591
+#: konfigurator.docbook:1602
 #, no-c-format
 msgid "/usr/bin/sha1sum"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1596 konfigurator.docbook:1630
+#: konfigurator.docbook:1607 konfigurator.docbook:1641
 #, no-c-format
 msgid "sha1"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1602
+#: konfigurator.docbook:1613
 #, no-c-format
 msgid "md5deep"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1608
+#: konfigurator.docbook:1619
 #, no-c-format
 msgid "/usr/bin/md5deep"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1619
+#: konfigurator.docbook:1630
 #, no-c-format
 msgid "sha1deep"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1625
+#: konfigurator.docbook:1636
 #, no-c-format
 msgid "/usr/bin/sha1deep"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1636
+#: konfigurator.docbook:1647
 #, no-c-format
 msgid "sha224sum"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1642
+#: konfigurator.docbook:1653
 #, no-c-format
 msgid "/usr/bin/sha224sum"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1647
+#: konfigurator.docbook:1658
 #, no-c-format
 msgid "sha224"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1653
+#: konfigurator.docbook:1664
 #, no-c-format
 msgid "sha256sum"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1659
+#: konfigurator.docbook:1670
 #, no-c-format
 msgid "/usr/bin/sha256sum"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1664 konfigurator.docbook:1681
+#: konfigurator.docbook:1675 konfigurator.docbook:1692
 #, no-c-format
 msgid "sha256"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1670
+#: konfigurator.docbook:1681
 #, no-c-format
 msgid "sha256deep"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1676
+#: konfigurator.docbook:1687
 #, no-c-format
 msgid "/usr/bin/sha256deep"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1687
+#: konfigurator.docbook:1698
 #, no-c-format
 msgid "sha384sum"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1693
+#: konfigurator.docbook:1704
 #, no-c-format
 msgid "/usr/bin/sha384sum"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1698
+#: konfigurator.docbook:1709
 #, no-c-format
 msgid "sha384"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1704
+#: konfigurator.docbook:1715
 #, no-c-format
 msgid "sha512sum"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1710
+#: konfigurator.docbook:1721
 #, no-c-format
 msgid "/usr/bin/sha512sum"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1715
+#: konfigurator.docbook:1726
 #, no-c-format
 msgid "sha512"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1721
+#: konfigurator.docbook:1732
 #, no-c-format
 msgid "tigerdeep"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1727
+#: konfigurator.docbook:1738
 #, no-c-format
 msgid "/usr/bin/tigerdeep"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1732
+#: konfigurator.docbook:1743
 #, no-c-format
 msgid "tiger"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1738
+#: konfigurator.docbook:1749
 #, no-c-format
 msgid "whirlpooldeep"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1744
+#: konfigurator.docbook:1755
 #, no-c-format
 msgid "/usr/bin/whirlpooldeep"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1749
+#: konfigurator.docbook:1760
 #, no-c-format
 msgid "whirlpool"
 msgstr ""
 
 #. Tag: command
-#: konfigurator.docbook:1755
+#: konfigurator.docbook:1766
 #, no-c-format
 msgid "<command>cfv</command>"
 msgstr ""
 
 #. Tag: replaceable
-#: konfigurator.docbook:1761
+#: konfigurator.docbook:1772
 #, no-c-format
 msgid "/usr/bin/cfv"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1766
+#: konfigurator.docbook:1777
 #, no-c-format
 msgid "md5, sha1, sfv, crc"
 msgstr ""
 
 #. Tag: title
-#: konfigurator.docbook:1774
+#: konfigurator.docbook:1785
 #, no-c-format
 msgid "UserActions"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1775
+#: konfigurator.docbook:1786
 #, no-c-format
 msgid "Here you can configure the terminal for UserActions and the font for the output-collection. The default terminal is <filename>konsole --noclose -e</filename>. To set up, configure and manage your UserActions use ActionMan (&useractions-lnk; url)."
 msgstr ""
 
 #. Tag: title
-#: konfigurator.docbook:1802
+#: konfigurator.docbook:1813
 #, no-c-format
 msgid "Protocols"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1803
+#: konfigurator.docbook:1814
 #, no-c-format
 msgid "This page links the mimes to protocols. &eg; protocol \"tar\" is linked to mime \"application/x-tar\"."
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1825
+#: konfigurator.docbook:1836
 #, no-c-format
 msgid "In the <guilabel>Defined Links</guilabel>you will see &eg;"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1829
+#: konfigurator.docbook:1840
 #, no-c-format
 msgid "<para>Iso</para>"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1832
+#: konfigurator.docbook:1843
 #, no-c-format
 msgid "application/x-iso"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1837
+#: konfigurator.docbook:1848
 #, no-c-format
 msgid "krarc"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1840
+#: konfigurator.docbook:1851
 #, no-c-format
 msgid "application/x-ace"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1843
+#: konfigurator.docbook:1854
 #, no-c-format
 msgid "application/x-arj"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1846
+#: konfigurator.docbook:1857
 #, no-c-format
 msgid "application/x-bzip2"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1849
+#: konfigurator.docbook:1860
 #, no-c-format
 msgid "application/x-cpio"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1852
+#: konfigurator.docbook:1863
 #, no-c-format
 msgid "application/x-deb"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1855
+#: konfigurator.docbook:1866
 #, no-c-format
 msgid "application/x-debian-package"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1858
+#: konfigurator.docbook:1869
 #, no-c-format
 msgid "application/x-gzip"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1861
+#: konfigurator.docbook:1872
 #, no-c-format
 msgid "application/x-jar"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1864
+#: konfigurator.docbook:1875
 #, no-c-format
 msgid "application/x-lha"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1867
+#: konfigurator.docbook:1878
 #, no-c-format
 msgid "application/x-rar"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1870
+#: konfigurator.docbook:1881
 #, no-c-format
 msgid "application/x-rpm"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1873
+#: konfigurator.docbook:1884
 #, no-c-format
 msgid "application/x-zip"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1878
+#: konfigurator.docbook:1889
 #, no-c-format
 msgid "<para>tar</para>"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1881
+#: konfigurator.docbook:1892
 #, no-c-format
 msgid "application/x-tar"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1884
+#: konfigurator.docbook:1895
 #, no-c-format
 msgid "application/x-tarz"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1887
+#: konfigurator.docbook:1898
 #, no-c-format
 msgid "application/x-tbz"
 msgstr ""
 
 #. Tag: para
-#: konfigurator.docbook:1890
+#: konfigurator.docbook:1901
 #, no-c-format
 msgid "application/x-tgz"
 msgstr ""
