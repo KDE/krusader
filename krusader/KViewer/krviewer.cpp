@@ -95,8 +95,20 @@ KParts::MainWindow( parent, (Qt::WindowFlags)KDE_DEFAULT_WINDOWFLAGS ), manager(
 	//no point in detaching only one tab..
 	detachAction->setEnabled(false);	
 	viewerMenu->addSeparator();
-	viewerMenu->addAction( printAction->icon(), printAction->text(), this, SLOT( print() ))->setShortcut( printAction->shortcut().primary() );
-	viewerMenu->addAction( copyAction->icon(), copyAction->text(), this, SLOT( copy() ))->setShortcut( copyAction->shortcut().primary() );
+	QList<QAction *> actList = menuBar()->actions();
+	bool hasPrint = false, hasCopy = false;
+	foreach( QAction *a, actList ) {
+	    if( a->shortcut().matches( printAction->shortcut().primary() ) != QKeySequence::NoMatch )
+		hasPrint = true;
+	    if( a->shortcut().matches( copyAction->shortcut().primary() ) != QKeySequence::NoMatch )
+		hasCopy = true;
+	}
+	QAction *printAct = viewerMenu->addAction( printAction->icon(), printAction->text(), this, SLOT( print() ));
+	if( hasPrint )
+	    printAct->setShortcut( printAction->shortcut().primary() );
+	QAction *copyAct = viewerMenu->addAction( copyAction->icon(), copyAction->text(), this, SLOT( copy() ));
+	if( hasCopy )
+	    copyAct->setShortcut( copyAction->shortcut().primary() );
 	viewerMenu->addSeparator();
 	( tabClose = viewerMenu->addAction( i18n( "&Close current tab" ), this, SLOT( tabCloseRequest() )))->setShortcut( Qt::Key_Escape );
 	( closeAct = viewerMenu->addAction( i18n( "&Quit" ), this, SLOT( close() )))->setShortcut( Qt::CTRL + Qt::Key_Q );
