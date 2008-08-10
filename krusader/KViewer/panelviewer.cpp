@@ -68,6 +68,11 @@ KParts::ReadOnlyPart* PanelViewer::openUrl( const KUrl &url, KrViewer::Mode mode
 	if( mode == KrViewer::Generic ){
 		KMimeType::Ptr mt = KMimeType::findByUrl( curl );
 		cmimetype = mt ? mt->name() : QString();
+		// KDE 4 HACK : START
+		// KDE 4 crashes at viewing directories
+		if( cmimetype == "inode/directory" )
+			return 0;
+		// KDE 4 HACK : END
 		if( mimes->find( cmimetype ) == mimes->end() ) {
 			cpart = getPart( cmimetype );
 			mimes->insert( cmimetype, cpart );
