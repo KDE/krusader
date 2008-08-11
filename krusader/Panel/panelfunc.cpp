@@ -493,6 +493,12 @@ void ListPanelFunc::mkdir() {
 	QStringList dirTree = dirName.split( "/" );
 
 	for ( QStringList::Iterator it = dirTree.begin(); it != dirTree.end(); ++it ) {
+		if( *it == "." )
+			continue;
+		if( *it == ".." ) {
+			immediateOpenUrl( *it );
+			continue;
+		}
 		// check if the name is already taken
 		if ( files() ->vfs_search( *it ) ) {
 			// if it is the last dir to be created - quit
