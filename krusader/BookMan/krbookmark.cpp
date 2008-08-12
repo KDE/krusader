@@ -88,7 +88,7 @@ KrBookmark* KrBookmark::lan ( KActionCollection *collection )
 	KrBookmark *bm = getExistingBookmark ( i18n ( NAME_LAN ), collection );
 	if ( !bm )
 	{
-		bm = new KrBookmark ( i18n ( NAME_LAN ), KUrl("lan:/"), collection );
+		bm = new KrBookmark ( i18n ( NAME_LAN ), KUrl("remote:/"), collection );
 		bm->setIcon ( krLoader->loadIcon ( "network-wired", KIconLoader::Small ) );
 	}
 	return bm;

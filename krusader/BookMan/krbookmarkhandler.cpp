@@ -593,6 +593,8 @@ void KrBookmarkHandler::rightClicked( QMenu *menu, KrBookmark * bm ) {
 // bookmark is opened in a new tab. ugly, but easier than overloading
 // KAction and KActionCollection.
 void KrBookmarkHandler::slotActivated(const KUrl& url) {
+	if( _mainBookmarkPopup && !_mainBookmarkPopup->isHidden() )
+		_mainBookmarkPopup->close();
 	if (_middleClick)
 		SLOTS->newTab(url);
 	else SLOTS->refresh(url);
