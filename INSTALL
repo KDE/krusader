@@ -167,13 +167,13 @@ $ cmake ../krusader_kde4 -DCMAKE_INSTALL_PREFIX=/opt/kde4/
 $ make
 $ sudo make install
 
-Now you should have a working Krusader.app instide /opt/kde4/bin. See below
-how to create a relocatable aplication bundle.
+Now you should have a working Krusader.app inside /opt/kde4/bin.
+See below how to create a relocatable aplication bundle.
 
 Build Krusader using XCode
 --------------------------
-An other method is to use Apple's IDE XCode to build Krusader. You have to
-install the Apple Developer Tools and change the commands above to:
+An other method is to use Apple's IDE XCode to build Krusader.
+You have to install the Apple Developer Tools and change the commands above to:
 
 $ tar -xzvf krusader_kde4.tar.gz
 $ mkdir krusader_xcode
@@ -181,8 +181,8 @@ $ cd krusader_xcode
 $ cmake ../krusader_kde4 -G Xcode
 $ open Project.xcodeproj
 
-Please consult the XCode manual for details about how to proceed. Any feetback
-is wellcome, since we have no XCode gugu in our team ;-)
+Please consult the XCode manual for details about how to proceed.
+Any feedback is wellcome, since we have no XCode guru in our Krusader development team ;-)
 
 Create a relocatable application bundle
 ---------------------------------------
@@ -196,7 +196,8 @@ $ mv /opt/tmp/share /opt/tmp/bin/Krusader.app/Contents/
 As of KDE-4.1 Krusader.app should find it's resources this way as
 "<self>.app/Contents/" is added as possible KDEDIR. If you really need an older
 version of KDE-4, you have to use a wrapper script as described a mail from
-Jonas Bähr to the kde-mac mailing list on 2008-02-03.
+Jonas Bähr to the kde-mac mailing list on 3 February 2008.
+http://mail.kde.org/pipermail/kde-mac/2008-February/000002.html
 
 We hope to integrate this resource bundling into the normal build process for
 future versions.
