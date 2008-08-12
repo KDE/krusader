@@ -547,8 +547,8 @@ void KRslots::rootKrusader()
   
   KProcess proc;
   proc << KrServices::fullPathName( "kdesu" ) << KrServices::fullPathName( "krusader" )
-       << "--left=" + MAIN_VIEW->left->func->files()->vfs_getOrigin().url()
-       << "--right=" + MAIN_VIEW->right->func->files()->vfs_getOrigin().url();
+       + " --left=" + MAIN_VIEW->left->func->files()->vfs_getOrigin().url()
+       + " --right=" + MAIN_VIEW->right->func->files()->vfs_getOrigin().url();
 
   if (!proc.startDetached())
     KMessageBox::error(0,i18n("Error executing %1!", proc.program()[0]));
