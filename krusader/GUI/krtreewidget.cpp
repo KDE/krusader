@@ -43,7 +43,7 @@ KrTreeWidget::KrTreeWidget( QWidget * parent ) : QTreeWidget( parent ), _inResiz
 
   _stretchingColumn = -1;
 
-  setStyle( new KrStyleProxy( style() ) );
+  setStyle( new KrStyleProxy() );
 }
 
 bool KrTreeWidget::event ( QEvent * event )

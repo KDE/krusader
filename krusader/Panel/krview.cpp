@@ -120,7 +120,7 @@ QPixmap KrView::getIcon( vfile *vf /*, KRListItem::cmpColor color*/ )
 		// bitBlt ( &icon, 0, icon.height() - 11, &link, 0, 21, 10, 11, Qt::CopyROP, false );
 		QPainter painter( &icon );
 		painter.drawPixmap( 0, icon.height() - 11, link, 0, 21, 10, 11 );
-		icon.setMask( icon.createHeuristicMask( false ) );
+		//icon.setMask( icon.createHeuristicMask( false ) );
 	}
 
 	return icon;

@@ -34,7 +34,7 @@
 #include <qevent.h>
 
 KrListWidget::KrListWidget( QWidget * parent ) : QListWidget( parent ) {
-  setStyle( new KrStyleProxy( style() ) );
+  setStyle( new KrStyleProxy() );
 }
 
 bool KrListWidget::event ( QEvent * event )
