@@ -118,7 +118,8 @@ QPixmap KrView::getIcon( vfile *vf /*, KRListItem::cmpColor color*/ )
 	if ( vf->vfile_isSymLink() ) {
 		QPixmap link( link_xpm );
 		// bitBlt ( &icon, 0, icon.height() - 11, &link, 0, 21, 10, 11, Qt::CopyROP, false );
-		QPainter( &icon ).drawPixmap( 0, icon.height() - 11, link, 0, 21, 10, 11 );
+		QPainter painter( &icon );
+		painter.drawPixmap( 0, icon.height() - 11, link, 0, 21, 10, 11 );
 		icon.setMask( icon.createHeuristicMask( false ) );
 	}
 
