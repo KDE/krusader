@@ -1223,8 +1223,11 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Starts &krusader; in
-          &rootmode-lnk; at the same location.</para>
+          <para>Starts &krusader; in &rootmode-lnk; at the same location. 
+                Root mode &krusader; requires <command>kdesu</command> by default, 
+                if <command>kdesu</command> is not available or if you prefer &eg; 
+                <command>gksu</command> when using &gnome-url; you can change this behaviour in the
+                &konfigdependencie-lnk;.</para>
           <caution>
             <para>Be careful when using &krusader; with
             ROOT PRIVILEGES.</para>

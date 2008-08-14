@@ -154,9 +154,7 @@
   the current item will also show up in the right click
   menu.</para>
   <para>
-    <emphasis role="bold">
-      <guimenuitem>Basic Properties</guimenuitem>
-    </emphasis>
+    <emphasis role="bold">Basic Properties</emphasis>
   </para>
   <para>
   <guimenuitem>"Distinct Name", "Title" and "Command
@@ -165,81 +163,86 @@
   <itemizedlist>
     <listitem>
       <para>
-      <guimenuitem>"Distinct Name"</guimenuitem>: A unique name of
+      <guimenuitem>Distinct Name</guimenuitem>: A unique name of
       the UserAction, used to identify it for &kde;'s
       action system.</para>
     </listitem>
     <listitem>
       <para>
-      <guimenuitem>"Icon button"</guimenuitem>: The icon for your
+      <guimenuitem>Icon button</guimenuitem>: The icon for your
       UserAction.</para>
     </listitem>
     <listitem>
       <para>
-      <guimenuitem>"Category"</guimenuitem>: Adds a category for a
+      <guimenuitem>Category</guimenuitem>: Adds a category for a
       better overview. NOTE: This property is not used yet. It is
       planned to be used, but has not implemented yet.</para>
     </listitem>
     <listitem>
       <para>
-      <guimenuitem>"Title"</guimenuitem>: The title displayed in
+      <guimenuitem>Title</guimenuitem>: The title displayed in
       the menus or dialogs.</para>
     </listitem>
     <listitem>
       <para>
-      <guimenuitem>"Tooltip"</guimenuitem>: A tooltip for your
+      <guimenuitem>Tooltip</guimenuitem>: A tooltip for your
       UserAction, &eg; displayed in the toolbar on
       mouseover.</para>
     </listitem>
     <listitem>
       <para>
-      <guimenuitem>"Description"</guimenuitem>: A description of
+      <guimenuitem>Description</guimenuitem>: A description of
       what the UserAction does. This is also displayed as 
-      <guimenuitem>"What's This"</guimenuitem> if you 
+      <guimenuitem>What's This</guimenuitem> if you 
       <keycombo action="simul">&Shift;
       <keycap>F1</keycap></keycombo> click on your
       UserAction.</para>
     </listitem>
     <listitem>
       <para>
-      <guimenuitem>"Use Tooltip checkbox"</guimenuitem>: Uses the
+      <guimenuitem>Use Tooltip checkbox</guimenuitem>: Uses the
       tooltip as description.</para>
     </listitem>
     <listitem>
       <para>
-      <guimenuitem>"Command line"</guimenuitem>: The command which
+      <guimenuitem>Command line</guimenuitem>: The command which
       will be executed. You can add placeholder using a GUI with
       the 
       <guibutton>add</guibutton> button.</para>
     </listitem>
     <listitem>
       <para>
-      <guimenuitem>"Startpath"</guimenuitem>: The working directory
+      <guimenuitem>Startpath</guimenuitem>: The working directory
       for the command which will be executed.</para>
     </listitem>
     <listitem>
       <para>
-      <guimenuitem>"Execution mode"</guimenuitem>:</para>
+      <guimenuitem>Execution mode</guimenuitem>:</para>
       <itemizedlist>
         <listitem>
           <para>
-          <guimenuitem>"Normal"</guimenuitem>: Normal execution
+          <guimenuitem>Normal</guimenuitem>: Normal execution
           mode.</para>
         </listitem>
         <listitem>
           <para>
-          <guimenuitem>"Run in terminal"</guimenuitem>: Runs the
+          <guimenuitem>Run in terminal</guimenuitem>: Runs the
           command in the terminal.</para>
         </listitem>
         <listitem>
           <para>
-          <guimenuitem>"Collect output"</guimenuitem>: Collects the
+          <guimenuitem>Run in embedded terminal emulator</guimenuitem>: Runs the
+          command in the embedded terminal.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guimenuitem>Collect output</guimenuitem>: Collects the
           output of the executed program in a &GUI;
           window.</para>
         </listitem>
         <listitem>
           <para>
-          <guimenuitem>"Separate standard error"</guimenuitem>:
+          <guimenuitem>Separate standard error</guimenuitem>:
           When "Collect output" is used the stdout and stderr are
           separately collected.</para>
         </listitem>
@@ -247,16 +250,16 @@
     </listitem>
     <listitem>
       <para>
-      <guimenuitem>"Command accepts"</guimenuitem>:</para>
+      <guimenuitem>Command accepts</guimenuitem>:</para>
       <itemizedlist>
         <listitem>
           <para>
-          <guimenuitem>"Local files (no URLs)"</guimenuitem>: Tells
+          <guimenuitem>Local files (no URLs)</guimenuitem>: Tells
           the placeholder it should return local addresses.</para>
         </listitem>
         <listitem>
           <para>
-          <guimenuitem>"URLs (local and remote)"</guimenuitem>:
+          <guimenuitem>URLs (local and remote)</guimenuitem>:
           Tells the placeholder it should return
           &URL;s.</para>
         </listitem>
@@ -271,12 +274,17 @@
       </listitem> -->
     <listitem>
       <para>
-      <guimenuitem>"Shortcut button"</guimenuitem>: Configures a
+      <guimenuitem>Default shortcut</guimenuitem>: Configures a default
       shortcut for the UserAction.</para>
+    </listitem>
+    <listitem>
+      <para>
+      <guimenuitem>Enabled</guimenuitem>: if checked, the useraction is shown in the &usermenu-lnk;, 
+       otherwise the useraction will be hidden.</para>
     </listitem>
   </itemizedlist></para>
   <para>
-    <emphasis role="bold">Command-line syntax:</emphasis>
+    <emphasis role="bold">Command-line syntax</emphasis>
   </para>
   <para>Basically, everything you type in the command line will get
   executed (if you type "ls -l", "ls -l" gets executed). You have
@@ -620,9 +628,7 @@
   called at execution time (meaning after all placeholders are
   replaced).</para>
   <para>
-    <emphasis role="bold">
-      <guimenuitem>Advanced Properties</guimenuitem>
-    </emphasis>
+    <emphasis role="bold">Advanced Properties</emphasis>
   </para>
   <para>Here you can configure where your command should be visible
   (for the right click menu) In addition, it is possible to change
