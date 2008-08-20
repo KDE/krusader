@@ -42,6 +42,7 @@ A
 #include <kdebug.h>
 #include <QKeyEvent>
 #include <QPaintEvent>
+#include <kcolorscheme.h>
 
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////// Pie related widgets /////////////////////////////////
@@ -218,7 +219,10 @@ void KRPie::addSlice( KIO::filesize_t size, QString label ) {
 ////////////////////////////////////////////////////
 /////////////////// KrQuickSearch  /////////////////
 ////////////////////////////////////////////////////
-KrQuickSearch::KrQuickSearch( QWidget *parent ) : KLineEdit( parent ) {}
+KrQuickSearch::KrQuickSearch( QWidget *parent ) : KLineEdit( parent )
+{
+   setMatch( true );
+}
 
 void KrQuickSearch::myKeyPressEvent( QKeyEvent *e ) {
    switch ( e->key() ) {
@@ -248,6 +252,39 @@ void KrQuickSearch::myKeyPressEvent( QKeyEvent *e ) {
    }
 }
 
+void KrQuickSearch::setMatch( bool match ) {
+   KConfigGroup gc( krConfig, "Colors");
 
+   QString foreground, background;
+   QColor  fore, back;
+
+   if( match )
+   {
+      foreground = "Quicksearch Match Foreground";
+      background = "Quicksearch Match Background";
+      fore = Qt::black;
+      back = QColor( 192, 255, 192 );
+   } else {
+      foreground = "Quicksearch Non-match Foreground";
+      background = "Quicksearch Non-match Background";
+      fore = Qt::black;
+      back = QColor(255,192,192);
+   }
+
+   if( gc.readEntry( foreground, QString() ) == "KDE default" )
+      fore = KColorScheme(QPalette::Active, KColorScheme::View).foreground().color();
+   else if( !gc.readEntry( foreground, QString() ).isEmpty() )
+      fore = gc.readEntry( foreground, fore );
+
+   if( gc.readEntry( background, QString() ) == "KDE default" )
+      back = KColorScheme(QPalette::Active, KColorScheme::View).background().color();
+   else if( !gc.readEntry( background, QString() ).isEmpty() )
+      back = gc.readEntry( background, back );
+
+   QPalette pal = palette();
+   pal.setColor( QPalette::Base, back);
+   pal.setColor( QPalette::Text, fore);
+   setPalette( pal );
+}
 
 #include "krspecialwidgets.moc"

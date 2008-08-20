@@ -204,6 +204,22 @@ KgColors::KgColors( bool first, QWidget* parent ) :
 
   colorsGrid->addWidget(createSpacer(colorsGrp), itemList.count() - offset, 1);
 
+  colorsGrp = new QWidget( colorTabWidget );
+  colorTabWidget->addTab( colorsGrp, i18n( "Other" ) );
+
+  colorsGrid = new QGridLayout( colorsGrp );
+  colorsGrid->setSpacing( 0 );
+  colorsGrid->setContentsMargins( 2, 2, 2, 2 );
+
+  offset = endOfPanelColors = itemList.count();
+
+  addColorSelector( "Quicksearch Match Foreground", i18n( "Quicksearch, match foreground:" ), Qt::black, QString(), &KDEDefaultFore, 1 );
+  addColorSelector( "Quicksearch Match Background", i18n( "Quicksearch, non-match background:" ), QColor( 192, 255, 192 ), QString(), &KDEDefaultBase, 1 );
+  addColorSelector( "Quicksearch Non-match Foreground", i18n( "Quicksearch, non-match foreground:" ), Qt::black, QString(), &KDEDefaultFore, 1 );
+  addColorSelector( "Quicksearch Non-match Background", i18n( "Quicksearch, non-match background:" ), QColor(255,192,192), QString(), &KDEDefaultBase, 1 );
+
+  colorsGrid->addWidget(createSpacer(colorsGrp), itemList.count() - offset, 1);
+
   colorsFrameGrid->addWidget( colorTabWidget, 0, 0 );
   hbox->addWidget( colorsFrameGrp );
 
@@ -502,6 +518,14 @@ void KgColors::generatePreview()
                            getColorSelector( "Synchronizer RightCopy Background" )->getColor() );
     pwDelete->setColor(    getColorSelector( "Synchronizer Delete Foreground" )->getColor(),
                            getColorSelector( "Synchronizer Delete Background" )->getColor() );
+  }else if( currentPage == 3 )
+  {
+    PreviewItem *pwNonMatch = new PreviewItem( preview, i18n( "Quicksearch non-match" ) );
+    PreviewItem *pwMatch    = new PreviewItem( preview, i18n( "Quicksearch match" ) );
+    pwMatch->setColor    ( getColorSelector( "Quicksearch Match Foreground" )->getColor(),
+                           getColorSelector( "Quicksearch Match Background" )->getColor() );
+    pwNonMatch->setColor ( getColorSelector( "Quicksearch Non-match Foreground" )->getColor(), 
+                           getColorSelector( "Quicksearch Non-match Background" )->getColor() );
   }
 }
 
@@ -588,6 +612,10 @@ void KgColors::serialize(QDataStream & stream)
    serializeItem(stream, "Synchronizer RightCopy Background");
    serializeItem(stream, "Synchronizer Delete Foreground");
    serializeItem(stream, "Synchronizer Delete Background");
+   serializeItem(stream, "Quicksearch Match Foreground");
+   serializeItem(stream, "Quicksearch Match Background");
+   serializeItem(stream, "Quicksearch Non-match Foreground" );
+   serializeItem(stream, "Quicksearch Non-match Background" );
    stream << QString("") << QString("");
 }
 
@@ -629,7 +657,7 @@ void KgColors::serializeItem(class QDataStream & stream, const char * name)
 {
    stream << QString(name);
    if( strcmp( name, "KDE Default" ) == 0 || strcmp( name, "Enable Alternate Background" ) == 0 ||
-       strcmp( name, "Show Current Item Always" ) == 0 || strcmp( name, "Dim Inactive Colors" ) )
+       strcmp( name, "Show Current Item Always" ) == 0 || strcmp( name, "Dim Inactive Colors" ) == 0 )
    {
      bool bValue = generals->find( name )->isChecked();
      stream << QString( bValue ? "true" : "false" );

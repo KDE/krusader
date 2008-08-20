@@ -46,6 +46,7 @@ public:
 		return QRect();
 	}
 	static void itemHeightChanged() {} // force the items to resize when icon/font size change
+	void redraw() {}
 
 private:
 	QPersistentModelIndex _pIndex;
@@ -136,6 +137,10 @@ KrViewItem* KrInterView::getPrev(KrViewItem *current)
 }
 
 void KrInterView::makeItemVisible(const KrViewItem *item)
+{
+}
+
+void KrInterView::setCurrentKrViewItem(KrViewItem *item)
 {
 }
 
@@ -275,5 +280,5 @@ void KrInterView::initOperator()
 {
 	_operator = new KrViewOperator(this, this);
 	// klistview emits selection changed, so chain them to operator
-	connect(this, SIGNAL(selectionChanged()), _operator, SIGNAL(selectionChanged()));
+	connect(this, SIGNAL(selectionChanged()), _operator, SLOT(emitSelectionChanged()));
 }

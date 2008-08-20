@@ -29,53 +29,28 @@
  ***************************************************************************/
 
 #include "mediabutton.h"
-#include "../krusader.h"
-#include "../krservices.h"
-#include "../kicons.h"
 #include "../krslots.h"
 #include "../MountMan/kmountman.h"
 
-#include <qfile.h>
-#include <qfontmetrics.h>
-#include <qtextstream.h>
-#include <QPixmap>
 #include <QMouseEvent>
 #include <QEvent>
 
 #include <klocale.h>
-#include <kiconloader.h>
-
-#include <kdeversion.h>
-#include <kio/job.h>
 #include <kmessagebox.h>
-#include <kmimetype.h>
-#include <kprotocolinfo.h>
-#include <kfileitem.h>
-#include <kprocess.h>
 #include <kdiskfreespace.h>
+#include <kio/global.h>
 #include <qcursor.h>
-
-#ifdef Q_OS_LINUX
-// For CD/DVD drive detection
-#include <fcntl.h>
-#include <sys/ioctl.h>
-#include <unistd.h>
-#include <stdint.h>
-#define CDROM_GET_CAPABILITY    0x5331
-#define CDSL_CURRENT            ((int) (~0U>>1))
-#define CDC_DVD_R               0x10000 /* drive can write DVD-R */
-#define CDC_DVD_RAM             0x20000 /* drive can write DVD-RAM */
-#define CDC_CD_R                0x2000  /* drive is a CD-R */
-#define CDC_CD_RW               0x4000  /* drive is a CD-RW */
-#define CDC_DVD                 0x8000  /* drive is a DVD */
-#include <qfile.h>
-#endif
-
-
+#include <kmountpoint.h>
+#include <solid/deviceinterface.h>
+#include <solid/storageaccess.h>
+#include <solid/storagevolume.h>
+#include <solid/opticaldisc.h>
+#include <solid/opticaldrive.h>
+#include <solid/devicenotifier.h>
 
 MediaButton::MediaButton( QWidget *parent ) : QToolButton( parent ),
-		popupMenu( 0 ), rightMenu( 0 ), hasMedia( false ), waitingForMount( -1 ), mountCheckerTimer()
-	 {
+		popupMenu( 0 ), rightMenu( 0 ), openInNewTab( false )
+{
 	KIconLoader * iconLoader = new KIconLoader();
 	QPixmap icon = iconLoader->loadIcon( "blockdevice", KIconLoader::Toolbar, 16 );
 
@@ -95,318 +70,192 @@ MediaButton::MediaButton( QWidget *parent ) : QToolButton( parent ),
 	connect( popupMenu, SIGNAL( aboutToShow() ), this, SLOT( slotAboutToShow() ) );
 	connect( popupMenu, SIGNAL( aboutToHide() ), this, SLOT( slotAboutToHide() ) );
 	connect( popupMenu, SIGNAL( triggered( QAction * ) ), this, SLOT( slotPopupActivated( QAction * ) ) );
-
+	
+	Solid::DeviceNotifier *notifier = Solid::DeviceNotifier::instance();
+	connect(notifier, SIGNAL(deviceAdded(const QString&)),
+	        this, SLOT(slotDeviceAdded(const QString&)));
+	connect(notifier, SIGNAL(deviceRemoved(const QString&)),
+	        this, SLOT(slotDeviceRemoved(const QString&)));
+	
 	connect( &mountCheckerTimer, SIGNAL( timeout() ), this, SLOT( slotTimeout() ) );
 }
 
 MediaButton::~MediaButton() {
-	busy = false;
 }
 
 void MediaButton::slotAboutToShow() {
 	emit aboutToShow();
 	
-	hasMedia = KProtocolInfo::isKnownProtocol( QString( "media" ) );
-	KConfigGroup group( krConfig, "Advanced" );
-	if( group.readEntry( "DontUseMediaProt", !hasMedia ) )
-		hasMedia = false;
-	
 	popupMenu->clear();
-	urls.clear();
-	mediaUrls.clear();
-	iconNames.clear();
-	quasiMounted.clear();
-	waitingForMount = -1;
+	udiNameMap.clear();
 	
-	if( hasMedia )
-		createListWithMedia();
-	else
-		createListWithoutMedia();
-	
-	mountCheckerTimer.setSingleShot( true );
-	mountCheckerTimer.start( 1000 );
+	createMediaList();
 }
 
 void MediaButton::slotAboutToHide() {
 	if( rightMenu )
 		rightMenu->close();
-	
-	if( waitingForMount < 0 )
-		mountCheckerTimer.stop();
+	mountCheckerTimer.stop();
 }
 
-void MediaButton::createListWithMedia() {
-	KIO::ListJob *job = KIO::listDir( KUrl( "media:/" ), KIO::HideProgressInfo );
-	connect( job, SIGNAL( entries( KIO::Job*, const KIO::UDSEntryList& ) ),
-		this, SLOT( slotEntries( KIO::Job*, const KIO::UDSEntryList& ) ) );
-	connect( job, SIGNAL( result( KJob* ) ),
-		this, SLOT( slotListResult( KJob* ) ) );
-	busy = true;
+void MediaButton::createMediaList() {
+	// devices detected by solid
+	storageDevices = Solid::Device::listFromType( Solid::DeviceInterface::StorageAccess );
 	
-	if( !busy )
-		qApp->processEvents();
-}
-
-void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries ) 
-{
-	KMountPoint::List mountList = KMountPoint::currentMountPoints();
-	
-	KIO::UDSEntryList::const_iterator it = entries.begin();
-	KIO::UDSEntryList::const_iterator end = entries.end();
-	
-	while( it != end )
-	{
-		KUrl url;
-		QString text;
-		QString mime;
-		QString iconName;
-		QString localPath;
-		bool mounted = false;
+	for( int p = storageDevices.count()-1 ; p >= 0; p-- ) {
+		Solid::Device device = storageDevices[ p ];
+		QString udi     = device.udi();
 		
-		if( (*it).contains( KIO::UDSEntry::UDS_NAME ) )
-			text = QUrl::fromPercentEncoding( (*it).stringValue( KIO::UDSEntry::UDS_NAME ).toLatin1() );
-		if( (*it).contains( KIO::UDSEntry::UDS_URL ) )
-			url = KUrl( (*it).stringValue( KIO::UDSEntry::UDS_URL ) );
-		if( (*it).contains( KIO::UDSEntry::UDS_MIME_TYPE ) )
-		{
-			mime = (*it).stringValue( KIO::UDSEntry::UDS_MIME_TYPE );
-			if( !mime.endsWith( "unmounted" ) )
-				mounted = true;
-		}
-		if( (*it).contains( KIO::UDSEntry::UDS_LOCAL_PATH ) )
-			localPath = (*it).stringValue( KIO::UDSEntry::UDS_LOCAL_PATH );
-
-		if( text != "." && text != ".." ) {
-			int index = popupMenu->actions().count();
-			KMimeType::Ptr mt = KMimeType::mimeType( mime );
-			QPixmap pixmap;
-			if( mt ) {
-				iconName = mt->iconName();
-				pixmap = FL_LOADICON( mt->iconName() );
-			}
-			
-			mediaUrls.append( url );
-			
-			if( mounted && !localPath.isEmpty() )
-			{
-				url = KUrl( localPath );
-				if( !text.contains( url.path() ) )
-					text += "  [" + url.path() + "]";
-			}
-			else if( mounted )
-			{
-				url = getLocalPath( url, &mountList );
-				if( url.isLocalFile() && !text.contains( url.path() ) )
-					text += "  [" + url.path() + "]";
-			}
-			
-			QAction *act = popupMenu->addAction( pixmap, text );
-			act->setData( QVariant( index ) );
-			idActionMap[ index ] = act;
-			
-			urls.append( url );
-			iconNames.append( iconName );
-			quasiMounted.append( false );
-		}
-		++it;
+		QString name;
+		KIcon kdeIcon;
+		if( !getNameAndIcon( device, name, kdeIcon ) )
+			continue;
+		
+		QAction * act = popupMenu->addAction( kdeIcon, name );
+		act->setData( QVariant( udi ) );
+		udiNameMap[ udi ] = name;
+		
+		connect(device.as<Solid::StorageAccess>(), SIGNAL(accessibilityChanged(bool, const QString &)),
+			this, SLOT(slotAccessibilityChanged(bool, const QString &)));
 	}
-}
-
-void MediaButton::slotListResult( KJob * ) {
-	busy = false;
-}
-
-KUrl MediaButton::getLocalPath( const KUrl &url, KMountPoint::List *mountList ) {
-	KMountPoint::List mountListRef;
-	if( mountList == 0 ) {
-		mountListRef = KMountPoint::currentMountPoints();
-		mountList = &mountListRef;
-	}
-	
-	for (KMountPoint::List::iterator it = mountList->begin(); it != mountList->end(); ++it) {
-		QString name = (*it)->mountedFrom();
-		name = name.mid( name.lastIndexOf( "/" ) + 1 );
-		if( name == url.fileName() ) {
-			QString point = (*it)->mountPoint();
-			if( !point.isEmpty() )
-				return KUrl( point );
-		}
-	}
-	return url;
-}
-
-
-void MediaButton::createListWithoutMedia() {
-	/* WORKAROUND CODE START */
-	
-	/* 1. the menu is drawn when we know all the mount points
-	   2. the menu is corrected, when the HDD volume sizes arrive from df
-	
-	   when the volume sizes are added to the items, some cases widget resize
-	   is necessary. If transparency is set for the widget, QT produces weird
-	   looking widgets, and that's why this workaround is used.
-	   Here we add additional spaces to the mounted HDD elements for avoiding
-	   the buggy widget resize. These are extra spaces. */
-
-	extraSpaces = "";
-	QFontMetrics fm( popupMenu->font() );
-	int requiredWidth = fm.width( "999.9 GB " );
-	while( fm.width( extraSpaces ) < requiredWidth )
-		extraSpaces+=" ";
-	/* WORKAROUND CODE END */
 	
 	KMountPoint::List possibleMountList = KMountPoint::possibleMountPoints();
+	KMountPoint::List currentMountList = KMountPoint::currentMountPoints();
+	
 	for (KMountPoint::List::iterator it = possibleMountList.begin(); it != possibleMountList.end(); ++it) {
-		addMountPoint( &(*(*it)), false );
-	}
-	
-	KMountPoint::List mountList = KMountPoint::currentMountPoints();
-	for (KMountPoint::List::iterator it = mountList.begin(); it != mountList.end(); ++it) {
-		addMountPoint( &(*(*it)), true );
-	}
-}
-
-QString MediaButton::detectType( KMountPoint *mp )
-{
-	QString typeName = QString();
-#ifdef Q_OS_LINUX
-	// Guessing device types by mount point is not exactly accurate...
-	// Do something accurate first, and fall back if necessary.
-	
-	bool isCd=false;
-	QString devname=mp->mountedFrom().section('/', -1);
-	if(devname.startsWith("scd") || devname.startsWith("sr"))
-	{
-		// SCSI CD/DVD drive
-		isCd=true;
-	}
-	else if(devname.startsWith("hd"))
-	{
-		// IDE device -- we can't tell if this is a
-		// CD/DVD drive or harddisk by just looking at the
-		// filename
-		QFile m(QString("/proc/ide/") + devname + "/media");
-		if(m.open(QIODevice::ReadOnly))
-		{
-			QTextStream in(&m);
-			QString buf=in.readLine();
-			if(buf.contains("cdrom"))
-				isCd=true;
-			m.close();
-		}
-	}
-	if(isCd)
-	{
-		int device=::open((const char *)QFile::encodeName(mp->mountedFrom()), O_RDONLY | O_NONBLOCK );
-		if(device>=0)
-		{
-			int drv=::ioctl(device, CDROM_GET_CAPABILITY, CDSL_CURRENT);
-			if(drv>=0)
-			{
-				if((drv & CDC_DVD_R) || (drv & CDC_DVD_RAM))
-					typeName = "dvdwriter";
-				else if((drv & CDC_CD_R) || (drv & CDC_CD_RW))
-					typeName = "cdwriter";
-				else if(drv & CDC_DVD)
-					typeName = "dvd";
-				else
-					typeName = "cdrom";
+		if( (*it)->mountType() == "nfs" || (*it)->mountType() == "smb" ) {
+			QString path = (*it)->mountPoint();
+			bool mounted = false;
+			
+			for (KMountPoint::List::iterator it2 = currentMountList.begin(); it2 != currentMountList.end(); ++it2) {
+				if(( (*it2)->mountType() == "nfs" || (*it2)->mountType() == "smb" ) &&
+				   (*it)->mountPoint() == (*it2)->mountPoint() ) {
+					mounted = true;
+					break;
+				}
 			}
 			
-			::close(device);
+			QString name = i18n( "Remote Share" ) + " [" + (*it)->mountPoint() + "]";
+			QStringList overlays;
+			if ( mounted )
+				overlays << "emblem-mounted";
+			KIcon kdeIcon("network-wired", 0, overlays);
+			QAction * act = popupMenu->addAction( kdeIcon, name );
+			QString udi = "remote:" + (*it)->mountPoint();
+			act->setData( QVariant( udi ) );
 		}
 	}
-	if( !typeName.isNull() )
-		return typeName;
+	
+	mountCheckerTimer.setSingleShot( true );
+	mountCheckerTimer.start( 1000 );
+}
 
-#elif defined(__FreeBSD__)
-	if (-1!=mp->mountedFrom().indexOf("/acd",0,Qt::CaseInsensitive)) typeName="cdrom";
-	else if (-1!=mp->mountedFrom().indexOf("/scd",0,Qt::CaseInsensitive)) typeName="cdrom";
-	else if (-1!=mp->mountedFrom().indexOf("/ad",0,Qt::CaseInsensitive)) typeName="hdd";
-	else if (-1!=mp->mountedFrom().indexOf("/da",0,Qt::CaseInsensitive)) typeName="hdd";
-	else if (-1!=mp->mountedFrom().indexOf("/afd",0,Qt::CaseInsensitive)) typeName="zip";
+bool MediaButton::getNameAndIcon( Solid::Device & device, QString &name, KIcon &kicon) {
+	Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+	if( access == 0 )
+		return false;
+		
+	QString udi     = device.udi();
+	QString label   = i18n( "Unknown" );
+	bool    mounted = access->isAccessible();
+	QString path    = access->filePath();
+	QString type    = i18n( "Unknown" );
+	QString icon    = device.icon();
+	QString fstype;
+	QString size;
+	
+	Solid::StorageVolume * vol = device.as<Solid::StorageVolume> ();
+	if( vol ) {
+		label = vol->label();
+		fstype = vol->fsType();
+		size = KIO::convertSize( vol->size() );
+	}
+	
+	bool printSize = false;
+	
+	if( icon == "media-floppy" )
+		type = i18n( "Floppy" );
+	else if( icon == "drive-optical" )
+		type = i18n( "CD/DVD-ROM" );
+	else if( icon == "drive-removable-media-usb-pendrive" )
+		type = i18n( "USB pen drive" ), printSize = true;
+	else if( icon == "drive-removable-media-usb" )
+		type = i18n( "USB device" ), printSize = true;
+	else if( icon == "drive-removable-media" )
+		type = i18n( "Removable media" ), printSize = true;
+	else if( icon == "drive-harddisk" )
+		type = i18n( "Hard Disk" ), printSize = true;
+	else if( icon == "camera-photo" )
+		type = i18n( "Camera" );
+	else if( icon == "media-optical-video" )
+		type = i18n( "Video CD/DVD-ROM" );
+	else if( icon == "media-optical-audio" )
+		type = i18n( "Audio CD/DVD-ROM" );
+	else if( icon == "media-optical" )
+		type = i18n( "Recordable CD/DVD-ROM" );
+	
+	if( printSize && !size.isEmpty() )
+		name += size + " ";
+	
+	if( !label.isEmpty() )
+		name += label + " ";
 	else
-#endif
-
-    /* Guessing of cdrom and cd recorder devices */
-	if (-1!=mp->mountPoint().indexOf("cdrom",0,Qt::CaseInsensitive)) typeName="cdrom";
-	else if (-1!=mp->mountedFrom().indexOf("cdrom",0,Qt::CaseInsensitive)) typeName="cdrom";
-	else if (-1!=mp->mountPoint().indexOf("cdwriter",0,Qt::CaseInsensitive)) typeName="cdwriter";
-	else if (-1!=mp->mountedFrom().indexOf("cdwriter",0,Qt::CaseInsensitive)) typeName="cdwriter";
-	else if (-1!=mp->mountedFrom().indexOf("cdrw",0,Qt::CaseInsensitive)) typeName="cdwriter";
-	else if (-1!=mp->mountPoint().indexOf("cdrw",0,Qt::CaseInsensitive)) typeName="cdwriter";
-	else if (-1!=mp->mountedFrom().indexOf("cdrecorder",0,Qt::CaseInsensitive)) typeName="cdwriter";
-	else if (-1!=mp->mountPoint().indexOf("cdrecorder",0,Qt::CaseInsensitive)) typeName="cdwriter";
-	else if (-1!=mp->mountedFrom().indexOf("dvdrecorder",0,Qt::CaseInsensitive)) typeName="dvdwriter";
-	else if (-1!=mp->mountPoint().indexOf("dvdrecorder",0,Qt::CaseInsensitive)) typeName="dvdwriter";
-	else if (-1!=mp->mountPoint().indexOf("dvdwriter",0,Qt::CaseInsensitive)) typeName="dvdwriter";
-	else if (-1!=mp->mountedFrom().indexOf("dvdwriter",0,Qt::CaseInsensitive)) typeName="dvdwriter";
-	else if (-1!=mp->mountPoint().indexOf("dvd",0,Qt::CaseInsensitive)) typeName="dvd";   
-	else if (-1!=mp->mountedFrom().indexOf("dvd",0,Qt::CaseInsensitive)) typeName="dvd";   
-	else if (-1!=mp->mountedFrom().indexOf("/dev/scd",0,Qt::CaseInsensitive)) typeName="cdrom";
-	else if (-1!=mp->mountedFrom().indexOf("/dev/sr",0,Qt::CaseInsensitive)) typeName="cdrom";
+		name += type + " ";
 	
-	/* Guessing of floppy types */
-	else if (-1!=mp->mountedFrom().indexOf("fd",0,Qt::CaseInsensitive)) {
-		if (-1!=mp->mountedFrom().indexOf("360",0,Qt::CaseInsensitive)) typeName="floppy5";
-			if (-1!=mp->mountedFrom().indexOf("1200",0,Qt::CaseInsensitive)) typeName="floppy5";
-			else typeName="floppy";
-		}
-	else if (-1!=mp->mountPoint().indexOf("floppy",0,Qt::CaseInsensitive)) typeName="floppy";
+	if( !fstype.isEmpty() )
+		name += "(" + fstype + ") ";
+	if( !path.isEmpty() )
+		name += "[" + path + "] ";
 	
-	else if (-1!=mp->mountPoint().indexOf("zip",0,Qt::CaseInsensitive)) typeName="zip";
-	else if (-1!=mp->mountType().indexOf("nfs",0,Qt::CaseInsensitive)) typeName="nfs";
-	else if (-1!=mp->mountType().indexOf("smb",0,Qt::CaseInsensitive)) typeName="smb";
-	else if (-1!=mp->mountedFrom().indexOf("//",0,Qt::CaseInsensitive)) typeName="smb";
-	else typeName="hdd";
+	name = name.trimmed();
 	
-	return typeName;
+	QStringList overlays;
+	if ( mounted ) {
+		overlays << "emblem-mounted";
+	} else {
+		overlays << QString(); // We have to guarantee the placement of the next emblem
+	}
+	if (vol && vol->usage()==Solid::StorageVolume::Encrypted) {
+		overlays << "security-high";
+	}
+	kicon = KIcon(icon, 0, overlays);
+	return true;
 }
 
 void MediaButton::slotPopupActivated( QAction * action ) {
-	if( action && action->data().canConvert<int>() )
+	if( action && action->data().canConvert<QString>() )
 	{
-		int elem = action->data().toInt();
-		if( !quasiMounted[ elem ] && iconNames[ elem ].endsWith( "_unmounted" ) ) {
-			mount( elem );
-			waitingForMount = elem;
-			maxMountWait = 20;
-			newTabAfterMount = false;
-			mountCheckerTimer.setSingleShot( true );
-			mountCheckerTimer.start( 1000 );
-			return;
-		}
-		emit openUrl( urls[ elem ] );
-	}
-}
-
-void MediaButton::gettingSpaceData(const QString &mountPoint, quint64 kBSize, quint64, quint64 ) {
-	KUrl mediaURL = KUrl( mountPoint );
-	
-	KIO::filesize_t size = kBSize;
-	size *= 1024;
-	QString sizeText = KIO::convertSize( size );
-	
-	for( int i=0; i != urls.size(); i++ ) {
-		if( mediaURL.equals( urls[ i ], KUrl::CompareWithoutTrailingSlash ) ) {
-			if( kBSize == 0 ) { // if df gives 0, it means the device is quasy umounted
-				QString iconName = iconNames[ i ];
-				if( iconNames[ i ].endsWith( "_mounted" ) ) {
-					quasiMounted[ i ] = true;
-					iconNames[ i ] = iconNames[ i ].replace( "_mounted", "_unmounted" );
+		QString id = action->data().toString();
+		if( id.startsWith( "remote:" ) )
+		{
+			QString mountPoint = id.mid( 7 );
+			
+			bool mounted = false;
+			KMountPoint::List currentMountList = KMountPoint::currentMountPoints();
+			for (KMountPoint::List::iterator it = currentMountList.begin(); it != currentMountList.end(); ++it) {
+				if(( (*it)->mountType() == "nfs" || (*it)->mountType() == "smb" ) &&
+				   (*it)->mountPoint() == mountPoint ) {
+					mounted = true;
+					break;
 				}
-				
-				KMimeType::Ptr mt = KMimeType::mimeType( iconNames[ i ] );
-				QPixmap pixmap;
-				if( mt )
-					pixmap = FL_LOADICON( mt->iconName() );
-				
-				idActionMap[ i ]->setIcon( pixmap );
 			}
-			else if( iconNames[ i ].contains( "hdd_" ) )
-				idActionMap[ i ]->setText( sizeText + " " + idActionMap[ i ]->text().trimmed() );
+			
+			if( !mounted )
+				mount( id, true, false );
+			else
+				emit openUrl( KUrl( mountPoint ) );
 			return;
 		}
+		Solid::Device device( id );
+		
+		Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+		if( access && !access->isAccessible() ) {
+			mount( id, true );
+			return;
+		}
+		
+		if( access && !access->filePath().isEmpty() )
+			emit openUrl( KUrl( access->filePath() ) );
 	}
 }
 
@@ -417,102 +266,6 @@ void MediaButton::showMenu() {
 	}
 }
 
-void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
-	QString mountString = isMounted ? "_mounted" : "_unmounted";
-	if( mp->mountPoint() == "/dev/swap" || 
-		mp->mountPoint() == "/dev/pts"  ||
-		mp->mountPoint().startsWith( "/sys/kernel" ) ||
-		mp->mountPoint().indexOf( "/proc" ) == 0 )
-		return;
-	if( mp->mountType() == "swap" ||
-		mp->mountType() == "sysfs" ||
-		mp->mountType() == "tmpfs" ||
-		mp->mountType() == "kernfs" ||
-		mp->mountType() == "usbfs" ||
-		mp->mountType() == "unknown" ||
-		mp->mountType() == "none" ||
-		mp->mountType() == "sunrpc" )
-		return;
-	if( mp->mountedFrom() == "none" ||
-		mp->mountedFrom() == "tmpfs" ||
-		mp->mountedFrom().indexOf( "shm" )  != -1 )
-		return;
-	
-	int overwrite = -1;
-	KUrl mountURL = KUrl( mp->mountPoint() );
-	
-	for( int i=0; i != urls.size(); i++ ) 
-		if( urls[ i ].equals( mountURL, KUrl::CompareWithoutTrailingSlash ) ) {
-			overwrite = i;
-			break;
-		}
-	
-	QString name;
-	QString type = detectType( mp );
-	
-	/* WORKAROUND CODE START */
-	/* add spaces to avoid widget resize in gettingSpaceData,
-	   which is buggy in QT when transparency is set */
-	QString extSpc = ( isMounted && type == "hdd" ) ? extraSpaces : "";
-	/* WORKAROUND CODE END */
-		
-	QString iconBase = "kr_";
-	QString iconName = iconBase + type + mountString;
-	
-	if( type == "hdd" )
-		name =  i18n( "Hard Disk" ) ;
-	else if( type == "cdrom" )
-		name = i18n( "CD-ROM" );
-	else if( type == "cdwriter" )
-		name = i18n( "CD Recorder" );
-	else if( type == "dvdwriter" ) {
-		iconName = iconBase + "cdwriter" + mountString;
-		name = i18n( "DVD Recorder" );
-	}
-	else if( type == "dvd" )
-		name = i18n( "DVD" );
-	else if( type == "smb" ) {
-		iconName = iconBase + "nfs" + mountString;
-		name = i18n( "Remote Share" );
-	}
-	else if( type == "nfs" )
-		name = i18n( "Remote Share" );
-	else if( type == "floppy" )
-		name = i18n( "Floppy" );
-	else if( type == "floppy5" )
-		name = i18n( "Floppy" );
-	else if( type == "zip" )
-		name = i18n( "Zip Disk" );
-	else {
-		iconName = iconBase + "hdd" + mountString;
-		name = i18n( "Unknown" );
-	}
-	
-	if( isMounted ) {
-		KDiskFreeSpace *sp = KDiskFreeSpace::findUsageInfo( mp->mountPoint() );
-		connect( sp, SIGNAL( foundMountPoint( const QString &, quint64, quint64, quint64 ) ),
-		         this, SLOT( gettingSpaceData( const QString&, quint64, quint64, quint64 ) ) );
-	}
-	
-	QPixmap pixmap = FL_LOADICON( iconName );
-	
-	if( overwrite == -1 ) {
-		int index = popupMenu->actions().count();
-		urls.append( KUrl( mp->mountPoint() ) );
-		iconNames.append( iconName );
-		mediaUrls.append( KUrl() );
-		quasiMounted.append( false );
-		QAction * act = popupMenu->addAction( pixmap, name + "  [" + mp->mountPoint() + "]" + extSpc );
-		act->setData( QVariant( index ) );
-		idActionMap[ index ] = act;
-	}
-	else {
-		iconNames[ overwrite ] = iconName;
-		idActionMap[ overwrite ]->setIcon( pixmap );
-		idActionMap[ overwrite ]->setText( name + "  [" + mp->mountPoint() + "]" + extSpc );
-	}
-}
-
 bool MediaButton::eventFilter( QObject *o, QEvent *e ) {
 	if( o == popupMenu ) {
 		if( e->type() == QEvent::MouseButtonPress || e->type() == QEvent::MouseButtonRelease ) {
@@ -520,10 +273,10 @@ bool MediaButton::eventFilter( QObject *o, QEvent *e ) {
 			if( m->button() == Qt::RightButton ) {
 				if( e->type() == QEvent::MouseButtonPress ) {
 					QAction * act = popupMenu->actionAt( m->pos() );
-					int id = -1;
-					if( act && act->data().canConvert<int>() )
-						id = act->data().toInt();
-					if( id != -1 )
+					QString id;
+					if( act && act->data().canConvert<QString>() )
+						id = act->data().toString();
+					if( !id.isEmpty() )
 						rightClickMenu( id );
 				}
  				m->accept();
@@ -534,13 +287,39 @@ bool MediaButton::eventFilter( QObject *o, QEvent *e ) {
 	return false;
 }
 
-void MediaButton::rightClickMenu( int index ) {
+void MediaButton::rightClickMenu( QString udi ) {
 	if( rightMenu )
 		rightMenu->close();
 	
-	QString iconName = iconNames[ index ];
-	bool ejectable = iconName.contains( "dvd_" ) || iconName.contains( "dvdwriter_" ) || iconName.contains( "cdrom_" ) || iconName.contains( "cdwriter_" );
-	bool mounted = iconName.contains( "_mounted" );
+	bool network = udi.startsWith( "remote:" );
+	bool ejectable = false;
+	bool mounted = false;
+	KUrl openURL;
+	
+	if( network )
+	{
+		QString mountPoint = udi.mid( 7 );
+		openURL = KUrl( mountPoint );
+		KMountPoint::List currentMountList = KMountPoint::currentMountPoints();
+		for (KMountPoint::List::iterator it = currentMountList.begin(); it != currentMountList.end(); ++it) {
+			if(( (*it)->mountType() == "nfs" || (*it)->mountType() == "smb" ) &&
+			   (*it)->mountPoint() == mountPoint ) {
+				mounted = true;
+				break;
+			}
+		}
+	} else {
+		Solid::Device device( udi );
+		
+		Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+		Solid::OpticalDisc  *optdisc = device.as<Solid::OpticalDisc>();
+		if( access )
+			openURL = KUrl( access->filePath() );
+		if( access && access->isAccessible() )
+			mounted = true;
+		if( optdisc )
+			ejectable = true;
+	}
 	
 	QMenu * myMenu = rightMenu = new QMenu( popupMenu );
 	QAction * actOpen = myMenu->addAction( i18n( "Open" ) );
@@ -577,150 +356,231 @@ void MediaButton::rightClickMenu( int index ) {
 	case 1:
 	case 2:
 		popupMenu->close();
-		if( mounted || quasiMounted[ index ] ) {
+		if( mounted ) {
 			if( result == 1 )
-				emit openUrl( urls[ index ] );
+				emit openUrl( openURL );
 			else
-				SLOTS->newTab( urls[ index ] );
+				SLOTS->newTab( openURL );
 		} else {
-			mount( index ); // mount first, when mounted open the tab
-			waitingForMount = index;
-			maxMountWait = 20;
-			newTabAfterMount = ( result == 2 );
-			mountCheckerTimer.setSingleShot( true );
-			mountCheckerTimer.start( 1000 );
+			mount( udi, true, result == 2 ); // mount first, when mounted open the tab
 		}
 		break;
 	case 3:
-		mount( index );
+		mount( udi );
 		break;
 	case 4:
-		umount( index );
+		umount( udi );
 		break;
 	case 5:
-		eject( index );
+		eject( udi );
 		break;
 	default:
 		break;
 	}
 }
 
-bool MediaButton::mount( int index ) {
-	if ( index < iconNames.count() ) {
-		if( !mediaUrls[ index ].isEmpty() ) {
-			KProcess proc;
-			proc << KrServices::fullPathName( "kio_media_mounthelper" ) << "-m" << mediaUrls[ index ].url();
-			proc.startDetached();
-		} else {
-			krMtMan.mount( urls[ index ].path(), false );
-		}
+void MediaButton::mount( QString udi, bool open, bool newtab ) {
+	if( udi.startsWith( "remote:" ) ) {
+		QString mp = udi.mid( 7 );
+		krMtMan.mount( mp, true );
+		if( newtab )
+			SLOTS->newTab( KUrl( mp ) );
+		else
+			emit openUrl( KUrl( mp ) );
+		return;
 	}
-	return false;
+	Solid::Device device( udi );
+	Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+	if( access && !access->isAccessible() ) {
+		if( open )
+			udiToOpen = device.udi(), openInNewTab = newtab;
+		connect( access, SIGNAL( setupDone(Solid::ErrorType, QVariant, const QString &) ),
+		         this, SLOT( slotSetupDone(Solid::ErrorType, QVariant, const QString &) ) );
+		access->setup();
+	}
 }
 
-bool MediaButton::umount( int index ) {
-	if ( index < iconNames.count() ) {
-		if( !mediaUrls[ index ].isEmpty() ) {
-			KProcess proc;
-			proc << KrServices::fullPathName( "kio_media_mounthelper" ) << "-u" << mediaUrls[ index ].url();
-			proc.startDetached();
+void MediaButton::slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString &udi) {
+	if ( error == Solid::NoError ) {
+		if( udi == udiToOpen ) {
+			Solid::StorageAccess *access = Solid::Device( udi ).as<Solid::StorageAccess>();
+			if( access && access->isAccessible() ) {
+				if( openInNewTab )
+					SLOTS->newTab( KUrl( access->filePath() ) );
+				else
+					emit openUrl( KUrl( access->filePath() ) );
+			}
+			udiToOpen = QString(), openInNewTab = false;
+		}
+	} else {
+		if( udi == udiToOpen )
+			udiToOpen = QString(), openInNewTab = false;
+		QString name;
+		if( udiNameMap.contains( udi ) )
+			name = udiNameMap[ udi ];
+		
+		if (errorData.isValid()) {
+			KMessageBox::sorry( this, i18n("An error occurred while accessing '%1', the system responded: %2",
+			                    name, errorData.toString()));
 		} else {
-			krMtMan.unmount( urls[ index ].path(), false );
+			KMessageBox::sorry( this, i18n("An error occurred while accessing '%1'",
+			                    name));
 		}
 	}
-	return false;
 }
 
-bool MediaButton::eject( int index ) {
-	if ( index < iconNames.count() ) {
-		if( !mediaUrls[ index ].isEmpty() ) {
-			KProcess proc;
-			proc << KrServices::fullPathName( "kio_media_mounthelper" ) << "-e" << mediaUrls[ index ].url();
-			proc.startDetached();
-		} else {
-			krMtMan.eject( urls[ index ].path() );
+void MediaButton::umount( QString udi ) {
+	if( udi.startsWith( "remote:" ) ) {
+		krMtMan.unmount( udi.mid( 7 ), false );
+		return;
+	}
+	Solid::Device device( udi );
+	Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+	if( access && access->isAccessible() ) {
+		connect( access, SIGNAL( teardownDone(Solid::ErrorType, QVariant, const QString &) ),
+		         this, SLOT( slotTeardownDone(Solid::ErrorType, QVariant, const QString &) ) );
+		access->teardown();
+	}
+}
+
+void MediaButton::slotTeardownDone(Solid::ErrorType error, QVariant errorData, const QString &udi) {
+    if (error != Solid::NoError && errorData.isValid()) {
+        KMessageBox::sorry( this, errorData.toString());
+    }
+}
+
+void MediaButton::eject( QString udi ) {
+	Solid::Device device( udi );
+	Solid::OpticalDrive *drive = device.parent().as<Solid::OpticalDrive>();
+	
+	if (drive!=0) {
+		connect(drive, SIGNAL(ejectDone(Solid::ErrorType, QVariant, const QString &)),
+			this, SLOT(slotTeardownDone(Solid::ErrorType, QVariant, const QString &)));
+		
+		drive->eject();
+	}
+}
+
+void MediaButton::slotAccessibilityChanged(bool accessible, const QString & udi) {
+	QList<QAction *> actionList = popupMenu->actions();
+	foreach( QAction * act, actionList ) {
+		if( act && act->data().canConvert<QString>() && act->data().toString() == udi ) {
+			Solid::Device device(udi);
+			
+			QString name;
+			KIcon kdeIcon;
+			if( getNameAndIcon( device, name, kdeIcon ) ) {
+				act->setText( name );
+				act->setIcon( kdeIcon );
+			}
+			break;
 		}
 	}
-	return false;
+}
+
+void MediaButton::slotDeviceAdded(const QString& udi) {
+	if( popupMenu->isHidden() )
+		return;
+	
+	Solid::Device device( udi );
+	Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+	if( access == 0 )
+		return;
+	
+	QString name;
+	KIcon kdeIcon;
+	if( !getNameAndIcon( device, name, kdeIcon ) )
+		return;
+		
+	QAction * act = popupMenu->addAction( kdeIcon, name );
+	act->setData( QVariant( udi ) );
+	udiNameMap[ udi ] = name;
+		
+	connect(device.as<Solid::StorageAccess>(), SIGNAL(accessibilityChanged(bool, const QString &)),
+		this, SLOT(slotAccessibilityChanged(bool, const QString &)));
+}
+
+void MediaButton::slotDeviceRemoved(const QString& udi) {
+	if( popupMenu->isHidden() )
+		return;
+	
+	QList<QAction *> actionList = popupMenu->actions();
+	foreach( QAction * act, actionList ) {
+		if( act && act->data().canConvert<QString>() && act->data().toString() == udi ) {
+			popupMenu->removeAction( act );
+			delete act;
+			break;
+		}
+	}
 }
 
 void MediaButton::slotTimeout() {
-	if( isHidden() && ( waitingForMount < 0 ) )
+	if( isHidden() )
 		return;
 	
-	KMountPoint::List mountList = KMountPoint::currentMountPoints();
+	KMountPoint::List possibleMountList = KMountPoint::possibleMountPoints();
+	KMountPoint::List currentMountList = KMountPoint::currentMountPoints();
+	QList<QAction *> actionList = popupMenu->actions();
 	
-	for( int index = 0; index < urls.count(); index++ ) {
-		bool mounted = false;
-		
-		QString text = idActionMap[ index ]->text();
-		
-		if( mediaUrls[ index ].isEmpty() ) {
-			for (KMountPoint::List::iterator it = mountList.begin(); it != mountList.end(); ++it)
-				if( (*it)->mountPoint() == urls[ index ].path() ) {
-					mounted = true;;
+	foreach( QAction * act, actionList ) {
+		if( act && act->data().canConvert<QString>() && act->data().toString().startsWith( "remote:" ) ) {
+			QString mountPoint = act->data().toString().mid( 7 );
+			bool available = false;
+			
+			for (KMountPoint::List::iterator it = possibleMountList.begin(); it != possibleMountList.end(); ++it) {
+				if(( (*it)->mountType() == "nfs" || (*it)->mountType() == "smb" ) &&
+				   (*it)->mountPoint() == mountPoint ) {
+					available = true;
 					break;
 				}
-		} else {
-			KUrl uri = getLocalPath( mediaUrls[ index ], &mountList );
-			if(  uri.isLocalFile() ) {
-				urls[ index ] = uri;
-				mounted = true;
-				
-				if( !text.contains( uri.path() ) ) 
-				{
-					if( text.endsWith( "]" ) )
-					{
-						int ndx = text.lastIndexOf( "  [" );
-						if( ndx >0 )
-							text.truncate( ndx );
-					}
-					
-					text += "  [" + uri.path() + "]";
-				}
 			}
-			else
-			{
-				if( text.endsWith( "]" ) )
-				{
-					int ndx = text.lastIndexOf( "  [" );
-					if( ndx >0 )
-						text.truncate( ndx );
-				}
+			
+			if( !available ) {
+				popupMenu->removeAction( act );
+				delete act;
 			}
-		}
-		
-		if( quasiMounted[ index ] ) // mounted but not listed with DF
-			mounted = false;
-		
-		if( iconNames[ index ].contains( "_mounted" ) && !mounted )
-			iconNames[ index ] = iconNames[ index ].replace( "_mounted", "_unmounted" );
-		if( iconNames[ index ].contains( "_unmounted" ) && mounted )
-			iconNames[ index ] = iconNames[ index ].replace( "_unmounted", "_mounted" );
-		
-		QPixmap pixmap = FL_LOADICON( iconNames[ index ] );
-		idActionMap[ index ]->setIcon( pixmap );
-		idActionMap[ index ]->setText( text );
-		
-		if( ((int)index == waitingForMount) && mounted ) {
-			waitingForMount = -1;
-			if( newTabAfterMount )
-				SLOTS->newTab( urls[ index ] );
-			else
-				emit openUrl( urls[ index ] );
 		}
 	}
 	
-	if( waitingForMount >= 0 ) {         // maximum wait for mounting expired ?
-		if( --maxMountWait < 0 ) {
-			waitingForMount = -1;
-			return;
+	for (KMountPoint::List::iterator it = possibleMountList.begin(); it != possibleMountList.end(); ++it) {
+		if( (*it)->mountType() == "nfs" || (*it)->mountType() == "smb" ) {
+			QString path = (*it)->mountPoint();
+			bool mounted = false;
+			QString udi = "remote:" + path;
+			
+			QAction * correspondingAct = 0;
+			foreach( QAction * act, actionList ) {
+				if(act && act->data().canConvert<QString>() && act->data().toString() == udi ) {
+					correspondingAct = act;
+					break;
+				}
+			}
+			for (KMountPoint::List::iterator it2 = currentMountList.begin(); it2 != currentMountList.end(); ++it2) {
+				if(( (*it2)->mountType() == "nfs" || (*it2)->mountType() == "smb" ) &&
+				   path == (*it2)->mountPoint() ) {
+					mounted = true;
+					break;
+				}
+			}
+			
+			QString name = i18n( "Remote Share" ) + " [" + (*it)->mountPoint() + "]";
+			QStringList overlays;
+			if ( mounted )
+				overlays << "emblem-mounted";
+			KIcon kdeIcon("network-wired", 0, overlays);
+			
+			if( !correspondingAct ) {
+				QAction * act = popupMenu->addAction( kdeIcon, name );
+				act->setData( QVariant( udi ) );
+			} else {
+				correspondingAct->setText( name );
+				correspondingAct->setIcon( kdeIcon );
+			}
 		}
 	}
 	
 	mountCheckerTimer.setSingleShot( true );
 	mountCheckerTimer.start( 1000 );
 }
-
 
 #include "mediabutton.moc"

@@ -84,6 +84,7 @@ public:
 	virtual QString getCurrentItem() const;
 	virtual void makeItemVisible(const KrViewItem * item );
 	virtual void setCurrentItem(const QString& name );
+	virtual void setCurrentKrViewItem( KrViewItem * item );
 	virtual void updateView();
 	virtual void updateItem(KrViewItem* item );
 	virtual void clear();
@@ -95,6 +96,7 @@ public:
 	virtual void restoreSettings() {}
 	virtual QString nameInKConfig() {return _nameInKConfig;}
 	virtual void redraw() { ((QWidget *)parent())->show(); header->show(); viewport()->show(); show(); }
+	virtual int  itemsPerPage();
 	
 	static KrView* create( QWidget *parent, bool &left, KConfig *cfg );
 
@@ -150,9 +152,6 @@ protected slots:
 
 public slots:
 	void refreshColors();
-	void quickSearch( const QString &, int = 0 );
-	void stopQuickSearch( QKeyEvent* );
-	void handleQuickSearchEvent( QKeyEvent* );
 	void changeSortOrder();
 
   

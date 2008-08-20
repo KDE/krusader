@@ -1573,11 +1573,15 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
 
     if( gc.readEntry( foreEntry, QString() ) == "KDE default" )
       foreGrounds[ clr ] = QColor();
+    else if( gc.readEntry( foreEntry, QString() ).isEmpty() ) // KDE4 workaround, default color doesn't work
+      foreGrounds[ clr ] = FORE_DFLTS[ clr ];
     else
       foreGrounds[ clr ] = gc.readEntry( foreEntry, FORE_DFLTS[ clr ] );
 
     if( gc.readEntry( bckgEntry, QString() ) == "KDE default" )
       backGrounds[ clr ] = QColor();
+    else if( gc.readEntry( foreEntry, QString() ).isEmpty() ) // KDE4 workaround, default color doesn't work
+      backGrounds[ clr ] = BCKG_DFLTS[ clr ];
     else
       backGrounds[ clr ] = gc.readEntry( bckgEntry, BCKG_DFLTS[ clr ] );
   }

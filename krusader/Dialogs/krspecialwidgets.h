@@ -107,6 +107,7 @@ class KrQuickSearch: public KLineEdit {
       KrQuickSearch(QWidget *parent);
       void addText(const QString &str) { setText(text()+str); }
       void myKeyPressEvent(QKeyEvent *e);
+      void setMatch( bool match );
       void myInputMethodEvent(QInputMethodEvent* e) {
         inputMethodEvent(e);
       }

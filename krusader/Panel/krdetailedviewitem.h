@@ -53,7 +53,7 @@ friend class KrDetailedView;
 public:
 	KrDetailedViewItem(KrDetailedView *parent, Q3ListViewItem *after, vfile *vf);
 	inline bool isSelected() const { return K3ListViewItem::isSelected(); }
-	inline void setSelected(bool s) { K3ListViewItem::setSelected(s); }
+	inline void setSelected(bool s) { K3ListViewItem::setSelected(s); repaint(); }
 	int compare(Q3ListViewItem *i,int col,bool ascending ) const;
 	void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align);
 	void paintFocus(QPainter *p, const QColorGroup &cg, const QRect &r);
@@ -63,6 +63,7 @@ public:
 	virtual void setup(); // called when listview needs to know the height of the item
 #endif
         virtual QRect itemRect() const { return listView()->itemRect( this ); }
+        virtual void redraw() { repaintItem(); repaint(); }
 protected:
 	// text() was made protected in order to catch every place where text(x) is used
 	// to gain unlawful information on the object

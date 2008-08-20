@@ -29,9 +29,12 @@
 ***************************************************************************/
 #include "krview.h"
 #include "../kicons.h"
+#include "../krslots.h"
 #include "../defaults.h"
 #include "../VFS/krpermhandler.h"
+#include "../Dialogs/krspecialwidgets.h"
 #include "krviewitem.h"
+#include "krselectionmode.h"
 #include <qnamespace.h>
 #include <qpixmapcache.h>
 #include <qdir.h>
@@ -47,7 +50,7 @@
 
 
 // ----------------------------- operator
-KrViewOperator::KrViewOperator(KrView *view, QWidget *widget): _view(view), _widget(widget)
+KrViewOperator::KrViewOperator(KrView *view, QWidget *widget): _view(view), _widget(widget), _massSelectionUpdate( false )
 {
 }
 
@@ -69,10 +72,116 @@ void KrViewOperator::startDrag()
 	emit letsDrag( items, px );
 }
 
+void KrViewOperator::setQuickSearch( KrQuickSearch *quickSearch ) {
+	_quickSearch = quickSearch;
+	
+	connect( quickSearch, SIGNAL( textChanged( const QString& ) ), this, SLOT( quickSearch( const QString& ) ) );
+	connect( quickSearch, SIGNAL( otherMatching( const QString&, int ) ), this, SLOT( quickSearch( const QString& , int ) ) );
+	connect( quickSearch, SIGNAL( stop( QKeyEvent* ) ), this, SLOT( stopQuickSearch( QKeyEvent* ) ) );
+	connect( quickSearch, SIGNAL( process( QKeyEvent* ) ), this, SLOT( handleQuickSearchEvent( QKeyEvent* ) ) );
+}
+
+void KrViewOperator::handleQuickSearchEvent( QKeyEvent * e ) {
+	switch ( e->key() ) {
+		case Qt::Key_Insert:
+		{
+			KrViewItem * item = _view->getCurrentKrViewItem();
+			if( item )
+			{
+				item->setSelected( !item->isSelected() );
+				quickSearch( _quickSearch->text(), 1 );
+			}
+			break;
+		}
+		case Qt::Key_Home:
+		{
+			KrViewItem * item = _view->getLast();
+			if( item ) {
+				_view->setCurrentKrViewItem( _view->getLast() );
+				quickSearch( _quickSearch->text(), 1 );
+			}
+			break;
+		}
+		case Qt::Key_End:
+		{
+			KrViewItem * item = _view->getFirst();
+			if( item ) {
+				_view->setCurrentKrViewItem( _view->getFirst() );
+				quickSearch( _quickSearch->text(), -1 );
+			}
+			break;
+		}
+	}
+}
+
+void KrViewOperator::quickSearch( const QString & str, int direction ) {
+	KrViewItem * item = _view->getCurrentKrViewItem();
+	if (!item) {
+		_quickSearch->setMatch( false );
+		return;
+	}
+	KConfigGroup grpSvr( _view->_config, "Look&Feel" );
+	bool caseSensitive = grpSvr.readEntry( "Case Sensitive Quicksearch", _CaseSensitiveQuicksearch );
+	if ( !direction ) {
+		if ( caseSensitive ? item->name().startsWith( str ) : item->name().toLower().startsWith( str.toLower() ) ) {
+			_quickSearch->setMatch( true );
+			return ;
+		}
+		direction = 1;
+	}
+	KrViewItem * startItem = item;
+	while ( true ) {
+		item = ( direction > 0 ) ? _view->getNext( item ) : _view->getPrev( item );
+		if ( !item )
+			item = ( direction > 0 ) ? _view->getFirst() : _view->getLast();
+		if ( item == startItem ) {
+			_quickSearch->setMatch( false );
+			return ;
+		}
+		if ( caseSensitive ? item->name().startsWith( str ) : item->name().toLower().startsWith( str.toLower() ) ) {
+			_view->setCurrentKrViewItem( item );
+			_view->makeItemVisible( item );
+			_quickSearch->setMatch( true );
+			return ;
+		}
+	}
+}
+
+void KrViewOperator::stopQuickSearch( QKeyEvent * e ) {
+	if( _quickSearch ) {
+		_quickSearch->hide();
+		_quickSearch->clear();
+		krDirUp->setEnabled( true );
+		if ( e )
+			_view->handleKeyEvent( e );
+	}
+}
+
+void KrViewOperator::prepareForPassive() {
+	if ( _quickSearch && !_quickSearch->isHidden() ) {
+		stopQuickSearch( 0 );
+	}
+}
+
+bool KrViewOperator::handleKeyEvent( QKeyEvent * e ) {
+	if ( !_quickSearch->isHidden() ) {
+		_quickSearch->myKeyPressEvent( e );
+		return true;
+	}
+	return false;
+}
+
+void KrViewOperator::setMassSelectionUpdate( bool upd ) {
+	_massSelectionUpdate = upd;
+	if( !upd )
+		emit selectionChanged();
+}
+
 // ----------------------------- krview
 
 KrView::KrView( KConfig *cfg ) : _config( cfg ), _widget(0), _nameToMakeCurrent( QString() ), _nameToMakeCurrentIfAdded( QString() ),
-		_numSelected( 0 ), _count( 0 ), _numDirs( 0 ), _countSize( 0 ), _selectedSize( 0 ), _properties(0), _focused( false ), _nameInKConfig(QString())
+		_numSelected( 0 ), _count( 0 ), _numDirs( 0 ), _countSize( 0 ), _selectedSize( 0 ), _properties(0), _focused( false ),
+		_nameInKConfig(QString())
 {
 }
 
@@ -190,6 +299,8 @@ QString KrView::statistics()
 
 void KrView::changeSelection( const KRQuery& filter, bool select, bool includeDirs )
 {
+	if( op() ) op()->setMassSelectionUpdate( true );
+	
 	KConfigGroup grpSvr( _config, "Look&Feel" );
 	bool markDirs = grpSvr.readEntry( "Mark Dirs", _MarkDirs ) || includeDirs;
 
@@ -217,12 +328,15 @@ void KrView::changeSelection( const KRQuery& filter, bool select, bool includeDi
 			it->setSelected( select );
 		}
 	}
+	
+	if( op() ) op()->setMassSelectionUpdate( false );
 	updateView();
 	makeItemVisible( temp );
 }
 
 void KrView::invertSelection()
 {
+	if( op() ) op()->setMassSelectionUpdate( true );
 	KConfigGroup grpSvr( _config, "Look&Feel" );
 	bool markDirs = grpSvr.readEntry( "Mark Dirs", _MarkDirs );
 
@@ -239,6 +353,7 @@ void KrView::invertSelection()
 		}
 		it->setSelected( !it->isSelected() );
 	}
+	if( op() ) op()->setMassSelectionUpdate( false );
 	updateView();
 	makeItemVisible( temp );
 }
@@ -293,11 +408,11 @@ KrViewItem *KrView::addItem( vfile *vf )
 	++_count;
 
 	if (item->name() == nameToMakeCurrent() ) {
-		setCurrentItem(item->name()); // dictionary based - quick
+		setCurrentKrViewItem(item); // dictionary based - quick
 		makeItemVisible( item );
 	}
 	if (item->name() == nameToMakeCurrentIfAdded() ) {
-		setCurrentItem(item->name());
+		setCurrentKrViewItem(item);
 		setNameToMakeCurrentIfAdded(QString());
 		makeItemVisible( item );
 	}
@@ -355,4 +470,295 @@ void KrView::renameCurrentItem()
 	if ( !ok || newName == fileName )
 		return ;
 	op()->emitRenameItem(it->name(), newName);
+}
+
+bool KrView::handleKeyEvent (QKeyEvent *e) {
+	if( op()->handleKeyEvent( e ) )
+		return true;
+	bool res = handleKeyEventInt( e );
+	
+	// emit the new item description
+	KrViewItem * current = getCurrentKrViewItem();
+	if( current != 0 ) {
+		QString desc = current->description();
+		op()->emitItemDescription(desc);
+	}
+	
+	return res;
+}
+
+bool KrView::handleKeyEventInt (QKeyEvent *e) {
+	switch ( e->key() ) {
+	case Qt::Key_Enter :
+	case Qt::Key_Return :
+	{
+		if ( e->modifiers() & Qt::ControlModifier )         // let the panel handle it
+			e->ignore();
+		else {
+			KrViewItem * i = getCurrentKrViewItem();
+			QString tmp = i->name();
+			op()->emitExecuted(tmp);
+		}
+		return true;
+	}
+	case Qt::Key_QuoteLeft :          // Terminal Emulator bugfix
+		if ( e->modifiers() == Qt::ControlModifier ) { // let the panel handle it
+			e->ignore();
+		} else {          // a normal click - do a lynx-like moving thing
+			SLOTS->home(); // ask krusader to move up a directory
+		}
+		return true;
+	case Qt::Key_Delete :                   // kill file
+		SLOTS->deleteFiles( e->modifiers() == Qt::ShiftModifier || e->modifiers() == Qt::ControlModifier );
+		return true;
+	case Qt::Key_Insert:
+	{
+		KrViewItem * i = getCurrentKrViewItem();
+		if( !i )
+			return true;
+		i->setSelected( !i->isSelected() );
+		if (KrSelectionMode::getSelectionHandler()->insertMovesDown())
+		{
+			KrViewItem * next = getNext( i );
+			if( next )
+			{
+				setCurrentKrViewItem( next );
+				makeItemVisible( next );
+			}
+		}
+		op()->emitSelectionChanged();
+		return true;
+	}
+	case Qt::Key_Space:
+	{
+		KrViewItem * viewItem = getCurrentKrViewItem();
+		if( viewItem != 0 )
+		{
+			viewItem->setSelected( !viewItem->isSelected() );
+			if( viewItem->name() == ".." )
+			{
+				if (KrSelectionMode::getSelectionHandler()->spaceMovesDown())
+				{
+					KrViewItem * next = getNext( viewItem );
+					if( next )
+					{
+						setCurrentKrViewItem( next );
+						makeItemVisible( next );
+					}
+				}
+				op()->emitSelectionChanged();
+				return true;
+			}
+			if ( viewItem->getVfile()->vfile_isDir() && viewItem->getVfile()->vfile_getSize() <= 0 && 
+			     KrSelectionMode::getSelectionHandler()->spaceCalculatesDiskSpace())
+			{
+				//
+				// NOTE: this is buggy incase somewhere down in the folder we're calculating,
+				// there's a folder we can't enter (permissions). in that case, the returned
+				// size will not be correct.
+				//
+				KIO::filesize_t totalSize = 0;
+				unsigned long totalFiles = 0, totalDirs = 0;
+				QStringList items;
+				items.push_back( viewItem->name() );
+				if ( ACTIVE_PANEL->func->calcSpace( items, totalSize, totalFiles, totalDirs ) ) {
+					// did we succeed to calcSpace? we'll fail if we don't have permissions
+					if ( totalSize != 0 ) { // just mark it, and bail out
+						viewItem->setSize( totalSize );
+						viewItem->redraw();
+					}
+				}
+			}
+			if (KrSelectionMode::getSelectionHandler()->spaceMovesDown())
+			{
+				KrViewItem * next = getNext( viewItem );
+				if( next )
+				{
+					setCurrentKrViewItem( next );
+					makeItemVisible( next );
+				}
+			}
+			op()->emitSelectionChanged();
+		}
+		return true;
+	}
+	case Qt::Key_Backspace :                         // Terminal Emulator bugfix
+	case Qt::Key_Left :
+		if ( e->modifiers() == Qt::ControlModifier || e->modifiers() == Qt::ShiftModifier ) { // let the panel handle it
+			e->ignore();
+		} else {          // a normal click - do a lynx-like moving thing
+			SLOTS->dirUp(); // ask krusader to move up a directory
+		}
+		return true;         // safety
+	case Qt::Key_Right :
+		if ( e->modifiers() == Qt::ControlModifier || e->modifiers() == Qt::ShiftModifier ) { // let the panel handle it
+			e->ignore();
+		} else { // just a normal click - do a lynx-like moving thing
+			KrViewItem *i = getCurrentKrViewItem();
+			op()->emitGoInside( i->name() );
+		}
+		return true;
+	case Qt::Key_Up :
+		if ( e->modifiers() == Qt::ControlModifier ) { // let the panel handle it - jump to the Location Bar
+			e->ignore();
+		} else {
+			KrViewItem *item = getCurrentKrViewItem();
+			if( item )
+			{
+				if ( e->modifiers() == Qt::ShiftModifier ) {
+					item->setSelected( !item->isSelected() );
+					op()->emitSelectionChanged();
+				}
+				item = getPrev( item );
+				if ( item ) {
+					setCurrentKrViewItem( item );
+					makeItemVisible( item );
+				}
+			}
+		}
+		return true;
+	case Qt::Key_Down :
+		if ( e->modifiers() == Qt::ControlModifier || e->modifiers() == ( Qt::ControlModifier | Qt::ShiftModifier ) ) { // let the panel handle it - jump to command line
+			e->ignore();
+		} else {
+			KrViewItem *item = getCurrentKrViewItem();
+			if( item )
+			{
+				if ( e->modifiers() == Qt::ShiftModifier ) {
+					item->setSelected( !item->isSelected() );
+					op()->emitSelectionChanged();
+				}
+				item = getNext( item );
+				if ( item ) {
+					setCurrentKrViewItem( item );
+					makeItemVisible( item );
+				}
+			}
+		}
+		return true;
+	case Qt::Key_Home:
+		{
+			if ( e->modifiers() & Qt::ShiftModifier )  /* Shift+Home */
+			{
+				bool select = true;
+				KrViewItem *pos = getCurrentKrViewItem();
+				if( pos == 0 )
+					pos = getLast();
+				KrViewItem *item = getFirst();
+				op()->setMassSelectionUpdate( true );
+				while( item ) {
+					item->setSelected( select );
+					if( item == pos )
+						select = false;
+					item = getNext( item );
+				}
+				op()->setMassSelectionUpdate( false );
+			}
+			KrViewItem * first = getFirst();
+			if( first ) {
+				setCurrentKrViewItem( first );
+				makeItemVisible( first );
+			}
+		}
+		return true;
+	case Qt::Key_End:
+		if( e->modifiers() & Qt::ShiftModifier ) {
+			bool select = false;
+			KrViewItem *pos = getCurrentKrViewItem();
+			if( pos == 0 )
+				pos = getFirst();
+			op()->setMassSelectionUpdate( true );
+			KrViewItem *item = getFirst();
+			while( item ) {
+				if( item == pos )
+					select = true;
+				item->setSelected( select );
+				item = getNext( item );
+			}
+			op()->setMassSelectionUpdate( false );
+		} else {
+			KrViewItem *last = getLast();
+			if( last ) {
+				setCurrentKrViewItem( last );
+				makeItemVisible( last );
+			}
+		}
+		return true;
+	case Qt::Key_PageDown:
+	{
+		KrViewItem * current = getCurrentKrViewItem();
+		int downStep = itemsPerPage();
+		while( downStep != 0 && current ) {
+			KrViewItem * newCurrent = getNext( current );
+			if( newCurrent == 0 )
+				break;
+			current = newCurrent;
+			downStep--;
+		}
+		if( current ) {
+			setCurrentKrViewItem( current );
+			makeItemVisible( current );
+		}
+		return true;
+	}
+	case Qt::Key_PageUp:
+	{
+		KrViewItem * current = getCurrentKrViewItem();
+		int upStep = itemsPerPage();
+		while( upStep != 0 && current ) {
+			KrViewItem * newCurrent = getPrev( current );
+			if( newCurrent == 0 )
+				break;
+			current = newCurrent;
+			upStep--;
+		}
+		if( current ) {
+			setCurrentKrViewItem( current );
+			makeItemVisible( current );
+		}
+		return true;
+	}
+	case Qt::Key_A :                 // mark all
+		if ( e->modifiers() == Qt::ControlModifier ) {
+			selectAllIncludingDirs();
+			return true;
+		}
+		break;
+	case Qt::Key_Escape:
+		return true; // otherwise the selection gets lost??!??
+	default:
+		// if the key is A..Z or 1..0 do quick search otherwise...
+		if ( e->text().length() > 0 && e->text() [ 0 ].isPrint() ) // better choice. Otherwise non-ascii characters like  can not be the first character of a filename
+		// are we doing quicksearch? if not, send keys to panel
+		//if ( _config->readBoolEntry( "Do Quicksearch", _DoQuicksearch ) ) {
+		// are we using krusader's classic quicksearch, or wincmd style?
+		{
+			KConfigGroup grpSv( _config, "Look&Feel" );
+			if ( !grpSv.readEntry( "New Style Quicksearch", _NewStyleQuicksearch ) )
+				return false;
+			else {
+				// first, show the quicksearch if its hidden
+				if ( op()->quickSearch()->isHidden() ) {
+					op()->quickSearch()->show();
+					// hack: if the pressed key requires a scroll down, the selected
+					// item is "below" the quick search window, as the icon view will
+					// realize its new size after the key processing. The following line
+					// will resize the icon view immediately.
+					ACTIVE_PANEL->layout->activate();
+					// second, we need to disable the dirup action - hack!
+					krDirUp->setEnabled( false );
+				}
+				// now, send the key to the quicksearch
+				op()->quickSearch()->myKeyPressEvent( e );
+				return true;
+			}
+		} else {
+			if ( !op()->quickSearch()->isHidden() ) {
+				op()->quickSearch()->hide();
+				op()->quickSearch()->clear();
+				krDirUp->setEnabled( true );
+			}
+		}
+	}
+	return false;
 }

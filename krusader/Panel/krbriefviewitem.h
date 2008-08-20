@@ -54,7 +54,7 @@ friend class KrCalcSpaceDialog;
 public:
 	KrBriefViewItem(KrBriefView *parent, Q3IconViewItem *after, vfile *vf);
 	inline bool isSelected() const { return K3IconViewItem::isSelected(); }
-	inline void setSelected(bool s) { K3IconViewItem::setSelected(s); }
+	inline void setSelected(bool s) { K3IconViewItem::setSelected(s, true); }
 	inline void cancelRename() { removeRenameBox(); }
 	int compare(Q3IconViewItem *i) const;
 	virtual void repaintItem();
@@ -66,6 +66,7 @@ public:
 #endif
 
 	virtual QRect itemRect() const { return rect(); }
+        virtual void redraw() { repaint(); }
 
 
 protected:

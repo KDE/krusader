@@ -1,6 +1,14 @@
+    ADDED: [ 1704953 ] highlight quick search match
     ADDED: Useractions: added checkbox "enabled"
            and run mode option "Run in embedded terminal emulator"
+    ADDED: the description of a dir contains its size if it is known
 
+     ARCH: MediaButton uses Solid for medium detection
+     ARCH: QuickSearch is moved to KrView from Detailed/Brief views
+     ARCH: Keyboard handling is moved to KrView from Detailed/Brief views
+
+    FIXED: KDE4 workaround: no colors for synchronizer
+    FIXED: MediaButton doesn't notice unmounted pen drives+CD/DVD-s
     FIXED: "local network" bookmark didn't work
     FIXED: bookmark menu was not always closed after opening a bookmark
     FIXED: [ 2017011 ] Crash when changing the Qt theme

@@ -281,12 +281,7 @@ void ListPanel::createView()
 
    view->init();
    view->redraw();
-
-   // connect quicksearch
-   connect( quickSearch, SIGNAL( textChanged( const QString& ) ), view->op(), SIGNAL( quickSearch( const QString& ) ) );
-   connect( quickSearch, SIGNAL( otherMatching( const QString&, int ) ), view->op(), SIGNAL( quickSearch( const QString& , int ) ) );
-   connect( quickSearch, SIGNAL( stop( QKeyEvent* ) ), view->op(), SIGNAL( stopQuickSearch( QKeyEvent* ) ) );
-   connect( quickSearch, SIGNAL( process( QKeyEvent* ) ), view->op(), SIGNAL( handleQuickSearchEvent( QKeyEvent* ) ) );
+   view->op()->setQuickSearch( quickSearch );
 
    connect( view->op(), SIGNAL( middleButtonClicked( KrViewItem * ) ), SLOTS, SLOT( newTab( KrViewItem * ) ) );
    connect( view->op(), SIGNAL( currentChanged( KrViewItem * ) ), SLOTS, SLOT( updatePopupPanel( KrViewItem* ) ) );

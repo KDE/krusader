@@ -44,6 +44,7 @@
 
 class KrView;
 class KrViewItem;
+class KrQuickSearch;
 typedef QList<KrViewItem*> KrViewItemList;
 
 // KrViewProperties
@@ -84,7 +85,7 @@ public:
 	QWidget *widget() const { return _widget; }
 	void startDrag();
 	
-	void emitSelectionChanged() { emit selectionChanged(); }
+	void emitSelectionChanged() { if( !_massSelectionUpdate ) emit selectionChanged(); }
 	void emitGotDrop(QDropEvent *e) { emit gotDrop(e); }
 	void emitLetsDrag(QStringList items, QPixmap icon ) { emit letsDrag(items, icon); }
 	void emitItemDescription(QString &desc) { emit itemDescription(desc); }
@@ -96,7 +97,18 @@ public:
    void emitNeedFocus() { emit needFocus(); }
    void emitMiddleButtonClicked( KrViewItem *item ) { emit middleButtonClicked( item ); }
    void emitCurrentChanged( KrViewItem *item ) { emit currentChanged( item ); }
-	
+   void prepareForPassive();
+   void setQuickSearch( KrQuickSearch *quickSearch );
+   bool handleKeyEvent (QKeyEvent *e);
+   KrQuickSearch * quickSearch() { return _quickSearch; }
+   void setMassSelectionUpdate( bool upd );
+   bool isMassSelectionUpdate() { return _massSelectionUpdate; }
+
+public slots:
+   void quickSearch( const QString &, int = 0 );
+   void stopQuickSearch( QKeyEvent* );
+   void handleQuickSearchEvent( QKeyEvent* );
+
 signals:
 	void selectionChanged();
 	void gotDrop( QDropEvent *e );
@@ -110,16 +122,16 @@ signals:
    void needFocus();
    void middleButtonClicked( KrViewItem *item );
    void currentChanged( KrViewItem *item );
-   void quickSearch( const QString& );
-   void quickSearch( const QString& , int );
-   void stopQuickSearch( QKeyEvent* );
-   void handleQuickSearchEvent( QKeyEvent* );
 
 	
 protected:
 	// never delete those
 	KrView *_view;
 	QWidget *_widget;
+
+private:
+	KrQuickSearch *_quickSearch;
+	bool _massSelectionUpdate;
 };
 
 /****************************************************************************
@@ -144,6 +156,7 @@ protected:
  */ 
 class KrView {
 friend class KrViewItem;
+friend class KrViewOperator;
 public:
   // instantiating a new view
   // 1. new KrView
@@ -171,6 +184,7 @@ public:
   virtual void addItems(vfs* v, bool addUpDir = true) = 0; // kill me, kill me now
   virtual QString getCurrentItem() const = 0;
   virtual void setCurrentItem(const QString& name) = 0;
+  virtual void setCurrentKrViewItem(KrViewItem *item) = 0;
   virtual void makeItemVisible(const KrViewItem *item) = 0;
   virtual void clear();
   virtual void updateView() = 0;
@@ -180,10 +194,12 @@ public:
   virtual void restoreSettings() = 0;
   virtual void refreshColors() = 0;
   virtual void redraw() = 0;
+  virtual bool handleKeyEvent (QKeyEvent *e);
   virtual void prepareForActive() { _focused = true; }
-  virtual void prepareForPassive() { _focused = false; }
+  virtual void prepareForPassive() { _focused = false; _operator->prepareForPassive(); }
   virtual void renameCurrentItem(); // Rename current item. returns immediatly
   virtual QString nameInKConfig() const { return _nameInKConfig; }
+  virtual int  itemsPerPage() { return 0; }
 
 protected:
 	virtual KrViewItem *preAddItem(vfile *vf) = 0;
@@ -238,6 +254,7 @@ protected:
   KrView(KConfig *cfg = krConfig);
   static QPixmap getIcon(vfile *vf);
   void changeSelection(const KRQuery& filter, bool select, bool includeDirs = false);
+  bool handleKeyEventInt (QKeyEvent *e);
 
 
 protected:

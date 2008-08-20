@@ -36,11 +36,11 @@
 #include <QEvent>
 #include <QMenu>
 #include <kurl.h>
-#include <kio/jobclasses.h>
 #include <qlist.h>
-#include <kmountpoint.h>
-#include <qtimer.h>
 #include <qmap.h>
+#include <solid/device.h>
+#include <solid/solidnamespace.h>
+#include <qtimer.h>
 
 /**
   *@author Csaba Karai
@@ -48,6 +48,7 @@
 
 class QMenu;
 class KMountPoint;
+class KIcon;
 
 class MediaButton : public QToolButton  {
    Q_OBJECT
@@ -55,17 +56,15 @@ public:
   MediaButton(QWidget *parent=0);
   ~MediaButton();
 
-  QString detectType( KMountPoint *mp );
-
 public slots:
   void slotAboutToShow();
   void slotAboutToHide();
-  void slotTimeout();
   void slotPopupActivated( QAction * );
-  void gettingSpaceData(const QString &mountPoint, quint64 kBSize, quint64 kBUsed, quint64 kBAvail);
+  void slotAccessibilityChanged(bool, const QString &);
+  void slotDeviceAdded(const QString&);
+  void slotDeviceRemoved(const QString&);
   void showMenu();
-  void slotEntries( KIO::Job*, const KIO::UDSEntryList& );
-  void slotListResult( KJob* );
+  void slotTimeout();
 
 signals:
   void openUrl(const KUrl&);
@@ -73,40 +72,30 @@ signals:
 
 protected:
   bool eventFilter( QObject *o, QEvent *e );
+  bool getNameAndIcon( Solid::Device &, QString &, KIcon &);
 
 private:
-  void createListWithMedia();
-  void createListWithoutMedia();
+  void createMediaList();
 
-  KUrl getLocalPath( const KUrl &, KMountPoint::List * list = 0 );
-  bool mount( int );
-  bool umount( int );
-  bool eject( int );
+  QList<Solid::Device> storageDevices;
 
-  void rightClickMenu( int );
+  void mount( QString, bool open=false, bool newtab = false );
+  void umount( QString );
+  void eject( QString );
 
-  void addMountPoint( KMountPoint *mp, bool isMounted );
+  void rightClickMenu( QString );
 
-  QMenu *popupMenu;
-  QMenu *rightMenu;
+private slots:
+  void slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString &udi);
+  void slotTeardownDone(Solid::ErrorType error, QVariant errorData, const QString &udi);
 
-  bool        hasMedia;
-  bool        busy;
-
-  int         waitingForMount;
-  bool        newTabAfterMount;
-  int         maxMountWait;
-
-  QList<KUrl>    urls;
-  QList<KUrl>    mediaUrls;
-  QList<QString> iconNames;
-  QList<bool>    quasiMounted;
-
-  QString extraSpaces;  //prevents from increasing the size of the widget
-
+private:
+  QMenu  *popupMenu;
+  QMenu  *rightMenu;
+  QString udiToOpen;
+  bool    openInNewTab;
+  QMap<QString, QString> udiNameMap;
   QTimer      mountCheckerTimer;
-
-  QMap<int,QAction *>  idActionMap;
 };
 
 #endif /* MEDIABUTTON_H */

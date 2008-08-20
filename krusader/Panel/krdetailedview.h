@@ -100,6 +100,7 @@ public:
  	virtual QString getCurrentItem() const;
    virtual void makeItemVisible( const KrViewItem *item );	
    virtual void setCurrentItem( const QString& name );
+   virtual void setCurrentKrViewItem( KrViewItem *item );
    virtual void updateView();
    virtual void updateItem(KrViewItem* item);
    virtual void clear();
@@ -110,6 +111,8 @@ public:
    virtual inline void saveSettings() { K3ListView::saveLayout( _config, nameInKConfig() ); }
    virtual inline void restoreSettings() { K3ListView::restoreLayout( _config, nameInKConfig() ); }
    virtual void redraw() { viewport()->show(); header()->show(); show(); }
+   virtual int  itemsPerPage();
+
 
    static KrView* create( QWidget *parent, bool &left, KConfig *cfg ) { return new KrDetailedView( parent, left, cfg ); }
 
@@ -164,9 +167,6 @@ protected slots:
 
 public slots:
    void refreshColors();
-   void quickSearch( const QString &, int = 0 );
-   void stopQuickSearch( QKeyEvent* );
-   void handleQuickSearchEvent( QKeyEvent* );
 
 private:
    static QString ColumnName[ KrDetailedViewProperties::MAX_COLUMNS ];

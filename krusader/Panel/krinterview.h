@@ -33,6 +33,7 @@ public:
 	virtual void restoreSettings();
 	virtual void saveSettings();
 	virtual void setCurrentItem(const QString& name);
+	virtual void setCurrentKrViewItem(KrViewItem *current);
 	virtual void sort();
 	virtual void updateView();
 	virtual void updateItem(KrViewItem* item);

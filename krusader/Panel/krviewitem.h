@@ -53,6 +53,7 @@ public:
 	virtual void setSelected( bool s ) = 0;
 	virtual QPixmap icon();
 	virtual QRect itemRect() const = 0;
+	virtual void redraw() = 0;
 	
 	KrViewItem(vfile *vf, const KrViewProperties* properties);
 	virtual ~KrViewItem() { if (dummyVfile) delete _vf; }
