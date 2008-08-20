@@ -7,6 +7,9 @@
      ARCH: QuickSearch is moved to KrView from Detailed/Brief views
      ARCH: Keyboard handling is moved to KrView from Detailed/Brief views
 
+    FIXED: [ 1988893 ] konsole is started in a wrong directory
+           please set "konsole --workdir %d" for the terminal (Konfigurator)
+           as Krusader won't fix your config automatically
     FIXED: KDE4 workaround: no colors for synchronizer
     FIXED: MediaButton doesn't notice unmounted pen drives+CD/DVD-s
     FIXED: "local network" bookmark didn't work

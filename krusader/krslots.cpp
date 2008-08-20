@@ -478,7 +478,11 @@ void KRslots::runTerminal( const QString & dir, const QStringList & args ){
   proc.setWorkingDirectory( dir );
   KConfigGroup group( krConfig, "General");
   QString term = group.readEntry("Terminal",_Terminal);
-  proc << KrServices::separateArgs( term );
+  QStringList sepdArgs = KrServices::separateArgs( term );
+  for( int i=0; i != sepdArgs.size(); i++ )
+    if( sepdArgs[ i ] == "%d" )
+      sepdArgs[ i ] = dir;
+  proc << sepdArgs;
   if( !args.isEmpty() )
   {
     proc << "-e" << args; // FIXME this depends on term!! But works in konsole, xterm and gnome-terminal
