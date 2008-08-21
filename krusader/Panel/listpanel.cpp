@@ -941,6 +941,7 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
 			case Qt::Key_Up :
           if ( e->modifiers() == Qt::ControlModifier ) { // give the keyboard focus to the command line
             origin->lineEdit()->setFocus();
+            origin->lineEdit()->selectAll();
             return ;
           } else
              e->ignore();
