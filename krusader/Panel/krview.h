@@ -85,7 +85,6 @@ public:
 	QWidget *widget() const { return _widget; }
 	void startDrag();
 	
-	void emitSelectionChanged() { if( !_massSelectionUpdate ) emit selectionChanged(); }
 	void emitGotDrop(QDropEvent *e) { emit gotDrop(e); }
 	void emitLetsDrag(QStringList items, QPixmap icon ) { emit letsDrag(items, icon); }
 	void emitItemDescription(QString &desc) { emit itemDescription(desc); }
@@ -105,6 +104,7 @@ public:
    bool isMassSelectionUpdate() { return _massSelectionUpdate; }
 
 public slots:
+   void emitSelectionChanged() { if( !_massSelectionUpdate ) emit selectionChanged(); }
    void quickSearch( const QString &, int = 0 );
    void stopQuickSearch( QKeyEvent* );
    void handleQuickSearchEvent( QKeyEvent* );
