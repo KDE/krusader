@@ -282,8 +282,10 @@ Krusader::Krusader() : KParts::MainWindow(0,Qt::Window|Qt::WindowContextHelpButt
    initChecksumModule();
 
    KConfigGroup gl( krConfig, "Look&Feel");
+   KConfigGroup glgen( krConfig, "General");
    int defaultType = gl.readEntry( "Default Panel Type", KrViewFactory::defaultViewId() );
    vfile::vfile_loadUserDefinedFolderIcons( gl.readEntry( "Load User Defined Folder Icons", _UserDefinedFolderIcons ) );
+   vfile::vfile_enableMimeTypeMagic( glgen.readEntry( "Mimetype Magic", _MimetypeMagic ) );
 
    KConfigGroup gs( krConfig, "Startup" );
    QStringList leftTabs = gs.readPathEntry( "Left Tab Bar",QStringList() );

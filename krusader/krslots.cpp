@@ -326,10 +326,12 @@ void KRslots::matchChecksum()  { ACTIVE_FUNC->matchChecksum(); }
 void KRslots::runKonfigurator(bool firstTime) {
 
   KConfigGroup group( krConfig, "Look&Feel");
+  KConfigGroup groupgen( krConfig, "General");
   int size = (group.readEntry("Filelist Icon Size",_FilelistIconSize)).toInt();
   
   Konfigurator *konfigurator = new Konfigurator(firstTime);
 
+  vfile::vfile_enableMimeTypeMagic( groupgen.readEntry( "Mimetype Magic", _MimetypeMagic ) );
   if( konfigurator->isGUIRestartNeeded() )
   {
     vfile::vfile_loadUserDefinedFolderIcons( group.readEntry( "Load User Defined Folder Icons", _UserDefinedFolderIcons ) );

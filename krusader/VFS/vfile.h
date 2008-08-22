@@ -124,6 +124,7 @@ public:
 	virtual ~vfile(){}
 	
 	inline static void      vfile_loadUserDefinedFolderIcons( bool load ) { vfile_userDefinedFolderIcons = load; }
+	inline static void      vfile_enableMimeTypeMagic( bool enable )      { vfile_useMimeTypeMagic = enable; }
 
 private:
 	void                    vfile_loadACL();
@@ -153,12 +154,13 @@ protected:
 	QString          vfile_def_acl;  //< ACL default string
 	
 	static bool      vfile_userDefinedFolderIcons;
+	static bool      vfile_useMimeTypeMagic;
 };
 
 	
 QString vfile::vfile_getIcon(){
 	if( vfile_icon.isEmpty() ){
-		QString mime = this->vfile_getMime();
+		QString mime = this->vfile_getMime( !vfile_useMimeTypeMagic );
       if ( mime == "Broken Link !" )
          vfile_icon = "file-broken";
       else if( vfile_icon.isEmpty() ) {

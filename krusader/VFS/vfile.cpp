@@ -47,6 +47,7 @@
 #include <kdebug.h>
 
 bool vfile::vfile_userDefinedFolderIcons = true;
+bool vfile::vfile_useMimeTypeMagic = true;
 
 vfile::vfile(const QString& name,	                  // useful construtor
              const KIO::filesize_t size,
