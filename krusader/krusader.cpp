@@ -188,7 +188,7 @@ KAction *Krusader::actView4 = 0;
 KAction *Krusader::actView5 = 0;
 
 KToggleAction *Krusader::actToggleTerminal = 0;
-KToggleAction *Krusader::actVerticalMode = 0;
+KAction  *Krusader::actVerticalMode = 0;
 KAction  *Krusader::actSelectNewerAndSingle = 0;
 KAction  *Krusader::actSelectSingle = 0;
 KAction  *Krusader::actSelectNewer = 0;
@@ -753,7 +753,7 @@ void Krusader::setupActions() {
    NEW_KACTION(t14, i18n( "Right Media" ), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_Right, SLOTS, SLOT( openRightMedia() ), "right media" );
    NEW_KACTION(t15, i18n( "New Symlink..." ), 0, Qt::CTRL + Qt::ALT + Qt::Key_S, SLOTS, SLOT( newSymlink() ), "new symlink");
  	NEW_KTOGGLEACTION(t16, i18n( "Toggle Popup Panel" ), 0, Qt::ALT + Qt::Key_Down, SLOTS, SLOT( togglePopupPanel() ), "toggle popup panel" );
-   NEW_KTOGGLEACTION(actVerticalMode, i18n( "Vertical Mode" ), "view_top_bottom", Qt::ALT + Qt::CTRL + Qt::Key_R, MAIN_VIEW, SLOT( toggleVerticalMode() ), "toggle vertical mode" );
+   NEW_KACTION(actVerticalMode, i18n( "Vertical Mode" ), "view-split-top-bottom", Qt::ALT + Qt::CTRL + Qt::Key_R, MAIN_VIEW, SLOT( toggleVerticalMode() ), "toggle vertical mode" );
    NEW_KACTION(actNewTab, i18n( "New Tab" ), "tab-new", Qt::ALT + Qt::CTRL + Qt::Key_N, SLOTS, SLOT( newTab() ), "new tab" );
 	NEW_KACTION(actDupTab, i18n( "Duplicate Current Tab" ), "tab_duplicate", Qt::ALT + Qt::CTRL + Qt::SHIFT + Qt::Key_N, SLOTS, SLOT( duplicateTab() ), "duplicate tab" );
    NEW_KACTION(actCloseTab, i18n( "Close Current Tab" ), "tab-close", Qt::CTRL + Qt::Key_W, SLOTS, SLOT( closeTab() ), "close tab" );
@@ -828,7 +828,7 @@ void Krusader::savePosition() {
    mainView->right->view->saveSettings();
    
    cfg = config->group( "Startup" );
-   cfg.writeEntry( "Vertical Mode", actVerticalMode->isChecked());
+   cfg.writeEntry( "Vertical Mode", mainView->isVertical());
    config->sync();
 }
 
@@ -866,7 +866,7 @@ void Krusader::saveSettings() {
       cfg.writeEntry( "Show FN Keys", actToggleFnkeys->isChecked() );
       cfg.writeEntry( "Show Cmd Line", actToggleCmdline->isChecked() );
       cfg.writeEntry( "Show Terminal Emulator", actToggleTerminal->isChecked() );
-      cfg.writeEntry( "Vertical Mode", actVerticalMode->isChecked());
+      cfg.writeEntry( "Vertical Mode", mainView->isVertical());
       cfg.writeEntry( "Start To Tray", isHidden());
    }
 
@@ -1112,7 +1112,6 @@ void Krusader::updateGUI( bool enforce ) {
       }
       // set vertical mode
       if (cfg.readEntry( "Vertical Mode", false)) {
-        actVerticalMode->setChecked(true);
         mainView->toggleVerticalMode();
       }
       if ( cfg.readEntry( "Show Terminal Emulator", _ShowTerminalEmulator ) ) {

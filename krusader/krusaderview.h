@@ -67,6 +67,7 @@ public:
   inline PanelManager *activeManager() const { return (activePanel==left ? leftMng : rightMng); }
   inline PanelManager *inactiveManager() const { return (activePanel==left ? rightMng : leftMng); }
   QList<int> getTerminalEmulatorSplitterSizes();
+  inline bool          isVertical() const { return horiz_splitter != 0 ? horiz_splitter->orientation() == Qt::Vertical : false; }
   
 public slots:
   void slotCurrentChanged(QString p);

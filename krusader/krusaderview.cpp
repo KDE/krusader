@@ -298,9 +298,15 @@ void KrusaderView::savePanelProfiles( QString group )
 }
 
 void KrusaderView::toggleVerticalMode() {
-	if (horiz_splitter->orientation() == Qt::Vertical)
+	if (horiz_splitter->orientation() == Qt::Vertical) {
 		horiz_splitter->setOrientation(Qt::Horizontal);
-	else horiz_splitter->setOrientation(Qt::Vertical);
+		Krusader::actVerticalMode->setText( i18n( "Vertical Mode" ) );
+		Krusader::actVerticalMode->setIcon( KIcon( "view-split-top-bottom" ) );
+	} else {
+		horiz_splitter->setOrientation(Qt::Vertical);
+		Krusader::actVerticalMode->setText( i18n( "Horizontal Mode" ) );
+		Krusader::actVerticalMode->setIcon( KIcon( "view-split-left-right" ) );
+	}
 }
 
 #include "krusaderview.moc"
