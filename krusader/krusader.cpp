@@ -218,7 +218,8 @@ KAction *Krusader::actShowJSConsole = 0;
 #endif
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
-Krusader::Krusader() : KParts::MainWindow(0,Qt::Window|Qt::WindowContextHelpButtonHint),
+Krusader::Krusader() : KParts::MainWindow(0,
+      Qt::Window | Qt::WindowTitleHint | Qt::WindowContextHelpButtonHint),
    status(NULL), sysTray( 0 ), isStarting( true ), isExiting( false ), directExit( false ) {
 
    setAttribute(Qt::WA_DeleteOnClose);
