@@ -225,8 +225,6 @@ Krusader::Krusader() : KParts::MainWindow(0,Qt::Window|Qt::WindowContextHelpButt
    // parse command line arguments
    KCmdLineArgs * args = KCmdLineArgs::parsedArgs();
 
-   KGlobal::ref(); // FIX: krusader exits at closing the viewer when minimized to tray
-
    // create the "krusader"
    App = this;
    slot = new KRslots(this);
@@ -385,6 +383,7 @@ Krusader::Krusader() : KParts::MainWindow(0,Qt::Window|Qt::WindowContextHelpButt
    status->setWhatsThis( i18n( "Statusbar will show basic information "
                                           "about file below mouse pointer." ) );
 
+   KGlobal::ref(); // FIX: krusader exits at closing the viewer when minimized to tray
    // This enables Krusader to show a tray icon
    sysTray = new KSystemTrayIcon( this );
    // Krusader::privIcon() returns either "krusader_blue" or "krusader_red" if the user got root-privileges
@@ -499,7 +498,7 @@ void Krusader::showEvent ( QShowEvent * ) {
    bool showTrayIcon = group.readEntry( "Minimize To Tray", _MinimizeToTray );
    bool singleInstanceMode = group.readEntry( "Single Instance Mode", _SingleInstanceMode );
    
-   if( showTrayIcon && !singleInstanceMode )
+   if( showTrayIcon && !singleInstanceMode && sysTray)
      sysTray->hide();
    show(); // needed to make sure krusader is removed from
    // the taskbar when minimizing (system tray issue)
@@ -508,7 +507,8 @@ void Krusader::showEvent ( QShowEvent * ) {
 void Krusader::hideEvent ( QHideEvent *e ) {
    if( isExiting ) {
      KParts::MainWindow::hideEvent( e );
-     sysTray->hide();
+     if (sysTray)
+       sysTray->hide();
      return;
    }
    KConfigGroup group( config, "Look&Feel");
@@ -526,7 +526,8 @@ void Krusader::hideEvent ( QHideEvent *e ) {
 #else
    if ( showTrayIcon  && !isModalTopWidget ) {
 #endif
-      sysTray->show();
+      if ( sysTray )
+         sysTray->show();
       hide(); // needed to make sure krusader is removed from
       // the taskbar when minimizing (system tray issue)
    } else KParts::MainWindow::hideEvent( e );
@@ -892,14 +893,16 @@ void Krusader::configChanged() {
    bool minimizeToTray = group.readEntry( "Minimize To Tray", _MinimizeToTray );
    bool singleInstanceMode = group.readEntry( "Single Instance Mode", _SingleInstanceMode );
    
-   if( !isHidden() ) {
-     if( singleInstanceMode && minimizeToTray )
-       sysTray->show();
-     else
-       sysTray->hide();
-   } else {
-     if( minimizeToTray )
-       sysTray->show();
+   if ( sysTray ) {
+      if( !isHidden() ) {
+        if( singleInstanceMode && minimizeToTray )
+          sysTray->show();
+        else
+          sysTray->hide();
+      } else {
+        if( minimizeToTray )
+          sysTray->show();
+      }
    }
 }
 
@@ -925,6 +928,9 @@ bool Krusader::queryClose()
 		dbus.unregisterObject( "/Instances/" + Krusader::AppName );
 		
 		KGlobal::deref(); // FIX: krusader exits at closing the viewer when minimized to tray
+                sysTray->hide();
+                delete sysTray;   // In KDE 4.1, KGlobal::ref() and deref() is done in KSystray constructor/destructor
+                sysTray=NULL;
 		KGlobal::deref(); // and close the application
 		return isExiting = true;              // this will also kill the pending jobs
 	}
@@ -1028,8 +1034,15 @@ bool Krusader::queryClose()
 		dbus.unregisterObject( "/Instances/" + Krusader::AppName );
 
 		KGlobal::deref(); // FIX: krusader exits at closing the viewer when minimized to tray
+                sysTray->hide();
+                delete sysTray;   // In KDE 4.1, KGlobal::ref() and deref() is done in KSystray constructor/destructor
+                sysTray=NULL;
 		KGlobal::deref(); // and close the application
 		return false;  // don't let the main widget close. It stops the pendig copies!
+                //FIXME: The above intention does not work (at least in KDE 4.1), because the job
+                //progress window (class KWidgetJobTracker::Private::ProgressWidget)
+                //is closed above among other top level windows, and when closed
+                //stops the copy.
 	}
 	else
 		return false;
