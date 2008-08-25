@@ -7,7 +7,7 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 set( UserMenu_SRCS
 	usermenu.cpp )
 
-kde4_add_library(UserMenu ${UserMenu_SRCS} )
+kde4_add_library(UserMenu STATIC ${UserMenu_SRCS} )
 
 ########### install files ###############
 

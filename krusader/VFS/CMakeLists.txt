@@ -18,7 +18,7 @@ set( VFS_SRCS
 	krquery.cpp
         preserveattrcopyjob.cpp )
 
-kde4_add_library(VFS ${VFS_SRCS} )
+kde4_add_library(VFS STATIC ${VFS_SRCS} )
 
 ########### install files ###############
 

@@ -13,7 +13,7 @@ set( ActionMan_SRCS
 
 kde4_add_ui_files(ActionMan_SRCS actionproperty.ui)
 
-kde4_add_library(ActionMan ${ActionMan_SRCS} )
+kde4_add_library(ActionMan STATIC ${ActionMan_SRCS} )
 
 ########### install files ###############
 

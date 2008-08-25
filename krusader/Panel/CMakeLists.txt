@@ -23,7 +23,7 @@ set( Panel_SRCS
 	krinterview.cpp
         krviewfactory.cpp )
 
-kde4_add_library(Panel ${Panel_SRCS} )
+kde4_add_library(Panel STATIC ${Panel_SRCS} )
 
 target_link_libraries(Panel Dialogs GUI KViewer ${KDE4_KFILE_LIBS} ${KDE4_KDE3SUPPORT_LIBRARY} )
 

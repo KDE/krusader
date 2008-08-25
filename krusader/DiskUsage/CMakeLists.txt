@@ -14,7 +14,7 @@ set( DiskUsage_SRCS
 	dulines.cpp
 	dufilelight.cpp )
 
-kde4_add_library(DiskUsage ${DiskUsage_SRCS} ${radialMap_SRCS} ${filelightParts_SRCS} )
+kde4_add_library(DiskUsage STATIC ${DiskUsage_SRCS} ${radialMap_SRCS} ${filelightParts_SRCS} )
 
 
 ########### install files ###############

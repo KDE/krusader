@@ -10,7 +10,7 @@ set( Splitter_SRCS
 	splitter.cpp
 	combiner.cpp )
 
-kde4_add_library(Splitter ${Splitter_SRCS} )
+kde4_add_library(Splitter STATIC ${Splitter_SRCS} )
 
 
 ########### install files ###############

@@ -12,7 +12,7 @@ set( Synchronizer_SRCS
 	synchronizertask.cpp 
 	synchronizerdirlist.cpp )
 
-kde4_add_library(Synchronizer ${Synchronizer_SRCS} )
+kde4_add_library(Synchronizer STATIC ${Synchronizer_SRCS} )
 
 target_link_libraries(Synchronizer Dialogs )
 

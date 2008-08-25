@@ -9,7 +9,7 @@ set( MountMan_SRCS
 	kmountman.cpp
 )
 
-kde4_add_library(MountMan ${MountMan_SRCS} )
+kde4_add_library(MountMan STATIC ${MountMan_SRCS} )
 
 target_link_libraries(MountMan Dialogs )
 

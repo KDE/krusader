@@ -10,7 +10,7 @@ set( KViewer_SRCS
 	panelviewer.cpp
 	diskusageviewer.cpp )
 
-kde4_add_library(KViewer ${KViewer_SRCS} )
+kde4_add_library(KViewer STATIC ${KViewer_SRCS} )
 
 
 ########### install files ###############

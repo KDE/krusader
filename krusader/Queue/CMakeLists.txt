@@ -9,7 +9,7 @@ set( Queue_SRCS
 	queue_mgr.cpp
 	queuewidget.cpp )
 
-kde4_add_library(Queue ${Queue_SRCS} )
+kde4_add_library(Queue STATIC ${Queue_SRCS} )
 
 ########### install files ###############
 

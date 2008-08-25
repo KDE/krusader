@@ -11,7 +11,7 @@ set( BookMan_SRCS
 	krbookmarkhandler.cpp
 	kraddbookmarkdlg.cpp )
 
-kde4_add_library(BookMan ${BookMan_SRCS} )
+kde4_add_library(BookMan STATIC ${BookMan_SRCS} )
 
 
 ########### install files ###############
