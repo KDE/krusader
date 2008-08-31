@@ -48,12 +48,15 @@ KgGeneral::KgGeneral( bool first, QWidget* parent ) :
 if( first )  
     slotFindTools();
 
-  QGridLayout *kgGeneralLayout = new QGridLayout( this );
+  QWidget *innerWidget = new QFrame( this );
+  setWidget( innerWidget );
+  setWidgetResizable( true );
+  QGridLayout *kgGeneralLayout = new QGridLayout( innerWidget );
   kgGeneralLayout->setSpacing( 6 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
 
-  QGroupBox *generalGrp = createFrame( i18n( "General" ), this );
+  QGroupBox *generalGrp = createFrame( i18n( "General" ), innerWidget );
   QGridLayout *generalGrid = createGridLayout( generalGrp );
 
   KONFIGURATOR_NAME_VALUE_TIP deleteMode[] =

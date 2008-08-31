@@ -45,12 +45,15 @@
 KgColors::KgColors( bool first, QWidget* parent ) :
       KonfiguratorPage( first, parent ), offset( 0 )
 {
-  QGridLayout *kgColorsLayout = new QGridLayout( this );
+  QWidget *innerWidget = new QFrame( this );
+  setWidget( innerWidget );
+  setWidgetResizable( true );
+  QGridLayout *kgColorsLayout = new QGridLayout( innerWidget );
   kgColorsLayout->setSpacing( 6 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
 
-  QGroupBox *generalGrp = createFrame( i18n( "General" ), this );
+  QGroupBox *generalGrp = createFrame( i18n( "General" ), innerWidget );
   QGridLayout *generalGrid = createGridLayout( generalGrp );
 
   generalGrid->setSpacing( 0 );
@@ -73,7 +76,7 @@ KgColors::KgColors( bool first, QWidget* parent ) :
   connect( generals->find( "Dim Inactive Colors" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
 
   kgColorsLayout->addWidget( generalGrp, 0 ,0, 1, 3 );
-  QWidget *hboxWidget = new QWidget( this );
+  QWidget *hboxWidget = new QWidget( innerWidget );
   QHBoxLayout *hbox = new QHBoxLayout( hboxWidget );
 
   //  -------------------------- COLORS GROUPBOX ----------------------------------
@@ -249,14 +252,14 @@ KgColors::KgColors( bool first, QWidget* parent ) :
 
   kgColorsLayout->addWidget( hboxWidget, 1 , 0, 1,  3 );
 
-  importBtn = new KPushButton(i18n("Import color-scheme"),this);
+  importBtn = new KPushButton(i18n("Import color-scheme"),innerWidget);
   kgColorsLayout->addWidget(importBtn,2,0);
-  exportBtn = new KPushButton(i18n("Export color-scheme"),this);
+  exportBtn = new KPushButton(i18n("Export color-scheme"),innerWidget);
   kgColorsLayout->addWidget(exportBtn,2,1);
-  kgColorsLayout->addWidget(createSpacer(this), 2,2);
+  kgColorsLayout->addWidget(createSpacer(innerWidget), 2,2);
   connect(importBtn, SIGNAL(clicked()), this, SLOT(slotImportColors()));
   connect(exportBtn, SIGNAL(clicked()), this, SLOT(slotExportColors()));
-
+  
   slotDisable();
 }
 

@@ -32,11 +32,11 @@
 #define __KONFIGURATOR_PAGE_H__
  
 #include "konfiguratoritems.h"
-#include <qframe.h>
 #include <qgroupbox.h>
 #include <qlabel.h>
 #include <qlayout.h>
 #include <QGridLayout>
+#include <QScrollArea>
 
 struct KONFIGURATOR_CHECKBOX_PARAM;
 struct KONFIGURATOR_NAME_VALUE_TIP;
@@ -48,7 +48,7 @@ struct KONFIGURATOR_NAME_VALUE_PAIR;
   *
   * @short The base class of a page in Konfigurator
   */  
-class KonfiguratorPage : public QFrame
+class KonfiguratorPage : public QScrollArea
 {
   Q_OBJECT
    

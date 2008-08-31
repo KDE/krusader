@@ -33,6 +33,7 @@
 #include "../defaults.h"
 #include "../Dialogs/krdialogs.h"
 #include <qtabwidget.h>
+#include <QFrame>
 #include <QGridLayout>
 #include <QLabel>
 #include <QVBoxLayout>
@@ -55,10 +56,11 @@
 KgLookFeel::KgLookFeel( bool first, QWidget* parent ) :
       KonfiguratorPage( first, parent )
 {
-  QGridLayout *kgLookAndFeelLayout = new QGridLayout( this );
+  QWidget *innerWidget = this;
+  QGridLayout *kgLookAndFeelLayout = new QGridLayout( innerWidget );
   kgLookAndFeelLayout->setSpacing( 6 );
 
-  tabWidget = new QTabWidget( this );
+  tabWidget = new QTabWidget( innerWidget );
 
   setupOperationTab();
   setupPanelTab();
@@ -72,8 +74,12 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent ) :
 //  ---------------------------- OPERATION TAB -------------------------------------
 // ---------------------------------------------------------------------------------------
 void KgLookFeel::setupOperationTab() {
-  QWidget *tab = new QWidget( tabWidget );
-  tabWidget->addTab( tab, i18n( "Operation" ) );
+  QScrollArea *scrollArea = new QScrollArea( tabWidget );
+  QWidget *tab = new QWidget( scrollArea );
+  scrollArea->setFrameStyle( QFrame::NoFrame );
+  scrollArea->setWidget( tab );
+  scrollArea->setWidgetResizable( true );
+  tabWidget->addTab( scrollArea, i18n( "Operation" ) );
 
   QGridLayout *lookAndFeelLayout = new QGridLayout( tab );
   lookAndFeelLayout->setSpacing( 6 );
@@ -120,8 +126,12 @@ void KgLookFeel::setupOperationTab() {
 //  ---------------------------- PANEL TAB -------------------------------------
 // ----------------------------------------------------------------------------------
 void KgLookFeel::setupPanelTab() {
-  QWidget* tab_panel = new QWidget( tabWidget );
-  tabWidget->addTab( tab_panel, i18n( "Panel" ) );
+  QScrollArea *scrollArea = new QScrollArea( tabWidget );
+  QWidget *tab_panel = new QWidget( scrollArea );
+  scrollArea->setFrameStyle( QFrame::NoFrame );
+  scrollArea->setWidget( tab_panel );
+  scrollArea->setWidgetResizable( true );
+  tabWidget->addTab( scrollArea, i18n( "Panel" ) );
 
   QGridLayout *panelLayout = new QGridLayout( tab_panel );
   panelLayout->setSpacing( 6 );
@@ -221,8 +231,12 @@ void KgLookFeel::setupPanelTab() {
 //  -------------------------- Panel Toolbar TAB ----------------------------------
 // -----------------------------------------------------------------------------------
 void KgLookFeel::setupPanelToolbarTab() {
-  QWidget     *tab_4 = new QWidget( tabWidget );
-  tabWidget->addTab( tab_4, i18n( "Panel Toolbar" ) );
+  QScrollArea *scrollArea = new QScrollArea( tabWidget );
+  QWidget *tab_4 = new QWidget( scrollArea );
+  scrollArea->setFrameStyle( QFrame::NoFrame );
+  scrollArea->setWidget( tab_4 );
+  scrollArea->setWidgetResizable( true );
+  tabWidget->addTab( scrollArea, i18n( "Panel Toolbar" ) );
 
   QBoxLayout * panelToolbarVLayout = new QVBoxLayout( tab_4 );
   panelToolbarVLayout->setSpacing( 6 );
@@ -266,8 +280,12 @@ void KgLookFeel::setupPanelToolbarTab() {
 //  -------------------------- Mouse TAB ----------------------------------
 // ---------------------------------------------------------------------------
 void KgLookFeel::setupMouseModeTab() {
-  QWidget *tab_mouse = new QWidget( tabWidget );
-  tabWidget->addTab( tab_mouse, i18n( "Selection Mode" ) );
+  QScrollArea *scrollArea = new QScrollArea( tabWidget );
+  QWidget *tab_mouse = new QWidget( scrollArea );
+  scrollArea->setFrameStyle( QFrame::NoFrame );
+  scrollArea->setWidget( tab_mouse );
+  scrollArea->setWidgetResizable( true );
+  tabWidget->addTab( scrollArea, i18n( "Selection Mode" ) );
   QGridLayout *mouseLayout = new QGridLayout( tab_mouse );
   mouseLayout->setSpacing( 6 );
   mouseLayout->setContentsMargins( 11, 11, 11, 11 );

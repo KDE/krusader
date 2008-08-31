@@ -40,12 +40,15 @@
 KgAdvanced::KgAdvanced( bool first, QWidget* parent ) :
       KonfiguratorPage( first, parent )
 {
-  QGridLayout *kgAdvancedLayout = new QGridLayout( this );
+  QWidget *innerWidget = new QFrame( this );
+  setWidget( innerWidget );
+  setWidgetResizable( true );
+  QGridLayout *kgAdvancedLayout = new QGridLayout( innerWidget );
   kgAdvancedLayout->setSpacing( 6 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
   
-  QGroupBox *generalGrp = createFrame( i18n( "General" ), this );
+  QGroupBox *generalGrp = createFrame( i18n( "General" ), innerWidget );
   QGridLayout *generalGrid = createGridLayout( generalGrp );
 
   KONFIGURATOR_CHECKBOX_PARAM generalSettings[] =
@@ -71,7 +74,7 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent ) :
 
   //  ----------------------- CONFIRMATIONS GROUPBOX -------------------------------
   
-  QGroupBox *confirmGrp = createFrame( i18n( "Confirmations" ), this );
+  QGroupBox *confirmGrp = createFrame( i18n( "Confirmations" ), innerWidget );
   QGridLayout *confirmGrid = createGridLayout( confirmGrp );
 
   addLabel( confirmGrid, 0, 0, "\n"+i18n( "Request user confirmation for the following operations:" )+"\n",
@@ -95,7 +98,7 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent ) :
 
   //  ------------------------ FINE-TUNING GROUPBOX --------------------------------
 
-  QGroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), this );
+  QGroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), innerWidget );
   QGridLayout *fineTuneGrid = createGridLayout( fineTuneGrp );
   fineTuneGrid->setAlignment( Qt::AlignLeft | Qt::AlignTop );
   

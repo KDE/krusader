@@ -43,12 +43,15 @@
 KgArchives::KgArchives( bool first, QWidget* parent ) :
       KonfiguratorPage( first, parent )
 {
-  QGridLayout *kgArchivesLayout = new QGridLayout( this );
+  QWidget *innerWidget = new QFrame( this );
+  setWidget( innerWidget );
+  setWidgetResizable( true );
+  QGridLayout *kgArchivesLayout = new QGridLayout( innerWidget );
   kgArchivesLayout->setSpacing( 6 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
 
-  QGroupBox *generalGrp = createFrame( i18n( "General" ), this );
+  QGroupBox *generalGrp = createFrame( i18n( "General" ), innerWidget );
   QGridLayout *generalGrid = createGridLayout( generalGrp );
 
   addLabel( generalGrid, 0, 0, i18n( "Krusader transparently handles the following types of archives:" ),
@@ -94,7 +97,7 @@ KgArchives::KgArchives( bool first, QWidget* parent ) :
 
   //  ------------------------ FINE-TUNING GROUPBOX --------------------------------
 
-  QGroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), this );
+  QGroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), innerWidget );
   QGridLayout *fineTuneGrid = createGridLayout( fineTuneGrp );
 
   KONFIGURATOR_CHECKBOX_PARAM finetuners[] =

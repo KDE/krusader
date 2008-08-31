@@ -81,6 +81,7 @@ Konfigurator::Konfigurator( bool f, int startPage ) : KPageDialog( (QWidget *)0 
   connect( this, SIGNAL( user1Clicked() ), this, SLOT( slotUser1() ) );
   
   createLayout( startPage );
+  setInitialSize( QSize( 1000, 700 ) );
   exec();
 }
 

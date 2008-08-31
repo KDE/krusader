@@ -43,10 +43,13 @@
 KgUserActions::KgUserActions( bool first, QWidget* parent ) :
   KonfiguratorPage( first, parent )
 {
-   QGridLayout *kgUserActionLayout = new QGridLayout( this );
+   QWidget *innerWidget = new QFrame( this );
+   setWidget( innerWidget );
+   setWidgetResizable( true );
+   QGridLayout *kgUserActionLayout = new QGridLayout( innerWidget );
 
    // ============= Info Group =============
-   QGroupBox *InfoGroup = createFrame( i18n( "Information" ), this );
+   QGroupBox *InfoGroup = createFrame( i18n( "Information" ), innerWidget );
    QGridLayout *InfoGrid = createGridLayout( InfoGroup );
 
    // terminal for the UserActions
@@ -62,7 +65,7 @@ KgUserActions::KgUserActions( bool first, QWidget* parent ) :
    kgUserActionLayout->addWidget( InfoGroup, 0 ,0 );
 
    // ============= Terminal Group =============
-   QGroupBox *terminalGroup = createFrame( i18n( "Terminal execution" ), this );
+   QGroupBox *terminalGroup = createFrame( i18n( "Terminal execution" ), innerWidget );
    QGridLayout *terminalGrid = createGridLayout( terminalGroup );
 
    // terminal for the UserActions
@@ -76,7 +79,7 @@ KgUserActions::KgUserActions( bool first, QWidget* parent ) :
    kgUserActionLayout->addWidget( terminalGroup, 1 ,0 );
 
    // ============= Outputcollection Group =============
-   QGroupBox *outputGroup = createFrame( i18n( "Output collection" ), this );
+   QGroupBox *outputGroup = createFrame( i18n( "Output collection" ), innerWidget );
    QGridLayout *outputGrid = createGridLayout( outputGroup );
 
    QWidget *hboxWidget = new QWidget( outputGroup );

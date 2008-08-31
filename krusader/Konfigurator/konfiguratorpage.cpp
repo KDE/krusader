@@ -32,13 +32,14 @@
 #include <qlayout.h>
 #include <QHBoxLayout>
 #include <QGridLayout>
-#include <QFrame>
+#include <QScrollArea>
 #include <QLabel>
 #include "../krusader.h"
 
 KonfiguratorPage::KonfiguratorPage( bool firstTime, QWidget* parent ) :
-  QFrame( parent ), firstCall( firstTime )
+  QScrollArea( parent ), firstCall( firstTime )
 {
+  setFrameStyle( QFrame::NoFrame );
 }
 
 bool KonfiguratorPage::apply()
