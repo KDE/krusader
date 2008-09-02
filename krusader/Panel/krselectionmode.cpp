@@ -10,29 +10,36 @@ OriginalSelectionMode originalSelectionMode;
 TCSelectionMode tcSelectionMode;
 UserSelectionMode userSelectionMode;
 
+KrSelectionMode* KrSelectionMode::getSelectionHandlerForMode(int mode)
+{
+	KrSelectionMode *res = NULL;
+	switch (mode) {
+		case 0:
+			res = &originalSelectionMode;
+			break;
+		case 1:
+			res = &konqSelectionMode;
+			break;
+		case 2:
+			res = &tcSelectionMode;
+			break;
+		default:
+			break;
+	}
+        return res;
+}
+
 KrSelectionMode* KrSelectionMode::getSelectionHandler()
 {
 	if (__currentSelectionMode) { // don't check krConfig every time
 		return __currentSelectionMode;
 	} else { // nothing yet, set the correct one
-	KConfigGroup group( krConfig, "Look&Feel" );
-   	QString mode = group.readEntry("Mouse Selection", QString("") );
-		switch (mode.toInt()) {
-			case 0:
-				__currentSelectionMode = &originalSelectionMode;
-				break;
-			case 1:
-				__currentSelectionMode = &konqSelectionMode;
-				break;
-			case 2:
-				__currentSelectionMode = &tcSelectionMode;
-				break;
-			case 3:
-				__currentSelectionMode = &userSelectionMode;
-				userSelectionMode.init();
-				break;				
-			default:
-				break;
+		KConfigGroup group( krConfig, "Look&Feel" );
+		QString mode = group.readEntry("Mouse Selection", QString("") );
+		__currentSelectionMode = getSelectionHandlerForMode( mode.toInt() );
+		if ( __currentSelectionMode == NULL )
+		{
+			__currentSelectionMode = &userSelectionMode;
 		}
 		// init and return
 		__currentSelectionMode->init();

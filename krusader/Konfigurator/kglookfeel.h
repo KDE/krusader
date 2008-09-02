@@ -57,6 +57,7 @@ protected slots:
   void slotDisable();
   void slotEnablePanelToolbar();
   void slotSelectionModeChanged();
+  void slotMouseCheckBoxChanged();
   
 private:
   void setupOperationTab();

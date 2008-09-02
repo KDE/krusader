@@ -13,6 +13,7 @@
 */
 class KrSelectionMode {
 public:
+   static KrSelectionMode * getSelectionHandlerForMode(int mode);
    static KrSelectionMode * getSelectionHandler();
 	static void resetSelectionHandler();
 	

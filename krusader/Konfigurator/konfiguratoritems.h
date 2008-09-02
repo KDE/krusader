@@ -156,6 +156,7 @@ public:
     QWidget( parent ) {};
 
   void                    add( KonfiguratorCheckBox * );
+  int                     count() { return checkBoxList.count(); };
   KonfiguratorCheckBox *  find( int index );
   KonfiguratorCheckBox *  find( QString name );
 
@@ -182,6 +183,7 @@ public:
   void            selectButton( QString value );
 
   int             count() { return radioButtons.count(); }
+  int             selectedIndex();
   QRadioButton*   find( int index );
   QRadioButton*   find( QString name );
 

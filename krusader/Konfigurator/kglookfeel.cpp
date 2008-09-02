@@ -373,6 +373,9 @@ void KgLookFeel::setupMouseModeTab() {
   mouseCheckboxes = createCheckBoxGroup(1, 0, mouseCheckboxesParam, 11 /*count*/, mouseDetailGroup, PAGE_MOUSE);
   mouseDetailGrid->addWidget( mouseCheckboxes, 1, 0 );
 
+  for ( int i = 0; i < mouseCheckboxes->count(); i++ )
+     connect( mouseCheckboxes->find( i ), SIGNAL( clicked() ), SLOT( slotMouseCheckBoxChanged() ) );
+
   mouseLayout->addWidget( mouseDetailGroup, 1,0 );
 
   // Disable the details-button if not in custom-mode
@@ -407,18 +410,27 @@ void KgLookFeel::slotEnablePanelToolbar()
 }
 
 void KgLookFeel::slotSelectionModeChanged() {
-  bool enable = mouseRadio->find( i18n("Custom Selection Mode") )->isChecked();
-  mouseCheckboxes->find( "QT Selection" )->setEnabled( enable );
-  mouseCheckboxes->find( "Left Selects" )->setEnabled( enable );
-  mouseCheckboxes->find( "Left Preserves" )->setEnabled( enable );
-  mouseCheckboxes->find( "ShiftCtrl Left Selects" )->setEnabled( enable );
-  mouseCheckboxes->find( "Right Selects" )->setEnabled( enable );
-  mouseCheckboxes->find( "Right Preserves" )->setEnabled( enable );
-  mouseCheckboxes->find( "ShiftCtrl Right Selects" )->setEnabled( enable );
-  mouseCheckboxes->find( "Space Moves Down" )->setEnabled( enable );
-  mouseCheckboxes->find( "Space Calc Space" )->setEnabled( enable );
-  mouseCheckboxes->find( "Insert Moves Down" )->setEnabled( enable );
-  mouseCheckboxes->find( "Immediate Context Menu" )->setEnabled( enable );
+  KrSelectionMode *selectionMode =
+      KrSelectionMode::getSelectionHandlerForMode( mouseRadio->selectedIndex() );
+  if ( selectionMode == NULL ) //User mode
+    return;
+  selectionMode->init();
+  mouseCheckboxes->find( "QT Selection" )->setChecked( selectionMode->useQTSelection() );
+  mouseCheckboxes->find( "Left Selects" )->setChecked( selectionMode->leftButtonSelects() );
+  mouseCheckboxes->find( "Left Preserves" )->setChecked( selectionMode->leftButtonPreservesSelection() );
+  mouseCheckboxes->find( "ShiftCtrl Left Selects" )->setChecked( selectionMode->shiftCtrlLeftButtonSelects() );
+  mouseCheckboxes->find( "Right Selects" )->setChecked( selectionMode->rightButtonSelects() );
+  mouseCheckboxes->find( "Right Preserves" )->setChecked( selectionMode->rightButtonPreservesSelection() );
+  mouseCheckboxes->find( "ShiftCtrl Right Selects" )->setChecked( selectionMode->shiftCtrlRightButtonSelects() );
+  mouseCheckboxes->find( "Space Moves Down" )->setChecked( selectionMode->spaceMovesDown() );
+  mouseCheckboxes->find( "Space Calc Space" )->setChecked( selectionMode->spaceCalculatesDiskSpace() );
+  mouseCheckboxes->find( "Insert Moves Down" )->setChecked( selectionMode->insertMovesDown() );
+  mouseCheckboxes->find( "Immediate Context Menu" )->setChecked( selectionMode->showContextMenu() == -1 );
+}
+
+void KgLookFeel::slotMouseCheckBoxChanged()
+{
+  mouseRadio->selectButton( "3" );  //custom selection mode
 }
 
 int KgLookFeel::activeSubPage() {
