@@ -41,6 +41,8 @@
 
 class QLineEdit;
 class QString;
+class QResizeEvent;
+class QCloseEvent;
 
 class Konfigurator : public KPageDialog
 {
@@ -52,9 +54,15 @@ public:
 
   bool isGUIRestartNeeded() { return restartGUI; }
 
+  virtual void accept();
+  virtual void reject();
+
 protected:
   void newPage(KonfiguratorPage *, const QString &, const QString &, const KIcon & );// adds widget and connects to slot
   void createLayout( int startPage );
+  void closeDialog();
+
+  virtual void resizeEvent( QResizeEvent *e );
 
 protected slots:
   void slotUser1();
@@ -71,6 +79,8 @@ private:
   bool                        internalCall;
   QTimer                      restoreTimer;
   bool                        restartGUI;
+  int                         sizeX;
+  int                         sizeY;
 };
 
 #endif

@@ -31,6 +31,7 @@
 #include "konfiguratoritems.h"
 #include "../krusader.h"
 #include <klocale.h>
+#include <klineedit.h>
 #include <qpainter.h>
 #include <qpen.h>
 #include <qcolordialog.h>
@@ -376,7 +377,7 @@ KonfiguratorURLRequester::~KonfiguratorURLRequester()
 void KonfiguratorURLRequester::loadInitialValue()
 {
   KConfigGroup group( krConfig, ext->getCfgClass() );
-  setUrl( group.readEntry( ext->getCfgName(), defaultValue ) );
+  lineEdit()->setText( group.readEntry( ext->getCfgName(), defaultValue ) );
   ext->setChanged( false );
 }
 
@@ -388,7 +389,7 @@ void KonfiguratorURLRequester::slotApply(QObject *,QString cls, QString name)
 void KonfiguratorURLRequester::slotSetDefaults(QObject *)
 {
   if( url() != defaultValue )
-    setUrl( defaultValue );
+    lineEdit()->setText( defaultValue );
 }
 
 // KonfiguratorFontChooser class

@@ -57,12 +57,13 @@
 #include "kgcolors.h"
 #include "kguseractions.h"
 #include "kgprotocols.h"
+#include <qevent.h>
 
 Konfigurator::Konfigurator( bool f, int startPage ) : KPageDialog( (QWidget *)0 ), firstTime(f), internalCall( false ),
-      restartGUI( false )
+      restartGUI( false ), sizeX( -1 ), sizeY( -1 )
 {
   setButtons( KDialog::Help | KDialog::User1 | KDialog::Apply | KDialog::Cancel );
-  setDefaultButton( KDialog::User1 );
+  setDefaultButton( KDialog::Apply );
   setWindowTitle( i18n( "Konfigurator" ) );
   setButtonGuiItem( KDialog::User1, KGuiItem( i18n("Defaults") ) );
   setWindowModality( Qt::WindowModal );
@@ -81,8 +82,54 @@ Konfigurator::Konfigurator( bool f, int startPage ) : KPageDialog( (QWidget *)0 
   connect( this, SIGNAL( user1Clicked() ), this, SLOT( slotUser1() ) );
   
   createLayout( startPage );
-  resize( 900, 900 );
+
+  KConfigGroup group( krConfig, "Konfigurator");
+  int sx = group.readEntry( "Window Width", -1 );
+  int sy = group.readEntry( "Window Height", -1 );
+
+  if( sx != -1 && sy != -1 )
+    resize( sx, sy );
+  else
+    resize( 900, 900 );
+
+  if( group.readEntry( "Window Maximized",  false ) )
+      showMaximized();
+  else
+      show();
+
   exec();
+}
+
+void Konfigurator::resizeEvent( QResizeEvent *e )
+{
+  if( !isMaximized() )
+  {
+    sizeX = e->size().width();
+    sizeY = e->size().height();
+  }
+
+  KDialog::resizeEvent( e );
+}
+
+void Konfigurator::closeDialog()
+{
+  KConfigGroup group( krConfig, "Konfigurator");
+
+  group.writeEntry("Window Width", sizeX );
+  group.writeEntry("Window Height", sizeY );
+  group.writeEntry("Window Maximized", isMaximized() );
+}
+
+void Konfigurator::reject()
+{
+  closeDialog();
+  KDialog::reject();
+}
+
+void Konfigurator::accept()
+{
+  closeDialog();
+  KDialog::accept();
 }
 
 void Konfigurator::newPage(KonfiguratorPage *page, const QString &name, const QString &desc, const KIcon &kicon )
@@ -177,6 +224,7 @@ bool Konfigurator::slotPageSwitch( KPageWidgetItem *current, KPageWidgetItem *be
     {
     case KMessageBox::No:
       currentPg->loadInitialValues();
+      currentPg->apply();
       break;
     case KMessageBox::Yes:
       if( currentPg->apply() )
