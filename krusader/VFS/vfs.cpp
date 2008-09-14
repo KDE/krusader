@@ -43,6 +43,7 @@
 #include "vfs.h"
 #include "../krusader.h"
 #include "../defaults.h"
+#include "kiojobwrapper.h"
 
 vfs::vfs(QObject* panel, bool quiet): vfs_busy(false), quietMode(quiet),disableRefresh(false),postponedRefreshURL(),
                                       invalidated(true),panelConnected(false),vfs_tempFilesP(0),vfileIterator(0),deletePossible( true ),
@@ -290,9 +291,11 @@ void vfs::calculateURLSize( KUrl url,  KIO::filesize_t* totalSize, unsigned long
 		return;
 	} else {
 		stat_busy = true;
-		KIO::StatJob* statJob = KIO::stat( url, false );
-		connect( statJob, SIGNAL( result( KJob* ) ), this, SLOT( slotStatResultArrived( KJob* ) ) );
+		KIOJobWrapper * statJob = KIOJobWrapper::stat( url );
+		statJob->connectTo( SIGNAL( result( KJob* ) ), this, SLOT( slotStatResultArrived( KJob* ) ) );
+		statJob->start();
 		while ( !(*stop) && stat_busy ) {usleep(1000);}
+		
 		if( entry.count() == 0 ) return; // statJob failed
 		KFileItem kfi(entry, url, true );        
 		if( kfi.isFile() || kfi.isLink() ) {
@@ -302,8 +305,9 @@ void vfs::calculateURLSize( KUrl url,  KIO::filesize_t* totalSize, unsigned long
 		}
 	}
 	
-	KIO::DirectorySizeJob* kds  = KIO::directorySize( url );
-	connect( kds, SIGNAL( result( KJob* ) ), this, SLOT( slotKdsResult( KJob* ) ) );
+	KIOJobWrapper* kds  = KIOJobWrapper::directorySize( url );
+	kds->connectTo( SIGNAL( result( KJob* ) ), this, SLOT( slotKdsResult( KJob* ) ) );
+	kds->start();
 	while ( !(*stop) ){ 
 		// we are in a sepetate thread - so sleeping is OK
 		usleep(1000);

@@ -49,6 +49,7 @@
 #include <QResizeEvent>
 #include <QHideEvent>
 #include <kdebug.h>
+#include "VFS/kiojobwrapper.h"
 
 #ifdef __KJSEMBED__
 class KrJS;
@@ -187,6 +188,7 @@ class Krusader : public KParts::MainWindow {
     bool         isStarting;
     bool         isExiting;
     bool         directExit;
+    KrJobStarter jobStarter;
 };
 
 // main modules

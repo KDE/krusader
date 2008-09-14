@@ -331,11 +331,11 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent )
   setTabOrder( searcherTabs, resultsList );
 
   KConfigGroup group( krConfig, "Search" );
-  int sx = group.readEntry( "Window Width",  -1 );
-  int sy = group.readEntry( "Window Height",  -1 );
+  sizeX = group.readEntry( "Window Width",  -1 );
+  sizeY = group.readEntry( "Window Height",  -1 );
 
-  if( sx != -1 && sy != -1 )
-    resize( sx, sy );
+  if( sizeX != -1 && sizeY != -1 )
+    resize( sizeX, sizeY );
 
   if( group.readEntry( "Window Maximized",  false ) )
       showMaximized();
