@@ -1294,7 +1294,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   btnDeletable->setCheckable( true );
   btnDeletable->setChecked( group.readEntry( "Deletable Button", _BtnDeletable ) );
   btnDeletable->setShortcut( Qt::CTRL + Qt::Key_T );
-  btnDeletable->setWhatsThis( i18n( "Show files marked to delete. (CTRL+T)" ) );
+  btnDeletable->setWhatsThis( i18n( "Show files marked to delete (CTRL+T)." ) );
   btnDeletable->setFixedSize( showDeletable.width() + 15, showDeletable.height() + 15 );
   showOptionsLayout->addWidget( btnDeletable, 0, 4);
 

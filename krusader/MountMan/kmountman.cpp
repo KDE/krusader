@@ -200,7 +200,7 @@ void KMountMan::eject( QString mntPoint ) {
    proc.waitForFinished(-1); // -1 msec blocks without timeout
    if ( proc.exitStatus() != QProcess::NormalExit || proc.exitStatus() != 0 ) // if we failed with eject
       KMessageBox::information( 0, //parent
-          i18n( "<qt>Error ejecting device!\n You have to configure the path to the 'eject' tool."
+          i18n( "<qt>Error ejecting device!\n You have to configure the path to the 'eject' tool. "
                 "Please check the <b>Dependencies</b> page in Krusader's settings.</qt>"),
           i18n( "Error" ), // caption
           "CantExecuteEjectWarning" ); // don't-show-again config-key
