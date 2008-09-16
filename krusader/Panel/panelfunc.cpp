@@ -391,6 +391,7 @@ void ListPanelFunc::editFile() {
 
 void ListPanelFunc::moveFiles() {
 	PreserveMode pmode = PM_DEFAULT;
+	bool queue = false;
 
 	QStringList fileNames;
 	panel->getSelectedNames( &fileNames );
@@ -418,7 +419,7 @@ void ListPanelFunc::moveFiles() {
 
 		// ask the user for the copy dest
 		virtualBaseURL = getVirtualBaseURL();
-		dest = KChooseDir::getDir(s, dest, panel->virtualPath(), preserveAttrs, virtualBaseURL);
+		dest = KChooseDir::getDir(s, dest, panel->virtualPath(), queue, preserveAttrs, virtualBaseURL);
 		if ( dest.isEmpty() ) return ; // the user canceled
 		if( preserveAttrs )
 			pmode = PM_PRESERVE_ATTR;
@@ -435,7 +436,29 @@ void ListPanelFunc::moveFiles() {
 	// file above the current item;
 	panel->prepareToDelete();
 
-	if( !virtualBaseURL.isEmpty() ) {
+	if( queue ) {
+		KIOJobWrapper *job = 0;
+		if( !virtualBaseURL.isEmpty() ) {
+			job = KIOJobWrapper::virtualMove( &fileNames, files(), dest, virtualBaseURL, pmode, true );
+			job->connectTo( SIGNAL( result( KJob* ) ), this, SLOT( refresh() ) );
+			if ( dest.equals( panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) )
+				job->connectTo( SIGNAL( result( KJob* ) ), panel->otherPanel->func, SLOT( refresh() ) );
+		} else {
+			// you can rename only *one* file not a batch,
+			// so a batch dest must alwayes be a directory
+			if ( fileNames.count() > 1 ) dest.adjustPath(KUrl::AddTrailingSlash);
+			job = KIOJobWrapper::move( pmode, *fileUrls, dest, true );
+			job->setAutoErrorHandlingEnabled( true );
+			// refresh our panel when done
+			job->connectTo( SIGNAL( result( KJob* ) ), this, SLOT( refresh() ) );
+			if ( dest.equals( panel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) ||
+				dest.upUrl().equals( panel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) )
+				// refresh our panel when done
+				job->connectTo( SIGNAL( result( KJob* ) ), this, SLOT( refresh() ) );
+		}
+		QueueManager::currentQueue()->enqueue( job );
+	}
+	else if( !virtualBaseURL.isEmpty() ) {
 		// keep the directory structure for virtual paths
 		VirtualCopyJob *vjob = new VirtualCopyJob( &fileNames, files(), dest, virtualBaseURL, pmode, KIO::CopyJob::Move, true );
 		connect( vjob, SIGNAL( result( KJob* ) ), this, SLOT( refresh() ) );
@@ -557,6 +580,7 @@ KUrl ListPanelFunc::getVirtualBaseURL() {
 
 void ListPanelFunc::copyFiles() {
 	PreserveMode pmode = PM_DEFAULT;
+	bool queue = false;
 
 	QStringList fileNames;
 	panel->getSelectedNames( &fileNames );
@@ -579,7 +603,7 @@ void ListPanelFunc::copyFiles() {
 
 		// ask the user for the copy dest
 		virtualBaseURL = getVirtualBaseURL();
-		dest = KChooseDir::getDir(s, dest, panel->virtualPath(), preserveAttrs, virtualBaseURL );
+		dest = KChooseDir::getDir(s, dest, panel->virtualPath(), queue, preserveAttrs, virtualBaseURL );
 		if ( dest.isEmpty() ) return ; // the user canceled
 		if( preserveAttrs )
 			pmode = PM_PRESERVE_ATTR;
@@ -589,7 +613,27 @@ void ListPanelFunc::copyFiles() {
 
 	KUrl::List* fileUrls = files() ->vfs_getFiles( &fileNames );
 
-	if( !virtualBaseURL.isEmpty() ) {
+	if( queue ) {
+		KIOJobWrapper *job = 0;
+		if( !virtualBaseURL.isEmpty() ) {
+			job = KIOJobWrapper::virtualCopy( &fileNames, files(), dest, virtualBaseURL, pmode, true );
+			job->connectTo( SIGNAL( result( KJob* ) ), this, SLOT( refresh() ) );
+			if ( dest.equals( panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) )
+				job->connectTo( SIGNAL( result( KJob* ) ), panel->otherPanel->func, SLOT( refresh() ) );
+		} else {
+			// you can rename only *one* file not a batch,
+			// so a batch dest must alwayes be a directory
+			if ( fileNames.count() > 1 ) dest.adjustPath(KUrl::AddTrailingSlash);
+			job = KIOJobWrapper::copy( pmode, *fileUrls, dest, true );
+			job->setAutoErrorHandlingEnabled( true );
+			if ( dest.equals( panel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) ||
+				dest.upUrl().equals( panel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) )
+				// refresh our panel when done
+				job->connectTo( SIGNAL( result( KJob* ) ), this, SLOT( refresh() ) );
+		}
+		QueueManager::currentQueue()->enqueue( job );
+	}
+	else if( !virtualBaseURL.isEmpty() ) {
 		// keep the directory structure for virtual paths
 		VirtualCopyJob *vjob = new VirtualCopyJob( &fileNames, files(), dest, virtualBaseURL, pmode, KIO::CopyJob::Copy, true );
 		connect( vjob, SIGNAL( result( KJob* ) ), this, SLOT( refresh() ) );

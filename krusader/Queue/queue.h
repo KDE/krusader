@@ -2,8 +2,10 @@
 #define QUEUE_H
 
 #include <qobject.h>
-#include <kio/jobclasses.h>
+#include "../VFS/kiojobwrapper.h"
 #include <QList>
+
+class KJob;
 
 /**
  * Queue can hold anything which inherits KIO::Job, and schedule it, start it, stop etc...
@@ -20,13 +22,20 @@ public:
 	virtual ~Queue();
 	
 	inline const QString& name() const { return _name; }
-	void enqueue(KIO::Job *job);
+	void enqueue(KIOJobWrapper *job);
 
+protected slots:
+	void slotJobDestroyed( QObject * );
+	void slotResult( KJob * );
+	
 protected:
 	void dumpQueue();
 
 	QString _name;
-	QList<KIO::Job *> _jobs;
+	QList<KIOJobWrapper *> _jobs;
+
+signals:
+	void showQueueDialog();
 };
 
 #endif // QUEUE_H

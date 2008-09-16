@@ -19,9 +19,13 @@ public:
 	
 	static Queue* queue(const QString& queueName=defaultName);
 	QList<QString> queues() const;
+	
+	static Queue* currentQueue();
+	static void setCurrentQueue(const QString& queueName);
 
 protected:
 	static QMap<QString, Queue*> _queues;
+	static QString               _current;
 };
 
 #endif // QUEUE_MGR_H

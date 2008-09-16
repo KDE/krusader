@@ -3,11 +3,13 @@
 
 const QString QueueManager::defaultName="default";
 QMap<QString, Queue*> QueueManager::_queues;
+QString QueueManager::_current="default";
 
 QueueManager::QueueManager()
 {
 	Queue *defaultQ = new Queue(defaultName);
 	_queues.insert(defaultQ->name(), defaultQ);
+	_current = defaultName;
 }
 
 QueueManager::~QueueManager() 
@@ -30,3 +32,13 @@ QList<QString> QueueManager::queues() const
 	return _queues.keys();
 }
 
+Queue* QueueManager::currentQueue()
+{
+	return queue( _current );
+}
+
+void QueueManager::setCurrentQueue(const QString& queueName)
+{
+	if (_queues.contains(queueName))
+		_current = queueName;
+}

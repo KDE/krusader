@@ -79,7 +79,7 @@ KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd) {
 	return u;
 }
 
-KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd, bool &preserveAttrs ) {
+KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd, bool &queue, bool &preserveAttrs ) {
 	KUrlRequesterDlgForCopy *dlg = new KUrlRequesterDlgForCopy( vfs::pathOrUrl( url, KUrl::AddTrailingSlash ),text, preserveAttrs, krApp );
 	dlg->urlRequester()->completionObject()->setDir(cwd.url());
 	KUrl u;
@@ -98,11 +98,12 @@ KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd, bool &pre
 		}
 	}
 	preserveAttrs = dlg->preserveAttrs();
+	queue = dlg->enqueue();
 	delete dlg;
 	return u;
 }
 
-KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd, bool &preserveAttrs, KUrl &baseURL ) {
+KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd, bool &queue, bool &preserveAttrs, KUrl &baseURL ) {
 	KUrlRequesterDlgForCopy *dlg = new KUrlRequesterDlgForCopy( vfs::pathOrUrl( url, KUrl::AddTrailingSlash ),text, preserveAttrs, krApp, true, baseURL );
 	dlg->urlRequester()->completionObject()->setDir(cwd.url());
 	KUrl u;
@@ -127,17 +128,19 @@ KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd, bool &pre
 		}
 	}
 	preserveAttrs = dlg->preserveAttrs();
+	queue = dlg->enqueue();
 	delete dlg;
 	return u;
 }
 
 KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy( const QString& urlName, const QString& _text, bool presAttrs, QWidget *parent,
                                                   bool modal, KUrl baseURL )
-		:   KDialog( parent ), baseUrlCombo( 0 ), copyDirStructureCB( 0 ) {
+		:   KDialog( parent ), baseUrlCombo( 0 ), copyDirStructureCB( 0 ), queue( false ) {
 	
-	setButtons( KDialog::Ok | KDialog::User1 | KDialog::Cancel );
+	setButtons( KDialog::Ok | KDialog::User1 | KDialog::User2 | KDialog::Cancel );
 	setDefaultButton( KDialog::Ok );
-	setButtonGuiItem( KDialog::User1, KStandardGuiItem::clear() );
+	setButtonGuiItem( KDialog::User1, KGuiItem( i18n("F2 Queue") ) );
+	setButtonGuiItem( KDialog::User2, KStandardGuiItem::clear() );
 	setWindowModality( modal ? Qt::WindowModal : Qt::NonModal );
 	showButtonSeparator( true );
 
@@ -192,11 +195,24 @@ KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy( const QString& urlName, const 
 		SLOT(slotTextChanged(const QString&)) );
 	bool state = !urlName.isEmpty();
 	enableButtonOk( state );
-	enableButton( KDialog::User1, state );
-	connect( this, SIGNAL( user1Clicked() ), SLOT( slotClear() ) );
+	enableButton( KDialog::User2, state );
+	connect( this, SIGNAL( user2Clicked() ), SLOT( slotClear() ) );
+	connect( this, SIGNAL( user1Clicked() ), SLOT( slotQueue() ) );
 }
 
 KUrlRequesterDlgForCopy::KUrlRequesterDlgForCopy() {
+}
+
+void KUrlRequesterDlgForCopy::keyPressEvent( QKeyEvent *e )
+{
+	switch ( e->key() )
+	{
+	case Qt::Key_F2:
+		slotQueue();
+		return;
+	default:
+		QDialog::keyPressEvent( e );
+	}
 }
 
 bool KUrlRequesterDlgForCopy::preserveAttrs() {
@@ -212,7 +228,12 @@ bool KUrlRequesterDlgForCopy::copyDirStructure() {
 void KUrlRequesterDlgForCopy::slotTextChanged(const QString & text) {
 	bool state = !text.trimmed().isEmpty();
 	enableButtonOk( state );
-	enableButton( KDialog::User1, state );
+	enableButton( KDialog::User2, state );
+}
+
+void KUrlRequesterDlgForCopy::slotQueue() {
+	queue = true;
+	accept();
 }
 
 void KUrlRequesterDlgForCopy::slotClear() {

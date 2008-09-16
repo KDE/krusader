@@ -119,7 +119,7 @@ private:
 };
 
 VirtualCopyJob::VirtualCopyJob( const QStringList *names, vfs * vfs, const KUrl& dest, const KUrl& baseURL, 
-	PreserveMode pmode, KIO::CopyJob::CopyMode mode, bool showProgressInfo ) : KIO::Job(), m_overwriteAll( false ),
+	PreserveMode pmode, KIO::CopyJob::CopyMode mode, bool showProgressInfo, bool autoStart ) : KIO::Job(), m_overwriteAll( false ),
 		m_skipAll( false ), m_multi( false ), m_totalSize( 0 ), m_totalFiles( 0 ), m_totalSubdirs( 0 ),
 		m_processedSize( 0 ), m_processedFiles( 0 ), m_processedSubdirs( 0 ), m_tempSize( 0 ), m_tempFiles( 0 ),
 		m_dirsToGetSize(), m_filesToCopy(), m_size(), m_filenum(), m_subdirs(), m_baseURL( baseURL ),
@@ -164,7 +164,8 @@ VirtualCopyJob::VirtualCopyJob( const QStringList *names, vfs * vfs, const KUrl&
 		KIO::getJobTracker()->registerJob(this);
 	}
 	
-	QTimer::singleShot( 0, this, SLOT( slotStart() ) );
+	if( autoStart )
+		QTimer::singleShot( 0, this, SLOT( slotStart() ) );
 }
 
 VirtualCopyJob::~VirtualCopyJob() {

@@ -68,8 +68,8 @@ public:
 	 *              this is used for completion of partial urls
 	 */
 	static KUrl getDir(QString text,const KUrl& url, const KUrl& cwd);
-	static KUrl getDir(QString text,const KUrl& url, const KUrl& cwd, bool & preserveAttrs );
-	static KUrl getDir(QString text,const KUrl& url, const KUrl& cwd, bool & preserveAttrs, KUrl &baseURL );
+	static KUrl getDir(QString text,const KUrl& url, const KUrl& cwd, bool & queue, bool & preserveAttrs );
+	static KUrl getDir(QString text,const KUrl& url, const KUrl& cwd, bool & queue, bool & preserveAttrs, KUrl &baseURL );
 };
 
 class KUrlRequesterDlgForCopy : public KDialog {
@@ -82,11 +82,17 @@ public:
 	KUrl selectedURL() const;
 	KUrl baseURL() const;
 	bool preserveAttrs();
+	bool enqueue() { return queue; }
 	bool copyDirStructure();
         
 	KUrlRequester *urlRequester();
+	
+protected:
+	virtual void keyPressEvent( QKeyEvent *e );
+	
 private slots:
 	void slotClear();
+	void slotQueue();
 	void slotTextChanged(const QString &);
 	void slotDirStructCBChanged();
 private:
@@ -94,6 +100,7 @@ private:
 	QComboBox *baseUrlCombo;
 	QCheckBox *preserveAttrsCB;
 	QCheckBox *copyDirStructureCB;
+	bool queue;
 };
 
 class KRGetDate : public KDialog {

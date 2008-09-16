@@ -53,7 +53,8 @@ class VirtualCopyJob : public KIO::Job
 
 public:
   VirtualCopyJob( const QStringList *names, vfs * vfs, const KUrl& dest, const KUrl& baseURL,
-                  PreserveMode pmode, KIO::CopyJob::CopyMode mode, bool showProgressInfo );
+                  PreserveMode pmode, KIO::CopyJob::CopyMode mode, bool showProgressInfo,
+                  bool autoStart = true );
   virtual ~VirtualCopyJob();
 
   inline bool isSkipAll()       { return m_skipAll; }
@@ -68,8 +69,10 @@ protected:
   void copyCurrentDir();
   void directoryFinished( const QString & );
   
-protected slots:
+public slots:
   void slotStart();
+
+protected slots:
   void slotReport();
   
   void slotKdsResult( KJob * );
