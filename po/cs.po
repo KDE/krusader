@@ -1,3 +1,4 @@
+# translation of cs.po to
 # Translation of krusader.pot to Czech
 #
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
@@ -12,14 +13,13 @@ msgstr ""
 "Project-Id-Version: krusader-2.0.0-beta1\n"
 "Report-Msgid-Bugs-To: krusader-i18n@googlegroups.com\n"
 "POT-Creation-Date: 2008-09-22 20:47+0200\n"
-"PO-Revision-Date: 2008-04-17 13:12+0200\n"
-"Last-Translator: Václav Jůza <vaclavjuza@seznam.cz>\n"
-"Language-Team: Czech <krusader-i18n@googlegroups.com>\n"
+"PO-Revision-Date: 2008-09-22 23:00+0200\n"
+"Last-Translator: Vaclav Juza <vaclavjuza at gmail dot com>\n"
+"Language-Team:  Czech <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: GUI/dirhistorybutton.cpp:36 GUI/dirhistorybutton.cpp:37
@@ -94,24 +94,24 @@ msgid "Floppy"
 msgstr "Disketa"
 
 #: GUI/mediabutton.cpp:179
-#, fuzzy, kde-format
+#, kde-format
 msgid "CD/DVD-ROM"
-msgstr "CD-ROM"
+msgstr "CD/DVD-ROM"
 
 #: GUI/mediabutton.cpp:181
 #, kde-format
 msgid "USB pen drive"
-msgstr ""
+msgstr "USB klíčenka"
 
 #: GUI/mediabutton.cpp:183
 #, kde-format
 msgid "USB device"
-msgstr ""
+msgstr "USB zařízení"
 
 #: GUI/mediabutton.cpp:185
 #, kde-format
 msgid "Removable media"
-msgstr ""
+msgstr "Vyměnitelné medium"
 
 #: GUI/mediabutton.cpp:187
 #, kde-format
@@ -119,24 +119,24 @@ msgid "Hard Disk"
 msgstr "Pevný disk"
 
 #: GUI/mediabutton.cpp:189
-#, fuzzy, kde-format
+#, kde-format
 msgid "Camera"
-msgstr "Název"
+msgstr "Foťák"
 
 #: GUI/mediabutton.cpp:191
 #, kde-format
 msgid "Video CD/DVD-ROM"
-msgstr ""
+msgstr "Video CD/DVD-ROM"
 
 #: GUI/mediabutton.cpp:193
 #, kde-format
 msgid "Audio CD/DVD-ROM"
-msgstr ""
+msgstr "Zvukové CD/DVD"
 
 #: GUI/mediabutton.cpp:195
 #, kde-format
 msgid "Recordable CD/DVD-ROM"
-msgstr ""
+msgstr "Nahrávatelné CD/DVD"
 
 #: GUI/mediabutton.cpp:325 Panel/krpopupmenu.cpp:69
 #: BookMan/krbookmarkhandler.cpp:557
@@ -170,12 +170,12 @@ msgstr "Vysunout"
 #: GUI/mediabutton.cpp:423
 #, kde-format
 msgid "An error occurred while accessing '%1', the system responded: %2"
-msgstr ""
+msgstr "Při práci s'%1' nastala chyba: %2"
 
 #: GUI/mediabutton.cpp:426
 #, kde-format
 msgid "An error occurred while accessing '%1'"
-msgstr ""
+msgstr "Při práci s '%1' nastala chyba"
 
 #: GUI/syncbrowsebutton.cpp:45 GUI/syncbrowsebutton.cpp:48
 #, kde-format
@@ -418,10 +418,10 @@ msgid "Copying"
 msgstr "Kopírování"
 
 #: VFS/preserveattrcopyjob.cpp:361
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title job"
 msgid "Creating directory"
-msgstr "Rodičovský adresář"
+msgstr "Vytváření adresáře"
 
 #: VFS/preserveattrcopyjob.cpp:362 Panel/krinterview.cpp:205
 #: Panel/krbriefview.cpp:226 Panel/krdetailedview.cpp:317
@@ -431,9 +431,9 @@ msgid "Directory"
 msgstr "Adresář"
 
 #: VFS/preserveattrcopyjob.cpp:793
-#, fuzzy, kde-format
+#, kde-format
 msgid "Folder Already Exists"
-msgstr "Soubor již existuje"
+msgstr "Adresář již existuje"
 
 #: VFS/preserveattrcopyjob.cpp:1074 VFS/preserveattrcopyjob.cpp:1594
 #: Synchronizer/synchronizer.cpp:1171 Synchronizer/synchronizer.cpp:1181
@@ -442,9 +442,9 @@ msgid "File Already Exists"
 msgstr "Soubor již existuje"
 
 #: VFS/preserveattrcopyjob.cpp:1074 VFS/preserveattrcopyjob.cpp:1594
-#, fuzzy, kde-format
+#, kde-format
 msgid "Already Exists as Folder"
-msgstr "Soubor již existuje"
+msgstr "Již existuje adresář s takovým názvem"
 
 #: VFS/normal_vfs.cpp:91
 #, kde-format
@@ -498,19 +498,19 @@ msgid "Status"
 msgstr "Stav"
 
 #: VFS/kiojobwrapper.cpp:181
-#, fuzzy, kde-format
+#, kde-format
 msgid "Directory Size"
-msgstr "Adresáře"
+msgstr "Velikost adresáře"
 
 #: VFS/kiojobwrapper.cpp:184
-#, fuzzy, kde-format
+#, kde-format
 msgid "Copy"
-msgstr " Kopírovat"
+msgstr "Kopírování"
 
 #: VFS/kiojobwrapper.cpp:187
-#, fuzzy, kde-format
+#, kde-format
 msgid "Move"
-msgstr " Přesun"
+msgstr "Přesun"
 
 #: VFS/krquery.cpp:159 Filter/generalfilter.cpp:142
 #: Konfigurator/konfigurator.cpp:159
@@ -664,60 +664,55 @@ msgstr "Krusader::Výběr souborů"
 
 #: Filter/generalfilter.cpp:56
 msgid "Any Character"
-msgstr ""
+msgstr "Jakýkoli znak"
 
 #: Filter/generalfilter.cpp:57
-#, fuzzy
 msgid "Start of Line"
-msgstr "Profil při spuštění:"
+msgstr "Začátek řádku"
 
 #: Filter/generalfilter.cpp:58
 msgid "End of Line"
-msgstr ""
+msgstr "Konec řádku"
 
 #: Filter/generalfilter.cpp:59
 msgid "Set of Characters"
-msgstr ""
+msgstr "Jeden ze sady znaků"
 
 #: Filter/generalfilter.cpp:60
 msgid "Repeats, Zero or More Times"
-msgstr ""
+msgstr "Opakuje se, ani jednou nebo vícekrát"
 
 #: Filter/generalfilter.cpp:61
 msgid "Repeats, One or More Times"
-msgstr ""
+msgstr "Opakuje se, jednou nebo vícekrát"
 
 #: Filter/generalfilter.cpp:62
-#, fuzzy
 msgid "Optional"
-msgstr "&Možnosti"
+msgstr "Nepovinné"
 
 #: Filter/generalfilter.cpp:63
 msgid "Escape"
-msgstr ""
+msgstr "Zrušení zvláštního významu dalšího znaku"
 
 #: Filter/generalfilter.cpp:64
 msgid "TAB"
-msgstr ""
+msgstr "TAB"
 
 #: Filter/generalfilter.cpp:65
-#, fuzzy
 msgid "Newline"
-msgstr "Nový odkaz"
+msgstr "Nový řádek (LF)"
 
 #: Filter/generalfilter.cpp:66
 msgid "Carriage Return"
-msgstr ""
+msgstr "Nový řádek (CR)"
 
 #: Filter/generalfilter.cpp:67
-#, fuzzy
 msgid "White Space"
-msgstr "Bílá"
+msgstr "Prázdné znaky (mezera, TAB)"
 
 #: Filter/generalfilter.cpp:68
-#, fuzzy
 msgid "Digit"
-msgstr "Pravá"
+msgstr "Číslice"
 
 #: Filter/generalfilter.cpp:101
 #, kde-format
@@ -830,12 +825,12 @@ msgstr "&Text:"
 #: Filter/generalfilter.cpp:265
 #, kde-format
 msgid "RegExp"
-msgstr ""
+msgstr "Regulární výraz"
 
 #: Filter/generalfilter.cpp:286
-#, fuzzy, kde-format
+#, kde-format
 msgid "Encoding:"
-msgstr "Upravování"
+msgstr "Kódování:"
 
 #: Filter/generalfilter.cpp:301
 #, kde-format
@@ -1600,8 +1595,7 @@ msgstr ""
 
 #: UserAction/kraction.cpp:224
 #, kde-format
-msgid ""
-"Embedded terminal emulator does not work, using output collection instead."
+msgid "Embedded terminal emulator does not work, using output collection instead."
 msgstr ""
 "Zabudovaný emulátor terminálu nefunguje nebo není nainstalován, použiji "
 "místo něj režim \"Zobrazit smíchaný standardní a chybový výstup\"."
@@ -1642,9 +1636,9 @@ msgid "UserActions - invalid action"
 msgstr "Uživatelské akce - neplatná akce"
 
 #: Panel/krinterview.cpp:58
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Experimental View"
-msgstr "Po&drobný pohled"
+msgstr "&Experimentální pohled"
 
 #: Panel/krdetailedviewitem.cpp:79 Panel/krdetailedviewitem.cpp:113
 #: Synchronizer/synchronizergui.cpp:2064 Synchronizer/synchronizergui.cpp:2071
@@ -2325,7 +2319,7 @@ msgid "&Trash"
 msgstr "Vyhodit do &koše"
 
 #: Panel/panelfunc.cpp:690
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
 "untouched)?"
@@ -2482,29 +2476,29 @@ msgstr "Nemohu zkopírovat seznam virtuálních URL do schránky."
 #: Queue/queue.cpp:55
 #, kde-format
 msgid "An error occurred during processing the queue.\n"
-msgstr ""
+msgstr "Při zpracovávání fronty nastala chyba.\n"
 
 #: Queue/queue.cpp:57
 #, kde-format
 msgid "The last processed element in the queue was aborted.\n"
-msgstr ""
+msgstr "Zpracování poslední položky z fronty bylo přerušeno.\n"
 
 #: Queue/queue.cpp:58
 #, kde-format
 msgid ""
 "Do you wish to continue with the next element, delete the queue or suspend "
 "the queue?"
-msgstr ""
+msgstr "Přejete si pokračovat dalšími položkami, smazat frontu nebo pozastavit frontu?"
 
 #: Queue/queue.cpp:60
-#, fuzzy, kde-format
+#, kde-format
 msgid "Krusader::Queue"
-msgstr "Krusader::Locate"
+msgstr "Krusader::Fronta"
 
 #: Queue/queue.cpp:61
-#, fuzzy, kde-format
+#, kde-format
 msgid "Suspend"
-msgstr "Přidat"
+msgstr "Pozastavit"
 
 #: Locate/locate.cpp:119 Locate/locate.cpp:123 Locate/locate.cpp:390
 #, kde-format
@@ -2631,8 +2625,7 @@ msgstr "Zde můžete pojmenovat skupinu souborů"
 #: krusader.cpp:384
 #, kde-format
 msgid "Statusbar will show basic information about file below mouse pointer."
-msgstr ""
-"Stavová lišta zobrazí základní informace o souboru pod ukazatelem myši."
+msgstr "Stavová lišta zobrazí základní informace o souboru pod ukazatelem myši."
 
 #: krusader.cpp:467
 #, kde-format
@@ -3412,7 +3405,7 @@ msgid "Folder name:"
 msgstr "Název složky:"
 
 #: MountMan/kmountman.cpp:203
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "<qt>Error ejecting device!\n"
 " You have to configure the path to the 'eject' tool. Please check the "
@@ -3518,8 +3511,7 @@ msgstr ""
 
 #: MountMan/kmountmangui.cpp:364
 #, kde-format
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Správce připojení dospěl k vnitřní chybě. Upozorněte prosím vývojáře. "
 "(anglicky)Děkujeme."
@@ -4039,14 +4031,14 @@ msgid "Function keys allow performing fast operations on files."
 msgstr "Funkční klávesy umožňují rychlé operace se soubory."
 
 #: krusaderview.cpp:307
-#, fuzzy, kde-format
+#, kde-format
 msgid "Horizontal Mode"
-msgstr "Svislé uspořádání"
+msgstr "Vodorovné uspořádání"
 
 #: Dialogs/krdialogs.cpp:142
 #, kde-format
 msgid "F2 Queue"
-msgstr ""
+msgstr "F2 Do fronty"
 
 #: Dialogs/krdialogs.cpp:158
 #, kde-format
@@ -4386,8 +4378,7 @@ msgstr "Import starého formátu dokončen"
 
 #: Dialogs/krkeydialog.cpp:135
 #, kde-format
-msgid ""
-"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
 msgstr "<qt>Soubor <b>%1</b> již existuje. Opravdu ho chcete přepsat?</qt>"
 
 #: Dialogs/krkeydialog.cpp:144
@@ -4935,8 +4926,7 @@ msgstr ""
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
-msgstr ""
-"<i>Pracovní adresář</i> určí, ve kterém adresáři se <i>Příkaz</i> vykoná."
+msgstr "<i>Pracovní adresář</i> určí, ve kterém adresáři se <i>Příkaz</i> vykoná."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 250
@@ -5004,14 +4994,14 @@ msgstr "Žádný"
 #: ActionMan/ui_actionproperty.h:722 rc.cpp:116
 #, kde-format
 msgid "If not checked, the action is not shown in the menus."
-msgstr ""
+msgstr "Pokud není zaškrtnuto, akce se nezobrazí v nabídkách."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 401
 #: ActionMan/ui_actionproperty.h:725 rc.cpp:119
-#, fuzzy, kde-format
+#, kde-format
 msgid "Enabled"
-msgstr "zapnutý"
+msgstr "Zapnuto"
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 420
@@ -5065,16 +5055,16 @@ msgstr "Spustit v terminálu"
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 463
 #: ActionMan/ui_actionproperty.h:748 rc.cpp:146
-#, fuzzy, kde-format
+#, kde-format
 msgid "Run the command in the embedded terminal emulator."
-msgstr "Spustit příkaz v terminálu."
+msgstr "Spustí příkaz v zabudovaném emulátoru terminálu."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 466
 #: ActionMan/ui_actionproperty.h:751 rc.cpp:149
-#, fuzzy, kde-format
+#, kde-format
 msgid "Run in the embedded terminal emulator"
-msgstr "Poslat do za&budovaného emulátoru terminálu"
+msgstr "Spustit v zabudovaném emulátoru terminálu"
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 39
@@ -5269,8 +5259,7 @@ msgstr "Odstranit označené uživatelské akce"
 
 #: ActionMan/useractionpage.cpp:134
 #, kde-format
-msgid ""
-"The current action has been modified. Do you want to apply these changes?"
+msgid "The current action has been modified. Do you want to apply these changes?"
 msgstr "Současná akce byla změněna. Chcete použít tyto změny?"
 
 #: ActionMan/useractionpage.cpp:211
@@ -5456,7 +5445,7 @@ msgstr "Tento zástupce umožňuje parametr:"
 #: ActionMan/addplaceholderpopup.cpp:288 ActionMan/addplaceholderpopup.cpp:487
 #, kde-format
 msgid "list-add"
-msgstr ""
+msgstr "Přidat zástupce"
 
 #: UserMenu/usermenu.cpp:58
 #, kde-format
@@ -5481,14 +5470,12 @@ msgstr "&Filtr souborů:"
 #: Synchronizer/synchronizergui.cpp:1160
 #, kde-format
 msgid "The left base directory used during the synchronisation process."
-msgstr ""
-"Během synchronizačního procesu se použil základní adresář levého panelu."
+msgstr "Během synchronizačního procesu se použil základní adresář levého panelu."
 
 #: Synchronizer/synchronizergui.cpp:1193
 #, kde-format
 msgid "The right base directory used during the synchronisation process."
-msgstr ""
-"Během synchronizačního procesu se použil základní adresář pravého panelu."
+msgstr "Během synchronizačního procesu se použil základní adresář pravého panelu."
 
 #: Synchronizer/synchronizergui.cpp:1207
 #, kde-format
@@ -5575,8 +5562,7 @@ msgstr "Možnosti po&hledu"
 #: Synchronizer/synchronizergui.cpp:1257
 #, kde-format
 msgid "Show files marked to <i>Copy from left to right</i> (CTRL+L)."
-msgstr ""
-"Zobrazit soubory označené pro <i>kopírování zleva doprava</i> (CTRL+L)."
+msgstr "Zobrazit soubory označené pro <i>kopírování zleva doprava</i> (CTRL+L)."
 
 #: Synchronizer/synchronizergui.cpp:1267
 #, kde-format
@@ -5591,13 +5577,12 @@ msgstr "Zobrazit vyloučené soubory (CTRL+D)."
 #: Synchronizer/synchronizergui.cpp:1287
 #, kde-format
 msgid "Show files marked to <i>Copy from right to left</i> (CTRL+R)."
-msgstr ""
-"Zobrazit soubory označené pro <i>kopírování zprava doleva</i> (CTRL+R)."
+msgstr "Zobrazit soubory označené pro <i>kopírování zprava doleva</i> (CTRL+R)."
 
 #: Synchronizer/synchronizergui.cpp:1297
-#, fuzzy, kde-format
+#, kde-format
 msgid "Show files marked to delete (CTRL+T)."
-msgstr "Zobrazit soubory označené k vymazání. (CTRL+T)"
+msgstr "Zobrazit soubory označené ke smazání (CTRL+T)."
 
 #: Synchronizer/synchronizergui.cpp:1302
 #, kde-format
@@ -6501,8 +6486,7 @@ msgstr "Používat magická čísla MIME typů"
 #: Konfigurator/kggeneral.cpp:73
 #, kde-format
 msgid "Mimetype magic allows better distinction of file types, but is slower."
-msgstr ""
-"Magická čísla poskytují lepší rozlišení typů souborů, ale jsou pomalejší."
+msgstr "Magická čísla poskytují lepší rozlišení typů souborů, ale jsou pomalejší."
 
 #: Konfigurator/kggeneral.cpp:80
 #, kde-format
@@ -6608,8 +6592,7 @@ msgstr "Hledání nástrojů ..."
 
 #: Konfigurator/kggeneral.cpp:213
 #, kde-format
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Ujistěte se, že instalujete nové nástroje do cesty v <code>$PATH</code> "
 "(např. /usr/bin)"
@@ -6951,12 +6934,12 @@ msgstr "Zobrazit ikony u názvů souborů a složek."
 #: Konfigurator/kglookfeel.cpp:183
 #, kde-format
 msgid "Load the user defined folder icons"
-msgstr ""
+msgstr "Načítat uživatelské ikony adresářů"
 
 #: Konfigurator/kglookfeel.cpp:183
 #, kde-format
 msgid "Load the user defined folder icons (can cause decrease in performance)."
-msgstr ""
+msgstr "Načítat uživatelské ikony adresářů (může zpomalovat načítání)"
 
 #: Konfigurator/kglookfeel.cpp:184
 #, kde-format
@@ -7092,8 +7075,7 @@ msgstr "Přepínací tlačítko pro synchronizované prohlížení"
 
 #: Konfigurator/kglookfeel.cpp:264
 #, kde-format
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr "Každá změna v jednom panelu se provede rovněž v protilehlém panelu."
 
 #: Konfigurator/kglookfeel.cpp:288
@@ -7381,8 +7363,7 @@ msgstr ""
 #: Konfigurator/kgadvanced.cpp:63
 #, kde-format
 msgid "MountMan won't (un)mount the following mount-points:"
-msgstr ""
-"Správce připojení disků nebude při(/od)pojovat následující přípojné body:"
+msgstr "Správce připojení disků nebude při(/od)pojovat následující přípojné body:"
 
 #: Konfigurator/kgadvanced.cpp:77
 #, kde-format
@@ -7837,24 +7818,24 @@ msgid "Delete background:"
 msgstr "Pozadí určených ke smazání:"
 
 #: Konfigurator/kgcolors.cpp:211
-#, fuzzy, kde-format
+#, kde-format
 msgid "Other"
-msgstr "Jiný ..."
+msgstr "Ostatní"
 
 #: Konfigurator/kgcolors.cpp:219
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch, match foreground:"
-msgstr "Písmo adresářů:"
+msgstr "Rychlé hledání, text při shodě:"
 
 #: Konfigurator/kgcolors.cpp:220 Konfigurator/kgcolors.cpp:222
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch, non-match background:"
-msgstr "Alternativní pozadí:"
+msgstr "Rychlé hledání, pozadí při shodě:"
 
 #: Konfigurator/kgcolors.cpp:221
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch, non-match foreground:"
-msgstr "Písmo současného:"
+msgstr "Rychlé hledání, text při neshodě:"
 
 #: Konfigurator/kgcolors.cpp:255
 #, kde-format
@@ -7922,14 +7903,14 @@ msgid "Equals"
 msgstr "Stejné"
 
 #: Konfigurator/kgcolors.cpp:526
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch non-match"
-msgstr "Rychlé hledání"
+msgstr "Rychlé hledání neshoda"
 
 #: Konfigurator/kgcolors.cpp:527
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch match"
-msgstr "Rychlé hledání"
+msgstr "Rychlé hledání shoda"
 
 #: Konfigurator/kgcolors.cpp:546
 #, kde-format
@@ -8195,8 +8176,7 @@ msgstr "Zkontrolovat archív před rozbalením"
 
 #: Konfigurator/kgarchives.cpp:107
 #, kde-format
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Některé poškozené archívy mohou způsobit spadnutí programu. Proto se "
 "doporučuje zapnout testování archívů."
@@ -8208,8 +8188,7 @@ msgstr "Hledání archivátorů..."
 
 #: Konfigurator/kgarchives.cpp:125
 #, kde-format
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Ujistěte se, že instalujete nové archivátory do cesty v <code>$PATH</code> "
 "(např. /usr/bin)"
@@ -8264,9 +8243,9 @@ msgid "Use fixed width font as default"
 msgstr "Použít písmo s pevnou šířkou jako výchozí"
 
 #: krslots.cpp:100
-#, fuzzy, kde-format
+#, kde-format
 msgid "No selected files to send!"
-msgstr "Jen označené soubory"
+msgstr "Nejsou označeny soubory, které se mají poslat!"
 
 #: krslots.cpp:108
 #, kde-format
@@ -8278,12 +8257,12 @@ msgstr ""
 "nainstalujte jej do vaší cesty. Tip: Krusader podporuje KMail."
 
 #: krslots.cpp:117
-#, fuzzy, kde-format
+#, kde-format
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
-msgstr[0] "Posílám soubor: %1"
-msgstr[1] "Posílám soubor: %1"
-msgstr[2] "Posílám soubor: %1"
+msgstr[0] "Posílám %1 soubor: %2"
+msgstr[1] "Posílám %1 soubory: %2"
+msgstr[2] "Posílám %1 souborů: %2"
 
 #: krslots.cpp:167
 #, kde-format
@@ -8528,8 +8507,7 @@ msgstr "Neplatný CRC soubor!"
 
 #: Splitter/combiner.cpp:154
 #, kde-format
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Kontrola platnosti je nemožná bez platného CRC (kontrolní součet) souboru. "
 "Pokračovat ve slučování?"
@@ -8666,48 +8644,3 @@ msgstr "Tento protokol nepodporuje znovuzahájení"
 msgid "Writing to %1 is not supported"
 msgstr "Zápis do %1 není podporován"
 
-#~ msgid ""
-#~ "Don't use KDE's media protocol for media button (if it's buggy or missing)"
-#~ msgstr ""
-#~ "Nepoužívat protokol media z KDE pro tlačítko Media (pokud nefunguje nebo "
-#~ "chybí)"
-
-#~ msgid ""
-#~ "Select if your media protocol is buggy (in some older KDE versions), or "
-#~ "not present (no kdebase package installed)."
-#~ msgstr ""
-#~ "Vyberte, jestli je u vás protokol media chybový (v některých starších "
-#~ "verzích KDE), nebo vůbec není nainstalovaný (bývá v balíčku kdebase)"
-
-#~ msgid "Brief"
-#~ msgstr "Stručný"
-
-#~ msgid "Clear location bar button"
-#~ msgstr "Tlačítko vymazat řádek s umístěním"
-
-#~ msgid "Clears the location bar"
-#~ msgstr "Vyčistí řádek s umístěním"
-
-#~ msgid "CD Recorder"
-#~ msgstr "CD Vypalovačka"
-
-#~ msgid "DVD Recorder"
-#~ msgstr "DVD Vypalovačka"
-
-#~ msgid "DVD"
-#~ msgstr "DVD"
-
-#~ msgid "Zip Disk"
-#~ msgstr "Zip disk"
-
-#~ msgid "add"
-#~ msgstr "přidat"
-
-#~ msgid "<qt>Can't open <b>%1</b></qt>"
-#~ msgstr "<qt>Nemohu otevřít <b>%1</b></qt>"
-
-#~ msgid "Can't open \"%1\""
-#~ msgstr "Nelze otevřít \"%1\""
-
-#~ msgid "Clear the location bar"
-#~ msgstr "Vyčistit řádek umístění"
