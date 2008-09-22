@@ -1,15 +1,19 @@
 #include "queue_mgr.h"
+#include "queuedialog.h"
 #include <QList>
 
 const QString QueueManager::defaultName="default";
 QMap<QString, Queue*> QueueManager::_queues;
 QString QueueManager::_current="default";
+QueueManager * QueueManager::_self = 0;
 
 QueueManager::QueueManager()
 {
 	Queue *defaultQ = new Queue(defaultName);
+	connect( defaultQ, SIGNAL( showQueueDialog() ), this, SLOT( slotShowQueueDialog() ) );
 	_queues.insert(defaultQ->name(), defaultQ);
 	_current = defaultName;
+	_self = this;
 }
 
 QueueManager::~QueueManager() 
@@ -41,4 +45,9 @@ void QueueManager::setCurrentQueue(const QString& queueName)
 {
 	if (_queues.contains(queueName))
 		_current = queueName;
+}
+
+void QueueManager::slotShowQueueDialog()
+{
+//	QueueDialog::showDialog();
 }

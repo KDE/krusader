@@ -1,6 +1,6 @@
 #include "queuewidget.h"
 
-QueueWidget::QueueWidget(): KTabWidget()
+QueueWidget::QueueWidget( QWidget * parent ): KTabWidget( parent )
 {
 }
 

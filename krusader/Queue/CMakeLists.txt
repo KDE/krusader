@@ -7,7 +7,8 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 set( Queue_SRCS
 	queue.cpp
 	queue_mgr.cpp
-	queuewidget.cpp )
+	queuewidget.cpp
+	queuedialog.cpp )
 
 kde4_add_library(Queue STATIC ${Queue_SRCS} )
 

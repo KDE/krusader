@@ -7,7 +7,7 @@ class QueueWidget: public KTabWidget
 {
 	Q_OBJECT
 public:
-	QueueWidget();
+	QueueWidget( QWidget * parent = 0 );
 	~QueueWidget();
 };
 
