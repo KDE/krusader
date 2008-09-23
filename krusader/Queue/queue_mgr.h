@@ -20,7 +20,7 @@ public:
 	~QueueManager();
 	
 	static Queue* queue(const QString& queueName=defaultName);
-	QList<QString> queues() const;
+	static QList<QString> queues();
 	
 	static Queue* currentQueue();
 	static void setCurrentQueue(const QString& queueName);
@@ -29,6 +29,7 @@ public:
 
 protected slots:
 	void slotShowQueueDialog();
+	void slotQueueEmptied();
 
 protected:
 	static QMap<QString, Queue*> _queues;

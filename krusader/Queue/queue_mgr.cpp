@@ -1,16 +1,18 @@
 #include "queue_mgr.h"
 #include "queuedialog.h"
 #include <QList>
+#include <klocale.h>
 
-const QString QueueManager::defaultName="default";
+const QString QueueManager::defaultName=i18n( "default" );
 QMap<QString, Queue*> QueueManager::_queues;
-QString QueueManager::_current="default";
+QString QueueManager::_current=QueueManager::defaultName;
 QueueManager * QueueManager::_self = 0;
 
 QueueManager::QueueManager()
 {
 	Queue *defaultQ = new Queue(defaultName);
 	connect( defaultQ, SIGNAL( showQueueDialog() ), this, SLOT( slotShowQueueDialog() ) );
+	connect( defaultQ, SIGNAL( emptied() ), this, SLOT( slotQueueEmptied() ) );
 	_queues.insert(defaultQ->name(), defaultQ);
 	_current = defaultName;
 	_self = this;
@@ -31,7 +33,7 @@ Queue* QueueManager::queue(const QString& queueName)
 	return _queues[queueName];
 }
 
-QList<QString> QueueManager::queues() const
+QList<QString> QueueManager::queues()
 {
 	return _queues.keys();
 }
@@ -49,5 +51,18 @@ void QueueManager::setCurrentQueue(const QString& queueName)
 
 void QueueManager::slotShowQueueDialog()
 {
-//	QueueDialog::showDialog();
+	QueueDialog::showDialog();
+}
+
+void QueueManager::slotQueueEmptied()
+{
+	bool empty = true;
+	QList<Queue *> queues = _queues.values();
+	foreach( Queue * queue, queues ) {
+		if( queue->count() != 0 ) {
+			empty = false;
+			break;
+		}
+	}
+	QueueDialog::everyQueueIsEmpty();
 }

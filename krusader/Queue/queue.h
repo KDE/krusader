@@ -23,6 +23,10 @@ public:
 	
 	inline const QString& name() const { return _name; }
 	void enqueue(KIOJobWrapper *job);
+	int  count() { return _jobs.size(); }
+	
+	QList<QString> itemDescriptions();
+	QList<KIOJobWrapper *> items();
 
 protected slots:
 	void slotJobDestroyed( QObject * );
@@ -36,6 +40,8 @@ protected:
 
 signals:
 	void showQueueDialog();
+	void changed();
+	void emptied();
 };
 
 #endif // QUEUE_H

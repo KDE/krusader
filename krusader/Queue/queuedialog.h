@@ -34,6 +34,7 @@
 #include <qdialog.h>
 
 class QPaintEvent;
+class QCloseEvent;
 
 class QueueDialog : public QDialog
 {
@@ -45,10 +46,12 @@ private:
 public:
   virtual ~QueueDialog();
 
-  static void showDialog();
+  static void showDialog( bool autoHide = true );
+  static void everyQueueIsEmpty();
 
 protected:
   virtual void paintEvent ( QPaintEvent * event );
+  virtual void closeEvent ( QCloseEvent * event );
   virtual void mousePressEvent(QMouseEvent *me);
   virtual void mouseMoveEvent(QMouseEvent *me);
 
@@ -60,6 +63,7 @@ private:
   int                  _y;
   QPoint               _clickPos;
   QPoint               _startPos;
+  bool                 _autoHide;
 };
 
 #endif // __QUEUEDIALOG_H__

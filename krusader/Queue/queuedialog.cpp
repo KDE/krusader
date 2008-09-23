@@ -93,7 +93,7 @@ private:
 
 QueueDialog * QueueDialog::_queueDialog = 0;
 
-QueueDialog::QueueDialog() : QDialog( 0, Qt::FramelessWindowHint )
+QueueDialog::QueueDialog() : QDialog( 0, Qt::FramelessWindowHint ), _autoHide( true )
 {
   setWindowModality( Qt::NonModal );
   setWindowTitle( i18n("Krusader::Queue Manager") );
@@ -169,14 +169,17 @@ QueueDialog::~QueueDialog()
   _queueDialog = 0;
 }
 
-void QueueDialog::showDialog()
+void QueueDialog::showDialog( bool autoHide )
 {
   if( _queueDialog == 0 )
     _queueDialog = new QueueDialog();
   else {
+    _queueDialog->show();
     _queueDialog->raise();
     _queueDialog->activateWindow();
   }
+  if( !autoHide )
+    autoHide = false;
 }
 
 void QueueDialog::paintEvent ( QPaintEvent * event )
@@ -200,7 +203,20 @@ void QueueDialog::mousePressEvent(QMouseEvent *me)
   _startPos = pos();
 }
 
+
+void QueueDialog::everyQueueIsEmpty()
+{
+  if( _queueDialog->_autoHide && _queueDialog != 0 && !_queueDialog->isHidden() )
+    _queueDialog->reject();
+}
+
+
 void QueueDialog::mouseMoveEvent(QMouseEvent *me)
 {
   move(_startPos + me->globalPos() - _clickPos);
+}
+
+void QueueDialog::closeEvent ( QCloseEvent * event )
+{
+  _autoHide = true;
 }

@@ -23,6 +23,7 @@ void Queue::enqueue(KIOJobWrapper *job)
 	if( !isRunning )
 		job->start();
 	
+	emit changed();
 	emit showQueueDialog();
 	dumpQueue();
 }
@@ -41,6 +42,7 @@ void Queue::slotJobDestroyed( QObject * obj )
 	_jobs.removeAll( jw );
 	if( current && _jobs.count() > 0 )
 		_jobs[ 0 ]->start();
+	emit changed();
 }
 
 void Queue::slotResult( KJob * job )
@@ -65,6 +67,8 @@ void Queue::slotResult( KJob * job )
 					break;
 				case KMessageBox::No: // delete the queue
 					_jobs.clear();
+					emit changed();
+					emit emptied();
 					return;
 				default: // suspend
 					/* TODO */
@@ -72,8 +76,26 @@ void Queue::slotResult( KJob * job )
 				}
 			}
 			
+			emit changed();
 			if( _jobs.count() > 0 )
 				_jobs[ 0 ]->start();
+			else
+				emit emptied();
 		}
 	}
+}
+
+QList<KIOJobWrapper *> Queue::items()
+{
+	return _jobs;
+}
+
+QList<QString> Queue::itemDescriptions()
+{
+	QList<QString> ret;
+	foreach( KIOJobWrapper *job, _jobs )
+	{
+		ret.append( job->typeStr() + " : " + job->url().prettyUrl() );
+	}
+	return ret;
 }
