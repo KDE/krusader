@@ -179,7 +179,7 @@ void QueueDialog::showDialog( bool autoHide )
     _queueDialog->activateWindow();
   }
   if( !autoHide )
-    autoHide = false;
+    _queueDialog->_autoHide = false;
 }
 
 void QueueDialog::paintEvent ( QPaintEvent * event )
@@ -216,7 +216,14 @@ void QueueDialog::mouseMoveEvent(QMouseEvent *me)
   move(_startPos + me->globalPos() - _clickPos);
 }
 
-void QueueDialog::closeEvent ( QCloseEvent * event )
+void QueueDialog::accept()
 {
   _autoHide = true;
+  QDialog::accept();
+}
+
+void QueueDialog::reject()
+{
+  _autoHide = true;
+  QDialog::reject();
 }

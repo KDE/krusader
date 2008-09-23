@@ -34,7 +34,6 @@
 #include <qdialog.h>
 
 class QPaintEvent;
-class QCloseEvent;
 
 class QueueDialog : public QDialog
 {
@@ -49,9 +48,13 @@ public:
   static void showDialog( bool autoHide = true );
   static void everyQueueIsEmpty();
 
+public slots:
+  virtual void accept();
+  virtual void reject();
+
+
 protected:
   virtual void paintEvent ( QPaintEvent * event );
-  virtual void closeEvent ( QCloseEvent * event );
   virtual void mousePressEvent(QMouseEvent *me);
   virtual void mouseMoveEvent(QMouseEvent *me);
 

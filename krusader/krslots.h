@@ -179,6 +179,7 @@ class KRslots : public QObject {
     void slotSynchronizeDirs( QStringList selected = QStringList() );
     void slotSyncBrowse();
     void slotDiskUsage();
+    void slotQueueManager();
     void slotLocationBar();
     void slotJumpBack();
     void slotSetJumpBack();

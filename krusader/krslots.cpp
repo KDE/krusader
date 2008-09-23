@@ -87,6 +87,7 @@
 #include "DiskUsage/diskusagegui.h"
 #include "krservices.h"
 #include "Panel/krviewitem.h"
+#include "Queue/queuedialog.h"
 
 #define REFRESH_BOTH_PANELS { ListPanel *p=ACTIVE_PANEL;        \
                               MAIN_VIEW->left->func->refresh(); \
@@ -911,6 +912,11 @@ void KRslots::togglePopupPanel() {
 void KRslots::slotDiskUsage()
 {
   DiskUsageGUI du( ACTIVE_FUNC->files()->vfs_getOrigin(), MAIN_VIEW );
+}
+
+void KRslots::slotQueueManager()
+{
+  QueueDialog::showDialog( false );
 }
 
 // when window becomes focused, enable the refresh in the visible panels

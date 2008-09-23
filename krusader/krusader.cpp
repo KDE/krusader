@@ -128,6 +128,7 @@ KAction *Krusader::actInvert = 0;
 KAction *Krusader::actCompDirs = 0;
 KAction *Krusader::actSync = 0;
 KAction *Krusader::actDiskUsage = 0;
+KAction *Krusader::actQueueManager = 0;
 KAction *Krusader::actHomeTerminal = 0;
 KAction *Krusader::actFTPConnect = 0;
 KAction *Krusader::actFTPNewConnect = 0;
@@ -729,6 +730,7 @@ void Krusader::setupActions() {
    NEW_KACTION(actSyncDirs, i18n( "Synchronize &Directories..." ), "kr_syncdirs", Qt::CTRL + Qt::Key_Y, SLOTS, SLOT( slotSynchronizeDirs() ), "sync dirs" );
    NEW_KACTION(actSyncBrowse, i18n( "S&ynchron Directory Changes" ), "kr_syncbrowse_off", Qt::ALT + Qt::Key_Y, SLOTS, SLOT( slotSyncBrowse() ), "sync browse" );
    NEW_KACTION(actDiskUsage, i18n( "D&isk Usage..." ), "kr_diskusage", Qt::ALT + Qt::Key_D, SLOTS, SLOT( slotDiskUsage() ), "disk usage" );
+   NEW_KACTION(actQueueManager, i18n( "&Queue Manager..." ), "document-multiple", Qt::ALT + Qt::Key_Q, SLOTS, SLOT( slotQueueManager() ), "queue manager" );
    NEW_KACTION(actKonfigurator, i18n( "Configure &Krusader..." ), "configure", 0, SLOTS, SLOT( startKonfigurator() ), "konfigurator" );
    NEW_KACTION(actBack, i18n( "Back" ), "go-previous", 0, SLOTS, SLOT( back() ), "back" );
    NEW_KACTION(actRoot, i18n( "Root" ), "go-top", Qt::CTRL + Qt::Key_Backspace, SLOTS, SLOT( root() ), "root" );
