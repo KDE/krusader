@@ -46,6 +46,7 @@ public:
   virtual ~QueueDialog();
 
   static void showDialog( bool autoHide = true );
+  static void deleteDialog();
   static void everyQueueIsEmpty();
 
 public slots:
@@ -58,12 +59,10 @@ protected:
   virtual void mousePressEvent(QMouseEvent *me);
   virtual void mouseMoveEvent(QMouseEvent *me);
 
+  void         saveSettings();
+
 private:
   static QueueDialog * _queueDialog;
-  int                  _sizeX;
-  int                  _sizeY;
-  int                  _x;
-  int                  _y;
   QPoint               _clickPos;
   QPoint               _startPos;
   bool                 _autoHide;

@@ -140,32 +140,30 @@ QueueDialog::QueueDialog() : QDialog( 0, Qt::FramelessWindowHint ), _autoHide( t
   setLayout( grid_main );
 
   KConfigGroup group( krConfig, "QueueManager");
-  _sizeX = group.readEntry( "Window Width",  -1 );
-  _sizeY = group.readEntry( "Window Height",  -1 );
-  _x = group.readEntry( "Window X",  -1 );
-  _y = group.readEntry( "Window Y",  -1 );
+  int sizeX = group.readEntry( "Window Width",  -1 );
+  int sizeY = group.readEntry( "Window Height",  -1 );
+  int x = group.readEntry( "Window X",  -1 );
+  int y = group.readEntry( "Window Y",  -1 );
 
-  if( _sizeX != -1 && _sizeY != -1 )
-    resize( _sizeX, _sizeY );
+  if( sizeX != -1 && sizeY != -1 )
+    resize( sizeX, sizeY );
   else
     resize( 300, 400 );
 
-  if( group.readEntry( "Window Maximized",  false ) )
-      showMaximized();
-  else {
-      if( _x != -1 && _y != -1 )
-        move( _x, _y );
-      else
-        move( 20, 20 );
+  if( x != -1 && y != -1 )
+    move( x, y );
+  else
+    move( 20, 20 );
 
-      show();
-  }
+  show();
 
   _queueDialog = this;
 }
 
 QueueDialog::~QueueDialog()
 {
+  if( _queueDialog )
+    saveSettings();
   _queueDialog = 0;
 }
 
@@ -219,11 +217,28 @@ void QueueDialog::mouseMoveEvent(QMouseEvent *me)
 void QueueDialog::accept()
 {
   _autoHide = true;
+  saveSettings();
   QDialog::accept();
 }
 
 void QueueDialog::reject()
 {
   _autoHide = true;
+  saveSettings();
   QDialog::reject();
+}
+
+void QueueDialog::saveSettings()
+{
+  KConfigGroup group( krConfig, "QueueManager");
+  group.writeEntry( "Window Width", width() );
+  group.writeEntry( "Window Height", height() );
+  group.writeEntry( "Window X", x() );
+  group.writeEntry( "Window Y", y() );
+}
+
+void QueueDialog::deleteDialog()
+{
+  if( _queueDialog )
+    delete _queueDialog;
 }

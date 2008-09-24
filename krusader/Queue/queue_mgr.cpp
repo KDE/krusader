@@ -24,6 +24,7 @@ QueueManager::~QueueManager()
  	for (it = _queues.begin(); it != _queues.end(); ++it )
  		delete it.value();
 	_queues.clear();
+	QueueDialog::deleteDialog();
 }
 
 Queue* QueueManager::queue(const QString& queueName)
