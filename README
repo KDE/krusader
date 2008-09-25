@@ -1,8 +1,8 @@
-Krusader-2.0.0-beta1 "Phoenix Egg"
+Krusader-2.0.0-beta2 "Space Odyssey"
 ==================================
-The Krew is proud to present the first KDE4 release of your favourite file
+The Krew is proud to present the second KDE4 release of your favourite file
 manager! This beta is all about porting, all dependencies to the Qt3 support
-libs have been removed. This is also the first release that comes with 
+libs have been removed. This is also the second release that comes with 
 experimental support for the Windows platform. Who thought that day will ever
 come?
 
@@ -13,6 +13,16 @@ feedback and patches to make it as solid as the KDE3 version. Many thanks to
 everyone who supported us in the porting process!
 
 The highlights of this release are:
+- many many bugfixes
+- enqueue operation for copy / move (alpha without gui)
+- Konfigurator mouse selection mode: Possibility to select a predefined
+  mode and change a detail. 
+- highlight quick search match
+- Useractions: added checkbox "enabled"
+  and run mode option "Run in embedded terminal emulator"
+- the description of a dir contains its size if it is known
+
+Changes since 2.0.0-beta1 (but not limited to): 
 
 - Ported to KDE4 not using any of the Qt3 support libs
 - Experimental support for the Windows platform
@@ -281,7 +291,7 @@ Krusader Krew:
   [h.eichmann * gmx de]
 - Jonas Baehr, developer
   [jonas baehr * users web de]
-- Vaclav Juza
+- Vaclav Juza, developer
   [vaclavjuza * seznam.cz]
 - Frank Schoolmeesters, documentation and marketing coordinator
   [frank_schoolmeesters * yahoo com]
