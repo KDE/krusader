@@ -68,6 +68,7 @@ private:
 	
 	bool                      m_delete;
 	bool                      m_started;
+	bool                      m_suspended;
 	
 	KIOJobWrapper( KIOJobWrapperType type, KUrl &url );
 	KIOJobWrapper( KIOJobWrapperType type, KUrl &url, void * userData );
@@ -78,9 +79,14 @@ public:
 	virtual ~KIOJobWrapper();
 	
 	void start();
+	
+	void suspend();
+	void resume();
+	
 	void connectTo( const char * signal, const QObject * receiver, const char * method );
 	void setAutoErrorHandlingEnabled( bool err ) { m_autoErrorHandling = err; }
 	bool isStarted()             { return m_started; }
+	bool isSuspended()           { return m_suspended; }
 	
 	KIO::Job *        job()      { return m_job; }
 	KIOJobWrapperType type()     { return m_type; }

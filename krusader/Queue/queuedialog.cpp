@@ -30,6 +30,7 @@
 
 #include "queuedialog.h"
 #include "queuewidget.h"
+#include "queue_mgr.h"
 #include "../krusader.h"
 #include <qlayout.h>
 #include <qframe.h>
@@ -129,13 +130,26 @@ QueueDialog::QueueDialog() : QDialog( 0, Qt::FramelessWindowHint ), _autoHide( t
 
   KrImageButton * closeBtn = new KrImageButton( titleWg );
   closeBtn->setIcon( KIcon( "window-close" ) );
+  closeBtn->setToolTip( i18n( "Close" ) );
   connect( closeBtn, SIGNAL( clicked() ), this, SLOT( reject() ) );
   hbox->addWidget( closeBtn );
 
   grid_main->addWidget( titleWg, 0, 0 );
 
+  QWidget *toolWg = new QWidget( this );
+  QHBoxLayout * hbox2 = new QHBoxLayout( toolWg );
+
+  _pauseButton = new QToolButton( this );
+  _pauseButton->setIcon( KIcon( "media-playback-pause" ) );
+  connect( _pauseButton, SIGNAL( clicked() ), this, SLOT( slotPauseClicked() ) );
+  hbox2->addWidget( _pauseButton );
+
+  hbox2->addItem( new QSpacerItem(10, 10, QSizePolicy::Expanding, QSizePolicy::Minimum) );
+
+  grid_main->addWidget( toolWg, 1, 0 );
+
   QueueWidget *wdg = new QueueWidget( this );
-  grid_main->addWidget( wdg, 1, 0 );
+  grid_main->addWidget( wdg, 2, 0 );
 
   setLayout( grid_main );
 
@@ -155,6 +169,7 @@ QueueDialog::QueueDialog() : QDialog( 0, Qt::FramelessWindowHint ), _autoHide( t
   else
     move( 20, 20 );
 
+  slotUpdateToolbar();
   show();
 
   _queueDialog = this;
@@ -241,4 +256,33 @@ void QueueDialog::deleteDialog()
 {
   if( _queueDialog )
     delete _queueDialog;
+}
+
+void QueueDialog::slotUpdateToolbar()
+{
+  Queue * currentQueue = QueueManager::currentQueue();
+  if( currentQueue )
+  {
+    if( currentQueue->isSuspended() ) {
+      _pauseButton->setIcon( KIcon( "media-playback-start" ) );
+      _pauseButton->setToolTip( i18n( "Start processing the queue" ) );
+    } else {
+      _pauseButton->setIcon( KIcon( "media-playback-pause" ) );
+      _pauseButton->setToolTip( i18n( "Pause processing the queue" ) );
+    }
+  }
+}
+
+void QueueDialog::slotPauseClicked()
+{
+  Queue * currentQueue = QueueManager::currentQueue();
+  if( currentQueue )
+  {
+    if( currentQueue->isSuspended() )
+      currentQueue->resume();
+    else
+      currentQueue->suspend();
+
+    slotUpdateToolbar();
+  }
 }

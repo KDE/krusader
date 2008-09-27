@@ -34,6 +34,7 @@
 #include <qdialog.h>
 
 class QPaintEvent;
+class QToolButton;
 
 class QueueDialog : public QDialog
 {
@@ -53,6 +54,8 @@ public slots:
   virtual void accept();
   virtual void reject();
 
+  void slotUpdateToolbar();
+  void slotPauseClicked();
 
 protected:
   virtual void paintEvent ( QPaintEvent * event );
@@ -63,6 +66,9 @@ protected:
 
 private:
   static QueueDialog * _queueDialog;
+
+  QToolButton        * _pauseButton;
+
   QPoint               _clickPos;
   QPoint               _startPos;
   bool                 _autoHide;

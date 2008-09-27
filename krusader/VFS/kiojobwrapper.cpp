@@ -64,14 +64,16 @@ bool KrJobStarter::event( QEvent * e ) {
 }
 
 KIOJobWrapper::KIOJobWrapper( KIOJobWrapperType type, KUrl &url ) : QObject( 0 ),
-                              m_autoErrorHandling( false ), m_delete( true ), m_started( false ) {
+                              m_autoErrorHandling( false ), m_delete( true ), m_started( false ),
+                              m_suspended( false ) {
 	moveToThread(QApplication::instance()->thread());
 	m_type = type;
 	m_url = url;
 }
 
 KIOJobWrapper::KIOJobWrapper( KIOJobWrapperType type, KUrl &url, void * userData ) : QObject( 0 ),
-                              m_autoErrorHandling( false ), m_delete( true ), m_started( false ) {
+                              m_autoErrorHandling( false ), m_delete( true ), m_started( false ),
+                              m_suspended( false ) {
 	moveToThread(QApplication::instance()->thread());
 	m_type = type;
 	m_url = url;
@@ -80,7 +82,8 @@ KIOJobWrapper::KIOJobWrapper( KIOJobWrapperType type, KUrl &url, void * userData
 
 KIOJobWrapper::KIOJobWrapper( KIOJobWrapperType type, KUrl &url, KUrl::List &list,
                               int pmode, bool showp  ) : QObject( 0 ),
-                              m_autoErrorHandling( false ), m_delete( true ), m_started( false ) {
+                              m_autoErrorHandling( false ), m_delete( true ), m_started( false ),
+                              m_suspended( false ) {
 	moveToThread(QApplication::instance()->thread());
 	m_type = type;
 	m_url = url;
@@ -129,6 +132,8 @@ void KIOJobWrapper::createJob() {
 		
 		if( m_autoErrorHandling && job->ui() )
 			job->ui()->setAutoErrorHandlingEnabled( true );
+		if( m_suspended )
+			job->suspend();
 	}
 }
 
@@ -189,3 +194,16 @@ QString KIOJobWrapper::typeStr() {
 		return i18n( "Unknown" );
 	}
 }
+
+void KIOJobWrapper::suspend() {
+	m_suspended = true;
+	if( m_job )
+		m_job->suspend();
+}
+
+void KIOJobWrapper::resume() {
+	m_suspended = false;
+	if( m_job )
+		m_job->resume();
+}
+

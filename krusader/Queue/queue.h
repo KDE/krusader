@@ -24,9 +24,14 @@ public:
 	inline const QString& name() const { return _name; }
 	void enqueue(KIOJobWrapper *job);
 	int  count() { return _jobs.size(); }
+	bool isSuspended() { return _suspended; }
 	
 	QList<QString> itemDescriptions();
 	QList<KIOJobWrapper *> items();
+	
+public slots:
+	void suspend();
+	void resume();
 
 protected slots:
 	void slotJobDestroyed( QObject * );
@@ -37,6 +42,7 @@ protected:
 
 	QString _name;
 	QList<KIOJobWrapper *> _jobs;
+	bool _suspended;
 
 signals:
 	void showQueueDialog();

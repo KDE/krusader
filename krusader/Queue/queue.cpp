@@ -4,7 +4,7 @@
 #include <klocale.h>
 #include <kmessagebox.h>
 
-Queue::Queue(const QString& name): _name(name)
+Queue::Queue(const QString& name): _name(name), _suspended( false )
 {
 }
 
@@ -20,7 +20,7 @@ void Queue::enqueue(KIOJobWrapper *job)
 	connect( job, SIGNAL( destroyed( QObject * ) ), this, SLOT( slotJobDestroyed( QObject * ) ) );
 	job->connectTo( SIGNAL( result( KJob* ) ), this, SLOT( slotResult( KJob* ) ) );
 	
-	if( !isRunning )
+	if( !_suspended && !isRunning )
 		job->start();
 	
 	emit changed();
@@ -40,7 +40,7 @@ void Queue::slotJobDestroyed( QObject * obj )
 	if( _jobs.count() > 0 && _jobs[ 0 ] == jw )
 		current = true;
 	_jobs.removeAll( jw );
-	if( current && _jobs.count() > 0 )
+	if( !_suspended && current && _jobs.count() > 0 )
 		_jobs[ 0 ]->start();
 	emit changed();
 }
@@ -71,16 +71,19 @@ void Queue::slotResult( KJob * job )
 					emit emptied();
 					return;
 				default: // suspend
-					/* TODO */
+					emit changed();
+					suspend();
 					return;
 				}
 			}
 			
 			emit changed();
-			if( _jobs.count() > 0 )
-				_jobs[ 0 ]->start();
-			else
-				emit emptied();
+			if( !_suspended ) {
+				if( _jobs.count() > 0 )
+					_jobs[ 0 ]->start();
+				else
+					emit emptied();
+			}
 		}
 	}
 }
@@ -98,4 +101,22 @@ QList<QString> Queue::itemDescriptions()
 		ret.append( job->typeStr() + " : " + job->url().prettyUrl() );
 	}
 	return ret;
+}
+
+void Queue::suspend()
+{
+	_suspended = true;
+	if(( _jobs.count() > 0 ) && _jobs[ 0 ]->isStarted() )
+		_jobs[ 0 ]->suspend();
+}
+
+void Queue::resume()
+{
+	_suspended = false;
+	if( _jobs.count() > 0 ) {
+		if( _jobs[ 0 ]->isSuspended() )
+			_jobs[ 0 ]->resume();
+		else if( !_jobs[ 0 ]->isStarted() )
+			_jobs[ 0 ]->start();
+	}
 }
