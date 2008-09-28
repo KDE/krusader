@@ -171,7 +171,8 @@ void KRpermHandler::init() {
 	currentGroups = new QHash<int, char>();
 	uidCache = new QHash<int, QString>();
 	gidCache = new QHash<int, QString>();
-
+// In kdewin32 implementation as of 4.1.2, getpwent always returns the same struct
+#ifndef Q_WS_WIN
 	// fill the UID cache
 	struct passwd *pass;
 	while ( ( pass = getpwent() ) != 0L ) {
@@ -189,7 +190,7 @@ void KRpermHandler::init() {
 	}
 	delete gr;
 	endgrent();
-
+#endif
 	// fill the groups for the current user
 	for ( int i = 0; i < groupNo; ++i ) {
 		(*currentGroups)[ groupList[ i ] ] = char( 1 );
