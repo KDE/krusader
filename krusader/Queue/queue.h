@@ -4,6 +4,8 @@
 #include <qobject.h>
 #include "../VFS/kiojobwrapper.h"
 #include <QList>
+#include <QTimer>
+#include <QTime>
 
 class KJob;
 
@@ -25,6 +27,7 @@ public:
 	void enqueue(KIOJobWrapper *job);
 	int  count() { return _jobs.size(); }
 	bool isSuspended() { return _suspended; }
+	QTime scheduleTime();
 	
 	QList<QString> itemDescriptions();
 	QList<KIOJobWrapper *> items();
@@ -32,6 +35,7 @@ public:
 public slots:
 	void suspend();
 	void resume();
+	void schedule( const QTime & );
 
 protected slots:
 	void slotJobDestroyed( QObject * );
@@ -43,11 +47,14 @@ protected:
 	QString _name;
 	QList<KIOJobWrapper *> _jobs;
 	bool _suspended;
+	QTimer _scheduleTimer;
+	QTime _scheduleTime;
 
 signals:
 	void showQueueDialog();
 	void changed();
 	void emptied();
+	void stateChanged();
 };
 
 #endif // QUEUE_H

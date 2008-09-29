@@ -35,6 +35,9 @@
 
 class QPaintEvent;
 class QToolButton;
+class QueueWidget;
+class QLabel;
+class QProgressBar;
 
 class QueueDialog : public QDialog
 {
@@ -56,6 +59,9 @@ public slots:
 
   void slotUpdateToolbar();
   void slotPauseClicked();
+  void slotScheduleClicked();
+  void slotNewTab();
+  void slotDeleteCurrentTab();
 
 protected:
   virtual void paintEvent ( QPaintEvent * event );
@@ -67,7 +73,14 @@ protected:
 private:
   static QueueDialog * _queueDialog;
 
+  QToolButton        * _newTabButton;
+  QToolButton        * _closeTabButton;
   QToolButton        * _pauseButton;
+  QToolButton        * _scheduleButton;
+
+  QProgressBar       * _progressBar;
+  QueueWidget        * _queueWidget;
+  QLabel             * _statusLabel;
 
   QPoint               _clickPos;
   QPoint               _startPos;

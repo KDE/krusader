@@ -82,6 +82,7 @@ public:
 	
 	void suspend();
 	void resume();
+	void abort();
 	
 	void connectTo( const char * signal, const QObject * receiver, const char * method );
 	void setAutoErrorHandlingEnabled( bool err ) { m_autoErrorHandling = err; }

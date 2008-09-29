@@ -1,21 +1,18 @@
 #include "queue_mgr.h"
 #include "queuedialog.h"
+#include "queue.h"
 #include <QList>
 #include <klocale.h>
 
 const QString QueueManager::defaultName=i18n( "default" );
 QMap<QString, Queue*> QueueManager::_queues;
-QString QueueManager::_current=QueueManager::defaultName;
+Queue * QueueManager::_current=0;
 QueueManager * QueueManager::_self = 0;
 
 QueueManager::QueueManager()
 {
-	Queue *defaultQ = new Queue(defaultName);
-	connect( defaultQ, SIGNAL( showQueueDialog() ), this, SLOT( slotShowQueueDialog() ) );
-	connect( defaultQ, SIGNAL( emptied() ), this, SLOT( slotQueueEmptied() ) );
-	_queues.insert(defaultQ->name(), defaultQ);
-	_current = defaultName;
 	_self = this;
+	createQueue( defaultName );
 }
 
 QueueManager::~QueueManager() 
@@ -41,13 +38,15 @@ QList<QString> QueueManager::queues()
 
 Queue* QueueManager::currentQueue()
 {
-	return queue( _current );
+	return _current;
 }
 
-void QueueManager::setCurrentQueue(const QString& queueName)
+void QueueManager::setCurrentQueue(Queue * queue)
 {
-	if (_queues.contains(queueName))
-		_current = queueName;
+	if (_queues.contains(queue->name())) {
+		_current = queue;
+		_self->emit currentChanged( queue );
+	}
 }
 
 void QueueManager::slotShowQueueDialog()
@@ -66,4 +65,34 @@ void QueueManager::slotQueueEmptied()
 		}
 	}
 	QueueDialog::everyQueueIsEmpty();
+}
+
+Queue * QueueManager::createQueue(const QString& queueName)
+{
+	if( _queues.contains( queueName ) )
+		return 0;
+	Queue *queue = new Queue(queueName);
+	connect( queue, SIGNAL( showQueueDialog() ), _self, SLOT( slotShowQueueDialog() ) );
+	connect( queue, SIGNAL( emptied() ), _self, SLOT( slotQueueEmptied() ) );
+	_queues.insert(queue->name(), queue);
+	_current = queue;
+	
+	_self->emit queueInserted( queue );
+	_self->emit currentChanged( queue );
+	return queue;
+}
+
+void QueueManager::removeQueue( Queue * queue )
+{
+	if( _queues.count() < 2 && _queues.contains( queue->name() ) )
+		return;
+	
+	_self->emit queueDeleted( queue );
+	_queues.remove( queue->name() );
+	
+	QMap<QString, Queue*>::iterator it;
+ 	_current = _queues.begin().value();
+	_self->emit currentChanged( queue );
+	
+	delete queue;
 }

@@ -23,17 +23,24 @@ public:
 	static QList<QString> queues();
 	
 	static Queue* currentQueue();
-	static void setCurrentQueue(const QString& queueName);
+	static void setCurrentQueue( Queue * queue );
+	static Queue* createQueue(const QString& queueName);
+	static void   removeQueue( Queue * queue );
 	
-	QueueManager * instance() { return _self; }
+	static QueueManager * instance() { return _self; }
 
 protected slots:
 	void slotShowQueueDialog();
 	void slotQueueEmptied();
+	
+signals:
+	void queueInserted( Queue * );
+	void queueDeleted( Queue * );
+	void currentChanged( Queue * );
 
 protected:
 	static QMap<QString, Queue*> _queues;
-	static QString               _current;
+	static Queue *               _current;
 	static QueueManager *        _self;
 };
 

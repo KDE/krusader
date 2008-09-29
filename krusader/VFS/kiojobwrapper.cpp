@@ -207,3 +207,7 @@ void KIOJobWrapper::resume() {
 		m_job->resume();
 }
 
+void KIOJobWrapper::abort() {
+	if( m_job )
+		m_job->kill();
+}

@@ -3,13 +3,20 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kmessagebox.h>
+#include <QTime>
 
 Queue::Queue(const QString& name): _name(name), _suspended( false )
 {
+	connect( &_scheduleTimer, SIGNAL( timeout() ), this, SLOT( resume() ) );
 }
 
 Queue::~Queue() 
 {
+	foreach( KIOJobWrapper * job, _jobs ) {
+		job->abort();
+		delete job;
+	}
+	_jobs.clear();
 	// TODO: save queue on delete? or just delete jobs
 }
 
@@ -66,6 +73,10 @@ void Queue::slotResult( KJob * job )
 				case KMessageBox::Yes: // continue
 					break;
 				case KMessageBox::No: // delete the queue
+					foreach( KIOJobWrapper * job, _jobs ) {
+						job->abort();
+						delete job;
+					}
 					_jobs.clear();
 					emit changed();
 					emit emptied();
@@ -108,15 +119,52 @@ void Queue::suspend()
 	_suspended = true;
 	if(( _jobs.count() > 0 ) && _jobs[ 0 ]->isStarted() )
 		_jobs[ 0 ]->suspend();
+	
+	emit stateChanged();
 }
 
 void Queue::resume()
 {
 	_suspended = false;
+	_scheduleTimer.stop();
 	if( _jobs.count() > 0 ) {
 		if( _jobs[ 0 ]->isSuspended() )
 			_jobs[ 0 ]->resume();
 		else if( !_jobs[ 0 ]->isStarted() )
 			_jobs[ 0 ]->start();
 	}
+	
+	emit stateChanged();
+}
+
+void Queue::schedule( const QTime &time )
+{
+	QTime nowTime = QTime::currentTime();
+	_suspended = true;
+	if(( _jobs.count() > 0 ) && _jobs[ 0 ]->isStarted() )
+		_jobs[ 0 ]->suspend();
+	
+	int now = ((nowTime.hour() * 60) + nowTime.minute() ) * 60 + nowTime.second();
+	int schedule = ((time.hour() * 60) + time.minute() ) * 60 + time.second();
+	
+	int diff = schedule - now;
+	if( diff < 0 )
+		diff += 24 * 60 * 60; // 1 day plus
+	
+	diff *= 1000; // milliseconds
+	_scheduleTime = time;
+	
+	_scheduleTimer.stop();
+	_scheduleTimer.setSingleShot( true );
+	_scheduleTimer.start( diff );
+	
+	emit stateChanged();
+}
+
+QTime Queue::scheduleTime()
+{
+	if( _suspended && _scheduleTimer.isActive() )
+		return _scheduleTime;
+	else
+		return QTime();
 }

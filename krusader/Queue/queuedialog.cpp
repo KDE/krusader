@@ -35,6 +35,7 @@
 #include <qlayout.h>
 #include <qframe.h>
 #include <klocale.h>
+#include <kdialog.h>
 #include <qevent.h>
 #include <qpainter.h>
 #include <qrect.h>
@@ -45,6 +46,10 @@
 #include <qtoolbutton.h>
 #include <qimage.h>
 #include <kiconeffect.h>
+#include <kinputdialog.h>
+#include <kmessagebox.h>
+#include <QTimeEdit>
+#include <QProgressBar>
 
 class KrImageButton : public QToolButton
 {
@@ -90,6 +95,33 @@ public:
 
 private:
   bool _onIcon;
+};
+
+class KrTimeDialog : public KDialog {
+public:
+	KrTimeDialog( QWidget * parent = 0 ) : KDialog( parent ) {
+		setWindowTitle( i18n( "Krusader::Queue Manager" ) );
+		setButtons( KDialog::Ok | KDialog::Cancel );
+		setDefaultButton( KDialog::Ok );
+		setWindowModality( Qt::WindowModal );
+		
+		QWidget *mainWidget = new QWidget( this );
+		QGridLayout *grid_time = new QGridLayout;
+		QLabel * label = new QLabel( i18n( "Please enter the time to start processing the queue:" ), mainWidget );
+		grid_time->addWidget( label, 0, 0 );
+		
+		QTime time = QTime::currentTime();
+		time = time.addSecs( 60 * 60 ); // add 1 hour
+		_timeEdit = new QTimeEdit( time, mainWidget );
+		_timeEdit->setDisplayFormat( "hh:mm:ss" );
+		grid_time->addWidget( _timeEdit, 1, 0 );
+		mainWidget->setLayout( grid_time );
+		setMainWidget( mainWidget );
+	}
+	QTime getStartTime() { return _timeEdit->time(); }
+
+private:
+	QTimeEdit * _timeEdit;
 };
 
 QueueDialog * QueueDialog::_queueDialog = 0;
@@ -138,18 +170,52 @@ QueueDialog::QueueDialog() : QDialog( 0, Qt::FramelessWindowHint ), _autoHide( t
 
   QWidget *toolWg = new QWidget( this );
   QHBoxLayout * hbox2 = new QHBoxLayout( toolWg );
+  hbox2->setSpacing( 0 );
+
+  _newTabButton = new QToolButton( this );
+  _newTabButton->setIcon( KIcon( "tab-new" ) );
+  _newTabButton->setToolTip( i18n( "Create a new queue" ) );
+  connect( _newTabButton, SIGNAL( clicked() ), this, SLOT( slotNewTab() ) );
+  hbox2->addWidget( _newTabButton );
+
+  _closeTabButton = new QToolButton( this );
+  _closeTabButton->setIcon( KIcon( "tab-close" ) );
+  _closeTabButton->setToolTip( i18n( "Remove the current queue" ) );
+  connect( _closeTabButton, SIGNAL( clicked() ), this, SLOT( slotDeleteCurrentTab() ) );
+  hbox2->addWidget( _closeTabButton );
 
   _pauseButton = new QToolButton( this );
   _pauseButton->setIcon( KIcon( "media-playback-pause" ) );
   connect( _pauseButton, SIGNAL( clicked() ), this, SLOT( slotPauseClicked() ) );
   hbox2->addWidget( _pauseButton );
 
-  hbox2->addItem( new QSpacerItem(10, 10, QSizePolicy::Expanding, QSizePolicy::Minimum) );
+  _progressBar = new QProgressBar( this );
+  _progressBar->setMinimum( 0 );
+  _progressBar->setMaximum( 100 );
+  _progressBar->setValue( 0 );
+  _progressBar->setFormat( i18n( "unused" ) );
+  _progressBar->setTextVisible( true );
+  hbox2->addWidget( _progressBar );
+
+  _scheduleButton = new QToolButton( this );
+  _scheduleButton->setIcon( KIcon( "chronometer" ) );
+  _scheduleButton->setToolTip( i18n( "Schedule queue starting" ) );
+  connect( _scheduleButton, SIGNAL( clicked() ), this, SLOT( slotScheduleClicked() ) );
+  hbox2->addWidget( _scheduleButton );
 
   grid_main->addWidget( toolWg, 1, 0 );
 
-  QueueWidget *wdg = new QueueWidget( this );
-  grid_main->addWidget( wdg, 2, 0 );
+  _queueWidget = new QueueWidget( this );
+  connect( _queueWidget, SIGNAL( currentChanged() ), this, SLOT( slotUpdateToolbar() ) );
+  grid_main->addWidget( _queueWidget, 2, 0 );
+
+  _statusLabel = new QLabel( this );
+  QSizePolicy statuspolicy( QSizePolicy::Expanding, QSizePolicy::Minimum);
+  statuspolicy.setHeightForWidth( _statusLabel->sizePolicy().hasHeightForWidth() );
+  _statusLabel->setSizePolicy( statuspolicy );
+  _statusLabel->setFrameShape( QLabel::StyledPanel );
+  _statusLabel->setFrameShadow( QLabel::Sunken );
+  grid_main->addWidget( _statusLabel, 3, 0 );
 
   setLayout( grid_main );
 
@@ -170,6 +236,9 @@ QueueDialog::QueueDialog() : QDialog( 0, Qt::FramelessWindowHint ), _autoHide( t
     move( 20, 20 );
 
   slotUpdateToolbar();
+
+  connect( QueueManager::instance(), SIGNAL( queueInserted( Queue * ) ), this, SLOT( slotUpdateToolbar() ) );
+
   show();
 
   _queueDialog = this;
@@ -266,10 +335,19 @@ void QueueDialog::slotUpdateToolbar()
     if( currentQueue->isSuspended() ) {
       _pauseButton->setIcon( KIcon( "media-playback-start" ) );
       _pauseButton->setToolTip( i18n( "Start processing the queue" ) );
+      QTime time = currentQueue->scheduleTime();
+      if( time.isNull() )
+        _statusLabel->setText( i18n( "The queue is paused." ) );
+      else
+        _statusLabel->setText( i18n( "Scheduled to start at %1." )
+          .arg( time.toString( "hh:mm:ss" ) ) );
     } else {
+      _statusLabel->setText( i18n( "The queue is running." ) );
       _pauseButton->setIcon( KIcon( "media-playback-pause" ) );
       _pauseButton->setToolTip( i18n( "Pause processing the queue" ) );
     }
+
+    _closeTabButton->setEnabled( _queueWidget->count() > 1 );
   }
 }
 
@@ -282,7 +360,49 @@ void QueueDialog::slotPauseClicked()
       currentQueue->resume();
     else
       currentQueue->suspend();
+  }
+}
 
-    slotUpdateToolbar();
+void QueueDialog::slotScheduleClicked()
+{
+  KrTimeDialog dialog( this );
+  if( dialog.exec() == QDialog::Accepted )
+  {
+    QTime startTime = dialog.getStartTime();
+    Queue * queue = QueueManager::currentQueue();
+    queue->schedule( startTime );
+  }
+}
+
+void QueueDialog::slotNewTab()
+{
+  bool ok = false;
+  QString queueName = KInputDialog::getText(
+                i18n("Krusader::Queue Manager"),		// Caption
+                i18n("Please enter the name of the new queue"),	// Questiontext
+                QString(),	// Default
+                &ok, this );
+
+  if( !ok || queueName.isEmpty() )
+    return;
+
+  Queue * queue = QueueManager::createQueue( queueName );
+  if( queue == 0 ) {
+    KMessageBox::error( this, i18n( "A queue already exists with this name!" ) );
+  }
+}
+
+void QueueDialog::slotDeleteCurrentTab()
+{
+  Queue * currentQueue = QueueManager::currentQueue();
+  if( currentQueue )
+  {
+    if( currentQueue->count() != 0 )
+    {
+      if( KMessageBox::warningContinueCancel(this,
+        i18n("Deleting the queue requires aborting all pending jobs. Do you wish to continue?"),
+        i18n("Warning") ) != KMessageBox::Continue ) return;
+    }
+    QueueManager::removeQueue( currentQueue );
   }
 }
