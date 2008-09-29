@@ -265,7 +265,8 @@ void KgLookFeel::setupPanelToolbarTab() {
     };
   
   
-  pnlcbs = createCheckBoxGroup(1, 0, panelToolbarCheckboxes, 7,
+  pnlcbs = createCheckBoxGroup(1, 0, panelToolbarCheckboxes,
+                                     sizeof(panelToolbarCheckboxes)/sizeof(*panelToolbarCheckboxes),
                                        panelToolbarGrp, PAGE_PANELTOOLBAR);
   
   panelToolbarVLayout->addWidget( panelToolbarActive, 0, 0 );
