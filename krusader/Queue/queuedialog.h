@@ -38,6 +38,7 @@ class QToolButton;
 class QueueWidget;
 class QLabel;
 class QProgressBar;
+class Queue;
 
 class QueueDialog : public QDialog
 {
@@ -62,6 +63,7 @@ public slots:
   void slotScheduleClicked();
   void slotNewTab();
   void slotDeleteCurrentTab();
+  void slotPercentChanged( Queue *, int );
 
 protected:
   virtual void paintEvent ( QPaintEvent * event );

@@ -5,7 +5,7 @@
 #include <kmessagebox.h>
 #include <QTime>
 
-Queue::Queue(const QString& name): _name(name), _suspended( false )
+Queue::Queue(const QString& name): _name(name), _suspended( false ), _percent( PERCENT_UNUSED )
 {
 	connect( &_scheduleTimer, SIGNAL( timeout() ), this, SLOT( resume() ) );
 }
@@ -26,9 +26,12 @@ void Queue::enqueue(KIOJobWrapper *job)
 	_jobs.append(job);
 	connect( job, SIGNAL( destroyed( QObject * ) ), this, SLOT( slotJobDestroyed( QObject * ) ) );
 	job->connectTo( SIGNAL( result( KJob* ) ), this, SLOT( slotResult( KJob* ) ) );
+	job->connectTo( SIGNAL( percent( KJob*, unsigned long ) ), this, SLOT( slotPercent( KJob*, unsigned long ) ) );
 	
-	if( !_suspended && !isRunning )
+	if( !_suspended && !isRunning ) {
 		job->start();
+		slotPercent( 0, PERCENT_UNKNOWN );
+	}
 	
 	emit changed();
 	emit showQueueDialog();
@@ -47,8 +50,11 @@ void Queue::slotJobDestroyed( QObject * obj )
 	if( _jobs.count() > 0 && _jobs[ 0 ] == jw )
 		current = true;
 	_jobs.removeAll( jw );
-	if( !_suspended && current && _jobs.count() > 0 )
+	slotPercent( 0, PERCENT_UNUSED );
+	if( !_suspended && current && _jobs.count() > 0 ) {
 		_jobs[ 0 ]->start();
+		slotPercent( 0, PERCENT_UNKNOWN );
+	}
 	emit changed();
 }
 
@@ -58,6 +64,7 @@ void Queue::slotResult( KJob * job )
 		KIOJobWrapper * jw = _jobs[ 0 ];
 		KIO::Job * kjob = jw->job();
 		if( kjob && kjob == job ) {
+			slotPercent( 0, PERCENT_UNUSED );
 			_jobs.removeAll( jw );
 			if( job->error() && _jobs.count() > 0 ) {
 				// what to do with the other elements in the queue
@@ -90,8 +97,10 @@ void Queue::slotResult( KJob * job )
 			
 			emit changed();
 			if( !_suspended ) {
-				if( _jobs.count() > 0 )
+				if( _jobs.count() > 0 ) {
 					_jobs[ 0 ]->start();
+					slotPercent( 0, PERCENT_UNKNOWN );
+				}
 				else
 					emit emptied();
 			}
@@ -130,8 +139,10 @@ void Queue::resume()
 	if( _jobs.count() > 0 ) {
 		if( _jobs[ 0 ]->isSuspended() )
 			_jobs[ 0 ]->resume();
-		else if( !_jobs[ 0 ]->isStarted() )
+		else if( !_jobs[ 0 ]->isStarted() ) {
 			_jobs[ 0 ]->start();
+			slotPercent( 0, PERCENT_UNKNOWN );
+		}
 	}
 	
 	emit stateChanged();
@@ -167,4 +178,10 @@ QTime Queue::scheduleTime()
 		return _scheduleTime;
 	else
 		return QTime();
+}
+
+void Queue::slotPercent( KJob *, unsigned long percent_ )
+{
+	_percent = percent_;
+	emit percent( this, percent_ );
 }

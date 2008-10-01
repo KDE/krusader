@@ -37,6 +37,7 @@ signals:
 	void queueInserted( Queue * );
 	void queueDeleted( Queue * );
 	void currentChanged( Queue * );
+	void percent( Queue *, int );
 
 protected:
 	static QMap<QString, Queue*> _queues;

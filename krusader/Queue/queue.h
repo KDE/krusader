@@ -9,6 +9,9 @@
 
 class KJob;
 
+#define PERCENT_UNUSED  -2
+#define PERCENT_UNKNOWN -1
+
 /**
  * Queue can hold anything which inherits KIO::Job, and schedule it, start it, stop etc...
  * the main reason to hold the Job itself (at least for phase 1) is to keep the code 
@@ -28,6 +31,7 @@ public:
 	int  count() { return _jobs.size(); }
 	bool isSuspended() { return _suspended; }
 	QTime scheduleTime();
+	int getPercent() { return _percent; }
 	
 	QList<QString> itemDescriptions();
 	QList<KIOJobWrapper *> items();
@@ -40,6 +44,7 @@ public slots:
 protected slots:
 	void slotJobDestroyed( QObject * );
 	void slotResult( KJob * );
+	void slotPercent( KJob *, unsigned long percent );
 	
 protected:
 	void dumpQueue();
@@ -49,12 +54,14 @@ protected:
 	bool _suspended;
 	QTimer _scheduleTimer;
 	QTime _scheduleTime;
+	int _percent;
 
 signals:
 	void showQueueDialog();
 	void changed();
 	void emptied();
 	void stateChanged();
+	void percent( Queue *, int value );
 };
 
 #endif // QUEUE_H

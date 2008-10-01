@@ -238,6 +238,7 @@ QueueDialog::QueueDialog() : QDialog( 0, Qt::FramelessWindowHint ), _autoHide( t
   slotUpdateToolbar();
 
   connect( QueueManager::instance(), SIGNAL( queueInserted( Queue * ) ), this, SLOT( slotUpdateToolbar() ) );
+  connect( QueueManager::instance(), SIGNAL( percent( Queue *, int ) ), this, SLOT( slotPercentChanged( Queue *, int ) ) );
 
   show();
 
@@ -348,6 +349,8 @@ void QueueDialog::slotUpdateToolbar()
     }
 
     _closeTabButton->setEnabled( _queueWidget->count() > 1 );
+
+    slotPercentChanged( currentQueue, currentQueue->getPercent() );
   }
 }
 
@@ -404,5 +407,33 @@ void QueueDialog::slotDeleteCurrentTab()
         i18n("Warning") ) != KMessageBox::Continue ) return;
     }
     QueueManager::removeQueue( currentQueue );
+  }
+}
+
+void QueueDialog::slotPercentChanged( Queue * queue, int percent )
+{
+  if( QueueManager::currentQueue() == queue )
+  {
+    switch( percent )
+    {
+    case PERCENT_UNUSED:
+      _progressBar->setMaximum( 100 );
+      _progressBar->setValue( 0 );
+      _progressBar->setFormat( i18n( "unused" ) );
+      break;
+    case PERCENT_UNKNOWN:
+      if( _progressBar->maximum() != 0 )
+      {
+        _progressBar->setMaximum( 0 );
+        _progressBar->setFormat( "" );
+      }
+      break;
+    default:
+      if( _progressBar->maximum() != 100 )
+        _progressBar->setMaximum( 100 );
+      _progressBar->setValue( percent );
+      _progressBar->setFormat( "%p%" );
+      break;
+    }
   }
 }

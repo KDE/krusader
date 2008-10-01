@@ -74,6 +74,7 @@ Queue * QueueManager::createQueue(const QString& queueName)
 	Queue *queue = new Queue(queueName);
 	connect( queue, SIGNAL( showQueueDialog() ), _self, SLOT( slotShowQueueDialog() ) );
 	connect( queue, SIGNAL( emptied() ), _self, SLOT( slotQueueEmptied() ) );
+	connect( queue, SIGNAL( percent( Queue *, int ) ), _self, SIGNAL( percent( Queue *, int ) ) );
 	_queues.insert(queue->name(), queue);
 	_current = queue;
 	
