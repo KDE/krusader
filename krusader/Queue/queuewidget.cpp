@@ -1,5 +1,9 @@
 #include "queuewidget.h"
 #include "queue_mgr.h"
+#include <kmessagebox.h>
+#include <klocale.h>
+#include <kmenu.h>
+#include <qcursor.h>
 
 QueueWidget::QueueWidget( QWidget * parent ): KTabWidget( parent )
 {
@@ -63,11 +67,25 @@ void QueueWidget::slotCurrentChanged( Queue * queue )
   setCurrentWidget( queueWidget );
 }
 
-KrQueueListWidget::KrQueueListWidget( Queue * queue, QWidget * parent ) : QListWidget( parent ), 
+class KrQueueListWidgetItem : public QListWidgetItem
+{
+public:
+  KrQueueListWidgetItem( const QString & label_, KIOJobWrapper * job_ ) : 
+    QListWidgetItem( label_ ), _job( job_ )  {}
+
+  KIOJobWrapper * job() { return _job; }
+
+private:
+  QPointer<KIOJobWrapper> _job;
+};
+
+KrQueueListWidget::KrQueueListWidget( Queue * queue, QWidget * parent ) : KrListWidget( parent ), 
                                       _queue( queue )
 {
   connect( queue, SIGNAL( changed() ), this, SLOT( slotChanged() ) );
   connect( queue, SIGNAL( stateChanged() ), this, SIGNAL( stateChanged() ) );
+  connect( this, SIGNAL( itemRightClicked( QListWidgetItem *, const QPoint & ) ),
+           this, SLOT( slotItemRightClicked( QListWidgetItem * ) ) );
   slotChanged();
 }
 
@@ -77,7 +95,36 @@ void KrQueueListWidget::slotChanged()
   if( _queue )
   {
     QList<QString> itdescs = _queue->itemDescriptions();
-    foreach( QString desc, itdescs )
-      addItem( desc );
+    QList<KIOJobWrapper *> items = _queue->items();
+    for( int i=0; i != items.count(); i++ )
+      addItem( new KrQueueListWidgetItem( itdescs[ i ], items[ i ] ) );
+  }
+}
+
+void KrQueueListWidget::slotItemRightClicked( QListWidgetItem * item )
+{
+  if( item )
+  {
+    KrQueueListWidgetItem * kitem = (KrQueueListWidgetItem * )item;
+    if( kitem->job() )
+    {
+      KMenu popup( this );
+      popup.setTitle( i18n("Queue Manager"));
+      QAction * actDelete = popup.addAction( i18n("Delete") );
+      QAction * res = popup.exec( QCursor::pos() );
+
+      if( res == actDelete )
+      {
+        if( kitem->job()->isStarted() )
+        {
+          if( KMessageBox::warningContinueCancel(this,
+            i18n("Deleting this job will abort the pending job. Do you wish to continue?"),
+            i18n("Warning") ) != KMessageBox::Continue )
+            return;
+        }
+        if( kitem->job() )
+          _queue->remove( kitem->job() );
+      }
+    }
   }
 }

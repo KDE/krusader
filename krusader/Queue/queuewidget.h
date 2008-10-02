@@ -3,7 +3,7 @@
 
 #include "queue.h"
 #include <ktabwidget.h>
-#include <qlistwidget.h>
+#include "../GUI/krlistwidget.h"
 #include <qpointer.h>
 
 class KrQueueListWidget;
@@ -28,7 +28,7 @@ private:
 	QMap<QString, KrQueueListWidget*> _queueWidgets;
 };
 
-class KrQueueListWidget : public QListWidget
+class KrQueueListWidget : public KrListWidget
 {
 	Q_OBJECT
 public:
@@ -37,6 +37,7 @@ public:
 
 public slots:
 	void slotChanged();
+	void slotItemRightClicked( QListWidgetItem * );
 	
 signals:
 	void stateChanged();

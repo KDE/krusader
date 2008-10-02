@@ -50,7 +50,8 @@ void Queue::slotJobDestroyed( QObject * obj )
 	if( _jobs.count() > 0 && _jobs[ 0 ] == jw )
 		current = true;
 	_jobs.removeAll( jw );
-	slotPercent( 0, PERCENT_UNUSED );
+	if( current )
+		slotPercent( 0, PERCENT_UNUSED );
 	if( !_suspended && current && _jobs.count() > 0 ) {
 		_jobs[ 0 ]->start();
 		slotPercent( 0, PERCENT_UNKNOWN );
@@ -184,4 +185,21 @@ void Queue::slotPercent( KJob *, unsigned long percent_ )
 {
 	_percent = percent_;
 	emit percent( this, percent_ );
+}
+
+void Queue::remove( KIOJobWrapper * jw )
+{
+	bool current = false;
+	if( _jobs.count() > 0 && _jobs[ 0 ] == jw )
+		current = true;
+	_jobs.removeAll( jw );
+	jw->abort();
+	delete jw;
+	if( current )
+		slotPercent( 0, PERCENT_UNUSED );
+	if( !_suspended && current && _jobs.count() > 0 ) {
+		_jobs[ 0 ]->start();
+		slotPercent( 0, PERCENT_UNKNOWN );
+	}
+	emit changed();
 }

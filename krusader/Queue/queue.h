@@ -32,6 +32,7 @@ public:
 	bool isSuspended() { return _suspended; }
 	QTime scheduleTime();
 	int getPercent() { return _percent; }
+	void remove( KIOJobWrapper * );
 	
 	QList<QString> itemDescriptions();
 	QList<KIOJobWrapper *> items();
