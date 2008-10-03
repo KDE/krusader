@@ -116,12 +116,12 @@ KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") : ki18n("Kr
   aboutData.addAuthor(ki18n("Shie Erlich"),ki18n("Author"), "erlich@users.sourceforge.net");
   aboutData.addAuthor(ki18n("Karai Csaba"), ki18n("Developer"), "ckarai@users.sourceforge.net", 0);
   aboutData.addAuthor(ki18n("Heiner Eichmann"), ki18n("Developer"), "h.eichmann@gmx.de", 0);  
-  aboutData.addAuthor(ki18n("Jonas Baehr"), ki18n("Developer"), "jonas.baehr@web.de", 0);
+  aboutData.addAuthor(ki18n("Jonas Bähr"), ki18n("Developer"), "jonas.baehr@web.de", 0);
   aboutData.addAuthor(ki18n("Václav Juza"), ki18n("Developer"), "vaclavjuza@gmail.com", 0);
   aboutData.addAuthor(ki18n("Dirk Eschler"), ki18n("Webmaster and i18n coordinator"), "deschler@users.sourceforge.net", 0);
   aboutData.addAuthor(ki18n("Frank Schoolmeesters"), ki18n("Documentation and marketing coordinator"), "frank_schoolmeesters@yahoo.com", 0);
   aboutData.addAuthor(ki18n("Richard Holt"), ki18n("Documentation & Proofing"), "richard.holt@gmail.com", 0);
-  aboutData.addAuthor(ki18n("Matej Urbancic"), ki18n(" Marketing & Product Research"), "matej.urban@gmail.com", 0);
+  aboutData.addAuthor(ki18n("Matej Urbancic"), ki18n("Marketing & Product Research"), "matej.urban@gmail.com", 0);
   aboutData.addCredit(ki18n("Václav Juza"), ki18n("QA, bug-hunting, patches and general help"), "vaclavjuza@gmail.com", 0);
   aboutData.addCredit(ki18n("Jiri Palecek"), ki18n("QA, bug-hunting, patches and general help"), "jpalecek@web.de", 0);
   aboutData.addCredit(ki18n("Jiri Klement"),ki18n("Important help in KDE 4 porting"),0,0);
@@ -130,7 +130,7 @@ KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") : ki18n("Kr
   aboutData.addCredit(ki18n("Gábor Lehel"), ki18n("Viewer module for 3rd Hand"), "illissius@gmail.com", 0);
   aboutData.addCredit(ki18n("Mark Eatough"), ki18n("Handbook Proof-Reader"), "markeatough@yahoo.com", 0);
   aboutData.addCredit(ki18n("Jan Halasa"), ki18n("The old Bookmark Module"), "xhalasa@fi.muni.cz", 0);
-  aboutData.addCredit(ki18n("Hans Loeffler"), ki18n("Dir history button"), 0, 0);
+  aboutData.addCredit(ki18n("Hans Löffler"), ki18n("Dir history button"), 0, 0);
   aboutData.addCredit(ki18n("Szombathelyi György"), ki18n("ISO KIO slave"), 0, 0);
   aboutData.addCredit(ki18n("Jan Willem van de Meent (Adios)"), ki18n("Icons for Krusader"), "janwillem@lorentz.leidenuniv.nl", 0);
   aboutData.addCredit(ki18n("Mikolaj Machowski"), ki18n("Usability and QA"), "<mikmach@wp.pl>", 0);
@@ -138,7 +138,7 @@ KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") : ki18n("Kr
   aboutData.addCredit(ki18n("Aurelien Gateau"),ki18n("patch for KViewer"),"aurelien.gateau@free.fr",0);
   aboutData.addCredit(ki18n("Milan Brabec"),ki18n("the first patch ever !"),"mbrabec@volny.cz",0);
   aboutData.addCredit(ki18n("Asim Husanovic"),ki18n("Bosnian translation"),"asim@megatel.ba",0);
-  aboutData.addCredit(ki18n("Doutor Zero"),ki18n("Brazilian Portuguese"),"doutor.zero@gmail.com",0);
+  aboutData.addCredit(ki18n("Doutor Zero"),ki18n("Brazilian Portuguese translation"),"doutor.zero@gmail.com",0);
   aboutData.addCredit(ki18n("Milen Ivanov"),ki18n("Bulgarian translation"),"milen.ivanov@abv.bg",0);
   aboutData.addCredit(ki18n("Quim Perez"),ki18n("Catalan translation"),"noguer@osona.com",0);
   aboutData.addCredit(ki18n("Jinghua Luo"),ki18n("Chinese Simplified translation"),"luojinghua@msn.com",0);
