@@ -71,7 +71,10 @@ class KrQueueListWidgetItem : public QListWidgetItem
 {
 public:
   KrQueueListWidgetItem( const QString & label_, KIOJobWrapper * job_ ) : 
-    QListWidgetItem( label_ ), _job( job_ )  {}
+    QListWidgetItem( label_ ), _job( job_ )
+  {
+    setToolTip( job_->toolTip() );
+  }
 
   KIOJobWrapper * job() { return _job; }
 

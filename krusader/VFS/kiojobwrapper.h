@@ -93,6 +93,8 @@ public:
 	KIOJobWrapperType type()     { return m_type; }
 	QString           typeStr();
 	KUrl              url()      { return m_url; }
+	KUrl::List        urlList()  { return m_urlList; }
+	QString           toolTip();
 	
 	static KIOJobWrapper * stat( KUrl &url );
 	static KIOJobWrapper * directorySize( KUrl &url );

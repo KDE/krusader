@@ -40,6 +40,7 @@
 #include <iostream>
 #include <klocale.h>
 #include "virtualcopyjob.h"
+#include <QTextDocument>
 
 class JobStartEvent : public QEvent {
 public:
@@ -210,4 +211,19 @@ void KIOJobWrapper::resume() {
 void KIOJobWrapper::abort() {
 	if( m_job )
 		m_job->kill();
+}
+
+QString KIOJobWrapper::toolTip() {
+	QString tip = "<qt><div align=\"center\">";
+	tip += "<h3>" + Qt::escape( typeStr() ) + "</h3>";
+	tip += "<table frame=\"box\" border=\"1\"><tbody>";
+	tip += "<tr><td>" + Qt::escape( i18n( "Target" ) ) + "</td><td>" + Qt::escape( url().prettyUrl() ) + "</td></tr>";
+	tip += "<tr><td>" + Qt::escape( i18n( "Source" ) ) + "</td><td>";
+	foreach( KUrl urlIn, urlList() ) {
+		tip += "<li>" + Qt::escape( urlIn.prettyUrl() ) + "</li>";
+	}
+	tip += "</td></tr>";
+	tip += "</tbody></table>";
+	tip += "</div></qt>";
+	return tip;
 }
