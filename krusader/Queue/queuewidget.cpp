@@ -18,6 +18,7 @@ QueueWidget::QueueWidget( QWidget * parent ): KTabWidget( parent )
   connect( QueueManager::instance(), SIGNAL( queueInserted( Queue * ) ), this, SLOT( slotQueueAdded( Queue * ) ) );
   connect( QueueManager::instance(), SIGNAL( queueDeleted( Queue * ) ), this, SLOT( slotQueueDeleted( Queue * ) ) );
   connect( QueueManager::instance(), SIGNAL( currentChanged( Queue * ) ), this, SLOT( slotCurrentChanged( Queue * ) ) );
+  connect( this, SIGNAL( currentChanged ( int ) ), this, SLOT( slotCurrentChanged ( int ) ) );
 
   Queue * current = QueueManager::currentQueue();
   if( current )
@@ -25,8 +26,6 @@ QueueWidget::QueueWidget( QWidget * parent ): KTabWidget( parent )
     QString name = current->name();
     setCurrentWidget( _queueWidgets[ name ] );
   }
-
-  connect( this, SIGNAL( currentChanged ( int ) ), this, SLOT( slotCurrentChanged ( int ) ) );
 }
 
 

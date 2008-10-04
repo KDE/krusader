@@ -43,6 +43,7 @@ protected:
 	static QMap<QString, Queue*> _queues;
 	static Queue *               _current;
 	static QueueManager *        _self;
+	static int                   _nextId;
 };
 
 #endif // QUEUE_MGR_H

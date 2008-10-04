@@ -440,11 +440,11 @@ Krusader::Krusader() : KParts::MainWindow(0,
 }
 
 Krusader::~Krusader() {
+   delete queueManager;
    if( !isExiting )   // save the settings if it was not saved (SIGTERM)
       saveSettings();
 
    delete mainView;
-   delete queueManager;
    mainView = 0;
    App = 0;
 }
