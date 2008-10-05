@@ -69,6 +69,7 @@ protected:
   virtual void paintEvent ( QPaintEvent * event );
   virtual void mousePressEvent(QMouseEvent *me);
   virtual void mouseMoveEvent(QMouseEvent *me);
+  virtual void keyPressEvent(QKeyEvent *ke);
 
   void         saveSettings();
 

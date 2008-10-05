@@ -117,6 +117,8 @@ public:
 		grid_time->addWidget( _timeEdit, 1, 0 );
 		mainWidget->setLayout( grid_time );
 		setMainWidget( mainWidget );
+		
+		_timeEdit->setFocus();
 	}
 	QTime getStartTime() { return _timeEdit->time(); }
 
@@ -174,13 +176,13 @@ QueueDialog::QueueDialog() : QDialog( 0, Qt::FramelessWindowHint ), _autoHide( t
 
   _newTabButton = new QToolButton( this );
   _newTabButton->setIcon( KIcon( "tab-new" ) );
-  _newTabButton->setToolTip( i18n( "Create a new queue" ) );
+  _newTabButton->setToolTip( i18n( "Create a new queue (Ctrl+T)" ) );
   connect( _newTabButton, SIGNAL( clicked() ), this, SLOT( slotNewTab() ) );
   hbox2->addWidget( _newTabButton );
 
   _closeTabButton = new QToolButton( this );
   _closeTabButton->setIcon( KIcon( "tab-close" ) );
-  _closeTabButton->setToolTip( i18n( "Remove the current queue" ) );
+  _closeTabButton->setToolTip( i18n( "Remove the current queue (Ctrl+W)" ) );
   connect( _closeTabButton, SIGNAL( clicked() ), this, SLOT( slotDeleteCurrentTab() ) );
   hbox2->addWidget( _closeTabButton );
 
@@ -199,7 +201,7 @@ QueueDialog::QueueDialog() : QDialog( 0, Qt::FramelessWindowHint ), _autoHide( t
 
   _scheduleButton = new QToolButton( this );
   _scheduleButton->setIcon( KIcon( "chronometer" ) );
-  _scheduleButton->setToolTip( i18n( "Schedule queue starting" ) );
+  _scheduleButton->setToolTip( i18n( "Schedule queue starting (Ctrl+S)" ) );
   connect( _scheduleButton, SIGNAL( clicked() ), this, SLOT( slotScheduleClicked() ) );
   hbox2->addWidget( _scheduleButton );
 
@@ -241,6 +243,7 @@ QueueDialog::QueueDialog() : QDialog( 0, Qt::FramelessWindowHint ), _autoHide( t
   connect( QueueManager::instance(), SIGNAL( percent( Queue *, int ) ), this, SLOT( slotPercentChanged( Queue *, int ) ) );
 
   show();
+  _queueWidget->currentWidget()->setFocus();
 
   _queueDialog = this;
 }
@@ -258,8 +261,10 @@ void QueueDialog::showDialog( bool autoHide )
     _queueDialog = new QueueDialog();
   else {
     _queueDialog->show();
-    _queueDialog->raise();
-    _queueDialog->activateWindow();
+    if( !autoHide ) {
+      _queueDialog->raise();
+      _queueDialog->activateWindow();
+    }
   }
   if( !autoHide )
     _queueDialog->_autoHide = false;
@@ -335,7 +340,7 @@ void QueueDialog::slotUpdateToolbar()
   {
     if( currentQueue->isSuspended() ) {
       _pauseButton->setIcon( KIcon( "media-playback-start" ) );
-      _pauseButton->setToolTip( i18n( "Start processing the queue" ) );
+      _pauseButton->setToolTip( i18n( "Start processing the queue (Ctrl+P)" ) );
       QTime time = currentQueue->scheduleTime();
       if( time.isNull() )
         _statusLabel->setText( i18n( "The queue is paused." ) );
@@ -345,7 +350,7 @@ void QueueDialog::slotUpdateToolbar()
     } else {
       _statusLabel->setText( i18n( "The queue is running." ) );
       _pauseButton->setIcon( KIcon( "media-playback-pause" ) );
-      _pauseButton->setToolTip( i18n( "Pause processing the queue" ) );
+      _pauseButton->setToolTip( i18n( "Pause processing the queue (Ctrl+P)" ) );
     }
 
     _closeTabButton->setEnabled( _queueWidget->count() > 1 );
@@ -436,4 +441,79 @@ void QueueDialog::slotPercentChanged( Queue * queue, int percent )
       break;
     }
   }
+}
+
+void QueueDialog::keyPressEvent(QKeyEvent *ke)
+{
+  switch( ke->key() )
+  {
+  case Qt::Key_T :
+    {
+      if ( ke->modifiers() == Qt::ControlModifier )
+      {
+        slotNewTab();
+        return;
+      }
+    }
+    break;
+  case Qt::Key_W :
+    {
+      if ( ke->modifiers() == Qt::ControlModifier )
+      {
+        slotDeleteCurrentTab();
+        return;
+      }
+    }
+    break;
+  case Qt::Key_S :
+    {
+      if ( ke->modifiers() == Qt::ControlModifier )
+      {
+        slotScheduleClicked();
+        return;
+      }
+    }
+    break;
+  case Qt::Key_Right :
+    {
+      if ( ke->modifiers() == Qt::ShiftModifier )
+      {
+        int curr = _queueWidget->currentIndex();
+        curr = ( curr + 1 ) % _queueWidget->count();
+        _queueWidget->setCurrentIndex( curr );
+        return;
+      }
+    }
+    break;
+  case Qt::Key_Left :
+    {
+      if ( ke->modifiers() == Qt::ShiftModifier )
+      {
+        int curr = _queueWidget->currentIndex();
+        curr = ( curr + _queueWidget->count() - 1 ) % _queueWidget->count();
+        _queueWidget->setCurrentIndex( curr );
+        return;
+      }
+    }
+    break;
+  case Qt::Key_P :
+    {
+      if ( ke->modifiers() == Qt::ControlModifier )
+      {
+        slotPauseClicked();
+        return;
+      }
+    }
+    break;
+  case Qt::Key_Delete :
+    {
+      if( ke->modifiers() == 0 )
+      {
+        _queueWidget->deleteCurrent();
+        return;
+      }
+    }
+    break;
+  }
+  QDialog::keyPressEvent( ke );
 }

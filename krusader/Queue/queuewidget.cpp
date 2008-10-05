@@ -66,6 +66,20 @@ void QueueWidget::slotCurrentChanged( Queue * queue )
   setCurrentWidget( queueWidget );
 }
 
+void QueueWidget::deleteCurrent()
+{
+  QWidget * current = currentWidget();
+  if( current )
+  {
+    KrQueueListWidget * lw = (KrQueueListWidget *)current;
+    QListWidgetItem * lvitem = lw->currentItem();
+    if( lvitem == 0 )
+      lvitem = lw->item( 0 );
+    if( lvitem )
+      lw->deleteItem( lvitem );
+  }
+}
+
 class KrQueueListWidgetItem : public QListWidgetItem
 {
 public:
@@ -116,17 +130,21 @@ void KrQueueListWidget::slotItemRightClicked( QListWidgetItem * item )
       QAction * res = popup.exec( QCursor::pos() );
 
       if( res == actDelete )
-      {
-        if( kitem->job()->isStarted() )
-        {
-          if( KMessageBox::warningContinueCancel(this,
-            i18n("Deleting this job will abort the pending job. Do you wish to continue?"),
-            i18n("Warning") ) != KMessageBox::Continue )
-            return;
-        }
-        if( kitem->job() )
-          _queue->remove( kitem->job() );
-      }
+        deleteItem( kitem );
     }
   }
+}
+
+void KrQueueListWidget::deleteItem( QListWidgetItem * item )
+{
+  KrQueueListWidgetItem * kitem = (KrQueueListWidgetItem * )item;
+  if( kitem->job() && kitem->job()->isStarted() )
+  {
+    if( KMessageBox::warningContinueCancel(this,
+       i18n("Deleting this job will abort the pending job. Do you wish to continue?"),
+       i18n("Warning") ) != KMessageBox::Continue )
+       return;
+  }
+  if( kitem->job() )
+    _queue->remove( kitem->job() );
 }

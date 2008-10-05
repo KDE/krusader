@@ -15,6 +15,8 @@ public:
 	QueueWidget( QWidget * parent = 0 );
 	~QueueWidget();
 	
+	void deleteCurrent();
+	
 protected slots:
 	void slotQueueAdded( Queue * );
 	void slotQueueDeleted( Queue * );
@@ -34,6 +36,7 @@ class KrQueueListWidget : public KrListWidget
 public:
 	KrQueueListWidget( Queue * queue, QWidget * parent );
 	Queue * queue() { return _queue; }
+	void deleteItem( QListWidgetItem * item );
 
 public slots:
 	void slotChanged();
