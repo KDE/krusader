@@ -71,6 +71,12 @@ normal_vfs::normal_vfs(QObject* panel):vfs(panel), watcher(0) {
 
 bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
 	QString path = origin.path(KUrl::RemoveTrailingSlash);
+#ifdef Q_WS_WIN
+	if(! path.contains("/"))
+	{   //change C: to C:/
+		path = path + QString( "/" );
+	}
+#endif
 	
 	// set the writable attribute to true, if that's not the case - the KIO job
 	// will give the warnings and errors
@@ -81,7 +87,8 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
 
 	// set the origin...
 	vfs_origin = origin;
-	vfs_origin.adjustPath(KUrl::RemoveTrailingSlash);
+	vfs_origin.setPath(path);
+	//vfs_origin.adjustPath(KUrl::RemoveTrailingSlash);
 	vfs_origin.setProtocol("file"); // do not remove !
 	vfs_origin.cleanPath();
 	
