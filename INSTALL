@@ -227,6 +227,11 @@ All feedback is welcome!
     * kdebase
     * ... (TODO: check if this list is complete)
 
+- In order to have the icon in the krusader executable, download
+  png2ico (from http://winterdrache.de/freeware/png2ico/) and put
+  png2ico.exe to c:\kde4\bin (If you skip this step, krusader will
+  compile fine it will only miss the application icon )    
+
 - Create the source directory for krusader and checked out svn
   (you can use TortoiseSVN for that http://tortoisesvn.net/)
   In this example, c:/kde4/src/krusader_kde4 was used.
@@ -248,20 +253,24 @@ All feedback is welcome!
   it is necessary to replace it manually to c:/kde4.
 
 - Run cmake in the build directory with the following parameters:
-  c:\kde4\bin\cmake.exe -G "MinGW Makefiles" c:/kde4/src/krusader_kde4 -DCMAKE_INSTALL_PREFIX=c:/kde4 -DCMAKE_INCLUDE_PATH=c:/kde4/include -DCMAKE_LIBRARY_PATH=c:/kde4/lib -DKDEWIN_DIR:PATH=c:/kde4 -DCMAKE_BUILD_TYPE=debugful
+  c:\kde4\bin\cmake.exe -G "MinGW Makefiles" c:/kde4/src/krusader_kde4 -DCMAKE_INSTALL_PREFIX=c:/kde4 -DCMAKE_INCLUDE_PATH=c:/kde4/include -DCMAKE_LIBRARY_PATH=c:/kde4/lib -DKDEWIN_DIR:PATH=c:/kde4 -DCMAKE_BUILD_TYPE=debugfull -DCMAKE_PREFIX_PATH=c:/kde4;c:/MinGW
 
+  If you want to use eclipse IDE, you may want to run instead:
+  c:\kde4\bin\cmake.exe -G "Eclipse CDT4 - MinGW Makefiles" c:/krusader/src/krusader_kde4 -DCMAKE_INSTALL_PREFIX=c:/kde4 -DCMAKE_INCLUDE_PATH=c:/kde4/include -DCMAKE_LIBRARY_PATH=c:/kde4/lib -DKDEWIN_DIR:PATH=c:/kde4 -DCMAKE_BUILD_TYPE=debugfull -DCMAKE_PREFIX_PATH=c:/kde4;c:/MinGW
+  and in Eclipse with C++ development tools 4 rigth click in the Project Explorer, choose Import...,
+  select "General->Existing projects into workspace" and choose the c:/kde4/build/krusader_kde4 directory.
+  
 - Run make from mingw:
   C:\MinGW\bin\mingw32-make.exe install
 
-- Run krusader.exe and enjoy!
+- Run krusader.exe (or choose it from the start menu) and enjoy!
 
-- Known severe run-time problems on windows at the moment (19 Jun 2008):
-  + Konfigurator crashes (launched even in the first run)
-  + Slow start before the splashscreen appears
-  + If C: is put to the location bar, you get incorrect content of panel.
-    Using file:///C:/ is more reliable
-  + Not possible to navigate inside ftp
-  + ...
+- Known problems on windows at the moment (22 Oct 2008):
+  + Archives don't work
+  + The media button does not work (seems to be a problem in KDEwin libraries, it used to work)
+  + Most external tools don't work
+  + No support of "My Computer" yet (It is planned to be supported by kdelibs in the future)
+  + Many useful kio slaves missing (KDE issue)
 
 
 FYI
