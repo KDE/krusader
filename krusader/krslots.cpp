@@ -133,6 +133,14 @@ void KRslots::sendFileByEmail(const KUrl::List &urls) {
     }
     param+="\',subject=\'" + subject + "\'";
     proc << mailProg << "--compose" << param;
+  } else if ( KUrl( mailProg ).fileName() == "evolution") {
+    QString param="mailto:?cc=&subject=" + subject + "&attach=";
+    separator = "";
+    foreach( KUrl url2, urls ){
+      param += separator + url2.prettyUrl();
+      separator = "&attach=";
+    }
+    proc << mailProg << param + "";
   }
 
   if (!proc.startDetached())
