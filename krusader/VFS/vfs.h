@@ -97,6 +97,8 @@ public:
 	inline VFS_TYPE vfs_getType()        { return vfs_type;            }
 	/// Returns true if vfs is busy
 	inline bool vfs_isBusy()             { return vfs_busy;            }
+	/// Returns true if hidden files has to be shown
+	       bool vfs_showHidden();
 	/// Return the first file in the VFS and set the internal iterator to the beginning of the list.
 	inline vfile* vfs_getFirstFile(){ vfileIterator = vfs_filesP->begin(); return (vfileIterator == vfs_filesP->end() ? 0 : *vfileIterator ); }
 	/// Return the the next file in the list and advance the iterator.

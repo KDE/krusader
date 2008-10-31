@@ -365,4 +365,9 @@ QList<vfile*> vfs::vfs_search(const KRQuery& filter) {
 	return result;
 }
 
+bool vfs::vfs_showHidden() {
+	KConfigGroup gl( krConfig, "Look&Feel");
+	return gl.readEntry("Show Hidden",_ShowHidden);
+}
+
 #include "vfs.moc"

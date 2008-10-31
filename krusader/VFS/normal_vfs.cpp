@@ -388,6 +388,9 @@ void normal_vfs::vfs_slotDirty(const QString& path){
 	KUrl url = KUrl(path);
 	QString name = url.fileName();
 	
+	if ( name.left(1) == "." && !vfs_showHidden() )
+		return;
+	
 	// do we have it already ?
 	if( !vfs_search(name ) ) return vfs_slotCreated(path);
 	
@@ -407,9 +410,12 @@ void normal_vfs::vfs_slotCreated(const QString& path){
 	if( burstRefresh( path ) )
 		return;        
 	
-	
 	KUrl url = KUrl(path);
 	QString name = url.fileName();	
+	
+	if ( name.left(1) == "." && !vfs_showHidden() )
+		return;
+	
 	// if it's in the CVS - it's an update not new file
 	if( vfs_search(name) )
 		return vfs_slotDirty(path);
