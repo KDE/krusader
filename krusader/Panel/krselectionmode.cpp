@@ -8,12 +8,15 @@ static KrSelectionMode *__currentSelectionMode = 0; // uninitiated, at first
 KonqSelectionMode konqSelectionMode;
 OriginalSelectionMode originalSelectionMode;
 TCSelectionMode tcSelectionMode;
+ErgonomicSelectionMode ergonomicSelectionMode;
 UserSelectionMode userSelectionMode;
 
-KrSelectionMode* KrSelectionMode::getSelectionHandlerForMode(int mode)
+KrSelectionMode* KrSelectionMode::getSelectionHandlerForMode(const QString &mode)
 {
 	KrSelectionMode *res = NULL;
-	switch (mode) {
+        bool isNum;
+        int modenum = mode.toInt(&isNum);
+	switch ( modenum ) {
 		case 0:
 			res = &originalSelectionMode;
 			break;
@@ -22,6 +25,12 @@ KrSelectionMode* KrSelectionMode::getSelectionHandlerForMode(int mode)
 			break;
 		case 2:
 			res = &tcSelectionMode;
+			break;
+		case 3:
+			 //costom mode
+			break;
+		case 4:
+			res = &ergonomicSelectionMode;
 			break;
 		default:
 			break;
@@ -36,7 +45,7 @@ KrSelectionMode* KrSelectionMode::getSelectionHandler()
 	} else { // nothing yet, set the correct one
 		KConfigGroup group( krConfig, "Look&Feel" );
 		QString mode = group.readEntry("Mouse Selection", QString("") );
-		__currentSelectionMode = getSelectionHandlerForMode( mode.toInt() );
+		__currentSelectionMode = getSelectionHandlerForMode( mode );
 		if ( __currentSelectionMode == NULL )
 		{
 			__currentSelectionMode = &userSelectionMode;

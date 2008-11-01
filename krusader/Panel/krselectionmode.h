@@ -1,6 +1,8 @@
 #ifndef KR_SELECTION_MODE_H
 #define KR_SELECTION_MODE_H
 
+#include <QString>
+
 /**
 	Every selection mode inherits this class, and has to implement init().
 	Usage:
@@ -13,7 +15,7 @@
 */
 class KrSelectionMode {
 public:
-   static KrSelectionMode * getSelectionHandlerForMode(int mode);
+   static KrSelectionMode * getSelectionHandlerForMode(const QString &mode);
    static KrSelectionMode * getSelectionHandler();
 	static void resetSelectionHandler();
 	
@@ -87,6 +89,23 @@ public:
 		_shiftCtrlRightButtonSelects = false;
 		_shiftCtrlLeftButtonSelects = true;		
 		_showContextMenu = 500;
+	}
+};
+
+class ErgonomicSelectionMode : public KrSelectionMode {
+public:
+	void init() {
+		_useQTSelection = false;
+		_spaceMovesDown = false;
+		_insertMovesDown = true;
+		_spaceCalculatesDiskSpace = true;
+		_rightButtonSelects = false;
+		_leftButtonSelects = false;
+		_rightButtonPreservesSelection = true;
+		_leftButtonPreservesSelection = true;
+		_shiftCtrlRightButtonSelects = false;
+		_shiftCtrlLeftButtonSelects = true;		
+		_showContextMenu = -1;
 	}
 };
 

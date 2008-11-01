@@ -303,16 +303,17 @@ void KgLookFeel::setupMouseModeTab() {
     	{ i18n( "Krusader Mode" ), "0", i18n( "Both keys allow selecting files. To select more than one file, hold the Ctrl key and click the left mouse button. Right-click menu is invoked using a short click on the right mouse button." ) },
      	{ i18n( "Konqueror Mode" ), "1", i18n( "Pressing the left mouse button selects files - you can click and select multiple files. Right-click menu is invoked using a short click on the right mouse button." ) },
      	{ i18n( "Total-Commander Mode" ), "2", i18n( "The left mouse button does not select, but sets the current file without affecting the current selection. The right mouse button selects multiple files and the right-click menu is invoked by pressing and holding the right mouse button." ) },
+    	{ i18n( "Ergonomic Mode" ), "4", i18n( "The left mouse button does not select, but sets the current file without affecting the current selection. The right mouse button invokes the context-menu. You can select with Ctrl key and the left button." ) },
      	{ i18n( "Custom Selection Mode" ), "3", i18n( "Design your own selection mode!" ) }
      };
-  mouseRadio = createRadioButtonGroup( "Look&Feel", "Mouse Selection", "0", 2, 2, mouseSelection, 4, mouseGeneralGroup, true, PAGE_MOUSE );
+  mouseRadio = createRadioButtonGroup( "Look&Feel", "Mouse Selection", "0", 1, 5, mouseSelection, 5, mouseGeneralGroup, true, PAGE_MOUSE );
   mouseRadio->layout()->setContentsMargins( 0, 0, 0, 0 );
   mouseGeneralGrid->addWidget( mouseRadio, 0, 0 );
 
   for( int i = 0; i != mouseRadio->count(); i++ )
     connect( mouseRadio->find( i ), SIGNAL( clicked() ), SLOT( slotSelectionModeChanged() ) );
 
-  mouseLayout->addWidget( mouseGeneralGroup, 0, 0, 1, 2 );
+  mouseLayout->addWidget( mouseGeneralGroup, 0, 0 );
 
   // -------------- Details -----------------
   QGroupBox *mouseDetailGroup = createFrame( i18n( "Details" ), tab_mouse );
@@ -377,7 +378,7 @@ void KgLookFeel::setupMouseModeTab() {
   for ( int i = 0; i < mouseCheckboxes->count(); i++ )
      connect( mouseCheckboxes->find( i ), SIGNAL( clicked() ), SLOT( slotMouseCheckBoxChanged() ) );
 
-  mouseLayout->addWidget( mouseDetailGroup, 1,0 );
+  mouseLayout->addWidget( mouseDetailGroup, 0, 1, 2, 1 );
 
   // Disable the details-button if not in custom-mode
   slotSelectionModeChanged();
@@ -390,7 +391,7 @@ void KgLookFeel::setupMouseModeTab() {
   mousePreviewGrid->addWidget( mousePreview, 0 ,0 );
   mousePreviewGroup->setEnabled(false); // TODO re-enable once the preview is implemented
   // ------------------------------------------
-  mouseLayout->addWidget( mousePreviewGroup, 1,1 );
+  mouseLayout->addWidget( mousePreviewGroup, 1, 0  );
 }
 
 void KgLookFeel::slotDisable()
@@ -412,7 +413,7 @@ void KgLookFeel::slotEnablePanelToolbar()
 
 void KgLookFeel::slotSelectionModeChanged() {
   KrSelectionMode *selectionMode =
-      KrSelectionMode::getSelectionHandlerForMode( mouseRadio->selectedIndex() );
+      KrSelectionMode::getSelectionHandlerForMode( mouseRadio->selectedValue() );
   if ( selectionMode == NULL ) //User mode
     return;
   selectionMode->init();

@@ -183,7 +183,7 @@ public:
   void            selectButton( QString value );
 
   int             count() { return radioButtons.count(); }
-  int             selectedIndex();
+  QString         selectedValue();
   QRadioButton*   find( int index );
   QRadioButton*   find( QString name );
 

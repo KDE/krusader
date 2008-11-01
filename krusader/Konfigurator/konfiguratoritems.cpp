@@ -278,7 +278,7 @@ void KonfiguratorRadioButtons::loadInitialValue()
   ext->setChanged( false );
 }
 
-int KonfiguratorRadioButtons::selectedIndex()
+QString KonfiguratorRadioButtons::selectedValue()
 {
   int cnt = 0;
 
@@ -289,20 +289,20 @@ int KonfiguratorRadioButtons::selectedIndex()
 
     if( btn->isChecked() )
     {
-      return cnt;
+      return radioValues[ cnt ];
     }
 
     cnt++;
   }
-  return -1;
+  return QString();
 }
 
 void KonfiguratorRadioButtons::slotApply(QObject *,QString cls, QString name)
 {
-  int cnt = selectedIndex();
+  QString value = selectedValue();
 
-  if (cnt >= 0)
-    KConfigGroup( krConfig, cls ).writeEntry( name, radioValues[ cnt ] );
+  if (!value.isEmpty())
+    KConfigGroup( krConfig, cls ).writeEntry( name, value );
 }
 
 void KonfiguratorRadioButtons::slotSetDefaults(QObject *)
