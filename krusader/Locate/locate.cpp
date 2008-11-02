@@ -30,6 +30,7 @@
 
 #include "locate.h"
 #include "../krusader.h"
+#include "../krslots.h"
 #include "../krusaderview.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
@@ -72,6 +73,7 @@
 #define FIND_NEXT_ID                93
 #define FIND_PREV_ID                94
 #define COPY_SELECTED_TO_CLIPBOARD  95
+#define COMPARE_ID                  96
 //////////////////////////////////////////////////////////
 
 class LocateListView : public KrTreeWidget
@@ -391,6 +393,9 @@ void LocateDlg::slotRightClick(QTreeWidgetItem *item, const QPoint &pos)
 
   QAction * actView = popup.addAction(i18n("View (F3)") );
   QAction * actEdit = popup.addAction(i18n("Edit (F4)") );
+  QAction * actComp = popup.addAction(i18n("Compare by content (F10)"));
+  if( resultList->selectedItems().count() != 2 )
+    actComp->setEnabled( false );
   popup.addSeparator();
 
   QAction * actFind = popup.addAction(i18n("Find (Ctrl+F)") );
@@ -417,6 +422,8 @@ void LocateDlg::slotRightClick(QTreeWidgetItem *item, const QPoint &pos)
     ret = FIND_PREV_ID;
   else if( result == actClip )
     ret = COPY_SELECTED_TO_CLIPBOARD;
+  else if( result == actComp )
+    ret = COMPARE_ID;
 
   if( ret != - 1 )
     operate( item, ret );
@@ -466,6 +473,9 @@ void LocateDlg::keyPressEvent( QKeyEvent *e )
     if( resultList->currentItem() )
       operate( resultList->currentItem(), EDIT_ID );
     break;
+  case Qt::Key_F10 :
+    operate( 0, COMPARE_ID );
+    break;
   case Qt::Key_N :
     if ( e->modifiers() == Qt::ControlModifier )
       operate( resultList->currentItem(), FIND_NEXT_ID );
@@ -496,6 +506,18 @@ void LocateDlg::operate( QTreeWidgetItem *item, int task )
     break;
   case EDIT_ID:
     KrViewer::edit( name, this ); // view the file
+    break;
+  case COMPARE_ID:
+    {
+      QList<QTreeWidgetItem *> list = resultList->selectedItems();
+      if( list.count() != 2 )
+        break;
+
+      KUrl url1 = KUrl( list[ 0 ]->text( 0 ) );
+      KUrl url2 = KUrl( list[ 1 ]->text( 0 ) );
+
+      SLOTS->compareContent( url1, url2 );
+    }
     break;
   case FIND_ID:
     {

@@ -29,6 +29,7 @@
  ***************************************************************************/
 
 #include "../krusader.h"
+#include "../krslots.h"
 #include "../defaults.h"
 #include "../panelmanager.h"
 #include "../VFS/vfs.h"
@@ -555,6 +556,11 @@ void KrSearchDialog::keyPressEvent(QKeyEvent *e)
       viewCurrent();
       return;
     }
+    else if( e->key() == Qt::Key_F10 )
+    {
+      compareByContent();
+      return;
+    }
     else if( Krusader::actCopy->shortcut().contains( QKeySequence( e->key() | e->modifiers() ) ) )
     {
       copyToClipBoard();
@@ -589,13 +595,25 @@ void KrSearchDialog::viewCurrent()
   }
 }
 
+void KrSearchDialog::compareByContent()
+{
+  QList<QTreeWidgetItem *> list = resultsList->selectedItems();
+  if( list.count() != 2 )
+    return;
+
+  QString name1 = list[ 0 ]->text(1);
+  name1 += (name1.endsWith( "/" ) ? list[ 0 ]->text(0) : "/" + list[ 0 ]->text(0) );
+  KUrl url1 = KUrl( name1 );
+
+  QString name2 = list[ 1 ]->text(1);
+  name2 += (name2.endsWith( "/" ) ? list[ 1 ]->text(0) : "/" + list[ 1 ]->text(0) );
+  KUrl url2 = KUrl( name2 );
+
+  SLOTS->compareContent( url1, url2 );
+}
+
 void KrSearchDialog::rightClickMenu( QTreeWidgetItem * item, const QPoint &pos )
 {
-  // these are the values that will exist in the menu
-  #define EDIT_FILE_ID                110
-  #define VIEW_FILE_ID                111
-  #define COPY_SELECTED_TO_CLIPBOARD  112
-  //////////////////////////////////////////////////////////
   if (!item)
     return;
 
@@ -605,6 +623,9 @@ void KrSearchDialog::rightClickMenu( QTreeWidgetItem * item, const QPoint &pos )
 
   QAction *actView = popup.addAction(i18n("View File (F3)"));
   QAction *actEdit = popup.addAction(i18n("Edit File (F4)"));
+  QAction *actComp = popup.addAction(i18n("Compare by content (F10)"));
+  if( resultsList->selectedItems().count() != 2 )
+    actComp->setEnabled( false );
   QAction *actClip = popup.addAction(i18n("Copy selected to clipboard"));
 
   QAction *result=popup.exec( pos );
@@ -616,6 +637,8 @@ void KrSearchDialog::rightClickMenu( QTreeWidgetItem * item, const QPoint &pos )
     editCurrent();
   else if( result == actClip )
     copyToClipBoard();
+  else if( result == actComp )
+    compareByContent();
 }
 
 void KrSearchDialog::feedToListBox()

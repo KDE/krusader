@@ -90,6 +90,7 @@ private:
   bool gui2query();
   void editCurrent();
   void viewCurrent();
+  void compareByContent();
 
 private:
   ProfileManager *profileManager;
