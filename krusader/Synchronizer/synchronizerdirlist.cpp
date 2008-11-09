@@ -64,17 +64,22 @@ SynchronizerDirList::~SynchronizerDirList() {
 }
 
 vfile * SynchronizerDirList::search( const QString &name, bool ignoreCase ) {
-  if( !ignoreCase )
+  if( !ignoreCase ) {
+    if( !contains( name ) )
+      return 0;
     return (*this)[ name ];
+  }
 
-  vfile *item = first();
+  QHashIterator<QString, vfile *> iter( *this );
+  iter.toFront();
+
   QString file = name.toLower();
 
-  while( item )
+  while( iter.hasNext() )
   {
+    vfile * item = iter.next().value();
     if( file == item->vfile_getName().toLower() )
       return item;
-    item = next();
   }
   return 0;
 }
