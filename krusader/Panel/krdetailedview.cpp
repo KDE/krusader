@@ -154,9 +154,9 @@ void KrDetailedView::setup() {
 	newColumn( KrDetailedViewProperties::Name );  // we always have a name
    setColumnWidthMode( COLUMN(Name), Q3ListView::Manual );
    if ( group.readEntry( "Ext Column", _ExtColumn ) ) {
-      newColumn( KrDetailedViewProperties::Extention );
-      setColumnWidthMode( COLUMN(Extention), Q3ListView::Manual );
-      setColumnWidth( COLUMN(Extention), QFontMetrics( font() ).width( "tar.bz2" ) );
+      newColumn( KrDetailedViewProperties::Extension );
+      setColumnWidthMode( COLUMN(Extension), Q3ListView::Manual );
+      setColumnWidth( COLUMN(Extension), QFontMetrics( font() ).width( "tar.bz2" ) );
    }
    if ( group.readEntry( "Mime Column", _MimeColumn ) ) {
       newColumn( KrDetailedViewProperties::Mime );
@@ -414,7 +414,7 @@ void KrDetailedView::setSortMode( KrViewProperties::SortSpec mode ) {
       cl = COLUMN( Name );
    else
 	if ( mode & KrViewProperties::Ext )
-      cl = COLUMN( Extention );
+      cl = COLUMN( Extension );
 	else
       if ( mode & KrViewProperties::Size )
          cl = COLUMN( Size );
@@ -873,9 +873,9 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
 void KrDetailedView::rename( Q3ListViewItem * item, int c ) {
    // do we have an EXT column? if so, handle differently:
    // copy the contents of the EXT column over to the name
-   if ( COLUMN( Extention ) != -1 ) {
+   if ( COLUMN( Extension ) != -1 ) {
       item->setText( COLUMN( Name ), static_cast<KrDetailedViewItem*>( item ) ->name() );
-      item->setText( COLUMN( Extention ), QString() );
+      item->setText( COLUMN( Extension ), QString() );
       repaintItem( item );
    }
 
@@ -939,7 +939,7 @@ void KrDetailedView::inplaceRenameFinished( Q3ListViewItem * it, int ) {
       return;
    }
    
-   if( COLUMN( Extention ) != -1 && !currentlyRenamedItem )
+   if( COLUMN( Extension ) != -1 && !currentlyRenamedItem )
      return; /* does the event filter restored the original state? */
    
    // check if the item was indeed renamed
@@ -951,16 +951,16 @@ void KrDetailedView::inplaceRenameFinished( Q3ListViewItem * it, int ) {
    // restore the view always! if the file was indeed renamed, we'll get a signal from the vfs about
    // it, and update the view when needed
 #if 0
-   if ( COLUMN( Extention ) != -1 && restoreView ) { // nothing happened, restore the view (if needed)
+   if ( COLUMN( Extension ) != -1 && restoreView ) { // nothing happened, restore the view (if needed)
 #endif
       
       QString ext, name = static_cast<KrDetailedViewItem*>( it ) ->name();
-      if ( !static_cast<KrDetailedViewItem*>( it ) ->VF->vfile_isDir() && COLUMN( Extention ) != -1 ) {
+      if ( !static_cast<KrDetailedViewItem*>( it ) ->VF->vfile_isDir() && COLUMN( Extension ) != -1 ) {
 		ext = static_cast<KrDetailedViewItem*>( it ) ->extension();
 		name = static_cast<KrDetailedViewItem*>( it ) ->name( false );
       }
       it->setText( COLUMN( Name ), name );
-      it->setText( COLUMN( Extention ), ext );
+      it->setText( COLUMN( Extension ), ext );
       repaintItem( it );
 #if 0
    }
@@ -1034,7 +1034,7 @@ bool KrDetailedView::eventFilter( QObject * watched, QEvent * e )
       for( Q3ListViewItem *it = firstChild(); it; it = it->nextSibling() )
         if( it == currentlyRenamedItem )
         {
-          if ( it->text( COLUMN( Name ) ) == dynamic_cast<KrDetailedViewItem*>( it ) ->name()  && COLUMN( Extention ) != -1 ) 
+          if ( it->text( COLUMN( Name ) ) == dynamic_cast<KrDetailedViewItem*>( it ) ->name()  && COLUMN( Extension ) != -1 )
             inplaceRenameFinished( it, COLUMN( Name ) );
           break;
         }
@@ -1113,7 +1113,7 @@ void KrDetailedView::selectColumns()
   
   bool refresh = false;
   
-  bool hasExtention = COLUMN( Extention ) != -1;
+  bool hasExtension = COLUMN( Extension ) != -1;
   bool hasMime      = COLUMN( Mime ) != -1;
   bool hasSize      = COLUMN( Size ) != -1;
   bool hasDate      = COLUMN( DateTime ) != -1;
@@ -1123,9 +1123,9 @@ void KrDetailedView::selectColumns()
   bool hasGroup     = COLUMN( Group ) != -1;
   
   QAction *extAct = popup.addAction( i18n( "Ext" ) );
-  extAct->setData( QVariant( COLUMN_POPUP_IDS + KrDetailedViewProperties::Extention ) );
+  extAct->setData( QVariant( COLUMN_POPUP_IDS + KrDetailedViewProperties::Extension ) );
   extAct->setCheckable( true );
-  extAct->setChecked( hasExtention );
+  extAct->setChecked( hasExtension );
 
   QAction *typeAct = popup.addAction( i18n( "Type" ) );
   typeAct->setData( QVariant( COLUMN_POPUP_IDS + KrDetailedViewProperties::Mime ) );
@@ -1171,8 +1171,8 @@ void KrDetailedView::selectColumns()
   
   switch( result - COLUMN_POPUP_IDS )
   {
-  case KrDetailedViewProperties::Extention:
-    group.writeEntry( "Ext Column", !hasExtention );
+  case KrDetailedViewProperties::Extension:
+    group.writeEntry( "Ext Column", !hasExtension );
     refresh = true;
     break;
   case KrDetailedViewProperties::Mime:
@@ -1240,7 +1240,7 @@ void KrDetailedView::slotSortOrderChanged(int col) {
 	switch (i) {
 		case KrDetailedViewProperties::Name:
 			sp = KrViewProperties::Name; break;
-		case KrDetailedViewProperties::Extention:
+		case KrDetailedViewProperties::Extension:
 			sp = KrViewProperties::Ext; break;
 		case KrDetailedViewProperties::Mime:
 			sp = KrViewProperties::Type; break;

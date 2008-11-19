@@ -67,7 +67,7 @@
 #define _MarkDirs       false 
 // Show Hidden /////////
 #define _ShowHidden     true 
-// Sort By Extention ///
+// Sort By Extension ///
 #define _SortByExt      false 
 // Case Sensative Sort /
 #define _CaseSensativeSort false 
