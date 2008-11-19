@@ -1077,12 +1077,14 @@ void KrDetailedView::initProperties() {
 	PROPS->displayIcons = grpSvr.readEntry( "With Icons", _WithIcons );
 	bool dirsByNameAlways = grpSvr.readEntry("Always sort dirs by name", false);
 	PROPS->sortMode = static_cast<KrViewProperties::SortSpec>( KrViewProperties::Name |
-			KrViewProperties::Descending | KrViewProperties::DirsFirst | 
+			KrViewProperties::DirsFirst | 
 			(dirsByNameAlways ? KrViewProperties::AlwaysSortDirsByName : 0) );
 	PROPS->numericPermissions = grpSvr.readEntry("Numeric permissions", _NumericPermissions);
 	if ( !grpSvr.readEntry( "Case Sensative Sort", _CaseSensativeSort ) )
-      	PROPS->sortMode = static_cast<KrViewProperties::SortSpec>( _properties->sortMode |
-				 KrViewProperties::IgnoreCase );
+	PROPS->sortMode = static_cast<KrViewProperties::SortSpec>( _properties->sortMode |
+		KrViewProperties::IgnoreCase );
+	PROPS->sortMethod = static_cast<KrViewProperties::SortMethod>(
+		grpSvr.readEntry("Sort method", (int) _DefaultSortMethod) );
 	PROPS->humanReadableSize = grpSvr.readEntry("Human Readable Size", _HumanReadableSize);
 	PROPS->localeAwareCompareIsCaseSensitive = QString( "a" ).localeAwareCompare( "B" ) > 0; // see KDE bug #40131
 	QStringList defaultAtomicExtensions;

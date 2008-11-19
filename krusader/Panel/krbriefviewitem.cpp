@@ -56,8 +56,6 @@ KrBriefViewItem::KrBriefViewItem(KrBriefView *parent, Q3IconViewItem *after, vfi
 
 
 int KrBriefViewItem::compare(Q3IconViewItem *i ) const {
-  bool ignoreCase = (PROPS->sortMode & KrViewProperties::IgnoreCase);
-
   KrBriefViewItem *other = (KrBriefViewItem *)i;
   int asc = iconView()->sortDirection() ? -1 : 1;
 
@@ -72,27 +70,7 @@ int KrBriefViewItem::compare(Q3IconViewItem *i ) const {
   if ( isDummy() ) return 1*asc;
   if ( other->isDummy() ) return -1*asc;
 
-  QString text0 = name();
-  if (text0 == "..") return 1*asc;
-  
-  QString itext0 = other->name();
-  if (itext0 == "..") return -1*asc;
-
-  if( ignoreCase )
-  {
-    text0  = text0.toLower();
-    itext0 = itext0.toLower();
-  }
-
-  if ( isHidden() ) {
-    if ( !other->isHidden() ) return 1*asc;
-  } else if ( other->isHidden() ) return -1*asc;
-
-  if (!ignoreCase && !PROPS->localeAwareCompareIsCaseSensitive) {
-    // sometimes, localeAwareCompare is not case sensative. in that case,
-    // we need to fallback to a simple string compare (KDE bug #40131)
-    return QString::compare(text0, itext0);
-  } else return QString::localeAwareCompare(text0,itext0);
+  return compareTexts( name(), other->name(), asc, true );
 }
 
 void KrBriefViewItem::paintItem(QPainter *p, const QColorGroup &cg) {

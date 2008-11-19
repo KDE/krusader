@@ -60,10 +60,13 @@ public:
 	enum SortSpec { Name=0x1, Ext=0x2, Size=0x4, Type=0x8, Modified=0x10, Permissions=0x20,
 						KrPermissions=0x40, Owner=0x80, Group=0x100, Descending=0x200,
 						DirsFirst=0x400, IgnoreCase=0x800, AlwaysSortDirsByName=0x1000 };
+	enum SortMethod { Alphabetical=0x1, AlphabeticalNumbers=0x2,
+	                  CharacterCode=0x4, CharacterCodeNumbers=0x8, Krusader=0x10 };
 	enum FilterSpec { Dirs=0x1, Files=0x2, All=0x3, Custom=0x4, ApplyToDirs=0x8 };
 	
 	bool displayIcons;	// true if icons should be displayed in this view
 	SortSpec sortMode;	// sort specifications
+	SortMethod sortMethod;  // sort method for names and extensions
 	FilterSpec filter;	// what items to show (all, custom, exec)
 	KRQuery filterMask;	// what items to show (*.cpp, *.h etc)
 	bool localeAwareCompareIsCaseSensitive; // mostly, it is not! depends on LC_COLLATE

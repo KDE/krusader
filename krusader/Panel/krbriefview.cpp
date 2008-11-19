@@ -980,11 +980,13 @@ void KrBriefView::initProperties() {
 	_properties->displayIcons = grpSvr.readEntry( "With Icons", _WithIcons );
 	bool dirsByNameAlways = grpSvr.readEntry("Always sort dirs by name", false);
 	_properties->sortMode = static_cast<KrViewProperties::SortSpec>( KrViewProperties::Name |
-			KrViewProperties::Descending | KrViewProperties::DirsFirst | 
+			KrViewProperties::DirsFirst | 
 			(dirsByNameAlways ? KrViewProperties::AlwaysSortDirsByName : 0) );
 	if ( !grpSvr.readEntry( "Case Sensative Sort", _CaseSensativeSort ) )
-      	_properties->sortMode = static_cast<KrViewProperties::SortSpec>( _properties->sortMode |
-				 KrViewProperties::IgnoreCase );
+	_properties->sortMode = static_cast<KrViewProperties::SortSpec>( _properties->sortMode |
+		 KrViewProperties::IgnoreCase );
+	_properties->sortMethod = static_cast<KrViewProperties::SortMethod>(
+		grpSvr.readEntry("Sort method", (int) _DefaultSortMethod) );
 	_properties->humanReadableSize = grpSvr.readEntry("Human Readable Size", _HumanReadableSize);
 	_properties->localeAwareCompareIsCaseSensitive = QString( "a" ).localeAwareCompare( "B" ) > 0; // see KDE bug #40131
 	
@@ -1069,9 +1071,9 @@ void KrBriefView::slotRightButtonPressed(Q3IconViewItem*, const QPoint& point) {
 
 void KrBriefView::changeSortOrder()
 {
-	bool asc = !sortDirection();
-	header->setSortIndicator( 0, asc ? Qt::Ascending : Qt::Descending );
-	sort( asc );
+       bool asc = !sortDirection();
+       header->setSortIndicator( 0, asc ? Qt::Ascending : Qt::Descending );
+       sort( asc );
 }
 
 QMouseEvent * KrBriefView::transformMouseEvent( QMouseEvent * e )

@@ -150,7 +150,7 @@ void KrDetailedViewItem::repaintItem() {
     }
     // if we've got an extention column, clip the name accordingly
     QString name = this->name(), ext = "";
-    if ((id = COLUMN(Extension)) != -1 && !_vf->vfile_isDir()) {
+    if ((id = COLUMN(Extension)) != -1 && !_vf->vfile_isDir()) { 
     	ext = this->extension();
 	name = this->name(false); // request name without extension
       	setText(id, ext);
@@ -281,7 +281,6 @@ const QColor & KrDetailedViewItem::setColorIfContrastIsSufficient(const QColor &
 }
 
 int KrDetailedViewItem::compare(Q3ListViewItem *i,int col,bool ascending ) const {
-  bool ignoreCase = (PROPS->sortMode & KrViewProperties::IgnoreCase);
 	bool alwaysSortDirsByName = (PROPS->sortMode & KrViewProperties::AlwaysSortDirsByName);
   int asc = ( ascending ? -1 : 1 );
   KrDetailedViewItem *other = (KrDetailedViewItem *)(i);
@@ -299,24 +298,7 @@ int KrDetailedViewItem::compare(Q3ListViewItem *i,int col,bool ascending ) const
 		
   if (col == COLUMN(Name) ||
 			(alwaysSortDirsByName && thisDir && otherDir )) {
-      // localeAwareCompare doesn't handle names that start with a dot
-		QString text0 = name();
-		QString itext0 = other->name();
-
-		if( ignoreCase )
-		{
-			text0  = text0.toLower();
-			itext0 = itext0.toLower();
-		}
-
-		if ( isHidden() ) {
-			if ( !other->isHidden() ) return 1*asc;
-		} else if ( other->isHidden() ) return -1*asc;
-		if (!ignoreCase && !PROPS->localeAwareCompareIsCaseSensitive) {
-			// sometimes, localeAwareCompare is not case sensative. in that case,
-			// we need to fallback to a simple string compare (KDE bug #40131)
-			return QString::compare(text0, itext0);
-		} else return QString::localeAwareCompare(text0,itext0);
+    return compareTexts(name(), other->name(), asc, true);
   } else if (col == COLUMN(Size) ) {
       if( VF->vfile_getSize() == other->VF->vfile_getSize() )
         return 0;
@@ -332,13 +314,7 @@ int KrDetailedViewItem::compare(Q3ListViewItem *i,int col,bool ascending ) const
 			return 0;
 		return ((thisPerm > otherPerm) ? 1 : -1);
   } else {
-      QString e1 = (!ignoreCase ? text(col) : text(col).toLower());
-      QString e2 = (!ignoreCase ? i->text(col) : i->text(col).toLower());
-		if (!ignoreCase && !PROPS->localeAwareCompareIsCaseSensitive) {
-			// sometimes, localeAwareCompare is not case sensative. in that case,
-			// we need to fallback to a simple string compare (KDE bug #40131)
-			return QString::compare(e1, e2);
-		} else return QString::localeAwareCompare(e1, e2);
+     return compareTexts( text(col), i->text(col), asc, false );
   }
 }
 

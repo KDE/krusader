@@ -115,6 +115,8 @@
 #define _NumericPermissions false
 // Number of Columns in the Brief View
 #define _NumberOfBriefColumns  3
+// Default Sort Method
+#define _DefaultSortMethod KrViewProperties::Krusader
 // Show splashscreen
 #define _ShowSplashScreen true
 // Single instance mode
