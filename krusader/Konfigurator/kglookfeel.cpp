@@ -46,6 +46,7 @@
 #include "../GUI/krtreewidget.h"
 #include "../Panel/krselectionmode.h"
 #include "../Panel/listpanel.h"
+#include "../Panel/krview.h"
 #include "../Panel/krviewfactory.h"
 
 #define PAGE_OPERATION     0
@@ -142,66 +143,14 @@ void KgLookFeel::setupPanelTab() {
   QWidget *hboxWidget = new QWidget( panelGrp );
   QHBoxLayout * hbox = new QHBoxLayout( hboxWidget );
 
-  QLabel *lbl = new QLabel( i18n( "Panel font:" ), hboxWidget );
-  hbox->addWidget( lbl );
-
-  KonfiguratorFontChooser * chsr = createFontChooser( "Look&Feel", "Filelist Font", _FilelistFont, hboxWidget, true, PAGE_PANEL );
-  hbox->addWidget( chsr );
-
-  QWidget *spcr = createSpacer ( hboxWidget );
-  hbox->addWidget( spcr );
-
-  panelGrid->addWidget( hboxWidget, 0, 0 );
-
-  QWidget *hboxWidget2 = new QWidget( panelGrp );
-  QHBoxLayout * hbox2 = new QHBoxLayout( hboxWidget2 );
-
-  QLabel *lbl1 = new QLabel( i18n( "Filelist icon size:" ), hboxWidget2 );
-  lbl1->setMinimumWidth( 230 );
-  hbox2->addWidget( lbl1 );
-
-  KONFIGURATOR_NAME_VALUE_PAIR iconSizes[] =
-    {{ i18n( "16" ),  "16" },
-     { i18n( "22" ),  "22" },
-     { i18n( "32" ),  "32" },
-     { i18n( "48" ),  "48" }};
-  KonfiguratorComboBox *iconCombo = createComboBox( "Look&Feel", "Filelist Icon Size", _FilelistIconSize, iconSizes, 4, hboxWidget2, true, true, PAGE_PANEL );
-  iconCombo->lineEdit()->setValidator( new QRegExpValidator( QRegExp( "[1-9]\\d{0,1}" ), iconCombo ) );
-  hbox2->addWidget( iconCombo );
-
-  QWidget * spcr2 = createSpacer ( hboxWidget2 );
-  hbox2->addWidget( spcr2 );
-
-  panelGrid->addWidget( hboxWidget2, 1, 0 );
-
-  panelGrid->addWidget( createLine( panelGrp ), 2, 0 );
-
-  KONFIGURATOR_CHECKBOX_PARAM panelSettings[] =
-  //   cfg_class  cfg_name                default text                                  restart tooltip
-    {
-	 {"Look&Feel","With Icons",                     _WithIcons,              i18n( "Use icons in the filenames" ), true ,  i18n( "Show the icons for filenames and folders." ) },
-	 {"Look&Feel","Load User Defined Folder Icons", _UserDefinedFolderIcons, i18n( "Load the user defined folder icons" ), true ,  i18n( "Load the user defined folder icons (can cause decrease in performance)." ) },
-	 {"Look&Feel","Human Readable Size",            _HumanReadableSize,      i18n( "Use human-readable file size" ), true ,  i18n( "File sizes are displayed in B, KB, MB and GB, not just in bytes." ) },
-	 {"Look&Feel","Show Hidden",                    _ShowHidden,             i18n( "Show hidden files" ),      false,  i18n( "Display files beginning with a dot." ) },
-	 {"Look&Feel","Case Sensative Sort",            _CaseSensativeSort,      i18n( "Case sensitive sorting" ), true ,  i18n( "All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default)." ) },
-	 {"Look&Feel","Always sort dirs by name",       false,                   i18n( "Always sort dirs by name"  ), true,  i18n( "Directories are sorted by name, regardless of the sort column.") },
-	 {"Look&Feel","Numeric permissions",            _NumericPermissions,     i18n( "Numeric Permissions"  ), true,  i18n( "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in the permission column.") },
-    };
-
-  KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup( 2, 0, panelSettings, 7 /*count*/, panelGrp, PAGE_PANEL );
-  
-  panelGrid->addWidget( panelSett, 3, 0 );
-  
 // ----------------------------------------------------------------------------------
 //  ---------------------------- DEFAULT PANEL TYPE -------------------------------------
 // ----------------------------------------------------------------------------------
   
-  panelGrid->addWidget( createLine( panelGrp ), 4, 0 );
-  
   QWidget *hboxWidget3 = new QWidget( panelGrp );
   QHBoxLayout * hbox3 = new QHBoxLayout( hboxWidget3 );
 
-  QLabel *lbl3 = new QLabel( i18n( "Default panel type:" ), hboxWidget3 );
+  QLabel *lbl3 = new QLabel( i18n( "Default panel type:" ), hboxWidget );
   hbox3->addWidget( lbl3 );
 
   QList<KrViewInstance *> views = KrViewFactory::registeredViews();
@@ -222,7 +171,93 @@ void KgLookFeel::setupPanelTab() {
   hbox3->addWidget( cmb3 );
   QWidget * spcr3 = createSpacer ( hboxWidget3 );
   hbox3->addWidget( spcr3 );
-  panelGrid->addWidget( hboxWidget3, 5, 0 );  
+
+  panelGrid->addWidget( hboxWidget3, 0, 0 );
+
+  QLabel *lbl = new QLabel( i18n( "Panel font:" ), hboxWidget );
+  hbox->addWidget( lbl );
+
+  KonfiguratorFontChooser * chsr = createFontChooser( "Look&Feel", "Filelist Font", _FilelistFont, hboxWidget, true, PAGE_PANEL );
+  hbox->addWidget( chsr );
+
+  QWidget *spcr = createSpacer ( hboxWidget );
+  hbox->addWidget( spcr );
+
+  panelGrid->addWidget( hboxWidget, 1, 0 );
+
+  QWidget *hboxWidget2 = new QWidget( panelGrp );
+  QHBoxLayout * hbox2 = new QHBoxLayout( hboxWidget2 );
+
+  QLabel *lbl1 = new QLabel( i18n( "Filelist icon size:" ), hboxWidget2 );
+  lbl1->setMinimumWidth( 230 );
+  hbox2->addWidget( lbl1 );
+
+  KONFIGURATOR_NAME_VALUE_PAIR iconSizes[] =
+    {{ i18n( "12" ),  "12" },
+     { i18n( "16" ),  "16" },
+     { i18n( "22" ),  "22" },
+     { i18n( "32" ),  "32" },
+     { i18n( "48" ),  "48" }};
+  KonfiguratorComboBox *iconCombo = createComboBox( "Look&Feel", "Filelist Icon Size", _FilelistIconSize, iconSizes, 5, hboxWidget2, true, true, PAGE_PANEL );
+  iconCombo->lineEdit()->setValidator( new QRegExpValidator( QRegExp( "[1-9]\\d{0,1}" ), iconCombo ) );
+  hbox2->addWidget( iconCombo );
+
+  QWidget * spcr2 = createSpacer ( hboxWidget2 );
+  hbox2->addWidget( spcr2 );
+
+  panelGrid->addWidget( hboxWidget2, 2, 0 );
+
+  panelGrid->addWidget( createLine( panelGrp ), 3, 0 );
+
+  KONFIGURATOR_CHECKBOX_PARAM panelSettings[] =
+  //   cfg_class  cfg_name                default text                                  restart tooltip
+    {
+	 {"Look&Feel","With Icons",                     _WithIcons,              i18n( "Use icons in the filenames" ), true ,  i18n( "Show the icons for filenames and folders." ) },
+	 {"Look&Feel","Load User Defined Folder Icons", _UserDefinedFolderIcons, i18n( "Load the user defined folder icons" ), true ,  i18n( "Load the user defined folder icons (can cause decrease in performance)." ) },
+	 {"Look&Feel","Human Readable Size",            _HumanReadableSize,      i18n( "Use human-readable file size" ), true ,  i18n( "File sizes are displayed in B, KB, MB and GB, not just in bytes." ) },
+	 {"Look&Feel","Show Hidden",                    _ShowHidden,             i18n( "Show hidden files" ),      false,  i18n( "Display files beginning with a dot." ) },
+	 {"Look&Feel","Numeric permissions",            _NumericPermissions,     i18n( "Numeric Permissions"  ), true,  i18n( "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in the permission column.") },
+    };
+
+  KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup( 2, 0, panelSettings, 5 /*count*/, panelGrp, PAGE_PANEL );
+  
+  panelGrid->addWidget( panelSett, 4, 0, 1, 2 );
+  
+
+// ----------------------------------------------------------------------------------
+//  ---------------------------- SORT METHOD ----------------------------------------
+// ----------------------------------------------------------------------------------
+  panelGrid->addWidget( createLine( panelGrp ), 5, 0 );
+  
+  QWidget *hboxWidget4 = new QWidget( panelGrp );
+  QHBoxLayout *hbox4 = new QHBoxLayout( hboxWidget4 );
+  QLabel *lbl4 = new QLabel( i18n( "Sort method:" ), hboxWidget4 );
+  hbox4->addWidget( lbl4 );
+
+  KONFIGURATOR_NAME_VALUE_PAIR sortMethods[] =
+    {{ i18n( "Alphabetical" ),                QString::number( KrViewProperties::Alphabetical ) },
+     { i18n( "Alphabetical and numbers" ),    QString::number( KrViewProperties::AlphabeticalNumbers ) },
+     { i18n( "Character code" ),              QString::number( KrViewProperties::CharacterCode ) },
+     { i18n( "Character code and numbers" ),  QString::number( KrViewProperties::CharacterCodeNumbers ) },
+     { i18n( "Krusader" ),                    QString::number( KrViewProperties::Krusader ) } };
+  KonfiguratorComboBox *sortMethodCombo = createComboBox( "Look&Feel", "Sort method",
+     QString::number( _DefaultSortMethod ), sortMethods, 5, hboxWidget4, true, false, PAGE_PANEL );
+  hbox4->addWidget( sortMethodCombo);
+  QWidget * spcr4 = createSpacer ( hboxWidget4 );
+  hbox4->addWidget( spcr4 );
+  panelGrid->addWidget( hboxWidget4, 6, 0 );
+
+  KONFIGURATOR_CHECKBOX_PARAM sortSettings[] =
+  //   cfg_class  cfg_name                default text                                  restart tooltip
+    {
+	 {"Look&Feel","Case Sensative Sort",            _CaseSensativeSort,      i18n( "Case sensitive sorting" ), true ,  i18n( "All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default)." ) },
+	 {"Look&Feel","Always sort dirs by name",       false,                   i18n( "Always sort dirs by name"  ), true,  i18n( "Directories are sorted by name, regardless of the sort column.") },
+    };
+
+  KonfiguratorCheckBoxGroup *sortSett = createCheckBoxGroup( 2, 0, sortSettings,
+     2 /*count*/, panelGrp, PAGE_PANEL );
+  
+  panelGrid->addWidget( sortSett, 7, 0, 1, 2 );
 
   panelLayout->addWidget( panelGrp, 0, 0 );
 }
