@@ -189,6 +189,8 @@ class Krusader : public KParts::MainWindow {
     bool         isExiting;
     bool         directExit;
     KrJobStarter jobStarter;
+    static void supportedTool(QStringList &tools, QString toolType,
+    		QStringList names, QString confName);
 };
 
 // main modules

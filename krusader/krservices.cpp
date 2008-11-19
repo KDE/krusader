@@ -37,13 +37,22 @@ bool KrServices::cmdExist(QString cmdName)
   return !detectFullPathName( cmdName ).isEmpty();  
 }
 
+static const QStringList bin_suffixes = QStringList()
+#ifdef Q_WS_WIN
+  << ".cmd" << ".exe" << ".bat"
+#else
+  << ""
+#endif
+;
+
 QString KrServices::detectFullPathName(QString name)
 {
   QStringList path = QString::fromLocal8Bit(getenv("PATH")).split(":");
 
   for ( QStringList::Iterator it = path.begin(); it != path.end(); ++it )
+  foreach( QString suffix, bin_suffixes )
   {
-    if( QDir(*it).exists( name ) )
+    if( QDir(*it).exists( name + suffix ) )
     {
       QString dir = *it;
       if( !dir.endsWith( "/" ) )
@@ -72,6 +81,20 @@ QString KrServices::fullPathName( QString name, QString confName )
 
   config.writeEntry( confName, supposedName );
   return supposedName;
+}
+
+QString KrServices::chooseFullPathName(QStringList names, QString confName)
+{
+	foreach( QString name, names )
+	{
+		QString foundTool = KrServices::fullPathName( name, confName );
+		if (! foundTool.isEmpty() )
+		{
+			return foundTool;
+		}
+	}
+	
+	return "";
 }
 
 // TODO: Document me!

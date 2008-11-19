@@ -1144,6 +1144,18 @@ void Krusader::updateGUI( bool enforce ) {
 
 }
 
+// Adds one tool to the list in the supportedTools method
+void Krusader::supportedTool(QStringList &tools, QString toolType,
+		QStringList names, QString confName)
+{
+    QString foundTool = KrServices::chooseFullPathName( names, confName );
+    if (! foundTool.isEmpty() )
+	{
+		tools.append( toolType );
+		tools.append( foundTool );
+	}
+}
+
 // return a list in the format of TOOLS,PATH. for example
 // DIFF,kdiff,TERMINAL,konsole,...
 //
@@ -1156,53 +1168,25 @@ QStringList Krusader::supportedTools() {
    QStringList tools;
 
    // first, a diff program: kdiff
-   if ( KrServices::cmdExist( "kdiff3" ) ) {
-      tools.append( "DIFF" );
-      tools.append( KrServices::fullPathName( "kdiff3", "diff utility" ) );
-   } else if ( KrServices::cmdExist( "kompare" ) ) {
-      tools.append( "DIFF" );
-      tools.append( KrServices::fullPathName( "kompare", "diff utility" ) );
-   } else if ( KrServices::cmdExist( "xxdiff" ) ) {
-      tools.append( "DIFF" );
-      tools.append( KrServices::fullPathName( "xxdiff", "diff utility" ) );
-   }
+   supportedTool( tools, "DIFF",
+		   QStringList() << "kdiff3" << "kompare" << "xxdiff",
+		   "diff utility" );
+
    // a mailer: kmail or thunderbird
-   if ( KrServices::cmdExist( "thunderbird" ) ) {
-      tools.append( "MAIL" );
-      tools.append( KrServices::fullPathName( "thunderbird", "mailer" ) );
-   }
-   else if ( KrServices::cmdExist( "kmail" ) ) {
-      tools.append( "MAIL" );
-      tools.append( KrServices::fullPathName( "kmail", "mailer" ) );
-   }
+   supportedTool( tools, "MAIL",
+		   QStringList() << "thunderbird" << "kmail",
+		   "mailer" );
+
    // rename tool: krename
-   if ( KrServices::cmdExist( "krename" ) ) {
-      tools.append( "RENAME" );
-      tools.append( KrServices::fullPathName( "krename" ) );
-   }
-  // checksum utility
-  if (KrServices::cmdExist("md5deep")) {
-      tools.append("MD5");
-      tools.append(KrServices::fullPathName("md5deep", "checksum utility"));
-  } else if (KrServices::cmdExist("md5sum")) {
-      tools.append("MD5");
-      tools.append(KrServices::fullPathName("md5sum", "checksum utility"));
-  } else if (KrServices::cmdExist("sha1deep")) {
-      tools.append("MD5");
-      tools.append(KrServices::fullPathName("sha1deep", "checksum utility"));
-  } else if (KrServices::cmdExist("sha256deep")) {
-      tools.append("MD5");
-      tools.append(KrServices::fullPathName("sha256deep", "checksum utility"));
-  } else if (KrServices::cmdExist("tigerdeep")) {
-      tools.append("MD5");
-      tools.append(KrServices::fullPathName("tigerdeep", "checksum utility"));
-  } else if (KrServices::cmdExist("whirlpooldeep")) {
-      tools.append("MD5");
-      tools.append(KrServices::fullPathName("whirlpooldeep", "checksum utility"));
-  } else if (KrServices::cmdExist("cfv")) {
-      tools.append("MD5");
-      tools.append(KrServices::fullPathName("cfv", "checksum utility"));
-  }
+   supportedTool( tools, "RENAME",
+		   QStringList() << "krename",
+		   "krename" );
+
+   // checksum utility
+   supportedTool( tools, "MD5",
+		   QStringList() << "md5deep" << "md5sum" << "sha1deep" << "sha256deep"
+		   << "tigerdeep" << "whirlpooldeep" << "cfv",
+		   "checksum utility" );
 
    return tools;
 }

@@ -14,6 +14,8 @@
      ARCH: QuickSearch is moved to KrView from Detailed/Brief views
      ARCH: Keyboard handling is moved to KrView from Detailed/Brief views
 
+    FIXED: When neither "kompare", "kdiff3" nor "xxdiff" in PATH, the program set in
+           "diff utility" was ignored. Under Windows, look for them with ".exe" suffix
     FIXED: [ 2243628 ] Synchronizer overlooks files
     FIXED: [ 2202522 ] newly created hidden files are shown for a short time
     FIXED: calc space doesn't work on remote file systems
