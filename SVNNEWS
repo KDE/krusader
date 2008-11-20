@@ -6,6 +6,21 @@
 - extension to the ChangeLog.
 ------------------------------------------------------------------------
 
+New feature: Possibility to choose one of 5 methods of sorting in the panel.
+   Konfigurator->Look&Feel->Panel
+   - Alphabetical - strings are compared character by character
+        (no context rules from locale applied). Alphabet characters are
+         compared using locale rules, special characters are compared by
+         the character code.
+   - Alphabetical with numbers - the same, but if the names contains numbers
+         the numbers are compared numerically instead of alphabetically.
+   - Character code - comparison by character code - quick.
+   - Character code and numbers - the same with numerical comparison of numbers
+   - Krusader (default) - the comparison used so far. Uses comparison using
+         locale rules (even context rules). Only if the sorting is set to be
+         case sensitive and the current locale compares case insensitive,
+         compares by character code (?).
+   Thanks Jacek Jaworski who suggested a patch.
 
 New feature: enqueue operation for copy / move
              Use F5 and than F2 to use it.
