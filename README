@@ -14,10 +14,14 @@ everyone who supported us in the porting process!
 
 The highlights of this release are:
 - many many bugfixes
-- enqueue operation for copy / move (alpha without gui)
+- Queue Manager
+  (Unfortunately queuing the pack/unpack jobs are not yet possible, 
+   because it would require architectural changes.)
+  Enqueue operation for copy / move
   Use F5 and than F2 to use it.
   The copy/move operation runs as a background process so 
   that you can continue to use Krusader during the copy/move operation!
+- Five sortingmethods (read SVNNEWS for more info)
 - Konfigurator mouse selection mode: Possibility to select a predefined
   mode and change a detail. 
 - highlight quick search match
