@@ -1,0 +1,49 @@
+# translation of checksum.docbook.po to français
+# Copyright (C) 2008, Krusader Krew
+# This file is distributed under the same license as the Krusader package
+#
+# Stanislas Zeller <uncensored.assault@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: checksum.docbook\n"
+"Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
+"POT-Creation-Date: 2008-08-03 20:04+0000\n"
+"PO-Revision-Date: 2008-11-03 19:55+0100\n"
+"Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
+"Language-Team: français <kde-francophone@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n > 1);\n"
+
+#. Tag: title
+#: checksum.docbook:2
+#, no-c-format
+msgid "Checksum creation-verification"
+msgstr "Création et vérification de somme de contrôle"
+
+#. Tag: primary
+#: checksum.docbook:4
+#, no-c-format
+msgid "Checksum"
+msgstr "Somme de contrôle"
+
+#. Tag: para
+#: checksum.docbook:6
+#, no-c-format
+msgid "<emphasis role=\"bold\"> <menuchoice> <guimenu>File</guimenu> <guimenuitem>Create Checksum</guimenuitem> </menuchoice> </emphasis>: &krusader; checks which tools you have and if those tools allow recursive operation (in case you selected folders), you can generate a checksum by choosing a checksum type from the list (md5, sha...). You can then save the checksum to a file, usually called checksum.md5 or checksum.sha1."
+msgstr "<emphasis role=\"bold\"> <menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Créer une somme de contrôle</guimenuitem> </menuchoice> </emphasis> : &krusader; vérifie quels outils sont installés et si ces outils permettent une opération récursive (dans le cas où vous avez sélectionné des dossiers). Vous pouvez générer une somme de contrôle en choisissant le type de somme de contrôle depuis la liste (md5, sha...). Vous pouvez ensuite enregistrer la somme de contrôle dans un fichier, habituellement appelé somme_de_contrôle.md5 ou somme_de_contrôle.sha1."
+
+#. Tag: para
+#: checksum.docbook:18
+#, no-c-format
+msgid "<emphasis role=\"bold\"> <menuchoice> <guimenu>File</guimenu> <guimenuitem>Verify Checksum</guimenuitem> </menuchoice> </emphasis>: &krusader; checks if you have a tool that supports the type of checksum you need (from your specified checksum file) and displays the files that failed the checksum (if any)."
+msgstr "<emphasis role=\"bold\"> <menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Vérifier la somme de contrôle</guimenuitem> </menuchoice> </emphasis> : &krusader; vérifie si vous avez un outil qui gère le type de somme de contrôle dont vous avez besoin (depuis votre fichier de somme de contrôle spécifié) et affiche les fichiers qui ont échoué à la vérification de la somme de contrôle (s'il y en a)."
+
+#. Tag: para
+#: checksum.docbook:28
+#, no-c-format
+msgid "The system abstracts over different checksum mechanisms and Checksum Utilities. At the moment, the following checksums are supported: md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv and crc. Please check your <link linkend=\"konfig-dependencies\">Checksum Utilities settings</link> before using this function."
+msgstr "Le système prend en compte différents mécanismes et d'outils de somme de contrôle. Pour le moment, les somme de contrôle suivantes sont gérées : md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv and crc. Veuillez vérifier votre <link linkend=\"konfig-dependencies\">Configuration des outils de somme de contrôle</link> avant d'utiliser cette fonctionnalité."
+
