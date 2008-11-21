@@ -8,12 +8,12 @@ Krusader-2.0 versions and higher are for KDE 4.x only and will not work anymore 
 
 SVN development download
 ------------------------
-You can download the latest available Krusader-2.x from SVN with the next command:
+Download the latest available Krusader-2.x sourcecode with subversion:
 $ svn co https://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4
 
 
-Platforms
----------
+Supported Platforms
+-------------------
 * All POSIX (Linux®/BSD/UNIX®-like OSes), Solaris™
 * All BSD Platforms (FreeBSD®/NetBSD®/OpenBSD®)
 * Tested on Mac® OS X 10.4 "Tiger" on ppc, should work on all versions and
@@ -26,61 +26,81 @@ Installation on Linux® and BSD platforms
 
 Krusader dependencies
 ---------------------
-- c libraries
-- kdelibs5      (KDE4 core libraries and binaries for all KDE4 applications)
-- libkjsembed1  (Embedded JavaScript library)
-  (for the the optional Javascripting function in Krusader) 
+The next pacakeg are needed when running the Krusader binary.
+The next packages are the names that Debian/Ubuntu uses, other Linux
+distros will probably use similar names.
+
+- kdebase-runtime     runtime components from the official KDE 4 release
+- kdelibs5            core libraries for all KDE 4 applications
+- libc6               GNU C Library: Shared libraries
+- libgcc1             GCC support library
+- libqt4-dbus         Qt 4 D-Bus module
+- libqt4-xml          Qt 4 XML module
+- libqtcore4          Qt 4 core module
+- libqtgui4           Qt 4 GUI module
+- libstdc++6          The GNU Standard C++ Library v3 
+- zlib1g              compression library - runtime 
+
+Optional:
+- libkjsembed1        Embedded JavaScript library
+  If Krusader is compiled with the the optional Javascripting function 
 
 
 Suggested packages
 ------------------
 These packages are optional but they will make Krusader much more powerful and useful.
-
 The next packages are the names that Debian/Ubuntu uses, other Linux
 distros will probably use similar names.
 
 - arj                  archiver for .arj files 
-- ark                  graphical archiving tool for KDE 
+- ark                  archive utility for KDE 4 
 - bzip2                high-quality block-sorting file compressor - utilities 
 - cpio                 GNU cpio -- a program to manage archives of files 
-- kdebase-bin          core binaries for the KDE base module 
-- kdebase-kio-plugins  core I/O slaves for KDE 
+- kdebase-bin          core binaries for the KDE 4 base module 
+- kdebase-kio-plugins  core I/O slaves for KDE (FIXME: package seems not to be available for KDE4 ?)
 
-- kdiff3               compares and merges 2 or 3 files or directories 
-or kompare             a KDE GUI for viewing differences between files 
-or xxdiff              a graphical file and directories comparison and merge tool 
+- kate                  KDE4 Advanced Text Editor
+- kmail                  KDE Email client 
 
-- kedit                basic text editor for KDE 
-- khexedit             KDE hex editor 
-- kmail                KDE Email client 
-- konsole              X terminal emulator for KDE 
-- krename              Powerful batch renamer for KDE 
-- lha                  lzh archiver 
-- md5deep              versatile file checksum creator and verifier 
-- cfv                  versatile file checksum creator and verifier 
-- p7zip                7zr file archiver with high compression ratio 
-- rpm                  Red Hat package manager 
-- unace                extract, test and view .ace archives 
+- kdiff3                 compares and merges 2 or 3 files or directories
+                         (at moment of writing: the KDE4 version under construction)
+or kompare               file difference viewer for KDE 4 
+or xxdiff                a graphical file and directories comparison and merge tool 
 
-- unrar                Unarchiver for .rar files (non-free version) 
-or unrar-free          Unarchiver for .rar files 
-or rar                 Archiver for .rar files 
+- konsole                X terminal emulator for KDE 4 
+- krename                Powerful batch renamer for KDE
+                         (at moment of writing: the KDE4 version under construction) 
+- lha                    lzh archiver 
 
-- unzip                De-archiver for .zip files 
-- zip                  Archiver for .zip files 
+- md5deep                enhanced message digest calculator 
+or cfv                   versatile file checksum creator and verifier 
+
+- okteta                 hexeditor for binary files 
+- p7zip                  7zr file archiver with high compression ratio 
+- rpm                    Red Hat package manager 
+- unace                  extract, test and view .ace archives 
+
+- unrar                  Unarchiver for .rar files (non-free version) 
+or unrar-free            Unarchiver for .rar files 
+or rar                   Archiver for .rar files 
+
+- unzip                  De-archiver for .zip files 
+- zip                    Archiver for .zip files 
 
 
 Compilation requirements
 ------------------------
 The next packages are needed for compiling the Krusader sourcecode, 
 if you only run the Krusader binary you don't need to install these packages.
-- gcc (The GNU C compiler)
-- g++ (The GNU C++ compiler)
-- cmake (A cross-platform, open-source make system)
-- zlib1g-dev (library for implementing the deflate compression method found in gzip and PKZIP)
-- gettext (contains msgfmt)
-- kdelibs5-dev (installs many development libraries for KDE4)
-- libphonon-dev (libphonon-dev cross-platform multimedia framework development)
+
+- gcc                    The GNU C compiler
+- g++                    The GNU C++ compiler
+- cmake                  A cross-platform, open-source make system
+- zlib1g-dev             library for implementing the deflate compression method found in gzip and PKZIP
+- gettext                GNU Internationalization utilities
+- kdelibs5-dev           development files for the KDE 4 core libraries
+- libkonq5-dev           development files for the Konqueror libraries 
+- libphonon-dev          libphonon-dev cross-platform multimedia framework development
 
 
 cmake options
@@ -100,8 +120,9 @@ $ cd krusader_kde4
 $ cmake  -DCMAKE_INSTALL_PREFIX=/usr/ -DQT_INCLUDES=/usr/share/qt4/include
 
 
-Note:
-We had a problem with cmake-2.4 on Kubuntu 8.04 and probably other distro's as well.
+Known cmake trouble and fixes
+-----------------------------
+We had a problem with cmake-2.4 on (K)ubuntu 8.04 and probably other distro's as well.
 ------------
 CMake Error: CPack welcome resource file:
 "/usr/share/cmake/Templates/CPack.GenericWelcome.txt" could not be found.
@@ -109,6 +130,9 @@ CMake Error: CPack welcome resource file:
 To fix the error:
 $ sudo mkdir /usr/share/cmake/
 $ sudo ln -s /usr/share/cmake-2.4/Templates /usr/share/cmake/Templates
+or
+https://bugs.launchpad.net/ubuntu/+source/cmake/+bug/135595
+This bug is fixed in (K)ubuntu 8.10
 
 
 
@@ -128,6 +152,17 @@ $ su -c "make uninstall"
 or
 $ sudo make uninstall
 
+
+Compilation and installation on BSD
+===================================
+% cmake -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix` -DCMAKE_DQT_INCLUDES=`kde4-config --qt-libraries`
+% gmake
+
+Then, su to root, and install.
+# gmake install
+
+For uninstalling, run in the sourcecode directory the next command.
+# gmake uninstall
 
 
 Installation on Mac® OS X
