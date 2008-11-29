@@ -260,9 +260,16 @@ All feedback is welcome!
     * qt4
     * kdelibs
     * kdebase
-    * ... (TODO: check if this list is complete)
+    * automoc4 (including the source package - because of the file Automoc4Config.cmake)
+      - at the moment (time of KDE 4.1.x) because of KDE bug (probably) it is necessary
+        to get even the source package and copy files
+        Automoc4Config.cmake, Automoc4Version.cmake and automoc4.files.in
+        (but NOT the file kde4automoc.cpp)
+        to a new directory c:\kde4\lib\automoc4
+    * gettext-tools  
 
-- In order to have the icon in the krusader executable, download
+- In order to have the icon in the krusader executable and if the file is not already
+  installed with the package kdewin32 (kdelibs depends on that package), download
   png2ico (from http://winterdrache.de/freeware/png2ico/) and put
   png2ico.exe to c:\kde4\bin (If you skip this step, krusader will
   compile fine it will only miss the application icon )    
@@ -288,10 +295,10 @@ All feedback is welcome!
   it is necessary to replace it manually to c:/kde4.
 
 - Run cmake in the build directory with the following parameters:
-  c:\kde4\bin\cmake.exe -G "MinGW Makefiles" c:/kde4/src/krusader_kde4 -DCMAKE_INSTALL_PREFIX=c:/kde4 -DCMAKE_INCLUDE_PATH=c:/kde4/include -DCMAKE_LIBRARY_PATH=c:/kde4/lib -DKDEWIN_DIR:PATH=c:/kde4 -DCMAKE_BUILD_TYPE=debugfull -DCMAKE_PREFIX_PATH=c:/kde4;c:/MinGW
+  c:\kde4\bin\cmake.exe -G "MinGW Makefiles" c:/kde4/src/krusader_kde4 -DCMAKE_INSTALL_PREFIX=c:/kde4 -DCMAKE_INCLUDE_PATH=c:/kde4/include -DCMAKE_LIBRARY_PATH=c:/kde4/lib -DKDEWIN_DIR:PATH=c:/kde4 -DCMAKE_PREFIX_PATH=c:/kde4;c:/MinGW -DCMAKE_BUILD_TYPE=Release
 
   If you want to use eclipse IDE, you may want to run instead:
-  c:\kde4\bin\cmake.exe -G "Eclipse CDT4 - MinGW Makefiles" c:/krusader/src/krusader_kde4 -DCMAKE_INSTALL_PREFIX=c:/kde4 -DCMAKE_INCLUDE_PATH=c:/kde4/include -DCMAKE_LIBRARY_PATH=c:/kde4/lib -DKDEWIN_DIR:PATH=c:/kde4 -DCMAKE_BUILD_TYPE=debugfull -DCMAKE_PREFIX_PATH=c:/kde4;c:/MinGW
+  c:\kde4\bin\cmake.exe -G "Eclipse CDT4 - MinGW Makefiles" c:/krusader/src/krusader_kde4 -DCMAKE_INSTALL_PREFIX=c:/kde4 -DCMAKE_INCLUDE_PATH=c:/kde4/include -DCMAKE_LIBRARY_PATH=c:/kde4/lib -DKDEWIN_DIR:PATH=c:/kde4 -DCMAKE_PREFIX_PATH=c:/kde4;c:/MinGW -DCMAKE_BUILD_TYPE=debugfull
   and in Eclipse with C++ development tools 4 rigth click in the Project Explorer, choose Import...,
   select "General->Existing projects into workspace" and choose the c:/kde4/build/krusader_kde4 directory.
   
