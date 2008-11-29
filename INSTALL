@@ -289,16 +289,17 @@ All feedback is welcome!
   it is necessary to make the following fix:
   There is a strange problem, that in cmake modules
   c:\kde4\share\apps\cmake\modules\KDELibsDependencies.cmake
+  c:\kde4\share\apps\cmake\modules\KDELibsDependenciesInternal.cmake
   and
   c:\kde4\share\apps\cmake\modules\KDEPimLibsDependencies.cmake
   there are wrong hardcoded paths to the installation directory (D:/kde/kde-mingw),
   it is necessary to replace it manually to c:/kde4.
 
 - Run cmake in the build directory with the following parameters:
-  c:\kde4\bin\cmake.exe -G "MinGW Makefiles" c:/kde4/src/krusader_kde4 -DCMAKE_INSTALL_PREFIX=c:/kde4 -DCMAKE_INCLUDE_PATH=c:/kde4/include -DCMAKE_LIBRARY_PATH=c:/kde4/lib -DKDEWIN_DIR:PATH=c:/kde4 -DCMAKE_PREFIX_PATH=c:/kde4;c:/MinGW -DCMAKE_BUILD_TYPE=Release
+  c:\kde4\bin\cmake.exe -G "MinGW Makefiles" c:/kde4/src/krusader_kde4 -DCMAKE_INSTALL_PREFIX=c:/kde4 -DCMAKE_INCLUDE_PATH=c:/kde4/include -DCMAKE_LIBRARY_PATH=c:/kde4/lib -DKDEWIN_DIR:PATH=c:/kde4 -DCMAKE_PREFIX_PATH=c:/kde4;c:/MinGW -DKDE4_INSTALL_DIR=c:/kde4 -DQT_INSTALL_DIR=c:/kde4 -DCMAKE_BUILD_TYPE=Release
 
   If you want to use eclipse IDE, you may want to run instead:
-  c:\kde4\bin\cmake.exe -G "Eclipse CDT4 - MinGW Makefiles" c:/krusader/src/krusader_kde4 -DCMAKE_INSTALL_PREFIX=c:/kde4 -DCMAKE_INCLUDE_PATH=c:/kde4/include -DCMAKE_LIBRARY_PATH=c:/kde4/lib -DKDEWIN_DIR:PATH=c:/kde4 -DCMAKE_PREFIX_PATH=c:/kde4;c:/MinGW -DCMAKE_BUILD_TYPE=debugfull
+  c:\kde4\bin\cmake.exe -G "Eclipse CDT4 - MinGW Makefiles" c:/krusader/src/krusader_kde4 -DCMAKE_INSTALL_PREFIX=c:/kde4 -DCMAKE_INCLUDE_PATH=c:/kde4/include -DCMAKE_LIBRARY_PATH=c:/kde4/lib -DKDEWIN_DIR:PATH=c:/kde4 -DCMAKE_PREFIX_PATH=c:/kde4;c:/MinGW -DKDE4_INSTALL_DIR=c:/kde4 -DQT_INSTALL_DIR=c:/kde4 -DCMAKE_BUILD_TYPE=debugfull
   and in Eclipse with C++ development tools 4 rigth click in the Project Explorer, choose Import...,
   select "General->Existing projects into workspace" and choose the c:/kde4/build/krusader_kde4 directory.
   
