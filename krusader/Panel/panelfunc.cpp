@@ -42,6 +42,7 @@ A
 #include <kstandarddirs.h>
 #include <ktemporaryfile.h>
 #include <kurl.h>
+#include <ktar.h>
 #include <krun.h>
 #include <kinputdialog.h>
 #include <kdebug.h>
@@ -772,7 +773,15 @@ void ListPanelFunc::goInside( const QString& name )
 		QString type = KRarcHandler::getType( encrypted, url.path(), mime, false );
 
 		if( KRarcHandler::arcSupported( type ) ) { // archive autodetection
-			if( type == "-tar" || type == "-tgz" || type == "-tbz" )
+			// here we check whether KDE supports tar
+			if( type == "-tlz" ) {
+				KTar tapeArchive( url.path() );
+				if( tapeArchive.open( QIODevice::ReadOnly ) )
+					url.setProtocol( "tar" );
+				else
+					url.setProtocol( "krarc" );
+			}
+			else if( type == "-tar" || type == "-tgz" || type == "-tbz" )
 				url.setProtocol( "tar" );
 			else
 				url.setProtocol( "krarc" );

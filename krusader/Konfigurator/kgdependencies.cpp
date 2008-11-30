@@ -94,13 +94,14 @@ KgDependencies::KgDependencies( bool first, QWidget* parent ) :
   addApplication( "dpkg",  archGrid1, 4, packers_tab, PAGE_PACKERS );
   addApplication( "gzip",  archGrid1, 5, packers_tab, PAGE_PACKERS );
   addApplication( "lha",   archGrid1, 6, packers_tab, PAGE_PACKERS );
-  addApplication( "rar",   archGrid1, 7, packers_tab, PAGE_PACKERS );
-  addApplication( "tar",   archGrid1, 8, packers_tab, PAGE_PACKERS );
-  addApplication( "unace", archGrid1, 9, packers_tab, PAGE_PACKERS );
-  addApplication( "unarj", archGrid1,10, packers_tab, PAGE_PACKERS );
-  addApplication( "unrar", archGrid1,11, packers_tab, PAGE_PACKERS );
-  addApplication( "unzip", archGrid1,12, packers_tab, PAGE_PACKERS );
-  addApplication( "zip",   archGrid1,13, packers_tab, PAGE_PACKERS );
+  addApplication( "lzma",  archGrid1, 7, packers_tab, PAGE_PACKERS );
+  addApplication( "rar",   archGrid1, 8, packers_tab, PAGE_PACKERS );
+  addApplication( "tar",   archGrid1, 9, packers_tab, PAGE_PACKERS );
+  addApplication( "unace", archGrid1,10, packers_tab, PAGE_PACKERS );
+  addApplication( "unarj", archGrid1,11, packers_tab, PAGE_PACKERS );
+  addApplication( "unrar", archGrid1,12, packers_tab, PAGE_PACKERS );
+  addApplication( "unzip", archGrid1,13, packers_tab, PAGE_PACKERS );
+  addApplication( "zip",   archGrid1,14, packers_tab, PAGE_PACKERS );
 
   //  ---------------------------- CHECKSUM TAB -------------------------------------
   QWidget *checksum_tab = new QWidget( tabWidget );

@@ -154,6 +154,7 @@ if( first )
   QStringList defaultAtomicExtensions;
   defaultAtomicExtensions += ".tar.gz";
   defaultAtomicExtensions += ".tar.bz2";
+  defaultAtomicExtensions += ".tar.lzma";
   defaultAtomicExtensions += ".moc.cpp";
 
   listBox = createListBox( "Look&Feel", "Atomic Extensions", 

@@ -61,6 +61,7 @@ KgArchives::KgArchives( bool first, QWidget* parent ) :
   //   cfg_class  cfg_name   default   text             restart tooltip
     {{"Archives","Do Tar",   _DoTar,   i18n( "Tar" ),   false,  ""},
      {"Archives","Do GZip",  _DoGZip,  i18n( "GZip" ),  false,  ""},
+     {"Archives","Do LZMA",  _DoLZMA,  i18n( "LZMA" ),  false,  ""},
      {"Archives","Do BZip2", _DoBZip2, i18n( "BZip2" ), false,  ""},
      {"Archives","Do UnZip", _DoUnZip, i18n( "Zip" ),   false,  ""},
      {"Archives","Do UnRar", _DoUnRar, i18n( "Rar" ),   false,  ""},
@@ -72,7 +73,7 @@ KgArchives::KgArchives( bool first, QWidget* parent ) :
      {"Archives","Do 7z",    _Do7z,    i18n( "7zip" ),  false,  ""}
     };
 
-  cbs = createCheckBoxGroup( 3, 0, packers, 11, generalGrp );
+  cbs = createCheckBoxGroup( 3, 0, packers, 12, generalGrp );
   generalGrid->addWidget( cbs, 1, 0 );
 
   addLabel( generalGrid, 2, 0, i18n( "The archives that are \"greyed-out\" were unavailable on your\nsystem last time Krusader checked. If you wish Krusader to\nsearch again, click the 'Auto Configure' button." ),
@@ -136,6 +137,7 @@ void KgArchives::disableNonExistingPackers()
   cbs->find( "Do Tar" )->setEnabled(PS("tar"));
   cbs->find( "Do GZip" )->setEnabled(PS("gzip"));
   cbs->find( "Do BZip2" )->setEnabled(PS("bzip2"));
+  cbs->find( "Do LZMA" )->setEnabled(PS("lzma"));
   cbs->find( "Do UnZip" )->setEnabled(PS("unzip"));
   cbs->find( "Do Lha" )->setEnabled(PS("lha"));
   cbs->find( "Do RPM" )->setEnabled(PS("rpm") || PS("cpio"));
