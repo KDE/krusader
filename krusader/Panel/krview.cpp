@@ -718,14 +718,14 @@ bool KrView::handleKeyEventInt (QKeyEvent *e) {
 		}
 		return true;
 	}
+	case Qt::Key_Escape:
+		return true; // otherwise the selection gets lost??!??
 	case Qt::Key_A :                 // mark all
 		if ( e->modifiers() == Qt::ControlModifier ) {
 			selectAllIncludingDirs();
 			return true;
 		}
-		break;
-	case Qt::Key_Escape:
-		return true; // otherwise the selection gets lost??!??
+		// default continues here !!!!!!!!!!!
 	default:
 		// if the key is A..Z or 1..0 do quick search otherwise...
 		if ( e->text().length() > 0 && e->text() [ 0 ].isPrint() ) // better choice. Otherwise non-ascii characters like  can not be the first character of a filename
