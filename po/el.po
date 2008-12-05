@@ -9,12 +9,12 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-2.0.0-beta1\n"
+"Project-Id-Version: krusader-2.0.0-beta2\n"
 "Report-Msgid-Bugs-To: krusader-i18n@googlegroups.com\n"
-"POT-Creation-Date: 2008-09-22 20:47+0200\n"
+"POT-Creation-Date: 2008-12-05 21:44+0100\n"
 "PO-Revision-Date: 2007-05-22 15:49+0300\n"
 "Last-Translator: Spiros Georgaras <sng@hellug.gr>\n"
-"Language-Team: Greek <krusader-i18n@googlegroups.com>\n"
+"Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -82,7 +82,7 @@ msgstr "Άνοιγμα της λίστας διαθέσιμων μέσων"
 msgid "Remote Share"
 msgstr "Απομακρυσμένο κοινόχρηστο"
 
-#: GUI/mediabutton.cpp:159 GUI/mediabutton.cpp:162 VFS/kiojobwrapper.cpp:189
+#: GUI/mediabutton.cpp:159 GUI/mediabutton.cpp:162 VFS/kiojobwrapper.cpp:195
 #, kde-format
 msgid "Unknown"
 msgstr "Άγνωστο"
@@ -399,7 +399,8 @@ msgstr "Μετακίνηση αρχείων"
 
 #: VFS/preserveattrcopyjob.cpp:335 VFS/preserveattrcopyjob.cpp:342
 #: VFS/preserveattrcopyjob.cpp:349 VFS/preserveattrcopyjob.cpp:373
-#: VFS/virtualcopyjob.cpp:384 VFS/virtualcopyjob.cpp:390
+#: VFS/kiojobwrapper.cpp:221 VFS/virtualcopyjob.cpp:384
+#: VFS/virtualcopyjob.cpp:390
 #, fuzzy, kde-format
 msgid "Source"
 msgstr "Προέλευση:"
@@ -447,34 +448,34 @@ msgstr "Το αρχείο υπάρχει ήδη"
 msgid "Already Exists as Folder"
 msgstr "Το αρχείο υπάρχει ήδη"
 
-#: VFS/normal_vfs.cpp:91
+#: VFS/normal_vfs.cpp:98
 #, kde-format
 msgid "Directory %1 does not exist!"
 msgstr "Ο κατάλογος %1 δεν υπάρχει!"
 
-#: VFS/normal_vfs.cpp:91 VFS/normal_vfs.cpp:101 VFS/normal_vfs.cpp:108
-#: VFS/virt_vfs.cpp:90 VFS/virt_vfs.cpp:180 VFS/krarchandler.cpp:207
-#: VFS/krarchandler.cpp:266 VFS/krarchandler.cpp:284 VFS/krarchandler.cpp:345
-#: VFS/krarchandler.cpp:519 VFS/krarchandler.cpp:526
+#: VFS/normal_vfs.cpp:98 VFS/normal_vfs.cpp:108 VFS/normal_vfs.cpp:115
+#: VFS/virt_vfs.cpp:90 VFS/virt_vfs.cpp:180 VFS/krarchandler.cpp:214
+#: VFS/krarchandler.cpp:275 VFS/krarchandler.cpp:293 VFS/krarchandler.cpp:354
+#: VFS/krarchandler.cpp:531 VFS/krarchandler.cpp:538
 #: BookMan/krbookmarkhandler.cpp:171 BookMan/krbookmarkhandler.cpp:267
-#: MountMan/kmountman.cpp:205 Synchronizer/synchronizerdirlist.cpp:121
-#: Konfigurator/kggeneral.cpp:226 Konfigurator/kgcolors.cpp:550
+#: MountMan/kmountman.cpp:205 Synchronizer/synchronizerdirlist.cpp:126
+#: Konfigurator/kggeneral.cpp:227 Konfigurator/kgcolors.cpp:550
 #: Konfigurator/kgcolors.cpp:567
 #, kde-format
 msgid "Error"
 msgstr "Σφάλμα"
 
-#: VFS/normal_vfs.cpp:101 Synchronizer/synchronizerdirlist.cpp:121
+#: VFS/normal_vfs.cpp:108 Synchronizer/synchronizerdirlist.cpp:126
 #, kde-format
 msgid "Can't open the %1 directory!"
 msgstr "Αδύνατο το άνοιγμα του καταλόγου %1!"
 
-#: VFS/normal_vfs.cpp:108
+#: VFS/normal_vfs.cpp:115
 #, kde-format
 msgid "Access denied to"
 msgstr "Απαγορεύτηκε η πρόσβαση στο"
 
-#: VFS/normal_vfs.cpp:217
+#: VFS/normal_vfs.cpp:224
 #, kde-format
 msgid "Can't create a directory. Check your permissions."
 msgstr "Αδύνατη η δημιουργία καταλόγου. Ελέγξτε τις άδειές σας."
@@ -494,25 +495,30 @@ msgstr ""
 msgid "Creating new directories is allowed only in the 'virt:/' directory."
 msgstr "Η δημιουργία νέων καταλόγων επιτρέπεται μόνο στον κατάλογο 'virt:/'."
 
-#: VFS/kiojobwrapper.cpp:179 Konfigurator/krresulttable.cpp:305
+#: VFS/kiojobwrapper.cpp:185 Konfigurator/krresulttable.cpp:308
 #, kde-format
 msgid "Status"
 msgstr "Κατάσταση"
 
-#: VFS/kiojobwrapper.cpp:181
+#: VFS/kiojobwrapper.cpp:187
 #, fuzzy, kde-format
 msgid "Directory Size"
 msgstr "Κατάλογοι"
 
-#: VFS/kiojobwrapper.cpp:184
+#: VFS/kiojobwrapper.cpp:190
 #, fuzzy, kde-format
 msgid "Copy"
 msgstr " Αντιγραφή"
 
-#: VFS/kiojobwrapper.cpp:187
+#: VFS/kiojobwrapper.cpp:193
 #, fuzzy, kde-format
 msgid "Move"
 msgstr " Μετακίνηση"
+
+#: VFS/kiojobwrapper.cpp:220
+#, fuzzy, kde-format
+msgid "Target"
+msgstr "Tar"
 
 #: VFS/krquery.cpp:159 Filter/generalfilter.cpp:142
 #: Konfigurator/konfigurator.cpp:159
@@ -556,67 +562,67 @@ msgstr "Προσαρμοσμένο"
 msgid "Searching content of '%1' (%2%)"
 msgstr "Αναζήτηση στα περιεχόμενα του '%1' (%2%)"
 
-#: VFS/krarchandler.cpp:183
+#: VFS/krarchandler.cpp:190
 #, kde-format
 msgid "Counting files in archive"
 msgstr "Μέτρηση των αρχείων της αρχειοθήκης"
 
-#: VFS/krarchandler.cpp:206
+#: VFS/krarchandler.cpp:213
 #, kde-format
 msgid "Failed to list the content of the archive (%1)!"
 msgstr "Η εμφάνιση των περιεχομένων της αρχειοθήκης (%1) απέτυχε!"
 
-#: VFS/krarchandler.cpp:224
+#: VFS/krarchandler.cpp:231
 #, kde-format
 msgid "Failed to unpack"
 msgstr "Η αποσυμπίεση απέτυχε"
 
-#: VFS/krarchandler.cpp:265
+#: VFS/krarchandler.cpp:274
 #, kde-format
 msgid "Failed to convert rpm (%1) to cpio!"
 msgstr "Η μετατροπή του rpm (%1) σε cpio απέτυχε!"
 
-#: VFS/krarchandler.cpp:283
+#: VFS/krarchandler.cpp:292
 #, kde-format
 msgid "Failed to convert deb (%1) to tar!"
 msgstr "Η μετατροπή του deb (%1) σε tar απέτυχε!"
 
-#: VFS/krarchandler.cpp:316
+#: VFS/krarchandler.cpp:325
 #, kde-format
 msgid "Unpacking File(s)"
 msgstr "Αποσυμπίεση αρχείου(ων)"
 
-#: VFS/krarchandler.cpp:343
+#: VFS/krarchandler.cpp:352
 #, kde-format
 msgid "Failed to unpack %1!"
 msgstr "Η αποσυμπίεση του %1 απέτυχε!"
 
-#: VFS/krarchandler.cpp:344 VFS/krarchandler.cpp:518
+#: VFS/krarchandler.cpp:353 VFS/krarchandler.cpp:530
 #, kde-format
 msgid "User cancelled."
 msgstr "Ακυρώθηκε από το χρήστη."
 
-#: VFS/krarchandler.cpp:388
+#: VFS/krarchandler.cpp:399
 #, kde-format
 msgid "Testing Archive"
 msgstr "Έλεγχος αρχειοθήκης"
 
-#: VFS/krarchandler.cpp:497
+#: VFS/krarchandler.cpp:509
 #, kde-format
 msgid "Packing File(s)"
 msgstr "Συμπίεση αρχείου(ων)"
 
-#: VFS/krarchandler.cpp:517
+#: VFS/krarchandler.cpp:529
 #, kde-format
 msgid "Failed to pack %1!"
 msgstr "Η συμπίεση του %1 απέτυχε!"
 
-#: VFS/krarchandler.cpp:526
+#: VFS/krarchandler.cpp:538
 #, kde-format
 msgid "Failed to pack: "
 msgstr "Η συμπίεση απέτυχε: "
 
-#: VFS/krarchandler.cpp:562
+#: VFS/krarchandler.cpp:574
 #, kde-format
 msgid "This archive is encrypted, please supply the password:"
 msgstr ""
@@ -804,7 +810,7 @@ msgstr "&Προσθήκη"
 msgid "&Load"
 msgstr "&Φόρτωση"
 
-#: Filter/generalfilter.cpp:180 Panel/panelfunc.cpp:888
+#: Filter/generalfilter.cpp:180 Panel/panelfunc.cpp:897
 #, kde-format
 msgid "&Overwrite"
 msgstr "&Αντικατάσταση"
@@ -885,7 +891,7 @@ msgid "Please specify a location to search in."
 msgstr "Παρακαλώ καθορίστε μία τοποθεσία για αναζήτηση."
 
 #: Filter/advancedfilter.cpp:65 Panel/krdetailedview.cpp:116
-#: Panel/krdetailedview.cpp:1135 Search/krsearchdialog.cpp:73
+#: Panel/krdetailedview.cpp:1138 Search/krsearchdialog.cpp:74
 #: Synchronizer/synchronizergui.cpp:1337 Synchronizer/synchronizergui.cpp:1341
 #, kde-format
 msgid "Size"
@@ -916,7 +922,7 @@ msgstr "MB"
 msgid "&Smaller than"
 msgstr "Μ&ικρότερο από"
 
-#: Filter/advancedfilter.cpp:121 Search/krsearchdialog.cpp:74
+#: Filter/advancedfilter.cpp:121 Search/krsearchdialog.cpp:75
 #: Synchronizer/synchronizergui.cpp:1338 Synchronizer/synchronizergui.cpp:1340
 #: DiskUsage/dulistview.cpp:60
 #, kde-format
@@ -1516,8 +1522,9 @@ msgstr "Επιβεβαίωση εκτέλεσης"
 msgid "Command being executed:"
 msgstr "Εντολή που εκτελείται:"
 
-#: UserAction/kraction.cpp:60 Search/krsearchdialog.cpp:237
-#: Synchronizer/synchronizergui.cpp:1510 Konfigurator/konfigurator.cpp:74
+#: UserAction/kraction.cpp:60 Queue/queuedialog.cpp:167
+#: Search/krsearchdialog.cpp:238 Synchronizer/synchronizergui.cpp:1510
+#: Konfigurator/konfigurator.cpp:74
 #, kde-format
 msgid "Close"
 msgstr "Κλείσιμο"
@@ -1680,15 +1687,15 @@ msgid "&Brief View"
 msgstr "&Σύντομη προβολή"
 
 #: Panel/krbriefview.cpp:124 Panel/krdetailedview.cpp:113
-#: Search/krsearchdialog.cpp:71 MountMan/kmountmangui.cpp:125
+#: Search/krsearchdialog.cpp:72 MountMan/kmountmangui.cpp:125
 #: Synchronizer/synchronizergui.cpp:1336 Synchronizer/synchronizergui.cpp:1342
 #: DiskUsage/dulines.cpp:197 DiskUsage/dulistview.cpp:55
-#: Konfigurator/krresulttable.cpp:139
+#: Konfigurator/krresulttable.cpp:140
 #, kde-format
 msgid "Name"
 msgstr "Όνομα"
 
-#: Panel/krbriefview.cpp:1022 Panel/krdetailedview.cpp:1112
+#: Panel/krbriefview.cpp:1025 Panel/krdetailedview.cpp:1115
 #, kde-format
 msgid "Columns"
 msgstr "Στήλες"
@@ -1758,7 +1765,7 @@ msgstr "Ίσο"
 msgid ".."
 msgstr ".."
 
-#: Panel/listpanel.cpp:224 krusader.cpp:659
+#: Panel/listpanel.cpp:224 krusader.cpp:662
 #, kde-format
 msgid "Up"
 msgstr "Πάνω"
@@ -1768,7 +1775,7 @@ msgstr "Πάνω"
 msgid "~"
 msgstr "~"
 
-#: Panel/listpanel.cpp:231 krusader.cpp:587
+#: Panel/listpanel.cpp:231 krusader.cpp:590
 #, kde-format
 msgid "Home"
 msgstr "Προσωπικός κατάλογος"
@@ -1778,7 +1785,7 @@ msgstr "Προσωπικός κατάλογος"
 msgid "/"
 msgstr "/"
 
-#: Panel/listpanel.cpp:238 krusader.cpp:734
+#: Panel/listpanel.cpp:238 krusader.cpp:738
 #, kde-format
 msgid "Root"
 msgstr "Ριζικός κατάλογος"
@@ -1880,60 +1887,60 @@ msgstr "Ανάγνωση: "
 msgid "&Detailed View"
 msgstr "&Λεπτομερής προβολή"
 
-#: Panel/krdetailedview.cpp:114 Panel/krdetailedview.cpp:1125
+#: Panel/krdetailedview.cpp:114 Panel/krdetailedview.cpp:1128
 #, kde-format
 msgid "Ext"
 msgstr "Κατ"
 
-#: Panel/krdetailedview.cpp:115 Panel/krdetailedview.cpp:1130
+#: Panel/krdetailedview.cpp:115 Panel/krdetailedview.cpp:1133
 #: MountMan/kmountmangui.cpp:126 DiskUsage/dulistview.cpp:59
 #, kde-format
 msgid "Type"
 msgstr "Τύπος"
 
-#: Panel/krdetailedview.cpp:117 Panel/krdetailedview.cpp:1140
+#: Panel/krdetailedview.cpp:117 Panel/krdetailedview.cpp:1143
 #, kde-format
 msgid "Modified"
 msgstr "Τροποποιήθηκε"
 
-#: Panel/krdetailedview.cpp:118 Panel/krdetailedview.cpp:1145
+#: Panel/krdetailedview.cpp:118 Panel/krdetailedview.cpp:1148
 #, kde-format
 msgid "Perms"
 msgstr "Άδειες"
 
-#: Panel/krdetailedview.cpp:119 Panel/krdetailedview.cpp:1150
+#: Panel/krdetailedview.cpp:119 Panel/krdetailedview.cpp:1153
 #, kde-format
 msgid "rwx"
 msgstr "rwx"
 
-#: Panel/krdetailedview.cpp:120 Panel/krdetailedview.cpp:1155
+#: Panel/krdetailedview.cpp:120 Panel/krdetailedview.cpp:1158
 #: DiskUsage/dulistview.cpp:62
 #, kde-format
 msgid "Owner"
 msgstr "Ιδιοκτήτης"
 
-#: Panel/krdetailedview.cpp:121 Panel/krdetailedview.cpp:1160
-#: DiskUsage/dulistview.cpp:63 Konfigurator/krresulttable.cpp:302
+#: Panel/krdetailedview.cpp:121 Panel/krdetailedview.cpp:1163
+#: DiskUsage/dulistview.cpp:63 Konfigurator/krresulttable.cpp:305
 #, kde-format
 msgid "Group"
 msgstr "Ομάδα"
 
-#: Panel/krviewitem.cpp:48
+#: Panel/krviewitem.cpp:44
 #, kde-format
 msgid "Climb up the directory tree"
 msgstr "Μετακίνηση στο γονικό κατάλογο"
 
-#: Panel/krviewitem.cpp:63
+#: Panel/krviewitem.cpp:59
 #, kde-format
 msgid "(broken link !)"
 msgstr "(σπασμένος δεσμός!)"
 
-#: Panel/krviewitem.cpp:64
+#: Panel/krviewitem.cpp:60
 #, kde-format
 msgid "Symbolic Link"
 msgstr "Συμβολικός δεσμός"
 
-#: Panel/krviewitem.cpp:65
+#: Panel/krviewitem.cpp:61
 #, kde-format
 msgid "%1 (Link)"
 msgstr "%1 (Δεσμός)"
@@ -1943,7 +1950,7 @@ msgstr "%1 (Δεσμός)"
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "%1 από %2, %3 (%4) από %5 (%6)"
 
-#: Panel/krview.cpp:467 Panel/krpopupmenu.cpp:151 krusader.cpp:783
+#: Panel/krview.cpp:467 Panel/krpopupmenu.cpp:151 krusader.cpp:789
 #, kde-format
 msgid "Rename"
 msgstr "Μετονομασία"
@@ -2089,7 +2096,7 @@ msgstr "Εκτέλεση"
 msgid "Open in New Tab"
 msgstr "Άνοιγμα σε νέα καρτέλα"
 
-#: Panel/krpopupmenu.cpp:88 Konfigurator/kglookfeel.cpp:385
+#: Panel/krpopupmenu.cpp:88 Konfigurator/kglookfeel.cpp:422
 #: Konfigurator/kgcolors.cpp:231
 #, kde-format
 msgid "Preview"
@@ -2115,12 +2122,12 @@ msgstr "Άνοιγμα με"
 msgid "Konqueror Menu"
 msgstr "Μενού του Konqueror"
 
-#: Panel/krpopupmenu.cpp:145 krusader.cpp:779
+#: Panel/krpopupmenu.cpp:145 krusader.cpp:783
 #, kde-format
 msgid "Copy..."
 msgstr "Αντιγραφή..."
 
-#: Panel/krpopupmenu.cpp:148 krusader.cpp:780
+#: Panel/krpopupmenu.cpp:148 krusader.cpp:784
 #, kde-format
 msgid "Move..."
 msgstr "Μετακίνηση..."
@@ -2130,7 +2137,7 @@ msgstr "Μετακίνηση..."
 msgid "Move to Trash"
 msgstr "Μετακίνηση στον Κάδο Απορριμμάτων"
 
-#: Panel/krpopupmenu.cpp:159 krusader.cpp:782
+#: Panel/krpopupmenu.cpp:159 Queue/queuewidget.cpp:129 krusader.cpp:788
 #: BookMan/krbookmarkhandler.cpp:563 Dialogs/krmaskchoice.cpp:112
 #: Dialogs/kurllistrequester.cpp:145 DiskUsage/diskusage.cpp:776
 #: Konfigurator/kgcolors.cpp:508
@@ -2138,7 +2145,7 @@ msgstr "Μετακίνηση στον Κάδο Απορριμμάτων"
 msgid "Delete"
 msgstr "Διαγραφή"
 
-#: Panel/krpopupmenu.cpp:170 krusader.cpp:756
+#: Panel/krpopupmenu.cpp:170 krusader.cpp:760
 #, kde-format
 msgid "New Symlink..."
 msgstr "Νέος συμβολικός δεσμός..."
@@ -2168,17 +2175,17 @@ msgstr "Αποστολή με μήνυμα αλληλογραφίας"
 msgid "Synchronize Selected Files..."
 msgstr "Συγχρονισμός επιλεγμένων αρχείων..."
 
-#: Panel/krpopupmenu.cpp:206 krusader.cpp:603
+#: Panel/krpopupmenu.cpp:206 krusader.cpp:606
 #, kde-format
 msgid "Copy to Clipboard"
 msgstr "Αντιγραφή στο πρόχειρο"
 
-#: Panel/krpopupmenu.cpp:209 krusader.cpp:602
+#: Panel/krpopupmenu.cpp:209 krusader.cpp:605
 #, kde-format
 msgid "Cut to Clipboard"
 msgstr "Αποκοπή στο πρόχειρο"
 
-#: Panel/krpopupmenu.cpp:210 Panel/krpopupmenu.cpp:227 krusader.cpp:604
+#: Panel/krpopupmenu.cpp:210 Panel/krpopupmenu.cpp:227 krusader.cpp:607
 #, kde-format
 msgid "Paste from Clipboard"
 msgstr "Επικόλληση από το πρόχειρο"
@@ -2198,136 +2205,136 @@ msgstr "Αρχείο κειμένου..."
 msgid "Create New"
 msgstr "Δημιουργία νέου"
 
-#: Panel/panelfunc.cpp:276
+#: Panel/panelfunc.cpp:277
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "Μπορείτε να επεξεργαστείτε δεσμούς μόνο σε τοπικά συστήματα αρχείων"
 
-#: Panel/panelfunc.cpp:287
+#: Panel/panelfunc.cpp:288
 #, kde-format
 msgid "The current file is not a link, so I can't redirect it."
 msgstr "Το τρέχον αρχείο δεν είναι δεσμός, οπότε δεν μπορεί να ανακατευθυνθεί."
 
-#: Panel/panelfunc.cpp:294
+#: Panel/panelfunc.cpp:295
 #, kde-format
 msgid "Link Redirection"
 msgstr "Ανακατεύθυνση δεσμού"
 
-#: Panel/panelfunc.cpp:295
+#: Panel/panelfunc.cpp:296
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "Παρακαλώ δώστε το νέο προορισμό του δεσμού:"
 
-#: Panel/panelfunc.cpp:302
+#: Panel/panelfunc.cpp:303
 #, kde-format
 msgid "Can't remove old link: "
 msgstr "Αδύνατη η αφαίρεση του παλαιού δεσμού: "
 
-#: Panel/panelfunc.cpp:307 Panel/panelfunc.cpp:347
+#: Panel/panelfunc.cpp:308 Panel/panelfunc.cpp:348
 #, kde-format
 msgid "Failed to create a new link: "
 msgstr "Η δημιουργία του νέου δεσμού απέτυχε: "
 
-#: Panel/panelfunc.cpp:314
+#: Panel/panelfunc.cpp:315
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "Μπορείτε να δημιουργήσετε δεσμούς μόνο σε τοπικά συστήματα αρχείων"
 
-#: Panel/panelfunc.cpp:323
+#: Panel/panelfunc.cpp:324
 #, kde-format
 msgid "New link"
 msgstr "Νέος δεσμός"
 
-#: Panel/panelfunc.cpp:323
+#: Panel/panelfunc.cpp:324
 #, kde-format
 msgid "Create a new link to: "
 msgstr "Δημιουργία νέου δεσμού στο: "
 
-#: Panel/panelfunc.cpp:331 Panel/panelfunc.cpp:529
+#: Panel/panelfunc.cpp:332 Panel/panelfunc.cpp:530
 #, kde-format
 msgid "A directory or a file with this name already exists."
 msgstr "Ένας κατάλογος ή ένα αρχείο με αυτό το όνομα υπάρχει ήδη."
 
-#: Panel/panelfunc.cpp:343
+#: Panel/panelfunc.cpp:344
 #, kde-format
 msgid "Failed to create a new symlink: "
 msgstr "Η δημιουργία του νέου συμβολικού δεσμού απέτυχε: "
 
-#: Panel/panelfunc.cpp:344 Panel/panelfunc.cpp:348
+#: Panel/panelfunc.cpp:345 Panel/panelfunc.cpp:349
 #, kde-format
 msgid " To: "
 msgstr " Στο: "
 
-#: Panel/panelfunc.cpp:362
+#: Panel/panelfunc.cpp:363
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "Δεν έχετε άδεια για την προβολή αυτού του αρχείου."
 
-#: Panel/panelfunc.cpp:380
+#: Panel/panelfunc.cpp:381
 #, kde-format
 msgid "You can't edit a directory"
 msgstr "Δεν μπορείτε να επεξεργαστείτε έναν κατάλογο"
 
-#: Panel/panelfunc.cpp:385
+#: Panel/panelfunc.cpp:386
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr "Δεν έχετε άδεια για την επεξεργασία αυτού του αρχείου."
 
-#: Panel/panelfunc.cpp:406
+#: Panel/panelfunc.cpp:407
 #, kde-format
 msgid "Moving into archive is disabled"
 msgstr "Η μετακίνηση μέσα στις αρχειοθήκες απενεργοποιήθηκε"
 
-#: Panel/panelfunc.cpp:416
+#: Panel/panelfunc.cpp:417
 #, kde-format
 msgid "Move %1 to:"
 msgstr "Μετακίνηση του %1 στο:"
 
-#: Panel/panelfunc.cpp:418
+#: Panel/panelfunc.cpp:419
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
 msgstr[0] "Μετακίνηση %1 αρχείου στο:"
 msgstr[1] "Μετακίνηση %1 αρχείων στο:"
 
-#: Panel/panelfunc.cpp:484
+#: Panel/panelfunc.cpp:485
 #, kde-format
 msgid "You can't move files to this file system"
 msgstr "Δεν μπορείτε να μετακινήσετε αρχεία σε αυτό το σύστημα αρχείων"
 
-#: Panel/panelfunc.cpp:510
+#: Panel/panelfunc.cpp:511
 #, kde-format
 msgid "New directory"
 msgstr "Νέος κατάλογος"
 
-#: Panel/panelfunc.cpp:510
+#: Panel/panelfunc.cpp:511
 #, kde-format
 msgid "Directory's name:"
 msgstr "Όνομα καταλόγου:"
 
-#: Panel/panelfunc.cpp:600
+#: Panel/panelfunc.cpp:601
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "Αντιγραφή του %1 στο:"
 
-#: Panel/panelfunc.cpp:602
+#: Panel/panelfunc.cpp:603
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] "Αντιγραφή %1 αρχείου στο:"
 msgstr[1] "Αντιγραφή %1 αρχείων στο:"
 
-#: Panel/panelfunc.cpp:658
+#: Panel/panelfunc.cpp:659
 #, kde-format
 msgid "You can't copy files to this file system"
 msgstr "Δεν μπορείτε να αντιγράψετε αρχεία σε αυτό το σύστημα αρχείων"
 
-#: Panel/panelfunc.cpp:669
+#: Panel/panelfunc.cpp:670
 #, kde-format
 msgid "You do not have write permission to this directory"
 msgstr "Δεν έχετε άδεια εγγραφής σε αυτόν τον κατάλογο"
 
-#: Panel/panelfunc.cpp:687
+#: Panel/panelfunc.cpp:688
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
@@ -2337,12 +2344,12 @@ msgstr[1] ""
 "Θέλετε πραγματικά να μετακινήσετε αυτά τα %1 αντικείμενα στον κάδο "
 "απορριμμάτων;"
 
-#: Panel/panelfunc.cpp:688 DiskUsage/diskusage.cpp:610
+#: Panel/panelfunc.cpp:689 DiskUsage/diskusage.cpp:610
 #, kde-format
 msgid "&Trash"
 msgstr "Μετακίνηση στον &κάδο"
 
-#: Panel/panelfunc.cpp:690
+#: Panel/panelfunc.cpp:691
 #, fuzzy, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -2357,14 +2364,14 @@ msgstr[1] ""
 "Θέλετε πραγματικά να διαγράψετε αυτά τα %1 εικονικά αντικείμενα (τα αρχεία "
 "δεν επηρεάζονται);"
 
-#: Panel/panelfunc.cpp:691 Panel/panelfunc.cpp:694 Panel/panelfunc.cpp:697
+#: Panel/panelfunc.cpp:692 Panel/panelfunc.cpp:695 Panel/panelfunc.cpp:698
 #: DiskUsage/radialMap/widgetEvents.cpp:182
 #: DiskUsage/radialMap/widgetEvents.cpp:201 DiskUsage/diskusage.cpp:613
 #, kde-format
 msgid "&Delete"
 msgstr "&Διαγραφή"
 
-#: Panel/panelfunc.cpp:693
+#: Panel/panelfunc.cpp:694
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -2379,21 +2386,21 @@ msgstr[1] ""
 "<qt>Θέλετε πραγματικά να διαγράψετε αυτά τα %1 αντικείμενα (και όχι μόνο να "
 "τα αφαιρέσετε από τα εικονικά αντικείμενα);</qt>"
 
-#: Panel/panelfunc.cpp:696
+#: Panel/panelfunc.cpp:697
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "Θέλετε πραγματικά να διαγράψετε αυτό το αντικείμενο;"
 msgstr[1] "Θέλετε πραγματικά να διαγράψετε αυτά τα %1 αντικείμενα;"
 
-#: Panel/panelfunc.cpp:703 Dialogs/krkeydialog.cpp:136
-#: Dialogs/checksumdlg.cpp:630 DiskUsage/diskusage.cpp:620
-#: Konfigurator/kgcolors.cpp:565
+#: Panel/panelfunc.cpp:704 Queue/queuewidget.cpp:145 Queue/queuedialog.cpp:412
+#: Dialogs/krkeydialog.cpp:136 Dialogs/checksumdlg.cpp:630
+#: DiskUsage/diskusage.cpp:620 Konfigurator/kgcolors.cpp:565
 #, kde-format
 msgid "Warning"
 msgstr "Προειδοποίηση"
 
-#: Panel/panelfunc.cpp:720
+#: Panel/panelfunc.cpp:721
 #, kde-format
 msgid ""
 "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete All?</"
@@ -2402,22 +2409,22 @@ msgstr ""
 "<qt><p>Ο κατάλογος <b>%1</b> δεν είναι άδειος!</p><p>Παράβλεψη αυτού ή "
 "διαγραφή όλων;</p></qt>"
 
-#: Panel/panelfunc.cpp:721
+#: Panel/panelfunc.cpp:722
 #, kde-format
 msgid "&Skip"
 msgstr "Παράβλε&ψη"
 
-#: Panel/panelfunc.cpp:721
+#: Panel/panelfunc.cpp:722
 #, kde-format
 msgid "&Delete All"
 msgstr "&Διαγραφή όλων"
 
-#: Panel/panelfunc.cpp:870
+#: Panel/panelfunc.cpp:879
 #, kde-format
 msgid "Cannot pack files onto a virtual destination!"
 msgstr "Αδύνατη η συμπίεση αρχείων σε εικονικούς προορισμούς!"
 
-#: Panel/panelfunc.cpp:884
+#: Panel/panelfunc.cpp:893
 #, fuzzy, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -2426,7 +2433,7 @@ msgstr ""
 "<qt><p>Η αρχειοθήκη <b>%1</b> υπάρχει ήδη. Θέλετε να την αντικαταστήσετε; </"
 "p><p>Όλα τα δεδομένα που υπάρχουν ήδη στην αρχειοθήκη θα χαθούν!</p></qt>"
 
-#: Panel/panelfunc.cpp:886
+#: Panel/panelfunc.cpp:895
 #, fuzzy, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -2437,144 +2444,234 @@ msgstr ""
 "p><p>Το ZIP θα αντικαταστήσει καταχωρήσεις με ταυτόσημα ονόματα στην "
 "αρχειοθήκη zip ή θα προσθέσει νέες καταχωρήσεις για νέα ονόματα.</p></qt>"
 
-#: Panel/panelfunc.cpp:893
+#: Panel/panelfunc.cpp:902
 #, kde-format
 msgid "Counting files to pack"
 msgstr "Μέτρηση των αρχείων για συμπίεση"
 
-#: Panel/panelfunc.cpp:952 Panel/panelfunc.cpp:1013
+#: Panel/panelfunc.cpp:961 Panel/panelfunc.cpp:1022
 #, kde-format
 msgid "Krusader is unable to download: "
 msgstr "Ο Krusader δεν μπορεί να κάνει λήψη του: "
 
-#: Panel/panelfunc.cpp:964
+#: Panel/panelfunc.cpp:973
 #, kde-format
 msgid "%1, unknown archive type."
 msgstr "%1, άγνωστος τύπος αρχειοθήκης."
 
-#: Panel/panelfunc.cpp:972
+#: Panel/panelfunc.cpp:981
 #, kde-format
 msgid "%1, test passed."
 msgstr "Το αρχείο %1 πέρασε τον έλεγχο."
 
-#: Panel/panelfunc.cpp:974
+#: Panel/panelfunc.cpp:983
 #, kde-format
 msgid "%1, test failed!"
 msgstr "Το αρχείο %1 δεν πέρασε τον έλεγχο."
 
-#: Panel/panelfunc.cpp:990
+#: Panel/panelfunc.cpp:999
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "Αποσυμπίεση του %1 στο:"
 
-#: Panel/panelfunc.cpp:992
+#: Panel/panelfunc.cpp:1001
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
 msgstr[0] "Αποσυμπίεση %1 αρχείου στο:"
 msgstr[1] "Αποσυμπίεση %1 αρχείων στο:"
 
-#: Panel/panelfunc.cpp:1037
+#: Panel/panelfunc.cpp:1046
 #, kde-format
 msgid "%1, unknown archive type"
 msgstr "%1, άγνωστος τύπος αρχειοθήκης"
 
-#: Panel/panelfunc.cpp:1228
+#: Panel/panelfunc.cpp:1237
 #, kde-format
 msgid "Cannot cut a virtual URL collection to the clipboard!"
 msgstr "Δεν είναι δυνατή η αποκοπή μιας συλλογής εικονικών URL στο πρόχειρο!"
 
-#: Panel/panelfunc.cpp:1230
+#: Panel/panelfunc.cpp:1239
 #, kde-format
 msgid "Cannot copy a virtual URL collection onto the clipboard!"
 msgstr "Δεν είναι δυνατή η αντιγραφή μιας συλλογής εικονικών URL στο πρόχειρο!"
 
-#: Queue/queue.cpp:55
+#: Queue/queuewidget.cpp:128 Queue/queuedialog.cpp:156
+#, fuzzy, kde-format
+msgid "Queue Manager"
+msgstr "Όνομα ερωτήματος"
+
+#: Queue/queuewidget.cpp:144
+#, kde-format
+msgid "Deleting this job will abort the pending job. Do you wish to continue?"
+msgstr ""
+
+#: Queue/queue_mgr.cpp:9
+#, fuzzy, kde-format
+msgid "default"
+msgstr "Προκαθορισμένο"
+
+#: Queue/queuedialog.cpp:103 Queue/queuedialog.cpp:134
+#: Queue/queuedialog.cpp:389
+#, fuzzy, kde-format
+msgid "Krusader::Queue Manager"
+msgstr "Krusader::Εντοπισμός (Locate)"
+
+#: Queue/queuedialog.cpp:110
+#, fuzzy, kde-format
+msgid "Please enter the time to start processing the queue:"
+msgstr "Παρακαλώ δώστε το νέο προορισμό του δεσμού:"
+
+#: Queue/queuedialog.cpp:179
+#, fuzzy, kde-format
+msgid "Create a new queue (Ctrl+T)"
+msgstr "Δημιουργία νέου δεσμού στο: "
+
+#: Queue/queuedialog.cpp:185
+#, fuzzy, kde-format
+msgid "Remove the current queue (Ctrl+W)"
+msgstr "αποθήκευση της τρέχουσας επιλογής"
+
+#: Queue/queuedialog.cpp:198 Queue/queuedialog.cpp:427
+#, fuzzy, kde-format
+msgid "unused"
+msgstr "Προσθήκη"
+
+#: Queue/queuedialog.cpp:204
+#, kde-format
+msgid "Schedule queue starting (Ctrl+S)"
+msgstr ""
+
+#: Queue/queuedialog.cpp:343
+#, kde-format
+msgid "Start processing the queue (Ctrl+P)"
+msgstr ""
+
+#: Queue/queuedialog.cpp:346
+#, kde-format
+msgid "The queue is paused."
+msgstr ""
+
+#: Queue/queuedialog.cpp:348
+#, kde-format
+msgid "Scheduled to start at %1."
+msgstr ""
+
+#: Queue/queuedialog.cpp:351
+#, kde-format
+msgid "The queue is running."
+msgstr ""
+
+#: Queue/queuedialog.cpp:353
+#, kde-format
+msgid "Pause processing the queue (Ctrl+P)"
+msgstr ""
+
+#: Queue/queuedialog.cpp:390
+#, fuzzy, kde-format
+msgid "Please enter the name of the new queue"
+msgstr "Παρακαλώ δώστε ένα μοναδικό όνομα για την ενέργεια χρήστη"
+
+#: Queue/queuedialog.cpp:399
+#, kde-format
+msgid "A queue already exists with this name!"
+msgstr ""
+
+#: Queue/queuedialog.cpp:411
+#, fuzzy, kde-format
+msgid ""
+"Deleting the queue requires aborting all pending jobs. Do you wish to "
+"continue?"
+msgstr ""
+"Η μετάβαση στο γονικό κατάλογο απαιτεί τη φόρτωση των περιεχομένων του URL "
+"\"%1\". Θέλετε να συνεχίσετε;"
+
+#: Queue/queue.cpp:66
 #, kde-format
 msgid "An error occurred during processing the queue.\n"
 msgstr ""
 
-#: Queue/queue.cpp:57
+#: Queue/queue.cpp:68
 #, kde-format
 msgid "The last processed element in the queue was aborted.\n"
 msgstr ""
 
-#: Queue/queue.cpp:58
+#: Queue/queue.cpp:69
 #, kde-format
 msgid ""
 "Do you wish to continue with the next element, delete the queue or suspend "
 "the queue?"
 msgstr ""
 
-#: Queue/queue.cpp:60
+#: Queue/queue.cpp:71
 #, fuzzy, kde-format
 msgid "Krusader::Queue"
 msgstr "Krusader::Εντοπισμός (Locate)"
 
-#: Queue/queue.cpp:61
+#: Queue/queue.cpp:72
 #, fuzzy, kde-format
 msgid "Suspend"
 msgstr "Προσθήκη"
 
-#: Locate/locate.cpp:119 Locate/locate.cpp:123 Locate/locate.cpp:390
+#: Locate/locate.cpp:121 Locate/locate.cpp:125 Locate/locate.cpp:392
 #, kde-format
 msgid "Locate"
 msgstr "Εντοπισμός (Locate)"
 
-#: Locate/locate.cpp:121 Locate/locate.cpp:284 Search/krsearchdialog.cpp:233
+#: Locate/locate.cpp:123 Locate/locate.cpp:286 Search/krsearchdialog.cpp:234
 #: Synchronizer/synchronizergui.cpp:1494
 #, kde-format
 msgid "Stop"
 msgstr "Σταμάτημα"
 
-#: Locate/locate.cpp:122
+#: Locate/locate.cpp:124
 #, kde-format
 msgid "Update DB"
 msgstr "Ενημέρωση βάσης δεδομένων"
 
-#: Locate/locate.cpp:130
+#: Locate/locate.cpp:132
 #, kde-format
 msgid "Krusader::Locate"
 msgstr "Krusader::Εντοπισμός (Locate)"
 
-#: Locate/locate.cpp:136
+#: Locate/locate.cpp:138
 #, kde-format
 msgid "Search for:"
 msgstr "Αναζήτηση για:"
 
-#: Locate/locate.cpp:161
+#: Locate/locate.cpp:163
 #, kde-format
 msgid "Don't search in path"
 msgstr "Να μη γίνει αναζήτηση στη διαδρομή"
 
-#: Locate/locate.cpp:165
+#: Locate/locate.cpp:167
 #, kde-format
 msgid "Show only the existing files"
 msgstr "Εμφάνιση μόνο των υπαρχόντων αρχείων"
 
-#: Locate/locate.cpp:169
+#: Locate/locate.cpp:171
 #, kde-format
 msgid "Case Sensitive"
 msgstr "Διάκριση πεζών/κεφαλαίων"
 
-#: Locate/locate.cpp:181
+#: Locate/locate.cpp:183
 #, kde-format
 msgid "Results"
 msgstr "Αποτελέσματα"
 
-#: Locate/locate.cpp:274
+#: Locate/locate.cpp:276
 #, kde-format
 msgid "Can't start 'locate'! Check the 'Dependencies' page in konfigurator."
 msgstr ""
 "Αδύνατη η εκκίνηση του 'locate'! Ελέγξτε τη σελίδα 'Εξαρτήσεις' στο "
 "konfigurator."
 
-#: Locate/locate.cpp:314
+#: Locate/locate.cpp:316
 #, kde-format
 msgid "Error during the start of 'locate' process!"
 msgstr "Σφάλμα κατά την εκκίνηση της διεργασίας του 'locate'!"
 
-#: Locate/locate.cpp:322
+#: Locate/locate.cpp:324
 #, kde-format
 msgid ""
 "Locate produced the following error message:\n"
@@ -2583,71 +2680,76 @@ msgstr ""
 "Το locate παρήγαγε το ακόλουθο μήνυμα σφάλματος:\n"
 "\n"
 
-#: Locate/locate.cpp:332 Search/krsearchdialog.cpp:222
+#: Locate/locate.cpp:334 Search/krsearchdialog.cpp:223
 #: Synchronizer/synchronizergui.cpp:1499
 #, kde-format
 msgid "Feed to listbox"
 msgstr "Τοποθέτηση στη λίστα"
 
-#: Locate/locate.cpp:392
+#: Locate/locate.cpp:394
 #, kde-format
 msgid "View (F3)"
 msgstr "Προβολή (F3)"
 
-#: Locate/locate.cpp:393
+#: Locate/locate.cpp:395
 #, kde-format
 msgid "Edit (F4)"
 msgstr "Επεξεργασία (F4)"
 
-#: Locate/locate.cpp:396
+#: Locate/locate.cpp:396 Search/krsearchdialog.cpp:626
+#, fuzzy, kde-format
+msgid "Compare by content (F10)"
+msgstr "Σύγκριση κατά περιεχόμενο"
+
+#: Locate/locate.cpp:401
 #, kde-format
 msgid "Find (Ctrl+F)"
 msgstr "Αναζήτηση (Ctrl+F)"
 
-#: Locate/locate.cpp:397
+#: Locate/locate.cpp:402
 #, kde-format
 msgid "Find next (Ctrl+N)"
 msgstr "Αναζήτηση επόμενου (Ctrl+N)"
 
-#: Locate/locate.cpp:398
+#: Locate/locate.cpp:403
 #, kde-format
 msgid "Find previous (Ctrl+P)"
 msgstr "Αναζήτηση προηγούμενου (Ctrl+P)"
 
-#: Locate/locate.cpp:401 Search/krsearchdialog.cpp:608
+#: Locate/locate.cpp:406 Search/krsearchdialog.cpp:629
 #, kde-format
 msgid "Copy selected to clipboard"
 msgstr "Αντιγραφή των επιλεγμένων στο πρόχειρο"
 
-#: Locate/locate.cpp:531 Locate/locate.cpp:551
+#: Locate/locate.cpp:553 Locate/locate.cpp:573
 #, kde-format
 msgid "Search string not found!"
 msgstr "Η συμβολοσειρά αναζήτησης δε βρέθηκε!"
 
-#: Locate/locate.cpp:624
+#: Locate/locate.cpp:646
 #, kde-format
 msgid "Locate results"
 msgstr "Αποτελέσματα του εντοπισμού"
 
-#: Locate/locate.cpp:632 Search/krsearchdialog.cpp:638
+#: Locate/locate.cpp:654 Search/krsearchdialog.cpp:661
 #, kde-format
 msgid "Query name"
 msgstr "Όνομα ερωτήματος"
 
-#: Locate/locate.cpp:633 Search/krsearchdialog.cpp:639
+#: Locate/locate.cpp:655 Search/krsearchdialog.cpp:662
 #: Synchronizer/feedtolistboxdialog.cpp:121
 #, kde-format
 msgid "Here you can name the file collection"
 msgstr "Εδώ μπορείτε να δώσετε ένα όνομα στη συλλογή των αρχείων"
 
-#: krusader.cpp:384
+#: krusader.cpp:387
 #, kde-format
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr ""
 "Στη γραμμή κατάστασης θα εμφανίζονται βασικές πληροφορίες σχετικά με το "
 "αρχείο που βρίσκεται κάτω από το δρομέα του ποντικιού."
 
-#: krusader.cpp:467
+#: krusader.cpp:470
 #, kde-format
 msgid ""
 "A configuration of 1.51 or older was detected. Krusader has to reset your "
@@ -2661,7 +2763,7 @@ msgstr ""
 "παραμείνουν ανέπαφες.\n"
 "Ο Krusader θα εκτελέσει τώρα το Konfigurator."
 
-#: krusader.cpp:479
+#: krusader.cpp:482
 #, kde-format
 msgid ""
 "<qt><b>Welcome to Krusader!</b><p>As this is your first run, your machine "
@@ -2674,485 +2776,500 @@ msgstr ""
 "συνέχεια θα εκτελεστεί το Konfigurator, όπου θα μπορέσετε να προσαρμόσετε "
 "τον Krusader στις ανάγκες σας.</p></qt>"
 
-#: krusader.cpp:590
+#: krusader.cpp:593
 #, kde-format
 msgid "&Reload"
 msgstr "&Επαναφόρτωση"
 
-#: krusader.cpp:595
+#: krusader.cpp:598
 #, kde-format
 msgid "Show Actions Toolbar"
 msgstr "Εμφάνιση γραμμής ενεργειών"
 
-#: krusader.cpp:607
+#: krusader.cpp:610
 #, kde-format
 msgid "Show &FN Keys Bar"
 msgstr "Εμφάνιση γραμμής πλήκτρων &FN"
 
-#: krusader.cpp:609
+#: krusader.cpp:612
 #, kde-format
 msgid "Show &Command Line"
 msgstr "Εμφάνιση γραμμής &εντολών"
 
-#: krusader.cpp:611
+#: krusader.cpp:614
 #, kde-format
 msgid "Show Terminal &Emulator"
 msgstr "Εμφάνιση εξομοιωτή &τερματικού"
 
-#: krusader.cpp:648
+#: krusader.cpp:651
 #, kde-format
 msgid "Show &Hidden Files"
 msgstr "Εμφάνιση &κρυφών αρχείων"
 
-#: krusader.cpp:650
+#: krusader.cpp:653
 #, kde-format
 msgid "S&wap Panels"
 msgstr "Ε&ναλλαγή πινάκων"
 
-#: krusader.cpp:652
+#: krusader.cpp:655
 #, kde-format
 msgid "Sw&ap Sides"
 msgstr "Εν&αλλαγή πλευρών"
 
-#: krusader.cpp:656
+#: krusader.cpp:659
 #, kde-format
 msgid "popup cmdline"
 msgstr "αναδυόμενη γραμμή εντολών"
 
-#: krusader.cpp:662
+#: krusader.cpp:665
 #, kde-format
 msgid "&New Text File..."
 msgstr "&Νέο αρχείο κειμένου..."
 
-#: krusader.cpp:663
+#: krusader.cpp:666
 #, kde-format
 msgid "Start &Root Mode Krusader"
 msgstr "Εκκίνηση του K&rusader σε λειτουργία υπερχρήστη"
 
-#: krusader.cpp:664
+#: krusader.cpp:667
 #, kde-format
 msgid "F3 View Dialog"
 msgstr "F3 Διάλογος προβολής"
 
-#: krusader.cpp:665
+#: krusader.cpp:668
 #, kde-format
 msgid "T&est Archive"
 msgstr "Έλ&εγχος αρχειοθήκης."
 
-#: krusader.cpp:666
+#: krusader.cpp:669
 #, kde-format
 msgid "New Net &Connection..."
 msgstr "Νέα δικτυακή &σύνδεση..."
 
-#: krusader.cpp:667
+#: krusader.cpp:670
 #, kde-format
 msgid "Pro&files"
 msgstr "Προ&φίλ"
 
-#: krusader.cpp:668
+#: krusader.cpp:671
 #, kde-format
 msgid "Calculate &Occupied Space"
 msgstr "Υπ&ολογισμός κατειλημμένου χώρου"
 
-#: krusader.cpp:669
+#: krusader.cpp:672
 #, kde-format
 msgid "Create Checksum..."
 msgstr "Δημιουργία αθροίσματος ελέγχου..."
 
-#: krusader.cpp:670
+#: krusader.cpp:673
 #, kde-format
 msgid "Verify Checksum..."
 msgstr "Επαλήθευση αθροίσματος ελέγχου..."
 
-#: krusader.cpp:671
+#: krusader.cpp:674
 #, kde-format
 msgid "&Properties..."
 msgstr "&Ιδιότητες..."
 
-#: krusader.cpp:672
+#: krusader.cpp:675
 #, kde-format
 msgid "Pac&k..."
 msgstr "&Συμπίεση..."
 
-#: krusader.cpp:673
+#: krusader.cpp:676
 #, kde-format
 msgid "&Unpack..."
 msgstr "&Αποσυμπίεση..."
 
-#: krusader.cpp:674
+#: krusader.cpp:677
 #, kde-format
 msgid "Sp&lit File..."
 msgstr "&Χωρισμός αρχείου..."
 
-#: krusader.cpp:675
+#: krusader.cpp:678
 #, kde-format
 msgid "Com&bine Files..."
 msgstr "Έν&ωση αρχείων..."
 
-#: krusader.cpp:676
+#: krusader.cpp:679
 #, kde-format
 msgid "Select &Group..."
 msgstr "Ορισμός &ομάδας..."
 
-#: krusader.cpp:677
+#: krusader.cpp:680
 #, kde-format
 msgid "&Select All"
 msgstr "Επι&λογή όλων"
 
-#: krusader.cpp:678
+#: krusader.cpp:681
 #, kde-format
 msgid "&Unselect Group..."
 msgstr "Α&ποεπιλογή ομάδας..."
 
-#: krusader.cpp:679
+#: krusader.cpp:682
 #, kde-format
 msgid "U&nselect All"
 msgstr "Αποεπιλο&γή όλων"
 
-#: krusader.cpp:680
+#: krusader.cpp:683
 #, kde-format
 msgid "&Invert Selection"
 msgstr "&Αντιστροφή επιλογής"
 
-#: krusader.cpp:681
+#: krusader.cpp:684
 #, kde-format
 msgid "&Compare Directories"
 msgstr "&Σύγκριση καταλόγων"
 
-#: krusader.cpp:682
+#: krusader.cpp:685
 #, kde-format
 msgid "&Select Newer and Single"
 msgstr "Επιλογή νεότερων και &μοναδικών"
 
-#: krusader.cpp:683
+#: krusader.cpp:686
 #, kde-format
 msgid "Select &Newer"
 msgstr "Επιλογή &νεότερων"
 
-#: krusader.cpp:684
+#: krusader.cpp:687
 #, kde-format
 msgid "Select &Single"
 msgstr " Επιλογή μονα&δικών"
 
-#: krusader.cpp:685
+#: krusader.cpp:688
 #, kde-format
 msgid "Select Different &and Single"
 msgstr "Ε&πιλογή διαφορετικών και μοναδικών"
 
-#: krusader.cpp:686
+#: krusader.cpp:689
 #, kde-format
 msgid "Select &Different"
 msgstr "Επιλογή &διαφορετικών"
 
-#: krusader.cpp:696
+#: krusader.cpp:699
 #, kde-format
 msgid "Start and &Forget"
 msgstr "Εκτέλεση χωρίς παρακολού&θηση"
 
-#: krusader.cpp:697
+#: krusader.cpp:700
 #, kde-format
 msgid "Display &Separated Standard and Error Output"
 msgstr "Εμφάνιση της τυπικής εξόδου και του τυπικού σφάλματος &ξεχωριστά"
 
-#: krusader.cpp:698
+#: krusader.cpp:701
 #, kde-format
 msgid "Display &Mixed Standard and Error Output"
 msgstr "Εμφάνιση της τυπικής εξόδου και του τυπικού σφάλματος &μαζί"
 
-#: krusader.cpp:699
+#: krusader.cpp:702
 #, kde-format
 msgid "Start in &New Terminal"
 msgstr "Εκκίνηση σε &νέο τερματικό"
 
-#: krusader.cpp:700
+#: krusader.cpp:703
 #, kde-format
 msgid "Send to &Embedded Terminal Emulator"
 msgstr "Αποστολή στον &ενσωματωμένο εξομοιωτή τερματικού"
 
-#: krusader.cpp:717
+#: krusader.cpp:720
 #, kde-format
 msgid "Start &Terminal"
 msgstr "Εκκίνηση &τερματικού"
 
-#: krusader.cpp:718
+#: krusader.cpp:721
 #, kde-format
 msgid "Disconnect &from Net"
 msgstr "Αποσύνδεση από το &δίκτυο"
 
-#: krusader.cpp:720
+#: krusader.cpp:723
 #, kde-format
 msgid "&MountMan..."
 msgstr "&MountMan..."
 
-#: krusader.cpp:727
+#: krusader.cpp:730
 #, kde-format
 msgid "&Search..."
 msgstr "&Αναζήτηση..."
 
-#: krusader.cpp:728
+#: krusader.cpp:731
 #, kde-format
 msgid "&Locate..."
 msgstr "&Εντοπισμός (Locate)..."
 
-#: krusader.cpp:729
+#: krusader.cpp:732
 #, kde-format
 msgid "Synchronize &Directories..."
 msgstr "Συγχρονισμός &καταλόγων..."
 
-#: krusader.cpp:730
+#: krusader.cpp:733
 #, kde-format
 msgid "S&ynchron Directory Changes"
 msgstr "Σ&υγχρονισμένες αλλαγές καταλόγων"
 
-#: krusader.cpp:731
+#: krusader.cpp:734
 #, kde-format
 msgid "D&isk Usage..."
 msgstr "Χρήση &δίσκου..."
 
-#: krusader.cpp:732
+#: krusader.cpp:735
+#, kde-format
+msgid "&Queue Manager..."
+msgstr ""
+
+#: krusader.cpp:736
 #, kde-format
 msgid "Configure &Krusader..."
 msgstr "Ρύθμιση του &Krusader..."
 
-#: krusader.cpp:733
+#: krusader.cpp:737
 #, kde-format
 msgid "Back"
 msgstr "Πίσω"
 
-#: krusader.cpp:735
+#: krusader.cpp:739
 #, kde-format
 msgid "Save &Position"
 msgstr "Αποθήκευση &θέσης"
 
-#: krusader.cpp:736
+#: krusader.cpp:740
 #, kde-format
 msgid "&All Files"
 msgstr "Όλα τα &αρχεία"
 
-#: krusader.cpp:739
+#: krusader.cpp:743
 #, kde-format
 msgid "&Custom"
 msgstr "Πρ&οσαρμογή"
 
-#: krusader.cpp:740
+#: krusader.cpp:744
 #, kde-format
 msgid "Compare b&y Content..."
 msgstr "Σύγκριση &περιεχομένων..."
 
-#: krusader.cpp:741
+#: krusader.cpp:745
 #, kde-format
 msgid "Multi &Rename..."
 msgstr "Μετονομασία πολλαπλών α&ρχείων..."
 
-#: krusader.cpp:744
+#: krusader.cpp:748
 #, kde-format
 msgid "Right-click Menu"
 msgstr "Μενού δεξιού κλικ"
 
-#: krusader.cpp:745
+#: krusader.cpp:749
 #, kde-format
 msgid "Right Bookmarks"
 msgstr "Σελιδοδείκτες αριστερού πινάκα"
 
-#: krusader.cpp:746
+#: krusader.cpp:750
 #, kde-format
 msgid "Left Bookmarks"
 msgstr "Σελιδοδείκτες αριστερού πινάκα"
 
-#: krusader.cpp:747 BookMan/krbookmarkbutton.cpp:20
+#: krusader.cpp:751 BookMan/krbookmarkbutton.cpp:20
 #: BookMan/krbookmarkhandler.cpp:32 BookMan/kraddbookmarkdlg.cpp:80
 #, kde-format
 msgid "Bookmarks"
 msgstr "Σελιδοδείκτες"
 
-#: krusader.cpp:748 BookMan/krbookmarkhandler.cpp:399
+#: krusader.cpp:752 BookMan/krbookmarkhandler.cpp:399
 #, kde-format
 msgid "Bookmark Current"
 msgstr "Σελιδοδείκτης εδώ"
 
-#: krusader.cpp:749
+#: krusader.cpp:753
 #, kde-format
 msgid "History"
 msgstr "Ιστορικό"
 
-#: krusader.cpp:750
+#: krusader.cpp:754
 #, kde-format
 msgid "Sync Panels"
 msgstr "Συγχρονισμός πινάκων"
 
-#: krusader.cpp:751
+#: krusader.cpp:755
 #, kde-format
 msgid "Left History"
 msgstr "Ιστορικό αριστερού πινάκα"
 
-#: krusader.cpp:752
+#: krusader.cpp:756
 #, kde-format
 msgid "Right History"
 msgstr "Ιστορικό δεξιού πινάκα"
 
-#: krusader.cpp:753 BookMan/krbookmark.cpp:11
+#: krusader.cpp:757 BookMan/krbookmark.cpp:11
 #, kde-format
 msgid "Media"
 msgstr "Μέσο"
 
-#: krusader.cpp:754
+#: krusader.cpp:758
 #, kde-format
 msgid "Left Media"
 msgstr "Μέσο αριστερού πινάκα"
 
-#: krusader.cpp:755
+#: krusader.cpp:759
 #, kde-format
 msgid "Right Media"
 msgstr "Μέσο δεξιού πινάκα"
 
-#: krusader.cpp:757
+#: krusader.cpp:761
 #, kde-format
 msgid "Toggle Popup Panel"
 msgstr "Εναλλαγή αναδυόμενου πίνακα"
 
-#: krusader.cpp:758 krusaderview.cpp:303
+#: krusader.cpp:762 krusaderview.cpp:303
 #, kde-format
 msgid "Vertical Mode"
 msgstr "Κατακόρυφη παράθεση"
 
-#: krusader.cpp:759
+#: krusader.cpp:763
 #, kde-format
 msgid "New Tab"
 msgstr "Νέα καρτέλα"
 
-#: krusader.cpp:760
+#: krusader.cpp:764
 #, kde-format
 msgid "Duplicate Current Tab"
 msgstr "Αντίγραφο τρέχουσας καρτέλας"
 
-#: krusader.cpp:761
+#: krusader.cpp:765
 #, kde-format
 msgid "Close Current Tab"
 msgstr "Κλείσιμο της τρέχουσας καρτέλας"
 
-#: krusader.cpp:762
+#: krusader.cpp:766
 #, kde-format
 msgid "Next Tab"
 msgstr "Επόμενη καρτέλα"
 
-#: krusader.cpp:763
+#: krusader.cpp:767
 #, kde-format
 msgid "Previous Tab"
 msgstr "Προηγούμενη καρτέλα"
 
-#: krusader.cpp:765 UserMenu/usermenu.cpp:51
+#: krusader.cpp:769 UserMenu/usermenu.cpp:51
 #, kde-format
 msgid "User Menu"
 msgstr "Μενού χρήστη"
 
 #. i18n: tag text
 #. i18n: file ./krusaderui.rc line 91
-#: krusader.cpp:768 rc.cpp:248
+#: krusader.cpp:772 rc.cpp:248
 #, kde-format
 msgid "User&actions"
 msgstr "Ενέργειες &χρήστη"
 
-#: krusader.cpp:771
+#: krusader.cpp:775
 #, kde-format
 msgid "Manage User Actions..."
 msgstr "Διαχείριση ενεργειών χρήστη..."
 
-#: krusader.cpp:773
+#: krusader.cpp:777
 #, kde-format
 msgid "Select Remote Charset"
 msgstr "Επιλογή απομακρυσμένου συνόλου χαρακτήρων"
 
-#: krusader.cpp:776
+#: krusader.cpp:780
 #, kde-format
 msgid "Start Terminal Here"
 msgstr "Εκκίνηση τερματικού εδώ"
 
-#: krusader.cpp:777
+#: krusader.cpp:781
 #, kde-format
 msgid "View File"
 msgstr "Εμφάνιση αρχείου"
 
-#: krusader.cpp:778
+#: krusader.cpp:782
 #, kde-format
 msgid "Edit File"
 msgstr "Επεξεργασία αρχείου"
 
-#: krusader.cpp:781
+#: krusader.cpp:785
+#, fuzzy, kde-format
+msgid "Copy by queue..."
+msgstr "Αντιγραφή..."
+
+#: krusader.cpp:786
+#, fuzzy, kde-format
+msgid "Move by queue..."
+msgstr "Μετακίνηση..."
+
+#: krusader.cpp:787
 #, kde-format
 msgid "New Directory..."
 msgstr "Νέος κατάλογος..."
 
-#: krusader.cpp:784
+#: krusader.cpp:790
 #, kde-format
 msgid "Quit"
 msgstr "Έξοδος"
 
-#: krusader.cpp:785
+#: krusader.cpp:791
 #, kde-format
 msgid "Popular URLs..."
 msgstr "Δημοφιλείς URL..."
 
-#: krusader.cpp:786
+#: krusader.cpp:792
 #, kde-format
 msgid "Go to Location Bar"
 msgstr "Μετάβαση στη γραμμή τοποθεσίας"
 
-#: krusader.cpp:787
+#: krusader.cpp:793
 #, kde-format
 msgid "Jump Back"
 msgstr "Μετάβαση πίσω"
 
-#: krusader.cpp:788
+#: krusader.cpp:794
 #, kde-format
 msgid "Set Jump Back Point"
 msgstr "Ορισμός σημείου μετάβασης πίσω"
 
-#: krusader.cpp:789
+#: krusader.cpp:795
 #, kde-format
 msgid "Toggle Fullwidget Terminal Emulator"
 msgstr "Εμφάνιση εξομοιωτή τερματικού (πλήρης οθόνη)"
 
-#: krusader.cpp:792
+#: krusader.cpp:798
 #, kde-format
 msgid "Select files using a filter"
 msgstr "Επιλογή αρχείων με χρήση ενός φίλτρου"
 
-#: krusader.cpp:793
+#: krusader.cpp:799
 #, kde-format
 msgid "Select all files in the current directory"
 msgstr "Επιλογή όλων των αρχείων του τρέχοντος καταλόγου"
 
-#: krusader.cpp:794
+#: krusader.cpp:800
 #, kde-format
 msgid "Unselect all selected files"
 msgstr "Αποεπιλογή όλων των επιλεγμένων αρχείων"
 
-#: krusader.cpp:795
+#: krusader.cpp:801
 #, kde-format
 msgid "Setup Krusader the way you like it"
 msgstr "Ρυθμίστε τον Krusader όπως θέλετε"
 
-#: krusader.cpp:796
+#: krusader.cpp:802
 #, kde-format
 msgid "Back to the place you came from"
 msgstr "Πίσω στην τοποθεσία από όπου ήλθατε"
 
-#: krusader.cpp:797
+#: krusader.cpp:803
 #, kde-format
 msgid "ROOT (/)"
 msgstr "Ριζικός φάκελος (/)"
 
-#: krusader.cpp:798
+#: krusader.cpp:804
 #, kde-format
 msgid "Search for files"
 msgstr "Αναζήτηση αρχείων"
 
-#: krusader.cpp:804
+#: krusader.cpp:810
 #, kde-format
 msgid "JavaScript Console..."
 msgstr "Κονσόλα JavaScript..."
 
-#: krusader.cpp:956
+#: krusader.cpp:962
 #, kde-format
 msgid "Are you sure you want to quit?"
 msgstr "Είστε σίγουροι ότι θέλετε να τερματίσετε το πρόγραμμα;"
@@ -3241,47 +3358,47 @@ msgstr " Επεξεργασία"
 msgid "Sorry, can't find internal editor"
 msgstr "Λυπάμαι, δεν εντοπίστηκε ο εσωτερικός επεξεργαστής αρχείων"
 
-#: Search/krsearchdialog.cpp:72
+#: Search/krsearchdialog.cpp:73
 #, kde-format
 msgid "Location"
 msgstr "Τοποθεσία"
 
-#: Search/krsearchdialog.cpp:75 DiskUsage/dulistview.cpp:61
+#: Search/krsearchdialog.cpp:76 DiskUsage/dulistview.cpp:61
 #, kde-format
 msgid "Permissions"
 msgstr "Άδειες"
 
-#: Search/krsearchdialog.cpp:203
+#: Search/krsearchdialog.cpp:204
 #, kde-format
 msgid "Krusader::Search"
 msgstr "Krusader::Αναζήτηση"
 
-#: Search/krsearchdialog.cpp:227
+#: Search/krsearchdialog.cpp:228
 #, kde-format
 msgid "Search"
 msgstr "Αναζήτηση"
 
-#: Search/krsearchdialog.cpp:266 Search/krsearchdialog.cpp:464
+#: Search/krsearchdialog.cpp:267 Search/krsearchdialog.cpp:465
 #, kde-format
 msgid "Found 0 matches."
 msgstr "Βρέθηκαν 0 ταιριάσματα."
 
-#: Search/krsearchdialog.cpp:293
+#: Search/krsearchdialog.cpp:294
 #, kde-format
 msgid "Text found:"
 msgstr "Βρέθηκε το κείμενο:"
 
-#: Search/krsearchdialog.cpp:303
+#: Search/krsearchdialog.cpp:304
 #, kde-format
 msgid "&Results"
 msgstr "Αποτε&λέσματα"
 
-#: Search/krsearchdialog.cpp:429
+#: Search/krsearchdialog.cpp:430
 #, kde-format
 msgid "Found %1 matches."
 msgstr "Βρέθηκαν %1 ταιριάσματα."
 
-#: Search/krsearchdialog.cpp:451
+#: Search/krsearchdialog.cpp:452
 #, kde-format
 msgid ""
 "Since you chose to also search in archives, note the following limitations:\n"
@@ -3293,28 +3410,28 @@ msgstr ""
 "Δεν μπορείτε να κάνετε αναζήτηση κειμένου (grep) όταν στην αναζήτηση "
 "περιλαμβάνονται αρχειοθήκες."
 
-#: Search/krsearchdialog.cpp:502
+#: Search/krsearchdialog.cpp:503
 #, kde-format
 msgid "Finished searching."
 msgstr "Η αναζήτηση ολοκληρώθηκε."
 
-#: Search/krsearchdialog.cpp:604
+#: Search/krsearchdialog.cpp:622
 #, kde-format
 msgid "Krusader Search"
 msgstr "Αναζήτηση του Krusader"
 
-#: Search/krsearchdialog.cpp:606
+#: Search/krsearchdialog.cpp:624
 #, kde-format
 msgid "View File (F3)"
 msgstr "Προβολή αρχείου (F3)"
 
-#: Search/krsearchdialog.cpp:607
+#: Search/krsearchdialog.cpp:625
 #, kde-format
 msgid "Edit File (F4)"
 msgstr "Επεξεργασία αρχείου (F4)"
 
-#: Search/krsearchdialog.cpp:630 Konfigurator/kggeneral.cpp:212
-#: Konfigurator/kgarchives.cpp:124
+#: Search/krsearchdialog.cpp:653 Konfigurator/kggeneral.cpp:213
+#: Konfigurator/kgarchives.cpp:125
 #, kde-format
 msgid "Search results"
 msgstr "Αποτελέσματα αναζήτησης"
@@ -3552,7 +3669,8 @@ msgstr "MountMan"
 msgid "Format"
 msgstr "Διαμόρφωση"
 
-#: main.cpp:109
+#: main.cpp:109 Konfigurator/kglookfeel.cpp:242
+#, kde-format
 msgid "Krusader"
 msgstr "Krusader"
 
@@ -3607,11 +3725,11 @@ msgid "Heiner Eichmann"
 msgstr ""
 
 #: main.cpp:119
-msgid "Jonas Baehr"
+msgid "Jonas Bähr"
 msgstr ""
 
 #: main.cpp:120 main.cpp:125
-msgid "Václav Juza"
+msgid "Václav Jůza"
 msgstr ""
 
 #: main.cpp:121 main.cpp:154
@@ -3643,7 +3761,7 @@ msgid "Matej Urbancic"
 msgstr ""
 
 #: main.cpp:124
-msgid " Marketing & Product Research"
+msgid "Marketing & Product Research"
 msgstr ""
 
 #: main.cpp:125 main.cpp:126 main.cpp:137
@@ -3651,11 +3769,11 @@ msgid "QA, bug-hunting, patches and general help"
 msgstr ""
 
 #: main.cpp:126
-msgid "Jiri Palecek"
+msgid "Jiří Paleček"
 msgstr ""
 
 #: main.cpp:127
-msgid "Jiri Klement"
+msgid "Jiří Klement"
 msgstr ""
 
 #: main.cpp:127
@@ -3704,7 +3822,7 @@ msgid "The old Bookmark Module"
 msgstr ""
 
 #: main.cpp:133
-msgid "Hans Loeffler"
+msgid "Hans Löffler"
 msgstr ""
 
 #: main.cpp:133
@@ -3770,8 +3888,9 @@ msgid "Doutor Zero"
 msgstr ""
 
 #: main.cpp:141
-msgid "Brazilian Portuguese"
-msgstr ""
+#, fuzzy
+msgid "Brazilian Portuguese translation"
+msgstr "Εισαγωγή ενεργειών χρήστη"
 
 #: main.cpp:142
 msgid "Milen Ivanov"
@@ -3811,7 +3930,7 @@ msgid "Martin Sixta"
 msgstr ""
 
 #: main.cpp:147
-msgid "Vaclav Juza"
+msgid "Vaclav Jůza"
 msgstr ""
 
 #: main.cpp:147
@@ -4163,7 +4282,7 @@ msgid_plural "Pack %1 files"
 msgstr[0] "Συμπίεση %1 αρχείου"
 msgstr[1] "Συμπίεση %1 αρχείων"
 
-#: Dialogs/packgui.cpp:97
+#: Dialogs/packgui.cpp:98
 #, kde-format
 msgid "Please select a directory"
 msgstr "Παρακαλώ επιλέξτε έναν κατάλογο"
@@ -5037,7 +5156,7 @@ msgstr "Καμία"
 #. i18n: file ./ActionMan/actionproperty.ui line 398
 #: ActionMan/ui_actionproperty.h:722 rc.cpp:116
 #, kde-format
-msgid "If not checked, the action is not shown in the menus."
+msgid "If checked, the action is shown in the Useractions menus."
 msgstr ""
 
 #. i18n: tag string
@@ -6019,8 +6138,8 @@ msgstr "Krusader::Συγχρονισμός"
 msgid "Feeding the URLs to Kget"
 msgstr "Προώθηση των URL στο Kget"
 
-#: Synchronizer/synchronizer.cpp:1457 krslots.cpp:138 krslots.cpp:215
-#: krslots.cpp:500 krslots.cpp:542 krslots.cpp:560
+#: Synchronizer/synchronizer.cpp:1457 krslots.cpp:147 krslots.cpp:224
+#: krslots.cpp:509 krslots.cpp:551 krslots.cpp:569
 #, fuzzy, kde-format
 msgid "Error executing %1!"
 msgstr "Σφάλμα κατά την εκτέλεση του "
@@ -6070,7 +6189,7 @@ msgstr "Μόνο επιλεγμένα αρχεία"
 msgid "Cannot open %1!"
 msgstr "Αδύνατο το άνοιγμα του %1!"
 
-#: paneltabbar.cpp:36 Konfigurator/kglookfeel.cpp:134
+#: paneltabbar.cpp:36 Konfigurator/kglookfeel.cpp:135
 #, kde-format
 msgid "Panel"
 msgstr "Πίνακας"
@@ -6439,28 +6558,28 @@ msgid "&Tools"
 msgstr "Ερ&γαλεία"
 
 #. i18n: tag text
-#. i18n: file ./krusaderui.rc line 121
+#. i18n: file ./krusaderui.rc line 122
 #: rc.cpp:254
 #, kde-format
 msgid "&Settings"
 msgstr "Ρ&υθμίσεις"
 
 #. i18n: tag text
-#. i18n: file ./krusaderui.rc line 131
+#. i18n: file ./krusaderui.rc line 132
 #: rc.cpp:257
 #, kde-format
 msgid "Command Execution Mode Se&tup"
 msgstr "Ρύ&θμιση τρόπου εκτέλεσης εντολής"
 
 #. i18n: tag text
-#. i18n: file ./krusaderui.rc line 145
+#. i18n: file ./krusaderui.rc line 146
 #: rc.cpp:260
 #, kde-format
 msgid "&Window"
 msgstr "&Παράθυρο"
 
 #. i18n: tag text
-#. i18n: file ./krusaderui.rc line 162
+#. i18n: file ./krusaderui.rc line 163
 #: rc.cpp:263
 #, kde-format
 msgid "&Help"
@@ -6479,7 +6598,7 @@ msgid "Your emails"
 msgstr "sng@hellug.gr"
 
 #: Konfigurator/kgdependencies.cpp:58 Konfigurator/kggeneral.cpp:59
-#: Konfigurator/konfigurator.cpp:155 Konfigurator/kglookfeel.cpp:294
+#: Konfigurator/konfigurator.cpp:155 Konfigurator/kglookfeel.cpp:330
 #: Konfigurator/kgadvanced.cpp:51 Konfigurator/kgcolors.cpp:56
 #: Konfigurator/kgstartup.cpp:51 Konfigurator/kgarchives.cpp:54
 #, kde-format
@@ -6491,17 +6610,17 @@ msgstr "Γενικά"
 msgid "Packers"
 msgstr "Εργαλεία συμπίεσης"
 
-#: Konfigurator/kgdependencies.cpp:110
+#: Konfigurator/kgdependencies.cpp:111
 #, kde-format
 msgid "Checksum Utilities"
 msgstr "Εργαλεία αθροίσματος ελέγχου"
 
-#: Konfigurator/kgdependencies.cpp:167
+#: Konfigurator/kgdependencies.cpp:168
 #, kde-format
 msgid "The %1 path is incorrect, no valid path found."
 msgstr "Η διαδρομή %1 είναι εσφαλμένη, δε βρέθηκε καμία έγκυρη διαδρομή."
 
-#: Konfigurator/kgdependencies.cpp:170
+#: Konfigurator/kgdependencies.cpp:171
 #, kde-format
 msgid "The %1 path is incorrect, %2 used instead."
 msgstr "Η διαδρομή %1 είναι εσφαλμένη, χρησιμοποιήθηκε η %2."
@@ -6608,17 +6727,17 @@ msgstr ""
 msgid "Atomic extensions:"
 msgstr "Σύνθετες επεκτάσεις:"
 
-#: Konfigurator/kggeneral.cpp:167
+#: Konfigurator/kggeneral.cpp:168
 #, kde-format
 msgid "Terminal:"
 msgstr "Τερματικό:"
 
-#: Konfigurator/kggeneral.cpp:174
+#: Konfigurator/kggeneral.cpp:175
 #, kde-format
 msgid "Terminal Emulator sends Chdir on panel change"
 msgstr "Ο εξομοιωτής τερματικού ακολουθεί τις αλλαγές καταλόγου του πίνακα"
 
-#: Konfigurator/kggeneral.cpp:175
+#: Konfigurator/kggeneral.cpp:176
 #, kde-format
 msgid ""
 "When checked, whenever the panel is changed (for example, by pressing TAB), "
@@ -6628,24 +6747,24 @@ msgstr ""
 "για παράδειγμα), ο krusader θα αλλάζει και τον τρέχοντα κατάλογο στον "
 "εξομοιωτή τερματικού"
 
-#: Konfigurator/kggeneral.cpp:185
+#: Konfigurator/kggeneral.cpp:186
 #, kde-format
 msgid "Temp Directory:"
 msgstr "Κατάλογος προσωρινής αποθήκευσης:"
 
-#: Konfigurator/kggeneral.cpp:194
+#: Konfigurator/kggeneral.cpp:195
 #, kde-format
 msgid "Note: you must have full permissions for the temporary directory!"
 msgstr ""
 "Σημείωση: θα πρέπει να έχετε πλήρη πρόσβαση στον κατάλογο προσωρινής "
 "αποθήκευσης!"
 
-#: Konfigurator/kggeneral.cpp:212
+#: Konfigurator/kggeneral.cpp:213
 #, kde-format
 msgid "Searching for tools..."
 msgstr "Αναζήτηση για εργαλεία..."
 
-#: Konfigurator/kggeneral.cpp:213
+#: Konfigurator/kggeneral.cpp:214
 #, kde-format
 msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
@@ -6653,17 +6772,17 @@ msgstr ""
 "Σιγουρευτείτε ότι εγκαθιστάτε τα νέα εργαλεία στο <code>$PATH</code> σας (π."
 "χ. /usr/bin)"
 
-#: Konfigurator/kggeneral.cpp:221
+#: Konfigurator/kggeneral.cpp:222
 #, kde-format
 msgid "Add new atomic extension"
 msgstr "Προσθήκη μιας νέας σύνθετης επέκτασης"
 
-#: Konfigurator/kggeneral.cpp:221
+#: Konfigurator/kggeneral.cpp:222
 #, kde-format
 msgid "Extension: "
 msgstr "Επέκταση: "
 
-#: Konfigurator/kggeneral.cpp:226
+#: Konfigurator/kggeneral.cpp:227
 #, kde-format
 msgid ""
 "Atomic extensions must start with '.'\n"
@@ -6672,72 +6791,72 @@ msgstr ""
 "Οι σύνθετες επεκτάσεις πρέπει να ξεκινούν με '.'\n"
 "και πρέπει να περιέχουν μία ακόμα '.'"
 
-#: Konfigurator/krresulttable.cpp:131
+#: Konfigurator/krresulttable.cpp:132
 #, kde-format
 msgid "unarj not found, but arj found, which will be used for unpacking"
 msgstr ""
 "Το unarj δε βρέθηκε, αλλά βρέθηκε το arj, το οποίο θα χρησιμοποιηθεί για την "
 "αποσυμπίεση"
 
-#: Konfigurator/krresulttable.cpp:137
+#: Konfigurator/krresulttable.cpp:138
 #, kde-format
 msgid "rpm found, but cpio not found which is required for unpacking"
 msgstr ""
 "Το rpm βρέθηκε, αλλά όχι και το cpio, το οποίο απαιτείται για την αποσυμπίεση"
 
-#: Konfigurator/krresulttable.cpp:140 Konfigurator/krresulttable.cpp:304
+#: Konfigurator/krresulttable.cpp:141 Konfigurator/krresulttable.cpp:307
 #, kde-format
 msgid "Found"
 msgstr "Βρέθηκαν"
 
-#: Konfigurator/krresulttable.cpp:141
+#: Konfigurator/krresulttable.cpp:142
 #, kde-format
 msgid "Packing"
 msgstr "Συμπίεση"
 
-#: Konfigurator/krresulttable.cpp:142
+#: Konfigurator/krresulttable.cpp:143
 #, kde-format
 msgid "Unpacking"
 msgstr "Αποσυμπίεση"
 
-#: Konfigurator/krresulttable.cpp:143
+#: Konfigurator/krresulttable.cpp:144
 #, kde-format
 msgid "Note"
 msgstr "Σημείωση"
 
-#: Konfigurator/krresulttable.cpp:206 Konfigurator/krresulttable.cpp:224
-#: Konfigurator/krresulttable.cpp:385
+#: Konfigurator/krresulttable.cpp:209 Konfigurator/krresulttable.cpp:227
+#: Konfigurator/krresulttable.cpp:388
 #, kde-format
 msgid "enabled"
 msgstr "ενεργοποιημένο"
 
-#: Konfigurator/krresulttable.cpp:211 Konfigurator/krresulttable.cpp:229
-#: Konfigurator/krresulttable.cpp:390
+#: Konfigurator/krresulttable.cpp:214 Konfigurator/krresulttable.cpp:232
+#: Konfigurator/krresulttable.cpp:393
 #, kde-format
 msgid "disabled"
 msgstr "απενεργοποιημένο"
 
-#: Konfigurator/krresulttable.cpp:297
+#: Konfigurator/krresulttable.cpp:300
 #, kde-format
 msgid "diff utility"
 msgstr "εργαλείο diff"
 
-#: Konfigurator/krresulttable.cpp:298
+#: Konfigurator/krresulttable.cpp:301
 #, kde-format
 msgid "email client"
 msgstr "πελάτης ηλ. ταχυδρομείου"
 
-#: Konfigurator/krresulttable.cpp:299
+#: Konfigurator/krresulttable.cpp:302
 #, kde-format
 msgid "batch renamer"
 msgstr "εργαλείο ομαδικής μετονομασίας"
 
-#: Konfigurator/krresulttable.cpp:300
+#: Konfigurator/krresulttable.cpp:303
 #, kde-format
 msgid "checksum utility"
 msgstr "εργαλείο αθροισμάτων ελέγχου"
 
-#: Konfigurator/krresulttable.cpp:303
+#: Konfigurator/krresulttable.cpp:306
 #, kde-format
 msgid "Tool"
 msgstr "Εργαλείο"
@@ -6828,34 +6947,34 @@ msgstr "Σύνδεση τύπων mime με πρωτόκολλα"
 msgid "The current page has been changed. Do you want to apply changes?"
 msgstr "Η τρέχουσα σελίδα έχει τροποποιηθεί. Θέλετε να εφαρμοστούν οι αλλαγές;"
 
-#: Konfigurator/kglookfeel.cpp:82
+#: Konfigurator/kglookfeel.cpp:83
 #, kde-format
 msgid "Operation"
 msgstr "Λειτουργία"
 
-#: Konfigurator/kglookfeel.cpp:89
+#: Konfigurator/kglookfeel.cpp:90
 #, kde-format
 msgid "Look && Feel"
 msgstr "Εμφάνιση && Αίσθηση"
 
-#: Konfigurator/kglookfeel.cpp:94
+#: Konfigurator/kglookfeel.cpp:95
 #, kde-format
 msgid "Warn on exit"
 msgstr "Προειδοποίηση στην έξοδο"
 
-#: Konfigurator/kglookfeel.cpp:94
+#: Konfigurator/kglookfeel.cpp:95
 #, kde-format
 msgid "Display a warning when trying to close the main window."
 msgstr ""
 "Εμφανίζεται ένα προειδοποιητικό μήνυμα όταν προσπαθήσετε να κλείσετε το "
 "κύριο παράθυρο."
 
-#: Konfigurator/kglookfeel.cpp:95
+#: Konfigurator/kglookfeel.cpp:96
 #, kde-format
 msgid "Minimize to tray"
 msgstr "Ελαχιστοποίηση στο πλαίσιο συστήματος"
 
-#: Konfigurator/kglookfeel.cpp:95
+#: Konfigurator/kglookfeel.cpp:96
 #, kde-format
 msgid ""
 "The icon will appear in the system tray instead of the taskbar, when "
@@ -6864,12 +6983,12 @@ msgstr ""
 "Το εικονίδιο του προγράμματος θα εμφανίζεται στο πλαίσιο συστήματος αντί της "
 "γραμμής εργασιών, όταν ο Krusader είναι ελαχιστοποιημένος."
 
-#: Konfigurator/kglookfeel.cpp:96
+#: Konfigurator/kglookfeel.cpp:97
 #, kde-format
 msgid "Autoselect directories"
 msgstr "Αυτόματη επιλογή καταλόγων"
 
-#: Konfigurator/kglookfeel.cpp:96
+#: Konfigurator/kglookfeel.cpp:97
 #, kde-format
 msgid ""
 "When matching the select criteria, not only files will be selected, but also "
@@ -6878,12 +6997,12 @@ msgstr ""
 "Κατά την αναζήτηση θα επιλέγονται όχι μόνο τα αρχεία που ταιριάζουν αλλά και "
 "οι κατάλογοι."
 
-#: Konfigurator/kglookfeel.cpp:97
+#: Konfigurator/kglookfeel.cpp:98
 #, kde-format
 msgid "Rename selects extension"
 msgstr "Επιλογή της επέκτασης στη μετονομασία"
 
-#: Konfigurator/kglookfeel.cpp:97
+#: Konfigurator/kglookfeel.cpp:98
 #, kde-format
 msgid ""
 "When renaming a file, the whole text is selected. If you want Total-"
@@ -6894,12 +7013,12 @@ msgstr ""
 "γίνεται μετονομασία μόνο του ονόματος, χωρίς την επέκταση του αρχείου, όπως "
 "στον Total-Commander, αποεπιλέξτε αυτήν την επιλογή."
 
-#: Konfigurator/kglookfeel.cpp:98
+#: Konfigurator/kglookfeel.cpp:99
 #, kde-format
 msgid "Use full path tab names"
 msgstr "Χρήση πλήρους διαδρομής στις καρτέλες"
 
-#: Konfigurator/kglookfeel.cpp:98
+#: Konfigurator/kglookfeel.cpp:99
 #, kde-format
 msgid ""
 "Display the full path in the folder tabs. By default only the last part of "
@@ -6908,38 +7027,38 @@ msgstr ""
 "Εμφάνιση της πλήρους διαδρομής στις καρτέλες φακέλων. Εξ ορισμού, "
 "εμφανίζεται μόνο το τελευταίο τμήμα της διαδρομής."
 
-#: Konfigurator/kglookfeel.cpp:99
+#: Konfigurator/kglookfeel.cpp:100
 #, kde-format
 msgid "Fullscreen terminal (mc-style)"
 msgstr "Τερματικό πλήρους οθόνης (όπως στο mc)"
 
-#: Konfigurator/kglookfeel.cpp:99
+#: Konfigurator/kglookfeel.cpp:100
 #, kde-format
 msgid "Terminal is shown instead of the Krusader window (full screen)."
 msgstr ""
 "Εμφανίζεται το τερματικό αντί του παραθύρου του Krusader (πλήρης οθόνη)"
 
-#: Konfigurator/kglookfeel.cpp:108
+#: Konfigurator/kglookfeel.cpp:109
 #, kde-format
 msgid "Quicksearch"
 msgstr "Γρήγορη αναζήτηση"
 
-#: Konfigurator/kglookfeel.cpp:113
+#: Konfigurator/kglookfeel.cpp:114
 #, kde-format
 msgid "New style quicksearch"
 msgstr "Νέου στυλ γρήγορη αναζήτηση"
 
-#: Konfigurator/kglookfeel.cpp:113
+#: Konfigurator/kglookfeel.cpp:114
 #, kde-format
 msgid "Opens a quick search dialog box."
 msgstr "Ανοίγει ένα διάλογο γρήγορης αναζήτησης."
 
-#: Konfigurator/kglookfeel.cpp:114
+#: Konfigurator/kglookfeel.cpp:115
 #, kde-format
 msgid "Case sensitive quicksearch"
 msgstr "Γρήγορη αναζήτηση με διάκριση πεζών/κεφαλαίων"
 
-#: Konfigurator/kglookfeel.cpp:114 Konfigurator/kglookfeel.cpp:186
+#: Konfigurator/kglookfeel.cpp:115 Konfigurator/kglookfeel.cpp:253
 #, kde-format
 msgid ""
 "All files beginning with capital letters appear before files beginning with "
@@ -6948,104 +7067,97 @@ msgstr ""
 "Τα αρχεία που αρχίζουν με κεφαλαίο γράμμα εμφανίζονται πριν από τα αρχεία "
 "που αρχίζουν με πεζό (προκαθορισμένο στο UNIX)."
 
-#: Konfigurator/kglookfeel.cpp:139
+#: Konfigurator/kglookfeel.cpp:140
 #, kde-format
 msgid "Panel settings"
 msgstr "Ρυθμίσεις πίνακα"
 
-#: Konfigurator/kglookfeel.cpp:145
+#: Konfigurator/kglookfeel.cpp:153
+#, kde-format
+msgid "Default panel type:"
+msgstr "Προκαθορισμένος τύπος πίνακα:"
+
+#: Konfigurator/kglookfeel.cpp:177
 #, kde-format
 msgid "Panel font:"
 msgstr "Γραμματοσειρά πίνακα: "
 
-#: Konfigurator/kglookfeel.cpp:159
+#: Konfigurator/kglookfeel.cpp:191
 #, kde-format
 msgid "Filelist icon size:"
 msgstr "Μέγεθος εικονιδίων της λίστας αρχείων: "
 
-#: Konfigurator/kglookfeel.cpp:164
+#: Konfigurator/kglookfeel.cpp:196
+#, kde-format
+msgid "12"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:197
 #, kde-format
 msgid "16"
 msgstr "16"
 
-#: Konfigurator/kglookfeel.cpp:165
+#: Konfigurator/kglookfeel.cpp:198
 #, kde-format
 msgid "22"
 msgstr "22"
 
-#: Konfigurator/kglookfeel.cpp:166
+#: Konfigurator/kglookfeel.cpp:199
 #, kde-format
 msgid "32"
 msgstr "32"
 
-#: Konfigurator/kglookfeel.cpp:167
+#: Konfigurator/kglookfeel.cpp:200
 #, kde-format
 msgid "48"
 msgstr "48"
 
-#: Konfigurator/kglookfeel.cpp:182
+#: Konfigurator/kglookfeel.cpp:215
 #, kde-format
 msgid "Use icons in the filenames"
 msgstr "Χρήση εικονιδίων στα ονόματα αρχείων"
 
-#: Konfigurator/kglookfeel.cpp:182
+#: Konfigurator/kglookfeel.cpp:215
 #, kde-format
 msgid "Show the icons for filenames and folders."
 msgstr "Εμφάνιση εικονιδίων για ονόματα αρχείων και φακέλους."
 
-#: Konfigurator/kglookfeel.cpp:183
+#: Konfigurator/kglookfeel.cpp:216
 #, kde-format
 msgid "Load the user defined folder icons"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:183
+#: Konfigurator/kglookfeel.cpp:216
 #, kde-format
 msgid "Load the user defined folder icons (can cause decrease in performance)."
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:184
+#: Konfigurator/kglookfeel.cpp:217
 #, kde-format
 msgid "Use human-readable file size"
 msgstr "Εναλλακτική εμφάνιση μεγέθους αρχείων"
 
-#: Konfigurator/kglookfeel.cpp:184
+#: Konfigurator/kglookfeel.cpp:217
 #, kde-format
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
 msgstr "Το μέγεθος εμφανίζεται σε B, KB, MB και GB, και όχι απλά σε bytes."
 
-#: Konfigurator/kglookfeel.cpp:185
+#: Konfigurator/kglookfeel.cpp:218
 #, kde-format
 msgid "Show hidden files"
 msgstr "Εμφάνιση κρυφών αρχείων"
 
-#: Konfigurator/kglookfeel.cpp:185
+#: Konfigurator/kglookfeel.cpp:218
 #, kde-format
 msgid "Display files beginning with a dot."
 msgstr "Εμφάνιση αρχείων που αρχίζουν με τελεία."
 
-#: Konfigurator/kglookfeel.cpp:186
-#, kde-format
-msgid "Case sensitive sorting"
-msgstr "Ταξινόμηση με διάκριση πεζών/κεφαλαίων"
-
-#: Konfigurator/kglookfeel.cpp:187
-#, kde-format
-msgid "Always sort dirs by name"
-msgstr "Πάντα ταξινόμηση καταλόγων κατ' όνομα"
-
-#: Konfigurator/kglookfeel.cpp:187
-#, kde-format
-msgid "Directories are sorted by name, regardless of the sort column."
-msgstr ""
-"Οι κατάλογοι ταξινομούνται κατ' όνομα, ανεξάρτητα από την επιλογή στήλης "
-"ταξινόμησης."
-
-#: Konfigurator/kglookfeel.cpp:188
+#: Konfigurator/kglookfeel.cpp:219
 #, kde-format
 msgid "Numeric Permissions"
 msgstr "Αριθμητικές άδειες"
 
-#: Konfigurator/kglookfeel.cpp:188
+#: Konfigurator/kglookfeel.cpp:219
 #, kde-format
 msgid ""
 "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in "
@@ -7054,103 +7166,140 @@ msgstr ""
 "Εμφάνιση οκταδικών αριθμών (0755) αντί των τυπικών αδειών (rwxr-xr-x) στη "
 "στήλη των αδειών."
 
-#: Konfigurator/kglookfeel.cpp:204
+#: Konfigurator/kglookfeel.cpp:234
 #, kde-format
-msgid "Default panel type:"
-msgstr "Προκαθορισμένος τύπος πίνακα:"
+msgid "Sort method:"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:238
+#, kde-format
+msgid "Alphabetical"
+msgstr ""
 
 #: Konfigurator/kglookfeel.cpp:239
+#, kde-format
+msgid "Alphabetical and numbers"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:240
+#, kde-format
+msgid "Character code"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:241
+#, kde-format
+msgid "Character code and numbers"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:253
+#, kde-format
+msgid "Case sensitive sorting"
+msgstr "Ταξινόμηση με διάκριση πεζών/κεφαλαίων"
+
+#: Konfigurator/kglookfeel.cpp:254
+#, kde-format
+msgid "Always sort dirs by name"
+msgstr "Πάντα ταξινόμηση καταλόγων κατ' όνομα"
+
+#: Konfigurator/kglookfeel.cpp:254
+#, kde-format
+msgid "Directories are sorted by name, regardless of the sort column."
+msgstr ""
+"Οι κατάλογοι ταξινομούνται κατ' όνομα, ανεξάρτητα από την επιλογή στήλης "
+"ταξινόμησης."
+
+#: Konfigurator/kglookfeel.cpp:274
 #, kde-format
 msgid "Panel Toolbar"
 msgstr "Γραμμή εργαλείων πίνακα"
 
-#: Konfigurator/kglookfeel.cpp:247
+#: Konfigurator/kglookfeel.cpp:282
 #, kde-format
 msgid "Show Panel Toolbar"
 msgstr "Εμφάνιση γραμμής εργαλείων πίνακα"
 
-#: Konfigurator/kglookfeel.cpp:247
+#: Konfigurator/kglookfeel.cpp:282
 #, kde-format
 msgid "The panel toolbar will be visible."
 msgstr "Η γραμμή εργαλείων του πίνακα θα είναι ορατή"
 
-#: Konfigurator/kglookfeel.cpp:253
+#: Konfigurator/kglookfeel.cpp:288
 #, kde-format
 msgid "Visible Panel Toolbar buttons"
 msgstr "Ορατά κουμπιά γραμμής εργαλείων πίνακα"
 
-#: Konfigurator/kglookfeel.cpp:259
+#: Konfigurator/kglookfeel.cpp:294
 #, kde-format
 msgid "Open button"
 msgstr "Κουμπί ανοίγματος"
 
-#: Konfigurator/kglookfeel.cpp:259
+#: Konfigurator/kglookfeel.cpp:294
 #, kde-format
 msgid "Opens the directory browser."
 msgstr "Ανοίγει τον περιηγητή καταλόγων."
 
-#: Konfigurator/kglookfeel.cpp:260
+#: Konfigurator/kglookfeel.cpp:295
 #, kde-format
 msgid "Equal button (=)"
 msgstr "Κουμπί ίσον (=)"
 
-#: Konfigurator/kglookfeel.cpp:260
+#: Konfigurator/kglookfeel.cpp:295
 #, kde-format
 msgid "Changes the panel directory to the other panel directory."
 msgstr "Αλλάζει τον κατάλογο του πίνακα στον κατάλογο του άλλου πίνακα."
 
-#: Konfigurator/kglookfeel.cpp:261
+#: Konfigurator/kglookfeel.cpp:296
 #, kde-format
 msgid "Up button (..)"
 msgstr "Κουμπί πάνω (..)"
 
-#: Konfigurator/kglookfeel.cpp:261
+#: Konfigurator/kglookfeel.cpp:296
 #, kde-format
 msgid "Changes the panel directory to the parent directory."
 msgstr "Αλλάζει τον κατάλογο του πίνακα στο γονικό του κατάλογο."
 
-#: Konfigurator/kglookfeel.cpp:262
+#: Konfigurator/kglookfeel.cpp:297
 #, kde-format
 msgid "Home button (~)"
 msgstr "Κουμπί προσωπικού καταλόγου (~)"
 
-#: Konfigurator/kglookfeel.cpp:262
+#: Konfigurator/kglookfeel.cpp:297
 #, kde-format
 msgid "Changes the panel directory to the home directory."
 msgstr "Αλλάζει τον κατάλογο του πίνακα στον προσωπικό σας κατάλογο."
 
-#: Konfigurator/kglookfeel.cpp:263
+#: Konfigurator/kglookfeel.cpp:298
 #, kde-format
 msgid "Root button (/)"
 msgstr "Κουμπί ριζικού καταλόγου (/)"
 
-#: Konfigurator/kglookfeel.cpp:263
+#: Konfigurator/kglookfeel.cpp:298
 #, kde-format
 msgid "Changes the panel directory to the root directory."
 msgstr "Αλλάζει τον κατάλογο του πίνακα στον ριζικό κατάλογο."
 
-#: Konfigurator/kglookfeel.cpp:264
+#: Konfigurator/kglookfeel.cpp:299
 #, kde-format
 msgid "Toggle-button for sync-browsing"
 msgstr "Κουμπί εναλλαγής συγχρονισμένης περιήγησης"
 
-#: Konfigurator/kglookfeel.cpp:264
+#: Konfigurator/kglookfeel.cpp:299
 #, kde-format
 msgid ""
 "Each directory change in the panel is also performed in the other panel."
 msgstr "Κάθε αλλαγή στον κατάλογο του πίνακα γίνεται και στον άλλο πίνακα."
 
-#: Konfigurator/kglookfeel.cpp:288
+#: Konfigurator/kglookfeel.cpp:324
 #, kde-format
 msgid "Selection Mode"
 msgstr "Λειτουργία επιλογής"
 
-#: Konfigurator/kglookfeel.cpp:302
+#: Konfigurator/kglookfeel.cpp:338
 #, kde-format
 msgid "Krusader Mode"
 msgstr "Λειτουργία συμβατή με Krusader"
 
-#: Konfigurator/kglookfeel.cpp:302
+#: Konfigurator/kglookfeel.cpp:338
 #, kde-format
 msgid ""
 "Both keys allow selecting files. To select more than one file, hold the Ctrl "
@@ -7162,12 +7311,12 @@ msgstr ""
 "κάντε κλικ με το αριστερό πλήκτρο του ποντικιού. Το μενού δεξιού κλικ "
 "εμφανίζεται με ένα μικρής διάρκειας κλικ του δεξιού πλήκτρου του ποντικιού."
 
-#: Konfigurator/kglookfeel.cpp:303
+#: Konfigurator/kglookfeel.cpp:339
 #, kde-format
 msgid "Konqueror Mode"
 msgstr "Λειτουργία συμβατή με Konqueror"
 
-#: Konfigurator/kglookfeel.cpp:303
+#: Konfigurator/kglookfeel.cpp:339
 #, kde-format
 msgid ""
 "Pressing the left mouse button selects files - you can click and select "
@@ -7178,12 +7327,12 @@ msgstr ""
 "να κάνετε κλικ για να επιλέξετε περισσότερα αρχεία. Το μενού δεξιού κλικ "
 "εμφανίζεται με ένα μικρής διάρκειας κλικ του δεξιού πλήκτρου του ποντικιού."
 
-#: Konfigurator/kglookfeel.cpp:304
+#: Konfigurator/kglookfeel.cpp:340
 #, kde-format
 msgid "Total-Commander Mode"
 msgstr "Λειτουργία συμβατή με Total-Commander"
 
-#: Konfigurator/kglookfeel.cpp:304
+#: Konfigurator/kglookfeel.cpp:340
 #, kde-format
 msgid ""
 "The left mouse button does not select, but sets the current file without "
@@ -7197,27 +7346,45 @@ msgstr ""
 "και το μενού δεξιού κλικ εμφανίζεται πατώντας και κρατώντας πατημένο το δεξί "
 "πλήκτρο του ποντικιού."
 
-#: Konfigurator/kglookfeel.cpp:305
+#: Konfigurator/kglookfeel.cpp:341
+#, kde-format
+msgid "Ergonomic Mode"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:341
+#, fuzzy, kde-format
+msgid ""
+"The left mouse button does not select, but sets the current file without "
+"affecting the current selection. The right mouse button invokes the context-"
+"menu. You can select with Ctrl key and the left button."
+msgstr ""
+"Το αριστερό πλήκτρο του ποντικιού δε χρησιμοποιείται για επιλογή αρχείων, "
+"αλλά για τον ορισμό του τρέχοντος αρχείου χωρίς να επηρεάζει την υπάρχουσα "
+"επιλογή. Το δεξί πλήκτρο χρησιμοποιείται για την επιλογή πολλαπλών αρχείων "
+"και το μενού δεξιού κλικ εμφανίζεται πατώντας και κρατώντας πατημένο το δεξί "
+"πλήκτρο του ποντικιού."
+
+#: Konfigurator/kglookfeel.cpp:342
 #, kde-format
 msgid "Custom Selection Mode"
 msgstr "Προσαρμοσμένη λειτουργία επιλογής"
 
-#: Konfigurator/kglookfeel.cpp:305
+#: Konfigurator/kglookfeel.cpp:342
 #, kde-format
 msgid "Design your own selection mode!"
 msgstr "Σχεδιάστε τη δική σας λειτουργία επιλογής!"
 
-#: Konfigurator/kglookfeel.cpp:317
+#: Konfigurator/kglookfeel.cpp:354
 #, kde-format
 msgid "Details"
 msgstr "Λεπτομέρειες"
 
-#: Konfigurator/kglookfeel.cpp:325
+#: Konfigurator/kglookfeel.cpp:362
 #, kde-format
 msgid "Double-click selects (classic)"
 msgstr "Το διπλό κλικ επιλέγει (κλασικό)"
 
-#: Konfigurator/kglookfeel.cpp:325
+#: Konfigurator/kglookfeel.cpp:362
 #, kde-format
 msgid ""
 "A single click on a file will select and focus, a double click opens the "
@@ -7227,12 +7394,12 @@ msgstr ""
 "διπλό κλικ θα ανοίξει με το κατάλληλο πρόγραμμα ή αν πρόκειται για κατάλογο "
 "θα εμφανιστούν τα περιεχόμενά του."
 
-#: Konfigurator/kglookfeel.cpp:326
+#: Konfigurator/kglookfeel.cpp:363
 #, kde-format
 msgid "Obey KDE's global selection policy"
 msgstr "Συμμόρφωση με την καθολική πολιτική επιλογής του KDE"
 
-#: Konfigurator/kglookfeel.cpp:326
+#: Konfigurator/kglookfeel.cpp:363
 #, kde-format
 msgid ""
 "<p>Use KDE's global setting:</p><p><i>KDE Control Center -> Peripherals -> "
@@ -7241,35 +7408,35 @@ msgstr ""
 "<p>Χρήση των καθολικών ρυθμίσεων του KDE:</p><p><i>Κέντρο ελέγχου του KDE -> "
 "Περιφερειακά -> Ποντίκι</i></p>"
 
-#: Konfigurator/kglookfeel.cpp:338
+#: Konfigurator/kglookfeel.cpp:375
 #, kde-format
 msgid "Based on KDE's selection mode"
 msgstr "Βασισμένη στη λειτουργία επιλογής του KDE"
 
-#: Konfigurator/kglookfeel.cpp:339
+#: Konfigurator/kglookfeel.cpp:376
 #, kde-format
 msgid "If checked, use a mode based on KDE's style."
 msgstr ""
 "Αν ενεργοποιηθεί, θα χρησιμοποιηθεί μία λειτουργία που βασίζεται στο στυλ "
 "του KDE."
 
-#: Konfigurator/kglookfeel.cpp:341
+#: Konfigurator/kglookfeel.cpp:378
 #, kde-format
 msgid "Left mouse button selects"
 msgstr "Επιλογή με το αριστερό πλήκτρο του ποντικιού"
 
-#: Konfigurator/kglookfeel.cpp:342
+#: Konfigurator/kglookfeel.cpp:379
 #, kde-format
 msgid "If checked, left clicking an item will select it."
 msgstr ""
 "Αν ενεργοποιηθεί, κάνοντας αριστερό κλικ σε ένα αντικείμενο θα το επιλέγει."
 
-#: Konfigurator/kglookfeel.cpp:344
+#: Konfigurator/kglookfeel.cpp:381
 #, kde-format
 msgid "Left mouse button preserves selection"
 msgstr "Διατήρηση επιλογής με το αριστερό πλήκτρο του ποντικιού"
 
-#: Konfigurator/kglookfeel.cpp:345
+#: Konfigurator/kglookfeel.cpp:382
 #, kde-format
 msgid ""
 "If checked, left clicking an item will select it, but will not unselect "
@@ -7278,12 +7445,12 @@ msgstr ""
 "Αν ενεργοποιηθεί, κάνοντας αριστερό κλικ σε ένα αντικείμενο θα το επιλέγει, "
 "αλλά δε θα αποεπιλέγει άλλα, ήδη επιλεγμένα αντικείμενα."
 
-#: Konfigurator/kglookfeel.cpp:347
+#: Konfigurator/kglookfeel.cpp:384
 #, kde-format
 msgid "Shift/Ctrl-Left mouse button selects"
 msgstr "Επιλογή με Shift/Ctrl-αριστερό πλήκτρο του ποντικιού"
 
-#: Konfigurator/kglookfeel.cpp:348
+#: Konfigurator/kglookfeel.cpp:385
 #, kde-format
 msgid ""
 "If checked, shift/ctrl left clicking will select items. \n"
@@ -7294,23 +7461,23 @@ msgstr ""
 "Σημείωση: Αυτό δεν έχει νόημα να είναι ενεργοποιημένο το 'Επιλογή με το "
 "αριστερό πλήκτρο'."
 
-#: Konfigurator/kglookfeel.cpp:350
+#: Konfigurator/kglookfeel.cpp:387
 #, kde-format
 msgid "Right mouse button selects"
 msgstr "Επιλογή με το δεξί πλήκτρο του ποντικιού"
 
-#: Konfigurator/kglookfeel.cpp:351
+#: Konfigurator/kglookfeel.cpp:388
 #, kde-format
 msgid "If checked, right clicking an item will select it."
 msgstr ""
 "Αν ενεργοποιηθεί, κάνοντας δεξί κλικ σε ένα αντικείμενο θα το επιλέγει."
 
-#: Konfigurator/kglookfeel.cpp:353
+#: Konfigurator/kglookfeel.cpp:390
 #, kde-format
 msgid "Right mouse button preserves selection"
 msgstr "Διατήρηση επιλογής με το δεξί πλήκτρο του ποντικιού"
 
-#: Konfigurator/kglookfeel.cpp:354
+#: Konfigurator/kglookfeel.cpp:391
 #, kde-format
 msgid ""
 "If checked, right clicking an item will select it, but will not unselect "
@@ -7319,12 +7486,12 @@ msgstr ""
 "Αν ενεργοποιηθεί, κάνοντας δεξί κλικ σε ένα αντικείμενο θα το επιλέγει, αλλά "
 "δε θα αποεπιλέγει άλλα, ήδη επιλεγμένα αντικείμενα."
 
-#: Konfigurator/kglookfeel.cpp:356
+#: Konfigurator/kglookfeel.cpp:393
 #, kde-format
 msgid "Shift/Ctrl-Right mouse button selects"
 msgstr "Επιλογή με Shift/Ctrl-δεξί πλήκτρο του ποντικιού"
 
-#: Konfigurator/kglookfeel.cpp:357
+#: Konfigurator/kglookfeel.cpp:394
 #, kde-format
 msgid ""
 "If checked, shift/ctrl right clicking will select items. \n"
@@ -7335,12 +7502,12 @@ msgstr ""
 "Σημείωση: Αυτό δεν έχει νόημα να είναι ενεργοποιημένο το 'Επιλογή με το δεξί "
 "πλήκτρο'."
 
-#: Konfigurator/kglookfeel.cpp:359
+#: Konfigurator/kglookfeel.cpp:396
 #, kde-format
 msgid "Spacebar moves down"
 msgstr "Το πλήκτρο 'κενό' μετακινεί προς τα κάτω"
 
-#: Konfigurator/kglookfeel.cpp:360
+#: Konfigurator/kglookfeel.cpp:397
 #, kde-format
 msgid ""
 "If checked, pressing the spacebar will select the current item and move "
@@ -7351,12 +7518,12 @@ msgstr ""
 "αντικείμενο και θα μετακινηθεί προς τα κάτω.\n"
 "Διαφορετικά, επιλέγεται το τρέχον αντικείμενο, και παραμένει τρέχον."
 
-#: Konfigurator/kglookfeel.cpp:362
+#: Konfigurator/kglookfeel.cpp:399
 #, kde-format
 msgid "Spacebar calculates disk space"
 msgstr "Το πλήκτρο 'κενό' υπολογίζει το χώρο του δίσκου"
 
-#: Konfigurator/kglookfeel.cpp:363
+#: Konfigurator/kglookfeel.cpp:400
 #, kde-format
 msgid ""
 "If checked, pressing the spacebar while the current item is a folder, will "
@@ -7367,12 +7534,12 @@ msgstr ""
 "ένας φάκελος, εκτός από την επιλογή του φακέλου, θα υπολογιστεί και ο χώρος "
 "που καταλαμβάνεται από το φάκελο (αναδρομικά)."
 
-#: Konfigurator/kglookfeel.cpp:365
+#: Konfigurator/kglookfeel.cpp:402
 #, kde-format
 msgid "Insert moves down"
 msgstr "Το πλήκτρο 'εισαγωγή' μετακινεί προς τα κάτω"
 
-#: Konfigurator/kglookfeel.cpp:366
+#: Konfigurator/kglookfeel.cpp:403
 #, kde-format
 msgid ""
 "If checked, pressing INSERT will select the current item, and move down to "
@@ -7383,12 +7550,12 @@ msgstr ""
 "αντικείμενο και θα μετακινηθεί προς τα κάτω.\n"
 "Διαφορετικά, δε θα αλλάξει το τρέχον αντικείμενο."
 
-#: Konfigurator/kglookfeel.cpp:368
+#: Konfigurator/kglookfeel.cpp:405
 #, kde-format
 msgid "Right clicking pops context menu immediately"
 msgstr "Με δεξί κλικ εμφανίζεται αμέσως το βοηθητικό μενού"
 
-#: Konfigurator/kglookfeel.cpp:369
+#: Konfigurator/kglookfeel.cpp:406
 #, kde-format
 msgid ""
 "If checked, right clicking will result in an immediate showing of the "
@@ -7490,7 +7657,7 @@ msgstr ""
 msgid "Removing Useractions"
 msgstr "Αφαίρεση ενεργειών χρήστη"
 
-#: Konfigurator/kgadvanced.cpp:101 Konfigurator/kgarchives.cpp:100
+#: Konfigurator/kgadvanced.cpp:101 Konfigurator/kgarchives.cpp:101
 #, kde-format
 msgid "Fine-Tuning"
 msgstr "Λεπτομερής ρύθμιση"
@@ -8184,50 +8351,55 @@ msgstr "GZip"
 
 #: Konfigurator/kgarchives.cpp:64
 #, kde-format
+msgid "LZMA"
+msgstr ""
+
+#: Konfigurator/kgarchives.cpp:65
+#, kde-format
 msgid "BZip2"
 msgstr "BZip2"
 
-#: Konfigurator/kgarchives.cpp:65
+#: Konfigurator/kgarchives.cpp:66
 #, kde-format
 msgid "Zip"
 msgstr "Zip"
 
-#: Konfigurator/kgarchives.cpp:66
+#: Konfigurator/kgarchives.cpp:67
 #, kde-format
 msgid "Rar"
 msgstr "Rar"
 
-#: Konfigurator/kgarchives.cpp:67
+#: Konfigurator/kgarchives.cpp:68
 #, kde-format
 msgid "Arj"
 msgstr "Arj"
 
-#: Konfigurator/kgarchives.cpp:68
+#: Konfigurator/kgarchives.cpp:69
 #, kde-format
 msgid "Rpm"
 msgstr "Rpm"
 
-#: Konfigurator/kgarchives.cpp:69
+#: Konfigurator/kgarchives.cpp:70
 #, kde-format
 msgid "Ace"
 msgstr "Ace"
 
-#: Konfigurator/kgarchives.cpp:70
+#: Konfigurator/kgarchives.cpp:71
 #, kde-format
 msgid "Lha"
 msgstr "Lha"
 
-#: Konfigurator/kgarchives.cpp:71
+#: Konfigurator/kgarchives.cpp:72
 #, kde-format
 msgid "Deb"
 msgstr "Deb"
 
-#: Konfigurator/kgarchives.cpp:72
+#: Konfigurator/kgarchives.cpp:73
 #, kde-format
 msgid "7zip"
 msgstr "7zip"
 
-#: Konfigurator/kgarchives.cpp:78
+#: Konfigurator/kgarchives.cpp:79
 #, kde-format
 msgid ""
 "The archives that are \"greyed-out\" were unavailable on your\n"
@@ -8238,27 +8410,27 @@ msgstr ""
 "την τελευταία φορά που έλεγξε ο Krusader. Αν θέλετε να γίνει νέος\n"
 "έλεγχος, κάντε κλικ στο κουμπί 'Αυτόματη ρύθμιση'."
 
-#: Konfigurator/kgarchives.cpp:87
+#: Konfigurator/kgarchives.cpp:88
 #, kde-format
 msgid "Auto Configure"
 msgstr "Αυτόματη ρύθμιση"
 
-#: Konfigurator/kgarchives.cpp:106
+#: Konfigurator/kgarchives.cpp:107
 #, kde-format
 msgid "Test archive after packing"
 msgstr "Έλεγχος αρχειοθήκης μετά την συμπίεση"
 
-#: Konfigurator/kgarchives.cpp:106
+#: Konfigurator/kgarchives.cpp:107
 #, kde-format
 msgid "Check the archive's integrity after packing it."
 msgstr "Έλεγχος της ακεραιότητας της αρχειοθήκης μετά τη δημιουργία της."
 
-#: Konfigurator/kgarchives.cpp:107
+#: Konfigurator/kgarchives.cpp:108
 #, kde-format
 msgid "Test archive before unpacking"
 msgstr "Έλεγχος αρχειοθήκης πριν την αποσυμπίεση"
 
-#: Konfigurator/kgarchives.cpp:107
+#: Konfigurator/kgarchives.cpp:108
 #, kde-format
 msgid ""
 "Some corrupted archives might cause a crash; therefore, testing is suggested."
@@ -8266,12 +8438,12 @@ msgstr ""
 "Κάποιες κατεστραμμένες αρχειοθήκες ίσως οδηγήσουν σε κατάρρευση της "
 "εφαρμογής. Γι' αυτό προτείνεται να ενεργοποιηθεί ο έλεγχος."
 
-#: Konfigurator/kgarchives.cpp:124
+#: Konfigurator/kgarchives.cpp:125
 #, kde-format
 msgid "Searching for packers..."
 msgstr "Αναζήτηση εργαλείων συμπίεσης..."
 
-#: Konfigurator/kgarchives.cpp:125
+#: Konfigurator/kgarchives.cpp:126
 #, kde-format
 msgid ""
 "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
@@ -8329,12 +8501,12 @@ msgstr "Γραμματοσειρά σταθερού πλάτους:"
 msgid "Use fixed width font as default"
 msgstr "Χρήση της γραμματοσειράς σταθερού πλάτους ως προκαθορισμένη"
 
-#: krslots.cpp:100
+#: krslots.cpp:101
 #, fuzzy, kde-format
 msgid "No selected files to send!"
 msgstr "Μόνο επιλεγμένα αρχεία"
 
-#: krslots.cpp:108
+#: krslots.cpp:109
 #, kde-format
 msgid ""
 "Krusader can't find a supported mail client. Please install one to your "
@@ -8344,19 +8516,19 @@ msgstr ""
 "αλληλογραφίας. Παρακαλώ εγκαταστήστε κάποιον στο path σας. Υπόδειξη: ο "
 "Krusader υποστηρίζει το Kmail."
 
-#: krslots.cpp:117
+#: krslots.cpp:118
 #, fuzzy, kde-format
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
 msgstr[0] "Αποστολή αρχείου: "
 msgstr[1] "Αποστολή αρχείου: "
 
-#: krslots.cpp:167
+#: krslots.cpp:176
 #, kde-format
 msgid "Don't know which files to compare."
 msgstr "Δεν ξέρω ποια αρχεία να συγκρίνω."
 
-#: krslots.cpp:167
+#: krslots.cpp:176
 #, kde-format
 msgid ""
 "To compare two files by content, you can either:<ul><li>Select one file in "
@@ -8369,7 +8541,7 @@ msgstr ""
 "αρχεία στον ενεργό πίνακα.</li><li>Σιγουρευτείτε ότι υπάρχει στον άλλο "
 "πίνακα ένα αρχείο με το ίδιο όνομα, με αυτό του ενεργού πίνακα.</li></ul>"
 
-#: krslots.cpp:183
+#: krslots.cpp:192
 #, kde-format
 msgid ""
 "Krusader can't find any of the supported diff-frontends. Please install one "
@@ -8379,12 +8551,12 @@ msgstr ""
 "diff. Παρακαλώ εγκαταστήστε κάποια στο path σας. Υπόδειξη: Ο Krusader "
 "υποστηρίζει τα Kompare, Kdiff3 και Xxdiff."
 
-#: krslots.cpp:196 krslots.cpp:202
+#: krslots.cpp:205 krslots.cpp:211
 #, fuzzy, kde-format
 msgid "Krusader is unable to download %1"
 msgstr "Ο Krusader δεν μπορεί να κάνει λήψη του: "
 
-#: krslots.cpp:451
+#: krslots.cpp:460
 #, kde-format
 msgid ""
 "Can't find the 'locate' command. Please install the findutils-locate package "
@@ -8393,21 +8565,21 @@ msgstr ""
 "Αδύνατη η εύρεση της εντολής 'locate'. Παρακαλώ εγκαταστήστε το πακέτο "
 "findutils-locate του GNU, ή ορίστε τις εξαρτήσεις του στο Konfigurator"
 
-#: krslots.cpp:471
+#: krslots.cpp:480
 #, kde-format
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
 msgstr ""
 "Αδύνατη η εκκίνηση του 'mount'! Ελέγξτε τη σελίδα 'Εξαρτήσεις' στο "
 "konfigurator."
 
-#: krslots.cpp:511
+#: krslots.cpp:520
 #, kde-format
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
 msgstr ""
 "Αδύνατη η εύρεση του \"KsysCtrl\". Παρακαλώ εγκαταστήστε το πακέτο admin του "
 "KDE"
 
-#: krslots.cpp:519
+#: krslots.cpp:528
 #, kde-format
 msgid ""
 "Can't find a batch rename tool.\n"
@@ -8416,7 +8588,7 @@ msgstr ""
 "Αδύνατη η εύρεση ενός εργαλείου ομαδικής μετονομασίας αρχείων.\n"
 "Μπορείτε να βρείτε το Krename στο http://www.krename.net"
 
-#: krslots.cpp:550
+#: krslots.cpp:559
 #, kde-format
 msgid ""
 "Can't start root mode krusader, because krusader or kdesu is missing from "
@@ -8426,52 +8598,52 @@ msgstr ""
 "το kdesu λείπει από το path. Παρακαλώ ρυθμίστε τις εξαρτήσεις στο "
 "Konfigurator!"
 
-#: krslots.cpp:617
+#: krslots.cpp:630
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "Δώστε ένα URL για προβολή:"
 
-#: krslots.cpp:628
+#: krslots.cpp:641
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "Δώστε το όνομα αρχείου που θέλετε να επεξεργαστείτε:"
 
-#: krslots.cpp:685
+#: krslots.cpp:698
 #, kde-format
 msgid "Don't know which file to split."
 msgstr "Δεν ξέρω ποιο αρχείο να χωρίσω."
 
-#: krslots.cpp:694
+#: krslots.cpp:707
 #, kde-format
 msgid "You can't split a directory!"
 msgstr "Αδύνατος ο χωρισμός καταλόγου!"
 
-#: krslots.cpp:725
+#: krslots.cpp:738
 #, kde-format
 msgid "Don't know which files to combine."
 msgstr "Δεν ξέρω ποια αρχεία να ενόσω."
 
-#: krslots.cpp:737
+#: krslots.cpp:750
 #, kde-format
 msgid "You can't combine a directory!"
 msgstr "Αδύνατη η ένωση καταλόγου!"
 
-#: krslots.cpp:756
+#: krslots.cpp:769
 #, kde-format
 msgid "Not a split file %1!"
 msgstr "Το %1 δεν είναι τμήμα ενός χωρισμένου αρχείου!"
 
-#: krslots.cpp:771
+#: krslots.cpp:784
 #, kde-format
 msgid "Select only one split file!"
 msgstr "Επιλέξτε μόνο ένα χωρισμένο αρχείο!"
 
-#: krslots.cpp:819
+#: krslots.cpp:832
 #, kde-format
 msgid "Not a splitted file %1!"
 msgstr "Το %1 δεν είναι χωρισμένο αρχείο!"
 
-#: krslots.cpp:826
+#: krslots.cpp:839
 #, kde-format
 msgid "Combining %1.* to directory:"
 msgstr "Ένωση των %1.* στον κατάλογο:"
@@ -8698,19 +8870,19 @@ msgstr ""
 msgid "Listing directories is not supported for %1 archives"
 msgstr ""
 
-#: krarc.cpp:1480
+#: krarc.cpp:1495
 #, kde-format
 msgid ""
 "\n"
 "Make sure that the %1 binary are installed properly on your system."
 msgstr ""
 
-#: krarc.cpp:1690 krarc.cpp:1714
+#: krarc.cpp:1710 krarc.cpp:1734
 #, kde-format
 msgid "Krarc Password Dialog"
 msgstr ""
 
-#: krarc.cpp:1731
+#: krarc.cpp:1751
 #, kde-format
 msgid "Accessing the file requires password."
 msgstr ""

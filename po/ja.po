@@ -9,12 +9,12 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-2.0.0-beta1\n"
+"Project-Id-Version: krusader-2.0.0-beta2\n"
 "Report-Msgid-Bugs-To: krusader-i18n@googlegroups.com\n"
-"POT-Creation-Date: 2008-09-22 20:47+0200\n"
+"POT-Creation-Date: 2008-12-05 21:44+0100\n"
 "PO-Revision-Date: 2006-10-11 03:54+0900\n"
 "Last-Translator: Hideki Kimura <hangyo1973@gmail.com>\n"
-"Language-Team: Japanese <krusader-i18n@googlegroups.com>\n"
+"Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -82,7 +82,7 @@ msgstr "利用可能メディアの一覧を開きます。"
 msgid "Remote Share"
 msgstr "リモート共有"
 
-#: GUI/mediabutton.cpp:159 GUI/mediabutton.cpp:162 VFS/kiojobwrapper.cpp:189
+#: GUI/mediabutton.cpp:159 GUI/mediabutton.cpp:162 VFS/kiojobwrapper.cpp:195
 #, kde-format
 msgid "Unknown"
 msgstr "不明"
@@ -396,7 +396,8 @@ msgstr "移動"
 
 #: VFS/preserveattrcopyjob.cpp:335 VFS/preserveattrcopyjob.cpp:342
 #: VFS/preserveattrcopyjob.cpp:349 VFS/preserveattrcopyjob.cpp:373
-#: VFS/virtualcopyjob.cpp:384 VFS/virtualcopyjob.cpp:390
+#: VFS/kiojobwrapper.cpp:221 VFS/virtualcopyjob.cpp:384
+#: VFS/virtualcopyjob.cpp:390
 #, fuzzy, kde-format
 msgid "Source"
 msgstr "ソース:"
@@ -444,34 +445,34 @@ msgstr "ファイルはすでに存在します"
 msgid "Already Exists as Folder"
 msgstr "ファイルはすでに存在します"
 
-#: VFS/normal_vfs.cpp:91
+#: VFS/normal_vfs.cpp:98
 #, kde-format
 msgid "Directory %1 does not exist!"
 msgstr "ディレクトリ %1 は存在しません！"
 
-#: VFS/normal_vfs.cpp:91 VFS/normal_vfs.cpp:101 VFS/normal_vfs.cpp:108
-#: VFS/virt_vfs.cpp:90 VFS/virt_vfs.cpp:180 VFS/krarchandler.cpp:207
-#: VFS/krarchandler.cpp:266 VFS/krarchandler.cpp:284 VFS/krarchandler.cpp:345
-#: VFS/krarchandler.cpp:519 VFS/krarchandler.cpp:526
+#: VFS/normal_vfs.cpp:98 VFS/normal_vfs.cpp:108 VFS/normal_vfs.cpp:115
+#: VFS/virt_vfs.cpp:90 VFS/virt_vfs.cpp:180 VFS/krarchandler.cpp:214
+#: VFS/krarchandler.cpp:275 VFS/krarchandler.cpp:293 VFS/krarchandler.cpp:354
+#: VFS/krarchandler.cpp:531 VFS/krarchandler.cpp:538
 #: BookMan/krbookmarkhandler.cpp:171 BookMan/krbookmarkhandler.cpp:267
-#: MountMan/kmountman.cpp:205 Synchronizer/synchronizerdirlist.cpp:121
-#: Konfigurator/kggeneral.cpp:226 Konfigurator/kgcolors.cpp:550
+#: MountMan/kmountman.cpp:205 Synchronizer/synchronizerdirlist.cpp:126
+#: Konfigurator/kggeneral.cpp:227 Konfigurator/kgcolors.cpp:550
 #: Konfigurator/kgcolors.cpp:567
 #, kde-format
 msgid "Error"
 msgstr "エラー"
 
-#: VFS/normal_vfs.cpp:101 Synchronizer/synchronizerdirlist.cpp:121
+#: VFS/normal_vfs.cpp:108 Synchronizer/synchronizerdirlist.cpp:126
 #, kde-format
 msgid "Can't open the %1 directory!"
 msgstr "ディレクトリ %1 が開けません！"
 
-#: VFS/normal_vfs.cpp:108
+#: VFS/normal_vfs.cpp:115
 #, kde-format
 msgid "Access denied to"
 msgstr "アクセスが拒否されました。"
 
-#: VFS/normal_vfs.cpp:217
+#: VFS/normal_vfs.cpp:224
 #, kde-format
 msgid "Can't create a directory. Check your permissions."
 msgstr "ディレクトリが作成できません。権限を確認して下さい。"
@@ -490,25 +491,30 @@ msgstr ""
 msgid "Creating new directories is allowed only in the 'virt:/' directory."
 msgstr "'virt:/' ディレクトリでは、ディレクトリの新規作成のみ可能です。"
 
-#: VFS/kiojobwrapper.cpp:179 Konfigurator/krresulttable.cpp:305
+#: VFS/kiojobwrapper.cpp:185 Konfigurator/krresulttable.cpp:308
 #, fuzzy, kde-format
 msgid "Status"
 msgstr "状態"
 
-#: VFS/kiojobwrapper.cpp:181
+#: VFS/kiojobwrapper.cpp:187
 #, fuzzy, kde-format
 msgid "Directory Size"
 msgstr "ディレクトリ"
 
-#: VFS/kiojobwrapper.cpp:184
+#: VFS/kiojobwrapper.cpp:190
 #, fuzzy, kde-format
 msgid "Copy"
 msgstr " コピー"
 
-#: VFS/kiojobwrapper.cpp:187
+#: VFS/kiojobwrapper.cpp:193
 #, fuzzy, kde-format
 msgid "Move"
 msgstr " 移動"
+
+#: VFS/kiojobwrapper.cpp:220
+#, fuzzy, kde-format
+msgid "Target"
+msgstr "Tar"
 
 #: VFS/krquery.cpp:159 Filter/generalfilter.cpp:142
 #: Konfigurator/konfigurator.cpp:159
@@ -552,67 +558,67 @@ msgstr "カスタム"
 msgid "Searching content of '%1' (%2%)"
 msgstr "’%1’ の内容を検索しています (%2%)"
 
-#: VFS/krarchandler.cpp:183
+#: VFS/krarchandler.cpp:190
 #, kde-format
 msgid "Counting files in archive"
 msgstr "書庫内のファイル数を計算しています。"
 
-#: VFS/krarchandler.cpp:206
+#: VFS/krarchandler.cpp:213
 #, kde-format
 msgid "Failed to list the content of the archive (%1)!"
 msgstr "書庫 (%1) の内容のリストアップに失敗！"
 
-#: VFS/krarchandler.cpp:224
+#: VFS/krarchandler.cpp:231
 #, kde-format
 msgid "Failed to unpack"
 msgstr "解凍に失敗しました！"
 
-#: VFS/krarchandler.cpp:265
+#: VFS/krarchandler.cpp:274
 #, kde-format
 msgid "Failed to convert rpm (%1) to cpio!"
 msgstr "rpmパッケージ (%1) を cpio形式に変換できませんでした！"
 
-#: VFS/krarchandler.cpp:283
+#: VFS/krarchandler.cpp:292
 #, kde-format
 msgid "Failed to convert deb (%1) to tar!"
 msgstr "debパッケージ (%1) を tar形式に変換できませんでした！"
 
-#: VFS/krarchandler.cpp:316
+#: VFS/krarchandler.cpp:325
 #, kde-format
 msgid "Unpacking File(s)"
 msgstr "ファイルを解凍しています。"
 
-#: VFS/krarchandler.cpp:343
+#: VFS/krarchandler.cpp:352
 #, kde-format
 msgid "Failed to unpack %1!"
 msgstr "%1 の解凍に失敗しました！"
 
-#: VFS/krarchandler.cpp:344 VFS/krarchandler.cpp:518
+#: VFS/krarchandler.cpp:353 VFS/krarchandler.cpp:530
 #, kde-format
 msgid "User cancelled."
 msgstr "ユーザによってキャンセルされました。"
 
-#: VFS/krarchandler.cpp:388
+#: VFS/krarchandler.cpp:399
 #, kde-format
 msgid "Testing Archive"
 msgstr "書庫をテストしています。"
 
-#: VFS/krarchandler.cpp:497
+#: VFS/krarchandler.cpp:509
 #, kde-format
 msgid "Packing File(s)"
 msgstr "ファイルを圧縮しています。"
 
-#: VFS/krarchandler.cpp:517
+#: VFS/krarchandler.cpp:529
 #, kde-format
 msgid "Failed to pack %1!"
 msgstr "%1 の圧縮に失敗しました！"
 
-#: VFS/krarchandler.cpp:526
+#: VFS/krarchandler.cpp:538
 #, kde-format
 msgid "Failed to pack: "
 msgstr "圧縮に失敗しました。"
 
-#: VFS/krarchandler.cpp:562
+#: VFS/krarchandler.cpp:574
 #, kde-format
 msgid "This archive is encrypted, please supply the password:"
 msgstr "この書庫ファイルは暗号化されています。パスワードを入力して下さい:"
@@ -780,7 +786,7 @@ msgstr "追加(&A)"
 msgid "&Load"
 msgstr "読込(&L)"
 
-#: Filter/generalfilter.cpp:180 Panel/panelfunc.cpp:888
+#: Filter/generalfilter.cpp:180 Panel/panelfunc.cpp:897
 #, kde-format
 msgid "&Overwrite"
 msgstr "上書き(&O)"
@@ -861,7 +867,7 @@ msgid "Please specify a location to search in."
 msgstr "検索する場所を指定してください。"
 
 #: Filter/advancedfilter.cpp:65 Panel/krdetailedview.cpp:116
-#: Panel/krdetailedview.cpp:1135 Search/krsearchdialog.cpp:73
+#: Panel/krdetailedview.cpp:1138 Search/krsearchdialog.cpp:74
 #: Synchronizer/synchronizergui.cpp:1337 Synchronizer/synchronizergui.cpp:1341
 #, kde-format
 msgid "Size"
@@ -892,7 +898,7 @@ msgstr "MB"
 msgid "&Smaller than"
 msgstr "より小さい(&S)"
 
-#: Filter/advancedfilter.cpp:121 Search/krsearchdialog.cpp:74
+#: Filter/advancedfilter.cpp:121 Search/krsearchdialog.cpp:75
 #: Synchronizer/synchronizergui.cpp:1338 Synchronizer/synchronizergui.cpp:1340
 #: DiskUsage/dulistview.cpp:60
 #, kde-format
@@ -1478,8 +1484,9 @@ msgstr "確認"
 msgid "Command being executed:"
 msgstr "コマンド:"
 
-#: UserAction/kraction.cpp:60 Search/krsearchdialog.cpp:237
-#: Synchronizer/synchronizergui.cpp:1510 Konfigurator/konfigurator.cpp:74
+#: UserAction/kraction.cpp:60 Queue/queuedialog.cpp:167
+#: Search/krsearchdialog.cpp:238 Synchronizer/synchronizergui.cpp:1510
+#: Konfigurator/konfigurator.cpp:74
 #, fuzzy, kde-format
 msgid "Close"
 msgstr "閉じる"
@@ -1630,15 +1637,15 @@ msgid "&Brief View"
 msgstr "行 表示"
 
 #: Panel/krbriefview.cpp:124 Panel/krdetailedview.cpp:113
-#: Search/krsearchdialog.cpp:71 MountMan/kmountmangui.cpp:125
+#: Search/krsearchdialog.cpp:72 MountMan/kmountmangui.cpp:125
 #: Synchronizer/synchronizergui.cpp:1336 Synchronizer/synchronizergui.cpp:1342
 #: DiskUsage/dulines.cpp:197 DiskUsage/dulistview.cpp:55
-#: Konfigurator/krresulttable.cpp:139
+#: Konfigurator/krresulttable.cpp:140
 #, fuzzy, kde-format
 msgid "Name"
 msgstr "名前"
 
-#: Panel/krbriefview.cpp:1022 Panel/krdetailedview.cpp:1112
+#: Panel/krbriefview.cpp:1025 Panel/krdetailedview.cpp:1115
 #, fuzzy, kde-format
 msgid "Columns"
 msgstr "カラム"
@@ -1696,7 +1703,7 @@ msgstr "等価"
 msgid ".."
 msgstr ""
 
-#: Panel/listpanel.cpp:224 krusader.cpp:659
+#: Panel/listpanel.cpp:224 krusader.cpp:662
 #, fuzzy, kde-format
 msgid "Up"
 msgstr "上へ"
@@ -1706,7 +1713,7 @@ msgstr "上へ"
 msgid "~"
 msgstr ""
 
-#: Panel/listpanel.cpp:231 krusader.cpp:587
+#: Panel/listpanel.cpp:231 krusader.cpp:590
 #, fuzzy, kde-format
 msgid "Home"
 msgstr "ホーム"
@@ -1716,7 +1723,7 @@ msgstr "ホーム"
 msgid "/"
 msgstr "/"
 
-#: Panel/listpanel.cpp:238 krusader.cpp:734
+#: Panel/listpanel.cpp:238 krusader.cpp:738
 #, fuzzy, kde-format
 msgid "Root"
 msgstr "ルート"
@@ -1818,60 +1825,60 @@ msgstr "読み "
 msgid "&Detailed View"
 msgstr "KrDetailedView"
 
-#: Panel/krdetailedview.cpp:114 Panel/krdetailedview.cpp:1125
+#: Panel/krdetailedview.cpp:114 Panel/krdetailedview.cpp:1128
 #, kde-format
 msgid "Ext"
 msgstr "Ext"
 
-#: Panel/krdetailedview.cpp:115 Panel/krdetailedview.cpp:1130
+#: Panel/krdetailedview.cpp:115 Panel/krdetailedview.cpp:1133
 #: MountMan/kmountmangui.cpp:126 DiskUsage/dulistview.cpp:59
 #, fuzzy, kde-format
 msgid "Type"
 msgstr "タイプ"
 
-#: Panel/krdetailedview.cpp:117 Panel/krdetailedview.cpp:1140
+#: Panel/krdetailedview.cpp:117 Panel/krdetailedview.cpp:1143
 #, fuzzy, kde-format
 msgid "Modified"
 msgstr "修正あり"
 
-#: Panel/krdetailedview.cpp:118 Panel/krdetailedview.cpp:1145
+#: Panel/krdetailedview.cpp:118 Panel/krdetailedview.cpp:1148
 #, kde-format
 msgid "Perms"
 msgstr "権限"
 
-#: Panel/krdetailedview.cpp:119 Panel/krdetailedview.cpp:1150
+#: Panel/krdetailedview.cpp:119 Panel/krdetailedview.cpp:1153
 #, kde-format
 msgid "rwx"
 msgstr "rwx"
 
-#: Panel/krdetailedview.cpp:120 Panel/krdetailedview.cpp:1155
+#: Panel/krdetailedview.cpp:120 Panel/krdetailedview.cpp:1158
 #: DiskUsage/dulistview.cpp:62
 #, fuzzy, kde-format
 msgid "Owner"
 msgstr "所有者"
 
-#: Panel/krdetailedview.cpp:121 Panel/krdetailedview.cpp:1160
-#: DiskUsage/dulistview.cpp:63 Konfigurator/krresulttable.cpp:302
+#: Panel/krdetailedview.cpp:121 Panel/krdetailedview.cpp:1163
+#: DiskUsage/dulistview.cpp:63 Konfigurator/krresulttable.cpp:305
 #, fuzzy, kde-format
 msgid "Group"
 msgstr "グループ"
 
-#: Panel/krviewitem.cpp:48
+#: Panel/krviewitem.cpp:44
 #, kde-format
 msgid "Climb up the directory tree"
 msgstr "Climb up the directory tree"
 
-#: Panel/krviewitem.cpp:63
+#: Panel/krviewitem.cpp:59
 #, fuzzy, kde-format
 msgid "(broken link !)"
 msgstr "リンク"
 
-#: Panel/krviewitem.cpp:64
+#: Panel/krviewitem.cpp:60
 #, fuzzy, kde-format
 msgid "Symbolic Link"
 msgstr "シンボリックリンク"
 
-#: Panel/krviewitem.cpp:65
+#: Panel/krviewitem.cpp:61
 #, fuzzy, kde-format
 msgid "%1 (Link)"
 msgstr "%1 (リンク)"
@@ -1881,7 +1888,7 @@ msgstr "%1 (リンク)"
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr ""
 
-#: Panel/krview.cpp:467 Panel/krpopupmenu.cpp:151 krusader.cpp:783
+#: Panel/krview.cpp:467 Panel/krpopupmenu.cpp:151 krusader.cpp:789
 #, fuzzy, kde-format
 msgid "Rename"
 msgstr "名前を変更"
@@ -2023,7 +2030,7 @@ msgstr "実行"
 msgid "Open in New Tab"
 msgstr "新しいタブで開く"
 
-#: Panel/krpopupmenu.cpp:88 Konfigurator/kglookfeel.cpp:385
+#: Panel/krpopupmenu.cpp:88 Konfigurator/kglookfeel.cpp:422
 #: Konfigurator/kgcolors.cpp:231
 #, fuzzy, kde-format
 msgid "Preview"
@@ -2049,12 +2056,12 @@ msgstr "アプリケーションで開く"
 msgid "Konqueror Menu"
 msgstr "Konqueror メニュー"
 
-#: Panel/krpopupmenu.cpp:145 krusader.cpp:779
+#: Panel/krpopupmenu.cpp:145 krusader.cpp:783
 #, fuzzy, kde-format
 msgid "Copy..."
 msgstr "コピー..."
 
-#: Panel/krpopupmenu.cpp:148 krusader.cpp:780
+#: Panel/krpopupmenu.cpp:148 krusader.cpp:784
 #, fuzzy, kde-format
 msgid "Move..."
 msgstr "移動."
@@ -2064,7 +2071,7 @@ msgstr "移動."
 msgid "Move to Trash"
 msgstr "ごみ箱へ移動"
 
-#: Panel/krpopupmenu.cpp:159 krusader.cpp:782
+#: Panel/krpopupmenu.cpp:159 Queue/queuewidget.cpp:129 krusader.cpp:788
 #: BookMan/krbookmarkhandler.cpp:563 Dialogs/krmaskchoice.cpp:112
 #: Dialogs/kurllistrequester.cpp:145 DiskUsage/diskusage.cpp:776
 #: Konfigurator/kgcolors.cpp:508
@@ -2072,7 +2079,7 @@ msgstr "ごみ箱へ移動"
 msgid "Delete"
 msgstr "削除"
 
-#: Panel/krpopupmenu.cpp:170 krusader.cpp:756
+#: Panel/krpopupmenu.cpp:170 krusader.cpp:760
 #, kde-format
 msgid "New Symlink..."
 msgstr "シンボリックリンクの新規作成"
@@ -2102,17 +2109,17 @@ msgstr "送信 Eメール"
 msgid "Synchronize Selected Files..."
 msgstr "同期 選択されたもの ファイル."
 
-#: Panel/krpopupmenu.cpp:206 krusader.cpp:603
+#: Panel/krpopupmenu.cpp:206 krusader.cpp:606
 #, fuzzy, kde-format
 msgid "Copy to Clipboard"
 msgstr "クリップボードに複写"
 
-#: Panel/krpopupmenu.cpp:209 krusader.cpp:602
+#: Panel/krpopupmenu.cpp:209 krusader.cpp:605
 #, fuzzy, kde-format
 msgid "Cut to Clipboard"
 msgstr "切り取り to クリップボード"
 
-#: Panel/krpopupmenu.cpp:210 Panel/krpopupmenu.cpp:227 krusader.cpp:604
+#: Panel/krpopupmenu.cpp:210 Panel/krpopupmenu.cpp:227 krusader.cpp:607
 #, fuzzy, kde-format
 msgid "Paste from Clipboard"
 msgstr "貼り付け クリップボード"
@@ -2132,145 +2139,145 @@ msgstr "テキスト ファイル."
 msgid "Create New"
 msgstr "新規作成"
 
-#: Panel/panelfunc.cpp:276
+#: Panel/panelfunc.cpp:277
 #, fuzzy, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "あなた ローカル"
 
-#: Panel/panelfunc.cpp:287
+#: Panel/panelfunc.cpp:288
 #, fuzzy, kde-format
 msgid "The current file is not a link, so I can't redirect it."
 msgstr "a リンク I."
 
-#: Panel/panelfunc.cpp:294
+#: Panel/panelfunc.cpp:295
 #, fuzzy, kde-format
 msgid "Link Redirection"
 msgstr "リンク"
 
-#: Panel/panelfunc.cpp:295
+#: Panel/panelfunc.cpp:296
 #, fuzzy, kde-format
 msgid "Please enter the new link destination:"
 msgstr "新規 リンク:"
 
-#: Panel/panelfunc.cpp:302
+#: Panel/panelfunc.cpp:303
 #, fuzzy, kde-format
 msgid "Can't remove old link: "
 msgstr "古い リンク "
 
-#: Panel/panelfunc.cpp:307 Panel/panelfunc.cpp:347
+#: Panel/panelfunc.cpp:308 Panel/panelfunc.cpp:348
 #, fuzzy, kde-format
 msgid "Failed to create a new link: "
 msgstr "失敗 to a 新規 リンク "
 
-#: Panel/panelfunc.cpp:314
+#: Panel/panelfunc.cpp:315
 #, fuzzy, kde-format
 msgid "You can create links only on local file systems"
 msgstr "あなた ローカル"
 
-#: Panel/panelfunc.cpp:323
+#: Panel/panelfunc.cpp:324
 #, fuzzy, kde-format
 msgid "New link"
 msgstr "新規 リンク"
 
-#: Panel/panelfunc.cpp:323
+#: Panel/panelfunc.cpp:324
 #, fuzzy, kde-format
 msgid "Create a new link to: "
 msgstr "作成 a 新規 リンク to "
 
-#: Panel/panelfunc.cpp:331 Panel/panelfunc.cpp:529
+#: Panel/panelfunc.cpp:332 Panel/panelfunc.cpp:530
 #, fuzzy, kde-format
 msgid "A directory or a file with this name already exists."
 msgstr "A もしくは a 置換後 名前."
 
-#: Panel/panelfunc.cpp:343
+#: Panel/panelfunc.cpp:344
 #, fuzzy, kde-format
 msgid "Failed to create a new symlink: "
 msgstr "失敗 to a 新規 "
 
-#: Panel/panelfunc.cpp:344 Panel/panelfunc.cpp:348
+#: Panel/panelfunc.cpp:345 Panel/panelfunc.cpp:349
 #, fuzzy, kde-format
 msgid " To: "
 msgstr "To "
 
-#: Panel/panelfunc.cpp:362
+#: Panel/panelfunc.cpp:363
 #, fuzzy, kde-format
 msgid "No permissions to view this file."
 msgstr "いいえ to."
 
-#: Panel/panelfunc.cpp:380
+#: Panel/panelfunc.cpp:381
 #, fuzzy, kde-format
 msgid "You can't edit a directory"
 msgstr "あなた a"
 
-#: Panel/panelfunc.cpp:385
+#: Panel/panelfunc.cpp:386
 #, fuzzy, kde-format
 msgid "No permissions to edit this file."
 msgstr "いいえ to."
 
-#: Panel/panelfunc.cpp:406
+#: Panel/panelfunc.cpp:407
 #, fuzzy, kde-format
 msgid "Moving into archive is disabled"
 msgstr "移動 無効"
 
-#: Panel/panelfunc.cpp:416
+#: Panel/panelfunc.cpp:417
 #, fuzzy, kde-format
 msgid "Move %1 to:"
 msgstr "移動 to:"
 
-#: Panel/panelfunc.cpp:418
+#: Panel/panelfunc.cpp:419
 #, fuzzy, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
 msgstr[0] "n 移動 n to n to:"
 
-#: Panel/panelfunc.cpp:484
+#: Panel/panelfunc.cpp:485
 #, fuzzy, kde-format
 msgid "You can't move files to this file system"
 msgstr "あなた to"
 
-#: Panel/panelfunc.cpp:510
+#: Panel/panelfunc.cpp:511
 #, fuzzy, kde-format
 msgid "New directory"
 msgstr "新規"
 
-#: Panel/panelfunc.cpp:510
+#: Panel/panelfunc.cpp:511
 #, fuzzy, kde-format
 msgid "Directory's name:"
 msgstr "ディレクトリ 秒 名前:"
 
-#: Panel/panelfunc.cpp:600
+#: Panel/panelfunc.cpp:601
 #, fuzzy, kde-format
 msgid "Copy %1 to:"
 msgstr "コピー to:"
 
-#: Panel/panelfunc.cpp:602
+#: Panel/panelfunc.cpp:603
 #, fuzzy, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] "n コピー n to n to:"
 
-#: Panel/panelfunc.cpp:658
+#: Panel/panelfunc.cpp:659
 #, fuzzy, kde-format
 msgid "You can't copy files to this file system"
 msgstr "あなた コピー to"
 
-#: Panel/panelfunc.cpp:669
+#: Panel/panelfunc.cpp:670
 #, fuzzy, kde-format
 msgid "You do not have write permission to this directory"
 msgstr "あなた to"
 
-#: Panel/panelfunc.cpp:687
+#: Panel/panelfunc.cpp:688
 #, fuzzy, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "本当にこれら %1 項目をゴミ箱に移動させますか?"
 
-#: Panel/panelfunc.cpp:688 DiskUsage/diskusage.cpp:610
+#: Panel/panelfunc.cpp:689 DiskUsage/diskusage.cpp:610
 #, fuzzy, kde-format
 msgid "&Trash"
 msgstr "ごみ箱"
 
-#: Panel/panelfunc.cpp:690
+#: Panel/panelfunc.cpp:691
 #, fuzzy, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -2280,14 +2287,14 @@ msgid_plural ""
 "untouched)?"
 msgstr[0] "n to to?"
 
-#: Panel/panelfunc.cpp:691 Panel/panelfunc.cpp:694 Panel/panelfunc.cpp:697
+#: Panel/panelfunc.cpp:692 Panel/panelfunc.cpp:695 Panel/panelfunc.cpp:698
 #: DiskUsage/radialMap/widgetEvents.cpp:182
 #: DiskUsage/radialMap/widgetEvents.cpp:201 DiskUsage/diskusage.cpp:613
 #, fuzzy, kde-format
 msgid "&Delete"
 msgstr "削除(&D)"
 
-#: Panel/panelfunc.cpp:693
+#: Panel/panelfunc.cpp:694
 #, fuzzy, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -2298,49 +2305,49 @@ msgid_plural ""
 msgstr[0] "n<qt> to<b></b></qt>"
 msgstr[1] "<qt> to n<b></b></qt>"
 
-#: Panel/panelfunc.cpp:696
+#: Panel/panelfunc.cpp:697
 #, fuzzy, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "本当にこれら %1 項目を削除しますか?"
 
-#: Panel/panelfunc.cpp:703 Dialogs/krkeydialog.cpp:136
-#: Dialogs/checksumdlg.cpp:630 DiskUsage/diskusage.cpp:620
-#: Konfigurator/kgcolors.cpp:565
+#: Panel/panelfunc.cpp:704 Queue/queuewidget.cpp:145 Queue/queuedialog.cpp:412
+#: Dialogs/krkeydialog.cpp:136 Dialogs/checksumdlg.cpp:630
+#: DiskUsage/diskusage.cpp:620 Konfigurator/kgcolors.cpp:565
 #, fuzzy, kde-format
 msgid "Warning"
 msgstr "警告"
 
-#: Panel/panelfunc.cpp:720
+#: Panel/panelfunc.cpp:721
 #, fuzzy, kde-format
 msgid ""
 "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete All?</"
 "p></qt>"
 msgstr "空 第一 もしくは 削除 全て?"
 
-#: Panel/panelfunc.cpp:721
+#: Panel/panelfunc.cpp:722
 #, fuzzy, kde-format
 msgid "&Skip"
 msgstr "スキップ(&S)"
 
-#: Panel/panelfunc.cpp:721
+#: Panel/panelfunc.cpp:722
 #, fuzzy, kde-format
 msgid "&Delete All"
 msgstr "削除 全て"
 
-#: Panel/panelfunc.cpp:870
+#: Panel/panelfunc.cpp:879
 #, fuzzy, kde-format
 msgid "Cannot pack files onto a virtual destination!"
 msgstr "a!"
 
-#: Panel/panelfunc.cpp:884
+#: Panel/panelfunc.cpp:893
 #, fuzzy, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>All data in the previous archive will be lost!</p></qt>"
 msgstr "<qt> ファイル<b></b> to</qt>"
 
-#: Panel/panelfunc.cpp:886
+#: Panel/panelfunc.cpp:895
 #, fuzzy, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -2348,210 +2355,303 @@ msgid ""
 "entries for new names.</p></qt>"
 msgstr "置換対象 in もしくは for 新規"
 
-#: Panel/panelfunc.cpp:893
+#: Panel/panelfunc.cpp:902
 #, fuzzy, kde-format
 msgid "Counting files to pack"
 msgstr "to"
 
-#: Panel/panelfunc.cpp:952 Panel/panelfunc.cpp:1013
+#: Panel/panelfunc.cpp:961 Panel/panelfunc.cpp:1022
 #, fuzzy, kde-format
 msgid "Krusader is unable to download: "
 msgstr "to "
 
-#: Panel/panelfunc.cpp:964
+#: Panel/panelfunc.cpp:973
 #, fuzzy, kde-format
 msgid "%1, unknown archive type."
 msgstr "不明 タイプ."
 
-#: Panel/panelfunc.cpp:972
+#: Panel/panelfunc.cpp:981
 #, kde-format
 msgid "%1, test passed."
 msgstr "%1, テスト成功"
 
-#: Panel/panelfunc.cpp:974
+#: Panel/panelfunc.cpp:983
 #, fuzzy, kde-format
 msgid "%1, test failed!"
 msgstr "%1, テスト失敗"
 
-#: Panel/panelfunc.cpp:990
+#: Panel/panelfunc.cpp:999
 #, fuzzy, kde-format
 msgid "Unpack %1 to:"
 msgstr "to:"
 
-#: Panel/panelfunc.cpp:992
+#: Panel/panelfunc.cpp:1001
 #, fuzzy, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
 msgstr[0] "n n to n to:"
 
-#: Panel/panelfunc.cpp:1037
+#: Panel/panelfunc.cpp:1046
 #, fuzzy, kde-format
 msgid "%1, unknown archive type"
 msgstr "不明 タイプ"
 
-#: Panel/panelfunc.cpp:1228
+#: Panel/panelfunc.cpp:1237
 #, fuzzy, kde-format
 msgid "Cannot cut a virtual URL collection to the clipboard!"
 msgstr "a URL to!"
 
-#: Panel/panelfunc.cpp:1230
+#: Panel/panelfunc.cpp:1239
 #, fuzzy, kde-format
 msgid "Cannot copy a virtual URL collection onto the clipboard!"
 msgstr "コピー a URL!"
 
-#: Queue/queue.cpp:55
+#: Queue/queuewidget.cpp:128 Queue/queuedialog.cpp:156
+#, fuzzy, kde-format
+msgid "Queue Manager"
+msgstr "クエリー 名前"
+
+#: Queue/queuewidget.cpp:144
+#, kde-format
+msgid "Deleting this job will abort the pending job. Do you wish to continue?"
+msgstr ""
+
+#: Queue/queue_mgr.cpp:9
+#, fuzzy, kde-format
+msgid "default"
+msgstr "デフォルト"
+
+#: Queue/queuedialog.cpp:103 Queue/queuedialog.cpp:134
+#: Queue/queuedialog.cpp:389
+#, fuzzy, kde-format
+msgid "Krusader::Queue Manager"
+msgstr "Krusader:検索"
+
+#: Queue/queuedialog.cpp:110
+#, fuzzy, kde-format
+msgid "Please enter the time to start processing the queue:"
+msgstr "新規 リンク:"
+
+#: Queue/queuedialog.cpp:179
+#, fuzzy, kde-format
+msgid "Create a new queue (Ctrl+T)"
+msgstr "作成 a 新規 リンク to "
+
+#: Queue/queuedialog.cpp:185
+#, fuzzy, kde-format
+msgid "Remove the current queue (Ctrl+W)"
+msgstr "選択を入力:"
+
+#: Queue/queuedialog.cpp:198 Queue/queuedialog.cpp:427
+#, fuzzy, kde-format
+msgid "unused"
+msgstr "追加"
+
+#: Queue/queuedialog.cpp:204
+#, kde-format
+msgid "Schedule queue starting (Ctrl+S)"
+msgstr ""
+
+#: Queue/queuedialog.cpp:343
+#, kde-format
+msgid "Start processing the queue (Ctrl+P)"
+msgstr ""
+
+#: Queue/queuedialog.cpp:346
+#, kde-format
+msgid "The queue is paused."
+msgstr ""
+
+#: Queue/queuedialog.cpp:348
+#, kde-format
+msgid "Scheduled to start at %1."
+msgstr ""
+
+#: Queue/queuedialog.cpp:351
+#, kde-format
+msgid "The queue is running."
+msgstr ""
+
+#: Queue/queuedialog.cpp:353
+#, kde-format
+msgid "Pause processing the queue (Ctrl+P)"
+msgstr ""
+
+#: Queue/queuedialog.cpp:390
+#, fuzzy, kde-format
+msgid "Please enter the name of the new queue"
+msgstr "set a 名前 for"
+
+#: Queue/queuedialog.cpp:399
+#, kde-format
+msgid "A queue already exists with this name!"
+msgstr ""
+
+#: Queue/queuedialog.cpp:411
+#, fuzzy, kde-format
+msgid ""
+"Deleting the queue requires aborting all pending jobs. Do you wish to "
+"continue?"
+msgstr "読み込み中 URL to?"
+
+#: Queue/queue.cpp:66
 #, kde-format
 msgid "An error occurred during processing the queue.\n"
 msgstr ""
 
-#: Queue/queue.cpp:57
+#: Queue/queue.cpp:68
 #, kde-format
 msgid "The last processed element in the queue was aborted.\n"
 msgstr ""
 
-#: Queue/queue.cpp:58
+#: Queue/queue.cpp:69
 #, kde-format
 msgid ""
 "Do you wish to continue with the next element, delete the queue or suspend "
 "the queue?"
 msgstr ""
 
-#: Queue/queue.cpp:60
+#: Queue/queue.cpp:71
 #, fuzzy, kde-format
 msgid "Krusader::Queue"
 msgstr "Krusader:検索"
 
-#: Queue/queue.cpp:61
+#: Queue/queue.cpp:72
 #, fuzzy, kde-format
 msgid "Suspend"
 msgstr "追加"
 
-#: Locate/locate.cpp:119 Locate/locate.cpp:123 Locate/locate.cpp:390
+#: Locate/locate.cpp:121 Locate/locate.cpp:125 Locate/locate.cpp:392
 #, fuzzy, kde-format
 msgid "Locate"
 msgstr "場所"
 
-#: Locate/locate.cpp:121 Locate/locate.cpp:284 Search/krsearchdialog.cpp:233
+#: Locate/locate.cpp:123 Locate/locate.cpp:286 Search/krsearchdialog.cpp:234
 #: Synchronizer/synchronizergui.cpp:1494
 #, fuzzy, kde-format
 msgid "Stop"
 msgstr "停止"
 
-#: Locate/locate.cpp:122
+#: Locate/locate.cpp:124
 #, fuzzy, kde-format
 msgid "Update DB"
 msgstr "更新"
 
-#: Locate/locate.cpp:130
+#: Locate/locate.cpp:132
 #, fuzzy, kde-format
 msgid "Krusader::Locate"
 msgstr "Krusader:検索"
 
-#: Locate/locate.cpp:136
+#: Locate/locate.cpp:138
 #, fuzzy, kde-format
 msgid "Search for:"
 msgstr "検索対象:"
 
-#: Locate/locate.cpp:161
+#: Locate/locate.cpp:163
 #, fuzzy, kde-format
 msgid "Don't search in path"
 msgstr "in"
 
-#: Locate/locate.cpp:165
+#: Locate/locate.cpp:167
 #, fuzzy, kde-format
 msgid "Show only the existing files"
 msgstr "表示"
 
-#: Locate/locate.cpp:169
+#: Locate/locate.cpp:171
 #, fuzzy, kde-format
 msgid "Case Sensitive"
 msgstr "大文字小文字を区別する"
 
-#: Locate/locate.cpp:181
+#: Locate/locate.cpp:183
 #, kde-format
 msgid "Results"
 msgstr "結果"
 
-#: Locate/locate.cpp:274
+#: Locate/locate.cpp:276
 #, fuzzy, kde-format
 msgid "Can't start 'locate'! Check the 'Dependencies' page in konfigurator."
 msgstr "start チェック 依存 in."
 
-#: Locate/locate.cpp:314
+#: Locate/locate.cpp:316
 #, fuzzy, kde-format
 msgid "Error during the start of 'locate' process!"
 msgstr "エラー start!"
 
-#: Locate/locate.cpp:322
+#: Locate/locate.cpp:324
 #, fuzzy, kde-format
 msgid ""
 "Locate produced the following error message:\n"
 "\n"
 msgstr "次の エラー n n"
 
-#: Locate/locate.cpp:332 Search/krsearchdialog.cpp:222
+#: Locate/locate.cpp:334 Search/krsearchdialog.cpp:223
 #: Synchronizer/synchronizergui.cpp:1499
 #, fuzzy, kde-format
 msgid "Feed to listbox"
 msgstr "to"
 
-#: Locate/locate.cpp:392
+#: Locate/locate.cpp:394
 #, fuzzy, kde-format
 msgid "View (F3)"
 msgstr "表示"
 
-#: Locate/locate.cpp:393
+#: Locate/locate.cpp:395
 #, fuzzy, kde-format
 msgid "Edit (F4)"
 msgstr "編集"
 
-#: Locate/locate.cpp:396
+#: Locate/locate.cpp:396 Search/krsearchdialog.cpp:626
+#, fuzzy, kde-format
+msgid "Compare by content (F10)"
+msgstr "比較"
+
+#: Locate/locate.cpp:401
 #, fuzzy, kde-format
 msgid "Find (Ctrl+F)"
 msgstr "検索 Ctrl"
 
-#: Locate/locate.cpp:397
+#: Locate/locate.cpp:402
 #, fuzzy, kde-format
 msgid "Find next (Ctrl+N)"
 msgstr "検索 Ctrl N"
 
-#: Locate/locate.cpp:398
+#: Locate/locate.cpp:403
 #, fuzzy, kde-format
 msgid "Find previous (Ctrl+P)"
 msgstr "検索 Ctrl"
 
-#: Locate/locate.cpp:401 Search/krsearchdialog.cpp:608
+#: Locate/locate.cpp:406 Search/krsearchdialog.cpp:629
 #, fuzzy, kde-format
 msgid "Copy selected to clipboard"
 msgstr "コピー to"
 
-#: Locate/locate.cpp:531 Locate/locate.cpp:551
+#: Locate/locate.cpp:553 Locate/locate.cpp:573
 #, fuzzy, kde-format
 msgid "Search string not found!"
 msgstr "検索文字列は見つかりませんでした！"
 
-#: Locate/locate.cpp:624
+#: Locate/locate.cpp:646
 #, fuzzy, kde-format
 msgid "Locate results"
 msgstr "場所"
 
-#: Locate/locate.cpp:632 Search/krsearchdialog.cpp:638
+#: Locate/locate.cpp:654 Search/krsearchdialog.cpp:661
 #, fuzzy, kde-format
 msgid "Query name"
 msgstr "クエリー 名前"
 
-#: Locate/locate.cpp:633 Search/krsearchdialog.cpp:639
+#: Locate/locate.cpp:655 Search/krsearchdialog.cpp:662
 #: Synchronizer/feedtolistboxdialog.cpp:121
 #, fuzzy, kde-format
 msgid "Here you can name the file collection"
 msgstr "名前"
 
-#: krusader.cpp:384
+#: krusader.cpp:387
 #, fuzzy, kde-format
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr "マウス."
 
-#: krusader.cpp:467
+#: krusader.cpp:470
 #, fuzzy, kde-format
 msgid ""
 "A configuration of 1.51 or older was detected. Krusader has to reset your "
@@ -2562,7 +2662,7 @@ msgstr ""
 "A 構成 もしくは to 構成 to 標準 と\n"
 " 現在の状態."
 
-#: krusader.cpp:479
+#: krusader.cpp:482
 #, fuzzy, kde-format
 msgid ""
 "<qt><b>Welcome to Krusader!</b><p>As this is your first run, your machine "
@@ -2570,485 +2670,500 @@ msgid ""
 "launched where you can customize Krusader to your needs.</p></qt>"
 msgstr "<qt><b> Welcome to</b><p> 最初 現在の状態 for to</p></qt>"
 
-#: krusader.cpp:590
+#: krusader.cpp:593
 #, fuzzy, kde-format
 msgid "&Reload"
 msgstr "再読み込み(&R)"
 
-#: krusader.cpp:595
+#: krusader.cpp:598
 #, fuzzy, kde-format
 msgid "Show Actions Toolbar"
 msgstr "表示 アクション ツールバー"
 
-#: krusader.cpp:607
+#: krusader.cpp:610
 #, fuzzy, kde-format
 msgid "Show &FN Keys Bar"
 msgstr "表示 鍵"
 
-#: krusader.cpp:609
+#: krusader.cpp:612
 #, fuzzy, kde-format
 msgid "Show &Command Line"
 msgstr "表示 コマンド 行"
 
-#: krusader.cpp:611
+#: krusader.cpp:614
 #, kde-format
 msgid "Show Terminal &Emulator"
 msgstr "端末エミュレータを表示(&E)"
 
-#: krusader.cpp:648
+#: krusader.cpp:651
 #, fuzzy, kde-format
 msgid "Show &Hidden Files"
 msgstr "隠しファイルを表示(&H)"
 
-#: krusader.cpp:650
+#: krusader.cpp:653
 #, fuzzy, kde-format
 msgid "S&wap Panels"
 msgstr "スワップ パネル"
 
-#: krusader.cpp:652
+#: krusader.cpp:655
 #, fuzzy, kde-format
 msgid "Sw&ap Sides"
 msgstr "スワップ"
 
-#: krusader.cpp:656
+#: krusader.cpp:659
 #, kde-format
 msgid "popup cmdline"
 msgstr "コマンドラインをポップアップ"
 
-#: krusader.cpp:662
+#: krusader.cpp:665
 #, fuzzy, kde-format
 msgid "&New Text File..."
 msgstr "新規 テキスト ファイル."
 
-#: krusader.cpp:663
+#: krusader.cpp:666
 #, fuzzy, kde-format
 msgid "Start &Root Mode Krusader"
 msgstr "開始 ルート モード"
 
-#: krusader.cpp:664
+#: krusader.cpp:667
 #, fuzzy, kde-format
 msgid "F3 View Dialog"
 msgstr "表示 ダイアログ"
 
-#: krusader.cpp:665
+#: krusader.cpp:668
 #, fuzzy, kde-format
 msgid "T&est Archive"
 msgstr "テスト アーカイブ"
 
-#: krusader.cpp:666
+#: krusader.cpp:669
 #, fuzzy, kde-format
 msgid "New Net &Connection..."
 msgstr "新規 接続."
 
-#: krusader.cpp:667
+#: krusader.cpp:670
 #, fuzzy, kde-format
 msgid "Pro&files"
 msgstr "プロファイル"
 
-#: krusader.cpp:668
+#: krusader.cpp:671
 #, fuzzy, kde-format
 msgid "Calculate &Occupied Space"
 msgstr "計算 取り込み中 スペース"
 
-#: krusader.cpp:669
+#: krusader.cpp:672
 #, fuzzy, kde-format
 msgid "Create Checksum..."
 msgstr "作成 チェックサム."
 
-#: krusader.cpp:670
+#: krusader.cpp:673
 #, fuzzy, kde-format
 msgid "Verify Checksum..."
 msgstr "確認 チェックサム."
 
-#: krusader.cpp:671
+#: krusader.cpp:674
 #, fuzzy, kde-format
 msgid "&Properties..."
 msgstr "プロパティ(&P)..."
 
-#: krusader.cpp:672
+#: krusader.cpp:675
 #, fuzzy, kde-format
 msgid "Pac&k..."
 msgstr "圧縮(&k)"
 
-#: krusader.cpp:673
+#: krusader.cpp:676
 #, fuzzy, kde-format
 msgid "&Unpack..."
 msgstr "解凍(&U)"
 
-#: krusader.cpp:674
+#: krusader.cpp:677
 #, fuzzy, kde-format
 msgid "Sp&lit File..."
 msgstr "ファイル."
 
-#: krusader.cpp:675
+#: krusader.cpp:678
 #, fuzzy, kde-format
 msgid "Com&bine Files..."
 msgstr "ファイル."
 
-#: krusader.cpp:676
+#: krusader.cpp:679
 #, fuzzy, kde-format
 msgid "Select &Group..."
 msgstr "選択 グループ."
 
-#: krusader.cpp:677
+#: krusader.cpp:680
 #, fuzzy, kde-format
 msgid "&Select All"
 msgstr "全て選択(&S)"
 
-#: krusader.cpp:678
+#: krusader.cpp:681
 #, fuzzy, kde-format
 msgid "&Unselect Group..."
 msgstr "選択しない グループ."
 
-#: krusader.cpp:679
+#: krusader.cpp:682
 #, fuzzy, kde-format
 msgid "U&nselect All"
 msgstr "選択しない 全て"
 
-#: krusader.cpp:680
+#: krusader.cpp:683
 #, fuzzy, kde-format
 msgid "&Invert Selection"
 msgstr "選択を反転(&I)"
 
-#: krusader.cpp:681
+#: krusader.cpp:684
 #, fuzzy, kde-format
 msgid "&Compare Directories"
 msgstr "比較 ディレクトリ"
 
-#: krusader.cpp:682
+#: krusader.cpp:685
 #, fuzzy, kde-format
 msgid "&Select Newer and Single"
 msgstr "マーク と シングル"
 
-#: krusader.cpp:683
+#: krusader.cpp:686
 #, fuzzy, kde-format
 msgid "Select &Newer"
 msgstr "選択"
 
-#: krusader.cpp:684
+#: krusader.cpp:687
 #, fuzzy, kde-format
 msgid "Select &Single"
 msgstr "選択 ファイル "
 
-#: krusader.cpp:685
+#: krusader.cpp:688
 #, fuzzy, kde-format
 msgid "Select Different &and Single"
 msgstr "マーク と シングル"
 
-#: krusader.cpp:686
+#: krusader.cpp:689
 #, fuzzy, kde-format
 msgid "Select &Different"
 msgstr "マーク"
 
-#: krusader.cpp:696
+#: krusader.cpp:699
 #, kde-format
 msgid "Start and &Forget"
 msgstr ""
 
-#: krusader.cpp:697
+#: krusader.cpp:700
 #, fuzzy, kde-format
 msgid "Display &Separated Standard and Error Output"
 msgstr "エラー"
 
-#: krusader.cpp:698
+#: krusader.cpp:701
 #, kde-format
 msgid "Display &Mixed Standard and Error Output"
 msgstr ""
 
-#: krusader.cpp:699
+#: krusader.cpp:702
 #, fuzzy, kde-format
 msgid "Start in &New Terminal"
 msgstr "コマンドライン端末を開始(&T)"
 
-#: krusader.cpp:700
+#: krusader.cpp:703
 #, fuzzy, kde-format
 msgid "Send to &Embedded Terminal Emulator"
 msgstr "端末エミュレータを表示(&E)"
 
-#: krusader.cpp:717
+#: krusader.cpp:720
 #, kde-format
 msgid "Start &Terminal"
 msgstr "コマンドライン端末を開始(&T)"
 
-#: krusader.cpp:718
+#: krusader.cpp:721
 #, fuzzy, kde-format
 msgid "Disconnect &from Net"
 msgstr "切断"
 
-#: krusader.cpp:720
+#: krusader.cpp:723
 #, fuzzy, kde-format
 msgid "&MountMan..."
 msgstr "&MountMan"
 
-#: krusader.cpp:727
+#: krusader.cpp:730
 #, fuzzy, kde-format
 msgid "&Search..."
 msgstr "検索."
 
-#: krusader.cpp:728
+#: krusader.cpp:731
 #, fuzzy, kde-format
 msgid "&Locate..."
 msgstr "場所"
 
-#: krusader.cpp:729
+#: krusader.cpp:732
 #, fuzzy, kde-format
 msgid "Synchronize &Directories..."
 msgstr "同期 ディレクトリ."
 
-#: krusader.cpp:730
+#: krusader.cpp:733
 #, fuzzy, kde-format
 msgid "S&ynchron Directory Changes"
 msgstr "ディレクトリ 変化"
 
-#: krusader.cpp:731
+#: krusader.cpp:734
 #, fuzzy, kde-format
 msgid "D&isk Usage..."
 msgstr "使い方."
 
-#: krusader.cpp:732
+#: krusader.cpp:735
+#, kde-format
+msgid "&Queue Manager..."
+msgstr ""
+
+#: krusader.cpp:736
 #, fuzzy, kde-format
 msgid "Configure &Krusader..."
 msgstr "設定."
 
-#: krusader.cpp:733
+#: krusader.cpp:737
 #, fuzzy, kde-format
 msgid "Back"
 msgstr "戻る"
 
-#: krusader.cpp:735
+#: krusader.cpp:739
 #, fuzzy, kde-format
 msgid "Save &Position"
 msgstr "保存 位置"
 
-#: krusader.cpp:736
+#: krusader.cpp:740
 #, fuzzy, kde-format
 msgid "&All Files"
 msgstr "全て ファイル"
 
-#: krusader.cpp:739
+#: krusader.cpp:743
 #, fuzzy, kde-format
 msgid "&Custom"
 msgstr "カスタム"
 
-#: krusader.cpp:740
+#: krusader.cpp:744
 #, fuzzy, kde-format
 msgid "Compare b&y Content..."
 msgstr "比較."
 
-#: krusader.cpp:741
+#: krusader.cpp:745
 #, fuzzy, kde-format
 msgid "Multi &Rename..."
 msgstr "名前を変更."
 
-#: krusader.cpp:744
+#: krusader.cpp:748
 #, fuzzy, kde-format
 msgid "Right-click Menu"
 msgstr "右 メニュー"
 
-#: krusader.cpp:745
+#: krusader.cpp:749
 #, fuzzy, kde-format
 msgid "Right Bookmarks"
 msgstr "右 ブックマーク"
 
-#: krusader.cpp:746
+#: krusader.cpp:750
 #, fuzzy, kde-format
 msgid "Left Bookmarks"
 msgstr "左 ブックマーク"
 
-#: krusader.cpp:747 BookMan/krbookmarkbutton.cpp:20
+#: krusader.cpp:751 BookMan/krbookmarkbutton.cpp:20
 #: BookMan/krbookmarkhandler.cpp:32 BookMan/kraddbookmarkdlg.cpp:80
 #, fuzzy, kde-format
 msgid "Bookmarks"
 msgstr "ブックマーク"
 
-#: krusader.cpp:748 BookMan/krbookmarkhandler.cpp:399
+#: krusader.cpp:752 BookMan/krbookmarkhandler.cpp:399
 #, fuzzy, kde-format
 msgid "Bookmark Current"
 msgstr "ブックマーク 現在"
 
-#: krusader.cpp:749
+#: krusader.cpp:753
 #, fuzzy, kde-format
 msgid "History"
 msgstr "履歴"
 
-#: krusader.cpp:750
+#: krusader.cpp:754
 #, fuzzy, kde-format
 msgid "Sync Panels"
 msgstr "同期 パネル"
 
-#: krusader.cpp:751
+#: krusader.cpp:755
 #, fuzzy, kde-format
 msgid "Left History"
 msgstr "左 履歴"
 
-#: krusader.cpp:752
+#: krusader.cpp:756
 #, fuzzy, kde-format
 msgid "Right History"
 msgstr "右 履歴"
 
-#: krusader.cpp:753 BookMan/krbookmark.cpp:11
+#: krusader.cpp:757 BookMan/krbookmark.cpp:11
 #, fuzzy, kde-format
 msgid "Media"
 msgstr "メディア"
 
-#: krusader.cpp:754
+#: krusader.cpp:758
 #, fuzzy, kde-format
 msgid "Left Media"
 msgstr "左 メディア"
 
-#: krusader.cpp:755
+#: krusader.cpp:759
 #, fuzzy, kde-format
 msgid "Right Media"
 msgstr "右 メディア"
 
-#: krusader.cpp:757
+#: krusader.cpp:761
 #, fuzzy, kde-format
 msgid "Toggle Popup Panel"
 msgstr "ポップアップ パネル"
 
-#: krusader.cpp:758 krusaderview.cpp:303
+#: krusader.cpp:762 krusaderview.cpp:303
 #, fuzzy, kde-format
 msgid "Vertical Mode"
 msgstr "垂直 モード"
 
-#: krusader.cpp:759
+#: krusader.cpp:763
 #, fuzzy, kde-format
 msgid "New Tab"
 msgstr "新規 タブ"
 
-#: krusader.cpp:760
+#: krusader.cpp:764
 #, fuzzy, kde-format
 msgid "Duplicate Current Tab"
 msgstr "現在 タブ"
 
-#: krusader.cpp:761
+#: krusader.cpp:765
 #, fuzzy, kde-format
 msgid "Close Current Tab"
 msgstr "現在のタブを閉じる"
 
-#: krusader.cpp:762
+#: krusader.cpp:766
 #, fuzzy, kde-format
 msgid "Next Tab"
 msgstr "次のタブ"
 
-#: krusader.cpp:763
+#: krusader.cpp:767
 #, fuzzy, kde-format
 msgid "Previous Tab"
 msgstr "前のタブ"
 
-#: krusader.cpp:765 UserMenu/usermenu.cpp:51
+#: krusader.cpp:769 UserMenu/usermenu.cpp:51
 #, fuzzy, kde-format
 msgid "User Menu"
 msgstr "ユーザメニュー"
 
 #. i18n: tag text
 #. i18n: file ./krusaderui.rc line 91
-#: krusader.cpp:768 rc.cpp:248
+#: krusader.cpp:772 rc.cpp:248
 #, fuzzy, kde-format
 msgid "User&actions"
 msgstr "ユーザ名:"
 
-#: krusader.cpp:771
+#: krusader.cpp:775
 #, fuzzy, kde-format
 msgid "Manage User Actions..."
 msgstr "ユーザ アクション."
 
-#: krusader.cpp:773
+#: krusader.cpp:777
 #, fuzzy, kde-format
 msgid "Select Remote Charset"
 msgstr "選択 リモート 文字セット"
 
-#: krusader.cpp:776
+#: krusader.cpp:780
 #, kde-format
 msgid "Start Terminal Here"
 msgstr "ここでコマンドライン端末を開始する。"
 
-#: krusader.cpp:777
+#: krusader.cpp:781
 #, fuzzy, kde-format
 msgid "View File"
 msgstr "表示 ファイル"
 
-#: krusader.cpp:778
+#: krusader.cpp:782
 #, fuzzy, kde-format
 msgid "Edit File"
 msgstr "ファイルを編集"
 
-#: krusader.cpp:781
+#: krusader.cpp:785
+#, fuzzy, kde-format
+msgid "Copy by queue..."
+msgstr "コピー..."
+
+#: krusader.cpp:786
+#, fuzzy, kde-format
+msgid "Move by queue..."
+msgstr "移動."
+
+#: krusader.cpp:787
 #, fuzzy, kde-format
 msgid "New Directory..."
 msgstr "新しいディレクトリ.."
 
-#: krusader.cpp:784
+#: krusader.cpp:790
 #, fuzzy, kde-format
 msgid "Quit"
 msgstr "終了"
 
-#: krusader.cpp:785
+#: krusader.cpp:791
 #, fuzzy, kde-format
 msgid "Popular URLs..."
 msgstr "URLs."
 
-#: krusader.cpp:786
+#: krusader.cpp:792
 #, fuzzy, kde-format
 msgid "Go to Location Bar"
 msgstr "移動 to 場所"
 
-#: krusader.cpp:787
+#: krusader.cpp:793
 #, fuzzy, kde-format
 msgid "Jump Back"
 msgstr "戻る"
 
-#: krusader.cpp:788
+#: krusader.cpp:794
 #, fuzzy, kde-format
 msgid "Set Jump Back Point"
 msgstr "戻る 点"
 
-#: krusader.cpp:789
+#: krusader.cpp:795
 #, kde-format
 msgid "Toggle Fullwidget Terminal Emulator"
 msgstr ""
 
-#: krusader.cpp:792
+#: krusader.cpp:798
 #, fuzzy, kde-format
 msgid "Select files using a filter"
 msgstr "選択 a フィルタ"
 
-#: krusader.cpp:793
+#: krusader.cpp:799
 #, fuzzy, kde-format
 msgid "Select all files in the current directory"
 msgstr "選択 全て in"
 
-#: krusader.cpp:794
+#: krusader.cpp:800
 #, fuzzy, kde-format
 msgid "Unselect all selected files"
 msgstr "選択しない 全て"
 
-#: krusader.cpp:795
+#: krusader.cpp:801
 #, kde-format
 msgid "Setup Krusader the way you like it"
 msgstr "好きな方法でKrusaderをセットアップ"
 
-#: krusader.cpp:796
+#: krusader.cpp:802
 #, fuzzy, kde-format
 msgid "Back to the place you came from"
 msgstr "戻る to"
 
-#: krusader.cpp:797
+#: krusader.cpp:803
 #, kde-format
 msgid "ROOT (/)"
 msgstr "root(/)"
 
-#: krusader.cpp:798
+#: krusader.cpp:804
 #, fuzzy, kde-format
 msgid "Search for files"
 msgstr "検索 for"
 
-#: krusader.cpp:804
+#: krusader.cpp:810
 #, fuzzy, kde-format
 msgid "JavaScript Console..."
 msgstr "JavaScript."
 
-#: krusader.cpp:956
+#: krusader.cpp:962
 #, fuzzy, kde-format
 msgid "Are you sure you want to quit?"
 msgstr "to?"
@@ -3135,47 +3250,47 @@ msgstr "編集"
 msgid "Sorry, can't find internal editor"
 msgstr "すみません"
 
-#: Search/krsearchdialog.cpp:72
+#: Search/krsearchdialog.cpp:73
 #, fuzzy, kde-format
 msgid "Location"
 msgstr "場所"
 
-#: Search/krsearchdialog.cpp:75 DiskUsage/dulistview.cpp:61
+#: Search/krsearchdialog.cpp:76 DiskUsage/dulistview.cpp:61
 #, fuzzy, kde-format
 msgid "Permissions"
 msgstr "パーミッション"
 
-#: Search/krsearchdialog.cpp:203
+#: Search/krsearchdialog.cpp:204
 #, fuzzy, kde-format
 msgid "Krusader::Search"
 msgstr "検索"
 
-#: Search/krsearchdialog.cpp:227
+#: Search/krsearchdialog.cpp:228
 #, fuzzy, kde-format
 msgid "Search"
 msgstr "検索"
 
-#: Search/krsearchdialog.cpp:266 Search/krsearchdialog.cpp:464
+#: Search/krsearchdialog.cpp:267 Search/krsearchdialog.cpp:465
 #, kde-format
 msgid "Found 0 matches."
 msgstr "一致するものがありません"
 
-#: Search/krsearchdialog.cpp:293
+#: Search/krsearchdialog.cpp:294
 #, fuzzy, kde-format
 msgid "Text found:"
 msgstr "テキスト:"
 
-#: Search/krsearchdialog.cpp:303
+#: Search/krsearchdialog.cpp:304
 #, fuzzy, kde-format
 msgid "&Results"
 msgstr "結果(&R)"
 
-#: Search/krsearchdialog.cpp:429
+#: Search/krsearchdialog.cpp:430
 #, fuzzy, kde-format
 msgid "Found %1 matches."
 msgstr "一致するものがありません"
 
-#: Search/krsearchdialog.cpp:451
+#: Search/krsearchdialog.cpp:452
 #, fuzzy, kde-format
 msgid ""
 "Since you chose to also search in archives, note the following limitations:\n"
@@ -3183,28 +3298,28 @@ msgid ""
 "archives."
 msgstr "to in ノート 次の for テキスト a."
 
-#: Search/krsearchdialog.cpp:502
+#: Search/krsearchdialog.cpp:503
 #, fuzzy, kde-format
 msgid "Finished searching."
 msgstr "完了時."
 
-#: Search/krsearchdialog.cpp:604
+#: Search/krsearchdialog.cpp:622
 #, fuzzy, kde-format
 msgid "Krusader Search"
 msgstr "検索"
 
-#: Search/krsearchdialog.cpp:606
+#: Search/krsearchdialog.cpp:624
 #, fuzzy, kde-format
 msgid "View File (F3)"
 msgstr "表示 ファイル"
 
-#: Search/krsearchdialog.cpp:607
+#: Search/krsearchdialog.cpp:625
 #, fuzzy, kde-format
 msgid "Edit File (F4)"
 msgstr "編集 ファイル"
 
-#: Search/krsearchdialog.cpp:630 Konfigurator/kggeneral.cpp:212
-#: Konfigurator/kgarchives.cpp:124
+#: Search/krsearchdialog.cpp:653 Konfigurator/kggeneral.cpp:213
+#: Konfigurator/kgarchives.cpp:125
 #, fuzzy, kde-format
 msgid "Search results"
 msgstr "検索"
@@ -3433,7 +3548,8 @@ msgstr "MountMan"
 msgid "Format"
 msgstr "フォーマット"
 
-#: main.cpp:109
+#: main.cpp:109 Konfigurator/kglookfeel.cpp:242
+#, kde-format
 msgid "Krusader"
 msgstr "Krusader"
 
@@ -3485,11 +3601,11 @@ msgid "Heiner Eichmann"
 msgstr ""
 
 #: main.cpp:119
-msgid "Jonas Baehr"
+msgid "Jonas Bähr"
 msgstr ""
 
 #: main.cpp:120 main.cpp:125
-msgid "Václav Juza"
+msgid "Václav Jůza"
 msgstr ""
 
 #: main.cpp:121 main.cpp:154
@@ -3521,7 +3637,7 @@ msgid "Matej Urbancic"
 msgstr ""
 
 #: main.cpp:124
-msgid " Marketing & Product Research"
+msgid "Marketing & Product Research"
 msgstr ""
 
 #: main.cpp:125 main.cpp:126 main.cpp:137
@@ -3529,11 +3645,11 @@ msgid "QA, bug-hunting, patches and general help"
 msgstr ""
 
 #: main.cpp:126
-msgid "Jiri Palecek"
+msgid "Jiří Paleček"
 msgstr ""
 
 #: main.cpp:127
-msgid "Jiri Klement"
+msgid "Jiří Klement"
 msgstr ""
 
 #: main.cpp:127
@@ -3582,7 +3698,7 @@ msgid "The old Bookmark Module"
 msgstr ""
 
 #: main.cpp:133
-msgid "Hans Loeffler"
+msgid "Hans Löffler"
 msgstr ""
 
 #: main.cpp:133
@@ -3648,8 +3764,9 @@ msgid "Doutor Zero"
 msgstr ""
 
 #: main.cpp:141
-msgid "Brazilian Portuguese"
-msgstr ""
+#, fuzzy
+msgid "Brazilian Portuguese translation"
+msgstr "インポート"
 
 #: main.cpp:142
 msgid "Milen Ivanov"
@@ -3689,7 +3806,7 @@ msgid "Martin Sixta"
 msgstr ""
 
 #: main.cpp:147
-msgid "Vaclav Juza"
+msgid "Vaclav Jůza"
 msgstr ""
 
 #: main.cpp:147
@@ -4038,7 +4155,7 @@ msgid "Pack %1 file"
 msgid_plural "Pack %1 files"
 msgstr[0] "n n n"
 
-#: Dialogs/packgui.cpp:97
+#: Dialogs/packgui.cpp:98
 #, fuzzy, kde-format
 msgid "Please select a directory"
 msgstr "a"
@@ -4842,7 +4959,7 @@ msgstr "なし"
 #. i18n: file ./ActionMan/actionproperty.ui line 398
 #: ActionMan/ui_actionproperty.h:722 rc.cpp:116
 #, kde-format
-msgid "If not checked, the action is not shown in the menus."
+msgid "If checked, the action is shown in the Useractions menus."
 msgstr ""
 
 #. i18n: tag string
@@ -5791,8 +5908,8 @@ msgstr "Krusader:検索"
 msgid "Feeding the URLs to Kget"
 msgstr "URLs to"
 
-#: Synchronizer/synchronizer.cpp:1457 krslots.cpp:138 krslots.cpp:215
-#: krslots.cpp:500 krslots.cpp:542 krslots.cpp:560
+#: Synchronizer/synchronizer.cpp:1457 krslots.cpp:147 krslots.cpp:224
+#: krslots.cpp:509 krslots.cpp:551 krslots.cpp:569
 #, fuzzy, kde-format
 msgid "Error executing %1!"
 msgstr "エラー "
@@ -5842,7 +5959,7 @@ msgstr "選択されたもの"
 msgid "Cannot open %1!"
 msgstr "開けません"
 
-#: paneltabbar.cpp:36 Konfigurator/kglookfeel.cpp:134
+#: paneltabbar.cpp:36 Konfigurator/kglookfeel.cpp:135
 #, fuzzy, kde-format
 msgid "Panel"
 msgstr "パネル"
@@ -6206,28 +6323,28 @@ msgid "&Tools"
 msgstr "ツール(&T)"
 
 #. i18n: tag text
-#. i18n: file ./krusaderui.rc line 121
+#. i18n: file ./krusaderui.rc line 122
 #: rc.cpp:254
 #, fuzzy, kde-format
 msgid "&Settings"
 msgstr "設定(&S)"
 
 #. i18n: tag text
-#. i18n: file ./krusaderui.rc line 131
+#. i18n: file ./krusaderui.rc line 132
 #: rc.cpp:257
 #, fuzzy, kde-format
 msgid "Command Execution Mode Se&tup"
 msgstr "実行中にエラー"
 
 #. i18n: tag text
-#. i18n: file ./krusaderui.rc line 145
+#. i18n: file ./krusaderui.rc line 146
 #: rc.cpp:260
 #, fuzzy, kde-format
 msgid "&Window"
 msgstr "ウィンドウ(&W)"
 
 #. i18n: tag text
-#. i18n: file ./krusaderui.rc line 162
+#. i18n: file ./krusaderui.rc line 163
 #: rc.cpp:263
 #, fuzzy, kde-format
 msgid "&Help"
@@ -6246,7 +6363,7 @@ msgid "Your emails"
 msgstr "shinobo@leo.bekkoame.ne.jp"
 
 #: Konfigurator/kgdependencies.cpp:58 Konfigurator/kggeneral.cpp:59
-#: Konfigurator/konfigurator.cpp:155 Konfigurator/kglookfeel.cpp:294
+#: Konfigurator/konfigurator.cpp:155 Konfigurator/kglookfeel.cpp:330
 #: Konfigurator/kgadvanced.cpp:51 Konfigurator/kgcolors.cpp:56
 #: Konfigurator/kgstartup.cpp:51 Konfigurator/kgarchives.cpp:54
 #, fuzzy, kde-format
@@ -6258,17 +6375,17 @@ msgstr "一般"
 msgid "Packers"
 msgstr "圧縮"
 
-#: Konfigurator/kgdependencies.cpp:110
+#: Konfigurator/kgdependencies.cpp:111
 #, fuzzy, kde-format
 msgid "Checksum Utilities"
 msgstr "チェックサム ユーティリティ"
 
-#: Konfigurator/kgdependencies.cpp:167
+#: Konfigurator/kgdependencies.cpp:168
 #, fuzzy, kde-format
 msgid "The %1 path is incorrect, no valid path found."
 msgstr "いいえ."
 
-#: Konfigurator/kgdependencies.cpp:170
+#: Konfigurator/kgdependencies.cpp:171
 #, kde-format
 msgid "The %1 path is incorrect, %2 used instead."
 msgstr ""
@@ -6367,124 +6484,124 @@ msgstr "in a ウィンドウ in a"
 msgid "Atomic extensions:"
 msgstr ""
 
-#: Konfigurator/kggeneral.cpp:167
+#: Konfigurator/kggeneral.cpp:168
 #, fuzzy, kde-format
 msgid "Terminal:"
 msgstr "ターミナル:"
 
-#: Konfigurator/kggeneral.cpp:174
+#: Konfigurator/kggeneral.cpp:175
 #, fuzzy, kde-format
 msgid "Terminal Emulator sends Chdir on panel change"
 msgstr "ターミナル パネル"
 
-#: Konfigurator/kggeneral.cpp:175
+#: Konfigurator/kggeneral.cpp:176
 #, fuzzy, kde-format
 msgid ""
 "When checked, whenever the panel is changed (for example, by pressing TAB), "
 "krusader changes the current directory in the terminal emulator."
 msgstr "パネル 変更 for タブスペース in ターミナル."
 
-#: Konfigurator/kggeneral.cpp:185
+#: Konfigurator/kggeneral.cpp:186
 #, fuzzy, kde-format
 msgid "Temp Directory:"
 msgstr "ディレクトリ:"
 
-#: Konfigurator/kggeneral.cpp:194
+#: Konfigurator/kggeneral.cpp:195
 #, fuzzy, kde-format
 msgid "Note: you must have full permissions for the temporary directory!"
 msgstr "注意 for!"
 
-#: Konfigurator/kggeneral.cpp:212
+#: Konfigurator/kggeneral.cpp:213
 #, fuzzy, kde-format
 msgid "Searching for tools..."
 msgstr "検索中 for."
 
-#: Konfigurator/kggeneral.cpp:213
+#: Konfigurator/kggeneral.cpp:214
 #, fuzzy, kde-format
 msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr "Make to 新規 in<code></code> e"
 
-#: Konfigurator/kggeneral.cpp:221
+#: Konfigurator/kggeneral.cpp:222
 #, kde-format
 msgid "Add new atomic extension"
 msgstr ""
 
-#: Konfigurator/kggeneral.cpp:221
+#: Konfigurator/kggeneral.cpp:222
 #, kde-format
 msgid "Extension: "
 msgstr ""
 
-#: Konfigurator/kggeneral.cpp:226
+#: Konfigurator/kggeneral.cpp:227
 #, kde-format
 msgid ""
 "Atomic extensions must start with '.'\n"
 " and must contain at least one more '.' character"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:131
+#: Konfigurator/krresulttable.cpp:132
 #, fuzzy, kde-format
 msgid "unarj not found, but arj found, which will be used for unpacking"
 msgstr "for"
 
-#: Konfigurator/krresulttable.cpp:137
+#: Konfigurator/krresulttable.cpp:138
 #, fuzzy, kde-format
 msgid "rpm found, but cpio not found which is required for unpacking"
 msgstr "for"
 
-#: Konfigurator/krresulttable.cpp:140 Konfigurator/krresulttable.cpp:304
+#: Konfigurator/krresulttable.cpp:141 Konfigurator/krresulttable.cpp:307
 #, fuzzy, kde-format
 msgid "Found"
 msgstr "マウント"
 
-#: Konfigurator/krresulttable.cpp:141
+#: Konfigurator/krresulttable.cpp:142
 #, fuzzy, kde-format
 msgid "Packing"
 msgstr "詰め込み"
 
-#: Konfigurator/krresulttable.cpp:142
+#: Konfigurator/krresulttable.cpp:143
 #, fuzzy, kde-format
 msgid "Unpacking"
 msgstr "ファイルを解凍"
 
-#: Konfigurator/krresulttable.cpp:143
+#: Konfigurator/krresulttable.cpp:144
 #, fuzzy, kde-format
 msgid "Note"
 msgstr "注意"
 
-#: Konfigurator/krresulttable.cpp:206 Konfigurator/krresulttable.cpp:224
-#: Konfigurator/krresulttable.cpp:385
+#: Konfigurator/krresulttable.cpp:209 Konfigurator/krresulttable.cpp:227
+#: Konfigurator/krresulttable.cpp:388
 #, fuzzy, kde-format
 msgid "enabled"
 msgstr "有効"
 
-#: Konfigurator/krresulttable.cpp:211 Konfigurator/krresulttable.cpp:229
-#: Konfigurator/krresulttable.cpp:390
+#: Konfigurator/krresulttable.cpp:214 Konfigurator/krresulttable.cpp:232
+#: Konfigurator/krresulttable.cpp:393
 #, fuzzy, kde-format
 msgid "disabled"
 msgstr "無効"
 
-#: Konfigurator/krresulttable.cpp:297
+#: Konfigurator/krresulttable.cpp:300
 #, kde-format
 msgid "diff utility"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:298
+#: Konfigurator/krresulttable.cpp:301
 #, fuzzy, kde-format
 msgid "email client"
 msgstr "Eメール"
 
-#: Konfigurator/krresulttable.cpp:299
+#: Konfigurator/krresulttable.cpp:302
 #, fuzzy, kde-format
 msgid "batch renamer"
 msgstr "リネーム"
 
-#: Konfigurator/krresulttable.cpp:300
+#: Konfigurator/krresulttable.cpp:303
 #, kde-format
 msgid "checksum utility"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:303
+#: Konfigurator/krresulttable.cpp:306
 #, fuzzy, kde-format
 msgid "Tool"
 msgstr "ツールバー"
@@ -6575,56 +6692,56 @@ msgstr "リンク to"
 msgid "The current page has been changed. Do you want to apply changes?"
 msgstr "変更 to?"
 
-#: Konfigurator/kglookfeel.cpp:82
+#: Konfigurator/kglookfeel.cpp:83
 #, fuzzy, kde-format
 msgid "Operation"
 msgstr "操作"
 
-#: Konfigurator/kglookfeel.cpp:89
+#: Konfigurator/kglookfeel.cpp:90
 #, fuzzy, kde-format
 msgid "Look && Feel"
 msgstr "外観"
 
-#: Konfigurator/kglookfeel.cpp:94
+#: Konfigurator/kglookfeel.cpp:95
 #, fuzzy, kde-format
 msgid "Warn on exit"
 msgstr "警告"
 
-#: Konfigurator/kglookfeel.cpp:94
+#: Konfigurator/kglookfeel.cpp:95
 #, fuzzy, kde-format
 msgid "Display a warning when trying to close the main window."
 msgstr "表示 a to ウィンドウ."
 
-#: Konfigurator/kglookfeel.cpp:95
+#: Konfigurator/kglookfeel.cpp:96
 #, fuzzy, kde-format
 msgid "Minimize to tray"
 msgstr "最小化 to"
 
-#: Konfigurator/kglookfeel.cpp:95
+#: Konfigurator/kglookfeel.cpp:96
 #, fuzzy, kde-format
 msgid ""
 "The icon will appear in the system tray instead of the taskbar, when "
 "Krusader is minimized."
 msgstr "アイコン in タスクバー."
 
-#: Konfigurator/kglookfeel.cpp:96
+#: Konfigurator/kglookfeel.cpp:97
 #, fuzzy, kde-format
 msgid "Autoselect directories"
 msgstr "ディレクトリを自動選択"
 
-#: Konfigurator/kglookfeel.cpp:96
+#: Konfigurator/kglookfeel.cpp:97
 #, kde-format
 msgid ""
 "When matching the select criteria, not only files will be selected, but also "
 "directories."
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:97
+#: Konfigurator/kglookfeel.cpp:98
 #, fuzzy, kde-format
 msgid "Rename selects extension"
 msgstr "名前を変更"
 
-#: Konfigurator/kglookfeel.cpp:97
+#: Konfigurator/kglookfeel.cpp:98
 #, fuzzy, kde-format
 msgid ""
 "When renaming a file, the whole text is selected. If you want Total-"
@@ -6632,254 +6749,284 @@ msgid ""
 "option."
 msgstr "a テキスト 名前."
 
-#: Konfigurator/kglookfeel.cpp:98
+#: Konfigurator/kglookfeel.cpp:99
 #, fuzzy, kde-format
 msgid "Use full path tab names"
 msgstr "使用"
 
-#: Konfigurator/kglookfeel.cpp:98
+#: Konfigurator/kglookfeel.cpp:99
 #, fuzzy, kde-format
 msgid ""
 "Display the full path in the folder tabs. By default only the last part of "
 "the path is displayed."
 msgstr "表示 in 標準."
 
-#: Konfigurator/kglookfeel.cpp:99
+#: Konfigurator/kglookfeel.cpp:100
 #, fuzzy, kde-format
 msgid "Fullscreen terminal (mc-style)"
 msgstr "フルスクリーン ターミナル スタイル"
 
-#: Konfigurator/kglookfeel.cpp:99
+#: Konfigurator/kglookfeel.cpp:100
 #, fuzzy, kde-format
 msgid "Terminal is shown instead of the Krusader window (full screen)."
 msgstr "ターミナル ウィンドウ."
 
-#: Konfigurator/kglookfeel.cpp:108
+#: Konfigurator/kglookfeel.cpp:109
 #, kde-format
 msgid "Quicksearch"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:113
+#: Konfigurator/kglookfeel.cpp:114
 #, fuzzy, kde-format
 msgid "New style quicksearch"
 msgstr "新規 スタイル"
 
-#: Konfigurator/kglookfeel.cpp:113
+#: Konfigurator/kglookfeel.cpp:114
 #, fuzzy, kde-format
 msgid "Opens a quick search dialog box."
 msgstr "a 箱."
 
-#: Konfigurator/kglookfeel.cpp:114
+#: Konfigurator/kglookfeel.cpp:115
 #, fuzzy, kde-format
 msgid "Case sensitive quicksearch"
 msgstr "大文字小文字を区別してソート"
 
-#: Konfigurator/kglookfeel.cpp:114 Konfigurator/kglookfeel.cpp:186
+#: Konfigurator/kglookfeel.cpp:115 Konfigurator/kglookfeel.cpp:253
 #, fuzzy, kde-format
 msgid ""
 "All files beginning with capital letters appear before files beginning with "
 "non-capital letters (UNIX default)."
 msgstr "全て 置換後 置換後 UNIX 標準."
 
-#: Konfigurator/kglookfeel.cpp:139
+#: Konfigurator/kglookfeel.cpp:140
 #, fuzzy, kde-format
 msgid "Panel settings"
 msgstr "パネル 設定"
 
-#: Konfigurator/kglookfeel.cpp:145
+#: Konfigurator/kglookfeel.cpp:153
+#, fuzzy, kde-format
+msgid "Default panel type:"
+msgstr "左 パネル"
+
+#: Konfigurator/kglookfeel.cpp:177
 #, fuzzy, kde-format
 msgid "Panel font:"
 msgstr "パネル:"
 
-#: Konfigurator/kglookfeel.cpp:159
+#: Konfigurator/kglookfeel.cpp:191
 #, fuzzy, kde-format
 msgid "Filelist icon size:"
 msgstr "アイコン サイズ:"
 
-#: Konfigurator/kglookfeel.cpp:164
+#: Konfigurator/kglookfeel.cpp:196
+#, kde-format
+msgid "12"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:197
 #, fuzzy, kde-format
 msgid "16"
 msgstr "16"
 
-#: Konfigurator/kglookfeel.cpp:165
+#: Konfigurator/kglookfeel.cpp:198
 #, fuzzy, kde-format
 msgid "22"
 msgstr "22"
 
-#: Konfigurator/kglookfeel.cpp:166
+#: Konfigurator/kglookfeel.cpp:199
 #, fuzzy, kde-format
 msgid "32"
 msgstr "32"
 
-#: Konfigurator/kglookfeel.cpp:167
+#: Konfigurator/kglookfeel.cpp:200
 #, fuzzy, kde-format
 msgid "48"
 msgstr "48"
 
-#: Konfigurator/kglookfeel.cpp:182
+#: Konfigurator/kglookfeel.cpp:215
 #, fuzzy, kde-format
 msgid "Use icons in the filenames"
 msgstr "使用 アイコン in"
 
-#: Konfigurator/kglookfeel.cpp:182
+#: Konfigurator/kglookfeel.cpp:215
 #, fuzzy, kde-format
 msgid "Show the icons for filenames and folders."
 msgstr "表示 アイコン for と."
 
-#: Konfigurator/kglookfeel.cpp:183
+#: Konfigurator/kglookfeel.cpp:216
 #, kde-format
 msgid "Load the user defined folder icons"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:183
+#: Konfigurator/kglookfeel.cpp:216
 #, kde-format
 msgid "Load the user defined folder icons (can cause decrease in performance)."
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:184
+#: Konfigurator/kglookfeel.cpp:217
 #, fuzzy, kde-format
 msgid "Use human-readable file size"
 msgstr "使用 サイズ"
 
-#: Konfigurator/kglookfeel.cpp:184
+#: Konfigurator/kglookfeel.cpp:217
 #, fuzzy, kde-format
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
 msgstr "ファイル in B KB MB と GB in バイト."
 
-#: Konfigurator/kglookfeel.cpp:185
+#: Konfigurator/kglookfeel.cpp:218
 #, fuzzy, kde-format
 msgid "Show hidden files"
 msgstr "表示 隠し"
 
-#: Konfigurator/kglookfeel.cpp:185
+#: Konfigurator/kglookfeel.cpp:218
 #, fuzzy, kde-format
 msgid "Display files beginning with a dot."
 msgstr "表示 置換後 a."
 
-#: Konfigurator/kglookfeel.cpp:186
-#, kde-format
-msgid "Case sensitive sorting"
-msgstr "大文字小文字を区別してソート"
-
-#: Konfigurator/kglookfeel.cpp:187
-#, fuzzy, kde-format
-msgid "Always sort dirs by name"
-msgstr "常に 名前"
-
-#: Konfigurator/kglookfeel.cpp:187
-#, fuzzy, kde-format
-msgid "Directories are sorted by name, regardless of the sort column."
-msgstr "ディレクトリ 名前."
-
-#: Konfigurator/kglookfeel.cpp:188
+#: Konfigurator/kglookfeel.cpp:219
 #, fuzzy, kde-format
 msgid "Numeric Permissions"
 msgstr "パーミッション"
 
-#: Konfigurator/kglookfeel.cpp:188
+#: Konfigurator/kglookfeel.cpp:219
 #, fuzzy, kde-format
 msgid ""
 "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in "
 "the permission column."
 msgstr "表示 x in."
 
-#: Konfigurator/kglookfeel.cpp:204
-#, fuzzy, kde-format
-msgid "Default panel type:"
-msgstr "左 パネル"
+#: Konfigurator/kglookfeel.cpp:234
+#, kde-format
+msgid "Sort method:"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:238
+#, kde-format
+msgid "Alphabetical"
+msgstr ""
 
 #: Konfigurator/kglookfeel.cpp:239
+#, kde-format
+msgid "Alphabetical and numbers"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:240
+#, kde-format
+msgid "Character code"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:241
+#, kde-format
+msgid "Character code and numbers"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:253
+#, kde-format
+msgid "Case sensitive sorting"
+msgstr "大文字小文字を区別してソート"
+
+#: Konfigurator/kglookfeel.cpp:254
+#, fuzzy, kde-format
+msgid "Always sort dirs by name"
+msgstr "常に 名前"
+
+#: Konfigurator/kglookfeel.cpp:254
+#, fuzzy, kde-format
+msgid "Directories are sorted by name, regardless of the sort column."
+msgstr "ディレクトリ 名前."
+
+#: Konfigurator/kglookfeel.cpp:274
 #, fuzzy, kde-format
 msgid "Panel Toolbar"
 msgstr "パネル ツールバー"
 
-#: Konfigurator/kglookfeel.cpp:247
+#: Konfigurator/kglookfeel.cpp:282
 #, fuzzy, kde-format
 msgid "Show Panel Toolbar"
 msgstr "表示 パネル ツールバー"
 
-#: Konfigurator/kglookfeel.cpp:247
+#: Konfigurator/kglookfeel.cpp:282
 #, fuzzy, kde-format
 msgid "The panel toolbar will be visible."
 msgstr "パネル 可視."
 
-#: Konfigurator/kglookfeel.cpp:253
+#: Konfigurator/kglookfeel.cpp:288
 #, fuzzy, kde-format
 msgid "Visible Panel Toolbar buttons"
 msgstr "可視 パネル ツールバー"
 
-#: Konfigurator/kglookfeel.cpp:259
+#: Konfigurator/kglookfeel.cpp:294
 #, fuzzy, kde-format
 msgid "Open button"
 msgstr "開く"
 
-#: Konfigurator/kglookfeel.cpp:259
+#: Konfigurator/kglookfeel.cpp:294
 #, fuzzy, kde-format
 msgid "Opens the directory browser."
 msgstr "Climb up the directory tree"
 
-#: Konfigurator/kglookfeel.cpp:260
+#: Konfigurator/kglookfeel.cpp:295
 #, fuzzy, kde-format
 msgid "Equal button (=)"
 msgstr "等価"
 
-#: Konfigurator/kglookfeel.cpp:260
+#: Konfigurator/kglookfeel.cpp:295
 #, fuzzy, kde-format
 msgid "Changes the panel directory to the other panel directory."
 msgstr "変化 パネル to パネル."
 
-#: Konfigurator/kglookfeel.cpp:261
+#: Konfigurator/kglookfeel.cpp:296
 #, fuzzy, kde-format
 msgid "Up button (..)"
 msgstr "上へ"
 
-#: Konfigurator/kglookfeel.cpp:261
+#: Konfigurator/kglookfeel.cpp:296
 #, fuzzy, kde-format
 msgid "Changes the panel directory to the parent directory."
 msgstr "変化 パネル to."
 
-#: Konfigurator/kglookfeel.cpp:262
+#: Konfigurator/kglookfeel.cpp:297
 #, fuzzy, kde-format
 msgid "Home button (~)"
 msgstr "ホーム"
 
-#: Konfigurator/kglookfeel.cpp:262
+#: Konfigurator/kglookfeel.cpp:297
 #, fuzzy, kde-format
 msgid "Changes the panel directory to the home directory."
 msgstr "変化 パネル to."
 
-#: Konfigurator/kglookfeel.cpp:263
+#: Konfigurator/kglookfeel.cpp:298
 #, fuzzy, kde-format
 msgid "Root button (/)"
 msgstr "ルート"
 
-#: Konfigurator/kglookfeel.cpp:263
+#: Konfigurator/kglookfeel.cpp:298
 #, fuzzy, kde-format
 msgid "Changes the panel directory to the root directory."
 msgstr "変化 パネル to ルート."
 
-#: Konfigurator/kglookfeel.cpp:264
+#: Konfigurator/kglookfeel.cpp:299
 #, fuzzy, kde-format
 msgid "Toggle-button for sync-browsing"
 msgstr "for ブラウズ"
 
-#: Konfigurator/kglookfeel.cpp:264
+#: Konfigurator/kglookfeel.cpp:299
 #, fuzzy, kde-format
 msgid ""
 "Each directory change in the panel is also performed in the other panel."
 msgstr "in パネル in パネル."
 
-#: Konfigurator/kglookfeel.cpp:288
+#: Konfigurator/kglookfeel.cpp:324
 #, fuzzy, kde-format
 msgid "Selection Mode"
 msgstr "選択モード"
 
-#: Konfigurator/kglookfeel.cpp:302
+#: Konfigurator/kglookfeel.cpp:338
 #, fuzzy, kde-format
 msgid "Krusader Mode"
 msgstr "モード"
 
-#: Konfigurator/kglookfeel.cpp:302
+#: Konfigurator/kglookfeel.cpp:338
 #, fuzzy, kde-format
 msgid ""
 "Both keys allow selecting files. To select more than one file, hold the Ctrl "
@@ -6887,12 +7034,12 @@ msgid ""
 "short click on the right mouse button."
 msgstr "両方 To 第一 Ctrl と 左 マウス 右 a short 右 マウス."
 
-#: Konfigurator/kglookfeel.cpp:303
+#: Konfigurator/kglookfeel.cpp:339
 #, fuzzy, kde-format
 msgid "Konqueror Mode"
 msgstr "Konqueror モード"
 
-#: Konfigurator/kglookfeel.cpp:303
+#: Konfigurator/kglookfeel.cpp:339
 #, fuzzy, kde-format
 msgid ""
 "Pressing the left mouse button selects files - you can click and select "
@@ -6900,12 +7047,12 @@ msgid ""
 "mouse button."
 msgstr "左 マウス と 右 a short 右 マウス."
 
-#: Konfigurator/kglookfeel.cpp:304
+#: Konfigurator/kglookfeel.cpp:340
 #, fuzzy, kde-format
 msgid "Total-Commander Mode"
 msgstr "合計 モード"
 
-#: Konfigurator/kglookfeel.cpp:304
+#: Konfigurator/kglookfeel.cpp:340
 #, fuzzy, kde-format
 msgid ""
 "The left mouse button does not select, but sets the current file without "
@@ -6914,129 +7061,142 @@ msgid ""
 "mouse button."
 msgstr "左 マウス 右 マウス と 右 と 右 マウス."
 
-#: Konfigurator/kglookfeel.cpp:305
+#: Konfigurator/kglookfeel.cpp:341
+#, kde-format
+msgid "Ergonomic Mode"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:341
+#, fuzzy, kde-format
+msgid ""
+"The left mouse button does not select, but sets the current file without "
+"affecting the current selection. The right mouse button invokes the context-"
+"menu. You can select with Ctrl key and the left button."
+msgstr "左 マウス 右 マウス と 右 と 右 マウス."
+
+#: Konfigurator/kglookfeel.cpp:342
 #, fuzzy, kde-format
 msgid "Custom Selection Mode"
 msgstr "カスタム 選択 モード"
 
-#: Konfigurator/kglookfeel.cpp:305
+#: Konfigurator/kglookfeel.cpp:342
 #, kde-format
 msgid "Design your own selection mode!"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:317
+#: Konfigurator/kglookfeel.cpp:354
 #, fuzzy, kde-format
 msgid "Details"
 msgstr "詳細"
 
-#: Konfigurator/kglookfeel.cpp:325
+#: Konfigurator/kglookfeel.cpp:362
 #, kde-format
 msgid "Double-click selects (classic)"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:325
+#: Konfigurator/kglookfeel.cpp:362
 #, fuzzy, kde-format
 msgid ""
 "A single click on a file will select and focus, a double click opens the "
 "file or steps into the directory."
 msgstr "A a と a double もしくは."
 
-#: Konfigurator/kglookfeel.cpp:326
+#: Konfigurator/kglookfeel.cpp:363
 #, fuzzy, kde-format
 msgid "Obey KDE's global selection policy"
 msgstr "KDE 秒"
 
-#: Konfigurator/kglookfeel.cpp:326
+#: Konfigurator/kglookfeel.cpp:363
 #, fuzzy, kde-format
 msgid ""
 "<p>Use KDE's global setting:</p><p><i>KDE Control Center -> Peripherals -> "
 "Mouse</i></p>"
 msgstr "<p> 使用 KDE 秒</p><p><i> KDE コントロールキー 中央 マウス</i></p>"
 
-#: Konfigurator/kglookfeel.cpp:338
+#: Konfigurator/kglookfeel.cpp:375
 #, fuzzy, kde-format
 msgid "Based on KDE's selection mode"
 msgstr "KDE 秒"
 
-#: Konfigurator/kglookfeel.cpp:339
+#: Konfigurator/kglookfeel.cpp:376
 #, fuzzy, kde-format
 msgid "If checked, use a mode based on KDE's style."
 msgstr "a KDE 秒 スタイル."
 
-#: Konfigurator/kglookfeel.cpp:341
+#: Konfigurator/kglookfeel.cpp:378
 #, fuzzy, kde-format
 msgid "Left mouse button selects"
 msgstr "左 マウス"
 
-#: Konfigurator/kglookfeel.cpp:342
+#: Konfigurator/kglookfeel.cpp:379
 #, fuzzy, kde-format
 msgid "If checked, left clicking an item will select it."
 msgstr "左."
 
-#: Konfigurator/kglookfeel.cpp:344
+#: Konfigurator/kglookfeel.cpp:381
 #, fuzzy, kde-format
 msgid "Left mouse button preserves selection"
 msgstr "左 マウス"
 
-#: Konfigurator/kglookfeel.cpp:345
+#: Konfigurator/kglookfeel.cpp:382
 #, fuzzy, kde-format
 msgid ""
 "If checked, left clicking an item will select it, but will not unselect "
 "other, already selected items."
 msgstr "左."
 
-#: Konfigurator/kglookfeel.cpp:347
+#: Konfigurator/kglookfeel.cpp:384
 #, fuzzy, kde-format
 msgid "Shift/Ctrl-Left mouse button selects"
 msgstr "Shift Ctrl 左 マウス"
 
-#: Konfigurator/kglookfeel.cpp:348
+#: Konfigurator/kglookfeel.cpp:385
 #, fuzzy, kde-format
 msgid ""
 "If checked, shift/ctrl left clicking will select items. \n"
 "Note: This is meaningless if 'Left Button Selects' is checked."
 msgstr "左 左 ボタン."
 
-#: Konfigurator/kglookfeel.cpp:350
+#: Konfigurator/kglookfeel.cpp:387
 #, fuzzy, kde-format
 msgid "Right mouse button selects"
 msgstr "右 マウス"
 
-#: Konfigurator/kglookfeel.cpp:351
+#: Konfigurator/kglookfeel.cpp:388
 #, fuzzy, kde-format
 msgid "If checked, right clicking an item will select it."
 msgstr "右."
 
-#: Konfigurator/kglookfeel.cpp:353
+#: Konfigurator/kglookfeel.cpp:390
 #, fuzzy, kde-format
 msgid "Right mouse button preserves selection"
 msgstr "右 マウス"
 
-#: Konfigurator/kglookfeel.cpp:354
+#: Konfigurator/kglookfeel.cpp:391
 #, fuzzy, kde-format
 msgid ""
 "If checked, right clicking an item will select it, but will not unselect "
 "other, already selected items."
 msgstr "右."
 
-#: Konfigurator/kglookfeel.cpp:356
+#: Konfigurator/kglookfeel.cpp:393
 #, fuzzy, kde-format
 msgid "Shift/Ctrl-Right mouse button selects"
 msgstr "Shift Ctrl 右 マウス"
 
-#: Konfigurator/kglookfeel.cpp:357
+#: Konfigurator/kglookfeel.cpp:394
 #, fuzzy, kde-format
 msgid ""
 "If checked, shift/ctrl right clicking will select items. \n"
 "Note: This is meaningless if 'Right Button Selects' is checked."
 msgstr "右 右 ボタン."
 
-#: Konfigurator/kglookfeel.cpp:359
+#: Konfigurator/kglookfeel.cpp:396
 #, kde-format
 msgid "Spacebar moves down"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:360
+#: Konfigurator/kglookfeel.cpp:397
 #, fuzzy, kde-format
 msgid ""
 "If checked, pressing the spacebar will select the current item and move "
@@ -7044,12 +7204,12 @@ msgid ""
 "Otherwise, current item is selected, but remains the current item."
 msgstr "と."
 
-#: Konfigurator/kglookfeel.cpp:362
+#: Konfigurator/kglookfeel.cpp:399
 #, kde-format
 msgid "Spacebar calculates disk space"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:363
+#: Konfigurator/kglookfeel.cpp:400
 #, fuzzy, kde-format
 msgid ""
 "If checked, pressing the spacebar while the current item is a folder, will "
@@ -7057,12 +7217,12 @@ msgid ""
 "calculate space occupied by the folder (recursively)."
 msgstr "a."
 
-#: Konfigurator/kglookfeel.cpp:365
+#: Konfigurator/kglookfeel.cpp:402
 #, fuzzy, kde-format
 msgid "Insert moves down"
 msgstr "挿入"
 
-#: Konfigurator/kglookfeel.cpp:366
+#: Konfigurator/kglookfeel.cpp:403
 #, fuzzy, kde-format
 msgid ""
 "If checked, pressing INSERT will select the current item, and move down to "
@@ -7070,12 +7230,12 @@ msgid ""
 "Otherwise, current item is not changed."
 msgstr "と to 変更."
 
-#: Konfigurator/kglookfeel.cpp:368
+#: Konfigurator/kglookfeel.cpp:405
 #, fuzzy, kde-format
 msgid "Right clicking pops context menu immediately"
 msgstr "右"
 
-#: Konfigurator/kglookfeel.cpp:369
+#: Konfigurator/kglookfeel.cpp:406
 #, fuzzy, kde-format
 msgid ""
 "If checked, right clicking will result in an immediate showing of the "
@@ -7164,7 +7324,7 @@ msgstr "確認 for a 名前 to 標準."
 msgid "Removing Useractions"
 msgstr "ユーザ名:"
 
-#: Konfigurator/kgadvanced.cpp:101 Konfigurator/kgarchives.cpp:100
+#: Konfigurator/kgadvanced.cpp:101 Konfigurator/kgarchives.cpp:101
 #, fuzzy, kde-format
 msgid "Fine-Tuning"
 msgstr "高画質"
@@ -7838,50 +7998,55 @@ msgstr "GZip"
 
 #: Konfigurator/kgarchives.cpp:64
 #, kde-format
+msgid "LZMA"
+msgstr ""
+
+#: Konfigurator/kgarchives.cpp:65
+#, kde-format
 msgid "BZip2"
 msgstr "BZip2"
 
-#: Konfigurator/kgarchives.cpp:65
+#: Konfigurator/kgarchives.cpp:66
 #, kde-format
 msgid "Zip"
 msgstr "Zip"
 
-#: Konfigurator/kgarchives.cpp:66
+#: Konfigurator/kgarchives.cpp:67
 #, kde-format
 msgid "Rar"
 msgstr "Rar"
 
-#: Konfigurator/kgarchives.cpp:67
+#: Konfigurator/kgarchives.cpp:68
 #, kde-format
 msgid "Arj"
 msgstr "Arj"
 
-#: Konfigurator/kgarchives.cpp:68
+#: Konfigurator/kgarchives.cpp:69
 #, kde-format
 msgid "Rpm"
 msgstr "Rpm"
 
-#: Konfigurator/kgarchives.cpp:69
+#: Konfigurator/kgarchives.cpp:70
 #, kde-format
 msgid "Ace"
 msgstr "Ace"
 
-#: Konfigurator/kgarchives.cpp:70
+#: Konfigurator/kgarchives.cpp:71
 #, kde-format
 msgid "Lha"
 msgstr "Lha"
 
-#: Konfigurator/kgarchives.cpp:71
+#: Konfigurator/kgarchives.cpp:72
 #, kde-format
 msgid "Deb"
 msgstr "Deb"
 
-#: Konfigurator/kgarchives.cpp:72
+#: Konfigurator/kgarchives.cpp:73
 #, kde-format
 msgid "7zip"
 msgstr "7zip"
 
-#: Konfigurator/kgarchives.cpp:78
+#: Konfigurator/kgarchives.cpp:79
 #, kde-format
 msgid ""
 "The archives that are \"greyed-out\" were unavailable on your\n"
@@ -7892,39 +8057,39 @@ msgstr ""
 "system last time Krusader checked. If you wish Krusader to\n"
 "search again, click the 'Auto Configure' button."
 
-#: Konfigurator/kgarchives.cpp:87
+#: Konfigurator/kgarchives.cpp:88
 #, kde-format
 msgid "Auto Configure"
 msgstr "自動設定"
 
-#: Konfigurator/kgarchives.cpp:106
+#: Konfigurator/kgarchives.cpp:107
 #, kde-format
 msgid "Test archive after packing"
 msgstr "Test archive after packing"
 
-#: Konfigurator/kgarchives.cpp:106
+#: Konfigurator/kgarchives.cpp:107
 #, kde-format
 msgid "Check the archive's integrity after packing it."
 msgstr "Check the archive's integrity after packing it."
 
-#: Konfigurator/kgarchives.cpp:107
+#: Konfigurator/kgarchives.cpp:108
 #, kde-format
 msgid "Test archive before unpacking"
 msgstr "Test archive before unpacking"
 
-#: Konfigurator/kgarchives.cpp:107
+#: Konfigurator/kgarchives.cpp:108
 #, kde-format
 msgid ""
 "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Some corrupted archives might cause a crash; therefore, testing is suggested."
 
-#: Konfigurator/kgarchives.cpp:124
+#: Konfigurator/kgarchives.cpp:125
 #, kde-format
 msgid "Searching for packers..."
 msgstr "Searching for packers..."
 
-#: Konfigurator/kgarchives.cpp:125
+#: Konfigurator/kgarchives.cpp:126
 #, kde-format
 msgid ""
 "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
@@ -7980,12 +8145,12 @@ msgstr "Font with fixed width:"
 msgid "Use fixed width font as default"
 msgstr "Use fixed width font as default"
 
-#: krslots.cpp:100
+#: krslots.cpp:101
 #, fuzzy, kde-format
 msgid "No selected files to send!"
 msgstr "選択されたもの"
 
-#: krslots.cpp:108
+#: krslots.cpp:109
 #, kde-format
 msgid ""
 "Krusader can't find a supported mail client. Please install one to your "
@@ -7994,18 +8159,18 @@ msgstr ""
 "Krusader can't find a supported mail client. Please install one to your "
 "path. Hint: Krusader supports Kmail."
 
-#: krslots.cpp:117
+#: krslots.cpp:118
 #, fuzzy, kde-format
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
 msgstr[0] "Sending file: "
 
-#: krslots.cpp:167
+#: krslots.cpp:176
 #, kde-format
 msgid "Don't know which files to compare."
 msgstr "Don't know which files to compare."
 
-#: krslots.cpp:167
+#: krslots.cpp:176
 #, kde-format
 msgid ""
 "To compare two files by content, you can either:<ul><li>Select one file in "
@@ -8018,7 +8183,7 @@ msgstr ""
 "in the active panel.</li><li>Make sure there is a file in the other panel, "
 "with the same name as the current file in the active panel.</li></ul>"
 
-#: krslots.cpp:183
+#: krslots.cpp:192
 #, kde-format
 msgid ""
 "Krusader can't find any of the supported diff-frontends. Please install one "
@@ -8027,12 +8192,12 @@ msgstr ""
 "Krusader can't find any of the supported diff-frontends. Please install one "
 "to your path. Hint: Krusader supports Kompare, Kdiff3 and Xxdiff."
 
-#: krslots.cpp:196 krslots.cpp:202
+#: krslots.cpp:205 krslots.cpp:211
 #, fuzzy, kde-format
 msgid "Krusader is unable to download %1"
 msgstr "to "
 
-#: krslots.cpp:451
+#: krslots.cpp:460
 #, kde-format
 msgid ""
 "Can't find the 'locate' command. Please install the findutils-locate package "
@@ -8041,17 +8206,17 @@ msgstr ""
 "Can't find the 'locate' command. Please install the findutils-locate package "
 "of GNU, or set its dependencies in Konfigurator"
 
-#: krslots.cpp:471
+#: krslots.cpp:480
 #, kde-format
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
 msgstr "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
 
-#: krslots.cpp:511
+#: krslots.cpp:520
 #, kde-format
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
 msgstr "Can't find \"KsysCtrl\". Please install KDE admin package"
 
-#: krslots.cpp:519
+#: krslots.cpp:528
 #, kde-format
 msgid ""
 "Can't find a batch rename tool.\n"
@@ -8060,7 +8225,7 @@ msgstr ""
 "Can't find a batch rename tool.\n"
 "You can get Krename at http://www.krename.net"
 
-#: krslots.cpp:550
+#: krslots.cpp:559
 #, kde-format
 msgid ""
 "Can't start root mode krusader, because krusader or kdesu is missing from "
@@ -8069,52 +8234,52 @@ msgstr ""
 "Can't start root mode krusader, because krusader or kdesu is missing from "
 "the path. Please configure the dependencies in Konfigurator!"
 
-#: krslots.cpp:617
+#: krslots.cpp:630
 #, kde-format
 msgid "Enter a URL to view:"
 msgstr "Enter a URL to view:"
 
-#: krslots.cpp:628
+#: krslots.cpp:641
 #, kde-format
 msgid "Enter the filename to edit:"
 msgstr "Enter the filename to edit:"
 
-#: krslots.cpp:685
+#: krslots.cpp:698
 #, kde-format
 msgid "Don't know which file to split."
 msgstr "Don't know which file to split."
 
-#: krslots.cpp:694
+#: krslots.cpp:707
 #, kde-format
 msgid "You can't split a directory!"
 msgstr "You can't split a directory!"
 
-#: krslots.cpp:725
+#: krslots.cpp:738
 #, kde-format
 msgid "Don't know which files to combine."
 msgstr "Don't know which files to combine."
 
-#: krslots.cpp:737
+#: krslots.cpp:750
 #, kde-format
 msgid "You can't combine a directory!"
 msgstr "You can't combine a directory!"
 
-#: krslots.cpp:756
+#: krslots.cpp:769
 #, kde-format
 msgid "Not a split file %1!"
 msgstr "Not a split file %1!"
 
-#: krslots.cpp:771
+#: krslots.cpp:784
 #, kde-format
 msgid "Select only one split file!"
 msgstr "Select only one split file!"
 
-#: krslots.cpp:819
+#: krslots.cpp:832
 #, kde-format
 msgid "Not a splitted file %1!"
 msgstr "Not a splitted file %1!"
 
-#: krslots.cpp:826
+#: krslots.cpp:839
 #, kde-format
 msgid "Combining %1.* to directory:"
 msgstr "Combining %1.* to directory:"
@@ -8340,19 +8505,19 @@ msgstr ""
 msgid "Listing directories is not supported for %1 archives"
 msgstr ""
 
-#: krarc.cpp:1480
+#: krarc.cpp:1495
 #, kde-format
 msgid ""
 "\n"
 "Make sure that the %1 binary are installed properly on your system."
 msgstr ""
 
-#: krarc.cpp:1690 krarc.cpp:1714
+#: krarc.cpp:1710 krarc.cpp:1734
 #, kde-format
 msgid "Krarc Password Dialog"
 msgstr ""
 
-#: krarc.cpp:1731
+#: krarc.cpp:1751
 #, kde-format
 msgid "Accessing the file requires password."
 msgstr ""
