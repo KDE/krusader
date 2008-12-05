@@ -613,6 +613,10 @@ void KRslots::edit()           { ACTIVE_FUNC->editFile();   }
 void KRslots::copyFiles()      { ACTIVE_FUNC->copyFiles();  }
 // F6
 void KRslots::moveFiles()      { ACTIVE_FUNC->moveFiles();  }	
+// SHIFT + F5
+void KRslots::copyFilesByQueue() { ACTIVE_FUNC->copyFiles( true );  }
+// SHIFT + F6
+void KRslots::moveFilesByQueue() { ACTIVE_FUNC->moveFiles( true );  }	
 // F7
 void KRslots::mkdir()          { ACTIVE_FUNC->mkdir();      }
 // F8

@@ -201,6 +201,10 @@ class KRslots : public QObject {
     void copyFiles();
     // F6
     void moveFiles();
+    // SHIFT + F5
+    void copyFilesByQueue();
+    // SHIFT + F6
+    void moveFilesByQueue();
     // F7
     void mkdir();
     // F8

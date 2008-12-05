@@ -35,12 +35,6 @@ void Queue::enqueue(KIOJobWrapper *job)
 	
 	emit changed();
 	emit showQueueDialog();
-	dumpQueue();
-}
-
-void Queue::dumpQueue()
-{
-	kDebug() << "Queue: " << name().toLatin1();
 }
 
 void Queue::slotJobDestroyed( QObject * obj )

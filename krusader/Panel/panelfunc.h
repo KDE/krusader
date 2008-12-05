@@ -69,11 +69,11 @@ public:
 	void view();
 	void rename();
 	void mkdir();
-	void moveFiles();
+	void moveFiles( bool enqueue=false );
 	void pack();
 	void unpack();
 	void testArchive();
-	void copyFiles();
+	void copyFiles( bool enqueue=false );
 	void deleteFiles(bool reallyDelete=false);
 	void calcSpace(); // calculate the occupied space and show it in a dialog
 	void createChecksum();

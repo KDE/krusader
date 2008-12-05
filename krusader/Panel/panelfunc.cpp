@@ -390,9 +390,9 @@ void ListPanelFunc::editFile() {
 	KrViewer::edit( files() ->vfs_getFile( name ) );
 }
 
-void ListPanelFunc::moveFiles() {
+void ListPanelFunc::moveFiles( bool enqueue ) {
 	PreserveMode pmode = PM_DEFAULT;
-	bool queue = false;
+	bool queue = enqueue;
 
 	QStringList fileNames;
 	panel->getSelectedNames( &fileNames );
@@ -579,9 +579,9 @@ KUrl ListPanelFunc::getVirtualBaseURL() {
 	return base;
 }
 
-void ListPanelFunc::copyFiles() {
+void ListPanelFunc::copyFiles( bool enqueue ) {
 	PreserveMode pmode = PM_DEFAULT;
-	bool queue = false;
+	bool queue = enqueue;
 
 	QStringList fileNames;
 	panel->getSelectedNames( &fileNames );

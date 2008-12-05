@@ -48,8 +48,6 @@ protected slots:
 	void slotPercent( KJob *, unsigned long percent );
 	
 protected:
-	void dumpQueue();
-
 	QString _name;
 	QList<KIOJobWrapper *> _jobs;
 	bool _suspended;

@@ -177,6 +177,8 @@ KAction *Krusader::actF7 = 0;
 KAction *Krusader::actF8 = 0;
 KAction *Krusader::actF9 = 0;
 KAction *Krusader::actF10 = 0;
+KAction *Krusader::actShiftF5 = 0;
+KAction *Krusader::actShiftF6 = 0;
 KAction *Krusader::actLocationBar = 0;
 KAction *Krusader::actPopularUrls = 0;
 KAction *Krusader::actJumpBack = 0;
@@ -780,6 +782,8 @@ void Krusader::setupActions() {
    NEW_KACTION(actF4, i18n( "Edit File" ), 0, Qt::Key_F4, SLOTS, SLOT( edit() ) , "F4_Edit" );
    NEW_KACTION(actF5, i18n( "Copy..." ), 0, Qt::Key_F5, SLOTS, SLOT( copyFiles() ) , "F5_Copy" );
    NEW_KACTION(actF6, i18n( "Move..." ), 0, Qt::Key_F6, SLOTS, SLOT( moveFiles() ) , "F6_Move" );
+   NEW_KACTION(actShiftF5, i18n( "Copy by queue..." ), 0, Qt::SHIFT + Qt::Key_F5, SLOTS, SLOT( copyFilesByQueue() ) , "F5_Copy_Queue" );
+   NEW_KACTION(actShiftF6, i18n( "Move by queue..." ), 0, Qt::SHIFT + Qt::Key_F6, SLOTS, SLOT( moveFilesByQueue() ) , "F6_Move_Queue" );
    NEW_KACTION(actF7, i18n( "New Directory..." ), "folder-new", Qt::Key_F7, SLOTS, SLOT( mkdir() ) , "F7_Mkdir" );
    NEW_KACTION(actF8, i18n( "Delete" ), "edit-delete", Qt::Key_F8, SLOTS, SLOT( deleteFiles() ) , "F8_Delete" );
    NEW_KACTION(actF9, i18n( "Rename" ), 0, Qt::Key_F9, SLOTS, SLOT( rename() ) , "F9_Rename" );
