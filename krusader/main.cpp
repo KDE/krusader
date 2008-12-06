@@ -175,6 +175,7 @@ KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") : ki18n("Kr
   aboutData.addCredit(ki18n("Peter Landgren"),ki18n("Swedish translation"),"peter.talken@telia.com",0);
   aboutData.addCredit(ki18n("Bekir Sonat"),ki18n("Turkish translation"),"bekirsonat@kde.org.tr",0);
   aboutData.addCredit(ki18n("Ivan Petrouchtchak"),ki18n("Ukrainian translation"),"connyosis@gmx.net",0);
+  aboutData.addCredit(ki18n("Seongnam Jee"),ki18n("Korean translation"),"snjee@intellicam.com",0);
 
   // Command line arguments ...
   KCmdLineArgs::init( argc, argv, &aboutData );
