@@ -4,21 +4,21 @@
 # Copyright (C) 2004-2008, Krusader Krew
 # This file is distributed under the same license as the Krusader package.
 #
+#
 # Proofread and fixes by Monkey 9 <monkey9@iae.nl>, 2005.
 # Frank Schoolmeesters <frank_schoolmeesters@yahoo.com>, 2003, 2004, 2005, 2006, 2007, 2008.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-2.0.0-beta2\n"
 "Report-Msgid-Bugs-To: krusader-i18n@googlegroups.com\n"
 "POT-Creation-Date: 2008-12-05 21:44+0100\n"
-"PO-Revision-Date: 2008-09-25 20:06+0200\n"
+"PO-Revision-Date: 2008-12-07 00:49+0100\n"
 "Last-Translator: Frank Schoolmeesters <frank_schoolmeesters@yahoo.com>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 0.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: GUI/dirhistorybutton.cpp:36 GUI/dirhistorybutton.cpp:37
@@ -362,7 +362,7 @@ msgstr " Hernoemen"
 #: GUI/kfnkeys.cpp:129
 #, kde-format
 msgid " Quit"
-msgstr " Afsluiten"
+msgstr "Afsluiten"
 
 #: VFS/ftp_vfs.cpp:157
 #, kde-format
@@ -370,7 +370,7 @@ msgid ""
 "Malformed URL:\n"
 "%1"
 msgstr ""
-"Misvormde URL\n"
+"Misvormde URL:\n"
 "%1"
 
 #: VFS/ftp_vfs.cpp:160
@@ -517,9 +517,9 @@ msgid "Move"
 msgstr "Verplaatsen"
 
 #: VFS/kiojobwrapper.cpp:220
-#, fuzzy, kde-format
+#, kde-format
 msgid "Target"
-msgstr "Tar"
+msgstr "Doel"
 
 #: VFS/krquery.cpp:159 Filter/generalfilter.cpp:142
 #: Konfigurator/konfigurator.cpp:159
@@ -1099,8 +1099,7 @@ msgstr ""
 #: UserAction/expander.cpp:58
 #, kde-format
 msgid "Needed panel specification missing in expander %1"
-msgstr ""
-"Noodzakelijke venster specificatie ontbreekt in het uitbereidingsmenu %1"
+msgstr "Noodzakelijke venster specificatie ontbreekt in het uitbereidingsmenu %1"
 
 #: UserAction/expander.cpp:73
 #, kde-format
@@ -1220,8 +1219,7 @@ msgstr "Locatie in een nieuwe tab openen"
 #: UserAction/expander.cpp:572
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Goto!"
-msgstr ""
-"Uitbereidingsmenu: tenminste één parameter is noodzakelijk voor \"Goto\"!"
+msgstr "Uitbereidingsmenu: tenminste één parameter is noodzakelijk voor \"Goto\"!"
 
 #: UserAction/expander.cpp:603
 #, kde-format
@@ -1246,8 +1244,7 @@ msgstr "Inleiding (optioneel):"
 #: UserAction/expander.cpp:614
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Ask!"
-msgstr ""
-"Uitbereidingsmenu: tenminste één parameter is noodzakelijk voor \"Ask\"!"
+msgstr "Uitbereidingsmenu: tenminste één parameter is noodzakelijk voor \"Ask\"!"
 
 #: UserAction/expander.cpp:619
 #, kde-format
@@ -1281,8 +1278,7 @@ msgstr ""
 #: UserAction/expander.cpp:659
 #, kde-format
 msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
-msgstr ""
-"Uitberedingsmenu: %Each% mag niet in het tweede argument van %Clipboard% zijn"
+msgstr "Uitberedingsmenu: %Each% mag niet in het tweede argument van %Clipboard% zijn"
 
 #: UserAction/expander.cpp:672
 #, kde-format
@@ -1297,8 +1293,7 @@ msgstr "Doelbestemmig van de kopie:"
 #: UserAction/expander.cpp:680
 #, kde-format
 msgid "Expander: at least 2 parameter is required for Copy!"
-msgstr ""
-"Uitbereidingsmenu: tenminste één parameter is noodzakelijk voor \"Kopiëren\"!"
+msgstr "Uitbereidingsmenu: tenminste één parameter is noodzakelijk voor \"Kopiëren\"!"
 
 #: UserAction/expander.cpp:687
 #, kde-format
@@ -1366,8 +1361,7 @@ msgstr "Zoekmoduleprofiel openen..."
 #: UserAction/expander.cpp:769
 #, kde-format
 msgid "Expander: no profile specified for %_NewSearch(profile)%"
-msgstr ""
-"Uitberedingsmenu: geen profiel gespecifieerd voor %_NewSearch(profile)%"
+msgstr "Uitberedingsmenu: geen profiel gespecifieerd voor %_NewSearch(profile)%"
 
 #: UserAction/expander.cpp:780
 #, kde-format
@@ -1619,8 +1613,7 @@ msgstr ""
 
 #: UserAction/kraction.cpp:224
 #, kde-format
-msgid ""
-"Embedded terminal emulator does not work, using output collection instead."
+msgid "Embedded terminal emulator does not work, using output collection instead."
 msgstr ""
 "Terminal emulator werkt niet, maakt in de plaats gebruik van de uitvoer "
 "collector."
@@ -1961,8 +1954,7 @@ msgstr " naar:"
 #: Panel/panelpopup.cpp:270
 #, kde-format
 msgid "Tree Panel: a tree view of the local file system"
-msgstr ""
-"Boomstruktuur venster: boomstruktuurweergave van het lokale bestandsysteem"
+msgstr "Boomstruktuur venster: boomstruktuurweergave van het lokale bestandsysteem"
 
 #: Panel/panelpopup.cpp:278
 #, kde-format
@@ -2330,10 +2322,8 @@ msgstr "U heeft geen schrijfrechten in deze directory"
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
-msgstr[0] ""
-"_n: Bent u er zeker van dat u dit item naar de prullenbak wilt verplaatsen?"
-msgstr[1] ""
-"Bent u er zeker van dat u %1 items naar de prullenbak wilt verplaatsen?"
+msgstr[0] "_n: Bent u er zeker van dat u dit item naar de prullenbak wilt verplaatsen?"
+msgstr[1] "Bent u er zeker van dat u %1 items naar de prullenbak wilt verplaatsen?"
 
 #: Panel/panelfunc.cpp:689 DiskUsage/diskusage.cpp:610
 #, kde-format
@@ -2490,93 +2480,93 @@ msgid "Cannot copy a virtual URL collection onto the clipboard!"
 msgstr "Kan de virtuele URL niet kopiëren op het klembord!"
 
 #: Queue/queuewidget.cpp:128 Queue/queuedialog.cpp:156
-#, fuzzy, kde-format
+#, kde-format
 msgid "Queue Manager"
-msgstr "Query naam"
+msgstr "Wachtrij manager"
 
 #: Queue/queuewidget.cpp:144
 #, kde-format
 msgid "Deleting this job will abort the pending job. Do you wish to continue?"
-msgstr ""
+msgstr "Deze wisopdracht zal de werkende job annuleren. Wenst u verder te gaan?"
 
 #: Queue/queue_mgr.cpp:9
-#, fuzzy, kde-format
+#, kde-format
 msgid "default"
 msgstr "Standaard instellingen"
 
 #: Queue/queuedialog.cpp:103 Queue/queuedialog.cpp:134
 #: Queue/queuedialog.cpp:389
-#, fuzzy, kde-format
+#, kde-format
 msgid "Krusader::Queue Manager"
-msgstr "Krusader::Wachtrij"
+msgstr "Krusader::Wachtrij Manager"
 
 #: Queue/queuedialog.cpp:110
-#, fuzzy, kde-format
+#, kde-format
 msgid "Please enter the time to start processing the queue:"
-msgstr "Voer a.u.b. de nieuwe koppeling bestemming in:"
+msgstr "Voer a.u.b. de tijd in wanneer de wachtij moet starten:"
 
 #: Queue/queuedialog.cpp:179
-#, fuzzy, kde-format
+#, kde-format
 msgid "Create a new queue (Ctrl+T)"
-msgstr "Een nieuwe koppeling maken naar: "
+msgstr "Een nieuwe wachtrij maken (CTRL+T)"
 
 #: Queue/queuedialog.cpp:185
-#, fuzzy, kde-format
+#, kde-format
 msgid "Remove the current queue (Ctrl+W)"
-msgstr "huidige selectie bewaren"
+msgstr "Huidige wachtrij verwijderen (CTRL+W)"
 
 #: Queue/queuedialog.cpp:198 Queue/queuedialog.cpp:427
-#, fuzzy, kde-format
+#, kde-format
 msgid "unused"
-msgstr "Opschorten"
+msgstr "Ongebruikt"
 
 #: Queue/queuedialog.cpp:204
 #, kde-format
 msgid "Schedule queue starting (Ctrl+S)"
-msgstr ""
+msgstr "Starttijd instellen (CTRL+S)"
 
 #: Queue/queuedialog.cpp:343
 #, kde-format
 msgid "Start processing the queue (Ctrl+P)"
-msgstr ""
+msgstr "De processen in wachtrij starten (Ctrl+P)"
 
 #: Queue/queuedialog.cpp:346
 #, kde-format
 msgid "The queue is paused."
-msgstr ""
+msgstr "De wachtrij staat op pause."
 
 #: Queue/queuedialog.cpp:348
 #, kde-format
 msgid "Scheduled to start at %1."
-msgstr ""
+msgstr "Ingesteld om te starten op %1."
 
 #: Queue/queuedialog.cpp:351
 #, kde-format
 msgid "The queue is running."
-msgstr ""
+msgstr "De wachtrij is in verwerking."
 
 #: Queue/queuedialog.cpp:353
 #, kde-format
 msgid "Pause processing the queue (Ctrl+P)"
-msgstr ""
+msgstr "De wachtrij verwerking pauzeren (Ctrl+P)"
 
 #: Queue/queuedialog.cpp:390
-#, fuzzy, kde-format
+#, kde-format
 msgid "Please enter the name of the new queue"
-msgstr "Unieke naam invoeren voor de gebruikersactie"
+msgstr "Naam invoeren voor de nieuwe wachtrij"
 
 #: Queue/queuedialog.cpp:399
 #, kde-format
 msgid "A queue already exists with this name!"
-msgstr ""
+msgstr "Een wachrij met deze naam bestaat reeds!"
 
 #: Queue/queuedialog.cpp:411
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Deleting the queue requires aborting all pending jobs. Do you wish to "
 "continue?"
 msgstr ""
-"Als u naar de hoofdmap gaat moet de inhoud van  \"%1\" URL geladen worden. "
+"Als u deze wachtrij is het noodzakelijk om alle  jobs te wissen."
 "Wilt u doorgaan?"
 
 #: Queue/queue.cpp:66
@@ -2692,9 +2682,9 @@ msgid "Edit (F4)"
 msgstr "Bewerken (F4)"
 
 #: Locate/locate.cpp:396 Search/krsearchdialog.cpp:626
-#, fuzzy, kde-format
+#, kde-format
 msgid "Compare by content (F10)"
-msgstr "Inhoud vergelijken"
+msgstr "Inhoud vergelijken (F10)"
 
 #: Locate/locate.cpp:401
 #, kde-format
@@ -3007,7 +2997,7 @@ msgstr "D&isk Gebruik..."
 #: krusader.cpp:735
 #, kde-format
 msgid "&Queue Manager..."
-msgstr ""
+msgstr "&Wachtrij Manager"
 
 #: krusader.cpp:736
 #, kde-format
@@ -3178,14 +3168,14 @@ msgid "Edit File"
 msgstr "Bestand bewerken"
 
 #: krusader.cpp:785
-#, fuzzy, kde-format
+#, kde-format
 msgid "Copy by queue..."
-msgstr "Kopiëren..."
+msgstr "Kopiëren met wachtrij..."
 
 #: krusader.cpp:786
-#, fuzzy, kde-format
+#, kde-format
 msgid "Move by queue..."
-msgstr "Verplaatsen..."
+msgstr "Verplaatsen met wachtrij..."
 
 #: krusader.cpp:787
 #, kde-format
@@ -3646,8 +3636,7 @@ msgstr ""
 
 #: MountMan/kmountmangui.cpp:364
 #, kde-format
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "MountMan heeft een interne fout. Verwittig gelieve de Krusader "
 "ontwikkelaars. Dank U."
@@ -3718,14 +3707,12 @@ msgid "Heiner Eichmann"
 msgstr "Heiner Eichmann"
 
 #: main.cpp:119
-#, fuzzy
 msgid "Jonas Bähr"
-msgstr "Jonas Baehr"
+msgstr "Jonas Bähr"
 
 #: main.cpp:120 main.cpp:125
-#, fuzzy
 msgid "Václav Jůza"
-msgstr "Václav Juza"
+msgstr "Václav Jůza"
 
 #: main.cpp:121 main.cpp:154
 msgid "Dirk Eschler"
@@ -3756,7 +3743,6 @@ msgid "Matej Urbancic"
 msgstr "Matej Urbancic"
 
 #: main.cpp:124
-#, fuzzy
 msgid "Marketing & Product Research"
 msgstr " Marketing & product onderzoek"
 
@@ -3765,14 +3751,12 @@ msgid "QA, bug-hunting, patches and general help"
 msgstr "QA, bug-hunting, patches and general help"
 
 #: main.cpp:126
-#, fuzzy
 msgid "Jiří Paleček"
-msgstr "Jiri Palecek"
+msgstr "Jiří Paleček"
 
 #: main.cpp:127
-#, fuzzy
 msgid "Jiří Klement"
-msgstr "Jiri Klement"
+msgstr "Jiří Klement"
 
 #: main.cpp:127
 msgid "Important help in KDE 4 porting"
@@ -3819,9 +3803,8 @@ msgid "The old Bookmark Module"
 msgstr "The old Bookmark Module"
 
 #: main.cpp:133
-#, fuzzy
 msgid "Hans Löffler"
-msgstr "Hans Loeffler"
+msgstr "Hans Löffler"
 
 #: main.cpp:133
 msgid "Dir history button"
@@ -3884,9 +3867,8 @@ msgid "Doutor Zero"
 msgstr "Doutor Zero"
 
 #: main.cpp:141
-#, fuzzy
 msgid "Brazilian Portuguese translation"
-msgstr "Portugese vertaling"
+msgstr "Braziliaanse Portugese vertaling"
 
 #: main.cpp:142
 msgid "Milen Ivanov"
@@ -3925,9 +3907,8 @@ msgid "Martin Sixta"
 msgstr "Martin Sixta"
 
 #: main.cpp:147
-#, fuzzy
 msgid "Vaclav Jůza"
-msgstr "Vaclav Juza"
+msgstr "Vaclav Jůza"
 
 #: main.cpp:147
 msgid "Czech translation"
@@ -4511,8 +4492,7 @@ msgstr ""
 #: Dialogs/krkeydialog.cpp:123
 #, kde-format
 msgid "Please restart this dialog in order to see the changes"
-msgstr ""
-"Gelieve deze dialoog te herstarten om de wijzigingen zichtbaar te maken"
+msgstr "Gelieve deze dialoog te herstarten om de wijzigingen zichtbaar te maken"
 
 #: Dialogs/krkeydialog.cpp:124
 #, kde-format
@@ -4521,8 +4501,7 @@ msgstr "Importeren van het oud bestandsformaat is voltooid"
 
 #: Dialogs/krkeydialog.cpp:135
 #, kde-format
-msgid ""
-"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
 msgstr ""
 "<qt>Bestand <b>%1</b> bestaat reeds. Bent u er zeker van dat u het wilt "
 "overschrijven?</qt>"
@@ -4723,8 +4702,7 @@ msgstr "Berekening van de controlesommen ..."
 #: Dialogs/checksumdlg.cpp:294 Dialogs/checksumdlg.cpp:428
 #, kde-format
 msgid "<qt>There was an error while running <b>%1</b>.</qt>"
-msgstr ""
-"<qt>De volgende fout is opgetreden tijdens het uitvoeren <b>%1</b>.</qt>"
+msgstr "<qt>De volgende fout is opgetreden tijdens het uitvoeren <b>%1</b>.</qt>"
 
 #: Dialogs/checksumdlg.cpp:306 Dialogs/checksumdlg.cpp:437
 #, kde-format
@@ -4783,8 +4761,7 @@ msgstr "Controlesom verifieren ..."
 #: Dialogs/checksumdlg.cpp:480
 #, kde-format
 msgid "Errors were detected while verifying the checksums"
-msgstr ""
-"Fouten werden gedetecteerd tijdens het verifieren van de controlesommen."
+msgstr "Fouten werden gedetecteerd tijdens het verifieren van de controlesommen."
 
 #: Dialogs/checksumdlg.cpp:481
 #, kde-format
@@ -5075,8 +5052,7 @@ msgstr ""
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
-msgstr ""
-"<i>Werkmap</i> is de map waar het <i>Commando</i> zal worden uitgevoerd."
+msgstr "<i>Werkmap</i> is de map waar het <i>Commando</i> zal worden uitgevoerd."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 250
@@ -5142,9 +5118,9 @@ msgstr "Geen"
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 398
 #: ActionMan/ui_actionproperty.h:722 rc.cpp:116
-#, fuzzy, kde-format
+#, kde-format
 msgid "If checked, the action is shown in the Useractions menus."
-msgstr "Indien aangevinkt, wordt deze actie getoont in de menus."
+msgstr "Indien aangevinkt, wordt deze actie getoond in de menus."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 401
@@ -5412,8 +5388,7 @@ msgstr "Geselecteerde acties verwijderen"
 
 #: ActionMan/useractionpage.cpp:134
 #, kde-format
-msgid ""
-"The current action has been modified. Do you want to apply these changes?"
+msgid "The current action has been modified. Do you want to apply these changes?"
 msgstr "De huidige actie is gewijzigd. Wilt u deze wijzigingen toepassen?"
 
 #: ActionMan/useractionpage.cpp:211
@@ -5629,8 +5604,7 @@ msgstr "De linkse basismap wordt gebruikt gedurende het synchronisatieprocess."
 #: Synchronizer/synchronizergui.cpp:1193
 #, kde-format
 msgid "The right base directory used during the synchronisation process."
-msgstr ""
-"De rechter basismap wordt gebruikt gedurende het synchronisatieprocess."
+msgstr "De rechter basismap wordt gebruikt gedurende het synchronisatieprocess."
 
 #: Synchronizer/synchronizergui.cpp:1207
 #, kde-format
@@ -6057,7 +6031,8 @@ msgstr[1] "Links naar rechts: %1 bestanden kopiëren"
 #, kde-format
 msgid "Left: Delete 1 file"
 msgid_plural "Left: Delete %1 files"
-msgstr[0] "Links: Wis 1 bestand"
+msgstr[0] "Links: Wis 1 bestand "
+msgstr[1] "Links: Wis %1 bestanden "
 
 #: Synchronizer/synchronizedialog.cpp:108
 #, kde-format
@@ -6694,8 +6669,7 @@ msgstr "Bestand bekijken in hex modus (is beter voor binaire bestanden)"
 #: Konfigurator/kggeneral.cpp:112
 #, kde-format
 msgid "Internal editor and viewer opens each file in a separate window"
-msgstr ""
-"De interne viewer en editor zulllen elk bestand in een apart venster openen"
+msgstr "De interne viewer en editor zulllen elk bestand in een apart venster openen"
 
 #: Konfigurator/kggeneral.cpp:113
 #, kde-format
@@ -6747,8 +6721,7 @@ msgstr "Zoeken naar gereedschap..."
 
 #: Konfigurator/kggeneral.cpp:214
 #, kde-format
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Vergewis u er van dat u nieuw gereedschap installeert in uw <code>$PATH</"
 "code> (bv. /usr/bin)"
@@ -6782,8 +6755,7 @@ msgstr ""
 #: Konfigurator/krresulttable.cpp:138
 #, kde-format
 msgid "rpm found, but cpio not found which is required for unpacking"
-msgstr ""
-"rpm gevonden, maar cpio niet gevonden wat noodzakelijk is om uit te pakken."
+msgstr "rpm gevonden, maar cpio niet gevonden wat noodzakelijk is om uit te pakken."
 
 #: Konfigurator/krresulttable.cpp:141 Konfigurator/krresulttable.cpp:307
 #, kde-format
@@ -7070,7 +7042,7 @@ msgstr "Bestandenlijst icoon grootte:"
 #: Konfigurator/kglookfeel.cpp:196
 #, kde-format
 msgid "12"
-msgstr ""
+msgstr "12 "
 
 #: Konfigurator/kglookfeel.cpp:197
 #, kde-format
@@ -7110,8 +7082,7 @@ msgstr "De gebruikersgedefinieerde map iconen laden"
 #: Konfigurator/kglookfeel.cpp:216
 #, kde-format
 msgid "Load the user defined folder icons (can cause decrease in performance)."
-msgstr ""
-"De gebruikersgedefinieerde map iconen laden (kan tot prestatieverlies leiden)"
+msgstr "De gebruikersgedefinieerde map iconen laden (kan tot prestatieverlies leiden)"
 
 #: Konfigurator/kglookfeel.cpp:217
 #, kde-format
@@ -7150,27 +7121,27 @@ msgstr ""
 #: Konfigurator/kglookfeel.cpp:234
 #, kde-format
 msgid "Sort method:"
-msgstr ""
+msgstr "Sorteer methode:"
 
 #: Konfigurator/kglookfeel.cpp:238
 #, kde-format
 msgid "Alphabetical"
-msgstr ""
+msgstr "Alfabetisch"
 
 #: Konfigurator/kglookfeel.cpp:239
 #, kde-format
 msgid "Alphabetical and numbers"
-msgstr ""
+msgstr "Alfabetisch met nummers"
 
 #: Konfigurator/kglookfeel.cpp:240
-#, fuzzy, kde-format
+#, kde-format
 msgid "Character code"
-msgstr "Willekeurig karakter"
+msgstr "Karakter code"
 
 #: Konfigurator/kglookfeel.cpp:241
 #, kde-format
 msgid "Character code and numbers"
-msgstr ""
+msgstr "Karakter code en nummers"
 
 #: Konfigurator/kglookfeel.cpp:253
 #, kde-format
@@ -7264,8 +7235,7 @@ msgstr "Knop voor synchroon bladeren omschakelen"
 
 #: Konfigurator/kglookfeel.cpp:299
 #, kde-format
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr ""
 "Elke map verandering in het venster wordt ook uitgevoerd in het andere "
 "venster."
@@ -7328,19 +7298,18 @@ msgstr ""
 #: Konfigurator/kglookfeel.cpp:341
 #, kde-format
 msgid "Ergonomic Mode"
-msgstr ""
+msgstr "Ergonomische modus"
 
 #: Konfigurator/kglookfeel.cpp:341
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "The left mouse button does not select, but sets the current file without "
 "affecting the current selection. The right mouse button invokes the context-"
 "menu. You can select with Ctrl key and the left button."
 msgstr ""
 "De linker muisknop selecteert niet, maar geeft het huidige bestand de focus "
-"zonder de huidige slectie te veranderen. De rechter muisknop selecteert "
-"meerdere bestanden en het rechts-klikmenu opent door de rechtermuisknop "
-"ingedrukt te houden."
+"zonder de huidige slectie te veranderen. De rechter muisknop opent het context-menu.  Je "
+"can selecteren met de Control en linkse muisknop."
 
 #: Konfigurator/kglookfeel.cpp:342
 #, kde-format
@@ -8144,8 +8113,7 @@ msgstr "Kleurschema selecteren"
 #: Konfigurator/kgcolors.cpp:564
 #, kde-format
 msgid "File %1 already exists. Are you sure you want to overwrite it?"
-msgstr ""
-"Bestand %1 bestaat reeds. Bent u er zeker van dat u het wil overschrijven ?"
+msgstr "Bestand %1 bestaat reeds. Bent u er zeker van dat u het wil overschrijven ?"
 
 #: Konfigurator/kgcolors.cpp:567
 #, kde-format
@@ -8319,7 +8287,7 @@ msgstr "GZip"
 #: Konfigurator/kgarchives.cpp:64
 #, kde-format
 msgid "LZMA"
-msgstr ""
+msgstr "LZMA"
 
 #: Konfigurator/kgarchives.cpp:65
 #, kde-format
@@ -8400,8 +8368,7 @@ msgstr "Archief eerst testen voor het uitpakken"
 
 #: Konfigurator/kgarchives.cpp:108
 #, kde-format
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Sommige corrupte archieven kunnen mogelijk een crash veroorzaken, daarom is "
 "testen aangeraden."
@@ -8413,8 +8380,7 @@ msgstr "Naar inpakgereedschap zoeken..."
 
 #: Konfigurator/kgarchives.cpp:126
 #, kde-format
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Vergewis u er van dat u nieuw inpak gereedschap installeert in uw <code>"
 "$PATH</code> (bv. /usr/bin)"
@@ -8734,8 +8700,7 @@ msgstr "Ongeldig CRC bestand!"
 
 #: Splitter/combiner.cpp:154
 #, kde-format
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Geldigheids controle is onmogelijk zonder een goed CRC bestand. Doorgaan met "
 "combineren?"
@@ -8867,3 +8832,4 @@ msgstr "Schrijven naar %1 is niet ondersteund."
 
 #~ msgid "Brazilian Portuguese"
 #~ msgstr "Brazilian Portuguese"
+
