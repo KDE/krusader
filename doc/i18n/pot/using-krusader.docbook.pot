@@ -1,14 +1,14 @@
 # Translation of using-krusader.docbook to LANGUAGE
-# Copyright (C) 2006, Krusader Krew
+# Copyright (C) 2006-2008, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0-2 2008-08-03\n"
+"Project-Id-Version: Krusader-doc-2.0.0-beta2 2008-12-07\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2008-08-03 20:04+0000\n"
+"POT-Creation-Date: 2008-12-06 23:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -349,59 +349,71 @@ msgstr ""
 #. Tag: para
 #: using-krusader.docbook:333
 #, no-c-format
-msgid "To copy or move files/directories just select them and press <keycap>F5</keycap>to <keycap>copy</keycap>or <keycap>F6</keycap>to <keycap>move</keycap>them. If the <guimenuitem>Preserve attributes (only on local targets)</guimenuitem> option is checked, &krusader; will try to preserve all attributes (time, owner, group) of the local files according to the source depending on your permissions: <itemizedlist> <listitem> <para>User preserving if you are root</para> </listitem> <listitem> <para>Group preserving if you are root or member of the group</para> </listitem> <listitem> <para>Preserving the timestamp</para> </listitem> </itemizedlist>Using this option may slow down the copy/move process. A dialog will appear and allow you to choose the operation destination. The default destination is the other-panel browsed directory. If you enter a partial &URL;, &krusader; will use the current panel directory as the &URL; base."
+msgid "To copy or move files/directories just select them and press <keycap>F5</keycap> to <keycap>copy</keycap> or <keycap>F6</keycap> to <keycap>move</keycap> them. If the <guimenuitem> Preserve attributes (only on local targets)</guimenuitem> option is checked, &krusader; will try to preserve all attributes (time, owner, group) of the local files according to the source depending on your permissions: <itemizedlist> <listitem> <para>User preserving if you are root</para> </listitem> <listitem> <para>Group preserving if you are root or member of the group</para> </listitem> <listitem> <para>Preserving the timestamp</para> </listitem> </itemizedlist>Using this option may slow down the copy/move process. A dialog will appear and allow you to choose the operation destination. The default destination is the other-panel browsed directory. If you enter a partial &URL;, &krusader; will use the current panel directory as the &URL; base."
 msgstr ""
 
 #. Tag: title
 #: using-krusader.docbook:363
 #, no-c-format
-msgid "Deleting"
+msgid "Queue manager"
 msgstr ""
 
 #. Tag: para
 #: using-krusader.docbook:364
 #, no-c-format
-msgid "Deleting files/directories is done by selecting them and pressing <keycap>F8</keycap> or <keycap>Delete</keycap>. By <link linkend=\"konfig-general\">default</link>it will be moved to &kde;'s Trash, <keycombo action=\"simul\">&Shift; <keycap>Delete</keycap></keycombo> will delete the file permanently. A dialog will ask for your confirmation and will warn you when deleting non-empty directories. Of course only operations that you are permitted to do by the Operating System will be performed - you will be notified otherwise. If you do not wish to see the confirmation dialogs, you can disable them in the <link linkend=\"konfig-advanced\">Konfigurator advanced tab</link>."
+msgid "Use <keycap>F5</keycap> (copy) or <keycap>F6</keycap> (move) and than <keycap>F2</keycap> to use it. Or the direct shortcuts: copy by queue <keycombo action=\"simul\">&Shift;<keycap>F5</keycap></keycombo> , move by queue <keycombo action=\"simul\">&Shift;<keycap>F6</keycap></keycombo> . Queueing is used for one-by-one copying. E.g. if you have a pen drive (which is slow), and you want to copy 40 files onto it, it's much better copying them one-by-one instead of starting to copy 40 files parallelly. That's why enqueuing is important. If you pack/unpack 40 files parallelly, you overload your computer, but adding them to a queue (which is not yet implemented into Krusader), is much more useful."
 msgstr ""
 
 #. Tag: title
-#: using-krusader.docbook:382
+#: using-krusader.docbook:377
 #, no-c-format
-msgid "Shred Files"
+msgid "Deleting"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:383
+#: using-krusader.docbook:378
 #, no-c-format
-msgid "When you delete files in your local system, they are not completely erased and the information stored in them can be recovered using special software and hardware tools. If you want to erase a file without recoverable traces, select the file and use <emphasis role=\"bold\"> <menuchoice> <guimenu>Right-Click menu</guimenu> <guimenuitem>Shred</guimenuitem> </menuchoice> </emphasis>."
+msgid "Deleting files/directories is done by selecting them and pressing <keycap>F8</keycap> or <keycap>Delete</keycap>. By <link linkend=\"konfig-general\">default</link> it will be moved to &kde;'s Trash, <keycombo action=\"simul\">&Shift; <keycap>Delete</keycap></keycombo> will delete the file permanently. A dialog will ask for your confirmation and will warn you when deleting non-empty directories. Of course only operations that you are permitted to do by the Operating System will be performed - you will be notified otherwise. If you do not wish to see the confirmation dialogs, you can disable them in the <link linkend=\"konfig-advanced\">Konfigurator advanced tab</link>."
 msgstr ""
 
 #. Tag: title
 #: using-krusader.docbook:396
 #, no-c-format
+msgid "Shred Files"
+msgstr ""
+
+#. Tag: para
+#: using-krusader.docbook:397
+#, no-c-format
+msgid "When you delete files in your local system, they are not completely erased and the information stored in them can be recovered using special software and hardware tools. If you want to erase a file without recoverable traces, select the file and use <emphasis role=\"bold\"> <menuchoice> <guimenu>Right-Click menu</guimenu> <guimenuitem>Shred</guimenuitem> </menuchoice> </emphasis>."
+msgstr ""
+
+#. Tag: title
+#: using-krusader.docbook:410
+#, no-c-format
 msgid "Renaming Files, Creating Directories and Link Handling"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:398
+#: using-krusader.docbook:412
 #, no-c-format
 msgid "<keycap>Rename</keycap> the file under the cursor with the <keycap>F9</keycap> key or with two single mouse clicks. If only the file name needs to be renamed and not the extension, you can configure this in the &konfiglookandfeel-lnk;. <keycap>Create a new directory</keycap> with the <keycap>F7</keycap> key. <keycap>Right-clicking on a regular file</keycap> will give you the <keycap>option \"New Symlink\"</keycap>. A dialog will prompt you to enter a symlink name. That name will point to the file/directory you Right-Clicked on. If the file you Right-Clicked on is a symlink, you will also be presented with the \"redirect link\" option that will allow you to change the link target."
 msgstr ""
 
 #. Tag: title
-#: using-krusader.docbook:416
+#: using-krusader.docbook:430
 #, no-c-format
 msgid "Viewing and Editing files"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:417
+#: using-krusader.docbook:431
 #, no-c-format
 msgid "<link linkend=\"krviewer\">KrViewer</link> has a chapter of its own."
 msgstr ""
 
 #. Tag: chapter
-#: using-krusader.docbook:421
+#: using-krusader.docbook:435
 #, no-c-format
 msgid "&archives;"
 msgstr ""
