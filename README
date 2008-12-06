@@ -14,20 +14,19 @@ everyone who supported us in the porting process!
 
 The highlights of this release are:
 - many many bugfixes
-- Queue Manager
-  (Unfortunately queuing the pack/unpack jobs are not yet possible, 
-   because it would require architectural changes.)
-  Enqueue operation for copy / move
-  Use F5 and than F2 to use it.
-  The copy/move operation runs as a background process so 
-  that you can continue to use Krusader during the copy/move operation!
-- Five sortingmethods (read SVNNEWS for more info)
+- Queue manager
+  Enqueue operation for copy / move operations
+  Use F5 (copy) or F6 (move) and than F2 to enqueue.
+  Or the direct shortcuts: copy by queue (SHIFT+F5), move by queue (SHIFT+F6).
+- Five sortingmethods
 - Konfigurator mouse selection mode: Possibility to select a predefined
   mode and change a detail. 
 - highlight quick search match
 - Useractions: added checkbox "enabled"
   and run mode option "Run in embedded terminal emulator"
 - the description of a dir contains its size if it is known
+
+Read SVNNEWS for more detailed information about the new features.
 
 Changes since 2.0.0-beta1 (but not limited to): 
 
