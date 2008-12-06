@@ -255,7 +255,7 @@
               </para>
             </entry>
           </row>
-          <row>
+	  <row>
             <entry>
               <para>
                 <keycombo action="simul">&Shift;
@@ -264,11 +264,24 @@
             </entry>
             <entry>
               <para>
-                <link linkend="useractions-menu">Backup current file (Default Useraction).</link>
+                <link linkend="queue">Copy by queue.</link>
               </para>
             </entry>
           </row>
           <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Shift;
+                <keycap>F6</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="queue">Move by queue.</link>
+              </para>
+            </entry>
+          </row>
+           <row>
             <entry>
               <para>
                 <keycombo action="simul">&Shift;
@@ -1845,7 +1858,7 @@
             <entry>
               <para>
                 <keycombo action="simul">
-                  <keycap>Win</keycap>
+                  <keycap>Meta</keycap>
                   <keycap>a</keycap>
                 </keycombo>
               </para>
@@ -1858,7 +1871,7 @@
             <entry>
               <para>
                 <keycombo action="simul">
-                  <keycap>Win</keycap>
+                  <keycap>Meta</keycap>
                   <keycap>1</keycap>
                 </keycombo>
               </para>
@@ -1871,7 +1884,7 @@
             <entry>
               <para>
                 <keycombo action="simul">
-                  <keycap>Win</keycap>
+                  <keycap>Meta</keycap>
                   <keycap>2</keycap>
                 </keycombo>
               </para>
@@ -1884,7 +1897,7 @@
             <entry>
               <para>
                 <keycombo action="simul">
-                  <keycap>Win</keycap>
+                  <keycap>Meta</keycap>
                   <keycap>3</keycap>
                 </keycombo>
               </para>
@@ -1897,13 +1910,27 @@
             <entry>
               <para>
                 <keycombo action="simul">
-                  <keycap>Win</keycap>
+                  <keycap>Meta</keycap>
                   <keycap>4</keycap>
                 </keycombo>
               </para>
             </entry>
             <entry>
               <para>Sort by modified.</para>
+            </entry>
+          </row>
+	            <row>
+            <entry>
+              <para>
+                <keycombo action="simul">
+		<keycap>Meta</keycap>
+                <keycap>F5</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="useractions-menu">Backup current file (Default Useraction).</link>
+              </para>
             </entry>
           </row>
         </tbody>

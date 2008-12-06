@@ -332,11 +332,11 @@
       <title>Copying and Moving</title>
       <para>To copy or move files/directories just select them and
       press 
-      <keycap>F5</keycap>to 
-      <keycap>copy</keycap>or 
-      <keycap>F6</keycap>to 
-      <keycap>move</keycap>them. If the 
-      <guimenuitem>Preserve attributes (only on local
+      <keycap>F5</keycap> to 
+      <keycap>copy</keycap> or 
+      <keycap>F6</keycap> to 
+      <keycap>move</keycap> them. If the 
+      <guimenuitem> Preserve attributes (only on local
       targets)</guimenuitem> option is checked,
       &krusader; will try to preserve all attributes
       (time, owner, group) of the local files according to the
@@ -359,13 +359,27 @@
       &URL;, &krusader; will use the current
       panel directory as the &URL; base.</para>
     </sect2>
+    <sect2 id="queue">
+      <title>Queue manager</title>
+      <para>
+      Use <keycap>F5</keycap> (copy) or <keycap>F6</keycap> (move) and than <keycap>F2</keycap> to use it.
+      Or the direct shortcuts: copy by queue <keycombo action="simul">&Shift;<keycap>F5</keycap></keycombo> , 
+      move by queue <keycombo action="simul">&Shift;<keycap>F6</keycap></keycombo> .
+      Queueing is used for one-by-one copying.
+      E.g. if you have a pen drive (which is slow), and you want to copy 40 files onto it, 
+      it's much better copying them one-by-one instead of starting to copy 40 files parallelly.
+      That's why enqueuing is important.
+      If you pack/unpack 40 files parallelly, you overload your computer,
+      but adding them to a queue (which is not yet implemented into Krusader), is much more useful.
+      </para>
+    </sect2>
     <sect2 id="deleting">
       <title>Deleting</title>
       <para>Deleting files/directories is done by selecting them
       and pressing 
       <keycap>F8</keycap> or 
       <keycap>Delete</keycap>. By 
-      <link linkend="konfig-general">default</link>it will be moved
+      <link linkend="konfig-general">default</link> it will be moved
       to &kde;'s Trash, 
       <keycombo action="simul">&Shift;
       <keycap>Delete</keycap></keycombo> will delete the file

@@ -313,11 +313,9 @@ HTML_PARSING-->
           &etc;, and not in bytes (default).</para>
         </listitem>
         <listitem>
-          <para>Since &krusader;-1.70.0 you need to
-          configure the columns with the right click menu in the
-          panel, not in Konfigurator. The left and right panel use
-          their own columns independently. The following columns
-          are available: 
+          <para>To configure the columns use the right click menu in the panel when viewing files.
+	  The left and right panel use their own columns independently.
+	  The following columns are available: 
           <itemizedlist>
             <listitem>
               <para>
@@ -383,6 +381,59 @@ HTML_PARSING-->
         </listitem>
         <listitem>
           <para>
+          <guilabel>Numeric permissions</guilabel>: Permission
+          column (Look &amp; Feel 
+          <guilabel>Panel</guilabel>Tab) shows octal numbers '0755'
+          instead of 'rwxr-xr-x'.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>Sort method</guilabel>
+	    <itemizedlist>
+             <listitem>
+              <para>
+                <guilabel>Krusader (default)</guilabel>: 
+		the comparison used so far. Uses comparison using locale rules (even context rules).
+              </para>
+             </listitem>
+             <listitem>
+              <para>
+                <guilabel>Krusader (default)</guilabel>: 
+		the comparison used so far. Uses comparison using locale rules (even context rules).
+              </para>
+             </listitem>
+             <listitem>
+              <para>
+                <guilabel>Alphabetical</guilabel>: 
+		strings are compared character by character (no context rules from locale applied). 
+		Alphabet characters are compared using locale rules, 
+		special characters are compared by the character code.
+              </para>
+             </listitem>
+             <listitem>
+              <para>
+                <guilabel>Alphabetical with numbers</guilabel>: 
+		the same as above, but if the names contains numbers, the numbers are compared 
+		numerically instead of alphabetically.
+              </para>
+             </listitem>
+             <listitem>
+              <para>
+                <guilabel>Character code</guilabel>: 
+		comparison by character code (quick).
+              </para>
+             </listitem>
+             <listitem>
+              <para>
+                <guilabel>Character code and numbers</guilabel>: 
+		the same as above, but with numerical comparison of numbers.
+              </para>
+             </listitem>
+           </itemizedlist>
+	    </para>
+        </listitem>
+        <listitem>
+          <para>
           <guilabel>Case Sensitive Sorting</guilabel>: If checked
           (the &UNIX; default), all files beginning with
           capital letters appear before files beginning with
@@ -395,13 +446,6 @@ HTML_PARSING-->
           <guilabel>Always sort dirs by name</guilabel>: Sorts
           directories by name, regardless of the sort
           column.</para>
-        </listitem>
-        <listitem>
-          <para>
-          <guilabel>Numeric permissions</guilabel>: Permission
-          column (Look &amp; Feel 
-          <guilabel>Panel</guilabel>Tab) shows octal numbers '0755'
-          instead of 'rwxr-xr-x'.</para>
         </listitem>
       </itemizedlist>
       <tip>
@@ -485,6 +529,10 @@ HTML_PARSING-->
           &RMB; The &LMB; does not select,
           but sets the current file without affecting the current
           selection.</para>
+        </listitem>
+	<listitem>
+          <para>
+          <guilabel>Ergonmic Mode</guilabel>: FIXME, the default Custom Selection Mode settings.</para>
         </listitem>
         <listitem>
           <para>
