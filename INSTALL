@@ -155,11 +155,11 @@ $ sudo make uninstall
 
 Compilation and installation on BSD
 ===================================
-% cmake -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix` -DCMAKE_DQT_INCLUDES=`kde4-config --qt-libraries`
-% gmake
+$ cmake -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix` -DCMAKE_DQT_INCLUDES=`kde4-config --qt-libraries`
+$ gmake
 
 Then, su to root, and install.
-# gmake install
+$ gmake install
 
 For uninstalling, run in the sourcecode directory the next command.
 # gmake uninstall
@@ -178,7 +178,7 @@ the to command line tools
 Install KDE binaries available from http://mac.kde.org/
 You need at least kdebase-runtime and all its dependencies.
 
-Setup the build envorinment
+Setup the build environment
 ---------------------------
 These packages install KDE-4 in /opt/kde4, Qt-4 in /opt/qt4 and all the unix
 dependencies in /opt/kde4-deps. These paths need to become part of your
