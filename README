@@ -78,9 +78,12 @@ http://krusader.org/handbook/faq.html
 
 
 
-To checkout Krusader-2.x for KDE4 from svn:
+To checkout Krusader-2.x for KDE4 from SVN:
 ===========================================
-$ svn co https://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4
+Install Subversion
+http://subversion.tigris.org/
+And than run the next command:
+$ svn co http://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4
   
 
 
@@ -91,11 +94,7 @@ go through the whole installation-compilation process. Thanks to the
 guys at http://klik.atekon.de/ this is possible. After installing the
 klik client, Krusader is just one mouse click away!
 
-klik://krusader = the krusader release in Debian Stable
-klik://krusader-latest = latest available krusader-stable
-klik://krusader-cvs = snapshot of krusader-cvs
-
-The latter 2 klik packages are provided by the Krusader Krew.
+klik://krusader = the krusader release in Debian Stable (Krusader-1.51)
 
 
 Krusader Handbook
@@ -117,7 +116,7 @@ Thanks!
 
 GUI-Translators
 ---------------
-Krusader is currently available in about 27 languages:
+Krusader is currently available in about 28 languages:
 Some of these translations can use an update, please read the next url
 for more information.
 http://krusader.org/i18n.php
@@ -138,8 +137,8 @@ FAQ
 If you have a question for the FAQ.
 Please contact Frank.
 
-Extensions
-----------
+Extensions (User Actions)
+-------------------------
 Krusader supports a wide varity of extensions. We are always glad to see
 someone creating something new. Please upload your extensions at
 kde-files.org.
@@ -189,16 +188,16 @@ have to worry anymore about how foo.po must be updated. In the past some
 translators updated foo.po in a wrong way, so they translated obsolete
 messages, we want to prevent this, of course.
 
-With i18n_status and ViewCVS to see the live translation status of
+With i18n_status and ViewSVN to see the live translation status of
 Krusader!
 http://krusader.org/i18n.php
-http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/krusader/krusader_kde3/po/
-The latest news about the Krusader translations can be in the LATEST
-NEWS section of the "Krusader translation howto".
+Note: Translation status updates are currently out of order.
+
+http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/po/
 
 New translations
 ----------------
-If your native language is not listed in VIEWCVS, you will have to
+If your native language is not listed in VIEWSVN, you will have to
 translate Krusader to your native language. Dirk Eschler is the Krusader
 i18n coordinator, please contact him if you intend to translate Krusader
 to your native language.
