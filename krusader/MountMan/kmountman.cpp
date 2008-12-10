@@ -137,13 +137,11 @@ void KMountMan::mount( QString mntPoint, bool blocking ) {
 		KProcess proc;
 		proc << KrServices::fullPathName( "mount" ) << mntPoint;
 		proc.start();
-		if( blocking )
-		{
-			proc.waitForFinished(-1); // -1 msec blocks without timeout
-			if ( proc.exitStatus() != QProcess::NormalExit || proc.exitStatus() != 0 ) // if we failed with mount
-				/* TODO: report error, I could't add it because of i18n freeze! */;
-		}
-		return;
+		if( !blocking )
+			return;
+		proc.waitForFinished(-1); // -1 msec blocks without timeout
+		if ( proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0 )
+			return;
 	}
 	
 	KIO::SimpleJob *job = KIO::mount(false, m->mountType().toLocal8Bit(), m->mountedFrom(), m->mountPoint(), false);
@@ -167,13 +165,11 @@ void KMountMan::unmount( QString mntPoint, bool blocking ) {
 		KProcess proc;
 		proc << KrServices::fullPathName( "umount" ) << mntPoint;
 		proc.start();
+		if( !blocking )
+			return;
 		proc.waitForFinished(-1); // -1 msec blocks without timeout
-		if( blocking )
-		{
-			if ( proc.exitStatus() != QProcess::NormalExit || proc.exitStatus() != 0 ) // if we failed with mount
-				/* TODO: report error, I could't add it because of i18n freeze! */;
-		}
-		return;
+		if ( proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0 )
+			return;
 	}
 	
 	KIO::SimpleJob *job = KIO::unmount(mntPoint, false);
