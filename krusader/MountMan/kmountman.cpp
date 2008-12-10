@@ -129,6 +129,23 @@ void KMountMan::mount( QString mntPoint, bool blocking ) {
 	if (!((bool)m)) return;
 	if (blocking)
 	   waiting = true; // prepare to block
+	
+	// KDE4 doesn't allow mounting devices as user, because they think it's the right behaviour.
+	// I add this patch, as I don't think so.
+	if( geteuid() ) // tries to mount as an user?
+	{
+		KProcess proc;
+		proc << KrServices::fullPathName( "mount" ) << mntPoint;
+		proc.start();
+		if( blocking )
+		{
+			proc.waitForFinished(-1); // -1 msec blocks without timeout
+			if ( proc.exitStatus() != QProcess::NormalExit || proc.exitStatus() != 0 ) // if we failed with mount
+				/* TODO: report error, I could't add it because of i18n freeze! */;
+		}
+		return;
+	}
+	
 	KIO::SimpleJob *job = KIO::mount(false, m->mountType().toLocal8Bit(), m->mountedFrom(), m->mountPoint(), false);
 	job->setUiDelegate(new KIO::JobUiDelegate() );
 	KIO::getJobTracker()->registerJob(job);
@@ -142,6 +159,23 @@ void KMountMan::mount( QString mntPoint, bool blocking ) {
 void KMountMan::unmount( QString mntPoint, bool blocking ) {
 	if (blocking)
 	   waiting = true; // prepare to block
+	
+	// KDE4 doesn't allow unmounting devices as user, because they think it's the right behaviour.
+	// I add this patch, as I don't think so.
+	if( geteuid() ) // tries to mount as an user?
+	{
+		KProcess proc;
+		proc << KrServices::fullPathName( "umount" ) << mntPoint;
+		proc.start();
+		proc.waitForFinished(-1); // -1 msec blocks without timeout
+		if( blocking )
+		{
+			if ( proc.exitStatus() != QProcess::NormalExit || proc.exitStatus() != 0 ) // if we failed with mount
+				/* TODO: report error, I could't add it because of i18n freeze! */;
+		}
+		return;
+	}
+	
 	KIO::SimpleJob *job = KIO::unmount(mntPoint, false);
 	job->setUiDelegate(new KIO::JobUiDelegate() );
 	KIO::getJobTracker()->registerJob(job);
