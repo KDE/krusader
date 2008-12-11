@@ -604,7 +604,7 @@ void KrBriefView::contentsMouseMoveEvent ( QMouseEvent * e ) {
       startDrag();
    if (KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection() 
       && KrSelectionMode::getSelectionHandler()->rightButtonSelects() 
-      && KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0 && e->modifiers() == Qt::RightButton)
+      && KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0 && e->buttons() == Qt::RightButton)
       {
          Q3IconViewItem *newItem = findItem( e->pos() );
          e->accept();
