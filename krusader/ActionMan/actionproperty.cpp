@@ -281,6 +281,7 @@ void ActionProperty::updateAction( KrAction *action ) {
    _action->setConfirmExecution( chkConfirmExecution->isChecked()  );
 
    _action->setIcon( KIcon(ButtonIcon->icon()) );
+   _action->setIconName( ButtonIcon->icon() );
 
    _action->setUser( leDifferentUser->text() );
 

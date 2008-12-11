@@ -42,7 +42,8 @@ class KrAction: public KAction, public KrActionBase {
        */
       bool isAvailable( const KUrl& currentURL );
 
-		const QString& iconName() const { return _iconName; } // TODO: added for kde4 porting (functionality is missing)
+      const QString& iconName() const { return _iconName; } // TODO: added for kde4 porting (functionality is missing)
+      void setIconName( const QString& name ) { _iconName = name; }
 
       bool xmlRead( const QDomElement& element );
       QDomElement xmlDump( QDomDocument& doc ) const;
