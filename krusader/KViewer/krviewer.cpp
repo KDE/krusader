@@ -56,13 +56,11 @@ QList<KrViewer *> KrViewer::viewers;
 
 KrViewer::KrViewer( QWidget *parent ) :
 KParts::MainWindow( parent, (Qt::WindowFlags)KDE_DEFAULT_WINDOWFLAGS ), manager( this, this ), tabBar( this ), returnFocusTo( 0 ), returnFocusTab( 0 ),
-                                    reservedKeys(), reservedKeyActions() {
+                                    reservedKeys(), reservedKeyActions(), sizeX( -1 ), sizeY( -1 ) {
 
 	//setWFlags(Qt::WType_TopLevel | WDestructiveClose);
 	setXMLFile( "krviewer.rc" ); // kpart-related xml file
 	setHelpMenuEnabled( false );
-
-	setAutoSaveSettings( "KrViewerWindow", true );
 
 	connect( &manager, SIGNAL( activePartChanged( KParts::Part* ) ),
 	         this, SLOT( createGUI( KParts::Part* ) ) );
@@ -116,6 +114,20 @@ KParts::MainWindow( parent, (Qt::WindowFlags)KDE_DEFAULT_WINDOWFLAGS ), manager(
 	tabBar.setHoverCloseButton(true);
 
 	checkModified();
+
+	KConfigGroup group( krConfig, "KrViewerWindow");
+	int sx = group.readEntry( "Window Width", -1 );
+	int sy = group.readEntry( "Window Height", -1 );
+	
+	if( sx != -1 && sy != -1 )
+		resize( sx, sy );
+	else
+		resize( 900, 700 );
+	
+	if( group.readEntry( "Window Maximized",  false ) )
+		showMaximized();
+	else
+		show();
 }
 
 KrViewer::~KrViewer() {
@@ -414,6 +426,12 @@ void KrViewer::tabCloseRequest(){
 }
 
 bool KrViewer::queryClose() {
+	KConfigGroup group( krConfig, "KrViewerWindow");
+	
+	group.writeEntry("Window Width", sizeX );
+	group.writeEntry("Window Height", sizeY );
+	group.writeEntry("Window Maximized", isMaximized() );
+
 	for( int i=0; i != tabBar.count(); i++ ) {
 		PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.widget( i ) );
 		if( !pvb )
@@ -592,6 +610,18 @@ bool KrViewer::isValidPart( KParts::Part* part) {
 void KrViewer::partDestroyed( PanelViewerBase * pvb ) {
 	/* not yet used */
 }
+
+void KrViewer::resizeEvent( QResizeEvent *e )
+{
+  if( !isMaximized() )
+  {
+    sizeX = e->size().width();
+    sizeY = e->size().height();
+  }
+
+  KParts::MainWindow::resizeEvent( e );
+}
+
 
 #if 0
 bool KrViewer::editGeneric( QString mimetype, KUrl _url ) {

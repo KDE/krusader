@@ -80,6 +80,7 @@ protected:
 	virtual bool queryClose();
 	virtual bool queryExit();
 	virtual void windowActivationChange ( bool oldActive );
+	virtual void resizeEvent( QResizeEvent *e );
 
 	virtual void focusInEvent( QFocusEvent * ){ if( viewers.removeAll( this ) ) viewers.prepend( this ); } // move to first
 
@@ -110,6 +111,9 @@ private:
 	static QList<KrViewer *> viewers; // the first viewer is the active one
 	QList<int>    reservedKeys;   // the reserved key sequences
 	QList<QAction *> reservedKeyActions; // the IDs of the reserved keys
+	
+	int sizeX;
+	int sizeY;
 };
 
 class Invoker : public QObject {
