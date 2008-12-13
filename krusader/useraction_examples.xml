@@ -33,7 +33,7 @@
   <category>Multimedia</category>
   <description same_as="tooltip" />
   <command>amarok --append %aList(&quot;Selected&quot;)%</command>
-  <defaultshortcut>Win+A</defaultshortcut>
+  <defaultshortcut>Meta+A</defaultshortcut>
  </action>
  <action name="filename_to_clipboard" >
   <title>Copy current item to clipboard</title>
@@ -49,7 +49,7 @@
   <category>User Interface</category>
   <description>Sorts the active panel by Name</description>
   <command>%aColSort(&quot;Name&quot;)%</command>
-  <defaultshortcut>Win+1</defaultshortcut>
+  <defaultshortcut>Meta+1</defaultshortcut>
  </action>
  <action name="sort_by_extension" >
   <title>Sort by Extension</title>
@@ -58,7 +58,7 @@
   <category>User Interface</category>
   <description>Sorts the active panel by Extension</description>
   <command>%aColSort(&quot;Ext&quot;)%</command>
-  <defaultshortcut>Win+2</defaultshortcut>
+  <defaultshortcut>Meta+2</defaultshortcut>
  </action>
  <action name="sort_by_size" >
   <title>Sort by Size</title>
@@ -67,7 +67,7 @@
   <category>User Interface</category>
   <description>Sorts the active panel by Size</description>
   <command>%aColSort(&quot;Size&quot;)%</command>
-  <defaultshortcut>Win+3</defaultshortcut>
+  <defaultshortcut>Meta+3</defaultshortcut>
  </action>
  <action name="sort_by_modified" >
   <title>Sort by Modified</title>
@@ -76,7 +76,7 @@
   <category>User Interface</category>
   <description>Sorts the active panel by Modified</description>
   <command>%aColSort(&quot;Modified&quot;)%</command>
-  <defaultshortcut>Win+4</defaultshortcut>
+  <defaultshortcut>Meta+4</defaultshortcut>
  </action>
  <action name="backup_current" >
   <title>Backup current</title>
@@ -85,6 +85,6 @@
   <category>System</category>
   <description>Backups current file in current directory and asks the user for a new filename. By default &quot;.old&quot; is appended to the original filename.</description>
   <command>%_Copy(&quot;%aCurrent%&quot;, &quot;%_Ask(&quot;New filename&quot;, &quot;%aCurrent%.old&quot;)%&quot;)%</command>
-  <defaultshortcut>Win+F5</defaultshortcut>
+  <defaultshortcut>Meta+F5</defaultshortcut>
  </action>
 </KrusaderUserActions>
