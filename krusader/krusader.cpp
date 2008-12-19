@@ -69,6 +69,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QtDBus/QtDBus>
 // Krusader includes
 #include "krusader.h"
+#include "krusaderversion.h"
 #include "kicons.h"
 #include "VFS/krpermhandler.h"
 #include "GUI/krusaderstatus.h"

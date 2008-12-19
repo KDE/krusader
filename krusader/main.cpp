@@ -44,6 +44,7 @@
 
 // Krusader includes
 #include "krusader.h"
+#include "krusaderversion.h"
 #include "krslots.h"
 #include "krusaderapp.h"
 #include "defaults.h"

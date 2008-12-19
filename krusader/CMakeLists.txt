@@ -1,5 +1,7 @@
 include_directories( ${KDE4_INCLUDES}  )
 
+configure_file(krusaderversion.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/krusaderversion.h )
+
 add_subdirectory( ActionMan )
 add_subdirectory( BookMan )
 add_subdirectory( Dialogs )

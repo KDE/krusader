@@ -7,8 +7,8 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_INCLUDE_DIRECTORIES_PROJECT_BEFORE ON)
 
 add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
-add_definitions( -DVERSION='"2.0.0-beta2"' )
-add_definitions( -DRELEASE_NAME='"Space Odyssey"' )
+set(VERSION "2.0.0-beta2" )
+set(RELEASE_NAME "Space Odyssey" )
 
 link_directories(${KDE4_LIB_DIR})
 
