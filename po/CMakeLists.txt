@@ -1,9 +1,9 @@
 # Search KDE installation
 FIND_PACKAGE(KDE4 REQUIRED)
-FIND_PACKAGE(Gettext REQUIRED)
 
+FIND_PROGRAM(GETTEXT_MSGFMT_EXECUTABLE msgfmt)
 IF(NOT GETTEXT_MSGFMT_EXECUTABLE)
-   MESSAGE(FATAL_ERROR "Please install the msgfmt binary")
+   MESSAGE(FATAL_ERROR "Please install the msgfmt binary which comes with gettext")
 ENDIF (NOT GETTEXT_MSGFMT_EXECUTABLE)
 
 FILE(GLOB _po_files *.po)
