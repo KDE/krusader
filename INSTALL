@@ -176,22 +176,25 @@ With KDE-4 Krusader runs natively on Mac OS X, using it's Aqua user interface
 
 Install the required libs and tools
 -----------------------------------
-Install CMake from http://cmake.org/ and allow the installer to create symlinks
-the to command line tools
+Install MacPorts from http://www.macports.org/
+Since Mac OS X doesn't ship a compiler by default any more, you have to
+install Apple's XCode to get gcc. All this is described in the MacPorts
+Guide at http://guide.macports.org/
 
-Install KDE binaries available from http://mac.kde.org/
-You need at least kdebase-runtime and all its dependencies.
+At the time of this writing MacPorts does not install Qt4 with ssl support
+by default. A ticket for this is already filed at
+http://trac.macports.org/ticket/17730
+For now, you have to install Qt4 manualy with ssl:
+$ sudo port install qt4-mac +ssl
 
-Setup the build environment
----------------------------
-These packages install KDE-4 in /opt/kde4, Qt-4 in /opt/qt4 and all the unix
-dependencies in /opt/kde4-deps. These paths need to become part of your
-environment:
+Now you can install KDE-4's libraries and all it's dependencies with a
+simeple command:
+$ sudo port install kdelibs4
 
-$ export PATH="/opt/qt4/bin:/opt/kde4/bin:/opt/kde4-deps/bin:$PATH"
-$ export CMAKE_LIBRARY_PATH="/opt/kde4-deps/lib"
-$ export CMAKE_INCLUDE_PATH="/opt/kde4-deps/include"
-$ export PKG_CONFIG_PATH="/opt/qt4/lib/"
+If you don't want to do all the compiling, you can see if there are recent
+binaries at http://mac.kde.org/ The kde-4.1.3 release as also build with
+MacPorts.
+
 
 Build Krusader using GNU make
 -----------------------------
@@ -202,11 +205,11 @@ objects. This tells Spotlight not to index the content of this directory.
 $ tar -xzvf krusader_kde4.tar.gz
 $ mkdir krusader.build
 $ cd krusader.build
-$ cmake ../krusader_kde4 -DCMAKE_INSTALL_PREFIX=/opt/kde4/
+$ cmake ../krusader_kde4 -DCMAKE_INSTALL_PREFIX=/opt/local/
 $ make
 $ sudo make install
 
-Now you should have a working Krusader.app inside /opt/kde4/bin.
+Now you should have a working Krusader.app inside /opt/local/bin.
 See below how to create a relocatable aplication bundle.
 
 Build Krusader using XCode
