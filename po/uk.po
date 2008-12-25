@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: krusader-2.0.0-beta2\n"
 "Report-Msgid-Bugs-To: krusader-i18n@googlegroups.com\n"
 "POT-Creation-Date: 2008-12-05 21:44+0100\n"
-"PO-Revision-Date: 2008-07-07 15:13+0300\n"
+"PO-Revision-Date: 2008-12-23 17:46+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -19,8 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "10<=4 && (n%100<10 || n%100>=20) ? 1: 2);\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: GUI/dirhistorybutton.cpp:36 GUI/dirhistorybutton.cpp:37
 #, kde-format
@@ -94,24 +93,24 @@ msgid "Floppy"
 msgstr "Гнучкий диск"
 
 #: GUI/mediabutton.cpp:179
-#, fuzzy, kde-format
+#, kde-format
 msgid "CD/DVD-ROM"
-msgstr "Зчитувач КД"
+msgstr "КД/DVD-ROM"
 
 #: GUI/mediabutton.cpp:181
 #, kde-format
 msgid "USB pen drive"
-msgstr ""
+msgstr "Флеш-накопичувач USB"
 
 #: GUI/mediabutton.cpp:183
 #, kde-format
 msgid "USB device"
-msgstr ""
+msgstr "USB-пристрій"
 
 #: GUI/mediabutton.cpp:185
 #, kde-format
 msgid "Removable media"
-msgstr ""
+msgstr "Портативний носій"
 
 #: GUI/mediabutton.cpp:187
 #, kde-format
@@ -119,24 +118,24 @@ msgid "Hard Disk"
 msgstr "Жорсткий диск"
 
 #: GUI/mediabutton.cpp:189
-#, fuzzy, kde-format
+#, kde-format
 msgid "Camera"
-msgstr "Назва"
+msgstr "Фотоапарат"
 
 #: GUI/mediabutton.cpp:191
 #, kde-format
 msgid "Video CD/DVD-ROM"
-msgstr ""
+msgstr "Відео-КД/DVD-ROM"
 
 #: GUI/mediabutton.cpp:193
 #, kde-format
 msgid "Audio CD/DVD-ROM"
-msgstr ""
+msgstr "Аудіо-КД/DVD-ROM"
 
 #: GUI/mediabutton.cpp:195
 #, kde-format
 msgid "Recordable CD/DVD-ROM"
-msgstr ""
+msgstr "Придатний для запису КД/DVD-ROM"
 
 #: GUI/mediabutton.cpp:325 Panel/krpopupmenu.cpp:69
 #: BookMan/krbookmarkhandler.cpp:557
@@ -170,12 +169,12 @@ msgstr "Виштовхнути"
 #: GUI/mediabutton.cpp:423
 #, kde-format
 msgid "An error occurred while accessing '%1', the system responded: %2"
-msgstr ""
+msgstr "Під час спроби доступу до «%1» трапилася помилка, повідомлення системи: %2"
 
 #: GUI/mediabutton.cpp:426
 #, kde-format
 msgid "An error occurred while accessing '%1'"
-msgstr ""
+msgstr "Під час спроби доступу до «%1» сталася помилка"
 
 #: GUI/syncbrowsebutton.cpp:45 GUI/syncbrowsebutton.cpp:48
 #, kde-format
@@ -419,10 +418,10 @@ msgid "Copying"
 msgstr "Копіювання"
 
 #: VFS/preserveattrcopyjob.cpp:361
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title job"
 msgid "Creating directory"
-msgstr "Батьківський каталог"
+msgstr "Створення теки"
 
 #: VFS/preserveattrcopyjob.cpp:362 Panel/krinterview.cpp:205
 #: Panel/krbriefview.cpp:226 Panel/krdetailedview.cpp:317
@@ -432,9 +431,9 @@ msgid "Directory"
 msgstr "Каталог"
 
 #: VFS/preserveattrcopyjob.cpp:793
-#, fuzzy, kde-format
+#, kde-format
 msgid "Folder Already Exists"
-msgstr "Файл вже існує"
+msgstr "Тека вже існує"
 
 #: VFS/preserveattrcopyjob.cpp:1074 VFS/preserveattrcopyjob.cpp:1594
 #: Synchronizer/synchronizer.cpp:1171 Synchronizer/synchronizer.cpp:1181
@@ -443,9 +442,9 @@ msgid "File Already Exists"
 msgstr "Файл вже існує"
 
 #: VFS/preserveattrcopyjob.cpp:1074 VFS/preserveattrcopyjob.cpp:1594
-#, fuzzy, kde-format
+#, kde-format
 msgid "Already Exists as Folder"
-msgstr "Файл вже існує"
+msgstr "Вже існує як тека"
 
 #: VFS/normal_vfs.cpp:98
 #, kde-format
@@ -499,24 +498,24 @@ msgid "Status"
 msgstr "Статус"
 
 #: VFS/kiojobwrapper.cpp:187
-#, fuzzy, kde-format
+#, kde-format
 msgid "Directory Size"
-msgstr "Каталоги"
+msgstr "Розмір каталогу"
 
 #: VFS/kiojobwrapper.cpp:190
-#, fuzzy, kde-format
+#, kde-format
 msgid "Copy"
-msgstr " Копіювання"
+msgstr "Копіювати"
 
 #: VFS/kiojobwrapper.cpp:193
-#, fuzzy, kde-format
+#, kde-format
 msgid "Move"
-msgstr " Пересування"
+msgstr "Пересунути"
 
 #: VFS/kiojobwrapper.cpp:220
-#, fuzzy, kde-format
+#, kde-format
 msgid "Target"
-msgstr "Tar"
+msgstr "Ціль"
 
 #: VFS/krquery.cpp:159 Filter/generalfilter.cpp:142
 #: Konfigurator/konfigurator.cpp:159
@@ -670,60 +669,55 @@ msgstr "Krusader::Оберіть файли"
 
 #: Filter/generalfilter.cpp:56
 msgid "Any Character"
-msgstr ""
+msgstr "Будь-який символ"
 
 #: Filter/generalfilter.cpp:57
-#, fuzzy
 msgid "Start of Line"
-msgstr "Стартовий профіль:"
+msgstr "Початок рядка"
 
 #: Filter/generalfilter.cpp:58
 msgid "End of Line"
-msgstr ""
+msgstr "Кінець рядка"
 
 #: Filter/generalfilter.cpp:59
 msgid "Set of Characters"
-msgstr ""
+msgstr "Набір символів"
 
 #: Filter/generalfilter.cpp:60
 msgid "Repeats, Zero or More Times"
-msgstr ""
+msgstr "Повторення, нуль або більше раз"
 
 #: Filter/generalfilter.cpp:61
 msgid "Repeats, One or More Times"
-msgstr ""
+msgstr "Повторення, один або більше раз"
 
 #: Filter/generalfilter.cpp:62
-#, fuzzy
 msgid "Optional"
-msgstr "&Параметри"
+msgstr "Необов'язковий"
 
 #: Filter/generalfilter.cpp:63
 msgid "Escape"
-msgstr ""
+msgstr "Escape"
 
 #: Filter/generalfilter.cpp:64
 msgid "TAB"
-msgstr ""
+msgstr "Tab"
 
 #: Filter/generalfilter.cpp:65
-#, fuzzy
 msgid "Newline"
-msgstr "Нове посилання"
+msgstr "Новий рядок"
 
 #: Filter/generalfilter.cpp:66
 msgid "Carriage Return"
-msgstr ""
+msgstr "Повернення каретки"
 
 #: Filter/generalfilter.cpp:67
-#, fuzzy
 msgid "White Space"
-msgstr "Білий"
+msgstr "Будь-який пропуск"
 
 #: Filter/generalfilter.cpp:68
-#, fuzzy
 msgid "Digit"
-msgstr "Права"
+msgstr "Цифра"
 
 #: Filter/generalfilter.cpp:101
 #, kde-format
@@ -837,12 +831,12 @@ msgstr "&Текст:"
 #: Filter/generalfilter.cpp:265
 #, kde-format
 msgid "RegExp"
-msgstr ""
+msgstr "Форм. вираз"
 
 #: Filter/generalfilter.cpp:286
-#, fuzzy, kde-format
+#, kde-format
 msgid "Encoding:"
-msgstr "Редагування"
+msgstr "Кодування:"
 
 #: Filter/generalfilter.cpp:301
 #, kde-format
@@ -1104,8 +1098,7 @@ msgstr "У розширювачі %1 відсутня необхідна спе�
 #: UserAction/expander.cpp:73
 #, kde-format
 msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
-msgstr ""
-"Розширювач: Некоректний аргумент до %1: %2 не є коректним означенням елемента"
+msgstr "Розширювач: Некоректний аргумент до %1: %2 не є коректним означенням елемента"
 
 #: UserAction/expander.cpp:360
 #, kde-format
@@ -1267,8 +1260,7 @@ msgstr "Що копіювати:"
 #: UserAction/expander.cpp:648
 #, kde-format
 msgid "Append to current clipboard content with this separator (optional):"
-msgstr ""
-"Дописати до поточного вмісту кишені з цим роздільником (не обов'язково)"
+msgstr "Дописати до поточного вмісту кишені з цим роздільником (не обов'язково)"
 
 #: UserAction/expander.cpp:653
 #, kde-format
@@ -1612,8 +1604,7 @@ msgstr ""
 
 #: UserAction/kraction.cpp:224
 #, kde-format
-msgid ""
-"Embedded terminal emulator does not work, using output collection instead."
+msgid "Embedded terminal emulator does not work, using output collection instead."
 msgstr ""
 "Вбудований емулятор термінала не працює, замість нього використовується "
 "колекція виведення."
@@ -1654,9 +1645,9 @@ msgid "UserActions - invalid action"
 msgstr "Дії користувача - некоректна дія"
 
 #: Panel/krinterview.cpp:58
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Experimental View"
-msgstr "&Детальний вигляд"
+msgstr "&Експериментальний перегляд"
 
 #: Panel/krdetailedviewitem.cpp:79 Panel/krdetailedviewitem.cpp:113
 #: Synchronizer/synchronizergui.cpp:2064 Synchronizer/synchronizergui.cpp:2071
@@ -2326,7 +2317,7 @@ msgstr "Ви не маєте дозволу на запис у цей катал
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
-msgstr[0] "Ви справді бажаєте викинути цей об'єкт до смітника?"
+msgstr[0] "Ви справді бажаєте викинути цей %1 об'єкт до смітника?"
 msgstr[1] "Ви справді бажаєте викинути ці %1 об'єкти до смітника?"
 msgstr[2] "Ви справді бажаєте викинути ці %1 об'єктів до смітника?"
 
@@ -2369,7 +2360,7 @@ msgid_plural ""
 "<qt>Do you really want to delete these %1 items <b>physically</b> (not just "
 "removing them from the virtual items)?</qt>"
 msgstr[0] ""
-"<qt>Ви справді бажаєте вилучити цей елемент <b>фізично</b> (не просто "
+"<qt>Ви справді бажаєте вилучити цей %1 елемент <b>фізично</b> (не просто "
 "вилучити його зі списку віртуальних елементів)?</qt>"
 msgstr[1] ""
 "<qt>Ви справді бажаєте вилучити ці %1 елемента <b>фізично</b> (не просто "
@@ -2382,7 +2373,7 @@ msgstr[2] ""
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
-msgstr[0] "Ви справді бажаєте вилучити цей об'єкт?"
+msgstr[0] "Ви справді бажаєте вилучити цей %1 об'єкт?"
 msgstr[1] "Ви справді бажаєте вилучити ці %1 об'єкти?"
 msgstr[2] "Ви справді бажаєте вилучити ці %1 об'єктів?"
 
@@ -2491,121 +2482,119 @@ msgid "Cannot copy a virtual URL collection onto the clipboard!"
 msgstr "Неможливо копіювати віртуальну колекцію URL у кишеню!"
 
 #: Queue/queuewidget.cpp:128 Queue/queuedialog.cpp:156
-#, fuzzy, kde-format
+#, kde-format
 msgid "Queue Manager"
-msgstr "Назва запиту"
+msgstr "Керування чергою"
 
 #: Queue/queuewidget.cpp:144
 #, kde-format
 msgid "Deleting this job will abort the pending job. Do you wish to continue?"
-msgstr ""
+msgstr "Вилучення цього завдання призведе до вилучення запланованого завдання. Бажаєте виконати вилучення?"
 
 #: Queue/queue_mgr.cpp:9
-#, fuzzy, kde-format
+#, kde-format
 msgid "default"
-msgstr "Стандартні значення"
+msgstr "типове"
 
 #: Queue/queuedialog.cpp:103 Queue/queuedialog.cpp:134
 #: Queue/queuedialog.cpp:389
-#, fuzzy, kde-format
+#, kde-format
 msgid "Krusader::Queue Manager"
-msgstr "Krusader::Місцезнаходження"
+msgstr "Krusader::Керування чергою"
 
 #: Queue/queuedialog.cpp:110
-#, fuzzy, kde-format
+#, kde-format
 msgid "Please enter the time to start processing the queue:"
-msgstr "Будь ласка, введіть нову ціль для посилання:"
+msgstr "Будь ласка, введіть час початку обробки черги:"
 
 #: Queue/queuedialog.cpp:179
-#, fuzzy, kde-format
+#, kde-format
 msgid "Create a new queue (Ctrl+T)"
-msgstr "Створити нове посилання до: "
+msgstr "Створити нову чергу (Ctrl+T)"
 
 #: Queue/queuedialog.cpp:185
-#, fuzzy, kde-format
+#, kde-format
 msgid "Remove the current queue (Ctrl+W)"
-msgstr "зберегти поточний вибір"
+msgstr "Вилучити поточну чергу (Ctrl+W)"
 
 #: Queue/queuedialog.cpp:198 Queue/queuedialog.cpp:427
-#, fuzzy, kde-format
+#, kde-format
 msgid "unused"
-msgstr "Дописати"
+msgstr "не використовується"
 
 #: Queue/queuedialog.cpp:204
 #, kde-format
 msgid "Schedule queue starting (Ctrl+S)"
-msgstr ""
+msgstr "Запланувати початок обробки черги (Ctrl+S)"
 
 #: Queue/queuedialog.cpp:343
 #, kde-format
 msgid "Start processing the queue (Ctrl+P)"
-msgstr ""
+msgstr "Почати обробку черги (Ctrl+P)"
 
 #: Queue/queuedialog.cpp:346
 #, kde-format
 msgid "The queue is paused."
-msgstr ""
+msgstr "Обробку черги призупинено."
 
 #: Queue/queuedialog.cpp:348
 #, kde-format
 msgid "Scheduled to start at %1."
-msgstr ""
+msgstr "Початок заплановано на %1."
 
 #: Queue/queuedialog.cpp:351
 #, kde-format
 msgid "The queue is running."
-msgstr ""
+msgstr "Обробка черги."
 
 #: Queue/queuedialog.cpp:353
 #, kde-format
 msgid "Pause processing the queue (Ctrl+P)"
-msgstr ""
+msgstr "Призупинити обробку черги (Ctrl+P)"
 
 #: Queue/queuedialog.cpp:390
-#, fuzzy, kde-format
+#, kde-format
 msgid "Please enter the name of the new queue"
-msgstr "Введіть, будь ласка, унікальну назву для дії"
+msgstr "Введіть, будь ласка, назву нової черги дій"
 
 #: Queue/queuedialog.cpp:399
 #, kde-format
 msgid "A queue already exists with this name!"
-msgstr ""
+msgstr "Черга завдань з такою назвою вже існує!"
 
 #: Queue/queuedialog.cpp:411
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Deleting the queue requires aborting all pending jobs. Do you wish to "
 "continue?"
-msgstr ""
-"Крок у батьківський каталог вимагає завантаження вмісту адреси URL \"%1\". "
-"Хочете продовжити?"
+msgstr "Вилучення черги призведе до аварійного припинення всіх запланованих завдань. Бажаєте вилучити чергу?"
 
 #: Queue/queue.cpp:66
 #, kde-format
 msgid "An error occurred during processing the queue.\n"
-msgstr ""
+msgstr "Під час обробки черги сталася помилка.\n"
 
 #: Queue/queue.cpp:68
 #, kde-format
 msgid "The last processed element in the queue was aborted.\n"
-msgstr ""
+msgstr "Останній пункт обробки у черзі було аварійно завершено.\n"
 
 #: Queue/queue.cpp:69
 #, kde-format
 msgid ""
 "Do you wish to continue with the next element, delete the queue or suspend "
 "the queue?"
-msgstr ""
+msgstr "Бажаєте продовжити виконання завдань з черги, вилучити цю чергу або призупинити виконання черги?"
 
 #: Queue/queue.cpp:71
-#, fuzzy, kde-format
+#, kde-format
 msgid "Krusader::Queue"
-msgstr "Krusader::Місцезнаходження"
+msgstr "Krusader::Черга"
 
 #: Queue/queue.cpp:72
-#, fuzzy, kde-format
+#, kde-format
 msgid "Suspend"
-msgstr "Дописати"
+msgstr "Призупинити"
 
 #: Locate/locate.cpp:121 Locate/locate.cpp:125 Locate/locate.cpp:392
 #, kde-format
@@ -2691,9 +2680,9 @@ msgid "Edit (F4)"
 msgstr "Правка (F4)"
 
 #: Locate/locate.cpp:396 Search/krsearchdialog.cpp:626
-#, fuzzy, kde-format
+#, kde-format
 msgid "Compare by content (F10)"
-msgstr "Порівняти за вмістом"
+msgstr "Порівняти за вмістом (F10)"
 
 #: Locate/locate.cpp:401
 #, kde-format
@@ -3004,7 +2993,7 @@ msgstr "Використання ди&ска..."
 #: krusader.cpp:735
 #, kde-format
 msgid "&Queue Manager..."
-msgstr ""
+msgstr "Керування &чергою..."
 
 #: krusader.cpp:736
 #, kde-format
@@ -3175,14 +3164,14 @@ msgid "Edit File"
 msgstr "Редагувати файл"
 
 #: krusader.cpp:785
-#, fuzzy, kde-format
+#, kde-format
 msgid "Copy by queue..."
-msgstr "Копіювання..."
+msgstr "Копіювати у черзі..."
 
 #: krusader.cpp:786
-#, fuzzy, kde-format
+#, kde-format
 msgid "Move by queue..."
-msgstr "Пересунути..."
+msgstr "Пересунути у черзі..."
 
 #: krusader.cpp:787
 #, kde-format
@@ -3534,14 +3523,14 @@ msgid "Folder name:"
 msgstr "Назва теки:"
 
 #: MountMan/kmountman.cpp:203
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "<qt>Error ejecting device!\n"
 " You have to configure the path to the 'eject' tool. Please check the "
 "<b>Dependencies</b> page in Krusader's settings.</qt>"
 msgstr ""
 "<qt>Спроба виштовхнути пристрій завершилася невдало!\n"
-"Вам слід налаштувати шлях до інструмента «eject». Будь ласка, перевірте "
+"Вам слід налаштувати шлях до команди «eject». Будь ласка, перевірте "
 "правильність відомостей на сторінці <b>Залежності</b> параметрів Krusader.</"
 "qt>"
 
@@ -3640,8 +3629,7 @@ msgstr ""
 
 #: MountMan/kmountmangui.cpp:364
 #, kde-format
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "В менеджері монтування сталася внутрішня помилка. Будь ласка, повідомте "
 "розробників."
@@ -3712,14 +3700,12 @@ msgid "Heiner Eichmann"
 msgstr "Heiner Eichmann"
 
 #: main.cpp:119
-#, fuzzy
 msgid "Jonas Bähr"
-msgstr "Jonas Baehr"
+msgstr "Jonas Bähr"
 
 #: main.cpp:120 main.cpp:125
-#, fuzzy
 msgid "Václav Jůza"
-msgstr "Václav Juza"
+msgstr "Václav Jůza"
 
 #: main.cpp:121 main.cpp:154
 msgid "Dirk Eschler"
@@ -3750,7 +3736,6 @@ msgid "Matej Urbancic"
 msgstr "Matej Urbancic"
 
 #: main.cpp:124
-#, fuzzy
 msgid "Marketing & Product Research"
 msgstr "Вивчення ринку і запитів на продукт"
 
@@ -3759,14 +3744,12 @@ msgid "QA, bug-hunting, patches and general help"
 msgstr "ЧаП, виправлення вад, латки і загальна допомога"
 
 #: main.cpp:126
-#, fuzzy
 msgid "Jiří Paleček"
-msgstr "Jiri Palecek"
+msgstr "Jiří Paleček"
 
 #: main.cpp:127
-#, fuzzy
 msgid "Jiří Klement"
-msgstr "Jiri Klement"
+msgstr "Jiří Klement"
 
 #: main.cpp:127
 msgid "Important help in KDE 4 porting"
@@ -3813,9 +3796,8 @@ msgid "The old Bookmark Module"
 msgstr "Старий модуль закладок"
 
 #: main.cpp:133
-#, fuzzy
 msgid "Hans Löffler"
-msgstr "Hans Loeffler"
+msgstr "Hans Löffler"
 
 #: main.cpp:133
 msgid "Dir history button"
@@ -3878,9 +3860,8 @@ msgid "Doutor Zero"
 msgstr "Doutor Zero"
 
 #: main.cpp:141
-#, fuzzy
 msgid "Brazilian Portuguese translation"
-msgstr "Переклад португальською"
+msgstr "Переклад бразильською португальською"
 
 #: main.cpp:142
 msgid "Milen Ivanov"
@@ -3919,9 +3900,8 @@ msgid "Martin Sixta"
 msgstr "Martin Sixta"
 
 #: main.cpp:147
-#, fuzzy
 msgid "Vaclav Jůza"
-msgstr "Vaclav Juza"
+msgstr "Vaclav Jůza"
 
 #: main.cpp:147
 msgid "Czech translation"
@@ -4170,14 +4150,14 @@ msgid "Function keys allow performing fast operations on files."
 msgstr "Клавіші функцій прискорюють роботу з файлами."
 
 #: krusaderview.cpp:307
-#, fuzzy, kde-format
+#, kde-format
 msgid "Horizontal Mode"
-msgstr "Вертикальний режим"
+msgstr "Горизонтальний режим"
 
 #: Dialogs/krdialogs.cpp:142
 #, kde-format
 msgid "F2 Queue"
-msgstr ""
+msgstr "F2 Черга"
 
 #: Dialogs/krdialogs.cpp:158
 #, kde-format
@@ -4516,10 +4496,8 @@ msgstr "Імпорт застарілого завершено"
 
 #: Dialogs/krkeydialog.cpp:135
 #, kde-format
-msgid ""
-"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
-msgstr ""
-"<qt>Файл <b>%1</b>  вже існує. Ви дійсно хочете перезаписати його?</qt>"
+msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgstr "<qt>Файл <b>%1</b>  вже існує. Ви дійсно хочете перезаписати його?</qt>"
 
 #: Dialogs/krkeydialog.cpp:144
 #, kde-format
@@ -5136,14 +5114,14 @@ msgstr "Немає"
 #: ActionMan/ui_actionproperty.h:722 rc.cpp:116
 #, kde-format
 msgid "If checked, the action is shown in the Useractions menus."
-msgstr ""
+msgstr "Якщо позначено цей пункт, вказану дію буде показано у меню «Дії користувача»."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 401
 #: ActionMan/ui_actionproperty.h:725 rc.cpp:119
-#, fuzzy, kde-format
+#, kde-format
 msgid "Enabled"
-msgstr "можливе"
+msgstr "Увімкнено"
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 420
@@ -5197,16 +5175,16 @@ msgstr "Виконувати в терміналі"
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 463
 #: ActionMan/ui_actionproperty.h:748 rc.cpp:146
-#, fuzzy, kde-format
+#, kde-format
 msgid "Run the command in the embedded terminal emulator."
-msgstr "Виконати команду в терміналі."
+msgstr "Виконати команду у вбудованому емуляторі термінала."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 466
 #: ActionMan/ui_actionproperty.h:751 rc.cpp:149
-#, fuzzy, kde-format
+#, kde-format
 msgid "Run in the embedded terminal emulator"
-msgstr "Надіслати до &вбудованого емулятора термінала"
+msgstr "Виконати у вбудованому емуляторі термінала"
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 39
@@ -5401,8 +5379,7 @@ msgstr "Вилучити обрані дії користувача"
 
 #: ActionMan/useractionpage.cpp:134
 #, kde-format
-msgid ""
-"The current action has been modified. Do you want to apply these changes?"
+msgid "The current action has been modified. Do you want to apply these changes?"
 msgstr "Поточну дію було змінено. Хочете застосувати зміни?"
 
 #: ActionMan/useractionpage.cpp:211
@@ -5588,7 +5565,7 @@ msgstr "Цей шаблон дозволяє параметр:"
 #: ActionMan/addplaceholderpopup.cpp:288 ActionMan/addplaceholderpopup.cpp:487
 #, kde-format
 msgid "list-add"
-msgstr ""
+msgstr "додавання до списку"
 
 #: UserMenu/usermenu.cpp:58
 #, kde-format
@@ -5613,14 +5590,12 @@ msgstr "Файловий фільтр:"
 #: Synchronizer/synchronizergui.cpp:1160
 #, kde-format
 msgid "The left base directory used during the synchronisation process."
-msgstr ""
-"Ліва тека використовуватиметься як базова під час процесу синхронізації."
+msgstr "Ліва тека використовуватиметься як базова під час процесу синхронізації."
 
 #: Synchronizer/synchronizergui.cpp:1193
 #, kde-format
 msgid "The right base directory used during the synchronisation process."
-msgstr ""
-"Права тека використовуватиметься як базова під час процесу синхронізації."
+msgstr "Права тека використовуватиметься як базова під час процесу синхронізації."
 
 #: Synchronizer/synchronizergui.cpp:1207
 #, kde-format
@@ -5730,9 +5705,9 @@ msgstr ""
 "+R)."
 
 #: Synchronizer/synchronizergui.cpp:1297
-#, fuzzy, kde-format
+#, kde-format
 msgid "Show files marked to delete (CTRL+T)."
-msgstr "Показати список файлів, позначених для вилучення. (CTRL+T)"
+msgstr "Показати список файлів, позначених для вилучення (CTRL+T)."
 
 #: Synchronizer/synchronizergui.cpp:1302
 #, kde-format
@@ -6017,7 +5992,7 @@ msgstr "Krusader::Синхронізувати"
 #, kde-format
 msgid "Right to left: Copy 1 file"
 msgid_plural "Right to left: Copy %1 files"
-msgstr[0] "Копіювати один файл ліворуч"
+msgstr[0] "Копіювати %1 файл ліворуч"
 msgstr[1] "Копіювати %1 файла ліворуч"
 msgstr[2] "Копіювати %1 файлів ліворуч"
 
@@ -6026,7 +6001,7 @@ msgstr[2] "Копіювати %1 файлів ліворуч"
 #, kde-format
 msgid "(1 byte)"
 msgid_plural "(%1 bytes)"
-msgstr[0] "(1 байт)"
+msgstr[0] "(%1 байт)"
 msgstr[1] "(%1 байта)"
 msgstr[2] "(%1 байтів)"
 
@@ -6043,7 +6018,7 @@ msgstr[2] "Виконано: %2/%1 файлів, %3/%4"
 #, kde-format
 msgid "Left to right: Copy 1 file"
 msgid_plural "Left to right: Copy %1 files"
-msgstr[0] "Копіювати один файл праворуч"
+msgstr[0] "Копіювати %1 файл праворуч"
 msgstr[1] "Копіювати %1 файла праворуч"
 msgstr[2] "Копіювати %1 файлів праворуч"
 
@@ -6051,7 +6026,7 @@ msgstr[2] "Копіювати %1 файлів праворуч"
 #, kde-format
 msgid "Left: Delete 1 file"
 msgid_plural "Left: Delete %1 files"
-msgstr[0] "Ліва: Вилучено 1 файл"
+msgstr[0] "Ліва: Вилучено %1 файл"
 msgstr[1] "Ліва: Вилучено %1 файла"
 msgstr[2] "Ліва: Вилучено %1 файлів"
 
@@ -6632,8 +6607,7 @@ msgstr "Використовувати mimetype magic"
 #: Konfigurator/kggeneral.cpp:73
 #, kde-format
 msgid "Mimetype magic allows better distinction of file types, but is slower."
-msgstr ""
-"Mimetype magic дозволяє краще розрізняти типи файлів, але є повільнішим."
+msgstr "Mimetype magic дозволяє краще розрізняти типи файлів, але є повільнішим."
 
 #: Konfigurator/kggeneral.cpp:80
 #, kde-format
@@ -6682,8 +6656,7 @@ msgstr "Шістнадцятковий режим"
 #: Konfigurator/kggeneral.cpp:106
 #, kde-format
 msgid "View the file in hex-mode (better for binary files)"
-msgstr ""
-"Переглядати файл у шістнадцятковому режимі (краще для виконуваних файлів)"
+msgstr "Переглядати файл у шістнадцятковому режимі (краще для виконуваних файлів)"
 
 #: Konfigurator/kggeneral.cpp:112
 #, kde-format
@@ -6731,8 +6704,7 @@ msgstr "Тимчасовий каталог:"
 #: Konfigurator/kggeneral.cpp:195
 #, kde-format
 msgid "Note: you must have full permissions for the temporary directory!"
-msgstr ""
-"Зауваження: Ви мусите мати повні права доступу до тимчасового каталогу!"
+msgstr "Зауваження: Ви мусите мати повні права доступу до тимчасового каталогу!"
 
 #: Konfigurator/kggeneral.cpp:213
 #, kde-format
@@ -6741,8 +6713,7 @@ msgstr "Пошук інструментів..."
 
 #: Konfigurator/kggeneral.cpp:214
 #, kde-format
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Переконайтеся, що встановили нові інструменти до Вашої теки <code>$PATH</"
 "code> (наприклад /usr/bin)"
@@ -6769,8 +6740,7 @@ msgstr ""
 #: Konfigurator/krresulttable.cpp:132
 #, kde-format
 msgid "unarj not found, but arj found, which will be used for unpacking"
-msgstr ""
-"unarj не знайдено, але знайдено arj, який буде використано для розпакування"
+msgstr "unarj не знайдено, але знайдено arj, який буде використано для розпакування"
 
 #: Konfigurator/krresulttable.cpp:138
 #, kde-format
@@ -7058,7 +7028,7 @@ msgstr "Розмір піктограм списку файлів:"
 #: Konfigurator/kglookfeel.cpp:196
 #, kde-format
 msgid "12"
-msgstr ""
+msgstr "12"
 
 #: Konfigurator/kglookfeel.cpp:197
 #, kde-format
@@ -7093,12 +7063,12 @@ msgstr "Показати піктограми для назв файлів та 
 #: Konfigurator/kglookfeel.cpp:216
 #, kde-format
 msgid "Load the user defined folder icons"
-msgstr ""
+msgstr "Завантажити вказані користувачем піктограми тек"
 
 #: Konfigurator/kglookfeel.cpp:216
 #, kde-format
 msgid "Load the user defined folder icons (can cause decrease in performance)."
-msgstr ""
+msgstr "Завантажити вказані користувачем піктограми тек (може спричинити втрату швидкодії)"
 
 #: Konfigurator/kglookfeel.cpp:217
 #, kde-format
@@ -7137,27 +7107,27 @@ msgstr ""
 #: Konfigurator/kglookfeel.cpp:234
 #, kde-format
 msgid "Sort method:"
-msgstr ""
+msgstr "Метод впорядкування:"
 
 #: Konfigurator/kglookfeel.cpp:238
 #, kde-format
 msgid "Alphabetical"
-msgstr ""
+msgstr "За абеткою"
 
 #: Konfigurator/kglookfeel.cpp:239
 #, kde-format
 msgid "Alphabetical and numbers"
-msgstr ""
+msgstr "За абеткою і порядком чисел"
 
 #: Konfigurator/kglookfeel.cpp:240
 #, kde-format
 msgid "Character code"
-msgstr ""
+msgstr "За кодом символів"
 
 #: Konfigurator/kglookfeel.cpp:241
 #, kde-format
 msgid "Character code and numbers"
-msgstr ""
+msgstr "За кодом символів і порядком чисел"
 
 #: Konfigurator/kglookfeel.cpp:253
 #, kde-format
@@ -7172,8 +7142,7 @@ msgstr "Завжди сортувати каталоги за назвою"
 #: Konfigurator/kglookfeel.cpp:254
 #, kde-format
 msgid "Directories are sorted by name, regardless of the sort column."
-msgstr ""
-"Каталоги сортуватимуться за назвою, незалежно від стовпчика сортування."
+msgstr "Каталоги сортуватимуться за назвою, незалежно від стовпчика сортування."
 
 #: Konfigurator/kglookfeel.cpp:274
 #, kde-format
@@ -7252,8 +7221,7 @@ msgstr "Кнопка перемикання синхронізованої на�
 
 #: Konfigurator/kglookfeel.cpp:299
 #, kde-format
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr "Кожна зміна каталогу в цій панелі також виконується в іншій панелі."
 
 #: Konfigurator/kglookfeel.cpp:324
@@ -7313,18 +7281,17 @@ msgstr ""
 #: Konfigurator/kglookfeel.cpp:341
 #, kde-format
 msgid "Ergonomic Mode"
-msgstr ""
+msgstr "Ергономічний режим"
 
 #: Konfigurator/kglookfeel.cpp:341
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "The left mouse button does not select, but sets the current file without "
 "affecting the current selection. The right mouse button invokes the context-"
 "menu. You can select with Ctrl key and the left button."
 msgstr ""
-"Ліва кнопка мишки не вибирає, але вказує поточний файл не впливаючи на "
-"поточний вибір. Права кнопка мишки вибирає декілька файлів, а контекстне "
-"меню викликається, коли натиснути і тримати праву кнопку мишки."
+"Ліва кнопка мишки не вибирає, але вказує поточний файл, не впливаючи на "
+"поточний вибір. Права кнопка мишки викликає контекстне меню. Вибирати файли можна за допомогою лівої кнопки миші і клавіші Ctrl."
 
 #: Konfigurator/kglookfeel.cpp:342
 #, kde-format
@@ -7387,8 +7354,7 @@ msgstr "Ліва кнопка мишки вибирає"
 #: Konfigurator/kglookfeel.cpp:379
 #, kde-format
 msgid "If checked, left clicking an item will select it."
-msgstr ""
-"Якщо увімкнено, клацання лівою кнопкою мишки на елемент - вибирає його."
+msgstr "Якщо увімкнено, клацання лівою кнопкою мишки на елемент - вибирає його."
 
 #: Konfigurator/kglookfeel.cpp:381
 #, kde-format
@@ -7427,8 +7393,7 @@ msgstr "Права кнопка мишки вибирає"
 #: Konfigurator/kglookfeel.cpp:388
 #, kde-format
 msgid "If checked, right clicking an item will select it."
-msgstr ""
-"Якщо увімкнено, клацання правою кнопкою мишки на елемент - вибирає його."
+msgstr "Якщо увімкнено, клацання правою кнопкою мишки на елемент - вибирає його."
 
 #: Konfigurator/kglookfeel.cpp:390
 #, kde-format
@@ -8018,24 +7983,24 @@ msgid "Delete background:"
 msgstr "Тло вилучення:"
 
 #: Konfigurator/kgcolors.cpp:211
-#, fuzzy, kde-format
+#, kde-format
 msgid "Other"
-msgstr "Інше..."
+msgstr "Інше"
 
 #: Konfigurator/kgcolors.cpp:219
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch, match foreground:"
-msgstr "Текст каталогів:"
+msgstr "Швидкий пошук, текст відповідних:"
 
 #: Konfigurator/kgcolors.cpp:220 Konfigurator/kgcolors.cpp:222
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch, non-match background:"
-msgstr "Альтернативне тло:"
+msgstr "Швидкий пошук, тло невідповідних:"
 
 #: Konfigurator/kgcolors.cpp:221
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch, non-match foreground:"
-msgstr "Поточний текст:"
+msgstr "Швидкий пошук, текст невідповідних:"
 
 #: Konfigurator/kgcolors.cpp:255
 #, kde-format
@@ -8103,14 +8068,14 @@ msgid "Equals"
 msgstr "Вирівнювання"
 
 #: Konfigurator/kgcolors.cpp:526
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch non-match"
-msgstr "Швидкий пошук"
+msgstr "Швидкий пошук, невідповідні"
 
 #: Konfigurator/kgcolors.cpp:527
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch match"
-msgstr "Швидкий пошук"
+msgstr "Швидкий пошук, відповідні"
 
 #: Konfigurator/kgcolors.cpp:546
 #, kde-format
@@ -8301,7 +8266,7 @@ msgstr "GZip"
 #: Konfigurator/kgarchives.cpp:64
 #, kde-format
 msgid "LZMA"
-msgstr ""
+msgstr "LZMA"
 
 #: Konfigurator/kgarchives.cpp:65
 #, kde-format
@@ -8381,8 +8346,7 @@ msgstr "Перевіряти архів перед розпакуванням"
 
 #: Konfigurator/kgarchives.cpp:108
 #, kde-format
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Деякі пошкоджені архіви можуть спричиняти крах, отже, рекомендується робити "
 "перевірку."
@@ -8394,8 +8358,7 @@ msgstr "Пошук пакувальників..."
 
 #: Konfigurator/kgarchives.cpp:126
 #, kde-format
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Переконайтесь, що нові пакувальники встановлено до теки <code>$PATH</code> "
 "(наприклад /usr/bin)"
@@ -8451,9 +8414,9 @@ msgid "Use fixed width font as default"
 msgstr "Типово використовувати шрифт зі сталою шириною"
 
 #: krslots.cpp:101
-#, fuzzy, kde-format
+#, kde-format
 msgid "No selected files to send!"
-msgstr "Тільки обрані файли"
+msgstr "Не обрано файлів для надсилання!"
 
 #: krslots.cpp:109
 #, kde-format
@@ -8465,12 +8428,12 @@ msgstr ""
 "ласка, встановіть якийсь у Ваш шлях. Підказка: Krusader підтримує Kmail."
 
 #: krslots.cpp:118
-#, fuzzy, kde-format
+#, kde-format
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
-msgstr[0] "Надсилання файла: %1"
-msgstr[1] "Надсилання файла: %1"
-msgstr[2] "Надсилання файла: %1"
+msgstr[0] "Надсилання файла: %2"
+msgstr[1] "Надсилання файлів: %2"
+msgstr[2] "Надсилання файлів: %2"
 
 #: krslots.cpp:176
 #, kde-format
@@ -8524,8 +8487,7 @@ msgstr ""
 #: krslots.cpp:520
 #, kde-format
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
-msgstr ""
-"Не вдається знайти \"KsysCtrl\". Будь ласка, встановіть пакет admin для KDE"
+msgstr "Не вдається знайти \"KsysCtrl\". Будь ласка, встановіть пакет admin для KDE"
 
 #: krslots.cpp:528
 #, kde-format
@@ -8716,8 +8678,7 @@ msgstr "Недійсний файл CRC!"
 
 #: Splitter/combiner.cpp:154
 #, kde-format
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr "Без чинного файла CRC перевірка неможлива. Продовжити об'єднання?"
 
 #: Splitter/combiner.cpp:258
@@ -8845,48 +8806,3 @@ msgstr "Поновлення не підтримується цим проток
 msgid "Writing to %1 is not supported"
 msgstr "Запис на %1 не підтримується"
 
-#~ msgid "Brazilian Portuguese"
-#~ msgstr "Переклад бразильською португальською"
-
-#~ msgid ""
-#~ "Don't use KDE's media protocol for media button (if it's buggy or missing)"
-#~ msgstr ""
-#~ "Не використовувати протокол носія від KDE для кнопки носія (якщо він "
-#~ "нестабільний або відсутній)"
-
-#~ msgid ""
-#~ "Select if your media protocol is buggy (in some older KDE versions), or "
-#~ "not present (no kdebase package installed)."
-#~ msgstr ""
-#~ "Оберіть це якщо протокол носія нестабільний (у деяких старих версіях "
-#~ "KDE), або відсутній (не встановлено пакунку kdebase)."
-
-#~ msgid "Clear location bar button"
-#~ msgstr "Кнопка очищення поля адреси"
-
-#~ msgid "Clears the location bar"
-#~ msgstr "Очищує поле адреси"
-
-#~ msgid "CD Recorder"
-#~ msgstr "Записувач КД"
-
-#~ msgid "DVD Recorder"
-#~ msgstr "Записувач DVD"
-
-#~ msgid "DVD"
-#~ msgstr "DVD"
-
-#~ msgid "Zip Disk"
-#~ msgstr "Диск Zip"
-
-#~ msgid "add"
-#~ msgstr "додати"
-
-#~ msgid "<qt>Can't open <b>%1</b></qt>"
-#~ msgstr "<qt>Неможливо відкрити <b>%1</b></qt>"
-
-#~ msgid "Can't open \"%1\""
-#~ msgstr "Неможливо відкрити \"%1\""
-
-#~ msgid "Clear the location bar"
-#~ msgstr "Очистити поле розміщення"
