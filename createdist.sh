@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=`cat CMakeLists.txt | grep add_definitions | grep 'DVERSION' | awk -F '"' '{print $2; }'`
+VERSION=`cat CMakeLists.txt | grep 'set(VERSION' | awk -F '"' '{print $2; }'`
 DIST_NAME="krusader-${VERSION}"
 OUTPUT_FILE_NAME="${DIST_NAME}.tar.gz"
 
