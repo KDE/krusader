@@ -90,7 +90,7 @@ Konfigurator::Konfigurator( bool f, int startPage ) : KPageDialog( (QWidget *)0 
   if( sx != -1 && sy != -1 )
     resize( sx, sy );
   else
-    resize( 900, 900 );
+    resize( 900, 680 );
 
   if( group.readEntry( "Window Maximized",  false ) )
       showMaximized();
