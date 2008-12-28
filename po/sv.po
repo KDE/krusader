@@ -4,16 +4,16 @@
 # Copyright (C) 2004-2008, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 #
+#
 # Erik Johansson <erre@telia.com>, 2001.
 # Anders Lindén <connyosis@gmx.net>, 2004.
-# Peter Landgren <peter.talken@telia.com>, 2005, 2006, 2007.
-#
+# Peter Landgren <peter.talken@telia.com>, 2005, 2006, 2007, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-2.0.0-beta2\n"
-"Report-Msgid-Bugs-To: krusader-i18n@googlegroups.com\n"
+"Report-Msgid-Bugs-To: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "POT-Creation-Date: 2008-12-05 21:44+0100\n"
-"PO-Revision-Date: 2007-04-03 09:33+0200\n"
+"PO-Revision-Date: 2008-12-28 13:18+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -94,24 +94,24 @@ msgid "Floppy"
 msgstr "Flexskiva"
 
 #: GUI/mediabutton.cpp:179
-#, fuzzy, kde-format
+#, kde-format
 msgid "CD/DVD-ROM"
-msgstr "CD-ROM"
+msgstr "CD/DVD-ROM"
 
 #: GUI/mediabutton.cpp:181
 #, kde-format
 msgid "USB pen drive"
-msgstr ""
+msgstr "USB pen drive"
 
 #: GUI/mediabutton.cpp:183
 #, kde-format
 msgid "USB device"
-msgstr ""
+msgstr "USB-enhet"
 
 #: GUI/mediabutton.cpp:185
 #, kde-format
 msgid "Removable media"
-msgstr ""
+msgstr "Bortkopplingsbart medium"
 
 #: GUI/mediabutton.cpp:187
 #, kde-format
@@ -119,24 +119,24 @@ msgid "Hard Disk"
 msgstr "Hårddisk"
 
 #: GUI/mediabutton.cpp:189
-#, fuzzy, kde-format
+#, kde-format
 msgid "Camera"
-msgstr "Namn"
+msgstr "Kamera"
 
 #: GUI/mediabutton.cpp:191
 #, kde-format
 msgid "Video CD/DVD-ROM"
-msgstr ""
+msgstr "Video CD/DVD-ROM"
 
 #: GUI/mediabutton.cpp:193
 #, kde-format
 msgid "Audio CD/DVD-ROM"
-msgstr ""
+msgstr "Audio CD/DVD-ROM"
 
 #: GUI/mediabutton.cpp:195
 #, kde-format
 msgid "Recordable CD/DVD-ROM"
-msgstr ""
+msgstr "Skrivbar CD/DVD-ROM"
 
 #: GUI/mediabutton.cpp:325 Panel/krpopupmenu.cpp:69
 #: BookMan/krbookmarkhandler.cpp:557
@@ -170,12 +170,12 @@ msgstr "Mata ut"
 #: GUI/mediabutton.cpp:423
 #, kde-format
 msgid "An error occurred while accessing '%1', the system responded: %2"
-msgstr ""
+msgstr "Ett fel inträffade vid åtkomst av '%1', systemet svarade: %2"
 
 #: GUI/mediabutton.cpp:426
 #, kde-format
 msgid "An error occurred while accessing '%1'"
-msgstr ""
+msgstr "Ett fel inträffade vid åtkomst av '%1'"
 
 #: GUI/syncbrowsebutton.cpp:45 GUI/syncbrowsebutton.cpp:48
 #, kde-format
@@ -390,38 +390,38 @@ msgstr ""
 "%1"
 
 #: VFS/preserveattrcopyjob.cpp:334 VFS/virtualcopyjob.cpp:389
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title job"
 msgid "Moving"
-msgstr "Flyttar filer"
+msgstr "Flyttar"
 
 #: VFS/preserveattrcopyjob.cpp:335 VFS/preserveattrcopyjob.cpp:342
 #: VFS/preserveattrcopyjob.cpp:349 VFS/preserveattrcopyjob.cpp:373
 #: VFS/kiojobwrapper.cpp:221 VFS/virtualcopyjob.cpp:384
 #: VFS/virtualcopyjob.cpp:390
-#, fuzzy, kde-format
+#, kde-format
 msgid "Source"
-msgstr "Källa:"
+msgstr "Källa"
 
 #: VFS/preserveattrcopyjob.cpp:336 VFS/preserveattrcopyjob.cpp:343
 #: VFS/preserveattrcopyjob.cpp:350 VFS/preserveattrcopyjob.cpp:374
 #: VFS/virtualcopyjob.cpp:385 VFS/virtualcopyjob.cpp:391
-#, fuzzy, kde-format
+#, kde-format
 msgid "Destination"
-msgstr "Mål:"
+msgstr "Mål"
 
 #: VFS/preserveattrcopyjob.cpp:341 VFS/preserveattrcopyjob.cpp:348
 #: VFS/preserveattrcopyjob.cpp:372 VFS/virtualcopyjob.cpp:383
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title job"
 msgid "Copying"
-msgstr "Kopierar filer"
+msgstr "Kopierar"
 
 #: VFS/preserveattrcopyjob.cpp:361
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title job"
 msgid "Creating directory"
-msgstr "Föräldramapp"
+msgstr "Skapar mapp"
 
 #: VFS/preserveattrcopyjob.cpp:362 Panel/krinterview.cpp:205
 #: Panel/krbriefview.cpp:226 Panel/krdetailedview.cpp:317
@@ -431,9 +431,9 @@ msgid "Directory"
 msgstr "Mapp"
 
 #: VFS/preserveattrcopyjob.cpp:793
-#, fuzzy, kde-format
+#, kde-format
 msgid "Folder Already Exists"
-msgstr "Fil finns redan"
+msgstr "Mapp finns redan"
 
 #: VFS/preserveattrcopyjob.cpp:1074 VFS/preserveattrcopyjob.cpp:1594
 #: Synchronizer/synchronizer.cpp:1171 Synchronizer/synchronizer.cpp:1181
@@ -442,9 +442,9 @@ msgid "File Already Exists"
 msgstr "Fil finns redan"
 
 #: VFS/preserveattrcopyjob.cpp:1074 VFS/preserveattrcopyjob.cpp:1594
-#, fuzzy, kde-format
+#, kde-format
 msgid "Already Exists as Folder"
-msgstr "Fil finns redan"
+msgstr "Finns redan som mapp"
 
 #: VFS/normal_vfs.cpp:98
 #, kde-format
@@ -498,24 +498,24 @@ msgid "Status"
 msgstr "Status"
 
 #: VFS/kiojobwrapper.cpp:187
-#, fuzzy, kde-format
+#, kde-format
 msgid "Directory Size"
-msgstr "Mappar"
+msgstr "Mappstorlek"
 
 #: VFS/kiojobwrapper.cpp:190
-#, fuzzy, kde-format
+#, kde-format
 msgid "Copy"
-msgstr " Kopiera"
+msgstr "Kopiera"
 
 #: VFS/kiojobwrapper.cpp:193
-#, fuzzy, kde-format
+#, kde-format
 msgid "Move"
-msgstr " Flytta"
+msgstr "Flytta"
 
 #: VFS/kiojobwrapper.cpp:220
-#, fuzzy, kde-format
+#, kde-format
 msgid "Target"
-msgstr "Tar"
+msgstr "Mål"
 
 #: VFS/krquery.cpp:159 Filter/generalfilter.cpp:142
 #: Konfigurator/konfigurator.cpp:159
@@ -669,60 +669,55 @@ msgstr "Krusader::Välj filer"
 
 #: Filter/generalfilter.cpp:56
 msgid "Any Character"
-msgstr ""
+msgstr "Godtyckligt tecken"
 
 #: Filter/generalfilter.cpp:57
-#, fuzzy
 msgid "Start of Line"
-msgstr "Startprofil:"
+msgstr "Radbörjan"
 
 #: Filter/generalfilter.cpp:58
 msgid "End of Line"
-msgstr ""
+msgstr "Radslut"
 
 #: Filter/generalfilter.cpp:59
 msgid "Set of Characters"
-msgstr ""
+msgstr "Teckenuppsättning"
 
 #: Filter/generalfilter.cpp:60
 msgid "Repeats, Zero or More Times"
-msgstr ""
+msgstr "Upprepas, noll eller fler gånger"
 
 #: Filter/generalfilter.cpp:61
 msgid "Repeats, One or More Times"
-msgstr ""
+msgstr "Upprepas, en eller fler gånger"
 
 #: Filter/generalfilter.cpp:62
-#, fuzzy
 msgid "Optional"
-msgstr "&Alternativ"
+msgstr "Alternativ"
 
 #: Filter/generalfilter.cpp:63
 msgid "Escape"
-msgstr ""
+msgstr "Escape"
 
 #: Filter/generalfilter.cpp:64
 msgid "TAB"
-msgstr ""
+msgstr "TAB"
 
 #: Filter/generalfilter.cpp:65
-#, fuzzy
 msgid "Newline"
-msgstr "Ny länk"
+msgstr "Ny rad"
 
 #: Filter/generalfilter.cpp:66
 msgid "Carriage Return"
-msgstr ""
+msgstr "Vagnretur"
 
 #: Filter/generalfilter.cpp:67
-#, fuzzy
 msgid "White Space"
-msgstr "Vit"
+msgstr "White Space"
 
 #: Filter/generalfilter.cpp:68
-#, fuzzy
 msgid "Digit"
-msgstr "Höger"
+msgstr "Siffra"
 
 #: Filter/generalfilter.cpp:101
 #, kde-format
@@ -836,12 +831,12 @@ msgstr "&Text:"
 #: Filter/generalfilter.cpp:265
 #, kde-format
 msgid "RegExp"
-msgstr ""
+msgstr "RegExp"
 
 #: Filter/generalfilter.cpp:286
-#, fuzzy, kde-format
+#, kde-format
 msgid "Encoding:"
-msgstr " Redigerar"
+msgstr "Kodning:"
 
 #: Filter/generalfilter.cpp:301
 #, kde-format
@@ -1218,7 +1213,7 @@ msgstr "Öppna platsen i en ny flik"
 #: UserAction/expander.cpp:572
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Goto!"
-msgstr ""
+msgstr "Expander: åtminstone 1 parameter krävs för Goto!"
 
 #: UserAction/expander.cpp:603
 #, kde-format
@@ -1243,7 +1238,7 @@ msgstr "Rubrik (valfritt):"
 #: UserAction/expander.cpp:614
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Ask!"
-msgstr ""
+msgstr "Expander: minst 1 parameter krävs för Ask!"
 
 #: UserAction/expander.cpp:619
 #, kde-format
@@ -1263,13 +1258,12 @@ msgstr "Vad skall kopieras:"
 #: UserAction/expander.cpp:648
 #, kde-format
 msgid "Append to current clipboard content with this separator (optional):"
-msgstr ""
-"Lägg till till aktuellt urklippsinnehåll med detta skiljetecken (valfritt):"
+msgstr "Lägg till till aktuellt urklippsinnehåll med detta skiljetecken (valfritt):"
 
 #: UserAction/expander.cpp:653
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Clipboard!"
-msgstr ""
+msgstr "Expander: minst 1 parameter krävs för Clipboard!"
 
 #: UserAction/expander.cpp:659
 #, kde-format
@@ -1289,7 +1283,7 @@ msgstr "Vart den skall kopieras:"
 #: UserAction/expander.cpp:680
 #, kde-format
 msgid "Expander: at least 2 parameter is required for Copy!"
-msgstr ""
+msgstr "Expander: minst 2 parametrar krävs för Copy!"
 
 #: UserAction/expander.cpp:687
 #, kde-format
@@ -1319,7 +1313,7 @@ msgstr "Nytt mål/namn..."
 #: UserAction/expander.cpp:716
 #, kde-format
 msgid "Expander: at least 2 parameter is required for Move!"
-msgstr ""
+msgstr "Expander: minst 2 parametrar krävs för Move!"
 
 #: UserAction/expander.cpp:723
 #, kde-format
@@ -1365,8 +1359,7 @@ msgstr "Ladda en panelprofil..."
 #: UserAction/expander.cpp:787
 #, kde-format
 msgid "Expander: no profile specified for %_Profile(profile)%; abort..."
-msgstr ""
-"Expander: ingen profil specificerad för %_Profile(profile)%; avbryter..."
+msgstr "Expander: ingen profil specificerad för %_Profile(profile)%; avbryter..."
 
 #: UserAction/expander.cpp:798
 #, kde-format
@@ -1609,8 +1602,7 @@ msgstr ""
 
 #: UserAction/kraction.cpp:224
 #, kde-format
-msgid ""
-"Embedded terminal emulator does not work, using output collection instead."
+msgid "Embedded terminal emulator does not work, using output collection instead."
 msgstr ""
 "Inbäddad terminalemulator fungerar inte, använder 'output collection' i "
 "stället."
@@ -1629,7 +1621,7 @@ msgstr "Användaråtgärd - kan ej läsa från fil!"
 #: UserAction/useraction.cpp:169
 #, kde-format
 msgid "The actionfile's root-element isn't called "
-msgstr ""
+msgstr "Åtgärdsfilens root-element är inte anropade "
 
 #: UserAction/useraction.cpp:181
 #, kde-format
@@ -1651,9 +1643,9 @@ msgid "UserActions - invalid action"
 msgstr "Användaråtgärd - ogiltig åtgärd"
 
 #: Panel/krinterview.cpp:58
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Experimental View"
-msgstr "&Detaljerad vy"
+msgstr "&Experimentell vy"
 
 #: Panel/krdetailedviewitem.cpp:79 Panel/krdetailedviewitem.cpp:113
 #: Synchronizer/synchronizergui.cpp:2064 Synchronizer/synchronizergui.cpp:2071
@@ -2327,7 +2319,7 @@ msgid "&Trash"
 msgstr "&Papperskorgen"
 
 #: Panel/panelfunc.cpp:691
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
 "untouched)?"
@@ -2338,7 +2330,7 @@ msgstr[0] ""
 "Vill du verkligen ta bort denna virtuella post (fysiska filer förblir "
 "orörda)?"
 msgstr[1] ""
-"Vill du verkligen ta bort denna virtuella post (fysiska filer förblir "
+"Vill du verkligen ta bort denna %1 virtuella poster (fysiska filer förblir "
 "orörda)?"
 
 #: Panel/panelfunc.cpp:692 Panel/panelfunc.cpp:695 Panel/panelfunc.cpp:698
@@ -2349,7 +2341,7 @@ msgid "&Delete"
 msgstr "&Ta bort"
 
 #: Panel/panelfunc.cpp:694
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
 "removing it from the virtual items)?</qt>"
@@ -2357,10 +2349,10 @@ msgid_plural ""
 "<qt>Do you really want to delete these %1 items <b>physically</b> (not just "
 "removing them from the virtual items)?</qt>"
 msgstr[0] ""
-"<qt>Vill du verkligen ta bort denna post <b>fysiska</b> (inte bara flyttning "
+"<qt>Vill du verkligen ta bort denna post <b>fysiskt</b> (inte bara flyttning "
 "från virtuella poster)?</qt>"
 msgstr[1] ""
-"<qt>Vill du verkligen ta bort dessa %2 poster <b>fysiska</b> (inte bara "
+"<qt>Vill du verkligen ta bort dessa %1 poster <b>fysiskt</b> (inte bara "
 "flyttning från virtuella poster)?</qt>"
 
 #: Panel/panelfunc.cpp:697
@@ -2475,121 +2467,119 @@ msgid "Cannot copy a virtual URL collection onto the clipboard!"
 msgstr "Kan ej kopiera en virtuell URL-samling till urklipp!"
 
 #: Queue/queuewidget.cpp:128 Queue/queuedialog.cpp:156
-#, fuzzy, kde-format
+#, kde-format
 msgid "Queue Manager"
-msgstr "Namn på förfrågan"
+msgstr "Köhanterare"
 
 #: Queue/queuewidget.cpp:144
 #, kde-format
 msgid "Deleting this job will abort the pending job. Do you wish to continue?"
-msgstr ""
+msgstr "Genom att ta bort detta jobb kommer beroende jobb att avbrytas. Vill du fortsätta?"
 
 #: Queue/queue_mgr.cpp:9
-#, fuzzy, kde-format
+#, kde-format
 msgid "default"
-msgstr "Standard"
+msgstr "standard"
 
 #: Queue/queuedialog.cpp:103 Queue/queuedialog.cpp:134
 #: Queue/queuedialog.cpp:389
-#, fuzzy, kde-format
+#, kde-format
 msgid "Krusader::Queue Manager"
-msgstr "Krusader::Lokalisera"
+msgstr "Krusader::Köhanterare"
 
 #: Queue/queuedialog.cpp:110
-#, fuzzy, kde-format
+#, kde-format
 msgid "Please enter the time to start processing the queue:"
-msgstr "Ange nytt länkmål:"
+msgstr "Ange nytt tidpunkt för att påbörja köhanteringen:"
 
 #: Queue/queuedialog.cpp:179
-#, fuzzy, kde-format
+#, kde-format
 msgid "Create a new queue (Ctrl+T)"
-msgstr "Skapa ny länk till: "
+msgstr "Skapa ny kö (Ctrl+T)"
 
 #: Queue/queuedialog.cpp:185
-#, fuzzy, kde-format
+#, kde-format
 msgid "Remove the current queue (Ctrl+W)"
-msgstr "spara aktuellt urval"
+msgstr "Tag bort den aktuella kön (Ctrl+W)"
 
 #: Queue/queuedialog.cpp:198 Queue/queuedialog.cpp:427
-#, fuzzy, kde-format
+#, kde-format
 msgid "unused"
-msgstr "Utvidga"
+msgstr "oanvänd"
 
 #: Queue/queuedialog.cpp:204
 #, kde-format
 msgid "Schedule queue starting (Ctrl+S)"
-msgstr ""
+msgstr "Schemalagd kö startar (Ctrl+S)"
 
 #: Queue/queuedialog.cpp:343
 #, kde-format
 msgid "Start processing the queue (Ctrl+P)"
-msgstr ""
+msgstr "Börjar bearbeta kön (Ctrl+P)"
 
 #: Queue/queuedialog.cpp:346
 #, kde-format
 msgid "The queue is paused."
-msgstr ""
+msgstr "Kön har tagit paus."
 
 #: Queue/queuedialog.cpp:348
 #, kde-format
 msgid "Scheduled to start at %1."
-msgstr ""
+msgstr "Schemalagd att starta %1."
 
 #: Queue/queuedialog.cpp:351
 #, kde-format
 msgid "The queue is running."
-msgstr ""
+msgstr "Kön körs."
 
 #: Queue/queuedialog.cpp:353
 #, kde-format
 msgid "Pause processing the queue (Ctrl+P)"
-msgstr ""
+msgstr "Gör en paus i köns bearbetning (Ctrl+P)"
 
 #: Queue/queuedialog.cpp:390
-#, fuzzy, kde-format
+#, kde-format
 msgid "Please enter the name of the new queue"
-msgstr "Var vänlig bestäm ett unikt namn för användaråtgärden"
+msgstr "Bestäm ett namn på den nya kön:"
 
 #: Queue/queuedialog.cpp:399
 #, kde-format
 msgid "A queue already exists with this name!"
-msgstr ""
+msgstr "Den finns redan en kö med detta namn!"
 
 #: Queue/queuedialog.cpp:411
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Deleting the queue requires aborting all pending jobs. Do you wish to "
 "continue?"
-msgstr ""
-"Att gå in i föräldramappen kräver laddning av innehållet i \"%1\" URL. Vill "
-"du fortsätta?"
+msgstr "Att ta bort kön kräver att alla beroende jobb avbryts. Vill du fortsätta?"
 
 #: Queue/queue.cpp:66
 #, kde-format
 msgid "An error occurred during processing the queue.\n"
-msgstr ""
+msgstr "Ett fel uppstod vid behandlingen av kön.\n"
 
 #: Queue/queue.cpp:68
 #, kde-format
 msgid "The last processed element in the queue was aborted.\n"
-msgstr ""
+msgstr "Det sista behandlade4 elementet i lön avbröts.\n"
 
 #: Queue/queue.cpp:69
 #, kde-format
 msgid ""
 "Do you wish to continue with the next element, delete the queue or suspend "
 "the queue?"
-msgstr ""
+msgstr "Vill du fortsätta med nästa element, ta bort kön eller vänta med kön?"
 
 #: Queue/queue.cpp:71
-#, fuzzy, kde-format
+#, kde-format
 msgid "Krusader::Queue"
-msgstr "Krusader::Lokalisera"
+msgstr "Krusader::Kö"
 
 #: Queue/queue.cpp:72
-#, fuzzy, kde-format
+#, kde-format
 msgid "Suspend"
-msgstr "Utvidga"
+msgstr "Avvakta"
 
 #: Locate/locate.cpp:121 Locate/locate.cpp:125 Locate/locate.cpp:392
 #, kde-format
@@ -2673,9 +2663,9 @@ msgid "Edit (F4)"
 msgstr "Redigera (F4)"
 
 #: Locate/locate.cpp:396 Search/krsearchdialog.cpp:626
-#, fuzzy, kde-format
+#, kde-format
 msgid "Compare by content (F10)"
-msgstr "Jämför innehåll"
+msgstr "Jämför innehåll (F10)"
 
 #: Locate/locate.cpp:401
 #, kde-format
@@ -2988,7 +2978,7 @@ msgstr "D&iskutnyttjande..."
 #: krusader.cpp:735
 #, kde-format
 msgid "&Queue Manager..."
-msgstr ""
+msgstr "&Köhanterare..."
 
 #: krusader.cpp:736
 #, kde-format
@@ -3159,14 +3149,14 @@ msgid "Edit File"
 msgstr "Redigera fil"
 
 #: krusader.cpp:785
-#, fuzzy, kde-format
+#, kde-format
 msgid "Copy by queue..."
-msgstr "Kopiera..."
+msgstr "Kopiera med hjälp av kö..."
 
 #: krusader.cpp:786
-#, fuzzy, kde-format
+#, kde-format
 msgid "Move by queue..."
-msgstr "Flytta..."
+msgstr "Flytta med hjälp av kö..."
 
 #: krusader.cpp:787
 #, kde-format
@@ -3512,9 +3502,9 @@ msgid "Create in:"
 msgstr "Skapa i:"
 
 #: BookMan/kraddbookmarkdlg.cpp:74
-#, fuzzy, kde-format
+#, kde-format
 msgid "Folders"
-msgstr "Mapp..."
+msgstr "Mappar"
 
 #: BookMan/kraddbookmarkdlg.cpp:118
 #, kde-format
@@ -3522,14 +3512,14 @@ msgid "Folder name:"
 msgstr "Mappnamn:"
 
 #: MountMan/kmountman.cpp:203
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "<qt>Error ejecting device!\n"
 " You have to configure the path to the 'eject' tool. Please check the "
 "<b>Dependencies</b> page in Krusader's settings.</qt>"
 msgstr ""
-"<qt>Krusader kan inte hitta det checksummeverktyg som tar hand om %1 i ditt "
-"system. Kontrollera <b>beroende</b>-sidan i Krusader's inställningar.</qt>"
+"<qt>Fel vid utmatning av enhet!\n"
+" Du måste bestämma sökvägen till utmatningsverktyget. Kontrollera <b>Beroende</b>sidan i Krusader's inställningar.</qt>"
 
 #: MountMan/kmountman.cpp:233
 #, kde-format
@@ -3562,7 +3552,7 @@ msgid "MountMan is not operational. Sorry"
 msgstr "MountMan fungerar tyvärr inte."
 
 #: MountMan/kmountmangui.cpp:65
-#, fuzzy, kde-format
+#, kde-format
 msgid "Mount.Man"
 msgstr "MountMan"
 
@@ -3597,9 +3587,9 @@ msgid "Free %"
 msgstr "Ledigt %"
 
 #: MountMan/kmountmangui.cpp:164
-#, fuzzy, kde-format
+#, kde-format
 msgid "MountMan.Info"
-msgstr "MountMan"
+msgstr "MountMan.Info"
 
 #: MountMan/kmountmangui.cpp:214 MountMan/kmountmangui.cpp:332
 #, kde-format
@@ -3626,8 +3616,7 @@ msgstr ""
 
 #: MountMan/kmountmangui.cpp:364
 #, kde-format
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Det har uppståt ett internt fel i MountMan.Var vänlig och rapportera detta "
 "till utvecklarna.Tack."
@@ -3656,9 +3645,10 @@ msgid ""
 "(c) 2000-2003, Shie Erlich, Rafi Yanai\n"
 "(c) 2004-2008, Krusader Krew"
 msgstr ""
+"(c) 2000-2003, Shie Erlich, Rafi Yanai\n"
+"(c) 2004-2008, Krusader Krew"
 
 #: main.cpp:112
-#, fuzzy
 msgid ""
 "Feedback:\n"
 "http://www.krusader.org/phpBB/\n"
@@ -3666,7 +3656,7 @@ msgid ""
 "IRC\n"
 "server: irc.freenode.net, channel: #krusader"
 msgstr ""
-"Återmatning\n"
+"Återmatning:\n"
 "http://www.krusader.org/phpBB/\n"
 "\n"
 "IRC\n"
@@ -3674,463 +3664,455 @@ msgstr ""
 
 #: main.cpp:115
 msgid "Rafi Yanai"
-msgstr ""
+msgstr "Rafi Yanai"
 
 #: main.cpp:115 main.cpp:116
-#, fuzzy
 msgid "Author"
-msgstr "timme"
+msgstr "Författare"
 
 #: main.cpp:116
 msgid "Shie Erlich"
-msgstr ""
+msgstr "Shie Erlich"
 
 #: main.cpp:117
 msgid "Karai Csaba"
-msgstr ""
+msgstr "Karai Csaba"
 
 #: main.cpp:117 main.cpp:118 main.cpp:119 main.cpp:120
 msgid "Developer"
-msgstr ""
+msgstr "Utvecklare"
 
 #: main.cpp:118
 msgid "Heiner Eichmann"
-msgstr ""
+msgstr "Heiner Eichmann"
 
 #: main.cpp:119
 msgid "Jonas Bähr"
-msgstr ""
+msgstr "Jonas Bähr"
 
 #: main.cpp:120 main.cpp:125
 msgid "Václav Jůza"
-msgstr ""
+msgstr "Václav Jůza"
 
 #: main.cpp:121 main.cpp:154
 msgid "Dirk Eschler"
-msgstr ""
+msgstr "Dirk Eschler"
 
 #: main.cpp:121
 msgid "Webmaster and i18n coordinator"
-msgstr ""
+msgstr "Webmaster och i18n-samordnare"
 
 #: main.cpp:122 main.cpp:150
 msgid "Frank Schoolmeesters"
-msgstr ""
+msgstr "Frank Schoolmeesters"
 
 #: main.cpp:122
 msgid "Documentation and marketing coordinator"
-msgstr ""
+msgstr "Dokumentation och marknadsföringssamordnare"
 
 #: main.cpp:123
 msgid "Richard Holt"
-msgstr ""
+msgstr "Richard Holt"
 
 #: main.cpp:123
 msgid "Documentation & Proofing"
-msgstr ""
+msgstr "Dokumentation & korrektur"
 
 #: main.cpp:124 main.cpp:170
 msgid "Matej Urbancic"
-msgstr ""
+msgstr "Matej Urbancic"
 
 #: main.cpp:124
 msgid "Marketing & Product Research"
-msgstr ""
+msgstr "Marknadsföring & produktundersökning"
 
 #: main.cpp:125 main.cpp:126 main.cpp:137
 msgid "QA, bug-hunting, patches and general help"
-msgstr ""
+msgstr "QA, felletning, rättning och allmän hjälp"
 
 #: main.cpp:126
 msgid "Jiří Paleček"
-msgstr ""
+msgstr "Jiří Paleček"
 
 #: main.cpp:127
 msgid "Jiří Klement"
-msgstr ""
+msgstr "Jiří Klement"
 
 #: main.cpp:127
 msgid "Important help in KDE 4 porting"
-msgstr ""
+msgstr "Viktig hjälp för KDE 4"
 
 #: main.cpp:128
 msgid "Andrew Neupokoev"
-msgstr ""
+msgstr "Andrew Neupokoev"
 
 #: main.cpp:128
 msgid "Killer Logo and Icons for Krusader (contest winner)"
-msgstr ""
+msgstr "Killer Logo och ikoner för Krusader (tävlingsvinnare)"
 
 #: main.cpp:129
 msgid "The UsefulArts Organization"
-msgstr ""
+msgstr "The UsefulArts Organization"
 
 #: main.cpp:129
-#, fuzzy
 msgid "Icon for krusader"
-msgstr "Konfigurera &Krusader..."
+msgstr "Ikon för Krusader..."
 
 #: main.cpp:130
 msgid "Gábor Lehel"
-msgstr ""
+msgstr "Gábor Lehel"
 
 #: main.cpp:130
 msgid "Viewer module for 3rd Hand"
-msgstr ""
+msgstr "Betraktningsmodul för 3:e Hand"
 
 #: main.cpp:131
 msgid "Mark Eatough"
-msgstr ""
+msgstr "Mark Eatough"
 
 #: main.cpp:131
 msgid "Handbook Proof-Reader"
-msgstr ""
+msgstr "Handbokskorrekturläsning"
 
 #: main.cpp:132
 msgid "Jan Halasa"
-msgstr ""
+msgstr "Jan Halasa"
 
 #: main.cpp:132
 msgid "The old Bookmark Module"
-msgstr ""
+msgstr "Gamal bokmärkesmodulen"
 
 #: main.cpp:133
 msgid "Hans Löffler"
-msgstr ""
+msgstr "Hans Löffler"
 
 #: main.cpp:133
 msgid "Dir history button"
-msgstr ""
+msgstr "Mapphistorieknapp"
 
 #: main.cpp:134
 msgid "Szombathelyi György"
-msgstr ""
+msgstr "Szombathelyi György"
 
 #: main.cpp:134
 msgid "ISO KIO slave"
-msgstr ""
+msgstr "ISO KIO slav"
 
 #: main.cpp:135
 msgid "Jan Willem van de Meent (Adios)"
-msgstr ""
+msgstr "Jan Willem van de Meent (Adios)"
 
 #: main.cpp:135
-#, fuzzy
 msgid "Icons for Krusader"
-msgstr "Konfigurera &Krusader..."
+msgstr "Ikoner för Krusader"
 
 #: main.cpp:136
 msgid "Mikolaj Machowski"
-msgstr ""
+msgstr "Mikolaj Machowski"
 
 #: main.cpp:136
 msgid "Usability and QA"
-msgstr ""
+msgstr "Användbarhet och kvalitetssäkring"
 
 #: main.cpp:137
 msgid "Cristi Dumitrescu"
-msgstr ""
+msgstr "Cristi Dumitrescu"
 
 #: main.cpp:138
 msgid "Aurelien Gateau"
-msgstr ""
+msgstr "Aurelien Gateau"
 
 #: main.cpp:138
-#, fuzzy
 msgid "patch for KViewer"
-msgstr "Sök efter filer"
+msgstr "rättelse till KViewer"
 
 #: main.cpp:139
 msgid "Milan Brabec"
-msgstr ""
+msgstr "Milan Brabec"
 
 #: main.cpp:139
 msgid "the first patch ever !"
-msgstr ""
+msgstr "den första rättelsen någonsin !"
 
 #: main.cpp:140
 msgid "Asim Husanovic"
-msgstr ""
+msgstr "Asim Husanovic"
 
 #: main.cpp:140
 msgid "Bosnian translation"
-msgstr ""
+msgstr "Bosnisk översättning"
 
 #: main.cpp:141
 msgid "Doutor Zero"
-msgstr ""
+msgstr "Doutor Zero"
 
 #: main.cpp:141
-#, fuzzy
 msgid "Brazilian Portuguese translation"
-msgstr "Importera användaråtgärder"
+msgstr "Brasiliansk portugisisk översättning"
 
 #: main.cpp:142
 msgid "Milen Ivanov"
-msgstr ""
+msgstr "Milen Ivanov"
 
 #: main.cpp:142
 msgid "Bulgarian translation"
-msgstr ""
+msgstr "Bulgarisk översättning"
 
 #: main.cpp:143
 msgid "Quim Perez"
-msgstr ""
+msgstr "Quim Perez"
 
 #: main.cpp:143
 msgid "Catalan translation"
-msgstr ""
+msgstr "Katalansk översättning"
 
 #: main.cpp:144
 msgid "Jinghua Luo"
-msgstr ""
+msgstr "Jinghua Luo"
 
 #: main.cpp:144
 msgid "Chinese Simplified translation"
-msgstr ""
+msgstr "Förenklad kinesisk översättning"
 
 #: main.cpp:145
-#, fuzzy
 msgid "Mitek"
-msgstr "Titel"
+msgstr "Mitek"
 
 #: main.cpp:145 main.cpp:146
 msgid "Old Czech translation"
-msgstr ""
+msgstr "Gammal tjeckisk översättning"
 
 #: main.cpp:146
 msgid "Martin Sixta"
-msgstr ""
+msgstr "Martin Sixta"
 
 #: main.cpp:147
 msgid "Vaclav Jůza"
-msgstr ""
+msgstr "Vaclav Jůza"
 
 #: main.cpp:147
 msgid "Czech translation"
-msgstr ""
+msgstr "Tjeckisk översättning"
 
 #: main.cpp:148
 msgid "Anders Bruun Olsen"
-msgstr ""
+msgstr "Anders Bruun Olsen"
 
 #: main.cpp:148
 msgid "Old Danish translation"
-msgstr ""
+msgstr "Gammal dansk översättning"
 
 #: main.cpp:149
 msgid "Peter H. Sorensen"
-msgstr ""
+msgstr "Peter H. Sorensen"
 
 #: main.cpp:149
-#, fuzzy
 msgid "Danish translation"
-msgstr "Mål:"
+msgstr "Dansk översättning"
 
 #: main.cpp:150
 msgid "Dutch translation"
-msgstr ""
+msgstr "Hollänḋsk översättning"
 
 #: main.cpp:151
 msgid "Rene-Pierre Lehmann"
-msgstr ""
+msgstr "Rene-Pierre Lehmann"
 
 #: main.cpp:151
 msgid "Old French translation"
-msgstr ""
+msgstr "Gammal fransk översättning"
 
 #: main.cpp:152
 msgid "David Guillerm"
-msgstr ""
+msgstr "David Guillerm"
 
 #: main.cpp:152
 msgid "French translation"
-msgstr ""
+msgstr "Fransk översättning"
 
 #: main.cpp:153
 msgid "Christoph Thielecke"
-msgstr ""
+msgstr "Christoph Thielecke"
 
 #: main.cpp:153
 msgid "Old German translation"
-msgstr ""
+msgstr "Gammal tysk översättning"
 
 #: main.cpp:154
 msgid "German translation"
-msgstr ""
+msgstr "Tysk översättning"
 
 #: main.cpp:155
 msgid "Spiros Georgaras"
-msgstr ""
+msgstr "Spiros Georgaras"
 
 #: main.cpp:155
 msgid "Greek translation"
-msgstr ""
+msgstr "Grekisk översättning"
 
 #: main.cpp:156
 msgid "Kukk Zoltan"
-msgstr ""
+msgstr "Kukk Zoltan"
 
 #: main.cpp:156
 msgid "Old Hungarian translation"
-msgstr ""
+msgstr "Gammal ungersk översättning"
 
 #: main.cpp:157
 msgid "Arpad Biro"
-msgstr ""
+msgstr "Arpad Biro"
 
 #: main.cpp:157
 msgid "Hungarian translation"
-msgstr ""
+msgstr "Ungersk översättning"
 
 #: main.cpp:158
 msgid "Giuseppe Bordoni"
-msgstr ""
+msgstr "Giuseppe Bordoni"
 
 #: main.cpp:158
 msgid "Italian translation"
-msgstr ""
+msgstr "Italiensk översättning"
 
 #: main.cpp:159
 msgid "Hideki Kimura"
-msgstr ""
+msgstr "Hideki Kimura"
 
 #: main.cpp:159
 msgid "Japanese translation"
-msgstr ""
+msgstr "Japansk översättning"
 
 #: main.cpp:160
 msgid "UTUMI Hirosi"
-msgstr ""
+msgstr "UTUMI Hirosi"
 
 #: main.cpp:160
 msgid "Old Japanese translation"
-msgstr ""
+msgstr "Gammal japansk översättning"
 
 #: main.cpp:161
 msgid "Dovydas Sankauskas"
-msgstr ""
+msgstr "Dovydas Sankauskas"
 
 #: main.cpp:161
 msgid "Lithuanian translation"
-msgstr ""
+msgstr "Litauisk översättning"
 
 #: main.cpp:162
 msgid "Bruno Queiros"
-msgstr ""
+msgstr "Bruno Queiros"
 
 #: main.cpp:162
-#, fuzzy
 msgid "Portuguese translation"
-msgstr "Importera användaråtgärder"
+msgstr "Portugisisk översättning"
 
 #: main.cpp:163
 msgid "Lukasz Janyst"
-msgstr ""
+msgstr "Lukasz Janyst"
 
 #: main.cpp:163
 msgid "Old Polish translation"
-msgstr ""
+msgstr "Gammal polsk översättning"
 
 #: main.cpp:164
 msgid "Pawel Salawa"
-msgstr ""
+msgstr "Pawel Salawa"
 
 #: main.cpp:164 main.cpp:165
 msgid "Polish translation"
-msgstr ""
+msgstr "Polsk översättning"
 
 #: main.cpp:165
 msgid "Tomek Grzejszczyk"
-msgstr ""
+msgstr "Tomek Grzejszczyk"
 
 #: main.cpp:166
 msgid "Dmitry A. Bugay"
-msgstr ""
+msgstr "Dmitry A. Bugay"
 
 #: main.cpp:166
 msgid "Russian translation"
-msgstr ""
+msgstr "Rysk översättning"
 
 #: main.cpp:167
 msgid "Dmitry Chernyak"
-msgstr ""
+msgstr "Dmitry Chernyak"
 
 #: main.cpp:167
 msgid "Old Russian translation"
-msgstr ""
+msgstr "Gammal rysk översättning"
 
 #: main.cpp:168
 msgid "Sasa Tomic"
-msgstr ""
+msgstr "Sasa Tomic"
 
 #: main.cpp:168
 msgid "Serbian translation"
-msgstr ""
+msgstr "Serbisk översättning"
 
 #: main.cpp:169
 msgid "Zdenko Podobna"
-msgstr ""
+msgstr "Zdenko Podobna"
 
 #: main.cpp:169
 msgid "Slovak translation"
-msgstr ""
+msgstr "Slovakisk översättning"
 
 #: main.cpp:170
 msgid "Slovenian translation"
-msgstr ""
+msgstr "Slovensk översättning"
 
 #: main.cpp:171
 msgid "Rafael Munoz"
-msgstr ""
+msgstr "Rafael Munoz"
 
 #: main.cpp:171
 msgid "Old Spanish translation"
-msgstr ""
+msgstr "Gammal spansk översättning"
 
 #: main.cpp:172
 msgid "Alejandro Araiza Alvarado"
-msgstr ""
+msgstr "Alejandro Araiza Alvarado"
 
 #: main.cpp:172
 msgid "Spanish translation"
-msgstr ""
+msgstr "Spansk översättning"
 
 #: main.cpp:173
 msgid "Erik Johanssen"
-msgstr ""
+msgstr "Erik Johanssen"
 
 #: main.cpp:173 main.cpp:174
 msgid "Old Swedish translation"
-msgstr ""
+msgstr "Gammal svensk översättning"
 
 #: main.cpp:174
 msgid "Anders Linden"
-msgstr ""
+msgstr "Anders Linden"
 
 #: main.cpp:175
 msgid "Peter Landgren"
-msgstr ""
+msgstr "Peter Landgren"
 
 #: main.cpp:175
 msgid "Swedish translation"
-msgstr ""
+msgstr "Svensk översättning"
 
 #: main.cpp:176
 msgid "Bekir Sonat"
-msgstr ""
+msgstr "Bekir Sonat"
 
 #: main.cpp:176
 msgid "Turkish translation"
-msgstr ""
+msgstr "Turkisk översättning"
 
 #: main.cpp:177
 msgid "Ivan Petrouchtchak"
-msgstr ""
+msgstr "Ivan Petrouchtchak"
 
 #: main.cpp:177
 msgid "Ukrainian translation"
-msgstr ""
+msgstr "Ukrainsk översättning"
 
 #: main.cpp:183
 msgid "Start left panel at <path>"
@@ -4155,14 +4137,14 @@ msgid "Function keys allow performing fast operations on files."
 msgstr "Funktionstangenter åstadkommer snabba filoperationer."
 
 #: krusaderview.cpp:307
-#, fuzzy, kde-format
+#, kde-format
 msgid "Horizontal Mode"
-msgstr "Vertikal &mod"
+msgstr "Horisontell mode"
 
 #: Dialogs/krdialogs.cpp:142
 #, kde-format
 msgid "F2 Queue"
-msgstr ""
+msgstr "F2 Kö"
 
 #: Dialogs/krdialogs.cpp:158
 #, kde-format
@@ -4498,8 +4480,7 @@ msgstr "Import av förlegat avslutad"
 
 #: Dialogs/krkeydialog.cpp:135
 #, kde-format
-msgid ""
-"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
 msgstr "<qt>Fil <b>%1</b> finns redan. Vill du verkligen skriva över den?</qt>"
 
 #: Dialogs/krkeydialog.cpp:144
@@ -5113,14 +5094,14 @@ msgstr "Inget"
 #: ActionMan/ui_actionproperty.h:722 rc.cpp:116
 #, kde-format
 msgid "If checked, the action is shown in the Useractions menus."
-msgstr ""
+msgstr "Om markerad, visas åtgärden i användaråtgärdsmenyerna."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 401
 #: ActionMan/ui_actionproperty.h:725 rc.cpp:119
-#, fuzzy, kde-format
+#, kde-format
 msgid "Enabled"
-msgstr "aktiverad"
+msgstr "Aktiverad"
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 420
@@ -5174,16 +5155,16 @@ msgstr "Kör i en terminal"
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 463
 #: ActionMan/ui_actionproperty.h:748 rc.cpp:146
-#, fuzzy, kde-format
+#, kde-format
 msgid "Run the command in the embedded terminal emulator."
-msgstr "Kör kommandot i en terminal."
+msgstr "Kör kommandot i en inkapslad terminalemulator."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 466
 #: ActionMan/ui_actionproperty.h:751 rc.cpp:149
-#, fuzzy, kde-format
+#, kde-format
 msgid "Run in the embedded terminal emulator"
-msgstr "Skicka till inbäddad t&erminalemulator"
+msgstr "Kör i en inkapslad terminalemulator."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 39
@@ -5378,8 +5359,7 @@ msgstr "Tag bort valda användaråtgärder"
 
 #: ActionMan/useractionpage.cpp:134
 #, kde-format
-msgid ""
-"The current action has been modified. Do you want to apply these changes?"
+msgid "The current action has been modified. Do you want to apply these changes?"
 msgstr "Den aktuella åtgärden har ändrats. Vill du genomföra ändringarna?"
 
 #: ActionMan/useractionpage.cpp:211
@@ -5565,7 +5545,7 @@ msgstr "Denna markering tillåter några parametrar:"
 #: ActionMan/addplaceholderpopup.cpp:288 ActionMan/addplaceholderpopup.cpp:487
 #, kde-format
 msgid "list-add"
-msgstr ""
+msgstr "tillägg av lista"
 
 #: UserMenu/usermenu.cpp:58
 #, kde-format
@@ -5701,9 +5681,9 @@ msgid "Show files marked to <i>Copy from right to left</i> (CTRL+R)."
 msgstr "Visa markerade filer <i>Kopiera från höger till vänster</i> (CTRL+R)."
 
 #: Synchronizer/synchronizergui.cpp:1297
-#, fuzzy, kde-format
+#, kde-format
 msgid "Show files marked to delete (CTRL+T)."
-msgstr "Visa de raderingsmärkta filerna. (CTRL-T)"
+msgstr "Visa de raderingsmärkta filerna. (CTRL+T)"
 
 #: Synchronizer/synchronizergui.cpp:1302
 #, kde-format
@@ -5858,8 +5838,7 @@ msgstr "&Höger mapp:"
 #: Synchronizer/synchronizergui.cpp:1683
 #, kde-format
 msgid "URL must be the descendant of either the left or the right base URL!"
-msgstr ""
-"URL måste härstamma från antingen den vänstra eller den högra grund-URL:en!"
+msgstr "URL måste härstamma från antingen den vänstra eller den högra grund-URL:en!"
 
 #: Synchronizer/synchronizergui.cpp:1743
 #, kde-format
@@ -5989,7 +5968,7 @@ msgstr "Krusader::Synkronisera"
 #, kde-format
 msgid "Right to left: Copy 1 file"
 msgid_plural "Right to left: Copy %1 files"
-msgstr[0] "Höger till vänster: Kopiera 1fil till:"
+msgstr[0] "Höger till vänster: Kopiera 1 fil"
 msgstr[1] "Höger till vänster: Kopiera %1 filer"
 
 #: Synchronizer/synchronizedialog.cpp:58 Synchronizer/synchronizedialog.cpp:71
@@ -6002,10 +5981,10 @@ msgstr[1] "(%1 byte)"
 
 #: Synchronizer/synchronizedialog.cpp:64 Synchronizer/synchronizedialog.cpp:77
 #: Synchronizer/synchronizedialog.cpp:90
-#, fuzzy, kde-format
+#, kde-format
 msgid "Ready: %2/1 file, %3/%4"
 msgid_plural "Ready: %2/%1 files, %3/%4"
-msgstr[0] "Klar: %2/1 fil, %4/%5"
+msgstr[0] "Klar: %2/1 filer, %4/%5"
 msgstr[1] "Klar: %2/%1 filer, %4/%5"
 
 #: Synchronizer/synchronizedialog.cpp:70
@@ -6087,9 +6066,9 @@ msgstr "Överföring av URL till KGet"
 
 #: Synchronizer/synchronizer.cpp:1457 krslots.cpp:147 krslots.cpp:224
 #: krslots.cpp:509 krslots.cpp:551 krslots.cpp:569
-#, fuzzy, kde-format
+#, kde-format
 msgid "Error executing %1!"
-msgstr "Fel vid körning"
+msgstr "Fel vid körning av %1!"
 
 #: Synchronizer/feedtolistboxdialog.cpp:56
 #, kde-format
@@ -6657,8 +6636,7 @@ msgstr "Gransak filen i hexadecimalt läge (bäst för binära filer.)"
 #: Konfigurator/kggeneral.cpp:112
 #, kde-format
 msgid "Internal editor and viewer opens each file in a separate window"
-msgstr ""
-"Inbyggd redigerare och granskare öppnar varje fil i ett separat fönster"
+msgstr "Inbyggd redigerare och granskare öppnar varje fil i ett separat fönster"
 
 #: Konfigurator/kggeneral.cpp:113
 #, kde-format
@@ -6710,10 +6688,8 @@ msgstr "Söker efter verktyg..."
 
 #: Konfigurator/kggeneral.cpp:214
 #, kde-format
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr ""
-"Se till att installera ny verktyg i din <code>$PATH</code> (t. ex. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgstr "Se till att installera ny verktyg i din <code>$PATH</code> (t. ex. /usr/bin)"
 
 #: Konfigurator/kggeneral.cpp:222
 #, kde-format
@@ -6737,8 +6713,7 @@ msgstr ""
 #: Konfigurator/krresulttable.cpp:132
 #, kde-format
 msgid "unarj not found, but arj found, which will be used for unpacking"
-msgstr ""
-"unarj hittades ej, men arj hittad, vilken kommer att användas till uppackning"
+msgstr "unarj hittades ej, men arj hittad, vilken kommer att användas till uppackning"
 
 #: Konfigurator/krresulttable.cpp:138
 #, kde-format
@@ -6803,9 +6778,9 @@ msgid "Tool"
 msgstr "Verktyg"
 
 #: Konfigurator/konfigurator.cpp:67
-#, fuzzy, kde-format
+#, kde-format
 msgid "Konfigurator"
-msgstr "Bekräftelser"
+msgstr "Konfigurator"
 
 #: Konfigurator/konfigurator.cpp:68
 #, kde-format
@@ -7029,7 +7004,7 @@ msgstr "Fillistans ikonstorlek:"
 #: Konfigurator/kglookfeel.cpp:196
 #, kde-format
 msgid "12"
-msgstr ""
+msgstr "12"
 
 #: Konfigurator/kglookfeel.cpp:197
 #, kde-format
@@ -7064,12 +7039,12 @@ msgstr "Visa ikoner för filnamn och mappar."
 #: Konfigurator/kglookfeel.cpp:216
 #, kde-format
 msgid "Load the user defined folder icons"
-msgstr ""
+msgstr "Ladda de användardefinierade mappikonerna"
 
 #: Konfigurator/kglookfeel.cpp:216
 #, kde-format
 msgid "Load the user defined folder icons (can cause decrease in performance)."
-msgstr ""
+msgstr "Ladda de användardefinierade mappikonerna (kan orsaka sämre prestanda)."
 
 #: Konfigurator/kglookfeel.cpp:217
 #, kde-format
@@ -7108,27 +7083,27 @@ msgstr ""
 #: Konfigurator/kglookfeel.cpp:234
 #, kde-format
 msgid "Sort method:"
-msgstr ""
+msgstr "Sorteringmetod:"
 
 #: Konfigurator/kglookfeel.cpp:238
 #, kde-format
 msgid "Alphabetical"
-msgstr ""
+msgstr "Alfabetisk"
 
 #: Konfigurator/kglookfeel.cpp:239
 #, kde-format
 msgid "Alphabetical and numbers"
-msgstr ""
+msgstr "Alfabetisk och numerisk"
 
 #: Konfigurator/kglookfeel.cpp:240
 #, kde-format
 msgid "Character code"
-msgstr ""
+msgstr "Teckenkod"
 
 #: Konfigurator/kglookfeel.cpp:241
 #, kde-format
 msgid "Character code and numbers"
-msgstr ""
+msgstr "Teckenkod och numerisk"
 
 #: Konfigurator/kglookfeel.cpp:253
 #, kde-format
@@ -7224,8 +7199,7 @@ msgstr "Växlarknapp för synkroniseringsläsning"
 
 #: Konfigurator/kglookfeel.cpp:299
 #, kde-format
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr "Varje mappändring i panelen utförs också i den andra panelen."
 
 #: Konfigurator/kglookfeel.cpp:324
@@ -7286,19 +7260,17 @@ msgstr ""
 #: Konfigurator/kglookfeel.cpp:341
 #, kde-format
 msgid "Ergonomic Mode"
-msgstr ""
+msgstr "Ergonomiskt läge"
 
 #: Konfigurator/kglookfeel.cpp:341
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "The left mouse button does not select, but sets the current file without "
 "affecting the current selection. The right mouse button invokes the context-"
 "menu. You can select with Ctrl key and the left button."
 msgstr ""
 "Den vänstra musknappen väljer inte, men markerar aktuell fil utan att "
-"påverka det aktuella urvalet. Den högra musknappen markerar många filer och "
-"högerklick-meny åstadkoms genom att tryck och hålla nere den högra "
-"musknappen."
+"påverka det aktuella urvalet. Den högra musknappen påverkar sammanhangsmenyn. Du kan välja med Ctrl tangent och den vänstra musknappen."
 
 #: Konfigurator/kglookfeel.cpp:342
 #, kde-format
@@ -7983,24 +7955,24 @@ msgid "Delete background:"
 msgstr "Tag bort bakgrund:"
 
 #: Konfigurator/kgcolors.cpp:211
-#, fuzzy, kde-format
+#, kde-format
 msgid "Other"
-msgstr "Andra..."
+msgstr "Andra"
 
 #: Konfigurator/kgcolors.cpp:219
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch, match foreground:"
-msgstr "Mappförgrund:"
+msgstr "Snabbsökning, matcha förgrund:"
 
 #: Konfigurator/kgcolors.cpp:220 Konfigurator/kgcolors.cpp:222
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch, non-match background:"
-msgstr "Alternativ bakgrund:"
+msgstr "Snabbsökning, icke-matchning bakgrund"
 
 #: Konfigurator/kgcolors.cpp:221
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch, non-match foreground:"
-msgstr "Aktuell förgrund:"
+msgstr "Snabbsökning, icke-matchning förgrund"
 
 #: Konfigurator/kgcolors.cpp:255
 #, kde-format
@@ -8068,14 +8040,14 @@ msgid "Equals"
 msgstr "Lika"
 
 #: Konfigurator/kgcolors.cpp:526
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch non-match"
-msgstr "Snabbsökning"
+msgstr "Snabbsökning icke-matchning"
 
 #: Konfigurator/kgcolors.cpp:527
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch match"
-msgstr "Snabbsökning"
+msgstr "Snabbsökning matchning"
 
 #: Konfigurator/kgcolors.cpp:546
 #, kde-format
@@ -8093,11 +8065,9 @@ msgid "Select a color scheme file"
 msgstr "Välj en färgschemafil"
 
 #: Konfigurator/kgcolors.cpp:564
-#, fuzzy, kde-format
+#, kde-format
 msgid "File %1 already exists. Are you sure you want to overwrite it?"
-msgstr ""
-"Fil %1 finns redan.\n"
-"Vill du verkligen skriva över den?"
+msgstr "Fil %1 finns redan. Vill du verkligen skriva över den?"
 
 #: Konfigurator/kgcolors.cpp:567
 #, kde-format
@@ -8271,7 +8241,7 @@ msgstr "GZip"
 #: Konfigurator/kgarchives.cpp:64
 #, kde-format
 msgid "LZMA"
-msgstr ""
+msgstr "LZMA"
 
 #: Konfigurator/kgarchives.cpp:65
 #, kde-format
@@ -8351,10 +8321,8 @@ msgstr "Testa arkivfil före uppackning"
 
 #: Konfigurator/kgarchives.cpp:108
 #, kde-format
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
-msgstr ""
-"Vissa trasiga arkivfiler kan åstadkomma krascher, därför föreslås testning."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgstr "Vissa trasiga arkivfiler kan åstadkomma krascher, därför föreslås testning."
 
 #: Konfigurator/kgarchives.cpp:125
 #, kde-format
@@ -8363,10 +8331,8 @@ msgstr "Sök efter packare..."
 
 #: Konfigurator/kgarchives.cpp:126
 #, kde-format
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr ""
-"Se till att installera nya packare i din <code>$PATH</code> (t. ex. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgstr "Se till att installera nya packare i din <code>$PATH</code> (t. ex. /usr/bin)"
 
 #: Konfigurator/kguseractions.cpp:52
 #, kde-format
@@ -8420,9 +8386,9 @@ msgid "Use fixed width font as default"
 msgstr "Använd font med gast teckensnitt som standard"
 
 #: krslots.cpp:101
-#, fuzzy, kde-format
+#, kde-format
 msgid "No selected files to send!"
-msgstr "Endast markerade filer"
+msgstr "Inga markerade filer att skicka"
 
 #: krslots.cpp:109
 #, kde-format
@@ -8434,11 +8400,11 @@ msgstr ""
 "i din sökväg. Tips: Krusader stödjer Kmail."
 
 #: krslots.cpp:118
-#, fuzzy, kde-format
+#, kde-format
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
-msgstr[0] "Skickar fil: "
-msgstr[1] "Skickar fil: "
+msgstr[0] "Skickar fil: %2"
+msgstr[1] "Skickar filer: %2"
 
 #: krslots.cpp:176
 #, kde-format
@@ -8470,9 +8436,9 @@ msgstr ""
 "Xxdiff."
 
 #: krslots.cpp:205 krslots.cpp:211
-#, fuzzy, kde-format
+#, kde-format
 msgid "Krusader is unable to download %1"
-msgstr "Krusader kan inte ladda ned: "
+msgstr "Krusader kan inte ladda ned: %1"
 
 #: krslots.cpp:460
 #, kde-format
@@ -8682,10 +8648,8 @@ msgstr "Inte en giltig CRC-fil!"
 
 #: Splitter/combiner.cpp:154
 #, kde-format
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
-msgstr ""
-"Giltighetskontroll är omöjlig utan en giltig CRC-fil. Fortsätta att slå ihop?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
+msgstr "Giltighetskontroll är omöjlig utan en giltig CRC-fil. Fortsätta att slå ihop?"
 
 #: Splitter/combiner.cpp:258
 #, kde-format
@@ -8735,52 +8699,52 @@ msgstr "Fel vid skrivning av fil %1!"
 #: krarc.cpp:182
 #, kde-format
 msgid "Creating directories is not supported with %1 archives"
-msgstr ""
+msgstr "Att skapa mappar stöds inte med %1-arkiv"
 
 #: krarc.cpp:215
-#, fuzzy, kde-format
+#, kde-format
 msgid "Creating %1 ..."
-msgstr "Tar bort %1..."
+msgstr "Skapar %1 ..."
 
 #: krarc.cpp:254
-#, fuzzy, kde-format
+#, kde-format
 msgid "Writing to %1 archives is not supported"
-msgstr "Möjligheten att flytta in i arkiv är avstängd"
+msgstr "Skrivning till %1 stöds ej"
 
 #: krarc.cpp:307
-#, fuzzy, kde-format
+#, kde-format
 msgid "Packing %1 ..."
-msgstr "Packar om..."
+msgstr "Packar %1 ..."
 
 #: krarc.cpp:347
 #, kde-format
 msgid "Retrieving data from %1 archives is not supported"
-msgstr ""
+msgstr "Återhämtning av data från %1 arkiv stöds inte"
 
 #: krarc.cpp:414 krarc.cpp:667
-#, fuzzy, kde-format
+#, kde-format
 msgid "Unpacking %1 ..."
-msgstr "Uppackning"
+msgstr "Packar opp %1 ..."
 
 #: krarc.cpp:542
 #, kde-format
 msgid "Deleting files from %1 archives is not supported"
-msgstr ""
+msgstr "Borttagning av filer från %1 arkiv stöds inte"
 
 #: krarc.cpp:558
-#, fuzzy, kde-format
+#, kde-format
 msgid "Deleting %1 ..."
-msgstr "Tar bort %1..."
+msgstr "Tar bort %1 ..."
 
 #: krarc.cpp:587
 #, kde-format
 msgid "Accessing files is not supported with the %1 archives"
-msgstr ""
+msgstr "Filåtkomst stöds inte med %1 arkiv"
 
 #: krarc.cpp:696
 #, kde-format
 msgid "Listing directories is not supported for %1 archives"
-msgstr ""
+msgstr "Listning av mappar stöds inte av %1 arkiv"
 
 #: krarc.cpp:1495
 #, kde-format
@@ -8788,192 +8752,26 @@ msgid ""
 "\n"
 "Make sure that the %1 binary are installed properly on your system."
 msgstr ""
+"\n"
+"Se till att %1-binärfilen är korrekt installerad i ditt system."
 
 #: krarc.cpp:1710 krarc.cpp:1734
 #, kde-format
 msgid "Krarc Password Dialog"
-msgstr ""
+msgstr "Krarc lösenordsdialog"
 
 #: krarc.cpp:1751
 #, kde-format
 msgid "Accessing the file requires password."
-msgstr ""
+msgstr "Åtkomst till filen kräver lösenord"
 
 #: tar.cc:56
 #, kde-format
 msgid "This protocol does not support resuming"
-msgstr ""
+msgstr "Protokollet stöder inte återupptagning"
 
 #: tar.cc:78
 #, kde-format
 msgid "Writing to %1 is not supported"
-msgstr ""
+msgstr "Skrivning till %1 stöds inte"
 
-#~ msgid ""
-#~ "Don't use KDE's media protocol for media button (if it's buggy or missing)"
-#~ msgstr ""
-#~ "Använd inte KDE's mediaprotokoll för mediaknapp (om den är felaktig eller "
-#~ "saknas)"
-
-#~ msgid ""
-#~ "Select if your media protocol is buggy (in some older KDE versions), or "
-#~ "not present (no kdebase package installed)."
-#~ msgstr ""
-#~ "Välj om ditt mediaprotokoll är felaktigt (i vissa äldre KDE-versioner), "
-#~ "eller inte närvarande (inget kdebase-paket installerat)."
-
-#~ msgid "Brief"
-#~ msgstr "Kortvarig"
-
-#~ msgid "Clear location bar button"
-#~ msgstr "Nollställ platsknappen"
-
-#~ msgid "Clears the location bar"
-#~ msgstr "Tömmer platsknappen"
-
-#~ msgid "CD Recorder"
-#~ msgstr "CD-brännare"
-
-#~ msgid "DVD Recorder"
-#~ msgstr "DBD-brännare"
-
-#~ msgid "DVD"
-#~ msgstr "DVD"
-
-#~ msgid "Zip Disk"
-#~ msgstr "Zip-disk"
-
-#~ msgid "add"
-#~ msgstr "lägg till"
-
-#~ msgid "<qt>Can't open <b>%1</b></qt>"
-#~ msgstr "<qt>Kan ej öppna <b>%1</b></qt>"
-
-# msgid "Are you sure you want to shred "
-# msgstr "� du säker att du vill förstöra "
-#~ msgid "Can't open \"%1\""
-#~ msgstr "Kan inte öppna  \"%1\""
-
-#~ msgid "Clear the location bar"
-#~ msgstr "Nollställ platsraden"
-
-#~ msgid "<qt>Can't read <b>%1</b>. Archive might be corrupted!</qt>"
-#~ msgstr "<qt>Kan ej läsa <b>%1</b> Arkivfilen kan vara skadad !</qt>"
-
-#~ msgid "Deleting Files..."
-#~ msgstr "Tar bort filer..."
-
-#~ msgid "Unpacking Files"
-#~ msgstr "Packar upp filer"
-
-#~ msgid ""
-#~ "In %1:\n"
-#~ "There is an error in the JavaScript"
-#~ msgstr ""
-#~ "I %1:\n"
-#~ "Det är ett fel i Java-Skriptet"
-
-#~ msgid "Shred"
-#~ msgstr "Förstör"
-
-#~ msgid ""
-#~ "<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone "
-#~ "forever!</qt>"
-#~ msgstr ""
-#~ "<qt>Vill du verkligne förstöra <b>%1</b>? En gång förstörd så är filen "
-#~ "borta för evigt!!!</qt>"
-
-#~ msgid "Tab: switch panel"
-#~ msgstr "Tab: byt panel"
-
-#~ msgid "Error ejecting device! You need to have 'eject' in your path."
-#~ msgstr "Fel vid utmatning av enheten! Du måste ha 'eject' i din sökväg."
-
-#~ msgid "Filesystems"
-#~ msgstr "Filsystem"
-
-#~ msgid ""
-#~ "Krusader\n"
-#~ "Twin-Panel File Manager for KDE"
-#~ msgstr ""
-#~ "Krusader\n"
-#~ "Filhanterare med tvenne paneler  för KDE"
-
-#~ msgid "%1% of %2 "
-#~ msgstr "%1% av %2 "
-
-#~ msgid "compare mode"
-#~ msgstr "jämförläge"
-
-#~ msgid "Remove"
-#~ msgstr "Ta bort"
-
-#~ msgid "New group"
-#~ msgstr "Ny grupp"
-
-#~ msgid "New session"
-#~ msgstr "Ny session"
-
-#~ msgid "Sessions"
-#~ msgstr "Sessioner"
-
-#~ msgid "RemoteMan"
-#~ msgstr "RemoteMan"
-
-#~ msgid "Are you sure you want to delete this item ???"
-#~ msgstr "Är du säker på att du vill ta bort detta ???"
-
-#~ msgid "RemoteMan: Connection Manager"
-#~ msgstr "RemoteMan: Fjärranslutningshanterare"
-
-#~ msgid "Session name:"
-#~ msgstr "Sessionsnamn:"
-
-#~ msgid "&More"
-#~ msgstr "&Mer"
-
-#~ msgid "User name:"
-#~ msgstr "Användarnamn:"
-
-#~ msgid "Anonymous"
-#~ msgstr "Anonym"
-
-#~ msgid "Remote directory:"
-#~ msgstr "Fjärrmapp:"
-
-#~ msgid "Co&nnect"
-#~ msgstr "&Anslut"
-
-#~ msgid "New &Group"
-#~ msgstr "Ny &grupp"
-
-#~ msgid "New Connec&tion"
-#~ msgstr "Ny Anslu&tning"
-
-#~ msgid "Port:   "
-#~ msgstr "Port:   "
-
-#~ msgid "* Warning: Storing your password is not secure !!!"
-#~ msgstr "* Varning: Att spara lösenordet är osäkert !!!"
-
-#~ msgid "File "
-#~ msgstr "Fil "
-
-#~ msgid " already exists. Are you sure you want to overwrite it?"
-#~ msgstr " existerar redan, Vill du skriva över den?"
-
-#~ msgid ""
-#~ "Important: RemoteMan has been replaced by our new bookmark manager. The "
-#~ "new manager handles local files and remote URLs the same way. RemoteMan "
-#~ "is being left around to allow an easier transition and give you a chance "
-#~ "to move your bookmarks. IT WILL BE REMOVED SOON!\n"
-#~ "Try the new bookmark-manager: open a new remote connection, once done, "
-#~ "press the bookmark button, select 'Add bookmark' and that's it!"
-#~ msgstr ""
-#~ "Viktigt: 'RemoteMan' har efterträtts av vår nya bokmärkeshanterare. Denna "
-#~ "nya hanterare tar hand om lokala filer och fjärr-URL:er på samma sätt. "
-#~ "'RemoteMan' är kvarlämnad för att kunna göra en enklare övergång och ge "
-#~ "dig en chans att flytta dina bokmärken. DEN KOMMER ATT TAS BORT SNART!\n"
-#~ "Prova den nya bokmärkeshanteraren: öppna en ny fjärrförbindelse och när "
-#~ "det är gjort, tryck bokmärkesknappen, välj 'Lägg till bokmärke' och allt "
-#~ "är klart!"
