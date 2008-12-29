@@ -1,28 +1,29 @@
+# translation of hu.po to Hungarian
 # Translation of krusader.pot to Hungarian
 #
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
 # Copyright (C) 2004-2008, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 #
+#
 # Marcel Hilzinger <hili@suselinux.hu>, 2003.
 # Vámosi Tamás <Vamosi.Tamas@suselinux.hu>, 2003.
 # Zoltan Kukk <kukkzoli@freemail.hu>, 2004.
 # Arpad Biro <biro_arpad@yahoo.com>, 2004, 2005, 2006.
-# Karai Csaba <cskarai@freemail.hu>, 2006, 2007.
-#
+# Karai Csaba <cskarai@freemail.hu>, 2006, 2007, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-2.0.0-beta2\n"
+"Project-Id-Version: hu\n"
 "Report-Msgid-Bugs-To: krusader-i18n@googlegroups.com\n"
 "POT-Creation-Date: 2008-12-05 21:44+0100\n"
-"PO-Revision-Date: 2007-06-25 19:00+0200\n"
+"PO-Revision-Date: 2008-12-27 10:10+0100\n"
 "Last-Translator: Karai Csaba <cskarai@freemail.hu>\n"
-"Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
+"Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: GUI/dirhistorybutton.cpp:36 GUI/dirhistorybutton.cpp:37
 #, kde-format
@@ -96,24 +97,24 @@ msgid "Floppy"
 msgstr "Floppy"
 
 #: GUI/mediabutton.cpp:179
-#, fuzzy, kde-format
+#, kde-format
 msgid "CD/DVD-ROM"
-msgstr "CD-ROM"
+msgstr "CD/DVD-ROM"
 
 #: GUI/mediabutton.cpp:181
 #, kde-format
 msgid "USB pen drive"
-msgstr ""
+msgstr "USB tároló"
 
 #: GUI/mediabutton.cpp:183
 #, kde-format
 msgid "USB device"
-msgstr ""
+msgstr "USB eszköz"
 
 #: GUI/mediabutton.cpp:185
 #, kde-format
 msgid "Removable media"
-msgstr ""
+msgstr "Cserélhető meghajtók"
 
 #: GUI/mediabutton.cpp:187
 #, kde-format
@@ -121,24 +122,24 @@ msgid "Hard Disk"
 msgstr "Merevlemez"
 
 #: GUI/mediabutton.cpp:189
-#, fuzzy, kde-format
+#, kde-format
 msgid "Camera"
-msgstr "Név"
+msgstr "Fényképezőgép"
 
 #: GUI/mediabutton.cpp:191
 #, kde-format
 msgid "Video CD/DVD-ROM"
-msgstr ""
+msgstr "Videó CD/DVD-ROM"
 
 #: GUI/mediabutton.cpp:193
 #, kde-format
 msgid "Audio CD/DVD-ROM"
-msgstr ""
+msgstr "Hang CD/DVD-ROM"
 
 #: GUI/mediabutton.cpp:195
 #, kde-format
 msgid "Recordable CD/DVD-ROM"
-msgstr ""
+msgstr "Írható CD/DVD-ROM"
 
 #: GUI/mediabutton.cpp:325 Panel/krpopupmenu.cpp:69
 #: BookMan/krbookmarkhandler.cpp:557
@@ -172,12 +173,12 @@ msgstr "Kiadás"
 #: GUI/mediabutton.cpp:423
 #, kde-format
 msgid "An error occurred while accessing '%1', the system responded: %2"
-msgstr ""
+msgstr "Hiba történt '%1' hozzáférése közben. A rendszer válasza: %2"
 
 #: GUI/mediabutton.cpp:426
 #, kde-format
 msgid "An error occurred while accessing '%1'"
-msgstr ""
+msgstr "Hiba történt '%1' hozzáférése közben."
 
 #: GUI/syncbrowsebutton.cpp:45 GUI/syncbrowsebutton.cpp:48
 #, kde-format
@@ -396,7 +397,7 @@ msgstr ""
 "%1"
 
 #: VFS/preserveattrcopyjob.cpp:334 VFS/virtualcopyjob.cpp:389
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title job"
 msgid "Moving"
 msgstr "Fájlok áthelyezése"
@@ -405,29 +406,29 @@ msgstr "Fájlok áthelyezése"
 #: VFS/preserveattrcopyjob.cpp:349 VFS/preserveattrcopyjob.cpp:373
 #: VFS/kiojobwrapper.cpp:221 VFS/virtualcopyjob.cpp:384
 #: VFS/virtualcopyjob.cpp:390
-#, fuzzy, kde-format
+#, kde-format
 msgid "Source"
-msgstr "Forrás:"
+msgstr "Forrás"
 
 #: VFS/preserveattrcopyjob.cpp:336 VFS/preserveattrcopyjob.cpp:343
 #: VFS/preserveattrcopyjob.cpp:350 VFS/preserveattrcopyjob.cpp:374
 #: VFS/virtualcopyjob.cpp:385 VFS/virtualcopyjob.cpp:391
-#, fuzzy, kde-format
+#, kde-format
 msgid "Destination"
-msgstr "Cél:"
+msgstr "Cél"
 
 #: VFS/preserveattrcopyjob.cpp:341 VFS/preserveattrcopyjob.cpp:348
 #: VFS/preserveattrcopyjob.cpp:372 VFS/virtualcopyjob.cpp:383
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title job"
 msgid "Copying"
 msgstr "Fájlok másolása"
 
 #: VFS/preserveattrcopyjob.cpp:361
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title job"
 msgid "Creating directory"
-msgstr "Szülőkönyvtár"
+msgstr "Könyvtár létrehozása"
 
 #: VFS/preserveattrcopyjob.cpp:362 Panel/krinterview.cpp:205
 #: Panel/krbriefview.cpp:226 Panel/krdetailedview.cpp:317
@@ -437,9 +438,9 @@ msgid "Directory"
 msgstr "Könyvtár"
 
 #: VFS/preserveattrcopyjob.cpp:793
-#, fuzzy, kde-format
+#, kde-format
 msgid "Folder Already Exists"
-msgstr "Már létezik ilyen fájl"
+msgstr "Már létezik ilyen könyvtár"
 
 #: VFS/preserveattrcopyjob.cpp:1074 VFS/preserveattrcopyjob.cpp:1594
 #: Synchronizer/synchronizer.cpp:1171 Synchronizer/synchronizer.cpp:1181
@@ -448,9 +449,9 @@ msgid "File Already Exists"
 msgstr "Már létezik ilyen fájl"
 
 #: VFS/preserveattrcopyjob.cpp:1074 VFS/preserveattrcopyjob.cpp:1594
-#, fuzzy, kde-format
+#, kde-format
 msgid "Already Exists as Folder"
-msgstr "Már létezik ilyen fájl"
+msgstr "Már létezik ilyen nevű könyvtár"
 
 #: VFS/normal_vfs.cpp:98
 #, kde-format
@@ -504,24 +505,24 @@ msgid "Status"
 msgstr "Állapot"
 
 #: VFS/kiojobwrapper.cpp:187
-#, fuzzy, kde-format
+#, kde-format
 msgid "Directory Size"
-msgstr "Könyvtárak"
+msgstr "Könyvtár mérete"
 
 #: VFS/kiojobwrapper.cpp:190
-#, fuzzy, kde-format
+#, kde-format
 msgid "Copy"
-msgstr " Másolás"
+msgstr "Másolás"
 
 #: VFS/kiojobwrapper.cpp:193
-#, fuzzy, kde-format
+#, kde-format
 msgid "Move"
-msgstr " Áthelyezés"
+msgstr "Áthelyezés"
 
 #: VFS/kiojobwrapper.cpp:220
-#, fuzzy, kde-format
+#, kde-format
 msgid "Target"
-msgstr "Tar"
+msgstr "Cél"
 
 #: VFS/krquery.cpp:159 Filter/generalfilter.cpp:142
 #: Konfigurator/konfigurator.cpp:159
@@ -675,60 +676,55 @@ msgstr "Krusader::Fájlok kijelölése"
 
 #: Filter/generalfilter.cpp:56
 msgid "Any Character"
-msgstr ""
+msgstr "Bármilyen karakter"
 
 #: Filter/generalfilter.cpp:57
-#, fuzzy
 msgid "Start of Line"
-msgstr "Indítási profil:"
+msgstr "Sor eleje"
 
 #: Filter/generalfilter.cpp:58
 msgid "End of Line"
-msgstr ""
+msgstr "Sor vége"
 
 #: Filter/generalfilter.cpp:59
 msgid "Set of Characters"
-msgstr ""
+msgstr "Megadott karakterek"
 
 #: Filter/generalfilter.cpp:60
 msgid "Repeats, Zero or More Times"
-msgstr ""
+msgstr "Ismétlődés (0 vagy több alkalommal)"
 
 #: Filter/generalfilter.cpp:61
 msgid "Repeats, One or More Times"
-msgstr ""
+msgstr "Ismétlődés (1 vagy több alkalommal)"
 
 #: Filter/generalfilter.cpp:62
-#, fuzzy
 msgid "Optional"
-msgstr "&Opciók"
+msgstr "Választási lehetőség"
 
 #: Filter/generalfilter.cpp:63
 msgid "Escape"
-msgstr ""
+msgstr "Escape"
 
 #: Filter/generalfilter.cpp:64
 msgid "TAB"
-msgstr ""
+msgstr "Tab"
 
 #: Filter/generalfilter.cpp:65
-#, fuzzy
 msgid "Newline"
-msgstr "Új link"
+msgstr "Új sor (LF)"
 
 #: Filter/generalfilter.cpp:66
 msgid "Carriage Return"
-msgstr ""
+msgstr "Kocsivissza (CR)"
 
 #: Filter/generalfilter.cpp:67
-#, fuzzy
 msgid "White Space"
-msgstr "Fehér"
+msgstr "Üres karakter"
 
 #: Filter/generalfilter.cpp:68
-#, fuzzy
 msgid "Digit"
-msgstr "Jobb"
+msgstr "Számjegy"
 
 #: Filter/generalfilter.cpp:101
 #, kde-format
@@ -843,12 +839,12 @@ msgstr "S&zöveg:"
 #: Filter/generalfilter.cpp:265
 #, kde-format
 msgid "RegExp"
-msgstr ""
+msgstr "RegKif"
 
 #: Filter/generalfilter.cpp:286
-#, fuzzy, kde-format
+#, kde-format
 msgid "Encoding:"
-msgstr "Szerkesztés"
+msgstr "Karakterkódolás:"
 
 #: Filter/generalfilter.cpp:301
 #, kde-format
@@ -1226,7 +1222,7 @@ msgstr "A hely megnyitása egy új lapon"
 #: UserAction/expander.cpp:572
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Goto!"
-msgstr ""
+msgstr "Expander: a Goto-hoz legalább 1 paraméter szükséges!"
 
 #: UserAction/expander.cpp:603
 #, kde-format
@@ -1251,7 +1247,7 @@ msgstr "Felirat (opcionális):"
 #: UserAction/expander.cpp:614
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Ask!"
-msgstr ""
+msgstr "Expander: Az Ask-hoz legalább 1 paraméter szükséges!"
 
 #: UserAction/expander.cpp:619
 #, kde-format
@@ -1278,7 +1274,7 @@ msgstr ""
 #: UserAction/expander.cpp:653
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Clipboard!"
-msgstr ""
+msgstr "Expander: legalább egy paraméter szükséges a Clipboard-hoz!"
 
 #: UserAction/expander.cpp:659
 #, kde-format
@@ -1298,7 +1294,7 @@ msgstr "Hova legyen másolva:"
 #: UserAction/expander.cpp:680
 #, kde-format
 msgid "Expander: at least 2 parameter is required for Copy!"
-msgstr ""
+msgstr "Expander: legalább 2 paraméter szükséges a Copy-hoz!"
 
 #: UserAction/expander.cpp:687
 #, kde-format
@@ -1328,7 +1324,7 @@ msgstr "Új cél/név:"
 #: UserAction/expander.cpp:716
 #, kde-format
 msgid "Expander: at least 2 parameter is required for Move!"
-msgstr ""
+msgstr "Expander: legalább 2 paraméter szükséges a Move-hoz!"
 
 #: UserAction/expander.cpp:723
 #, kde-format
@@ -1616,8 +1612,7 @@ msgstr ""
 
 #: UserAction/kraction.cpp:224
 #, kde-format
-msgid ""
-"Embedded terminal emulator does not work, using output collection instead."
+msgid "Embedded terminal emulator does not work, using output collection instead."
 msgstr ""
 "A beépített terminál emulátor nem működik, kimenetek összegyűjtése lesz "
 "helyette."
@@ -1636,7 +1631,7 @@ msgstr "Felhasználói Műveletek: Hiba, nem lehet olvasni a fájlból!"
 #: UserAction/useraction.cpp:169
 #, kde-format
 msgid "The actionfile's root-element isn't called "
-msgstr ""
+msgstr "A felhasználói művelet fájl gyökérelemének rossz a neve"
 
 #: UserAction/useraction.cpp:181
 #, kde-format
@@ -1658,9 +1653,9 @@ msgid "UserActions - invalid action"
 msgstr "Felhasználói műveletek - érvénytelen művelet"
 
 #: Panel/krinterview.cpp:58
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Experimental View"
-msgstr "&Részletes nézet"
+msgstr "&Szakértői nézet (fejlesztés alatt)"
 
 #: Panel/krdetailedviewitem.cpp:79 Panel/krdetailedviewitem.cpp:113
 #: Synchronizer/synchronizergui.cpp:2064 Synchronizer/synchronizergui.cpp:2071
@@ -2330,7 +2325,7 @@ msgid "&Trash"
 msgstr "&Szemetesbe"
 
 #: Panel/panelfunc.cpp:691
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
 "untouched)?"
@@ -2338,7 +2333,7 @@ msgid_plural ""
 "Do you really want to delete these %1 virtual items (physical files stay "
 "untouched)?"
 msgstr[0] ""
-"Valóban törölni szeretné a virtuális elemet/elemeket (a fájlok érintetlenül "
+"Valóban törölni szeretné ezt a virtuális elemet (a fájlok érintetlenül "
 "maradnak)?"
 
 #: Panel/panelfunc.cpp:692 Panel/panelfunc.cpp:695 Panel/panelfunc.cpp:698
@@ -2469,121 +2464,119 @@ msgid "Cannot copy a virtual URL collection onto the clipboard!"
 msgstr "Nem másolhat egy virtuális URL gyűjteményt vágólapra!"
 
 #: Queue/queuewidget.cpp:128 Queue/queuedialog.cpp:156
-#, fuzzy, kde-format
+#, kde-format
 msgid "Queue Manager"
-msgstr "Lekérdezési név"
+msgstr "Sorkezelő"
 
 #: Queue/queuewidget.cpp:144
 #, kde-format
 msgid "Deleting this job will abort the pending job. Do you wish to continue?"
-msgstr ""
+msgstr "Az elem törlése megszakítja az éppen futó folyamatot. Akarja folytatni?"
 
 #: Queue/queue_mgr.cpp:9
-#, fuzzy, kde-format
+#, kde-format
 msgid "default"
-msgstr "Alapértelmezés"
+msgstr "alapértelmezett"
 
 #: Queue/queuedialog.cpp:103 Queue/queuedialog.cpp:134
 #: Queue/queuedialog.cpp:389
-#, fuzzy, kde-format
+#, kde-format
 msgid "Krusader::Queue Manager"
-msgstr "Krusader::Fájlkeresés"
+msgstr "Krusader::Sorkezelő"
 
 #: Queue/queuedialog.cpp:110
-#, fuzzy, kde-format
+#, kde-format
 msgid "Please enter the time to start processing the queue:"
-msgstr "Adja meg a link új célját:"
+msgstr "Kérem adja meg a sor feldolgozásának kezdetének az időpontját:"
 
 #: Queue/queuedialog.cpp:179
-#, fuzzy, kde-format
+#, kde-format
 msgid "Create a new queue (Ctrl+T)"
-msgstr "Új link létrehozása erre: "
+msgstr "Új sor létrehozása (Ctrl+T)"
 
 #: Queue/queuedialog.cpp:185
-#, fuzzy, kde-format
+#, kde-format
 msgid "Remove the current queue (Ctrl+W)"
-msgstr "Aktuális kijelölés tárolása"
+msgstr "Az aktuális sor eltávolítása (Ctrl+W)"
 
 #: Queue/queuedialog.cpp:198 Queue/queuedialog.cpp:427
-#, fuzzy, kde-format
+#, kde-format
 msgid "unused"
-msgstr "Hozzáfűzés"
+msgstr "használatlan"
 
 #: Queue/queuedialog.cpp:204
 #, kde-format
 msgid "Schedule queue starting (Ctrl+S)"
-msgstr ""
+msgstr "Indítás ütemezése (Ctrl+S)"
 
 #: Queue/queuedialog.cpp:343
 #, kde-format
 msgid "Start processing the queue (Ctrl+P)"
-msgstr ""
+msgstr "A sor feldolgozása (Ctrl+P)"
 
 #: Queue/queuedialog.cpp:346
 #, kde-format
 msgid "The queue is paused."
-msgstr ""
+msgstr "A sor várakozik."
 
 #: Queue/queuedialog.cpp:348
 #, kde-format
 msgid "Scheduled to start at %1."
-msgstr ""
+msgstr "Feldolgozás indulása: %1-kor"
 
 #: Queue/queuedialog.cpp:351
 #, kde-format
 msgid "The queue is running."
-msgstr ""
+msgstr "A sor feldolgozás alatt."
 
 #: Queue/queuedialog.cpp:353
 #, kde-format
 msgid "Pause processing the queue (Ctrl+P)"
-msgstr ""
+msgstr "Sorfeldolgozás felfüggesztése (Ctrl+P)"
 
 #: Queue/queuedialog.cpp:390
-#, fuzzy, kde-format
+#, kde-format
 msgid "Please enter the name of the new queue"
-msgstr "Adjon egy egyedi nevet a felhasználói műveletnek"
+msgstr "Kérem adja meg az új sor nevét"
 
 #: Queue/queuedialog.cpp:399
 #, kde-format
 msgid "A queue already exists with this name!"
-msgstr ""
+msgstr "Már létezik ilyen nevű sor!"
 
 #: Queue/queuedialog.cpp:411
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Deleting the queue requires aborting all pending jobs. Do you wish to "
 "continue?"
-msgstr ""
-"A szülőkönyvtárba való lépéshez be kell olvasni a(z) \"%1\" hely tartalmát. "
-"Szeretné folytatni?"
+msgstr "Ha törli ezt a sort, akkor az összes feldolgozandó feladat meg lesz szakítva. Kívánja folytatni?"
 
 #: Queue/queue.cpp:66
 #, kde-format
 msgid "An error occurred during processing the queue.\n"
-msgstr ""
+msgstr "Hiba történt a sor feldolgozása közben.\n"
 
 #: Queue/queue.cpp:68
 #, kde-format
 msgid "The last processed element in the queue was aborted.\n"
-msgstr ""
+msgstr "A sor aktuális elemének feldolgozása megszakadt.\n"
 
 #: Queue/queue.cpp:69
 #, kde-format
 msgid ""
 "Do you wish to continue with the next element, delete the queue or suspend "
 "the queue?"
-msgstr ""
+msgstr "Kérem válasszon a következő elem feldolgozása (folytatás), a sor kiürítése, vagy felfüggesztése között."
 
 #: Queue/queue.cpp:71
-#, fuzzy, kde-format
+#, kde-format
 msgid "Krusader::Queue"
-msgstr "Krusader::Fájlkeresés"
+msgstr "Krusader::Sor"
 
 #: Queue/queue.cpp:72
-#, fuzzy, kde-format
+#, kde-format
 msgid "Suspend"
-msgstr "Hozzáfűzés"
+msgstr "Felfüggesztés"
 
 #: Locate/locate.cpp:121 Locate/locate.cpp:125 Locate/locate.cpp:392
 #, kde-format
@@ -2669,9 +2662,9 @@ msgid "Edit (F4)"
 msgstr "Szerkesztés (F4)"
 
 #: Locate/locate.cpp:396 Search/krsearchdialog.cpp:626
-#, fuzzy, kde-format
+#, kde-format
 msgid "Compare by content (F10)"
-msgstr "Tartalom összehasonlítás"
+msgstr "Tartalom összehasonlítása (F10)"
 
 #: Locate/locate.cpp:401
 #, kde-format
@@ -2982,7 +2975,7 @@ msgstr "&Lemezhasználat..."
 #: krusader.cpp:735
 #, kde-format
 msgid "&Queue Manager..."
-msgstr ""
+msgstr "&Sorkezelő..."
 
 #: krusader.cpp:736
 #, kde-format
@@ -3153,14 +3146,14 @@ msgid "Edit File"
 msgstr "Fájl szerkesztése"
 
 #: krusader.cpp:785
-#, fuzzy, kde-format
+#, kde-format
 msgid "Copy by queue..."
-msgstr "Másolás..."
+msgstr "Másolás sorral..."
 
 #: krusader.cpp:786
-#, fuzzy, kde-format
+#, kde-format
 msgid "Move by queue..."
-msgstr "Áthelyezés..."
+msgstr "Áthelyezés sorral..."
 
 #: krusader.cpp:787
 #, kde-format
@@ -3503,9 +3496,9 @@ msgid "Create in:"
 msgstr "Létrehozás ebben:"
 
 #: BookMan/kraddbookmarkdlg.cpp:74
-#, fuzzy, kde-format
+#, kde-format
 msgid "Folders"
-msgstr "Könyvtár..."
+msgstr "Könyvtárak"
 
 #: BookMan/kraddbookmarkdlg.cpp:118
 #, kde-format
@@ -3513,15 +3506,12 @@ msgid "Folder name:"
 msgstr "Könyvtárnév:"
 
 #: MountMan/kmountman.cpp:203
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "<qt>Error ejecting device!\n"
 " You have to configure the path to the 'eject' tool. Please check the "
 "<b>Dependencies</b> page in Krusader's settings.</qt>"
-msgstr ""
-"<qt>A Krusader nem talál olyan ellenőrzőösszeg-eszközt a rendszeren, amely "
-"kezelné a(z) %1 kiterjesztést. Ellenőrizze a <b>Függőségek</b> lapot a "
-"Krusader beállításainál.</qt>"
+msgstr "<qt>Hiba történt az eszköz kilökése közben!\n Be kell állítania az elérési útvonalát az eject parancsnak. Kérem ellenőrizze a <b>Függőségek</b> oldalt a Krusader beállításai között</qt>"
 
 #: MountMan/kmountman.cpp:233
 #, kde-format
@@ -3554,7 +3544,7 @@ msgid "MountMan is not operational. Sorry"
 msgstr "A csatoláskezelő nem működőképes."
 
 #: MountMan/kmountmangui.cpp:65
-#, fuzzy, kde-format
+#, kde-format
 msgid "Mount.Man"
 msgstr "Csatoláskezelő"
 
@@ -3589,9 +3579,9 @@ msgid "Free %"
 msgstr "Szabad %"
 
 #: MountMan/kmountmangui.cpp:164
-#, fuzzy, kde-format
+#, kde-format
 msgid "MountMan.Info"
-msgstr "Csatoláskezelő"
+msgstr "Csatolás-info"
 
 #: MountMan/kmountmangui.cpp:214 MountMan/kmountmangui.cpp:332
 #, kde-format
@@ -3618,8 +3608,7 @@ msgstr ""
 
 #: MountMan/kmountmangui.cpp:364
 #, kde-format
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Belső hiba történt a csatoláskezelő futásakor. Kérjük, értesítse a "
 "fejlesztőket."
@@ -3648,9 +3637,10 @@ msgid ""
 "(c) 2000-2003, Shie Erlich, Rafi Yanai\n"
 "(c) 2004-2008, Krusader Krew"
 msgstr ""
+"(c) 2000-2003, Shie Erlich, Rafi Yanai\n"
+"(c) 2004-2008, Krusader csapat"
 
 #: main.cpp:112
-#, fuzzy
 msgid ""
 "Feedback:\n"
 "http://www.krusader.org/phpBB/\n"
@@ -3658,7 +3648,7 @@ msgid ""
 "IRC\n"
 "server: irc.freenode.net, channel: #krusader"
 msgstr ""
-"Kapcsolat\n"
+"Kapcsolat:\n"
 "http://www.krusader.org/phpBB/\n"
 "\n"
 "IRC\n"
@@ -3666,463 +3656,455 @@ msgstr ""
 
 #: main.cpp:115
 msgid "Rafi Yanai"
-msgstr ""
+msgstr "Rafi Yanai"
 
 #: main.cpp:115 main.cpp:116
-#, fuzzy
 msgid "Author"
-msgstr "óra"
+msgstr "Szerző"
 
 #: main.cpp:116
 msgid "Shie Erlich"
-msgstr ""
+msgstr "Shie Erlich"
 
 #: main.cpp:117
 msgid "Karai Csaba"
-msgstr ""
+msgstr "Karai Csaba"
 
 #: main.cpp:117 main.cpp:118 main.cpp:119 main.cpp:120
 msgid "Developer"
-msgstr ""
+msgstr "Fejlesztő"
 
 #: main.cpp:118
 msgid "Heiner Eichmann"
-msgstr ""
+msgstr "Heiner Eichmann"
 
 #: main.cpp:119
 msgid "Jonas Bähr"
-msgstr ""
+msgstr "Jonas Bähr"
 
 #: main.cpp:120 main.cpp:125
 msgid "Václav Jůza"
-msgstr ""
+msgstr "Václav Jůza"
 
 #: main.cpp:121 main.cpp:154
 msgid "Dirk Eschler"
-msgstr ""
+msgstr "Dirk Eschler"
 
 #: main.cpp:121
 msgid "Webmaster and i18n coordinator"
-msgstr ""
+msgstr "Webmester és fordítás koordinátor"
 
 #: main.cpp:122 main.cpp:150
 msgid "Frank Schoolmeesters"
-msgstr ""
+msgstr "Frank Schoolmeesters"
 
 #: main.cpp:122
 msgid "Documentation and marketing coordinator"
-msgstr ""
+msgstr "Dokumentáció és marketing koordinátor"
 
 #: main.cpp:123
 msgid "Richard Holt"
-msgstr ""
+msgstr "Richard Holt"
 
 #: main.cpp:123
 msgid "Documentation & Proofing"
-msgstr ""
+msgstr "Dokumentáció és lektorálás"
 
 #: main.cpp:124 main.cpp:170
 msgid "Matej Urbancic"
-msgstr ""
+msgstr "Matej Urbancic"
 
 #: main.cpp:124
 msgid "Marketing & Product Research"
-msgstr ""
+msgstr "Marketing és termék kutatás"
 
 #: main.cpp:125 main.cpp:126 main.cpp:137
 msgid "QA, bug-hunting, patches and general help"
-msgstr ""
+msgstr "QA, hiba keresés, foltok és segítégnyújtás"
 
 #: main.cpp:126
 msgid "Jiří Paleček"
-msgstr ""
+msgstr "Jiří Paleček"
 
 #: main.cpp:127
 msgid "Jiří Klement"
-msgstr ""
+msgstr "Jiří Klement"
 
 #: main.cpp:127
 msgid "Important help in KDE 4 porting"
-msgstr ""
+msgstr "Komoly segítség KDE 4 portolásban."
 
 #: main.cpp:128
 msgid "Andrew Neupokoev"
-msgstr ""
+msgstr "Andrew Neupokoev"
 
 #: main.cpp:128
 msgid "Killer Logo and Icons for Krusader (contest winner)"
-msgstr ""
+msgstr "Fantasztikus Krusader logo és ikonok (pályázat nyertes)"
 
 #: main.cpp:129
 msgid "The UsefulArts Organization"
-msgstr ""
+msgstr "A UsefulArts szervezet"
 
 #: main.cpp:129
-#, fuzzy
 msgid "Icon for krusader"
-msgstr "A &Krusader beállítása..."
+msgstr "Krusader ikon"
 
 #: main.cpp:130
 msgid "Gábor Lehel"
-msgstr ""
+msgstr "Gábor Lehel"
 
 #: main.cpp:130
 msgid "Viewer module for 3rd Hand"
-msgstr ""
+msgstr "Megjelenítő modul a felbukkanó panelhez"
 
 #: main.cpp:131
 msgid "Mark Eatough"
-msgstr ""
+msgstr "Mark Eatough"
 
 #: main.cpp:131
 msgid "Handbook Proof-Reader"
-msgstr ""
+msgstr "Kézikönyv lektorálás"
 
 #: main.cpp:132
 msgid "Jan Halasa"
-msgstr ""
+msgstr "Jan Halasa"
 
 #: main.cpp:132
 msgid "The old Bookmark Module"
-msgstr ""
+msgstr "A régi könyvjelző kezelő"
 
 #: main.cpp:133
 msgid "Hans Löffler"
-msgstr ""
+msgstr "Hans Löffler"
 
 #: main.cpp:133
 msgid "Dir history button"
-msgstr ""
+msgstr "Könyvtárelőzmény-lista gomb"
 
 #: main.cpp:134
 msgid "Szombathelyi György"
-msgstr ""
+msgstr "Szombathelyi György"
 
 #: main.cpp:134
 msgid "ISO KIO slave"
-msgstr ""
+msgstr "ISO KIO slave"
 
 #: main.cpp:135
 msgid "Jan Willem van de Meent (Adios)"
-msgstr ""
+msgstr "Jan Willem van de Meent (Adios)"
 
 #: main.cpp:135
-#, fuzzy
 msgid "Icons for Krusader"
-msgstr "A &Krusader beállítása..."
+msgstr "Krusader ikonok"
 
 #: main.cpp:136
 msgid "Mikolaj Machowski"
-msgstr ""
+msgstr "Mikolaj Machowski"
 
 #: main.cpp:136
 msgid "Usability and QA"
-msgstr ""
+msgstr "Használhatóság és QA"
 
 #: main.cpp:137
 msgid "Cristi Dumitrescu"
-msgstr ""
+msgstr "Cristi Dumitrescu"
 
 #: main.cpp:138
 msgid "Aurelien Gateau"
-msgstr ""
+msgstr "Aurelien Gateau"
 
 #: main.cpp:138
-#, fuzzy
 msgid "patch for KViewer"
-msgstr "Fájlok keresése"
+msgstr "Megjelenítő foltok"
 
 #: main.cpp:139
 msgid "Milan Brabec"
-msgstr ""
+msgstr "Milan Brabec"
 
 #: main.cpp:139
 msgid "the first patch ever !"
-msgstr ""
+msgstr "a legelső patch !"
 
 #: main.cpp:140
 msgid "Asim Husanovic"
-msgstr ""
+msgstr "Asim Husanovic"
 
 #: main.cpp:140
 msgid "Bosnian translation"
-msgstr ""
+msgstr "Bosnyák fordítás"
 
 #: main.cpp:141
 msgid "Doutor Zero"
-msgstr ""
+msgstr "Doutor Zero"
 
 #: main.cpp:141
-#, fuzzy
 msgid "Brazilian Portuguese translation"
-msgstr "Felhasználói műveletek importálása"
+msgstr "Brazil portugál fordítás"
 
 #: main.cpp:142
 msgid "Milen Ivanov"
-msgstr ""
+msgstr "Milen Ivanov"
 
 #: main.cpp:142
 msgid "Bulgarian translation"
-msgstr ""
+msgstr "Bolgár fordítás"
 
 #: main.cpp:143
 msgid "Quim Perez"
-msgstr ""
+msgstr "Quim Perez"
 
 #: main.cpp:143
 msgid "Catalan translation"
-msgstr ""
+msgstr "Katalán fordítás"
 
 #: main.cpp:144
 msgid "Jinghua Luo"
-msgstr ""
+msgstr "Jinghua Luo"
 
 #: main.cpp:144
 msgid "Chinese Simplified translation"
-msgstr ""
+msgstr "Egyszerűsített kínai fordítás"
 
 #: main.cpp:145
-#, fuzzy
 msgid "Mitek"
-msgstr "Cím"
+msgstr "Mitek"
 
 #: main.cpp:145 main.cpp:146
 msgid "Old Czech translation"
-msgstr ""
+msgstr "Régi cseh fordítás"
 
 #: main.cpp:146
 msgid "Martin Sixta"
-msgstr ""
+msgstr "Martin Sixta"
 
 #: main.cpp:147
 msgid "Vaclav Jůza"
-msgstr ""
+msgstr "Vaclav Jůza"
 
 #: main.cpp:147
 msgid "Czech translation"
-msgstr ""
+msgstr "Cseh fordítás"
 
 #: main.cpp:148
 msgid "Anders Bruun Olsen"
-msgstr ""
+msgstr "Anders Bruun Olsen"
 
 #: main.cpp:148
 msgid "Old Danish translation"
-msgstr ""
+msgstr "Régi dán fordítás"
 
 #: main.cpp:149
 msgid "Peter H. Sorensen"
-msgstr ""
+msgstr "Peter H. Sorensen"
 
 #: main.cpp:149
-#, fuzzy
 msgid "Danish translation"
-msgstr "Cél:"
+msgstr "Dán fordítás"
 
 #: main.cpp:150
 msgid "Dutch translation"
-msgstr ""
+msgstr "Holland fordítás"
 
 #: main.cpp:151
 msgid "Rene-Pierre Lehmann"
-msgstr ""
+msgstr "Rene-Pierre Lehmann"
 
 #: main.cpp:151
 msgid "Old French translation"
-msgstr ""
+msgstr "Régi francia fordítás"
 
 #: main.cpp:152
 msgid "David Guillerm"
-msgstr ""
+msgstr "David Guillerm"
 
 #: main.cpp:152
 msgid "French translation"
-msgstr ""
+msgstr "Francia fordítás"
 
 #: main.cpp:153
 msgid "Christoph Thielecke"
-msgstr ""
+msgstr "Christoph Thielecke"
 
 #: main.cpp:153
 msgid "Old German translation"
-msgstr ""
+msgstr "Régi német fordítás"
 
 #: main.cpp:154
 msgid "German translation"
-msgstr ""
+msgstr "Német fordítás"
 
 #: main.cpp:155
 msgid "Spiros Georgaras"
-msgstr ""
+msgstr "Spiros Georgaras"
 
 #: main.cpp:155
 msgid "Greek translation"
-msgstr ""
+msgstr "Görög fordítás"
 
 #: main.cpp:156
 msgid "Kukk Zoltan"
-msgstr ""
+msgstr "Kukk Zoltán"
 
 #: main.cpp:156
 msgid "Old Hungarian translation"
-msgstr ""
+msgstr "Régi magyar fordítás"
 
 #: main.cpp:157
 msgid "Arpad Biro"
-msgstr ""
+msgstr "Bíró Árpád"
 
 #: main.cpp:157
 msgid "Hungarian translation"
-msgstr ""
+msgstr "Magyar fordítás"
 
 #: main.cpp:158
 msgid "Giuseppe Bordoni"
-msgstr ""
+msgstr "Giuseppe Bordoni"
 
 #: main.cpp:158
 msgid "Italian translation"
-msgstr ""
+msgstr "Olasz fordítás"
 
 #: main.cpp:159
 msgid "Hideki Kimura"
-msgstr ""
+msgstr "Hideki Kimura"
 
 #: main.cpp:159
 msgid "Japanese translation"
-msgstr ""
+msgstr "Japán fordítás"
 
 #: main.cpp:160
 msgid "UTUMI Hirosi"
-msgstr ""
+msgstr "UTUMI Hirosi"
 
 #: main.cpp:160
 msgid "Old Japanese translation"
-msgstr ""
+msgstr "Régi japán fordítás"
 
 #: main.cpp:161
 msgid "Dovydas Sankauskas"
-msgstr ""
+msgstr "Dovydas Sankauskas"
 
 #: main.cpp:161
 msgid "Lithuanian translation"
-msgstr ""
+msgstr "Littván fordítás"
 
 #: main.cpp:162
 msgid "Bruno Queiros"
-msgstr ""
+msgstr "Bruno Queiros"
 
 #: main.cpp:162
-#, fuzzy
 msgid "Portuguese translation"
-msgstr "Felhasználói műveletek importálása"
+msgstr "Portugál fordítás"
 
 #: main.cpp:163
 msgid "Lukasz Janyst"
-msgstr ""
+msgstr "Lukasz Janyst"
 
 #: main.cpp:163
 msgid "Old Polish translation"
-msgstr ""
+msgstr "Régi lengyel fordítás"
 
 #: main.cpp:164
 msgid "Pawel Salawa"
-msgstr ""
+msgstr "Pawel Salawa"
 
 #: main.cpp:164 main.cpp:165
 msgid "Polish translation"
-msgstr ""
+msgstr "Lengyel fordítás"
 
 #: main.cpp:165
 msgid "Tomek Grzejszczyk"
-msgstr ""
+msgstr "Tomek Grzejszczyk"
 
 #: main.cpp:166
 msgid "Dmitry A. Bugay"
-msgstr ""
+msgstr "Dmitry A. Bugay"
 
 #: main.cpp:166
 msgid "Russian translation"
-msgstr ""
+msgstr "Orosz fordítás"
 
 #: main.cpp:167
 msgid "Dmitry Chernyak"
-msgstr ""
+msgstr "Dmitry Chernyak"
 
 #: main.cpp:167
 msgid "Old Russian translation"
-msgstr ""
+msgstr "Régi orosz fordítás"
 
 #: main.cpp:168
 msgid "Sasa Tomic"
-msgstr ""
+msgstr "Sasa Tomic"
 
 #: main.cpp:168
 msgid "Serbian translation"
-msgstr ""
+msgstr "Szerb fordítás"
 
 #: main.cpp:169
 msgid "Zdenko Podobna"
-msgstr ""
+msgstr "Zdenko Podobna"
 
 #: main.cpp:169
 msgid "Slovak translation"
-msgstr ""
+msgstr "Szlovák fordítás"
 
 #: main.cpp:170
 msgid "Slovenian translation"
-msgstr ""
+msgstr "Szlovén fordítás"
 
 #: main.cpp:171
 msgid "Rafael Munoz"
-msgstr ""
+msgstr "Rafael Munoz"
 
 #: main.cpp:171
 msgid "Old Spanish translation"
-msgstr ""
+msgstr "Régi spanyol fordítás"
 
 #: main.cpp:172
 msgid "Alejandro Araiza Alvarado"
-msgstr ""
+msgstr "Alejandro Araiza Alvarado"
 
 #: main.cpp:172
 msgid "Spanish translation"
-msgstr ""
+msgstr "Spanyol fordítás"
 
 #: main.cpp:173
 msgid "Erik Johanssen"
-msgstr ""
+msgstr "Erik Johanssen"
 
 #: main.cpp:173 main.cpp:174
 msgid "Old Swedish translation"
-msgstr ""
+msgstr "Régi svéd fordítás"
 
 #: main.cpp:174
 msgid "Anders Linden"
-msgstr ""
+msgstr "Anders Linden"
 
 #: main.cpp:175
 msgid "Peter Landgren"
-msgstr ""
+msgstr "Peter Landgren"
 
 #: main.cpp:175
 msgid "Swedish translation"
-msgstr ""
+msgstr "Svéd fordítás"
 
 #: main.cpp:176
 msgid "Bekir Sonat"
-msgstr ""
+msgstr "Bekir Sonat"
 
 #: main.cpp:176
 msgid "Turkish translation"
-msgstr ""
+msgstr "Török fordítás"
 
 #: main.cpp:177
 msgid "Ivan Petrouchtchak"
-msgstr ""
+msgstr "Ivan Petrouchtchak"
 
 #: main.cpp:177
 msgid "Ukrainian translation"
-msgstr ""
+msgstr "Ukrán fordítás"
 
 #: main.cpp:183
 msgid "Start left panel at <path>"
@@ -4147,14 +4129,14 @@ msgid "Function keys allow performing fast operations on files."
 msgstr "A funkciógombok gyors műveletvégzést tesznek lehetővé a fájlokon."
 
 #: krusaderview.cpp:307
-#, fuzzy, kde-format
+#, kde-format
 msgid "Horizontal Mode"
-msgstr "Függőleges mód"
+msgstr "Vízszintes mód"
 
 #: Dialogs/krdialogs.cpp:142
 #, kde-format
 msgid "F2 Queue"
-msgstr ""
+msgstr "F2 Sor"
 
 #: Dialogs/krdialogs.cpp:158
 #, kde-format
@@ -4488,8 +4470,7 @@ msgstr "A régi fájl importálása befejeződött"
 
 #: Dialogs/krkeydialog.cpp:135
 #, kde-format
-msgid ""
-"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
 msgstr "<qt>A(z) <b>%1</b> nevű fájl már létezik.Felül szeretné írni?</qt>"
 
 #: Dialogs/krkeydialog.cpp:144
@@ -5112,14 +5093,14 @@ msgstr "Nincs"
 #: ActionMan/ui_actionproperty.h:722 rc.cpp:116
 #, kde-format
 msgid "If checked, the action is shown in the Useractions menus."
-msgstr ""
+msgstr "Ha ki van választva, a művelet megjelenik a felhasználói műveletek menüben."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 401
 #: ActionMan/ui_actionproperty.h:725 rc.cpp:119
-#, fuzzy, kde-format
+#, kde-format
 msgid "Enabled"
-msgstr "bekapcsolva"
+msgstr "Bekapcsolva"
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 420
@@ -5173,16 +5154,16 @@ msgstr "Futtatás terminálban"
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 463
 #: ActionMan/ui_actionproperty.h:748 rc.cpp:146
-#, fuzzy, kde-format
+#, kde-format
 msgid "Run the command in the embedded terminal emulator."
-msgstr "A parancs futtatása egy terminálban"
+msgstr "A parancs futtatása a beágyazott terminálemulátorban."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 466
 #: ActionMan/ui_actionproperty.h:751 rc.cpp:149
-#, fuzzy, kde-format
+#, kde-format
 msgid "Run in the embedded terminal emulator"
-msgstr "Terminál&emulátorhoz küldés"
+msgstr "Futtatás a beágyazott terminál&emulátorban"
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 39
@@ -5378,8 +5359,7 @@ msgstr "Kiválasztott műveletek törlése"
 
 #: ActionMan/useractionpage.cpp:134
 #, kde-format
-msgid ""
-"The current action has been modified. Do you want to apply these changes?"
+msgid "The current action has been modified. Do you want to apply these changes?"
 msgstr ""
 "Az aktuális felhasználói művelet módosult. Szeretné érvényre juttatni a "
 "módosításokat?"
@@ -5568,7 +5548,7 @@ msgstr "A változó beállításai:"
 #: ActionMan/addplaceholderpopup.cpp:288 ActionMan/addplaceholderpopup.cpp:487
 #, kde-format
 msgid "list-add"
-msgstr ""
+msgstr "+lista"
 
 #: UserMenu/usermenu.cpp:58
 #, kde-format
@@ -5630,8 +5610,7 @@ msgstr "Tartalom összehasonlítás"
 #: Synchronizer/synchronizergui.cpp:1219
 #, kde-format
 msgid "Compare duplicated files with same size by content."
-msgstr ""
-"Az azonos méretű duplikált fájlok összehasonlítása azok tartalma alapján"
+msgstr "Az azonos méretű duplikált fájlok összehasonlítása azok tartalma alapján"
 
 #: Synchronizer/synchronizergui.cpp:1220
 #, kde-format
@@ -5707,9 +5686,9 @@ msgid "Show files marked to <i>Copy from right to left</i> (CTRL+R)."
 msgstr "<i>Jobbról balra másolandó</i> fájlok megjelenítése (CTRL+R)."
 
 #: Synchronizer/synchronizergui.cpp:1297
-#, fuzzy, kde-format
+#, kde-format
 msgid "Show files marked to delete (CTRL+T)."
-msgstr "Törlésre jelölt fájlok megjelenítése. (CTRL+T)"
+msgstr "Törlésre jelölt fájlok megjelenítése. (CTRL+T)."
 
 #: Synchronizer/synchronizergui.cpp:1302
 #, kde-format
@@ -6007,10 +5986,10 @@ msgstr[0] "(%1 bájt)"
 
 #: Synchronizer/synchronizedialog.cpp:64 Synchronizer/synchronizedialog.cpp:77
 #: Synchronizer/synchronizedialog.cpp:90
-#, fuzzy, kde-format
+#, kde-format
 msgid "Ready: %2/1 file, %3/%4"
 msgid_plural "Ready: %2/%1 files, %3/%4"
-msgstr[0] "Kész: %2/%1 fájl, %4/%5"
+msgstr[0] "Kész: %2/1 fájl, %3/%4"
 
 #: Synchronizer/synchronizedialog.cpp:70
 #, kde-format
@@ -6089,9 +6068,9 @@ msgstr "URL-ek átadása a KGet-nek"
 
 #: Synchronizer/synchronizer.cpp:1457 krslots.cpp:147 krslots.cpp:224
 #: krslots.cpp:509 krslots.cpp:551 krslots.cpp:569
-#, fuzzy, kde-format
+#, kde-format
 msgid "Error executing %1!"
-msgstr "Hiba a végrehajtás közben - "
+msgstr "Hiba %1 végrehajtása közben!"
 
 #: Synchronizer/feedtolistboxdialog.cpp:56
 #, kde-format
@@ -6652,14 +6631,12 @@ msgstr "Hexadecimális mód"
 #: Konfigurator/kggeneral.cpp:106
 #, kde-format
 msgid "View the file in hex-mode (better for binary files)"
-msgstr ""
-"Fájl megjelenítése hexadecimális módban (bináris fájlok esetén ajánlott)"
+msgstr "Fájl megjelenítése hexadecimális módban (bináris fájlok esetén ajánlott)"
 
 #: Konfigurator/kggeneral.cpp:112
 #, kde-format
 msgid "Internal editor and viewer opens each file in a separate window"
-msgstr ""
-"A beépített szerkesztő és megjelenítő minden fájlt külön ablakban nyit meg"
+msgstr "A beépített szerkesztő és megjelenítő minden fájlt külön ablakban nyit meg"
 
 #: Konfigurator/kggeneral.cpp:113
 #, kde-format
@@ -6704,8 +6681,7 @@ msgstr "Átmeneti könyvtár:"
 #: Konfigurator/kggeneral.cpp:195
 #, kde-format
 msgid "Note: you must have full permissions for the temporary directory!"
-msgstr ""
-"Megjegyzés: teljes jogosultsággal kell rendelkeznie az átmeneti könyvtárhoz."
+msgstr "Megjegyzés: teljes jogosultsággal kell rendelkeznie az átmeneti könyvtárhoz."
 
 #: Konfigurator/kggeneral.cpp:213
 #, kde-format
@@ -6714,10 +6690,8 @@ msgstr "Eszközök keresése..."
 
 #: Konfigurator/kggeneral.cpp:214
 #, kde-format
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr ""
-"Új eszközöket a <code>$PATH</code> útvonalra telepítsen (példa: /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgstr "Új eszközöket a <code>$PATH</code> útvonalra telepítsen (példa: /usr/bin)"
 
 #: Konfigurator/kggeneral.cpp:222
 #, kde-format
@@ -6810,9 +6784,9 @@ msgid "Tool"
 msgstr "Eszköz"
 
 #: Konfigurator/konfigurator.cpp:67
-#, fuzzy, kde-format
+#, kde-format
 msgid "Konfigurator"
-msgstr "Megerősítések"
+msgstr "Konfigurátor"
 
 #: Konfigurator/konfigurator.cpp:68
 #, kde-format
@@ -7035,7 +7009,7 @@ msgstr "A fájllista ikonmérete:"
 #: Konfigurator/kglookfeel.cpp:196
 #, kde-format
 msgid "12"
-msgstr ""
+msgstr "12"
 
 #: Konfigurator/kglookfeel.cpp:197
 #, kde-format
@@ -7070,12 +7044,12 @@ msgstr "A fájlnevekhez és könyvtárakhoz tartozó ikonok megjelenítése"
 #: Konfigurator/kglookfeel.cpp:216
 #, kde-format
 msgid "Load the user defined folder icons"
-msgstr ""
+msgstr "A felhasználó által megadott mappaikonok betöltése"
 
 #: Konfigurator/kglookfeel.cpp:216
 #, kde-format
 msgid "Load the user defined folder icons (can cause decrease in performance)."
-msgstr ""
+msgstr "A felhasználó által megadott mappaikonok betöltése (sebességcsökkenést okozhat)"
 
 #: Konfigurator/kglookfeel.cpp:217
 #, kde-format
@@ -7116,27 +7090,27 @@ msgstr ""
 #: Konfigurator/kglookfeel.cpp:234
 #, kde-format
 msgid "Sort method:"
-msgstr ""
+msgstr "Rendezési mód:"
 
 #: Konfigurator/kglookfeel.cpp:238
 #, kde-format
 msgid "Alphabetical"
-msgstr ""
+msgstr "ABC szerint"
 
 #: Konfigurator/kglookfeel.cpp:239
 #, kde-format
 msgid "Alphabetical and numbers"
-msgstr ""
+msgstr "ABC és számok szerint"
 
 #: Konfigurator/kglookfeel.cpp:240
 #, kde-format
 msgid "Character code"
-msgstr ""
+msgstr "Karakterkód szerint"
 
 #: Konfigurator/kglookfeel.cpp:241
 #, kde-format
 msgid "Character code and numbers"
-msgstr ""
+msgstr "Karakterkód és számok szerint"
 
 #: Konfigurator/kglookfeel.cpp:253
 #, kde-format
@@ -7232,10 +7206,8 @@ msgstr "\"Szinkronizált böngésző\" mód gombja"
 
 #: Konfigurator/kglookfeel.cpp:299
 #, kde-format
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
-msgstr ""
-"A panelen történő minden könyvtárváltás végrehajtódik a másik panelen is"
+msgid "Each directory change in the panel is also performed in the other panel."
+msgstr "A panelen történő minden könyvtárváltás végrehajtódik a másik panelen is"
 
 #: Konfigurator/kglookfeel.cpp:324
 #, kde-format
@@ -7294,19 +7266,17 @@ msgstr ""
 #: Konfigurator/kglookfeel.cpp:341
 #, kde-format
 msgid "Ergonomic Mode"
-msgstr ""
+msgstr "Ergonóm mód"
 
 #: Konfigurator/kglookfeel.cpp:341
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "The left mouse button does not select, but sets the current file without "
 "affecting the current selection. The right mouse button invokes the context-"
 "menu. You can select with Ctrl key and the left button."
 msgstr ""
 "A bal oldali egérgomb nem végez kijelölést, viszont a kijelölés módosítása "
-"nélkül aktuálissá teszi az adott fájlt. A jobb oldali egérgomb több fájlt "
-"jelöl ki. A környezeti menüt a jobb oldali egérgomb lenyomva tartásával "
-"lehet előhívni."
+"nélkül aktuálissá teszi az adott fájlt. A jobb oldali egérgomb előhívja a környezeti menüt. A kiválasztás a Ctrl billentyű és a bal oldali egérgomb lenyomásával történik."
 
 #: Konfigurator/kglookfeel.cpp:342
 #, kde-format
@@ -8010,24 +7980,24 @@ msgid "Delete background:"
 msgstr "Háttér, törlés:"
 
 #: Konfigurator/kgcolors.cpp:211
-#, fuzzy, kde-format
+#, kde-format
 msgid "Other"
-msgstr "Egyéb..."
+msgstr "Egyéb"
 
 #: Konfigurator/kgcolors.cpp:219
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch, match foreground:"
-msgstr "Könyvtár:"
+msgstr "Gyorskeresés, előtér egyezésnél:"
 
 #: Konfigurator/kgcolors.cpp:220 Konfigurator/kgcolors.cpp:222
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch, non-match background:"
-msgstr "Másodlagos háttér:"
+msgstr "Gyorskeresés, háttér ha nincs egyezés:"
 
 #: Konfigurator/kgcolors.cpp:221
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch, non-match foreground:"
-msgstr "Aktuális:"
+msgstr "Gyorskeresés, előtér ha nincs egyezés:"
 
 #: Konfigurator/kgcolors.cpp:255
 #, kde-format
@@ -8095,14 +8065,14 @@ msgid "Equals"
 msgstr "Megegyező"
 
 #: Konfigurator/kgcolors.cpp:526
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch non-match"
-msgstr "Gyorskeresés"
+msgstr "Gyorskeresés, nincs egyezés"
 
 #: Konfigurator/kgcolors.cpp:527
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch match"
-msgstr "Gyorskeresés"
+msgstr "Gyorskeresés egyezés"
 
 #: Konfigurator/kgcolors.cpp:546
 #, kde-format
@@ -8120,11 +8090,9 @@ msgid "Select a color scheme file"
 msgstr "Válasszon ki egy színséma-fájlt"
 
 #: Konfigurator/kgcolors.cpp:564
-#, fuzzy, kde-format
+#, kde-format
 msgid "File %1 already exists. Are you sure you want to overwrite it?"
-msgstr ""
-"\"%1\" nevű fájl már létezik.\n"
-"Felül szeretné írni azt?"
+msgstr "\"%1\" nevű fájl már létezik. Felül szeretné írni?"
 
 #: Konfigurator/kgcolors.cpp:567
 #, kde-format
@@ -8298,7 +8266,7 @@ msgstr "GZip"
 #: Konfigurator/kgarchives.cpp:64
 #, kde-format
 msgid "LZMA"
-msgstr ""
+msgstr "LZMA"
 
 #: Konfigurator/kgarchives.cpp:65
 #, kde-format
@@ -8378,10 +8346,8 @@ msgstr "Archívum ellenőrzése kicsomagolás előtt"
 
 #: Konfigurator/kgarchives.cpp:108
 #, kde-format
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
-msgstr ""
-"Néhány hibás archívum programleállást okozhat, ezért az ellenőrzés javasolt"
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgstr "Néhány hibás archívum programleállást okozhat, ezért az ellenőrzés javasolt"
 
 #: Konfigurator/kgarchives.cpp:125
 #, kde-format
@@ -8390,10 +8356,8 @@ msgstr "Csomagolók keresése..."
 
 #: Konfigurator/kgarchives.cpp:126
 #, kde-format
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr ""
-"Új csomagolókat a <code>$PATH</code> útvonalra telepítsen (példa: /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgstr "Új csomagolókat a <code>$PATH</code> útvonalra telepítsen (példa: /usr/bin)"
 
 #: Konfigurator/kguseractions.cpp:52
 #, kde-format
@@ -8446,9 +8410,9 @@ msgid "Use fixed width font as default"
 msgstr "Fix szélességű betűtípus használata alapértelmezésben"
 
 #: krslots.cpp:101
-#, fuzzy, kde-format
+#, kde-format
 msgid "No selected files to send!"
-msgstr "Csak a kiválasztott fájlokat"
+msgstr "Nincsenek fájlok kiválasztva a küldéshez!"
 
 #: krslots.cpp:109
 #, kde-format
@@ -8460,11 +8424,10 @@ msgstr ""
 "a Krusader a KMailt támogatja."
 
 #: krslots.cpp:118
-#, fuzzy, kde-format
+#, kde-format
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
-msgstr[0] "Fájl küldése: "
-msgstr[1] "Fájl küldése: "
+msgstr[0] "Fájl küldése: %2"
 
 #: krslots.cpp:176
 #, kde-format
@@ -8496,9 +8459,9 @@ msgstr ""
 "Xxdiff."
 
 #: krslots.cpp:205 krslots.cpp:211
-#, fuzzy, kde-format
+#, kde-format
 msgid "Krusader is unable to download %1"
-msgstr "A Krusader nem tudja letölteni a következőt: "
+msgstr "A Krusader nem tudja letölteni a következőt: %1"
 
 #: krslots.cpp:460
 #, kde-format
@@ -8711,8 +8674,7 @@ msgstr "Nem érvényes CRC-fájl."
 
 #: Splitter/combiner.cpp:154
 #, kde-format
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Sértetlen CRC-fájl nélkül nem lehet ellenőrizni a helyességet. Folytatja az "
 "egyesítést?"
@@ -8765,52 +8727,52 @@ msgstr "Hiba a(z) \"%1\" fájl írásakor."
 #: krarc.cpp:182
 #, kde-format
 msgid "Creating directories is not supported with %1 archives"
-msgstr ""
+msgstr "Könyvtárak létrehozása nincs támogatva a %1 archívumokban"
 
 #: krarc.cpp:215
-#, fuzzy, kde-format
+#, kde-format
 msgid "Creating %1 ..."
-msgstr "%1 törlése..."
+msgstr "%1 létrehozása..."
 
 #: krarc.cpp:254
-#, fuzzy, kde-format
+#, kde-format
 msgid "Writing to %1 archives is not supported"
-msgstr "Az archívumba való áthelyezés le van tiltva"
+msgstr "Az írás nem támogatott a %1 archívumokban."
 
 #: krarc.cpp:307
-#, fuzzy, kde-format
+#, kde-format
 msgid "Packing %1 ..."
-msgstr "Újracsomagolás..."
+msgstr "%1 csomagolása..."
 
 #: krarc.cpp:347
 #, kde-format
 msgid "Retrieving data from %1 archives is not supported"
-msgstr ""
+msgstr "Nincs támogatva az adatok lekérése %1 archívumokból."
 
 #: krarc.cpp:414 krarc.cpp:667
-#, fuzzy, kde-format
+#, kde-format
 msgid "Unpacking %1 ..."
-msgstr "Kicsomagolás"
+msgstr "%1 kicsomagolása..."
 
 #: krarc.cpp:542
 #, kde-format
 msgid "Deleting files from %1 archives is not supported"
-msgstr ""
+msgstr "Nincs támogatva a fájlok törlése %1 archívumokban"
 
 #: krarc.cpp:558
-#, fuzzy, kde-format
+#, kde-format
 msgid "Deleting %1 ..."
 msgstr "%1 törlése..."
 
 #: krarc.cpp:587
 #, kde-format
 msgid "Accessing files is not supported with the %1 archives"
-msgstr ""
+msgstr "Nincs támogatva a fájlok hozzáférése %1 archívumokban"
 
 #: krarc.cpp:696
 #, kde-format
 msgid "Listing directories is not supported for %1 archives"
-msgstr ""
+msgstr "Könyvtárak listázása nincs támogatva a %1 archívumokban"
 
 #: krarc.cpp:1495
 #, kde-format
@@ -8818,195 +8780,26 @@ msgid ""
 "\n"
 "Make sure that the %1 binary are installed properly on your system."
 msgstr ""
+"\n"
+"Győződjön meg, hogy a %1 fájl megfelelően installálva van a rendszerén."
 
 #: krarc.cpp:1710 krarc.cpp:1734
 #, kde-format
 msgid "Krarc Password Dialog"
-msgstr ""
+msgstr "Krarc jelszó bekérés"
 
 #: krarc.cpp:1751
 #, kde-format
 msgid "Accessing the file requires password."
-msgstr ""
+msgstr "A fájlok hozzáférése jelszót igényel."
 
 #: tar.cc:56
 #, kde-format
 msgid "This protocol does not support resuming"
-msgstr ""
+msgstr "Ez a protokol nem támogatja a folytatást"
 
 #: tar.cc:78
 #, kde-format
 msgid "Writing to %1 is not supported"
-msgstr ""
+msgstr "Nincs támogatva az írás %1-be."
 
-#~ msgid ""
-#~ "Don't use KDE's media protocol for media button (if it's buggy or missing)"
-#~ msgstr ""
-#~ "A media protokoll használatának tiltása a média gombnál (ha  nincs jelen, "
-#~ "vagy hibás)"
-
-#~ msgid ""
-#~ "Select if your media protocol is buggy (in some older KDE versions), or "
-#~ "not present (no kdebase package installed)."
-#~ msgstr ""
-#~ "Válassza ki, ha a media protokoll hibás (néhány régi KDE verzióban), vagy "
-#~ "nincs telepítve (a kdebase csomag hiányzik)."
-
-#~ msgid "Brief"
-#~ msgstr "Rövid"
-
-#~ msgid "Clear location bar button"
-#~ msgstr "\"A helymegadási sor törlése\" gomb"
-
-#~ msgid "Clears the location bar"
-#~ msgstr "Törli a helymegadási sor tartalmát"
-
-#~ msgid "CD Recorder"
-#~ msgstr "CD író"
-
-#~ msgid "DVD Recorder"
-#~ msgstr "DVD író"
-
-#~ msgid "DVD"
-#~ msgstr "DVD"
-
-#~ msgid "Zip Disk"
-#~ msgstr "Zip lemez"
-
-#~ msgid "add"
-#~ msgstr "Hozzáad"
-
-#~ msgid "<qt>Can't open <b>%1</b></qt>"
-#~ msgstr "<qt>Nem sikerült <b>%1</b> fájlt megnyitni!</qt>"
-
-#~ msgid "Can't open \"%1\""
-#~ msgstr "A \"%1\" fájl nem nyitható meg"
-
-#~ msgid "Clear the location bar"
-#~ msgstr "A helymegadási sor törlése"
-
-#~ msgid "<qt>Can't read <b>%1</b>. Archive might be corrupted!</qt>"
-#~ msgstr ""
-#~ "<qt>Nem sikerült a(z) <b>%1</b> fájlból olvasni. Lehetséges, hogy az "
-#~ "archívum megsérült!</qt>"
-
-#~ msgid "Deleting Files..."
-#~ msgstr "Fájlok törlése..."
-
-#~ msgid "Unpacking Files"
-#~ msgstr "Fájlok kicsomagolása"
-
-#~ msgid ""
-#~ "In %1:\n"
-#~ "There is an error in the JavaScript"
-#~ msgstr ""
-#~ "A(z) \"%1\" fájlban:\n"
-#~ "Hiba van a JavaScript kódban"
-
-#~ msgid "Shred"
-#~ msgstr "Végleges törlés"
-
-#~ msgid ""
-#~ "<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone "
-#~ "forever!</qt>"
-#~ msgstr ""
-#~ "<qt>Véglegesen törölni szeretné <b>%1</b>-t? Ha véglegesen törli, akkor a "
-#~ "fájl visszavonhatatlanul elvész.</qt>"
-
-#~ msgid "Tab: switch panel"
-#~ msgstr "Tab: panelváltás"
-
-#~ msgid "Error ejecting device! You need to have 'eject' in your path."
-#~ msgstr ""
-#~ "Hiba lépett fel az adathordozó kiadása közben. Az \"eject\" programnak az "
-#~ "elérési útvonalon kell lennie."
-
-#~ msgid "Filesystems"
-#~ msgstr "Fájlrendszerek"
-
-#~ msgid ""
-#~ "Krusader\n"
-#~ "Twin-Panel File Manager for KDE"
-#~ msgstr ""
-#~ "Krusader\n"
-#~ "Kétpaneles fájlkezelő a KDE-hez"
-
-#~ msgid "%1% of %2 "
-#~ msgstr "%1% (összesen %2) "
-
-#~ msgid "compare mode"
-#~ msgstr "összehasonlítási mód"
-
-#~ msgid "Remove"
-#~ msgstr "Eltávolítás"
-
-#~ msgid "New group"
-#~ msgstr "Új csoport"
-
-#~ msgid "New session"
-#~ msgstr "Új munkafolyamat"
-
-#~ msgid "Sessions"
-#~ msgstr "Munkafolyamatok"
-
-#~ msgid "RemoteMan"
-#~ msgstr "Távoli kapcsolatok kezelője"
-
-#~ msgid "Are you sure you want to delete this item ???"
-#~ msgstr "Valóban törölni szeretné ezt az elemet?"
-
-#~ msgid "RemoteMan: Connection Manager"
-#~ msgstr "Távoli kapcsolatok kezelője"
-
-#~ msgid "Session name:"
-#~ msgstr "A munkafolyamat neve:"
-
-#~ msgid "&More"
-#~ msgstr "&Részletek"
-
-#~ msgid "User name:"
-#~ msgstr "Felhasználónév:"
-
-#~ msgid "Anonymous"
-#~ msgstr "Anonymous"
-
-#~ msgid "Remote directory:"
-#~ msgstr "Távoli könyvtár:"
-
-#~ msgid "Co&nnect"
-#~ msgstr "&Csatlakozás"
-
-#~ msgid "New &Group"
-#~ msgstr "Új cso&port"
-
-#~ msgid "New Connec&tion"
-#~ msgstr "Új &kapcsolat"
-
-#~ msgid "Port:   "
-#~ msgstr "Port:   "
-
-#~ msgid "* Warning: Storing your password is not secure !!!"
-#~ msgstr "Figyelem: a jelszavak tárolása nem biztonságos."
-
-#~ msgid "File "
-#~ msgstr "\""
-
-#~ msgid " already exists. Are you sure you want to overwrite it?"
-#~ msgstr "\" nevű fájl már létezik. Felül szeretné írni azt?"
-
-#~ msgid ""
-#~ "Important: RemoteMan has been replaced by our new bookmark manager. The "
-#~ "new manager handles local files and remote URLs the same way. RemoteMan "
-#~ "is being left around to allow an easier transition and give you a chance "
-#~ "to move your bookmarks. IT WILL BE REMOVED SOON!\n"
-#~ "Try the new bookmark-manager: open a new remote connection, once done, "
-#~ "press the bookmark button, select 'Add bookmark' and that's it!"
-#~ msgstr ""
-#~ "Fontos: A Távoli kapcsolatok kezelője le lett cserélve az új "
-#~ "könyvjelzőkezelőre. Az új kezelő a helyi és a távoli URL-eket ugyanúgy "
-#~ "kezeli. A Távoli kapcsolatok kezelője azért lett meghagyva, hogy "
-#~ "megkönnyítse az átállást és lehetőséget adjon a könyvjelzők "
-#~ "áthelyezésére. HAMAROSAN EL LESZ TÁVOLÍTVA.\n"
-#~ "Próbálja ki az új könyvjelzőkezelőt: nyisson egy új távoli kapcsolatot, "
-#~ "nyomja meg a \"könyvjelző\" gombot, majd válassza a \"Hozzáadás a "
-#~ "könyvjelzőkhöz\" funkciót."
