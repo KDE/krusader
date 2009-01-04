@@ -89,7 +89,7 @@ KParts::MainWindow( parent, (Qt::WindowFlags)KDE_DEFAULT_WINDOWFLAGS ), manager(
 	viewerMenu->addAction( i18n( "&Previous tab" ), this, SLOT( prevTab() ))->setShortcut( Qt::ALT+Qt::Key_Left );
 
 	detachAction = viewerMenu->addAction( i18n( "&Detach tab" ), this, SLOT( detachTab() ));
-	detachAction->setShortcut( Qt::CTRL + Qt::SHIFT + Qt::Key_D );
+	detachAction->setShortcut( Qt::META + Qt::Key_D );
 	//no point in detaching only one tab..
 	detachAction->setEnabled(false);	
 	viewerMenu->addSeparator();

@@ -67,7 +67,7 @@ KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd) {
 		if (u.isRelativeUrl(u.url())) {
 			KUrl temp = u;
 			u = cwd;
-			u.addPath(temp.url());
+			u.addPath(temp.path());
 			u.cleanPath();
 			if( u.protocol() == "zip" || u.protocol() == "krarc" || u.protocol() == "tar" || u.protocol() == "iso" ) {
 				if( QDir( u.path() ).exists() )
@@ -89,7 +89,7 @@ KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd, bool &que
 		if (u.isRelativeUrl(u.url())) {
 			KUrl temp = u;
 			u = cwd;
-			u.addPath(temp.url());
+			u.addPath(temp.path());
 			u.cleanPath();
 			if( u.protocol() == "zip" || u.protocol() == "krarc" || u.protocol() == "tar" || u.protocol() == "iso" ) {
 				if( QDir( u.path() ).exists() )
@@ -113,7 +113,7 @@ KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd, bool &que
 		if (u.isRelativeUrl(u.url())) {
 			KUrl temp = u;
 			u = cwd;
-			u.addPath(temp.url());
+			u.addPath(temp.path());
 			u.cleanPath();
 			if( u.protocol() == "zip" || u.protocol() == "krarc" || u.protocol() == "tar" || u.protocol() == "iso" ) {
 				if( QDir( u.path() ).exists() )
