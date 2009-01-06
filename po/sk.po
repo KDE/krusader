@@ -1,24 +1,24 @@
 # Translation of krusader.pot to Slovak
 #
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
-# Copyright (C) 2004-2008, Krusader Krew
-# This file is distributed under the same license as the Krusader package
+# Copyright (C) 2004-2009, Krusader Krew
+# This file is distributed under the same license as the Krusader package.
 #
-# Zdenko Podobny <zdenop@gmail.com>, 2004,2005,2006,2007
-#
+# Ondrej Pačay (Yogi) <balique@gmail.com>, 2008, 2009
+# Zdenko Podobný <zdenop@gmail.com>, 2004,2005,2006,2007, 2008, 2009
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-2.0.0-beta2\n"
+"Project-Id-Version: Krusader-2.0.0-sk\n"
 "Report-Msgid-Bugs-To: krusader-i18n@googlegroups.com\n"
 "POT-Creation-Date: 2008-12-05 21:44+0100\n"
-"PO-Revision-Date: 2007-02-22 14:59+0100\n"
-"Last-Translator: Zdenko Podobny <zdenop@gmail.com>\n"
+"PO-Revision-Date: 2009-01-03 22:31+0100\n"
+"Last-Translator: Zdenko Podobný <zdenop@gmail.com>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.2\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: GUI/dirhistorybutton.cpp:36 GUI/dirhistorybutton.cpp:37
 #, kde-format
@@ -53,7 +53,7 @@ msgstr "Pridať novú položku"
 #: GUI/profilemanager.cpp:117
 #, kde-format
 msgid "Krusader::ProfileManager"
-msgstr "Krusader::ProfileManager"
+msgstr "Krusader::Správca profilov"
 
 #: GUI/profilemanager.cpp:117
 #, kde-format
@@ -91,50 +91,48 @@ msgstr "Neznáme"
 msgid "Floppy"
 msgstr "Disketa"
 
-#: GUI/mediabutton.cpp:179
-#, fuzzy, kde-format
+#: GUI/mediabutton.cpp:179, kde-format
 msgid "CD/DVD-ROM"
-msgstr "CD-ROM"
+msgstr "CD/DVD-ROM"
 
 #: GUI/mediabutton.cpp:181
 #, kde-format
 msgid "USB pen drive"
-msgstr ""
+msgstr "USB kľúč"
 
 #: GUI/mediabutton.cpp:183
 #, kde-format
 msgid "USB device"
-msgstr ""
+msgstr "USB zariadenie"
 
 #: GUI/mediabutton.cpp:185
 #, kde-format
 msgid "Removable media"
-msgstr ""
+msgstr "Vymeniteľné médium"
 
 #: GUI/mediabutton.cpp:187
 #, kde-format
 msgid "Hard Disk"
 msgstr "Pevný disk"
 
-#: GUI/mediabutton.cpp:189
-#, fuzzy, kde-format
+#: GUI/mediabutton.cpp:189, kde-format
 msgid "Camera"
-msgstr "Názov"
+msgstr "Fotoaparát"
 
 #: GUI/mediabutton.cpp:191
 #, kde-format
 msgid "Video CD/DVD-ROM"
-msgstr ""
+msgstr "Video CD/DVD-ROM"
 
 #: GUI/mediabutton.cpp:193
 #, kde-format
 msgid "Audio CD/DVD-ROM"
-msgstr ""
+msgstr "Audio CD/DVD-ROM"
 
 #: GUI/mediabutton.cpp:195
 #, kde-format
 msgid "Recordable CD/DVD-ROM"
-msgstr ""
+msgstr "Zapisovateľné CD/DVD-ROM"
 
 #: GUI/mediabutton.cpp:325 Panel/krpopupmenu.cpp:69
 #: BookMan/krbookmarkhandler.cpp:557
@@ -168,12 +166,12 @@ msgstr "Vysunúť"
 #: GUI/mediabutton.cpp:423
 #, kde-format
 msgid "An error occurred while accessing '%1', the system responded: %2"
-msgstr ""
+msgstr "Nastala chyba počas prístupu na '%1', systém odpovedal: %2"
 
 #: GUI/mediabutton.cpp:426
 #, kde-format
 msgid "An error occurred while accessing '%1'"
-msgstr ""
+msgstr "Nastala chyba počas prístupu na '%1'"
 
 #: GUI/syncbrowsebutton.cpp:45 GUI/syncbrowsebutton.cpp:48
 #, kde-format
@@ -183,7 +181,7 @@ msgid ""
 "active and inactive panel - if possible."
 msgstr ""
 "Toto tlačítko prepína režim synchronizovaného prezerania.\n"
-"Ak je aktívny, každá zmena priečinka\n"
+"Ak je aktívny, každá zmena priečinka je vykonaná\n"
 "v aktívnom aj neaktívnom panely - ak je to možné."
 
 #. i18n: tag string
@@ -312,7 +310,7 @@ msgstr "F10 Koniec"
 #: GUI/kfnkeys.cpp:95
 #, kde-format
 msgid "Quit Krusader."
-msgstr "Ukončí Krusader."
+msgstr "Ukončiť Krusader."
 
 #: GUI/kfnkeys.cpp:121
 #, kde-format
@@ -388,8 +386,7 @@ msgstr ""
 "Protokol nie je podporovaný Krusaderom:\n"
 "%1"
 
-#: VFS/preserveattrcopyjob.cpp:334 VFS/virtualcopyjob.cpp:389
-#, fuzzy, kde-format
+#: VFS/preserveattrcopyjob.cpp:334 VFS/virtualcopyjob.cpp:389, kde-format
 msgctxt "@title job"
 msgid "Moving"
 msgstr "Presúvanie súborov"
@@ -397,30 +394,26 @@ msgstr "Presúvanie súborov"
 #: VFS/preserveattrcopyjob.cpp:335 VFS/preserveattrcopyjob.cpp:342
 #: VFS/preserveattrcopyjob.cpp:349 VFS/preserveattrcopyjob.cpp:373
 #: VFS/kiojobwrapper.cpp:221 VFS/virtualcopyjob.cpp:384
-#: VFS/virtualcopyjob.cpp:390
-#, fuzzy, kde-format
+#: VFS/virtualcopyjob.cpp:390, kde-format
 msgid "Source"
-msgstr "Zdroj:"
+msgstr "Zdroj"
 
 #: VFS/preserveattrcopyjob.cpp:336 VFS/preserveattrcopyjob.cpp:343
 #: VFS/preserveattrcopyjob.cpp:350 VFS/preserveattrcopyjob.cpp:374
-#: VFS/virtualcopyjob.cpp:385 VFS/virtualcopyjob.cpp:391
-#, fuzzy, kde-format
+#: VFS/virtualcopyjob.cpp:385 VFS/virtualcopyjob.cpp:391, kde-format
 msgid "Destination"
-msgstr "Cieľ:"
+msgstr "Cieľ"
 
 #: VFS/preserveattrcopyjob.cpp:341 VFS/preserveattrcopyjob.cpp:348
-#: VFS/preserveattrcopyjob.cpp:372 VFS/virtualcopyjob.cpp:383
-#, fuzzy, kde-format
+#: VFS/preserveattrcopyjob.cpp:372 VFS/virtualcopyjob.cpp:383, kde-format
 msgctxt "@title job"
 msgid "Copying"
-msgstr "Kopírovanie súborov"
+msgstr "Kopírovanie"
 
-#: VFS/preserveattrcopyjob.cpp:361
-#, fuzzy, kde-format
+#: VFS/preserveattrcopyjob.cpp:361, kde-format
 msgctxt "@title job"
 msgid "Creating directory"
-msgstr "Rodičovský priečinok"
+msgstr "Vytváranie priečinku"
 
 #: VFS/preserveattrcopyjob.cpp:362 Panel/krinterview.cpp:205
 #: Panel/krbriefview.cpp:226 Panel/krdetailedview.cpp:317
@@ -429,10 +422,9 @@ msgstr "Rodičovský priečinok"
 msgid "Directory"
 msgstr "Priečinok"
 
-#: VFS/preserveattrcopyjob.cpp:793
-#, fuzzy, kde-format
+#: VFS/preserveattrcopyjob.cpp:793, kde-format
 msgid "Folder Already Exists"
-msgstr "Súbor už existuje"
+msgstr "Priečinok už existuje"
 
 #: VFS/preserveattrcopyjob.cpp:1074 VFS/preserveattrcopyjob.cpp:1594
 #: Synchronizer/synchronizer.cpp:1171 Synchronizer/synchronizer.cpp:1181
@@ -440,10 +432,9 @@ msgstr "Súbor už existuje"
 msgid "File Already Exists"
 msgstr "Súbor už existuje"
 
-#: VFS/preserveattrcopyjob.cpp:1074 VFS/preserveattrcopyjob.cpp:1594
-#, fuzzy, kde-format
+#: VFS/preserveattrcopyjob.cpp:1074 VFS/preserveattrcopyjob.cpp:1594, kde-format
 msgid "Already Exists as Folder"
-msgstr "Súbor už existuje"
+msgstr "Súbor už existuje ako priečinok"
 
 #: VFS/normal_vfs.cpp:98
 #, kde-format
@@ -489,32 +480,28 @@ msgstr ""
 #: VFS/virt_vfs.cpp:180
 #, kde-format
 msgid "Creating new directories is allowed only in the 'virt:/' directory."
-msgstr "Vytváranie nových priečinkov je povolené iba v pričinku 'virt:/'."
+msgstr "Vytváranie nových priečinkov je povolené iba v priečinku 'virt:/'."
 
 #: VFS/kiojobwrapper.cpp:185 Konfigurator/krresulttable.cpp:308
 #, kde-format
 msgid "Status"
 msgstr "Stav"
 
-#: VFS/kiojobwrapper.cpp:187
-#, fuzzy, kde-format
+#: VFS/kiojobwrapper.cpp:187, kde-format
 msgid "Directory Size"
-msgstr "Priečinky"
+msgstr "Veľkosť priečinku"
 
-#: VFS/kiojobwrapper.cpp:190
-#, fuzzy, kde-format
+#: VFS/kiojobwrapper.cpp:190, kde-format
 msgid "Copy"
 msgstr "Kopírovať"
 
-#: VFS/kiojobwrapper.cpp:193
-#, fuzzy, kde-format
+#: VFS/kiojobwrapper.cpp:193, kde-format
 msgid "Move"
 msgstr "Presunúť"
 
-#: VFS/kiojobwrapper.cpp:220
-#, fuzzy, kde-format
+#: VFS/kiojobwrapper.cpp:220, kde-format
 msgid "Target"
-msgstr "Tar"
+msgstr "Cieľ"
 
 #: VFS/krquery.cpp:159 Filter/generalfilter.cpp:142
 #: Konfigurator/konfigurator.cpp:159
@@ -631,7 +618,7 @@ msgid ""
 "%3"
 msgstr ""
 "V %1:\n"
-"Nezachytená výnimka v Javaskripte '%2'\n"
+"Nezachytená výnimka v JavaScript-e '%2'\n"
 "%3"
 
 #: KrJS/krjs.cpp:65
@@ -642,7 +629,7 @@ msgid ""
 "%4"
 msgstr ""
 "V %1:\n"
-"Nezachytená výnimka v Javaskripte '%2' na riadku %3\n"
+"Nezachytená výnimka v JavaScript-e '%2' na riadku %3\n"
 "%4"
 
 #: KrJS/krjs.cpp:67
@@ -668,60 +655,55 @@ msgstr "Krusader::Výber súborov"
 
 #: Filter/generalfilter.cpp:56
 msgid "Any Character"
-msgstr ""
+msgstr "Ľubovoľný znak"
 
 #: Filter/generalfilter.cpp:57
-#, fuzzy
 msgid "Start of Line"
-msgstr "Profil pri spustení:"
+msgstr "Začiatok riadku"
 
 #: Filter/generalfilter.cpp:58
 msgid "End of Line"
-msgstr ""
+msgstr "Znak 'koniec riadku'"
 
 #: Filter/generalfilter.cpp:59
 msgid "Set of Characters"
-msgstr ""
+msgstr "Množina znakov"
 
 #: Filter/generalfilter.cpp:60
 msgid "Repeats, Zero or More Times"
-msgstr ""
+msgstr "Opakuje sa nula alebo viackrát"
 
 #: Filter/generalfilter.cpp:61
 msgid "Repeats, One or More Times"
-msgstr ""
+msgstr "Opakuje sa raz alebo viackrát"
 
 #: Filter/generalfilter.cpp:62
-#, fuzzy
 msgid "Optional"
-msgstr "&Možnosti"
+msgstr "Voliteľné"
 
 #: Filter/generalfilter.cpp:63
 msgid "Escape"
-msgstr ""
+msgstr "'Escape' znak"
 
 #: Filter/generalfilter.cpp:64
 msgid "TAB"
-msgstr ""
+msgstr "Tabulátor"
 
 #: Filter/generalfilter.cpp:65
-#, fuzzy
 msgid "Newline"
-msgstr "Nový symbolický odkaz"
+msgstr "Znak 'Nový Riadok'"
 
 #: Filter/generalfilter.cpp:66
 msgid "Carriage Return"
-msgstr ""
+msgstr "Návrat vozíku ('carriage return')"
 
 #: Filter/generalfilter.cpp:67
-#, fuzzy
 msgid "White Space"
-msgstr "Biely"
+msgstr "Medzera"
 
 #: Filter/generalfilter.cpp:68
-#, fuzzy
 msgid "Digit"
-msgstr "Pravá"
+msgstr "Číslica"
 
 #: Filter/generalfilter.cpp:101
 #, kde-format
@@ -765,10 +747,10 @@ msgstr ""
 "prehľadávanie priečinkov.<ul<li><code>vzor</code> - znamená hľadanie "
 "súborov, ktorých názov je <code>vzor</code>. Rekurzívne prehľadávanie cez "
 "všetky podpriečinky nezávislé na hodnote <code>vzor</code></"
-"li><li><code>vzor/</code> - znamená hľadanie všetkcýh súborov/prierinkov, "
-"kde sa rekúrzívne prechádzdza cez priečinky, ktorých názov je <code>vzor</"
+"li><li><code>vzor/</code> - znamená hľadanie všetkých súborov/priečinkov, "
+"kde sa rekurzívne prechádza cez priečinky, ktorých názov je <code>vzor</"
 "code></li><ul></p><p>Je povolené používať úvodzovky pre názvy, ktoré "
-"obsahují mezeru.Filter <code>\"Program&nbsp;Files\"</code> hľadá medzi "
+"obsahujú medzeru. Filter <code>\"Program&nbsp;Files\"</code> hľadá medzi "
 "súbormi, ktorých názov je <code>Program&nbsp;Files</code>.</p><p>Príklady:"
 "<ul><code><li>*.o</\"li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</"
 "li><li>* | CVS/ .svn/</li></\"code></ul><b>Pozn.</b>: vyhľadávací výraz "
@@ -834,12 +816,11 @@ msgstr "&Text:"
 #: Filter/generalfilter.cpp:265
 #, kde-format
 msgid "RegExp"
-msgstr ""
+msgstr "RegVýraz"
 
-#: Filter/generalfilter.cpp:286
-#, fuzzy, kde-format
+#: Filter/generalfilter.cpp:286, kde-format
 msgid "Encoding:"
-msgstr "Upravovanie"
+msgstr "Kódovanie:"
 
 #: Filter/generalfilter.cpp:301
 #, kde-format
@@ -1096,49 +1077,43 @@ msgstr ""
 #: UserAction/expander.cpp:58
 #, kde-format
 msgid "Needed panel specification missing in expander %1"
-msgstr ""
+msgstr "V expanderi chýba potrebná špecifikácia panelu %1"
 
 #: UserAction/expander.cpp:73
 #, kde-format
 msgid "Expander: Bad argument to %1: %2 is not valid item specifier"
-msgstr ""
+msgstr "Expander: Zlý argument pre %1: %2 nie je platné určenie položky"
 
-#: UserAction/expander.cpp:360
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:360, kde-format
 msgid "Panel's Path..."
-msgstr "cesta k panelu"
+msgstr "Cesta panelu"
 
 #: UserAction/expander.cpp:363 UserAction/expander.cpp:425
 #: UserAction/expander.cpp:459 UserAction/expander.cpp:491
-#: UserAction/expander.cpp:804
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:804, kde-format
 msgid "Automatically escape spaces"
-msgstr "Automatické únikové medzery"
+msgstr "Automaticky ošetriť medzery"
 
-#: UserAction/expander.cpp:383
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:383, kde-format
 msgid "Number of..."
-msgstr "počet ..."
+msgstr "Počet ..."
 
-#: UserAction/expander.cpp:386
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:386, kde-format
 msgid "Count:"
-msgstr "Pripojiť"
+msgstr "Počet:"
 
 #: UserAction/expander.cpp:401
 #, kde-format
 msgid "Expander: Bad argument to Count: %1 is not valid item specifier"
-msgstr ""
+msgstr "Expander: Zlý argument pre počet: %1 je neplatné určenie položky"
 
-#: UserAction/expander.cpp:410
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:410, kde-format
 msgid "Filter Mask (*.h, *.cpp, etc.)"
-msgstr "maska filtra: *.h, *.cpp, atď."
+msgstr "Maska filtra (*.h, *.cpp, atď.)"
 
-#: UserAction/expander.cpp:421
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:421, kde-format
 msgid "Current File (!= Selected File)..."
-msgstr "aktuálny súbor (!= zvolený súbor)"
+msgstr "Aktuálny Súbor (!= Zvolený Súbor)"
 
 #: UserAction/expander.cpp:424 UserAction/expander.cpp:457
 #: UserAction/expander.cpp:489 UserAction/expander.cpp:802
@@ -1146,32 +1121,27 @@ msgstr "aktuálny súbor (!= zvolený súbor)"
 msgid "Omit the current path (optional)"
 msgstr "Vynechať aktuálnu cestu (voliteľné)"
 
-#: UserAction/expander.cpp:452
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:452, kde-format
 msgid "Item List of..."
-msgstr "Zoznam položiek ..."
+msgstr "Zoznam položiek..."
 
 #: UserAction/expander.cpp:455 UserAction/expander.cpp:487
-#: UserAction/expander.cpp:801
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:801, kde-format
 msgid "Which items:"
-msgstr "Ktoré položky"
+msgstr "Ktoré položky:"
 
-#: UserAction/expander.cpp:456
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:456, kde-format
 msgid "Separator between the items (optional):"
-msgstr "Oddeľovač medzi položkami (voliteľné)"
+msgstr "Oddeľovač medzi položkami (voliteľné):"
 
 #: UserAction/expander.cpp:458 UserAction/expander.cpp:490
-#: UserAction/expander.cpp:803
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:803, kde-format
 msgid "Mask (optional, all but 'Selected'):"
-msgstr "Maska (voliteľné, všetko ale 'Zvolené')"
+msgstr "Maska (voliteľné, všetko okrem 'Zvolené'):"
 
-#: UserAction/expander.cpp:484
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:484, kde-format
 msgid "Filename of an Item List..."
-msgstr "Názov súboru so zoznamom..."
+msgstr "Názov súboru so zoznamom položiek..."
 
 #: UserAction/expander.cpp:488
 #, kde-format
@@ -1181,228 +1151,202 @@ msgstr "Oddeľovač medzi položkami (voliteľné)"
 #: UserAction/expander.cpp:509
 #, kde-format
 msgid "Expander: tempfile couldn't be opened (%1)"
-msgstr ""
+msgstr "Expander: nie je možné otvoriť dočasný súbor (%1)"
 
-#: UserAction/expander.cpp:529
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:529, kde-format
 msgid "Manipulate the Selection..."
-msgstr "Manipulovanie výberom"
+msgstr "Manipulovať s výberom"
 
-#: UserAction/expander.cpp:532
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:532, kde-format
 msgid "Selection mask:"
-msgstr "Maska výberu"
+msgstr "Maska výberu:"
 
-#: UserAction/expander.cpp:533
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:533, kde-format
 msgid "Manipulate in which way:"
-msgstr "Ako manipulovať"
+msgstr "Manipulovať spôsobom:"
 
-#: UserAction/expander.cpp:558
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:558, kde-format
 msgid "Jump to a Location..."
-msgstr "Skočiť na umiestnenie"
+msgstr "Skočiť na umiestnenie..."
 
-#: UserAction/expander.cpp:561
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:561, kde-format
 msgid "Choose a path:"
-msgstr "vyberte prosím cestu"
+msgstr "Vyberte cestu:"
 
-#: UserAction/expander.cpp:562
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:562, kde-format
 msgid "Open location in a new tab"
-msgstr "otvoriť umiestnenie v novej karte"
+msgstr "Otvoriť umiestnenie v novej karte"
 
 #: UserAction/expander.cpp:572
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Goto!"
-msgstr ""
+msgstr "Expander: Pre GoTo je potrebný minimálne 1 parameter!"
 
 #: UserAction/expander.cpp:603
 #, kde-format
 msgid "Ask Parameter from User..."
-msgstr ""
+msgstr "Vyžiadať parameter od používateľa..."
 
-#: UserAction/expander.cpp:606
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:606, kde-format
 msgid "Question:"
-msgstr "Otázka"
+msgstr "Otázka:"
 
-#: UserAction/expander.cpp:607
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:607, kde-format
 msgid "Preset (optional):"
-msgstr "Predvolené (voliteľné)"
+msgstr "Predvolené (voliteľné):"
 
-#: UserAction/expander.cpp:608
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:608, kde-format
 msgid "Caption (optional):"
-msgstr "Titulok (voliteľné)"
+msgstr "Titulok (voliteľné):"
 
 #: UserAction/expander.cpp:614
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Ask!"
-msgstr ""
+msgstr "Expander: Pre Ask je potrebný minimálne 1 parameter!"
 
 #: UserAction/expander.cpp:619
 #, kde-format
 msgid "User Action"
 msgstr "Používateľská akcia"
 
-#: UserAction/expander.cpp:644
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:644, kde-format
 msgid "Copy to Clipboard..."
-msgstr "Skopírovať do schránky"
+msgstr "Skopírovať do schránky..."
 
 #: UserAction/expander.cpp:647 UserAction/expander.cpp:675
 #, kde-format
 msgid "What to copy:"
-msgstr ""
+msgstr "Čo kopírovať:"
 
-#: UserAction/expander.cpp:648
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:648, kde-format
 msgid "Append to current clipboard content with this separator (optional):"
-msgstr "Pridať k aktuálnemu obsahu schránky s týmto oddeľovačom (voliteľné)"
+msgstr "Pridať k aktuálnemu obsahu schránky s týmto oddeľovačom (voliteľné):"
 
 #: UserAction/expander.cpp:653
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Clipboard!"
-msgstr ""
+msgstr "Expander: Pre Clipboard je potrebný minimálne 1 parameter!"
 
 #: UserAction/expander.cpp:659
 #, kde-format
 msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
-msgstr ""
+msgstr "Expander: %Each% nemôže byť použitý v druhom argumente %Clipboard%"
 
-#: UserAction/expander.cpp:672
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:672, kde-format
 msgid "Copy a File/Folder..."
-msgstr "Kopírovať súbor/priečinok"
+msgstr "Kopírovať súbor/priečinok..."
 
-#: UserAction/expander.cpp:676
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:676, kde-format
 msgid "Where to copy:"
-msgstr "Kam by sa to malo kopírovať"
+msgstr "Kam kopírovať:"
 
 #: UserAction/expander.cpp:680
 #, kde-format
 msgid "Expander: at least 2 parameter is required for Copy!"
-msgstr ""
+msgstr "Expander: pre Copy sú potrebné minimálne 2 parametre!"
 
 #: UserAction/expander.cpp:687
 #, kde-format
 msgid "Expander: %Each% may not be in the second argument of %Copy%"
-msgstr ""
+msgstr "Expander: %Each% nemôže byť použitý v druhom argumente %Copy%"
 
 #: UserAction/expander.cpp:697
 #, kde-format
 msgid "Expander: invalid URL's in %_Copy(\"src\", \"dest\")%"
-msgstr ""
+msgstr "Expander: neplatná URL v %_Copy(\"src\", \"dest\")%"
 
-#: UserAction/expander.cpp:708
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:708, kde-format
 msgid "Move/Rename a File/Folder..."
-msgstr "Presunúť/Premenovať súbor/priečinok"
+msgstr "Presunúť/Premenovať súbor/priečinok..."
 
-#: UserAction/expander.cpp:711
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:711, kde-format
 msgid "What to move/rename:"
-msgstr "Čo presunúť/premenovať"
+msgstr "Čo presunúť/premenovať:"
 
-#: UserAction/expander.cpp:712
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:712, kde-format
 msgid "New target/name:"
-msgstr "Nový cieľ/názov"
+msgstr "Nový cieľ/názov:"
 
 #: UserAction/expander.cpp:716
 #, kde-format
 msgid "Expander: at least 2 parameter is required for Move!"
-msgstr ""
+msgstr "Expander: pre Move sú potrebné minimálne 2 parametre!"
 
 #: UserAction/expander.cpp:723
 #, kde-format
 msgid "%Each% may not be in the second argument of %Move%"
-msgstr ""
+msgstr "Expander: %Each% nemôže byť použitý v druhom argumente %Move%"
 
 #: UserAction/expander.cpp:733
 #, kde-format
 msgid "Expander: invalid URL's in %_Move(\"src\", \"dest\")%"
-msgstr ""
+msgstr "Expander: neplatná URL v %_Move(\"src\", \"dest\")%"
 
-#: UserAction/expander.cpp:744
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:744, kde-format
 msgid "Load a Synchronizer Profile..."
-msgstr "Otvoriť synchronizačný profil"
+msgstr "Otvoriť synchronizačný profil..."
 
 #: UserAction/expander.cpp:747 UserAction/expander.cpp:765
-#: UserAction/expander.cpp:783
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:783, kde-format
 msgid "Choose a profile:"
-msgstr "Vyberte profil"
+msgstr "Vyberte profil:"
 
 #: UserAction/expander.cpp:751
 #, kde-format
 msgid "Expander: no profile specified for %_Sync(profile)%"
-msgstr ""
+msgstr "Expander: nie je špecifikovaný žiadny profil pre %_Sync(profil)%"
 
-#: UserAction/expander.cpp:762
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:762, kde-format
 msgid "Load a Searchmodule Profile..."
-msgstr "Otvoriť profil hľadania"
+msgstr "Načítať profil hľadania..."
 
 #: UserAction/expander.cpp:769
 #, kde-format
 msgid "Expander: no profile specified for %_NewSearch(profile)%"
-msgstr ""
+msgstr "Expander: nie je špecifikovaný žiadny profil pre %_NewSearch(profile)%"
 
-#: UserAction/expander.cpp:780
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:780, kde-format
 msgid "Load a Panel Profile..."
-msgstr "Načítať profil panelu"
+msgstr "Načítať profil panelu..."
 
 #: UserAction/expander.cpp:787
 #, kde-format
 msgid "Expander: no profile specified for %_Profile(profile)%; abort..."
-msgstr ""
+msgstr "Expander: nie je špecifikovaný žiadny profil pre %_Profile(profile)%; končím..."
 
-#: UserAction/expander.cpp:798
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:798, kde-format
 msgid "Separate Program Call for Each..."
 msgstr "Samostatné volanie programu pre každú položku..."
 
-#: UserAction/expander.cpp:830
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:830, kde-format
 msgid "Set Sorting for This Panel..."
-msgstr "Nastaviť triedenie pre tento panel"
+msgstr "Nastaviť triedenie pre tento panel..."
 
-#: UserAction/expander.cpp:833
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:833, kde-format
 msgid "Choose a column:"
-msgstr "Vybrať stĺpec"
+msgstr "Vyberte stĺpec:"
 
-#: UserAction/expander.cpp:834
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:834, kde-format
 msgid "Choose a sort sequence:"
-msgstr "Vyberte postupnosť triedenia"
+msgstr "Vyberte postupnosť triedenia:"
 
 #: UserAction/expander.cpp:840
 #, kde-format
 msgid "Expander: no column specified for %_ColSort(column)%"
-msgstr ""
+msgstr "Expander: nie je určený žiadny stĺpec pre %_ColSort(stĺpec)%"
 
 #: UserAction/expander.cpp:912
 #, kde-format
 msgid "Expander: unknown column specified for %_ColSort(%1)%"
-msgstr ""
+msgstr "Expander: neznámy stĺpec špecifikovaný pre %_ColSort(%1)%"
 
-#: UserAction/expander.cpp:924
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:924, kde-format
 msgid "Set Relation Between the Panels..."
-msgstr "Nastaviť vzťah medzi dvoma panelmi"
+msgstr "Nastavte vzťah medzi dvoma panelmi..."
 
-#: UserAction/expander.cpp:927
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:927, kde-format
 msgid "Set the new size in percent:"
-msgstr "Nastavte novú veľkosť v percentách"
+msgstr "Nastavte novú veľkosť v percentách:"
 
 #: UserAction/expander.cpp:939
 #, kde-format
@@ -1410,80 +1354,76 @@ msgid ""
 "Expander: Value %1 out of range for %_PanelSize(percent)%. The first "
 "parameter has to be >0 and <100"
 msgstr ""
+"Expander: Hodnota %1 je mimo rozsah pre %_PanelSize(percent)%. Prvý "
+"parameter musí byť >0 a <100"
 
-#: UserAction/expander.cpp:963
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:963, kde-format
 msgid "Execute a JavaScript Extension..."
-msgstr "Vykoná Javaskriptové rozšírenie"
+msgstr "Vykonať JavaScript rozšírenie..."
 
 #: UserAction/expander.cpp:966
 #, kde-format
 msgid "Location of the script"
 msgstr "Umiestnenie skriptu"
 
-#: UserAction/expander.cpp:967
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:967, kde-format
 msgid ""
 "Set some variables for the execution (optional).\n"
 "i.e. \"return=return_var;foo=bar\", consult the handbook for more information"
 msgstr ""
-"Nastavte niektoré premenné pre vykonávanie (nepovinné).\n"
-"napr. \"return=cmd;foo=bar\", viac informácií nájdete v príručke"
+"Nastavte niektoré premenné pre vykonávanie (voliteľné).\n"
+"napr. \"return=return_var;cmd;foo=bar\", viac informácií nájdete v príručke"
 
 #: UserAction/expander.cpp:971
 #, kde-format
 msgid "Expander: no script specified for %_Script(script)%"
-msgstr ""
+msgstr "Expander: nie je špecifikovaný skript pre  %_Script(script)%"
 
-#: UserAction/expander.cpp:1013
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:1013, kde-format
 msgid "View File with Krusader's Internal Viewer..."
-msgstr "Zobraziť súbor so zabudovaným prehliadačom Krusaderu"
+msgstr "Zobraziť súbor so zabudovaným prehliadačom Krusaderu..."
 
-#: UserAction/expander.cpp:1016
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:1016, kde-format
 msgid "Which file to view (normally '%aCurrent%'):"
-msgstr "Ktorý súbor zobraziť (normálne '%aCurrent%')"
+msgstr "Ktorý súbor zobraziť (spravidla '%aCurrent%'):"
 
-#: UserAction/expander.cpp:1017
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:1017, kde-format
 msgid "Choose a view mode:"
-msgstr "Vyberte režim zobrazenia"
+msgstr "Vyberte režim zobrazenia:"
 
-#: UserAction/expander.cpp:1020
-#, fuzzy, kde-format
+#: UserAction/expander.cpp:1020, kde-format
 msgid "Choose a window mode:"
-msgstr "Vyberte režim okna"
+msgstr "Vyberte režim okna:"
 
 #: UserAction/expander.cpp:1024
 #, kde-format
 msgid "Expander: no file to view in %_View(filename)%"
-msgstr ""
+msgstr "Expander: žiadny súbor k prezeraniu v %_View(názovsúboru)%"
 
 #: UserAction/expander.cpp:1061
 #, kde-format
 msgid "%Each% is not allowed in parameter to %1"
-msgstr ""
+msgstr "%Each% nie je povolený v parametri pre %1"
 
 #: UserAction/expander.cpp:1082
 #, kde-format
 msgid "Expander: Bad panel specifier %1 in placeholder %2"
-msgstr ""
+msgstr "Expander: zlá špecifikácia panela %1 v zástupcovi %2"
 
 #: UserAction/expander.cpp:1111
 #, kde-format
 msgid "Error: unterminated % in Expander::expandCurrent"
-msgstr ""
+msgstr "Chyba: neukončené % v Expander::expandCurrent"
 
 #: UserAction/expander.cpp:1141
 #, kde-format
 msgid "Error: unrecognized %%%1%2%% in Expander::expand"
-msgstr ""
+msgstr "Chyba: nerozpoznané %%%1%2%%."
 
 #: UserAction/expander.cpp:1179
 #, kde-format
 msgid "Error: missing ')' in Expander::separateParameter"
-msgstr ""
+msgstr "Chyba: chýba ')' v Expander::separateParameter"
 
 #: UserAction/useractionpopupmenu.cpp:23 Panel/krpopupmenu.cpp:123
 #: Konfigurator/konfigurator.cpp:165
@@ -1564,7 +1504,7 @@ msgstr ""
 #: UserAction/kraction.cpp:160
 #, kde-format
 msgid "Overwrite or append?"
-msgstr "Prepísať alebo pridať?"
+msgstr "Prepísať, alebo pridať na koniec?"
 
 #: UserAction/kraction.cpp:161 Dialogs/krkeydialog.cpp:136
 #: Dialogs/checksumdlg.cpp:630 Konfigurator/kgcolors.cpp:565
@@ -1597,12 +1537,13 @@ msgid ""
 "Support for more than one command doesn't work in a terminal. Only the first "
 "is executed in the terminal."
 msgstr ""
+"Podpora pre viac ako jeden príkaz nefunguje v termináli. V termináli sa "
+"vykonaná iba prvý príkaz."
 
 #: UserAction/kraction.cpp:224
 #, kde-format
-msgid ""
-"Embedded terminal emulator does not work, using output collection instead."
-msgstr ""
+msgid "Embedded terminal emulator does not work, using output collection instead."
+msgstr "Zabudovaný emulátor terminálu nefunguje alebo, použije sa namiesto neho zbieraný výstup."
 
 #: UserAction/useraction.cpp:158
 #, kde-format
@@ -1618,7 +1559,7 @@ msgstr "Používateľské akcie - nie je možné čítať zo súboru!"
 #: UserAction/useraction.cpp:169
 #, kde-format
 msgid "The actionfile's root-element isn't called "
-msgstr ""
+msgstr "Koreňový element súboru akcií nie je volaný"
 
 #: UserAction/useraction.cpp:181
 #, kde-format
@@ -1639,10 +1580,9 @@ msgstr ""
 msgid "UserActions - invalid action"
 msgstr "Používateľské akcie - neplatná akcia"
 
-#: Panel/krinterview.cpp:58
-#, fuzzy, kde-format
+#: Panel/krinterview.cpp:58, kde-format
 msgid "&Experimental View"
-msgstr "&Detailné zobrazenie"
+msgstr "&Experimentálne zobrazenie"
 
 #: Panel/krdetailedviewitem.cpp:79 Panel/krdetailedviewitem.cpp:113
 #: Synchronizer/synchronizergui.cpp:2064 Synchronizer/synchronizergui.cpp:2071
@@ -1706,7 +1646,7 @@ msgstr ""
 #: Panel/listpanel.cpp:182 Panel/listpanel.cpp:379
 #, kde-format
 msgid "Open the popup panel"
-msgstr "Otvoriť popup panel"
+msgstr "Otvoriť vyskakovací panel"
 
 #: Panel/listpanel.cpp:201
 #, kde-format
@@ -1760,12 +1700,12 @@ msgstr "/"
 #: Panel/listpanel.cpp:238 krusader.cpp:738
 #, kde-format
 msgid "Root"
-msgstr "Root"
+msgstr "Koreň zväzku"
 
 #: Panel/listpanel.cpp:373
 #, kde-format
 msgid "Close the popup panel"
-msgstr "Zatvoriť popup panel"
+msgstr "Zatvoriť vyskakovací panel"
 
 #: Panel/listpanel.cpp:477 Panel/listpanel.cpp:863
 #, kde-format
@@ -1985,7 +1925,7 @@ msgstr "uložiť aktuálny výber"
 #: Panel/panelpopup.cpp:379
 #, kde-format
 msgid "select group dialog"
-msgstr "vybrať dialóg skupín"
+msgstr "dialóg výberu skupín"
 
 #: Panel/panelpopup.cpp:485
 #, kde-format
@@ -2049,9 +1989,9 @@ msgstr[2] "v %1 priečinkoch"
 #, kde-format
 msgid "and %1 file"
 msgid_plural "and %1 files"
-msgstr[0] "a %1 súbor"
-msgstr[1] "a %1 súbory"
-msgstr[2] "a %1 súborov"
+msgstr[0] "a %1 súbore"
+msgstr[1] "a %1 súboroch"
+msgstr[2] "a %1 súboroch"
 
 #: Panel/krpopupmenu.cpp:65
 #, kde-format
@@ -2321,8 +2261,7 @@ msgstr[2] "Skutočne chcete presunúť týchto %1 položiek do koša"
 msgid "&Trash"
 msgstr "&Kôš"
 
-#: Panel/panelfunc.cpp:691
-#, fuzzy, kde-format
+#: Panel/panelfunc.cpp:691, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
 "untouched)?"
@@ -2346,8 +2285,7 @@ msgstr[2] ""
 msgid "&Delete"
 msgstr "&Zmazať"
 
-#: Panel/panelfunc.cpp:694
-#, fuzzy, kde-format
+#: Panel/panelfunc.cpp:694, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
 "removing it from the virtual items)?</qt>"
@@ -2476,105 +2414,96 @@ msgstr "Nie je možné vystrihnúť zoznam virtuálnych URL do schránky!"
 msgid "Cannot copy a virtual URL collection onto the clipboard!"
 msgstr "Nie je možné skopírovať zoznam virtuálnych URL do schránky!"
 
-#: Queue/queuewidget.cpp:128 Queue/queuedialog.cpp:156
-#, fuzzy, kde-format
+#: Queue/queuewidget.cpp:128 Queue/queuedialog.cpp:156, kde-format
 msgid "Queue Manager"
-msgstr "Názov požiadavky"
+msgstr "Správca fronty úloh"
 
 #: Queue/queuewidget.cpp:144
 #, kde-format
 msgid "Deleting this job will abort the pending job. Do you wish to continue?"
-msgstr ""
+msgstr "Zrušenie tejto úlohy zruší čakajúcu úlohu. Chcete pokračovať?"
 
-#: Queue/queue_mgr.cpp:9
-#, fuzzy, kde-format
+#: Queue/queue_mgr.cpp:9, kde-format
 msgid "default"
-msgstr "Štandardne"
+msgstr "štandardná"
 
 #: Queue/queuedialog.cpp:103 Queue/queuedialog.cpp:134
-#: Queue/queuedialog.cpp:389
-#, fuzzy, kde-format
+#: Queue/queuedialog.cpp:389, kde-format
 msgid "Krusader::Queue Manager"
-msgstr "Krusader::Lokalizovať"
+msgstr "Krusader::Správca fronty úloh"
 
-#: Queue/queuedialog.cpp:110
-#, fuzzy, kde-format
+#: Queue/queuedialog.cpp:110, kde-format
 msgid "Please enter the time to start processing the queue:"
-msgstr "Vložte prosím určenie nového odkazu:"
+msgstr "Zadajte prosím čas, kedy sa má začať spracovávať front:"
 
-#: Queue/queuedialog.cpp:179
-#, fuzzy, kde-format
+#: Queue/queuedialog.cpp:179, kde-format
 msgid "Create a new queue (Ctrl+T)"
-msgstr "Vytvoriť nový odkaz na: "
+msgstr "Vytvoriť novú frontu úloh (Ctrl+T) "
 
-#: Queue/queuedialog.cpp:185
-#, fuzzy, kde-format
+#: Queue/queuedialog.cpp:185, kde-format
 msgid "Remove the current queue (Ctrl+W)"
-msgstr "uložiť aktuálny výber"
+msgstr "Odstrániť aktuálnu frontu (Ctrl+W)"
 
-#: Queue/queuedialog.cpp:198 Queue/queuedialog.cpp:427
-#, fuzzy, kde-format
+#: Queue/queuedialog.cpp:198 Queue/queuedialog.cpp:427, kde-format
 msgid "unused"
-msgstr "Pripojiť"
+msgstr "nepoužité"
 
 #: Queue/queuedialog.cpp:204
 #, kde-format
 msgid "Schedule queue starting (Ctrl+S)"
-msgstr ""
+msgstr "Naplánovať štart fronty (Ctrl+S)"
 
 #: Queue/queuedialog.cpp:343
 #, kde-format
 msgid "Start processing the queue (Ctrl+P)"
-msgstr ""
+msgstr "Spustiť spracovanie fronty (Ctrl+P)"
 
 #: Queue/queuedialog.cpp:346
 #, kde-format
 msgid "The queue is paused."
-msgstr ""
+msgstr "Front je pozastavená."
 
 #: Queue/queuedialog.cpp:348
 #, kde-format
 msgid "Scheduled to start at %1."
-msgstr ""
+msgstr "Plánovaný štart o %1."
 
 #: Queue/queuedialog.cpp:351
 #, kde-format
 msgid "The queue is running."
-msgstr ""
+msgstr "Front sa spracováva."
 
 #: Queue/queuedialog.cpp:353
 #, kde-format
 msgid "Pause processing the queue (Ctrl+P)"
-msgstr ""
+msgstr "Pozastaviť spracovanie fronty (Ctrl+P)"
 
-#: Queue/queuedialog.cpp:390
-#, fuzzy, kde-format
+#: Queue/queuedialog.cpp:390, kde-format
 msgid "Please enter the name of the new queue"
-msgstr "Zadajte prosím jedinečný názov pre používateľskú akciu"
+msgstr "Zadajte prosím názov novej fronty"
 
 #: Queue/queuedialog.cpp:399
 #, kde-format
 msgid "A queue already exists with this name!"
-msgstr ""
+msgstr "Front z daným názvom už existuje!"
 
-#: Queue/queuedialog.cpp:411
-#, fuzzy, kde-format
+#: Queue/queuedialog.cpp:411, kde-format
 msgid ""
 "Deleting the queue requires aborting all pending jobs. Do you wish to "
 "continue?"
 msgstr ""
-"Aby ste vkročili do rodičovského priečinku, je potrebné načítať obsah URL  "
-"\"%1\". Chcete pokračovať?"
+"Zmazanie fronty vyžaduje zrušenie všetkých čakajúcich úloh. Chcete "
+"pokračovať?"
 
 #: Queue/queue.cpp:66
 #, kde-format
 msgid "An error occurred during processing the queue.\n"
-msgstr ""
+msgstr "Počas spracovania fronty sa vyskytla chyba.\n"
 
 #: Queue/queue.cpp:68
 #, kde-format
 msgid "The last processed element in the queue was aborted.\n"
-msgstr ""
+msgstr "Spracovanie poslednej  položky fronty bolo zrušené.\n"
 
 #: Queue/queue.cpp:69
 #, kde-format
@@ -2582,16 +2511,16 @@ msgid ""
 "Do you wish to continue with the next element, delete the queue or suspend "
 "the queue?"
 msgstr ""
+"Prajete si pokračovať s ďalšími položkami, zmazať front alebo pozastaviť "
+"front?"
 
-#: Queue/queue.cpp:71
-#, fuzzy, kde-format
+#: Queue/queue.cpp:71, kde-format
 msgid "Krusader::Queue"
-msgstr "Krusader::Lokalizovať"
+msgstr "Krusader::Front úloh"
 
-#: Queue/queue.cpp:72
-#, fuzzy, kde-format
+#: Queue/queue.cpp:72, kde-format
 msgid "Suspend"
-msgstr "Pripojiť"
+msgstr "Pozastaviť"
 
 #: Locate/locate.cpp:121 Locate/locate.cpp:125 Locate/locate.cpp:392
 #, kde-format
@@ -2676,10 +2605,9 @@ msgstr "Zobraziť (F3)"
 msgid "Edit (F4)"
 msgstr "Upraviť (F4)"
 
-#: Locate/locate.cpp:396 Search/krsearchdialog.cpp:626
-#, fuzzy, kde-format
+#: Locate/locate.cpp:396 Search/krsearchdialog.cpp:626, kde-format
 msgid "Compare by content (F10)"
-msgstr "Porovnať podľa obsahu"
+msgstr "Porovnať podľa obsahu (F10)"
 
 #: Locate/locate.cpp:401
 #, kde-format
@@ -2696,10 +2624,9 @@ msgstr "Nájsť nasledujúce (CRTL+N)"
 msgid "Find previous (Ctrl+P)"
 msgstr "Nájsť predchádzajúce (CRTL+P)"
 
-#: Locate/locate.cpp:406 Search/krsearchdialog.cpp:629
-#, fuzzy, kde-format
+#: Locate/locate.cpp:406 Search/krsearchdialog.cpp:629, kde-format
 msgid "Copy selected to clipboard"
-msgstr "Skopírovať používateľské akcie do schránky"
+msgstr "Skopírovať označené do schránky"
 
 #: Locate/locate.cpp:553 Locate/locate.cpp:573
 #, kde-format
@@ -2725,8 +2652,7 @@ msgstr "Tu môžete pomenovať skupinu súborov"
 #: krusader.cpp:387
 #, kde-format
 msgid "Statusbar will show basic information about file below mouse pointer."
-msgstr ""
-"Stavový panel zobrazí základné informácie o súbore pod ukazovateľom myši."
+msgstr "Stavový panel zobrazí základné informácie o súbore pod ukazovateľom myši."
 
 #: krusader.cpp:470
 #, kde-format
@@ -2795,12 +2721,12 @@ msgstr "Prehoden&ie strán"
 #: krusader.cpp:659
 #, kde-format
 msgid "popup cmdline"
-msgstr "prekrývací príkazový riadok"
+msgstr "vyskakovací príkazový riadok"
 
 #: krusader.cpp:665
 #, kde-format
 msgid "&New Text File..."
-msgstr "Nový textový súbor..."
+msgstr "&Nový textový súbor..."
 
 #: krusader.cpp:666
 #, kde-format
@@ -2895,7 +2821,7 @@ msgstr "&Invertovať označenie"
 #: krusader.cpp:684
 #, kde-format
 msgid "&Compare Directories"
-msgstr "&Porovnanie prečinkov"
+msgstr "&Porovnanie priečinkov"
 
 #: krusader.cpp:685
 #, kde-format
@@ -2910,7 +2836,7 @@ msgstr "Označiť &novšie"
 #: krusader.cpp:687
 #, kde-format
 msgid "Select &Single"
-msgstr "Označit &samotné"
+msgstr "Označiť &samotné"
 
 #: krusader.cpp:688
 #, kde-format
@@ -2925,27 +2851,24 @@ msgstr "Označiť ro&zdielne"
 #: krusader.cpp:699
 #, kde-format
 msgid "Start and &Forget"
-msgstr ""
+msgstr "&Spustiť a nestarať sa"
 
-#: krusader.cpp:700
-#, fuzzy, kde-format
+#: krusader.cpp:700, kde-format
 msgid "Display &Separated Standard and Error Output"
-msgstr "Oddeliť štandardný chybový výstup"
+msgstr "Zobraziť &Oddelený štandardný a chybový výstup"
 
 #: krusader.cpp:701
 #, kde-format
 msgid "Display &Mixed Standard and Error Output"
-msgstr ""
+msgstr "Zobraziť Z&miešaný štandardný a chybový výstup"
 
-#: krusader.cpp:702
-#, fuzzy, kde-format
+#: krusader.cpp:702, kde-format
 msgid "Start in &New Terminal"
-msgstr "Spustiť &terminál"
+msgstr "Spustiť v &novom termináli"
 
-#: krusader.cpp:703
-#, fuzzy, kde-format
+#: krusader.cpp:703, kde-format
 msgid "Send to &Embedded Terminal Emulator"
-msgstr "Zobraziť &emulátor terminálu"
+msgstr "Poslať do zabudovaného &emulátora terminálu"
 
 #: krusader.cpp:720
 #, kde-format
@@ -2985,12 +2908,12 @@ msgstr "Sú&bežné zmeny priečinkov"
 #: krusader.cpp:734
 #, kde-format
 msgid "D&isk Usage..."
-msgstr "Obsadenosť d&isku..."
+msgstr "Zaplnenie d&isku..."
 
 #: krusader.cpp:735
 #, kde-format
 msgid "&Queue Manager..."
-msgstr ""
+msgstr "Správca &frontu úloh"
 
 #: krusader.cpp:736
 #, kde-format
@@ -3086,7 +3009,7 @@ msgstr "Ľavé médium"
 #: krusader.cpp:759
 #, kde-format
 msgid "Right Media"
-msgstr "PRavé médium"
+msgstr "Pravé médium"
 
 #: krusader.cpp:761
 #, kde-format
@@ -3111,17 +3034,17 @@ msgstr "Duplikovať aktuálnu kartu"
 #: krusader.cpp:765
 #, kde-format
 msgid "Close Current Tab"
-msgstr "Zatvorí aktuálnu kartu"
+msgstr "Zatvoriť aktuálnu kartu"
 
 #: krusader.cpp:766
 #, kde-format
 msgid "Next Tab"
-msgstr "Nasl. karta"
+msgstr "Nasledujúca karta"
 
 #: krusader.cpp:767
 #, kde-format
 msgid "Previous Tab"
-msgstr "Pred. karta"
+msgstr "Predchádzajúca karta"
 
 #: krusader.cpp:769 UserMenu/usermenu.cpp:51
 #, kde-format
@@ -3160,15 +3083,13 @@ msgstr "Zobraziť súbor"
 msgid "Edit File"
 msgstr "Upravovať súbor"
 
-#: krusader.cpp:785
-#, fuzzy, kde-format
+#: krusader.cpp:785, kde-format
 msgid "Copy by queue..."
-msgstr "Kopírovať..."
+msgstr "Kopírovať cez frontu..."
 
-#: krusader.cpp:786
-#, fuzzy, kde-format
+#: krusader.cpp:786, kde-format
 msgid "Move by queue..."
-msgstr "Posunúť..."
+msgstr "Presunúť cez front..."
 
 #: krusader.cpp:787
 #, kde-format
@@ -3335,7 +3256,7 @@ msgstr "Ľutujem, nie je možné nájsť interný editor"
 #: Search/krsearchdialog.cpp:73
 #, kde-format
 msgid "Location"
-msgstr "Titulok"
+msgstr "Umiestnenie"
 
 #: Search/krsearchdialog.cpp:76 DiskUsage/dulistview.cpp:61
 #, kde-format
@@ -3510,25 +3431,24 @@ msgstr "URL:"
 msgid "Create in:"
 msgstr "Vytvoriť v:"
 
-#: BookMan/kraddbookmarkdlg.cpp:74
-#, fuzzy, kde-format
+#: BookMan/kraddbookmarkdlg.cpp:74, kde-format
 msgid "Folders"
-msgstr "Priečinok..."
+msgstr "Priečinky"
 
 #: BookMan/kraddbookmarkdlg.cpp:118
 #, kde-format
 msgid "Folder name:"
 msgstr "Názov priečinka:"
 
-#: MountMan/kmountman.cpp:203
-#, fuzzy, kde-format
+#: MountMan/kmountman.cpp:203, kde-format
 msgid ""
 "<qt>Error ejecting device!\n"
 " You have to configure the path to the 'eject' tool. Please check the "
 "<b>Dependencies</b> page in Krusader's settings.</qt>"
 msgstr ""
-"<qt>Krusader nemôže vo Vašom systéme nájsť nástroj pre kontrolný súčet pre %"
-"1. Skontrolujte prosím stránku <b>Závislosti</b> v nastavení Krusaderu.</qt>"
+"<qt>Chyba pri vysúvaní zariadenia!\n"
+"Je potrebné konfigurovať cestu k nástroju 'eject'. Skontrolujte prosím "
+"stránku <b>Závislosti</b> v nastavení Krusaderu.</qt>"
 
 #: MountMan/kmountman.cpp:233
 #, kde-format
@@ -3561,7 +3481,7 @@ msgid "MountMan is not operational. Sorry"
 msgstr "Správca pripojení nefunguje. Ľutujem."
 
 #: MountMan/kmountmangui.cpp:65
-#, fuzzy, kde-format
+#, kde-format
 msgid "Mount.Man"
 msgstr "Správca pripojení"
 
@@ -3596,9 +3516,9 @@ msgid "Free %"
 msgstr "Voľné %"
 
 #: MountMan/kmountmangui.cpp:164
-#, fuzzy, kde-format
+#, kde-format
 msgid "MountMan.Info"
-msgstr "Správca pripojení"
+msgstr "Správca pripojení: Info"
 
 #: MountMan/kmountmangui.cpp:214 MountMan/kmountmangui.cpp:332
 #, kde-format
@@ -3625,10 +3545,9 @@ msgstr ""
 
 #: MountMan/kmountmangui.cpp:364
 #, kde-format
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
-"Správca pripojení ma internú chybu. Upozorníte na to prosím vývojarov. "
+"Správca pripojení ma internú chybu. Upozorníte na to prosím vývojárov. "
 "Ďakujeme."
 
 #: MountMan/kmountmangui.cpp:369
@@ -3655,9 +3574,10 @@ msgid ""
 "(c) 2000-2003, Shie Erlich, Rafi Yanai\n"
 "(c) 2004-2008, Krusader Krew"
 msgstr ""
+"(c) 2000-2003, Shie Erlich, Rafi Yanai\n"
+"(c) 2004-2008, Krusader Krew"
 
 #: main.cpp:112
-#, fuzzy
 msgid ""
 "Feedback:\n"
 "http://www.krusader.org/phpBB/\n"
@@ -3673,463 +3593,455 @@ msgstr ""
 
 #: main.cpp:115
 msgid "Rafi Yanai"
-msgstr ""
+msgstr "Rafi Yanai"
 
 #: main.cpp:115 main.cpp:116
-#, fuzzy
 msgid "Author"
-msgstr "hod"
+msgstr "Autor"
 
 #: main.cpp:116
 msgid "Shie Erlich"
-msgstr ""
+msgstr "Shie Erlich"
 
 #: main.cpp:117
 msgid "Karai Csaba"
-msgstr ""
+msgstr "Karai Csaba"
 
 #: main.cpp:117 main.cpp:118 main.cpp:119 main.cpp:120
 msgid "Developer"
-msgstr ""
+msgstr "Vývojár"
 
 #: main.cpp:118
 msgid "Heiner Eichmann"
-msgstr ""
+msgstr "Heiner Eichmann"
 
 #: main.cpp:119
 msgid "Jonas Bähr"
-msgstr ""
+msgstr "Jonas Bähr"
 
 #: main.cpp:120 main.cpp:125
 msgid "Václav Jůza"
-msgstr ""
+msgstr "Václav Jůza"
 
 #: main.cpp:121 main.cpp:154
 msgid "Dirk Eschler"
-msgstr ""
+msgstr "Dirk Eschler"
 
 #: main.cpp:121
 msgid "Webmaster and i18n coordinator"
-msgstr ""
+msgstr "Webmaster a koordinátor prekladov"
 
 #: main.cpp:122 main.cpp:150
 msgid "Frank Schoolmeesters"
-msgstr ""
+msgstr "Frank Schoolmeesters"
 
 #: main.cpp:122
 msgid "Documentation and marketing coordinator"
-msgstr ""
+msgstr "Koordinátor pre dokumentáciu a marketing"
 
 #: main.cpp:123
 msgid "Richard Holt"
-msgstr ""
+msgstr "Richard Holt"
 
 #: main.cpp:123
 msgid "Documentation & Proofing"
-msgstr ""
+msgstr "Dokumentácia a testovanie"
 
 #: main.cpp:124 main.cpp:170
 msgid "Matej Urbancic"
-msgstr ""
+msgstr "Matej Urbancic"
 
 #: main.cpp:124
 msgid "Marketing & Product Research"
-msgstr ""
+msgstr "Marketing a výskum produktu"
 
 #: main.cpp:125 main.cpp:126 main.cpp:137
 msgid "QA, bug-hunting, patches and general help"
-msgstr ""
+msgstr "QA, hľadanie chýb, opravy a všeobecná pomoc"
 
 #: main.cpp:126
 msgid "Jiří Paleček"
-msgstr ""
+msgstr "Jiří Paleček"
 
 #: main.cpp:127
 msgid "Jiří Klement"
-msgstr ""
+msgstr "Jiří Klement"
 
 #: main.cpp:127
 msgid "Important help in KDE 4 porting"
-msgstr ""
+msgstr "Dôležitá pomoc pri prechode na KDE 4"
 
 #: main.cpp:128
 msgid "Andrew Neupokoev"
-msgstr ""
+msgstr "Andrew Neupokoev"
 
 #: main.cpp:128
 msgid "Killer Logo and Icons for Krusader (contest winner)"
-msgstr ""
+msgstr "Špičkové logo a ikony pre Krusader (víťaz súťaže)"
 
 #: main.cpp:129
 msgid "The UsefulArts Organization"
-msgstr ""
+msgstr "The UsefulArts Organization (užitočné umení)"
 
 #: main.cpp:129
-#, fuzzy
 msgid "Icon for krusader"
-msgstr "Konfigurovať &Krusader..."
+msgstr "Ikona pre Krusader"
 
 #: main.cpp:130
 msgid "Gábor Lehel"
-msgstr ""
+msgstr "Gábor Lehel"
 
 #: main.cpp:130
 msgid "Viewer module for 3rd Hand"
-msgstr ""
+msgstr "Modul prezerania pre tretiu ruku"
 
 #: main.cpp:131
 msgid "Mark Eatough"
-msgstr ""
+msgstr "Mark Eatough"
 
 #: main.cpp:131
 msgid "Handbook Proof-Reader"
-msgstr ""
+msgstr "Korektúra používateľskej príručky"
 
 #: main.cpp:132
 msgid "Jan Halasa"
-msgstr ""
+msgstr "Jan Halasa"
 
 #: main.cpp:132
 msgid "The old Bookmark Module"
-msgstr ""
+msgstr "Starý modul záložiek"
 
 #: main.cpp:133
 msgid "Hans Löffler"
-msgstr ""
+msgstr "Hans Löffler"
 
 #: main.cpp:133
 msgid "Dir history button"
-msgstr ""
+msgstr "Tlačidlo histórie priečinkov"
 
 #: main.cpp:134
 msgid "Szombathelyi György"
-msgstr ""
+msgstr "Szombathelyi György"
 
 #: main.cpp:134
 msgid "ISO KIO slave"
-msgstr ""
+msgstr "KIO modul ISO"
 
 #: main.cpp:135
 msgid "Jan Willem van de Meent (Adios)"
-msgstr ""
+msgstr "Jan Willem van de Meent (Adios)"
 
 #: main.cpp:135
-#, fuzzy
 msgid "Icons for Krusader"
-msgstr "Konfigurovať &Krusader..."
+msgstr "Ikony pre Krusader"
 
 #: main.cpp:136
 msgid "Mikolaj Machowski"
-msgstr ""
+msgstr "Mikolaj Machowski"
 
 #: main.cpp:136
 msgid "Usability and QA"
-msgstr ""
+msgstr "Použiteľnosť a QA"
 
 #: main.cpp:137
 msgid "Cristi Dumitrescu"
-msgstr ""
+msgstr "Cristi Dumitrescu"
 
 #: main.cpp:138
 msgid "Aurelien Gateau"
-msgstr ""
+msgstr "Aurelien Gateau"
 
 #: main.cpp:138
-#, fuzzy
 msgid "patch for KViewer"
-msgstr "Hľadať súbory"
+msgstr "oprava (patch) pre KViewer"
 
 #: main.cpp:139
 msgid "Milan Brabec"
-msgstr ""
+msgstr "Milan Brabec"
 
 #: main.cpp:139
 msgid "the first patch ever !"
-msgstr ""
+msgstr "Vôbec prvá oprava (patch)!"
 
 #: main.cpp:140
 msgid "Asim Husanovic"
-msgstr ""
+msgstr "Asim Husanovic"
 
 #: main.cpp:140
 msgid "Bosnian translation"
-msgstr ""
+msgstr "Bosniansky preklad"
 
 #: main.cpp:141
 msgid "Doutor Zero"
-msgstr ""
+msgstr "Doutor Zero"
 
 #: main.cpp:141
-#, fuzzy
 msgid "Brazilian Portuguese translation"
-msgstr "Importovať používateľské akcie"
+msgstr "Preklad do brazílskej portugalčiny"
 
 #: main.cpp:142
 msgid "Milen Ivanov"
-msgstr ""
+msgstr "Milen Ivanov"
 
 #: main.cpp:142
 msgid "Bulgarian translation"
-msgstr ""
+msgstr "Preklad do bulharčiny"
 
 #: main.cpp:143
 msgid "Quim Perez"
-msgstr ""
+msgstr "Quim Perez"
 
 #: main.cpp:143
 msgid "Catalan translation"
-msgstr ""
+msgstr "Preklad do katalánčiny"
 
 #: main.cpp:144
 msgid "Jinghua Luo"
-msgstr ""
+msgstr "Jinghua Luo"
 
 #: main.cpp:144
 msgid "Chinese Simplified translation"
-msgstr ""
+msgstr "Čínsky zjednodušený preklad"
 
 #: main.cpp:145
-#, fuzzy
 msgid "Mitek"
-msgstr "Titulok"
+msgstr "Mitek"
 
 #: main.cpp:145 main.cpp:146
 msgid "Old Czech translation"
-msgstr ""
+msgstr "Starý preklad do češtiny"
 
 #: main.cpp:146
 msgid "Martin Sixta"
-msgstr ""
+msgstr "Martin Sixta"
 
 #: main.cpp:147
 msgid "Vaclav Jůza"
-msgstr ""
+msgstr "Vaclav Jůza"
 
 #: main.cpp:147
 msgid "Czech translation"
-msgstr ""
+msgstr "Preklad do češtiny"
 
 #: main.cpp:148
 msgid "Anders Bruun Olsen"
-msgstr ""
+msgstr "Anders Bruun Olsen"
 
 #: main.cpp:148
 msgid "Old Danish translation"
-msgstr ""
+msgstr "Starý preklad do dánčiny"
 
 #: main.cpp:149
 msgid "Peter H. Sorensen"
-msgstr ""
+msgstr "Peter H. Sorensen"
 
 #: main.cpp:149
-#, fuzzy
 msgid "Danish translation"
-msgstr "Cieľ:"
+msgstr "Preklad do dánčiny"
 
 #: main.cpp:150
 msgid "Dutch translation"
-msgstr ""
+msgstr "Preklad do holandčiny"
 
 #: main.cpp:151
 msgid "Rene-Pierre Lehmann"
-msgstr ""
+msgstr "Rene-Pierre Lehmann"
 
 #: main.cpp:151
 msgid "Old French translation"
-msgstr ""
+msgstr "Starý preklad do francúzštiny"
 
 #: main.cpp:152
 msgid "David Guillerm"
-msgstr ""
+msgstr "David Guillerm"
 
 #: main.cpp:152
 msgid "French translation"
-msgstr ""
+msgstr "Preklad do francúzštiny"
 
 #: main.cpp:153
 msgid "Christoph Thielecke"
-msgstr ""
+msgstr "Christoph Thielecke"
 
 #: main.cpp:153
 msgid "Old German translation"
-msgstr ""
+msgstr "Starý preklad do nemčiny"
 
 #: main.cpp:154
 msgid "German translation"
-msgstr ""
+msgstr "Preklad do nemčiny"
 
 #: main.cpp:155
 msgid "Spiros Georgaras"
-msgstr ""
+msgstr "Spiros Georgaras"
 
 #: main.cpp:155
 msgid "Greek translation"
-msgstr ""
+msgstr "Preklad do gréčtiny"
 
 #: main.cpp:156
 msgid "Kukk Zoltan"
-msgstr ""
+msgstr "Kukk Zoltan"
 
 #: main.cpp:156
 msgid "Old Hungarian translation"
-msgstr ""
+msgstr "Starý preklad do maďarčiny"
 
 #: main.cpp:157
 msgid "Arpad Biro"
-msgstr ""
+msgstr "Arpad Biro"
 
 #: main.cpp:157
 msgid "Hungarian translation"
-msgstr ""
+msgstr "Preklad do maďarčiny"
 
 #: main.cpp:158
 msgid "Giuseppe Bordoni"
-msgstr ""
+msgstr "Giuseppe Bordoni"
 
 #: main.cpp:158
 msgid "Italian translation"
-msgstr ""
+msgstr "Preklad do taliančiny"
 
 #: main.cpp:159
 msgid "Hideki Kimura"
-msgstr ""
+msgstr "Hideki Kimura"
 
 #: main.cpp:159
 msgid "Japanese translation"
-msgstr ""
+msgstr "Preklad do japončiny"
 
 #: main.cpp:160
 msgid "UTUMI Hirosi"
-msgstr ""
+msgstr "UTUMI Hirosi"
 
 #: main.cpp:160
 msgid "Old Japanese translation"
-msgstr ""
+msgstr "Starý preklad do japončiny"
 
 #: main.cpp:161
 msgid "Dovydas Sankauskas"
-msgstr ""
+msgstr "Dovydas Sankauskas"
 
 #: main.cpp:161
 msgid "Lithuanian translation"
-msgstr ""
+msgstr "Preklad do litovčiny"
 
 #: main.cpp:162
 msgid "Bruno Queiros"
-msgstr ""
+msgstr "Bruno Queiros"
 
 #: main.cpp:162
-#, fuzzy
 msgid "Portuguese translation"
-msgstr "Importovať používateľské akcie"
+msgstr "Preklad do portugalčiny"
 
 #: main.cpp:163
 msgid "Lukasz Janyst"
-msgstr ""
+msgstr "Lukasz Janyst"
 
 #: main.cpp:163
 msgid "Old Polish translation"
-msgstr ""
+msgstr "Starý preklad do poľštiny"
 
 #: main.cpp:164
 msgid "Pawel Salawa"
-msgstr ""
+msgstr "Pawel Salawa"
 
 #: main.cpp:164 main.cpp:165
 msgid "Polish translation"
-msgstr ""
+msgstr "Preklad do poľštiny"
 
 #: main.cpp:165
 msgid "Tomek Grzejszczyk"
-msgstr ""
+msgstr "Tomek Grzejszczyk"
 
 #: main.cpp:166
 msgid "Dmitry A. Bugay"
-msgstr ""
+msgstr "Dmitry A. Bugay"
 
 #: main.cpp:166
 msgid "Russian translation"
-msgstr ""
+msgstr "Preklad do ruštiny"
 
 #: main.cpp:167
 msgid "Dmitry Chernyak"
-msgstr ""
+msgstr "Dmitry Chernyak"
 
 #: main.cpp:167
 msgid "Old Russian translation"
-msgstr ""
+msgstr "Starý preklad do ruštiny"
 
 #: main.cpp:168
 msgid "Sasa Tomic"
-msgstr ""
+msgstr "Sasa Tomic"
 
 #: main.cpp:168
 msgid "Serbian translation"
-msgstr ""
+msgstr "Preklad do srbčiny"
 
 #: main.cpp:169
 msgid "Zdenko Podobna"
-msgstr ""
+msgstr "Zdenko Podobný a Ondrej Pačay (Yogi)"
 
 #: main.cpp:169
 msgid "Slovak translation"
-msgstr ""
+msgstr "Preklad do slovenčiny"
 
 #: main.cpp:170
 msgid "Slovenian translation"
-msgstr ""
+msgstr "Preklad do slovinčiny"
 
 #: main.cpp:171
 msgid "Rafael Munoz"
-msgstr ""
+msgstr "Rafael Munoz"
 
 #: main.cpp:171
 msgid "Old Spanish translation"
-msgstr ""
+msgstr "Starý preklad do španielčiny"
 
 #: main.cpp:172
 msgid "Alejandro Araiza Alvarado"
-msgstr ""
+msgstr "Alejandro Araiza Alvarado"
 
 #: main.cpp:172
 msgid "Spanish translation"
-msgstr ""
+msgstr "Preklad do španielčiny"
 
 #: main.cpp:173
 msgid "Erik Johanssen"
-msgstr ""
+msgstr "Erik Johanssen"
 
 #: main.cpp:173 main.cpp:174
 msgid "Old Swedish translation"
-msgstr ""
+msgstr "Starý preklad do švédčiny"
 
 #: main.cpp:174
 msgid "Anders Linden"
-msgstr ""
+msgstr "Anders Linden"
 
 #: main.cpp:175
 msgid "Peter Landgren"
-msgstr ""
+msgstr "Peter Landgren"
 
 #: main.cpp:175
 msgid "Swedish translation"
-msgstr ""
+msgstr "Preklad do švédčiny"
 
 #: main.cpp:176
 msgid "Bekir Sonat"
-msgstr ""
+msgstr "Bekir Sonat"
 
 #: main.cpp:176
 msgid "Turkish translation"
-msgstr ""
+msgstr "Preklad do turečtiny"
 
 #: main.cpp:177
 msgid "Ivan Petrouchtchak"
-msgstr ""
+msgstr "Ivan Petrouchtchak"
 
 #: main.cpp:177
 msgid "Ukrainian translation"
-msgstr ""
+msgstr "Preklad do ukrajinčiny"
 
 #: main.cpp:183
 msgid "Start left panel at <path>"
@@ -4153,15 +4065,14 @@ msgstr "Aplikácie je už spustená!\n"
 msgid "Function keys allow performing fast operations on files."
 msgstr "Funkčné klávesy umožňujú vykonávať rýchle operácie so súbormi."
 
-#: krusaderview.cpp:307
-#, fuzzy, kde-format
+#: krusaderview.cpp:307, kde-format
 msgid "Horizontal Mode"
-msgstr "Vertikálny režim"
+msgstr "Horizontálny režim"
 
 #: Dialogs/krdialogs.cpp:142
 #, kde-format
 msgid "F2 Queue"
-msgstr ""
+msgstr "F2 Front"
 
 #: Dialogs/krdialogs.cpp:158
 #, kde-format
@@ -4255,7 +4166,7 @@ msgstr "Komprimovať %1"
 msgid "Pack %1 file"
 msgid_plural "Pack %1 files"
 msgstr[0] "Komprimovať 1 súbor"
-msgstr[1] "Komprimovať %1 súbry"
+msgstr[1] "Komprimovať %1 súbory"
 msgstr[2] "Komprimovať %1 súborov"
 
 #: Dialogs/packgui.cpp:98
@@ -4502,8 +4413,7 @@ msgstr "Import starého formátu je dokončený"
 
 #: Dialogs/krkeydialog.cpp:135
 #, kde-format
-msgid ""
-"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
 msgstr "<qt>Súbor <b>%1</b> už existuje. Skutočne ho chcete prepísať?</qt>"
 
 #: Dialogs/krkeydialog.cpp:144
@@ -4713,7 +4623,7 @@ msgstr "Chyba pri čítaní stdout alebo stderr"
 #: Dialogs/checksumdlg.cpp:324 Dialogs/checksumdlg.cpp:462
 #, kde-format
 msgid "Verify Checksum"
-msgstr "Overiť kontrolného súčtu"
+msgstr "Overiť kontrolný súčet"
 
 #: Dialogs/checksumdlg.cpp:330
 #, kde-format
@@ -4798,10 +4708,9 @@ msgstr "Otlačok"
 msgid "File"
 msgstr "Súbor"
 
-#: Dialogs/checksumdlg.cpp:547
-#, fuzzy, kde-format
+#: Dialogs/checksumdlg.cpp:547, kde-format
 msgid "File and hash"
-msgstr "Názov súboru"
+msgstr "Súbor a odtlačok"
 
 #: Dialogs/checksumdlg.cpp:577
 #, kde-format
@@ -4816,7 +4725,7 @@ msgstr "Uložiť kontrolné súčty do súboru:"
 #: Dialogs/checksumdlg.cpp:606
 #, kde-format
 msgid "Checksum file for each source file"
-msgstr "Kontrolné súčty pre každý súbor zvlášť"
+msgstr "Kontrolný súčet pre každý súbor zvlášť"
 
 #: Dialogs/checksumdlg.cpp:629
 #, kde-format
@@ -4845,8 +4754,7 @@ msgstr "Ukladanie kontrolných súborov..."
 #: Dialogs/checksumdlg.cpp:656
 #, kde-format
 msgid "Errors occured while saving multiple checksums. Stopping"
-msgstr ""
-"Počas ukladanie viacerých kontrolných súčtov nastali chyby. Zastavujem."
+msgstr "Počas ukladanie viacerých kontrolných súčtov nastali chyby. Zastavujem."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 14
@@ -4945,7 +4853,7 @@ msgid ""
 "<i>Title</i> shown in the <b>Usermenu</b> can be set below."
 msgstr ""
 "Jedinečný názov <b>Používateľskej akcie</b>. Používa sa iba v "
-"<i>Konfiguratore</i> a neobjavuje sa v žiadnej inej ponuke.<p><b>Pozn.</b>: "
+"<i>Konfigurátore</i> a neobjavuje sa v žiadnej inej ponuke.<p><b>Pozn.</b>: "
 "<i>Titulok</i> zobrazený v <b>Používateľskej ponuke</b> môžete nastaviť "
 "nižšie."
 
@@ -4972,7 +4880,7 @@ msgid ""
 "Each <b>Useraction</b> can have its own icon. It will appear in front of the "
 "title in the <b>Usermenu</b>."
 msgstr ""
-"Každá <b>Používateľské akcia</b> môže mať vlastnú ikonu, ktorá sa objavý pre "
+"Každá <b>Používateľské akcia</b> môže mať vlastnú ikonu, ktorá sa objaví pre "
 "titulkom v <b>Používateľskej ponuke</b>."
 
 #. i18n: tag string
@@ -4992,7 +4900,7 @@ msgid ""
 "The <i>Title</i> shown in the <b>Usermenu</b> can be set below.</p>"
 msgstr ""
 "<p>Jedinečný názov <b>Používateľskej akcie</b>. Používa sa iba v "
-"<i>Konfiguratore</i> a neobjavuje sa v žiadnej inej ponuke.</p><p><b>Pozn.</"
+"<i>Konfigurátore</i> a neobjavuje sa v žiadnej inej ponuke.</p><p><b>Pozn.</"
 "b>: <i>Titulok</i> zobrazený v <b>Používateľskej ponuke</b> môžete nastaviť "
 "nižšie.</p>"
 
@@ -5053,8 +4961,7 @@ msgstr ""
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
-msgstr ""
-"<i>Pracovný priečinok</i> určí, v ktorom priečinku sa <i>Príkaz</i> vykoná."
+msgstr "<i>Pracovný priečinok</i> určí, v ktorom priečinku sa <i>Príkaz</i> vykoná."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 250
@@ -5122,14 +5029,13 @@ msgstr "Nič"
 #: ActionMan/ui_actionproperty.h:722 rc.cpp:116
 #, kde-format
 msgid "If checked, the action is shown in the Useractions menus."
-msgstr ""
+msgstr "Pokiaľ je zaškrtnuté, akcia je zobrazená v menu 'Používateľské akcie'."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 401
-#: ActionMan/ui_actionproperty.h:725 rc.cpp:119
-#, fuzzy, kde-format
+#: ActionMan/ui_actionproperty.h:725 rc.cpp:119, kde-format
 msgid "Enabled"
-msgstr "povolené"
+msgstr "Povolené"
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 420
@@ -5182,17 +5088,15 @@ msgstr "Spustiť v terminály"
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 463
-#: ActionMan/ui_actionproperty.h:748 rc.cpp:146
-#, fuzzy, kde-format
+#: ActionMan/ui_actionproperty.h:748 rc.cpp:146, kde-format
 msgid "Run the command in the embedded terminal emulator."
-msgstr "Spustiť príkaz v terminály"
+msgstr "Spustiť príkaz v zabudovanom emulátore terminálu."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 466
-#: ActionMan/ui_actionproperty.h:751 rc.cpp:149
-#, fuzzy, kde-format
+#: ActionMan/ui_actionproperty.h:751 rc.cpp:149, kde-format
 msgid "Run in the embedded terminal emulator"
-msgstr "Zobraziť &emulátor terminálu"
+msgstr "Spustiť v zabudovanom emulátore terminálu"
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 39
@@ -5326,7 +5230,7 @@ msgstr "Potvrdiť každé volanie programu samostatne"
 #: rc.cpp:224 rc.cpp:230
 #, kde-format
 msgid "Execute the <i>Command</i> under a different user-id."
-msgstr "Spustiť <i>Príkaz</i> pod inou používateľkou identifikáciou"
+msgstr "Spustiť <i>Príkaz</i> pod inou používateľskou identifikáciou"
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 938
@@ -5387,8 +5291,7 @@ msgstr "Odstráni zvolené používateľské akcie"
 
 #: ActionMan/useractionpage.cpp:134
 #, kde-format
-msgid ""
-"The current action has been modified. Do you want to apply these changes?"
+msgid "The current action has been modified. Do you want to apply these changes?"
 msgstr "Aktuálna akcia bola zmenená. Chcete použiť zmeny?"
 
 #: ActionMan/useractionpage.cpp:211
@@ -5556,10 +5459,9 @@ msgstr "Pravý panel"
 msgid "Panel independent"
 msgstr "Nezávislé na panely"
 
-#: ActionMan/addplaceholderpopup.cpp:63
-#, fuzzy, kde-format
+#: ActionMan/addplaceholderpopup.cpp:63, kde-format
 msgid "Choose executable..."
-msgstr "Spustiteľný"
+msgstr "Vyberte spustiteľný súbor..."
 
 #: ActionMan/addplaceholderpopup.cpp:151
 #, kde-format
@@ -5589,7 +5491,7 @@ msgstr "Krusader::Synchronizácia priečinkov"
 #: Synchronizer/synchronizergui.cpp:1127
 #, kde-format
 msgid "Directory Comparison"
-msgstr "Porovnanie priečinokov"
+msgstr "Porovnanie priečinkov"
 
 #: Synchronizer/synchronizergui.cpp:1138
 #, kde-format
@@ -5599,19 +5501,17 @@ msgstr "&Filter súborov:"
 #: Synchronizer/synchronizergui.cpp:1160
 #, kde-format
 msgid "The left base directory used during the synchronisation process."
-msgstr ""
-"Počas synchronizačného procesu sa použil základný priečinok ľavého panela."
+msgstr "Počas synchronizačného procesu sa použil základný priečinok ľavého panela."
 
 #: Synchronizer/synchronizergui.cpp:1193
 #, kde-format
 msgid "The right base directory used during the synchronisation process."
-msgstr ""
-"Počas synchronizačného procesu sa použil základný priečinok pravého panela."
+msgstr "Počas synchronizačného procesu sa použil základný priečinok pravého panela."
 
 #: Synchronizer/synchronizergui.cpp:1207
 #, kde-format
 msgid "Recurse subdirectories"
-msgstr "Vrátane podadresárov"
+msgstr "Vrátane podpriečinkov"
 
 #: Synchronizer/synchronizergui.cpp:1210
 #, kde-format
@@ -5650,7 +5550,7 @@ msgid ""
 "useful if the files are located on network filesystems or in archives.</p>"
 msgstr ""
 "<p>Ignorovať údaj o dátume počas porovnávacieho procesu.</p><p><b>Pozn.</b>: "
-"užitočné, pokiaľ sa súbory nachádzajú na sieťových súborovych systémoch "
+"užitočné, pokiaľ sa súbory nachádzajú na sieťových súborových systémoch "
 "alebo v archívoch.</p>"
 
 #: Synchronizer/synchronizergui.cpp:1224
@@ -5683,7 +5583,7 @@ msgid ""
 "synchronizing Windows filesystems.</p>"
 msgstr ""
 "<p>Porovnávanie názvov súborov bez ohľadu na veľkosť písmen.</p><p><b>Pozn.</"
-"b>: užitočné pri synchonizovaní na Windows súborových systémoch.</p>"
+"b>: užitočné pri synchronizovaní na Windows súborových systémoch.</p>"
 
 #: Synchronizer/synchronizergui.cpp:1238
 #, kde-format
@@ -5693,8 +5593,7 @@ msgstr "Nastavenia zobrazenia"
 #: Synchronizer/synchronizergui.cpp:1257
 #, kde-format
 msgid "Show files marked to <i>Copy from left to right</i> (CTRL+L)."
-msgstr ""
-"Zobraziť súbory označené pre <i>Kopírovanie zľava doprava</i> (CTRL+L)."
+msgstr "Zobraziť súbory označené pre <i>Kopírovanie zľava doprava</i> (CTRL+L)."
 
 #: Synchronizer/synchronizergui.cpp:1267
 #, kde-format
@@ -5709,11 +5608,9 @@ msgstr "Zobraziť vylúčené súbory (CTRL+D)."
 #: Synchronizer/synchronizergui.cpp:1287
 #, kde-format
 msgid "Show files marked to <i>Copy from right to left</i> (CTRL+R)."
-msgstr ""
-"Zobraziť súbory označené pre <i>Kopírovanie sprava doľava</i> (CTRL+R)."
+msgstr "Zobraziť súbory označené pre <i>Kopírovanie sprava doľava</i> (CTRL+R)."
 
-#: Synchronizer/synchronizergui.cpp:1297
-#, fuzzy, kde-format
+#: Synchronizer/synchronizergui.cpp:1297, kde-format
 msgid "Show files marked to delete (CTRL+T)."
 msgstr "Zobraziť súbory označené na zmazanie (CTRL+T)."
 
@@ -5740,7 +5637,7 @@ msgstr "Zobraziť tie súbory, ktoré existujú na jednej strane."
 #: Synchronizer/synchronizergui.cpp:1325
 #, kde-format
 msgid "The compare results of the synchronizer (CTRL+M)."
-msgstr "Vysledky porovnávanie Synchronizérom (CTRL+M)."
+msgstr "Výsledky porovnávania Synchronizérom (CTRL+M)."
 
 #: Synchronizer/synchronizergui.cpp:1339
 #, kde-format
@@ -5792,10 +5689,9 @@ msgstr "dní"
 msgid "Time shift (right-left):"
 msgstr "Posun času (pravý-ľavý):"
 
-#: Synchronizer/synchronizergui.cpp:1447
-#, fuzzy, kde-format
+#: Synchronizer/synchronizergui.cpp:1447, kde-format
 msgid "Ignore hidden files"
-msgstr "Ukázať skryté súbory"
+msgstr "Ignorovať skryté súbory"
 
 #: Synchronizer/synchronizergui.cpp:1461
 #, kde-format
@@ -5922,15 +5818,13 @@ msgstr "Zobraziť &pravý súbor"
 msgid "&Compare Files"
 msgstr "&Porovnať súbory"
 
-#: Synchronizer/synchronizergui.cpp:1772
-#, fuzzy, kde-format
+#: Synchronizer/synchronizergui.cpp:1772, kde-format
 msgid "C&opy selected to clipboard (left)"
-msgstr "Skopírovať používateľské akcie do schránky"
+msgstr "Skopírovať označené do schránky (vľavo)"
 
-#: Synchronizer/synchronizergui.cpp:1774
-#, fuzzy, kde-format
+#: Synchronizer/synchronizergui.cpp:1774, kde-format
 msgid "Co&py selected to clipboard (right)"
-msgstr "Skopírovať používateľské akcie do schránky"
+msgstr "Skopírovať označené do schránky (vpravo)"
 
 #: Synchronizer/synchronizergui.cpp:1779
 #, kde-format
@@ -5974,7 +5868,7 @@ msgid ""
 "this data will be lost. Do you really want to exit?"
 msgstr ""
 "Okno Synchronizéra obsahuje dáta z prechádzajúceho porovnávania. Pokiaľ "
-"odídete, tieto dáta budú stretné. Skutočne chcete odísť?"
+"odídete, tieto dáta budú stratené. Skutočne chcete odísť?"
 
 #: Synchronizer/synchronizertask.cpp:134 Synchronizer/synchronizertask.cpp:141
 #, kde-format
@@ -6014,11 +5908,10 @@ msgstr[1] "(%1 bajty)"
 msgstr[2] "(%1 bajtov)"
 
 #: Synchronizer/synchronizedialog.cpp:64 Synchronizer/synchronizedialog.cpp:77
-#: Synchronizer/synchronizedialog.cpp:90
-#, fuzzy, kde-format
+#: Synchronizer/synchronizedialog.cpp:90, kde-format
 msgid "Ready: %2/1 file, %3/%4"
 msgid_plural "Ready: %2/%1 files, %3/%4"
-msgstr[0] "Hotovo: %2/1súbora,%4/%5"
+msgstr[0] "Hotové: %2/1 súboru, %3/%4"
 msgstr[1] "Hotovo: %2/%1 súborov,%4/%5"
 msgstr[2] "Hotovo: %2/%1 súborov,%4/%5"
 
@@ -6102,10 +5995,9 @@ msgid "Feeding the URLs to Kget"
 msgstr "Presúvanie URL do Kget"
 
 #: Synchronizer/synchronizer.cpp:1457 krslots.cpp:147 krslots.cpp:224
-#: krslots.cpp:509 krslots.cpp:551 krslots.cpp:569
-#, fuzzy, kde-format
+#: krslots.cpp:509 krslots.cpp:551 krslots.cpp:569, kde-format
 msgid "Error executing %1!"
-msgstr "Chyba pri spúšťaní "
+msgstr "Chyba pri vykonávaní %1!"
 
 #: Synchronizer/feedtolistboxdialog.cpp:56
 #, kde-format
@@ -6182,8 +6074,7 @@ msgstr "&Otvoriť"
 msgid ""
 "<qt>The directory at <i>'%1'</i> will be <b>recursively</b> and "
 "<b>permanently</b> deleted!</qt>"
-msgstr ""
-"<qt>Priečinok <i>'%1'</i> bude <b>celý</b> a <b>natrvalo</b> zmazaný!</qt>"
+msgstr "<qt>Priečinok <i>'%1'</i> bude <b>celý</b> a <b>natrvalo</b> zmazaný!</qt>"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:200
 #, kde-format
@@ -6293,7 +6184,7 @@ msgstr "Krusader::Filelight"
 #: DiskUsage/diskusagegui.cpp:47
 #, kde-format
 msgid "Krusader::Disk Usage"
-msgstr "Krusader::Obsadenosť disku"
+msgstr "Krusader::Zaplnenie disku"
 
 #: DiskUsage/diskusagegui.cpp:65
 #, kde-format
@@ -6328,7 +6219,7 @@ msgstr "Filelight zobrazenie"
 #: DiskUsage/diskusagegui.cpp:231
 #, kde-format
 msgid "Viewing the usage of directory:"
-msgstr "Zobrazenie obsadenosti priečinku:"
+msgstr "Zobrazenie zaplnenia priečinku:"
 
 #: DiskUsage/dulistview.cpp:57
 #, kde-format
@@ -6343,7 +6234,7 @@ msgstr "Vlastná veľkosť"
 #: DiskUsage/diskusage.cpp:110
 #, kde-format
 msgid "Loading Usage Information"
-msgstr "Načítavanie informácie o obsadenosti"
+msgstr "Načítavanie informácie o zaplnení"
 
 #: DiskUsage/diskusage.cpp:114
 #, kde-format
@@ -6377,7 +6268,7 @@ msgstr ""
 #: DiskUsage/diskusage.cpp:421
 #, kde-format
 msgid "Krusader::DiskUsage"
-msgstr "Krusader::Obsadenosť disku"
+msgstr "Krusader::Zaplnenie disku"
 
 #: DiskUsage/diskusage.cpp:609
 #, kde-format
@@ -6404,7 +6295,7 @@ msgstr "Aktuálny priečinok:%1, Celková veľkosť:%2, Vlastná veľkosť:%3"
 #: DiskUsage/diskusage.cpp:770
 #, kde-format
 msgid "Disk Usage"
-msgstr "Obsadenosť disku"
+msgstr "Zaplnenie disku"
 
 #: DiskUsage/diskusage.cpp:779
 #, kde-format
@@ -6527,10 +6418,9 @@ msgstr "Nasta&venia"
 
 #. i18n: tag text
 #. i18n: file ./krusaderui.rc line 132
-#: rc.cpp:257
-#, fuzzy, kde-format
+#: rc.cpp:257, kde-format
 msgid "Command Execution Mode Se&tup"
-msgstr "Režim spúšťania"
+msgstr "Nas&tavenie režimu vykonávania príkazov"
 
 #. i18n: tag text
 #. i18n: file ./krusaderui.rc line 146
@@ -6609,12 +6499,14 @@ msgstr "Pri zmazaní budú súbory presunuté do koša."
 #: Konfigurator/kggeneral.cpp:72
 #, kde-format
 msgid "Use mimetype magic"
-msgstr "Použiť mimetype mágiu (určovanie typu súboru)"
+msgstr "Určovať typ súboru podľa obsahu (mimetype magic)"
 
 #: Konfigurator/kggeneral.cpp:73
 #, kde-format
 msgid "Mimetype magic allows better distinction of file types, but is slower."
-msgstr "Mimetype mágia umožňuje lepšie rozlíšenie súborov, ale je pomalšia."
+msgstr ""
+"Určovanie typu súborov podľa obsahu umožňuje lepšie rozlišovať súbory, ale je "
+"pomalšia."
 
 #: Konfigurator/kggeneral.cpp:80
 #, kde-format
@@ -6658,7 +6550,7 @@ msgstr "Zobraziť súbor iba v textovom režime"
 #: Konfigurator/kggeneral.cpp:106
 #, kde-format
 msgid "Hex mode"
-msgstr "Hexa režim"
+msgstr "Hexadecimálny režim"
 
 #: Konfigurator/kggeneral.cpp:106
 #, kde-format
@@ -6676,6 +6568,8 @@ msgid ""
 "If checked, each file will open in a separate window, otherwise, the viewer "
 "will work in a single, tabbed mode"
 msgstr ""
+"Pokiaľ zaškrtnuté, každý súbor bude otvorený v zvlášť okne, inak bude "
+"prehliadač pracovať v jednom okne so záložkami."
 
 #: Konfigurator/kggeneral.cpp:133
 #, kde-format
@@ -6698,6 +6592,8 @@ msgid ""
 "When checked, whenever the panel is changed (for example, by pressing TAB), "
 "krusader changes the current directory in the terminal emulator."
 msgstr ""
+"Pokiaľ zaškrtnuté,vždy keď sa zmení panel (napríklad stlačením tabulátora), "
+"krusader zmení aktuálny priečinok v emulátore terminálu."
 
 #: Konfigurator/kggeneral.cpp:186
 #, kde-format
@@ -6716,8 +6612,7 @@ msgstr "Hľadanie nástrojov..."
 
 #: Konfigurator/kggeneral.cpp:214
 #, kde-format
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Uistite sa, že nové nástroje sa nainštalujú do cesty v <code>$PATH</code> "
 "(napr. /usr/bin)"
@@ -6738,12 +6633,13 @@ msgid ""
 "Atomic extensions must start with '.'\n"
 " and must contain at least one more '.' character"
 msgstr ""
+"Nedelené prípony musia zažínať s '.'\n"
+" a musia obsahovať aspoň jeden ďalší znak '.'"
 
 #: Konfigurator/krresulttable.cpp:132
 #, kde-format
 msgid "unarj not found, but arj found, which will be used for unpacking"
-msgstr ""
-"unarj nebolo nájdené, ale bolo nájdené art, ktoré sa použije na dekompresiu"
+msgstr "unarj nebolo nájdené, ale bolo nájdené art, ktoré sa použije na dekompresiu"
 
 #: Konfigurator/krresulttable.cpp:138
 #, kde-format
@@ -6809,10 +6705,9 @@ msgstr "nástroj na kontrolné súčty"
 msgid "Tool"
 msgstr "Nástroj"
 
-#: Konfigurator/konfigurator.cpp:67
-#, fuzzy, kde-format
+#: Konfigurator/konfigurator.cpp:67, kde-format
 msgid "Konfigurator"
-msgstr "Potvrdzovanie"
+msgstr "Konfigurátor"
 
 #: Konfigurator/konfigurator.cpp:68
 #, kde-format
@@ -6939,7 +6834,7 @@ msgstr "Automatické označenie priečinkov"
 msgid ""
 "When matching the select criteria, not only files will be selected, but also "
 "directories."
-msgstr ""
+msgstr "Pokiaľ budú splnené podmienky výberu, budú označené nielen súbory, ale aj priečinky."
 
 #: Konfigurator/kglookfeel.cpp:98
 #, kde-format
@@ -6953,6 +6848,8 @@ msgid ""
 "Commander like renaming of just the name, without extension, uncheck this "
 "option."
 msgstr ""
+"Pokiaľ zaškrtnuté, pri premenovaní súboru je označený celý text.\n"
+"Inak je označený len názov bez prípony ako v programe Total-Commander. "
 
 #: Konfigurator/kglookfeel.cpp:99
 #, kde-format
@@ -7003,7 +6900,7 @@ msgstr "Rýchle hľadanie citlivé na veľkosť písmen"
 msgid ""
 "All files beginning with capital letters appear before files beginning with "
 "non-capital letters (UNIX default)."
-msgstr ""
+msgstr "Všetky súbory začínajúce veľkými písmenami budú zaradené pred súbory, ktoré začínajú s malými (UNIX štandard)."
 
 #: Konfigurator/kglookfeel.cpp:140
 #, kde-format
@@ -7028,7 +6925,7 @@ msgstr "Veľkosť ikon v zozname súborov:"
 #: Konfigurator/kglookfeel.cpp:196
 #, kde-format
 msgid "12"
-msgstr ""
+msgstr "12"
 
 #: Konfigurator/kglookfeel.cpp:197
 #, kde-format
@@ -7063,12 +6960,14 @@ msgstr "Zobraziť ikony pri názvoch súboroch a priečinkoch."
 #: Konfigurator/kglookfeel.cpp:216
 #, kde-format
 msgid "Load the user defined folder icons"
-msgstr ""
+msgstr "Načítať používateľom definované ikonky priečinkov"
 
 #: Konfigurator/kglookfeel.cpp:216
 #, kde-format
 msgid "Load the user defined folder icons (can cause decrease in performance)."
 msgstr ""
+"Načítať používateľom definované ikonky priečinkov (môže znížiť výkonnosť "
+"aplikácie)."
 
 #: Konfigurator/kglookfeel.cpp:217
 #, kde-format
@@ -7107,27 +7006,27 @@ msgstr ""
 #: Konfigurator/kglookfeel.cpp:234
 #, kde-format
 msgid "Sort method:"
-msgstr ""
+msgstr "Metóda triedenia:"
 
 #: Konfigurator/kglookfeel.cpp:238
 #, kde-format
 msgid "Alphabetical"
-msgstr ""
+msgstr "Alfabeticky"
 
 #: Konfigurator/kglookfeel.cpp:239
 #, kde-format
 msgid "Alphabetical and numbers"
-msgstr ""
+msgstr "Alfabeticky a číselne"
 
 #: Konfigurator/kglookfeel.cpp:240
 #, kde-format
 msgid "Character code"
-msgstr ""
+msgstr "Podľa kódov znakov"
 
 #: Konfigurator/kglookfeel.cpp:241
 #, kde-format
 msgid "Character code and numbers"
-msgstr ""
+msgstr "Podľa kódov znakov a číselne"
 
 #: Konfigurator/kglookfeel.cpp:253
 #, kde-format
@@ -7162,7 +7061,7 @@ msgstr "Nástrojová lišta bude viditeľná."
 #: Konfigurator/kglookfeel.cpp:288
 #, kde-format
 msgid "Visible Panel Toolbar buttons"
-msgstr "Zobrazenie tlačítok na panely nástrojov"
+msgstr "Zobrazenie tlačidiel na panely nástrojov"
 
 #: Konfigurator/kglookfeel.cpp:294
 #, kde-format
@@ -7221,8 +7120,7 @@ msgstr "Zobraziť tlačítko prepnutia synchronizovaného prehliadania"
 
 #: Konfigurator/kglookfeel.cpp:299
 #, kde-format
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr "Každá zmena v jednom panely sa vykoná v tiež v protiľahlom"
 
 #: Konfigurator/kglookfeel.cpp:324
@@ -7242,6 +7140,9 @@ msgid ""
 "key and click the left mouse button. Right-click menu is invoked using a "
 "short click on the right mouse button."
 msgstr ""
+"Obe klávesy dovoľujú označenie súborov. Pre označenia viacerých súborov "
+"držte klávesu Ctrl a kliknite ľavým tlačidlom myši. Kontextová ponuka sa "
+"vyvoláva krátkym kliknutím na pravé tlačítko myši."
 
 #: Konfigurator/kglookfeel.cpp:339
 #, kde-format
@@ -7255,6 +7156,9 @@ msgid ""
 "multiple files. Right-click menu is invoked using a short click on the right "
 "mouse button."
 msgstr ""
+"Stlačenie ľavého tlačidla myši označí súbor - môžete kliknúť a označiť "
+"viac súborov. Kontextová ponuka sa vyvolá krátkym kliknutím pravým "
+"tlačidlom."
 
 #: Konfigurator/kglookfeel.cpp:340
 #, kde-format
@@ -7269,11 +7173,14 @@ msgid ""
 "files and the right-click menu is invoked by pressing and holding the right "
 "mouse button."
 msgstr ""
+"Ľavé tlačidlo neoznačuje, iba nastavuje pozíciu bez toho, aby ovplyvnilo "
+"označovanie. Pravé tlačidlo vyberá viac súborov a kontextová ponuka sa "
+"vyvolá stlačením a držaním pravého tlačidla."
 
 #: Konfigurator/kglookfeel.cpp:341
 #, kde-format
 msgid "Ergonomic Mode"
-msgstr ""
+msgstr "Ergonomický režim"
 
 #: Konfigurator/kglookfeel.cpp:341
 #, kde-format
@@ -7282,6 +7189,9 @@ msgid ""
 "affecting the current selection. The right mouse button invokes the context-"
 "menu. You can select with Ctrl key and the left button."
 msgstr ""
+"Ľavé tlačidlo neoznačuje, iba nastavuje pozíciu bez toho, aby ovplyvnilo "
+"označovanie. Pravé tlačidlo vyvolá kontextovú ponuku. Označovať súbory "
+"môžete pomocou klávesy Ctrl a ľavého tlačidla."
 
 #: Konfigurator/kglookfeel.cpp:342
 #, kde-format
@@ -7309,6 +7219,8 @@ msgid ""
 "A single click on a file will select and focus, a double click opens the "
 "file or steps into the directory."
 msgstr ""
+"Jednoduché kliknutie na súbor ho  označí a nastaví pozíciu; dvojklik ho "
+"otvorí, alebo vstúpi do priečinku."
 
 #: Konfigurator/kglookfeel.cpp:363
 #, kde-format
@@ -7321,6 +7233,8 @@ msgid ""
 "<p>Use KDE's global setting:</p><p><i>KDE Control Center -> Peripherals -> "
 "Mouse</i></p>"
 msgstr ""
+"<p>Použije globálne nastavenie KDE:</p><p><i>Ovládacie Centrum KDE "
+"(Kcontrol) -> Periférie -> Myš</i></p>"
 
 #: Konfigurator/kglookfeel.cpp:375
 #, kde-format
@@ -7422,6 +7336,8 @@ msgid ""
 "down. \n"
 "Otherwise, current item is selected, but remains the current item."
 msgstr ""
+"Pokiaľ zaškrtnuté, stlačenie medzerníka (okrem označenia aktuálnej položky) "
+"posunie kurzor nadol."
 
 #: Konfigurator/kglookfeel.cpp:399
 #, kde-format
@@ -7435,6 +7351,9 @@ msgid ""
 "(except from selecting the folder) \n"
 "calculate space occupied by the folder (recursively)."
 msgstr ""
+"Pokiaľ zaškrtnuté, stlačenie medzerníka pokiaľ je aktuálna položka priečinok "
+"(okrem označenia daného priečinku) spočíta (rekurzívne) miesto na disku "
+"zabraté priečinkom."
 
 #: Konfigurator/kglookfeel.cpp:402
 #, kde-format
@@ -7448,6 +7367,8 @@ msgid ""
 "the next item. \n"
 "Otherwise, current item is not changed."
 msgstr ""
+"Pokiaľ zaškrtnuté, stlačenie INSERT (okrem označenia aktuálnej položky) "
+"posunie kurzor nadol."
 
 #: Konfigurator/kglookfeel.cpp:405
 #, kde-format
@@ -7461,6 +7382,9 @@ msgid ""
 "context menu. \n"
 "Otherwise, user needs to click and hold the right mouse button for 500ms."
 msgstr ""
+"Pokiaľ je zaškrtnuté, po kliknutí pravý tlačidlom sa kontextové ponuka "
+"objaví ihneď. \n"
+"V opačnom prípade musí používateľ stlačiť a držať pravé tlačidlo 500ms."
 
 #: Konfigurator/kgadvanced.cpp:56
 #, kde-format
@@ -7476,6 +7400,11 @@ msgid ""
 "root or member of the group</li><li>Preserving the timestamp</li></"
 "ul><b>Note</b>: This can slow down the copy process."
 msgstr ""
+"Krusader sa bude snažiť zachovať všetky vlastnosti (čas, vlastník, skupina, "
+"práva) miestnych súborov podľa vlastností zdroja v závislosti na Vašich "
+"právach: <ul><li>Používateľ zostane zachovaný, pokiaľ ste root</li> "
+"<li>Skupina zostane zachovaná, pokiaľ ste root, alebo člen skupiny</li> "
+"<li>Zachová sa časová známka</li></ul><b>Poznámka</b>: Toto môže spomaliť proces kopírovania."
 
 #: Konfigurator/kgadvanced.cpp:57
 #, kde-format
@@ -7488,6 +7417,8 @@ msgid ""
 "When stepping into a directory which is defined as a mount point in the "
 "<b>fstab</b>, try mounting it with the defined parameters."
 msgstr ""
+"Pokiaľ sa vstupuje do priečinku, ktorý je definovaný ako bod pripojenia v <b>"
+"fstab</b>, pokúsiť sa ho pripojiť s definovanými parametrami."
 
 #: Konfigurator/kgadvanced.cpp:63
 #, kde-format
@@ -7527,7 +7458,7 @@ msgstr "Presúvanie súborov"
 #: Konfigurator/kgadvanced.cpp:89
 #, kde-format
 msgid "Confirm feed to listbox"
-msgstr "Potvrdiť Vypísať do panelu"
+msgstr "Potvrdiť 'Vypísať do panela'"
 
 #: Konfigurator/kgadvanced.cpp:89
 #, kde-format
@@ -7535,6 +7466,8 @@ msgid ""
 "Ask for a result name when feeding items to the listbox. By default the "
 "standard value is used."
 msgstr ""
+"Vyžiadať si názov výsledku pri vypisovaní položiek do panelu. Inak sa "
+"použijú štandardné hodnoty."
 
 #: Konfigurator/kgadvanced.cpp:90
 #, kde-format
@@ -7716,6 +7649,9 @@ msgid ""
 "alternates line by line.</p><p>When you don't use the <i>KDE default colors</"
 "i>, you can configure the alternate colors in the <i>colors</i> box.</p>"
 msgstr ""
+"<p><b>Farba pozadia</b> a <b>alternatívna farba pozadia</b> sa striedajú "
+"riadok po riadku.</p><p>Pokiaľ nepoužívate <i>KDE štandardné farby</i>, tak "
+"môžete konfigurovať alternatívne farby v rámci <i>Farby</i>.</p>"
 
 #: Konfigurator/kgcolors.cpp:66
 #, kde-format
@@ -7729,6 +7665,9 @@ msgid ""
 "option is only available when you don't use the <i>KDE default colors</i>.</"
 "p>"
 msgstr ""
+"<p>Ukáže poslednú pozíciu kurzora v neaktívnom list paneli.</p><p>Táto voľba "
+"je dostupná len pokiaľ nepoužívate <i>KDE štandardné farby</i>.</"
+"p>"
 
 #: Konfigurator/kgcolors.cpp:67
 #, kde-format
@@ -7741,6 +7680,8 @@ msgid ""
 "<p>The colors of the inactive panel are calculated by a dim color and a dim "
 "factor.</p>"
 msgstr ""
+"<p>Farby neaktívneho panelu sú počítané pomocou farby zakalenia "
+"a faktora zakalenia.</p>"
 
 #: Konfigurator/kgcolors.cpp:92
 #, kde-format
@@ -7772,7 +7713,7 @@ msgstr "Rovnaká ako popredie"
 #: Konfigurator/kgcolors.cpp:102 Konfigurator/kgcolors.cpp:138
 #, kde-format
 msgid "Executable foreground:"
-msgstr "Farba spúšťateľných:"
+msgstr "Farba spustiteľných súborov:"
 
 #: Konfigurator/kgcolors.cpp:103 Konfigurator/kgcolors.cpp:139
 #, kde-format
@@ -7843,7 +7784,7 @@ msgstr "Rovnaké ako písmo označených"
 #: Konfigurator/kgcolors.cpp:114 Konfigurator/kgcolors.cpp:151
 #, kde-format
 msgid "Selected current foreground:"
-msgstr "Písmo aktálne označenej položky:"
+msgstr "Písmo aktuálne označenej položky:"
 
 #: Konfigurator/kgcolors.cpp:115 Konfigurator/kgcolors.cpp:152
 #, kde-format
@@ -7936,25 +7877,21 @@ msgstr "Zmazať popredie (písmo):"
 msgid "Delete background:"
 msgstr "Zmazať pozadie:"
 
-#: Konfigurator/kgcolors.cpp:211
-#, fuzzy, kde-format
+#: Konfigurator/kgcolors.cpp:211, kde-format
 msgid "Other"
-msgstr "Iné..."
+msgstr "Iné"
 
-#: Konfigurator/kgcolors.cpp:219
-#, fuzzy, kde-format
+#: Konfigurator/kgcolors.cpp:219, kde-format
 msgid "Quicksearch, match foreground:"
-msgstr "Farba priečinku:"
+msgstr "Rýchle hľadanie, farba keď je zhoda:"
 
-#: Konfigurator/kgcolors.cpp:220 Konfigurator/kgcolors.cpp:222
-#, fuzzy, kde-format
+#: Konfigurator/kgcolors.cpp:220 Konfigurator/kgcolors.cpp:222, kde-format
 msgid "Quicksearch, non-match background:"
-msgstr "Alternatívne pozadie:"
+msgstr "Rýchle hľadanie, farba pozadia keď je zhoda:"
 
-#: Konfigurator/kgcolors.cpp:221
-#, fuzzy, kde-format
+#: Konfigurator/kgcolors.cpp:221, kde-format
 msgid "Quicksearch, non-match foreground:"
-msgstr "Aktuálne popredie:"
+msgstr "Rýchle hľadanie, farba bez zhody:"
 
 #: Konfigurator/kgcolors.cpp:255
 #, kde-format
@@ -8021,15 +7958,13 @@ msgstr "Rozdielne"
 msgid "Equals"
 msgstr "Zhodné"
 
-#: Konfigurator/kgcolors.cpp:526
-#, fuzzy, kde-format
+#: Konfigurator/kgcolors.cpp:526, kde-format
 msgid "Quicksearch non-match"
-msgstr "Rýchle hľadanie"
+msgstr "Rýchle hľadanie bez zhody"
 
-#: Konfigurator/kgcolors.cpp:527
-#, fuzzy, kde-format
+#: Konfigurator/kgcolors.cpp:527, kde-format
 msgid "Quicksearch match"
-msgstr "Rýchle hľadanie"
+msgstr "Rýchle hľadanie so zhodou"
 
 #: Konfigurator/kgcolors.cpp:546
 #, kde-format
@@ -8046,12 +7981,9 @@ msgstr "Chyba: nepodarilo sa čítať zo súboru"
 msgid "Select a color scheme file"
 msgstr "Vyberte súbor s farebnou schémou"
 
-#: Konfigurator/kgcolors.cpp:564
-#, fuzzy, kde-format
+#: Konfigurator/kgcolors.cpp:564, kde-format
 msgid "File %1 already exists. Are you sure you want to overwrite it?"
-msgstr ""
-"Súbor %1 už existuje.\n"
-"Ste si istý, že ho chcete prepísať?"
+msgstr "Súbor %1 už existuje. Ste si istý, že ho chcete prepísať?"
 
 #: Konfigurator/kgcolors.cpp:567
 #, kde-format
@@ -8066,6 +7998,10 @@ msgid ""
 "li></ul><b>&lt;Last session&gt;</b> is a special panel profile which is "
 "saved automatically when Krusader is closed."
 msgstr ""
+"Definuje profil panelov použitý pri spustení. Profil panelu obsahuje: "
+"<ul><li>všetky cesty kariet</li><li>aktuálnu kartu</li><li>aktívny panel</"
+"li></ul><b>&lt;Posledné sedenie&gt;</b>  je zvláštny profil panelov, ktorý "
+"sa automaticky uloží, keď sa Krusader zatvorí."
 
 #: Konfigurator/kgstartup.cpp:55
 #, kde-format
@@ -8113,6 +8049,8 @@ msgid ""
 "Check the state of the user interface components and restore them to their "
 "condition when last shutdown."
 msgstr ""
+"Skontroluje stav súčastí používateľského rozhrania a obnoví ich do "
+"podmienok pri poslednom vypnutí."
 
 #: Konfigurator/kgstartup.cpp:93
 #, kde-format
@@ -8157,7 +8095,7 @@ msgstr "Príkazový riadok bude viditeľný po spustení."
 #: Konfigurator/kgstartup.cpp:97
 #, kde-format
 msgid "Show terminal emulator"
-msgstr "Zobraziť v LyXe|#Z"
+msgstr "Zobraziť emulátor terminálu"
 
 #: Konfigurator/kgstartup.cpp:97
 #, kde-format
@@ -8178,6 +8116,11 @@ msgid ""
 "is disabled, you can use the menu <i>Window -> Save Position</i> option to "
 "manually set the main window's size and position at startup.</p>"
 msgstr ""
+"<p>Pri spustení Krusader zmení veľkosť okna na veľkosť, ktorú mal pri "
+"ukončení. Tiež sa objaví na rovnakom mieste na obrazovke s rovnako "
+"zoradenými a zarovnanými panelmi, tak ako boli predtým.</p><p> Keď je táto "
+"voľba vypnutá, môžete použiť ponuku <i>Nastavenie -> Uložiť Pozíciu</i>, "
+"čím ručne nastavíte veľkosť a polohu pri spustení.</p>"
 
 #: Konfigurator/kgstartup.cpp:99
 #, kde-format
@@ -8190,11 +8133,13 @@ msgid ""
 "Krusader starts to tray (if minimize to tray is set), without showing the "
 "main window"
 msgstr ""
+"Krusader naštartuje do systémovej časti panela (pokiaľ je nastavené "
+"minimalizovať do systémovej časti panela), bez zobrazenia hlavného okna"
 
 #: Konfigurator/kgarchives.cpp:57
 #, kde-format
 msgid "Krusader transparently handles the following types of archives:"
-msgstr "Krusader transparentné spracúva nasledujúce typy archívov:"
+msgstr "Krusader transparentne spracúva nasledujúce typy archívov:"
 
 #: Konfigurator/kgarchives.cpp:62
 #, kde-format
@@ -8209,7 +8154,7 @@ msgstr "GZip"
 #: Konfigurator/kgarchives.cpp:64
 #, kde-format
 msgid "LZMA"
-msgstr ""
+msgstr "LZMA"
 
 #: Konfigurator/kgarchives.cpp:65
 #, kde-format
@@ -8275,7 +8220,7 @@ msgstr "Automatické nastavenie"
 #: Konfigurator/kgarchives.cpp:107
 #, kde-format
 msgid "Test archive after packing"
-msgstr "Testovať archív po komprimácií"
+msgstr "Testovať archív po komprimácii"
 
 #: Konfigurator/kgarchives.cpp:107
 #, kde-format
@@ -8289,8 +8234,7 @@ msgstr "Testovať archív pred rozbalením"
 
 #: Konfigurator/kgarchives.cpp:108
 #, kde-format
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Niektoré poškodené archívy môžu spôsobiť pád a preto je testovanie "
 "odporúčané."
@@ -8298,13 +8242,12 @@ msgstr ""
 #: Konfigurator/kgarchives.cpp:125
 #, kde-format
 msgid "Searching for packers..."
-msgstr "Hľadanie komprimačných nástrojov..."
+msgstr "Hľadanie archivačných nástrojov..."
 
 #: Konfigurator/kgarchives.cpp:126
 #, kde-format
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr ""
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgstr "Uistite sa, že inštalujete nové archivačné programy do cesty v <code>$PATH</code> (napr. /usr/bin)"
 
 #: Konfigurator/kguseractions.cpp:52
 #, kde-format
@@ -8317,6 +8260,8 @@ msgid ""
 "Here you can configure settings about useractions.\n"
 "To set up, configure and manage your useractions please use ActionMan."
 msgstr ""
+"Tu je možné konfigurovať nastavenia o užívateľských akciách.\nNa nastavenie a "
+"správu užívateľských akcií, prosím použite ActionMan."
 
 #: Konfigurator/kguseractions.cpp:61
 #, kde-format
@@ -8353,10 +8298,9 @@ msgstr "Písmo s pevnou šírkou:"
 msgid "Use fixed width font as default"
 msgstr "Štandardne použiť písmo s pevnou šírkou"
 
-#: krslots.cpp:101
-#, fuzzy, kde-format
+#: krslots.cpp:101, kde-format
 msgid "No selected files to send!"
-msgstr "Iba označené súbory"
+msgstr "Nieje vybraný žiadny súbor na odoslanie!"
 
 #: krslots.cpp:109
 #, kde-format
@@ -8367,11 +8311,10 @@ msgstr ""
 "Krusader nemôže nájsť žiadneho podporovaného e-mailového klienta. "
 "Nainštalujte si nejakého. Tip: Krusader podporuje kmail."
 
-#: krslots.cpp:118
-#, fuzzy, kde-format
+#: krslots.cpp:118, kde-format
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
-msgstr[0] "Posielanie súboru: "
+msgstr[0] "Posielanie súboru: %2"
 msgstr[1] "Posielanie súboru: "
 msgstr[2] "Posielanie súboru: "
 
@@ -8402,10 +8345,9 @@ msgstr ""
 "Krusader nemôže nájsť žiadnu grafickú nadstavbu pre diff. Nainštalujte si "
 "nejakú. Tip: Krusader podporuje Kompare, kdiff3, Kdiff3 a Xxdiff."
 
-#: krslots.cpp:205 krslots.cpp:211
-#, fuzzy, kde-format
+#: krslots.cpp:205 krslots.cpp:211, kde-format
 msgid "Krusader is unable to download %1"
-msgstr "Krusader nemôže stiahnuť: "
+msgstr "Krusader nemôže stiahnuť %1"
 
 #: krslots.cpp:460
 #, kde-format
@@ -8426,8 +8368,7 @@ msgstr ""
 #: krslots.cpp:520
 #, kde-format
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
-msgstr ""
-"Nie je možné nájsť \"KsysCtrl\". Prosím, nainštalujte si balík KDE admin"
+msgstr "Nie je možné nájsť \"KsysCtrl\". Prosím, nainštalujte si balík KDE admin"
 
 #: krslots.cpp:528
 #, kde-format
@@ -8619,8 +8560,7 @@ msgstr "Neplatný CRC súbor!"
 
 #: Splitter/combiner.cpp:154
 #, kde-format
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Kontrola správnosti nie je možná bez správneho CRC súboru. Pokračovať v "
 "spájaní?"
@@ -8673,52 +8613,47 @@ msgstr "Chyba pri zápise súboru %1!"
 #: krarc.cpp:182
 #, kde-format
 msgid "Creating directories is not supported with %1 archives"
-msgstr ""
+msgstr "Vytváranie priečinkov nie je podporované v %1 archívoch"
 
-#: krarc.cpp:215
-#, fuzzy, kde-format
+#: krarc.cpp:215, kde-format
 msgid "Creating %1 ..."
-msgstr "Mažem %1..."
+msgstr "Vytváranie %1..."
 
-#: krarc.cpp:254
-#, fuzzy, kde-format
+#: krarc.cpp:254, kde-format
 msgid "Writing to %1 archives is not supported"
-msgstr "Presun do archívu nie je povolený"
+msgstr "Zápis do %1 archívov nieje podporovaný"
 
-#: krarc.cpp:307
-#, fuzzy, kde-format
+#: krarc.cpp:307, kde-format
 msgid "Packing %1 ..."
-msgstr "Rekomprimovanie..."
+msgstr "Komprimovanie %1 ..."
 
 #: krarc.cpp:347
 #, kde-format
 msgid "Retrieving data from %1 archives is not supported"
-msgstr ""
+msgstr "Získavanie dát z %1 archívov nie je podporované"
 
-#: krarc.cpp:414 krarc.cpp:667
-#, fuzzy, kde-format
+#: krarc.cpp:414 krarc.cpp:667, kde-format
 msgid "Unpacking %1 ..."
-msgstr "Dekomprimovanie"
+msgstr "Dekomprimovanie %1 ..."
 
 #: krarc.cpp:542
 #, kde-format
 msgid "Deleting files from %1 archives is not supported"
-msgstr ""
+msgstr "Mazanie súborov z %1 archívov nie je podporované"
 
-#: krarc.cpp:558
-#, fuzzy, kde-format
+#: krarc.cpp:558, kde-format
 msgid "Deleting %1 ..."
-msgstr "Mažem %1..."
+msgstr "Mazanie %1..."
 
 #: krarc.cpp:587
 #, kde-format
 msgid "Accessing files is not supported with the %1 archives"
-msgstr ""
+msgstr "Prístup k súborom nie je podporovaný v %1 archívoch"
 
 #: krarc.cpp:696
 #, kde-format
 msgid "Listing directories is not supported for %1 archives"
-msgstr ""
+msgstr "Zobrazenie zoznamu priečinkov nie je podporované pre %1 archívy."
 
 #: krarc.cpp:1495
 #, kde-format
@@ -8726,176 +8661,26 @@ msgid ""
 "\n"
 "Make sure that the %1 binary are installed properly on your system."
 msgstr ""
+"\n"
+"Uistite sa že máte správne nainštalovaný program %1 vo svojom systéme."
 
 #: krarc.cpp:1710 krarc.cpp:1734
 #, kde-format
 msgid "Krarc Password Dialog"
-msgstr ""
+msgstr "Dialóg hesla KrArc"
 
 #: krarc.cpp:1751
 #, kde-format
 msgid "Accessing the file requires password."
-msgstr ""
+msgstr "Prístup k súborom vyžaduje heslo."
 
 #: tar.cc:56
 #, kde-format
 msgid "This protocol does not support resuming"
-msgstr ""
+msgstr "Tento protokol nepodporuje znovuzahájenie"
 
 #: tar.cc:78
 #, kde-format
 msgid "Writing to %1 is not supported"
-msgstr ""
+msgstr "Zápis do %1 nie je podporovaný"
 
-#~ msgid "Brief"
-#~ msgstr "Stručne"
-
-#~ msgid "Clear location bar button"
-#~ msgstr "Tlačidlo vymazať riadok s umiestnením"
-
-#~ msgid "Clears the location bar"
-#~ msgstr "Vymaže riadok s umiestnením"
-
-#~ msgid "CD Recorder"
-#~ msgstr "CD napaľovačka"
-
-#~ msgid "DVD Recorder"
-#~ msgstr "DVD napaľovačka"
-
-#~ msgid "DVD"
-#~ msgstr "DVD"
-
-#~ msgid "Zip Disk"
-#~ msgstr "Zip Disk"
-
-#~ msgid "add"
-#~ msgstr "pridať"
-
-#~ msgid "<qt>Can't open <b>%1</b></qt>"
-#~ msgstr "<qt>Nie je možné otvoriť <b>%1</b></qt>"
-
-#~ msgid "Can't open \"%1\""
-#~ msgstr "Nie je možné otvoriť  \"%1\""
-
-#~ msgid "Clear the location bar"
-#~ msgstr "Vyčistiť riadok umiestnenia"
-
-#~ msgid "<qt>Can't read <b>%1</b>. Archive might be corrupted!</qt>"
-#~ msgstr "<qt>Nemôžem čítať <b>%1</b>. Archív môže byť poškodený!</qt>"
-
-#~ msgid "Deleting Files..."
-#~ msgstr "Mažem súbory..."
-
-#~ msgid "Unpacking Files"
-#~ msgstr "Dekomprimovanie súborov"
-
-#~ msgid ""
-#~ "In %1:\n"
-#~ "There is an error in the JavaScript"
-#~ msgstr ""
-#~ "V %1:\n"
-#~ "Je tam chyba v JavaScripte"
-
-#~ msgid "Shred"
-#~ msgstr "Skartovať"
-
-#~ msgid ""
-#~ "<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone "
-#~ "forever!</qt>"
-#~ msgstr ""
-#~ "<qt>Skutočne chcete skartovať <b>%1</b>?  zoskartovaný súbor bude navždy "
-#~ "stratený!</qt>"
-
-#~ msgid "Tab: switch panel"
-#~ msgstr "Karta: prepnúť panel"
-
-#~ msgid "Error ejecting device! You need to have 'eject' in your path."
-#~ msgstr "Chyba pri vysunutí zariadenia! Musíte mať prístupný príkaz 'eject'."
-
-#~ msgid "Filesystems"
-#~ msgstr "Súborové systémy"
-
-#~ msgid ""
-#~ "Krusader\n"
-#~ "Twin-Panel File Manager for KDE"
-#~ msgstr ""
-#~ "Krusader\n"
-#~ "Dvojpanelový správca súborov pre KDE"
-
-#~ msgid "%1% of %2 "
-#~ msgstr "%1% z %2 "
-
-#~ msgid "compare mode"
-#~ msgstr "režim porovnávania"
-
-#~ msgid "Remove"
-#~ msgstr "Odstrániť"
-
-#~ msgid "New group"
-#~ msgstr "Nová skupina"
-
-#~ msgid "New session"
-#~ msgstr "Nové sedenie"
-
-#~ msgid "Sessions"
-#~ msgstr "Sedenia"
-
-#~ msgid "RemoteMan"
-#~ msgstr "Vzdialený Správca"
-
-#~ msgid "Are you sure you want to delete this item ???"
-#~ msgstr "Ste si istý, že chcete zmazať túto položku???"
-
-#~ msgid "RemoteMan: Connection Manager"
-#~ msgstr "Vzdialený Správca: Správca spojení"
-
-#~ msgid "Session name:"
-#~ msgstr "Názov sedenia:"
-
-#~ msgid "&More"
-#~ msgstr "&Ďalšie"
-
-#~ msgid "User name:"
-#~ msgstr "Používateľské meno:"
-
-#~ msgid "Anonymous"
-#~ msgstr "Anonymný"
-
-#~ msgid "Remote directory:"
-#~ msgstr "Vzdialený priečinok:"
-
-#~ msgid "Co&nnect"
-#~ msgstr "Spo&jiť"
-
-#~ msgid "New &Group"
-#~ msgstr "Nová &Skupina"
-
-#~ msgid "New Connec&tion"
-#~ msgstr "Nové s&pojenie"
-
-#~ msgid "Port:   "
-#~ msgstr "Port:   "
-
-#~ msgid "* Warning: Storing your password is not secure !!!"
-#~ msgstr "* Varovanie: Uloženie vášho hesla nie je bezpečné!!!"
-
-#~ msgid "File "
-#~ msgstr "Súbor"
-
-#~ msgid " already exists. Are you sure you want to overwrite it?"
-#~ msgstr " už existuje. Ste si istý, že ho chcete prepísať?"
-
-#~ msgid ""
-#~ "Important: RemoteMan has been replaced by our new bookmark manager. The "
-#~ "new manager handles local files and remote URLs the same way. RemoteMan "
-#~ "is being left around to allow an easier transition and give you a chance "
-#~ "to move your bookmarks. IT WILL BE REMOVED SOON!\n"
-#~ "Try the new bookmark-manager: open a new remote connection, once done, "
-#~ "press the bookmark button, select 'Add bookmark' and that's it!"
-#~ msgstr ""
-#~ "Dôležité: RemoteMan  bol nahradený novým správcom záložiek. Nový správca "
-#~ "pracuje s lokálnymi súbormi a vzdialenými URL rovnako. RemoteMan bol "
-#~ "ponechaný, aby bolo umožnený ľahší prechod, a aby ste mali šancu presunúť "
-#~ "svoje záložky. ČOSKORO VŠAK BUDE ODSTRÁNENÝ!\n"
-#~ "Vyskúšajte nového správcu záložiek; otvorte nové vzdialené spojenie, "
-#~ "potom stlačte tlačítko záložiek a vyberte 'Pridať záložku' a je to!"

@@ -167,7 +167,7 @@ KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") : ki18n("Kr
   aboutData.addCredit(ki18n("Dmitry A. Bugay"),ki18n("Russian translation"),"sam@vhnet.ru",0);
   aboutData.addCredit(ki18n("Dmitry Chernyak"),ki18n("Old Russian translation"),"chernyak@mail.ru",0);
   aboutData.addCredit(ki18n("Sasa Tomic"),ki18n("Serbian translation"),"stomic@gmx.net",0);
-  aboutData.addCredit(ki18n("Zdenko Podobna"),ki18n("Slovak translation"),"zdpo@mailbox.sk",0);
+  aboutData.addCredit(ki18n("Zdenko Podobný and Ondrej Pačay (Yogi)"),ki18n("Slovak translation"),"zdenop@gmail.com",0);
   aboutData.addCredit(ki18n("Matej Urbancic"),ki18n("Slovenian translation"),"matej.urban@gmail.com",0);
   aboutData.addCredit(ki18n("Rafael Munoz"),ki18n("Old Spanish translation"),"muror@hotpop.com",0);
   aboutData.addCredit(ki18n("Alejandro Araiza Alvarado"),ki18n("Spanish translation"),"mebrelith@gmail.com",0);
