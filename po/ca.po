@@ -1,25 +1,25 @@
 # Translation of krusader.pot to Catalan
 #
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
-# Copyright (C) 2004-2008, Krusader Krew
+# Copyright (C) 2004-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 #
 # Rafael Munoz Rodriguez <rafaluco@netscape.net>, 2003.
-# Quim Perez Noguer <noguer@osona.com>, 2004, 2005.
 # Joaquim Perez <noguer@gmail.com>, 2008.
-#
+# Quim Perez Noguer <noguer@osona.com>, 2004, 2005, 2009
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-2.0.0-beta2\n"
 "Report-Msgid-Bugs-To: krusader-i18n@googlegroups.com\n"
 "POT-Creation-Date: 2008-12-05 21:44+0100\n"
-"PO-Revision-Date: 2008-01-13 15:37+0100\n"
-"Last-Translator: Joaquim Perez <noguer@gmail.com>\n"
-"Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
+"PO-Revision-Date: 2009-01-04 14:17+0100\n"
+"Last-Translator: Joaquim Perez Noguer <noguer@gmail.com>\n"
+"Language-Team: Catalan <gnome@lists.softcatala.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 0.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: GUI/dirhistorybutton.cpp:36 GUI/dirhistorybutton.cpp:37
@@ -94,24 +94,24 @@ msgid "Floppy"
 msgstr "Disquet"
 
 #: GUI/mediabutton.cpp:179
-#, fuzzy, kde-format
+#, kde-format
 msgid "CD/DVD-ROM"
-msgstr "CD-ROM"
+msgstr "CD/DVD-ROM"
 
 #: GUI/mediabutton.cpp:181
 #, kde-format
 msgid "USB pen drive"
-msgstr ""
+msgstr "Memòria USB"
 
 #: GUI/mediabutton.cpp:183
 #, kde-format
 msgid "USB device"
-msgstr ""
+msgstr "Dispositiu USB"
 
 #: GUI/mediabutton.cpp:185
 #, kde-format
 msgid "Removable media"
-msgstr ""
+msgstr "Suports extraïbles"
 
 #: GUI/mediabutton.cpp:187
 #, kde-format
@@ -119,24 +119,24 @@ msgid "Hard Disk"
 msgstr "Disc dur"
 
 #: GUI/mediabutton.cpp:189
-#, fuzzy, kde-format
+#, kde-format
 msgid "Camera"
-msgstr "Nom"
+msgstr "Càmera"
 
 #: GUI/mediabutton.cpp:191
 #, kde-format
 msgid "Video CD/DVD-ROM"
-msgstr ""
+msgstr "CD/DVD-ROM de vídeo"
 
 #: GUI/mediabutton.cpp:193
 #, kde-format
 msgid "Audio CD/DVD-ROM"
-msgstr ""
+msgstr "CD/DVD-ROM d'àudio"
 
 #: GUI/mediabutton.cpp:195
 #, kde-format
 msgid "Recordable CD/DVD-ROM"
-msgstr ""
+msgstr "CD/DVD-ROM gravable"
 
 #: GUI/mediabutton.cpp:325 Panel/krpopupmenu.cpp:69
 #: BookMan/krbookmarkhandler.cpp:557
@@ -171,11 +171,12 @@ msgstr "Expulsa"
 #, kde-format
 msgid "An error occurred while accessing '%1', the system responded: %2"
 msgstr ""
+"S'ha produït un error mentre s'accedia a «%1», el sistema ha respost: %2"
 
 #: GUI/mediabutton.cpp:426
 #, kde-format
 msgid "An error occurred while accessing '%1'"
-msgstr ""
+msgstr "S'ha produït un error mentre s'accedia a «%1»"
 
 #: GUI/syncbrowsebutton.cpp:45 GUI/syncbrowsebutton.cpp:48
 #, kde-format
@@ -393,38 +394,38 @@ msgstr ""
 "%1"
 
 #: VFS/preserveattrcopyjob.cpp:334 VFS/virtualcopyjob.cpp:389
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title job"
 msgid "Moving"
-msgstr "Quan es mouen fitxer"
+msgstr "S'està movent"
 
 #: VFS/preserveattrcopyjob.cpp:335 VFS/preserveattrcopyjob.cpp:342
 #: VFS/preserveattrcopyjob.cpp:349 VFS/preserveattrcopyjob.cpp:373
 #: VFS/kiojobwrapper.cpp:221 VFS/virtualcopyjob.cpp:384
 #: VFS/virtualcopyjob.cpp:390
-#, fuzzy, kde-format
+#, kde-format
 msgid "Source"
-msgstr "Origen:"
+msgstr "Origen"
 
 #: VFS/preserveattrcopyjob.cpp:336 VFS/preserveattrcopyjob.cpp:343
 #: VFS/preserveattrcopyjob.cpp:350 VFS/preserveattrcopyjob.cpp:374
 #: VFS/virtualcopyjob.cpp:385 VFS/virtualcopyjob.cpp:391
-#, fuzzy, kde-format
+#, kde-format
 msgid "Destination"
-msgstr "Destinació:"
+msgstr "Destinació"
 
 #: VFS/preserveattrcopyjob.cpp:341 VFS/preserveattrcopyjob.cpp:348
 #: VFS/preserveattrcopyjob.cpp:372 VFS/virtualcopyjob.cpp:383
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title job"
 msgid "Copying"
-msgstr "Quan es copien fitxers"
+msgstr "S'està copiant"
 
 #: VFS/preserveattrcopyjob.cpp:361
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title job"
 msgid "Creating directory"
-msgstr "Carpeta pare"
+msgstr "S'està creant el directori"
 
 #: VFS/preserveattrcopyjob.cpp:362 Panel/krinterview.cpp:205
 #: Panel/krbriefview.cpp:226 Panel/krdetailedview.cpp:317
@@ -434,9 +435,9 @@ msgid "Directory"
 msgstr "Carpeta "
 
 #: VFS/preserveattrcopyjob.cpp:793
-#, fuzzy, kde-format
+#, kde-format
 msgid "Folder Already Exists"
-msgstr "El fitxer ja existeix"
+msgstr "La carpeta ja existeix"
 
 #: VFS/preserveattrcopyjob.cpp:1074 VFS/preserveattrcopyjob.cpp:1594
 #: Synchronizer/synchronizer.cpp:1171 Synchronizer/synchronizer.cpp:1181
@@ -445,9 +446,9 @@ msgid "File Already Exists"
 msgstr "El fitxer ja existeix"
 
 #: VFS/preserveattrcopyjob.cpp:1074 VFS/preserveattrcopyjob.cpp:1594
-#, fuzzy, kde-format
+#, kde-format
 msgid "Already Exists as Folder"
-msgstr "El fitxer ja existeix"
+msgstr "Ja existeix com a carpeta"
 
 #: VFS/normal_vfs.cpp:98
 #, kde-format
@@ -502,24 +503,24 @@ msgid "Status"
 msgstr "Estat"
 
 #: VFS/kiojobwrapper.cpp:187
-#, fuzzy, kde-format
+#, kde-format
 msgid "Directory Size"
-msgstr "Carpetes"
+msgstr "Mida del directori"
 
 #: VFS/kiojobwrapper.cpp:190
-#, fuzzy, kde-format
+#, kde-format
 msgid "Copy"
-msgstr " Copia"
+msgstr "Copia"
 
 #: VFS/kiojobwrapper.cpp:193
-#, fuzzy, kde-format
+#, kde-format
 msgid "Move"
-msgstr " Mou"
+msgstr "Mou"
 
 #: VFS/kiojobwrapper.cpp:220
-#, fuzzy, kde-format
+#, kde-format
 msgid "Target"
-msgstr "Tar"
+msgstr "Destinació"
 
 #: VFS/krquery.cpp:159 Filter/generalfilter.cpp:142
 #: Konfigurator/konfigurator.cpp:159
@@ -673,60 +674,55 @@ msgstr "Krusader::Selecció de fitxers"
 
 #: Filter/generalfilter.cpp:56
 msgid "Any Character"
-msgstr ""
+msgstr "Qualsevol caràcter"
 
 #: Filter/generalfilter.cpp:57
-#, fuzzy
 msgid "Start of Line"
-msgstr "Perfil inicial:"
+msgstr "Inici de la línia"
 
 #: Filter/generalfilter.cpp:58
 msgid "End of Line"
-msgstr ""
+msgstr "Final de la línia"
 
 #: Filter/generalfilter.cpp:59
 msgid "Set of Characters"
-msgstr ""
+msgstr "Conjunt de caràcters"
 
 #: Filter/generalfilter.cpp:60
 msgid "Repeats, Zero or More Times"
-msgstr ""
+msgstr "Repeteix, zero o més vegades"
 
 #: Filter/generalfilter.cpp:61
 msgid "Repeats, One or More Times"
-msgstr ""
+msgstr "Repeteix, una o més vegades"
 
 #: Filter/generalfilter.cpp:62
-#, fuzzy
 msgid "Optional"
-msgstr "&Opcions"
+msgstr "Opcional"
 
 #: Filter/generalfilter.cpp:63
 msgid "Escape"
-msgstr ""
+msgstr "Tecla d'escapada"
 
 #: Filter/generalfilter.cpp:64
 msgid "TAB"
-msgstr ""
+msgstr "Tabulador"
 
 #: Filter/generalfilter.cpp:65
-#, fuzzy
 msgid "Newline"
-msgstr "Nou enllaç"
+msgstr "Nova línia"
 
 #: Filter/generalfilter.cpp:66
 msgid "Carriage Return"
-msgstr ""
+msgstr "Tecla de retorn"
 
 #: Filter/generalfilter.cpp:67
-#, fuzzy
 msgid "White Space"
-msgstr "Blanc"
+msgstr "Espai en blanc"
 
 #: Filter/generalfilter.cpp:68
-#, fuzzy
 msgid "Digit"
-msgstr "Dreta"
+msgstr "Dígit"
 
 #: Filter/generalfilter.cpp:101
 #, kde-format
@@ -841,12 +837,12 @@ msgstr "&Text:"
 #: Filter/generalfilter.cpp:265
 #, kde-format
 msgid "RegExp"
-msgstr ""
+msgstr "RegExp"
 
 #: Filter/generalfilter.cpp:286
-#, fuzzy, kde-format
+#, kde-format
 msgid "Encoding:"
-msgstr "S'està editant"
+msgstr "Codificació:"
 
 #: Filter/generalfilter.cpp:301
 #, kde-format
@@ -1225,7 +1221,7 @@ msgstr "Obre la ubicació en una nova pestanya"
 #: UserAction/expander.cpp:572
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Goto!"
-msgstr ""
+msgstr "Completador: com a mínim es necessita un paràmetre per al Goto."
 
 #: UserAction/expander.cpp:603
 #, kde-format
@@ -1250,7 +1246,7 @@ msgstr "Text (opcional)"
 #: UserAction/expander.cpp:614
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Ask!"
-msgstr ""
+msgstr "Completador: com a mínim es necessita un paràmetre per a l'Ask."
 
 #: UserAction/expander.cpp:619
 #, kde-format
@@ -1275,7 +1271,7 @@ msgstr "Afegeix aquest separador al contingut del porta-retalls (opcional):"
 #: UserAction/expander.cpp:653
 #, kde-format
 msgid "Expander: at least 1 parameter is required for Clipboard!"
-msgstr ""
+msgstr "Completador: com a mínim es necessita un paràmetre per al Clipboard."
 
 #: UserAction/expander.cpp:659
 #, kde-format
@@ -1295,7 +1291,7 @@ msgstr "On s'ha copiar:"
 #: UserAction/expander.cpp:680
 #, kde-format
 msgid "Expander: at least 2 parameter is required for Copy!"
-msgstr ""
+msgstr "Completador: com a mínim es necessiten dos paràmetres per al Copy."
 
 #: UserAction/expander.cpp:687
 #, kde-format
@@ -1326,7 +1322,7 @@ msgstr "Nova destinació o nou nom:"
 #: UserAction/expander.cpp:716
 #, kde-format
 msgid "Expander: at least 2 parameter is required for Move!"
-msgstr ""
+msgstr "Completador: com a mínim es necessiten dos paràmetres per al Move."
 
 #: UserAction/expander.cpp:723
 #, kde-format
@@ -1488,7 +1484,7 @@ msgstr ""
 "substitució %2"
 
 #: UserAction/expander.cpp:1111
-#, fuzzy, kde-format
+#, kde-format
 msgid "Error: unterminated % in Expander::expandCurrent"
 msgstr "Error: no s'ha tancat el símbol % en l'Expander::expandCurrent"
 
@@ -1639,7 +1635,7 @@ msgstr "No es poden llegir accions del fitxer."
 #: UserAction/useraction.cpp:169
 #, kde-format
 msgid "The actionfile's root-element isn't called "
-msgstr ""
+msgstr "No s'ha trobat l'element arrel del fitxer d'accions"
 
 #: UserAction/useraction.cpp:181
 #, kde-format
@@ -1661,9 +1657,9 @@ msgid "UserActions - invalid action"
 msgstr "Acció invàlida"
 
 #: Panel/krinterview.cpp:58
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Experimental View"
-msgstr "Visualització en &detall"
+msgstr "Visualització &experimental"
 
 #: Panel/krdetailedviewitem.cpp:79 Panel/krdetailedviewitem.cpp:113
 #: Synchronizer/synchronizergui.cpp:2064 Synchronizer/synchronizergui.cpp:2071
@@ -2065,14 +2061,14 @@ msgstr "Espai ocupat total: %1"
 #, kde-format
 msgid "in %1 directory"
 msgid_plural "in %1 directories"
-msgstr[0] "_n: en %1 directori"
+msgstr[0] "en %1 directori"
 msgstr[1] "en %1 directoris"
 
 #: Panel/krcalcspacedialog.cpp:160
 #, kde-format
 msgid "and %1 file"
 msgid_plural "and %1 files"
-msgstr[0] "_n: i %1 fitxer"
+msgstr[0] "i %1 fitxer"
 msgstr[1] "i %1 fitxers"
 
 #: Panel/krpopupmenu.cpp:65
@@ -2288,7 +2284,7 @@ msgstr "Mou %1 a:"
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
-msgstr[0] "_n: Mou %1 fitxer a:"
+msgstr[0] "Mou %1 fitxer a:"
 msgstr[1] "Mou %1 fitxers a:"
 
 #: Panel/panelfunc.cpp:485
@@ -2332,7 +2328,7 @@ msgstr "No es tenen permisos d'escriptura en aquesta carpeta"
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
-msgstr[0] "_n: Esteu segur que voleu moure aquest element a la paperera?"
+msgstr[0] "Esteu segur que voleu moure aquest element a la paperera?"
 msgstr[1] "Esteu segur que voleu moure %1 elements a la paperera?"
 
 #: Panel/panelfunc.cpp:689 DiskUsage/diskusage.cpp:610
@@ -2341,7 +2337,7 @@ msgid "&Trash"
 msgstr "&Paparera"
 
 #: Panel/panelfunc.cpp:691
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
 "untouched)?"
@@ -2349,7 +2345,7 @@ msgid_plural ""
 "Do you really want to delete these %1 virtual items (physical files stay "
 "untouched)?"
 msgstr[0] ""
-"_n: Segur que voleu esborrar aquest element virtual (el fitxer físic no es "
+"Segur que voleu esborrar aquest element virtual (el fitxer físic no es "
 "tocarà)?"
 msgstr[1] ""
 "Segur que voleu esborrar %1 elements virtuals (els fitxers físics no es "
@@ -2371,7 +2367,7 @@ msgid_plural ""
 "<qt>Do you really want to delete these %1 items <b>physically</b> (not just "
 "removing them from the virtual items)?</qt>"
 msgstr[0] ""
-"_n: <qt>Segur que voleu esborrar aquest element <b>físicament</b> "
+"<qt>Segur que voleu esborrar aquest element <b>físicament</b> "
 "(s'esborraran també els elements virtuals)?</qt>"
 msgstr[1] ""
 "<qt>Segur que voleu esborrar %1 elements <b>físicament</b> (s'esborraran "
@@ -2469,7 +2465,7 @@ msgstr "Descomprimeix %1 a:"
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
-msgstr[0] "_n: Desempaqueta %1 fitxer a:"
+msgstr[0] "Desempaqueta %1 fitxer a:"
 msgstr[1] "Desempaqueta %1 fitxers a:"
 
 #: Panel/panelfunc.cpp:1046
@@ -2488,104 +2484,105 @@ msgid "Cannot copy a virtual URL collection onto the clipboard!"
 msgstr "No es pot copiar una llista d'URL virtuals al porta-retalls."
 
 #: Queue/queuewidget.cpp:128 Queue/queuedialog.cpp:156
-#, fuzzy, kde-format
+#, kde-format
 msgid "Queue Manager"
-msgstr "Nom de l'usuari"
+msgstr "Gestor de cues"
 
 #: Queue/queuewidget.cpp:144
 #, kde-format
 msgid "Deleting this job will abort the pending job. Do you wish to continue?"
 msgstr ""
+"Suprimint aquest treball avortarà també la tasca pendent. Voleu continuar?"
 
 #: Queue/queue_mgr.cpp:9
-#, fuzzy, kde-format
+#, kde-format
 msgid "default"
-msgstr "Per defecte"
+msgstr "predeterminat"
 
 #: Queue/queuedialog.cpp:103 Queue/queuedialog.cpp:134
 #: Queue/queuedialog.cpp:389
-#, fuzzy, kde-format
+#, kde-format
 msgid "Krusader::Queue Manager"
-msgstr "Krusader::Locate"
+msgstr "Krusader::Queue Manager"
 
 #: Queue/queuedialog.cpp:110
-#, fuzzy, kde-format
+#, kde-format
 msgid "Please enter the time to start processing the queue:"
-msgstr "Introduïu la nova destinació de l'enllaç:"
+msgstr "Introduïu l'hora d'inici per a començar a processar la cua:"
 
 #: Queue/queuedialog.cpp:179
-#, fuzzy, kde-format
+#, kde-format
 msgid "Create a new queue (Ctrl+T)"
-msgstr "Crea un nou enllaç a: "
+msgstr "Crea una nova cua (Ctrl+T)"
 
 #: Queue/queuedialog.cpp:185
-#, fuzzy, kde-format
+#, kde-format
 msgid "Remove the current queue (Ctrl+W)"
-msgstr "desa la selecció actual"
+msgstr "Suprimeix la cua actual (Ctrl+W)"
 
 #: Queue/queuedialog.cpp:198 Queue/queuedialog.cpp:427
-#, fuzzy, kde-format
+#, kde-format
 msgid "unused"
-msgstr "Afegeix al final"
+msgstr "en desús"
 
 #: Queue/queuedialog.cpp:204
 #, kde-format
 msgid "Schedule queue starting (Ctrl+S)"
-msgstr ""
+msgstr "Programa l'inici de la cua (Ctrl+S)"
 
 #: Queue/queuedialog.cpp:343
 #, kde-format
 msgid "Start processing the queue (Ctrl+P)"
-msgstr ""
+msgstr "Inicia l'execució de la cua (Ctrl+P)"
 
 #: Queue/queuedialog.cpp:346
 #, kde-format
 msgid "The queue is paused."
-msgstr ""
+msgstr "La cua està en pausa."
 
 #: Queue/queuedialog.cpp:348
 #, kde-format
 msgid "Scheduled to start at %1."
-msgstr ""
+msgstr "S'ha programat l'inici a les %1."
 
 #: Queue/queuedialog.cpp:351
 #, kde-format
 msgid "The queue is running."
-msgstr ""
+msgstr "La cua s'està executant."
 
 #: Queue/queuedialog.cpp:353
 #, kde-format
 msgid "Pause processing the queue (Ctrl+P)"
-msgstr ""
+msgstr "Atura l'execució de la cua (Ctrl+P)"
 
 #: Queue/queuedialog.cpp:390
-#, fuzzy, kde-format
+#, kde-format
 msgid "Please enter the name of the new queue"
-msgstr "Si us plau poseu un nom unívoc per l'acció"
+msgstr "Poseu nom a la cua"
 
 #: Queue/queuedialog.cpp:399
 #, kde-format
 msgid "A queue already exists with this name!"
-msgstr ""
+msgstr "Ja existeix una cua amb aquest nom."
 
 #: Queue/queuedialog.cpp:411
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Deleting the queue requires aborting all pending jobs. Do you wish to "
 "continue?"
 msgstr ""
-"Si aneu a la carpeta pare, caldrà recarregar el contingut de la URL \"%1\". "
-"Voleu continuar?"
+"Per a suprimir la cua cal avortar totes les tasques pendents. Voleu "
+"continuar?"
 
 #: Queue/queue.cpp:66
 #, kde-format
 msgid "An error occurred during processing the queue.\n"
-msgstr ""
+msgstr "S'ha produït un error processant la cua.\n"
 
 #: Queue/queue.cpp:68
 #, kde-format
 msgid "The last processed element in the queue was aborted.\n"
-msgstr ""
+msgstr "L'última tasca processada de la cua ha avortat.\n"
 
 #: Queue/queue.cpp:69
 #, kde-format
@@ -2593,21 +2590,22 @@ msgid ""
 "Do you wish to continue with the next element, delete the queue or suspend "
 "the queue?"
 msgstr ""
+"Voleu continuar amb la següent tasca, suprimir la cua o posa-la en pausa?"
 
 #: Queue/queue.cpp:71
-#, fuzzy, kde-format
+#, kde-format
 msgid "Krusader::Queue"
-msgstr "Krusader::Locate"
+msgstr "Krusader::Queue"
 
 #: Queue/queue.cpp:72
-#, fuzzy, kde-format
+#, kde-format
 msgid "Suspend"
-msgstr "Afegeix al final"
+msgstr "En pausa"
 
 #: Locate/locate.cpp:121 Locate/locate.cpp:125 Locate/locate.cpp:392
 #, kde-format
 msgid "Locate"
-msgstr "Ubicació"
+msgstr "Cerca"
 
 #: Locate/locate.cpp:123 Locate/locate.cpp:286 Search/krsearchdialog.cpp:234
 #: Synchronizer/synchronizergui.cpp:1494
@@ -2687,9 +2685,9 @@ msgid "Edit (F4)"
 msgstr "Edita (F4)"
 
 #: Locate/locate.cpp:396 Search/krsearchdialog.cpp:626
-#, fuzzy, kde-format
+#, kde-format
 msgid "Compare by content (F10)"
-msgstr "Compara per contingut"
+msgstr "Compara per contingut (F10)"
 
 #: Locate/locate.cpp:401
 #, kde-format
@@ -3002,7 +3000,7 @@ msgstr "&Utilització del disc..."
 #: krusader.cpp:735
 #, kde-format
 msgid "&Queue Manager..."
-msgstr ""
+msgstr "&Gestor de cues..."
 
 #: krusader.cpp:736
 #, kde-format
@@ -3173,14 +3171,14 @@ msgid "Edit File"
 msgstr "Edita el fitxer"
 
 #: krusader.cpp:785
-#, fuzzy, kde-format
+#, kde-format
 msgid "Copy by queue..."
-msgstr "Copia..."
+msgstr "Copia en un cua..."
 
 #: krusader.cpp:786
-#, fuzzy, kde-format
+#, kde-format
 msgid "Move by queue..."
-msgstr "Mou..."
+msgstr "Mou en una cua..."
 
 #: krusader.cpp:787
 #, kde-format
@@ -3523,9 +3521,9 @@ msgid "Create in:"
 msgstr "Crea dins:"
 
 #: BookMan/kraddbookmarkdlg.cpp:74
-#, fuzzy, kde-format
+#, kde-format
 msgid "Folders"
-msgstr "Carpeta..."
+msgstr "Carpetes"
 
 #: BookMan/kraddbookmarkdlg.cpp:118
 #, kde-format
@@ -3533,15 +3531,16 @@ msgid "Folder name:"
 msgstr "Nom de la carpeta:"
 
 #: MountMan/kmountman.cpp:203
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "<qt>Error ejecting device!\n"
 " You have to configure the path to the 'eject' tool. Please check the "
 "<b>Dependencies</b> page in Krusader's settings.</qt>"
 msgstr ""
-"<qt>El Krusader no ha pogut trobar cap eina de checksum que pugui calcular %"
-"1. Comproveu la pàgina de <b>Dependències</b> de la configuració del "
-"Krusader.</qt>"
+"<qt>Error expulsant el dispositiu.\n"
+"Heu de configurar el camí de l'eina «eject». Comproveu la pàgina <b>"
+"Dependències</b> "
+"de les opcions del Krusader.</qt>"
 
 #: MountMan/kmountman.cpp:233
 #, kde-format
@@ -3574,9 +3573,9 @@ msgid "MountMan is not operational. Sorry"
 msgstr "El Mountman no funciona. Per desgràcia"
 
 #: MountMan/kmountmangui.cpp:65
-#, fuzzy, kde-format
+#, kde-format
 msgid "Mount.Man"
-msgstr "MountMan"
+msgstr "Mount.Man"
 
 #: MountMan/kmountmangui.cpp:72 Synchronizer/synchronizedialog.cpp:126
 #, kde-format
@@ -3609,9 +3608,9 @@ msgid "Free %"
 msgstr "Lliure %"
 
 #: MountMan/kmountmangui.cpp:164
-#, fuzzy, kde-format
+#, kde-format
 msgid "MountMan.Info"
-msgstr "MountMan"
+msgstr "MountMan.Info"
 
 #: MountMan/kmountmangui.cpp:214 MountMan/kmountmangui.cpp:332
 #, kde-format
@@ -3666,9 +3665,10 @@ msgid ""
 "(c) 2000-2003, Shie Erlich, Rafi Yanai\n"
 "(c) 2004-2008, Krusader Krew"
 msgstr ""
+"(c) 2000-2003, Shie Erlich, Rafi Yanai\n"
+"(c) 2004-2008, Krusader Krew"
 
 #: main.cpp:112
-#, fuzzy
 msgid ""
 "Feedback:\n"
 "http://www.krusader.org/phpBB/\n"
@@ -3684,463 +3684,455 @@ msgstr ""
 
 #: main.cpp:115
 msgid "Rafi Yanai"
-msgstr ""
+msgstr "Rafi Yanai"
 
 #: main.cpp:115 main.cpp:116
-#, fuzzy
 msgid "Author"
-msgstr "hora"
+msgstr "Autor"
 
 #: main.cpp:116
 msgid "Shie Erlich"
-msgstr ""
+msgstr "Shie Erlich"
 
 #: main.cpp:117
 msgid "Karai Csaba"
-msgstr ""
+msgstr "Karai Csaba"
 
 #: main.cpp:117 main.cpp:118 main.cpp:119 main.cpp:120
 msgid "Developer"
-msgstr ""
+msgstr "Desenvolupador"
 
 #: main.cpp:118
 msgid "Heiner Eichmann"
-msgstr ""
+msgstr "Heiner Eichmann"
 
 #: main.cpp:119
 msgid "Jonas Bähr"
-msgstr ""
+msgstr "Jonas Bähr"
 
 #: main.cpp:120 main.cpp:125
 msgid "Václav Jůza"
-msgstr ""
+msgstr "Václav Jůza"
 
 #: main.cpp:121 main.cpp:154
 msgid "Dirk Eschler"
-msgstr ""
+msgstr "Dirk Eschler"
 
 #: main.cpp:121
 msgid "Webmaster and i18n coordinator"
-msgstr ""
+msgstr "Webmaster i coordinador i18n"
 
 #: main.cpp:122 main.cpp:150
 msgid "Frank Schoolmeesters"
-msgstr ""
+msgstr "Frank Schoolmeesters"
 
 #: main.cpp:122
 msgid "Documentation and marketing coordinator"
-msgstr ""
+msgstr "Documentació i coordinador de màrqueting"
 
 #: main.cpp:123
 msgid "Richard Holt"
-msgstr ""
+msgstr "Richard Holt"
 
 #: main.cpp:123
 msgid "Documentation & Proofing"
-msgstr ""
+msgstr "Documentació i proves"
 
 #: main.cpp:124 main.cpp:170
 msgid "Matej Urbancic"
-msgstr ""
+msgstr "Matej Urbancic"
 
 #: main.cpp:124
 msgid "Marketing & Product Research"
-msgstr ""
+msgstr "Màrqueting i investigació"
 
 #: main.cpp:125 main.cpp:126 main.cpp:137
 msgid "QA, bug-hunting, patches and general help"
-msgstr ""
+msgstr "Ajuda en general i incidències"
 
 #: main.cpp:126
 msgid "Jiří Paleček"
-msgstr ""
+msgstr "Jiří Paleček"
 
 #: main.cpp:127
 msgid "Jiří Klement"
-msgstr ""
+msgstr "Jiří Klement"
 
 #: main.cpp:127
 msgid "Important help in KDE 4 porting"
-msgstr ""
+msgstr "Ajuda important en la migració a KDE 4"
 
 #: main.cpp:128
 msgid "Andrew Neupokoev"
-msgstr ""
+msgstr "Andrew Neupokoev"
 
 #: main.cpp:128
 msgid "Killer Logo and Icons for Krusader (contest winner)"
-msgstr ""
+msgstr "Iconografia i logotips del Krusader (guanyador del concurs)"
 
 #: main.cpp:129
 msgid "The UsefulArts Organization"
-msgstr ""
+msgstr "L'organització UsefulArts"
 
 #: main.cpp:129
-#, fuzzy
 msgid "Icon for krusader"
-msgstr "Configura el &Krusader..."
+msgstr "Icona del krusader"
 
 #: main.cpp:130
 msgid "Gábor Lehel"
-msgstr ""
+msgstr "Gábor Lehel"
 
 #: main.cpp:130
 msgid "Viewer module for 3rd Hand"
-msgstr ""
+msgstr "Mòdul de visualització de tercers"
 
 #: main.cpp:131
 msgid "Mark Eatough"
-msgstr ""
+msgstr "Mark Eatough"
 
 #: main.cpp:131
 msgid "Handbook Proof-Reader"
-msgstr ""
+msgstr "Corrector del manual"
 
 #: main.cpp:132
 msgid "Jan Halasa"
-msgstr ""
+msgstr "Jan Halasa"
 
 #: main.cpp:132
 msgid "The old Bookmark Module"
-msgstr ""
+msgstr "Mòdul antic del manual"
 
 #: main.cpp:133
 msgid "Hans Löffler"
-msgstr ""
+msgstr "Hans Löffler"
 
 #: main.cpp:133
 msgid "Dir history button"
-msgstr ""
+msgstr "Dir history button"
 
 #: main.cpp:134
 msgid "Szombathelyi György"
-msgstr ""
+msgstr "Szombathelyi György"
 
 #: main.cpp:134
 msgid "ISO KIO slave"
-msgstr ""
+msgstr "ISO esclau KIO"
 
 #: main.cpp:135
 msgid "Jan Willem van de Meent (Adios)"
-msgstr ""
+msgstr "Jan Willem van de Meent (Adios)"
 
 #: main.cpp:135
-#, fuzzy
 msgid "Icons for Krusader"
-msgstr "Configura el &Krusader..."
+msgstr "Iconografia del Krusader"
 
 #: main.cpp:136
 msgid "Mikolaj Machowski"
-msgstr ""
+msgstr "Mikolaj Machowski"
 
 #: main.cpp:136
 msgid "Usability and QA"
-msgstr ""
+msgstr "Usabilitat i ajudes"
 
 #: main.cpp:137
 msgid "Cristi Dumitrescu"
-msgstr ""
+msgstr "Cristi Dumitrescu"
 
 #: main.cpp:138
 msgid "Aurelien Gateau"
-msgstr ""
+msgstr "Aurelien Gateau"
 
 #: main.cpp:138
-#, fuzzy
 msgid "patch for KViewer"
-msgstr "Cerca fitxers"
+msgstr "pegat per al KViewer"
 
 #: main.cpp:139
 msgid "Milan Brabec"
-msgstr ""
+msgstr "Milan Brabec"
 
 #: main.cpp:139
 msgid "the first patch ever !"
-msgstr ""
+msgstr "el primer i únic pegat!"
 
 #: main.cpp:140
 msgid "Asim Husanovic"
-msgstr ""
+msgstr "Asim Husanovic"
 
 #: main.cpp:140
 msgid "Bosnian translation"
-msgstr ""
+msgstr "Traducció al bosnià"
 
 #: main.cpp:141
 msgid "Doutor Zero"
-msgstr ""
+msgstr "Doutor Zero"
 
 #: main.cpp:141
-#, fuzzy
 msgid "Brazilian Portuguese translation"
-msgstr "Importa accions d'usuari"
+msgstr "Traducció al portuguès de Brazil"
 
 #: main.cpp:142
 msgid "Milen Ivanov"
-msgstr ""
+msgstr "Milen Ivanov"
 
 #: main.cpp:142
 msgid "Bulgarian translation"
-msgstr ""
+msgstr "Traducció al búlgar"
 
 #: main.cpp:143
 msgid "Quim Perez"
-msgstr ""
+msgstr "Quim Perez"
 
 #: main.cpp:143
 msgid "Catalan translation"
-msgstr ""
+msgstr "Traducció al català"
 
 #: main.cpp:144
 msgid "Jinghua Luo"
-msgstr ""
+msgstr "Jinghua Luo"
 
 #: main.cpp:144
 msgid "Chinese Simplified translation"
-msgstr ""
+msgstr "Traducció al xinès simplificat"
 
 #: main.cpp:145
-#, fuzzy
 msgid "Mitek"
-msgstr "Títol"
+msgstr "Mitek"
 
 #: main.cpp:145 main.cpp:146
 msgid "Old Czech translation"
-msgstr ""
+msgstr "Traducció antiga al txec"
 
 #: main.cpp:146
 msgid "Martin Sixta"
-msgstr ""
+msgstr "Martin Sixta"
 
 #: main.cpp:147
 msgid "Vaclav Jůza"
-msgstr ""
+msgstr "Vaclav Jůza"
 
 #: main.cpp:147
 msgid "Czech translation"
-msgstr ""
+msgstr "Traducció al txec"
 
 #: main.cpp:148
 msgid "Anders Bruun Olsen"
-msgstr ""
+msgstr "Anders Bruun Olsen"
 
 #: main.cpp:148
 msgid "Old Danish translation"
-msgstr ""
+msgstr "Traducció antiga al danès"
 
 #: main.cpp:149
 msgid "Peter H. Sorensen"
-msgstr ""
+msgstr "Peter H. Sorensen"
 
 #: main.cpp:149
-#, fuzzy
 msgid "Danish translation"
-msgstr "Destinació:"
+msgstr "Traducció al danès"
 
 #: main.cpp:150
 msgid "Dutch translation"
-msgstr ""
+msgstr "Traducció a l'holandès"
 
 #: main.cpp:151
 msgid "Rene-Pierre Lehmann"
-msgstr ""
+msgstr "Rene-Pierre Lehmann"
 
 #: main.cpp:151
 msgid "Old French translation"
-msgstr ""
+msgstr "Traducció antiga al francès"
 
 #: main.cpp:152
 msgid "David Guillerm"
-msgstr ""
+msgstr "David Guillerm"
 
 #: main.cpp:152
 msgid "French translation"
-msgstr ""
+msgstr "Traducció al francès"
 
 #: main.cpp:153
 msgid "Christoph Thielecke"
-msgstr ""
+msgstr "Christoph Thielecke"
 
 #: main.cpp:153
 msgid "Old German translation"
-msgstr ""
+msgstr "Traducció antiga a l'alemany"
 
 #: main.cpp:154
 msgid "German translation"
-msgstr ""
+msgstr "Traducció a l'alemany"
 
 #: main.cpp:155
 msgid "Spiros Georgaras"
-msgstr ""
+msgstr "Spiros Georgaras"
 
 #: main.cpp:155
 msgid "Greek translation"
-msgstr ""
+msgstr "Traducció al grec"
 
 #: main.cpp:156
 msgid "Kukk Zoltan"
-msgstr ""
+msgstr "Kukk Zoltan"
 
 #: main.cpp:156
 msgid "Old Hungarian translation"
-msgstr ""
+msgstr "Traducció antiga a l'hongarès "
 
 #: main.cpp:157
 msgid "Arpad Biro"
-msgstr ""
+msgstr "Arpad Biro"
 
 #: main.cpp:157
 msgid "Hungarian translation"
-msgstr ""
+msgstr "Traducció a l'hongarès"
 
 #: main.cpp:158
 msgid "Giuseppe Bordoni"
-msgstr ""
+msgstr "Giuseppe Bordoni"
 
 #: main.cpp:158
 msgid "Italian translation"
-msgstr ""
+msgstr "Traducció a l'italià"
 
 #: main.cpp:159
 msgid "Hideki Kimura"
-msgstr ""
+msgstr "Hideki Kimura"
 
 #: main.cpp:159
 msgid "Japanese translation"
-msgstr ""
+msgstr "Traducció al japonès"
 
 #: main.cpp:160
 msgid "UTUMI Hirosi"
-msgstr ""
+msgstr "UTUMI Hirosi"
 
 #: main.cpp:160
 msgid "Old Japanese translation"
-msgstr ""
+msgstr "Traducció antiga al japonès "
 
 #: main.cpp:161
 msgid "Dovydas Sankauskas"
-msgstr ""
+msgstr "Dovydas Sankauskas"
 
 #: main.cpp:161
 msgid "Lithuanian translation"
-msgstr ""
+msgstr "Traducció al lituà"
 
 #: main.cpp:162
 msgid "Bruno Queiros"
-msgstr ""
+msgstr "Bruno Queiros"
 
 #: main.cpp:162
-#, fuzzy
 msgid "Portuguese translation"
-msgstr "Importa accions d'usuari"
+msgstr "Traducció al portuguès"
 
 #: main.cpp:163
 msgid "Lukasz Janyst"
-msgstr ""
+msgstr "Lukasz Janyst"
 
 #: main.cpp:163
 msgid "Old Polish translation"
-msgstr ""
+msgstr "Traducció antiga al polonès"
 
 #: main.cpp:164
 msgid "Pawel Salawa"
-msgstr ""
+msgstr "Pawel Salawa"
 
 #: main.cpp:164 main.cpp:165
 msgid "Polish translation"
-msgstr ""
+msgstr "Traducció al polonès"
 
 #: main.cpp:165
 msgid "Tomek Grzejszczyk"
-msgstr ""
+msgstr "Tomek Grzejszczyk"
 
 #: main.cpp:166
 msgid "Dmitry A. Bugay"
-msgstr ""
+msgstr "Dmitry A. Bugay"
 
 #: main.cpp:166
 msgid "Russian translation"
-msgstr ""
+msgstr "Traducció al rus"
 
 #: main.cpp:167
 msgid "Dmitry Chernyak"
-msgstr ""
+msgstr "Dmitry Chernyak"
 
 #: main.cpp:167
 msgid "Old Russian translation"
-msgstr ""
+msgstr "Traducció antiga al rus "
 
 #: main.cpp:168
 msgid "Sasa Tomic"
-msgstr ""
+msgstr "Sasa Tomic"
 
 #: main.cpp:168
 msgid "Serbian translation"
-msgstr ""
+msgstr "Traducció al suec"
 
 #: main.cpp:169
 msgid "Zdenko Podobna"
-msgstr ""
+msgstr "Zdenko Podobna"
 
 #: main.cpp:169
 msgid "Slovak translation"
-msgstr ""
+msgstr "Traducció a l'eslovac"
 
 #: main.cpp:170
 msgid "Slovenian translation"
-msgstr ""
+msgstr "Traducció a l'eslovè"
 
 #: main.cpp:171
 msgid "Rafael Munoz"
-msgstr ""
+msgstr "Rafael Munoz"
 
 #: main.cpp:171
 msgid "Old Spanish translation"
-msgstr ""
+msgstr "Traducció antiga al castellà "
 
 #: main.cpp:172
 msgid "Alejandro Araiza Alvarado"
-msgstr ""
+msgstr "Alejandro Araiza Alvarado"
 
 #: main.cpp:172
 msgid "Spanish translation"
-msgstr ""
+msgstr "Traducció al castellà"
 
 #: main.cpp:173
 msgid "Erik Johanssen"
-msgstr ""
+msgstr "Erik Johanssen"
 
 #: main.cpp:173 main.cpp:174
 msgid "Old Swedish translation"
-msgstr ""
+msgstr "Traducció antiga al suec"
 
 #: main.cpp:174
 msgid "Anders Linden"
-msgstr ""
+msgstr "Anders Linden"
 
 #: main.cpp:175
 msgid "Peter Landgren"
-msgstr ""
+msgstr "Peter Landgren"
 
 #: main.cpp:175
 msgid "Swedish translation"
-msgstr ""
+msgstr "Traducció al suec"
 
 #: main.cpp:176
 msgid "Bekir Sonat"
-msgstr ""
+msgstr "Bekir Sonat"
 
 #: main.cpp:176
 msgid "Turkish translation"
-msgstr ""
+msgstr "Traducció al turc"
 
 #: main.cpp:177
 msgid "Ivan Petrouchtchak"
-msgstr ""
+msgstr "Ivan Petrouchtchak"
 
 #: main.cpp:177
 msgid "Ukrainian translation"
-msgstr ""
+msgstr "Traducció a l'ucraïnès"
 
 #: main.cpp:183
 msgid "Start left panel at <path>"
@@ -4165,14 +4157,14 @@ msgid "Function keys allow performing fast operations on files."
 msgstr "Les dreceres del teclat us permeten anar més ràpid."
 
 #: krusaderview.cpp:307
-#, fuzzy, kde-format
+#, kde-format
 msgid "Horizontal Mode"
-msgstr "Mode vertical"
+msgstr "Mode horitzontal"
 
 #: Dialogs/krdialogs.cpp:142
 #, kde-format
 msgid "F2 Queue"
-msgstr ""
+msgstr "F2 Cua"
 
 #: Dialogs/krdialogs.cpp:158
 #, kde-format
@@ -4208,14 +4200,14 @@ msgstr "Progrés del Krusader"
 #, kde-format
 msgid "%1 directory"
 msgid_plural "%1 directories"
-msgstr[0] "_n: %1 directori"
+msgstr[0] "%1 directori"
 msgstr[1] "%1 directoris"
 
 #: Dialogs/krprogress.cpp:172
 #, kde-format
 msgid "%1 file"
 msgid_plural "%1 files"
-msgstr[0] "_n: %1 fitxer"
+msgstr[0] "%1 fitxer"
 msgstr[1] "%1 fitxers"
 
 #: Dialogs/krprogress.cpp:180
@@ -4232,14 +4224,14 @@ msgstr "%1 de %2 fets"
 #, kde-format
 msgid "%2 / %1 directory"
 msgid_plural "%2 / %1 directories"
-msgstr[0] "_n: %2 / %1 directori"
+msgstr[0] "%2 / %1 directori"
 msgstr[1] "%2 / %1 directoris"
 
 #: Dialogs/krprogress.cpp:209 Dialogs/krprogress.cpp:223
 #, kde-format
 msgid "%2 / %1 file"
 msgid_plural "%2 / %1 files"
-msgstr[0] "_n: %2 / %1 fitxer"
+msgstr[0] "%2 / %1 fitxer"
 msgstr[1] "%2 / %1 fitxers"
 
 #: Dialogs/krprogress.cpp:231
@@ -5127,14 +5119,14 @@ msgstr "Cap"
 #: ActionMan/ui_actionproperty.h:722 rc.cpp:116
 #, kde-format
 msgid "If checked, the action is shown in the Useractions menus."
-msgstr ""
+msgstr "Si la marqueu, l'acció es mostrarà en el menú d'accions de l'usuari."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 401
 #: ActionMan/ui_actionproperty.h:725 rc.cpp:119
-#, fuzzy, kde-format
+#, kde-format
 msgid "Enabled"
-msgstr "habilitat"
+msgstr "Habilitat"
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 420
@@ -5190,16 +5182,16 @@ msgstr "Executa en un terminal"
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 463
 #: ActionMan/ui_actionproperty.h:748 rc.cpp:146
-#, fuzzy, kde-format
+#, kde-format
 msgid "Run the command in the embedded terminal emulator."
-msgstr "Executa l'ordre en un terminal."
+msgstr "Executa l'ordre en l'emulador de terminal integrat."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 466
 #: ActionMan/ui_actionproperty.h:751 rc.cpp:149
-#, fuzzy, kde-format
+#, kde-format
 msgid "Run in the embedded terminal emulator"
-msgstr "Envia'l a l'&emulador de terminal integrat"
+msgstr "Executa-ho a l'emulador de terminal integrat"
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 39
@@ -5582,7 +5574,7 @@ msgstr "Aquest paràmetre de substitució permet algunes variables:"
 #: ActionMan/addplaceholderpopup.cpp:288 ActionMan/addplaceholderpopup.cpp:487
 #, kde-format
 msgid "list-add"
-msgstr ""
+msgstr "afegeix a la llista"
 
 #: UserMenu/usermenu.cpp:58
 #, kde-format
@@ -5725,7 +5717,7 @@ msgstr ""
 "Mostra els fitxers marcats per a <i>copiar de dreta a esquerra</i> (CTRL+R)."
 
 #: Synchronizer/synchronizergui.cpp:1297
-#, fuzzy, kde-format
+#, kde-format
 msgid "Show files marked to delete (CTRL+T)."
 msgstr "Mostra els fitxers marcats per a esborrar (CTRL+T)."
 
@@ -6010,10 +6002,10 @@ msgid "Krusader::Synchronize"
 msgstr "Krusader::Synchronize"
 
 #: Synchronizer/synchronizedialog.cpp:57
-#, fuzzy, kde-format
+#, kde-format
 msgid "Right to left: Copy 1 file"
 msgid_plural "Right to left: Copy %1 files"
-msgstr[0] "_n: De dreta a esquerra s'estan copiant %2 fitxer"
+msgstr[0] "De dreta a esquerra s'està copiant 1 fitxer"
 msgstr[1] "De dreta a esquerra s'estan copiant %1 fitxers"
 
 #: Synchronizer/synchronizedialog.cpp:58 Synchronizer/synchronizedialog.cpp:71
@@ -6021,29 +6013,29 @@ msgstr[1] "De dreta a esquerra s'estan copiant %1 fitxers"
 #, kde-format
 msgid "(1 byte)"
 msgid_plural "(%1 bytes)"
-msgstr[0] "_n: (1 byte)"
+msgstr[0] "(1 byte)"
 msgstr[1] "(%1 bytes)"
 
 #: Synchronizer/synchronizedialog.cpp:64 Synchronizer/synchronizedialog.cpp:77
 #: Synchronizer/synchronizedialog.cpp:90
-#, fuzzy, kde-format
+#, kde-format
 msgid "Ready: %2/1 file, %3/%4"
 msgid_plural "Ready: %2/%1 files, %3/%4"
-msgstr[0] "_n: Preparat: %2/1 fitxer, %4/%5"
-msgstr[1] "Preparat: %2/%1 fitxers, %4/%5"
+msgstr[0] "Preparat: %2/1 fitxer, %3/%4"
+msgstr[1] "Preparat: %2/%1 fitxers, %3/%4"
 
 #: Synchronizer/synchronizedialog.cpp:70
-#, fuzzy, kde-format
+#, kde-format
 msgid "Left to right: Copy 1 file"
 msgid_plural "Left to right: Copy %1 files"
-msgstr[0] "_n: D'esquerra a dreta s'estan copiant %2 fitxer"
+msgstr[0] "D'esquerra a dreta s'està copiant 1 fitxer"
 msgstr[1] "D'esquerra a dreta s'estan copiant %1 fitxers"
 
 #: Synchronizer/synchronizedialog.cpp:83
 #, kde-format
 msgid "Left: Delete 1 file"
 msgid_plural "Left: Delete %1 files"
-msgstr[0] "_n: Esquerra: esborra 1 fitxer"
+msgstr[0] "Esquerra: esborra 1 fitxer"
 msgstr[1] "Esquerra: esborra %1 fitxers"
 
 #: Synchronizer/synchronizedialog.cpp:108
@@ -6111,9 +6103,9 @@ msgstr "S'estan enviant els URL al Kget"
 
 #: Synchronizer/synchronizer.cpp:1457 krslots.cpp:147 krslots.cpp:224
 #: krslots.cpp:509 krslots.cpp:551 krslots.cpp:569
-#, fuzzy, kde-format
+#, kde-format
 msgid "Error executing %1!"
-msgstr "S'ha produït un error quan s'executava "
+msgstr "S'ha produït un error quan s'executava %1."
 
 #: Synchronizer/feedtolistboxdialog.cpp:56
 #, kde-format
@@ -6831,9 +6823,9 @@ msgid "Tool"
 msgstr "Eina"
 
 #: Konfigurator/konfigurator.cpp:67
-#, fuzzy, kde-format
+#, kde-format
 msgid "Konfigurator"
-msgstr "Confirmacions"
+msgstr "Konfigurator"
 
 #: Konfigurator/konfigurator.cpp:68
 #, kde-format
@@ -7059,7 +7051,7 @@ msgstr "Mida dels icones del plafó:"
 #: Konfigurator/kglookfeel.cpp:196
 #, kde-format
 msgid "12"
-msgstr ""
+msgstr "12"
 
 #: Konfigurator/kglookfeel.cpp:197
 #, kde-format
@@ -7094,12 +7086,14 @@ msgstr "Mostra les icones associades als fitxers i carpetes."
 #: Konfigurator/kglookfeel.cpp:216
 #, kde-format
 msgid "Load the user defined folder icons"
-msgstr ""
+msgstr "Carrega la carpeta d'icones definida per l'usuari"
 
 #: Konfigurator/kglookfeel.cpp:216
 #, kde-format
 msgid "Load the user defined folder icons (can cause decrease in performance)."
 msgstr ""
+"Carrega la carpeta d'icones definida per l'usuari (pot reduir la fluidesa de "
+"l'aplicació)."
 
 #: Konfigurator/kglookfeel.cpp:217
 #, kde-format
@@ -7139,27 +7133,27 @@ msgstr ""
 #: Konfigurator/kglookfeel.cpp:234
 #, kde-format
 msgid "Sort method:"
-msgstr ""
+msgstr "Mètode d'ordenació:"
 
 #: Konfigurator/kglookfeel.cpp:238
 #, kde-format
 msgid "Alphabetical"
-msgstr ""
+msgstr "Alfabètic"
 
 #: Konfigurator/kglookfeel.cpp:239
 #, kde-format
 msgid "Alphabetical and numbers"
-msgstr ""
+msgstr "Alfanumèric"
 
 #: Konfigurator/kglookfeel.cpp:240
 #, kde-format
 msgid "Character code"
-msgstr ""
+msgstr "Codi del caràcter"
 
 #: Konfigurator/kglookfeel.cpp:241
 #, kde-format
 msgid "Character code and numbers"
-msgstr ""
+msgstr "Numèric i codi del caràcter"
 
 #: Konfigurator/kglookfeel.cpp:253
 #, kde-format
@@ -7315,18 +7309,19 @@ msgstr ""
 #: Konfigurator/kglookfeel.cpp:341
 #, kde-format
 msgid "Ergonomic Mode"
-msgstr ""
+msgstr "Mode ergonòmic"
 
 #: Konfigurator/kglookfeel.cpp:341
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "The left mouse button does not select, but sets the current file without "
 "affecting the current selection. The right mouse button invokes the context-"
 "menu. You can select with Ctrl key and the left button."
 msgstr ""
-"Amb el botó esquerre només poseu el cursor damunt del fitxer, però no el "
-"seleccionaAmb el botó dret podeu seleccionar varis fitxers.Per veure el menú "
-"contextual, cal fer un clic amb el botó dret una estona."
+"Amb el botó esquerre no es selecciona, però apunta el fitxer sense afectar "
+"la selecció. "
+"Amb el botó dret invoca el menú contextual. Per a seleccionar premeu la "
+"tecla Ctrl i cliqueu amb el botó esquerre."
 
 #: Konfigurator/kglookfeel.cpp:342
 #, kde-format
@@ -8023,24 +8018,24 @@ msgid "Delete background:"
 msgstr "Color del fons quan esborra:"
 
 #: Konfigurator/kgcolors.cpp:211
-#, fuzzy, kde-format
+#, kde-format
 msgid "Other"
-msgstr "Altres..."
+msgstr "Altres"
 
 #: Konfigurator/kgcolors.cpp:219
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch, match foreground:"
-msgstr "Color de la lletra (carpetes):"
+msgstr "Cerca ràpida, com el primer pla:"
 
 #: Konfigurator/kgcolors.cpp:220 Konfigurator/kgcolors.cpp:222
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch, non-match background:"
-msgstr "Color de fons alternatiu:"
+msgstr "Cerca ràpida, diferent del fons:"
 
 #: Konfigurator/kgcolors.cpp:221
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch, non-match foreground:"
-msgstr "Color de la lletra actual:"
+msgstr "Cerca ràpida, diferent del primer pla:"
 
 #: Konfigurator/kgcolors.cpp:255
 #, kde-format
@@ -8108,14 +8103,14 @@ msgid "Equals"
 msgstr "Iguals"
 
 #: Konfigurator/kgcolors.cpp:526
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch non-match"
-msgstr "Cerca ràpida"
+msgstr "Cerca ràpida diferent"
 
 #: Konfigurator/kgcolors.cpp:527
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quicksearch match"
-msgstr "Cerca ràpida"
+msgstr "Cerca ràpida igual"
 
 #: Konfigurator/kgcolors.cpp:546
 #, kde-format
@@ -8133,11 +8128,9 @@ msgid "Select a color scheme file"
 msgstr "Escolliu un esquema de colors"
 
 #: Konfigurator/kgcolors.cpp:564
-#, fuzzy, kde-format
+#, kde-format
 msgid "File %1 already exists. Are you sure you want to overwrite it?"
-msgstr ""
-"El fitxer %1 ja existeix.\n"
-"Segur que voleu sobreescriure'l?"
+msgstr "El fitxer %1 ja existeix. Segur que voleu sobreescriure'l?"
 
 #: Konfigurator/kgcolors.cpp:567
 #, kde-format
@@ -8310,7 +8303,7 @@ msgstr "GZip"
 #: Konfigurator/kgarchives.cpp:64
 #, kde-format
 msgid "LZMA"
-msgstr ""
+msgstr "LZMA"
 
 #: Konfigurator/kgarchives.cpp:65
 #, kde-format
@@ -8460,9 +8453,9 @@ msgid "Use fixed width font as default"
 msgstr "Utilitza la mida fixa com a defecte"
 
 #: krslots.cpp:101
-#, fuzzy, kde-format
+#, kde-format
 msgid "No selected files to send!"
-msgstr "Només els fitxers seleccionats"
+msgstr "No s'han seleccionat fitxers per a enviar."
 
 #: krslots.cpp:109
 #, kde-format
@@ -8473,11 +8466,11 @@ msgstr ""
 "Sense un client de correu, com kmail, el Krusader no pot enviar correus."
 
 #: krslots.cpp:118
-#, fuzzy, kde-format
+#, kde-format
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
-msgstr[0] "S'està enviant el fitxer: "
-msgstr[1] "S'està enviant el fitxer: "
+msgstr[0] "S'està enviant el fitxer: %2"
+msgstr[1] "S'estan enviant els fitxers:  %2"
 
 #: krslots.cpp:176
 #, kde-format
@@ -8507,9 +8500,9 @@ msgstr ""
 "pot comparar dos fitxers per contingut."
 
 #: krslots.cpp:205 krslots.cpp:211
-#, fuzzy, kde-format
+#, kde-format
 msgid "Krusader is unable to download %1"
-msgstr "Krusader no ha pogut descarregar el fitxer: "
+msgstr "El Krusader no ha pogut baixar el fitxer %1"
 
 #: krslots.cpp:460
 #, kde-format
@@ -8777,52 +8770,52 @@ msgstr "No es pot escriure en el fitxer %1!"
 #: krarc.cpp:182
 #, kde-format
 msgid "Creating directories is not supported with %1 archives"
-msgstr ""
+msgstr "No es poden crear directoris en arxius %1"
 
 #: krarc.cpp:215
-#, fuzzy, kde-format
+#, kde-format
 msgid "Creating %1 ..."
-msgstr "S'està esborrant %1..."
+msgstr "S'està creant %1 ..."
 
 #: krarc.cpp:254
-#, fuzzy, kde-format
+#, kde-format
 msgid "Writing to %1 archives is not supported"
-msgstr "No es permet moure fitxers dins un fitxer comprimit"
+msgstr "No es pot escriure en arxius %1"
 
 #: krarc.cpp:307
-#, fuzzy, kde-format
+#, kde-format
 msgid "Packing %1 ..."
-msgstr "S'estan tornant a comprimir els fitxers..."
+msgstr "S'està comprimint %1 ..."
 
 #: krarc.cpp:347
 #, kde-format
 msgid "Retrieving data from %1 archives is not supported"
-msgstr ""
+msgstr "No es pot recuperar la informació d'arxius %1"
 
 #: krarc.cpp:414 krarc.cpp:667
-#, fuzzy, kde-format
+#, kde-format
 msgid "Unpacking %1 ..."
-msgstr "Descomprimir"
+msgstr "S'està descomprimint %1 ..."
 
 #: krarc.cpp:542
 #, kde-format
 msgid "Deleting files from %1 archives is not supported"
-msgstr ""
+msgstr "No es poden esborrar fitxers d'arxius %1"
 
 #: krarc.cpp:558
-#, fuzzy, kde-format
+#, kde-format
 msgid "Deleting %1 ..."
-msgstr "S'està esborrant %1..."
+msgstr "S'està esborrant %1 ..."
 
 #: krarc.cpp:587
 #, kde-format
 msgid "Accessing files is not supported with the %1 archives"
-msgstr ""
+msgstr "No es pot accedir a fitxers d'arxius %1"
 
 #: krarc.cpp:696
 #, kde-format
 msgid "Listing directories is not supported for %1 archives"
-msgstr ""
+msgstr "No es poden llistar els fitxers d'arxius %1"
 
 #: krarc.cpp:1495
 #, kde-format
@@ -8830,26 +8823,29 @@ msgid ""
 "\n"
 "Make sure that the %1 binary are installed properly on your system."
 msgstr ""
+"\n"
+"Assegureu-vos que el fitxer binari %1 està ben instal·lat en el vostre "
+"sistema."
 
 #: krarc.cpp:1710 krarc.cpp:1734
 #, kde-format
 msgid "Krarc Password Dialog"
-msgstr ""
+msgstr "Diàleg de contrasenyes del Krarc"
 
 #: krarc.cpp:1751
 #, kde-format
 msgid "Accessing the file requires password."
-msgstr ""
+msgstr "L'accés al fitxer requereix una contrasenya."
 
 #: tar.cc:56
 #, kde-format
 msgid "This protocol does not support resuming"
-msgstr ""
+msgstr "El protocol no permet reprendre"
 
 #: tar.cc:78
 #, kde-format
 msgid "Writing to %1 is not supported"
-msgstr ""
+msgstr "No es pot escriure a %1"
 
 #~ msgid ""
 #~ "Don't use KDE's media protocol for media button (if it's buggy or missing)"
@@ -9018,3 +9014,4 @@ msgstr ""
 #~ "versió per tal de facilitar la migració al nou gestor.\n"
 #~ "Probeu el nou gestor: obriu una connexió remota, premeu el botó d'adreces "
 #~ "d'interès i seleccioneu 'Afegir una adreça d'interès', fàcil oi !"
+
