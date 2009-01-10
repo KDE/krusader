@@ -55,13 +55,21 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #define FSTAB "/etc/fstab"
 #endif
 
+#include <qdir.h>
+#include <solid/block.h>
+#include <solid/opticaldisc.h>
+#include <solid/opticaldrive.h>
+#include <solid/storageaccess.h>
+#include <solid/storagevolume.h>
+
+
 static int __delayedIdx; // ugly: pass the processEvents deadlock
 
 KMountMan::KMountMan() : QObject(), Operational( false ), waiting(false), mountManGui( 0 ) {
    _actions = 0L;
 
 	// added as a precaution, although we use kde services now
-	if( !KrServices::cmdExist( "df" ) || !KrServices::cmdExist( "mount" ) ) {
+	if( !KrServices::cmdExist( "mount" ) ) {
     	Operational = false;
 	} else { 
 		Operational = true;
@@ -107,10 +115,16 @@ void KMountMan::mainWindow() {
 }
 
 KSharedPtr<KMountPoint> KMountMan::findInListByMntPoint(KMountPoint::List &lst, QString value) {
+	if( value.endsWith( "/" ) )
+		value = value.left( value.length() - 1 );
+	
 	KSharedPtr<KMountPoint> m;
 	for (KMountPoint::List::iterator it = lst.begin(); it != lst.end(); ++it) {
 		m = *it;
-		if (m->mountPoint() == value)
+		QString mntPnt = m->mountPoint();
+		if( mntPnt.length() > 1 && mntPnt.endsWith( "/" ) )
+			mntPnt = mntPnt.left( mntPnt.length() - 1 );
+		if (mntPnt == value)
 			return m;
 	}
 	
@@ -124,30 +138,44 @@ void KMountMan::jobResult(KJob *job) {
 }
 
 void KMountMan::mount( QString mntPoint, bool blocking ) {
-	KMountPoint::List possible = KMountPoint::possibleMountPoints(KMountPoint::NeedMountOptions);
-	KSharedPtr<KMountPoint> m = findInListByMntPoint(possible, mntPoint);
-	if (!((bool)m)) return;
-	if (blocking)
-	   waiting = true; // prepare to block
-	
-	// KDE4 doesn't allow mounting devices as user, because they think it's the right behaviour.
-	// I add this patch, as I don't think so.
-	if( geteuid() ) // tries to mount as an user?
+	QString udi = findUdiForPath( mntPoint, Solid::DeviceInterface::StorageAccess );
+	if( !udi.isNull() )
 	{
-		KProcess proc;
-		proc << KrServices::fullPathName( "mount" ) << mntPoint;
-		proc.start();
-		if( !blocking )
-			return;
-		proc.waitForFinished(-1); // -1 msec blocks without timeout
-		if ( proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0 )
-			return;
-	}
+		Solid::Device device( udi );
+		Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+		if( access && !access->isAccessible() ) {
+			connect( access, SIGNAL( setupDone(Solid::ErrorType, QVariant, const QString &) ),
+			         this, SLOT( slotSetupDone(Solid::ErrorType, QVariant, const QString &) ) );
+			if (blocking)
+				waiting = true; // prepare to block
+			access->setup();
+		}
+	} else {
+		KMountPoint::List possible = KMountPoint::possibleMountPoints(KMountPoint::NeedMountOptions);
+		KSharedPtr<KMountPoint> m = findInListByMntPoint(possible, mntPoint);
+		if (!((bool)m)) return;
+		if (blocking)
+		   waiting = true; // prepare to block
+		
+		// KDE4 doesn't allow mounting devices as user, because they think it's the right behaviour.
+		// I add this patch, as I don't think so.
+		if( geteuid() ) // tries to mount as an user?
+		{
+			KProcess proc;
+			proc << KrServices::fullPathName( "mount" ) << mntPoint;
+			proc.start();
+			if( !blocking )
+				return;
+			proc.waitForFinished(-1); // -1 msec blocks without timeout
+			if ( proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0 )
+				return;
+		}
 	
-	KIO::SimpleJob *job = KIO::mount(false, m->mountType().toLocal8Bit(), m->mountedFrom(), m->mountPoint(), false);
-	job->setUiDelegate(new KIO::JobUiDelegate() );
-	KIO::getJobTracker()->registerJob(job);
-	connect(job, SIGNAL(result(KJob* )), this, SLOT(jobResult(KJob* )));
+		KIO::SimpleJob *job = KIO::mount(false, m->mountType().toLocal8Bit(), m->mountedFrom(), m->mountPoint(), false);
+		job->setUiDelegate(new KIO::JobUiDelegate() );
+		KIO::getJobTracker()->registerJob(job);
+		connect(job, SIGNAL(result(KJob* )), this, SLOT(jobResult(KJob* )));
+	}
 	while (blocking && waiting) {
 		qApp->processEvents();
 		usleep( 1000 );
@@ -155,27 +183,39 @@ void KMountMan::mount( QString mntPoint, bool blocking ) {
 }
 
 void KMountMan::unmount( QString mntPoint, bool blocking ) {
-	if (blocking)
-	   waiting = true; // prepare to block
-	
-	// KDE4 doesn't allow unmounting devices as user, because they think it's the right behaviour.
-	// I add this patch, as I don't think so.
-	if( geteuid() ) // tries to mount as an user?
+	QString udi = findUdiForPath( mntPoint, Solid::DeviceInterface::StorageAccess );
+	if( !udi.isNull() )
 	{
-		KProcess proc;
-		proc << KrServices::fullPathName( "umount" ) << mntPoint;
-		proc.start();
-		if( !blocking )
-			return;
-		proc.waitForFinished(-1); // -1 msec blocks without timeout
-		if ( proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0 )
-			return;
+		Solid::Device device( udi );
+		Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+		if( access && access->isAccessible() ) {
+			connect( access, SIGNAL( teardownDone(Solid::ErrorType, QVariant, const QString &) ),
+			         this, SLOT( slotTeardownDone(Solid::ErrorType, QVariant, const QString &) ) );
+			access->teardown();
+		}
+	} else {
+		if (blocking)
+		   waiting = true; // prepare to block
+		
+		// KDE4 doesn't allow unmounting devices as user, because they think it's the right behaviour.
+		// I add this patch, as I don't think so.
+		if( geteuid() ) // tries to mount as an user?
+		{
+			KProcess proc;
+			proc << KrServices::fullPathName( "umount" ) << mntPoint;
+			proc.start();
+			if( !blocking )
+				return;
+			proc.waitForFinished(-1); // -1 msec blocks without timeout
+			if ( proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0 )
+				return;
+		}
+		
+		KIO::SimpleJob *job = KIO::unmount(mntPoint, false);
+		job->setUiDelegate(new KIO::JobUiDelegate() );
+		KIO::getJobTracker()->registerJob(job);
+		connect(job, SIGNAL(result(KJob* )), this, SLOT(jobResult(KJob* )));
 	}
-	
-	KIO::SimpleJob *job = KIO::unmount(mntPoint, false);
-	job->setUiDelegate(new KIO::JobUiDelegate() );
-	KIO::getJobTracker()->registerJob(job);
-	connect(job, SIGNAL(result(KJob* )), this, SLOT(jobResult(KJob* )));
 	while (blocking && waiting) {
 		qApp->processEvents();
 		usleep( 1000 );
@@ -224,28 +264,29 @@ void KMountMan::autoMount( QString path ) {
 }
 
 void KMountMan::eject( QString mntPoint ) {
-   KProcess proc;
-   proc << KrServices::fullPathName( "eject" ) << mntPoint;
-   proc.start();
-   proc.waitForFinished(-1); // -1 msec blocks without timeout
-   if ( proc.exitStatus() != QProcess::NormalExit || proc.exitStatus() != 0 ) // if we failed with eject
-      KMessageBox::information( 0, //parent
-          i18n( "<qt>Error ejecting device!\n You have to configure the path to the 'eject' tool. "
-                "Please check the <b>Dependencies</b> page in Krusader's settings.</qt>"),
-          i18n( "Error" ), // caption
-          "CantExecuteEjectWarning" ); // don't-show-again config-key
+   QString udi = findUdiForPath( mntPoint, Solid::DeviceInterface::OpticalDrive );
+   if( udi.isNull() )
+      return;
+
+   Solid::Device dev( udi );
+   Solid::OpticalDrive *drive = dev.as<Solid::OpticalDrive>();
+   if( drive == 0 )
+      return;
+
+   connect(drive, SIGNAL(ejectDone(Solid::ErrorType, QVariant, const QString &)),
+            this, SLOT(slotTeardownDone(Solid::ErrorType, QVariant, const QString &)));
+
+   drive->eject();
 }
 
 // returns true if the path is an ejectable mount point (at the moment CDROM and DVD)
 bool KMountMan::ejectable( QString path ) {
-#if !defined(BSD) && !defined(_OS_SOLARIS_)
-	KMountPoint::List possible = KMountPoint::possibleMountPoints();
-	KSharedPtr<KMountPoint> m = findInListByMntPoint(possible, path);
-	if (m && (m->mountType()=="iso9660" || m->mountedFrom().left(7)=="/dev/cd" || m->mountedFrom().left(8)=="/dev/dvd"))
-			return KrServices::cmdExist( "eject" );
-#endif
+   QString udi = findUdiForPath( path, Solid::DeviceInterface::OpticalDisc );
+   if( udi.isNull() )
+      return false;
 
-   return false;
+   Solid::Device dev( udi );
+   return dev.as<Solid::OpticalDisc>() != 0;
 }
 
 
@@ -367,6 +408,52 @@ void KMountMan::performAction() {
    delete[] _actions;
    _actions = 0L;
    disconnect( ( ( KToolBarPopupAction* ) krMountMan ) ->menu(), SIGNAL( triggered( QAction * ) ), 0, 0 );
+}
+
+QString KMountMan::findUdiForPath( QString path, const Solid::DeviceInterface::Type &expType )
+{
+   KMountPoint::List current = KMountPoint::currentMountPoints();
+   KMountPoint::List possible = KMountPoint::possibleMountPoints();
+   KSharedPtr<KMountPoint> mp = findInListByMntPoint(current, path);
+   if( !(bool)mp )
+   {
+      mp = findInListByMntPoint(possible, path);
+      if( !(bool)mp )
+         return QString::null;
+   }
+   QString dev = QDir( mp->mountedFrom() ).canonicalPath();
+   QList<Solid::Device> storageDevices = Solid::Device::listFromType( Solid::DeviceInterface::Block );
+
+   for( int p = storageDevices.count()-1 ; p >= 0; p-- ) {
+      Solid::Device device = storageDevices[ p ];
+      QString udi     = device.udi();
+
+      Solid::Block * sb = device.as<Solid::Block>();
+      if( sb )
+      {
+         QString devb = QDir( sb->device() ).canonicalPath();
+         if( expType != Solid::DeviceInterface::Unknown && !device.isDeviceInterface( expType ) )
+            continue;
+         if( devb == dev )
+            return udi;
+      }
+   }
+
+   return QString::null;
+}
+
+void KMountMan::slotTeardownDone(Solid::ErrorType error, QVariant errorData, const QString &udi) {
+    waiting = false;
+    if (error != Solid::NoError && errorData.isValid()) {
+        KMessageBox::sorry( krApp, errorData.toString());
+    }
+}
+
+void KMountMan::slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString &udi) {
+    waiting = false;
+    if (error != Solid::NoError && errorData.isValid()) {
+        KMessageBox::sorry( krApp, errorData.toString());
+    }
 }
 
 #include "kmountman.moc"

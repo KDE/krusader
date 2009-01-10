@@ -474,7 +474,7 @@ void KRslots::locate()
 
 void KRslots::runMountMan() {
   // left as a precaution, although we use kde's services now
-  if( !KrServices::cmdExist( "df" ) || !KrServices::cmdExist( "mount" ) )
+  if( !KrServices::cmdExist( "mount" ) )
   {
     KMessageBox::error(0,
       i18n("Can't start 'mount'! Check the 'Dependencies' page in konfigurator."));

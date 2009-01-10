@@ -271,7 +271,7 @@ void KrPopupMenu::performAction(int id) {
          	panel->func->deleteFiles( true );
          	break;
          case EJECT_ID :
-         	KMountMan::eject( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) );
+         	krMtMan.eject( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) );
          	break;
 /*         case SHRED_ID :
             if ( KMessageBox::warningContinueCancel( krApp,

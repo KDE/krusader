@@ -87,6 +87,7 @@ KMountManGUI::KMountManGUI() : KDialog( krApp ), info( 0 ), mountList( 0 ) {
             SLOT( changeActive() ) );
 
    getSpaceData();
+
    exec();
 }
 
@@ -405,7 +406,7 @@ void KMountManGUI::clicked( QTreeWidgetItem *item, const QPoint & pos ) {
          case FORMAT_ID :
          break;
          case EJECT_ID :
-         KMountMan::eject( mountPoint );
+         krMtMan.eject( mountPoint );
          break;
    }
 }

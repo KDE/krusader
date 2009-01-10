@@ -62,18 +62,16 @@ KgDependencies::KgDependencies( bool first, QWidget* parent ) :
   pathsGrid->setContentsMargins( 11, 11, 11, 11 );
   pathsGrid->setAlignment( Qt::AlignTop );
   
-  addApplication( "df",       pathsGrid, 0, general_tab, PAGE_GENERAL );
-  addApplication( "eject",    pathsGrid, 1, general_tab, PAGE_GENERAL );
-  addApplication( "kdesu",    pathsGrid, 2, general_tab, PAGE_GENERAL );
-  addApplication( "kget",     pathsGrid, 3, general_tab, PAGE_GENERAL );
-  addApplication( "mailer",   pathsGrid, 4, general_tab, PAGE_GENERAL );
-  addApplication( "diff utility",  pathsGrid, 5, general_tab, PAGE_GENERAL );
-  addApplication( "krename",  pathsGrid, 6, general_tab, PAGE_GENERAL );
-  addApplication( "krusader", pathsGrid, 7, general_tab, PAGE_GENERAL );
-  addApplication( "locate",   pathsGrid, 8, general_tab, PAGE_GENERAL );
-  addApplication( "mount",    pathsGrid, 9, general_tab, PAGE_GENERAL );
-  addApplication( "umount",   pathsGrid,10, general_tab, PAGE_GENERAL );
-  addApplication( "updatedb", pathsGrid,11, general_tab, PAGE_GENERAL );
+  addApplication( "kdesu",    pathsGrid, 0, general_tab, PAGE_GENERAL );
+  addApplication( "kget",     pathsGrid, 1, general_tab, PAGE_GENERAL );
+  addApplication( "mailer",   pathsGrid, 2, general_tab, PAGE_GENERAL );
+  addApplication( "diff utility",  pathsGrid, 3, general_tab, PAGE_GENERAL );
+  addApplication( "krename",  pathsGrid, 4, general_tab, PAGE_GENERAL );
+  addApplication( "krusader", pathsGrid, 5, general_tab, PAGE_GENERAL );
+  addApplication( "locate",   pathsGrid, 6, general_tab, PAGE_GENERAL );
+  addApplication( "mount",    pathsGrid, 7, general_tab, PAGE_GENERAL );
+  addApplication( "umount",   pathsGrid, 8, general_tab, PAGE_GENERAL );
+  addApplication( "updatedb", pathsGrid, 9, general_tab, PAGE_GENERAL );
 
   //  ---------------------------- PACKERS TAB -------------------------------------
   QWidget *packers_tab = new QWidget( tabWidget );

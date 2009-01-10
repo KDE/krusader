@@ -46,6 +46,9 @@ A
 #include <stdlib.h>
 #include <math.h>
 
+#include <solid/device.h>
+#include <solid/solidnamespace.h>
+
 class KMountManGUI;
 
 class KMountMan : public QObject {
@@ -64,7 +67,7 @@ public:
    void unmount( QString mntPoint, bool blocking=true ); // this is probably what you need for unmount
    mntStatus getStatus( QString mntPoint );  // return the status of a mntPoint (if any)
    void autoMount( QString path );           // just call it before refreshing into a dir
-   static void eject( QString mntPoint );
+   void eject( QString mntPoint );
    bool ejectable( QString path );
    QString convertSize( KIO::filesize_t size );
 	bool invalidFilesystem(QString type);
@@ -73,6 +76,8 @@ public:
    KMountMan();
    ~KMountMan();
 
+   QString findUdiForPath( QString path, const Solid::DeviceInterface::Type &expType = Solid::DeviceInterface::Unknown );
+
 public slots:
    void delayedPerformAction( QAction * );
    void performAction();
@@ -80,6 +85,8 @@ public slots:
 
 protected slots:
 	void jobResult(KJob *job);
+	void slotTeardownDone(Solid::ErrorType error, QVariant errorData, const QString &udi);
+	void slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString &udi);
 	
 protected:
 	// used internally
