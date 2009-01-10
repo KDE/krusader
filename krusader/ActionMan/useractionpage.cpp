@@ -218,6 +218,9 @@ void UserActionPage::slotRemoveAction() {
    if ( messageDelete != KMessageBox::Continue )
       return;
 
+   actionProperties->clear();
+   actionProperties->setEnabled( false );
+
    actionTree->removeSelectedActions();
 
    apply();
