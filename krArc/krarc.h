@@ -117,6 +117,11 @@ public:
 	setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect!
 		connect(this, SIGNAL(readyReadStandardError()), SLOT(receivedError()) );
 		connect(this, SIGNAL(readyReadStandardOutput()), SLOT(receivedOutput()) );
+		mergedOutput = true;
+	}
+	
+	void setMerge( bool value ) {
+		mergedOutput = value;
 	}
 
 	QString getErrorMsg() {
@@ -133,7 +138,8 @@ public slots:
 		errorData += newData;
 		if( errorData.length() > 500 )
 			errorData = errorData.right( 500 );
-		receivedOutput(newData);
+		if( mergedOutput )
+			receivedOutput(newData);
 	}
 	
 	void receivedOutput(QByteArray newData = QByteArray()) {
@@ -154,6 +160,8 @@ signals:
 private:
 	QByteArray errorData;
 	QByteArray outputData;
+	
+	bool mergedOutput;
 };
 
 #endif

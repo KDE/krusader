@@ -410,6 +410,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries ){
 		if( arcType != "gzip" && arcType != "bzip2" && arcType != "lzma" ) proc << localeEncodedString( file );
 		connect(&proc,SIGNAL(newOutputData(KProcess *, QByteArray &)),
 				this,SLOT(receivedData(KProcess *, QByteArray &)) );
+		proc.setMerge( false );
 	}
 	infoMessage(i18n("Unpacking %1 ...", url.fileName() ) );
 	// change the working directory to our arcTempDir
