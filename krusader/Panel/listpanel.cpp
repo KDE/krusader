@@ -353,6 +353,10 @@ bool ListPanel::eventFilter ( QObject * watched, QEvent * e ) {
 			slotFocusOnMe();
 			return true;
 		}
+		if( ( ke->key() ==  Qt::Key_Escape ) && ( ke->modifiers() == 0 ) ) {
+			slotFocusOnMe();
+			return true;
+		}
 	}
 	return false;
 }

@@ -244,7 +244,16 @@ void KrHistoryCombo::keyPressEvent( QKeyEvent *e ) {
          if (e->modifiers() == Qt::ControlModifier || e->modifiers() == ( Qt::ControlModifier | Qt::ShiftModifier ) ) {
             emit returnToPanel();
             return;
-         }
+         } else
+            KHistoryComboBox::keyPressEvent(e);
+         break;
+      case Qt::Key_Escape:
+         if (e->modifiers() == 0 ) {
+            emit returnToPanel();
+            return;
+         } else
+            KHistoryComboBox::keyPressEvent(e);
+         break;
       default:
       KHistoryComboBox::keyPressEvent(e);
    }
