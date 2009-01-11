@@ -184,16 +184,16 @@ void PanelViewer::oldHexViewer(KTemporaryFile& tmpFile) {
 	KIO::filesize_t fileSize = f_in.size();
 	KIO::filesize_t address = 0;
 	char buf[ 16 ];
-	unsigned int* pBuff = ( unsigned int* ) buf;
+	unsigned char* pBuff = ( unsigned char* ) buf;
 
 	while ( address < fileSize ) {
 		memset( buf, 0, 16 );
 		int bufSize = ( ( fileSize - address ) > 16 ) ? 16 : ( fileSize - address );
 		in.readRawData( buf, bufSize );
 		fprintf( out, "0x%8.8llx: ", address );
-		for ( int i = 0; i < 4; ++i ) {
-			if ( i < ( bufSize / 4 ) ) fprintf( out, "%8.8x ", pBuff[ i ] );
-			else fprintf( out, "         " );
+		for ( int i = 0; i < 16; ++i ) {
+			if ( i < bufSize  ) fprintf( out, "%2.2x ", pBuff[ i ] );
+			else fprintf( out, "   " );
 		}
 		fprintf( out, "| " );
 
