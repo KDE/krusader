@@ -65,7 +65,7 @@ QString KrViewItem::description() const {
 	text += "  ";
 	text += tmp;
 	} else if ( S_ISREG( m_fileMode ) ){
-	text = QString("%1 (%2)").arg(text2).arg( PROPS->humanReadableSize ?
+	text = QString("%1").arg(text2)+ QString(" (%1)").arg( PROPS->humanReadableSize ?
 		KRpermHandler::parseSize(_vf->vfile_getSize()) : KIO::convertSize( mySize ) );
 	text += "  ";
 	text += comment;
