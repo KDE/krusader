@@ -61,7 +61,6 @@ KrViewInstance briefView( BRIEFVIEW_ID, i18n( "&Brief View" ), Qt::ALT + Qt::SHI
 KrBriefView::KrBriefView( Q3Header * headerIn, QWidget *parent, bool &left, KConfig *cfg ):
 	K3IconView(parent), KrView( cfg ), header( headerIn ), _currDragItem( 0 ),
             currentlyRenamedItem( 0 ), pressedItem( 0 ), mouseEvent( 0 ) {
-	setWidget( this );
 	_nameInKConfig = QString( "KrBriefView" ) + QString( ( left ? "Left" : "Right" ) );
 	KConfigGroup group( krConfig, "Private" );
 	if ( group.readEntry("Enable Input Method", true))
@@ -1151,6 +1150,7 @@ KrView* KrBriefView::create( QWidget *parent, bool &left, KConfig *cfg ) {
 	view->setFrameShape( QFrame::NoFrame );
 	briefLayout->addWidget( view );
 	connect( view, SIGNAL( destroyed() ), briefWidget, SLOT( deleteLater() ) );
+	view->setWidget( briefWidget );
 	return view;
 }
 

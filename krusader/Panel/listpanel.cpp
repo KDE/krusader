@@ -283,6 +283,8 @@ void ListPanel::createView()
    view->redraw();
    view->op()->setQuickSearch( quickSearch );
 
+   splt->insertWidget( 0, view->widget() );
+
    connect( view->op(), SIGNAL( middleButtonClicked( KrViewItem * ) ), SLOTS, SLOT( newTab( KrViewItem * ) ) );
    connect( view->op(), SIGNAL( currentChanged( KrViewItem * ) ), SLOTS, SLOT( updatePopupPanel( KrViewItem* ) ) );
    connect( view->op(), SIGNAL( renameItem( const QString &, const QString & ) ),
