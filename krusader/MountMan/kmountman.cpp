@@ -115,7 +115,7 @@ void KMountMan::mainWindow() {
 }
 
 KSharedPtr<KMountPoint> KMountMan::findInListByMntPoint(KMountPoint::List &lst, QString value) {
-	if( value.endsWith( "/" ) )
+	if( value.length() > 1 && value.endsWith( "/" ) )
 		value = value.left( value.length() - 1 );
 	
 	KSharedPtr<KMountPoint> m;
