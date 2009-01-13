@@ -61,7 +61,7 @@ A
 #define MTAB	"/etc/mtab"
 #endif
 
-KMountManGUI::KMountManGUI() : KDialog( krApp ), info( 0 ), mountList( 0 ) {
+KMountManGUI::KMountManGUI() : KDialog( krApp ), info( 0 ), mountList( 0 ), sizeX( -1 ), sizeY( -1 ) {
    setWindowTitle( i18n("Mount.Man") );
    setWindowModality( Qt::WindowModal );
 
@@ -86,6 +86,21 @@ KMountManGUI::KMountManGUI() : KDialog( krApp ), info( 0 ), mountList( 0 ) {
    connect( mountList, SIGNAL( itemSelectionChanged() ), this,
             SLOT( changeActive() ) );
 
+
+   KConfigGroup group( krConfig, "MountMan");
+   int sx = group.readEntry( "Window Width", -1 );
+   int sy = group.readEntry( "Window Height", -1 );
+
+   if( sx != -1 && sy != -1 )
+      resize( sx, sy );
+   else
+      resize( 600, 300 );
+
+   if( group.readEntry( "Window Maximized",  false ) )
+      showMaximized();
+   else
+      show();
+
    getSpaceData();
 
    exec();
@@ -95,9 +110,24 @@ KMountManGUI::~KMountManGUI() {
    watcher->stop();
    delete watcher;
 
-  KConfigGroup group( krConfig, "MountMan" );
+   KConfigGroup group( krConfig, "MountMan" );
 
-  group.writeEntry( "Last State", mountList->header()->saveState() );
+   group.writeEntry("Window Width", sizeX );
+   group.writeEntry("Window Height", sizeY );
+   group.writeEntry("Window Maximized", isMaximized() );
+   group.writeEntry( "Last State", mountList->header()->saveState() );
+}
+
+
+void KMountManGUI::resizeEvent( QResizeEvent *e )
+{
+   if( !isMaximized() )
+   {
+      sizeX = e->size().width();
+      sizeY = e->size().height();
+   }
+
+    KDialog::resizeEvent( e );
 }
 
 void KMountManGUI::createLayout() {

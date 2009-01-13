@@ -66,6 +66,9 @@ public:
    void createLayout();   // calls the various tab layout-creators
    void createMainPage(); // creator of the main page - filesystems
 
+protected:
+   virtual void resizeEvent( QResizeEvent *e );
+
 protected slots:
    void doubleClicked( QTreeWidgetItem * );
    void clicked( QTreeWidgetItem *, const QPoint & );
@@ -97,6 +100,9 @@ private:
 	QList<fsData> fileSystems;
 	QList<fsData> fileSystemsTemp;  // first collect to a temporary place
 	int numOfMountPoints;
+	
+	int sizeX;
+	int sizeY;
 };
 
 
