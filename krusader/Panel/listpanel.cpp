@@ -459,7 +459,7 @@ void ListPanel::slotFocusAndCDup() {
 
 void ListPanel::slotFocusAndCDRoot() {
    slotFocusOnMe();
-   func->openUrl( QString( "/" ), QString() );
+   func->openUrl( QString( ROOT_DIR ), QString() );
 }
 
 void ListPanel::select( KRQuery query, bool select) {
@@ -594,9 +594,9 @@ void ListPanel::start( KUrl url, bool immediate ) {
    virt = url;
    
    if ( !virt.isValid() )
-      virt = KUrl("/");
+      virt = KUrl( ROOT_DIR );
    if( virt.isLocalFile() ) _realPath = virt;
-   else _realPath = KUrl("/");
+   else _realPath = KUrl( ROOT_DIR );
 
    if( immediate )
      func->immediateOpenUrl( virt );

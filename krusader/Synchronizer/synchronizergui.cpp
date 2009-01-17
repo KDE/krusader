@@ -1101,9 +1101,9 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   hasSelectedFiles = ( selectedFiles.count() != 0 );
 
   if( leftURL.isEmpty() )
-    leftURL = KUrl("/");
+    leftURL = KUrl( ROOT_DIR );
   if( rightURL.isEmpty() )
-    rightURL = KUrl("/");
+    rightURL = KUrl( ROOT_DIR );
     
   setWindowTitle( i18n("Krusader::Synchronize Directories") );
   QGridLayout *synchGrid = new QGridLayout( this );

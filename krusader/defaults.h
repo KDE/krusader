@@ -306,3 +306,10 @@
 #define _InsertMovesDown	true
 // Immediate Context Menu
 #define _ImmediateContextMenu	true
+
+// Root directory
+#ifdef Q_WS_WIN
+#define ROOT_DIR "C:\\"
+#else
+#define ROOT_DIR "/"
+#endif
