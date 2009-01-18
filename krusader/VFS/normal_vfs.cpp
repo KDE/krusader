@@ -56,6 +56,7 @@
 #include "../defaults.h"
 #include "../resources.h"
 #include "../krslots.h"
+#include "../krservices.h"
 
 // header files for ACL
 #ifdef HAVE_POSIX_ACL
@@ -70,7 +71,7 @@ normal_vfs::normal_vfs(QObject* panel):vfs(panel), watcher(0) {
 }
 
 bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
-	QString path = origin.path(KUrl::RemoveTrailingSlash);
+	QString path = KrServices::getPath( origin, KUrl::RemoveTrailingSlash);
 #ifdef Q_WS_WIN
 	if(! path.contains("/"))
 	{   //change C: to C:/

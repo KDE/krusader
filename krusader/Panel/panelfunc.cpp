@@ -207,7 +207,7 @@ void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn ) {
 	
 	// on local file system change the working directory
 	if ( files() ->vfs_getType() == vfs::VFS_NORMAL )
-		QDir::setCurrent( files() ->vfs_getOrigin().path() );
+		QDir::setCurrent( KrServices::getPath( files() ->vfs_getOrigin() ) );
 	
 	// see if the open url operation failed, and if so, 
 	// put the attempted url in the origin bar and let the user change it

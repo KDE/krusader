@@ -25,6 +25,7 @@
 // Krusader includes
 #include "krservices.h"
 #include "krusader.h"
+#include "defaults.h"
 
 QMap<QString,QString>* KrServices::slaveMap=0;
 
@@ -205,3 +206,23 @@ QString KrServices::escape( QString name ) {
   return name;
 }
 
+QString KrServices::getPath( const KUrl & url, KUrl::AdjustPathOption trailing )
+{
+	QString path = url.path( trailing );
+	REPLACE_DIR_SEP2( path );
+	
+	#ifdef Q_WS_WIN
+	if( path.startsWith( DIR_SEPARATOR ) )
+	{
+		int p = 1;
+		while( p < path.length() && path[ p ] == DIR_SEPARATOR_CHAR )
+			p++;
+		/* /C:/Folder */
+		if( p + 2 <= path.length() && path[ p ].isLetter() && path[ p + 1 ] == ':' )
+		{
+			path = path.mid( p );
+		}
+	}
+	#endif
+	return path;
+}

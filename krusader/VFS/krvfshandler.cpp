@@ -19,6 +19,7 @@
 #include "normal_vfs.h"
 #include "ftp_vfs.h"
 #include "virt_vfs.h"
+#include "../krservices.h"
 
 #include <qdir.h>
 
@@ -34,7 +35,7 @@ vfs::VFS_TYPE KrVfsHandler::getVfsType(const KUrl& url){
   QString protocol = url.protocol();
 
   if( ( protocol == "krarc" || protocol == "tar" || protocol == "zip" ) &&
-      QDir(url.path(KUrl::RemoveTrailingSlash)).exists() )
+      QDir(KrServices::getPath(url, KUrl::RemoveTrailingSlash)).exists() )
     return vfs::VFS_NORMAL;
   
 	if( url.isLocalFile() ){

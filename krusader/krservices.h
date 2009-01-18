@@ -21,6 +21,7 @@
 #include <qstring.h>
 #include <qstringlist.h>
 #include <qmap.h>
+#include <kurl.h>
 
 class QTextStream;
 class QFile;
@@ -40,6 +41,7 @@ public:
 	static QString      fullPathName( QString name, QString confName = QString() );
 	static QStringList  separateArgs( QString args );
 	static QString      registerdProtocol(QString mimetype);
+	static QString      getPath( const KUrl &url, KUrl::AdjustPathOption trailing=KUrl::LeaveTrailingSlash );
 	static void         clearProtocolCache();
 	static bool         fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines=false);
 	static bool         fileToStringList(QFile *file, QStringList& target, bool keepEmptyLines=false);

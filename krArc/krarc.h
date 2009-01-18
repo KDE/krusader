@@ -57,6 +57,7 @@ protected:
 	virtual bool setArcFile(const KUrl& url);
 	virtual QString getPassword();
 	virtual void invalidatePassword();
+	QString getPath( const KUrl & url, KUrl::AdjustPathOption trailing=KUrl::LeaveTrailingSlash );
 	
 	QString localeEncodedString( QString str );
 	QByteArray encodeString( QString );
@@ -163,5 +164,23 @@ private:
 	
 	bool mergedOutput;
 };
+
+#ifdef Q_WS_WIN
+#define DIR_SEPARATOR       "/"
+#define DIR_SEPARATOR2      "\\"
+#define DIR_SEPARATOR_CHAR  '/'
+#define DIR_SEPARATOR_CHAR2 '\\'
+#define REPLACE_DIR_SEP2(x) x = x.replace( DIR_SEPARATOR2, DIR_SEPARATOR );
+#define ROOT_DIR            "C:\\"
+#define EXEC_SUFFIX         ".exe"
+#else
+#define DIR_SEPARATOR       "/"
+#define DIR_SEPARATOR2      "/"
+#define DIR_SEPARATOR_CHAR  '/'
+#define DIR_SEPARATOR_CHAR2 '/'
+#define REPLACE_DIR_SEP2(x)
+#define ROOT_DIR            "/"
+#define EXEC_SUFFIX         ""
+#endif
 
 #endif
