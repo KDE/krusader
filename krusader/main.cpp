@@ -207,8 +207,10 @@ KAboutData aboutData( "krusader", 0, ( geteuid() ? ki18n("Krusader") : ki18n("Kr
   }
 
   QDBusInterface remoteApp( "org.krusader", "/Instances/" + appName,
-                            "org.krusader.Instance" );
-  QDBusReply<bool> reply = remoteApp.call("isRunning");
+                            "org.krusader.Instance", QDBusConnection::sessionBus() );
+  QDBusReply<bool> reply;
+  if( remoteApp.isValid() )
+    reply = remoteApp.call("isRunning");
 
   if( !reply.isValid() && reply.error().type() != QDBusError::ServiceUnknown && 
                           reply.error().type() != QDBusError::UnknownObject )
