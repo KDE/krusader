@@ -5,6 +5,21 @@
 
 #include "bswap.h"
 
+
+#ifdef Q_WS_WIN
+#define DIR_SEPARATOR       "/"
+#define DIR_SEPARATOR2      "\\"
+#define DIR_SEPARATOR_CHAR  '/'
+#define DIR_SEPARATOR_CHAR2 '\\'
+#define REPLACE_DIR_SEP2(x) x = x.replace( DIR_SEPARATOR2, DIR_SEPARATOR );
+#else
+#define DIR_SEPARATOR       "/"
+#define DIR_SEPARATOR2      "/"
+#define DIR_SEPARATOR_CHAR  '/'
+#define DIR_SEPARATOR_CHAR2 '/'
+#define REPLACE_DIR_SEP2(x)
+#endif
+
 /*
  * The isofs filesystem constants/structures
  */

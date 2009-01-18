@@ -29,9 +29,9 @@ class KIsoFile : public KArchiveFile  {
 public: 
     KIsoFile( KArchive* archive, const QString& name, int access, int date,
                     int adate,int cdate, const QString& user, const QString& group,
-                   const QString& symlink, int pos, int size);
+                   const QString& symlink, long long pos, long long size);
     ~KIsoFile();
-    void setZF(char algo[2],char parms[2],int realsize);
+    void setZF(char algo[2],char parms[2],long long realsize);
     int adate() const { return m_adate; }
     int cdate() const { return m_cdate; }
     long long realsize() const { return m_realsize; }

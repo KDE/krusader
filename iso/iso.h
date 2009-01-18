@@ -43,6 +43,7 @@ protected:
     void getFile( const KIsoFile *isoFileEntry, const QString &path );
     void createUDSEntry( const KArchiveEntry * isoEntry, KIO::UDSEntry & entry );
     bool checkNewFile( QString fullPath, QString & path, int startsec );
+    QString getPath( const KUrl & url );
 
     KIso * m_isoFile;
     time_t m_mtime;

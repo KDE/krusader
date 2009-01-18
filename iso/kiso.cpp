@@ -195,12 +195,12 @@ KIso::~KIso()
 }
 
 /* callback function for libisofs */
-static int readf(char *buf, int start, int len,void *udata) {
+static int readf(char *buf, unsigned int start, unsigned int len,void *udata) {
 
     QIODevice* dev = ( static_cast<KIso*> (udata) )->device();
 
-    if (dev->seek(start<<11)) {
-        if ((dev->read(buf, len<<11)) != -1) return (len);
+    if (dev->seek( (qint64)start<<(qint64)11)) {
+        if ((dev->read(buf, len<<11u)) != -1) return (len);
     }
     kDebug() << "KIso::ReadRequest failed start: " << start << " len: " << len << endl;
 
@@ -219,7 +219,7 @@ static int mycallb(struct iso_directory_record *idr,void *udata) {
     bool special=false;
     KArchiveEntry *entry=NULL,*oldentry=NULL;
     char z_algo[2],z_params[2];
-    int z_size=0;
+    long long z_size=0;
 
     if ((idr->flags[0] & 1) && !iso->showhidden) return 0;
     if (iso->level) {
@@ -275,7 +275,7 @@ static int mycallb(struct iso_directory_record *idr,void *udata) {
                 user, group, symlink );
         } else {
             entry = new KIsoFile( iso, path, access, time, adate, cdate,
-                user, group, symlink, isonum_733(idr->extent)<<11,isonum_733(idr->size) );
+                user, group, symlink, (long long)(isonum_733(idr->extent))<<(long long)11,isonum_733(idr->size) );
             if (z_size) (static_cast <KIsoFile*> (entry))->setZF(z_algo,z_params,z_size);
 
         }
@@ -296,7 +296,8 @@ static int mycallb(struct iso_directory_record *idr,void *udata) {
 
 void KIso::addBoot(struct el_torito_boot_descriptor* bootdesc) {
 
-    int i,size;
+    int i;
+    long long size;
     boot_head boot;
     boot_entry *be;
     QString path;
@@ -305,7 +306,7 @@ void KIso::addBoot(struct el_torito_boot_descriptor* bootdesc) {
     entry=new KIsoFile( this, "Catalog", dirent->permissions() & ~S_IFDIR,
         dirent->date(), dirent->adate(), dirent->cdate(),
         dirent->user(), dirent->group(), QString(),
-        isonum_731(bootdesc->boot_catalog)<<11, 2048 );
+        (long long)isonum_731(bootdesc->boot_catalog)<<(long long)11, 2048 );
     dirent->addEntry(entry);
     if (!ReadBootTable(&readf,isonum_731(bootdesc->boot_catalog),&boot,this)) {
         i=1;
@@ -318,7 +319,7 @@ void KIso::addBoot(struct el_torito_boot_descriptor* bootdesc) {
             entry=new KIsoFile( this, path, dirent->permissions() & ~S_IFDIR,
                 dirent->date(), dirent->adate(), dirent->cdate(),
                 dirent->user(), dirent->group(), QString(),
-                isonum_731(((struct default_entry*) be->data)->start)<<11, size<<9 );
+                (long long)isonum_731(((struct default_entry*) be->data)->start)<<(long long)11, size << (long long)9 );
             dirent->addEntry(entry);
             be=be->next;
             i++;

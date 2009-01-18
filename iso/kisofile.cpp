@@ -20,7 +20,7 @@
 
 KIsoFile::KIsoFile( KArchive* archive, const QString& name, int access,
     int date, int adate,int cdate, const QString& user, const QString& group,
-    const QString& symlink,int pos, int size) :
+    const QString& symlink,long long pos, long long size) :
         KArchiveFile(archive, name, access, date, user, group, symlink, pos, size) {
 
 
@@ -32,7 +32,7 @@ KIsoFile::KIsoFile( KArchive* archive, const QString& name, int access,
 KIsoFile::~KIsoFile(){
 }
 
-void KIsoFile::setZF(char algo[2],char parms[2],int realsize) {
+void KIsoFile::setZF(char algo[2],char parms[2],long long realsize) {
     m_algo[0]=algo[0];m_algo[1]=algo[1];
     m_parms[0]=parms[0];m_parms[1]=parms[1];
     m_realsize=realsize;

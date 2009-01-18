@@ -21,6 +21,7 @@
 #include <string.h>
 
 #include "isofs.h"
+#include "iso_fs.h"
 
 /**************************************************************/
 
@@ -122,8 +123,8 @@ void FreeBootTable(boot_head *boot) {
 	boot->defentry=NULL;
 }
 
-int BootImageSize(int media,int len) {
-	int ret;
+long long BootImageSize(int media,unsigned int len) {
+	long long ret;
 
 	switch(media & 0xf) {
 		case 0:
@@ -158,7 +159,7 @@ static boot_entry *CreateBootEntry(char *be) {
 	return entry;
 }
 
-int ReadBootTable(readfunc *read,int sector, boot_head *head, void *udata) {
+int ReadBootTable(readfunc *read,unsigned int sector, boot_head *head, void *udata) {
 
 	char buf[2048], *c, *be;
 	int i,end=0;
@@ -221,7 +222,7 @@ err:
 /**
  * Creates the linked list of the volume descriptors
  */
-iso_vol_desc *ReadISO9660(readfunc *read,int sector,void *udata) {
+iso_vol_desc *ReadISO9660(readfunc *read,unsigned int sector,void *udata) {
 				
 	int i;
 	struct iso_volume_descriptor buf;
@@ -408,7 +409,7 @@ int ParseRR(struct iso_directory_record *idr, rr_entry *rrentry) {
 				}
 				if ( (c[0] & 0x08) == 0x08 || (c[1] && rrentry->sl && 
 					 strlen(rrentry->sl)>1) ) {
-					if (str_append(&rrentry->sl,(char *)"/")) {
+					if (str_append(&rrentry->sl,(char *) DIR_SEPARATOR )) {
 						FreeRR(rrentry); return -ENOMEM;
 					}
 				}
@@ -577,13 +578,13 @@ int level=0,joliet=0,dirs,files;
 iconv_t iconv_d;
 int fd;
 
-int readf(char *buf, int start, int len,void *udata) {
+int readf(char *buf, unsigned int start, unsigned int len,void *udata) {
 	int ret;
 	
-	if ((ret=lseek(fd, start << 11, SEEK_SET))<0) return ret;
-	ret=read(fd, buf, len << 11);
+	if ((ret=lseek64(fd, (long long)start << (long long)11, SEEK_SET))<0) return ret;
+	ret=read(fd, buf, len << 11u);
 	if (ret<0) return ret;
-	return (ret >> 11);
+	return (ret >> 11u);
 }
 
 void dumpchars(char *c,int len) {
