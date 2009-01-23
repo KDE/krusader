@@ -380,7 +380,8 @@
       <keycap>F8</keycap> or 
       <keycap>Delete</keycap>. By 
       <link linkend="konfig-general">default</link> it will be moved
-      to &kde;'s Trash, 
+      to &kde;'s Trash. You can open the KDE Trash with <filename>trash:/</filename> ("kdebase3-runtime" needs to be installed, otherwise the KDE trash protocol will not work).
+      Phisically KDE Trash is located in <filename>~/.local/share/Trash/</filename> .  
       <keycombo action="simul">&Shift;
       <keycap>Delete</keycap></keycombo> will delete the file
       permanently. A dialog will ask for your confirmation and will
@@ -394,17 +395,12 @@
     </sect2>
     <sect2 id="shred">
       <title>Shred Files</title>
-      <para>When you delete files in your local system, they are
-      not completely erased and the information stored in them can
-      be recovered using special software and hardware tools. If
-      you want to erase a file without recoverable traces, select
-      the file and use 
-      <emphasis role="bold">
-        <menuchoice>
-          <guimenu>Right-Click menu</guimenu>
-          <guimenuitem>Shred</guimenuitem>
-        </menuchoice>
-      </emphasis>.</para>
+      <para>Shred was removed from KDE4 (and as consequence Krusader-2 for KDE4).
+           The main reason is probably that shredding is filesystem dependent and even if you overwrite the file 100 times, it's not sure, that it'll be deleted from the disk finally.
+           Quote from the kgpg posts: "The shred feature has been removed from the KDE library. Kgpg will not support this feature anymore. Moderns file systems use journalisation. So the shred feature should be implemented in the file system. Not in kgpg."
+           But you might use a proper shred <link linkend="useractions">UserAction</link> for your filesystem.
+	   But keep in mind that if you want to be 100% shure that it's impossible that someone can read a deleted file, you need to destroy your harddrive hardware ...
+	   </para>
     </sect2>
     <sect2 id="renaming">
       <title>Renaming Files, Creating Directories and Link
