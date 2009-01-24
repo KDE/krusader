@@ -1,7 +1,7 @@
 --------------------------------------------
-- Documentation version:  1.80.0
-- Documentation date:  2007-05-03
-- Parsing date: Sun May 6 22:32:02 CEST 2007
+- Documentation version:  2.0.0-beta2
+- Documentation date:  2009-01-23
+- Parsing date: Sat Jan 24 21:27:32 UTC 2009
 --------------------------------------------
  
 
@@ -42,26 +42,11 @@ db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
 88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
 YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD 
 
-This textfile created with the next command: $ xmlto txt index.docbook
-------------------------------------------------------------------------
-
-IMPORTANT: Crashes in Krusader caused by Qt 3.3.5
-*************************************************
-We've been getting a lot of emails and bug reports regarding random
-crashes in Krusader, especially during some file operations (copy/move
-etc.). These crashes are related to Qt 3.3.5 and NOT Krusader. It seems
-that Qt 3.3.5 introduced a serious bug which is now causing random
-crashes in many KDE applications including Konqueror. You can google for
-it to find out more. 
-
-As far as we know, debian and suse already posted new Qt binaries that
-fix the problem, and gentoo has masked Qt 3.3.5 completely. As for now,
-you either need Qt 3.3.4 or a fixed Qt 3.3.5, depending on your
-distribution. For more information is available on our website at
-http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1407 
 
 ------------------------------------------------------------------------
-Chapter 12. Frequently Asked Questions (FAQ)
+
+
+Chapter 13. Frequently Asked Questions (FAQ)
 
 Table of Contents
 
@@ -87,7 +72,7 @@ Installation FAQ
 
 1. Does Krusader need KDE to run?
 2. Which libraries does Krusader need to run?
-3. I have followed all the steps but configurecomplains about missing libs or
+3. I have followed all the steps but make complains about missing libs or
     headers. What do I need to do?
 4. How do I compile Krusader when I'm using a 64 bit processor ?
 5. I have downloaded the Source RPM krusader-x.xx.dist.src.rpm, what to do now?
@@ -97,15 +82,12 @@ Installation FAQ
 8. I've installed Krusader, but when I start, only the "Help" menu appears.
     Why?
 9. Some new menu items are missing after updating Krusader, what's wrong?
-10. When I run make, it complains about libfam.la, what's wrong?
-11. Debian® complains about Qt™ when running ./configure, what's wrong?
-12. I have a libGLcore.so.1 compile error after using the NVIDIA® installer,
+10. I have a libGLcore.so.1 compile error after using the NVIDIA installer,
     what to do?
-13. Why Krusader-1.60.x does not compile with gcc4?
-14. I am having trouble compiling and installing Krusader, how do I send a help
+11. I am having trouble compiling and installing Krusader, how do I send a help
     request?
-15. How can I build an RPM package for Krusader?
-16. Why does Krusader-cvs show an old version number in the about box?
+12. How can I build an RPM package for Krusader?
+13. Why does Krusader-svn show an old version number in the about box?
 
 1.  Does Krusader need KDE to run?
 
@@ -120,7 +102,7 @@ Installation FAQ
     You do not need to switch to the KDE window manager to use Krusader; you
     can still use GNOME, AfterStep, XFce or another window manager. However,
     the configuration of the Krusader fonts and some behavior is done by
-    running Kcontrol.
+    running kcontrol.
 
     A lot depends on what you want to do with Krusader. You should know that
     Krusader uses the KDE KIOSlaves to access remote file systems, and support
@@ -142,47 +124,19 @@ Installation FAQ
     you only need the C-compliler gcc when you compile Krusader from source
     (see the next question).
 
-    Here is a list of the required shared libraries when you run Krusader:
+    Take a look at the Krusader dependencies paragraph of our install chapter.
 
-      ● kdelibs (for the required KDE version see the Installation procedure)
+    If you need more details please take a look at the Krusader requirements on
+    Ubuntu. The "depends" are required, the "suggests" make Krusader more
+    powerful.
 
-      ● libacl1 libart-2.0 libattr1 libaudio2 libc6 libfam0 libfontconfig1
-
-      ● libfreetype6 libgcc1 libgcc2 libice6 libidn11 libjpeg62 libkjsembed1
-
-      ● libkonq4 libpcre3 libpng12 libqt3-mt libsm6 libstdc++6 libunwind7
-        libx11-6
-
-      ● libxcursor1 libxext6 libxft2 libxi6 libxinerama1 libxrandr2 libxrender1
-        libxt6 zlib1g
-
-    If you need more info please take a look at the requirements on Debian® .
-
-3.  I have followed all the steps but configurecomplains about missing libs or
+3.  I have followed all the steps but make complains about missing libs or
     headers. What do I need to do?
 
     Install the missing packages.
 
-    Here is a list of the required packages to compile Krusader from source:
-
-      ● gcc-cpp gcc-c++ glibc libgcc1 (other compilers may work but haven't
-        been tested)
-
-      ● autoconf automake XFree
-
-      ● libqt3 libqt-devel
-
-      ● kdelibs kdelibs-devel
-
-      ● libjpeg62 libjpeg-devel libpng3 libmng1
-
-      ● fam libfam-devel
-
-      ● zlib1 arts libart_lgpl2 libstdc++5 libpcre0
-
-      ● libkjsembed, if you use the JavaScript console, often found in a
-        package called KDEbindings(-devel) and libkonq-dev for the Konqueror
-        right-click menu entries.
+    Take a look at the Compilation requirements paragraph of our install
+    chapter.
 
     Most RPM-based distributions separate the headers from the libs. The
     headers are needed to compile Krusader. Look for packages in the form
@@ -320,30 +274,7 @@ Installation FAQ
     a wrong directory, only the "Help" menu appears, please read the previous
     question.
 
-10. When I run make, it complains about libfam.la, what's wrong?
-
-    The ./configure script does not check for the presence of libfam.la, and
-    make needs libfam.la to compile Krusader. If you know how this can be
-    solved, please let us know. Install libfam0-devel-foo.rpm. Note: when you
-    install Mandrake™-Linux® 9.2 with the default settings, this package is not
-    installed. If you need more information take a look at FAQ missing libs or
-    headers.
-
-11. Debian® complains about Qt™ when running ./configure, what's wrong?
-
-    This problem occurs when you use gcc 2.95, you need to install gcc 3.2 (or
-    higher). You also need to set the enviroment variables "CC, CPP and CXX"
-    before running the ./configure script.
-
-    $ export CC=/usr/bin/gcc-3.2
-              $ export CXX=/usr/bin/g++-3.2
-              $ export CPP=/usr/bin/cpp-3.2
-
-
-    For more information please take a look in our forum and at the
-    instructions on how to build a Qt™/KDE3 application on Debian®.
-
-12. I have a libGLcore.so.1 compile error after using the NVIDIA® installer,
+10. I have a libGLcore.so.1 compile error after using the NVIDIA® installer,
     what to do?
 
     This problem occurs when you use the NVIDIA® installer and not the official
@@ -371,20 +302,7 @@ Installation FAQ
               $ ln -s /usr/lib/libGLU.la /usr/X11R6/lib/libGLU.la
 
 
-13. Why Krusader-1.60.x does not compile with gcc4?
-
-    Because Krusader-1.60.x was not gcc4 compatible, it first needs some
-    patches:
-
-      ● add 'class ListPanelFunc;' in krusader/Panel/listpanel.h
-
-      ● add 'class KMountManGUI;' in krusader/MountMan/kmountman.h
-
-      ● add 'class KrDetailedViewItem;' in krusader/Panel/krdetailedview.h
-
-    More information can be found in our forum.
-
-14. I am having trouble compiling and installing Krusader, how do I send a help
+11. I am having trouble compiling and installing Krusader, how do I send a help
     request?
 
     Please read our detailed installation procedure and the FAQ. If you can't
@@ -417,7 +335,7 @@ Installation FAQ
 
     Thank you for your co-operation!
 
-15. How can I build an RPM package for Krusader?
+12. How can I build an RPM package for Krusader?
 
     If you have experience with compiling from source, you will probably be
     able to build a Krusader RPM too. Information about RPM can be found at
@@ -458,10 +376,10 @@ Installation FAQ
 
      8. And finally: test the RPM before sending it in.
 
-16. Why does Krusader-cvs show an old version number in the about box?
+13. Why does Krusader-svn show an old version number in the about box?
 
     Because we only change the version number just before we do a new release.
-    Krusader-cvs will show an older version number, so ignore the version
+    Krusader-svn will show an older version number, so ignore the version
     number and check the download date. We simply haven't yet decided what the
     next version number will be.
 
@@ -473,26 +391,25 @@ Usage FAQ
 3. Why does Krusader freeze or hang on a dead mountpoint?
 4. When I try to resize Krusader to make it smaller, I discover that I can't
     resize it below a certain size. Why?
-5. When I perform some file operations, Krusader's panel doesn't refresh / I'm
-    using Krusader with fam installed, but updates to the panel are not shown.
-    Why?
-6. Samba ISO 8859-x codepage / What to do if Krusader does not read shared
+5. Samba ISO 8859-x codepage / What to do if Krusader does not read shared
     directories containing special international characters?
-7. Krusader reports "krarc:... protocol not supported" error at opening an
+6. Krusader reports "krarc:... protocol not supported" error at opening an
     archive file, what to do?
-8. I get the error message "Protocol not supported by Krusader: "krarc:/path/to
+7. I get the error message "Protocol not supported by Krusader: "krarc:/path/to
     /foo-archive", when I try to open foo-Archive, what to do?
-9. What todo if an extenal tool doesn't seem to work?
+8. What todo if an extenal tool doesn't seem to work?
+9. Howto executing jar files (and not enter the jar archive)?
 10. Why do I have trouble with my FTP connection?
 11. I get "FTP protocol not supported by Krusader" error when trying to open a
     remote FTP directory, what to do?
-12. How can I close a remote connection (e.g. a FTP connection)?
-13. I am experiencing problems with the media:// protocol, why?
-14. How can I disable the default sounds, e.g. when I do a delete action ?
-15. Where is RemoteMan, the remote connection manager ?
-16. Why doesn't mimetype magic sometimes work inside archives?
-17. Why doesn't the handbook work?
-18. Why doesn't "save last location" work?
+12. How don't add ".part" suffix when copying files via ftp?
+13. How can I close a remote connection (e.g. a FTP connection)?
+14. I am experiencing problems with the media:/ protocol, why?
+15. How can I disable the default sounds, e.g. when I do a delete action ?
+16. Where the remote connection manager ?
+17. Why doesn't mimetype magic sometimes work inside archives?
+18. Where is Konfigurator, do i need to install the KDE Desktop Enviroment to
+    use it?
 19. How can I set the look & feel of 2 different users to be the same?
 
 1.  Krusader keeps crashing, why?
@@ -542,29 +459,13 @@ Usage FAQ
     resize it below a certain size. Why?
 
     See the F1, F2 (etc.) buttons? They are not allowing Krusader to downsize
-    as they have a minimum size. Just disable them View → Show FN Keys Bar and
+    as they have a minimum size. Just disable them View->Show FN Keys Bar and
     you'll be able to resize Krusader to your liking. Since version 1.51 we
     have improved this greatly: when downsizing the buttons will look like 'F5
     ..py'. When the button faces are too small to read a tooltip will give the
     complete text. The minimum width is 45 pixels for each button.
 
-5.  When I perform some file operations, Krusader's panel doesn't refresh / I'm
-    using Krusader with fam installed, but updates to the panel are not shown.
-    Why?
-
-    The bad news is that we're not sure why, but it seems that fam (file
-    alteration monitor) sometimes refuses to work. We are looking into this
-    problem to make sure it is not our problem. We've tried the same source
-    code on two different Gentoo installations: one worked, the other did not.
-    The good news is that if you disable fam, Krusader will automatically
-    revert to its internal update mechanism (which is less efficient, but
-    works) without needing to recompile. You can disable fam with:
-
-    $ su -c 'fam -l'
-
-    Look at the manpages for more information about fam.
-
-6.  Samba ISO 8859-x codepage / What to do if Krusader does not read shared
+5.  Samba ISO 8859-x codepage / What to do if Krusader does not read shared
     directories containing special international characters?
 
     Krusader does not handle (yet) Samba ISO 8859-x codepages, if you use a
@@ -580,7 +481,7 @@ Usage FAQ
     Unfortunately kcontrol (KDE 3.1.1) fails to configure smb.conf properly, so
     this must be done manually with a text editor.
 
-7.  Krusader reports "krarc:... protocol not supported" error at opening an
+6.  Krusader reports "krarc:... protocol not supported" error at opening an
     archive file, what to do?
 
     Install the krarc slave properly:
@@ -592,7 +493,7 @@ Usage FAQ
     or the directory where the KIO slaves are placed in your Linux®
     distribution.
 
-8.  I get the error message "Protocol not supported by Krusader: "krarc:/path/
+7.  I get the error message "Protocol not supported by Krusader: "krarc:/path/
     to/foo-archive", when I try to open foo-Archive, what to do?
 
     The icons, kio_slaves and documentation must be installed in the correct
@@ -602,7 +503,7 @@ Usage FAQ
     ldconfig on this directory when you're done. For more information click
     here.
 
-9.  What todo if an extenal tool doesn't seem to work?
+8.  What todo if an extenal tool doesn't seem to work?
 
     Krusader uses several programs as external tools, and sometimes they appear
     not to work. Open a terminal and check if tool foo is installed.
@@ -617,11 +518,26 @@ Usage FAQ
     Krusader, Krusader will now start the first start configuration wizard,
     follow these guidelines.
 
+9.  Howto executing jar files (and not enter the jar archive)?
+
+    Go to the Konfigurator Protocol page and remove application/x-jar from the
+    krarc node, Krusader should no longer enter the archive. Global file
+    associations are handled by KDE and not by Krusader. To assosiate the jar
+    extension:
+
+      ● Open KDEs control center: kcontrol
+
+      ● KDE Components->File Associations
+
+      ● Enter jar as filename pattern
+
+      ● Add java as application
+
 10. Why do I have trouble with my FTP connection?
 
     This problem often occurs when you are behind a firewall or proxy. Open KDE
-    Control Center → Network → Preferences , "Enable Passive Mode (PASV)" has
-    to be turned on or off, depending on it's current setting. Now try your FTP
+    Control Center->Network->Preferences, "Enable Passive Mode (PASV)" has to
+    be turned on or off, depending on it's current setting. Now try your FTP
     session again to see if it works. Also, make sure you have no other FTP
     sessions open (using web browsers, etc.), they can cause complications.
     More information can be found in Active FTP vs. Passive FTP, a Definitive
@@ -635,79 +551,53 @@ Usage FAQ
     the proxy settings in KDE Control Center. Modify the proxy settings to not
     use HTTP proxy and FTP will work.
 
-12. How can I close a remote connection (e.g. a FTP connection)?
+12. How don't add ".part" suffix when copying files via ftp?
+
+    When uploading files a .part suffix is added to the filename, once the
+    upload is complete the filename is renamed automagically to remove the
+    .part suffix. This works great but sometimes some ftp-servers don't allow a
+    rename operation. You can solve this by unchecking the checkbox Mark
+    partially uploaded files in KDE's control center. The checkbox is located
+    at Internet and Network->Connection Preferences.
+
+13. How can I close a remote connection (e.g. a FTP connection)?
 
     It's explained in the remote connections chapter.
 
-13. I am experiencing problems with the media:// protocol, why?
+14. I am experiencing problems with the media:/ protocol, why?
 
-    At the moment of writing the media:// protocol is instable, we need to wait
-    until the KDE team corrects it, every other protocol works properly with
-    Krusader, only media fails. More information regarding this issue is
-    available in our forum.
+    The media:/ protocol was removed from KDE4.
 
-14. How can I disable the default sounds, e.g. when I do a delete action ?
+15. How can I disable the default sounds, e.g. when I do a delete action ?
 
     Those are the default KDE System sounds, and not related to Krusader. If
     you want to disable them globally open your KDE KDE Control Center (
-    kcontrol): KDE Control Center → Sound & Multimedia → System Notifications ,
+    kcontrol): KDE Control Center->Sound & Multimedia->System Notifications,
     Event Source: "KDE System Notifications" and uncheck sound items you don't
     like.
 
-15. Where is RemoteMan, the remote connection manager ?
+16. Where the remote connection manager ?
 
-    RemoteMan has been replaced by our Bookmark Manager since Krusader
-    1.25-beta1. The Bookmark Manager handles local files and remote URL's the
-    same way. RemoteMan was left as a selection until Krusader-1.51 to allow an
-    easier transition and give you a chance to move your Bookmarks. RemoteMan
-    was disabled, as announced, in Krusader-1.60.
+    Use our Bookmark Manager. Use a remote URL and bookmark it.
 
-    URL transition procedure:
-
-     1. install Krusader-1.51
-
-     2. open the RemoteMan and connect to an FTP
-
-     3. once inside, bookmark the current location, select a name and save.
-
-     4. do this for all your connections, all the Bookmarks are now stored in
-        krbookmarks.xml
-
-     5. install Krusader-1.60, it will use krbookmarks.xml or import it if
-        needed.
-
-16. Why doesn't mimetype magic sometimes work inside archives?
+17. Why doesn't mimetype magic sometimes work inside archives?
 
     When you enter an archive and press F3 to view a file that has no known
     extension, e.g. README, INSTALL etc.. And if the viewer opens in hex-mode
-    instead of the usual mode, than you need to configure: KDE Control Center →
-    KDE components → File Associations → Application → octet-stream , binary
-    viewer needs to be removed.
+    instead of the usual mode, than you need to configure: KDE Control Center->
+    KDE components->File Associations->Application->octet-stream, binary viewer
+    needs to be removed.
 
-17. Why doesn't the handbook work?
+18. Where is Konfigurator, do i need to install the KDE Desktop Enviroment to
+    use it?
 
-    This error will happen on Debian® (or Debian® based) distro with the
-    krusader_1.51-1_i386.deb package. You will see the next error message if
-    you try to open the handbook: "The requested help file could not be found.
-    Check that you have installed the documentation." To fix it go to /usr/
-    share/doc/kde/HTML/en/krusader/, you will see the foo.docbook.gz files.
-    Now, you need to extract all these files with root privileges ("File->
-    Unpack" with Krusader) to create foo.docbook files. Now the handbook will
-    work. This error is fixed in the krusader_1.60.0-1_i386.deb package and
-    higher versions.
-
-18. Why doesn't "save last location" work?
-
-    Unfortunately the 1.70.x version contains a bug. The tabs are not saved if
-    a "Panels Save Settings=Tabs" item is present in the configuration files.
-    The fix is easy:
-
-      ● open and edit ~/.kde/share/config/krusaderrc
-
-      ● remove the "Panels Save Settings" item
-
-    and it'll work with the <Last Session> feature in Konfigurator. More info
-    can be found in our forum.
+    Konfigurator is Krusaders configuration module, when you have installed
+    Krusader than you have also Konfigurator. For some reason some people think
+    it's an other KDE application, but it is not, so you don't need to install
+    the KDE Desktop Enviroment to use Konfigurator. When runnig Krusader, use
+    Settings->Configure Krusader, and it will start Konfigurator. Please read
+    the manual, Krusader has many many configuration options, a lot of things
+    can be customized to your needs with Konfigurator.
 
 19. How can I set the look & feel of 2 different users to be the same?
 
@@ -719,7 +609,6 @@ Usage FAQ
     And when the other user is Root use:
 
     # cp ~/.kde/share/config/krusaderrc /root/.kde/share/config
-
 
 General FAQ
 
@@ -734,8 +623,8 @@ General FAQ
 9. How does the Krusader forum work?
 10. How can I translate Krusader into my native language?
 11. How can I support Krusader?
-12. Is there a Mac® OS X port?
-13. Is there a Windows® port?
+12. Is there a Mac OS X port?
+13. Is there a Windows port?
 14. Why is Konqueror in "midnight commander style" not an OFM?
 15. Why should I use an OFM?
 
@@ -852,7 +741,7 @@ General FAQ
     Krusader-cvs, compile Krusader-cvs in debugmode and install it, than check
     if the bug still exist.
 
-    $ ./configure --enable-debug=full
+    $ cmake -DCMAKE_BUILD_TYPE=debugfull
 
     Install valgrind, a suite of tools for debugging and profiling Linux®
     programs. Run Valgrind/Krusader
@@ -870,7 +759,7 @@ General FAQ
     Krusader-cvs, compile Krusader-cvs in debugmode and install it, than check
     if the bug still exist.
 
-    $ ./configure --enable-debug=full
+    $ cmake -DCMAKE_BUILD_TYPE=debugfull
 
     If the KDEKrashhandler still doesn't provide usefull backtrace information,
     than sometimes a coredump will give better information. Run Krusader, with
@@ -1007,9 +896,10 @@ General FAQ
 
 13. Is there a Windows® port?
 
-    No, but this might change in the future. Please help us with this project,
-    contributions are greatly appreciated. A recommended native file manager
-    for Windows® is Total Commander© (shareware).
+    Yes, since 18 June 2008, Krusader-2.x compiles on Windows®. Before Krusader
+    can be used several Qt™4-libraries and KDE4-libraries need to be installed.
+    A recommended native file manager for Windows® is Total Commander©
+    (shareware).
 
 14. Why is Konqueror in "midnight commander style" not an OFM?
 
@@ -1024,5 +914,6 @@ General FAQ
     feels, there is only one way to discover: install it on your computer and
     use it for a while. If you prefer to waste time and lose productivity,
     continue to use one panel filemanagers which are based on Windows®
-    Explorer. Matej Urbančič has written a blogon why OFM is better than a one
+    Explorer. Matej Urbančič has written a blog on why OFM is better than a one
     panel filemanager.
+

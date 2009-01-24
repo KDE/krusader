@@ -124,33 +124,11 @@
           only need the C-compliler &gcc; when you
           compile &krusader; from source (see the next
           question).</para>
-          <para>Here is a list of the required shared libraries
-          when you run &krusader;:</para>
+          <para>Take a look at the <link linkend="compilation">Krusader dependencies</link> paragraph  of our install chapter.</para>
           <para>
-          <itemizedlist>
-            <listitem>
-              <para>kdelibs (for the required &kde;
-              version see the &install-proc-lnk;)</para>
-            </listitem>
-            <listitem>
-              <para>libacl1 libart-2.0 libattr1 libaudio2 libc6
-              libfam0 libfontconfig1</para>
-            </listitem>
-            <listitem>
-              <para>libfreetype6 libgcc1 libgcc2 libice6 libidn11
-              libjpeg62 libkjsembed1</para>
-            </listitem>
-            <listitem>
-              <para>libkonq4 libpcre3 libpng12 libqt3-mt libsm6
-              libstdc++6 libunwind7 libx11-6</para>
-            </listitem>
-            <listitem>
-              <para>libxcursor1 libxext6 libxft2 libxi6
-              libxinerama1 libxrandr2 libxrender1 libxt6
-              zlib1g</para>
-            </listitem>
-          </itemizedlist>If you need more info please take a look
-          at the &deb-requirements-url; .</para>
+          If you need more details please take a look
+          at the <ulink url="http://packages.ubuntu.com/jaunty/krusader">Krusader requirements</ulink> on Ubuntu.
+	  The "depends" are required, the "suggests" make Krusader more powerful.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -158,48 +136,12 @@
       <qandaentry>
         <question id="faqi_missing_libs">
           <para>I have followed all the steps but 
-          <command>configure</command>complains about missing libs
+          <command>make</command> complains about missing libs
           or headers. What do I need to do?</para>
         </question>
         <answer>
           <para>Install the missing packages.</para>
-          <para>Here is a list of the required packages to compile
-          &krusader; from source:</para>
-          <para>
-            <itemizedlist>
-              <listitem>
-                <para>gcc-cpp gcc-c++ glibc libgcc1 (other
-                compilers may work but haven't been tested)</para>
-              </listitem>
-              <listitem>
-                <para>autoconf automake XFree</para>
-              </listitem>
-              <listitem>
-                <para>libqt3 libqt-devel</para>
-              </listitem>
-              <listitem>
-                <para>kdelibs kdelibs-devel</para>
-              </listitem>
-              <listitem>
-                <para>libjpeg62 libjpeg-devel libpng3
-                libmng1</para>
-              </listitem>
-              <listitem>
-                <para>fam libfam-devel</para>
-              </listitem>
-              <listitem>
-                <para>zlib1 arts libart_lgpl2 libstdc++5
-                libpcre0</para>
-              </listitem>
-              <listitem>
-                <para>libkjsembed, if you use the
-                &javascript-console-lnk;, often found in
-                a package called KDEbindings(-devel) and
-                libkonq-dev for the &konqueror;
-                right-click menu entries.</para>
-              </listitem>
-            </itemizedlist>
-          </para>
+          <para>Take a look at the <link linkend="compilation">Compilation requirements</link> paragraph  of our install chapter.</para>
           <para>Most RPM-based distributions separate the headers
           from the libs. The headers are needed to compile
           &krusader;. Look for packages in the form
@@ -458,55 +400,7 @@
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
-      <qandaentry>
-        <question id="faqi_libfam_la">
-          <para>When I run 
-          <command>make</command>, it complains about 
-          <filename>libfam.la</filename>, what's wrong?</para>
-        </question>
-        <answer>
-          <para>The 
-          <command>./configure</command> script does not check for
-          the presence of 
-          <filename>libfam.la</filename>, and 
-          <command>make</command> needs 
-          <filename>libfam.la</filename> to compile
-          &krusader;. If you know how this can be
-          solved, please let us know. Install 
-          <filename>libfam0-devel-foo.rpm</filename>. Note: when
-          you install &Mandrake;-&Linux; 9.2
-          with the default settings, this package is not installed.
-          If you need more information take a look at
-          &missing-libs-lnk;.</para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-      <qandaentry>
-        <question id="faqi_deb-qt">
-          <para>&debian; complains about &Qt;
-          when running 
-          <command>./configure</command>, what's wrong?</para>
-        </question>
-        <answer>
-          <para>This problem occurs when you use &gcc;
-          2.95, you need to install &gcc; 3.2 (or
-          higher). You also need to set the enviroment variables
-          "CC, CPP and CXX" before running the 
-          <command>./configure</command> script. 
-          <screen><prompt>$</prompt> <userinput><command>export</command> CC=<replaceable>/usr/bin/gcc-3.2</replaceable></userinput>
-          <prompt>$</prompt> <userinput><command>export</command> CXX=<replaceable>/usr/bin/g++-3.2</replaceable></userinput>
-          <prompt>$</prompt> <userinput><command>export</command> CPP=<replaceable>/usr/bin/cpp-3.2</replaceable></userinput>
-          </screen> 
-          For more information please take a look
-          &debian-qt-a-url; and at the
-          &debian-qt-b-url; on how to build a
-          &Qt;/&kde;3 application on
-          &debian;.</para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
+ 
       <qandaentry>
         <question id="faqi_nvidia">
           <para>I have a 
@@ -549,34 +443,7 @@
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
-      <qandaentry>
-        <question id="faqi_gcc4">
-          <para>Why &krusader;-1.60.x does not compile
-          with gcc4?</para>
-        </question>
-        <answer>
-          <para>Because &krusader;-1.60.x was not gcc4
-          compatible, it first needs some patches: 
-          <itemizedlist>
-            <listitem>
-              <para>add 'class ListPanelFunc;' in
-              krusader/Panel/listpanel.h</para>
-            </listitem>
-            <listitem>
-              <para>add 'class KMountManGUI;' in
-              krusader/MountMan/kmountman.h</para>
-            </listitem>
-            <listitem>
-              <para>add 'class KrDetailedViewItem;' in
-              krusader/Panel/krdetailedview.h</para>
-            </listitem>
-          </itemizedlist>More information can be found in our 
-          <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=1328">
-          forum</ulink>.</para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
+
       <qandaentry>
         <question id="faqi_help_request">
           <para>I am having trouble compiling and installing
@@ -721,13 +588,13 @@
         </answer>
       </qandaentry>
       <qandaentry>
-        <question id="faqi_cvs_verion">
-          <para>Why does &krusader;-cvs show an old
+        <question id="faqi_svn_verion">
+          <para>Why does &krusader;-svn show an old
           version number in the about box?</para>
         </question>
         <answer>
           <para>Because we only change the version number just
-          before we do a new release. &krusader;-cvs
+          before we do a new release. &krusader;-svn
           will show an older version number, so ignore the version
           number and check the download date. We simply haven't yet
           decided what the next version number will be.</para>
@@ -860,36 +727,7 @@
           <!-- Empty line to make it more readable -->
         </answer>
       </qandaentry>
-      <qandaentry>
-        <question id="faqu_refresh">
-          <para>When I perform some file operations,
-          &krusader;'s panel doesn't refresh / I'm using
-          &krusader; with fam installed, but updates to
-          the panel are not shown. Why?</para>
-        </question>
-        <answer>
-          <para>The bad news is that we're not sure why, but it
-          seems that 
-          <command>fam</command> (file alteration monitor) sometimes
-          refuses to work. We are looking into this problem to make
-          sure it is not 
-          <emphasis>our</emphasis> problem. We've tried the same
-          source code on two different Gentoo installations: one
-          worked, the other did not. The good news is that if you
-          disable 
-          <application>fam</application>, &krusader;
-          will automatically revert to its internal update
-          mechanism (which is less efficient, but works) without
-          needing to recompile. You can disable 
-          <application>fam</application> with: 
-          <screen><prompt>$</prompt> <userinput><command>su -c 'fam -l'</command></userinput></screen>
-          Look at the manpages for more information about 
-          <application>fam</application>.</para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-      <!-- Thanks to Karai Csaba -->
+
       <qandaentry>
         <question id="faqu_samba_codepage">
           <para>
@@ -1109,17 +947,11 @@
       </qandaentry>
       <qandaentry>
         <question id="faqu_media_protocol">
-          <para>I am experiencing problems with the media://
+          <para>I am experiencing problems with the media:/
           protocol, why?</para>
         </question>
         <answer>
-          <para>At the moment of writing the media:// protocol is
-          instable, we need to wait until the &kde; team
-          corrects it, every other protocol works properly with
-          &krusader;, only media fails. More information
-          regarding this issue is available in 
-          <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=1357">
-          our forum</ulink>.</para>
+          <para>The media:/ protocol was removed from KDE4.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -1151,43 +983,13 @@
       </qandaentry>
       <qandaentry>
         <question id="faqu_remoteMan">
-          <para>Where is RemoteMan, the remote connection manager
+          <para>Where the remote connection manager
           ?</para>
         </question>
         <answer>
-          <para>RemoteMan has been replaced by our Bookmark Manager
-          since Krusader 1.25-beta1. The Bookmark Manager handles
-          local files and 
+          <para>Use our Bookmark Manager. Use a  
           <link linkend="remote-connections">remote
-          &URL;'s</link> the same way. RemoteMan was left
-          as a selection until &krusader;-1.51 to allow
-          an easier transition and give you a chance to move your
-          &bookmarks-lnk;. RemoteMan was disabled, as
-          announced, in &krusader;-1.60.</para>
-          <para>&URL; transition procedure: 
-          <orderedlist numeration="arabic">
-            <listitem>
-              <para>install &krusader;-1.51</para>
-            </listitem>
-            <listitem>
-              <para>open the RemoteMan and connect to an
-              &FTP;</para>
-            </listitem>
-            <listitem>
-              <para>once inside, bookmark the current location,
-              select a name and save.</para>
-            </listitem>
-            <listitem>
-              <para>do this for all your connections, all the
-              &bookmarks-lnk; are now stored in 
-              <filename>krbookmarks.xml</filename></para>
-            </listitem>
-            <listitem>
-              <para>install &krusader;-1.60, it will use
-              <filename>krbookmarks.xml</filename> or import it if
-              needed.</para>
-            </listitem>
-          </orderedlist></para>
+          &URL;</link> and bookmark it.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -1254,61 +1056,6 @@
           And when the other user is Root use: 
           <screen><prompt>#</prompt> <userinput><command>cp ~/.kde/share/config/krusaderrc /root/.kde/share/config</command></userinput></screen>
           </para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-
-      <qandaentry>
-        <question id="faqu_save_last_location">
-          <para>Why doesn't "save last location" work?</para>
-        </question>
-        <answer>
-          <para>Unfortunately the 1.70.x version contains a bug.
-          The tabs are not saved if a "Panels Save Settings=Tabs"
-          item is present in the configuration files. The fix is
-          easy: 
-          <itemizedlist>
-            <listitem>
-              <para>open and edit 
-              <filename>
-              ~/.kde/share/config/krusaderrc</filename></para>
-            </listitem>
-            <listitem>
-              <para>remove the "Panels Save Settings" item</para>
-            </listitem>
-          </itemizedlist>and it'll work with the
-          &lt;Last Session&gt; feature in
-          Konfigurator. More info can be found in 
-          <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=1357">
-          our forum</ulink>.</para>
-          <para></para>
-          <!-- Empty line to make it more readable -->
-        </answer>
-      </qandaentry>
-
-      <qandaentry>
-        <question id="faqu_handbook">
-          <para>Why doesn't the handbook work?</para>
-        </question>
-        <answer>
-          <para>This error will happen on &debian; (or
-          &debian; based) distro with the
-          krusader_1.51-1_i386.deb package. You will see the next
-          error message if you try to open the handbook: "The
-          requested help file could not be found. Check that you
-          have installed the documentation." To fix it go to 
-          <filename>
-          /usr/share/doc/kde/HTML/en/krusader/</filename>, you will
-          see the 
-          <filename>foo.docbook.gz</filename> files. Now, you need
-          to extract all these files with root privileges
-          ("File-&gt;Unpack" with &krusader;)
-          to create 
-          <filename>foo.docbook</filename> files. Now the handbook
-          will work. This error is fixed in the
-          krusader_1.60.0-1_i386.deb package and higher
-          versions.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -1508,7 +1255,7 @@
   <answer>
   <para>Usually binary packages that are been used by your distribution do not contain debug information.
         Since we usually only develop and fix &krusader;-cvs, compile &krusader;-cvs in debugmode and install it, than check if the bug still exist.
-        <screen><prompt>$</prompt> <userinput><command>./configure</command> <option>--enable-debug=full</option></userinput></screen>  
+        <screen><prompt>$</prompt> <userinput><command>cmake</command> <option>-DCMAKE_BUILD_TYPE=debugfull</option></userinput></screen>  
 
         Install <ulink url="http://valgrind.org">valgrind</ulink>, a suite of tools for debugging and profiling &Linux; programs.
 
@@ -1529,7 +1276,7 @@
   <answer>
   <para>Usually binary packages that are been used by your distribution do not contain debug information.
         Since we usually only develop and fix &krusader;-cvs, compile &krusader;-cvs in debugmode and install it, than check if the bug still exist.
-        <screen><prompt>$</prompt> <userinput><command>./configure</command> <option>--enable-debug=full</option></userinput></screen> 
+        <screen><prompt>$</prompt> <userinput><command>cmake</command> <option>-DCMAKE_BUILD_TYPE=debugfull</option></userinput></screen> 
  
        If the KDEKrashhandler still doesn't provide usefull backtrace information, than sometimes a coredump will give better information. 
        Run Krusader, with disabled crashhandler.
@@ -1825,7 +1572,7 @@
           Urban&ccaron;i&ccaron; has written
           a 
           <ulink url="http://murban.blogspot.com/2006/01/krusader-and-konqueror-twin-versus-one.html">
-          blog</ulink>on why 
+          blog</ulink> on why 
           <link linkend="gloss-ofm">OFM</link> is better than a one
           panel filemanager.</para>
           <para></para>
