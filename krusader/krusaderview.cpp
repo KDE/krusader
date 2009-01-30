@@ -108,10 +108,17 @@ void KrusaderView::start( QStringList leftTabs, QList<int> leftTypes, QList<int>
   {
     lst.push_back( 100 );
     lst.push_back( 100 );
+  } else if( lst.count() == 2 && lst[ 0 ] == 0 && lst[ 1 ] == 0 )
+  {
+    lst[ 0 ] = 100;
+    lst[ 1 ] = 100;
   }
+
   horiz_splitter->setSizes( lst );  
 
   verticalSplitterSizes = group.readEntry( "Terminal Emulator Splitter Sizes", QList<int> () );
+  if( verticalSplitterSizes.count() == 2 && verticalSplitterSizes[ 0 ] == 0 && verticalSplitterSizes[ 1 ] == 0 )
+    verticalSplitterSizes.clear();
     
   show();
 

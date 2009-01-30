@@ -238,6 +238,9 @@ PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ),
 		splitterSizes = pg.readEntry( "Left PanelPopup Splitter Sizes", QList<int>() );
 	else
 		splitterSizes = pg.readEntry( "Right PanelPopup Splitter Sizes", QList<int>() );
+
+	if( splitterSizes.count() == 2 && splitterSizes[ 0 ] == 0 && splitterSizes[ 1 ] == 0 )
+		splitterSizes.clear();
 	
 	if( splitterSizes.count() < 2 ) {
 		splitterSizes.clear();
