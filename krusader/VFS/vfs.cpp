@@ -228,12 +228,14 @@ bool vfs::vfs_refresh(const KUrl& origin){
 	return true;
 }
 
-void vfs::vfs_enableRefresh(bool enable){
-	if (vfs_type != VFS_NORMAL) return;
-	if (disableRefresh == !enable) return; // if gets called twice by mistake
+bool vfs::vfs_enableRefresh(bool enable){
+	if (vfs_type != VFS_NORMAL) return true;
+	if (disableRefresh == !enable) return true; // if gets called twice by mistake
 	disableRefresh = quietMode = !enable;
-	if( enable && !postponedRefreshURL.isEmpty() ) vfs_refresh( postponedRefreshURL );
+	bool res = true;
+	if( enable && !postponedRefreshURL.isEmpty() ) res = vfs_refresh( postponedRefreshURL );
 	postponedRefreshURL = KUrl();
+	return res;
 }
 
 void vfs::clear()

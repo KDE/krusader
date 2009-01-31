@@ -991,7 +991,8 @@ void ListPanel::hideEvent( QHideEvent *e ) {
 
 void ListPanel::panelActive() {
 	// don't refresh when not active (ie: hidden, application isn't focussed ...)
-	func->files()->vfs_enableRefresh(true);
+	if( !func->files()->vfs_enableRefresh(true))
+		func->popErronousUrl();
 }
 
 void ListPanel::panelInactive() {

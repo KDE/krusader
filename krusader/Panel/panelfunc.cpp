@@ -98,6 +98,20 @@ void ListPanelFunc::openUrl( const QString& url, const QString& nameToMakeCurren
 		, nameToMakeCurrent );
 }
 
+void ListPanelFunc::popErronousUrl() {
+	KUrl current = urlStack.last();
+	while( urlStack.count() != 0 )
+	{
+		KUrl url = urlStack.takeLast();
+		if( !current.equals( url ) )
+		{
+			immediateOpenUrl( url );
+			return;
+		}
+	}
+	immediateOpenUrl( KUrl( ROOT_DIR ) );
+}
+
 void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn ) {
 	KUrl url = urlIn;
 	url.cleanPath();
@@ -138,13 +152,13 @@ void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn ) {
 	}
 
 	vfs* v = 0;
-	if ( !urlStack.last().equals( url ) )
+	if ( urlStack.count() == 0 || !urlStack.last().equals( url ) )
 		urlStack.push_back( url );
 	// count home many urls is in the stack, so later on, we'll know if the refresh was a success
 	int stackSize = urlStack.count();
 	bool refreshFailed = true; // assume the worst
 	while ( true ) {
-		KUrl u = urlStack.takeLast();
+		KUrl u = urlStack.count() == 0 ? KUrl( ROOT_DIR ) : urlStack.takeLast();
 		//u.adjustPath(KUrl::RemoveTrailingSlash); // remove trailing "/"
 		u.cleanPath(); // Resolves "." and ".." components in path.
 		v = KrVfsHandler::getVfs( u, panel, files() );

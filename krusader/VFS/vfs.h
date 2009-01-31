@@ -123,7 +123,7 @@ public slots:
 	bool vfs_refresh(KJob * job);
 	bool vfs_refresh();
 	void vfs_setQuiet(bool beQuiet){ quietMode=beQuiet; }
-	void vfs_enableRefresh(bool enable);        
+	bool vfs_enableRefresh(bool enable);        
 	void vfs_invalidate() { invalidated = true; }          
 
 signals:

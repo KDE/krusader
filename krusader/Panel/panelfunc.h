@@ -47,8 +47,9 @@ public slots:
 	void goInside(const QString&);
 	void openUrl(const KUrl& path, const QString& nameToMakeCurrent = QString());
 	void openUrl(const QString& path, const QString& nameToMakeCurrent = QString());
-   void immediateOpenUrl( const KUrl& path);
-   void doOpenUrl();
+	void popErronousUrl();
+	void immediateOpenUrl( const KUrl& path);
+	void doOpenUrl();
 	void refresh();
 	void rename(const QString &oldname, const QString &newname);
 
