@@ -54,6 +54,7 @@ QString KgProtocols::defaultKrarcMimes = "application/x-7z,application/x-7z-comp
                                          "application/x-rpm,application/zip,"
                                          "application/x-zip,application/x-zip-compressed";
 QString KgProtocols::defaultTarMimes   = "application/x-tar,application/x-tarz,"
+                                         "application/x-bzip-compressed-tar,"
                                          "application/x-compressed-tar,"
                                          "application/x-tbz,application/x-tgz";
 
