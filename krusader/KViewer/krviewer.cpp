@@ -408,6 +408,7 @@ void KrViewer::tabCloseRequest(QWidget *w){
 			krApp->raise();
 			krApp->activateWindow();
 		}
+		this->close();
 		this->deleteLater();
 		return;
 	} else if( tabBar.count() == 1 ){
