@@ -234,7 +234,7 @@ void ftp_vfs::vfs_addFiles( KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode, Q
 }
 
 // remove a file from the vfs (physical)
-void ftp_vfs::vfs_delFiles( QStringList *fileNames ) {
+void ftp_vfs::vfs_delFiles( QStringList *fileNames, bool /* reallyDelete */ ) {
 	KUrl::List filesUrls;
 	KUrl url;
 

@@ -36,7 +36,7 @@ public:
 	/// Copy a file to the vfs (physical).
 	void vfs_addFiles(KUrl::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "",  PreserveMode pmode = PM_DEFAULT );	
 	/// Remove a file from the vfs (physical)
-	void vfs_delFiles(QStringList *fileNames);	
+	void vfs_delFiles(QStringList *fileNames, bool reallyDelete = true);	
 	/// Remove a file from the collection (only its link, not the file)
 	void vfs_removeFiles(QStringList *fileNames);	
 	/// Return a list of URLs for multiple files	

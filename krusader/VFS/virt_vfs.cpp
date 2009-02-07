@@ -106,7 +106,7 @@ void virt_vfs::vfs_addFiles( KUrl::List *fileUrls, KIO::CopyJob::CopyMode /*mode
 	vfs_refresh();
 }
 
-void virt_vfs::vfs_delFiles( QStringList *fileNames ) {
+void virt_vfs::vfs_delFiles( QStringList *fileNames, bool reallyDelete ) {
 	if ( path == "/" ) {
 		for ( int i = 0 ; i < fileNames->count(); ++i ) {
 			QString filename = ( *fileNames ) [ i ];
@@ -130,7 +130,7 @@ void virt_vfs::vfs_delFiles( QStringList *fileNames ) {
 
 	// delete of move to trash ?
 	KConfigGroup group( krConfig, "General" );
-	if ( group.readEntry( "Move To Trash", _MoveToTrash ) ) {
+	if ( !reallyDelete && group.readEntry( "Move To Trash", _MoveToTrash ) ) {
 		job = KIO::trash( filesUrls );
 		connect( job, SIGNAL( result( KJob* ) ), krApp, SLOT( changeTrashIcon() ) );
 	} else

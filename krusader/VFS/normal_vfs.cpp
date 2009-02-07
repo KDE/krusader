@@ -170,7 +170,7 @@ void normal_vfs::vfs_addFiles(KUrl::List *fileUrls,KIO::CopyJob::CopyMode mode,Q
 }
 
 // remove a file from the vfs (physical)
-void normal_vfs::vfs_delFiles(QStringList *fileNames){
+void normal_vfs::vfs_delFiles(QStringList *fileNames, bool reallyDelete){
 	KUrl::List filesUrls;
 	KUrl url;
 	QDir local( vfs_workingDir() );
@@ -193,7 +193,7 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames){
 	
 	// delete of move to trash ?
 	KConfigGroup group( krConfig, "General");
-	if( group.readEntry("Move To Trash",_MoveToTrash) ){
+	if( !reallyDelete && group.readEntry("Move To Trash",_MoveToTrash) ){
 	  job = KIO::trash(filesUrls);
 	  connect(job,SIGNAL(result(KJob*)),SLOTS,SLOT(changeTrashIcon()));
 	}

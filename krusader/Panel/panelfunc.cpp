@@ -756,14 +756,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 	panel->prepareToDelete();
 
 	// let the vfs do the job...
-	if (reallyDelete) {
-		// if reallyDelete, then make sure nothing gets moved to trash
-		group.writeEntry( "Move To Trash", false );
-	}
-	files() ->vfs_delFiles( &fileNames );
-	if (reallyDelete) {
-		group.writeEntry( "Move To Trash", trash);
-	}
+	files() ->vfs_delFiles( &fileNames, reallyDelete );
 }
 
 void ListPanelFunc::goInside( const QString& name )
