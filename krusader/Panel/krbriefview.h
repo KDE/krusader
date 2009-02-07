@@ -43,6 +43,7 @@ A
 #include <QDragMoveEvent>
 #include <QDropEvent>
 #include <QDragLeaveEvent>
+#include <QWheelEvent>
 #include <QResizeEvent>
 #include <QPixmap>
 #include <QMouseEvent>
@@ -124,6 +125,7 @@ protected:
 	virtual void startDrag() { op()->startDrag(); }
 	virtual bool event( QEvent *e );
 	virtual bool eventFilter( QObject * watched, QEvent * e );
+	virtual void wheelEvent( QWheelEvent *e );
 	QMouseEvent * transformMouseEvent( QMouseEvent * );
 
 protected slots:
@@ -175,6 +177,7 @@ private:
 	KrBriefViewItem *currentlyRenamedItem;
 	Q3IconViewItem *pressedItem;
 	QMouseEvent *mouseEvent;
+	bool inWheelEvent; // fix recursion crash
 };
 
 #endif

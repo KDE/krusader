@@ -60,7 +60,7 @@ KrViewInstance briefView( BRIEFVIEW_ID, i18n( "&Brief View" ), Qt::ALT + Qt::SHI
 
 KrBriefView::KrBriefView( Q3Header * headerIn, QWidget *parent, bool &left, KConfig *cfg ):
 	K3IconView(parent), KrView( cfg ), header( headerIn ), _currDragItem( 0 ),
-            currentlyRenamedItem( 0 ), pressedItem( 0 ), mouseEvent( 0 ) {
+            currentlyRenamedItem( 0 ), pressedItem( 0 ), mouseEvent( 0 ), inWheelEvent( false ) {
 	_nameInKConfig = QString( "KrBriefView" ) + QString( ( left ? "Left" : "Right" ) );
 	KConfigGroup group( krConfig, "Private" );
 	if ( group.readEntry("Enable Input Method", true))
@@ -1137,6 +1137,18 @@ QMouseEvent * KrBriefView::transformMouseEvent( QMouseEvent * e )
 	
 	return e;
 }
+
+void KrBriefView::wheelEvent( QWheelEvent *e )
+{
+	// KDE 4.2 wheel event crashes
+	// because of recursive calls
+	if( inWheelEvent )
+		return;
+	inWheelEvent = true;
+	K3IconView::wheelEvent(e);
+	inWheelEvent = false;
+}
+
 KrView* KrBriefView::create( QWidget *parent, bool &left, KConfig *cfg ) {
 	QFrame * briefWidget = new QFrame( parent );
 	briefWidget->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
