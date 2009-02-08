@@ -27,6 +27,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+#include "../defaults.h"
 #include "packguibase.h"
 
 #include <qcheckbox.h>
@@ -63,6 +64,8 @@
 PackGUIBase::PackGUIBase( QWidget* parent )
     : QDialog( parent ), expanded( false )
 {
+    KConfigGroup group( krConfig, "Archives");
+
     setModal( true );
     resize( 430, 140 );
     setWindowTitle( i18n( "Pack" ) );
@@ -171,7 +174,10 @@ PackGUIBase::PackGUIBase( QWidget* parent )
 
     compressLayout->addLayout ( volumeHbox );
 
+    int level = group.readEntry( "Compression level", _defaultCompressionLevel );
     setCompressionLevel = new QCheckBox( i18n( "Set compression level" ), advancedWidget );
+    if ( level != _defaultCompressionLevel )
+        setCompressionLevel->setChecked( true );
     connect( setCompressionLevel, SIGNAL( toggled( bool ) ), this, SLOT( checkConsistency() ) );
     compressLayout->addWidget( setCompressionLevel, 0, 0 );
 
@@ -187,7 +193,7 @@ PackGUIBase::PackGUIBase( QWidget* parent )
     compressionSlider->setMinimum(1);
     compressionSlider->setMaximum(9);
     compressionSlider->setPageStep(1);
-    compressionSlider->setValue(5);
+    compressionSlider->setValue( level );
     compressionSlider->setTickPosition( QSlider::TicksBelow );
     sliderVBox->addWidget( compressionSlider );
 
@@ -268,7 +274,6 @@ PackGUIBase::PackGUIBase( QWidget* parent )
     commandLineSwitches = new KHistoryComboBox( advancedWidget );
     commandLineSwitches->setMaxCount(25);  // remember 25 items
     commandLineSwitches->setDuplicatesEnabled(false);
-    KConfigGroup group( krConfig, "Archives");
     QStringList list = group.readEntry("Command Line Switches", QStringList() );
     commandLineSwitches->setHistoryItems(list);
 
@@ -389,6 +394,8 @@ void PackGUIBase::checkConsistency() {
 bool PackGUIBase::extraProperties( QMap<QString,QString> & inMap ) {
     inMap.clear();
 
+    KConfigGroup group( krConfig, "Archives");
+
     if( password->isEnabled() && passwordAgain->isEnabled() ) {
       if( password->text() != passwordAgain->text() ) {
         KMessageBox::error( this, i18n( "Cannot pack! The passwords are different!" ) );
@@ -428,6 +435,8 @@ bool PackGUIBase::extraProperties( QMap<QString,QString> & inMap ) {
 
     if( setCompressionLevel->isEnabled() && setCompressionLevel->isChecked() ) {
       inMap[ "CompressionLevel" ] = QString("%1").arg( compressionSlider->value() );
+      int level = compressionSlider->value();
+      group.writeEntry( "Compression level", level );
     }
 
     QString cmdArgs = commandLineSwitches->currentText().trimmed();
@@ -472,7 +481,6 @@ bool PackGUIBase::extraProperties( QMap<QString,QString> & inMap ) {
 
       commandLineSwitches->addToHistory( cmdArgs );
       QStringList list = commandLineSwitches->historyItems();
-      KConfigGroup group( krConfig, "Archives");
       group.writeEntry("Command Line Switches", list);
 
       inMap[ "CommandLineSwitches" ] = cmdArgs;      

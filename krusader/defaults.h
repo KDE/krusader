@@ -200,6 +200,8 @@
 // Test Before Unpack ////
 #define _TestBeforeUnpack	true 
 // Supported Packers // ====> a QStringList of SYSTEM supported archives ( also new )
+// default compression level
+#define _defaultCompressionLevel 5
 
 /////////////////////// [UserActions]
 // Terminal for UserActions ///////////
