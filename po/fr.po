@@ -10,14 +10,14 @@
 # Guillerm David <dguillerm@gmail.com>, 2005, 2006.
 # Tourneur Henry-Nicolas <henry.nicolas@tourneur.be>, 2007, 2008.
 # Henry-Nicolas Tourneur <henry.nicolas@tourneur.be>, 2008.
-# Stanislas Zeller <uncensored.assault@gmail.com>, 2008.
+# Stanislas Zeller <uncensored.assault@gmail.com>, 2008, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-2.0.0-beta2\n"
-"Report-Msgid-Bugs-To: krusader-i18n@googlegroups.com\n"
+"Report-Msgid-Bugs-To: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "POT-Creation-Date: 2008-12-05 21:44+0100\n"
-"PO-Revision-Date: 2008-11-04 17:51+0100\n"
-"Last-Translator: Tourneur Henry-Nicolas <henry.nicolas@tourneur.be>\n"
+"PO-Revision-Date: 2009-02-10 10:23+0100\n"
+"Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -173,8 +173,7 @@ msgstr "Éjecter"
 #: GUI/mediabutton.cpp:423
 #, kde-format
 msgid "An error occurred while accessing '%1', the system responded: %2"
-msgstr ""
-"Une erreur est survenue lors de l'accès à « %1 », le système a répondu : %2"
+msgstr "Une erreur est survenue lors de l'accès à « %1 », le système a répondu : %2"
 
 #: GUI/mediabutton.cpp:426
 #, kde-format
@@ -227,7 +226,7 @@ msgstr ""
 #: GUI/kfnkeys.cpp:50
 #, kde-format
 msgid "F2 Term  "
-msgstr "F2 Console "
+msgstr "F2 Terminal "
 
 #: GUI/kfnkeys.cpp:51
 #, kde-format
@@ -235,8 +234,8 @@ msgid ""
 "<p>Open terminal in current directory.</p><p>The terminal can be defined in "
 "Konfigurator, default is <b>konsole</b>.</p>"
 msgstr ""
-"<p>Ouvre une console dans le dossier courant.</p><p>Vous pouvez définir le "
-"type de console dans Konfigurator, par défaut c'est <b>Konsole</b>.</p>"
+"<p>Ouvre un terminal dans le dossier courant.</p><p>Vous pouvez définir le "
+"type de terminal dans Konfigurator, par défaut c'est <b>Konsole</b>.</p>"
 
 #: GUI/kfnkeys.cpp:57
 #, kde-format
@@ -285,7 +284,7 @@ msgstr "Déplace le fichier d'un panneau à l'autre."
 #: GUI/kfnkeys.cpp:79
 #, kde-format
 msgid "F7 Mkdir "
-msgstr "F7 Créer Rép."
+msgstr "F7 Créer Dossier"
 
 #: GUI/kfnkeys.cpp:80
 #, kde-format
@@ -325,7 +324,7 @@ msgstr "Quitte Krusader."
 #: GUI/kfnkeys.cpp:121
 #, kde-format
 msgid " Term"
-msgstr " Console"
+msgstr " Terminal"
 
 #: GUI/kfnkeys.cpp:122
 #, kde-format
@@ -350,7 +349,7 @@ msgstr " Déplacer"
 #: GUI/kfnkeys.cpp:126
 #, kde-format
 msgid " Mkdir"
-msgstr " Créer Rép."
+msgstr " Créer Dossier"
 
 #: GUI/kfnkeys.cpp:127
 #, kde-format
@@ -497,8 +496,7 @@ msgstr ""
 #: VFS/virt_vfs.cpp:180
 #, kde-format
 msgid "Creating new directories is allowed only in the 'virt:/' directory."
-msgstr ""
-"La création de nouveaux dossiers n'est permise que dans le dossier « virt:/ »."
+msgstr "La création de nouveaux dossiers n'est permise que dans le dossier « virt:/ »."
 
 #: VFS/kiojobwrapper.cpp:185 Konfigurator/krresulttable.cpp:308
 #, kde-format
@@ -521,9 +519,9 @@ msgid "Move"
 msgstr "Déplacer"
 
 #: VFS/kiojobwrapper.cpp:220
-#, fuzzy, kde-format
+#, kde-format
 msgid "Target"
-msgstr "Tar"
+msgstr "Cible"
 
 #: VFS/krquery.cpp:159 Filter/generalfilter.cpp:142
 #: Konfigurator/konfigurator.cpp:159
@@ -740,7 +738,7 @@ msgstr "Tenir compte de la cass&e"
 #: Filter/generalfilter.cpp:113
 #, kde-format
 msgid "Search &for:"
-msgstr "Chercher &pour :"
+msgstr "Rechercher &pour :"
 
 #: Filter/generalfilter.cpp:126 Synchronizer/synchronizergui.cpp:1177
 #, kde-format
@@ -1103,8 +1101,7 @@ msgstr ""
 #: UserAction/expander.cpp:58
 #, kde-format
 msgid "Needed panel specification missing in expander %1"
-msgstr ""
-"Les spécifications nécessaires au panneau sont manquantes dans l'extenseur %1"
+msgstr "Les spécifications nécessaires au panneau sont manquantes dans l'extenseur %1"
 
 #: UserAction/expander.cpp:73
 #, kde-format
@@ -1136,8 +1133,7 @@ msgstr "Total :"
 #: UserAction/expander.cpp:401
 #, kde-format
 msgid "Expander: Bad argument to Count: %1 is not valid item specifier"
-msgstr ""
-"Extenseur : mauvais argument à Count : %1 n'est pas une valeur valable."
+msgstr "Extenseur : mauvais argument à Count : %1 n'est pas une valeur valable."
 
 #: UserAction/expander.cpp:410
 #, kde-format
@@ -1270,8 +1266,7 @@ msgstr "Quoi copier :"
 #: UserAction/expander.cpp:648
 #, kde-format
 msgid "Append to current clipboard content with this separator (optional):"
-msgstr ""
-"Ajouter au contenu courant du presse-papiers avec ce séparateur (optionnel) :"
+msgstr "Ajouter au contenu courant du presse-papiers avec ce séparateur (optionnel) :"
 
 #: UserAction/expander.cpp:653
 #, kde-format
@@ -1281,8 +1276,7 @@ msgstr "Extenseur : au moins un paramètre est requis pour coller !"
 #: UserAction/expander.cpp:659
 #, kde-format
 msgid "Expander: %Each% may not be in the second argument of %Clipboard%"
-msgstr ""
-"Extenseur : %Each% ne devrait pas être le second argument de %Clipboard%"
+msgstr "Extenseur : %Each% ne devrait pas être le second argument de %Clipboard%"
 
 #: UserAction/expander.cpp:672
 #, kde-format
@@ -1307,7 +1301,7 @@ msgstr "Extenseur : %Each% ne devrait pas être le second argument de %Move%"
 #: UserAction/expander.cpp:697
 #, kde-format
 msgid "Expander: invalid URL's in %_Copy(\"src\", \"dest\")%"
-msgstr "Extenseur : URL non valable dans %_Copy(« src »,« dest »)%"
+msgstr "Extenseur : URL non valable dans %_Copy(« src »,« dest »)%"
 
 #: UserAction/expander.cpp:708
 #, kde-format
@@ -1337,7 +1331,7 @@ msgstr "%Each% ne devrait pas être le second argument de %Move%"
 #: UserAction/expander.cpp:733
 #, kde-format
 msgid "Expander: invalid URL's in %_Move(\"src\", \"dest\")%"
-msgstr "Extenseur : URL non valable dans %Move(« src », « dest »)%"
+msgstr "Extenseur : URL non valable dans %Move(« src », « dest »)%"
 
 #: UserAction/expander.cpp:744
 #, kde-format
@@ -1373,8 +1367,7 @@ msgstr "Charger un profil pour un panneau..."
 #: UserAction/expander.cpp:787
 #, kde-format
 msgid "Expander: no profile specified for %_Profile(profile)%; abort..."
-msgstr ""
-"Extenseur : pas de profile spécifié pour %_Profile(profile); annulation..."
+msgstr "Extenseur : pas de profile spécifié pour %_Profile(profile); annulation..."
 
 #: UserAction/expander.cpp:798
 #, kde-format
@@ -1457,7 +1450,7 @@ msgstr "Visualiser un fichier avec l'éditeur interne de Krusader..."
 #: UserAction/expander.cpp:1016
 #, kde-format
 msgid "Which file to view (normally '%aCurrent%'):"
-msgstr "Quel fichier à afficher (normalement « %Current% ») :"
+msgstr "Quel fichier à afficher (normalement « %Current% ») :"
 
 #: UserAction/expander.cpp:1017
 #, kde-format
@@ -1482,8 +1475,7 @@ msgstr "%Each% n'est pas admit comme paramètre pour %1"
 #: UserAction/expander.cpp:1082
 #, kde-format
 msgid "Expander: Bad panel specifier %1 in placeholder %2"
-msgstr ""
-"Extenseur : mauvaise spécification pour le panneau %1 dans l'emplacement %2"
+msgstr "Extenseur : mauvaise spécification pour le panneau %1 dans l'emplacement %2"
 
 #: UserAction/expander.cpp:1111
 #, kde-format
@@ -1617,8 +1609,7 @@ msgstr ""
 
 #: UserAction/kraction.cpp:224
 #, kde-format
-msgid ""
-"Embedded terminal emulator does not work, using output collection instead."
+msgid "Embedded terminal emulator does not work, using output collection instead."
 msgstr ""
 "L'émulateur de terminal amélioré ne fonctionne pas, utilisation du ramasseur "
 "de sortie à la place."
@@ -1803,8 +1794,7 @@ msgstr " Désélectionner des fichiers"
 #: Panel/listpanel.cpp:654
 #, kde-format
 msgid "No space information on non-local filesystems"
-msgstr ""
-"Pas d'informations d'espace disque sur les systèmes de fichiers distants"
+msgstr "Pas d'informations d'espace disque sur les systèmes de fichiers distants"
 
 #: Panel/listpanel.cpp:661
 #, kde-format
@@ -1964,8 +1954,7 @@ msgstr " vers : "
 #: Panel/panelpopup.cpp:270
 #, kde-format
 msgid "Tree Panel: a tree view of the local file system"
-msgstr ""
-"Panneau hiérarchique : une vue hiérarchique du système de fichiers locaux"
+msgstr "Panneau hiérarchique : une vue hiérarchique du système de fichiers locaux"
 
 #: Panel/panelpopup.cpp:278
 #, kde-format
@@ -2195,7 +2184,7 @@ msgstr "Dossier..."
 #: Panel/krpopupmenu.cpp:232
 #, kde-format
 msgid "Text File..."
-msgstr "Fichiers textes..."
+msgstr "Fichier texte..."
 
 #: Panel/krpopupmenu.cpp:236
 #, kde-format
@@ -2205,14 +2194,12 @@ msgstr "Créer un nouveau"
 #: Panel/panelfunc.cpp:277
 #, kde-format
 msgid "You can edit links only on local file systems"
-msgstr ""
-"Vous ne pouvez éditer de liens que dans les systèmes de fichiers locaux"
+msgstr "Vous ne pouvez éditer de liens que dans les systèmes de fichiers locaux"
 
 #: Panel/panelfunc.cpp:288
 #, kde-format
 msgid "The current file is not a link, so I can't redirect it."
-msgstr ""
-"Le fichier courant n'est pas un lien, alors la redirection est impossible."
+msgstr "Le fichier courant n'est pas un lien, alors la redirection est impossible."
 
 #: Panel/panelfunc.cpp:295
 #, kde-format
@@ -2353,8 +2340,7 @@ msgid ""
 msgid_plural ""
 "Do you really want to delete these %1 virtual items (physical files stay "
 "untouched)?"
-msgstr[0] ""
-"Voulez-vous vraiment effacer cet élément virtuel (l'élément physique reste) ?"
+msgstr[0] "Voulez-vous vraiment effacer cet élément virtuel (l'élément physique reste) ?"
 msgstr[1] ""
 "Voulez-vous vraiment effacer ces %1 éléments virtuels (les éléments "
 "physiques restent) ?"
@@ -2496,94 +2482,94 @@ msgstr ""
 "papiers !"
 
 #: Queue/queuewidget.cpp:128 Queue/queuedialog.cpp:156
-#, fuzzy, kde-format
+#, kde-format
 msgid "Queue Manager"
-msgstr "Demander le nom"
+msgstr "Gestionnaire de file d'attente"
 
 #: Queue/queuewidget.cpp:144
 #, kde-format
 msgid "Deleting this job will abort the pending job. Do you wish to continue?"
-msgstr ""
+msgstr "Supprimer ce travail va arrêter le travail en cours. Voulez-vous vraiment continuer ?"
 
 #: Queue/queue_mgr.cpp:9
-#, fuzzy, kde-format
+#, kde-format
 msgid "default"
-msgstr "Par défaut"
+msgstr "par défaut"
 
 #: Queue/queuedialog.cpp:103 Queue/queuedialog.cpp:134
 #: Queue/queuedialog.cpp:389
-#, fuzzy, kde-format
+#, kde-format
 msgid "Krusader::Queue Manager"
-msgstr "Krusader::File d'attente"
+msgstr "Krusader::Gestionnaire de file d'attente"
 
 #: Queue/queuedialog.cpp:110
-#, fuzzy, kde-format
+#, kde-format
 msgid "Please enter the time to start processing the queue:"
-msgstr "Saisissez la nouvelle cible du lien : "
+msgstr "Veuillez saisir l'heure de démarrage du processus de file d'attente : "
 
 #: Queue/queuedialog.cpp:179
-#, fuzzy, kde-format
+#, kde-format
 msgid "Create a new queue (Ctrl+T)"
-msgstr "Créer un nouveau lien vers : "
+msgstr "Créer une nouvelle file d'attente (Ctrl+T)"
 
 #: Queue/queuedialog.cpp:185
-#, fuzzy, kde-format
+#, kde-format
 msgid "Remove the current queue (Ctrl+W)"
-msgstr "enregistrer la sélection courante"
+msgstr "Supprimer la file d'attente courante (Ctrl+W)"
 
 #: Queue/queuedialog.cpp:198 Queue/queuedialog.cpp:427
-#, fuzzy, kde-format
+#, kde-format
 msgid "unused"
-msgstr "Suspendre"
+msgstr "inutilisé"
 
 #: Queue/queuedialog.cpp:204
 #, kde-format
 msgid "Schedule queue starting (Ctrl+S)"
-msgstr ""
+msgstr "Programmer le démarrage de la file d'attente (Ctrl+S)"
 
 #: Queue/queuedialog.cpp:343
 #, kde-format
 msgid "Start processing the queue (Ctrl+P)"
-msgstr ""
+msgstr "Démarrer la gestion de la file d'attente (Ctrl+P)"
 
 #: Queue/queuedialog.cpp:346
 #, kde-format
 msgid "The queue is paused."
-msgstr ""
+msgstr "La file d'attente est en mode pause."
 
 #: Queue/queuedialog.cpp:348
 #, kde-format
 msgid "Scheduled to start at %1."
-msgstr ""
+msgstr "Programmé pour démarrer à %1."
 
 #: Queue/queuedialog.cpp:351
 #, kde-format
 msgid "The queue is running."
-msgstr ""
+msgstr "La file d'attente est en cours d'exécution."
 
 #: Queue/queuedialog.cpp:353
 #, kde-format
 msgid "Pause processing the queue (Ctrl+P)"
-msgstr ""
+msgstr "Mettre en pause la file d'attente (Ctrl+P)"
 
 #: Queue/queuedialog.cpp:390
-#, fuzzy, kde-format
+#, kde-format
 msgid "Please enter the name of the new queue"
-msgstr "Veuillez définir un nom unique pour cette action"
+msgstr "Veuillez saisir le nom de cette nouvelle file d'attente"
 
 #: Queue/queuedialog.cpp:399
 #, kde-format
 msgid "A queue already exists with this name!"
-msgstr ""
+msgstr "Une file d'attente existe toujours avec ce nom !"
 
 #: Queue/queuedialog.cpp:411
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Deleting the queue requires aborting all pending jobs. Do you wish to "
 "continue?"
 msgstr ""
-"Se déplacer dans le dossier parent implique le chargement du contenu de « %"
-"1 ». Voulez-vous continuer ?"
+"Supprimer la file d'attente requiert d'annuler tous les travaux en cours. Voulez-vous "
+"vraiment continuer ?"
 
 #: Queue/queue.cpp:66
 #, kde-format
@@ -2698,9 +2684,9 @@ msgid "Edit (F4)"
 msgstr "Édition (F4)"
 
 #: Locate/locate.cpp:396 Search/krsearchdialog.cpp:626
-#, fuzzy, kde-format
+#, kde-format
 msgid "Compare by content (F10)"
-msgstr "Comparer par contenu"
+msgstr "Comparer par contenu (F10)"
 
 #: Locate/locate.cpp:401
 #, kde-format
@@ -3013,7 +2999,7 @@ msgstr "Espace &disque occupé..."
 #: krusader.cpp:735
 #, kde-format
 msgid "&Queue Manager..."
-msgstr ""
+msgstr "&Gestionnaire de file d'attente..."
 
 #: krusader.cpp:736
 #, kde-format
@@ -3184,14 +3170,14 @@ msgid "Edit File"
 msgstr "Éditer le fichier"
 
 #: krusader.cpp:785
-#, fuzzy, kde-format
+#, kde-format
 msgid "Copy by queue..."
-msgstr "Copier..."
+msgstr "Copier par file d'attente..."
 
 #: krusader.cpp:786
-#, fuzzy, kde-format
+#, kde-format
 msgid "Move by queue..."
-msgstr "Déplacer..."
+msgstr "Déplacer par file d'attente..."
 
 #: krusader.cpp:787
 #, kde-format
@@ -3266,7 +3252,7 @@ msgstr "Rechercher des fichiers"
 #: krusader.cpp:810
 #, kde-format
 msgid "JavaScript Console..."
-msgstr "Console Javascript..."
+msgstr "Terminal Javascript..."
 
 #: krusader.cpp:962
 #, kde-format
@@ -3276,8 +3262,7 @@ msgstr "Voulez-vous vraiment quitter ?"
 #: KViewer/panelviewer.cpp:33
 #, kde-format
 msgid "No file selected or selected file can't be displayed."
-msgstr ""
-"Pas de fichier sélectionné ou impossible d'afficher le fichier sélectionné."
+msgstr "Pas de fichier sélectionné ou impossible d'afficher le fichier sélectionné."
 
 #: KViewer/panelviewer.cpp:170 KViewer/krviewer.cpp:694
 #, kde-format
@@ -3297,7 +3282,7 @@ msgstr "Afficheur &texte"
 #: KViewer/krviewer.cpp:86
 #, kde-format
 msgid "&Hex viewer"
-msgstr "Afficheur &hex"
+msgstr "Afficheur &hexadécimal"
 
 #: KViewer/krviewer.cpp:88
 #, kde-format
@@ -3652,8 +3637,7 @@ msgstr ""
 
 #: MountMan/kmountmangui.cpp:364
 #, kde-format
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Mountman a reporté une erreur interne. Veuillez le signaler aux "
 "développeurs. Merci."
@@ -3724,14 +3708,12 @@ msgid "Heiner Eichmann"
 msgstr "Heiner Eichmann"
 
 #: main.cpp:119
-#, fuzzy
 msgid "Jonas Bähr"
-msgstr "Jonas Baehr"
+msgstr "Jonas Bähr"
 
 #: main.cpp:120 main.cpp:125
-#, fuzzy
 msgid "Václav Jůza"
-msgstr "Václav Juza"
+msgstr "Václav Jůza"
 
 #: main.cpp:121 main.cpp:154
 msgid "Dirk Eschler"
@@ -3762,7 +3744,6 @@ msgid "Matej Urbancic"
 msgstr "Matej Urbancic"
 
 #: main.cpp:124
-#, fuzzy
 msgid "Marketing & Product Research"
 msgstr "Marketing et recherche produit"
 
@@ -3771,14 +3752,12 @@ msgid "QA, bug-hunting, patches and general help"
 msgstr "AQ, résolution de bogues, patches et aide générale"
 
 #: main.cpp:126
-#, fuzzy
 msgid "Jiří Paleček"
-msgstr "Jiri Palecek"
+msgstr "Jiří Paleček"
 
 #: main.cpp:127
-#, fuzzy
 msgid "Jiří Klement"
-msgstr "Jiri Klement"
+msgstr "Jiří Klement"
 
 #: main.cpp:127
 msgid "Important help in KDE 4 porting"
@@ -3825,9 +3804,8 @@ msgid "The old Bookmark Module"
 msgstr "L'ancien module de signet"
 
 #: main.cpp:133
-#, fuzzy
 msgid "Hans Löffler"
-msgstr "Hans Loeffler"
+msgstr "Hans Löffler"
 
 #: main.cpp:133
 msgid "Dir history button"
@@ -3890,9 +3868,8 @@ msgid "Doutor Zero"
 msgstr "Doutor Zero"
 
 #: main.cpp:141
-#, fuzzy
 msgid "Brazilian Portuguese translation"
-msgstr "Traduction Portugaise"
+msgstr "Traduction portugaise brésilienne"
 
 #: main.cpp:142
 msgid "Milen Ivanov"
@@ -3931,9 +3908,8 @@ msgid "Martin Sixta"
 msgstr "Martin Sixta"
 
 #: main.cpp:147
-#, fuzzy
 msgid "Vaclav Jůza"
-msgstr "Vaclav Juza"
+msgstr "Vaclav Jůza"
 
 #: main.cpp:147
 msgid "Czech translation"
@@ -4179,8 +4155,7 @@ msgstr "L'application est déjà en cours d'éxécution !\n"
 #: krusaderview.cpp:95
 #, kde-format
 msgid "Function keys allow performing fast operations on files."
-msgstr ""
-"Les touches de fonctions permettent des opérations rapides sur des fichiers."
+msgstr "Les touches de fonctions permettent des opérations rapides sur des fichiers."
 
 #: krusaderview.cpp:307
 #, kde-format
@@ -4472,8 +4447,7 @@ msgstr "Importer les raccourcis"
 #: Dialogs/krkeydialog.cpp:42
 #, kde-format
 msgid "Load a keybinding profile, e.g., total_commander.keymap"
-msgstr ""
-"Charger un profil de raccourcis clavier, par exemple total_commander.keymap"
+msgstr "Charger un profil de raccourcis clavier, par exemple total_commander.keymap"
 
 #: Dialogs/krkeydialog.cpp:46
 #, kde-format
@@ -4532,8 +4506,7 @@ msgstr "Importation terminée"
 
 #: Dialogs/krkeydialog.cpp:135
 #, kde-format
-msgid ""
-"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
 msgstr ""
 "<qt>Le fichier <b>%1</b> existe déjà.\n"
 "Voulez-vous vraiment l'écraser ?</qt>"
@@ -4759,8 +4732,7 @@ msgstr ""
 #: Dialogs/checksumdlg.cpp:352
 #, kde-format
 msgid "About to verify checksum for the following files"
-msgstr ""
-"À propos de la vérification de la somme de contrôle des fichiers suivants"
+msgstr "À propos de la vérification de la somme de contrôle des fichiers suivants"
 
 #: Dialogs/checksumdlg.cpp:367
 #, kde-format
@@ -4930,8 +4902,7 @@ msgstr "La commande accepte"
 #: ActionMan/ui_actionproperty.h:616 rc.cpp:21
 #, kde-format
 msgid "Substitute the <b>Placeholders</b> with local filenames."
-msgstr ""
-"Substituer les <b>variables spéciales</b> avec les noms de fichiers locaux."
+msgstr "Substituer les <b>variables spéciales</b> avec les noms de fichiers locaux."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 86
@@ -5157,9 +5128,9 @@ msgstr "Aucun"
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 398
 #: ActionMan/ui_actionproperty.h:722 rc.cpp:116
-#, fuzzy, kde-format
+#, kde-format
 msgid "If checked, the action is shown in the Useractions menus."
-msgstr "Si non coché, l'action ne sera pas visible dans les menus."
+msgstr "Si coché, l'action est affichée dans les menus Actions Utilisateur."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 401
@@ -5187,8 +5158,7 @@ msgstr "Enregistrer la sortie"
 #: ActionMan/ui_actionproperty.h:735 rc.cpp:131
 #, kde-format
 msgid "Separate standard out and standard error in the output collection."
-msgstr ""
-"Séparer la sortie standard et la sortie erreur dans la collection de sortie."
+msgstr "Séparer la sortie standard et la sortie erreur dans la collection de sortie."
 
 #. i18n: tag string
 #. i18n: file ./ActionMan/actionproperty.ui line 436
@@ -5428,10 +5398,8 @@ msgstr "Supprimer les actions utilisateur sélectionnées"
 
 #: ActionMan/useractionpage.cpp:134
 #, kde-format
-msgid ""
-"The current action has been modified. Do you want to apply these changes?"
-msgstr ""
-"La page courante a été modifiée Voulez-vous appliquer ces modifications ?"
+msgid "The current action has been modified. Do you want to apply these changes?"
+msgstr "La page courante a été modifiée Voulez-vous appliquer ces modifications ?"
 
 #: ActionMan/useractionpage.cpp:211
 #, kde-format
@@ -5642,14 +5610,12 @@ msgstr "&Filtre fichier : "
 #: Synchronizer/synchronizergui.cpp:1160
 #, kde-format
 msgid "The left base directory used during the synchronisation process."
-msgstr ""
-"Le dossier de base de gauche utilisé pendant le processus de synchronisation."
+msgstr "Le dossier de base de gauche utilisé pendant le processus de synchronisation."
 
 #: Synchronizer/synchronizergui.cpp:1193
 #, kde-format
 msgid "The right base directory used during the synchronisation process."
-msgstr ""
-"Le dossier de base de droite utilisé pendant le processus de synchronisation."
+msgstr "Le dossier de base de droite utilisé pendant le processus de synchronisation."
 
 #: Synchronizer/synchronizergui.cpp:1207
 #, kde-format
@@ -5659,8 +5625,7 @@ msgstr "Inclure les sous-dossiers"
 #: Synchronizer/synchronizergui.cpp:1210
 #, kde-format
 msgid "Compare not only the base directories but their subdirectories as well."
-msgstr ""
-"Compare non seulement les dossiers de base mais aussi les sous-dossiers."
+msgstr "Compare non seulement les dossiers de base mais aussi les sous-dossiers."
 
 #: Synchronizer/synchronizergui.cpp:1211
 #, kde-format
@@ -5738,8 +5703,7 @@ msgstr "Affic&her les options"
 #: Synchronizer/synchronizergui.cpp:1257
 #, kde-format
 msgid "Show files marked to <i>Copy from left to right</i> (CTRL+L)."
-msgstr ""
-"Lister les fichiers marqués pour la <i>copie de gauche à droite</i> (CTRL+L)."
+msgstr "Lister les fichiers marqués pour la <i>copie de gauche à droite</i> (CTRL+L)."
 
 #: Synchronizer/synchronizergui.cpp:1267
 #, kde-format
@@ -5754,8 +5718,7 @@ msgstr "Lister les fichiers exclus (CTRL+D)."
 #: Synchronizer/synchronizergui.cpp:1287
 #, kde-format
 msgid "Show files marked to <i>Copy from right to left</i> (CTRL+R)."
-msgstr ""
-"Lister les fichiers marqués pour la <i>copie de droite à gauche</i> (CTRL+R)."
+msgstr "Lister les fichiers marqués pour la <i>copie de droite à gauche</i> (CTRL+R)."
 
 #: Synchronizer/synchronizergui.cpp:1297
 #, kde-format
@@ -6032,8 +5995,7 @@ msgstr "Erreur à l'ouverture de %1 !"
 #: Synchronizer/synchronizertask.cpp:314
 #, kde-format
 msgid "IO error at comparing file %1 with %2!"
-msgstr ""
-"Erreur d'entrées / sorties lors de la comparaison du fichier %1 avec %2 !"
+msgstr "Erreur d'entrées / sorties lors de la comparaison du fichier %1 avec %2 !"
 
 #: Synchronizer/synchronizertask.cpp:350
 #, kde-format
@@ -6778,8 +6740,7 @@ msgstr "Recherche des outils..."
 
 #: Konfigurator/kggeneral.cpp:214
 #, kde-format
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Soyez sûr d'installer les nouveaux outils dans votre <code>$PATH</code> (par "
 "ex. : /usr/bin)"
@@ -6958,8 +6919,7 @@ msgstr "Lier des types MIMES vers des protocoles"
 #: Konfigurator/konfigurator.cpp:221
 #, kde-format
 msgid "The current page has been changed. Do you want to apply changes?"
-msgstr ""
-"La page courante a été modifiée. Voulez-vous appliquer ces modifications ?"
+msgstr "La page courante a été modifiée. Voulez-vous appliquer ces modifications ?"
 
 #: Konfigurator/kglookfeel.cpp:83
 #, kde-format
@@ -7049,8 +7009,7 @@ msgstr "Terminal en mode plein écran (style mc)"
 #: Konfigurator/kglookfeel.cpp:100
 #, kde-format
 msgid "Terminal is shown instead of the Krusader window (full screen)."
-msgstr ""
-"Le terminal est affichée à la place de la fenêtre Krusader (plein écran)"
+msgstr "Le terminal est affichée à la place de la fenêtre Krusader (plein écran)"
 
 #: Konfigurator/kglookfeel.cpp:109
 #, kde-format
@@ -7094,7 +7053,7 @@ msgstr "Type de panneau par défaut : "
 #: Konfigurator/kglookfeel.cpp:177
 #, kde-format
 msgid "Panel font:"
-msgstr "Police du panneau : "
+msgstr "Police du panneau : "
 
 #: Konfigurator/kglookfeel.cpp:191
 #, kde-format
@@ -7104,7 +7063,7 @@ msgstr "Taille des icônes de la liste de fichiers : "
 #: Konfigurator/kglookfeel.cpp:196
 #, kde-format
 msgid "12"
-msgstr ""
+msgstr "12"
 
 #: Konfigurator/kglookfeel.cpp:197
 #, kde-format
@@ -7187,27 +7146,27 @@ msgstr ""
 #: Konfigurator/kglookfeel.cpp:234
 #, kde-format
 msgid "Sort method:"
-msgstr ""
+msgstr "Trier par méthode"
 
 #: Konfigurator/kglookfeel.cpp:238
 #, kde-format
 msgid "Alphabetical"
-msgstr ""
+msgstr "Alphabétique"
 
 #: Konfigurator/kglookfeel.cpp:239
 #, kde-format
 msgid "Alphabetical and numbers"
-msgstr ""
+msgstr "Alphabétique et numéros"
 
 #: Konfigurator/kglookfeel.cpp:240
-#, fuzzy, kde-format
+#, kde-format
 msgid "Character code"
-msgstr "N'importe quel caractère"
+msgstr "Code de caractères"
 
 #: Konfigurator/kglookfeel.cpp:241
 #, kde-format
 msgid "Character code and numbers"
-msgstr ""
+msgstr "Numéros et code de caractères"
 
 #: Konfigurator/kglookfeel.cpp:253
 #, kde-format
@@ -7294,8 +7253,7 @@ msgstr "Bouton racine (/)"
 #: Konfigurator/kglookfeel.cpp:298
 #, kde-format
 msgid "Changes the panel directory to the root directory."
-msgstr ""
-"Modifie le dossier actuel par le dossier racine (superutilisateur ou / )."
+msgstr "Modifie le dossier actuel par le dossier racine (superutilisateur ou / )."
 
 #: Konfigurator/kglookfeel.cpp:299
 #, kde-format
@@ -7304,8 +7262,7 @@ msgstr "Bouton bascule pour la navigation synchronisée"
 
 #: Konfigurator/kglookfeel.cpp:299
 #, kde-format
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr ""
 "Chaque modification de dossier dans le panneau est aussi réalisée dans "
 "l'autre panneau."
@@ -7369,19 +7326,18 @@ msgstr ""
 #: Konfigurator/kglookfeel.cpp:341
 #, kde-format
 msgid "Ergonomic Mode"
-msgstr ""
+msgstr "Mode ergonomique"
 
 #: Konfigurator/kglookfeel.cpp:341
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "The left mouse button does not select, but sets the current file without "
 "affecting the current selection. The right mouse button invokes the context-"
 "menu. You can select with Ctrl key and the left button."
 msgstr ""
-"Le bouton gauche ne sélectionne pas, mais définit le fichier comme courant "
-"sans l'ajouter à la sélection courante. Le bouton droit sélectionne "
-"plusieurs fichiers et le menu contextuel est invoqué par le bouton droit "
-"(appui long)."
+"Le bouton gauche ne sélectionne pas, mais définit le fichier courant "
+"sans affecter la sélection courante. Le bouton droit invoque le menu "
+"contextuel. Vous pouvez sélectionner avec la touche Ctrl et le bouton gauche."
 
 #: Konfigurator/kglookfeel.cpp:342
 #, kde-format
@@ -7424,7 +7380,7 @@ msgid ""
 "Mouse</i></p>"
 msgstr ""
 "<p>Utiliser les configurations globales de KDE : </p><p><i>Centre de "
-"Contrôle de KDE / Clavier & Souris / Souris</i></p>"
+"Contrôle de KDE / Clavier &Souris / Souris</i></p>"
 
 #: Konfigurator/kglookfeel.cpp:375
 #, kde-format
@@ -7625,8 +7581,7 @@ msgstr "Confirmations"
 #: Konfigurator/kgadvanced.cpp:80
 #, kde-format
 msgid "Request user confirmation for the following operations:"
-msgstr ""
-"Demande d'une confirmation utilisateur pour les opérations suivantes : "
+msgstr "Demande d'une confirmation utilisateur pour les opérations suivantes : "
 
 #: Konfigurator/kgadvanced.cpp:85
 #, kde-format
@@ -8308,8 +8263,7 @@ msgstr "L'émulateur de terminal sera visible après le redémarrage."
 #: Konfigurator/kgstartup.cpp:98
 #, kde-format
 msgid "Save last position, size and panel settings"
-msgstr ""
-"Enregistrer la configuration de la dernière position, taille et panneau"
+msgstr "Enregistrer la configuration de la dernière position, taille et panneau"
 
 #: Konfigurator/kgstartup.cpp:98
 #, kde-format
@@ -8359,7 +8313,7 @@ msgstr "GZip"
 #: Konfigurator/kgarchives.cpp:64
 #, kde-format
 msgid "LZMA"
-msgstr ""
+msgstr "LZMA"
 
 #: Konfigurator/kgarchives.cpp:65
 #, kde-format
@@ -8439,8 +8393,7 @@ msgstr "Tester l'archive avant décompression"
 
 #: Konfigurator/kgarchives.cpp:108
 #, kde-format
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Des archives corrompues peuvent entraîner un plantage du logiciel. Un test "
 "est d'abord conseillé."
@@ -8452,8 +8405,7 @@ msgstr "Recherche des outils de compression..."
 
 #: Konfigurator/kgarchives.cpp:126
 #, kde-format
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Soyez sûr d'installer les nouveaux outils de compression dans votre <code>"
 "$PATH</code> (par ex. : /usr/bin)"
@@ -8575,8 +8527,7 @@ msgstr ""
 #: krslots.cpp:480
 #, kde-format
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
-msgstr ""
-"Impossible de démarrer « mount » ! Vérifiez les dépendances dans Konfigurator."
+msgstr "Impossible de démarrer « mount » ! Vérifiez les dépendances dans Konfigurator."
 
 #: krslots.cpp:520
 #, kde-format
@@ -8775,8 +8726,7 @@ msgstr "Fichier de CRC non valable !"
 
 #: Splitter/combiner.cpp:154
 #, kde-format
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "impossible de vérifier la validité du fichier sans un fichier de CRC "
 "correct. Continuer la fusion ?"
@@ -8794,8 +8744,7 @@ msgstr "Taille de fichier incorrecte ! Le fichier a sans doute été corrompu 
 #: Splitter/combiner.cpp:272
 #, kde-format
 msgid "Incorrect CRC checksum! The file might have been corrupted!"
-msgstr ""
-"Somme de contrôle CRC incorrect ! Le fichier a sans doute été corrompu !"
+msgstr "Somme de contrôle CRC incorrect ! Le fichier a sans doute été corrompu !"
 
 #: Splitter/combiner.cpp:298 Splitter/splitter.cpp:203
 #, kde-format
@@ -8907,5 +8856,3 @@ msgstr "Ce protocole ne gère pas la reprise"
 msgid "Writing to %1 is not supported"
 msgstr "L'écriture dans %1 n'est pas gérée"
 
-#~ msgid "Brazilian Portuguese"
-#~ msgstr "Portugais Brésilien"
