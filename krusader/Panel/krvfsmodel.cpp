@@ -63,24 +63,54 @@ private:
 
 typedef bool(*LessThan)(SortProps *,SortProps *);
 
-KrVfsModel::KrVfsModel( KrView * view ): QAbstractListModel(0), _vfs(0), _extensionEnabled( true ), _view( view ),
-                                         _lastSortOrder( KrVfsModel::Name ), _lastSortDir(Qt::AscendingOrder) {}
+KrVfsModel::KrVfsModel( KrView * view ): QAbstractListModel(0), _extensionEnabled( true ), _view( view ),
+                                         _lastSortOrder( KrVfsModel::Name ), _lastSortDir(Qt::AscendingOrder),
+                                         _dummyVfile( 0 ), _ready( false ) {}
 
-void KrVfsModel::setVfs(vfs* v)
+void KrVfsModel::setVfs(vfs* v, bool upDir)
 {
 	emit layoutAboutToBeChanged();
 	
-	_vfs = v;
-	
-	vfile *vf = _vfs->vfs_getFirstFile();
-	while (vf) {
-			_vfiles.append(vf);
-			vf = _vfs->vfs_getNextFile();
+	_dummyVfile = 0;
+	if( upDir ) {
+		_dummyVfile = new vfile( "..", 0, "drwxrwxrwx", 0, false, 0, 0, "", "", 0, -1);
+		_dummyVfile->vfile_setIcon( "go-up" );
+		_vfiles.append(_dummyVfile);
 	}
+
+	vfile *vf = v->vfs_getFirstFile();
+	while (vf) {
+			bool add = true;
+			bool isDir = vf->vfile_isDir();
+			if ( !isDir || ( isDir && ( properties()->filter & KrViewProperties::ApplyToDirs ) ) ) {
+				switch ( properties()->filter ) {
+				case KrViewProperties::All :
+					break;
+				case KrViewProperties::Custom :
+					if ( !properties()->filterMask.match( vf ) )
+						add = false;
+					break;
+				case KrViewProperties::Dirs:
+					if ( !isDir )
+						add = false;
+					break;
+				case KrViewProperties::Files:
+					if ( isDir )
+						add = false;
+					break;
+				default:
+					break;
+				}
+			}
+			if( add )
+				_vfiles.append(vf);
+			vf = v->vfs_getNextFile();
+	}
+	_ready = true;
 	// TODO: connect all addedVfile/deleteVfile and friends signals
 	// TODO: make a more efficient implementation that this dummy one :-)
 	
-	emit dataChanged(index(0, 0), index(_vfs->vfs_noOfFiles()-1, 0));
+	emit dataChanged(index(0, 0), index(_vfiles.count()-1, 0));
 	emit layoutChanged();
 	sort();
 }
@@ -98,10 +128,7 @@ void KrVfsModel::clear()
 
 int KrVfsModel::rowCount(const QModelIndex& parent) const
 {
-	if (!_vfs) return 0;
-	
-	// simply return the number of items in the vfs
-	return _vfs->vfs_noOfFiles();
+	return _vfiles.count();
 }
 
 
@@ -111,7 +138,7 @@ int KrVfsModel::columnCount(const QModelIndex &parent) const {
 
 QVariant KrVfsModel::data(const QModelIndex& index, int role) const
 {
-	if (!index.isValid() || !_vfs)
+	if (!index.isValid())
 		return QVariant();
 
 	if (index.row() >= rowCount())
@@ -463,7 +490,7 @@ void KrVfsModel::sort ( int column, Qt::SortOrder order )
 	
 	QVector < SortProps * > sorting (_vfiles.count());
 	for (int i = 0; i < _vfiles.count(); ++i)
-		sorting[ i ] = new SortProps( _vfiles[ i ], column, properties(), false, order == Qt::AscendingOrder );
+		sorting[ i ] = new SortProps( _vfiles[ i ], column, properties(), _vfiles[ i ] == _dummyVfile, order == Qt::AscendingOrder );
 	
 	LessThan compare = (order == Qt::AscendingOrder ? &itemLessThan : &itemGreaterThan);
 	qSort(sorting.begin(), sorting.end(), compare);

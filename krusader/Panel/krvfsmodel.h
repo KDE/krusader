@@ -20,8 +20,8 @@ public:
 	KrVfsModel( KrView * );
 	virtual ~KrVfsModel();
 	
-	inline bool ready() const { return _vfs != 0; }
-	void setVfs(vfs* v);
+	inline bool ready() const { return _ready; }
+	void setVfs(vfs* v, bool upDir);
 	
 	int rowCount(const QModelIndex &parent = QModelIndex()) const;
 	int columnCount(const QModelIndex &parent = QModelIndex()) const;
@@ -35,11 +35,12 @@ public:
 	
 	
 protected:
-	vfs              * _vfs;
 	QVector<vfile*>    _vfiles;
 	bool               _extensionEnabled;
 	KrView           * _view;
 	int                _lastSortOrder;
 	Qt::SortOrder      _lastSortDir;
+	vfile *            _dummyVfile;
+	bool               _ready;
 };
 #endif // __krvfsmodel__

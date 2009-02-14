@@ -201,81 +201,8 @@ void KrInterView::clear()
 
 void KrInterView::addItems(vfs* v, bool addUpDir)
 {
-	_model->setVfs(v);
+	_model->setVfs(v, addUpDir);
 	this->setCurrentIndex(_model->index(0, 0));
-	
-#if 0
-	Q3ListViewItem * item = firstChild();
-	Q3ListViewItem *currentItem = item;
-	QString size, name;
-
-	// add the up-dir arrow if needed
-	if ( addUpDir ) {
-		new KrDetailedViewItem( this, ( Q3ListViewItem* ) 0L, ( vfile* ) 0L );
-	}
-
-	// text for updating the status bar
-	QString statusText = QString("%1/  ").arg( v->vfs_getOrigin().fileName() ) + i18n("Directory");
-
-	int cnt = 0;
-	int cl = columnSorted();
-	bool as = ascendingSort();
-	setSorting( -1 ); // disable sorting
-
-	for ( vfile * vf = v->vfs_getFirstFile(); vf != 0 ; vf = v->vfs_getNextFile() ) {
-		size = KRpermHandler::parseSize( vf->vfile_getSize() );
-		name = vf->vfile_getName();
-		bool isDir = vf->vfile_isDir();
-		if ( !isDir || ( isDir && ( _properties->filter & KrViewProperties::ApplyToDirs ) ) ) {
-			switch ( _properties->filter ) {
-			case KrViewProperties::All :
-				break;
-			case KrViewProperties::Custom :
-				if ( !_properties->filterMask.match( vf ) )
-					continue;
-				break;
-			case KrViewProperties::Dirs:
-				if ( !vf->vfile_isDir() )
-					continue;
-				break;
-			case KrViewProperties::Files:
-				if ( vf->vfile_isDir() )
-					continue;
-				break;
-
-			case KrViewProperties::ApplyToDirs :
-				break; // no-op, stop compiler complaints
-			}
-		}
-
-		KrDetailedViewItem *dvitem = new KrDetailedViewItem( this, item, vf );
-		_dict.insert( vf->vfile_getName(), dvitem );
-		if ( isDir )
-			++_numDirs;
-		else
-			_countSize += dvitem->VF->vfile_getSize();
-		++_count;
-		// if the item should be current - make it so
-		if ( dvitem->name() == nameToMakeCurrent() ) {
-			currentItem = static_cast<Q3ListViewItem*>(dvitem);
-			statusText = dvitem->description();
-		}
-
-		cnt++;
-	}
-
-
-	// re-enable sorting
-	setSorting( cl, as );
-	sort();
-
-	if ( !currentItem )
-		currentItem = firstChild();
-	K3ListView::setCurrentItem( currentItem );
-	ensureItemVisible( currentItem );
-
-	op()->emitItemDescription( statusText );
-#endif
 }
 
 void KrInterView::setup()
