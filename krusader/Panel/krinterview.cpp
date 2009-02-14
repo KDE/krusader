@@ -4,6 +4,7 @@
 #include "krvfsmodel.h"
 #include "../VFS/krpermhandler.h"
 #include "../defaults.h"
+#include "krmousehandler.h"
 #include <klocale.h>
 #include <kdirlister.h>
 #include <QDir>
@@ -73,6 +74,8 @@ KrInterView::KrInterView( QWidget *parent, bool &left, KConfig *cfg ):
 	this->setRootIsDecorated(false);
 	this->setSortingEnabled(true);
 	_model->sort( KrVfsModel::Name, Qt::AscendingOrder );
+	
+	_mouseHandler = new KrMouseHandler( this );
 }
 
 KrInterView::~KrInterView()
@@ -82,6 +85,7 @@ KrInterView::~KrInterView()
 	delete _operator;
 	_operator = 0;
 	delete _model;
+	delete _mouseHandler;
 }
 
 KrViewItem* KrInterView::findItemByName(const QString &name)
@@ -189,6 +193,12 @@ void KrInterView::updateItem(KrViewItem* item)
 {
 }
 
+void KrInterView::clear()
+{
+	_model->clear();
+	KrView::clear();
+}
+
 void KrInterView::addItems(vfs* v, bool addUpDir)
 {
 	_model->setVfs(v);
@@ -278,4 +288,10 @@ void KrInterView::initOperator()
 	_operator = new KrViewOperator(this, this);
 	// klistview emits selection changed, so chain them to operator
 	connect(this, SIGNAL(selectionChanged()), _operator, SLOT(emitSelectionChanged()));
+}
+
+void KrInterView::mousePressEvent ( QMouseEvent * ev )
+{
+	if( _mouseHandler->mousePressEvent( ev ) )
+		QTreeView::mousePressEvent( ev );
 }

@@ -30,6 +30,7 @@ public:
 	void setExtensionEnabled( bool exten ) { _extensionEnabled = exten; }
 	inline const KrViewProperties * properties() const { return _view->properties(); }
 	void sort() { sort( _lastSortOrder, _lastSortDir ); }
+	void clear();
 	virtual void sort ( int column, Qt::SortOrder order = Qt::AscendingOrder );
 	
 	

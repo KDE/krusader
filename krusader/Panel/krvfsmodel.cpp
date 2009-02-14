@@ -89,6 +89,13 @@ KrVfsModel::~KrVfsModel()
 {
 }
 
+void KrVfsModel::clear()
+{
+	emit layoutAboutToBeChanged();
+	_vfiles.clear();
+	emit layoutChanged();
+}
+
 int KrVfsModel::rowCount(const QModelIndex& parent) const
 {
 	if (!_vfs) return 0;

@@ -255,6 +255,7 @@ public:
   virtual QString statistics();
   virtual const KrViewProperties* properties() const { return _properties; }
   virtual KrViewOperator* op() const { return _operator; }
+  virtual bool isFocused() const { return _focused; }
 
   /////////////////////////////////////////////////////////////
   // the following functions have a default and minimalistic //

@@ -8,6 +8,8 @@
 
 class KrVfsModel;
 class KrInterViewItem;
+class QMouseEvent;
+class KrMouseHandler;
 
 class KrInterView : public KrView, public QTreeView {
 
@@ -15,7 +17,6 @@ public:
 	KrInterView( QWidget *parent, bool &left, KConfig *cfg = krConfig );
 	virtual ~KrInterView();
 
-public:
 	virtual void addItems(vfs* v, bool addUpDir = true);
 	virtual KrViewItem* findItemByName(const QString &name);
 	virtual QString getCurrentItem() const;
@@ -35,6 +36,7 @@ public:
 	virtual void setCurrentItem(const QString& name);
 	virtual void setCurrentKrViewItem(KrViewItem *current);
 	virtual void sort();
+	virtual void clear();
 	virtual void updateView();
 	virtual void updateItem(KrViewItem* item);
 	virtual QModelIndex getCurrentIndex() { return currentIndex(); }
@@ -46,8 +48,11 @@ protected:
 	virtual void setup();
 	virtual void initOperator();
 	
+	virtual void mousePressEvent ( QMouseEvent * );
+	
 private:
 	KrVfsModel *_model;
+	KrMouseHandler *_mouseHandler;
 	QVector<KrInterViewItem*> _items;
 };
 #endif // __krinterview__

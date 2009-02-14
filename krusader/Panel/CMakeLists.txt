@@ -21,7 +21,8 @@ set( Panel_SRCS
 	krbriefviewitem.cpp
 	krvfsmodel.cpp
 	krinterview.cpp
-        krviewfactory.cpp )
+	krviewfactory.cpp
+	krmousehandler.cpp )
 
 kde4_add_library(Panel STATIC ${Panel_SRCS} )
 
