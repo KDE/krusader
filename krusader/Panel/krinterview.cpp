@@ -3,6 +3,7 @@
 #include "krviewitem.h"
 #include "krvfsmodel.h"
 #include "../VFS/krpermhandler.h"
+#include "../defaults.h"
 #include <klocale.h>
 #include <kdirlister.h>
 #include <QDir>
@@ -74,6 +75,7 @@ KrInterView::KrInterView( QWidget *parent, bool &left, KConfig *cfg ):
 
 KrInterView::~KrInterView()
 {
+	_model->setProperties( 0 );
 	delete _properties;
 	_properties = 0;
 	delete _operator;
@@ -272,8 +274,8 @@ void KrInterView::setup()
 
 void KrInterView::initProperties()
 {
-	_properties = new KrViewProperties();
-
+	KrView::initProperties();
+	_model->setProperties( _properties );
 }
 
 void KrInterView::initOperator()

@@ -1070,43 +1070,10 @@ void KrDetailedView::initOperator() {
 }
 
 void KrDetailedView::initProperties() {
-	_properties = new KrDetailedViewProperties;
-	KConfigGroup grpSvr( _config, "Look&Feel" );
+	KrView::initProperties();
+	
 	for (int i=0; i<KrDetailedViewProperties::MAX_COLUMNS;++i)
 		PROPS->column[i]=-1;	
-	PROPS->displayIcons = grpSvr.readEntry( "With Icons", _WithIcons );
-	bool dirsByNameAlways = grpSvr.readEntry("Always sort dirs by name", false);
-	PROPS->sortMode = static_cast<KrViewProperties::SortSpec>( KrViewProperties::Name |
-			KrViewProperties::DirsFirst | 
-			(dirsByNameAlways ? KrViewProperties::AlwaysSortDirsByName : 0) );
-	PROPS->numericPermissions = grpSvr.readEntry("Numeric permissions", _NumericPermissions);
-	if ( !grpSvr.readEntry( "Case Sensative Sort", _CaseSensativeSort ) )
-	PROPS->sortMode = static_cast<KrViewProperties::SortSpec>( _properties->sortMode |
-		KrViewProperties::IgnoreCase );
-	PROPS->sortMethod = static_cast<KrViewProperties::SortMethod>(
-		grpSvr.readEntry("Sort method", (int) _DefaultSortMethod) );
-	PROPS->humanReadableSize = grpSvr.readEntry("Human Readable Size", _HumanReadableSize);
-	PROPS->localeAwareCompareIsCaseSensitive = QString( "a" ).localeAwareCompare( "B" ) > 0; // see KDE bug #40131
-	QStringList defaultAtomicExtensions;
-	defaultAtomicExtensions += ".tar.gz";
-	defaultAtomicExtensions += ".tar.bz2";
-	defaultAtomicExtensions += ".tar.lzma";
-	defaultAtomicExtensions += ".moc.cpp";
-	QStringList atomicExtensions = grpSvr.readEntry("Atomic Extensions", defaultAtomicExtensions);
-	for (QStringList::iterator i = atomicExtensions.begin(); i != atomicExtensions.end(); )
-	{
-		QString & ext = *i;
-		ext = ext.trimmed();
-		if (!ext.length())
-		{
-			i = atomicExtensions.remove(i);
-			continue;
-		}
-		if (!ext.startsWith("."))
-			ext.insert(0, '.');
-		++i;
-	}
-	PROPS->atomicExtensions = atomicExtensions;
 }
 
 void KrDetailedView::selectColumns()

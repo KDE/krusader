@@ -50,8 +50,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kcolorscheme.h>
 
 #define CANCEL_TWO_CLICK_RENAME {singleClicked = false;renameTimer.stop();}
-#define PROPS	 static_cast<KrBriefViewProperties*>(_properties)	
-#define MAX_COLS 5
+#define PROPS	 _properties
 #define VF	 getVfile()
 
 #define BRIEFVIEW_ID 1
@@ -970,54 +969,6 @@ void KrBriefView::initOperator() {
 	connect(this, SIGNAL(selectionChanged()), _operator, SLOT(emitSelectionChanged()));
 }
 
-void KrBriefView::initProperties() {
-	// TODO: move this to a general location, maybe KrViewProperties constructor ?
-	_properties = new KrBriefViewProperties;
-	_properties->filter = KrViewProperties::All;
-	_properties->filterMask = KRQuery( "*" );
-	KConfigGroup grpSvr( _config, "Look&Feel" );
-	_properties->displayIcons = grpSvr.readEntry( "With Icons", _WithIcons );
-	bool dirsByNameAlways = grpSvr.readEntry("Always sort dirs by name", false);
-	_properties->sortMode = static_cast<KrViewProperties::SortSpec>( KrViewProperties::Name |
-			KrViewProperties::DirsFirst | 
-			(dirsByNameAlways ? KrViewProperties::AlwaysSortDirsByName : 0) );
-	if ( !grpSvr.readEntry( "Case Sensative Sort", _CaseSensativeSort ) )
-	_properties->sortMode = static_cast<KrViewProperties::SortSpec>( _properties->sortMode |
-		 KrViewProperties::IgnoreCase );
-	_properties->sortMethod = static_cast<KrViewProperties::SortMethod>(
-		grpSvr.readEntry("Sort method", (int) _DefaultSortMethod) );
-	_properties->humanReadableSize = grpSvr.readEntry("Human Readable Size", _HumanReadableSize);
-	_properties->localeAwareCompareIsCaseSensitive = QString( "a" ).localeAwareCompare( "B" ) > 0; // see KDE bug #40131
-	
-	QStringList defaultAtomicExtensions;
-	defaultAtomicExtensions += ".tar.gz";
-	defaultAtomicExtensions += ".tar.bz2";
-	defaultAtomicExtensions += ".tar.lzma";
-	defaultAtomicExtensions += ".moc.cpp";
-	QStringList atomicExtensions = grpSvr.readEntry("Atomic Extensions", defaultAtomicExtensions);
-	for (QStringList::iterator i = atomicExtensions.begin(); i != atomicExtensions.end(); )
-	{
-		QString & ext = *i;
-		ext = ext.trimmed();
-		if (!ext.length())
-		{
-			i = atomicExtensions.remove(i);
-			continue;
-		}
-		if (!ext.startsWith("."))
-			ext.insert(0, '.');
-		++i;
-	}
-	_properties->atomicExtensions = atomicExtensions;
-	
-	KConfigGroup group( _config, nameInKConfig() );
-	PROPS->numberOfColumns = group.readEntry( "Number Of Brief Columns", _NumberOfBriefColumns );
-	if( PROPS->numberOfColumns < 1 )
-		PROPS->numberOfColumns = 1;
-	else if( PROPS->numberOfColumns > MAX_COLS )
-		PROPS->numberOfColumns = MAX_COLS;
-}
-
 void KrBriefView::setColumnNr()
 {
   KMenu popup( this );
@@ -1025,7 +976,7 @@ void KrBriefView::setColumnNr()
   
   int COL_ID = 14700;
 
-  for( int i=1; i <= MAX_COLS; i++ )
+  for( int i=1; i <= MAX_BRIEF_COLS; i++ )
   {
     QAction *act = popup.addAction( QString( "%1" ).arg( i ) );
     act->setData( QVariant( COL_ID + i ) );
@@ -1040,7 +991,7 @@ void KrBriefView::setColumnNr()
 
   KConfigGroup group( krConfig, nameInKConfig() );
   
-  if( result > COL_ID && result <= COL_ID + MAX_COLS )
+  if( result > COL_ID && result <= COL_ID + MAX_BRIEF_COLS )
   {
     group.writeEntry( "Number Of Brief Columns", result - COL_ID );
     PROPS->numberOfColumns = result - COL_ID;

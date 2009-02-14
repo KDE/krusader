@@ -50,12 +50,6 @@ A
 #include <QKeyEvent>
 #include <QEvent>
 
-// extends KrViewProperties to add detailedview-only properties
-class KrBriefViewProperties: public KrViewProperties {
-public:
-	int numberOfColumns; // the number of columns in the view
-};
-
 class KrBriefViewItem;
 class QDragMoveEvent;
 class Q3Header;
@@ -103,7 +97,6 @@ public:
 
 protected:
 	virtual void setup();
-	virtual void initProperties();
 	virtual void initOperator();
 	virtual KrViewItem *preAddItem(vfile * vf);
 	virtual bool preDelItem(KrViewItem * item );

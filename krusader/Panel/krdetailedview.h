@@ -55,16 +55,13 @@ A
 class KrDetailedViewProperties: public KrViewProperties {
 public:
 	enum ColumnType { Unused = -1, Name = 0x0, Extension = 0x1, Mime = 0x2, Size = 0x3, DateTime = 0x4,
-                     Permissions = 0x5, KrPermissions = 0x6, Owner = 0x7, Group = 0x8 };
+                          Permissions = 0x5, KrPermissions = 0x6, Owner = 0x7, Group = 0x8 };
 	static const int MAX_COLUMNS = 9;
-   int column[ MAX_COLUMNS ];	// column[ColumnType] contains the number of the requested column.
+	int column[ MAX_COLUMNS ];	// column[ColumnType] contains the number of the requested column.
 										// This is used by column() and whenever item uses text() or setText()
-	bool numericPermissions; // show full permission column as octal numbers
-
-	KrDetailedViewProperties() {
+	
+	KrDetailedViewProperties() : KrViewProperties() {
 		for ( int i = 0; i < MAX_COLUMNS; i++ ) column[i] = Unused;
-		filter = KrViewProperties::All;
-		filterMask = KRQuery( "*" );
 	}
 };
 
@@ -118,6 +115,7 @@ public:
 
 protected:
 	virtual void setup();
+	virtual KrViewProperties * createViewProperties() { return new KrDetailedViewProperties(); }
 	virtual void initProperties();
 	virtual void initOperator();
 	virtual KrViewItem *preAddItem(vfile *vf);

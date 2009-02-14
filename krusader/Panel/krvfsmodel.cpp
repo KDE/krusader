@@ -1,6 +1,7 @@
 #include "krvfsmodel.h"
 #include "../VFS/vfs.h"
 #include "../VFS/vfile.h"
+#include "krview.h"
 #include <QtDebug>
 
 KrVfsModel::KrVfsModel(): QAbstractListModel(0), _vfs(0) {}
@@ -47,15 +48,38 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
 
 	if (index.row() >= rowCount())
 		return QVariant();
-
-	if (role != Qt::DisplayRole)
+	vfile *vf = _vfiles.at(index.row());
+	if( vf == 0 )
 		return QVariant();
 
-	switch (index.column()) {
-		case 0: return (_vfiles.at(index.row()))->vfile_getName();
-		case 1: return ("<ext>");
-		case 2: return (_vfiles.at(index.row()))->vfile_getSize();
-		default: return QString();
+	switch( role )
+	{
+		case Qt::DisplayRole:
+		{
+			switch (index.column()) {
+				case 0: return vf->vfile_getName();
+				case 1: return ("<ext>");
+				case 2: return vf->vfile_getSize();
+				default: return QString();
+			}
+			return QVariant();
+		}
+		case Qt::DecorationRole:
+		{
+			switch (index.column() ) {
+				case 0:
+				{
+					if( _properties && _properties->displayIcons )
+						return KrView::getIcon( vf );
+					break;
+				}
+				default:
+					break;
+			}
+			return QVariant();
+		}
+		default:
+			return QVariant();
 	}
 }
 

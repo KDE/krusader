@@ -206,6 +206,53 @@ void KrView::init()
 	setup();
 }
 
+void KrView::initProperties()
+{
+	_properties = createViewProperties();
+	
+	KConfigGroup grpSvr( _config, "Look&Feel" );
+	_properties->displayIcons = grpSvr.readEntry( "With Icons", _WithIcons );
+	bool dirsByNameAlways = grpSvr.readEntry("Always sort dirs by name", false);
+	_properties->sortMode = static_cast<KrViewProperties::SortSpec>( KrViewProperties::Name |
+			KrViewProperties::DirsFirst | 
+			(dirsByNameAlways ? KrViewProperties::AlwaysSortDirsByName : 0) );
+	_properties->numericPermissions = grpSvr.readEntry("Numeric permissions", _NumericPermissions);
+	if ( !grpSvr.readEntry( "Case Sensative Sort", _CaseSensativeSort ) )
+	_properties->sortMode = static_cast<KrViewProperties::SortSpec>( _properties->sortMode |
+		KrViewProperties::IgnoreCase );
+	_properties->sortMethod = static_cast<KrViewProperties::SortMethod>(
+		grpSvr.readEntry("Sort method", (int) _DefaultSortMethod) );
+	_properties->humanReadableSize = grpSvr.readEntry("Human Readable Size", _HumanReadableSize);
+	_properties->localeAwareCompareIsCaseSensitive = QString( "a" ).localeAwareCompare( "B" ) > 0; // see KDE bug #40131
+	QStringList defaultAtomicExtensions;
+	defaultAtomicExtensions += ".tar.gz";
+	defaultAtomicExtensions += ".tar.bz2";
+	defaultAtomicExtensions += ".tar.lzma";
+	defaultAtomicExtensions += ".moc.cpp";
+	QStringList atomicExtensions = grpSvr.readEntry("Atomic Extensions", defaultAtomicExtensions);
+	for (QStringList::iterator i = atomicExtensions.begin(); i != atomicExtensions.end(); )
+	{
+		QString & ext = *i;
+		ext = ext.trimmed();
+		if (!ext.length())
+		{
+			i = atomicExtensions.erase(i);
+			continue;
+		}
+		if (!ext.startsWith("."))
+			ext.insert(0, '.');
+		++i;
+	}
+	_properties->atomicExtensions = atomicExtensions;
+	
+	KConfigGroup group( _config, nameInKConfig() );
+	_properties->numberOfColumns = group.readEntry( "Number Of Brief Columns", _NumberOfBriefColumns );
+	if( _properties->numberOfColumns < 1 )
+		_properties->numberOfColumns = 1;
+	else if( _properties->numberOfColumns > MAX_BRIEF_COLS )
+		_properties->numberOfColumns = MAX_BRIEF_COLS;
+}
+
 QPixmap KrView::getIcon( vfile *vf /*, KRListItem::cmpColor color*/ )
 {
 	// KConfigGroup ag( krConfig, "Advanced");

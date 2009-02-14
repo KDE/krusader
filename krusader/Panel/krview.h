@@ -42,6 +42,9 @@
 
 #include <kdebug.h>
 
+#define MAX_BRIEF_COLS 5
+
+
 class KrView;
 class KrViewItem;
 class KrQuickSearch;
@@ -57,13 +60,20 @@ typedef QList<KrViewItem*> KrViewItemList;
 // Every property that the item needs to know about the view must be here!
 class KrViewProperties {
 public:
+	KrViewProperties() {
+		filter = KrViewProperties::All;
+		filterMask = KRQuery( "*" );
+	}
+	
 	enum SortSpec { Name=0x1, Ext=0x2, Size=0x4, Type=0x8, Modified=0x10, Permissions=0x20,
-						KrPermissions=0x40, Owner=0x80, Group=0x100, Descending=0x200,
-						DirsFirst=0x400, IgnoreCase=0x800, AlwaysSortDirsByName=0x1000 };
+                        KrPermissions=0x40, Owner=0x80, Group=0x100, Descending=0x200,
+                        DirsFirst=0x400, IgnoreCase=0x800, AlwaysSortDirsByName=0x1000 };
 	enum SortMethod { Alphabetical=0x1, AlphabeticalNumbers=0x2,
 	                  CharacterCode=0x4, CharacterCodeNumbers=0x8, Krusader=0x10 };
 	enum FilterSpec { Dirs=0x1, Files=0x2, All=0x3, Custom=0x4, ApplyToDirs=0x8 };
 	
+	bool numericPermissions;        // show full permission column as octal numbers
+
 	bool displayIcons;	// true if icons should be displayed in this view
 	SortSpec sortMode;	// sort specifications
 	SortMethod sortMethod;  // sort method for names and extensions
@@ -72,6 +82,7 @@ public:
 	bool localeAwareCompareIsCaseSensitive; // mostly, it is not! depends on LC_COLLATE
 	bool humanReadableSize;		// display size as KB, MB or just as a long number
 	QStringList atomicExtensions;	// list of strings, which will be treated as one extension. Must start with a dot.
+	int numberOfColumns;    // the number of columns in the brief view
 };
 
 // operator can handle two ways of doing things:
@@ -169,7 +180,8 @@ public:
   virtual void init();
 
 protected:
-  virtual void initProperties() { qFatal("Please implement your own initProperties() method"); }
+  virtual void initProperties();
+  virtual KrViewProperties * createViewProperties() { return new KrViewProperties(); }
   virtual void initOperator() { qFatal("Please implement your own initOperator() method"); }
   virtual void setup() { qFatal("Please implement your own setup() method"); }
   
@@ -253,9 +265,10 @@ public:
 
   // todo: what about selection modes ???
   virtual ~KrView();
+  static QPixmap getIcon(vfile *vf);
+
 protected:
   KrView(KConfig *cfg = krConfig);
-  static QPixmap getIcon(vfile *vf);
   void changeSelection(const KRQuery& filter, bool select, bool includeDirs = false);
   bool handleKeyEventInt (QKeyEvent *e);
 
