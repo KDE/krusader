@@ -71,6 +71,8 @@ KrInterView::KrInterView( QWidget *parent, bool &left, KConfig *cfg ):
 	_model = new KrVfsModel( this );
 	this->setModel(_model);
 	this->setRootIsDecorated(false);
+	this->setSortingEnabled(true);
+	_model->sort( KrVfsModel::Name, Qt::AscendingOrder );
 }
 
 KrInterView::~KrInterView()

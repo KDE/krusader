@@ -29,12 +29,16 @@ public:
 	QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
 	void setExtensionEnabled( bool exten ) { _extensionEnabled = exten; }
 	inline const KrViewProperties * properties() const { return _view->properties(); }
-
+	void sort() { sort( _lastSortOrder, _lastSortDir ); }
+	virtual void sort ( int column, Qt::SortOrder order = Qt::AscendingOrder );
+	
 	
 protected:
 	vfs              * _vfs;
 	QVector<vfile*>    _vfiles;
 	bool               _extensionEnabled;
 	KrView           * _view;
+	int                _lastSortOrder;
+	Qt::SortOrder      _lastSortDir;
 };
 #endif // __krvfsmodel__
