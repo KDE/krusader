@@ -1,10 +1,16 @@
 #include "krvfsmodel.h"
 #include "../VFS/vfs.h"
 #include "../VFS/vfile.h"
-#include "krview.h"
+#include <klocale.h>
 #include <QtDebug>
+#include "../VFS/krpermhandler.h"
+#include "../defaults.h"
+#include "../krusader.h"
+#include "../krusaderview.h"
+#include "listpanel.h"
+#include "krcolorcache.h"
 
-KrVfsModel::KrVfsModel(): QAbstractListModel(0), _vfs(0) {}
+KrVfsModel::KrVfsModel( KrView * view ): QAbstractListModel(0), _vfs(0), _extensionEnabled( true ), _view( view ) {}
 
 void KrVfsModel::setVfs(vfs* v)
 {
@@ -38,7 +44,7 @@ int KrVfsModel::rowCount(const QModelIndex& parent) const
 
 
 int KrVfsModel::columnCount(const QModelIndex &parent) const {
-	return 3;
+	return KrVfsModel::MAX_COLUMNS;
 }
 
 QVariant KrVfsModel::data(const QModelIndex& index, int role) const
@@ -54,12 +60,61 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
 
 	switch( role )
 	{
+		case Qt::FontRole:
+		{
+			KConfigGroup grpSvr( krConfig, "Look&Feel" );
+			return grpSvr.readEntry( "Filelist Font", *_FilelistFont );
+		}
 		case Qt::DisplayRole:
 		{
 			switch (index.column()) {
-				case 0: return vf->vfile_getName();
-				case 1: return ("<ext>");
-				case 2: return vf->vfile_getSize();
+				case KrVfsModel::Name:
+				{
+					if( !_extensionEnabled )
+						return vf->vfile_getName();
+					// check if the file has an extension
+					const QString& vfName = vf->vfile_getName();
+					int loc = vfName.lastIndexOf('.');
+					if (loc>0) { // avoid mishandling of .bashrc and friend
+						// check if it has one of the predefined 'atomic extensions'
+						for (QStringList::const_iterator i = properties()->atomicExtensions.begin(); i != properties()->atomicExtensions.end(); ++i) {
+							if (vfName.endsWith(*i) && vfName != *i ) {
+								loc = vfName.length() - (*i).length();
+								break;
+							}
+						}
+					} else
+						return vfName;
+					return vfName.left(loc);
+				}
+				case KrVfsModel::Extension:
+				{
+					if( !_extensionEnabled )
+						return QVariant();
+					// check if the file has an extension
+					const QString& vfName = vf->vfile_getName();
+					int loc = vfName.lastIndexOf('.');
+					if (loc>0) { // avoid mishandling of .bashrc and friend
+						// check if it has one of the predefined 'atomic extensions'
+						for (QStringList::const_iterator i = properties()->atomicExtensions.begin(); i != properties()->atomicExtensions.end(); ++i) {
+							if (vfName.endsWith(*i) && vfName != *i ) {
+								loc = vfName.length() - (*i).length();
+								break;
+							}
+						}
+					} else
+						return QVariant();
+					return vfName.mid(loc + 1);
+				}
+				case KrVfsModel::Size:
+				{
+					if (vf->vfile_isDir() && vf->vfile_getSize() <= 0)
+						return i18n("<DIR>");
+	    				else 
+						return ( properties()->humanReadableSize) ? 
+							KIO::convertSize(vf->vfile_getSize())+"  " :
+		 					KRpermHandler::parseSize(vf->vfile_getSize())+" ";
+				}
 				default: return QString();
 			}
 			return QVariant();
@@ -67,9 +122,9 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
 		case Qt::DecorationRole:
 		{
 			switch (index.column() ) {
-				case 0:
+				case KrVfsModel::Name:
 				{
-					if( _properties && _properties->displayIcons )
+					if( properties()->displayIcons )
 						return KrView::getIcon( vf );
 					break;
 				}
@@ -77,6 +132,53 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
 					break;
 			}
 			return QVariant();
+		}
+		case Qt::TextAlignmentRole:
+		{
+			switch (index.column() ) {
+				case KrVfsModel::Size:
+					return Qt::AlignRight;
+				default:
+					return Qt::AlignLeft;
+			}
+			return QVariant();
+		}
+		case Qt::BackgroundRole:
+		case Qt::ForegroundRole:
+		{
+			KrColorItemType colorItemType;
+			colorItemType.m_activePanel = (_view == ACTIVE_PANEL->view);
+			colorItemType.m_alternateBackgroundColor = (index.row() & 1);
+			colorItemType.m_currentItem = _view->getCurrentIndex() == index;
+			colorItemType.m_selectedItem = _view->isSelected( index );
+			if (vf->vfile_isSymLink())
+			{
+				if (vf->vfile_getMime() == "Broken Link !" )
+					colorItemType.m_fileType = KrColorItemType::InvalidSymlink;
+				else
+					colorItemType.m_fileType = KrColorItemType::Symlink;
+			}
+			else if (vf->vfile_isDir())
+				colorItemType.m_fileType = KrColorItemType::Directory;
+			else if (vf->vfile_isExecutable())
+				colorItemType.m_fileType = KrColorItemType::Executable;
+			else
+				colorItemType.m_fileType = KrColorItemType::File;
+			
+			KrColorGroup cols;
+			KrColorCache::getColorCache().getColors(cols, colorItemType);
+			
+			if( colorItemType.m_selectedItem )
+			{
+				if( role == Qt::ForegroundRole )
+					return cols.highlightedText();
+				else
+					return cols.highlight();
+			}
+			if( role == Qt::ForegroundRole )
+				return cols.text();
+			else
+				return cols.background();
 		}
 		default:
 			return QVariant();
@@ -90,9 +192,9 @@ QVariant KrVfsModel::headerData(int section, Qt::Orientation orientation, int ro
 		return QVariant();
 
 	switch (section) {
-		case 0: return "Name";
-		case 1: return "Ext";
-		case 2: return "Size";
+		case KrVfsModel::Name: return i18n( "Name" );
+		case KrVfsModel::Extension: return i18n( "Ext" );
+		case KrVfsModel::Size: return i18n( "Size" );
 	}
 	return QString();
 }

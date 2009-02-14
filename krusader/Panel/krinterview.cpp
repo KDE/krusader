@@ -68,14 +68,13 @@ KrInterView::KrInterView( QWidget *parent, bool &left, KConfig *cfg ):
 	_nameInKConfig=QString( "KrInterView" ) + QString( ( left ? "Left" : "Right" ) ) ;
 	KConfigGroup group( krConfig, "Private" );
 
-	_model = new KrVfsModel;
+	_model = new KrVfsModel( this );
 	this->setModel(_model);
 	this->setRootIsDecorated(false);
 }
 
 KrInterView::~KrInterView()
 {
-	_model->setProperties( 0 );
 	delete _properties;
 	_properties = 0;
 	delete _operator;
@@ -270,12 +269,6 @@ void KrInterView::addItems(vfs* v, bool addUpDir)
 void KrInterView::setup()
 {
 
-}
-
-void KrInterView::initProperties()
-{
-	KrView::initProperties();
-	_model->setProperties( _properties );
 }
 
 void KrInterView::initOperator()

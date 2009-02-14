@@ -37,12 +37,13 @@ public:
 	virtual void sort();
 	virtual void updateView();
 	virtual void updateItem(KrViewItem* item);
+	virtual QModelIndex getCurrentIndex() { return currentIndex(); }
+	virtual bool isSelected( const QModelIndex &ndx ) { return selectionModel()->isSelected( ndx ); }
 	
 	static KrView* create( QWidget *parent, bool &left, KConfig *cfg ) { return new KrInterView( parent, left, cfg ); }
 	
 protected:
 	virtual void setup();
-	virtual void initProperties();
 	virtual void initOperator();
 	
 private:

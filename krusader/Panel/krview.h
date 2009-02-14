@@ -35,6 +35,7 @@
 #include <qhash.h>
 #include <QDropEvent>
 #include <QList>
+#include <QModelIndex>
 #include "../krusader.h"
 #include "../VFS/vfile.h"
 #include "../VFS/vfs.h"
@@ -48,6 +49,7 @@
 class KrView;
 class KrViewItem;
 class KrQuickSearch;
+class QModelIndex;
 typedef QList<KrViewItem*> KrViewItemList;
 
 // KrViewProperties
@@ -189,6 +191,10 @@ protected:
   // Every view must implement the following functions //
   ///////////////////////////////////////////////////////
 public:
+  // interview related functions
+  virtual QModelIndex getCurrentIndex()                 { return QModelIndex(); }
+  virtual bool        isSelected( const QModelIndex & ) { return false; }
+
   virtual KrViewItem *getFirst() = 0;
   virtual KrViewItem *getLast() = 0;
   virtual KrViewItem *getNext(KrViewItem *current) = 0;
