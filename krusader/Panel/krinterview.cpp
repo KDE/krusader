@@ -280,6 +280,7 @@ void KrInterView::updateItem(KrViewItem* item)
 
 void KrInterView::clear()
 {
+	clearSelection();
 	_model->clear();
 	QHashIterator< vfile *, KrInterViewItem *> it( _itemHash );
 	while( it.hasNext() )
