@@ -496,8 +496,11 @@ void KrVfsModel::sort ( int column, Qt::SortOrder order )
 	qSort(sorting.begin(), sorting.end(), compare);
 	
 	_vfiles.clear();
+	_vfileNdx.clear();
 	for (int i = 0; i < sorting.count(); ++i) {
 		_vfiles.append( sorting[ i ]->vf() );
+		_vfileNdx[ sorting[ i ]->vf() ] = index( i, 0 );
+		_nameNdx[ sorting[ i ]->vf()->vfile_getName() ] = index( i, 0 );
 		delete sorting[ i ];
 	}
 	
@@ -517,3 +520,19 @@ QVariant KrVfsModel::headerData(int section, Qt::Orientation orientation, int ro
 	}
 	return QString();
 }
+
+vfile * KrVfsModel::vfileAt( const QModelIndex &index )
+{
+	return _vfiles[ index.row() ];
+}
+
+const QModelIndex & KrVfsModel::vfileIndex( vfile * vf )
+{
+	return _vfileNdx[ vf ];
+}
+
+const QModelIndex & KrVfsModel::nameIndex( const QString & st )
+{
+	return _nameNdx[ st ];
+}
+

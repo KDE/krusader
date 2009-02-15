@@ -9,9 +9,11 @@
 class KrVfsModel;
 class KrInterViewItem;
 class QMouseEvent;
+class QKeyEvent;
 class KrMouseHandler;
 
 class KrInterView : public KrView, public QTreeView {
+	friend class KrInterViewItem;
 
 public:
 	KrInterView( QWidget *parent, bool &left, KConfig *cfg = krConfig );
@@ -41,18 +43,23 @@ public:
 	virtual void updateItem(KrViewItem* item);
 	virtual QModelIndex getCurrentIndex() { return currentIndex(); }
 	virtual bool isSelected( const QModelIndex &ndx ) { return selectionModel()->isSelected( ndx ); }
+	KrInterViewItem * getKrInterViewItem( const QModelIndex & );
 	
 	static KrView* create( QWidget *parent, bool &left, KConfig *cfg ) { return new KrInterView( parent, left, cfg ); }
+	
+	virtual void prepareForActive();
+	virtual void prepareForPassive();
 	
 protected:
 	virtual void setup();
 	virtual void initOperator();
 	
+	virtual void keyPressEvent( QKeyEvent *e );
 	virtual void mousePressEvent ( QMouseEvent * );
 	
 private:
 	KrVfsModel *_model;
 	KrMouseHandler *_mouseHandler;
-	QVector<KrInterViewItem*> _items;
+	QHash<vfile *,KrInterViewItem*> _itemHash;
 };
 #endif // __krinterview__

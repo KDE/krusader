@@ -32,15 +32,21 @@ public:
 	void sort() { sort( _lastSortOrder, _lastSortDir ); }
 	void clear();
 	virtual void sort ( int column, Qt::SortOrder order = Qt::AscendingOrder );
+	vfile * vfileAt( const QModelIndex &index );
+	vfile *dummyVfile() const { return _dummyVfile; }
+	const QModelIndex & vfileIndex( vfile * );
+	const QModelIndex & nameIndex( const QString & );
 	
 	
 protected:
-	QVector<vfile*>    _vfiles;
-	bool               _extensionEnabled;
-	KrView           * _view;
-	int                _lastSortOrder;
-	Qt::SortOrder      _lastSortDir;
-	vfile *            _dummyVfile;
-	bool               _ready;
+	QVector<vfile*>             _vfiles;
+	QHash<vfile *, QModelIndex> _vfileNdx;
+	QHash<QString, QModelIndex> _nameNdx;
+	bool                        _extensionEnabled;
+	KrView                    * _view;
+	int                         _lastSortOrder;
+	Qt::SortOrder               _lastSortDir;
+	vfile *                     _dummyVfile;
+	bool                        _ready;
 };
 #endif // __krvfsmodel__
