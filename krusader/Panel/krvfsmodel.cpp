@@ -15,13 +15,14 @@
 class SortProps
 {
 public:
-	SortProps( vfile *vf, int col, const KrViewProperties * props, bool isDummy, bool asc )
+	SortProps( vfile *vf, int col, const KrViewProperties * props, bool isDummy, bool asc, int origNdx )
 	{
 		_col = col;
 		_prop = props;
 		_isdummy = isDummy;
 		_ascending = asc;
 		_vfile = vf;
+		_index = origNdx;
 		if( _col == KrVfsModel::Extension )
 		{
 			if( vf->vfile_isDir() ) {
@@ -51,6 +52,7 @@ public:
 	inline bool isAscending() { return _ascending; }
 	inline QString extension() { return _ext; }
 	inline vfile * vf() { return _vfile; }
+	inline int originalIndex() { return _index; }
 	
 private:
 	int _col;
@@ -59,6 +61,7 @@ private:
 	vfile * _vfile;
 	bool _ascending;
 	QString _ext;
+	int _index;
 };
 
 typedef bool(*LessThan)(SortProps *,SortProps *);
@@ -487,22 +490,32 @@ void KrVfsModel::sort ( int column, Qt::SortOrder order )
 	_lastSortDir = order;
 	emit layoutAboutToBeChanged();
 	
+	QModelIndexList oldPersistentList = persistentIndexList();
 	
 	QVector < SortProps * > sorting (_vfiles.count());
 	for (int i = 0; i < _vfiles.count(); ++i)
-		sorting[ i ] = new SortProps( _vfiles[ i ], column, properties(), _vfiles[ i ] == _dummyVfile, order == Qt::AscendingOrder );
+		sorting[ i ] = new SortProps( _vfiles[ i ], column, properties(), _vfiles[ i ] == _dummyVfile, order == Qt::AscendingOrder, i );
 	
 	LessThan compare = (order == Qt::AscendingOrder ? &itemLessThan : &itemGreaterThan);
 	qSort(sorting.begin(), sorting.end(), compare);
 	
 	_vfiles.clear();
 	_vfileNdx.clear();
+	
+	QHash<int, int> changeMap;
 	for (int i = 0; i < sorting.count(); ++i) {
 		_vfiles.append( sorting[ i ]->vf() );
+		changeMap[ sorting[ i ]->originalIndex() ] = i;
 		_vfileNdx[ sorting[ i ]->vf() ] = index( i, 0 );
 		_nameNdx[ sorting[ i ]->vf()->vfile_getName() ] = index( i, 0 );
 		delete sorting[ i ];
 	}
+	
+	QModelIndexList newPersistentList;
+	foreach( QModelIndex mndx, oldPersistentList )
+		newPersistentList << index( changeMap[ mndx.row() ], mndx.column() );
+	
+	changePersistentIndexList(oldPersistentList, newPersistentList);
 	
 	emit layoutChanged();
 }
@@ -534,5 +547,22 @@ const QModelIndex & KrVfsModel::vfileIndex( vfile * vf )
 const QModelIndex & KrVfsModel::nameIndex( const QString & st )
 {
 	return _nameNdx[ st ];
+}
+
+Qt::ItemFlags KrVfsModel::flags ( const QModelIndex & index ) const
+{
+	Qt::ItemFlags flags = QAbstractListModel::flags( index );
+	
+	if (!index.isValid())
+		return flags;
+
+	if (index.row() >= rowCount())
+		return flags;
+	vfile *vf = _vfiles.at(index.row());
+	if( vf == _dummyVfile )
+	{
+		flags = flags & (~Qt::ItemIsSelectable);
+	}
+	return flags;
 }
 

@@ -12,8 +12,9 @@ class QMouseEvent;
 class QKeyEvent;
 class KrMouseHandler;
 
-class KrInterView : public KrView, public QTreeView {
+class KrInterView : public QTreeView, public KrView {
 	friend class KrInterViewItem;
+	Q_OBJECT
 
 public:
 	KrInterView( QWidget *parent, bool &left, KConfig *cfg = krConfig );
@@ -49,6 +50,10 @@ public:
 	
 	virtual void prepareForActive();
 	virtual void prepareForPassive();
+	virtual int  itemsPerPage();
+	
+protected slots:
+	void slotMakeCurrentVisible();
 	
 protected:
 	virtual void setup();

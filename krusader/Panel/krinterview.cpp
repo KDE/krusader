@@ -10,6 +10,10 @@
 #include <QDir>
 #include <QDirModel>
 #include <QHashIterator>
+#include <QHeaderView>
+#include "../GUI/krstyleproxy.h"
+#include <QItemDelegate>
+#include <QPainter>
 
 // dummy. remove this class when no longer needed
 class KrInterViewItem: public KrViewItem
@@ -17,6 +21,7 @@ class KrInterViewItem: public KrViewItem
 public:
 	KrInterViewItem(KrInterView *parent, vfile *vf): KrViewItem(vf, parent->properties()) {
 		_view = parent;
+		_vfile = vf;
 		if( parent->_model->dummyVfile() == vf )
 			dummyVfile = true;
 	}
@@ -27,7 +32,8 @@ public:
 	}
 	void setSelected( bool s ) {
 		const QModelIndex & ndx = _view->_model->vfileIndex( _vfile );
-		_view->selectionModel()->select( ndx, s ? QItemSelectionModel::Select : QItemSelectionModel::Deselect );
+		_view->selectionModel()->select( ndx, ( s ? QItemSelectionModel::Select : QItemSelectionModel::Deselect )
+			| QItemSelectionModel::Rows );
 	}
 	QRect itemRect() const {
 		const QModelIndex & ndx = _view->_model->vfileIndex( _vfile );
@@ -42,6 +48,20 @@ private:
 	vfile *_vfile;
 	KrInterView * _view;
 };
+
+class KrInterViewItemDelegate : public QItemDelegate
+{
+public:
+	KrInterViewItemDelegate( QObject *parent = 0 ) : QItemDelegate( parent ) {}
+	
+	void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+	{
+		QStyleOptionViewItemV4 opt = option;
+		opt.state &= ~QStyle::State_Selected;
+		QItemDelegate::paint( painter, opt, index );
+	}
+};
+
 
 // code used to register the view
 #define INTERVIEW_ID 2
@@ -61,9 +81,16 @@ KrInterView::KrInterView( QWidget *parent, bool &left, KConfig *cfg ):
 	this->setModel(_model);
 	this->setRootIsDecorated(false);
 	this->setSortingEnabled(true);
+	this->sortByColumn( KrVfsModel::Name, Qt::AscendingOrder );
 	_model->sort( KrVfsModel::Name, Qt::AscendingOrder );
+	connect( _model, SIGNAL( layoutChanged() ), this, SLOT( slotMakeCurrentVisible() ) );
 	
 	_mouseHandler = new KrMouseHandler( this );
+	setSelectionMode( QAbstractItemView::NoSelection );
+	setAllColumnsShowFocus( true );
+	
+	setStyle( new KrStyleProxy() );
+	setItemDelegate( new KrInterViewItemDelegate() );
 }
 
 KrInterView::~KrInterView()
@@ -85,7 +112,10 @@ KrViewItem* KrInterView::findItemByName(const QString &name)
 	if (!_model->ready()) 
 		return 0;
 		
-	return 0; // TODO
+	QModelIndex ndx = _model->nameIndex( name );
+	if( !ndx.isValid() )
+		return 0;
+	return getKrInterViewItem( ndx );
 }
 
 QString KrInterView::getCurrentItem() const
@@ -149,8 +179,17 @@ KrViewItem* KrInterView::getPrev(KrViewItem *current)
 	return getKrInterViewItem( _model->index(ndx.row() - 1, 0, QModelIndex()));
 }
 
+void KrInterView::slotMakeCurrentVisible()
+{
+	scrollTo( currentIndex() );
+}
+
 void KrInterView::makeItemVisible(const KrViewItem *item)
 {
+	vfile* vf = (vfile *)item->getVfile();
+	QModelIndex ndx = _model->vfileIndex( vf );
+	if( ndx.isValid() )
+		scrollTo( ndx );
 }
 
 void KrInterView::setCurrentKrViewItem(KrViewItem *item)
@@ -207,8 +246,28 @@ void KrInterView::prepareForPassive() {
 		//renameLineEdit() ->clearFocus();
 }
 
+int KrInterView::itemsPerPage() {
+	QRect rect = visualRect( currentIndex() );
+	if( !rect.isValid() )
+	{
+		for( int i=0; i != _model->rowCount(); i++ )
+		{
+			rect = visualRect( _model->index( i, 0 ) );
+			if( rect.isValid() )
+				break;
+		}
+	}
+	if( !rect.isValid() )
+		return 0;
+	int size = (height() - header()->height() ) / rect.height();
+	if( size < 0 )
+		size = 0;
+	return size;
+}
+
 void KrInterView::sort()
 {
+	_model->sort();
 }
 
 void KrInterView::updateView()
@@ -247,7 +306,7 @@ void KrInterView::initOperator()
 {
 	_operator = new KrViewOperator(this, this);
 	// klistview emits selection changed, so chain them to operator
-	connect(this, SIGNAL(selectionChanged()), _operator, SLOT(emitSelectionChanged()));
+	connect(selectionModel(), SIGNAL(selectionChanged( const QItemSelection &, const QItemSelection &)), _operator, SLOT(emitSelectionChanged()));
 }
 
 void KrInterView::keyPressEvent( QKeyEvent *e )

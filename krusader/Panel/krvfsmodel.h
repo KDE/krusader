@@ -36,7 +36,7 @@ public:
 	vfile *dummyVfile() const { return _dummyVfile; }
 	const QModelIndex & vfileIndex( vfile * );
 	const QModelIndex & nameIndex( const QString & );
-	
+	virtual Qt::ItemFlags flags ( const QModelIndex & index ) const;
 	
 protected:
 	QVector<vfile*>             _vfiles;
