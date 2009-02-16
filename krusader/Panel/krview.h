@@ -194,6 +194,7 @@ public:
   // interview related functions
   virtual QModelIndex getCurrentIndex()                 { return QModelIndex(); }
   virtual bool        isSelected( const QModelIndex & ) { return false; }
+  virtual bool        ensureVisibilityAfterSelect()     { return true; }
 
   virtual KrViewItem *getFirst() = 0;
   virtual KrViewItem *getLast() = 0;
@@ -256,6 +257,7 @@ public:
   virtual const KrViewProperties* properties() const { return _properties; }
   virtual KrViewOperator* op() const { return _operator; }
   virtual bool isFocused() const { return _focused; }
+  void changeSelection(const KRQuery& filter, bool select, bool includeDirs = false);
 
   /////////////////////////////////////////////////////////////
   // the following functions have a default and minimalistic //
@@ -276,7 +278,6 @@ public:
 
 protected:
   KrView(KConfig *cfg = krConfig);
-  void changeSelection(const KRQuery& filter, bool select, bool includeDirs = false);
   bool handleKeyEventInt (QKeyEvent *e);
 
 

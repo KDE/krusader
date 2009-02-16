@@ -50,6 +50,7 @@ public:
 	
 	virtual void prepareForActive();
 	virtual void prepareForPassive();
+	virtual bool ensureVisibilityAfterSelect() { return false; }
 	virtual int  itemsPerPage();
 	
 protected slots:
@@ -61,6 +62,10 @@ protected:
 	
 	virtual void keyPressEvent( QKeyEvent *e );
 	virtual void mousePressEvent ( QMouseEvent * );
+	virtual void mouseReleaseEvent ( QMouseEvent * );
+	virtual void mouseDoubleClickEvent ( QMouseEvent *ev );
+	virtual void mouseMoveEvent ( QMouseEvent * );
+	virtual void wheelEvent ( QWheelEvent * );
 	
 private:
 	KrVfsModel *_model;

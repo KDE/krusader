@@ -378,7 +378,8 @@ void KrView::changeSelection( const KRQuery& filter, bool select, bool includeDi
 	
 	if( op() ) op()->setMassSelectionUpdate( false );
 	updateView();
-	makeItemVisible( temp );
+	if( ensureVisibilityAfterSelect() )
+		makeItemVisible( temp );
 }
 
 void KrView::invertSelection()
@@ -402,7 +403,8 @@ void KrView::invertSelection()
 	}
 	if( op() ) op()->setMassSelectionUpdate( false );
 	updateView();
-	makeItemVisible( temp );
+	if( ensureVisibilityAfterSelect() )
+		makeItemVisible( temp );
 }
 
 QString KrView::firstUnmarkedBelowCurrent()

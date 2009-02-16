@@ -91,6 +91,7 @@ KrInterView::KrInterView( QWidget *parent, bool &left, KConfig *cfg ):
 	
 	setStyle( new KrStyleProxy() );
 	setItemDelegate( new KrInterViewItemDelegate() );
+	setMouseTracking( true );
 }
 
 KrInterView::~KrInterView()
@@ -321,12 +322,38 @@ void KrInterView::keyPressEvent( QKeyEvent *e )
 
 void KrInterView::mousePressEvent ( QMouseEvent * ev )
 {
-	if( _mouseHandler->mousePressEvent( ev ) )
+	if( !_mouseHandler->mousePressEvent( ev ) )
 		QTreeView::mousePressEvent( ev );
+}
+
+void KrInterView::mouseReleaseEvent ( QMouseEvent * ev )
+{
+	if( !_mouseHandler->mouseReleaseEvent( ev ) )
+		QTreeView::mouseReleaseEvent( ev );
+}
+
+void KrInterView::mouseDoubleClickEvent ( QMouseEvent *ev )
+{
+	if( !_mouseHandler->mouseDoubleClickEvent( ev ) )
+		QTreeView::mouseDoubleClickEvent( ev );
+}
+
+void KrInterView::mouseMoveEvent ( QMouseEvent * ev )
+{
+	if( !_mouseHandler->mouseMoveEvent( ev ) )
+		QTreeView::mouseMoveEvent( ev );
+}
+
+void KrInterView::wheelEvent ( QWheelEvent *ev )
+{
+	if( !_mouseHandler->wheelEvent( ev ) )
+		QTreeView::wheelEvent( ev );
 }
 
 KrInterViewItem * KrInterView::getKrInterViewItem( const QModelIndex & ndx )
 {
+	if( !ndx.isValid() )
+		return 0;
 	vfile * vf = _model->vfileAt( ndx );
 	if( !_itemHash.contains( vf ) )
 		_itemHash[ vf ] = new KrInterViewItem( this, vf );

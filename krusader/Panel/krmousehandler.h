@@ -18,18 +18,33 @@
 #ifndef __KR_MOUSE_HANDLER__
 #define __KR_MOUSE_HANDLER__
 
-class QMouseEvent;
-class KrView;
+#include <QPoint>
+#include <QTimer>
 
-class KrMouseHandler
+class QMouseEvent;
+class QWheelEvent;
+class KrView;
+class KrViewItem;
+
+class KrMouseHandler : QObject
 {
+	Q_OBJECT
+
 public:
-	KrMouseHandler( KrView * view ) : _view( view ) {}
+	KrMouseHandler( KrView * view );
 	
 	bool mousePressEvent( QMouseEvent *e );
+	bool mouseReleaseEvent( QMouseEvent *e );
+	bool mouseDoubleClickEvent( QMouseEvent *e );
+	bool mouseMoveEvent ( QMouseEvent *e );
+	bool wheelEvent ( QWheelEvent * );
+	void handleContextMenu( KrViewItem * it, const QPoint & pos );
 	
 protected:
 	KrView * _view;
+	bool     _singleClick;
+	QPoint   _contextMenuPoint;
+	QTimer contextMenuTimer;
 };
 
 #endif /* __KR_MOUSE_HANDLER */
