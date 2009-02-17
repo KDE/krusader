@@ -85,7 +85,9 @@ KrInterView::KrInterView( QWidget *parent, bool &left, KConfig *cfg ):
 	_model->sort( KrVfsModel::Name, Qt::AscendingOrder );
 	connect( _model, SIGNAL( layoutChanged() ), this, SLOT( slotMakeCurrentVisible() ) );
 	
-	_mouseHandler = new KrMouseHandler( this );
+	// fix the context menu problem
+	int j = QFontMetrics( font() ).height() * 2;
+	_mouseHandler = new KrMouseHandler( this, j );
 	setSelectionMode( QAbstractItemView::NoSelection );
 	setAllColumnsShowFocus( true );
 	
@@ -358,4 +360,35 @@ KrInterViewItem * KrInterView::getKrInterViewItem( const QModelIndex & ndx )
 	if( !_itemHash.contains( vf ) )
 		_itemHash[ vf ] = new KrInterViewItem( this, vf );
 	return _itemHash[ vf ];
+}
+
+void KrInterView::selectRegion( KrViewItem *i1, KrViewItem *i2, bool select)
+{
+	vfile* vf1 = (vfile *)i1->getVfile();
+	QModelIndex mi1 = _model->vfileIndex( vf1 );
+	vfile* vf2 = (vfile *)i2->getVfile();
+	QModelIndex mi2 = _model->vfileIndex( vf2 );
+	
+	if( mi1.isValid() && mi2.isValid() )
+	{
+		int r1 = mi1.row();
+		int r2 = mi2.row();
+		
+		if( r1 > r2 ) {
+			int t = r1;
+			r1 = r2;
+			r2 = t;
+		}
+		
+		for( int row = r1; row <= r2; row++ )
+		{
+			const QModelIndex & ndx = _model->index( row, 0 );
+			selectionModel()->select( ndx, ( select ? QItemSelectionModel::Select : QItemSelectionModel::Deselect )
+			| QItemSelectionModel::Rows );
+		}
+	}
+	else if( mi1.isValid() && !mi2.isValid() )
+		i1->setSelected( select );
+	else if( mi2.isValid() && !mi1.isValid() )
+		i2->setSelected( select );
 }

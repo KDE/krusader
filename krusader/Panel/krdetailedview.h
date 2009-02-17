@@ -109,7 +109,7 @@ public:
    virtual inline void restoreSettings() { K3ListView::restoreLayout( _config, nameInKConfig() ); }
    virtual void redraw() { viewport()->show(); header()->show(); show(); }
    virtual int  itemsPerPage();
-
+   virtual void selectRegion( KrViewItem *, KrViewItem *, bool ) {} // not used
 
    static KrView* create( QWidget *parent, bool &left, KConfig *cfg ) { return new KrDetailedView( parent, left, cfg ); }
 

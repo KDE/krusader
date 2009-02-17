@@ -92,6 +92,7 @@ public:
 	virtual QString nameInKConfig() {return _nameInKConfig;}
 	virtual void redraw() { ((QWidget *)parent())->show(); header->show(); viewport()->show(); show(); }
 	virtual int  itemsPerPage();
+	virtual void selectRegion( KrViewItem *, KrViewItem *, bool ) {} // not used
 	
 	static KrView* create( QWidget *parent, bool &left, KConfig *cfg );
 

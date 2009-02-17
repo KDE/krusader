@@ -44,6 +44,7 @@ public:
 	virtual void updateItem(KrViewItem* item);
 	virtual QModelIndex getCurrentIndex() { return currentIndex(); }
 	virtual bool isSelected( const QModelIndex &ndx ) { return selectionModel()->isSelected( ndx ); }
+	virtual void selectRegion( KrViewItem *, KrViewItem *, bool );
 	KrInterViewItem * getKrInterViewItem( const QModelIndex & );
 	
 	static KrView* create( QWidget *parent, bool &left, KConfig *cfg ) { return new KrInterView( parent, left, cfg ); }

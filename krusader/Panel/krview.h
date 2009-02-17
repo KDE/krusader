@@ -195,6 +195,7 @@ public:
   virtual QModelIndex getCurrentIndex()                 { return QModelIndex(); }
   virtual bool        isSelected( const QModelIndex & ) { return false; }
   virtual bool        ensureVisibilityAfterSelect()     { return true; }
+  virtual void        selectRegion( KrViewItem *, KrViewItem *, bool ) = 0;
 
   virtual KrViewItem *getFirst() = 0;
   virtual KrViewItem *getLast() = 0;

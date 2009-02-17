@@ -31,7 +31,7 @@ class KrMouseHandler : QObject
 	Q_OBJECT
 
 public:
-	KrMouseHandler( KrView * view );
+	KrMouseHandler( KrView * view, int contextMenuShift );
 	
 	bool mousePressEvent( QMouseEvent *e );
 	bool mouseReleaseEvent( QMouseEvent *e );
@@ -40,11 +40,17 @@ public:
 	bool wheelEvent ( QWheelEvent * );
 	void handleContextMenu( KrViewItem * it, const QPoint & pos );
 	
+public slots:
+	void showContextMenu();
+	
 protected:
-	KrView * _view;
-	bool     _singleClick;
-	QPoint   _contextMenuPoint;
-	QTimer contextMenuTimer;
+	KrView     * _view;
+	KrViewItem * _rightClickedItem;
+	bool         _rightClickSelects;
+	bool         _singleClick;
+	QPoint       _contextMenuPoint;
+	QTimer       _contextMenuTimer;
+	int          _contextMenuShift;
 };
 
 #endif /* __KR_MOUSE_HANDLER */
