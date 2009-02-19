@@ -523,6 +523,115 @@ void KrVfsModel::sort ( int column, Qt::SortOrder order )
 	emit layoutChanged();
 }
 
+QModelIndex KrVfsModel::addItem( vfile * vf )
+{
+	bool isDir = vf->vfile_isDir();
+	if ( !isDir || ( isDir && ( properties()->filter & KrViewProperties::ApplyToDirs ) ) ) {
+		switch ( properties()->filter ) {
+		case KrViewProperties::All :
+			break;
+		case KrViewProperties::Custom :
+			if ( !properties()->filterMask.match( vf ) )
+				return QModelIndex();
+			break;
+		case KrViewProperties::Dirs:
+			if ( !isDir )
+				return QModelIndex();
+			break;
+		case KrViewProperties::Files:
+			if ( isDir )
+				return QModelIndex();
+			break;
+		default:
+			break;
+		}
+	}
+	emit layoutAboutToBeChanged();
+	
+	QModelIndexList oldPersistentList = persistentIndexList();
+	
+	SortProps insSort( vf, _lastSortOrder, properties(), vf == _dummyVfile, _lastSortDir == Qt::AscendingOrder, -1 );
+	
+	QVector < SortProps * > sorting (_vfiles.count());
+	for (int i = 0; i < _vfiles.count(); ++i)
+		sorting[ i ] = new SortProps( _vfiles[ i ], _lastSortOrder, properties(), _vfiles[ i ] == _dummyVfile, _lastSortDir == Qt::AscendingOrder, i );
+	
+	LessThan compare = (_lastSortDir == Qt::AscendingOrder ? &itemLessThan : &itemGreaterThan);
+	QVector<SortProps *>::iterator it = qLowerBound(sorting.begin(), sorting.end(), &insSort, compare);
+	
+	int insertIndex = _vfiles.count();
+	if( it != sorting.end() ) {
+		insertIndex = (*it)->originalIndex();
+		_vfiles.insert( insertIndex, vf );
+	} else
+		_vfiles.append( vf );
+	
+	for (int di = 0; di != sorting.count(); di++ )
+		delete sorting[ di ];
+	
+	for (int i = insertIndex; i < _vfiles.count(); ++i) {
+		_vfileNdx[ _vfiles[ i ] ] = index( i, 0 );
+		_nameNdx[ _vfiles[ i ]->vfile_getName() ] = index( i, 0 );
+	}
+	
+	QModelIndexList newPersistentList;
+	foreach( QModelIndex mndx, oldPersistentList ) {
+		int newRow = mndx.row();
+		if( newRow >= insertIndex )
+			newRow++;
+		newPersistentList << index( newRow, mndx.column() );
+	}
+	
+	changePersistentIndexList(oldPersistentList, newPersistentList);
+	emit layoutChanged();
+	
+	return index( insertIndex, 0 );
+}
+
+QModelIndex KrVfsModel::removeItem( vfile * vf )
+{
+	for( int i=0; i != _vfiles.count(); i++ )
+	{
+		if( _vfiles[ i ] == vf )
+		{
+			emit layoutAboutToBeChanged();
+			QModelIndexList oldPersistentList = persistentIndexList();
+			QModelIndexList newPersistentList;
+			
+			_vfiles.remove( i );
+			
+			for (int ri = i; ri < _vfiles.count(); ++ri) {
+				_vfileNdx[ _vfiles[ ri ] ] = index( ri, 0 );
+				_nameNdx[ _vfiles[ ri ]->vfile_getName() ] = index( ri, 0 );
+			}
+			
+			foreach( QModelIndex mndx, oldPersistentList ) {
+				int newRow = mndx.row();
+				if( newRow > i )
+					newRow--;
+				if( newRow != i )
+					newPersistentList << index( newRow, mndx.column() );
+				else
+					newPersistentList << QModelIndex();
+			}
+			changePersistentIndexList(oldPersistentList, newPersistentList);
+			emit layoutChanged();
+			if( _vfiles.count() == 0 )
+				return QModelIndex();
+			if( i >= _vfiles.count() )
+				i = _vfiles.count() - 1;
+			return index( i, 0 );
+		}
+	}
+	return QModelIndex();
+}
+
+void KrVfsModel::updateItem( vfile * vf )
+{
+	// TODO: make it faster
+	sort();
+}
+
 QVariant KrVfsModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
 	// ignore anything that's not display, and not horizontal

@@ -22,6 +22,9 @@ public:
 	
 	inline bool ready() const { return _ready; }
 	void setVfs(vfs* v, bool upDir);
+	QModelIndex addItem( vfile * );
+	QModelIndex removeItem( vfile * );
+	void updateItem( vfile * );
 	
 	int rowCount(const QModelIndex &parent = QModelIndex()) const;
 	int columnCount(const QModelIndex &parent = QModelIndex()) const;

@@ -306,12 +306,18 @@ void KrInterView::setCurrentKrViewItem(KrViewItem *item)
 
 KrViewItem* KrInterView::preAddItem(vfile *vf)
 {
-	return 0;
+	return getKrInterViewItem( _model->addItem( vf ) );
 }
 
 bool KrInterView::preDelItem(KrViewItem *item)
 {
-	return false;
+	if( item == 0 )
+		return true;
+	QModelIndex ndx = _model->removeItem( (vfile *)item->getVfile() );
+	if( ndx.isValid() )
+		setCurrentIndex( ndx );
+	_itemHash.remove( (vfile *)item->getVfile() );
+	return true;
 }
 
 void KrInterView::redraw()
@@ -384,6 +390,9 @@ void KrInterView::updateView()
 
 void KrInterView::updateItem(KrViewItem* item)
 {
+	if( item == 0 )
+		return;
+	_model->updateItem( (vfile *)item->getVfile() );
 }
 
 void KrInterView::clear()
@@ -470,8 +479,11 @@ KrInterViewItem * KrInterView::getKrInterViewItem( const QModelIndex & ndx )
 	vfile * vf = _model->vfileAt( ndx );
 	if( vf == 0 )
 		return 0;
-	if( !_itemHash.contains( vf ) )
-		_itemHash[ vf ] = new KrInterViewItem( this, vf );
+	if( !_itemHash.contains( vf ) ) {
+		KrInterViewItem * newItem =  new KrInterViewItem( this, vf );
+		_itemHash[ vf ] = newItem;
+		_dict.insert( vf->vfile_getName(), newItem );
+	}
 	return _itemHash[ vf ];
 }
 
