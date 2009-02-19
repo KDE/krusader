@@ -22,13 +22,16 @@
 #include "../krusader.h"
 #include "../defaults.h"
 
+#define CANCEL_TWO_CLICK_RENAME {_singleClicked = false;_renameTimer.stop();}
+
 KrMouseHandler::KrMouseHandler( KrView * view, int contextMenuShift ) : _view( view ), _rightClickedItem( 0 ),
-	_contextMenuShift( contextMenuShift )
+	_contextMenuTimer(), _contextMenuShift( contextMenuShift ), _singleClicked( false ), _singleClickTime(), _renameTimer()
 {
 	KConfigGroup grpSvr( krConfig, "Look&Feel" );
 	// decide on single click/double click selection
 	_singleClick = grpSvr.readEntry( "Single Click Selects", _SingleClickSelects ) && KGlobalSettings::singleClick();
 	connect( &_contextMenuTimer, SIGNAL (timeout()), this, SLOT (showContextMenu()));
+	connect( &_renameTimer, SIGNAL( timeout() ), this, SIGNAL( renameCurrentItem() ) );
 }
 
 bool KrMouseHandler::mousePressEvent( QMouseEvent *e )
@@ -38,7 +41,6 @@ bool KrMouseHandler::mousePressEvent( QMouseEvent *e )
 		_view->op()->emitNeedFocus();
 	if (e->button() == Qt::LeftButton)
 	{
-		KrViewItem * oldCurrent = _view->getCurrentKrViewItem();
 		//dragStartPos = e->pos();
 		if( e->modifiers() == Qt::NoModifier )
 		{
@@ -88,7 +90,6 @@ bool KrMouseHandler::mousePressEvent( QMouseEvent *e )
 	}
 	if (e->button() == Qt::RightButton)
 	{
-		KrViewItem * oldCurrent = _view->getCurrentKrViewItem();
 		//dragStartPos = e->pos();
 		if( e->modifiers() == Qt::NoModifier )
 		{
@@ -155,13 +156,43 @@ bool KrMouseHandler::mouseReleaseEvent( QMouseEvent *e )
 	}
 	if( _singleClick && e->button() == Qt::LeftButton )
 	{
+		CANCEL_TWO_CLICK_RENAME;
 		e->accept();
 		if( item == 0 )
 			return true;
 		QString tmp = item->name();
 		_view->op()->emitExecuted(tmp);
 		return true;
+	} else if( !_singleClick && e->button() == Qt::LeftButton )
+	{
+		if( item && e->modifiers() == Qt::NoModifier )
+		{
+			if ( _singleClicked && !_renameTimer.isActive() && _singleClickedItem == item ) {
+				KSharedConfigPtr config = KGlobal::config();
+				KConfigGroup group( krConfig, "KDE" );
+				int doubleClickInterval = group.readEntry( "DoubleClickInterval", 400 );
+				
+				int msecsFromLastClick = _singleClickTime.msecsTo( QTime::currentTime() );
+				
+				if ( msecsFromLastClick > doubleClickInterval && msecsFromLastClick < 5 * doubleClickInterval ) {
+					_singleClicked = false;
+					_renameTimer.setSingleShot( true );
+					_renameTimer.start( doubleClickInterval );
+					return true;
+				}
+			}
+			
+			CANCEL_TWO_CLICK_RENAME;
+			_singleClicked = true;
+			_singleClickedItem = item;
+			_singleClickTime = QTime::currentTime();
+			
+			return true;
+		}
 	}
+	
+	CANCEL_TWO_CLICK_RENAME;
+
 	if ( e->button() == Qt::MidButton && item != 0 )
 	{
 				e->accept();
@@ -175,6 +206,8 @@ bool KrMouseHandler::mouseReleaseEvent( QMouseEvent *e )
 
 bool KrMouseHandler::mouseDoubleClickEvent( QMouseEvent *e )
 {
+	CANCEL_TWO_CLICK_RENAME;
+	
 	KrViewItem * item = _view->getKrViewItemAt( e->pos() );
 	if( _singleClick )
 		return false;
@@ -191,6 +224,9 @@ bool KrMouseHandler::mouseDoubleClickEvent( QMouseEvent *e )
 bool KrMouseHandler::mouseMoveEvent( QMouseEvent *e )
 {
 	KrViewItem * item =  _view->getKrViewItemAt( e->pos() );
+	if ( ( _singleClicked || _renameTimer.isActive() ) && item != _singleClickedItem )
+		CANCEL_TWO_CLICK_RENAME;
+	
 	if ( !item )
 		return false;
 	QString desc = item->description();
@@ -246,3 +282,19 @@ void KrMouseHandler::handleContextMenu( KrViewItem * it, const QPoint & pos ) {
 	}
 }
 
+void KrMouseHandler::otherEvent( QEvent * e ) {
+	switch ( e->type() ) {
+		case QEvent::Timer:
+		case QEvent::MouseMove:
+		case QEvent::MouseButtonPress:
+		case QEvent::MouseButtonRelease:
+			break;
+		default:
+			CANCEL_TWO_CLICK_RENAME;
+	}
+}
+
+void KrMouseHandler::cancelTwoClickRename()
+{
+	CANCEL_TWO_CLICK_RENAME;
+}

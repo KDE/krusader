@@ -56,6 +56,7 @@ public:
 	
 protected slots:
 	void slotMakeCurrentVisible();
+	virtual void renameCurrentItem();
 	
 protected:
 	virtual void setup();
@@ -67,6 +68,7 @@ protected:
 	virtual void mouseDoubleClickEvent ( QMouseEvent *ev );
 	virtual void mouseMoveEvent ( QMouseEvent * );
 	virtual void wheelEvent ( QWheelEvent * );
+	virtual bool event( QEvent * e );
 	
 private:
 	KrVfsModel *_model;

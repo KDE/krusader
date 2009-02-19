@@ -20,13 +20,14 @@
 
 #include <QPoint>
 #include <QTimer>
+#include <QTime>
 
 class QMouseEvent;
 class QWheelEvent;
 class KrView;
 class KrViewItem;
 
-class KrMouseHandler : QObject
+class KrMouseHandler : public QObject
 {
 	Q_OBJECT
 
@@ -39,9 +40,14 @@ public:
 	bool mouseMoveEvent ( QMouseEvent *e );
 	bool wheelEvent ( QWheelEvent * );
 	void handleContextMenu( KrViewItem * it, const QPoint & pos );
+	void otherEvent( QEvent * e );
+	void cancelTwoClickRename();
 	
 public slots:
 	void showContextMenu();
+	
+signals:
+	void renameCurrentItem();
 	
 protected:
 	KrView     * _view;
@@ -51,6 +57,10 @@ protected:
 	QPoint       _contextMenuPoint;
 	QTimer       _contextMenuTimer;
 	int          _contextMenuShift;
+	bool         _singleClicked;
+	KrViewItem * _singleClickedItem;
+	QTime        _singleClickTime;
+	QTimer       _renameTimer;
 };
 
 #endif /* __KR_MOUSE_HANDLER */

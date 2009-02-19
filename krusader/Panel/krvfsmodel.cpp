@@ -157,46 +157,34 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
 			KConfigGroup grpSvr( krConfig, "Look&Feel" );
 			return grpSvr.readEntry( "Filelist Font", *_FilelistFont );
 		}
+		case Qt::EditRole:
+		{
+			if( index.column() == 0 )
+			{
+				return vf->vfile_getName();
+			}
+			return QVariant();
+		}
+		case Qt::UserRole:
+		{
+			if( index.column() == 0 )
+			{
+				return nameWithoutExtension( vf, false );
+			}
+			return QVariant();
+		}
 		case Qt::DisplayRole:
 		{
 			switch (index.column()) {
 				case KrVfsModel::Name:
 				{
-					if( !_extensionEnabled || vf->vfile_isDir() )
-						return vf->vfile_getName();
-					// check if the file has an extension
-					const QString& vfName = vf->vfile_getName();
-					int loc = vfName.lastIndexOf('.');
-					if (loc>0) { // avoid mishandling of .bashrc and friend
-						// check if it has one of the predefined 'atomic extensions'
-						for (QStringList::const_iterator i = properties()->atomicExtensions.begin(); i != properties()->atomicExtensions.end(); ++i) {
-							if (vfName.endsWith(*i) && vfName != *i ) {
-								loc = vfName.length() - (*i).length();
-								break;
-							}
-						}
-					} else
-						return vfName;
-					return vfName.left(loc);
+					return nameWithoutExtension( vf );
 				}
 				case KrVfsModel::Extension:
 				{
-					if( !_extensionEnabled || vf->vfile_isDir() )
-						return QVariant();
-					// check if the file has an extension
+					QString nameOnly = nameWithoutExtension( vf );
 					const QString& vfName = vf->vfile_getName();
-					int loc = vfName.lastIndexOf('.');
-					if (loc>0) { // avoid mishandling of .bashrc and friend
-						// check if it has one of the predefined 'atomic extensions'
-						for (QStringList::const_iterator i = properties()->atomicExtensions.begin(); i != properties()->atomicExtensions.end(); ++i) {
-							if (vfName.endsWith(*i) && vfName != *i ) {
-								loc = vfName.length() - (*i).length();
-								break;
-							}
-						}
-					} else
-						return QVariant();
-					return vfName.mid(loc + 1);
+					return vfName.mid(nameOnly.length() + 1);
 				}
 				case KrVfsModel::Size:
 				{
@@ -275,6 +263,21 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
 		default:
 			return QVariant();
 	}
+}
+
+bool KrVfsModel::setData ( const QModelIndex & index, const QVariant & value, int role )
+{
+	if( role == Qt::EditRole && index.isValid() )
+	{
+		if (index.row() < rowCount() && index.row() > 0 )
+		{
+			vfile *vf = _vfiles.at(index.row());
+			if( vf == 0 )
+				return false;
+			_view->op()->emitRenameItem( vf->vfile_getName(), value.toString() );
+		}
+	}
+	return QAbstractListModel::setData( index, value, role );
 }
 
 // compares numbers within two strings
@@ -536,6 +539,8 @@ QVariant KrVfsModel::headerData(int section, Qt::Orientation orientation, int ro
 
 vfile * KrVfsModel::vfileAt( const QModelIndex &index )
 {
+	if( index.row() < 0 || index.row() >= _vfiles.count() )
+		return 0;
 	return _vfiles[ index.row() ];
 }
 
@@ -562,7 +567,27 @@ Qt::ItemFlags KrVfsModel::flags ( const QModelIndex & index ) const
 	if( vf == _dummyVfile )
 	{
 		flags = flags & (~Qt::ItemIsSelectable);
-	}
+	} else
+		flags = flags | Qt::ItemIsEditable;
 	return flags;
 }
 
+QString KrVfsModel::nameWithoutExtension( const vfile * vf, bool checkEnabled ) const
+{
+	if( (checkEnabled && !_extensionEnabled ) || vf->vfile_isDir() )
+		return vf->vfile_getName();
+	// check if the file has an extension
+	const QString& vfName = vf->vfile_getName();
+	int loc = vfName.lastIndexOf('.');
+	if (loc>0) { // avoid mishandling of .bashrc and friend
+		// check if it has one of the predefined 'atomic extensions'
+		for (QStringList::const_iterator i = properties()->atomicExtensions.begin(); i != properties()->atomicExtensions.end(); ++i) {
+			if (vfName.endsWith(*i) && vfName != *i ) {
+				loc = vfName.length() - (*i).length();
+				break;
+			}
+		}
+	} else
+		return vfName;
+	return vfName.left(loc);
+}

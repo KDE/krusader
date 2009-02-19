@@ -26,6 +26,7 @@ public:
 	int rowCount(const QModelIndex &parent = QModelIndex()) const;
 	int columnCount(const QModelIndex &parent = QModelIndex()) const;
 	QVariant data(const QModelIndex &index, int role) const;
+	bool setData ( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole );
 	QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
 	void setExtensionEnabled( bool exten ) { _extensionEnabled = exten; }
 	inline const KrViewProperties * properties() const { return _view->properties(); }
@@ -39,6 +40,8 @@ public:
 	virtual Qt::ItemFlags flags ( const QModelIndex & index ) const;
 	
 protected:
+	QString nameWithoutExtension( const vfile * vf, bool checkEnabled = true ) const;
+	
 	QVector<vfile*>             _vfiles;
 	QHash<vfile *, QModelIndex> _vfileNdx;
 	QHash<QString, QModelIndex> _nameNdx;
