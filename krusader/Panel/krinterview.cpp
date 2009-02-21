@@ -411,6 +411,9 @@ void KrInterView::clear()
 void KrInterView::addItems(vfs* v, bool addUpDir)
 {
 	_model->setVfs(v, addUpDir);
+	_count = _model->rowCount();
+	if( addUpDir )
+		_count--;
 	
 	this->setCurrentIndex(_model->index(0, 0));
 	if( !nameToMakeCurrent().isEmpty() )

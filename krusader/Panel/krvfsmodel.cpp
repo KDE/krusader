@@ -11,6 +11,7 @@
 #include "listpanel.h"
 #include "krcolorcache.h"
 
+#define PERM_BITMASK (S_ISUID|S_ISGID|S_ISVTX|S_IRWXU|S_IRWXG|S_IRWXO)
 
 class SortProps
 {
@@ -23,7 +24,10 @@ public:
 		_ascending = asc;
 		_vfile = vf;
 		_index = origNdx;
-		if( _col == KrVfsModel::Extension )
+		
+		switch( _col )
+		{
+		case KrVfsModel::Extension:
 		{
 			if( vf->vfile_isDir() ) {
 				_ext = "";
@@ -43,6 +47,60 @@ public:
 				} else
 					_ext = "";
 			}
+			break;
+		}
+		case KrVfsModel::Mime:
+		{
+			if( isDummy )
+				_data = "";
+			else
+			{
+				KMimeType::Ptr mt = KMimeType::mimeType(vf->vfile_getMime());
+				if( mt )
+					_data = mt->comment();
+			}
+			break;
+		}
+		case KrVfsModel::Permissions:
+		{
+			if( isDummy )
+				_data = "";
+			else
+			{
+				if (properties()->numericPermissions) {
+					QString perm;
+					_data = perm.sprintf("%.4o", vf->vfile_getMode() & PERM_BITMASK);
+				} else
+					_data = vf->vfile_getPerm();
+			}
+			break;
+		}
+		case KrVfsModel::KrPermissions:
+		{
+			if( isDummy )
+				_data = "";
+			else
+			{
+				_data = KrVfsModel::krPermissionString( vf );
+			}
+			break;
+		}
+		case KrVfsModel::Owner:
+		{
+			if( isDummy )
+				_data = "";
+			else
+				_data = vf->vfile_getOwner();
+		}
+		case KrVfsModel::Group:
+		{
+			if( isDummy )
+				_data = "";
+			else
+				_data = vf->vfile_getGroup();
+		}
+		default:
+			break;
 		}
 	}
 	
@@ -53,7 +111,8 @@ public:
 	inline QString extension() { return _ext; }
 	inline vfile * vf() { return _vfile; }
 	inline int originalIndex() { return _index; }
-	
+	inline QString data() { return _data; }
+
 private:
 	int _col;
 	const KrViewProperties * _prop;
@@ -62,6 +121,7 @@ private:
 	bool _ascending;
 	QString _ext;
 	int _index;
+	QString _data;
 };
 
 typedef bool(*LessThan)(SortProps *,SortProps *);
@@ -195,6 +255,53 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
 							KIO::convertSize(vf->vfile_getSize())+"  " :
 		 					KRpermHandler::parseSize(vf->vfile_getSize())+" ";
 				}
+				case KrVfsModel::Mime:
+				{
+					if( vf == _dummyVfile )
+						return QVariant();
+					KMimeType::Ptr mt = KMimeType::mimeType(vf->vfile_getMime());
+					if( mt )
+						return mt->comment();
+					return QVariant();
+				}
+				case KrVfsModel::DateTime:
+				{
+					if( vf == _dummyVfile )
+						return QVariant();
+					time_t time = vf->vfile_getTime_t();
+					struct tm* t=localtime((time_t *)&time);
+					
+					QDateTime tmp(QDate(t->tm_year+1900, t->tm_mon+1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
+					return KGlobal::locale()->formatDateTime(tmp);
+				}
+				case KrVfsModel::Permissions:
+				{
+					if( vf == _dummyVfile )
+						return QVariant();
+					if (properties()->numericPermissions) {
+						QString perm;
+						return perm.sprintf("%.4o", vf->vfile_getMode() & PERM_BITMASK);
+					}
+					return vf->vfile_getPerm();
+				}
+				case KrVfsModel::KrPermissions:
+				{
+					if( vf == _dummyVfile )
+						return QVariant();
+					return krPermissionString( vf );
+				}
+				case KrVfsModel::Owner:
+				{
+					if( vf == _dummyVfile )
+						return QVariant();
+					return vf->vfile_getOwner();
+				}
+				case KrVfsModel::Group:
+				{
+					if( vf == _dummyVfile )
+						return QVariant();
+					return vf->vfile_getGroup();
+				}
 				default: return QString();
 			}
 			return QVariant();
@@ -322,7 +429,7 @@ bool compareTextsAlphabetical(QString& aS1, QString& aS2, const KrViewProperties
       if(aNumbers && lchar1.isDigit() && lchar2.isDigit() )
       {
          int j = compareNumbers(aS1, lPositionS1, aS2, lPositionS2);
-         if( j != 0 ) return (j == -1);
+         if( j != 0 ) return j < 0;
       }
       else
       if( lUseLocaleAware
@@ -366,7 +473,7 @@ bool compareTextsCharacterCode(QString& aS1, QString& aS2, const KrViewPropertie
       if(aNumbers && aS1[lPositionS1].isDigit() && aS2[lPositionS2].isDigit())
       {
          int j = compareNumbers(aS1, lPositionS1, aS2, lPositionS2);
-         if( j != 0 ) return (j == -1);
+         if( j != 0 ) return j < 0;
       }
       else
       {
@@ -478,6 +585,18 @@ bool itemLessThan( SortProps *sp, SortProps *sp2 )
 			if( file1->vfile_getSize() == file2->vfile_getSize() )
 				return compareTexts(file1->vfile_getName(), file2->vfile_getName(), sp->properties(), sp->isAscending(), true);
 			return file1->vfile_getSize() < file2->vfile_getSize();
+		case KrVfsModel::DateTime:
+			if( file1->vfile_getTime_t() == file2->vfile_getTime_t() )
+				return compareTexts(file1->vfile_getName(), file2->vfile_getName(), sp->properties(), sp->isAscending(), true);
+			return file1->vfile_getTime_t() < file2->vfile_getTime_t();
+		case KrVfsModel::Mime:
+		case KrVfsModel::Permissions:
+		case KrVfsModel::KrPermissions:
+		case KrVfsModel::Owner:
+		case KrVfsModel::Group:
+			if( sp->data() == sp2->data() )
+				return compareTexts(file1->vfile_getName(), file2->vfile_getName(), sp->properties(), sp->isAscending(), true);
+			return compareTexts( sp->data(), sp2->data(), sp->properties(), sp->isAscending(), true );
 	}
 	file1->vfile_getName() < file2->vfile_getName();
 }
@@ -642,6 +761,12 @@ QVariant KrVfsModel::headerData(int section, Qt::Orientation orientation, int ro
 		case KrVfsModel::Name: return i18n( "Name" );
 		case KrVfsModel::Extension: return i18n( "Ext" );
 		case KrVfsModel::Size: return i18n( "Size" );
+		case KrVfsModel::Mime: return i18n( "Type" );
+		case KrVfsModel::DateTime: return i18n( "Modified" );
+		case KrVfsModel::Permissions: return i18n( "Perms" );
+		case KrVfsModel::KrPermissions: return i18n( "rwx" );
+		case KrVfsModel::Owner: return i18n( "Owner" );
+		case KrVfsModel::Group: return i18n( "Group" );
 	}
 	return QString();
 }
@@ -699,4 +824,25 @@ QString KrVfsModel::nameWithoutExtension( const vfile * vf, bool checkEnabled ) 
 	} else
 		return vfName;
 	return vfName.left(loc);
+}
+
+QString KrVfsModel::krPermissionString( const vfile * vf )
+{
+	QString tmp;
+	switch ( vf->vfile_isReadable() ){
+		case ALLOWED_PERM: tmp+='r'; break;
+		case UNKNOWN_PERM: tmp+='?'; break;
+		case NO_PERM:      tmp+='-'; break;
+	}
+	switch ( vf->vfile_isWriteable()){
+		case ALLOWED_PERM: tmp+='w'; break;
+		case UNKNOWN_PERM: tmp+='?'; break;
+		case NO_PERM:      tmp+='-'; break;
+	}
+	switch ( vf->vfile_isExecutable()){
+		case ALLOWED_PERM: tmp+='x'; break;
+		case UNKNOWN_PERM: tmp+='?'; break;
+		case NO_PERM:      tmp+='-'; break;
+	}
+	return tmp;
 }

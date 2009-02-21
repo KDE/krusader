@@ -15,7 +15,7 @@ class KrVfsModel: public QAbstractListModel {
 	
 public:
 	enum ColumnType { Name = 0x0, Extension = 0x1, Size = 0x2, Mime = 0x3, DateTime = 0x4,
-                          Permissions = 0x5, KrPermissions = 0x6, Owner = 0x7, Group = 0x8, MAX_COLUMNS = 0x03 };
+                          Permissions = 0x5, KrPermissions = 0x6, Owner = 0x7, Group = 0x8, MAX_COLUMNS = 0x09 };
 	
 	KrVfsModel( KrView * );
 	virtual ~KrVfsModel();
@@ -41,6 +41,7 @@ public:
 	const QModelIndex & vfileIndex( vfile * );
 	const QModelIndex & nameIndex( const QString & );
 	virtual Qt::ItemFlags flags ( const QModelIndex & index ) const;
+	static QString krPermissionString( const vfile * vf );
 	
 protected:
 	QString nameWithoutExtension( const vfile * vf, bool checkEnabled = true ) const;
