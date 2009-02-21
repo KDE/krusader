@@ -3,6 +3,7 @@
 
 #include <QAbstractListModel>
 #include <QVector>
+#include <QFont>
 #include "krview.h"
 
 class vfs;
@@ -46,6 +47,7 @@ public:
 protected:
 	QString nameWithoutExtension( const vfile * vf, bool checkEnabled = true ) const;
 	
+	
 	QVector<vfile*>             _vfiles;
 	QHash<vfile *, QModelIndex> _vfileNdx;
 	QHash<QString, QModelIndex> _nameNdx;
@@ -55,5 +57,8 @@ protected:
 	Qt::SortOrder               _lastSortDir;
 	vfile *                     _dummyVfile;
 	bool                        _ready;
+	QFont                       _defaultFont;
+	bool                        _justForSizeHint;
+	int                         _fileIconSize;
 };
 #endif // __krvfsmodel__

@@ -128,7 +128,12 @@ typedef bool(*LessThan)(SortProps *,SortProps *);
 
 KrVfsModel::KrVfsModel( KrView * view ): QAbstractListModel(0), _extensionEnabled( true ), _view( view ),
                                          _lastSortOrder( KrVfsModel::Name ), _lastSortDir(Qt::AscendingOrder),
-                                         _dummyVfile( 0 ), _ready( false ) {}
+                                         _dummyVfile( 0 ), _ready( false ), _justForSizeHint( false )
+{
+	KConfigGroup grpSvr( krConfig, "Look&Feel" );
+	_defaultFont = grpSvr.readEntry( "Filelist Font", *_FilelistFont );
+	_fileIconSize = (grpSvr.readEntry("Filelist Icon Size",_FilelistIconSize)).toInt();
+}
 
 void KrVfsModel::setVfs(vfs* v, bool upDir)
 {
@@ -195,10 +200,7 @@ int KrVfsModel::columnCount(const QModelIndex &parent) const {
 
 QVariant KrVfsModel::data(const QModelIndex& index, int role) const
 {
-	if (!index.isValid())
-		return QVariant();
-
-	if (index.row() >= rowCount())
+	if (!index.isValid() || index.row() >= rowCount())
 		return QVariant();
 	vfile *vf = _vfiles.at(index.row());
 	if( vf == 0 )
@@ -207,10 +209,7 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
 	switch( role )
 	{
 		case Qt::FontRole:
-		{
-			KConfigGroup grpSvr( krConfig, "Look&Feel" );
-			return grpSvr.readEntry( "Filelist Font", *_FilelistFont );
-		}
+			return _defaultFont;
 		case Qt::EditRole:
 		{
 			if( index.column() == 0 )
@@ -305,8 +304,11 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
 			switch (index.column() ) {
 				case KrVfsModel::Name:
 				{
-					if( properties()->displayIcons )
+					if( properties()->displayIcons ) {
+						if( _justForSizeHint )
+							return QPixmap( _fileIconSize, _fileIconSize );
 						return KrView::getIcon( vf );
+					}
 					break;
 				}
 				default:
@@ -377,6 +379,10 @@ bool KrVfsModel::setData ( const QModelIndex & index, const QVariant & value, in
 				return false;
 			_view->op()->emitRenameItem( vf->vfile_getName(), value.toString() );
 		}
+	}
+	if( role == Qt::UserRole && index.isValid() )
+	{
+		_justForSizeHint = value.toBool();
 	}
 	return QAbstractListModel::setData( index, value, role );
 }

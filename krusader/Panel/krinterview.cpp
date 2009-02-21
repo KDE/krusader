@@ -94,6 +94,14 @@ public:
 		}
 	}
 	
+	QSize sizeHint ( const QStyleOptionViewItem & option, const QModelIndex & index ) const
+	{
+		((QAbstractItemModel*)index.model())->setData( index, QVariant( true ), Qt::UserRole );
+		QSize size = QItemDelegate::sizeHint( option, index );
+		((QAbstractItemModel*)index.model())->setData( index, QVariant( false ), Qt::UserRole );
+		return size;
+	}
+	
 	bool eventFilter(QObject *object, QEvent *event)
 	{
 		QWidget *editor = qobject_cast<QWidget*>(object);
@@ -195,6 +203,11 @@ KrInterView::KrInterView( QWidget *parent, bool &left, KConfig *cfg ):
 	setMouseTracking( true );
 	setAcceptDrops( true );
 	setDropIndicatorShown( true );
+	
+	hideColumn( KrVfsModel::Mime );
+	hideColumn( KrVfsModel::Permissions );
+	hideColumn( KrVfsModel::Owner );
+	hideColumn( KrVfsModel::Group );
 }
 
 KrInterView::~KrInterView()
