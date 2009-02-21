@@ -20,8 +20,8 @@
 #include <kurl.h>
 //#include <QResizeEvent>
 //#include <QMouseEvent>
-//#include <QDragMoveEvent>
-//#include <QDragEnterEvent>
+#include <QDragMoveEvent>
+#include <QDragEnterEvent>
 #include <QTabBar>
 #include <QVariant>
 
@@ -80,10 +80,8 @@ protected:
   void mousePressEvent( QMouseEvent* );
   void insertAction( KAction* );
   QString squeeze(QString text, int index=-1);
-#if 0 // TODO: fix this
   virtual void dragEnterEvent(QDragEnterEvent *);
   virtual void dragMoveEvent(QDragMoveEvent *);
-#endif
   virtual void resizeEvent ( QResizeEvent *e );
 
 protected slots:

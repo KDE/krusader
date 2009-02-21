@@ -252,24 +252,27 @@ void PanelTabBar::resizeEvent ( QResizeEvent *e ) {
     //layoutTabs();
 }
 
-#if 0 // TODO: fix this
 void PanelTabBar::dragEnterEvent(QDragEnterEvent *e) {
-	QTab *t = selectTab(e->pos());
-	if (!t) return;
-	if (tab(currentIndex()) != t) {
+	e->accept();
+	int t = tabAt(e->pos());
+	if (t == -1)
+		return;
+	if ( currentIndex() != t) {
 		setCurrentIndex(t);
-		emit changePanel(static_cast<ListPanel*>((ListPanel*)tabData(t)));
+		emit changePanel((ListPanel*)tabData(t).toLongLong());
 	}
+	QTabBar::dragEnterEvent( e );
 }
 
 void PanelTabBar::dragMoveEvent(QDragMoveEvent *e) {
-	QTab *t = selectTab(e->pos());
-	if (!t) return;
-	if (tab(currentIndex()) != t) {
+	e->ignore();
+	int t = tabAt(e->pos());
+	if (t == -1) return;
+	if (currentIndex() != t) {
 		setCurrentIndex(t);
-		emit changePanel(static_cast<ListPanel*>((ListPanel*)tabData(t)));
+		emit changePanel((ListPanel*)tabData(t).toLongLong());
 	}
+	QTabBar::dragMoveEvent( e );
 }
-#endif
 
 #include "paneltabbar.moc"

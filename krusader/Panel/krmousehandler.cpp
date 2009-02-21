@@ -230,16 +230,18 @@ bool KrMouseHandler::mouseMoveEvent( QMouseEvent *e )
 	if ( ( _singleClicked || _renameTimer.isActive() ) && item != _singleClickedItem )
 		CANCEL_TWO_CLICK_RENAME;
 	
+	if ( !item )
+		return false;
+	
+	QString desc = item->description();
+	_view->op()->emitItemDescription(desc);
+	
 	if ( _dragStartPos != QPoint( -1, -1 ) &&
 		( e->buttons() & Qt::LeftButton ) && ( _dragStartPos - e->pos() ).manhattanLength() > QApplication::startDragDistance() )
 	{
 		_view->op()->startDrag();
+		return true;
 	}
-	
-	if ( !item )
-		return false;
-	QString desc = item->description();
-	_view->op()->emitItemDescription(desc);
 	
 	if (KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection() 
 		&& KrSelectionMode::getSelectionHandler()->rightButtonSelects()
