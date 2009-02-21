@@ -132,8 +132,6 @@ KrVfsModel::KrVfsModel( KrView * view ): QAbstractListModel(0), _extensionEnable
 
 void KrVfsModel::setVfs(vfs* v, bool upDir)
 {
-	emit layoutAboutToBeChanged();
-	
 	_dummyVfile = 0;
 	if( upDir ) {
 		_dummyVfile = new vfile( "..", 0, "drwxrwxrwx", 0, false, 0, 0, "", "", 0, -1);
@@ -173,8 +171,6 @@ void KrVfsModel::setVfs(vfs* v, bool upDir)
 	// TODO: connect all addedVfile/deleteVfile and friends signals
 	// TODO: make a more efficient implementation that this dummy one :-)
 	
-	emit dataChanged(index(0, 0), index(_vfiles.count()-1, 0));
-	emit layoutChanged();
 	sort();
 }
 
@@ -184,9 +180,7 @@ KrVfsModel::~KrVfsModel()
 
 void KrVfsModel::clear()
 {
-	emit layoutAboutToBeChanged();
 	_vfiles.clear();
-	emit layoutChanged();
 }
 
 int KrVfsModel::rowCount(const QModelIndex& parent) const

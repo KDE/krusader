@@ -508,12 +508,14 @@ KrInterViewItem * KrInterView::getKrInterViewItem( const QModelIndex & ndx )
 	vfile * vf = _model->vfileAt( ndx );
 	if( vf == 0 )
 		return 0;
-	if( !_itemHash.contains( vf ) ) {
+	QHash<vfile *,KrInterViewItem*>::iterator it = _itemHash.find( vf );
+	if( it == _itemHash.end() ) {
 		KrInterViewItem * newItem =  new KrInterViewItem( this, vf );
 		_itemHash[ vf ] = newItem;
 		_dict.insert( vf->vfile_getName(), newItem );
+		return newItem;
 	}
-	return _itemHash[ vf ];
+	return *it;
 }
 
 void KrInterView::selectRegion( KrViewItem *i1, KrViewItem *i2, bool select)
