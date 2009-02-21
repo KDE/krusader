@@ -193,6 +193,8 @@ KrInterView::KrInterView( QWidget *parent, bool &left, KConfig *cfg ):
 	setStyle( new KrStyleProxy() );
 	setItemDelegate( new KrInterViewItemDelegate() );
 	setMouseTracking( true );
+	setAcceptDrops( true );
+	setDropIndicatorShown( true );
 }
 
 KrInterView::~KrInterView()
@@ -464,6 +466,30 @@ void KrInterView::wheelEvent ( QWheelEvent *ev )
 {
 	if( !_mouseHandler->wheelEvent( ev ) )
 		QTreeView::wheelEvent( ev );
+}
+
+void KrInterView::dragEnterEvent ( QDragEnterEvent *ev )
+{
+	if( !_mouseHandler->dragEnterEvent( ev ) )
+		QTreeView::dragEnterEvent( ev );
+}
+
+void KrInterView::dragMoveEvent ( QDragMoveEvent *ev )
+{
+	QTreeView::dragMoveEvent( ev );
+	_mouseHandler->dragMoveEvent( ev );
+}
+
+void KrInterView::dragLeaveEvent ( QDragLeaveEvent *ev )
+{
+	if( !_mouseHandler->dragLeaveEvent( ev ) )
+		QTreeView::dragLeaveEvent( ev );
+}
+
+void KrInterView::dropEvent ( QDropEvent *ev )
+{
+	if( !_mouseHandler->dropEvent( ev ) )
+		QTreeView::dropEvent( ev );
 }
 
 bool KrInterView::event( QEvent * e )

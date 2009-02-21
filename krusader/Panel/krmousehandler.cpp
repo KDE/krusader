@@ -25,7 +25,8 @@
 #define CANCEL_TWO_CLICK_RENAME {_singleClicked = false;_renameTimer.stop();}
 
 KrMouseHandler::KrMouseHandler( KrView * view, int contextMenuShift ) : _view( view ), _rightClickedItem( 0 ),
-	_contextMenuTimer(), _contextMenuShift( contextMenuShift ), _singleClicked( false ), _singleClickTime(), _renameTimer()
+	_contextMenuTimer(), _contextMenuShift( contextMenuShift ), _singleClicked( false ), _singleClickTime(),
+	_renameTimer(), _dragStartPos( -1, -1 )
 {
 	KConfigGroup grpSvr( krConfig, "Look&Feel" );
 	// decide on single click/double click selection
@@ -41,7 +42,7 @@ bool KrMouseHandler::mousePressEvent( QMouseEvent *e )
 		_view->op()->emitNeedFocus();
 	if (e->button() == Qt::LeftButton)
 	{
-		//dragStartPos = e->pos();
+		_dragStartPos = e->pos();
 		if( e->modifiers() == Qt::NoModifier )
 		{
 			if( item )
@@ -148,6 +149,8 @@ bool KrMouseHandler::mousePressEvent( QMouseEvent *e )
 
 bool KrMouseHandler::mouseReleaseEvent( QMouseEvent *e )
 {
+	if( e->button() == Qt::LeftButton )
+		_dragStartPos = QPoint( -1, -1 );
 	KrViewItem * item = _view->getKrViewItemAt( e->pos() );
 	
 	if( e->button() == Qt::RightButton ) {
@@ -227,6 +230,12 @@ bool KrMouseHandler::mouseMoveEvent( QMouseEvent *e )
 	if ( ( _singleClicked || _renameTimer.isActive() ) && item != _singleClickedItem )
 		CANCEL_TWO_CLICK_RENAME;
 	
+	if ( _dragStartPos != QPoint( -1, -1 ) &&
+		( e->buttons() & Qt::LeftButton ) && ( _dragStartPos - e->pos() ).manhattanLength() > QApplication::startDragDistance() )
+	{
+		_view->op()->startDrag();
+	}
+	
 	if ( !item )
 		return false;
 	QString desc = item->description();
@@ -297,4 +306,29 @@ void KrMouseHandler::otherEvent( QEvent * e ) {
 void KrMouseHandler::cancelTwoClickRename()
 {
 	CANCEL_TWO_CLICK_RENAME;
+}
+
+bool KrMouseHandler::dragEnterEvent(QDragEnterEvent *e)
+{
+	KUrl::List URLs = KUrl::List::fromMimeData( e->mimeData() );
+	e->setAccepted( !URLs.isEmpty() );
+	return true;
+}
+
+bool KrMouseHandler::dragMoveEvent(QDragMoveEvent *e)
+{
+	KUrl::List URLs = KUrl::List::fromMimeData( e->mimeData() );
+	e->setAccepted( !URLs.isEmpty() );
+	return true;
+}
+
+bool KrMouseHandler::dragLeaveEvent(QDragLeaveEvent *e)
+{
+	return false;
+}
+
+bool KrMouseHandler::dropEvent ( QDropEvent *e )
+{
+	_view->op()->emitGotDrop( e );
+	return true;
 }

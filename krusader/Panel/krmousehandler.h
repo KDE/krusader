@@ -26,6 +26,10 @@ class QMouseEvent;
 class QWheelEvent;
 class KrView;
 class KrViewItem;
+class QDragEnterEvent;
+class QDragMoveEvent;
+class QDragLeaveEvent;
+class QDropEvent;
 
 class KrMouseHandler : public QObject
 {
@@ -39,6 +43,10 @@ public:
 	bool mouseDoubleClickEvent( QMouseEvent *e );
 	bool mouseMoveEvent ( QMouseEvent *e );
 	bool wheelEvent ( QWheelEvent * );
+	bool dragEnterEvent(QDragEnterEvent *e);
+	bool dragMoveEvent(QDragMoveEvent *e);
+	bool dragLeaveEvent(QDragLeaveEvent *e);
+	bool dropEvent ( QDropEvent *e );
 	void handleContextMenu( KrViewItem * it, const QPoint & pos );
 	void otherEvent( QEvent * e );
 	void cancelTwoClickRename();
@@ -61,6 +69,7 @@ protected:
 	KrViewItem * _singleClickedItem;
 	QTime        _singleClickTime;
 	QTimer       _renameTimer;
+	QPoint       _dragStartPos;
 };
 
 #endif /* __KR_MOUSE_HANDLER */

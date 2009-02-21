@@ -10,6 +10,7 @@ class KrVfsModel;
 class KrInterViewItem;
 class QMouseEvent;
 class QKeyEvent;
+class QDragEnterEvent;
 class KrMouseHandler;
 
 class KrInterView : public QTreeView, public KrView {
@@ -69,6 +70,10 @@ protected:
 	virtual void mouseMoveEvent ( QMouseEvent * );
 	virtual void wheelEvent ( QWheelEvent * );
 	virtual bool event( QEvent * e );
+	virtual void dragEnterEvent(QDragEnterEvent *e);
+	virtual void dragMoveEvent(QDragMoveEvent *e);
+	virtual void dragLeaveEvent(QDragLeaveEvent *e);
+	virtual void dropEvent ( QDropEvent * );
 	
 private:
 	KrVfsModel *_model;

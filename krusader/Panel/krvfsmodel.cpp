@@ -675,9 +675,9 @@ Qt::ItemFlags KrVfsModel::flags ( const QModelIndex & index ) const
 	vfile *vf = _vfiles.at(index.row());
 	if( vf == _dummyVfile )
 	{
-		flags = flags & (~Qt::ItemIsSelectable);
+		flags = (flags & (~Qt::ItemIsSelectable)) | Qt::ItemIsDropEnabled;
 	} else
-		flags = flags | Qt::ItemIsEditable;
+		flags = flags | Qt::ItemIsEditable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;
 	return flags;
 }
 
