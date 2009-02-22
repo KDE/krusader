@@ -16,6 +16,7 @@
 #include <QPainter>
 #include <QLineEdit>
 #include <QDialog>
+#include <KMenu>
 
 // dummy. remove this class when no longer needed
 class KrInterViewItem: public KrViewItem
@@ -187,6 +188,9 @@ KrInterView::KrInterView( QWidget *parent, bool &left, KConfig *cfg ):
 	_nameInKConfig=QString( "KrInterView" ) + QString( ( left ? "Left" : "Right" ) ) ;
 	KConfigGroup group( krConfig, "Private" );
 
+	KConfigGroup grpSvr( _config, "Look&Feel" );
+	_viewFont = grpSvr.readEntry( "Filelist Font", *_FilelistFont );
+
 	_model = new KrVfsModel( this );
 	this->setModel(_model);
 	this->setRootIsDecorated(false);
@@ -194,6 +198,7 @@ KrInterView::KrInterView( QWidget *parent, bool &left, KConfig *cfg ):
 	this->sortByColumn( KrVfsModel::Name, Qt::AscendingOrder );
 	_model->sort( KrVfsModel::Name, Qt::AscendingOrder );
 	connect( _model, SIGNAL( layoutChanged() ), this, SLOT( slotMakeCurrentVisible() ) );
+	header()->installEventFilter( this );
 	
 	setSelectionMode( QAbstractItemView::NoSelection );
 	setAllColumnsShowFocus( true );
@@ -204,10 +209,12 @@ KrInterView::KrInterView( QWidget *parent, bool &left, KConfig *cfg ):
 	setAcceptDrops( true );
 	setDropIndicatorShown( true );
 	
-	hideColumn( KrVfsModel::Mime );
-	hideColumn( KrVfsModel::Permissions );
-	hideColumn( KrVfsModel::Owner );
-	hideColumn( KrVfsModel::Group );
+	for( int i=0; i != KrVfsModel::MAX_COLUMNS; i++)
+		header()->setResizeMode( i, QHeaderView::Interactive );
+	header()->setStretchLastSection( false );
+	
+	restoreSettings();
+	connect( header(), SIGNAL( sectionResized( int, int, int ) ), this, SLOT( sectionResized( int, int, int ) ) );
 }
 
 KrInterView::~KrInterView()
@@ -345,6 +352,18 @@ void KrInterView::refreshColors()
 
 void KrInterView::restoreSettings()
 {
+	hideColumn( KrVfsModel::Mime );
+	hideColumn( KrVfsModel::Permissions );
+	hideColumn( KrVfsModel::Owner );
+	hideColumn( KrVfsModel::Group );
+	header()->resizeSection( KrVfsModel::Extension, QFontMetrics( _viewFont ).width( "tar.bz2  " ) );
+	header()->resizeSection( KrVfsModel::KrPermissions, QFontMetrics( _viewFont ).width( "rwx  " ) );
+	header()->resizeSection( KrVfsModel::Size, QFontMetrics( _viewFont ).width( "9" ) * 10 );
+	
+	QDateTime tmp(QDate(2099, 12, 29), QTime(23, 59));
+	QString desc = KGlobal::locale()->formatDateTime(tmp) + "  ";
+	
+	header()->resizeSection( KrVfsModel::DateTime, QFontMetrics( _viewFont ).width( desc ) );
 }
 
 void KrInterView::saveSettings()
@@ -568,4 +587,182 @@ void KrInterView::renameCurrentItem() {
 	edit( nameIndex );
 	updateEditorData();
 	update( nameIndex );
+}
+
+bool KrInterView::eventFilter(QObject *object, QEvent *event)
+{
+	if( object == header() )
+	{
+		if( event->type() == QEvent::ContextMenu )
+		{
+			QContextMenuEvent *me = (QContextMenuEvent *)event;
+			showContextMenu( me->globalPos() );
+			return true;
+		} else if( event->type() == QEvent::Resize )
+		{
+			recalculateColumnSizes();
+			return false;
+		}
+	}
+	return false;
+}
+
+void KrInterView::showContextMenu( const QPoint & p )
+{
+	KMenu popup( this );
+	popup.setTitle( i18n("Columns"));
+//
+//  bool refresh = false;
+	bool hasExtension = !isColumnHidden( KrVfsModel::Extension );
+	bool hasMime      = !isColumnHidden( KrVfsModel::Mime );
+	bool hasSize      = !isColumnHidden( KrVfsModel::Size );
+	bool hasDate      = !isColumnHidden( KrVfsModel::DateTime );
+	bool hasPerms     = !isColumnHidden( KrVfsModel::Permissions );
+	bool hasKrPerms   = !isColumnHidden( KrVfsModel::KrPermissions );
+	bool hasOwner     = !isColumnHidden( KrVfsModel::Owner );
+	bool hasGroup     = !isColumnHidden( KrVfsModel::Group );
+	
+	QAction *extAct = popup.addAction( i18n( "Ext" ) );
+	extAct->setCheckable( true );
+	extAct->setChecked( hasExtension );
+	
+	QAction *typeAct = popup.addAction( i18n( "Type" ) );
+	typeAct->setCheckable( true );
+	typeAct->setChecked( hasMime );
+	
+	QAction *sizeAct = popup.addAction( i18n( "Size" ) );
+	sizeAct->setCheckable( true );
+	sizeAct->setChecked( hasSize );
+	
+	QAction *modifAct = popup.addAction( i18n( "Modified" ) );
+	modifAct->setCheckable( true );
+	modifAct->setChecked( hasDate );
+	
+	QAction *permAct = popup.addAction( i18n( "Perms" ) );
+	permAct->setCheckable( true );
+	permAct->setChecked( hasPerms );
+	
+	QAction *rwxAct = popup.addAction( i18n( "rwx" ) );
+	rwxAct->setCheckable( true );
+	rwxAct->setChecked( hasKrPerms );
+	
+	QAction *ownerAct = popup.addAction( i18n( "Owner" ) );
+	ownerAct->setCheckable( true );
+	ownerAct->setChecked( hasOwner );
+	
+	QAction *groupAct = popup.addAction( i18n( "Group" ) );
+	groupAct->setCheckable( true );
+	groupAct->setChecked( hasGroup );
+  
+	QAction *res = popup.exec( p );
+	if( res == extAct )
+	{
+		_model->setExtensionEnabled( !hasExtension );
+		if( hasExtension )
+			hideColumn( KrVfsModel::Extension );
+		else
+			showColumn( KrVfsModel::Extension );
+	} else if( res == typeAct ) {
+		_model->setExtensionEnabled( !hasMime );
+		if( hasMime )
+			hideColumn( KrVfsModel::Mime );
+		else
+			showColumn( KrVfsModel::Mime );
+	} else if( res == sizeAct ) {
+		_model->setExtensionEnabled( !hasSize );
+		if( hasSize )
+			hideColumn( KrVfsModel::Size );
+		else
+			showColumn( KrVfsModel::Size );
+	} else if( res == modifAct ) {
+		_model->setExtensionEnabled( !hasDate );
+		if( hasDate )
+			hideColumn( KrVfsModel::DateTime );
+		else
+			showColumn( KrVfsModel::DateTime );
+	} else if( res == permAct ) {
+		_model->setExtensionEnabled( !hasPerms );
+		if( hasPerms )
+			hideColumn( KrVfsModel::Permissions );
+		else
+			showColumn( KrVfsModel::Permissions );
+	} else if( res == rwxAct ) {
+		_model->setExtensionEnabled( !hasKrPerms );
+		if( hasKrPerms )
+			hideColumn( KrVfsModel::KrPermissions );
+		else
+			showColumn( KrVfsModel::KrPermissions );
+	} else if( res == ownerAct ) {
+		_model->setExtensionEnabled( !hasOwner );
+		if( hasOwner )
+			hideColumn( KrVfsModel::Owner );
+		else
+			showColumn( KrVfsModel::Owner );
+	} else if( res == groupAct ) {
+		_model->setExtensionEnabled( !hasGroup );
+		if( hasGroup )
+			hideColumn( KrVfsModel::Group );
+		else
+			showColumn( KrVfsModel::Group );
+	}
+}
+
+void KrInterView::sectionResized( int column, int oldSize, int newSize )
+{
+	if( oldSize == newSize || !_model->ready() )
+		return;
+	
+	recalculateColumnSizes();
+}
+
+void KrInterView::recalculateColumnSizes()
+{
+	int sum = 0;
+	for( int i=0; i != KrVfsModel::MAX_COLUMNS; i++ )
+	{
+		if( !isColumnHidden( i ) )
+			sum += header()->sectionSize( i );
+	}
+	
+	if( sum != header()->width() )
+	{
+		int delta = sum - header()->width();
+		int nameSize = header()->sectionSize( KrVfsModel::Name );
+		if( nameSize - delta > 20 )
+			header()->resizeSection( KrVfsModel::Name, nameSize - delta );
+	}
+}
+
+bool KrInterView::viewportEvent ( QEvent * event )
+{
+	if( event->type() == QEvent::ToolTip )
+	{
+		QHelpEvent *he = static_cast<QHelpEvent*>(event);
+		const QModelIndex index = indexAt(he->pos());
+		
+		if( index.isValid() )
+		{
+			int width = header()->sectionSize( index.column() );
+			QString text = index.data( Qt::DisplayRole ).toString();
+			
+			int textWidth = QFontMetrics( _viewFont ).width( text );
+			
+			const int textMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin) + 1;
+			textWidth += 2 * textMargin;
+			
+			QVariant decor = index.data( Qt::DecorationRole );
+			if( decor.isValid() && decor.type() == QVariant::Pixmap )
+			{
+				QPixmap p = decor.value<QPixmap>();
+				textWidth += p.width() + 2 * textMargin;
+			}
+			
+			if( textWidth <= width )
+			{
+				event->accept();
+				return true;
+			}
+		}
+	}
+	return QTreeView::viewportEvent( event );
 }

@@ -5,12 +5,14 @@
 
 #include <QTreeView>
 #include <QVector>
+#include <QFont>
 
 class KrVfsModel;
 class KrInterViewItem;
 class QMouseEvent;
 class QKeyEvent;
 class QDragEnterEvent;
+class QContextMenuEvent;
 class KrMouseHandler;
 
 class KrInterView : public QTreeView, public KrView {
@@ -58,6 +60,7 @@ public:
 protected slots:
 	void slotMakeCurrentVisible();
 	virtual void renameCurrentItem();
+	void sectionResized( int, int, int );
 	
 protected:
 	virtual void setup();
@@ -74,10 +77,16 @@ protected:
 	virtual void dragMoveEvent(QDragMoveEvent *e);
 	virtual void dragLeaveEvent(QDragLeaveEvent *e);
 	virtual void dropEvent ( QDropEvent * );
+	virtual bool eventFilter(QObject *object, QEvent *event);
+	virtual bool viewportEvent ( QEvent * event );
+	
+	void showContextMenu( const QPoint & p );
+	void recalculateColumnSizes();
 	
 private:
 	KrVfsModel *_model;
 	KrMouseHandler *_mouseHandler;
 	QHash<vfile *,KrInterViewItem*> _itemHash;
+	QFont _viewFont;
 };
 #endif // __krinterview__

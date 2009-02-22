@@ -226,6 +226,7 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
 			}
 			return QVariant();
 		}
+		case Qt::ToolTipRole:
 		case Qt::DisplayRole:
 		{
 			switch (index.column()) {
