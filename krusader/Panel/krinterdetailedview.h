@@ -1,5 +1,5 @@
-#ifndef __krinterview__
-#define __krinterview__
+#ifndef __krinterdetailedview__
+#define __krinterdetailedview__
 
 #include "krview.h"
 
@@ -8,20 +8,20 @@
 #include <QFont>
 
 class KrVfsModel;
-class KrInterViewItem;
+class KrInterDetailedViewItem;
 class QMouseEvent;
 class QKeyEvent;
 class QDragEnterEvent;
 class QContextMenuEvent;
 class KrMouseHandler;
 
-class KrInterView : public QTreeView, public KrView {
-	friend class KrInterViewItem;
+class KrInterDetailedView : public QTreeView, public KrView {
+	friend class KrInterDetailedViewItem;
 	Q_OBJECT
 
 public:
-	KrInterView( QWidget *parent, bool &left, KConfig *cfg = krConfig );
-	virtual ~KrInterView();
+	KrInterDetailedView( QWidget *parent, bool &left, KConfig *cfg = krConfig );
+	virtual ~KrInterDetailedView();
 
 	virtual void addItems(vfs* v, bool addUpDir = true);
 	virtual KrViewItem* findItemByName(const QString &name);
@@ -36,7 +36,6 @@ public:
 	virtual KrViewItem* preAddItem(vfile *vf);
 	virtual bool preDelItem(KrViewItem *item);
 	virtual void redraw();
-	virtual void refreshColors();
 	virtual void restoreSettings();
 	virtual void saveSettings();
 	virtual void setCurrentItem(const QString& name);
@@ -48,14 +47,17 @@ public:
 	virtual QModelIndex getCurrentIndex() { return currentIndex(); }
 	virtual bool isSelected( const QModelIndex &ndx ) { return selectionModel()->isSelected( ndx ); }
 	virtual void selectRegion( KrViewItem *, KrViewItem *, bool );
-	KrInterViewItem * getKrInterViewItem( const QModelIndex & );
+	KrInterDetailedViewItem * getKrInterViewItem( const QModelIndex & );
 	
-	static KrView* create( QWidget *parent, bool &left, KConfig *cfg ) { return new KrInterView( parent, left, cfg ); }
+	static KrView* create( QWidget *parent, bool &left, KConfig *cfg ) { return new KrInterDetailedView( parent, left, cfg ); }
 	
 	virtual void prepareForActive();
 	virtual void prepareForPassive();
 	virtual bool ensureVisibilityAfterSelect() { return false; }
 	virtual int  itemsPerPage();
+	
+public slots:
+	virtual void refreshColors();
 	
 protected slots:
 	void slotMakeCurrentVisible();
@@ -86,7 +88,7 @@ protected:
 private:
 	KrVfsModel *_model;
 	KrMouseHandler *_mouseHandler;
-	QHash<vfile *,KrInterViewItem*> _itemHash;
+	QHash<vfile *,KrInterDetailedViewItem*> _itemHash;
 	QFont _viewFont;
 };
 #endif // __krinterview__

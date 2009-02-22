@@ -20,7 +20,8 @@ set( Panel_SRCS
 	krbriefview.cpp 
 	krbriefviewitem.cpp
 	krvfsmodel.cpp
-	krinterview.cpp
+	krinterdetailedview.cpp
+	krinterviewitemdelegate.cpp
 	krviewfactory.cpp
 	krmousehandler.cpp )
 

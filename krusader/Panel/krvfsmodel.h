@@ -43,6 +43,7 @@ public:
 	const QModelIndex & nameIndex( const QString & );
 	virtual Qt::ItemFlags flags ( const QModelIndex & index ) const;
 	static QString krPermissionString( const vfile * vf );
+	void emitChanged() { emit layoutChanged(); }
 	
 protected:
 	QString nameWithoutExtension( const vfile * vf, bool checkEnabled = true ) const;

@@ -1,10 +1,12 @@
 #include "krviewfactory.h"
-#include "krinterview.h"
+#include "krinterdetailedview.h"
+#include "krinterviewitemdelegate.h"
 #include "krviewitem.h"
 #include "krvfsmodel.h"
 #include "../VFS/krpermhandler.h"
 #include "../defaults.h"
 #include "krmousehandler.h"
+#include "krcolorcache.h"
 #include <klocale.h>
 #include <kdirlister.h>
 #include <QDir>
@@ -12,17 +14,13 @@
 #include <QHashIterator>
 #include <QHeaderView>
 #include "../GUI/krstyleproxy.h"
-#include <QItemDelegate>
-#include <QPainter>
-#include <QLineEdit>
-#include <QDialog>
 #include <KMenu>
 
 // dummy. remove this class when no longer needed
-class KrInterViewItem: public KrViewItem
+class KrInterDetailedViewItem: public KrViewItem
 {
 public:
-	KrInterViewItem(KrInterView *parent, vfile *vf): KrViewItem(vf, parent->properties()) {
+	KrInterDetailedViewItem(KrInterDetailedView *parent, vfile *vf): KrViewItem(vf, parent->properties()) {
 		_view = parent;
 		_vfile = vf;
 		if( parent->_model->dummyVfile() == vf )
@@ -49,134 +47,17 @@ public:
 
 private:
 	vfile *_vfile;
-	KrInterView * _view;
-};
-
-class KrInterViewItemDelegate : public QItemDelegate
-{
-private:
-	mutable int _currentlyEdited;
-	mutable bool _dontDraw;
-	
-public:
-	KrInterViewItemDelegate( QObject *parent = 0 ) : QItemDelegate( parent ), _currentlyEdited( -1 ) {}
-	
-	void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
-	{
-		QStyleOptionViewItemV4 opt = option;
-		opt.state &= ~QStyle::State_Selected;
-		_dontDraw = ( _currentlyEdited == index.row() ) && (index.column() == KrVfsModel::Extension );
-		QItemDelegate::paint( painter, opt, index );
-	}
-	
-	void drawDisplay ( QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text ) const
-	{
-		if( !_dontDraw )
-			QItemDelegate::drawDisplay( painter, option, rect, text );
-	}
-
-	QWidget * createEditor(QWidget *parent, const QStyleOptionViewItem &sovi, const QModelIndex &index) const
-	{
-		_currentlyEdited = index.row();
-		return QItemDelegate::createEditor( parent, sovi, index );
-	}
-
-	void setEditorData(QWidget *editor, const QModelIndex &index) const
-	{
-		QItemDelegate::setEditorData( editor, index );
-		if( editor->inherits( "QLineEdit" ) )
-		{
-			QLineEdit *lineEdit = qobject_cast<QLineEdit *> ( editor );
-			if( lineEdit ) {
-				QString nameWithoutExt = index.data( Qt::UserRole ).toString();
-				lineEdit->deselect();
-				lineEdit->setSelection( 0, nameWithoutExt.length() );
-			}
-		}
-	}
-	
-	QSize sizeHint ( const QStyleOptionViewItem & option, const QModelIndex & index ) const
-	{
-		((QAbstractItemModel*)index.model())->setData( index, QVariant( true ), Qt::UserRole );
-		QSize size = QItemDelegate::sizeHint( option, index );
-		((QAbstractItemModel*)index.model())->setData( index, QVariant( false ), Qt::UserRole );
-		return size;
-	}
-	
-	bool eventFilter(QObject *object, QEvent *event)
-	{
-		QWidget *editor = qobject_cast<QWidget*>(object);
-		if (!editor)
-			return false;
-		if (event->type() == QEvent::KeyPress)
-		{
-			switch (static_cast<QKeyEvent *>(event)->key()) {
-			case Qt::Key_Tab:
-			case Qt::Key_Backtab:
-				_currentlyEdited = -1;
-				emit closeEditor(editor, QAbstractItemDelegate::RevertModelCache);
-				return true;
-			case Qt::Key_Enter:
-			case Qt::Key_Return:
-				if (QLineEdit *e = qobject_cast<QLineEdit*>(editor))
-				{
-					if (!e->hasAcceptableInput())
-						return true;
-					event->accept();
-					emit commitData(editor);
-					emit closeEditor(editor, QAbstractItemDelegate::SubmitModelCache);
-					_currentlyEdited = -1;
-					return true;
-				}
-				return false;
-			case Qt::Key_Escape:
-				event->accept();
-				// don't commit data
-				_currentlyEdited = -1;
-				emit closeEditor(editor, QAbstractItemDelegate::RevertModelCache);
-				break;
-			default:
-				return false;
-			}
-			
-			if (editor->parentWidget())
-				editor->parentWidget()->setFocus();
-			return true;
-		} else if (event->type() == QEvent::FocusOut) {
-			if (!editor->isActiveWindow() || (QApplication::focusWidget() != editor)) {
-				QWidget *w = QApplication::focusWidget();
-				while (w) { // don't worry about focus changes internally in the editor
-					if (w == editor)
-						return false;
-					w = w->parentWidget();
-				}
-				// Opening a modal dialog will start a new eventloop
-				// that will process the deleteLater event.
-				if (QApplication::activeModalWidget()
-					&& !QApplication::activeModalWidget()->isAncestorOf(editor)
-					&& qobject_cast<QDialog*>(QApplication::activeModalWidget()))
-						return false;
-				_currentlyEdited = -1;
-				emit closeEditor(editor, RevertModelCache);
-			}
-		} else if (event->type() == QEvent::ShortcutOverride) {
-			if (static_cast<QKeyEvent*>(event)->key() == Qt::Key_Escape) {
-				event->accept();
-				return true;
-			}
-		}
-		return false;
-	}
+	KrInterDetailedView * _view;
 };
 
 
 // code used to register the view
 #define INTERVIEW_ID 2
 KrViewInstance interView( INTERVIEW_ID, i18n( "&Experimental View" ), 0 /*Qt::ALT + Qt::SHIFT + Qt::Key_D*/,
-                          KrInterView::create, KrInterViewItem::itemHeightChanged );
+                          KrInterDetailedView::create, KrInterDetailedViewItem::itemHeightChanged );
 // end of register code
 
-KrInterView::KrInterView( QWidget *parent, bool &left, KConfig *cfg ):
+KrInterDetailedView::KrInterDetailedView( QWidget *parent, bool &left, KConfig *cfg ):
 		KrView(cfg),
 		QTreeView(parent)
 {
@@ -185,7 +66,7 @@ KrInterView::KrInterView( QWidget *parent, bool &left, KConfig *cfg ):
 	_mouseHandler = new KrMouseHandler( this, j );
 	connect( _mouseHandler, SIGNAL( renameCurrentItem() ), this, SLOT( renameCurrentItem() ) );
 	setWidget( this );
-	_nameInKConfig=QString( "KrInterView" ) + QString( ( left ? "Left" : "Right" ) ) ;
+	_nameInKConfig=QString( "KrInterDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ;
 	KConfigGroup group( krConfig, "Private" );
 
 	KConfigGroup grpSvr( _config, "Look&Feel" );
@@ -215,9 +96,10 @@ KrInterView::KrInterView( QWidget *parent, bool &left, KConfig *cfg ):
 	
 	restoreSettings();
 	connect( header(), SIGNAL( sectionResized( int, int, int ) ), this, SLOT( sectionResized( int, int, int ) ) );
+	connect( &KrColorCache::getColorCache(), SIGNAL( colorsRefreshed() ), this, SLOT( refreshColors() ) );
 }
 
-KrInterView::~KrInterView()
+KrInterDetailedView::~KrInterDetailedView()
 {
 	delete _properties;
 	_properties = 0;
@@ -225,13 +107,13 @@ KrInterView::~KrInterView()
 	_operator = 0;
 	delete _model;
 	delete _mouseHandler;
-	QHashIterator< vfile *, KrInterViewItem *> it( _itemHash );
+	QHashIterator< vfile *, KrInterDetailedViewItem *> it( _itemHash );
 	while( it.hasNext() )
 		delete it.next().value();
 	_itemHash.clear();
 }
 
-KrViewItem* KrInterView::findItemByName(const QString &name)
+KrViewItem* KrInterDetailedView::findItemByName(const QString &name)
 {
 	if (!_model->ready()) 
 		return 0;
@@ -242,7 +124,7 @@ KrViewItem* KrInterView::findItemByName(const QString &name)
 	return getKrInterViewItem( ndx );
 }
 
-QString KrInterView::getCurrentItem() const
+QString KrInterDetailedView::getCurrentItem() const
 {
 	if (!_model->ready()) 
 		return QString();
@@ -253,7 +135,7 @@ QString KrInterView::getCurrentItem() const
 	return vf->vfile_getName();
 }
 
-KrViewItem* KrInterView::getCurrentKrViewItem()
+KrViewItem* KrInterDetailedView::getCurrentKrViewItem()
 {
 	if (!_model->ready()) 
 		return 0;
@@ -261,7 +143,7 @@ KrViewItem* KrInterView::getCurrentKrViewItem()
 	return getKrInterViewItem( currentIndex() );
 }
 
-KrViewItem* KrInterView::getFirst()
+KrViewItem* KrInterDetailedView::getFirst()
 {
 	if (!_model->ready()) 
 		return 0;
@@ -269,7 +151,7 @@ KrViewItem* KrInterView::getFirst()
 	return getKrInterViewItem( _model->index(0, 0, QModelIndex()));
 }
 
-KrViewItem* KrInterView::getKrViewItemAt(const QPoint &vp)
+KrViewItem* KrInterDetailedView::getKrViewItemAt(const QPoint &vp)
 {
 	if (!_model->ready()) 
 		return 0;
@@ -277,7 +159,7 @@ KrViewItem* KrInterView::getKrViewItemAt(const QPoint &vp)
 	return getKrInterViewItem( indexAt( vp ) );
 }
 
-KrViewItem* KrInterView::getLast()
+KrViewItem* KrInterDetailedView::getLast()
 {
 	if (!_model->ready()) 
 		return 0;
@@ -285,7 +167,7 @@ KrViewItem* KrInterView::getLast()
 	return getKrInterViewItem(_model->index(_model->rowCount()-1, 0, QModelIndex()));
 }
 
-KrViewItem* KrInterView::getNext(KrViewItem *current)
+KrViewItem* KrInterDetailedView::getNext(KrViewItem *current)
 {
 	vfile* vf = (vfile *)current->getVfile();
 	QModelIndex ndx = _model->vfileIndex( vf );
@@ -294,7 +176,7 @@ KrViewItem* KrInterView::getNext(KrViewItem *current)
 	return getKrInterViewItem( _model->index(ndx.row() + 1, 0, QModelIndex()));
 }
 
-KrViewItem* KrInterView::getPrev(KrViewItem *current)
+KrViewItem* KrInterDetailedView::getPrev(KrViewItem *current)
 {
 	vfile* vf = (vfile *)current->getVfile();
 	QModelIndex ndx = _model->vfileIndex( vf );
@@ -303,12 +185,12 @@ KrViewItem* KrInterView::getPrev(KrViewItem *current)
 	return getKrInterViewItem( _model->index(ndx.row() - 1, 0, QModelIndex()));
 }
 
-void KrInterView::slotMakeCurrentVisible()
+void KrInterDetailedView::slotMakeCurrentVisible()
 {
 	scrollTo( currentIndex() );
 }
 
-void KrInterView::makeItemVisible(const KrViewItem *item)
+void KrInterDetailedView::makeItemVisible(const KrViewItem *item)
 {
 	vfile* vf = (vfile *)item->getVfile();
 	QModelIndex ndx = _model->vfileIndex( vf );
@@ -316,7 +198,7 @@ void KrInterView::makeItemVisible(const KrViewItem *item)
 		scrollTo( ndx );
 }
 
-void KrInterView::setCurrentKrViewItem(KrViewItem *item)
+void KrInterDetailedView::setCurrentKrViewItem(KrViewItem *item)
 {
 	vfile* vf = (vfile *)item->getVfile();
 	QModelIndex ndx = _model->vfileIndex( vf );
@@ -326,12 +208,12 @@ void KrInterView::setCurrentKrViewItem(KrViewItem *item)
 	}
 }
 
-KrViewItem* KrInterView::preAddItem(vfile *vf)
+KrViewItem* KrInterDetailedView::preAddItem(vfile *vf)
 {
 	return getKrInterViewItem( _model->addItem( vf ) );
 }
 
-bool KrInterView::preDelItem(KrViewItem *item)
+bool KrInterDetailedView::preDelItem(KrViewItem *item)
 {
 	if( item == 0 )
 		return true;
@@ -342,15 +224,16 @@ bool KrInterView::preDelItem(KrViewItem *item)
 	return true;
 }
 
-void KrInterView::redraw()
+void KrInterDetailedView::redraw()
 {
 }
 
-void KrInterView::refreshColors()
+void KrInterDetailedView::refreshColors()
 {
+	_model->emitChanged();
 }
 
-void KrInterView::restoreSettings()
+void KrInterDetailedView::restoreSettings()
 {
 	KConfigGroup grpSvr( krConfig, _nameInKConfig );
 	QByteArray savedState = grpSvr.readEntry( "Saved State", QByteArray() );
@@ -374,21 +257,21 @@ void KrInterView::restoreSettings()
 	}
 }
 
-void KrInterView::saveSettings()
+void KrInterDetailedView::saveSettings()
 {
 	QByteArray state = header()->saveState();
 	KConfigGroup grpSvr( krConfig, _nameInKConfig );
 	grpSvr.writeEntry( "Saved State", state );
 }
 
-void KrInterView::setCurrentItem(const QString& name)
+void KrInterDetailedView::setCurrentItem(const QString& name)
 {
 	QModelIndex ndx = _model->nameIndex( name );
 	if( ndx.isValid() )
 		setCurrentIndex( ndx );
 }
 
-void KrInterView::prepareForActive() {
+void KrInterDetailedView::prepareForActive() {
 	KrView::prepareForActive();
 	setFocus();
 	KrViewItem * current = getCurrentKrViewItem();
@@ -398,14 +281,14 @@ void KrInterView::prepareForActive() {
 	}
 }
 
-void KrInterView::prepareForPassive() {
+void KrInterDetailedView::prepareForPassive() {
 	KrView::prepareForPassive();
 	_mouseHandler->cancelTwoClickRename();
 	//if ( renameLineEdit() ->isVisible() )
 		//renameLineEdit() ->clearFocus();
 }
 
-int KrInterView::itemsPerPage() {
+int KrInterDetailedView::itemsPerPage() {
 	QRect rect = visualRect( currentIndex() );
 	if( !rect.isValid() )
 	{
@@ -424,34 +307,34 @@ int KrInterView::itemsPerPage() {
 	return size;
 }
 
-void KrInterView::sort()
+void KrInterDetailedView::sort()
 {
 	_model->sort();
 }
 
-void KrInterView::updateView()
+void KrInterDetailedView::updateView()
 {
 }
 
-void KrInterView::updateItem(KrViewItem* item)
+void KrInterDetailedView::updateItem(KrViewItem* item)
 {
 	if( item == 0 )
 		return;
 	_model->updateItem( (vfile *)item->getVfile() );
 }
 
-void KrInterView::clear()
+void KrInterDetailedView::clear()
 {
 	clearSelection();
 	_model->clear();
-	QHashIterator< vfile *, KrInterViewItem *> it( _itemHash );
+	QHashIterator< vfile *, KrInterDetailedViewItem *> it( _itemHash );
 	while( it.hasNext() )
 		delete it.next().value();
 	_itemHash.clear();
 	KrView::clear();
 }
 
-void KrInterView::addItems(vfs* v, bool addUpDir)
+void KrInterDetailedView::addItems(vfs* v, bool addUpDir)
 {
 	_model->setVfs(v, addUpDir);
 	_count = _model->rowCount();
@@ -463,19 +346,19 @@ void KrInterView::addItems(vfs* v, bool addUpDir)
 		setCurrentItem( nameToMakeCurrent() );
 }
 
-void KrInterView::setup()
+void KrInterDetailedView::setup()
 {
 
 }
 
-void KrInterView::initOperator()
+void KrInterDetailedView::initOperator()
 {
 	_operator = new KrViewOperator(this, this);
 	// klistview emits selection changed, so chain them to operator
 	connect(selectionModel(), SIGNAL(selectionChanged( const QItemSelection &, const QItemSelection &)), _operator, SLOT(emitSelectionChanged()));
 }
 
-void KrInterView::keyPressEvent( QKeyEvent *e )
+void KrInterDetailedView::keyPressEvent( QKeyEvent *e )
 {
 	if ( !e || !_model->ready() )
 		return ; // subclass bug
@@ -484,76 +367,76 @@ void KrInterView::keyPressEvent( QKeyEvent *e )
 	QTreeView::keyPressEvent( e );
 }
 
-void KrInterView::mousePressEvent ( QMouseEvent * ev )
+void KrInterDetailedView::mousePressEvent ( QMouseEvent * ev )
 {
 	if( !_mouseHandler->mousePressEvent( ev ) )
 		QTreeView::mousePressEvent( ev );
 }
 
-void KrInterView::mouseReleaseEvent ( QMouseEvent * ev )
+void KrInterDetailedView::mouseReleaseEvent ( QMouseEvent * ev )
 {
 	if( !_mouseHandler->mouseReleaseEvent( ev ) )
 		QTreeView::mouseReleaseEvent( ev );
 }
 
-void KrInterView::mouseDoubleClickEvent ( QMouseEvent *ev )
+void KrInterDetailedView::mouseDoubleClickEvent ( QMouseEvent *ev )
 {
 	if( !_mouseHandler->mouseDoubleClickEvent( ev ) )
 		QTreeView::mouseDoubleClickEvent( ev );
 }
 
-void KrInterView::mouseMoveEvent ( QMouseEvent * ev )
+void KrInterDetailedView::mouseMoveEvent ( QMouseEvent * ev )
 {
 	if( !_mouseHandler->mouseMoveEvent( ev ) )
 		QTreeView::mouseMoveEvent( ev );
 }
 
-void KrInterView::wheelEvent ( QWheelEvent *ev )
+void KrInterDetailedView::wheelEvent ( QWheelEvent *ev )
 {
 	if( !_mouseHandler->wheelEvent( ev ) )
 		QTreeView::wheelEvent( ev );
 }
 
-void KrInterView::dragEnterEvent ( QDragEnterEvent *ev )
+void KrInterDetailedView::dragEnterEvent ( QDragEnterEvent *ev )
 {
 	if( !_mouseHandler->dragEnterEvent( ev ) )
 		QTreeView::dragEnterEvent( ev );
 }
 
-void KrInterView::dragMoveEvent ( QDragMoveEvent *ev )
+void KrInterDetailedView::dragMoveEvent ( QDragMoveEvent *ev )
 {
 	QTreeView::dragMoveEvent( ev );
 	_mouseHandler->dragMoveEvent( ev );
 }
 
-void KrInterView::dragLeaveEvent ( QDragLeaveEvent *ev )
+void KrInterDetailedView::dragLeaveEvent ( QDragLeaveEvent *ev )
 {
 	if( !_mouseHandler->dragLeaveEvent( ev ) )
 		QTreeView::dragLeaveEvent( ev );
 }
 
-void KrInterView::dropEvent ( QDropEvent *ev )
+void KrInterDetailedView::dropEvent ( QDropEvent *ev )
 {
 	if( !_mouseHandler->dropEvent( ev ) )
 		QTreeView::dropEvent( ev );
 }
 
-bool KrInterView::event( QEvent * e )
+bool KrInterDetailedView::event( QEvent * e )
 {
 	_mouseHandler->otherEvent( e );
 	return QTreeView::event( e );
 }
 
-KrInterViewItem * KrInterView::getKrInterViewItem( const QModelIndex & ndx )
+KrInterDetailedViewItem * KrInterDetailedView::getKrInterViewItem( const QModelIndex & ndx )
 {
 	if( !ndx.isValid() )
 		return 0;
 	vfile * vf = _model->vfileAt( ndx );
 	if( vf == 0 )
 		return 0;
-	QHash<vfile *,KrInterViewItem*>::iterator it = _itemHash.find( vf );
+	QHash<vfile *,KrInterDetailedViewItem*>::iterator it = _itemHash.find( vf );
 	if( it == _itemHash.end() ) {
-		KrInterViewItem * newItem =  new KrInterViewItem( this, vf );
+		KrInterDetailedViewItem * newItem =  new KrInterDetailedViewItem( this, vf );
 		_itemHash[ vf ] = newItem;
 		_dict.insert( vf->vfile_getName(), newItem );
 		return newItem;
@@ -561,7 +444,7 @@ KrInterViewItem * KrInterView::getKrInterViewItem( const QModelIndex & ndx )
 	return *it;
 }
 
-void KrInterView::selectRegion( KrViewItem *i1, KrViewItem *i2, bool select)
+void KrInterDetailedView::selectRegion( KrViewItem *i1, KrViewItem *i2, bool select)
 {
 	vfile* vf1 = (vfile *)i1->getVfile();
 	QModelIndex mi1 = _model->vfileIndex( vf1 );
@@ -592,7 +475,7 @@ void KrInterView::selectRegion( KrViewItem *i1, KrViewItem *i2, bool select)
 		i2->setSelected( select );
 }
 
-void KrInterView::renameCurrentItem() {
+void KrInterDetailedView::renameCurrentItem() {
 	QModelIndex cIndex = currentIndex();
 	QModelIndex nameIndex = _model->index( cIndex.row(), KrVfsModel::Name );
 	edit( nameIndex );
@@ -600,7 +483,7 @@ void KrInterView::renameCurrentItem() {
 	update( nameIndex );
 }
 
-bool KrInterView::eventFilter(QObject *object, QEvent *event)
+bool KrInterDetailedView::eventFilter(QObject *object, QEvent *event)
 {
 	if( object == header() )
 	{
@@ -618,7 +501,7 @@ bool KrInterView::eventFilter(QObject *object, QEvent *event)
 	return false;
 }
 
-void KrInterView::showContextMenu( const QPoint & p )
+void KrInterDetailedView::showContextMenu( const QPoint & p )
 {
 	KMenu popup( this );
 	popup.setTitle( i18n("Columns"));
@@ -718,7 +601,7 @@ void KrInterView::showContextMenu( const QPoint & p )
 	}
 }
 
-void KrInterView::sectionResized( int column, int oldSize, int newSize )
+void KrInterDetailedView::sectionResized( int column, int oldSize, int newSize )
 {
 	if( oldSize == newSize || !_model->ready() )
 		return;
@@ -726,7 +609,7 @@ void KrInterView::sectionResized( int column, int oldSize, int newSize )
 	recalculateColumnSizes();
 }
 
-void KrInterView::recalculateColumnSizes()
+void KrInterDetailedView::recalculateColumnSizes()
 {
 	int sum = 0;
 	for( int i=0; i != KrVfsModel::MAX_COLUMNS; i++ )
@@ -744,7 +627,7 @@ void KrInterView::recalculateColumnSizes()
 	}
 }
 
-bool KrInterView::viewportEvent ( QEvent * event )
+bool KrInterDetailedView::viewportEvent ( QEvent * event )
 {
 	if( event->type() == QEvent::ToolTip )
 	{
