@@ -230,7 +230,8 @@ void KrInterDetailedView::redraw()
 
 void KrInterDetailedView::refreshColors()
 {
-	_model->emitChanged();
+	if( _model->rowCount() != 0 )
+		_model->emitChanged();
 }
 
 void KrInterDetailedView::restoreSettings()
