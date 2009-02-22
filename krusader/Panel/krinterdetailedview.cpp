@@ -53,8 +53,8 @@ private:
 
 // code used to register the view
 #define INTERVIEW_ID 2
-KrViewInstance interView( INTERVIEW_ID, i18n( "&Experimental View" ), 0 /*Qt::ALT + Qt::SHIFT + Qt::Key_D*/,
-                          KrInterDetailedView::create, KrInterDetailedViewItem::itemHeightChanged );
+KrViewInstance interDetailedView( INTERVIEW_ID, i18n( "&Experimental View" ), 0 /*Qt::ALT + Qt::SHIFT + Qt::Key_D*/,
+                                  KrInterDetailedView::create, KrInterDetailedViewItem::itemHeightChanged );
 // end of register code
 
 KrInterDetailedView::KrInterDetailedView( QWidget *parent, bool &left, KConfig *cfg ):
