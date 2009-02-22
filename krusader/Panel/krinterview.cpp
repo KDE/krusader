@@ -352,22 +352,33 @@ void KrInterView::refreshColors()
 
 void KrInterView::restoreSettings()
 {
-	hideColumn( KrVfsModel::Mime );
-	hideColumn( KrVfsModel::Permissions );
-	hideColumn( KrVfsModel::Owner );
-	hideColumn( KrVfsModel::Group );
-	header()->resizeSection( KrVfsModel::Extension, QFontMetrics( _viewFont ).width( "tar.bz2  " ) );
-	header()->resizeSection( KrVfsModel::KrPermissions, QFontMetrics( _viewFont ).width( "rwx  " ) );
-	header()->resizeSection( KrVfsModel::Size, QFontMetrics( _viewFont ).width( "9" ) * 10 );
+	KConfigGroup grpSvr( krConfig, _nameInKConfig );
+	QByteArray savedState = grpSvr.readEntry( "Saved State", QByteArray() );
 	
-	QDateTime tmp(QDate(2099, 12, 29), QTime(23, 59));
-	QString desc = KGlobal::locale()->formatDateTime(tmp) + "  ";
-	
-	header()->resizeSection( KrVfsModel::DateTime, QFontMetrics( _viewFont ).width( desc ) );
+	if( savedState.isEmpty() )
+	{
+		hideColumn( KrVfsModel::Mime );
+		hideColumn( KrVfsModel::Permissions );
+		hideColumn( KrVfsModel::Owner );
+		hideColumn( KrVfsModel::Group );
+		header()->resizeSection( KrVfsModel::Extension, QFontMetrics( _viewFont ).width( "tar.bz2  " ) );
+		header()->resizeSection( KrVfsModel::KrPermissions, QFontMetrics( _viewFont ).width( "rwx  " ) );
+		header()->resizeSection( KrVfsModel::Size, QFontMetrics( _viewFont ).width( "9" ) * 10 );
+		
+		QDateTime tmp(QDate(2099, 12, 29), QTime(23, 59));
+		QString desc = KGlobal::locale()->formatDateTime(tmp) + "  ";
+		
+		header()->resizeSection( KrVfsModel::DateTime, QFontMetrics( _viewFont ).width( desc ) );
+	} else {
+		header()->restoreState( savedState );
+	}
 }
 
 void KrInterView::saveSettings()
 {
+	QByteArray state = header()->saveState();
+	KConfigGroup grpSvr( krConfig, _nameInKConfig );
+	grpSvr.writeEntry( "Saved State", state );
 }
 
 void KrInterView::setCurrentItem(const QString& name)
