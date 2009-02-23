@@ -255,6 +255,7 @@ void KrInterDetailedView::restoreSettings()
 		header()->resizeSection( KrVfsModel::DateTime, QFontMetrics( _viewFont ).width( desc ) );
 	} else {
 		header()->restoreState( savedState );
+		_model->setExtensionEnabled( !isColumnHidden( KrVfsModel::Extension ) );
 	}
 }
 
