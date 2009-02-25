@@ -611,6 +611,10 @@ void KrVfsModel::sort ( int column, Qt::SortOrder order )
 {
 	_lastSortOrder = column;
 	_lastSortDir = order;
+	
+	if( _view->properties() != 0 )
+		_view->sortModeUpdated( convertSortOrderToKrViewProperties( _lastSortOrder, _lastSortDir ) );
+	
 	emit layoutAboutToBeChanged();
 	
 	QModelIndexList oldPersistentList = persistentIndexList();
@@ -846,4 +850,66 @@ QString KrVfsModel::krPermissionString( const vfile * vf )
 		case NO_PERM:      tmp+='-'; break;
 	}
 	return tmp;
+}
+
+int KrVfsModel::convertSortOrderFromKrViewProperties( KrViewProperties::SortSpec sortOrder, Qt::SortOrder & sortDir )
+{
+	sortDir = ( sortDir & KrViewProperties::Descending ) ? Qt::DescendingOrder : Qt::AscendingOrder;
+	if ( sortOrder & KrViewProperties::Name )
+		return KrVfsModel::Name;
+	if ( sortOrder & KrViewProperties::Ext )
+		return KrVfsModel::Extension;
+	if ( sortOrder & KrViewProperties::Size )
+		return KrVfsModel::Size;
+	if ( sortOrder & KrViewProperties::Type )
+		return KrVfsModel::Mime;
+	if ( sortOrder & KrViewProperties::Modified )
+		return KrVfsModel::DateTime;
+	if ( sortOrder & KrViewProperties::Permissions )
+		return KrVfsModel::Permissions;
+	if ( sortOrder & KrViewProperties::KrPermissions )
+		return KrVfsModel::KrPermissions;
+	if ( sortOrder & KrViewProperties::Owner )
+		return KrVfsModel::Owner;
+	if ( sortOrder & KrViewProperties::Group )
+		return KrVfsModel::Group;
+	return -1;
+}
+
+KrViewProperties::SortSpec KrVfsModel::convertSortOrderToKrViewProperties( int sortOrder, Qt::SortOrder sortDir )
+{
+	KrViewProperties::SortSpec sp = KrViewProperties::Name;
+	switch( sortOrder )
+	{
+	case KrVfsModel::Name:
+		sp = KrViewProperties::Name;
+	case KrVfsModel::Extension:
+		sp = KrViewProperties::Ext;
+	case KrVfsModel::Mime:
+		sp = KrViewProperties::Type;
+	case KrVfsModel::Size:
+		sp = KrViewProperties::Size;
+	case KrVfsModel::DateTime:
+		sp = KrViewProperties::Modified;
+	case KrVfsModel::Permissions:
+		sp = KrViewProperties::Permissions;
+	case KrVfsModel::KrPermissions:
+		sp = KrViewProperties::KrPermissions;
+	case KrVfsModel::Owner:
+		sp = KrViewProperties::Owner;
+	case KrVfsModel::Group:
+		sp = KrViewProperties::Group;
+	}
+	
+	int sortMode = _view->sortMode();
+	
+	if (sortMode & KrViewProperties::DirsFirst) 
+		sp = static_cast<KrViewProperties::SortSpec>(sp | KrViewProperties::DirsFirst);
+	if (sortMode & KrViewProperties::IgnoreCase)
+		sp = static_cast<KrViewProperties::SortSpec>(sp | KrViewProperties::IgnoreCase);
+	if (sortMode & KrViewProperties::AlwaysSortDirsByName)
+		sp = static_cast<KrViewProperties::SortSpec>(sp | KrViewProperties::AlwaysSortDirsByName);
+	if (sortMode & KrViewProperties::Descending)
+		sp = static_cast<KrViewProperties::SortSpec>(sp | KrViewProperties::Descending);
+	return sp;
 }

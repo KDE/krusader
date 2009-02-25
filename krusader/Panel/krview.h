@@ -265,6 +265,7 @@ public:
   // implementation, and may be re-implemented if needed     //
   /////////////////////////////////////////////////////////////
   virtual void setSortMode(KrViewProperties::SortSpec mode) { _properties->sortMode = mode; }
+  virtual void sortModeUpdated(KrViewProperties::SortSpec mode) { _properties->sortMode = mode; }
   virtual KrViewProperties::SortSpec sortMode() const { return _properties->sortMode; }
   virtual void setFilter(KrViewProperties::FilterSpec filter) { _properties->filter = filter; }
   virtual KrViewProperties::FilterSpec filter() const { return _properties->filter; }

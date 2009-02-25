@@ -68,6 +68,7 @@ public:
 	virtual void prepareForPassive();
 	virtual bool ensureVisibilityAfterSelect() { return false; }
 	virtual int  itemsPerPage();
+	virtual void setSortMode(KrViewProperties::SortSpec mode);
 	
 	// abstract item view classes
 	virtual QRect visualRect(const QModelIndex&) const;

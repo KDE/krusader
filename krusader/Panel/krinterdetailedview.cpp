@@ -662,3 +662,12 @@ bool KrInterDetailedView::viewportEvent ( QEvent * event )
 	}
 	return QTreeView::viewportEvent( event );
 }
+
+void KrInterDetailedView::setSortMode(KrViewProperties::SortSpec mode)
+{
+	Qt::SortOrder sortDir;
+	int column = _model->convertSortOrderFromKrViewProperties( mode, sortDir );
+	if( column == _model->getLastSortOrder() && sortDir == _model->getLastSortDir() )
+		sortDir = (sortDir == Qt::AscendingOrder) ? Qt::DescendingOrder : Qt::AscendingOrder;
+	this->sortByColumn( column, sortDir );
+}

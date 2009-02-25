@@ -44,6 +44,11 @@ public:
 	virtual Qt::ItemFlags flags ( const QModelIndex & index ) const;
 	static QString krPermissionString( const vfile * vf );
 	void emitChanged() { emit layoutChanged(); }
+	int convertSortOrderFromKrViewProperties( KrViewProperties::SortSpec, Qt::SortOrder & );
+	KrViewProperties::SortSpec convertSortOrderToKrViewProperties( int, Qt::SortOrder );
+	
+	Qt::SortOrder getLastSortDir() { return _lastSortDir; }
+	int getLastSortOrder() { return _lastSortOrder; }
 	
 protected:
 	QString nameWithoutExtension( const vfile * vf, bool checkEnabled = true ) const;

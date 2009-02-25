@@ -55,6 +55,7 @@ public:
 	virtual void prepareForPassive();
 	virtual bool ensureVisibilityAfterSelect() { return false; }
 	virtual int  itemsPerPage();
+	virtual void setSortMode(KrViewProperties::SortSpec mode);
 	
 public slots:
 	virtual void refreshColors();
