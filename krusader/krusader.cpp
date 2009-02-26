@@ -664,17 +664,17 @@ void Krusader::setupActions() {
 
 	KAction *tmp1, *tmp2, *tmp3;
    NEW_KACTION( tmp1, i18n( "&New Text File..." ), "document-new", Qt::SHIFT + Qt::Key_F4, SLOTS, SLOT( editDlg() ), "edit_new_file" );
-   NEW_KACTION( tmp2, i18n( "Start &Root Mode Krusader" ), "krusader_root", Qt::ALT + Qt::Key_K, SLOTS, SLOT( rootKrusader() ), "root krusader" );
+   NEW_KACTION( tmp2, i18n( "Start &Root Mode Krusader" ), "krusader_root", Qt::ALT + Qt::SHIFT + Qt::Key_K, SLOTS, SLOT( rootKrusader() ), "root krusader" );
    NEW_KACTION( tmp3, i18n( "F3 View Dialog" ), 0, Qt::SHIFT + Qt::Key_F3, SLOTS, SLOT( viewDlg() ), "F3_ViewDlg" );
-   NEW_KACTION(actTest, i18n( "T&est Archive" ), "ark", Qt::ALT + Qt::Key_E, SLOTS, SLOT( testArchive() ), "test archives" );
+   NEW_KACTION(actTest, i18n( "T&est Archive" ), "ark", Qt::ALT + Qt::SHIFT + Qt::Key_E, SLOTS, SLOT( testArchive() ), "test archives" );
    NEW_KACTION(actFTPNewConnect, i18n( "New Net &Connection..." ), "connect_creating", Qt::CTRL + Qt::Key_N, SLOTS, SLOT( newFTPconnection() ), "ftp new connection" );
-	NEW_KACTION(actProfiles, i18n( "Pro&files" ), "kr_profile", Qt::ALT + Qt::Key_L, MAIN_VIEW, SLOT( profiles() ), "profile" );
+	NEW_KACTION(actProfiles, i18n( "Pro&files" ), "kr_profile", Qt::ALT + Qt::SHIFT + Qt::Key_L, MAIN_VIEW, SLOT( profiles() ), "profile" );
 	NEW_KACTION(actCalculate, i18n( "Calculate &Occupied Space" ), "kcalc", 0, SLOTS, SLOT( calcSpace() ), "calculate" );
 	NEW_KACTION(actCreateChecksum, i18n( "Create Checksum..." ), "binary", 0, SLOTS, SLOT( createChecksum() ), "create checksum" );
    NEW_KACTION(actMatchChecksum, i18n( "Verify Checksum..." ), "match_checksum", 0, SLOTS, SLOT( matchChecksum() ), "match checksum" );
    NEW_KACTION(actProperties, i18n( "&Properties..." ), 0, Qt::ALT+Qt::Key_Enter, SLOTS, SLOT( properties() ), "properties" );
-   NEW_KACTION(actPack, i18n( "Pac&k..." ), "kr_arc_pack", Qt::ALT + Qt::Key_P, SLOTS, SLOT( slotPack() ), "pack" );
-   NEW_KACTION(actUnpack, i18n( "&Unpack..." ), "kr_arc_unpack", Qt::ALT + Qt::Key_U, SLOTS, SLOT( slotUnpack() ), "unpack" );
+   NEW_KACTION(actPack, i18n( "Pac&k..." ), "kr_arc_pack", Qt::ALT + Qt::SHIFT + Qt::Key_P, SLOTS, SLOT( slotPack() ), "pack" );
+   NEW_KACTION(actUnpack, i18n( "&Unpack..." ), "kr_arc_unpack", Qt::ALT + Qt::SHIFT + Qt::Key_U, SLOTS, SLOT( slotUnpack() ), "unpack" );
    NEW_KACTION(actSplit, i18n( "Sp&lit File..." ), "kr_split", Qt::CTRL + Qt::Key_P, SLOTS, SLOT( slotSplit() ), "split" );
    NEW_KACTION(actCombine, i18n( "Com&bine Files..." ), "kr_combine", Qt::CTRL + Qt::Key_B, SLOTS, SLOT( slotCombine() ), "combine" );
    NEW_KACTION(actSelect, i18n( "Select &Group..." ), "kr_select", Qt::CTRL + Qt::Key_Plus, SLOTS, SLOT( markGroup() ), "select group" );
@@ -682,7 +682,7 @@ void Krusader::setupActions() {
    NEW_KACTION(actUnselect, i18n( "&Unselect Group..." ), "kr_unselect", Qt::CTRL + Qt::Key_Minus, SLOTS, SLOT( unmarkGroup() ), "unselect group" );
    NEW_KACTION(actUnselectAll, i18n( "U&nselect All" ), "kr_unselectall", Qt::ALT + Qt::Key_Minus, SLOTS, SLOT( unmarkAll() ), "unselect all" );
    NEW_KACTION(actInvert, i18n( "&Invert Selection" ), "kr_invert", Qt::ALT + Qt::Key_Asterisk, SLOTS, SLOT( invert() ), "invert" );
-   NEW_KACTION(actCompDirs, i18n( "&Compare Directories" ), "view_left_right", Qt::ALT + Qt::Key_C, SLOTS, SLOT( compareDirs() ), "compare dirs" );
+   NEW_KACTION(actCompDirs, i18n( "&Compare Directories" ), "view_left_right", Qt::ALT + Qt::SHIFT + Qt::Key_C, SLOTS, SLOT( compareDirs() ), "compare dirs" );
    NEW_KACTION(actSelectNewerAndSingle, i18n( "&Select Newer and Single" ), 0, 0, SLOTS, SLOT( compareSetup() ), "select_newer_and_single" );
    NEW_KACTION(actSelectNewer, i18n( "Select &Newer" ), 0, 0, SLOTS, SLOT( compareSetup() ), "select_newer" );
    NEW_KACTION(actSelectSingle, i18n( "Select &Single" ), 0, 0, SLOTS, SLOT( compareSetup() ), "select_single" );
@@ -731,9 +731,9 @@ void Krusader::setupActions() {
    NEW_KACTION(actFind, i18n( "&Search..." ), "system-search", Qt::CTRL + Qt::Key_S, SLOTS, SLOT( search() ), "find" );
    NEW_KACTION(actLocate, i18n( "&Locate..." ), "edit-find", Qt::SHIFT+ Qt::CTRL + Qt::Key_L, SLOTS, SLOT( locate() ), "locate" );
    NEW_KACTION(actSyncDirs, i18n( "Synchronize &Directories..." ), "kr_syncdirs", Qt::CTRL + Qt::Key_Y, SLOTS, SLOT( slotSynchronizeDirs() ), "sync dirs" );
-   NEW_KACTION(actSyncBrowse, i18n( "S&ynchron Directory Changes" ), "kr_syncbrowse_off", Qt::ALT + Qt::Key_Y, SLOTS, SLOT( slotSyncBrowse() ), "sync browse" );
-   NEW_KACTION(actDiskUsage, i18n( "D&isk Usage..." ), "kr_diskusage", Qt::ALT + Qt::Key_D, SLOTS, SLOT( slotDiskUsage() ), "disk usage" );
-   NEW_KACTION(actQueueManager, i18n( "&Queue Manager..." ), "document-multiple", Qt::ALT + Qt::Key_Q, SLOTS, SLOT( slotQueueManager() ), "queue manager" );
+   NEW_KACTION(actSyncBrowse, i18n( "S&ynchron Directory Changes" ), "kr_syncbrowse_off", Qt::ALT + Qt::SHIFT + Qt::Key_Y, SLOTS, SLOT( slotSyncBrowse() ), "sync browse" );
+   NEW_KACTION(actDiskUsage, i18n( "D&isk Usage..." ), "kr_diskusage", Qt::ALT + Qt::SHIFT + Qt::Key_S, SLOTS, SLOT( slotDiskUsage() ), "disk usage" );
+   NEW_KACTION(actQueueManager, i18n( "&Queue Manager..." ), "document-multiple", Qt::ALT + Qt::SHIFT + Qt::Key_Q, SLOTS, SLOT( slotQueueManager() ), "queue manager" );
    NEW_KACTION(actKonfigurator, i18n( "Configure &Krusader..." ), "configure", 0, SLOTS, SLOT( startKonfigurator() ), "konfigurator" );
    NEW_KACTION(actBack, i18n( "Back" ), "go-previous", 0, SLOTS, SLOT( back() ), "back" );
    NEW_KACTION(actRoot, i18n( "Root" ), "go-top", Qt::CTRL + Qt::Key_Backspace, SLOTS, SLOT( root() ), "root" );
@@ -752,7 +752,7 @@ void Krusader::setupActions() {
    NEW_KACTION(t6, i18n( "Bookmarks" ), 0, Qt::CTRL + Qt::Key_D, SLOTS, SLOT( openBookmarks() ), "bookmarks" );
    NEW_KACTION(t7, i18n( "Bookmark Current" ), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_D, SLOTS, SLOT( bookmarkCurrent() ), "bookmark current" );
    NEW_KACTION(t8, i18n( "History" ), 0, Qt::CTRL + Qt::Key_H, SLOTS, SLOT( openHistory() ), "history" );
-   NEW_KACTION(t9, i18n( "Sync Panels" ), 0, Qt::ALT + Qt::Key_O, SLOTS, SLOT( syncPanels() ), "sync panels");
+   NEW_KACTION(t9, i18n( "Sync Panels" ), 0, Qt::ALT + Qt::SHIFT + Qt::Key_O, SLOTS, SLOT( syncPanels() ), "sync panels");
    NEW_KACTION(t10, i18n( "Left History" ), 0, Qt::ALT + Qt::CTRL + Qt::Key_Left, SLOTS, SLOT( openLeftHistory() ), "left history" );
    NEW_KACTION(t11, i18n( "Right History" ), 0, Qt::ALT + Qt::CTRL + Qt::Key_Right, SLOTS, SLOT( openRightHistory() ), "right history" );
 	NEW_KACTION(t12, i18n( "Media" ), 0, Qt::CTRL + Qt::Key_M, SLOTS, SLOT( openMedia() ), "media" );

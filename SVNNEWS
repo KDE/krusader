@@ -6,6 +6,31 @@
 - extension to the ChangeLog.
 ------------------------------------------------------------------------
 
+Change: alt+letter shortcuts had collisions with dynamically assigned hotkeys
+Old schortcut       New shortcut       Function
+Alt+C               Alt+Shift+C        Compare directories
+Alt+D               Alt+Shift+S        Disk usage
+Alt+E               Alt+Shift+E        Test archive
+Alt+K               Alt+Shift+K        Start Root Mode Krusader
+Alt+L               Alt+Shift+L        Profiles
+Alt+O               Alt+Shift+O        Sync Panels
+Alt+P               Alt+Shift+P        Pack
+Alt+Q               Alt+Shift+Q        Queue Manager
+Alt+U               Alt+Shift+U        Unpack
+Alt+Y               Alt+Shift+Y        Synchron directory changes
+not changed:
+Alt+Shift+B                            Brief view
+Alt+Shift+D                            Detailed view
+Alt+Home                               Home
+Alt+*                                  Invert Selection
+Alt+Left                               Left Bookmarks
+Alt+Right                              Right Bookmarks
+Alt+/                                  MountMan
+Alt+Enter                              Properties
+Alt++                                  Select All
+Alt+-                                  Unselect All
+Alt+Down                               Toggle Popup Panel
+
 New feature: support for tar.lzma (KDE's tar protocol doesn't support it yet)
 http://www.krusader.org/phpBB/viewtopic.php?t=2032
 http://bugs.kde.org/show_bug.cgi?id=176881
