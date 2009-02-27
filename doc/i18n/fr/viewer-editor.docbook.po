@@ -1,0 +1,878 @@
+# translation of viewer-editor.docbook.po to français
+# Copyright (C) 2009, Krusader Krew
+# This file is distributed under the same license as the Krusader package
+#
+# Tourneur Henry-Nicolas <henry.nicolas@tourneur.be>, 2008.
+# Stanislas Zeller <uncensored.assault@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: viewer-editor.docbook\n"
+"Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
+"POT-Creation-Date: 2007-05-08 20:27+0000\n"
+"PO-Revision-Date: 2009-02-10 10:23+0100\n"
+"Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
+"Language-Team: français <kde-francophone@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n > 1);\n"
+
+#. Tag: title
+#: viewer-editor.docbook:2
+#, no-c-format
+msgid "KrViewer: &krusader;'s internal viewer-editor"
+msgstr "KrViewer : l'afficheur interne de &krusader;"
+
+#. Tag: primary
+#: viewer-editor.docbook:5
+#, no-c-format
+msgid "<primary>Viewer</primary>"
+msgstr "<primary>Afficheur</primary>"
+
+#. Tag: seealso
+#: viewer-editor.docbook:6
+#, no-c-format
+msgid "<seealso>Editor</seealso>"
+msgstr "<seealso>Éditeur</seealso>"
+
+#. Tag: para
+#: viewer-editor.docbook:8
+#, no-c-format
+msgid "Pressing &Enter; on a selected file <emphasis>opens the file with the associated application</emphasis>. The editor-viewer is tabbed, configure it on the &konfiggereral-lnk;"
+msgstr "Appuyer sur &Enter; sur un fichier sélectionné <emphasis>ouvre le fichier avec l'application associée</emphasis>. L'afficheur-éditeur dispose d'onglets à configurer dans le &konfiggereral-lnk;."
+
+#. Tag: title
+#: viewer-editor.docbook:13
+#, no-c-format
+msgid "<title>Viewer</title>"
+msgstr "<title>Afficheur</title>"
+
+#. Tag: para
+#: viewer-editor.docbook:14
+#, no-c-format
+msgid "To view a file as fast as possible according to its type, just put it under the cursor and press <keycap>F3</keycap>. &krusader;'s internal viewer is actually a part of &konqueror;, which can basically view every file type viewable by &konqueror; (&eg; display pictures, play music, show the content of an archive). This is called the 'Generic viewer', for which you need to configure the mime types."
+msgstr "Pour afficher un fichier aussi vite que possible selon son type, placez votre curseur au dessus et appuyez sur <keycap>F3</keycap>. L'afficheur interne de &krusader; est en fait un composant de &konqueror;, il peut donc afficher tout les types de fichiers lisibles par &konqueror; (&pex; afficher des images, jouer de la musique, afficher le contenu d'une archive). Ceci est appelé « l'afficheur générique », pour lequel vous devez configurer les types MIME."
+
+#. Tag: para
+#: viewer-editor.docbook:22
+#, no-c-format
+msgid "The viewer works as follows: <itemizedlist> <listitem> <para>It tries to view the file with the <emphasis>'Generic viewer'.</emphasis></para> </listitem> <listitem> <para>When the file type (mime type) cannot be determined or when a file (&eg; a binary) doesn't have an associated action, it disables the 'generic viewer'. The file is treated as a text file, which is the <emphasis>'Text viewer'</emphasis>.</para> </listitem> <listitem> <para>The user can change in the <link linkend=\"kredit_krviewer_menu\">KrViewer menu</link> between: 'Generic viewer' (if available), 'Text viewer' and <emphasis>'Hex viewer'</emphasis>.</para> </listitem> </itemizedlist>You can configure the default viewer mode on the &konfiggereral-lnk; ."
+msgstr "L'afficheur fonctionne comme suit : <itemizedlist> <listitem> <para>il essaie d'afficher le fichier avec <emphasis>l'afficheur générique.</emphasis></para> </listitem> <listitem> <para> Quand le type de fichier (type mime) ne peut être déterminé ou quand un fichier (&pex; un fichier binaire) n'a pas une action associée, il désactive l'afficheur générique. Le fichier est traité comme un fichier texte, lequel est <emphasis>l'afficheur de texte.</emphasis>.</para> </listitem> <listitem> <para>L'utilisateur peut modifier dans le <link linkend=\"kredit_krviewer_menu\">menu KrViewer</link> entre : l'afficheur générique (si disponible), l'afficheur de texte et <emphasis>l'afficheur héxadécimal</emphasis>.</para> </listitem> </itemizedlist>Vous pouvez configurer le mode par défaut de l'afficheur sur le &konfiggereral-lnk; ."
+
+#. Tag: para
+#: viewer-editor.docbook:44
+#, no-c-format
+msgid "<keycombo action=\"simul\">&Shift; <keycap>F3</keycap></keycombo>views a &URL; on demand, &eg;:"
+msgstr "<keycombo action=\"simul\">&Maj; <keycap>F3</keycap></keycombo>affiche une &URL; à la demande, &pex; : "
+
+#. Tag: para
+#: viewer-editor.docbook:50
+#, no-c-format
+msgid "<userinput> <command>man:/</command> </userinput>views the manpages."
+msgstr "<userinput> <command>man:/</command> </userinput>affiche les pages du manuel."
+
+#. Tag: para
+#: viewer-editor.docbook:56
+#, no-c-format
+msgid "<userinput> <command>man:/</command> <replaceable>krusader</replaceable> </userinput>views a manpage."
+msgstr "<userinput> <command>man:/</command> <replaceable>krusader</replaceable> </userinput>affiche une page de manuel."
+
+#. Tag: para
+#: viewer-editor.docbook:63
+#, no-c-format
+msgid "<userinput> <command>info:/</command> </userinput>views the infopages."
+msgstr "<userinput> <command>info:/</command> </userinput>affiche les pages d'informations."
+
+#. Tag: para
+#: viewer-editor.docbook:69
+#, no-c-format
+msgid "<userinput> <command>http://</command> <replaceable>krusader.sourceforce.net/</replaceable> </userinput>views a webpage."
+msgstr "<userinput> <command>http://</command> <replaceable>krusader.sourceforce.net/</replaceable> </userinput>affiche une page web."
+
+#. Tag: para
+#: viewer-editor.docbook:76
+#, no-c-format
+msgid "<userinput> <command>ftp://</command> <replaceable>ftp.kde.org/pub/kde/</replaceable> </userinput>views a ftp-server."
+msgstr "<userinput> <command>ftp://</command> <replaceable>ftp.kde.org/pub/kde/</replaceable> </userinput>affiche un serveur ftp."
+
+#. Tag: para
+#: viewer-editor.docbook:83
+#, no-c-format
+msgid "<userinput> <command>sftp://</command> <replaceable>sftp.foo/</replaceable> </userinput>views a secure ftp-server."
+msgstr "<userinput> <command>sftp://</command> <replaceable>sftp.foo/</replaceable> </userinput>affiche un serveur sftp."
+
+#. Tag: para
+#: viewer-editor.docbook:90
+#, no-c-format
+msgid "<userinput> <command>file:/</command> <replaceable>home/frank</replaceable> </userinput>views the homedirectory of Frank."
+msgstr "<userinput> <command>file:/</command> <replaceable>home/frank</replaceable> </userinput>affiche le dossier personnel de Frank."
+
+#. Tag: para
+#: viewer-editor.docbook:97
+#, no-c-format
+msgid "<userinput> <replaceable>/home/frank/archive.tar.gz</replaceable> </userinput>views a <literal role=\"extension\">tar.gz</literal> archive."
+msgstr "<userinput> <replaceable>/home/frank/archive.tar.gz</replaceable> </userinput>affiche une archive <literal role=\"extension\">tar.gz</literal>."
+
+#. Tag: para
+#: viewer-editor.docbook:104
+#, no-c-format
+msgid "KrViewer can have the following menus: <link linkend=\"kredit_file_menu\">File</link>, <link linkend=\"kredit_edit_menu\">Edit</link>, <link linkend=\"kredit_view_menu\">View</link>, <link linkend=\"kredit_settings_menu\">Settings</link> and <link linkend=\"kredit_krviewer_menu\">Krviewer</link>, depending on which file type is viewed. They will be discussed in the <link linkend=\"kredit\">Editor section</link>. The internal viewer can follow links on HTML pages. With <keycombo action=\"simul\">&Ctrl; <keycap>E</keycap></keycombo> the viewer can start &krusader;'s internal editor (which is basically the same application)."
+msgstr "KrViewer possède les menus suivants : <link linkend=\"kredit_file_menu\">Fichier</link>, <link linkend=\"kredit_edit_menu\">Édition</link>, <link linkend=\"kredit_view_menu\">Affichage</link>, <link linkend=\"kredit_settings_menu\">Configuration</link> et <link linkend=\"kredit_krviewer_menu\">Krviewer</link>, en fonction du type de fichier qui est affiché. Ils seront abordés dans la <link linkend=\"kredit\">section éditeur</link>. L'éditeur interne peut suivre des liens dans des pages HTML. Avec <keycombo action=\"simul\">&Ctrl; <keycap>E</keycap></keycombo> l'afficheur peut lancer l'éditeur interne de &krusader; (qui est en fait la même application)."
+
+#. Tag: para
+#: viewer-editor.docbook:118
+#, no-c-format
+msgid "The embedded viewer is not written by us, it is supplied via &kde; (libs) and &kioslaves1-url; We cannot and do not want to change it, usings these libraries reduces the amount of written code. So we do not have to reinvent the wheel ;-)"
+msgstr "Nous n'écrivons pas l'afficheur embarqué, il est fournit via &kde; (bibliothèques) et &kioslaves1-url; Nous ne pouvons pas le modifier, il utilise ces bibliothèques afin de réduire la taille du code. Nous ne devons donc pas réinventer la roue ;-)"
+
+#. Tag: title
+#: viewer-editor.docbook:127
+#, no-c-format
+msgid "<title>Editor</title>"
+msgstr "<title>Éditeur</title>"
+
+#. Tag: primary
+#: viewer-editor.docbook:129
+#, no-c-format
+msgid "<primary>Editor</primary>"
+msgstr "<primary>Éditeur</primary>"
+
+#. Tag: para
+#: viewer-editor.docbook:131
+#, no-c-format
+msgid "&krusader;'s internal editor has almost everything that you can expect of an editor. Editing is similar to viewing but with the <keycap>F4</keycap> key. The default editor is &krusader;'s internal editor. You can change the default editor in the &konfiggereral-lnk;, if you prefer to use an external editor."
+msgstr "L'éditeur interne de &krusader; a pratiquement tout ce que vous pouvez attendre d'un éditeur. L'édition est similaire à l'afficheur mais avec la touche<keycap>F4</keycap>. L'éditeur par défaut est l'éditeur interne de &krusader;. Vous pouvez modifier l'éditeur par défaut dans le &konfiggereral-lnk;, si vous préférez utiliser un éditeur externe."
+
+#. Tag: para
+#: viewer-editor.docbook:139
+#, no-c-format
+msgid "When you use &krusader;'s internal editor for the first time, it is recommended to look at each section of the <link linkend=\"kredit_settings_menu\">Settings</link>menu, and configure it the way you want it."
+msgstr "Si vous utilisez l'éditeur interne de &krusader; pour la première fois, il est recommandé de configurer chaque session du menu <link linkend=\"kredit_settings_menu\">Configuration</link> comme vous le voulez."
+
+#. Tag: title
+#: viewer-editor.docbook:147
+#, no-c-format
+msgid "Menu overview"
+msgstr "Aperçu du menu"
+
+#. Tag: para
+#: viewer-editor.docbook:148
+#, no-c-format
+msgid "Most of the menus are quite self-explanatory. ;-)"
+msgstr "La plupart des menus sont assez explicites. ;-)"
+
+#. Tag: title
+#: viewer-editor.docbook:151
+#, no-c-format
+msgid "<guimenu>File</guimenu>menu"
+msgstr "Le menu <guimenu>Fichier</guimenu>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:155
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>S</keycap></keycombo> </shortcut> <guimenu>File</guimenu> <guimenuitem>Save</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>S</keycap></keycombo> </shortcut> <guimenu>Fichier</guimenu> <guimenuitem>Enregistrer</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:165
+#, no-c-format
+msgid "Save file."
+msgstr "Enregistrer le fichier."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:170
+#, no-c-format
+msgid "<guimenu>File</guimenu> <guimenuitem>Save As</guimenuitem>"
+msgstr "<guimenu>Fichier</guimenu> <guimenuitem>Enregistrer sous</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:176
+#, no-c-format
+msgid "Save file with another name."
+msgstr "Enregistrer le fichier avec un autre nom."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:181
+#, no-c-format
+msgid "<shortcut> <keycap>F5</keycap> </shortcut> <guimenu>File</guimenu> <guimenuitem>Reload</guimenuitem>"
+msgstr "<shortcut> <keycap>F5</keycap> </shortcut> <guimenu>Fichier</guimenu> <guimenuitem>Recharger</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:190
+#, no-c-format
+msgid "Reload file."
+msgstr "Recharger le fichier."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:195
+#, no-c-format
+msgid "<guimenu>File</guimenu> <guimenuitem>Export</guimenuitem>"
+msgstr "<guimenu>Fichier</guimenu> <guimenuitem>Exporter en HTML...</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:201
+#, no-c-format
+msgid "Export the file to <literal role=\"extension\">HTML</literal> format."
+msgstr "Exporter le fichier au format <literal role=\"extension\">HTML</literal>."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:207
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>P</keycap></keycombo> </shortcut> <guimenu>File</guimenu> <guimenuitem>Print</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>P</keycap></keycombo> </shortcut> <guimenu>Fichier</guimenu> <guimenuitem>Imprimer...</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:217
+#, no-c-format
+msgid "Print the file."
+msgstr "Imprimer le fichier."
+
+#. Tag: title
+#: viewer-editor.docbook:223
+#, no-c-format
+msgid "<guimenu>Edit</guimenu> menu"
+msgstr "Le menu <guimenu>Édition</guimenu>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:227
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>Z</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Undo</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>Z</keycap></keycombo> </shortcut> <guimenu>Édition</guimenu> <guimenuitem>Annuler</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:237
+#, no-c-format
+msgid "Undo last action."
+msgstr "Annuler la dernière action."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:242
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>Z</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Redo</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Maj; <keycap>Z</keycap></keycombo> </shortcut> <guimenu>Édition</guimenu> <guimenuitem>Refaire</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:253
+#, no-c-format
+msgid "Redo last action."
+msgstr "Refaire la dernière action."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:258
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>X</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Cut</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>X</keycap></keycombo> </shortcut> <guimenu>Édition</guimenu> <guimenuitem>Couper</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:268
+#, no-c-format
+msgid "Cut selected text to clipboard."
+msgstr "Couper le texte sélectionné dans le presse-papiers."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:273
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>C</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Copy</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>C</keycap></keycombo> </shortcut> <guimenu>Édition</guimenu> <guimenuitem>Copier</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:283
+#, no-c-format
+msgid "Copy selected text to clipboard."
+msgstr "Copier le texte sélectionné dans le presse-papiers."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:288
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>V</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Paste</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>V</keycap></keycombo> </shortcut> <guimenu>Édition</guimenu> <guimenuitem>Coller</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:298
+#, no-c-format
+msgid "Paste clipboard content to the document."
+msgstr "Coller le contenu du presse-papiers dans le document."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:303
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>A</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Select All</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>A</keycap></keycombo> </shortcut> <guimenu>Édition</guimenu> <guimenuitem>Tout sélectionner</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:313
+#, no-c-format
+msgid "Select whole document."
+msgstr "Sélectionner le document complet."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:318
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>A</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Deselect</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Maj; <keycap>A</keycap></keycombo> </shortcut> <guimenu>Édition</guimenu> <guimenuitem>Déselectionner</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:329
+#, no-c-format
+msgid "Deselect current selection."
+msgstr "Déselectionner la sélection courante."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:334
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>B</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Block Selection Mode</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Maj; <keycap>B</keycap></keycombo> </shortcut> <guimenu>Édition</guimenu> <guimenuitem>Mode « sélection par bloc »</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:345
+#, no-c-format
+msgid "Toggle Block Selection, which will activate/deactivate the block selection possibility."
+msgstr "Activer ou désactiver la sélection par bloc."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:352
+#, no-c-format
+msgid "<shortcut> <keycap>Insert</keycap> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Overwrite Mode</guimenuitem>"
+msgstr "<shortcut> <keycap>Insert</keycap> </shortcut> <guimenu>Édition</guimenu> <guimenuitem>Mode « écrasement »</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:361
+#, no-c-format
+msgid "Toggle Insert/Overwrite Mode."
+msgstr "Active ou désactive le mode d'écrasement."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:366
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>F</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Find</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>F</keycap></keycombo> </shortcut> <guimenu>Édition</guimenu> <guimenuitem>Chercher</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:376
+#, no-c-format
+msgid "Find text."
+msgstr "Rechercher du texte."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:381
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\"> <keycap>F3</keycap> </keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Find Next</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\"> <keycap>F3</keycap> </keycombo> </shortcut> <guimenu>Édition</guimenu> <guimenuitem>Poursuivre la recherche</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:392
+#, no-c-format
+msgid "Find next text."
+msgstr "Rechercher le texte suivant."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:397
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\">&Shift; <keycap>F3</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Find Previous</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\">&Maj; <keycap>F3</keycap></keycombo> </shortcut> <guimenu>Édition</guimenu> <guimenuitem>Chercher en arrière</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:407
+#, no-c-format
+msgid "Find previous text."
+msgstr "Rechercher le texte précédent."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:412
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>R</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Replace</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>R</keycap></keycombo> </shortcut> <guimenu>Édition</guimenu> <guimenuitem>Remplacer</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:422
+#, no-c-format
+msgid "Replace text."
+msgstr "Remplacer du texte."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:427
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>G</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Go to line</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>G</keycap></keycombo> </shortcut> <guimenu>Édition</guimenu> <guimenuitem>Aller à la ligne</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:437
+#, no-c-format
+msgid "Go to given line number."
+msgstr "Aller au numéro de ligne donné."
+
+#. Tag: title
+#: viewer-editor.docbook:443
+#, no-c-format
+msgid "<guimenu>View</guimenu>menu"
+msgstr "Le menu <guimenu>Affichage</guimenu>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:447
+#, no-c-format
+msgid "<shortcut> <keycap>F7</keycap> </shortcut> <guimenu>View</guimenu> <guimenuitem>Switch to Command Line.</guimenuitem>"
+msgstr "<shortcut> <keycap>F7</keycap> </shortcut> <guimenu>Affichage<</guimenu> <guimenuitem>Passer dans la ligne de commande</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:456
+#, no-c-format
+msgid "Display Command Line."
+msgstr "Afficher la ligne de commande."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:462
+#, no-c-format
+msgid "<guimenu>View</guimenu> <guimenuitem>Schema.</guimenuitem>"
+msgstr "<guimenu>Visualisation</guimenu> <guimenuitem>Schéma</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:468
+#, no-c-format
+msgid "Set Schema &eg; &krusader; Normal, &krusader; Printing, &kate; Normal, &kwrite; Normal."
+msgstr "Définir le mode &pex; &krusader; - normal, &krusader; - impression, &kate; - normal, &kwrite; - normal."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:476
+#, no-c-format
+msgid "<shortcut> <keycap>F10</keycap> </shortcut> <guimenu>View</guimenu> <guimenuitem>Dynamic Word Wrap</guimenuitem>"
+msgstr "<shortcut> <keycap>F10</keycap> </shortcut> <guimenu>Affichage</guimenu> <guimenuitem>Retour à la ligne dynamique</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:485
+#, no-c-format
+msgid "Go to the next line at the maximum number of characters per line (default 80)."
+msgstr "Aller à la ligne suivante au nombre maximum de caractères par ligne (80 par défaut)."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:491
+#, no-c-format
+msgid "<guimenu>View</guimenu> <guimenuitem>Dynamic Word Wrap Indicators</guimenuitem>"
+msgstr "<guimenu>Affichage</guimenu> <guimenuitem>Indicateurs de retour à la ligne dynamique</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:497
+#, no-c-format
+msgid "Off, Follow Line Numbers, Always On."
+msgstr "Désactivés, Suivant l'affichage des numéros de ligne, Toujours affichés."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:502
+#, no-c-format
+msgid "<guimenu>View</guimenu> <guimenuitem>Shows Static Word Wrap marker</guimenuitem>"
+msgstr "<guimenu>Affichage</guimenu> <guimenuitem>Afficher les indicateurs de retour à la ligne statique</guimenuitem>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:515
+#, no-c-format
+msgid "<shortcut> <keycap>F6</keycap> </shortcut> <guimenu>View</guimenu> <guimenuitem>Show Icon Border</guimenuitem>"
+msgstr "<shortcut> <keycap>F6</keycap> </shortcut> <guimenu>Affichage</guimenu> <guimenuitem>Afficher la bordure d'icônes</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:524
+#, no-c-format
+msgid "Shows Icon Border."
+msgstr "Afficher la bordure d'icône."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:530
+#, no-c-format
+msgid "<shortcut> <keycap>F11</keycap> </shortcut> <guimenu>View</guimenu> <guimenuitem>Show Line Numbers</guimenuitem>"
+msgstr "<shortcut> <keycap>F11</keycap> </shortcut> <guimenu>Affichage</guimenu> <guimenuitem>Afficher les numéros de ligne</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:539
+#, no-c-format
+msgid "Shows the line numbers."
+msgstr "Afficher les numéros de ligne."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:544
+#, no-c-format
+msgid "<guimenu>View</guimenu> <guimenuitem>Show Scrollbar Marks.</guimenuitem>"
+msgstr "<guimenu>Affichage</guimenu> <guimenuitem>Afficher les repères sur les barres de défilement.</guimenuitem>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:555
+#, no-c-format
+msgid "<shortcut> <keycap>F9</keycap> </shortcut> <guimenu>View</guimenu> <guimenuitem>Hide Folding Markers</guimenuitem>"
+msgstr "<shortcut> <keycap>F9</keycap> </shortcut> <guimenu>Affichage</guimenu> <guimenuitem>Afficher les indicateurs de pliage</guimenuitem>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:570
+#, no-c-format
+msgid "<guimenu>View</guimenu> <guimenuitem>Code Folding.</guimenuitem>"
+msgstr "<guimenu>Affichage</guimenu> <guimenuitem>Pliage du code</guimenuitem>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:582
+#, no-c-format
+msgid "<guimenu>View</guimenu> <guimenuitem>Set Encoding</guimenuitem>"
+msgstr "<guimenu>Affichage</guimenu> <guimenuitem>Définir le jeu de caractères</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:588
+#, no-c-format
+msgid "&eg; ISO8859-1, utf8, utf16, tscii, ... ."
+msgstr "&pex; ISO8859-1, utf8, utf16, tscii, ... ."
+
+#. Tag: title
+#: viewer-editor.docbook:595
+#, no-c-format
+msgid "<guimenu>Bookmarks</guimenu>menu"
+msgstr "Le menu <guimenu>Signets</guimenu>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:600
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>B</keycap></keycombo> </shortcut> <guimenu>Bookmark</guimenu> <guimenuitem>Set Bookmark</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>B</keycap></keycombo> </shortcut> <guimenu>Signets</guimenu> <guimenuitem>Définir un signet</guimenuitem>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:615
+#, no-c-format
+msgid "<guimenu>Bookmark</guimenu> <guimenuitem>Clear All Bookmarks</guimenuitem>"
+msgstr "<guimenu>Signets</guimenu> <guimenuitem>Effacer tous les signets</guimenuitem>"
+
+#. Tag: title
+#: viewer-editor.docbook:651
+#, no-c-format
+msgid "<guimenu>Tools</guimenu>menu"
+msgstr "Le menu <guimenu>Outils</guimenu>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:655
+#, no-c-format
+msgid "<guimenu>Tools</guimenu> <guimenuitem>Read Only Mode</guimenuitem>"
+msgstr "<guimenu>Outils</guimenu> <guimenuitem>Mode « lecture seule »</guimenuitem>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:666
+#, no-c-format
+msgid "<guimenu>Tools</guimenu> <guimenuitem>Filetype Mode</guimenuitem>"
+msgstr "<guimenu>Outils</guimenu> <guimenuitem>Mode</guimenuitem>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:677
+#, no-c-format
+msgid "<guimenu>Tools</guimenu> <guimenuitem>Highlight mode</guimenuitem>"
+msgstr "<guimenu>Outils</guimenu> <guimenuitem>Coloration syntaxique</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:683
+#, no-c-format
+msgid "Highlight mode for scripts, programming languages, markup file, &etc;: &eg; <literal role=\"extension\">HTML, Bash, C++, XML, Makefile, Diff, ...</literal>."
+msgstr "Coloration syntaxique pour les scripts, langages de programmation, balises, &etc; : &pex; <literal role=\"extension\">HTML, Bash, C++, XML, Makefile, Diff, ...</literal>."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:691
+#, no-c-format
+msgid "<guimenu>Tools</guimenu> <guimenuitem>End of Line</guimenuitem>"
+msgstr "<guimenu>Outils</guimenu> <guimenuitem>Fin de ligne</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:697
+#, no-c-format
+msgid "Change the end of Line termination: &UNIX;, &Windows;/DOS, <trademark class=\"registered\"> Macintosh</trademark>."
+msgstr "Modifier la fin de la d'interruption de ligne : &UNIX;, &Windows;/DOS, <trademark class=\"registered\"> Macintosh</trademark>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:705
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>I</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Indent</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>I</keycap></keycombo> </shortcut> <guimenu>Outils</guimenu> <guimenuitem>Indentation</guimenuitem>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:721
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>I</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Unindent</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>I</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Désindenter</guimenuitem>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:738
+#, no-c-format
+msgid "<guimenu>Tools</guimenu> <guimenuitem>Clean Indentation</guimenuitem>"
+msgstr "<guimenu>Outils</guimenu> <guimenuitem>Supprimer l'indentation</guimenuitem>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:750
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>D</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Comment</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>D</keycap></keycombo> </shortcut> <guimenu>Outils</guimenu> <guimenuitem>Commenter</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:760
+#, no-c-format
+msgid "Add appropriate comment tags, if available."
+msgstr "Ajouter des étiquettes de commentaire appropriées, si disponible."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:765
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>D</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Uncomment</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>D</keycap></keycombo> </shortcut> <guimenu>Outils</guimenu> <guimenuitem>Décommenter</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:776
+#, no-c-format
+msgid "Removes the comment tags on the left."
+msgstr "Supprimer les étiquettes de commentaire sur la gauche."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:781
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>U</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Uppercase</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>U</keycap></keycombo> </shortcut> <guimenu>Outils</guimenu> <guimenuitem>Majuscules</guimenuitem>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:796
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>U</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Lowercase</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>U</keycap></keycombo> </shortcut> <guimenu>Outils</guimenu> <guimenuitem>Minuscules</guimenuitem>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:812
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\"> &Alt;&Ctrl; <keycap>U</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Capitalize</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\"> &Alt;&Ctrl; <keycap>U</keycap></keycombo> </shortcut> <guimenu>Outils</guimenu> <guimenuitem>Mettre une majuscule à chaque mot</guimenuitem>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:828
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>J</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Join Lines</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>J</keycap></keycombo> </shortcut> <guimenu>Outils</guimenu> <guimenuitem>Fusionner les lignes</guimenuitem>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:843
+#, no-c-format
+msgid "<guimenu>Tools</guimenu> <guimenuitem>Word Wrap Document</guimenuitem>"
+msgstr "<guimenu>Outilss</guimenu> <guimenuitemPlacer des retours à la lignet</guimenuitem>"
+
+#. Tag: title
+#: viewer-editor.docbook:856
+#, no-c-format
+msgid "<guimenu>Settings -&gt; Configure Editor</guimenu>menu"
+msgstr "Le menu <guimenu>Configurations -&gt;Configurer l'éditeurr</guimenu>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:861
+#, no-c-format
+msgid "<guimenu>Settings</guimenu> <guimenuitem>Configure Editor</guimenuitem> <guimenuitem>Colors</guimenuitem>"
+msgstr "<guimenu>Configuration</guimenu> <guimenuitem>Configurer l'éditeur</guimenuitem> <guimenuitem>Couleurs</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:868
+#, no-c-format
+msgid "Color configuration for the: Background, Selected text, Current line and Bracket highlighting."
+msgstr "Configuration des couleurs pour : le fond, le texte sélectionné, la ligne courante et les lignes avec des accolades."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:874
+#, no-c-format
+msgid "<guimenu>Settings</guimenu> <guimenuitem>Configure Editor</guimenuitem> <guimenuitem>Fonts</guimenuitem>"
+msgstr "<guimenu>Configuration</guimenu> <guimenuitem>Configurer l'éditeur</guimenuitem> <guimenuitem>Polices</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:881
+#, no-c-format
+msgid "Fonts configuration for display and printer: Font, font Style and Size, with a preview window."
+msgstr "Configuration des polices pour l'affichage et l'impression : polices, style et taille de polices, avec une fenêtre d'aperçu."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:887
+#, no-c-format
+msgid "<guimenu>Settings</guimenu> <guimenuitem>Configure Editor</guimenuitem> <guimenuitem>Indentation</guimenuitem>"
+msgstr "<guimenu>Configuration</guimenu> <guimenuitem>Configurer l'éditeur</guimenuitem> <guimenuitem>Indentation</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:894
+#, no-c-format
+msgid "Indentation configuration: Automatically indent, use Spaces to indent, &Tab; Keys indent, &Backspace; key unindents, keep indent profile, keep extra spaces."
+msgstr "Configuration de l'indentation : indenter automatiquement, utiliser des espaces pour indenter, indenter avec la touche &Tab;, désindenter avec la touche &Backspace;, profil d'indentation et divers."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:902
+#, no-c-format
+msgid "<guimenu>Settings</guimenu> <guimenuitem>Configure Editor</guimenuitem> <guimenuitem>Selection</guimenuitem>"
+msgstr "<guimenu>Configuration</guimenu> <guimenuitem>Configurer l'éditeur</guimenuitem> <guimenuitem>Sélection</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:909
+#, no-c-format
+msgid "Selection configuration: Persistent selections, Overwrite selected text."
+msgstr "Configuration de la sélection : sélections persistantes, écraser le texte sélectionné."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:915
+#, no-c-format
+msgid "<guimenu>Settings</guimenu> <guimenuitem>Configure Editor</guimenuitem> <guimenuitem>Editing</guimenuitem>"
+msgstr "<guimenu>Configuration</guimenu> <guimenuitem>Configurer l'éditeur</guimenuitem> <guimenuitem>Édition</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:922
+#, no-c-format
+msgid "Editing configuration: Word Wrap config., Whitespace config, Auto brackets, Smart home, Wrap cursor, Maximum undo steps."
+msgstr "Configuration de l'édition : configuration des retours à la ligne, configuration des espaces blancs, accolades automatiques, retour à la ligne du curseur, nombre d'annulation maximum."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:929
+#, no-c-format
+msgid "<guimenu>Settings</guimenu> <guimenuitem>Configure Editor</guimenuitem> <guimenuitem>Shortcuts</guimenuitem>"
+msgstr "<guimenu>Configuration</guimenu> <guimenuitem>Configurer l'éditeur</guimenuitem> <guimenuitem>Raccourcis clavier</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:936
+#, no-c-format
+msgid "Shortcuts configuration."
+msgstr "Configuration des raccourcis clavier."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:941
+#, no-c-format
+msgid "<guimenu>Settings</guimenu> <guimenuitem>Configure Editor</guimenuitem> <guimenuitem>Highlighting</guimenuitem>"
+msgstr "<guimenu>Configuration</guimenu> <guimenuitem>Configurer l'éditeur</guimenuitem> <guimenuitem>Coloration syntaxique</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:948
+#, no-c-format
+msgid "Highlighting configuration: Default styles and Highlight mode."
+msgstr "Configuration de la coloration syntaxique : styles et modes par défaut."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:954
+#, no-c-format
+msgid "<guimenu>Settings</guimenu> <guimenuitem>Configure Editor</guimenuitem> <guimenuitem>View defaults</guimenuitem>"
+msgstr "<guimenu>Configuration</guimenu> <guimenuitem>Configurer l'éditeur</guimenuitem> <guimenuitem>Vue par défaut</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:961
+#, no-c-format
+msgid "View defaults: Dynamic word wrap, show Line numbers, show Icon border, show Folder markers if available, sort Bookmarks menu method."
+msgstr "Vue par défaut : césure dynamique des mots, affichage du nombre de ligne, affichage de l'icône sur la bordure, affichage des marqueurs de dossier s'ils sont disponibles, tri du menu des signets."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:968
+#, no-c-format
+msgid "<guimenu>Settings</guimenu> <guimenuitem>Configure Editor</guimenuitem> <guimenuitem>Plugins</guimenuitem>"
+msgstr "<guimenu>Configuration</guimenu> <guimenuitem>Configurer l'éditeur</guimenuitem> <guimenuitem>Modules</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:975
+#, no-c-format
+msgid "Plugins configuration: &eg; kTexteditor incremental search plugin, kTexteditor insert file plugin, kTexteditor kdatatoolplugin..."
+msgstr "Configuration des modules : &pex; le module de recherche incrémentale de kTexteditor, le module d'insertion de fichier kTextEditor, le module kdatatool kTexteditor..."
+
+#. Tag: title
+#: viewer-editor.docbook:983
+#, no-c-format
+msgid "<guimenu>KrViewer</guimenu>menu"
+msgstr "Le menu <guimenu>KrViewer</guimenu>"
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:987
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>G</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Generic viewer</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Maj; <keycap>G</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Afficheur général</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:998
+#, no-c-format
+msgid "&krusader;'s internal viewer is actually part of Konqueror, which can basically view every file type viewable by &konqueror; (&eg; display pictures, play music, show the content of an archive)."
+msgstr "L'afficheur interne de &krusader; est en fait une partie de Konqueror, qui peut voir tous les types de fichiers que &konqueror; gère (&pex; afficher des images, jouer de la musique, voire le contenu d'une archive)."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:1007
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>T</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Text viewer</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\">&Ctrl; <keycap>T</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Afficheur texte</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:1017
+#, no-c-format
+msgid "View the file in text mode."
+msgstr "Afficher le fichier en mode texte."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:1022
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>H</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Hex viewer</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Maj; <keycap>H</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Afficheur hexadécimal</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:1033
+#, no-c-format
+msgid "View the file in hex mode."
+msgstr "Afficher le fichier en mode hexadécimal."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:1038
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>E</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Text editor</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Maj; <keycap>E</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Éditeur texte</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:1049
+#, no-c-format
+msgid "Edit the file in text mode."
+msgstr "Éditer le fichier en mode texte."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:1054
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\">&Alt; <keycap>Right</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Next Tab</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\">&Alt; <keycap>Droite</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Onglet suivant</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:1064
+#, no-c-format
+msgid "Next browsing Tab."
+msgstr "Onglet de navigation suivant."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:1069
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\">&Alt; <keycap>Left</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Previous Tab</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\">&Alt; <keycap>Gauche</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Onglet précédent</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:1079
+#, no-c-format
+msgid "Previous browsing Tab."
+msgstr "Onglet de navigation précédent."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:1084
+#, no-c-format
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>D</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Detach Tab</guimenuitem>"
+msgstr "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Maj; <keycap>D</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Détacher l'onglet</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:1095
+#, no-c-format
+msgid "Detach browsing Tab and open in a new window."
+msgstr "Détacher l'onglet de navigation courant dans une nouvelle fenêtre."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:1101
+#, no-c-format
+msgid "<shortcut>&Esc;</shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Close current Tab.</guimenuitem>"
+msgstr "<shortcut>&Esc;</shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Fermer l'onglet courant.</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:1108
+#, no-c-format
+msgid "Close current browsing Tab."
+msgstr "Fermer l'onglet de navigation courant."
+
+#. Tag: menuchoice
+#: viewer-editor.docbook:1113
+#, no-c-format
+msgid "<shortcut>&Ctrl; <keycap>Q</keycap></shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Close</guimenuitem>"
+msgstr "<shortcut>&Ctrl; <keycap>Q</keycap></shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Fermer</guimenuitem>"
+
+#. Tag: para
+#: viewer-editor.docbook:1121
+#, no-c-format
+msgid "Closes &krusader;'s viewer/editor window."
+msgstr "Ferme la fenêtre de l'éditeur / afficheur de &krusader;."
+
