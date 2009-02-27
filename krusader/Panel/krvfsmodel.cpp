@@ -714,6 +714,7 @@ QModelIndex KrVfsModel::addItem( vfile * vf )
 
 QModelIndex KrVfsModel::removeItem( vfile * vf )
 {
+	QModelIndex currIndex = _view->getCurrentIndex();
 	for( int i=0; i != _vfiles.count(); i++ )
 	{
 		if( _vfiles[ i ] == vf )
@@ -723,6 +724,19 @@ QModelIndex KrVfsModel::removeItem( vfile * vf )
 			QModelIndexList newPersistentList;
 			
 			_vfiles.remove( i );
+			
+			if( currIndex.row() == i )
+			{
+				if( _vfiles.count() == 0 )
+					currIndex = QModelIndex();
+				else if( i >= _vfiles.count() )
+					currIndex = index( _vfiles.count() - 1, 0 );
+				else
+					currIndex = index( i, 0 );
+			} else if( currIndex.row() > i )
+			{
+				currIndex = index( currIndex.row()-1, 0 );
+			}
 			
 			for (int ri = i; ri < _vfiles.count(); ++ri) {
 				_vfileNdx[ _vfiles[ ri ] ] = index( ri, 0 );
@@ -740,14 +754,10 @@ QModelIndex KrVfsModel::removeItem( vfile * vf )
 			}
 			changePersistentIndexList(oldPersistentList, newPersistentList);
 			emit layoutChanged();
-			if( _vfiles.count() == 0 )
-				return QModelIndex();
-			if( i >= _vfiles.count() )
-				i = _vfiles.count() - 1;
-			return index( i, 0 );
+			return currIndex;
 		}
 	}
-	return QModelIndex();
+	return currIndex;
 }
 
 void KrVfsModel::updateItem( vfile * vf )
