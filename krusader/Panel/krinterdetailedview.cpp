@@ -200,6 +200,10 @@ void KrInterDetailedView::makeItemVisible(const KrViewItem *item)
 
 void KrInterDetailedView::setCurrentKrViewItem(KrViewItem *item)
 {
+	if( item == 0 ) {
+		setCurrentIndex( QModelIndex() );
+		return;
+	}
 	vfile* vf = (vfile *)item->getVfile();
 	QModelIndex ndx = _model->vfileIndex( vf );
 	if( ndx.isValid() && ndx.row() != currentIndex().row() ) {

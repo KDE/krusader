@@ -212,6 +212,10 @@ void KrInterBriefView::makeItemVisible(const KrViewItem *item)
 
 void KrInterBriefView::setCurrentKrViewItem(KrViewItem *item)
 {
+	if( item == 0 ) {
+		setCurrentIndex( QModelIndex() );
+		return;
+	}
 	vfile* vf = (vfile *)item->getVfile();
 	QModelIndex ndx = _model->vfileIndex( vf );
 	if( ndx.isValid() && ndx.row() != currentIndex().row() ) {
@@ -282,8 +286,11 @@ void KrInterBriefView::prepareForPassive() {
 }
 
 int KrInterBriefView::itemsPerPage() {
-	/* TODO */
-	return 0;
+	int height = getItemHeight();
+	if( height == 0 )
+		height ++;
+	int numRows = viewport()->height() / height;
+	return numRows;
 }
 
 void KrInterBriefView::sort()
@@ -341,9 +348,77 @@ void KrInterBriefView::keyPressEvent( QKeyEvent *e )
 {
 	if ( !e || !_model->ready() )
 		return ; // subclass bug
-	if( handleKeyEvent( e ) ) // did the view class handled the event?
-		return;
-	QAbstractItemView::keyPressEvent( e );
+	if(( e->key() != Qt::Key_Left && e->key() != Qt::Key_Right ) &&
+		( handleKeyEvent( e ) ) ) // did the view class handled the event?
+			return;
+	switch ( e->key() ) {
+	case Qt::Key_Right :
+	{
+		if ( e->modifiers() == Qt::ControlModifier ) { // let the panel handle it
+			e->ignore();
+			break;
+		}
+		KrViewItem *i = getCurrentKrViewItem();
+		KrViewItem *newCurrent = i;
+		
+		if ( !i )
+			break;
+		
+		int num = itemsPerPage() + 1;
+		
+		if ( e->modifiers() & Qt::ShiftModifier ) i->setSelected( !i->isSelected() );
+		
+		while( i && num > 0 )
+		{
+			if ( e->modifiers() & Qt::ShiftModifier ) i->setSelected( !i->isSelected() );
+			newCurrent = i;
+			i = getNext( i );
+			num--;
+		}
+		
+		if( newCurrent ) {
+			setCurrentKrViewItem( newCurrent );
+			slotMakeCurrentVisible();
+		}
+		if ( e->modifiers() & Qt::ShiftModifier )
+			op()->emitSelectionChanged();
+		break;
+	}
+	case Qt::Key_Left :
+	{
+		if ( e->modifiers() == Qt::ControlModifier ) { // let the panel handle it
+			e->ignore();
+			break;
+		}
+		KrViewItem *i = getCurrentKrViewItem();
+		KrViewItem *newCurrent = i;
+		
+		if ( !i )
+			break;
+		
+		int num = itemsPerPage() + 1;
+		
+		if ( e->modifiers() & Qt::ShiftModifier ) i->setSelected( !i->isSelected() );
+		
+		while( i && num > 0 )
+		{
+			if ( e->modifiers() & Qt::ShiftModifier ) i->setSelected( !i->isSelected() );
+			newCurrent = i;
+			i = getPrev( i );
+			num--;
+		}
+		
+		if( newCurrent ) {
+			setCurrentKrViewItem( newCurrent );
+			slotMakeCurrentVisible();
+		}
+		if ( e->modifiers() & Qt::ShiftModifier )
+			op()->emitSelectionChanged();
+		break;
+	}
+	default:
+		QAbstractItemView::keyPressEvent( e );
+	}
 }
 
 void KrInterBriefView::mousePressEvent ( QMouseEvent * ev )
@@ -475,14 +550,12 @@ void KrInterBriefView::showContextMenu( const QPoint & p )
 
 bool KrInterBriefView::viewportEvent ( QEvent * event )
 {
-	/* TODO */
 	return QAbstractItemView::viewportEvent( event );
 }
 
 
 QRect KrInterBriefView::visualRect(const QModelIndex&ndx) const
 {
-	/* TODO */
 	int width = (viewport()->width())/_numOfColumns;
 	if( (viewport()->width())%_numOfColumns )
 		width++;
