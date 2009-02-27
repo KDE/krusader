@@ -495,9 +495,27 @@ QRect KrInterBriefView::visualRect(const QModelIndex&ndx) const
 	return mapToViewport(QRect( x, y, width, height ));
 }
 
-void KrInterBriefView::scrollTo(const QModelIndex&, QAbstractItemView::ScrollHint)
+void KrInterBriefView::scrollTo(const QModelIndex &ndx, QAbstractItemView::ScrollHint hint)
 {
-	/* TODO */
+	const QRect rect = visualRect( ndx );
+	if (hint == EnsureVisible && viewport()->rect().contains(rect)) {
+		setDirtyRegion(rect);
+		return;
+	}
+	
+	const QRect area = viewport()->rect();
+	
+	const bool leftOf = rect.left() < area.left();
+	const bool rightOf = rect.right() > area.right();
+	
+	int horizontalValue = horizontalScrollBar()->value();
+	
+	if (leftOf)
+		horizontalValue -= area.left() - rect.left();
+	else if (rightOf)
+		horizontalValue += rect.right() - area.right();
+	
+	horizontalScrollBar()->setValue( horizontalValue );
 }
 
 QModelIndex KrInterBriefView::indexAt(const QPoint& p) const
@@ -553,15 +571,33 @@ QRegion KrInterBriefView::visualRegionForSelection(const QItemSelection&) const
 void KrInterBriefView::paintEvent(QPaintEvent *e)
 {
 	/* TODO */
-	QStyleOptionViewItemV4 option;
+	QStyleOptionViewItemV4 option = viewOptions();
 	option.widget = this;
+	option.decorationSize = QSize( _fileIconSize, _fileIconSize );
+	option.decorationPosition = QStyleOptionViewItem::Left;
 	QPainter painter( viewport() );
+	
+	QModelIndex curr = currentIndex();
+
 	
 	for( int i=0; i != _model->rowCount(); i++ )
 	{
+		option.state = QStyle::State_None;
 		option.rect = visualRect( _model->index( i, 0 ) );
 		painter.save();
+		
+		bool focus = curr.isValid() && curr.row() == i && hasFocus();
+		
 		itemDelegate()->paint(&painter, option, _model->index( i, 0 ) );
+		
+		if( focus ) {
+			QStyleOptionFocusRect o;
+			o.QStyleOption::operator=(option);
+			QPalette::ColorGroup cg = QPalette::Normal;
+			o.backgroundColor = option.palette.color(cg, QPalette::Background);
+			style()->drawPrimitive(QStyle::PE_FrameFocusRect, &o, &painter);
+		}
+		
 		painter.restore();
 	}
 }
@@ -627,4 +663,23 @@ void KrInterBriefView::setSortMode(KrViewProperties::SortSpec mode)
 	if( column == _model->getLastSortOrder() && sortDir == _model->getLastSortDir() )
 		sortDir = (sortDir == Qt::AscendingOrder) ? Qt::DescendingOrder : Qt::AscendingOrder;
 	_model->sort( column, sortDir );
+}
+
+int KrInterBriefView::elementWidth( const QModelIndex & index )
+{
+	QString text = index.data( Qt::DisplayRole ).toString();
+	
+	int textWidth = QFontMetrics( _viewFont ).width( text );
+	
+	const int textMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin) + 1;
+	textWidth += 2 * textMargin;
+	
+	QVariant decor = index.data( Qt::DecorationRole );
+	if( decor.isValid() && decor.type() == QVariant::Pixmap )
+	{
+		QPixmap p = decor.value<QPixmap>();
+		textWidth += p.width() + 2 * textMargin;
+	}
+	
+	return textWidth;
 }

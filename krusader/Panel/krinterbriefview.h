@@ -111,6 +111,7 @@ protected:
 	
 	void showContextMenu( const QPoint & p );
 	int getItemHeight() const;
+	int elementWidth( const QModelIndex & index );
 	
 private:
 	KrVfsModel *_model;
