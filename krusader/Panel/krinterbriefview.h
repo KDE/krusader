@@ -27,6 +27,7 @@
 class KrInterBriefViewItem;
 class KrMouseHandler;
 class KrVfsModel;
+class QHeaderView;
 
 class KrInterBriefView : public QAbstractItemView, public KrView {
 	friend class KrInterBriefViewItem;
@@ -113,6 +114,8 @@ protected:
 	int getItemHeight() const;
 	int elementWidth( const QModelIndex & index );
 	
+	void intersectionSet( const QRect &, QVector<QModelIndex> & );
+	
 private:
 	KrVfsModel *_model;
 	KrMouseHandler *_mouseHandler;
@@ -120,5 +123,6 @@ private:
 	QFont _viewFont;
 	int _numOfColumns;
 	int _fileIconSize;
+	QHeaderView * _header;
 };
 #endif // __krinterbriefview__

@@ -511,8 +511,7 @@ void KrInterDetailedView::showContextMenu( const QPoint & p )
 {
 	KMenu popup( this );
 	popup.setTitle( i18n("Columns"));
-//
-//  bool refresh = false;
+	
 	bool hasExtension = !isColumnHidden( KrVfsModel::Extension );
 	bool hasMime      = !isColumnHidden( KrVfsModel::Mime );
 	bool hasSize      = !isColumnHidden( KrVfsModel::Size );

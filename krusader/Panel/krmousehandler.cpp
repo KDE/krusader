@@ -26,7 +26,7 @@
 
 KrMouseHandler::KrMouseHandler( KrView * view, int contextMenuShift ) : _view( view ), _rightClickedItem( 0 ),
 	_contextMenuTimer(), _contextMenuShift( contextMenuShift ), _singleClicked( false ), _singleClickTime(),
-	_renameTimer(), _dragStartPos( -1, -1 )
+	_renameTimer(), _dragStartPos( -1, -1 ), _emptyContextMenu( false )
 {
 	KConfigGroup grpSvr( krConfig, "Look&Feel" );
 	// decide on single click/double click selection
@@ -37,6 +37,7 @@ KrMouseHandler::KrMouseHandler( KrView * view, int contextMenuShift ) : _view( v
 
 bool KrMouseHandler::mousePressEvent( QMouseEvent *e )
 {
+	_rightClickedItem = 0;
 	KrViewItem * item = _view->getKrViewItemAt( e->pos() );
 	if( !_view->isFocused() )
 		_view->op()->emitNeedFocus();
@@ -112,8 +113,8 @@ bool KrMouseHandler::mousePressEvent( QMouseEvent *e )
 					}
 				}
 				_view->setCurrentKrViewItem( item );
-				handleContextMenu( item, e->globalPos() );
 			}
+			handleContextMenu( item, e->globalPos() );
 			e->accept();
 			return true;
 		}
@@ -271,23 +272,27 @@ void KrMouseHandler::showContextMenu()
 {
 	if (_rightClickedItem)
 		_rightClickedItem->setSelected(true);
-	_view->op()->emitContextMenu( _contextMenuPoint );
+	if( _emptyContextMenu )
+		_view->op()->emitEmptyContextMenu( _contextMenuPoint );
+	else
+		_view->op()->emitContextMenu( _contextMenuPoint );
 }
 
 void KrMouseHandler::handleContextMenu( KrViewItem * it, const QPoint & pos ) {
 	if ( !_view->isFocused() )
 		_view->op()->emitNeedFocus();
-	if ( !it )
-		return;
-	if( it->isDummy() )
-		return;
 	int i = KrSelectionMode::getSelectionHandler()->showContextMenu();
 	_contextMenuPoint = QPoint( pos.x(), pos.y() - _contextMenuShift );
 	if (i < 0) {
-		_view->setCurrentKrViewItem( it );
-		_view->op()->emitContextMenu( _contextMenuPoint );
+		if ( !it || it->isDummy() )
+			_view->op()->emitEmptyContextMenu( _contextMenuPoint );
+		else {
+			_view->setCurrentKrViewItem( it );
+			_view->op()->emitContextMenu( _contextMenuPoint );
+		}
 	}
 	else if (i > 0) {
+		_emptyContextMenu = !it || it->isDummy();
 		_contextMenuTimer.setSingleShot( true );
 		_contextMenuTimer.start(i);
 	}

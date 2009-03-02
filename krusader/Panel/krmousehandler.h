@@ -70,6 +70,7 @@ protected:
 	QTime        _singleClickTime;
 	QTimer       _renameTimer;
 	QPoint       _dragStartPos;
+	bool         _emptyContextMenu;
 };
 
 #endif /* __KR_MOUSE_HANDLER */

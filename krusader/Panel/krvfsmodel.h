@@ -36,7 +36,6 @@ public:
 	inline const KrViewProperties * properties() const { return _view->properties(); }
 	void sort() { sort( _lastSortOrder, _lastSortDir ); }
 	void clear();
-	virtual void sort ( int column, Qt::SortOrder order = Qt::AscendingOrder );
 	vfile * vfileAt( const QModelIndex &index );
 	vfile *dummyVfile() const { return _dummyVfile; }
 	const QModelIndex & vfileIndex( vfile * );
@@ -49,6 +48,10 @@ public:
 	
 	Qt::SortOrder getLastSortDir() { return _lastSortDir; }
 	int getLastSortOrder() { return _lastSortOrder; }
+	void setAlternatingTable( bool altTable ) { _alternatingTable = altTable; }
+	
+public slots:
+	virtual void sort ( int column, Qt::SortOrder order = Qt::AscendingOrder );
 	
 protected:
 	QString nameWithoutExtension( const vfile * vf, bool checkEnabled = true ) const;
@@ -66,5 +69,6 @@ protected:
 	QFont                       _defaultFont;
 	bool                        _justForSizeHint;
 	int                         _fileIconSize;
+	bool                        _alternatingTable;
 };
 #endif // __krvfsmodel__

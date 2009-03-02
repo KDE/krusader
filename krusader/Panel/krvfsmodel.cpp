@@ -128,7 +128,8 @@ typedef bool(*LessThan)(SortProps *,SortProps *);
 
 KrVfsModel::KrVfsModel( KrView * view ): QAbstractListModel(0), _extensionEnabled( true ), _view( view ),
                                          _lastSortOrder( KrVfsModel::Name ), _lastSortDir(Qt::AscendingOrder),
-                                         _dummyVfile( 0 ), _ready( false ), _justForSizeHint( false )
+                                         _dummyVfile( 0 ), _ready( false ), _justForSizeHint( false ), 
+                                         _alternatingTable( false )
 {
 	KConfigGroup grpSvr( krConfig, "Look&Feel" );
 	_defaultFont = grpSvr.readEntry( "Filelist Font", *_FilelistFont );
@@ -332,7 +333,16 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
 		{
 			KrColorItemType colorItemType;
 			colorItemType.m_activePanel = (_view == ACTIVE_PANEL->view);
-			colorItemType.m_alternateBackgroundColor = (index.row() & 1);
+			int actRow = index.row();
+			if( _alternatingTable )
+			{
+				int itemNum = _view->itemsPerPage();
+				if( itemNum == 0 )
+					itemNum++;
+				if( ( itemNum & 1 ) == 0 )
+					actRow += (actRow / itemNum );
+			}
+			colorItemType.m_alternateBackgroundColor = (actRow & 1);
 			colorItemType.m_currentItem = _view->getCurrentIndex() == index;
 			colorItemType.m_selectedItem = _view->isSelected( index );
 			if (vf->vfile_isSymLink())
