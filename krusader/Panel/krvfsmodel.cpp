@@ -399,7 +399,7 @@ bool KrVfsModel::setData ( const QModelIndex & index, const QVariant & value, in
 }
 
 // compares numbers within two strings
-bool compareNumbers(QString& aS1, int& aPos1, QString& aS2, int& aPos2)
+int compareNumbers(QString& aS1, int& aPos1, QString& aS2, int& aPos2)
 {
    int res = 0;
    int start1 = aPos1;
