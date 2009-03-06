@@ -322,9 +322,9 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
 		{
 			switch (index.column() ) {
 				case KrVfsModel::Size:
-					return Qt::AlignRight;
+					return QVariant( Qt::AlignRight | Qt::AlignVCenter );
 				default:
-					return Qt::AlignLeft;
+					return QVariant( Qt::AlignLeft | Qt::AlignVCenter );
 			}
 			return QVariant();
 		}
