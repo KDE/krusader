@@ -364,116 +364,7 @@
     <informaltable>
       <tgroup cols="2">
         <tbody>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul">&Alt;
-                <keycap>c</keycap></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para>&comparedir-lnk;</para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul">&Alt;
-                <keycap>d</keycap></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para>&diskusage-lnk;.</para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul">&Alt;
-                <keycap>e</keycap></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <link linkend="test-archive">Test Archive.</link>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul">&Alt;
-                <keycap>k</keycap></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para>Start &rootmode-lnk;
-              &krusader;.</para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul">&Alt;
-                <keycap>l</keycap></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para>&panel-profiles-lnk;.</para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul">&Alt;
-                <keycap>o</keycap></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <link linkend="panel_toolbar">Sync panels aka "Equals Button (=)".</link>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul">&Alt;
-                <keycap>p</keycap></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <link linkend="pack-archive">Pack files.</link>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul">&Alt;
-                <keycap>u</keycap></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para>
-                <link linkend="unpacking-archives">Unpack
-                files.</link>
-              </para>
-            </entry>
-          </row>
-          <row>
-            <entry>
-              <para>
-                <keycombo action="simul">&Alt;
-                <keycap>y</keycap></keycombo>
-              </para>
-            </entry>
-            <entry>
-              <para><link linkend="synchronizer">Synchronize Directory changes</link>.</para>
-            </entry>
-          </row>
-          <row>
+	  <row>
             <entry>
               <para>
                 <keycombo action="simul">&Alt;
@@ -536,11 +427,22 @@
               <para>&usermenu-lnk;</para>
             </entry>
           </row>
+		            <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Alt;
+                <keycap>Home</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>Home</para>
+            </entry>
+          </row>
           <row>
             <entry>
               <para>
                 <keycombo action="simul">&Alt;
-                <keycap>KP_Enter</keycap></keycombo>
+                <keycap>Enter</keycap></keycombo>
               </para>
             </entry>
             <entry>
@@ -621,6 +523,17 @@
               <para><link linkend="view-menu">Brief View</link></para>
             </entry>
           </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Alt;&Shift;
+                <keycap>c</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>&comparedir-lnk;</para>
+            </entry>
+          </row>		  
            <row>
             <entry>
               <para>
@@ -631,6 +544,115 @@
             </entry>
             <entry>
               <para><link linkend="view-menu">Detailed View</link></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Alt;&Shift;
+                <keycap>e</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="test-archive">Test Archive.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Alt;&Shift;
+                <keycap>k</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>Start &rootmode-lnk;
+              &krusader;.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Alt;&Shift;
+                <keycap>l</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>&panel-profiles-lnk;.</para>
+            </entry>
+          </row>
+          <row>
+          <entry>
+              <para>
+                <keycombo action="simul">&Alt;&Shift;
+                <keycap>o</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="panel_toolbar">Sync panels aka "Equals Button (=)".</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Alt;&Shift;
+                <keycap>p</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="pack-archive">Pack files.</link>
+              </para>
+            </entry>
+          </row>
+		  <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Alt;&Shift;
+                <keycap>q</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>Queue Manager</para>
+            </entry>
+          </row>		  
+		  <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Alt;&Shift;
+                <keycap>s</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>&diskusage-lnk;.</para>
+            </entry>
+          </row>
+		  <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Alt;&Shift;
+                <keycap>u</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="unpacking-archives">Unpack
+                files.</link>
+              </para>
+            </entry>
+          </row>
+		            <row>
+            <entry>
+              <para>
+                <keycombo action="simul">&Alt;&Shift;
+                <keycap>y</keycap></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para><link linkend="synchronizer">Synchronize Directory changes</link>.</para>
             </entry>
           </row>
         </tbody>
@@ -998,7 +1020,7 @@
             <entry>
               <para>
               <keycombo action="simul">&Ctrl;
-              <keycap>Left</keycap></keycombo>or 
+              <keycap>Left</keycap></keycombo> or 
               <keycombo>
                 <keycap>Right arrow</keycap>
               </keycombo></para>
