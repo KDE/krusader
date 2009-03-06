@@ -343,7 +343,7 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
 					actRow += (actRow / itemNum );
 			}
 			colorItemType.m_alternateBackgroundColor = (actRow & 1);
-			colorItemType.m_currentItem = _view->getCurrentIndex() == index;
+			colorItemType.m_currentItem = _view->getCurrentIndex().row() == index.row();
 			colorItemType.m_selectedItem = _view->isSelected( index );
 			if (vf->vfile_isSymLink())
 			{
