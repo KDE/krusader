@@ -249,7 +249,9 @@ void ListPanelFunc::openUrl( const KUrl& url, const QString& nameToMakeCurrent )
 			OTHER_FUNC->files() ->vfs_setQuiet( true );
 			// the trailing slash is nessesary because krusader provides Dir's without it
 			// we can't use openUrl because the delay don't allow a check if the panel has realy changed!
-			OTHER_FUNC->immediateOpenUrl( KUrl::relativeUrl( panel->virtualPath().url() + "/", url.url() ) );
+			KUrl dest = otherDir;
+			dest.addPath( KUrl::relativeUrl( panel->virtualPath().url() + "/", url.url() ) );
+			OTHER_FUNC->immediateOpenUrl( dest );
 			OTHER_FUNC->files() ->vfs_setQuiet( false );
 			// now we need to test ACTIVE_PANEL because the openURL has changed the active panel!!
 			if ( other_panel->virtualPath().equals( otherDir ) ) {
