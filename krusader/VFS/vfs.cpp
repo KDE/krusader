@@ -322,6 +322,9 @@ void vfs::vfs_calcSpaceLocal(QString name ,KIO::filesize_t *totalSize,unsigned l
   if (name == "/proc") return;
 
   KDE_struct_stat stat_p;                // KDE lstat is necessary as QFileInfo and KFileItem 
+  // if the name is wrongly encoded, then we zero the size out
+  stat_p.st_size = 0;
+  stat_p.st_mode = 0;
   KDE_lstat(name.toLocal8Bit(),&stat_p);   //         reports wrong size for a symbolic link
   
   if( S_ISLNK(stat_p.st_mode) || !S_ISDIR(stat_p.st_mode) ) { // single files are easy : )
