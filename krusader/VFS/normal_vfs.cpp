@@ -129,7 +129,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
 		// we dont need the ".",".." enteries
 		if (name=="." || name == "..") continue;
 	  
-		vfile* temp = vfileFromName(name);
+		vfile* temp = vfileFromName( name, dirEnt->d_name );
     foundVfile(temp);
   }
 	// clean up
@@ -244,11 +244,13 @@ void normal_vfs::vfs_rename(const QString& fileName,const QString& newName){
   connect(job,SIGNAL(result(KJob*)),this,SLOT(vfs_refresh(KJob*)));
 }
 
-vfile* normal_vfs::vfileFromName(const QString& name){
+vfile* normal_vfs::vfileFromName(const QString& name, char * rawName ){
 	QString path = vfs_workingDir()+"/"+name;
-	QByteArray fileName = path.toLocal8Bit();
+	QByteArray fileName = rawName == 0 ? path.toLocal8Bit() : (vfs_workingDir()+"/").toLocal8Bit().append( rawName );
 	
 	KDE_struct_stat stat_p;
+	stat_p.st_size = 0;
+	stat_p.st_mode = 0;
 	KDE_lstat(fileName.data(),&stat_p);
 	KIO::filesize_t size = stat_p.st_size;
 	QString perm = KRpermHandler::mode2QString(stat_p.st_mode);
@@ -398,7 +400,7 @@ void normal_vfs::vfs_slotDirty(const QString& path){
 	
 	// we have an updated file..
 	removeFromList(name);
-	vfile* vf = vfileFromName(name);
+	vfile* vf = vfileFromName(name, 0);
 	addToList(vf);
 	emit updatedVfile(vf);
 }
@@ -423,7 +425,7 @@ void normal_vfs::vfs_slotCreated(const QString& path){
 	if( vfs_search(name) )
 		return vfs_slotDirty(path);
 	
-	vfile* vf = vfileFromName(name);
+	vfile* vf = vfileFromName(name, 0);
 	addToList(vf);
 	emit addedVfile(vf);	
 }
