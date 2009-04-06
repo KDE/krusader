@@ -99,7 +99,7 @@
   <sect1 id="getting-krusader">
     <title>Obtaining &krusader;</title>
     <para>The latest information about &krusader; can be
-    found on the &kruwebsite-url; .</para>
+    found on the <ulink url="http://www.krusader.org">Krusader website</ulink> .</para>
     <sect2 id="krusader-download">
       <title>&krusader; Downloads</title>
       <para>It is recommended to use the &krusader; package
@@ -111,7 +111,7 @@
       package</para>
       <para>The latest version, as well as the older versions, can
       be found on the &krudownload-url; and on the
-      &sfmirrors-url;. It contains the source tarballs,
+      <ulink url="http://sourceforge.net/project/showfiles.php?group_id=6488">Sourceforge mirrors</ulink>. It contains the source tarballs,
       RPM and DEB packages to whatever distro the
       &krusader;-Krew is using and packages build by
       &krusader; users and third parties.</para>
@@ -290,7 +290,7 @@
       <listitem>
         <para>Give translators time to update the translations for
         the coming stable. Please read the
-        &i18n-page-url;.</para>
+        <ulink url="http://www.krusader.org/i18n.php">i18n page</ulink>.</para>
       </listitem>
     </itemizedlist></para></sect2>
 
@@ -308,7 +308,7 @@
       <para>We provide daily snapshots of &krusader;'s
       CVS version. For those who are interested, the 
       <emphasis role="bold">nightly tarball</emphasis> can be found
-      on the &krucutedge-url;. Depending on the stage of
+      on the <ulink url="http://www.krusader.org/cvs.php">&krusader;&apos;s Cutting Edge page</ulink>. Depending on the stage of
       development, this version will either be stable or unstable.
       Just before a stable release, the CVS version is almost
       stable. After a stable release new features will be committed
@@ -374,7 +374,7 @@
       &gentoo-life-ebuild-url; for all those who want to
       stay on the bleeding edge of file management and do not want
       to miss the advantages of portage. Please take a look at our
-      &krucutedge-url; for more installation
+      <ulink url="http://www.krusader.org/cvs.php">&krusader;&apos;s Cutting Edge page</ulink> for more installation
       details.</para>
       <para>We also provide &viewcvs-url; to browse the
       CVS repository.</para>
@@ -386,8 +386,8 @@
     <sect2 id="krusader_svn">
       <title>Subversion</title>
       
-     <para>&subversion-url; is used for our sourcecode repository.
-      It is also possible to &browse-svn-repo-url;.</para>
+     <para><ulink url="http://sourceforge.net/svn/?group_id=6488">Subversion</ulink> is used for our sourcecode repository.
+      It is also possible to <ulink url="http://krusader.svn.sourceforge.net/viewvc/krusader/">Browse the Subversion Repository</ulink>.</para>
 
       <para>Currently, there are four module options: 
       <itemizedlist>
@@ -427,7 +427,7 @@
     <sect2 id="krusader_old">
       <title>Older Releases</title>
       <para>If you are looking for older releases we recommend the
-      &sfmirrors-url;, available from our project
+      <ulink url="http://sourceforge.net/project/showfiles.php?group_id=6488">Sourceforge mirrors</ulink>, available from our project
       page.</para>
     </sect2>
   </sect1>
@@ -1012,7 +1012,7 @@ Please don't use the <filename>/usr/local</filename> directory as it simply won'
       if they are mostly not &krusader; specific.
       Experienced users may easily skip most of the steps.</para>
       <para>Unfortunately, because not all &Linux;
-      distributions follow the &fhs-url; it is impossible
+      distributions follow the <ulink url="http://www.pathname.com/fhs/">Filesystem Hierarchy Standard (FHS)</ulink> it is impossible
       to write a tutorial that would cover all circumstances.
       However, these guidelines will help you in the right
       direction.</para>
@@ -1212,7 +1212,7 @@ If you haven't done so in a while, run ./configure --help
           &krusader; RPM or DEB package will normally
           install &krusader; in the 
           <filename>KDEDIR/bin</filename> directory. According to
-          the &fhs-url;, any user installed files go to
+          the <ulink url="http://www.pathname.com/fhs/">Filesystem Hierarchy Standard (FHS)</ulink>, any user installed files go to
           the 
           <filename>/usr/local</filename> directory. If you wish
           &krusader; to be installed in another
