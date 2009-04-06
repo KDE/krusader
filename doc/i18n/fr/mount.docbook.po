@@ -1,0 +1,91 @@
+# translation of mount.docbook.po to français
+# Copyright (C) 2006-2009, Krusader Krew
+# This file is distributed under the same license as the Krusader package
+#
+# Stanislas Zeller <uncensored.assault@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: mount.docbook\n"
+"Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
+"POT-Creation-Date: 2008-12-25 20:04+0000\n"
+"PO-Revision-Date: 2009-03-26 09:21+0100\n"
+"Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
+"Language-Team: français <kde-francophone@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n > 1);\n"
+
+#. Tag: title
+#: mount.docbook:2
+#, no-c-format
+msgid "MountMan: work with your mounted file systems"
+msgstr "MountMan fonctionne avec les systèmes de fichiers montés"
+
+#. Tag: primary
+#: mount.docbook:4
+#, no-c-format
+msgid "Mount"
+msgstr "Montage"
+
+#. Tag: para
+#: mount.docbook:6
+#, no-c-format
+msgid "MountMan is a tool which helps you manage your mounted file systems. Once invoked, it displays a list of every mounted file system. For each file system, MountMan displays its name (which is the actual device name - &ie; <filename class=\"directory\">/dev/fd0</filename> for a <hardware>floppy</hardware>), its type (vfat, ext3, ReiserFS ...) and its mount point on your system (the directory on which the file system is mounted)."
+msgstr "MountMan est un outil qui vous aide à gérer vos systèmes de fichiers montés. Une fois appelé, celui-ci affiche une liste de tous les systèmes de fichiers montés. Pour chaque système de fichiers, MountMan affiche son nom (qui est le nom de périphérique actuel - &cad; <filename class=\"directory\">/dev/fd0</filename> pour un <hardware>lecteur de disquette</hardware>), son type (vfat, ext3, ReiserFS...) et son point de montage sur votre système (le dossier sur lequel le système de fichiers est monté)."
+
+#. Tag: title
+#: mount.docbook:26
+#, no-c-format
+msgid "<title>MountMan</title>"
+msgstr "<title>MountMan</title>"
+
+#. Tag: phrase
+#: mount.docbook:32
+#, no-c-format
+msgid "<phrase>MountMan</phrase>"
+msgstr "<phrase>MountMan</phrase>"
+
+#. Tag: para
+#: mount.docbook:36
+#, no-c-format
+msgid "MountMan also displays usage information using total size, free size, and percentage of available space free. If those numbers say <guilabel>N/A</guilabel>, that usually means that the file system is not mounted. Left clicking on a file system displays a pie chart on the left of the window, graphically displaying the usage information for the file system. Clicking on a non-mounted file system will display <guilabel>not mounted</guilabel> instead of the graph."
+msgstr "MountMan affiche aussi les informations d'utilisation comme la taille totale, l'espace libre, et le pourcentage d'espace libre disponible. Si ces chiffres s'affichent comme <guilabel>n/d</guilabel>, cela veut habituellement dire que le système de fichiers n'est pas monté. Cliquer avec le bouton gauche de la souris sur un système de fichiers affiche un camembert sur la gauche de la fenêtre, affichant graphiquement les informations d'utilisation de ce système de fichiers. Cliquer sur un système de fichiers non-monté affichera <guilabel>non monté</guilabel> à la place du graphique."
+
+#. Tag: para
+#: mount.docbook:47
+#, no-c-format
+msgid "<keycap>Double-clicking</keycap> on a file system will close MountMan and open that file system inside &krusader;'s active panel."
+msgstr "<keycap>Double-cliquer</keycap> sur un système de fichiers fermera MountMan et ouvrira ce système de fichiers dans le panneau actif de &krusader;."
+
+#. Tag: para
+#: mount.docbook:53
+#, no-c-format
+msgid "<keycap>Right-clicking</keycap> on a file system will open a small menu which displays what actions can be performed on that file system. At the moment, you can only mount, unmount and eject (if clicking on a removable file system, e.g., a <hardware>cdrom</hardware>)."
+msgstr "<keycap>Faire un clic-droit</keycap> sur un système de fichiers ouvrira un petit menu qui affiche quelles actions peuvent être réalisées sur ce système de fichiers. À ce moment, vous pouvez seulement monter, libérer et éjecter (si vous cliquez sur un système de fichiers amovible &pex; un <hardware>cdrom</hardware>)."
+
+#. Tag: para
+#: mount.docbook:62
+#, no-c-format
+msgid "We plan to expand MountMan in the next evolution of &krusader;. It will be able to format floppies, edit <filename class=\"directory\">/etc/fstab</filename>, create new file systems and more.... By the way, we have started working on it, see \"Quickmode for MountMan\""
+msgstr "Nous planifions de développer MountMan dans la prochaine évolution de &krusader;. Il pourra formater des disquettes, éditer le fichier <filename class=\"directory\">/etc/fstab</filename>, créer de nouveaux systèmes de fichiers et bien plus... À ce propos, nous avons commencé à travailler dessus, voir « Mode rapide pour MountMan »."
+
+#. Tag: emphasis
+#: mount.docbook:69
+#, no-c-format
+msgid "Quickmode for MountMan"
+msgstr "Mode rapide pour MountMan"
+
+#. Tag: para
+#: mount.docbook:71
+#, no-c-format
+msgid "To activate Quickmode for MountMan, click and hold the MountMan button on the &main-toolbar-lnk;"
+msgstr "Pour activer le mode rapide pour MountMan, cliquez et amenez le bouton MountMan sur la &main-toolbar-lnk;"
+
+#. Tag: para
+#: mount.docbook:73
+#, no-c-format
+msgid "General idea: display a list of all possible mount points. Each time the menu is displayed, it determines if a mount point is mounted or not and associates the correct action (mount or umount). This offers a quick interface to MountMan. It is working, and currently uses KMountMan::mount and unmount. It uses the new &kde; services for fstab-reading and this will enable us to remove a lot of code from the \"old\" MountMan."
+msgstr "Idée générale : afficher une liste de tous les points de montage possible. Chaque fois que les menus sont affichés, il détermine si un point de montage est monté ou non et associe la bonne action (monter ou libérer). Ceci offre une interface rapide à MountMan. Ceci fonctionne, et utilise actuellement « KMountMan::monter et libérer ». Il utilise les nouveaux services de &kde; pour la lecture de fstab et cela nous oblige à supprimer de nombreuses ligne de code du « vieux » MountMan."
+

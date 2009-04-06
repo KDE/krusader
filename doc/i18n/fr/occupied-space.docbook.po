@@ -1,0 +1,43 @@
+# translation of occupied-space.docbook.po to français
+# Copyright (C) 2006-2009, Krusader Krew
+# This file is distributed under the same license as the Krusader package
+#
+# Stanislas Zeller <uncensored.assault@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: occupied-space.docbook\n"
+"Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
+"POT-Creation-Date: 2008-12-25 20:04+0000\n"
+"PO-Revision-Date: 2009-03-23 19:18+0100\n"
+"Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
+"Language-Team: français <kde-francophone@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n > 1);\n"
+
+#. Tag: title
+#: occupied-space.docbook:2
+#, no-c-format
+msgid "Calculate Occupied Space"
+msgstr "Calculer l'espace occupé"
+
+#. Tag: primary
+#: occupied-space.docbook:4
+#, no-c-format
+msgid "Occupied Space"
+msgstr "Espace occupé"
+
+#. Tag: para
+#: occupied-space.docbook:7
+#, no-c-format
+msgid "There are two ways to calculate the occupied space of files/directories. <itemizedlist> <listitem> <para>Pressing the <keycap>SPACE</keycap> on a directory under the cursor instantly calculates the occupied size. Pressing <keycap>SPACE</keycap> a second time will toggle the selection of the directory without affecting the selection status of other files/directories.</para> </listitem> <listitem> <para>To calculate how much disk space is occupied by the selected files and directories in the active panel select <emphasis role=\"bold\"> <menuchoice> <guimenu>File</guimenu> <guimenuitem>Calculate Occupied Space</guimenuitem> </menuchoice> </emphasis>. After a small delay, a dialog box will be displayed with total occupied space and the number of files and directories you selected. The space occupied by every selected directory will be shown as if the user just pressed <keycap>SPACE</keycap> on those directories. If the active panel is browsing an archive, the numbers will apply to the unpacked size of the selected files and directories, not their compressed size. After the calculation the selection state will be toggled and the cursor will move one step downwards.</para> </listitem> </itemizedlist>Calculating the occupied space on remote file systems is supported."
+msgstr "Il y a deux manières de calculer l'espace occupé de fichiers et dossiers. <itemizedlist> <listitem> <para>Appuyer sur la touche <keycap>ESPACE</keycap> sur un dossier sous le curseur calcule instantanément la taille occupée. Appuyer sur la touche <keycap>ESPACE</keycap> une deuxième fois désactive la sélection du dossier sans affecter l'état de la sélection des autres fichiers et dossiers.</para> </listitem> <listitem> <para>Pour calculer combien d'espace disque est occupé par les fichiers et dossiers sélectionnés dans le panneau actif, sélectionnez <emphasis role=\"bold\"> <menuchoice> <guimenu>Édition</guimenu> <guimenuitem>Calculer l'espace occupé</guimenuitem> </menuchoice> </emphasis>. Après un bref instant, une boîte de dialogue affichera l'espace total occupé et le nombre de fichiers et dossiers que vous avez sélectionné. L'espace occupé par chaque dossier sélectionné sera affiché comme si l'utilisateur a simplement appuyé sur <keycap>ESPACE</keycap> sur ces dossiers. Si le panneau actif navigue dans une archive, les chiffres s'appliqueront à la taille décompressée des fichiers et dossiers sélectionnés, et non à la taille compressée. Après le calcul, l'état de la sélection sera désactivé et le curseur se déplacera d'une ligne vers le bas.</para> </listitem> </itemizedlist>Le calcul de l'espace occupé sur des systèmes de fichiers distants est géré."
+
+#. Tag: para
+#: occupied-space.docbook:40
+#, no-c-format
+msgid "Performing this operation on a very large file system (thousands of files) may be time-consuming. You can cancel the calculation process at any time by clicking the <guibutton>Cancel</guibutton> button."
+msgstr "Réaliser cette opération sur de gros système de fichiers (une centaine de fichiers) peut prendre du temps. Vous pouvez annuler le processus de calcul n'importe quand en cliquant sur le bouton <guibutton>Annuler</guibutton>."
+
