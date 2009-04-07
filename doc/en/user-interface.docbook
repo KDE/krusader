@@ -15,7 +15,7 @@
     <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml">
     how &krusader; works</ulink> you can try it yourself,
     just install it on your computer. To accept an
-    &ofm-url; like &krusader;, the user needs
+    <ulink url="http://www.softpanorama.org/OFM/index.shtml">Orthodox File Manager (OFM)</ulink> like &krusader;, the user needs
     to get used to 
     <emphasis>new ideas</emphasis> that are actually already 20
     years old. If you prefer to waste time and lose a lot of
@@ -47,7 +47,7 @@
         </textobject>
       </mediaobject>
     </figure>
-    <para>The User Interface is based on &ofm-url;
+    <para>The User Interface is based on <ulink url="http://www.softpanorama.org/OFM/index.shtml">Orthodox File Manager (OFM)</ulink>
     paradigm, a 20- year old principle that has proven its bones.
     It is known as simple, easy and powerful. In the following
     sections we will cover the basic functions of each part with the
@@ -107,14 +107,14 @@
       application or configured via a 
       <keycap>Right-Click</keycap> menu. You can decide whether or
       not you want to display it each time you start
-      &krusader; in the &konfigstartpg-lnk;,
+      &krusader; in the <link linkend="konfigurator">Konfigurator Startup page</link>,
       and you can toggle its use in the current session in the
-      &viewmenu-lnk;. The Main Toolbar contents can be
+      <link linkend="view-menu">View menu</link>. The Main Toolbar contents can be
       configured from the 
       <guimenuitem>Configure Toolbars</guimenuitem> in the
-      &settingsmenu-lnk; or the 
+      <link linkend="settings-menu">Settings menu</link> or the 
       <guilabel>Toolbar</guilabel> tab in the
-      &konfiglookandfeel-lnk;. Since various commands
+      <link linkend="konfig-looknfeel">Konfigurator Look &amp; Feel page</link>. Since various commands
       and options in &krusader; are context-dependent,
       some commands are not always available. The icon of an
       inappropriate or inactive action will be deactivated
@@ -128,7 +128,7 @@
         <primary>Toolbar</primary>
         <secondary>Actions Toolbar</secondary>
       </indexterm>
-      <para>&useractions-lnk; and
+      <para><link linkend="useractions">UserActions</link> and
       &bookmarks-lnk; can be "plugged" into the 
       <guilabel>Actions Toolbar</guilabel>. To show it, use 
       <emphasis role="bold">
@@ -164,7 +164,7 @@
       archive". This format makes the paths uniform and easy to
       read. The 
       <guibutton>Location Toolbar</guibutton> supports also
-      &kioslaves1-url; but not all of them, some can
+      KIO Slaves but not all of them, some can
       only be used with the 
       <link linkend="krviewer">viewer</link> and some can not be
       used. The user can enter a desired path by clicking on it. 
@@ -202,7 +202,7 @@
           <para>
           <userinput>
             <command>ipod:/</command>
-          </userinput>uses the &kio-ipodslave-url; to
+          </userinput>uses the <ulink url="http://sourceforge.net/projects/kpod">KIOipod-slave</ulink> to
           access, upload and organize the music stored on
           <trademark>Apple ipod</trademark>.</para>
         </listitem>
@@ -299,8 +299,8 @@
     <guilabel>Information or Totals labels</guilabel>, or by
     selecting any file in a panel with the mouse. As always,
     default startup settings can be modified with the
-    &konfigstartpg-lnk;, and you control the current
-    session with the &viewmenu-lnk;.</para>
+    <link linkend="konfigurator">Konfigurator Startup page</link>, and you control the current
+    session with the <link linkend="view-menu">View menu</link>.</para>
     <!-- OLD
 <screenshot>
     <screeninfo>List Panel</screeninfo>
@@ -389,7 +389,7 @@
           will appear on the right of the Column Header text,
           showing the sort direction (Up arrow = A to Z sorting,
           Down arrow = Z to A sorting). Default
-          &useractions-lnk; set a keybinding for the
+          <link linkend="useractions">UserActions</link> set a keybinding for the
           Column Headers. The default 
           <guilabel>Column Headers</guilabel> are: 
           <guilabel>Name, Ext, Size, Modified, rwx</guilabel>.
@@ -420,7 +420,7 @@
           open/execute that file. You can select/unselect files
           using the mouse with the 
           <keycap>Insert</keycap> key or the
-          &editmenu-lnk;.</para>
+          <link linkend="edit-menu">Edit menu</link>.</para>
         </listitem>
         <listitem>
           <para>
@@ -448,10 +448,10 @@
       selected files are shown in blue and the current file is
       surrounded by a fine-lined rectangle. By default an icon is
       shown according to the file type. Use
-      &konfiglookandfeel-lnk; to change the default
+      <link linkend="konfig-looknfeel">Konfigurator Look &amp; Feel page</link> to change the default
       configuration to meet your individual needs.</para>
       <para>Some useful 
-      <guilabel>List panel</guilabel>&keybindigs-lnk;: 
+      <guilabel>List panel</guilabel><link linkend="key_bindings">Key-Bindings</link>: 
       <itemizedlist>
         <listitem>
           <para>
@@ -567,7 +567,7 @@
     <para>This part of the <link linkend="gloss-gui">GUI</link> 
     can have four modes: Command Line, Terminal Emulator, show both and show none.
     You can choose your mode of operation either on start-up with the 
-    &konfigstartpg-lnk;, or for the current session with the &viewmenu-lnk; .
+    <link linkend="konfigurator">Konfigurator Startup page</link>, or for the current session with the <link linkend="view-menu">View menu</link> .
     </para>
     
   <sect2 id="cmdline">
@@ -757,10 +757,10 @@
     <literal>foo/bar/test</literal>. You can choose to display 
     <link linkend="faqu_resize">or not</link> the 
     <guilabel>FN keys bar</guilabel> when starting up
-    &krusader; via the &konfigstartpg-lnk;,
+    &krusader; via the <link linkend="konfigurator">Konfigurator Startup page</link>,
     and you can toggle its use in the current session with the
-    &viewmenu-lnk;. The actions and
-    &keybindigs-lnk; performed by the function keys are
+    <link linkend="view-menu">View menu</link>. The actions and
+    <link linkend="key_bindings">Key-Bindings</link> performed by the function keys are
     configurable since version 1.51, they will remain active with
     or without the 
     <guilabel>FN keys bar</guilabel> displayed.</para>

@@ -42,9 +42,9 @@
   &krusader;.</para>
 
 <note>
- <para>Since &krusader;-1.80.0 the &keybindigs-lnk; and &main-toolbar-lnk;-&actions-toolbar-lnk; 
+ <para>Since &krusader;-1.80.0 the <link linkend="key_bindings">Key-Bindings</link> and <link linkend="mainwindow">Main Toolbar</link>-<link linkend="actions_toolbar">Actions Toolbar</link> 
        have reiceived their own configuration windows and so they are not a part anymore of Konfigurator,
-       you can configure them now via the &settingsmenu-lnk;.</para>
+       you can configure them now via the <link linkend="settings-menu">Settings menu</link>.</para>
 </note>
 
   <sect1 id="konfig-startup">
@@ -123,19 +123,19 @@
             <listitem>
               <para>
               <guilabel>Show toolbar</guilabel>: If checked,
-              &main-toolbar-lnk; is visible after
+              <link linkend="mainwindow">Main Toolbar</link> is visible after
               startup.</para>
             </listitem>
             <listitem>
               <para>
               <guilabel>Show statusbar</guilabel>: If checked, the
-              &statusbar-lnk; is visible after
+              <link linkend="mainwindow">Statusbar</link> is visible after
               start-up.</para>
             </listitem>
             <listitem>
               <para>
               <guilabel>Show function keys</guilabel>: If checked,
-              the &fnkeybar-lnk; is visible after
+              the <link linkend="fnkeys">FN Keys Bar</link> is visible after
               start-up.</para>
             </listitem>
             <listitem>
@@ -464,7 +464,7 @@ HTML_PARSING-->
         <listitem>
           <para>
           <guilabel>Clear Location Toolbar</guilabel> button: Clears
-          the &location-toolbar-lnk;</para>
+          the <link linkend="list_panel">Location Toolbar</link></para>
         </listitem>
         <listitem>
           <para>
@@ -632,7 +632,7 @@ HTML_PARSING-->
     <title>Colors</title>
     <para>This page configures the colors of the
     &list-panel-lnk; and the
-    &synchronizer-lnk;. The 
+    <link linkend="synchronizer">Synchronizer</link>. The 
     <guilabel>KDE default colors</guilabel> is the default color
     configuration.</para>
     <!-- OLD
@@ -780,7 +780,7 @@ HTML_PARSING-->
             </listitem>
           </itemizedlist>
           <para>The following items of the
-          &synchronizer-lnk; can be configured:</para>
+          <link linkend="synchronizer">Synchronizer</link> can be configured:</para>
           <itemizedlist>
             <listitem>
               <para>
@@ -1158,12 +1158,12 @@ HTML_PARSING-->
       <filename>/usr/local/bin</filename> &etc;)</para>
     </note>
     <para>The full path of the packagers is stored in the
-    &konfigdependencie-lnk; (&eg; to handle
+    <link linkend="konfig-dependencies">Konfigurator Dependencies page</link> (&eg; to handle
     ZIP archives, &krusader; needs the 
     <command>unzip</command> and 
     <command>zip</command> executables). It is possible that you need
     to manually configure the mimes to the protocols in the
-    &konfigprotocol-lnk;.</para>
+    <link linkend="konfig-protocols">Konfigurator Protocol page</link>.</para>
     <para>
       <guilabel>Fine-Tuning</guilabel>
       <itemizedlist>
@@ -1381,7 +1381,7 @@ HTML_PARSING-->
       <para>By default &kompare; (part of the kdebase
       package) is used as external diff utility but you can also
       use your favorite diff utility &eg;
-      &xxdiff-url; or &kdiff3-url;, just fill
+      <ulink url="http://furius.ca/xxdiff/"><application>xxdiff</application></ulink> or <ulink url="http://kdiff3.sourceforge.net"><application>Kdiff3</application></ulink>, just fill
       in the full path and enjoy.</para>
     </tip>
     <para>
@@ -1837,7 +1837,7 @@ HTML_PARSING-->
     the font for the output-collection. The default terminal is 
     <filename>konsole --noclose -e</filename>. To set up, configure
     and manage your UserActions use ActionMan
-    (&useractions-lnk; url).</para>
+    (<link linkend="useractions">UserActions</link> url).</para>
     <!-- OLD
 <screenshot>
   <screeninfo>Useractions configuration</screeninfo>

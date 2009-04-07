@@ -79,7 +79,7 @@
       </listitem>
       <listitem>
         <para>All BSD Platforms
-        (<trademark class="copyright">FreeBSD</trademark>/&netbsd;/&openbsd;/&MacOS;)</para>
+        (<trademark class="copyright">FreeBSD</trademark>/<trademark class="registered">NetBSD</trademark>/<trademark class="registered">OpenBSD</trademark>/&MacOS;)</para>
       </listitem>
          <listitem>
         <para>&Windows; XP and Vista</para>
@@ -92,7 +92,7 @@
     <link linkend="konfig-dependencies">added/removed/changed</link>.</para>
     <para>A package of popular (un)packers, &krusader;
     itself and add-ons can be found on the
-    &krudownload-url;.</para>
+    <ulink url="http://www.krusader.org/down.php">&krusader; downloadpage</ulink>.</para>
     <para>For more requirements, see below. Have a look at the
     &faq-lnk; section as well.</para>
   </sect1>
@@ -104,13 +104,13 @@
       <title>&krusader; Downloads</title>
       <para>It is recommended to use the &krusader; package
       that is provided by your distribution.
-      &distrowatch-com-url; is a great resource to check
+      <ulink url="http://distrowatch.com/search.php?pkg=krusader">Distrowatch.com</ulink> is a great resource to check
       the availability. If your distribution does not offer
       &krusader;, please contact the creators of your
       distribution and ask them to provide a &krusader;
       package</para>
       <para>The latest version, as well as the older versions, can
-      be found on the &krudownload-url; and on the
+      be found on the <ulink url="http://www.krusader.org/down.php">&krusader; downloadpage</ulink> and on the
       <ulink url="http://sourceforge.net/project/showfiles.php?group_id=6488">Sourceforge mirrors</ulink>. It contains the source tarballs,
       RPM and DEB packages to whatever distro the
       &krusader;-Krew is using and packages build by
@@ -118,54 +118,55 @@
       <para>Distributions who provide &krusader;: 
       <itemizedlist>
         <listitem>
-          <para>&suse-download-url;</para>
+          <para><ulink url="http://www.novell.com/search/">&SuSE;</ulink></para>
         </listitem>
         <listitem>
-          <para>&fedora-download-url; via
+          <para><ulink url="https://admin.fedoraproject.org/pkgdb/packages/name/krusader"><trademark>Fedora</trademark></ulink> via
           <command># yum install krusader</command> will do the job,
           thanks to Marcin Garski. &RedHat; RPM packages
-          can usually found on the &krudownload-url; or
-          at &dag-wiers-download-url; and
-          &dries-verachtert-download-url; .</para>
+          can usually found on the <ulink url="http://www.krusader.org/down.php">&krusader; downloadpage</ulink> or
+          at <ulink url="http://dag.wieers.com/packages/krusader/">dag.wieers.com</ulink> and
+          <ulink url="http://dries.ulyssis.org/rpm/packages/krusader/info.html">Dries Verachtert RPM Repository</ulink> .</para>
         </listitem>
         <listitem>
-          <para>&debian-download-url;, on our
-          &krudownload-url; you might find more recent
-          DEB packages. Note: usually &debian; packages
+          <para><ulink url="http://packages.debian.org/krusader"><trademark class="registered">Debian</trademark></ulink>, on our
+          <ulink url="http://www.krusader.org/down.php">&krusader; downloadpage</ulink> you might find more recent
+          DEB packages. Note: usually <trademark class="registered">Debian</trademark> packages
           work also on distributions that are "based on
-          &debian;", and some of these provide their own
+          <trademark class="registered">Debian</trademark>", and some of these provide their own
           (incompatible) packages.
-          &ubuntu-kubuntu-download-url;,
-          &linspire-freespire-download-url;, &knoppix;
-          4.x DVD, &kanotix;, etc.</para>
+          <ulink url="http://packages.ubuntu.com/krusader"><trademark class="registered">Ubuntu</trademark>/<trademark class="registered">Kubuntu</trademark></ulink>,
+          <ulink url="http://www.cnr.com/search.seam?conversationId=230925"><trademark class="registered">Linspire</trademark>/<trademark class="registered">Freespire</trademark></ulink>, <trademark class="registered">Knoppix</trademark>
+          4.x DVD, <trademark class="registered">Kanotix</trademark>, etc.</para>
         </listitem>
         <listitem>
-          <para>&mandriva-download-url; via the contrib
+          <para><ulink url="http://www.mandrivaclub.com/xwiki/bin/view/rpms/Application/krusader"><trademark class="registered">Mandriva</trademark></ulink> via the contrib
           repository 
           <command># urpmi krusader</command> will do the job,
-          &gentoo-download-url;,
-          &yoper-download-url;.</para>
+          <ulink url="http://packages.gentoo.org/package/kde-misc/krusader"><trademark class="registered">Gentoo</trademark></ulink>,
+          <trademark>Yoper</trademark>.</para>
         </listitem>
         <listitem>
-          <para>&archlinux-download-url;,
-          &frugalware-linux-download-url;,
-          &pclinuxos-download-url;,
-          &altlinux-download-url;.</para>
+          <para><ulink url="http://www.archlinux.org/packages/extra/i686/krusader/"><trademark class="registered">Arch Linux</trademark></ulink>,
+          <ulink url="http://frugalware.org/packages.php?id=280"><trademark class="registered">Frugalware Linux</trademark></ulink>,
+          <trademark class="registered">PCLinuxOS</trademark>,
+          <ulink url="www.altlinux.com/"><trademark class="registered">altlinux</trademark></ulink>.</para>
         </listitem>
         <listitem>
-          <para>&freebsd-download-url;, the port is
+          <para><ulink url="http://www.freebsd.org/cgi/ports.cgi?query=krusader&amp;stype=all"><trademark class="copyright">FreeBSD</trademark></ulink>, the port is
           maintained by 
           <link linkend="credits">Heiner Eichmann</link>.</para>
         </listitem>
         <listitem>
-          <para>&netbsd-download-url;,
-          &lunarlinux-download-url;
-          ,&arklinux;, <trademark>OpenLX</trademark>,
-          &sourcemage;.</para>
+          <para><ulink url="http://pkgsrc.se/sysutils/krusader"><trademark class="registered">NetBSD</trademark></ulink>,
+          <ulink url="http://www.lunar-linux.org/"><trademark class="registered">Lunar Linux</trademark></ulink>
+          ,<trademark class="registered">Ark Linux</trademark>, <trademark>OpenLX</trademark>,
+          <trademark class="registered">Source Mage</trademark>,<ulink url="http://packages.ccux-linux.de/index.php?pdetail=6986"><trademark class="registered">CCux Linux</trademark></ulink>,
+	  <ulink url="http://www.rocklinux.net/packages/krusader.html"><trademark class="registered">ROCK Linux</trademark></ulink>.</para>
         </listitem>
         <listitem>
           <para>Even more distributions can be found with
-          &distrowatch-com-url;.</para>
+          <ulink url="http://distrowatch.com/search.php?pkg=krusader">Distrowatch.com</ulink>.</para>
         </listitem>
       </itemizedlist>Use the installation tools included in your
       distro to install the &krusader; package. You
@@ -177,50 +178,32 @@
       <para>Others 
       <itemizedlist>
         <listitem>
-          <para>&slackware; tgz binaries can usually be
-          found on the &krudownload-url;. You can also
-          use &portpkg-url; that contains a
-          &kru-slackbuild-url;, 
+          <para><trademark class="registered">Slackware</trademark> tgz binaries can usually be
+          found on the <ulink url="http://www.krusader.org/down.php">&krusader; downloadpage</ulink>. You can also
+          use <ulink url="http://portpkg.berlios.de/">Portpkg</ulink> that contains a
+          <ulink url="http://cvs.berlios.de/cgi-bin/viewcvs.cgi/portpkg/ports/kde/krusader/">&krusader; SlackBuild</ulink>, 
           <command># portpkg krusader</command> will do the
           job.</para>
         </listitem>
         <listitem>
-          <para>There is a &macosx-port-url; 
-          with the help of &fink-url; , the port is
+          <para>There is a <ulink url="http://pdb.finkproject.org/pdb/package.php/krusader">&MacOS;-X port</ulink> 
+          with the help of <ulink url="http://www.finkproject.org/">fink</ulink> , the port is
           maintained by <ulink url="http://hritcu.wordpress.com/about/">Catalin Hritcu</ulink>.</para>
         </listitem>
       </itemizedlist></para>
-      <para>Installation via the &klik-protocol-url; 
-      <itemizedlist>
-        <listitem>
-          <para>&klik-krusader-url; downloads
-          &krusader; provided by &debian;
-          stable, more information is
-          &klik-available-url; .</para>
-        </listitem>
-        <listitem>
-          <para>&klik-krusader-latest-url; downloads the
-          latest &klik-stable-krusader-url; provided by
-          the &krusader; Krew.</para>
-        </listitem>
-        <listitem>
-          <para>&klik-krusader-cvs-url; downloads a
-          &klik-cvs-krusader-url; provided by the
-          &krusader; Krew.</para>
-        </listitem>
-      </itemizedlist></para>
+            
       <para>Search engines 
       <itemizedlist>
         <listitem>
           <para>You can also find packages on &Linux;
-          software archives such as &freshmeat-url; or
-          &kde-apps-url; .</para>
+          software archives such as <ulink url="http://freshmeat.net/projects/krusader/">freshmeat.net</ulink> or
+          <ulink url="http://www.kde-apps.org/content/show.php?content=10214">KDE-APPS.org</ulink> .</para>
         </listitem>
         <listitem>
           <para>If you can notfind a package for your distribution,
           we recommend searching for it with
-          &rpmfind-url;, &rpmpbone-url; or
-          &rpmseek-url;.</para>
+          <ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=krusader&amp;submit=Search+...">rpmfind</ulink>, <ulink url="http://rpm.pbone.net/index.php3/stat/3/search/krusader">rpmpbone</ulink> or
+          <ulink url="http://rpmseek.com/rpm-pl/krusader.html?hl=com&amp;cx=2155:K:0">rpmseek</ulink>.</para>
         </listitem>
       </itemizedlist>If you enjoy using &krusader;, we
       would appreciate it if you went to one of these sites and
@@ -275,7 +258,21 @@
     <warning>
       <para>These releases are beta releases and will probably
       contain some bugs.</para>
-    </warning>&dev-svn-note; 
+    </warning><note><para>
+                 If you are using a <link linkend="krusader_devel">development</link> or
+                 <link linkend="krusader_svn">SVN</link> version, it is possible that the latest
+                 new features are not yet in the "The Krusader Handbook".
+                 Please read the 
+		 <ulink url="http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/ChangeLog?view=markup">Changelog</ulink>
+		 file online or in the &krusader;
+                 sources to find out more about the new features.
+                 For a brief description, please read the 
+		 <ulink url="http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/SVNNEWS?view=markup">SVNNEWS</ulink>
+		 file online
+                 or in the &krusader; sources.
+                       <link linkend="faqg_wish">User feedback</link> and
+                       <link linkend="faqg_bug_report">Bug reports</link> are always welcome!
+                 </para></note> 
     <para>The beta release has 3 goals: 
     <itemizedlist>
       <listitem>
@@ -370,8 +367,8 @@
       &krusader;-2006-10-29) : 
       <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader co -D2006-10-29 krusader_kde3</option></userinput></screen>
       </para>
-      <para>Mostly being &gentoo; users, we provide a
-      &gentoo-life-ebuild-url; for all those who want to
+      <para>Mostly being <trademark class="registered">Gentoo</trademark> users, we provide a
+      <ulink url="http://www.krusader.org/cvs.php"><trademark class="registered">Gentoo</trademark> Live Ebuild</ulink> for all those who want to
       stay on the bleeding edge of file management and do not want
       to miss the advantages of portage. Please take a look at our
       <ulink url="http://www.krusader.org/cvs.php">&krusader;&apos;s Cutting Edge page</ulink> for more installation
@@ -870,7 +867,7 @@ if you only run a Krusader binary you don't need these packages.</para>
     and allow you to configure &krusader; as well as
     detect installed packers and tools. You can always run
     Konfigurator again from the
-    &settingsmenu-lnk;.</para>
+    <link linkend="settings-menu">Settings menu</link>.</para>
   </sect1>
   <sect1 id="default-file-manager">
     <title>Making &krusader; the default file
@@ -892,7 +889,7 @@ if you only run a Krusader binary you don't need these packages.</para>
     <sect2>
     <title>Compiling &krusader;. What now?</title>
     <para>Check the environment variables
-    &kdeqtdir-lnk;.</para>
+    <link linkend="kde_qt_dir"><envar>KDEDIR</envar> - <envar>QTDIR</envar></link>.</para>
     <para>To compile and install &krusader; on your
     system, type the following in the base directory of the
     &krusader; package:</para>
@@ -913,8 +910,8 @@ if you only run a Krusader binary you don't need these packages.</para>
 
 <sect3 id="install_quickstart_debian">
 <title>Debian</title>
-<para>These instructions should work as well on &debian; based distributions like: 
-&ubuntu;, &kubuntu;, &linspire;, &kanotix;, ...</para>
+<para>These instructions should work as well on <trademark class="registered">Debian</trademark> based distributions like: 
+<trademark class="registered">Ubuntu</trademark>, <trademark class="registered">Kubuntu</trademark>, <trademark class="registered">Linspire</trademark>, <trademark class="registered">Kanotix</trademark>, ...</para>
 
 <para>Add the next lines in the <filename>~/.bashrc</filename> configuration file
 <screen>
@@ -941,8 +938,8 @@ The next command will create <command>./configure</command>
 NOTE: you might need to upgrade <filename>automake</filename> and/or <filename>autoconf</filename>, if an error message appears. 
 </para>
 
-<para>Install &krusader; in the <filename>/opt</filename> directory to not overwrite the official &debian; binary <filename>/usr/bin/krusader</filename>, 
-so that <command>krusader</command> will run the official &debian; package and <command>/opt/bin/krusader</command> runs the compiled version. 
+<para>Install &krusader; in the <filename>/opt</filename> directory to not overwrite the official <trademark class="registered">Debian</trademark> binary <filename>/usr/bin/krusader</filename>, 
+so that <command>krusader</command> will run the official <trademark class="registered">Debian</trademark> package and <command>/opt/bin/krusader</command> runs the compiled version. 
 It's recommended to use enable the full debug, so that you can possible problems at us. Run configure.  
 <screen>
 <prompt>$</prompt> <userinput><command>./configure</command> <option>--prefix=/opt/krusader --enable-debug=full</option></userinput>
@@ -1111,7 +1108,7 @@ Please don't use the <filename>/usr/local</filename> directory as it simply won'
 
           If both commands give an output, the enviroment variables
           are set (the above example are the settings of
-          &mandriva;-&Linux;). In case you
+          <trademark class="registered">Mandriva</trademark>-&Linux;). In case you
           receive empty lines, the variables are not set and you
           have to set them manually. If you do not know what to set
           the variables to, or if you want to check if the
@@ -1258,7 +1255,7 @@ Good - your configure finished. Start make now
             where the &krusader; binary will be
             installed (after the 'make install' command). This part
             will also display a warning if the environment
-            variables &kdeqtdir-lnk; are empty.</para>
+            variables <link linkend="kde_qt_dir"><envar>KDEDIR</envar> - <envar>QTDIR</envar></link> are empty.</para>
           </tip>
           <para></para>
           <!-- Empty line to make it more readable -->
@@ -1411,15 +1408,15 @@ make[1]: Leaving directory `/home/source/krusader_kde3'
 <note><para>Since June 2006 &krusader; is added into the 
             <ulink url="http://pdb.finkproject.org/pdb/package.php/krusader">&krusader; finkproject.org repository</ulink>
             Please check this url for the latest information about the &MacOS;-X port, 
-            please read the &fink-url; documentation for more information, 
+            please read the <ulink url="http://www.finkproject.org/">fink</ulink> documentation for more information, 
             all information below could be outdated, though they should still work :)
             From now on the port is maintained by 
             <ulink url="http://hritcu.wordpress.com/about/">Catalin Hritcu</ulink>.
 </para></note>
-    <para>Krusader is ported to &MacOS; thanks the &fink-url;-project and Jonas
-    B&auml;hr and &bodo-tasche-url; .
+    <para>Krusader is ported to &MacOS; thanks the <ulink url="http://www.finkproject.org/">fink</ulink>-project and Jonas
+    B&auml;hr and Bodo Tasche .
     Unfortunately the only *stable* kdelib-binaries which
-    &fink-url; has to offer is currenly 3.1.4 which
+    <ulink url="http://www.finkproject.org/">fink</ulink> has to offer is currenly 3.1.4 which
     means you need to use &krusader;-1.40 .
     Unfortunately the &MacOS; X &krusader;
     port does not have the same power as in a native
@@ -1428,12 +1425,12 @@ make[1]: Leaving directory `/home/source/krusader_kde3'
     with the rest of the &MacOS; desktop. We hope that
     &Qt;4/&kde;4 will solve most of these
     problems. If you want a more recent Krusader version you need
-    to compile &kde;. With &fink-url; it is
+    to compile &kde;. With <ulink url="http://www.finkproject.org/">fink</ulink> it is
     rather easy but it takes some CPU cycles.</para>
     <para>Installation Instructions for &krusader;-1.40 
     <orderedlist>
       <listitem>
-        <para>Download and install &fink-url; with the
+        <para>Download and install <ulink url="http://www.finkproject.org/">fink</ulink> with the
         &kde;3.1 binaries provided by fink and read the
         documentation.</para>
       </listitem>
@@ -1455,10 +1452,10 @@ make[1]: Leaving directory `/home/source/krusader_kde3'
     &krusader;: 
     <orderedlist>
       <listitem>
-        <para>Install &apple-x11-url;</para>
+        <para>Install <ulink url="http://developer.apple.com/opensource/tools/X11.html"><trademark class="registered">Apple</trademark> X11</ulink></para>
       </listitem>
       <listitem>
-        <para>Install the &apple-x11-sdk-url;
+        <para>Install the <trademark class="registered">Apple</trademark> X11 SDK
         developer-tools with X11 headers (gcc is included)</para>
       </listitem>
       <listitem>
@@ -1482,7 +1479,7 @@ make[1]: Leaving directory `/home/source/krusader_kde3'
 <para>Follow these instructions if you wish to compile &krusader;-1.80.0 : 
     <orderedlist>
       <listitem>
-        <para>Install &apple-x11-url;</para>
+        <para>Install <ulink url="http://developer.apple.com/opensource/tools/X11.html"><trademark class="registered">Apple</trademark> X11</ulink></para>
       </listitem>
       <listitem>
         <para>nstall fink and 

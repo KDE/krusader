@@ -6,9 +6,9 @@
   <para>Remote connections are easily made by typing the
   &URL; in the 
   <link linkend="list_panel">Location Toolbar</link>; these are
-  actually &kioslaves1-url;. Please note that the
+  actually KIO Slaves. Please note that the
   &krusader; panel does not support all
-  &kioslaves2-url; &eg; 
+  KIO Slave &eg; 
   <command>http://</command> will not work in the panel, but will
   work in the 
   <link linkend="krviewer">viewer</link>. Some examples:</para>
@@ -140,21 +140,21 @@
         -->
     <listitem>
       <para>Manually: Add the disconnect button to the
-      &main-toolbar-lnk; and click on it.</para>
+      <link linkend="mainwindow">Main Toolbar</link> and click on it.</para>
     </listitem>
     <listitem>
       <para>Automatically: Change the &URL; in the
-      &location-toolbar-lnk; .</para>
+      <link linkend="list_panel">Location Toolbar</link> .</para>
     </listitem>
   </itemizedlist></para>
   <note>
     <para>&krusader; is a file manager that supports
-    remote connections via &kioslaves1-url;, but if you
+    remote connections via KIO Slaves, but if you
     are looking for even more advanced remote connections features,
     &eg; an advanced &FTP;-client we
     recommend you to use &eg;
-    &kasablanca-url; or
-    &kftpgrabber-url;.</para>
+    <ulink url="http://kasablanca.berlios.de/">Kasablanca</ulink> or
+    <ulink url="http://kftpgrabber.sourceforge.net/"><application>Kftpgrabber</application></ulink>.</para>
   </note>
 
 <sect2 id="remote-connections-lan-fish">
@@ -168,7 +168,7 @@
       feedback about this chapter is appriciated. Thanks!</para>
 
  <note>
-   <para>This works on a &debian; system, so it will work on &debian; and derivatives (&kubuntu; &etc;), though
+   <para>This works on a <trademark class="registered">Debian</trademark> system, so it will work on <trademark class="registered">Debian</trademark> and derivatives (<trademark class="registered">Kubuntu</trademark> &etc;), though
    it should work on other Linuxes as well. 
    We assume that you have <link linkend="gloss-ssh">SSH</link> installed, configured and working on 
    every machine on LAN you want to connect to/from.

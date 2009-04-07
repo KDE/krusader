@@ -202,9 +202,9 @@
           each panel via an external graphical diff utility. By
           default &kompare; (part of the kdebase
           package) is used, but you can also use &eg;
-          &xxdiff-url; or &kdiff3-url; ,
+          <ulink url="http://furius.ca/xxdiff/"><application>xxdiff</application></ulink> or <ulink url="http://kdiff3.sourceforge.net"><application>Kdiff3</application></ulink> ,
           change it in the
-          &konfigdependencie-lnk;.</para>
+          <link linkend="konfig-dependencies">Konfigurator Dependencies page</link>.</para>
         </listitem>
       </varlistentry>
       <varlistentry id="multi_rename">
@@ -219,7 +219,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>This menu option starts &krename-url; a
+          <para>This menu option starts <ulink url="http://www.krename.net"><application>Krename</application></ulink> a
           very powerful external batch renamer for &kde;
           3.x.</para>
           <itemizedlist>
@@ -310,7 +310,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>The &splitfile-lnk; function splits a
+          <para>The <link linkend="splitter">Split file</link> function splits a
           file up into multiple smaller files so that it can be
           stored on several smaller media (like 
           <hardware>diskettes, zip-drives, ...</hardware>) or sent by
@@ -329,9 +329,9 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>The &combinefiles-lnk; function combines
+          <para>The <link linkend="splitter">Combine files</link> function combines
           multiple files into one file after the
-          &splitfile-lnk; function was used.</para>
+          <link linkend="splitter">Split file</link> function was used.</para>
         </listitem>
       </varlistentry>
       <!--vertical bar -->
@@ -509,7 +509,7 @@
           <para>Selects all files in the active panel. You can also
           select all directories by activating the 
           <guilabel>Automark directories</guilabel> option in the
-          &konfiglookandfeel-lnk;.</para>
+          <link linkend="konfig-looknfeel">Konfigurator Look &amp; Feel page</link>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -558,7 +558,7 @@
         </term>
         <listitem>
           <para>Toggles &krusader;
-          &comparedir-lnk; function.</para>
+          <link linkend="compare-dir">Compare Directories</link> function.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -635,7 +635,7 @@
     <title>View Menu</title>
     <para>The action in this submenu usually affects the current
     &krusader; session. If you want to make permanent
-    changes use &konfigstartpg-lnk;.</para>
+    changes use <link linkend="konfigurator">Konfigurator Startup page</link>.</para>
     <variablelist>
       <varlistentry>
         <term>
@@ -874,7 +874,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Opens the &useractions-lnk;
+          <para>Opens the <link linkend="useractions">UserActions</link>
           manager.</para>
         </listitem>
       </varlistentry>
@@ -1096,7 +1096,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>The &syncdirs-lnk; function compares the
+          <para>The <link linkend="synchronizer">Synchronize Directories</link> function compares the
           left and right panels and shows the differences between
           them. After the compare function, you can move
           files/directories so that they can be
@@ -1188,7 +1188,7 @@
           <para>Opens a terminal window in the default directory
           (usually your home directory). You can choose your
           favorite terminal application in the
-          &konfiggereral-lnk;.</para>
+          <link linkend="konfig-general">Konfigurator General page</link>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1207,7 +1207,7 @@
           <para>Opens a terminal window in the currently browsed
           directory of the active panel. You can choose your
           favorite terminal application in the
-          &konfiggereral-lnk;.</para>
+          <link linkend="konfig-general">Konfigurator General page</link>.</para>
         </listitem>
       </varlistentry>
       <!-- vertical bar -->
@@ -1223,11 +1223,11 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Starts &krusader; in &rootmode-lnk; at the same location. 
+          <para>Starts &krusader; in <link linkend="root-mode">Root mode</link> at the same location. 
                 Root mode &krusader; requires <command>kdesu</command> by default, 
                 if <command>kdesu</command> is not available or if you prefer &eg; 
-                <command>gksu</command> when using &gnome-url; you can change this behaviour in the
-                &konfigdependencie-lnk;.</para>
+                <command>gksu</command> when using <ulink url="http://www.gnome.org"><application>GNOME</application></ulink> you can change this behaviour in the
+                <link linkend="konfig-dependencies">Konfigurator Dependencies page</link>.</para>
           <caution>
             <para>Be careful when using &krusader; with
             ROOT PRIVILEGES.</para>
@@ -1285,7 +1285,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Shows the &main-toolbar-lnk; if
+          <para>Shows the <link linkend="mainwindow">Main Toolbar</link> if
           checked.</para>
         </listitem>
       </varlistentry>
@@ -1297,7 +1297,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Shows the &actions-toolbar-lnk; if
+          <para>Shows the <link linkend="actions_toolbar">Actions Toolbar</link> if
           checked.</para>
         </listitem>
       </varlistentry>
@@ -1335,7 +1335,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Shows the &fnkeybar-lnk; if
+          <para>Shows the <link linkend="fnkeys">FN Keys Bar</link> if
           checked.</para>
         </listitem>
       </varlistentry>
@@ -1426,9 +1426,9 @@
         </term>
         <listitem>
           <para>Opens a dialog which allows you to configure the
-          &main-toolbar-lnk; or the
-          &actions-toolbar-lnk;. You can add action
-          buttons of your favourite &useractions-lnk; to
+          <link linkend="mainwindow">Main Toolbar</link> or the
+          <link linkend="actions_toolbar">Actions Toolbar</link>. You can add action
+          buttons of your favourite <link linkend="useractions">UserActions</link> to
           the desired toolbar.</para>
         </listitem>
       </varlistentry>
@@ -1632,7 +1632,7 @@
           &krusader; main window. This action can be
           automated with 
           <guilabel>"Save settings on exit"</guilabel> in
-          &konfigstartpg-lnk;</para>
+          <link linkend="konfigurator">Konfigurator Startup page</link></para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -1665,14 +1665,14 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>The &whatsthis-url; help function
+          <para>The WhatsThis help function
           changes the mouse cursor to a combination arrow and
           question mark. Clicking on items within
           &krusader; will open a help window (if one
           exists for that particular item) explaining the item
           function. Use this feature if you want to know more about
           a specific item. A right-click on an item will also open
-          the &whatsthis-url; help.</para>
+          the WhatsThis help.</para>
         </listitem>
       </varlistentry>
       <!-- vertical bar -->

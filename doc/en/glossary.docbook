@@ -76,7 +76,7 @@
     <glossdef>
       <para>This is a binary file format that is used by 
       <ulink url="http://en.wikipedia.org/wiki/Debian">
-      &debian;</ulink> and &debian;-based
+      <trademark class="registered">Debian</trademark></ulink> and <trademark class="registered">Debian</trademark>-based
       distributions. It is a suffix of a installation file
       specifically built for these distributions; e.g. 
       <filename>krusader_1.70.1-1_amd64.deb</filename>. Simply
@@ -178,7 +178,7 @@
       important tool for 
       <link linkend="gloss-ofm">Orthodox File Managers</link>.
       &krusader; comes with several predefined
-      &keybindigs-lnk;.</para>
+      <link linkend="key_bindings">Key-Bindings</link>.</para>
     </glossdef>
   </glossentry>
   <glossentry id="gloss-kpart">
@@ -188,7 +188,7 @@
       <ulink url="http://en.wikipedia.org/wiki/KPart">
       Kpart</ulink>; KParts is the name of the component framework
       for the &kde; desktop environment. KParts are
-      analogous to Bonobo components in &gnome-url;,
+      analogous to Bonobo components in <ulink url="http://www.gnome.org"><application>GNOME</application></ulink>,
       both of which are based on the same concepts as
       &Microsoft;'s Object Linking and Embedding. e.g.
       if you use &krusader;'s viewer to view a PDF file,
@@ -203,7 +203,7 @@
       <para>
       <ulink url="http://en.wikipedia.org/wiki/Kioslave">KDE
       Input/Output</ulink>; also known as
-      &kioslaves1-url; is part of the &kde;
+      KIO Slaves is part of the &kde;
       architecture. It provides access to files, web sites and
       other resources through a single consistent API.</para>
     </glossdef>
@@ -318,7 +318,7 @@
       <acronym>VFS</acronym>
     </glossterm>
     <glossdef>
-      <para>&vfs-lnk; is a basic 
+      <para><link linkend="vfs">Virtual file systems (VFS)</link> is a basic 
       <link linkend="features">OFM feature</link>, this an
       abstracted layer over all kinds of archived information (ZIP
       files, FTP servers, TAR archives, NFS filesystems, SAMBA
@@ -326,7 +326,7 @@
       the user to access all the information in these divergent
       types of file systems transparently - just like entering an
       ordinary sub-directory! &krusader; supports
-      several &vfs-lnk;.</para>
+      several <link linkend="vfs">Virtual file systems (VFS)</link>.</para>
     </glossdef>
   </glossentry>
   <glossentry id="gloss-xml">

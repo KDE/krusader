@@ -29,16 +29,16 @@
     <para>In this chapter you will learn how to use the keyboard
     effectively, because most operations can be done more quickly
     by keyboard than with the mouse. It will take some time to learn
-    the &keybindigs-lnk;, but mastering them saves you a
+    the <link linkend="key_bindings">Key-Bindings</link>, but mastering them saves you a
     lot of time. Please note that &krusader; can use
-    &keybindigs-profiles-lnk; to swap easily to other
+    <link linkend="configure-shortcuts">Key-binding Profiles</link> to swap easily to other
     Key-binding setups, e.g. of other commanders, or you can create
     your own key-bindings.</para>
     <para>After 
     <link linkend="starting-krusader">
     starting</link> &krusader;, the keyboard action can
     begin. Use <keycombo action="simul">&Ctrl;<keycap>l</keycap></keycombo> to jump to the
-    &location-toolbar-lnk; where you can type the
+    <link linkend="list_panel">Location Toolbar</link> where you can type the
     desired directory. After <keycombo action="simul">&Ctrl;<keycap>Down arrow</keycap></keycombo> 
     you are in the
     &termemu-lnk; and you can type any command you
@@ -82,7 +82,7 @@
       <emphasis role="bold">Function (FN) Keys</emphasis>
     </para>
     <para>These are the Key-Bindings of the
-    &fnkeybar-lnk;. These Key-Bindings are configurable
+    <link linkend="fnkeys">FN Keys Bar</link>. These Key-Bindings are configurable
     since version 1.51.</para>
     <informaltable>
       <tgroup cols="2">
@@ -424,7 +424,7 @@
               </para>
             </entry>
             <entry>
-              <para>&usermenu-lnk;</para>
+              <para><link linkend="useractions">User Menu</link></para>
             </entry>
           </row>
 		            <row>
@@ -531,7 +531,7 @@
               </para>
             </entry>
             <entry>
-              <para>&comparedir-lnk;</para>
+              <para><link linkend="compare-dir">Compare Directories</link></para>
             </entry>
           </row>		  
            <row>
@@ -567,7 +567,7 @@
               </para>
             </entry>
             <entry>
-              <para>Start &rootmode-lnk;
+              <para>Start <link linkend="root-mode">Root mode</link>
               &krusader;.</para>
             </entry>
           </row>
@@ -675,7 +675,7 @@
               </para>
             </entry>
             <entry>
-              <para>&combinefiles-lnk;.</para>
+              <para><link linkend="splitter">Combine files</link>.</para>
             </entry>
           </row>
           <row>
@@ -735,7 +735,7 @@
               </para>
             </entry>
             <entry>
-              <para>A &safari;-like 
+              <para>A <trademark class="registered">Safari</trademark>-like 
               <link linkend="jump_back">Jump-Back</link>.</para>
             </entry>
           </row>
@@ -747,8 +747,8 @@
               </para>
             </entry>
             <entry>
-              <para>Go to the &location-toolbar-lnk;
-              (origin) as in &firefox; and
+              <para>Go to the <link linkend="list_panel">Location Toolbar</link>
+              (origin) as in <trademark class="registered">Firefox</trademark> and
               &konqueror;.</para>
             </entry>
           </row>
@@ -882,7 +882,7 @@
               </para>
             </entry>
             <entry>
-              <para>&syncdirs-lnk;.</para>
+              <para><link linkend="synchronizer">Synchronize Directories</link>.</para>
             </entry>
           </row>
           <row>
@@ -1002,7 +1002,7 @@
             </entry>
             <entry>
               <para>Go from the active panel to the
-              &location-toolbar-lnk;.</para>
+              <link linkend="list_panel">Location Toolbar</link>.</para>
             </entry>
           </row>
           <row>
@@ -1746,7 +1746,7 @@
     <para id="synchronizer_keybindings">
       <emphasis role="bold">Synchronizer</emphasis>
     </para>
-    <para>&synchronizer-lnk; keybindings.</para>
+    <para><link linkend="synchronizer">Synchronizer</link> keybindings.</para>
     <informaltable>
       <tgroup cols="2">
         <tbody>
@@ -1824,7 +1824,7 @@
     <para>
       <emphasis role="bold">Default Useractions</emphasis>
     </para>
-    <para>Default &useractions-lnk; keybindings provided
+    <para>Default <link linkend="useractions">UserActions</link> keybindings provided
     by &krusader;.</para>
     <informaltable>
       <tgroup cols="2">
@@ -1982,7 +1982,7 @@
         Accessibility -&gt; Keyboard Shortcuts</para>
       </listitem>
       <listitem>
-        <para>&useractions-lnk; configurable
+        <para><link linkend="useractions">UserActions</link> configurable
         key-bindings</para>
       </listitem>
     </itemizedlist>

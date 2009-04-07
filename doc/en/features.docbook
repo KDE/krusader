@@ -16,7 +16,7 @@
     <listitem>
       <para>
         <itemizedlist>
-          <title>&ofm-url; features</title>
+          <title><ulink url="http://www.softpanorama.org/OFM/index.shtml">Orthodox File Manager (OFM)</ulink> features</title>
           <listitem>
             <para>Two powerful and easy to use 
             <link linkend="panels">OFM panels</link>.</para>
@@ -38,7 +38,7 @@
             (edit).</para>
           </listitem>
           <listitem>
-            <para>&usermenu-lnk;, create your own
+            <para><link linkend="useractions">User Menu</link>, create your own
             customized menu.</para>
           </listitem>
           <listitem>
@@ -48,7 +48,7 @@
             &URL;s</link>, ...</para>
           </listitem>
           <listitem>
-            <para>&vfs-lnk; for &eg;
+            <para><link linkend="vfs">Virtual file systems (VFS)</link> for &eg;
             &remote-connections-lnk;,
             &archives-lnk;, search results,
             synchronizer.</para>
@@ -77,13 +77,13 @@
           <listitem>
             <para>&remote-connections-lnk; :
             &FTP;/SAMBA with SFTP/SCP support via
-            &kioslaves1-url;</para>
+            KIO Slaves</para>
           </listitem>
           <listitem>
             <para>&locate-lnk;</para>
           </listitem>
           <listitem>
-            <para>&syncdirs-lnk;</para>
+            <para><link linkend="synchronizer">Synchronize Directories</link></para>
           </listitem>
           <listitem>
             <para>
@@ -94,7 +94,7 @@
             <para>&diskusage-lnk;</para>
           </listitem>
           <listitem>
-            <para>&rootmode-lnk;</para>
+            <para><link linkend="root-mode">Root mode</link></para>
           </listitem>
         </itemizedlist>
       </para>
@@ -132,13 +132,13 @@
             <para>
             <link linkend="compare-content">Compare files by
             content</link> via external diff programs like
-            &kompare;, &kdiff3-url; or
-            &xxdiff-url;.</para>
+            &kompare;, <ulink url="http://kdiff3.sourceforge.net"><application>Kdiff3</application></ulink> or
+            <ulink url="http://furius.ca/xxdiff/"><application>xxdiff</application></ulink>.</para>
           </listitem>
           <listitem>
             <para>
             <link linkend="multi_rename">Rename</link> files and
-            folders via &krename-url;</para>
+            folders via <ulink url="http://www.krename.net"><application>Krename</application></ulink></para>
           </listitem>
           <listitem>
             <para>Completely supports drag'n'drop: drag from
@@ -204,7 +204,7 @@
             the Location Toolbar.</para>
           </listitem>
           <listitem>
-            <para>&whatsthis-url; Help function in favour
+            <para>WhatsThis Help function in favour
             of tooltips where reasonable.</para>
           </listitem>
           <listitem>
@@ -225,7 +225,7 @@
             configuration center.</para>
           </listitem>
           <listitem>
-            <para>&main-toolbar-lnk;, 
+            <para><link linkend="mainwindow">Main Toolbar</link>, 
             <link linkend="actions_toolbar">Actions
             Toolbar</link> for user actions and bookmarks.</para>
           </listitem>
@@ -246,7 +246,7 @@
             <para>&bookmark-manager-lnk;</para>
           </listitem>
           <listitem>
-            <para>&mouse-selection-modes-lnk;</para>
+            <para><link linkend="mouse_selection_modes">Mouse Selection Modes</link></para>
           </listitem>
           <listitem>
             <para>Many more features can be 
@@ -261,20 +261,20 @@
       <itemizedlist>
         <title>&krusader; Extensions</title>
         <listitem>
-          <para>&useractions-lnk;</para>
+          <para><link linkend="useractions">UserActions</link></para>
         </listitem>
         <listitem>
           <para>&javascript-console-lnk;</para>
         </listitem>
         <listitem>
-          <para>&color-profiles-lnk;</para>
+          <para><link linkend="konfig-color">Color Profiles</link></para>
         </listitem>
         <listitem>
-          <para>&keybindigs-profiles-lnk;</para>
+          <para><link linkend="configure-shortcuts">Key-binding Profiles</link></para>
         </listitem>
       </itemizedlist>Download and upload your favourite
       &krusader; extensions at
-      &kde-files-url;.</para>
+      <ulink url="http://www.kde-files.org/index.php?xcontentmode=660x661x662x663">kde-files.org</ulink>.</para>
     </listitem>
   </itemizedlist>
 </para>
@@ -300,7 +300,7 @@
           <para>
           <link linkend="archives">Auto-detection support</link>,
           allowing you to open "hidden archives" (&eg;
-          &openoffice; documents).</para>
+          <trademark class="registered">OpenOffice</trademark> documents).</para>
         </listitem>
         <listitem>
           <para>Packing/unpacking is now in the background.</para>
@@ -311,7 +311,7 @@
       <para><link linkend="list_panel">Brief View</link></para>
     </listitem>
     <listitem>
-      <para>Many improvements of the UserAction &useractions-lnk; system.</para>
+      <para>Many improvements of the UserAction <link linkend="useractions">UserActions</link> system.</para>
     </listitem>
     <listitem>
       <para>Countless usability enhancements, especially in Konfigurator and the heavily reordered menubar.</para>
@@ -354,7 +354,7 @@
       <para>&termemu-lnk; enhancements bringing new functions, new usages and new look.</para>
     </listitem>
     <listitem>
-      <para>&synchronizer-lnk; enhancements and parallel threads for slow
+      <para><link linkend="synchronizer">Synchronizer</link> enhancements and parallel threads for slow
       FTP servers.</para>
     </listitem>
     <listitem>
@@ -423,4 +423,18 @@
 
 
 
-<para>&dev-svn-note;</para></chapter>
+<para><note><para>
+                 If you are using a <link linkend="krusader_devel">development</link> or
+                 <link linkend="krusader_svn">SVN</link> version, it is possible that the latest
+                 new features are not yet in the "The Krusader Handbook".
+                 Please read the 
+		 <ulink url="http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/ChangeLog?view=markup">Changelog</ulink>
+		 file online or in the &krusader;
+                 sources to find out more about the new features.
+                 For a brief description, please read the 
+		 <ulink url="http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/SVNNEWS?view=markup">SVNNEWS</ulink>
+		 file online
+                 or in the &krusader; sources.
+                       <link linkend="faqg_wish">User feedback</link> and
+                       <link linkend="faqg_bug_report">Bug reports</link> are always welcome!
+                 </para></note></para></chapter>

@@ -69,14 +69,14 @@
     'Krusader.child("help").slots();',
     'alert(Krusader.properties())' or
     'Krusader.child("help").show();'.... In addition, a new
-    placeholder for the &useractions-lnk;, %_Script()%,
+    placeholder for the <link linkend="useractions">UserActions</link>, %_Script()%,
     will execute an external file.</para>
     <para>NOTE: The object 'Krusader' will change. We have not made
     decisions about the JS-interface yet (at the time of the
     1.70.0-release). Any ideas are welcome. Plase use our
     <ulink url="http://www.krusader.org/phpBB/index.php">&krusader; Forum</ulink> for feedback.</para>
     <para>The JavaScript-support is based on
-    &kjsembed-url;. Some examples which show the power
+    <ulink url="http://xmelegance.org/kjsembed/">KJSEmbed</ulink>. Some examples which show the power
     of this library can be found
     <ulink url="http://xmelegance.org/kjsembed/examples/index.html">
     here</ulink>. Support for all of KDE's ground-laying technologies

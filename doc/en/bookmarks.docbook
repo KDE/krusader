@@ -81,7 +81,7 @@
     organizing your bookmarks.</para>
     <para>To use your bookmarks, click the 
     <guibutton>Bookmark</guibutton> button and choose a bookmark.
-    You may also use the &keybindigs-lnk; : 
+    You may also use the <link linkend="key_bindings">Key-Bindings</link> : 
     <keycombo action="simul">&Ctrl;&Shift;
     <keycap>d</keycap></keycombo> to bookmark the current item, 
     <keycombo action="simul">&Alt;
@@ -169,7 +169,7 @@
     <title>Permanent bookmarks</title>
     <para>These are hardcoded bookmarks to the top bookmark menu;
     there is no need for them to be saved to the file. With the
-    &context-menu-lnk; you can enable/disable these
+    <link linkend="context-menu">Context Menu</link> you can enable/disable these
     permanent bookmarks. The following permanent bookmarks are
     available: 
     <itemizedlist>
@@ -186,7 +186,7 @@
       </listitem>
       <listitem>
         <para>
-        <guilabel>Virtual Filesystem</guilabel> &vfs-lnk;
+        <guilabel>Virtual Filesystem</guilabel> <link linkend="vfs">Virtual file systems (VFS)</link>
         
         <filename>virt:/</filename> is not a virtual folder, but a
         container for &URL;'s from different file
@@ -224,7 +224,7 @@
     <application>KeditBookmarks</application> (part of the kdebase package) is a
     bookmark editor for &konqueror;,
     &krusader; and other applications, which use the
-    &xbel-url; standard for the bookmark format. The
+    <ulink url="http://grail.sourceforge.net/info/xbel.html">XBEL standard</ulink> standard for the bookmark format. The
     bookmarks are stored in 
     <filename>
     ~/.kde/share/apps/krusader/krbookmarks.xml.</filename></para>
@@ -264,8 +264,8 @@
   <sect2 id="bookmark_buttons">
     <title>Bookmarks as action buttons on the Toolbar</title>
     <para>Bookmarks can be placed as buttons on the
-    &main-toolbar-lnk; or the
-    &actions-toolbar-lnk;. You can even make a
+    <link linkend="mainwindow">Main Toolbar</link> or the
+    <link linkend="actions_toolbar">Actions Toolbar</link>. You can even make a
     key-binding for them: 
     <itemizedlist>
       <listitem>
@@ -275,14 +275,14 @@
         <para>If you want, create keybindings for the bookmarks in
         the 
         <guilabel>Key-bindings</guilabel> section of the
-        &konfiglookandfeel-lnk;.</para>
+        <link linkend="konfig-looknfeel">Konfigurator Look &amp; Feel page</link>.</para>
       </listitem>
       <listitem>
         <para>Add your bookmarks as action buttons on the
-        &main-toolbar-lnk; or the
-        &actions-toolbar-lnk; with the 
+        <link linkend="mainwindow">Main Toolbar</link> or the
+        <link linkend="actions_toolbar">Actions Toolbar</link> with the 
         <guilabel>Toolbar</guilabel> section of the
-        &konfiglookandfeel-lnk;.</para>
+        <link linkend="konfig-looknfeel">Konfigurator Look &amp; Feel page</link>.</para>
       </listitem>
     </itemizedlist></para>
   </sect2>
