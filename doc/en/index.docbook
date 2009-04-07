@@ -45,34 +45,32 @@ Previous used Docbook
 <!ENTITY package "kde-module">
 
 
-
 <!-- chapters in separate docbook files -->
   <!ENTITY help SYSTEM "help.docbook">
   <!ENTITY editors-note SYSTEM "editors-note.docbook">
   <!ENTITY introduction SYSTEM "introduction.docbook">
   <!ENTITY features SYSTEM "features.docbook">
   <!ENTITY user-interface SYSTEM "user-interface.docbook">
-  <!ENTITY using-krusader SYSTEM "using-krusader.docbook">
-  <!ENTITY more SYSTEM "more.docbook">
-  <!ENTITY commands SYSTEM "commands.docbook">
-  <!ENTITY keyboard SYSTEM "keyboard.docbook">  
-  <!ENTITY mouse SYSTEM "mouse.docbook">  
-  <!ENTITY konfigurator SYSTEM "konfigurator.docbook">
-  <!ENTITY krusader-tools SYSTEM "krusader-tools.docbook">
-  <!ENTITY faq SYSTEM "faq.docbook">
-  <!ENTITY credits SYSTEM "credits.docbook">
-  <!ENTITY glossary SYSTEM "glossary.docbook">
-
-<!-- some using-krusader content in separate docbook files -->
-  <!ENTITY splitter SYSTEM "splitter.docbook">
-  <!ENTITY profiles SYSTEM "profiles.docbook">
+  
+  <!ENTITY basic-functions SYSTEM "using-krusader.docbook">  <!-- OLD: using-krusader.docbook  NEW: basic-functions.docbook -->
+  <!-- The next ENTITY belongs to the basic-functions chapter -->
+  <!ENTITY archives SYSTEM "archives.docbook">   
+  
+  <!ENTITY advanced-functions SYSTEM "more.docbook">         <!-- OLD: more.docbook  NEW: advanced-functions.docbook -->
+  <!-- The next 6 ENTITIES do belong to the advanced-functions chapter -->
   <!ENTITY vfs SYSTEM "vfs.docbook">
   <!ENTITY compare SYSTEM "compare.docbook">
-  <!ENTITY occupied-space SYSTEM "occupied-space.docbook">
+  <!ENTITY occupied-space SYSTEM "occupied-space.docbook"> 
+  <!ENTITY splitter SYSTEM "splitter.docbook">
   <!ENTITY checksum SYSTEM "checksum.docbook">
-  <!ENTITY archives SYSTEM "archives.docbook">    
-   
-<!-- some krusader-tools content in separate docbook files -->  
+  <!ENTITY profiles SYSTEM "profiles.docbook">
+  
+  <!ENTITY menu-commands SYSTEM "commands.docbook">          <!-- OLD: commands.docbook  NEW: menu-commands.docbook -->
+  <!ENTITY keyboard-commands SYSTEM "keyboard.docbook">      <!-- OLD: keyboard.docbook  NEW: keyboard-commands.docbook -->
+  <!ENTITY mouse-commands SYSTEM "mouse.docbook">            <!-- OLD: mouse.docbook  NEW: mouse-commands.docbook -->
+  
+  <!ENTITY krusader-tools SYSTEM "krusader-tools.docbook">
+  <!-- The next 10 ENTITIES do belong to the krusader-tools chapter -->
   <!ENTITY bookmarks SYSTEM "bookmarks.docbook">
   <!ENTITY diskusage SYSTEM "diskusage.docbook">
   <!ENTITY java SYSTEM "java.docbook">
@@ -84,22 +82,17 @@ Previous used Docbook
   <!ENTITY synchronizer SYSTEM "synchronizer.docbook">
   <!ENTITY krusader-useractions SYSTEM "useractions.docbook">
 
-<!--  <!ENTITY remote-connections SYSTEM "remote-connections.docbook">
-  <!ENTITY mount SYSTEM "mount.docbook"> 
-  <!ENTITY bookmarks SYSTEM "bookmarks.docbook">
-  <!ENTITY search SYSTEM "search.docbook">
-  <!ENTITY locate SYSTEM "locate.docbook">
-  <!ENTITY viewer-editor SYSTEM "viewer-editor.docbook">
-  <!ENTITY synchronizer SYSTEM "synchronizer.docbook">
-  <!ENTITY java SYSTEM "java.docbook">
-  <!ENTITY diskusage SYSTEM "diskusage.docbook">
--->
-
-<!-- appendices in separate docbook files -->  
+  <!ENTITY konfigurator SYSTEM "konfigurator.docbook">
+  <!ENTITY faq SYSTEM "faq.docbook">
+  <!ENTITY credits-and-license SYSTEM "credits.docbook">      <!-- OLD: credits.docbook  NEW: credits-and-license.docbook -->
+  <!ENTITY glossary SYSTEM "glossary.docbook">
   <!ENTITY installation SYSTEM "installation.docbook">
-  <!ENTITY configuration-files SYSTEM "configuration-files.docbook">
-  <!ENTITY useraction-xml SYSTEM "useraction-xml.docbook">
-  <!ENTITY release-overview SYSTEM "release-overview.docbook">
+
+<!-- appendices in separate docbook files -->
+ <!ENTITY configuration-files SYSTEM "configuration-files.docbook">
+ <!ENTITY useraction-xml SYSTEM "useraction-xml.docbook">
+ <!ENTITY release-overview SYSTEM "release-overview.docbook">
+
   
 ]>
 <book lang="&language;">
@@ -276,19 +269,17 @@ Frank.
 <!-- chapters -->  
   &introduction;
   &features;
-  &installation;
   &user-interface;
-  <!-- &basic-functions; TODO "using-krusader" has become "basic-functions" --> &using-krusader;
-  <!-- &advanced-functions; TODO "more" has become "advanced-functions" --> &more;
-  <!-- &menu-commands; TODO "commands" has become "menu-commands" --> &commands;
-  <!-- &keyboard-commands; TODO "keyboard" has become "keyboard-commands" --> &keyboard;
-  <!-- &mouse-commands; TODO "mouse" has become "mouse-commands" --> &mouse;
+  &basic-functions;
+  &advanced-functions;
+  &menu-commands;
+  &keyboard-commands;
+  &mouse-commands;
   &krusader-tools;
- 
-
   &konfigurator;
   &faq;
-  <!-- &credits-and-license; TODO "credits" has become "credits-and-license" --> &credits;
+  &credits-and-license;
+  &installation;
 
 <!-- appendices -->
   &configuration-files;
