@@ -141,13 +141,13 @@
             <listitem>
               <para>
               <guilabel>Show command line</guilabel>: If checked,
-              the &cmdline-lnk; is visible after
+              the <link linkend="cmdline">Command Line</link> is visible after
               start-up.</para>
             </listitem>
             <listitem>
               <para>
               <guilabel>Show terminal emulator</guilabel>: If
-              checked, the &termemu-lnk; is visible
+              checked, the <link linkend="termemu">Terminal emulator</link> is visible
               after start-up.</para>
             </listitem>
             <listitem>
@@ -247,7 +247,7 @@ HTML_PARSING-->
         <listitem>
           <para>
           <guilabel>Use fullpath tab names</guilabel>: If checked,
-          display the full path in the &foldertabs-lnk;;
+          display the full path in the <link linkend="folder-tabs">Folder tabs</link>;
           otherwise only the last part of the path is
           displayed.</para>
         </listitem>
@@ -489,7 +489,7 @@ HTML_PARSING-->
         <listitem>
           <para>
           <guilabel>Toggle-button for sync-browsing</guilabel>: If
-          checked, shows the &sync-browsing-lnk;
+          checked, shows the <link linkend="panel_toolbar">Sync-browsing</link>
           button.</para>
         </listitem>
       </itemizedlist></para>
@@ -631,7 +631,7 @@ HTML_PARSING-->
   <sect1 id="konfig-color">
     <title>Colors</title>
     <para>This page configures the colors of the
-    &list-panel-lnk; and the
+    <link linkend="list_panel">List Panel</link> and the
     <link linkend="synchronizer">Synchronizer</link>. The 
     <guilabel>KDE default colors</guilabel> is the default color
     configuration.</para>
@@ -936,7 +936,7 @@ HTML_PARSING-->
       <listitem>
         <para>
         <guilabel>Atomic extensions</guilabel>: predefined atomic extensions like <filename>tar.gz</filename> 
-        are shown as one part in the <guilabel>Ext Column</guilabel> of the &list-panel-lnk;.</para>
+        are shown as one part in the <guilabel>Ext Column</guilabel> of the <link linkend="list_panel">List Panel</link>.</para>
       </listitem>
       <listitem>
         <para>
@@ -1047,7 +1047,7 @@ HTML_PARSING-->
               then enter a list of mount points separated by commas
               (&eg; 
               <literal>/, /boot, /tmp</literal>) and
-              &mountman-lnk; will not try to (un)mount
+              <link linkend="mount-man">MountMan</link> will not try to (un)mount
               them.</para>
             </listitem>
           </itemizedlist>

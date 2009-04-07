@@ -39,67 +39,10 @@ Previous used Docbook
 
 <!-- ONLY If you are writing non-English original documentation, change the language here -->
 <!ENTITY % English "INCLUDE">
-<!ENTITY Backspace   "<keycap>Backspace</keycap>">
-<!--
-Added <!ENTITY Backspace  "<keycap>Backspace</keycap>"> in index.docbook 
-since the Entity Backspace is not defined in
-/usr/share/apps/ksgmltools2/customization/ru/user.entities on KDE: 3.5.4
-This is a workaround, until Backspace is translated in all
-/usr/share/apps/ksgmltools2/customization/ru/user.entities
-files
-http://groups.google.com/group/krusader-devel/browse_thread/thread/d102adec2edcfb47/e3ca0489310cc12e#e3ca0489310cc12e
--->
+
 
 <!-- kdebase, kdeadmin, etc. Leave this unchanged if your application is not maintained in KDE CVS -->
 <!ENTITY package "kde-module">
-
-
-
-<!-- documentation links -->
-
-
-<!ENTITY faq-lnk '<link linkend="faq">FAQ</link>'>
-<!ENTITY forum-lnk '<link linkend="faqg_kru-forum">&krusader; Forum</link>'>
-<!ENTITY help-request-lnk '<link linkend="faqi_help_request">help request</link>'>
-<!ENTITY list-panel-lnk '<link linkend="list_panel">List Panel</link>'>
-<!ENTITY popup-panel-lnk '<link linkend="popup_panel">PopUp Panel</link>'>
-<!ENTITY quick-search-lnk '<link linkend="quicksearch">Quick search</link>'>
-<!ENTITY locate-lnk '<link linkend="locate">Locate</link> &GUI; frontend'>
-<!ENTITY foldertabs-lnk '<link linkend="folder-tabs">Folder tabs</link>'>
-<!ENTITY mountman-lnk '<link linkend="mount-man">MountMan</link>'>
-<!ENTITY cmdline-lnk '<link linkend="cmdline">Command Line</link>'>
-<!ENTITY termemu-lnk '<link linkend="termemu">Terminal emulator</link>'>
-<!ENTITY missing-libs-lnk '<link linkend="faqi_missing_libs">&FAQ; missing libs or headers</link>'>
-<!ENTITY panel-profiles-lnk '<link linkend="panel_profiles">Panel profiles</link>'>
-<!ENTITY sync-browsing-lnk '<link linkend="panel_toolbar">Sync-browsing</link>'>
-<!ENTITY diskusage-lnk '<link linkend="diskusage">Disk Usage</link>'>
-<!ENTITY bookmarks-lnk '<link linkend="bookman">Bookmarks</link>'>
-<!ENTITY bookmark-manager-lnk '<link linkend="bookman">Bookmark-Manager</link>'>
-<!ENTITY advanced-search-module-lnk '<link linkend="krusearcher">Advanced Search module</link>'>
-<!ENTITY javascript-console-lnk '<link linkend="javascript_console">JavaScript console</link>'>
-<!ENTITY archives-lnk '<link linkend="archives">archives</link>'>
-<!ENTITY remote-connections-lnk '<link linkend="remote-connections">Remote Connections</link>'>
-<!ENTITY krusaderrc-lnk '<link linkend="config_files">krusaderrc</link>'>
-
-<!ENTITY install-proc-lnk '<link linkend="installation">Installation procedure</link>'>
-<!ENTITY disablenote '<note><para>This feature is temporarily disabled and will be rewritten, sorry.</para></note>'>
-<!ENTITY faqbugreports-lnk '<link linkend="faqg_bug_report">bug reports</link>'>
-<!ENTITY hesbugreport-lnk 'Don&apos;t hesitate to send <link linkend="faqg_bug_report">Bug reports</link>.'>
-<!ENTITY betafeaturenote '<note><para>This is a new feature that can be considered as "beta". &hesbugreport-lnk;
-       <link linkend="faqg_wish">User feedback</link> is always welcome!</para></note>'>
-<!ENTITY newfeaturenote '<note><para>This is a new feature under development. Some descriptions may become obsolete if functionality changes during development. &hesbugreport-lnk;
-       <link linkend="faqg_wish">User feedback</link> is always welcome!</para></note>'>
-<!ENTITY rwfeaturenote '<note><para>This module was rewritten. Some descriptions may become obsolete if
-                         functionality changes during development. &hesbugreport-lnk;
-       <link linkend="faqg_wish">User feedback</link> is always welcome!</para></note>'>
-<!ENTITY krusaderui-rc-text '<para>If you install a CVS or beta version and if &krusader; was previously
-         installed on your computer, then you should delete the <filename>krusaderui.rc</filename> file
-         in your home directory to activate the new menu entries
-   <prompt>$</prompt> <userinput><command>rm</command> <option>~/.kde/share/apps/krusader/krusaderui.rc</option></userinput>
-         , click <link linkend="faqi_krusaderui_rc">here</link> for more info.</para>'>
-
-<!ENTITY gpl-lnk '<link linkend="credits">&GNU; General Public License (GPL)</link>'>
-
 
 
 
