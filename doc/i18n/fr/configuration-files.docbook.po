@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: configuration-files.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2008-08-03 20:04+0000\n"
+"POT-Creation-Date: 2009-04-08 16:30+0000\n"
 "PO-Revision-Date: 2008-11-04 22:11+0100\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
@@ -32,8 +32,12 @@ msgstr "<primary>Fichiers de configuration</primary>"
 #. Tag: para
 #: configuration-files.docbook:26
 #, no-c-format
-msgid "This appendix gives an overview of the configuration files used by &krusader;."
-msgstr "Cet appendice donne un aperçu des fichiers de configuration utilisés par &krusader;."
+msgid ""
+"This appendix gives an overview of the configuration files used by "
+"&krusader;."
+msgstr ""
+"Cet appendice donne un aperçu des fichiers de configuration utilisés par "
+"&krusader;."
 
 #. Tag: emphasis
 #: configuration-files.docbook:29
@@ -44,14 +48,24 @@ msgstr "krusaderui.rc"
 #. Tag: para
 #: configuration-files.docbook:31
 #, no-c-format
-msgid "This file stores the users toolbar settings and the menu structure. Tip: read also the <link linkend=\"faqi_krusaderui_rc\">krusaderui.rc &FAQ;</link>."
-msgstr "Ces fichiers stockent la configuration de la barre d'outils de l'utilisateur et la structure du menu. Astuce : lisez aussi la <link linkend=\"faqi_krusaderui_rc\">&FAQ; krusaderui.rc </link>."
+msgid ""
+"This file stores the users toolbar settings and the menu structure. Tip: "
+"read also the <link linkend=\"faqi_krusaderui_rc\">krusaderui.rc &FAQ;</"
+"link>."
+msgstr ""
+"Ces fichiers stockent la configuration de la barre d'outils de l'utilisateur "
+"et la structure du menu. Astuce : lisez aussi la <link linkend="
+"\"faqi_krusaderui_rc\">&FAQ; krusaderui.rc </link>."
 
 #. Tag: para
 #: configuration-files.docbook:35
 #, no-c-format
-msgid "Location: <filename>$KDEDIR/share/apps/krusader/krusaderui.rc</filename> or <filename> ~/.kde/share/apps/krusader/krusaderui.rc</filename>"
-msgstr "Emplacement : <filename>$KDEDIR/share/apps/krusader/krusaderui.rc</filename> ou <filename> ~/.kde/share/apps/krusader/krusaderui.rc</filename>"
+msgid ""
+"Location: <filename>$KDEDIR/share/apps/krusader/krusaderui.rc</filename> or "
+"<filename> ~/.kde/share/apps/krusader/krusaderui.rc</filename>"
+msgstr ""
+"Emplacement : <filename>$KDEDIR/share/apps/krusader/krusaderui.rc</filename> "
+"ou <filename> ~/.kde/share/apps/krusader/krusaderui.rc</filename>"
 
 #. Tag: emphasis
 #: configuration-files.docbook:40
@@ -229,15 +243,22 @@ msgstr "krbookmarks.xml"
 
 #. Tag: para
 #: configuration-files.docbook:124
-#, no-c-format
-msgid "This file stores the &krusader; bookmarks and uses the &xbel-url; standard."
-msgstr "Ce fichier stocke les signets de &krusader; et utilise le standard &xbel-url;."
+#, fuzzy, no-c-format
+msgid ""
+"This file stores the &krusader; bookmarks and uses the <ulink url=\"http://"
+"grail.sourceforge.net/info/xbel.html\">XBEL standard</ulink> standard."
+msgstr ""
+"Ce fichier stocke les signets de &krusader; et utilise le standard &xbel-"
+"url;."
 
 #. Tag: para
 #: configuration-files.docbook:126
 #, no-c-format
-msgid "Location: <filename> ~/.kde/share/apps/krusader/krbookmarks.xml</filename>"
-msgstr "Emplacement : <filename> ~/.kde/share/apps/krusader/krbookmarks.xml</filename>"
+msgid ""
+"Location: <filename> ~/.kde/share/apps/krusader/krbookmarks.xml</filename>"
+msgstr ""
+"Emplacement : <filename> ~/.kde/share/apps/krusader/krbookmarks.xml</"
+"filename>"
 
 #. Tag: emphasis
 #: configuration-files.docbook:130
@@ -247,15 +268,23 @@ msgstr "useractions.xml"
 
 #. Tag: para
 #: configuration-files.docbook:132
-#, no-c-format
-msgid "This file stores the &useractions-lnk; configuration. The file structure is documented in doxygen-headers of UserActionXML."
-msgstr "Ce fichier stocke la configuration de &useractions-lnk;. La structure du fichier est documenté dans les en-têtes de doxygen du fichier UserActionXML."
+#, fuzzy, no-c-format
+msgid ""
+"This file stores the <link linkend=\"useractions\">UserActions</link> "
+"configuration. The file structure is documented in doxygen-headers of "
+"UserActionXML."
+msgstr ""
+"Ce fichier stocke la configuration de &useractions-lnk;. La structure du "
+"fichier est documenté dans les en-têtes de doxygen du fichier UserActionXML."
 
 #. Tag: para
 #: configuration-files.docbook:135
 #, no-c-format
-msgid "Location: <filename> ~/.kde/share/apps/krusader/useractions.xml</filename>"
-msgstr "Emplacement : <filename> ~/.kde/share/apps/krusader/useractions.xml</filename>"
+msgid ""
+"Location: <filename> ~/.kde/share/apps/krusader/useractions.xml</filename>"
+msgstr ""
+"Emplacement : <filename> ~/.kde/share/apps/krusader/useractions.xml</"
+"filename>"
 
 #. Tag: emphasis
 #: configuration-files.docbook:139
@@ -266,14 +295,23 @@ msgstr "useraction-examples.xml"
 #. Tag: para
 #: configuration-files.docbook:141
 #, no-c-format
-msgid "This is the default User-Actions provided by us. The file-structure is documented in doxygen-headers of UserActionXML."
-msgstr "Ceci est le fichier Actions Utilisateur par défaut fournit par notre équipe. La structure du fichier est documenté dans les en-têtes de doxygen dans le fichier UserActionXML."
+msgid ""
+"This is the default User-Actions provided by us. The file-structure is "
+"documented in doxygen-headers of UserActionXML."
+msgstr ""
+"Ceci est le fichier Actions Utilisateur par défaut fournit par notre équipe. "
+"La structure du fichier est documenté dans les en-têtes de doxygen dans le "
+"fichier UserActionXML."
 
 #. Tag: para
 #: configuration-files.docbook:144
 #, no-c-format
-msgid "Location: <filename> $KDEDIR/share/apps/krusader/useraction-examples.xml</filename>"
-msgstr "Emplacement : <filename> $KDEDIR/share/apps/krusader/useraction-examples.xml</filename>"
+msgid ""
+"Location: <filename> $KDEDIR/share/apps/krusader/useraction-examples.xml</"
+"filename>"
+msgstr ""
+"Emplacement : <filename> $KDEDIR/share/apps/krusader/useraction-examples."
+"xml</filename>"
 
 #. Tag: emphasis
 #: configuration-files.docbook:148
@@ -284,14 +322,22 @@ msgstr "foo.keymap"
 #. Tag: para
 #: configuration-files.docbook:150
 #, no-c-format
-msgid "Is an ini file that holds a <link linkend=\"configure-shortcuts\">Key-binding profile</link>. Until &krusader;-1.70.0 this was a binary file. &krusader; is backwards compatible for importing this legacy binary format."
-msgstr "Est un fichier ini qui prend en charge un <link linkend=\"configure-shortcuts\">profil de raccourcis</link>. Jusqu'à &krusader 1.70.0, c'était un fichier binaire. &krusader; assure la compatibilité descendante pour l'importation de ce fichier binaire."
+msgid ""
+"Is an ini file that holds a <link linkend=\"configure-shortcuts\">Key-"
+"binding profile</link>. Until &krusader;-1.70.0 this was a binary file. "
+"&krusader; is backwards compatible for importing this legacy binary format."
+msgstr ""
+"Est un fichier ini qui prend en charge un <link linkend=\"configure-shortcuts"
+"\">profil de raccourcis</link>. Jusqu'à &krusader 1.70.0, c'était un fichier "
+"binaire. &krusader; assure la compatibilité descendante pour l'importation "
+"de ce fichier binaire."
 
 #. Tag: para
 #: configuration-files.docbook:155
 #, no-c-format
 msgid "Location: <filename> $KDEDIR/share/apps/krusader/foo.keymap</filename>"
-msgstr "Emplacement : <filename> $KDEDIR/share/apps/krusader/foo.keymap</filename>"
+msgstr ""
+"Emplacement : <filename> $KDEDIR/share/apps/krusader/foo.keymap</filename>"
 
 #. Tag: emphasis
 #: configuration-files.docbook:159
@@ -302,12 +348,16 @@ msgstr "foo.color"
 #. Tag: para
 #: configuration-files.docbook:161
 #, no-c-format
-msgid "This is a binary file that holds the <link linkend=\"konfig-color\">Color Scheme</link>."
-msgstr "Ceci est le fichier binaire qui prend en charge le <link linkend=\"konfig-color\">schéma de couleur</link>."
+msgid ""
+"This is a binary file that holds the <link linkend=\"konfig-color\">Color "
+"Scheme</link>."
+msgstr ""
+"Ceci est le fichier binaire qui prend en charge le <link linkend=\"konfig-"
+"color\">schéma de couleur</link>."
 
 #. Tag: para
 #: configuration-files.docbook:163
 #, no-c-format
 msgid "Location: <filename>$KDEDIR/share/apps/krusader/foo.color</filename>"
-msgstr "Emplacement : <filename>$KDEDIR/share/apps/krusader/foo.color</filename>"
-
+msgstr ""
+"Emplacement : <filename>$KDEDIR/share/apps/krusader/foo.color</filename>"

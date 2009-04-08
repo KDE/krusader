@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: locate.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2008-12-25 20:04+0000\n"
+"POT-Creation-Date: 2009-04-08 16:30+0000\n"
 "PO-Revision-Date: 2009-03-26 09:12+0100\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
@@ -31,9 +31,33 @@ msgstr "Locate"
 
 #. Tag: para
 #: locate.docbook:6
-#, no-c-format
-msgid "&krusader; has a &GUI; front end for the <command>locate</command> command (findutils). Locate is used for fast file searching not from a directory but a database. The package contains two files, <command>locate</command> and <command>updatedb</command>. Updatedb goes through the local file system and stores the file entries in the database. <command>cron</command> often calls <command>updatedb</command> every night (set with Kcron). Choose <emphasis role=\"bold\"> <menuchoice> <guimenu>Commands</guimenu> <guimenuitem>Locate</guimenuitem> </menuchoice> </emphasis>or <keycombo action=\"simul\">&Ctrl; <keycap>L</keycap></keycombo> to start this feature. <link linkend=\"konfig-advanced\">Konfigurator</link> can set additional arguments for <command>updatedb</command>."
-msgstr "&krusader; a une interface graphique pour la commande <command>locate</command> (findutils). Locate est utilisé pour la recherche rapide de fichiers non depuis un dossier mais d'une base de données. Le paquetage contient deux fichiers. <command>locate</command> et <command>updatedb</command>. Updatedb recherche dans le système de fichiers local et stocke les entrées de fichiers dans la base de données. <command>cron</command> appelle souvent <command>updatedb</command> la nuit (défini avec Kcron). Choisissez <emphasis role=\"bold\"> <menuchoice> <guimenu>Outils</guimenu> <guimenuitem>Localiser...</guimenuitem> </menuchoice> </emphasis>ou <keycombo action=\"simul\">&Ctrl;&Maj;<keycap>L</keycap></keycombo> pour démarrer cette fonctionnalité. <link linkend=\"konfig-advanced\">Konfigurator</link> peut définir les arguments additionnels pour <command>updatedb</command>."
+#, fuzzy, no-c-format
+msgid ""
+"&krusader; has a &GUI; front end for the <command>locate</command> command "
+"(findutils). Locate is used for fast file searching not from a directory but "
+"a database. The package contains two files, <command>locate</command> and "
+"<command>updatedb</command>. Updatedb goes through the local file system and "
+"stores the file entries in the database. <command>cron</command> often calls "
+"<command>updatedb</command> every night (set with Kcron). Choose <emphasis "
+"role=\"bold\"> <menuchoice> <guimenu>Tools</guimenu> <guimenuitem>Locate</"
+"guimenuitem> </menuchoice> </emphasis>or <keycombo action=\"simul\">&Ctrl;"
+"&Shift; <keycap>L</keycap></keycombo> to start this feature. <link linkend="
+"\"konfig-advanced\">Konfigurator</link> can set additional arguments for "
+"<command>updatedb</command>."
+msgstr ""
+"&krusader; a une interface graphique pour la commande <command>locate</"
+"command> (findutils). Locate est utilisé pour la recherche rapide de "
+"fichiers non depuis un dossier mais d'une base de données. Le paquetage "
+"contient deux fichiers. <command>locate</command> et <command>updatedb</"
+"command>. Updatedb recherche dans le système de fichiers local et stocke les "
+"entrées de fichiers dans la base de données. <command>cron</command> appelle "
+"souvent <command>updatedb</command> la nuit (défini avec Kcron). Choisissez "
+"<emphasis role=\"bold\"> <menuchoice> <guimenu>Outils</guimenu> "
+"<guimenuitem>Localiser...</guimenuitem> </menuchoice> </emphasis>ou "
+"<keycombo action=\"simul\">&Ctrl;&Maj;<keycap>L</keycap></keycombo> pour "
+"démarrer cette fonctionnalité. <link linkend=\"konfig-advanced"
+"\">Konfigurator</link> peut définir les arguments additionnels pour "
+"<command>updatedb</command>."
 
 #. Tag: para
 #: locate.docbook:27
@@ -44,14 +68,28 @@ msgstr "Options des cases à cocher"
 #. Tag: para
 #: locate.docbook:30
 #, no-c-format
-msgid "<guilabel>Show only the existing files</guilabel>: if the database contains entries which no longer exist any more (deleted, moved since the last <command>updatedb</command>), <command>locate</command> does not list them. It checks the existence of each file before the listing in the results window (slow)."
-msgstr "<guilabel>Afficher seulement les fichiers existants</guilabel> : si la base de données contient des entrées qui n'existent plus du tout (supprimées, déplacées depuis la dernière <command>updatedb</command>), <command>locate</command> ne va pas les lister. Le programme vérifie l'existence de chaque fichier avant de les lister dans la fenêtre de résultats (lent)."
+msgid ""
+"<guilabel>Show only the existing files</guilabel>: if the database contains "
+"entries which no longer exist any more (deleted, moved since the last "
+"<command>updatedb</command>), <command>locate</command> does not list them. "
+"It checks the existence of each file before the listing in the results "
+"window (slow)."
+msgstr ""
+"<guilabel>Afficher seulement les fichiers existants</guilabel> : si la base "
+"de données contient des entrées qui n'existent plus du tout (supprimées, "
+"déplacées depuis la dernière <command>updatedb</command>), <command>locate</"
+"command> ne va pas les lister. Le programme vérifie l'existence de chaque "
+"fichier avant de les lister dans la fenêtre de résultats (lent)."
 
 #. Tag: para
 #: locate.docbook:40
 #, no-c-format
-msgid "<guilabel>Case Sensitive</guilabel>: unchecking it allows lower and upper case search."
-msgstr "<guilabel>Sensible à la casse</guilabel> : si non cochée, cela permet la recherche en minuscule et majuscule."
+msgid ""
+"<guilabel>Case Sensitive</guilabel>: unchecking it allows lower and upper "
+"case search."
+msgstr ""
+"<guilabel>Sensible à la casse</guilabel> : si non cochée, cela permet la "
+"recherche en minuscule et majuscule."
 
 #. Tag: para
 #: locate.docbook:45
@@ -62,8 +100,13 @@ msgstr "Boutons d'actions"
 #. Tag: para
 #: locate.docbook:48
 #, no-c-format
-msgid "<guibutton>Locate</guibutton>: executes <command>locate <replaceable>foo foo</replaceable></command> and places its output into the results window."
-msgstr "<guibutton>Localiser</guibutton> : exécute <command>locate <replaceable>toto toto</replaceable></command> et place le résultat dans la fenêtre de résultats."
+msgid ""
+"<guibutton>Locate</guibutton>: executes <command>locate <replaceable>foo "
+"foo</replaceable></command> and places its output into the results window."
+msgstr ""
+"<guibutton>Localiser</guibutton> : exécute <command>locate <replaceable>toto "
+"toto</replaceable></command> et place le résultat dans la fenêtre de "
+"résultats."
 
 #. Tag: para
 #: locate.docbook:55
@@ -74,8 +117,13 @@ msgstr "<guibutton>Arrêter</guibutton> : termine le processus de localisation.
 #. Tag: para
 #: locate.docbook:60
 #, no-c-format
-msgid "<guibutton>UpdateDB</guibutton>: starts <command>updatedb</command> for updating the locate database after entering the root password."
-msgstr "<guibutton>Mise à jour de la DB</guibutton> : démarre <command>updatedb</command> pour la mise à jour de la base de données locale après avoir saisi le mot de passe superutilisateur."
+msgid ""
+"<guibutton>UpdateDB</guibutton>: starts <command>updatedb</command> for "
+"updating the locate database after entering the root password."
+msgstr ""
+"<guibutton>Mise à jour de la DB</guibutton> : démarre <command>updatedb</"
+"command> pour la mise à jour de la base de données locale après avoir saisi "
+"le mot de passe superutilisateur."
 
 #. Tag: para
 #: locate.docbook:66
@@ -92,8 +140,12 @@ msgstr "Fenêtre de résultats"
 #. Tag: para
 #: locate.docbook:74
 #, no-c-format
-msgid "Double-click on an item: steps to its directory, makes the item visible and closes the locate dialog."
-msgstr "Double-cliquer sur un élément : se rend dans ce dossier, affiche l'élément et ferme la boîte de dialogue de localisation."
+msgid ""
+"Double-click on an item: steps to its directory, makes the item visible and "
+"closes the locate dialog."
+msgstr ""
+"Double-cliquer sur un élément : se rend dans ce dossier, affiche l'élément "
+"et ferme la boîte de dialogue de localisation."
 
 #. Tag: para
 #: locate.docbook:78
@@ -116,24 +168,40 @@ msgstr "<keycap>F4</keycap> : édite l'élément courant."
 #. Tag: para
 #: locate.docbook:89
 #, no-c-format
-msgid "<keycombo action=\"simul\">&Ctrl; <keycap>f</keycap></keycombo>: finds files in the results window."
-msgstr "<keycombo action=\"simul\">&Ctrl; <keycap>F</keycap></keycombo> : recherche les fichiers dans la fenêtre de résultats."
+msgid ""
+"<keycombo action=\"simul\">&Ctrl; <keycap>f</keycap></keycombo>: finds files "
+"in the results window."
+msgstr ""
+"<keycombo action=\"simul\">&Ctrl; <keycap>F</keycap></keycombo> : recherche "
+"les fichiers dans la fenêtre de résultats."
 
 #. Tag: para
 #: locate.docbook:95
 #, no-c-format
-msgid "<keycombo action=\"simul\">&Ctrl; <keycap>n</keycap></keycombo>: shows the next search result."
-msgstr "<keycombo action=\"simul\">&Ctrl; <keycap>N</keycap></keycombo> : affiche les résultats suivants."
+msgid ""
+"<keycombo action=\"simul\">&Ctrl; <keycap>n</keycap></keycombo>: shows the "
+"next search result."
+msgstr ""
+"<keycombo action=\"simul\">&Ctrl; <keycap>N</keycap></keycombo> : affiche "
+"les résultats suivants."
 
 #. Tag: para
 #: locate.docbook:101
 #, no-c-format
-msgid "<keycombo action=\"simul\">&Ctrl; <keycap>p</keycap></keycombo>: shows the previous search result."
-msgstr "<keycombo action=\"simul\">&Ctrl; <keycap>P</keycap></keycombo> : affiche les résultats précédents."
+msgid ""
+"<keycombo action=\"simul\">&Ctrl; <keycap>p</keycap></keycombo>: shows the "
+"previous search result."
+msgstr ""
+"<keycombo action=\"simul\">&Ctrl; <keycap>P</keycap></keycombo> : affiche "
+"les résultats précédents."
 
 #. Tag: para
 #: locate.docbook:109
 #, no-c-format
-msgid "The results window supports dragging items to other windows and copy to clipboard (<keycombo action=\"simul\">&Ctrl;<keycap>c</keycap></keycombo>)."
-msgstr "La fenêtre de résultats gère les éléments par glissement vers d'autres fenêtres et copie dans le presse-papiers (<keycombo action=\"simul\">&Ctrl;<keycap>C</keycap></keycombo>)."
-
+msgid ""
+"The results window supports dragging items to other windows and copy to "
+"clipboard (<keycombo action=\"simul\">&Ctrl;<keycap>c</keycap></keycombo>)."
+msgstr ""
+"La fenêtre de résultats gère les éléments par glissement vers d'autres "
+"fenêtres et copie dans le presse-papiers (<keycombo action=\"simul\">&Ctrl;"
+"<keycap>C</keycap></keycombo>)."

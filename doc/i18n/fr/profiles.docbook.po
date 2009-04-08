@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: profiles.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2008-12-25 20:04+0000\n"
+"POT-Creation-Date: 2009-04-08 16:30+0000\n"
 "PO-Revision-Date: 2009-03-26 09:20+0100\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
@@ -32,8 +32,16 @@ msgstr "<primary>Profils</primary>"
 #. Tag: para
 #: profiles.docbook:6
 #, no-c-format
-msgid "With profiles you can save and restore your favorite settings. Several features support profiles, you can have &eg; different panel profiles (work, home, remote connections, &etc;), search profiles, synchroniser profiles, &etc;"
-msgstr "Avec les profils vous pouvez enregistrer et restaurer votre configuration favorite. De nombreuses fonctionnalités gèrent les profils, vous pouvez avoir &pex; des profils de panneaux différents (travail, maison, connexions distantes, &etc;), profils de recherche, profils de synchronisation, &etc;"
+msgid ""
+"With profiles you can save and restore your favorite settings. Several "
+"features support profiles, you can have &eg; different panel profiles (work, "
+"home, remote connections, &etc;), search profiles, synchroniser profiles, "
+"&etc;"
+msgstr ""
+"Avec les profils vous pouvez enregistrer et restaurer votre configuration "
+"favorite. De nombreuses fonctionnalités gèrent les profils, vous pouvez "
+"avoir &pex; des profils de panneaux différents (travail, maison, connexions "
+"distantes, &etc;), profils de recherche, profils de synchronisation, &etc;"
 
 #. Tag: title
 #: profiles.docbook:12
@@ -43,9 +51,29 @@ msgstr "Profils de panneau"
 
 #. Tag: para
 #: profiles.docbook:13
-#, no-c-format
-msgid "A panel profile contains the following: all the tab paths (left or right), the current tab (left of right) and the active panel (left or right). All this information is stored in the &krusaderrc-lnk; file. You can have several panel profiles, &eg; file management, FTP management, home, work, &etc; The panel profile can be <link linkend=\"c_panel_profiles\">saved and restored</link> in the <guimenu>Commands menu</guimenu>. The <link linkend=\"konfig-startup\">default startup profile</link> will be used when starting &krusader;, but you can override it with a <link linkend=\"starting-krusader\">command-line option</link>."
-msgstr "Un profil de panneau contient les éléments suivants : tous les emplacements des onglets (gauche ou droite), l'onglet courant (gauche ou droite) et le panneau actif (gauche ou droite). Toutes ces informations sont stockées dans le fichier &krusaderrc-lnk;. Vous pouvez avoir plusieurs profils de panneau, &pex; un gestionnaire de fichiers, un gestionnaire FTP, votre dossier personnel, travail, &etc; Le profil de panneau peut être <link linkend=\"c_panel_profiles\">enregistré et restauré</link> dans le menu de <guimenu>Fenêtre</guimenu>. Le <link linkend=\"konfig-startup\">profil de démarrage par défaut</link> sera utilisé au démarrage de &krusader;, mais vous pouvez l'écraser avec une <link linkend=\"starting-krusader\">option en ligne de commande</link>."
+#, fuzzy, no-c-format
+msgid ""
+"A panel profile contains the following: all the tab paths (left or right), "
+"the current tab (left of right) and the active panel (left or right). All "
+"this information is stored in the <link linkend=\"config_files\">krusaderrc</"
+"link> file. You can have several panel profiles, &eg; file management, FTP "
+"management, home, work, &etc; The panel profile can be <link linkend="
+"\"c_panel_profiles\">saved and restored</link> in the <guimenu>Window menu</"
+"guimenu>. The <link linkend=\"konfig-startup\">default startup profile</"
+"link> will be used when starting &krusader;, but you can override it with a "
+"<link linkend=\"starting-krusader\">command-line option</link>."
+msgstr ""
+"Un profil de panneau contient les éléments suivants : tous les emplacements "
+"des onglets (gauche ou droite), l'onglet courant (gauche ou droite) et le "
+"panneau actif (gauche ou droite). Toutes ces informations sont stockées dans "
+"le fichier &krusaderrc-lnk;. Vous pouvez avoir plusieurs profils de panneau, "
+"&pex; un gestionnaire de fichiers, un gestionnaire FTP, votre dossier "
+"personnel, travail, &etc; Le profil de panneau peut être <link linkend="
+"\"c_panel_profiles\">enregistré et restauré</link> dans le menu de "
+"<guimenu>Fenêtre</guimenu>. Le <link linkend=\"konfig-startup\">profil de "
+"démarrage par défaut</link> sera utilisé au démarrage de &krusader;, mais "
+"vous pouvez l'écraser avec une <link linkend=\"starting-krusader\">option en "
+"ligne de commande</link>."
 
 #. Tag: title
 #: profiles.docbook:30
@@ -55,9 +83,16 @@ msgstr "Profils de couleur"
 
 #. Tag: para
 #: profiles.docbook:31
-#, no-c-format
-msgid "Colormaps can be saved and restored with <link linkend=\"konfig-color\">Color Profiles</link>. &krusader; Color maps are available at &kde-files-url;."
-msgstr "Le schéma des couleurs peut être enregistré et restauré avec les <link linkend=\"konfig-color\">profils de couleurs</link>. Le schéma des couleurs de &krusader; est disponible sur &kde-files-url;."
+#, fuzzy, no-c-format
+msgid ""
+"Colormaps can be saved and restored with <link linkend=\"konfig-color"
+"\">Color Profiles</link>. &krusader; Color maps are available at <ulink url="
+"\"http://www.kde-files.org/index.php?xcontentmode=660x661x662x663\">kde-"
+"files.org</ulink>."
+msgstr ""
+"Le schéma des couleurs peut être enregistré et restauré avec les <link "
+"linkend=\"konfig-color\">profils de couleurs</link>. Le schéma des couleurs "
+"de &krusader; est disponible sur &kde-files-url;."
 
 #. Tag: title
 #: profiles.docbook:37
@@ -67,9 +102,16 @@ msgstr "Profils des raccourcis clavier"
 
 #. Tag: para
 #: profiles.docbook:38
-#, no-c-format
-msgid "Keymaps can be saved and restored with <link linkend=\"configure-shortcuts\">Key-binding Profiles</link>. &krusader; Keymaps are available at &kde-files-url;."
-msgstr "Les raccourcis clavier peuvent être enregistrés et restaurés avec <link linkend=\"configure-shortcuts\">les profils de raccourcis clavier</link>. Les raccourcis clavier de &krusader; sont disponibles sur &kde-files-url;."
+#, fuzzy, no-c-format
+msgid ""
+"Keymaps can be saved and restored with <link linkend=\"configure-shortcuts"
+"\">Key-binding Profiles</link>. &krusader; Keymaps are available at <ulink "
+"url=\"http://www.kde-files.org/index.php?xcontentmode=660x661x662x663\">kde-"
+"files.org</ulink>."
+msgstr ""
+"Les raccourcis clavier peuvent être enregistrés et restaurés avec <link "
+"linkend=\"configure-shortcuts\">les profils de raccourcis clavier</link>. "
+"Les raccourcis clavier de &krusader; sont disponibles sur &kde-files-url;."
 
 #. Tag: title
 #: profiles.docbook:44
@@ -80,8 +122,15 @@ msgstr "Profils de recherche"
 #. Tag: para
 #: profiles.docbook:45
 #, no-c-format
-msgid "If you regularly perform the same search operation, you can save the search settings (&eg; include files, exclude files, &etc;) in a <link linkend=\"krusearcher\">Search Profile</link>."
-msgstr "Si vous lancer régulièrement une même opération de recherche, vous pouvez enregistrer les paramètres de recherche (&pex; fichiers inclus, fichiers exclus, &etc;) dans un <link linkend=\"krusearcher\">profile de recherche</link>."
+msgid ""
+"If you regularly perform the same search operation, you can save the search "
+"settings (&eg; include files, exclude files, &etc;) in a <link linkend="
+"\"krusearcher\">Search Profile</link>."
+msgstr ""
+"Si vous lancer régulièrement une même opération de recherche, vous pouvez "
+"enregistrer les paramètres de recherche (&pex; fichiers inclus, fichiers "
+"exclus, &etc;) dans un <link linkend=\"krusearcher\">profile de recherche</"
+"link>."
 
 #. Tag: title
 #: profiles.docbook:51
@@ -92,6 +141,11 @@ msgstr "Profils de synchronisation"
 #. Tag: para
 #: profiles.docbook:52
 #, no-c-format
-msgid "If you regularly perform the same synchronize operation, you can save the synchronize settings in a <link linkend=\"synchronizer\">Synchronizer Profile</link>."
-msgstr "Si vous lancer régulièrement une opération de synchronisation, vous pouvez enregistrer les paramètres de synchronisation dans un <link linkend=\"synchronizer\">profil de synchronisation</link>."
-
+msgid ""
+"If you regularly perform the same synchronize operation, you can save the "
+"synchronize settings in a <link linkend=\"synchronizer\">Synchronizer "
+"Profile</link>."
+msgstr ""
+"Si vous lancer régulièrement une opération de synchronisation, vous pouvez "
+"enregistrer les paramètres de synchronisation dans un <link linkend="
+"\"synchronizer\">profil de synchronisation</link>."
