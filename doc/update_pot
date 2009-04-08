@@ -43,7 +43,7 @@ for FILENAME in $(ls *.docbook);do
     xml2pot ${FILENAME} > ${FILENAME}.pot
     # modify pot header with perl seach/replace function
     perl -p -i -e 's/# SOME DESCRIPTIVE TITLE./# Translation of '${FILENAME}' to LANGUAGE
-# Copyright (C) 2006, Krusader Krew
+# Copyright (C) 2006-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package/g' ${FILENAME}.pot
     perl -p -i -e 's/Project-Id-Version: PACKAGE VERSION/Project-Id-Version: Krusader-doc-'$VERSION' '$DATENOW'/g' ${FILENAME}.pot
     perl -p -i -e 's/Report-Msgid-Bugs-To: http:\/\/bugs.kde.org/Report-Msgid-Bugs-To:  <frank_schoolmeesters\@yahoo.com>/g' ${FILENAME}.pot
