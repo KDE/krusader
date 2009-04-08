@@ -1,14 +1,14 @@
 # Translation of glossary.docbook to LANGUAGE
-# Copyright (C) 2006-2008, Krusader Krew
+# Copyright (C) 2006-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0-beta2 2008-12-25\n"
+"Project-Id-Version: Krusader-doc-2.0.0 2009-04-08\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2008-12-25 20:04+0000\n"
+"POT-Creation-Date: 2009-04-08 16:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -79,7 +79,7 @@ msgstr ""
 #. Tag: para
 #: glossary.docbook:77
 #, no-c-format
-msgid "This is a binary file format that is used by <ulink url=\"http://en.wikipedia.org/wiki/Debian\"> &debian;</ulink> and &debian;-based distributions. It is a suffix of a installation file specifically built for these distributions; e.g. <filename>krusader_1.70.1-1_amd64.deb</filename>. Simply described it is a special archive containing all the program files and their proposed location on the system."
+msgid "This is a binary file format that is used by <ulink url=\"http://en.wikipedia.org/wiki/Debian\"> <trademark class=\"registered\">Debian</trademark></ulink> and <trademark class=\"registered\">Debian</trademark>-based distributions. It is a suffix of a installation file specifically built for these distributions; e.g. <filename>krusader_1.70.1-1_amd64.deb</filename>. Simply described it is a special archive containing all the program files and their proposed location on the system."
 msgstr ""
 
 #. Tag: acronym
@@ -103,7 +103,7 @@ msgstr ""
 #. Tag: para
 #: glossary.docbook:106
 #, no-c-format
-msgid "<link linkend=\"faq\">Frequently Asked Questions</link>; a document where questions that arise many times are answered. If you have a question to the developers of &krusader;, you should always have a look at the &faq-lnk; first."
+msgid "<link linkend=\"faq\">Frequently Asked Questions</link>; a document where questions that arise many times are answered. If you have a question to the developers of &krusader;, you should always have a look at the <link linkend=\"faq\">FAQ</link> first."
 msgstr ""
 
 #. Tag: glossterm
@@ -175,7 +175,7 @@ msgstr ""
 #. Tag: para
 #: glossary.docbook:170
 #, no-c-format
-msgid "All features of &krusader; are available through the menubar, but you can also bind (link) a certain key combination to that function. You will find, however, that using the <link linkend=\"keyboard-commands\">keyboard</link> is remakably faster than using the menubar or <link linkend=\"gloss-gui\">GUI</link>. <link linkend=\"keyboard-commands\">Keyboard usage</link> is an important tool for <link linkend=\"gloss-ofm\">Orthodox File Managers</link>. &krusader; comes with several predefined &keybindigs-lnk;."
+msgid "All features of &krusader; are available through the menubar, but you can also bind (link) a certain key combination to that function. You will find, however, that using the <link linkend=\"keyboard-commands\">keyboard</link> is remakably faster than using the menubar or <link linkend=\"gloss-gui\">GUI</link>. <link linkend=\"keyboard-commands\">Keyboard usage</link> is an important tool for <link linkend=\"gloss-ofm\">Orthodox File Managers</link>. &krusader; comes with several predefined <link linkend=\"key_bindings\">Key-Bindings</link>."
 msgstr ""
 
 #. Tag: glossterm
@@ -187,7 +187,7 @@ msgstr ""
 #. Tag: para
 #: glossary.docbook:187
 #, no-c-format
-msgid "<ulink url=\"http://en.wikipedia.org/wiki/KPart\"> Kpart</ulink>; KParts is the name of the component framework for the &kde; desktop environment. KParts are analogous to Bonobo components in &gnome-url;, both of which are based on the same concepts as &Microsoft;'s Object Linking and Embedding. e.g. if you use &krusader;'s viewer to view a PDF file, KPDF wil be launched inside &krusader;'s viewer."
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/KPart\"> Kpart</ulink>; KParts is the name of the component framework for the &kde; desktop environment. KParts are analogous to Bonobo components in <ulink url=\"http://www.gnome.org\"><application>GNOME</application></ulink>, both of which are based on the same concepts as &Microsoft;'s Object Linking and Embedding. e.g. if you use &krusader;'s viewer to view a PDF file, KPDF wil be launched inside &krusader;'s viewer."
 msgstr ""
 
 #. Tag: glossterm
@@ -199,7 +199,7 @@ msgstr ""
 #. Tag: para
 #: glossary.docbook:203
 #, no-c-format
-msgid "<ulink url=\"http://en.wikipedia.org/wiki/Kioslave\">KDE Input/Output</ulink>; also known as &kioslaves1-url; is part of the &kde; architecture. It provides access to files, web sites and other resources through a single consistent API."
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/Kioslave\">KDE Input/Output</ulink>; also known as KIO Slaves is part of the &kde; architecture. It provides access to files, web sites and other resources through a single consistent API."
 msgstr ""
 
 #. Tag: glossterm
@@ -295,7 +295,7 @@ msgstr ""
 #. Tag: para
 #: glossary.docbook:306
 #, no-c-format
-msgid "<ulink url=\"http://en.wikipedia.org/wiki/URL\">Universal Resource Locater</ulink>; a universal resource locater is the technical term for what is commonly referred to as a websites address. Examples of URLs include <ulink url=\"http://krusader.sourceforge.net\"> http://krusader.sourceforge.net</ulink> and &remote-connections-lnk;."
+msgid "<ulink url=\"http://en.wikipedia.org/wiki/URL\">Universal Resource Locater</ulink>; a universal resource locater is the technical term for what is commonly referred to as a websites address. Examples of URLs include <ulink url=\"http://krusader.sourceforge.net\"> http://krusader.sourceforge.net</ulink> and <link linkend=\"remote-connections\">Remote Connections</link>."
 msgstr ""
 
 #. Tag: acronym
@@ -307,7 +307,7 @@ msgstr ""
 #. Tag: para
 #: glossary.docbook:321
 #, no-c-format
-msgid "&vfs-lnk; is a basic <link linkend=\"features\">OFM feature</link>, this an abstracted layer over all kinds of archived information (ZIP files, FTP servers, TAR archives, NFS filesystems, SAMBA shares, ISO cd/dvd images, RPM catalogs, etc.), which allows the user to access all the information in these divergent types of file systems transparently - just like entering an ordinary sub-directory! &krusader; supports several &vfs-lnk;."
+msgid "<link linkend=\"vfs\">Virtual file systems (VFS)</link> is a basic <link linkend=\"features\">OFM feature</link>, this an abstracted layer over all kinds of archived information (ZIP files, FTP servers, TAR archives, NFS filesystems, SAMBA shares, ISO cd/dvd images, RPM catalogs, etc.), which allows the user to access all the information in these divergent types of file systems transparently - just like entering an ordinary sub-directory! &krusader; supports several <link linkend=\"vfs\">Virtual file systems (VFS)</link>."
 msgstr ""
 
 #. Tag: glossterm

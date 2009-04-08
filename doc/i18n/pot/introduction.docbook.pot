@@ -1,14 +1,14 @@
 # Translation of introduction.docbook to LANGUAGE
-# Copyright (C) 2006-2008, Krusader Krew
+# Copyright (C) 2006-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0-beta2 2008-12-25\n"
+"Project-Id-Version: Krusader-doc-2.0.0 2009-04-08\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2008-12-25 20:04+0000\n"
+"POT-Creation-Date: 2009-04-08 16:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -37,13 +37,13 @@ msgstr ""
 #. Tag: para
 #: introduction.docbook:7
 #, no-c-format
-msgid "&krusader; is a simple, easy, powerful, twin-panel file manager (commander-style) for &kde; and other *nix desktops, similar to &mc; or &tcmd;. It provides all the file management features you could possibly want."
+msgid "&krusader; is a simple, easy, powerful, twin-panel file manager (commander-style) for &kde; and other *nix desktops, similar to <application>Midnight Commander</application> or <trademark class=\"copyright\">Total Commander</trademark>. It provides all the file management features you could possibly want."
 msgstr ""
 
 #. Tag: para
 #: introduction.docbook:12
 #, no-c-format
-msgid "Krusader also includes extensive archive handling, mounted file system support, &FTP;, advanced search module, viewer/editor, directory synchronization, file content comparisons, powerful batch renaming and much, much more. &krusader; supports archive formats: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip and handles other &kioslaves1-url; such as smb:// or fish://."
+msgid "Krusader also includes extensive archive handling, mounted file system support, &FTP;, advanced search module, viewer/editor, directory synchronization, file content comparisons, powerful batch renaming and much, much more. &krusader; supports archive formats: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip and handles other KIO Slaves such as smb:// or fish://."
 msgstr ""
 
 #. Tag: para
@@ -73,7 +73,7 @@ msgstr ""
 #. Tag: para
 #: introduction.docbook:44
 #, no-c-format
-msgid "More &kru-screenshots-url; can be viewed on our website."
+msgid "More <ulink url=\"http://www.krusader.org/scr.php\">&krusader; Screenshots</ulink> can be viewed on our website."
 msgstr ""
 
 #. Tag: title
@@ -97,31 +97,31 @@ msgstr ""
 #. Tag: para
 #: introduction.docbook:62
 #, no-c-format
-msgid "&krusader; has many useful features. It is fast, and handles &archives-lnk; transparently. In addition, &krusader; streamlines many complex file management tasks, reducing fatigue, errors, and distraction. Basically, &krusader; provides all the helpful features you have come to expect from other quality file management tools like &mc; and &tcmd;. &krusader; is designed to integrate seamlessly with the &kde; Desktop, the desktop of choice for many programmers, network engineers, and other power users of &Linux;. With &krusader; even novice users can quickly access the power, convenience, and feature rich capabilities of the &kde; Desktop. &krusader; is a free open-source project, and it is released under the &gpl-lnk;, although the developers still retain the copyright for the project and its name, and manage the project's continuing evolution."
+msgid "&krusader; has many useful features. It is fast, and handles <link linkend=\"archives\">archives</link> transparently. In addition, &krusader; streamlines many complex file management tasks, reducing fatigue, errors, and distraction. Basically, &krusader; provides all the helpful features you have come to expect from other quality file management tools like <application>Midnight Commander</application> and <trademark class=\"copyright\">Total Commander</trademark>. &krusader; is designed to integrate seamlessly with the &kde; Desktop, the desktop of choice for many programmers, network engineers, and other power users of &Linux;. With &krusader; even novice users can quickly access the power, convenience, and feature rich capabilities of the &kde; Desktop. &krusader; is a free open-source project, and it is released under the <link linkend=\"credits\">&GNU; General Public License (GPL)</link>, although the developers still retain the copyright for the project and its name, and manage the project's continuing evolution."
 msgstr ""
 
 #. Tag: para
 #: introduction.docbook:79
 #, no-c-format
-msgid "The &krusader; Project mission is to create an \"all-in-one\" file manager, which will do all the ordinary things you would expect of it, and more. Since the principle behind &krusader; is based on the &ofm-url;, dual-pane filemanagers (&mc;, &nc;, &etc;), it is certain that &krusader; is able to handle all the standard Copy, Move, Delete, &etc; file operations."
+msgid "The &krusader; Project mission is to create an \"all-in-one\" file manager, which will do all the ordinary things you would expect of it, and more. Since the principle behind &krusader; is based on the <ulink url=\"http://www.softpanorama.org/OFM/index.shtml\">Orthodox File Manager (OFM)</ulink>, dual-pane filemanagers (<application>Midnight Commander</application>, <trademark class=\"registered\">Norton Commander</trademark>, &etc;), it is certain that &krusader; is able to handle all the standard Copy, Move, Delete, &etc; file operations."
 msgstr ""
 
 #. Tag: para
 #: introduction.docbook:87
 #, no-c-format
-msgid "From the start, virtual file systems became the main focus. &vfs-lnk; are an abstracted layer over all kinds of archived information (ZIP files, &FTP; servers, TAR archives, NFS filesystems, SAMBA shares, ISO cd/dvd images, RPM catalogs, &etc;), which allow the user to access all the information in these divergent types of file systems transparently - just like entering an ordinary sub-directory. Files can then be copied or moved around (except ISO,rpm,tar.gz) between these data sources/containers effortlessly. &krusader; currently supports VFSs for all popular and some specialized types of archives (ace, arj, bzip2, gzip, iso, lha, rar, tar, zip and 7-zip), configuration packages (rpm, deb), and traditional remote file system types (&FTP;, NFS, Samba, FISH, SFTP)."
+msgid "From the start, virtual file systems became the main focus. <link linkend=\"vfs\">Virtual file systems (VFS)</link> are an abstracted layer over all kinds of archived information (ZIP files, &FTP; servers, TAR archives, NFS filesystems, SAMBA shares, ISO cd/dvd images, RPM catalogs, &etc;), which allow the user to access all the information in these divergent types of file systems transparently - just like entering an ordinary sub-directory. Files can then be copied or moved around (except ISO,rpm,tar.gz) between these data sources/containers effortlessly. &krusader; currently supports VFSs for all popular and some specialized types of archives (ace, arj, bzip2, gzip, iso, lha, rar, tar, zip and 7-zip), configuration packages (rpm, deb), and traditional remote file system types (&FTP;, NFS, Samba, FISH, SFTP)."
 msgstr ""
 
 #. Tag: para
 #: introduction.docbook:101
 #, no-c-format
-msgid "&krusader; also includes a built-in Mount-Manager &mountman-lnk;, which enables you to mount or unmount file systems of all types with a click of a mouse. The user is able to obtain usage and other property information easily, in a consistent and understandable format in seconds. Ease and consistency is the goal."
+msgid "&krusader; also includes a built-in Mount-Manager <link linkend=\"mount-man\">MountMan</link>, which enables you to mount or unmount file systems of all types with a click of a mouse. The user is able to obtain usage and other property information easily, in a consistent and understandable format in seconds. Ease and consistency is the goal."
 msgstr ""
 
 #. Tag: para
 #: introduction.docbook:107
 #, no-c-format
-msgid "A &bookmark-manager-lnk; for local files/remote &URL;s and an &advanced-search-module-lnk; is also included to speed the locating of needed files. &krusader; also allows the user to configure Toolbars in order to provide a wide variety of additional functionality, such as File Comparison (several user selectable methods available), Multiple File Rename, and standard Terminal windows."
+msgid "A <link linkend=\"bookman\">Bookmark-Manager</link> for local files/remote &URL;s and an <link linkend=\"krusearcher\">Advanced Search module</link> is also included to speed the locating of needed files. &krusader; also allows the user to configure Toolbars in order to provide a wide variety of additional functionality, such as File Comparison (several user selectable methods available), Multiple File Rename, and standard Terminal windows."
 msgstr ""
 
 #. Tag: para
@@ -133,7 +133,7 @@ msgstr ""
 #. Tag: para
 #: introduction.docbook:129
 #, no-c-format
-msgid "New extensibility is provided by the flexible &useractions-lnk;, a &krusader; innovation that allows unlimited additional custom functionality to be added to suit the specific needs of users. We are planning to develop more modules in the near future, thereby enhancing &krusader;. Information on what is proposed, approved, or remains to be completed can be found in the &todoforum-url;."
+msgid "New extensibility is provided by the flexible <link linkend=\"useractions\">UserActions</link>, a &krusader; innovation that allows unlimited additional custom functionality to be added to suit the specific needs of users. We are planning to develop more modules in the near future, thereby enhancing &krusader;. Information on what is proposed, approved, or remains to be completed can be found in the <ulink url=\"http://www.krusader.org/phpBB/viewforum.php?f=10\">ToDo Forum</ulink>."
 msgstr ""
 
 #. Tag: para

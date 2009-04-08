@@ -1,14 +1,14 @@
 # Translation of viewer-editor.docbook to LANGUAGE
-# Copyright (C) 2006-2008, Krusader Krew
+# Copyright (C) 2006-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0-beta2 2008-12-25\n"
+"Project-Id-Version: Krusader-doc-2.0.0 2009-04-08\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2008-12-25 20:04+0000\n"
+"POT-Creation-Date: 2009-04-08 16:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -37,7 +37,7 @@ msgstr ""
 #. Tag: para
 #: viewer-editor.docbook:8
 #, no-c-format
-msgid "Pressing &Enter; on a selected file <emphasis>opens the file with the associated application</emphasis>. The editor-viewer is tabbed, configure it on the &konfiggereral-lnk;"
+msgid "Pressing &Enter; on a selected file <emphasis>opens the file with the associated application</emphasis>. The editor-viewer is tabbed, configure it on the <link linkend=\"konfig-general\">Konfigurator General page</link>"
 msgstr ""
 
 #. Tag: title
@@ -55,7 +55,7 @@ msgstr ""
 #. Tag: para
 #: viewer-editor.docbook:22
 #, no-c-format
-msgid "The viewer works as follows: <itemizedlist> <listitem> <para>It tries to view the file with the <emphasis>'Generic viewer'.</emphasis></para> </listitem> <listitem> <para>When the file type (mime type) cannot be determined or when a file (&eg; a binary) doesn't have an associated action, it disables the 'generic viewer'. The file is treated as a text file, which is the <emphasis>'Text viewer'</emphasis>.</para> </listitem> <listitem> <para>The user can change in the <link linkend=\"kredit_krviewer_menu\">KrViewer menu</link> between: 'Generic viewer' (if available), 'Text viewer' and <emphasis>'Hex viewer'</emphasis>.</para> </listitem> </itemizedlist>You can configure the default viewer mode on the &konfiggereral-lnk; ."
+msgid "The viewer works as follows: <itemizedlist> <listitem> <para>It tries to view the file with the <emphasis>'Generic viewer'.</emphasis></para> </listitem> <listitem> <para>When the file type (mime type) cannot be determined or when a file (&eg; a binary) doesn't have an associated action, it disables the 'generic viewer'. The file is treated as a text file, which is the <emphasis>'Text viewer'</emphasis>.</para> </listitem> <listitem> <para>The user can change in the <link linkend=\"kredit_krviewer_menu\">KrViewer menu</link> between: 'Generic viewer' (if available), 'Text viewer' and <emphasis>'Hex viewer'</emphasis>.</para> </listitem> </itemizedlist>You can configure the default viewer mode on the <link linkend=\"konfig-general\">Konfigurator General page</link> ."
 msgstr ""
 
 #. Tag: para
@@ -121,7 +121,7 @@ msgstr ""
 #. Tag: para
 #: viewer-editor.docbook:118
 #, no-c-format
-msgid "The embedded viewer is not written by us, it is supplied via &kde; (libs) and &kioslaves1-url; We cannot and do not want to change it, usings these libraries reduces the amount of written code. So we do not have to reinvent the wheel ;-)"
+msgid "The embedded viewer is not written by us, it is supplied via &kde; (libs) and KIO Slaves We cannot and do not want to change it, usings these libraries reduces the amount of written code. So we do not have to reinvent the wheel ;-)"
 msgstr ""
 
 #. Tag: title
@@ -139,7 +139,7 @@ msgstr ""
 #. Tag: para
 #: viewer-editor.docbook:131
 #, no-c-format
-msgid "&krusader;'s internal editor has almost everything that you can expect of an editor. Editing is similar to viewing but with the <keycap>F4</keycap> key. The default editor is &krusader;'s internal editor. You can change the default editor in the &konfiggereral-lnk;, if you prefer to use an external editor."
+msgid "&krusader;'s internal editor has almost everything that you can expect of an editor. Editing is similar to viewing but with the <keycap>F4</keycap> key. The default editor is &krusader;'s internal editor. You can change the default editor in the <link linkend=\"konfig-general\">Konfigurator General page</link>, if you prefer to use an external editor."
 msgstr ""
 
 #. Tag: para
@@ -685,7 +685,7 @@ msgstr ""
 #. Tag: para
 #: viewer-editor.docbook:894
 #, no-c-format
-msgid "Indentation configuration: Automatically indent, use Spaces to indent, &Tab; Keys indent, &Backspace; key unindents, keep indent profile, keep extra spaces."
+msgid "Indentation configuration: Automatically indent, use Spaces to indent, &Tab; Keys indent, <keycap>Backspace</keycap> key unindents, keep indent profile, keep extra spaces."
 msgstr ""
 
 #. Tag: menuchoice

@@ -1,4 +1,4 @@
-# Translation of using-krusader.docbook to LANGUAGE
+# Translation of basic-functions.docbook to LANGUAGE
 # Copyright (C) 2006-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Krusader-doc-2.0.0 2009-04-08\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2009-04-08 16:02+0000\n"
+"POT-Creation-Date: 2009-04-08 16:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -17,403 +17,403 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Tag: title
-#: using-krusader.docbook:22
+#: basic-functions.docbook:22
 #, no-c-format
 msgid "Basic Functions"
 msgstr ""
 
 #. Tag: title
-#: using-krusader.docbook:24
+#: basic-functions.docbook:24
 #, no-c-format
 msgid "Controls"
 msgstr ""
 
 #. Tag: title
-#: using-krusader.docbook:26
+#: basic-functions.docbook:26
 #, no-c-format
 msgid "General"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:27
+#: basic-functions.docbook:27
 #, no-c-format
 msgid "This is a rather short but important section that will go into the details of controlling &krusader;. This section does not try to cover all the various key combinations for two reasons: <orderedlist numeration=\"arabic\"> <listitem> <para>there are just too many of them</para> </listitem> <listitem> <para>most of &krusader; actions are configurable in the <link linkend=\"konfig-looknfeel\">Konfigurator Look &amp; Feel page</link></para> </listitem> </orderedlist>We will only mention the most important keyboard shortcuts with the default configuration, but keep in mind that most of the <link linkend=\"key_bindings\">Key-Bindings</link> are configurable. If you find that you use a certain command a lot and want to know the shortcut for this command, or you want to change this command shortcut, then check out the <link linkend=\"key_bindings\">Key-Bindings</link> tab at the <link linkend=\"konfig-looknfeel\">Konfigurator Look &amp; Feel page</link>."
 msgstr ""
 
 #. Tag: title
-#: using-krusader.docbook:50
+#: basic-functions.docbook:50
 #, no-c-format
 msgid "Moving Around"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:51
+#: basic-functions.docbook:51
 #, no-c-format
 msgid "By Moving Around we mean the transfer of the keyboard and mouse focus between the different parts of the &krusader; <link linkend=\"mainwindow\">main window</link>. The focus can be in one of five places: the Left or Right Panel, the Menu Bar, the Command Line or the Terminal Emulator. The panel that has the focus is called the Active Panel. An Active Panel will remain active until the other panel receives the focus (&ie;: if the Left Panel was active and you clicked on the Command Line - then the Left Panel remains the Active Panel). You must deliberately change which panel is active."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:63
+#: basic-functions.docbook:63
 #, no-c-format
 msgid "The most common way to transfer the focus to a specific panel is to use the mouse to click on that panel. But you should be aware of the following:"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:68
+#: basic-functions.docbook:68
 #, no-c-format
 msgid "Clicking on the Toolbar, the FN keys bar or the Status Bar does *not* change the focus."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:79
+#: basic-functions.docbook:79
 #, no-c-format
 msgid "Pushing the <guibutton>\"History\"</guibutton> or the <guibutton>\"Run in Terminal\"</guibutton> buttons in the Command Line will not transfer the focus, so you have to click inside the Input Line."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:86
+#: basic-functions.docbook:86
 #, no-c-format
 msgid "When you choose a menu, the Menu Bar will become focused. It remains focused until you choose a command - the focus returns to the previous owner."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:91
+#: basic-functions.docbook:91
 #, no-c-format
 msgid "There are, of course, ways to use the keyboard to change the focus:"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:95
+#: basic-functions.docbook:95
 #, no-c-format
 msgid "The &Tab; Key will switch panels, if one of the panels has the focus or rotate between all the commands in a menu, if the Menu Bar is active."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:100
+#: basic-functions.docbook:100
 #, no-c-format
 msgid "The <keycombo action=\"simul\">&Ctrl; <keycap>Down Arrow</keycap></keycombo> will take you from the Active Panel to the Command Line or Terminal Emulator, and the <keycombo action=\"simul\">&Ctrl; <keycap>Up Arrow</keycap></keycombo> will take you back from the Command Line to the Active Panel."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:110
+#: basic-functions.docbook:110
 #, no-c-format
 msgid "The &Esc; Key will make the Menu Bar return the focus, if it has it, to the previous Active Panel."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:115
+#: basic-functions.docbook:115
 #, no-c-format
 msgid "If you happen to be inside the Terminal Emulator, you can use the &Tab; Key, or the mouse, to navigate to an Active Panel."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:120
+#: basic-functions.docbook:120
 #, no-c-format
 msgid "Pressing <keycombo action=\"simul\">&Alt; <keycap>\"Underlined Letter\"</keycap></keycombo> from the Menu Bar will open that menu (unless this key combination is a \"Reserved Key\", used by one of &krusader;'s actions)."
 msgstr ""
 
 #. Tag: title
-#: using-krusader.docbook:130
+#: basic-functions.docbook:130
 #, no-c-format
 msgid "Selecting"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:132
+#: basic-functions.docbook:132
 #, no-c-format
 msgid "&krusader; offers 4 <link linkend=\"mouse_selection_modes\">Mouse Selection Modes</link>, only &krusader;'s Mouse Selection Mode is explained here."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:137
+#: basic-functions.docbook:137
 #, no-c-format
 msgid "Selecting is a skill you need to master in order to get the most out of &krusader;. Since you can not select files in the Quick View Panel, and the Tree Panel only lets you select one directory at a time, this paragraph mainly explains how to select files in the List Panel filelist."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:143
+#: basic-functions.docbook:143
 #, no-c-format
 msgid "Moving the cursor is easy. Left-clicking on a file or directory (referred to herein as \"elements\" meaning files AND directories) will select it. Here are some useful pointers that will make &krusader; even easier to use (assuming you are using &krusader;'s Mouse Selection Mode):"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:150
+#: basic-functions.docbook:150
 #, no-c-format
 msgid "The <keycap>SPACE</keycap> and <keycap>Insert</keycap> key will toggle the selection of the file under the cursor without affecting the selection of other files/directories, the cursor will go one position down."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:158
+#: basic-functions.docbook:158
 #, no-c-format
 msgid "Pressing the <keycap>SPACE</keycap> on a Directory under the cursor will <link linkend=\"calculate\">calculate occupied space</link> without affecting the selection of other files/directories."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:166
+#: basic-functions.docbook:166
 #, no-c-format
 msgid "<keycap>Left Clicking</keycap> on a file will select, or unselect, all previously selected files."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:171
+#: basic-functions.docbook:171
 #, no-c-format
 msgid "<keycombo action=\"simul\">&Ctrl; <keycap>Left Clicking</keycap></keycombo> will toggle the selection of the file under the cursor without affecting the selection of other files/directories."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:178
+#: basic-functions.docbook:178
 #, no-c-format
 msgid "<keycombo action=\"simul\">&Shift; <keycap>Left Clicking</keycap></keycombo> will select all the elements between the previous cursor location and the new one."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:185
+#: basic-functions.docbook:185
 #, no-c-format
 msgid "<keycombo action=\"simul\">&Shift; <keycap>Home</keycap></keycombo> selects everything above the cursor (and deselects everything below the cursor, if selected)."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:192
+#: basic-functions.docbook:192
 #, no-c-format
 msgid "<keycombo action=\"simul\">&Shift; <keycap>End</keycap></keycombo> selects everything below the cursor (and unselects everything above the cursor, if selected)."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:199
+#: basic-functions.docbook:199
 #, no-c-format
 msgid "The \"..\" entry is not selectable."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:202
+#: basic-functions.docbook:202
 #, no-c-format
 msgid "The <link linkend=\"edit-menu\">Edit menu</link> can offer more ways to select your files."
 msgstr ""
 
 #. Tag: title
-#: using-krusader.docbook:208
+#: basic-functions.docbook:208
 #, no-c-format
 msgid "Executing Commands"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:209
+#: basic-functions.docbook:209
 #, no-c-format
 msgid "There is not a lot to say here, all you need to do is select some files (if you do not, &krusader; will operate on the file(s) or directory(s) that have the focus), choose a <link linkend=\"menu-commands\">Command</link> from the Menu Bar or use a Keyboard Shortcut (or the Right Click Menu) and the selected Command executes. See also <link linkend=\"executing_files\">Executing Files</link>."
 msgstr ""
 
 #. Tag: title
-#: using-krusader.docbook:220
+#: basic-functions.docbook:220
 #, no-c-format
 msgid "Quicksearch"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:222
+#: basic-functions.docbook:222
 #, no-c-format
 msgid "This feature will do a quick search for the file name in the Active List Panel."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:224
+#: basic-functions.docbook:224
 #, no-c-format
 msgid "Type <keycap>foo</keycap>(one character) to do a quick search in the Active List Panel for a file beginning with \"foo\". A small quick search dialog box will open below the Active List Panel. Type the first few characters of the desired file name (more than one character allowed), the cursor will jump to that filename (if it exists), &eg; type \"ab\" to search for a file which begins with \"ab\". The <keycap>Up/Down Arrow</keycap>will jump to the next or previous match. &Esc; will close the quick search line. The cursor will stay on the last file found."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:237
+#: basic-functions.docbook:237
 #, no-c-format
 msgid "If you press <keycombo action=\"simul\">&Alt; <keycap>foo</keycap></keycombo>, the key binding shortcut will be executed. If there is no configured key binding, the remaining letter <keycap>foo</keycap>will be used for the quick search."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:245
+#: basic-functions.docbook:245
 #, no-c-format
 msgid "Use <link linkend=\"konfig-looknfeel\">Konfigurator Look &amp; Feel page</link> to change from the default configuration."
 msgstr ""
 
 #. Tag: title
-#: using-krusader.docbook:249
+#: basic-functions.docbook:249
 #, no-c-format
 msgid "Context Menu"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:250
+#: basic-functions.docbook:250
 #, no-c-format
 msgid "&krusader; has many Context menus that allow you to do fast operations with the mouse, usually a right-click will open the Context menu (depending on your <link linkend=\"mouse_selection_modes\">Mouse Selection Modes</link> settings). This list gives an overview of the most important context menus. Use them to discover the available commands."
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:258
+#: basic-functions.docbook:258
 #, no-c-format
 msgid "<link linkend=\"mainwindow\">Main Toolbar</link> (orientation, text position, icon size)"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:262
+#: basic-functions.docbook:262
 #, no-c-format
 msgid "<link linkend=\"list_panel\">List Panel</link> on a file or directory"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:266
+#: basic-functions.docbook:266
 #, no-c-format
 msgid "<link linkend=\"cmdline\">Command Line</link> (undo, paste, text completion...)"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:270
+#: basic-functions.docbook:270
 #, no-c-format
 msgid "<link linkend=\"termemu\">Terminal emulator</link> (send signal, font, history...)"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:274
+#: basic-functions.docbook:274
 #, no-c-format
 msgid "<link linkend=\"folder-tabs\">Folder tabs</link> (new, duplicate, close)"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:278
+#: basic-functions.docbook:278
 #, no-c-format
 msgid "<link linkend=\"krusearcher\">KruSearcher</link> Search results file list (F3 View, F4 Edit)"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:283
+#: basic-functions.docbook:283
 #, no-c-format
 msgid "<link linkend=\"mount-man\">MountMan</link> (unmount, format...)"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:287
+#: basic-functions.docbook:287
 #, no-c-format
 msgid "<link linkend=\"synchronizer\">Synchronize Directories</link> File List"
 msgstr ""
 
 #. Tag: link
-#: using-krusader.docbook:290
+#: basic-functions.docbook:290
 #, no-c-format
 msgid "UserActions"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:293
+#: basic-functions.docbook:293
 #, no-c-format
 msgid "&konqueror; Right-Click actions are shown in &krusader;"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:297
+#: basic-functions.docbook:297
 #, no-c-format
 msgid "Show/hide <link linkend=\"list_panel\">Column Headers</link>"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:301
+#: basic-functions.docbook:301
 #, no-c-format
 msgid "<link linkend=\"bookman\">Bookmarks</link> enable/disable permanent bookmarks"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:305
+#: basic-functions.docbook:305
 #, no-c-format
 msgid "<para>...</para>"
 msgstr ""
 
 #. Tag: title
-#: using-krusader.docbook:311
+#: basic-functions.docbook:311
 #, no-c-format
 msgid "Basic File Management"
 msgstr ""
 
 #. Tag: title
-#: using-krusader.docbook:313
+#: basic-functions.docbook:313
 #, no-c-format
 msgid "Executing Files"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:314
+#: basic-functions.docbook:314
 #, no-c-format
 msgid "You can only execute files in the Active List Panel. To <keycap>execute</keycap> a file just <keycap>(double-)click on it or press Enter</keycap> when it is under the list cursor. &krusader; will open it in the default application for this file type (picture, text file...) or the file will be executed (script, binary...). If you want to use <keycap>another application</keycap> to open the file, <keycap>Right-Click</keycap> on the file and go to the \"open with\" sub-menu which will offer more options. &krusader; is compatible with &kde; default file manager for all file types except archives that are opened inside the &krusader; panel and not in an external application. See <link linkend=\"konfig-archives\">the archives page in Konfigurator</link>for details."
 msgstr ""
 
 #. Tag: title
-#: using-krusader.docbook:332
+#: basic-functions.docbook:332
 #, no-c-format
 msgid "Copying and Moving"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:333
+#: basic-functions.docbook:333
 #, no-c-format
 msgid "To copy or move files/directories just select them and press <keycap>F5</keycap> to <keycap>copy</keycap> or <keycap>F6</keycap> to <keycap>move</keycap> them. If the <guimenuitem> Preserve attributes (only on local targets)</guimenuitem> option is checked, &krusader; will try to preserve all attributes (time, owner, group) of the local files according to the source depending on your permissions: <itemizedlist> <listitem> <para>User preserving if you are root</para> </listitem> <listitem> <para>Group preserving if you are root or member of the group</para> </listitem> <listitem> <para>Preserving the timestamp</para> </listitem> </itemizedlist>Using this option may slow down the copy/move process. A dialog will appear and allow you to choose the operation destination. The default destination is the other-panel browsed directory. If you enter a partial &URL;, &krusader; will use the current panel directory as the &URL; base."
 msgstr ""
 
 #. Tag: title
-#: using-krusader.docbook:363
+#: basic-functions.docbook:363
 #, no-c-format
 msgid "Queue manager"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:364
+#: basic-functions.docbook:364
 #, no-c-format
 msgid "Use <keycap>F5</keycap> (copy) or <keycap>F6</keycap> (move) and than <keycap>F2</keycap> to use it. Or the direct shortcuts: copy by queue <keycombo action=\"simul\">&Shift;<keycap>F5</keycap></keycombo> , move by queue <keycombo action=\"simul\">&Shift;<keycap>F6</keycap></keycombo> . Queueing is used for one-by-one copying. E.g. if you have a pen drive (which is slow), and you want to copy 40 files onto it, it's much better copying them one-by-one instead of starting to copy 40 files parallelly. That's why enqueuing is important. If you pack/unpack 40 files parallelly, you overload your computer, but adding them to a queue (which is not yet implemented into Krusader), is much more useful."
 msgstr ""
 
 #. Tag: title
-#: using-krusader.docbook:377
+#: basic-functions.docbook:377
 #, no-c-format
 msgid "Deleting"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:378
+#: basic-functions.docbook:378
 #, no-c-format
 msgid "Deleting files/directories is done by selecting them and pressing <keycap>F8</keycap> or <keycap>Delete</keycap>. By <link linkend=\"konfig-general\">default</link> it will be moved to &kde;'s Trash. You can open the KDE Trash with <filename>trash:/</filename> (\"kdebase3-runtime\" needs to be installed, otherwise the KDE trash protocol will not work). Phisically KDE Trash is located in <filename>~/.local/share/Trash/</filename> . <keycombo action=\"simul\">&Shift; <keycap>Delete</keycap></keycombo> will delete the file permanently. A dialog will ask for your confirmation and will warn you when deleting non-empty directories. Of course only operations that you are permitted to do by the Operating System will be performed - you will be notified otherwise. If you do not wish to see the confirmation dialogs, you can disable them in the <link linkend=\"konfig-advanced\">Konfigurator advanced tab</link>."
 msgstr ""
 
 #. Tag: title
-#: using-krusader.docbook:397
+#: basic-functions.docbook:397
 #, no-c-format
 msgid "Shred Files"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:398
+#: basic-functions.docbook:398
 #, no-c-format
 msgid "Shred was removed from KDE4 (and as consequence Krusader-2 for KDE4). The main reason is probably that shredding is filesystem dependent and even if you overwrite the file 100 times, it's not sure, that it'll be deleted from the disk finally. Quote from the kgpg posts: \"The shred feature has been removed from the KDE library. Kgpg will not support this feature anymore. Moderns file systems use journalisation. So the shred feature should be implemented in the file system. Not in kgpg.\" But you might use a proper shred <link linkend=\"useractions\">UserAction</link> for your filesystem. But keep in mind that if you want to be 100% shure that it's impossible that someone can read a deleted file, you need to destroy your harddrive hardware ..."
 msgstr ""
 
 #. Tag: title
-#: using-krusader.docbook:406
+#: basic-functions.docbook:406
 #, no-c-format
 msgid "Renaming Files, Creating Directories and Link Handling"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:408
+#: basic-functions.docbook:408
 #, no-c-format
 msgid "<keycap>Rename</keycap> the file under the cursor with the <keycap>F9</keycap> key or with two single mouse clicks. If only the file name needs to be renamed and not the extension, you can configure this in the <link linkend=\"konfig-looknfeel\">Konfigurator Look &amp; Feel page</link>. <keycap>Create a new directory</keycap> with the <keycap>F7</keycap> key. <keycap>Right-clicking on a regular file</keycap> will give you the <keycap>option \"New Symlink\"</keycap>. A dialog will prompt you to enter a symlink name. That name will point to the file/directory you Right-Clicked on. If the file you Right-Clicked on is a symlink, you will also be presented with the \"redirect link\" option that will allow you to change the link target."
 msgstr ""
 
 #. Tag: title
-#: using-krusader.docbook:426
+#: basic-functions.docbook:426
 #, no-c-format
 msgid "Viewing and Editing files"
 msgstr ""
 
 #. Tag: para
-#: using-krusader.docbook:427
+#: basic-functions.docbook:427
 #, no-c-format
 msgid "<link linkend=\"krviewer\">KrViewer</link> has a chapter of its own."
 msgstr ""
 
 #. Tag: chapter
-#: using-krusader.docbook:431
+#: basic-functions.docbook:431
 #, no-c-format
 msgid "&archives;"
 msgstr ""

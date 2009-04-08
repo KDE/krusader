@@ -1,14 +1,14 @@
 # Translation of remote-connections.docbook to LANGUAGE
-# Copyright (C) 2006-2008, Krusader Krew
+# Copyright (C) 2006-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0-beta2 2008-12-25\n"
+"Project-Id-Version: Krusader-doc-2.0.0 2009-04-08\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2008-12-25 20:04+0000\n"
+"POT-Creation-Date: 2009-04-08 16:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -31,7 +31,7 @@ msgstr ""
 #. Tag: para
 #: remote-connections.docbook:6
 #, no-c-format
-msgid "Remote connections are easily made by typing the &URL; in the <link linkend=\"list_panel\">Location Toolbar</link>; these are actually &kioslaves1-url;. Please note that the &krusader; panel does not support all &kioslaves2-url; &eg; <command>http://</command> will not work in the panel, but will work in the <link linkend=\"krviewer\">viewer</link>. Some examples:"
+msgid "Remote connections are easily made by typing the &URL; in the <link linkend=\"list_panel\">Location Toolbar</link>; these are actually KIO Slaves. Please note that the &krusader; panel does not support all KIO Slave &eg; <command>http://</command> will not work in the panel, but will work in the <link linkend=\"krviewer\">viewer</link>. Some examples:"
 msgstr ""
 
 #. Tag: userinput
@@ -85,7 +85,7 @@ msgstr ""
 #. Tag: para
 #: remote-connections.docbook:73
 #, no-c-format
-msgid "You can bookmark these &URL;'s, however, please read the <link linkend=\"bookman\">Bookman</link> section regarding <emphasis>securely save passwords</emphasis>. For connecting to multiple locations, bookmark these &URL;'s and open them one by one, or open them all together by using &panel-profiles-lnk;. To switch from one to another location, just open a &foldertabs-lnk; for each."
+msgid "You can bookmark these &URL;'s, however, please read the <link linkend=\"bookman\">Bookman</link> section regarding <emphasis>securely save passwords</emphasis>. For connecting to multiple locations, bookmark these &URL;'s and open them one by one, or open them all together by using <link linkend=\"panel_profiles\">Panel profiles</link>. To switch from one to another location, just open a <link linkend=\"folder-tabs\">Folder tabs</link> for each."
 msgstr ""
 
 #. Tag: para
@@ -103,7 +103,7 @@ msgstr ""
 #. Tag: para
 #: remote-connections.docbook:89
 #, no-c-format
-msgid "Select <emphasis role=\"bold\"> <menuchoice> <guimenu>Commands</guimenu> <guimenuitem>New Net Connection</guimenuitem> </menuchoice> </emphasis>which will pop-up a dialog that will ask for the remote site details. This dialog is handy if you are not used to type remote &URL;'s in the Location Toolbar. Leaving the password and user name fields empty will log you in as anonymous. NOTE: we are planning to rewrite this dialog window."
+msgid "Select <emphasis role=\"bold\"> <menuchoice> <guimenu>Tools</guimenu> <guimenuitem>New Net Connection</guimenuitem> </menuchoice> </emphasis>which will pop-up a dialog that will ask for the remote site details. This dialog is handy if you are not used to type remote &URL;'s in the Location Toolbar. Leaving the password and user name fields empty will log you in as anonymous. NOTE: we are planning to rewrite this dialog window."
 msgstr ""
 
 #. Tag: para
@@ -139,7 +139,7 @@ msgstr ""
 #. Tag: para
 #: remote-connections.docbook:124
 #, no-c-format
-msgid "To change the charset of the remote host use <emphasis role=\"bold\"> <menuchoice> <guimenu>Commands</guimenu> <guimenuitem>Select Remote Charset</guimenuitem> </menuchoice> </emphasis>."
+msgid "To change the charset of the remote host use <emphasis role=\"bold\"> <menuchoice> <guimenu>View</guimenu> <guimenuitem>Select Remote Charset</guimenuitem> </menuchoice> </emphasis>."
 msgstr ""
 
 #. Tag: para
@@ -151,19 +151,19 @@ msgstr ""
 #. Tag: para
 #: remote-connections.docbook:142
 #, no-c-format
-msgid "Manually: Add the disconnect button to the &main-toolbar-lnk; and click on it."
+msgid "Manually: Add the disconnect button to the <link linkend=\"mainwindow\">Main Toolbar</link> and click on it."
 msgstr ""
 
 #. Tag: para
 #: remote-connections.docbook:146
 #, no-c-format
-msgid "Automatically: Change the &URL; in the &location-toolbar-lnk; ."
+msgid "Automatically: Change the &URL; in the <link linkend=\"list_panel\">Location Toolbar</link> ."
 msgstr ""
 
 #. Tag: para
 #: remote-connections.docbook:151
 #, no-c-format
-msgid "&krusader; is a file manager that supports remote connections via &kioslaves1-url;, but if you are looking for even more advanced remote connections features, &eg; an advanced &FTP;-client we recommend you to use &eg; &kasablanca-url; or &kftpgrabber-url;."
+msgid "&krusader; is a file manager that supports remote connections via KIO Slaves, but if you are looking for even more advanced remote connections features, &eg; an advanced &FTP;-client we recommend you to use &eg; <ulink url=\"http://kasablanca.berlios.de/\">Kasablanca</ulink> or <ulink url=\"http://kftpgrabber.sourceforge.net/\"><application>Kftpgrabber</application></ulink>."
 msgstr ""
 
 #. Tag: title
@@ -187,7 +187,7 @@ msgstr ""
 #. Tag: para
 #: remote-connections.docbook:171
 #, no-c-format
-msgid "This works on a &debian; system, so it will work on &debian; and derivatives (&kubuntu; &etc;), though it should work on other Linuxes as well. We assume that you have <link linkend=\"gloss-ssh\">SSH</link> installed, configured and working on every machine on LAN you want to connect to/from. There are plenty of very good tutorials about <link linkend=\"gloss-ssh\">SSH</link> on the net, &eg; at <ulink url=\"http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch17_:_Secure_Remote_Logins_and_File_Copying\">linuxhomenetworking.com</ulink> or just google for it. We use the default <link linkend=\"gloss-ssh\">SSH</link> port (22) for this chapter. Remember to change it if you use different one. All modifications, editing &etc; must be done as root."
+msgid "This works on a <trademark class=\"registered\">Debian</trademark> system, so it will work on <trademark class=\"registered\">Debian</trademark> and derivatives (<trademark class=\"registered\">Kubuntu</trademark> &etc;), though it should work on other Linuxes as well. We assume that you have <link linkend=\"gloss-ssh\">SSH</link> installed, configured and working on every machine on LAN you want to connect to/from. There are plenty of very good tutorials about <link linkend=\"gloss-ssh\">SSH</link> on the net, &eg; at <ulink url=\"http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch17_:_Secure_Remote_Logins_and_File_Copying\">linuxhomenetworking.com</ulink> or just google for it. We use the default <link linkend=\"gloss-ssh\">SSH</link> port (22) for this chapter. Remember to change it if you use different one. All modifications, editing &etc; must be done as root."
 msgstr ""
 
 #. Tag: para

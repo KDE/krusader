@@ -1,14 +1,14 @@
 # Translation of bookmarks.docbook to LANGUAGE
-# Copyright (C) 2006-2008, Krusader Krew
+# Copyright (C) 2006-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0-beta2 2008-12-25\n"
+"Project-Id-Version: Krusader-doc-2.0.0 2009-04-08\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2008-12-25 20:04+0000\n"
+"POT-Creation-Date: 2009-04-08 16:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -91,7 +91,7 @@ msgstr ""
 #. Tag: para
 #: bookmarks.docbook:82
 #, no-c-format
-msgid "To use your bookmarks, click the <guibutton>Bookmark</guibutton> button and choose a bookmark. You may also use the &keybindigs-lnk; : <keycombo action=\"simul\">&Ctrl;&Shift; <keycap>d</keycap></keycombo> to bookmark the current item, <keycombo action=\"simul\">&Alt; <keycap>right/left arrow</keycap></keycombo> to <keycap>open right/left panel bookmarks list</keycap> and <keycombo action=\"simul\">&Ctrl; <keycap>d</keycap></keycombo> to open the bookmarks of the active panel. A &MMB; click on bookmarks opens them in a new <link linkend=\"folder-tabs\">Folder tab</link>."
+msgid "To use your bookmarks, click the <guibutton>Bookmark</guibutton> button and choose a bookmark. You may also use the <link linkend=\"key_bindings\">Key-Bindings</link> : <keycombo action=\"simul\">&Ctrl;&Shift; <keycap>d</keycap></keycombo> to bookmark the current item, <keycombo action=\"simul\">&Alt; <keycap>right/left arrow</keycap></keycombo> to <keycap>open right/left panel bookmarks list</keycap> and <keycombo action=\"simul\">&Ctrl; <keycap>d</keycap></keycombo> to open the bookmarks of the active panel. A &MMB; click on bookmarks opens them in a new <link linkend=\"folder-tabs\">Folder tab</link>."
 msgstr ""
 
 #. Tag: para
@@ -145,7 +145,7 @@ msgstr ""
 #. Tag: para
 #: bookmarks.docbook:135
 #, no-c-format
-msgid "The submenu <guilabel>Popular URL's</guilabel> holds persistent the most popular visited &URL;'s (local or remote). This submenu displays the top 15 popular URLs, sorted by ranking, so that the top &URL; is the most popular. This is easy for when you need to visit &URL;s often, but do not want to create &bookmarks-lnk;, it serves as a temporary bookmark list for the most visited links. <guilabel>Quicksearch Popular URL's</guilabel> is a fast way to browse/select the popular &URL;s:"
+msgid "The submenu <guilabel>Popular URL's</guilabel> holds persistent the most popular visited &URL;'s (local or remote). This submenu displays the top 15 popular URLs, sorted by ranking, so that the top &URL; is the most popular. This is easy for when you need to visit &URL;s often, but do not want to create <link linkend=\"bookman\">Bookmarks</link>, it serves as a temporary bookmark list for the most visited links. <guilabel>Quicksearch Popular URL's</guilabel> is a fast way to browse/select the popular &URL;s:"
 msgstr ""
 
 #. Tag: para
@@ -181,7 +181,7 @@ msgstr ""
 #. Tag: para
 #: bookmarks.docbook:170
 #, no-c-format
-msgid "These are hardcoded bookmarks to the top bookmark menu; there is no need for them to be saved to the file. With the &context-menu-lnk; you can enable/disable these permanent bookmarks. The following permanent bookmarks are available:"
+msgid "These are hardcoded bookmarks to the top bookmark menu; there is no need for them to be saved to the file. With the <link linkend=\"context-menu\">Context Menu</link> you can enable/disable these permanent bookmarks. The following permanent bookmarks are available:"
 msgstr ""
 
 #. Tag: para
@@ -199,7 +199,7 @@ msgstr ""
 #. Tag: para
 #: bookmarks.docbook:188
 #, no-c-format
-msgid "<guilabel>Virtual Filesystem</guilabel> &vfs-lnk; <filename>virt:/</filename> is not a virtual folder, but a container for &URL;'s from different file systems. It is used for &eg; the <guilabel>Feed to Listbox</guilabel> feature of the search module and the synchronizer. The location toolbar will display &eg; <filename>virt:/Search results 1</filename> or <filename>virt:/Synchronise results 1</filename>."
+msgid "<guilabel>Virtual Filesystem</guilabel> <link linkend=\"vfs\">Virtual file systems (VFS)</link> <filename>virt:/</filename> is not a virtual folder, but a container for &URL;'s from different file systems. It is used for &eg; the <guilabel>Feed to Listbox</guilabel> feature of the search module and the synchronizer. The location toolbar will display &eg; <filename>virt:/Search results 1</filename> or <filename>virt:/Synchronise results 1</filename>."
 msgstr ""
 
 #. Tag: para
@@ -217,25 +217,25 @@ msgstr ""
 #. Tag: para
 #: bookmarks.docbook:219
 #, no-c-format
-msgid "To edit and organize your bookmarks, by clicking the <guibutton>Bookmark</guibutton> button and selecting the <guimenuitem>Manage Bookmarks</guimenuitem>, &keditbookmarks; will be displayed. This is where you can edit/remove and rearrange the bookmarks. &keditbookmarks; (part of the kdebase package) is a bookmark editor for &konqueror;, &krusader; and other applications, which use the &xbel-url; standard for the bookmark format. The bookmarks are stored in <filename> ~/.kde/share/apps/krusader/krbookmarks.xml.</filename>"
+msgid "To edit and organize your bookmarks, by clicking the <guibutton>Bookmark</guibutton> button and selecting the <guimenuitem>Manage Bookmarks</guimenuitem>, <application>KeditBookmarks</application> will be displayed. This is where you can edit/remove and rearrange the bookmarks. <application>KeditBookmarks</application> (part of the kdebase package) is a bookmark editor for &konqueror;, &krusader; and other applications, which use the <ulink url=\"http://grail.sourceforge.net/info/xbel.html\">XBEL standard</ulink> standard for the bookmark format. The bookmarks are stored in <filename> ~/.kde/share/apps/krusader/krbookmarks.xml.</filename>"
 msgstr ""
 
 #. Tag: para
 #: bookmarks.docbook:231
 #, no-c-format
-msgid "You can import bookmarks from <application>IE</application>, <application>Opera</application>, <application>Galeon</application>, &kde;, <application>Mozilla</application>, &Netscape;. &keditbookmarks; is easy to use, however, if you need more information, please read the &keditbookmarks; or the &konqueror; handbook."
+msgid "You can import bookmarks from <application>IE</application>, <application>Opera</application>, <application>Galeon</application>, &kde;, <application>Mozilla</application>, &Netscape;. <application>KeditBookmarks</application> is easy to use, however, if you need more information, please read the <application>KeditBookmarks</application> or the &konqueror; handbook."
 msgstr ""
 
 #. Tag: title
 #: bookmarks.docbook:252
 #, no-c-format
-msgid "<title>&keditbookmarks; Bookmark Manager</title>"
+msgid "<title><application>KeditBookmarks</application> Bookmark Manager</title>"
 msgstr ""
 
 #. Tag: phrase
 #: bookmarks.docbook:258
 #, no-c-format
-msgid "<phrase>&keditbookmarks; Bookmark Manager</phrase>"
+msgid "<phrase><application>KeditBookmarks</application> Bookmark Manager</phrase>"
 msgstr ""
 
 #. Tag: title
@@ -247,24 +247,24 @@ msgstr ""
 #. Tag: para
 #: bookmarks.docbook:266
 #, no-c-format
-msgid "Bookmarks can be placed as buttons on the &main-toolbar-lnk; or the &actions-toolbar-lnk;. You can even make a key-binding for them:"
+msgid "Bookmarks can be placed as buttons on the <link linkend=\"mainwindow\">Main Toolbar</link> or the <link linkend=\"actions_toolbar\">Actions Toolbar</link>. You can even make a key-binding for them:"
 msgstr ""
 
 #. Tag: para
 #: bookmarks.docbook:272
 #, no-c-format
-msgid "Create your &bookmarks-lnk;."
+msgid "Create your <link linkend=\"bookman\">Bookmarks</link>."
 msgstr ""
 
 #. Tag: para
 #: bookmarks.docbook:275
 #, no-c-format
-msgid "If you want, create keybindings for the bookmarks in the <guilabel>Key-bindings</guilabel> section of the &konfiglookandfeel-lnk;."
+msgid "If you want, create keybindings for the bookmarks in the <guilabel>Key-bindings</guilabel> section of the <link linkend=\"konfig-looknfeel\">Konfigurator Look &amp; Feel page</link>."
 msgstr ""
 
 #. Tag: para
 #: bookmarks.docbook:281
 #, no-c-format
-msgid "Add your bookmarks as action buttons on the &main-toolbar-lnk; or the &actions-toolbar-lnk; with the <guilabel>Toolbar</guilabel> section of the &konfiglookandfeel-lnk;."
+msgid "Add your bookmarks as action buttons on the <link linkend=\"mainwindow\">Main Toolbar</link> or the <link linkend=\"actions_toolbar\">Actions Toolbar</link> with the <guilabel>Toolbar</guilabel> section of the <link linkend=\"konfig-looknfeel\">Konfigurator Look &amp; Feel page</link>."
 msgstr ""
 

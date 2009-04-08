@@ -1,14 +1,14 @@
 # Translation of help.docbook to LANGUAGE
-# Copyright (C) 2006-2008, Krusader Krew
+# Copyright (C) 2006-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0-beta2 2008-12-25\n"
+"Project-Id-Version: Krusader-doc-2.0.0 2009-04-08\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2008-12-25 20:04+0000\n"
+"POT-Creation-Date: 2009-04-08 16:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -31,7 +31,7 @@ msgstr ""
 #. Tag: para
 #: help.docbook:26
 #, no-c-format
-msgid "Here is your opportunity to &contribute-url; to the &krusader; project. There are things that need to be done, but can't be done by us. If you feel you can help, do not hesitate to contact us; every OpenSource can use some help. Please also check the &contribute-url; page on our website for more recent information. Thanks!"
+msgid "Here is your opportunity to <ulink url=\"http://www.krusader.org/help.php\">contribute</ulink> to the &krusader; project. There are things that need to be done, but can't be done by us. If you feel you can help, do not hesitate to contact us; every OpenSource can use some help. Please also check the <ulink url=\"http://www.krusader.org/help.php\">contribute</ulink> donate-url page on our website for more recent information. Thanks!"
 msgstr ""
 
 #. Tag: emphasis
@@ -55,13 +55,13 @@ msgstr ""
 #. Tag: para
 #: help.docbook:46
 #, no-c-format
-msgid "Please upload your favourite extensions at &kde-files-url;, so that they become available for the &krusader; community. Maybe they will be shipped by default with &krusader; at the next release :-)) It features <ulink url=\"http://www.kde-files.org/index.php?xcontentmode=660\"> Keymaps</ulink>, <ulink url=\"http://www.kde-files.org/index.php?xcontentmode=661\"> Colormaps</ulink>, <ulink url=\"http://www.kde-files.org/index.php?xcontentmode=662\"> User Actions</ulink>, <ulink url=\"http://www.kde-files.org/index.php?xcontentmode=663\"> JavaScript Extensions</ulink>."
+msgid "Please upload your favourite extensions at <ulink url=\"http://www.kde-files.org/index.php?xcontentmode=660x661x662x663\">kde-files.org</ulink>, so that they become available for the &krusader; community. Maybe they will be shipped by default with &krusader; at the next release :-)) It features <ulink url=\"http://www.kde-files.org/index.php?xcontentmode=660\"> Keymaps</ulink>, <ulink url=\"http://www.kde-files.org/index.php?xcontentmode=661\"> Colormaps</ulink>, <ulink url=\"http://www.kde-files.org/index.php?xcontentmode=662\"> User Actions</ulink>, <ulink url=\"http://www.kde-files.org/index.php?xcontentmode=663\"> JavaScript Extensions</ulink>."
 msgstr ""
 
 #. Tag: para
 #: help.docbook:59
 #, no-c-format
-msgid "User Actions can be discussed in our &useractionsforum-url;, please join!"
+msgid "User Actions can be discussed in our <ulink url=\"http://www.krusader.org/phpBB/viewforum.php?f=11\">UserActions Forum</ulink>, please join!"
 msgstr ""
 
 #. Tag: emphasis
@@ -85,7 +85,7 @@ msgstr ""
 #. Tag: para
 #: help.docbook:74
 #, no-c-format
-msgid "&krusader; is available in many languages, but usually several translations do need an update and translations to new languages are always welcome, please read the &i18n-page-url; . Even when there is already a translator for your native language, it is always helpful to have a second or third translator &eg; for proofreading. Sometimes the regular translator is not available when a translation update is needed (studies, holiday...). Please contact the translator/s for your native language; your help will be appreciated. Any translation (even partial translations) are accepted by the &krusader;-Krew at any time (feature freeze or not)."
+msgid "&krusader; is available in many languages, but usually several translations do need an update and translations to new languages are always welcome, please read the <ulink url=\"http://www.krusader.org/i18n.php\">i18n page</ulink> . Even when there is already a translator for your native language, it is always helpful to have a second or third translator &eg; for proofreading. Sometimes the regular translator is not available when a translation update is needed (studies, holiday...). Please contact the translator/s for your native language; your help will be appreciated. Any translation (even partial translations) are accepted by the &krusader;-Krew at any time (feature freeze or not)."
 msgstr ""
 
 #. Tag: emphasis
@@ -103,96 +103,78 @@ msgstr ""
 #. Tag: emphasis
 #: help.docbook:92
 #, no-c-format
-msgid "OpenUsability"
+msgid "Donations"
 msgstr ""
 
 #. Tag: para
 #: help.docbook:94
 #, no-c-format
-msgid "Using a program, understanding its interface and getting information out of it, is something that should always be clear in every application - no matter how advanced your understanding of operating systems is or how deep your computer literacy is. For that reason &krusader; asked to be included in the &openusability-url; project."
-msgstr ""
-
-#. Tag: para
-#: help.docbook:100
-#, no-c-format
-msgid "This project joins the software developers and usability experts in an attempt to check all parts of a user interface for the inappropriate entries. Its main goal is making user interfaces and dialogs understandable and friendly to every user. We need our users comments, your comments, to make things better. In case you find a part of the program's interface to be too complicated, please do help us correct it and make it better."
+msgid "Actually, we hadn't considered donations, until users asked us for a way to <ulink url=\"http://sourceforge.net/project/project_donations.php?group_id=6488\">Donate</ulink> to the project. &krusader; is, and always will be free, in all the terms of the GNU Public License."
 msgstr ""
 
 #. Tag: emphasis
-#: help.docbook:109
-#, no-c-format
-msgid "Donations"
-msgstr ""
-
-#. Tag: para
-#: help.docbook:111
-#, no-c-format
-msgid "Actually, we hadn't considered donations, until users asked us for a way to &donate-url; to the project. &krusader; is, and always will be free, in all the terms of the GNU Public License."
-msgstr ""
-
-#. Tag: emphasis
-#: help.docbook:116
+#: help.docbook:99
 #, no-c-format
 msgid "Packagers"
 msgstr ""
 
 #. Tag: para
-#: help.docbook:118
+#: help.docbook:101
 #, no-c-format
 msgid "We are always in need of packagers for different distro rpm's, deb's, etc. All help is welcome."
 msgstr ""
 
 #. Tag: emphasis
-#: help.docbook:121
+#: help.docbook:104
 #, no-c-format
 msgid "Users' feedback for the &krusader; &MacOS; X port"
 msgstr ""
 
 #. Tag: para
-#: help.docbook:124
+#: help.docbook:107
 #, no-c-format
-msgid "There is a &macosx-port-url; with the help of &fink-url; , the port is maintained by <ulink url=\"http://hritcu.wordpress.com/about/\">Catalin Hritcu</ulink>, all feedback is welcome."
+msgid "There is a <ulink url=\"http://pdb.finkproject.org/pdb/package.php/krusader\">&MacOS;-X port</ulink> with the help of <ulink url=\"http://www.finkproject.org/\">fink</ulink> , the port is maintained by <ulink url=\"http://hritcu.wordpress.com/about/\">Catalin Hritcu</ulink>, all feedback is welcome."
 msgstr ""
 
 #. Tag: emphasis
-#: help.docbook:130
+#: help.docbook:113
 #, no-c-format
 msgid "Porting &krusader; to &Windows;"
 msgstr ""
 
 #. Tag: para
-#: help.docbook:133
+#: help.docbook:116
 #, no-c-format
 msgid "&krusader;-2.x is ported to &Windows; since 18 June 2008. It needs &Qt; as and &kde;libs to run. All feedback is welcome."
 msgstr ""
 
 #. Tag: emphasis
-#: help.docbook:137
+#: help.docbook:120
 #, no-c-format
 msgid "<emphasis>FAQ</emphasis>"
 msgstr ""
 
 #. Tag: para
-#: help.docbook:139
+#: help.docbook:122
 #, no-c-format
-msgid "If you have a question that is missing in the &faq-lnk;, we would like to hear it."
+msgid "If you have a question that is missing in the <link linkend=\"faq\">FAQ</link>, we would like to hear it."
 msgstr ""
 
 #. Tag: emphasis
-#: help.docbook:142
+#: help.docbook:125
 #, no-c-format
 msgid "Others"
 msgstr ""
 
 #. Tag: para
-#: help.docbook:144
+#: help.docbook:127
 #, no-c-format
 msgid "<link linkend=\"faqg_wish\">Feedback</link>, <link linkend=\"faqg_bug_report\">Bug reports</link>, patches, &etc; are always welcome! An open source project's greatest strength is derived from getting user feedback."
 msgstr ""
 
 #. Tag: para
-#: help.docbook:149
+#: help.docbook:132
 #, no-c-format
-msgid "On some websites like &freshmeat-url; or &kde-apps-url; you can give a rate, if you like &krusader; go to one of these sites and rate &krusader;, thanks."
+msgid "On some websites like <ulink url=\"http://freshmeat.net/projects/krusader/\">freshmeat.net</ulink> or <ulink url=\"http://www.kde-apps.org/content/show.php?content=10214\">KDE-APPS.org</ulink> you can give a rate, if you like &krusader; go to one of these sites and rate &krusader;, thanks."
 msgstr ""
 

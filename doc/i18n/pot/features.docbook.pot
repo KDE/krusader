@@ -1,14 +1,14 @@
 # Translation of features.docbook to LANGUAGE
-# Copyright (C) 2006-2008, Krusader Krew
+# Copyright (C) 2006-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0-beta2 2008-12-25\n"
+"Project-Id-Version: Krusader-doc-2.0.0 2009-04-08\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2008-12-25 20:04+0000\n"
+"POT-Creation-Date: 2009-04-08 16:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -31,13 +31,13 @@ msgstr ""
 #. Tag: para
 #: features.docbook:7
 #, no-c-format
-msgid "The most important features and improvements are highlighted here, it would make this list too long if we were to include <emphasis>all</emphasis> the features and improvements. You will discover even more features in this documentation and in the &changelog-url; file."
+msgid "The most important features and improvements are highlighted here, it would make this list too long if we were to include <emphasis>all</emphasis> the features and improvements. You will discover even more features in this documentation and in the <ulink url=\"http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/ChangeLog?view=markup\"><filename>ChangeLog</filename></ulink> file."
 msgstr ""
 
 #. Tag: title
 #: features.docbook:19
 #, no-c-format
-msgid "&ofm-url; features"
+msgid "<ulink url=\"http://www.softpanorama.org/OFM/index.shtml\">Orthodox File Manager (OFM)</ulink> features"
 msgstr ""
 
 #. Tag: para
@@ -49,7 +49,7 @@ msgstr ""
 #. Tag: para
 #: features.docbook:25
 #, no-c-format
-msgid "&cmdline-lnk; and optional &termemu-lnk; below."
+msgid "<link linkend=\"cmdline\">Command Line</link> and optional <link linkend=\"termemu\">Terminal emulator</link> below."
 msgstr ""
 
 #. Tag: para
@@ -67,7 +67,7 @@ msgstr ""
 #. Tag: para
 #: features.docbook:41
 #, no-c-format
-msgid "&usermenu-lnk;, create your own customized menu."
+msgid "<link linkend=\"useractions\">User Menu</link>, create your own customized menu."
 msgstr ""
 
 #. Tag: para
@@ -79,7 +79,7 @@ msgstr ""
 #. Tag: para
 #: features.docbook:51
 #, no-c-format
-msgid "&vfs-lnk; for &eg; &remote-connections-lnk;, &archives-lnk;, search results, synchronizer."
+msgid "<link linkend=\"vfs\">Virtual file systems (VFS)</link> for &eg; <link linkend=\"remote-connections\">Remote Connections</link>, <link linkend=\"archives\">archives</link>, search results, synchronizer."
 msgstr ""
 
 #. Tag: para
@@ -91,13 +91,13 @@ msgstr ""
 #. Tag: para
 #: features.docbook:62
 #, no-c-format
-msgid "&advanced-search-module-lnk; : searching in archives and search content on remote file systems."
+msgid "<link linkend=\"krusearcher\">Advanced Search module</link> : searching in archives and search content on remote file systems."
 msgstr ""
 
 #. Tag: para
 #: features.docbook:67
 #, no-c-format
-msgid "Several Panel view modes via the &popup-panel-lnk;."
+msgid "Several Panel view modes via the <link linkend=\"popup_panel\">PopUp Panel</link>."
 msgstr ""
 
 #. Tag: title
@@ -109,19 +109,19 @@ msgstr ""
 #. Tag: para
 #: features.docbook:78
 #, no-c-format
-msgid "&remote-connections-lnk; : &FTP;/SAMBA with SFTP/SCP support via &kioslaves1-url;"
+msgid "<link linkend=\"remote-connections\">Remote Connections</link> : &FTP;/SAMBA with SFTP/SCP support via KIO Slaves"
 msgstr ""
 
 #. Tag: para
 #: features.docbook:83
 #, no-c-format
-msgid "&locate-lnk;"
+msgid "<link linkend=\"locate\">Locate</link> &GUI; frontend"
 msgstr ""
 
-#. Tag: para
+#. Tag: link
 #: features.docbook:86
 #, no-c-format
-msgid "&syncdirs-lnk;"
+msgid "Synchronize Directories"
 msgstr ""
 
 #. Tag: link
@@ -130,16 +130,16 @@ msgstr ""
 msgid "Mount-Manager"
 msgstr ""
 
-#. Tag: para
+#. Tag: link
 #: features.docbook:94
 #, no-c-format
-msgid "&diskusage-lnk;"
+msgid "Disk Usage"
 msgstr ""
 
-#. Tag: para
+#. Tag: link
 #: features.docbook:97
 #, no-c-format
-msgid "&rootmode-lnk;"
+msgid "Root mode"
 msgstr ""
 
 #. Tag: title
@@ -151,7 +151,7 @@ msgstr ""
 #. Tag: para
 #: features.docbook:107
 #, no-c-format
-msgid "Archive Handling: browsing, unpack, pack, testing. Supported &archives-lnk; : ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip."
+msgid "Archive Handling: browsing, unpack, pack, testing. Supported <link linkend=\"archives\">archives</link> : ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip."
 msgstr ""
 
 #. Tag: para
@@ -175,13 +175,13 @@ msgstr ""
 #. Tag: para
 #: features.docbook:132
 #, no-c-format
-msgid "<link linkend=\"compare-content\">Compare files by content</link> via external diff programs like &kompare;, &kdiff3-url; or &xxdiff-url;."
+msgid "<link linkend=\"compare-content\">Compare files by content</link> via external diff programs like &kompare;, <ulink url=\"http://kdiff3.sourceforge.net\"><application>Kdiff3</application></ulink> or <ulink url=\"http://furius.ca/xxdiff/\"><application>xxdiff</application></ulink>."
 msgstr ""
 
 #. Tag: para
 #: features.docbook:139
 #, no-c-format
-msgid "<link linkend=\"multi_rename\">Rename</link> files and folders via &krename-url;"
+msgid "<link linkend=\"multi_rename\">Rename</link> files and folders via <ulink url=\"http://www.krename.net\"><application>Krename</application></ulink>"
 msgstr ""
 
 #. Tag: para
@@ -232,10 +232,10 @@ msgstr ""
 msgid "<link linkend=\"folder-tabs\">Tabbed panels</link> and <link linkend=\"krviewer\">Tabbed Editor/Viewer</link>."
 msgstr ""
 
-#. Tag: para
+#. Tag: link
 #: features.docbook:189
 #, no-c-format
-msgid "&quick-search-lnk;"
+msgid "Quick search"
 msgstr ""
 
 #. Tag: link
@@ -259,13 +259,13 @@ msgstr ""
 #. Tag: para
 #: features.docbook:207
 #, no-c-format
-msgid "&whatsthis-url; Help function in favour of tooltips where reasonable."
+msgid "WhatsThis Help function in favour of tooltips where reasonable."
 msgstr ""
 
-#. Tag: para
+#. Tag: link
 #: features.docbook:211
 #, no-c-format
-msgid "&sync-browsing-lnk;"
+msgid "Sync-browsing"
 msgstr ""
 
 #. Tag: title
@@ -283,7 +283,7 @@ msgstr ""
 #. Tag: para
 #: features.docbook:228
 #, no-c-format
-msgid "&main-toolbar-lnk;, <link linkend=\"actions_toolbar\">Actions Toolbar</link> for user actions and bookmarks."
+msgid "<link linkend=\"mainwindow\">Main Toolbar</link>, <link linkend=\"actions_toolbar\">Actions Toolbar</link> for user actions and bookmarks."
 msgstr ""
 
 #. Tag: link
@@ -298,22 +298,22 @@ msgstr ""
 msgid "Colors"
 msgstr ""
 
-#. Tag: para
+#. Tag: link
 #: features.docbook:243
 #, no-c-format
-msgid "&panel-profiles-lnk;"
+msgid "Panel profiles"
 msgstr ""
 
-#. Tag: para
+#. Tag: link
 #: features.docbook:246
 #, no-c-format
-msgid "&bookmark-manager-lnk;"
+msgid "Bookmark-Manager"
 msgstr ""
 
-#. Tag: para
+#. Tag: link
 #: features.docbook:249
 #, no-c-format
-msgid "&mouse-selection-modes-lnk;"
+msgid "Mouse Selection Modes"
 msgstr ""
 
 #. Tag: para
@@ -328,34 +328,34 @@ msgstr ""
 msgid "&krusader; Extensions"
 msgstr ""
 
-#. Tag: para
+#. Tag: link
 #: features.docbook:264
 #, no-c-format
-msgid "&useractions-lnk;"
+msgid "UserActions"
 msgstr ""
 
-#. Tag: para
+#. Tag: link
 #: features.docbook:267
 #, no-c-format
-msgid "&javascript-console-lnk;"
+msgid "JavaScript console"
 msgstr ""
 
-#. Tag: para
+#. Tag: link
 #: features.docbook:270
 #, no-c-format
-msgid "&color-profiles-lnk;"
+msgid "Color Profiles"
 msgstr ""
 
-#. Tag: para
+#. Tag: link
 #: features.docbook:273
 #, no-c-format
-msgid "&keybindigs-profiles-lnk;"
+msgid "Key-binding Profiles"
 msgstr ""
 
 #. Tag: para
 #: features.docbook:275
 #, no-c-format
-msgid "Download and upload your favourite &krusader; extensions at &kde-files-url;."
+msgid "Download and upload your favourite &krusader; extensions at <ulink url=\"http://www.kde-files.org/index.php?xcontentmode=660x661x662x663\">kde-files.org</ulink>."
 msgstr ""
 
 #. Tag: title
@@ -373,7 +373,7 @@ msgstr ""
 #. Tag: para
 #: features.docbook:289
 #, no-c-format
-msgid "<link linkend=\"archives\">Password support</link> for: arj, ace, rar and zip. Passwords can be stored in &kwallet;"
+msgid "<link linkend=\"archives\">Password support</link> for: arj, ace, rar and zip. Passwords can be stored in <application>Kwallet</application>"
 msgstr ""
 
 #. Tag: para
@@ -385,7 +385,7 @@ msgstr ""
 #. Tag: para
 #: features.docbook:300
 #, no-c-format
-msgid "<link linkend=\"archives\">Auto-detection support</link>, allowing you to open \"hidden archives\" (&eg; &openoffice; documents)."
+msgid "<link linkend=\"archives\">Auto-detection support</link>, allowing you to open \"hidden archives\" (&eg; <trademark class=\"registered\">OpenOffice</trademark> documents)."
 msgstr ""
 
 #. Tag: para
@@ -403,7 +403,7 @@ msgstr ""
 #. Tag: para
 #: features.docbook:314
 #, no-c-format
-msgid "Many improvements of the UserAction &useractions-lnk; system."
+msgid "Many improvements of the UserAction <link linkend=\"useractions\">UserActions</link> system."
 msgstr ""
 
 #. Tag: para
@@ -457,13 +457,13 @@ msgstr ""
 #. Tag: para
 #: features.docbook:354
 #, no-c-format
-msgid "&termemu-lnk; enhancements bringing new functions, new usages and new look."
+msgid "<link linkend=\"termemu\">Terminal emulator</link> enhancements bringing new functions, new usages and new look."
 msgstr ""
 
 #. Tag: para
 #: features.docbook:357
 #, no-c-format
-msgid "&synchronizer-lnk; enhancements and parallel threads for slow FTP servers."
+msgid "<link linkend=\"synchronizer\">Synchronizer</link> enhancements and parallel threads for slow FTP servers."
 msgstr ""
 
 #. Tag: para
@@ -541,12 +541,12 @@ msgstr ""
 #. Tag: para
 #: features.docbook:417
 #, no-c-format
-msgid "For more features, please read the &changelog-url; and &svnnews-url;."
+msgid "For more features, please read the <ulink url=\"http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/ChangeLog?view=markup\"><filename>ChangeLog</filename></ulink> and <ulink url=\"http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/SVNNEWS?view=markup\"><filename>SVNNEWS</filename></ulink>."
 msgstr ""
 
 #. Tag: para
 #: features.docbook:426
 #, no-c-format
-msgid "&dev-svn-note;"
+msgid "If you are using a <link linkend=\"krusader_devel\">development</link> or <link linkend=\"krusader_svn\">SVN</link> version, it is possible that the latest new features are not yet in the \"The Krusader Handbook\". Please read the <ulink url=\"http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/ChangeLog?view=markup\">Changelog</ulink> file online or in the &krusader; sources to find out more about the new features. For a brief description, please read the <ulink url=\"http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/SVNNEWS?view=markup\">SVNNEWS</ulink> file online or in the &krusader; sources. <link linkend=\"faqg_wish\">User feedback</link> and <link linkend=\"faqg_bug_report\">Bug reports</link> are always welcome!"
 msgstr ""
 
