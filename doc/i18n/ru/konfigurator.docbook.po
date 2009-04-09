@@ -1,5 +1,5 @@
-# Translation of konfigurator.docbook to LANGUAGE
-# Copyright (C) 2006, Krusader Krew
+# Translation of konfigurator.docbook to Russian
+# Copyright (C) 2006-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Krusader-doc-2.0.0 2009-04-08\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2009-04-08 17:05+0000\n"
+"POT-Creation-Date: 2009-04-09 08:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -400,7 +400,7 @@ msgstr ""
 #: konfigurator.docbook:351
 #, no-c-format
 msgid ""
-"<guilabel>Perms</guilabel>: Shows the full permissions &eg; \"rwxr-xr-x\" or "
+"<guilabel>Perms</guilabel>: Shows the full permissions e.g. \"rwxr-xr-x\" or "
 "as octal numbers '0755' instead with enable/disable <guilabel>Numeric "
 "Permissions</guilabel> in Look &amp; Feel <guilabel>Operation</guilabel> Tab."
 msgstr ""
@@ -409,7 +409,7 @@ msgstr ""
 #: konfigurator.docbook:360
 #, no-c-format
 msgid ""
-"<guilabel>rwx</guilabel>: Shows only the rights of the current user &eg; \"-"
+"<guilabel>rwx</guilabel>: Shows only the rights of the current user e.g. \"-"
 "rw\"."
 msgstr ""
 
@@ -601,36 +601,38 @@ msgstr ""
 msgid ""
 "<guilabel>&krusader; Mode</guilabel>: The way &krusader; has worked from day "
 "one. Both mouse keys allow selecting files. To select more than one file, "
-"hold the &Ctrl; key and click the &LMB;. Right-click menu appears with a "
-"short click on the &RMB;."
+"hold the &Ctrl; key and click the Left Mouse Button. Right-click menu "
+"appears with a short click on the Right Mouse Button."
 msgstr ""
 
 #. Tag: para
 #: konfigurator.docbook:514
 #, no-c-format
 msgid ""
-"<guilabel>Konqueror Mode</guilabel>: pressing the &LMB; selects files -- you "
-"can click and select multiple files. Right-click menu appears with a short "
-"click on the &RMB;."
+"<guilabel>Konqueror Mode</guilabel>: pressing the Left Mouse Button selects "
+"files -- you can click and select multiple files. Right-click menu appears "
+"with a short click on the Right Mouse Button."
 msgstr ""
 
 #. Tag: para
 #: konfigurator.docbook:523
 #, no-c-format
 msgid ""
-"<guilabel>Total commander Mode</guilabel>: Pressing the &RMB; selects "
-"multiple files and the right-click menu appears with <guilabel>pressing and "
-"holding</guilabel> the &RMB; The &LMB; does not select, but sets the current "
-"file without affecting the current selection."
+"<guilabel>Total commander Mode</guilabel>: Pressing the Right Mouse Button "
+"selects multiple files and the right-click menu appears with "
+"<guilabel>pressing and holding</guilabel> the Right Mouse Button The Left "
+"Mouse Button does not select, but sets the current file without affecting "
+"the current selection."
 msgstr ""
 
 #. Tag: para
 #: konfigurator.docbook:534
 #, no-c-format
 msgid ""
-"<guilabel>Ergonmic Mode</guilabel>: The &LMB; does not select, but sets the "
-"current file without affecting the current selection. The &RMB; invokes the "
-"context-menu. You can select with Ctrl key and the left button."
+"<guilabel>Ergonmic Mode</guilabel>: The Left Mouse Button does not select, "
+"but sets the current file without affecting the current selection. The Right "
+"Mouse Button invokes the context-menu. You can select with Ctrl key and the "
+"left button."
 msgstr ""
 
 #. Tag: para
@@ -659,9 +661,9 @@ msgstr ""
 #: konfigurator.docbook:556
 #, no-c-format
 msgid ""
-"<guilabel>Obey KDE global selection policy</guilabel>: Pressing the &LMB; "
-"selects files -- Use &kde;'s global setting: &kde; Control Center -&gt; "
-"Peripherals -&gt; Mouse."
+"<guilabel>Obey KDE global selection policy</guilabel>: Pressing the Left "
+"Mouse Button selects files -- Use &kde;'s global setting: &kde; Control "
+"Center -&gt; Peripherals -&gt; Mouse."
 msgstr ""
 
 #. Tag: para
@@ -1164,7 +1166,7 @@ msgstr ""
 msgid ""
 "<guilabel>MountMan will not (un)mount the following mount points</guilabel>: "
 "If you have file systems that you do not want to accidentally unmount (or "
-"mount) then enter a list of mount points separated by commas (&eg; "
+"mount) then enter a list of mount points separated by commas (e.g. "
 "<literal>/, /boot, /tmp</literal>) and <link linkend=\"mount-man\">MountMan</"
 "link> will not try to (un)mount them."
 msgstr ""
@@ -1270,7 +1272,7 @@ msgstr ""
 #: konfigurator.docbook:1155
 #, no-c-format
 msgid ""
-"Please install new packagers to your <envar>PATH</envar> (&ie;: <filename>/"
+"Please install new packagers to your <envar>PATH</envar> (i.e.: <filename>/"
 "usr/bin</filename> or <filename>/usr/local/bin</filename> &etc;)"
 msgstr ""
 
@@ -1279,7 +1281,7 @@ msgstr ""
 #, no-c-format
 msgid ""
 "The full path of the packagers is stored in the <link linkend=\"konfig-"
-"dependencies\">Konfigurator Dependencies page</link> (&eg; to handle ZIP "
+"dependencies\">Konfigurator Dependencies page</link> (e.g. to handle ZIP "
 "archives, &krusader; needs the <command>unzip</command> and <command>zip</"
 "command> executables). It is possible that you need to manually configure "
 "the mimes to the protocols in the <link linkend=\"konfig-protocols"
@@ -1504,7 +1506,7 @@ msgstr ""
 #, no-c-format
 msgid ""
 "By default &kompare; (part of the kdebase package) is used as external diff "
-"utility but you can also use your favorite diff utility &eg; <ulink url="
+"utility but you can also use your favorite diff utility e.g. <ulink url="
 "\"http://furius.ca/xxdiff/\"><application>xxdiff</application></ulink> or "
 "<ulink url=\"http://kdiff3.sourceforge.net\"><application>Kdiff3</"
 "application></ulink>, just fill in the full path and enjoy."
@@ -1962,14 +1964,14 @@ msgstr ""
 #: konfigurator.docbook:1864
 #, no-c-format
 msgid ""
-"This page links the mimes to protocols. &eg; protocol \"tar\" is linked to "
+"This page links the mimes to protocols. e.g. protocol \"tar\" is linked to "
 "mime \"application/x-tar\"."
 msgstr ""
 
 #. Tag: para
 #: konfigurator.docbook:1886
 #, no-c-format
-msgid "In the <guilabel>Defined Links</guilabel> you will see &eg;"
+msgid "In the <guilabel>Defined Links</guilabel> you will see e.g."
 msgstr ""
 
 #. Tag: para

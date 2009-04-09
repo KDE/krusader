@@ -1,5 +1,5 @@
 # Translation of faq.docbook to Russian
-# Copyright (C) 2006, Krusader Krew
+# Copyright (C) 2006-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 # Roman Batejkin <romulak@mail.ru>, 2006.
 #
@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  Krusader-doc-2.0.0 2009-04-08\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2009-04-08 17:05+0000\n"
+"POT-Creation-Date: 2009-04-09 08:07+0000\n"
 "PO-Revision-Date: 2006-11-03 07:18+0000\n"
 "Last-Translator: Roman Batejkin <romulak@mail.ru>\n"
 "Language-Team: Russian <krusader-i18n@googlegroups.com>\n"
@@ -79,7 +79,7 @@ msgid ""
 "<emphasis>No, &krusader; does not need the &kde; window manager</emphasis> "
 "to run on your computer but &krusader;'s natural environment is &kde;, "
 "because it relies on services provided by the &kde; base libraries. Only "
-"some shared libraries are needed &eg; &kde; libraries, &Qt; libraries, &etc; "
+"some shared libraries are needed e.g. &kde; libraries, &Qt; libraries, &etc; "
 "This means that &krusader; runs on <ulink url=\"http://www.gnome.org"
 "\"><application>GNOME</application></ulink>, <ulink url=\"http://www."
 "afterstep.org/\"><application>AfterStep</application></ulink>, <ulink url="
@@ -157,11 +157,11 @@ msgstr "Какие библиотеки необходимы для запуск
 
 #. Tag: para
 #: faq.docbook:120
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
-"For running &krusader; (&eg; when you have installed &krusader; with a "
+"For running &krusader; (e.g. when you have installed &krusader; with a "
 "binary RPM) you need less libraries than if you compile &krusader; from "
-"source. &eg; you only need the C-compliler &gcc; when you compile &krusader; "
+"source. e.g. you only need the C-compliler &gcc; when you compile &krusader; "
 "from source (see the next question)."
 msgstr ""
 "Для запуска &krusader; (&eg; если вы установили &krusader; из бинарного RPM) "
@@ -217,7 +217,7 @@ msgstr ""
 msgid ""
 "Most RPM-based distributions separate the headers from the libs. The headers "
 "are needed to compile &krusader;. Look for packages in the form foo-devel-*."
-"rpm (&eg; <filename>kdelibs-devel-foo.i586.rpm</filename>) or foo-dev-*.deb "
+"rpm (e.g. <filename>kdelibs-devel-foo.i586.rpm</filename>) or foo-dev-*.deb "
 "for <trademark class=\"registered\">Debian</trademark> based distributions. "
 "These are usually included with your distribution."
 msgstr ""
@@ -446,10 +446,10 @@ msgstr ""
 
 #. Tag: para
 #: faq.docbook:265
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "In general, a package for an older version of your distrubution or even for "
-"another distribution might work on your computer (&eg; FC RPM's often work "
+"another distribution might work on your computer (e.g. FC RPM's often work "
 "on Mdk and RH, and vice versa), but it is always the best that you install "
 "only RPM's that exactly match your distribution. If you can't find a package "
 "that matches your distribution version, architecture or distribution, then "
@@ -523,7 +523,7 @@ msgstr ""
 #, fuzzy, no-c-format
 msgid ""
 "In this case only the <guimenu>Help</guimenu> menu is visible and all other "
-"menu items like &eg; <guimenu>File</guimenu> and <guimenu>Select</guimenu> "
+"menu items like e.g. <guimenu>File</guimenu> and <guimenu>Select</guimenu> "
 "are missing. This is because some distributions put the <filename>krusaderui."
 "rc</filename> file in the wrong directory. To solve the problem, just copy "
 "the <filename>krusaderui.rc</filename> file from the package <filename> "
@@ -761,7 +761,7 @@ msgstr ""
 #: faq.docbook:487
 #, fuzzy, no-c-format
 msgid ""
-"If you give us the error messages (&eg; <command>make</command> error "
+"If you give us the error messages (e.g. <command>make</command> error "
 "messages) please start with the FIRST error message, all the error messages "
 "which follow the first error message are consequences and not the cause of "
 "your problem."
@@ -807,7 +807,7 @@ msgstr ""
 #: faq.docbook:519
 #, fuzzy, no-c-format
 msgid ""
-"NEVER build RPMs when logged in as root. Mistakes in building packages (&eg; "
+"NEVER build RPMs when logged in as root. Mistakes in building packages (e.g. "
 "a bad <filename>krusader.spec</filename> file) can do serious damage to your "
 "system when logged in as root."
 msgstr ""
@@ -868,7 +868,7 @@ msgid ""
 "everything went OK you will have a binary RPM in <filename class=\"directory"
 "\"> /usr/src/RPM/RPMS/i586</filename> (depending on your architecture) and a "
 "source RPM in <filename class=\"directory\"> /usr/src/RPM/SRPMS/</filename> "
-"&eg; <filename> krusader-1.70-beta1.suse10.i586.rpm</filename> and "
+"e.g. <filename> krusader-1.70-beta1.suse10.i586.rpm</filename> and "
 "<filename> krusader-1.70-beta1.suse10.src.rpm</filename>"
 msgstr ""
 "Создайте бинарный пакет и пакет с исходным кодом с помощью <screen><prompt>"
@@ -1005,7 +1005,7 @@ msgstr "Почему &krusader; зависает когда неверна то�
 #: faq.docbook:677
 #, fuzzy, no-c-format
 msgid ""
-"When &krusader; is &eg; browsing an NFS share and the NFS server goes down, "
+"When &krusader; is e.g. browsing an NFS share and the NFS server goes down, "
 "&krusader; will freeze. This &krusader; (and all other open internal viewers/"
 "editors) freeze is fatal, and can only be corrected with the <command>kill -"
 "9</command>. We have no solution for this. This is an issue not confined to "
@@ -1322,7 +1322,7 @@ msgstr ""
 #. Tag: para
 #: faq.docbook:937
 #, fuzzy, no-c-format
-msgid "How can I close a remote connection (&eg; a FTP connection)?"
+msgid "How can I close a remote connection (e.g. a FTP connection)?"
 msgstr "Как мне закрыть удаленное соединение (например соединение с FTP)?"
 
 #. Tag: para
@@ -1350,7 +1350,7 @@ msgstr ""
 #. Tag: para
 #: faq.docbook:962
 #, fuzzy, no-c-format
-msgid "How can I disable the default sounds, &eg; when I do a delete action ?"
+msgid "How can I disable the default sounds, e.g. when I do a delete action ?"
 msgstr ""
 "Как мне запретить системные звуки , например звук , когда  происходит "
 "удаление ?"
@@ -1403,7 +1403,7 @@ msgstr "Почему привязки к типу файлов не работа
 #, fuzzy, no-c-format
 msgid ""
 "When you enter an archive and press <keycap>F3</keycap> to view a file that "
-"has no known extension, &eg; <filename>README, INSTALL</filename> &etc;. And "
+"has no known extension, e.g. <filename>README, INSTALL</filename> &etc;. And "
 "if the viewer opens in hex-mode instead of the usual mode, than you need to "
 "configure: <menuchoice> <guimenu>KDE Control Center</guimenu> "
 "<guimenuitem>KDE components</guimenuitem> <guimenuitem>File Associations</"
