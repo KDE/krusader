@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0 2009-04-08\n"
+"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2009-04-08 16:02+0000\n"
+"POT-Creation-Date: 2009-04-09 08:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -139,7 +139,7 @@ msgstr ""
 #. Tag: para
 #: synchronizer.docbook:140
 #, no-c-format
-msgid "<guilabel>File Filter</guilabel>: Filters the filenames at synchronizing. &eg; <literal role=\"extension\">*.png</literal> selects only files the names of which end with <literal role=\"extension\">.png</literal> Directories are listed if the directory name ends with <literal role=\"extension\">.png</literal> or if the directory contains files which end with <literal role=\"extension\">.png</literal> Multiple include/exclude example: <literal role=\"extension\">'*.cpp *.h | *.moc.cpp'</literal>includes <literal role=\"extension\">*.cpp *.h</literal> and exclude <literal role=\"extension\">*.moc.cpp</literal>"
+msgid "<guilabel>File Filter</guilabel>: Filters the filenames at synchronizing. e.g. <literal role=\"extension\">*.png</literal> selects only files the names of which end with <literal role=\"extension\">.png</literal> Directories are listed if the directory name ends with <literal role=\"extension\">.png</literal> or if the directory contains files which end with <literal role=\"extension\">.png</literal> Multiple include/exclude example: <literal role=\"extension\">'*.cpp *.h | *.moc.cpp'</literal>includes <literal role=\"extension\">*.cpp *.h</literal> and exclude <literal role=\"extension\">*.moc.cpp</literal>"
 msgstr ""
 
 #. Tag: para
@@ -253,7 +253,7 @@ msgstr ""
 #. Tag: para
 #: synchronizer.docbook:262
 #, no-c-format
-msgid "<guilabel>Asymmetric</guilabel>: The <guilabel>Left Directory</guilabel> is the target directory, the <guilabel>Right Directory</guilabel> is the source directory. This functions synchronizes the content of the left directory to the right directory. <itemizedlist> <listitem> <para>The files that exist only on the left side will be deleted.</para> </listitem> <listitem> <para>The files that exist only on the right side will be copied to left.</para> </listitem> <listitem> <para>The files considered to be equal will be untouched.</para> </listitem> <listitem> <para>Those files considered to be different will be copied to left. Use this feature with care!</para> </listitem> </itemizedlist>This function is useful if the date information is unusable, or to synchronize the left directory to the content of a file server (like a download). Alternatively, it is useful to make a backup from the right directory to the left directory. NOTE: Do NOT use this option to synchronize a desktop and a notebook (&eg; files that exist only on the left side will be deleted!)."
+msgid "<guilabel>Asymmetric</guilabel>: The <guilabel>Left Directory</guilabel> is the target directory, the <guilabel>Right Directory</guilabel> is the source directory. This functions synchronizes the content of the left directory to the right directory. <itemizedlist> <listitem> <para>The files that exist only on the left side will be deleted.</para> </listitem> <listitem> <para>The files that exist only on the right side will be copied to left.</para> </listitem> <listitem> <para>The files considered to be equal will be untouched.</para> </listitem> <listitem> <para>Those files considered to be different will be copied to left. Use this feature with care!</para> </listitem> </itemizedlist>This function is useful if the date information is unusable, or to synchronize the left directory to the content of a file server (like a download). Alternatively, it is useful to make a backup from the right directory to the left directory. NOTE: Do NOT use this option to synchronize a desktop and a notebook (e.g. files that exist only on the left side will be deleted!)."
 msgstr ""
 
 #. Tag: para
@@ -547,7 +547,7 @@ msgstr ""
 #. Tag: para
 #: synchronizer.docbook:571
 #, no-c-format
-msgid "<guibutton>Compare Files</guibutton>: Starts the diff utility (&eg; &kompare;) on the files."
+msgid "<guibutton>Compare Files</guibutton>: Starts the diff utility (e.g. &kompare;) on the files."
 msgstr ""
 
 #. Tag: term
@@ -559,7 +559,7 @@ msgstr ""
 #. Tag: para
 #: synchronizer.docbook:584
 #, no-c-format
-msgid "<guibutton>Profiles</guibutton>: If you have to synchronize the same directories often, you can save the settings &eg; include files, exclude files, ... Press the <guibutton>Profile</guibutton> button, and you will be able to add / load / save / remove synchronizer profiles."
+msgid "<guibutton>Profiles</guibutton>: If you have to synchronize the same directories often, you can save the settings e.g. include files, exclude files, ... Press the <guibutton>Profile</guibutton> button, and you will be able to add / load / save / remove synchronizer profiles."
 msgstr ""
 
 #. Tag: para

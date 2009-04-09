@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0 2009-04-08\n"
+"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2009-04-08 16:01+0000\n"
+"POT-Creation-Date: 2009-04-09 08:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -85,13 +85,13 @@ msgstr ""
 #. Tag: para
 #: bookmarks.docbook:55
 #, no-c-format
-msgid "Usually, you click on the <guibutton>Bookmark</guibutton> button when you are in the target folder. For example, to bookmark <filename class=\"directory\">/usr/tmp</filename>, navigate &krusader; there and click the <guibutton>Bookmark</guibutton> button and select <guimenuitem>Bookmark Current</guimenuitem>. When the <guilabel>Bookmark Current</guilabel> dialog box appears, the &URL; line will say <filename class=\"directory\">/usr/tmp</filename>. <guilabel>Name</guilabel> is for the name you would like to give to the bookmark (e.g.: temporary folder). Hotkeys are supported by adding <literal>&amp;</literal> to the bookmark name &eg; <literal>&amp;sourceforge, &amp;home, down&amp;loads</literal> &etc;, so you can quickly call the bookmark name with <keycombo action=\"simul\">&Alt; <keycap>foo</keycap></keycombo>. If you add the bookmark without entering a name, the bookmarks name will be the same as its target. <guilabel>URL</guilabel> is where the bookmark points to. <guilabel>Create in</guilabel> creates bookmark folders for organizing your bookmarks."
+msgid "Usually, you click on the <guibutton>Bookmark</guibutton> button when you are in the target folder. For example, to bookmark <filename class=\"directory\">/usr/tmp</filename>, navigate &krusader; there and click the <guibutton>Bookmark</guibutton> button and select <guimenuitem>Bookmark Current</guimenuitem>. When the <guilabel>Bookmark Current</guilabel> dialog box appears, the &URL; line will say <filename class=\"directory\">/usr/tmp</filename>. <guilabel>Name</guilabel> is for the name you would like to give to the bookmark (e.g.: temporary folder). Hotkeys are supported by adding <literal>&amp;</literal> to the bookmark name e.g. <literal>&amp;sourceforge, &amp;home, down&amp;loads</literal> &etc;, so you can quickly call the bookmark name with <keycombo action=\"simul\">&Alt; <keycap>foo</keycap></keycombo>. If you add the bookmark without entering a name, the bookmarks name will be the same as its target. <guilabel>URL</guilabel> is where the bookmark points to. <guilabel>Create in</guilabel> creates bookmark folders for organizing your bookmarks."
 msgstr ""
 
 #. Tag: para
 #: bookmarks.docbook:82
 #, no-c-format
-msgid "To use your bookmarks, click the <guibutton>Bookmark</guibutton> button and choose a bookmark. You may also use the <link linkend=\"key_bindings\">Key-Bindings</link> : <keycombo action=\"simul\">&Ctrl;&Shift; <keycap>d</keycap></keycombo> to bookmark the current item, <keycombo action=\"simul\">&Alt; <keycap>right/left arrow</keycap></keycombo> to <keycap>open right/left panel bookmarks list</keycap> and <keycombo action=\"simul\">&Ctrl; <keycap>d</keycap></keycombo> to open the bookmarks of the active panel. A &MMB; click on bookmarks opens them in a new <link linkend=\"folder-tabs\">Folder tab</link>."
+msgid "To use your bookmarks, click the <guibutton>Bookmark</guibutton> button and choose a bookmark. You may also use the <link linkend=\"key_bindings\">Key-Bindings</link> : <keycombo action=\"simul\">&Ctrl;<keycap>Backspace</keycap> <keycap>d</keycap></keycombo> to bookmark the current item, <keycombo action=\"simul\">&Alt; <keycap>right/left arrow</keycap></keycombo> to <keycap>open right/left panel bookmarks list</keycap> and <keycombo action=\"simul\">&Ctrl; <keycap>d</keycap></keycombo> to open the bookmarks of the active panel. A Middle Mouse Button click on bookmarks opens them in a new <link linkend=\"folder-tabs\">Folder tab</link>."
 msgstr ""
 
 #. Tag: para
@@ -109,7 +109,7 @@ msgstr ""
 #. Tag: para
 #: bookmarks.docbook:101
 #, no-c-format
-msgid "&eg; when you type <literal>'h'</literal> and only one bookmark starts with <literal>'h'</literal>, it is executed immediately - no enter needed"
+msgid "e.g. when you type <literal>'h'</literal> and only one bookmark starts with <literal>'h'</literal>, it is executed immediately - no enter needed"
 msgstr ""
 
 #. Tag: para
@@ -127,7 +127,7 @@ msgstr ""
 #. Tag: para
 #: bookmarks.docbook:116
 #, no-c-format
-msgid "One of the benefits of the <link linkend=\"bookman\">bookmark manager</link> is that the passwords are saved using &kde;'s services - where &eg; your &konqueror;/&kmail; password are saved. If you have a wallet, &kde; will save the passwords there. By clicking the bookmarks, a dialog will open and ask for your username and password. Supply them and click 'save password'. The passwords and usernames will be saved securely by &kde;'s wallet (make sure it is enabled by your distro). The downside here is that if you reinstall and do not backup your passwords from the wallet as well as &krusader;'s bookmark file, something will be lost."
+msgid "One of the benefits of the <link linkend=\"bookman\">bookmark manager</link> is that the passwords are saved using &kde;'s services - where e.g. your &konqueror;/&kmail; password are saved. If you have a wallet, &kde; will save the passwords there. By clicking the bookmarks, a dialog will open and ask for your username and password. Supply them and click 'save password'. The passwords and usernames will be saved securely by &kde;'s wallet (make sure it is enabled by your distro). The downside here is that if you reinstall and do not backup your passwords from the wallet as well as &krusader;'s bookmark file, something will be lost."
 msgstr ""
 
 #. Tag: title
@@ -199,13 +199,13 @@ msgstr ""
 #. Tag: para
 #: bookmarks.docbook:188
 #, no-c-format
-msgid "<guilabel>Virtual Filesystem</guilabel> <link linkend=\"vfs\">Virtual file systems (VFS)</link> <filename>virt:/</filename> is not a virtual folder, but a container for &URL;'s from different file systems. It is used for &eg; the <guilabel>Feed to Listbox</guilabel> feature of the search module and the synchronizer. The location toolbar will display &eg; <filename>virt:/Search results 1</filename> or <filename>virt:/Synchronise results 1</filename>."
+msgid "<guilabel>Virtual Filesystem</guilabel> <link linkend=\"vfs\">Virtual file systems (VFS)</link> <filename>virt:/</filename> is not a virtual folder, but a container for &URL;'s from different file systems. It is used for e.g. the <guilabel>Feed to Listbox</guilabel> feature of the search module and the synchronizer. The location toolbar will display e.g. <filename>virt:/Search results 1</filename> or <filename>virt:/Synchronise results 1</filename>."
 msgstr ""
 
 #. Tag: para
 #: bookmarks.docbook:201
 #, no-c-format
-msgid "<guilabel>Jump back</guilabel> or <keycombo action=\"simul\">&Ctrl; <keycap>J</keycap></keycombo> brings you back to your starting position when you did create a new tab in the panel window. This feature is very handy if you go deep into a directory tree, than you can return with one action to the starting point. With <guilabel>Set jump back point here</guilabel> or <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>J</keycap></keycombo> sets the current directory as a jump back point."
+msgid "<guilabel>Jump back</guilabel> or <keycombo action=\"simul\">&Ctrl; <keycap>J</keycap></keycombo> brings you back to your starting position when you did create a new tab in the panel window. This feature is very handy if you go deep into a directory tree, than you can return with one action to the starting point. With <guilabel>Set jump back point here</guilabel> or <keycombo action=\"simul\"> &Ctrl;<keycap>Backspace</keycap> <keycap>J</keycap></keycombo> sets the current directory as a jump back point."
 msgstr ""
 
 #. Tag: title

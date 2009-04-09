@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0 2009-04-08\n"
+"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2009-04-08 16:01+0000\n"
+"POT-Creation-Date: 2009-04-09 08:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -55,7 +55,7 @@ msgstr ""
 #. Tag: para
 #: faq.docbook:62
 #, no-c-format
-msgid "<emphasis>No, &krusader; does not need the &kde; window manager</emphasis> to run on your computer but &krusader;'s natural environment is &kde;, because it relies on services provided by the &kde; base libraries. Only some shared libraries are needed &eg; &kde; libraries, &Qt; libraries, &etc; This means that &krusader; runs on <ulink url=\"http://www.gnome.org\"><application>GNOME</application></ulink>, <ulink url=\"http://www.afterstep.org/\"><application>AfterStep</application></ulink>, <ulink url=\"http://www.xfce.org/\"><application>XFce</application></ulink> and other window managers provided the approriate libraries are installed on your computer. All this is not a problem since the apt-get world can resolve these dependencies instantly."
+msgid "<emphasis>No, &krusader; does not need the &kde; window manager</emphasis> to run on your computer but &krusader;'s natural environment is &kde;, because it relies on services provided by the &kde; base libraries. Only some shared libraries are needed e.g. &kde; libraries, &Qt; libraries, &etc; This means that &krusader; runs on <ulink url=\"http://www.gnome.org\"><application>GNOME</application></ulink>, <ulink url=\"http://www.afterstep.org/\"><application>AfterStep</application></ulink>, <ulink url=\"http://www.xfce.org/\"><application>XFce</application></ulink> and other window managers provided the approriate libraries are installed on your computer. All this is not a problem since the apt-get world can resolve these dependencies instantly."
 msgstr ""
 
 #. Tag: para
@@ -85,7 +85,7 @@ msgstr ""
 #. Tag: para
 #: faq.docbook:120
 #, no-c-format
-msgid "For running &krusader; (&eg; when you have installed &krusader; with a binary RPM) you need less libraries than if you compile &krusader; from source. &eg; you only need the C-compliler &gcc; when you compile &krusader; from source (see the next question)."
+msgid "For running &krusader; (e.g. when you have installed &krusader; with a binary RPM) you need less libraries than if you compile &krusader; from source. e.g. you only need the C-compliler &gcc; when you compile &krusader; from source (see the next question)."
 msgstr ""
 
 #. Tag: para
@@ -121,7 +121,7 @@ msgstr ""
 #. Tag: para
 #: faq.docbook:145
 #, no-c-format
-msgid "Most RPM-based distributions separate the headers from the libs. The headers are needed to compile &krusader;. Look for packages in the form foo-devel-*.rpm (&eg; <filename>kdelibs-devel-foo.i586.rpm</filename>) or foo-dev-*.deb for <trademark class=\"registered\">Debian</trademark> based distributions. These are usually included with your distribution."
+msgid "Most RPM-based distributions separate the headers from the libs. The headers are needed to compile &krusader;. Look for packages in the form foo-devel-*.rpm (e.g. <filename>kdelibs-devel-foo.i586.rpm</filename>) or foo-dev-*.deb for <trademark class=\"registered\">Debian</trademark> based distributions. These are usually included with your distribution."
 msgstr ""
 
 #. Tag: para
@@ -217,7 +217,7 @@ msgstr ""
 #. Tag: para
 #: faq.docbook:265
 #, no-c-format
-msgid "In general, a package for an older version of your distrubution or even for another distribution might work on your computer (&eg; FC RPM's often work on Mdk and RH, and vice versa), but it is always the best that you install only RPM's that exactly match your distribution. If you can't find a package that matches your distribution version, architecture or distribution, then use a source RPM. When you use a source RPM, the Krusader sources will be built, on your computer, guaranteeing a suitable binary RPM for your specific distribution and architecture. In addition, this method results in maximum system speed, since the resulting binary is customized for your computer. Please read the previous question, it explains how to install a source RPM. The best solution is explained in the next question."
+msgid "In general, a package for an older version of your distrubution or even for another distribution might work on your computer (e.g. FC RPM's often work on Mdk and RH, and vice versa), but it is always the best that you install only RPM's that exactly match your distribution. If you can't find a package that matches your distribution version, architecture or distribution, then use a source RPM. When you use a source RPM, the Krusader sources will be built, on your computer, guaranteeing a suitable binary RPM for your specific distribution and architecture. In addition, this method results in maximum system speed, since the resulting binary is customized for your computer. Please read the previous question, it explains how to install a source RPM. The best solution is explained in the next question."
 msgstr ""
 
 #. Tag: para
@@ -247,7 +247,7 @@ msgstr ""
 #. Tag: para
 #: faq.docbook:318
 #, no-c-format
-msgid "In this case only the <guimenu>Help</guimenu> menu is visible and all other menu items like &eg; <guimenu>File</guimenu> and <guimenu>Select</guimenu> are missing. This is because some distributions put the <filename>krusaderui.rc</filename> file in the wrong directory. To solve the problem, just copy the <filename>krusaderui.rc</filename> file from the package <filename> krusader_kde3/krusader/krusaderui.rc</filename> to <filename> $KDEDIR/share/apps/krusader/krusaderui.rc</filename> and <filename> ~/.kde/share/apps/krusader/krusaderui.rc</filename> and re-run &krusader;. If you have compiled &krusader; from sources this is often caused if the <link linkend=\"kde_qt_dir\"><envar>KDEDIR</envar> - <envar>QTDIR</envar></link> environment variables are not correctly set. The result is that the <filename>krusaderui.rc</filename> file is installed in the wrong directory. Please read the following question, as well."
+msgid "In this case only the <guimenu>Help</guimenu> menu is visible and all other menu items like e.g. <guimenu>File</guimenu> and <guimenu>Select</guimenu> are missing. This is because some distributions put the <filename>krusaderui.rc</filename> file in the wrong directory. To solve the problem, just copy the <filename>krusaderui.rc</filename> file from the package <filename> krusader_kde3/krusader/krusaderui.rc</filename> to <filename> $KDEDIR/share/apps/krusader/krusaderui.rc</filename> and <filename> ~/.kde/share/apps/krusader/krusaderui.rc</filename> and re-run &krusader;. If you have compiled &krusader; from sources this is often caused if the <link linkend=\"kde_qt_dir\"><envar>KDEDIR</envar> - <envar>QTDIR</envar></link> environment variables are not correctly set. The result is that the <filename>krusaderui.rc</filename> file is installed in the wrong directory. Please read the following question, as well."
 msgstr ""
 
 #. Tag: para
@@ -335,7 +335,7 @@ msgstr ""
 #. Tag: para
 #: faq.docbook:487
 #, no-c-format
-msgid "If you give us the error messages (&eg; <command>make</command> error messages) please start with the FIRST error message, all the error messages which follow the first error message are consequences and not the cause of your problem."
+msgid "If you give us the error messages (e.g. <command>make</command> error messages) please start with the FIRST error message, all the error messages which follow the first error message are consequences and not the cause of your problem."
 msgstr ""
 
 #. Tag: para
@@ -365,7 +365,7 @@ msgstr ""
 #. Tag: para
 #: faq.docbook:519
 #, no-c-format
-msgid "NEVER build RPMs when logged in as root. Mistakes in building packages (&eg; a bad <filename>krusader.spec</filename> file) can do serious damage to your system when logged in as root."
+msgid "NEVER build RPMs when logged in as root. Mistakes in building packages (e.g. a bad <filename>krusader.spec</filename> file) can do serious damage to your system when logged in as root."
 msgstr ""
 
 #. Tag: para
@@ -395,7 +395,7 @@ msgstr ""
 #. Tag: para
 #: faq.docbook:559
 #, no-c-format
-msgid "Build the binary and the source RPM with: <screen><prompt>$</prompt> <userinput><command>rpmbuild</command> <option>-ba</option> <replaceable>/usr/scr/RPM/SPECS/krusader.spec</replaceable></userinput></screen> If everything went OK you will have a binary RPM in <filename class=\"directory\"> /usr/src/RPM/RPMS/i586</filename> (depending on your architecture) and a source RPM in <filename class=\"directory\"> /usr/src/RPM/SRPMS/</filename> &eg; <filename> krusader-1.70-beta1.suse10.i586.rpm</filename> and <filename> krusader-1.70-beta1.suse10.src.rpm</filename>"
+msgid "Build the binary and the source RPM with: <screen><prompt>$</prompt> <userinput><command>rpmbuild</command> <option>-ba</option> <replaceable>/usr/scr/RPM/SPECS/krusader.spec</replaceable></userinput></screen> If everything went OK you will have a binary RPM in <filename class=\"directory\"> /usr/src/RPM/RPMS/i586</filename> (depending on your architecture) and a source RPM in <filename class=\"directory\"> /usr/src/RPM/SRPMS/</filename> e.g. <filename> krusader-1.70-beta1.suse10.i586.rpm</filename> and <filename> krusader-1.70-beta1.suse10.src.rpm</filename>"
 msgstr ""
 
 #. Tag: para
@@ -461,7 +461,7 @@ msgstr ""
 #. Tag: para
 #: faq.docbook:677
 #, no-c-format
-msgid "When &krusader; is &eg; browsing an NFS share and the NFS server goes down, &krusader; will freeze. This &krusader; (and all other open internal viewers/editors) freeze is fatal, and can only be corrected with the <command>kill -9</command>. We have no solution for this. This is an issue not confined to file managers, or even the &Linux; OS! The problem is that you \"hang\" on the first access to the dead share - so there is no way around it, no check to avoid it, even <command>ls</command> will freeze. Just trying to read something - anything - is enough to get you stuck. The one and only way around this architectural problem is using a multi-threaded design - this way if we get stuck, we don't hang the entire application event loop, but we don't think that the time is right for adding threads, we are not sure that *all* the &kde; systems out there are using &Qt;-mt (the multi threaded version of the &Qt; library), and the Krusader Krew may not be the right people to address this major issue in any case; so currently this is just a bug we have to learn to live with."
+msgid "When &krusader; is e.g. browsing an NFS share and the NFS server goes down, &krusader; will freeze. This &krusader; (and all other open internal viewers/editors) freeze is fatal, and can only be corrected with the <command>kill -9</command>. We have no solution for this. This is an issue not confined to file managers, or even the &Linux; OS! The problem is that you \"hang\" on the first access to the dead share - so there is no way around it, no check to avoid it, even <command>ls</command> will freeze. Just trying to read something - anything - is enough to get you stuck. The one and only way around this architectural problem is using a multi-threaded design - this way if we get stuck, we don't hang the entire application event loop, but we don't think that the time is right for adding threads, we are not sure that *all* the &kde; systems out there are using &Qt;-mt (the multi threaded version of the &Qt; library), and the Krusader Krew may not be the right people to address this major issue in any case; so currently this is just a bug we have to learn to live with."
 msgstr ""
 
 #. Tag: para
@@ -622,7 +622,7 @@ msgstr ""
 #. Tag: para
 #: faq.docbook:937
 #, no-c-format
-msgid "How can I close a remote connection (&eg; a FTP connection)?"
+msgid "How can I close a remote connection (e.g. a FTP connection)?"
 msgstr ""
 
 #. Tag: para
@@ -646,7 +646,7 @@ msgstr ""
 #. Tag: para
 #: faq.docbook:962
 #, no-c-format
-msgid "How can I disable the default sounds, &eg; when I do a delete action ?"
+msgid "How can I disable the default sounds, e.g. when I do a delete action ?"
 msgstr ""
 
 #. Tag: para
@@ -676,7 +676,7 @@ msgstr ""
 #. Tag: para
 #: faq.docbook:1003
 #, no-c-format
-msgid "When you enter an archive and press <keycap>F3</keycap> to view a file that has no known extension, &eg; <filename>README, INSTALL</filename> &etc;. And if the viewer opens in hex-mode instead of the usual mode, than you need to configure: <menuchoice> <guimenu>KDE Control Center</guimenu> <guimenuitem>KDE components</guimenuitem> <guimenuitem>File Associations</guimenuitem> <guimenuitem>Application</guimenuitem> <guimenuitem>octet-stream</guimenuitem> </menuchoice>, <guilabel>binary viewer</guilabel> needs to be removed."
+msgid "When you enter an archive and press <keycap>F3</keycap> to view a file that has no known extension, e.g. <filename>README, INSTALL</filename> &etc;. And if the viewer opens in hex-mode instead of the usual mode, than you need to configure: <menuchoice> <guimenu>KDE Control Center</guimenu> <guimenuitem>KDE components</guimenuitem> <guimenuitem>File Associations</guimenuitem> <guimenuitem>Application</guimenuitem> <guimenuitem>octet-stream</guimenuitem> </menuchoice>, <guilabel>binary viewer</guilabel> needs to be removed."
 msgstr ""
 
 #. Tag: para

@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0 2009-04-08\n"
+"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2009-04-08 16:02+0000\n"
+"POT-Creation-Date: 2009-04-09 08:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -49,19 +49,19 @@ msgstr ""
 #. Tag: para
 #: viewer-editor.docbook:14
 #, no-c-format
-msgid "To view a file as fast as possible according to its type, just put it under the cursor and press <keycap>F3</keycap>. &krusader;'s internal viewer is actually a part of &konqueror;, which can basically view every file type viewable by &konqueror; (&eg; display pictures, play music, show the content of an archive). This is called the 'Generic viewer', for which you need to configure the mime types."
+msgid "To view a file as fast as possible according to its type, just put it under the cursor and press <keycap>F3</keycap>. &krusader;'s internal viewer is actually a part of &konqueror;, which can basically view every file type viewable by &konqueror; (e.g. display pictures, play music, show the content of an archive). This is called the 'Generic viewer', for which you need to configure the mime types."
 msgstr ""
 
 #. Tag: para
 #: viewer-editor.docbook:22
 #, no-c-format
-msgid "The viewer works as follows: <itemizedlist> <listitem> <para>It tries to view the file with the <emphasis>'Generic viewer'.</emphasis></para> </listitem> <listitem> <para>When the file type (mime type) cannot be determined or when a file (&eg; a binary) doesn't have an associated action, it disables the 'generic viewer'. The file is treated as a text file, which is the <emphasis>'Text viewer'</emphasis>.</para> </listitem> <listitem> <para>The user can change in the <link linkend=\"kredit_krviewer_menu\">KrViewer menu</link> between: 'Generic viewer' (if available), 'Text viewer' and <emphasis>'Hex viewer'</emphasis>.</para> </listitem> </itemizedlist>You can configure the default viewer mode on the <link linkend=\"konfig-general\">Konfigurator General page</link> ."
+msgid "The viewer works as follows: <itemizedlist> <listitem> <para>It tries to view the file with the <emphasis>'Generic viewer'.</emphasis></para> </listitem> <listitem> <para>When the file type (mime type) cannot be determined or when a file (e.g. a binary) doesn't have an associated action, it disables the 'generic viewer'. The file is treated as a text file, which is the <emphasis>'Text viewer'</emphasis>.</para> </listitem> <listitem> <para>The user can change in the <link linkend=\"kredit_krviewer_menu\">KrViewer menu</link> between: 'Generic viewer' (if available), 'Text viewer' and <emphasis>'Hex viewer'</emphasis>.</para> </listitem> </itemizedlist>You can configure the default viewer mode on the <link linkend=\"konfig-general\">Konfigurator General page</link> ."
 msgstr ""
 
 #. Tag: para
 #: viewer-editor.docbook:44
 #, no-c-format
-msgid "<keycombo action=\"simul\">&Shift; <keycap>F3</keycap></keycombo>views a &URL; on demand, &eg;:"
+msgid "<keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>F3</keycap></keycombo>views a &URL; on demand, e.g.:"
 msgstr ""
 
 #. Tag: para
@@ -247,7 +247,7 @@ msgstr ""
 #. Tag: menuchoice
 #: viewer-editor.docbook:242
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>Z</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Redo</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;<keycap>Backspace</keycap> <keycap>Z</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Redo</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -307,7 +307,7 @@ msgstr ""
 #. Tag: menuchoice
 #: viewer-editor.docbook:318
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>A</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Deselect</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;<keycap>Backspace</keycap> <keycap>A</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Deselect</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -319,7 +319,7 @@ msgstr ""
 #. Tag: menuchoice
 #: viewer-editor.docbook:334
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>B</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Block Selection Mode</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;<keycap>Backspace</keycap> <keycap>B</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Block Selection Mode</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -367,7 +367,7 @@ msgstr ""
 #. Tag: menuchoice
 #: viewer-editor.docbook:397
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\">&Shift; <keycap>F3</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Find Previous</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>F3</keycap></keycombo> </shortcut> <guimenu>Edit</guimenu> <guimenuitem>Find Previous</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -427,7 +427,7 @@ msgstr ""
 #. Tag: para
 #: viewer-editor.docbook:468
 #, no-c-format
-msgid "Set Schema &eg; &krusader; Normal, &krusader; Printing, &kate; Normal, &kwrite; Normal."
+msgid "Set Schema e.g. &krusader; Normal, &krusader; Printing, &kate; Normal, &kwrite; Normal."
 msgstr ""
 
 #. Tag: menuchoice
@@ -511,7 +511,7 @@ msgstr ""
 #. Tag: para
 #: viewer-editor.docbook:588
 #, no-c-format
-msgid "&eg; ISO8859-1, utf8, utf16, tscii, ... ."
+msgid "e.g. ISO8859-1, utf8, utf16, tscii, ... ."
 msgstr ""
 
 #. Tag: title
@@ -559,7 +559,7 @@ msgstr ""
 #. Tag: para
 #: viewer-editor.docbook:683
 #, no-c-format
-msgid "Highlight mode for scripts, programming languages, markup file, &etc;: &eg; <literal role=\"extension\">HTML, Bash, C++, XML, Makefile, Diff, ...</literal>."
+msgid "Highlight mode for scripts, programming languages, markup file, &etc;: e.g. <literal role=\"extension\">HTML, Bash, C++, XML, Makefile, Diff, ...</literal>."
 msgstr ""
 
 #. Tag: menuchoice
@@ -583,7 +583,7 @@ msgstr ""
 #. Tag: menuchoice
 #: viewer-editor.docbook:721
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>I</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Unindent</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;<keycap>Backspace</keycap> <keycap>I</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Unindent</guimenuitem>"
 msgstr ""
 
 #. Tag: menuchoice
@@ -607,7 +607,7 @@ msgstr ""
 #. Tag: menuchoice
 #: viewer-editor.docbook:765
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>D</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Uncomment</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;<keycap>Backspace</keycap> <keycap>D</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Uncomment</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -625,7 +625,7 @@ msgstr ""
 #. Tag: menuchoice
 #: viewer-editor.docbook:796
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>U</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Lowercase</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;<keycap>Backspace</keycap> <keycap>U</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Lowercase</guimenuitem>"
 msgstr ""
 
 #. Tag: menuchoice
@@ -757,7 +757,7 @@ msgstr ""
 #. Tag: para
 #: viewer-editor.docbook:975
 #, no-c-format
-msgid "Plugins configuration: &eg; kTexteditor incremental search plugin, kTexteditor insert file plugin, kTexteditor kdatatoolplugin..."
+msgid "Plugins configuration: e.g. kTexteditor incremental search plugin, kTexteditor insert file plugin, kTexteditor kdatatoolplugin..."
 msgstr ""
 
 #. Tag: title
@@ -769,13 +769,13 @@ msgstr ""
 #. Tag: menuchoice
 #: viewer-editor.docbook:987
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>G</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Generic viewer</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;<keycap>Backspace</keycap> <keycap>G</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Generic viewer</guimenuitem>"
 msgstr ""
 
 #. Tag: para
 #: viewer-editor.docbook:998
 #, no-c-format
-msgid "&krusader;'s internal viewer is actually part of Konqueror, which can basically view every file type viewable by &konqueror; (&eg; display pictures, play music, show the content of an archive)."
+msgid "&krusader;'s internal viewer is actually part of Konqueror, which can basically view every file type viewable by &konqueror; (e.g. display pictures, play music, show the content of an archive)."
 msgstr ""
 
 #. Tag: menuchoice
@@ -793,7 +793,7 @@ msgstr ""
 #. Tag: menuchoice
 #: viewer-editor.docbook:1022
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>H</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Hex viewer</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;<keycap>Backspace</keycap> <keycap>H</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Hex viewer</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -805,7 +805,7 @@ msgstr ""
 #. Tag: menuchoice
 #: viewer-editor.docbook:1038
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>E</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Text editor</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;<keycap>Backspace</keycap> <keycap>E</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Text editor</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -841,7 +841,7 @@ msgstr ""
 #. Tag: menuchoice
 #: viewer-editor.docbook:1084
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>D</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Detach Tab</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;<keycap>Backspace</keycap> <keycap>D</keycap></keycombo> </shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Detach Tab</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -853,7 +853,7 @@ msgstr ""
 #. Tag: menuchoice
 #: viewer-editor.docbook:1101
 #, no-c-format
-msgid "<shortcut>&Esc;</shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Close current Tab.</guimenuitem>"
+msgid "<shortcut><keycap>Esc</keycap></shortcut> <guimenu>KrViewer</guimenu> <guimenuitem>Close current Tab.</guimenuitem>"
 msgstr ""
 
 #. Tag: para

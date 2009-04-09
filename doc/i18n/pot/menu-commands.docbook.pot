@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0 2009-04-08\n"
+"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2009-04-08 16:02+0000\n"
+"POT-Creation-Date: 2009-04-09 08:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -43,7 +43,7 @@ msgstr ""
 #. Tag: menuchoice
 #: menu-commands.docbook:32
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\">&Shift; <keycap>F4</keycap></keycombo> </shortcut> <guimenu>File</guimenu> <guimenuitem>New Text File</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>F4</keycap></keycombo> </shortcut> <guimenu>File</guimenu> <guimenuitem>New Text File</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -169,13 +169,13 @@ msgstr ""
 #. Tag: para
 #: menu-commands.docbook:201
 #, no-c-format
-msgid "Compares two current files by content - one from each panel via an external graphical diff utility. By default &kompare; (part of the kdebase package) is used, but you can also use &eg; <ulink url=\"http://furius.ca/xxdiff/\"><application>xxdiff</application></ulink> or <ulink url=\"http://kdiff3.sourceforge.net\"><application>Kdiff3</application></ulink> , change it in the <link linkend=\"konfig-dependencies\">Konfigurator Dependencies page</link>."
+msgid "Compares two current files by content - one from each panel via an external graphical diff utility. By default &kompare; (part of the kdebase package) is used, but you can also use e.g. <ulink url=\"http://furius.ca/xxdiff/\"><application>xxdiff</application></ulink> or <ulink url=\"http://kdiff3.sourceforge.net\"><application>Kdiff3</application></ulink> , change it in the <link linkend=\"konfig-dependencies\">Konfigurator Dependencies page</link>."
 msgstr ""
 
 #. Tag: menuchoice
 #: menu-commands.docbook:212
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\">&Shift; <keycap>F9</keycap></keycombo> </shortcut> <guimenu>File</guimenu> <guimenuitem>Multi Rename</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>F9</keycap></keycombo> </shortcut> <guimenu>File</guimenu> <guimenuitem>Multi Rename</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -403,7 +403,7 @@ msgstr ""
 #. Tag: para
 #: menu-commands.docbook:456
 #, no-c-format
-msgid "Opens a dialog which allows you to select files in the active panel. In the <guilabel>Search for</guilabel> dialog place the main search criteria. Enter a filename, a wildcard ( <literal role=\"extension\">*.o.*</literal>, <literal role=\"extension\">*.c</literal> &etc;) or both - separated by a space. When using <literal>'text'</literal>, the results are the same as <literal>'*text*'</literal>. You can exclude files from the search with '|' (&eg; <literal role=\"extension\">'*.cpp *.h | *.moc.cpp'</literal>). With the <link linkend=\"profiles\">profile handler</link> you can manage your selections for future usage. A double-click on a profile is the same as entering the selection and pressing the <guibutton>OK</guibutton> button. More options for <guilabel>Select Group</guilabel> dialog are explained in the <link linkend=\"krusearcher\">Search dialog</link>, which are basically almost the same dialogs."
+msgid "Opens a dialog which allows you to select files in the active panel. In the <guilabel>Search for</guilabel> dialog place the main search criteria. Enter a filename, a wildcard ( <literal role=\"extension\">*.o.*</literal>, <literal role=\"extension\">*.c</literal> &etc;) or both - separated by a space. When using <literal>'text'</literal>, the results are the same as <literal>'*text*'</literal>. You can exclude files from the search with '|' (e.g. <literal role=\"extension\">'*.cpp *.h | *.moc.cpp'</literal>). With the <link linkend=\"profiles\">profile handler</link> you can manage your selections for future usage. A double-click on a profile is the same as entering the selection and pressing the <guibutton>OK</guibutton> button. More options for <guilabel>Select Group</guilabel> dialog are explained in the <link linkend=\"krusearcher\">Search dialog</link>, which are basically almost the same dialogs."
 msgstr ""
 
 #. Tag: menuchoice
@@ -451,7 +451,7 @@ msgstr ""
 #. Tag: para
 #: menu-commands.docbook:542
 #, no-c-format
-msgid "Inverts the selection status of all the files in the active panel (&ie; selected files will become unselected and deselected files will become selected)."
+msgid "Inverts the selection status of all the files in the active panel (i.e. selected files will become unselected and deselected files will become selected)."
 msgstr ""
 
 #. Tag: menuchoice
@@ -547,7 +547,7 @@ msgstr ""
 #. Tag: menuchoice
 #: menu-commands.docbook:642
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\"> &Alt;&Shift; <keycap>D</keycap></keycombo> </shortcut> <guimenu>View</guimenu> <guimenuitem>Detailed View</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"> &Alt;<keycap>Backspace</keycap> <keycap>D</keycap></keycombo> </shortcut> <guimenu>View</guimenu> <guimenuitem>Detailed View</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -559,7 +559,7 @@ msgstr ""
 #. Tag: menuchoice
 #: menu-commands.docbook:658
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\"> &Alt;&Shift; <keycap>B</keycap></keycombo> </shortcut> <guimenu>View</guimenu> <guimenuitem>Brief View</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"> &Alt;<keycap>Backspace</keycap> <keycap>B</keycap></keycombo> </shortcut> <guimenu>View</guimenu> <guimenuitem>Brief View</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -583,7 +583,7 @@ msgstr ""
 #. Tag: menuchoice
 #: menu-commands.docbook:690
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\">&Shift; <keycap>F10</keycap></keycombo> </shortcut> <guimenu>View</guimenu> <guimenuitem>All Files</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>F10</keycap></keycombo> </shortcut> <guimenu>View</guimenu> <guimenuitem>All Files</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -595,7 +595,7 @@ msgstr ""
 #. Tag: menuchoice
 #: menu-commands.docbook:705
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\">&Shift; <keycap>F12</keycap></keycombo> </shortcut> <guimenu>View</guimenu> <guimenuitem>Custom</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>F12</keycap></keycombo> </shortcut> <guimenu>View</guimenu> <guimenuitem>Custom</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -697,7 +697,7 @@ msgstr ""
 #. Tag: menuchoice
 #: menu-commands.docbook:833
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>J</keycap></keycombo> </shortcut> <guimenu>Go</guimenu> <guimenuitem>Set Jump Back Point</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;<keycap>Backspace</keycap> <keycap>J</keycap></keycombo> </shortcut> <guimenu>Go</guimenu> <guimenuitem>Set Jump Back Point</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -859,7 +859,7 @@ msgstr ""
 #. Tag: menuchoice
 #: menu-commands.docbook:1033
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\"> &Shift;<keycap>F5</keycap> </keycombo> </shortcut> <guimenu>Useractions</guimenu> <guimenuitem>Backup current</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"> <keycap>Backspace</keycap><keycap>F5</keycap> </keycombo> </shortcut> <guimenu>Useractions</guimenu> <guimenuitem>Backup current</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -889,7 +889,7 @@ msgstr ""
 #. Tag: menuchoice
 #: menu-commands.docbook:1072
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>L</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Locate</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;<keycap>Backspace</keycap> <keycap>L</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Locate</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -949,7 +949,7 @@ msgstr ""
 #. Tag: menuchoice
 #: menu-commands.docbook:1162
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\"> &Shift;&Ctrl; <keycap>F</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Disconnect From Net</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"> <keycap>Backspace</keycap>&Ctrl; <keycap>F</keycap></keycombo> </shortcut> <guimenu>Tools</guimenu> <guimenuitem>Disconnect From Net</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -991,7 +991,7 @@ msgstr ""
 #. Tag: para
 #: menu-commands.docbook:1226
 #, no-c-format
-msgid "Starts &krusader; in <link linkend=\"root-mode\">Root mode</link> at the same location. Root mode &krusader; requires <command>kdesu</command> by default, if <command>kdesu</command> is not available or if you prefer &eg; <command>gksu</command> when using <ulink url=\"http://www.gnome.org\"><application>GNOME</application></ulink> you can change this behaviour in the <link linkend=\"konfig-dependencies\">Konfigurator Dependencies page</link>."
+msgid "Starts &krusader; in <link linkend=\"root-mode\">Root mode</link> at the same location. Root mode &krusader; requires <command>kdesu</command> by default, if <command>kdesu</command> is not available or if you prefer e.g. <command>gksu</command> when using <ulink url=\"http://www.gnome.org\"><application>GNOME</application></ulink> you can change this behaviour in the <link linkend=\"konfig-dependencies\">Konfigurator Dependencies page</link>."
 msgstr ""
 
 #. Tag: para
@@ -1183,7 +1183,7 @@ msgstr ""
 #. Tag: menuchoice
 #: menu-commands.docbook:1472
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\"> &Alt;&Ctrl;&Shift; <keycap>N</keycap></keycombo> </shortcut> <guimenu>Window</guimenu> <guimenuitem>Duplicate Current Tab</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"> &Alt;&Ctrl;<keycap>Backspace</keycap> <keycap>N</keycap></keycombo> </shortcut> <guimenu>Window</guimenu> <guimenuitem>Duplicate Current Tab</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -1207,7 +1207,7 @@ msgstr ""
 #. Tag: menuchoice
 #: menu-commands.docbook:1506
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\">&Shift; <keycap>Right</keycap></keycombo> </shortcut> <guimenu>Window</guimenu> <guimenuitem>Next Tab</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>Right</keycap></keycombo> </shortcut> <guimenu>Window</guimenu> <guimenuitem>Next Tab</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -1219,7 +1219,7 @@ msgstr ""
 #. Tag: menuchoice
 #: menu-commands.docbook:1523
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\">&Shift; <keycap>Left</keycap></keycombo> </shortcut> <guimenu>Window</guimenu> <guimenuitem>Previous Tab</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>Left</keycap></keycombo> </shortcut> <guimenu>Window</guimenu> <guimenuitem>Previous Tab</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -1255,7 +1255,7 @@ msgstr ""
 #. Tag: menuchoice
 #: menu-commands.docbook:1573
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>U</keycap></keycombo> </shortcut> <guimenu>Window</guimenu> <guimenuitem>Swap Sides</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"> &Ctrl;<keycap>Backspace</keycap> <keycap>U</keycap></keycombo> </shortcut> <guimenu>Window</guimenu> <guimenuitem>Swap Sides</guimenuitem>"
 msgstr ""
 
 #. Tag: para
@@ -1321,7 +1321,7 @@ msgstr ""
 #. Tag: menuchoice
 #: menu-commands.docbook:1658
 #, no-c-format
-msgid "<shortcut> <keycombo action=\"simul\">&Shift; <keycap>F1</keycap></keycombo> </shortcut> <guimenu>Help</guimenu> <guimenuitem>What's This?</guimenuitem>"
+msgid "<shortcut> <keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>F1</keycap></keycombo> </shortcut> <guimenu>Help</guimenu> <guimenuitem>What's This?</guimenuitem>"
 msgstr ""
 
 #. Tag: para

@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0 2009-04-08\n"
+"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2009-04-08 16:01+0000\n"
+"POT-Creation-Date: 2009-04-09 08:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
@@ -49,7 +49,7 @@ msgstr ""
 #. Tag: para
 #: basic-functions.docbook:51
 #, no-c-format
-msgid "By Moving Around we mean the transfer of the keyboard and mouse focus between the different parts of the &krusader; <link linkend=\"mainwindow\">main window</link>. The focus can be in one of five places: the Left or Right Panel, the Menu Bar, the Command Line or the Terminal Emulator. The panel that has the focus is called the Active Panel. An Active Panel will remain active until the other panel receives the focus (&ie;: if the Left Panel was active and you clicked on the Command Line - then the Left Panel remains the Active Panel). You must deliberately change which panel is active."
+msgid "By Moving Around we mean the transfer of the keyboard and mouse focus between the different parts of the &krusader; <link linkend=\"mainwindow\">main window</link>. The focus can be in one of five places: the Left or Right Panel, the Menu Bar, the Command Line or the Terminal Emulator. The panel that has the focus is called the Active Panel. An Active Panel will remain active until the other panel receives the focus (i.e.: if the Left Panel was active and you clicked on the Command Line - then the Left Panel remains the Active Panel). You must deliberately change which panel is active."
 msgstr ""
 
 #. Tag: para
@@ -97,7 +97,7 @@ msgstr ""
 #. Tag: para
 #: basic-functions.docbook:110
 #, no-c-format
-msgid "The &Esc; Key will make the Menu Bar return the focus, if it has it, to the previous Active Panel."
+msgid "The <keycap>Esc</keycap> Key will make the Menu Bar return the focus, if it has it, to the previous Active Panel."
 msgstr ""
 
 #. Tag: para
@@ -163,19 +163,19 @@ msgstr ""
 #. Tag: para
 #: basic-functions.docbook:178
 #, no-c-format
-msgid "<keycombo action=\"simul\">&Shift; <keycap>Left Clicking</keycap></keycombo> will select all the elements between the previous cursor location and the new one."
+msgid "<keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>Left Clicking</keycap></keycombo> will select all the elements between the previous cursor location and the new one."
 msgstr ""
 
 #. Tag: para
 #: basic-functions.docbook:185
 #, no-c-format
-msgid "<keycombo action=\"simul\">&Shift; <keycap>Home</keycap></keycombo> selects everything above the cursor (and deselects everything below the cursor, if selected)."
+msgid "<keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>Home</keycap></keycombo> selects everything above the cursor (and deselects everything below the cursor, if selected)."
 msgstr ""
 
 #. Tag: para
 #: basic-functions.docbook:192
 #, no-c-format
-msgid "<keycombo action=\"simul\">&Shift; <keycap>End</keycap></keycombo> selects everything below the cursor (and unselects everything above the cursor, if selected)."
+msgid "<keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>End</keycap></keycombo> selects everything below the cursor (and unselects everything above the cursor, if selected)."
 msgstr ""
 
 #. Tag: para
@@ -217,7 +217,7 @@ msgstr ""
 #. Tag: para
 #: basic-functions.docbook:224
 #, no-c-format
-msgid "Type <keycap>foo</keycap>(one character) to do a quick search in the Active List Panel for a file beginning with \"foo\". A small quick search dialog box will open below the Active List Panel. Type the first few characters of the desired file name (more than one character allowed), the cursor will jump to that filename (if it exists), &eg; type \"ab\" to search for a file which begins with \"ab\". The <keycap>Up/Down Arrow</keycap>will jump to the next or previous match. &Esc; will close the quick search line. The cursor will stay on the last file found."
+msgid "Type <keycap>foo</keycap>(one character) to do a quick search in the Active List Panel for a file beginning with \"foo\". A small quick search dialog box will open below the Active List Panel. Type the first few characters of the desired file name (more than one character allowed), the cursor will jump to that filename (if it exists), e.g. type \"ab\" to search for a file which begins with \"ab\". The <keycap>Up/Down Arrow</keycap>will jump to the next or previous match. <keycap>Esc</keycap> will close the quick search line. The cursor will stay on the last file found."
 msgstr ""
 
 #. Tag: para
@@ -361,7 +361,7 @@ msgstr ""
 #. Tag: para
 #: basic-functions.docbook:364
 #, no-c-format
-msgid "Use <keycap>F5</keycap> (copy) or <keycap>F6</keycap> (move) and than <keycap>F2</keycap> to use it. Or the direct shortcuts: copy by queue <keycombo action=\"simul\">&Shift;<keycap>F5</keycap></keycombo> , move by queue <keycombo action=\"simul\">&Shift;<keycap>F6</keycap></keycombo> . Queueing is used for one-by-one copying. E.g. if you have a pen drive (which is slow), and you want to copy 40 files onto it, it's much better copying them one-by-one instead of starting to copy 40 files parallelly. That's why enqueuing is important. If you pack/unpack 40 files parallelly, you overload your computer, but adding them to a queue (which is not yet implemented into Krusader), is much more useful."
+msgid "Use <keycap>F5</keycap> (copy) or <keycap>F6</keycap> (move) and than <keycap>F2</keycap> to use it. Or the direct shortcuts: copy by queue <keycombo action=\"simul\"><keycap>Backspace</keycap><keycap>F5</keycap></keycombo> , move by queue <keycombo action=\"simul\"><keycap>Backspace</keycap><keycap>F6</keycap></keycombo> . Queueing is used for one-by-one copying. E.g. if you have a pen drive (which is slow), and you want to copy 40 files onto it, it's much better copying them one-by-one instead of starting to copy 40 files parallelly. That's why enqueuing is important. If you pack/unpack 40 files parallelly, you overload your computer, but adding them to a queue (which is not yet implemented into Krusader), is much more useful."
 msgstr ""
 
 #. Tag: title
@@ -373,7 +373,7 @@ msgstr ""
 #. Tag: para
 #: basic-functions.docbook:378
 #, no-c-format
-msgid "Deleting files/directories is done by selecting them and pressing <keycap>F8</keycap> or <keycap>Delete</keycap>. By <link linkend=\"konfig-general\">default</link> it will be moved to &kde;'s Trash. You can open the KDE Trash with <filename>trash:/</filename> (\"kdebase3-runtime\" needs to be installed, otherwise the KDE trash protocol will not work). Phisically KDE Trash is located in <filename>~/.local/share/Trash/</filename> . <keycombo action=\"simul\">&Shift; <keycap>Delete</keycap></keycombo> will delete the file permanently. A dialog will ask for your confirmation and will warn you when deleting non-empty directories. Of course only operations that you are permitted to do by the Operating System will be performed - you will be notified otherwise. If you do not wish to see the confirmation dialogs, you can disable them in the <link linkend=\"konfig-advanced\">Konfigurator advanced tab</link>."
+msgid "Deleting files/directories is done by selecting them and pressing <keycap>F8</keycap> or <keycap>Delete</keycap>. By <link linkend=\"konfig-general\">default</link> it will be moved to &kde;'s Trash. You can open the KDE Trash with <filename>trash:/</filename> (\"kdebase3-runtime\" needs to be installed, otherwise the KDE trash protocol will not work). Phisically KDE Trash is located in <filename>~/.local/share/Trash/</filename> . <keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>Delete</keycap></keycombo> will delete the file permanently. A dialog will ask for your confirmation and will warn you when deleting non-empty directories. Of course only operations that you are permitted to do by the Operating System will be performed - you will be notified otherwise. If you do not wish to see the confirmation dialogs, you can disable them in the <link linkend=\"konfig-advanced\">Konfigurator advanced tab</link>."
 msgstr ""
 
 #. Tag: title
