@@ -1,0 +1,90 @@
+# Translation of mount.docbook to LANGUAGE
+# Copyright (C) 2006-2009, Krusader Krew
+# This file is distributed under the same license as the Krusader package
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
+"Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
+"POT-Creation-Date: 2009-04-09 08:07+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: application/x-xml2pot; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Tag: title
+#: mount.docbook:2
+#, no-c-format
+msgid "MountMan: work with your mounted file systems"
+msgstr ""
+
+#. Tag: primary
+#: mount.docbook:4
+#, no-c-format
+msgid "Mount"
+msgstr ""
+
+#. Tag: para
+#: mount.docbook:6
+#, no-c-format
+msgid "MountMan is a tool which helps you manage your mounted file systems. Once invoked, it displays a list of every mounted file system. For each file system, MountMan displays its name (which is the actual device name - i.e. <filename class=\"directory\">/dev/fd0</filename> for a <hardware>floppy</hardware>), its type (vfat, ext3, ReiserFS ...) and its mount point on your system (the directory on which the file system is mounted)."
+msgstr ""
+
+#. Tag: title
+#: mount.docbook:26
+#, no-c-format
+msgid "<title>MountMan</title>"
+msgstr ""
+
+#. Tag: phrase
+#: mount.docbook:32
+#, no-c-format
+msgid "<phrase>MountMan</phrase>"
+msgstr ""
+
+#. Tag: para
+#: mount.docbook:36
+#, no-c-format
+msgid "MountMan also displays usage information using total size, free size, and percentage of available space free. If those numbers say <guilabel>N/A</guilabel>, that usually means that the file system is not mounted. Left clicking on a file system displays a pie chart on the left of the window, graphically displaying the usage information for the file system. Clicking on a non-mounted file system will display <guilabel>not mounted</guilabel> instead of the graph."
+msgstr ""
+
+#. Tag: para
+#: mount.docbook:47
+#, no-c-format
+msgid "<keycap>Double-clicking</keycap> on a file system will close MountMan and open that file system inside &krusader;'s active panel."
+msgstr ""
+
+#. Tag: para
+#: mount.docbook:53
+#, no-c-format
+msgid "<keycap>Right-clicking</keycap> on a file system will open a small menu which displays what actions can be performed on that file system. At the moment, you can only mount, unmount and eject (if clicking on a removable file system, e.g., a <hardware>cdrom</hardware>)."
+msgstr ""
+
+#. Tag: para
+#: mount.docbook:62
+#, no-c-format
+msgid "We plan to expand MountMan in the next evolution of &krusader;. It will be able to format floppies, edit <filename class=\"directory\">/etc/fstab</filename>, create new file systems and more.... By the way, we have started working on it, see \"Quickmode for MountMan\""
+msgstr ""
+
+#. Tag: emphasis
+#: mount.docbook:69
+#, no-c-format
+msgid "Quickmode for MountMan"
+msgstr ""
+
+#. Tag: para
+#: mount.docbook:71
+#, no-c-format
+msgid "To activate Quickmode for MountMan, click and hold the MountMan button on the <link linkend=\"mainwindow\">Main Toolbar</link>"
+msgstr ""
+
+#. Tag: para
+#: mount.docbook:73
+#, no-c-format
+msgid "General idea: display a list of all possible mount points. Each time the menu is displayed, it determines if a mount point is mounted or not and associates the correct action (mount or umount). This offers a quick interface to MountMan. It is working, and currently uses KMountMan::mount and unmount. It uses the new &kde; services for fstab-reading and this will enable us to remove a lot of code from the \"old\" MountMan."
+msgstr ""
+

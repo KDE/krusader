@@ -1,0 +1,42 @@
+# Translation of occupied-space.docbook to LANGUAGE
+# Copyright (C) 2006-2009, Krusader Krew
+# This file is distributed under the same license as the Krusader package
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
+"Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
+"POT-Creation-Date: 2009-04-09 08:07+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: application/x-xml2pot; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Tag: title
+#: occupied-space.docbook:2
+#, no-c-format
+msgid "Calculate Occupied Space"
+msgstr ""
+
+#. Tag: primary
+#: occupied-space.docbook:4
+#, no-c-format
+msgid "Occupied Space"
+msgstr ""
+
+#. Tag: para
+#: occupied-space.docbook:7
+#, no-c-format
+msgid "There are two ways to calculate the occupied space of files/directories. <itemizedlist> <listitem> <para>Pressing the <keycap>SPACE</keycap> on a directory under the cursor instantly calculates the occupied size. Pressing <keycap>SPACE</keycap> a second time will toggle the selection of the directory without affecting the selection status of other files/directories.</para> </listitem> <listitem> <para>To calculate how much disk space is occupied by the selected files and directories in the active panel select <emphasis role=\"bold\"> <menuchoice> <guimenu>Edit</guimenu> <guimenuitem>Calculate Occupied Space</guimenuitem> </menuchoice> </emphasis>. After a small delay, a dialog box will be displayed with total occupied space and the number of files and directories you selected. The space occupied by every selected directory will be shown as if the user just pressed <keycap>SPACE</keycap> on those directories. If the active panel is browsing an archive, the numbers will apply to the unpacked size of the selected files and directories, not their compressed size. After the calculation the selection state will be toggled and the cursor will move one step downwards.</para> </listitem> </itemizedlist>Calculating the occupied space on remote file systems is supported."
+msgstr ""
+
+#. Tag: para
+#: occupied-space.docbook:40
+#, no-c-format
+msgid "Performing this operation on a very large file system (thousands of files) may be time-consuming. You can cancel the calculation process at any time by clicking the <guibutton>Cancel</guibutton> button."
+msgstr ""
+

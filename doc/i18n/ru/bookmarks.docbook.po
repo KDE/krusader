@@ -1,0 +1,270 @@
+# Translation of bookmarks.docbook to LANGUAGE
+# Copyright (C) 2006-2009, Krusader Krew
+# This file is distributed under the same license as the Krusader package
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
+"Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
+"POT-Creation-Date: 2009-04-09 08:06+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: application/x-xml2pot; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Tag: title
+#: bookmarks.docbook:2
+#, no-c-format
+msgid "BookMan: Organize your Bookmarks"
+msgstr ""
+
+#. Tag: primary
+#: bookmarks.docbook:4
+#, no-c-format
+msgid "Bookmarks"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:6
+#, no-c-format
+msgid "BookMan is &krusader;'s Bookmark tool for bookmarking folders, local- and <link linkend=\"remote-connections\">remote URL's</link>, and later returning to them in a click of a button. The Bookman menu is divided into four sections:"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:13
+#, no-c-format
+msgid "Your personal bookmarks"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:16
+#, no-c-format
+msgid "Popular &URL;'s"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:19
+#, no-c-format
+msgid "<para>Permanent bookmarks</para>"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:22
+#, no-c-format
+msgid "<para>Manage bookmarks</para>"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:26
+#, no-c-format
+msgid "You can bookmark inside a remote file system (&FTP; or SAMBA) and later use the bookmark to quickly connect to the remote machine, but you cannot bookmark inside an archive."
+msgstr ""
+
+#. Tag: title
+#: bookmarks.docbook:43
+#, no-c-format
+msgid "<title>Bookmark menu</title>"
+msgstr ""
+
+#. Tag: phrase
+#: bookmarks.docbook:49
+#, no-c-format
+msgid "<phrase>Bookmark menu</phrase>"
+msgstr ""
+
+#. Tag: title
+#: bookmarks.docbook:54
+#, no-c-format
+msgid "Using Bookmarks"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:55
+#, no-c-format
+msgid "Usually, you click on the <guibutton>Bookmark</guibutton> button when you are in the target folder. For example, to bookmark <filename class=\"directory\">/usr/tmp</filename>, navigate &krusader; there and click the <guibutton>Bookmark</guibutton> button and select <guimenuitem>Bookmark Current</guimenuitem>. When the <guilabel>Bookmark Current</guilabel> dialog box appears, the &URL; line will say <filename class=\"directory\">/usr/tmp</filename>. <guilabel>Name</guilabel> is for the name you would like to give to the bookmark (e.g.: temporary folder). Hotkeys are supported by adding <literal>&amp;</literal> to the bookmark name e.g. <literal>&amp;sourceforge, &amp;home, down&amp;loads</literal> &etc;, so you can quickly call the bookmark name with <keycombo action=\"simul\">&Alt; <keycap>foo</keycap></keycombo>. If you add the bookmark without entering a name, the bookmarks name will be the same as its target. <guilabel>URL</guilabel> is where the bookmark points to. <guilabel>Create in</guilabel> creates bookmark folders for organizing your bookmarks."
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:82
+#, no-c-format
+msgid "To use your bookmarks, click the <guibutton>Bookmark</guibutton> button and choose a bookmark. You may also use the <link linkend=\"key_bindings\">Key-Bindings</link> : <keycombo action=\"simul\">&Ctrl;<keycap>Backspace</keycap> <keycap>d</keycap></keycombo> to bookmark the current item, <keycombo action=\"simul\">&Alt; <keycap>right/left arrow</keycap></keycombo> to <keycap>open right/left panel bookmarks list</keycap> and <keycombo action=\"simul\">&Ctrl; <keycap>d</keycap></keycombo> to open the bookmarks of the active panel. A Middle Mouse Button click on bookmarks opens them in a new <link linkend=\"folder-tabs\">Folder tab</link>."
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:95
+#, no-c-format
+msgid "Navigation in bookmarks:"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:98
+#, no-c-format
+msgid "Start typing letters"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:101
+#, no-c-format
+msgid "e.g. when you type <literal>'h'</literal> and only one bookmark starts with <literal>'h'</literal>, it is executed immediately - no enter needed"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:107
+#, no-c-format
+msgid "If more than one bookmarks begins with <literal>'h'</literal>, you will have to continue adding letters, until you have specified enough and again, the bookmark is executed."
+msgstr ""
+
+#. Tag: title
+#: bookmarks.docbook:115
+#, no-c-format
+msgid "Password handling"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:116
+#, no-c-format
+msgid "One of the benefits of the <link linkend=\"bookman\">bookmark manager</link> is that the passwords are saved using &kde;'s services - where e.g. your &konqueror;/&kmail; password are saved. If you have a wallet, &kde; will save the passwords there. By clicking the bookmarks, a dialog will open and ask for your username and password. Supply them and click 'save password'. The passwords and usernames will be saved securely by &kde;'s wallet (make sure it is enabled by your distro). The downside here is that if you reinstall and do not backup your passwords from the wallet as well as &krusader;'s bookmark file, something will be lost."
+msgstr ""
+
+#. Tag: title
+#: bookmarks.docbook:131
+#, no-c-format
+msgid "<title>Popular URL's</title>"
+msgstr ""
+
+#. Tag: primary
+#: bookmarks.docbook:133
+#, no-c-format
+msgid "<primary>Popular URL's</primary>"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:135
+#, no-c-format
+msgid "The submenu <guilabel>Popular URL's</guilabel> holds persistent the most popular visited &URL;'s (local or remote). This submenu displays the top 15 popular URLs, sorted by ranking, so that the top &URL; is the most popular. This is easy for when you need to visit &URL;s often, but do not want to create <link linkend=\"bookman\">Bookmarks</link>, it serves as a temporary bookmark list for the most visited links. <guilabel>Quicksearch Popular URL's</guilabel> is a fast way to browse/select the popular &URL;s:"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:149
+#, no-c-format
+msgid "Open the <guilabel>Popular URL's</guilabel> or use <keycombo action=\"simul\">&Ctrl; <keycap>z</keycap></keycombo>"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:157
+#, no-c-format
+msgid "Type a few letters to narrow the search"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:160
+#, no-c-format
+msgid "Press enter (you will go to the &URL; list)"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:164
+#, no-c-format
+msgid "Press enter again and the panel is refreshed"
+msgstr ""
+
+#. Tag: title
+#: bookmarks.docbook:169
+#, no-c-format
+msgid "<title>Permanent bookmarks</title>"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:170
+#, no-c-format
+msgid "These are hardcoded bookmarks to the top bookmark menu; there is no need for them to be saved to the file. With the <link linkend=\"context-menu\">Context Menu</link> you can enable/disable these permanent bookmarks. The following permanent bookmarks are available:"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:177
+#, no-c-format
+msgid "<guilabel>Media</guilabel> uses &kde;'s <link linkend=\"konfig-advanced\">Media protocol</link> <filename>media:/</filename>"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:183
+#, no-c-format
+msgid "<guilabel>Local Network</guilabel> uses &kde;'s <filename>lan:/</filename> protocol."
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:188
+#, no-c-format
+msgid "<guilabel>Virtual Filesystem</guilabel> <link linkend=\"vfs\">Virtual file systems (VFS)</link> <filename>virt:/</filename> is not a virtual folder, but a container for &URL;'s from different file systems. It is used for e.g. the <guilabel>Feed to Listbox</guilabel> feature of the search module and the synchronizer. The location toolbar will display e.g. <filename>virt:/Search results 1</filename> or <filename>virt:/Synchronise results 1</filename>."
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:201
+#, no-c-format
+msgid "<guilabel>Jump back</guilabel> or <keycombo action=\"simul\">&Ctrl; <keycap>J</keycap></keycombo> brings you back to your starting position when you did create a new tab in the panel window. This feature is very handy if you go deep into a directory tree, than you can return with one action to the starting point. With <guilabel>Set jump back point here</guilabel> or <keycombo action=\"simul\"> &Ctrl;<keycap>Backspace</keycap> <keycap>J</keycap></keycombo> sets the current directory as a jump back point."
+msgstr ""
+
+#. Tag: title
+#: bookmarks.docbook:218
+#, no-c-format
+msgid "<title>Manage bookmarks</title>"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:219
+#, no-c-format
+msgid "To edit and organize your bookmarks, by clicking the <guibutton>Bookmark</guibutton> button and selecting the <guimenuitem>Manage Bookmarks</guimenuitem>, <application>KeditBookmarks</application> will be displayed. This is where you can edit/remove and rearrange the bookmarks. <application>KeditBookmarks</application> (part of the kdebase package) is a bookmark editor for &konqueror;, &krusader; and other applications, which use the <ulink url=\"http://grail.sourceforge.net/info/xbel.html\">XBEL standard</ulink> standard for the bookmark format. The bookmarks are stored in <filename> ~/.kde/share/apps/krusader/krbookmarks.xml.</filename>"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:231
+#, no-c-format
+msgid "You can import bookmarks from <application>IE</application>, <application>Opera</application>, <application>Galeon</application>, &kde;, <application>Mozilla</application>, &Netscape;. <application>KeditBookmarks</application> is easy to use, however, if you need more information, please read the <application>KeditBookmarks</application> or the &konqueror; handbook."
+msgstr ""
+
+#. Tag: title
+#: bookmarks.docbook:252
+#, no-c-format
+msgid "<title><application>KeditBookmarks</application> Bookmark Manager</title>"
+msgstr ""
+
+#. Tag: phrase
+#: bookmarks.docbook:258
+#, no-c-format
+msgid "<phrase><application>KeditBookmarks</application> Bookmark Manager</phrase>"
+msgstr ""
+
+#. Tag: title
+#: bookmarks.docbook:265
+#, no-c-format
+msgid "Bookmarks as action buttons on the Toolbar"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:266
+#, no-c-format
+msgid "Bookmarks can be placed as buttons on the <link linkend=\"mainwindow\">Main Toolbar</link> or the <link linkend=\"actions_toolbar\">Actions Toolbar</link>. You can even make a key-binding for them:"
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:272
+#, no-c-format
+msgid "Create your <link linkend=\"bookman\">Bookmarks</link>."
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:275
+#, no-c-format
+msgid "If you want, create keybindings for the bookmarks in the <guilabel>Key-bindings</guilabel> section of the <link linkend=\"konfig-looknfeel\">Konfigurator Look &amp; Feel page</link>."
+msgstr ""
+
+#. Tag: para
+#: bookmarks.docbook:281
+#, no-c-format
+msgid "Add your bookmarks as action buttons on the <link linkend=\"mainwindow\">Main Toolbar</link> or the <link linkend=\"actions_toolbar\">Actions Toolbar</link> with the <guilabel>Toolbar</guilabel> section of the <link linkend=\"konfig-looknfeel\">Konfigurator Look &amp; Feel page</link>."
+msgstr ""
+
