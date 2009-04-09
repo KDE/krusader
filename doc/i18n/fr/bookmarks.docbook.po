@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bookmarks.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2009-04-08 16:30+0000\n"
+"POT-Creation-Date: 2009-04-09 07:20+0000\n"
 "PO-Revision-Date: 2008-11-03 17:23+0100\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
@@ -100,7 +100,7 @@ msgstr "Utilisation des signets"
 
 #. Tag: para
 #: bookmarks.docbook:55
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "Usually, you click on the <guibutton>Bookmark</guibutton> button when you "
 "are in the target folder. For example, to bookmark <filename class="
@@ -110,7 +110,7 @@ msgid ""
 "box appears, the &URL; line will say <filename class=\"directory\">/usr/tmp</"
 "filename>. <guilabel>Name</guilabel> is for the name you would like to give "
 "to the bookmark (e.g.: temporary folder). Hotkeys are supported by adding "
-"<literal>&amp;</literal> to the bookmark name &eg; <literal>&amp;"
+"<literal>&amp;</literal> to the bookmark name e.g. <literal>&amp;"
 "sourceforge, &amp;home, down&amp;loads</literal> &etc;, so you can quickly "
 "call the bookmark name with <keycombo action=\"simul\">&Alt; <keycap>foo</"
 "keycap></keycombo>. If you add the bookmark without entering a name, the "
@@ -142,13 +142,13 @@ msgstr ""
 msgid ""
 "To use your bookmarks, click the <guibutton>Bookmark</guibutton> button and "
 "choose a bookmark. You may also use the <link linkend=\"key_bindings\">Key-"
-"Bindings</link> : <keycombo action=\"simul\">&Ctrl;&Shift; <keycap>d</"
-"keycap></keycombo> to bookmark the current item, <keycombo action=\"simul"
-"\">&Alt; <keycap>right/left arrow</keycap></keycombo> to <keycap>open right/"
-"left panel bookmarks list</keycap> and <keycombo action=\"simul\">&Ctrl; "
-"<keycap>d</keycap></keycombo> to open the bookmarks of the active panel. A "
-"&MMB; click on bookmarks opens them in a new <link linkend=\"folder-tabs"
-"\">Folder tab</link>."
+"Bindings</link> : <keycombo action=\"simul\">&Ctrl;<keycap>Backspace</"
+"keycap> <keycap>d</keycap></keycombo> to bookmark the current item, "
+"<keycombo action=\"simul\">&Alt; <keycap>right/left arrow</keycap></"
+"keycombo> to <keycap>open right/left panel bookmarks list</keycap> and "
+"<keycombo action=\"simul\">&Ctrl; <keycap>d</keycap></keycombo> to open the "
+"bookmarks of the active panel. A Middle Mouse Button click on bookmarks "
+"opens them in a new <link linkend=\"folder-tabs\">Folder tab</link>."
 msgstr ""
 "Pour utiliser les signets, cliquez sur le bouton <guibutton>Signets</"
 "guibutton> et choisissez un signet. Vous pouvez aussi utiliser le "
@@ -174,9 +174,9 @@ msgstr "Démarrer en saisissant des lettres"
 
 #. Tag: para
 #: bookmarks.docbook:101
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
-"&eg; when you type <literal>'h'</literal> and only one bookmark starts with "
+"e.g. when you type <literal>'h'</literal> and only one bookmark starts with "
 "<literal>'h'</literal>, it is executed immediately - no enter needed"
 msgstr ""
 "&pex; quand vous saisissez un <literal>h</literal> et que seulement un "
@@ -203,10 +203,10 @@ msgstr "Prise en charge du mot de passe"
 
 #. Tag: para
 #: bookmarks.docbook:116
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "One of the benefits of the <link linkend=\"bookman\">bookmark manager</link> "
-"is that the passwords are saved using &kde;'s services - where &eg; your "
+"is that the passwords are saved using &kde;'s services - where e.g. your "
 "&konqueror;/&kmail; password are saved. If you have a wallet, &kde; will "
 "save the passwords there. By clicking the bookmarks, a dialog will open and "
 "ask for your username and password. Supply them and click 'save password'. "
@@ -335,9 +335,9 @@ msgstr ""
 msgid ""
 "<guilabel>Virtual Filesystem</guilabel> <link linkend=\"vfs\">Virtual file "
 "systems (VFS)</link> <filename>virt:/</filename> is not a virtual folder, "
-"but a container for &URL;'s from different file systems. It is used for &eg; "
+"but a container for &URL;'s from different file systems. It is used for e.g. "
 "the <guilabel>Feed to Listbox</guilabel> feature of the search module and "
-"the synchronizer. The location toolbar will display &eg; <filename>virt:/"
+"the synchronizer. The location toolbar will display e.g. <filename>virt:/"
 "Search results 1</filename> or <filename>virt:/Synchronise results 1</"
 "filename>."
 msgstr ""
@@ -351,15 +351,15 @@ msgstr ""
 
 #. Tag: para
 #: bookmarks.docbook:201
-#, no-c-format
+#, fuzzy, no-c-format
 msgid ""
 "<guilabel>Jump back</guilabel> or <keycombo action=\"simul\">&Ctrl; "
 "<keycap>J</keycap></keycombo> brings you back to your starting position when "
 "you did create a new tab in the panel window. This feature is very handy if "
 "you go deep into a directory tree, than you can return with one action to "
 "the starting point. With <guilabel>Set jump back point here</guilabel> or "
-"<keycombo action=\"simul\"> &Ctrl;&Shift; <keycap>J</keycap></keycombo> sets "
-"the current directory as a jump back point."
+"<keycombo action=\"simul\"> &Ctrl;<keycap>Backspace</keycap> <keycap>J</"
+"keycap></keycombo> sets the current directory as a jump back point."
 msgstr ""
 "<guilabel>Aller au point de retour</guilabel> ou <keycombo action=\"simul"
 "\">&Ctrl; <keycap>J</keycap></keycombo> vous ramène à votre point de départ "
