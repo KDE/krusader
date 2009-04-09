@@ -56,7 +56,7 @@
       Bar, the Command Line or the Terminal Emulator. The panel
       that has the focus is called the Active Panel. An Active
       Panel will remain active until the other panel receives the
-      focus (&ie;: if the Left Panel was active and you
+      focus (i.e.: if the Left Panel was active and you
       clicked on the Command Line - then the Left Panel remains the
       Active Panel). You must deliberately change which panel is
       active.</para>
@@ -107,7 +107,7 @@
           from the Command Line to the Active Panel.</para>
         </listitem>
         <listitem>
-          <para>The &Esc; Key will make the Menu Bar
+          <para>The <keycap>Esc</keycap> Key will make the Menu Bar
           return the focus, if it has it, to the previous Active
           Panel.</para>
         </listitem>
@@ -176,21 +176,21 @@
         </listitem>
         <listitem>
           <para>
-          <keycombo action="simul">&Shift;
+          <keycombo action="simul"><keycap>Backspace</keycap>
           <keycap>Left Clicking</keycap></keycombo> will select all
           the elements between the previous cursor location and the
           new one.</para>
         </listitem>
         <listitem>
           <para>
-          <keycombo action="simul">&Shift;
+          <keycombo action="simul"><keycap>Backspace</keycap>
           <keycap>Home</keycap></keycombo> selects everything above
           the cursor (and deselects everything below the cursor, if
           selected).</para>
         </listitem>
         <listitem>
           <para>
-          <keycombo action="simul">&Shift;
+          <keycombo action="simul"><keycap>Backspace</keycap>
           <keycap>End</keycap></keycombo> selects everything below
           the cursor (and unselects everything above the cursor, if
           selected).</para>
@@ -227,10 +227,10 @@
       small quick search dialog box will open below the Active List
       Panel. Type the first few characters of the desired file name
       (more than one character allowed), the cursor will jump to
-      that filename (if it exists), &eg; type "ab" to
+      that filename (if it exists), e.g. type "ab" to
       search for a file which begins with "ab". The 
       <keycap>Up/Down Arrow</keycap>will jump to the next or
-      previous match. &Esc; will close the quick search
+      previous match. <keycap>Esc</keycap> will close the quick search
       line. The cursor will stay on the last file
       found.</para>
       <note>
@@ -363,8 +363,8 @@
       <title>Queue manager</title>
       <para>
       Use <keycap>F5</keycap> (copy) or <keycap>F6</keycap> (move) and than <keycap>F2</keycap> to use it.
-      Or the direct shortcuts: copy by queue <keycombo action="simul">&Shift;<keycap>F5</keycap></keycombo> , 
-      move by queue <keycombo action="simul">&Shift;<keycap>F6</keycap></keycombo> .
+      Or the direct shortcuts: copy by queue <keycombo action="simul"><keycap>Backspace</keycap><keycap>F5</keycap></keycombo> , 
+      move by queue <keycombo action="simul"><keycap>Backspace</keycap><keycap>F6</keycap></keycombo> .
       Queueing is used for one-by-one copying.
       E.g. if you have a pen drive (which is slow), and you want to copy 40 files onto it, 
       it's much better copying them one-by-one instead of starting to copy 40 files parallelly.
@@ -382,7 +382,7 @@
       <link linkend="konfig-general">default</link> it will be moved
       to &kde;'s Trash. You can open the KDE Trash with <filename>trash:/</filename> ("kdebase3-runtime" needs to be installed, otherwise the KDE trash protocol will not work).
       Phisically KDE Trash is located in <filename>~/.local/share/Trash/</filename> .  
-      <keycombo action="simul">&Shift;
+      <keycombo action="simul"><keycap>Backspace</keycap>
       <keycap>Delete</keycap></keycombo> will delete the file
       permanently. A dialog will ask for your confirmation and will
       warn you when deleting non-empty directories. Of course only

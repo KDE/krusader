@@ -31,7 +31,7 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Shift;
+              <keycombo action="simul"><keycap>Backspace</keycap>
               <keycap>F4</keycap></keycombo>
             </shortcut>
             <guimenu>File</guimenu>
@@ -201,7 +201,7 @@
           <para>Compares two current files by content - one from
           each panel via an external graphical diff utility. By
           default &kompare; (part of the kdebase
-          package) is used, but you can also use &eg;
+          package) is used, but you can also use e.g.
           <ulink url="http://furius.ca/xxdiff/"><application>xxdiff</application></ulink> or <ulink url="http://kdiff3.sourceforge.net"><application>Kdiff3</application></ulink> ,
           change it in the
           <link linkend="konfig-dependencies">Konfigurator Dependencies page</link>.</para>
@@ -211,7 +211,7 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Shift;
+              <keycombo action="simul"><keycap>Backspace</keycap>
               <keycap>F9</keycap></keycombo>
             </shortcut>
             <guimenu>File</guimenu>
@@ -462,7 +462,7 @@
           or both - separated by a space. When using 
           <literal>'text'</literal>, the results are the same as 
           <literal>'*text*'</literal>. You can exclude files from
-          the search with '|' (&eg; 
+          the search with '|' (e.g. 
           <literal role="extension">'*.cpp *.h |
           *.moc.cpp'</literal>). With the 
           <link linkend="profiles">profile handler</link> you can
@@ -540,7 +540,7 @@
         </term>
         <listitem>
           <para>Inverts the selection status of all the files in
-          the active panel (&ie; selected files will
+          the active panel (i.e. selected files will
           become unselected and deselected files will become
           selected).</para>
         </listitem>
@@ -642,7 +642,7 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">
-              &Alt;&Shift;
+              &Alt;<keycap>Backspace</keycap>
               <keycap>D</keycap></keycombo>
             </shortcut>
             <guimenu>View</guimenu>
@@ -658,7 +658,7 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">
-              &Alt;&Shift;
+              &Alt;<keycap>Backspace</keycap>
               <keycap>B</keycap></keycombo>
             </shortcut>
             <guimenu>View</guimenu>
@@ -689,7 +689,7 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Shift;
+              <keycombo action="simul"><keycap>Backspace</keycap>
               <keycap>F10</keycap></keycombo>
             </shortcut>
             <guimenu>View</guimenu>
@@ -704,7 +704,7 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Shift;
+              <keycombo action="simul"><keycap>Backspace</keycap>
               <keycap>F12</keycap></keycombo>
             </shortcut>
             <guimenu>View</guimenu>
@@ -833,7 +833,7 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">
-              &Ctrl;&Shift;
+              &Ctrl;<keycap>Backspace</keycap>
               <keycap>J</keycap></keycombo>
             </shortcut>
             <guimenu>Go</guimenu>
@@ -1033,7 +1033,7 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">
-                &Shift;<keycap>F5</keycap>
+                <keycap>Backspace</keycap><keycap>F5</keycap>
               </keycombo>
             </shortcut>
             <guimenu>Useractions</guimenu>
@@ -1072,7 +1072,7 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">
-              &Ctrl;&Shift;
+              &Ctrl;<keycap>Backspace</keycap>
               <keycap>L</keycap></keycombo>
             </shortcut>
             <guimenu>Tools</guimenu>
@@ -1162,7 +1162,7 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">
-              &Shift;&Ctrl;
+              <keycap>Backspace</keycap>&Ctrl;
               <keycap>F</keycap></keycombo>
             </shortcut>
             <guimenu>Tools</guimenu>
@@ -1225,7 +1225,7 @@
         <listitem>
           <para>Starts &krusader; in <link linkend="root-mode">Root mode</link> at the same location. 
                 Root mode &krusader; requires <command>kdesu</command> by default, 
-                if <command>kdesu</command> is not available or if you prefer &eg; 
+                if <command>kdesu</command> is not available or if you prefer e.g. 
                 <command>gksu</command> when using <ulink url="http://www.gnome.org"><application>GNOME</application></ulink> you can change this behaviour in the
                 <link linkend="konfig-dependencies">Konfigurator Dependencies page</link>.</para>
           <caution>
@@ -1267,7 +1267,7 @@
       <!--<para>-->
       <!--Please use at this moment the <link linkend="useractions-menu">Useractions menu</link> instead.-->
       <!--Our plans for the Usermenu are to make user-configurable KActionMenus.-->
-      <!--With this one could make a UserMenu containing &eg; all music-related actions and place-->
+      <!--With this one could make a UserMenu containing e.g. all music-related actions and place-->
       <!--this in the button-bar.... (or anywhere else).-->
       <!--</para>-->
       <!--</listitem>-->
@@ -1472,7 +1472,7 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">
-              &Alt;&Ctrl;&Shift;
+              &Alt;&Ctrl;<keycap>Backspace</keycap>
               <keycap>N</keycap></keycombo>
             </shortcut>
             <guimenu>Window</guimenu>
@@ -1505,7 +1505,7 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Shift;
+              <keycombo action="simul"><keycap>Backspace</keycap>
               <keycap>Right</keycap></keycombo>
             </shortcut>
             <guimenu>Window</guimenu>
@@ -1522,7 +1522,7 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Shift;
+              <keycombo action="simul"><keycap>Backspace</keycap>
               <keycap>Left</keycap></keycombo>
             </shortcut>
             <guimenu>Window</guimenu>
@@ -1573,7 +1573,7 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">
-              &Ctrl;&Shift;
+              &Ctrl;<keycap>Backspace</keycap>
               <keycap>U</keycap></keycombo>
             </shortcut>
             <guimenu>Window</guimenu>
@@ -1657,7 +1657,7 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Shift;
+              <keycombo action="simul"><keycap>Backspace</keycap>
               <keycap>F1</keycap></keycombo>
             </shortcut>
             <guimenu>Help</guimenu>
