@@ -60,6 +60,7 @@ signals:
 protected:
 	KrView     * _view;
 	KrViewItem * _rightClickedItem;
+	KrViewItem * _clickedItem;
 	bool         _rightClickSelects;
 	bool         _singleClick;
 	QPoint       _contextMenuPoint;
