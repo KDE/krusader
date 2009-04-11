@@ -1,23 +1,22 @@
 # Translation of krusader.pot to French
 #
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
-# Copyright (C) 2004-2008, Krusader Krew
+# Copyright (C) 2004-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 #
 #
 # Rene-Pierre Lehmann <ripi@lepi.org>, 2002.
 # Frank Schoolmeesters <frank_schoolmeesters@fastmail.fm>, 2004.
 # Guillerm David <dguillerm@gmail.com>, 2005, 2006.
-# Tourneur Henry-Nicolas <henry.nicolas@tourneur.be>, 2007, 2008.
-# Henry-Nicolas Tourneur <henry.nicolas@tourneur.be>, 2008.
+# Henry-Nicolas Tourneur <henry.nicolas@tourneur.be>, 2007, 2008, 2009.
 # Stanislas Zeller <uncensored.assault@gmail.com>, 2008, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-2.0.0-beta2\n"
+"Project-Id-Version: krusader-2.0.0-beta3\n"
 "Report-Msgid-Bugs-To: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "POT-Creation-Date: 2008-12-05 21:44+0100\n"
-"PO-Revision-Date: 2009-02-10 10:23+0100\n"
-"Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
+"PO-Revision-Date: 2009-04-09 19:09+0200\n"
+"Last-Translator: Henry-Nicolas Tourneur <henry.nicolas@tourneur.be>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -482,7 +481,7 @@ msgstr "Accès interdit à"
 #: VFS/normal_vfs.cpp:224
 #, kde-format
 msgid "Can't create a directory. Check your permissions."
-msgstr "Impossible de créer un dossier. Vérifiez vos permissions."
+msgstr "Impossible de créer un dossier. Vérifiez vos droits d'accès."
 
 #: VFS/virt_vfs.cpp:90
 #, kde-format
@@ -738,7 +737,7 @@ msgstr "Tenir compte de la cass&e"
 #: Filter/generalfilter.cpp:113
 #, kde-format
 msgid "Search &for:"
-msgstr "Rechercher &pour :"
+msgstr "Rec&hercher :"
 
 #: Filter/generalfilter.cpp:126 Synchronizer/synchronizergui.cpp:1177
 #, kde-format
@@ -782,7 +781,7 @@ msgstr ""
 #: Filter/generalfilter.cpp:131
 #, kde-format
 msgid "&Of type:"
-msgstr "&Filtre : "
+msgstr "&Par type : "
 
 #: Filter/generalfilter.cpp:141 Filter/generalfilter.cpp:431
 #, kde-format
@@ -819,12 +818,12 @@ msgstr "Supp&rimer"
 #: Filter/generalfilter.cpp:201
 #, kde-format
 msgid "&Search in"
-msgstr "&Regarder dans"
+msgstr "Rechercher dan&s"
 
 #: Filter/generalfilter.cpp:219
 #, kde-format
 msgid "&Don't search in"
-msgstr "&Ne pas regarder dans"
+msgstr "Ne pas rechercher &dans"
 
 #: Filter/generalfilter.cpp:236
 #, kde-format
@@ -874,7 +873,7 @@ msgstr "Inclure les arch&ives"
 #: Filter/generalfilter.cpp:346
 #, kde-format
 msgid "Follow &links"
-msgstr "Regarder les cibles des &liens"
+msgstr "Suivre les &liens"
 
 #: Filter/generalfilter.cpp:410
 #, kde-format
@@ -896,7 +895,7 @@ msgstr "Taille"
 #: Filter/advancedfilter.cpp:72
 #, kde-format
 msgid "&Bigger than"
-msgstr "&Plus grand"
+msgstr "&Plus grand que"
 
 #: Filter/advancedfilter.cpp:83 Filter/advancedfilter.cpp:101
 #, kde-format
@@ -916,7 +915,7 @@ msgstr "Mo"
 #: Filter/advancedfilter.cpp:90
 #, kde-format
 msgid "&Smaller than"
-msgstr "Plu&s petit de"
+msgstr "Plu&s petit que"
 
 #: Filter/advancedfilter.cpp:121 Search/krsearchdialog.cpp:75
 #: Synchronizer/synchronizergui.cpp:1338 Synchronizer/synchronizergui.cpp:1340
@@ -988,7 +987,7 @@ msgstr "Appartient au &groupe"
 #: Filter/advancedfilter.cpp:249
 #, kde-format
 msgid "P&ermissions"
-msgstr "P&ermissions"
+msgstr "&Droits d'accès"
 
 #: Filter/advancedfilter.cpp:254
 #, kde-format
@@ -1829,7 +1828,7 @@ msgstr "%1 libre sur %2 (%3 % ) sur %4 [ (%5) ]"
 #: Panel/listpanel.cpp:759
 #, kde-format
 msgid "Can't drop here, no write permissions."
-msgstr "Impossible de coller. Vérifiez vos permissions d'écriture."
+msgstr "Impossible de coller. Vérifiez vos droits d'accès d'écriture."
 
 #: Panel/listpanel.cpp:785 Panel/panelpopup.cpp:112
 #, kde-format
@@ -2254,7 +2253,7 @@ msgstr " Vers : "
 #: Panel/panelfunc.cpp:363
 #, kde-format
 msgid "No permissions to view this file."
-msgstr "Pas de permissions pour afficher le fichier."
+msgstr "Pas de droits d'accès pour afficher le fichier."
 
 #: Panel/panelfunc.cpp:381
 #, kde-format
@@ -2264,7 +2263,7 @@ msgstr "Vous ne pouvez pas éditer un dossier."
 #: Panel/panelfunc.cpp:386
 #, kde-format
 msgid "No permissions to edit this file."
-msgstr "Pas de permissions pour éditer ce fichier."
+msgstr "Pas de droits d'accès pour éditer ce fichier."
 
 #: Panel/panelfunc.cpp:407
 #, kde-format
@@ -6730,7 +6729,7 @@ msgstr "Dossier temporaire : "
 #, kde-format
 msgid "Note: you must have full permissions for the temporary directory!"
 msgstr ""
-"Remarque : vous devez avoir toutes les permissions pour le dossier "
+"Remarque : vous devez avoir toutes les droits d'accès pour le dossier "
 "temporaire !"
 
 #: Konfigurator/kggeneral.cpp:213
@@ -7140,8 +7139,8 @@ msgid ""
 "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in "
 "the permission column."
 msgstr ""
-"Afficher les nombres octaux (0755) au lieu des permissions courantes (rwxr-"
-"xr-x) dans la colonne de permissions."
+"Afficher les nombres octaux (0755) au lieu des droits d'accès courantes (rwxr-"
+"xr-x) dans la colonne de droits d'accès."
 
 #: Konfigurator/kglookfeel.cpp:234
 #, kde-format
@@ -7549,7 +7548,7 @@ msgid ""
 msgstr ""
 "Krusader essaiera de préserver tout les attributs (date, propriétaire, "
 "groupe) des fichiers locaux selon la source dépendante de vos propres "
-"permissions : <ul><li>Préserver les utilisateurs si vous êtes "
+"droits d'accès : <ul><li>Préserver les utilisateurs si vous êtes "
 "superutilisateur</li> <li>Préserver les groupes si vous êtes "
 "superutilisateur ou membre du groupe</li> <li>Préserver l'heure et la date</"
 "li></ul> <b> Remarque</b> : ceci peut ralentir le processus de copie."
