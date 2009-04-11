@@ -1,34 +1,40 @@
-Krusader-2.0.0-beta2 "Space Odyssey"
-==================================
-The Krew is proud to present the second KDE4 release of your favourite file
-manager! This beta is all about porting, all dependencies to the Qt3 support
-libs have been removed. This is also the second release that comes with 
+Krusader-2.0.0 "Mars Pathfinder"
+================================
+The Krew is proud to present the first stable KDE4 release of your favourite
+file manager! The development process was all about porting, all dependencies to
+the Qt3 support libs have been removed. This is the first stable that comes with
 experimental support for the Windows platform. Who thought that day will ever
 come?
 
-Even though this release contains some new features our main focus is to create
-a stable KDE4 version. Overall the release is usable but surely contains bugs
-that haven't been present in prior versions. Please provide us bug reports,
-feedback and patches to make it as solid as the KDE3 version. Many thanks to
-everyone who supported us in the porting process!
+Even though this release contains quite a bunch of new features our main focus
+was to create a KDE4 version that is ready for everyday use. Overall the release
+is very usable but might contain bugs that haven't been present in prior
+versions. Please provide us bug reports, feedback and patches to make it as
+solid as the KDE3 version. Many thanks to everyone who supported us in the
+porting process!
 
 The highlights of this release are:
-- many many bugfixes
+
+- Archive dialog now remembers Compression level
+- View properties for detailed/brief/interviews are merged into one
+- Bugfixes
+- I18n updates
+
+Changes since 2.0.0-beta2 (but not limited to): 
+
 - Queue manager
   Enqueue operation for copy / move operations
-  Use F5 (copy) or F6 (move) and than F2 to enqueue.
-  Or the direct shortcuts: copy by queue (SHIFT+F5), move by queue (SHIFT+F6).
-- Five sortingmethods
+  Use F5 (copy) or F6 (move) and than F2 to enqueue
+  Or the direct shortcuts: copy by queue (SHIFT+F5), move by queue (SHIFT+F6)
+- Five sorting methods
 - Support for tar.lzma (KDE's tar protocol doesn't support it yet)
 - Konfigurator mouse selection mode: Possibility to select a predefined
-  mode and change a detail. 
-- highlight quick search match
+  mode and change a detail.
+- Highlight quick search match
 - Useractions: added checkbox "enabled"
   and run mode option "Run in embedded terminal emulator"
-- the description of a dir contains its size if it is known
-
-Read SVNNEWS for more detailed information about the new features.
-Read the INSTALL file for detailed installation instructions.
+- The description of a dir contains its size if it is known
+- Many, many bugfixes
 
 Changes since 2.0.0-beta1 (but not limited to): 
 
@@ -40,8 +46,8 @@ Changes since 2.0.0-beta1 (but not limited to):
 - Select encoding in content search and krarc
 - New synchronizer shortcuts
 
-For more explenations about the new features please read the
-SVNNEWS file in this tarball.
+Read SVNNEWS for detailed information about the new features and the INSTALL
+file for detailed installation instructions.
 
 Notice: if you've got bugs to report, please do so using Krusader's
         website, and not using KDE's bugzilla (bugs.kde.org).
