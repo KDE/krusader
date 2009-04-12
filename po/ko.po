@@ -1,16 +1,16 @@
 # Translation of krusader.pot to Korean
 #
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
-# Copyright (C) 2004-2008, Krusader Krew
+# Copyright (C) 2004-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 #
-#
 # Jee, Seongnam <snjee@intellicam.com>, 2008.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-2.0.0-beta2\n"
-"Report-Msgid-Bugs-To: krusader-i18n@googlegroups.com\n"
-"POT-Creation-Date: 2008-12-05 21:44+0100\n"
+"Project-Id-Version: krusader\n"
+"Report-Msgid-Bugs-To: krusader-i18n <krusader-i18n@googlegroups.com>\n"
+"POT-Creation-Date: 2009-04-12 11:54+0200\n"
 "PO-Revision-Date: 2008-11-08 20:36+0900\n"
 "Last-Translator: Jee, Seongnam <bingohot@gmail.com>\n"
 "Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
@@ -148,19 +148,19 @@ msgid "Open in a new tab"
 msgstr "새 탭에서 열기"
 
 #: GUI/mediabutton.cpp:332 Panel/krpopupmenu.cpp:189
-#: MountMan/kmountman.cpp:296 MountMan/kmountmangui.cpp:371
+#: MountMan/kmountman.cpp:367 MountMan/kmountmangui.cpp:402
 #, kde-format
 msgid "Mount"
 msgstr ""
 
 #: GUI/mediabutton.cpp:335 Panel/krpopupmenu.cpp:187
-#: MountMan/kmountman.cpp:296 MountMan/kmountmangui.cpp:376
+#: MountMan/kmountman.cpp:367 MountMan/kmountmangui.cpp:407
 #, kde-format
 msgid "Unmount"
 msgstr ""
 
 #: GUI/mediabutton.cpp:339 Panel/krpopupmenu.cpp:191
-#: MountMan/kmountmangui.cpp:383
+#: MountMan/kmountmangui.cpp:414
 #, kde-format
 msgid "Eject"
 msgstr "꺼내기"
@@ -187,8 +187,8 @@ msgstr ""
 "비활성 판넬 모두에서 실행됩니다."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 414
-#: GUI/kcmdmodebutton.cpp:48 ActionMan/ui_actionproperty.h:726 rc.cpp:122
+#. i18n: file ./ActionMan/actionproperty.ui line 410
+#: GUI/kcmdmodebutton.cpp:48 ActionMan/ui_actionproperty.h:725 rc.cpp:119
 #, kde-format
 msgid "Execution mode"
 msgstr "실행모드"
@@ -210,8 +210,8 @@ msgstr ""
 "표로 명령줄 사용내역을 이동하면 볼 수 있습니다.</p></qt>"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 303
-#: GUI/kcmdline.cpp:103 ActionMan/ui_actionproperty.h:698 rc.cpp:92
+#. i18n: file ./ActionMan/actionproperty.ui line 299
+#: GUI/kcmdline.cpp:103 ActionMan/ui_actionproperty.h:697 rc.cpp:89
 #, kde-format
 msgid "Add <b>Placeholders</b> for the selected files in the panel."
 msgstr "판넬에서 선택 파일에 대한 <b>Placeholders</b>을 추가"
@@ -421,9 +421,8 @@ msgctxt "@title job"
 msgid "Creating directory"
 msgstr "상위 디렉토리"
 
-#: VFS/preserveattrcopyjob.cpp:362 Panel/krinterview.cpp:205
-#: Panel/krbriefview.cpp:226 Panel/krdetailedview.cpp:317
-#: Konfigurator/kgcolors.cpp:446
+#: VFS/preserveattrcopyjob.cpp:362 Panel/krbriefview.cpp:224
+#: Panel/krdetailedview.cpp:317 Konfigurator/kgcolors.cpp:446
 #, kde-format
 msgid "Directory"
 msgstr "디렉토리"
@@ -444,34 +443,33 @@ msgstr "파일이 이미 존재합니다."
 msgid "Already Exists as Folder"
 msgstr "파일이 이미 존재합니다."
 
-#: VFS/normal_vfs.cpp:98
+#: VFS/normal_vfs.cpp:99
 #, kde-format
 msgid "Directory %1 does not exist!"
 msgstr "%1 디렉토리가 존재하지 않습니다.!"
 
-#: VFS/normal_vfs.cpp:98 VFS/normal_vfs.cpp:108 VFS/normal_vfs.cpp:115
+#: VFS/normal_vfs.cpp:99 VFS/normal_vfs.cpp:109 VFS/normal_vfs.cpp:116
 #: VFS/virt_vfs.cpp:90 VFS/virt_vfs.cpp:180 VFS/krarchandler.cpp:214
 #: VFS/krarchandler.cpp:275 VFS/krarchandler.cpp:293 VFS/krarchandler.cpp:354
 #: VFS/krarchandler.cpp:531 VFS/krarchandler.cpp:538
 #: BookMan/krbookmarkhandler.cpp:171 BookMan/krbookmarkhandler.cpp:267
-#: MountMan/kmountman.cpp:205 Synchronizer/synchronizerdirlist.cpp:126
-#: Konfigurator/kggeneral.cpp:227 Konfigurator/kgcolors.cpp:550
-#: Konfigurator/kgcolors.cpp:567
+#: Synchronizer/synchronizerdirlist.cpp:126 Konfigurator/kggeneral.cpp:227
+#: Konfigurator/kgcolors.cpp:550 Konfigurator/kgcolors.cpp:567
 #, kde-format
 msgid "Error"
 msgstr "오류"
 
-#: VFS/normal_vfs.cpp:108 Synchronizer/synchronizerdirlist.cpp:126
+#: VFS/normal_vfs.cpp:109 Synchronizer/synchronizerdirlist.cpp:126
 #, kde-format
 msgid "Can't open the %1 directory!"
 msgstr "%1 디렉토리를 열 수 없습니다.!"
 
-#: VFS/normal_vfs.cpp:115
+#: VFS/normal_vfs.cpp:116
 #, kde-format
 msgid "Access denied to"
 msgstr "접근이 거부됨."
 
-#: VFS/normal_vfs.cpp:224
+#: VFS/normal_vfs.cpp:225
 #, kde-format
 msgid "Can't create a directory. Check your permissions."
 msgstr "디렉토리 생성을 할 수 없습니다. 권한을 점검하세요."
@@ -654,8 +652,8 @@ msgstr "JavaScript 오류"
 msgid "&General"
 msgstr "일반(&G)"
 
-#: Filter/filtertabs.cpp:49 Dialogs/packguibase.cpp:290
-#: Dialogs/packguibase.cpp:330
+#: Filter/filtertabs.cpp:49 Dialogs/packguibase.cpp:295
+#: Dialogs/packguibase.cpp:335
 #, kde-format
 msgid "&Advanced"
 msgstr "고급(&A)"
@@ -789,8 +787,8 @@ msgid "&Profile handler"
 msgstr "프로파일(&P) 관리자"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 306
-#: Filter/generalfilter.cpp:173 ActionMan/ui_actionproperty.h:701 rc.cpp:95
+#. i18n: file ./ActionMan/actionproperty.ui line 302
+#: Filter/generalfilter.cpp:173 ActionMan/ui_actionproperty.h:700 rc.cpp:92
 #, kde-format
 msgid "&Add"
 msgstr "추가(&A)"
@@ -800,7 +798,7 @@ msgstr "추가(&A)"
 msgid "&Load"
 msgstr "불러오기(&L)"
 
-#: Filter/generalfilter.cpp:180 Panel/panelfunc.cpp:897
+#: Filter/generalfilter.cpp:180 Panel/panelfunc.cpp:906
 #, kde-format
 msgid "&Overwrite"
 msgstr "덮어쓰기(&O)"
@@ -880,8 +878,9 @@ msgstr "검색기준이 입력되지 않음!"
 msgid "Please specify a location to search in."
 msgstr "검색할 위치를 명시하세요."
 
-#: Filter/advancedfilter.cpp:65 Panel/krdetailedview.cpp:116
-#: Panel/krdetailedview.cpp:1138 Search/krsearchdialog.cpp:74
+#: Filter/advancedfilter.cpp:65 Panel/krvfsmodel.cpp:788
+#: Panel/krinterdetailedview.cpp:532 Panel/krdetailedview.cpp:116
+#: Panel/krdetailedview.cpp:1105 Search/krsearchdialog.cpp:74
 #: Synchronizer/synchronizergui.cpp:1337 Synchronizer/synchronizergui.cpp:1341
 #, kde-format
 msgid "Size"
@@ -1580,7 +1579,7 @@ msgstr "덮어쓰기"
 msgid "Append"
 msgstr "추가"
 
-#: UserAction/kraction.cpp:174 ActionMan/useractionpage.cpp:282
+#: UserAction/kraction.cpp:174 ActionMan/useractionpage.cpp:285
 #, kde-format
 msgid ""
 "Can't open %1 for writing!\n"
@@ -1589,7 +1588,7 @@ msgstr ""
 "쓰기위해 %1 을 열 수 없습니다!\n"
 "아무것도 내보내지 못했습니다."
 
-#: UserAction/kraction.cpp:175 ActionMan/useractionpage.cpp:283
+#: UserAction/kraction.cpp:175 ActionMan/useractionpage.cpp:286
 #, kde-format
 msgid "Export failed!"
 msgstr "내보내기 실패!"
@@ -1646,14 +1645,10 @@ msgstr ""
 msgid "UserActions - invalid action"
 msgstr "사용자 작업 - 잘못된 작업"
 
-#: Panel/krinterview.cpp:58
-#, fuzzy, kde-format
-msgid "&Experimental View"
-msgstr "자세히 보기(&D)"
-
 #: Panel/krdetailedviewitem.cpp:79 Panel/krdetailedviewitem.cpp:113
-#: Synchronizer/synchronizergui.cpp:2064 Synchronizer/synchronizergui.cpp:2071
-#: Synchronizer/synchronizergui.cpp:2123 Synchronizer/synchronizergui.cpp:2130
+#: Panel/krvfsmodel.cpp:247 Synchronizer/synchronizergui.cpp:2064
+#: Synchronizer/synchronizergui.cpp:2071 Synchronizer/synchronizergui.cpp:2123
+#: Synchronizer/synchronizergui.cpp:2130
 #, kde-format
 msgid "<DIR>"
 msgstr ""
@@ -1663,24 +1658,70 @@ msgstr ""
 msgid "Preview not available"
 msgstr "미리보기 허용 안됨"
 
-#: Panel/krbriefview.cpp:58
+#: Panel/krbriefview.cpp:57
 #, kde-format
 msgid "&Brief View"
 msgstr "간략히 보기(&B)"
 
-#: Panel/krbriefview.cpp:124 Panel/krdetailedview.cpp:113
-#: Search/krsearchdialog.cpp:72 MountMan/kmountmangui.cpp:125
-#: Synchronizer/synchronizergui.cpp:1336 Synchronizer/synchronizergui.cpp:1342
-#: DiskUsage/dulines.cpp:197 DiskUsage/dulistview.cpp:55
-#: Konfigurator/krresulttable.cpp:140
+#: Panel/krbriefview.cpp:122 Panel/krvfsmodel.cpp:786
+#: Panel/krdetailedview.cpp:113 Search/krsearchdialog.cpp:72
+#: MountMan/kmountmangui.cpp:156 Synchronizer/synchronizergui.cpp:1336
+#: Synchronizer/synchronizergui.cpp:1342 DiskUsage/dulines.cpp:197
+#: DiskUsage/dulistview.cpp:55 Konfigurator/krresulttable.cpp:140
 #, kde-format
 msgid "Name"
 msgstr "이름"
 
-#: Panel/krbriefview.cpp:1025 Panel/krdetailedview.cpp:1115
+#: Panel/krbriefview.cpp:975 Panel/krinterdetailedview.cpp:513
+#: Panel/krdetailedview.cpp:1082 Panel/krinterbriefview.cpp:593
 #, kde-format
 msgid "Columns"
 msgstr "열"
+
+#: Panel/krvfsmodel.cpp:787 Panel/krinterdetailedview.cpp:524
+#: Panel/krdetailedview.cpp:114 Panel/krdetailedview.cpp:1095
+#, kde-format
+msgid "Ext"
+msgstr "확장자"
+
+#: Panel/krvfsmodel.cpp:789 Panel/krinterdetailedview.cpp:528
+#: Panel/krdetailedview.cpp:115 Panel/krdetailedview.cpp:1100
+#: MountMan/kmountmangui.cpp:157 DiskUsage/dulistview.cpp:59
+#, kde-format
+msgid "Type"
+msgstr "형식"
+
+#: Panel/krvfsmodel.cpp:790 Panel/krinterdetailedview.cpp:536
+#: Panel/krdetailedview.cpp:117 Panel/krdetailedview.cpp:1110
+#, kde-format
+msgid "Modified"
+msgstr "수정날짜"
+
+#: Panel/krvfsmodel.cpp:791 Panel/krinterdetailedview.cpp:540
+#: Panel/krdetailedview.cpp:118 Panel/krdetailedview.cpp:1115
+#, kde-format
+msgid "Perms"
+msgstr "권한"
+
+#: Panel/krvfsmodel.cpp:792 Panel/krinterdetailedview.cpp:544
+#: Panel/krdetailedview.cpp:119 Panel/krdetailedview.cpp:1120
+#, kde-format
+msgid "rwx"
+msgstr ""
+
+#: Panel/krvfsmodel.cpp:793 Panel/krinterdetailedview.cpp:548
+#: Panel/krdetailedview.cpp:120 Panel/krdetailedview.cpp:1125
+#: DiskUsage/dulistview.cpp:62
+#, kde-format
+msgid "Owner"
+msgstr "소유자"
+
+#: Panel/krvfsmodel.cpp:794 Panel/krinterdetailedview.cpp:552
+#: Panel/krdetailedview.cpp:121 Panel/krdetailedview.cpp:1130
+#: DiskUsage/dulistview.cpp:63 Konfigurator/krresulttable.cpp:305
+#, kde-format
+msgid "Group"
+msgstr "그룹"
 
 #: Panel/listpanel.cpp:139
 #, kde-format
@@ -1709,7 +1750,7 @@ msgstr ""
 "전체 바에는 얼마나 많은 파일이 존재하는지, 선택된 것이 몇 바이트인 지를 보여"
 "줍니다."
 
-#: Panel/listpanel.cpp:182 Panel/listpanel.cpp:379
+#: Panel/listpanel.cpp:182 Panel/listpanel.cpp:385
 #, kde-format
 msgid "Open the popup panel"
 msgstr "팝업 판넬을 엽니다."
@@ -1744,7 +1785,7 @@ msgstr "동일"
 msgid ".."
 msgstr ""
 
-#: Panel/listpanel.cpp:224 krusader.cpp:662
+#: Panel/listpanel.cpp:224 krusader.cpp:663
 #, kde-format
 msgid "Up"
 msgstr "위로"
@@ -1754,7 +1795,7 @@ msgstr "위로"
 msgid "~"
 msgstr ""
 
-#: Panel/listpanel.cpp:231 krusader.cpp:590
+#: Panel/listpanel.cpp:231 krusader.cpp:591
 #, kde-format
 msgid "Home"
 msgstr "홈"
@@ -1764,145 +1805,112 @@ msgstr "홈"
 msgid "/"
 msgstr ""
 
-#: Panel/listpanel.cpp:238 krusader.cpp:738
+#: Panel/listpanel.cpp:238 krusader.cpp:739
 #, kde-format
 msgid "Root"
 msgstr ""
 
-#: Panel/listpanel.cpp:373
+#: Panel/listpanel.cpp:379
 #, kde-format
 msgid "Close the popup panel"
 msgstr " 팝업 판넬을 닫습니다"
 
-#: Panel/listpanel.cpp:477 Panel/listpanel.cpp:863
+#: Panel/listpanel.cpp:483 Panel/listpanel.cpp:869
 #, kde-format
 msgid " Select Files "
 msgstr " 파일 선택 "
 
-#: Panel/listpanel.cpp:477
+#: Panel/listpanel.cpp:483
 #, kde-format
 msgid " Unselect Files "
 msgstr " 파일 선택해제 "
 
-#: Panel/listpanel.cpp:654
+#: Panel/listpanel.cpp:660
 #, kde-format
 msgid "No space information on non-local filesystems"
 msgstr "로컬이 아닌 파일시스템에 정보 공간이 없습니다."
 
-#: Panel/listpanel.cpp:661
+#: Panel/listpanel.cpp:667
 #, kde-format
 msgid "No space information on [dev]"
 msgstr "[dev]에 정보 공간이 없습니다."
 
-#: Panel/listpanel.cpp:666
+#: Panel/listpanel.cpp:672
 #, kde-format
 msgid "No space information on [procfs]"
 msgstr "[procfs]에 정보 공간이 없습니다."
 
-#: Panel/listpanel.cpp:671
+#: Panel/listpanel.cpp:677
 #, kde-format
 msgid "No space information on [proc]"
 msgstr "[proc]에 정보 공간이 없습니다."
 
-#: Panel/listpanel.cpp:676
+#: Panel/listpanel.cpp:682
 #, kde-format
 msgid "Mt.Man: working ..."
 msgstr "Mt.Man: 작업 중..."
 
-#: Panel/listpanel.cpp:690
+#: Panel/listpanel.cpp:696
 #, kde-format
 msgid "unknown"
 msgstr "모름"
 
-#: Panel/listpanel.cpp:698
+#: Panel/listpanel.cpp:704
 #, kde-format
 msgid "%1 free out of %2 (%3%) on %4 [ (%5) ]"
 msgstr "%4 [ (%5) ] 의 %2 (%3%) 중 %1 이 비어있습니다."
 
-#: Panel/listpanel.cpp:759
+#: Panel/listpanel.cpp:765
 #, kde-format
 msgid "Can't drop here, no write permissions."
 msgstr "이곳으로 드롭할 수 없습니다. 쓰기 권한이 없습니다."
 
-#: Panel/listpanel.cpp:785 Panel/panelpopup.cpp:112
+#: Panel/listpanel.cpp:791 Panel/panelpopup.cpp:112
 #, kde-format
 msgid "Copy Here"
 msgstr "이곳을 복사합니다."
 
-#: Panel/listpanel.cpp:788 Panel/panelpopup.cpp:114
+#: Panel/listpanel.cpp:794 Panel/panelpopup.cpp:114
 #, kde-format
 msgid "Move Here"
 msgstr "이곳을 옮깁니다."
 
-#: Panel/listpanel.cpp:792 Panel/panelpopup.cpp:116
+#: Panel/listpanel.cpp:798 Panel/panelpopup.cpp:116
 #, kde-format
 msgid "Link Here"
 msgstr "여기를 링크합니다."
 
-#: Panel/listpanel.cpp:795 Panel/panelpopup.cpp:118
-#: Dialogs/krmaskchoice.cpp:137 Dialogs/packguibase.cpp:302
+#: Panel/listpanel.cpp:801 Panel/panelpopup.cpp:118
+#: Dialogs/krmaskchoice.cpp:137 Dialogs/packguibase.cpp:307
 #: DiskUsage/diskusage.cpp:165
 #, kde-format
 msgid "Cancel"
 msgstr "취소"
 
-#: Panel/listpanel.cpp:1019
+#: Panel/listpanel.cpp:1026
 #, kde-format
 msgid ">> Reading..."
 msgstr ">> 읽는 중..."
 
-#: Panel/listpanel.cpp:1031
+#: Panel/listpanel.cpp:1038
 #, kde-format
 msgid "Reading"
 msgstr "읽는 중"
 
-#: Panel/listpanel.cpp:1036
+#: Panel/listpanel.cpp:1043
 #, kde-format
 msgid "Reading: "
 msgstr "읽는 중: "
+
+#: Panel/krinterdetailedview.cpp:56 Panel/krinterbriefview.cpp:80
+#, fuzzy, kde-format
+msgid "&Experimental View"
+msgstr "자세히 보기(&D)"
 
 #: Panel/krdetailedview.cpp:95
 #, kde-format
 msgid "&Detailed View"
 msgstr "자세히 보기(&D)"
-
-#: Panel/krdetailedview.cpp:114 Panel/krdetailedview.cpp:1128
-#, kde-format
-msgid "Ext"
-msgstr "확장자"
-
-#: Panel/krdetailedview.cpp:115 Panel/krdetailedview.cpp:1133
-#: MountMan/kmountmangui.cpp:126 DiskUsage/dulistview.cpp:59
-#, kde-format
-msgid "Type"
-msgstr "형식"
-
-#: Panel/krdetailedview.cpp:117 Panel/krdetailedview.cpp:1143
-#, kde-format
-msgid "Modified"
-msgstr "수정날짜"
-
-#: Panel/krdetailedview.cpp:118 Panel/krdetailedview.cpp:1148
-#, kde-format
-msgid "Perms"
-msgstr "권한"
-
-#: Panel/krdetailedview.cpp:119 Panel/krdetailedview.cpp:1153
-#, kde-format
-msgid "rwx"
-msgstr ""
-
-#: Panel/krdetailedview.cpp:120 Panel/krdetailedview.cpp:1158
-#: DiskUsage/dulistview.cpp:62
-#, kde-format
-msgid "Owner"
-msgstr "소유자"
-
-#: Panel/krdetailedview.cpp:121 Panel/krdetailedview.cpp:1163
-#: DiskUsage/dulistview.cpp:63 Konfigurator/krresulttable.cpp:305
-#, kde-format
-msgid "Group"
-msgstr "그룹"
 
 #: Panel/krviewitem.cpp:44
 #, kde-format
@@ -1924,107 +1932,107 @@ msgstr "심볼릭 링크"
 msgid "%1 (Link)"
 msgstr "%1 (링크)"
 
-#: Panel/krview.cpp:289
+#: Panel/krview.cpp:336
 #, kde-format
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "%2 중 %1, %5 (%6) 중 %3 (%4)"
 
-#: Panel/krview.cpp:467 Panel/krpopupmenu.cpp:151 krusader.cpp:789
+#: Panel/krview.cpp:516 Panel/krpopupmenu.cpp:151 krusader.cpp:790
 #, kde-format
 msgid "Rename"
 msgstr "이름 변경"
 
-#: Panel/krview.cpp:467
+#: Panel/krview.cpp:516
 #, kde-format
 msgid "Rename "
 msgstr "이름 변경 "
 
-#: Panel/krview.cpp:467
+#: Panel/krview.cpp:516
 #, kde-format
 msgid " to:"
 msgstr " 대상:"
 
-#: Panel/panelpopup.cpp:270
+#: Panel/panelpopup.cpp:273
 #, kde-format
 msgid "Tree Panel: a tree view of the local file system"
 msgstr "트리 판넬: 로컬 파일 시스템의 트리를 보여줍니다."
 
-#: Panel/panelpopup.cpp:278
+#: Panel/panelpopup.cpp:281
 #, kde-format
 msgid "Preview Panel: display a preview of the current file"
 msgstr "미리보기 판넬: 현재 파일의 미리보기를 보여줍니다."
 
-#: Panel/panelpopup.cpp:285
+#: Panel/panelpopup.cpp:288
 #, kde-format
 msgid "Quick Panel: quick way to perform actions"
 msgstr "빠른 판넬: 빠른 동작을 제공합니다."
 
-#: Panel/panelpopup.cpp:292
+#: Panel/panelpopup.cpp:295
 #, kde-format
 msgid "View Panel: view the current file"
 msgstr "보기 판넬: 현재 파일 내용을 봅니다."
 
-#: Panel/panelpopup.cpp:299
+#: Panel/panelpopup.cpp:302
 #, kde-format
 msgid "Disk Usage Panel: view the usage of a directory"
 msgstr "디스크 사용량 판넬: 디렉토리의 사용량을 봅니다."
 
-#: Panel/panelpopup.cpp:342 Panel/panelpopup.cpp:542
+#: Panel/panelpopup.cpp:345 Panel/panelpopup.cpp:545
 #, kde-format
 msgid "Disk Usage: "
 msgstr "디스크 사용량: "
 
-#: Panel/panelpopup.cpp:352
+#: Panel/panelpopup.cpp:355
 #, kde-format
 msgid "Quick Select"
 msgstr "빠른 선택"
 
-#: Panel/panelpopup.cpp:367
+#: Panel/panelpopup.cpp:370
 #, kde-format
 msgid "apply the selection"
 msgstr "선택 적용"
 
-#: Panel/panelpopup.cpp:373
+#: Panel/panelpopup.cpp:376
 #, kde-format
 msgid "store the current selection"
 msgstr "현재 선택 저장"
 
-#: Panel/panelpopup.cpp:379
+#: Panel/panelpopup.cpp:382
 #, kde-format
 msgid "select group dialog"
 msgstr "그룹대화상자 선택"
 
-#: Panel/panelpopup.cpp:485
+#: Panel/panelpopup.cpp:488
 #, kde-format
 msgid "Tree:"
 msgstr "트리:"
 
-#: Panel/panelpopup.cpp:493
+#: Panel/panelpopup.cpp:496
 #, kde-format
 msgid "Preview:"
 msgstr "미리보기:"
 
-#: Panel/panelpopup.cpp:498
+#: Panel/panelpopup.cpp:501
 #, kde-format
 msgid "Quick Select:"
 msgstr "빠른 선택:"
 
-#: Panel/panelpopup.cpp:504
+#: Panel/panelpopup.cpp:507
 #, kde-format
 msgid "View:"
 msgstr "보기:"
 
-#: Panel/panelpopup.cpp:511
+#: Panel/panelpopup.cpp:514
 #, kde-format
 msgid "Disk Usage:"
 msgstr "디스크 사용량:"
 
-#: Panel/panelpopup.cpp:529
+#: Panel/panelpopup.cpp:532
 #, kde-format
 msgid "Preview: "
 msgstr "미리보기: "
 
-#: Panel/panelpopup.cpp:533
+#: Panel/panelpopup.cpp:536
 #, kde-format
 msgid "View: "
 msgstr "보기: "
@@ -2099,12 +2107,12 @@ msgstr "다음으로 열기"
 msgid "Konqueror Menu"
 msgstr "Konqueror 메뉴"
 
-#: Panel/krpopupmenu.cpp:145 krusader.cpp:783
+#: Panel/krpopupmenu.cpp:145 krusader.cpp:784
 #, kde-format
 msgid "Copy..."
 msgstr "복사..."
 
-#: Panel/krpopupmenu.cpp:148 krusader.cpp:784
+#: Panel/krpopupmenu.cpp:148 krusader.cpp:785
 #, kde-format
 msgid "Move..."
 msgstr "이동..."
@@ -2114,7 +2122,7 @@ msgstr "이동..."
 msgid "Move to Trash"
 msgstr "휴지통으로 옮기기"
 
-#: Panel/krpopupmenu.cpp:159 Queue/queuewidget.cpp:129 krusader.cpp:788
+#: Panel/krpopupmenu.cpp:159 Queue/queuewidget.cpp:129 krusader.cpp:789
 #: BookMan/krbookmarkhandler.cpp:563 Dialogs/krmaskchoice.cpp:112
 #: Dialogs/kurllistrequester.cpp:145 DiskUsage/diskusage.cpp:776
 #: Konfigurator/kgcolors.cpp:508
@@ -2122,7 +2130,7 @@ msgstr "휴지통으로 옮기기"
 msgid "Delete"
 msgstr "삭제"
 
-#: Panel/krpopupmenu.cpp:170 krusader.cpp:760
+#: Panel/krpopupmenu.cpp:170 krusader.cpp:761
 #, kde-format
 msgid "New Symlink..."
 msgstr "새 심볼링크"
@@ -2152,17 +2160,17 @@ msgstr "전자메일로 보내기"
 msgid "Synchronize Selected Files..."
 msgstr "선택된 파일들을 동기화..."
 
-#: Panel/krpopupmenu.cpp:206 krusader.cpp:606
+#: Panel/krpopupmenu.cpp:206 krusader.cpp:607
 #, kde-format
 msgid "Copy to Clipboard"
 msgstr "클립보드로 복사하기"
 
-#: Panel/krpopupmenu.cpp:209 krusader.cpp:605
+#: Panel/krpopupmenu.cpp:209 krusader.cpp:606
 #, kde-format
 msgid "Cut to Clipboard"
 msgstr "클립보드로 잘라내기"
 
-#: Panel/krpopupmenu.cpp:210 Panel/krpopupmenu.cpp:227 krusader.cpp:607
+#: Panel/krpopupmenu.cpp:210 Panel/krpopupmenu.cpp:227 krusader.cpp:608
 #, kde-format
 msgid "Paste from Clipboard"
 msgstr "클립보드에서 붙여넣기"
@@ -2182,148 +2190,148 @@ msgstr "텍스트 파일..."
 msgid "Create New"
 msgstr "새로 만들기"
 
-#: Panel/panelfunc.cpp:277
+#: Panel/panelfunc.cpp:293
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "로컬 파일 시스템에서 링크만 수정 가능합니다."
 
-#: Panel/panelfunc.cpp:288
+#: Panel/panelfunc.cpp:304
 #, kde-format
 msgid "The current file is not a link, so I can't redirect it."
 msgstr "현재 파일은 링크가 아닙니다. 재수정할 수 없습니다."
 
-#: Panel/panelfunc.cpp:295
+#: Panel/panelfunc.cpp:311
 #, kde-format
 msgid "Link Redirection"
 msgstr "링크 재수정"
 
-#: Panel/panelfunc.cpp:296
+#: Panel/panelfunc.cpp:312
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "새 링크 대상을 입력하세요:"
 
-#: Panel/panelfunc.cpp:303
+#: Panel/panelfunc.cpp:319
 #, kde-format
 msgid "Can't remove old link: "
 msgstr "이전 링크를 삭제할 수 없습니다.: "
 
-#: Panel/panelfunc.cpp:308 Panel/panelfunc.cpp:348
+#: Panel/panelfunc.cpp:324 Panel/panelfunc.cpp:364
 #, kde-format
 msgid "Failed to create a new link: "
 msgstr "새 링크 생성 실패: "
 
-#: Panel/panelfunc.cpp:315
+#: Panel/panelfunc.cpp:331
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "로컬 파일 시스템에 링크만 생성할 수 있습니다."
 
-#: Panel/panelfunc.cpp:324
+#: Panel/panelfunc.cpp:340
 #, kde-format
 msgid "New link"
 msgstr "새 링크"
 
-#: Panel/panelfunc.cpp:324
+#: Panel/panelfunc.cpp:340
 #, kde-format
 msgid "Create a new link to: "
 msgstr "새 링크 생성: "
 
-#: Panel/panelfunc.cpp:332 Panel/panelfunc.cpp:530
+#: Panel/panelfunc.cpp:348 Panel/panelfunc.cpp:546
 #, kde-format
 msgid "A directory or a file with this name already exists."
 msgstr "이 이름을 가진 디렉토리 또는 파일이 이미 있습니다."
 
-#: Panel/panelfunc.cpp:344
+#: Panel/panelfunc.cpp:360
 #, kde-format
 msgid "Failed to create a new symlink: "
 msgstr "새 심볼릭링크을 생성할 수 없습니다: "
 
-#: Panel/panelfunc.cpp:345 Panel/panelfunc.cpp:349
+#: Panel/panelfunc.cpp:361 Panel/panelfunc.cpp:365
 #, kde-format
 msgid " To: "
 msgstr " 대상: "
 
-#: Panel/panelfunc.cpp:363
+#: Panel/panelfunc.cpp:379
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "이 파일을 볼 권한이 없습니다."
 
-#: Panel/panelfunc.cpp:381
+#: Panel/panelfunc.cpp:397
 #, kde-format
 msgid "You can't edit a directory"
 msgstr "디렉토리를 편집할 수 없습니다."
 
-#: Panel/panelfunc.cpp:386
+#: Panel/panelfunc.cpp:402
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr "이 파일 편집 권한이 없습니다."
 
-#: Panel/panelfunc.cpp:407
+#: Panel/panelfunc.cpp:423
 #, kde-format
 msgid "Moving into archive is disabled"
 msgstr "압축파일로 이동하는 것이 불가능합니다."
 
-#: Panel/panelfunc.cpp:417
+#: Panel/panelfunc.cpp:433
 #, kde-format
 msgid "Move %1 to:"
 msgstr "%1 파일 이동:"
 
-#: Panel/panelfunc.cpp:419
+#: Panel/panelfunc.cpp:435
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
 msgstr[0] "%1개 파일 이동:"
 msgstr[1] "%1개 파일 이동:"
 
-#: Panel/panelfunc.cpp:485
+#: Panel/panelfunc.cpp:501
 #, kde-format
 msgid "You can't move files to this file system"
 msgstr "파일 시스템으로 이 파일을 이동할 수 없습니다."
 
-#: Panel/panelfunc.cpp:511
+#: Panel/panelfunc.cpp:527
 #, kde-format
 msgid "New directory"
 msgstr "새 디렉토리"
 
-#: Panel/panelfunc.cpp:511
+#: Panel/panelfunc.cpp:527
 #, kde-format
 msgid "Directory's name:"
 msgstr "디렉토리명:"
 
-#: Panel/panelfunc.cpp:601
+#: Panel/panelfunc.cpp:617
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "%1 파일 복사:"
 
-#: Panel/panelfunc.cpp:603
+#: Panel/panelfunc.cpp:619
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] "%1개 파일 복사:"
 msgstr[1] "%개 파일 복사:"
 
-#: Panel/panelfunc.cpp:659
+#: Panel/panelfunc.cpp:675
 #, kde-format
 msgid "You can't copy files to this file system"
 msgstr "이 파일 시스템으로 파일을 복사할 수 없습니다."
 
-#: Panel/panelfunc.cpp:670
+#: Panel/panelfunc.cpp:686
 #, kde-format
 msgid "You do not have write permission to this directory"
 msgstr "이 디렉토리에 쓰기 권한이 없습니다."
 
-#: Panel/panelfunc.cpp:688
+#: Panel/panelfunc.cpp:704
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "이 아이템을 휴지통으로 옮기시겠습니까?"
 msgstr[1] "%1 개의 아이템들을 휴지통으로 옮기시겠습니까?"
 
-#: Panel/panelfunc.cpp:689 DiskUsage/diskusage.cpp:610
+#: Panel/panelfunc.cpp:705 DiskUsage/diskusage.cpp:610
 #, kde-format
 msgid "&Trash"
 msgstr "휴지통(&T)"
 
-#: Panel/panelfunc.cpp:691
+#: Panel/panelfunc.cpp:707
 #, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
@@ -2335,14 +2343,14 @@ msgstr[0] "이 가상 아이템을 삭제하시겠습니까 (물리적으로는 
 msgstr[1] ""
 "%1 개의 가상 아이템들을 삭제하시겠습니까? (물리적으로는 그대로 남게되는)?"
 
-#: Panel/panelfunc.cpp:692 Panel/panelfunc.cpp:695 Panel/panelfunc.cpp:698
+#: Panel/panelfunc.cpp:708 Panel/panelfunc.cpp:711 Panel/panelfunc.cpp:714
 #: DiskUsage/radialMap/widgetEvents.cpp:182
 #: DiskUsage/radialMap/widgetEvents.cpp:201 DiskUsage/diskusage.cpp:613
 #, kde-format
 msgid "&Delete"
 msgstr "삭제(&D)"
 
-#: Panel/panelfunc.cpp:694
+#: Panel/panelfunc.cpp:710
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -2357,21 +2365,21 @@ msgstr[1] ""
 "<qt><b>물리적으로</b> %1 개 아이템을 삭제하시겠습니까 (가상 아이템으로부터 이"
 "것을 제거하는 것이 아니라)?</qt>"
 
-#: Panel/panelfunc.cpp:697
+#: Panel/panelfunc.cpp:713
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "이 아이템 삭제를 원하십니까?"
 msgstr[1] "이 %1 개 아이템들을 삭제하겠습니까?"
 
-#: Panel/panelfunc.cpp:704 Queue/queuewidget.cpp:145 Queue/queuedialog.cpp:412
+#: Panel/panelfunc.cpp:720 Queue/queuewidget.cpp:145 Queue/queuedialog.cpp:412
 #: Dialogs/krkeydialog.cpp:136 Dialogs/checksumdlg.cpp:630
 #: DiskUsage/diskusage.cpp:620 Konfigurator/kgcolors.cpp:565
 #, kde-format
 msgid "Warning"
 msgstr "주의"
 
-#: Panel/panelfunc.cpp:721
+#: Panel/panelfunc.cpp:737
 #, kde-format
 msgid ""
 "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete All?</"
@@ -2380,22 +2388,22 @@ msgstr ""
 "<qt><p>디렉토리 <b>%1</b> 은 비어있습니다.! </p><p>이것을 건너뛰거나 모두 삭"
 "제합니까?</p></qt>"
 
-#: Panel/panelfunc.cpp:722
+#: Panel/panelfunc.cpp:738
 #, kde-format
 msgid "&Skip"
 msgstr "건너뛰기(&S)"
 
-#: Panel/panelfunc.cpp:722
+#: Panel/panelfunc.cpp:738
 #, kde-format
 msgid "&Delete All"
 msgstr "모두 삭제(&D)"
 
-#: Panel/panelfunc.cpp:879
+#: Panel/panelfunc.cpp:888
 #, kde-format
 msgid "Cannot pack files onto a virtual destination!"
 msgstr "가상 대상에 파일을 압축할 수 없습니다.!"
 
-#: Panel/panelfunc.cpp:893
+#: Panel/panelfunc.cpp:902
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -2404,7 +2412,7 @@ msgstr ""
 "<qt><p>압축파일 <b>%1.%2</b> 은 이미 존재합니다. 덮어쓰시겠습니까?</p><p>이전"
 "에 압축한 모든 데이터를 잃게됩니다.!</p></qt>"
 
-#: Panel/panelfunc.cpp:895
+#: Panel/panelfunc.cpp:904
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -2415,54 +2423,54 @@ msgstr ""
 "압축파일에서 동일 파일 이름인 것을 덮어쓰거나 새 이름으로 추가할 것입니다.</"
 "p></qt>"
 
-#: Panel/panelfunc.cpp:902
+#: Panel/panelfunc.cpp:911
 #, kde-format
 msgid "Counting files to pack"
 msgstr "압축을 위해 파일을 세는 중"
 
-#: Panel/panelfunc.cpp:961 Panel/panelfunc.cpp:1022
+#: Panel/panelfunc.cpp:970 Panel/panelfunc.cpp:1031
 #, kde-format
 msgid "Krusader is unable to download: "
 msgstr "Krusader 가 다운로드 할 수 없습니다: "
 
-#: Panel/panelfunc.cpp:973
+#: Panel/panelfunc.cpp:982
 #, kde-format
 msgid "%1, unknown archive type."
 msgstr "%1, 인지할 수 없는 압축파일 형태"
 
-#: Panel/panelfunc.cpp:981
+#: Panel/panelfunc.cpp:990
 #, kde-format
 msgid "%1, test passed."
 msgstr "%1, 검증 통과"
 
-#: Panel/panelfunc.cpp:983
+#: Panel/panelfunc.cpp:992
 #, kde-format
 msgid "%1, test failed!"
 msgstr "%1, 검증 실패"
 
-#: Panel/panelfunc.cpp:999
+#: Panel/panelfunc.cpp:1008
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "%1 압축해제"
 
-#: Panel/panelfunc.cpp:1001
+#: Panel/panelfunc.cpp:1010
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
 msgstr[0] "%1개 파일 압축해제:"
 msgstr[1] "%1개 파일 압축해제:"
 
-#: Panel/panelfunc.cpp:1046
+#: Panel/panelfunc.cpp:1055
 #, kde-format
 msgid "%1, unknown archive type"
 msgstr "%1, 인지할 수 없는 압축파일 형태"
 
-#: Panel/panelfunc.cpp:1237
+#: Panel/panelfunc.cpp:1246
 #, kde-format
 msgid "Cannot cut a virtual URL collection to the clipboard!"
 msgstr "클립보드에 있는 가상 URL 모음을 자르기할 수 없습니다."
 
-#: Panel/panelfunc.cpp:1239
+#: Panel/panelfunc.cpp:1248
 #, kde-format
 msgid "Cannot copy a virtual URL collection onto the clipboard!"
 msgstr "클립보드에 있는 가상 URL 모음을 복사할 수 없습니다."
@@ -2711,12 +2719,12 @@ msgstr "쿼리 이름"
 msgid "Here you can name the file collection"
 msgstr "여기에서 사용자는 파일 모음에 이름 부여"
 
-#: krusader.cpp:387
+#: krusader.cpp:388
 #, kde-format
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr "마우스 포인터 아래의 파일에 대한 기본적인 정보는 상태바에 보여집니다."
 
-#: krusader.cpp:470
+#: krusader.cpp:471
 #, kde-format
 msgid ""
 "A configuration of 1.51 or older was detected. Krusader has to reset your "
@@ -2729,7 +2737,7 @@ msgstr ""
 "알림: 사용자의 북마크와 키바인딩은 고스란히 남을 것입니다.\n"
 "Krusader는 Konfigurator를 실행시킬 겁니다."
 
-#: krusader.cpp:482
+#: krusader.cpp:483
 #, kde-format
 msgid ""
 "<qt><b>Welcome to Krusader!</b><p>As this is your first run, your machine "
@@ -2741,500 +2749,500 @@ msgstr ""
 "입니다. 사용자가 원하는 내용으로 Krusader의 사용환경을 변경할 수 있습니다.</"
 "p></qt>"
 
-#: krusader.cpp:593
+#: krusader.cpp:594
 #, kde-format
 msgid "&Reload"
 msgstr "다시 불러오기(&R)"
 
-#: krusader.cpp:598
+#: krusader.cpp:599
 #, kde-format
 msgid "Show Actions Toolbar"
 msgstr "동작 툴바 보이기"
 
-#: krusader.cpp:610
+#: krusader.cpp:611
 #, kde-format
 msgid "Show &FN Keys Bar"
 msgstr "기능키 바 보이기(&F)"
 
-#: krusader.cpp:612
+#: krusader.cpp:613
 #, kde-format
 msgid "Show &Command Line"
 msgstr "명령 줄 보이기(&C)"
 
-#: krusader.cpp:614
+#: krusader.cpp:615
 #, kde-format
 msgid "Show Terminal &Emulator"
 msgstr "터미널 에뮭레이터 보이기(&E)"
 
-#: krusader.cpp:651
+#: krusader.cpp:652
 #, kde-format
 msgid "Show &Hidden Files"
 msgstr "숨겨진 파일 보이기(&H)"
 
-#: krusader.cpp:653
+#: krusader.cpp:654
 #, kde-format
 msgid "S&wap Panels"
 msgstr "판넬 서로 바꾸기(&W)"
 
-#: krusader.cpp:655
+#: krusader.cpp:656
 #, kde-format
 msgid "Sw&ap Sides"
 msgstr "양쪽 서로 바꾸기(&A)"
 
-#: krusader.cpp:659
+#: krusader.cpp:660
 #, kde-format
 msgid "popup cmdline"
 msgstr "팝업 명령줄"
 
-#: krusader.cpp:665
+#: krusader.cpp:666
 #, kde-format
 msgid "&New Text File..."
 msgstr "새 문서 파일(&N)..."
 
-#: krusader.cpp:666
+#: krusader.cpp:667
 #, kde-format
 msgid "Start &Root Mode Krusader"
 msgstr "관리자 모드 Krusader 시작"
 
-#: krusader.cpp:667
+#: krusader.cpp:668
 #, kde-format
 msgid "F3 View Dialog"
 msgstr "F3 대화상자 보이기"
 
-#: krusader.cpp:668
+#: krusader.cpp:669
 #, kde-format
 msgid "T&est Archive"
 msgstr "압축파일 테스트(&E)"
 
-#: krusader.cpp:669
+#: krusader.cpp:670
 #, kde-format
 msgid "New Net &Connection..."
 msgstr "새 네트워크 연결(&C)..."
 
-#: krusader.cpp:670
+#: krusader.cpp:671
 #, kde-format
 msgid "Pro&files"
 msgstr "프로파일(&F)"
 
-#: krusader.cpp:671
+#: krusader.cpp:672
 #, kde-format
 msgid "Calculate &Occupied Space"
 msgstr "점유 공간 계산(&C)"
 
-#: krusader.cpp:672
+#: krusader.cpp:673
 #, kde-format
 msgid "Create Checksum..."
 msgstr "체크섬 생성..."
 
-#: krusader.cpp:673
+#: krusader.cpp:674
 #, kde-format
 msgid "Verify Checksum..."
 msgstr "체크섬 확인..."
 
-#: krusader.cpp:674
+#: krusader.cpp:675
 #, kde-format
 msgid "&Properties..."
 msgstr "특성(&P)..."
 
-#: krusader.cpp:675
+#: krusader.cpp:676
 #, kde-format
 msgid "Pac&k..."
 msgstr "압축(&K)..."
 
-#: krusader.cpp:676
+#: krusader.cpp:677
 #, kde-format
 msgid "&Unpack..."
 msgstr "압축 해제(&U)..."
 
-#: krusader.cpp:677
+#: krusader.cpp:678
 #, kde-format
 msgid "Sp&lit File..."
 msgstr "파일 분할(&L)..."
 
-#: krusader.cpp:678
+#: krusader.cpp:679
 #, kde-format
 msgid "Com&bine Files..."
 msgstr "파일 병합(&B)..."
 
-#: krusader.cpp:679
+#: krusader.cpp:680
 #, kde-format
 msgid "Select &Group..."
 msgstr "그룹 선택(&G)..."
 
-#: krusader.cpp:680
+#: krusader.cpp:681
 #, kde-format
 msgid "&Select All"
 msgstr "전체 선택(&S)"
 
-#: krusader.cpp:681
+#: krusader.cpp:682
 #, kde-format
 msgid "&Unselect Group..."
 msgstr "그룹 선택 해제(&U)..."
 
-#: krusader.cpp:682
+#: krusader.cpp:683
 #, kde-format
 msgid "U&nselect All"
 msgstr "전체 선택 해제(&N)"
 
-#: krusader.cpp:683
+#: krusader.cpp:684
 #, kde-format
 msgid "&Invert Selection"
 msgstr "선택 반전(&I)"
 
-#: krusader.cpp:684
+#: krusader.cpp:685
 #, kde-format
 msgid "&Compare Directories"
 msgstr "디렉토리 비교(&C)"
 
-#: krusader.cpp:685
+#: krusader.cpp:686
 #, kde-format
 msgid "&Select Newer and Single"
 msgstr "최신 것 한 개를 선택(&S)"
 
-#: krusader.cpp:686
+#: krusader.cpp:687
 #, kde-format
 msgid "Select &Newer"
 msgstr "최신 것을 선택(&N)"
 
-#: krusader.cpp:687
+#: krusader.cpp:688
 #, kde-format
 msgid "Select &Single"
 msgstr "한 개를 선택(&S)"
 
-#: krusader.cpp:688
+#: krusader.cpp:689
 #, kde-format
 msgid "Select Different &and Single"
 msgstr "다른 한 개를 선택(&A)"
 
-#: krusader.cpp:689
+#: krusader.cpp:690
 #, kde-format
 msgid "Select &Different"
 msgstr "다른 것을 선택(&D)"
 
-#: krusader.cpp:699
+#: krusader.cpp:700
 #, kde-format
 msgid "Start and &Forget"
 msgstr "시작하고 잊어버림(&F)"
 
-#: krusader.cpp:700
+#: krusader.cpp:701
 #, kde-format
 msgid "Display &Separated Standard and Error Output"
 msgstr "표준 출력과 오류 출력을 분리해서 표시(&S)"
 
-#: krusader.cpp:701
+#: krusader.cpp:702
 #, kde-format
 msgid "Display &Mixed Standard and Error Output"
 msgstr "표준 출력과 오류 출력을 혼합해서 표시(&M)"
 
-#: krusader.cpp:702
+#: krusader.cpp:703
 #, kde-format
 msgid "Start in &New Terminal"
 msgstr "새 터미널에서 시작(&N)"
 
-#: krusader.cpp:703
+#: krusader.cpp:704
 #, kde-format
 msgid "Send to &Embedded Terminal Emulator"
 msgstr "내장 터미널 에뮬레이터로 보내기(&E)"
 
-#: krusader.cpp:720
+#: krusader.cpp:721
 #, kde-format
 msgid "Start &Terminal"
 msgstr "터미널 시작(&T)"
 
-#: krusader.cpp:721
+#: krusader.cpp:722
 #, kde-format
 msgid "Disconnect &from Net"
 msgstr "연결로부터 끊기(&F)"
 
-#: krusader.cpp:723
+#: krusader.cpp:724
 #, kde-format
 msgid "&MountMan..."
 msgstr "수동 마운트(&M)..."
 
-#: krusader.cpp:730
+#: krusader.cpp:731
 #, kde-format
 msgid "&Search..."
 msgstr "검색(&S)..."
 
-#: krusader.cpp:731
+#: krusader.cpp:732
 #, kde-format
 msgid "&Locate..."
 msgstr "위치(&L)..."
 
-#: krusader.cpp:732
+#: krusader.cpp:733
 #, kde-format
 msgid "Synchronize &Directories..."
 msgstr "디렉토리 동기화..."
 
-#: krusader.cpp:733
+#: krusader.cpp:734
 #, kde-format
 msgid "S&ynchron Directory Changes"
 msgstr "디렉토리 일치"
 
-#: krusader.cpp:734
+#: krusader.cpp:735
 #, kde-format
 msgid "D&isk Usage..."
 msgstr "디스크 사용량..."
 
-#: krusader.cpp:735
+#: krusader.cpp:736
 #, kde-format
 msgid "&Queue Manager..."
 msgstr ""
 
-#: krusader.cpp:736
+#: krusader.cpp:737
 #, kde-format
 msgid "Configure &Krusader..."
 msgstr "&Krusader 환경설정..."
 
-#: krusader.cpp:737
+#: krusader.cpp:738
 #, kde-format
 msgid "Back"
 msgstr "뒤로"
 
-#: krusader.cpp:739
+#: krusader.cpp:740
 #, kde-format
 msgid "Save &Position"
 msgstr "위치 저장(&P)"
 
-#: krusader.cpp:740
+#: krusader.cpp:741
 #, kde-format
 msgid "&All Files"
 msgstr "모든 파일(&A)"
 
-#: krusader.cpp:743
+#: krusader.cpp:744
 #, kde-format
 msgid "&Custom"
 msgstr "사용자(&C)"
 
-#: krusader.cpp:744
+#: krusader.cpp:745
 #, kde-format
 msgid "Compare b&y Content..."
 msgstr "내용으로 비교(&Y)..."
 
-#: krusader.cpp:745
+#: krusader.cpp:746
 #, kde-format
 msgid "Multi &Rename..."
 msgstr "다중 선택 이름 바꾸기(&R)..."
 
-#: krusader.cpp:748
+#: krusader.cpp:749
 #, kde-format
 msgid "Right-click Menu"
 msgstr "오른쪽 버튼 클릭 메뉴"
 
-#: krusader.cpp:749
+#: krusader.cpp:750
 #, kde-format
 msgid "Right Bookmarks"
 msgstr "오른쪽 북마크"
 
-#: krusader.cpp:750
+#: krusader.cpp:751
 #, kde-format
 msgid "Left Bookmarks"
 msgstr "왼쪽 북마크"
 
-#: krusader.cpp:751 BookMan/krbookmarkbutton.cpp:20
+#: krusader.cpp:752 BookMan/krbookmarkbutton.cpp:20
 #: BookMan/krbookmarkhandler.cpp:32 BookMan/kraddbookmarkdlg.cpp:80
 #, kde-format
 msgid "Bookmarks"
 msgstr "북마크"
 
-#: krusader.cpp:752 BookMan/krbookmarkhandler.cpp:399
+#: krusader.cpp:753 BookMan/krbookmarkhandler.cpp:399
 #, kde-format
 msgid "Bookmark Current"
 msgstr "현재 페이지 북마크"
 
-#: krusader.cpp:753
+#: krusader.cpp:754
 #, kde-format
 msgid "History"
 msgstr "사용내역"
 
-#: krusader.cpp:754
+#: krusader.cpp:755
 #, kde-format
 msgid "Sync Panels"
 msgstr "판넬 동기화"
 
-#: krusader.cpp:755
+#: krusader.cpp:756
 #, kde-format
 msgid "Left History"
 msgstr "왼쪽 사용내역"
 
-#: krusader.cpp:756
+#: krusader.cpp:757
 #, kde-format
 msgid "Right History"
 msgstr "오른쪽 사용내역"
 
-#: krusader.cpp:757 BookMan/krbookmark.cpp:11
+#: krusader.cpp:758 BookMan/krbookmark.cpp:11
 #, kde-format
 msgid "Media"
 msgstr "미디어"
 
-#: krusader.cpp:758
+#: krusader.cpp:759
 #, kde-format
 msgid "Left Media"
 msgstr "왼쪽 매체"
 
-#: krusader.cpp:759
+#: krusader.cpp:760
 #, kde-format
 msgid "Right Media"
 msgstr "오른쪽 매체"
 
-#: krusader.cpp:761
+#: krusader.cpp:762
 #, kde-format
 msgid "Toggle Popup Panel"
 msgstr "팝업 판넬 사용 또는 사용안함"
 
-#: krusader.cpp:762 krusaderview.cpp:303
+#: krusader.cpp:763 krusaderview.cpp:310
 #, kde-format
 msgid "Vertical Mode"
 msgstr "세로방향 보기"
 
-#: krusader.cpp:763
+#: krusader.cpp:764
 #, kde-format
 msgid "New Tab"
 msgstr "새 탭"
 
-#: krusader.cpp:764
+#: krusader.cpp:765
 #, kde-format
 msgid "Duplicate Current Tab"
 msgstr "현재 탭 복제"
 
-#: krusader.cpp:765
+#: krusader.cpp:766
 #, kde-format
 msgid "Close Current Tab"
 msgstr "현재 탭 닫기"
 
-#: krusader.cpp:766
+#: krusader.cpp:767
 #, kde-format
 msgid "Next Tab"
 msgstr "다음 탭"
 
-#: krusader.cpp:767
+#: krusader.cpp:768
 #, kde-format
 msgid "Previous Tab"
 msgstr "이전 탭"
 
-#: krusader.cpp:769 UserMenu/usermenu.cpp:51
+#: krusader.cpp:770 UserMenu/usermenu.cpp:51
 #, kde-format
 msgid "User Menu"
 msgstr "사용자 메뉴"
 
 #. i18n: tag text
 #. i18n: file ./krusaderui.rc line 91
-#: krusader.cpp:772 rc.cpp:248
+#: krusader.cpp:773 rc.cpp:245
 #, kde-format
 msgid "User&actions"
 msgstr "사용자 작업(&A)"
 
-#: krusader.cpp:775
+#: krusader.cpp:776
 #, kde-format
 msgid "Manage User Actions..."
 msgstr "사용자 작업 관리"
 
-#: krusader.cpp:777
+#: krusader.cpp:778
 #, kde-format
 msgid "Select Remote Charset"
 msgstr "원격 문자세트 선택"
 
-#: krusader.cpp:780
+#: krusader.cpp:781
 #, kde-format
 msgid "Start Terminal Here"
 msgstr "여기서 터미녈 실행"
 
-#: krusader.cpp:781
+#: krusader.cpp:782
 #, kde-format
 msgid "View File"
 msgstr "파일 보기"
 
-#: krusader.cpp:782
+#: krusader.cpp:783
 #, kde-format
 msgid "Edit File"
 msgstr "파일 편집"
 
-#: krusader.cpp:785
+#: krusader.cpp:786
 #, fuzzy, kde-format
 msgid "Copy by queue..."
 msgstr "복사..."
 
-#: krusader.cpp:786
+#: krusader.cpp:787
 #, fuzzy, kde-format
 msgid "Move by queue..."
 msgstr "이동..."
 
-#: krusader.cpp:787
+#: krusader.cpp:788
 #, kde-format
 msgid "New Directory..."
 msgstr "새 디렉토리..."
 
-#: krusader.cpp:790
+#: krusader.cpp:791
 #, kde-format
 msgid "Quit"
 msgstr "나가기"
 
-#: krusader.cpp:791
+#: krusader.cpp:792
 #, kde-format
 msgid "Popular URLs..."
 msgstr "즐겨찾는 URLs..."
 
-#: krusader.cpp:792
+#: krusader.cpp:793
 #, kde-format
 msgid "Go to Location Bar"
 msgstr "위치 지정바로 가기"
 
-#: krusader.cpp:793
+#: krusader.cpp:794
 #, kde-format
 msgid "Jump Back"
 msgstr "돌아가기"
 
-#: krusader.cpp:794
+#: krusader.cpp:795
 #, kde-format
 msgid "Set Jump Back Point"
 msgstr "돌아올 곳으로 설정"
 
-#: krusader.cpp:795
+#: krusader.cpp:796
 #, kde-format
 msgid "Toggle Fullwidget Terminal Emulator"
 msgstr "Fullwidget 터미널 에뮬레이터 사용 또는 사용안함"
 
-#: krusader.cpp:798
+#: krusader.cpp:799
 #, kde-format
 msgid "Select files using a filter"
 msgstr "필터를 사용하여 파일 선택"
 
-#: krusader.cpp:799
+#: krusader.cpp:800
 #, kde-format
 msgid "Select all files in the current directory"
 msgstr "현재 디렉토리의 모든 파일 선택"
 
-#: krusader.cpp:800
+#: krusader.cpp:801
 #, kde-format
 msgid "Unselect all selected files"
 msgstr "선택된 모든 파일을 선택해제"
 
-#: krusader.cpp:801
+#: krusader.cpp:802
 #, kde-format
 msgid "Setup Krusader the way you like it"
 msgstr "사용자 정의방식 Krusader 설정"
 
-#: krusader.cpp:802
+#: krusader.cpp:803
 #, kde-format
 msgid "Back to the place you came from"
 msgstr "이동해온 곳으로 다시 돌아감"
 
-#: krusader.cpp:803
+#: krusader.cpp:804
 #, kde-format
 msgid "ROOT (/)"
 msgstr ""
 
-#: krusader.cpp:804
+#: krusader.cpp:805
 #, kde-format
 msgid "Search for files"
 msgstr "파일내에서 검색"
 
-#: krusader.cpp:810
+#: krusader.cpp:811
 #, kde-format
 msgid "JavaScript Console..."
 msgstr "자바스크립트 콘솔..."
 
-#: krusader.cpp:962
+#: krusader.cpp:963
 #, kde-format
 msgid "Are you sure you want to quit?"
 msgstr "나가기를 원하십니까?"
@@ -3244,79 +3252,79 @@ msgstr "나가기를 원하십니까?"
 msgid "No file selected or selected file can't be displayed."
 msgstr "파일이 선택되지 않았거나 선택된 파일을 표시할 수 없습니다."
 
-#: KViewer/panelviewer.cpp:170 KViewer/krviewer.cpp:694
+#: KViewer/panelviewer.cpp:170 KViewer/krviewer.cpp:725
 #, kde-format
 msgid "KrViewer is unable to download: "
 msgstr "KrViewer 는 다운로드할 수 없습니다."
 
-#: KViewer/krviewer.cpp:84
+#: KViewer/krviewer.cpp:82
 #, kde-format
 msgid "&Generic viewer"
 msgstr "일반 파일 뷰어(&)"
 
-#: KViewer/krviewer.cpp:85
+#: KViewer/krviewer.cpp:83
 #, kde-format
 msgid "&Text viewer"
 msgstr "텍스트 파일 뷰어(&T)"
 
-#: KViewer/krviewer.cpp:86
+#: KViewer/krviewer.cpp:84
 #, kde-format
 msgid "&Hex viewer"
 msgstr "16진수표시 파일 뷰어(&H)"
 
-#: KViewer/krviewer.cpp:88
+#: KViewer/krviewer.cpp:86
 #, kde-format
 msgid "Text &editor"
 msgstr "텍스트 편집기(&E)"
 
-#: KViewer/krviewer.cpp:90
+#: KViewer/krviewer.cpp:88
 #, kde-format
 msgid "&Next tab"
 msgstr "다음 탭(&N)"
 
-#: KViewer/krviewer.cpp:91
+#: KViewer/krviewer.cpp:89
 #, kde-format
 msgid "&Previous tab"
 msgstr "이전 탭(&P)"
 
-#: KViewer/krviewer.cpp:93
+#: KViewer/krviewer.cpp:91
 #, kde-format
 msgid "&Detach tab"
 msgstr "탭 분리(&D)"
 
-#: KViewer/krviewer.cpp:113
+#: KViewer/krviewer.cpp:111
 #, kde-format
 msgid "&Close current tab"
 msgstr "현재 탭 닫기(&C)"
 
-#: KViewer/krviewer.cpp:114
+#: KViewer/krviewer.cpp:112
 #, kde-format
 msgid "&Quit"
 msgstr "나가기(&Q)"
 
-#: KViewer/krviewer.cpp:177
+#: KViewer/krviewer.cpp:189
 #, kde-format
 msgid "&KrViewer"
 msgstr ""
 
-#: KViewer/krviewer.cpp:278 KViewer/krviewer.cpp:351 KViewer/krviewer.cpp:440
-#: KViewer/krviewer.cpp:449 KViewer/krviewer.cpp:458 KViewer/krviewer.cpp:538
+#: KViewer/krviewer.cpp:290 KViewer/krviewer.cpp:363 KViewer/krviewer.cpp:459
+#: KViewer/krviewer.cpp:468 KViewer/krviewer.cpp:477 KViewer/krviewer.cpp:557
 #, kde-format
 msgid "Viewing"
 msgstr "보는 중"
 
-#: KViewer/krviewer.cpp:304
+#: KViewer/krviewer.cpp:316
 #, kde-format
 msgid "Can't open "
 msgstr "열 수 없습니다."
 
-#: KViewer/krviewer.cpp:312 KViewer/krviewer.cpp:351 KViewer/krviewer.cpp:467
-#: KViewer/krviewer.cpp:536
+#: KViewer/krviewer.cpp:324 KViewer/krviewer.cpp:363 KViewer/krviewer.cpp:486
+#: KViewer/krviewer.cpp:555
 #, kde-format
 msgid "Editing"
 msgstr "편집 중"
 
-#: KViewer/krviewer.cpp:624
+#: KViewer/krviewer.cpp:655
 #, kde-format
 msgid "Sorry, can't find internal editor"
 msgstr "미안합니다. 내장 편집기를 찾을 수 없습니다."
@@ -3509,43 +3517,32 @@ msgstr "폴더"
 msgid "Folder name:"
 msgstr "폴더 이름:"
 
-#: MountMan/kmountman.cpp:203
-#, fuzzy, kde-format
-msgid ""
-"<qt>Error ejecting device!\n"
-" You have to configure the path to the 'eject' tool. Please check the "
-"<b>Dependencies</b> page in Krusader's settings.</qt>"
-msgstr ""
-"<qt>장치 꺼내기 오류!\n"
-" '추출(제거)' 툴로 경로를 설정해야 합니다. Krusader 설정의 <b>의존성</b> 페이"
-"지를 점검하세요.</qt>"
-
-#: MountMan/kmountman.cpp:233
+#: MountMan/kmountman.cpp:304
 #, kde-format
 msgid "%1 ZB"
 msgstr ""
 
-#: MountMan/kmountman.cpp:235
+#: MountMan/kmountman.cpp:306
 #, kde-format
 msgid "%1 TB"
 msgstr ""
 
-#: MountMan/kmountman.cpp:240
+#: MountMan/kmountman.cpp:311
 #, kde-format
 msgid "%1 GB"
 msgstr ""
 
-#: MountMan/kmountman.cpp:245
+#: MountMan/kmountman.cpp:316
 #, kde-format
 msgid "%1 MB"
 msgstr ""
 
-#: MountMan/kmountman.cpp:250
+#: MountMan/kmountman.cpp:321
 #, kde-format
 msgid "%1 KB"
 msgstr ""
 
-#: MountMan/kmountman.cpp:259
+#: MountMan/kmountman.cpp:330
 #, kde-format
 msgid "MountMan is not operational. Sorry"
 msgstr "MoutMan 은 옵션이 아닙니다. 죄송합니다."
@@ -3565,37 +3562,37 @@ msgstr "닫기(&C)"
 msgid "MountMan - Your Mount-Manager"
 msgstr "MountMan - 마운트 관리자"
 
-#: MountMan/kmountmangui.cpp:127
+#: MountMan/kmountmangui.cpp:158
 #, kde-format
 msgid "Mnt.Point"
 msgstr ""
 
-#: MountMan/kmountmangui.cpp:128
+#: MountMan/kmountmangui.cpp:159
 #, kde-format
 msgid "Total Size"
 msgstr "전체 크기"
 
-#: MountMan/kmountmangui.cpp:129
+#: MountMan/kmountmangui.cpp:160
 #, kde-format
 msgid "Free Size"
 msgstr "빈 공간"
 
-#: MountMan/kmountmangui.cpp:130
+#: MountMan/kmountmangui.cpp:161
 #, kde-format
 msgid "Free %"
 msgstr "% 빔"
 
-#: MountMan/kmountmangui.cpp:164
+#: MountMan/kmountmangui.cpp:195
 #, kde-format
 msgid "MountMan.Info"
 msgstr ""
 
-#: MountMan/kmountmangui.cpp:214 MountMan/kmountmangui.cpp:332
+#: MountMan/kmountmangui.cpp:245 MountMan/kmountmangui.cpp:363
 #, kde-format
 msgid "Critical Error"
 msgstr "치명적인 오류"
 
-#: MountMan/kmountmangui.cpp:215
+#: MountMan/kmountmangui.cpp:246
 #, kde-format
 msgid ""
 "Internal error in MountMan\n"
@@ -3604,7 +3601,7 @@ msgstr ""
 "MountMan 내부 오류 발생\n"
 "개발자에게 메일로 연락하세요."
 
-#: MountMan/kmountmangui.cpp:332
+#: MountMan/kmountmangui.cpp:363
 #, kde-format
 msgid ""
 "Internal error in MountMan\n"
@@ -3613,38 +3610,38 @@ msgstr ""
 "MountMan 내부 오류 발생\n"
 "개발자에게 연락하세요."
 
-#: MountMan/kmountmangui.cpp:364
+#: MountMan/kmountmangui.cpp:395
 #, kde-format
 msgid ""
 "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr "MountMan에서 내부 오류 발생. 개발자에게 알려주십시오. 감사합니다."
 
-#: MountMan/kmountmangui.cpp:369
+#: MountMan/kmountmangui.cpp:400
 #, kde-format
 msgid "MountMan"
 msgstr ""
 
-#: MountMan/kmountmangui.cpp:385
+#: MountMan/kmountmangui.cpp:416
 #, kde-format
 msgid "Format"
 msgstr "포멧"
 
-#: main.cpp:109 Konfigurator/kglookfeel.cpp:242
+#: main.cpp:110 Konfigurator/kglookfeel.cpp:242
 #, kde-format
 msgid "Krusader"
 msgstr ""
 
-#: main.cpp:109
+#: main.cpp:110
 msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader - 관리자 권한"
 
-#: main.cpp:111
+#: main.cpp:112
 msgid ""
 "(c) 2000-2003, Shie Erlich, Rafi Yanai\n"
-"(c) 2004-2008, Krusader Krew"
+"(c) 2004-2009, Krusader Krew"
 msgstr ""
 
-#: main.cpp:112
+#: main.cpp:113
 msgid ""
 "Feedback:\n"
 "http://www.krusader.org/phpBB/\n"
@@ -3653,472 +3650,480 @@ msgid ""
 "server: irc.freenode.net, channel: #krusader"
 msgstr ""
 
-#: main.cpp:115
+#: main.cpp:116
 msgid "Rafi Yanai"
 msgstr ""
 
-#: main.cpp:115 main.cpp:116
+#: main.cpp:116 main.cpp:117
 msgid "Author"
 msgstr "저자"
 
-#: main.cpp:116
+#: main.cpp:117
 msgid "Shie Erlich"
 msgstr ""
 
-#: main.cpp:117
+#: main.cpp:118
 msgid "Karai Csaba"
 msgstr ""
 
-#: main.cpp:117 main.cpp:118 main.cpp:119 main.cpp:120
+#: main.cpp:118 main.cpp:119 main.cpp:120 main.cpp:121
 msgid "Developer"
 msgstr "개발자"
 
-#: main.cpp:118
+#: main.cpp:119
 msgid "Heiner Eichmann"
 msgstr ""
 
-#: main.cpp:119
+#: main.cpp:120
 msgid "Jonas Bähr"
 msgstr ""
 
-#: main.cpp:120 main.cpp:125
+#: main.cpp:121 main.cpp:126
 msgid "Václav Jůza"
 msgstr ""
 
-#: main.cpp:121 main.cpp:154
+#: main.cpp:122 main.cpp:155
 msgid "Dirk Eschler"
 msgstr ""
 
-#: main.cpp:121
+#: main.cpp:122
 msgid "Webmaster and i18n coordinator"
 msgstr "웹마스터와 i18n 코디네이터"
 
-#: main.cpp:122 main.cpp:150
+#: main.cpp:123 main.cpp:151
 msgid "Frank Schoolmeesters"
 msgstr ""
 
-#: main.cpp:122
+#: main.cpp:123
 msgid "Documentation and marketing coordinator"
 msgstr "문서와 마케팅 코디네이터"
 
-#: main.cpp:123
+#: main.cpp:124
 msgid "Richard Holt"
 msgstr ""
 
-#: main.cpp:123
+#: main.cpp:124
 msgid "Documentation & Proofing"
 msgstr "문서과 교정"
 
-#: main.cpp:124 main.cpp:170
+#: main.cpp:125 main.cpp:171
 msgid "Matej Urbancic"
 msgstr ""
 
-#: main.cpp:124
+#: main.cpp:125
 #, fuzzy
 msgid "Marketing & Product Research"
 msgstr " 마케팅과 제품 개발"
 
-#: main.cpp:125 main.cpp:126 main.cpp:137
+#: main.cpp:126 main.cpp:127 main.cpp:138
 msgid "QA, bug-hunting, patches and general help"
 msgstr "QA, 버그-찾기, 패치와 일발적인 도움말"
 
-#: main.cpp:126
+#: main.cpp:127
 msgid "Jiří Paleček"
 msgstr ""
 
-#: main.cpp:127
+#: main.cpp:128
 msgid "Jiří Klement"
 msgstr ""
 
-#: main.cpp:127
+#: main.cpp:128
 msgid "Important help in KDE 4 porting"
 msgstr "KDE 4 포팅 시 중요한 도움말"
 
-#: main.cpp:128
+#: main.cpp:129
 msgid "Andrew Neupokoev"
 msgstr ""
 
-#: main.cpp:128
+#: main.cpp:129
 msgid "Killer Logo and Icons for Krusader (contest winner)"
 msgstr "Krusader 의 Killer 로고와 아이콘 (컨테스트 승자)"
 
-#: main.cpp:129
+#: main.cpp:130
 msgid "The UsefulArts Organization"
 msgstr ""
 
-#: main.cpp:129
+#: main.cpp:130
 msgid "Icon for krusader"
 msgstr "Krusader 의 아이콘"
 
-#: main.cpp:130
+#: main.cpp:131
 msgid "Gábor Lehel"
 msgstr ""
 
-#: main.cpp:130
+#: main.cpp:131
 msgid "Viewer module for 3rd Hand"
 msgstr "제 3자 소유 뷰어 모듈"
 
-#: main.cpp:131
+#: main.cpp:132
 msgid "Mark Eatough"
 msgstr ""
 
-#: main.cpp:131
+#: main.cpp:132
 msgid "Handbook Proof-Reader"
 msgstr "안내서 교정기"
 
-#: main.cpp:132
+#: main.cpp:133
 msgid "Jan Halasa"
 msgstr ""
 
-#: main.cpp:132
+#: main.cpp:133
 msgid "The old Bookmark Module"
 msgstr "이전 북마크 모듈"
 
-#: main.cpp:133
+#: main.cpp:134
 msgid "Hans Löffler"
 msgstr ""
 
-#: main.cpp:133
+#: main.cpp:134
 msgid "Dir history button"
 msgstr "디렉토리 사용내역 버튼"
 
-#: main.cpp:134
+#: main.cpp:135
 msgid "Szombathelyi György"
 msgstr ""
 
-#: main.cpp:134
+#: main.cpp:135
 msgid "ISO KIO slave"
 msgstr ""
 
-#: main.cpp:135
+#: main.cpp:136
 msgid "Jan Willem van de Meent (Adios)"
 msgstr ""
 
-#: main.cpp:135
+#: main.cpp:136
 msgid "Icons for Krusader"
 msgstr "Krusader 의 아이콘"
 
-#: main.cpp:136
+#: main.cpp:137
 msgid "Mikolaj Machowski"
 msgstr ""
 
-#: main.cpp:136
+#: main.cpp:137
 msgid "Usability and QA"
 msgstr "유용성과 QA"
 
-#: main.cpp:137
+#: main.cpp:138
 msgid "Cristi Dumitrescu"
 msgstr ""
 
-#: main.cpp:138
+#: main.cpp:139
 msgid "Aurelien Gateau"
 msgstr ""
 
-#: main.cpp:138
+#: main.cpp:139
 msgid "patch for KViewer"
 msgstr "KViewer 의 패치"
 
-#: main.cpp:139
+#: main.cpp:140
 msgid "Milan Brabec"
 msgstr ""
 
-#: main.cpp:139
+#: main.cpp:140
 msgid "the first patch ever !"
 msgstr ""
 
-#: main.cpp:140
+#: main.cpp:141
 msgid "Asim Husanovic"
 msgstr ""
 
-#: main.cpp:140
+#: main.cpp:141
 msgid "Bosnian translation"
 msgstr ""
 
-#: main.cpp:141
+#: main.cpp:142
 msgid "Doutor Zero"
 msgstr ""
 
-#: main.cpp:141
+#: main.cpp:142
 msgid "Brazilian Portuguese translation"
 msgstr ""
 
-#: main.cpp:142
+#: main.cpp:143
 msgid "Milen Ivanov"
 msgstr ""
 
-#: main.cpp:142
+#: main.cpp:143
 msgid "Bulgarian translation"
 msgstr ""
 
-#: main.cpp:143
+#: main.cpp:144
 msgid "Quim Perez"
 msgstr ""
 
-#: main.cpp:143
+#: main.cpp:144
 msgid "Catalan translation"
 msgstr ""
 
-#: main.cpp:144
+#: main.cpp:145
 msgid "Jinghua Luo"
 msgstr ""
 
-#: main.cpp:144
+#: main.cpp:145
 msgid "Chinese Simplified translation"
 msgstr ""
 
-#: main.cpp:145
+#: main.cpp:146
 msgid "Mitek"
 msgstr ""
 
-#: main.cpp:145 main.cpp:146
+#: main.cpp:146 main.cpp:147
 msgid "Old Czech translation"
 msgstr ""
 
-#: main.cpp:146
+#: main.cpp:147
 msgid "Martin Sixta"
 msgstr ""
 
-#: main.cpp:147
+#: main.cpp:148
 msgid "Vaclav Jůza"
 msgstr ""
 
-#: main.cpp:147
+#: main.cpp:148
 msgid "Czech translation"
 msgstr ""
 
-#: main.cpp:148
+#: main.cpp:149
 msgid "Anders Bruun Olsen"
 msgstr ""
 
-#: main.cpp:148
+#: main.cpp:149
 msgid "Old Danish translation"
 msgstr ""
 
-#: main.cpp:149
+#: main.cpp:150
 msgid "Peter H. Sorensen"
 msgstr ""
 
-#: main.cpp:149
+#: main.cpp:150
 msgid "Danish translation"
 msgstr ""
 
-#: main.cpp:150
+#: main.cpp:151
 msgid "Dutch translation"
 msgstr ""
 
-#: main.cpp:151
+#: main.cpp:152
 msgid "Rene-Pierre Lehmann"
 msgstr ""
 
-#: main.cpp:151
+#: main.cpp:152
 msgid "Old French translation"
 msgstr ""
 
-#: main.cpp:152
+#: main.cpp:153
 msgid "David Guillerm"
 msgstr ""
 
-#: main.cpp:152
+#: main.cpp:153
 msgid "French translation"
 msgstr ""
 
-#: main.cpp:153
+#: main.cpp:154
 msgid "Christoph Thielecke"
 msgstr ""
 
-#: main.cpp:153
+#: main.cpp:154
 msgid "Old German translation"
 msgstr ""
 
-#: main.cpp:154
+#: main.cpp:155
 msgid "German translation"
 msgstr ""
 
-#: main.cpp:155
+#: main.cpp:156
 msgid "Spiros Georgaras"
 msgstr ""
 
-#: main.cpp:155
+#: main.cpp:156
 msgid "Greek translation"
 msgstr ""
 
-#: main.cpp:156
+#: main.cpp:157
 msgid "Kukk Zoltan"
 msgstr ""
 
-#: main.cpp:156
+#: main.cpp:157
 msgid "Old Hungarian translation"
 msgstr ""
 
-#: main.cpp:157
+#: main.cpp:158
 msgid "Arpad Biro"
 msgstr ""
 
-#: main.cpp:157
+#: main.cpp:158
 msgid "Hungarian translation"
 msgstr ""
 
-#: main.cpp:158
+#: main.cpp:159
 msgid "Giuseppe Bordoni"
 msgstr ""
 
-#: main.cpp:158
+#: main.cpp:159
 msgid "Italian translation"
 msgstr ""
 
-#: main.cpp:159
+#: main.cpp:160
 msgid "Hideki Kimura"
 msgstr ""
 
-#: main.cpp:159
+#: main.cpp:160
 msgid "Japanese translation"
 msgstr ""
 
-#: main.cpp:160
+#: main.cpp:161
 msgid "UTUMI Hirosi"
 msgstr ""
 
-#: main.cpp:160
+#: main.cpp:161
 msgid "Old Japanese translation"
 msgstr ""
 
-#: main.cpp:161
+#: main.cpp:162
 msgid "Dovydas Sankauskas"
 msgstr ""
 
-#: main.cpp:161
+#: main.cpp:162
 msgid "Lithuanian translation"
 msgstr ""
 
-#: main.cpp:162
+#: main.cpp:163
 msgid "Bruno Queiros"
 msgstr ""
 
-#: main.cpp:162
+#: main.cpp:163
 msgid "Portuguese translation"
 msgstr ""
 
-#: main.cpp:163
+#: main.cpp:164
 msgid "Lukasz Janyst"
 msgstr ""
 
-#: main.cpp:163
+#: main.cpp:164
 msgid "Old Polish translation"
 msgstr ""
 
-#: main.cpp:164
+#: main.cpp:165
 msgid "Pawel Salawa"
 msgstr ""
 
-#: main.cpp:164 main.cpp:165
+#: main.cpp:165 main.cpp:166
 msgid "Polish translation"
 msgstr ""
 
-#: main.cpp:165
+#: main.cpp:166
 msgid "Tomek Grzejszczyk"
 msgstr ""
 
-#: main.cpp:166
+#: main.cpp:167
 msgid "Dmitry A. Bugay"
 msgstr ""
 
-#: main.cpp:166
+#: main.cpp:167
 msgid "Russian translation"
 msgstr ""
 
-#: main.cpp:167
+#: main.cpp:168
 msgid "Dmitry Chernyak"
 msgstr ""
 
-#: main.cpp:167
+#: main.cpp:168
 msgid "Old Russian translation"
 msgstr ""
 
-#: main.cpp:168
+#: main.cpp:169
 msgid "Sasa Tomic"
 msgstr ""
 
-#: main.cpp:168
+#: main.cpp:169
 msgid "Serbian translation"
 msgstr ""
 
-#: main.cpp:169
-msgid "Zdenko Podobna"
-msgstr ""
-
-#: main.cpp:169
-msgid "Slovak translation"
+#: main.cpp:170
+msgid "Zdenko Podobný and Ondrej Pačay (Yogi)"
 msgstr ""
 
 #: main.cpp:170
+msgid "Slovak translation"
+msgstr ""
+
+#: main.cpp:171
 msgid "Slovenian translation"
 msgstr ""
 
-#: main.cpp:171
+#: main.cpp:172
 msgid "Rafael Munoz"
 msgstr ""
 
-#: main.cpp:171
+#: main.cpp:172
 msgid "Old Spanish translation"
 msgstr ""
 
-#: main.cpp:172
+#: main.cpp:173
 msgid "Alejandro Araiza Alvarado"
 msgstr ""
 
-#: main.cpp:172
+#: main.cpp:173
 msgid "Spanish translation"
 msgstr ""
 
-#: main.cpp:173
+#: main.cpp:174
 msgid "Erik Johanssen"
 msgstr ""
 
-#: main.cpp:173 main.cpp:174
+#: main.cpp:174 main.cpp:175
 msgid "Old Swedish translation"
 msgstr ""
 
-#: main.cpp:174
+#: main.cpp:175
 msgid "Anders Linden"
 msgstr ""
 
-#: main.cpp:175
+#: main.cpp:176
 msgid "Peter Landgren"
 msgstr ""
 
-#: main.cpp:175
+#: main.cpp:176
 msgid "Swedish translation"
 msgstr ""
 
-#: main.cpp:176
+#: main.cpp:177
 msgid "Bekir Sonat"
 msgstr ""
 
-#: main.cpp:176
+#: main.cpp:177
 msgid "Turkish translation"
 msgstr ""
 
-#: main.cpp:177
+#: main.cpp:178
 msgid "Ivan Petrouchtchak"
 msgstr ""
 
-#: main.cpp:177
+#: main.cpp:178
 msgid "Ukrainian translation"
 msgstr ""
 
-#: main.cpp:183
+#: main.cpp:179
+msgid "Seongnam Jee"
+msgstr ""
+
+#: main.cpp:179
+msgid "Korean translation"
+msgstr ""
+
+#: main.cpp:185
 msgid "Start left panel at <path>"
 msgstr "<path>을 왼쪽 판넬에 표시"
 
-#: main.cpp:184
+#: main.cpp:186
 msgid "Start right panel at <path>"
 msgstr "<path>을 오른쪽 판넬에 표시"
 
-#: main.cpp:185
+#: main.cpp:187
 msgid "Load this profile on startup"
 msgstr "이 프로파일을 시작 시에 적재합니다."
 
-#: main.cpp:216
+#: main.cpp:220
 #, kde-format
 msgid "Application already running!\n"
 msgstr "응용프로그램이 이미 실행중입니다.!\n"
@@ -4128,7 +4133,7 @@ msgstr "응용프로그램이 이미 실행중입니다.!\n"
 msgid "Function keys allow performing fast operations on files."
 msgstr "기능키는 파일에 대한 신속한 동작을 제공합니다."
 
-#: krusaderview.cpp:307
+#: krusaderview.cpp:314
 #, fuzzy, kde-format
 msgid "Horizontal Mode"
 msgstr "세로방향 보기"
@@ -4477,97 +4482,97 @@ msgstr "<qt> <b>%1</b> 파일은 존재합니다. 덮어쓰겠습니까?</qt>"
 msgid "<qt>Can't open <b>%1</b> for writing!</qt>"
 msgstr "<qt>저장하려는 <b>%1</b>을 열 수 없습니다.!</qt>"
 
-#: Dialogs/packguibase.cpp:68 Dialogs/packguibase.cpp:122
+#: Dialogs/packguibase.cpp:71 Dialogs/packguibase.cpp:125
 #, kde-format
 msgid "Pack"
 msgstr "압축"
 
-#: Dialogs/packguibase.cpp:78
+#: Dialogs/packguibase.cpp:81
 #, kde-format
 msgid "To archive"
 msgstr "압축파일로"
 
-#: Dialogs/packguibase.cpp:97
+#: Dialogs/packguibase.cpp:100
 #, kde-format
 msgid "In directory"
 msgstr "디렉토리에서"
 
-#: Dialogs/packguibase.cpp:147
+#: Dialogs/packguibase.cpp:150
 #, kde-format
 msgid "Multiple volume archive"
 msgstr "다중 볼륨 압축파일"
 
-#: Dialogs/packguibase.cpp:156 DiskUsage/diskusage.cpp:1083
+#: Dialogs/packguibase.cpp:159 DiskUsage/diskusage.cpp:1083
 #, kde-format
 msgid "Size:"
 msgstr "크기:"
 
-#: Dialogs/packguibase.cpp:174
+#: Dialogs/packguibase.cpp:178
 #, kde-format
 msgid "Set compression level"
 msgstr "압축 레벨 설정"
 
-#: Dialogs/packguibase.cpp:199
+#: Dialogs/packguibase.cpp:205
 #, kde-format
 msgid "MIN"
 msgstr "최소"
 
-#: Dialogs/packguibase.cpp:200
+#: Dialogs/packguibase.cpp:206
 #, kde-format
 msgid "MAX"
 msgstr "최대"
 
-#: Dialogs/packguibase.cpp:224
+#: Dialogs/packguibase.cpp:230
 #, kde-format
 msgid "Password"
 msgstr "암호"
 
-#: Dialogs/packguibase.cpp:234
+#: Dialogs/packguibase.cpp:240
 #, kde-format
 msgid "Again"
 msgstr "다시하기"
 
-#: Dialogs/packguibase.cpp:252
+#: Dialogs/packguibase.cpp:258
 #, kde-format
 msgid "Encrypt headers"
 msgstr "헤더 암호화"
 
-#: Dialogs/packguibase.cpp:264
+#: Dialogs/packguibase.cpp:270
 #, kde-format
 msgid "Command line switches:"
 msgstr "명령줄 옵션:"
 
-#: Dialogs/packguibase.cpp:297
+#: Dialogs/packguibase.cpp:302
 #, kde-format
 msgid "Ok"
 msgstr "확인"
 
-#: Dialogs/packguibase.cpp:347
+#: Dialogs/packguibase.cpp:352
 #, kde-format
 msgid "No password specified"
 msgstr "암호 지정 않됨"
 
-#: Dialogs/packguibase.cpp:352
+#: Dialogs/packguibase.cpp:357
 #, kde-format
 msgid "The passwords are equal"
 msgstr "암호 불일치"
 
-#: Dialogs/packguibase.cpp:356
+#: Dialogs/packguibase.cpp:361
 #, kde-format
 msgid "The passwords are different"
 msgstr "암호가 다름"
 
-#: Dialogs/packguibase.cpp:394
+#: Dialogs/packguibase.cpp:401
 #, kde-format
 msgid "Cannot pack! The passwords are different!"
 msgstr "압축할 수 없음! 암호가 다름!"
 
-#: Dialogs/packguibase.cpp:419
+#: Dialogs/packguibase.cpp:426
 #, kde-format
 msgid "Invalid volume size!"
 msgstr "볼륨 크기가 올바르지 않음!"
 
-#: Dialogs/packguibase.cpp:449
+#: Dialogs/packguibase.cpp:458
 #, kde-format
 msgid ""
 "Invalid command line switch!\n"
@@ -4576,7 +4581,7 @@ msgstr ""
 "잘못된 명령줄 옵션\n"
 " 옵션은 반드시 '-'로 시작되어야 함!"
 
-#: Dialogs/packguibase.cpp:461
+#: Dialogs/packguibase.cpp:470
 #, kde-format
 msgid ""
 "Invalid command line switch!\n"
@@ -4585,7 +4590,7 @@ msgstr ""
 "잘못된 명령줄 옵션\n"
 " 마지막 문자에 Backslash가 올 수 없음"
 
-#: Dialogs/packguibase.cpp:469
+#: Dialogs/packguibase.cpp:478
 #, kde-format
 msgid ""
 "Invalid command line switch!\n"
@@ -4804,25 +4809,25 @@ msgid "Errors occured while saving multiple checksums. Stopping"
 msgstr "다중 체크섬 저장 중 오류 발생. 정지 중..."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 14
+#. i18n: file ./ActionMan/actionproperty.ui line 13
 #: ActionMan/ui_actionproperty.h:605 rc.cpp:3
 #, kde-format
 msgid "Action Property"
 msgstr "작업 속성"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 45
+#. i18n: file ./ActionMan/actionproperty.ui line 44
 #: ActionMan/ui_actionproperty.h:606 rc.cpp:9
 #, kde-format
 msgid "..."
 msgstr ""
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 58
+#. i18n: file ./ActionMan/actionproperty.ui line 57
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 313
-#: ActionMan/ui_actionproperty.h:609 ActionMan/ui_actionproperty.h:704
-#: rc.cpp:12 rc.cpp:98
+#. i18n: file ./ActionMan/actionproperty.ui line 309
+#: ActionMan/ui_actionproperty.h:609 ActionMan/ui_actionproperty.h:703
+#: rc.cpp:12 rc.cpp:95
 #, kde-format
 msgid ""
 "A detailed description of the <b>Useraction</b>. It is only displayed in the "
@@ -4832,51 +4837,51 @@ msgstr ""
 "<code>Shift-F1</code>에 의해 표시됩니다."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 61
+#. i18n: file ./ActionMan/actionproperty.ui line 60
 #: ActionMan/ui_actionproperty.h:612 rc.cpp:15
 #, kde-format
 msgid "Description:"
 msgstr "설명"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 77
+#. i18n: file ./ActionMan/actionproperty.ui line 76
 #: ActionMan/ui_actionproperty.h:613 rc.cpp:18
 #, kde-format
 msgid "Command accepts"
 msgstr "명령 승인"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 83
+#. i18n: file ./ActionMan/actionproperty.ui line 82
 #: ActionMan/ui_actionproperty.h:616 rc.cpp:21
 #, kde-format
 msgid "Substitute the <b>Placeholders</b> with local filenames."
 msgstr "로컬 파일 이름으로 <b>Placeholders</b>를 대신합니다."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 86
+#. i18n: file ./ActionMan/actionproperty.ui line 85
 #: ActionMan/ui_actionproperty.h:619 rc.cpp:24
 #, kde-format
 msgid "Local files only (no URL's)"
 msgstr "로컬 파일들 만 (URL 아님)"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 96
+#. i18n: file ./ActionMan/actionproperty.ui line 95
 #: ActionMan/ui_actionproperty.h:622 rc.cpp:27
 #, kde-format
 msgid "Substitute the <b>Placeholders</b> with valid URL's."
 msgstr "알맞은 URL로 <b>Placeholders</b>를 대신합니다."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 99
+#. i18n: file ./ActionMan/actionproperty.ui line 98
 #: ActionMan/ui_actionproperty.h:625 rc.cpp:30
 #, kde-format
 msgid "URL's (remote and local)"
 msgstr "URL (원격과 로컬)"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 109
+#. i18n: file ./ActionMan/actionproperty.ui line 108
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 122
+#. i18n: file ./ActionMan/actionproperty.ui line 121
 #: ActionMan/ui_actionproperty.h:628 ActionMan/ui_actionproperty.h:633
 #: rc.cpp:33 rc.cpp:36
 #, kde-format
@@ -4884,14 +4889,14 @@ msgid "The title displayed in the <b>Usermenu</b>."
 msgstr "제목은 <b>사용자 메뉴</b>에서 보여집니다."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 125
+#. i18n: file ./ActionMan/actionproperty.ui line 124
 #: ActionMan/ui_actionproperty.h:636 rc.cpp:39
 #, kde-format
 msgid "Title:"
 msgstr ""
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 139
+#. i18n: file ./ActionMan/actionproperty.ui line 138
 #: ActionMan/ui_actionproperty.h:639 rc.cpp:42
 #, fuzzy, kde-format
 msgid ""
@@ -4904,11 +4909,11 @@ msgstr ""
 "서 보여지는 <i>제목</i>은 아래에서 설정될 수 있습니다."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 146
+#. i18n: file ./ActionMan/actionproperty.ui line 145
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 278
-#: ActionMan/ui_actionproperty.h:644 ActionMan/ui_actionproperty.h:692
-#: rc.cpp:45 rc.cpp:86
+#. i18n: file ./ActionMan/actionproperty.ui line 274
+#: ActionMan/ui_actionproperty.h:644 ActionMan/ui_actionproperty.h:691
+#: rc.cpp:45 rc.cpp:83
 #, kde-format
 msgid ""
 "<b>Useractions</b> can be grouped in categories for better distinction. "
@@ -4919,7 +4924,7 @@ msgstr ""
 "만들 수 있습니다."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 176
+#. i18n: file ./ActionMan/actionproperty.ui line 175
 #: ActionMan/ui_actionproperty.h:649 rc.cpp:48
 #, kde-format
 msgid ""
@@ -4930,15 +4935,8 @@ msgstr ""
 "자 메뉴</b>의 제목 앞에 표시됩니다."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 179
-#: ActionMan/ui_actionproperty.h:652 rc.cpp:51
-#, kde-format
-msgid "Icon"
-msgstr "아이콘"
-
-#. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 194
-#: ActionMan/ui_actionproperty.h:655 rc.cpp:54
+#. i18n: file ./ActionMan/actionproperty.ui line 190
+#: ActionMan/ui_actionproperty.h:654 rc.cpp:51
 #, kde-format
 msgid ""
 "<p>Unique name of the <b>Useraction</b>. It is only used in the "
@@ -4950,15 +4948,15 @@ msgstr ""
 "메뉴</b>에서 보여지는 <i>제목</i>은 아래에서 설정될 수 있습니다.</p>"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 197
-#: ActionMan/ui_actionproperty.h:658 rc.cpp:57
+#. i18n: file ./ActionMan/actionproperty.ui line 193
+#: ActionMan/ui_actionproperty.h:657 rc.cpp:54
 #, kde-format
 msgid "Identifier:"
 msgstr "확인자:"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 214
-#: ActionMan/ui_actionproperty.h:661 rc.cpp:61
+#. i18n: file ./ActionMan/actionproperty.ui line 210
+#: ActionMan/ui_actionproperty.h:660 rc.cpp:58
 #, no-c-format, kde-format
 msgid ""
 "<p>The <i>Command</i> defines the command that will be executed when the "
@@ -4976,18 +4974,18 @@ msgstr ""
 "사용법에 대해 알기 원하면 안내서를 참고하세요.</p>"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 217
-#: ActionMan/ui_actionproperty.h:665 rc.cpp:65
+#. i18n: file ./ActionMan/actionproperty.ui line 213
+#: ActionMan/ui_actionproperty.h:664 rc.cpp:62
 #, kde-format
 msgid "Command:"
 msgstr "명령:"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 227
+#. i18n: file ./ActionMan/actionproperty.ui line 223
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 247
-#: ActionMan/ui_actionproperty.h:668 ActionMan/ui_actionproperty.h:678
-#: rc.cpp:68 rc.cpp:74
+#. i18n: file ./ActionMan/actionproperty.ui line 243
+#: ActionMan/ui_actionproperty.h:667 ActionMan/ui_actionproperty.h:677
+#: rc.cpp:65 rc.cpp:71
 #, kde-format
 msgid ""
 "The <i>Tooltip</i> is shown when the mouse cursor is hold over an entry of "
@@ -4997,11 +4995,11 @@ msgstr ""
 "다."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 234
+#. i18n: file ./ActionMan/actionproperty.ui line 230
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 326
-#: ActionMan/ui_actionproperty.h:673 ActionMan/ui_actionproperty.h:709
-#: rc.cpp:71 rc.cpp:101
+#. i18n: file ./ActionMan/actionproperty.ui line 322
+#: ActionMan/ui_actionproperty.h:672 ActionMan/ui_actionproperty.h:708
+#: rc.cpp:68 rc.cpp:98
 #, kde-format
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
@@ -5011,15 +5009,15 @@ msgstr ""
 "다."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 250
-#: ActionMan/ui_actionproperty.h:681 rc.cpp:77
+#. i18n: file ./ActionMan/actionproperty.ui line 246
+#: ActionMan/ui_actionproperty.h:680 rc.cpp:74
 #, kde-format
 msgid "Tooltip:"
 msgstr "툴팁:"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 262
-#: ActionMan/ui_actionproperty.h:684 rc.cpp:81
+#. i18n: file ./ActionMan/actionproperty.ui line 258
+#: ActionMan/ui_actionproperty.h:683 rc.cpp:78
 #, no-c-format, kde-format
 msgid ""
 "The <i>Command</i> defines the command that will be executed when the "
@@ -5037,212 +5035,212 @@ msgstr ""
 "사용법에 대해 알기 원하면 안내서를 참고하세요."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 281
-#: ActionMan/ui_actionproperty.h:695 rc.cpp:89
+#. i18n: file ./ActionMan/actionproperty.ui line 277
+#: ActionMan/ui_actionproperty.h:694 rc.cpp:86
 #, kde-format
 msgid "Category:"
 msgstr "유형:"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 329
-#: ActionMan/ui_actionproperty.h:712 rc.cpp:104
+#. i18n: file ./ActionMan/actionproperty.ui line 325
+#: ActionMan/ui_actionproperty.h:711 rc.cpp:101
 #, kde-format
 msgid "Workdir:"
 msgstr "작업디렉토리:"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 357
-#: ActionMan/ui_actionproperty.h:713 rc.cpp:107
+#. i18n: file ./ActionMan/actionproperty.ui line 353
+#: ActionMan/ui_actionproperty.h:712 rc.cpp:104
 #, kde-format
 msgid "Default shortcut:"
 msgstr "기본 바로가기:"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 383
-#: ActionMan/ui_actionproperty.h:716 rc.cpp:110
+#. i18n: file ./ActionMan/actionproperty.ui line 379
+#: ActionMan/ui_actionproperty.h:715 rc.cpp:107
 #, kde-format
 msgid "Set a default keyboard shortcut."
 msgstr "기본 키보드 바로가기를 설정"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 386
-#: ActionMan/ui_actionproperty.h:719 rc.cpp:113
+#. i18n: file ./ActionMan/actionproperty.ui line 382
+#: ActionMan/ui_actionproperty.h:718 rc.cpp:110
 #, kde-format
 msgid "None"
 msgstr "없음"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 398
-#: ActionMan/ui_actionproperty.h:722 rc.cpp:116
+#. i18n: file ./ActionMan/actionproperty.ui line 394
+#: ActionMan/ui_actionproperty.h:721 rc.cpp:113
 #, kde-format
 msgid "If checked, the action is shown in the Useractions menus."
 msgstr ""
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 401
-#: ActionMan/ui_actionproperty.h:725 rc.cpp:119
+#. i18n: file ./ActionMan/actionproperty.ui line 397
+#: ActionMan/ui_actionproperty.h:724 rc.cpp:116
 #, fuzzy, kde-format
 msgid "Enabled"
 msgstr "가능"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 420
-#: ActionMan/ui_actionproperty.h:729 rc.cpp:125
+#. i18n: file ./ActionMan/actionproperty.ui line 416
+#: ActionMan/ui_actionproperty.h:728 rc.cpp:122
 #, kde-format
 msgid "Collect the output of the executed program."
 msgstr "실행되는 프로그램의 출력을 모음"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 423
-#: ActionMan/ui_actionproperty.h:732 rc.cpp:128
+#. i18n: file ./ActionMan/actionproperty.ui line 419
+#: ActionMan/ui_actionproperty.h:731 rc.cpp:125
 #, kde-format
 msgid "Collect output"
 msgstr "출력 모음"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 433
-#: ActionMan/ui_actionproperty.h:735 rc.cpp:131
+#. i18n: file ./ActionMan/actionproperty.ui line 429
+#: ActionMan/ui_actionproperty.h:734 rc.cpp:128
 #, kde-format
 msgid "Separate standard out and standard error in the output collection."
 msgstr "출력 모음에서 표준 출력과 표준 오류 출력을 분리"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 436
-#: ActionMan/ui_actionproperty.h:738 rc.cpp:134
+#. i18n: file ./ActionMan/actionproperty.ui line 432
+#: ActionMan/ui_actionproperty.h:737 rc.cpp:131
 #, kde-format
 msgid "Separate standard error"
 msgstr "표준 오류 출력을 분리"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 443
-#: ActionMan/ui_actionproperty.h:739 rc.cpp:137
+#. i18n: file ./ActionMan/actionproperty.ui line 439
+#: ActionMan/ui_actionproperty.h:738 rc.cpp:134
 #, kde-format
 msgid "Normal"
 msgstr "보통"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 453
-#: ActionMan/ui_actionproperty.h:742 rc.cpp:140
+#. i18n: file ./ActionMan/actionproperty.ui line 449
+#: ActionMan/ui_actionproperty.h:741 rc.cpp:137
 #, kde-format
 msgid "Run the command in a terminal."
 msgstr "터미널에서 명령을 실행"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 456
-#: ActionMan/ui_actionproperty.h:745 rc.cpp:143
+#. i18n: file ./ActionMan/actionproperty.ui line 452
+#: ActionMan/ui_actionproperty.h:744 rc.cpp:140
 #, kde-format
 msgid "Run in terminal"
 msgstr "터미널에서 실행"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 463
-#: ActionMan/ui_actionproperty.h:748 rc.cpp:146
+#. i18n: file ./ActionMan/actionproperty.ui line 459
+#: ActionMan/ui_actionproperty.h:747 rc.cpp:143
 #, fuzzy, kde-format
 msgid "Run the command in the embedded terminal emulator."
 msgstr "터미널에서 명령을 실행"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 466
-#: ActionMan/ui_actionproperty.h:751 rc.cpp:149
+#. i18n: file ./ActionMan/actionproperty.ui line 462
+#: ActionMan/ui_actionproperty.h:750 rc.cpp:146
 #, fuzzy, kde-format
 msgid "Run in the embedded terminal emulator"
 msgstr "내장 터미널 에뮬레이터로 보내기(&E)"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 39
-#: ActionMan/ui_actionproperty.h:752 rc.cpp:6
+#. i18n: file ./ActionMan/actionproperty.ui line 38
+#: ActionMan/ui_actionproperty.h:751 rc.cpp:6
 #, kde-format
 msgid "Basic Properties"
 msgstr "기본 속성"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 489
-#: ActionMan/ui_actionproperty.h:753 rc.cpp:155
+#. i18n: file ./ActionMan/actionproperty.ui line 485
+#: ActionMan/ui_actionproperty.h:752 rc.cpp:152
 #, kde-format
 msgid "The Useraction is only available for"
 msgstr "사용자 작업은 다음에 대해서만 유효함."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 523
+#. i18n: file ./ActionMan/actionproperty.ui line 519
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 635
+#. i18n: file ./ActionMan/actionproperty.ui line 631
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 740
+#. i18n: file ./ActionMan/actionproperty.ui line 736
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 845
-#: ActionMan/ui_actionproperty.h:754 ActionMan/ui_actionproperty.h:768
-#: ActionMan/ui_actionproperty.h:777 ActionMan/ui_actionproperty.h:786
-#: rc.cpp:161 rc.cpp:179 rc.cpp:194 rc.cpp:209
+#. i18n: file ./ActionMan/actionproperty.ui line 841
+#: ActionMan/ui_actionproperty.h:753 ActionMan/ui_actionproperty.h:767
+#: ActionMan/ui_actionproperty.h:776 ActionMan/ui_actionproperty.h:785
+#: rc.cpp:158 rc.cpp:176 rc.cpp:191 rc.cpp:206
 #, kde-format
 msgid "&New..."
 msgstr "새로운(&N)..."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 548
+#. i18n: file ./ActionMan/actionproperty.ui line 544
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 660
+#. i18n: file ./ActionMan/actionproperty.ui line 656
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 765
+#. i18n: file ./ActionMan/actionproperty.ui line 761
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 870
-#: ActionMan/ui_actionproperty.h:755 ActionMan/ui_actionproperty.h:769
-#: ActionMan/ui_actionproperty.h:778 ActionMan/ui_actionproperty.h:787
-#: rc.cpp:164 rc.cpp:182 rc.cpp:197 rc.cpp:212
+#. i18n: file ./ActionMan/actionproperty.ui line 866
+#: ActionMan/ui_actionproperty.h:754 ActionMan/ui_actionproperty.h:768
+#: ActionMan/ui_actionproperty.h:777 ActionMan/ui_actionproperty.h:786
+#: rc.cpp:161 rc.cpp:179 rc.cpp:194 rc.cpp:209
 #, kde-format
 msgid "Chan&ge..."
 msgstr "변경(&G)..."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 589
+#. i18n: file ./ActionMan/actionproperty.ui line 585
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 685
+#. i18n: file ./ActionMan/actionproperty.ui line 681
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 790
+#. i18n: file ./ActionMan/actionproperty.ui line 786
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 895
-#: ActionMan/ui_actionproperty.h:756 ActionMan/ui_actionproperty.h:770
-#: ActionMan/ui_actionproperty.h:779 ActionMan/ui_actionproperty.h:788
-#: rc.cpp:167 rc.cpp:185 rc.cpp:200 rc.cpp:215
+#. i18n: file ./ActionMan/actionproperty.ui line 891
+#: ActionMan/ui_actionproperty.h:755 ActionMan/ui_actionproperty.h:769
+#: ActionMan/ui_actionproperty.h:778 ActionMan/ui_actionproperty.h:787
+#: rc.cpp:164 rc.cpp:182 rc.cpp:197 rc.cpp:212
 #, kde-format
 msgid "De&lete"
 msgstr "삭제(&L)"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 596
+#. i18n: file ./ActionMan/actionproperty.ui line 592
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 610
+#. i18n: file ./ActionMan/actionproperty.ui line 606
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 715
-#: ActionMan/ui_actionproperty.h:759 ActionMan/ui_actionproperty.h:765
-#: ActionMan/ui_actionproperty.h:774 rc.cpp:170 rc.cpp:176 rc.cpp:191
+#. i18n: file ./ActionMan/actionproperty.ui line 711
+#: ActionMan/ui_actionproperty.h:758 ActionMan/ui_actionproperty.h:764
+#: ActionMan/ui_actionproperty.h:773 rc.cpp:167 rc.cpp:173 rc.cpp:188
 #, kde-format
 msgid "Show the <b>Useraction</b> only for the values defined here."
 msgstr "여기서 정의된 값으로만 <b>사용자 작업</b>을 보여줍니다."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 499
-#: ActionMan/ui_actionproperty.h:762 rc.cpp:158
+#. i18n: file ./ActionMan/actionproperty.ui line 495
+#: ActionMan/ui_actionproperty.h:761 rc.cpp:155
 #, kde-format
 msgid "Protocol"
 msgstr "통신규약"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 604
-#: ActionMan/ui_actionproperty.h:771 rc.cpp:173
+#. i18n: file ./ActionMan/actionproperty.ui line 600
+#: ActionMan/ui_actionproperty.h:770 rc.cpp:170
 #, kde-format
 msgid "Path"
 msgstr "경로"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 709
-#: ActionMan/ui_actionproperty.h:780 rc.cpp:188
+#. i18n: file ./ActionMan/actionproperty.ui line 705
+#: ActionMan/ui_actionproperty.h:779 rc.cpp:185
 #, kde-format
 msgid "Mime-type"
 msgstr "Mime 형식"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 820
-#: ActionMan/ui_actionproperty.h:783 rc.cpp:206
+#. i18n: file ./ActionMan/actionproperty.ui line 816
+#: ActionMan/ui_actionproperty.h:782 rc.cpp:203
 #, kde-format
 msgid ""
 "Show the <b>Useraction</b> only for the filenames defined here. The "
@@ -5252,46 +5250,46 @@ msgstr ""
 "드 '<code>?</code>' 와 '<code>*</code>' 를 사용할 수 있습니다."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 814
-#: ActionMan/ui_actionproperty.h:789 rc.cpp:203
+#. i18n: file ./ActionMan/actionproperty.ui line 810
+#: ActionMan/ui_actionproperty.h:788 rc.cpp:200
 #, kde-format
 msgid "Filename"
 msgstr "파일 이름"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 925
-#: ActionMan/ui_actionproperty.h:792 rc.cpp:218
+#. i18n: file ./ActionMan/actionproperty.ui line 921
+#: ActionMan/ui_actionproperty.h:791 rc.cpp:215
 #, kde-format
 msgid "Allows to tweak the <i>Command</i> before it is executed."
 msgstr "실행되기 전에 <i>명령</i>을 미세 조정하는 것을 허용합니다."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 928
-#: ActionMan/ui_actionproperty.h:795 rc.cpp:221
+#. i18n: file ./ActionMan/actionproperty.ui line 924
+#: ActionMan/ui_actionproperty.h:794 rc.cpp:218
 #, kde-format
 msgid "Confirm each program call separately"
 msgstr "각각의 프로그램을 분리 호출하는 것을 확인합니다."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 935
+#. i18n: file ./ActionMan/actionproperty.ui line 931
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 948
-#: ActionMan/ui_actionproperty.h:798 ActionMan/ui_actionproperty.h:804
-#: rc.cpp:224 rc.cpp:230
+#. i18n: file ./ActionMan/actionproperty.ui line 944
+#: ActionMan/ui_actionproperty.h:797 ActionMan/ui_actionproperty.h:803
+#: rc.cpp:221 rc.cpp:227
 #, kde-format
 msgid "Execute the <i>Command</i> under a different user-id."
 msgstr "다른 사용자 ID 로<i>명령</i> 을 실행합니다."
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 938
-#: ActionMan/ui_actionproperty.h:801 rc.cpp:227
+#. i18n: file ./ActionMan/actionproperty.ui line 934
+#: ActionMan/ui_actionproperty.h:800 rc.cpp:224
 #, kde-format
 msgid "Run as different user:"
 msgstr "다른 사용자로 실행:"
 
 #. i18n: tag string
-#. i18n: file ./ActionMan/actionproperty.ui line 477
-#: ActionMan/ui_actionproperty.h:807 rc.cpp:152
+#. i18n: file ./ActionMan/actionproperty.ui line 473
+#: ActionMan/ui_actionproperty.h:806 rc.cpp:149
 #, kde-format
 msgid "Advanced Properties"
 msgstr "자세한 속성"
@@ -5355,7 +5353,7 @@ msgstr "선택된 모든 작업을 제거하는 것이 확실합니까?"
 msgid "Remove selected actions?"
 msgstr "선택된 작업을 제거하시겠습니까?"
 
-#: ActionMan/useractionpage.cpp:257
+#: ActionMan/useractionpage.cpp:260
 #, kde-format
 msgid ""
 "This file already contains some useractions.\n"
@@ -5364,112 +5362,112 @@ msgstr ""
 "이 파일에는 몇몇의 사용자 작업이 포함되어 있습니다.\n"
 "이것을 덮어쓰거나 선택된 작업으로 병합하겠습니까?"
 
-#: ActionMan/useractionpage.cpp:258
+#: ActionMan/useractionpage.cpp:261
 #, kde-format
 msgid "Overwrite or merge?"
 msgstr "덮어쓰기 또는 병합?"
 
-#: ActionMan/useractionpage.cpp:260
+#: ActionMan/useractionpage.cpp:263
 #, kde-format
 msgid "Merge"
 msgstr "병합"
 
-#: ActionMan/useractionpage.cpp:266
+#: ActionMan/useractionpage.cpp:269
 #, kde-format
 msgid "This file already exists. Do you want to overwrite it?"
 msgstr "이 파일이 이미 존재합니다. 덮어쓰시겠습니까?"
 
-#: ActionMan/useractionpage.cpp:267
+#: ActionMan/useractionpage.cpp:270
 #, kde-format
 msgid "Overwrite existing file?"
 msgstr "존재하는 파일을 덮어씁니까?"
 
-#: ActionMan/actionproperty.cpp:318
+#: ActionMan/actionproperty.cpp:319
 #, kde-format
 msgid "New protocol"
 msgstr "새 통신 규약"
 
-#: ActionMan/actionproperty.cpp:319
+#: ActionMan/actionproperty.cpp:320
 #, kde-format
 msgid "Set a protocol:"
 msgstr "통신 규약 설정:"
 
-#: ActionMan/actionproperty.cpp:337
+#: ActionMan/actionproperty.cpp:338
 #, kde-format
 msgid "Edit protocol"
 msgstr "통신 규약 편집"
 
-#: ActionMan/actionproperty.cpp:338
+#: ActionMan/actionproperty.cpp:339
 #, kde-format
 msgid "Set another protocol:"
 msgstr "다른 통신 규약 설정:"
 
-#: ActionMan/actionproperty.cpp:371
+#: ActionMan/actionproperty.cpp:372
 #, kde-format
 msgid "Edit path"
 msgstr "경로 편집"
 
-#: ActionMan/actionproperty.cpp:372
+#: ActionMan/actionproperty.cpp:373
 #, kde-format
 msgid "Set another path:"
 msgstr "다른 경로 설정:"
 
-#: ActionMan/actionproperty.cpp:396
+#: ActionMan/actionproperty.cpp:397
 #, kde-format
 msgid "New mime-type"
 msgstr "새 Mime-type"
 
-#: ActionMan/actionproperty.cpp:397
+#: ActionMan/actionproperty.cpp:398
 #, kde-format
 msgid "Set a mime-type:"
 msgstr "Mime-type 설정:"
 
-#: ActionMan/actionproperty.cpp:415
+#: ActionMan/actionproperty.cpp:416
 #, kde-format
 msgid "Edit mime-type"
 msgstr "Mime-type 편집"
 
-#: ActionMan/actionproperty.cpp:416
+#: ActionMan/actionproperty.cpp:417
 #, kde-format
 msgid "Set another mime-type:"
 msgstr "다른 Mime-type 설정:"
 
-#: ActionMan/actionproperty.cpp:440
+#: ActionMan/actionproperty.cpp:441
 #, kde-format
 msgid "New filename"
 msgstr "새 파일명"
 
-#: ActionMan/actionproperty.cpp:441
+#: ActionMan/actionproperty.cpp:442
 #, kde-format
 msgid "Set a filename:"
 msgstr "파일이름 설정"
 
-#: ActionMan/actionproperty.cpp:459
+#: ActionMan/actionproperty.cpp:460
 #, kde-format
 msgid "Edit filename"
 msgstr "파일이름 편집"
 
-#: ActionMan/actionproperty.cpp:460
+#: ActionMan/actionproperty.cpp:461
 #, kde-format
 msgid "Set another filename:"
 msgstr "다른 파일 이름을 설정하세요:"
 
-#: ActionMan/actionproperty.cpp:479
+#: ActionMan/actionproperty.cpp:480
 #, kde-format
 msgid "Please set a unique name for the useraction"
 msgstr "사용자 작업에 사용할 유일한 이름을 설정하세요."
 
-#: ActionMan/actionproperty.cpp:484
+#: ActionMan/actionproperty.cpp:485
 #, kde-format
 msgid "Please set a title for the menu entry"
 msgstr "메뉴로 들어갈 제목을 설정하세요."
 
-#: ActionMan/actionproperty.cpp:489
+#: ActionMan/actionproperty.cpp:490
 #, kde-format
 msgid "Command line is empty"
 msgstr "명령줄이 비었습니다."
 
-#: ActionMan/actionproperty.cpp:496
+#: ActionMan/actionproperty.cpp:497
 #, kde-format
 msgid ""
 "There already is an action with this name\n"
@@ -6425,81 +6423,81 @@ msgstr "소유자:"
 
 #. i18n: tag text
 #. i18n: file ./krusaderui.rc line 4
-#: rc.cpp:233
+#: rc.cpp:230
 #, kde-format
 msgid "&File"
 msgstr "파일(&F)"
 
 #. i18n: tag text
 #. i18n: file ./krusaderui.rc line 34
-#: rc.cpp:236
+#: rc.cpp:233
 #, kde-format
 msgid "&Edit"
 msgstr "편집(&E)"
 
 #. i18n: tag text
 #. i18n: file ./krusaderui.rc line 49
-#: rc.cpp:239
+#: rc.cpp:236
 #, kde-format
 msgid "Compare Se&tup"
 msgstr "설정 비교(&T)"
 
 #. i18n: tag text
 #. i18n: file ./krusaderui.rc line 61
-#: rc.cpp:242
+#: rc.cpp:239
 #, kde-format
 msgid "&View"
 msgstr "보기(&V)"
 
 #. i18n: tag text
 #. i18n: file ./krusaderui.rc line 79
-#: rc.cpp:245
+#: rc.cpp:242
 #, kde-format
 msgid "&Go"
 msgstr "가기(&G)"
 
 #. i18n: tag text
 #. i18n: file ./krusaderui.rc line 97
-#: rc.cpp:251
+#: rc.cpp:248
 #, kde-format
 msgid "&Tools"
 msgstr "도구(&T)"
 
 #. i18n: tag text
 #. i18n: file ./krusaderui.rc line 122
-#: rc.cpp:254
+#: rc.cpp:251
 #, kde-format
 msgid "&Settings"
 msgstr "설정(&S)"
 
 #. i18n: tag text
 #. i18n: file ./krusaderui.rc line 132
-#: rc.cpp:257
+#: rc.cpp:254
 #, kde-format
 msgid "Command Execution Mode Se&tup"
 msgstr "명령 실행 모드 설정(&T)"
 
 #. i18n: tag text
 #. i18n: file ./krusaderui.rc line 146
-#: rc.cpp:260
+#: rc.cpp:257
 #, kde-format
 msgid "&Window"
 msgstr "윈도우(&W)"
 
 #. i18n: tag text
 #. i18n: file ./krusaderui.rc line 163
-#: rc.cpp:263
+#: rc.cpp:260
 #, kde-format
 msgid "&Help"
 msgstr "도움말(&H)"
 
-#: rc.cpp:264
+#: rc.cpp:261
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "사용자 이름"
 
-#: rc.cpp:265
+#: rc.cpp:262
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
@@ -6513,22 +6511,22 @@ msgstr "사용자 이메일"
 msgid "General"
 msgstr "일반"
 
-#: Konfigurator/kgdependencies.cpp:83
+#: Konfigurator/kgdependencies.cpp:81
 #, kde-format
 msgid "Packers"
 msgstr "압축기"
 
-#: Konfigurator/kgdependencies.cpp:111
+#: Konfigurator/kgdependencies.cpp:109
 #, kde-format
 msgid "Checksum Utilities"
 msgstr "체크섬 도구"
 
-#: Konfigurator/kgdependencies.cpp:168
+#: Konfigurator/kgdependencies.cpp:166
 #, kde-format
 msgid "The %1 path is incorrect, no valid path found."
 msgstr "경로 %1 이 잘못되었습니다, 올바른 경로를 찾을 수 없습니다."
 
-#: Konfigurator/kgdependencies.cpp:171
+#: Konfigurator/kgdependencies.cpp:169
 #, kde-format
 msgid "The %1 path is incorrect, %2 used instead."
 msgstr "경로 %1 이 잘못되었습니다. 대신 %2 가 사용됩니다."
@@ -6830,7 +6828,7 @@ msgstr "외부 응용 프로그램의 전체 경로를 설정합니다."
 msgid "Configure your personal actions"
 msgstr "사용자 개인 작업 설정"
 
-#: Konfigurator/konfigurator.cpp:168 Konfigurator/kgprotocols.cpp:119
+#: Konfigurator/konfigurator.cpp:168 Konfigurator/kgprotocols.cpp:120
 #, kde-format
 msgid "Protocols"
 msgstr "통신규약"
@@ -7558,37 +7556,37 @@ msgstr ""
 msgid "Arguments of updatedb:"
 msgstr "업데이트 DB 의 인자:"
 
-#: Konfigurator/kgprotocols.cpp:68
+#: Konfigurator/kgprotocols.cpp:69
 #, kde-format
 msgid "Links"
 msgstr "링크"
 
-#: Konfigurator/kgprotocols.cpp:72
+#: Konfigurator/kgprotocols.cpp:73
 #, kde-format
 msgid "Defined Links"
 msgstr "링크 정의"
 
-#: Konfigurator/kgprotocols.cpp:89
+#: Konfigurator/kgprotocols.cpp:90
 #, kde-format
 msgid "Add protocol to the link list."
 msgstr "링크 목록에 통신 규약을 추가합니다."
 
-#: Konfigurator/kgprotocols.cpp:94
+#: Konfigurator/kgprotocols.cpp:95
 #, kde-format
 msgid "Remove protocol from the link list."
 msgstr "링크 목록으로부터 통신규약을 삭제합니다."
 
-#: Konfigurator/kgprotocols.cpp:106
+#: Konfigurator/kgprotocols.cpp:107
 #, kde-format
 msgid "Add mime to the selected protocol on the link list."
 msgstr "링크 목록에 선택된 통신 규약의 Mime 을 추가합니다."
 
-#: Konfigurator/kgprotocols.cpp:111
+#: Konfigurator/kgprotocols.cpp:112
 #, kde-format
 msgid "Remove mime from the link list."
 msgstr "링크 목록으로부터 Mime 을 제거합니다."
 
-#: Konfigurator/kgprotocols.cpp:130
+#: Konfigurator/kgprotocols.cpp:131
 #, kde-format
 msgid "Mimes"
 msgstr ""
@@ -8699,32 +8697,32 @@ msgstr "%1을 압축하는 중..."
 msgid "Retrieving data from %1 archives is not supported"
 msgstr "%1 압축파일로부터 데이타를 원복하는 것을 지원하지 않습니다."
 
-#: krarc.cpp:414 krarc.cpp:667
+#: krarc.cpp:415 krarc.cpp:669
 #, kde-format
 msgid "Unpacking %1 ..."
 msgstr "%1을 압축해제 중..."
 
-#: krarc.cpp:542
+#: krarc.cpp:544
 #, kde-format
 msgid "Deleting files from %1 archives is not supported"
 msgstr "%1 압축파일에서의 파일 삭제를 지원하지 않습니다."
 
-#: krarc.cpp:558
+#: krarc.cpp:560
 #, kde-format
 msgid "Deleting %1 ..."
 msgstr "%1을 삭제하는 중..."
 
-#: krarc.cpp:587
+#: krarc.cpp:589
 #, kde-format
 msgid "Accessing files is not supported with the %1 archives"
 msgstr "접근한 파일들은 %1 압축방식을 지원하지 않습니다."
 
-#: krarc.cpp:696
+#: krarc.cpp:698
 #, kde-format
 msgid "Listing directories is not supported for %1 archives"
 msgstr "%1 압축파일에 대해 목록의 디렉토리를 지원하지 않습니다."
 
-#: krarc.cpp:1495
+#: krarc.cpp:1504
 #, kde-format
 msgid ""
 "\n"
@@ -8733,12 +8731,12 @@ msgstr ""
 "\n"
 "아마도 시스템에 %1 바이너리가 설치되어야 할 것입니다."
 
-#: krarc.cpp:1710 krarc.cpp:1734
+#: krarc.cpp:1719 krarc.cpp:1743
 #, kde-format
 msgid "Krarc Password Dialog"
 msgstr "Krarc 암호 대화상자"
 
-#: krarc.cpp:1751
+#: krarc.cpp:1760
 #, kde-format
 msgid "Accessing the file requires password."
 msgstr "파일을 접근하려면 암호가 필요합니다."
@@ -8752,6 +8750,19 @@ msgstr "이 통신규약은 재개를 지원하지 않습니다."
 #, kde-format
 msgid "Writing to %1 is not supported"
 msgstr "쓰려는 %1을 지원하지 않습니다."
+
+#, fuzzy
+#~ msgid ""
+#~ "<qt>Error ejecting device!\n"
+#~ " You have to configure the path to the 'eject' tool. Please check the "
+#~ "<b>Dependencies</b> page in Krusader's settings.</qt>"
+#~ msgstr ""
+#~ "<qt>장치 꺼내기 오류!\n"
+#~ " '추출(제거)' 툴로 경로를 설정해야 합니다. Krusader 설정의 <b>의존성</b> "
+#~ "페이지를 점검하세요.</qt>"
+
+#~ msgid "Icon"
+#~ msgstr "아이콘"
 
 #~ msgid ""
 #~ "Don't use KDE's media protocol for media button (if it's buggy or missing)"

@@ -1,21 +1,20 @@
 # Translation of krusader.pot to German
 #
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
-# Copyright (C) 2004-2008, Krusader Krew
+# Copyright (C) 2004-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 #
-#
 # Christoph Thielecke <crissi99@gmx.de>, 2003.
-# Dirk Eschler <deschler@users.sourceforge.net>, 2003, 2004, 2005, 2006, 2007, 2008.
-# Dirk Eschler <dirk.eschler@gmx.net>, 2009.
+# Dirk Eschler <deschler@users.sourceforge.net>, 2003, 2004, 2005, 2006, 2007, 2008, 2009.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-2.0.0-beta2\n"
-"Report-Msgid-Bugs-To: krusader-i18n@googlegroups.com\n"
-"POT-Creation-Date: 2009-03-07 14:16+0100\n"
+"Project-Id-Version: krusader\n"
+"Report-Msgid-Bugs-To: krusader-i18n <krusader-i18n@googlegroups.com>\n"
+"POT-Creation-Date: 2009-04-12 11:54+0200\n"
 "PO-Revision-Date: 2009-03-07 15:05+0100\n"
 "Last-Translator: Dirk Eschler <dirk.eschler@gmx.net>\n"
-"Language-Team: German <kde-i18n-de@kde.org>\n"
+"Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -422,7 +421,8 @@ msgctxt "@title job"
 msgid "Copying"
 msgstr "Kopieren"
 
-#: VFS/preserveattrcopyjob.cpp:361, kde-format
+#: VFS/preserveattrcopyjob.cpp:361
+#, kde-format
 msgctxt "@title job"
 msgid "Creating directory"
 msgstr "Erstelle Verzeichnis"
@@ -805,7 +805,7 @@ msgstr "Hinzufügen"
 msgid "&Load"
 msgstr "Laden"
 
-#: Filter/generalfilter.cpp:180 Panel/panelfunc.cpp:904
+#: Filter/generalfilter.cpp:180 Panel/panelfunc.cpp:906
 #, kde-format
 msgid "&Overwrite"
 msgstr "Überschreiben"
@@ -2208,151 +2208,152 @@ msgstr "Textdatei ..."
 msgid "Create New"
 msgstr "Neu erstellen"
 
-#: Panel/panelfunc.cpp:291
+#: Panel/panelfunc.cpp:293
 #, kde-format
 msgid "You can edit links only on local file systems"
 msgstr "Verknüpfungen können nur auf lokalen Dateisystemen geändert werden"
 
-#: Panel/panelfunc.cpp:302
+#: Panel/panelfunc.cpp:304
 #, kde-format
 msgid "The current file is not a link, so I can't redirect it."
 msgstr ""
 "Die aktuelle Datei ist keine Verknüpfung, daher kann sie nicht umgelenkt "
 "werden."
 
-#: Panel/panelfunc.cpp:309
+#: Panel/panelfunc.cpp:311
 #, kde-format
 msgid "Link Redirection"
 msgstr "Verknüpfungsumleitung"
 
-#: Panel/panelfunc.cpp:310
+#: Panel/panelfunc.cpp:312
 #, kde-format
 msgid "Please enter the new link destination:"
 msgstr "Das neue Ziel der Verknüpfung eingeben:"
 
-#: Panel/panelfunc.cpp:317
+#: Panel/panelfunc.cpp:319
 #, kde-format
 msgid "Can't remove old link: "
 msgstr "Kann alte Verknüpfung nicht entfernen: "
 
-#: Panel/panelfunc.cpp:322 Panel/panelfunc.cpp:362
+#: Panel/panelfunc.cpp:324 Panel/panelfunc.cpp:364
 #, kde-format
 msgid "Failed to create a new link: "
 msgstr "Erstellen der neuen Verknüpfung fehlgeschlagen: "
 
-#: Panel/panelfunc.cpp:329
+#: Panel/panelfunc.cpp:331
 #, kde-format
 msgid "You can create links only on local file systems"
 msgstr "Verknüpfungen können nur auf lokalen Dateisystemen angelegt werden"
 
-#: Panel/panelfunc.cpp:338
+#: Panel/panelfunc.cpp:340
 #, kde-format
 msgid "New link"
 msgstr "Neue Verknüpfung"
 
-#: Panel/panelfunc.cpp:338
+#: Panel/panelfunc.cpp:340
 #, kde-format
 msgid "Create a new link to: "
 msgstr "Neue Verknüpfung mit: "
 
-#: Panel/panelfunc.cpp:346 Panel/panelfunc.cpp:544
+#: Panel/panelfunc.cpp:348 Panel/panelfunc.cpp:546
 #, kde-format
 msgid "A directory or a file with this name already exists."
 msgstr "Eine Datei oder ein Verzeichnis mit diesem Namen existiert bereits."
 
-#: Panel/panelfunc.cpp:358
+#: Panel/panelfunc.cpp:360
 #, kde-format
 msgid "Failed to create a new symlink: "
 msgstr "Erstellen der symbolischen Verknüpfung fehlgeschlagen: "
 
-#: Panel/panelfunc.cpp:359 Panel/panelfunc.cpp:363
+#: Panel/panelfunc.cpp:361 Panel/panelfunc.cpp:365
 #, kde-format
 msgid " To: "
 msgstr " nach: "
 
-#: Panel/panelfunc.cpp:377
+#: Panel/panelfunc.cpp:379
 #, kde-format
 msgid "No permissions to view this file."
 msgstr "Sie verfügen nicht über die nötigen Rechte, um diese Datei anzuzeigen."
 
-#: Panel/panelfunc.cpp:395
+#: Panel/panelfunc.cpp:397
 #, kde-format
 msgid "You can't edit a directory"
 msgstr "Ein Verzeichnis kann nicht editiert werden"
 
-#: Panel/panelfunc.cpp:400
+#: Panel/panelfunc.cpp:402
 #, kde-format
 msgid "No permissions to edit this file."
 msgstr ""
 "Sie verfügen nicht über die nötigen Rechte, um diese Datei zu editieren."
 
-#: Panel/panelfunc.cpp:421
+#: Panel/panelfunc.cpp:423
 #, kde-format
 msgid "Moving into archive is disabled"
 msgstr "Verschieben in Archive ist deaktiviert"
 
-#: Panel/panelfunc.cpp:431
+#: Panel/panelfunc.cpp:433
 #, kde-format
 msgid "Move %1 to:"
 msgstr "%1 verschieben nach:"
 
-#: Panel/panelfunc.cpp:433
+#: Panel/panelfunc.cpp:435
 #, kde-format
 msgid "Move %1 file to:"
 msgid_plural "Move %1 files to:"
 msgstr[0] "Eine Datei verschieben nach:"
 msgstr[1] "%1 Dateien verschieben nach:"
 
-#: Panel/panelfunc.cpp:499
+#: Panel/panelfunc.cpp:501
 #, kde-format
 msgid "You can't move files to this file system"
 msgstr "Auf dieses Dateisystem können keine Dateien verschoben werden"
 
-#: Panel/panelfunc.cpp:525
+#: Panel/panelfunc.cpp:527
 #, kde-format
 msgid "New directory"
 msgstr "Neuer Ordner"
 
-#: Panel/panelfunc.cpp:525
+#: Panel/panelfunc.cpp:527
 #, kde-format
 msgid "Directory's name:"
 msgstr "Ordnernamen eingeben:"
 
-#: Panel/panelfunc.cpp:615
+#: Panel/panelfunc.cpp:617
 #, kde-format
 msgid "Copy %1 to:"
 msgstr "%1 kopieren nach:"
 
-#: Panel/panelfunc.cpp:617
+#: Panel/panelfunc.cpp:619
 #, kde-format
 msgid "Copy %1 file to:"
 msgid_plural "Copy %1 files to:"
 msgstr[0] "Eine Datei kopieren nach:"
 msgstr[1] "%1 Dateien kopieren nach:"
 
-#: Panel/panelfunc.cpp:673
+#: Panel/panelfunc.cpp:675
 #, kde-format
 msgid "You can't copy files to this file system"
 msgstr "Auf dieses Dateisystem können keine Dateien kopiert werden"
 
-#: Panel/panelfunc.cpp:684
+#: Panel/panelfunc.cpp:686
 #, kde-format
 msgid "You do not have write permission to this directory"
 msgstr "Keine Schreibberechtigung für dieses Verzeichnis"
 
-#: Panel/panelfunc.cpp:702
+#: Panel/panelfunc.cpp:704
 #, kde-format
 msgid "Do you really want to move this item to the trash?"
 msgid_plural "Do you really want to move these %1 items to the trash?"
 msgstr[0] "Möchten Sie dieses Element wirklich in den Mülleimer werfen?"
 msgstr[1] "Möchten Sie diese %1 Elemente wirklich in den Mülleimer werfen?"
 
-#: Panel/panelfunc.cpp:703 DiskUsage/diskusage.cpp:610
+#: Panel/panelfunc.cpp:705 DiskUsage/diskusage.cpp:610
 #, kde-format
 msgid "&Trash"
 msgstr "In den Mülleimer werfen"
 
-#: Panel/panelfunc.cpp:705, kde-format
+#: Panel/panelfunc.cpp:707
+#, kde-format
 msgid ""
 "Do you really want to delete this virtual item (physical files stay "
 "untouched)?"
@@ -2366,14 +2367,14 @@ msgstr[1] ""
 "Möchten Sie diese %1 Elemente wirklich löschen (die physikalischen Dateien "
 "werden beibehalten)?"
 
-#: Panel/panelfunc.cpp:706 Panel/panelfunc.cpp:709 Panel/panelfunc.cpp:712
+#: Panel/panelfunc.cpp:708 Panel/panelfunc.cpp:711 Panel/panelfunc.cpp:714
 #: DiskUsage/radialMap/widgetEvents.cpp:182
 #: DiskUsage/radialMap/widgetEvents.cpp:201 DiskUsage/diskusage.cpp:613
 #, kde-format
 msgid "&Delete"
 msgstr "Löschen"
 
-#: Panel/panelfunc.cpp:708
+#: Panel/panelfunc.cpp:710
 #, kde-format
 msgid ""
 "<qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -2388,21 +2389,21 @@ msgstr[1] ""
 "<qt>Möchten Sie diese %1 Elemente wirklich physikalisch löschen (es werden "
 "nicht nur die virtuellen Elemente entfernt)?</qt>"
 
-#: Panel/panelfunc.cpp:711
+#: Panel/panelfunc.cpp:713
 #, kde-format
 msgid "Do you really want to delete this item?"
 msgid_plural "Do you really want to delete these %1 items?"
 msgstr[0] "Möchten Sie dieses Element wirklich löschen?"
 msgstr[1] "Möchten Sie diese %1 Elemente wirklich löschen?"
 
-#: Panel/panelfunc.cpp:718 Queue/queuewidget.cpp:145 Queue/queuedialog.cpp:412
+#: Panel/panelfunc.cpp:720 Queue/queuewidget.cpp:145 Queue/queuedialog.cpp:412
 #: Dialogs/krkeydialog.cpp:136 Dialogs/checksumdlg.cpp:630
 #: DiskUsage/diskusage.cpp:620 Konfigurator/kgcolors.cpp:565
 #, kde-format
 msgid "Warning"
 msgstr "Warnung"
 
-#: Panel/panelfunc.cpp:735
+#: Panel/panelfunc.cpp:737
 #, kde-format
 msgid ""
 "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete All?</"
@@ -2411,22 +2412,22 @@ msgstr ""
 "<qt><p>Das Verzeichnis <b>%1</b> ist nicht leer!</p><p>'Überspringen' oder "
 "'Alle löschen'?</p>"
 
-#: Panel/panelfunc.cpp:736
+#: Panel/panelfunc.cpp:738
 #, kde-format
 msgid "&Skip"
 msgstr "Überspringen"
 
-#: Panel/panelfunc.cpp:736
+#: Panel/panelfunc.cpp:738
 #, kde-format
 msgid "&Delete All"
 msgstr "Alle löschen"
 
-#: Panel/panelfunc.cpp:886
+#: Panel/panelfunc.cpp:888
 #, kde-format
 msgid "Cannot pack files onto a virtual destination!"
 msgstr "Auf dem virtuellen Dateisystem kann kein Archiv erstellt werden!"
 
-#: Panel/panelfunc.cpp:900
+#: Panel/panelfunc.cpp:902
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -2436,7 +2437,7 @@ msgstr ""
 "überschreiben?</p><p>Dabei gehen sämtliche Daten im existierenden Archiv "
 "verloren!</p></qt>"
 
-#: Panel/panelfunc.cpp:902
+#: Panel/panelfunc.cpp:904
 #, kde-format
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
@@ -2447,55 +2448,55 @@ msgstr ""
 "überschreiben?</p><p>Zip ersetzt dabei identische Einträge und fügt neue "
 "Einträge dem Archiv hinzu.</p></qt>"
 
-#: Panel/panelfunc.cpp:909
+#: Panel/panelfunc.cpp:911
 #, kde-format
 msgid "Counting files to pack"
 msgstr "Die zu packenden Dateien werden gezählt"
 
-#: Panel/panelfunc.cpp:968 Panel/panelfunc.cpp:1029
+#: Panel/panelfunc.cpp:970 Panel/panelfunc.cpp:1031
 #, kde-format
 msgid "Krusader is unable to download: "
 msgstr "Konnte nicht heruntergeladen werden: "
 
-#: Panel/panelfunc.cpp:980
+#: Panel/panelfunc.cpp:982
 #, kde-format
 msgid "%1, unknown archive type."
 msgstr "%1, unbekannter Archivtyp."
 
-#: Panel/panelfunc.cpp:988
+#: Panel/panelfunc.cpp:990
 #, kde-format
 msgid "%1, test passed."
 msgstr "%1, Test erfolgreich."
 
-#: Panel/panelfunc.cpp:990
+#: Panel/panelfunc.cpp:992
 #, kde-format
 msgid "%1, test failed!"
 msgstr "%1, Test fehlgeschlagen!"
 
-#: Panel/panelfunc.cpp:1006
+#: Panel/panelfunc.cpp:1008
 #, kde-format
 msgid "Unpack %1 to:"
 msgstr "%1 entpacken nach:"
 
-#: Panel/panelfunc.cpp:1008
+#: Panel/panelfunc.cpp:1010
 #, kde-format
 msgid "Unpack %1 file to:"
 msgid_plural "Unpack %1 files to:"
 msgstr[0] "Entpacke eine Datei nach:"
 msgstr[1] "Entpacke %1 Dateien nach:"
 
-#: Panel/panelfunc.cpp:1053
+#: Panel/panelfunc.cpp:1055
 #, kde-format
 msgid "%1, unknown archive type"
 msgstr "%1, unbekannter Archivtyp."
 
-#: Panel/panelfunc.cpp:1244
+#: Panel/panelfunc.cpp:1246
 #, kde-format
 msgid "Cannot cut a virtual URL collection to the clipboard!"
 msgstr ""
 "Virtuelle Elemente können nicht in die Zwischenablage ausgeschnitten werden!"
 
-#: Panel/panelfunc.cpp:1246
+#: Panel/panelfunc.cpp:1248
 #, kde-format
 msgid "Cannot copy a virtual URL collection onto the clipboard!"
 msgstr "Virtuelle Elemente können nicht in die Zwischenablage kopiert werden!"
@@ -8041,15 +8042,18 @@ msgstr "Löschen-Hintergrund:"
 msgid "Other"
 msgstr "Andere"
 
-#: Konfigurator/kgcolors.cpp:219, kde-format
+#: Konfigurator/kgcolors.cpp:219
+#, kde-format
 msgid "Quicksearch, match foreground:"
 msgstr "Schnellsuche, Treffer-Vordergrund:"
 
-#: Konfigurator/kgcolors.cpp:220 Konfigurator/kgcolors.cpp:222, kde-format
+#: Konfigurator/kgcolors.cpp:220 Konfigurator/kgcolors.cpp:222
+#, kde-format
 msgid "Quicksearch, non-match background:"
 msgstr "Schnellsuche, Kein-Treffer-Hintergrund:"
 
-#: Konfigurator/kgcolors.cpp:221, kde-format
+#: Konfigurator/kgcolors.cpp:221
+#, kde-format
 msgid "Quicksearch, non-match foreground:"
 msgstr "Schnellsuche, Kein-Treffer-Vordergrund:"
 
@@ -8118,11 +8122,13 @@ msgstr "Unterschiedlich"
 msgid "Equals"
 msgstr "Gleich"
 
-#: Konfigurator/kgcolors.cpp:526, kde-format
+#: Konfigurator/kgcolors.cpp:526
+#, kde-format
 msgid "Quicksearch non-match"
 msgstr "Schnellsuche, Kein-Treffer"
 
-#: Konfigurator/kgcolors.cpp:527, kde-format
+#: Konfigurator/kgcolors.cpp:527
+#, kde-format
 msgid "Quicksearch match"
 msgstr "Schnellsuche, Treffer"
 
