@@ -91,8 +91,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 #define COLUMN_POPUP_IDS    91
 
-#define DETAILEDVIEW_ID 0
-KrViewInstance detailedView( DETAILEDVIEW_ID, i18n( "&Detailed View" ), Qt::ALT + Qt::SHIFT + Qt::Key_D,
+#define DETAILEDVIEW_ID 2
+KrViewInstance detailedView( DETAILEDVIEW_ID, i18n( "Old Detailed View (obsolete)" ), 0,
                              KrDetailedView::create, KrDetailedViewItem::itemHeightChanged );
 
 QString KrDetailedView::ColumnName[ KrDetailedViewProperties::MAX_COLUMNS ];

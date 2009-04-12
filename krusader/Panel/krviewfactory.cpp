@@ -35,10 +35,10 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krviewfactory.h"
 #include <cstdio>
 
-extern KrViewInstance detailedView; // hold reference for linking
-extern KrViewInstance briefView;    // hold reference for linking
 extern KrViewInstance interDetailedView;    // hold reference for linking
 extern KrViewInstance interBriefView;    // hold reference for linking
+extern KrViewInstance detailedView; // hold reference for linking
+extern KrViewInstance briefView;    // hold reference for linking
 
 KrViewInstance::KrViewInstance( int id, QString desc, QKeySequence shortcut, KrViewFactoryFunction fun, KrViewItemHeightChange fun2 ) :
 		m_id( id ), m_description( desc ), m_shortcut( shortcut ), m_factoryfun( fun ), m_ihchangefun( fun2 )
@@ -64,7 +64,15 @@ KrViewFactory & KrViewFactory::self()
 
 void KrViewFactory::registerView( KrViewInstance * inst )
 {
-	self().m_registeredViews.append( inst );
+	int position = 0;
+	
+	while( position < self().m_registeredViews.count() ) {
+		if( self().m_registeredViews[ position ]->id() > inst->id() )
+			break;
+		position++;
+	}
+	
+	self().m_registeredViews.insert( self().m_registeredViews.begin() + position, inst );
 	if ( self().m_defaultViewId == -1 || inst->id() < self().m_defaultViewId )
 		self().m_defaultViewId = inst->id();
 }

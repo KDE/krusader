@@ -213,7 +213,6 @@ KMenu *Krusader::userActionMenu = 0;
 UserAction *Krusader::userAction = 0;
 UserMenu *Krusader::userMenu = 0;
 KrBookmarkHandler *Krusader::bookman = 0;
-int Krusader::viewIds[ MAX_VIEWS ] = { -1, -1, -1, -1, -1, -1 };
 //QTextOStream *Krusader::_krOut = QTextOStream(::stdout);
 
 #ifdef __KJSEMBED__
@@ -614,15 +613,10 @@ void Krusader::setupActions() {
 
 	NEW_KTOGGLEACTION(actToggleTerminal, i18n( "Show Terminal &Emulator" ), 0, Qt::ALT + Qt::CTRL + Qt::Key_T, SLOTS, SLOT( toggleTerminal() ), "toggle terminal emulator");
 
-        int cnt = 0;
         QList<KrViewInstance *> views = KrViewFactory::registeredViews();
         foreach( KrViewInstance * inst, views )
         {
-          if( cnt == MAX_VIEWS )
-            break;
-
           int id = inst->id();
-          viewIds[ cnt ] = id;
 
           switch( id ) {
           case 0:
@@ -646,7 +640,6 @@ void Krusader::setupActions() {
           default:
             break;
           }
-          cnt++;
         }
 
 	NEW_KTOGGLEACTION(actToggleHidden, i18n( "Show &Hidden Files" ), 0, Qt::CTRL + Qt::Key_Period, SLOTS, SLOT( toggleHidden() ), "toggle hidden files");

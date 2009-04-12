@@ -575,12 +575,12 @@ void ListPanel::slotFocusOnMe() {
 
    func->refreshActions();
 
-   if( Krusader::actView0 ) Krusader::actView0->setEnabled( panelType != Krusader::viewIds[ 0 ] );
-   if( Krusader::actView1 ) Krusader::actView1->setEnabled( panelType != Krusader::viewIds[ 1 ] );
-   if( Krusader::actView2 ) Krusader::actView2->setEnabled( panelType != Krusader::viewIds[ 2 ] );
-   if( Krusader::actView3 ) Krusader::actView3->setEnabled( panelType != Krusader::viewIds[ 3 ] );
-   if( Krusader::actView4 ) Krusader::actView4->setEnabled( panelType != Krusader::viewIds[ 4 ] );
-   if( Krusader::actView5 ) Krusader::actView5->setEnabled( panelType != Krusader::viewIds[ 5 ] );
+   if( Krusader::actView0 ) Krusader::actView0->setEnabled( panelType != 0 );
+   if( Krusader::actView1 ) Krusader::actView1->setEnabled( panelType != 1 );
+   if( Krusader::actView2 ) Krusader::actView2->setEnabled( panelType != 2 );
+   if( Krusader::actView3 ) Krusader::actView3->setEnabled( panelType != 3 );
+   if( Krusader::actView4 ) Krusader::actView4->setEnabled( panelType != 4 );
+   if( Krusader::actView5 ) Krusader::actView5->setEnabled( panelType != 5 );
 
    view->refreshColors();
    otherPanel->view->refreshColors();

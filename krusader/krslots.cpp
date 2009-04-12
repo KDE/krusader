@@ -363,33 +363,33 @@ void KRslots::runKonfigurator(bool firstTime) {
 }
 
 void KRslots::setView0() {
-  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != Krusader::viewIds[ 0 ] )
-    ACTIVE_PANEL->changeType( Krusader::viewIds[ 0 ] );
+  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != 0 )
+    ACTIVE_PANEL->changeType( 0 );
 }
 
 void KRslots::setView1() {
-  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != Krusader::viewIds[ 1 ] )
-    ACTIVE_PANEL->changeType( Krusader::viewIds[ 1 ] );
+  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != 1 )
+    ACTIVE_PANEL->changeType( 1 );
 }
 
 void KRslots::setView2() {
-  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != Krusader::viewIds[ 2 ] )
-    ACTIVE_PANEL->changeType( Krusader::viewIds[ 2 ] );
+  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != 2 )
+    ACTIVE_PANEL->changeType( 2 );
 }
 
 void KRslots::setView3() {
-  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != Krusader::viewIds[ 3 ] )
-    ACTIVE_PANEL->changeType( Krusader::viewIds[ 3 ] );
+  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != 3 )
+    ACTIVE_PANEL->changeType( 3 );
 }
 
 void KRslots::setView4() {
-  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != Krusader::viewIds[ 4 ] )
-    ACTIVE_PANEL->changeType( Krusader::viewIds[ 4 ] );
+  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != 4 )
+    ACTIVE_PANEL->changeType( 4 );
 }
 
 void KRslots::setView5() {
-  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != Krusader::viewIds[ 5 ] )
-    ACTIVE_PANEL->changeType( Krusader::viewIds[ 5 ] );
+  if( ACTIVE_PANEL && ACTIVE_PANEL->getType() != 5 )
+    ACTIVE_PANEL->changeType( 5 );
 }
 
 void KRslots::toggleHidden(){

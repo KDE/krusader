@@ -154,7 +154,6 @@ class Krusader : public KParts::MainWindow {
     static KAction **compareArray[];
     /** actions for setting the execution mode of commands from commanddline */
     static KAction **execTypeArray[];
-    static int viewIds[ MAX_VIEWS ];
 
     // return a path to a temp dir or file we can use.
     QString getTempDir();

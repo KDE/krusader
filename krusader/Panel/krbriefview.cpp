@@ -53,8 +53,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #define PROPS	 _properties
 #define VF	 getVfile()
 
-#define BRIEFVIEW_ID 1
-KrViewInstance briefView( BRIEFVIEW_ID, i18n( "&Brief View" ), Qt::ALT + Qt::SHIFT + Qt::Key_B,
+#define BRIEFVIEW_ID 3
+KrViewInstance briefView( BRIEFVIEW_ID, i18n( "Old Brief View (obsolete)" ), 0,
                              KrBriefView::create, KrBriefViewItem::itemHeightChanged );
 
 KrBriefView::KrBriefView( Q3Header * headerIn, QWidget *parent, bool &left, KConfig *cfg ):
