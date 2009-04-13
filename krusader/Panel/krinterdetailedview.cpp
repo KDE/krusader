@@ -78,7 +78,6 @@ KrInterDetailedView::KrInterDetailedView( QWidget *parent, bool &left, KConfig *
 	this->setSortingEnabled(true);
 	this->sortByColumn( KrVfsModel::Name, Qt::AscendingOrder );
 	_model->sort( KrVfsModel::Name, Qt::AscendingOrder );
-	connect( _model, SIGNAL( layoutChanged() ), this, SLOT( slotMakeCurrentVisible() ) );
 	header()->installEventFilter( this );
 	
 	setSelectionMode( QAbstractItemView::NoSelection );
@@ -192,6 +191,8 @@ void KrInterDetailedView::slotMakeCurrentVisible()
 
 void KrInterDetailedView::makeItemVisible(const KrViewItem *item)
 {
+	if( item == 0 )
+		return;
 	vfile* vf = (vfile *)item->getVfile();
 	QModelIndex ndx = _model->vfileIndex( vf );
 	if( ndx.isValid() )

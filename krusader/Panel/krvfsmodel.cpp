@@ -655,6 +655,7 @@ void KrVfsModel::sort ( int column, Qt::SortOrder order )
 	changePersistentIndexList(oldPersistentList, newPersistentList);
 	
 	emit layoutChanged();
+	_view->makeItemVisible( _view->getCurrentKrViewItem() );
 }
 
 QModelIndex KrVfsModel::addItem( vfile * vf )
@@ -718,6 +719,7 @@ QModelIndex KrVfsModel::addItem( vfile * vf )
 	
 	changePersistentIndexList(oldPersistentList, newPersistentList);
 	emit layoutChanged();
+	_view->makeItemVisible( _view->getCurrentKrViewItem() );
 	
 	return index( insertIndex, 0 );
 }
@@ -764,6 +766,7 @@ QModelIndex KrVfsModel::removeItem( vfile * vf )
 			}
 			changePersistentIndexList(oldPersistentList, newPersistentList);
 			emit layoutChanged();
+			_view->makeItemVisible( _view->getCurrentKrViewItem() );
 			return currIndex;
 		}
 	}

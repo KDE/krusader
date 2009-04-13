@@ -104,7 +104,6 @@ KrInterBriefView::KrInterBriefView( QWidget *parent, bool &left, KConfig *cfg ):
 	_model->sort( KrVfsModel::Name, Qt::AscendingOrder );
 	_model->setExtensionEnabled( false );
 	_model->setAlternatingTable( true );
-	connect( _model, SIGNAL( layoutChanged() ), this, SLOT( slotMakeCurrentVisible() ) );
 	//header()->installEventFilter( this );
 	
 	setSelectionMode( QAbstractItemView::NoSelection );
@@ -211,6 +210,8 @@ void KrInterBriefView::slotMakeCurrentVisible()
 
 void KrInterBriefView::makeItemVisible(const KrViewItem *item)
 {
+	if( item == 0 )
+		return;
 	vfile* vf = (vfile *)item->getVfile();
 	QModelIndex ndx = _model->vfileIndex( vf );
 	if( ndx.isValid() )
