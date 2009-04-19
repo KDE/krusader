@@ -67,6 +67,8 @@ QWidget( parent ), _layout( 0 ), _left( left ),
 }
 
 void PanelManager::slotChangePanel( ListPanel *p ) {
+   if( p==0 )
+      return;
    _self = p;
    _self->otherPanel = _other;
    _other->otherPanel = _self;

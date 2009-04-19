@@ -24,7 +24,7 @@ public:
 
 	static KrBookmark* getExistingBookmark(QString actionName, KActionCollection *collection);	
 	// ----- special bookmarks
-	static KrBookmark* devices(KActionCollection *collection);
+	static KrBookmark* trash(KActionCollection *collection);
 	static KrBookmark* virt(KActionCollection *collection);
 	static KrBookmark* lan(KActionCollection *collection);
 	static KrBookmark* separator();

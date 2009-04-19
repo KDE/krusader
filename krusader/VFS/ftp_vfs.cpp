@@ -235,17 +235,9 @@ void ftp_vfs::vfs_addFiles( KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode, Q
 
 // remove a file from the vfs (physical)
 void ftp_vfs::vfs_delFiles( QStringList *fileNames, bool /* reallyDelete */ ) {
-	KUrl::List filesUrls;
-	KUrl url;
-
-	// names -> urls
-	for ( int i = 0 ; i < fileNames->count(); ++i ) {
-		QString filename = ( *fileNames ) [ i ];
-		url = vfs_origin;
-		url.addPath( filename );
-		filesUrls.append( url );
-	}
-	KIO::Job *job = KIO::del( filesUrls );
+	KUrl::List *filesUrls = vfs_getFiles( fileNames );
+	
+	KIO::Job *job = KIO::del( *filesUrls );
 	connect( job, SIGNAL( result( KJob* ) ), this, SLOT( vfs_refresh( KJob* ) ) );
 }
 

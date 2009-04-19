@@ -88,6 +88,7 @@
 #include "krservices.h"
 #include "Panel/krviewitem.h"
 #include "Queue/queuedialog.h"
+#include "krtrashhandler.h"
 
 #define REFRESH_BOTH_PANELS { ListPanel *p=ACTIVE_PANEL;        \
                               MAIN_VIEW->left->func->refresh(); \
@@ -959,6 +960,32 @@ void KRslots::slotJumpBack() {
 
 void KRslots::slotSetJumpBack() {
 	ACTIVE_PANEL->setJumpBack( ACTIVE_PANEL->virtualPath() );
+}
+
+void KRslots::emptyTrash() {
+	KrTrashHandler::emptyTrash();
+}
+
+#define OPEN_ID        100001
+#define EMPTY_TRASH_ID 100002
+
+void KRslots::trashBin() {
+	QMenu trashMenu( krApp );
+	QAction * act = trashMenu.addAction( krLoader->loadIcon( "document-open", KIconLoader::Panel ), i18n( "Open trashbin" ));
+	act->setData( QVariant( OPEN_ID ) );
+	act = trashMenu.addAction( krLoader->loadIcon( "trash-empty", KIconLoader::Panel ), i18n( "Empty trashbin" ) );
+	act->setData( QVariant( EMPTY_TRASH_ID ) );
+	
+	int result = -1;
+	QAction *res = trashMenu.exec( QCursor::pos() );
+	if( res && res->data().canConvert<int> () )
+		result = res->data().toInt();
+	
+	if( result == OPEN_ID ) {
+		ACTIVE_FUNC->openUrl(KUrl("trash:/"));
+	} else if( result == EMPTY_TRASH_ID ) {
+		KrTrashHandler::emptyTrash();
+	}
 }
 
 //shows the JavaScript-Console

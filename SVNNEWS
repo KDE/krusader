@@ -6,6 +6,15 @@
 - extension to the ChangeLog.
 ------------------------------------------------------------------------
 
+New feature: better trash implementation
+   - 2 new actions: trash bin -> to open and empty trash (by default it's on the toolbar)
+                    empty trash -> empties the trash (by default it's in the menu)
+   - added a predefined bookmark for the trash
+   - right click menu in the trash
+       - elements can be deleted from the trash
+       - elements can be restored from the trash
+       - the trash bin can be emptied
+
 Change: alt+letter shortcuts had collisions with dynamically assigned hotkeys
 Old schortcut       New shortcut       Function
 Alt+C               Alt+Shift+C        Compare directories

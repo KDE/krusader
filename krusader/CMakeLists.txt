@@ -36,7 +36,8 @@ set(krusader_SRCS
    krusader.cpp 
    krslots.cpp 
    kicons.cpp 
-   krusaderapp.cpp )
+   krusaderapp.cpp
+   krtrashhandler.cpp )
 
 qt4_add_dbus_adaptor(krusader_SRCS org.krusader.Instance.xml krusader.h Krusader)
 

@@ -1,4 +1,4 @@
-<!DOCTYPE kpartgui ><kpartgui version="19" name="krusader" >
+<!DOCTYPE kpartgui ><kpartgui version="20" name="krusader" >
  <MenuBar>
   <Menu name="file" >
    <text>&amp;File</text>
@@ -110,6 +110,8 @@
    <Action name="F2_Terminal" />
    <Action name="root krusader" />
    <Separator/>
+   <Action name="emptytrash" />
+   <Separator/>
    <Action name="JS_Console" />
    <!-- <Action name="user menu" /> -->
    <!--
@@ -183,6 +185,7 @@
   <Action name="ftp connect" />
   <Action name="ftp new connection" />
   <Action name="profile" />
+  <Action name="trashbin" />
  </ToolBar>
  <ToolBar iconText="icononly" noMerge="1" name="actionsToolBar" fullWidth="false" >
  </ToolBar>

@@ -317,7 +317,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu) {
 	if (!inSecondaryMenu) {
 		KConfigGroup group( krConfig, "Private" );
 		bool hasPopularURLs = group.readEntry( "BM Popular URLs", true );
-		bool hasDevices     = group.readEntry( "BM Devices",      true );
+		bool hasTrash       = group.readEntry( "BM Trash",        true );
 		bool hasLan         = group.readEntry( "BM Lan",          true );
 		bool hasVirtualFS   = group.readEntry( "BM Virtual FS",   true );
 		bool hasJumpback    = group.readEntry( "BM Jumpback",     true );
@@ -355,14 +355,14 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu) {
 		
 		// do we need to add special bookmarks?
 		if (SPECIAL_BOOKMARKS) {
-			if( hasDevices || hasLan || hasVirtualFS || hasJumpback )
+			if( hasTrash || hasLan || hasVirtualFS || hasJumpback )
 				menu->addSeparator();
 			
 			KrBookmark *bm;
 			
 			// note: special bookmarks are not kept inside the _bookmarks list and added ad-hoc
-			if( hasDevices ) {
-				bm = KrBookmark::devices(_collection);
+			if( hasTrash ) {
+				bm = KrBookmark::trash(_collection);
 				menu->addAction(bm);
 				_specialBookmarks.append( bm );
 				CONNECT_BM(bm);
@@ -468,7 +468,7 @@ bool KrBookmarkHandler::eventFilter( QObject *obj, QEvent *ev ) {
 }
 
 #define POPULAR_URLS_ID        100100
-#define DEVICES_ID             100101
+#define TRASH_ID               100101
 #define LAN_ID                 100103
 #define VIRTUAL_FS_ID          100102
 #define JUMP_BACK_ID           100104
@@ -476,7 +476,7 @@ bool KrBookmarkHandler::eventFilter( QObject *obj, QEvent *ev ) {
 void KrBookmarkHandler::rightClickOnSpecialBookmark() {
 	KConfigGroup group( krConfig, "Private" );
 	bool hasPopularURLs = group.readEntry( "BM Popular URLs", true );
-	bool hasDevices     = group.readEntry( "BM Devices",      true );
+	bool hasTrash       = group.readEntry( "BM Trash",      true );
 	bool hasLan         = group.readEntry( "BM Lan",          true );
 	bool hasVirtualFS   = group.readEntry( "BM Virtual FS",   true );
 	bool hasJumpback    = group.readEntry( "BM Jumpback",     true );
@@ -490,10 +490,10 @@ void KrBookmarkHandler::rightClickOnSpecialBookmark() {
 	act->setData( QVariant( POPULAR_URLS_ID ) );
 	act->setCheckable( true );
 	act->setChecked( hasPopularURLs );
-	act = menu.addAction( i18n( "Devices" ) );
-	act->setData( QVariant( DEVICES_ID ) );
+	act = menu.addAction( i18n( "Trash bin" ) );
+	act->setData( QVariant( TRASH_ID ) );
 	act->setCheckable( true );
-	act->setChecked( hasDevices );
+	act->setChecked( hasTrash );
 	act = menu.addAction( i18n( "Local Network" ) );
 	act->setData( QVariant( LAN_ID ) );
 	act->setCheckable( true );
@@ -521,8 +521,8 @@ void KrBookmarkHandler::rightClickOnSpecialBookmark() {
 	case POPULAR_URLS_ID:
 		group.writeEntry( "BM Popular URLs", !hasPopularURLs );
 		break;
-	case DEVICES_ID:
-		group.writeEntry( "BM Devices", !hasDevices );
+	case TRASH_ID:
+		group.writeEntry( "BM Trash", !hasTrash );
 		break;
 	case LAN_ID:
 		group.writeEntry( "BM Lan", !hasLan );

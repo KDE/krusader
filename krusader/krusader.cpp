@@ -102,6 +102,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "GUI/krremoteencodingmenu.h"
 #include "Dialogs/checksumdlg.h"
 #include "VFS/vfile.h"
+#include "krtrashhandler.h"
 
 #ifdef __KJSEMBED__
 #include "KrJS/krjs.h"
@@ -180,6 +181,8 @@ KAction *Krusader::actF9 = 0;
 KAction *Krusader::actF10 = 0;
 KAction *Krusader::actShiftF5 = 0;
 KAction *Krusader::actShiftF6 = 0;
+KAction *Krusader::actEmptyTrash = 0;
+KAction *Krusader::actTrashBin = 0;
 KAction *Krusader::actLocationBar = 0;
 KAction *Krusader::actPopularUrls = 0;
 KAction *Krusader::actJumpBack = 0;
@@ -438,10 +441,12 @@ Krusader::Krusader() : KParts::MainWindow(0,
 		show();
 
 
+   KrTrashHandler::startWatcher();
    isStarting = false;
 }
 
 Krusader::~Krusader() {
+   KrTrashHandler::stopWatcher();
    delete queueManager;
    if( !isExiting )   // save the settings if it was not saved (SIGTERM)
       saveSettings();
@@ -645,6 +650,10 @@ void Krusader::setupActions() {
 	NEW_KTOGGLEACTION(actToggleHidden, i18n( "Show &Hidden Files" ), 0, Qt::CTRL + Qt::Key_Period, SLOTS, SLOT( toggleHidden() ), "toggle hidden files");
 
 	NEW_KACTION(actSwapPanels, i18n( "S&wap Panels" ), 0, Qt::CTRL + Qt::Key_U, SLOTS, SLOT( swapPanels() ), "swap panels");
+
+	NEW_KACTION(actEmptyTrash, i18n( "Empty trash" ), "trash-empty", 0, SLOTS, SLOT( emptyTrash() ), "emptytrash");
+
+	NEW_KACTION(actTrashBin, i18n( "Trash bin" ), KrTrashHandler::trashIcon(), 0, SLOTS, SLOT( trashBin() ), "trashbin");
 
 	NEW_KACTION(actSwapSides, i18n( "Sw&ap Sides" ), 0, Qt::CTRL + Qt::SHIFT + Qt::Key_U, SLOTS, SLOT( toggleSwapSides() ), "toggle swap sides" );
    actToggleHidden->setChecked( KConfigGroup( krConfig, "Look&Feel" ).readEntry( "Show Hidden", _ShowHidden ) );

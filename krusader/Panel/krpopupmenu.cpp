@@ -31,6 +31,7 @@
 #include "panelfunc.h"
 #include "../krusaderview.h"
 #include "../panelmanager.h"
+#include "../krtrashhandler.h"
 #include <QPixmap>
 #include <ktoolinvocation.h>
 #include <kactioncollection.h>
@@ -57,6 +58,13 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
    	addEmptyMenuEntries();
       return;
 	} else if ( items.size() > 1 ) multipleSelections = true;
+
+   QList<QString> protocols;
+   for ( int i = 0; i < items.size(); ++i ) {
+      protocols.append( panel->func->getVFile( items[ i ] ) ->vfile_getUrl().protocol() );
+   }
+   bool inTrash = protocols.contains( "trash" );
+   bool trashOnly = ( protocols.count() == 1 ) && ( protocols[ 0 ] == "trash" );
 
    item = items.first();
    vfile *vf = panel->func->getVFile(item);
@@ -147,13 +155,13 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
       // ------- MOVE
       addAction( i18n( "Move..." ) )->setData( QVariant( MOVE_ID ) );
       // ------- RENAME - only one file
-      if ( !multipleSelections )
+      if ( !multipleSelections && !inTrash )
          addAction( i18n( "Rename" ) )->setData( QVariant( RENAME_ID ) );
   
       // -------- MOVE TO TRASH
       KConfigGroup saver( krConfig, "General");
       bool trash = saver.readEntry( "Move To Trash", _MoveToTrash );
-      if( trash )
+      if( trash && !inTrash )
         addAction( i18n( "Move to Trash" ) )->setData( QVariant( TRASH_ID ) );
       // -------- DELETE
       addAction( i18n( "Delete" ) )->setData( QVariant( DELETE_ID ) );
@@ -194,6 +202,12 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
    // --------- send by mail
    if ( Krusader::supportedTools().contains( "MAIL" ) && !vf->vfile_isDir() ) {
       addAction( i18n( "Send by Email" ) )->setData( QVariant( SEND_BY_EMAIL_ID ) );
+   }
+   
+   // --------- empty trash
+   if ( trashOnly ) {
+      addAction( i18n( "Restore" ) )->setData( QVariant( RESTORE_TRASHED_FILE_ID ) );
+      addAction( i18n( "Empty trash" ) )->setData( QVariant( EMPTY_TRASH_ID ) );
    }
    
    // --------- synchronize
@@ -298,6 +312,16 @@ void KrPopupMenu::performAction(int id) {
          	break;
          case REDIRECT_LINK_ID :
          	panel->func->redirectLink();
+         	break;
+         case EMPTY_TRASH_ID :
+         	KrTrashHandler::emptyTrash();
+         	break;
+         case RESTORE_TRASHED_FILE_ID :
+         	{
+         		QStringList fileNames;
+         		panel->getSelectedNames( &fileNames );
+         		KrTrashHandler::restoreTrashedFiles( *panel->func->files() ->vfs_getFiles( &fileNames ) );
+         	}
          	break;
          case UNMOUNT_ID :
          	krMtMan.unmount( panel->func->files() ->vfs_getFile( item->name() ).path( KUrl::RemoveTrailingSlash ) );

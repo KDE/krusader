@@ -5,10 +5,11 @@
 #include <kiconloader.h>
 #include <klocale.h>
 #include <kdebug.h>
+#include "../krtrashhandler.h"
 
 #define BM_NAME(X)		(QString("Bookmark:")+X)
 
-static const char* NAME_DEVICES = I18N_NOOP ( "Media" );
+static const char* NAME_TRASH = I18N_NOOP ( "Trash bin" );
 static const char* NAME_VIRTUAL = I18N_NOOP ( "Virtual Filesystem" );
 static const char* NAME_LAN = I18N_NOOP ( "Local Network" );
 
@@ -61,14 +62,13 @@ KrBookmark* KrBookmark::getExistingBookmark ( QString actionName, KActionCollect
 	return static_cast<KrBookmark*> ( collection->action ( BM_NAME ( actionName ) ) );
 }
 
-KrBookmark* KrBookmark::devices ( KActionCollection *collection )
+KrBookmark* KrBookmark::trash ( KActionCollection *collection )
 {
-	KrBookmark *bm = getExistingBookmark ( i18n ( NAME_DEVICES ), collection );
+	KrBookmark *bm = getExistingBookmark ( i18n ( NAME_TRASH ), collection );
 	if ( !bm )
-	{
-		bm = new KrBookmark ( i18n ( NAME_DEVICES ), KUrl("media:/"), collection );
-		bm->setIcon ( krLoader->loadIcon ( "blockdevice", KIconLoader::Small ) );
-	}
+		bm = new KrBookmark ( i18n ( NAME_TRASH ), KUrl("trash:/"), collection );
+	
+	bm->setIcon ( krLoader->loadIcon ( KrTrashHandler::trashIcon(), KIconLoader::Small ) );
 	return bm;
 }
 
