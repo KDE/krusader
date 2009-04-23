@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: search.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2009-04-09 07:38+0000\n"
+"POT-Creation-Date: 2009-04-23 16:40+0000\n"
 "PO-Revision-Date: 2009-04-14 09:59+0200\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
@@ -39,7 +39,13 @@ msgid ""
 "different ways to quickly find the file you are looking for. The search "
 "function is also available on remote file systems. It is divided into two "
 "levels, the general and the advanced. Let's take a look at the general page."
-msgstr "Bienvenue dans le puissant module de recherche de &krusader; - appelé KruSearcher. Ce outil est le plus compétent (que nous connaissons) pour &Linux;, depuis qu'il permet de nombreuses façons de trouver rapidement le fichier que vous recherchez. La fonctionnalité de recherche est aussi disponible sur les systèmes de fichiers distants. Deux onglets sont présentés : général et avancé. Voyons l'onglet « Général »."
+msgstr ""
+"Bienvenue dans le puissant module de recherche de &krusader; - appelé "
+"KruSearcher. Ce outil est le plus compétent (que nous connaissons) pour "
+"&Linux;, depuis qu'il permet de nombreuses façons de trouver rapidement le "
+"fichier que vous recherchez. La fonctionnalité de recherche est aussi "
+"disponible sur les systèmes de fichiers distants. Deux onglets sont "
+"présentés : général et avancé. Voyons l'onglet « Général »."
 
 #. Tag: title
 #: search.docbook:25
@@ -61,7 +67,11 @@ msgid ""
 "titled 'containing text', left part - titled 'search in' and right part "
 "which is called 'don't search in'. Obviously, each part handles different "
 "aspects of the search. Let's look at them closely."
-msgstr "La fenêtre est divisée en quatre parties : la partie du haut (Rechercher), la partie du bas (Contenant le texte) et la partie du milieu séparée en deux colonnes (Rechercher dans / Ne pas rechercher dans). Voyons plus précisément leurs fonctions."
+msgstr ""
+"La fenêtre est divisée en quatre parties : la partie du haut (Rechercher), "
+"la partie du bas (Contenant le texte) et la partie du milieu séparée en deux "
+"colonnes (Rechercher dans / Ne pas rechercher dans). Voyons plus précisément "
+"leurs fonctions."
 
 #. Tag: title
 #: search.docbook:41
@@ -82,7 +92,17 @@ msgid ""
 "literal>) . You can use quotation marks for names that contain spaces. "
 "Filter \"Program Files\" searches out those files/directories the name of "
 "which is <filename>Program Files</filename>."
-msgstr "<guilabel>Rechercher</guilabel> : vous pouvez saisir ici le critère de recherche principal. Vous pouvez saisir un nom de fichier, une extension (<literal role=\"extension\">*.o.*</literal>, <literal role=\"extension\">*.c</literal> &etc;) ou les deux - séparé par un espace. Si vous saisissez <literal>'text'</literal>, le résultat est le même que <literal>'*text*'</literal>. Vous pouvez exclure des fichiers de la recherche avec « | » (&pex; <literal role=\"extension\">'*.cpp *.h | *.moc.cpp'</literal>). Vous pouvez utiliser des guillemets pour les noms qui contiennent des espaces. Le filtre « Program Files » recherche dans ces fichiers et dossiers le nom qui est <filename>Program Files</filename>."
+msgstr ""
+"<guilabel>Rechercher</guilabel> : vous pouvez saisir ici le critère de "
+"recherche principal. Vous pouvez saisir un nom de fichier, une extension "
+"(<literal role=\"extension\">*.o.*</literal>, <literal role=\"extension\">*."
+"c</literal> &etc;) ou les deux - séparé par un espace. Si vous saisissez "
+"<literal>'text'</literal>, le résultat est le même que <literal>'*text*'</"
+"literal>. Vous pouvez exclure des fichiers de la recherche avec « | » (&pex; "
+"<literal role=\"extension\">'*.cpp *.h | *.moc.cpp'</literal>). Vous pouvez "
+"utiliser des guillemets pour les noms qui contiennent des espaces. Le filtre "
+"« Program Files » recherche dans ces fichiers et dossiers le nom qui est "
+"<filename>Program Files</filename>."
 
 #. Tag: para
 #: search.docbook:59
@@ -92,7 +112,11 @@ msgid ""
 "upper case search (i.e.: <literal role=\"extension\">*.c</literal> "
 "interprets as <literal role=\"extension\">*.c</literal> AND <literal role="
 "\"extension\">*.C</literal>)."
-msgstr "<guilabel>Tenir compte de la casse</guilabel> : décocher cette case permettra une recherche avec minuscules et majuscules (&cad; <literal role=\"extension\">*.c</literal> interprète comme <literal role=\"extension\">*.c</literal> AND <literal role=\"extension\">*.C</literal>)."
+msgstr ""
+"<guilabel>Tenir compte de la casse</guilabel> : décocher cette case "
+"permettra une recherche avec minuscules et majuscules (&cad; <literal role="
+"\"extension\">*.c</literal> interprète comme <literal role=\"extension\">*."
+"c</literal> AND <literal role=\"extension\">*.C</literal>)."
 
 #. Tag: para
 #: search.docbook:67
@@ -103,7 +127,13 @@ msgid ""
 "the audio files whose name begins with B. Usually this option defaults to "
 "'all files', but you can choose to search for archives, directories, images, "
 "text files, videos and audio files."
-msgstr "<guilabel>Par type</guilabel> : ce boîte déroulante vous permet de rechercher un fichier pas seulement avec son nom, mais aussi avec son type MIME. Par exemple, vous pouvez rechercher tous les fichiers audio dont le nom commence par B. Habituellement « Tous les fichiers » est l'option par défaut, mais vous pouvez choisir de rechercher des archives, des dossiers, des images, des fichiers texte, des vidéos et des fichiers audio."
+msgstr ""
+"<guilabel>Par type</guilabel> : ce boîte déroulante vous permet de "
+"rechercher un fichier pas seulement avec son nom, mais aussi avec son type "
+"MIME. Par exemple, vous pouvez rechercher tous les fichiers audio dont le "
+"nom commence par B. Habituellement « Tous les fichiers » est l'option par "
+"défaut, mais vous pouvez choisir de rechercher des archives, des dossiers, "
+"des images, des fichiers texte, des vidéos et des fichiers audio."
 
 #. Tag: title
 #: search.docbook:77
@@ -125,7 +155,18 @@ msgid ""
 "to enter more than one directory in one of the boxes, just type the first "
 "name and press &Enter;. The directory name will be copied to the bigger box "
 "and youwill be able to enter another name."
-msgstr "<guilabel>Rechercher dans</guilabel> et <guilabel>Ne pas rechercher dans</guilabel> : en utilisant ces deux colonnes, vous pouvez spécifier une recherche de la manière exacte que vous souhaitez pour un fichier dans un système de fichiers complet. (commençant par <filename>/</filename>), mais ne voulant pas rechercher dans <filename>/mnt</filename>. Tout ce dont vous avez besoin est d'écrire <filename>/</filename> dans la colonne <guilabel>Regarder dans</guilabel> et écrire <filename>/mnt</filename> dans la colonne <guilabel>Ne pas regarder dans</guilabel>. Si vous voulez naviguer dans plus d'un dossier, saisissez simplement le premier nom et appuyez sur &Enter;. Le nom du dossier sera copié dans la grande boîte et vous pourrez saisir un autre nom."
+msgstr ""
+"<guilabel>Rechercher dans</guilabel> et <guilabel>Ne pas rechercher dans</"
+"guilabel> : en utilisant ces deux colonnes, vous pouvez spécifier une "
+"recherche de la manière exacte que vous souhaitez pour un fichier dans un "
+"système de fichiers complet. (commençant par <filename>/</filename>), mais "
+"ne voulant pas rechercher dans <filename>/mnt</filename>. Tout ce dont vous "
+"avez besoin est d'écrire <filename>/</filename> dans la colonne "
+"<guilabel>Regarder dans</guilabel> et écrire <filename>/mnt</filename> dans "
+"la colonne <guilabel>Ne pas regarder dans</guilabel>. Si vous voulez "
+"naviguer dans plus d'un dossier, saisissez simplement le premier nom et "
+"appuyez sur &Enter;. Le nom du dossier sera copié dans la grande boîte et "
+"vous pourrez saisir un autre nom."
 
 #. Tag: para
 #: search.docbook:96
@@ -134,7 +175,11 @@ msgid ""
 "The input line has an auto-completion feature, corresponding to &kde; global "
 "settings. If you wish, you can click on the <guiicon>folder icon</guiicon>, "
 "and browse to the directory you wish to add."
-msgstr "La ligne d'entrée a une fonctionnalité d'auto-complètement, correspondant à la configuration globale de &kde;. Si vous le souhaitez, vous pouvez cliquer sur <guiicon>l'icône de dossier</guiicon> et naviguer dans le dossier que vous souhaitez ajouter."
+msgstr ""
+"La ligne d'entrée a une fonctionnalité d'auto-complètement, correspondant à "
+"la configuration globale de &kde;. Si vous le souhaitez, vous pouvez cliquer "
+"sur <guiicon>l'icône de dossier</guiicon> et naviguer dans le dossier que "
+"vous souhaitez ajouter."
 
 #. Tag: title
 #: search.docbook:105
@@ -150,7 +195,12 @@ msgid ""
 "inside the files ( <command>grep</command>). This way you can search for all "
 "header files ( <literal role=\"extension\">*.h</literal>) which include the "
 "word <literal>'testing 123'</literal>."
-msgstr "<guilabel>Contenant le texte</guilabel> : saisir du texte ici permet à &krusader; de lancer une recherche dans ces fichiers (<command>grep</command>). De cette manière vous pouvez rechercher des fichiers d'en-têtes (<literal role=\"extension\">*.h</literal>) qui incluent le mot <literal>'tester 123'</literal>."
+msgstr ""
+"<guilabel>Contenant le texte</guilabel> : saisir du texte ici permet à "
+"&krusader; de lancer une recherche dans ces fichiers (<command>grep</"
+"command>). De cette manière vous pouvez rechercher des fichiers d'en-têtes "
+"(<literal role=\"extension\">*.h</literal>) qui incluent le mot "
+"<literal>'tester 123'</literal>."
 
 #. Tag: guilabel
 #: search.docbook:118
@@ -164,7 +214,10 @@ msgstr "Mot entier seulement"
 msgid ""
 "<guilabel>Case sensitive</guilabel>: refers to your text being searched for "
 "in upper and lower case or the exact phrase you entered."
-msgstr "<guilabel>Tenir compte de la casse</guilabel> : se réfère à votre texte qui est recherché avec des majuscules et minuscules ou la phrase exacte que vous avez saisie."
+msgstr ""
+"<guilabel>Tenir compte de la casse</guilabel> : se réfère à votre texte qui "
+"est recherché avec des majuscules et minuscules ou la phrase exacte que vous "
+"avez saisie."
 
 #. Tag: para
 #: search.docbook:128
@@ -172,7 +225,9 @@ msgstr "<guilabel>Tenir compte de la casse</guilabel> : se réfère à votre te
 msgid ""
 "<guilabel>Search in subdirectories</guilabel>: perform a recursive search "
 "and dive into every directory on the way."
-msgstr "<guilabel>Inclure les sous-dossiers</guilabel> : lance une recherche récursive et analyse chaque dossier de cette manière."
+msgstr ""
+"<guilabel>Inclure les sous-dossiers</guilabel> : lance une recherche "
+"récursive et analyse chaque dossier de cette manière."
 
 #. Tag: para
 #: search.docbook:134
@@ -180,7 +235,10 @@ msgstr "<guilabel>Inclure les sous-dossiers</guilabel> : lance une recherche r�
 msgid ""
 "<guilabel>Search in archives</guilabel>: &krusader; will search for your "
 "files inside every supported archive. This, however, takes longer to perform."
-msgstr "<guilabel>Inclure les archives</guilabel> : &krusader; recherchera des fichiers dans chaque archive gérée. Cela peut, cependant prend un peu de temps."
+msgstr ""
+"<guilabel>Inclure les archives</guilabel> : &krusader; recherchera des "
+"fichiers dans chaque archive gérée. Cela peut, cependant prend un peu de "
+"temps."
 
 #. Tag: para
 #: search.docbook:139
@@ -190,7 +248,11 @@ msgid ""
 "command> inside files anymore. This is done, since looking inside archived "
 "files forces &krusader; to extract them, which results in an extremely time-"
 "consuming search."
-msgstr "Si vous cochez cette case, vous remarquerez que vous ne pouvez pas faire une recherche <command>grep</command> dans ces fichiers. Ceci, depuis que la recherche à l'intérieur des fichiers d'archives force &krusader; à les extraire, qui en résulte une recherche gourmande en temps de recherche."
+msgstr ""
+"Si vous cochez cette case, vous remarquerez que vous ne pouvez pas faire une "
+"recherche <command>grep</command> dans ces fichiers. Ceci, depuis que la "
+"recherche à l'intérieur des fichiers d'archives force &krusader; à les "
+"extraire, qui en résulte une recherche gourmande en temps de recherche."
 
 #. Tag: para
 #: search.docbook:147
@@ -198,7 +260,9 @@ msgstr "Si vous cochez cette case, vous remarquerez que vous ne pouvez pas faire
 msgid ""
 "<guilabel>Follow links</guilabel>: if checked, &krusader; will follow soft-"
 "links during the search."
-msgstr "<guilabel>Suivre les liens</guilabel> : si la case est cochée, &krusader; suivra les liens symbolique pendant la recherche."
+msgstr ""
+"<guilabel>Suivre les liens</guilabel> : si la case est cochée, &krusader; "
+"suivra les liens symbolique pendant la recherche."
 
 #. Tag: para
 #: search.docbook:153
@@ -208,7 +272,12 @@ msgid ""
 "search operation, you can save the search settings e.g. include files, "
 "exclude files, etc.... Press the 'profile' button, and you can add/load/save/"
 "remove search profiles."
-msgstr "<guilabel>Profils</guilabel> : si vous lancez régulièrement une même opération de recherche, vous pouvez enregistrer la configuration de la recherche &pex; inclure des fichiers, exclure des fichiers, &etc; Cliquez sur le bouton de profil et vous pouvez ajouter / charger / enregistrer / supprimer les profils de recherches."
+msgstr ""
+"<guilabel>Profils</guilabel> : si vous lancez régulièrement une même "
+"opération de recherche, vous pouvez enregistrer la configuration de la "
+"recherche &pex; inclure des fichiers, exclure des fichiers, &etc; Cliquez "
+"sur le bouton de profil et vous pouvez ajouter / charger / enregistrer / "
+"supprimer les profils de recherches."
 
 #. Tag: para
 #: search.docbook:161
@@ -221,7 +290,14 @@ msgid ""
 "filename> and <filename class=\"directory\">/usr</filename>, but not in "
 "<filename class=\"directory\">/usr/lib</filename> and <filename class="
 "\"directory\">/usr/share</filename>."
-msgstr "La capture d'écran ci-dessus affiche une recherche pour tous les fichiers qui se finissent par <literal role=\"extension\">c, cpp</literal> ou <literal role=\"extension\">h</literal> et incluent l'entrée <literal>'testing 123'</literal>. &krusader; recherchera dans <filenameclass=\"directory\">/root, /opt, /bin</filename> et <filename class=\"directory\">/usr</filename>, mais pas dans <filename class=\"directory\">/usr/lib</filename> et <filename class=\"directory\">/usr/share</filename>."
+msgstr ""
+"La capture d'écran ci-dessus affiche une recherche pour tous les fichiers "
+"qui se finissent par <literal role=\"extension\">c, cpp</literal> ou "
+"<literal role=\"extension\">h</literal> et incluent l'entrée "
+"<literal>'testing 123'</literal>. &krusader; recherchera dans <filenameclass="
+"\"directory\">/root, /opt, /bin</filename> et <filename class=\"directory\">/"
+"usr</filename>, mais pas dans <filename class=\"directory\">/usr/lib</"
+"filename> et <filename class=\"directory\">/usr/share</filename>."
 
 #. Tag: para
 #: search.docbook:171
@@ -235,7 +311,16 @@ msgid ""
 "is found, double-clicking on it will take &krusader;'s active panel point to "
 "the found files - but will not close the search window, so you will be able "
 "to click on a different result."
-msgstr "Cliquer sur le bouton <guibutton>Rechercher</guibutton> démarre la recherche et affiche la page de résultats (troisième onglet). Pendant la recherche, vous pouvez appuyer sur le bouton <guibutton>Arrêter</guibutton> pour terminer la recherche. Le bouton <guibutton>Fermer</guibutton> n'est pas opérationnel pendant la recherche, vous devez d'abord arrêter la recherche et ensuite <guibutton>fermer</guibutton> la fenêtre. Quand un résultat est trouvé, double-cliquer dessus va amener le panneau actif de &krusader; vers l'emplacement des fichiers trouvés, mais ne fermera pas la fenêtre de recherche. Vous pourrez donc afficher un autre résultat."
+msgstr ""
+"Cliquer sur le bouton <guibutton>Rechercher</guibutton> démarre la recherche "
+"et affiche la page de résultats (troisième onglet). Pendant la recherche, "
+"vous pouvez appuyer sur le bouton <guibutton>Arrêter</guibutton> pour "
+"terminer la recherche. Le bouton <guibutton>Fermer</guibutton> n'est pas "
+"opérationnel pendant la recherche, vous devez d'abord arrêter la recherche "
+"et ensuite <guibutton>fermer</guibutton> la fenêtre. Quand un résultat est "
+"trouvé, double-cliquer dessus va amener le panneau actif de &krusader; vers "
+"l'emplacement des fichiers trouvés, mais ne fermera pas la fenêtre de "
+"recherche. Vous pourrez donc afficher un autre résultat."
 
 #. Tag: para
 #: search.docbook:181
@@ -244,7 +329,10 @@ msgid ""
 "Sometimes, you need to narrow your search even more. Krusearcher allows a "
 "much finer search, and for that, let's look at the <guilabel>Advanced Page</"
 "guilabel>..."
-msgstr "Quelque fois, vous avez besoin de restreindre la recherche. KruSearcher permet une recherche plus fine, et pour cela, jetez un œil à la page <guilabel>Avancé</guilabel>..."
+msgstr ""
+"Quelque fois, vous avez besoin de restreindre la recherche. KruSearcher "
+"permet une recherche plus fine, et pour cela, jetez un œil à la page "
+"<guilabel>Avancé</guilabel>..."
 
 #. Tag: title
 #: search.docbook:197
@@ -266,13 +354,21 @@ msgid ""
 "150KB, which were modified between October 10th and November 1st, which "
 "belong to any user in the 'users' group, and are readable and writable by "
 "anyone in the 'users' group, but only readable to the rest of the world."
-msgstr "Cette capture d'écran affiche une recherche pour les fichiers dont la taille est comprise entre 10KB et 150KB, qui ont été modifiés entre le 10 octobre et le 1 novembre, qui appartiennent à tous les utilisateurs du groupe « utilisateurs » et possèdent les droits en lecture et écriture pour tous les utilisateurs du groupe « utilisateurs », mais seulement en lecture seule pour le reste du monde."
+msgstr ""
+"Cette capture d'écran affiche une recherche pour les fichiers dont la taille "
+"est comprise entre 10KB et 150KB, qui ont été modifiés entre le 10 octobre "
+"et le 1 novembre, qui appartiennent à tous les utilisateurs du groupe "
+"« utilisateurs » et possèdent les droits en lecture et écriture pour tous les "
+"utilisateurs du groupe « utilisateurs », mais seulement en lecture seule pour "
+"le reste du monde."
 
 #. Tag: para
 #: search.docbook:212
 #, no-c-format
-msgid "The advanced page is divided into three parts: size, date and ownership."
-msgstr "La page Avancé est divisée en trois parties : taille, date et propriétaire."
+msgid ""
+"The advanced page is divided into three parts: size, date and ownership."
+msgstr ""
+"La page Avancé est divisée en trois parties : taille, date et propriétaire."
 
 #. Tag: emphasis
 #: search.docbook:215
@@ -288,7 +384,12 @@ msgid ""
 "checking the check boxes, you can search for a file which is bigger than XXX "
 "bytes (or KB, MB), smaller than XXX bytes or, by checking both search for a "
 "file which size is bigger than XXX but smaller than YYY."
-msgstr "Vous permet de choisir la fourchette de taille du fichier que vous recherchez. En cochant cette case, vous pouvez rechercher un fichier qui est plus grand que XXX bytes (ou KB, MB), plus petit que XXX bytes ou, en cochant les deux rechercher un fichier dont la taille est plus grande que XXX mais plus petite que YYY."
+msgstr ""
+"Vous permet de choisir la fourchette de taille du fichier que vous "
+"recherchez. En cochant cette case, vous pouvez rechercher un fichier qui est "
+"plus grand que XXX bytes (ou KB, MB), plus petit que XXX bytes ou, en "
+"cochant les deux rechercher un fichier dont la taille est plus grande que "
+"XXX mais plus petite que YYY."
 
 #. Tag: emphasis
 #: search.docbook:223
@@ -300,7 +401,9 @@ msgstr "Date"
 #: search.docbook:225
 #, no-c-format
 msgid "This part offers three different ways of defining a date criteria:"
-msgstr "Cette partie offre trois différentes manières de définir un critère de date : "
+msgstr ""
+"Cette partie offre trois différentes manières de définir un critère de "
+"date : "
 
 #. Tag: para
 #: search.docbook:229
@@ -312,7 +415,13 @@ msgid ""
 "box, you will be searching for files older than that date. If you only enter "
 "a date in the right box, you will be searching for files newer than that "
 "date."
-msgstr "<guilabel>Modifié entre</guilabel> : vous permettre de saisir deux dates. &krusader; recherchera les fichiers avec une modification entre la première date et la deuxième incluse. Si vous voulez seulement saisir une date dans la boîte de gauche, vous rechercherez des fichiers plus vieux que cette date. Si vous saisissez seulement une date dans la boîte de droite, vous rechercherez des fichiers plus récents que la date."
+msgstr ""
+"<guilabel>Modifié entre</guilabel> : vous permettre de saisir deux dates. "
+"&krusader; recherchera les fichiers avec une modification entre la première "
+"date et la deuxième incluse. Si vous voulez seulement saisir une date dans "
+"la boîte de gauche, vous rechercherez des fichiers plus vieux que cette "
+"date. Si vous saisissez seulement une date dans la boîte de droite, vous "
+"rechercherez des fichiers plus récents que la date."
 
 #. Tag: para
 #: search.docbook:238
@@ -322,7 +431,11 @@ msgid ""
 "date window - which allows you to easily browse through the calendar and "
 "search for the desired date. Clicking on a date will close the window and "
 "the date will appear in the input box."
-msgstr "Vous pouvez cliquer sur l'icône de date (à droite des boîtes d'entrée) pour ouvrir une fenêtre de date standard, qui vous permet de naviguer facilement dans le calendrier et rechercher la date désirée. Cliquer sur une date fermera la fenêtre et la date apparaîtra dans la boîte d'entrée."
+msgstr ""
+"Vous pouvez cliquer sur l'icône de date (à droite des boîtes d'entrée) pour "
+"ouvrir une fenêtre de date standard, qui vous permet de naviguer facilement "
+"dans le calendrier et rechercher la date désirée. Cliquer sur une date "
+"fermera la fenêtre et la date apparaîtra dans la boîte d'entrée."
 
 #. Tag: para
 #: search.docbook:246
@@ -331,7 +444,10 @@ msgid ""
 "<guilabel>Not modified after</guilabel>: choosing this option makes "
 "&krusader; search for files that were NOT modified after a given date, which "
 "is the same as searching for files older than that date."
-msgstr "<guilabel>Non modifié après</guilabel> : choisir cette option recherche des fichiers qui n'ont PAS été modifiés après la date donnée, qui est la même que la recherche pour les fichiers plus ancienne que la date."
+msgstr ""
+"<guilabel>Non modifié après</guilabel> : choisir cette option recherche des "
+"fichiers qui n'ont PAS été modifiés après la date donnée, qui est la même "
+"que la recherche pour les fichiers plus ancienne que la date."
 
 #. Tag: para
 #: search.docbook:253
@@ -345,7 +461,16 @@ msgid ""
 "&krusader; search for files that did NOT change in the last 2 days. The "
 "combination of both results in a search for files that were changed in the "
 "last 5 days, but NOT in the last 2 days."
-msgstr "<guilabel>Modifié durant les précédents / Non modifié durant les précédents</guilabel> : dans ces boîtes d'entrée, vous ne saisissez pas une date mais un nombre. Ce nombre représente les jours / semaines / mois (comme choisi dans la plus proche boîte déroulante). &pex; saisir le nombre 5 dans la boîte d'entrée du dessus recherche les fichiers qui ont été modifiés les 5 derniers jours. Saisir le nombre 2 dans la boîte d'entrée du dessous recherche les fichiers qui n'ont PAS été modifiés les 2 derniers jours. La combinaison des deux affiche une recherche de fichiers qui ont été modifiés dans les 5 derniers jours, mais PAS dans les 2 derniers jours."
+msgstr ""
+"<guilabel>Modifié durant les précédents / Non modifié durant les précédents</"
+"guilabel> : dans ces boîtes d'entrée, vous ne saisissez pas une date mais un "
+"nombre. Ce nombre représente les jours / semaines / mois (comme choisi dans "
+"la plus proche boîte déroulante). &pex; saisir le nombre 5 dans la boîte "
+"d'entrée du dessus recherche les fichiers qui ont été modifiés les 5 "
+"derniers jours. Saisir le nombre 2 dans la boîte d'entrée du dessous "
+"recherche les fichiers qui n'ont PAS été modifiés les 2 derniers jours. La "
+"combinaison des deux affiche une recherche de fichiers qui ont été modifiés "
+"dans les 5 derniers jours, mais PAS dans les 2 derniers jours."
 
 #. Tag: emphasis
 #: search.docbook:267
@@ -361,7 +486,11 @@ msgid ""
 "corresponding check boxes, you can search for files which belong to a "
 "certain user and/or group. The drop box lists all the user names and group "
 "names in the system, just choose one and go ahead."
-msgstr "<guilabel>Appartient à l'utilisateur / au groupe</guilabel> : en cochant ces cases, vous pouvez rechercher les fichiers qui appartiennent à un utilisateur et / ou un groupe précis. La liste déroulante affichent tous les utilisateurs et groupes dans le système, choisissez en simplement un."
+msgstr ""
+"<guilabel>Appartient à l'utilisateur / au groupe</guilabel> : en cochant ces "
+"cases, vous pouvez rechercher les fichiers qui appartiennent à un "
+"utilisateur et / ou un groupe précis. La liste déroulante affichent tous les "
+"utilisateurs et groupes dans le système, choisissez en simplement un."
 
 #. Tag: para
 #: search.docbook:279
@@ -371,7 +500,13 @@ msgid ""
 "allows you to choose certain permissions for the file. You can choose to "
 "specify permissions for the owner, group, all or any combination. The "
 "question mark (?) is a wildcard - which means that any permission is valid."
-msgstr "<guilabel>Droit d'accès</guilabel> : affiche les droits du propriétaire, du groupe et les autres. Cela vous permet de choisir certain droits d'accès pour le fichier. Vous pouvez choisir des droits d'accès spécifiques pour le propriétaire, le groupe, les autres ou une combinaison. Le point d'interrogation (?) est un caractère générique qui signifie que tous les droits d'accès sont valables."
+msgstr ""
+"<guilabel>Droit d'accès</guilabel> : affiche les droits du propriétaire, du "
+"groupe et les autres. Cela vous permet de choisir certain droits d'accès "
+"pour le fichier. Vous pouvez choisir des droits d'accès spécifiques pour le "
+"propriétaire, le groupe, les autres ou une combinaison. Le point "
+"d'interrogation (?) est un caractère générique qui signifie que tous les "
+"droits d'accès sont valables."
 
 #. Tag: para
 #: search.docbook:288
@@ -382,7 +517,13 @@ msgid ""
 "but not executable to any user in the group, are readable but not writable "
 "or executable to the rest of the world and have unknown permissions to its "
 "owner."
-msgstr "Pour rendre plus clair, la capture d'écran ci-dessus (la partie droits d'accès) décrit une recherche pour les fichiers qui appartiennent aux utilisateurs dans le groupe « utilisateurs », ont des droits en lecture et écriture mais ne sont pas exécutables pour les utilisateurs de ce groupe, ont des droits en lecture mais pas en écriture ou ne sont pas exécutables pour le reste du monde et ont des droits d'accès inconnus à ce propriétaire."
+msgstr ""
+"Pour rendre plus clair, la capture d'écran ci-dessus (la partie droits "
+"d'accès) décrit une recherche pour les fichiers qui appartiennent aux "
+"utilisateurs dans le groupe « utilisateurs », ont des droits en lecture et "
+"écriture mais ne sont pas exécutables pour les utilisateurs de ce groupe, "
+"ont des droits en lecture mais pas en écriture ou ne sont pas exécutables "
+"pour le reste du monde et ont des droits d'accès inconnus à ce propriétaire."
 
 #. Tag: emphasis
 #: search.docbook:296
@@ -405,7 +546,20 @@ msgid ""
 "copy to clipboard (<keycombo action=\"simul\">&Ctrl;<keycap>c</keycap></"
 "keycombo>). When you close the Krusearcher window, the selected item is "
 "selected in the active panel."
-msgstr "Cliquer sur le bouton <guibutton>Rechercher</guibutton> pour démarrer la recherche et ouvrir la fenêtre de résultats. Vous pouvez voir ici la progression et les résultats de la recherche. Si vous le souhaitez, vous pouvez arrêter la recherche courante avec le bouton <guibutton>Arrêter</guibutton>. Dans la liste de résultats, sélectionnez le fichier et utilisez <keycap>F3</keycap> / <keycap>F4</keycap> pour afficher / éditer ou utilisez le menu par clic-droit. Quand vous cliquez sur l'élément trouvé, le dossier du panneau actif se modifiera si l'élément sélectionné n'est pas dans le dossier du panneau courant. La fenêtre de résultats gère les éléments glissés vers d'autres fenêtres et copie vers le presse-papiers (<keycombo action=\"simul\">&Ctrl;<keycap>c</keycap></keycombo>). Quand vous fermez la fenêtre de KruSearcher, l'élément sélectionné est sélectionné dans le panneau actif."
+msgstr ""
+"Cliquer sur le bouton <guibutton>Rechercher</guibutton> pour démarrer la "
+"recherche et ouvrir la fenêtre de résultats. Vous pouvez voir ici la "
+"progression et les résultats de la recherche. Si vous le souhaitez, vous "
+"pouvez arrêter la recherche courante avec le bouton <guibutton>Arrêter</"
+"guibutton>. Dans la liste de résultats, sélectionnez le fichier et utilisez "
+"<keycap>F3</keycap> / <keycap>F4</keycap> pour afficher / éditer ou utilisez "
+"le menu par clic-droit. Quand vous cliquez sur l'élément trouvé, le dossier "
+"du panneau actif se modifiera si l'élément sélectionné n'est pas dans le "
+"dossier du panneau courant. La fenêtre de résultats gère les éléments "
+"glissés vers d'autres fenêtres et copie vers le presse-papiers (<keycombo "
+"action=\"simul\">&Ctrl;<keycap>c</keycap></keycombo>). Quand vous fermez la "
+"fenêtre de KruSearcher, l'élément sélectionné est sélectionné dans le "
+"panneau actif."
 
 #. Tag: emphasis
 #: search.docbook:314
@@ -422,7 +576,13 @@ msgid ""
 "be used in the Results-Tab in the List Panel that holds the search results. "
 "You can do whatever you want on the files in the new tab. The location "
 "toolbar will display e.g. <filename>virt:/Search results 1</filename>."
-msgstr "Quand vous cliquez sur le bouton <guibutton>Envoi vers la liste</guibutton> après que les résultats sont affichés, &krusader; demande un nom de requête, ce nom sera utilisé dans l'onglet de résultats qui prend en charge les résultats de recherche. Vous pouvez faire ce que vous voulez sur les fichiers dans le nouvel onglet. La barre d'emplacement affichera &pex; <filename>virt:/Résultats de recherche 1</filename>."
+msgstr ""
+"Quand vous cliquez sur le bouton <guibutton>Envoi vers la liste</guibutton> "
+"après que les résultats sont affichés, &krusader; demande un nom de requête, "
+"ce nom sera utilisé dans l'onglet de résultats qui prend en charge les "
+"résultats de recherche. Vous pouvez faire ce que vous voulez sur les "
+"fichiers dans le nouvel onglet. La barre d'emplacement affichera &pex; "
+"<filename>virt:/Résultats de recherche 1</filename>."
 
 #. Tag: para
 #: search.docbook:325
@@ -430,5 +590,6 @@ msgstr "Quand vous cliquez sur le bouton <guibutton>Envoi vers la liste</guibutt
 msgid ""
 "The files in the Results-Tab are actually the original files. if you delete "
 "a file - it is removed!"
-msgstr "Les fichiers dans l'onglet de résultats sont actuellement les fichiers originaux. Si vous supprimez un fichier, celui-ci est supprimé !"
-
+msgstr ""
+"Les fichiers dans l'onglet de résultats sont actuellement les fichiers "
+"originaux. Si vous supprimez un fichier, celui-ci est supprimé !"

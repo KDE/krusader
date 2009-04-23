@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: synchronizer.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2009-04-08 16:02+0000\n"
+"POT-Creation-Date: 2009-04-23 16:40+0000\n"
 "PO-Revision-Date: 2009-04-14 10:06+0200\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
@@ -39,14 +39,41 @@ msgstr "Introduction"
 #. Tag: para
 #: synchronizer.docbook:9
 #, no-c-format
-msgid "This function compares two directories with all subdirectories and shows the differences between them. After selecting some options and the <guilabel>Compare</guilabel> function you can synchronize the files and directories. One panel could be an &FTP; server. Do not forget the <guilabel>Compare by content</guilabel> option if the file size stays equal. Choose <emphasis role=\"bold\"> <menuchoice> <guimenu>Commands</guimenu> <guimenuitem>Synchronize Directories</guimenuitem> </menuchoice> </emphasis>or <keycombo action=\"simul\">&Ctrl; <keycap>Y</keycap></keycombo> to start this feature. The <link linkend=\"konfig-color\">colors</link> are configurable. The synchronizer has it's own <link linkend=\"synchronizer_keybindings\">keybindings</link>."
-msgstr "La fonctionnalité compare deux dossiers avec tous les sous-dossiers et affiche la différence entre eux. Après avoir sélectionné des options et la fonctionnalité <guilabel>Comparer</guilabel>, vous pouvez synchroniser les fichiers et les dossiers. Un panneau peut être un serveur &FTP;. N'oubliez pas l'option <guilabel>Comparer par contenu</guilabel> si la taille du fichier reste égale. Choisissez <emphasis role=\"bold\"> <menuchoice> <guimenu>Outils</guimenu> <guimenuitem>Synchroniser les dossiers...</guimenuitem> </menuchoice> </emphasis>or <keycombo action=\"simul\">&Ctrl; <keycap>Y</keycap></keycombo> pour lancer cette fonctionnalité. Les <link linkend=\"konfig-color\">couleurs</link> sont configurables. Synchronizer a ses propres <link linkend=\"synchronizer_keybindings\">raccourcis clavier</link>."
+msgid ""
+"This function compares two directories with all subdirectories and shows the "
+"differences between them. After selecting some options and the "
+"<guilabel>Compare</guilabel> function you can synchronize the files and "
+"directories. One panel could be an &FTP; server. Do not forget the "
+"<guilabel>Compare by content</guilabel> option if the file size stays equal. "
+"Choose <emphasis role=\"bold\"> <menuchoice> <guimenu>Commands</guimenu> "
+"<guimenuitem>Synchronize Directories</guimenuitem> </menuchoice> </"
+"emphasis>or <keycombo action=\"simul\">&Ctrl; <keycap>Y</keycap></keycombo> "
+"to start this feature. The <link linkend=\"konfig-color\">colors</link> are "
+"configurable. The synchronizer has it's own <link linkend="
+"\"synchronizer_keybindings\">keybindings</link>."
+msgstr ""
+"La fonctionnalité compare deux dossiers avec tous les sous-dossiers et "
+"affiche la différence entre eux. Après avoir sélectionné des options et la "
+"fonctionnalité <guilabel>Comparer</guilabel>, vous pouvez synchroniser les "
+"fichiers et les dossiers. Un panneau peut être un serveur &FTP;. N'oubliez "
+"pas l'option <guilabel>Comparer par contenu</guilabel> si la taille du "
+"fichier reste égale. Choisissez <emphasis role=\"bold\"> <menuchoice> "
+"<guimenu>Outils</guimenu> <guimenuitem>Synchroniser les dossiers...</"
+"guimenuitem> </menuchoice> </emphasis>or <keycombo action=\"simul\">&Ctrl; "
+"<keycap>Y</keycap></keycombo> pour lancer cette fonctionnalité. Les <link "
+"linkend=\"konfig-color\">couleurs</link> sont configurables. Synchronizer a "
+"ses propres <link linkend=\"synchronizer_keybindings\">raccourcis clavier</"
+"link>."
 
 #. Tag: para
 #: synchronizer.docbook:29
 #, no-c-format
-msgid "For local files: The synchronizer changes the date information to the original dates."
-msgstr "Pour les fichiers locaux : Synchronizer modifie l'information de la date vers les dates originales."
+msgid ""
+"For local files: The synchronizer changes the date information to the "
+"original dates."
+msgstr ""
+"Pour les fichiers locaux : Synchronizer modifie l'information de la date "
+"vers les dates originales."
 
 #. Tag: phrase
 #: synchronizer.docbook:50
@@ -63,56 +90,112 @@ msgstr "Procédure : "
 #. Tag: para
 #: synchronizer.docbook:58
 #, no-c-format
-msgid "Set the <guilabel>Left directory</guilabel> and the <guilabel>Right directory</guilabel> that you want to compare."
-msgstr "Définissez le <guilabel>dossier de gauche</guilabel> et le <guilabel>dossier de droite</guilabel> que vous voulez comparer."
+msgid ""
+"Set the <guilabel>Left directory</guilabel> and the <guilabel>Right "
+"directory</guilabel> that you want to compare."
+msgstr ""
+"Définissez le <guilabel>dossier de gauche</guilabel> et le <guilabel>dossier "
+"de droite</guilabel> que vous voulez comparer."
 
 #. Tag: para
 #: synchronizer.docbook:63
 #, no-c-format
-msgid "Configure the optional <guilabel>File Filter</guilabel>, <guilabel>General Filters</guilabel> and <guilabel>Advanced filters</guilabel>. The <guilabel>General Filters</guilabel> includes a <guilabel>don't search in</guilabel> option which lets you exclude directories from comparision."
-msgstr "Configurez le <guilabel>filtre de fichiers</guilabel>, <guilabel>filtres généraux</guilabel> et <guilabel>filtres avancés</guilabel> optionnels. Les <guilabel>filtres généraux</guilabel> incluent une option <guilabel>ne pas rechercher dans</guilabel> qui vous permettent d'exclure des dossiers de la comparaison."
+msgid ""
+"Configure the optional <guilabel>File Filter</guilabel>, <guilabel>General "
+"Filters</guilabel> and <guilabel>Advanced filters</guilabel>. The "
+"<guilabel>General Filters</guilabel> includes a <guilabel>don't search in</"
+"guilabel> option which lets you exclude directories from comparision."
+msgstr ""
+"Configurez le <guilabel>filtre de fichiers</guilabel>, <guilabel>filtres "
+"généraux</guilabel> et <guilabel>filtres avancés</guilabel> optionnels. Les "
+"<guilabel>filtres généraux</guilabel> incluent une option <guilabel>ne pas "
+"rechercher dans</guilabel> qui vous permettent d'exclure des dossiers de la "
+"comparaison."
 
 #. Tag: para
 #: synchronizer.docbook:72
 #, no-c-format
-msgid "Set the <link linkend=\"synccomp_checkb_options\">Checkbox options</link>: <guilabel>Recurse subdirectories</guilabel>, <guilabel>Follow symlinks</guilabel>, <guilabel>Compare by content</guilabel>, <guilabel>Ignore Date</guilabel>, <guilabel>Asymmetric</guilabel>, <guilabel>Ignore Case</guilabel> and <guilabel>Hidden hidden files</guilabel>."
-msgstr "Définissez les <link linkend=\"synccomp_checkb_options\">options à cocher</link> : <guilabel>Sous-dossiers récursifs</guilabel>, <guilabel>Suivre les liens symboliques</guilabel>, <guilabel>Comparer par contenu</guilabel>, <guilabel>Ignorer la date</guilabel>, <guilabel>Asymétrique</guilabel>, <guilabel>Ignorer la casse</guilabel> et <guilabel>Cacher les fichiers cachés</guilabel>."
+msgid ""
+"Set the <link linkend=\"synccomp_checkb_options\">Checkbox options</link>: "
+"<guilabel>Recurse subdirectories</guilabel>, <guilabel>Follow symlinks</"
+"guilabel>, <guilabel>Compare by content</guilabel>, <guilabel>Ignore Date</"
+"guilabel>, <guilabel>Asymmetric</guilabel>, <guilabel>Ignore Case</guilabel> "
+"and <guilabel>Hidden hidden files</guilabel>."
+msgstr ""
+"Définissez les <link linkend=\"synccomp_checkb_options\">options à cocher</"
+"link> : <guilabel>Sous-dossiers récursifs</guilabel>, <guilabel>Suivre les "
+"liens symboliques</guilabel>, <guilabel>Comparer par contenu</guilabel>, "
+"<guilabel>Ignorer la date</guilabel>, <guilabel>Asymétrique</guilabel>, "
+"<guilabel>Ignorer la casse</guilabel> et <guilabel>Cacher les fichiers "
+"cachés</guilabel>."
 
 #. Tag: para
 #: synchronizer.docbook:85
 #, no-c-format
-msgid "Click on the <guibutton>Compare</guibutton> button to compare the directories."
-msgstr "Cliquez sur le bouton <guibutton>Comparer</guibutton> pour comparer des dossiers."
+msgid ""
+"Click on the <guibutton>Compare</guibutton> button to compare the "
+"directories."
+msgstr ""
+"Cliquez sur le bouton <guibutton>Comparer</guibutton> pour comparer des "
+"dossiers."
 
 #. Tag: para
 #: synchronizer.docbook:90
 #, no-c-format
-msgid "By using <link linkend=\"synccomp_show_options\">Show options</link>, you can include/exclude particular file types. The files that are not on the list will be untouched by synchronization."
-msgstr "En utilisant <link linkend=\"synccomp_show_options\">Afficher les options</link>, vous pouvez inclure et exclure des types de fichiers particuliers. Les fichiers qui ne sont pas sur la liste ne seront pas traités par la synchronisation."
+msgid ""
+"By using <link linkend=\"synccomp_show_options\">Show options</link>, you "
+"can include/exclude particular file types. The files that are not on the "
+"list will be untouched by synchronization."
+msgstr ""
+"En utilisant <link linkend=\"synccomp_show_options\">Afficher les options</"
+"link>, vous pouvez inclure et exclure des types de fichiers particuliers. "
+"Les fichiers qui ne sont pas sur la liste ne seront pas traités par la "
+"synchronisation."
 
 #. Tag: para
 #: synchronizer.docbook:97
 #, no-c-format
-msgid "If needed, you can change the <guilabel>Task</guilabel> operations determined by the Comparator with the <link linkend=\"synccomp_right-click\">right click menu</link>."
-msgstr "Si besoin, vous pouvez modifier les opérations de <guilabel>tâche</guilabel> déterminées par la comparaison avec le <link linkend=\"synccomp_right-click\">menu par clic-droit</link>."
+msgid ""
+"If needed, you can change the <guilabel>Task</guilabel> operations "
+"determined by the Comparator with the <link linkend=\"synccomp_right-click"
+"\">right click menu</link>."
+msgstr ""
+"Si besoin, vous pouvez modifier les opérations de <guilabel>tâche</guilabel> "
+"déterminées par la comparaison avec le <link linkend=\"synccomp_right-click"
+"\">menu par clic-droit</link>."
 
 #. Tag: para
 #: synchronizer.docbook:104
 #, no-c-format
-msgid "When you agree with the <guibutton>Compare</guibutton> results, click on the <guibutton>Synchronize</guibutton> button to show the synchronize dialog."
-msgstr "Quand vous êtes d'accord avec les résultats de comparaison cliquez sur le bouton <guibutton>Synchroniser</guibutton> pour afficher la boîte de dialogue de synchronisation."
+msgid ""
+"When you agree with the <guibutton>Compare</guibutton> results, click on the "
+"<guibutton>Synchronize</guibutton> button to show the synchronize dialog."
+msgstr ""
+"Quand vous êtes d'accord avec les résultats de comparaison cliquez sur le "
+"bouton <guibutton>Synchroniser</guibutton> pour afficher la boîte de "
+"dialogue de synchronisation."
 
 #. Tag: para
 #: synchronizer.docbook:110
 #, no-c-format
-msgid "After selecting the options of the <link linkend=\"synchronizer\">Synchronizer</link>, click on the <guibutton>Start</guibutton> button to start the synchronization process."
-msgstr "Après avoir sélectionné les options de synchronisation, cliquez sur le bouton <guibutton>Démarrer</guibutton> pour lancer le processus de synchronisation."
+msgid ""
+"After selecting the options of the <link linkend=\"synchronizer"
+"\">Synchronizer</link>, click on the <guibutton>Start</guibutton> button to "
+"start the synchronization process."
+msgstr ""
+"Après avoir sélectionné les options de synchronisation, cliquez sur le "
+"bouton <guibutton>Démarrer</guibutton> pour lancer le processus de "
+"synchronisation."
 
 #. Tag: para
 #: synchronizer.docbook:116
 #, no-c-format
-msgid "A detailed explanation of all the functions and buttons is described in the following text."
-msgstr "Une explication détaillée de toutes les fonctionnalités et boutons est décrite dans le texte suivant."
+msgid ""
+"A detailed explanation of all the functions and buttons is described in the "
+"following text."
+msgstr ""
+"Une explication détaillée de toutes les fonctionnalités et boutons est "
+"décrite dans le texte suivant."
 
 #. Tag: title
 #: synchronizer.docbook:122
@@ -130,25 +213,49 @@ msgstr "Éléments du panneau"
 #: synchronizer.docbook:130
 #, no-c-format
 msgid "<guilabel>Left Directory</guilabel>: The left side base directory."
-msgstr "<guilabel>Dossier gauche</guilabel> : le dossier situé sur la gauche de la fenêtre."
+msgstr ""
+"<guilabel>Dossier gauche</guilabel> : le dossier situé sur la gauche de la "
+"fenêtre."
 
 #. Tag: para
 #: synchronizer.docbook:135
 #, no-c-format
 msgid "<guilabel>Right Directory</guilabel>: The right side base directory."
-msgstr "<guilabel>Dossier droite</guilabel> : le dossier situé sur la droite de la fenêtre."
+msgstr ""
+"<guilabel>Dossier droite</guilabel> : le dossier situé sur la droite de la "
+"fenêtre."
 
 #. Tag: para
 #: synchronizer.docbook:140
-#, no-c-format
-msgid "<guilabel>File Filter</guilabel>: Filters the filenames at synchronizing. &eg; <literal role=\"extension\">*.png</literal> selects only files the names of which end with <literal role=\"extension\">.png</literal> Directories are listed if the directory name ends with <literal role=\"extension\">.png</literal> or if the directory contains files which end with <literal role=\"extension\">.png</literal> Multiple include/exclude example: <literal role=\"extension\">'*.cpp *.h | *.moc.cpp'</literal>includes <literal role=\"extension\">*.cpp *.h</literal> and exclude <literal role=\"extension\">*.moc.cpp</literal>"
-msgstr "<guilabel>Filtre fichier/guilabel> : filtre les noms de fichiers à la synchronisation &pex; <literal role=\"extension\">*.png</literal> sélectionne seulement les fichiers dont les noms se terminent par <literal role=\"extension\">.png</literal>. Les dossiers sont listés si le nom de dossier se termine par <literal role=\"extension\">.png</literal> ou si le dossier contient des fichiers qui se terminent par <literal role=\"extension\">.png</literal>. Des exemples pour inclure et exclure : <literal role=\"extension\">'*.cpp *.h | *.moc.cpp'</literal>inclut <literal role=\"extension\">*.cpp *.h</literal> et exclut <literal role=\"extension\">*.moc.cpp</literal>"
+#, fuzzy, no-c-format
+msgid ""
+"<guilabel>File Filter</guilabel>: Filters the filenames at synchronizing. e."
+"g. <literal role=\"extension\">*.png</literal> selects only files the names "
+"of which end with <literal role=\"extension\">.png</literal> Directories are "
+"listed if the directory name ends with <literal role=\"extension\">.png</"
+"literal> or if the directory contains files which end with <literal role="
+"\"extension\">.png</literal> Multiple include/exclude example: <literal role="
+"\"extension\">'*.cpp *.h | *.moc.cpp'</literal>includes <literal role="
+"\"extension\">*.cpp *.h</literal> and exclude <literal role=\"extension\">*."
+"moc.cpp</literal>"
+msgstr ""
+"<guilabel>Filtre fichier/guilabel> : filtre les noms de fichiers à la "
+"synchronisation &pex; <literal role=\"extension\">*.png</literal> "
+"sélectionne seulement les fichiers dont les noms se terminent par <literal "
+"role=\"extension\">.png</literal>. Les dossiers sont listés si le nom de "
+"dossier se termine par <literal role=\"extension\">.png</literal> ou si le "
+"dossier contient des fichiers qui se terminent par <literal role=\"extension"
+"\">.png</literal>. Des exemples pour inclure et exclure : <literal role="
+"\"extension\">'*.cpp *.h | *.moc.cpp'</literal>inclut <literal role="
+"\"extension\">*.cpp *.h</literal> et exclut <literal role=\"extension\">*."
+"moc.cpp</literal>"
 
 #. Tag: para
 #: synchronizer.docbook:158
 #, no-c-format
 msgid "<guilabel>General filters</guilabel>: Search for, containing text"
-msgstr "<guilabel>Filtres généraux</guilabel> : rechercher, contenant le texte."
+msgstr ""
+"<guilabel>Filtres généraux</guilabel> : rechercher, contenant le texte."
 
 #. Tag: para
 #: synchronizer.docbook:163
@@ -165,26 +272,52 @@ msgstr "Critère de filtrage de nom de fichiers"
 #. Tag: para
 #: synchronizer.docbook:177
 #, no-c-format
-msgid "You can make use of wild cards. Multiple patterns are separated by space (means logical OR) and patterns are excluded from the search using the pipe symbol. If the pattern is ended with a slash (*pattern*/), it means that pattern relates to recursive search of directories."
-msgstr "Vous pouvez utiliser des caractères génériques. les patterns sont séparés par un espace (qui signifie logiquement « OU ») et sont exclus de la recherche en utilisant le symbole pipe (|). Si le pattern se termine par un slash (*pattern*/), cela signifie que le pattern se rapporte à une recherche récursives de dossiers."
+msgid ""
+"You can make use of wild cards. Multiple patterns are separated by space "
+"(means logical OR) and patterns are excluded from the search using the pipe "
+"symbol. If the pattern is ended with a slash (*pattern*/), it means that "
+"pattern relates to recursive search of directories."
+msgstr ""
+"Vous pouvez utiliser des caractères génériques. les patterns sont séparés "
+"par un espace (qui signifie logiquement « OU ») et sont exclus de la "
+"recherche en utilisant le symbole pipe (|). Si le pattern se termine par un "
+"slash (*pattern*/), cela signifie que le pattern se rapporte à une recherche "
+"récursives de dossiers."
 
 #. Tag: para
 #: synchronizer.docbook:185
 #, no-c-format
-msgid "pattern - means to search those files/directories whose name is a pattern, recursive search goes through all subdirectories independently of the value of the pattern."
-msgstr "Pattern signifie rechercher les fichiers et dossiers qui ont comme nom « un pattern », la recherche récursive analyse tous les sous-dossiers indépendamment de la valeur du pattern."
+msgid ""
+"pattern - means to search those files/directories whose name is a pattern, "
+"recursive search goes through all subdirectories independently of the value "
+"of the pattern."
+msgstr ""
+"Pattern signifie rechercher les fichiers et dossiers qui ont comme nom « un "
+"pattern », la recherche récursive analyse tous les sous-dossiers "
+"indépendamment de la valeur du pattern."
 
 #. Tag: para
 #: synchronizer.docbook:191
 #, no-c-format
-msgid "pattern/ - means to search all files/directories, but recursive search goes through/excludes the directories whose name is a pattern."
-msgstr "pattern/ signifie rechercher tous les fichiers et dossiers, mais la recherche récursive se fait / exclut les dossiers qui ont comme nom un pattern."
+msgid ""
+"pattern/ - means to search all files/directories, but recursive search goes "
+"through/excludes the directories whose name is a pattern."
+msgstr ""
+"pattern/ signifie rechercher tous les fichiers et dossiers, mais la "
+"recherche récursive se fait / exclut les dossiers qui ont comme nom un "
+"pattern."
 
 #. Tag: para
 #: synchronizer.docbook:196
 #, no-c-format
-msgid "You can use quotation marks for names that contain spaces. Filter \"Program Files\" searches out those files/directories the name of which is <filename>Program Files</filename>."
-msgstr "Vous pouvez utiliser les guillemets pour les noms qui contiennent des espaces. Le filtre « Program Files » recherche dans les fichiers / dossiers le nom qui est <filename>Program Files</filename>."
+msgid ""
+"You can use quotation marks for names that contain spaces. Filter \"Program "
+"Files\" searches out those files/directories the name of which is "
+"<filename>Program Files</filename>."
+msgstr ""
+"Vous pouvez utiliser les guillemets pour les noms qui contiennent des "
+"espaces. Le filtre « Program Files » recherche dans les fichiers / dossiers "
+"le nom qui est <filename>Program Files</filename>."
 
 #. Tag: para
 #: synchronizer.docbook:202
@@ -231,56 +364,137 @@ msgstr "Options des cases à cocher"
 #. Tag: para
 #: synchronizer.docbook:237
 #, no-c-format
-msgid "<guilabel>Recurse subdirectories</guilabel>: The Synchronizer walks through subdirectories when comparing."
-msgstr "<guilabel>Inclure les sous-dossiers</guilabel> : Synchronizer analyse les sous-dossiers à la comparaison."
+msgid ""
+"<guilabel>Recurse subdirectories</guilabel>: The Synchronizer walks through "
+"subdirectories when comparing."
+msgstr ""
+"<guilabel>Inclure les sous-dossiers</guilabel> : Synchronizer analyse les "
+"sous-dossiers à la comparaison."
 
 #. Tag: para
 #: synchronizer.docbook:243
 #, no-c-format
-msgid "<guilabel>Follow symlinks</guilabel>: The Synchronizer follows the symbolic links to directories (not the files!)."
-msgstr "<guilabel>Suivre les liens symboliques</guilabel> : Synchronizer suit les liens symboliques des dossiers (non des fichiers !)."
+msgid ""
+"<guilabel>Follow symlinks</guilabel>: The Synchronizer follows the symbolic "
+"links to directories (not the files!)."
+msgstr ""
+"<guilabel>Suivre les liens symboliques</guilabel> : Synchronizer suit les "
+"liens symboliques des dossiers (non des fichiers !)."
 
 #. Tag: para
 #: synchronizer.docbook:249
 #, no-c-format
-msgid "<guilabel>Compare by content</guilabel>: The files the sizes of which are equal will be compared by content as well."
-msgstr "<guilabel>Comparer par contenu</guilabel> : la taille des fichiers qui sont de même valeur seront comparés par contenu."
+msgid ""
+"<guilabel>Compare by content</guilabel>: The files the sizes of which are "
+"equal will be compared by content as well."
+msgstr ""
+"<guilabel>Comparer par contenu</guilabel> : la taille des fichiers qui sont "
+"de même valeur seront comparés par contenu."
 
 #. Tag: para
 #: synchronizer.docbook:255
 #, no-c-format
-msgid "<guilabel>Ignore Date</guilabel>: Ignores the date information (useful for &FTP;, smb, archive, ... ) the date information is relevant *only* in the local file system."
-msgstr "<guilabel>Ignorer la date</guilabel> : ignorer la date (utile pour les &FTP;, smb, archive...). La date est utile *seulement* dans un système de fichiers local."
+msgid ""
+"<guilabel>Ignore Date</guilabel>: Ignores the date information (useful for "
+"&FTP;, smb, archive, ... ) the date information is relevant *only* in the "
+"local file system."
+msgstr ""
+"<guilabel>Ignorer la date</guilabel> : ignorer la date (utile pour les "
+"&FTP;, smb, archive...). La date est utile *seulement* dans un système de "
+"fichiers local."
 
 #. Tag: para
 #: synchronizer.docbook:262
-#, no-c-format
-msgid "<guilabel>Asymmetric</guilabel>: The <guilabel>Left Directory</guilabel> is the target directory, the <guilabel>Right Directory</guilabel> is the source directory. This functions synchronizes the content of the left directory to the right directory. <itemizedlist> <listitem> <para>The files that exist only on the left side will be deleted.</para> </listitem> <listitem> <para>The files that exist only on the right side will be copied to left.</para> </listitem> <listitem> <para>The files considered to be equal will be untouched.</para> </listitem> <listitem> <para>Those files considered to be different will be copied to left. Use this feature with care!</para> </listitem> </itemizedlist>This function is useful if the date information is unusable, or to synchronize the left directory to the content of a file server (like a download). Alternatively, it is useful to make a backup from the right directory to the left directory. NOTE: Do NOT use this option to synchronize a desktop and a notebook (&eg; files that exist only on the left side will be deleted!)."
-msgstr "<guilabel>Asymétrique</guilabel> : le <guilabel>dossier gauche</guilabel> est le dossier cible, le <guilabel>dossier droite</guilabel> est le dossier source. Ces fonctionnalités synchronisent le contenu du dossier de gauche au dossier de droite. <itemizedlist> <listitem> <para>Les fichiers qui existent seulement sur le coté gauche seront supprimés.</para> </listitem> <listitem> <para>Les fichiers qui existent seulement sur le coté droit seront copiés vers le coté gauche.</para> </listitem> <listitem> <para>Les fichiers considérés comme identiques restent non modifiés.</para> </listitem> <listitem> <para>Ces fichiers considérés comme différents seront copiés vers le coté gauche. Utilisez cette fonctionnalité avec précaution !</para> </listitem> </itemizedlist>Cette fonctionnalité est utile si la date du dossier de droite est inutilisable, ou pour synchroniser le dossier de gauche au contenu du serveur de fichiers (comme un téléchargement). Autrement, il est utile de faire une sauvegarde depuis le dossier de droite vers le dossier de gauche. REMARQUE : n'utilisez PAS cette option pour synchroniser un bureau et un notebook (&pex; les fichiers qui existent seulement sur le coté gauche seront supprimés !)."
+#, fuzzy, no-c-format
+msgid ""
+"<guilabel>Asymmetric</guilabel>: The <guilabel>Left Directory</guilabel> is "
+"the target directory, the <guilabel>Right Directory</guilabel> is the source "
+"directory. This functions synchronizes the content of the left directory to "
+"the right directory. <itemizedlist> <listitem> <para>The files that exist "
+"only on the left side will be deleted.</para> </listitem> <listitem> "
+"<para>The files that exist only on the right side will be copied to left.</"
+"para> </listitem> <listitem> <para>The files considered to be equal will be "
+"untouched.</para> </listitem> <listitem> <para>Those files considered to be "
+"different will be copied to left. Use this feature with care!</para> </"
+"listitem> </itemizedlist>This function is useful if the date information is "
+"unusable, or to synchronize the left directory to the content of a file "
+"server (like a download). Alternatively, it is useful to make a backup from "
+"the right directory to the left directory. NOTE: Do NOT use this option to "
+"synchronize a desktop and a notebook (e.g. files that exist only on the left "
+"side will be deleted!)."
+msgstr ""
+"<guilabel>Asymétrique</guilabel> : le <guilabel>dossier gauche</guilabel> "
+"est le dossier cible, le <guilabel>dossier droite</guilabel> est le dossier "
+"source. Ces fonctionnalités synchronisent le contenu du dossier de gauche au "
+"dossier de droite. <itemizedlist> <listitem> <para>Les fichiers qui existent "
+"seulement sur le coté gauche seront supprimés.</para> </listitem> <listitem> "
+"<para>Les fichiers qui existent seulement sur le coté droit seront copiés "
+"vers le coté gauche.</para> </listitem> <listitem> <para>Les fichiers "
+"considérés comme identiques restent non modifiés.</para> </listitem> "
+"<listitem> <para>Ces fichiers considérés comme différents seront copiés vers "
+"le coté gauche. Utilisez cette fonctionnalité avec précaution !</para> </"
+"listitem> </itemizedlist>Cette fonctionnalité est utile si la date du "
+"dossier de droite est inutilisable, ou pour synchroniser le dossier de "
+"gauche au contenu du serveur de fichiers (comme un téléchargement). "
+"Autrement, il est utile de faire une sauvegarde depuis le dossier de droite "
+"vers le dossier de gauche. REMARQUE : n'utilisez PAS cette option pour "
+"synchroniser un bureau et un notebook (&pex; les fichiers qui existent "
+"seulement sur le coté gauche seront supprimés !)."
 
 #. Tag: para
 #: synchronizer.docbook:297
 #, no-c-format
-msgid "<guilabel>Automatic Scrolling</guilabel>: This is for slow &FTP; servers, ... When the Synchronizer has finished comparing a file, it puts the file into the end of the list at once and scrolls the window, if necessary. It is important, if you want to know what the Synchronizer is doing. If the &FTP; server is slow, the comparison of a directory may take a lot of time. By turning this option on, you can see that the comparator is \"alive\", but slow. For fast file systems, it can reduce the speed of comparing slightly."
-msgstr "<guilabel>Scrolling automatique</guilabel> : pour les serveurs FTP lents. Quand la synchronisation a terminé la comparaison d'un fichier, il met aussitôt  le fichier à la fin de la liste et fait défiler la fenêtre, si nécessaire. C'est important, si vous voulez savoir ce que la synchronisation est en train de faire. Si le server FTP est lent, la comparaison du dossier peut prendre plus de temps. En activant cette option, vous pouvez voir que la comparaison est en vie, mais lente. Pour les systèmes de fichiers rapides, cela peut réduire légèrement la vitesse de comparaison."
+msgid ""
+"<guilabel>Automatic Scrolling</guilabel>: This is for slow &FTP; "
+"servers, ... When the Synchronizer has finished comparing a file, it puts "
+"the file into the end of the list at once and scrolls the window, if "
+"necessary. It is important, if you want to know what the Synchronizer is "
+"doing. If the &FTP; server is slow, the comparison of a directory may take a "
+"lot of time. By turning this option on, you can see that the comparator is "
+"\"alive\", but slow. For fast file systems, it can reduce the speed of "
+"comparing slightly."
+msgstr ""
+"<guilabel>Scrolling automatique</guilabel> : pour les serveurs FTP lents. "
+"Quand la synchronisation a terminé la comparaison d'un fichier, il met "
+"aussitôt  le fichier à la fin de la liste et fait défiler la fenêtre, si "
+"nécessaire. C'est important, si vous voulez savoir ce que la synchronisation "
+"est en train de faire. Si le server FTP est lent, la comparaison du dossier "
+"peut prendre plus de temps. En activant cette option, vous pouvez voir que "
+"la comparaison est en vie, mais lente. Pour les systèmes de fichiers "
+"rapides, cela peut réduire légèrement la vitesse de comparaison."
 
 #. Tag: para
 #: synchronizer.docbook:311
 #, no-c-format
-msgid "<guilabel>Ignore Case</guilabel>: Case insensitive filename compare, this is useful when synchronizing &Windows; filesystems."
-msgstr "<guilabel>Ignorer la casse</guilabel> : comparaison de noms de fichiers en majuscule / minuscule. C'est utile pour la synchronisation des systèmes de fichiers &Windows;"
+msgid ""
+"<guilabel>Ignore Case</guilabel>: Case insensitive filename compare, this is "
+"useful when synchronizing &Windows; filesystems."
+msgstr ""
+"<guilabel>Ignorer la casse</guilabel> : comparaison de noms de fichiers en "
+"majuscule / minuscule. C'est utile pour la synchronisation des systèmes de "
+"fichiers &Windows;"
 
 #. Tag: para
 #: synchronizer.docbook:316
 #, no-c-format
-msgid "<guilabel>Ignore hidden files</guilabel>: Ignores files that start with a dot."
-msgstr "<guilabel>Ignorer les fichiers cachés</guilabel> : ignorer les fichiers qui commencent avec un point."
+msgid ""
+"<guilabel>Ignore hidden files</guilabel>: Ignores files that start with a "
+"dot."
+msgstr ""
+"<guilabel>Ignorer les fichiers cachés</guilabel> : ignorer les fichiers qui "
+"commencent avec un point."
 
 #. Tag: para
 #: synchronizer.docbook:323
 #, no-c-format
-msgid "When everything mentioned above is done, click on the <guibutton>Compare</guibutton> button to compare the directories, the results are displayed in the <guilabel>File List</guilabel>."
-msgstr "Quand tout ce qui est mentionné ci-dessus est fait, cliquez sur le bouton <guibutton>Comparer</guibutton> pour comparer les dossiers, les résultats sont affichés dans la <guilabel>liste de fichiers</guilabel>."
+msgid ""
+"When everything mentioned above is done, click on the <guibutton>Compare</"
+"guibutton> button to compare the directories, the results are displayed in "
+"the <guilabel>File List</guilabel>."
+msgstr ""
+"Quand tout ce qui est mentionné ci-dessus est fait, cliquez sur le bouton "
+"<guibutton>Comparer</guibutton> pour comparer les dossiers, les résultats "
+"sont affichés dans la <guilabel>liste de fichiers</guilabel>."
 
 #. Tag: term
 #: synchronizer.docbook:328
@@ -291,8 +505,43 @@ msgstr "Liste de fichiers"
 #. Tag: para
 #: synchronizer.docbook:330
 #, no-c-format
-msgid "The <guilabel>File List</guilabel> has the following columns: \"Left name | Left size | Left time | Task | Right time | Right size | Right name\". Here you can check the compare results and modify the synchronisation actions if desired. The text color defines the default copy direction determined by the comparator. <itemizedlist> <listitem> <para>Green: Copy from left to right.</para> </listitem> <listitem> <para>Blue: Copy from right to left or delete on the right side in asymmetric mode.</para> </listitem> <listitem> <para>Red: Files which are different by the given criteria (no copy direction).</para> </listitem> <listitem> <para>Black: Files which are identical (no copy direction).</para> </listitem> </itemizedlist> A double click on a file calls the &krusader;s <guilabel>Compare by content</guilabel> function. The Tasks (&lt;=&gt;) column defines the default copy direction, which can be modified by the user if needed. The results window supports dragging items to other windows ( drag [left], SHIFT+drag [right] ) and copy left/right selected items to clipboard (<keycombo action=\"simul\">&Ctrl;<keycap>c</keycap></keycombo>)."
-msgstr "La <guilabel>liste de fichiers</guilabel> possède les colonnes suivantes : « Nom de gauche | Taille de gauche | Date de gauche | Tâche | Date de droite | Taille de droite | Nom de droite ». Vous pouvez vérifier ici les résultats de comparaison et modifier les actions de synchronisation si désiré. La couleur du texte définit la direction de copie par défaut déterminé par la comparaison.<itemizedlist> <listitem> <para>Vert : copier de la gauche vers la droite.</para> </listitem> <listitem> <para>Bleu : copier de la droite vers la gauche ou supprimer sur le coté droit dans le mode asymétrique.</para> </listitem> <listitem> <para>Rouge : les fichiers qui sont différents par le critère donné (pas de direction de copie).</para> </listitem> <listitem> <para>Noir : les fichiers qui sont identiques (pas de direction de copie).</para> </listitem> </itemizedlist>Un double-clic sur un fichier appelle la fonctionnalité <guilabel>Comparer par contenu</guilabel>. La colonne des tâches (&lt;=&gt;) définit la direction de copie par défaut, qui peut être modifié par l'utilisateur si besoin. La fenêtre de résultats gère les éléments glissés vers d'autres fenêtres (glisser [gauche], &MAJ; + glisser [droite]) et copie les éléments sélectionnés de la gauche / droite vers le presse-papiers(<keycombo action=\"simul\">&Ctrl;<keycap>c</keycap></keycombo>)."
+msgid ""
+"The <guilabel>File List</guilabel> has the following columns: \"Left name | "
+"Left size | Left time | Task | Right time | Right size | Right name\". Here "
+"you can check the compare results and modify the synchronisation actions if "
+"desired. The text color defines the default copy direction determined by the "
+"comparator. <itemizedlist> <listitem> <para>Green: Copy from left to right.</"
+"para> </listitem> <listitem> <para>Blue: Copy from right to left or delete "
+"on the right side in asymmetric mode.</para> </listitem> <listitem> "
+"<para>Red: Files which are different by the given criteria (no copy "
+"direction).</para> </listitem> <listitem> <para>Black: Files which are "
+"identical (no copy direction).</para> </listitem> </itemizedlist> A double "
+"click on a file calls the &krusader;s <guilabel>Compare by content</"
+"guilabel> function. The Tasks (&lt;=&gt;) column defines the default copy "
+"direction, which can be modified by the user if needed. The results window "
+"supports dragging items to other windows ( drag [left], SHIFT+drag [right] ) "
+"and copy left/right selected items to clipboard (<keycombo action=\"simul"
+"\">&Ctrl;<keycap>c</keycap></keycombo>)."
+msgstr ""
+"La <guilabel>liste de fichiers</guilabel> possède les colonnes suivantes : "
+"« Nom de gauche | Taille de gauche | Date de gauche | Tâche | Date de droite "
+"| Taille de droite | Nom de droite ». Vous pouvez vérifier ici les résultats "
+"de comparaison et modifier les actions de synchronisation si désiré. La "
+"couleur du texte définit la direction de copie par défaut déterminé par la "
+"comparaison.<itemizedlist> <listitem> <para>Vert : copier de la gauche vers "
+"la droite.</para> </listitem> <listitem> <para>Bleu : copier de la droite "
+"vers la gauche ou supprimer sur le coté droit dans le mode asymétrique.</"
+"para> </listitem> <listitem> <para>Rouge : les fichiers qui sont différents "
+"par le critère donné (pas de direction de copie).</para> </listitem> "
+"<listitem> <para>Noir : les fichiers qui sont identiques (pas de direction "
+"de copie).</para> </listitem> </itemizedlist>Un double-clic sur un fichier "
+"appelle la fonctionnalité <guilabel>Comparer par contenu</guilabel>. La "
+"colonne des tâches (&lt;=&gt;) définit la direction de copie par défaut, qui "
+"peut être modifié par l'utilisateur si besoin. La fenêtre de résultats gère "
+"les éléments glissés vers d'autres fenêtres (glisser [gauche], &MAJ; + "
+"glisser [droite]) et copie les éléments sélectionnés de la gauche / droite "
+"vers le presse-papiers(<keycombo action=\"simul\">&Ctrl;<keycap>c</keycap></"
+"keycombo>)."
 
 #. Tag: term
 #: synchronizer.docbook:358
@@ -303,38 +552,58 @@ msgstr "<guilabel>Liste de fichiers</guilabel> : Colonne de tâche (&lt;=&gt;)"
 #. Tag: para
 #: synchronizer.docbook:360
 #, no-c-format
-msgid "This column displays the task that is planned for the Synchronizer, this task can be modified with the <link linkend=\"synccomp_right-click\">right click menu</link>."
-msgstr "Cette colonne affiche la tâche qui est planifiée pour la synchronisation, cette tâche peut être modifiée avec le <link linkend=\"synccomp_right-click\">menu par clic-droit</link>."
+msgid ""
+"This column displays the task that is planned for the Synchronizer, this "
+"task can be modified with the <link linkend=\"synccomp_right-click\">right "
+"click menu</link>."
+msgstr ""
+"Cette colonne affiche la tâche qui est planifiée pour la synchronisation, "
+"cette tâche peut être modifiée avec le <link linkend=\"synccomp_right-click"
+"\">menu par clic-droit</link>."
 
 #. Tag: para
 #: synchronizer.docbook:365
 #, no-c-format
-msgid "<guibutton>-&gt;</guibutton>: Copy from the left side to the right side. For directories: <command>mkdir</command> in the right side."
-msgstr "<guibutton>-&gt;</guibutton> : copier du coté gauche vers le coté droit. Pour les dossiers : <command>mkdir</command> dans le coté droit."
+msgid ""
+"<guibutton>-&gt;</guibutton>: Copy from the left side to the right side. For "
+"directories: <command>mkdir</command> in the right side."
+msgstr ""
+"<guibutton>-&gt;</guibutton> : copier du coté gauche vers le coté droit. "
+"Pour les dossiers : <command>mkdir</command> dans le coté droit."
 
 #. Tag: para
 #: synchronizer.docbook:371
 #, no-c-format
 msgid "<guibutton>=</guibutton>: The files are the same, do not do anything."
-msgstr "<guibutton>=</guibutton> : les fichiers sont identiques, ne rien faire."
+msgstr ""
+"<guibutton>=</guibutton> : les fichiers sont identiques, ne rien faire."
 
 #. Tag: para
 #: synchronizer.docbook:376
 #, no-c-format
-msgid "<guibutton>!=</guibutton>: The file is excluded, or the Synchronizer does not know what to do."
-msgstr "<guibutton>!=</guibutton> : le fichier est exclu, ou la synchronisation ne sait pas quoi faire."
+msgid ""
+"<guibutton>!=</guibutton>: The file is excluded, or the Synchronizer does "
+"not know what to do."
+msgstr ""
+"<guibutton>!=</guibutton> : le fichier est exclu, ou la synchronisation ne "
+"sait pas quoi faire."
 
 #. Tag: para
 #: synchronizer.docbook:381
 #, no-c-format
-msgid "<guibutton>&lt;-</guibutton>: copy from the right side to the left side. For directories: <command>mkdir</command> in the left side"
-msgstr "<guibutton>&lt;-</guibutton> : copier du coté droit vers le coté gauche. Pour les dossiers : <command>mkdir</command> dans le coté gauche."
+msgid ""
+"<guibutton>&lt;-</guibutton>: copy from the right side to the left side. For "
+"directories: <command>mkdir</command> in the left side"
+msgstr ""
+"<guibutton>&lt;-</guibutton> : copier du coté droit vers le coté gauche. "
+"Pour les dossiers : <command>mkdir</command> dans le coté gauche."
 
 #. Tag: para
 #: synchronizer.docbook:387
 #, no-c-format
 msgid "<guibutton>DEL</guibutton>: delete files from the right side."
-msgstr "<guibutton>SUPPR</guibutton> : supprimer les fichiers depuis le coté droit."
+msgstr ""
+"<guibutton>SUPPR</guibutton> : supprimer les fichiers depuis le coté droit."
 
 #. Tag: term
 #: synchronizer.docbook:395
@@ -345,50 +614,81 @@ msgstr "Afficher les options"
 #. Tag: para
 #: synchronizer.docbook:397
 #, no-c-format
-msgid "Here you can include/exclude particular file types. Those files, that are not in the list, will be untouched at synchronization."
-msgstr "Vous pouvez inclure et exclure ici des types de fichiers particuliers. Ces fichiers, qui ne sont pas dans la liste, seront non modifiés à la synchronisation."
+msgid ""
+"Here you can include/exclude particular file types. Those files, that are "
+"not in the list, will be untouched at synchronization."
+msgstr ""
+"Vous pouvez inclure et exclure ici des types de fichiers particuliers. Ces "
+"fichiers, qui ne sont pas dans la liste, seront non modifiés à la "
+"synchronisation."
 
 #. Tag: para
 #: synchronizer.docbook:402
 #, no-c-format
-msgid "<guibutton>-&gt;</guibutton>: Enable/Disable the copy task from left to right."
-msgstr "<guibutton>-&gt;</guibutton> : activer et désactiver la tâche de copie de gauche à droite."
+msgid ""
+"<guibutton>-&gt;</guibutton>: Enable/Disable the copy task from left to "
+"right."
+msgstr ""
+"<guibutton>-&gt;</guibutton> : activer et désactiver la tâche de copie de "
+"gauche à droite."
 
 #. Tag: para
 #: synchronizer.docbook:407
 #, no-c-format
 msgid "<guibutton>=</guibutton>: Enable/Disable listing the equal files."
-msgstr "<guibutton>=</guibutton> : activer et désactiver le listage des fichiers identiques."
+msgstr ""
+"<guibutton>=</guibutton> : activer et désactiver le listage des fichiers "
+"identiques."
 
 #. Tag: para
 #: synchronizer.docbook:412
 #, no-c-format
-msgid "<guibutton>!=</guibutton>: Enable/Disable listing the excluded / \"don't know what to do\" files."
-msgstr "<guibutton>!=</guibutton> : activer et désactiver le listage des fichiers exclus / « ne sait pas quoi faire »."
+msgid ""
+"<guibutton>!=</guibutton>: Enable/Disable listing the excluded / \"don't "
+"know what to do\" files."
+msgstr ""
+"<guibutton>!=</guibutton> : activer et désactiver le listage des fichiers "
+"exclus / « ne sait pas quoi faire »."
 
 #. Tag: para
 #: synchronizer.docbook:417
 #, no-c-format
-msgid "<guibutton>&lt;-</guibutton>: Enable/Disable the copy task from right to left."
-msgstr "<guibutton>&lt;-</guibutton> : activer et désactiver la tâche de copie de droite à gauche."
+msgid ""
+"<guibutton>&lt;-</guibutton>: Enable/Disable the copy task from right to "
+"left."
+msgstr ""
+"<guibutton>&lt;-</guibutton> : activer et désactiver la tâche de copie de "
+"droite à gauche."
 
 #. Tag: para
 #: synchronizer.docbook:422
 #, no-c-format
-msgid "<guibutton>Trash</guibutton>: Enable/Disable the file deleting from the left side task."
-msgstr "<guibutton>Corbeille</guibutton> : activer et désactiver le fichier supprimé depuis la tâche du coté gauche."
+msgid ""
+"<guibutton>Trash</guibutton>: Enable/Disable the file deleting from the left "
+"side task."
+msgstr ""
+"<guibutton>Corbeille</guibutton> : activer et désactiver le fichier supprimé "
+"depuis la tâche du coté gauche."
 
 #. Tag: para
 #: synchronizer.docbook:427
 #, no-c-format
-msgid "<guibutton>Duplicates</guibutton>: Enable/Disable those files that exist on both sides."
-msgstr "<guibutton>Dupliqués</guibutton> : active et désactive ces fichiers qui existent sur les deux cotés."
+msgid ""
+"<guibutton>Duplicates</guibutton>: Enable/Disable those files that exist on "
+"both sides."
+msgstr ""
+"<guibutton>Dupliqués</guibutton> : active et désactive ces fichiers qui "
+"existent sur les deux cotés."
 
 #. Tag: para
 #: synchronizer.docbook:432
 #, no-c-format
-msgid "<guibutton>Singles</guibutton>: Enable/Disable those files that exist only on one side."
-msgstr "<guibutton>Simples</guibutton> : active et désactive ces fichiers qui n'existe que sur un coté."
+msgid ""
+"<guibutton>Singles</guibutton>: Enable/Disable those files that exist only "
+"on one side."
+msgstr ""
+"<guibutton>Simples</guibutton> : active et désactive ces fichiers qui "
+"n'existe que sur un coté."
 
 #. Tag: term
 #: synchronizer.docbook:440 synchronizer.docbook:679
@@ -399,8 +699,12 @@ msgstr "Boutons d'actions"
 #. Tag: para
 #: synchronizer.docbook:444
 #, no-c-format
-msgid "<guibutton>Compare</guibutton>: Compares the directories, the results are displayed on the <guilabel>File List</guilabel>."
-msgstr "<guibutton>Comparer</guibutton> : compare les dossiers, les résultats sont affichés sur la <guilabel>liste de fichiers</guilabel>."
+msgid ""
+"<guibutton>Compare</guibutton>: Compares the directories, the results are "
+"displayed on the <guilabel>File List</guilabel>."
+msgstr ""
+"<guibutton>Comparer</guibutton> : compare les dossiers, les résultats sont "
+"affichés sur la <guilabel>liste de fichiers</guilabel>."
 
 #. Tag: para
 #: synchronizer.docbook:450
@@ -412,7 +716,9 @@ msgstr "<guibutton>Arrêter</guibutton> : terminer la comparaison."
 #: synchronizer.docbook:454
 #, no-c-format
 msgid "<guibutton>Synchronize</guibutton>: Shows the synchronize dialog."
-msgstr "<guibutton>Synchroniser</guibutton> : affiche la boîte de dialogue de synchronisation."
+msgstr ""
+"<guibutton>Synchroniser</guibutton> : affiche la boîte de dialogue de "
+"synchronisation."
 
 #. Tag: para
 #: synchronizer.docbook:459
@@ -436,7 +742,9 @@ msgstr "Le nombre de dossiers scannés pendant la comparaison."
 #: synchronizer.docbook:475
 #, no-c-format
 msgid "The filename when comparing by content (for big files)."
-msgstr "Le nom de fichier lors de la comparaison par contenu (pour les gros fichiers)."
+msgstr ""
+"Le nom de fichier lors de la comparaison par contenu (pour les gros "
+"fichiers)."
 
 #. Tag: para
 #: synchronizer.docbook:479
@@ -459,50 +767,79 @@ msgstr "Le menu par clic-droit est divisé en trois sections : "
 #. Tag: para
 #: synchronizer.docbook:490
 #, no-c-format
-msgid "1. change the <guilabel>Task</guilabel> operations determined by the Comparator. Select one or multiple files. The change will be applied on the selection and not only on the right clicked item. If the selected item is a directory, the change will be applied on its files/subdirectories as well."
-msgstr "1. Modifier les opérations de <guilabel>tâche</guilabel>déterminé par la comparaison. Sélectionner un ou plusieurs fichiers. La modification s'appliquera sur la sélection et pas seulement sur l'élément droit cliqué. Si l'élément sélectionné est un dossier, la modification s'appliquera aussi sur ses fichiers et sous-dossiers."
+msgid ""
+"1. change the <guilabel>Task</guilabel> operations determined by the "
+"Comparator. Select one or multiple files. The change will be applied on the "
+"selection and not only on the right clicked item. If the selected item is a "
+"directory, the change will be applied on its files/subdirectories as well."
+msgstr ""
+"1. Modifier les opérations de <guilabel>tâche</guilabel>déterminé par la "
+"comparaison. Sélectionner un ou plusieurs fichiers. La modification "
+"s'appliquera sur la sélection et pas seulement sur l'élément droit cliqué. "
+"Si l'élément sélectionné est un dossier, la modification s'appliquera aussi "
+"sur ses fichiers et sous-dossiers."
 
 #. Tag: para
 #: synchronizer.docbook:499
 #, no-c-format
 msgid "<guibutton>Synchronize Directories</guibutton>: Starts synchronization."
-msgstr "<guibutton>Synchroniser les dossiers</guibutton> : démarre la synchronisation."
+msgstr ""
+"<guibutton>Synchroniser les dossiers</guibutton> : démarre la "
+"synchronisation."
 
 #. Tag: para
 #: synchronizer.docbook:504
 #, no-c-format
-msgid "<guibutton>Exclude</guibutton>: Excludes a file/dir from synchronization ( task change to != )."
-msgstr "<guibutton>Exclure</guibutton> : exclut un fichier ou dossier de la synchronisation (la tâche est modifié en « != »)."
+msgid ""
+"<guibutton>Exclude</guibutton>: Excludes a file/dir from synchronization "
+"( task change to != )."
+msgstr ""
+"<guibutton>Exclure</guibutton> : exclut un fichier ou dossier de la "
+"synchronisation (la tâche est modifié en « != »)."
 
 #. Tag: para
 #: synchronizer.docbook:509
 #, no-c-format
-msgid "<guibutton>Restore original operation</guibutton>: Task change to the original result of comparison."
-msgstr "<guibutton>Restorer l'opération originale</guibutton> : la tâche modifie le résultat de comparaison original."
+msgid ""
+"<guibutton>Restore original operation</guibutton>: Task change to the "
+"original result of comparison."
+msgstr ""
+"<guibutton>Restorer l'opération originale</guibutton> : la tâche modifie le "
+"résultat de comparaison original."
 
 #. Tag: para
 #: synchronizer.docbook:514
 #, no-c-format
-msgid "<guibutton>Reverse direction</guibutton>: Task change ( -&gt; to &lt;-, and &lt;- to -&gt; )."
-msgstr "<guibutton>Retourner la direction</guibutton> : la tâche se modifie ( -&gt; vers &lt;-, et &lt;- vers -&gt; )."
+msgid ""
+"<guibutton>Reverse direction</guibutton>: Task change ( -&gt; to &lt;-, and "
+"&lt;- to -&gt; )."
+msgstr ""
+"<guibutton>Retourner la direction</guibutton> : la tâche se modifie ( -&gt; "
+"vers &lt;-, et &lt;- vers -&gt; )."
 
 #. Tag: para
 #: synchronizer.docbook:520
 #, no-c-format
 msgid "<guibutton>Copy from right to left</guibutton>: Task change to &lt;-."
-msgstr "<guibutton>Copier de droite à gauche</guibutton> : la tâche se modifie vers &lt;-."
+msgstr ""
+"<guibutton>Copier de droite à gauche</guibutton> : la tâche se modifie vers "
+"&lt;-."
 
 #. Tag: para
 #: synchronizer.docbook:525
 #, no-c-format
 msgid "<guibutton>Copy from left to right</guibutton>: Task change to -&gt;."
-msgstr "<guibutton>Copier de gauche à droite</guibutton> : la tâche se modifie vers-&gt;."
+msgstr ""
+"<guibutton>Copier de gauche à droite</guibutton> : la tâche se modifie vers-"
+"&gt;."
 
 #. Tag: para
 #: synchronizer.docbook:530
 #, no-c-format
 msgid "<guibutton>Delete ( left single )</guibutton>: Task change to DEL."
-msgstr "<guibutton>Supprimer (à gauche simple)</guibutton> : la tâche se modifie pour SUPPR."
+msgstr ""
+"<guibutton>Supprimer (à gauche simple)</guibutton> : la tâche se modifie "
+"pour SUPPR."
 
 #. Tag: para
 #: synchronizer.docbook:535
@@ -513,44 +850,75 @@ msgstr "2. Modifier les sélections."
 #. Tag: para
 #: synchronizer.docbook:538
 #, no-c-format
-msgid "<guibutton>Select items</guibutton>: Opens a dialog which allows you to select items. This is the <guimenuitem>Select Group</guimenuitem> dialog from the <link linkend=\"edit-menu\">Edit menu</link>."
-msgstr "<guibutton>Sélectionner les éléments</guibutton> : ouvre une boîte de dialogue qui vous permet de sélectionner les éléments. C'est la boîte de dialogue <guimenuitem>Sélectionner un groupe</guimenuitem> depuis le menu <link linkend=\"edit-menu\">Édition</link>."
+msgid ""
+"<guibutton>Select items</guibutton>: Opens a dialog which allows you to "
+"select items. This is the <guimenuitem>Select Group</guimenuitem> dialog "
+"from the <link linkend=\"edit-menu\">Edit menu</link>."
+msgstr ""
+"<guibutton>Sélectionner les éléments</guibutton> : ouvre une boîte de "
+"dialogue qui vous permet de sélectionner les éléments. C'est la boîte de "
+"dialogue <guimenuitem>Sélectionner un groupe</guimenuitem> depuis le menu "
+"<link linkend=\"edit-menu\">Édition</link>."
 
 #. Tag: para
 #: synchronizer.docbook:545
 #, no-c-format
-msgid "<guibutton>Unselect items</guibutton>: Opens a dialog which allows you to deselect items. This is the <guimenuitem>Unselect Group</guimenuitem> dialog from the <link linkend=\"edit-menu\">Edit menu</link>."
-msgstr "<guibutton>Désélectionner un groupe</guibutton> : ouvre une boîte de dialogue qui vous permet de désélectionner les éléments. C'est la boîte de dialogue <guimenuitem>Désélectionner un groupe</guimenuitem> dans le menu <link linkend=\"edit-menu\">Édition</link>."
+msgid ""
+"<guibutton>Unselect items</guibutton>: Opens a dialog which allows you to "
+"deselect items. This is the <guimenuitem>Unselect Group</guimenuitem> dialog "
+"from the <link linkend=\"edit-menu\">Edit menu</link>."
+msgstr ""
+"<guibutton>Désélectionner un groupe</guibutton> : ouvre une boîte de "
+"dialogue qui vous permet de désélectionner les éléments. C'est la boîte de "
+"dialogue <guimenuitem>Désélectionner un groupe</guimenuitem> dans le menu "
+"<link linkend=\"edit-menu\">Édition</link>."
 
 #. Tag: para
 #: synchronizer.docbook:552
 #, no-c-format
-msgid "<guibutton>Invert selection</guibutton>: Invert the selection status of all items."
-msgstr "<guibutton>Inverser la sélection</guibutton> : inverser l'état de la sélection de tous les éléments."
+msgid ""
+"<guibutton>Invert selection</guibutton>: Invert the selection status of all "
+"items."
+msgstr ""
+"<guibutton>Inverser la sélection</guibutton> : inverser l'état de la "
+"sélection de tous les éléments."
 
 #. Tag: para
 #: synchronizer.docbook:557
 #, no-c-format
-msgid "3. others (note that the following operations work on the right-clicked file and not on the selection)."
-msgstr "3. autres (remarquez que les opérations suivantes fonctionnent sur les fichiers avec un clic-droit et non sur la sélection)."
+msgid ""
+"3. others (note that the following operations work on the right-clicked file "
+"and not on the selection)."
+msgstr ""
+"3. autres (remarquez que les opérations suivantes fonctionnent sur les "
+"fichiers avec un clic-droit et non sur la sélection)."
 
 #. Tag: para
 #: synchronizer.docbook:561
 #, no-c-format
 msgid "<guibutton>View left file</guibutton>: Starts viewer on the left file."
-msgstr "<guibutton>Afficher le fichier de gauche</guibutton> : démarre l'afficheur sur le fichier de gauche."
+msgstr ""
+"<guibutton>Afficher le fichier de gauche</guibutton> : démarre l'afficheur "
+"sur le fichier de gauche."
 
 #. Tag: para
 #: synchronizer.docbook:566
 #, no-c-format
-msgid "<guibutton>View right file</guibutton>: Starts viewer on the right file."
-msgstr "<guibutton>Afficher le fichier de droite</guibutton> : démarre l'afficheur sur le fichier de droite."
+msgid ""
+"<guibutton>View right file</guibutton>: Starts viewer on the right file."
+msgstr ""
+"<guibutton>Afficher le fichier de droite</guibutton> : démarre l'afficheur "
+"sur le fichier de droite."
 
 #. Tag: para
 #: synchronizer.docbook:571
-#, no-c-format
-msgid "<guibutton>Compare Files</guibutton>: Starts the diff utility (&eg; &kompare;) on the files."
-msgstr "<guibutton>Comparer les fichiers</guibutton> : démarre l'utilitaire de différence (&pex; &kompare;) sur les fichiers."
+#, fuzzy, no-c-format
+msgid ""
+"<guibutton>Compare Files</guibutton>: Starts the diff utility (e.g. "
+"&kompare;) on the files."
+msgstr ""
+"<guibutton>Comparer les fichiers</guibutton> : démarre l'utilitaire de "
+"différence (&pex; &kompare;) sur les fichiers."
 
 #. Tag: term
 #: synchronizer.docbook:580
@@ -560,15 +928,27 @@ msgstr "Autres boutons"
 
 #. Tag: para
 #: synchronizer.docbook:584
-#, no-c-format
-msgid "<guibutton>Profiles</guibutton>: If you have to synchronize the same directories often, you can save the settings &eg; include files, exclude files, ... Press the <guibutton>Profile</guibutton> button, and you will be able to add / load / save / remove synchronizer profiles."
-msgstr "<guibutton>Profils</guibutton> : si vous devez synchroniser souvent les mêmes dossiers, vous pouvez enregistrer la configuration &pex; inclure les fichiers, exclure les fichiers... Appuyez sur le bouton <guibutton>Profils</guibutton>, et vous pourrez ajouter / charger / enregistrer / supprimer les profils de synchronisation."
+#, fuzzy, no-c-format
+msgid ""
+"<guibutton>Profiles</guibutton>: If you have to synchronize the same "
+"directories often, you can save the settings e.g. include files, exclude "
+"files, ... Press the <guibutton>Profile</guibutton> button, and you will be "
+"able to add / load / save / remove synchronizer profiles."
+msgstr ""
+"<guibutton>Profils</guibutton> : si vous devez synchroniser souvent les "
+"mêmes dossiers, vous pouvez enregistrer la configuration &pex; inclure les "
+"fichiers, exclure les fichiers... Appuyez sur le bouton <guibutton>Profils</"
+"guibutton>, et vous pourrez ajouter / charger / enregistrer / supprimer les "
+"profils de synchronisation."
 
 #. Tag: para
 #: synchronizer.docbook:594
 #, no-c-format
-msgid "<guibutton>Swap sides</guibutton>: Swaps the <guilabel>File List</guilabel>."
-msgstr "<guibutton>Séparer les cotés</guibutton> : sépare la <guilabel>liste de fichiers</guilabel>."
+msgid ""
+"<guibutton>Swap sides</guibutton>: Swaps the <guilabel>File List</guilabel>."
+msgstr ""
+"<guibutton>Séparer les cotés</guibutton> : sépare la <guilabel>liste de "
+"fichiers</guilabel>."
 
 #. Tag: term
 #: synchronizer.docbook:602
@@ -579,8 +959,23 @@ msgstr "Synchroniser avec <application>kget</application>"
 #. Tag: para
 #: synchronizer.docbook:604
 #, no-c-format
-msgid "If you want to synchronize a local directory with an unstable ftp server, <application>kget</application> is a much better solution than simple file copying. After comparing you may right click on the result list and select <guimenuitem>Synchronize with kget</guimenuitem> to execute the synchronization, after that the listed files will be downloaded with kget instead of krusader. Of course <application>kget</application> needs to be installed on your computer; otherwise, it will not be available."
-msgstr "Si vous voulez synchroniser un dossier local avec un serveur &FTP; instable, <application>kget</application> est la meilleure solution qu'une simple copie de fichier. Après avoir comparé, vous devez faire un clic-droit sur la liste de résultats et sélectionnez <guimenuitem>Synchroniser avec kget</guimenuitem> pour exécuter la synchronisation, après que les fichiers listés ont été téléchargés avec kget à la place de krusader. Bien sûr, <application>kget</application> a besoin d'être installé sur votre ordinateur, sinon il ne sera pas disponible."
+msgid ""
+"If you want to synchronize a local directory with an unstable ftp server, "
+"<application>kget</application> is a much better solution than simple file "
+"copying. After comparing you may right click on the result list and select "
+"<guimenuitem>Synchronize with kget</guimenuitem> to execute the "
+"synchronization, after that the listed files will be downloaded with kget "
+"instead of krusader. Of course <application>kget</application> needs to be "
+"installed on your computer; otherwise, it will not be available."
+msgstr ""
+"Si vous voulez synchroniser un dossier local avec un serveur &FTP; instable, "
+"<application>kget</application> est la meilleure solution qu'une simple "
+"copie de fichier. Après avoir comparé, vous devez faire un clic-droit sur la "
+"liste de résultats et sélectionnez <guimenuitem>Synchroniser avec kget</"
+"guimenuitem> pour exécuter la synchronisation, après que les fichiers listés "
+"ont été téléchargés avec kget à la place de krusader. Bien sûr, "
+"<application>kget</application> a besoin d'être installé sur votre "
+"ordinateur, sinon il ne sera pas disponible."
 
 #. Tag: title
 #: synchronizer.docbook:619
@@ -591,8 +986,12 @@ msgstr "Synchronisation"
 #. Tag: para
 #: synchronizer.docbook:621
 #, no-c-format
-msgid "After pressing the <guibutton>Synchronize</guibutton> button the synchronization dialog appears."
-msgstr "Après avoir cliqué sur le bouton <guibutton>Synchroniser</guibutton>, la boîte de dialogue de synchronisation apparaît."
+msgid ""
+"After pressing the <guibutton>Synchronize</guibutton> button the "
+"synchronization dialog appears."
+msgstr ""
+"Après avoir cliqué sur le bouton <guibutton>Synchroniser</guibutton>, la "
+"boîte de dialogue de synchronisation apparaît."
 
 #. Tag: term
 #: synchronizer.docbook:626
@@ -609,26 +1008,44 @@ msgstr "Vous confirmez ici les opérations de copie et de suppression."
 #. Tag: para
 #: synchronizer.docbook:632
 #, no-c-format
-msgid "<guilabel>Right to left</guilabel>: copy X1 files ( Y1 bytes ) enable / disable the copy from right to left."
-msgstr "<guilabel>Droite à gauche</guilabel> : copier les fichiers X1 (Y1 bytes) active / désactive la copie de droite à gauche."
+msgid ""
+"<guilabel>Right to left</guilabel>: copy X1 files ( Y1 bytes ) enable / "
+"disable the copy from right to left."
+msgstr ""
+"<guilabel>Droite à gauche</guilabel> : copier les fichiers X1 (Y1 bytes) "
+"active / désactive la copie de droite à gauche."
 
 #. Tag: para
 #: synchronizer.docbook:638
 #, no-c-format
-msgid "<guilabel>Left to right</guilabel>: copy X2 files ( Y2 bytes ) enable / disable the copy from left to right."
-msgstr "<guilabel>Gauche à droite</guilabel> : copier les fichiers X2 (Y2 bytes) active / désactive la copie de gauche à droite."
+msgid ""
+"<guilabel>Left to right</guilabel>: copy X2 files ( Y2 bytes ) enable / "
+"disable the copy from left to right."
+msgstr ""
+"<guilabel>Gauche à droite</guilabel> : copier les fichiers X2 (Y2 bytes) "
+"active / désactive la copie de gauche à droite."
 
 #. Tag: para
 #: synchronizer.docbook:644
 #, no-c-format
-msgid "<guilabel>Left</guilabel>: delete X3 files ( Y3 bytes ) enable / disable the left side deleting."
-msgstr "<guilabel>Gauche</guilabel> : supprimer les fichiers X3 (Y3 bytes) active / désactive la suppression du coté gauche."
+msgid ""
+"<guilabel>Left</guilabel>: delete X3 files ( Y3 bytes ) enable / disable the "
+"left side deleting."
+msgstr ""
+"<guilabel>Gauche</guilabel> : supprimer les fichiers X3 (Y3 bytes) active / "
+"désactive la suppression du coté gauche."
 
 #. Tag: para
 #: synchronizer.docbook:649
 #, no-c-format
-msgid "<guilabel>Confirm overwrites</guilabel>: By switching this option on, Krusader will show the <guibutton>rename, skip, overwrite, skip all, overwrite all</guibutton> dialog box, before overwriting the file."
-msgstr "<guilabel>Confirmer l'écrasement</guilabel> : en passant cette option, Krusader affichera la boîte de dialogue <guibutton>renommer, passer, écraser, tout passer, tout écraser</guibutton> avant l'écrasement du fichier."
+msgid ""
+"<guilabel>Confirm overwrites</guilabel>: By switching this option on, "
+"Krusader will show the <guibutton>rename, skip, overwrite, skip all, "
+"overwrite all</guibutton> dialog box, before overwriting the file."
+msgstr ""
+"<guilabel>Confirmer l'écrasement</guilabel> : en passant cette option, "
+"Krusader affichera la boîte de dialogue <guibutton>renommer, passer, "
+"écraser, tout passer, tout écraser</guibutton> avant l'écrasement du fichier."
 
 #. Tag: term
 #: synchronizer.docbook:660
@@ -639,14 +1056,24 @@ msgstr "État des titres"
 #. Tag: para
 #: synchronizer.docbook:664
 #, no-c-format
-msgid "<guilabel>Ready</guilabel>: A1/A2 files, B1/B2. This line is changed at synchronizing, showing that synchronizer finished with A1 files from A2 ( B1 bytes from B2 )."
-msgstr "<guilabel>Prêt</guilabel> : les fichiers A1 / A2, B1 / B2. Cette ligne est modifiée à la synchronisation, affichant que la synchronisation a terminé avec les fichiers A1 à A2 (B1 bytes à B2)."
+msgid ""
+"<guilabel>Ready</guilabel>: A1/A2 files, B1/B2. This line is changed at "
+"synchronizing, showing that synchronizer finished with A1 files from A2 ( B1 "
+"bytes from B2 )."
+msgstr ""
+"<guilabel>Prêt</guilabel> : les fichiers A1 / A2, B1 / B2. Cette ligne est "
+"modifiée à la synchronisation, affichant que la synchronisation a terminé "
+"avec les fichiers A1 à A2 (B1 bytes à B2)."
 
 #. Tag: para
 #: synchronizer.docbook:671
 #, no-c-format
-msgid "<guilabel>Progress bar</guilabel>: Shows the progress on the synchronization (based on bytes)."
-msgstr "<guilabel>Barre de progression</guilabel> : affiche la progression de la synchronisation (fondée sur les bytes)."
+msgid ""
+"<guilabel>Progress bar</guilabel>: Shows the progress on the synchronization "
+"(based on bytes)."
+msgstr ""
+"<guilabel>Barre de progression</guilabel> : affiche la progression de la "
+"synchronisation (fondée sur les bytes)."
 
 #. Tag: para
 #: synchronizer.docbook:683
@@ -657,14 +1084,22 @@ msgstr "<guibutton>Démarrer</guibutton> : démarre la synchronisation."
 #. Tag: para
 #: synchronizer.docbook:688
 #, no-c-format
-msgid "<guibutton>Pause / Resume</guibutton>: Pauses/resumes the synchronization process."
-msgstr "<guibutton>Pause / Résumer</guibutton> : met en pause / résume le processus de synchronisation."
+msgid ""
+"<guibutton>Pause / Resume</guibutton>: Pauses/resumes the synchronization "
+"process."
+msgstr ""
+"<guibutton>Pause / Résumer</guibutton> : met en pause / résume le processus "
+"de synchronisation."
 
 #. Tag: para
 #: synchronizer.docbook:693
 #, no-c-format
-msgid "<guibutton>Close</guibutton>: Closes the synchronization dialog (and stops synchronization)."
-msgstr "<guibutton>Fermer</guibutton> : ferme la boîte de dialogue de synchronisation (et arrête celle-ci)."
+msgid ""
+"<guibutton>Close</guibutton>: Closes the synchronization dialog (and stops "
+"synchronization)."
+msgstr ""
+"<guibutton>Fermer</guibutton> : ferme la boîte de dialogue de "
+"synchronisation (et arrête celle-ci)."
 
 #. Tag: term
 #: synchronizer.docbook:702
@@ -681,8 +1116,11 @@ msgstr "Le premier peut donner le nombre de processus « quasy »."
 #. Tag: para
 #: synchronizer.docbook:710
 #, no-c-format
-msgid "Can drastically increase the speed when synchronized with slow FTP servers."
-msgstr "Peut augmenter drastiquement la vitesse quand la synchronisation se réalise avec des serveurs FTP lents."
+msgid ""
+"Can drastically increase the speed when synchronized with slow FTP servers."
+msgstr ""
+"Peut augmenter drastiquement la vitesse quand la synchronisation se réalise "
+"avec des serveurs FTP lents."
 
 #. Tag: para
 #: synchronizer.docbook:714
@@ -693,12 +1131,18 @@ msgstr "N'affecte pas la vitesse de synchronisation locale."
 #. Tag: para
 #: synchronizer.docbook:718
 #, no-c-format
-msgid "Remote \"compare by content\" and \"directory compare\" is done in parallel."
-msgstr "Supprimer « comparer par contenu » et « dossier comparé » est réalisé en parallèle."
+msgid ""
+"Remote \"compare by content\" and \"directory compare\" is done in parallel."
+msgstr ""
+"Supprimer « comparer par contenu » et « dossier comparé » est réalisé en "
+"parallèle."
 
 #. Tag: para
 #: synchronizer.docbook:722
 #, no-c-format
-msgid "Remote synchronization is also done in parallel, except the mkdir tasks (mkdir must be before copy)."
-msgstr "Supprimer la synchronisation est aussi réalisé en parallèle, en excluant les tâches mkdir (mkdir doit être avant la copie)."
-
+msgid ""
+"Remote synchronization is also done in parallel, except the mkdir tasks "
+"(mkdir must be before copy)."
+msgstr ""
+"Supprimer la synchronisation est aussi réalisé en parallèle, en excluant les "
+"tâches mkdir (mkdir doit être avant la copie)."
