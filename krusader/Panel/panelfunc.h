@@ -48,7 +48,7 @@ public slots:
 	void openUrl(const KUrl& path, const QString& nameToMakeCurrent = QString());
 	void openUrl(const QString& path, const QString& nameToMakeCurrent = QString());
 	void popErronousUrl();
-	void immediateOpenUrl( const KUrl& path);
+	void immediateOpenUrl( const KUrl& path, bool disableLock = false);
 	void doOpenUrl();
 	void refresh();
 	void rename(const QString &oldname, const QString &newname);
@@ -100,6 +100,7 @@ protected:
 	vfs*                 vfsP;      // pointer to vfs.
 	QTimer               delayTimer;
 	KUrl                 delayURL;
+	bool                 delayLock;
 	QString              nameToMakeCurrent;
 	bool                 canGoBack();
 };

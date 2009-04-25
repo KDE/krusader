@@ -58,6 +58,7 @@
 #include "../Dialogs/krsqueezedtextlabel.h"
 
 #define PROP_SYNC_BUTTON_ON               1
+#define PROP_LOCKED                       2
 
 class vfs;
 class vfile;
@@ -89,6 +90,8 @@ public:
    
    int getType() { return panelType; }
    void changeType( int );
+   bool isLocked() { return _locked; }
+   void setLocked( bool lck ) { _locked = lck; }
    
    KUrl virtualPath() const;
 	QString realPath() const;
@@ -202,6 +205,7 @@ protected:
 	
 private:
    bool &_left;
+   bool _locked;
    QList<int> popupSizes;
 };
 

@@ -135,7 +135,8 @@ class Krusader : public KParts::MainWindow {
     static KAction *actExecFilter, *actCustomFilter, *actMountMan, *actNewTool, *actSwapPanels, *actSwapSides;
     static KAction *actKonfigurator, *actToolsSetup, *actBack, *actRoot, *actFind, *actDirUp, *actRemoteEncoding;
     static KAction *actSelectColorMask, *actMultiRename, *actAllFilter, *actOpenLeftBm, *actOpenRightBm;
-    static KAction *actNewTab, *actDupTab, *actCloseTab, *actPreviousTab, *actNextTab, *actSplit, *actQueueManager;
+    static KAction *actNewTab, *actDupTab, *actCloseTab, *actPreviousTab, *actNextTab, *actCloseInactiveTabs;
+    static KAction *actCloseDuplicatedTabs, *actLockTab, *actSplit, *actQueueManager;
     static KAction *actCombine, *actUserMenu, *actManageUseractions, *actSyncDirs, *actSyncBrowse;
     static KAction *actF2, *actF3, *actF4, *actF5, *actF6, *actF7, *actF8, *actF9, *actF10, *actVerticalMode;
     static KAction *actShiftF5, *actShiftF6, *actEmptyTrash, *actTrashBin;
@@ -253,10 +254,13 @@ class Krusader : public KParts::MainWindow {
 #define krDirUp           Krusader::App->actDirUp
 #define krCmdlinePopup    Krusader::App->actCmdlinePopup
 #define krNewTab          Krusader::App->actNewTab
+#define krLockTab         Krusader::App->actLockTab
 #define krDupTab          Krusader::App->actDupTab
 #define krCloseTab        Krusader::App->actCloseTab
 #define krNextTab         Krusader::App->actNextTab
 #define krPreviousTab     Krusader::App->actPreviousTab
+#define krCloseInactiveTabs Krusader::App->actCloseInactiveTabs
+#define krCloseDuplicatedTabs Krusader::App->actCloseDuplicatedTabs
 #define krSplit           Krusader::App->actSplit
 #define krCombine         Krusader::App->actCombine
 #define krUserMenu        Krusader::App->actUserMenu

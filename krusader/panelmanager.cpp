@@ -152,7 +152,7 @@ void PanelManager::loadSettings( KConfigGroup *config, const QString& key ) {
          panel->otherPanel = _other;
          _other->otherPanel = panel;
          panel->func->files()->vfs_enableRefresh( true );
-         panel->func->immediateOpenUrl( KUrl( l[ i ] ) );
+         panel->func->immediateOpenUrl( KUrl( l[ i ] ), true );
       }
       ++i;
    }
@@ -240,8 +240,15 @@ void PanelManager::slotCloseTab( int index ) {
 
 void PanelManager::slotRefreshActions() {
    krCloseTab->setEnabled( _tabbar->count() > 1 );
+   krCloseInactiveTabs->setEnabled( _tabbar->count() > 1 );
+   krCloseDuplicatedTabs->setEnabled( _tabbar->count() > 1 );
    krNextTab->setEnabled(_tabbar->count() > 1);
-   krPreviousTab->setEnabled(_tabbar->count() > 1);	
+   krPreviousTab->setEnabled(_tabbar->count() > 1);
+   ListPanel *actPanel = _tabbar->getPanel( activeTab() );
+   if( actPanel ) {
+     bool locked = actPanel->isLocked();
+     Krusader::actLockTab->setText( locked ? i18n( "Unlock Tab" ) : i18n( "Lock Tab" )  );
+   }
 }
 
 int PanelManager::activeTab()
@@ -353,6 +360,45 @@ void PanelManager::swapPanels() {
    _left = !_left;
    _selfPtr = _left ? &MAIN_VIEW->left : &MAIN_VIEW->right;
    _otherPtr = _left ? &MAIN_VIEW->right : &MAIN_VIEW->left;
+}
+
+void PanelManager::slotCloseInactiveTabs() {
+   int i=0;
+   while( i < _tabbar->count()) {
+     if( i == activeTab() )
+       i++;
+     else
+       slotCloseTab( i );
+   }
+}
+
+void PanelManager::slotCloseDuplicatedTabs() {
+   int i=0;
+   while( i < _tabbar->count() -1 )
+   {
+      ListPanel * panel1 = _tabbar->getPanel(i);
+      if( panel1 != 0 ) {
+         for( int j = i+1; j < _tabbar->count(); j++ ) {
+            ListPanel * panel2 = _tabbar->getPanel(j);
+            if( panel2 != 0 && panel1->virtualPath().equals( panel2->virtualPath(), KUrl::CompareWithoutTrailingSlash ) ) {
+              if( j == activeTab() ) {
+                slotCloseTab( i );
+                i--;
+                break;
+              } else {
+                slotCloseTab( j );
+                j--;
+              }
+            }
+         }
+      }
+      i++;
+   }
+}
+
+void PanelManager::slotLockTab() {
+   if( ACTIVE_PANEL )
+      ACTIVE_PANEL->setLocked( !ACTIVE_PANEL->isLocked() );
 }
 
 #include "panelmanager.moc"

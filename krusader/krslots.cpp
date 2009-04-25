@@ -684,6 +684,18 @@ void KRslots::closeTab() {
   ACTIVE_PANEL_MANAGER->slotCloseTab();
 }
 
+void KRslots::closeInactiveTabs() {
+  ACTIVE_PANEL_MANAGER->slotCloseInactiveTabs();
+}
+
+void KRslots::closeDuplicatedTabs() {
+  ACTIVE_PANEL_MANAGER->slotCloseDuplicatedTabs();
+}
+
+void KRslots::lockTab() {
+  ACTIVE_PANEL_MANAGER->slotLockTab();
+}
+
 void KRslots::slotSplit()
 {
   QStringList list;

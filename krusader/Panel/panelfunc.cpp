@@ -105,14 +105,14 @@ void ListPanelFunc::popErronousUrl() {
 		KUrl url = urlStack.takeLast();
 		if( !current.equals( url ) )
 		{
-			immediateOpenUrl( url );
+			immediateOpenUrl( url, true );
 			return;
 		}
 	}
-	immediateOpenUrl( KUrl( ROOT_DIR ) );
+	immediateOpenUrl( KUrl( ROOT_DIR ), true );
 }
 
-void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn ) {
+void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn, bool disableLock ) {
 	KUrl url = urlIn;
 	url.cleanPath();
 
@@ -131,7 +131,13 @@ void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn ) {
 			return ;
 		}
 	}
-
+	
+	if( !disableLock && panel->isLocked() && !files() ->vfs_getOrigin().equals( url, KUrl::CompareWithoutTrailingSlash ) )
+	{
+		SLOTS->newTab( url );
+		return;
+	}
+	
 	// if we are not refreshing to current URL
 	bool is_equal_url = files() ->vfs_getOrigin().equals( url, KUrl::CompareWithoutTrailingSlash );
 	
@@ -176,6 +182,7 @@ void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn ) {
 			if( vfsP->vfs_isBusy() )
 			{
 				delayURL = url;               /* this function is useful for FTP url-s and bookmarks */
+				delayLock = panel->isLocked();
 				delayTimer.setSingleShot( true );
 				delayTimer.start( 100 );  /* if vfs is busy try refreshing later */
 				return;
@@ -251,6 +258,7 @@ void ListPanelFunc::openUrl( const KUrl& url, const QString& nameToMakeCurrent )
 			// we can't use openUrl because the delay don't allow a check if the panel has realy changed!
 			KUrl dest = otherDir;
 			dest.addPath( KUrl::relativeUrl( panel->virtualPath().url() + "/", url.url() ) );
+			OTHER_PANEL->setLocked( false );
 			OTHER_FUNC->immediateOpenUrl( dest );
 			OTHER_FUNC->files() ->vfs_setQuiet( false );
 			// now we need to test ACTIVE_PANEL because the openURL has changed the active panel!!
@@ -264,6 +272,7 @@ void ListPanelFunc::openUrl( const KUrl& url, const QString& nameToMakeCurrent )
 	}
 	this->nameToMakeCurrent = nameToMakeCurrent;
 	delayURL = url;               /* this function is useful for FTP url-s and bookmarks */
+	delayLock = panel->isLocked();
 	delayTimer.setSingleShot( true );
 	delayTimer.start( 0 );  /* to avoid qApp->processEvents() deadlock situaltion */
 }
@@ -273,7 +282,7 @@ void ListPanelFunc::refresh() {
 }
 
 void ListPanelFunc::doOpenUrl() {
-	immediateOpenUrl( delayURL );
+	immediateOpenUrl( delayURL, !delayLock );
 }
 
 void ListPanelFunc::goBack() {

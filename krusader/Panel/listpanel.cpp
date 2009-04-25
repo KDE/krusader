@@ -111,7 +111,8 @@ typedef QList<KServiceOffer> OfferList;
 /////////////////////////////////////////////////////
 ListPanel::ListPanel( int typeIn, QWidget *parent, bool &left ) :
       QWidget( parent ), panelType( typeIn ), colorMask( 255 ), compareMode( false ), statsAgent( 0 ), 
-		quickSearch( 0 ), cdRootButton( 0 ), cdUpButton( 0 ), popupBtn(0), popup(0),inlineRefreshJob(0), _left( left ) {
+		quickSearch( 0 ), cdRootButton( 0 ), cdUpButton( 0 ), popupBtn(0), popup(0),inlineRefreshJob(0), _left( left ),
+		_locked( false ) {
 
    layout = new QGridLayout( this );
    layout->setSpacing( 0 );
@@ -336,6 +337,8 @@ int ListPanel::getProperties()
    int props = 0;
    if( syncBrowseButton->state() == SYNCBROWSE_CD )
       props |= PROP_SYNC_BUTTON_ON;
+   if( _locked )
+      props |= PROP_LOCKED;
    return props;
 }
 
@@ -345,6 +348,11 @@ void ListPanel::setProperties( int prop )
        syncBrowseButton->setChecked( true );
    else
        syncBrowseButton->setChecked( false );
+
+   if( prop & PROP_LOCKED )
+       _locked = true;
+   else
+       _locked = false;
 }
 
 bool ListPanel::eventFilter ( QObject * watched, QEvent * e ) {
@@ -599,7 +607,7 @@ void ListPanel::start( KUrl url, bool immediate ) {
    else _realPath = KUrl( ROOT_DIR );
 
    if( immediate )
-     func->immediateOpenUrl( virt );
+     func->immediateOpenUrl( virt, true );
    else
      func->openUrl( virt );
 

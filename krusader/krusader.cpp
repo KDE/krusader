@@ -161,9 +161,12 @@ KAction *Krusader::actDirUp = 0;
 KAction *Krusader::actCmdlinePopup = 0;
 KAction *Krusader::actNewTab = 0;
 KAction *Krusader::actDupTab = 0;
+KAction *Krusader::actLockTab = 0;
 KAction *Krusader::actCloseTab = 0;
 KAction *Krusader::actNextTab = 0;
 KAction *Krusader::actPreviousTab = 0;
+KAction *Krusader::actCloseInactiveTabs = 0;
+KAction *Krusader::actCloseDuplicatedTabs = 0;
 KAction *Krusader::actSplit = 0;
 KAction *Krusader::actCombine = 0;
 KAction *Krusader::actUserMenu = 0;
@@ -768,6 +771,9 @@ void Krusader::setupActions() {
    NEW_KACTION(actCloseTab, i18n( "Close Current Tab" ), "tab-close", Qt::CTRL + Qt::Key_W, SLOTS, SLOT( closeTab() ), "close tab" );
    NEW_KACTION(actNextTab, i18n( "Next Tab" ), 0, Qt::SHIFT + Qt::Key_Right, SLOTS, SLOT( nextTab() ), "next tab" );
    NEW_KACTION(actPreviousTab, i18n( "Previous Tab" ), 0, Qt::SHIFT + Qt::Key_Left, SLOTS, SLOT( previousTab() ), "previous tab" );
+   NEW_KACTION(actCloseInactiveTabs, i18n( "Close Inactive Tabs" ), 0, 0, SLOTS, SLOT( closeInactiveTabs() ), "close inactive tabs" );
+   NEW_KACTION(actCloseDuplicatedTabs, i18n( "Close Duplicated Tabs" ), 0, 0, SLOTS, SLOT( closeDuplicatedTabs() ), "close duplicated tabs" );
+   NEW_KACTION(actLockTab, i18n( "Lock Tab" ), 0, 0, SLOTS, SLOT( lockTab() ), "lock tab" );
 #if 0
    actUserMenu = new KAction( i18n( "User Menu" ), ALT + Qt::Key_QuoteLeft, SLOTS,
                               SLOT( userMenu() ), actionCollection(), "user menu" );

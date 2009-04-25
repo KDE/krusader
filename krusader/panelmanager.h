@@ -54,11 +54,14 @@ class PanelManager: public QWidget {
      */
     void slotNewTab(const KUrl& url, bool setCurrent = true, int type = -1, int props = 0 );
     void slotNewTab();
+    void slotLockTab();
     void slotNextTab();
     void slotPreviousTab();	 
     void slotCloseTab();
     void slotCloseTab( int index );
     void slotRecreatePanels();
+    void slotCloseInactiveTabs();
+    void slotCloseDuplicatedTabs();
 
   protected slots:
     void slotChangePanel(ListPanel *p);
