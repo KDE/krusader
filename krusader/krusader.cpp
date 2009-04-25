@@ -693,6 +693,11 @@ void Krusader::setupActions() {
    NEW_KACTION(actSelectSingle, i18n( "Select &Single" ), 0, 0, SLOTS, SLOT( compareSetup() ), "select_single" );
    NEW_KACTION(actSelectDifferentAndSingle, i18n( "Select Different &and Single" ), 0, 0, SLOTS, SLOT( compareSetup() ), "select_different_and_single" );
    NEW_KACTION(actSelectDifferent,  i18n( "Select &Different" ), 0, 0, SLOTS, SLOT( compareSetup() ), "select_different" );
+   actSelectNewerAndSingle->setCheckable( true );
+   actSelectNewer->setCheckable( true );
+   actSelectSingle->setCheckable( true );
+   actSelectDifferentAndSingle->setCheckable( true );
+   actSelectDifferent->setCheckable( true );
    QActionGroup *selectGroup = new QActionGroup(this);
    selectGroup->setExclusive(true);
    selectGroup->addAction(actSelectNewerAndSingle);
