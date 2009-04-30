@@ -1,0 +1,154 @@
+<sect1 id="javascript_console"
+>
+    <title
+>Console JavaScript</title
+>
+    <indexterm
+>
+      <primary
+>Console JavaScript</primary
+>
+    </indexterm
+>
+    <para
+><keycombo action="simul"
+>&Alt;&Ctrl; <keycap
+>j</keycap
+></keycombo
+> ouvre une console JavaScript. (seulement disponible si libkjsembed est présent à la compilation et l'exécution.</para
+>
+    <para
+>La console JavaScript est une interface à l'interpréteur embarqué JS-Interpreter qui peut être utilisé pour s'amuser ou pour tester.</para
+>
+  </sect1
+>
+
+  <sect1 id="javascript_interface"
+>
+    <title
+>JavaScript interface</title
+>
+    <indexterm
+>
+      <primary
+>JavaScript interface</primary
+>
+    </indexterm
+>
+    <para
+>
+    <emphasis role="bold"
+>Warning:</emphasis
+> The JS-Support is
+    quite stable, and you can not lose any data by using it. However,
+    your scripts may not work with future versions of
+    &krusader;, as the JS-Support is changing.</para
+>
+    <tip
+>
+      <para
+>Please 
+      <link linkend="help_krusader"
+>upload your favorite JavaScript
+      Extensions</link
+> so that they become available for the
+      &krusader; community. Thanks!</para
+>
+    </tip
+>
+    <para
+>JavaScript applications usually have 2 files 
+    <filename
+>foo.js</filename
+>and 
+    <filename
+>foo.ui</filename
+>. They will be installed in 
+    <filename
+>~/.kde/share/apps/krusader/js/</filename
+>, a
+    user action with a "%_Script" action will start the
+    Javascripting. Currently we have 2 JS demos 
+    <filename
+>root-mount-extension.tar.bz2</filename
+> and 
+    <filename
+>js-demo-calc.tar.bz2</filename
+> that will be more
+    explanatory.</para
+>
+    <para
+>When a script is executed, the script doesn't know its
+    origin (or maybe there is a way to do so that we do not know of)
+    and all relative paths are relative to the current working-dir.
+    But this dir is (normally) not the one where the script is
+    located but the current dir of the active Panel of Krusader.
+    This needs to stay like this. However, for referencing
+    additional files like .ui (Userinterface, exported by
+    &Qt;'s Designer) one needs the path of the script.
+    The alternative where absolute paths are used is more than
+    unhandy. For this reason the Variable "scriptDir" was
+    introduced. If a Script wants to load a &GUI; from a
+    .ui-file this can be done this way: 
+    <emphasis
+>var ui = Factory.loadui( scriptDir + 'filename.ui'
+    );</emphasis
+> I recommend using Dialog as a base when designing
+    &GUI;s to be used with JS. Execute the dialog with: 
+    <emphasis
+>ui.exec();</emphasis
+> The elements of the
+    &GUI; may be accessed in the following way: 
+    <emphasis
+>ui.child('widgetName')</emphasis
+></para
+>
+    <para
+>Currently only the objects 'Krusader' and
+    'PanelManager' are exposed C++ objects without a logic
+    behind them. They can be inspected using the JS-Console and the
+    functions 'properties()', 'children()' and 'slots()'. The
+    children can be accessed with the function
+    'child("nameOfChild")' with returns an object itself. Currently, the Variable scriptDir is more useful. Following the root-mount
+    extension it is already possible to create advanced
+    &GUI;s for command line tools</para
+>
+    <para
+>You can play around with 'Krusader.setCaption("Hey Ho,
+    Let's go!");', 'Krusader.children();',
+    'Krusader.child("help").slots();',
+    'alert(Krusader.properties())' or
+    'Krusader.child("help").show();'.... In addition, a new
+    placeholder for the <link linkend="useractions"
+>UserActions</link
+>, %_Script()%,
+    will execute an external file.</para
+>
+    <para
+>NOTE: The object 'Krusader' will change. We have not made
+    decisions about the JS-interface yet (at the time of the
+    1.70.0-release). Any ideas are welcome. Plase use our
+    <ulink url="http://www.krusader.org/phpBB/index.php"
+>&krusader; Forum</ulink
+> for feedback.</para
+>
+    <para
+>The JavaScript-support is based on
+    <ulink url="http://xmelegance.org/kjsembed/"
+>KJSEmbed</ulink
+>. Some examples which show the power
+    of this library can be found
+    <ulink url="http://xmelegance.org/kjsembed/examples/index.html"
+>
+    here</ulink
+>. Support for all of KDE's ground-laying technologies
+    such as DCOP or KParts is provided. You can even load whole
+    GUIs from .ui-files, created with &Qt;'s Designer.
+    An example extension making use of this can be found 
+    <ulink url="http://www.krusader.org/phpBB/viewtopic.php?p=4832#4832"
+>
+    here</ulink
+>.</para
+>
+</sect1
+>

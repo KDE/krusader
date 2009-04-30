@@ -1,0 +1,59 @@
+<chapter id="more-features">
+<!-- **********************************************************************
+    4                                   more.docbook
+    5                           +++++++++++++++++++++++++++
+    6   copyright            : (C) 2000 - 2009
+    7                           Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+    8                           & the Krusader Krew
+    9   e-mail               : krusader@users.sourceforge.net
+   10   web site             : http://www.krusader.org
+   11   description          : a Krusader Documentation File
+   12 
+   13 ***************************************************************************
+   14 * Permission is granted to copy, distribute and/or modify this            *
+   15 * document under the terms of the GNU Free Documentation License,         *
+   16 * Version 1.1 or any later version published by the Free Software         *
+   17 * Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+   18 * no Back-Cover Texts.  A copy of the license is available on the         *
+   19 * GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+   20 * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+   21 * MA 02111-1307, USA.                                                     *
+   22 *********************************************************************** -->
+<title
+>Fonctionnalités avancées</title>
+&vfs; &compare; &occupied-space; &splitter; &checksum; <sect1 id="send-email"
+> <title
+>Envoyer des fichiers par email</title
+> <para
+>Sélectionnez un fichier et utilisez le <emphasis role="bold"
+> <menuchoice
+> <guimenu
+>menu avec un clic-droit</guimenu
+> <guimenuitem
+>Envoyer par email</guimenuitem
+> </menuchoice
+> </emphasis
+>. Sélectionner cette option ouvrira une nouvelle fenêtre &kmail; avec le fichier toujours attaché. Saisissez simplement le sujet et le(s) destinataire(s) et envoyez le. Bien sûr, &kmail; doit être proprement configuré.</para
+> </sect1
+> &profiles; <sect1 id="acl">
+  <title
+>Droit d'accès ACL</title>
+  <para
+><link linkend="gloss-acl"
+>Les droits d'accès ACL</link
+> sont pleinement gérées en utilisant les propriétés, la préservation des attributs et la synchronisation. 
+Pour afficher et modifier les droit d'accès ACL, sélectionnez un fichier et utilisez le menu de contexte : <emphasis role="bold"
+> <menuchoice
+> <guimenu
+>Propriétés</guimenu
+> <guimenuitem
+>Droits d'accès</guimenuitem
+> <guimenuitem
+>Droits d'accès avancés</guimenuitem
+> </menuchoice
+> </emphasis
+>. Si <guilabel
+>Préserver les attributs pour une copie / déplacement locale (plus lent)</guilabel
+> est cochée, les droits d'accès ACL sont aussi copiés. Le synchroniseur gère aussi les droits d'accès ACL.</para>
+</sect1
+></chapter>

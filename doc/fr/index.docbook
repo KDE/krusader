@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- <?xml version="1.0" ?> -->
+<!DOCTYPE 
+book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN"
+"dtd/kdex.dtd"
+[
+
+<!--
+Previous used Docbook
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
+-->
+
+<!-- **********************************************************************
+                              index.docbook
+                           +++++++++++++++++++
+  copyright            : (C) 2000 - 2009
+                          Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                          & the Krusader Krew
+  e-mail               : krusader@users.sourceforge.net
+  web site             : http://www.krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+
+<!ENTITY krusader 'Krusader'>
+<!ENTITY kapp "&krusader;">
+<!ENTITY kappname "&krusader;">
+<!-- <!ENTITY % addindex "IGNORE"
+> -->
+<!ENTITY % addindex "INCLUDE">
+
+<!-- ONLY If you are writing non-English original documentation, change the language here -->
+<!ENTITY % French "INCLUDE">
+
+
+<!-- kdebase, kdeadmin, etc. Leave this unchanged if your application is not maintained in KDE CVS -->
+<!ENTITY package "kde-module">
+
+
+<!-- chapters in separate docbook files -->
+  <!ENTITY help SYSTEM "help.docbook">
+  <!ENTITY editors-note SYSTEM "editors-note.docbook">
+  <!ENTITY introduction SYSTEM "introduction.docbook">
+  <!ENTITY features SYSTEM "features.docbook">
+  <!ENTITY user-interface SYSTEM "user-interface.docbook">
+  
+  <!ENTITY basic-functions SYSTEM "basic-functions.docbook"
+>  <!-- OLD: using-krusader.docbook  NEW: basic-functions.docbook -->
+  <!-- The next ENTITY belongs to the basic-functions chapter -->
+  <!ENTITY archives SYSTEM "archives.docbook"
+>   
+  
+  <!ENTITY advanced-functions SYSTEM "advanced-functions.docbook"
+>         <!-- OLD: more.docbook  NEW: advanced-functions.docbook -->
+  <!-- The next 6 ENTITIES do belong to the advanced-functions chapter -->
+  <!ENTITY vfs SYSTEM "vfs.docbook">
+  <!ENTITY compare SYSTEM "compare.docbook">
+  <!ENTITY occupied-space SYSTEM "occupied-space.docbook"
+> 
+  <!ENTITY splitter SYSTEM "splitter.docbook">
+  <!ENTITY checksum SYSTEM "checksum.docbook">
+  <!ENTITY profiles SYSTEM "profiles.docbook">
+  
+  <!ENTITY menu-commands SYSTEM "menu-commands.docbook"
+>          <!-- OLD: commands.docbook  NEW: menu-commands.docbook -->
+  <!ENTITY keyboard-commands SYSTEM "keyboard-commands.docbook"
+>      <!-- OLD: keyboard.docbook  NEW: keyboard-commands.docbook -->
+  <!ENTITY mouse-commands SYSTEM "mouse-commands.docbook"
+>            <!-- OLD: mouse.docbook  NEW: mouse-commands.docbook -->
+  
+  <!ENTITY krusader-tools SYSTEM "krusader-tools.docbook">
+  <!-- The next 10 ENTITIES do belong to the krusader-tools chapter -->
+  <!ENTITY bookmarks SYSTEM "bookmarks.docbook">
+  <!ENTITY diskusage SYSTEM "diskusage.docbook">
+  <!ENTITY java SYSTEM "java.docbook">
+  <!ENTITY search SYSTEM "search.docbook">
+  <!ENTITY viewer-editor SYSTEM "viewer-editor.docbook">
+  <!ENTITY locate SYSTEM "locate.docbook">
+  <!ENTITY mount SYSTEM "mount.docbook"
+> 
+  <!ENTITY remote-connections SYSTEM "remote-connections.docbook">
+  <!ENTITY synchronizer SYSTEM "synchronizer.docbook">
+  <!ENTITY krusader-useractions SYSTEM "useractions.docbook">
+
+  <!ENTITY konfigurator SYSTEM "konfigurator.docbook">
+  <!ENTITY faq SYSTEM "faq.docbook">
+  <!ENTITY credits-and-license SYSTEM "credits-and-license.docbook"
+>      <!-- OLD: credits.docbook  NEW: credits-and-license.docbook -->
+  <!ENTITY glossary SYSTEM "glossary.docbook">
+  <!ENTITY installation SYSTEM "installation.docbook">
+
+<!-- appendices in separate docbook files -->
+ <!ENTITY configuration-files SYSTEM "configuration-files.docbook">
+ <!ENTITY useraction-xml SYSTEM "useraction-xml.docbook">
+ <!ENTITY release-overview SYSTEM "release-overview.docbook">
+
+  
+]>
+<book lang="&language;">
+  <bookinfo id="index">
+    <title
+>Le manuel de Krusader</title>
+    <authorgroup>
+      <!--
+Changed the <author
+> tag in favor for <othercredit role="developer"
+> for Frank since
+the <author
+><contrib
+> tag is not shown for the documentation author on the index page
+This is a workaround, i have no idea why the <author
+> tag doesn't show the <contrib
+> tag (= the title)
+on the index page.
+Frank.
+-->
+
+<!-- NOTE: DBLATEX doesn't accept "&amp" to display "&" in the <contrib
+> tag, so i changed it to "and" -->
+
+      <othercredit role="developer"
+><firstname
+>Frank</firstname
+> <surname
+>Schoolmeesters</surname
+> <contrib
+>Documentation et coordinateur marketing</contrib>
+        <affiliation>
+          <address>
+            <email
+>frank_schoolmeesters@yahoo.com</email>
+          </address>
+        </affiliation>
+      </othercredit>
+      <othercredit role="reviewer"
+><firstname
+>Richard</firstname
+> <surname
+>Holt</surname
+> <contrib
+>Documentation et concept</contrib>
+        <affiliation>
+          <address>
+            <email
+>richard.holt@gmail.com</email>
+          </address>
+        </affiliation>
+      </othercredit>
+      <othercredit role="reviewer"
+><firstname
+>Matej</firstname
+> <surname
+> Urban&ccaron;i&ccaron;</surname
+> <contrib
+>Marketing et recherche produit</contrib>
+        <affiliation>
+          <address>
+            <email
+>matej.urban@gmail.com</email>
+          </address>
+        </affiliation>
+      </othercredit>
+      <othercredit role="developer"
+><firstname
+>Shie</firstname
+> <surname
+>Erlich</surname
+> <contrib
+>Auteur et auteur original du manuel</contrib>
+        <affiliation>
+          <address>
+            <email
+>erlich@users.sourceforge.net</email>
+          </address>
+        </affiliation>
+      </othercredit>
+      <othercredit role="developer"
+><firstname
+>Rafi</firstname
+> <surname
+>Yanai</surname
+> <contrib
+>Auteur et auteur original du manuel</contrib>
+        <affiliation>
+          <address>
+            <email
+>yanai@users.sourceforge.net</email>
+          </address>
+        </affiliation>
+      </othercredit>
+      <othercredit role="developer"
+><firstname
+>Dirk</firstname
+> <surname
+>Eschler</surname
+> <contrib
+>Webmestre et coordinateur i18n</contrib>
+        <affiliation>
+          <address>
+            <email
+>deschler@users.sourceforge.net</email>
+          </address>
+        </affiliation>
+      </othercredit>
+      <othercredit role="developer"
+><firstname
+>Csaba</firstname
+> <surname
+>Karai</surname
+> <contrib
+>Développeur</contrib>
+        <affiliation>
+          <address>
+            <email
+>ckarai@users.sourceforge.net</email>
+          </address>
+        </affiliation>
+      </othercredit>
+      <othercredit role="developer"
+><firstname
+>Heiner</firstname
+> <surname
+>Eichmann</surname
+> <contrib
+>Développeur</contrib>
+        <affiliation>
+          <address>
+            <email
+>h.eichmann@gmx.de</email>
+          </address>
+        </affiliation>
+      </othercredit>
+      <othercredit role="developer"
+><firstname
+>Jonas</firstname
+> <surname
+>B&auml;hr</surname
+> <contrib
+>Développeur</contrib>
+        <affiliation>
+          <address>
+            <email
+>jonas.baehr@web.de</email>
+          </address>
+        </affiliation>
+      </othercredit>
+      <othercredit role="developer"
+><firstname
+>V&aacute;clav</firstname
+> <surname
+>J&uring;za</surname
+> <contrib
+>Développeur</contrib>
+        <affiliation>
+          <address>
+            <email
+>vaclavjuza@seznam.cz</email>
+          </address>
+        </affiliation>
+      </othercredit>
+    </authorgroup>
+    <copyright>
+      <year
+>2000</year>
+      <year
+>2001</year>
+      <year
+>2002</year>
+      <year
+>2003</year>
+      <holder
+>Rafi Yanai</holder>
+      <holder
+>Shie Erlich</holder>
+    </copyright>
+    <copyright>
+      <year
+>2004</year>
+      <year
+>2005</year>
+      <year
+>2006</year>
+      <year
+>2007</year>
+      <year
+>2008</year>
+      <year
+>2009</year>
+      <holder
+>Équipe de Krusader</holder>
+    </copyright>
+    <legalnotice>
+      <para
+>La permission est donnée de copier, distribuer et / ou modifier ce document sous les termes de la <ulink url="http://www.gnu.org/copyleft/fdl.html"
+>licence de documentation libre GNU</ulink
+>, version 1.1 ou supérieure publiée par la Free Software Foundation ; avec aucune sections invariables, aucun textes au recto, et aucun textes au verso. Une copie de la licence est incluse dans les sources de &krusader;.</para>
+    </legalnotice>
+    <date
+>2009-04-09</date>
+    <releaseinfo
+>2.0.0 "Mars Pathfinder"</releaseinfo>
+    <abstract>
+      <para
+>&krusader;est un gestionnaire de fichiers avancé, à deux panneaux (de type commander) pour KDE, et d'autres bureaux pour le monde *nix.</para>
+    </abstract>
+    <keywordset>
+      <keyword
+>KDE</keyword>
+      <keyword
+>krusader</keyword>
+      <keyword
+>commander</keyword>
+      <keyword
+>gestionnaire de fichiers</keyword>
+      <keyword
+>panneau clone</keyword>
+      <keyword
+>linux</keyword>
+      <keyword
+>fichier</keyword>
+      <keyword
+>gestionnaire</keyword>
+      <keyword
+>double panneau</keyword>
+      <keyword
+>linux-commander</keyword>
+      <keyword
+>kde-commander</keyword>
+    </keywordset>
+  </bookinfo>
+<!-- preface -->
+  &help;
+
+  &editors-note;
+
+<!-- chapters -->  
+  &introduction;
+  &features;
+  &user-interface;
+  &basic-functions;
+  &advanced-functions;
+  &menu-commands;
+  &keyboard-commands;
+  &mouse-commands;
+  &krusader-tools;
+  &konfigurator;
+  &faq;
+  &credits-and-license;
+  &installation;
+
+<!-- appendices -->
+  &configuration-files;
+  &useraction-xml;
+  &release-overview;
+
+<!-- glossary -->    
+  &glossary;
+
+<!-- index (automagically generated) -->
+  &documentation.index;
+</book>

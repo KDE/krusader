@@ -1,0 +1,1309 @@
+<chapter id="user-interface"
+>
+  <title
+>Interface utilisateur</title
+>
+  <indexterm
+>
+    <primary
+>Interface utilisateur</primary
+>
+  </indexterm
+>
+  <sect1 id="ofm-userinterface"
+>
+    <title
+>Interface utilisateur OFM</title
+>
+    <para
+>Le concept de gestionnaire de fichiers OFM contient de <link linkend="features"
+>nombreuses fonctionnalités</link
+> qui les rendent suffisamment puissantes pour être parmi les meilleurs gestionnaires de fichiers aujourd'hui.</para
+>
+    <para
+>Si vous aimeriez savoir <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml"
+> comment &krusader; fonctionne</ulink
+>, vous pouvez l'essayer vous-même, installez le simplement sur votre ordinateur. Pour adopter un <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>gestionnaire de fichiers orthodoxe (Orthodox File Manager - OFM)</ulink
+> comme &krusader;, l'utilisateur a besoin d'utiliser les <emphasis
+>nouvelles idées</emphasis
+> qui actuellement datent de 20 ans. Si vous préférez perdre du temps et de la productivité, vous pouvez toujours continuer à utiliser des gestionnaires à un panneau qui sont fondés sur l'Explorer de &Windows;.</para
+>
+  </sect1
+>
+  <sect1 id="mainwindow"
+>
+    <title
+>Fenêtre principale de &krusader;</title
+>
+    <!-- OLD
+<screenshot
+>
+   <screeninfo
+>&krusader; Main Window</screeninfo
+>
+    <mediaobject
+>
+     <imageobject
+><imagedata fileref="mainwindow.png" format="PNG"/></imageobject
+>
+     <imageobject
+><imagedata fileref="mainwindow.png" format="EPS"/></imageobject
+>
+     <textobject
+><phrase
+>&krusader; Main Window</phrase
+></textobject
+>
+     <caption
+><para
+>&krusader; is main window with all the different parts named on the screen.</para
+></caption
+>
+    </mediaobject
+>
+</screenshot
+>
+-->
+    <figure id="screenshot-mainwindow" float="1"
+>
+      <title
+>Fenêtre principale de &krusader;</title
+>
+      <mediaobject
+>
+        <imageobject
+>
+          <imagedata fileref="mainwindow.png"
+></imagedata
+>
+        </imageobject
+>
+        <textobject
+>
+          <phrase
+>Fenêtre principale de &krusader;</phrase
+>
+        </textobject
+>
+      </mediaobject
+>
+    </figure
+>
+    <para
+>L'interface utilisateur est fondée sur le paradigme du <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>gestionnaire de fichiers orthodoxe (OFM)</ulink
+>, un vieux principe qui a fait ses preuves. Il est reconnu comme simple, facile et puissant. Dans les sections suivantes, nous couvrirons les fonctionnalités basiques de chaque partie à l'exception de : </para
+>
+    <itemizedlist
+>
+      <listitem
+>
+        <para
+>La <link linkend="menu-commands"
+>barre de menus</link
+> qui a son propre chapitre.</para
+>
+      </listitem
+>
+      <listitem
+>
+        <para
+>Les <link linkend="bookman"
+>signets</link
+> qui a son propre chapitre.</para
+>
+      </listitem
+>
+      <listitem
+>
+        <para
+>La <emphasis role="bold"
+>barre d'état</emphasis
+> affiche les propriétés du fichier courant (qui sont affichés) dans le focus. Vous pouvez utiliser le « glisser-déposer » pour déplacer un &URL; dans la barre d'état.</para
+>
+      </listitem
+>
+    </itemizedlist
+>
+  </sect1
+>
+  <sect1 id="toolbars"
+>
+    <title
+>Barre d'outils</title
+>
+    <para
+>&krusader; est fourni avec plusieurs barre d'outils.</para
+>
+    <sect2 id="main_toolbar"
+>
+      <title
+>La barre principale</title
+>
+      <indexterm
+>
+        <primary
+>Barre d'outils</primary
+>
+        <secondary
+>La barre principale</secondary
+>
+      </indexterm
+>
+      <!-- OLD
+<screenshot
+>
+    <screeninfo
+>Main Toolbar</screeninfo
+>
+    <mediaobject
+>
+     <imageobject
+><imagedata fileref="toolbar.png" format="PNG"/></imageobject
+>
+     <imageobject
+><imagedata fileref="toolbar.png" format="EPS"/></imageobject
+>
+     <textobject
+><phrase
+>Main Toolbar</phrase
+></textobject
+>
+    </mediaobject
+>
+</screenshot
+>
+-->
+      <figure id="screenshot-maintoolbar" float="1"
+>
+        <title
+>La barre principale</title
+>
+        <mediaobject
+>
+          <imageobject
+>
+            <imagedata fileref="toolbar.png"
+></imagedata
+>
+          </imageobject
+>
+          <textobject
+>
+            <phrase
+>La barre principale</phrase
+>
+          </textobject
+>
+        </mediaobject
+>
+      </figure
+>
+      <para
+>La barre principale de &krusader; est une barre d'outils standard de &kde; qui peut être glissée sur l'application ou configurée avec un menu par <keycap
+>clic-droit</keycap
+>. Vous pouvez décider si vous voulez l'afficher chaque fois que vous démarrez &krusader;, dans la <link linkend="konfigurator"
+>page de démarrage de Konfigurator</link
+>, et vous pouvez la cacher ou l'afficher dans la session courante dans le menu <link linkend="view-menu"
+>affichage</link
+>. La contenu de la barre principale peut être configuré depuis <guimenuitem
+>Configurer les barres d'outils</guimenuitem
+> dans le menu <link linkend="settings-menu"
+>configuration</link
+> ou l'onglet <guilabel
+>barre d'outils</guilabel
+> dans la <link linkend="konfig-looknfeel"
+>page apparence &amp; ergonomie de Konfigurator</link
+>. Depuis que diverses commandes et options dans &krusader; sont dépendantes d'un contexte, des commandes ne sont pas toujours disponibles. L'icône de l'action inappropriée ou inactive sera désactivée (en gris) désactivant son utilisation. Les <link linkend="bookman"
+>signets</link
+> peuvent être placés dans la barre principale et la barre d'actions avec la souris en utilisant le « glisser-déposer ».</para
+>
+    </sect2
+>
+    <sect2 id="actions_toolbar"
+>
+      <title
+>Barre d'actions</title
+>
+      <indexterm
+>
+        <primary
+>Barre d'outils</primary
+>
+        <secondary
+>Barre d'actions</secondary
+>
+      </indexterm
+>
+      <para
+>Les <link linkend="useractions"
+>Actions utilisateurs</link
+> et les <link linkend="bookman"
+>signets</link
+> peuvent être ajoutés dans la <guilabel
+>barre d'actions</guilabel
+>. Pour l'afficher, utilisez <emphasis role="bold"
+> <menuchoice
+> <guimenu
+>Affichage</guimenu
+> <guimenuitem
+>Afficher la barre d'actions</guimenuitem
+> </menuchoice
+> </emphasis
+>. Pour ajouter des actions utilisateurs, utilisez <emphasis role="bold"
+> <menuchoice
+> <guimenu
+>Configuration</guimenu
+> <guimenuitem
+>Configurer les barre d'outils</guimenuitem
+> </menuchoice
+> </emphasis
+> et sélectionnez la barre d'actions. Vous pouvez, par exemple, glisser la barre d'actions sur le coté droit en utilisant la souris.</para
+>
+    </sect2
+>
+    <sect2 id="location_toolbar"
+>
+      <title
+>Barre d'emplacement</title
+>
+      <indexterm
+>
+        <primary
+>Barre d'outils</primary
+>
+        <secondary
+>Barre d'emplacement</secondary
+>
+      </indexterm
+>
+      <para
+>En dessous de la <guibutton
+>barre principale</guibutton
+> se trouve la <guibutton
+>barre d'emplacement</guibutton
+> pour chaque panneau. Elle affiche l'emplacement vers lequel le panneau pointe. Si l'emplacement sélectionné est trop long, il sera automatiquement raccourci et un caractère « ... » remplacera la partie omise du nom de l'emplacement. Quand vous entrez dans des archives, l'emplacement sera affiché dans le format suivant : « nom de l'archive:/dossier/nomdefichier_archive/ledossier à l'intérieur de l'archive ». Ce format rend les emplacements uniformes et facile à lire. La <guibutton
+>barre d'emplacement</guibutton
+> gère aussi les modules d'entrées / sorties mais pas toutes, certaines peuvent être utilisés avec <link linkend="krviewer"
+>l'afficheur</link
+> et d'autres ne peuvent pas être utilisés. L'utilisateur peut entrer dans un emplacement désiré en cliquant dessus.<itemizedlist
+> <listitem
+> <para
+> <userinput
+> <replaceable
+>/mnt/cdrom/</replaceable
+> </userinput
+> </para
+> </listitem
+> <listitem
+> <para
+> <userinput
+> <command
+>settings:/</command
+> </userinput
+>naviguera et ouvre les entrées du <application
+>Centre de Contrôle de KDE.</application
+></para
+> </listitem
+> <listitem
+> <para
+> <userinput
+> <command
+>devices:/</command
+> </userinput
+> donne une vue d'ensemble des périphériques &pex; les lecteurs <hardware
+>floppy</hardware
+> ou <hardware
+>CD-ROM</hardware
+>.</para
+> </listitem
+> <listitem
+> <para
+> <userinput
+> <command
+>trash:/</command
+> </userinput
+>ouvre la corbeille de &kde;.</para
+> </listitem
+> <listitem
+> <para
+> <userinput
+> <command
+>ipod:/</command
+> </userinput
+>utilise le module <ulink url="http://sourceforge.net/projects/kpod"
+>KIOipod-slave</ulink
+> pour accéder, envoyer et organiser la musique stockée sur un <trademark
+>ipod Apple</trademark
+>.</para
+> </listitem
+> <listitem
+> <para
+>Et enfin non des moindre, les <link linkend="remote-connections"
+>connexions distantes</link
+>.</para
+> </listitem
+> </itemizedlist
+>Vous pouvez copier / coller une &URL; dans la <guibutton
+>barre d'emplacement</guibutton
+> ou utiliser le clic du milieu. Avec le menu par clic-droit, vous pouvez configurer la fonctionnalité de complètement automatique. Un bouton optionnel <guilabel
+>Effacer la barre d'emplacement</guilabel
+> est aussi disponible.</para
+>
+      <para
+>Navigation rapide : <keycap
+>&Ctrl;</keycap
+> pointe avec la souris sur le milieu de l'&URL; de la barre d'emplacement. Une fenêtre de menu contextuel affiche le prochain emplacement. Cliquer sur <keycap
+>&Ctrl;</keycap
+>+ bouton gauche de la souris affiche l'emplacement où le pointeur de la souris est placé. Cette fonctionnalité permet une navigation plus rapide dans une grosse arborescence de dossiers.</para
+>
+    </sect2
+>
+    <sect2 id="panel_toolbar"
+>
+      <title
+>Barre d'outils du panneau</title
+>
+      <indexterm
+>
+        <primary
+>Barre d'outils</primary
+>
+        <secondary
+>Barre d'outils du panneau</secondary
+>
+      </indexterm
+>
+      <para
+>Chaque panneau a une <link linkend="konfig-looknfeel-ptoolbar"
+>barre d'outils configurable</link
+>. La barre d'outils du panneau complet ou des boutons spécifiés peuvent être rendus visible ou caché. <itemizedlist
+>
+        <listitem
+>
+          <para
+><guibutton
+>Ouvrir le sélecteur de fichiers</guibutton
+> : permet de choisir un dossier dans le navigateur de fichiers.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+>Le bouton <guibutton
+>Identique (=)</guibutton
+> : modifie le dossier du panneau à l'identique du panneau opposé.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+>Le bouton <guibutton
+>Haut (..)</guibutton
+> : modifie le dossier du panneau pour le dossier parent.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+>Le bouton <guibutton
+>Dossier personnel (~)</guibutton
+> : modifie le dossier du panneau pour le dossier personnel.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+>Le bouton <guibutton
+>Superutilisateur (root) (/)</guibutton
+> : modifie le dossier du panneau pour le dossier racine (/).</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+>Le bouton <guibutton
+>de la navigation synchronisée</guibutton
+> : si activé, chaque dossier modifié dans le panneau spécifique l'est aussi dans l'autre panneau.</para
+>
+        </listitem
+>
+      </itemizedlist
+></para
+>
+    </sect2
+>
+  </sect1
+>
+  <sect1 id="panels"
+>
+    <title
+>Panneaux</title
+>
+    <para
+>Les panneaux &krusader; sont les emplacements où s'affichent la plupart des actions. Habituellement, il y a deux types de panneaux : <itemizedlist
+> <listitem
+> <para
+><link linkend="list_panel"
+>Panneau en liste</link
+> : affiche les fichiers et les dossiers.</para
+> </listitem
+> <listitem
+> <para
+>Le <link linkend="popup_panel"
+>Panneau en menu contextuel</link
+> a plusieurs modes d'affichage : aperçu, arborescence, sélection rapide, affichage et utilisation du disque pour le fichier ou le dossier qui a le focus. Le panneau par menu contextuel peut être ouvert ou fermé, comme désiré.</para
+> </listitem
+> </itemizedlist
+>&krusader; est un gestionnaire de fichiers à deux panneaux : le panneau de gauche et le panneau de droite, une distinction logique plus importante, le panneau ACTIF et le panneau INACTIF. Le panneau actif est celui qui acceptera la souris et les entrées clavier. Si vous choisissez une commande depuis la <guilabel
+>barre de menus</guilabel
+> ou la <guilabel
+>barre d'outils</guilabel
+> la commande se conformera au dossiers / fichiers sélectionnés dans le panneau actif. Vous pouvez naviguer entre les panneaux en utilisant la touche &Tab; ou en cliquant sur les <guilabel
+>titres des panneaux</guilabel
+>, ou en sélectionnant un fichier dans un panneau avec la souris. Comme toujours, la configuration de démarrage par défaut peut être modifié avec la <link linkend="konfigurator"
+>page de démarrage de Konfigurator</link
+>, et vous contrôlez la session courante avec le menu <link linkend="view-menu"
+>affichage</link
+>.</para
+>
+    <!-- OLD
+<screenshot
+>
+    <screeninfo
+>List Panel</screeninfo
+>
+    <mediaobject
+>
+     <imageobject
+><imagedata fileref="listpanel.png" format="PNG"/></imageobject
+>
+     <imageobject
+><imagedata fileref="listpanel.png" format="EPS"/></imageobject
+>
+     <textobject
+><phrase
+>List Panel</phrase
+></textobject
+>
+     <caption
+><para
+>The List Panel with all the different parts indicated.</para
+></caption
+>
+    </mediaobject
+>
+</screenshot
+>
+-->
+    <figure id="screenshot-listpanel" float="1"
+>
+      <title
+>Panneau en liste</title
+>
+      <mediaobject
+>
+        <imageobject
+>
+          <imagedata fileref="listpanel.png"
+></imagedata
+>
+        </imageobject
+>
+        <textobject
+>
+          <phrase
+>Panneau en liste</phrase
+>
+        </textobject
+>
+      </mediaobject
+>
+    </figure
+>
+    <sect2 id="list_panel"
+>
+      <title
+>Panneau en liste</title
+>
+      <indexterm
+>
+        <primary
+>Panneau</primary
+>
+        <secondary
+>Panneau en liste</secondary
+>
+      </indexterm
+>
+      <para
+>C'est le panneau par défaut et celui que vous utiliserez probablement la plupart du temps. Ce panneau affiche le contenu d'un dossier qui peut être local (une partie de vos systèmes de fichiers montés, soit un un fichier natif ou les fichiers dans une archive) ou des fichiers distants (accessibles depuis un &FTP; ou avec Samba). Il y a deux modes : <link linkend="view-menu"
+>Vue détaillée</link
+> qui affiche les noms de fichiers, la taille, la date de création et l'heure et leurs attributs. Et la <link linkend="view-menu"
+>Vue en lignes</link
+> qui affiche seulement les noms de fichiers, le nombre de colonnes peut être modifié avec un clic-droit sur l'en-tête <guilabel
+>Nom</guilabel
+>. Copier / coller / couper un fichier avec le presse-papiers entre &konqueror; et &krusader; <keycombo action="simul"
+>&Ctrl; <keycap
+>c</keycap
+></keycombo
+>, <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo
+>, <keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+> est géré. <keycombo action="simul"
+>&Alt;&Ctrl; <keycap
+>R</keycap
+></keycombo
+> active le <guilabel
+>panneau en liste</guilabel
+> entre le mode vertical et horizontal.</para
+>
+      <para
+>Les éléments suivants sont disponibles : <itemizedlist
+> <listitem
+> <para
+> <emphasis
+> <guilabel
+>Titre de l'information</guilabel
+> </emphasis
+> : affiche combien d'espace libre est physiquement disponible sur le système de fichiers, la capacité de celui-ci et où l'emplacement est monté. Si l'information n'est pas disponible (le plus souvent dans le cas des systèmes de fichiers distants) un message sera affiché avec la raison de la non disponibilité à la place de l'information.</para
+> <para
+>Le bouton <guibutton
+>Média</guibutton
+> sur la gauche du <guilabel
+>titre d'information</guilabel
+> affiche une liste de tous les média disponibles, où vous pouvez sélectionner le média désiré, (partition sur disque dur, dvd, usb-stick, &etc;). Le menu contextuel donne plusieurs options comme <guilabel
+>Monter</guilabel
+>, <guilabel
+>Ouvrir dans un nouvel onglet</guilabel
+>, &etc; Le bouton <guibutton
+>Média</guibutton
+> est <link linkend="konfig-advanced"
+> configurable</link
+>.</para
+> </listitem
+> <listitem
+> <para
+> <emphasis
+> <guilabel
+>En-têtes de colonne</guilabel
+> </emphasis
+> : vous pouvez modifier ici l'ordre du trie des fichiers et des dossiers comme désiré. L'ordre de trie par défaut est par <guilabel
+>Nom</guilabel
+>. L'ordre de trie peut être modifié en cliquant sur l'en-tête de colonne. Pour renverser l'ordre de trie, cliquez une deuxième fois sur l'en-tête de colonne. une flèche apparaîtra sur la droite de l'en-tête de colonne, affichant la direction de trie (flèche vers le haut = trie de A à Z, flèche vers le bas = trie de Z à A). Les <link linkend="useractions"
+>actions utilisateurs</link
+> par défaut définissent un raccourci clavier pour l'en-tête de colonne. Par défaut c'est : Les<guilabel
+>En-têtes de colonne</guilabel
+> par défaut sont : <guilabel
+>Nom, Ext, Taille, Modifié, rwx</guilabel
+>. Les <link linkend="konfig-general"
+>extensions atomiques</link
+> comme <filename
+>tar.gz</filename
+> sont affichées individuellement dans la colonne <guilabel
+>Ext</guilabel
+>. Plus <link linkend="konfig-looknfeel-panel"
+>d'options</link
+> sont disponibles avec le bouton souris droit. La largeur des en-têtes de colonnes peuvent être modifiées avec la souris par un simple clic et en déplaçant la barre de séparation à la largeur désirée (appuyer sur le bouton et de la souris et déplacer le curseur). Le <guilabel
+>panneau en liste</guilabel
+> se souvient de l'ordre de trie et de la largeur de la colonne. Les en-têtes de colonnes peuvent être modifiées et enregistrées individuellement pour chaque panneau.</para
+> </listitem
+> <listitem
+> <para
+> <emphasis
+> <guilabel
+>Liste de fichiers</guilabel
+> </emphasis
+> : affiche les fichiers et les dossiers dans le navigateur de dossiers. Le bouton de <link linkend="quicksearch"
+>recherche rapide</link
+> vous permet de rechercher des fichiers en saisissant leur noms, ou le premier caractère de leurs noms. Appuyez sur &Enter; ou double-cliquez sur un fichier pour l'ouvrir ou l'exécuter. Vous pouvez sélectionner ou désélectionner les fichiers en utilisant la souris avec la touche <keycap
+>Inser</keycap
+> ou le menu <link linkend="edit-menu"
+>Édition</link
+>.</para
+> </listitem
+> <listitem
+> <para
+> <emphasis
+> <guilabel
+>Titre des totaux</guilabel
+> </emphasis
+> : sélectionner ou désélectionner des fichiers modifiera le titre des totaux en bas du panneau, qui affiche combien de fichiers vous avez sélectionné (et combien d'espace disque ils utilisent) aussi bien que le fichier total et l'utilisation du disque du dossier courant (à l'inverse du titre d'information qui affiche l'information du système de fichiers entier). Si un dossier contient de nombreux sous-dossiers, il n'est pas possible de déposer l'&URL; dans le panneau (sur lequel seul les dossiers sont visibles), mais l'&URL; peut être déposée sur la barre d'état ou le titre des totaux. Si un <link linkend="view-menu"
+>filtre personnalisé</link
+> est défini, il va afficher les paramètres, &pex; : [*.cpp].</para
+> </listitem
+> </itemizedlist
+>Si vous utilisez les <link linkend="konfig-color"
+>couleurs</link
+> par défaut de &kde;, les fichiers sélectionnés sont affichés en bleu et le fichier courant est surlignés par un fin rectangle de pointillés. Par défaut, une icône est affiché selon le type de fichiers. Utilisez la <link linkend="konfig-looknfeel"
+>page Apparence &amp; Ergonomie de Konfigurator</link
+> pour modifier la configuration par défaut pour adapter vos besoins personnels.</para
+>
+      <para
+>Quelques <link linkend="key_bindings"
+>raccourcis clavier</link
+> utiles du panneau en liste :  <itemizedlist
+>
+        <listitem
+>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+> rafraîchira le panneau.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+>Pour avoir le focus sur un fichier ou un dossier sur le panneau de gauche, cliquez sur <keycombo action="simul"
+>&Ctrl; <keycap
+>flèche gauche</keycap
+></keycombo
+> et le panneau de droite se modifie :  <itemizedlist
+>
+            <listitem
+>
+              <para
+>Sur un fichier : le panneau de droite affiche le même emplacement que le panneau de gauche.</para
+>
+            </listitem
+>
+            <listitem
+>
+              <para
+>Sur un dossier : rafraîchit le panneau de droite avec le contenu du dossier.</para
+>
+            </listitem
+>
+          </itemizedlist
+></para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+>Pour le panneau de droite : cliquez sur <keycombo action="simul"
+>&Ctrl; <keycap
+>flèche droite</keycap
+></keycombo
+> et le panneau de gauche se modifiera.</para
+>
+        </listitem
+>
+      </itemizedlist
+></para
+>
+    </sect2
+>
+    <sect2 id="popup_panel"
+>
+      <title
+>Panneau en menu contextuel</title
+>
+      <indexterm
+>
+        <primary
+>Panneau</primary
+>
+        <secondary
+>Le troisième panneau : fenêtre de hiérarchie des dossiers</secondary
+>
+      </indexterm
+>
+      <para
+>C'est le troisième panneau de &krusader;. Cliquez sur le bouton de flèche (qui va vers le haut) qui se situe en bas à droite de chaque panneau ou avec <keycombo action="simul"
+>&Alt; <keycap
+>Flèche bas</keycap
+></keycombo
+> pour ouvrir la fenêtre de hiérarchie de dossiers. Ce panneau a plusieurs modes d'affichage qui peuvent être activés en cliquant sur le bouton approprié. <itemizedlist
+> <listitem
+> <para
+> <emphasis
+> <guilabel
+>Panneau d'aperçu</guilabel
+> </emphasis
+> : donne un aperçu du fichier qui a le focus (le fichier courant sélectionné).</para
+> </listitem
+> <listitem
+> <para
+> <emphasis
+> <guilabel
+>Panneau hiérarchique</guilabel
+> </emphasis
+> : est utilisé pour naviguer rapidement dans l'arborescence des dossiers locaux. Ce panneau se comporte comme un panneau listé mais seul un dossier peut être sélectionné à la fois et double-cliquer ou appuyer sur &Enter; sur un dossier ouvrira ce dossier dans le panneau actif. Les panneaux gèrent complètement le glisser-déposer (copier, déplacer, lien).</para
+> </listitem
+> <listitem
+> <para
+> <emphasis
+> <guilabel
+>Panneau rapide</guilabel
+> </emphasis
+> : est utilisé pour sélectionner rapidement des fichiers,<literal role="extension"
+>*.png</literal
+> et cliquez sur le bouton &pex; <guibutton
+>Appliquer la sélection</guibutton
+>. Le bouton <guibutton
+>Enregistrer la sélection courante</guibutton
+> enregistre le résultat courant qui apparaît. La <guibutton
+>Boîte de dialogue de sélection de groupe</guibutton
+> est aussi disponible.</para
+> </listitem
+> <listitem
+> <para
+> <emphasis
+> <guilabel
+>Panneau de vue</guilabel
+> </emphasis
+> : affiche un fichier texte, une image, &etc;. Une vue miniature est générée quand vous ouvrez le panneau de vue et cliquez sur un nom de dossier qui contient des images.</para
+> </listitem
+> <listitem
+> <para
+> <emphasis
+> <guilabel
+>Panneau d'espace disque utilisé</guilabel
+> </emphasis
+> : affiche <link linkend="diskusage"
+>l'utilisation du disque</link
+> d'un dossier.</para
+> </listitem
+> </itemizedlist
+>Si besoin, vous pouvez redimensionner la fenêtre &pex; pour mieux afficher une image ou un le contenu d'un fichier. Cliquez sur le bouton de flèche (qui va maintenant vers le bas) ferme ce troisième panneau.</para
+>
+    </sect2
+>
+    <sect2 id="folderhistory"
+>
+      <title
+>Historique des dossiers</title
+>
+      <para
+>Les deux panneaux se souviennent des dossiers visités récemment. Cliquez sur le bouton<guibutton
+>Ouvrir l'historique des dossiers</guibutton
+> symbolisé par une icône de montre pour ouvrir la liste d'historique. Vous pouvez modifier rapidement les dossiers précédemment visités. Le dossier courant qui a le focus est activé. À chaque nouveau démarrage de &krusader;, la liste d'historique est vide.</para
+>
+    </sect2
+>
+  </sect1
+>
+  <sect1 id="cmdline_termemu"
+>
+    <title
+>Ligne de commande / Émulateur de terminal</title
+>
+    <para
+>Cette partie du <link linkend="gloss-gui"
+>GUI</link
+> peut avoir quatre modes : ligne de commande, émulateur de terminal, afficher les deux et n'en afficher qu'une seule. Vous pouvez choisir votre mode d'opération soit au démarrage avec la <link linkend="konfigurator"
+>page de démarrage de Konfigurator</link
+>, ou pour la session courante avec le menu <link linkend="view-menu"
+>Affichage</link
+>. </para
+>
+    
+  <sect2 id="cmdline"
+>
+    <title
+>Ligne de commande</title
+>
+        
+    <!-- OLD
+<screenshot
+>
+  <screeninfo
+>Command line</screeninfo
+>
+  <mediaobject
+>
+   <imageobject
+><imagedata fileref="cmdline.png" format="PNG"/></imageobject
+>
+   <imageobject
+><imagedata fileref="cmdline.png" format="EPS"/></imageobject
+>
+   <textobject
+><phrase
+>Command Line</phrase
+></textobject
+>
+   <caption
+><para
+>Command Line</para
+></caption
+>
+  </mediaobject
+>
+</screenshot
+>
+-->
+    <figure id="screenshot-commandline" float="1"
+>
+      <title
+>Ligne de commande</title
+>
+      <mediaobject
+>
+        <imageobject
+>
+          <imagedata fileref="cmdline.png"
+></imagedata
+>
+        </imageobject
+>
+        <textobject
+>
+          <phrase
+>Ligne de commande</phrase
+>
+        </textobject
+>
+      </mediaobject
+>
+    </figure
+>
+    <para
+>Le traditionnel mode de ligne de commande offre une ligne simple d'entrée pour saisir les commandes, il offre aussi trois boutons : <itemizedlist
+> <listitem
+> <para
+><guibutton
+>Historique de commandes</guibutton
+> : la flèche située à droite de la boîte de commande pour afficher rapidement les commandes précédemment utilisées.</para
+> </listitem
+> <listitem
+> <para
+><guibutton
+>Actions utilisateur étendues</guibutton
+>  (le bouton + vert) pour ajouter facilement des <link linkend="useractions"
+>des substituants d'actions utilisateur</link
+> </para
+> </listitem
+> <listitem
+> <para
+>Le bouton <guibutton
+>Lancer un terminal</guibutton
+> (l'icône de console) avec les options suivantes : <itemizedlist
+> <listitem
+><para
+>Démarrer puis mettre en arrière plan</para
+> </listitem
+> <listitem
+> <para
+>Afficher la sortie d'erreur standard séparée</para
+> </listitem
+> <listitem
+> <para
+>Afficher la sortie standard et la sortie d'erreur ensemble</para
+> </listitem
+> <listitem
+> <para
+>Démarrer dans un nouveau terminal</para
+> </listitem
+> <listitem
+> <para
+>Envoyer à l'émulateur de terminal embarqué</para
+> </listitem
+> </itemizedlist
+> </para
+> </listitem
+> </itemizedlist
+> Quand vous commencez à saisir vos commandes, la fonctionnalité d'auto-complètement de la ligne de commande affiche ce que vous avez choisi dans le &kcontrolcenter;. Si vous voulez modifier le comportement de l'auto-complètement dans la session courante de &krusader;, <keycap
+>cliquez-droit</keycap
+> sur la ligne de commande et modifiez la.Á la gauche de la ligne de commande vous pouvez trouver l'emplacement local que le panneau actif affiche. La commande va se réaliser dans cet emplacement. Saisir <userinput
+> <command
+>cd</command
+> <replaceable
+> &lt;dossier&gt;</replaceable
+> </userinput
+> dans la ligne de commande permet au panneau actif d'afficher l'emplacement dans ce dossier. Cliquez <link linkend="cmdline_keybindings"
+>ici</link
+> pour afficher les raccourcis de ligne de commande.</para
+>
+</sect2
+>    
+
+  <sect2 id="termemu"
+>
+    <title
+>Émulateur de terminal</title
+>
+       
+    <!--
+<screenshot
+>
+  <screeninfo
+>Terminal emulator</screeninfo
+>
+  <mediaobject
+>
+   <imageobject
+><imagedata fileref="terminalEmu.png" format="PNG"/></imageobject
+>
+   <imageobject
+><imagedata fileref="terminalEmu.png" format="EPS"/></imageobject
+>
+   <textobject
+><phrase
+>Terminal emulator</phrase
+></textobject
+>
+   <caption
+><para
+>Terminal emulator</para
+></caption
+>
+  </mediaobject
+>
+</screenshot
+>
+-->
+    <figure id="screenshot-terminalemulator" float="1"
+>
+      <title
+>Émulateur de terminal</title
+>
+      <mediaobject
+>
+        <imageobject
+>
+          <imagedata fileref="terminalEmu.png"
+></imagedata
+>
+        </imageobject
+>
+        <textobject
+>
+          <phrase
+>Émulateur de terminal</phrase
+>
+        </textobject
+>
+      </mediaobject
+>
+    </figure
+>
+    <para
+>Le mode émulateur de terminal est en fait une petite console et se comporte comme tel. Vous pouvez modifier le dossier actif dans le terminal en utilisant la commande <userinput
+> <command
+>cd</command
+> </userinput
+>. L'émulateur de terminal suivra le dossier du panneau actif. Quand vous déplacez un fichier depuis le panneau, vous aurez le choix entre « Coller », <command
+>cd</command
+>, <command
+>mv</command
+> et <command
+>ln</command
+>. Si vous déplacez plusieurs fichiers, la commande <command
+>cd</command
+> ne sera pas disponible. Un émulateur de terminal en plein écran peut être utilisé s'il est <link linkend="konfig-looknfeel-operation"
+>configuré</link
+> ou avec <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+> qui agrandi ou réduit le mode d'affichage. Si la ligne de commande est cachée, appuyez sur <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>T</keycap
+></keycombo
+> pour afficher ou cacher l'émulateur de terminal. <keycombo action="simul"
+>&Ctrl; <keycap
+>Entrée</keycap
+></keycombo
+> copie le nom de fichier et <keycombo action="simul"
+>&Ctrl; <keycap
+>&Maj;</keycap
+> <keycap
+>Entrée</keycap
+></keycombo
+> copie l'adresse du nom de fichier. Vous pouvez fermer l'émulateur en saisissant <userinput
+> <command
+>exit</command
+> </userinput
+>.</para
+>
+    <para
+>Cliquez <link linkend="termemu_keybindings"
+>ici</link
+> pour afficher les raccourcis clavier de l'émulateur de terminal.</para
+>
+    </sect2
+>
+    
+  </sect1
+>
+  <sect1 id="fnkeys"
+>
+    <title
+>Barre de touches FN</title
+>
+    <!-- OLD
+<screenshot
+>
+  <screeninfo
+>Function (FN) Keys Bar</screeninfo
+>
+  <mediaobject
+>
+   <imageobject
+><imagedata fileref="fnkeys.png" format="PNG"/></imageobject
+>
+   <imageobject
+><imagedata fileref="fnkeys.png" format="EPS"/></imageobject
+>
+   <textobject
+><phrase
+>Function (FN) Keys Bar</phrase
+></textobject
+>
+  </mediaobject
+>
+</screenshot
+>
+-->
+    <figure id="screenshot-fnkeys" float="1"
+>
+      <title
+>Barre de touches FN</title
+>
+      <mediaobject
+>
+        <imageobject
+>
+          <imagedata fileref="fnkeys.png"
+></imagedata
+>
+        </imageobject
+>
+        <textobject
+>
+          <phrase
+>Barre de touches FN</phrase
+>
+        </textobject
+>
+      </mediaobject
+>
+    </figure
+>
+    <para
+>Cette barre prend son nom de la barre de fonctionnalités (FN) qu'elle représente. Pour chaque bouton de cette barre, il y a une touche correspondante qui réalise la même action. Cette barre vient du design des premiers gestionnaires de fichiers à deux panneaux et les touches FN se comporte de la même manière avec deux modifications : la touche <keycap
+>F2</keycap
+> ouvrira un terminal pour le dernier emplacement local du panneau actif, et la touche <keycap
+>F9</keycap
+> est utilisée pour renommer les fichiers. <guilabel
+>Créer Dossier</guilabel
+> <keycap
+>F7</keycap
+> peut créer des arborescences de dossier à la volé &pex; <literal
+>titi/toto/test</literal
+>. Vous pouvez choisir d'afficher <link linkend="faqu_resize"
+>ou pas</link
+> la barre de fonctionnalités au démarrage de &krusader;, à partir de la <link linkend="konfigurator"
+>page de démarrage de Konfigurator</link
+>, et vous pouvez afficher ou cacher son utilisation dans la session courante avec le menu <link linkend="view-menu"
+>d'affichage</link
+>. Les actions et les <link linkend="key_bindings"
+>raccourcis clavier</link
+> réalisés par les touches de fonctionnalités sont configurables depuis la version 1.51, elles seront actived avec ou sans la barre FN affichée.</para
+>
+  </sect1
+>
+  <sect1 id="folder-tabs"
+>
+    <title
+>Onglets de dossiers</title
+>
+    <!-- OLD
+<screenshot
+>
+  <screeninfo
+>Tabbed browsing</screeninfo
+>
+  <mediaobject
+>
+   <imageobject
+><imagedata fileref="tabbed_browsing.png" format="PNG"/></imageobject
+>
+   <imageobject
+><imagedata fileref="tabbed_browsing.png" format="EPS"/></imageobject
+>
+   <textobject
+><phrase
+>Tabbed browsing</phrase
+></textobject
+>
+  </mediaobject
+>
+</screenshot
+>
+-->
+    <figure id="screenshot-tabbedbrowsing" float="1"
+>
+      <title
+>Onglets de dossiers</title
+>
+      <mediaobject
+>
+        <imageobject
+>
+          <imagedata fileref="tabbed_browsing.png"
+></imagedata
+>
+        </imageobject
+>
+        <textobject
+>
+          <phrase
+>Onglets de dossiers</phrase
+>
+        </textobject
+>
+      </mediaobject
+>
+    </figure
+>
+    <para
+>Avec les <guibutton
+>onglets de dossiers</guibutton
+>, vous pouvez rapidement modifier de nombreux dossiers, chaque panneau a ses propres onglets de dossiers. Leurs positions sont enregistrées quand &krusader; est fermé. Pour naviguer entre les onglets, cliquez dessus avec la souris. Les onglets raccourcis ont des infobulles pour afficher l'emplacement complet. Les opérations suivantes sont disponibles :  <itemizedlist
+>
+      <listitem
+>
+        <para
+>Pour <keycap
+>ouvrir un nouvel onglet</keycap
+> et conserver le dossier courant : cliquez-droit sur un dossier et sélectionnez <keycap
+>ouvrir un nouvel onglet</keycap
+>, ou utilisez le bouton du milieu de la souris, ou encore <keycombo action="simul"
+>&Alt;&Ctrl; <keycap
+>N</keycap
+></keycombo
+>.</para
+>
+      </listitem
+>
+      <listitem
+>
+        <para
+>Pour <keycap
+>dupliquer un onglet</keycap
+> : cliquez-droit sur un dossier d'onglet et sélectionnez<keycap
+>Dupliquer l'onglet courant</keycap
+>, ou utilisez <keycombo action="simul"
+> &Alt;&Ctrl;<keycap
+>Backspace</keycap
+> <keycap
+>n</keycap
+></keycombo
+>.</para
+>
+      </listitem
+>
+      <listitem
+>
+        <para
+>Pour <keycap
+>fermer un onglet</keycap
+> (sauf l'onglet de gauche) : cliquez droit sur un onglet et sélectionnez <keycap
+>Fermer l'onglet</keycap
+>, ou utilisez le bouton millieu de souris, ou le bouton <guibutton
+>croix rouge</guibutton
+> sur l'onglet, ou encore <keycombo action="simul"
+>&Alt;&Ctrl; <keycap
+>c</keycap
+></keycombo
+>.</para
+>
+      </listitem
+>
+      <listitem
+>
+        <para
+>Pour créer un <keycap
+>onglet dans le dossier personnel</keycap
+> : cliquez sur le bouton <guibutton
+>Ouvrir un nouvel onglet dans le dossier personnel</guibutton
+> qui se situe en bas à gauche de chaque panneau.</para
+>
+      </listitem
+>
+      <listitem
+>
+        <para
+>Pour <keycap
+>modifier les onglets</keycap
+> : <keycombo action="simul"
+><keycap
+>Backspace</keycap
+> <keycap
+>Flèche gauche</keycap
+></keycombo
+> ou <keycombo action="simul"
+><keycap
+>Backspace</keycap
+> <keycap
+>Flèche droite</keycap
+></keycombo
+>.</para
+>
+      </listitem
+>
+      <listitem
+>
+        <para
+>Pour ouvrir le dossier courant dans un nouvel onglet : utilisez <keycombo action="simul"
+> &Ctrl;&Alt;&Enter;</keycombo
+>.</para
+>
+      </listitem
+>
+    </itemizedlist
+></para
+>
+  </sect1
+>
+  <sect1 id="ui_buttons"
+>
+    <title
+>Boutons</title
+>
+    <para
+>De nombreux boutons pour les opérations rapides sont disponibles : <link linkend="main_toolbar"
+>Barre principale</link
+>, <link linkend="actions_toolbar"
+>Barre d'actions</link
+>, <link linkend="panel_toolbar"
+>Barre des panneaux</link
+>, <link linkend="location_toolbar"
+>Barre d'emplacement</link
+>, <link linkend="list_panel"
+>Média</link
+>, <link linkend="folderhistory"
+>Dossier d'historique</link
+>, <link linkend="bookman"
+>Signets</link
+>, <link linkend="folder-tabs"
+>Onglet</link
+>, <link linkend="cmdline"
+>Ligne de commande</link
+>, <link linkend="fnkeys"
+>Touches FN</link
+>.</para
+>
+  </sect1
+>
+</chapter
+>

@@ -1,0 +1,159 @@
+<sect1 id="archives"
+>
+  <title
+>Manipulation des archives</title
+>
+  <indexterm
+>
+    <primary
+>Archives</primary
+>
+  </indexterm
+>
+  <sect2 id="browsing-archives"
+>
+    <title
+>Navigation dans les archives</title
+>
+    <para
+>Le <link linkend="vfs"
+>Virtual file systems (VFS)</link
+> vous permet de naviguer dans les archives comme si elles étaient des dossiers. Actuellement, &krusader; gère les types d'archives suivantes : ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip et 7-zip et gère les archives protégées suivantes : arj, ace, rar et zip. Les mots de passe peuvent être stockés dans <application
+>Kwallet</application
+>. Remarquez que la gestion d'archives nécessite d'abord d'être proprement <link linkend="konfig-archives"
+>configurée</link
+> dans Konfigurator. Pour ouvrir une archive, utilisez la touche &Enter;, le double-clic ou la <keycap
+>Flèche droite</keycap
+>. &krusader; gère aussi les <emphasis role="bold"
+>archives cachées</emphasis
+>, celles-ci sont des archives renommées avec une *fausse* extension, &pex; <trademark class="registered"
+>OpenOffice</trademark
+> utilise les archives zip avec les extensions suivantes : odt, sxw et odw. La touche &Enter; ouvrira le document <trademark class="registered"
+>OpenOffice</trademark
+> et la <keycap
+>Flèche droite</keycap
+> ouvrira l'archive. Un autre exemple est J2EE, où l'extension rar représente une archive zip. Depuis que &krusader; détecte automatiquement les types d'archives gérés, cela s'ouvrira avec la <keycap
+>Flèche droite</keycap
+> sauf si il y a un autre type MIME. Remarquez que la navigation dans les archives a quelques limitations :  <itemizedlist
+>
+      <listitem
+>
+        <para
+>Les fonctionnalités ne sont pas toutes gérées par tous les types d'archives. (&cad; que vous ne pouvez pas supprimer des fichiers dans les archives ace ou rar)</para
+>
+      </listitem
+>
+      <listitem
+>
+        <para
+>Les permissions utilisateur à l'intérieur de l'archive sont les mêmes que les permissions que vous avez pour l'archive.</para
+>
+      </listitem
+>
+      <listitem
+>
+        <para
+>La ligne de commande (si visible) ne vous suivra pas à l'intérieur de l'archive mais pointera vers le dossier d'archive.</para
+>
+      </listitem
+>
+      <listitem
+>
+        <para
+>Avant qu'une action n'est réalisée sur des fichiers/dossiers à l'intérieur de l'archive, ils doivent être extraits. L'archive sera re-compressée quand vous sortirez de celle-ci ou quand &krusader; détecte que les fichiers extraits ont été modifiés.</para
+>
+      </listitem
+>
+      <listitem
+>
+        <para
+>La compression et la décompression sont des « opérations bloquantes » qui affichent une boîte de dialogue de progression. Cependant, cela pourra être modifié dans le futur depuis que nous avons planifié de créer plus d'opérations en tâche de fond.</para
+>
+      </listitem
+>
+    </itemizedlist
+></para
+>
+  </sect2
+>
+  <sect2 id="unpacking-archives"
+>
+    <title
+>Fichiers décompressés</title
+>
+    <para
+>Il y a deux manières d'extraire des fichiers depuis les archives : </para
+>
+    <para
+>Si vous voulez décompresser une ou des archives complètes, placez vous dans le dossier de l'archive, sélectionnez le ou les archives et sélectionnez <emphasis role="bold"
+> <menuchoice
+> <guimenu
+>Fichier</guimenu
+> <guimenuitem
+>Décompresser</guimenuitem
+> </menuchoice
+> </emphasis
+>ou<keycombo action="simul"
+>&Alt; <keycap
+>U</keycap
+></keycombo
+>. &krusader; vous demandera où copier les fichiers extraits. L'emplacement par défaut est le dossier du panneau inactif. Si vous n'annulez pas l'opération, &krusader; essaiera de décompresser tous les fichiers sélectionnés dans le panneau inactif.</para
+>
+    <para
+>Si vous voulez seulement extraire une partie de l'archive, <link linkend="browsing-archives"
+>parcourez</link
+> l'archive et copiez les fichiers que vous voulez extraire vers leur nouvel emplacement, comme si vous copiez des fichiers « normaux ». Remarquez que la décompression depuis une archive qui a été parcourue prend plus de temps (décompression fichier par fichier) que si vous décompressiez une archive complète avec la première méthode.</para
+>
+  </sect2
+>
+  <sect2 id="pack-archive"
+>
+    <title
+>Compression de fichiers</title
+>
+    <para
+>Si vous voulez créer une nouvelle archive, commencez en sélectionnant les éléments que vous voulez compresser dans le panneau actif et sélectionnez <emphasis role="bold"
+> <menuchoice
+> <guimenu
+>Fichier</guimenu
+> <guimenuitem
+>Compresser</guimenuitem
+> </menuchoice
+> </emphasis
+> ou <keycombo action="simul"
+>&Alt; <keycap
+>P</keycap
+></keycombo
+>. Une boîte de dialogue va apparaître vous demandant de saisir un nom d'archive et un emplacement. Sélectionnez un archiveur dans la liste des <link linkend="konfig-archives"
+>extensions de noms de fichier gérées</link
+>.</para
+>
+    <para
+>Pour ajouter des fichiers à une ou des archives existantes, ouvrez l'archive dans un panneau et les fichiers à être copiés dans l'autre panneau, ensuite copiez simplement les fichiers dans l'archive de la même manière que si vous copiez des fichiers dans un dossier « normal ».</para
+>
+  </sect2
+>
+  <sect2 id="test-archive"
+>
+    <title
+>Test d'archives</title
+>
+    <para
+>&krusader; ne prend pas en charge les archives corrompues quand cela peut entraîner des pertes de données. Si un message d'erreur apparaît à l'ouverture de l'archive, ou si vous suspectez que quelque chose ne va pas avec l'archive, vous devriez la tester avant utilisation. Pour tester une archive, parcourez le dossier de l'archive et sélectionnez l'archive. Ensuite, sélectionnez <emphasis role="bold"
+> <menuchoice
+> <guimenu
+>Fichier</guimenu
+> <guimenuitem
+>Tester l'archive</guimenuitem
+> </menuchoice
+> </emphasis
+> ou <keycombo action="simul"
+>&Alt; <keycap
+>E</keycap
+></keycombo
+>. &krusader; testera l'archive et vous informera si l'archive passe ou échoue au test d'intégrité de fichier.</para
+>
+  </sect2
+>
+</sect1
+>

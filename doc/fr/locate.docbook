@@ -1,0 +1,205 @@
+<sect1 id="locate"
+>
+  <title
+>Interface graphique pour locate</title
+>
+  <indexterm
+>
+    <primary
+>Locate</primary
+>
+  </indexterm
+>
+  <para
+>&krusader; a une interface graphique pour la commande <command
+>locate</command
+> (findutils). Locate est utilisé pour la recherche rapide de fichiers non depuis un dossier mais d'une base de données. Le paquetage contient deux fichiers. <command
+>locate</command
+> et <command
+>updatedb</command
+>. Updatedb recherche dans le système de fichiers local et stocke les entrées de fichiers dans la base de données. <command
+>cron</command
+> appelle souvent <command
+>updatedb</command
+> la nuit (défini avec Kcron). Choisissez <emphasis role="bold"
+> <menuchoice
+> <guimenu
+>Outils</guimenu
+> <guimenuitem
+>Localiser...</guimenuitem
+> </menuchoice
+> </emphasis
+>ou <keycombo action="simul"
+>&Ctrl;<keycap
+>Backspace</keycap
+> <keycap
+>L</keycap
+></keycombo
+> pour démarrer cette fonctionnalité. <link linkend="konfig-advanced"
+>Konfigurator</link
+> peut définir les arguments additionnels pour <command
+>updatedb</command
+>.</para
+>
+  <para
+>Options des cases à cocher <itemizedlist
+>
+    <listitem
+>
+      <para
+><guilabel
+>Afficher seulement les fichiers existants</guilabel
+> : si la base de données contient des entrées qui n'existent plus du tout (supprimées, déplacées depuis la dernière <command
+>updatedb</command
+>), <command
+>locate</command
+> ne va pas les lister. Le programme vérifie l'existence de chaque fichier avant de les lister dans la fenêtre de résultats (lent).</para
+>
+    </listitem
+>
+    <listitem
+>
+      <para
+><guilabel
+>Sensible à la casse</guilabel
+> : si non cochée, cela permet la recherche en minuscule et majuscule.</para
+>
+    </listitem
+>
+  </itemizedlist
+></para
+>
+  <para
+>Boutons d'actions <itemizedlist
+>
+    <listitem
+>
+      <para
+><guibutton
+>Localiser</guibutton
+> : exécute <command
+>locate <replaceable
+>toto toto</replaceable
+></command
+> et place le résultat dans la fenêtre de résultats.</para
+>
+    </listitem
+>
+    <listitem
+>
+      <para
+><guibutton
+>Arrêter</guibutton
+> : termine le processus de localisation.</para
+>
+    </listitem
+>
+    <listitem
+>
+      <para
+><guibutton
+>Mise à jour de la DB</guibutton
+> : démarre <command
+>updatedb</command
+> pour la mise à jour de la base de données locale après avoir saisi le mot de passe superutilisateur.</para
+>
+    </listitem
+>
+    <listitem
+>
+      <para
+><guibutton
+>Fermer</guibutton> : ferme la fenêtre locale.</para
+>
+    </listitem
+>
+  </itemizedlist
+></para
+>
+  <para
+>Fenêtre de résultats <itemizedlist
+>
+    <listitem
+>
+      <para
+>Double-cliquer sur un élément : se rend dans ce dossier, affiche l'élément et ferme la boîte de dialogue de localisation.</para
+>
+    </listitem
+>
+    <listitem
+>
+      <para
+>Clic-droit : édite, affiche et recherche le menu. <itemizedlist
+>
+        <listitem
+>
+          <para
+><keycap
+>F3</keycap
+> : affiche l'élément courant.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+><keycap
+>F4</keycap
+> : édite l'élément courant.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+> : recherche les fichiers dans la fenêtre de résultats.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+> : affiche les résultats suivants.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+> : affiche les résultats précédents.</para
+>
+        </listitem
+>
+      </itemizedlist
+></para
+>
+    </listitem
+>
+        <listitem
+>
+          <para
+>La fenêtre de résultats gère les éléments par glissement vers d'autres fenêtres et copie dans le presse-papiers (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>).</para
+>
+        </listitem
+>
+  </itemizedlist
+></para
+>
+</sect1
+>

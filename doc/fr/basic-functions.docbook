@@ -1,0 +1,637 @@
+<chapter id="basic-functions"
+>
+  <!-- **********************************************************************
+                            using-krusader.docbook
+                          +++++++++++++++++++++++++++
+  copyright            : (C) 2000 - 2009
+                          Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                          & the Krusader Krew
+  e-mail               : krusader@users.sourceforge.net
+  web site             : http://www.krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+  <title
+>Fonctionnalités de base</title
+>
+  <sect1 id="controls"
+>
+    <title
+>Contrôles</title
+>
+    <sect2 id="control-general"
+>
+      <title
+>Général</title
+>
+      <para
+>C'est une section courte mais importante qui va détailler les façons de contrôler &krusader; Cette section n'essaie pas de couvrir toutes les combinaisons de touches possibles pour deux raisons : <orderedlist numeration="arabic"
+> <listitem
+> <para
+>il y en a trop</para
+> </listitem
+> <listitem
+> <para
+>la plupart des actions de &krusader; sont configurables dans la <link linkend="konfig-looknfeel"
+>page d'apparence &amp; ergonomie de Konfigurator</link
+></para
+> </listitem
+> </orderedlist
+>Nous mentionnerons les raccourcis clavier les plus importants avec la configuration par défaut, mais gardez à l'esprit que la plupart des <link linkend="key_bindings"
+>combinaisons</link
+> sont configurables. Si vous trouvez que vous utilisez beaucoup une certaine commande et que vous voulez connaitre le raccourci pour cette commande, ou que vous voulez modifier ce raccourci de commande, regardez l'onglet <link linkend="key_bindings"
+>Combinaison</link
+> dans la <link linkend="konfig-looknfeel"
+>page d'apparence &amp; ergonomie de Konfigurator</link
+>.</para
+>
+    </sect2
+>
+    <sect2 id="moving-around"
+>
+      <title
+>Se déplacer dans...</title
+>
+      <para
+>Se déplacer dans... signifie le transfert du focus du clavier et de la souris entre les différentes parties de la <link linkend="mainwindow"
+>fenêtre principale</link
+> de &krusader;. Le focus peut être dans une des cinq emplacements : le panneau gauche ou droit, la barre de menus, la ligne de commande ou l'émulateur de terminal. Le panneau qui a le focus est appelé le panneau actif. Un panneau actif restera actif jusqu'à ce que l'autre panneau reçoit le focus (&cad; si le panneau de gauche est actif et vous cliquez sur la ligne de commande - ensuite le panneau de gauche devient le panneau inactif).</para
+>
+      <para
+>La façon la plus commune de transférer le focus à un panneau spécifique est d'utiliser la souris en cliquant sur ce panneau. Mais vous devez être attenif aux choses suivantes :  <itemizedlist
+>
+        <listitem
+>
+          <para
+>Cliquer sur la barre d'outils, la barre de touches FN ou la barre d'état ne va PAS modifier le focus.</para
+>
+        </listitem
+>
+        <!--
+   Quick View Panel: old Krusader feature , removed since krusader-1.12-beta1      
+   <listitem
+>
+     <para
+>The display part of the Quick View Panel does not accept clicks so you should click on the
+           Location Toolbar of this panel if you want it to have focus.</para
+>
+   </listitem
+>
+-->
+        <listitem
+>
+          <para
+>Appuyer sur les boutons <guibutton
+>Historique</guibutton
+> ou <guibutton
+>Lancer un terminal</guibutton
+> dans la ligne de commande ne transfèrera pas le focus, vous devez donc cliquer sur la ligne d'entrée.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+>Quand vous choisissez un menu, la barre de menus deviendra celle qui a le focus. Elle a le focus jusqu'à ce que vous choisissez une commande - le focus retourne au précédent propriétaire.</para
+>
+        </listitem
+>
+      </itemizedlist
+></para
+>
+      <para
+>Il y a, bien sûr, des façons d'utiliser le clavier pour modifier le focus :  <itemizedlist
+>
+        <listitem
+>
+          <para
+>La touche &Tab; permet de naviguer entre les panneaux, si un de ces panneaux a le focus ou passe entre les commandes d'un menu, si la barre de menus est active.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>Flèche bas</keycap
+></keycombo
+> vous amènera du panneau actif à la ligne de commande ou un émulateur de terminal, et <keycombo action="simul"
+>&Ctrl; <keycap
+>Flèche haut</keycap
+></keycombo
+> vous amènera de la ligne de commande à un panneau actif.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+>La touche <keycap
+>Echap</keycap
+> redonnera le focus à la barre de menus, si cette barre l'a déjà, au précédent panneau actif.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+>Si vous êtes dans l'émulateur de terminal, vous pouvez utiliser la touche &Tab; ou la souris pour parcourir le panneau actif.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+>Appuyer sur <keycombo action="simul"
+>&Alt; <keycap
+>une lettre non définie</keycap
+></keycombo
+> de la barre de menus ouvrira le menu (à moins que cette combinaison de touches est une « touche réservée » utilisée par une des actions de &krusader;).</para
+>
+        </listitem
+>
+      </itemizedlist
+></para
+>
+    </sect2
+>
+    <sect2 id="selecting-files"
+>
+      <title
+>Sélectionner</title
+>
+      <note
+>
+        <para
+>&krusader; offre quatre <link linkend="mouse_selection_modes"
+>modes de sélection avec la souris</link
+>, seul le mode de sélection avec la souris est expliqué ici.</para
+>
+      </note
+>
+      <para
+>Sélectionner est une habilité que vous devez parfaitement maitriser pour gérer &krusader;. Depuis que vous ne pouvez plus sélectionner des fichiers dans le panneau de vue rapide, et le panneau en arborescence ne vous permet seulement de sélectionner un dossier à la fois, ce paragraphe explique principalement comment sélectionner des fichiers dans la liste de fichiers du panneau en liste.</para
+>
+      <para
+>Déplacer le pointeur est facile. Cliquer-gauche sur un fichier ou / et un dossier le sélectionnera. Des façons utiles de sélectionner avec la souris sont présentées ici qui rendra &krusader; plus simple à utiliser (en considérant que vous utilisez &krusader; avec le mode de sélection de souris). <itemizedlist
+>
+        <listitem
+>
+          <para
+>Les touches <keycap
+>ESPACE</keycap
+> et <keycap
+>Inser</keycap
+> alternerons la sélection d'un fichier sous le pointeur sans affecter la sélection des autres fichiers et dossiers. Le curseur se déplacera d'un cran vers le bas.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+>Appuyer sur <keycap
+>ESPACE</keycap
+> sur un dossier sous le curseur <link linkend="calculate"
+>calculera l'espace occupé</link
+> sans affecter la sélection des autres fichiers et dossiers.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+><keycap
+>Cliquer-gauche</keycap
+> sur un fichier sélectionnera, ou désélectionnera tous les fichiers précédemment sélectionnés.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>Cliquer-gauche</keycap
+></keycombo
+> permutera la sélection des fichiers sous le pointeur sans affecter la sélection des autres fichiers et dossiers.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+><keycombo action="simul"
+><keycap
+>Backspace</keycap
+> <keycap
+>Cliquer-gauche</keycap
+></keycombo
+> sélectionnera tous les éléments entre l'emplacement du curseur précédent et le nouveau.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+><keycombo action="simul"
+><keycap
+>Backspace</keycap
+> <keycap
+>Touche menu</keycap
+></keycombo
+> sélectionne tous les éléments au-dessus du curseur (et désélectionne tous les éléments sous le curseur, si sélectionné).</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+><keycombo action="simul"
+><keycap
+>Backspace</keycap
+> <keycap
+>Fin</keycap
+></keycombo
+> sélectionne tous les éléments en-dessous du curseur (et désélectionne tous les éléments au-dessus du curseur, si sélectionnés)</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+>L'entrée « .. » n'est pas sélectionnable.</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+>Le menu <link linkend="edit-menu"
+>Édition</link
+> peut offrir plus de façons de sélectionner des fichiers.</para
+>
+        </listitem
+>
+      </itemizedlist
+></para
+>
+    </sect2
+>
+    <sect2 id="executing_commands"
+>
+      <title
+>Exécuter des commandes</title
+>
+      <para
+>Il n'y a pas grand chose à dire ici, tout ce dont vous avez besoin est de sélectionner des fichiers (si vous ne le faites pas, &krusader; lancera une opération sur le ou les fichier(s) ou dossier(s) qui ont le focus), choisissez une <link linkend="menu-commands"
+>Commande</link
+> depuis la barre de menus ou utilisez un raccourci clavier (ou un Menu par clic-droit) et la commande sélectionnée s'exécute. Voir aussi <link linkend="executing_files"
+>Exécuter des fichiers</link
+>.</para
+>
+    </sect2
+>
+    <sect2 id="quicksearch"
+>
+      <title
+>Recherche rapide</title
+>
+      <!-- Thanks to Heiner Eichmann -->
+      <para
+>Cette fonctionnalité lance une recherche rapide pour les noms de fichiers dans le panneau en liste actif.</para
+>
+      <para
+>Saisissez <keycap
+>toto</keycap
+> (un mot) pour lancer une recherche rapide dans le panneau actif pour un fichier commençant par « toto ». Une petite boîte de dialogue de recherche rapide s'ouvrira en dessous du panneau actif. Saisissez la première lettre du nom de fichier désiré (mais plus d'une lettre est permis), le curseur ira à ce nom de fichier (si il existe), &pex; saisissez « ab » pour rechercher un fichier commençant par « ab ». La <keycap
+>Flèche haut / bas</keycap
+> ira au prochain ou précédent fichier. <keycap
+>Echap</keycap
+> fermera la ligne de recherche rapide. Le curseur restera sur le dernier fichier trouvé.</para
+>
+      <note
+>
+        <para
+>Si vous appuyez sur <keycombo action="simul"
+>&Alt; <keycap
+>toto</keycap
+></keycombo
+> la combinaison sera exécuté. Si aucune combinaison n'est configurée, la lettre restante <keycap
+>toto</keycap
+> sera utilisée pour la recherche rapide.</para
+>
+      </note
+>
+      <para
+>Utilisez la <link linkend="konfig-looknfeel"
+>page d'apparence &amp; ergonomie de Konfigurator</link
+> pour modifier la configuration par défaut.</para
+>
+    </sect2
+>
+    <sect2 id="context-menu"
+>
+      <title
+>Menu contextuel</title
+>
+      <para
+>&krusader; a de nombreux menus contextuels qui vous permettent des opérations rapides avec la souris, habituellement un clic-droit ouvrira le menu contextuel (cela dépend de votre configuration de <link linkend="mouse_selection_modes"
+>mode de sélection avec la souris</link
+>). Cette liste donne une vue d'ensemble des plus importants menus contextuels. Utilisez les pour découvrir les commandes disponibles. <itemizedlist
+>
+        <listitem
+>
+          <para
+><link linkend="mainwindow"
+>Barre principale</link
+> (orientation, position du texte, taille de l'icône)</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+><link linkend="list_panel"
+>Panneau en liste</link
+> sur un fichier ou un dossier</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+><link linkend="cmdline"
+>ligne de commande</link
+> (annuler, coller, complètement de texte...)</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+><link linkend="termemu"
+>Émulateur de terminal</link
+> (envoyer un signal, police, historique...)</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+><link linkend="folder-tabs"
+>Onglets de dossier</link
+> (nouveau, dupliquer, fermer)</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+><link linkend="krusearcher"
+>KruSearcher</link
+> liste de fichiers de résultats de recherche (affichage avec F3, Édition avec F4)</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+><link linkend="mount-man"
+>MountMan</link
+> (libérer, format)</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+><link linkend="synchronizer"
+>Synchroniser les dossiers</link
+> liste de fichiers</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+><link linkend="useractions"
+>Actions utilisateur</link
+></para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+>Les actions par clic-droit de &konqueror; sont affichées dans &krusader;</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+>Affiche ou cache les <link linkend="list_panel"
+>en-têtes de colonne</link
+></para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+><link linkend="bookman"
+>Signets</link
+> activer ou désactiver les signets permanents</para
+>
+        </listitem
+>
+        <listitem
+>
+          <para
+>...</para
+>
+        </listitem
+>
+      </itemizedlist
+></para
+>
+    </sect2
+>
+  </sect1
+>
+  <sect1 id="basic"
+>
+    <title
+>Gestionnaire de fichiers basique</title
+>
+    <sect2 id="executing_files"
+>
+      <title
+>Exécuter des fichiers</title
+>
+      <para
+>Vous pouvez seulement exécuter des fichiers dans le panneau actif. Pour <keycap
+>exécuter</keycap
+> un fichier, <keycap
+>double-cliquez simplement dessus ou appuyez sur &Enter;</keycap
+> quand celui-ci est sous la curseur. &krusader; ouvrira dans l'application par défaut pour ce type de fichiers (image, texte) ou le fichier sera exécuté (script, binaire). Si vous voulez utiliser une <keycap
+>autre application</keycap
+> pour ouvrir ce fichier, <keycap
+>cliquez-droit</keycap
+> sur le fichier et cliquez sur le sous-menu « Ouvrir avec... » qui vous offrira plus d'options. &krusader; est compatible avec le gestionnaire de fichiers par défaut de &kde; pour tous les types de fichiers exceptés les archives qui sont ouvertes à l'intérieur du panneau de &krusader; et non dans une application externe. Voir la <link linkend="konfig-archives"
+>page d'archives dans Konfigurator</link
+> pour plus de détails.</para
+>
+    </sect2
+>
+    <sect2 id="copying"
+>
+      <title
+>Copier et déplacer</title
+>
+      <para
+>Pour copier et déplacer des fichiers, sélectionnez les simplement et appuyez sur <keycap
+>F5</keycap
+> pour les <keycap
+>copier</keycap
+> ou <keycap
+>F6</keycap
+> pour les <keycap
+>déplacer</keycap
+>. Si l'option <guimenuitem
+> Préserver les attributs (seulement pour les cibles locales)</guimenuitem
+> est cochée, &krusader; essaiera de préserver tous les attributs (heure, propriétaire, groupe) des fichiers locaux selon els sources et en accords avec vos droits d'accès : <itemizedlist
+> <listitem
+> <para
+>Utilisateur préservé si vous n'êtes pas le superutilisateur</para
+> </listitem
+> <listitem
+> <para
+>Groupe préservé si vous n'êtes pas le superutilisateur ou le membre du groupe</para
+> </listitem
+> <listitem
+> <para
+>Préserver l'horodatage</para
+> </listitem
+> </itemizedlist
+>Utiliser cette option va ralentir le processus de copie ou de déplacement. Une boîte de dialogue apparaîtra et vous permettra de choisir la destination de l'opération. La destination par défaut est le dossier parcouru sur l'autre panneau. Si vous entrez dans un &URL; partiel, &krusader; utilisera le dossier du panneau courant comme &URL; de base.</para
+>
+    </sect2
+>
+    <sect2 id="queue"
+>
+      <title
+>Gestionnaire de files d'attente</title
+>
+      <para
+>Utilisez <keycap
+>F5</keycap
+> (copier) ou <keycap
+>F6</keycap
+> (déplacer) et <keycap
+>F2</keycap
+> pour l'utiliser. Ou les raccourcis de dossier : copier dans file d'attente <keycombo action="simul"
+><keycap
+>Backspace</keycap
+><keycap
+>F5</keycap
+></keycombo
+>, déplacer dans la file d'attente <keycombo action="simul"
+><keycap
+>Backspace</keycap
+><keycap
+>F6</keycap
+></keycombo
+>. La mise en file d'attente est utilisée en copiant un par un. &pex; si vous avez un clé USB qui est lente, et que vous voulez copier 40 fichiers dessus, il est préférable de les copier un par un à la place de démarrer 40 copies en parallèle. C'est pourquoi la mise en file d'attente est importante. Si vous décompressez ou compressez 40 fichiers en parallèle, vous surchargez votre ordinateur, mais les ajouter en file d'attente (qui n'est pas encore ajouté dans Krusader) est beaucoup plus utile. </para
+>
+    </sect2
+>
+    <sect2 id="deleting"
+>
+      <title
+>Supprimer</title
+>
+      <para
+>Supprimer des fichiers et dossiers est réalisé en les sélectionnant et en appuyant sur <keycap
+>F8</keycap
+> ou <keycap
+>Suppr</keycap
+>. Par <link linkend="konfig-general"
+>défaut</link
+> ils seront déplacés vers la corbeille de &kde;. Vous pouvez ouvrir la corbeille de KDE avec <filename
+>trash:/</filename
+> (« kdebase3-runtime » a besoin d'être installé, sinon le protocole de corbeille de KDE ne fonctionnera pas). La corbeille physique de KDE est située dans <filename
+>~/.local/share/Trash/</filename
+>. <keycombo action="simul"
+><keycap
+>Backspace</keycap
+> <keycap
+>Suppr</keycap
+></keycombo> supprimera le fichier de manière permanente. 
+Une boîte de idalogue vous demandera une confirmation et vous préviendra que vous supprimez des dossiers non vides. 
+Bien sûr seul les opérations dont vous avez les doirts d'accès sur votre ordinateur seront réalisées, sinon vous serez averti. 
+Si vous ne souhaitez pas voir les boîtes de confirmation, vous pouvez les désactiver dans 
+<link linkend="konfig-advanced">l'onglet avancé de Konfigurator</link>.</para>
+    </sect2>
+    <sect2 id="shred"
+>
+      <title
+>Effacer définitivement des fichiers avec Shred</title
+>
+      <para
+>Shred a été supprimé de KDE4 (et par conséquent de Krusader-2 pour KDE4). La raison principale est probablement qu'effacer définitivement des fichiers est dépendant du système des fichiers et même si vous écrivez 100 fois le fichier, il n'est pas sûr qu'il sera supprimé finallement du disque. Extrait des topics de kgpg : « La fonctionnalité Shred a été supprimée des bibliothèques kDE. Kgpg ne gèrera plus cette fonctionnalité. Les systèmes de fichiers modernes utilisent la journalisation. La fonctionnalité Shred devrait être donc implantée dans le système de fichiers. Non dans kgpg ». Mais vous pouvez utiliser un shred propre dans les <link linkend="useractions"
+>actions utilisateur</link
+> pour votre système de fichiers. Mais gardez à l'esprit que si vous voulez être sûr à 100 % que personne ne peut lire un fichier supprimé, vous avez besoin de détruire votre disque dur... </para
+>
+    </sect2
+>
+    <sect2 id="renaming"
+>
+      <title
+>Renommer des fichiers, créer des dossiers et gestion des liens</title
+>
+      <para
+><keycap
+>Renommer</keycap
+> le fichier sous le curseur avec la touche <keycap
+>F9</keycap
+> ou avec deux simples clics de souris. Si le nom de fichier a simplement besoin d'être renommé et non l'extension, vous pouvez configurer cela dans la <link linkend="konfig-looknfeel"
+>page d'apparence &amp; ergonomie de Konfigurator</link
+>. <keycap
+>Créer un nouveau dossier</keycap
+> avec la touche <keycap
+>F7</keycap
+>. <keycap
+>Cliquer-droit sur un fichier régulier</keycap
+> vous donnera l'option <keycap
+>nouveau lien symbolique</keycap
+>. Une boîte de dialogue apparaîtra pour saisir un nom de lien symbolique. Ce nom pointera vers le fichier ou dossier où vous avez réalisé le clic-droit. Si le fichier sélectionné est un lien symbolique, un « lien de redirection » s'affichera qui vous permettra de modifier le lien cible.</para
+>
+    </sect2
+>
+    <sect2 id="viewing"
+>
+      <title
+>Afficher et modifier des fichiers</title
+>
+      <para
+><link linkend="krviewer"
+>KrViewer</link
+> a son propre chapitre.</para
+>
+    </sect2
+>
+  </sect1
+>
+&archives; </chapter
+>
