@@ -2,13 +2,13 @@
 # Copyright (C) 2008-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 #
-# Stanislas Zeller <uncensored.assault@gmail.com>, 2008.
+# Stanislas Zeller <uncensored.assault@gmail.com>, 2008, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
+"Project-Id-Version: archives.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
 "POT-Creation-Date: 2009-04-23 16:40+0000\n"
-"PO-Revision-Date: 2008-11-03 09:32+0100\n"
+"PO-Revision-Date: 2009-04-23 19:22+0200\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "Navigation dans les archives"
 
 #. Tag: para
 #: archives.docbook:8
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "The <link linkend=\"vfs\">Virtual file systems (VFS)</link> allows you to "
 "browse archives as if it was a directory. Currently &krusader; supports the "
@@ -57,19 +57,19 @@ msgid ""
 "archive types, it will open with <keycap>Right Arrow</keycap> even if it has "
 "another mime type. Please note that browsing archives has a few limitations:"
 msgstr ""
-"Le &vfs-lnk; vous permet de naviguer dans les archives comme si elles "
+"Le <link linkend=\"vfs\">Virtual file systems (VFS)</link> vous permet de naviguer dans les archives comme si elles "
 "étaient des dossiers. Actuellement, &krusader; gère les types d'archives "
 "suivantes : ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip et 7-"
 "zip et gère les archives protégées suivantes : arj, ace, rar et zip. Les "
-"mots de passe peuvent être stockés dans &kwallet;. Remarquez que la gestion "
+"mots de passe peuvent être stockés dans <application>Kwallet</application>. Remarquez que la gestion "
 "d'archives nécessite d'abord d'être proprement <link linkend=\"konfig-"
 "archives\">configurée</link> dans Konfigurator. Pour ouvrir une archive, "
 "utilisez la touche &Enter;, le double-clic ou la <keycap>Flèche droite</"
 "keycap>. &krusader; gère aussi les <emphasis role=\"bold\">archives cachées</"
 "emphasis>, celles-ci sont des archives renommées avec une *fausse* "
-"extension, &pex; &openoffice; utilise les archives zip avec les extensions "
+"extension, &pex; <trademark class=\"registered\">OpenOffice</trademark> utilise les archives zip avec les extensions "
 "suivantes : odt, sxw et odw. La touche &Enter; ouvrira le document "
-"&openoffice; et la <keycap>Flèche droite</keycap> ouvrira l'archive. Un "
+"<trademark class=\"registered\">OpenOffice</trademark> et la <keycap>Flèche droite</keycap> ouvrira l'archive. Un "
 "autre exemple est J2EE, où l'extension rar représente une archive zip. "
 "Depuis que &krusader; détecte automatiquement les types d'archives gérés, "
 "cela s'ouvrira avec la <keycap>Flèche droite</keycap> sauf si il y a un "
@@ -78,14 +78,14 @@ msgstr ""
 
 #. Tag: para
 #: archives.docbook:33
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Not all functions are supported by all archive types. (i.e.: you can not "
 "delete files in ace or rar archives)"
 msgstr ""
 "Les fonctionnalités ne sont pas toutes gérées par tous les types d'archives. "
 "(&cad; que vous ne pouvez pas supprimer des fichiers dans les archives ace "
-"ou rar)."
+"ou rar)"
 
 #. Tag: para
 #: archives.docbook:38
@@ -255,3 +255,4 @@ msgstr ""
 "menuchoice> </emphasis> ou <keycombo action=\"simul\">&Alt; <keycap>E</"
 "keycap></keycombo>. &krusader; testera l'archive et vous informera si "
 "l'archive passe ou échoue au test d'intégrité de fichier."
+

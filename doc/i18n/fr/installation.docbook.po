@@ -5,10 +5,10 @@
 # Stanislas Zeller <uncensored.assault@gmail.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
+"Project-Id-Version: installation.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
 "POT-Creation-Date: 2009-04-23 16:40+0000\n"
-"PO-Revision-Date: 2009-02-09 13:51+0100\n"
+"PO-Revision-Date: 2009-04-24 12:53+0200\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -100,6 +100,9 @@ msgid ""
 "<trademark class=\"registered\">NetBSD</trademark>/<trademark class="
 "\"registered\">OpenBSD</trademark>/&MacOS;)"
 msgstr ""
+"Toutes les plate-formes (<trademark class=\"copyright\">FreeBSD</trademark>/"
+"<trademark class=\"registered\">NetBSD</trademark>/<trademark class="
+"\"registered\">OpenBSD</trademark>/&MacOS;)"
 
 #. Tag: para
 #: installation.docbook:85
@@ -128,24 +131,22 @@ msgstr ""
 
 #. Tag: para
 #: installation.docbook:93
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "A package of popular (un)packers, &krusader; itself and add-ons can be found "
 "on the <ulink url=\"http://www.krusader.org/down.php\">&krusader; "
 "downloadpage</ulink>."
 msgstr ""
 "Un paquetage des (dé)compresseurs populaires, &krusader; lui même et les "
-"accessoires peuvent être trouvés sur le &krudownload-url;."
+"accessoires peuvent être trouvés sur la <ulink url=\"http://www.krusader.org/down.php\">page de téléchargement de &krusader;</ulink>."
 
 #. Tag: para
 #: installation.docbook:96
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "For more requirements, see below. Have a look at the <link linkend=\"faq"
 "\">FAQ</link> section as well."
-msgstr ""
-"Pour plus d'exigences, voir ci-dessous. Jetez aussi un œil à la section &faq-"
-"lnk;."
+msgstr "Pour plus d'exigences, voir ci-dessous. Jetez aussi un œil à la section <link linkend=\"faq\">FAQ</link>"
 
 #. Tag: title
 #: installation.docbook:100
@@ -155,13 +156,13 @@ msgstr "Obtenir &krusader;"
 
 #. Tag: para
 #: installation.docbook:101
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "The latest information about &krusader; can be found on the <ulink url="
 "\"http://www.krusader.org\">Krusader website</ulink> ."
 msgstr ""
 "La dernière information à propos de &krusader; peut être trouvée sur le "
-"&kruwebsite-url;."
+"<ulink url=\"http://www.krusader.org\">site web de Krusader</ulink> ."
 
 #. Tag: title
 #: installation.docbook:104
@@ -171,7 +172,7 @@ msgstr "Télécharger &krusader;"
 
 #. Tag: para
 #: installation.docbook:105
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "It is recommended to use the &krusader; package that is provided by your "
 "distribution. <ulink url=\"http://distrowatch.com/search.php?pkg=krusader"
@@ -180,14 +181,15 @@ msgid ""
 "your distribution and ask them to provide a &krusader; package"
 msgstr ""
 "Il est recommandé d'utiliser le paquetage de &krusader; qui est fourni avec "
-"votre distribution. &distrowatch-com-url; est une superbe ressource pour "
+"votre distribution.  <ulink url=\"http://distrowatch.com/search.php?pkg=krusader"
+"\">Distrowatch.com</ulink> est une superbe ressource pour "
 "vérifier sa disponibilité. Si votre distribution n'inclut pas &krusader;, "
 "veuillez contacter les créateurs de votre distribution et demandez leur de "
 "fournir un paquetage de &krusader;."
 
 #. Tag: para
 #: installation.docbook:112
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "The latest version, as well as the older versions, can be found on the "
 "<ulink url=\"http://www.krusader.org/down.php\">&krusader; downloadpage</"
@@ -197,7 +199,9 @@ msgid ""
 "using and packages build by &krusader; users and third parties."
 msgstr ""
 "La dernière version, au bien que les anciennes versions peuvent être "
-"trouvées sur le &krudownload-url; et sur le &sfmirrors-url;. Il contient les "
+"trouvées sur la <ulink url=\"http://www.krusader.org/down.php\">page de téléchargement de &krusader;</"
+"ulink> et sur les <ulink url=\"http://sourceforge.net/project/showfiles.php?"
+"group_id=6488\">mirroirs de Sourceforge</ulink>. Il contient les "
 "archives source, des paquetages RPM et DEB pour les distributions que "
 "l'équipe de &krusader; utilise et des paquetages construits par les "
 "utilisateurs de &krusader; et externes."
@@ -262,6 +266,8 @@ msgid ""
 "which include &krusader;. If you know of one, please send feedback so that "
 "we can include it on the distrolist."
 msgstr ""
+"Les distributions qui fournissent &krusader;: <itemizedlist> <listitem> <para><ulink url=\"http://www.novell.com/search/\">&SuSE;</ulink></para> </listitem> <listitem> <para><ulink url=\"https://admin.fedoraproject.org/pkgdb/packages/name/krusader\"><trademark>Fedora</trademark></ulink> avec <command># yum install krusader</command> fonctionneront, merci à Marcin Garski. &RedHat; RPM packages peuvent être trouvés sur la <ulink url=\"http://www.krusader.org/down.php\">page de téléchargement de &krusader;</ulink> ou sur <ulink url=\"http://dag.wieers.com/packages/krusader/\">dag.wieers.com</ulink> et <ulink url=\"http://dries.ulyssis.org/rpm/packages/krusader/info.html"
+"\">Dries Verachtert RPM Repository</ulink> .</para> </listitem> <listitem> <para><ulink url=\"http://packages.debian.org/krusader\"><trademark class=\"registered\">Debian</trademark></ulink>, sur notre <ulink url=\"http://www.krusader.org/down.php\">page de téléchargement de &krusader;</ulink> vous trouverez plus de récents paquetages DEB. Remarque : habituellement les paquetages  <trademark class=\"registered\">Debian</trademark> fonctionnent aussi sur des distributions fondées sur <trademark class=\"registered\">Debian</trademark>\", et certaines fournissent leur propres paquetages (incompatibles).<ulink url=\"http://packages.ubuntu.com/krusader\"><trademark class=\"registered\">Ubuntu</trademark>/<trademark class=\"registered\">Kubuntu</trademark></ulink>, <ulink url=\"http://www.cnr.com/search.seam?conversationId=230925\"><trademark class=\"registered\">Linspire</trademark>/<trademark class=\"registered\">Freespire</trademark></ulink>, <trademark class=\"registered\">Knoppix</trademark> 4.x DVD, <trademark class=\"registered\">Kanotix</trademark>, etc.</para> </listitem> <listitem> <para><ulink url=\"http://www.mandrivaclub.com/xwiki/bin/view/rpms/Application/krusader\"><trademark class=\"registered\">Mandriva</trademark></ulink> à partir du dépot contrib <command># urpmi krusader</command> fonctionnera, <ulink url=\"http://packages.gentoo.org/package/kde-misc/krusader\"><trademark class=\"registered\">Gentoo</trademark></ulink>, <trademark>Yoper</trademark>.</para> </listitem> <listitem> <para><ulink url=\"http://www.archlinux.org/packages/extra/i686/krusader/\"><trademark class=\"registered\">Arch Linux</trademark></ulink>, <ulink url=\"http://frugalware.org/packages.php?id=280\"><trademark class=\"registered\">Frugalware Linux</trademark></ulink>, <trademark class=\"registered\">PCLinuxOS</trademark>, <ulink url=\"www.altlinux.com/\"><trademark class=\"registered\">altlinux</trademark></ulink>.</para> </listitem> <listitem> <para><ulink url=\"http://www.freebsd.org/cgi/ports.cgi?query=krusader&amp;stype=all\"><trademark class=\"copyright\">FreeBSD</trademark></ulink>, the port is maintained by <link linkend=\"credits\">Heiner Eichmann</link>.</para> </listitem> <listitem> <para><ulink url=\"http://pkgsrc.se/sysutils/krusader\"><trademark class=\"registered\">NetBSD</trademark></ulink>, <ulink url=\"http://www.lunar-linux.org/\"><trademark class=\"registered\">Lunar Linux</trademark></ulink> , <trademark class=\"registered\">Ark Linux</trademark>, <trademark>OpenLX</trademark>, <trademark class=\"registered\">Source Mage</trademark>,<ulink url=\"http://packages.ccux-linux.de/index.php?pdetail=6986\"><trademark class=\"registered\">CCux Linux</trademark></ulink>, <ulink url=\"http://www.rocklinux.net/packages/krusader.html\"><trademark class=\"registered\">ROCK Linux</trademark></ulink>.</para> </listitem> <listitem> <para>Plus de distributions peuvent être trouvées sur <ulink url=\"http://distrowatch.com/search.php?pkg=krusader\">Distrowatch.com</ulink>.</para> </listitem> </itemizedlist>Utilisez les outils d'installtion inclus dans votre distribution pour installer le paquetage &krusader; Vous avez besoin d'une connexion internet si k&rusader; n'est pas inclu dans le &CD; ou DVD. Il y a probablement d'autres distributions qui fournissent &krusader;. Si vous en connaissez une, veuillez envoyer un retour pour que nous l'incluions dans la liste des distributions."
 
 #. Tag: para
 #: installation.docbook:178
@@ -280,22 +286,25 @@ msgid ""
 "cvs.berlios.de/cgi-bin/viewcvs.cgi/portpkg/ports/kde/krusader/\">&krusader; "
 "SlackBuild</ulink>, <command># portpkg krusader</command> will do the job."
 msgstr ""
+"Les binaires tgz <trademark class=\"registered\">Slackware</trademark> peuvent être trouvés sur la <ulink url=\"http://www.krusader.org/down.php"
+"\">page de téléchargement &krusader;</ulink>. Vous pouvez aussi utiliser <ulink url=\"http://portpkg.berlios.de/\">Portpkg</ulink> qui contient un <ulink url=\"http://cvs.berlios.de/cgi-bin/viewcvs.cgi/portpkg/ports/kde/krusader/\">SlackBuild &krusader;</ulink>, <command># portpkg krusader</command>."
 
 #. Tag: para
 #: installation.docbook:189
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "There is a <ulink url=\"http://pdb.finkproject.org/pdb/package.php/krusader"
 "\">&MacOS;-X port</ulink> with the help of <ulink url=\"http://www."
 "finkproject.org/\">fink</ulink> , the port is maintained by <ulink url="
 "\"http://hritcu.wordpress.com/about/\">Catalin Hritcu</ulink>."
 msgstr ""
-"Il y a un &macosx-port-url; avec l'aide de &fink-url;, le port est maintenu "
-"par <ulink url=\"http://hritcu.wordpress.com/about/\">Catalin Hritcu</ulink>."
+"Il y a un <ulink url=\"http://pdb.finkproject.org/pdb/package.php/krusader"
+"\">portage pour &MacOS;-X</ulink> avec l'aide de </ulink> avec l'aide de <ulink url=\"http://www."
+"finkproject.org/\">fink</ulink>, le port est maintenu par <ulink url=\"http://hritcu.wordpress.com/about/\">Catalin Hritcu</ulink>."
 
 #. Tag: para
 #: installation.docbook:195
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Search engines <itemizedlist> <listitem> <para>You can also find packages on "
 "&Linux; software archives such as <ulink url=\"http://freshmeat.net/projects/"
@@ -312,12 +321,16 @@ msgid ""
 msgstr ""
 "Moteurs de recherche <itemizedlist> <listitem> <para>Vous pouvez aussi "
 "trouver des paquetages dans les archives logiciels de &Linux; comme "
-"&freshmeat-url; ou &kde-apps-url; .</para> </listitem> <listitem> <para>Si "
+"ulink url=\"http://freshmeat.net/projects/"
+"krusader/\">freshmeat.net</ulink> ou <ulink url=\"http://www.kde-apps.org/"
+"content/show.php?content=10214\">KDE-APPS.org</ulink>.</para> </listitem> <listitem> <para>Si "
 "vous ne pouvez pas trouver un paquetage pour votre distribution, nous vous "
-"recommandons de le chercher avec &rpmfind-url;, &rpmpbone-url; ou &rpmseek-"
-"url;.</para> </listitem> </itemizedlist>Si vous appréciez l'utilisation de "
-"&krusader;, nous apprécierions si vous alliez sur un de ces sites et le "
-"notiez."
+"recommandons de le chercher avec <ulink url=\"http://rpmfind.net/linux/"
+"rpm2html/search.php?query=krusader&amp;submit=Search+...\">rpmfind</ulink>, "
+"<ulink url=\"http://rpm.pbone.net/index.php3/stat/3/search/krusader"
+"\">rpmpbone</ulink> or <ulink url=\"http://rpmseek.com/rpm-pl/krusader.html?"
+"hl=com&amp;cx=2155:K:0\">rpmseek</ulink>.</para> </listitem> </itemizedlist>Si vous appréciez l'utilisation de "
+"&krusader;, nous apprécierions si vous alliez sur un de ces sites et le notiez."
 
 #. Tag: para
 #: installation.docbook:211
@@ -376,15 +389,12 @@ msgstr "krusader-x.xx.tar.gz"
 
 #. Tag: para
 #: installation.docbook:245
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "&krusader; is released under the <link linkend=\"credits\">&GNU; General "
 "Public License (GPL)</link>. This means that THE PROGRAM IS PROVIDED \"AS IS"
 "\" WITH NO WARRANTY OF ANY KIND, even when it is marked as a stable release."
-msgstr ""
-"&krusader; est enregistré sous la licence &gpl-lnk;. Cela signifie que LE "
-"PROGRAMME EST FOURNI « TEL QUEL » SANS GARANTIES DE QUELQUES SORTES QUE CE "
-"SOIT, même quand la version est marquée comme une version stable."
+msgstr "&krusader; est enregistré sous la licence <link linkend=\"credits\">&GNU; General Public License (GPL)</link>. Cela signifie que LE PROGRAMME EST FOURNI « TEL QUEL » SANS GARANTIES DE QUELQUES SORTES QUE CE SOIT, même quand la version est marquée comme une version stable."
 
 #. Tag: title
 #: installation.docbook:252
@@ -412,8 +422,7 @@ msgstr ""
 #: installation.docbook:259
 #, no-c-format
 msgid "These releases are beta releases and will probably contain some bugs."
-msgstr ""
-"Ces versions sont des versions beta et contiendront probablement des bogues."
+msgstr "Ces versions sont des versions beta et contiendront probablement des bogues."
 
 #. Tag: para
 #: installation.docbook:261
@@ -430,7 +439,7 @@ msgid ""
 "\">SVNNEWS</ulink> file online or in the &krusader; sources. <link linkend="
 "\"faqg_wish\">User feedback</link> and <link linkend=\"faqg_bug_report\">Bug "
 "reports</link> are always welcome!"
-msgstr ""
+msgstr "Si vous utilisez la version de <link linkend=\"krusader_devel\">dévelopment</link> ou du <link linkend=\"krusader_svn\">SVN</link>, il est possible que les dernières nouvelles fonctionnalités ne sont pas encore dans le manuel de Krusader. Veuillez lire le fichier de <ulink url=\"http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/ChangeLog?view=markup\">Changelog</ulink> en ligne ou dans les sources de &krusader; pour en savoir plus à propos des nouvelles fonctionnalités. Pour une brève description, veuillez lire le fichier <ulink url=\"http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/SVNNEWS?view=markup\">SVNNEWS</ulink> en ligne ou dans les sources de &krusader;. Les <link linkend=\"faqg_wish\">retours utilisateur</link> et <link linkend=\"faqg_bug_report\">rapports de bogue</link> sont les bienvenus !"
 
 #. Tag: para
 #: installation.docbook:276
@@ -459,14 +468,12 @@ msgstr ""
 
 #. Tag: para
 #: installation.docbook:288
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Give translators time to update the translations for the coming stable. "
 "Please read the <ulink url=\"http://www.krusader.org/i18n.php\">i18n page</"
 "ulink>."
-msgstr ""
-"Donner le temps aux traducteurs de mettre à jour les traductions pour la "
-"version stable à venir. Veuillez lire la &i18n-page-url;."
+msgstr "Donner le temps aux traducteurs de mettre à jour les traductions pour la version stable à venir. Veuillez lire la <ulinkurl=\"http://www.krusader.org/i18n.php\">page i18n</ulink>."
 
 #. Tag: title
 #: installation.docbook:384
@@ -482,7 +489,7 @@ msgid ""
 "is used for our sourcecode repository. It is also possible to <ulink url="
 "\"http://krusader.svn.sourceforge.net/viewvc/krusader/\">Browse the "
 "Subversion Repository</ulink>."
-msgstr ""
+msgstr "<ulink url=\"http://sourceforge.net/svn/?group_id=6488\">Subversion</ulink> est utilisé comme notre dépot de code sources. Il est aussi possible de <ulink url=\"http://krusader.svn.sourceforge.net/viewvc/krusader/\">parcourir le dépot de Subversion</ulink>."
 
 #. Tag: para
 #: installation.docbook:389
@@ -565,14 +572,12 @@ msgstr "Anciennes versions"
 
 #. Tag: para
 #: installation.docbook:426
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "If you are looking for older releases we recommend the <ulink url=\"http://"
 "sourceforge.net/project/showfiles.php?group_id=6488\">Sourceforge mirrors</"
 "ulink>, available from our project page."
-msgstr ""
-"SI vous recherchez des anciennes versions, nous recommandons le &sfmirrors-"
-"url; disponible sur notre page web."
+msgstr "SI vous recherchez des anciennes versions, nous recommandons les <ulink url=\"http://sourceforge.net/project/showfiles.php?group_id=6488\">mirroris de Sourceforge</ulink> disponible sur notre page web."
 
 #. Tag: title
 #: installation.docbook:436
@@ -589,14 +594,13 @@ msgid ""
 "krusader/trunk/krusader_kde4/INSTALL?view=markup\"><filename>INSTALL</"
 "filename></ulink> file of the Krusader sources, it contains all latest "
 "installation instructions."
-msgstr ""
+msgstr "Veuillez lire le fichier <ulink url=\"http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/INSTALL?view=markup\"><filename>INSTALL</filename></ulink> des sources de Krusader, qui contient les toutes dernières instructions d'installation."
 
 #. Tag: para
 #: installation.docbook:444
 #, no-c-format
 msgid "From version &krusader;-2.0.0 and higher is &kde;-4 only."
-msgstr ""
-"Depuis la version &krusader;-2.0.0 et supérieure pour &kde;-4 seulement."
+msgstr "Depuis la version &krusader;-2.0.0 et supérieure pour &kde;-4 seulement."
 
 #. Tag: para
 #: installation.docbook:448
@@ -778,15 +782,13 @@ msgstr "lha : archiveur lzh"
 #: installation.docbook:529
 #, no-c-format
 msgid "md5deep: versatile file checksum creator and verifier"
-msgstr ""
-"md5deep : créateur et vérificateur versatile de somme de contrôle de fichiers"
+msgstr "md5deep : créateur et vérificateur versatile de somme de contrôle de fichiers"
 
 #. Tag: para
 #: installation.docbook:532
 #, no-c-format
 msgid "cfv: versatile file checksum creator and verifier"
-msgstr ""
-"cfv : créateur et vérificateur versatile de somme de contrôle de fichiers"
+msgstr "cfv : créateur et vérificateur versatile de somme de contrôle de fichiers"
 
 #. Tag: para
 #: installation.docbook:535
@@ -896,10 +898,8 @@ msgstr "kdelibs5-dev (installe des bibliothèques de développement pour KDE4)"
 #. Tag: para
 #: installation.docbook:588
 #, no-c-format
-msgid ""
-"libphonon-dev (libphonon-dev cross-platform multimedia framework development)"
-msgstr ""
-"libphonon-dev (architecture multimédia inter plate formes de développement)"
+msgid "libphonon-dev (libphonon-dev cross-platform multimedia framework development)"
+msgstr "libphonon-dev (architecture multimédia inter plate formes de développement)"
 
 #. Tag: title
 #: installation.docbook:599
@@ -909,13 +909,13 @@ msgstr "Installation sur des plate formes Linux et BSD"
 
 #. Tag: para
 #: installation.docbook:608
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<command>-DQT_INCLUDES=/usr/share/qt4/include</command> is the location of "
 "the &Qt;4 includes"
 msgstr ""
 "<command>-DQT_INCLUDES=/usr/share/qt4/include</command> est l'emplacement "
-"des fichiers d'includes de QT4."
+"des fichiers d'includes de &QT; 4."
 
 #. Tag: para
 #: installation.docbook:610
@@ -942,7 +942,7 @@ msgstr ""
 
 #. Tag: screen
 #: installation.docbook:618
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<prompt>$</prompt> <userinput><command>tar -xzvf</command> "
 "<option>krusader_kde4.tar.gz</option></userinput>\r\n"
@@ -956,15 +956,15 @@ msgid ""
 "install</option></userinput>"
 msgstr ""
 "<prompt>$</prompt> <userinput><command>tar -xzvf</command> "
-"<option>krusader_kde4.tar.gz</option></userinput>\n"
-"      <prompt>$</prompt> <userinput><command>cd </command> "
-"<option>krusader_kde4</option></userinput>\n"
-"      <prompt>$</prompt> <userinput><command>cmake </command> <option>-"
+"<option>krusader_kde4.tar.gz</option></userinput>\r\n"
+"      <prompt>$</prompt> <userinput><command>cd</command> "
+"<option>krusader_kde4</option></userinput>\r\n"
+"      <prompt>$</prompt> <userinput><command>cmake</command> <option>-"
 "DCMAKE_INSTALL_PREFIX=/usr/ -DQT_INCLUDES=/usr/share/qt4/include</option></"
-"userinput>\n"
-"      <prompt>$</prompt> <userinput><command>make</command></userinput>\n"
-"      <prompt>$</prompt> <userinput><command>su -c </command> <option>'make "
-"install'</option></userinput>"
+"userinput>\r\n"
+"      <prompt>$</prompt> <userinput><command>make</command></userinput>\r\n"
+"      <prompt>$</prompt> <userinput><command>sudo</command> <option>make "
+"install</option></userinput>"
 
 #. Tag: para
 #: installation.docbook:627
@@ -994,7 +994,7 @@ msgstr "Installation sur la plate forme &MacOS;-X"
 msgid ""
 "With &kde;-4 Krusader runs natively on &MacOS;-X, using it's Aqua user "
 "interface (No more X11 needed!)."
-msgstr ""
+msgstr "Avec &kde;-4, Krusader se lance nativement sur &MacOS;-X en utilisant Aqua, plus besoin de X11 !"
 
 #. Tag: para
 #: installation.docbook:647
@@ -1005,15 +1005,19 @@ msgid ""
 "should become <ulink url=\"http://groups.google.com/group/krusader-devel/t/"
 "d81ae64f8583f6d8\"><filename>very easy!</filename></ulink>"
 msgstr ""
+"Dans un futur proche (au moment de la rédaction de ces lignes) avec <ulink url=\"http://www."
+"macports.org/\"><filename>MacPorts</filename></ulink> installer Krusader "
+"devrait devenir <ulink url=\"http://groups.google.com/group/krusader-devel/t/"
+"d81ae64f8583f6d8\"><filename>très facile !</filename></ulink>"
 
 #. Tag: screen
 #: installation.docbook:653
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<prompt>$</prompt> <userinput><command>sudo port install krusader</command></"
 "userinput>"
 msgstr ""
-"<prompt>$</prompt> <userinput><command>su -c 'make uninstall'</command></"
+"<prompt>$</prompt> <userinput><command>sudo port install krusader</command></"
 "userinput>"
 
 #. Tag: title
@@ -1025,34 +1029,33 @@ msgstr "Installation sur une plate forme &Windows;"
 #. Tag: para
 #: installation.docbook:669
 #, no-c-format
-msgid ""
-"Tested on &Windows; XP, not yet tested on &Windows; Vista but it should work."
+msgid "Tested on &Windows; XP, not yet tested on &Windows; Vista but it should work."
 msgstr ""
 "Testé sur &Windows; XP, pas encore testé sur &Windows; Vista mais cela "
 "devrait fonctionner."
 
 #. Tag: para
 #: installation.docbook:671
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "With Krusader-2.0.0 it's the first time that Krusader compiles on &Windows;, "
 "some work needs to be done to make Krusader more usable on the &Windows; "
 "platform. All feedback is welcome!"
 msgstr ""
-"C'est la première fois que Krusader compile sous &Windows;, des ajustements "
+"Avec Krusader-2.0.0, c'est la première fois que Krusader compile sous &Windows;, des ajustements "
 "sont à prévoir pour rendre Krusader stable et utilisable sous &Windows;. "
 "Tous les commentaires sont les bienvenue !"
 
 #. Tag: para
 #: installation.docbook:675
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Krusader can be compiled and installed on &Windows; with the <ulink url="
 "\"http://winkde.org/pub/kde/ports/win32/installer/\">Win-KDE installer</"
 "ulink>. See also <ulink url=\"http://windows.kde.org/\">windows.kde.org</"
 "ulink> for more information."
 msgstr ""
-"Installez <ulink url=\"http://winkde.org/pub/kde/ports/win32/installer/"
+"Krusader peut être compilé et installé sous &Windows; avec <ulink url=\"http://winkde.org/pub/kde/ports/win32/installer/"
 "\">l'installateur KDE</ulink>, voir aussi <ulink url=\"http://windows.kde."
 "org/\">windows.kde.org</ulink>. Pendant l'installation, choisissez l'option "
 "suivante : "
@@ -1065,7 +1068,7 @@ msgstr "Démarrer &krusader;"
 
 #. Tag: para
 #: installation.docbook:685
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Type <userinput> <command>krusader</command> </userinput> (lower case) at a "
 "command prompt. You can create shortcut on your desktop or create an entry "
@@ -1075,7 +1078,7 @@ msgstr ""
 "Saisissez <userinput> <command>krusader</command> </userinput> (en "
 "minuscule) dans l'invite de commande. Vous pouvez créer un raccourci sur "
 "votre bureau ou créer une entrée dans le menu (&kde;). Lisez la page "
-"précédente et la &faq-lnk; si &krusader; ne démarre pas."
+"précédente et la <link linkend=\"faq\">FAQ</link> si &krusader; ne démarre pas."
 
 #. Tag: para
 #: installation.docbook:693
@@ -1089,12 +1092,12 @@ msgstr ""
 
 #. Tag: screen
 #: installation.docbook:696
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<prompt>$</prompt> <userinput><command>krusader</command></userinput>\r\n"
 "            WARNING: Mt.Man: Born, looking around to get familiar. foo"
 msgstr ""
-"<prompt>$</prompt> <userinput><command>krusader</command></userinput>\n"
+"<prompt>$</prompt> <userinput><command>krusader</command></userinput>\r\n"
 "            WARNING: Mt.Man: Born, looking around to get familiar. foo"
 
 #. Tag: para
@@ -1125,7 +1128,7 @@ msgstr ""
 
 #. Tag: para
 #: installation.docbook:713
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "If &krusader; is installed by an RPM or DEB package then usually &krusader; "
 "can be started from the &kmenu;. e.g. on &Mandrake;-&Linux; 10.0 click on "
@@ -1134,7 +1137,7 @@ msgid ""
 "guimenuitem> <guimenuitem>&krusader;</guimenuitem> </menuchoice> </emphasis>."
 msgstr ""
 "Si &krusader; est installé depuis un paquetage RPM ou DEB, &krusader; peut "
-"être lancé depuis le &kmenu;. &pex; sous &Mandrake;-&Linux; 10.0, cliquez "
+"être lancé depuis le &kmenu;. &pex; sous &Mandriva;-&Linux; 2009.1, cliquez "
 "sur le bouton &kicon; et choisissez <emphasis role=\"bold\"> <menuchoice> "
 "<guimenuitem>Toutes les applications</guimenuitem> <guimenuitem>Outils</"
 "guimenuitem> <guimenuitem>&krusader;</guimenuitem> </menuchoice> </emphasis>."
@@ -1149,8 +1152,7 @@ msgstr "Les options de la ligne de commande : "
 #: installation.docbook:728
 #, no-c-format
 msgid "<option>--left</option> <replaceable> &lt;path&gt;</replaceable>"
-msgstr ""
-"<option>--left</option> <replaceable> &lt;emplacement&gt;</replaceable>"
+msgstr "<option>--left</option> <replaceable> &lt;emplacement&gt;</replaceable>"
 
 #. Tag: action
 #: installation.docbook:735
@@ -1162,8 +1164,7 @@ msgstr "démarre le panneau gauche à &lt;l'emplacement&gt;"
 #: installation.docbook:741
 #, no-c-format
 msgid "<option>--right</option> <replaceable> &lt;path&gt;</replaceable>"
-msgstr ""
-"<option>--right</option> <replaceable> &lt;emplacement&gt;</replaceable>"
+msgstr "<option>--right</option> <replaceable> &lt;emplacement&gt;</replaceable>"
 
 #. Tag: action
 #: installation.docbook:748
@@ -1184,8 +1185,7 @@ msgstr ""
 #. Tag: action
 #: installation.docbook:761
 #, no-c-format
-msgid ""
-"start left panel at &lt;path1&gt;,&lt;path2&gt;,&lt;path3&gt;, with tabs."
+msgid "start left panel at &lt;path1&gt;,&lt;path2&gt;,&lt;path3&gt;, with tabs."
 msgstr ""
 "démarre le panneau gauche à &lt;emplacement1&gt;,&lt;emplacement2&gt;,&lt;"
 "emplacement3&gt;, avec des onglets"
@@ -1193,10 +1193,8 @@ msgstr ""
 #. Tag: term
 #: installation.docbook:768
 #, no-c-format
-msgid ""
-"<option>--profile</option> <replaceable> &lt;panel-profile&gt;</replaceable>"
-msgstr ""
-"<option>--profile</option> <replaceable> &lt;panel-profile&gt;</replaceable>"
+msgid "<option>--profile</option> <replaceable> &lt;panel-profile&gt;</replaceable>"
+msgstr "<option>--profile</option> <replaceable> &lt;panel-profile&gt;</replaceable>"
 
 #. Tag: action
 #: installation.docbook:775
@@ -1369,7 +1367,7 @@ msgstr "Configurer &krusader;"
 
 #. Tag: para
 #: installation.docbook:864
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "When you run &krusader; for the first time, the &krusader; configuration "
 "module <link linkend=\"konfigurator\">Konfigurator</link> will show up and "
@@ -1381,7 +1379,7 @@ msgstr ""
 "configuration <link linkend=\"konfigurator\">Konfigurator</link> apparaîtra "
 "et vous permettra de configurer &krusader; aussi bien que détecter les "
 "outils et archiveurs installés. Vous pouvez toujours relancer Konfigurator "
-"depuis le &settingsmenu-lnk;."
+"depuis le menu <link linkend=\"settings-menu\">Configuration</link>."
 
 #. Tag: title
 #: installation.docbook:873
@@ -1413,269 +1411,3 @@ msgstr ""
 "<ulink url=\"http://groups.google.com/group/krusader-devel/browse_thread/"
 "thread/8209d785d3ba0ac6\">cliquez ici</ulink> pour plus d'informations."
 
-#~ msgid "All BSD Platforms (&freebsd;/&netbsd;/&openbsd;/&MacOS;)"
-#~ msgstr ""
-#~ "Toutes les plate formes BSD (&freebsd; / &netbsd; / &openbsd; / &MacOS;)"
-
-#~ msgid ""
-#~ "Distributions who provide &krusader;: <itemizedlist> <listitem> "
-#~ "<para>&suse-download-url;</para> </listitem> <listitem> <para>&fedora-"
-#~ "download-url; via <command># yum install krusader</command> will do the "
-#~ "job, thanks to Marcin Garski. &RedHat; RPM packages can usually found on "
-#~ "the &krudownload-url; or at &dag-wiers-download-url; and &dries-"
-#~ "verachtert-download-url; .</para> </listitem> <listitem> <para>&debian-"
-#~ "download-url;, on our &krudownload-url; you might find more recent DEB "
-#~ "packages. Note: usually &debian; packages work also on distributions that "
-#~ "are \"based on &debian;\", and some of these provide their own "
-#~ "(incompatible) packages. &ubuntu-kubuntu-download-url;, &linspire-"
-#~ "freespire-download-url;, &knoppix; 4.x DVD, &kanotix;, etc.</para> </"
-#~ "listitem> <listitem> <para>&mandriva-download-url; via the contrib "
-#~ "repository <command># urpmi krusader</command> will do the job, &gentoo-"
-#~ "download-url;, &yoper-download-url;.</para> </listitem> <listitem> "
-#~ "<para>&archlinux-download-url;, &frugalware-linux-download-url;, "
-#~ "&pclinuxos-download-url;, &altlinux-download-url;.</para> </listitem> "
-#~ "<listitem> <para>&freebsd-download-url;, the port is maintained by <link "
-#~ "linkend=\"credits\">Heiner Eichmann</link>.</para> </listitem> <listitem> "
-#~ "<para>&netbsd-download-url;, &lunarlinux-download-url; ,&arklinux;, "
-#~ "&openlx;, &sourcemage;.</para> </listitem> <listitem> <para>Even more "
-#~ "distributions can be found with &distrowatch-com-url;.</para> </listitem> "
-#~ "</itemizedlist>Use the installation tools included in your distro to "
-#~ "install the &krusader; package. You might need an internet connection if "
-#~ "&krusader; is not included on the &CD; or DVD. There are probably other "
-#~ "distributions which include &krusader;. If you know of one, please send "
-#~ "feedback so that we can include it on the distrolist."
-#~ msgstr ""
-#~ "Les distributions qui fournissent &krusader; : <itemizedlist> <listitem> "
-#~ "<para>&suse-download-url;</para> </listitem> <listitem> <para>&fedora-"
-#~ "download-url; via <command># yum install krusader</command> feront leur "
-#~ "travail, merci à Marcin Garski. &RedHat; les paquetages RPM peuvent être "
-#~ "habituellement trouvés sur le &krudownload-url; ou sur &dag-wiers-"
-#~ "download-url; et &dries-verachtert-download-url; .</para> </listitem> "
-#~ "<listitem> <para>&debian-download-url;, sur notre &krudownload-url; vous "
-#~ "devriez trouver les plus récents paquetages DEB. Remarque : "
-#~ "habituellement les paquetages &debian; fonctionnent aussi sur les "
-#~ "distributions qui sont fondées sur &debian;, et certaine d'entres elles "
-#~ "fournissent leurs propres paquetages (incompatibles). &ubuntu-kubuntu-"
-#~ "download-url;, &linspire-freespire-download-url;, &knoppix; 4.x DVD, "
-#~ "&kanotix;, etc.</para> </listitem> <listitem> <para>&mandriva-download-"
-#~ "url; via le dépôt contrib <command># urpmi krusader</command> fera le "
-#~ "travail, &gentoo-download-url;, &yoper-download-url;.</para> </listitem> "
-#~ "<listitem> <para>&archlinux-download-url;, &frugalware-linux-download-"
-#~ "url;, &pclinuxos-download-url;, &altlinux-download-url;.</para> </"
-#~ "listitem> <listitem> <para>&freebsd-download-url;, le port est maintenu "
-#~ "par <link linkend=\"credits\">Heiner Eichmann</link>.</para> </listitem> "
-#~ "<listitem> <para>&netbsd-download-url;, &lunarlinux-download-url; ,"
-#~ "&arklinux;, &openlx;, &sourcemage;.</para> </listitem> <listitem> "
-#~ "<para>Plus de distributions peuvent être trouvés avec &distrowatch-com-"
-#~ "url;.</para> </listitem> </itemizedlist>Utilisez l'outil d'installation "
-#~ "inclu dans votre distribution pour installer le paquetage &krusader;. "
-#~ "Vous aurez besoin d'une connexion internet si &krusader; n'est pas inclu "
-#~ "sur le &CD; ou DVD. Il y a probablement d'autres distributions qui "
-#~ "incluent &krusader;. Si vous en connaissez une, veuillez envoyer un "
-#~ "commentaire pour que nous l'incluions dans la liste des distributions."
-
-#~ msgid ""
-#~ "&slackware; tgz binaries can usually be found on the &krudownload-url;. "
-#~ "You can also use &portpkg-url; that contains a &kru-slackbuild-url;, "
-#~ "<command># portpkg krusader</command> will do the job."
-#~ msgstr ""
-#~ "Les binaires tgz de &slackware; peuvent être habituellement trouvés sur "
-#~ "le &krudownload-url;. Vous pouvez aussi utiliser &portpkg-url; qui "
-#~ "contient un &kru-slackbuild-url;, <command># portpkg krusader</command> "
-#~ "fera le travail."
-
-#~ msgid "Installation via the &klik-protocol-url;"
-#~ msgstr "Installation par le &klik-protocol-url;"
-
-#~ msgid ""
-#~ "&klik-krusader-url; downloads &krusader; provided by &debian; stable, "
-#~ "more information is &klik-available-url; ."
-#~ msgstr ""
-#~ "&klik-krusader-url; télécharge &krusader; fourni par la branche stable de "
-#~ "&debian;, plus d'informations est &klik-available-url;."
-
-#~ msgid ""
-#~ "&klik-krusader-latest-url; downloads the latest &klik-stable-krusader-"
-#~ "url; provided by the &krusader; Krew."
-#~ msgstr ""
-#~ "&klik-krusader-latest-url; télécharge la dernière &klik-stable-krusader-"
-#~ "url; fourni par l'équipe de &krusader;."
-
-#~ msgid ""
-#~ "&klik-krusader-cvs-url; downloads a &klik-cvs-krusader-url; provided by "
-#~ "the &krusader; Krew."
-#~ msgstr ""
-#~ "&klik-krusader-cvs-url; télécharge un &klik-cvs-krusader-url; fourni par "
-#~ "l'équipe de &krusader;."
-
-#~ msgid "&dev-svn-note;"
-#~ msgstr "&dev-svn-note;"
-
-#~ msgid ""
-#~ "&subversion-url; is used for our sourcecode repository. It is also "
-#~ "possible to &browse-svn-repo-url;."
-#~ msgstr ""
-#~ "&subversion-url; est utilisé pour le dépôt du code source. Il est aussi "
-#~ "possible de &browse-svn-repo-url;."
-
-#~ msgid ""
-#~ "Even more details about Krusader compilation-installation can be found in "
-#~ "the INSTALL file of the Krusader source tarball."
-#~ msgstr ""
-#~ "Encore plus d'informations à propos de l'installation et la compilation "
-#~ "Krusader peuvent être trouvées dans le fichier INSTALL de l'archive "
-#~ "source de Krusader."
-
-#~ msgid ""
-#~ "Follow the install guidelines of <ulink url=\"http://techbase.kde.org/"
-#~ "Getting_Started/Build/KDE4/Mac_OS_X\">techbase.kde.org</ulink>"
-#~ msgstr ""
-#~ "Suivez le guide d'installation de <ulink url=\"http://techbase.kde.org/"
-#~ "Getting_Started/Build/KDE4/Mac_OS_X\">techbase.kde.org</ulink>"
-
-#~ msgid ""
-#~ "Install the dependencies (including cmake) with <ulink url=\"http://www."
-#~ "finkproject.org/\">Fink</ulink>."
-#~ msgstr ""
-#~ "Installez les dépendances (incluant cmake) avec <ulink url=\"http://www."
-#~ "finkproject.org/\">Fink</ulink>."
-
-#~ msgid ""
-#~ "Install the &Qt;-4 binaries available from <ulink url=\"http://mac.kde."
-#~ "org/\">mac.kde.org</ulink>"
-#~ msgstr ""
-#~ "Installez les binaires &Qt;-4 disponibles sur <ulink url=\"http://mac.kde."
-#~ "org/\">mac.kde.org</ulink>"
-
-#~ msgid "Once kdelibs and it's dependencies are up and running."
-#~ msgstr ""
-#~ "Une fois que kdelibs et ses dépendances sont installées, lancez la "
-#~ "compilation."
-
-#~ msgid ""
-#~ "Proceed with the step of techbase.kde.org \"# "
-#~ "Setting_Up_Your_Build_Environment\" and \"# Building_kdelibs\" (here "
-#~ "replacing \"kdelibs\" by \"Krusader\" ;-))."
-#~ msgstr ""
-#~ "Suivez les étapes de techbase.kde.org « # "
-#~ "Setting_Up_Your_Build_Environment » et « # Building_kdelibs » (remplacez "
-#~ "ici « kdelibs » par « Krusader » ;-))"
-
-#~ msgid "installation path in this example was <filename>c:\\kde4</filename>"
-#~ msgstr ""
-#~ "l'emplacement d'installation dans cet exemple était <filename>c:\\kde4</"
-#~ "filename>"
-
-#~ msgid "install mode: developer installation"
-#~ msgstr "mode d'installation : installation pour développeur"
-
-#~ msgid "compiler mode: mingw"
-#~ msgstr "mode de compilation : mingw"
-
-#~ msgid ""
-#~ "select installation of binary and developement files of the following "
-#~ "packages (Note that some packages are not in any category and one needs "
-#~ "to view all to find them): mingw, gcc (including g++), cmake, dbus, qt4, "
-#~ "kdelibs, kdebase, (TODO: check if this list is complete)."
-#~ msgstr ""
-#~ "sélectionnez l'installation du binaire et des fichiers de développement "
-#~ "des paquetages suivants (Remarquez que des paquetages ne sont dans aucune "
-#~ "catégories et l'un doit être affiché pour tous les trouver) : mingw, gcc "
-#~ "(incluant g++), cmake, d-bus, qt4, kdelibs, kdebase, (À FAIRE : vérifier "
-#~ "si la liste est complète)."
-
-#~ msgid ""
-#~ "Create the source directory for krusader and checked out svn (you can use "
-#~ "<ulink url=\"http://tortoisesvn.net/\">TortoiseSVN</ulink> for that ) In "
-#~ "this example, <filename>c:/kde4/src/krusader_kde4</filename> was used."
-#~ msgstr ""
-#~ "Créez le dossier source pour Krusader et réceptionnez le SVN (vous pouvez "
-#~ "utiliser <ulink url=\"http://tortoisesvn.net/\">TortoiseSVN</ulink> pour "
-#~ "ça). Dans cet exemple, <filename>c:/kde4/src/krusader_kde4</filename> "
-#~ "était utilisé."
-
-#~ msgid ""
-#~ "Create the directory for generated files and cd to it In this example, "
-#~ "<filename>c:/kde4/build/krusader_kde4</filename> was used."
-#~ msgstr ""
-#~ "Créez le dossier pour les fichiers générés et saisissez « cd » pour entrer "
-#~ "dedans, dans cet exemple <filename>c:/kde4/build/krusader_kde4</filename> "
-#~ "était utilisé."
-
-#~ msgid ""
-#~ "Open the windows terminal (cmd.exe) and go to the build directory "
-#~ "<filename>c:</filename> <filename>cd \\kde4\\build\\krusader_kde4</"
-#~ "filename>"
-#~ msgstr ""
-#~ "Ouvrez le terminal de &Windows; (cmd.exe) et allez dans le dossier de "
-#~ "compilation <filename>c:</filename> <filename>cd \\kde4\\build"
-#~ "\\krusader_kde4</filename>"
-
-#~ msgid ""
-#~ "So as to avoid a cmake error, that it can't find some kde library which "
-#~ "is for sure installed, it is necessary to make the following fix: There "
-#~ "is a strange problem, that in cmake modules <filename>c:\\kde4\\share"
-#~ "\\apps\\cmake\\modules\\KDELibsDependencies.cmake</filename> and "
-#~ "<filename>c:\\kde4\\share\\apps\\cmake\\modules\\KDEPimLibsDependencies."
-#~ "cmake</filename> there are wrong hardcoded paths to the installation "
-#~ "directory (<filename>D:/kde/kde-mingw</filename>), it is necessary to "
-#~ "replace it manually to <filename>c:/kde4</filename>."
-#~ msgstr ""
-#~ "Afin d'éviter une erreur cmake, qui ne peut pas trouver une bibliothèque "
-#~ "laquelle est certainement installée, il est nécessaire d'appliquer le "
-#~ "correctif suivant : il y a un problème étrange dans les modules cmake "
-#~ "<filename>c:\\kde4\\share\\apps\\cmake\\modules\\KDELibsDependencies."
-#~ "cmake</filename> et <filename>c:\\kde4\\share\\apps\\cmake\\modules"
-#~ "\\KDEPimLibsDependencies.cmake</filename>, il y a des emplacements codés "
-#~ "en dur dans le dossier d'installation (<filename>D:/kde/kde-mingw</"
-#~ "filename>). Il est nécessaire de le remplacer manuellement par "
-#~ "<filename>c:/kde4</filename>."
-
-#~ msgid ""
-#~ "Run cmake in the build directory with the following parameters: "
-#~ "<filename>c:\\kde4\\bin\\cmake.exe -G \"MinGW Makefiles\" c:/kde4/src/"
-#~ "krusader_kde4 -DCMAKE_INSTALL_PREFIX=c:/kde4 -DCMAKE_INCLUDE_PATH=c:/kde4/"
-#~ "include -DCMAKE_LIBRARY_PATH=c:/kde4/lib -DKDEWIN_DIR:PATH=c:/kde4 -"
-#~ "DCMAKE_BUILD_TYPE=debugful</filename>"
-#~ msgstr ""
-#~ "Lancez cmake dans le dossier de compilation avec les paramètres "
-#~ "suivants : <filename>c:\\kde4\\bin\\cmake.exe -G \"MinGW Makefiles\" c:/"
-#~ "kde4/src/krusader_kde4 -DCMAKE_INSTALL_PREFIX=c:/kde4 -"
-#~ "DCMAKE_INCLUDE_PATH=c:/kde4/include -DCMAKE_LIBRARY_PATH=c:/kde4/lib -"
-#~ "DKDEWIN_DIR:PATH=c:/kde4 -DCMAKE_BUILD_TYPE=debugful</filename>"
-
-#~ msgid ""
-#~ "Run make from mingw: <filename>C:\\MinGW\\bin\\mingw32-make.exe install</"
-#~ "filename>"
-#~ msgstr ""
-#~ "Lancez make depuis mingw : <filename>C:\\MinGW\\bin\\mingw32-make.exe "
-#~ "install</filename>"
-
-#~ msgid "Run <filename>krusader.exe</filename> and enjoy!"
-#~ msgstr "Lancez <filename>krusader.exe</filename> et appréciez !"
-
-#~ msgid ""
-#~ "Known severe run-time problems on windows at the moment (19 Jun 2008):"
-#~ msgstr ""
-#~ "Problèmes de lancement connus sous Windows pour le moment (19 Juin "
-#~ "2008) : "
-
-#~ msgid "Konfigurator crashes (launched even in the first run)"
-#~ msgstr "Konfigurator plante (même lancé la première fois)"
-
-#~ msgid "Slow start before the splashscreen appears"
-#~ msgstr "Démarrage lent avant que l'écran d'accueil n'apparaît"
-
-#~ msgid ""
-#~ "If <filename>C:</filename> is put to the location bar, you get incorrect "
-#~ "content of panel. Using file:<filename>///C:/</filename> is more reliable"
-#~ msgstr ""
-#~ "Si <filename>C:</filename> est placé dans la barre d'outils, vous avez un "
-#~ "contenu incorrect dans le panneau. Utiliser le fichier <filename>///C:/</"
-#~ "filename> est plus fiable."
-
-#~ msgid "Not possible to navigate inside ftp"
-#~ msgstr "Impossible de naviguer à l'intérieur de FTP"
-
-#~ msgid "<para>...</para>"
-#~ msgstr "<para>...</para>"

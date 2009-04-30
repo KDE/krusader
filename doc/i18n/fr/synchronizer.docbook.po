@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: synchronizer.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
 "POT-Creation-Date: 2009-04-23 16:40+0000\n"
-"PO-Revision-Date: 2009-04-14 10:06+0200\n"
+"PO-Revision-Date: 2009-04-25 16:48+0200\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -227,7 +227,7 @@ msgstr ""
 
 #. Tag: para
 #: synchronizer.docbook:140
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guilabel>File Filter</guilabel>: Filters the filenames at synchronizing. e."
 "g. <literal role=\"extension\">*.png</literal> selects only files the names "
@@ -239,7 +239,7 @@ msgid ""
 "\"extension\">*.cpp *.h</literal> and exclude <literal role=\"extension\">*."
 "moc.cpp</literal>"
 msgstr ""
-"<guilabel>Filtre fichier/guilabel> : filtre les noms de fichiers à la "
+"<guilabel>Filtre fichier</guilabel> : filtre les noms de fichiers à la "
 "synchronisation &pex; <literal role=\"extension\">*.png</literal> "
 "sélectionne seulement les fichiers dont les noms se terminent par <literal "
 "role=\"extension\">.png</literal>. Les dossiers sont listés si le nom de "
@@ -254,8 +254,7 @@ msgstr ""
 #: synchronizer.docbook:158
 #, no-c-format
 msgid "<guilabel>General filters</guilabel>: Search for, containing text"
-msgstr ""
-"<guilabel>Filtres généraux</guilabel> : rechercher, contenant le texte."
+msgstr "<guilabel>Filtres généraux</guilabel> : rechercher, contenant le texte."
 
 #. Tag: para
 #: synchronizer.docbook:163
@@ -405,7 +404,7 @@ msgstr ""
 
 #. Tag: para
 #: synchronizer.docbook:262
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guilabel>Asymmetric</guilabel>: The <guilabel>Left Directory</guilabel> is "
 "the target directory, the <guilabel>Right Directory</guilabel> is the source "
@@ -575,8 +574,7 @@ msgstr ""
 #: synchronizer.docbook:371
 #, no-c-format
 msgid "<guibutton>=</guibutton>: The files are the same, do not do anything."
-msgstr ""
-"<guibutton>=</guibutton> : les fichiers sont identiques, ne rien faire."
+msgstr "<guibutton>=</guibutton> : les fichiers sont identiques, ne rien faire."
 
 #. Tag: para
 #: synchronizer.docbook:376
@@ -602,8 +600,7 @@ msgstr ""
 #: synchronizer.docbook:387
 #, no-c-format
 msgid "<guibutton>DEL</guibutton>: delete files from the right side."
-msgstr ""
-"<guibutton>SUPPR</guibutton> : supprimer les fichiers depuis le coté droit."
+msgstr "<guibutton>SUPPR</guibutton> : supprimer les fichiers depuis le coté droit."
 
 #. Tag: term
 #: synchronizer.docbook:395
@@ -904,15 +901,14 @@ msgstr ""
 #. Tag: para
 #: synchronizer.docbook:566
 #, no-c-format
-msgid ""
-"<guibutton>View right file</guibutton>: Starts viewer on the right file."
+msgid "<guibutton>View right file</guibutton>: Starts viewer on the right file."
 msgstr ""
 "<guibutton>Afficher le fichier de droite</guibutton> : démarre l'afficheur "
 "sur le fichier de droite."
 
 #. Tag: para
 #: synchronizer.docbook:571
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guibutton>Compare Files</guibutton>: Starts the diff utility (e.g. "
 "&kompare;) on the files."
@@ -928,7 +924,7 @@ msgstr "Autres boutons"
 
 #. Tag: para
 #: synchronizer.docbook:584
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guibutton>Profiles</guibutton>: If you have to synchronize the same "
 "directories often, you can save the settings e.g. include files, exclude "
@@ -944,8 +940,7 @@ msgstr ""
 #. Tag: para
 #: synchronizer.docbook:594
 #, no-c-format
-msgid ""
-"<guibutton>Swap sides</guibutton>: Swaps the <guilabel>File List</guilabel>."
+msgid "<guibutton>Swap sides</guibutton>: Swaps the <guilabel>File List</guilabel>."
 msgstr ""
 "<guibutton>Séparer les cotés</guibutton> : sépare la <guilabel>liste de "
 "fichiers</guilabel>."
@@ -1116,8 +1111,7 @@ msgstr "Le premier peut donner le nombre de processus « quasy »."
 #. Tag: para
 #: synchronizer.docbook:710
 #, no-c-format
-msgid ""
-"Can drastically increase the speed when synchronized with slow FTP servers."
+msgid "Can drastically increase the speed when synchronized with slow FTP servers."
 msgstr ""
 "Peut augmenter drastiquement la vitesse quand la synchronisation se réalise "
 "avec des serveurs FTP lents."
@@ -1131,8 +1125,7 @@ msgstr "N'affecte pas la vitesse de synchronisation locale."
 #. Tag: para
 #: synchronizer.docbook:718
 #, no-c-format
-msgid ""
-"Remote \"compare by content\" and \"directory compare\" is done in parallel."
+msgid "Remote \"compare by content\" and \"directory compare\" is done in parallel."
 msgstr ""
 "Supprimer « comparer par contenu » et « dossier comparé » est réalisé en "
 "parallèle."
@@ -1146,3 +1139,4 @@ msgid ""
 msgstr ""
 "Supprimer la synchronisation est aussi réalisé en parallèle, en excluant les "
 "tâches mkdir (mkdir doit être avant la copie)."
+

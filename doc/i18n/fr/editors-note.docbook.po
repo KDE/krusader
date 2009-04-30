@@ -2,13 +2,13 @@
 # Copyright (C) 2008-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 #
-# Stanislas Zeller <uncensored.assault@gmail.com>, 2008.
+# Stanislas Zeller <uncensored.assault@gmail.com>, 2008, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
+"Project-Id-Version: editors-note.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
 "POT-Creation-Date: 2009-04-23 16:40+0000\n"
-"PO-Revision-Date: 2008-11-05 13:12+0100\n"
+"PO-Revision-Date: 2009-04-24 09:07+0200\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgstr ""
 
 #. Tag: para
 #: editors-note.docbook:41
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "The Handbook \"revision\" matches the &krusader; version number. e.g. "
 "\"&krusader; Handbook revision 1.80.x\" describes \"&krusader; 1.80.x\""
@@ -78,20 +78,21 @@ msgstr ""
 
 #. Tag: para
 #: editors-note.docbook:44
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Please read the <ulink url=\"http://krusader.svn.sourceforge.net/viewvc/"
 "krusader/trunk/krusader_kde4/doc/ChangeLog?view=markup\">Documentation "
 "ChangeLog</ulink> file online or in the &krusader; sources to find out the "
 "latest changes in the &krusader; Handbook."
 msgstr ""
-"Veuillez lire le fichier de &docchangelog-url; en ligne dans les sources de "
-"&krusader; pour découvrir les dernières modifications dans le manuel de "
-"&krusader;."
+"Veuillez lire le fichier de <ulink url=\"http://krusader.svn.sourceforge.net/viewvc/"
+"krusader/trunk/krusader_kde4/doc/ChangeLog?view=markup\">fichier des "
+"modifications (CHANGELOG)</ulink> en ligne dans les sources de &krusader; pour découvrir les "
+"dernières modifications dans le manuel de &krusader;."
 
 #. Tag: para
 #: editors-note.docbook:47
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "For information about the &krusader; documentation project, please contact "
 "the &krusader; documentation coordinator, Frank Schoolmeesters "
@@ -99,11 +100,11 @@ msgid ""
 msgstr ""
 "Pour des informations à propos du projet de documentation de &krusader;, "
 "veuillez contacter le coordinateur de la documentation, Frank Schoolmeesters "
-"<email>frank_schoolmeesters@yahoo.com</email>."
+"<email>frank_schoolmeesters * yahoo.com</email>."
 
 #. Tag: para
 #: editors-note.docbook:52
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "This handbook is available in several formats. <itemizedlist> <listitem> "
 "<para>via the <ulink url=\"help-menu.html\">Help Menu</ulink> when using "
@@ -117,12 +118,13 @@ msgid ""
 msgstr ""
 "Ce manuel est disponible dans plusieurs formats : <itemizedlist> <listitem> "
 "<para>à partir du <ulink url=\"help-menu.html\">menu d'aide</ulink> en "
-"utilisant le </para> </listitem> <listitem> <para>&onlinehandbook-url;</"
+"utilisant le </para> </listitem> <listitem> <para></listitem> <listitem> <para>the <ulink url=\"http://www."
+"krusader.org/handbook/\">manuel en ligne</ulink></"
 "para> </listitem> de &krusader; <listitem> <para>Comme des fichiers ou des "
-"archives (HTML, TXT, RTF, PDF, XML-SOURCE), téléchargez les depuis "
-"&sfmirrors-url;</para> </listitem> </itemizedlist> La plus récente version "
-"de ce manuel est disponible en utilisant &krusader; depuis le cvs ou le "
-"&onlinehandbook-url;."
+"archives (HTML, TXT, RTF, PDF, XML-SOURCE), téléchargez les depuis les"
+"<ulink url=\"http://sourceforge.net/project/showfiles.php?group_id=6488\"> "
+"mirroirs de Sourceforge</ulink></para> </listitem> </itemizedlist> La plus récente version "
+"de ce manuel est disponible en utilisant &krusader; depuis le SVN."
 
 #. Tag: para
 #: editors-note.docbook:68
@@ -139,7 +141,7 @@ msgid ""
 "\">SVNNEWS</ulink> file online or in the &krusader; sources. <link linkend="
 "\"faqg_wish\">User feedback</link> and <link linkend=\"faqg_bug_report\">Bug "
 "reports</link> are always welcome!"
-msgstr ""
+msgstr "Si vous utilisez une version de <link linkend=\"krusader_devel\">dévelopment</link> ou le <link linkend=\"krusader_svn\">SVN</link>, il est possible que les dernières fonctionnalités ne sont pas encore dans le manuel de Krusader. Veuillez lire le fichier de <ulink url=\"http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/ChangeLog?view=markup\">Changelog</ulink> en ligne ou dans les sources de &krusader; pour en savoir plus à propos des nouvelles fonctionnalités. Pour une brève description, veuillez lire le fichier <ulink url=\"http://krusader.svn.sourceforge.net/viewvc/krusader/trunk/krusader_kde4/SVNNEWS?view=markup\">SVNNEWS</ulink> en ligne ou dans les sources de &krusader;. <link linkend=\"faqg_wish\">Les retours utilisateur</link> et <link linkend=\"faqg_bug_report\">les rapports de bogues</link> sont toujours les bienvenus !"
 
 #. Tag: para
 #: editors-note.docbook:84
@@ -151,5 +153,3 @@ msgstr ""
 "Toutes les marques déposées et les copyright dans ce manuel appartiennent à "
 "leurs auteurs respectifs."
 
-#~ msgid "&dev-svn-note;"
-#~ msgstr "&dev-svn-note;"

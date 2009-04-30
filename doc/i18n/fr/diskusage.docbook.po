@@ -2,13 +2,13 @@
 # Copyright (C) 2008-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 #
-# Stanislas Zeller <uncensored.assault@gmail.com>, 2008.
+# Stanislas Zeller <uncensored.assault@gmail.com>, 2008, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
+"Project-Id-Version: diskusage.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
 "POT-Creation-Date: 2009-04-23 16:40+0000\n"
-"PO-Revision-Date: 2008-11-05 11:54+0100\n"
+"PO-Revision-Date: 2009-04-24 09:02+0200\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr "<primary>Utilisation du disque</primary>"
 
 #. Tag: para
 #: diskusage.docbook:6
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "The Disk Usage is based on the code of <application>Filelight</application>. "
 "The Disk Usage shows you how your disk space is being used by a graphical "
@@ -45,16 +45,17 @@ msgid ""
 "<keycap>d</keycap></keycombo> to start this feature in a separate window, or "
 "open it inside the <link linkend=\"popup_panel\">PopUp Panel</link>."
 msgstr ""
-"L'utilisation du disque est fondée sur le code de &filelight;. L'utilisation "
+"L'utilisation du disque est fondée sur le code de <application>Filelight</application>. L'utilisation "
 "du disque vous affiche de quelle manière l'espace disque est utilisé par une "
 "représentation graphique de votre système de fichiers. Les présentations "
 "suivantes sont possibles : <itemizedlist> <listitem> <para>Vue en lignes</"
 "para> </listitem> <listitem> <para>Vue détaillée</para> </listitem> "
-"<listitem> <para>Vue &filelight; : affichage composé de partie de cercles "
+"<listitem> <para>Vue <application>Filelight</application> : affichage composé de partie de cercles "
 "concentriques</para> </listitem> </itemizedlist>Choisissez <emphasis role="
 "\"bold\"> <menuchoice> <guimenu>Outils</guimenu> <guimenuitem>Espace disque "
 "occupé...</guimenuitem> </menuchoice> </emphasis> ou <keycombo action=\"simul"
-"\">&Alt; <keycap>D</keycap></keycombo>"
+"\">&Alt; <keycap>D</keycap></keycombo> pour démarrer cette fonctionnalité dans une fenêtre spérarée, "
+"ou l'ouvrir dans un <link linkend=\"popup_panel\">panneau</link>."
 
 #. Tag: para
 #: diskusage.docbook:32
@@ -71,27 +72,25 @@ msgstr "<keycap>Suppr</keycap> <guimenuitem>Supprimer</guimenuitem>"
 #. Tag: para
 #: diskusage.docbook:39
 #, no-c-format
-msgid ""
-"<keycombo action=\"simul\">&Ctrl; <keycap>e</keycap></keycombo>: Exclude"
+msgid "<keycombo action=\"simul\">&Ctrl; <keycap>e</keycap></keycombo>: Exclude"
 msgstr ""
 "<keycombo action=\"simul\">&Ctrl; <keycap>E</keycap></keycombo> "
 "<guimenuitem>Exclure</guimenuitem>"
 
 #. Tag: para
 #: diskusage.docbook:44
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>Arrow Up</"
 "keycap></keycombo>: parent dir"
 msgstr ""
-"<keycombo action=\"simul\">&Maj; <keycap>Flèche haut</keycap></keycombo> "
-"<guimenuitem>Dossier parent</guimenuitem>"
+"<keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>Fèche haut</"
+"keycap></keycombo> : dossier parent"
 
 #. Tag: para
 #: diskusage.docbook:49
 #, no-c-format
-msgid ""
-"<keycombo action=\"simul\">&Ctrl; <keycap>n</keycap></keycombo>: new search"
+msgid "<keycombo action=\"simul\">&Ctrl; <keycap>n</keycap></keycombo>: new search"
 msgstr ""
 "<keycombo action=\"simul\">&Ctrl; <keycap>N</keycap></keycombo> "
 "<guimenuitem>Nouvelle recherche</guimenuitem>"
@@ -99,8 +98,7 @@ msgstr ""
 #. Tag: para
 #: diskusage.docbook:54
 #, no-c-format
-msgid ""
-"<keycombo action=\"simul\">&Ctrl; <keycap>r</keycap></keycombo>: refresh"
+msgid "<keycombo action=\"simul\">&Ctrl; <keycap>r</keycap></keycombo>: refresh"
 msgstr ""
 "<keycombo action=\"simul\">&Ctrl; <keycap>R</keycap></keycombo> "
 "<guimenuitem>Rafraîchir</guimenuitem>"
@@ -108,21 +106,20 @@ msgstr ""
 #. Tag: para
 #: diskusage.docbook:59
 #, no-c-format
-msgid ""
-"<keycombo action=\"simul\">&Ctrl; <keycap>i</keycap></keycombo>: include all"
+msgid "<keycombo action=\"simul\">&Ctrl; <keycap>i</keycap></keycombo>: include all"
 msgstr ""
 "<keycombo action=\"simul\">&Ctrl; <keycap>I</keycap></keycombo> "
 "<guimenuitem>Tout inclure</guimenuitem>"
 
 #. Tag: para
 #: diskusage.docbook:64
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>Arrow Down</"
 "keycap></keycombo>: step into"
 msgstr ""
-"<keycombo action=\"simul\">&Maj; <keycap>Flèche bas</keycap></keycombo> "
-"<guimenuitem>Aller dedans</guimenuitem>"
+"<keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>Flèche Bas</"
+"keycap></keycombo> : Aller dedans"
 
 #. Tag: para
 #: diskusage.docbook:69
@@ -133,8 +130,7 @@ msgstr "Le sous-menu <guimenu>Vue</guimenu>"
 #. Tag: para
 #: diskusage.docbook:72
 #, no-c-format
-msgid ""
-"<keycombo action=\"simul\">&Ctrl; <keycap>l</keycap></keycombo>: Line view"
+msgid "<keycombo action=\"simul\">&Ctrl; <keycap>l</keycap></keycombo>: Line view"
 msgstr ""
 "<keycombo action=\"simul\">&Ctrl; <keycap>l</keycap></keycombo> "
 "<guimenuitem>Lignes</guimenuitem>"
@@ -161,20 +157,21 @@ msgstr ""
 
 #. Tag: para
 #: diskusage.docbook:87
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>Arrow Right</"
 "keycap></keycombo>: Next view"
 msgstr ""
-"<keycombo action=\"simul\">&Maj; <keycap>Flèche droite</keycap></keycombo> "
-"<guimenuitem>Suivant</guimenuitem>"
+"<keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>Flèche Droite</"
+"keycap></keycombo> : Suivant"
 
 #. Tag: para
 #: diskusage.docbook:92
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>Arrow Left</"
 "keycap></keycombo>: Previous view"
 msgstr ""
-"<keycombo action=\"simul\">&Maj; <keycap>Flèche gauche</keycap></keycombo> "
-"<guimenuitem>Précédent</guimenuitem>"
+"<keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>Flèche Gauche</"
+"keycap></keycombo> : Précédent"
+

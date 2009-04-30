@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: faq.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
 "POT-Creation-Date: 2009-04-23 16:40+0000\n"
-"PO-Revision-Date: 2009-04-23 13:48+0200\n"
+"PO-Revision-Date: 2009-04-24 09:16+0200\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,7 @@ msgstr "&krusader; a t-il besoin de &kde; pour se lancer ?"
 
 #. Tag: para
 #: faq.docbook:62
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<emphasis>No, &krusader; does not need the &kde; window manager</emphasis> "
 "to run on your computer but &krusader;'s natural environment is &kde;, "
@@ -95,7 +95,7 @@ msgid ""
 msgstr ""
 "<emphasis>Non, &krusader; n'a pas besoin de de l'environnement de bureau "
 "&kde;</emphasis> pour être lancé sur votre ordinateur mais c'est aussi son "
-"environnement naturel, parce que &krusader; est relié à des services fournis "
+"environnement naturel, car &krusader; est relié à des services fournis "
 "par les bibliothèques de base de &kde;. Seul quelques bibliothèques "
 "partagées sont nécessaires &pex; les bibliothèques &kde; et &Qt; &etc;. Cela "
 "veut dire que &krusader se lance sous <ulink url=\"http://www.gnome.org"
@@ -165,7 +165,7 @@ msgstr "De quelles bibliothèques a besoin &krusader; pour se lancer ?"
 
 #. Tag: para
 #: faq.docbook:120
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "For running &krusader; (e.g. when you have installed &krusader; with a "
 "binary RPM) you need less libraries than if you compile &krusader; from "
@@ -230,7 +230,7 @@ msgstr ""
 
 #. Tag: para
 #: faq.docbook:145
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Most RPM-based distributions separate the headers from the libs. The headers "
 "are needed to compile &krusader;. Look for packages in the form foo-devel-*."
@@ -372,8 +372,7 @@ msgstr ""
 #. Tag: para
 #: faq.docbook:226
 #, no-c-format
-msgid ""
-"Now you can <link linkend=\"starting-krusader\"> start</link> &krusader;."
+msgid "Now you can <link linkend=\"starting-krusader\"> start</link> &krusader;."
 msgstr ""
 "Maintenant vous pouvez <link linkend=\"starting-krusader\"> démarrer</link> "
 "&krusader;."
@@ -447,7 +446,7 @@ msgstr ""
 
 #. Tag: para
 #: faq.docbook:265
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "In general, a package for an older version of your distrubution or even for "
 "another distribution might work on your computer (e.g. FC RPM's often work "
@@ -528,7 +527,7 @@ msgstr ""
 
 #. Tag: para
 #: faq.docbook:318
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "In this case only the <guimenu>Help</guimenu> menu is visible and all other "
 "menu items like e.g. <guimenu>File</guimenu> and <guimenu>Select</guimenu> "
@@ -560,8 +559,7 @@ msgstr ""
 #. Tag: para
 #: faq.docbook:346
 #, no-c-format
-msgid ""
-"Some new menu items are missing after updating &krusader;, what's wrong?"
+msgid "Some new menu items are missing after updating &krusader;, what's wrong?"
 msgstr ""
 "Des éléments du menu sont manquants après mise à jour de k&rusader;. Que "
 "dois-je faire ?"
@@ -695,7 +693,7 @@ msgstr ""
 
 #. Tag: screen
 #: faq.docbook:431
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<prompt>$</prompt> <userinput><command>ln</command> -s "
 "<replaceable>libGLcore.so.1.0.6111 libGLcore.so.0</replaceable></userinput>"
@@ -725,25 +723,28 @@ msgid ""
 "userinput>"
 msgstr ""
 "<prompt>$</prompt> <userinput><command>ln</command> -s "
-"<replaceable>libGLcore.so.1.0.6111 libGLcore.so.0</replaceable></userinput>\n"
+"<replaceable>libGLcore.so.1.0.6111 libGLcore.so.0</replaceable></userinput>"
+"\r\n"
 "          <prompt>$</prompt> <userinput><command>ln</command> -s "
-"<replaceable>libGLcore.so.1.0.6111 libGLcore.so</replaceable></userinput>\n"
+"<replaceable>libGLcore.so.1.0.6111 libGLcore.so</replaceable></userinput>\r\n"
 "          <prompt>$</prompt> <userinput><command>ln</command> -s "
 "<replaceable>libGLcore.so.1.0.6111 libGLcore.so.1.0.0</replaceable></"
-"userinput>\n"
+"userinput>\r\n"
 "          <prompt>$</prompt> <userinput><command>ln</command> -s "
 "<replaceable>libGLcore.so.1.0.6111 libGLcore.so.0.0.0</replaceable></"
-"userinput>\n"
+"userinput>\r\n"
 "          <prompt>$</prompt> <userinput><command>ln</command> -s "
-"<replaceable>libGLcore.so.1.0.6111 libGL.so</replaceable></userinput>\n"
+"<replaceable>libGLcore.so.1.0.6111 libGL.so</replaceable></userinput>\r\n"
 "          <prompt>$</prompt> <userinput><command>ln</command> -s "
-"<replaceable>libGLcore.so.1.0.6111 libGL.so.0</replaceable></userinput>\n"
+"<replaceable>libGLcore.so.1.0.6111 libGL.so.0</replaceable></userinput>\r\n"
 "          <prompt>$</prompt> <userinput><command>ln</command> -s "
-"<replaceable>libGLcore.so.1.0.6111 libGL.so.0.0.0</replaceable></userinput>\n"
+"<replaceable>libGLcore.so.1.0.6111 libGL.so.0.0.0</replaceable></userinput>"
+"\r\n"
 "          <prompt>$</prompt> <userinput><command>ln</command> -s "
-"<replaceable>libGLcore.so.1.0.6111 libGL.so.1</replaceable></userinput>\n"
+"<replaceable>libGLcore.so.1.0.6111 libGL.so.1</replaceable></userinput>\r\n"
 "          <prompt>$</prompt> <userinput><command>ln</command> -s "
-"<replaceable>libGLcore.so.1.0.6111 libGL.so.1.0.0</replaceable></userinput>\n"
+"<replaceable>libGLcore.so.1.0.6111 libGL.so.1.0.0</replaceable></userinput>"
+"\r\n"
 "          <prompt>$</prompt> <userinput><command>ln</command> -s "
 "<replaceable>/usr/lib/libGLU.la /usr/X11R6/lib/libGLU.la</replaceable></"
 "userinput>"
@@ -809,7 +810,7 @@ msgstr ""
 
 #. Tag: para
 #: faq.docbook:487
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "If you give us the error messages (e.g. <command>make</command> error "
 "messages) please start with the FIRST error message, all the error messages "
@@ -859,7 +860,7 @@ msgstr ""
 
 #. Tag: para
 #: faq.docbook:519
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "NEVER build RPMs when logged in as root. Mistakes in building packages (e.g. "
 "a bad <filename>krusader.spec</filename> file) can do serious damage to your "
@@ -873,8 +874,7 @@ msgstr ""
 #. Tag: para
 #: faq.docbook:527
 #, no-c-format
-msgid ""
-"Compile &krusader; from source to check that the compilation works fine."
+msgid "Compile &krusader; from source to check that the compilation works fine."
 msgstr ""
 "Compiler &krusader; depuis les sources pour vérifier que la compilation "
 "fonctionne correctement."
@@ -915,7 +915,7 @@ msgstr ""
 
 #. Tag: para
 #: faq.docbook:559
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Build the binary and the source RPM with: <screen><prompt>$</prompt> "
 "<userinput><command>rpmbuild</command> <option>-ba</option> <replaceable>/"
@@ -1009,6 +1009,8 @@ msgid ""
 "our <ulink url=\"http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1407"
 "\"> website</ulink>."
 msgstr ""
+"Nous avons reçu beaucoup de courriers électroniques et de rapports de bogues (décembre 2005) à propos des plantages aléatoires, spécialement pendant les opérations de fichiers comme la copie, le déplacement... <emphasis role=\"bold\">Ces plantages sont dus à &Qt; 3.3.5 et NON &krusader;.</emphasis> Il semble que &Qt; 3.3.5 a introduit un bogue sérieux qui est actuellement (décembre 2005) la cause des plantages aléatoires dans de nombreuses applications &kde; y compris &konqueror;. Vous pouvez utiliser Google pour en savoir plus. De ce que nous en savons, <trademark class=\"registered\">Debian</trademark>-Sid et &SuSE; ont déjà posté de nouveaux binaires &Qt; qui résouent le problème, et <trademark class=\"registered\">Gentoo</trademark> a masqué complètement &Qt; 3.3.5. Maintenant, vous avez besoin soit de &Qt; 3.3.4 ou de la version &Qt; 3.3.5 corrigée ou supérieure, cela dépend de votre distribution. Plus d'informations sont disponibles sur notre <ulink url=\"http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1407"
+"\">site web</ulink>."
 
 #. Tag: para
 #: faq.docbook:641
@@ -1060,7 +1062,7 @@ msgstr ""
 
 #. Tag: para
 #: faq.docbook:677
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "When &krusader; is e.g. browsing an NFS share and the NFS server goes down, "
 "&krusader; will freeze. This &krusader; (and all other open internal viewers/"
@@ -1145,7 +1147,7 @@ msgstr ""
 
 #. Tag: para
 #: faq.docbook:740
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "&krusader; does not handle (yet) <application>Samba</application> ISO 8859-x "
 "codepages, if you use a codepage different than 8859-1 you will have to do a "
@@ -1292,8 +1294,7 @@ msgstr ""
 #: faq.docbook:834
 #, no-c-format
 msgid "Howto executing jar files (and not enter the jar archive)?"
-msgstr ""
-"Comment exécuter des fichiers jar (et non naviguer dans ce type d'archive) ?"
+msgstr "Comment exécuter des fichiers jar (et non naviguer dans ce type d'archive) ?"
 
 #. Tag: para
 #: faq.docbook:837
@@ -1314,8 +1315,7 @@ msgstr ""
 #: faq.docbook:843
 #, no-c-format
 msgid "Open &kde;s control center: <application>kcontrol</application>"
-msgstr ""
-"Ouvrez le centre de contrôle de &kde; : <application>kcontrol</application>"
+msgstr "Ouvrez le centre de contrôle de &kde; : <application>kcontrol</application>"
 
 #. Tag: menuchoice
 #: faq.docbook:848
@@ -1429,10 +1429,9 @@ msgstr ""
 
 #. Tag: para
 #: faq.docbook:937
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "How can I close a remote connection (e.g. a FTP connection)?"
-msgstr ""
-"Comment puis-je fermer une connexion distante (&pex; une connexion FTP) ?"
+msgstr "Comment puis-je fermer une connexion distante (&pex; une connexion FTP) ?"
 
 #. Tag: para
 #: faq.docbook:941
@@ -1458,7 +1457,7 @@ msgstr "Le protocol media :/ a été supprimé depuis KDE 4."
 
 #. Tag: para
 #: faq.docbook:962
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "How can I disable the default sounds, e.g. when I do a delete action ?"
 msgstr ""
 "Comment puis-je désactiver les sons par défaut, &pex; quand je supprime "
@@ -1508,7 +1507,7 @@ msgstr ""
 
 #. Tag: para
 #: faq.docbook:1003
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "When you enter an archive and press <keycap>F3</keycap> to view a file that "
 "has no known extension, e.g. <filename>README, INSTALL</filename> &etc;. And "
@@ -1608,8 +1607,7 @@ msgstr "&FAQ; générale"
 #: faq.docbook:1071
 #, no-c-format
 msgid "How can I report a wish, a suggestion, or a comment?"
-msgstr ""
-"Comment puis-je rapporter un souhait, une suggestion ou un commentaire ?"
+msgstr "Comment puis-je rapporter un souhait, une suggestion ou un commentaire ?"
 
 #. Tag: para
 #: faq.docbook:1075
@@ -1943,8 +1941,7 @@ msgstr ""
 #. Tag: para
 #: faq.docbook:1274
 #, no-c-format
-msgid ""
-"What todo if the KDEcrashhandler sends no usefull backtrace information?"
+msgid "What todo if the KDEcrashhandler sends no usefull backtrace information?"
 msgstr ""
 "Que faire si KDEcrashhandler envoie des informations de backtrace "
 "inutilisables ?"
@@ -2499,3 +2496,4 @@ msgstr ""
 "com/2006/01/krusader-and-konqueror-twin-versus-one.html\"> blog</ulink> à "
 "propos des raisons qui font de <link linkend=\"gloss-ofm\">OFM</link> un "
 "meilleur gestionnaire de fichiers que les autres."
+

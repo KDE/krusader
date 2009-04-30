@@ -5,10 +5,10 @@
 # Stanislas Zeller <uncensored.assault@gmail.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
+"Project-Id-Version: konfigurator.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
 "POT-Creation-Date: 2009-04-23 16:40+0000\n"
-"PO-Revision-Date: 2009-02-24 20:41+0100\n"
+"PO-Revision-Date: 2009-04-25 16:18+0200\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: konfigurator.docbook:22
 #, no-c-format
 msgid "Konfigurator: &krusader;'s Configuration Center"
-msgstr "Konfigurator : Centre de Configuration de &krusader;"
+msgstr "Konfigurator : le centre de configuration de &krusader;"
 
 #. Tag: primary
 #: konfigurator.docbook:25
@@ -64,7 +64,7 @@ msgstr ""
 
 #. Tag: para
 #: konfigurator.docbook:45
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Since &krusader;-1.80.0 the <link linkend=\"key_bindings\">Key-Bindings</"
 "link> and <link linkend=\"mainwindow\">Main Toolbar</link>-<link linkend="
@@ -72,11 +72,7 @@ msgid ""
 "configuration windows and so they are not a part anymore of Konfigurator, "
 "you can configure them now via the <link linkend=\"settings-menu\">Settings "
 "menu</link>."
-msgstr ""
-"Depuis &krusader;-1.80.0, la &keybindigs-lnk; et &main-toolbar-lnk;-&actions-"
-"toolbar-lnk; ont leur propre fenêtre de configuration et ne font plus parti "
-"de Konfigurator, vous pouvez maintenant les configurer via le &settingsmenu-"
-"lnk;."
+msgstr "Depuis &krusader;-1.80.0, les <link linkend=\"key_bindings\">raccourcis clavier</link> et la <link linkend=\"mainwindow\">barre principale</link>-<link linkend=\"actions_toolbar\">barre d'outils</link> ont leur propre fenêtre de configuration et ne font plus parti de Konfigurator, vous pouvez maintenant les configurer via le menu <link linkend=\"settings-menu\">Configuration</link>."
 
 #. Tag: title
 #: konfigurator.docbook:51
@@ -156,8 +152,7 @@ msgstr "Interface utilisateur"
 #. Tag: para
 #: konfigurator.docbook:114
 #, no-c-format
-msgid ""
-"Determines which parts of the user interface are visible after start-up."
+msgid "Determines which parts of the user interface are visible after start-up."
 msgstr "Détermine quelles parties sont visibles après les démarrage."
 
 #. Tag: para
@@ -173,53 +168,43 @@ msgstr ""
 
 #. Tag: para
 #: konfigurator.docbook:124
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guilabel>Show toolbar</guilabel>: If checked, <link linkend=\"mainwindow"
 "\">Main Toolbar</link> is visible after startup."
-msgstr ""
-"<guilabel>Afficher la barre d'outils</guilabel> : si cochée, la &main-"
-"toolbar-lnk; est visible après le démarrage."
+msgstr "<guilabel>Afficher la barre d'outils</guilabel> : si cochée, la <link linkend=\"mainwindow\">barre principale</link> est visible après le démarrage."
 
 #. Tag: para
 #: konfigurator.docbook:130
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guilabel>Show statusbar</guilabel>: If checked, the <link linkend="
 "\"mainwindow\">Statusbar</link> is visible after start-up."
-msgstr ""
-"<guilabel>Afficher la barre d'état</guilabel> : si cochée, la &statusbar-"
-"lnk; est visible après le démarrage."
+msgstr "<guilabel>Afficher la barre d'état</guilabel> : si cochée, la <link linkend=\"mainwindow\">barre d'état</link> est visible après le démarrage."
 
 #. Tag: para
 #: konfigurator.docbook:136
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guilabel>Show function keys</guilabel>: If checked, the <link linkend="
 "\"fnkeys\">FN Keys Bar</link> is visible after start-up."
-msgstr ""
-"<guilabel>Afficher les touches de fonction</guilabel> : si cochée, la "
-"&fnkeybar-lnk; est visible après le démarrage."
+msgstr "<guilabel>Afficher les touches de fonction</guilabel> : si cochée, la <link linkend=\"fnkeys\">barre de touches FN</link> est visible après le démarrage."
 
 #. Tag: para
 #: konfigurator.docbook:142
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guilabel>Show command line</guilabel>: If checked, the <link linkend="
 "\"cmdline\">Command Line</link> is visible after start-up."
-msgstr ""
-"<guilabel>Afficher la ligne de commande</guilabel> : si cochée, la &cmdline-"
-"lnk; est visible après le démarrage."
+msgstr "<guilabel>Afficher la ligne de commande</guilabel> : si cochée, la <link linkend=\"cmdline\">ligne de commande</link> est visible après le démarrage."
 
 #. Tag: para
 #: konfigurator.docbook:148
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guilabel>Show terminal emulator</guilabel>: If checked, the <link linkend="
 "\"termemu\">Terminal emulator</link> is visible after start-up."
-msgstr ""
-"<guilabel>Afficher l'émulateur de terminal</guilabel> : si cochée, "
-"l'&termemu-lnk; est visible après le démarrage."
+msgstr "<guilabel>Afficher l'émulateur de terminal</guilabel> : si cochée, <link linkend=\"termemu\">l'émulateur de terminal</link> est visible après le démarrage."
 
 #. Tag: para
 #: konfigurator.docbook:154
@@ -343,16 +328,12 @@ msgstr ""
 
 #. Tag: para
 #: konfigurator.docbook:248
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guilabel>Use fullpath tab names</guilabel>: If checked, display the full "
 "path in the <link linkend=\"folder-tabs\">Folder tabs</link>; otherwise only "
 "the last part of the path is displayed."
-msgstr ""
-"<guilabel>Utiliser le nom complet de l'emplacement dans les onglets</"
-"guilabel> : si cochée, cela affiche l'emplacement complet dans les "
-"&foldertabs-lnk;. Sinon la dernière partie de l'emplacement est seulement "
-"affichée."
+msgstr "<guilabel>Utiliser le nom complet de l'emplacement dans les onglets</guilabel> : si cochée, cela affiche l'emplacement complet dans les <link linkend=\"folder-tabs\">onglets de dossier</link>. Sinon la dernière partie de l'emplacement est seulement affichée."
 
 #. Tag: para
 #: konfigurator.docbook:255
@@ -503,12 +484,11 @@ msgstr "<guilabel>Taille</guilabel> : affiche le champ de taille."
 #: konfigurator.docbook:346
 #, no-c-format
 msgid "<guilabel>Modified</guilabel>: Shows the modified date and time field."
-msgstr ""
-"<guilabel>Modifié</guilabel> : affiche le champ de date et heure modifiée."
+msgstr "<guilabel>Modifié</guilabel> : affiche le champ de date et heure modifiée."
 
 #. Tag: para
 #: konfigurator.docbook:351
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guilabel>Perms</guilabel>: Shows the full permissions e.g. \"rwxr-xr-x\" or "
 "as octal numbers '0755' instead with enable/disable <guilabel>Numeric "
@@ -521,13 +501,11 @@ msgstr ""
 
 #. Tag: para
 #: konfigurator.docbook:360
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guilabel>rwx</guilabel>: Shows only the rights of the current user e.g. \"-"
 "rw\"."
-msgstr ""
-"<guilabel>rwx</guilabel> : affiche seulement les droits de l'utilisateur "
-"courant &pex; « -rx »."
+msgstr "<guilabel>rwx</guilabel> : affiche seulement les droits de l'utilisateur courant &pex; « -rx »."
 
 #. Tag: para
 #: konfigurator.docbook:365
@@ -609,8 +587,7 @@ msgstr ""
 #. Tag: para
 #: konfigurator.docbook:421
 #, no-c-format
-msgid ""
-"<guilabel>Character code</guilabel>: comparison by character code (quick)."
+msgid "<guilabel>Character code</guilabel>: comparison by character code (quick)."
 msgstr ""
 "<guilabel>Code de caractère</guilabel> : comparaison par code de caractère "
 "(rapide)."
@@ -653,8 +630,7 @@ msgstr ""
 #. Tag: para
 #: konfigurator.docbook:452
 #, no-c-format
-msgid ""
-"Uncheck the columns not in use. This allows more space for columns in use."
+msgid "Uncheck the columns not in use. This allows more space for columns in use."
 msgstr ""
 "Décochez les colonnes non-utilisées. Ceci permet plus d'espace pour les "
 "colonnes affichées."
@@ -687,13 +663,11 @@ msgstr ""
 
 #. Tag: para
 #: konfigurator.docbook:465
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guilabel>Clear Location Toolbar</guilabel> button: Clears the <link linkend="
 "\"list_panel\">Location Toolbar</link>"
-msgstr ""
-"Bouton <guilabel>d'effacement de l'emplacement de la barre d'outils</"
-"guilabel> : efface la &location-toolbar-lnk;."
+msgstr "Bouton <guilabel>d'effacement de l'emplacement de la barre d'outils</guilabel> : efface la <link linkend=\"list_panel\">barre d'emplacement</link>."
 
 #. Tag: para
 #: konfigurator.docbook:470
@@ -727,13 +701,11 @@ msgstr "Bouton <guilabel>racine (/)</guilabel>"
 
 #. Tag: para
 #: konfigurator.docbook:490
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guilabel>Toggle-button for sync-browsing</guilabel>: If checked, shows the "
 "<link linkend=\"panel_toolbar\">Sync-browsing</link> button."
-msgstr ""
-"<guilabel>Bouton bacule pour la naviguation synchronisée</guilabel> : si "
-"cochée, affiche le bouton &sync-browsing-lnk;."
+msgstr "<guilabel>Bouton bacule pour la naviguation synchronisée</guilabel> : si cochée, affiche le bouton de <link linkend=\"panel_toolbar\">naviguation synchronisée</link>."
 
 #. Tag: title
 #: konfigurator.docbook:498
@@ -749,7 +721,7 @@ msgstr "Vous pouvez configurer ici les modes de sélection."
 
 #. Tag: para
 #: konfigurator.docbook:505
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guilabel>&krusader; Mode</guilabel>: The way &krusader; has worked from day "
 "one. Both mouse keys allow selecting files. To select more than one file, "
@@ -759,24 +731,23 @@ msgstr ""
 "<guilabel>Mode &krusader;</guilabel> : la façon dont &krusader; fonctionne "
 "depuis le premier jour. Les boutons de la souris permettent de sélectionner "
 "des fichiers. Pour sélectionner plus d'un fichier, pressez la touche &Ctrl; "
-"et un clic &LMB;. Le menu par clic-droit apparaît avec un bref clic sur le "
-"&RMB;."
+"et cliquez avec le bouton gauche de la souris. Le menu par clic-droit apparaît avec un bref clic sur le bouton droit de la souris."
 
 #. Tag: para
 #: konfigurator.docbook:514
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guilabel>Konqueror Mode</guilabel>: pressing the Left Mouse Button selects "
 "files -- you can click and select multiple files. Right-click menu appears "
 "with a short click on the Right Mouse Button."
 msgstr ""
-"<guilabel>Mode Konqueror</guilabel> : appuyer sur le &LMB; sélectionne les "
-"fichiers, vous pouvez cliquer et sélectionner plusieurs fichiers.  Le menu "
-"par clic-droit apparaît avec un bref clic sur le &RMB;."
+"<guilabel>Mode Konqueror</guilabel> : appuyer sur le bouton gauche de la souris sélectionne les "
+"fichiers, vous pouvez cliquer et sélectionner plusieurs fichiers. Le menu "
+"par clic-droit apparaît avec un bref clic sur le bouton gauche de la souris."
 
 #. Tag: para
 #: konfigurator.docbook:523
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guilabel>Total commander Mode</guilabel>: Pressing the Right Mouse Button "
 "selects multiple files and the right-click menu appears with "
@@ -784,30 +755,25 @@ msgid ""
 "Mouse Button does not select, but sets the current file without affecting "
 "the current selection."
 msgstr ""
-"<guilabel>Mode Total commander</guilabel> : appuyer sur le &RMB; sélectionne "
+"<guilabel>Mode Total commander</guilabel> : appuyer sur le bouton droit de la souris sélectionne "
 "plusieurs fichiers et le menu par clic-droit apparaît en <guilabel>appuyant "
-"sur</guilabel> le &RMB;. Le &LMB; ne sélectionne pas mais définit le fichier "
+"sur</guilabel> le bouton droit de la souris. Le bouton gauche de la souris ne sélectionne pas mais définit le fichier "
 "courant sans affecter la sélection courante."
 
 #. Tag: para
 #: konfigurator.docbook:534
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guilabel>Ergonmic Mode</guilabel>: The Left Mouse Button does not select, "
 "but sets the current file without affecting the current selection. The Right "
 "Mouse Button invokes the context-menu. You can select with Ctrl key and the "
 "left button."
-msgstr ""
-"<guilabel>Mode ergonomique</guilabel> : le &LMB; ne sélectionne pas mais "
-"définit le fichier courant sans affecter la sélection courante. Le &RMB; "
-"invoque le menu contextuel. Vous pouvez sélectionner avec la touche Ctrl et "
-"le bouton gauche."
+msgstr "<guilabel>Mode ergonomique</guilabel> : le bouton gauche de la souris ne sélectionne pas mais définit le fichier courant sans affecter la sélection courante. Le bouton droit de la souris invoque le menu contextuel. Vous pouvez sélectionner avec la touche Ctrl et le bouton gauche."
 
 #. Tag: para
 #: konfigurator.docbook:540
 #, no-c-format
-msgid ""
-"<guilabel>Custom Selection Mode</guilabel>: Create your own selection style!"
+msgid "<guilabel>Custom Selection Mode</guilabel>: Create your own selection style!"
 msgstr ""
 "<guilabel>Mode de sélection personnalisé</guilabel> : créer votre propre "
 "style de sélection !"
@@ -832,15 +798,12 @@ msgstr ""
 
 #. Tag: para
 #: konfigurator.docbook:556
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guilabel>Obey KDE global selection policy</guilabel>: Pressing the Left "
 "Mouse Button selects files -- Use &kde;'s global setting: &kde; Control "
 "Center -&gt; Peripherals -&gt; Mouse."
-msgstr ""
-"<guilabel>Sélection conforme à KDE</guilabel> : appuyer sur &LMB; "
-"sélectionne les fichiers. Utilise la configuration globale de &kde; : Centre "
-"de Contrôle de KDE / Clavier &Souris / Souris."
+msgstr "<guilabel>Sélection conforme à KDE</guilabel> : appuyer sur le bouton gauche de la souris sélectionne les fichiers. Utilise la configuration globale de &kde; : Centre de Contrôle de KDE / Clavier &Souris / Souris."
 
 #. Tag: para
 #: konfigurator.docbook:564
@@ -922,15 +885,12 @@ msgstr "<title>Couleurs</title>"
 
 #. Tag: para
 #: konfigurator.docbook:633
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "This page configures the colors of the <link linkend=\"list_panel\">List "
 "Panel</link> and the <link linkend=\"synchronizer\">Synchronizer</link>. The "
 "<guilabel>KDE default colors</guilabel> is the default color configuration."
-msgstr ""
-"Cette page configure les couleurs de la &list-panel-lnk; et le &synchronizer-"
-"lnk;. Les <guilabel>couleurs par défaut de KDE</guilabel> est la "
-"configuration par défaut."
+msgstr "Cette page configure les couleurs de la &list-panel-lnk; et le <link linkend=\"list_panel\">panneau en liste</link> et <link inkend=\"synchronizer\">Synchronizer</link> Les <guilabel>couleurs par défaut de KDE</guilabel> est la configuration par défaut."
 
 #. Tag: para
 #: konfigurator.docbook:666
@@ -1085,11 +1045,11 @@ msgstr "Couleur de fond courant"
 
 #. Tag: para
 #: konfigurator.docbook:782
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "The following items of the <link linkend=\"synchronizer\">Synchronizer</"
 "link> can be configured:"
-msgstr "Les éléments suivants du &synchronizer-lnk; peuvent être configurés : "
+msgstr "Les éléments suivants du <link linkend=\"synchronizer\">Synchronizer</link> peuvent être configurés : "
 
 #. Tag: guilabel
 #: konfigurator.docbook:787
@@ -1165,7 +1125,7 @@ msgstr "Schémas de couleurs"
 
 #. Tag: para
 #: konfigurator.docbook:852
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "With the <guibutton>Import Color Scheme</guibutton> and <guibutton>Export "
 "Color Scheme</guibutton> buttons you can load and save a Color Scheme "
@@ -1178,21 +1138,23 @@ msgstr ""
 "Avec les boutons <guibutton>Importer un schéma de couleur</guibutton> et "
 "<guibutton>Exporter un schéma de couleur</guibutton>, vous pouvez charger et "
 "enregistrer un profil de schéma de couleur. Cela permet à &krusader; "
-"d'utiliser un profil &tcmd;, &mc;, toto-commander ou vos profils de couleurs "
+"d'utiliser un profil <trademark class=\"copyright\">Total "
+"Commander</trademark>, <application>Midnight Commander</application>, toto-commander ou vos profils de couleurs "
 "personnalisés. Les schémas de couleurs sont stockés dans <filename>$KDEDIR/"
 "share/apps/krusader</filename>, <filename>toto.color</filename> est un "
 "fichier binaire qui contient le schéma de couleur."
 
 #. Tag: para
 #: konfigurator.docbook:863
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<application>Midnight Commander</application> and <trademark class="
 "\"copyright\">Total Commander</trademark> Color scheme files are provided. "
 "Please <link linkend=\"help_krusader\">upload your favorite Color schemes</"
 "link> so that they become available for the &krusader; community. Thanks!"
 msgstr ""
-"Les fichiers de schéma de couleurs &mc; et &tcmd; sont fournis. Veuillez "
+"Les fichiers de schéma de couleurs <trademark class=\"copyright\">Total "
+"Commander</trademark>, <application>Midnight Commander</application> sont fournis. Veuillez "
 "<link linkend=\"help_krusader\">envoyer vos schémas de couleurs favoris</"
 "link> pour être disponibles à la communauté &krusader;. Merci !"
 
@@ -1263,8 +1225,7 @@ msgstr ""
 #. Tag: para
 #: konfigurator.docbook:926
 #, no-c-format
-msgid ""
-"<guilabel>Default viewer mode</guilabel>: either generic, text or hex mode."
+msgid "<guilabel>Default viewer mode</guilabel>: either generic, text or hex mode."
 msgstr ""
 "<guilabel>Mode d'affichage par défaut</guilabel> : soit générique, texte ou "
 "mode hexadécimal."
@@ -1282,7 +1243,7 @@ msgstr ""
 
 #. Tag: para
 #: konfigurator.docbook:937
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guilabel>Atomic extensions</guilabel>: predefined atomic extensions like "
 "<filename>tar.gz</filename> are shown as one part in the <guilabel>Ext "
@@ -1290,7 +1251,7 @@ msgid ""
 msgstr ""
 "<guilabel>Extensions atomiques</guilabel> : les extensions atomiques pré-"
 "définies comme <filename>tar.gz</filename> sont affichées comme un élément "
-"dans une <guilabel>colonne Ext.</guilabel> de la &list-panel-lnk;."
+"dans une <guilabel>colonne Ext.</guilabel> du <link linkend=\"list_panel\">panneau en liste</link>."
 
 #. Tag: para
 #: konfigurator.docbook:942
@@ -1419,11 +1380,11 @@ msgid ""
 "protocol for the <link linkend=\"list_panel\">Media button</link>. Choose "
 "this when the media protocol is buggy (in some older &kde; versions) or if "
 "you have no kdebase package installed on your system."
-msgstr ""
+msgstr "<guilabel>Ne pas utiliser le protocole de média KDE pour le bouton Média (si celui-ci est bogué ou manquant)</guilabel> : si cochée, &krusader; n'utilisera pas le protocole média pour le <link linkend=\"list_panel\">bouton de média</link>. Choisissez cette action si le protocole de média est bogué (dans des anciennes versions de &kde;) ou si vous n'avez pas de paquetages kdebase d'installés sur votre système."
 
 #. Tag: para
 #: konfigurator.docbook:1043
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<guilabel>MountMan will not (un)mount the following mount points</guilabel>: "
 "If you have file systems that you do not want to accidentally unmount (or "
@@ -1435,7 +1396,7 @@ msgstr ""
 "guilabel> : si vous avez des systèmes de fichiers que vous ne voulez pas "
 "accidentellement libérer (ou monter), saisissez une liste de points de "
 "montage séparée par une virgule (&pex; <literal>/, /boot, /tmp</literal>) et "
-"&mountman-lnk; n'essaiera pas de les monter ou les libérer."
+"<link linkend=\"mount-man\">MountMan</link> n'essaiera pas de les monter ou les libérer."
 
 #. Tag: guilabel
 #: konfigurator.docbook:1058
@@ -1563,18 +1524,15 @@ msgstr ""
 
 #. Tag: para
 #: konfigurator.docbook:1155
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Please install new packagers to your <envar>PATH</envar> (i.e.: <filename>/"
 "usr/bin</filename> or <filename>/usr/local/bin</filename> &etc;)"
-msgstr ""
-"Veuillez installer des nouveaux archiveurs dans votre <envar>PATH</envar> "
-"(&cad; <filename>/usr/bin</filename> ou <filename>/usr/local/bin</filename> "
-"&etc;)"
+msgstr "Veuillez installer des nouveaux archiveurs dans votre <envar>PATH</envar> (&cad; <filename>/usr/bin</filename> ou <filename>/usr/local/bin</filename> &etc;)"
 
 #. Tag: para
 #: konfigurator.docbook:1160
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "The full path of the packagers is stored in the <link linkend=\"konfig-"
 "dependencies\">Konfigurator Dependencies page</link> (e.g. to handle ZIP "
@@ -1583,7 +1541,7 @@ msgid ""
 "the mimes to the protocols in the <link linkend=\"konfig-protocols"
 "\">Konfigurator Protocol page</link>."
 msgstr ""
-"L'empolacement complet des archiverus est stocké dans le &konfigdependencie-"
+"L'emplacement complet des archiveurs est stocké dans le &konfigdependencie-"
 "lnk; (&pex; pour prendre en charge des archives ZIP, &krusader; a besoin des "
 "exécutables <command>unzip</command> et <command>zip</command>. Il est "
 "possible que vous ayez besoin de configurer manuellement les types de MIME "
@@ -1598,7 +1556,7 @@ msgid ""
 "The down side is that if a power failure occurs during the process, the "
 "files that were moved might already be deleted, but not yet packed into the "
 "archive."
-msgstr ""
+msgstr "<guilabel>Permettre le déplacement dans les archives</guilabel> : cette option vous permet de déplacer des fichiers dans des archives (à l'opposé de pouvoir simplement copier dans les archives). La face cachée est que si un problème se produit dans le processus, les fichiers qui ont été déplacés devraient toujours être supprimés, et non compressés dans l'archive."
 
 #. Tag: para
 #: konfigurator.docbook:1179
@@ -1607,7 +1565,7 @@ msgid ""
 "If such a thing happens, the file(s) are NOT LOST. They were actually moved "
 "into a subfolder in &krusader;'s <link linkend=\"konfig-general\">temp "
 "directory</link>. You can search the directory and recover your files."
-msgstr ""
+msgstr "Si une telle chose se produit, les fichiers NE SONT PAS PERDUS. Ils sont en fait déplacés dans un sous-dossier dans le <link linkend=\"konfig-general\">dossier temporaire</link> de &krusader;. Vous pouvez rechercher dans le dossier et retrouver les fichiers."
 
 #. Tag: para
 #: konfigurator.docbook:1188
@@ -1616,7 +1574,7 @@ msgid ""
 "<guilabel>Test archives when finished packing</guilabel>: this option "
 "automatically runs a test on a newly packed archive. It is safer, but takes "
 "longer."
-msgstr ""
+msgstr "<guilabel>Tester les archives à la fin de la compression</guilabel> : cette option lance automatiquement un test sur des archives nouvellement compressées. C'est sécurisé mais prend du temps."
 
 #. Tag: title
 #: konfigurator.docbook:1197
@@ -1643,8 +1601,7 @@ msgstr "Onglet Général"
 #. Tag: para
 #: konfigurator.docbook:1204
 #, no-c-format
-msgid ""
-"Here you can configure the full path of the following external applications:"
+msgid "Here you can configure the full path of the following external applications:"
 msgstr ""
 "Vous pouvez configurer ici l'emplacement complet des applications externes "
 "suivantes : "
@@ -1808,7 +1765,7 @@ msgstr "/usr/bin/updatedb"
 
 #. Tag: para
 #: konfigurator.docbook:1381
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "By default &kompare; (part of the kdebase package) is used as external diff "
 "utility but you can also use your favorite diff utility e.g. <ulink url="
@@ -1816,10 +1773,9 @@ msgid ""
 "<ulink url=\"http://kdiff3.sourceforge.net\"><application>Kdiff3</"
 "application></ulink>, just fill in the full path and enjoy."
 msgstr ""
-"Par défaut, &kompare; (un élément du paquetage kdebase) est utilisé comme "
-"utilitaire de comparaison externe mais vous pouvez aussi utiliser votre "
-"utilitaire de comparaison favori &pex; &xxdiff-url; ou &kdiff3-url;, "
-"remplissez simplement l'emplacement complet et profitez."
+"Par défaut, &kompare; (un élément du paquetage kdebase) est utilisé comme utilitaire de comparaison externe mais vous pouvez aussi utiliser votre "
+"utilitaire de comparaison favori <ulink url=\"http://furius.ca/xxdiff/\"><application>xxdiff</application></ulink> or "
+"<ulink url=\"http://kdiff3.sourceforge.net\"><application>Kdiff3</application></ulink>, remplissez simplement l'emplacement complet et profitez."
 
 #. Tag: emphasis
 #: konfigurator.docbook:1388
@@ -2269,17 +2225,15 @@ msgstr "Actions utilisateur"
 
 #. Tag: para
 #: konfigurator.docbook:1836
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Here you can configure the terminal for UserActions and the font for the "
 "output-collection. The default terminal is <filename>konsole --noclose -e</"
 "filename>. To set up, configure and manage your UserActions use ActionMan "
 "(<link linkend=\"useractions\">UserActions</link> url)."
 msgstr ""
-"Vous pouvez configurer ici le terminal pour les actions utilisateur et la "
-"police pour l'affichage de sortie. Le terminal par défaut est "
-"<filename>konsole --noclose -e</filename>. Pour le configurer, ActionMan est "
-"utilisé (&useractions-lnk; url)."
+"Vous pouvez configurer ici le terminal pour les actions utilisateur et la police pour l'affichage de sortie. Le terminal par défaut est "
+"<filename>konsole --noclose -e</filename>. Pour le configurer, ActionMan est utilisé (<link linkend=\"useractions\">Actions utilisateurs</link>)."
 
 #. Tag: title
 #: konfigurator.docbook:1863
@@ -2289,7 +2243,7 @@ msgstr "Protocoles"
 
 #. Tag: para
 #: konfigurator.docbook:1864
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "This page links the mimes to protocols. e.g. protocol \"tar\" is linked to "
 "mime \"application/x-tar\"."
@@ -2299,9 +2253,9 @@ msgstr ""
 
 #. Tag: para
 #: konfigurator.docbook:1886
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "In the <guilabel>Defined Links</guilabel> you will see e.g."
-msgstr "Dans les <guilabel>liens définis</guilabel> vous verrez &pex;"
+msgstr "Dans les <guilabel>liens définis</guilabel> vous verrez &pex;."
 
 #. Tag: para
 #: konfigurator.docbook:1890
@@ -2422,3 +2376,4 @@ msgstr "application/x-tbz"
 #, no-c-format
 msgid "application/x-tgz"
 msgstr "application/x-tgz"
+

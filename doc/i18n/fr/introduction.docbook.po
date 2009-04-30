@@ -5,10 +5,10 @@
 # Stanislas Zeller <uncensored.assault@gmail.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
+"Project-Id-Version: introduction.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
 "POT-Creation-Date: 2009-04-23 16:40+0000\n"
-"PO-Revision-Date: 2009-02-11 19:05+0100\n"
+"PO-Revision-Date: 2009-04-24 13:01+0200\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "Description du logiciel"
 
 #. Tag: para
 #: introduction.docbook:7
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "&krusader; is a simple, easy, powerful, twin-panel file manager (commander-"
 "style) for &kde; and other *nix desktops, similar to <application>Midnight "
@@ -45,14 +45,13 @@ msgid ""
 "trademark>. It provides all the file management features you could possibly "
 "want."
 msgstr ""
-"&krusader; est un gestionnaire de fichiers à deux panneaux (de type "
-"« commander ») simple, facile à prendre en main et puissant pour &kde; et "
-"autres bureaux *nix, similaire à &mc; ou &tcmd;. Il fournit toutes les "
-"fonctionnalités de gestion de fichiers que vous voulez peut-être."
+"&krusader; est un gestionnaire de fichiers à deux panneaux (de type « commander ») simple, facile à prendre en main et puissant pour &kde; et "
+"autres bureaux *nix, similaire à <application>Midnight Commander</application> ou <trademark class=\"copyright\">Total Commander</"
+"trademark>. Il fournit toutes les fonctionnalités de gestion de fichiers que vous voulez peut-être."
 
 #. Tag: para
 #: introduction.docbook:12
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Krusader also includes extensive archive handling, mounted file system "
 "support, &FTP;, advanced search module, viewer/editor, directory "
@@ -66,8 +65,7 @@ msgstr ""
 "afficheur / éditeur, la synchronisation de dossiers, la comparaison de "
 "contenu de fichiers, un outil de renommage en lot puissant et bien plus. "
 "&krusader; gère les formats d'archive : ace, arj, bzip2, deb, gzip, iso, "
-"lha, rar, rpm, tar, zip et 7-zip et prend en charge les autres &kioslaves1-"
-"url; tel que smb:// ou fish://."
+"lha, rar, rpm, tar, zip et 7-zip et prend en charge les autres KIO Slaves tel que smb:// ou fish://."
 
 #. Tag: para
 #: introduction.docbook:19
@@ -99,12 +97,11 @@ msgstr "Capture d'écran de &krusader;"
 
 #. Tag: para
 #: introduction.docbook:44
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "More <ulink url=\"http://www.krusader.org/scr.php\">&krusader; Screenshots</"
 "ulink> can be viewed on our website."
-msgstr ""
-"Plus de &kru-screenshots-url; peuvent être affichées sur notre site web."
+msgstr "Plus de <ulink url=\"http://www.krusader.org/scr.php\">captures d'écran &krusader;</ulink> peuvent être affichées sur notre site web."
 
 #. Tag: title
 #: introduction.docbook:49
@@ -146,7 +143,7 @@ msgstr ""
 
 #. Tag: para
 #: introduction.docbook:62
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "&krusader; has many useful features. It is fast, and handles <link linkend="
 "\"archives\">archives</link> transparently. In addition, &krusader; "
@@ -165,22 +162,23 @@ msgid ""
 "continuing evolution."
 msgstr ""
 "&krusader; a de nombreuses fonctionnalités utiles. C'est rapide, et prend en "
-"charge les &archives-lnk; de manière transparente. En plus, &krusader; "
+"charge les <link linkend=\"archives\">archives</link> de manière transparente. En plus, &krusader; "
 "rationalise les tâches de gestion de fichiers complexes, réduisant les "
 "erreurs, et la distraction. &krusader; fournit toutes les fonctionnalités "
 "utiles que vous attendez des autres outils de gestion de fichiers de qualité "
-"comme &mc; et &tcmd;. &krusader; est conçu pour s'intégrer avec le bureau "
+"comme <application>Midnight Commander</application> et <trademark class="
+"\"copyright\">Total Commander</trademark>. &krusader; est conçu pour s'intégrer avec le bureau "
 "&kde;, le bureau de choix pour de nombreux programmeurs, ingénieurs réseaux, "
 "et autres utilisateurs avertis de &Linux;. Avec &krusader;, même les "
 "utilisateurs débutants peuvent rapidement avoir accès à la puissance, la "
 "commodité et la disponibilité riche en fonctionnalités du bureau &kde;. "
 "&krusader; est un projet libre open-source, et est enregistré sous licence "
-"&gpl-lnk; même si les développeurs conservent toujours le copyright pour "
+"<link linkend=\"credits\">&GNU; General Public License (GPL)</link> même si les développeurs conservent toujours le copyright pour "
 "leurs projets et leurs noms, et gèrent l'évolution en continue du projet."
 
 #. Tag: para
 #: introduction.docbook:79
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "The &krusader; Project mission is to create an \"all-in-one\" file manager, "
 "which will do all the ordinary things you would expect of it, and more. "
@@ -191,16 +189,12 @@ msgid ""
 "certain that &krusader; is able to handle all the standard Copy, Move, "
 "Delete, &etc; file operations."
 msgstr ""
-"La mission du projet &krusader; est de créer un gestionnaire de fichiers "
-"« tout en un », qui fera toutes les choses ordinaires que vous attendez de "
-"lui, et plus. Depuis que le principe derrière &krusader; est fondé sur &ofm-"
-"url;, gestionnaires de fichiers à deux panneaux (&mc;, &nc;, &etc;), il est "
-"certain que &krusader; est capable de prendre en charge tous les standards "
-"de copie, déplacement, suppression, &etc; des opérations de fichiers."
+"La mission du projet &krusader; est de créer un gestionnaire de fichiers « tout en un », qui fera toutes les choses ordinaires que vous attendez de "
+"lui, et plus. Depuis que le principe derrière &krusader; est fondé sur <ulink url=\"http://www.softpanorama.org/OFM/index.shtml\">Orthodox File Manager (OFM)</ulink>, gestionnaires de fichiers à deux panneaux (<application>Midnight Commander</application>, <trademarkclass=\"registered\">Norton Commander</trademark>, &etc;),, il est certain que &krusader; est capable de prendre en charge tous les standards de copie, déplacement, suppression, &etc; des opérations de fichiers."
 
 #. Tag: para
 #: introduction.docbook:87
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "From the start, virtual file systems became the main focus. <link linkend="
 "\"vfs\">Virtual file systems (VFS)</link> are an abstracted layer over all "
@@ -216,7 +210,7 @@ msgid ""
 "FISH, SFTP)."
 msgstr ""
 "Depuis le début, les systèmes de fichiers virtuels devenaient l'intérêt "
-"principal. &vfs-lnk; est une couche abstraite au dessus de tous les types "
+"principal. <link linkend=\"vfs\">Virtual file systems (VFS)</link> est une couche abstraite au dessus de tous les types "
 "d'informations d'archives (fichiers ZIP, serveurs &FTP;, archives TAR, "
 "systèmes de fichiers NFS, partages SAMBA, images ISO CD / DVD, catalogues "
 "RPM, &etc;), qui permet à l'utilisateur d'accéder à toutes les informations "
@@ -231,23 +225,18 @@ msgstr ""
 
 #. Tag: para
 #: introduction.docbook:101
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "&krusader; also includes a built-in Mount-Manager <link linkend=\"mount-man"
 "\">MountMan</link>, which enables you to mount or unmount file systems of "
 "all types with a click of a mouse. The user is able to obtain usage and "
 "other property information easily, in a consistent and understandable format "
 "in seconds. Ease and consistency is the goal."
-msgstr ""
-"&krusader; inclut aussi &mountman-lnk; un gestionnaire de montage, qui vous "
-"permet de monter ou libérer les systèmes de fichiers de tous types avec un "
-"clic de souris. L'utilisateur peut obtenir des informations d'utilisation et "
-"d'autres propriétés facilement, dans un format compréhensible et cohérent en "
-"quelques secondes. Facilité et cohérence est le but."
+msgstr "&krusader; inclut aussi <link linkend=\"mount-man\">MountMan</link>, un gestionnaire de montage, qui vous permet de monter ou libérer les systèmes de fichiers de tous types avec un clic de souris. L'utilisateur peut obtenir des informations d'utilisation et d'autres propriétés facilement, dans un format compréhensible et cohérent en quelques secondes. Facilité et cohérence est le but."
 
 #. Tag: para
 #: introduction.docbook:107
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "A <link linkend=\"bookman\">Bookmark-Manager</link> for local files/remote "
 "&URL;s and an <link linkend=\"krusearcher\">Advanced Search module</link> is "
@@ -256,8 +245,8 @@ msgid ""
 "additional functionality, such as File Comparison (several user selectable "
 "methods available), Multiple File Rename, and standard Terminal windows."
 msgstr ""
-"Un &bookmark-manager-lnk; pour les fichiers locaux et &URL; distantes et un "
-"&advanced-search-module-lnk; est aussi inclus pour accélérer la localisation "
+"Un <link linkend=\"bookman\">gestionnaire de signets</link> pour les fichiers locaux et &URL; distantes et un "
+"<link linkend=\"krusearcher\">module de recherche avancée</link> est aussi inclus pour accélérer la localisation "
 "de fichiers nécessaires. &krusader; permet aussi à l'utilisateur de "
 "configurer les barres d'outils de manière à fournir une large variété de "
 "fonctionnalités additionnelles, tel que la comparaison de fichiers "
@@ -297,7 +286,7 @@ msgstr ""
 
 #. Tag: para
 #: introduction.docbook:129
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "New extensibility is provided by the flexible <link linkend=\"useractions"
 "\">UserActions</link>, a &krusader; innovation that allows unlimited "
@@ -307,13 +296,13 @@ msgid ""
 "to be completed can be found in the <ulink url=\"http://www.krusader.org/"
 "phpBB/viewforum.php?f=10\">ToDo Forum</ulink>."
 msgstr ""
-"Une nouvelle extensibilité est fourni par le flexible &useractions-lnk;, une "
+"Une nouvelle extensibilité est fourni par le flexible <link linkend=\"useractions\">Actions utilisateur</link>,, une "
 "innovation de &krusader; qui permet à une fonctionnalité personnalisée "
 "additionnelle illimitée d'être ajoutée pour s'adapter aux besoins des "
 "utilisateurs. Nous planifions de développer plus de modules dans un futur "
 "proche, et ainsi améliorer &krusader;. Les informations à propos de ce qui "
 "est proposé, approuvé ou restant à être complété peuvent être trouvées dans "
-"le &todoforum-url;."
+"le <ulink url=\"http://www.krusader.org/phpBB/viewforum.php?f=10\">forum ToDo</ulink>."
 
 #. Tag: para
 #: introduction.docbook:137
@@ -335,3 +324,4 @@ msgstr ""
 #, no-c-format
 msgid "We hope you'll enjoy it - we do!"
 msgstr "Nous espérons que vous l'apprécierez !"
+

@@ -2,13 +2,13 @@
 # Copyright (C) 2008-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 #
-# Stanislas Zeller <uncensored.assault@gmail.com>, 2008.
+# Stanislas Zeller <uncensored.assault@gmail.com>, 2008, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
+"Project-Id-Version: compare.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
 "POT-Creation-Date: 2009-04-23 16:40+0000\n"
-"PO-Revision-Date: 2008-11-04 21:55+0100\n"
+"PO-Revision-Date: 2009-04-23 19:44+0200\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgstr "Contenu"
 
 #. Tag: para
 #: compare.docbook:14
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Select one file in each panel and use <emphasis role=\"bold\"> <menuchoice> "
 "<guimenu>File</guimenu> <guimenuitem>Compare by content</guimenuitem> </"
@@ -70,7 +70,9 @@ msgstr ""
 "\"> <menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Comparer par "
 "contenu</guimenuitem> </menuchoice> </emphasis>. &krusader; ouvrira un outil "
 "de comparaison graphique qui est <link linkend=\"konfig-dependencies"
-"\">configuré</link>. &kompare;, &kdiff3-url; and &xxdiff-url; sont gérés."
+"\">configuré</link>. &kompare;, <ulink url=\"http://kdiff3.sourceforge.net"
+"\"><application>Kdiff3</application></ulink> et <ulink url=\"http://furius."
+"ca/xxdiff/\"><application>xxdiff</application></ulink> sont gérés."
 
 #. Tag: title
 #: compare.docbook:27
@@ -104,8 +106,7 @@ msgstr ""
 #. Tag: para
 #: compare.docbook:42
 #, no-c-format
-msgid ""
-"The files are not compared by content but by their names and dates only."
+msgid "The files are not compared by content but by their names and dates only."
 msgstr ""
 "Les fichiers ne sont pas comparés par contenu mais seulement par les noms et "
 "dates."
@@ -122,8 +123,7 @@ msgstr ""
 #: compare.docbook:54
 #, no-c-format
 msgid "Configures the <guimenuitem>Compare Directories</guimenuitem> function."
-msgstr ""
-"Configure la fonctionnalité <guimenuitem>Comparer des dossiers</guimenuitem>."
+msgstr "Configure la fonctionnalité <guimenuitem>Comparer des dossiers</guimenuitem>."
 
 #. Tag: para
 #: compare.docbook:59
@@ -156,3 +156,4 @@ msgstr "Sélectionner le différent et l'unique"
 #, no-c-format
 msgid "Select Different"
 msgstr "Sélectionner le différent"
+

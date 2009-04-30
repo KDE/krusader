@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: user-interface.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
 "POT-Creation-Date: 2009-04-23 16:40+0000\n"
-"PO-Revision-Date: 2009-04-19 09:52+0200\n"
+"PO-Revision-Date: 2009-04-25 16:52+0200\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -118,8 +118,7 @@ msgstr ""
 msgid ""
 "The <link linkend=\"bookman\">Bookmarks</link> which has a chapter of its "
 "own."
-msgstr ""
-"Les <link linkend=\"bookman\">signets</link> qui a son propre chapitre."
+msgstr "Les <link linkend=\"bookman\">signets</link> qui a son propre chapitre."
 
 #. Tag: para
 #: user-interface.docbook:67
@@ -258,7 +257,7 @@ msgstr "<secondary>Barre d'emplacement</secondary>"
 
 #. Tag: para
 #: user-interface.docbook:155
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Below the <guibutton>Main Toolbar</guibutton> there is a <guibutton>Location "
 "Toolbar</guibutton> for each panel. It shows the path the panel is currently "
@@ -322,7 +321,7 @@ msgstr ""
 
 #. Tag: para
 #: user-interface.docbook:219
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Quick Navigation: <keycap>&Ctrl;</keycap>point with mouse in the middle of "
 "&URL; of the <guibutton>Location Toolbar</guibutton>. A pop-up window shows "
@@ -332,8 +331,8 @@ msgid ""
 msgstr ""
 "Navigation rapide : <keycap>&Ctrl;</keycap> pointe avec la souris sur le "
 "milieu de l'&URL; de la barre d'emplacement. Une fenêtre de menu contextuel "
-"affiche le prochain emplacement. Cliquer sur <keycap>&Ctrl;</keycap>+ &LMB; "
-"affiche l'emplacement où la souris est placée. Cette fonctionnalité permet "
+"affiche le prochain emplacement. Cliquer sur <keycap>&Ctrl;</keycap>+ bouton gauche de la souris "
+"affiche l'emplacement où le pointeur de la souris est placé. Cette fonctionnalité permet "
 "une navigation plus rapide dans une grosse arborescence de dossiers."
 
 #. Tag: title
@@ -534,7 +533,7 @@ msgstr ""
 
 #. Tag: para
 #: user-interface.docbook:353
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "The following items are available: <itemizedlist> <listitem> <para> "
 "<emphasis> <guilabel>Information Label</guilabel> </emphasis>: shows how "
@@ -695,10 +694,8 @@ msgstr ""
 #. Tag: para
 #: user-interface.docbook:473
 #, no-c-format
-msgid ""
-"On a directory: refreshes the right panel with the contents of the directory."
-msgstr ""
-"Sur un dossier : rafraîchit le panneau de droite avec le contenu du dossier."
+msgid "On a directory: refreshes the right panel with the contents of the directory."
+msgstr "Sur un dossier : rafraîchit le panneau de droite avec le contenu du dossier."
 
 #. Tag: para
 #: user-interface.docbook:479
@@ -725,7 +722,7 @@ msgstr "Le troisième panneau : fenêtre de hiérarchie des dossiers"
 
 #. Tag: para
 #: user-interface.docbook:492
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "This is \"&krusader; is 3rd Hand\" or the 3rd Panel, click on the arrow-up "
 "button on the left of the <guilabel>Totals Label</guilabel> or <keycombo "
@@ -976,7 +973,7 @@ msgstr "<phrase>Barre de touches FN</phrase>"
 
 #. Tag: para
 #: user-interface.docbook:745
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "This bar gets its name from the function (FN) keys it represents. For each "
 "button on this bar there is a corresponding function key that performs the "
@@ -1046,7 +1043,7 @@ msgstr ""
 
 #. Tag: para
 #: user-interface.docbook:801
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "To <keycap>open a new tab</keycap> and keep the current directory: "
 "<keycap>Right-click</keycap> on a directory and select <keycap>open in a new "
@@ -1055,12 +1052,12 @@ msgid ""
 msgstr ""
 "Pour <keycap>ouvrir un nouvel onglet</keycap> et conserver le dossier "
 "courant : cliquez-droit sur un dossier et sélectionnez <keycap>ouvrir un "
-"nouvel onglet</keycap>, ou utilisez le &MMB;, ou encore <keycombo action="
+"nouvel onglet</keycap>, ou utilisez le bouton du milieu de la souris, ou encore <keycombo action="
 "\"simul\">&Alt;&Ctrl; <keycap>N</keycap></keycombo>."
 
 #. Tag: para
 #: user-interface.docbook:811
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "To <keycap>duplicate a tab</keycap>: <keycap>Right-click</keycap> on the "
 "Folder Tab and select <keycap>duplicate tab</keycap>, or use <keycombo "
@@ -1069,12 +1066,11 @@ msgid ""
 msgstr ""
 "Pour <keycap>dupliquer un onglet</keycap> : cliquez-droit sur un dossier "
 "d'onglet et sélectionnez<keycap>Dupliquer l'onglet courant</keycap>, ou "
-"utilisez <keycombo action=\"simul\"> &Alt;&Ctrl;&Maj; <keycap>N</keycap></"
-"keycombo>."
+"utilisez <keycombo action=\"simul\"> &Alt;&Ctrl;<keycap>Backspace</keycap> <keycap>n</keycap></keycombo>."
 
 #. Tag: para
 #: user-interface.docbook:820
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "To <keycap>close a tab</keycap> (except the left tab): <keycap>Right-click</"
 "keycap> on the tab and select <keycap>close tab</keycap>, or use the Middle "
@@ -1085,8 +1081,8 @@ msgstr ""
 "Pour <keycap>fermer un onglet</keycap> (sauf l'onglet de gauche) : cliquez "
 "droit sur un onglet et sélectionnez <keycap>Fermer l'onglet</keycap>, ou "
 "utilisez le &MMB;, ou le bouton <guibutton>croix rouge</guibutton> sur "
-"l'onglet, ou encore <keycombo action=\"simul\">&Alt;&Ctrl; <keycap>C</"
-"keycap></keycombo>."
+"l'onglet, ou encore <keycombo action=\"simul\">&Alt;&Ctrl; <keycap>c</keycap></"
+"keycombo>."
 
 #. Tag: para
 #: user-interface.docbook:830
@@ -1101,7 +1097,7 @@ msgstr ""
 
 #. Tag: para
 #: user-interface.docbook:835
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "To <keycap>change tabs</keycap>: <keycombo action=\"simul"
 "\"><keycap>Backspace</keycap> <keycap>Left Arrow</keycap></keycombo> or "
@@ -1109,8 +1105,9 @@ msgid ""
 "keycap></keycombo>."
 msgstr ""
 "Pour <keycap>modifier les onglets</keycap> : <keycombo action=\"simul"
-"\">&Maj; <keycap>Flèche gauche</keycap></keycombo> ou <keycombo action="
-"\"simul\">&Maj; <keycap>Flèche droite</keycap></keycombo>."
+"\"><keycap>Backspace</keycap> <keycap>Flèche gauche</keycap></keycombo> ou "
+"<keycombo action=\"simul\"><keycap>Backspace</keycap> <keycap>Flèche droite</"
+"keycap></keycombo>."
 
 #. Tag: para
 #: user-interface.docbook:843
@@ -1150,3 +1147,4 @@ msgstr ""
 "\"bookman\">Signets</link>, <link linkend=\"folder-tabs\">Onglet</link>, "
 "<link linkend=\"cmdline\">Ligne de commande</link>, <link linkend=\"fnkeys"
 "\">Touches FN</link>."
+

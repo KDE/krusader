@@ -5,10 +5,10 @@
 # Stanislas Zeller <uncensored.assault@gmail.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
+"Project-Id-Version: profiles.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
 "POT-Creation-Date: 2009-04-23 16:40+0000\n"
-"PO-Revision-Date: 2009-03-26 09:20+0100\n"
+"PO-Revision-Date: 2009-04-24 12:38+0200\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr "<primary>Profils</primary>"
 
 #. Tag: para
 #: profiles.docbook:6
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "With profiles you can save and restore your favorite settings. Several "
 "features support profiles, you can have e.g. different panel profiles (work, "
@@ -51,7 +51,7 @@ msgstr "Profils de panneau"
 
 #. Tag: para
 #: profiles.docbook:13
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "A panel profile contains the following: all the tab paths (left or right), "
 "the current tab (left of right) and the active panel (left or right). All "
@@ -66,7 +66,7 @@ msgstr ""
 "Un profil de panneau contient les éléments suivants : tous les emplacements "
 "des onglets (gauche ou droite), l'onglet courant (gauche ou droite) et le "
 "panneau actif (gauche ou droite). Toutes ces informations sont stockées dans "
-"le fichier &krusaderrc-lnk;. Vous pouvez avoir plusieurs profils de panneau, "
+"le fichier <link linkend=\"config_files\">krusaderrc</link>. Vous pouvez avoir plusieurs profils de panneau, "
 "&pex; un gestionnaire de fichiers, un gestionnaire FTP, votre dossier "
 "personnel, travail, &etc; Le profil de panneau peut être <link linkend="
 "\"c_panel_profiles\">enregistré et restauré</link> dans le menu de "
@@ -83,7 +83,7 @@ msgstr "Profils de couleur"
 
 #. Tag: para
 #: profiles.docbook:31
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Colormaps can be saved and restored with <link linkend=\"konfig-color"
 "\">Color Profiles</link>. &krusader; Color maps are available at <ulink url="
@@ -92,7 +92,9 @@ msgid ""
 msgstr ""
 "Le schéma des couleurs peut être enregistré et restauré avec les <link "
 "linkend=\"konfig-color\">profils de couleurs</link>. Le schéma des couleurs "
-"de &krusader; est disponible sur &kde-files-url;."
+"de &krusader; est disponible sur <ulink url="
+"\"http://www.kde-files.org/index.php?xcontentmode=660x661x662x663\">kde-"
+"files.org</ulink>."
 
 #. Tag: title
 #: profiles.docbook:37
@@ -102,7 +104,7 @@ msgstr "Profils des raccourcis clavier"
 
 #. Tag: para
 #: profiles.docbook:38
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Keymaps can be saved and restored with <link linkend=\"configure-shortcuts"
 "\">Key-binding Profiles</link>. &krusader; Keymaps are available at <ulink "
@@ -111,7 +113,9 @@ msgid ""
 msgstr ""
 "Les raccourcis clavier peuvent être enregistrés et restaurés avec <link "
 "linkend=\"configure-shortcuts\">les profils de raccourcis clavier</link>. "
-"Les raccourcis clavier de &krusader; sont disponibles sur &kde-files-url;."
+"Les raccourcis clavier de &krusader; sont disponibles sur <ulink url="
+"\"http://www.kde-files.org/index.php?xcontentmode=660x661x662x663\">kde-"
+"files.org</ulink>."
 
 #. Tag: title
 #: profiles.docbook:44
@@ -121,7 +125,7 @@ msgstr "Profils de recherche"
 
 #. Tag: para
 #: profiles.docbook:45
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "If you regularly perform the same search operation, you can save the search "
 "settings (e.g. include files, exclude files, &etc;) in a <link linkend="
@@ -149,3 +153,4 @@ msgstr ""
 "Si vous lancer régulièrement une opération de synchronisation, vous pouvez "
 "enregistrer les paramètres de synchronisation dans un <link linkend="
 "\"synchronizer\">profil de synchronisation</link>."
+

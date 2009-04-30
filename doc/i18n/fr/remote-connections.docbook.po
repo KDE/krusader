@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: remote-connections.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
 "POT-Creation-Date: 2009-04-23 16:40+0000\n"
-"PO-Revision-Date: 2009-04-14 09:56+0200\n"
+"PO-Revision-Date: 2009-04-25 16:47+0200\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "<primary>Connexions distantes</primary>"
 
 #. Tag: para
 #: remote-connections.docbook:6
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Remote connections are easily made by typing the &URL; in the <link linkend="
 "\"list_panel\">Location Toolbar</link>; these are actually KIO Slaves. "
@@ -41,9 +41,9 @@ msgid ""
 "<link linkend=\"krviewer\">viewer</link>. Some examples:"
 msgstr ""
 "Les connexions distantes sont facilement réalisées en saisissant l'&URL; "
-"dans la <link linkend=\"list_panel\">barre d'outils d'emplacement</link>. Il "
-"y a actuellement &kioslaves1-url;. Remarquez que le panneau de &krusader; ne "
-"gère pas tous les &kioslaves2-url; &pex; <command>http://</command> ne "
+"dans la <link linkend=\"list_panel\">barre d'emplacement</link>. Il "
+"y a actuellement KIO Slaves. Remarquez que le panneau de &krusader; ne "
+"gère pas tous les KIO Slaves &pex; <command>http://</command> ne "
 "fonctionnera pas dans le panneau, mais fonctionnera dans <link linkend="
 "\"krviewer\">l'afficheur</link>. Quelques exemples : "
 
@@ -61,8 +61,7 @@ msgstr ""
 #: remote-connections.docbook:25
 #, no-c-format
 msgid "<command>fish://</command><replaceable>username@hostname/</replaceable>"
-msgstr ""
-"<command>fish://</command><replaceable>username@hostname/</replaceable>"
+msgstr "<command>fish://</command><replaceable>username@hostname/</replaceable>"
 
 #. Tag: userinput
 #: remote-connections.docbook:32
@@ -117,14 +116,12 @@ msgstr ""
 #. Tag: userinput
 #: remote-connections.docbook:67
 #, no-c-format
-msgid ""
-"<command>webdav://</command><replaceable>www.server.com/path/</replaceable>"
-msgstr ""
-"<command>webdav://</command><replaceable>www.server.com/path/</replaceable>"
+msgid "<command>webdav://</command><replaceable>www.server.com/path/</replaceable>"
+msgstr "<command>webdav://</command><replaceable>www.server.com/path/</replaceable>"
 
 #. Tag: para
 #: remote-connections.docbook:73
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "You can bookmark these &URL;'s, however, please read the <link linkend="
 "\"bookman\">Bookman</link> section regarding <emphasis>securely save "
@@ -133,14 +130,7 @@ msgid ""
 "linkend=\"panel_profiles\">Panel profiles</link>. To switch from one to "
 "another location, just open a <link linkend=\"folder-tabs\">Folder tabs</"
 "link> for each."
-msgstr ""
-"Vous pouvez créer de signets pour ces &URL;, cependant, veuillez lire la "
-"section <link linkend=\"bookman\">Bookman</link> pour <emphasis>enregistrer "
-"de manière sécurisée les mots de passe</emphasis>. Pour se connecter à "
-"plusieurs emplacements, créez des signets pour ces &URL; et ouvrez les un "
-"par un, ou ouvrez les tous ensemble en utilisant &panel-profiles-lnk;. Pour "
-"passer d'un emplacement à un autre, ouvrez simplement un &foldertabs-lnk; "
-"pour chaque."
+msgstr "Vous pouvez créer de signets pour ces &URL;, cependant, veuillez lire la section <link linkend=\"bookman\">Bookman</link> pour <emphasis>enregistrer de manière sécurisée les mots de passe</emphasis>. Pour se connecter à plusieurs emplacements, créez des signets pour ces &URL; et ouvrez les un par un, ou ouvrez les tous ensemble en utilisant les <link linkend=\"panel_profiles\">profils de panneau</link>. Pour passer d'un emplacement à un autre, ouvrez simplement un <link linkend=\"folder-tabs\">onglet de dossiers</link> pour chaque."
 
 #. Tag: para
 #: remote-connections.docbook:82
@@ -151,15 +141,14 @@ msgstr "Il y a trois façons de lancer une connexion distante : "
 #. Tag: para
 #: remote-connections.docbook:85
 #, no-c-format
-msgid ""
-"Type the &URL; in the <link linkend=\"list_panel\">Location Toolbar</link>"
+msgid "Type the &URL; in the <link linkend=\"list_panel\">Location Toolbar</link>"
 msgstr ""
 "Saisir l'&URL; dans la <link linkend=\"list_panel\">barre d'outils "
 "d'emplacement</link>"
 
 #. Tag: para
 #: remote-connections.docbook:89
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Select <emphasis role=\"bold\"> <menuchoice> <guimenu>Tools</guimenu> "
 "<guimenuitem>New Net Connection</guimenuitem> </menuchoice> </emphasis>which "
@@ -172,9 +161,9 @@ msgstr ""
 "<guimenuitem>Nouvelle connexion réseau</guimenuitem> </menuchoice> </"
 "emphasis> qui va ouvrir une boite de dialogue qui vous demandera les détails "
 "du site distant. Cette boîte de dialogue est manuelle si vous ne saisissez "
-"pas l'&URL; distant dans la barre d'outils d'emplacement. Laisser le mot de "
+"pas l'&URL; distant dans la barre d'emplacement. Laisser le mot de "
 "passe et le nom d'utilisateur vide vous connectera comme anonyme. REMARQUE : "
-"nous planifions de réécrire ce fenêtre de dialogue."
+"nous planifions de réécrire cette fenêtre de dialogue."
 
 #. Tag: para
 #: remote-connections.docbook:103
@@ -226,7 +215,7 @@ msgstr ""
 
 #. Tag: para
 #: remote-connections.docbook:124
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "To change the charset of the remote host use <emphasis role=\"bold\"> "
 "<menuchoice> <guimenu>View</guimenu> <guimenuitem>Select Remote Charset</"
@@ -249,27 +238,23 @@ msgstr ""
 
 #. Tag: para
 #: remote-connections.docbook:142
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Manually: Add the disconnect button to the <link linkend=\"mainwindow\">Main "
 "Toolbar</link> and click on it."
-msgstr ""
-"Manuellement : ajouter un bouton de déconnexion à la &main-toolbar-lnk; et "
-"cliquez dessus."
+msgstr "Manuellement : ajouter un bouton de déconnexion à la <link linkend=\"mainwindow\">barre principale</link> et cliquez dessus."
 
 #. Tag: para
 #: remote-connections.docbook:146
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Automatically: Change the &URL; in the <link linkend=\"list_panel\">Location "
 "Toolbar</link> ."
-msgstr ""
-"Saisir l'&URL; dans la <link linkend=\"list_panel\">barre d'outils "
-"d'emplacement</link>"
+msgstr "Automatiquement : saisir l'&URL; dans la <link linkend=\"list_panel\">barre d'emplacement</link>."
 
 #. Tag: para
 #: remote-connections.docbook:151
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "&krusader; is a file manager that supports remote connections via KIO "
 "Slaves, but if you are looking for even more advanced remote connections "
@@ -281,7 +266,8 @@ msgstr ""
 "&krusader; est un gestionnaire de fichiers qui gère les connexions distantes "
 "via &kioslaves1-url;, mais si vous recherchez encore plus de fonctionnalités "
 "avancées de connexions distantes, &pex; un client de &FTP; avancé, nous vous "
-"recommandons d'utiliser &pex; &kasablanca-url; ou &kftpgrabber-url;."
+"recommandons d'utiliser &pex; <ulink url=\"http://kasablanca.berlios.de/\">Kasablanca</ulink> ou <ulink url="
+"\"http://kftpgrabber.sourceforge.net/\"><application>Kftpgrabber</application></ulink>."
 
 #. Tag: title
 #: remote-connections.docbook:161
@@ -309,7 +295,7 @@ msgstr ""
 
 #. Tag: para
 #: remote-connections.docbook:171
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "This works on a <trademark class=\"registered\">Debian</trademark> system, "
 "so it will work on <trademark class=\"registered\">Debian</trademark> and "
@@ -325,8 +311,7 @@ msgid ""
 "to change it if you use different one. All modifications, editing &etc; must "
 "be done as root."
 msgstr ""
-" Ceci fonctionne sur un système &debian;, et donc ses dérivés (&kubuntu; "
-"&etc;), même si cela devrait fonctionner sur les autres distributions Linux. "
+" Ceci fonctionne sur un système <trademark class=\"registered\">Debian</trademark>, et donc ses dérivés (<trademark class=\"registered\">Kubuntu</trademark> &etc;), même si cela devrait fonctionner sur les autres distributions Linux. "
 "Nous assumons que vous avez installé et configuré <link linkend=\"gloss-ssh"
 "\">SSH</link> et que cela fonctionne sur toutes les machines en LAN que vous "
 "voulez connecter. Il y a plein de très bon tutoriaux à propos de <link "
@@ -340,7 +325,7 @@ msgstr ""
 
 #. Tag: para
 #: remote-connections.docbook:182
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "Let's start with installing all the packages we need: <screen>\r\n"
 "<prompt>#</prompt> <userinput><command>apt-get install</command> "
@@ -438,50 +423,51 @@ msgstr ""
 "déclaré, nous utilisons donc le fichier ssh.service comme un modèle pour "
 "fish.service: <screen>\n"
 "<prompt>#</prompt> <userinput><command>cp</command> <option>/etc/avahi/"
-"services/ssh.service /etc/avahi/services/fish.service</option></userinput>\n"
-"</screen> Ce fichier est une simple copie de ssh.service, Modifiez le "
-"fichier <filename>fish.service</filename> et remplacez « Remote Terminal on %"
-"h » par « Fish to %h » et « _ssh._tcp » par « _fish._tcp ». Voici comment cela "
-"s'affiche après modification : <programlisting>\n"
-"&lt;?xml version=\"1.0\" standalone='no'?&gt;&lt;!--*-nxml-*-->\n"
-"&lt;!DOCTYPE service-group SYSTEM \"avahi-service.dtd\"&gt;\n"
-"\n"
+"services/ssh.service /etc/avahi/services/fish.service</option></userinput>"
+"\r\n"
+"</screen> This file is just a copy of ssh.service, Edit the <filename>fish."
+"service</filename> file and replace \"Remote Terminal on %h\" with \"Fish to "
+"%h\" and \"_ssh._tcp\" with \"_fish._tcp\". Here's how it looks after edit: "
+"<programlisting> \r\n"
+"&lt;?xml version=\"1.0\" standalone='no'?&gt;&lt;!--*-nxml-*--> \r\n"
+"&lt;!DOCTYPE service-group SYSTEM \"avahi-service.dtd\"&gt;\r\n"
+"\r\n"
 "&lt;!-- $Id: remote-connections.docbook,v 1.6 2007/05/02 18:07:28 codeknight "
-"Exp $ -->\n"
-"\n"
-"&lt;!--\n"
-"  This file is part of avahi.\n"
-"\n"
-"  avahi is free software; you can redistribute it and/or modify it\n"
-"  under the terms of the GNU Lesser General Public License as\n"
-"  published by the Free Software Foundation; either version 2 of the\n"
-"  License, or (at your option) any later version.\n"
-"\n"
-"  avahi is distributed in the hope that it will be useful, but\n"
-"  WITHOUT ANY WARRANTY; without even the implied warranty of\n"
-"  MERCHANTABILITY or FITNESS FOR\n"
-"\n"
+"Exp $ --> \r\n"
+"\r\n"
+"&lt;!-- \r\n"
+"  This file is part of avahi. \r\n"
+"  \r\n"
+"  avahi is free software; you can redistribute it and/or modify it \r\n"
+"  under the terms of the GNU Lesser General Public License as \r\n"
+"  published by the Free Software Foundation; either version 2 of the \r\n"
+"  License, or (at your option) any later version. \r\n"
+"\r\n"
+"  avahi is distributed in the hope that it will be useful, but \r\n"
+"  WITHOUT ANY WARRANTY; without even the implied warranty of \r\n"
+"  MERCHANTABILITY or FITNESS FOR \r\n"
+"\r\n"
 "&lt;!-- See avahi.service(5) for more information about this configuration "
-"file -->\n"
-"\n"
-"&lt;service-group>\n"
-"\n"
-"  &lt;name replace-wildcards=\"yes\">FISH to %h&lt;/name>\n"
-"\n"
-"  &lt;service>\n"
-"    &lt;type>_fish._tcp&lt;/type>\n"
-"    &lt;port>22&lt;/port>\n"
-"  &lt;/service>\n"
-"\n"
-"&lt;/service-group>\n"
+"file --> \r\n"
+"\r\n"
+"&lt;service-group> \r\n"
+"\r\n"
+"  &lt;name replace-wildcards=\"yes\">FISH to %h&lt;/name> \r\n"
+"\r\n"
+"  &lt;service> \r\n"
+"    &lt;type>_fish._tcp&lt;/type> \r\n"
+"    &lt;port>22&lt;/port> \r\n"
+"  &lt;/service> \r\n"
+"\r\n"
+"&lt;/service-group>  \r\n"
 "</programlisting> Save the modified file. Now we need to create a new file "
 "<filename>_fish._tcp</filename>, open a text editor and add the next lines: "
-"<programlisting>\n"
-"Name=FISH Protocol (ssh)\n"
-"Type=_fish._tcp\n"
-"UserEntry=u\n"
-"PathEntry=path\n"
-"PasswordEntry=p\n"
+"<programlisting>\r\n"
+"Name=FISH Protocol (ssh) \r\n"
+"Type=_fish._tcp \r\n"
+"UserEntry=u \r\n"
+"PathEntry=path \r\n"
+"PasswordEntry=p\r\n"
 "</programlisting> Et enregistrez le fichier <filename>/usr/share/apps/"
 "zeroconf/_fish._tcp</filename>. Faites la même chose sur chaque ordinateur "
 "sur votre LAN, et ensuite redémarrez avahi-daemon : <screen>\n"
@@ -499,5 +485,3 @@ msgstr ""
 "mot de passe. Félicitations : vous êtes connecté à votre machine distante en "
 "utilisant &krusader; !"
 
-#~ msgid "Automatically: Change the &URL; in the &location-toolbar-lnk; ."
-#~ msgstr "Automatiquement : modifier l'&URL; de la &location-toolbar-lnk; ."

@@ -2,13 +2,13 @@
 # Copyright (C) 2008-2009, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 #
-# Stanislas Zeller <uncensored.assault@gmail.com>, 2008.
+# Stanislas Zeller <uncensored.assault@gmail.com>, 2008, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
+"Project-Id-Version: configuration-files.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
 "POT-Creation-Date: 2009-04-23 16:40+0000\n"
-"PO-Revision-Date: 2008-11-04 22:11+0100\n"
+"PO-Revision-Date: 2009-04-23 19:45+0200\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -87,7 +87,7 @@ msgstr "Emplacement : <filename>~/.kde/share/config/krusaderrc</filename>"
 
 #. Tag: para
 #: configuration-files.docbook:46
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "The following settings are e.g. stored:"
 msgstr "La configuration suivante est &pex; stockée : "
 
@@ -243,19 +243,18 @@ msgstr "krbookmarks.xml"
 
 #. Tag: para
 #: configuration-files.docbook:124
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "This file stores the &krusader; bookmarks and uses the <ulink url=\"http://"
 "grail.sourceforge.net/info/xbel.html\">XBEL standard</ulink> standard."
 msgstr ""
-"Ce fichier stocke les signets de &krusader; et utilise le standard &xbel-"
-"url;."
+"Ce fichier stocke les signets de &krusader; et utilise le standard <ulink url=\"http://"
+"grail.sourceforge.net/info/xbel.html\">XBEL</ulink>."
 
 #. Tag: para
 #: configuration-files.docbook:126
 #, no-c-format
-msgid ""
-"Location: <filename> ~/.kde/share/apps/krusader/krbookmarks.xml</filename>"
+msgid "Location: <filename> ~/.kde/share/apps/krusader/krbookmarks.xml</filename>"
 msgstr ""
 "Emplacement : <filename> ~/.kde/share/apps/krusader/krbookmarks.xml</"
 "filename>"
@@ -268,20 +267,19 @@ msgstr "useractions.xml"
 
 #. Tag: para
 #: configuration-files.docbook:132
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "This file stores the <link linkend=\"useractions\">UserActions</link> "
 "configuration. The file structure is documented in doxygen-headers of "
 "UserActionXML."
 msgstr ""
-"Ce fichier stocke la configuration de &useractions-lnk;. La structure du "
+"Ce fichier stocke la configuration des <link linkend=\"useractions\">Actions utilisateurs</link>. La structure du "
 "fichier est documenté dans les en-têtes de doxygen du fichier UserActionXML."
 
 #. Tag: para
 #: configuration-files.docbook:135
 #, no-c-format
-msgid ""
-"Location: <filename> ~/.kde/share/apps/krusader/useractions.xml</filename>"
+msgid "Location: <filename> ~/.kde/share/apps/krusader/useractions.xml</filename>"
 msgstr ""
 "Emplacement : <filename> ~/.kde/share/apps/krusader/useractions.xml</"
 "filename>"
@@ -336,8 +334,7 @@ msgstr ""
 #: configuration-files.docbook:155
 #, no-c-format
 msgid "Location: <filename> $KDEDIR/share/apps/krusader/foo.keymap</filename>"
-msgstr ""
-"Emplacement : <filename> $KDEDIR/share/apps/krusader/foo.keymap</filename>"
+msgstr "Emplacement : <filename> $KDEDIR/share/apps/krusader/foo.keymap</filename>"
 
 #. Tag: emphasis
 #: configuration-files.docbook:159
@@ -359,5 +356,5 @@ msgstr ""
 #: configuration-files.docbook:163
 #, no-c-format
 msgid "Location: <filename>$KDEDIR/share/apps/krusader/foo.color</filename>"
-msgstr ""
-"Emplacement : <filename>$KDEDIR/share/apps/krusader/foo.color</filename>"
+msgstr "Emplacement : <filename>$KDEDIR/share/apps/krusader/foo.color</filename>"
+

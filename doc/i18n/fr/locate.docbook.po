@@ -5,10 +5,10 @@
 # Stanislas Zeller <uncensored.assault@gmail.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
+"Project-Id-Version: locate.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
 "POT-Creation-Date: 2009-04-23 16:40+0000\n"
-"PO-Revision-Date: 2009-03-26 09:12+0100\n"
+"PO-Revision-Date: 2009-04-25 16:18+0200\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr "Locate"
 
 #. Tag: para
 #: locate.docbook:6
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "&krusader; has a &GUI; front end for the <command>locate</command> command "
 "(findutils). Locate is used for fast file searching not from a directory but "
@@ -54,7 +54,7 @@ msgstr ""
 "souvent <command>updatedb</command> la nuit (défini avec Kcron). Choisissez "
 "<emphasis role=\"bold\"> <menuchoice> <guimenu>Outils</guimenu> "
 "<guimenuitem>Localiser...</guimenuitem> </menuchoice> </emphasis>ou "
-"<keycombo action=\"simul\">&Ctrl;&Maj;<keycap>L</keycap></keycombo> pour "
+"<keycombo action=\"simul\">&Ctrl;<keycap>Backspace</keycap> <keycap>L</keycap></keycombo> pour "
 "démarrer cette fonctionnalité. <link linkend=\"konfig-advanced"
 "\">Konfigurator</link> peut définir les arguments additionnels pour "
 "<command>updatedb</command>."
@@ -205,3 +205,4 @@ msgstr ""
 "La fenêtre de résultats gère les éléments par glissement vers d'autres "
 "fenêtres et copie dans le presse-papiers (<keycombo action=\"simul\">&Ctrl;"
 "<keycap>C</keycap></keycombo>)."
+

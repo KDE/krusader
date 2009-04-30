@@ -5,10 +5,10 @@
 # Stanislas Zeller <uncensored.assault@gmail.com>, 2008, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
+"Project-Id-Version: glossary.docbook\n"
 "Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
 "POT-Creation-Date: 2009-04-23 16:40+0000\n"
-"PO-Revision-Date: 2009-02-07 09:13+0100\n"
+"PO-Revision-Date: 2009-04-24 11:37+0200\n"
 "Last-Translator: Stanislas Zeller <uncensored.assault@gmail.com>\n"
 "Language-Team: français <kde-francophone@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -117,7 +117,7 @@ msgstr "<acronym>DEB</acronym>"
 
 #. Tag: para
 #: glossary.docbook:77
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "This is a binary file format that is used by <ulink url=\"http://en."
 "wikipedia.org/wiki/Debian\"> <trademark class=\"registered\">Debian</"
@@ -128,8 +128,10 @@ msgid ""
 "program files and their proposed location on the system."
 msgstr ""
 "C'est un format de fichier binaire qui est utilisé par <ulink url=\"http://"
-"fr.wikipedia.org/wiki/Debian\">&debian;</ulink> et les distributions fondées "
-"sur &debian;. C'est un suffixe d'un fichier d'installation spécialement "
+"fr.wikipedia.org/wiki/Debian\"><trademark class=\"registered\">Debian</"
+"trademark></ulink> et les distributions fondées "
+"sur <trademark class=\"registered\">Debian</"
+"trademark>. C'est un suffixe d'un fichier d'installation spécialement "
 "construit pour ces distributions, &pex; <filename>krusader_1.70.1-1_amd64."
 "deb</filename>. Décrit simplement, c'est une archive spéciale contenant les "
 "fichiers programme et leurs emplacements proposés sur le système."
@@ -162,7 +164,7 @@ msgstr "<acronym>FAQ</acronym>"
 
 #. Tag: para
 #: glossary.docbook:106
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<link linkend=\"faq\">Frequently Asked Questions</link>; a document where "
 "questions that arise many times are answered. If you have a question to the "
@@ -172,7 +174,7 @@ msgstr ""
 "<link linkend=\"faq\">Foire aux questions</link> : un document où les "
 "questions qui reviennent souvent sont répondues. Si vous avez une question "
 "pour les développeurs de &krusader;, vous devriez toujours avoir un œil sur "
-"la &faq-lnk; en premier."
+"la <link linkend=\"faq\">FAQ</link> en premier."
 
 #. Tag: glossterm
 #: glossary.docbook:115
@@ -273,7 +275,7 @@ msgstr "Raccourcis clavier"
 
 #. Tag: para
 #: glossary.docbook:170
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "All features of &krusader; are available through the menubar, but you can "
 "also bind (link) a certain key combination to that function. You will find, "
@@ -291,7 +293,7 @@ msgstr ""
 "qu'utiliser la barre de menus ou le <link linkend=\"gloss-gui\">GUI</link>. "
 "<link linkend=\"keyboard-commands\">L'utilisation du clavier</link> est un "
 "outil important pour les <link linkend=\"gloss-ofm\">OFM</link>. &krusader; "
-"est fourni avec plusieurs &keybindigs-lnk;. pré définis."
+"est fourni avec plusieurs link linkend=\"key_bindings\">combinaisons</link> pré définis."
 
 #. Tag: glossterm
 #: glossary.docbook:185
@@ -301,7 +303,7 @@ msgstr "KPart"
 
 #. Tag: para
 #: glossary.docbook:187
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<ulink url=\"http://en.wikipedia.org/wiki/KPart\"> Kpart</ulink>; KParts is "
 "the name of the component framework for the &kde; desktop environment. "
@@ -313,8 +315,9 @@ msgid ""
 msgstr ""
 "<ulink url=\"http://fr.wikipedia.org/wiki/KParts\"> KParts</ulink> est le "
 "nom du composant de l'architecture pour le bureau d'environnement &kde;. "
-"KParts est analogue au composant Bonobo dans &gnome-url;, les deux étant "
-"fondés sur les mêmes concepts que Object Linking and Embedding de Microsoft, "
+"KParts est analogue au composant Bonobo dans <ulink url=\"http://www.gnome."
+"org\"><application>GNOME</application></ulink>, les deux étant "
+"fondés sur les mêmes concepts que Object Linking and Embedding de &Microsoft;, "
 "&pex; si vous utilisez l'afficheur de &krusader; pour afficher un fichier "
 "PDF, KPDF sera lancé dans l'afficheur de &krusader;."
 
@@ -326,7 +329,7 @@ msgstr "<acronym>KIO</acronym> ou module d'entrées / sorties"
 
 #. Tag: para
 #: glossary.docbook:203
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<ulink url=\"http://en.wikipedia.org/wiki/Kioslave\">KDE Input/Output</"
 "ulink>; also known as KIO Slaves is part of the &kde; architecture. It "
@@ -334,7 +337,7 @@ msgid ""
 "consistent API."
 msgstr ""
 "<ulink url=\"http://fr.wikipedia.org/wiki/KIO\">Le module entrées / sorties "
-"de KDE</ulink> aussi connue comme &kioslaves1-url; est une partie de "
+"de KDE</ulink> aussi connue comme KIO Slaves est une partie de "
 "l'architecture de &kde;. Cela fournit un accès aux fichiers, sites web et "
 "d'autres ressources à travers une simple API compatible."
 
@@ -501,7 +504,7 @@ msgstr "&URL;"
 
 #. Tag: para
 #: glossary.docbook:306
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<ulink url=\"http://en.wikipedia.org/wiki/URL\">Universal Resource Locater</"
 "ulink>; a universal resource locater is the technical term for what is "
@@ -513,7 +516,7 @@ msgstr ""
 "\">Universal Resource Locater</ulink> : une URL est un terme technique pour "
 "ce qui se réfère communément à une adresse de site web. Des exemples d'URL "
 "inclus <ulink url=\"http://krusader.sourceforge.net\"> http://krusader."
-"sourceforge.net</ulink> et &remote-connections-lnk;."
+"sourceforge.net</ulink> et les <link linkend=\"remote-connections\"connexions distantes</link>."
 
 #. Tag: acronym
 #: glossary.docbook:318
@@ -523,7 +526,7 @@ msgstr "<acronym>VFS</acronym>"
 
 #. Tag: para
 #: glossary.docbook:321
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<link linkend=\"vfs\">Virtual file systems (VFS)</link> is a basic <link "
 "linkend=\"features\">OFM feature</link>, this an abstracted layer over all "
@@ -534,14 +537,14 @@ msgid ""
 "&krusader; supports several <link linkend=\"vfs\">Virtual file systems (VFS)"
 "</link>."
 msgstr ""
-"&vfs-lnk; est une <link linkend=\"features\">fonctionnalité OFM</link> "
+"<link linkend=\"vfs\">Virtual file systems (VFS)</link> est une <link linkend=\"features\">fonctionnalité OFM</link> "
 "basique. C'est une couche abstraite au dessus de tous types d'informations "
 "archivées (fichiers ZIP, serveurs FTP, archives TAR, systèmes de fichiers "
 "NFS, partages SAMBA, images CD et DVD ISO, catalogues de RPM, etc.) qui "
 "permet à l'utilisateur d'avoir accès à toutes les informations dans ces "
 "types divergents de systèmes de fichiers de manière transparente - comme "
 "simplement naviguer dans un sous dossier ordinaire ! &krusader; gère de "
-"nombreux &vfs-lnk;."
+"nombreux <link linkend=\"vfs\">Virtual file systems (VFS)</link>."
 
 #. Tag: glossterm
 #: glossary.docbook:333
@@ -551,19 +554,14 @@ msgstr "<glossterm>XML</glossterm>"
 
 #. Tag: para
 #: glossary.docbook:335
-#, fuzzy, no-c-format
+#, no-c-format
 msgid ""
 "<ulink url=\"http://en.wikipedia.org/wiki/Xml\">Extensible Markup Language</"
 "ulink>; a very flexible text format derived from SGML (ISO 8879). Originally "
 "designed to meet the challenges of large-scale electronic publishing, XML is "
 "also playing an increasingly important role in the exchange of a wide "
 "variety of data on the Web and elsewhere."
-msgstr ""
-"<ulink url=\"http://fr.wikipedia.org/wiki/Extensible_Markup_Language"
-"\">Extensible Markup Language</ulink> est un format de texte très flexible "
-"dérivé de SGML (ISO 8879). ?????????????????????????. XML joue aussi un rôle "
-"de plus en plus important dans l'échange d'une large variété de données sur "
-"le Web et ailleurs."
+msgstr "<ulink url=\"http://fr.wikipedia.org/wiki/Extensible_Markup_Language\">Extensible Markup Language</ulink> est un format de texte très flexible dérivé de SGML (ISO 8879). XML joue aussi un rôle de plus en plus important dans l'échange d'une large variété de données sur le Web et ailleurs."
 
 #. Tag: glossterm
 #: glossary.docbook:345
@@ -587,3 +585,4 @@ msgstr ""
 "spéciaux. Cela permet aux utilisateurs inexpérimentés de connecter des "
 "ordinateurs, des imprimantes en réseaux et d'autres éléments et attendre "
 "d'eux qu'ils fonctionnent automatiquement."
+
