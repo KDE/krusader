@@ -31,9 +31,9 @@
 #ifndef __KIO_JOB_WRAPPER__
 #define __KIO_JOB_WRAPPER__
 
-#include <qobject.h>
+#include <QtCore/QObject>
+#include <QtCore/QPointer>
 #include <kurl.h>
-#include <qpointer.h>
 #include <kio/jobclasses.h>
 
 class QEvent;
