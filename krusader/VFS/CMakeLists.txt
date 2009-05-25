@@ -17,7 +17,9 @@ set( VFS_SRCS
 	ftp_vfs.cpp 
 	krquery.cpp
 	kiojobwrapper.cpp
-        preserveattrcopyjob.cpp )
+	preserveattrcopyjob.cpp
+	packjob.cpp
+	abstractthreadedjob.cpp )
 
 kde4_add_library(VFS STATIC ${VFS_SRCS} )
 

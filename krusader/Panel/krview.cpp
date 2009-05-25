@@ -65,7 +65,7 @@ void KrViewOperator::startDrag()
 	if ( items.empty() )
 		return ; // don't drag an empty thing
 	QPixmap px;
-	if ( items.count() > 1 )
+	if ( items.count() > 1 || _view->getCurrentKrViewItem() == 0 )
 		px = FL_LOADICON( "queue" ); // how much are we dragging
 	else
 		px = _view->getCurrentKrViewItem() ->icon();
@@ -318,7 +318,8 @@ void KrView::getSelectedKrViewItems( KrViewItemList *items )
 
 	// if all else fails, take the current item
 	QString item = getCurrentItem();
-	if ( items->empty() && item!=QString() && item!=".." ) items->append( getCurrentKrViewItem() );
+	if ( items->empty() && item!=QString() && item!=".." && getCurrentKrViewItem() != 0 )
+	  items->append( getCurrentKrViewItem() );
 }
 
 QString KrView::statistics()
@@ -378,7 +379,7 @@ void KrView::changeSelection( const KRQuery& filter, bool select, bool includeDi
 	
 	if( op() ) op()->setMassSelectionUpdate( false );
 	updateView();
-	if( ensureVisibilityAfterSelect() )
+	if( ensureVisibilityAfterSelect() && temp != 0 )
 		makeItemVisible( temp );
 }
 
@@ -403,12 +404,15 @@ void KrView::invertSelection()
 	}
 	if( op() ) op()->setMassSelectionUpdate( false );
 	updateView();
-	if( ensureVisibilityAfterSelect() )
+	if( ensureVisibilityAfterSelect() && temp != 0 )
 		makeItemVisible( temp );
 }
 
 QString KrView::firstUnmarkedBelowCurrent()
 {
+	if( getCurrentKrViewItem() == 0 )
+		return QString();
+	
 	KrViewItem * iterator = getNext( getCurrentKrViewItem() );
 	while ( iterator && iterator->isSelected() )
 		iterator = getNext( iterator );
@@ -545,6 +549,8 @@ bool KrView::handleKeyEventInt (QKeyEvent *e) {
 			e->ignore();
 		else {
 			KrViewItem * i = getCurrentKrViewItem();
+			if( i == 0 )
+				return true;
 			QString tmp = i->name();
 			op()->emitExecuted(tmp);
 		}
@@ -644,7 +650,8 @@ bool KrView::handleKeyEventInt (QKeyEvent *e) {
 			e->ignore();
 		} else { // just a normal click - do a lynx-like moving thing
 			KrViewItem *i = getCurrentKrViewItem();
-			op()->emitGoInside( i->name() );
+			if( i )
+				op()->emitGoInside( i->name() );
 		}
 		return true;
 	case Qt::Key_Up :

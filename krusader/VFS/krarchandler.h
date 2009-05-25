@@ -38,17 +38,36 @@
 #include <unistd.h> // for setsid, see Kr7zEncryptionChecker::setupChildProcess
 #include <signal.h> // for kill
 
+class KRarcObserver : public QObject
+{
+  Q_OBJECT
+public:
+  virtual ~KRarcObserver() {}
+
+  virtual void processEvents() = 0;
+  virtual void subJobStarted( const QString & jobTitle, int count ) = 0;
+  virtual void subJobStopped() = 0;
+  virtual bool wasCancelled() = 0;
+  virtual void error( const QString & error ) = 0;
+  virtual void detailedError( const QString & error, const QString & details ) = 0;
+
+public slots:
+  virtual void incrementProgress( int ) = 0;
+};
+
 class KRarcHandler: public QObject {
   Q_OBJECT
 public:
+  static KRarcObserver *defaultObserver;
+
   // return the number of files in the archive
-  static long arcFileCount(QString archive, QString type, QString password);
+  static long arcFileCount(QString archive, QString type, QString password, KRarcObserver *observer = defaultObserver);
   // unpack an archive to destination directory
-  static bool unpack(QString archive, QString type, QString password, QString dest );
+  static bool unpack(QString archive, QString type, QString password, QString dest, KRarcObserver *observer = defaultObserver );
   // pack an archive to destination directory
-  static bool pack(QStringList fileNames, QString type, QString dest, long count, QMap<QString,QString> extraProps );
+  static bool pack(QStringList fileNames, QString type, QString dest, long count, QMap<QString,QString> extraProps, KRarcObserver *observer = defaultObserver );
   // test an archive
-  static bool test(QString archive, QString type, QString password, long count = 0L );
+  static bool test(QString archive, QString type, QString password, long count = 0L, KRarcObserver *observer = defaultObserver );
   // true - if the right unpacker exist in the system
   static bool arcSupported(QString type);
   // true - if supported and the user want us to handle this kind of archive

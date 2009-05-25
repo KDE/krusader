@@ -66,6 +66,7 @@ A
 #include "../VFS/krvfshandler.h"
 #include "../VFS/preservingcopyjob.h"
 #include "../VFS/virtualcopyjob.h"
+#include "../VFS/packjob.h"
 #include "../Dialogs/packgui.h"
 #include "../Dialogs/krdialogs.h"
 #include "../Dialogs/krpleasewait.h"
@@ -78,6 +79,8 @@ A
 #include "../Queue/queue_mgr.h"
 #include <QDrag>
 #include <QMimeData>
+#include <kio/jobuidelegate.h>
+#include <kuiserverjobtracker.h>
 
 //////////////////////////////////////////////////////////
 //////          ----------      List Panel -------------                ////////
@@ -916,93 +919,29 @@ void ListPanelFunc::pack() {
 		        == KMessageBox::Cancel )
 			return ; // stop operation
 	}
-	// tell the user to wait
-	krApp->startWaiting( i18n( "Counting files to pack" ), 0, true );
 
 	// get the files to be packed:
 	files() ->vfs_getFiles( &fileNames );
-
-	KIO::filesize_t totalSize = 0;
-	unsigned long totalDirs = 0, totalFiles = 0;
-	if( !calcSpace( fileNames, totalSize, totalFiles, totalDirs ) )
-		return;
-
-	// download remote URL-s if necessary
-	QString arcDir;
-	KTempDir *tempDir = 0;
-
-	if ( files() ->vfs_getOrigin().isLocalFile() )
-		arcDir = files() ->vfs_workingDir();
-	else {
-		tempDir = new KTempDir();
-		arcDir = tempDir->name();
-		KUrl::List *urlList = files() ->vfs_getFiles( &fileNames );
-		KIO::NetAccess::dircopy( *urlList, KUrl( arcDir ), 0 );
-		delete urlList;
-	}
-
-	// pack the files
-	// we must chdir() first because we supply *names* not URL's
-	QString save = QDir::currentPath();
-	QDir::setCurrent( arcDir );
-	KRarcHandler::pack( fileNames, PackGUI::type, arcFile, totalFiles + totalDirs, PackGUI::extraProps );
-	QDir::setCurrent( save );
-
-	// delete the temporary directory if created
-	if ( tempDir )
-		delete tempDir;
-
-	// copy from the temp file to it's right place
-	if ( tempDestFile ) {
-		KIO::NetAccess::move( KUrl( arcFile ), destURL );
-		delete tempDestFile;
-	}
-
+	
+	PackJob * job = PackJob::createPacker( files()->vfs_getOrigin(), destURL, fileNames, PackGUI::type, PackGUI::extraProps );
+	job->setUiDelegate(new KIO::JobUiDelegate() );
+	KIO::getJobTracker()->registerJob(job);
+	job->ui()->setAutoErrorHandlingEnabled( true );
+	
 	if ( packToOtherPanel )
-		panel->otherPanel->func->refresh();
+		connect( job, SIGNAL( result( KJob* ) ), panel->otherPanel->func, SLOT( refresh() ) );
 }
 
 void ListPanelFunc::testArchive() {
-	QString arcName = panel->getCurrentName();
-	if ( arcName.isNull() )
-		return ;
-	if ( arcName == ".." )
-		return ; // safety
-
-	KUrl arcURL = files() ->vfs_getFile( arcName );
-	QString url = QString();
-
-	// download the file if it's on a remote filesystem
-	if ( !arcURL.isLocalFile() ) {
-		url = KStandardDirs::locateLocal( "tmp", QString( arcName ) );
-		if ( !KIO::NetAccess::download( arcURL, url, 0 ) ) {
-			KMessageBox::sorry( krApp, i18n( "Krusader is unable to download: " ) + arcURL.fileName() );
-			return ;
-		}
-	} else
-		url = arcURL.path( KUrl::RemoveTrailingSlash );
-
-	QString mime = files() ->vfs_search( arcName ) ->vfile_getMime();
-	bool encrypted = false;
-	QString type = KRarcHandler::getType( encrypted, url, mime );
+	QStringList fileNames;
+	panel->getSelectedNames( &fileNames );
+	if ( fileNames.isEmpty() )
+		return ;  // safety
 	
-	// check we that archive is supported
-	if ( !KRarcHandler::arcSupported( type ) ) {
-		KMessageBox::sorry( krApp, i18n( "%1, unknown archive type.", arcName ) );
-		return ;
-	}
-	
-	QString password = encrypted ? KRarcHandler::getPassword( url ) : QString();
-	
-	// test the archive
-	if ( KRarcHandler::test( url, type, password ) )
-		KMessageBox::information( krApp, i18n( "%1, test passed.", arcName ) );
-	else
-		KMessageBox::error( krApp, i18n( "%1, test failed!", arcName ) );
-
-	// remove the downloaded file if necessary
-	if ( url != arcURL.path( KUrl::RemoveTrailingSlash ) )
-		QFile( url ).remove();
+	TestArchiveJob * job = TestArchiveJob::testArchives( files()->vfs_getOrigin(), fileNames );
+	job->setUiDelegate(new KIO::JobUiDelegate() );
+	KIO::getJobTracker()->registerJob(job);
+	job->ui()->setAutoErrorHandlingEnabled( true );
 }
 
 void ListPanelFunc::unpack() {
@@ -1023,71 +962,14 @@ void ListPanelFunc::unpack() {
 	if ( dest.isEmpty() ) return ; // the user canceled
 
 	bool packToOtherPanel = ( dest.equals( panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) );
-
-	for ( int i = 0; i < fileNames.count(); ++i ) {
-		QString arcName = fileNames[ i ];
-		if ( arcName.isNull() )
-			return ;
-		if ( arcName == ".." )
-			return ; // safety
-
-		// download the file if it's on a remote filesystem
-		KUrl arcURL = files() ->vfs_getFile( arcName );
-		QString url = QString();
-		if ( !arcURL.isLocalFile() ) {
-			url = KStandardDirs::locateLocal( "tmp", QString( arcName ) );
-			if ( !KIO::NetAccess::download( arcURL, url, 0 ) ) {
-				KMessageBox::sorry( krApp, i18n( "Krusader is unable to download: " ) + arcURL.fileName() );
-				continue;
-			}
-		} else
-			url = arcURL.path( KUrl::RemoveTrailingSlash );
-
-		// if the destination is in remote directory use temporary one instead
-		dest.adjustPath(KUrl::AddTrailingSlash);
-		KUrl originalDestURL;
-		KTempDir *tempDir = 0;
-
-		if ( !dest.isLocalFile() ) {
-			originalDestURL = dest;
-			tempDir = new KTempDir();
-			dest = tempDir->name();
-		}
-
-		// determining the type
-		QString mime = files() ->vfs_search( arcName ) ->vfile_getMime();
-		bool encrypted = false;
-		QString type = KRarcHandler::getType( encrypted, url, mime );
-
-		// check we that archive is supported
-		if ( !KRarcHandler::arcSupported( type ) ) {
-			KMessageBox::sorry( krApp, i18n( "%1, unknown archive type", arcName ) );
-			continue;
-		}
-		
-		QString password = encrypted ? KRarcHandler::getPassword( url ) : QString();
-		
-		// unpack the files
-		KRarcHandler::unpack( url, type, password, dest.path( KUrl::RemoveTrailingSlash ) );
-
-		// remove the downloaded file if necessary
-		if ( url != arcURL.path( KUrl::RemoveTrailingSlash ) )
-			QFile( url ).remove();
-
-		// copy files to the destination directory at remote files
-		if ( tempDir ) {
-			QStringList nameList = QDir( dest.path( KUrl::RemoveTrailingSlash ) ).entryList();
-			KUrl::List urlList;
-			for ( int i = 0; i != nameList.count(); i++ )
-				if ( nameList[ i ] != "." && nameList[ i ] != ".." )
-					urlList.append( KUrl( dest.path( KUrl::AddTrailingSlash ) + nameList[ i ] ) );
-			if ( urlList.count() > 0 )
-				KIO::NetAccess::dircopy( urlList, originalDestURL, 0 );
-			delete tempDir;
-		}
-	}
+	
+	UnpackJob * job = UnpackJob::createUnpacker( files()->vfs_getOrigin(), dest, fileNames );
+	job->setUiDelegate(new KIO::JobUiDelegate() );
+	KIO::getJobTracker()->registerJob(job);
+	job->ui()->setAutoErrorHandlingEnabled( true );
+	
 	if ( packToOtherPanel )
-		panel->otherPanel->func->refresh();
+		connect( job, SIGNAL( result( KJob* ) ), panel->otherPanel->func, SLOT( refresh() ) );
 }
 
 // a small ugly function, used to prevent duplication of EVERY line of

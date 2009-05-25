@@ -187,6 +187,8 @@ KrVfsModel::~KrVfsModel()
 void KrVfsModel::clear()
 {
 	_vfiles.clear();
+	_vfileNdx.clear();
+	_nameNdx.clear();
 }
 
 int KrVfsModel::rowCount(const QModelIndex& parent) const
@@ -638,6 +640,7 @@ void KrVfsModel::sort ( int column, Qt::SortOrder order )
 	
 	_vfiles.clear();
 	_vfileNdx.clear();
+	_nameNdx.clear();
 	
 	QHash<int, int> changeMap;
 	for (int i = 0; i < sorting.count(); ++i) {

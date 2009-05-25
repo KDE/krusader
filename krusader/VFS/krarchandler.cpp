@@ -45,9 +45,54 @@
 #include "../Dialogs/krpleasewait.h"
 #include <unistd.h> // for usleep
 
+class DefaultKRarcObserver : public KRarcObserver
+{
+public:
+  DefaultKRarcObserver() {}
+  virtual ~DefaultKRarcObserver() {}
+
+  virtual void processEvents()
+  {
+    usleep( 1000 );
+    qApp->processEvents();
+  }
+
+  virtual void subJobStarted( const QString & jobTitle, int count )
+  {
+    krApp->startWaiting( jobTitle, count, true );
+  }
+
+  virtual void subJobStopped()
+  {
+    krApp->stopWait();
+  }
+
+  virtual bool wasCancelled()
+  {
+    return krApp->wasWaitingCancelled();
+  }
+
+  virtual void error( const QString & error )
+  {
+    KMessageBox::error( krApp, error, i18n( "Error" ) );
+  }
+
+  virtual void detailedError( const QString & error, const QString & details )
+  {
+    KMessageBox::detailedError (krApp, error, details, i18n("Error" ) );
+  }
+
+  virtual void incrementProgress( int c )
+  {
+    krApp->plzWait->incProgress( c );
+  }
+};
+
+
 static QStringList arcProtocols = QString("tar;bzip;bzip2;lzma;gzip;krarc;zip").split(";");
 
 KWallet::Wallet * KRarcHandler::wallet = 0;
+KRarcObserver   * KRarcHandler::defaultObserver = new DefaultKRarcObserver();
 
 QStringList KRarcHandler::supportedPackers() {
   QStringList packers;
@@ -147,7 +192,7 @@ bool KRarcHandler::arcHandled( QString type ) {
   }
 
 
-long KRarcHandler::arcFileCount( QString archive, QString type, QString password ) {
+long KRarcHandler::arcFileCount( QString archive, QString type, QString password, KRarcObserver *observer ) {
   int divideWith = 1;
 
   // first check if supported
@@ -187,7 +232,7 @@ long KRarcHandler::arcFileCount( QString archive, QString type, QString password
   }
 
   // tell the user to wait
-  krApp->startWaiting( i18n( "Counting files in archive" ), 0, true );
+  observer->subJobStarted( i18n( "Counting files in archive" ), 0 );
 
   // count the number of files in the archive
   long count = 1;
@@ -200,41 +245,40 @@ long KRarcHandler::arcFileCount( QString archive, QString type, QString password
   // TODO make use of asynchronous process starting. waitForStarted(int msec = 30000) is blocking
   // it would be better to connect to started(), error() and finished()
   if (list.waitForStarted()) while ( list.state() == QProcess::Running ) {
-    usleep( 1000 );
-    qApp->processEvents();
-    if( krApp->wasWaitingCancelled() )
+    observer->processEvents();
+    if( observer->wasCancelled() )
       list.kill();
     }
   ; // busy wait - need to find something better...
   
-  krApp->stopWait();
+  observer->subJobStopped();
   
   if( list.exitStatus() != QProcess::NormalExit || !checkStatus( type, list.exitCode() ) ) {
-    KMessageBox::detailedError (krApp, i18n( "Failed to list the content of the archive (%1)!", archive ), 
-                                QString::fromLocal8Bit(list.readAllStandardError()), i18n("Error" ) );
+    observer->detailedError ( i18n( "Failed to list the content of the archive (%1)!", archive ), 
+                                QString::fromLocal8Bit(list.readAllStandardError()) );
     return 0;
   }
 
   count = list.readAllStandardOutput().count('\n');
 
   //make sure you call stopWait after this function return...
-  //krApp->stopWait();
+  //  observer->subJobStopped();
 
   return count / divideWith;
   }
 
-bool KRarcHandler::unpack( QString archive, QString type, QString password, QString dest ) {
+bool KRarcHandler::unpack( QString archive, QString type, QString password, QString dest, KRarcObserver *observer ) {
   KConfigGroup group( krConfig, "Archives" );
   if ( group.readEntry( "Test Before Unpack", _TestBeforeUnpack ) ) {
     // test first - or be sorry later...
-    if ( type != "-rpm" && type != "-deb" && !test( archive, type, password, 0 ) ) {
-      KMessageBox::error( krApp, i18n( "Failed to unpack" ) + " \"" + archive + "\" !" );
+    if ( type != "-rpm" && type != "-deb" && !test( archive, type, password, 0, observer ) ) {
+      observer->error( i18n( "Failed to unpack" ) + " \"" + archive + "\" !" );
       return false;
       }
     }
 
   // count the files in the archive
-  long count = arcFileCount( archive, type, password );
+  long count = arcFileCount( archive, type, password, observer );
   if ( count == 0 ) return false; // not supported
   if ( count == 1 ) count = 0 ;
 
@@ -271,8 +315,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
     cpio.setStandardOutputFile(cpioName); // TODO maybe no tmpfile but a pipe (setStandardOutputProcess(packer))
     cpio.start();
     if( !cpio.waitForFinished() || cpio.exitStatus() != QProcess::NormalExit || !checkStatus( "cpio", cpio.exitCode() ) ) {
-      KMessageBox::detailedError (krApp, i18n( "Failed to convert rpm (%1) to cpio!", archive ), 
-                                  cpio.getErrorMsg(), i18n("Error" ) );
+      observer->detailedError ( i18n( "Failed to convert rpm (%1) to cpio!", archive ), cpio.getErrorMsg() );
       return 0;
     }
     
@@ -289,8 +332,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
     dpkg.setStandardOutputFile(cpioName); // TODO maybe no tmpfile but a pipe (setStandardOutputProcess(packer))
     dpkg.start();
     if( !dpkg.waitForFinished() || dpkg.exitStatus() != QProcess::NormalExit || !checkStatus( "-deb", dpkg.exitCode() ) ) {
-      KMessageBox::detailedError (krApp, i18n( "Failed to convert deb (%1) to tar!", archive ), 
-                                  dpkg.getErrorMsg(), i18n("Error" ) );
+      observer->detailedError ( i18n( "Failed to convert deb (%1) to tar!", archive ), dpkg.getErrorMsg() );
       return 0;
     }
     
@@ -322,13 +364,13 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
   proc.setWorkingDirectory( dest );
 
   // tell the user to wait
-  krApp->startWaiting( i18n( "Unpacking File(s)" ), count, true );
+  observer->subJobStarted( i18n( "Unpacking File(s)" ), count );
   if ( count != 0 ) {
     connect( &proc, SIGNAL( newOutputLines( int ) ),
-             krApp->plzWait, SLOT( incProgress( int ) ) );
+             observer, SLOT( incrementProgress( int ) ) );
     if( type == "-rpm" )
       connect( &proc, SIGNAL( newErrorLines( int ) ),
-               krApp->plzWait, SLOT( incProgress( int ) ) );
+               observer, SLOT( incrementProgress( int ) ) );
   }
 
   // start the unpacking process
@@ -336,28 +378,26 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
   // TODO make use of asynchronous process starting. waitForStarted(int msec = 30000) is blocking
   // it would be better to connect to started(), error() and finished()
   if (proc.waitForStarted()) while ( proc.state() == QProcess::Running ) {
-    usleep( 1000 );
-    qApp->processEvents();
-    if( krApp->wasWaitingCancelled() )
+    observer->processEvents();
+    if( observer->wasCancelled() )
       proc.kill();
     }
   ; // busy wait - need to find something better...
-  krApp->stopWait();
+  observer->subJobStopped();
 
   if( !cpioName.isEmpty() )
     QFile( cpioName ).remove();    /* remove the cpio file */
   
   // check the return value
   if ( proc.exitStatus() != QProcess::NormalExit || !checkStatus( type, proc.exitCode() ) ) {
-    KMessageBox::detailedError (krApp, i18n( "Failed to unpack %1!", archive ), 
-                                krApp->wasWaitingCancelled() ? i18n( "User cancelled." ) : 
-                                proc.getErrorMsg(), i18n("Error" ) );
+    observer->detailedError ( i18n( "Failed to unpack %1!", archive ), 
+                                observer->wasCancelled() ? i18n( "User cancelled." ) : proc.getErrorMsg() );
     return false;
     }
   return true; // SUCCESS
   }
 
-bool KRarcHandler::test( QString archive, QString type, QString password, long count ) {
+bool KRarcHandler::test( QString archive, QString type, QString password, long count, KRarcObserver *observer ) {
   // choose the right packer for the job
   QStringList packer;
 
@@ -396,23 +436,22 @@ bool KRarcHandler::test( QString archive, QString type, QString password, long c
     proc.setStandardInputFile("/dev/ptmx");
   
   // tell the user to wait
-  krApp->startWaiting( i18n( "Testing Archive" ), count, true );
+  observer->subJobStarted( i18n( "Testing Archive" ), count );
   if ( count != 0 )
     connect( &proc, SIGNAL( newOutputLines( int ) ),
-             krApp->plzWait, SLOT( incProgress( int ) ) );
+             observer, SLOT( incrementProgress( int ) ) );
 
   // start the unpacking process
   proc.start();
   // TODO make use of asynchronous process starting. waitForStarted(int msec = 30000) is blocking
   // it would be better to connect to started(), error() and finished()
   if (proc.waitForStarted()) while ( proc.state() == QProcess::Running ) {
-    usleep( 1000 );
-    qApp->processEvents();
-    if( krApp->wasWaitingCancelled() )
+    observer->processEvents();
+    if( observer->wasCancelled() )
       proc.kill();
     }
   ; // busy wait - need to find something better...
-  krApp->stopWait();
+  observer->subJobStopped();
 
   // check the return value
   if ( proc.exitStatus() != QProcess::NormalExit || !checkStatus( type, proc.exitCode() ) )
@@ -421,7 +460,7 @@ bool KRarcHandler::test( QString archive, QString type, QString password, long c
   return true; // SUCCESS
   }
 
-bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long count, QMap<QString,QString> extraProps ) {
+bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long count, QMap<QString,QString> extraProps, KRarcObserver *observer ) {
   // set the right packer to do the job
   QStringList packer;
 
@@ -506,36 +545,34 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
     }
 
   // tell the user to wait
-  krApp->startWaiting( i18n( "Packing File(s)" ), count, true );
+  observer->subJobStarted( i18n( "Packing File(s)" ), count );
   if ( count != 0 )
     connect( &proc, SIGNAL( newOutputLines( int ) ),
-             krApp->plzWait, SLOT( incProgress( int ) ) );
+             observer, SLOT( incrementProgress( int ) ) );
 
   // start the packing process
   proc.start();
   // TODO make use of asynchronous process starting. waitForStarted(int msec = 30000) is blocking
   // it would be better to connect to started(), error() and finished()
   if (proc.waitForStarted()) while ( proc.state() == QProcess::Running ) {
-    usleep( 1000 );
-    qApp->processEvents();
-    if( krApp->wasWaitingCancelled() )
+    observer->processEvents();
+    if( observer->wasCancelled() )
       proc.kill();
     }
   ; // busy wait - need to find something better...
-  krApp->stopWait();
+  observer->subJobStopped();
 
   // check the return value
   if ( proc.exitStatus() != QProcess::NormalExit || !checkStatus( type, proc.exitCode() ) ) {
-    KMessageBox::detailedError (krApp, i18n( "Failed to pack %1!", dest ), 
-                                krApp->wasWaitingCancelled() ? i18n( "User cancelled." ) : proc.getErrorMsg(), 
-                                i18n("Error" ) );
+    observer->detailedError ( i18n( "Failed to pack %1!", dest ), 
+                                observer->wasCancelled() ? i18n( "User cancelled." ) : proc.getErrorMsg() );
     return false;
     }
 
   KConfigGroup group( krConfig, "Archives" );
   if ( group.readEntry( "Test Archives", _TestArchives ) &&
-       !test( dest, type, password, count ) ) {
-    KMessageBox::error( krApp, i18n( "Failed to pack: " ) + dest, i18n( "Error" ) );
+       !test( dest, type, password, count, observer ) ) {
+    observer->error( i18n( "Failed to pack: " ) + dest );
     return false;
     }
   return true; // SUCCESS
