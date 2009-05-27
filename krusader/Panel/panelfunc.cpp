@@ -923,13 +923,27 @@ void ListPanelFunc::pack() {
 	// get the files to be packed:
 	files() ->vfs_getFiles( &fileNames );
 	
-	PackJob * job = PackJob::createPacker( files()->vfs_getOrigin(), destURL, fileNames, PackGUI::type, PackGUI::extraProps );
-	job->setUiDelegate(new KIO::JobUiDelegate() );
-	KIO::getJobTracker()->registerJob(job);
-	job->ui()->setAutoErrorHandlingEnabled( true );
-	
-	if ( packToOtherPanel )
-		connect( job, SIGNAL( result( KJob* ) ), panel->otherPanel->func, SLOT( refresh() ) );
+	if( PackGUI::queue )
+	{
+		KIOJobWrapper *job = KIOJobWrapper::pack( files()->vfs_getOrigin(), destURL, fileNames,
+		                                          PackGUI::type, PackGUI::extraProps, true );
+		job->setAutoErrorHandlingEnabled( true );
+		
+		if ( packToOtherPanel )
+			job->connectTo( SIGNAL( result( KJob* ) ), panel->otherPanel->func, SLOT( refresh() ) );
+		
+		QueueManager::currentQueue()->enqueue( job );
+	}
+	else
+	{
+		PackJob * job = PackJob::createPacker( files()->vfs_getOrigin(), destURL, fileNames, PackGUI::type, PackGUI::extraProps );
+		job->setUiDelegate(new KIO::JobUiDelegate() );
+		KIO::getJobTracker()->registerJob(job);
+		job->ui()->setAutoErrorHandlingEnabled( true );
+		
+		if ( packToOtherPanel )
+			connect( job, SIGNAL( result( KJob* ) ), panel->otherPanel->func, SLOT( refresh() ) );
+	}
 }
 
 void ListPanelFunc::testArchive() {
@@ -958,18 +972,32 @@ void ListPanelFunc::unpack() {
     s = i18np("Unpack %1 file to:", "Unpack %1 files to:", fileNames.count());
 
 	// ask the user for the copy dest
-	KUrl dest = KChooseDir::getDir(s, panel->otherPanel->virtualPath(), panel->virtualPath());
+	bool queue = false;
+	KUrl dest = KChooseDir::getDir(s, panel->otherPanel->virtualPath(), panel->virtualPath(), queue );
 	if ( dest.isEmpty() ) return ; // the user canceled
 
 	bool packToOtherPanel = ( dest.equals( panel->otherPanel->virtualPath(), KUrl::CompareWithoutTrailingSlash ) );
 	
-	UnpackJob * job = UnpackJob::createUnpacker( files()->vfs_getOrigin(), dest, fileNames );
-	job->setUiDelegate(new KIO::JobUiDelegate() );
-	KIO::getJobTracker()->registerJob(job);
-	job->ui()->setAutoErrorHandlingEnabled( true );
-	
-	if ( packToOtherPanel )
-		connect( job, SIGNAL( result( KJob* ) ), panel->otherPanel->func, SLOT( refresh() ) );
+	if( queue )
+	{
+		KIOJobWrapper *job = KIOJobWrapper::unpack( files()->vfs_getOrigin(), dest, fileNames, true );
+		job->setAutoErrorHandlingEnabled( true );
+		
+		if ( packToOtherPanel )
+			job->connectTo( SIGNAL( result( KJob* ) ), panel->otherPanel->func, SLOT( refresh() ) );
+		
+		QueueManager::currentQueue()->enqueue( job );
+	}
+	else
+	{
+		UnpackJob * job = UnpackJob::createUnpacker( files()->vfs_getOrigin(), dest, fileNames );
+		job->setUiDelegate(new KIO::JobUiDelegate() );
+		KIO::getJobTracker()->registerJob(job);
+		job->ui()->setAutoErrorHandlingEnabled( true );
+		
+		if ( packToOtherPanel )
+			connect( job, SIGNAL( result( KJob* ) ), panel->otherPanel->func, SLOT( refresh() ) );
+	}
 }
 
 // a small ugly function, used to prevent duplication of EVERY line of

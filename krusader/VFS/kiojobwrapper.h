@@ -35,6 +35,7 @@
 #include <QtCore/QPointer>
 #include <kurl.h>
 #include <kio/jobclasses.h>
+#include <QMap>
 
 class QEvent;
 class vfs;
@@ -46,6 +47,8 @@ enum KIOJobWrapperType {
 	Move = 4,
 	VirtualCopy = 5,
 	VirtualMove = 6,
+	Pack = 7,
+	Unpack = 8,
 };
 
 class KIOJobWrapper : public QObject {
@@ -60,6 +63,11 @@ private:
 	void *                    m_userData;
 	bool                      m_autoErrorHandling;
 	
+	QMap<QString,QString>     m_archiveProperties;
+	QStringList               m_archiveFileNames;
+	QString                   m_archiveType;
+	KUrl                      m_archiveSourceBase;
+	
 	QList<const char *>       m_signals;
 	QList<QPointer<QObject> > m_receivers;
 	QList<const char *>       m_methods;
@@ -70,9 +78,11 @@ private:
 	bool                      m_started;
 	bool                      m_suspended;
 	
-	KIOJobWrapper( KIOJobWrapperType type, KUrl &url );
-	KIOJobWrapper( KIOJobWrapperType type, KUrl &url, void * userData );
-	KIOJobWrapper( KIOJobWrapperType type, KUrl &url, KUrl::List &list, int pmode, bool showp );
+	KIOJobWrapper( KIOJobWrapperType type, const KUrl &url );
+	KIOJobWrapper( KIOJobWrapperType type, const KUrl &url, void * userData );
+	KIOJobWrapper( KIOJobWrapperType type, const KUrl &url, const KUrl::List &list, int pmode, bool showp );
+	KIOJobWrapper( KIOJobWrapperType type, const KUrl &url, const KUrl &dest, const QStringList &names,
+	               bool showp, const QString &atype, const QMap<QString,QString> &packProps );
 	void createJob();
 	
 public:
@@ -104,6 +114,11 @@ public:
 	                                    const KUrl& baseURL, int pmode, bool showProgressInfo );
 	static KIOJobWrapper * virtualMove( const QStringList *names, vfs * vfs, KUrl& dest,
 	                                    const KUrl& baseURL, int pmode, bool showProgressInfo );
+	static KIOJobWrapper * pack( const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames,
+	                                    const QString &type, const QMap<QString, QString> &packProps,
+	                                    bool showProgressInfo );
+	static KIOJobWrapper * unpack( const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames,
+	                                    bool showProgressInfo );
 };
 
 class KrJobStarter : public QObject {

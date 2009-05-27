@@ -42,6 +42,7 @@
 #include <iostream>
 #include "kiojobwrapper.h"
 #include "virtualcopyjob.h"
+#include "packjob.h"
 
 class JobStartEvent : public QEvent {
 public:
@@ -65,7 +66,7 @@ bool KrJobStarter::event( QEvent * e ) {
 	return QObject::event( e );
 }
 
-KIOJobWrapper::KIOJobWrapper( KIOJobWrapperType type, KUrl &url ) : QObject( 0 ),
+KIOJobWrapper::KIOJobWrapper( KIOJobWrapperType type, const KUrl &url ) : QObject( 0 ),
                               m_autoErrorHandling( false ), m_delete( true ), m_started( false ),
                               m_suspended( false ) {
 	moveToThread(QApplication::instance()->thread());
@@ -73,7 +74,7 @@ KIOJobWrapper::KIOJobWrapper( KIOJobWrapperType type, KUrl &url ) : QObject( 0 )
 	m_url = url;
 }
 
-KIOJobWrapper::KIOJobWrapper( KIOJobWrapperType type, KUrl &url, void * userData ) : QObject( 0 ),
+KIOJobWrapper::KIOJobWrapper( KIOJobWrapperType type, const KUrl &url, void * userData ) : QObject( 0 ),
                               m_autoErrorHandling( false ), m_delete( true ), m_started( false ),
                               m_suspended( false ) {
 	moveToThread(QApplication::instance()->thread());
@@ -82,7 +83,7 @@ KIOJobWrapper::KIOJobWrapper( KIOJobWrapperType type, KUrl &url, void * userData
 	m_userData = userData;
 }
 
-KIOJobWrapper::KIOJobWrapper( KIOJobWrapperType type, KUrl &url, KUrl::List &list,
+KIOJobWrapper::KIOJobWrapper( KIOJobWrapperType type, const KUrl &url, const KUrl::List &list,
                               int pmode, bool showp  ) : QObject( 0 ),
                               m_autoErrorHandling( false ), m_delete( true ), m_started( false ),
                               m_suspended( false ) {
@@ -92,6 +93,26 @@ KIOJobWrapper::KIOJobWrapper( KIOJobWrapperType type, KUrl &url, KUrl::List &lis
 	m_urlList = list;
 	m_pmode = pmode;
 	m_showProgress = showp;
+}
+
+KIOJobWrapper::KIOJobWrapper( KIOJobWrapperType type, const KUrl &url, const KUrl &dest, const QStringList &names,
+                              bool showp, const QString &atype, const QMap<QString, QString> &packProps ) : QObject( 0 ),
+                              m_urlList(), m_autoErrorHandling( false ), m_delete( true ), m_started( false ),
+                              m_suspended( false )
+{
+	m_type = type;
+	m_url = dest;
+	m_archiveSourceBase = url;
+	foreach( QString name , names )
+	{
+		KUrl srcUrl = url;
+		srcUrl.addPath( name );
+		m_urlList << srcUrl;
+	}
+	m_archiveFileNames = names;
+	m_showProgress = showp;
+	m_archiveType = atype;
+	m_archiveProperties = packProps;
 }
 
 KIOJobWrapper::~KIOJobWrapper() {
@@ -119,6 +140,12 @@ void KIOJobWrapper::createJob() {
 		break;
 	case Move:
 		job = PreservingCopyJob::createCopyJob( (PreserveMode)m_pmode, m_urlList, m_url, KIO::CopyJob::Move, false, m_showProgress );
+		break;
+	case Pack:
+		job = PackJob::createPacker( m_archiveSourceBase, m_url, m_archiveFileNames, m_archiveType, m_archiveProperties );
+		break;
+	case Unpack:
+		job = UnpackJob::createUnpacker( m_archiveSourceBase, m_url, m_archiveFileNames );
 		break;
 	default:
 		fprintf( stderr, "Internal error: invalid job!\n" );
@@ -167,6 +194,18 @@ KIOJobWrapper * KIOJobWrapper::virtualMove( const QStringList *names, vfs * vfs,
            new VirtualCopyJob( names, vfs, dest, baseURL, (PreserveMode)pmode, KIO::CopyJob::Move, showProgressInfo, false ) );
 }
 
+KIOJobWrapper * KIOJobWrapper::pack( const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames,
+                      const QString &type, const QMap<QString, QString> &packProps, bool showProgressInfo )
+{
+	return new KIOJobWrapper( Pack, srcUrl, destUrl, fileNames, showProgressInfo, type, packProps );
+}
+
+KIOJobWrapper * KIOJobWrapper::unpack( const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames,
+                                       bool showProgressInfo )
+{
+	return new KIOJobWrapper( Unpack, srcUrl, destUrl, fileNames, showProgressInfo, QString(), QMap<QString,QString> () );
+}
+
 void KIOJobWrapper::start() {
 	m_started = true;
 	KrJobStarter *self = KrJobStarter::self();
@@ -192,6 +231,10 @@ QString KIOJobWrapper::typeStr() {
 	case Move:
 	case VirtualMove:
 		return i18n( "Move" );
+	case Pack:
+		return i18n( "Pack" );
+	case Unpack:
+		return i18n( "Unpack" );
 	default:
 		return i18n( "Unknown" );
 	}

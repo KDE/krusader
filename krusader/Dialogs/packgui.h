@@ -44,10 +44,12 @@ public slots:
 protected slots:
   void accept();
   void reject();
+  virtual void slotQueue();
 
 public:
   static QString filename, destination, type;
   static QMap<QString, QString> extraProps;
+  static bool queue;
 };
 
 #endif
