@@ -3,12 +3,10 @@
 # ***************************************************************************
 #                             update_docbook
 #                           ++++++++++++++++++++
-#   copyright            : (C) 2006
-#                           Frank Schoolmeesters
-#                           & the Krusader Krew
-#   e-mail               : krusader@users.sourceforge.net
-#   web site             : http://www.krusader.org
-#   description          : update translated docbook files 
+#   copyright          : (C) 2006-2009 Frank Schoolmeesters & the Krusader Krew
+#   e-mail             : krusader@users.sourceforge.net
+#   web site           : http://www.krusader.org
+#   description        : update translated docbook files
 # 
 # ***************************************************************************
 # * Permission is granted to copy, distribute and/or modify this            *
@@ -21,53 +19,55 @@
 # * MA 02111-1307, USA.                                                     *
 # ***************************************************************************
 #
-# This script creates the translated docbook files by inserting the translated po text into the original 
-# english docbook files in the language folder ../doc/i18n/$lang
-# with po2xml *.docbook.po > *.docbook
-# Before running this script the according english docbook files need to be copied in the language folder ../doc/i18n/$lang
-# for a 100% merge the po and the english docbook files need to have the same date
-# The created docbook files needs to be copied into the proper language dir ../doc/$lang
+# This script creates the translated docbook files by inserting the translated
+# po text into the original english docbook files in the language folder.
+# for a full merge, the po and the english docbook files need to have the same
+# date.
 
-
-# Requirements: bash, po2xml
+# Requirements: shell (bash, zsh, etc...), po2xml
 # usage:  run ./update_docbook ru Russian
 
+set -e
+
+LANG=C
+
+PO2XML=`which po2xml` || { echo "Failed to find po2xml" && exit 1; }
+SED=`which sed` || { echo "Failed to find sed" && exit 1; }
 
 # --help
 if test $# -eq 0 || test "$1" = "--help" ; then
   echo "update_docbook <lang_subdir> <language>"
-  exit
+  exit 1
 fi
 
 # test if $2 is used
 if test $# -eq 0 || test "$2" = "" ; then
   echo "update_docbook <lang_subdir> <language>"
-  exit
+  exit 1
 fi
 
 # read first parameter
-lang=$1
+language=$1
 
 # read second parameter
 newlanguage=$2
 
-# jump into the lang folder
-cd ../doc/i18n/$lang
-
+# test language folder
+test -d i18n || { echo "Failed to find an i18n subdir" && exit 1; }
 
 # update
-for FILENAME in $(ls *.docbook);do
-    #display the '*.docbook' filename
-    echo updating ${FILENAME} ...
-    # po2xml index_en.docbook index_ru_new.docbook.po > index_ru.docbook
-    po2xml ${FILENAME} $FILENAME.po > ${FILENAME}.new
-    # rename docbook.new into docbook
-    mv $FILENAME.new $FILENAME
+files=(`find i18n/${language} -type f -name '*.docbook.po'`)
+for file in ${files[@]}; do
+    basefile=`basename ${file} .docbook.po`.docbook
+    echo "${PO2XML} en/${basefile} ${file} > ${language}/${basefile}"
+    ${PO2XML} en/${basefile} ${file} > ${language}/${basefile}
 done
 
-# change "English" in to "$newlanguage" in the translated index.docbook file
-perl -p -i -e 's/English "INCLUDE"/'$newlanguage' "INCLUDE"/g' index.docbook
+# change "English" in to "${newlanguage}" in the translated index.docbook file
+${SED} -i "s|English \"INCLUDE\"|${newlanguage} \"INCLUDE\"|" ${language}/index.docbook
 
-echo NOTE: This script sould only be used by the Documentation i18n coordinator or the Krusader Krew
-echo Please contact the Documentation i18n coordinator if you want to translate the Krusader documentation
-echo Wrong usage of this script might result in outdated documentation files
+echo "NOTE: This script sould only be used by the Documentation i18n coordinator or the Krusader Krew"
+echo "Please contact the Documentation i18n coordinator if you want to translate the Krusader documentation"
+echo "Wrong usage of this script might result in outdated documentation files"
+
+exit 0
