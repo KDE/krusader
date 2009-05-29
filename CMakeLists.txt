@@ -19,7 +19,6 @@ link_directories(${KDE4_LIB_DIR})
 # include(ConfigureChecks.cmake)
 
 add_subdirectory( krusader )
-add_subdirectory( po )
 add_subdirectory( pics )
 add_subdirectory( doc )
 add_subdirectory( krArc )
