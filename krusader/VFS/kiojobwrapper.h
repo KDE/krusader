@@ -48,7 +48,7 @@ enum KIOJobWrapperType {
 	VirtualCopy = 5,
 	VirtualMove = 6,
 	Pack = 7,
-	Unpack = 8,
+	Unpack = 8
 };
 
 class KIOJobWrapper : public QObject {
