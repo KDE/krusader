@@ -364,7 +364,7 @@ void AbstractJobThread::abort()
 KUrl::List AbstractJobThread::remoteUrls( const KUrl &baseUrl, const QStringList & files )
 {
   KUrl::List urlList;
-  foreach( QString name, files )
+  foreach( const QString &name, files )
   {
     KUrl url = baseUrl;
     url.addPath( name );
@@ -570,7 +570,7 @@ bool AbstractJobThread::uploadTempFiles()
       KUrl::List urlList;
       QDir tempDir( _tempDirName );
       QStringList list = tempDir.entryList();
-      foreach( QString name, list )
+      foreach( const QString &name, list )
       {
         if( name == "." || name == ".." )
           continue;

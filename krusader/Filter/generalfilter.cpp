@@ -638,7 +638,7 @@ void GeneralFilter::slotDisable() {
 	{
 		KUrl::List urlList = searchIn->urlList();
 		remoteOnly = urlList.count() != 0;
-		foreach( KUrl url, urlList )
+		foreach( const KUrl &url, urlList )
 			if( url.protocol() == "file" )
 				remoteOnly = false;
 	}

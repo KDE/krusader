@@ -8,7 +8,7 @@
 QueueWidget::QueueWidget( QWidget * parent ): KTabWidget( parent )
 {
   QList<QString> queueList = QueueManager::queues();
-  foreach( QString name, queueList ) {
+  foreach( const QString &name, queueList ) {
     KrQueueListWidget * jobWidget = new KrQueueListWidget( QueueManager::queue( name ), this );
     connect( jobWidget, SIGNAL( stateChanged() ), this, SIGNAL( currentChanged() ) );
     addTab( jobWidget, name );

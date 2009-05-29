@@ -652,7 +652,7 @@ void KrVfsModel::sort ( int column, Qt::SortOrder order )
 	}
 	
 	QModelIndexList newPersistentList;
-	foreach( QModelIndex mndx, oldPersistentList )
+	foreach( const QModelIndex &mndx, oldPersistentList )
 		newPersistentList << index( changeMap[ mndx.row() ], mndx.column() );
 	
 	changePersistentIndexList(oldPersistentList, newPersistentList);
@@ -713,7 +713,7 @@ QModelIndex KrVfsModel::addItem( vfile * vf )
 	}
 	
 	QModelIndexList newPersistentList;
-	foreach( QModelIndex mndx, oldPersistentList ) {
+	foreach( const QModelIndex &mndx, oldPersistentList ) {
 		int newRow = mndx.row();
 		if( newRow >= insertIndex )
 			newRow++;
@@ -758,7 +758,7 @@ QModelIndex KrVfsModel::removeItem( vfile * vf )
 				_nameNdx[ _vfiles[ ri ]->vfile_getName() ] = index( ri, 0 );
 			}
 			
-			foreach( QModelIndex mndx, oldPersistentList ) {
+			foreach( const QModelIndex &mndx, oldPersistentList ) {
 				int newRow = mndx.row();
 				if( newRow > i )
 					newRow--;

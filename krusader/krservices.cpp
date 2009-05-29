@@ -51,7 +51,7 @@ QString KrServices::detectFullPathName(QString name)
   QStringList path = QString::fromLocal8Bit(getenv("PATH")).split(":");
 
   for ( QStringList::Iterator it = path.begin(); it != path.end(); ++it )
-  foreach( QString suffix, bin_suffixes )
+  foreach( const QString &suffix, bin_suffixes )
   {
     if( QDir(*it).exists( name + suffix ) )
     {
@@ -86,7 +86,7 @@ QString KrServices::fullPathName( QString name, QString confName )
 
 QString KrServices::chooseFullPathName(QStringList names, QString confName)
 {
-	foreach( QString name, names )
+	foreach( const QString &name, names )
 	{
 		QString foundTool = KrServices::fullPathName( name, confName );
 		if (! foundTool.isEmpty() )

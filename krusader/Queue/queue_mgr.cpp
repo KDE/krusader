@@ -28,7 +28,7 @@ QueueManager::QueueManager()
 	Queue *queueArray [ queues.count() ];
 	
 	int counter = 0;
-	foreach( QString queueName, queues )
+	foreach( const QString &queueName, queues )
 		queueArray[ counter++ ] = createQueue( queueName );
 	
 	if( current < queues.count() )

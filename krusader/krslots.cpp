@@ -112,7 +112,7 @@ void KRslots::sendFileByEmail(const KUrl::List &urls) {
   }
 
   QString subject, separator;
-  foreach( KUrl url, urls ) {
+  foreach( const KUrl &url, urls ) {
     subject += separator + url.fileName();
     separator=",";
   }
@@ -123,12 +123,12 @@ void KRslots::sendFileByEmail(const KUrl::List &urls) {
   if ( KUrl( mailProg ).fileName() == "kmail") {
     proc << mailProg << "--subject"
          << subject;
-    foreach( KUrl url2, urls )
+    foreach( const KUrl &url2, urls )
          proc << "--attach" << url2.prettyUrl();
   } else   if ( KUrl( mailProg ).fileName() == "thunderbird") {
     QString param="attachment=\'";
     separator = "";
-    foreach( KUrl url2, urls ) {
+    foreach( const KUrl &url2, urls ) {
       param += separator + url2.prettyUrl();
       separator=",";
     }
@@ -137,7 +137,7 @@ void KRslots::sendFileByEmail(const KUrl::List &urls) {
   } else if ( KUrl( mailProg ).fileName() == "evolution") {
     QString param="mailto:?cc=&subject=" + subject + "&attach=";
     separator = "";
-    foreach( KUrl url2, urls ){
+    foreach( const KUrl &url2, urls ){
       param += separator + url2.prettyUrl();
       separator = "&attach=";
     }

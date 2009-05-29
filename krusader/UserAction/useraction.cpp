@@ -249,7 +249,7 @@ bool UserAction::writeActionFile() {
    QDomDocument doc = createEmptyDoc();
    QDomElement root = doc.documentElement();
 
-   foreach ( QString name, _deletedActions ) {
+   foreach ( const QString &name, _deletedActions ) {
       QDomElement element = doc.createElement("deletedAction");
       element.setAttribute( "name", name );
       root.appendChild( element );

@@ -103,7 +103,7 @@ KIOJobWrapper::KIOJobWrapper( KIOJobWrapperType type, const KUrl &url, const KUr
 	m_type = type;
 	m_url = dest;
 	m_archiveSourceBase = url;
-	foreach( QString name , names )
+	foreach( const QString &name , names )
 	{
 		KUrl srcUrl = url;
 		srcUrl.addPath( name );
@@ -263,7 +263,7 @@ QString KIOJobWrapper::toolTip() {
 	tip += "<table frame=\"box\" border=\"1\"><tbody>";
 	tip += "<tr><td>" + Qt::escape( i18n( "Target" ) ) + "</td><td>" + Qt::escape( url().prettyUrl() ) + "</td></tr>";
 	tip += "<tr><td>" + Qt::escape( i18n( "Source" ) ) + "</td><td>";
-	foreach( KUrl urlIn, urlList() ) {
+	foreach( const KUrl &urlIn, urlList() ) {
 		tip += "<li>" + Qt::escape( urlIn.prettyUrl() ) + "</li>";
 	}
 	tip += "</td></tr>";
