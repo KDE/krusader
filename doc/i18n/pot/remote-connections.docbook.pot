@@ -1,243 +1,0 @@
-# Translation of remote-connections.docbook to LANGUAGE
-# Copyright (C) 2006-2009, Krusader Krew
-# This file is distributed under the same license as the Krusader package
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: Krusader-doc-2.0.0 2009-04-09\n"
-"Report-Msgid-Bugs-To:  <frank_schoolmeesters@yahoo.com>\n"
-"POT-Creation-Date: 2009-04-09 08:07+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <krusader-i18n@googlegroups.com>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: application/x-xml2pot; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-
-#. Tag: title
-#: remote-connections.docbook:2
-#, no-c-format
-msgid "<title>Remote Connections</title>"
-msgstr ""
-
-#. Tag: primary
-#: remote-connections.docbook:4
-#, no-c-format
-msgid "<primary>Remote Connections</primary>"
-msgstr ""
-
-#. Tag: para
-#: remote-connections.docbook:6
-#, no-c-format
-msgid "Remote connections are easily made by typing the &URL; in the <link linkend=\"list_panel\">Location Toolbar</link>; these are actually KIO Slaves. Please note that the &krusader; panel does not support all KIO Slave e.g. <command>http://</command> will not work in the panel, but will work in the <link linkend=\"krviewer\">viewer</link>. Some examples:"
-msgstr ""
-
-#. Tag: userinput
-#: remote-connections.docbook:18
-#, no-c-format
-msgid "<command>ftp://</command><replaceable>public.ftpserver.org/directory/</replaceable>"
-msgstr ""
-
-#. Tag: userinput
-#: remote-connections.docbook:25
-#, no-c-format
-msgid "<command>fish://</command><replaceable>username@hostname/</replaceable>"
-msgstr ""
-
-#. Tag: userinput
-#: remote-connections.docbook:32
-#, no-c-format
-msgid "<command>sftp://</command><replaceable>username:password@sftp.foo.org/</replaceable>"
-msgstr ""
-
-#. Tag: userinput
-#: remote-connections.docbook:39
-#, no-c-format
-msgid "<command>ftp://</command><replaceable>username@my.server.org:21/directory/</replaceable>"
-msgstr ""
-
-#. Tag: userinput
-#: remote-connections.docbook:46
-#, no-c-format
-msgid "<command>smb://</command><replaceable>username:password@server/share</replaceable>"
-msgstr ""
-
-#. Tag: userinput
-#: remote-connections.docbook:53
-#, no-c-format
-msgid "<command>ftp://</command><replaceable>username@proxyusername:password@proxipassword@hostname/directory</replaceable>"
-msgstr ""
-
-#. Tag: userinput
-#: remote-connections.docbook:60
-#, no-c-format
-msgid "<command>nfs://</command><replaceable>&lt;host&gt;:&lt;port&gt;&lt;url-path&gt;</replaceable>"
-msgstr ""
-
-#. Tag: userinput
-#: remote-connections.docbook:67
-#, no-c-format
-msgid "<command>webdav://</command><replaceable>www.server.com/path/</replaceable>"
-msgstr ""
-
-#. Tag: para
-#: remote-connections.docbook:73
-#, no-c-format
-msgid "You can bookmark these &URL;'s, however, please read the <link linkend=\"bookman\">Bookman</link> section regarding <emphasis>securely save passwords</emphasis>. For connecting to multiple locations, bookmark these &URL;'s and open them one by one, or open them all together by using <link linkend=\"panel_profiles\">Panel profiles</link>. To switch from one to another location, just open a <link linkend=\"folder-tabs\">Folder tabs</link> for each."
-msgstr ""
-
-#. Tag: para
-#: remote-connections.docbook:82
-#, no-c-format
-msgid "There are three ways to start a remote connection:"
-msgstr ""
-
-#. Tag: para
-#: remote-connections.docbook:85
-#, no-c-format
-msgid "Type the &URL; in the <link linkend=\"list_panel\">Location Toolbar</link>"
-msgstr ""
-
-#. Tag: para
-#: remote-connections.docbook:89
-#, no-c-format
-msgid "Select <emphasis role=\"bold\"> <menuchoice> <guimenu>Tools</guimenu> <guimenuitem>New Net Connection</guimenuitem> </menuchoice> </emphasis>which will pop-up a dialog that will ask for the remote site details. This dialog is handy if you are not used to type remote &URL;'s in the Location Toolbar. Leaving the password and user name fields empty will log you in as anonymous. NOTE: we are planning to rewrite this dialog window."
-msgstr ""
-
-#. Tag: para
-#: remote-connections.docbook:103
-#, no-c-format
-msgid "You can bookmark a directory on a remote host and return to this directory from the bookmark button on the top corner of your panel just like in a web browser."
-msgstr ""
-
-#. Tag: para
-#: remote-connections.docbook:108
-#, no-c-format
-msgid "After you log on to a remote server you can browse it just like your local hard drive with the following exceptions:"
-msgstr ""
-
-#. Tag: para
-#: remote-connections.docbook:112
-#, no-c-format
-msgid "You cannot execute files on remote servers."
-msgstr ""
-
-#. Tag: para
-#: remote-connections.docbook:115
-#, no-c-format
-msgid "Permissions cannot always be calculated on remote servers (depends on server and access method) so you might get a \"?\" on the permissions columns for some files."
-msgstr ""
-
-#. Tag: para
-#: remote-connections.docbook:120
-#, no-c-format
-msgid "Disk usage information is not available for most remote filesystems."
-msgstr ""
-
-#. Tag: para
-#: remote-connections.docbook:124
-#, no-c-format
-msgid "To change the charset of the remote host use <emphasis role=\"bold\"> <menuchoice> <guimenu>View</guimenu> <guimenuitem>Select Remote Charset</guimenuitem> </menuchoice> </emphasis>."
-msgstr ""
-
-#. Tag: para
-#: remote-connections.docbook:131
-#, no-c-format
-msgid "You can <emphasis role=\"bold\">close the current Active Remote Connection</emphasis> by two separate methods:"
-msgstr ""
-
-#. Tag: para
-#: remote-connections.docbook:142
-#, no-c-format
-msgid "Manually: Add the disconnect button to the <link linkend=\"mainwindow\">Main Toolbar</link> and click on it."
-msgstr ""
-
-#. Tag: para
-#: remote-connections.docbook:146
-#, no-c-format
-msgid "Automatically: Change the &URL; in the <link linkend=\"list_panel\">Location Toolbar</link> ."
-msgstr ""
-
-#. Tag: para
-#: remote-connections.docbook:151
-#, no-c-format
-msgid "&krusader; is a file manager that supports remote connections via KIO Slaves, but if you are looking for even more advanced remote connections features, e.g. an advanced &FTP;-client we recommend you to use e.g. <ulink url=\"http://kasablanca.berlios.de/\">Kasablanca</ulink> or <ulink url=\"http://kftpgrabber.sourceforge.net/\"><application>Kftpgrabber</application></ulink>."
-msgstr ""
-
-#. Tag: title
-#: remote-connections.docbook:161
-#, no-c-format
-msgid "LAN connections via fish:/ protocol (zeroconf)"
-msgstr ""
-
-#. Tag: primary
-#: remote-connections.docbook:163
-#, no-c-format
-msgid "Remote LAN Connections (zeroconf)"
-msgstr ""
-
-#. Tag: para
-#: remote-connections.docbook:166
-#, no-c-format
-msgid "This section is contributed by <ulink url=\"http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1912\">Andrew Svet (z-vet)</ulink>, feedback about this chapter is appriciated. Thanks!"
-msgstr ""
-
-#. Tag: para
-#: remote-connections.docbook:171
-#, no-c-format
-msgid "This works on a <trademark class=\"registered\">Debian</trademark> system, so it will work on <trademark class=\"registered\">Debian</trademark> and derivatives (<trademark class=\"registered\">Kubuntu</trademark> &etc;), though it should work on other Linuxes as well. We assume that you have <link linkend=\"gloss-ssh\">SSH</link> installed, configured and working on every machine on LAN you want to connect to/from. There are plenty of very good tutorials about <link linkend=\"gloss-ssh\">SSH</link> on the net, e.g. at <ulink url=\"http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch17_:_Secure_Remote_Logins_and_File_Copying\">linuxhomenetworking.com</ulink> or just google for it. We use the default <link linkend=\"gloss-ssh\">SSH</link> port (22) for this chapter. Remember to change it if you use different one. All modifications, editing &etc; must be done as root."
-msgstr ""
-
-#. Tag: para
-#: remote-connections.docbook:182
-#, no-c-format
-msgid ""
-      "Let's start with installing all the packages we need: <screen>\n"
-      "<prompt>#</prompt> <userinput><command>apt-get install</command> <option>avahi-daemon libnss-mdns kdnssd</option></userinput>\n"
-      "</screen> Everything is installed, now let's do some configuration. First, we need our services to be announced on LAN. That's why we installed avahi-daemon: it represents your machine on local network and allows other applications to publish services they provide. Avahi-daemon comes with example <filename>ssh.service</filename> configuration file found in <filename>/usr/share/doc/avahi-daemon/examples</filename> . In order to get the service to be announced on LAN we need to copy this file to <filename>/etc/avahi/services</filename> directory: <screen>\n"
-      "<prompt>#</prompt> <userinput><command>cp</command> <option>/usr/share/doc/avahi-daemon/examples/ssh.service /etc/avahi/services</option></userinput>\n"
-      "</screen> Now we need fish:/ protocol to be announced too, so we use an ssh.service file as a template for fish.service: <screen>\n"
-      "<prompt>#</prompt> <userinput><command>cp</command> <option>/etc/avahi/services/ssh.service /etc/avahi/services/fish.service</option></userinput>\n"
-      "</screen> This file is just a copy of ssh.service, Edit the <filename>fish.service</filename> file and replace \"Remote Terminal on %h\" with \"Fish to %h\" and \"_ssh._tcp\" with \"_fish._tcp\". Here's how it looks after edit: <programlisting> \n"
-      "&lt;?xml version=\"1.0\" standalone='no'?&gt;&lt;!--*-nxml-*--> \n"
-      "&lt;!DOCTYPE service-group SYSTEM \"avahi-service.dtd\"&gt;\n"
-      "\n"
-      "&lt;!-- $Id: remote-connections.docbook,v 1.6 2007/05/02 18:07:28 codeknight Exp $ --> \n"
-      "\n"
-      "&lt;!-- \n"
-      "  This file is part of avahi. \n"
-      "  \n"
-      "  avahi is free software; you can redistribute it and/or modify it \n"
-      "  under the terms of the GNU Lesser General Public License as \n"
-      "  published by the Free Software Foundation; either version 2 of the \n"
-      "  License, or (at your option) any later version. \n"
-      "\n"
-      "  avahi is distributed in the hope that it will be useful, but \n"
-      "  WITHOUT ANY WARRANTY; without even the implied warranty of \n"
-      "  MERCHANTABILITY or FITNESS FOR \n"
-      "\n"
-      "&lt;!-- See avahi.service(5) for more information about this configuration file --> \n"
-      "\n"
-      "&lt;service-group> \n"
-      "\n"
-      "  &lt;name replace-wildcards=\"yes\">FISH to %h&lt;/name> \n"
-      "\n"
-      "  &lt;service> \n"
-      "    &lt;type>_fish._tcp&lt;/type> \n"
-      "    &lt;port>22&lt;/port> \n"
-      "  &lt;/service> \n"
-      "\n"
-      "&lt;/service-group>  \n"
-      "</programlisting> Save the modified file. Now we need to create a new file <filename>_fish._tcp</filename>, open a text editor and add the next lines: <programlisting>\n"
-      "Name=FISH Protocol (ssh) \n"
-      "Type=_fish._tcp \n"
-      "UserEntry=u \n"
-      "PathEntry=path \n"
-      "PasswordEntry=p\n"
-      "</programlisting> And save the file <filename>/usr/share/apps/zeroconf/_fish._tcp</filename> Do the same on each machine on your LAN, then restart avahi-daemon: <screen>\n"
-      "<prompt># /etc/init.d/</prompt> <userinput><command>avahi-daemon</command> <option>restart</option></userinput>\n"
-      "</screen> Than open &krusader; and type in location-toolbar-lnk: <filename>zeroconf:/</filename> to open the <link linkend=\"gloss-zeroconf\">zeroconf</link> connection. Enter the <guilabel>Fish Protocol</guilabel> directory. Inside you'll find the links to each machine that announced <filename>fish:/</filename> on your LAN, the location-toolbar-lnk: will point to <filename>zeroconf:/_fish._tcp</filename> Double clicking on any of these machines, them will bring up the password prompt, asking you for yor ssh key passphrase (if password was set). Enter your passphrase. Congratulations: you connected to remote machine using &krusader;!"
-msgstr ""
-
