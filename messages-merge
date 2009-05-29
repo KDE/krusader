@@ -1,9 +1,0 @@
-#!/bin/sh
-
-echo "Merging translations"
-for cat in po/*.po; do
-  echo $cat
-  msgmerge -o $cat.new $cat po/krusader.pot
-  mv $cat.new $cat
-done
-echo "Done merging translations"
