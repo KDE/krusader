@@ -118,7 +118,7 @@ void KrRemoteEncodingMenu::loadSettings()
   int count = 0;
   QAction *act;
 
-  for (it = encodingNames.begin(); it != encodingNames.end(); ++it) {
+  for (it = encodingNames.constBegin(); it != encodingNames.constEnd(); ++it) {
     act = kmenu->addAction( *it );
     act->setData( QVariant( ++count) );
     act->setCheckable( true );

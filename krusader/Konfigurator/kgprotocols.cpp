@@ -178,7 +178,7 @@ void KgProtocols::loadMimes()
 {
   KMimeType::List mimes = KMimeType::allMimeTypes();
   
-  for( KMimeType::List::const_iterator it = mimes.begin(); it != mimes.end(); it++ )
+  for( KMimeType::List::const_iterator it = mimes.constBegin(); it != mimes.constEnd(); it++ )
     mimeList->addItem( (*it)->name() );
     
   mimeList->sortItems();

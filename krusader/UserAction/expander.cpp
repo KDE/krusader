@@ -688,12 +688,12 @@ TagString exp_Copy::expFunc( const ListPanel*, const TagStringList& parameter, c
       return QString();
    }
    KUrl::List src;
-   for(QStringList::const_iterator it=lst.begin(),end=lst.end();it!=end;++it)
+   for(QStringList::const_iterator it=lst.constBegin(),end=lst.constEnd();it!=end;++it)
       src.push_back(KUrl( *it ));
    // or transform(...) ?
    KUrl dest = KUrl( parameter[1].string() );
 
-   if ( !dest.isValid() || find_if(src.constBegin(),src.constEnd(),not1(mem_fun_ref(&KUrl::isValid) ))!=src.end()) {
+   if ( !dest.isValid() || find_if(src.constBegin(),src.constEnd(),not1(mem_fun_ref(&KUrl::isValid) ))!=src.constEnd()) {
       setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT,i18n("Expander: invalid URL's in %_Copy(\"src\", \"dest\")%") ));
       return QString();
    }
@@ -724,12 +724,12 @@ TagString exp_Move::expFunc( const ListPanel*, const TagStringList& parameter, c
       return QString();
    }
    KUrl::List src;
-   for(QStringList::const_iterator it=lst.begin(),end=lst.end();it!=end;++it)
+   for(QStringList::const_iterator it=lst.constBegin(),end=lst.constEnd();it!=end;++it)
    src.push_back(KUrl( *it ));
    // or transform(...) ?
    KUrl dest = KUrl( parameter[1].string() );
 
-   if ( !dest.isValid() || find_if(src.constBegin(),src.constEnd(),not1(mem_fun_ref(&KUrl::isValid) ))!=src.end()) {
+   if ( !dest.isValid() || find_if(src.constBegin(),src.constEnd(),not1(mem_fun_ref(&KUrl::isValid) ))!=src.constEnd()) {
       setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT,i18n("Expander: invalid URL's in %_Move(\"src\", \"dest\")%") ));
       return QString();
    }
@@ -1160,7 +1160,7 @@ QStringList Expander::splitEach( TagString stringToSplit ) {
 	pair<uint,QStringList> pl=*stringToSplit.tagsBegin();
 	stringToSplit.eraseTag(stringToSplit.tagsBegin());
 	QStringList ret;
-	for(QStringList::const_iterator it=pl.second.begin(),end=pl.second.end();it!=end;++it) {
+	for(QStringList::const_iterator it=pl.second.constBegin(),end=pl.second.constEnd();it!=end;++it) {
 		TagString s=stringToSplit;
 		s.insert(pl.first,*it);
 		ret+=splitEach(s);
