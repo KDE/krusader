@@ -28,13 +28,10 @@
  *                                                                         *
  ***************************************************************************/
 
-
-
 #ifndef KRTREEWIDGET_H
 #define KRTREEWIDGET_H
 
-#include <qtreewidget.h>
-#include <QStyleOptionViewItem>
+#include <QtGui/QTreeWidget>
 
 class KrTreeWidget : public QTreeWidget
 {

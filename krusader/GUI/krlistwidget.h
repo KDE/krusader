@@ -28,10 +28,10 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qlistwidget.h>
-
 #ifndef KRLISTVIEW_H
 #define KRLISTVIEW_H
+
+#include <QtGui/QListWidget>
 
 class KrListWidget : public QListWidget {
   Q_OBJECT
