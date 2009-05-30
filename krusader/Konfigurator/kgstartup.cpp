@@ -59,14 +59,17 @@ KgStartup::KgStartup( bool first, QWidget* parent ) :
   QStringList profileList = ProfileManager::availableProfiles( "Panel" );
   profileList.push_front( "<" + i18n( "Last session" ) + ">" );
 
-  KONFIGURATOR_NAME_VALUE_PAIR comboItems[ profileList.count() ];
-  for(int i=0; i != profileList.count(); i++ )
-    comboItems[ i ].text = comboItems[ i ].value = profileList [ i ];    
+  const int profileListSize = profileList.size();
+  KONFIGURATOR_NAME_VALUE_PAIR *comboItems = new KONFIGURATOR_NAME_VALUE_PAIR[ profileListSize ];
+  for(int i=0; i != profileListSize; i++ )
+    comboItems[ i ].text = comboItems[ i ].value = profileList [ i ];
   comboItems[ 0 ].value = "";
 
-  profileCombo = createComboBox( "Startup", "Starter Profile Name", comboItems[ 0 ].value, comboItems, profileList.count(), panelsGrp, false, false );
+  profileCombo = createComboBox( "Startup", "Starter Profile Name", comboItems[ 0 ].value, comboItems, profileListSize, panelsGrp, false, false );
   profileCombo->setSizePolicy(  QSizePolicy::Expanding, QSizePolicy::Fixed);
   panelsGrid->addWidget( profileCombo, 0, 1 );
+
+  delete [] comboItems;
 
   //------------------------------------------------
   panelsGrid->addWidget( createLine( panelsGrp ), 1, 0, 1, 2 );

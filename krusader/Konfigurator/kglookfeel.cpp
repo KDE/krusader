@@ -154,11 +154,12 @@ void KgLookFeel::setupPanelTab() {
   hbox3->addWidget( lbl3 );
 
   QList<KrViewInstance *> views = KrViewFactory::registeredViews();
-  KONFIGURATOR_NAME_VALUE_PAIR panelTypes[ views.count() ];
+  const int viewsSize = views.size();
+  KONFIGURATOR_NAME_VALUE_PAIR *panelTypes = new KONFIGURATOR_NAME_VALUE_PAIR[ viewsSize ];
 
   QString defType = "0";
 
-  for( int i=0; i != views.count(); i++ ) {
+  for( int i=0; i != viewsSize; i++ ) {
     KrViewInstance * inst = views[ i ];
     panelTypes[ i ].text = i18n( inst->description().toUtf8() );
     panelTypes[ i ].text.replace( "&", "" );
@@ -167,10 +168,12 @@ void KgLookFeel::setupPanelTab() {
       defType = QString( "%1" ).arg( inst->id() );
   }
 
-  KonfiguratorComboBox * cmb3 = createComboBox( "Look&Feel", "Default Panel Type", defType, panelTypes, views.count(), hboxWidget3, false, false, PAGE_PANEL );
+  KonfiguratorComboBox * cmb3 = createComboBox( "Look&Feel", "Default Panel Type", defType, panelTypes, viewsSize, hboxWidget3, false, false, PAGE_PANEL );
   hbox3->addWidget( cmb3 );
   QWidget * spcr3 = createSpacer ( hboxWidget3 );
   hbox3->addWidget( spcr3 );
+
+  delete [] panelTypes;
 
   panelGrid->addWidget( hboxWidget3, 0, 0 );
 

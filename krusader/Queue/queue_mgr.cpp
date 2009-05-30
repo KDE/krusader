@@ -21,17 +21,18 @@ QueueManager::QueueManager()
 	KConfigGroup group( krConfig, "QueueManager");
 	queues = group.readEntry( "Queues", queues );
 	current = group.readEntry( "Active", current );
-	
-	if( queues.count() == 0 )
+
+	const int queuesSize = queues.size();
+	if( queuesSize == 0 )
 		queues << defaultName;
-	
-	Queue *queueArray [ queues.count() ];
-	
+
+	Queue *queueArray [ queuesSize ];
+
 	int counter = 0;
 	foreach( const QString &queueName, queues )
 		queueArray[ counter++ ] = createQueue( queueName );
 	
-	if( current < queues.count() )
+	if( current < queuesSize )
 		setCurrentQueue( queueArray[ current ] );
 	else
 		setCurrentQueue( queueArray[ 0 ] );
