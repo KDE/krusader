@@ -2,7 +2,7 @@
 include( radialMap/CMakeLists.txt )
 include( filelightParts/CMakeLists.txt )
 
-include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/filelightParts)
 
 
 ########### next target ###############
