@@ -163,7 +163,7 @@ enum PossibleCommands
   CMD_MAXPROGRESSVALUE     =  7,
   CMD_ADD_PROGRESS         =  8,
   CMD_GET_PASSWORD         =  9,
-  CMD_MESSAGE              = 10,
+  CMD_MESSAGE              = 10
 };
 
 class UserEvent : public QEvent
