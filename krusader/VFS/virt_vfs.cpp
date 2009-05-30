@@ -235,7 +235,7 @@ vfile* virt_vfs::stat( const KUrl& url ) {
 	}
 	else {
 		busy = true;
-		KIO::StatJob* statJob = KIO::stat( url, false );
+		KIO::StatJob* statJob = KIO::stat( url, KIO::HideProgressInfo );
 		connect( statJob, SIGNAL( result( KJob* ) ), this, SLOT( slotStatResult( KJob* ) ) );
 		while ( busy && vfs_processEvents() );
 		if( entry.count() == 0 ) return 0; // statJob failed

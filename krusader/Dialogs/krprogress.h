@@ -26,7 +26,7 @@
 
 #include <kio/global.h>
 
-#include <kprogress.h>
+#include <kprogressdialog.h>
 #include <ksqueezedtextlabel.h>
 
 #include <kio/progressbase.h>

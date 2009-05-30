@@ -9,7 +9,7 @@
 #include <qptrqueue.h>
 #include <kurl.h>
 #include <kdebug.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <ktar.h>
 #include <kzip.h>
 #include <kar.h>

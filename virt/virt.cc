@@ -25,7 +25,7 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kdeversion.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <kmessagebox.h>
 
 #include "virt.h"

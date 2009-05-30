@@ -252,7 +252,7 @@ KParts::ReadOnlyPart* PanelEditor::openUrl( const KUrl &url, KrViewer::Mode mode
 	}
 
 	bool create = true;
-	KIO::StatJob* statJob = KIO::stat( url, false );
+	KIO::StatJob* statJob = KIO::stat( url, KIO::HideProgressInfo );
 	connect( statJob, SIGNAL( result( KJob* ) ), this, SLOT( slotStatResult( KJob* ) ) );
 	busy = true;
 	while ( busy ) qApp->processEvents();

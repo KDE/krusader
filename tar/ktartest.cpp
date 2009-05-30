@@ -1,7 +1,7 @@
 #include "ktar.h"
 #include <stdio.h>
 #include <qfile.h>
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <kdebug.h>
 
 void recursive_print( const KTarDirectory * dir, const QString & path )
