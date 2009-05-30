@@ -818,3 +818,4 @@ bool KrView::handleKeyEventInt (QKeyEvent *e) {
 	}
 	return false;
 }
+

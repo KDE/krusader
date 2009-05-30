@@ -517,3 +517,4 @@ void QueueDialog::keyPressEvent(QKeyEvent *ke)
   }
   QDialog::keyPressEvent( ke );
 }
+

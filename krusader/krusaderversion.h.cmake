@@ -9,5 +9,5 @@
 
 #cmakedefine RELEASE_NAME "@RELEASE_NAME@"
 
-#endif //KRUSADERVERSION_H
+#endif // KRUSADERVERSION_H
 
