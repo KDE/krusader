@@ -599,7 +599,7 @@ QString KRarcHandler::getPassword( QString path ) {
 			wallet->setFolder( KWallet::Wallet::PasswordFolder() );
 			QMap<QString,QString> map;
 			if ( wallet->readMap( key, map ) == 0 ) {
-				QMap<QString, QString>::ConstIterator it = map.constFind( "password" );
+				QMap<QString, QString>::const_iterator it = map.constFind( "password" );
 				if ( it != map.constEnd() )
 					password = it.value();
 			}

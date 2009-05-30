@@ -1046,7 +1046,7 @@ void ListPanelFunc::calcSpace() {
 
 	KrCalcSpaceDialog calc( krApp, panel, items, false );
 	calc.exec();
-	for ( QStringList::ConstIterator it = items.constBegin(); it != items.constEnd(); ++it ) {
+	for ( QStringList::const_iterator it = items.constBegin(); it != items.constEnd(); ++it ) {
 		KrViewItem *viewItem = panel->view->findItemByName( *it );
 		if ( viewItem )
 			panel->view->updateItem(viewItem);
