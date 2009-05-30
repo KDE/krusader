@@ -1,5 +1,4 @@
 
-include_directories( ${CMAKE_SOURCE_DIR}/krusader/DiskUsage/filelightParts ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 
 ########### next target ###############

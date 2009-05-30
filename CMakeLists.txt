@@ -11,12 +11,6 @@ add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 set(VERSION "2.0.0" )
 set(RELEASE_NAME "Mars Pathfinder" )
 
-link_directories(${KDE4_LIB_DIR})
-
-# include(ConvenienceLibs.cmake)
-
-# include(ManualStuff.cmake)
-
 # include(ConfigureChecks.cmake)
 
 add_subdirectory( krusader )
@@ -27,7 +21,6 @@ add_subdirectory( iso )
 #add_subdirectory( virt ) - not used
 
 message(STATUS "${CMAKE_CURRENT_SOURCE_DIR}: skipped subdir $(TARDIR)")
-include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES}  )
 
 ########### install files ###############
 

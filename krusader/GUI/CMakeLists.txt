@@ -1,5 +1,4 @@
 
-include_directories( ${KDE4_INCLUDE_DIR} ${KDE4_INCLUDES} ${QT_INCLUDES}  )
 
 
 ########### next target ###############
