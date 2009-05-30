@@ -21,11 +21,11 @@
 #include <stdlib.h>
 #include <errno.h>
 
-#include <qdir.h>
-#include <qfile.h>
-#include <qfileinfo.h>
-#include <qregexp.h>
-#include <qdir.h>
+#include <QtCore/QDir>
+#include <QtCore/QFile>
+#include <QtCore/QFileInfo>
+#include <QtCore/QRegExp>
+#include <QtCore/QDir>
 #include <QByteArray>
 
 #include <kfileitem.h>
@@ -51,7 +51,7 @@
 
 #if 0
 
-#include <qtextstream.h>
+#include <QtCore/QTextStream>
 
 #define KRDEBUG(X...) do{   \
 	QFile f("/tmp/debug");    \

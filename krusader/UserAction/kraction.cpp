@@ -16,15 +16,15 @@
 #include <kinputdialog.h>
 #include <kactioncollection.h>
 #include <kshell.h>
-#include <qtextedit.h>
-#include <qtextstream.h>
-#include <qboxlayout.h>
-#include <qlayout.h>
-#include <qsplitter.h>
-#include <qpushbutton.h>
-#include <qcheckbox.h>
-#include <qfile.h>
-#include <qlabel.h>
+#include <QtGui/QTextEdit>
+#include <QtCore/QTextStream>
+#include <QtGui/QBoxLayout>
+#include <QtGui/QLayout>
+#include <QtGui/QSplitter> 
+#include <QtGui/QPushButton>
+#include <QtGui/QCheckBox>
+#include <QtCore/QFile>
+#include <QtGui/QLabel>
 #include <QKeyEvent>
 #include <QEvent>
 #include <kaction.h>
@@ -43,13 +43,13 @@
 
 //for the availabilitycheck:
 #include <kmimetype.h>
-#include <qregexp.h>
+#include <QtCore/QRegExp>
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////  KrActionProcDlg  /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-#include <qlayout.h>
+#include <QtGui/QLayout>
 KrActionProcDlg::KrActionProcDlg( QString caption, bool enableStderr, QWidget *parent ) :
         KDialog( parent ), _stdout(0), _stderr(0), _currentTextEdit(0) {
    setWindowTitle( caption );

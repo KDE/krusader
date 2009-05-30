@@ -10,8 +10,8 @@
 #ifndef __TAGSTRING__H
 #define __TAGSTRING__H
 
-#include <qstring.h>
-#include <qlist.h>
+#include <QtCore/QString>
+#include <QtCore/QList>
 #include <utility>
 #include <cassert>
 template <class T>

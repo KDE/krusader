@@ -45,8 +45,8 @@
 #include "krsearchdialog.h"
 
 #include <kinputdialog.h>
-#include <qregexp.h>
-#include <qfontmetrics.h>
+#include <QtCore/QRegExp>
+#include <QtGui/QFontMetrics>
 #include <QHBoxLayout>
 #include <QKeyEvent>
 #include <QLabel>
@@ -55,8 +55,8 @@
 #include <QCloseEvent>
 #include <kmessagebox.h>
 #include <kmenu.h>
-#include <qcursor.h>
-#include <qclipboard.h>
+#include <QtGui/QCursor>
+#include <QtGui/QClipboard>
 #include <qheaderview.h>
 #include <QDrag>
 #include <QMimeData>

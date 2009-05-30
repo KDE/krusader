@@ -28,7 +28,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qpushbutton.h>
+#include <QtGui/QPushButton>
 #include <QGridLayout>
 
 #include "kgarchives.h"

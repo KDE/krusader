@@ -37,7 +37,7 @@
 #include <kfiledialog.h>
 #include <kmessagebox.h>
 #include <kiconloader.h>
-#include <qpushbutton.h>
+#include <QtGui/QPushButton>
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QMenu>

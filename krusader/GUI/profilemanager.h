@@ -31,8 +31,8 @@
 #ifndef PROFILEMANAGER_H
 #define PROFILEMANAGER_H
 
-#include <qpushbutton.h>
-#include <qstring.h>
+#include <QtGui/QPushButton>
+#include <QtCore/QString>
 
 class ProfileManager : public QPushButton
 {

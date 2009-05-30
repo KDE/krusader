@@ -57,7 +57,7 @@
 #include "kgcolors.h"
 #include "kguseractions.h"
 #include "kgprotocols.h"
-#include <qevent.h>
+#include <QtCore/QEvent>
 
 Konfigurator::Konfigurator( bool f, int startPage ) : KPageDialog( (QWidget *)0 ), firstTime(f), internalCall( false ),
       restartGUI( false ), sizeX( -1 ), sizeY( -1 )

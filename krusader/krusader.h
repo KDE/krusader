@@ -43,7 +43,7 @@
 #include <kaction.h>
 #include <kconfig.h>
 #include <kconfiggroup.h>
-#include <qstringlist.h>
+#include <QtCore/QStringList>
 #include <QMoveEvent>
 #include <QShowEvent>
 #include <QResizeEvent>

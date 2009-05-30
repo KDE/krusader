@@ -3,8 +3,8 @@
 #include "krbookmarkhandler.h"
 #include <klocale.h>
 #include <qheaderview.h>
-#include <qlayout.h>
-#include <qlabel.h>
+#include <QtGui/QLayout>
+#include <QtGui/QLabel>
 #include <QGridLayout>
 #include <kinputdialog.h>
 #include <kiconloader.h>

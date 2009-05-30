@@ -38,11 +38,11 @@
 #include "../panelmanager.h"
 #include <klocale.h>
 #include <kmessagebox.h>
-#include <qcheckbox.h>
-#include <qlayout.h>
-#include <qlineedit.h>
-#include <qlabel.h>
-#include <qcombobox.h>
+#include <QtGui/QCheckBox>
+#include <QtGui/QLayout>
+#include <QtGui/QLineEdit>
+#include <QtGui/QLabel>
+#include <QtGui/QComboBox>
 #include <QVBoxLayout>
 
 #define  S_LEFT        0

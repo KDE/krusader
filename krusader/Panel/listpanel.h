@@ -37,14 +37,14 @@
 #include <kfileitem.h>
 #include <kurl.h>
 #include <qwidget.h>
-#include <qlabel.h>
-#include <qlayout.h>
-#include <qstring.h>
-#include <qpixmap.h>
-#include <qtoolbutton.h>
-#include <qdir.h>
+#include <QtGui/QLabel>
+#include <QtGui/QLayout>
+#include <QtCore/QString>
+#include <QtGui/QPixmap>
+#include <QtGui/QToolButton>
+#include <QtCore/QDir>
 #include <qpixmapcache.h>
-#include <qicon.h>
+#include <QtGui/QIcon>
 #include <QDropEvent>
 #include <QShowEvent>
 #include <QGridLayout>
@@ -53,7 +53,7 @@
 #include <QKeyEvent>
 #include <QEvent>
 #include <klineedit.h>
-#include <qpointer.h>
+#include <QtCore/QPointer>
 #include "krview.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
 

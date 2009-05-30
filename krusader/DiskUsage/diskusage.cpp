@@ -29,7 +29,7 @@
  ***************************************************************************/
 
 #include <time.h>
-#include <qlayout.h>
+#include <QtGui/QLayout>
 #include <QKeyEvent>
 #include <QLabel>
 #include <QGridLayout>
@@ -45,12 +45,12 @@
 #include <kglobalsettings.h>
 #include <kio/job.h>
 #include <kio/deletejob.h>
-#include <qpushbutton.h>
-#include <qapplication.h>
-#include <qcursor.h>
+#include <QtGui/QPushButton>
+#include <QtGui/QApplication>
+#include <QtGui/QCursor>
 #include <qpixmapcache.h>
-#include <qgroupbox.h>
-#include <qpointer.h>
+#include <QtGui/QGroupBox>
+#include <QtCore/QPointer>
 #include "diskusage.h"
 #include "../VFS/krpermhandler.h"
 #include "../VFS/krvfshandler.h"

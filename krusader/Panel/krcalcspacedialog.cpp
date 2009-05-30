@@ -30,9 +30,9 @@ A
 ***************************************************************************/
 
 // Qt Includes
-#include <qtimer.h>
-#include <qlayout.h>
-#include <qlabel.h>
+#include <QtCore/QTimer>
+#include <QtGui/QLayout>
+#include <QtGui/QLabel>
 #include <QVBoxLayout>
 // KDE Includes
 #include <klocale.h>

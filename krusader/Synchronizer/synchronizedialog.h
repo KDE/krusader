@@ -33,10 +33,10 @@
 
 #include "../VFS/vfs.h"
 #include "synchronizer.h"
-#include <qdialog.h>
-#include <qpushbutton.h>
-#include <qcheckbox.h>
-#include <qlabel.h>
+#include <QtGui/QDialog>
+#include <QtGui/QPushButton>
+#include <QtGui/QCheckBox>
+#include <QtGui/QLabel>
 #include <qprogressbar.h>
 
 class SynchronizeDialog : QDialog

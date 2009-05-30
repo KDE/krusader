@@ -31,8 +31,8 @@
 #ifndef __SYNCHRONIZER_DIR_LIST_H__
 #define __SYNCHRONIZER_DIR_LIST_H__
 
-#include <qobject.h>
-#include <qhash.h>
+#include <QtCore/QObject>
+#include <QtCore/QHash>
 #include "../VFS/vfile.h"
 #include <kio/job.h>
 

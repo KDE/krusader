@@ -33,9 +33,9 @@
 
 #include <kio/job.h>
 #include "preservingcopyjob.h"
-#include <qlist.h>
-#include <qtimer.h>
-#include <qhash.h>
+#include <QtCore/QList>
+#include <QtCore/QTimer>
+#include <QtCore/QHash>
 #include <qmap.h>
 
 class vfs;

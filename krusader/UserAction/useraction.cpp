@@ -17,9 +17,9 @@
 #include <kmenu.h>
 #include <kstandarddirs.h>
 #include <kmessagebox.h>
-#include <qtextstream.h>
+#include <QtCore/QTextStream>
 
-#include <qstring.h>
+#include <QtCore/QString>
 #include <qdom.h>
 #include <QHash>
 

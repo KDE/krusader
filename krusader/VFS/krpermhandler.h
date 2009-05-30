@@ -32,10 +32,10 @@
 #ifndef KRPERMHANDLER_H
 #define KRPERMHANDLER_H
 
-#include <qstring.h>
-#include <qfileinfo.h>
+#include <QtCore/QString>
+#include <QtCore/QFileInfo>
 #include <sys/types.h>
-#include <qhash.h>
+#include <QtCore/QHash>
 #include <kio/global.h>
 
 #define NO_PERM      0

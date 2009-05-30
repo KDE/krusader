@@ -31,9 +31,9 @@
 #ifndef __DISK_USAGE_GUI_H__
 #define __DISK_USAGE_GUI_H__
 
-#include <qdialog.h>
-#include <qlayout.h>
-#include <qtoolbutton.h>
+#include <QtGui/QDialog>
+#include <QtGui/QLayout>
+#include <QtGui/QToolButton>
 #include <QResizeEvent>
 #include <kurl.h>
 #include <ksqueezedtextlabel.h>

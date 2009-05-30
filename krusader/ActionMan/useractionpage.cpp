@@ -12,10 +12,10 @@
 #include "useractionpage.h"
 
 #include <kstandardguiitem.h>
-#include <qsplitter.h>
-#include <qlayout.h>
-#include <qtoolbutton.h>
-#include <qclipboard.h>
+#include <QtGui/QSplitter> 
+#include <QtGui/QLayout>
+#include <QtGui/QToolButton>
+#include <QtGui/QClipboard>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <klineedit.h>

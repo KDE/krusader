@@ -32,7 +32,7 @@
 #include "../krusader.h"
 #include "../kicons.h"
 #include "../VFS/krpermhandler.h"
-#include <qfontmetrics.h>
+#include <QtGui/QFontMetrics>
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <klocale.h>

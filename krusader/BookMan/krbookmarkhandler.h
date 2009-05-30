@@ -2,8 +2,8 @@
 #define KRBOOKMARK_HANDLER_H
 
 #include "krbookmark.h"
-#include <qobject.h>
-#include <qpointer.h>
+#include <QtCore/QObject>
+#include <QtCore/QPointer>
 #include <QEvent>
 #include <kmenu.h>
 #include <kurl.h>

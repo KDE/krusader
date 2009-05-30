@@ -31,7 +31,7 @@
 #define PACKGUIBASE_H
 
 #include <klocale.h>
-#include <qdialog.h>
+#include <QtGui/QDialog>
 #include <qmap.h>
 #include <QGridLayout>
 #include <QHBoxLayout>

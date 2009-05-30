@@ -1,10 +1,10 @@
 #ifndef KRCOLORCACHE_H
 #define KRCOLORCACHE_H
 
-#include <qobject.h>
+#include <QtCore/QObject>
 #include <QList>
 #include <qcolor.h>
-#include <qpalette.h>
+#include <QtGui/QPalette>
 
 /*
 Design goals: Color calculation is done on one place only. Configuration through krConfig OR through local settings.

@@ -42,8 +42,8 @@
 #include <kglobal.h>
 #include <kde_file.h> 
 // Qt includes
-#include <qdatetime.h>
-#include <qdir.h> 
+#include <QtCore/QDateTime>
+#include <QtCore/QDir> 
 // krusader includes
 #include "krpermhandler.h"
 #include "../resources.h"

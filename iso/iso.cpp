@@ -27,8 +27,8 @@
 #include <unistd.h>
 
 #include <kde_file.h>
-#include <qfile.h>
-#include <qdir.h>
+#include <QtCore/QFile>
+#include <QtCore/QDir>
 #include <QByteArray>
 #include <kurl.h>
 #include <kdebug.h>

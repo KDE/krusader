@@ -30,8 +30,8 @@
 #ifndef KRQUERY_H
 #define KRQUERY_H
 
-#include <qstringlist.h>
-#include <qdatetime.h>
+#include <QtCore/QStringList>
+#include <QtCore/QDateTime>
 #include <time.h>
 #include <kurl.h>
 #include <kio/jobclasses.h>

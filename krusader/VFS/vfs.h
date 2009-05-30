@@ -31,10 +31,10 @@
 #define VFS_H
 
 // QT includes
-#include <qstring.h>
-#include <qlist.h>
-#include <qobject.h>
-#include <qhash.h>
+#include <QtCore/QString>
+#include <QtCore/QList>
+#include <QtCore/QObject>
+#include <QtCore/QHash>
 // KDE includes
 #include <kurl.h>
 #include <kio/jobclasses.h>

@@ -31,7 +31,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../krusader.h"
 #include "../defaults.h"
 #include <kcolorscheme.h> 
-#include <qfile.h> 
+#include <QtCore/QFile> 
 #include <QList>
 
 

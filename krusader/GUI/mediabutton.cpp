@@ -39,7 +39,7 @@
 #include <kmessagebox.h>
 #include <kdiskfreespace.h>
 #include <kio/global.h>
-#include <qcursor.h>
+#include <QtGui/QCursor>
 #include <kmountpoint.h>
 #include <solid/deviceinterface.h>
 #include <solid/storageaccess.h>

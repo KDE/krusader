@@ -31,7 +31,7 @@
 #ifndef __DU_LINES_H__
 #define __DU_LINES_H__
 
-#include <qpixmap.h>
+#include <QtGui/QPixmap>
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <QResizeEvent>

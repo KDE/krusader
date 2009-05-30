@@ -11,8 +11,8 @@
 //
 #include "krkeydialog.h"
 
-#include <qlayout.h>
-#include <qtextstream.h>
+#include <QtGui/QLayout>
+#include <QtCore/QTextStream>
 #include <klocale.h>
 #include <kpushbutton.h>
 #include <kmessagebox.h>

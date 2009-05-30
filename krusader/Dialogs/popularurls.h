@@ -1,9 +1,9 @@
 #ifndef POPULARURLS_H
 #define POPULARURLS_H
 
-#include <qobject.h>
+#include <QtCore/QObject>
 #include <kurl.h>
-#include <qhash.h>
+#include <QtCore/QHash>
 #include <kdialog.h>
 
 // the class holds a list of most popular links in a dual data structure

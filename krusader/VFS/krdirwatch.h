@@ -33,11 +33,11 @@
 #ifndef KRDIRWATCH_H
 #define KRDIRWATCH_H
 
-#include <qobject.h>
-#include <qstring.h>
-#include <qtimer.h>
-#include <qdatetime.h>
-#include <qdir.h>
+#include <QtCore/QObject>
+#include <QtCore/QString>
+#include <QtCore/QTimer>
+#include <QtCore/QDateTime>
+#include <QtCore/QDir>
 
 
 typedef struct krDirEntry_s{

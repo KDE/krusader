@@ -1,7 +1,7 @@
 #ifndef KRBOOKMARK_BUTTON_H
 #define KRBOOKMARK_BUTTON_H
 
-#include <qtoolbutton.h>
+#include <QtGui/QToolButton>
 #include <kactionmenu.h>
 #include "krbookmarkhandler.h"
 

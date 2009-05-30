@@ -4,7 +4,7 @@
 #include "queue.h"
 #include <ktabwidget.h>
 #include "../GUI/krlistwidget.h"
-#include <qpointer.h>
+#include <QtCore/QPointer>
 
 class KrQueueListWidget;
 

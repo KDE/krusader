@@ -33,7 +33,7 @@
 #include <kdebug.h>
 #include "krpermhandler.h"
 #include "qstringlist.h"
-#include <qdir.h>
+#include <QtCore/QDir>
 
 KRdirWatch::KRdirWatch(int msec,bool dirOnly):
   delay(msec),t(this), changed(false) {

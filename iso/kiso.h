@@ -25,9 +25,9 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-#include <qdatetime.h>
-#include <qstring.h>
-#include <qstringlist.h>
+#include <QtCore/QDateTime>
+#include <QtCore/QString>
+#include <QtCore/QStringList>
 
 #include "kisofile.h"
 #include "kisodirectory.h"

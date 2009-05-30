@@ -37,7 +37,7 @@
 #include <qwidget.h>
 #include <kdialog.h>
 #include <kpagedialog.h>
-#include <qtimer.h>
+#include <QtCore/QTimer>
 
 class QLineEdit;
 class QString;

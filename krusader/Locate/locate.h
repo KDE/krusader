@@ -34,7 +34,7 @@
 #include <kdialog.h>
 #include <kcombobox.h>
 #include <khistorycombobox.h>
-#include <qcheckbox.h>
+#include <QtGui/QCheckBox>
 #include <QKeyEvent>
 
 class KProcess;

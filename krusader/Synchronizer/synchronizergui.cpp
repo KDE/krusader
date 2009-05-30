@@ -40,8 +40,8 @@
 #include "../kicons.h"
 #include "synchronizedialog.h"
 #include "feedtolistboxdialog.h"
-#include <qlayout.h>
-#include <qgroupbox.h>
+#include <QtGui/QLayout>
+#include <QtGui/QGroupBox>
 #include <QResizeEvent>
 #include <QLabel>
 #include <QPixmap>
@@ -53,19 +53,19 @@
 #include <kurlrequester.h>
 #include <klocale.h>
 #include <kmenu.h>
-#include <qcursor.h>
+#include <QtGui/QCursor>
 #include <time.h>
 #include <kmessagebox.h>
 #include <kio/netaccess.h>
-#include <qeventloop.h>
-#include <qregexp.h>
+#include <QtCore/QEventLoop>
+#include <QtCore/QRegExp>
 #include <qheaderview.h>
 #include <qspinbox.h>
 #include <kinputdialog.h>
 #include <QDrag>
 #include <QMimeData>
-#include <qclipboard.h>
-#include <qhash.h>
+#include <QtGui/QClipboard>
+#include <QtCore/QHash>
 
 static const char * const right_arrow_button_data[] = {
 "18 18 97 2",

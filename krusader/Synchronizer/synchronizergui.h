@@ -36,15 +36,15 @@
 #include "../GUI/krtreewidget.h"
 #include "../Filter/filtertabs.h"
 #include "../Filter/generalfilter.h"
-#include <qdialog.h>
+#include <QtGui/QDialog>
 #include <QResizeEvent>
 #include <QKeyEvent>
 #include <kcombobox.h>
-#include <qpixmap.h>
-#include <qcheckbox.h>
+#include <QtGui/QPixmap>
+#include <QtGui/QCheckBox>
 #include <qmap.h>
-#include <qlabel.h>
-#include <qtabwidget.h>
+#include <QtGui/QLabel>
+#include <QtGui/QTabWidget>
 
 class QSpinBox;
 

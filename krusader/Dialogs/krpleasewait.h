@@ -32,8 +32,8 @@
 #define KRPLEASEWAIT_H
 
 #include <qprogressdialog.h>
-#include <qtimer.h>
-#include <qpointer.h>
+#include <QtCore/QTimer>
+#include <QtCore/QPointer>
 #include <QCloseEvent>
 #include <kio/jobclasses.h>
 

@@ -31,7 +31,7 @@
 #ifndef __SYNCHRONIZER_TASK_H__
 #define __SYNCHRONIZER_TASK_H__
 
-#include <qobject.h>
+#include <QtCore/QObject>
 #include <kio/job.h>
 
 class Synchronizer;

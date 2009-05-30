@@ -7,11 +7,11 @@
 * License. See the file "COPYING" for the exact licensing terms.
 */
 
-#include <qlayout.h>
-#include <qlabel.h>
-#include <qcombobox.h>
-#include <qcheckbox.h>
-#include <qtimer.h>
+#include <QtGui/QLayout>
+#include <QtGui/QLabel>
+#include <QtGui/QComboBox>
+#include <QtGui/QCheckBox>
+#include <QtCore/QTimer>
 #include <QPixmap>
 #include <QResizeEvent>
 #include <QVBoxLayout>

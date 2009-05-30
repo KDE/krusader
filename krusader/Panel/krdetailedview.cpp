@@ -42,10 +42,10 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../GUI/kcmdline.h"
 #include "../Dialogs/krspecialwidgets.h"
 #include "../panelmanager.h"
-#include <qlayout.h>
-#include <qdir.h>
+#include <QtGui/QLayout>
+#include <QtCore/QDir>
 #include <q3header.h>
-#include <qstyle.h>
+#include <QtGui/QStyle>
 #include <QWheelEvent>
 #include <QMouseEvent>
 #include <QKeyEvent>
@@ -58,7 +58,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <klocale.h>
 #include <kmenu.h>
 #include <kcolorscheme.h>
-#include <qstyle.h>
+#include <QtGui/QStyle>
 
 //////////////////////////////////////////////////////////////////////////
 //  The following is KrDetailedView's settings in KConfig:

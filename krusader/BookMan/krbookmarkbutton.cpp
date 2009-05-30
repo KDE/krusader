@@ -1,7 +1,7 @@
 #include "krbookmarkbutton.h"
 #include "krbookmarkhandler.h"
 #include "../krusader.h"
-#include <qpixmap.h>
+#include <QtGui/QPixmap>
 #include <kiconloader.h>
 #include <kaction.h>
 #include <klocale.h>

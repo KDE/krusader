@@ -37,7 +37,7 @@
 #include <kcolorscheme.h>
 #include <kstandarddirs.h>
 #include <qheaderview.h>
-#include <qtabwidget.h>
+#include <QtGui/QTabWidget>
 #include <QList>
 #include <QLabel>
 #include <QGridLayout>

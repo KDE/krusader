@@ -16,8 +16,8 @@
  ***************************************************************************/ 
 // Qt includes
 #include <qdatastream.h>
-#include <qfile.h>
-#include <qtimer.h>
+#include <QtCore/QFile>
+#include <QtCore/QTimer>
 #include <QKeyEvent>
 #include <QEvent>
 // KDE includes

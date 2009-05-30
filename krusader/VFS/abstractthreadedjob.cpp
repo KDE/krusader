@@ -29,13 +29,13 @@
  ***************************************************************************/
 
 #include "abstractthreadedjob.h"
-#include <qtimer.h>
+#include <QtCore/QTimer>
 #include <klocale.h>
 #include <QEventLoop>
 #include <KTempDir>
 #include <KTemporaryFile>
-#include <qapplication.h>
-#include <qdir.h>
+#include <QtGui/QApplication>
+#include <QtCore/QDir>
 #include "krvfshandler.h"
 #include "krarchandler.h"
 #include "vfs.h"

@@ -36,10 +36,10 @@
 
 // KDE Includes
 #include <kdialog.h>
-#include <qmutex.h>
+#include <QtCore/QMutex>
 #include <kio/jobclasses.h>
 // Qt Includes
-#include <qthread.h>
+#include <QtCore/QThread>
 #include <QLabel>
 // Krusader Includes
 #include "../VFS/vfs.h"

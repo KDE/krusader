@@ -32,9 +32,9 @@
 #define __KONFIGURATOR_PAGE_H__
  
 #include "konfiguratoritems.h"
-#include <qgroupbox.h>
-#include <qlabel.h>
-#include <qlayout.h>
+#include <QtGui/QGroupBox>
+#include <QtGui/QLabel>
+#include <QtGui/QLayout>
 #include <QGridLayout>
 #include <QScrollArea>
 

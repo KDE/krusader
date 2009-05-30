@@ -32,7 +32,7 @@
 #include "../VFS/krpermhandler.h"
 #include "../krusader.h"
 #include "../defaults.h"
-#include <qlayout.h>
+#include <QtGui/QLayout>
 #include <QVBoxLayout>
 #include <QLabel>
 #include <klocale.h>

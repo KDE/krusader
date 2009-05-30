@@ -33,7 +33,7 @@
 
 #include "konfiguratorpage.h"
 #include "../GUI/krtreewidget.h"
-#include <qlist.h>
+#include <QtCore/QList>
 #include <qstackedwidget.h>
 #include <QGridLayout>
 #include <QLabel>

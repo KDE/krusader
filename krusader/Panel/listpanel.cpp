@@ -31,8 +31,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <unistd.h>
 #include <sys/param.h>
 // QT includes
-#include <qbitmap.h>
-#include <qstringlist.h>
+#include <QtGui/QBitmap>
+#include <QtCore/QStringList>
 #include <QHBoxLayout>
 #include <QKeyEvent>
 #include <QList>
@@ -44,9 +44,9 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QShowEvent>
 #include <QDrag>
 #include <QMimeData>
-#include <qtimer.h>
-#include <qregexp.h> 
-#include <qsplitter.h>
+#include <QtCore/QTimer>
+#include <QtCore/QRegExp> 
+#include <QtGui/QSplitter> 
 // KDE includes
 #include <kmenu.h>
 #include <kdiskfreespace.h>
@@ -61,7 +61,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kstandarddirs.h>
 #include <kglobalsettings.h>
 #include <kdeversion.h>
-#include <qimage.h>
+#include <QtGui/QImage>
 #include <qtabbar.h>
 #include <kdebug.h>
 #include <kurlrequester.h>

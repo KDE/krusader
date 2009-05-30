@@ -31,7 +31,7 @@
 #include "krlistwidget.h"
 #include "krstyleproxy.h"
 #include <qwidget.h>
-#include <qevent.h>
+#include <QtCore/QEvent>
 
 KrListWidget::KrListWidget( QWidget * parent ) : QListWidget( parent ) {
   setStyle( new KrStyleProxy() );

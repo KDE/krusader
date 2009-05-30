@@ -1,12 +1,12 @@
 #include <kurl.h>
-#include <qstring.h>
+#include <QtCore/QString>
 #include <qstackedwidget.h>
-#include <qapplication.h>
+#include <QtGui/QApplication>
 #include <kparts/part.h>
 #include <kparts/browserextension.h>
 #include <kmessagebox.h>
-#include <qhash.h>
-#include <qlabel.h>
+#include <QtCore/QHash>
+#include <QtGui/QLabel>
 #include <kmimetype.h>
 #include <ktemporaryfile.h>
 #include <klocale.h>
@@ -16,7 +16,7 @@
 #include <kdebug.h>
 #include <kfileitem.h>
 #include <kio/netaccess.h>
-#include <qfile.h>
+#include <QtCore/QFile>
 #include <kde_file.h>
 #include "panelviewer.h"
 

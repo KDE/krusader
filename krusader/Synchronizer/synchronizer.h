@@ -33,7 +33,7 @@
 
 #include "synchronizertask.h"
 #include "synchronizerfileitem.h"
-#include <qobject.h>
+#include <QtCore/QObject>
 #include <qmap.h>
 #include <qcolor.h>
 #include <QList>

@@ -20,7 +20,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include <qfile.h>
+#include <QtCore/QFile>
 #include <kurl.h>
 #include <kdebug.h>
 #include <klocale.h>

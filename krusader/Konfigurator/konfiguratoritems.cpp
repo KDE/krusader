@@ -32,9 +32,9 @@
 #include "../krusader.h"
 #include <klocale.h>
 #include <klineedit.h>
-#include <qpainter.h>
-#include <qpen.h>
-#include <qcolordialog.h>
+#include <QtGui/QPainter>
+#include <QtGui/QPen>
+#include <QtGui/QColorDialog>
 #include <QPixmap>
 #include <QLabel>
 #include <kiconloader.h>

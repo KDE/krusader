@@ -31,8 +31,8 @@
 #ifndef __PERCENTAL_SPLITTER__
 #define __PERCENTAL_SPLITTER__
 
-#include <qsplitter.h> 
-#include <qlabel.h> 
+#include <QtGui/QSplitter> 
+#include <QtGui/QLabel> 
 
 class PercentalSplitter : public QSplitter {
   Q_OBJECT

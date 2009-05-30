@@ -18,9 +18,9 @@
 #include "../krusader.h"
 
 #include <kactioncollection.h>
-#include <qtoolbutton.h>
-#include <qcheckbox.h>
-#include <qradiobutton.h>
+#include <QtGui/QToolButton>
+#include <QtGui/QCheckBox>
+#include <QtGui/QRadioButton>
 #include <klocale.h>
 #include <kfiledialog.h>
 #include <klineedit.h>

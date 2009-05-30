@@ -4,7 +4,7 @@
 #include "fileTree.h"
 #include <kglobal.h>
 #include <klocale.h>
-#include <qstring.h>
+#include <QString>
 
 //static definitions
 const FileSize File::DENOMINATOR[4] = { 1ull, 1ull<<10, 1ull<<20, 1ull<<30 };

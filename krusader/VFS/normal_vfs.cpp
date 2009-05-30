@@ -33,7 +33,7 @@
 #include <unistd.h>
 #include <dirent.h>
 // QT includes
-#include <qtimer.h>
+#include <QtCore/QTimer>
 #include <QByteArray>
 #include <QDir>
 // KDE includes

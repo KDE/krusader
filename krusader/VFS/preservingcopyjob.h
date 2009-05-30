@@ -36,7 +36,7 @@
 #include <kio/jobclasses.h>
 #include <kio/copyjob.h>
 #include <qmap.h>
-#include <qlist.h>
+#include <QtCore/QList>
 
 typedef enum {
   PM_NONE          = 0,

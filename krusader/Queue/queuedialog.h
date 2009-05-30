@@ -31,7 +31,7 @@
 #ifndef __QUEUEDIALOG_H__
 #define __QUEUEDIALOG_H__
 
-#include <qdialog.h>
+#include <QtGui/QDialog>
 
 class QPaintEvent;
 class QToolButton;

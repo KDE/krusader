@@ -3,7 +3,7 @@
 #include <kmessagebox.h>
 #include <klocale.h>
 #include <kmenu.h>
-#include <qcursor.h>
+#include <QtGui/QCursor>
 
 QueueWidget::QueueWidget( QWidget * parent ): KTabWidget( parent )
 {

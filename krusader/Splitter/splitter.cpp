@@ -30,12 +30,12 @@
 
 #include "splitter.h"
 #include "../VFS/vfs.h"
-#include <qlayout.h>
+#include <QtGui/QLayout>
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kio/job.h>
 #include <kfileitem.h>
-#include <qfileinfo.h>
+#include <QtCore/QFileInfo>
     
 Splitter::Splitter( QWidget* parent,  KUrl fileNameIn, KUrl destinationDirIn ) :
   QProgressDialog( parent, 0 ), splitSize( 0 )

@@ -40,7 +40,7 @@
 #include <sys/types.h>
 #include "../VFS/vfile.h"
 #include <k3listview.h>
-#include <qpointer.h>
+#include <QtCore/QPointer>
 #include <QPixmap>
 
 #define FASTER

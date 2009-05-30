@@ -1,6 +1,6 @@
 #include "ktar.h"
 #include <stdio.h>
-#include <qfile.h>
+#include <QtCore/QFile>
 #include <kcomponentdata.h>
 #include <kdebug.h>
 

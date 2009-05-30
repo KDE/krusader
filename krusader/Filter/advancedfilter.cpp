@@ -32,16 +32,16 @@
 #include "advancedfilter.h"
 #include "../Dialogs/krdialogs.h"
 
-#include <qgroupbox.h>
+#include <QtGui/QGroupBox>
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QPixmap>
-#include <qtextstream.h>
+#include <QtCore/QTextStream>
 #include <klocale.h>
-#include <qlayout.h>
-#include <qlabel.h>
-#include <qbuttongroup.h>
-#include <qfile.h>
+#include <QtGui/QLayout>
+#include <QtGui/QLabel>
+#include <QtGui/QButtonGroup>
+#include <QtCore/QFile>
 #include <kdebug.h>
 #include <kmessagebox.h>
 #include <time.h>

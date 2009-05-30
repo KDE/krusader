@@ -36,10 +36,10 @@
 #include <sys/types.h>
 #endif 
 // QT includes
-#include <qdir.h>
-#include <qregexp.h>
-#include <qtimer.h>
-#include <qeventloop.h>
+#include <QtCore/QDir>
+#include <QtCore/QRegExp>
+#include <QtCore/QTimer>
+#include <QtCore/QEventLoop>
 // KDE includes
 #include <kio/jobclasses.h>
 #include <klocale.h>

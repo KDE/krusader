@@ -1,6 +1,6 @@
 #include "krsqueezedtextlabel.h"
 #include <kstringhandler.h>
-#include <qtooltip.h>
+#include <QtGui/QToolTip>
 #include <QMouseEvent>
 #include <QDropEvent>
 #include <QDragEnterEvent>

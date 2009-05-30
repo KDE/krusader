@@ -31,8 +31,8 @@
 #include "splittergui.h"
 #include "../VFS/vfs.h"
 #include <klocale.h>
-#include <qlayout.h>
-#include <qlabel.h>
+#include <QtGui/QLayout>
+#include <QtGui/QLabel>
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QFrame>

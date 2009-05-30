@@ -9,8 +9,8 @@
 #ifndef NEWFTPGUI_H
 #define NEWFTPGUI_H
 
-#include <qvariant.h>
-#include <qdialog.h>
+#include <QtCore/QVariant>
+#include <QtGui/QDialog>
 #include <QVBoxLayout>
 #include <QEvent>
 #include <QGridLayout>

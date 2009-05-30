@@ -32,7 +32,7 @@
 #define __COMBINER_H__
 
 #include "crc32.h"
-#include <qstring.h>
+#include <QtCore/QString>
 #include <qprogressdialog.h>
 #include <kurl.h>
 #include <kio/jobclasses.h>

@@ -13,7 +13,7 @@
 #ifndef KrusaderImageFilePreview_H
 #define KrusaderImageFilePreview_H
 
-#include <qpixmap.h>
+#include <QtGui/QPixmap>
 #include <QResizeEvent>
 #include <QLabel>
 

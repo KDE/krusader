@@ -4,7 +4,7 @@
 #ifndef SEGMENTTIP_H
 #define SEGMENTTIP_H
 
-#include <qpixmap.h>
+#include <QPixmap>
 #include <qwidget.h>
 #include <QEvent>
 

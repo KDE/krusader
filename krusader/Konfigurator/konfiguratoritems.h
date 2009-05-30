@@ -31,23 +31,23 @@
 #ifndef __KONFIGURATOR_ITEMS_H__
 #define __KONFIGURATOR_ITEMS_H__
 
-#include <qobject.h>
-#include <qstring.h>
-#include <qcheckbox.h>
+#include <QtCore/QObject>
+#include <QtCore/QString>
+#include <QtGui/QCheckBox>
 #include <qspinbox.h>
-#include <qpushbutton.h>
-#include <qradiobutton.h>
+#include <QtGui/QPushButton>
+#include <QtGui/QRadioButton>
 #include "../GUI/krlistwidget.h"
-#include <qlist.h>
-#include <qlineedit.h>
+#include <QtCore/QList>
+#include <QtGui/QLineEdit>
 #include <QPixmap>
 #include <kurlrequester.h>
-#include <qboxlayout.h>
+#include <QtGui/QBoxLayout>
 #include <kfontdialog.h>
-#include <qlabel.h>
+#include <QtGui/QLabel>
 #include <qfont.h>
-#include <qtoolbutton.h>
-#include <qcombobox.h>
+#include <QtGui/QToolButton>
+#include <QtGui/QComboBox>
 
 #define FIRST_PAGE        0
 

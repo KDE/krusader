@@ -6,7 +6,7 @@
 #include "../VFS/vfs.h"
 #include <kiconloader.h>
 #include <kmessagebox.h>
-#include <qtextstream.h>
+#include <QtCore/QTextStream>
 #include <QMouseEvent>
 #include <QEvent>
 #include <kactioncollection.h>
@@ -14,8 +14,8 @@
 #include <kdebug.h>
 #include <kbookmarkmanager.h>
 #include <kstandarddirs.h>
-#include <qfile.h>
-#include <qcursor.h>
+#include <QtCore/QFile>
+#include <QtGui/QCursor>
 
 #define SPECIAL_BOOKMARKS	true
 

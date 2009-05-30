@@ -19,7 +19,7 @@
 #define DIRHISTORYBUTTON_H
 
 #include <qwidget.h>
-#include <qtoolbutton.h>
+#include <QtGui/QToolButton>
 #include <kurl.h>
 
 class QMenu;

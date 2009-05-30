@@ -53,12 +53,12 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kwindowsystem.h>
 #include <kdeversion.h> 
 // QT includes
-#include <qpixmap.h>
-#include <qstringlist.h>
-#include <qdir.h>
-#include <qprinter.h>
+#include <QtGui/QPixmap>
+#include <QtCore/QStringList>
+#include <QtCore/QDir>
+#include <QtGui/QPrinter>
 #include <qwidget.h>
-#include <qdatetime.h>
+#include <QtCore/QDateTime>
 #include <QActionGroup>
 #include <QMoveEvent>
 #include <QResizeEvent>

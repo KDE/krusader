@@ -39,7 +39,7 @@ A
 #include "krviewitem.h"
 #include <k3iconview.h>
 #include <q3header.h>
-#include <qtimer.h>
+#include <QtCore/QTimer>
 #include <QDragMoveEvent>
 #include <QDropEvent>
 #include <QDragLeaveEvent>

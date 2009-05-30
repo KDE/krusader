@@ -31,9 +31,9 @@
 #ifndef KRRESULTTABLEDIALOG_H
 #define KRRESULTTABLEDIALOG_H
 
-#include <qlabel.h>
-#include <qlayout.h>
-#include <qstringlist.h>
+#include <QtGui/QLabel>
+#include <QtGui/QLayout>
+#include <QtCore/QStringList>
 #include <QVBoxLayout>
 
 #include <kdialog.h>

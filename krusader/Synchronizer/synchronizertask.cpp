@@ -32,8 +32,8 @@
 #include "synchronizertask.h"
 #include "synchronizerfileitem.h"
 #include "synchronizerdirlist.h"
-#include <qtimer.h>
-#include <qfile.h>
+#include <QtCore/QTimer>
+#include <QtCore/QFile>
 #include <klocale.h>
 #include <kmessagebox.h>
 #include "../VFS/vfs.h"

@@ -1,13 +1,13 @@
 #include <kmessagebox.h>
 #include <klocale.h>
-#include <qpushbutton.h>
+#include <QtGui/QPushButton>
 #include <QGridLayout>
-#include <qlist.h>
+#include <QtCore/QList>
 #include <kiconloader.h>
 #include <ktreewidgetsearchline.h>
 #include <qheaderview.h>
-#include <qlayout.h>
-#include <qlabel.h>
+#include <QtGui/QLayout>
+#include <QtGui/QLabel>
 
 #include "../krusader.h"
 #include "../krslots.h"

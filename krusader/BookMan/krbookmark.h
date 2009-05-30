@@ -2,7 +2,7 @@
 #define KRBOOKMARK_H
 
 #include <kaction.h>
-#include <qlist.h>
+#include <QtCore/QList>
 #include <kurl.h>
 
 class KActionCollection;

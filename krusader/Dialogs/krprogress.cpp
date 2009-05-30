@@ -16,9 +16,9 @@
    Boston, MA 02111-1307, USA.
 */
 
-#include <qtimer.h>
-#include <qlayout.h>
-#include <qdatetime.h>
+#include <QtCore/QTimer>
+#include <QtGui/QLayout>
+#include <QtCore/QDateTime>
 #include <QHBoxLayout>
 #include <QCloseEvent>
 #include <QGridLayout>

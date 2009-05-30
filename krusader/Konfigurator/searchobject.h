@@ -31,8 +31,8 @@
 #ifndef SEARCHOBJECT_H
 #define SEARCHOBJECT_H
 
-#include <qstring.h>
-#include <qlist.h>
+#include <QtCore/QString>
+#include <QtCore/QList>
 #include "../krservices.h"
 
 /**

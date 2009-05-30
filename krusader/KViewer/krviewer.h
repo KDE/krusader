@@ -26,7 +26,7 @@
 #include <kparts/mainwindow.h>
 #include <kparts/partmanager.h>
 #include <kparts/browserextension.h>
-#include <qpointer.h>
+#include <QtCore/QPointer>
 #include <ktabwidget.h>
 #include <ktemporaryfile.h>
 #include "../krusader.h"

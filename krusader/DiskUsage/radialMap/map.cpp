@@ -4,11 +4,11 @@
 #include <kcursor.h>         //make()
 #include <kglobalsettings.h> //kdeColours
 #include <kiconeffect.h>     //desaturate()
-#include <qapplication.h>    //make()
-#include <qimage.h>          //make() & paint()
+#include <QApplication>    //make()
+#include <QImage>          //make() & paint()
 #include <qfont.h>           //ctor
-#include <qfontmetrics.h>    //ctor
-#include <qpainter.h>
+#include <QFontMetrics>    //ctor
+#include <QPainter>
 #include <QPolygon>
 
 #include "builder.h"

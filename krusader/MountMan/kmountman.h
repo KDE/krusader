@@ -31,8 +31,8 @@ A
 #define KMOUNTMAN_H
 
 // QT includes
-#include <qobject.h>
-#include <qstring.h>
+#include <QtCore/QObject>
+#include <QtCore/QString>
 #include <qaction.h>
 
 // KDE includes

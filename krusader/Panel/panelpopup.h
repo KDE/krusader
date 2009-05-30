@@ -3,11 +3,11 @@
 
 #include <qwidget.h>
 #include <qstackedwidget.h>
-#include <qpixmap.h>
+#include <QtGui/QPixmap>
 #include <QDropEvent>
 #include <QLabel>
 #include <kfileitem.h>
-#include <qpointer.h>
+#include <QtCore/QPointer>
 #include <kio/previewjob.h>
 #include <kurl.h>
 #include <qtreeview.h>

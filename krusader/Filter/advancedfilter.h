@@ -35,11 +35,11 @@
 #include "../VFS/krquery.h"
 
 #include <qwidget.h>
-#include <qcheckbox.h>
+#include <QtGui/QCheckBox>
 #include <kcombobox.h>
 #include <klineedit.h>
-#include <qradiobutton.h>
-#include <qtoolbutton.h>
+#include <QtGui/QRadioButton>
+#include <QtGui/QToolButton>
 
 class AdvancedFilter : public QWidget, public FilterBase
 {

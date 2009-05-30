@@ -32,7 +32,7 @@
 #ifndef REMOTEENCODING_MENU_H
 #define REMOTEENCODING_MENU_H
 
-#include <qstringlist.h>
+#include <QtCore/QStringList>
 #include <kurl.h>
 #include <klibloader.h>
 #include <kaction.h>

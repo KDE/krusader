@@ -16,7 +16,7 @@
 #include <kaction.h>
 #include <kprocess.h>
 #include <kdialog.h>
-#include <qbytearray.h>
+#include <QtCore/QByteArray>
 #include "kractionbase.h"
 
 class UserActionProperties;

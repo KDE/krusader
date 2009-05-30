@@ -18,8 +18,8 @@
 #ifndef KRSERVICES_H
 #define KRSERVICES_H
 
-#include <qstring.h>
-#include <qstringlist.h>
+#include <QtCore/QString>
+#include <QtCore/QStringList>
 #include <qmap.h>
 #include <kurl.h>
 

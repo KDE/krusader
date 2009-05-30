@@ -32,13 +32,13 @@
 #include "../krusader.h"
 #include "../defaults.h"
 #include "../Dialogs/krdialogs.h"
-#include <qtabwidget.h>
+#include <QtGui/QTabWidget>
 #include <QFrame>
 #include <QGridLayout>
 #include <QLabel>
 #include <QVBoxLayout>
 #include <klocale.h>
-#include <qvalidator.h>
+#include <QtGui/QValidator>
 #include <kmessagebox.h>
 #include <kfiledialog.h>
 #include <kglobal.h>

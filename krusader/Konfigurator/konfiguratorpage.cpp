@@ -29,7 +29,7 @@
  ***************************************************************************/
 
 #include "konfiguratorpage.h"
-#include <qlayout.h>
+#include <QtGui/QLayout>
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QScrollArea>

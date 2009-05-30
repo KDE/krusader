@@ -38,14 +38,14 @@
 #include <kdatepicker.h>
 #include <kdialog.h>
 // QT includes
-#include <qlineedit.h>
-#include <qlayout.h>
-#include <qlabel.h>
-#include <qpushbutton.h>
-#include <qdatetime.h>
-#include <qpixmap.h>
-#include <qcheckbox.h>
-#include <qcombobox.h>
+#include <QtGui/QLineEdit>
+#include <QtGui/QLayout>
+#include <QtGui/QLabel>
+#include <QtGui/QPushButton>
+#include <QtCore/QDateTime>
+#include <QtGui/QPixmap>
+#include <QtGui/QCheckBox>
+#include <QtGui/QComboBox>
 
 /** \class KChooseDir
  * Used for asking the user for a folder.

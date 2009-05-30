@@ -32,7 +32,7 @@
 #define NORMAL_VFS
 
 // QT includes
-#include <qstring.h>
+#include <QtCore/QString>
 #include <QTimer>
 // KDE includes
 #include <kfileitem.h>

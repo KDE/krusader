@@ -40,8 +40,8 @@ A
 #include <ksqueezedtextlabel.h>
 #include <klocale.h>
 #include <qwidget.h>
-#include <qtimer.h>
-#include <qdatetime.h>
+#include <QtCore/QTimer>
+#include <QtCore/QDateTime>
 #include <QDragMoveEvent>
 #include <QDropEvent>
 #include <QWheelEvent>

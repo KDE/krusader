@@ -30,8 +30,8 @@
 #define VFILE_H
 
 // QT includes
-#include <qstring.h>
-#include <qobject.h>
+#include <QtCore/QString>
+#include <QtCore/QObject>
 // System includes
 #include <sys/types.h>
 // KDE includes

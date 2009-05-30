@@ -32,7 +32,7 @@
 #include "krusader.h"
 #include "krusaderview.h"
 #include "defaults.h"
-#include <qstring.h>
+#include <QtCore/QString>
 #include <QPixmap>
 #include <QStyle>
 

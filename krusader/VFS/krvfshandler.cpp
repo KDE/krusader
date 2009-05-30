@@ -21,7 +21,7 @@
 #include "virt_vfs.h"
 #include "../krservices.h"
 
-#include <qdir.h>
+#include <QtCore/QDir>
 
 #include <kdebug.h>
 

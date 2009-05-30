@@ -30,8 +30,8 @@
 
 #include "packjob.h"
 #include "krarchandler.h"
-#include <qtimer.h>
-#include <qdir.h>
+#include <QtCore/QTimer>
+#include <QtCore/QDir>
 #include <klocale.h>
 #include <kmimetype.h>
 

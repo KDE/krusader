@@ -32,7 +32,7 @@
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kio/passworddialog.h> 
-#include <qfile.h>
+#include <QtCore/QFile>
 #include <kstandarddirs.h>
 #include <ktar.h>
 #include <kio/global.h>

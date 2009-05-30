@@ -34,7 +34,7 @@
 #include <kmessagebox.h>
 #include <kfileitem.h>
 #include <kio/job.h>
-#include <qfileinfo.h>
+#include <QtCore/QFileInfo>
 
 Combiner::Combiner( QWidget* parent,  KUrl baseURLIn, KUrl destinationURLIn, bool unixNamingIn ) :
   QProgressDialog( parent, 0 ), baseURL( baseURLIn ), destinationURL( destinationURLIn ), 

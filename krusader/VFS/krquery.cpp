@@ -37,16 +37,16 @@
 #include "krarchandler.h"
 #include "krpermhandler.h"
 
-#include <qtextcodec.h>
-#include <qregexp.h>
+#include <QtCore/QTextCodec>
+#include <QtCore/QRegExp>
 #include <kde_file.h>
 #include <klocale.h>
 #include <kmimetype.h>
-#include <qfile.h>
+#include <QtCore/QFile>
 #include <kurlcompletion.h>
 #include <kio/job.h>
 #include <kfileitem.h>
-#include <qtextcodec.h>
+#include <QtCore/QTextCodec>
 
 #define  STATUS_SEND_DELAY     250
 #define  MAX_LINE_LEN          1000

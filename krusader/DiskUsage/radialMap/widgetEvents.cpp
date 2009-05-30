@@ -16,9 +16,9 @@
 #include <kmenu.h>  //::mousePressEvent()
 #include <krun.h>        //::mousePressEvent()
 #include <math.h>        //::segmentAt()
-#include <qapplication.h>//QApplication::setOverrideCursor()
-#include <qpainter.h>
-#include <qtimer.h>      //::resizeEvent()
+#include <QApplication>//QApplication::setOverrideCursor()
+#include <QPainter>
+#include <QTimer>      //::resizeEvent()
 #include <QPaintEvent>
 #include <QResizeEvent>
 #include <QMouseEvent>

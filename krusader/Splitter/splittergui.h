@@ -31,15 +31,15 @@
 #ifndef __SPLITTERGUI_H__
 #define __SPLITTERGUI_H__
 
-#include <qdialog.h>
-#include <qstring.h>
+#include <QtGui/QDialog>
+#include <QtCore/QString>
 #include <QDoubleSpinBox>
-#include <qvalidator.h>
-#include <qcombobox.h>
+#include <QtGui/QValidator>
+#include <QtGui/QComboBox>
 #include <QKeyEvent>
 #include <kurlrequester.h>
 #include <kio/global.h>
-#include <qlineedit.h>
+#include <QtGui/QLineEdit>
 
 #include "../VFS/vfs.h"
 

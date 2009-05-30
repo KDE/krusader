@@ -21,7 +21,7 @@
 #ifndef __kr_progress_h__
 #define __kr_progress_h__
 
-#include <qlabel.h>
+#include <QtGui/QLabel>
 #include <QCloseEvent>
 
 #include <kio/global.h>
@@ -31,7 +31,7 @@
 
 #include <kio/progressbase.h>
 
-#include <qobject.h>
+#include <QtCore/QObject>
 
 class KrProgress : public KIO::ProgressBase {
   Q_OBJECT

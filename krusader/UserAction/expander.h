@@ -14,11 +14,11 @@
 #define EXPANDER_H
 
 // class QString;
-#include <qstring.h>
-#include <qstringlist.h>
-#include <qlist.h>
+#include <QtCore/QString>
+#include <QtCore/QStringList>
+#include <QtCore/QList>
 #include "tstring.h"
-// #include <qstringlist.h>
+// #include <QtCore/QStringList>
 class ListPanel;
 class Expander;
 class Error;

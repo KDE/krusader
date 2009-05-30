@@ -29,13 +29,13 @@
  ***************************************************************************/
 
 #include "percentalsplitter.h"
-#include <qpainter.h>
-#include <qapplication.h>
+#include <QtGui/QPainter>
+#include <QtGui/QApplication>
 #include <QLabel>
 #include <QList>
 #include <QFrame>
-#include <qtooltip.h>
-#include <qcursor.h>
+#include <QtGui/QToolTip>
+#include <QtGui/QCursor>
 
 PercentalSplitter::PercentalSplitter( QWidget * parent ) : QSplitter( parent ), label( 0 ), opaqueOldPos( -1 ) {
   connect( this, SIGNAL( splitterMoved ( int, int ) ), SLOT( slotSplitterMoved ( int, int ) ) );

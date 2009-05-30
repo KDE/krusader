@@ -27,8 +27,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#include <qdir.h>
-#include <qfile.h>
+#include <QtCore/QDir>
+#include <QtCore/QFile>
 #include <kdebug.h>
 #include <kurl.h>
 #include <kmimetype.h>

@@ -34,10 +34,10 @@
 #include "../Panel/listpanel.h"
 #include "../kicons.h"
 #include "../Filter/filtertabs.h"
-#include <qcombobox.h>
-#include <qlabel.h>
-#include <qlineedit.h>
-#include <qcheckbox.h>
+#include <QtGui/QComboBox>
+#include <QtGui/QLabel>
+#include <QtGui/QLineEdit>
+#include <QtGui/QCheckBox>
 #include "../GUI/krlistwidget.h"
 #include <qspinbox.h>
 #include <qnamespace.h>
@@ -48,7 +48,7 @@
 #include <khistorycombobox.h>
 #include <kiconloader.h>
 #include <kcursor.h>
-#include <qbitmap.h>
+#include <QtGui/QBitmap>
 #include "../resources.h"
 
 ///////////////////// initiation of the static members ////////////////////////

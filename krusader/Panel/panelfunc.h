@@ -34,8 +34,8 @@
 #define PANELFUNC_H
 #include "listpanel.h"
 #include "krviewitem.h"
-#include <qobject.h>
-#include <qtimer.h>
+#include <QtCore/QObject>
+#include <QtCore/QTimer>
 
 class ListPanelFunc : public QObject{
 friend class ListPanel;

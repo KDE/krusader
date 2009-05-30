@@ -19,8 +19,8 @@
 #include "dirhistoryqueue.h"
 
 #include "../VFS/vfs.h"
-#include <qmenu.h>
-#include <qdir.h>
+#include <QtGui/QMenu>
+#include <QtCore/QDir>
 #include <QPixmap>
 #include <klocale.h>
 #include <kiconloader.h>

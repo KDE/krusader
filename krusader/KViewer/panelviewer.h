@@ -2,12 +2,12 @@
 #define _SUPERVIEW_H
 
 #include <kurl.h>
-#include <qstring.h>
+#include <QtCore/QString>
 #include <qstackedwidget.h>
 #include <kparts/part.h>
 #include <kio/job.h>
-#include <qhash.h>
-#include <qlabel.h>
+#include <QtCore/QHash>
+#include <QtGui/QLabel>
 
 #include "krviewer.h"
 

@@ -33,8 +33,8 @@
 #define KFNKEYS_H
 
 #include <qwidget.h>
-#include <qlayout.h>
-#include <qpushbutton.h>
+#include <QtGui/QLayout>
+#include <QtGui/QPushButton>
 #include <QGridLayout>
 
 // Function Keys widget

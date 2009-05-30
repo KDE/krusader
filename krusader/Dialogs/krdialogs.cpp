@@ -32,10 +32,10 @@
 // Krusader includes
 #include "krdialogs.h"
 // QT includes
-#include <qmessagebox.h>
+#include <QtGui/QMessageBox>
 #include <qwidget.h>
-#include <qapplication.h>
-#include <qfontmetrics.h>
+#include <QtGui/QApplication>
+#include <QtGui/QFontMetrics>
 #include <QFrame>
 #include <QLabel>
 #include <QVBoxLayout>
@@ -48,14 +48,14 @@
 #include <kurlrequester.h>
 #include <kstandarddirs.h>
 #include <kdeversion.h>
-#include <qcheckbox.h>
+#include <QtGui/QCheckBox>
 #include <krecentdocument.h>
 // Krusader includes
 #include "../krusader.h"
 #include "../resources.h"
 #include "../VFS/vfs.h"
 #include "../defaults.h"
-#include <qdir.h>
+#include <QtCore/QDir>
 
 KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd) {
 	KUrlRequesterDialog *dlg = new KUrlRequesterDialog( vfs::pathOrUrl( url, KUrl::AddTrailingSlash ),text,krApp);

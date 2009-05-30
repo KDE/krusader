@@ -32,7 +32,7 @@
 #define FILTERBASE_H
 
 #include "../VFS/krquery.h"
-#include <qstring.h>
+#include <QtCore/QString>
 
 class FilterTabs;
 

@@ -31,7 +31,7 @@
 #include "kgdependencies.h"
 #include "../krservices.h"
 #include "../krusader.h"
-#include <qtabwidget.h>
+#include <QtGui/QTabWidget>
 #include <QGridLayout>
 #include <QScrollArea>
 #include <klocale.h>

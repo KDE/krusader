@@ -47,12 +47,12 @@
 #include <QKeyEvent>
 #include <QCloseEvent>
 #include <ksqueezedtextlabel.h>
-#include <qstringlist.h>
+#include <QtCore/QStringList>
 #include <sys/types.h>
 #include <time.h>
-#include <qstring.h>
-#include <qtabwidget.h>
-#include <qstringlist.h>
+#include <QtCore/QString>
+#include <QtGui/QTabWidget>
+#include <QtCore/QStringList>
 #include <kglobal.h>
 #include <klocale.h>
 

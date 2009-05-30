@@ -8,8 +8,8 @@
 #include <kglobal.h>
 #include <kglobalsettings.h>
 #include <klocale.h>
-#include <qpainter.h>
-#include <qtooltip.h>        //for its palette
+#include <QPainter>
+#include <QToolTip>        //for its palette
 #include <QEvent>
 
 

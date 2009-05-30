@@ -38,19 +38,19 @@ A
 #include "../defaults.h"
 #include "../VFS/vfs.h"
 #include <klocale.h>
-#include <qpixmap.h>
+#include <QtGui/QPixmap>
 #include <QGridLayout>
 #include <QList>
 #include <kmenu.h>
-#include <qbitmap.h>
+#include <QtGui/QBitmap>
 #include <kmessagebox.h>
-#include <qlayout.h>
-#include <qgroupbox.h>
+#include <QtGui/QLayout>
+#include <QtGui/QGroupBox>
 #include <kdiskfreespace.h>
-#include <qcursor.h>
+#include <QtGui/QCursor>
 #include <kdebug.h>
 #include <kguiitem.h>
-#include <qfileinfo.h>
+#include <QtCore/QFileInfo>
 #include <sys/param.h>
 #include <qheaderview.h>
 

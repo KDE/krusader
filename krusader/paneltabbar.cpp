@@ -22,8 +22,8 @@
 #include <klocale.h>
 #include <kmenu.h>
 #include <kshortcut.h>
-#include <qevent.h>
-#include <qfontmetrics.h>
+#include <QtCore/QEvent>
+#include <QtGui/QFontMetrics>
 #include <QResizeEvent>
 #include <QMouseEvent>
 #include <kdebug.h>

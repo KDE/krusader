@@ -30,17 +30,17 @@
 #include "krmaskchoice.h"
 #include "../GUI/krlistwidget.h"
 
-#include <qcombobox.h>
-#include <qgroupbox.h>
-#include <qlabel.h>
-#include <qpushbutton.h>
-#include <qlayout.h>
-#include <qvariant.h>
-#include <qmessagebox.h>
+#include <QtGui/QComboBox>
+#include <QtGui/QGroupBox>
+#include <QtGui/QLabel>
+#include <QtGui/QPushButton>
+#include <QtGui/QLayout>
+#include <QtCore/QVariant>
+#include <QtGui/QMessageBox>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <klocale.h>
-#include <qlineedit.h>
+#include <QtGui/QLineEdit>
 
 /*
  *  Constructs a KRMaskChoice which is a child of 'parent', with the 

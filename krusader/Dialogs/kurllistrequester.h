@@ -33,7 +33,7 @@
 
 #include <qwidget.h>
 #include "../GUI/krlistwidget.h"
-#include <qtoolbutton.h>
+#include <QtGui/QToolButton>
 #include <QKeyEvent>
 #include <klineedit.h>
 #include <kurl.h>

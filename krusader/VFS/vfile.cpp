@@ -34,7 +34,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 // Qt includes
-#include <qdatetime.h>
+#include <QtCore/QDateTime>
 // KDE includes
 #include <kmimetype.h>
 #include <kdeversion.h>

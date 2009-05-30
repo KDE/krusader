@@ -1,8 +1,8 @@
 #ifndef KICONS_H
 #define KICONS_H
 
-#include <qicon.h>
-#include <qpixmap.h>
+#include <QtGui/QIcon>
+#include <QtGui/QPixmap>
 #include <kiconloader.h>
 #include <kicontheme.h>
 

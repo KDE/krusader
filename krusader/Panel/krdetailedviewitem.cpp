@@ -39,12 +39,12 @@
 #include "../VFS/krpermhandler.h"
 #include <sys/types.h>
 #include <time.h>
-#include <qpainter.h>
+#include <QtGui/QPainter>
 #include <QPixmap>
 #include <pwd.h>
 #include <grp.h>
 #include <stdlib.h>
-#include <qpalette.h>
+#include <QtGui/QPalette>
 #include <kdebug.h>
 #include <kmimetype.h>
 

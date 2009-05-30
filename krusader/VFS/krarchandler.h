@@ -30,8 +30,8 @@
 #ifndef KRARCHANDLER_H
 #define KRARCHANDLER_H
 
-#include <qstringlist.h>
-#include <qobject.h>
+#include <QtCore/QStringList>
+#include <QtCore/QObject>
 #include <kprocess.h>
 #include <kurl.h>
 #include <kwallet.h>

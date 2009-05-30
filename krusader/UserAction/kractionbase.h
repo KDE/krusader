@@ -12,7 +12,7 @@
 #ifndef KRACTIONBASE_H
 #define KRACTIONBASE_H
 
-#include <qstring.h>
+#include <QtCore/QString>
 #include "expander.h"
 class KrActionProc;
 

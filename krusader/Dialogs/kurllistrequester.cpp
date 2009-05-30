@@ -30,9 +30,9 @@
 
 #include "kurllistrequester.h"
 #include "../VFS/vfs.h"
-#include <qpixmap.h>
-#include <qcursor.h>
-#include <qlayout.h>
+#include <QtGui/QPixmap>
+#include <QtGui/QCursor>
+#include <QtGui/QLayout>
 #include <QGridLayout>
 #include <QKeyEvent>
 #include <kfiledialog.h>

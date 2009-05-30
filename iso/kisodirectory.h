@@ -18,7 +18,7 @@
 #ifndef KISODIRECTORY_H
 #define KISODIRECTORY_H
 
-#include <qstring.h>
+#include <QtCore/QString>
 #include <karchive.h>
 
 /**

@@ -13,7 +13,7 @@
 #ifndef USERACTION_H
 #define USERACTION_H
 
-#include <qlist.h>
+#include <QtCore/QList>
 
 class QDomDocument;
 class QDomElement;

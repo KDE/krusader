@@ -54,7 +54,7 @@
 #include "GUI/profilemanager.h"
 #include "Dialogs/percentalsplitter.h"
 #include "krservices.h"
-#include <qclipboard.h>
+#include <QtGui/QClipboard>
 
 KrusaderView::KrusaderView( QWidget *parent ) : QWidget( parent ), activePanel(0) {}
 

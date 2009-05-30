@@ -36,15 +36,15 @@
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <klocale.h>
-#include <qpen.h>
-#include <qpainter.h>
-#include <qfontmetrics.h>
-#include <qtimer.h>
-#include <qapplication.h>
+#include <QtGui/QPen>
+#include <QtGui/QPainter>
+#include <QtGui/QFontMetrics>
+#include <QtCore/QTimer>
+#include <QtGui/QApplication>
 #include <qheaderview.h>
 #include <kmenu.h>
 #include <QItemDelegate>
-#include <qtooltip.h>
+#include <QtGui/QToolTip>
 
 class DULinesItemDelegate : public QItemDelegate
 {

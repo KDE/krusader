@@ -36,8 +36,8 @@
 #include <kmessagebox.h>
 #include <kfileitem.h>
 #include <kde_file.h>
-#include <qapplication.h>
-#include <qdir.h>
+#include <QtGui/QApplication>
+#include <QtCore/QDir>
 #include <kdeversion.h>
 #include <kio/jobuidelegate.h>
 #include <string.h>

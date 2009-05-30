@@ -31,7 +31,7 @@
 #ifndef FILTERTABS_H
 #define FILTERTABS_H
 
-#include <qtabwidget.h>
+#include <QtGui/QTabWidget>
 #include <QList>
 
 #include "filterbase.h"

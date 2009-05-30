@@ -28,8 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qlabel.h>
-#include <qfontmetrics.h>
+#include <QtGui/QLabel>
+#include <QtGui/QFontMetrics>
 #include <QGridLayout>
 #include <QFrame>
 #include <QPixmap>

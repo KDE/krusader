@@ -3,9 +3,9 @@
 
 #include <kstringhandler.h>
 #include <qfont.h>
-#include <qfontmetrics.h>
-#include <qpainter.h>
-#include <qlist.h>
+#include <QFontMetrics>
+#include <QPainter>
+#include <QList>
 
 #include "Config.h"
 #include "fileTree.h"

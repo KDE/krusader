@@ -18,7 +18,7 @@
 #ifndef DIRHISTORYQUEUE_H
 #define DIRHISTORYQUEUE_H
 
-#include <qobject.h>
+#include <QtCore/QObject>
 #include <kurl.h>
 
 class ListPanel;

@@ -34,7 +34,7 @@
 #include "konfiguratorpage.h"
 #include "../GUI/krtreewidget.h"
 #include "../GUI/krlistwidget.h"
-#include <qpushbutton.h>
+#include <QtGui/QPushButton>
  
 class KgProtocols : public KonfiguratorPage
 {

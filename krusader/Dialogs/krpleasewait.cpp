@@ -29,10 +29,10 @@
  ***************************************************************************/
 
 #include "krpleasewait.h"
-#include <qtimer.h>
-#include <qdatetime.h>
-#include <qapplication.h>
-#include <qpushbutton.h>
+#include <QtCore/QTimer>
+#include <QtCore/QDateTime>
+#include <QtGui/QApplication>
+#include <QtGui/QPushButton>
 #include <QLabel>
 #include <QCloseEvent>
 #include <QProgressBar>

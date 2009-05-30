@@ -29,7 +29,7 @@
  ***************************************************************************/
 
 // Krusader includes
-#include <qfontmetrics.h>
+#include <QtGui/QFontMetrics>
 #include "krusaderstatus.h"
 #include "../resources.h"
 

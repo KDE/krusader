@@ -33,7 +33,7 @@
 #ifndef KRSLOTS_H
 #define KRSLOTS_H
 
-#include <qobject.h>
+#include <QtCore/QObject>
 #include <kprocess.h>
 #include <kio/netaccess.h>
 // the 2 following #includes should go away with the ugly stubs on the bottom

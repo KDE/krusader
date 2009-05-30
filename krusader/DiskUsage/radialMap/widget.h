@@ -5,7 +5,7 @@
 #define WIDGET_H
 
 #include <kurl.h>
-#include <qtimer.h>
+#include <QTimer>
 #include <QResizeEvent>
 #include <QMouseEvent>
 #include <QPaintEvent>

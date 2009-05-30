@@ -28,9 +28,9 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qdir.h>
+#include <QtCore/QDir>
 #include <qpoint.h>
-#include <qstringlist.h>
+#include <QtCore/QStringList>
 #include <qpixmapcache.h>
 #include <QKeyEvent>
 #include <QList>

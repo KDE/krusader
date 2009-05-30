@@ -32,15 +32,15 @@
 #define MEDIABUTTON_H
 
 #include <qwidget.h>
-#include <qtoolbutton.h>
+#include <QtGui/QToolButton>
 #include <QEvent>
 #include <QMenu>
 #include <kurl.h>
-#include <qlist.h>
+#include <QtCore/QList>
 #include <qmap.h>
 #include <solid/device.h>
 #include <solid/solidnamespace.h>
-#include <qtimer.h>
+#include <QtCore/QTimer>
 
 /**
   *@author Csaba Karai

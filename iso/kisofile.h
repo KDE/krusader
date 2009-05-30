@@ -18,7 +18,7 @@
 #ifndef KISOFILE_H
 #define KISOFILE_H
 
-#include <qstring.h>
+#include <QtCore/QString>
 #include <karchive.h>
 
 /**

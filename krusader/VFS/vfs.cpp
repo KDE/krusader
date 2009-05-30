@@ -33,13 +33,13 @@
 
 #include <unistd.h>
 #include <time.h>
-#include <qeventloop.h>
+#include <QtCore/QEventLoop>
 #include <QList>
 #include <kapplication.h>
 #include <kio/directorysizejob.h>
 #include <kio/jobuidelegate.h>
 #include <kde_file.h>
-#include <qdir.h>
+#include <QtCore/QDir>
 #include "vfs.h"
 #include "../krusader.h"
 #include "../defaults.h"

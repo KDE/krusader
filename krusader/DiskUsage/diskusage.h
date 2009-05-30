@@ -34,9 +34,9 @@
 #include "../VFS/vfs.h"
 #include "filelightParts/fileTree.h"
 
-#include <qdialog.h>
-#include <qlabel.h>
-#include <qhash.h>
+#include <QtGui/QDialog>
+#include <QtGui/QLabel>
+#include <QtCore/QHash>
 #include <qstack.h>
 #include <QResizeEvent>
 #include <QPixmap>
@@ -46,7 +46,7 @@
 #include <ksqueezedtextlabel.h>
 #include <qstackedwidget.h>
 #include <qscrollarea.h>
-#include <qtimer.h>
+#include <QtCore/QTimer>
 
 #define VIEW_LINES      0
 #define VIEW_DETAILED   1

@@ -18,7 +18,7 @@
 #ifndef KRVFSHANDLER_H
 #define KRVFSHANDLER_H
 
-#include <qobject.h>
+#include <QtCore/QObject>
 
 #include <kurl.h>
 

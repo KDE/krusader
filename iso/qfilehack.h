@@ -18,8 +18,8 @@
 #ifndef QFILEHACK_H
 #define QFILEHACK_H
 
-#include <qfile.h>
-#include <qstring.h>
+#include <QtCore/QFile>
+#include <QtCore/QString>
 
 /**
   *@author Szombathelyi Gy�rgy

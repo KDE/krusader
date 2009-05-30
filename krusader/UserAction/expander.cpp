@@ -34,9 +34,9 @@
 #include <kstandarddirs.h>
 #include <kmessagebox.h>
 #include <ktemporaryfile.h>
-#include <qstringlist.h>
-#include <qclipboard.h>
-#include <qtextstream.h>
+#include <QtCore/QStringList>
+#include <QtGui/QClipboard>
+#include <QtCore/QTextStream>
 #include <QList>
 
 #include <functional>

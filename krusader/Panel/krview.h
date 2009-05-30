@@ -30,9 +30,9 @@
 #ifndef KRVIEW_H
 #define KRVIEW_H
 
-#include <qpixmap.h>
-#include <qvariant.h>
-#include <qhash.h>
+#include <QtGui/QPixmap>
+#include <QtCore/QVariant>
+#include <QtCore/QHash>
 #include <QDropEvent>
 #include <QList>
 #include <QModelIndex>

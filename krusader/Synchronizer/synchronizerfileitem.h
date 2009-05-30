@@ -31,7 +31,7 @@
 #ifndef __SYNCHRONIZER_FILE_ITEM_H__
 #define __SYNCHRONIZER_FILE_ITEM_H__
 
-#include <qstring.h>
+#include <QtCore/QString>
 #include <kio/global.h>
 
 typedef enum 

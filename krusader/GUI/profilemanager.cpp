@@ -33,7 +33,7 @@
 
 #include <klocale.h>
 #include <kmenu.h>
-#include <qcursor.h>
+#include <QtGui/QCursor>
 #include <kinputdialog.h>
 #include <kiconloader.h>
 

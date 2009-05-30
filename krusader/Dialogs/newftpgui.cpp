@@ -8,14 +8,14 @@
 ****************************************************************************/
 #include "newftpgui.h"
 
-#include <qlabel.h>
-#include <qlineedit.h>
-#include <qpushbutton.h>
+#include <QtGui/QLabel>
+#include <QtGui/QLineEdit>
+#include <QtGui/QPushButton>
 #include <qspinbox.h>
-#include <qlayout.h>
-#include <qvariant.h>
-#include <qimage.h>
-#include <qpixmap.h>
+#include <QtGui/QLayout>
+#include <QtCore/QVariant>
+#include <QtGui/QImage>
+#include <QtGui/QPixmap>
 #include <QEvent>
 #include <QHBoxLayout>
 #include <QVBoxLayout>

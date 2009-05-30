@@ -37,7 +37,7 @@
 #include <ksplashscreen.h>
 #include <unistd.h>
 #include <signal.h>
-#include <qeventloop.h>
+#include <QtCore/QEventLoop>
 #include <QtDBus/QtDBus>
 #include <QPixmap>
 #include <QAbstractEventDispatcher>

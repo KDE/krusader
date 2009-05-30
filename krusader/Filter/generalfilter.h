@@ -37,10 +37,10 @@
 #include "../GUI/profilemanager.h"
 
 #include <qwidget.h>
-#include <qlayout.h>
-#include <qgroupbox.h>
-#include <qcheckbox.h>
-#include <qlabel.h>
+#include <QtGui/QLayout>
+#include <QtGui/QGroupBox>
+#include <QtGui/QCheckBox>
+#include <QtGui/QLabel>
 #include "../GUI/krlistwidget.h"
 #include <QHBoxLayout>
 #include <kcombobox.h>

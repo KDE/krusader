@@ -37,10 +37,10 @@
 #include <kurl.h>
 #include <kmessagebox.h>
 #include <klocale.h>
-#include <qapplication.h>
-#include <qregexp.h>
-#include <qdir.h>
-#include <qtimer.h>
+#include <QtGui/QApplication>
+#include <QtCore/QRegExp>
+#include <QtCore/QDir>
+#include <QtCore/QTimer>
 #include <QTime>
 #include <QFrame>
 #include <QVBoxLayout>
@@ -50,12 +50,12 @@
 #include <kio/renamedlg.h>
 #include <kio/skipdialog.h>
 #include <unistd.h>
-#include <qeventloop.h>
-#include <qpushbutton.h>
-#include <qdatetime.h>
+#include <QtCore/QEventLoop>
+#include <QtGui/QPushButton>
+#include <QtCore/QDateTime>
 #include <kprocess.h>
 #include <kdialog.h>
-#include <qlayout.h>
+#include <QtGui/QLayout>
 #include <qprogressbar.h>
 #include <kurlcompletion.h>
 
@@ -64,7 +64,7 @@
 #include <utime.h>
 #include <pwd.h>
 #include <grp.h>
-#include <qlabel.h>
+#include <QtGui/QLabel>
 
 
 

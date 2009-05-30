@@ -37,9 +37,9 @@
 #include "krselectionmode.h"
 #include <qnamespace.h>
 #include <qpixmapcache.h>
-#include <qdir.h>
-#include <qbitmap.h>
-#include <qpainter.h>
+#include <QtCore/QDir>
+#include <QtGui/QBitmap>
+#include <QtGui/QPainter>
 #include <QPixmap>
 #include <kmimetype.h>
 #include <klocale.h>

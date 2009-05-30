@@ -33,10 +33,10 @@
 #ifndef KRSEARCHMOD_H
 #define KRSEARCHMOD_H
 
-#include <qobject.h>
+#include <QtCore/QObject>
 #include <qstack.h>
-#include <qstringlist.h>
-#include <qdatetime.h>
+#include <QtCore/QStringList>
+#include <QtCore/QDateTime>
 #include <time.h>
 #include <kio/global.h>
 #include <kurl.h>

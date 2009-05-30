@@ -32,7 +32,7 @@
 #include <iostream>
 #include <QGridLayout>
 #include <QLabel>
-#include <qlist.h>
+#include <QtCore/QList>
 #include <kcolorscheme.h>
 using namespace std;
 

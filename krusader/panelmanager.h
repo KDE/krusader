@@ -2,7 +2,7 @@
 #define _PANEL_MANAGER_H
 
 #include <qwidget.h>
-#include <qlayout.h>
+#include <QtGui/QLayout>
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include "paneltabbar.h"

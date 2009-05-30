@@ -7,7 +7,7 @@
 #include <kconfig.h>
 #include "krcolorcache.h"
 
-#include <qpainter.h>
+#include <QtGui/QPainter>
 #include <q3pointarray.h>
 #include <QPixmap>
 

@@ -23,14 +23,14 @@
 #include "../BookMan/krbookmarkbutton.h"
 #include "../GUI/profilemanager.h"
 
-#include <qlayout.h>
-#include <qlabel.h>
-#include <qtoolbutton.h>
+#include <QtGui/QLayout>
+#include <QtGui/QLabel>
+#include <QtGui/QToolButton>
 #include <QHBoxLayout>
 #include <QFrame>
 #include <QVBoxLayout>
 #include <klineedit.h>
-#include <qcheckbox.h>
+#include <QtGui/QCheckBox>
 #include <kiconloader.h>
 #include <kcombobox.h>
 #include <kurlcompletion.h> 

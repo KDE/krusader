@@ -23,7 +23,7 @@
 #ifndef KCMDMODEBUTTON_H
 #define KCMDMODEBUTTON_H
 
-#include <qtoolbutton.h>
+#include <QtGui/QToolButton>
 
 class KActionMenu;
 

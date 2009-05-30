@@ -31,11 +31,11 @@
 #ifndef KRRESULTTABLE_H
 #define KRRESULTTABLE_H
 
-#include <qstring.h>
-#include <qlabel.h>
-#include <qlayout.h>
-#include <qstringlist.h>
-#include <qlist.h>
+#include <QtCore/QString>
+#include <QtGui/QLabel>
+#include <QtGui/QLayout>
+#include <QtCore/QStringList>
+#include <QtCore/QList>
 #include <QGridLayout>
 
 #include <kiconloader.h>

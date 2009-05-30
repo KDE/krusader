@@ -1,8 +1,8 @@
 #include <qstackedwidget.h>
-#include <qtoolbutton.h>
+#include <QtGui/QToolButton>
 #include <QGridLayout>
 #include <klocale.h>
-#include <qimage.h>
+#include <QtGui/QImage>
 #include <kdebug.h>
 #include <kconfig.h>
 #include <kiconloader.h>

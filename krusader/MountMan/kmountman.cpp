@@ -55,7 +55,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #define FSTAB "/etc/fstab"
 #endif
 
-#include <qdir.h>
+#include <QtCore/QDir>
 #include <solid/block.h>
 #include <solid/opticaldisc.h>
 #include <solid/opticaldrive.h>

@@ -37,13 +37,13 @@
 #include "../VFS/krarchandler.h"
 
 #include <klocale.h>
-#include <qdir.h>
+#include <QtCore/QDir>
 #include <sys/types.h>
 #include <dirent.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <qregexp.h>
+#include <QtCore/QRegExp>
 #include <kde_file.h>
 
 #include <kmimetype.h>

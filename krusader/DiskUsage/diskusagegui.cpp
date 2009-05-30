@@ -34,7 +34,7 @@
 #include "../VFS/vfs.h"
 #include "../Dialogs/krdialogs.h"
 
-#include <qtimer.h>
+#include <QtCore/QTimer>
 #include <QResizeEvent>
 #include <QGridLayout>
 #include <QHBoxLayout>

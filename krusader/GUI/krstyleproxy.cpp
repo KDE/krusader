@@ -29,10 +29,10 @@
  ***************************************************************************/
 
 #include "krstyleproxy.h"
-#include <qpen.h>
-#include <qpainter.h>
+#include <QtGui/QPen>
+#include <QtGui/QPainter>
 #include <QStyleOptionViewItem>
-#include <qapplication.h>
+#include <QtGui/QApplication>
 
 void KrStyleProxy::drawComplexControl ( ComplexControl control, const QStyleOptionComplex * option, QPainter * painter, const QWidget * widget ) const {
   QApplication::style()->drawComplexControl( control, option, painter, widget );

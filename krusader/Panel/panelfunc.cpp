@@ -29,8 +29,8 @@ A
 ***************************************************************************/
 #include <unistd.h> 
 // Qt Includes
-#include <qeventloop.h>
-#include <qclipboard.h> 
+#include <QtCore/QEventLoop>
+#include <QtGui/QClipboard> 
 #include <QList>
 #include <QDir>
 // KDE Includes

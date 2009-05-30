@@ -5,10 +5,10 @@
 #include <kcursor.h>        //ctor
 #include <klocale.h>
 #include <kurl.h>
-#include <qapplication.h>   //sendEvent
-#include <qbitmap.h>        //ctor - finding cursor size
-#include <qcursor.h>        //slotPostMouseEvent()
-#include <qtimer.h>         //member
+#include <QApplication>   //sendEvent
+#include <QBitmap>        //ctor - finding cursor size
+#include <QCursor>        //slotPostMouseEvent()
+#include <QTimer>         //member
 #include <QEvent>
 #include <QMouseEvent>
 #include <QPalette>

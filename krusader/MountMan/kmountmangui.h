@@ -36,11 +36,11 @@
 #include <sys/param.h>
 #include <kdialog.h>
 #include <QFrame>
-#include <qtimer.h>
+#include <QtCore/QTimer>
 #include <kurl.h>
-#include <qlist.h>
+#include <QtCore/QList>
 #include <kmountpoint.h>
-#include <qdatetime.h>
+#include <QtCore/QDateTime>
 
 #include "../GUI/krtreewidget.h"
 #include "kmountman.h"

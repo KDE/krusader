@@ -32,7 +32,7 @@
 #define __SPLITTER_H__
 
 #include "crc32.h"
-#include <qstring.h>
+#include <QtCore/QString>
 #include <QProgressDialog>
 #include <kurl.h>
 #include <kio/jobclasses.h>

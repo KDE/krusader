@@ -1,7 +1,7 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include <qobject.h>
+#include <QtCore/QObject>
 #include "../VFS/kiojobwrapper.h"
 #include <QList>
 #include <QTimer>

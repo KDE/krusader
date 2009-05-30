@@ -18,8 +18,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 // QT includes
-#include <qdir.h>
-#include <qtextstream.h>
+#include <QtCore/QDir>
+#include <QtCore/QTextStream>
 // KDE includes
 #include <kdebug.h>
 // Krusader includes

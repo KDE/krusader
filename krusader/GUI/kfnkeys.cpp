@@ -31,7 +31,7 @@
 #include <QGridLayout>
 #include <klocale.h>
 #include <kglobalsettings.h>
-#include <qfontmetrics.h>
+#include <QtGui/QFontMetrics>
 #include "kfnkeys.h"
 #include "../krusader.h"
 #include "../defaults.h"
