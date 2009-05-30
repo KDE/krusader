@@ -1,10 +1,11 @@
+project(krusader)
+
 INCLUDE(CPack)
 
 find_package(KDE4 REQUIRED)
+include(KDE4Defaults)
 
 set(CMAKE_VERBOSE_MAKEFILE OFF)
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_INCLUDE_DIRECTORIES_PROJECT_BEFORE ON)
 
 add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 set(VERSION "2.0.0" )
