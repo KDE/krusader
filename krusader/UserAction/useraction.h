@@ -1,14 +1,20 @@
-//
-// C++ Interface: useraction
-//
-// Description: This manages all useractions
-//
-//
-// Author: Jonas Bähr (C) 2004
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/*****************************************************************************
+ * Copyright (C) 2004 Jonas Bähr <jonas.baehr@web.de>                        *
+ *                                                                           *
+ * This program is free software; you can redistribute it and/or modify      *
+ * it under the terms of the GNU General Public License as published by      *
+ * the Free Software Foundation; either version 2 of the License, or         *
+ * (at your option) any later version.                                       *
+ *                                                                           *
+ * This package is distributed in the hope that it will be useful,           *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of            *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
+ * GNU General Public License for more details.                              *
+ *                                                                           *
+ * You should have received a copy of the GNU General Public License         *
+ * along with this package; if not, write to the Free Software               *
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
+ *****************************************************************************/
 
 #ifndef USERACTION_H
 #define USERACTION_H
@@ -24,19 +30,24 @@ class KUrl;
 class KActionMenu;
 
 /**
- * Useractions are Krusaders backend for user-defined actions on current/selected files in its panels
- * and for krusader's internal actions which need some parameter. @n
+ * Useractions are Krusaders backend for user-defined actions on
+ * current/selected files in its panels and for krusader's internal actions
+ * which need some parameter.
+ *
  * There are several komponents:
  * - The UserAction class as a Manager
  * - The interface to KDE's action-system (the KrAction)
- * - The Expander, which parses the commandline for placeholders and calls the internal actions
- * - A widget to manipulate the UserAction's Properties via GUI (ActionProperty)
- * .
- * The Useractions are stored in XML-files. Currently there are two main files. The first is a global example-file
- * which is read only (read after the other actionfiles, doublicates are ignored) and a local file where the actions are saved.
- * This class reads only the container and passes each action-tag to the new KrAction, which reads it's data itself.
- *
- * @author Jonas Bähr (http://www.jonas-baehr.de)
+ * - The Expander, which parses the commandline for placeholders and calls
+ *   the internal actions
+ * - A widget to manipulate the UserAction's Properties via GUI
+ *   (ActionProperty)
+ * 
+ * The Useractions are stored in XML-files. Currently there are two main files.
+ * The first is a global example-file which is read only (read after the other
+ * actionfiles, doublicates are ignored) and a local file where the actions are
+ * saved.
+ * This class reads only the container and passes each action-tag to the new
+ * KrAction, which reads it's data itself.
  */
 
 class UserAction {
@@ -133,7 +144,6 @@ private:
   QSet<QString>  _deletedActions;
 };
 
-
 #define ACTION_XML				"krusader/useractions.xml"
 #define ACTION_XML_EXAMPLES	"krusader/useraction_examples.xml"
 
@@ -141,7 +151,5 @@ private:
 // in well formed XML the root-element has to have the same name then the doctype:
 #define ACTION_ROOT	ACTION_DOCTYPE
 #define ACTION_PROCESSINSTR	"version=\"1.0\" encoding=\"UTF-8\" "
-
-
 
 #endif // ifndef USERACTION_H

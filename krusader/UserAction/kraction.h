@@ -1,14 +1,22 @@
-//
-// C++ Interface: kraction
-//
-// Description: 
-//
-//
-// Author: Krusader Krew <http://www.krusader.org>, (C) 2004, 2006
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/*****************************************************************************
+ * Copyright (C) 2004 Shie Erlich <erlich@users.sourceforge.net>             *
+ * Copyright (C) 2004 Rafi Yanai <yanai@users.sourceforge.net>               *
+ * Copyright (C) 2006 Jonas Bähr <jonas.baehr@web.de>                        *
+ *                                                                           *
+ * This program is free software; you can redistribute it and/or modify      *
+ * it under the terms of the GNU General Public License as published by      *
+ * the Free Software Foundation; either version 2 of the License, or         *
+ * (at your option) any later version.                                       *
+ *                                                                           *
+ * This package is distributed in the hope that it will be useful,           *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of            *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
+ * GNU General Public License for more details.                              *
+ *                                                                           *
+ * You should have received a copy of the GNU General Public License         *
+ * along with this package; if not, write to the Free Software               *
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
+ *****************************************************************************/
 
 #ifndef KRACTION_H
 #define KRACTION_H
@@ -26,8 +34,9 @@ class QDomElement;
 class QDomDocument;
 
 /**
- * This subclass of KAction extends it with an individual executor and a struct UserActionProperties. It is used to integrate useractions into KDE's KAction-System
- * @author Jonas Bähr (http://www.jonas-baehr.de)
+ * This subclass of KAction extends it with an individual executor and
+ * a struct UserActionProperties.
+ * It is used to integrate useractions into KDE's KAction-System
  */
 class KrAction: public KAction, public KrActionBase {
    Q_OBJECT
@@ -124,7 +133,6 @@ class KrAction: public KAction, public KrActionBase {
 class QFont;
 /**
  * This displays the output of a process
- * @author Shie Erlich, Jonas Bähr
  */
 class KrActionProcDlg: public KDialog {
       Q_OBJECT
@@ -148,9 +156,8 @@ class KrActionProcDlg: public KDialog {
 
 /**
  * This executes a command of a UserAction
- * @author Shie Erlich, Jonas Bähr
- * @todo jonas: call a list of commands separately (I began it but it doesn't work)
  */
+// TODO jonas: call a list of commands separately (I began it but it doesn't work)
 class KrActionProc: public QObject {
       Q_OBJECT
    public:
@@ -173,6 +180,5 @@ class KrActionProc: public QObject {
       QString _stderr;
       KrActionProcDlg *_output;
 };
-
 
 #endif //KRACTION_H

@@ -1,14 +1,22 @@
-//
-// C++ Implementation: kraction
-//
-// Description: 
-//
-//
-// Author: Shie Erlich and Rafi Yanai <>, (C) 2004
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/*****************************************************************************
+ * Copyright (C) 2004 Shie Erlich <erlich@users.sourceforge.net>             *
+ * Copyright (C) 2004 Rafi Yanai <yanai@users.sourceforge.net>               *
+ * Copyright (C) 2006 Jonas Bähr <jonas.baehr@web.de>                        *
+ *                                                                           *
+ * This program is free software; you can redistribute it and/or modify      *
+ * it under the terms of the GNU General Public License as published by      *
+ * the Free Software Foundation; either version 2 of the License, or         *
+ * (at your option) any later version.                                       *
+ *                                                                           *
+ * This package is distributed in the hope that it will be useful,           *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of            *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
+ * GNU General Public License for more details.                              *
+ *                                                                           *
+ * You should have received a copy of the GNU General Public License         *
+ * along with this package; if not, write to the Free Software               *
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
+ *****************************************************************************/
 
 #include <kdialog.h>
 #include <kdebug.h>
@@ -41,15 +49,13 @@
 #include "../krusaderview.h"
 #include "../defaults.h"
 
-//for the availabilitycheck:
+// for the availabilitycheck:
 #include <kmimetype.h>
 #include <QtCore/QRegExp>
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////  KrActionProcDlg  /////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////
 #include <QtGui/QLayout>
+
+// KrActionProcDlg
 KrActionProcDlg::KrActionProcDlg( QString caption, bool enableStderr, QWidget *parent ) :
         KDialog( parent ), _stdout(0), _stderr(0), _currentTextEdit(0) {
    setWindowTitle( caption );
@@ -189,10 +195,7 @@ void KrActionProcDlg::currentTextEditChanged() {
       _currentTextEdit = _stdout;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////  KrActionProc  ////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-
+// KrActionProc
 KrActionProc::KrActionProc( KrActionBase* action ) : QObject(), _action( action ), _proc( new KProcess(this) ), _output( 0 ) {
    connect( _proc, SIGNAL( finished( int, QProcess::ExitStatus ) ),
             this, SLOT( processExited( int, QProcess::ExitStatus ) ) ) ;
@@ -310,10 +313,7 @@ void KrActionProc::addStdout() {
 }
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////  KrAction  ///////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-
+// KrAction
 KrAction::KrAction( KActionCollection *parent, QString name ) : KAction( (QObject *)parent ) {
    if( !name.isNull() )
      _name = name;
