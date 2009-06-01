@@ -1,14 +1,13 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=Krusader - root-mode
 Name[sv]=Krusader - Administratörsläge
 Name[uk]=Krusader — режим адміністратора
 Name[zh_TW]=Krusader - 管理員模式
-Exec=krusader -caption "%c" %i %m
-Icon=krusader_root.png
+Exec=krusader -caption "%c" %i
+Icon=krusader_root
 Terminal=false
 Type=Application
-DocPath=krusader/index.html
+X-DocPath=krusader/index.html
 Categories=Qt;KDE;System;
 OnlyShowIn=KDE;
 X-KDE-SubstituteUID=true
