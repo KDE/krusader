@@ -5,8 +5,12 @@ ServiceTypes=inode/blockdevice,application/x-iso
 
 [Desktop Action OpenISO]
 Comment=ISO9660 View
+Comment[sv]=Visa ISO9660
 Comment[uk]=Перегляд ISO9660
+Comment[zh_TW]=ISO9660 檢視
 Icon=cd
 Name=ISO9660 View
+Name[sv]=Visa ISO9660
 Name[uk]=Перегляд ISO9660
+Name[zh_TW]=ISO9660 檢視
 Exec=kfmclient exec iso:%f
