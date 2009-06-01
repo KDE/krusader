@@ -286,7 +286,7 @@
       </listitem>
       <listitem>
         <para>Give translators time to update the translations for
-        the coming stable. Please read the
+        the coming stable release. Please read the
         <ulink url="http://www.krusader.org/i18n.php">i18n page</ulink>.</para>
       </listitem>
     </itemizedlist></para></sect2>
@@ -403,7 +403,7 @@
           currently use</para>
         </listitem>
         <listitem>
-          <para>trunc: the &kde;4 the development version</para>
+          <para>trunk: the &kde;4 the development version</para>
         </listitem>
       </itemizedlist></para>
 
@@ -416,7 +416,7 @@
       &kde; 4 from SVN:
       <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://krusader.svn.sourceforge.net/svnroot/krusader/branches/krusader_kde4/</option></userinput></screen>
 
-      To check out the latest developement &krusader; 2.x
+      To check out the latest development &krusader; 2.x
       for &kde; 4 from SVN:
       <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co http://krusader.svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4</option></userinput></screen>
       </para>
@@ -1110,7 +1110,7 @@ Please don't use the <filename>/usr/local</filename> directory as it simply won'
           <screen><prompt>$</prompt> <userinput><command>echo</command> $QTDIR</userinput>/usr/lib/qt3
                   <prompt>$</prompt> <userinput><command>echo</command> $KDEDIR</userinput>/usr</screen>
 
-          If both commands give an output, the enviroment variables
+          If both commands give an output, the environment variables
           are set (the above example are the settings of
           <trademark class="registered">Mandriva</trademark>-&Linux;). In case you
           receive empty lines, the variables are not set and you
@@ -1129,13 +1129,13 @@ Please don't use the <filename>/usr/local</filename> directory as it simply won'
           <filename>/usr</filename> is your 
           <envar>KDEDIR</envar>. The installed binaries will go to 
           <filename>/usr/bin</filename>. Now we will set the
-          enviroment variables with the 
+          environment variables with the 
           <command>export</command> command. 
           <screen><prompt>$</prompt> <userinput><command>export</command> QTDIR=<replaceable>&lt;replace with your QTDIR&gt;</replaceable></userinput></screen>
           <screen><prompt>$</prompt> <userinput><command>export</command> KDEDIR=<replaceable>&lt;replace with your KDEDIR&gt;</replaceable></userinput></screen>
           </para>
           <note>
-            <para>These enviroment variables are only set for the
+            <para>These environment variables are only set for the
             lifetime of your current shell. When you close your
             terminal and open a new one they will be gone. Assuming
             &krusader; is not the only
@@ -1217,7 +1217,7 @@ If you haven't done so in a while, run ./configure --help
           the 
           <filename>/usr/local</filename> directory. If you wish
           &krusader; to be installed in another
-          directory, it can be determed with the prefix option. If
+          directory, it can be determined with the prefix option. If
           you do not have root access, 
           <filename>/home/YOUR_USERNAME/.kde</filename> is probably
           a good choice. 
@@ -1424,7 +1424,7 @@ make[1]: Leaving directory `/home/source/krusader_kde3'
     <para>Krusader is ported to &MacOS; thanks the <ulink url="http://www.finkproject.org/">fink</ulink>-project and Jonas
     B&auml;hr and Bodo Tasche .
     Unfortunately the only *stable* kdelib-binaries which
-    <ulink url="http://www.finkproject.org/">fink</ulink> has to offer is currenly 3.1.4 which
+    <ulink url="http://www.finkproject.org/">fink</ulink> has to offer is currently 3.1.4 which
     means you need to use &krusader;-1.40 .
     Unfortunately the &MacOS; X &krusader;
     port does not have the same power as in a native

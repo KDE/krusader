@@ -70,7 +70,7 @@
           &etc; This means that &krusader;
           runs on <ulink url="http://www.gnome.org"><application>GNOME</application></ulink>,
           <ulink url="http://www.afterstep.org/"><application>AfterStep</application></ulink>, <ulink url="http://www.xfce.org/"><application>XFce</application></ulink> and
-          other window managers provided the approriate libraries
+          other window managers provided the appropriate libraries
           are installed on your computer. All this is not a problem
           since the apt-get world can resolve these dependencies
           instantly.</para>
@@ -121,7 +121,7 @@
           when you have installed &krusader; with a
           binary RPM) you need less libraries than if you compile
           &krusader; from source. e.g. you
-          only need the C-compliler &gcc; when you
+          only need the C-compiler &gcc; when you
           compile &krusader; from source (see the next
           question).</para>
           <para>Take a look at the <link linkend="compilation">Krusader dependencies</link> paragraph  of our install chapter.</para>
@@ -263,7 +263,7 @@
           for it with <ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=krusader&amp;submit=Search+...">rpmfind</ulink> or
           <ulink url="http://rpm.pbone.net/index.php3/stat/3/search/krusader">rpmpbone</ulink>.</para>
           <para>In general, a package for an older version of your
-          distrubution or even for another distribution might work
+          distribution or even for another distribution might work
           on your computer (e.g. FC RPM's often work on
           Mdk and RH, and vice versa), but it is always the best
           that you install only RPM's that exactly match your
@@ -628,7 +628,7 @@
           binaries that fix the problem, and <trademark class="registered">Gentoo</trademark>
           has masked &Qt; 3.3.5 completely. As for now,
           you either need &Qt; 3.3.4 or a fixed
-          &Qt; 3.3.5 or a higer version, depending on
+          &Qt; 3.3.5 or a higher version, depending on
           your distribution. More information is available on our 
           <ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1407">
           website</ulink>.</para>
@@ -805,7 +805,7 @@
       
 <qandaentry>
   <question id="faqu_external_tool">
-  <para>What todo if an extenal tool doesn't seem to work?</para>
+  <para>What todo if an external tool doesn't seem to work?</para>
   </question>
   <answer>
   <para>Krusader uses several programs as <link linkend="konfig-dependencies">external tools</link>, 
@@ -837,7 +837,7 @@
   <para>Go to the <link linkend="konfig-protocols">Konfigurator Protocol page</link> and remove <guilabel>application/x-jar</guilabel> 
         from the krarc node, &krusader; should no longer enter the archive.
         Global file associations are handled by &kde; and not by &krusader;.
-        To assosiate the jar extension:
+        To associate the jar extension:
         <itemizedlist>
             <listitem>
               <para>Open &kde;s control center: <application>kcontrol</application>
@@ -1022,14 +1022,14 @@
 
       <qandaentry>
         <question id="faqu_konfigurator">
-          <para>Where is Konfigurator, do i need to install the &kde; Desktop Enviroment to use it?</para>
+          <para>Where is Konfigurator, do i need to install the &kde; Desktop Environment to use it?</para>
         </question>
         <answer>
           <para><link linkend="konfigurator">Konfigurator</link> is &krusader;s configuration module,
                 when you have installed &krusader; than you have also Konfigurator.
                 For some reason some people think it's an other &kde; application, but it is not, so
-                you don't need to install the &kde; Desktop Enviroment to use Konfigurator.
-                When runnig &krusader;, use 
+                you don't need to install the &kde; Desktop Environment to use Konfigurator.
+                When running &krusader;, use 
                 <menuchoice>
                  <guimenu>Settings</guimenu>
                  <guimenuitem>Configure &krusader;</guimenuitem>
@@ -1116,10 +1116,10 @@
               it works.</para>              
             </listitem>
             <listitem>
-              <para>Preferrably, you can start a discussion
+              <para>Preferably, you can start a discussion
               with the developers on the krusader-devel
               <ulink url="http://www.krusader.org/lists.php">mailing lists</ulink> or on the
-              <link linkend="faqg_kru-forum">&krusader; Forum</link>. Unfortunatly, we can't apply
+              <link linkend="faqg_kru-forum">&krusader; Forum</link>. Unfortunately, we can't apply
               a patch if the patch is in conflict with the "general
               design" of the &krusader; code (read for more
               instructions in this FAQ).
@@ -1271,14 +1271,14 @@
 
 <qandaentry>
   <question id="faqg_crashhandler">
-  <para>What todo if the KDEcrashhandler sends no usefull backtrace information?</para>
+  <para>What todo if the KDEcrashhandler sends no useful backtrace information?</para>
   </question>
   <answer>
   <para>Usually binary packages that are been used by your distribution do not contain debug information.
         Since we usually only develop and fix &krusader;-cvs, compile &krusader;-cvs in debugmode and install it, than check if the bug still exist.
         <screen><prompt>$</prompt> <userinput><command>cmake</command> <option>-DCMAKE_BUILD_TYPE=debugfull</option></userinput></screen> 
  
-       If the KDEKrashhandler still doesn't provide usefull backtrace information, than sometimes a coredump will give better information. 
+       If the KDEKrashhandler still doesn't provide useful backtrace information, than sometimes a coredump will give better information. 
        Run Krusader, with disabled crashhandler.
        <screen><prompt>$</prompt> <userinput><command>krusader</command> <option>--nocrashhandler</option></userinput></screen>
 

@@ -176,21 +176,21 @@
         </listitem>
         <listitem>
           <para>
-          <keycombo action="simul"><keycap>Backspace</keycap>
+          <keycombo action="simul">&Shift;
           <keycap>Left Clicking</keycap></keycombo> will select all
           the elements between the previous cursor location and the
           new one.</para>
         </listitem>
         <listitem>
           <para>
-          <keycombo action="simul"><keycap>Backspace</keycap>
+          <keycombo action="simul">&Shift;
           <keycap>Home</keycap></keycombo> selects everything above
           the cursor (and deselects everything below the cursor, if
           selected).</para>
         </listitem>
         <listitem>
           <para>
-          <keycombo action="simul"><keycap>Backspace</keycap>
+          <keycombo action="simul">&Shift;
           <keycap>End</keycap></keycombo> selects everything below
           the cursor (and unselects everything above the cursor, if
           selected).</para>
@@ -363,11 +363,11 @@
       <title>Queue manager</title>
       <para>
       Use <keycap>F5</keycap> (copy) or <keycap>F6</keycap> (move) and than <keycap>F2</keycap> to use it.
-      Or the direct shortcuts: copy by queue <keycombo action="simul"><keycap>Backspace</keycap><keycap>F5</keycap></keycombo> , 
-      move by queue <keycombo action="simul"><keycap>Backspace</keycap><keycap>F6</keycap></keycombo> .
+      Or the direct shortcuts: copy by queue <keycombo action="simul">&Shift;<keycap>F5</keycap></keycombo> , 
+      move by queue <keycombo action="simul">&Shift;<keycap>F6</keycap></keycombo> .
       Queueing is used for one-by-one copying.
       E.g. if you have a pen drive (which is slow), and you want to copy 40 files onto it, 
-      it's much better copying them one-by-one instead of starting to copy 40 files parallelly.
+      it's much better copying them one-by-one instead of starting to copy 40 files in parallel.
       That's why enqueuing is important.
       If you pack/unpack 40 files parallelly, you overload your computer,
       but adding them to a queue (which is not yet implemented into Krusader), is much more useful.
@@ -381,8 +381,8 @@
       <keycap>Delete</keycap>. By 
       <link linkend="konfig-general">default</link> it will be moved
       to &kde;'s Trash. You can open the KDE Trash with <filename>trash:/</filename> ("kdebase3-runtime" needs to be installed, otherwise the KDE trash protocol will not work).
-      Phisically KDE Trash is located in <filename>~/.local/share/Trash/</filename> .  
-      <keycombo action="simul"><keycap>Backspace</keycap>
+      Physically KDE Trash is located in <filename>~/.local/share/Trash/</filename> .  
+      <keycombo action="simul">&Shift;
       <keycap>Delete</keycap></keycombo> will delete the file
       permanently. A dialog will ask for your confirmation and will
       warn you when deleting non-empty directories. Of course only
@@ -399,7 +399,7 @@
            The main reason is probably that shredding is filesystem dependent and even if you overwrite the file 100 times, it's not sure, that it'll be deleted from the disk finally.
            Quote from the kgpg posts: "The shred feature has been removed from the KDE library. Kgpg will not support this feature anymore. Moderns file systems use journalisation. So the shred feature should be implemented in the file system. Not in kgpg."
            But you might use a proper shred <link linkend="useractions">UserAction</link> for your filesystem.
-	   But keep in mind that if you want to be 100% shure that it's impossible that someone can read a deleted file, you need to destroy your harddrive hardware ...
+	   But keep in mind that if you want to be 100% sure that it's impossible that someone can read a deleted file, you need to destroy your harddrive hardware ...
 	   </para>
     </sect2>
     <sect2 id="renaming">
