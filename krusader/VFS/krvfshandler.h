@@ -31,12 +31,14 @@
   */
 
 class KrVfsHandler : public QObject  {
-public: 
-	KrVfsHandler();
-	~KrVfsHandler();
+  Q_OBJECT	
+public:
+  KrVfsHandler();
+  ~KrVfsHandler();
 
   static vfs::VFS_TYPE getVfsType(const KUrl& url);
-  static vfs* getVfs(const KUrl& url,QObject* parent=0,vfs* oldVfs=0);
+  static vfs* getVfs(const KUrl& url, QObject* parent = 0, vfs* oldVfs = 0);
 };
 
 #endif
+

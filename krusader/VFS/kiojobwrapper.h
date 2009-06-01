@@ -52,6 +52,7 @@ enum KIOJobWrapperType {
 };
 
 class KIOJobWrapper : public QObject {
+	Q_OBJECT
 	friend class KrJobStarter;
 	friend class JobStartEvent;
 private:
@@ -122,6 +123,7 @@ public:
 };
 
 class KrJobStarter : public QObject {
+	Q_OBJECT
 	friend class KIOJobWrapper;
 public:
 	KrJobStarter() { m_self = this;}
