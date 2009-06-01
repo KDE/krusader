@@ -48,7 +48,7 @@ static const QStringList bin_suffixes = QStringList()
 
 QString KrServices::detectFullPathName(QString name)
 {
-  QStringList path = QString::fromLocal8Bit(getenv("PATH")).split(":");
+  QStringList path = QString::fromLocal8Bit(qgetenv("PATH")).split(":");
 
   for ( QStringList::Iterator it = path.begin(); it != path.end(); ++it )
   foreach( const QString &suffix, bin_suffixes )

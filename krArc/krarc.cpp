@@ -1769,8 +1769,8 @@ QString kio_krarcProtocol::getPassword() {
 QString kio_krarcProtocol::detectFullPathName(QString name)
 {
 	name = name + EXEC_SUFFIX;
-	QStringList path = QString::fromLocal8Bit( getenv("PATH") ).split(":");
-	
+	QStringList path = QString::fromLocal8Bit( qgetenv("PATH") ).split(":");
+
 	for ( QStringList::Iterator it = path.begin(); it != path.end(); ++it )
 	{
 		if( QDir(*it).exists( name ) )
