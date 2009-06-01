@@ -673,7 +673,7 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
    }
 
    //   if (i != 0) // comment in, if click sould NOT select
-   //     setSelected(i, FALSE);
+   //     setSelected(i, false);
    if (newCurrent) Q3ListView::setCurrentItem(newCurrent);
 
    if ( ACTIVE_PANEL->quickSearch->isShown() ) {
@@ -1039,16 +1039,16 @@ bool KrDetailedView::eventFilter( QObject * watched, QEvent * e )
           break;
         }
     }
-    return FALSE;
+    return false;
   }
   else if( watched == header() )
   {
     if( e->type() == QEvent::MouseButtonPress && ((QMouseEvent *)e )->button() == Qt::RightButton )
     {
       selectColumns();
-      return TRUE;
+      return true;
     }
-    return FALSE;
+    return false;
   }
   return K3ListView::eventFilter( watched, e );
 }

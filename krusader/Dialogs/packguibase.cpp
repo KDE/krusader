@@ -117,7 +117,7 @@ PackGUIBase::PackGUIBase( QWidget* parent )
 
     PixmapLabel1 = new QLabel( this );
     PixmapLabel1->setPixmap( krLoader->loadIcon("package", KIconLoader::Desktop, 32) );
-    PixmapLabel1->setScaledContents( TRUE );
+    PixmapLabel1->setScaledContents( true );
     PixmapLabel1->setSizePolicy( QSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed ) );
     hbox_3->addWidget( PixmapLabel1 );
 

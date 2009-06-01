@@ -550,7 +550,7 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
    }
 
    //   if (i != 0) // comment in, if click sould NOT select
-   //     setSelected(i, FALSE);
+   //     setSelected(i, false);
    if (newCurrent) Q3IconView::setCurrentItem(newCurrent);
 
    if ( ACTIVE_PANEL->quickSearch->isShown() ) {
@@ -946,9 +946,9 @@ bool KrBriefView::eventFilter( QObject * watched, QEvent * e )
     if( e->type() == QEvent::MouseButtonPress && ((QMouseEvent *)e )->button() == Qt::RightButton )
     {
       setColumnNr();
-      return TRUE;
+      return true;
     }
-    return FALSE;
+    return false;
   }
   return K3IconView::eventFilter( watched, e );
 }

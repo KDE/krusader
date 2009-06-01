@@ -45,7 +45,7 @@ KgWelcome::KgWelcome( bool first, QWidget* parent ) :
   
   QLabel *pixmapLabel = new QLabel( parent );
   pixmapLabel->setIcon( QIcon( image0 ) );
-  pixmapLabel->setScaledContents( TRUE );
+  pixmapLabel->setScaledContents( true );
 
   kgWelcomeLayout->addWidget( pixmapLabel, 0, 0 );
 }

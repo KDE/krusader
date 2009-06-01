@@ -30,7 +30,7 @@ public:
 	TagString_t left(unsigned) const;
 	TagString_t right(unsigned) const;
 	void insert(uint,const QString& s);
-	int find ( QChar c, int index = 0, bool cs = TRUE ) const {
+	int find ( QChar c, int index = 0, bool cs = true ) const {
 		return str.indexOf(c,index, (cs ? Qt::CaseSensitive : Qt::CaseInsensitive));
 	}
 	TagString_t& operator+=(const TagString_t& s);

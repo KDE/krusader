@@ -48,7 +48,7 @@ newFTPGUI::newFTPGUI( QWidget* parent )
     
     resize( 342, 261 );
     setWindowTitle( i18n( "New Network Connection"  ) );
-//     setSizeGripEnabled( TRUE );
+//     setSizeGripEnabled( true );
     QSizePolicy policy( QSizePolicy::Preferred, QSizePolicy::Preferred);
     policy.setHeightForWidth( sizePolicy().hasHeightForWidth() );
     setSizePolicy( policy );
@@ -65,7 +65,7 @@ newFTPGUI::newFTPGUI( QWidget* parent )
 
     TextLabel3 = new QLabel( i18n( "About to connect to..."  ), hbox_image_widget );
     QFont TextLabel3_font(  TextLabel3->font() );
-    TextLabel3_font.setBold( TRUE );
+    TextLabel3_font.setBold( true );
     TextLabel3->setFont( TextLabel3_font );
     hbox_image->addWidget( TextLabel3 );
     layout->addWidget( hbox_image_widget );
@@ -80,7 +80,7 @@ newFTPGUI::newFTPGUI( QWidget* parent )
 
     QStringList protocols = KProtocolInfo::protocols();
 
-    prefix = new KComboBox( FALSE, grid_host );
+    prefix = new KComboBox( false, grid_host );
     grid_layout->addWidget( prefix, 1, 0 );
     prefix->setObjectName( "protocol" );
     if( protocols.contains("ftp") )
@@ -91,8 +91,8 @@ newFTPGUI::newFTPGUI( QWidget* parent )
       prefix->addItem( i18n( "fish://" ));
     if( protocols.contains("sftp") )
       prefix->addItem( i18n( "sftp://" ));
-    prefix->setAcceptDrops( FALSE );
-    prefix->setEnabled( TRUE );
+    prefix->setAcceptDrops( false );
+    prefix->setEnabled( true );
     prefix->setSizePolicy( SIZE_MINIMUM );
     connect( prefix,SIGNAL(activated(const QString& )),
                this,SLOT(slotTextChanged(const QString& )));
@@ -141,16 +141,16 @@ newFTPGUI::newFTPGUI( QWidget* parent )
 	 hbox->addItem(new QSpacerItem(1,1,QSizePolicy::Expanding));
 	 
     connectBtn = new QPushButton( i18n( "&Connect"  ), Layout6 );
-    connectBtn->setAutoDefault( TRUE );
-    connectBtn->setDefault( TRUE );
+    connectBtn->setAutoDefault( true );
+    connectBtn->setDefault( true );
     hbox->addWidget( connectBtn );
 
     //saveBtn = new QPushButton( i18n( "&Save"  ), Layout6 );
-    //saveBtn->setAutoDefault( TRUE );
+    //saveBtn->setAutoDefault( true );
     //hbox->addWidget( saveBtn );
 
     cancelBtn = new QPushButton( i18n( "&Cancel"  ), Layout6 );
-    cancelBtn->setAutoDefault( TRUE );
+    cancelBtn->setAutoDefault( true );
     hbox->addWidget( cancelBtn );
 
     layout->addWidget( Layout6 );
@@ -194,7 +194,7 @@ bool newFTPGUI::event( QEvent* ev ) {
     bool ret = QDialog::event( ev ); 
     if ( ev->type() == QEvent::ApplicationFontChange ) {
 	QFont TextLabel3_font(  TextLabel3->font() );
-	TextLabel3_font.setBold( TRUE );
+	TextLabel3_font.setBold( true );
 	TextLabel3->setFont( TextLabel3_font ); 
     }
     return ret;

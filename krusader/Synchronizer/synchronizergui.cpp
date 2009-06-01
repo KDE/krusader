@@ -2473,7 +2473,7 @@ void SynchronizerGUI::loadFromProfile( QString profile )
   int parallelThreads = pg.readEntry( "Parallel Threads", 1 );
   parallelThreadsSpinBox->setValue( parallelThreads );
 
-  bool ignoreHidden = pg.readEntry( "Ignore Hidden Files", FALSE );
+  bool ignoreHidden = pg.readEntry( "Ignore Hidden Files", false );
   ignoreHiddenFilesCB->setChecked( ignoreHidden );
   
   refresh();

@@ -61,9 +61,9 @@ KRMaskChoice::KRMaskChoice( QWidget* parent )
     int height = QFontMetrics( selection->font() ).height();
     height =  height + 5*(height > 14) + 6;
     selection->setGeometry( QRect( 12, 48, 377, height) );
-    selection->setEditable( TRUE );
+    selection->setEditable( true );
     selection->setInsertPolicy( QComboBox::InsertAtTop );
-    selection->setAutoCompletion( TRUE );
+    selection->setAutoCompletion( true );
 
     QWidget* Layout7 = new QWidget( this );
     Layout7->setGeometry( QRect( 10, 10, 380, 30 ) ); 
@@ -72,7 +72,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent )
     hbox->setContentsMargins( 0, 0, 0, 0 );
 
     PixmapLabel1 = new QLabel( Layout7 );
-    PixmapLabel1->setScaledContents( TRUE );
+    PixmapLabel1->setScaledContents( true );
     PixmapLabel1->setMaximumSize( QSize( 31, 31 ) );
 	// now, add space for the pixmap    
     hbox->addWidget( PixmapLabel1 );
