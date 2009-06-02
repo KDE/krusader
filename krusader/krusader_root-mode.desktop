@@ -1,6 +1,8 @@
 [Desktop Entry]
 Name=Krusader - root-mode
+Name[et]=Krusader - administraatori režiim
 Name[sv]=Krusader - Administratörsläge
+Name[tr]=Krusader - yönetici-kipi
 Name[uk]=Krusader — режим адміністратора
 Name[zh_TW]=Krusader - 管理員模式
 Exec=krusader -caption "%c" %i
@@ -13,10 +15,13 @@ OnlyShowIn=KDE;
 X-KDE-SubstituteUID=true
 X-KDE-Username=root
 Comment=Twin-Panel File Manager with root-privileges
+Comment[et]=Kahe paneeliga failihaldur administraatori õigustes
 Comment[sv]=Filhanterare med två paneler i administratörsläge
 Comment[uk]=Двопанельний менеджер файлів з правами доступу адміністратора
 Comment[zh_TW]=雙面板檔案管理員，管理者模式
 GenericName=File Manager
+GenericName[et]=Failihaldur
 GenericName[sv]=Filhanterare
+GenericName[tr]=Dosya Yönetici
 GenericName[uk]=Менеджер файлів
 GenericName[zh_TW]=檔案管理員
