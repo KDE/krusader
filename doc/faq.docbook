@@ -65,7 +65,7 @@
           computer but &krusader;'s natural environment
           is &kde;, because it relies on services
           provided by the &kde; base libraries. Only
-          some shared libraries are needed e.g.
+          some shared libraries are needed &eg;
           &kde; libraries, &Qt; libraries,
           &etc; This means that &krusader;
           runs on <ulink url="http://www.gnome.org"><application>GNOME</application></ulink>,
@@ -91,9 +91,9 @@
           &krusader; uses the &kde;
           KIO Slaves to access remote file
           systems, and support for only a limited number of file
-          system types are shipped with KDE libraries,
+          system types are shipped with &kde; libraries,
           most of the KIO Slave are bundled with
-          KDE base (including fish, sftp and tar).
+          &kde; base (including fish, sftp and tar).
           However, if you want the property-dialog to show
           EXIF-data for .jpeg's, you need &kde;graphics.
           If you want ID3-infos, you need
@@ -117,10 +117,10 @@
           run?</para>
         </question>
         <answer>
-          <para>For running &krusader; (e.g.
+          <para>For running &krusader; (&eg;
           when you have installed &krusader; with a
           binary RPM) you need less libraries than if you compile
-          &krusader; from source. e.g. you
+          &krusader; from source. &eg; you
           only need the C-compiler &gcc; when you
           compile &krusader; from source (see the next
           question).</para>
@@ -145,13 +145,13 @@
           <para>Most RPM-based distributions separate the headers
           from the libs. The headers are needed to compile
           &krusader;. Look for packages in the form
-          foo-devel-*.rpm (e.g. 
+          foo-devel-*.rpm (&eg; 
           <filename>kdelibs-devel-foo.i586.rpm</filename>) or
           foo-dev-*.deb for <trademark class="registered">Debian</trademark> based
           distributions. These are usually included with your
           distribution. 
           <tip>
-            <para>If you ca not find the needed package, use
+            <para>If you cannot find the needed package, use
             <ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=krusader&amp;submit=Search+...">rpmfind</ulink> and click 'missing lib or
             header' in the search line. Or use 
             <command>apt-cache search 
@@ -258,16 +258,16 @@
           <para>If the RPM is not OK, try to find another package
           at &Linux; software archives such as
           <ulink url="http://freshmeat.net/projects/krusader/">freshmeat.net</ulink> or <ulink url="http://www.kde-apps.org/content/show.php?content=10214">KDE-APPS.org</ulink>.
-          If you still can't find the appropriate package for your
+          If you still cannot find the appropriate package for your
           &Linux; distribution, we recommend searching
           for it with <ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=krusader&amp;submit=Search+...">rpmfind</ulink> or
           <ulink url="http://rpm.pbone.net/index.php3/stat/3/search/krusader">rpmpbone</ulink>.</para>
           <para>In general, a package for an older version of your
           distribution or even for another distribution might work
-          on your computer (e.g. FC RPM's often work on
+          on your computer (&eg; FC RPM's often work on
           Mdk and RH, and vice versa), but it is always the best
           that you install only RPM's that exactly match your
-          distribution. If you can't find a package that matches
+          distribution. If you cannot find a package that matches
           your distribution version, architecture or distribution,
           then use a source RPM. When you use a source RPM, the
           Krusader sources will be built, on your computer,
@@ -284,7 +284,7 @@
       </qandaentry>
       <qandaentry>
         <question id="faqi_rpm-notfound">
-          <para>I can't find an RPM or DEB package for
+          <para>I cannot find an RPM or DEB package for
           &krusader;, what to do?</para>
         </question>
         <answer>
@@ -317,7 +317,7 @@
         <answer>
           <para>In this case only the 
           <guimenu>Help</guimenu> menu is visible and all other menu
-          items like e.g. 
+          items like &eg; 
           <guimenu>File</guimenu> and 
           <guimenu>Select</guimenu> are missing. This is because
           some distributions put the 
@@ -353,7 +353,7 @@
           $KDEDIR/share/apps/krusader/krusaderui.rc</filename>.
           When you change the 
           <guilabel>"Toolbar"</guilabel>, &kde; makes a
-          copy of that file in the home directory at 
+          copy of that file in the home folder at 
           <filename>
           ~/.kde/share/apps/krusader/krusaderui.rc</filename>. If
           Krusader was previously installed on your computer, and
@@ -454,7 +454,7 @@
           <para>Please read our detailed 
           <link linkend="compilation">installation
           procedure</link> and the <link linkend="faq">FAQ</link>. If you
-          can't find a solution to your problem then feel free to
+          cannot find a solution to your problem then feel free to
           post a 
           <emphasis role="bold">help request</emphasis> at our
           &krusader; forum or use the
@@ -467,7 +467,7 @@
               might be solved or discussed already.</para>
             </listitem>
             <listitem>
-              <para>If you can't find a solution, please make a
+              <para>If you cannot find a solution, please make a
               note of the following issues: 
               <itemizedlist>
                 <listitem>
@@ -485,7 +485,7 @@
               difficult for us to help you. 
               <note>
                 <para>If you give us the error messages
-                (e.g. 
+                (&eg; 
                 <command>make</command> error messages) please start
                 with the FIRST error message, all the error
                 messages which follow the first error message are
@@ -517,7 +517,7 @@
           RPM.</para>
           <warning>
             <para>NEVER build RPMs when logged in as root. Mistakes
-            in building packages (e.g. a bad 
+            in building packages (&eg; a bad 
             <filename>krusader.spec</filename> file) can do serious
             damage to your system when logged in as root.</para>
           </warning>
@@ -551,7 +551,7 @@
               <listitem>
                 <para>Edit 
                 <filename>kusader.spec</filename> and add your name,
-                your e-mail address, the rpm name, ... Other
+                your email address, the rpm name, ... Other
                 changes may be needed if 
                 <command>rpmbuild</command> fails.</para>
               </listitem>
@@ -564,7 +564,7 @@
                 /usr/src/RPM/RPMS/i586</filename> (depending on your
                 architecture) and a source RPM in 
                 <filename class="directory">
-                /usr/src/RPM/SRPMS/</filename> e.g. 
+                /usr/src/RPM/SRPMS/</filename> &eg; 
                 <filename>
                 krusader-1.70-beta1.suse10.i586.rpm</filename> and 
                 <filename>
@@ -644,7 +644,7 @@
         </question>
         <answer>
           <para>Supermount is a daemon which handles the
-          mounting/unmounting of removable filesystems for you.
+          mounting/unmounting of removable file systems for you.
           Just insert a floppy, and do 
           <userinput>
             <command>cd</command>
@@ -674,7 +674,7 @@
           dead mountpoint?</para>
         </question>
         <answer>
-          <para>When &krusader; is e.g.
+          <para>When &krusader; is &eg;
           browsing an NFS share and the NFS server goes down,
           &krusader; will freeze. This
           &krusader; (and all other open internal
@@ -704,7 +704,7 @@
       <qandaentry>
         <question id="faqu_resize">
           <para>When I try to resize &krusader; to make
-          it smaller, I discover that I can't resize it below a
+          it smaller, I discover that I cannot resize it below a
           certain size. Why?</para>
         </question>
         <answer>
@@ -840,7 +840,7 @@
         To associate the jar extension:
         <itemizedlist>
             <listitem>
-              <para>Open &kde;s control center: <application>kcontrol</application>
+              <para>Open &kde;s &systemsettings;: <application>systemsettings</application>
               </para>
             </listitem>
             <listitem>
@@ -923,7 +923,7 @@
                 This works great but sometimes some ftp-servers don't allow a rename operation.
                 You can solve this by unchecking the checkbox 
                 <guilabel>Mark partially uploaded files</guilabel> in &kde;'s control center. 
-                The checkbox is located at 
+                The check box is located at 
                 <menuchoice>
                  <guimenu>Internet and Network</guimenu>
                  <guimenuitem>Connection Preferences</guimenuitem>
@@ -935,7 +935,7 @@
       <qandaentry>
         <question id="faqu_close_connection">
           <para>How can I close a remote connection
-          (e.g. a FTP connection)?</para>
+          (&eg; a &FTP; connection)?</para>
         </question>
         <answer>
           <para>It's explained in the 
@@ -951,7 +951,7 @@
           protocol, why?</para>
         </question>
         <answer>
-          <para>The media:/ protocol was removed from KDE4.</para>
+          <para>The media:/ protocol was removed from &kde; 4.</para>
           <para></para>
           <!-- Empty line to make it more readable -->
         </answer>
@@ -960,14 +960,14 @@
       <qandaentry>
         <question id="faqu_sound">
           <para>How can I disable the default sounds,
-          e.g. when I do a delete action ?</para>
+          &eg; when I do a delete action ?</para>
         </question>
         <answer>
           <para>Those are the default &kde; System
           sounds, and not related to &krusader;. If you
           want to disable them globally open your &kde;
-          &kcontrolcenter; (
-          <application>kcontrol</application>): 
+          &systemsettings; (
+          <application>systemsettings</application>): 
             <menuchoice>
               <guimenu>KDE Control Center</guimenu>
               <guimenuitem>Sound &amp;
@@ -1002,7 +1002,7 @@
         <answer>
           <para>When you enter an archive and press 
           <keycap>F3</keycap> to view a file that has no known
-          extension, e.g. 
+          extension, &eg; 
           <filename>README, INSTALL</filename> &etc;. And
           if the viewer opens in hex-mode instead of the usual
           mode, than you need to configure:
@@ -1119,7 +1119,7 @@
               <para>Preferably, you can start a discussion
               with the developers on the krusader-devel
               <ulink url="http://www.krusader.org/lists.php">mailing lists</ulink> or on the
-              <link linkend="faqg_kru-forum">&krusader; Forum</link>. Unfortunately, we can't apply
+              <link linkend="faqg_kru-forum">&krusader; Forum</link>. Unfortunately, we cannot apply
               a patch if the patch is in conflict with the "general
               design" of the &krusader; code (read for more
               instructions in this FAQ).
@@ -1208,7 +1208,7 @@
               of the Bug Tracking System.</para>
             </listitem>
             <listitem>
-              <para>If you can't find this bug mentioned, please 
+              <para>If you cannot find this bug mentioned, please 
               <emphasis role="bold">submit</emphasis> it into the
               bug tracker by clicking the 
               <guibutton>Submit New</guibutton> button in the
@@ -1408,7 +1408,7 @@
           <link linkend="index">Documentation</link>,
           <link linkend="faq">FAQ</link>, <ulink url="http://www.krusader.org/phpBB/index.php">&krusader; Forum</ulink> and
           <ulink url="http://groups-beta.google.com/group/krusader-devel">&krusader;-devel</ulink> (please use the search function
-          ) can't help you, do not hesitate to post on our forum.
+          ) cannot help you, do not hesitate to post on our forum.
           The &krusader; Krew or the
           &krusader; community is always available to
           help you.</para>

@@ -11,7 +11,7 @@
   access all the information in these divergent types of
   filesystems transparently - just like entering an ordinary
   sub-directory. &krusader; supports several virtual
-  file systems: 
+  file systems:</para>
   <itemizedlist>
     <listitem>
       <para>
@@ -39,7 +39,8 @@
       <link linkend="synchronizer">Synchronizer VFS</link>: places
       the synchronizer results in VFS.</para>
     </listitem>
-  </itemizedlist>Actions you perform on the files in VFS are
+  </itemizedlist>
+  <para>Actions you perform on the files in VFS are
   performed on the 'real' files. You do not just delete files from
   the VFS - you delete them from your hard drive. Limitations: you
   ca not create directories inside a VFS.</para>
@@ -50,7 +51,7 @@
   <screen><prompt>$</prompt> <userinput>file:/home/myhome/mydir1/myfile1</userinput></screen>
   <screen><prompt>$</prompt> <userinput>file:/home/myhome/mydir1/myfile2</userinput></screen>
   <screen><prompt>$</prompt> <userinput>file:/home/myhome/mydir2/myfile3</userinput></screen>
-  Then do the following steps: 
+  Then do the following steps:</para>
   <itemizedlist>
     <listitem>
       <para>go to the virtual folder and select the files</para>
@@ -75,7 +76,8 @@
     <listitem>
       <para>Start copy by pressing OK</para>
     </listitem>
-  </itemizedlist>The result will be: 
+  </itemizedlist>
+  <para>The result will be: 
   <screen><prompt>$</prompt> <userinput>destinationdir/mydir1/myfile1</userinput></screen>
   <screen><prompt>$</prompt> <userinput>destinationdir/mydir1/myfile2</userinput></screen>
   <screen><prompt>$</prompt> <userinput>destinationdir/mydir2/myfile3</userinput></screen>

@@ -167,7 +167,7 @@
       KIO Slaves but not all of them, some can
       only be used with the 
       <link linkend="krviewer">viewer</link> and some can not be
-      used. The user can enter a desired path by clicking on it. 
+      used. The user can enter a desired path by clicking on it.</para> 
       <itemizedlist>
         <listitem>
           <para>
@@ -210,7 +210,8 @@
           <para>And last but not least
           <link linkend="remote-connections">Remote Connections</link> .</para>
         </listitem>
-      </itemizedlist>You can copy-paste a &URL; in the 
+      </itemizedlist>
+      <para>You can copy-paste a &URL; in the 
       <guibutton>Location Toolbar</guibutton> or use a middle click.
       With the Right-Click menu you can configure the auto-complete
       function. An optional 
@@ -234,7 +235,7 @@
       <para>Each panel has a 
       <link linkend="konfig-looknfeel-ptoolbar">configurable Panel
       Toolbar</link>. The complete Panel Toolbar or specific
-      buttons can be made visible or be hidden. 
+      buttons can be made visible or be hidden.</para> 
       <itemizedlist>
         <listitem>
           <para>
@@ -267,13 +268,13 @@
           each directory change in the specific panel is performed
           in the other panel as well.</para>
         </listitem>
-      </itemizedlist></para>
+      </itemizedlist>
     </sect2>
   </sect1>
   <sect1 id="panels">
     <title>Panels</title>
     <para>The &krusader; panels are where most of the
-    action takes place. Currently, there are two types of panels: 
+    action takes place. Currently, there are two types of panels:</para> 
     <itemizedlist>
       <listitem>
         <para><link linkend="list_panel">List Panel</link>: shows the files and
@@ -285,7 +286,8 @@
         the file or directory that has the focus. The PopUp Panel
         may be left open or closed, as desired.</para>
       </listitem>
-    </itemizedlist>&krusader; is a "twin-panel" file
+    </itemizedlist>
+    <para>&krusader; is a "twin-panel" file
     manager so there are two panels: the "Left" panel and the
     "Right" panel, or a more important logical distinction, the
     *Active* panel and the *Inactive* panel. The active panel is
@@ -341,16 +343,16 @@
       File copy/paste/cut via clipboard between
       &konqueror; and &krusader; 
       <keycombo action="simul">&Ctrl;
-      <keycap>c</keycap></keycombo>, 
+      <keycap>C</keycap></keycombo>, 
       <keycombo action="simul">&Ctrl;
-      <keycap>v</keycap></keycombo>, 
+      <keycap>V</keycap></keycombo>, 
       <keycombo action="simul">&Ctrl;
-      <keycap>x</keycap></keycombo> is supported. 
+      <keycap>X</keycap></keycombo> is supported. 
       <keycombo action="simul">&Alt;&Ctrl;
-      <keycap>r</keycap></keycombo> toggles the 
+      <keycap>R</keycap></keycombo> toggles the 
       <guilabel>List Panel</guilabel> between horizontal and
       vertical mode.</para>
-      <para>The following items are available: 
+      <para>The following items are available:</para> 
       <itemizedlist>
         <listitem>
           <para>
@@ -443,7 +445,8 @@
           <link linkend="view-menu">custom filter</link> is set, it
           will show the setting, example: [*.cpp].</para>
         </listitem>
-      </itemizedlist>When using the "&kde; default 
+      </itemizedlist>
+      <para>When using the "&kde; default 
       <link linkend="konfig-color">colors</link>", then the
       selected files are shown in blue and the current file is
       surrounded by a fine-lined rectangle. By default an icon is
@@ -451,12 +454,12 @@
       <link linkend="konfig-looknfeel">Konfigurator Look &amp; Feel page</link> to change the default
       configuration to meet your individual needs.</para>
       <para>Some useful 
-      <guilabel>List panel</guilabel><link linkend="key_bindings">Key-Bindings</link>: 
+      <guilabel>List panel</guilabel><link linkend="key_bindings">Key-Bindings</link>:</para> 
       <itemizedlist>
         <listitem>
           <para>
           <keycombo action="simul">&Ctrl;
-          <keycap>r</keycap></keycombo> will refresh the
+          <keycap>R</keycap></keycombo> will refresh the
           panel.</para>
         </listitem>
         <listitem>
@@ -481,7 +484,7 @@
           <keycap>Right arrow</keycap></keycombo> and the left panel
           will change.</para>
         </listitem>
-      </itemizedlist></para>
+      </itemizedlist>
     </sect2>
     <sect2 id="popup_panel">
       <title>PopUp Panel</title>
@@ -496,7 +499,7 @@
       <keycap>Down-Arrow</keycap></keycombo> to open the 
       <guilabel>PopUp Panel</guilabel>. This panel has several
       display modes which can be activated by clicking on the
-      appropriate button. 
+      appropriate button.</para> 
       <itemizedlist>
         <listitem>
           <para>
@@ -546,7 +549,8 @@
           </emphasis>: views the <link linkend="diskusage">Disk Usage</link> of a
           directory.</para>
         </listitem>
-      </itemizedlist>If needed you can resize the window
+      </itemizedlist>
+      <para>If needed you can resize the window
       e.g. to better display a picture or view a file is
       contents. Click on the arrow down button to close the 
       <guilabel>3rd Hand Panel</guilabel>.</para>
@@ -596,7 +600,7 @@
       </mediaobject>
     </figure>
     <para>The traditional command line mode offers a single line of
-    input to enter commands, it also features three buttons:
+    input to enter commands, it also features three buttons:</para>
      <itemizedlist>
         <listitem>
           <para><guibutton>"command history"</guibutton> (down arrow) to quick open previous used commands
@@ -634,7 +638,7 @@
 
 
      </itemizedlist>
-    When you start typing your commands,
+    <para>When you start typing your commands,
     the command line auto-completion feature will make its offers
     according to what you choose in the
     &kcontrolcenter;. If you want to change the way
@@ -697,17 +701,17 @@
     terminal emulator can be used when 
     <link linkend="konfig-looknfeel-operation">configured</link> or 
     <keycombo action="simul">&Ctrl;
-    <keycap>f</keycap></keycombo> toggles between normal and full
+    <keycap>F</keycap></keycombo> toggles between normal and full
     screen mode. If the command line is hidden, press 
     <keycombo action="simul">&Ctrl;
     <keycap>up</keycap></keycombo> to focus the terminal emulator. 
     <keycombo action="simul">&Ctrl;
     <keycap>down</keycap></keycombo> brings you back down. 
     <keycombo action="simul">&Ctrl;
-    <keycap>Enter</keycap></keycombo> and 
+    &Enter;</keycombo> and 
     <keycombo action="simul">&Ctrl;
-    <keycap>Shift</keycap>
-    <keycap>Enter</keycap></keycombo> paste the filename. You can
+    &Shift;
+    &Enter;</keycombo> paste the filename. You can
     close the emulator by typing 
     <userinput>
       <command>exit</command>
@@ -795,7 +799,7 @@
     switch between <guibutton>Folder Tabs</guibutton>, click them with the
     mouse. Squeezed <guibutton>Folder Tabs</guibutton> have tooltips to
     display the full path. The following <guibutton>Folder Tabs</guibutton>
-    operations are available: 
+    operations are available:</para> 
     <itemizedlist>
       <listitem>
         <para>To 
@@ -805,7 +809,7 @@
         <keycap>open in a new tab</keycap>, or use the
         Middle Mouse Button, or use 
         <keycombo action="simul">&Alt;&Ctrl;
-        <keycap>n</keycap></keycombo>.</para>
+        <keycap>N</keycap></keycombo>.</para>
       </listitem>
       <listitem>
         <para>To 
@@ -814,7 +818,7 @@
         <keycap>duplicate tab</keycap>, or use 
         <keycombo action="simul">
         &Alt;&Ctrl;&Shift;
-        <keycap>n</keycap></keycombo>.</para>
+        <keycap>N</keycap></keycombo>.</para>
       </listitem>
       <listitem>
         <para>To 
@@ -824,7 +828,7 @@
         use the Folder tab 
         <guibutton>"red cross"</guibutton> button, or use 
         <keycombo action="simul">&Alt;&Ctrl;
-        <keycap>c</keycap></keycombo>.</para>
+        <keycap>C</keycap></keycombo>.</para>
       </listitem>
       <listitem>
         <para>To create a 
@@ -844,7 +848,7 @@
         <keycombo action="simul">
         &Ctrl;&Alt;&Enter;</keycombo>.</para>
       </listitem>
-    </itemizedlist></para>
+    </itemizedlist>
   </sect1>
   <sect1 id="ui_buttons">
     <title>Buttons</title>
