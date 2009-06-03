@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>485</width>
+    <width>520</width>
     <height>497</height>
    </rect>
   </property>
@@ -22,6 +22,9 @@
    </property>
    <item row="0" column="0">
     <widget class="KTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
        <string>Basic Properties</string>
@@ -475,7 +478,7 @@ Please consult the handbook to learn more about the syntax.</string>
          </property>
          <layout class="QGridLayout">
           <item row="0" column="0">
-           <widget class="QTabWidget" name="tabShowonly">
+           <widget class="KTabWidget" name="tabShowonly">
             <property name="tabShape">
              <enum>QTabWidget::Triangular</enum>
             </property>
@@ -576,7 +579,7 @@ Please consult the handbook to learn more about the syntax.</string>
                </widget>
               </item>
               <item row="0" column="0" rowspan="4">
-               <widget class="KrListWidget" name="lbShowonlyProtocol">
+               <widget class="KrListWidget" name="lbShowonlyProtocol" native="true">
                 <property name="whatsThis">
                  <string>Show the &lt;b&gt;Useraction&lt;/b&gt; only for the values defined here.</string>
                 </property>
@@ -590,7 +593,7 @@ Please consult the handbook to learn more about the syntax.</string>
              </attribute>
              <layout class="QGridLayout">
               <item row="0" column="0" rowspan="4">
-               <widget class="KrListWidget" name="lbShowonlyPath">
+               <widget class="KrListWidget" name="lbShowonlyPath" native="true">
                 <property name="whatsThis">
                  <string>Show the &lt;b&gt;Useraction&lt;/b&gt; only for the values defined here.</string>
                 </property>
@@ -695,7 +698,7 @@ Please consult the handbook to learn more about the syntax.</string>
              </attribute>
              <layout class="QGridLayout">
               <item row="0" column="0" rowspan="4">
-               <widget class="KrListWidget" name="lbShowonlyMime">
+               <widget class="KrListWidget" name="lbShowonlyMime" native="true">
                 <property name="whatsThis">
                  <string>Show the &lt;b&gt;Useraction&lt;/b&gt; only for the values defined here.</string>
                 </property>
@@ -800,7 +803,7 @@ Please consult the handbook to learn more about the syntax.</string>
              </attribute>
              <layout class="QGridLayout">
               <item row="0" column="0" rowspan="4">
-               <widget class="KrListWidget" name="lbShowonlyFile">
+               <widget class="KrListWidget" name="lbShowonlyFile" native="true">
                 <property name="whatsThis">
                  <string>Show the &lt;b&gt;Useraction&lt;/b&gt; only for the filenames defined here. The wildcards '&lt;code&gt;?&lt;/code&gt;' and '&lt;code&gt;*&lt;/code&gt;' can be used.</string>
                 </property>
