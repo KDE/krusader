@@ -1,3 +1,22 @@
+/*****************************************************************************
+ * Copyright (C) 2000-2002 Shie Erlich <erlich@users.sourceforge.net>        *
+ * Copyright (C) 2000-2002 Rafi Yanai <yanai@users.sourceforge.net>          *
+ *                                                                           *
+ * This program is free software; you can redistribute it and/or modify      *
+ * it under the terms of the GNU General Public License as published by      *
+ * the Free Software Foundation; either version 2 of the License, or         *
+ * (at your option) any later version.                                       *
+ *                                                                           *
+ * This package is distributed in the hope that it will be useful,           *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of            *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
+ * GNU General Public License for more details.                              *
+ *                                                                           *
+ * You should have received a copy of the GNU General Public License         *
+ * along with this package; if not, write to the Free Software               *
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
+ *****************************************************************************/
+
 #ifndef KRCOLORCACHE_H
 #define KRCOLORCACHE_H
 
@@ -6,31 +25,34 @@
 #include <qcolor.h>
 #include <QtGui/QPalette>
 
-/*
-Design goals: Color calculation is done on one place only. Configuration through krConfig OR through local settings.
-Calculation must be fast through cacheing.
-
-This implementation exposes 3 classes:
-
-KrColorSettings: holds the color settings from krConfig, which can be changed locally
-KrColorItemType: specifies the colors to be calculated
-KrColorCache: perfomes the color calculation and caches the result. Uses KrColorSettings for the calculation
-*/
-
-
-/*
-Copies all used color settings from krConfig into a local cache on creation. It contains 3 types of properties:
-color, numeric (int) and boolean. Color properties can have string or color values. Property values can be
-changed. These changes does not go into krConfig!
-
-is*Valid checks, if a protery name is valid
-get*Names returns a list of all allowed property names
-set*Value overwrites a property with a new value
-get*Value retunrs the current value
-
-For colors teh value can be returned as text or as color. If a text representation is not a valid color, 
-setColorValue(QColor()) should be called.
-*/
+/**
+ * Design goals: Color calculation is done on one place only.
+ * Configuration through krConfig OR through local settings.
+ * Calculation must be fast through cacheing.
+ *
+ * This implementation exposes 3 classes:
+ * KrColorSettings: holds the color settings from krConfig,
+ *                  which can be changed locally
+ * KrColorItemType: specifies the colors to be calculated
+ * KrColorCache: perfomes the color calculation and caches the result.
+ *               Uses KrColorSettings for the calculation
+ *
+ * Copies all used color settings from krConfig into a local cache on creation.
+ * It contains 3 types of properties:
+ * color, numeric (int) and boolean.
+ * Color properties can have string or color values.
+ * Property values can be changed.
+ * These changes does not go into krConfig!
+ *
+ * is*Valid checks, if a protery name is valid
+ * get*Names returns a list of all allowed property names
+ * set*Value overwrites a property with a new value
+ * get*Value retunrs the current value
+ *
+ * For colors the value can be returned as text or as color.
+ * If a text representation is not a valid color, setColorValue(QColor())
+ * should be called.
+ */
 class KrColorSettings
 {
 	class KrColorSettingsImpl * m_impl;
@@ -58,9 +80,9 @@ public:
 	int getBoolValue(const QString & settingName, bool defaultValue = false) const;
 };
 
-/*
-A colletcion of properties which describe the color group to be calculated
-*/
+/**
+ * A colletcion of properties which describe the color group to be calculated
+ */
 class KrColorItemType
 {
 public:
@@ -73,13 +95,17 @@ public:
 	const KrColorItemType & operator= (const KrColorItemType &);
 };
 
-/*
-The color calculation. It bases on an internal KrColorSettings instance. Via setColors it can be changed.
-getColors does the color calculation. It sets the colors Base, Background, Text, HighlightedText and Highlight.
-All calculated values are cached. The cache is deleted on refreshColors and setColors, which also trigger
-colorsRefreshed. getColorCache returns a statis color cached for painting the panels. On the color cache
-setColors should NEVER be called!
-*/
+/**
+ * The color calculation. It bases on an internal KrColorSettings instance.
+ * Via setColors it can be changed.
+ * getColors does the color calculation.
+ * It sets the colors Base, Background, Text, HighlightedText and Highlight.
+ * All calculated values are cached.
+ * The cache is deleted on refreshColors and setColors, which also trigger
+ * colorsRefreshed.
+ * getColorCache returns a static color cached for painting the panels.
+ * On the color cache setColors should NEVER be called!
+ */
 class KrColorGroup {
 public:
 	inline KrColorGroup() : _textColor(), _backgroundColor(), _highlightedTextColor(),
