@@ -209,7 +209,7 @@ void KRMaskChoiceSub::addSelection() {
     }
   }
 
-  if (temp!="" && !itemExists) {
+  if (!temp.isEmpty() && !itemExists) {
     preSelections->addItem(selection->currentText());
     preSelections->update();
   }

@@ -205,7 +205,7 @@ bool ftp_vfs::populateVfsList( const KUrl& origin, bool showHidden ) {
 void ftp_vfs::vfs_addFiles( KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir,  PreserveMode /*pmode*/ ) {
 	KUrl destUrl = vfs_origin;
 
-	if ( dir != "" ) {
+	if ( !dir.isEmpty() ) {
 		destUrl.addPath( dir );
 		destUrl.cleanPath();  // removes the '..', '.' and extra slashes from the URL.
 

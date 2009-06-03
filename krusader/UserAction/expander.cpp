@@ -1123,7 +1123,7 @@ TagString Expander::expandCurrent( const QString& stringToExpand, bool useUrl ) 
       // get the expression, and expand it using the correct expander function
       exp = stringToExpand.mid( begin + 1, end - begin - 1 );
 //       kDebug() << "------------- exp: '" << exp << "'" << endl;
-      if ( exp == "" )
+      if ( exp.isEmpty() )
         result += QString(QChar('%'));
       else {
         TagStringList parameter = separateParameter( &exp, useUrl );

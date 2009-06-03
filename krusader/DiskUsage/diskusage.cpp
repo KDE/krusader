@@ -441,7 +441,7 @@ Directory * DiskUsage::getDirectory( QString dir )
 
 File * DiskUsage::getFile( QString path )
 {
-  if( path == "" )
+  if( path.isEmpty() )
     return root;
 
   QString dir = path;

@@ -626,9 +626,10 @@ void KgColors::deserialize(QDataStream & stream)
 {
    for (;;)
    {
-      QString name, value;
+      QString name;
+      QString value;
       stream >> name >> value;
-      if (name == "")
+      if (name.isEmpty())
          break;
 
       if (name == "KDE Default" || name == "Enable Alternate Background" ||

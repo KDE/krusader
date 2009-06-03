@@ -553,7 +553,7 @@ QColor KrColorCacheImpl::getAlternateBackgroundColor(bool isActive) const
 {
 	if (isActive && m_colorSettings.getColorTextValue("Alternate Background") == "Background")
 		return getBackgroundColor(true);
-	if (!isActive && m_colorSettings.getColorTextValue("Inactive Alternate Background") == "")
+	if (!isActive && m_colorSettings.getColorTextValue("Inactive Alternate Background").isEmpty())
 		return getAlternateBackgroundColor(true);
 	if (!isActive && m_colorSettings.getColorTextValue("Inactive Alternate Background") == "Inactive Background")
 		return getBackgroundColor(false);
@@ -572,20 +572,20 @@ QColor KrColorCacheImpl::getMarkedForegroundColor(bool isActive) const
 	QString colorName = isActive?"Marked Foreground":"Inactive Marked Foreground";
 	if (m_colorSettings.getColorTextValue(colorName) == "transparent")
 		return QColor();
-	if (isActive && m_colorSettings.getColorTextValue(colorName) == "")
+	if (isActive && m_colorSettings.getColorTextValue(colorName).isEmpty())
 		return KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color();
-	if (!isActive && m_colorSettings.getColorTextValue(colorName) == "")
+	if (!isActive && m_colorSettings.getColorTextValue(colorName).isEmpty())
 		return getMarkedForegroundColor(true);
 	return m_colorSettings.getColorValue(colorName);
 }
 
 QColor KrColorCacheImpl::getMarkedBackgroundColor(bool isActive) const
 {
-	if (isActive && m_colorSettings.getColorTextValue("Marked Background") == "")
+	if (isActive && m_colorSettings.getColorTextValue("Marked Background").isEmpty())
 		return KColorScheme(QPalette::Active, KColorScheme::Selection).background().color();
 	if (isActive && m_colorSettings.getColorTextValue("Marked Background") == "Background")
 		return getBackgroundColor(true);
-	if (!isActive && m_colorSettings.getColorTextValue("Inactive Marked Background") == "")
+	if (!isActive && m_colorSettings.getColorTextValue("Inactive Marked Background").isEmpty())
 		return getMarkedBackgroundColor(true);
 	if (!isActive && m_colorSettings.getColorTextValue("Inactive Marked Background") == "Inactive Background")
 		return getBackgroundColor(false);
@@ -598,9 +598,9 @@ QColor KrColorCacheImpl::getAlternateMarkedBackgroundColor(bool isActive) const
 {
 	if (isActive && m_colorSettings.getColorTextValue("Alternate Marked Background") == "Alternate Background")
 		return getAlternateBackgroundColor(true);
-	if (isActive && m_colorSettings.getColorTextValue("Alternate Marked Background") == "")
+	if (isActive && m_colorSettings.getColorTextValue("Alternate Marked Background").isEmpty())
 		return getMarkedBackgroundColor(true);
-	if (!isActive && m_colorSettings.getColorTextValue("Inactive Alternate Marked Background") == "")
+	if (!isActive && m_colorSettings.getColorTextValue("Inactive Alternate Marked Background").isEmpty())
 		return getAlternateMarkedBackgroundColor(true);
 	if (!isActive && m_colorSettings.getColorTextValue("Inactive Alternate Marked Background") == "Inactive Alternate Background")
 		return getAlternateBackgroundColor(false);
@@ -620,11 +620,11 @@ QColor KrColorCacheImpl::getCurrentForegroundColor(bool isActive) const
 
 QColor KrColorCacheImpl::getCurrentBackgroundColor(bool isActive) const
 {
-	if (isActive && m_colorSettings.getColorTextValue("Current Background") == "")
+	if (isActive && m_colorSettings.getColorTextValue("Current Background").isEmpty())
 		return QColor();
 	if (isActive && m_colorSettings.getColorTextValue("Current Background") == "Background")
 		return getBackgroundColor(true);
-	if (!isActive && m_colorSettings.getColorTextValue("Inactive Current Background") == "")
+	if (!isActive && m_colorSettings.getColorTextValue("Inactive Current Background").isEmpty())
 		return getCurrentBackgroundColor(true);
 	if (!isActive && m_colorSettings.getColorTextValue("Inactive Current Background") == "Inactive Background")
 		return getBackgroundColor(false);
@@ -636,11 +636,11 @@ QColor KrColorCacheImpl::getCurrentBackgroundColor(bool isActive) const
 QColor KrColorCacheImpl::getCurrentMarkedForegroundColor(bool isActive) const
 {
 	QString colorName = isActive?"Marked Current Foreground":"Inactive Marked Current Foreground";
-	if (isActive && m_colorSettings.getColorTextValue(colorName) == "")
+	if (isActive && m_colorSettings.getColorTextValue(colorName).isEmpty())
 		return QColor();
 	if (isActive && m_colorSettings.getColorTextValue(colorName) == "Marked Foreground")
 		return getMarkedForegroundColor(true);
-	if (!isActive && m_colorSettings.getColorTextValue(colorName) == "")
+	if (!isActive && m_colorSettings.getColorTextValue(colorName).isEmpty())
 		return getCurrentMarkedForegroundColor(true);
 	if (!isActive && m_colorSettings.getColorTextValue(colorName) == "Inactive Marked Foreground")
 		return getMarkedForegroundColor(false);

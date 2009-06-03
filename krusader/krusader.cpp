@@ -256,7 +256,7 @@ Krusader::Krusader() : KParts::MainWindow(0,
          message = "";
          break;
    }
-   if ( message != "" ) {
+   if ( !message.isEmpty() ) {
       KMessageBox::error( krApp, message );
    }
 

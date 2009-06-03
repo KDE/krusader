@@ -679,9 +679,9 @@ void Synchronizer::operate( SynchronizerFileItem *item,
 
   if( item->isDir() )
   {
-    QString leftDirName = ( item->leftDirectory() == "" ) ?
+    QString leftDirName = ( item->leftDirectory().isEmpty() ) ?
                         item->leftName() : item->leftDirectory() + "/" + item->leftName() ;
-    QString rightDirName = ( item->rightDirectory() == "" ) ?
+    QString rightDirName = ( item->rightDirectory().isEmpty() ) ?
                         item->rightName() : item->rightDirectory() + "/" + item->rightName() ;
 
     QListIterator<SynchronizerFileItem *> it(resultList);

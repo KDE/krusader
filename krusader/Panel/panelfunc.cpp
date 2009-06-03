@@ -870,7 +870,7 @@ void ListPanelFunc::pack() {
 
 	// choose the default name
 	QString defaultName = panel->virtualPath().fileName();
-	if ( defaultName == "" )
+	if ( defaultName.isEmpty() )
 		defaultName = "pack";
 	if ( fileNames.count() == 1 )
 		defaultName = fileNames.first();
