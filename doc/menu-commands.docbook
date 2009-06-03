@@ -142,7 +142,7 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Alt;
+              <keycombo action="simul">&Alt;&Shift;
               <keycap>P</keycap></keycombo>
             </shortcut>
             <guimenu>File</guimenu>
@@ -160,7 +160,7 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Alt;
+              <keycombo action="simul">&Alt;&Shift;
               <keycap>U</keycap></keycombo>
             </shortcut>
             <guimenu>File</guimenu>
@@ -177,7 +177,7 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Alt;
+              <keycombo action="simul">&Alt;&Shift;
               <keycap>E</keycap></keycombo>
             </shortcut>
             <guimenu>File</guimenu>
@@ -306,7 +306,7 @@
               <keycap>P</keycap></keycombo>
             </shortcut>
             <guimenu>File</guimenu>
-            <guimenuitem>Split file</guimenuitem>
+            <guimenuitem>Split File</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
@@ -325,7 +325,7 @@
               <keycap>B</keycap></keycombo>
             </shortcut>
             <guimenu>File</guimenu>
-            <guimenuitem>Combine files</guimenuitem>
+            <guimenuitem>Combine Files</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
@@ -549,7 +549,7 @@
         <term>
           <menuchoice>
           <shortcut>
-              <keycombo action="simul">&Alt;
+              <keycombo action="simul">&Alt;&Shift;
               <keycap>C</keycap></keycombo>
             </shortcut>
             <guimenu>Edit</guimenu>
@@ -565,7 +565,7 @@
         <term>
           <menuchoice>
             <guimenu>Edit</guimenu>
-            <guimenuitem>Compare setup</guimenuitem>
+            <guimenuitem>Compare Setup</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
@@ -768,7 +768,7 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">&Ctrl;
-              <keycap>PageUp</keycap></keycombo>
+              <keysym>PgUp</keysym></keycombo>
             </shortcut>
             <guimenu>Go</guimenu>
             <guimenuitem>Up</guimenuitem>
@@ -784,7 +784,7 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">&Ctrl;
-              <keycap>Backspace</keycap></keycombo>
+              <keysym>Backspace</keysym></keycombo>
             </shortcut>
             <guimenu>Go</guimenu>
             <guimenuitem>Root</guimenuitem>
@@ -799,8 +799,8 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Ctrl;
-              <keycap>Home</keycap></keycombo>
+              <keycombo action="simul">&Alt;
+              <keysym>Home</keysym></keycombo>
             </shortcut>
             <guimenu>Go</guimenu>
             <guimenuitem>Home</guimenuitem>
@@ -870,7 +870,7 @@
         <term>
           <menuchoice>
             <guimenu>Useractions</guimenu>
-            <guimenuitem>Manage useractions</guimenuitem>
+            <guimenuitem>Manage User Actions ...</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
@@ -1124,7 +1124,7 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Alt;
+              <keycombo action="simul">&Alt;&Shift;
               <keycap>D</keycap></keycombo>
             </shortcut>
             <guimenu>Tools</guimenu>
@@ -1215,7 +1215,7 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Alt;
+              <keycombo action="simul">&Alt;&Shift;
               <keycap>K</keycap></keycombo>
             </shortcut>
             <guimenu>Tools</guimenu>
@@ -1443,7 +1443,7 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">
-              &Alt;&Ctrl;
+              &Ctrl;&Alt;
               <keycap>N</keycap></keycombo>
             </shortcut>
             <guimenu>Window</guimenu>
@@ -1459,7 +1459,7 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">
-              &Alt;&Ctrl;&Shift;
+              &Ctrl;&Alt;&Shift;
               <keycap>N</keycap></keycombo>
             </shortcut>
             <guimenu>Window</guimenu>
@@ -1526,7 +1526,7 @@
         <term>
           <menuchoice>
             <shortcut>
-              <keycombo action="simul">&Alt;
+              <keycombo action="simul">&Alt;&Shift;
               <keycap>L</keycap></keycombo>
             </shortcut>
             <guimenu>Window</guimenu>
@@ -1577,7 +1577,7 @@
           <menuchoice>
             <shortcut>
               <keycombo action="simul">
-              &Alt;&Ctrl;
+              &Ctrl;&Alt;
               <keycap>R</keycap></keycombo>
             </shortcut>
             <guimenu>Window</guimenu>
@@ -1626,103 +1626,6 @@
   </sect1>
   <sect1 id="help-menu">
     <title>Help Menu</title>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Help</guimenu>
-            <guimenuitem>Krusader Handbook</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Opens the &kde; Help system starting at
-          the &krusader; help pages (this
-          document).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo action="simul">&Shift;
-              <keycap>F1</keycap></keycombo>
-            </shortcut>
-            <guimenu>Help</guimenu>
-            <guimenuitem>What's This?</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>The WhatsThis help function
-          changes the mouse cursor to a combination arrow and
-          question mark. Clicking on items within
-          &krusader; will open a help window (if one
-          exists for that particular item) explaining the item
-          function. Use this feature if you want to know more about
-          a specific item. A right-click on an item will also open
-          the WhatsThis help.</para>
-        </listitem>
-      </varlistentry>
-      <!-- vertical bar -->
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Help</guimenu>
-            <guimenuitem>Report Bug</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Opens the bug report dialog for sending bug reports
-          via mail.</para>
-          <note>
-            <para>
-              <remark>If you have bugs to report please do not
-              use &kde;'s bugzilla http://bugs.kde.org/,
-              &kde;'s Bug Tracking System. We use
-              Sourceforge.net for reporting and managing our
-              <link linkend="faqg_bug_report">bug reports</link>.</remark>
-            </para>
-          </note>
-          <para>Wishes, patches, and comments are always 
-          <link linkend="faqg_wish">welcome</link>.</para>
-        </listitem>
-      </varlistentry>
-            <!-- vertical bar -->
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Help</guimenu>
-            <guimenuitem>Switch Application Language...</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Use Krusader in an other language.</para>
-	</listitem>
-      </varlistentry>
-      <!-- vertical bar -->
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Help</guimenu>
-            <guimenuitem>About Krusader</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Displays version, author, and license
-          information.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Help</guimenu>
-            <guimenuitem>About KDE</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Displays the &kde; version and basic
-          information.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
+    &help.menu.documentation;
   </sect1>
 </chapter>
