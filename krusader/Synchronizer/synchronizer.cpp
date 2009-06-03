@@ -68,7 +68,7 @@
 
 
 
-#if defined( HAVE_POSIX_ACL )
+#ifdef HAVE_POSIX_ACL
 #include <sys/acl.h>
 #ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
 #include <acl/libacl.h>
@@ -1097,7 +1097,7 @@ void Synchronizer::slotTaskFinished(KJob *job )
 
           chmod( (const char *)( leftURL.path( KUrl::RemoveTrailingSlash ).toLocal8Bit() ), item->rightMode() & 07777 );
 
-#if defined( HAVE_POSIX_ACL )
+#ifdef HAVE_POSIX_ACL
           if( !item->rightACL().isNull() )
           {
             acl_t acl = acl_from_text( item->rightACL().toLatin1() );
@@ -1138,7 +1138,7 @@ void Synchronizer::slotTaskFinished(KJob *job )
 
           chmod( (const char *)( rightURL.path( KUrl::RemoveTrailingSlash ).toLocal8Bit() ), item->leftMode() & 07777 );
 
-#if defined( HAVE_POSIX_ACL )
+#ifdef HAVE_POSIX_ACL
           if( !item->leftACL().isNull() )
           {
             acl_t acl = acl_from_text( item->leftACL().toLatin1() );

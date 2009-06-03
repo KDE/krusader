@@ -54,7 +54,7 @@ A
 #include <sys/param.h>
 #include <qheaderview.h>
 
-#if defined(BSD)
+#ifdef BSD
 #include <kmountpoint.h>
 #include <kcodecs.h>
 #else
@@ -446,7 +446,7 @@ KrMountDetector::KrMountDetector() {
 }
 
 bool KrMountDetector::hasMountsChanged() {
-#if defined(BSD)
+#ifdef BSD
    KMountPoint::List mountPoints = KMountPoint::currentMountPoints(KMountPoint::NeedRealDeviceName);
    KMD5 md5;
    for(KMountPoint::List::iterator i = mountPoints.begin(); i != mountPoints.end(); ++i) {

@@ -29,12 +29,12 @@ QFileHack::~QFileHack(){
 bool QFileHack::open ( QFile::OpenMode m ) {
     bool ret;
 
-#ifdef __linux__
-//    m |= IO_Async; //On linux, set O_NONBLOCK, opens CD-ROMs faster
+#ifdef Q_OS_UNIX
+//    m |= IO_Async; // On linux, set O_NONBLOCK, opens CD-ROMs faster
 #endif
     ret=QFile::open(m);
 //    if (ret && isSequential() ) {
-//        setOpenMode( m | (QFile::OpenMode)IO_Direct);
+//        setOpenMode(m | (QFile::OpenMode)IO_Direct);
 //    }
     return ret;
 }

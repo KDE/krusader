@@ -338,7 +338,7 @@ void DiskUsage::slotLoadDirectory()
         if( !dirToCheck.isEmpty() )
           url.addPath( dirToCheck );
 
-#if defined(BSD)
+#ifdef BSD
         if ( url.isLocalFile() && url.path().left( 7 ) == "/procfs" )
           break;
 #else

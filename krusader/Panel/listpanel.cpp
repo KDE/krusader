@@ -675,7 +675,7 @@ void ListPanel::slotGetStats( const KUrl& url ) {
 		status->setText(i18n( "No space information on [dev]" ));
 		return;
 	}
-#if defined(BSD)
+#ifdef BSD
 	if ( path.left( 5 ) == "/procfs" ) { // /procfs is a special case - no volume information
 		status->setText(i18n( "No space information on [procfs]" ));
 		return;

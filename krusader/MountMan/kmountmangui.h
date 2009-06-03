@@ -188,7 +188,7 @@ public:
 };
 
 class KrMountDetector {
-#if defined(BSD)
+#ifdef BSD
    QString checksum;
 #else
    QDateTime lastMtab;

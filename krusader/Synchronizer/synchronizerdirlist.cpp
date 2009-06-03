@@ -43,7 +43,7 @@
 #include <string.h>
 
 
-#if defined( HAVE_POSIX_ACL )
+#ifdef HAVE_POSIX_ACL
 #include <sys/acl.h>
 #ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
 #include <acl/libacl.h>
@@ -218,7 +218,7 @@ void SynchronizerDirList::slotEntries( KIO::Job * job, const KIO::UDSEntryList& 
       vfile *item = new vfile( kfi.text(), kfi.size(), perm, kfi.time( KFileItem::ModificationTime ).toTime_t(),
           kfi.isLink(), kfi.user(), kfi.group(), kfi.user(), 
           kfi.mimetype(), kfi.linkDest(), mode, rwx
-#if defined( HAVE_POSIX_ACL )
+#ifdef HAVE_POSIX_ACL
                                               , kfi.ACL().asString()
 #endif
                                                                      );

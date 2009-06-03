@@ -1748,7 +1748,7 @@ void PreserveAttrCopyJob::saveEntries(KIO::Job *job, const KIO::UDSEntryList &li
     if( (*it).contains( KIO::UDSEntry::UDS_ACCESS ) )
       mode = ((*it).numberValue( KIO::UDSEntry::UDS_ACCESS ));
 
-#if defined( HAVE_POSIX_ACL )
+#ifdef HAVE_POSIX_ACL
     if( (*it).contains( KIO::UDSEntry::UDS_ACL_STRING ) )
       acl = (*it).stringValue( KIO::UDSEntry::UDS_ACL_STRING );
 #endif
@@ -1768,13 +1768,13 @@ void PreserveAttrCopyJob::slotAboutToCreate( const QList< KIO::CopyInfo > &files
       KDE_lstat( (*it).uSource.path(KUrl::RemoveTrailingSlash).toLocal8Bit(),&stat_p);    /* getting the date information */
       
       QString aclStr;
-#if defined( HAVE_POSIX_ACL )
+#ifdef HAVE_POSIX_ACL
       acl_t acl = acl_get_file( (*it).uSource.path(KUrl::RemoveTrailingSlash).toLocal8Bit(), ACL_TYPE_ACCESS );
 
       bool aclExtended = false;
       if( acl )
       {
-#if HAVE_NON_POSIX_ACL_EXTENSIONS
+#ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
         aclExtended = acl_equiv_mode( acl, 0 );
 #else
         acl_entry_t entry;
@@ -1868,7 +1868,7 @@ void PreserveAttrCopyJob::slotCopyingDone( const KUrl &from, const KUrl &to, boo
       if( attrs.mode != (mode_t) -1 )
         ::chmod( (const char *)( to.path( KUrl::RemoveTrailingSlash ).toLocal8Bit() ), attrs.mode );
 
-#if defined( HAVE_POSIX_ACL )
+#ifdef HAVE_POSIX_ACL
       if( !attrs.acl.isNull() )
       {
         acl_t acl = acl_from_text( attrs.acl.toLatin1() );

@@ -77,7 +77,7 @@ KMountMan::KMountMan() : QObject(), Operational( false ), waiting(false), mountM
 
 	// list of FS that we don't manage at all
 	invalid_fs << "swap" << "/dev/pts" << "tmpfs" << "devpts" << "sysfs" << "rpc_pipefs" << "usbfs" << "binfmt_misc";
-#if defined(BSD)
+#ifdef BSD
 	invalid_fs << "procfs";
 #else
 	invalid_fs << "proc";
