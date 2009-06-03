@@ -1,14 +1,21 @@
-//
-// C++ Implementation: useractionlistview
-//
-// Description: 
-//
-//
-// Author: Jonas Bähr, (C) 2006
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/*****************************************************************************
+ * Copyright (C) 2006 Jonas Bähr <jonas.baehr@web.de>                        *
+ *                                                                           *
+ * This program is free software; you can redistribute it and/or modify      *
+ * it under the terms of the GNU General Public License as published by      *
+ * the Free Software Foundation; either version 2 of the License, or         *
+ * (at your option) any later version.                                       *
+ *                                                                           *
+ * This package is distributed in the hope that it will be useful,           *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of            *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
+ * GNU General Public License for more details.                              *
+ *                                                                           *
+ * You should have received a copy of the GNU General Public License         *
+ * along with this package; if not, write to the Free Software               *
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
+ *****************************************************************************/
+
 #include "useractionlistview.h"
 
 #include <klocale.h>
@@ -21,10 +28,7 @@
 
 #define COL_TITLE	0
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////     UserActionListView    /////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////
+// UserActionListView
 
 UserActionListView::UserActionListView( QWidget * parent )
  : KrTreeWidget( parent )
@@ -49,7 +53,6 @@ UserActionListView::~UserActionListView()
 QSize UserActionListView::sizeHint() const {
    return QSize(200, 400);
 }
-
 
 void UserActionListView::update() {
    clear();
@@ -180,9 +183,7 @@ void UserActionListView::removeSelectedActions() {
    }
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////     UserActionListViewItem    ////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////
+// UserActionListViewItem
 
 UserActionListViewItem::UserActionListViewItem( QTreeWidget* view, KrAction* action )
  : QTreeWidgetItem( view )
@@ -198,7 +199,6 @@ UserActionListViewItem::UserActionListViewItem( QTreeWidgetItem* item, KrAction 
 
 UserActionListViewItem::~UserActionListViewItem() {
 }
-
 
 void UserActionListViewItem::setAction( KrAction * action ) {
    if ( ! action )
@@ -230,5 +230,3 @@ bool UserActionListViewItem::operator<(const QTreeWidgetItem &other) const {
 //    else
       return QTreeWidgetItem::operator<(other);
 }
-
-
