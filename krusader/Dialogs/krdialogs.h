@@ -17,13 +17,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef KCHOSEDIR_H
-#define KCHOSEDIR_H
-
-#include <kdialog.h>
-#include <kanimatedbutton.h>
-#include <kurlrequesterdialog.h>
-#include <kdatepicker.h>
+#ifndef KRDIALOGS_H
+#define KRDIALOGS_H
 
 #include <QtGui/QLineEdit>
 #include <QtGui/QLayout>
@@ -33,6 +28,11 @@
 #include <QtGui/QPixmap>
 #include <QtGui/QCheckBox>
 #include <QtGui/QComboBox>
+
+#include <kdialog.h>
+#include <kanimatedbutton.h>
+#include <kurlrequesterdialog.h>
+#include <kdatepicker.h>
 
 /** \class KChooseDir
  * Used for asking the user for a folder.

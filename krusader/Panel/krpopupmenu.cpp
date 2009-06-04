@@ -17,26 +17,29 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
+#include "krpopupmenu.h"
+
+#include <QPixmap>
+
 #include <klocale.h>
 #include <kprocess.h>
 #include <krun.h>
 #include <kiconloader.h>
 #include <kmessagebox.h>
 #include <kmimetypetrader.h>
+#include <ktoolinvocation.h>
+#include <kactioncollection.h>
+
+#include "krview.h"
+#include "krviewitem.h"
+#include "panelfunc.h"
 #include "../krservices.h"
 #include "../defaults.h"
 #include "../MountMan/kmountman.h"
 #include "../krslots.h"
-#include "krpopupmenu.h"
-#include "krview.h"
-#include "krviewitem.h"
-#include "panelfunc.h"
 #include "../krusaderview.h"
 #include "../panelmanager.h"
 #include "../krtrashhandler.h"
-#include <QPixmap>
-#include <ktoolinvocation.h>
-#include <kactioncollection.h>
 
 void KrPopupMenu::run(const QPoint &pos, ListPanel *panel) {
 	KrPopupMenu menu(panel);

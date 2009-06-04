@@ -28,8 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __KONFIGURATOR_ITEMS_H__
-#define __KONFIGURATOR_ITEMS_H__
+#ifndef KONFIGURATORITEMS_H
+#define KONFIGURATORITEMS_H
 
 #include <QtCore/QObject>
 #include <QtCore/QString>
@@ -37,17 +37,19 @@
 #include <qspinbox.h>
 #include <QtGui/QPushButton>
 #include <QtGui/QRadioButton>
-#include "../GUI/krlistwidget.h"
 #include <QtCore/QList>
 #include <QtGui/QLineEdit>
 #include <QPixmap>
-#include <kurlrequester.h>
 #include <QtGui/QBoxLayout>
-#include <kfontdialog.h>
 #include <QtGui/QLabel>
 #include <qfont.h>
 #include <QtGui/QToolButton>
 #include <QtGui/QComboBox>
+
+#include <kurlrequester.h>
+#include <kfontdialog.h>
+
+#include "../GUI/krlistwidget.h"
 
 #define FIRST_PAGE        0
 

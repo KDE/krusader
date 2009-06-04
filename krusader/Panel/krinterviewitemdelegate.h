@@ -16,8 +16,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef __KR_INTERVIEW_ITEM_DELEGATE__
-#define __KR_INTERVIEW_ITEM_DELEGATE__
+#ifndef KRINTERVIEWITEMDELEGATE_H
+#define KRINTERVIEWITEMDELEGATE_H
 
 #include <QItemDelegate>
 

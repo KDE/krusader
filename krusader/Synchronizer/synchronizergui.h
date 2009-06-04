@@ -28,23 +28,25 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __SYNCHRONIZERGUI_H__
-#define __SYNCHRONIZERGUI_H__
+#ifndef SYNCHRONIZERGUI_H
+#define SYNCHRONIZERGUI_H
+
+#include <QtGui/QDialog>
+#include <QResizeEvent>
+#include <QKeyEvent>
+#include <QtGui/QPixmap>
+#include <QtGui/QCheckBox>
+#include <qmap.h>
+#include <QtGui/QLabel>
+#include <QtGui/QTabWidget>
+
+#include <kcombobox.h>
 
 #include "synchronizer.h"
 #include "../GUI/profilemanager.h"
 #include "../GUI/krtreewidget.h"
 #include "../Filter/filtertabs.h"
 #include "../Filter/generalfilter.h"
-#include <QtGui/QDialog>
-#include <QResizeEvent>
-#include <QKeyEvent>
-#include <kcombobox.h>
-#include <QtGui/QPixmap>
-#include <QtGui/QCheckBox>
-#include <qmap.h>
-#include <QtGui/QLabel>
-#include <QtGui/QTabWidget>
 
 class QSpinBox;
 

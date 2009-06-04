@@ -28,8 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __KGADVANCED_H__
-#define __KGADVANCED_H__
+#ifndef KGADVANCED_H
+#define KGADVANCED_H
 
 #include "konfiguratorpage.h"
 

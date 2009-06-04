@@ -28,6 +28,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 *                                                                         *
 ***************************************************************************/
 
+#include "listpanel.h"
+
 #include <unistd.h>
 #include <sys/param.h>
 
@@ -47,6 +49,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QtCore/QTimer>
 #include <QtCore/QRegExp>
 #include <QtGui/QSplitter>
+#include <QtGui/QImage>
+#include <qtabbar.h>
 
 #include <kmenu.h>
 #include <kdiskfreespace.h>
@@ -60,19 +64,21 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kstandarddirs.h>
 #include <kglobalsettings.h>
 #include <kdeversion.h>
-#include <QtGui/QImage>
-#include <qtabbar.h>
 #include <kdebug.h>
 #include <kurlrequester.h>
 #include <kmountpoint.h>
 #include <kcolorscheme.h>
+
+#ifdef __LIBKONQ__
+#include <konq_popupmenu.h>
+#include <konqbookmarkmanager.h>
+#endif
 
 #include "../krusader.h"
 #include "../krslots.h"
 #include "panelfunc.h"
 #include "../kicons.h"
 #include "../VFS/krpermhandler.h"
-#include "listpanel.h"
 #include "../krusaderview.h"
 #include "../panelmanager.h"
 #include "../defaults.h"
@@ -95,11 +101,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../Dialogs/popularurls.h"
 #include "krpopupmenu.h"
 #include "krviewfactory.h"
-
-#ifdef __LIBKONQ__
-#include <konq_popupmenu.h>
-#include <konqbookmarkmanager.h>
-#endif
 
 typedef QList<KServiceOffer> OfferList;
 

@@ -28,8 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __KGLOOKFEEL_H__
-#define __KGLOOKFEEL_H__
+#ifndef KGLOOKFEEL_H
+#define KGLOOKFEEL_H
 
 #include "konfiguratorpage.h"
 

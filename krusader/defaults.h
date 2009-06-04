@@ -29,6 +29,9 @@
 *                                                                         *
 ***************************************************************************/
 
+#ifndef DEFAULTS_H
+#define DEFAULTS_H
+
 #include <kglobalsettings.h>
 
 ///////////////////////   [Startup]
@@ -326,4 +329,6 @@
 #define REPLACE_DIR_SEP2(x)
 #define ROOT_DIR            "/"
 #define EXEC_SUFFIX         ""
+#endif
+
 #endif

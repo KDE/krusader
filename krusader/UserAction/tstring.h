@@ -16,13 +16,15 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef __TAGSTRING__H
-#define __TAGSTRING__H
+#ifndef TSTRING_H
+#define TSTRING_H
+
+#include <utility>
+#include <cassert>
 
 #include <QtCore/QString>
 #include <QtCore/QList>
-#include <utility>
-#include <cassert>
+
 template <class T>
 class TagString_t
 {

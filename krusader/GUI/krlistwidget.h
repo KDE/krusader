@@ -28,8 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef KRLISTVIEW_H
-#define KRLISTVIEW_H
+#ifndef KRLISTWIDGET_H
+#define KRLISTWIDGET_H
 
 #include <QtGui/QListWidget>
 

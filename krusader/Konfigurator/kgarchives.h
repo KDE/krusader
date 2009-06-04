@@ -28,8 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __KGARCHIVES_H__
-#define __KGARCHIVES_H__
+#ifndef KGARCHIVES_H
+#define KGARCHIVES_H
 
 #include "konfiguratorpage.h"
  

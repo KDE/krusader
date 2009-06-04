@@ -31,17 +31,20 @@
 #ifndef KRDETAILEDVIEWITEM_H
 #define KRDETAILEDVIEWITEM_H
 
+#include <sys/types.h>
+
 #ifndef QT3_SUPPORT
 #define QT3_SUPPORT 1
 #define KDE3_SUPPORT 1
 #endif
 
-#include "krviewitem.h"
-#include <sys/types.h>
-#include "../VFS/vfile.h"
 #include <k3listview.h>
+
 #include <QtCore/QPointer>
 #include <QPixmap>
+
+#include "krviewitem.h"
+#include "../VFS/vfile.h"
 
 #define FASTER
 

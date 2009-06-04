@@ -27,6 +27,7 @@ A
 *   (at your option) any later version.                                   *
 *                                                                         *
 ***************************************************************************/
+
 #ifndef KRBRIEFVIEW_H
 #define KRBRIEFVIEW_H
 
@@ -35,10 +36,9 @@ A
 #define KDE3_SUPPORT 1
 #endif
 
-#include "krview.h"
-#include "krviewitem.h"
-#include <k3iconview.h>
 #include <q3header.h>
+#include <k3iconview.h>
+
 #include <QtCore/QTimer>
 #include <QDragMoveEvent>
 #include <QDropEvent>
@@ -49,6 +49,9 @@ A
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <QEvent>
+
+#include "krview.h"
+#include "krviewitem.h"
 
 class KrBriefViewItem;
 class QDragMoveEvent;

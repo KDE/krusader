@@ -28,17 +28,19 @@
  *                                                                         *
  ***************************************************************************/
  
-#ifndef __SYNCHRONIZER_H__
-#define __SYNCHRONIZER_H__
+#ifndef SYNCHRONIZER_H
+#define SYNCHRONIZER_H
 
-#include "synchronizertask.h"
-#include "synchronizerfileitem.h"
 #include <QtCore/QObject>
 #include <qmap.h>
 #include <qcolor.h>
 #include <QList>
+
 #include <kio/job.h>
 #include <kdialog.h>
+
+#include "synchronizertask.h"
+#include "synchronizerfileitem.h"
 
 class KRQuery;
 class vfile;

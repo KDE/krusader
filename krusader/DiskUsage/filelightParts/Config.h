@@ -16,13 +16,12 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef Config_H
-#define Config_H
+#ifndef CONFIG_H
+#define CONFIG_H
 
 #include <QStringList>
 
 class KConfigGroup;
-
 
 namespace Filelight
 {

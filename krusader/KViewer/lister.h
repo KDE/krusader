@@ -28,13 +28,14 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __LISTER_H__
-#define __LISTER_H__
+#ifndef LISTER_H
+#define LISTER_H
 
-#include <kparts/part.h>
 #include <qwidget.h>
 #include <QtGui/QTextEdit>
 #include <QList>
+
+#include <kparts/part.h>
 
 #define  LISTER_CACHE_FACTOR 3
 #define  SLIDER_MAX          10000

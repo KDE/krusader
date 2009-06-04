@@ -28,8 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __FEED_TO_LISTBOX_DIALOG__
-#define __FEED_TO_LISTBOX_DIALOG__
+#ifndef FEEDTOLISTBOXDIALOG_H
+#define FEEDTOLISTBOXDIALOG_H
 
 #include <kdialog.h>
 

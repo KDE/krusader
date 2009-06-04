@@ -28,8 +28,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 *                                                                         *
 ***************************************************************************/
 
-#ifndef __KRVIEWFACTORY_H__
-#define __KRVIEWFACTORY_H__
+#ifndef KRVIEWFACTORY_H
+#define KRVIEWFACTORY_H
 
 #include <QString>
 #include <QKeySequence>

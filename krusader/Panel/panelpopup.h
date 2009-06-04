@@ -17,19 +17,20 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef _PANELPOPUP_H
-#define _PANELPOPUP_H
+#ifndef PANELPOPUP_H
+#define PANELPOPUP_H
 
 #include <qwidget.h>
 #include <qstackedwidget.h>
 #include <QtGui/QPixmap>
 #include <QDropEvent>
 #include <QLabel>
-#include <kfileitem.h>
 #include <QtCore/QPointer>
+#include <qtreeview.h>
+
+#include <kfileitem.h>
 #include <kio/previewjob.h>
 #include <kurl.h>
-#include <qtreeview.h>
 
 class QButtonGroup;
 class QLabel;

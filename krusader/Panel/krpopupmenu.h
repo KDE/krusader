@@ -22,13 +22,16 @@
 
 #include <kmenu.h>
 #include <kurl.h>
-#include "listpanel.h"
-#include "krpreviewpopup.h"
-#include "../UserAction/useractionpopupmenu.h"
+#include <kservice.h>
+
 #ifdef __LIBKONQ__
 #include <konq_popupmenu.h>
 #include <konqbookmarkmanager.h>
 #endif
+
+#include "listpanel.h"
+#include "krpreviewpopup.h"
+#include "../UserAction/useractionpopupmenu.h"
 
 // should be renamed to KrContextMenu or similar
 class KrPopupMenu : public KMenu {

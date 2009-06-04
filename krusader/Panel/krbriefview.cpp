@@ -39,7 +39,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../VFS/krarchandler.h"
 #include "../VFS/krquery.h"
 #include "../Dialogs/krspecialwidgets.h"
-#include <q3header.h>
 #include <QDragLeaveEvent>
 #include <QKeyEvent>
 #include <QDragMoveEvent>

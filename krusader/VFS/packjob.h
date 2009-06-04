@@ -28,11 +28,12 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __PACK_JOB_H__
-#define __PACK_JOB_H__
+#ifndef PACKJOB_H
+#define PACKJOB_H
+
+#include <qmap.h>
 
 #include "abstractthreadedjob.h"
-#include <qmap.h>
 
 class PackThread;
 class TestArchiveThread;

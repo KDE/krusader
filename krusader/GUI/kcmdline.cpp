@@ -28,17 +28,27 @@
 *                                                                         *
 ***************************************************************************/
 
-
 #include "kcmdline.h"
-#include "stdlib.h"
+
+#include <stdlib.h>
 #include <unistd.h>
+
 #include <QtGui/QMessageBox>
 #include <QGridLayout>
 #include <QFrame>
 #include <QLabel>
 #include <QKeyEvent>
 #include <QtGui/QIcon>
-#include <unistd.h>
+#include <QtCore/QDir>
+#include <QtGui/QFontMetrics>
+#include <QtGui/QImage>
+#include <QtCore/QStringList>
+#include <QtGui/QSizePolicy>
+
+#include <kstandarddirs.h>
+#include <klocale.h>
+#include <kglobalsettings.h>
+
 #include "../krusader.h"
 #include "../kicons.h"
 #include "../krslots.h"
@@ -49,14 +59,6 @@
 #include "../krservices.h"
 #include "../ActionMan/addplaceholderpopup.h"
 #include "kcmdmodebutton.h"
-#include <QtCore/QDir>
-#include <kstandarddirs.h>
-#include <klocale.h>
-#include <kglobalsettings.h>
-#include <QtGui/QFontMetrics>
-#include <QtGui/QImage>
-#include <QtCore/QStringList>
-#include <QtGui/QSizePolicy>
 
 KCMDLine::KCMDLine( QWidget *parent ) : QWidget( parent ) {
   QGridLayout * layout = new QGridLayout( this );

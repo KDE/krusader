@@ -1,14 +1,16 @@
-#ifndef KRBOOKMARK_HANDLER_H
-#define KRBOOKMARK_HANDLER_H
+#ifndef KRBOOKMARKHANDLER_H
+#define KRBOOKMARKHANDLER_H
 
-#include "krbookmark.h"
 #include <QtCore/QObject>
 #include <QtCore/QPointer>
 #include <QEvent>
-#include <kmenu.h>
-#include <kurl.h>
 #include <qdom.h>
 #include <qmap.h>
+
+#include <kmenu.h>
+#include <kurl.h>
+
+#include "krbookmark.h"
 
 class KActionCollection;
 class KBookmarkManager;

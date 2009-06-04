@@ -28,14 +28,15 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __SYNCHRONIZER_DIR_LIST_H__
-#define __SYNCHRONIZER_DIR_LIST_H__
+#ifndef SYNCHRONIZERDIRLIST_H
+#define SYNCHRONIZERDIRLIST_H
 
 #include <QtCore/QObject>
 #include <QtCore/QHash>
-#include "../VFS/vfile.h"
+
 #include <kio/job.h>
 
+#include "../VFS/vfile.h"
 
 class SynchronizerDirList : public QObject, public QHash<QString, vfile *>
 {

@@ -28,13 +28,14 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __DU_FILELIGHT_H__
-#define __DU_FILELIGHT_H__
+#ifndef DUFILELIGHT_H
+#define DUFILELIGHT_H
+
+#include <QMouseEvent>
 
 #include "diskusage.h"
 #include "radialMap/widget.h"
 #include "filelightParts/Config.h"
-#include <QMouseEvent>
 
 class DUFilelight : public RadialMap::Widget
 {

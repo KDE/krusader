@@ -27,7 +27,26 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 *   (at your option) any later version.                                   *
 *                                                                         *
 ***************************************************************************/
+
 #include "krdetailedview.h"
+
+#include <QtGui/QLayout>
+#include <QtCore/QDir>
+#include <QtGui/QStyle>
+#include <QWheelEvent>
+#include <QMouseEvent>
+#include <QKeyEvent>
+#include <QEvent>
+#include <QDropEvent>
+#include <QDragMoveEvent>
+
+#include <kstatusbar.h>
+#include <kinputdialog.h>
+#include <kmessagebox.h>
+#include <klocale.h>
+#include <kmenu.h>
+#include <kcolorscheme.h>
+
 #include "krdetailedviewitem.h"
 #include "krcolorcache.h"
 #include "krselectionmode.h"
@@ -42,23 +61,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../GUI/kcmdline.h"
 #include "../Dialogs/krspecialwidgets.h"
 #include "../panelmanager.h"
-#include <QtGui/QLayout>
-#include <QtCore/QDir>
-#include <q3header.h>
-#include <QtGui/QStyle>
-#include <QWheelEvent>
-#include <QMouseEvent>
-#include <QKeyEvent>
-#include <QEvent>
-#include <QDropEvent>
-#include <QDragMoveEvent>
-#include <kstatusbar.h>
-#include <kinputdialog.h>
-#include <kmessagebox.h>
-#include <klocale.h>
-#include <kmenu.h>
-#include <kcolorscheme.h>
-#include <QtGui/QStyle>
 
 //////////////////////////////////////////////////////////////////////////
 //  The following is KrDetailedView's settings in KConfig:

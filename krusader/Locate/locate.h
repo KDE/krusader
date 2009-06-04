@@ -28,14 +28,15 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __LOCATE_H__
-#define __LOCATE_H__
+#ifndef LOCATE_H
+#define LOCATE_H
+
+#include <QtGui/QCheckBox>
+#include <QKeyEvent>
 
 #include <kdialog.h>
 #include <kcombobox.h>
 #include <khistorycombobox.h>
-#include <QtGui/QCheckBox>
-#include <QKeyEvent>
 
 class KProcess;
 class KrTreeWidget;

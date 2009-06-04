@@ -28,8 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef KR_TRASH_HANDLER_H
-#define KR_TRASH_HANDLER_H
+#ifndef KRTRASHHANDLER_H
+#define KRTRASHHANDLER_H
 
 #include <QString>
 

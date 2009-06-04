@@ -1,5 +1,5 @@
-#ifndef ELTORITO_H
-#define ELTORITO_H 1
+#ifndef EL_TORITO_H
+#define EL_TORITO_H
 
 #include "iso_fs.h"
 

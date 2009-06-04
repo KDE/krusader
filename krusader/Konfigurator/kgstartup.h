@@ -28,8 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __KGSTARTUP_H__
-#define __KGSTARTUP_H__
+#ifndef KGSTARTUP_H
+#define KGSTARTUP_H
 
 #include "konfiguratorpage.h"
 

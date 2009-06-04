@@ -28,8 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __PERCENTAL_SPLITTER__
-#define __PERCENTAL_SPLITTER__
+#ifndef PERCENTALSPLITTER_H
+#define PERCENTALSPLITTER_H
 
 #include <QtGui/QSplitter> 
 #include <QtGui/QLabel> 

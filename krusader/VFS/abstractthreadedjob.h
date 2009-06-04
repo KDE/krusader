@@ -28,10 +28,9 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __ABSTRACTTHREADED_JOB_H__
-#define __ABSTRACTTHREADED_JOB_H__
+#ifndef ABSTRACTTHREADEDJOB_H
+#define ABSTRACTTHREADEDJOB_H
 
-#include <kio/jobclasses.h>
 #include <QThread>
 #include <QEvent>
 #include <QMutex>
@@ -42,6 +41,8 @@
 #include <QEventLoop>
 #include <QTime>
 #include <KUrl>
+
+#include <kio/jobclasses.h>
 
 class AbstractJobThread;
 class KTempDir;

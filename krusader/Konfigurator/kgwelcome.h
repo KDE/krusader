@@ -28,8 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __KGWELCOME_H__
-#define __KGWELCOME_H__
+#ifndef KGWELCOME_H
+#define KGWELCOME_H
  
 #include "konfiguratorpage.h"
 

@@ -28,15 +28,16 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __KONFIGURATOR_PAGE_H__
-#define __KONFIGURATOR_PAGE_H__
+#ifndef KONFIGURATORPAGE_H
+#define KONFIGURATORPAGE_H
  
-#include "konfiguratoritems.h"
 #include <QtGui/QGroupBox>
 #include <QtGui/QLabel>
 #include <QtGui/QLayout>
 #include <QGridLayout>
 #include <QScrollArea>
+
+#include "konfiguratoritems.h"
 
 struct KONFIGURATOR_CHECKBOX_PARAM;
 struct KONFIGURATOR_NAME_VALUE_TIP;

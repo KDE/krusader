@@ -1,9 +1,10 @@
-#ifndef __krvfsmodel__
-#define __krvfsmodel__
+#ifndef KRVFSMODEL_H
+#define KRVFSMODEL_H
 
 #include <QAbstractListModel>
 #include <QVector>
 #include <QFont>
+
 #include "krview.h"
 
 class vfs;

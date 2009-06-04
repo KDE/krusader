@@ -1,5 +1,5 @@
-#ifndef KR_SELECTION_MODE_H
-#define KR_SELECTION_MODE_H
+#ifndef KRSELECTIONMODE_H
+#define KRSELECTIONMODE_H
 
 #include <QString>
 

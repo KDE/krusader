@@ -18,20 +18,17 @@
 
 /** This file was modified for Krusader by Shie Erlich & Rafi Yanai **/
 
-#ifndef __kr_progress_h__
-#define __kr_progress_h__
+#ifndef KRPROGRESS_H
+#define KRPROGRESS_H
 
+#include <QtCore/QObject>
 #include <QtGui/QLabel>
 #include <QCloseEvent>
 
 #include <kio/global.h>
-
 #include <kprogressdialog.h>
 #include <ksqueezedtextlabel.h>
-
 #include <kio/progressbase.h>
-
-#include <QtCore/QObject>
 
 class KrProgress : public KIO::ProgressBase {
   Q_OBJECT

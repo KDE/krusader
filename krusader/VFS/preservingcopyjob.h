@@ -28,15 +28,16 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __PRESERVING_COPY_JOB_H__
-#define __PRESERVING_COPY_JOB_H__
+#ifndef PRESERVINGCOPYJOB_H
+#define PRESERVINGCOPYJOB_H
 
-//#include "config.h"
 #include <time.h>
-#include <kio/jobclasses.h>
-#include <kio/copyjob.h>
+
 #include <qmap.h>
 #include <QtCore/QList>
+
+#include <kio/jobclasses.h>
+#include <kio/copyjob.h>
 
 typedef enum {
   PM_NONE          = 0,

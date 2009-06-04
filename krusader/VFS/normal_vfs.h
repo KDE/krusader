@@ -28,17 +28,16 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef NORMAL_VFS
-#define NORMAL_VFS
+#ifndef NORMAL_VFS_H
+#define NORMAL_VFS_H
 
-// QT includes
 #include <QtCore/QString>
 #include <QTimer>
-// KDE includes
+
 #include <kfileitem.h>
 #include <kdirwatch.h>
 #include <kurl.h>
-// Krusader includes
+
 #include "vfs.h"
 
 /**

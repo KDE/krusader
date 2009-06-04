@@ -28,10 +28,11 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __SYNCHRONIZER_FILE_ITEM_H__
-#define __SYNCHRONIZER_FILE_ITEM_H__
+#ifndef SYNCHRONIZERFILEITEM_H
+#define SYNCHRONIZERFILEITEM_H
 
 #include <QtCore/QString>
+
 #include <kio/global.h>
 
 typedef enum 

@@ -28,10 +28,11 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __SYNCHRONIZER_TASK_H__
-#define __SYNCHRONIZER_TASK_H__
+#ifndef SYNCHRONIZERTASK_H
+#define SYNCHRONIZERTASK_H
 
 #include <QtCore/QObject>
+
 #include <kio/job.h>
 
 class Synchronizer;

@@ -1,13 +1,14 @@
-#ifndef _SUPERVIEW_H
-#define _SUPERVIEW_H
+#ifndef PANELVIEWER_H
+#define PANELVIEWER_H
 
-#include <kurl.h>
 #include <QtCore/QString>
 #include <qstackedwidget.h>
-#include <kparts/part.h>
-#include <kio/job.h>
 #include <QtCore/QHash>
 #include <QtGui/QLabel>
+
+#include <kurl.h>
+#include <kparts/part.h>
+#include <kio/job.h>
 
 #include "krviewer.h"
 

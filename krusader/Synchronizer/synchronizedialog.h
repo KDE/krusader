@@ -28,16 +28,17 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __SYNCHRONIZE_DIALOG__
-#define __SYNCHRONIZE_DIALOG__
+#ifndef SYNCHRONIZEDIALOG_H
+#define SYNCHRONIZEDIALOG_H
 
-#include "../VFS/vfs.h"
-#include "synchronizer.h"
 #include <QtGui/QDialog>
 #include <QtGui/QPushButton>
 #include <QtGui/QCheckBox>
 #include <QtGui/QLabel>
 #include <qprogressbar.h>
+
+#include "../VFS/vfs.h"
+#include "synchronizer.h"
 
 class SynchronizeDialog : QDialog
 {

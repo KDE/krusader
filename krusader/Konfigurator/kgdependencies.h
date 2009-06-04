@@ -28,11 +28,12 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __KGDEPENDENCIES_H__
-#define __KGDEPENDENCIES_H__
+#ifndef KGDEPENDENCIES_H
+#define KGDEPENDENCIES_H
+
+#include <QGridLayout>
 
 #include "konfiguratorpage.h"
-#include <QGridLayout>
 
 class QTabWidget;
 

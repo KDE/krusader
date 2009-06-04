@@ -1,11 +1,11 @@
-#ifndef __krinterdetailedview__
-#define __krinterdetailedview__
-
-#include "krview.h"
+#ifndef KRINTERDETAILEDVIEW_H
+#define KRINTERDETAILEDVIEW_H
 
 #include <QTreeView>
 #include <QVector>
 #include <QFont>
+
+#include "krview.h"
 
 class KrVfsModel;
 class KrInterDetailedViewItem;

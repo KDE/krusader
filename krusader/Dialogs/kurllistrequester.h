@@ -28,16 +28,18 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __KURLLISTREQUESTER_H__
-#define __KURLLISTREQUESTER_H__
+#ifndef KURLLISTREQUESTER_H
+#define KURLLISTREQUESTER_H
 
 #include <qwidget.h>
-#include "../GUI/krlistwidget.h"
 #include <QtGui/QToolButton>
 #include <QKeyEvent>
+
 #include <klineedit.h>
 #include <kurl.h>
 #include <kurlcompletion.h>
+
+#include "../GUI/krlistwidget.h"
 
 class KURLListRequester : public QWidget
 {

@@ -28,14 +28,15 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __KIO_JOB_WRAPPER__
-#define __KIO_JOB_WRAPPER__
+#ifndef KIOJOBWRAPPER_H
+#define KIOJOBWRAPPER_H
 
 #include <QtCore/QObject>
 #include <QtCore/QPointer>
+#include <QMap>
+
 #include <kurl.h>
 #include <kio/jobclasses.h>
-#include <QMap>
 
 class QEvent;
 class vfs;

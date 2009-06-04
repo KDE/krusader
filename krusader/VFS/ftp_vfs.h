@@ -29,12 +29,11 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-#ifndef FTP_VFS
-#define FTP_VFS
+#ifndef FTP_VFS_H
+#define FTP_VFS_H
 
-// KDE includes
 #include <kdirlister.h>
-// Krusader includes
+
 #include "vfs.h"
 
 class ftp_vfs : public vfs{

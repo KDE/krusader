@@ -28,11 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __DISK_USAGE_H__
-#define __DISK_USAGE_H__
-
-#include "../VFS/vfs.h"
-#include "filelightParts/fileTree.h"
+#ifndef DISKUSAGE_H
+#define DISKUSAGE_H
 
 #include <QtGui/QDialog>
 #include <QtGui/QLabel>
@@ -42,11 +39,15 @@
 #include <QPixmap>
 #include <QKeyEvent>
 #include <QEvent>
-#include <kurl.h>
-#include <ksqueezedtextlabel.h>
 #include <qstackedwidget.h>
 #include <qscrollarea.h>
 #include <QtCore/QTimer>
+
+#include <kurl.h>
+#include <ksqueezedtextlabel.h>
+
+#include "../VFS/vfs.h"
+#include "filelightParts/fileTree.h"
 
 #define VIEW_LINES      0
 #define VIEW_DETAILED   1

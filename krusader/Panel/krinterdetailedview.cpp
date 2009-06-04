@@ -1,5 +1,15 @@
-#include "krviewfactory.h"
 #include "krinterdetailedview.h"
+
+#include <QDir>
+#include <QDirModel>
+#include <QHashIterator>
+#include <QHeaderView>
+
+#include <klocale.h>
+#include <kdirlister.h>
+#include <KMenu>
+
+#include "krviewfactory.h"
 #include "krinterviewitemdelegate.h"
 #include "krviewitem.h"
 #include "krvfsmodel.h"
@@ -7,14 +17,7 @@
 #include "../defaults.h"
 #include "krmousehandler.h"
 #include "krcolorcache.h"
-#include <klocale.h>
-#include <kdirlister.h>
-#include <QDir>
-#include <QDirModel>
-#include <QHashIterator>
-#include <QHeaderView>
 #include "../GUI/krstyleproxy.h"
-#include <KMenu>
 
 // dummy. remove this class when no longer needed
 class KrInterDetailedViewItem: public KrViewItem

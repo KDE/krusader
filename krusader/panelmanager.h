@@ -1,5 +1,5 @@
-#ifndef PANEL_MANAGER_H
-#define PANEL_MANAGER_H
+#ifndef PANELMANAGER_H
+#define PANELMANAGER_H
 
 #include <qwidget.h>
 #include <QtGui/QLayout>

@@ -28,17 +28,11 @@
  *                                                                         *
  ***************************************************************************/
 
-
-
 #ifndef KRSEARCHDIALOG_H
 #define KRSEARCHDIALOG_H
 
-#include "../Filter/filtertabs.h"
-#include "../Filter/generalfilter.h"
-#include "../VFS/krquery.h"
-#include "../VFS/krpermhandler.h"
-#include "krsearchmod.h"
-#include "../GUI/profilemanager.h"
+#include <sys/types.h>
+#include <time.h>
 
 #include <qwidget.h>
 #include <QResizeEvent>
@@ -46,15 +40,20 @@
 #include <QLabel>
 #include <QKeyEvent>
 #include <QCloseEvent>
-#include <ksqueezedtextlabel.h>
 #include <QtCore/QStringList>
-#include <sys/types.h>
-#include <time.h>
 #include <QtCore/QString>
 #include <QtGui/QTabWidget>
-#include <QtCore/QStringList>
+
+#include <ksqueezedtextlabel.h>
 #include <kglobal.h>
 #include <klocale.h>
+
+#include "../Filter/filtertabs.h"
+#include "../Filter/generalfilter.h"
+#include "../VFS/krquery.h"
+#include "../VFS/krpermhandler.h"
+#include "krsearchmod.h"
+#include "../GUI/profilemanager.h"
 
 class QTreeWidget;
 class QTreeWidgetItem;

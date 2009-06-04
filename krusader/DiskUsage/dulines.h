@@ -28,13 +28,14 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __DU_LINES_H__
-#define __DU_LINES_H__
+#ifndef DULINES_H
+#define DULINES_H
 
 #include <QtGui/QPixmap>
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <QResizeEvent>
+
 #include "diskusage.h"
 #include "../GUI/krtreewidget.h"
 

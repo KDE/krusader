@@ -16,14 +16,14 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef __krinterbriefview__
-#define __krinterbriefview__
-
-#include "krview.h"
+#ifndef KRINTERBRIEFVIEW_H
+#define KRINTERBRIEFVIEW_H
 
 #include <QAbstractItemView>
 #include <QVector>
 #include <QFont>
+
+#include "krview.h"
 
 class KrInterBriefViewItem;
 class KrMouseHandler;

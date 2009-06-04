@@ -17,10 +17,11 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef REMOTEENCODING_MENU_H
-#define REMOTEENCODING_MENU_H
+#ifndef KRREMOTEENCODINGMENU_H
+#define KRREMOTEENCODINGMENU_H
 
 #include <QtCore/QStringList>
+
 #include <kurl.h>
 #include <klibloader.h>
 #include <kaction.h>

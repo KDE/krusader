@@ -28,12 +28,13 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __DU_LISTVIEW_H__
-#define __DU_LISTVIEW_H__
+#ifndef DULISTVIEW_H
+#define DULISTVIEW_H
 
-#include "../GUI/krtreewidget.h"
 #include <QMouseEvent>
 #include <QKeyEvent>
+
+#include "../GUI/krtreewidget.h"
 #include "diskusage.h"
 
 class DUListViewItem : public QTreeWidgetItem

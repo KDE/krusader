@@ -26,16 +26,15 @@
     Boston, MA 02110-1301, USA.
 */
 
-#ifndef KIO_PRESERVEATTRCOPYJOB_H
-#define KIO_PRESERVEATTRCOPYJOB_H
+#ifndef PRESERVEATTRCOPYJOB_H
+#define PRESERVEATTRCOPYJOB_H
+
+#include <sys/types.h> // time_t
 
 #include <QtCore/QObject>
 #include <QtCore/QStringList>
 
-#include <sys/types.h> // time_t
-
 #include <kurl.h>
-
 #include <kio/jobclasses.h>
 #include <kio/copyjob.h>
 

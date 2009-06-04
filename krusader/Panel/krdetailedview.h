@@ -35,10 +35,9 @@ A
 #define KDE3_SUPPORT 1
 #endif
 
-#include <k3listview.h>
 #include <q3header.h>
-#include <ksqueezedtextlabel.h>
-#include <klocale.h>
+#include <k3listview.h>
+
 #include <qwidget.h>
 #include <QtCore/QTimer>
 #include <QtCore/QDateTime>
@@ -48,6 +47,10 @@ A
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <QEvent>
+
+#include <ksqueezedtextlabel.h>
+#include <klocale.h>
+
 #include "krview.h"
 #include "krviewitem.h"
 

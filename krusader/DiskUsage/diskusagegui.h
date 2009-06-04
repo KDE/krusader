@@ -28,13 +28,14 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __DISK_USAGE_GUI_H__
-#define __DISK_USAGE_GUI_H__
+#ifndef DISKUSAGEGUI_H
+#define DISKUSAGEGUI_H
 
 #include <QtGui/QDialog>
 #include <QtGui/QLayout>
 #include <QtGui/QToolButton>
 #include <QResizeEvent>
+
 #include <kurl.h>
 #include <ksqueezedtextlabel.h>
 

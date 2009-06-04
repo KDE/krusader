@@ -18,12 +18,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include <kdialog.h>
-#include <kdebug.h>
-#include <klocale.h>
-#include <kinputdialog.h>
-#include <kactioncollection.h>
-#include <kshell.h>
+#include "kraction.h"
+
 #include <QtGui/QTextEdit>
 #include <QtCore/QTextStream>
 #include <QtGui/QBoxLayout>
@@ -35,25 +31,28 @@
 #include <QtGui/QLabel>
 #include <QKeyEvent>
 #include <QEvent>
+#include <QtCore/QRegExp>
+
+#include <kdialog.h>
+#include <kdebug.h>
+#include <klocale.h>
+#include <kinputdialog.h>
+#include <kactioncollection.h>
+#include <kshell.h>
 #include <kaction.h>
 #include <kurl.h>
 #include <kmessagebox.h>
 #include <kfiledialog.h>
 #include <kvbox.h>
 #include <kpushbutton.h>
-#include "kraction.h"
+#include <kmimetype.h>
+
 #include "expander.h"
 #include "useraction.h"
 #include "../GUI/terminaldock.h"
 #include "../krusader.h"
 #include "../krusaderview.h"
 #include "../defaults.h"
-
-// for the availabilitycheck:
-#include <kmimetype.h>
-#include <QtCore/QRegExp>
-
-#include <QtGui/QLayout>
 
 // KrActionProcDlg
 KrActionProcDlg::KrActionProcDlg( QString caption, bool enableStderr, QWidget *parent ) :

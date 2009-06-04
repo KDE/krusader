@@ -10,8 +10,8 @@
 * License. See the file "COPYING" for the exact licensing terms.
 */
 
-#ifndef KrusaderImageFilePreview_H
-#define KrusaderImageFilePreview_H
+#ifndef KIMAGEFILEPREVIEW_H
+#define KIMAGEFILEPREVIEW_H
 
 #include <QtGui/QPixmap>
 #include <QResizeEvent>

@@ -17,29 +17,30 @@
  *****************************************************************************/
 
 #include "krinterbriefview.h"
-#include "krviewfactory.h"
-#include "krinterviewitemdelegate.h"
-#include "krviewitem.h"
-#include "krvfsmodel.h"
-#include "../VFS/krpermhandler.h"
-#include "../defaults.h"
-#include "krmousehandler.h"
-#include "krcolorcache.h"
-#include <klocale.h>
-#include <kdirlister.h>
+
 #include <QDir>
 #include <QDirModel>
 #include <QHashIterator>
 #include <QHeaderView>
-#include "../GUI/krstyleproxy.h"
-#include <KMenu>
 #include <QPainter>
 #include <QScrollBar>
-#include <QHeaderView>
 #include <QRegion>
 #include <QItemSelection>
 #include <QItemSelectionRange>
+
 #include <KMenu>
+#include <klocale.h>
+#include <kdirlister.h>
+
+#include "krviewfactory.h"
+#include "krinterviewitemdelegate.h"
+#include "krviewitem.h"
+#include "krvfsmodel.h"
+#include "krmousehandler.h"
+#include "krcolorcache.h"
+#include "../VFS/krpermhandler.h"
+#include "../defaults.h"
+#include "../GUI/krstyleproxy.h"
 
 // dummy. remove this class when no longer needed
 class KrInterBriefViewItem: public KrViewItem

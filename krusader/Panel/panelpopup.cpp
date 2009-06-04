@@ -17,40 +17,40 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include "../krusader.h"
 #include "panelpopup.h"
+
+#include "../krusader.h"
 #include "../kicons.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
 #include "../defaults.h"
 #include "../krslots.h"
+#include "../KViewer/kimagefilepreview.h"
+#include "../KViewer/panelviewer.h"
+#include "../KViewer/diskusageviewer.h"
 #include "panelfunc.h"
 #include "krview.h"
 #include "krviewitem.h"
+
 #include <QtGui/QButtonGroup>
 #include <QtGui/QToolButton>
 #include <QDropEvent>
 #include <QGridLayout>
 #include <QFrame>
 #include <QMenu>
-#include <klocale.h>
 #include <QtGui/QCursor>
 #include <QtGui/QLayout>
 #include <QtGui/QLabel>
-#include <q3header.h>
+#include <QtCore/QDir>
+#include <QHeaderView>
+
+#include <klocale.h>
 #include <klineedit.h>
 #include <kio/jobclasses.h>
 #include <kcolorscheme.h>
-#include "../KViewer/kimagefilepreview.h"
-#include "../KViewer/panelviewer.h"
-#include "../KViewer/diskusageviewer.h"
-
-#include <QtCore/QDir>
-
 #include <kdirlister.h>
 #include <kdirmodel.h>
 #include <kdirsortfilterproxymodel.h>
 #include <kfileitemdelegate.h>
-#include <QHeaderView>
 
 class KrDirModel : public KDirModel {
 public:

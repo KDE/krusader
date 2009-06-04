@@ -28,15 +28,16 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __KGCOLORS_H__
-#define __KGCOLORS_H__
+#ifndef KGCOLORS_H
+#define KGCOLORS_H
 
-#include "konfiguratorpage.h"
-#include "../GUI/krtreewidget.h"
 #include <QtCore/QList>
 #include <qstackedwidget.h>
 #include <QGridLayout>
 #include <QLabel>
+
+#include "konfiguratorpage.h"
+#include "../GUI/krtreewidget.h"
 
 class KgColors : public KonfiguratorPage
 {

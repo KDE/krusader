@@ -28,15 +28,17 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __VIRTUAL_COPY_JOB_H__
-#define __VIRTUAL_COPY_JOB_H__
+#ifndef VIRTUALCOPYJOB_H
+#define VIRTUALCOPYJOB_H
 
-#include <kio/job.h>
-#include "preservingcopyjob.h"
 #include <QtCore/QList>
 #include <QtCore/QTimer>
 #include <QtCore/QHash>
 #include <qmap.h>
+
+#include <kio/job.h>
+
+#include "preservingcopyjob.h"
 
 class vfs;
 

@@ -7,8 +7,9 @@
 #include <kconfig.h>
 #include "krcolorcache.h"
 
-#include <QtGui/QPainter>
 #include <q3pointarray.h>
+
+#include <QtGui/QPainter>
 #include <QPixmap>
 
 #define PROPS	_viewProperties

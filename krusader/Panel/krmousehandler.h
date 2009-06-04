@@ -16,8 +16,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef __KR_MOUSE_HANDLER__
-#define __KR_MOUSE_HANDLER__
+#ifndef KRMOUSEHANDLER_H
+#define KRMOUSEHANDLER_H
 
 #include <QPoint>
 #include <QTimer>

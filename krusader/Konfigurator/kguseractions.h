@@ -28,8 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __KGUSERACTIONS_H__
-#define __KGUSERACTIONS_H__
+#ifndef KGUSERACTIONS_H
+#define KGUSERACTIONS_H
 
 #include "konfiguratorpage.h"
 

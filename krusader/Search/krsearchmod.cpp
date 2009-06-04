@@ -29,24 +29,25 @@
 ***************************************************************************/
 
 #include "krsearchmod.h"
+
+#include <dirent.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+
+#include <QtCore/QDir>
+#include <QtCore/QRegExp>
+
+#include <klocale.h>
+#include <kde_file.h>
+#include <kmimetype.h>
+
 #include "../VFS/krquery.h"
 #include "../krusader.h"
 #include "../resources.h"
 #include "../VFS/vfile.h"
 #include "../VFS/krpermhandler.h"
 #include "../VFS/krarchandler.h"
-
-#include <klocale.h>
-#include <QtCore/QDir>
-#include <sys/types.h>
-#include <dirent.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <QtCore/QRegExp>
-#include <kde_file.h>
-
-#include <kmimetype.h>
 
 #define  EVENT_PROCESS_DELAY     250
 

@@ -28,13 +28,14 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __KgProtocols_H__
-#define __KgProtocols_H__
+#ifndef KGPROTOCOLS_H
+#define KGPROTOCOLS_H
+
+#include <QtGui/QPushButton>
 
 #include "konfiguratorpage.h"
 #include "../GUI/krtreewidget.h"
 #include "../GUI/krlistwidget.h"
-#include <QtGui/QPushButton>
  
 class KgProtocols : public KonfiguratorPage
 {
