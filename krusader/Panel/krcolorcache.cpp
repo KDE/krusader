@@ -501,7 +501,7 @@ KrColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
 
 	if (dimBackground && !type.m_activePanel)
 	{
-		// if color dimming is choosen, dim the colors for the inactive panel 
+		// if color dimming is chosen, dim the colors for the inactive panel 
 		result.setBackground( dimColor(result.background(), true));
 		result.setText( dimColor(result.text(), false));
 		result.setHighlightedText( dimColor(result.highlightedText(), false));

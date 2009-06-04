@@ -600,7 +600,7 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
       modifierPressed = true;
    }
 
-   // stop quick search in case a mouse click occured
+   // stop quick search in case a mouse click occurred
    KConfigGroup grpSvr( _config, "Look&Feel" );
     if ( grpSvr.readEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
       if ( MAIN_VIEW ) {
@@ -869,7 +869,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
    K3ListView::keyPressEvent( e );
 }
 
-// overridden to make sure EXTENTION won't be lost during rename
+// overridden to make sure EXTENSION won't be lost during rename
 void KrDetailedView::rename( Q3ListViewItem * item, int c ) {
    // do we have an EXT column? if so, handle differently:
    // copy the contents of the EXT column over to the name
@@ -921,7 +921,7 @@ void KrDetailedView::renameCurrentItem() {
 	if (it->hasExtension() && !it->VF->vfile_isDir() ) 
 		renameLineEdit()->setSelection(0, it->name().lastIndexOf(it->extension())-1);
       }
-      // signal will be emited when renaming is done, and finalization
+      // signal will be emitted when renaming is done, and finalization
       // will occur in inplaceRenameFinished()
    } else {
    	// do this in case inplace renaming is disabled
@@ -987,7 +987,7 @@ void KrDetailedView::refreshColors() {
    bool kdeDefault = group.readEntry("KDE Default", _KDEDefaultColors);
    bool alternateBackgroundEnabled = group.readEntry("Enable Alternate Background", _AlternateBackground); 
    if ( !kdeDefault ) {
-      // KDE default is not choosen: set the background color (as this paints the empty areas) and the alternate color
+      // KDE default is not chosen: set the background color (as this paints the empty areas) and the alternate color
       bool isActive = hasFocus();
       if ( MAIN_VIEW && ACTIVE_PANEL && ACTIVE_PANEL->view )
          isActive = ( static_cast<KrView *>( this ) == ACTIVE_PANEL->view );
@@ -1001,7 +1001,7 @@ void KrDetailedView::refreshColors() {
       KrColorCache::getColorCache().getColors(cg, KrColorItemType(KrColorItemType::File, true, isActive, false, false));
       setAlternateBackground( cg.background() );
    } else {
-      // KDE default is choosen: set back the background color
+      // KDE default is chosen: set back the background color
       setPaletteBackgroundColor( KColorScheme(QPalette::Active, KColorScheme::View).background().color() );
       // Set the alternate color to its default or to an invalid color, to turn alternate the background off.
       setAlternateBackground( alternateBackgroundEnabled ? KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::AlternateBackground).color() : QColor() );

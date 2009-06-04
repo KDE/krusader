@@ -33,7 +33,7 @@
 #include "kisodirectory.h"
 
 /**
- * @short A class for reading (optionnally compressed) iso9660 files.
+ * @short A class for reading (optionally compressed) iso9660 files.
  * @author Gy�gy Szombathelyi <gyurco@users.sourceforge.net>,
  * Torben Weis <weis@kde.org>, David Faure <faure@kde.org>
  */
@@ -47,7 +47,7 @@ public:
      * @param filename is a local path (e.g. "/home/weis/myfile.tgz")
      * @param mimetype "application/x-gzip" or "application/x-bzip2"
      * Do not use application/x-tgz or so. Only the compression layer !
-     * If the mimetype is ommitted, it will be determined from the filename.
+     * If the mimetype is omitted, it will be determined from the filename.
      */
     KIso( const QString& filename, const QString & mimetype = QString() );
 

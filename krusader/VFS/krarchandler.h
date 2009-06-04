@@ -170,7 +170,7 @@ public slots:
 			
 			if( line.contains( "password" ) && line.contains( "enter" ) ) {
 				encrypted = true;
-				::kill(- pid(), SIGKILL); // kill the whole process group by giving the negativ PID
+				::kill(- pid(), SIGKILL); // kill the whole process group by giving the negative PID
 			}
 		}
 	}

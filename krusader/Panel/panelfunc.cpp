@@ -257,8 +257,8 @@ void ListPanelFunc::openUrl( const KUrl& url, const QString& nameToMakeCurrent )
 			QString otherText = other_panel->origin->lineEdit()->text();
 			
 			OTHER_FUNC->files() ->vfs_setQuiet( true );
-			// the trailing slash is nessesary because krusader provides Dir's without it
-			// we can't use openUrl because the delay don't allow a check if the panel has realy changed!
+			// the trailing slash is necessary because krusader provides Dir's without it
+			// we can't use openUrl because the delay don't allow a check if the panel has really changed!
 			KUrl dest = otherDir;
 			dest.addPath( KUrl::relativeUrl( panel->virtualPath().url() + "/", url.url() ) );
 			OTHER_PANEL->setLocked( false );
@@ -905,7 +905,7 @@ void ListPanelFunc::pack() {
 		tempDestFile->setSuffix( QString(".") + PackGUI::type );
 		tempDestFile->open();
 		arcFile = tempDestFile->fileName();
-		tempDestFile->close(); // nessesary to create the filename
+		tempDestFile->close(); // necessary to create the filename
 		QFile::remove
 			( arcFile );
 	}

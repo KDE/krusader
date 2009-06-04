@@ -134,7 +134,7 @@ void KRSearchMod::scanLocalDir( KUrl urlToScan )
   {
     QString name = QString::fromLocal8Bit( dirEnt->d_name );
 
-    // we dont scan the ".",".." enteries
+    // we don't scan the ".",".." enteries
     if ( name == "." || name == ".." ) continue;
 
     KDE_struct_stat stat_p;

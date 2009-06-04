@@ -47,10 +47,11 @@ class ListPanel;
 class KrView;
 
 
-/* Dialog calculating showing the number of files and directories and its total size
-   in a dialog. If wanted, the dialog appears after 3 seconds of calculation, to
-   avoid a short appearence if the result was found quickly. Computes teh result in
-   a different thread.
+/**
+ * Dialog calculating showing the number of files and directories and its total
+ * size in a dialog. If wanted, the dialog appears after 3 seconds of
+ * calculation, to avoid a short appearance if the result was found quickly.
+ * Computes the result in a different thread.
  */
 class KrCalcSpaceDialog : public KDialog{
 	Q_OBJECT
@@ -85,7 +86,7 @@ class KrCalcSpaceDialog : public KDialog{
 	bool m_autoClose; // true: wait 3 sec. before showing the dialog. Close it, when done
 	bool m_canceled; // true: cancel was pressed
 	int m_timerCounter; // internal counter. The timer runs faster as the rehresh (see comment there)
-	void calculationFinished(); // called if the calulation is done
+	void calculationFinished(); // called if the calculation is done
 	void showResult(); // show the current result in teh dialog
 protected slots:
 	void timer(); // poll timer was fired

@@ -101,7 +101,7 @@
 #define _KDEDefaultColors     true 
 // Enable Alternate Background colors
 #define _AlternateBackground  true
-// Show current item even if not focussed
+// Show current item even if not focused
 #define _ShowCurrentItemAlways false
 // Dim the colors of the inactive panel
 #define _DimInactiveColors     false

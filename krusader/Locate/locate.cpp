@@ -162,7 +162,7 @@ LocateDlg::LocateDlg() : KDialog( 0 ), isFeedToListBox( false )
 
   dontSearchInPath = new QCheckBox( i18n( "Don't search in path" ), hboxWidget2 );
   hbox2->addWidget( dontSearchInPath );
-  dontSearchInPath->setChecked( group.readEntry("Dont Search In Path", false) );
+  dontSearchInPath->setChecked( group.readEntry("Don't Search In Path", false) );
 
   existingFiles = new QCheckBox( i18n( "Show only the existing files" ), hboxWidget2 );
   existingFiles->setChecked( group.readEntry("Existing Files", false) );
@@ -266,7 +266,7 @@ void LocateDlg::slotUser3()   /* The locate button */
   QStringList list = locateSearchFor->historyItems();
   KConfigGroup group( krConfig, "Locate");
   group.writeEntry("Search For", list);
-  group.writeEntry("Dont Search In Path", dontSearchPath = dontSearchInPath->isChecked() );
+  group.writeEntry("Don't Search In Path", dontSearchPath = dontSearchInPath->isChecked() );
   group.writeEntry("Existing Files", onlyExist = existingFiles->isChecked() );
   group.writeEntry("Case Sensitive", isCs = caseSensitive->isChecked() );
 

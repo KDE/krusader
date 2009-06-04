@@ -148,7 +148,8 @@ RadialMap::Widget::mouseMoveEvent( QMouseEvent *e )
          repaint();
       }
 
-      m_tip.moveto( e->globalPos(), *this, ( p.y() < 0 ) ); //updates tooltip psuedo-tranparent background
+      // updates tooltip pseudo-tranparent background
+      m_tip.moveto( e->globalPos(), *this, ( p.y() < 0 ) );
    }
    else if( oldFocus && oldFocus->file() != m_tree )
    {

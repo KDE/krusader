@@ -282,7 +282,7 @@ void KrActionProc::start( QStringList cmdLineList ) {
       if ( _action->user().isEmpty() )
          shellCmd << cmd;
       else
-         // "-t" is nessesary that kdesu displays the terminal-output of the command
+         // "-t" is necessary that kdesu displays the terminal-output of the command
          shellCmd << "kdesu" << "-t" << "-u" << _action->user() << "-c" << KShell::quoteArg(cmd);
       _proc->setShellCommand(shellCmd.join(" "));
       _proc->start();
@@ -293,7 +293,7 @@ void KrActionProc::start( QStringList cmdLineList ) {
 void KrActionProc::processExited( int exitCode, QProcess::ExitStatus exitStatus ) {
    // enable the 'close' button on the dialog (if active), disable 'kill' button
    if ( _output ) {
-      // TODO tell the user the programms exit code
+      // TODO tell the user the program exit code
       _output->enableButtonOk( true );
       _output->enableButtonCancel( false);
    }

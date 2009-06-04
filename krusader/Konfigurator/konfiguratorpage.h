@@ -64,7 +64,7 @@ public:
   /**
     * Applies the changes in the Konfigurator page.
     *
-    * Writes out all relevent information to the konfiguration object and synchronizes
+    * Writes out all relevant information to the konfiguration object and synchronizes
     * it with the file storage (hard disk, krusaderrc file). This function calls the apply()
     * method of each konfigurator item and finally performs the synchronization.
     *

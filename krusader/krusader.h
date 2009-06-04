@@ -230,7 +230,7 @@ class Krusader : public KParts::MainWindow {
 #define krUnselect        Krusader::App->actUnselect       // unselect by filter
 #define krUnselectAll     Krusader::App->actUnselectAll    // remove all selections
 #define krInvert          Krusader::App->actInvert         // invert the selection
-#define krSyncDirs        Krusader::App->actSync           // syncronize directories
+#define krSyncDirs        Krusader::App->actSync           // synchronize directories
 #define krHomeTerm        Krusader::App->actHomeTerminal   // open terminal@home dir
 #define krFTPConnect      Krusader::App->actFTPConnect     // connect to an ftp
 #define krFTPNew          Krusader::App->actFTPNewConnect  // create a new connection
@@ -248,9 +248,9 @@ class Krusader : public KParts::MainWindow {
 #define krFind            Krusader::App->actFind           // find files
 #define krMultiRename     Krusader::App->actMultiRename
 #define krToggleTerminal  Krusader::App->actToggleTerminal
-#define krToggleSortByExt Krusader::App->actToggleSortByExt// Sort by extention
+#define krToggleSortByExt Krusader::App->actToggleSortByExt// Sort by extension
 #define krOpenLeftBm      Krusader::App->actOpenLeftBm     // open left bookmarks
-#define krOpenRightBm     Krusader::App->actOpenRightBm    // open left bookmarks
+#define krOpenRightBm     Krusader::App->actOpenRightBm    // open right bookmarks
 #define krDirUp           Krusader::App->actDirUp
 #define krCmdlinePopup    Krusader::App->actCmdlinePopup
 #define krNewTab          Krusader::App->actNewTab

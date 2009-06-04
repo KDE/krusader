@@ -199,7 +199,7 @@ public:
 	QSplitter *splt;
 
 protected:
-   KUrl _realPath; // named with _ to keep realPath() compatability
+   KUrl _realPath; // named with _ to keep realPath() compatibility
    KUrl _jumpBackURL;
    
 	

@@ -73,7 +73,7 @@ RadialMap::Map::invalidate( const bool desaturateTheImage )
 void
 RadialMap::Map::make( const Directory *tree, bool refresh )
 {
-    //**** determineText seems pointless optimisation
+    //**** determineText seems pointless optimization
     //   but is it good to keep the text consistent?
     //   even if it makes it a lie?
 

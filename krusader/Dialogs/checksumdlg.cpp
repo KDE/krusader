@@ -282,10 +282,10 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	// else implied: run the process
 	tmpOut = new KTemporaryFile();
 	tmpOut->setSuffix(".stdout");
-	tmpOut->open(); // nessesary to create the filename
+	tmpOut->open(); // necessary to create the filename
 	tmpErr = new KTemporaryFile();
 	tmpErr->setSuffix(".stderr");
-	tmpErr->open(); // nessesary to create the filename
+	tmpErr->open(); // necessary to create the filename
 	KProcess proc;
 	CS_Tool *mytool = tools.at(method->currentIndex());
 	mytool->create(proc, mytool, files, QString(), containFolders, method->currentText());
@@ -419,10 +419,10 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	// else implied: run the process
 	tmpOut = new KTemporaryFile();
 	tmpOut->setSuffix(".stdout");
-	tmpOut->open(); // nessesary to create the filename
+	tmpOut->open(); // necessary to create the filename
 	tmpErr = new KTemporaryFile();
 	tmpErr->setSuffix(".stderr");
-	tmpErr->open(); // nessesary to create the filename
+	tmpErr->open(); // necessary to create the filename
 	KProcess proc;
 	mytool->verify(proc, mytool, files, file, containFolders, extension);
 	proc.setOutputChannelMode(KProcess::SeparateChannels); // without this the next 2 lines have no effect!
@@ -673,7 +673,7 @@ void ChecksumResultsDlg::savePerFile(const QStringList& data, const QString& typ
 			QStringList l;
 			l << line;
 			if (!saveChecksum(l, filename)) {
-				KMessageBox::error(0, i18n("Errors occured while saving multiple checksums. Stopping"));
+				KMessageBox::error(0, i18n("Errors occurred while saving multiple checksums. Stopping"));
 				krApp->stopWait();
 				return;
 			}

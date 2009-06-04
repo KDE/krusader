@@ -125,12 +125,12 @@ KrArchiverResultTable::KrArchiverResultTable(QWidget* parent)
   Archiver* dpkg  = new Archiver("dpkg",  "http://www.dpkg.org",     PS("dpkg"),  false, true);
   Archiver* _7z   = new Archiver("7z",    "http://www.7-zip.org",    PS("7z"),  true, true);
 
-  // Special case: arj can unpack, but unarj is prefered
+  // Special case: arj can unpack, but unarj is preferred
   if(PS("arj") && PS("unarj"))
     arj->setIsUnpacker(false);
   if(PS("arj") && !PS("unarj"))
     unarj->setNote( i18n("unarj not found, but arj found, which will be used for unpacking") );
-  // Special case: rar can unpack, but unrar is prefered
+  // Special case: rar can unpack, but unrar is preferred
   if(PS("rar") && PS("unrar"))
      rar->setIsUnpacker(false);
   // Special case: rpm needs cpio for unpacking

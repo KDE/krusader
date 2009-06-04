@@ -41,8 +41,8 @@ public:
    void applyChanges();
 
 signals:
-   void changed(); ///< emited on changes to an action (used to enable the apply-button)
-   void applied(); ///< emited when changes are applied to an action (used to disable the apply-button)
+   void changed(); ///< emitted on changes to an action (used to enable the apply-button)
+   void applied(); ///< emitted when changes are applied to an action (used to disable the apply-button)
 
 private:
    /**

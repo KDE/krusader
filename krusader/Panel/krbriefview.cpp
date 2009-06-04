@@ -471,7 +471,7 @@ void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
       modifierPressed = true;
    }
 
-   // stop quick search in case a mouse click occured
+   // stop quick search in case a mouse click occurred
    KConfigGroup grpSvr( _config, "Look&Feel" );
    if ( grpSvr.readEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
       if ( MAIN_VIEW ) {
@@ -831,7 +831,7 @@ void KrBriefView::keyPressEvent( QKeyEvent * e ) {
             K3IconView::keyPressEvent( e );
    }
 }
-// overridden to make sure EXTENTION won't be lost during rename
+// overridden to make sure EXTENSION won't be lost during rename
 void KrBriefView::rename( Q3IconViewItem * item ) {
    currentlyRenamedItem = dynamic_cast< KrBriefViewItem * >( item );
    currentlyRenamedItem->rename();
@@ -891,7 +891,7 @@ void KrBriefView::refreshColors() {
    KConfigGroup group( krConfig, "Colors" );
    bool kdeDefault = group.readEntry("KDE Default", false);
    if ( !kdeDefault ) {
-      // KDE default is not choosen: set the background color (as this paints the empty areas) and the alternate color
+      // KDE default is not chosen: set the background color (as this paints the empty areas) and the alternate color
       bool isActive = hasFocus();
       if ( MAIN_VIEW && ACTIVE_PANEL && ACTIVE_PANEL->view )
          isActive = ( static_cast<KrView *>( this ) == ACTIVE_PANEL->view );
@@ -902,7 +902,7 @@ void KrBriefView::refreshColors() {
       pal.setColor( QPalette::Base, cg.background() );
       setPalette( pal );
    } else {
-      // KDE default is choosen: set back the background color
+      // KDE default is chosen: set back the background color
       setPaletteBackgroundColor( KColorScheme(QPalette::Active, KColorScheme::View).background().color() );
    }
    slotUpdate();

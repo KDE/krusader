@@ -216,7 +216,7 @@ QString ParameterDialog::getParameter() {
 
   int lastParameter = _parameterCount;
   while ( --lastParameter > -1 ) {
-     if ( _parameter[ lastParameter ]->text() != _parameter[ lastParameter ]->preset()  ||  _parameter[ lastParameter ]->nessesary() )
+     if ( _parameter[ lastParameter ]->text() != _parameter[ lastParameter ]->preset()  ||  _parameter[ lastParameter ]->necessary() )
         break;
   }
 
@@ -241,7 +241,7 @@ void ParameterDialog::reset() {
 void ParameterDialog::slotOk() {
    bool valid = true;
    for (int i = 0; i < _parameterCount; ++i ) {
-      if ( _parameter[ i ]->nessesary() && ! _parameter[ i ]->valid() )
+      if ( _parameter[ i ]->necessary() && ! _parameter[ i ]->valid() )
          valid = false;
    }
    

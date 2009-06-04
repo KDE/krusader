@@ -144,8 +144,10 @@ void KrKeyDialog::slotExportShortcuts() {
 	!= KMessageBox::Continue)
 	return;
    if ( f.open( QIODevice::WriteOnly ) )
-      // This is the only way to detect if the file is writable since we don't get feetback from KConfig's sync
-      // Additionaly this prevents merging if the file already contains some shortcuts
+      // This is the only way to detect if the file is writable since
+      // we don't get feetback from KConfig's sync
+      // additionally this prevents merging if the file already contains some
+      // shortcuts
       f.close();
    else {
       KMessageBox::error( this, i18n("<qt>Can't open <b>%1</b> for writing!</qt>", filename) );

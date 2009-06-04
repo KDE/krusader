@@ -71,9 +71,9 @@ public:
 
 signals:
 	/**
-	 * emited when any actionproperty changed. This signal is only emited when
+	 * emitted when any actionproperty changed. This signal is only emitted when
 	 * the _modified attribute changes to true. If there are changes made and
-	 * _modified is already true, no signal is emited!
+	 * _modified is already true, no signal is emitted!
 	 */
 	void changed();
 	

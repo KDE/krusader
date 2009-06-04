@@ -579,7 +579,7 @@ void Krusader::setupActions() {
 	actionCollection()->addAction(NAME, VAR);
 
    // first come the TODO actions
-   //actSync =       0;//new KAction(i18n("S&yncronize Dirs"),                         0, this, 0, actionCollection(), "sync dirs");
+   //actSync =       0;//new KAction(i18n("S&ynchronize Dirs"),                         0, this, 0, actionCollection(), "sync dirs");
    //actNewTool =    0;//new KAction(i18n("&Add a new tool"),                          0, this, 0, actionCollection(), "add tool");
    //actToolsSetup = 0;//new KAction(i18n("&Tools Menu Setup"),                        0, 0, this, 0, actionCollection(), "tools setup");
    //KStandardAction::print(SLOTS, 0,actionCollection(),"std_print");

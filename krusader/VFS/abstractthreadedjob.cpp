@@ -423,7 +423,7 @@ QString AbstractJobThread::tempFileIfRemote( const KUrl &kurl, const QString &ty
   _tempFile->setSuffix( QString(".") + type );
   _tempFile->open();
   _tempFileName = _tempFile->fileName();
-  _tempFile->close(); // nessesary to create the filename
+  _tempFile->close(); // necessary to create the filename
    QFile::remove( _tempFileName );
 
   _tempFileTarget = kurl;

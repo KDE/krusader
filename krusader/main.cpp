@@ -67,7 +67,7 @@ static void sigterm_handler(int i)
 int main(int argc, char *argv[]) {
 // ============ begin icon-stuff ===========
 // If the user has no icon specified over the commandline we set up uor own.
-// this is acording to the users privileges. The icons are in Krusader::privIcon()
+// this is according to the users privileges. The icons are in Krusader::privIcon()
   KrViewFactory::init();
 
 

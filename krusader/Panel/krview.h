@@ -54,7 +54,7 @@ typedef QList<KrViewItem*> KrViewItemList;
 
 // KrViewProperties
 // This class is an interface class between KrView and KrViewItem
-// In order for KrViewItem to be as independant as possible, KrView holds 
+// In order for KrViewItem to be as independent as possible, KrView holds 
 // an instance of this class, and fills it with the correct data. A reference
 // to this should be given to each KrViewItem, which then queries it for 
 // information regarding how things should be displayed in the current view.
@@ -220,7 +220,7 @@ public:
   virtual bool handleKeyEvent (QKeyEvent *e);
   virtual void prepareForActive() { _focused = true; }
   virtual void prepareForPassive() { _focused = false; _operator->prepareForPassive(); }
-  virtual void renameCurrentItem(); // Rename current item. returns immediatly
+  virtual void renameCurrentItem(); // Rename current item. returns immediately
   virtual QString nameInKConfig() const { return _nameInKConfig; }
   virtual int  itemsPerPage() { return 0; }
 

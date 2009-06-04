@@ -1157,7 +1157,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   leftUrlReq->setMode( KFile::Directory );
   leftUrlReq->setMinimumWidth( 250 );
   grid->addWidget( leftUrlReq, 1 ,0 );
-  leftLocation->setWhatsThis( i18n( "The left base directory used during the synchronisation process." ) );
+  leftLocation->setWhatsThis( i18n( "The left base directory used during the synchronization process." ) );
   leftUrlReq->setEnabled( !hasSelectedFiles );
   leftLocation->setEnabled( !hasSelectedFiles );
   leftDirLabel->setBuddy( leftLocation );
@@ -1190,7 +1190,7 @@ void SynchronizerGUI::initGUI(QWidget* /* parent */, QString profileName, KUrl l
   rightUrlReq->setMode( KFile::Directory );
   rightUrlReq->setMinimumWidth( 250 );
   grid->addWidget( rightUrlReq, 1 ,2 );
-  rightLocation->setWhatsThis( i18n( "The right base directory used during the synchronisation process." ) );
+  rightLocation->setWhatsThis( i18n( "The right base directory used during the synchronization process." ) );
   rightUrlReq->setEnabled( !hasSelectedFiles );
   rightLocation->setEnabled( !hasSelectedFiles );
   rightDirLabel->setBuddy( rightLocation );

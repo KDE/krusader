@@ -71,7 +71,7 @@ void UserAction::setAvailability( const KUrl& currentURL ) {
 
 void UserAction::populateMenu( KActionMenu* menu, const KUrl *currentURL ) {
    // I have not found any method in Qt/KDE
-   // for non-recursive searching of childs by name ...
+   // for non-recursive searching of children by name ...
    QMap<QString, KActionMenu *> categoryMap;
    QList<KrAction *> uncategorised;
    
@@ -169,7 +169,9 @@ void UserAction::readFromFile( const QString& filename, ReadMode mode, KrActionL
 
     if ( doc ) {
       QDomElement root = doc->documentElement();
-      // check if the file got the right root-element (ACTION_ROOT) - this finds out if the xml-file read to the DOM is realy an krusader useraction-file
+      // check if the file has got the right root-element (ACTION_ROOT)
+      // this finds out if the xml-file read to the DOM is really a krusader
+      // useraction-file
       if( root.tagName() != ACTION_ROOT ) {
         KMessageBox::error( MAIN_VIEW,
         	i18n( "The actionfile's root-element isn't called "ACTION_ROOT", using %1", filename ),

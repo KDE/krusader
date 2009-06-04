@@ -308,7 +308,7 @@ time_t KRpermHandler::QString2time( QString date ) {
 	t.tm_mon = ( QString( date[ 3 ] ) + QString( date[ 4 ] ) ).toInt() - 1;
 	t.tm_year = ( QString( date[ 6 ] ) + QString( date[ 7 ] ) ).toInt();
 	if ( t.tm_year < 70 ) t.tm_year += 100;
-	t.tm_isdst = -1; // daylight saving time information isn't availble
+	t.tm_isdst = -1; // daylight saving time information isn't available
 
 	return mktime( &t );
 }

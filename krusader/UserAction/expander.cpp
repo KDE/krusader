@@ -64,7 +64,7 @@ void exp_placeholder::panelMissingError(const QString &s, Expander& exp)
 	exp.setError( Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT,i18n("Needed panel specification missing in expander %1", s)) );
 }
 
-QStringList exp_placeholder::fileList(const ListPanel* const panel,const QString& type,const QString& mask,const bool ommitPath,const bool useUrl,Expander& exp,const QString& error)
+QStringList exp_placeholder::fileList(const ListPanel* const panel,const QString& type,const QString& mask,const bool omitPath,const bool useUrl,Expander& exp,const QString& error)
 {
    QStringList items;
    if ( type.isEmpty() || type == "all" )
@@ -79,7 +79,7 @@ QStringList exp_placeholder::fileList(const ListPanel* const panel,const QString
       setError(exp, Error(Error::exp_S_FATAL,Error::exp_C_ARGUMENT,i18n("Expander: Bad argument to %1: %2 is not valid item specifier", error,type) ) );
       return QStringList();
    }
-   if ( !ommitPath ) {  // add the current path
+   if ( !omitPath ) {  // add the current path
       // translate to urls using vfs
       KUrl::List* list = panel->func->files()->vfs_getFiles(&items);
       items.clear();
@@ -153,8 +153,10 @@ public:
 };
 
 /**
-  * expands %_ListFile% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with the name of a temporary file, containing a list of items, which type is specified by the first Parameter
-  */
+ * expands %_ListFile% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate
+ * the active, other, right or left panel) with the name of a temporary file,
+ * containing a list of items, which type is specified by the first Parameter
+ */
 class exp_ListFile : public exp_simpleplaceholder {
 	static const exp_ListFile instance;
    exp_ListFile();
@@ -163,8 +165,9 @@ public:
 };
   
 /**
-  * expands %_Ask% ('_' is nessesary because there is no panel needed) with the return of an input-dialog
-  */
+ * expands %_Ask% ('_' is necessary because there is no panel needed)
+ * with the return of an input-dialog
+ */
 class exp_Ask : public exp_simpleplaceholder {
 	static const exp_Ask instance;
    exp_Ask();
@@ -173,8 +176,8 @@ public:
 };
   
 /**
-  * This copies it's first Parameter to the clipboard
-  */
+ * This copies it's first Parameter to the clipboard
+ */
 class exp_Clipboard : public exp_placeholder {
 	static const exp_Clipboard instance;
    exp_Clipboard();
@@ -437,7 +440,7 @@ TagString exp_Current::expFunc( const ListPanel* panel, const QStringList& param
 
    QString result;
    
-   if ( parameter.count() > 0 && parameter[0].toLower() == "yes" )  // ommit the current path
+   if ( parameter.count() > 0 && parameter[0].toLower() == "yes" )  // omit the current path
       result = item;
    else {
       KUrl url = panel->func->files()->vfs_getFile( item );

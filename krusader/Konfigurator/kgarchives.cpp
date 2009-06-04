@@ -76,7 +76,9 @@ KgArchives::KgArchives( bool first, QWidget* parent ) :
   cbs = createCheckBoxGroup( 3, 0, packers, 12, generalGrp );
   generalGrid->addWidget( cbs, 1, 0 );
 
-  addLabel( generalGrid, 2, 0, i18n( "The archives that are \"greyed-out\" were unavailable on your\nsystem last time Krusader checked. If you wish Krusader to\nsearch again, click the 'Auto Configure' button." ),
+  addLabel( generalGrid, 2, 0, i18n( "The archives that are \"grayed out\" were unavailable on your\n"
+                                     "system last time Krusader checked. If you wish Krusader to\n"
+                                     "search again, click the 'Auto Configure' button." ),
             generalGrp );
 
   QWidget *hboxWidget = new QWidget( generalGrp );
@@ -133,7 +135,8 @@ void KgArchives::disableNonExistingPackers()
 {
   #define PS(x) lst.contains(x)>0
 
-  QStringList lst=KRarcHandler::supportedPackers(); // get list of availble packers
+  // get list of available packers
+  QStringList lst=KRarcHandler::supportedPackers();
   cbs->find( "Do Tar" )->setEnabled(PS("tar"));
   cbs->find( "Do GZip" )->setEnabled(PS("gzip"));
   cbs->find( "Do BZip2" )->setEnabled(PS("bzip2"));

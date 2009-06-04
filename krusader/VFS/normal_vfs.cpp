@@ -126,7 +126,7 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden){
 
 		// show hidden files ?
 		if ( !showHidden && name.left(1) == "." ) continue ;
-		// we dont need the ".",".." enteries
+		// we don't need the ".",".." entries
 		if (name=="." || name == "..") continue;
 	  
 		vfile* temp = vfileFromName( name, dirEnt->d_name );

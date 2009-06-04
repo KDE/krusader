@@ -287,9 +287,9 @@ void KgProtocols::addMime( QString name, QString protocol )
     QTreeWidgetItem *listViewItem = new QTreeWidgetItem( currentListItem );
     listViewItem->setText( 0, name );
     listViewItem->setIcon( 0, krLoader->loadIcon( "mime", KIconLoader::Small ) );
-    //FIXME: The follwing causes crash due to bug in QT 4.3.4 - 4.4.
+    // FIXME The following causes crash due to bug in QT 4.3.4 - 4.4.
     // reenable in the future, when the problem will be fixed.
-    //linkList->expandItem( currentListItem );
+    // linkList->expandItem( currentListItem );
   }
 }
 
@@ -393,9 +393,9 @@ bool KgProtocols::isChanged()
 
     for( int j=0; j != item->childCount(); j++ )
     {
-      QTreeWidgetItem *childs = item->child( j );
+      QTreeWidgetItem *children = item->child( j );
 
-      if( !mimes.contains( childs->text( 0 ) ) )
+      if( !mimes.contains( children->text( 0 ) ) )
         return true;
     }
   }
@@ -419,9 +419,9 @@ bool KgProtocols::apply()
 
     for( int j=0; j != item->childCount(); j++ )
     {
-      QTreeWidgetItem *childs = item->child( j );
+      QTreeWidgetItem *children = item->child( j );
 
-      mimes.append( childs->text( 0 ) );
+      mimes.append( children->text( 0 ) );
     }
     group.writeEntry( QString( "Mimes For %1" ).arg( item->text( 0 ) ), mimes );
   }

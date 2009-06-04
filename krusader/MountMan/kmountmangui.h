@@ -105,11 +105,9 @@ private:
 	int sizeY;
 };
 
-
 // Data container for a single-filesystem data
 // maximum size supported is 2GB of 1kb blocks == 2048GB, enough.
-// not really needed, but kept for backward compatiblity
-/////////////////////////////////////////////////////////////////
+// not really needed, but kept for backward compatibility
 class fsData {
 public:
    fsData() : Name( 0 ), Type( 0 ), MntPoint( 0 ), TotalBlks( 0 ),

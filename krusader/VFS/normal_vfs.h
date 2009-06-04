@@ -43,7 +43,8 @@
 
 /**
  * The normal_vfs class is Kruasder implemention for local directories.
- * As this is the most common case, we try to make it as fast and efficent as possible.
+ * As this is the most common case, we try to make it as fast and efficient
+ * as possible.
  */
 class normal_vfs : public vfs{
 	Q_OBJECT

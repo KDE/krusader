@@ -91,7 +91,7 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
   dirData->setText(defaultPath);
   nameData->setText(defaultName);
   nameData->setFocus();
-  if (typeData->count()==0) // if no packers are availble
+  if (typeData->count()==0) // if no packers are available
     okButton->setEnabled(false);
   setGeometry(krApp->x()+krApp->width()/2-width()/2,krApp->y()+krApp->height()/2-height()/2,width(),height());
 	exec();

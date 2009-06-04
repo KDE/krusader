@@ -190,8 +190,8 @@ class KRslots : public QObject {
     void slotSetJumpBack();
     void newSymlink() { ACTIVE_PANEL->func->krlink(true); }
     void updatePopupPanel(KrViewItem *);
-		void windowActive(); // called when krusader's window becomes focussed
-		void windowInactive(); // called when another application steals the focus
+    void windowActive(); // called when krusader's window becomes focused
+    void windowInactive(); // called when another application steals the focus
     // F2
     void terminal();
     // F3

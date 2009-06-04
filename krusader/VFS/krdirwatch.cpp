@@ -70,7 +70,7 @@ void KRdirWatch::addDir(QString path, bool checkPermissions){
       //kDebug() << "KRDirWatch: can't watch " + path +", (not readable)" << endl;
       return;
     }
-    if (!KRpermHandler::fileWriteable(path) ){ // read-only directorys can't be changed
+    if (!KRpermHandler::fileWriteable(path) ){ // read-only directories can't be changed
       //kDebug() << "KRDirWatch: not watching " + path +", (read-only directory)" << endl;
       return;
     }

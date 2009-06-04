@@ -105,7 +105,7 @@ void ActionProperty::changedShortcut( const QKeySequence& shortcut ) {
 void ActionProperty::clear() {
    _action = 0;
 
-   // This prevents the changed-signal from being emited during the GUI-update
+   // This prevents the changed-signal from being emitted during the GUI-update
    _modified = true; // The real state is set at the end of this function.
 
    leDistinctName->clear();
@@ -145,7 +145,7 @@ void ActionProperty::updateGUI( KrAction *action ) {
    if ( ! _action )
       return;
 
-   // This prevents the changed-signal from being emited during the GUI-update.
+   // This prevents the changed-signal from being emitted during the GUI-update.
    _modified = true; // The real state is set at the end of this function.
 
    leDistinctName->setText( _action->getName() );

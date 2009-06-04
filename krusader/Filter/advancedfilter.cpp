@@ -461,7 +461,7 @@ void AdvancedFilter::qdate2time_t ( time_t *dest, QDate d, bool start )
 	t.tm_year  = d.year() - 1900;
 	t.tm_wday  = d.dayOfWeek() - 1; // actually ignored by mktime
 	t.tm_yday  = d.dayOfYear() - 1; // actually ignored by mktime
-	t.tm_isdst = -1; // daylight saving time information isn't availble
+	t.tm_isdst = -1; // daylight saving time information isn't available
 
 	( *dest ) = mktime ( &t );
 }

@@ -55,7 +55,7 @@ public:
 protected:
    /**
     * This is calles when a Placeholder got parameter.
-    * @param currentPlaceholder A pointer to the Placeholder the user has choosen
+    * @param currentPlaceholder A pointer to the Placeholder the user has chosen
     * @return a parameter-string
     */
    QString getParameter( exp_placeholder* currentPlaceholder );
@@ -74,7 +74,7 @@ private:
  */
 class ParameterBase : public QWidget {
 public:
-   inline ParameterBase( const exp_parameter& parameter, QWidget* parent ) : QWidget( parent ) { _nessesary = parameter.nessesary(); }
+   inline ParameterBase( const exp_parameter& parameter, QWidget* parent ) : QWidget( parent ) { _necessary = parameter.necessary(); }
    /**
     * @return the text for the parameter
     */
@@ -92,11 +92,11 @@ public:
     */
    virtual bool valid() = 0;
    /**
-    * @return true if the Placeholder realy needs this parameter
+    * @return true if the Placeholder really needs this parameter
     */
-   inline bool nessesary() { return _nessesary; }
+   inline bool necessary() { return _necessary; }
 private:
-   bool _nessesary;
+   bool _necessary;
 };
 
 /**
@@ -309,7 +309,7 @@ public:
    
    /**
     * Use this to execute the dialog.
-    * @return a QString with all paremeters; ommiting the optional ones if they have the default-value.
+    * @return a QString with all paremeters; omitting the optional ones if they have the default-value.
     */
    QString getParameter();
 

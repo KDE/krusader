@@ -446,7 +446,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries ){
 			error( KIO::ERR_ACCESS_DENIED, getPath(url) );
 			return;
 		}
-		// the follwing block is ripped from KDE file KIO::Slave
+		// the following block is ripped from KDE file KIO::Slave
 		// $Id: krarc.cpp,v 1.43 2007/01/13 13:39:51 ckarai Exp $
 		QByteArray _path( QFile::encodeName(arcTempDir+file) );
 		KDE_struct_stat buff;

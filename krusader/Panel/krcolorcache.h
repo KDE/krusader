@@ -28,7 +28,7 @@
 /**
  * Design goals: Color calculation is done on one place only.
  * Configuration through krConfig OR through local settings.
- * Calculation must be fast through cacheing.
+ * Calculation must be fast through caching.
  *
  * This implementation exposes 3 classes:
  * KrColorSettings: holds the color settings from krConfig,

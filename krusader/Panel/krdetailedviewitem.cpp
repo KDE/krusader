@@ -148,7 +148,7 @@ void KrDetailedViewItem::repaintItem() {
     if ((id = COLUMN(Group)) != -1) {
       setText(id, _vf->vfile_getGroup());
     }
-    // if we've got an extention column, clip the name accordingly
+    // if we've got an extension column, clip the name accordingly
     QString name = this->name(), ext = "";
     if ((id = COLUMN(Extension)) != -1 && !_vf->vfile_isDir()) { 
     	ext = this->extension();
@@ -201,7 +201,7 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
        else
              _cg.setColor(QColorGroup::Base, static_cast< K3ListView* >(listView())->alternateBackground());
 
-  // end of uglyness
+  // end of ugliness
 
   KrColorItemType colorItemType;
   colorItemType.m_activePanel = (dynamic_cast<KrView *>(listView()) == ACTIVE_PANEL->view);

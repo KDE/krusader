@@ -77,7 +77,7 @@ bool virt_vfs::populateVfsList( const KUrl& origin, bool /*showHidden*/ ) {
 		vfile* vf = stat(url);
 		if ( !vf ) {
 			it = urlList->erase( it );
-			// the iterator is advanced automaticly
+			// the iterator is advanced automatically
 			continue;
 		}
 		foundVfile( vf );

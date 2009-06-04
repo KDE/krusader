@@ -841,7 +841,7 @@ void ListPanel::handleDropOnView( QDropEvent *e, QWidget *widget ) {
 void ListPanel::startDragging( QStringList names, QPixmap px ) {
    KUrl::List * urls = func->files() ->vfs_getFiles( &names );
 
-   if ( urls->isEmpty() ) { // avoid draging empty urls
+   if ( urls->isEmpty() ) { // avoid dragging empty urls
       delete urls;
       return ;
    }
@@ -998,7 +998,7 @@ void ListPanel::hideEvent( QHideEvent *e ) {
 }
 
 void ListPanel::panelActive() {
-	// don't refresh when not active (ie: hidden, application isn't focussed ...)
+	// don't refresh when not active (ie: hidden, application isn't focused ...)
 	if( !func->files()->vfs_enableRefresh(true))
 		func->popErronousUrl();
 }

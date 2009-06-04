@@ -171,8 +171,8 @@ protected:
   bool recurse;                  // if true recurse ob sub-dirs...
   bool followLinksP;
 
-  KUrl::List whereToSearch;     // directorys to search
-  KUrl::List whereNotToSearch;  // directorys NOT to search
+  KUrl::List whereToSearch;     // directories to search
+  KUrl::List whereNotToSearch;  // directories NOT to search
 
 signals:
   void status( const QString &name );

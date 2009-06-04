@@ -108,7 +108,7 @@ KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, ListPanel * files, const Q
 	topLayout->setSpacing( spacingHint() );
 
 	m_label = new QLabel( "", mainWidget );
-	showResult(); // fill m_label with something usefull
+	showResult(); // fill m_label with something useful
 	topLayout->addWidget( m_label );
 	topLayout->addStretch(10);
 
@@ -181,7 +181,7 @@ void KrCalcSpaceDialog::exec(){
 		bool result = m_thread->wait(3000);
 		krApp->setCursor( Qt::ArrowCursor );  // return the cursor to normal mode
 		if (result) return;// thread finished: do not show the dialog
-		showResult(); // fill the invisible dialog with usefull data
+		showResult(); // fill the invisible dialog with useful data
 	}
 	// prepare and start the poll timer
 	connect(m_pollTimer, SIGNAL(timeout()), this, SLOT(timer()));

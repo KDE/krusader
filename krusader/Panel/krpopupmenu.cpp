@@ -71,7 +71,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
    item = items.first();
    vfile *vf = panel->func->getVFile(item);
    
-   // ------------ the OPEN option - open prefered service
+   // ------------ the OPEN option - open preferred service
    QAction * openAct = addAction( i18n("Open/Run") );
    openAct->setData( QVariant( OPEN_ID ) );
    if ( !multipleSelections ) { // meaningful only if one file is selected

@@ -514,10 +514,10 @@ void GeneralFilter::loadFromProfile ( QString name )
 
 	if ( properties & FilterTabs::HasDontSearchIn )
 	{
-		dontSearchIn->lineEdit()->setText ( cfg.readEntry ( "Dont Search In Edit", "" ) );
+		dontSearchIn->lineEdit()->setText ( cfg.readEntry ( "Don't Search In Edit", "" ) );
 
 		dontSearchIn->listBox()->clear();
-		QStringList dontSearchInList = cfg.readEntry ( "Dont Search In List", QStringList() );
+		QStringList dontSearchInList = cfg.readEntry ( "Don't Search In List", QStringList() );
 		if ( !dontSearchInList.isEmpty() )
 			dontSearchIn->listBox()->addItems ( dontSearchInList );
 	}
@@ -562,12 +562,12 @@ void GeneralFilter::saveToProfile ( QString name )
 
 	if ( properties & FilterTabs::HasDontSearchIn )
 	{
-		group.writeEntry ( "Dont Search In Edit", dontSearchIn->lineEdit()->text() );
+		group.writeEntry ( "Don't Search In Edit", dontSearchIn->lineEdit()->text() );
 
 		QStringList dontSearchInList;
 		for ( int i=0; i != dontSearchIn->listBox()->count(); i++ )
 			dontSearchInList.append ( dontSearchIn->listBox()->item( i )->text().simplified() );
-		group.writeEntry ( "Dont Search In List", dontSearchInList );
+		group.writeEntry ( "Don't Search In List", dontSearchInList );
 	}
 }
 

@@ -33,24 +33,24 @@ typedef TagString_t<QStringList> TagString;
 typedef QList<TagString> TagStringList;
 
 /**
- * This holds informations about each parameter
+ * This holds the information about each parameter
  */
 class exp_parameter {
 public:
 	exp_parameter() {}
    inline exp_parameter( QString desc, QString pre, bool ness)
-      { _description = desc; _preset = pre; _nessesary = ness; }
+      { _description = desc; _preset = pre; _necessary = ness; }
    inline QString description() const ///< A description of the parameter
       { return _description; }
    inline QString preset() const ///< the default of the parameter
       { return _preset; }
-   inline bool nessesary() const ///< false if the parameter is optional
-      { return _nessesary; }
+   inline bool necessary() const ///< false if the parameter is optional
+      { return _necessary; }
 
 private:
    QString _description;
    QString _preset;
-   bool _nessesary;
+   bool _necessary;
 };
 
 #define EXP_FUNC virtual TagString expFunc ( const ListPanel*, const TagStringList&, const bool&, Expander& ) const
@@ -83,7 +83,7 @@ protected:
 	static void setError(Expander& exp,const Error& e) ;
 	static void panelMissingError(const QString &s, Expander& exp);
 	static QStringList splitEach(const TagString& s);
-	static QStringList fileList(const ListPanel* const panel,const QString& type,const QString& mask,const bool ommitPath,const bool useUrl,Expander&,const QString&);
+	static QStringList fileList(const ListPanel* const panel,const QString& type,const QString& mask,const bool omitPath,const bool useUrl,Expander&,const QString&);
 	exp_placeholder();
 	exp_placeholder(const exp_placeholder& p);
 	virtual ~exp_placeholder() { }
@@ -115,12 +115,21 @@ protected:
 
 
 /**
- * The Expander expands the command of an UserAction by replacing all placeholders by thier current values.@n
- * Each placeholder begins with a '%'-sign, followed by one char indicating the panel, followed by a command which may have some paramenter enclosed in brackets and also ends with a '%'-sign.
+ * The Expander expands the command of an UserAction by replacing all
+ * placeholders by thier current values.@n
+ * Each placeholder begins with a '%'-sign, followed by one char indicating
+ * the panel, followed by a command which may have some paramenter enclosed 
+ * in brackets and also ends with a '%'-sign.
  * Examples are %aPath% or %rBookmark("/home/jonas/src/krusader_kde3", "yes")%.@n
- * The panel-indicator has to be either 'a' for the active, 'o' for the other, 'r' for the right, 'l' for the left or '_' for panel-independence.
+ * The panel-indicator has to be either
+ * 'a' for the active
+ * 'o' for the other
+ * 'r' for the right
+ * 'l' for the left
+ * '_' for panel-independence.
  * 
- * Currently sopported are these commands can be ordered in three groups (childs are the parameter in the right order):
+ * Currently supported are these commands can be ordered in three groups
+ * (children are the parameter in the right order):
  * - Placeholders for Krusaders panel-data (panel-indicator has to be 'a', 'o', 'r' or 'l')
  *    - @em Path is replaced by the panel's path
  *    - @em Count is replaced by a nomber of
@@ -132,34 +141,37 @@ protected:
  *       .
  *    - @em List isreplaced by a list of
  *       -# Either "All", "Files", "Dirs", "Selected"
- *       -# A seperator between the items (default: " " [one space])
+ *       -# A separator between the items (default: " " [one space])
  *       -# If "yes", only the filename (without path) is returned
  *       -# (for all but "Selected") a filter-mask (default: "*")
  *       .
  *   .
- * - Access to panel-dependent, krusader-internal, parameter-needed functions (panel-indicator has to be 'a', 'o', 'r' or 'l')
+ * - Access to panel-dependent, krusader-internal, parameter-needed functions
+ *   (panel-indicator has to be 'a', 'o', 'r' or 'l')
  *    - @em Select manipulates the selection of the panel
- *       -# A filter-mask (nessesary)
+ *       -# A filter-mask (necessary)
  *       -# Either "Add", "Remove", "Set" (default)
   *       .
  *    - @em Bookmark manipulates the selection of the panel
- *       -# A path or URL (nessesary)
- *       -# If "yes", the location is opend in a new tab
+ *       -# A path or URL (necessary)
+ *       -# If "yes", the location is opened in a new tab
  *       .
  *   .
- * - Access to panel-independent, krusader-internal, parameter-needed functions (panel-indicator doesn't matter but should be set to '_')
+ * - Access to panel-independent, krusader-internal, parameter-needed functions
+ *   (panel-indicator doesn't matter but should be set to '_')
  *    - @em Ask displays a lineedit and is replaced by its return
- *       -# The question (nessesary)
+ *       -# The question (necessary)
  *       -# A default answer
  *       -# A cation for the popup
  *       .
  *    - @em Clipboard manipulates the system-wide clipboard
- *       -# The string copied to clip (ex: "%aCurrent%") (nessesary)
+ *       -# The string copied to clip (ex: "%aCurrent%") (necessary)
  *       -# A separator. If set, parameter1 is append with this to the current clipboard content
  *       .
  *    .
  * .
- * Since all placeholders are expanded in the order they appear in the command, little one-line-scripts are possible
+ * Since all placeholders are expanded in the order they appear in the command,
+ * little one-line-scripts are possible
  *
  * @author Jonas B�r (http://www.jonas-baehr.de), Shie Erlich
  */

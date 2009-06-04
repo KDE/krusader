@@ -291,7 +291,7 @@ bool KMountMan::ejectable( QString path ) {
 
 
 // a mountMan special version of KIO::convertSize, which deals
-// with large filesystems ==> >4GB, it actually recieve size in
+// with large filesystems ==> > 4GB, it actually receives size in
 // a minimum block of 1024 ==> data is KB not bytes
 QString KMountMan::convertSize( KIO::filesize_t size ) {
    float fsize;
