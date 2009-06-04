@@ -83,6 +83,7 @@ KParts::MainWindow( parent, (Qt::WindowFlags)KDE_DEFAULT_WINDOWFLAGS ), manager(
 	viewerMenu->addAction( i18n( "&Generic viewer" ), this, SLOT( viewGeneric() ))->setShortcut( Qt::CTRL + Qt::SHIFT + Qt::Key_G );
 	viewerMenu->addAction( i18n( "&Text viewer" ), this, SLOT( viewText() ))->setShortcut( Qt::CTRL + Qt::SHIFT + Qt::Key_T );
 	viewerMenu->addAction( i18n( "&Hex viewer" ), this, SLOT( viewHex() ))->setShortcut( Qt::CTRL + Qt::SHIFT + Qt::Key_H );
+	viewerMenu->addAction( i18n( "&Lister" ), this, SLOT( viewLister() ))->setShortcut( Qt::CTRL + Qt::SHIFT + Qt::Key_L );
 	viewerMenu->addSeparator();
 	viewerMenu->addAction( i18n( "Text &editor" ), this, SLOT( editText() ))->setShortcut( Qt::CTRL + Qt::SHIFT + Qt::Key_E );
 	viewerMenu->addSeparator();
@@ -279,6 +280,7 @@ void KrViewer::view( KUrl url, QWidget * parent ) {
 	if( modeString == "generic" ) defaultMode = Generic;
 	else if( modeString == "text" ) defaultMode = Text;
 	else if( modeString == "hex" ) defaultMode = Hex;
+	else if( modeString == "lister" ) defaultMode = Lister;
 
 	view(url,defaultMode,defaultWindow, parent );
 }
@@ -466,6 +468,15 @@ void KrViewer::viewText(){
 
 	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
 	KParts::Part* part = viewerWidget->openUrl(pvb->url(),Text);
+	addTab(viewerWidget,i18n("Viewing"),VIEW_ICON,part);
+}
+
+void KrViewer::viewLister(){
+	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentWidget() );
+	if( !pvb ) return;
+
+	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
+	KParts::Part* part = viewerWidget->openUrl(pvb->url(),Lister);
 	addTab(viewerWidget,i18n("Viewing"),VIEW_ICON,part);
 }
 

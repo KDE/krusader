@@ -103,10 +103,11 @@ if( first )
   //            name            value    tooltip
     {{ i18n( "Generic mode" ),  "generic", i18n( "Use the system's default viewer" ) },
      { i18n( "Text mode" ), "text",  i18n( "View the file in text-only mode" ) }, 
-     { i18n( "Hex mode" ), "hex",  i18n( "View the file in hex-mode (better for binary files)" ) } };
-  
+     { i18n( "Hex mode" ), "hex",  i18n( "View the file in hex-mode (better for binary files)" ) },
+     { i18n( "Lister mode" ), "lister",  i18n( "View the file with lister (for huge text files)" ) } };
+
   vbox->addWidget( createRadioButtonGroup( "General", "Default Viewer Mode",
-      "generic", 0, 3, viewMode, 3, vboxWidget, false ) );
+      "generic", 0, 4, viewMode, 4, vboxWidget, false ) );
 
   vbox->addWidget( createCheckBox( "General", "View In Separate Window", _ViewInSeparateWindow,
                      i18n( "Internal editor and viewer opens each file in a separate window" ), vboxWidget, false,

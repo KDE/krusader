@@ -19,6 +19,7 @@
 #include <QtCore/QFile>
 #include <kde_file.h>
 #include "panelviewer.h"
+#include "lister.h"
 
 #define DICTSIZE 211
 
@@ -82,6 +83,10 @@ KParts::ReadOnlyPart* PanelViewer::openUrl( const KUrl &url, KrViewer::Mode mode
 	}
 
 	KTemporaryFile tmpFile;
+
+	if( mode == KrViewer::Lister ){
+		cpart = new Lister( this );
+	}
 
 	if( mode == KrViewer::Hex ){
 		if ( !cpart ) cpart = getHexPart();

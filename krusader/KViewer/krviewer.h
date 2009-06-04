@@ -31,6 +31,7 @@
 #include <QtCore/QPointer>
 #include <ktabwidget.h>
 #include <ktemporaryfile.h>
+
 #include "../krusader.h"
 
 class PanelViewerBase;
@@ -40,7 +41,7 @@ class KrViewer : public KParts::MainWindow {
 public:
 	virtual ~KrViewer();
 	
-	enum Mode{Generic,Text,Hex};
+	enum Mode{Generic,Text,Hex,Lister};
 
 	static void view( KUrl url, QWidget * parent = krApp );
 	static void view( KUrl url, Mode mode, bool new_window, QWidget * parent = krApp );
@@ -56,6 +57,7 @@ public slots:
 	void viewGeneric();
 	void viewText();
 	void viewHex();
+	void viewLister();
 	void editText();
 
 	void print();
