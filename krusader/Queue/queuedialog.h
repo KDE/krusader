@@ -28,8 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __QUEUEDIALOG_H__
-#define __QUEUEDIALOG_H__
+#ifndef QUEUEDIALOG_H
+#define QUEUEDIALOG_H
 
 #include <QtGui/QDialog>
 

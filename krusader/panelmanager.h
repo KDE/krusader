@@ -1,10 +1,11 @@
-#ifndef _PANEL_MANAGER_H
-#define _PANEL_MANAGER_H
+#ifndef PANEL_MANAGER_H
+#define PANEL_MANAGER_H
 
 #include <qwidget.h>
 #include <QtGui/QLayout>
 #include <QGridLayout>
 #include <QHBoxLayout>
+
 #include "paneltabbar.h"
 
 class KConfig;

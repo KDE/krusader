@@ -14,8 +14,8 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-#ifndef __krarc_h__
-#define __krarc_h__
+#ifndef KRARC_H
+#define KRARC_H
 
 #include <QtCore/QString>
 #include <QtCore/QHash>

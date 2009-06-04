@@ -19,30 +19,29 @@
   * (c) David Faure <faure@kde.org>
   */
 
-#include <zlib.h>
+#include "iso.h"
   
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <zlib.h>
+#include <errno.h> // to be removed
 
-#include <kde_file.h>
 #include <QtCore/QFile>
 #include <QtCore/QDir>
 #include <QByteArray>
+
+#include <kde_file.h>
 #include <kurl.h>
 #include <kdebug.h>
 #include <kcomponentdata.h>
-#include "kiso.h"
 #include <kmimetype.h>
 
-#include <errno.h> // to be removed
-
 #include "libisofs/iso_fs.h"
-
+#include "kiso.h"
 #include "kisofile.h"
 #include "kisodirectory.h"
-#include "iso.h"
 
 using namespace KIO;
 extern "C" {

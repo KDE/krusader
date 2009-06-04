@@ -27,14 +27,29 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 *   (at your option) any later version.                                   *
 *                                                                         *
 ***************************************************************************/
+
+#include "krusader.h"
+
 #include <sys/types.h>
 #include <sys/stat.h> 
 #include <sys/param.h>
 #include <unistd.h>
-#ifdef BSD
-#include <sys/types.h>
-#endif
-// KDE includes
+
+#include <QtGui/QPixmap>
+#include <QtCore/QStringList>
+#include <QtCore/QDir>
+#include <QtGui/QPrinter>
+#include <qwidget.h>
+#include <QtCore/QDateTime>
+#include <QActionGroup>
+#include <QMoveEvent>
+#include <QResizeEvent>
+#include <QShowEvent>
+#include <QHideEvent>
+#include <QDesktopWidget>
+#include <QtDBus/QtDBus>
+
+#include <krandom.h>
 #include <kxmlguifactory.h>
 #include <kactioncollection.h>
 #include <kmessagebox.h>
@@ -52,23 +67,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kacceleratormanager.h>
 #include <kwindowsystem.h>
 #include <kdeversion.h> 
-// QT includes
-#include <QtGui/QPixmap>
-#include <QtCore/QStringList>
-#include <QtCore/QDir>
-#include <QtGui/QPrinter>
-#include <qwidget.h>
-#include <QtCore/QDateTime>
-#include <QActionGroup>
-#include <QMoveEvent>
-#include <QResizeEvent>
-#include <QShowEvent>
-#include <QHideEvent>
-#include <QDesktopWidget>
-#include <krandom.h>
-#include <QtDBus/QtDBus>
-// Krusader includes
-#include "krusader.h"
+
 #include "krusaderversion.h"
 #include "kicons.h"
 #include "VFS/krpermhandler.h"
@@ -96,7 +95,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "UserAction/expander.h"
 #include "UserMenu/usermenu.h"
 #include "panelmanager.h"
-#include "MountMan/kmountman.h"
 #include "BookMan/krbookmarkhandler.h"
 #include "Dialogs/popularurls.h"
 #include "GUI/krremoteencodingmenu.h"

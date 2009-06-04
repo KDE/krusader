@@ -17,12 +17,14 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#ifndef _VIRT_H
-#define _VIRT_H
+#ifndef VIRT_H
+#define VIRT_H
 
 #include <sys/types.h>
+
 #include <QtCore/QHash>
 #include <QByteArray>
+
 #include <kconfig.h>
 #include <kio/slavebase.h>
 

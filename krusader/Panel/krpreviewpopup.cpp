@@ -17,15 +17,18 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include <kio/previewjob.h>
 #include "krpreviewpopup.h"
-#include <kdebug.h>
-#include <klocale.h>
-#include "../KViewer/krviewer.h"
-#include "../krusader.h"
+
 #include <QPixmap>
 #include <QPainter>
 #include <QStyle>
+
+#include <kio/previewjob.h>
+#include <kdebug.h>
+#include <klocale.h>
+
+#include "../KViewer/krviewer.h"
+#include "../krusader.h"
 
 KrPreviewPopup::KrPreviewPopup(): prevNotAvailAction( 0 ), id(1),noPreview(true){
 	connect(this,SIGNAL(triggered(QAction *)),this,SLOT(view(QAction *)));

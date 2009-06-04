@@ -1,12 +1,15 @@
+#include "panelmanager.h"
+
 #include <qstackedwidget.h>
 #include <QtGui/QToolButton>
 #include <QGridLayout>
-#include <klocale.h>
 #include <QtGui/QImage>
+
+#include <klocale.h>
 #include <kdebug.h>
 #include <kconfig.h>
 #include <kiconloader.h>
-#include "panelmanager.h"
+
 #include "Panel/listpanel.h"
 #include "Panel/panelfunc.h"
 #include "krusaderview.h"

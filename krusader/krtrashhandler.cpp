@@ -30,23 +30,24 @@
 
 #include "krtrashhandler.h"
 
-#include <kconfig.h>
-#include <kconfiggroup.h>
 #include <QByteArray>
 #include <QDataStream>
+
+#include <kconfig.h>
+#include <kconfiggroup.h>
 #include <kuiserverjobtracker.h>
 #include <kio/jobclasses.h>
 #include <kio/job.h>
 #include <knotification.h>
 #include <kio/jobuidelegate.h>
+#include <kglobal.h>
+#include <kstandarddirs.h>
+#include <kdirwatch.h>
+
 #include "krusader.h"
 #include "krusaderview.h"
 #include "Panel/listpanel.h"
 #include "Panel/panelfunc.h"
-#include <kglobal.h>
-#include <kstandarddirs.h>
-#include <kdirwatch.h>
-#include "krusader.h"
 
 KrTrashWatcher * KrTrashHandler::_trashWatcher = 0;
 

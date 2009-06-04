@@ -28,10 +28,11 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __KR_TRASH_HANDLER__
-#define __KR_TRASH_HANDLER__
+#ifndef KR_TRASH_HANDLER_H
+#define KR_TRASH_HANDLER_H
 
 #include <QString>
+
 #include <KUrl>
 #include <kio/job.h>
 

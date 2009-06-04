@@ -28,14 +28,16 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __COMBINER_H__
-#define __COMBINER_H__
+#ifndef COMBINER_H
+#define COMBINER_H
 
-#include "crc32.h"
 #include <QtCore/QString>
 #include <qprogressdialog.h>
+
 #include <kurl.h>
 #include <kio/jobclasses.h>
+
+#include "crc32.h"
 
 class Combiner : public QProgressDialog
 {

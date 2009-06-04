@@ -28,18 +28,21 @@
 *                                                                         *
 ***************************************************************************/
 
-// Qt includes
+#include "krusaderview.h"
+
 #include <QGridLayout>
 #include <QList>
 #include <QKeyEvent>
 #include <QEvent>
+#include <QtGui/QClipboard>
+
 #include <kstatusbar.h>
 #include <kmenubar.h>
 #include <kshortcut.h>
 #include <ktoolbar.h>
 #include <ktoggleaction.h>
-// Krusader includes
-#include "krusaderview.h"
+#include <klibloader.h>
+
 #include "krusader.h"
 #include "krslots.h"
 #include "defaults.h"
@@ -50,11 +53,9 @@
 #include "GUI/terminaldock.h"
 #include "resources.h"
 #include "panelmanager.h"
-#include <klibloader.h> //<>
 #include "GUI/profilemanager.h"
 #include "Dialogs/percentalsplitter.h"
 #include "krservices.h"
-#include <QtGui/QClipboard>
 
 KrusaderView::KrusaderView( QWidget *parent ) : QWidget( parent ), activePanel(0) {}
 

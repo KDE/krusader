@@ -1,10 +1,9 @@
 /* From the linux kernel */
 
-#ifndef _ISO_FS_H
-#define _ISO_FS_H 1
+#ifndef ISO_FS_H
+#define ISO_FS_H
 
 #include "bswap.h"
-
 
 #ifdef Q_WS_WIN
 #define DIR_SEPARATOR       "/"

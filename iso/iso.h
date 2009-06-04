@@ -19,13 +19,15 @@
   * (c) David Faure <faure@kde.org>
   */
 
-#ifndef _ISO_H
-#define _ISO_H
+#ifndef ISO_H
+#define ISO_H
+
+#include <QByteArray>
 
 #include <kio/slavebase.h>
 #include <sys/types.h>
+
 #include "kisofile.h"
-#include <QByteArray>
 
 class KIso;
 

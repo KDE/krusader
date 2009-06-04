@@ -28,8 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __SPLITTERGUI_H__
-#define __SPLITTERGUI_H__
+#ifndef SPLITTERGUI_H
+#define SPLITTERGUI_H
 
 #include <QtGui/QDialog>
 #include <QtCore/QString>
@@ -37,9 +37,10 @@
 #include <QtGui/QValidator>
 #include <QtGui/QComboBox>
 #include <QKeyEvent>
+#include <QtGui/QLineEdit>
+
 #include <kurlrequester.h>
 #include <kio/global.h>
-#include <QtGui/QLineEdit>
 
 #include "../VFS/vfs.h"
 

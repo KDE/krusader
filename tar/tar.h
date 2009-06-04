@@ -17,8 +17,8 @@
    Boston, MA 02111-1307, USA.
 */
 
-#ifndef _TAR_H
-#define _TAR_H
+#ifndef TAR_H
+#define TAR_H
 
 #include <sys/types.h>
 

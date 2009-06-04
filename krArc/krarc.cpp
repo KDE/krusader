@@ -14,19 +14,23 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+
+#include "krarc.h"
+
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <time.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <iostream>
 
 #include <QtCore/QDir>
 #include <QtCore/QFile>
 #include <QtCore/QFileInfo>
 #include <QtCore/QRegExp>
-#include <QtCore/QDir>
 #include <QByteArray>
+#include <QTextCodec>
 
 #include <kfileitem.h>
 #include <kdebug.h>
@@ -41,10 +45,6 @@
 #include <kio/jobclasses.h>
 #include <ktar.h>
 #include <kprocess.h>
-#include <QTextCodec>
-
-#include <iostream>
-#include "krarc.h"
 
 #define MAX_IPC_SIZE           (1024*32)
 #define TRIES_WITH_PASSWORDS   3

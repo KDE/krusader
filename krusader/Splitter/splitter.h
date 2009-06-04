@@ -28,14 +28,16 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __SPLITTER_H__
-#define __SPLITTER_H__
+#ifndef SPLITTER_H
+#define SPLITTER_H
 
-#include "crc32.h"
 #include <QtCore/QString>
 #include <QProgressDialog>
+
 #include <kurl.h>
 #include <kio/jobclasses.h>
+
+#include "crc32.h"
  
 class Splitter : public QProgressDialog
 {

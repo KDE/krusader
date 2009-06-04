@@ -16,6 +16,8 @@
  ***************************************************************************/
 
  /* This file is heavily based on ktar.cpp from kdelibs (c) David Faure */
+
+#include "kiso.h"
  
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,6 +31,7 @@
 
 #include <QtCore/QDir>
 #include <QtCore/QFile>
+
 #include <kdebug.h>
 #include <kurl.h>
 #include <kmimetype.h>
@@ -37,10 +40,8 @@
 #include <kfilterbase.h>
 #include <kconfiggroup.h>
 
-#include "kiso.h"
 #include "libisofs/isofs.h"
 #include "qfilehack.h"
-
 
 #ifdef Q_OS_UNIX
 #undef __STRICT_ANSI__
