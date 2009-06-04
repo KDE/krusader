@@ -41,7 +41,6 @@
 #include <kiconloader.h>
 #include <kglobalsettings.h>
 #include <klocale.h>
-#include <klocale.h>
 #include <krun.h>
 #include <kseparator.h>
 #include <kurllabel.h>

@@ -30,7 +30,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 #include <unistd.h>
 #include <sys/param.h>
-// QT includes
+
 #include <QtGui/QBitmap>
 #include <QtCore/QStringList>
 #include <QHBoxLayout>
@@ -45,9 +45,9 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <QDrag>
 #include <QMimeData>
 #include <QtCore/QTimer>
-#include <QtCore/QRegExp> 
-#include <QtGui/QSplitter> 
-// KDE includes
+#include <QtCore/QRegExp>
+#include <QtGui/QSplitter>
+
 #include <kmenu.h>
 #include <kdiskfreespace.h>
 #include <kmessagebox.h>
@@ -57,7 +57,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <ktrader.h>
 #include <kiconloader.h>
 #include <kcursor.h>
-#include <kmessagebox.h>
 #include <kstandarddirs.h>
 #include <kglobalsettings.h>
 #include <kdeversion.h>
@@ -65,11 +64,9 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <qtabbar.h>
 #include <kdebug.h>
 #include <kurlrequester.h>
-#include <kurl.h> 
 #include <kmountpoint.h>
 #include <kcolorscheme.h>
 
-// Krusader includes
 #include "../krusader.h"
 #include "../krslots.h"
 #include "panelfunc.h"

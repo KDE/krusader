@@ -20,13 +20,11 @@
 #ifndef KCHOSEDIR_H
 #define KCHOSEDIR_H
 
-// KDE includes
 #include <kdialog.h>
 #include <kanimatedbutton.h>
 #include <kurlrequesterdialog.h>
 #include <kdatepicker.h>
-#include <kdialog.h>
-// QT includes
+
 #include <QtGui/QLineEdit>
 #include <QtGui/QLayout>
 #include <QtGui/QLabel>

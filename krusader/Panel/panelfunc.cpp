@@ -27,13 +27,13 @@ A
 *   (at your option) any later version.                                   *
 *                                                                         *
 ***************************************************************************/
-#include <unistd.h> 
-// Qt Includes
+#include <unistd.h>
+
 #include <QtCore/QEventLoop>
-#include <QtGui/QClipboard> 
+#include <QtGui/QClipboard>
 #include <QList>
 #include <QDir>
-// KDE Includes
+
 #include <klocale.h>
 #include <kprocess.h>
 #include <kpropertiesdialog.h>
@@ -48,11 +48,10 @@ A
 #include <kdebug.h>
 #include <kio/netaccess.h>
 #include <kio/jobuidelegate.h>
-#include <kstandarddirs.h>
-#include <ktempdir.h> 
+#include <ktempdir.h>
 #include <kurlrequester.h>
 #include <kdesktopfile.h>
-// Krusader Includes
+
 #include "panelfunc.h"
 #include "krcalcspacedialog.h"
 #include "../krusader.h"
@@ -79,7 +78,6 @@ A
 #include "../Queue/queue_mgr.h"
 #include <QDrag>
 #include <QMimeData>
-#include <kio/jobuidelegate.h>
 #include <kuiserverjobtracker.h>
 
 //////////////////////////////////////////////////////////
