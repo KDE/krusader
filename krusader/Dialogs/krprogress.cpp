@@ -16,6 +16,8 @@
    Boston, MA 02111-1307, USA.
 */
 
+#include "krprogress.h"
+
 #include <QtCore/QTimer>
 #include <QtGui/QLayout>
 #include <QtCore/QDateTime>
@@ -38,7 +40,6 @@
 
 #include <kio/jobclasses.h>
 
-#include "krprogress.h"
 #include "../krusader.h"
 
 KrProgress::KrProgress( KIO::Job* job )

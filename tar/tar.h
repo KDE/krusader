@@ -20,9 +20,11 @@
 #ifndef _TAR_H
 #define _TAR_H
 
-#include <kio/slavebase.h>
 #include <sys/types.h>
+
 #include <QByteArray>
+
+#include <kio/slavebase.h>
 
 class ArchiveProtocol : public KIO::SlaveBase {
 public:

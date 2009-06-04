@@ -1,12 +1,15 @@
+#include "tar.h"
 
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <errno.h> // to be removed
 
 #include <QtCore/QFile>
 #include <QtCore/QFileInfo>
 #include <qptrqueue.h>
+
 #include <kurl.h>
 #include <kdebug.h>
 #include <kcomponentdata.h>
@@ -16,10 +19,6 @@
 #include <kmimemagic.h>
 #include <klocale.h>
 #include <kdeversion.h>
-
-#include <errno.h> // to be removed
-
-#include "tar.h"
 
 using namespace KIO;
 

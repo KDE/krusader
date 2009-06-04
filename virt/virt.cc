@@ -17,6 +17,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
+#include "virt.h"
+
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdlib.h>
@@ -29,8 +31,6 @@
 #include <kdeversion.h>
 #include <kcomponentdata.h>
 #include <kmessagebox.h>
-
-#include "virt.h"
 
 using namespace KIO;
 

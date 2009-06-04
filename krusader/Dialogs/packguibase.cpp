@@ -27,7 +27,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-#include "../defaults.h"
+
 #include "packguibase.h"
 
 #include <QtGui/QCheckBox>
@@ -52,6 +52,8 @@
 #include <kmessagebox.h>
 #include <kio/global.h>
 #include <khistorycombobox.h>
+
+#include "../defaults.h"
 #include "../krusader.h"
 
 /* 

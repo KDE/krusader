@@ -17,9 +17,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-// Krusader includes
 #include "krdialogs.h"
-// QT includes
+
 #include <QtGui/QMessageBox>
 #include <qwidget.h>
 #include <QtGui/QApplication>
@@ -27,23 +26,22 @@
 #include <QFrame>
 #include <QLabel>
 #include <QVBoxLayout>
-// KDE includes
+#include <QtCore/QDir>
+#include <QtGui/QCheckBox>
+
 #include <klocale.h>
 #include <kurlcompletion.h>
 #include <kapplication.h>
 #include <kstandarddirs.h>
 #include <klineedit.h>
 #include <kurlrequester.h>
-#include <kstandarddirs.h>
 #include <kdeversion.h>
-#include <QtGui/QCheckBox>
 #include <krecentdocument.h>
-// Krusader includes
+
 #include "../krusader.h"
 #include "../resources.h"
 #include "../VFS/vfs.h"
 #include "../defaults.h"
-#include <QtCore/QDir>
 
 KUrl KChooseDir::getDir(QString text,const KUrl& url, const KUrl& cwd) {
 	KUrlRequesterDialog *dlg = new KUrlRequesterDialog( vfs::pathOrUrl( url, KUrl::AddTrailingSlash ),text,krApp);
