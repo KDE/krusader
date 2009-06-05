@@ -17,6 +17,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
+#include "krviewer.h"
+
 #include <qdatastream.h>
 #include <QtCore/QFile>
 #include <QtCore/QTimer>
@@ -42,11 +44,9 @@
 #include <kfileitem.h> 
 #include <ktoolbar.h>
 
-#include "krviewer.h"
 #include "../krusader.h"
 #include "../defaults.h"
 #include "../kicons.h"
-
 #include "panelviewer.h"
 
 #define VIEW_ICON     "zoom-original"

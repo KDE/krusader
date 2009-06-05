@@ -28,11 +28,14 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "kfnkeys.h"
+
 #include <QGridLayout>
+#include <QtGui/QFontMetrics>
+
 #include <klocale.h>
 #include <kglobalsettings.h>
-#include <QtGui/QFontMetrics>
-#include "kfnkeys.h"
+
 #include "../krusader.h"
 #include "../defaults.h"
 #include "../krslots.h"

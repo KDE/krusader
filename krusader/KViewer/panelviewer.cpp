@@ -1,12 +1,16 @@
-#include <kurl.h>
+#include "panelviewer.h"
+
 #include <QtCore/QString>
 #include <qstackedwidget.h>
 #include <QtGui/QApplication>
+#include <QtCore/QHash>
+#include <QtGui/QLabel>
+#include <QtCore/QFile>
+
+#include <kurl.h>
 #include <kparts/part.h>
 #include <kparts/browserextension.h>
 #include <kmessagebox.h>
-#include <QtCore/QHash>
-#include <QtGui/QLabel>
 #include <kmimetype.h>
 #include <ktemporaryfile.h>
 #include <klocale.h>
@@ -16,14 +20,11 @@
 #include <kdebug.h>
 #include <kfileitem.h>
 #include <kio/netaccess.h>
-#include <QtCore/QFile>
 #include <kde_file.h>
-#include "panelviewer.h"
+
 #include "lister.h"
 
 #define DICTSIZE 211
-
-/* ----==={ PanelViewerBase }===---- */
 
 PanelViewerBase::PanelViewerBase( QWidget *parent ) :
 QStackedWidget( parent ), mimes( 0 ), cpart( 0 ) {

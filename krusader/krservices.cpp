@@ -17,6 +17,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
+#include "krservices.h"
+
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -25,7 +27,6 @@
 
 #include <kdebug.h>
 
-#include "krservices.h"
 #include "krusader.h"
 #include "defaults.h"
 

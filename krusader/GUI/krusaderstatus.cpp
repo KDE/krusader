@@ -28,11 +28,11 @@
  *                                                                         *
  ***************************************************************************/
 
-// Krusader includes
-#include <QtGui/QFontMetrics>
 #include "krusaderstatus.h"
-#include "../resources.h"
 
+#include <QtGui/QFontMetrics>
+
+#include "../resources.h"
 
 KrusaderStatus::KrusaderStatus(QWidget *parent):
   KStatusBar(parent){

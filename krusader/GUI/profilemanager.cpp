@@ -28,14 +28,16 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "../krusader.h"
 #include "profilemanager.h"
+
+#include <QtGui/QCursor>
 
 #include <klocale.h>
 #include <kmenu.h>
-#include <QtGui/QCursor>
 #include <kinputdialog.h>
 #include <kiconloader.h>
+
+#include "../krusader.h"
 
 ProfileManager::ProfileManager( QString profileType, QWidget * parent ) 
   : QPushButton( parent )

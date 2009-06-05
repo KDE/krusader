@@ -28,12 +28,14 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 *                                                                         *
 ***************************************************************************/
 
+#include "krviewfactory.h"
+
+#include <cstdio>
+
 #include "krdetailedview.h"
 #include "krbriefview.h"
 #include "krinterdetailedview.h"
 #include "krinterbriefview.h"
-#include "krviewfactory.h"
-#include <cstdio>
 
 extern KrViewInstance interDetailedView;    // hold reference for linking
 extern KrViewInstance interBriefView;    // hold reference for linking

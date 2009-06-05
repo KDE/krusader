@@ -16,24 +16,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include "../krusader.h"
-
 #include "terminaldock.h"
-
-#include "../krusaderapp.h"
-#include "../krusaderview.h"
-#include "kcmdline.h"
-#include "../VFS/vfs.h"
-#include "../Panel/listpanel.h"
-#include "../Panel/panelfunc.h"
-#include "../krservices.h"
-
-#include <kde_terminal_interface.h>
-#include <kparts/part.h>
-#include <KPluginLoader>
-#include <KPluginFactory>
-#include <KToggleAction>
-#include <KUrl>
 
 #include <QEvent>
 #include <QHBoxLayout>
@@ -44,6 +27,22 @@
 #include <QDir>
 #include <QString>
 #include <QObject>
+
+#include <kde_terminal_interface.h>
+#include <kparts/part.h>
+#include <KPluginLoader>
+#include <KPluginFactory>
+#include <KToggleAction>
+#include <KUrl>
+
+#include "../krusader.h"
+#include "../krusaderapp.h"
+#include "../krusaderview.h"
+#include "kcmdline.h"
+#include "../VFS/vfs.h"
+#include "../Panel/listpanel.h"
+#include "../Panel/panelfunc.h"
+#include "../krservices.h"
 
 /**
  * A widget containing the konsolepart for the Embedded terminal emulator

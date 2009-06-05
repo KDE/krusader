@@ -16,16 +16,18 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include "fileTree.h"
 #include "segmentTip.h"
+
+#include <QPainter>
+#include <QToolTip>        //for its palette
+#include <QEvent>
 
 #include <kapplication.h>    //installing eventFilters
 #include <kglobal.h>
 #include <kglobalsettings.h>
 #include <klocale.h>
-#include <QPainter>
-#include <QToolTip>        //for its palette
-#include <QEvent>
+
+#include "fileTree.h"
 
 namespace RadialMap {
 

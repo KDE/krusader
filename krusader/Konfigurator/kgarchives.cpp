@@ -28,13 +28,13 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "kgarchives.h"
+
 #include <QtGui/QPushButton>
 #include <QGridLayout>
 
-#include "kgarchives.h"
 #include "krresulttable.h"
 #include "krresulttabledialog.h"
-
 #include "searchobject.h"
 #include "../defaults.h"
 #include "../krusader.h"

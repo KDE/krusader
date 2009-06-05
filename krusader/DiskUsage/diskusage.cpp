@@ -28,7 +28,10 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "diskusage.h"
+
 #include <time.h>
+
 #include <QtGui/QLayout>
 #include <QKeyEvent>
 #include <QLabel>
@@ -38,6 +41,13 @@
 #include <QResizeEvent>
 #include <QEvent>
 #include <QHash>
+#include <QtGui/QPushButton>
+#include <QtGui/QApplication>
+#include <QtGui/QCursor>
+#include <qpixmapcache.h>
+#include <QtGui/QGroupBox>
+#include <QtCore/QPointer>
+
 #include <klocale.h>
 #include <kmenu.h>
 #include <kmimetype.h>
@@ -45,13 +55,7 @@
 #include <kglobalsettings.h>
 #include <kio/job.h>
 #include <kio/deletejob.h>
-#include <QtGui/QPushButton>
-#include <QtGui/QApplication>
-#include <QtGui/QCursor>
-#include <qpixmapcache.h>
-#include <QtGui/QGroupBox>
-#include <QtCore/QPointer>
-#include "diskusage.h"
+
 #include "../VFS/krpermhandler.h"
 #include "../VFS/krvfshandler.h"
 #include "../kicons.h"
@@ -61,7 +65,6 @@
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
 #include "filelightParts/Config.h"
-
 #include "dulines.h"
 #include "dulistview.h"
 #include "dufilelight.h"

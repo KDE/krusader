@@ -16,10 +16,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include "fileTree.h"
-#include <kcursor.h>        //ctor
-#include <klocale.h>
-#include <kurl.h>
+#include "widget.h"
+
 #include <QApplication>   //sendEvent
 #include <QBitmap>        //ctor - finding cursor size
 #include <QCursor>        //slotPostMouseEvent()
@@ -28,10 +26,14 @@
 #include <QMouseEvent>
 #include <QPalette>
 
+#include <kcursor.h>        //ctor
+#include <klocale.h>
+#include <kurl.h>
+
+#include "fileTree.h"
 #include "Config.h"
 #include "debug.h"
 #include "radialMap.h" //constants
-#include "widget.h"
 
 RadialMap::Widget::Widget( QWidget *parent )
    : QWidget( parent )

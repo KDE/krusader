@@ -28,13 +28,15 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "diskusageviewer.h"
+
+#include <QGridLayout>
+#include <QLabel>
+
 #include "../krusader.h"
 #include "../krusaderview.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
-#include "diskusageviewer.h"
-#include <QGridLayout>
-#include <QLabel>
 
 DiskUsageViewer::DiskUsageViewer( QWidget *parent ) 
   : QWidget( parent ), diskUsage( 0 ), statusLabel( 0 )

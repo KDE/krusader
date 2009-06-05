@@ -28,12 +28,12 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "lister.h"
+
 #include <QtGui/QLayout>
 #include <QtGui/QLabel>
-#include <klocale.h>
 #include <QtGui/QPainter>
 #include <QtGui/QFontMetrics>
-#include <kglobalsettings.h>
 #include <QtCore/QFile>
 #include <QtCore/QTextCodec>
 #include <QtCore/QTextStream>
@@ -41,7 +41,8 @@
 #include <QScrollBar>
 #include <QtCore/QRect>
 
-#include "lister.h"
+#include <klocale.h>
+#include <kglobalsettings.h>
 
 /* TODO: Control + C (copy) */
 /* TODO: Implement status line */

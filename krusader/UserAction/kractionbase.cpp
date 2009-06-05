@@ -17,14 +17,15 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include <kinputdialog.h>
-#include <klocale.h>
+#include "kractionbase.h"
 
 #include <qerrormessage.h>
 
+#include <kinputdialog.h>
+#include <klocale.h>
+
 #include "kraction.h"
 #include "expander.h"
-#include "kractionbase.h"
 
 KrActionBase::~KrActionBase()
 {

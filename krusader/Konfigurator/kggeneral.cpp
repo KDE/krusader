@@ -28,16 +28,19 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "kggeneral.h"
+
 #include <QtGui/QLabel>
 #include <QtGui/QFontMetrics>
 #include <QGridLayout>
 #include <QFrame>
 #include <QPixmap>
+
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kinputdialog.h>
+
 #include "krresulttabledialog.h"
-#include "kggeneral.h"
 #include "../defaults.h"
 #include "../krusader.h"
 #include "../kicons.h"

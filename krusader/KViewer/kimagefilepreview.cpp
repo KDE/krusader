@@ -7,6 +7,8 @@
 * License. See the file "COPYING" for the exact licensing terms.
 */
 
+#include "kimagefilepreview.h"
+
 #include <QtGui/QLayout>
 #include <QtGui/QLabel>
 #include <QtGui/QComboBox>
@@ -27,10 +29,6 @@
 #include <kfiledialog.h>
 #include <kfileitem.h>
 #include <kio/previewjob.h>
-
-#include "kimagefilepreview.h"
-
-/**** KrusaderImageFilePreview ****/
 
 KrusaderImageFilePreview::KrusaderImageFilePreview( QWidget *parent )
 		: KPreviewWidgetBase( parent ),

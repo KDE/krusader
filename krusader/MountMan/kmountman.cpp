@@ -26,11 +26,19 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 *                                                                         *
 ***************************************************************************/
 
+#include "kmountman.h" 
 
 #include <sys/param.h>
 #include <time.h>
-#include "kmountman.h" 
-// KDE includes
+#include <unistd.h>
+
+#include <QtCore/QDir>
+#include <solid/block.h>
+#include <solid/opticaldisc.h>
+#include <solid/opticaldrive.h>
+#include <solid/storageaccess.h>
+#include <solid/storagevolume.h>
+
 #include <kmessagebox.h>
 #include <kprocess.h>
 #include <klocale.h>
@@ -40,13 +48,11 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kuiserverjobtracker.h>
 #include <ktoolbarpopupaction.h>
 
-// Krusader includes
 #include "../krusader.h"
 #include "../defaults.h"
 #include "../Dialogs/krdialogs.h"
 #include "../krservices.h"
 #include "kmountmangui.h"
-#include <unistd.h>
 #include "../VFS/krpermhandler.h"
 
 #ifdef _OS_SOLARIS_
@@ -54,14 +60,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #else
 #define FSTAB "/etc/fstab"
 #endif
-
-#include <QtCore/QDir>
-#include <solid/block.h>
-#include <solid/opticaldisc.h>
-#include <solid/opticaldrive.h>
-#include <solid/storageaccess.h>
-#include <solid/storagevolume.h>
-
 
 static int __delayedIdx; // ugly: pass the processEvents deadlock
 
