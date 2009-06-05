@@ -43,8 +43,17 @@
 
 #include "lister.h"
 
-/* TODO: selection by mouse */
-/* TODO: Control + C */
+/* TODO: Control + C (copy) */
+/* TODO: Implement status line */
+/* TODO: Implement search */
+/* TODO: Implement document change detection */
+/* TODO: Implement jump to position */
+/* TODO: Implement text codecs */
+/* TODO: Implement right click */
+/* TODO: Implement print */
+/* TODO: Implement remote listener */
+/* TODO: Implement hex viewer */
+/* TODO: Implement size checking for viewing text files */
 
 ListerTextArea::ListerTextArea( Lister *lister, QWidget *parent ) : QTextEdit( parent ), _lister( lister ), _sizeX( -1 ), _sizeY( -1 ),
   _cursorAnchorPos( -1 ), _inSliderOp( false ), _inCursorUpdate( false )
@@ -496,8 +505,8 @@ void ListerTextArea::keyPressEvent( QKeyEvent * ke )
           else
             x = 0;
         }
-        setCursorPosition( x, y );
         _cursorPos = textToFilePosition( x, y, _cursorAtFirstColumn );
+        setCursorPosition( _cursorPos, _cursorAtFirstColumn );
       }
       return;
     case Qt::Key_PageUp:
@@ -514,8 +523,8 @@ void ListerTextArea::keyPressEvent( QKeyEvent * ke )
           y = 0;
           x = 0;
         }
-        setCursorPosition( x, y );
         _cursorPos = textToFilePosition( x, y, _cursorAtFirstColumn );
+        setCursorPosition( _cursorPos, _cursorAtFirstColumn );
       }
       return;
     }
@@ -559,6 +568,28 @@ void ListerTextArea::keyPressEvent( QKeyEvent * ke )
     }
   }
   QTextEdit::keyPressEvent( ke );
+}
+
+void ListerTextArea::mousePressEvent( QMouseEvent * e )
+{
+  _cursorAnchorPos = -1;
+  QTextEdit::mousePressEvent( e );
+}
+
+void ListerTextArea::mouseMoveEvent( QMouseEvent * e )
+{
+  if( e->pos().y() < 0 )
+  {
+    slotActionTriggered( QAbstractSlider::SliderSingleStepSub );
+  } else if( e->pos().y() > height() )
+  {
+    slotActionTriggered( QAbstractSlider::SliderSingleStepAdd );
+  }
+  if( _cursorAnchorPos == -1 )
+    _cursorAnchorPos = _cursorPos;
+  QTextEdit::mouseMoveEvent( e );
+  if( _cursorAnchorPos == _cursorPos )
+    _cursorAnchorPos = -1;
 }
 
 void ListerTextArea::slotActionTriggered ( int action )

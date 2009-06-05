@@ -62,6 +62,8 @@ public:
 protected:
   virtual void   resizeEvent ( QResizeEvent * event );
   virtual void   keyPressEvent( QKeyEvent * e );
+  virtual void   mousePressEvent( QMouseEvent * e );
+  virtual void   mouseMoveEvent( QMouseEvent * e );
 
   QStringList    readLines( qint64 filePos, qint64 &endPos, int lines, QList<qint64> * locs = 0 );
   void           setUpScrollBar();
