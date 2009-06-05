@@ -28,8 +28,6 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "krslots.h"
-
 #include <QtCore/QDir>
 #include <qpoint.h>
 #include <QtCore/QStringList>
@@ -37,7 +35,7 @@
 #include <QKeyEvent>
 #include <QList>
 #include <QEvent>
-
+// KDE includes
 #include <ktoggleaction.h>
 #include <ktoolbar.h>
 #include <klocale.h>
@@ -45,14 +43,16 @@
 #include <kedittoolbar.h>
 #include <kdeversion.h>
 #include <kcmdlineargs.h>
-
-#ifdef __KJSEMBED__
-#include <kjsembed/jsconsolewidget.h>
-#include "KrJS/krjs.h"
-#endif
-
 #include "KViewer/krviewer.h"
 #include "Panel/krviewfactory.h"
+
+#ifdef __KJSEMBED__
+#include "KrJS/krjs.h"
+#include <kjsembed/jsconsolewidget.h>
+#endif
+
+// Krusader includes
+#include "krslots.h"
 #include "krusader.h"
 #include "krusaderview.h"
 #include "Panel/listpanel.h"

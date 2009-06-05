@@ -43,6 +43,7 @@
 #include <QtCore/QStringList>
 #include <QtCore/QString>
 #include <QtGui/QTabWidget>
+#include <QtGui/QDialog>
 
 #include <ksqueezedtextlabel.h>
 #include <kglobal.h>
@@ -54,6 +55,7 @@
 #include "../VFS/krpermhandler.h"
 #include "krsearchmod.h"
 #include "../GUI/profilemanager.h"
+#include "../Dialogs/krsqueezedtextlabel.h"
 
 class QTreeWidget;
 class QTreeWidgetItem;

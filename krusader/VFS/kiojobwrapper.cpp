@@ -28,15 +28,9 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "kiojobwrapper.h"
-
-#include <cstdio>
-#include <iostream>
-
 #include <QtCore/QEvent>
 #include <QtGui/QApplication>
 #include <QtGui/QTextDocument>
-
 #include <kurl.h>
 #include <kio/global.h>
 #include <kio/jobclasses.h>
@@ -44,7 +38,9 @@
 #include <kio/jobuidelegate.h>
 #include <kio/job.h>
 #include <klocale.h>
-
+#include <cstdio>
+#include <iostream>
+#include "kiojobwrapper.h"
 #include "virtualcopyjob.h"
 #include "packjob.h"
 

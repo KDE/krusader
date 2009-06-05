@@ -28,21 +28,19 @@
 *                                                                         *
 ***************************************************************************/
 
-#include "ftp_vfs.h"
-
+// Sys includes
 #include <time.h>
 #include <sys/param.h>
 #include <unistd.h>
-
 #ifdef BSD
 #include <sys/types.h>
 #endif 
-
+// QT includes
 #include <QtCore/QDir>
 #include <QtCore/QRegExp>
 #include <QtCore/QTimer>
 #include <QtCore/QEventLoop>
-
+// KDE includes
 #include <kio/jobclasses.h>
 #include <klocale.h>
 #include <kio/job.h>
@@ -52,7 +50,8 @@
 #include <kmessagebox.h>
 #include <kprotocolmanager.h>
 #include <kdebug.h> 
-
+// Krusader includes
+#include "ftp_vfs.h"
 #include "krpermhandler.h"
 #include "../krusader.h"
 #include "../defaults.h"

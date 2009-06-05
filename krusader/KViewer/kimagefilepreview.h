@@ -19,6 +19,7 @@
 
 #include <kurl.h>
 #include <kpreviewwidgetbase.h>
+#include <kio/previewjob.h>
 
 class QCheckBox;
 class QPushButton;

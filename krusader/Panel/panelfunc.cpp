@@ -27,19 +27,13 @@ A
 *   (at your option) any later version.                                   *
 *                                                                         *
 ***************************************************************************/
-
-#include "panelfunc.h"
-
 #include <unistd.h>
 
 #include <QtCore/QEventLoop>
 #include <QtGui/QClipboard>
 #include <QList>
 #include <QDir>
-#include <QDrag>
-#include <QMimeData>
 
-#include <kuiserverjobtracker.h>
 #include <klocale.h>
 #include <kprocess.h>
 #include <kpropertiesdialog.h>
@@ -58,6 +52,7 @@ A
 #include <kurlrequester.h>
 #include <kdesktopfile.h>
 
+#include "panelfunc.h"
 #include "krcalcspacedialog.h"
 #include "../krusader.h"
 #include "../krslots.h"
@@ -81,6 +76,13 @@ A
 #include "../krservices.h"
 #include "../GUI/syncbrowsebutton.h"
 #include "../Queue/queue_mgr.h"
+#include <QDrag>
+#include <QMimeData>
+#include <kuiserverjobtracker.h>
+
+//////////////////////////////////////////////////////////
+//////          ----------      List Panel -------------                ////////
+//////////////////////////////////////////////////////////
 
 ListPanelFunc::ListPanelFunc( ListPanel *parent ) :
 panel( parent ), inRefresh( false ), vfsP( 0 ) {

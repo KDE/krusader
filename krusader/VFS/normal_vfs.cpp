@@ -27,26 +27,16 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-
-#include "normal_vfs.h"
-
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
 #include <dirent.h>
-
-#ifdef HAVE_POSIX_ACL
-#include <sys/acl.h>
-#ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
-#include <acl/libacl.h>
-#endif
-#endif
-
+// QT includes
 #include <QtCore/QTimer>
 #include <QByteArray>
 #include <QDir>
-
+// KDE includes
 #include <kmessagebox.h>
 #include <kmimetype.h>
 #include <kio/jobclasses.h>
@@ -57,7 +47,8 @@
 #include <kdebug.h>
 #include <kde_file.h>
 #include <kfileitem.h>
-
+// Krusader includes
+#include "normal_vfs.h"
 #include "../Dialogs/krdialogs.h"
 #include "../MountMan/kmountman.h"
 #include "krpermhandler.h"
@@ -66,6 +57,14 @@
 #include "../resources.h"
 #include "../krslots.h"
 #include "../krservices.h"
+
+// header files for ACL
+#ifdef HAVE_POSIX_ACL
+#include <sys/acl.h>
+#ifdef HAVE_NON_POSIX_ACL_EXTENSIONS
+#include <acl/libacl.h>
+#endif
+#endif
 
 normal_vfs::normal_vfs(QObject* panel):vfs(panel), watcher(0) {
   vfs_type=VFS_NORMAL;

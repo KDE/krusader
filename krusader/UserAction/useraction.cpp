@@ -16,13 +16,6 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
-#include "useraction.h"
-
-#include <QtCore/QTextStream>
-#include <QtCore/QString>
-#include <qdom.h>
-#include <QHash>
-
 #include <kdebug.h>
 #include <kurl.h>
 #include <kactioncollection.h>
@@ -30,13 +23,20 @@
 #include <kmenu.h>
 #include <kstandarddirs.h>
 #include <kmessagebox.h>
+#include <QtCore/QTextStream>
 
+#include <QtCore/QString>
+#include <qdom.h>
+#include <QHash>
 
+#include "useraction.h"
 #include "kraction.h"
+
 #include "../krusader.h"
 #include "../krusaderview.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
+
 
 UserAction::UserAction() {
    krOut << "Initialisising useractions..." << endl;

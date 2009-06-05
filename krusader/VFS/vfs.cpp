@@ -31,20 +31,16 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "vfs.h"
-
 #include <unistd.h>
 #include <time.h>
-
 #include <QtCore/QEventLoop>
 #include <QList>
-#include <QtCore/QDir>
-
 #include <kapplication.h>
 #include <kio/directorysizejob.h>
 #include <kio/jobuidelegate.h>
 #include <kde_file.h>
-
+#include <QtCore/QDir>
+#include "vfs.h"
 #include "../krusader.h"
 #include "../defaults.h"
 #include "kiojobwrapper.h"
