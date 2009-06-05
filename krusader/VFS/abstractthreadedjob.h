@@ -40,8 +40,8 @@
 #include <QList>
 #include <QEventLoop>
 #include <QTime>
-#include <KUrl>
 
+#include <kurl.h>
 #include <kio/jobclasses.h>
 
 class AbstractJobThread;

@@ -29,19 +29,22 @@
  ***************************************************************************/
 
 #include "abstractthreadedjob.h"
+
 #include <QtCore/QTimer>
-#include <klocale.h>
 #include <QEventLoop>
-#include <KTempDir>
-#include <KTemporaryFile>
 #include <QtGui/QApplication>
 #include <QtCore/QDir>
+
+#include <klocale.h>
+#include <ktempdir.h>
+#include <ktemporaryfile.h>
+#include <kio/jobuidelegate.h>
+#include <kmessagebox.h>
+
 #include "krvfshandler.h"
 #include "krarchandler.h"
 #include "vfs.h"
 #include "preservingcopyjob.h"
-#include <kio/jobuidelegate.h>
-#include <kmessagebox.h>
 #include "../krusader.h"
 
 AbstractThreadedJob::AbstractThreadedJob() : KIO::Job(), _locker(), _waiter(), _stack(), _maxProgressValue( 0 ),

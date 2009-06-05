@@ -28,7 +28,7 @@
 #include <QItemSelection>
 #include <QItemSelectionRange>
 
-#include <KMenu>
+#include <kmenu.h>
 #include <klocale.h>
 #include <kdirlister.h>
 

@@ -34,7 +34,7 @@
 #include "filterbase.h"
 #include "../VFS/krquery.h"
 
-#include <qwidget.h>
+#include <QWidget>
 #include <QtGui/QCheckBox>
 #include <kcombobox.h>
 #include <klineedit.h>

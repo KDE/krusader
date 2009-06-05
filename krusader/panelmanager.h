@@ -6,7 +6,7 @@
 #include <QGridLayout>
 #include <QHBoxLayout>
 
-#include <KConfigGroup>
+#include <kconfiggroup.h>
 
 #include "paneltabbar.h"
 

@@ -30,10 +30,10 @@
 
 #include <kde_terminal_interface.h>
 #include <kparts/part.h>
-#include <KPluginLoader>
-#include <KPluginFactory>
-#include <KToggleAction>
-#include <KUrl>
+#include <kpluginloader.h>
+#include <kpluginfactory.h>
+#include <ktoggleaction.h>
+#include <kurl.h>
 
 #include "../krusader.h"
 #include "../krusaderapp.h"

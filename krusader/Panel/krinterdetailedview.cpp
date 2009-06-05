@@ -7,7 +7,7 @@
 
 #include <klocale.h>
 #include <kdirlister.h>
-#include <KMenu>
+#include <kmenu.h>
 
 #include "krviewfactory.h"
 #include "krinterviewitemdelegate.h"

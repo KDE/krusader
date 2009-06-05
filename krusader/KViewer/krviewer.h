@@ -20,7 +20,7 @@
 #ifndef KRVIEWER_H
 #define KRVIEWER_H
 
-#include <qwidget.h>
+#include <QWidget>
 #include <QEvent>
 #include <QList>
 #include <QKeyEvent>

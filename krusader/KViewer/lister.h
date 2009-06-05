@@ -31,7 +31,7 @@
 #ifndef LISTER_H
 #define LISTER_H
 
-#include <qwidget.h>
+#include <QWidget>
 #include <QtGui/QTextEdit>
 #include <QList>
 

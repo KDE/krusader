@@ -29,16 +29,16 @@ A
 *                                                                         *
 ***************************************************************************/
 
-// Qt Includes
+#include "krcalcspacedialog.h"
+
 #include <QtCore/QTimer>
 #include <QtGui/QLayout>
 #include <QtGui/QLabel>
 #include <QVBoxLayout>
-// KDE Includes
+
 #include <klocale.h>
 #include <kcursor.h>
-// Krusader Includes
-#include "krcalcspacedialog.h"
+
 #include "listpanel.h"
 #include "panelfunc.h"
 #include "../krusader.h"

@@ -33,7 +33,7 @@
 
 #include <QString>
 
-#include <KUrl>
+#include <kurl.h>
 #include <kio/job.h>
 
 class KrTrashWatcher;

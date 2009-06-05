@@ -19,7 +19,7 @@
 
 #include "krviewer.h"
 
-#include <qdatastream.h>
+#include <QDataStream>
 #include <QtCore/QFile>
 #include <QtCore/QTimer>
 #include <QKeyEvent>

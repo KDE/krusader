@@ -36,7 +36,7 @@
 #include "../Dialogs/kurllistrequester.h"
 #include "../GUI/profilemanager.h"
 
-#include <qwidget.h>
+#include <QWidget>
 #include <QtGui/QLayout>
 #include <QtGui/QGroupBox>
 #include <QtGui/QCheckBox>
