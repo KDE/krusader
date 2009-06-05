@@ -17,6 +17,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
+#include "usermenu.h"
+
 #include <kdebug.h>
 #include <klocale.h>
 
@@ -24,7 +26,6 @@
 #include "../Konfigurator/konfigurator.h"
 #include "../UserAction/kraction.h"
 #include "../UserAction/useraction.h"
-#include "usermenu.h"
 
 void UserMenu::exec() {
    _popup->run();

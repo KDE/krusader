@@ -27,24 +27,24 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-// System includes
+
+#include "vfile.h"
+
 #include <unistd.h>
 #include <pwd.h>
 #include <grp.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-// Qt includes
+
 #include <QtCore/QDateTime>
-// KDE includes
+
 #include <kmimetype.h>
 #include <kdeversion.h>
 #include <kdesktopfile.h>
-// Krusader includes
-#include "vfile.h"
+#include <kdebug.h>
+
 #include "krpermhandler.h"
 #include "normal_vfs.h"
-
-#include <kdebug.h>
 
 bool vfile::vfile_userDefinedFolderIcons = true;
 bool vfile::vfile_useMimeTypeMagic = true;

@@ -27,23 +27,25 @@
 *   (at your option) any later version.                                   *
 *                                                                         *
 ***************************************************************************/ 
-// QT includes
-// KDE includes
+
+#include "krarchandler.h"
+
+#include <unistd.h> // for usleep
+
+#include <QtCore/QFile>
+
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kio/passworddialog.h> 
-#include <QtCore/QFile>
 #include <kstandarddirs.h>
 #include <ktar.h>
 #include <kio/global.h>
-// Krusader includes
-#include "krarchandler.h"
+
 #include "../krusader.h"
 #include "../krusaderview.h"
 #include "../defaults.h"
 #include "../krservices.h"
 #include "../Dialogs/krpleasewait.h"
-#include <unistd.h> // for usleep
 
 class DefaultKRarcObserver : public KRarcObserver
 {

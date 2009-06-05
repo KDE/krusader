@@ -28,6 +28,27 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "krsearchdialog.h"
+
+#include <QtCore/QRegExp>
+#include <QtGui/QFontMetrics>
+#include <QHBoxLayout>
+#include <QKeyEvent>
+#include <QLabel>
+#include <QGridLayout>
+#include <QResizeEvent>
+#include <QCloseEvent>
+#include <QtGui/QCursor>
+#include <QtGui/QClipboard>
+#include <qheaderview.h>
+#include <QDrag>
+#include <QMimeData>
+
+#include <kinputdialog.h>
+#include <kmessagebox.h>
+#include <kmenu.h>
+
+#include "krsearchmod.h"
 #include "../krusader.h"
 #include "../krslots.h"
 #include "../defaults.h"
@@ -41,25 +62,6 @@
 #include "../KViewer/krviewer.h"
 #include "../kicons.h"
 #include "../GUI/krtreewidget.h"
-#include "krsearchmod.h"
-#include "krsearchdialog.h"
-
-#include <kinputdialog.h>
-#include <QtCore/QRegExp>
-#include <QtGui/QFontMetrics>
-#include <QHBoxLayout>
-#include <QKeyEvent>
-#include <QLabel>
-#include <QGridLayout>
-#include <QResizeEvent>
-#include <QCloseEvent>
-#include <kmessagebox.h>
-#include <kmenu.h>
-#include <QtGui/QCursor>
-#include <QtGui/QClipboard>
-#include <qheaderview.h>
-#include <QDrag>
-#include <QMimeData>
 
 class SearchListView : public KrTreeWidget
 {

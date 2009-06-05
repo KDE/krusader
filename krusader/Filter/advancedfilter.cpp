@@ -28,24 +28,27 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "../krusader.h"
 #include "advancedfilter.h"
-#include "../Dialogs/krdialogs.h"
+
+#include <time.h>
 
 #include <QtGui/QGroupBox>
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QPixmap>
 #include <QtCore/QTextStream>
-#include <klocale.h>
 #include <QtGui/QLayout>
 #include <QtGui/QLabel>
 #include <QtGui/QButtonGroup>
 #include <QtCore/QFile>
+
+#include <klocale.h>
 #include <kdebug.h>
 #include <kmessagebox.h>
-#include <time.h>
 #include <kiconloader.h>
+
+#include "../krusader.h"
+#include "../Dialogs/krdialogs.h"
 
 #define USERSFILE  QString("/etc/passwd")
 #define GROUPSFILE QString("/etc/group")

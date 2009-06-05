@@ -28,14 +28,17 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "synchronizer.h"
 #include "synchronizertask.h"
-#include "synchronizerfileitem.h"
-#include "synchronizerdirlist.h"
+
 #include <QtCore/QTimer>
 #include <QtCore/QFile>
+
 #include <klocale.h>
 #include <kmessagebox.h>
+
+#include "synchronizer.h"
+#include "synchronizerfileitem.h"
+#include "synchronizerdirlist.h"
 #include "../VFS/vfs.h"
 
 CompareTask::CompareTask( SynchronizerFileItem *parentIn, const QString &leftURL,

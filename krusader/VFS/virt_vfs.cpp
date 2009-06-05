@@ -17,6 +17,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
  *****************************************************************************/
 
+#include "virt_vfs.h"
+
 #include <unistd.h>
 #include <time.h>
  
@@ -33,7 +35,6 @@
 #include "krpermhandler.h"
 #include "../krusader.h"
 #include "../defaults.h"
-#include "virt_vfs.h"
 
 #define VIRT_VFS_DB "virt_vfs.db"
 

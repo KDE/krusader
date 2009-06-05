@@ -1,18 +1,20 @@
-#include <kmessagebox.h>
-#include <klocale.h>
+#include "popularurls.h"
+
 #include <QtGui/QPushButton>
 #include <QGridLayout>
 #include <QtCore/QList>
-#include <kiconloader.h>
-#include <ktreewidgetsearchline.h>
 #include <qheaderview.h>
 #include <QtGui/QLayout>
 #include <QtGui/QLabel>
 
+#include <kmessagebox.h>
+#include <klocale.h>
+#include <kiconloader.h>
+#include <ktreewidgetsearchline.h>
+
 #include "../krusader.h"
 #include "../krslots.h"
 #include "../GUI/krtreewidget.h"
-#include "popularurls.h"
 
 #define STARTING_RANK	20
 #define INCREASE			2
