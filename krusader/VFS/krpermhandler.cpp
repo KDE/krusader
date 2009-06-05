@@ -28,8 +28,8 @@
 *                                                                         *
 ***************************************************************************/
 
+#include "krpermhandler.h"
 
-// System includes
 #include <unistd.h>
 #include <math.h>
 #include <pwd.h>
@@ -38,14 +38,14 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include <time.h>
+
+#include <QtCore/QDateTime>
+#include <QtCore/QDir> 
+
 #include <klocale.h>
 #include <kglobal.h>
 #include <kde_file.h> 
-// Qt includes
-#include <QtCore/QDateTime>
-#include <QtCore/QDir> 
-// krusader includes
-#include "krpermhandler.h"
+
 #include "../resources.h"
 
 QHash<QString, uid_t> *KRpermHandler::passwdCache = 0L;
