@@ -1117,6 +1117,7 @@ TagString Expander::expandCurrent( const QString& stringToExpand, bool useUrl ) 
    while ( idx < stringToExpand.length() ) {
       if ( ( begin = stringToExpand.indexOf( '%', idx ) ) == -1 ) break;
       if ( ( end = findEnd( stringToExpand, begin ) ) == -1 ) {
+         // xgettext:no-c-format
          setError(Error(Error::exp_S_FATAL,Error::exp_C_SYNTAX,i18n("Error: unterminated % in Expander::expandCurrent")) );
          return QString();
       }
