@@ -36,6 +36,7 @@
 #include <QList>
 
 #include <kparts/part.h>
+#include <kparts/browserextension.h>
 
 #define  LISTER_CACHE_FACTOR 3
 #define  SLIDER_MAX          10000
@@ -59,13 +60,17 @@ public:
 
   QTextCodec   * codec();
 
+  void           copySelectedToClipboard();
+
 protected:
   virtual void   resizeEvent ( QResizeEvent * event );
   virtual void   keyPressEvent( QKeyEvent * e );
   virtual void   mousePressEvent( QMouseEvent * e );
   virtual void   mouseMoveEvent( QMouseEvent * e );
+  virtual void   wheelEvent ( QWheelEvent * event );
 
   QStringList    readLines( qint64 filePos, qint64 &endPos, int lines, QList<qint64> * locs = 0 );
+  QString        readSection( qint64 p1, qint64 p2 );
   void           setUpScrollBar();
   void           getCursorPosition( int &x, int &y );
   void           setCursorPosition( int x, int y, int anchorX = -1, int anchorY = -1);
@@ -108,6 +113,21 @@ protected:
   bool           _inCursorUpdate;
 };
 
+class ListerBrowserExtension : public KParts::BrowserExtension
+{
+  Q_OBJECT
+
+public:
+  ListerBrowserExtension( Lister * lister );
+
+public slots:
+  void copy();
+
+protected:
+  Lister   *_lister;
+};
+
+
 class Lister : public KParts::ReadOnlyPart
 {
 public:
@@ -115,9 +135,10 @@ public:
   ~Lister();
 
   QScrollBar     *scrollBar() { return _scrollBar; }
+  ListerTextArea *textArea() { return _textArea; }
 
-  inline qint64  fileSize() { return _fileSize; }
-  char *         cacheRef( qint64 filePos, int &size );
+  inline qint64   fileSize() { return _fileSize; }
+  char *          cacheRef( qint64 filePos, int &size );
 
 protected:
   virtual bool    openFile();

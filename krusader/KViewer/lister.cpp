@@ -37,16 +37,19 @@
 #include <QtCore/QFile>
 #include <QtCore/QTextCodec>
 #include <QtCore/QTextStream>
+#include <QtGui/QClipboard>
 #include <QKeyEvent>
 #include <QScrollBar>
 #include <QtCore/QRect>
 
 #include <klocale.h>
 #include <kglobalsettings.h>
+#include "../krusader.h"
 
-/* TODO: Control + C (copy) */
 /* TODO: Implement status line */
 /* TODO: Implement search */
+/* TODO: Implement implement select line event*/
+/* TODO: Implement implement select word event */
 /* TODO: Implement document change detection */
 /* TODO: Implement jump to position */
 /* TODO: Implement text codecs */
@@ -56,8 +59,8 @@
 /* TODO: Implement hex viewer */
 /* TODO: Implement size checking for viewing text files */
 
-ListerTextArea::ListerTextArea( Lister *lister, QWidget *parent ) : QTextEdit( parent ), _lister( lister ), _sizeX( -1 ), _sizeY( -1 ),
-  _cursorAnchorPos( -1 ), _inSliderOp( false ), _inCursorUpdate( false )
+ListerTextArea::ListerTextArea( Lister *lister, QWidget *parent ) : QTextEdit( parent ), _lister( lister ),
+  _sizeX( -1 ), _sizeY( -1 ), _cursorAnchorPos( -1 ), _inSliderOp( false ), _inCursorUpdate( false )
 {
   connect( this, SIGNAL( cursorPositionChanged() ), this, SLOT( slotCursorPositionChanged() ) );
   _tabWidth = 4;
@@ -311,6 +314,39 @@ void ListerTextArea::slotCursorPositionChanged()
   //fprintf( stderr, "Cursor pos: %d %d %Ld\n", cursorX, cursorY, _cursorPos );
 }
 
+QString ListerTextArea::readSection( qint64 p1, qint64 p2 )
+{
+  if( p1 == p2 )
+    return QString();
+
+  if( p1 > p2 )
+  {
+    qint64 tmp = p1;
+    p1 = p2;
+    p2 = p1;
+  }
+
+  QString section;
+  qint64 pos = p1;
+
+  QTextCodec * textCodec = codec();
+  QTextDecoder * decoder = textCodec->makeDecoder();
+
+  do {
+    int maxBytes = _sizeX * _sizeY * MAX_CHAR_LENGTH;
+    if( maxBytes > ( p2 - pos ) )
+      maxBytes = (int)(p2 - pos);
+    char * cache = _lister->cacheRef( pos, maxBytes );
+    if( cache == 0 || maxBytes == 0 )
+      break;
+    section += decoder->toUnicode( cache, maxBytes );
+    pos += maxBytes;
+  }while( pos < p2 );
+
+  delete decoder;
+  return section;
+}
+
 QStringList ListerTextArea::readLines( qint64 filePos, qint64 &endPos, int lines, QList<qint64> * locs )
 {
   QStringList list;
@@ -435,6 +471,13 @@ void ListerTextArea::setUpScrollBar()
 
 void ListerTextArea::keyPressEvent( QKeyEvent * ke )
 {
+  if( Krusader::actCopy->shortcut().contains( QKeySequence( ke->key() | ke->modifiers() ) ) )
+  {
+    copySelectedToClipboard();
+    ke->accept();
+    return;
+  }
+
   if( ke->modifiers() == Qt::NoModifier || ke->modifiers() == Qt::ShiftModifier )
   {
     qint64 newAnchor = -1;
@@ -591,6 +634,36 @@ void ListerTextArea::mouseMoveEvent( QMouseEvent * e )
   QTextEdit::mouseMoveEvent( e );
   if( _cursorAnchorPos == _cursorPos )
     _cursorAnchorPos = -1;
+}
+
+void ListerTextArea::wheelEvent ( QWheelEvent * e )
+{
+  int delta = e->delta();
+  if( delta )
+  {
+    if( delta > 0 )
+    {
+      e->accept();
+      while( delta > 0 )
+      {
+        slotActionTriggered( QAbstractSlider::SliderSingleStepSub );
+        slotActionTriggered( QAbstractSlider::SliderSingleStepSub );
+        slotActionTriggered( QAbstractSlider::SliderSingleStepSub );
+        delta -= 120;
+      }
+    }
+    else
+    {
+      e->accept();
+      while( delta < 0 )
+      {
+        slotActionTriggered( QAbstractSlider::SliderSingleStepAdd );
+        slotActionTriggered( QAbstractSlider::SliderSingleStepAdd );
+        slotActionTriggered( QAbstractSlider::SliderSingleStepAdd );
+        delta+=120;
+      }
+    }
+  }
 }
 
 void ListerTextArea::slotActionTriggered ( int action )
@@ -781,6 +854,27 @@ void ListerTextArea::ensureVisibleCursor()
   }
 }
 
+void ListerTextArea::copySelectedToClipboard()
+{
+  if( _cursorAnchorPos != -1 && _cursorAnchorPos != _cursorPos )
+  {
+    QString selection = readSection( _cursorAnchorPos, _cursorPos );
+    QApplication::clipboard()->setText( selection );
+  }
+}
+
+ListerBrowserExtension::ListerBrowserExtension( Lister * lister ) : KParts::BrowserExtension( lister )
+{
+  _lister = lister;
+
+  emit enableAction( "copy", true );
+}
+
+void ListerBrowserExtension::copy()
+{
+  _lister->textArea()->copySelectedToClipboard();
+}
+
 Lister::Lister( QWidget *parent ) : KParts::ReadOnlyPart( parent ), _cache( 0 )
 {
   QWidget * widget = new QWidget( parent );
@@ -802,6 +896,8 @@ Lister::Lister( QWidget *parent ) : KParts::ReadOnlyPart( parent ), _cache( 0 )
   setWidget( widget );
 
   connect( _scrollBar, SIGNAL( actionTriggered ( int ) ), _textArea, SLOT( slotActionTriggered( int ) ) );
+
+  new ListerBrowserExtension( this );
 }
 
 Lister::~Lister()
