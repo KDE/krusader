@@ -130,8 +130,11 @@ public:
   bool isExcluded( const KUrl &url );
   // gives whether we search for content
   bool isContentSearched() const { return !contain.isEmpty(); }
-  
+
+  bool checkLine( const QString &line, bool backwards = false ) const;
   const QString& foundText() const { return lastSuccessfulGrep; }
+  int matchIndex() const { return lastSuccessfulGrepMatchIndex; }
+  int matchLength() const { return lastSuccessfulGrepMatchLength; }
 
 protected:
   // important to know whether the event processor is connected
@@ -185,7 +188,6 @@ private:
   bool containsContent( QString file ) const;
   bool containsContent( KUrl url ) const;
   bool checkBuffer( const char * data, int len ) const;
-  bool checkLine( const QString &line ) const;
   bool checkTimer() const;
   QStringList split( QString );
 
@@ -200,6 +202,8 @@ private:
   mutable char *           receivedBuffer;
   mutable int              receivedBufferLen;
   mutable QString          lastSuccessfulGrep;
+  mutable int              lastSuccessfulGrepMatchIndex;
+  mutable int              lastSuccessfulGrepMatchLength;
   mutable QString          fileName;
   mutable KIO::filesize_t  receivedBytes;
   mutable KIO::filesize_t  totalBytes;

@@ -330,23 +330,26 @@ bool KRQuery::checkBuffer( const char * data, int len ) const {
   return result;
 }
 
-bool KRQuery::checkLine( const QString & line ) const
+bool KRQuery::checkLine( const QString & line, bool backwards ) const
 {
-  int ndx = 0;
-
   if( containRegExp ) {
     QRegExp rexp( contain, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::RegExp );
-    int ndx = rexp.indexIn( line );
+    int ndx = backwards ? rexp.lastIndexIn( line ) : rexp.indexIn( line );
     bool result = ndx >= 0;
     if( result )
-      fixFoundTextForDisplay(lastSuccessfulGrep = line, ndx, rexp.matchedLength());
+      fixFoundTextForDisplay(lastSuccessfulGrep = line, lastSuccessfulGrepMatchIndex = ndx, lastSuccessfulGrepMatchLength = rexp.matchedLength());
     return result;
   }
+
+  int ndx = backwards ? -1 : 0;
 
   if ( line.isNull() ) return false;
   if ( containWholeWord )
   {
-    while ( ( ndx = line.indexOf( contain, ndx, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive ) ) != -1 )
+    while ( ( ndx = (backwards) ?
+                     line.lastIndexOf( contain, ndx, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive ) :
+                     line.indexOf( contain, ndx, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive ) 
+            ) != -1 )
     {
       QChar before = '\n';
       QChar after = '\n';
@@ -359,15 +362,21 @@ bool KRQuery::checkLine( const QString & line ) const
       if ( !before.isLetterOrNumber() && !after.isLetterOrNumber() &&
         after != '_' && before != '_' ) {
           lastSuccessfulGrep = line;
-          fixFoundTextForDisplay(lastSuccessfulGrep, ndx, contain.length());
+          fixFoundTextForDisplay(lastSuccessfulGrep, lastSuccessfulGrepMatchIndex = ndx, lastSuccessfulGrepMatchLength = contain.length());
           return true;
          }
-      ndx++;
+      
+      if( backwards )
+        ndx -= line.length() + 1;
+      else
+        ndx++;
     }
   }
-  else if ( (ndx = line.indexOf( contain, 0, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive )) != -1 ) {
+  else if ( (ndx = (backwards) ?
+                     line.lastIndexOf( contain,-1, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive ) :
+                     line.indexOf( contain, 0, containCaseSensetive ? Qt::CaseSensitive : Qt::CaseInsensitive )) != -1 ) {
     lastSuccessfulGrep = line;
-    fixFoundTextForDisplay(lastSuccessfulGrep, ndx, contain.length());
+    fixFoundTextForDisplay(lastSuccessfulGrep, lastSuccessfulGrepMatchIndex = ndx, lastSuccessfulGrepMatchLength = contain.length());
     return true;
   }
   return false;

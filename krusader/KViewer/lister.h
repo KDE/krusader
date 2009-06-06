@@ -33,10 +33,13 @@
 
 #include <QWidget>
 #include <QtGui/QTextEdit>
+#include <QtCore/QTimer>
 #include <QList>
 
 #include <kparts/part.h>
 #include <kparts/browserextension.h>
+
+#include "../VFS/krquery.h"
 
 #define  LISTER_CACHE_FACTOR 3
 #define  SLIDER_MAX          10000
@@ -44,6 +47,9 @@
 
 class QTextEdit;
 class Lister;
+class QLabel;
+class QLineEdit;
+class QPushButton;
 
 class ListerTextArea : public QTextEdit
 {
@@ -62,6 +68,11 @@ public:
 
   void           copySelectedToClipboard();
 
+  void           getCursorPosition( int &x, int &y );
+  qint64         getCursorPosition( bool &isfirst );
+
+  void           setAnchorAndCursor( qint64 anchor, qint64 cursor );
+
 protected:
   virtual void   resizeEvent ( QResizeEvent * event );
   virtual void   keyPressEvent( QKeyEvent * e );
@@ -72,9 +83,7 @@ protected:
   QStringList    readLines( qint64 filePos, qint64 &endPos, int lines, QList<qint64> * locs = 0 );
   QString        readSection( qint64 p1, qint64 p2 );
   void           setUpScrollBar();
-  void           getCursorPosition( int &x, int &y );
   void           setCursorPosition( int x, int y, int anchorX = -1, int anchorY = -1);
-  qint64         getCursorPosition( bool &isfirst );
   void           setCursorPosition( qint64 p, bool isfirst );
   void           ensureVisibleCursor();
 
@@ -130,6 +139,8 @@ protected:
 
 class Lister : public KParts::ReadOnlyPart
 {
+  Q_OBJECT
+
 public:
   Lister( QWidget *parent );
   ~Lister();
@@ -140,12 +151,37 @@ public:
   inline qint64   fileSize() { return _fileSize; }
   char *          cacheRef( qint64 filePos, int &size );
 
+  void            enableSearch( bool );
+
+public slots:
+  void            searchNext();
+  void            searchPrev();
+
+protected slots:
+  void            slotUpdate();
+  void            slotSearchMore();
+
 protected:
   virtual bool    openFile();
-  qint64          getFileSize();
+  virtual void    guiActivateEvent( KParts::GUIActivateEvent * event );
 
+  qint64          getFileSize();
+  void            search( bool forward );
+
+  QTimer          _updateTimer;
   ListerTextArea *_textArea;
   QScrollBar     *_scrollBar;
+  QLabel         *_listerLabel;
+  QLineEdit      *_searchLineEdit;
+  QPushButton    *_searchNextButton;
+  QPushButton    *_searchPrevButton;
+  QPushButton    *_searchOptions;
+  QLabel         *_statusLabel;
+
+  QAction        *_fromCursorAction;
+  QAction        *_caseSensitiveAction;
+  QAction        *_matchWholeWordsOnlyAction;
+  QAction        *_regExpAction;
 
   QString         _filePath;
   qint64          _fileSize;
@@ -153,6 +189,12 @@ protected:
   char           *_cache;
   int             _cacheSize;
   qint64          _cachePos;
+
+  bool            _active;
+
+  KRQuery         _searchQuery;
+  qint64          _searchPosition;
+  bool            _searchIsForward;
 };
 
 #endif // __LISTER_H__

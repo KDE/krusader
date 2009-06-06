@@ -34,20 +34,27 @@
 #include <QtGui/QLabel>
 #include <QtGui/QPainter>
 #include <QtGui/QFontMetrics>
+#include <QtGui/QLineEdit>
+#include <QtGui/QPushButton>
 #include <QtCore/QFile>
 #include <QtCore/QTextCodec>
 #include <QtCore/QTextStream>
 #include <QtGui/QClipboard>
+#include <QtGui/QSpacerItem>
 #include <QKeyEvent>
 #include <QScrollBar>
 #include <QtCore/QRect>
+#include <QHBoxLayout>
+#include <QMenu>
 
 #include <klocale.h>
 #include <kglobalsettings.h>
 #include "../krusader.h"
 
-/* TODO: Implement status line */
-/* TODO: Implement search */
+#define  SEARCH_CACHE_CHARS 100000
+#define  SEARCH_MAX_ROW_LEN 4000
+
+/* TODO: Implement search colors + start from beginning / end */
 /* TODO: Implement implement select line event*/
 /* TODO: Implement implement select word event */
 /* TODO: Implement document change detection */
@@ -58,6 +65,7 @@
 /* TODO: Implement remote listener */
 /* TODO: Implement hex viewer */
 /* TODO: Implement size checking for viewing text files */
+/* TODO: Implement isFirst at fileToTextPosition */
 
 ListerTextArea::ListerTextArea( Lister *lister, QWidget *parent ) : QTextEdit( parent ), _lister( lister ),
   _sizeX( -1 ), _sizeY( -1 ), _cursorAnchorPos( -1 ), _inSliderOp( false ), _inCursorUpdate( false )
@@ -123,7 +131,7 @@ void ListerTextArea::calculateText()
   }
 
   rowStarts << _screenEndPos;
-  qint64 endPos;
+
   QStringList listRemn = readLines( _screenEndPos, _screenEndPos, 1 );
     list << listRemn;
 
@@ -153,7 +161,7 @@ qint64 ListerTextArea::textToFilePosition( int x, int y, bool &isfirst )
   return rowStart + stream.pos();
 }
 
-void ListerTextArea::fileToTextPosition( qint64 p, bool isfirst, int &x, int &y )
+void ListerTextArea::fileToTextPosition( qint64 p, bool /* isfirst */, int &x, int &y )
 {
   if( p < _screenStartPos || p > _screenEndPos || _rowStarts.count() < 1 )
   {
@@ -323,7 +331,7 @@ QString ListerTextArea::readSection( qint64 p1, qint64 p2 )
   {
     qint64 tmp = p1;
     p1 = p2;
-    p2 = p1;
+    p2 = tmp;
   }
 
   QString section;
@@ -490,6 +498,13 @@ void ListerTextArea::keyPressEvent( QKeyEvent * ke )
 
     switch( ke->key() )
     {
+    case Qt::Key_F3:
+      ke->accept();
+      if( ke->modifiers() == Qt::ShiftModifier )
+        _lister->searchPrev();
+      else
+        _lister->searchNext();
+      return;
     case Qt::Key_Home:
     case Qt::Key_End:
       _cursorAnchorPos = newAnchor;
@@ -577,6 +592,10 @@ void ListerTextArea::keyPressEvent( QKeyEvent * ke )
   {
     switch( ke->key() )
     {
+    case Qt::Key_F:
+      ke->accept();
+      _lister->enableSearch( true );
+      return;
     case Qt::Key_Home:
       _cursorAnchorPos = -1;
       ke->accept();
@@ -740,8 +759,7 @@ void ListerTextArea::slotActionTriggered ( int action )
       while( readPos < _screenStartPos )
       {
         previousPoses[ circularCounter ]  = readPos;
-        circularCounter = (++circularCounter) % numRows;
-        qint64 prevPos = readPos;
+        circularCounter = (circularCounter + 1) % numRows;
         readLines( readPos, readPos, 1 );
       }
 
@@ -854,6 +872,13 @@ void ListerTextArea::ensureVisibleCursor()
   }
 }
 
+void ListerTextArea::setAnchorAndCursor( qint64 anchor, qint64 cursor )
+{
+  _cursorAnchorPos = anchor;
+  setCursorPosition( cursor, false );
+  ensureVisibleCursor();
+}
+
 void ListerTextArea::copySelectedToClipboard()
 {
   if( _cursorAnchorPos != -1 && _cursorAnchorPos != _cursorPos )
@@ -875,7 +900,7 @@ void ListerBrowserExtension::copy()
   _lister->textArea()->copySelectedToClipboard();
 }
 
-Lister::Lister( QWidget *parent ) : KParts::ReadOnlyPart( parent ), _cache( 0 )
+Lister::Lister( QWidget *parent ) : KParts::ReadOnlyPart( parent ), _cache( 0 ), _active( false )
 {
   QWidget * widget = new QWidget( parent );
   widget->setFocusPolicy( Qt::StrongFocus );
@@ -891,13 +916,56 @@ Lister::Lister( QWidget *parent ) : KParts::ReadOnlyPart( parent ), _cache( 0 )
   _scrollBar = new QScrollBar( Qt::Vertical, widget );
   grid->addWidget( _scrollBar, 0, 1 );
   _scrollBar->hide();
-  QLabel *label = new QLabel( i18n( "Lister" ), widget );
-  grid->addWidget( label, 1, 0, 1, 2 );
+
+  QWidget * statusWidget = new QWidget( widget );
+  QHBoxLayout *hbox = new QHBoxLayout( statusWidget );
+
+  _listerLabel = new QLabel( i18n( "Lister:" ), statusWidget );
+  hbox->addWidget( _listerLabel );
+  _searchLineEdit = new QLineEdit( statusWidget );
+  _searchLineEdit->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
+  connect( _searchLineEdit, SIGNAL( returnPressed() ), this, SLOT( searchNext() ) );
+  hbox->addWidget( _searchLineEdit );
+  _searchNextButton = new QPushButton( KIcon("go-down"), i18n( "Next" ), statusWidget );
+  _searchNextButton->setToolTip( i18n( "Jump to next match" ) );
+  connect( _searchNextButton, SIGNAL( clicked() ), this, SLOT( searchNext() ) );
+  hbox->addWidget( _searchNextButton );
+  _searchPrevButton = new QPushButton( KIcon("go-up"), i18n( "Previous" ), statusWidget );
+  _searchPrevButton->setToolTip( i18n( "Jump to previous match" ) );
+  connect( _searchPrevButton, SIGNAL( clicked() ), this, SLOT( searchPrev() ) );
+  hbox->addWidget( _searchPrevButton );
+  _searchOptions = new QPushButton( i18n( "Options" ), statusWidget );
+  _searchOptions->setToolTip( i18n( "Modify search behavior" ) );
+  QMenu * menu = new QMenu();
+  _fromCursorAction = menu->addAction(i18n("From cursor"));
+  _fromCursorAction->setCheckable(true);
+  _fromCursorAction->setChecked(true);
+  _caseSensitiveAction = menu->addAction(i18n("Case sensitive"));
+  _caseSensitiveAction->setCheckable(true);
+  _matchWholeWordsOnlyAction = menu->addAction(i18n("Match whole words only"));
+  _matchWholeWordsOnlyAction->setCheckable(true);
+  _regExpAction = menu->addAction(i18n("RegExp"));
+  _regExpAction->setCheckable(true);
+  _searchOptions->setMenu( menu );
+
+  hbox->addWidget( _searchOptions );
+
+  QSpacerItem* cbSpacer = new QSpacerItem ( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+  hbox->addItem ( cbSpacer );
+
+  _statusLabel = new QLabel( statusWidget );
+  hbox->addWidget( _statusLabel );
+
+  grid->addWidget( statusWidget, 1, 0, 1, 2 );
   setWidget( widget );
 
   connect( _scrollBar, SIGNAL( actionTriggered ( int ) ), _textArea, SLOT( slotActionTriggered( int ) ) );
+  connect( &_updateTimer, SIGNAL(timeout()), this, SLOT(slotUpdate()));
+
+  _updateTimer.setSingleShot( false );
 
   new ListerBrowserExtension( this );
+  enableSearch( false );
 }
 
 Lister::~Lister()
@@ -979,4 +1047,187 @@ char * Lister::cacheRef( qint64 filePos, int &size )
 qint64 Lister::getFileSize()
 {
   return QFile( _filePath ).size();
+}
+
+void Lister::guiActivateEvent( KParts::GUIActivateEvent * event )
+{
+  if( event->activated() )
+  {
+    _active = true;
+    _updateTimer.setInterval( 150 );
+    _updateTimer.start();
+    slotUpdate();
+  }
+  else
+  {
+    enableSearch( false );
+    _active = false;
+    _updateTimer.stop();
+  }
+  KParts::ReadOnlyPart::guiActivateEvent( event );
+}
+
+void Lister::slotUpdate()
+{
+  int cursorX = 0, cursorY = 0;
+  _textArea->getCursorPosition( cursorX, cursorY );
+  bool isfirst = false;
+  qint64 cursor = _textArea->getCursorPosition( isfirst );
+
+  int percent = (_fileSize == 0) ? 0 : (int)((100 * cursor + 50) / _fileSize);
+
+  QString status = i18n( "Column: %1, Position: %2 (%3, %4%)" )
+                     .arg( cursorX, 3, 10, QChar( ' ' ) )
+                     .arg( cursor ).arg( _fileSize ).arg( percent );
+  _statusLabel->setText( status );
+}
+
+void Lister::enableSearch( bool enable )
+{
+  if( enable )
+  {
+    _listerLabel->setText( i18n( "Search:" ) );
+    _searchLineEdit->show();
+    _searchNextButton->show();
+    _searchPrevButton->show();
+    _searchOptions->show();
+    _searchLineEdit->setFocus();
+  } else {
+    _listerLabel->setText( i18n( "Lister:" ) );
+    _searchLineEdit->hide();
+    _searchNextButton->hide();
+    _searchPrevButton->hide();
+    _searchOptions->hide();
+  }
+}
+
+void Lister::searchNext()
+{
+  search( true );
+}
+
+void Lister::searchPrev()
+{
+  search( false );
+}
+
+void Lister::search( bool forward )
+{
+  if( _searchLineEdit->text().isEmpty() )
+    return;
+  if( _searchLineEdit->isHidden() )
+    enableSearch( true );
+
+  _searchPosition = forward ? 0 : _fileSize;
+  if( _fromCursorAction->isChecked() )
+  {
+    bool isfirst;
+    _searchPosition = _textArea->getCursorPosition( isfirst );
+  }
+  bool caseSensitive = _caseSensitiveAction->isChecked();
+  bool matchWholeWord = _matchWholeWordsOnlyAction->isChecked();
+  bool regExp = _regExpAction->isChecked();
+
+  _searchQuery.setContent( _searchLineEdit->text(), caseSensitive, matchWholeWord, false, _textArea->codec()->name(), regExp );
+  _searchIsForward = forward;
+
+  QTimer::singleShot( 0, this, SLOT( slotSearchMore() ) );
+}
+
+void Lister::slotSearchMore()
+{
+  if( !_searchIsForward )
+    _searchPosition--;
+
+  if( _searchPosition < 0 || _searchPosition >= _fileSize )
+    return;
+
+  int maxCacheSize = SEARCH_CACHE_CHARS;
+  qint64 searchPos = _searchPosition;
+  bool setPosition = true;
+  if( !_searchIsForward )
+  {
+    qint64 origSearchPos = _searchPosition;
+    searchPos -= maxCacheSize;
+    if( searchPos <= 0 )
+    {
+      searchPos = 0;
+      _searchPosition = 0;
+      setPosition = false;
+    }
+    qint64 diff = origSearchPos - searchPos;
+    if( diff < maxCacheSize )
+      maxCacheSize = diff;
+  }
+
+  char * cache = cacheRef( searchPos, maxCacheSize );
+  if( cache == 0 || maxCacheSize == 0 )
+    return;
+
+  QTextCodec * textCodec = _textArea->codec();
+  QTextDecoder * decoder = textCodec->makeDecoder();
+
+  int cnt = 0;
+  int rowStart = 0;
+
+  QString row = "";
+  qint64 foundAnchor = -1;
+  qint64 foundCursor = -1;
+
+  while( cnt < maxCacheSize )
+  {
+    QString chr = decoder->toUnicode( cache + (cnt++), 1 );
+    if( !chr.isEmpty() || cnt >= maxCacheSize )
+    {
+      if( chr != "\n" )
+        row += chr;
+
+      if( chr == "\n" || row.length() >= SEARCH_MAX_ROW_LEN || cnt >= maxCacheSize )
+      {
+        if( setPosition )
+        {
+          _searchPosition = searchPos + cnt;
+          if( !_searchIsForward )
+          {
+            _searchPosition ++;
+            setPosition = false;
+          }
+        }
+
+        if( _searchQuery.checkLine( row, !_searchIsForward ) )
+        {
+          QByteArray cachedBuffer( cache + rowStart, maxCacheSize - rowStart );
+
+          QTextStream stream( &cachedBuffer );
+
+          stream.read( _searchQuery.matchIndex() );
+          foundAnchor = searchPos + rowStart + stream.pos();
+
+          stream.read( _searchQuery.matchLength() );
+          foundCursor = searchPos + rowStart + stream.pos();
+
+          if( _searchIsForward )
+            break;
+        }
+
+        row = "";
+        rowStart = cnt;
+      }
+    }
+  }
+
+  delete decoder;
+
+  if( foundAnchor != -1 && foundCursor != -1 ) {
+    _textArea->setAnchorAndCursor( foundAnchor, foundCursor );
+    return;
+  }
+
+  if( _searchIsForward && searchPos + cnt >= _fileSize )
+    return;
+
+  if( _searchPosition <= 0 || _searchPosition >= _fileSize )
+    return;
+
+  QTimer::singleShot( 0, this, SLOT( slotSearchMore() ) );
 }
