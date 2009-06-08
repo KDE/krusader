@@ -146,12 +146,12 @@ void Splitter::splitCreateWriteJob()
 {
   QString index( "%1" );                   /* making the splitted filename */
   index = index.arg(++fileNumber).rightJustified( 3, '0' );
-  QString outFileName = fileName.fileName() + "." + index;
-  
+  QString outFileName = fileName.fileName() + '.' + index;
+
   writeURL = destinationDir;
   writeURL.addPath( outFileName );
 
-      /* creating a write job */
+  /* creating a write job */
   splitWriteJob = KIO::put( writeURL, permissions, KIO::HideProgressInfo | KIO::Overwrite );
   outputFileSize = 0;
   connect(splitWriteJob, SIGNAL(dataReq(KIO::Job *, QByteArray &)),

@@ -267,7 +267,7 @@ static int mycallb(struct iso_directory_record *idr,void *udata) {
                         if (idr->name[i]) path+=(idr->name[i]);
                     }
                 }
-                if (path.endsWith(".")) path.resize(path.length()-1);
+                if (path.endsWith('.')) path.resize(path.length()-1);
             }
         }
         if (iso->showrr) FreeRR(&rr);
@@ -316,7 +316,7 @@ void KIso::addBoot(struct el_torito_boot_descriptor* bootdesc) {
             size=BootImageSize( isonum_711(((struct default_entry*) be->data)->media),
                                 isonum_721(((struct default_entry*) be->data)->seccount));
             path="Default Image";
-            if (i>1) path += " (" + QString::number(i) + ")";
+            if (i>1) path += " (" + QString::number(i) + ')';
             entry=new KIsoFile( this, path, dirent->permissions() & ~S_IFDIR,
                 dirent->date(), dirent->adate(), dirent->cdate(),
                 dirent->user(), dirent->group(), QString(),
@@ -405,12 +405,12 @@ bool KIso::openArchive( QIODevice::OpenMode mode )
                     bootdesc=(struct el_torito_boot_descriptor*) &(desc->data);
                     if ( !memcmp(EL_TORITO_ID,bootdesc->system_id,ISODCL(8,39)) ) {
                         path="El Torito Boot";
-                        if (c_b>1) path += " (" + QString::number(c_b) + ")";
-                        
+                        if (c_b>1) path += " (" + QString::number(c_b) + ')';
+
                         dirent = new KIsoDirectory( this, path, access | S_IFDIR,
                             buf.st_mtime, buf.st_atime, buf.st_ctime, uid, gid, QString() );
                         root->addEntry(dirent);
-                        
+
                         addBoot(bootdesc);
                         c_b++;
                     }
@@ -422,10 +422,10 @@ bool KIso::openArchive( QIODevice::OpenMode mode )
                     joliet = JolietLevel(&desc->data);
                     if (joliet) {
                         QTextStream(&path) << "Joliet level " << joliet;
-                        if (c_j>1) path += " (" + QString::number(c_j) + ")";
+                        if (c_j>1) path += " (" + QString::number(c_j) + ')';
                     } else {
                         path = "ISO9660";
-                        if (c_i>1) path += " (" + QString::number(c_i) + ")";
+                        if (c_i>1) path += " (" + QString::number(c_i) + ')';
                     }
                     dirent = new KIsoDirectory( this, path, access | S_IFDIR,
                         buf.st_mtime, buf.st_atime, buf.st_ctime, uid, gid, QString() );

@@ -86,7 +86,7 @@ void VirtProtocol::del(KUrl const & /*url */, bool /* isFile */ ){
 void VirtProtocol::copy( const KUrl &src, const KUrl &dest, int /* permissions */, bool /* overwrite */ ){
 	QString path = dest.path( KUrl::RemoveTrailingSlash ).mid( 1 );
 	path = path.left(path.lastIndexOf("/"));
-	if ( path.isEmpty() ) path = "/";
+	if ( path.isEmpty() ) path = '/';
 
 	if( addDir(path) ){
 		kioVirtDict[ path ]->append(src);
@@ -101,14 +101,14 @@ bool VirtProtocol::addDir(QString& path){
 	if( kioVirtDict[ path ] ) return true;
 
 	QString updir;
-	if( !path.contains("/") ) updir = "/";
+	if( !path.contains("/") ) updir = '/';
 	else updir = path.left(path.lastIndexOf("/"));
 	QString name = path.mid(path.lastIndexOf("/")+1);
 
 	if( addDir(updir) ){ 
 		KUrl url;
 		if( updir == "/" ) url = QString("virt:/")+name;
-		else url = QString("virt:/")+updir+"/"+name;
+		else url = QString("virt:/") + updir + '/' + name;
 		kioVirtDict[ updir ]->append( url );
 
 		KUrl::List* temp = new KUrl::List();
@@ -127,7 +127,7 @@ void VirtProtocol::mkdir(const KUrl& url,int){
 	}
 
 	QString path = url.path( KUrl::RemoveTrailingSlash ).mid( 1 );
-	if ( path.isEmpty() ) path = "/";
+	if ( path.isEmpty() ) path = '/';
 
 	if( kioVirtDict[ path ] ){
 		error( KIO::ERR_DIR_ALREADY_EXIST, url.path() );
@@ -151,7 +151,7 @@ void VirtProtocol::listDir( const KUrl & url ) {
 	load();	
 
 	QString path = url.path( KUrl::RemoveTrailingSlash ).mid( 1 );
-	if ( path.isEmpty() ) path = "/";
+	if ( path.isEmpty() ) path = '/';
 
 	KUrl::List* urlList = kioVirtDict[ path ];
 	if ( !urlList ) {
@@ -257,7 +257,7 @@ bool VirtProtocol::load(){
 
 	if( !kioVirtDict["/" ]){
 		urlList = new KUrl::List();
-		kioVirtDict.replace( "/", urlList );	
+		kioVirtDict.replace( '/', urlList );	
 	}
 
 	unlock();
@@ -269,7 +269,7 @@ bool VirtProtocol::load(){
 
 void VirtProtocol::local_entry(const KUrl& url,UDSEntry& entry){
 	QString path = url.path( KUrl::RemoveTrailingSlash ).mid( 1 );
-	if ( path.isEmpty() ) path = "/";
+	if ( path.isEmpty() ) path = '/';
 
 	UDSAtom atom;
 

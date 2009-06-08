@@ -249,8 +249,8 @@ QVariant KrVfsModel::data(const QModelIndex& index, int role) const
 						return i18n("<DIR>");
 	    				else 
 						return ( properties()->humanReadableSize) ? 
-							KIO::convertSize(vf->vfile_getSize())+"  " :
-		 					KRpermHandler::parseSize(vf->vfile_getSize())+" ";
+							KIO::convertSize(vf->vfile_getSize()) + "  " :
+		 					KRpermHandler::parseSize(vf->vfile_getSize()) + ' ';
 				}
 				case KrVfsModel::Mime:
 				{

@@ -13,7 +13,7 @@ void recursive_print( const KTarDirectory * dir, const QString & path )
     const KTarEntry* entry = dir->entry( (*it) );
     printf("mode=%07o %s %s %s%s\n", entry->permissions(), entry->user().toLatin1(), entry->group().toLatin1(), path.toLatin1(), (*it).toLatin1());
     if (entry->isDirectory())
-      recursive_print( (KTarDirectory *)entry, path+(*it)+"/" );
+      recursive_print( (KTarDirectory *)entry, path + (*it) + '/' );
   }
 }
 

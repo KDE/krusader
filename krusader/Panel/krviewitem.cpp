@@ -30,7 +30,7 @@ KrViewItem::KrViewItem(vfile *vf, const KrViewProperties* properties):
 			_hasExtension=true;
 		}
 		
-		if( vfName.startsWith(".") )
+		if( vfName.startsWith('.') )
 			_hidden = true;
 	}
 }
@@ -72,8 +72,8 @@ QString KrViewItem::description() const {
 	} else if ( S_ISDIR ( m_fileMode ) ){
 	text += "/  ";
 		if( _vf->vfile_getSize() != 0 ) {
-			text += "(" + ( PROPS->humanReadableSize ? KRpermHandler::parseSize(_vf->vfile_getSize()) : 
-			          KIO::convertSize( mySize ) ) + ") ";
+			text += '(' +
+                                ( PROPS->humanReadableSize ? KRpermHandler::parseSize(_vf->vfile_getSize()) : KIO::convertSize( mySize ) ) + ") ";
 		}
 		text += comment;
 	} else {

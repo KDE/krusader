@@ -111,8 +111,8 @@ void KrDetailedViewItem::repaintItem() {
     }
     if ((id = COLUMN(Size)) != -1) {
 		 if (_vf->vfile_isDir() && _vf->vfile_getSize() <= 0) setText(id, i18n("<DIR>"));
-	    else setText(id, PROPS->humanReadableSize ? KIO::convertSize(_vf->vfile_getSize())+"  " :
-		 						KRpermHandler::parseSize(_vf->vfile_getSize())+" ");
+	    else setText(id, PROPS->humanReadableSize ? KIO::convertSize(_vf->vfile_getSize()) + "  " :
+		 						KRpermHandler::parseSize(_vf->vfile_getSize()) + ' ');
     }
 
     if ((id = COLUMN(DateTime)) != -1)

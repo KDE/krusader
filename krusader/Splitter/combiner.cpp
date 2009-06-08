@@ -150,8 +150,8 @@ void Combiner::combineSplitFileFinished(KJob *job)
       
   if( !error.isEmpty() )
   {
-    int ret = KMessageBox::questionYesNo( 0, error+ "\n" +
-      i18n("Validity checking is impossible without a good CRC file. Continue combining?")  );
+    int ret = KMessageBox::questionYesNo( 0,
+                                          error + i18n("\nValidity checking is impossible without a good CRC file. Continue combining?") );
     if( ret == KMessageBox::No )
     {
        emit reject();
@@ -193,7 +193,7 @@ void Combiner::openNextFile()
     QString index( "%1" );      /* determining the filename */
     index = index.arg(++fileCounter).rightJustified( 3, '0' );
     readURL = baseURL;
-    readURL.setFileName( baseURL.fileName() + "." + index );
+    readURL.setFileName( baseURL.fileName() + '.' + index );
   }
 
       /* creating a write job */

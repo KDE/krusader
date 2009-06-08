@@ -93,7 +93,7 @@ void KrPreviewPopup::addPreview(const KFileItem& file,const QPixmap& preview){
 		f.setPixelSize( (int)sizeY );
 		
 		do {
-			data += " ";
+			data += ' ';
 		}while( QFontMetrics( f ).width( data ) < sizeX );
 	}
 	

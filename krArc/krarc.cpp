@@ -392,7 +392,7 @@ void kio_krarcProtocol::get(const KUrl& url, int tries ){
 	QString file = getPath(url).mid(getPath( arcFile->url() ).length()+1);
 	KrLinecountingProcess proc;
 	if( extArcReady ){
-		proc << getCmd << arcTempDir+"contents.cpio" << "*"+localeEncodedString( file );
+		proc << getCmd << arcTempDir + "contents.cpio" << '*' + localeEncodedString( file );
 	} else if( arcType == "arj" || arcType == "ace" || arcType == "7z" ) {
 		proc << getCmd << getPath(arcFile->url(),KUrl::RemoveTrailingSlash) << localeEncodedString( file );
 		if( arcType == "ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
@@ -969,7 +969,7 @@ UDSEntry* kio_krarcProtocol::findFileEntry(const KUrl& url){
 	UDSEntryList* dirList = itef.value();
 	
 	QString name = getPath(url);
-	if( getPath(arcFile->url(),KUrl::RemoveTrailingSlash) == getPath(url,KUrl::RemoveTrailingSlash) ) name = "."; // the "/" case
+	if( getPath(arcFile->url(),KUrl::RemoveTrailingSlash) == getPath(url,KUrl::RemoveTrailingSlash) ) name = '.'; // the '/' case
 	else{
 		if( name.right(1) == DIR_SEPARATOR ) name.truncate(name.length()-1);
 		name = name.mid(name.lastIndexOf(DIR_SEPARATOR)+1);
@@ -1769,7 +1769,7 @@ QString kio_krarcProtocol::getPassword() {
 QString kio_krarcProtocol::detectFullPathName(QString name)
 {
 	name = name + EXEC_SUFFIX;
-	QStringList path = QString::fromLocal8Bit( qgetenv("PATH") ).split(":");
+	QStringList path = QString::fromLocal8Bit( qgetenv("PATH") ).split(':');
 
 	for ( QStringList::Iterator it = path.begin(); it != path.end(); ++it )
 	{
