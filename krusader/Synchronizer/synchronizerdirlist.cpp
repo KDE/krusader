@@ -134,10 +134,10 @@ bool SynchronizerDirList::load( const QString &urlIn, bool wait ) {
     while( (dirEnt=readdir(dir)) != NULL ){
       name = QString::fromLocal8Bit(dirEnt->d_name);
 
-      if (name=="." || name == "..") continue;
-      if (ignoreHidden && name.startsWith( "." ) ) continue;
+      if (name == "." || name == "..") continue;
+      if (ignoreHidden && name.startsWith( '.' ) ) continue;
 
-      QString fullName = path + "/" + name;
+      QString fullName = path + '/' + name;
 
       KDE_struct_stat stat_p;
       KDE_lstat(fullName.toLocal8Bit(),&stat_p);
@@ -155,8 +155,8 @@ bool SynchronizerDirList::load( const QString &urlIn, bool wait ) {
         if ( endOfName != -1 ) {
           QString absSymDest = symlinkDest = QString::fromLocal8Bit( symDest );
 
-          if( !absSymDest.startsWith( "/" ) )
-            absSymDest = QDir::cleanPath( path + "/" + absSymDest );
+          if( !absSymDest.startsWith( '/' ) )
+            absSymDest = QDir::cleanPath( path + '/' + absSymDest );
 
           if ( QDir( absSymDest ).exists() )
             perm[0] = 'd';

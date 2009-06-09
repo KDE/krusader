@@ -145,12 +145,12 @@ int Synchronizer::compare( QString leftURL, QString rightURL, KRQuery *query, bo
   leftURL = KUrlCompletion::replacedPath( leftURL, true, true );
   rightURL = KUrlCompletion::replacedPath( rightURL, true, true );
 
-  if( !leftURL.endsWith("/" ))  leftURL+="/";
-  if( !rightURL.endsWith("/" )) rightURL+="/";
+  if( !leftURL.endsWith( '/' ))  leftURL += '/';
+  if( !rightURL.endsWith( '/' )) rightURL += '/';
 
   excludedPaths = query->dontSearchInDirs().toStringList();
   for( int i = 0; i != excludedPaths.count(); i++ )
-    if( excludedPaths[ i ].endsWith( "/" ) )
+    if( excludedPaths[ i ].endsWith( '/' ) )
       excludedPaths[ i ].truncate( excludedPaths[ i ].length() - 1 );
 
   comparedDirs = fileCount = 0;
@@ -303,7 +303,7 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, SynchronizerD
         if( checkIfSelected && !selectedFiles.contains( left_file_name ) )
           continue;
 
-        if( excludedPaths.contains( leftDir.isEmpty() ? left_file_name : leftDir+"/"+left_file_name ) )
+        if( excludedPaths.contains( leftDir.isEmpty() ? left_file_name : leftDir + '/' + left_file_name ) )
           continue;
 
         if( !query->matchDirName( left_file_name ) )
@@ -316,8 +316,8 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, SynchronizerD
                                                       left_file->vfile_getOwner(), left_file->vfile_getGroup(),
                                                       left_file->vfile_getMode(), left_file->vfile_getACL(),
                                                       true, !query->match( left_file ) );
-          stack.append( new CompareTask( me, leftURL+left_file_name+"/", 
-                              leftDir.isEmpty() ? left_file_name : leftDir+"/"+left_file_name, true, ignoreHidden ) );
+          stack.append( new CompareTask( me, leftURL + left_file_name + '/', 
+                              leftDir.isEmpty() ? left_file_name : leftDir + '/' + left_file_name, true, ignoreHidden ) );
         } else {
           QString right_file_name =  right_file->vfile_getName();
           SynchronizerFileItem *me = addDuplicateItem( parent, left_file_name, right_file_name, 
@@ -329,9 +329,9 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, SynchronizerD
                                                        left_file->vfile_getMode(), right_file->vfile_getMode(),
                                                        left_file->vfile_getACL(), right_file->vfile_getACL(),
                                                        true, !query->match( left_file ) );
-          stack.append( new CompareTask( me, leftURL+left_file_name+"/", rightURL+right_file_name+"/",
-                            leftDir.isEmpty() ? left_file_name : leftDir+"/"+left_file_name,
-                            rightDir.isEmpty() ? right_file_name : rightDir+"/"+right_file_name, ignoreHidden ) );
+          stack.append( new CompareTask( me, leftURL + left_file_name + '/', rightURL + right_file_name + '/',
+                            leftDir.isEmpty() ? left_file_name : leftDir + '/' + left_file_name,
+                            rightDir.isEmpty() ? right_file_name : rightDir + '/' + right_file_name, ignoreHidden ) );
         }
       }
     }
@@ -1446,7 +1446,7 @@ void Synchronizer::synchronizeWithKGet()
           int lastAt = source.lastIndexOf( '@' );
           QString startString = source.left( lastAt );
           QString endString = source.mid( lastAt );
-          startString.replace( "@", "%40" );
+          startString.replace( '@', "%40" );
           source = startString+endString;
         }
 

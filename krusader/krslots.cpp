@@ -114,7 +114,7 @@ void KRslots::sendFileByEmail(const KUrl::List &urls) {
   QString subject, separator;
   foreach( const KUrl &url, urls ) {
     subject += separator + url.fileName();
-    separator=",";
+    separator = ',';
   }
   subject = i18np("Sending file: %2", "Sending files: %2", urls.count(), subject);
 
@@ -130,7 +130,7 @@ void KRslots::sendFileByEmail(const KUrl::List &urls) {
     separator = "";
     foreach( const KUrl &url2, urls ) {
       param += separator + url2.prettyUrl();
-      separator=",";
+      separator = ',';
     }
     param+="\',subject=\'" + subject + "\'";
     proc << mailProg << "--compose" << param;
@@ -290,13 +290,13 @@ void KRslots::insertFileName(bool full_path)
 
   if(MAIN_VIEW->cmdLine->isVisible() || !MAIN_VIEW->terminal_dock->isTerminalVisible() ){
     QString current = MAIN_VIEW->cmdLine->text();
-    if( current.length() != 0 && !current.endsWith( " " ) )
-      current += " ";
+    if( current.length() != 0 && !current.endsWith( ' ' ) )
+      current += ' ';
     MAIN_VIEW->cmdLine->setText( current + filename );
 	MAIN_VIEW->cmdLine->setFocus();
   }
   else if(MAIN_VIEW->terminal_dock->isTerminalVisible() ){
-    filename = QString( " " ) + filename + QString( " " );
+    filename = QChar( ' ' ) + filename + QChar( ' ' );
     MAIN_VIEW->terminal_dock->sendInput( filename );
     MAIN_VIEW->terminal_dock->setFocus();
   }

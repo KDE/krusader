@@ -170,16 +170,16 @@ QString PanelTabBar::squeeze(QString text, int index) {
   
   if( !longNames )
   {
-    while( text.endsWith( "/" ) )
+    while( text.endsWith( '/' ) )
       text.truncate( text.length() -1 );      
-    if( text.isEmpty() || text.endsWith(":") )
-      text += "/";
+    if( text.isEmpty() || text.endsWith(':') )
+      text += '/';
     else
     {
       QString shortName;
                     
       if( text.contains( ":/" ) )
-        shortName = text.left( text.indexOf( ":/" ) ) + ":";
+        shortName = text.left( text.indexOf( ":/" ) ) + ':';
     
       shortName += text.mid( text.lastIndexOf( "/" ) + 1 );      
       text = shortName;

@@ -1055,13 +1055,13 @@ public:
       {
         if( isLeft && item->existsInLeft() )
         {
-          QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
+          QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
           KUrl leftURL = KUrl( synchronizer->leftBaseDirectory()  + leftDirName + item->leftName() );
           urls.push_back( leftURL );
         }
         else if( !isLeft && item->existsInRight() )
         {
-          QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
+          QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
           KUrl rightURL = KUrl( synchronizer->rightBaseDirectory()  + rightDirName + item->rightName() );
           urls.push_back( rightURL );
         }
@@ -1661,8 +1661,8 @@ void SynchronizerGUI::checkExcludeURLValidity( QString &text, QString &error )
     return;
 
   QString leftBase = leftLocation->currentText();
-  if( !leftBase.endsWith( "/" ) )
-    leftBase += "/";
+  if( !leftBase.endsWith( '/' ) )
+    leftBase += '/';
   KUrl leftBaseURL = KUrl( leftBase );
   if( leftBaseURL.isParentOf( url ) && !url.isParentOf( leftBaseURL) )
   {
@@ -1671,8 +1671,8 @@ void SynchronizerGUI::checkExcludeURLValidity( QString &text, QString &error )
   }
 
   QString rightBase = rightLocation->currentText();
-  if( !rightBase.endsWith( "/" ) )
-    rightBase += "/";
+  if( !rightBase.endsWith( '/' ) )
+    rightBase += '/';
   KUrl rightBaseURL = KUrl( rightBase );
   if( rightBaseURL.isParentOf( url ) && !url.isParentOf( rightBaseURL ) )
   {
@@ -1692,8 +1692,8 @@ void SynchronizerGUI::doubleClicked(QTreeWidgetItem *itemIn)
   SynchronizerFileItem *item = syncItem->synchronizerItemRef();
   if( item && item->existsInLeft() && item->existsInRight() && !item->isDir() )
   {
-    QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
-    QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
+    QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
+    QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
     KUrl leftURL  = KUrl( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
     KUrl rightURL = KUrl( synchronizer.rightBaseDirectory() + rightDirName + item->rightName() );
 
@@ -1807,8 +1807,8 @@ void SynchronizerGUI::rightMouseClicked(QTreeWidgetItem *itemIn, const QPoint &p
 
 void SynchronizerGUI::executeOperation( SynchronizerFileItem *item, int op ) {
   // check out the user's option
-  QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
-  QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
+  QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
+  QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
 
   KUrl leftURL  = KUrl( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
   KUrl rightURL = KUrl( synchronizer.rightBaseDirectory() + rightDirName + item->rightName() );
@@ -2061,14 +2061,14 @@ void SynchronizerGUI::addFile( SynchronizerFileItem *item )
   if( item->existsInLeft() )
   {
     leftName = item->leftName();
-    leftSize = isDir ? i18n("<DIR>")+" " : KRpermHandler::parseSize( item->leftSize() );
+    leftSize = isDir ? i18n("<DIR>") + ' ' : KRpermHandler::parseSize( item->leftSize() );
     leftDate = SynchronizerGUI::convertTime( item->leftDate() );
   }
 
   if( item->existsInRight() )
   {
     rightName = item->rightName();
-    rightSize = isDir ? i18n("<DIR>")+" " : KRpermHandler::parseSize( item->rightSize() );
+    rightSize = isDir ? i18n("<DIR>") + ' ' : KRpermHandler::parseSize( item->rightSize() );
     rightDate = SynchronizerGUI::convertTime( item->rightDate() );
   }
 
@@ -2120,14 +2120,14 @@ void SynchronizerGUI::markChanged( SynchronizerFileItem *item, bool ensureVisibl
       if( item->existsInLeft() )
       {
         leftName = item->leftName();
-        leftSize = isDir ? i18n("<DIR>")+" " : KRpermHandler::parseSize( item->leftSize() );
+        leftSize = isDir ? i18n("<DIR>") + ' ' : KRpermHandler::parseSize( item->leftSize() );
         leftDate = SynchronizerGUI::convertTime( item->leftDate() );
       }
 
       if( item->existsInRight() )
       {
         rightName = item->rightName();
-        rightSize = isDir ? i18n("<DIR>")+" " : KRpermHandler::parseSize( item->rightSize() );
+        rightSize = isDir ? i18n("<DIR>") + ' ' : KRpermHandler::parseSize( item->rightSize() );
         rightDate = SynchronizerGUI::convertTime( item->rightDate() );
       }
 
@@ -2301,8 +2301,8 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
       bool isedit = e->key() == Qt::Key_F4;
 
       SynchronizerFileItem *item = ((SyncViewItem *)listItem)->synchronizerItemRef();
-      QString leftDirName    = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
-      QString rightDirName    = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
+      QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
+      QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
 
       if( item->isDir() )
         return;
@@ -2578,13 +2578,13 @@ void SynchronizerGUI::copyToClipboard( bool isLeft )
     {
       if( isLeft && item->existsInLeft() )
       {
-        QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
+        QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
         KUrl leftURL = KUrl( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
         urls.push_back( leftURL );
       }
       else if( !isLeft && item->existsInRight() )
       {
-        QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
+        QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
         KUrl rightURL = KUrl( synchronizer.rightBaseDirectory()  + rightDirName + item->rightName() );
         urls.push_back( rightURL );
       }
