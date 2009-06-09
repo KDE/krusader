@@ -150,6 +150,7 @@ kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteA
 /* ---------------------------------------------------------------------------------- */
 kio_krarcProtocol::~kio_krarcProtocol(){
 	// delete the temp directory
+	delete krConfig;
 	KProcess proc;
 	proc << fullPathName( "rm" ) << "-rf" << arcTempDir;
 	proc.start();
