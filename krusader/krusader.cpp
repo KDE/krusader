@@ -1231,7 +1231,7 @@ QString Krusader::getTempDir() {
    QDir().mkdir( tmpDir );
 
    if ( !QDir( tmpDir ).isReadable() ) {
-      KMessageBox::error( krApp, "Could not create a temporary directory. Handling of Archives will not be possible until this is fixed." );
+      KMessageBox::error( krApp, i18n("Could not create a temporary directory. Handling of Archives will not be possible until this is fixed." ));
       return QString();
    }
    return tmpDir;
