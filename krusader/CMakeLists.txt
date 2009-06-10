@@ -72,7 +72,7 @@ target_link_libraries(krusader
                       ${KDE4_KDE3SUPPORT_LIBS}
                       ${KDE4_KDECORE_LIBS})
 
-install(TARGETS krusader DESTINATION ${BIN_INSTALL_DIR})
+install(TARGETS krusader ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES krusader.desktop
               krusader_root-mode.desktop
         DESTINATION ${XDG_APPS_INSTALL_DIR} )

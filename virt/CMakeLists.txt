@@ -1,4 +1,3 @@
-include_directories(${KDE4_INCLUDE_DIR} ${QT_INCLUDES})
 
 set(kio_virt_PART_SRCS virt.cc)
 
