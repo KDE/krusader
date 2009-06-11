@@ -35,6 +35,7 @@
 #include <QtGui/QTextEdit>
 #include <QtCore/QTimer>
 #include <QList>
+#include <QColor>
 
 #include <kparts/part.h>
 #include <kparts/browserextension.h>
@@ -161,9 +162,14 @@ protected slots:
   void            slotUpdate();
   void            slotSearchMore();
 
+  void            searchSucceeded();
+  void            searchFailed();
+  void            searchDelete();
+
 protected:
   virtual bool    openFile();
   virtual void    guiActivateEvent( KParts::GUIActivateEvent * event );
+  void            setColor( bool match, bool restore );
 
   qint64          getFileSize();
   void            search( bool forward );
@@ -175,6 +181,7 @@ protected:
   QLineEdit      *_searchLineEdit;
   QPushButton    *_searchNextButton;
   QPushButton    *_searchPrevButton;
+  bool            _searchInProgress;
   QPushButton    *_searchOptions;
   QLabel         *_statusLabel;
 
@@ -195,6 +202,10 @@ protected:
   KRQuery         _searchQuery;
   qint64          _searchPosition;
   bool            _searchIsForward;
+  qint64          _searchLastFailedPosition;
+
+  QColor          _originalBackground;
+  QColor          _originalForeground;
 };
 
 #endif // __LISTER_H__

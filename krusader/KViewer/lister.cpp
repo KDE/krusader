@@ -46,6 +46,7 @@
 #include <QtCore/QRect>
 #include <QHBoxLayout>
 #include <QMenu>
+#include <KColorScheme>
 
 #include <klocale.h>
 #include <kglobalsettings.h>
@@ -54,10 +55,11 @@
 #define  SEARCH_CACHE_CHARS 100000
 #define  SEARCH_MAX_ROW_LEN 4000
 
-/* TODO: Implement search colors + start from beginning / end */
+/* TODO: Implement search progress bar */
 /* TODO: Implement implement select line event*/
 /* TODO: Implement implement select word event */
 /* TODO: Implement document change detection */
+/* TODO: Implement toolbar */
 /* TODO: Implement jump to position */
 /* TODO: Implement text codecs */
 /* TODO: Implement right click */
@@ -900,7 +902,7 @@ void ListerBrowserExtension::copy()
   _lister->textArea()->copySelectedToClipboard();
 }
 
-Lister::Lister( QWidget *parent ) : KParts::ReadOnlyPart( parent ), _cache( 0 ), _active( false )
+Lister::Lister( QWidget *parent ) : KParts::ReadOnlyPart( parent ), _cache( 0 ), _searchInProgress( false ), _active( false ), _searchLastFailedPosition( -1 )
 {
   QWidget * widget = new QWidget( parent );
   widget->setFocusPolicy( Qt::StrongFocus );
@@ -924,7 +926,13 @@ Lister::Lister( QWidget *parent ) : KParts::ReadOnlyPart( parent ), _cache( 0 ),
   hbox->addWidget( _listerLabel );
   _searchLineEdit = new QLineEdit( statusWidget );
   _searchLineEdit->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
+
+  _originalBackground = _searchLineEdit->palette().color( QPalette::Base );
+  _originalForeground = _searchLineEdit->palette().color( QPalette::Text );
+
   connect( _searchLineEdit, SIGNAL( returnPressed() ), this, SLOT( searchNext() ) );
+  connect( _searchLineEdit, SIGNAL( textChanged ( const QString & ) ), this, SLOT( searchDelete() ) );
+
   hbox->addWidget( _searchLineEdit );
   _searchNextButton = new QPushButton( KIcon("go-down"), i18n( "Next" ), statusWidget );
   _searchNextButton->setToolTip( i18n( "Jump to next match" ) );
@@ -1113,7 +1121,7 @@ void Lister::searchPrev()
 
 void Lister::search( bool forward )
 {
-  if( _searchLineEdit->text().isEmpty() )
+  if( _searchInProgress || _searchLineEdit->text().isEmpty() )
     return;
   if( _searchLineEdit->isHidden() )
     enableSearch( true );
@@ -1122,7 +1130,9 @@ void Lister::search( bool forward )
   if( _fromCursorAction->isChecked() )
   {
     bool isfirst;
-    _searchPosition = _textArea->getCursorPosition( isfirst );
+    qint64 cursor = _textArea->getCursorPosition( isfirst );
+    if( _searchLastFailedPosition == -1 || _searchLastFailedPosition != cursor )
+      _searchPosition = cursor;
   }
   bool caseSensitive = _caseSensitiveAction->isChecked();
   bool matchWholeWord = _matchWholeWordsOnlyAction->isChecked();
@@ -1132,6 +1142,7 @@ void Lister::search( bool forward )
   _searchIsForward = forward;
 
   QTimer::singleShot( 0, this, SLOT( slotSearchMore() ) );
+  _searchInProgress = true;
 }
 
 void Lister::slotSearchMore()
@@ -1140,7 +1151,10 @@ void Lister::slotSearchMore()
     _searchPosition--;
 
   if( _searchPosition < 0 || _searchPosition >= _fileSize )
+  {
+    searchFailed();
     return;
+  }
 
   int maxCacheSize = SEARCH_CACHE_CHARS;
   qint64 searchPos = _searchPosition;
@@ -1162,7 +1176,10 @@ void Lister::slotSearchMore()
 
   char * cache = cacheRef( searchPos, maxCacheSize );
   if( cache == 0 || maxCacheSize == 0 )
+  {
+    searchFailed();
     return;
+  }
 
   QTextCodec * textCodec = _textArea->codec();
   QTextDecoder * decoder = textCodec->makeDecoder();
@@ -1220,14 +1237,85 @@ void Lister::slotSearchMore()
 
   if( foundAnchor != -1 && foundCursor != -1 ) {
     _textArea->setAnchorAndCursor( foundAnchor, foundCursor );
+    searchSucceeded();
     return;
   }
 
   if( _searchIsForward && searchPos + cnt >= _fileSize )
+  {
+    searchFailed();
     return;
+  }
 
   if( _searchPosition <= 0 || _searchPosition >= _fileSize )
+  {
+    searchFailed();
     return;
+  }
 
   QTimer::singleShot( 0, this, SLOT( slotSearchMore() ) );
 }
+
+void Lister::searchSucceeded()
+{
+  _searchInProgress = false;
+  setColor( true, false );
+  _searchLastFailedPosition = -1;
+}
+
+void Lister::searchFailed()
+{
+  _searchInProgress = false;
+  setColor( false, false );
+  bool isfirst;
+  _searchLastFailedPosition = _textArea->getCursorPosition( isfirst );
+}
+
+void Lister::searchDelete()
+{
+  setColor( false, true );
+  _searchLastFailedPosition = -1;
+}
+
+void Lister::setColor( bool match, bool restore ) {
+  QColor  fore, back;
+
+  if( !restore )
+  {
+    KConfigGroup gc( krConfig, "Colors");
+
+    QString foreground, background;
+
+    if( match )
+    {
+      foreground = "Quicksearch Match Foreground";
+      background = "Quicksearch Match Background";
+      fore = Qt::black;
+      back = QColor( 192, 255, 192 );
+    } else {
+      foreground = "Quicksearch Non-match Foreground";
+      background = "Quicksearch Non-match Background";
+      fore = Qt::black;
+      back = QColor(255,192,192);
+    }
+
+    if( gc.readEntry( foreground, QString() ) == "KDE default" )
+      fore = KColorScheme(QPalette::Active, KColorScheme::View).foreground().color();
+    else if( !gc.readEntry( foreground, QString() ).isEmpty() )
+      fore = gc.readEntry( foreground, fore );
+
+    if( gc.readEntry( background, QString() ) == "KDE default" )
+      back = KColorScheme(QPalette::Active, KColorScheme::View).background().color();
+    else if( !gc.readEntry( background, QString() ).isEmpty() )
+      back = gc.readEntry( background, back );
+   } else {
+      back = _originalBackground;
+      fore = _originalForeground;
+   }
+
+   QPalette pal = _searchLineEdit->palette();
+   pal.setColor( QPalette::Base, back);
+   pal.setColor( QPalette::Text, fore);
+   _searchLineEdit->setPalette( pal );
+}
+
