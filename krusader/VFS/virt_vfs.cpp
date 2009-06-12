@@ -58,7 +58,7 @@ bool virt_vfs::populateVfsList( const KUrl& origin, bool /*showHidden*/ ) {
 	vfs_origin = origin;
 	vfs_origin.adjustPath(KUrl::RemoveTrailingSlash);
 	path = origin.path( KUrl::RemoveTrailingSlash ).mid( 1 );
-	if ( path.isEmpty() ) path = "/";
+	if ( path.isEmpty() ) path = '/';
 
 	KUrl::List* urlList;
 	if( virtVfsDict.find( path ) == virtVfsDict.end() ) {
@@ -227,7 +227,7 @@ void virt_vfs::slotStatResult( KJob* job ) {
 vfile* virt_vfs::stat( const KUrl& url ) {
 	if( url.protocol() == "virt" ){
 		QString path = url.path().mid(1);
-		if( path.isEmpty() ) path = "/";
+		if( path.isEmpty() ) path = '/';
 		vfile * temp = new vfile( path, 0, "drwxr-xr-x", time( 0 ), false, getuid(), getgid(), "inode/directory", "", 0 );
 		temp->vfile_setUrl( url );
 		return temp;

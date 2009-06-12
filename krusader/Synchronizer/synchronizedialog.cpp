@@ -54,40 +54,40 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,
   layout->setContentsMargins( 11, 11, 11, 11 );
   layout->setSpacing( 6 );
 
-  cbRightToLeft = new QCheckBox( i18np( "Right to left: Copy 1 file", "Right to left: Copy %1 files", leftCopyNr) + " " +
+  cbRightToLeft = new QCheckBox( i18np( "Right to left: Copy 1 file", "Right to left: Copy %1 files", leftCopyNr) + ' ' +
                                  i18np( "(1 byte)", "(%1 bytes)", KRpermHandler::parseSize( leftCopySize ).trimmed().toInt() ),
                                  this );
   cbRightToLeft->setChecked( leftCopyNr != 0 );
   cbRightToLeft->setEnabled( leftCopyNr != 0 );
   layout->addWidget( cbRightToLeft );
 
-  lbRightToLeft = new QLabel( "\t" + i18np( "Ready: %2/1 file, %3/%4", "Ready: %2/%1 files, %3/%4", leftCopyNr, 0,
+  lbRightToLeft = new QLabel( i18np( "\tReady: %2/1 file, %3/%4", "Ready: %2/%1 files, %3/%4", leftCopyNr, 0,
                              0, KRpermHandler::parseSize( leftCopySize ).trimmed() ),
                              this );
   lbRightToLeft->setEnabled( leftCopyNr != 0 );
   layout->addWidget( lbRightToLeft );
 
-  cbLeftToRight = new QCheckBox( i18np( "Left to right: Copy 1 file", "Left to right: Copy %1 files", rightCopyNr) + " " +
+  cbLeftToRight = new QCheckBox( i18np( "Left to right: Copy 1 file", "Left to right: Copy %1 files", rightCopyNr) + ' ' +
                                  i18np( "(1 byte)", "(%1 bytes)", KRpermHandler::parseSize( rightCopySize ).trimmed().toInt() ),
                                  this );
   cbLeftToRight->setChecked( rightCopyNr != 0 );
   cbLeftToRight->setEnabled( rightCopyNr != 0 );
   layout->addWidget( cbLeftToRight );
 
-  lbLeftToRight = new QLabel( "\t" + i18np( "Ready: %2/1 file, %3/%4", "Ready: %2/%1 files, %3/%4", rightCopyNr, 0,
+  lbLeftToRight = new QLabel( i18np( "\tReady: %2/1 file, %3/%4", "Ready: %2/%1 files, %3/%4", rightCopyNr, 0,
                              0, KRpermHandler::parseSize( rightCopySize ).trimmed() ),
                              this );
   lbLeftToRight->setEnabled( rightCopyNr != 0 );
   layout->addWidget( lbLeftToRight );
 
-  cbDeletable = new QCheckBox( i18np( "Left: Delete 1 file", "Left: Delete %1 files", deleteNr) + " " +
+  cbDeletable = new QCheckBox( i18np( "Left: Delete 1 file", "Left: Delete %1 files", deleteNr) + ' ' +
                                i18np( "(1 byte)", "(%1 bytes)", KRpermHandler::parseSize( deleteSize ).trimmed().toInt() ),
                                this );
   cbDeletable->setChecked( deleteNr != 0 );
   cbDeletable->setEnabled( deleteNr != 0 );
   layout->addWidget( cbDeletable );
 
-  lbDeletable   = new QLabel( "\t" + i18np( "Ready: %2/1 file, %3/%4", "Ready: %2/%1 files, %3/%4", deleteNr, 0,
+  lbDeletable   = new QLabel( i18np( "\tReady: %2/1 file, %3/%4", "Ready: %2/%1 files, %3/%4", deleteNr, 0,
                              0, KRpermHandler::parseSize( deleteSize ).trimmed() ),
                              this );
   lbDeletable->setEnabled( deleteNr != 0 );

@@ -239,7 +239,7 @@ void KrView::initProperties()
 			i = atomicExtensions.erase(i);
 			continue;
 		}
-		if (!ext.startsWith("."))
+		if (!ext.startsWith('.'))
 			ext.insert(0, '.');
 		++i;
 	}

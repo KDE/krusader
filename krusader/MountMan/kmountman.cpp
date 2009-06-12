@@ -85,7 +85,7 @@ KMountMan::KMountMan() : QObject(), Operational( false ), waiting(false), mountM
 	nonmount_fs << "supermount";
 	{
 		KConfigGroup group( krConfig, "Advanced");
-		QStringList nonmount = group.readEntry("Nonmount Points", _NonMountPoints).split(",");
+		QStringList nonmount = group.readEntry("Nonmount Points", _NonMountPoints).split(',');
 		nonmount_fs_mntpoint += nonmount;
 		// simplify the white space
 		for ( QStringList::Iterator it = nonmount_fs_mntpoint.begin(); it != nonmount_fs_mntpoint.end(); ++it ) {
@@ -113,14 +113,14 @@ void KMountMan::mainWindow() {
 }
 
 KSharedPtr<KMountPoint> KMountMan::findInListByMntPoint(KMountPoint::List &lst, QString value) {
-	if( value.length() > 1 && value.endsWith( "/" ) )
+	if( value.length() > 1 && value.endsWith( '/' ) )
 		value = value.left( value.length() - 1 );
 	
 	KSharedPtr<KMountPoint> m;
 	for (KMountPoint::List::iterator it = lst.begin(); it != lst.end(); ++it) {
 		m = *it;
 		QString mntPnt = m->mountPoint();
-		if( mntPnt.length() > 1 && mntPnt.endsWith( "/" ) )
+		if( mntPnt.length() > 1 && mntPnt.endsWith( '/' ) )
 			mntPnt = mntPnt.left( mntPnt.length() - 1 );
 		if (mntPnt == value)
 			return m;
@@ -362,8 +362,8 @@ void KMountMan::quickList() {
       }
       // add the item to the menu
       _actions[ idx ] = QString( needUmount ? "_U_" : "_M_" ) + m->mountPoint();
-      QString text = QString( ( needUmount ? i18n( "Unmount" ) : i18n( "Mount" ) ) ) + " " + m->mountPoint() +
-                     " (" + m->mountedFrom() + ")";
+      QString text = QString( ( needUmount ? i18n( "Unmount" ) : i18n( "Mount" ) ) ) + ' ' + m->mountPoint() +
+                     " (" + m->mountedFrom() + ')';
 
 
       QAction * act = ( ( KToolBarPopupAction* ) krMountMan ) ->menu() ->addAction( text );

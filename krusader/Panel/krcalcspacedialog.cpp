@@ -150,13 +150,13 @@ void KrCalcSpaceDialog::timer(){
 void KrCalcSpaceDialog::showResult(){
   if (!m_thread) return;
   QString msg;
-  QString fileName = ( ( m_thread->getItems().count() == 1 ) ? ( i18n( "Name: " ) + m_thread->getItems().first() + "\n" ) : QString( "" ) );
+  QString fileName = ( ( m_thread->getItems().count() == 1 ) ? ( i18n( "Name: " ) + m_thread->getItems().first() + '\n' ) : QString( "" ) );
   msg = fileName + i18n( "Total occupied space: %1", KIO::convertSize( m_thread->getTotalSize() ) );
   if (m_thread->getTotalSize() >= 1024)
      msg += " (" + KRpermHandler::parseSize( m_thread->getTotalSize() ) + "bytes)";
-  msg += "\n";
+  msg += '\n';
   msg += i18np("in %1 directory", "in %1 directories", m_thread->getTotalDirs() );
-  msg += " ";
+  msg += ' ';
   msg += i18np("and %1 file", "and %1 files", m_thread->getTotalFiles() );
   m_label->setText(msg);
 }

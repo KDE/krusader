@@ -306,7 +306,7 @@ public:
 
   virtual void detailedError( const QString & error, const QString & details )
   {
-    _jobThread->sendError( KIO::ERR_NO_CONTENT, error + "\n" + details );
+    _jobThread->sendError( KIO::ERR_NO_CONTENT, error + '\n' + details );
   }
 
   virtual void incrementProgress( int c )

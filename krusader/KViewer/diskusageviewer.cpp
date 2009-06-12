@@ -87,7 +87,7 @@ void DiskUsageViewer::openUrl( KUrl url )
       if( urlStr.startsWith( baseStr ) )
       {
         QString relURL = urlStr.mid( baseStr.length() );
-        if( relURL.endsWith( "/" ) )
+        if( relURL.endsWith( '/' ) )
           relURL.truncate( relURL.length() -1 );
       
         Directory *dir = diskUsage->getDirectory( relURL );      
@@ -120,7 +120,7 @@ void DiskUsageViewer::slotUpdateStatus( QString status )
     if( status.isEmpty() ) {
       Directory * dir = diskUsage->getCurrentDir();
       if( dir )
-        status = prefix + dir->name() + "  [" + KIO::convertSize( dir->size() ) + "]";
+        status = prefix + dir->name() + "  [" + KIO::convertSize( dir->size() ) + ']';
     }
     statusLabel->setText( status );
   }

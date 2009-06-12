@@ -132,15 +132,15 @@ KRQuery& KRQuery::operator=(const KRQuery &old) {
 }
 
 void KRQuery::connectNotify ( const char * signal ) {
-  QString signalString  = QString( signal ).replace( " ", "" );
-  QString processString = QString( SIGNAL( processEvents( bool & ) ) ).replace( " ", "" );
+  QString signalString  = QString( signal ).remove( ' ' );
+  QString processString = QString( SIGNAL( processEvents( bool & ) ) ).remove( ' ' );
   if( signalString == processString )
     processEventsConnected++;
 }
 
 void KRQuery::disconnectNotify ( const char * signal ) {
-  QString signalString  = QString( signal ).replace( " ", "" );
-  QString processString = QString( SIGNAL( processEvents( bool & ) ) ).replace( " ", "" );
+  QString signalString  = QString( signal ).remove( ' ' );
+  QString processString = QString( SIGNAL( processEvents( bool & ) ) ).remove( ' ' );
   if( signalString == processString )
     processEventsConnected--;
 }
@@ -301,7 +301,7 @@ bool KRQuery::checkBuffer( const char * data, int len ) const {
   for( int enterIndex = 0; enterIndex < maxBuffer; enterIndex++ ) {
     if( memcmp( mergedBuffer + enterIndex, encodedEnter, encodedEnterLen ) == 0 ) {
       QString str = codec->toUnicode( mergedBuffer + lastLinePosition, enterIndex + encodedEnterLen - lastLinePosition );
-      if( str.endsWith( "\n" ) ) {
+      if( str.endsWith( '\n' ) ) {
         str.chop( 1 );
         result = result || checkLine( str );
         lastLinePosition = enterIndex + encodedEnterLen;
@@ -484,7 +484,7 @@ QStringList KRQuery::split( QString str )
     {
       QString section = str.mid( startNdx, splitNdx - startNdx );
       startNdx = splitNdx+1;
-      if( section.startsWith( "\"" ) && section.endsWith( "\"" ) && section.length() >=2 )
+      if( section.startsWith( '\"' ) && section.endsWith( '\"' ) && section.length() >=2 )
         section = section.mid( 1, section.length()-2 );
       if( !section.isEmpty() )
         list.append( section );
@@ -495,7 +495,7 @@ QStringList KRQuery::split( QString str )
   if( startNdx < splitNdx )
   {
     QString section = str.mid( startNdx, splitNdx - startNdx );
-    if( section.startsWith( "\"" ) && section.endsWith( "\"" ) && section.length() >=2 )
+    if( section.startsWith( '\"' ) && section.endsWith( '\"' ) && section.length() >=2 )
       section = section.mid( 1, section.length()-2 );
     if( !section.isEmpty() )
       list.append( section );
@@ -533,7 +533,7 @@ void KRQuery::setNameFilter( const QString &text, bool cs )
     matchText.truncate( excludeNdx );
     matchText = matchText.trimmed();
     if( matchText.isEmpty() )
-      matchText = "*";
+      matchText = '*';
   }
 
   int i;
@@ -542,14 +542,14 @@ void KRQuery::setNameFilter( const QString &text, bool cs )
   includedDirs.clear();
 
   for( i=0; i < matches.count(); ) {
-    if( matches[ i ].endsWith( "/" ) ) {
+    if( matches[ i ].endsWith( '/' ) ) {
       includedDirs.push_back( matches[ i ].left( matches[ i ].length() - 1 ) );
       matches.removeAll( matches.at( i ) );
       continue;
     }
 
     if( !matches[ i ].contains( "*" ) && !matches[ i ].contains( "?" ) ) 
-      matches[ i ] = "*" + matches[ i ] + "*";
+      matches[ i ] = '*' + matches[ i ] + '*';
 
     i++;
   }
@@ -558,14 +558,14 @@ void KRQuery::setNameFilter( const QString &text, bool cs )
   excludedDirs.clear();
 
   for( i=0; i < excludes.count(); ) {
-    if( excludes[ i ].endsWith( "/" ) ) {
+    if( excludes[ i ].endsWith( '/' ) ) {
       excludedDirs.push_back( excludes[ i ].left( excludes[ i ].length() - 1 ) );
       excludes.removeAll( excludes.at( i ) );
       continue;
     }
 
     if( !excludes[ i ].contains( "*" ) && !excludes[ i ].contains( "?" ) ) 
-      excludes[ i ] = "*" + excludes[ i ] + "*";
+      excludes[ i ] = '*' + excludes[ i ] + '*';
 
     i++;
   }

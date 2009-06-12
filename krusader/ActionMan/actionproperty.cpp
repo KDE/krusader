@@ -327,7 +327,7 @@ void ActionProperty::newProtocol() {
 		currentText,
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
-      lbShowonlyProtocol->addItems( text.split( ";" ) );
+      lbShowonlyProtocol->addItems( text.split( ';' ) );
       setModified();
    }
 }
@@ -405,7 +405,7 @@ void ActionProperty::addMime() {
 		currentText,
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
-      lbShowonlyMime->addItems( text.split( ";" ) );
+      lbShowonlyMime->addItems( text.split( ';' ) );
       setModified();
    }
 }
@@ -449,7 +449,7 @@ void ActionProperty::newFile() {
 		currentText,
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
-      lbShowonlyFile->addItems( text.split( ";" ) );
+      lbShowonlyFile->addItems( text.split( ';' ) );
       setModified();
    }
 }

@@ -91,7 +91,7 @@ public:
 };
 
 
-static QStringList arcProtocols = QString("tar;bzip;bzip2;lzma;gzip;krarc;zip").split(";");
+static QStringList arcProtocols = QString("tar;bzip;bzip2;lzma;gzip;krarc;zip").split(';');
 
 KWallet::Wallet * KRarcHandler::wallet = 0;
 KRarcObserver   * KRarcHandler::defaultObserver = new DefaultKRarcObserver();
@@ -358,7 +358,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
   if( type == "zip2" || type=="gzip" || type == "lzma" ){
     QString arcname = archive.mid(archive.lastIndexOf("/")+1);
     if( arcname.contains(".") ) arcname = arcname.left(arcname.lastIndexOf("."));
-    proc.setStandardOutputFile( dest+"/"+arcname );
+    proc.setStandardOutputFile( dest + '/' + arcname );
   }
   if( type == "-ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
     proc.setStandardInputFile("/dev/ptmx");
@@ -658,7 +658,7 @@ QString KRarcHandler::getType( bool &encrypted, QString fileName, QString mime, 
 	if( result.isNull() )
 		result = mime;
 	else
-		result = "-" + result;
+		result = '-' + result;
 	
 	if( result.endsWith( "-7z" ) )
 		result = "-7z";

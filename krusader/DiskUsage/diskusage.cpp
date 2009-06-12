@@ -371,7 +371,7 @@ void DiskUsage::slotLoadDirectory()
                                    currentVfile->vfile_getMode(), currentVfile->vfile_getOwner(), currentVfile->vfile_getGroup(),
                                    currentVfile->vfile_getPerm(), currentVfile->vfile_getTime_t(), currentVfile->vfile_isSymLink(),
                                    mime );
-          directoryStack.push( (dirToCheck.isEmpty() ? "" : dirToCheck + "/" )+ currentVfile->vfile_getName() );
+          directoryStack.push( (dirToCheck.isEmpty() ? "" : dirToCheck + '/' )+ currentVfile->vfile_getName() );
           parentStack.push( dynamic_cast<Directory *>( newItem ) );
         }
         else
@@ -431,7 +431,7 @@ void DiskUsage::dirUp()
 
 Directory * DiskUsage::getDirectory( QString dir )
 {
-  while( dir.endsWith( "/" ) )
+  while( dir.endsWith( '/' ) )
     dir.truncate( dir.length() - 1 );
 
   if( dir.isEmpty() )
@@ -642,7 +642,7 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
     for( const Directory *d = (Directory*)file; d != root && d && d->parent() != 0; d = d->parent() )
     {
       if( !path.isEmpty() )
-        path = "/" + path;
+        path = '/' + path;
 
       path = d->name() + path;
     }
@@ -746,8 +746,8 @@ void DiskUsage::createStatus()
 
   emit status( i18n( "Current directory:%1,  Total size:%2,  Own size:%3",
                      vfs::pathOrUrl( url, KUrl::RemoveTrailingSlash ),
-                     " "+KRpermHandler::parseSize( dirEntry->size() ),
-                     " "+KRpermHandler::parseSize( dirEntry->ownSize() ) ) );
+                     ' ' + KRpermHandler::parseSize( dirEntry->size() ),
+                     ' ' + KRpermHandler::parseSize( dirEntry->ownSize() ) ) );
 }
 
 void DiskUsage::changeDirectory( Directory *dir )
@@ -1092,7 +1092,7 @@ QString DiskUsage::getToolTip( File *item )
                 "<tr><td>" + i18n( "Permissions:" ) +  "</td><td>" + item->perm() + "</td></tr>"+
                 "<tr><td>" + i18n( "Owner:" ) +  "</td><td>" + item->owner() + " - " + item->group() + "</td></tr>"+
                 "</table></h5></qt>";
-  str.replace( " ", "&nbsp;" );
+  str.replace( ' ', "&nbsp;" );
   return str;
 }
 

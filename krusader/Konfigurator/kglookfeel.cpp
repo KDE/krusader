@@ -162,7 +162,7 @@ void KgLookFeel::setupPanelTab() {
   for( int i=0; i != viewsSize; i++ ) {
     KrViewInstance * inst = views[ i ];
     panelTypes[ i ].text = i18n( inst->description().toUtf8() );
-    panelTypes[ i ].text.replace( "&", "" );
+    panelTypes[ i ].text.remove( '&' );
     panelTypes[ i ].value = QString( "%1" ).arg( inst->id() );
     if( inst->id() == KrViewFactory::defaultViewId() )
       defType = QString( "%1" ).arg( inst->id() );

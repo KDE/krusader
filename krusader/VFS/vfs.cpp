@@ -322,7 +322,7 @@ void vfs::calculateURLSize( KUrl url,  KIO::filesize_t* totalSize, unsigned long
 
 void vfs::vfs_calcSpaceLocal(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool* stop){
   if ( *stop ) return;
-  if (!name.contains("/")) name = vfs_workingDir()+"/"+name;
+  if (!name.contains("/")) name = vfs_workingDir() + '/' + name;
   if (name == "/proc") return;
 
   KDE_struct_stat stat_p;                // KDE lstat is necessary as QFileInfo and KFileItem 
@@ -354,7 +354,7 @@ void vfs::vfs_calcSpaceLocal(QString name ,KIO::filesize_t *totalSize,unsigned l
       if ( *stop ) return;
       QFileInfo qfiP = fileList[ k ];
       if (qfiP.fileName() != "." && qfiP.fileName() != "..")
-        vfs_calcSpaceLocal(name+"/"+qfiP.fileName(),totalSize,totalFiles,totalDirs,stop);
+        vfs_calcSpaceLocal(name + '/' + qfiP.fileName(), totalSize, totalFiles, totalDirs, stop);
     }
   }
 }

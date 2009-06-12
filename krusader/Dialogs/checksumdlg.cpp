@@ -196,7 +196,7 @@ void initChecksumModule() {
 	// build the checksumFilter (for usage in KRQuery)
 	QMap<QString, CS_Tool::Type>::Iterator it;
 	for (it=cs_textToType.begin(); it!=cs_textToType.end(); ++it)
-		MatchChecksumDlg::checksumTypesFilter += ("*."+it.key()+" ");
+		MatchChecksumDlg::checksumTypesFilter += ("*." + it.key() + ' ');
 }
 
 // --------------------------------------------------

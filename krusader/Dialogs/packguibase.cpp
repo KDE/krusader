@@ -413,7 +413,7 @@ bool PackGUIBase::extraProperties( QMap<QString,QString> & inMap ) {
         inMap[ "Password" ] = password->text();
 
         if( encryptHeaders->isEnabled() && encryptHeaders->isChecked() )
-          inMap[ "EncryptHeaders" ] = "1";
+          inMap[ "EncryptHeaders" ] = '1';
       }
     }
 

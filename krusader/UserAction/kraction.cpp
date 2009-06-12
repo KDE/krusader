@@ -238,7 +238,7 @@ void KrActionProc::start( QStringList cmdLineList ) {
       //run in TE
       if ( _action->execType() == KrAction::RunInTE ) {
          //send the commandline contents to the terminal emulator
-        MAIN_VIEW->terminal_dock->sendInput( cmd+"\n" );
+        MAIN_VIEW->terminal_dock->sendInput( cmd + '\n' );
       } else { // will start a new process
          // run in terminal
          if ( _action->execType() == KrAction::Terminal ) {
@@ -248,7 +248,7 @@ void KrActionProc::start( QStringList cmdLineList ) {
             if ( _action->user().isEmpty() )
                shellCmd << term << cmd;
             else
-               shellCmd  << "kdesu" << "-u" << _action->user() << "-c" << KShell::quoteArg( term + " " + cmd );
+               shellCmd  << "kdesu" << "-u" << _action->user() << "-c" << KShell::quoteArg( term + ' ' + cmd );
          } else { // no terminal, no output collection, start&forget
             if ( _action->user().isEmpty() )
                shellCmd << cmd;

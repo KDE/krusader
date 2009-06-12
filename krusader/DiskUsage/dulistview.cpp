@@ -138,8 +138,8 @@ void DUListView::addDirectory( Directory *dirEntry, QTreeWidgetItem *parent )
     QDateTime tmp(QDate(t->tm_year+1900, t->tm_mon+1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
     QString date = KGlobal::locale()->formatDateTime(tmp);    
     
-    QString totalSize = KRpermHandler::parseSize( item->size() ) + " ";
-    QString ownSize = KRpermHandler::parseSize( item->ownSize() ) + " ";
+    QString totalSize = KRpermHandler::parseSize( item->size() ) + ' ';
+    QString ownSize = KRpermHandler::parseSize( item->ownSize() ) + ' ';
     QString percent = item->percent();
     
     if( lastItem == 0 && parent == 0 )
@@ -195,8 +195,8 @@ void DUListView::slotChanged( File * item )
   DUListViewItem *duItem = (DUListViewItem *)itemPtr;
   duItem->setHidden( item->isExcluded() );
   duItem->setText( 1, item->percent() );
-  duItem->setText( 2, KRpermHandler::parseSize( item->size() ) + " " );
-  duItem->setText( 3, KRpermHandler::parseSize( item->ownSize() ) + " " );
+  duItem->setText( 2, KRpermHandler::parseSize( item->size() ) + ' ' );
+  duItem->setText( 3, KRpermHandler::parseSize( item->ownSize() ) + ' ' );
 }
 
 void DUListView::slotDeleted( File * item )

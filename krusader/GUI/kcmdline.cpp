@@ -136,7 +136,7 @@ void KCMDLine::setCurrent( const QString &p ) {
     textWidth = fm.width(pathName);
   }
   
-  path->setText( pathName + ">" );
+  path->setText( pathName + '>' );
   
   completion.setDir( p );
   // make sure our command is executed in the right directory

@@ -317,8 +317,8 @@ Krusader::Krusader() : KParts::MainWindow(0,
       for(int i = 0; i != leftTabs.count(); i++ )
       {
         leftTabs[ i ] = leftTabs[ i ].trimmed();
-        if( !leftTabs[ i ].startsWith( "/" ) && leftTabs[ i ].indexOf( ":/" ) < 0 )
-          leftTabs[ i ] = QDir::currentPath() + "/" + leftTabs[ i ];
+        if( !leftTabs[ i ].startsWith( '/' ) && leftTabs[ i ].indexOf( ":/" ) < 0 )
+          leftTabs[ i ] = QDir::currentPath() + '/' + leftTabs[ i ];
       }
       startProfile = QString();
    }
@@ -333,8 +333,8 @@ Krusader::Krusader() : KParts::MainWindow(0,
       for(int i = 0; i != rightTabs.count(); i++ )
       {
         rightTabs[ i ] = rightTabs[ i ].trimmed();
-        if( !rightTabs[ i ].startsWith( "/" ) && rightTabs[ i ].indexOf( ":/" ) < 0 )
-          rightTabs[ i ] = QDir::currentPath() + "/" + rightTabs[ i ];
+        if( !rightTabs[ i ].startsWith( '/' ) && rightTabs[ i ].indexOf( ":/" ) < 0 )
+          rightTabs[ i ] = QDir::currentPath() + '/' + rightTabs[ i ];
       }
       startProfile = QString();
    }
@@ -1223,7 +1223,7 @@ QString Krusader::getTempDir() {
    QString uid;
    uid.sprintf( "%d", getuid() );
    QDir( tmpDir ).mkdir( uid );
-   tmpDir = tmpDir + "/" + uid + "/";
+   tmpDir = tmpDir + '/' + uid + '/';
    chmod( tmpDir.toLocal8Bit(), S_IRUSR | S_IWUSR | S_IXUSR );
    // add a random sub dir to use
    while ( QDir().exists( tmpDir ) )
@@ -1253,7 +1253,7 @@ QString Krusader::getTempFile() {
    QString uid;
    uid.sprintf( "%d", getuid() );
    QDir( tmpDir ).mkdir( uid );
-   tmpDir = tmpDir + "/" + uid + "/";
+   tmpDir = tmpDir + '/' + uid + '/';
    chmod( tmpDir.toLocal8Bit(), S_IRUSR | S_IWUSR | S_IXUSR );
 
    while ( QDir().exists( tmpDir ) )

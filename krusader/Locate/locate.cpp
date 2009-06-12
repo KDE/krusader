@@ -301,10 +301,10 @@ void LocateDlg::slotUser3()   /* The locate button */
     *locateProc << "-i";
   *locateProc << (pattern = locateSearchFor->currentText());
   
-  if( !pattern.startsWith( "*" ) )
-    pattern = "*" + pattern;
-  if( !pattern.endsWith( "*" ) )
-    pattern = pattern + "*";
+  if( !pattern.startsWith( '*' ) )
+    pattern = '*' + pattern;
+  if( !pattern.endsWith( '*' ) )
+    pattern = pattern + '*';
   
   collectedErr = "";
   locateProc->start();
@@ -340,7 +340,7 @@ void LocateDlg::processStdout()
 {
   remaining += QString::fromLocal8Bit( locateProc->readAllStandardOutput() );
 
-  QStringList list = remaining.split("\n" );
+  QStringList list = remaining.split('\n');
   int items = list.size();
 
   for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it )

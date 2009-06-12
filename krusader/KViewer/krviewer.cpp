@@ -341,7 +341,7 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 	manager.addPart( part, this );
 	if( isValidPart( part ) )
 		manager.setActivePart( part );
-	tabBar.addTab(pvb,icon,url.fileName()+"("+msg+")");	
+	tabBar.addTab(pvb, icon, url.fileName() + '(' + msg + ')');
 	tabBar.setCurrentIndex(tabBar.indexOf(pvb));
 	tabBar.setTabToolTip(tabBar.indexOf( pvb ),msg+": " + url.prettyUrl());
 
@@ -364,7 +364,7 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 
 void KrViewer::tabURLChanged( PanelViewerBase *pvb, const KUrl & url ) {
 	QString msg = pvb->isEditor() ? i18n( "Editing" ) : i18n( "Viewing" );
-	tabBar.setTabText( tabBar.indexOf( pvb ), url.fileName()+"("+msg+")" );
+	tabBar.setTabText( tabBar.indexOf( pvb ), url.fileName() + '(' + msg + ')' );
 	tabBar.setTabToolTip(tabBar.indexOf( pvb ),msg+": " + url.prettyUrl());
 }
 

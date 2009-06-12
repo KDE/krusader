@@ -51,7 +51,7 @@ static const QStringList bin_suffixes = QStringList()
 
 QString KrServices::detectFullPathName(QString name)
 {
-  QStringList path = QString::fromLocal8Bit(qgetenv("PATH")).split(":");
+  QStringList path = QString::fromLocal8Bit(qgetenv("PATH")).split(':');
 
   for ( QStringList::Iterator it = path.begin(); it != path.end(); ++it )
   foreach( const QString &suffix, bin_suffixes )
@@ -59,10 +59,10 @@ QString KrServices::detectFullPathName(QString name)
     if( QDir(*it).exists( name + suffix ) )
     {
       QString dir = *it;
-      if( !dir.endsWith( "/" ) )
-        dir+="/";
-        
-      return dir+name;
+      if( !dir.endsWith( '/' ) )
+        dir += '/';
+
+      return dir + name;
     }
   }
 
@@ -187,7 +187,7 @@ bool KrServices::fileToStringList(QFile *file, QStringList& target, bool keepEmp
 
 QString KrServices::quote( QString name ) {
   if( !name.contains( '\'' ) )
-    return "'" + name + "'";
+    return '\'' + name + '\'';
   if( !name.contains( '"' ) && !name.contains( '$' ) )
     return "\"" + name + "\"";
   return escape( name );

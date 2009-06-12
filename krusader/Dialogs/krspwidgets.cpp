@@ -98,10 +98,10 @@ KUrl KRSpWidgets::newFTP() {
 		}
 
 		if( !uriUser.isEmpty() )           /* handling the ftp proxy username and password also */
-			username = username.isEmpty() ? uriUser : username + "@" + uriUser;
+			username = username.isEmpty() ? uriUser : username + '@' + uriUser;
 
 		if( !uriPsw.isEmpty() )           /* handling the ftp proxy username and password also */
-			password = password.isEmpty() ? uriPsw : password + "@" + uriPsw;
+			password = password.isEmpty() ? uriPsw : password + '@' + uriPsw;
 	}
 
 	QString host = uri;               /* separating the hostname and path from the uri */

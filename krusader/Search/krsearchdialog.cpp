@@ -127,7 +127,7 @@ public:
       QTreeWidgetItem * item = it.next();
 
       QString name = item->text(1);
-      name += (name.endsWith( "/" ) ? item->text(0) : "/" + item->text(0) );
+      name += (name.endsWith( '/' ) ? item->text(0) : '/' + item->text(0) );
       urls.push_back( KUrl( name ) );
     }
 
@@ -579,7 +579,7 @@ void KrSearchDialog::editCurrent()
   if( current )
   {
     QString name = current->text(1);
-    name += (name.endsWith( "/" ) ? current->text(0) : "/" + current->text(0) );
+    name += (name.endsWith( '/' ) ? current->text(0) : '/' + current->text(0) );
     KUrl url = KUrl( name );
     KrViewer::edit( url, this );
   }
@@ -591,7 +591,7 @@ void KrSearchDialog::viewCurrent()
   if( current )
   {
     QString name = current->text(1);
-    name += (name.endsWith( "/" ) ? current->text(0) : "/" + current->text(0) );
+    name += (name.endsWith( '/' ) ? current->text(0) : '/' + current->text(0) );
     KUrl url = KUrl( name );
     KrViewer::view( url, this );
   }
@@ -604,11 +604,11 @@ void KrSearchDialog::compareByContent()
     return;
 
   QString name1 = list[ 0 ]->text(1);
-  name1 += (name1.endsWith( "/" ) ? list[ 0 ]->text(0) : "/" + list[ 0 ]->text(0) );
+  name1 += (name1.endsWith( '/' ) ? list[ 0 ]->text(0) : '/' + list[ 0 ]->text(0) );
   KUrl url1 = KUrl( name1 );
 
   QString name2 = list[ 1 ]->text(1);
-  name2 += (name2.endsWith( "/" ) ? list[ 1 ]->text(0) : "/" + list[ 1 ]->text(0) );
+  name2 += (name2.endsWith( '/' ) ? list[ 1 ]->text(0) : '/' + list[ 1 ]->text(0) );
   KUrl url2 = KUrl( name2 );
 
   SLOTS->compareContent( url1, url2 );
@@ -675,7 +675,7 @@ void KrSearchDialog::feedToListBox()
     QTreeWidgetItem * item = *it;
 
     QString name = item->text(1);
-    name += (name.endsWith( "/" ) ? item->text(0) : "/" + item->text(0) );
+    name += (name.endsWith( '/' ) ? item->text(0) : '/' + item->text(0) );
     urlList.push_back( KUrl( name ) );
 
     ++it;
@@ -701,7 +701,7 @@ void KrSearchDialog::copyToClipBoard()
     if( item->isSelected() )
     {
        QString name = item->text(1);
-       name += (name.endsWith( "/" ) ? item->text(0) : "/" + item->text(0) );
+       name += (name.endsWith( '/' ) ? item->text(0) : '/' + item->text(0) );
        urls.push_back( KUrl( name ) );
     }
 

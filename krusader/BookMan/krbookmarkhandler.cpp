@@ -225,7 +225,7 @@ bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent
 			parent->children().append(folder);
 
 			QDomNode nextOne = tmp.nextSibling();
-			if (!importFromFileFolder(nextOne, folder, path + name + "/", errorMsg))
+			if (!importFromFileFolder(nextOne, folder, path + name + '/', errorMsg))
 				return false;
 		} else if (e.tagName() == "separator") {
 			parent->children().append(KrBookmark::separator());

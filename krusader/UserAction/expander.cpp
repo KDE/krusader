@@ -377,9 +377,9 @@ TagString exp_Path::expFunc( const ListPanel* panel, const QStringList& paramete
    QString result;
 
    if ( useUrl )
-      result = panel->func->files()->vfs_getOrigin().url() + "/";
+      result = panel->func->files()->vfs_getOrigin().url() + '/';
    else
-      result = panel->func->files()->vfs_getOrigin().path() + "/";
+      result = panel->func->files()->vfs_getOrigin().path() + '/';
          
    if ( parameter.count() > 0 && parameter[0].toLower() == "no" )  // don't escape spaces
       return TagString(result);
@@ -475,7 +475,7 @@ TagString exp_List::expFunc( const ListPanel* panel, const QStringList& paramete
    QString mask;
    
    if ( parameter.count() <= 3 || parameter[3].isEmpty() )
-      mask = "*";
+      mask = '*';
    else
       mask = parameter[3];
    
@@ -507,7 +507,7 @@ TagString exp_ListFile::expFunc( const ListPanel* panel, const QStringList& para
    QString mask;
    
    if ( parameter.count() <= 3 || parameter[3].isEmpty() )
-      mask = "*";
+      mask = '*';
    else
       mask = parameter[3];
    KTemporaryFile tmpFile;
@@ -817,7 +817,7 @@ TagString exp_Each::expFunc( const ListPanel* panel, const QStringList& paramete
    
    QString mask;
    if ( parameter.count() <= 2 || parameter[2].isEmpty() )
-      mask = "*";
+      mask = '*';
    else
       mask = parameter[2];
 

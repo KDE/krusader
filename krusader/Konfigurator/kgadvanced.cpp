@@ -77,7 +77,7 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent ) :
   QGroupBox *confirmGrp = createFrame( i18n( "Confirmations" ), innerWidget );
   QGridLayout *confirmGrid = createGridLayout( confirmGrp );
 
-  addLabel( confirmGrid, 0, 0, "\n"+i18n( "Request user confirmation for the following operations:" )+"\n",
+  addLabel( confirmGrid, 0, 0, i18n( "\nRequest user confirmation for the following operations:\n" ),
             confirmGrp );
 
   KONFIGURATOR_CHECKBOX_PARAM confirmations[] =

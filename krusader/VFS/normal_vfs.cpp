@@ -160,7 +160,7 @@ void normal_vfs::vfs_addFiles(KUrl::List *fileUrls,KIO::CopyJob::CopyMode mode,Q
   }
 
   KUrl dest;
-  dest.setPath(vfs_workingDir()+"/"+dir);
+  dest.setPath(vfs_workingDir() + '/' + dir);
 
   KIO::Job* job = PreservingCopyJob::createCopyJob( pmode, *fileUrls,dest,mode,false,true );
   connect(job,SIGNAL(result(KJob*)),this,SLOT(vfs_refresh(KJob *)) );
@@ -187,7 +187,7 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames, bool reallyDelete){
 	for(int i=0 ; i<fileNames->count(); ++i){
 		QString filename = (*fileNames)[i];
 		vf = vfs_search(filename);
-		url.setPath( vfs_workingDir()+"/"+filename);
+		url.setPath( vfs_workingDir() + '/' + filename);
 		filesUrls.append(url);
 	}
 	KIO::Job *job;
@@ -208,7 +208,7 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames, bool reallyDelete){
 KUrl normal_vfs::vfs_getFile(const QString& name){	
   QString url;
 	if ( vfs_workingDir() == "/" ) url = "/"+name;
-	else url = vfs_workingDir()+"/"+name;
+	else url = vfs_workingDir() + '/' + name;
 
 	return KUrl(url);
 }
@@ -237,17 +237,17 @@ void normal_vfs::vfs_rename(const QString& fileName,const QString& newName){
     watcher = 0;
   }
 
-  url.setPath( vfs_workingDir()+"/"+fileName );
+  url.setPath( vfs_workingDir() + '/' + fileName );
   fileUrls.append(url);
-  dest.setPath(vfs_workingDir()+"/"+newName);
+  dest.setPath(vfs_workingDir() + '/' + newName);
 
   KIO::Job *job = KIO::move(fileUrls,dest);
   connect(job,SIGNAL(result(KJob*)),this,SLOT(vfs_refresh(KJob*)));
 }
 
 vfile* normal_vfs::vfileFromName(const QString& name, char * rawName ){
-	QString path = vfs_workingDir()+"/"+name;
-	QByteArray fileName = rawName == 0 ? path.toLocal8Bit() : (vfs_workingDir()+"/").toLocal8Bit().append( rawName );
+	QString path = vfs_workingDir() + '/' + name;
+	QByteArray fileName = rawName == 0 ? path.toLocal8Bit() : (vfs_workingDir() + '/').toLocal8Bit().append( rawName );
 	
 	KDE_struct_stat stat_p;
 	stat_p.st_size = 0;

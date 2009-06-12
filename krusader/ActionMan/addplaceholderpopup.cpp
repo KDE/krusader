@@ -119,7 +119,7 @@ QString AddPlaceholderPopup::getPlaceholder( const QPoint& pos ) {
       // select an executable
       QString filename = KFileDialog::getOpenFileName(QString(), QString(), this);
       if (filename != QString())
-         return filename + " "; // with extra space
+         return filename + ' '; // with extra space
          //return filename; // without extra space
    } else { // user selected something from the menus
       Expander expander;
@@ -133,17 +133,17 @@ QString AddPlaceholderPopup::getPlaceholder( const QPoint& pos ) {
       delete parameterDialog;
       // indicate the panel with 'a' 'o', 'l', 'r' or '_'.
       if ( res->data().toInt() & ACTIVE_MASK )
-         panel = "a";
+         panel = 'a';
       else if ( res->data().toInt() & OTHER_MASK )
-         panel = "o";
+         panel = 'o';
       else if ( res->data().toInt() & LEFT_MASK )
-         panel = "l";
+         panel = 'l';
       else if ( res->data().toInt() & RIGHT_MASK )
-         panel = "r";
+         panel = 'r';
       else if ( res->data().toInt() & INDEPENDENT_MASK )
-         panel = "_";
-      //return "%" + panel + currentPlaceholder->expression() + parameter + "% "; // with extra space
-      return "%" + panel + currentPlaceholder->expression() + parameter + "%"; // without extra space
+         panel = '_';
+      //return '%' + panel + currentPlaceholder->expression() + parameter + "% "; // with extra space
+      return '%' + panel + currentPlaceholder->expression() + parameter + '%'; // without extra space
    }
 	return QString();
 }
@@ -223,14 +223,13 @@ QString ParameterDialog::getParameter() {
   if ( lastParameter < 0) // all parameters have default-values
      return QString();
 
-  QString parameter = "(";
+  QString parameter;
   for ( int i = 0; i <= lastParameter; ++i ) {
      if ( i > 0 )
         parameter += ", ";
      parameter += "\"" + _parameter[ i ]->text().replace( "\"", "\\\"" ) + "\"";
   }
-  parameter += ")";
-  return parameter;
+  return '(' + parameter + ')';
 }
 
 void ParameterDialog::reset() {
@@ -422,7 +421,7 @@ ParameterChoose::ParameterChoose( const exp_parameter& parameter, QWidget* paren
    
    layout->addWidget( new QLabel( i18n( parameter.description().toUtf8() ), this ) );
    layout->addWidget( _combobox = new KComboBox( this ) );
-   _combobox->addItems( parameter.preset().section(":", 1).split( ";" ) );
+   _combobox->addItems( parameter.preset().section(':', 1).split( ';' ) );
 }
 
 QString ParameterChoose::text() {
@@ -607,7 +606,7 @@ ParameterInt::ParameterInt( const exp_parameter& parameter, QWidget* parent ) : 
    
    layout->addWidget( new QLabel( i18n( parameter.description().toUtf8() ), this ) );
    layout->addWidget( _spinbox = new KIntSpinBox( this ) );
-   QStringList para = parameter.preset().section(":", 1).split( ";" );
+   QStringList para = parameter.preset().section(':', 1).split( ';' );
    
    _spinbox->setMinimum( para[0].toInt() );
    _spinbox->setMaximum( para[1].toInt() );

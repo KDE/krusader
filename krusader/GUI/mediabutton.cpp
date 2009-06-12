@@ -123,7 +123,7 @@ void MediaButton::createMediaList() {
 				}
 			}
 			
-			QString name = i18n( "Remote Share" ) + " [" + (*it)->mountPoint() + "]";
+			QString name = i18n( "Remote Share" ) + " [" + (*it)->mountPoint() + ']';
 			QStringList overlays;
 			if ( mounted )
 				overlays << "emblem-mounted";
@@ -183,17 +183,17 @@ bool MediaButton::getNameAndIcon( Solid::Device & device, QString &name, KIcon &
 		type = i18n( "Recordable CD/DVD-ROM" );
 	
 	if( printSize && !size.isEmpty() )
-		name += size + " ";
+		name += size + ' ';
 	
 	if( !label.isEmpty() )
-		name += label + " ";
+		name += label + ' ';
 	else
-		name += type + " ";
+		name += type + ' ';
 	
 	if( !fstype.isEmpty() )
-		name += "(" + fstype + ") ";
+		name += '(' + fstype + ") ";
 	if( !path.isEmpty() )
-		name += "[" + path + "] ";
+		name += '[' + path + "] ";
 	
 	name = name.trimmed();
 	
@@ -551,7 +551,7 @@ void MediaButton::slotTimeout() {
 				}
 			}
 			
-			QString name = i18n( "Remote Share" ) + " [" + (*it)->mountPoint() + "]";
+			QString name = i18n( "Remote Share" ) + " [" + (*it)->mountPoint() + ']';
 			QStringList overlays;
 			if ( mounted )
 				overlays << "emblem-mounted";

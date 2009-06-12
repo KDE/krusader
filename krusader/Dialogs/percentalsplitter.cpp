@@ -57,7 +57,7 @@ QString PercentalSplitter::toolTipString( int p ) {
       sum++;
 
     int percent = (int)(((double)p / (double)( sum )) * 10000. + 0.5);
-    return QString( "%1.%2%3" ).arg( percent / 100 ).arg( ( percent / 10 )%10 ).arg( percent % 10 ) + "%";
+    return QString( "%1.%2%3" ).arg( percent / 100 ).arg( ( percent / 10 )%10 ).arg( percent % 10 ) + '%';
   }
   return QString();
 }

@@ -150,7 +150,7 @@ bool TerminalDock::applyShortcuts( QKeyEvent * ke )
     QString text = QApplication::clipboard()->text();
     if ( ! text.isEmpty() )
     {
-      text.replace("\n", "\r");
+      text.replace('\n', '\r');
       sendInput(text);
     }
     return true;

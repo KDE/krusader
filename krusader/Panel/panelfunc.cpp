@@ -120,7 +120,7 @@ void ListPanelFunc::immediateOpenUrl( const KUrl& urlIn, bool disableLock ) {
 	if ( !url.isValid() || url.isRelative() ) {
 		if ( url.url() == "~" ) {
 			return openUrl( QDir::homePath() );
-		} else if ( !url.url().startsWith( "/" ) ) {
+		} else if ( !url.url().startsWith( '/' ) ) {
 			// possible relative URL - translate to full URL
 			url = files() ->vfs_getOrigin();
 			url.addPath( urlIn.url() );
@@ -256,7 +256,7 @@ void ListPanelFunc::openUrl( const KUrl& url, const QString& nameToMakeCurrent )
 			// the trailing slash is necessary because krusader provides Dir's without it
 			// we can't use openUrl because the delay don't allow a check if the panel has really changed!
 			KUrl dest = otherDir;
-			dest.addPath( KUrl::relativeUrl( panel->virtualPath().url() + "/", url.url() ) );
+			dest.addPath( KUrl::relativeUrl( panel->virtualPath().url() + '/', url.url() ) );
 			OTHER_PANEL->setLocked( false );
 			OTHER_FUNC->immediateOpenUrl( dest );
 			OTHER_FUNC->files() ->vfs_setQuiet( false );
@@ -358,7 +358,7 @@ void ListPanelFunc::krlink( bool sym ) {
 	}
 
 	if ( linkName.left( 1 ) != "/" )
-		linkName = files() ->vfs_workingDir() + "/" + linkName;
+		linkName = files() ->vfs_workingDir() + '/' + linkName;
 
 	if ( linkName.contains( "/" ) )
 		name = files() ->vfs_getFile( name ).path( KUrl::RemoveTrailingSlash );
@@ -538,7 +538,7 @@ void ListPanelFunc::mkdir() {
 	if ( !ok || dirName.isEmpty() )
 		return ;
 
-	QStringList dirTree = dirName.split( "/" );
+	QStringList dirTree = dirName.split( '/' );
 
 	for ( QStringList::Iterator it = dirTree.begin(); it != dirTree.end(); ++it ) {
 		if( *it == "." )
@@ -739,7 +739,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 
 		// verify non-empty dirs delete... (only for normal vfs)
 		if ( emptyDirVerify && vf->vfile_isDir() && !vf->vfile_isSymLink() ) {
-			dir.setPath( panel->virtualPath().path() + "/" + ( *name ) );
+			dir.setPath( panel->virtualPath().path() + '/' + ( *name ) );
 			if ( dir.entryList(QDir::TypeMask | QDir::System | QDir::Hidden ).count() > 2 ) {
 				switch ( KMessageBox::warningYesNoCancel( krApp,
 																		i18n( "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete All?</p></qt>", *name),
@@ -876,18 +876,18 @@ void ListPanelFunc::pack() {
 		return ; // the user canceled
 
 	// check for partial URLs	
-	if( !PackGUI::destination.contains(":/") && !PackGUI::destination.startsWith("/") ){
-		PackGUI::destination = panel->virtualPath().prettyUrl()+"/"+PackGUI::destination;
+	if( !PackGUI::destination.contains(":/") && !PackGUI::destination.startsWith('/') ){
+		PackGUI::destination = panel->virtualPath().prettyUrl() + '/' + PackGUI::destination;
 	}
 	
 	QString destDir = PackGUI::destination;
-	if( !destDir.endsWith( "/" ) )
-		destDir += "/";
+	if( !destDir.endsWith( '/' ) )
+		destDir += '/';
 	
 	bool packToOtherPanel = ( destDir == panel->otherPanel->virtualPath().prettyUrl(KUrl::AddTrailingSlash) );
 
 	// on remote URL-s first pack into a temp file then copy to its right place
-	KUrl destURL = KUrl( destDir + PackGUI::filename + "." + PackGUI::type );
+	KUrl destURL = KUrl( destDir + PackGUI::filename + '.' + PackGUI::type );
 	KTemporaryFile *tempDestFile = 0;
 	QString arcFile;
 	if ( destURL.isLocalFile() )

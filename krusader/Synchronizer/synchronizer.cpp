@@ -347,7 +347,7 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, SynchronizerD
         if( checkIfSelected && !selectedFiles.contains( file_name ) )
           continue;
           
-        if( excludedPaths.contains( rightDir.isEmpty() ? file_name : rightDir+"/"+file_name ) )
+        if( excludedPaths.contains( rightDir.isEmpty() ? file_name : rightDir + '/' + file_name ) )
           continue;
 
         if( !query->matchDirName( file_name ) )
@@ -360,8 +360,8 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, SynchronizerD
                                                       right_file->vfile_getOwner(), right_file->vfile_getGroup(),
                                                       right_file->vfile_getMode(), right_file->vfile_getACL(),
                                                       true, !query->match( right_file ) );
-          stack.append( new CompareTask( me, rightURL+file_name+"/", 
-                              rightDir.isEmpty() ? file_name : rightDir+"/"+file_name, false, ignoreHidden ) );
+          stack.append( new CompareTask( me, rightURL + file_name + '/', 
+                              rightDir.isEmpty() ? file_name : rightDir + '/' + file_name, false, ignoreHidden ) );
         }
       }
     }
@@ -529,8 +529,8 @@ SynchronizerFileItem * Synchronizer::addDuplicateItem( SynchronizerFileItem *par
                                          (TaskType)(task + uncertain), isDir, isTemp );
 
   if( uncertain == TT_UNKNOWN ) {
-    KUrl leftURL  = KUrl( leftDir.isEmpty() ? leftBaseDir + leftName : leftBaseDir + leftDir + "/" + leftName );
-    KUrl rightURL = KUrl( rightDir.isEmpty() ? rightBaseDir + rightName : rightBaseDir + rightDir + "/" + rightName );
+    KUrl leftURL  = KUrl( leftDir.isEmpty() ? leftBaseDir + leftName : leftBaseDir + leftDir + '/' + leftName );
+    KUrl rightURL = KUrl( rightDir.isEmpty() ? rightBaseDir + rightName : rightBaseDir + rightDir + '/' + rightName );
     stack.append( new CompareContentTask( this, item, leftURL, rightURL, leftSize ) );
   }
 
@@ -570,7 +570,7 @@ void Synchronizer::addSingleDirectory( SynchronizerFileItem *parent, Synchronize
     {
         file_name =  file->vfile_getName();
 
-        if( excludedPaths.contains( dirName.isEmpty() ? file_name : dirName+"/"+file_name ) )
+        if( excludedPaths.contains( dirName.isEmpty() ? file_name : dirName + '/' + file_name ) )
           continue;
 
         if( !query->matchDirName( file_name ) )
@@ -586,8 +586,8 @@ void Synchronizer::addSingleDirectory( SynchronizerFileItem *parent, Synchronize
           me = addRightOnlyItem( parent, file_name, dirName, 0, file->vfile_getTime_t(), readLink( file ),
                                  file->vfile_getOwner(), file->vfile_getGroup(), file->vfile_getMode(),
                                  file->vfile_getACL(), true, !query->match( file ) );
-        stack.append( new CompareTask( me, url+file_name+"/", 
-                            dirName.isEmpty() ? file_name : dirName+"/"+file_name, isLeft, ignoreHidden ) );
+        stack.append( new CompareTask( me, url + file_name + '/', 
+                            dirName.isEmpty() ? file_name : dirName + '/' + file_name, isLeft, ignoreHidden ) );
     }
   }
 }
@@ -680,17 +680,17 @@ void Synchronizer::operate( SynchronizerFileItem *item,
   if( item->isDir() )
   {
     QString leftDirName = ( item->leftDirectory().isEmpty() ) ?
-                        item->leftName() : item->leftDirectory() + "/" + item->leftName() ;
+                        item->leftName() : item->leftDirectory() + '/' + item->leftName() ;
     QString rightDirName = ( item->rightDirectory().isEmpty() ) ?
-                        item->rightName() : item->rightDirectory() + "/" + item->rightName() ;
+                        item->rightName() : item->rightDirectory() + '/' + item->rightName() ;
 
     QListIterator<SynchronizerFileItem *> it(resultList);
     while (it.hasNext())
     {
       SynchronizerFileItem * item = it.next();
 
-      if( item->leftDirectory() == leftDirName || item->leftDirectory().startsWith( leftDirName + "/" ) ||
-          item->rightDirectory() == rightDirName || item->rightDirectory().startsWith( rightDirName + "/" ) )
+      if( item->leftDirectory() == leftDirName || item->leftDirectory().startsWith( leftDirName + '/' ) ||
+          item->rightDirectory() == rightDirName || item->rightDirectory().startsWith( rightDirName + '/' ) )
         executeOperation( item );
     }
   }
@@ -961,10 +961,10 @@ void Synchronizer::executeTask( SynchronizerFileItem * task )
 {
   QString leftDirName = task->leftDirectory();
   if( !leftDirName.isEmpty() )
-    leftDirName += "/";
+    leftDirName += '/';
   QString rightDirName = task->rightDirectory();
   if( !rightDirName.isEmpty() )
-    rightDirName += "/";
+    rightDirName += '/';
 
   KUrl leftURL  = KUrl( leftBaseDir + leftDirName + task->leftName() );
   KUrl rightURL = KUrl( rightBaseDir + rightDirName + task->rightName() );
@@ -1058,8 +1058,8 @@ void Synchronizer::slotTaskFinished(KJob *job )
   if( disableNewTasks && item == lastTask )
     disableNewTasks = false; // the blocker task finished
 
-  QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
-  QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
+  QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
+  QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
   KUrl leftURL  = KUrl( leftBaseDir + leftDirName + item->leftName() );
   KUrl rightURL = KUrl( rightBaseDir + rightDirName + item->rightName() );
 
@@ -1397,10 +1397,11 @@ void Synchronizer::synchronizeWithKGet()
 
     if( item->isMarked() )
     {
-      KUrl downloadURL, destURL;
-      QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
-      QString rightDirName    = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
+      KUrl downloadURL;
+      KUrl destURL;
       QString destDir;
+      QString leftDirName = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + '/';
+      QString rightDirName = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + '/';
 
       if( progDlg == 0 )
       {

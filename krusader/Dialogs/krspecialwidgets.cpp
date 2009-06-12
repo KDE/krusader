@@ -114,7 +114,7 @@ void KRFSDisplay::paintEvent( QPaintEvent * ) {
       paint.setFont( QFont( "helvetica", 12, QFont::Bold ) );
       paint.drawText( leftMargin + 10, topMargin + 20, alias );
       paint.setFont( QFont( "helvetica", 12, QFont::Normal ) );
-      paint.drawText( leftMargin + 10, topMargin + 37, "(" + realName + ")" );
+      paint.drawText( leftMargin + 10, topMargin + 37, '(' + realName + ')' );
       if ( mounted ) {  // incase the filesystem is already mounted
          // second, the capacity
          paint.drawText( leftMargin + 10, topMargin + 70, i18n( "Capacity: " ) + KIO::convertSizeFromKiB( totalSpace ) );

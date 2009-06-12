@@ -47,9 +47,9 @@ KonfiguratorExtension::KonfiguratorExtension( QObject *obj, QString cfgClass, QS
 
 void KonfiguratorExtension::connectNotify( const char *signal )
 {
-  QString signalString    = QString( signal ).replace( " ", "" );
-  QString applyString     = QString( SIGNAL( applyManually(QObject *,QString, QString) ) ).replace( " ", "" );
-  QString defaultsString  = QString( SIGNAL( setDefaultsManually(QObject *) ) ).replace( " ", "" );
+  QString signalString = QString( signal ).remove( ' ' );
+  QString applyString = QString( SIGNAL( applyManually(QObject *,QString, QString) ) ).remove( ' ' );
+  QString defaultsString = QString( SIGNAL( setDefaultsManually(QObject *) ) ).remove( ' ' );
 
   if( signalString == applyString )
     applyConnected = true;

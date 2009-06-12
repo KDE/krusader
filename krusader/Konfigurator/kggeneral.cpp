@@ -227,7 +227,7 @@ void KgGeneral::slotAddExtension()
 
   if( ok )
   {
-    if( !atomExt.startsWith( "." ) || atomExt.indexOf( '.', 1 ) == -1 )
+    if( !atomExt.startsWith( '.' ) || atomExt.indexOf( '.', 1 ) == -1 )
       KMessageBox::error(krApp, i18n("Atomic extensions must start with '.'\n and must contain at least one more '.' character"), i18n("Error"));
     else
       listBox->addItem( atomExt );

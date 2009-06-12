@@ -130,7 +130,7 @@ KParts::ReadOnlyPart* PanelViewer::getPart( QString mimetype ) {
 		QVariant argsProp = ptr->property( "X-KDE-BrowserView-Args" );
 		if ( argsProp.isValid() ) {
 			QString argStr = argsProp.toString();
-			args = argStr.split( " " );
+			args = argStr.split( ' ' );
 		}
 		QVariant prop = ptr->property( "X-KDE-BrowserView-AllowAsDefault" );
 		if ( !prop.isValid() || prop.toBool() )   // defaults to true
@@ -306,7 +306,7 @@ KParts::ReadWritePart* PanelEditor::getPart( QString mimetype ) {
 		QVariant argsProp = ptr->property( "X-KDE-BrowserView-Args" );
 		if ( argsProp.isValid() ) {
 			QString argStr = argsProp.toString();
-			args = argStr.split( " " );
+			args = argStr.split( ' ' );
 		}
 		QVariant prop = ptr->property( "X-KDE-BrowserView-AllowAsDefault" );
 		if ( !prop.isValid() || prop.toBool() )  // defaults to true
