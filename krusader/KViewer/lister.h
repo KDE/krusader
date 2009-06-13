@@ -51,6 +51,8 @@ class Lister;
 class QLabel;
 class QLineEdit;
 class QPushButton;
+class QToolButton;
+class QProgressBar;
 
 class ListerTextArea : public QTextEdit
 {
@@ -170,6 +172,8 @@ protected:
   virtual bool    openFile();
   virtual void    guiActivateEvent( KParts::GUIActivateEvent * event );
   void            setColor( bool match, bool restore );
+  void            hideProgressBar();
+  void            updateProgressBar();
 
   qint64          getFileSize();
   void            search( bool forward );
@@ -179,6 +183,8 @@ protected:
   QScrollBar     *_scrollBar;
   QLabel         *_listerLabel;
   QLineEdit      *_searchLineEdit;
+  QProgressBar   *_searchProgressBar;
+  QToolButton    *_searchStopButton;
   QPushButton    *_searchNextButton;
   QPushButton    *_searchPrevButton;
   bool            _searchInProgress;
@@ -203,6 +209,7 @@ protected:
   qint64          _searchPosition;
   bool            _searchIsForward;
   qint64          _searchLastFailedPosition;
+  int             _searchProgressCounter;
 
   QColor          _originalBackground;
   QColor          _originalForeground;

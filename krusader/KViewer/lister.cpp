@@ -36,11 +36,13 @@
 #include <QtGui/QFontMetrics>
 #include <QtGui/QLineEdit>
 #include <QtGui/QPushButton>
+#include <QtGui/QToolButton>
 #include <QtCore/QFile>
 #include <QtCore/QTextCodec>
 #include <QtCore/QTextStream>
 #include <QtGui/QClipboard>
 #include <QtGui/QSpacerItem>
+#include <QtGui/QProgressBar>
 #include <QKeyEvent>
 #include <QScrollBar>
 #include <QtCore/QRect>
@@ -55,13 +57,13 @@
 #define  SEARCH_CACHE_CHARS 100000
 #define  SEARCH_MAX_ROW_LEN 4000
 
-/* TODO: Implement search progress bar */
 /* TODO: Implement implement select line event*/
 /* TODO: Implement implement select word event */
 /* TODO: Implement document change detection */
 /* TODO: Implement toolbar */
 /* TODO: Implement jump to position */
 /* TODO: Implement text codecs */
+/* TODO: Implement save selected */
 /* TODO: Implement right click */
 /* TODO: Implement print */
 /* TODO: Implement remote listener */
@@ -174,6 +176,11 @@ void ListerTextArea::fileToTextPosition( qint64 p, bool /* isfirst */, int &x, i
     while( y < _rowStarts.count() && _rowStarts[ y ] <= p )
       y++;
     y--;
+    if( y < 0 )
+    {
+      x = y = -1;
+      return;
+    }
 
     int maxBytes = 2 * _sizeX * MAX_CHAR_LENGTH;
     qint64 rowStart = _rowStarts[ y ];
@@ -902,7 +909,8 @@ void ListerBrowserExtension::copy()
   _lister->textArea()->copySelectedToClipboard();
 }
 
-Lister::Lister( QWidget *parent ) : KParts::ReadOnlyPart( parent ), _cache( 0 ), _searchInProgress( false ), _active( false ), _searchLastFailedPosition( -1 )
+Lister::Lister( QWidget *parent ) : KParts::ReadOnlyPart( parent ), _cache( 0 ), _searchInProgress( false ), _active( false ), _searchLastFailedPosition( -1 ),
+  _searchProgressCounter( 0 )
 {
   QWidget * widget = new QWidget( parent );
   widget->setFocusPolicy( Qt::StrongFocus );
@@ -924,6 +932,20 @@ Lister::Lister( QWidget *parent ) : KParts::ReadOnlyPart( parent ), _cache( 0 ),
 
   _listerLabel = new QLabel( i18n( "Lister:" ), statusWidget );
   hbox->addWidget( _listerLabel );
+  _searchProgressBar = new QProgressBar( statusWidget );
+  _searchProgressBar->setMinimum( 0 );
+  _searchProgressBar->setMaximum( 1000 );
+  _searchProgressBar->setValue( 0 );
+  _searchProgressBar->hide();
+  hbox->addWidget( _searchProgressBar );
+
+  _searchStopButton = new QToolButton( statusWidget );
+  _searchStopButton->setIcon( KIcon("process-stop") );
+  _searchStopButton->setToolTip( i18n( "Stop search" ) );
+  _searchStopButton->hide();
+  connect( _searchStopButton, SIGNAL( clicked() ), this, SLOT( searchDelete() ) );
+  hbox->addWidget( _searchStopButton );
+
   _searchLineEdit = new QLineEdit( statusWidget );
   _searchLineEdit->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
 
@@ -1088,6 +1110,9 @@ void Lister::slotUpdate()
                      .arg( cursorX, 3, 10, QChar( ' ' ) )
                      .arg( cursor ).arg( _fileSize ).arg( percent );
   _statusLabel->setText( status );
+
+  if( _searchProgressCounter )
+    _searchProgressCounter--;
 }
 
 void Lister::enableSearch( bool enable )
@@ -1131,6 +1156,8 @@ void Lister::search( bool forward )
   {
     bool isfirst;
     qint64 cursor = _textArea->getCursorPosition( isfirst );
+    if( cursor != 0 && !forward )
+      cursor--;
     if( _searchLastFailedPosition == -1 || _searchLastFailedPosition != cursor )
       _searchPosition = cursor;
   }
@@ -1143,10 +1170,15 @@ void Lister::search( bool forward )
 
   QTimer::singleShot( 0, this, SLOT( slotSearchMore() ) );
   _searchInProgress = true;
+  _searchProgressCounter = 3;
 }
 
 void Lister::slotSearchMore()
 {
+  if( !_searchInProgress )
+    return;
+
+  updateProgressBar();
   if( !_searchIsForward )
     _searchPosition--;
 
@@ -1260,6 +1292,7 @@ void Lister::searchSucceeded()
 {
   _searchInProgress = false;
   setColor( true, false );
+  hideProgressBar();
   _searchLastFailedPosition = -1;
 }
 
@@ -1267,13 +1300,16 @@ void Lister::searchFailed()
 {
   _searchInProgress = false;
   setColor( false, false );
+  hideProgressBar();
   bool isfirst;
   _searchLastFailedPosition = _textArea->getCursorPosition( isfirst );
 }
 
 void Lister::searchDelete()
 {
+  _searchInProgress = false;
   setColor( false, true );
+  hideProgressBar();
   _searchLastFailedPosition = -1;
 }
 
@@ -1319,3 +1355,38 @@ void Lister::setColor( bool match, bool restore ) {
    _searchLineEdit->setPalette( pal );
 }
 
+void Lister::hideProgressBar()
+{
+  if( !_searchProgressBar->isHidden() )
+  {
+    _searchProgressBar->hide();
+    _searchStopButton->hide();
+    _searchLineEdit->show();
+    _searchNextButton->show();
+    _searchPrevButton->show();
+    _searchOptions->show();
+    _listerLabel->setText( i18n( "Search:" ) );
+  }
+}
+
+void Lister::updateProgressBar()
+{
+  if( _searchProgressCounter )
+    return;
+
+  if( _searchProgressBar->isHidden() )
+  {
+    _searchProgressBar->show();
+    _searchStopButton->show();
+    _searchOptions->hide();
+    _searchLineEdit->hide();
+    _searchNextButton->hide();
+    _searchPrevButton->hide();
+    _listerLabel->setText( i18n( "Search position:" ) );
+  }
+
+  qint64 pcnt = (_fileSize == 0) ? 1000 : 1000 * _searchPosition / _fileSize;
+  int pctInt = (int)pcnt;
+  if( _searchProgressBar->value() != pctInt )
+    _searchProgressBar->setValue( pctInt );
+}
