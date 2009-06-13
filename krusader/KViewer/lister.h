@@ -80,6 +80,7 @@ protected:
   virtual void   resizeEvent ( QResizeEvent * event );
   virtual void   keyPressEvent( QKeyEvent * e );
   virtual void   mousePressEvent( QMouseEvent * e );
+  virtual void   mouseDoubleClickEvent ( QMouseEvent * e );
   virtual void   mouseMoveEvent( QMouseEvent * e );
   virtual void   wheelEvent ( QWheelEvent * event );
 
@@ -89,6 +90,8 @@ protected:
   void           setCursorPosition( int x, int y, int anchorX = -1, int anchorY = -1);
   void           setCursorPosition( qint64 p, bool isfirst );
   void           ensureVisibleCursor();
+  void           handleAnchorChange( int oldAnchor );
+  void           getScreenPosition( int position, int &x, int &y );
 
 protected slots:
   void           slotActionTriggered( int action );

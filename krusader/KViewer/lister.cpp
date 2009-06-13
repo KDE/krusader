@@ -57,8 +57,6 @@
 #define  SEARCH_CACHE_CHARS 100000
 #define  SEARCH_MAX_ROW_LEN 4000
 
-/* TODO: Implement implement select line event*/
-/* TODO: Implement implement select word event */
 /* TODO: Implement document change detection */
 /* TODO: Implement toolbar */
 /* TODO: Implement jump to position */
@@ -161,6 +159,7 @@ qint64 ListerTextArea::textToFilePosition( int x, int y, bool &isfirst )
   QByteArray cachedBuffer( cache, maxBytes );
 
   QTextStream stream( &cachedBuffer );
+  stream.setCodec( codec() );
   stream.read( x );
   return rowStart + stream.pos();
 }
@@ -200,7 +199,12 @@ void ListerTextArea::fileToTextPosition( qint64 p, bool /* isfirst */, int &x, i
 
 void ListerTextArea::getCursorPosition( int &x, int &y )
 {
-  x = textCursor().position();
+  getScreenPosition( textCursor().position(), x, y );
+}
+
+void ListerTextArea::getScreenPosition( int position, int &x, int &y )
+{
+  x = position;
   y = 0;
   for( int i=0; i < _rowContent.count(); i++ )
   {
@@ -639,13 +643,25 @@ void ListerTextArea::keyPressEvent( QKeyEvent * ke )
       return;
     }
   }
+  int oldAnchor = textCursor().anchor();
   QTextEdit::keyPressEvent( ke );
+  handleAnchorChange( oldAnchor );
 }
 
 void ListerTextArea::mousePressEvent( QMouseEvent * e )
 {
   _cursorAnchorPos = -1;
+  int oldAnchor = textCursor().anchor();
   QTextEdit::mousePressEvent( e );
+  handleAnchorChange( oldAnchor );
+}
+
+void ListerTextArea::mouseDoubleClickEvent( QMouseEvent * e )
+{
+  _cursorAnchorPos = -1;
+  int oldAnchor = textCursor().anchor();
+  QTextEdit::mouseDoubleClickEvent( e );
+  handleAnchorChange( oldAnchor );
 }
 
 void ListerTextArea::mouseMoveEvent( QMouseEvent * e )
@@ -894,6 +910,25 @@ void ListerTextArea::copySelectedToClipboard()
   {
     QString selection = readSection( _cursorAnchorPos, _cursorPos );
     QApplication::clipboard()->setText( selection );
+  }
+}
+
+void ListerTextArea::handleAnchorChange( int oldAnchor )
+{
+  int cursor = textCursor().position();
+  int anchor = textCursor().anchor();
+
+  if( anchor == cursor )
+  {
+    _cursorAnchorPos = -1;
+  } else {
+    if( oldAnchor != anchor )
+    {
+      int x,y;
+      bool isfirst;
+      getScreenPosition( anchor, x, y );
+      _cursorAnchorPos = textToFilePosition( x, y, isfirst );
+    }
   }
 }
 
@@ -1248,6 +1283,7 @@ void Lister::slotSearchMore()
           QByteArray cachedBuffer( cache + rowStart, maxCacheSize - rowStart );
 
           QTextStream stream( &cachedBuffer );
+          stream.setCodec( textCodec );
 
           stream.read( _searchQuery.matchIndex() );
           foundAnchor = searchPos + rowStart + stream.pos();
