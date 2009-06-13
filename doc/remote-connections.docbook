@@ -8,7 +8,7 @@
   <link linkend="list_panel">Location Toolbar</link>; these are
   actually KIO Slaves. Please note that the
   &krusader; panel does not support all
-  KIO Slave e.g. 
+  KIO Slave &eg; 
   <command>http://</command> will not work in the panel, but will
   work in the 
   <link linkend="krviewer">viewer</link>. Some examples:</para>
@@ -151,8 +151,8 @@
     <para>&krusader; is a file manager that supports
     remote connections via KIO Slaves, but if you
     are looking for even more advanced remote connections features,
-    e.g. an advanced &FTP;-client we
-    recommend you to use e.g.
+    &eg; an advanced &FTP;-client we
+    recommend you to use &eg;
     <ulink url="http://kasablanca.berlios.de/">Kasablanca</ulink> or
     <ulink url="http://kftpgrabber.sourceforge.net/"><application>Kftpgrabber</application></ulink>.</para>
   </note>
@@ -172,7 +172,7 @@
    it should work on other Linuxes as well. 
    We assume that you have <link linkend="gloss-ssh">SSH</link> installed, configured and working on 
    every machine on LAN you want to connect to/from.
-   There are plenty of very good tutorials about <link linkend="gloss-ssh">SSH</link> on the net, e.g.
+   There are plenty of very good tutorials about <link linkend="gloss-ssh">SSH</link> on the net, &eg;
    at <ulink url="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch17_:_Secure_Remote_Logins_and_File_Copying">linuxhomenetworking.com</ulink> 
    or just google for it.  We use the default <link linkend="gloss-ssh">SSH</link> port (22) for this chapter.
    Remember to change it if you use different one. All modifications, editing &etc; must be done as root. 
@@ -199,7 +199,7 @@ Now we need fish:/ protocol to be announced too, so we use an ssh.service file a
 <prompt>#</prompt> <userinput><command>cp</command> <option>/etc/avahi/services/ssh.service /etc/avahi/services/fish.service</option></userinput>
 </screen>
 
-This file is just a copy of ssh.service, Edit the <filename>fish.service</filename> file and replace 
+This file is just a copy of ssh.service. Edit the <filename>fish.service</filename> file and replace 
 "Remote Terminal on %h" with "Fish to %h" and "_ssh._tcp" with "_fish._tcp". 
 
 Here's how it looks after edit: 
@@ -251,12 +251,12 @@ Do the same on each machine on your LAN, then restart avahi-daemon:
 <prompt># /etc/init.d/</prompt> <userinput><command>avahi-daemon</command> <option>restart</option></userinput>
 </screen>
 
-Than open &krusader; and type in location-toolbar-lnk: <filename>zeroconf:/</filename> to open the  
+Then open &krusader; and type in location-toolbar-lnk: <filename>zeroconf:/</filename> to open the  
 <link linkend="gloss-zeroconf">zeroconf</link> connection.
 Enter the <guilabel>Fish Protocol</guilabel> directory. Inside you'll find the links to each machine that 
 announced <filename>fish:/</filename> on your LAN, the location-toolbar-lnk: will point to 
 <filename>zeroconf:/_fish._tcp</filename> Double clicking on any of these machines,
-them will bring up the password prompt, asking you for yor ssh key passphrase (if password was set). 
+them will bring up the password prompt, asking you for your ssh key passphrase (if password was set). 
 Enter your passphrase. Congratulations: you connected to remote machine using &krusader;!
 </para> 
 
