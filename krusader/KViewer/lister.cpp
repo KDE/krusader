@@ -49,22 +49,23 @@
 #include <QHBoxLayout>
 #include <QMenu>
 #include <KColorScheme>
+#include <KTemporaryFile>
+#include <KMessageBox>
 
 #include <klocale.h>
+#include <kio/job.h>
 #include <kglobalsettings.h>
 #include "../krusader.h"
 
 #define  SEARCH_CACHE_CHARS 100000
 #define  SEARCH_MAX_ROW_LEN 4000
 
-/* TODO: Implement document change detection */
 /* TODO: Implement toolbar */
 /* TODO: Implement jump to position */
 /* TODO: Implement text codecs */
 /* TODO: Implement save selected */
 /* TODO: Implement right click */
 /* TODO: Implement print */
-/* TODO: Implement remote listener */
 /* TODO: Implement hex viewer */
 /* TODO: Implement size checking for viewing text files */
 /* TODO: Implement isFirst at fileToTextPosition */
@@ -87,13 +88,23 @@ void ListerTextArea::reset()
   calculateText();
 }
 
+void ListerTextArea::sizeChanged()
+{
+  if( _cursorAnchorPos > _lister->fileSize() )
+    _cursorAnchorPos = -1;
+  if( _cursorPos > _lister->fileSize() )
+   _cursorPos = _lister->fileSize();
+
+  redrawTextArea(true);
+}
+
 void ListerTextArea::resizeEvent ( QResizeEvent * event )
 {
   QTextEdit::resizeEvent( event );
   redrawTextArea();
 }
 
-void ListerTextArea::calculateText()
+void ListerTextArea::calculateText( bool forcedUpdate )
 {
   QFontMetrics fm( font() );
 
@@ -120,7 +131,7 @@ void ListerTextArea::calculateText()
 
   int sizeX = windowWidth / fontWidth;
 
-  _sizeChanged = (_sizeY != sizeY) || (_sizeX != sizeX);
+  _sizeChanged = (_sizeY != sizeY) || (_sizeX != sizeX) || forcedUpdate;
   _sizeY = sizeY;
   _sizeX = sizeX;
 
@@ -370,6 +381,7 @@ QString ListerTextArea::readSection( qint64 p1, qint64 p2 )
 
 QStringList ListerTextArea::readLines( qint64 filePos, qint64 &endPos, int lines, QList<qint64> * locs )
 {
+  endPos = filePos;
   QStringList list;
   int maxBytes = _sizeX * _sizeY * MAX_CHAR_LENGTH;
   char * cache = _lister->cacheRef( filePos, maxBytes );
@@ -856,11 +868,11 @@ void ListerTextArea::slotActionTriggered ( int action )
   redrawTextArea();
 }
 
-void ListerTextArea::redrawTextArea()
+void ListerTextArea::redrawTextArea( bool forcedUpdate )
 {
   bool isfirst;
   qint64 pos = getCursorPosition( isfirst );
-  calculateText();
+  calculateText( forcedUpdate );
   setCursorPosition( pos, isfirst );
 }
 
@@ -944,8 +956,8 @@ void ListerBrowserExtension::copy()
   _lister->textArea()->copySelectedToClipboard();
 }
 
-Lister::Lister( QWidget *parent ) : KParts::ReadOnlyPart( parent ), _cache( 0 ), _searchInProgress( false ), _active( false ), _searchLastFailedPosition( -1 ),
-  _searchProgressCounter( 0 )
+Lister::Lister( QWidget *parent ) : KParts::ReadOnlyPart( parent ), _searchInProgress( false ), _cache( 0 ), _active( false ), _searchLastFailedPosition( -1 ),
+  _searchProgressCounter( 0 ), _tempFile( 0 )
 {
   QWidget * widget = new QWidget( parent );
   widget->setFocusPolicy( Qt::StrongFocus );
@@ -1040,11 +1052,24 @@ Lister::~Lister()
     delete []_cache;
     _cache = 0;
   }
+  if( _tempFile != 0 )
+  {
+    delete _tempFile;
+    _tempFile = 0;
+  }
 }
 
-bool Lister::openFile()
+bool Lister::openUrl( const KUrl &listerUrl )
 {
-  KUrl listerUrl = url();
+  setUrl( listerUrl );
+
+  if( _tempFile )
+  {
+    delete _tempFile;
+    _tempFile = 0;
+  }
+  _fileSize = 0;
+
   if( listerUrl.isLocalFile() )
   {
     _filePath = listerUrl.path();
@@ -1054,7 +1079,18 @@ bool Lister::openFile()
   }
   else
   {
-    /* TODO: implement remote lister */
+    _tempFile = new KTemporaryFile();
+    _tempFile->setSuffix( listerUrl.fileName() );
+    _tempFile->open();
+
+    _filePath = _tempFile->fileName();
+
+     KIO::Job * downloadJob = KIO::get( listerUrl, KIO::NoReload, KIO::HideProgressInfo );
+
+     connect(downloadJob, SIGNAL(data(KIO::Job *, const QByteArray &)),
+             this, SLOT(slotFileDataReceived(KIO::Job *, const QByteArray &)));
+     connect(downloadJob, SIGNAL(result(KJob*)),
+             this, SLOT(slotFileFinished(KJob *)));
   }
   if( _cache )
   {
@@ -1062,8 +1098,28 @@ bool Lister::openFile()
     _cache = 0;
   }
   _textArea->reset();
+  emit started( 0 );
+  emit setWindowCaption( listerUrl.prettyUrl() );
+  emit completed();
   return true;
 }
+
+void Lister::slotFileDataReceived(KIO::Job *, const QByteArray &array)
+{
+  if( array.size() != 0 )
+    _tempFile->write( array );
+}
+
+void Lister::slotFileFinished(KJob *job)
+{
+  _tempFile->flush();
+  if( job->error() )    /* any error occurred? */
+  {
+    KIO::TransferJob *kioJob = (KIO::TransferJob *)job;
+    KMessageBox::error(0, i18n("Error reading file %1!", kioJob->url().pathOrUrl() ) );
+  }
+}
+
 
 char * Lister::cacheRef( qint64 filePos, int &size )
 {
@@ -1134,12 +1190,17 @@ void Lister::guiActivateEvent( KParts::GUIActivateEvent * event )
 
 void Lister::slotUpdate()
 {
+  qint64 oldSize = _fileSize;
+  _fileSize = getFileSize();
+  if( oldSize != _fileSize )
+    _textArea->sizeChanged();
+
   int cursorX = 0, cursorY = 0;
   _textArea->getCursorPosition( cursorX, cursorY );
   bool isfirst = false;
   qint64 cursor = _textArea->getCursorPosition( isfirst );
 
-  int percent = (_fileSize == 0) ? 0 : (int)((100 * cursor + 50) / _fileSize);
+  int percent = (_fileSize == 0) ? 0 : (int)((201 * cursor) / _fileSize / 2);
 
   QString status = i18n( "Column: %1, Position: %2 (%3, %4%)" )
                      .arg( cursorX, 3, 10, QChar( ' ' ) )
@@ -1421,7 +1482,7 @@ void Lister::updateProgressBar()
     _listerLabel->setText( i18n( "Search position:" ) );
   }
 
-  qint64 pcnt = (_fileSize == 0) ? 1000 : 1000 * _searchPosition / _fileSize;
+  qint64 pcnt = (_fileSize == 0) ? 1000 : (2001 * _searchPosition ) / _fileSize / 2;
   int pctInt = (int)pcnt;
   if( _searchProgressBar->value() != pctInt )
     _searchProgressBar->setValue( pctInt );

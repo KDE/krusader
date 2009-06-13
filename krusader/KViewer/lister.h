@@ -53,6 +53,7 @@ class QLineEdit;
 class QPushButton;
 class QToolButton;
 class QProgressBar;
+class KTemporaryFile;
 
 class ListerTextArea : public QTextEdit
 {
@@ -61,8 +62,8 @@ Q_OBJECT
 public:
   ListerTextArea( Lister *lister, QWidget *parent );
   void           reset();
-  void           calculateText();
-  void           redrawTextArea();
+  void           calculateText( bool forcedUpdate = false );
+  void           redrawTextArea( bool forcedUpdate = false );
 
   qint64         textToFilePosition( int x, int y, bool &isfirst );
   void           fileToTextPosition( qint64 p, bool isfirst, int &x, int &y );
@@ -75,6 +76,7 @@ public:
   qint64         getCursorPosition( bool &isfirst );
 
   void           setAnchorAndCursor( qint64 anchor, qint64 cursor );
+  void           sizeChanged();
 
 protected:
   virtual void   resizeEvent ( QResizeEvent * event );
@@ -171,8 +173,13 @@ protected slots:
   void            searchFailed();
   void            searchDelete();
 
+  void            slotFileDataReceived(KIO::Job *, const QByteArray &);
+  void            slotFileFinished(KJob *);
+
 protected:
-  virtual bool    openFile();
+  virtual bool    openUrl( const KUrl &url );
+  virtual bool    closeUrl() { return true; }
+  virtual bool    openFile() {return true;}
   virtual void    guiActivateEvent( KParts::GUIActivateEvent * event );
   void            setColor( bool match, bool restore );
   void            hideProgressBar();
@@ -216,6 +223,8 @@ protected:
 
   QColor          _originalBackground;
   QColor          _originalForeground;
+
+  KTemporaryFile *_tempFile;
 };
 
 #endif // __LISTER_H__
