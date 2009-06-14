@@ -75,6 +75,9 @@ public:
 
   void           getCursorPosition( int &x, int &y );
   qint64         getCursorPosition( bool &isfirst );
+  void           setCursorPosition( qint64 p, bool isfirst );
+  void           ensureVisibleCursor();
+  void           deleteAnchor() { _cursorAnchorPos = -1; }
 
   void           setAnchorAndCursor( qint64 anchor, qint64 cursor );
   void           sizeChanged();
@@ -91,8 +94,6 @@ protected:
   QString        readSection( qint64 p1, qint64 p2 );
   void           setUpScrollBar();
   void           setCursorPosition( int x, int y, int anchorX = -1, int anchorY = -1);
-  void           setCursorPosition( qint64 p, bool isfirst );
-  void           ensureVisibleCursor();
   void           handleAnchorChange( int oldAnchor );
   void           getScreenPosition( int position, int &x, int &y );
 
@@ -167,6 +168,7 @@ public slots:
   void            searchAction() { enableSearch( true ); }
   void            searchNext();
   void            searchPrev();
+  void            jumpToPosition();
 
 protected slots:
   void            slotUpdate();
@@ -212,6 +214,7 @@ protected:
   KAction        *_actionSearch;
   KAction        *_actionSearchNext;
   KAction        *_actionSearchPrev;
+  KAction        *_actionJumpToPosition;
 
   QString         _filePath;
   qint64          _fileSize;

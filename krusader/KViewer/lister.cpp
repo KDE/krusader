@@ -52,6 +52,7 @@
 #include <KTemporaryFile>
 #include <KMessageBox>
 #include <KActionCollection>
+#include <KInputDialog>
 
 #include <klocale.h>
 #include <kio/job.h>
@@ -61,10 +62,9 @@
 #define  SEARCH_CACHE_CHARS 100000
 #define  SEARCH_MAX_ROW_LEN 4000
 
-/* TODO: Implement jump to position */
 /* TODO: Implement text codecs */
 /* TODO: Implement save selected */
-/* TODO: Implement right click */
+/* TODO: Implement save as */
 /* TODO: Implement print */
 /* TODO: Implement hex viewer */
 /* TODO: Implement size checking for viewing text files */
@@ -617,6 +617,10 @@ void ListerTextArea::keyPressEvent( QKeyEvent * ke )
   {
     switch( ke->key() )
     {
+    case Qt::Key_G:
+      ke->accept();
+      _lister->jumpToPosition();
+      return;
     case Qt::Key_F:
       ke->accept();
       _lister->enableSearch( true );
@@ -976,6 +980,11 @@ Lister::Lister( QWidget *parent ) : KParts::ReadOnlyPart( parent ), _searchInPro
   connect(_actionSearchPrev, SIGNAL(triggered(bool)), SLOT(searchPrev()));
   actionCollection()->addAction( "search_prev", _actionSearchPrev );
 
+  _actionJumpToPosition = new KAction(KIcon("go-jump"), i18n("Jump to position"), this);
+  _actionJumpToPosition->setShortcut( Qt::CTRL + Qt::Key_G );
+  connect(_actionJumpToPosition, SIGNAL(triggered(bool)), SLOT(jumpToPosition()));
+  actionCollection()->addAction( "jump_to_position", _actionJumpToPosition );
+
   QWidget * widget = new QWidget( parent );
   widget->setFocusPolicy( Qt::StrongFocus );
   QGridLayout *grid = new QGridLayout( widget );
@@ -1293,6 +1302,7 @@ void Lister::enableActions( bool state )
   _actionSearch->setEnabled( state );
   _actionSearchNext->setEnabled( state );
   _actionSearchPrev->setEnabled( state );
+  _actionJumpToPosition->setEnabled( state );
 }
 
 void Lister::slotSearchMore()
@@ -1518,4 +1528,47 @@ void Lister::updateProgressBar()
   int pctInt = (int)pcnt;
   if( _searchProgressBar->value() != pctInt )
     _searchProgressBar->setValue( pctInt );
+}
+
+void Lister::jumpToPosition()
+{
+  bool ok=true;
+  QString res = KInputDialog::getText( i18n("Jump to position"), i18n("Text position:"), "0",
+                                       &ok, _textArea );
+  if( !ok )
+    return;
+
+  res = res.trimmed();
+  qint64 pos = -1;
+  if( res.startsWith( "0x" ) )
+  {
+    res = res.mid( 2 );
+    bool ok;
+    qulonglong upos = res.toULongLong( &ok, 16 );
+    if( !ok )
+    {
+      KMessageBox::error( _textArea, i18n("Invalid number!"), i18n("Jump to position") );
+      return;
+    }
+    pos = (qint64)upos;
+  } else {
+    bool ok;
+    qulonglong upos = res.toULongLong( &ok );
+    if( !ok )
+    {
+      KMessageBox::error( _textArea, i18n("Invalid number!"), i18n("Jump to position") );
+      return;
+    }
+    pos = (qint64)upos;
+  }
+
+  if( pos < 0 || pos > _fileSize )
+  {
+      KMessageBox::error( _textArea, i18n("Number out of range!"), i18n("Jump to position") );
+      return;
+  }
+
+  _textArea->deleteAnchor();
+  _textArea->setCursorPosition( pos, true );
+  _textArea->ensureVisibleCursor();
 }
