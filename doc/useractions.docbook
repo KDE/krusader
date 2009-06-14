@@ -44,10 +44,7 @@
   <filename>
   ~/.kde/share/apps/krusader/useraction-examples.xml</filename>.
   UserActions can appear nearly everywhere where "normal" KActions
-  can be placed. The actions integrate seamlessly into
-  &kde; action system, which means that the standard
-  Edit Toolbar and Edit Shortcut dialogs will show UserActions,
-  too. They can even be placed in the menu bar, but for that the 
+  can be placed. The actions can even be placed in the menu bar, but for that the 
   <filename>krusaderui.rc</filename> file must be edited. A few
   examples:</para> 
   <itemizedlist>
@@ -567,8 +564,8 @@
           scripts/extensions. If all the needed files (normally 
           <filename>.js</filename> and maybe 
           <filename>.ui</filename>) are in one of these dirs it's
-          sufficient to give the file name only as 1.
-          parameter.</para>
+          sufficient to give the file name only as &lt;first parameter&gt;.
+          </para>
         </listitem>
         <listitem>
           <para>Parameter (optional): a list
@@ -623,7 +620,7 @@
     </listitem>
   </itemizedlist>
   <para>A GUI-based helper for placeholder adding is
-  provided. Spaces In Path, Current and List are by default,
+  provided. Spaces in Path, Current and List are by default,
   automatically escaped. There is one more important thing to know:
   All placeholders that interact with &krusader;
   internal functions are called at expand time (meaning directly
@@ -634,7 +631,7 @@
     <emphasis role="bold">Advanced Properties</emphasis>
   </para>
   <para>Here you can configure where your command should be visible
-  (for the right click menu) In addition, it is possible to change
+  (for the right click menu). In addition, it is possible to change
   the command executed and confirm it separately. You can also set
   a user under which the command should be executed.</para> 
   <itemizedlist>

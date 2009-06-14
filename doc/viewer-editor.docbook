@@ -117,7 +117,7 @@
     <note>
       <para>The embedded viewer is not written by us, it is
       supplied via &kde; (libs) and
-      KIO Slaves We cannot and do not want to
+      KIO Slaves. We cannot and do not want to
       change it, usings these libraries reduces the amount of
       written code. So we do not have to reinvent the wheel
       ;-)</para>
@@ -139,7 +139,7 @@
       <para>When you use &krusader;'s internal editor
       for the first time, it is recommended to look at each section
       of the 
-      <link linkend="kredit_settings_menu">Settings</link>menu, and
+      <link linkend="kredit_settings_menu">Settings</link> menu, and
       configure it the way you want it.</para>
     </tip>
   </sect2>
@@ -501,8 +501,7 @@
         <term>
           <menuchoice>
             <guimenu>View</guimenu>
-            <guimenuitem>Shows Static Word Wrap
-            marker</guimenuitem>
+            <guimenuitem>Show Static Word Wrap Markers</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
@@ -543,11 +542,13 @@
         <term>
           <menuchoice>
             <guimenu>View</guimenu>
-            <guimenuitem>Show Scrollbar Marks.</guimenuitem>
+            <guimenuitem>Show Scrollbar Marks</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
-          <para></para>
+          <para>If this option is checked the current view will 
+	  show marks on the vertical scrollbar. These marks will for 
+	  instance show bookmarks.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -557,7 +558,7 @@
               <keycap>F9</keycap>
             </shortcut>
             <guimenu>View</guimenu>
-            <guimenuitem>Hide Folding Markers</guimenuitem>
+            <guimenuitem>Show Folding Markers</guimenuitem>
           </menuchoice>
         </term>
         <listitem>
@@ -919,7 +920,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Editing configuration: Word Wrap config.,
+          <para>Editing configuration: Word Wrap config,
           Whitespace config, Auto brackets, Smart home, Wrap
           cursor, Maximum undo steps.</para>
         </listitem>
@@ -958,9 +959,9 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>View defaults: Dynamic word wrap, show Line
-          numbers, show Icon border, show Folder markers if
-          available, sort Bookmarks menu method.</para>
+          <para>View defaults: Dynamic word wrap, show line
+          numbers, show icon border, show fold markers if
+          available, sort bookmarks menu method.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
