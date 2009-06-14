@@ -54,6 +54,7 @@ class QPushButton;
 class QToolButton;
 class QProgressBar;
 class KTemporaryFile;
+class KAction;
 
 class ListerTextArea : public QTextEdit
 {
@@ -160,8 +161,10 @@ public:
   char *          cacheRef( qint64 filePos, int &size );
 
   void            enableSearch( bool );
+  void            enableActions( bool );
 
 public slots:
+  void            searchAction() { enableSearch( true ); }
   void            searchNext();
   void            searchPrev();
 
@@ -205,6 +208,10 @@ protected:
   QAction        *_caseSensitiveAction;
   QAction        *_matchWholeWordsOnlyAction;
   QAction        *_regExpAction;
+
+  KAction        *_actionSearch;
+  KAction        *_actionSearchNext;
+  KAction        *_actionSearchPrev;
 
   QString         _filePath;
   qint64          _fileSize;

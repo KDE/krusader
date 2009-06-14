@@ -51,6 +51,7 @@
 #include <KColorScheme>
 #include <KTemporaryFile>
 #include <KMessageBox>
+#include <KActionCollection>
 
 #include <klocale.h>
 #include <kio/job.h>
@@ -60,7 +61,6 @@
 #define  SEARCH_CACHE_CHARS 100000
 #define  SEARCH_MAX_ROW_LEN 4000
 
-/* TODO: Implement toolbar */
 /* TODO: Implement jump to position */
 /* TODO: Implement text codecs */
 /* TODO: Implement save selected */
@@ -959,6 +959,23 @@ void ListerBrowserExtension::copy()
 Lister::Lister( QWidget *parent ) : KParts::ReadOnlyPart( parent ), _searchInProgress( false ), _cache( 0 ), _active( false ), _searchLastFailedPosition( -1 ),
   _searchProgressCounter( 0 ), _tempFile( 0 )
 {
+  setXMLFile( "krusaderlisterui.rc" );
+
+  _actionSearch = new KAction(KIcon("system-search"), i18n("Search"), this);
+  _actionSearch->setShortcut( Qt::CTRL + Qt::Key_F );
+  connect(_actionSearch, SIGNAL(triggered(bool)), SLOT(searchAction()));
+  actionCollection()->addAction( "search", _actionSearch );
+
+  _actionSearchNext = new KAction(KIcon("go-down"), i18n("Search next"), this);
+  _actionSearchNext->setShortcut( Qt::Key_F3 );
+  connect(_actionSearchNext, SIGNAL(triggered(bool)), SLOT(searchNext()));
+  actionCollection()->addAction( "search_next", _actionSearchNext );
+
+  _actionSearchPrev = new KAction(KIcon("go-up"), i18n("Search previous"), this);
+  _actionSearchPrev->setShortcut( Qt::SHIFT + Qt::Key_F3 );
+  connect(_actionSearchPrev, SIGNAL(triggered(bool)), SLOT(searchPrev()));
+  actionCollection()->addAction( "search_prev", _actionSearchPrev );
+
   QWidget * widget = new QWidget( parent );
   widget->setFocusPolicy( Qt::StrongFocus );
   QGridLayout *grid = new QGridLayout( widget );
@@ -1267,6 +1284,15 @@ void Lister::search( bool forward )
   QTimer::singleShot( 0, this, SLOT( slotSearchMore() ) );
   _searchInProgress = true;
   _searchProgressCounter = 3;
+
+  enableActions( false );
+}
+
+void Lister::enableActions( bool state )
+{
+  _actionSearch->setEnabled( state );
+  _actionSearchNext->setEnabled( state );
+  _actionSearchPrev->setEnabled( state );
 }
 
 void Lister::slotSearchMore()
@@ -1391,6 +1417,8 @@ void Lister::searchSucceeded()
   setColor( true, false );
   hideProgressBar();
   _searchLastFailedPosition = -1;
+
+  enableActions( true );
 }
 
 void Lister::searchFailed()
@@ -1400,6 +1428,8 @@ void Lister::searchFailed()
   hideProgressBar();
   bool isfirst;
   _searchLastFailedPosition = _textArea->getCursorPosition( isfirst );
+
+  enableActions( true );
 }
 
 void Lister::searchDelete()
@@ -1408,6 +1438,8 @@ void Lister::searchDelete()
   setColor( false, true );
   hideProgressBar();
   _searchLastFailedPosition = -1;
+
+  enableActions( true );
 }
 
 void Lister::setColor( bool match, bool restore ) {
