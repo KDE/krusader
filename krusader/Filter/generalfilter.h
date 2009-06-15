@@ -49,66 +49,70 @@
 
 class GeneralFilter : public QWidget, public FilterBase
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent = 0 );
-  ~GeneralFilter();
+    GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent = 0);
+    ~GeneralFilter();
 
-  virtual bool          fillQuery( KRQuery *query );
-  virtual void          queryAccepted();
-  virtual void          loadFromProfile( QString name );
-  virtual void          saveToProfile( QString name );
-  virtual QString       name() { return "GeneralFilter";}
-  virtual FilterTabs *  filterTabs() { return fltTabs; }
+    virtual bool          fillQuery(KRQuery *query);
+    virtual void          queryAccepted();
+    virtual void          loadFromProfile(QString name);
+    virtual void          saveToProfile(QString name);
+    virtual QString       name() {
+        return "GeneralFilter";
+    }
+    virtual FilterTabs *  filterTabs() {
+        return fltTabs;
+    }
 
 public slots:
-  void    slotAddBtnClicked();
-  void    slotLoadBtnClicked();
-  void    slotOverwriteBtnClicked();
-  void    slotRemoveBtnClicked();
-  void    slotDisable();
-  void    slotRegExpTriggered( QAction * act );
-  void    slotProfileDoubleClicked( QListWidgetItem * );
-  void    refreshProfileListBox();
-  
+    void    slotAddBtnClicked();
+    void    slotLoadBtnClicked();
+    void    slotOverwriteBtnClicked();
+    void    slotRemoveBtnClicked();
+    void    slotDisable();
+    void    slotRegExpTriggered(QAction * act);
+    void    slotProfileDoubleClicked(QListWidgetItem *);
+    void    refreshProfileListBox();
+
 public:
-  QComboBox* contentEncoding;
-  QCheckBox* searchForCase;
-  QCheckBox* remoteContentSearch;
-  QCheckBox* containsTextCase;
-  QCheckBox* containsWholeWord;
-  QCheckBox* searchInDirs;
-  QCheckBox* searchInArchives;
-  QCheckBox* followLinks;
+    QComboBox* contentEncoding;
+    QCheckBox* searchForCase;
+    QCheckBox* remoteContentSearch;
+    QCheckBox* containsTextCase;
+    QCheckBox* containsWholeWord;
+    QCheckBox* searchInDirs;
+    QCheckBox* searchInArchives;
+    QCheckBox* followLinks;
 
-  KURLListRequester *searchIn;
-  KURLListRequester *dontSearchIn;
-  QHBoxLayout *middleLayout;
+    KURLListRequester *searchIn;
+    KURLListRequester *dontSearchIn;
+    QHBoxLayout *middleLayout;
 
-  KHistoryComboBox* searchFor;
-  KHistoryComboBox* containsText;
-  QToolButton*      containsRegExp;
+    KHistoryComboBox* searchFor;
+    KHistoryComboBox* containsText;
+    QToolButton*      containsRegExp;
 
-  KComboBox* ofType;
+    KComboBox* ofType;
 
-  QLabel *encLabel;
-  QLabel *containsLabel;
+    QLabel *encLabel;
+    QLabel *containsLabel;
 
-  KShellCompletion completion;
+    KShellCompletion completion;
 
-  KrListWidget *profileListBox;
-  
-  QPushButton *profileAddBtn;
-  QPushButton *profileLoadBtn;
-  QPushButton *profileOverwriteBtn;
-  QPushButton *profileRemoveBtn;
-  
-  ProfileManager *profileManager;
+    KrListWidget *profileListBox;
 
-  int properties;
+    QPushButton *profileAddBtn;
+    QPushButton *profileLoadBtn;
+    QPushButton *profileOverwriteBtn;
+    QPushButton *profileRemoveBtn;
 
-  FilterTabs *fltTabs;
+    ProfileManager *profileManager;
+
+    int properties;
+
+    FilterTabs *fltTabs;
 
 };
 

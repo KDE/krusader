@@ -12,38 +12,40 @@
  */
 class QueueManager : public QObject
 {
-	Q_OBJECT
-	
-	static const QString defaultName;
+    Q_OBJECT
+
+    static const QString defaultName;
 public:
-	QueueManager();
-	~QueueManager();
-	
-	static Queue* queue(const QString& queueName=defaultName);
-	static QList<QString> queues();
-	
-	static Queue* currentQueue();
-	static void setCurrentQueue( Queue * queue );
-	static Queue* createQueue(const QString& queueName);
-	static void   removeQueue( Queue * queue );
-	
-	static QueueManager * instance() { return _self; }
+    QueueManager();
+    ~QueueManager();
+
+    static Queue* queue(const QString& queueName = defaultName);
+    static QList<QString> queues();
+
+    static Queue* currentQueue();
+    static void setCurrentQueue(Queue * queue);
+    static Queue* createQueue(const QString& queueName);
+    static void   removeQueue(Queue * queue);
+
+    static QueueManager * instance() {
+        return _self;
+    }
 
 protected slots:
-	void slotShowQueueDialog();
-	void slotQueueEmptied();
-	
+    void slotShowQueueDialog();
+    void slotQueueEmptied();
+
 signals:
-	void queueInserted( Queue * );
-	void queueDeleted( Queue * );
-	void currentChanged( Queue * );
-	void percent( Queue *, int );
+    void queueInserted(Queue *);
+    void queueDeleted(Queue *);
+    void currentChanged(Queue *);
+    void percent(Queue *, int);
 
 protected:
-	static QMap<QString, Queue*> _queues;
-	static Queue *               _current;
-	static QueueManager *        _self;
-	static int                   _nextId;
+    static QMap<QString, Queue*> _queues;
+    static Queue *               _current;
+    static QueueManager *        _self;
+    static int                   _nextId;
 };
 
 #endif // QUEUE_MGR_H

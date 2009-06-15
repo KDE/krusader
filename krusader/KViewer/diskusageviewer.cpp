@@ -38,97 +38,91 @@
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
 
-DiskUsageViewer::DiskUsageViewer( QWidget *parent ) 
-  : QWidget( parent ), diskUsage( 0 ), statusLabel( 0 )
+DiskUsageViewer::DiskUsageViewer(QWidget *parent)
+        : QWidget(parent), diskUsage(0), statusLabel(0)
 {
-  layout = new QGridLayout( this );
-  layout->setContentsMargins( 0, 0, 0, 0 );
+    layout = new QGridLayout(this);
+    layout->setContentsMargins(0, 0, 0, 0);
 }
 
 DiskUsageViewer::~ DiskUsageViewer()
 {
-  if( diskUsage )
-  {
-    KConfigGroup group( krConfig, "DiskUsageViewer" );  
-    group.writeEntry( "View", diskUsage->getActiveView() );
-    delete diskUsage;
-  }
+    if (diskUsage) {
+        KConfigGroup group(krConfig, "DiskUsageViewer");
+        group.writeEntry("View", diskUsage->getActiveView());
+        delete diskUsage;
+    }
 }
 
-void DiskUsageViewer::openUrl( KUrl url )
+void DiskUsageViewer::openUrl(KUrl url)
 {
-  if( diskUsage == 0 )
-  {
-    diskUsage = new DiskUsage( "DiskUsageViewer", this );
-    
-    connect( diskUsage, SIGNAL( enteringDirectory( Directory * ) ), this, SLOT( slotUpdateStatus() ) );
-    connect( diskUsage, SIGNAL( status( QString ) ), this, SLOT( slotUpdateStatus( QString ) ) );
-    connect( diskUsage, SIGNAL( newSearch() ), this, SLOT( slotNewSearch() ) );
-    layout->addWidget( diskUsage, 0, 0 );
-    this->show();
-    diskUsage->show();
-    
-    KConfigGroup group( krConfig, "DiskUsageViewer" );  
-    int view = group.readEntry( "View",  VIEW_FILELIGHT );
-    if( view < VIEW_LINES || view > VIEW_FILELIGHT )
-      view = VIEW_FILELIGHT;    
-    diskUsage->setView( view );   
-  }
+    if (diskUsage == 0) {
+        diskUsage = new DiskUsage("DiskUsageViewer", this);
 
-  url.setPath( url.path( KUrl::RemoveTrailingSlash ) );
-  
-  KUrl baseURL = diskUsage->getBaseURL();
-  if( !diskUsage->isLoading() && !baseURL.isEmpty() )
-  {
-    if( url.protocol() == baseURL.protocol() && ( !url.hasHost() || url.host() == baseURL.host() ) )
-    {
-      QString baseStr = baseURL.path( KUrl::AddTrailingSlash ), urlStr = url.path( KUrl::AddTrailingSlash );
-    
-      if( urlStr.startsWith( baseStr ) )
-      {
-        QString relURL = urlStr.mid( baseStr.length() );
-        if( relURL.endsWith( '/' ) )
-          relURL.truncate( relURL.length() -1 );
-      
-        Directory *dir = diskUsage->getDirectory( relURL );      
-        if( dir )
-        {
-          diskUsage->changeDirectory( dir );
-          return;
-        }
-      }
+        connect(diskUsage, SIGNAL(enteringDirectory(Directory *)), this, SLOT(slotUpdateStatus()));
+        connect(diskUsage, SIGNAL(status(QString)), this, SLOT(slotUpdateStatus(QString)));
+        connect(diskUsage, SIGNAL(newSearch()), this, SLOT(slotNewSearch()));
+        layout->addWidget(diskUsage, 0, 0);
+        this->show();
+        diskUsage->show();
+
+        KConfigGroup group(krConfig, "DiskUsageViewer");
+        int view = group.readEntry("View",  VIEW_FILELIGHT);
+        if (view < VIEW_LINES || view > VIEW_FILELIGHT)
+            view = VIEW_FILELIGHT;
+        diskUsage->setView(view);
     }
-  }  
-  diskUsage->load( url );
+
+    url.setPath(url.path(KUrl::RemoveTrailingSlash));
+
+    KUrl baseURL = diskUsage->getBaseURL();
+    if (!diskUsage->isLoading() && !baseURL.isEmpty()) {
+        if (url.protocol() == baseURL.protocol() && (!url.hasHost() || url.host() == baseURL.host())) {
+            QString baseStr = baseURL.path(KUrl::AddTrailingSlash), urlStr = url.path(KUrl::AddTrailingSlash);
+
+            if (urlStr.startsWith(baseStr)) {
+                QString relURL = urlStr.mid(baseStr.length());
+                if (relURL.endsWith('/'))
+                    relURL.truncate(relURL.length() - 1);
+
+                Directory *dir = diskUsage->getDirectory(relURL);
+                if (dir) {
+                    diskUsage->changeDirectory(dir);
+                    return;
+                }
+            }
+        }
+    }
+    diskUsage->load(url);
 }
 
 void DiskUsageViewer::closeUrl()
 {
-  if( diskUsage )
-    diskUsage->close();
+    if (diskUsage)
+        diskUsage->close();
 }
 
-void DiskUsageViewer::setStatusLabel( QLabel *statLabel, QString pref )
+void DiskUsageViewer::setStatusLabel(QLabel *statLabel, QString pref)
 {
-  statusLabel = statLabel;
-  prefix = pref;
+    statusLabel = statLabel;
+    prefix = pref;
 }
 
-void DiskUsageViewer::slotUpdateStatus( QString status )
+void DiskUsageViewer::slotUpdateStatus(QString status)
 {
-  if( statusLabel ) {
-    if( status.isEmpty() ) {
-      Directory * dir = diskUsage->getCurrentDir();
-      if( dir )
-        status = prefix + dir->name() + "  [" + KIO::convertSize( dir->size() ) + ']';
+    if (statusLabel) {
+        if (status.isEmpty()) {
+            Directory * dir = diskUsage->getCurrentDir();
+            if (dir)
+                status = prefix + dir->name() + "  [" + KIO::convertSize(dir->size()) + ']';
+        }
+        statusLabel->setText(status);
     }
-    statusLabel->setText( status );
-  }
 }
 
 void DiskUsageViewer::slotNewSearch()
 {
-  diskUsage->load( ACTIVE_PANEL->func->files()->vfs_getOrigin() );
+    diskUsage->load(ACTIVE_PANEL->func->files()->vfs_getOrigin());
 }
 
 #include "diskusageviewer.moc"

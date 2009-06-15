@@ -47,39 +47,40 @@
 class KRQuery;
 class ftp_vfs;
 
-class KRSearchMod : public QObject  {
-  Q_OBJECT
-public: 
-  KRSearchMod(const KRQuery *q);
-  ~KRSearchMod();
+class KRSearchMod : public QObject
+{
+    Q_OBJECT
+public:
+    KRSearchMod(const KRQuery *q);
+    ~KRSearchMod();
 
-  void scanURL( KUrl url );
-  void start();
-  void stop();
-  
+    void scanURL(KUrl url);
+    void start();
+    void stop();
+
 private:
-  void scanLocalDir( KUrl url );
-  void scanRemoteDir( KUrl url );
+    void scanLocalDir(KUrl url);
+    void scanRemoteDir(KUrl url);
 
 signals:
-  void finished();
-  void searching(const QString&);
-  void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm, QString textFound);
+    void finished();
+    void searching(const QString&);
+    void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm, QString textFound);
 
 private slots:
-  void slotProcessEvents( bool & stopped );
+    void slotProcessEvents(bool & stopped);
 
 private:
-  bool stopSearch;
-  QStack<KUrl> scannedUrls;
-  QStack<KUrl> unScannedUrls;
-  KRQuery *query;
-  QStringList results;
-  
-  ftp_vfs *remote_vfs;
-  virt_vfs *virtual_vfs;
-  
-  QTime timer;
+    bool stopSearch;
+    QStack<KUrl> scannedUrls;
+    QStack<KUrl> unScannedUrls;
+    KRQuery *query;
+    QStringList results;
+
+    ftp_vfs *remote_vfs;
+    virt_vfs *virtual_vfs;
+
+    QTime timer;
 };
 
 #endif

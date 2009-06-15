@@ -39,43 +39,49 @@
 
 class DUFilelight : public RadialMap::Widget
 {
-  Q_OBJECT
-  
+    Q_OBJECT
+
 public:
-  DUFilelight( DiskUsage *usage );
+    DUFilelight(DiskUsage *usage);
 
-  File * getCurrentFile();
-      
+    File * getCurrentFile();
+
 public slots:
-  void slotDirChanged( Directory * );
-  void clear();
-  void slotChanged( File * );
-  void slotRefresh();
+    void slotDirChanged(Directory *);
+    void clear();
+    void slotChanged(File *);
+    void slotRefresh();
 
-protected slots:  
-  void slotAboutToShow( int );
-    
-  void schemeRainbow()        { setScheme( Filelight::Rainbow ); }
-  void schemeHighContrast()   { setScheme( Filelight::HighContrast ); }
-  void schemeKDE()            { setScheme( Filelight::KDE ); }
-  
-  void increaseContrast();
-  void decreaseContrast();
-  void changeAntiAlias();
-  void showSmallFiles();
-  void varyLabelFontSizes();
-  void minFontSize();
-  
+protected slots:
+    void slotAboutToShow(int);
+
+    void schemeRainbow()        {
+        setScheme(Filelight::Rainbow);
+    }
+    void schemeHighContrast()   {
+        setScheme(Filelight::HighContrast);
+    }
+    void schemeKDE()            {
+        setScheme(Filelight::KDE);
+    }
+
+    void increaseContrast();
+    void decreaseContrast();
+    void changeAntiAlias();
+    void showSmallFiles();
+    void varyLabelFontSizes();
+    void minFontSize();
+
 protected:
-  virtual void mousePressEvent( QMouseEvent* );
-  
-  void setScheme( Filelight::MapScheme );
+    virtual void mousePressEvent(QMouseEvent*);
 
-  DiskUsage *diskUsage;  
-  Directory *currentDir;
-  
+    void setScheme(Filelight::MapScheme);
+
+    DiskUsage *diskUsage;
+    Directory *currentDir;
+
 private:
-  bool refreshNeeded;
+    bool refreshNeeded;
 };
 
 #endif /* __DU_FILELIGHT_H__ */

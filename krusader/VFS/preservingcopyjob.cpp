@@ -38,49 +38,44 @@
 #include <kuiserverjobtracker.h>
 
 
-KIO::Job * PreservingCopyJob::createCopyJob( PreserveMode pmode, const KUrl::List& src, const KUrl& dest, KIO::CopyJob::CopyMode mode, bool asMethod, bool showProgressInfo )
+KIO::Job * PreservingCopyJob::createCopyJob(PreserveMode pmode, const KUrl::List& src, const KUrl& dest, KIO::CopyJob::CopyMode mode, bool asMethod, bool showProgressInfo)
 {
-  switch( pmode )
-  {
-  case PM_PRESERVE_ATTR: {
-    KIO::Job *res = new KIO::PreserveAttrCopyJob( src, dest, mode, asMethod );
-    if( showProgressInfo )
-    {
-      res->setUiDelegate(new KIO::JobUiDelegate() );
-      KIO::getJobTracker()->registerJob(res);
-    }
-    return res;
-  }
-  case PM_DEFAULT:
-    {
-      KConfigGroup grp( krConfig, "Advanced" );
-      bool preserve = grp.readEntry( "PreserveAttributes", _PreserveAttributes );
-
-      if( preserve ) {
-        KIO::Job *res = new KIO::PreserveAttrCopyJob( src, dest, mode, asMethod );
-        if( showProgressInfo )
-        {
-          res->setUiDelegate(new KIO::JobUiDelegate() );
-          KIO::getJobTracker()->registerJob(res);
+    switch (pmode) {
+    case PM_PRESERVE_ATTR: {
+        KIO::Job *res = new KIO::PreserveAttrCopyJob(src, dest, mode, asMethod);
+        if (showProgressInfo) {
+            res->setUiDelegate(new KIO::JobUiDelegate());
+            KIO::getJobTracker()->registerJob(res);
         }
         return res;
-      }
     }
-  case PM_NONE:
-  default:
-    {
-      switch( mode ) {
+    case PM_DEFAULT: {
+        KConfigGroup grp(krConfig, "Advanced");
+        bool preserve = grp.readEntry("PreserveAttributes", _PreserveAttributes);
+
+        if (preserve) {
+            KIO::Job *res = new KIO::PreserveAttrCopyJob(src, dest, mode, asMethod);
+            if (showProgressInfo) {
+                res->setUiDelegate(new KIO::JobUiDelegate());
+                KIO::getJobTracker()->registerJob(res);
+            }
+            return res;
+        }
+    }
+    case PM_NONE:
+    default: {
+        switch (mode) {
         case KIO::CopyJob::Copy:
-            return KIO::copy( src, dest, showProgressInfo?KIO::DefaultFlags:KIO::HideProgressInfo );
+            return KIO::copy(src, dest, showProgressInfo ? KIO::DefaultFlags : KIO::HideProgressInfo);
         case KIO::CopyJob::Move:
-            return KIO::move( src, dest, showProgressInfo?KIO::DefaultFlags:KIO::HideProgressInfo );
+            return KIO::move(src, dest, showProgressInfo ? KIO::DefaultFlags : KIO::HideProgressInfo);
         case KIO::CopyJob::Link:
-            return KIO::link( src, dest, showProgressInfo?KIO::DefaultFlags:KIO::HideProgressInfo );
+            return KIO::link(src, dest, showProgressInfo ? KIO::DefaultFlags : KIO::HideProgressInfo);
         default:
-          return 0;
-      }
+            return 0;
+        }
     }
-  }
+    }
 }
 
 #include "preservingcopyjob.moc"

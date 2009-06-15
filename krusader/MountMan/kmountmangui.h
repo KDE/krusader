@@ -53,148 +53,151 @@ class KRFSDisplay;
 // forward definitions
 class fsData;
 
-class KMountManGUI : public KDialog {
-   Q_OBJECT
+class KMountManGUI : public KDialog
+{
+    Q_OBJECT
 
-   enum Pages {
-      Filesystems = 0
-   };
+    enum Pages {
+        Filesystems = 0
+    };
 
 public:
-   KMountManGUI();
-   ~KMountManGUI();
-   void createLayout();   // calls the various tab layout-creators
-   void createMainPage(); // creator of the main page - filesystems
+    KMountManGUI();
+    ~KMountManGUI();
+    void createLayout();   // calls the various tab layout-creators
+    void createMainPage(); // creator of the main page - filesystems
 
 protected:
-   virtual void resizeEvent( QResizeEvent *e );
+    virtual void resizeEvent(QResizeEvent *e);
 
 protected slots:
-   void doubleClicked( QTreeWidgetItem * );
-   void clicked( QTreeWidgetItem *, const QPoint & );
-   void changeActive();
-   void changeActive( QTreeWidgetItem * );
-   void checkMountChange(); // check whether the mount table was changed
+    void doubleClicked(QTreeWidgetItem *);
+    void clicked(QTreeWidgetItem *, const QPoint &);
+    void changeActive();
+    void changeActive(QTreeWidgetItem *);
+    void checkMountChange(); // check whether the mount table was changed
 
-	void updateList();     // fill-up the filesystems list
-	void getSpaceData();
-	void gettingSpaceData();
-	void gettingSpaceData(const QString &mountPoint, quint64 kBSize, 
-								quint64 kBUsed, quint64 kBAvail);
+    void updateList();     // fill-up the filesystems list
+    void getSpaceData();
+    void gettingSpaceData();
+    void gettingSpaceData(const QString &mountPoint, quint64 kBSize,
+                          quint64 kBUsed, quint64 kBAvail);
 
 protected:
-	void addItemToMountList( KrTreeWidget *lst, fsData &fs );
-		
+    void addItemToMountList(KrTreeWidget *lst, fsData &fs);
+
 signals:
-   void refreshPanel( const KUrl & );
-	void finishedGettingSpaceData();
+    void refreshPanel(const KUrl &);
+    void finishedGettingSpaceData();
 
 private:
-   KRFSDisplay *info;
-   QWidget *mainPage;
-   KrTreeWidget *mountList;
-   QTimer *watcher;
-   QDateTime lastMtab;
-	// used for the getSpace - gotSpace functions
-	KMountPoint::List possible, mounted;
-	QList<fsData> fileSystems;
-	QList<fsData> fileSystemsTemp;  // first collect to a temporary place
-	int numOfMountPoints;
-	
-	int sizeX;
-	int sizeY;
+    KRFSDisplay *info;
+    QWidget *mainPage;
+    KrTreeWidget *mountList;
+    QTimer *watcher;
+    QDateTime lastMtab;
+    // used for the getSpace - gotSpace functions
+    KMountPoint::List possible, mounted;
+    QList<fsData> fileSystems;
+    QList<fsData> fileSystemsTemp;  // first collect to a temporary place
+    int numOfMountPoints;
+
+    int sizeX;
+    int sizeY;
 };
 
 // Data container for a single-filesystem data
 // maximum size supported is 2GB of 1kb blocks == 2048GB, enough.
 // not really needed, but kept for backward compatibility
-class fsData {
+class fsData
+{
 public:
-   fsData() : Name( 0 ), Type( 0 ), MntPoint( 0 ), TotalBlks( 0 ),
-   FreeBlks( 0 ), Mounted( false ) {}
+    fsData() : Name(0), Type(0), MntPoint(0), TotalBlks(0),
+            FreeBlks(0), Mounted(false) {}
 
-   // get information
-   inline QString name() {
-      return Name;
-   }
-   inline QString shortName() {
-      return Name.right( Name.length() - Name.indexOf( "/", 1 ) - 1 );
-   }
-   inline QString type() {
-      return Type;
-   }
-   inline QString mntPoint() {
-      return MntPoint;
-   }
-   inline long totalBlks() {
-      return TotalBlks;
-   }
-   inline long freeBlks() {
-      return FreeBlks;
-   }
-   inline KIO::filesize_t totalBytes() {
-      return TotalBlks * 1024;
-   }
-   inline KIO::filesize_t freeBytes() {
-      return FreeBlks * 1024;
-   }
-   //////////////////// insert a good round function here /////////////////
-   int usedPerct() {
-      if ( TotalBlks == 0 )
-         return 0;
-      float res = ( ( float ) ( TotalBlks - FreeBlks ) ) / ( ( float ) TotalBlks ) * 100;
-      if ( ( res - ( int ) res ) > 0.5 )
-         return ( int ) res + 1;
-      else
-         return ( int ) res;
-   }
-   inline bool mounted() {
-      return Mounted;
-   }
+    // get information
+    inline QString name() {
+        return Name;
+    }
+    inline QString shortName() {
+        return Name.right(Name.length() - Name.indexOf("/", 1) - 1);
+    }
+    inline QString type() {
+        return Type;
+    }
+    inline QString mntPoint() {
+        return MntPoint;
+    }
+    inline long totalBlks() {
+        return TotalBlks;
+    }
+    inline long freeBlks() {
+        return FreeBlks;
+    }
+    inline KIO::filesize_t totalBytes() {
+        return TotalBlks * 1024;
+    }
+    inline KIO::filesize_t freeBytes() {
+        return FreeBlks * 1024;
+    }
+    //////////////////// insert a good round function here /////////////////
+    int usedPerct() {
+        if (TotalBlks == 0)
+            return 0;
+        float res = ((float)(TotalBlks - FreeBlks)) / ((float) TotalBlks) * 100;
+        if ((res - (int) res) > 0.5)
+            return (int) res + 1;
+        else
+            return (int) res;
+    }
+    inline bool mounted() {
+        return Mounted;
+    }
 
-   // set information
-   inline void setName( QString n_ ) {
-      Name = n_;
-   }
-   inline void setType( QString t_ ) {
-      Type = t_;
-   }
-   inline void setMntPoint( QString m_ ) {
-      MntPoint = m_;
-   }
-   inline void setTotalBlks( long t_ ) {
-      TotalBlks = t_;
-   }
-   inline void setFreeBlks( long f_ ) {
-      FreeBlks = f_;
-   }
-   inline void setMounted( bool m_ ) {
-      Mounted = m_;
-   }
+    // set information
+    inline void setName(QString n_) {
+        Name = n_;
+    }
+    inline void setType(QString t_) {
+        Type = t_;
+    }
+    inline void setMntPoint(QString m_) {
+        MntPoint = m_;
+    }
+    inline void setTotalBlks(long t_) {
+        TotalBlks = t_;
+    }
+    inline void setFreeBlks(long f_) {
+        FreeBlks = f_;
+    }
+    inline void setMounted(bool m_) {
+        Mounted = m_;
+    }
 
 private:
-   QString Name;       // i.e: /dev/cdrom
-   QString Type;       // i.e: iso9600
-   QString MntPoint;   // i.e: /mnt/cdrom
-   long TotalBlks;  // measured in 1024bytes per block
-   long FreeBlks;
-   bool Mounted;    // true if filesystem is mounted
+    QString Name;       // i.e: /dev/cdrom
+    QString Type;       // i.e: iso9600
+    QString MntPoint;   // i.e: /mnt/cdrom
+    long TotalBlks;  // measured in 1024bytes per block
+    long FreeBlks;
+    bool Mounted;    // true if filesystem is mounted
 
-   // additional attributes of a filesystem, parsed from fstab
+    // additional attributes of a filesystem, parsed from fstab
 public:
-   QString options;    // additional fstab options
+    QString options;    // additional fstab options
 };
 
-class KrMountDetector {
+class KrMountDetector
+{
 #ifdef BSD
-   QString checksum;
+    QString checksum;
 #else
-   QDateTime lastMtab;
+    QDateTime lastMtab;
 #endif
 public:
-  KrMountDetector();
-  static KrMountDetector * getInstance();
-  bool hasMountsChanged();
+    KrMountDetector();
+    static KrMountDetector * getInstance();
+    bool hasMountsChanged();
 };
 
 

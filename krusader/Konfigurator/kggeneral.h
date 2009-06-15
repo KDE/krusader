@@ -30,25 +30,25 @@
 
 #ifndef KGGENERAL_H
 #define KGGENERAL_H
- 
+
 #include "konfiguratorpage.h"
 
 class KgGeneral : public KonfiguratorPage
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KgGeneral( bool first, QWidget* parent=0 );
+    KgGeneral(bool first, QWidget* parent = 0);
 
 public slots:
-  void  applyTempDir(QObject *,QString, QString);
-  void  slotFindTools();
-  
-  void  slotAddExtension();
-  void  slotRemoveExtension();
+    void  applyTempDir(QObject *, QString, QString);
+    void  slotFindTools();
+
+    void  slotAddExtension();
+    void  slotRemoveExtension();
 
 private:
-  KonfiguratorListBox *listBox;
+    KonfiguratorListBox *listBox;
 };
 
 #endif /* __KGGENERAL_H__ */

@@ -15,7 +15,7 @@ This is very handy if you have several identical clients which you want to updat
 simoultanious.
 
 The current version only manages sync-browse and got no mode-switch options.
- 
+
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -34,41 +34,44 @@ The current version only manages sync-browse and got no mode-switch options.
 
 SyncBrowseButton::SyncBrowseButton(QWidget *parent) : QToolButton(parent)
 {
-  KIconLoader *iconLoader = new KIconLoader();
-  _icon_on = iconLoader->loadIcon( "kr_syncbrowse_on", KIconLoader::Toolbar, 16 );
-  _icon_off = iconLoader->loadIcon( "kr_syncbrowse_off", KIconLoader::Toolbar, 16 );
+    KIconLoader *iconLoader = new KIconLoader();
+    _icon_on = iconLoader->loadIcon("kr_syncbrowse_on", KIconLoader::Toolbar, 16);
+    _icon_off = iconLoader->loadIcon("kr_syncbrowse_off", KIconLoader::Toolbar, 16);
 
-  setFixedSize( _icon_off.width() + 4, _icon_off.height() + 4 );
-  setIcon( QIcon( _icon_off ) );
-  setCheckable( true );
-  
-  setText( i18n( "This button toggles the sync-browse mode.\n"
-			"When active, each directory change is performed in the\n"
-			"active and inactive panel - if possible." ) );	//set this as toop-tip (somehow whatsthis::add(this, ...) don't work)
-  setToolTip( i18n( "This button toggles the sync-browse mode.\n"
-			"When active, each directory change is performed in the\n"
-			"active and inactive panel - if possible." ) );	//set this as toop-tip (somehow whatsthis::add(this, ...) don't work)
+    setFixedSize(_icon_off.width() + 4, _icon_off.height() + 4);
+    setIcon(QIcon(_icon_off));
+    setCheckable(true);
 
-  connect( this, SIGNAL(toggled(bool)), this, SLOT(slotToggled(bool)) );
+    setText(i18n("This button toggles the sync-browse mode.\n"
+                 "When active, each directory change is performed in the\n"
+                 "active and inactive panel - if possible."));   //set this as toop-tip (somehow whatsthis::add(this, ...) don't work)
+    setToolTip(i18n("This button toggles the sync-browse mode.\n"
+                    "When active, each directory change is performed in the\n"
+                    "active and inactive panel - if possible."));   //set this as toop-tip (somehow whatsthis::add(this, ...) don't work)
+
+    connect(this, SIGNAL(toggled(bool)), this, SLOT(slotToggled(bool)));
 }
 
-SyncBrowseButton::~SyncBrowseButton() {
+SyncBrowseButton::~SyncBrowseButton()
+{
 }
 
-void SyncBrowseButton::slotToggled( bool on ) {
-  if ( on )
-    setIcon( QIcon( _icon_on ) );
-  else
-    setIcon( QIcon( _icon_off ) );
+void SyncBrowseButton::slotToggled(bool on)
+{
+    if (on)
+        setIcon(QIcon(_icon_on));
+    else
+        setIcon(QIcon(_icon_off));
 }
 
-int SyncBrowseButton::state() {
-  if ( isChecked() )
-    _state = SYNCBROWSE_CD;
-  else
-    _state = SYNCBROWSE_OFF;
-  
-  return _state;
+int SyncBrowseButton::state()
+{
+    if (isChecked())
+        _state = SYNCBROWSE_CD;
+    else
+        _state = SYNCBROWSE_OFF;
+
+    return _state;
 }
 
 

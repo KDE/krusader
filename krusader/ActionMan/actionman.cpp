@@ -25,45 +25,50 @@
 #include "../krusader.h"
 #include "../UserAction/useraction.h"
 
-ActionMan::ActionMan( QWidget * parent )
- : KDialog(parent)
+ActionMan::ActionMan(QWidget * parent)
+        : KDialog(parent)
 {
-	setWindowModality( Qt::WindowModal );
-   setWindowTitle(i18n("ActionMan - Manage Your Useractions"));
-   setButtons( KDialog::Apply | KDialog::Close );
+    setWindowModality(Qt::WindowModal);
+    setWindowTitle(i18n("ActionMan - Manage Your Useractions"));
+    setButtons(KDialog::Apply | KDialog::Close);
 
-   userActionPage = new UserActionPage( this );
-   setMainWidget( userActionPage );
+    userActionPage = new UserActionPage(this);
+    setMainWidget(userActionPage);
 
-   connect( this, SIGNAL( applyClicked() ), this, SLOT( slotApply() ) );
-   connect( this, SIGNAL( closeClicked() ), this, SLOT( slotClose() ) );
-   connect( userActionPage, SIGNAL( changed() ), SLOT( slotEnableApplyButton() ) );
-   connect( userActionPage, SIGNAL( applied() ), SLOT( slotDisableApplyButton() ) );
-   enableButtonApply( false );
+    connect(this, SIGNAL(applyClicked()), this, SLOT(slotApply()));
+    connect(this, SIGNAL(closeClicked()), this, SLOT(slotClose()));
+    connect(userActionPage, SIGNAL(changed()), SLOT(slotEnableApplyButton()));
+    connect(userActionPage, SIGNAL(applied()), SLOT(slotDisableApplyButton()));
+    enableButtonApply(false);
 
-   exec();
+    exec();
 
-   krApp->updateUserActions();
+    krApp->updateUserActions();
 }
 
-ActionMan::~ActionMan() {
+ActionMan::~ActionMan()
+{
 }
 
-void ActionMan::slotClose() {
-   if ( userActionPage->readyToQuit() )
-      reject();
+void ActionMan::slotClose()
+{
+    if (userActionPage->readyToQuit())
+        reject();
 }
 
-void ActionMan::slotApply() {
-   userActionPage->applyChanges();
+void ActionMan::slotApply()
+{
+    userActionPage->applyChanges();
 }
 
-void ActionMan::slotEnableApplyButton() {
-   enableButtonApply( true );
+void ActionMan::slotEnableApplyButton()
+{
+    enableButtonApply(true);
 }
 
-void ActionMan::slotDisableApplyButton() {
-   enableButtonApply( false );
+void ActionMan::slotDisableApplyButton()
+{
+    enableButtonApply(false);
 }
 
 

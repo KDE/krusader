@@ -36,52 +36,52 @@
 #include "konfiguratorpage.h"
 #include "../GUI/krtreewidget.h"
 #include "../GUI/krlistwidget.h"
- 
+
 class KgProtocols : public KonfiguratorPage
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KgProtocols( bool first, QWidget* parent=0 );
+    KgProtocols(bool first, QWidget* parent = 0);
 
-  virtual void loadInitialValues();
-  virtual void setDefaults();
-  virtual bool apply();
-  virtual bool isChanged();
-  
-  static  void init();
-  
+    virtual void loadInitialValues();
+    virtual void setDefaults();
+    virtual bool apply();
+    virtual bool isChanged();
+
+    static  void init();
+
 public slots:
-  void         slotDisableButtons();  
-  void         slotAddProtocol();
-  void         slotRemoveProtocol();
-  void         slotAddMime();
-  void         slotRemoveMime();
-    
+    void         slotDisableButtons();
+    void         slotAddProtocol();
+    void         slotRemoveProtocol();
+    void         slotAddMime();
+    void         slotRemoveMime();
+
 protected:
-  void         loadListCapableProtocols();
-  void         loadMimes();
-  void         addSpacer( QBoxLayout *parent );
-  
-  void         addProtocol( QString name, bool changeCurrent = false );
-  void         removeProtocol( QString name );
-  void         addMime( QString name, QString protocol );
-  void         removeMime( QString name );
-  
-  KrTreeWidget *linkList;
-  
-  KrListWidget *protocolList;
-  KrListWidget *mimeList;
-  
-  QPushButton *btnAddProtocol;
-  QPushButton *btnRemoveProtocol;
-  QPushButton *btnAddMime;
-  QPushButton *btnRemoveMime;
-  
-  static QString defaultProtocols;
-  static QString defaultIsoMimes;
-  static QString defaultKrarcMimes;
-  static QString defaultTarMimes;
+    void         loadListCapableProtocols();
+    void         loadMimes();
+    void         addSpacer(QBoxLayout *parent);
+
+    void         addProtocol(QString name, bool changeCurrent = false);
+    void         removeProtocol(QString name);
+    void         addMime(QString name, QString protocol);
+    void         removeMime(QString name);
+
+    KrTreeWidget *linkList;
+
+    KrListWidget *protocolList;
+    KrListWidget *mimeList;
+
+    QPushButton *btnAddProtocol;
+    QPushButton *btnRemoveProtocol;
+    QPushButton *btnAddMime;
+    QPushButton *btnRemoveMime;
+
+    static QString defaultProtocols;
+    static QString defaultIsoMimes;
+    static QString defaultKrarcMimes;
+    static QString defaultTarMimes;
 };
 
 #endif /* __KgProtocols_H__ */

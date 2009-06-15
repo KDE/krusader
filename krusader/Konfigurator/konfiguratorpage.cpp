@@ -36,265 +36,255 @@
 #include <QLabel>
 #include "../krusader.h"
 
-KonfiguratorPage::KonfiguratorPage( bool firstTime, QWidget* parent ) :
-  QScrollArea( parent ), firstCall( firstTime )
+KonfiguratorPage::KonfiguratorPage(bool firstTime, QWidget* parent) :
+        QScrollArea(parent), firstCall(firstTime)
 {
-  setFrameStyle( QFrame::NoFrame );
+    setFrameStyle(QFrame::NoFrame);
 }
 
 bool KonfiguratorPage::apply()
 {
-  bool restartNeeded = false;
+    bool restartNeeded = false;
 
-  for( QList<KonfiguratorExtension *>::iterator item = itemList.begin(); item != itemList.end(); item ++ )
-    restartNeeded = (*item)->apply() || restartNeeded;
+    for (QList<KonfiguratorExtension *>::iterator item = itemList.begin(); item != itemList.end(); item ++)
+        restartNeeded = (*item)->apply() || restartNeeded;
 
-  krConfig->sync();
-  return restartNeeded;
+    krConfig->sync();
+    return restartNeeded;
 }
 
 void KonfiguratorPage::setDefaults()
 {
-  int activePage = activeSubPage();
+    int activePage = activeSubPage();
 
-  for( QList<KonfiguratorExtension *>::iterator item = itemList.begin(); item != itemList.end(); item ++ )
-  {
-    if( (*item)->subPage() == activePage )
-      (*item)->setDefaults();
-  }
+    for (QList<KonfiguratorExtension *>::iterator item = itemList.begin(); item != itemList.end(); item ++) {
+        if ((*item)->subPage() == activePage)
+            (*item)->setDefaults();
+    }
 }
 
 void KonfiguratorPage::loadInitialValues()
 {
-  for( QList<KonfiguratorExtension *>::iterator item = itemList.begin(); item != itemList.end(); item ++ )
-    (*item)->loadInitialValue();
+    for (QList<KonfiguratorExtension *>::iterator item = itemList.begin(); item != itemList.end(); item ++)
+        (*item)->loadInitialValue();
 }
 
 bool KonfiguratorPage::isChanged()
 {
-  bool isChanged = false;
+    bool isChanged = false;
 
-  for( QList<KonfiguratorExtension *>::iterator item = itemList.begin(); item != itemList.end(); item ++ )
-    isChanged = isChanged || (*item)->isChanged();
+    for (QList<KonfiguratorExtension *>::iterator item = itemList.begin(); item != itemList.end(); item ++)
+        isChanged = isChanged || (*item)->isChanged();
 
-  return isChanged;
+    return isChanged;
 }
 
-KonfiguratorCheckBox* KonfiguratorPage::createCheckBox( QString cls, QString name,
-    bool dflt, QString text, QWidget *parent, bool rst, QString toolTip, int pg )
+KonfiguratorCheckBox* KonfiguratorPage::createCheckBox(QString cls, QString name,
+        bool dflt, QString text, QWidget *parent, bool rst, QString toolTip, int pg)
 {
-  KonfiguratorCheckBox *checkBox = new KonfiguratorCheckBox( cls, name, dflt, text,
-                                 parent, rst, pg );
-  if( !toolTip.isEmpty() )
-    checkBox->setWhatsThis( toolTip );
-  
-  registerObject( checkBox->extension() );
-  return checkBox;
+    KonfiguratorCheckBox *checkBox = new KonfiguratorCheckBox(cls, name, dflt, text,
+            parent, rst, pg);
+    if (!toolTip.isEmpty())
+        checkBox->setWhatsThis(toolTip);
+
+    registerObject(checkBox->extension());
+    return checkBox;
 }
 
-KonfiguratorSpinBox* KonfiguratorPage::createSpinBox(  QString cls, QString name,
-    int dflt, int min, int max, QWidget *parent, bool rst, int pg )
+KonfiguratorSpinBox* KonfiguratorPage::createSpinBox(QString cls, QString name,
+        int dflt, int min, int max, QWidget *parent, bool rst, int pg)
 {
-  KonfiguratorSpinBox *spinBox = new KonfiguratorSpinBox( cls, name, dflt, min, max,
-                                 parent, rst, pg );
+    KonfiguratorSpinBox *spinBox = new KonfiguratorSpinBox(cls, name, dflt, min, max,
+            parent, rst, pg);
 
-  registerObject( spinBox->extension() );
-  return spinBox;
+    registerObject(spinBox->extension());
+    return spinBox;
 }
 
-KonfiguratorEditBox* KonfiguratorPage::createEditBox(  QString cls, QString name,
-    QString dflt, QWidget *parent, bool rst, int pg )
+KonfiguratorEditBox* KonfiguratorPage::createEditBox(QString cls, QString name,
+        QString dflt, QWidget *parent, bool rst, int pg)
 {
-  KonfiguratorEditBox *editBox = new KonfiguratorEditBox( cls, name, dflt, parent,
-                                        rst, pg );
+    KonfiguratorEditBox *editBox = new KonfiguratorEditBox(cls, name, dflt, parent,
+            rst, pg);
 
-  registerObject( editBox->extension() );
-  return editBox;
+    registerObject(editBox->extension());
+    return editBox;
 }
 
-KonfiguratorListBox* KonfiguratorPage::createListBox(  QString cls, QString name,
-    QStringList dflt, QWidget *parent, bool rst, int pg )
+KonfiguratorListBox* KonfiguratorPage::createListBox(QString cls, QString name,
+        QStringList dflt, QWidget *parent, bool rst, int pg)
 {
-  KonfiguratorListBox *listBox = new KonfiguratorListBox( cls, name, dflt, parent,
-                                        rst, pg );
+    KonfiguratorListBox *listBox = new KonfiguratorListBox(cls, name, dflt, parent,
+            rst, pg);
 
-  registerObject( listBox->extension() );
-  return listBox;
+    registerObject(listBox->extension());
+    return listBox;
 }
 
-KonfiguratorURLRequester* KonfiguratorPage::createURLRequester(  QString cls, QString name,
-    QString dflt, QWidget *parent, bool rst, int pg )
+KonfiguratorURLRequester* KonfiguratorPage::createURLRequester(QString cls, QString name,
+        QString dflt, QWidget *parent, bool rst, int pg)
 {
-  KonfiguratorURLRequester *urlRequester = new KonfiguratorURLRequester( cls, name, dflt,
-                                        parent, rst, pg );
+    KonfiguratorURLRequester *urlRequester = new KonfiguratorURLRequester(cls, name, dflt,
+            parent, rst, pg);
 
-  registerObject( urlRequester->extension() );
-  return urlRequester;
+    registerObject(urlRequester->extension());
+    return urlRequester;
 }
 
-QGroupBox* KonfiguratorPage::createFrame( QString text, QWidget *parent )
+QGroupBox* KonfiguratorPage::createFrame(QString text, QWidget *parent)
 {
-  QGroupBox *groupBox = new QGroupBox( parent );
-  if( !text.isNull() )
-    groupBox->setTitle( text );
-  return groupBox;
+    QGroupBox *groupBox = new QGroupBox(parent);
+    if (!text.isNull())
+        groupBox->setTitle(text);
+    return groupBox;
 }
 
-QGridLayout* KonfiguratorPage::createGridLayout( QWidget *parent )
+QGridLayout* KonfiguratorPage::createGridLayout(QWidget *parent)
 {
-  QGridLayout *gridLayout = new QGridLayout( parent );
-  gridLayout->setAlignment( Qt::AlignTop );
-  gridLayout->setSpacing( 6 );
-  gridLayout->setContentsMargins( 11, 11, 11, 11 );
-  return gridLayout;
+    QGridLayout *gridLayout = new QGridLayout(parent);
+    gridLayout->setAlignment(Qt::AlignTop);
+    gridLayout->setSpacing(6);
+    gridLayout->setContentsMargins(11, 11, 11, 11);
+    return gridLayout;
 }
 
-QLabel* KonfiguratorPage::addLabel( QGridLayout *layout, int x, int y, QString label,
-                                    QWidget *parent )
+QLabel* KonfiguratorPage::addLabel(QGridLayout *layout, int x, int y, QString label,
+                                   QWidget *parent)
 {
-  QLabel *lbl = new QLabel( label, parent );
-  layout->addWidget( lbl, x, y );
-  return lbl;
+    QLabel *lbl = new QLabel(label, parent);
+    layout->addWidget(lbl, x, y);
+    return lbl;
 }
 
-QWidget* KonfiguratorPage::createSpacer( QWidget *parent )
+QWidget* KonfiguratorPage::createSpacer(QWidget *parent)
 {
-  QWidget *widget = new QWidget( parent );
-  QHBoxLayout *hboxlayout = new QHBoxLayout( widget );
-  QSpacerItem* spacer = new QSpacerItem( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-  hboxlayout->addItem( spacer );
-  return widget;
+    QWidget *widget = new QWidget(parent);
+    QHBoxLayout *hboxlayout = new QHBoxLayout(widget);
+    QSpacerItem* spacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    hboxlayout->addItem(spacer);
+    return widget;
 }
 
-KonfiguratorCheckBoxGroup* KonfiguratorPage::createCheckBoxGroup( int sizex, int sizey,
-    KONFIGURATOR_CHECKBOX_PARAM *params, int paramNum, QWidget *parent,
-    int pg )
+KonfiguratorCheckBoxGroup* KonfiguratorPage::createCheckBoxGroup(int sizex, int sizey,
+        KONFIGURATOR_CHECKBOX_PARAM *params, int paramNum, QWidget *parent,
+        int pg)
 {
-  KonfiguratorCheckBoxGroup *groupWidget = new KonfiguratorCheckBoxGroup( parent );
-  QGridLayout *layout = new QGridLayout( groupWidget );
-  layout->setSpacing( 6 );
-  layout->setContentsMargins( 0, 0, 0, 0 );
-  
-  int x = 0, y = 0;
-  
-  for( int i=0; i != paramNum; i++ )
-  {
-    KonfiguratorCheckBox *checkBox = createCheckBox( params[i].configClass,
-      params[i].configName, params[i].defaultValue, params[i].text, groupWidget,
-      params[i].restart, params[i].toolTip, pg );
+    KonfiguratorCheckBoxGroup *groupWidget = new KonfiguratorCheckBoxGroup(parent);
+    QGridLayout *layout = new QGridLayout(groupWidget);
+    layout->setSpacing(6);
+    layout->setContentsMargins(0, 0, 0, 0);
 
-    groupWidget->add( checkBox );
-    layout->addWidget( checkBox, y, x );
+    int x = 0, y = 0;
 
-    if( sizex )
-    {
-      if( ++x == sizex )
-        x = 0, y++;
+    for (int i = 0; i != paramNum; i++) {
+        KonfiguratorCheckBox *checkBox = createCheckBox(params[i].configClass,
+                                         params[i].configName, params[i].defaultValue, params[i].text, groupWidget,
+                                         params[i].restart, params[i].toolTip, pg);
+
+        groupWidget->add(checkBox);
+        layout->addWidget(checkBox, y, x);
+
+        if (sizex) {
+            if (++x == sizex)
+                x = 0, y++;
+        } else {
+            if (++y == sizey)
+                y = 0, x++;
+        }
     }
-    else
-    {
-      if( ++y == sizey )
-        y = 0, x++;
+
+    return groupWidget;
+}
+
+KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup(QString cls,
+        QString name, QString dflt, int sizex, int sizey, KONFIGURATOR_NAME_VALUE_TIP *params,
+        int paramNum, QWidget *parent, bool rst, int pg)
+{
+    KonfiguratorRadioButtons *radioWidget = new KonfiguratorRadioButtons(cls, name, dflt, parent, rst, pg);
+
+    QGridLayout *layout = new QGridLayout(radioWidget);
+    layout->setAlignment(Qt::AlignTop);
+    layout->setSpacing(6);
+    layout->setContentsMargins(0, 0, 0, 0);
+
+    int x = 0, y = 0;
+
+    for (int i = 0; i != paramNum; i++) {
+        QRadioButton *radBtn = new QRadioButton(params[i].text, radioWidget);
+
+        if (!params[i].tooltip.isEmpty())
+            radBtn->setWhatsThis(params[i].tooltip);
+
+        layout->addWidget(radBtn, y, x);
+
+        radioWidget->addRadioButton(radBtn, params[i].text, params[i].value);
+
+        if (sizex) {
+            if (++x == sizex)
+                x = 0, y++;
+        } else {
+            if (++y == sizey)
+                y = 0, x++;
+        }
     }
-  }
-  
-  return groupWidget;
+
+    radioWidget->loadInitialValue();
+    registerObject(radioWidget->extension());
+    return radioWidget;
 }
 
-KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup( QString cls,
-    QString name, QString dflt, int sizex, int sizey, KONFIGURATOR_NAME_VALUE_TIP *params,
-    int paramNum, QWidget *parent, bool rst, int pg )
+KonfiguratorFontChooser *KonfiguratorPage::createFontChooser(QString cls, QString name,
+        QFont *dflt, QWidget *parent, bool rst, int pg)
 {
-  KonfiguratorRadioButtons *radioWidget = new KonfiguratorRadioButtons( cls, name, dflt, parent, rst, pg );
+    KonfiguratorFontChooser *fontChooser = new KonfiguratorFontChooser(cls, name, dflt, parent,
+            rst, pg);
 
-  QGridLayout *layout = new QGridLayout( radioWidget );
-  layout->setAlignment( Qt::AlignTop );
-  layout->setSpacing( 6 );
-  layout->setContentsMargins( 0, 0, 0, 0 );
-
-  int x = 0, y = 0;
-
-  for( int i=0; i != paramNum; i++ )
-  {
-    QRadioButton *radBtn = new QRadioButton( params[i].text, radioWidget );
-
-    if( !params[i].tooltip.isEmpty() )
-      radBtn->setWhatsThis( params[i].tooltip );
-
-    layout->addWidget( radBtn, y, x );
-
-    radioWidget->addRadioButton( radBtn, params[i].text, params[i].value );
-
-    if( sizex )
-    {
-      if( ++x == sizex )
-        x = 0, y++;
-    }
-    else
-    {
-      if( ++y == sizey )
-        y = 0, x++;
-    }
-  }
-
-  radioWidget->loadInitialValue();
-  registerObject( radioWidget->extension() );  
-  return radioWidget;
+    registerObject(fontChooser->extension());
+    return fontChooser;
 }
 
-KonfiguratorFontChooser *KonfiguratorPage::createFontChooser( QString cls, QString name,
-  QFont *dflt, QWidget *parent, bool rst, int pg )
+KonfiguratorComboBox *KonfiguratorPage::createComboBox(QString cls, QString name, QString dflt,
+        KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum, QWidget *parent, bool rst, bool editable, int pg)
 {
-  KonfiguratorFontChooser *fontChooser = new KonfiguratorFontChooser( cls, name, dflt, parent,
-                                        rst, pg );
+    KonfiguratorComboBox *comboBox = new KonfiguratorComboBox(cls, name, dflt, params,
+            paramNum, parent, rst, editable, pg);
 
-  registerObject( fontChooser->extension() );
-  return fontChooser;
+    registerObject(comboBox->extension());
+    return comboBox;
 }
 
-KonfiguratorComboBox *KonfiguratorPage::createComboBox(  QString cls, QString name, QString dflt,
-    KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum, QWidget *parent, bool rst, bool editable, int pg )
+QFrame* KonfiguratorPage::createLine(QWidget *parent, bool vertical)
 {
-  KonfiguratorComboBox *comboBox = new KonfiguratorComboBox( cls, name, dflt, params,
-                                        paramNum, parent, rst, editable, pg );
-
-  registerObject( comboBox->extension() );
-  return comboBox;
+    QFrame *line = new QFrame(parent);
+    line->setFrameStyle((vertical ? QFrame::VLine : QFrame::HLine) | QFrame::Sunken);
+    return line;
 }
 
-QFrame* KonfiguratorPage::createLine( QWidget *parent, bool vertical )
+void KonfiguratorPage::registerObject(KonfiguratorExtension *item)
 {
-  QFrame *line = new QFrame( parent );
-  line->setFrameStyle( ( vertical ? QFrame::VLine : QFrame::HLine ) | QFrame::Sunken );
-  return line;
+    itemList.push_back(item);
+    connect(item, SIGNAL(sigChanged(bool)), this, SIGNAL(sigChanged()));
 }
 
-void KonfiguratorPage::registerObject( KonfiguratorExtension *item )
+void KonfiguratorPage::removeObject(KonfiguratorExtension *item)
 {
-  itemList.push_back( item );
-  connect( item, SIGNAL( sigChanged( bool ) ), this, SIGNAL ( sigChanged( ) ) );
-}
-
-void KonfiguratorPage::removeObject( KonfiguratorExtension *item )
-{
-    int ndx = itemList.indexOf( item );
-    if( ndx != -1 )
-    {
-      QList<KonfiguratorExtension *>::iterator it = itemList.begin() + ndx;
-      delete *it;
-      itemList.erase( it );
+    int ndx = itemList.indexOf(item);
+    if (ndx != -1) {
+        QList<KonfiguratorExtension *>::iterator it = itemList.begin() + ndx;
+        delete *it;
+        itemList.erase(it);
     }
 }
 
-KonfiguratorColorChooser *KonfiguratorPage::createColorChooser( QString cls, QString name, QColor dflt,
-                                                                QWidget *parent, bool rst,
-                                                                ADDITIONAL_COLOR *addColPtr, int addColNum, int pg )
+KonfiguratorColorChooser *KonfiguratorPage::createColorChooser(QString cls, QString name, QColor dflt,
+        QWidget *parent, bool rst,
+        ADDITIONAL_COLOR *addColPtr, int addColNum, int pg)
 {
-  KonfiguratorColorChooser *colorChooser = new KonfiguratorColorChooser( cls, name, dflt,  parent,
-                                        rst, addColPtr, addColNum, pg );
+    KonfiguratorColorChooser *colorChooser = new KonfiguratorColorChooser(cls, name, dflt,  parent,
+            rst, addColPtr, addColNum, pg);
 
-  registerObject( colorChooser->extension() );
-  return colorChooser;
+    registerObject(colorChooser->extension());
+    return colorChooser;
 }
 
 #include "konfiguratorpage.moc"

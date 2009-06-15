@@ -39,43 +39,47 @@
 
 class KRPleaseWait;
 
-class KRPleaseWaitHandler : public QObject {
-  Q_OBJECT
+class KRPleaseWaitHandler : public QObject
+{
+    Q_OBJECT
 
 public:
-  KRPleaseWaitHandler();
+    KRPleaseWaitHandler();
 
 public slots:
 
-  void startWaiting(QString msg, int count = 0, bool cancel = false);
-  void stopWait();
-  void cycleProgress();
-  void incProgress(int i);
-  void killJob();
-  void setJob(KIO::Job* j);
-  bool wasCancelled() const { return _wasCancelled; }
+    void startWaiting(QString msg, int count = 0, bool cancel = false);
+    void stopWait();
+    void cycleProgress();
+    void incProgress(int i);
+    void killJob();
+    void setJob(KIO::Job* j);
+    bool wasCancelled() const {
+        return _wasCancelled;
+    }
 
 private:
-  QPointer<KIO::Job> job;
-  KRPleaseWait * dlg;
-  bool cycle, cycleMutex, incMutex, _wasCancelled;
+    QPointer<KIO::Job> job;
+    KRPleaseWait * dlg;
+    bool cycle, cycleMutex, incMutex, _wasCancelled;
 };
 
 
-class KRPleaseWait : public QProgressDialog {
-  Q_OBJECT
+class KRPleaseWait : public QProgressDialog
+{
+    Q_OBJECT
 public:
-	KRPleaseWait( QString msg, int count = 0 ,bool cancel = false );
-	
+    KRPleaseWait(QString msg, int count = 0 , bool cancel = false);
+
 public slots:
-	void incProgress(int howMuch);
-	void cycleProgress();
+    void incProgress(int howMuch);
+    void cycleProgress();
 
 protected:
-	bool inc;
-  QTimer* timer;
-  virtual void closeEvent ( QCloseEvent * e );
-  bool canClose;
+    bool inc;
+    QTimer* timer;
+    virtual void closeEvent(QCloseEvent * e);
+    bool canClose;
 };
 
 #endif

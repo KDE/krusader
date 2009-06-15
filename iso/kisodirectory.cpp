@@ -17,15 +17,17 @@
 
 #include "kisodirectory.h"
 
-KIsoDirectory::KIsoDirectory( KArchive* archive, const QString& name, int access,
-    int date, int adate, int cdate, const QString& user, const QString& group,
-    const QString& symlink) :
-        KArchiveDirectory(archive, name, access, date, user, group, symlink) {
-                               
+KIsoDirectory::KIsoDirectory(KArchive* archive, const QString& name, int access,
+                             int date, int adate, int cdate, const QString& user, const QString& group,
+                             const QString& symlink) :
+        KArchiveDirectory(archive, name, access, date, user, group, symlink)
+{
 
-    m_adate=adate;
-    m_cdate=cdate;
+
+    m_adate = adate;
+    m_cdate = cdate;
 }
 
-KIsoDirectory::~KIsoDirectory(){
+KIsoDirectory::~KIsoDirectory()
+{
 }

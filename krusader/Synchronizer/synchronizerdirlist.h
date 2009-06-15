@@ -40,34 +40,36 @@
 
 class SynchronizerDirList : public QObject, public QHash<QString, vfile *>
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  SynchronizerDirList( QWidget *w, bool ignoreHidden );
-  ~SynchronizerDirList();
+    SynchronizerDirList(QWidget *w, bool ignoreHidden);
+    ~SynchronizerDirList();
 
-  vfile * search( const QString &name, bool ignoreCase = false );
-  vfile * first();
-  vfile * next();
+    vfile * search(const QString &name, bool ignoreCase = false);
+    vfile * first();
+    vfile * next();
 
-  inline const QString & url() { return currentUrl; }
-  bool load( const QString &urlIn, bool wait=false );
+    inline const QString & url() {
+        return currentUrl;
+    }
+    bool load(const QString &urlIn, bool wait = false);
 
 public slots:
 
-  void slotEntries( KIO::Job * job, const KIO::UDSEntryList& entries );
-  void slotListResult( KJob *job );
+    void slotEntries(KIO::Job * job, const KIO::UDSEntryList& entries);
+    void slotListResult(KJob *job);
 
 signals:
-  void finished( bool err );
+    void finished(bool err);
 
 private:
-  QHashIterator<QString, vfile *> *fileIterator; //< Point to a dictionary of virtual files (vfile).
-  QWidget *parentWidget;
-  bool     busy;
-  bool     result;
-  bool     ignoreHidden;
-  QString  currentUrl;
+    QHashIterator<QString, vfile *> *fileIterator; //< Point to a dictionary of virtual files (vfile).
+    QWidget *parentWidget;
+    bool     busy;
+    bool     result;
+    bool     ignoreHidden;
+    QString  currentUrl;
 };
 
 #endif /* __SYNCHRONIZER_DIR_LIST_H__ */

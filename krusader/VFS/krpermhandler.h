@@ -42,47 +42,48 @@
 #define UNKNOWN_PERM 1
 #define ALLOWED_PERM 2
 
-class KRpermHandler {
-public: 
-	 KRpermHandler(){}
-	~KRpermHandler(){}
-	
-	static void init();
-	
-	static gid_t group2gid(QString group);
-	static uid_t user2uid (QString user);
+class KRpermHandler
+{
+public:
+    KRpermHandler() {}
+    ~KRpermHandler() {}
 
-	static QString gid2group(gid_t groupId);
-	static QString uid2user (uid_t userId);
+    static void init();
 
-	static char writeable (QString perm, gid_t gid, uid_t uid, int rwx=-1);
-	static char readable  (QString perm, gid_t gid, uid_t uid, int rwx=-1);
-	static char executable(QString perm, gid_t gid, uid_t uid, int rwx=-1);
-	
-  static bool fileWriteable (QString localFile);
-	static bool fileReadable  (QString localFile);
-	static bool fileExecutable(QString localFile);
-	
-	static char ftpWriteable ( QString fileOwner, QString userName, QString perm );
-	static char ftpReadable ( QString fileOwner, QString userName, QString perm );
-	static char ftpExecutable( QString fileOwner, QString userName, QString perm );
+    static gid_t group2gid(QString group);
+    static uid_t user2uid(QString user);
 
-	static bool dirExist (QString path);
-	static bool fileExist(QString fullPath);
-  static bool fileExist(QString Path, QString name);
+    static QString gid2group(gid_t groupId);
+    static QString uid2user(uid_t userId);
 
-	static QString mode2QString(mode_t m);
-  static QString parseSize(KIO::filesize_t val);
-	static QString date2qstring(QString date);
-	static time_t  QString2time(QString date);
+    static char writeable(QString perm, gid_t gid, uid_t uid, int rwx = -1);
+    static char readable(QString perm, gid_t gid, uid_t uid, int rwx = -1);
+    static char executable(QString perm, gid_t gid, uid_t uid, int rwx = -1);
+
+    static bool fileWriteable(QString localFile);
+    static bool fileReadable(QString localFile);
+    static bool fileExecutable(QString localFile);
+
+    static char ftpWriteable(QString fileOwner, QString userName, QString perm);
+    static char ftpReadable(QString fileOwner, QString userName, QString perm);
+    static char ftpExecutable(QString fileOwner, QString userName, QString perm);
+
+    static bool dirExist(QString path);
+    static bool fileExist(QString fullPath);
+    static bool fileExist(QString Path, QString name);
+
+    static QString mode2QString(mode_t m);
+    static QString parseSize(KIO::filesize_t val);
+    static QString date2qstring(QString date);
+    static time_t  QString2time(QString date);
 
 private:
-	// cache for passwd and group entries
-  static QHash<QString, uid_t> *passwdCache;
-  static QHash<QString, gid_t> *groupCache;
-  static QHash<int, char>      *currentGroups;
-  static QHash<int, QString>   *uidCache;
-  static QHash<int, QString>   *gidCache;
+    // cache for passwd and group entries
+    static QHash<QString, uid_t> *passwdCache;
+    static QHash<QString, gid_t> *groupCache;
+    static QHash<int, char>      *currentGroups;
+    static QHash<int, QString>   *uidCache;
+    static QHash<int, QString>   *gidCache;
 };
 
 #endif

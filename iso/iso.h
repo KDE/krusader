@@ -15,9 +15,9 @@
  *                                                                         *
  ***************************************************************************/
 
- /* This file is heavily based on tar.h from kdebase
-  * (c) David Faure <faure@kde.org>
-  */
+/* This file is heavily based on tar.h from kdebase
+ * (c) David Faure <faure@kde.org>
+ */
 
 #ifndef ISO_H
 #define ISO_H
@@ -34,18 +34,18 @@ class KIso;
 class kio_isoProtocol : public KIO::SlaveBase
 {
 public:
-    kio_isoProtocol( const QByteArray &pool, const QByteArray &app );
+    kio_isoProtocol(const QByteArray &pool, const QByteArray &app);
     virtual ~kio_isoProtocol();
 
-    virtual void listDir( const KUrl & url );
-    virtual void stat( const KUrl & url );
-    virtual void get( const KUrl & url );
+    virtual void listDir(const KUrl & url);
+    virtual void stat(const KUrl & url);
+    virtual void get(const KUrl & url);
 
 protected:
-    void getFile( const KIsoFile *isoFileEntry, const QString &path );
-    void createUDSEntry( const KArchiveEntry * isoEntry, KIO::UDSEntry & entry );
-    bool checkNewFile( QString fullPath, QString & path, int startsec );
-    QString getPath( const KUrl & url );
+    void getFile(const KIsoFile *isoFileEntry, const QString &path);
+    void createUDSEntry(const KArchiveEntry * isoEntry, KIO::UDSEntry & entry);
+    bool checkNewFile(QString fullPath, QString & path, int startsec);
+    QString getPath(const KUrl & url);
 
     KIso * m_isoFile;
     time_t m_mtime;

@@ -5,10 +5,10 @@
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
-  Description 
+  Description
  ***************************************************************************
 
-  A 
+  A
 
      db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
      88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
@@ -35,12 +35,14 @@
 #include "../resources.h"
 
 KrusaderStatus::KrusaderStatus(QWidget *parent):
-  KStatusBar(parent){
-        showMessage( i18n("Ready."), 5000 );
-	setMaximumHeight(QFontMetrics(font()).height()+2);
+        KStatusBar(parent)
+{
+    showMessage(i18n("Ready."), 5000);
+    setMaximumHeight(QFontMetrics(font()).height() + 2);
 }
 
-KrusaderStatus::~KrusaderStatus(){
+KrusaderStatus::~KrusaderStatus()
+{
 }
 
 #include "krusaderstatus.moc"

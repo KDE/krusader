@@ -17,22 +17,26 @@
 
 #include "qfilehack.h"
 
-QFileHack::QFileHack(){
+QFileHack::QFileHack()
+{
 }
 
-QFileHack::QFileHack( const QString & name ) : QFile(name) {
+QFileHack::QFileHack(const QString & name) : QFile(name)
+{
 }
 
-QFileHack::~QFileHack(){
+QFileHack::~QFileHack()
+{
 }
 
-bool QFileHack::open ( QFile::OpenMode m ) {
+bool QFileHack::open(QFile::OpenMode m)
+{
     bool ret;
 
 #ifdef Q_OS_UNIX
 //    m |= IO_Async; // On linux, set O_NONBLOCK, opens CD-ROMs faster
 #endif
-    ret=QFile::open(m);
+    ret = QFile::open(m);
 //    if (ret && isSequential() ) {
 //        setOpenMode(m | (QFile::OpenMode)IO_Direct);
 //    }

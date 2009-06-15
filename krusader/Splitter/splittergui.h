@@ -46,81 +46,83 @@
 
 class SplitterSpinBox : public QDoubleSpinBox
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private:
-  KIO::filesize_t m_division; 
-  mutable KIO::filesize_t m_longValue;
-    
+    KIO::filesize_t m_division;
+    mutable KIO::filesize_t m_longValue;
+
 public:
-  SplitterSpinBox ( QWidget * parent = 0 ) : QDoubleSpinBox( parent ), m_division( 1 ), m_longValue( 1 )
-  {
-    setMinimum( 1 );
-    setMaximum( 9999999999.0 );
-  }
+    SplitterSpinBox(QWidget * parent = 0) : QDoubleSpinBox(parent), m_division(1), m_longValue(1) {
+        setMinimum(1);
+        setMaximum(9999999999.0);
+    }
 
-  void setLongValue( KIO::filesize_t valueIn ) {
-    m_longValue = valueIn;
-    if( m_longValue == 0 )
-      m_longValue++;
-    setValue ( (double)m_longValue / m_division);
-  }
-    
-  KIO::filesize_t longValue() const {
-    return m_longValue;
-  }
-  
-  double valueFromText( const QString& text ) const
-  {
-    double value = QDoubleSpinBox::valueFromText( text );
-    m_longValue = (KIO::filesize_t)(value * m_division);
-      return value;
-  }
+    void setLongValue(KIO::filesize_t valueIn) {
+        m_longValue = valueIn;
+        if (m_longValue == 0)
+            m_longValue++;
+        setValue((double)m_longValue / m_division);
+    }
 
-  void setDivision( KIO::filesize_t div )
-  {
-    m_division = div;
-    setValue( (double)m_longValue / m_division);
-  }
+    KIO::filesize_t longValue() const {
+        return m_longValue;
+    }
+
+    double valueFromText(const QString& text) const {
+        double value = QDoubleSpinBox::valueFromText(text);
+        m_longValue = (KIO::filesize_t)(value * m_division);
+        return value;
+    }
+
+    void setDivision(KIO::filesize_t div) {
+        m_division = div;
+        setValue((double)m_longValue / m_division);
+    }
 };
 
-struct PredefinedDevice
-{
-  QString name;
-  KIO::filesize_t capacity;
+struct PredefinedDevice {
+    QString name;
+    KIO::filesize_t capacity;
 };
 
 class SplitterGUI : QDialog
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private:
-  int                             predefinedDeviceNum;
-  KIO::filesize_t                 userDefinedSize;
-  int                             lastSelectedDevice;
-  int                             resultCode;
+    int                             predefinedDeviceNum;
+    KIO::filesize_t                 userDefinedSize;
+    int                             lastSelectedDevice;
+    int                             resultCode;
 
-  static PredefinedDevice predefinedDevices[];
+    static PredefinedDevice predefinedDevices[];
 
-  SplitterSpinBox *spinBox;
-  QComboBox       *deviceCombo;
-  QComboBox       *sizeCombo;
-  KUrlRequester   *urlReq;
-  
+    SplitterSpinBox *spinBox;
+    QComboBox       *deviceCombo;
+    QComboBox       *sizeCombo;
+    KUrlRequester   *urlReq;
+
 public:
-  SplitterGUI( QWidget* parent,  KUrl fileURL, KUrl defaultDir );
+    SplitterGUI(QWidget* parent,  KUrl fileURL, KUrl defaultDir);
 
-  KUrl    getDestinationDir()     { return KUrl( urlReq->url().prettyUrl() ); /* TODO: is prettyUrl what we need? */ }
-  KIO::filesize_t getSplitSize()  { return spinBox->longValue(); }
-  int     result()                { return resultCode; }
+    KUrl    getDestinationDir()     {
+        return KUrl(urlReq->url().prettyUrl()); /* TODO: is prettyUrl what we need? */
+    }
+    KIO::filesize_t getSplitSize()  {
+        return spinBox->longValue();
+    }
+    int     result()                {
+        return resultCode;
+    }
 
 public slots:
-  virtual void sizeComboActivated( int item );
-  virtual void predefinedComboActivated( int item );
-  virtual void splitPressed();
+    virtual void sizeComboActivated(int item);
+    virtual void predefinedComboActivated(int item);
+    virtual void splitPressed();
 
 protected:
-  virtual void keyPressEvent( QKeyEvent *e );
+    virtual void keyPressEvent(QKeyEvent *e);
 
 public:
 };

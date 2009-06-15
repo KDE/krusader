@@ -26,58 +26,60 @@ class QString;
 class UserActionListViewItem;
 class QDomDocument;
 
-class UserActionListView : public KrTreeWidget {
-   Q_OBJECT
+class UserActionListView : public KrTreeWidget
+{
+    Q_OBJECT
 
 public:
-   UserActionListView( QWidget* parent = 0 );
-   ~UserActionListView();
-   virtual QSize sizeHint() const;
+    UserActionListView(QWidget* parent = 0);
+    ~UserActionListView();
+    virtual QSize sizeHint() const;
 
-   void update();
-   void update( KrAction* action );
-   UserActionListViewItem* insertAction( KrAction* action );
+    void update();
+    void update(KrAction* action);
+    UserActionListViewItem* insertAction(KrAction* action);
 
-   KrAction* currentAction() const;
-   void setCurrentAction( const KrAction* );
+    KrAction* currentAction() const;
+    void setCurrentAction(const KrAction*);
 
-   QDomDocument dumpSelectedActions( QDomDocument* mergeDoc = 0 ) const;
+    QDomDocument dumpSelectedActions(QDomDocument* mergeDoc = 0) const;
 
-   void removeSelectedActions();
+    void removeSelectedActions();
 
-   /**
-    * makes the first action in the list current
-    */
-   void setFirstActionCurrent();
+    /**
+     * makes the first action in the list current
+     */
+    void setFirstActionCurrent();
 
-   /**
-    * makes @e item current and ensures its visibility
-    */
+    /**
+     * makes @e item current and ensures its visibility
+     */
 protected slots:
-   void slotCurrentItemChanged( QTreeWidgetItem* );
+    void slotCurrentItemChanged(QTreeWidgetItem*);
 
 protected:
-   QTreeWidgetItem* findCategoryItem( const QString& category );
-   UserActionListViewItem* findActionItem( const KrAction* action );
+    QTreeWidgetItem* findCategoryItem(const QString& category);
+    UserActionListViewItem* findActionItem(const KrAction* action);
 };
 
-class UserActionListViewItem : public QTreeWidgetItem {
+class UserActionListViewItem : public QTreeWidgetItem
+{
 public:
-   UserActionListViewItem( QTreeWidget* view, KrAction* action );
-   UserActionListViewItem( QTreeWidgetItem* item, KrAction* action );
-   ~UserActionListViewItem();
+    UserActionListViewItem(QTreeWidget* view, KrAction* action);
+    UserActionListViewItem(QTreeWidgetItem* item, KrAction* action);
+    ~UserActionListViewItem();
 
-   void setAction( KrAction* action );
-   KrAction* action() const;
-   void update();
+    void setAction(KrAction* action);
+    KrAction* action() const;
+    void update();
 
-   /**
-    * This reimplements qt's compare-function in order to have categories on the top of the list
-    */
-   virtual bool operator<(const QTreeWidgetItem &other) const;
+    /**
+     * This reimplements qt's compare-function in order to have categories on the top of the list
+     */
+    virtual bool operator<(const QTreeWidgetItem &other) const;
 
 private:
-   KrAction* _action;
+    KrAction* _action;
 };
 
 #endif

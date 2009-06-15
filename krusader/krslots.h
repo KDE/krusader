@@ -51,44 +51,43 @@ class KUrl;
 
 class KrProcess: public KProcess
 {
-  Q_OBJECT
-
-  QString tmp1, tmp2;
-  
-public:
-  KrProcess( QString in1, QString in2 )
-  {
-    tmp1 = in1;
-    tmp2 = in2;
-    connect(this,  SIGNAL(finished(int, QProcess::ExitStatus)), SLOT(processHasExited()));
-  }
-
-public slots:
-  void processHasExited()
-  {
-    if( !tmp1.isEmpty() )
-      KIO::NetAccess::removeTempFile( tmp1 );
-    if( !tmp2.isEmpty() )
-      KIO::NetAccess::removeTempFile( tmp2 );
-    deleteLater();
-  }
-};
-
-class KRslots : public QObject {
     Q_OBJECT
 
-  public:
+    QString tmp1, tmp2;
+
+public:
+    KrProcess(QString in1, QString in2) {
+        tmp1 = in1;
+        tmp2 = in2;
+        connect(this,  SIGNAL(finished(int, QProcess::ExitStatus)), SLOT(processHasExited()));
+    }
+
+public slots:
+    void processHasExited() {
+        if (!tmp1.isEmpty())
+            KIO::NetAccess::removeTempFile(tmp1);
+        if (!tmp2.isEmpty())
+            KIO::NetAccess::removeTempFile(tmp2);
+        deleteLater();
+    }
+};
+
+class KRslots : public QObject
+{
+    Q_OBJECT
+
+public:
     enum compareMode { full } ;
 
     KRslots(QObject *parent): QObject(parent) {}
     ~KRslots() {}
 
-  public slots:
+public slots:
     void createChecksum();
     void matchChecksum();
-    void sendFileByEmail( const KUrl::List &filename );
+    void sendFileByEmail(const KUrl::List &filename);
     void compareContent();
-    void compareContent( KUrl, KUrl );
+    void compareContent(KUrl, KUrl);
     void rightclickMenu();
     void insertFileName(bool full_path);
     void rootKrusader();
@@ -101,11 +100,11 @@ class KRslots : public QObject {
     void setView5();
     void toggleHidden();
     void toggleSwapSides();
-	 void togglePopupPanel();
+    void togglePopupPanel();
     void configToolbar();
     void configKeys();
     void toggleToolbar();
-	 void toggleActionsToolbar();
+    void toggleActionsToolbar();
     void toggleStatusbar();
     void toggleTerminal();
     void home();
@@ -114,7 +113,7 @@ class KRslots : public QObject {
     void markAll();
     void unmarkAll();
     void markGroup();
-	 void markGroup(const QString &, bool select);
+    void markGroup(const QString &, bool select);
     void unmarkGroup();
     void invert();
     void compareDirs();
@@ -124,7 +123,7 @@ class KRslots : public QObject {
     /** called by actExec* actions to choose the built-in command line mode */
     void execTypeSetup();
     void refresh();
-    void refresh( const KUrl& u );
+    void refresh(const KUrl& u);
     void properties();
     void back();
     void slotPack();
@@ -139,11 +138,13 @@ class KRslots : public QObject {
     void execFilter();
     void customFilter();
     void newFTPconnection();
-    void runKonfigurator( bool firstTime = false );
-    void startKonfigurator() { runKonfigurator( false ); }
-    void search();						 				// call the search module
+    void runKonfigurator(bool firstTime = false);
+    void startKonfigurator() {
+        runKonfigurator(false);
+    }
+    void search();           // call the search module
     void locate();
-    void runTerminal( const QString & dir, const QStringList & args );
+    void runTerminal(const QString & dir, const QStringList & args);
     void homeTerminal();
     void sysInfo();
     void addBookmark();
@@ -152,22 +153,42 @@ class KRslots : public QObject {
     void toggleCmdline();
     void changeTrashIcon();
     void multiRename();
-    void openRightBookmarks() { RIGHT_PANEL->slotFocusOnMe(); RIGHT_PANEL->bookmarksButton->showMenu(); }
-    void openLeftBookmarks() { LEFT_PANEL->slotFocusOnMe(); LEFT_PANEL->bookmarksButton->showMenu(); }
-	 void openBookmarks() { ACTIVE_PANEL->bookmarksButton->showMenu(); }
+    void openRightBookmarks() {
+        RIGHT_PANEL->slotFocusOnMe(); RIGHT_PANEL->bookmarksButton->showMenu();
+    }
+    void openLeftBookmarks() {
+        LEFT_PANEL->slotFocusOnMe(); LEFT_PANEL->bookmarksButton->showMenu();
+    }
+    void openBookmarks() {
+        ACTIVE_PANEL->bookmarksButton->showMenu();
+    }
     void bookmarkCurrent();
-	 void openHistory() { ACTIVE_PANEL->historyButton->showMenu(); }
-    void openLeftHistory() { LEFT_PANEL->historyButton->showMenu(); }
-    void openRightHistory() { RIGHT_PANEL->historyButton->showMenu(); }
-    void openMedia() { ACTIVE_PANEL->mediaButton->showMenu(); }
-    void openLeftMedia() { LEFT_PANEL->mediaButton->showMenu(); }
-    void openRightMedia() { RIGHT_PANEL->mediaButton->showMenu(); }
-	 void syncPanels() {
-	 	ListPanel *t = ACTIVE_PANEL;
-		OTHER_FUNC->openUrl(ACTIVE_PANEL->virtualPath());
-		t->slotFocusOnMe();
-	 }
-    void cmdlinePopup() { MAIN_VIEW->cmdLine->popup(); }
+    void openHistory() {
+        ACTIVE_PANEL->historyButton->showMenu();
+    }
+    void openLeftHistory() {
+        LEFT_PANEL->historyButton->showMenu();
+    }
+    void openRightHistory() {
+        RIGHT_PANEL->historyButton->showMenu();
+    }
+    void openMedia() {
+        ACTIVE_PANEL->mediaButton->showMenu();
+    }
+    void openLeftMedia() {
+        LEFT_PANEL->mediaButton->showMenu();
+    }
+    void openRightMedia() {
+        RIGHT_PANEL->mediaButton->showMenu();
+    }
+    void syncPanels() {
+        ListPanel *t = ACTIVE_PANEL;
+        OTHER_FUNC->openUrl(ACTIVE_PANEL->virtualPath());
+        t->slotFocusOnMe();
+    }
+    void cmdlinePopup() {
+        MAIN_VIEW->cmdLine->popup();
+    }
     void duplicateTab();
     void newTab(const KUrl& url = KUrl());
     void newTab(KrViewItem *item);
@@ -181,14 +202,16 @@ class KRslots : public QObject {
     void slotCombine();
     void userMenu();
     void manageUseractions();
-    void slotSynchronizeDirs( QStringList selected = QStringList() );
+    void slotSynchronizeDirs(QStringList selected = QStringList());
     void slotSyncBrowse();
     void slotDiskUsage();
     void slotQueueManager();
     void slotLocationBar();
     void slotJumpBack();
     void slotSetJumpBack();
-    void newSymlink() { ACTIVE_PANEL->func->krlink(true); }
+    void newSymlink() {
+        ACTIVE_PANEL->func->krlink(true);
+    }
     void updatePopupPanel(KrViewItem *);
     void windowActive(); // called when krusader's window becomes focused
     void windowInactive(); // called when another application steals the focus
@@ -213,15 +236,19 @@ class KRslots : public QObject {
     // F7
     void mkdir();
     // F8
-    void deleteFiles(bool reallyDelete=false);
+    void deleteFiles(bool reallyDelete = false);
     // F9
     void rename();
 
     // ugly stubs, remove later ?
-    void slotCurrentChanged( QString p ) { MAIN_VIEW->slotCurrentChanged( p ); }
-    void slotSetActivePanel( ListPanel *p ) { MAIN_VIEW->slotSetActivePanel( p ); }
+    void slotCurrentChanged(QString p) {
+        MAIN_VIEW->slotCurrentChanged(p);
+    }
+    void slotSetActivePanel(ListPanel *p) {
+        MAIN_VIEW->slotSetActivePanel(p);
+    }
 
-    
+
     void jsConsole();
     void saveNewToolbarConfig();
 };

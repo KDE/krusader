@@ -44,43 +44,43 @@ class DULinesItemDelegate;
 
 class DULines : public KrTreeWidget
 {
-  Q_OBJECT
-  
-public:
-  DULines( DiskUsage *usage );
-  ~DULines();
+    Q_OBJECT
 
-  File * getCurrentFile();
-  
+public:
+    DULines(DiskUsage *usage);
+    ~DULines();
+
+    File * getCurrentFile();
+
 public slots:
-  void slotDirChanged( Directory *dirEntry );
-  void sectionResized( int );
-  void slotRightClicked(QTreeWidgetItem *, const QPoint &);
-  void slotChanged( File * );
-  void slotDeleted( File * );
-  void slotShowFileSizes();
-  void slotRefresh();
-  
+    void slotDirChanged(Directory *dirEntry);
+    void sectionResized(int);
+    void slotRightClicked(QTreeWidgetItem *, const QPoint &);
+    void slotChanged(File *);
+    void slotDeleted(File *);
+    void slotShowFileSizes();
+    void slotRefresh();
+
 protected:
-  DiskUsage *diskUsage;  
-  
-  virtual bool event ( QEvent * event );
-  virtual void mouseDoubleClickEvent ( QMouseEvent * e );
-  virtual void keyPressEvent( QKeyEvent *e );
-  virtual void resizeEvent( QResizeEvent * );
-  
+    DiskUsage *diskUsage;
+
+    virtual bool event(QEvent * event);
+    virtual void mouseDoubleClickEvent(QMouseEvent * e);
+    virtual void keyPressEvent(QKeyEvent *e);
+    virtual void resizeEvent(QResizeEvent *);
+
 private:
-  QPixmap createPixmap( int percent, int maxPercent, int maxWidth );
-  
-  bool doubleClicked( QTreeWidgetItem * item );
-  
-  bool refreshNeeded;
-  bool started;
-  
-  bool showFileSize;
-  
-  DULinesToolTip *toolTip;
-  DULinesItemDelegate *itemDelegate;
+    QPixmap createPixmap(int percent, int maxPercent, int maxWidth);
+
+    bool doubleClicked(QTreeWidgetItem * item);
+
+    bool refreshNeeded;
+    bool started;
+
+    bool showFileSize;
+
+    DULinesToolTip *toolTip;
+    DULinesItemDelegate *itemDelegate;
 };
 
 #endif /* __DU_LINES_H__ */

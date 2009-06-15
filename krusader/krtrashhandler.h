@@ -42,15 +42,15 @@ class KDirWatch;
 class KrTrashHandler
 {
 public:
-  static bool    isTrashEmpty();
-  static QString trashIcon();
-  static void    emptyTrash();
-  static void    restoreTrashedFiles( const KUrl::List &url );
-  static void    startWatcher();
-  static void    stopWatcher();
+    static bool    isTrashEmpty();
+    static QString trashIcon();
+    static void    emptyTrash();
+    static void    restoreTrashedFiles(const KUrl::List &url);
+    static void    startWatcher();
+    static void    stopWatcher();
 
 private:
-  static KrTrashWatcher * _trashWatcher;
+    static KrTrashWatcher * _trashWatcher;
 };
 
 /// Restore multiple trashed files
@@ -59,11 +59,11 @@ class KonqMultiRestoreJob : public KIO::Job
     Q_OBJECT
 
 public:
-    KonqMultiRestoreJob( const KUrl::List& urls );
+    KonqMultiRestoreJob(const KUrl::List& urls);
 
 protected Q_SLOTS:
     virtual void slotStart();
-    virtual void slotResult( KJob *job );
+    virtual void slotResult(KJob *job);
 
 private:
     const KUrl::List m_urls;

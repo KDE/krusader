@@ -41,93 +41,93 @@ class UnpackThread;
 
 class PackJob : public AbstractThreadedJob
 {
-Q_OBJECT
+    Q_OBJECT
 
 private:
-  PackJob( const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps );
+    PackJob(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps);
 
 public:
-  static PackJob * createPacker( const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps );
+    static PackJob * createPacker(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps);
 };
 
 
 class PackThread : public AbstractJobThread
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
-  PackThread( const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps );
-  virtual ~PackThread() {}
+    PackThread(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps);
+    virtual ~PackThread() {}
 
 protected slots:
-  virtual void slotStart();
+    virtual void slotStart();
 
 private:
-  KUrl                   _sourceUrl;
-  KUrl                   _destUrl;
-  QStringList            _fileNames;
-  QString                _type;
-  QMap<QString, QString> _packProperties;
+    KUrl                   _sourceUrl;
+    KUrl                   _destUrl;
+    QStringList            _fileNames;
+    QString                _type;
+    QMap<QString, QString> _packProperties;
 };
 
 
 class TestArchiveJob : public AbstractThreadedJob
 {
-Q_OBJECT
+    Q_OBJECT
 
 private:
-  TestArchiveJob( const KUrl &srcUrl, const QStringList & fileNames );
+    TestArchiveJob(const KUrl &srcUrl, const QStringList & fileNames);
 
 public:
-  static TestArchiveJob * testArchives( const KUrl &srcUrl, const QStringList & fileNames );
+    static TestArchiveJob * testArchives(const KUrl &srcUrl, const QStringList & fileNames);
 };
 
 
 class TestArchiveThread : public AbstractJobThread
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
-  TestArchiveThread( const KUrl &srcUrl, const QStringList & fileNames );
-  virtual ~TestArchiveThread() {}
+    TestArchiveThread(const KUrl &srcUrl, const QStringList & fileNames);
+    virtual ~TestArchiveThread() {}
 
 protected slots:
-  virtual void slotStart();
+    virtual void slotStart();
 
 private:
-  KUrl                   _sourceUrl;
-  QStringList            _fileNames;
+    KUrl                   _sourceUrl;
+    QStringList            _fileNames;
 };
 
 
 
 class UnpackJob : public AbstractThreadedJob
 {
-Q_OBJECT
+    Q_OBJECT
 
 private:
-  UnpackJob( const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames );
+    UnpackJob(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames);
 
 public:
-  static UnpackJob * createUnpacker( const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames );
+    static UnpackJob * createUnpacker(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames);
 };
 
 
 class UnpackThread : public AbstractJobThread
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
-  UnpackThread( const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames );
-  virtual ~UnpackThread() {}
+    UnpackThread(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames);
+    virtual ~UnpackThread() {}
 
 protected slots:
-  virtual void slotStart();
+    virtual void slotStart();
 
 private:
-  KUrl                   _sourceUrl;
-  KUrl                   _destUrl;
-  QStringList            _fileNames;
+    KUrl                   _sourceUrl;
+    KUrl                   _destUrl;
+    QStringList            _fileNames;
 };
 
 #endif // __PACK_JOB_H__

@@ -35,180 +35,178 @@
 #include <klocale.h>
 #include <kmimetype.h>
 
-PackJob::PackJob( const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps ) : AbstractThreadedJob()
+PackJob::PackJob(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps) : AbstractThreadedJob()
 {
-  start( new PackThread( srcUrl, destUrl, fileNames, type, packProps ) );
+    start(new PackThread(srcUrl, destUrl, fileNames, type, packProps));
 }
 
-PackJob * PackJob::createPacker( const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps )
+PackJob * PackJob::createPacker(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames, const QString &type, const QMap<QString, QString> &packProps)
 {
-  return new PackJob( srcUrl, destUrl, fileNames, type, packProps );
+    return new PackJob(srcUrl, destUrl, fileNames, type, packProps);
 }
 
-PackThread::PackThread( const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames,
-        const QString &type, const QMap<QString, QString> &packProps ) : 
-    AbstractJobThread(), _sourceUrl( srcUrl ), _destUrl( destUrl ), _fileNames( fileNames ), 
-        _type( type ), _packProperties( packProps )
+PackThread::PackThread(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames,
+                       const QString &type, const QMap<QString, QString> &packProps) :
+        AbstractJobThread(), _sourceUrl(srcUrl), _destUrl(destUrl), _fileNames(fileNames),
+        _type(type), _packProperties(packProps)
 {
 }
 
 
 void PackThread::slotStart()
 {
-  KUrl newSource = downloadIfRemote( _sourceUrl, _fileNames );
-  if( newSource.isEmpty() )
-    return;
+    KUrl newSource = downloadIfRemote(_sourceUrl, _fileNames);
+    if (newSource.isEmpty())
+        return;
 
-  KIO::filesize_t totalSize = 0;
-  unsigned long totalDirs = 0, totalFiles = 0;
+    KIO::filesize_t totalSize = 0;
+    unsigned long totalDirs = 0, totalFiles = 0;
 
-  calcSpaceLocal( newSource, _fileNames, totalSize, totalDirs, totalFiles );
+    calcSpaceLocal(newSource, _fileNames, totalSize, totalDirs, totalFiles);
 
-  QString arcFile = tempFileIfRemote( _destUrl, _type );
-  QString arcDir = newSource.path( KUrl::RemoveTrailingSlash );
+    QString arcFile = tempFileIfRemote(_destUrl, _type);
+    QString arcDir = newSource.path(KUrl::RemoveTrailingSlash);
 
-  setProgressTitle( i18n("Processed files" ) );
+    setProgressTitle(i18n("Processed files"));
 
-  QString save = QDir::currentPath();
-  QDir::setCurrent( arcDir );
-  bool result = KRarcHandler::pack( _fileNames, _type, arcFile, totalFiles + totalDirs, _packProperties, observer() );
-  QDir::setCurrent( save );
+    QString save = QDir::currentPath();
+    QDir::setCurrent(arcDir);
+    bool result = KRarcHandler::pack(_fileNames, _type, arcFile, totalFiles + totalDirs, _packProperties, observer());
+    QDir::setCurrent(save);
 
-  if( isExited() )
-    return;
-  if( !result )
-  {
-    sendError( KIO::ERR_INTERNAL, i18n( "Error at packing" ) );
-    return;
-  }
+    if (isExited())
+        return;
+    if (!result) {
+        sendError(KIO::ERR_INTERNAL, i18n("Error at packing"));
+        return;
+    }
 
-  if( !uploadTempFiles() )
-    return;
+    if (!uploadTempFiles())
+        return;
 
-  sendSuccess();
+    sendSuccess();
 }
 
-TestArchiveJob::TestArchiveJob( const KUrl &srcUrl, const QStringList & fileNames ) : AbstractThreadedJob()
+TestArchiveJob::TestArchiveJob(const KUrl &srcUrl, const QStringList & fileNames) : AbstractThreadedJob()
 {
-  start( new TestArchiveThread( srcUrl, fileNames ) );
+    start(new TestArchiveThread(srcUrl, fileNames));
 }
 
-TestArchiveJob * TestArchiveJob::testArchives( const KUrl &srcUrl, const QStringList & fileNames )
+TestArchiveJob * TestArchiveJob::testArchives(const KUrl &srcUrl, const QStringList & fileNames)
 {
-  return new TestArchiveJob( srcUrl, fileNames );
+    return new TestArchiveJob(srcUrl, fileNames);
 }
 
-TestArchiveThread::TestArchiveThread( const KUrl &srcUrl, const QStringList & fileNames ) : AbstractJobThread(),
-   _sourceUrl( srcUrl ), _fileNames( fileNames )
+TestArchiveThread::TestArchiveThread(const KUrl &srcUrl, const QStringList & fileNames) : AbstractJobThread(),
+        _sourceUrl(srcUrl), _fileNames(fileNames)
 {
 }
 
 void TestArchiveThread::slotStart()
 {
-  KUrl newSource = downloadIfRemote( _sourceUrl, _fileNames );
-  if( newSource.isEmpty() )
-    return;
+    KUrl newSource = downloadIfRemote(_sourceUrl, _fileNames);
+    if (newSource.isEmpty())
+        return;
 
-  for ( int i = 0; i < _fileNames.count(); ++i ) {
-    QString arcName = _fileNames[ i ];
-    if ( arcName.isEmpty() )
-      continue;
-    if ( arcName == ".." )
-      continue; // safety
+    for (int i = 0; i < _fileNames.count(); ++i) {
+        QString arcName = _fileNames[ i ];
+        if (arcName.isEmpty())
+            continue;
+        if (arcName == "..")
+            continue; // safety
 
-    KUrl url = newSource;
-    url.addPath( arcName );
+        KUrl url = newSource;
+        url.addPath(arcName);
 
-    QString path = url.path( KUrl::RemoveTrailingSlash );
+        QString path = url.path(KUrl::RemoveTrailingSlash);
 
-    KMimeType::Ptr mt = KMimeType::findByUrl( url );
-    QString mime = mt ? mt->name() : QString();
-    bool encrypted = false;
-    QString type = KRarcHandler::getType( encrypted, path, mime );
+        KMimeType::Ptr mt = KMimeType::findByUrl(url);
+        QString mime = mt ? mt->name() : QString();
+        bool encrypted = false;
+        QString type = KRarcHandler::getType(encrypted, path, mime);
 
-    // check we that archive is supported
-    if ( !KRarcHandler::arcSupported( type ) ) {
-      sendError( KIO::ERR_NO_CONTENT, i18n( "%1, unsupported archive type.", arcName ) );
-      return ;
+        // check we that archive is supported
+        if (!KRarcHandler::arcSupported(type)) {
+            sendError(KIO::ERR_NO_CONTENT, i18n("%1, unsupported archive type.", arcName));
+            return ;
+        }
+
+        QString password = encrypted ? getPassword(path) : QString();
+
+        // test the archive
+        if (!KRarcHandler::test(path, type, password, 0, observer())) {
+            sendError(KIO::ERR_NO_CONTENT, i18n("%1, test failed!", arcName));
+            return ;
+        }
     }
 
-    QString password = encrypted ? getPassword( path ) : QString();
-
-    // test the archive
-    if ( !KRarcHandler::test( path, type, password, 0, observer() ) ) {
-      sendError( KIO::ERR_NO_CONTENT, i18n( "%1, test failed!", arcName ) );
-      return ;
-    }
-  }
-
-  sendMessage( i18n( "Archive tests passed." ) );
-  sendSuccess();
+    sendMessage(i18n("Archive tests passed."));
+    sendSuccess();
 }
 
 
-UnpackJob::UnpackJob( const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames ) : AbstractThreadedJob()
+UnpackJob::UnpackJob(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames) : AbstractThreadedJob()
 {
-  start( new UnpackThread( srcUrl, destUrl, fileNames ) );
+    start(new UnpackThread(srcUrl, destUrl, fileNames));
 }
 
-UnpackJob * UnpackJob::createUnpacker( const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames )
+UnpackJob * UnpackJob::createUnpacker(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames)
 {
-  return new UnpackJob( srcUrl, destUrl, fileNames );
+    return new UnpackJob(srcUrl, destUrl, fileNames);
 }
 
-UnpackThread::UnpackThread( const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames ) : 
-    AbstractJobThread(), _sourceUrl( srcUrl ), _destUrl( destUrl ), _fileNames( fileNames )
+UnpackThread::UnpackThread(const KUrl &srcUrl, const KUrl &destUrl, const QStringList & fileNames) :
+        AbstractJobThread(), _sourceUrl(srcUrl), _destUrl(destUrl), _fileNames(fileNames)
 {
 }
 
 void UnpackThread::slotStart()
 {
-  KUrl newSource = downloadIfRemote( _sourceUrl, _fileNames );
-  if( newSource.isEmpty() )
-    return;
+    KUrl newSource = downloadIfRemote(_sourceUrl, _fileNames);
+    if (newSource.isEmpty())
+        return;
 
-  QString localDest = tempDirIfRemote( _destUrl );
+    QString localDest = tempDirIfRemote(_destUrl);
 
-  for ( int i = 0; i < _fileNames.count(); ++i ) {
-    QString arcName = _fileNames[ i ];
-    if ( arcName.isEmpty() )
-      continue;
-    if ( arcName == ".." )
-      continue; // safety
+    for (int i = 0; i < _fileNames.count(); ++i) {
+        QString arcName = _fileNames[ i ];
+        if (arcName.isEmpty())
+            continue;
+        if (arcName == "..")
+            continue; // safety
 
-    KUrl url = newSource;
-    url.addPath( arcName );
+        KUrl url = newSource;
+        url.addPath(arcName);
 
-    QString path = url.path( KUrl::RemoveTrailingSlash );
+        QString path = url.path(KUrl::RemoveTrailingSlash);
 
-    KMimeType::Ptr mt = KMimeType::findByUrl( url );
-    QString mime = mt ? mt->name() : QString();
-    bool encrypted = false;
-    QString type = KRarcHandler::getType( encrypted, path, mime );
+        KMimeType::Ptr mt = KMimeType::findByUrl(url);
+        QString mime = mt ? mt->name() : QString();
+        bool encrypted = false;
+        QString type = KRarcHandler::getType(encrypted, path, mime);
 
-    // check we that archive is supported
-    if ( !KRarcHandler::arcSupported( type ) ) {
-      sendError( KIO::ERR_NO_CONTENT, i18n( "%1, unsupported archive type.", arcName ) );
-      return ;
+        // check we that archive is supported
+        if (!KRarcHandler::arcSupported(type)) {
+            sendError(KIO::ERR_NO_CONTENT, i18n("%1, unsupported archive type.", arcName));
+            return ;
+        }
+
+        QString password = encrypted ? getPassword(path) : QString();
+
+        setProgressTitle(i18n("Processed files"));
+        // unpack the files
+        bool result = KRarcHandler::unpack(path, type, password, localDest, observer());
+
+        if (isExited())
+            return;
+        if (!result) {
+            sendError(KIO::ERR_INTERNAL, i18n("Error at unpacking"));
+            return;
+        }
     }
 
-    QString password = encrypted ? getPassword( path ) : QString();
+    if (!uploadTempFiles())
+        return;
 
-    setProgressTitle( i18n("Processed files" ) );
-    // unpack the files
-    bool result = KRarcHandler::unpack( path, type, password, localDest, observer() );
-
-    if( isExited() )
-      return;
-    if( !result )
-    {
-      sendError( KIO::ERR_INTERNAL, i18n( "Error at unpacking" ) );
-      return;
-    }
-  }
-
-  if( !uploadTempFiles() )
-    return;
-
-  sendSuccess();
+    sendSuccess();
 }

@@ -36,34 +36,34 @@
 
 class ProfileManager : public QPushButton
 {
-  Q_OBJECT
-  
-public: 
-  ProfileManager( QString profileType, QWidget * parent = 0 );
-  
-  /**
-   * @param profileType Type of the profile (sync, search, ...)
-   * @return A list of all available profile-names
-   */
-  static QStringList availableProfiles( QString profileType );
+    Q_OBJECT
 
-  QStringList getNames();
-    
+public:
+    ProfileManager(QString profileType, QWidget * parent = 0);
+
+    /**
+     * @param profileType Type of the profile (sync, search, ...)
+     * @return A list of all available profile-names
+     */
+    static QStringList availableProfiles(QString profileType);
+
+    QStringList getNames();
+
 public slots:
-  void profilePopup();
-  
-  void newProfile( QString defaultName = QString() );
-  void deleteProfile( QString name );
-  void overwriteProfile( QString name );
-  bool loadProfile( QString name );  
-  
+    void profilePopup();
+
+    void newProfile(QString defaultName = QString());
+    void deleteProfile(QString name);
+    void overwriteProfile(QString name);
+    bool loadProfile(QString name);
+
 signals:
-  void saveToProfile( QString profileName );
-  void loadFromProfile( QString profileName );
-  
+    void saveToProfile(QString profileName);
+    void loadFromProfile(QString profileName);
+
 private:
-  QString profileType;
-  QStringList profileList;
+    QString profileType;
+    QStringList profileList;
 };
 
 #endif /* PROFILEMANAGER_H */

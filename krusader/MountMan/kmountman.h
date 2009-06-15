@@ -51,60 +51,61 @@ A
 
 class KMountManGUI;
 
-class KMountMan : public QObject {
-   Q_OBJECT
-   friend class KMountManGUI;
+class KMountMan : public QObject
+{
+    Q_OBJECT
+    friend class KMountManGUI;
 
 public:
-   enum mntStatus {DOESNT_EXIST, NOT_MOUNTED, MOUNTED};
+    enum mntStatus {DOESNT_EXIST, NOT_MOUNTED, MOUNTED};
 
-   inline bool operational() {
-      return Operational;
-   } // check this 1st
-   
-	void mainWindow();                        // opens up the GUI
-   void mount( QString mntPoint, bool blocking=true ); // this is probably what you need for mount
-   void unmount( QString mntPoint, bool blocking=true ); // this is probably what you need for unmount
-   mntStatus getStatus( QString mntPoint );  // return the status of a mntPoint (if any)
-   void autoMount( QString path );           // just call it before refreshing into a dir
-   void eject( QString mntPoint );
-   bool ejectable( QString path );
-   QString convertSize( KIO::filesize_t size );
-	bool invalidFilesystem(QString type);
-	bool nonmountFilesystem(QString type, QString mntPoint);
+    inline bool operational() {
+        return Operational;
+    } // check this 1st
 
-   KMountMan();
-   ~KMountMan();
+    void mainWindow();                        // opens up the GUI
+    void mount(QString mntPoint, bool blocking = true); // this is probably what you need for mount
+    void unmount(QString mntPoint, bool blocking = true); // this is probably what you need for unmount
+    mntStatus getStatus(QString mntPoint);    // return the status of a mntPoint (if any)
+    void autoMount(QString path);             // just call it before refreshing into a dir
+    void eject(QString mntPoint);
+    bool ejectable(QString path);
+    QString convertSize(KIO::filesize_t size);
+    bool invalidFilesystem(QString type);
+    bool nonmountFilesystem(QString type, QString mntPoint);
 
-   QString findUdiForPath( QString path, const Solid::DeviceInterface::Type &expType = Solid::DeviceInterface::Unknown );
+    KMountMan();
+    ~KMountMan();
+
+    QString findUdiForPath(QString path, const Solid::DeviceInterface::Type &expType = Solid::DeviceInterface::Unknown);
 
 public slots:
-   void delayedPerformAction( QAction * );
-   void performAction();
-   void quickList();
+    void delayedPerformAction(QAction *);
+    void performAction();
+    void quickList();
 
 protected slots:
-	void jobResult(KJob *job);
-	void slotTeardownDone(Solid::ErrorType error, QVariant errorData, const QString &udi);
-	void slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString &udi);
-	
+    void jobResult(KJob *job);
+    void slotTeardownDone(Solid::ErrorType error, QVariant errorData, const QString &udi);
+    void slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString &udi);
+
 protected:
-	// used internally
-	static KSharedPtr<KMountPoint> findInListByMntPoint(KMountPoint::List &lst, QString value); 
-   void toggleMount( QString mntPoint ); 
-		
-private:
-   QString *_actions;
+    // used internally
+    static KSharedPtr<KMountPoint> findInListByMntPoint(KMountPoint::List &lst, QString value);
+    void toggleMount(QString mntPoint);
 
 private:
-   bool Operational;   // if false, something went terribly wrong on startup
-	bool waiting; // used to block krusader while waiting for (un)mount operation
-   KMountManGUI *mountManGui;
-	// the following is the FS type
-	QStringList invalid_fs;
-	QStringList nonmount_fs;
-	// the following is the FS name
-		QStringList nonmount_fs_mntpoint;
+    QString *_actions;
+
+private:
+    bool Operational;   // if false, something went terribly wrong on startup
+    bool waiting; // used to block krusader while waiting for (un)mount operation
+    KMountManGUI *mountManGui;
+    // the following is the FS type
+    QStringList invalid_fs;
+    QStringList nonmount_fs;
+    // the following is the FS name
+    QStringList nonmount_fs_mntpoint;
 };
 
 #endif

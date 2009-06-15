@@ -39,13 +39,13 @@ class UserActionListView;
 
 class KgUserActions : public KonfiguratorPage
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KgUserActions( bool first, QWidget* parent=0 );
+    KgUserActions(bool first, QWidget* parent = 0);
 
 public slots:
-  void startActionMan();
+    void startActionMan();
 };
 
 #endif /* __KGUSERACTIONS_H__ */

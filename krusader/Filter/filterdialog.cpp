@@ -35,54 +35,51 @@
 #include <klocale.h>
 #include <QGridLayout>
 
-FilterDialog::FilterDialog ( QWidget *parent )
-		: KDialog ( parent )
+FilterDialog::FilterDialog(QWidget *parent)
+        : KDialog(parent)
 {
-	setWindowTitle ( i18n ( "Krusader::Choose Files" ) );
-	setModal ( true );
-	setButtons ( Ok | Cancel );
+    setWindowTitle(i18n("Krusader::Choose Files"));
+    setModal(true);
+    setButtons(Ok | Cancel);
 
-	QTabWidget *filterWidget = new QTabWidget;
-	
-	filterTabs = FilterTabs::addTo ( filterWidget, FilterTabs::HasProfileHandler );
-	generalFilter = ( GeneralFilter * ) filterTabs->get ( "GeneralFilter" );
-	generalFilter->searchFor->setEditText ( "*" );
+    QTabWidget *filterWidget = new QTabWidget;
 
-	setMainWidget ( filterWidget );
+    filterTabs = FilterTabs::addTo(filterWidget, FilterTabs::HasProfileHandler);
+    generalFilter = (GeneralFilter *) filterTabs->get("GeneralFilter");
+    generalFilter->searchFor->setEditText("*");
 
-	generalFilter->searchFor->setFocus();
+    setMainWidget(filterWidget);
 
-	connect ( filterTabs, SIGNAL ( closeRequest ( bool ) ), this, SLOT ( slotCloseRequest ( bool ) ) );
-	connect ( this, SIGNAL ( okClicked() ), this, SLOT ( slotOk() ) );
+    generalFilter->searchFor->setFocus();
 
-	exec();
+    connect(filterTabs, SIGNAL(closeRequest(bool)), this, SLOT(slotCloseRequest(bool)));
+    connect(this, SIGNAL(okClicked()), this, SLOT(slotOk()));
+
+    exec();
 }
 
 KRQuery FilterDialog::getQuery()
 {
-	return query;
+    return query;
 }
 
-void FilterDialog::slotCloseRequest ( bool doAccept )
+void FilterDialog::slotCloseRequest(bool doAccept)
 {
-	if ( doAccept )
-	{
-		slotOk();
-		accept();
-	}
-	else
-		reject();
+    if (doAccept) {
+        slotOk();
+        accept();
+    } else
+        reject();
 }
 
 void FilterDialog::slotOk()
 {
-	if ( filterTabs->fillQuery ( &query ) )
-	{
-		KDialog::accept();
-		return;
-	}
+    if (filterTabs->fillQuery(&query)) {
+        KDialog::accept();
+        return;
+    }
 
-	query = KRQuery();
+    query = KRQuery();
 }
 
 #include "filterdialog.moc"

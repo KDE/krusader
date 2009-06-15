@@ -39,17 +39,18 @@
 
 // Function Keys widget
 ///////////////////////
-class KFnKeys : public QWidget {
-	Q_OBJECT
+class KFnKeys : public QWidget
+{
+    Q_OBJECT
 
 public:
-	// constructor
-  KFnKeys(QWidget *parent);
-  void updateShortcuts();
+    // constructor
+    KFnKeys(QWidget *parent);
+    void updateShortcuts();
 
 private:
-	QPushButton *F2 ,*F3,*F4,*F5,*F6,*F7,*F8,*F9,*F10;
-	QGridLayout *layout;
+    QPushButton *F2 , *F3, *F4, *F5, *F6, *F7, *F8, *F9, *F10;
+    QGridLayout *layout;
 };
 
 #endif

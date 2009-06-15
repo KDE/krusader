@@ -30,15 +30,15 @@
 
 #ifndef KGWELCOME_H
 #define KGWELCOME_H
- 
+
 #include "konfiguratorpage.h"
 
 class KgWelcome : public KonfiguratorPage
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KgWelcome( bool first, QWidget* parent=0 );
+    KgWelcome(bool first, QWidget* parent = 0);
 };
 
 #endif /* __KGWELCOME_H__ */

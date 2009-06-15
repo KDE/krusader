@@ -35,24 +35,30 @@
 
 class KrTreeWidget : public QTreeWidget
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KrTreeWidget( QWidget * parent );
-  void setStretchingColumn( int col )                {_stretchingColumn = col;}
+    KrTreeWidget(QWidget * parent);
+    void setStretchingColumn(int col)                {
+        _stretchingColumn = col;
+    }
 
-  QModelIndex indexOf( QTreeWidgetItem * item, int col = 0 ) { return indexFromItem( item, col ); }
-  QTreeWidgetItem * item( const QModelIndex & ndx )          { return itemFromIndex( ndx ); }
+    QModelIndex indexOf(QTreeWidgetItem * item, int col = 0) {
+        return indexFromItem(item, col);
+    }
+    QTreeWidgetItem * item(const QModelIndex & ndx)          {
+        return itemFromIndex(ndx);
+    }
 
 signals:
-  void itemRightClicked( QTreeWidgetItem * it, const QPoint & pos, int column );
+    void itemRightClicked(QTreeWidgetItem * it, const QPoint & pos, int column);
 
 protected:
-  virtual bool event ( QEvent * event );
+    virtual bool event(QEvent * event);
 
 private:
-  int  _stretchingColumn;
-  bool _inResize;
+    int  _stretchingColumn;
+    bool _inResize;
 };
 
 #endif /* KRTREEWIDGET_H */

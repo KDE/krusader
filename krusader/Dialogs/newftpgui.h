@@ -16,9 +16,9 @@
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QLabel>
-class QVBoxLayout; 
-class QHBoxLayout; 
-class QGridLayout; 
+class QVBoxLayout;
+class QHBoxLayout;
+class QGridLayout;
 class QLabel;
 class QLineEdit;
 class QPushButton;
@@ -26,16 +26,17 @@ class QSpinBox;
 class KComboBox;
 class KHistoryComboBox;
 
-class newFTPGUI : public QDialog {
+class newFTPGUI : public QDialog
+{
     Q_OBJECT
 public:
-    newFTPGUI( QWidget* parent = 0 );
+    newFTPGUI(QWidget* parent = 0);
     ~newFTPGUI();
 
     QLabel* TextLabel1;
     KComboBox* prefix;
     QLabel* TextLabel1_2_2;
-	 QLabel* TextLabel1_22;
+    QLabel* TextLabel1_22;
     QLabel* TextLabel1_2;
     QLabel* TextLabel1_3;
     QSpinBox* port;
@@ -53,7 +54,7 @@ public slots:
 
 protected:
     QHBoxLayout* hbox;
-    bool event( QEvent* );
+    bool event(QEvent*);
 };
 
 #endif // NEWFTPGUI_H

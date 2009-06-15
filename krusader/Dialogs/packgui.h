@@ -33,23 +33,24 @@
 
 #include "packguibase.h"
 
-class PackGUI : public PackGUIBase {
-  Q_OBJECT
+class PackGUI : public PackGUIBase
+{
+    Q_OBJECT
 public:
-  PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QString filename="");
+    PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QString filename = "");
 
 public slots:
-  void browse();
+    void browse();
 
 protected slots:
-  void accept();
-  void reject();
-  virtual void slotQueue();
+    void accept();
+    void reject();
+    virtual void slotQueue();
 
 public:
-  static QString filename, destination, type;
-  static QMap<QString, QString> extraProps;
-  static bool queue;
+    static QString filename, destination, type;
+    static QMap<QString, QString> extraProps;
+    static bool queue;
 };
 
 #endif

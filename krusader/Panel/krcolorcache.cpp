@@ -20,8 +20,8 @@
 #include "krcolorcache.h"
 #include "../krusader.h"
 #include "../defaults.h"
-#include <kcolorscheme.h> 
-#include <QtCore/QFile> 
+#include <kcolorscheme.h>
+#include <QtCore/QFile>
 #include <QList>
 
 // Macro: set target = col, if col is valid
@@ -31,17 +31,17 @@
 // Just call a method to initialize it.
 class KrColorSettingNames
 {
-	static QMap<QString, bool> s_colorNames;
-	static QMap<QString, bool> s_numNames;
-	static QMap<QString, bool> s_boolNames;
-	static void initialize();
+    static QMap<QString, bool> s_colorNames;
+    static QMap<QString, bool> s_numNames;
+    static QMap<QString, bool> s_boolNames;
+    static void initialize();
 public:
-	static QStringList getColorNames();
-	static bool isColorNameValid(const QString & settingName);
-	static QStringList getNumNames();
-	static bool isNumNameValid(const QString & settingName);
-	static QStringList getBoolNames();
-	static bool isBoolNameValid(const QString & settingName);
+    static QStringList getColorNames();
+    static bool isColorNameValid(const QString & settingName);
+    static QStringList getNumNames();
+    static bool isNumNameValid(const QString & settingName);
+    static QStringList getBoolNames();
+    static bool isBoolNameValid(const QString & settingName);
 } krColorSettingNames;
 
 QMap<QString, bool> KrColorSettingNames::s_colorNames;
@@ -50,78 +50,78 @@ QMap<QString, bool> KrColorSettingNames::s_boolNames;
 
 void KrColorSettingNames::initialize()
 {
-	if (!s_colorNames.empty())
-		return;
-	s_colorNames["Foreground"] = true;
-	s_colorNames["Inactive Foreground"] = true;
-	s_colorNames["Directory Foreground"] = true;
-	s_colorNames["Inactive Directory Foreground"] = true;
-	s_colorNames["Executable Foreground"] = true;
-	s_colorNames["Inactive Executable Foreground"] = true;
-	s_colorNames["Symlink Foreground"] = true;
-	s_colorNames["Inactive Symlink Foreground"] = true;
-	s_colorNames["Invalid Symlink Foreground"] = true;
-	s_colorNames["Inactive Invalid Symlink Foreground"] = true;
-	s_colorNames["Marked Foreground"] = true;
-	s_colorNames["Inactive Marked Foreground"] = true;
-	s_colorNames["Marked Background"] = true;
-	s_colorNames["Inactive Marked Background"] = true;
-	s_colorNames["Current Foreground"] = true;
-	s_colorNames["Inactive Current Foreground"] = true;
-	s_colorNames["Current Background"] = true;
-	s_colorNames["Inactive Current Background"] = true;
-	s_colorNames["Marked Current Foreground"] = true;
-	s_colorNames["Inactive Marked Current Foreground"] = true;
-	s_colorNames["Alternate Background"] = true;
-	s_colorNames["Inactive Alternate Background"] = true;
-	s_colorNames["Background"] = true;
-	s_colorNames["Inactive Background"] = true;
-	s_colorNames["Alternate Marked Background"] = true;
-	s_colorNames["Inactive Alternate Marked Background"] = true;
-	s_colorNames["Dim Target Color"] = true;
+    if (!s_colorNames.empty())
+        return;
+    s_colorNames["Foreground"] = true;
+    s_colorNames["Inactive Foreground"] = true;
+    s_colorNames["Directory Foreground"] = true;
+    s_colorNames["Inactive Directory Foreground"] = true;
+    s_colorNames["Executable Foreground"] = true;
+    s_colorNames["Inactive Executable Foreground"] = true;
+    s_colorNames["Symlink Foreground"] = true;
+    s_colorNames["Inactive Symlink Foreground"] = true;
+    s_colorNames["Invalid Symlink Foreground"] = true;
+    s_colorNames["Inactive Invalid Symlink Foreground"] = true;
+    s_colorNames["Marked Foreground"] = true;
+    s_colorNames["Inactive Marked Foreground"] = true;
+    s_colorNames["Marked Background"] = true;
+    s_colorNames["Inactive Marked Background"] = true;
+    s_colorNames["Current Foreground"] = true;
+    s_colorNames["Inactive Current Foreground"] = true;
+    s_colorNames["Current Background"] = true;
+    s_colorNames["Inactive Current Background"] = true;
+    s_colorNames["Marked Current Foreground"] = true;
+    s_colorNames["Inactive Marked Current Foreground"] = true;
+    s_colorNames["Alternate Background"] = true;
+    s_colorNames["Inactive Alternate Background"] = true;
+    s_colorNames["Background"] = true;
+    s_colorNames["Inactive Background"] = true;
+    s_colorNames["Alternate Marked Background"] = true;
+    s_colorNames["Inactive Alternate Marked Background"] = true;
+    s_colorNames["Dim Target Color"] = true;
 
-	s_numNames["Dim Factor"] = true;
+    s_numNames["Dim Factor"] = true;
 
-	s_boolNames["KDE Default"] = true;
-	s_boolNames["Enable Alternate Background"] = true;
-	s_boolNames["Show Current Item Always"] = true;
-	s_boolNames["Dim Inactive Colors"] = true;
+    s_boolNames["KDE Default"] = true;
+    s_boolNames["Enable Alternate Background"] = true;
+    s_boolNames["Show Current Item Always"] = true;
+    s_boolNames["Dim Inactive Colors"] = true;
 }
 
 QStringList KrColorSettingNames::getColorNames()
 {
-	initialize();
-	return s_colorNames.keys();
+    initialize();
+    return s_colorNames.keys();
 }
 
 bool KrColorSettingNames::isColorNameValid(const QString & settingName)
 {
-	initialize();
-	return s_colorNames.contains(settingName);
+    initialize();
+    return s_colorNames.contains(settingName);
 }
 
 QStringList KrColorSettingNames::getNumNames()
 {
-	initialize();
-	return s_numNames.keys();
+    initialize();
+    return s_numNames.keys();
 }
 
 bool KrColorSettingNames::isNumNameValid(const QString & settingName)
 {
-	initialize();
-	return s_numNames.contains(settingName);
+    initialize();
+    return s_numNames.contains(settingName);
 }
 
 QStringList KrColorSettingNames::getBoolNames()
 {
-	initialize();
-	return s_boolNames.keys();
+    initialize();
+    return s_boolNames.keys();
 }
 
 bool KrColorSettingNames::isBoolNameValid(const QString & settingName)
 {
-	initialize();
-	return s_boolNames.contains(settingName);
+    initialize();
+    return s_boolNames.contains(settingName);
 }
 
 
@@ -131,233 +131,219 @@ KrColorSettings implementation. Contains all properties in QMaps. loadFromConfig
 */
 class KrColorSettingsImpl
 {
-	friend class KrColorSettings;
-	QMap<QString, QString> m_colorTextValues;
-	QMap<QString, QColor> m_colorValues;
-	QMap<QString, int> m_numValues;
-	QMap<QString, bool> m_boolValues;
-	void loadFromConfig();
+    friend class KrColorSettings;
+    QMap<QString, QString> m_colorTextValues;
+    QMap<QString, QColor> m_colorValues;
+    QMap<QString, int> m_numValues;
+    QMap<QString, bool> m_boolValues;
+    void loadFromConfig();
 };
 
 void KrColorSettingsImpl::loadFromConfig()
 {
-	KConfigGroup group( krConfig, "Colors" );
-	QStringList names = KrColorSettingNames::getColorNames();
-	for ( QStringList::Iterator it = names.begin(); it != names.end(); ++it )
-	{
-		m_colorTextValues[*it] = group.readEntry(*it, QString());
-		if (m_colorTextValues[*it].contains(',') == 3)
-			m_colorValues[*it] = group.readEntry(*it, QColor());
-		else
-			m_colorValues[*it] = QColor();
-	}
-	names = KrColorSettingNames::getNumNames();
-	for ( QStringList::Iterator it = names.begin(); it != names.end(); ++it )
-	{
-		if (group.readEntry(*it, QString()) != QString())
-			m_numValues[*it] = group.readEntry(*it, (long long)0 );
-	}
-	names = KrColorSettingNames::getBoolNames();
-	for ( QStringList::Iterator it = names.begin(); it != names.end(); ++it )
-	{
-		if (group.readEntry(*it, QString()) != QString())
-			m_boolValues[*it] = group.readEntry(*it, false);
-	}
+    KConfigGroup group(krConfig, "Colors");
+    QStringList names = KrColorSettingNames::getColorNames();
+    for (QStringList::Iterator it = names.begin(); it != names.end(); ++it) {
+        m_colorTextValues[*it] = group.readEntry(*it, QString());
+        if (m_colorTextValues[*it].contains(',') == 3)
+            m_colorValues[*it] = group.readEntry(*it, QColor());
+        else
+            m_colorValues[*it] = QColor();
+    }
+    names = KrColorSettingNames::getNumNames();
+    for (QStringList::Iterator it = names.begin(); it != names.end(); ++it) {
+        if (group.readEntry(*it, QString()) != QString())
+            m_numValues[*it] = group.readEntry(*it, (long long)0);
+    }
+    names = KrColorSettingNames::getBoolNames();
+    for (QStringList::Iterator it = names.begin(); it != names.end(); ++it) {
+        if (group.readEntry(*it, QString()) != QString())
+            m_boolValues[*it] = group.readEntry(*it, false);
+    }
 }
 
 
 
 KrColorSettings::KrColorSettings()
 {
-	m_impl = new KrColorSettingsImpl();
-	m_impl->loadFromConfig();
+    m_impl = new KrColorSettingsImpl();
+    m_impl->loadFromConfig();
 }
 
 KrColorSettings::KrColorSettings(const KrColorSettings & src)
 {
-	m_impl = new KrColorSettingsImpl();
-	operator =(src);
+    m_impl = new KrColorSettingsImpl();
+    operator =(src);
 }
 
 KrColorSettings::~KrColorSettings()
 {
-	delete m_impl;
+    delete m_impl;
 }
 
 const KrColorSettings & KrColorSettings::operator= (const KrColorSettings & src)
 {
-	if (this == & src)
-		return * this;
-	QStringList names = KrColorSettingNames::getColorNames();
-	for ( QStringList::Iterator it = names.begin(); it != names.end(); ++it )
-	{
-		m_impl->m_colorTextValues[*it] = src.m_impl->m_colorTextValues[*it];
-		m_impl->m_colorValues[*it] = src.m_impl->m_colorValues[*it];
-	}
-	for ( QMap<QString, int>::Iterator it = src.m_impl->m_numValues.begin(); it != src.m_impl->m_numValues.end(); ++it )
-	{
-		m_impl->m_numValues[it.key()] = it.value();
-	}
-	for ( QMap<QString, bool>::Iterator it = src.m_impl->m_boolValues.begin(); it != src.m_impl->m_boolValues.end(); ++it )
-	{
-		m_impl->m_boolValues[it.key()] = it.value();
-	}
-	return * this;
+    if (this == & src)
+        return * this;
+    QStringList names = KrColorSettingNames::getColorNames();
+    for (QStringList::Iterator it = names.begin(); it != names.end(); ++it) {
+        m_impl->m_colorTextValues[*it] = src.m_impl->m_colorTextValues[*it];
+        m_impl->m_colorValues[*it] = src.m_impl->m_colorValues[*it];
+    }
+    for (QMap<QString, int>::Iterator it = src.m_impl->m_numValues.begin(); it != src.m_impl->m_numValues.end(); ++it) {
+        m_impl->m_numValues[it.key()] = it.value();
+    }
+    for (QMap<QString, bool>::Iterator it = src.m_impl->m_boolValues.begin(); it != src.m_impl->m_boolValues.end(); ++it) {
+        m_impl->m_boolValues[it.key()] = it.value();
+    }
+    return * this;
 }
 
 QList<QString> KrColorSettings::getColorNames()
 {
-	return KrColorSettingNames::getColorNames();
+    return KrColorSettingNames::getColorNames();
 }
 
 bool KrColorSettings::isColorNameValid(const QString & settingName)
 {
-	return KrColorSettingNames::isColorNameValid(settingName);
+    return KrColorSettingNames::isColorNameValid(settingName);
 }
 
 bool KrColorSettings::setColorValue(const QString & settingName, const QColor & color)
 {
-	if (!isColorNameValid(settingName))
-	{
-		krOut << "Invalid color setting name: " << settingName << endl;
-		return false;
-	}
-	m_impl->m_colorValues[settingName] = color;
-	return true;
+    if (!isColorNameValid(settingName)) {
+        krOut << "Invalid color setting name: " << settingName << endl;
+        return false;
+    }
+    m_impl->m_colorValues[settingName] = color;
+    return true;
 }
 
 QColor KrColorSettings::getColorValue(const QString & settingName) const
 {
-	if (!isColorNameValid(settingName))
-	{
-		krOut << "Invalid color setting name: " << settingName << endl;
-		return QColor();
-	}
-	return m_impl->m_colorValues[settingName];
+    if (!isColorNameValid(settingName)) {
+        krOut << "Invalid color setting name: " << settingName << endl;
+        return QColor();
+    }
+    return m_impl->m_colorValues[settingName];
 }
 
 bool KrColorSettings::setColorTextValue(const QString & settingName, const QString & colorText)
 {
-	if (!isColorNameValid(settingName))
-	{
-		krOut << "Invalid color setting name: " << settingName << endl;
-		return false;
-	}
-	m_impl->m_colorTextValues[settingName] = colorText;
-	return true;
+    if (!isColorNameValid(settingName)) {
+        krOut << "Invalid color setting name: " << settingName << endl;
+        return false;
+    }
+    m_impl->m_colorTextValues[settingName] = colorText;
+    return true;
 }
 
 QString KrColorSettings::getColorTextValue(const QString & settingName) const
 {
-	if (!isColorNameValid(settingName))
-	{
-		krOut << "Invalid color setting name: " << settingName << endl;
-		return QString();
-	}
-	return m_impl->m_colorTextValues[settingName];
+    if (!isColorNameValid(settingName)) {
+        krOut << "Invalid color setting name: " << settingName << endl;
+        return QString();
+    }
+    return m_impl->m_colorTextValues[settingName];
 }
 
 QList<QString> KrColorSettings::getNumNames()
 {
-	return KrColorSettingNames::getNumNames();
+    return KrColorSettingNames::getNumNames();
 }
 
 bool KrColorSettings::isNumNameValid(const QString & settingName)
 {
-	return KrColorSettingNames::isNumNameValid(settingName);
+    return KrColorSettingNames::isNumNameValid(settingName);
 }
 
 bool KrColorSettings::setNumValue(const QString & settingName, int value)
 {
-	if (!isNumNameValid(settingName))
-	{
-		krOut << "Invalid number setting name: " << settingName << endl;
-		return false;
-	}
-	m_impl->m_numValues[settingName] = value;
-	return true;
+    if (!isNumNameValid(settingName)) {
+        krOut << "Invalid number setting name: " << settingName << endl;
+        return false;
+    }
+    m_impl->m_numValues[settingName] = value;
+    return true;
 }
 
 int KrColorSettings::getNumValue(const QString & settingName, int defaultValue) const
 {
-	if (!isNumNameValid(settingName))
-	{
-		krOut << "Invalid number setting name: " << settingName << endl;
-		return 0;
-	}
-	if (!m_impl->m_numValues.contains(settingName))
-		return defaultValue;
-	return m_impl->m_numValues[settingName];
+    if (!isNumNameValid(settingName)) {
+        krOut << "Invalid number setting name: " << settingName << endl;
+        return 0;
+    }
+    if (!m_impl->m_numValues.contains(settingName))
+        return defaultValue;
+    return m_impl->m_numValues[settingName];
 }
 
 QList<QString> KrColorSettings::getBoolNames()
 {
-	return KrColorSettingNames::getBoolNames();
+    return KrColorSettingNames::getBoolNames();
 }
 
 bool KrColorSettings::isBoolNameValid(const QString & settingName)
 {
-	return KrColorSettingNames::isBoolNameValid(settingName);
+    return KrColorSettingNames::isBoolNameValid(settingName);
 }
 
 bool KrColorSettings::setBoolValue(const QString & settingName, bool value)
 {
-	if (!isBoolNameValid(settingName))
-	{
-		krOut << "Invalid bool setting name: " << settingName << endl;
-		return false;
-	}
-	m_impl->m_boolValues[settingName] = value;
-	return true;
+    if (!isBoolNameValid(settingName)) {
+        krOut << "Invalid bool setting name: " << settingName << endl;
+        return false;
+    }
+    m_impl->m_boolValues[settingName] = value;
+    return true;
 }
 
 int KrColorSettings::getBoolValue(const QString & settingName, bool defaultValue) const
 {
-	if (!isBoolNameValid(settingName))
-	{
-		krOut << "Invalid bool setting name: " << settingName << endl;
-		return false;
-	}
-	if (!m_impl->m_boolValues.contains(settingName))
-		return defaultValue;
-	return m_impl->m_boolValues[settingName];
+    if (!isBoolNameValid(settingName)) {
+        krOut << "Invalid bool setting name: " << settingName << endl;
+        return false;
+    }
+    if (!m_impl->m_boolValues.contains(settingName))
+        return defaultValue;
+    return m_impl->m_boolValues[settingName];
 }
 
 
 
 KrColorItemType::KrColorItemType()
 {
-	m_fileType = File;
-	m_alternateBackgroundColor = false;
-	m_activePanel = false;
-	m_currentItem = false;
-	m_selectedItem = false;
+    m_fileType = File;
+    m_alternateBackgroundColor = false;
+    m_activePanel = false;
+    m_currentItem = false;
+    m_selectedItem = false;
 }
 
 KrColorItemType::KrColorItemType(FileType type, bool alternateBackgroundColor, bool activePanel, bool currentItem, bool selectedItem)
 {
-	m_fileType = type;
-	m_alternateBackgroundColor = alternateBackgroundColor;
-	m_activePanel = activePanel;
-	m_currentItem = currentItem;
-	m_selectedItem = selectedItem;
+    m_fileType = type;
+    m_alternateBackgroundColor = alternateBackgroundColor;
+    m_activePanel = activePanel;
+    m_currentItem = currentItem;
+    m_selectedItem = selectedItem;
 }
 
 KrColorItemType::KrColorItemType(const KrColorItemType & src)
 {
-	operator= (src);
+    operator= (src);
 }
 
 const KrColorItemType & KrColorItemType::operator= (const KrColorItemType & src)
 {
-	if (this == & src)
-		return * this;
-	m_fileType = src.m_fileType;
-	m_alternateBackgroundColor = src.m_alternateBackgroundColor;
-	m_activePanel = src.m_activePanel;
-	m_currentItem = src.m_currentItem;
-	m_selectedItem = src.m_selectedItem;
-	return * this;
+    if (this == & src)
+        return * this;
+    m_fileType = src.m_fileType;
+    m_alternateBackgroundColor = src.m_alternateBackgroundColor;
+    m_activePanel = src.m_activePanel;
+    m_currentItem = src.m_currentItem;
+    m_selectedItem = src.m_selectedItem;
+    return * this;
 }
 
 
@@ -369,295 +355,289 @@ getColors is the only method to call. All other are taken from the previous vers
 */
 class KrColorCacheImpl
 {
-	friend class KrColorCache;
-	QMap<QString, KrColorGroup> m_cachedColors;
-	KrColorSettings m_colorSettings;
-	KrColorGroup getColors(const KrColorItemType & type) const;
-	static const QColor & setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2);
-	QColor getForegroundColor(bool isActive) const;
-	QColor getSpecialForegroundColor(const QString & type, bool isActive) const;
-	QColor getBackgroundColor(bool isActive) const;
-	QColor getAlternateBackgroundColor(bool isActive) const;
-	QColor getMarkedForegroundColor(bool isActive) const;
-	QColor getMarkedBackgroundColor(bool isActive) const;
-	QColor getAlternateMarkedBackgroundColor(bool isActive) const;
-	QColor getCurrentForegroundColor(bool isActive) const;
-	QColor getCurrentBackgroundColor(bool isActive) const;
-	QColor getCurrentMarkedForegroundColor(bool isActive) const;
-	QColor dimColor(QColor color, bool isBackgroundColor) const;
+    friend class KrColorCache;
+    QMap<QString, KrColorGroup> m_cachedColors;
+    KrColorSettings m_colorSettings;
+    KrColorGroup getColors(const KrColorItemType & type) const;
+    static const QColor & setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2);
+    QColor getForegroundColor(bool isActive) const;
+    QColor getSpecialForegroundColor(const QString & type, bool isActive) const;
+    QColor getBackgroundColor(bool isActive) const;
+    QColor getAlternateBackgroundColor(bool isActive) const;
+    QColor getMarkedForegroundColor(bool isActive) const;
+    QColor getMarkedBackgroundColor(bool isActive) const;
+    QColor getAlternateMarkedBackgroundColor(bool isActive) const;
+    QColor getCurrentForegroundColor(bool isActive) const;
+    QColor getCurrentBackgroundColor(bool isActive) const;
+    QColor getCurrentMarkedForegroundColor(bool isActive) const;
+    QColor dimColor(QColor color, bool isBackgroundColor) const;
 };
 
 KrColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
 {
-	KrColorGroup result;
-	if (m_colorSettings.getBoolValue("KDE Default", _KDEDefaultColors))
-	{
-		// KDE default? Getcolors from KGlobalSettings.
-		bool enableAlternateBackground = m_colorSettings.getBoolValue("Enable Alternate Background", _AlternateBackground);
-		QColor background = enableAlternateBackground && type.m_alternateBackgroundColor ? 
-			KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::AlternateBackground).color()
-			: KColorScheme(QPalette::Active, KColorScheme::View).background().color();
-		result.setBackground(background);
-		result.setText( KColorScheme(QPalette::Active, KColorScheme::View).foreground().color() );
-		result.setHighlightedText( KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color());
-		result.setHighlight( KColorScheme(QPalette::Active, KColorScheme::Selection).background().color());
+    KrColorGroup result;
+    if (m_colorSettings.getBoolValue("KDE Default", _KDEDefaultColors)) {
+        // KDE default? Getcolors from KGlobalSettings.
+        bool enableAlternateBackground = m_colorSettings.getBoolValue("Enable Alternate Background", _AlternateBackground);
+        QColor background = enableAlternateBackground && type.m_alternateBackgroundColor ?
+                            KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::AlternateBackground).color()
+                            : KColorScheme(QPalette::Active, KColorScheme::View).background().color();
+        result.setBackground(background);
+        result.setText(KColorScheme(QPalette::Active, KColorScheme::View).foreground().color());
+        result.setHighlightedText(KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color());
+        result.setHighlight(KColorScheme(QPalette::Active, KColorScheme::Selection).background().color());
 
-/*		if (type.m_currentItem && type.m_activePanel)
-		{
-			QColor currentBackground = KColorScheme(QPalette::Active).background(KColorScheme::ActiveBackground).color();
-			// set the background
-			result.setColor(QColorGroup::Highlight, currentBackground);
-			result.setColor(QColorGroup::Base, currentBackground);
-			result.setColor(QColorGroup::Background, currentBackground);
-		}*/
-		return result;
-	}
-	bool markCurrentAlways = m_colorSettings.getBoolValue("Show Current Item Always", _ShowCurrentItemAlways);
-	bool dimBackground = m_colorSettings.getBoolValue("Dim Inactive Colors", false);
+        /*  if (type.m_currentItem && type.m_activePanel)
+          {
+           QColor currentBackground = KColorScheme(QPalette::Active).background(KColorScheme::ActiveBackground).color();
+           // set the background
+           result.setColor(QColorGroup::Highlight, currentBackground);
+           result.setColor(QColorGroup::Base, currentBackground);
+           result.setColor(QColorGroup::Background, currentBackground);
+          }*/
+        return result;
+    }
+    bool markCurrentAlways = m_colorSettings.getBoolValue("Show Current Item Always", _ShowCurrentItemAlways);
+    bool dimBackground = m_colorSettings.getBoolValue("Dim Inactive Colors", false);
 
-	// cache m_activePanel flag. If color dimming is turned on, it is set to true, as the inactive colors
-	// are calculated from the active ones at the end.
-	bool isActive = type.m_activePanel;
-	if (dimBackground)
-		isActive = true;
+    // cache m_activePanel flag. If color dimming is turned on, it is set to true, as the inactive colors
+    // are calculated from the active ones at the end.
+    bool isActive = type.m_activePanel;
+    if (dimBackground)
+        isActive = true;
 
-	// First calculate fore- and background.
-	QColor background = type.m_alternateBackgroundColor ?
-		getAlternateBackgroundColor(isActive) 
-		: getBackgroundColor(isActive);
-	QColor foreground;
-	switch(type.m_fileType)
-	{
-		case KrColorItemType::Directory :
-			foreground = getSpecialForegroundColor("Directory", isActive);
-			break;
-		case KrColorItemType::Executable :
-			foreground = getSpecialForegroundColor("Executable", isActive);
-			break;
-		case KrColorItemType::InvalidSymlink :
-			foreground = getSpecialForegroundColor("Invalid Symlink", isActive);
-			break;
-		case KrColorItemType::Symlink :
-			foreground = getSpecialForegroundColor("Symlink", isActive);
-			break;
-		default:
-			foreground = getForegroundColor(isActive);
-	}
+    // First calculate fore- and background.
+    QColor background = type.m_alternateBackgroundColor ?
+                        getAlternateBackgroundColor(isActive)
+                        : getBackgroundColor(isActive);
+    QColor foreground;
+    switch (type.m_fileType) {
+    case KrColorItemType::Directory :
+        foreground = getSpecialForegroundColor("Directory", isActive);
+        break;
+    case KrColorItemType::Executable :
+        foreground = getSpecialForegroundColor("Executable", isActive);
+        break;
+    case KrColorItemType::InvalidSymlink :
+        foreground = getSpecialForegroundColor("Invalid Symlink", isActive);
+        break;
+    case KrColorItemType::Symlink :
+        foreground = getSpecialForegroundColor("Symlink", isActive);
+        break;
+    default:
+        foreground = getForegroundColor(isActive);
+    }
 
-	// set the background color
-	result.setBackground(background);
-	
-	// set the foreground color
-	result.setText(foreground);
+    // set the background color
+    result.setBackground(background);
 
-	// now the color of a marked item
-	QColor markedBackground = type.m_alternateBackgroundColor ?
-		getAlternateMarkedBackgroundColor(isActive)
-		: getMarkedBackgroundColor(isActive);
-	QColor markedForeground = getMarkedForegroundColor(isActive);
-	if (!markedForeground.isValid()) // transparent
-		// choose fore- or background, depending on its contrast compared to markedBackground
-		markedForeground = setColorIfContrastIsSufficient(markedBackground, foreground, background);
+    // set the foreground color
+    result.setText(foreground);
 
-	// set it in the color group (different group color than normal foreground!)
-	result.setHighlightedText(markedForeground);
-	result.setHighlight(markedBackground);
+    // now the color of a marked item
+    QColor markedBackground = type.m_alternateBackgroundColor ?
+                              getAlternateMarkedBackgroundColor(isActive)
+                              : getMarkedBackgroundColor(isActive);
+    QColor markedForeground = getMarkedForegroundColor(isActive);
+    if (!markedForeground.isValid()) // transparent
+        // choose fore- or background, depending on its contrast compared to markedBackground
+        markedForeground = setColorIfContrastIsSufficient(markedBackground, foreground, background);
 
-	// In case the current item is a selected one, set the fore- and background colors for the contrast calculation below
-	if (type.m_selectedItem)
-	{
-		background = markedBackground;
-		foreground = markedForeground;
-	}
-	
-	// finally the current item
-	if (type.m_currentItem && (markCurrentAlways || isActive))
-	{
-		// if this is the current item AND the panels has the focus OR the current should be marked always
-		QColor currentBackground = getCurrentBackgroundColor(isActive);
+    // set it in the color group (different group color than normal foreground!)
+    result.setHighlightedText(markedForeground);
+    result.setHighlight(markedBackground);
 
-		if (!currentBackground.isValid()) // transparent
-			currentBackground = background;
-		
-		// set the background
-		result.setHighlight(currentBackground);
-		result.setBackground(currentBackground);
-		
-		QColor color;
-		if (type.m_selectedItem)
-			color = getCurrentMarkedForegroundColor(isActive);
-		if (!color.isValid()) // not used
-		{
-			color = getCurrentForegroundColor(isActive);
-			if (!color.isValid()) // transparent
-				// choose fore- or background, depending on its contrast compared to markedBackground
-				color = setColorIfContrastIsSufficient(currentBackground, foreground, background);
-		}
-		
-		// set the foreground
-		result.setText(color);
-		result.setHighlightedText(color);
-	}
+    // In case the current item is a selected one, set the fore- and background colors for the contrast calculation below
+    if (type.m_selectedItem) {
+        background = markedBackground;
+        foreground = markedForeground;
+    }
 
-	if (dimBackground && !type.m_activePanel)
-	{
-		// if color dimming is chosen, dim the colors for the inactive panel 
-		result.setBackground( dimColor(result.background(), true));
-		result.setText( dimColor(result.text(), false));
-		result.setHighlightedText( dimColor(result.highlightedText(), false));
-		result.setHighlight( dimColor(result.highlight(), true));
-	}
-	return result;
+    // finally the current item
+    if (type.m_currentItem && (markCurrentAlways || isActive)) {
+        // if this is the current item AND the panels has the focus OR the current should be marked always
+        QColor currentBackground = getCurrentBackgroundColor(isActive);
+
+        if (!currentBackground.isValid()) // transparent
+            currentBackground = background;
+
+        // set the background
+        result.setHighlight(currentBackground);
+        result.setBackground(currentBackground);
+
+        QColor color;
+        if (type.m_selectedItem)
+            color = getCurrentMarkedForegroundColor(isActive);
+        if (!color.isValid()) { // not used
+            color = getCurrentForegroundColor(isActive);
+            if (!color.isValid()) // transparent
+                // choose fore- or background, depending on its contrast compared to markedBackground
+                color = setColorIfContrastIsSufficient(currentBackground, foreground, background);
+        }
+
+        // set the foreground
+        result.setText(color);
+        result.setHighlightedText(color);
+    }
+
+    if (dimBackground && !type.m_activePanel) {
+        // if color dimming is chosen, dim the colors for the inactive panel
+        result.setBackground(dimColor(result.background(), true));
+        result.setText(dimColor(result.text(), false));
+        result.setHighlightedText(dimColor(result.highlightedText(), false));
+        result.setHighlight(dimColor(result.highlight(), true));
+    }
+    return result;
 }
 
 const QColor & KrColorCacheImpl::setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2)
 {
-   #define sqr(x) ((x)*(x))
-   int contrast = sqr(color1.red() - background.red()) + sqr(color1.green() - background.green()) + sqr(color1.blue() - background.blue());
+#define sqr(x) ((x)*(x))
+    int contrast = sqr(color1.red() - background.red()) + sqr(color1.green() - background.green()) + sqr(color1.blue() - background.blue());
 
-   // if the contrast between background and color1 is too small, take color2 instead.
-   if (contrast < 1000)
-      return color2;
-   return color1;
+    // if the contrast between background and color1 is too small, take color2 instead.
+    if (contrast < 1000)
+        return color2;
+    return color1;
 }
 
 QColor KrColorCacheImpl::getForegroundColor(bool isActive) const
 {
-	QColor color = KColorScheme(QPalette::Active, KColorScheme::View).foreground().color();
-	SETCOLOR(color, m_colorSettings.getColorValue("Foreground"));
-	if (!isActive) SETCOLOR(color, m_colorSettings.getColorValue("Inactive Foreground"));
-	return color;
+    QColor color = KColorScheme(QPalette::Active, KColorScheme::View).foreground().color();
+    SETCOLOR(color, m_colorSettings.getColorValue("Foreground"));
+    if (!isActive) SETCOLOR(color, m_colorSettings.getColorValue("Inactive Foreground"));
+    return color;
 }
 
 QColor KrColorCacheImpl::getSpecialForegroundColor(const QString & type, bool isActive) const
 {
-	QString colorName = "Inactive " + type + " Foreground";
-	if (!isActive && m_colorSettings.getColorTextValue(colorName) == "Inactive Foreground")
-		return getForegroundColor(false);
-	QColor color = m_colorSettings.getColorValue(type + " Foreground");
-	if (!isActive) SETCOLOR(color, m_colorSettings.getColorValue(colorName));
-	if (!color.isValid())
-		return getForegroundColor(isActive);
-	return color;
+    QString colorName = "Inactive " + type + " Foreground";
+    if (!isActive && m_colorSettings.getColorTextValue(colorName) == "Inactive Foreground")
+        return getForegroundColor(false);
+    QColor color = m_colorSettings.getColorValue(type + " Foreground");
+    if (!isActive) SETCOLOR(color, m_colorSettings.getColorValue(colorName));
+    if (!color.isValid())
+        return getForegroundColor(isActive);
+    return color;
 }
 
 QColor KrColorCacheImpl::getBackgroundColor(bool isActive) const
 {
-	QColor color = KColorScheme(QPalette::Active, KColorScheme::View).background().color();
-	SETCOLOR(color, m_colorSettings.getColorValue("Background"));
-	if (!isActive) SETCOLOR(color, m_colorSettings.getColorValue("Inactive Background"));
-	return color;
+    QColor color = KColorScheme(QPalette::Active, KColorScheme::View).background().color();
+    SETCOLOR(color, m_colorSettings.getColorValue("Background"));
+    if (!isActive) SETCOLOR(color, m_colorSettings.getColorValue("Inactive Background"));
+    return color;
 }
 
 QColor KrColorCacheImpl::getAlternateBackgroundColor(bool isActive) const
 {
-	if (isActive && m_colorSettings.getColorTextValue("Alternate Background") == "Background")
-		return getBackgroundColor(true);
-	if (!isActive && m_colorSettings.getColorTextValue("Inactive Alternate Background").isEmpty())
-		return getAlternateBackgroundColor(true);
-	if (!isActive && m_colorSettings.getColorTextValue("Inactive Alternate Background") == "Inactive Background")
-		return getBackgroundColor(false);
-	QColor color = isActive ? 
-		m_colorSettings.getColorValue("Alternate Background") 
-		: m_colorSettings.getColorValue("Inactive Alternate Background");
-	if (!color.isValid())
-		color = KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::AlternateBackground).color();
-	if (!color.isValid())
-		color = KColorScheme(QPalette::Active, KColorScheme::View).background().color();
-	return color;
+    if (isActive && m_colorSettings.getColorTextValue("Alternate Background") == "Background")
+        return getBackgroundColor(true);
+    if (!isActive && m_colorSettings.getColorTextValue("Inactive Alternate Background").isEmpty())
+        return getAlternateBackgroundColor(true);
+    if (!isActive && m_colorSettings.getColorTextValue("Inactive Alternate Background") == "Inactive Background")
+        return getBackgroundColor(false);
+    QColor color = isActive ?
+                   m_colorSettings.getColorValue("Alternate Background")
+                   : m_colorSettings.getColorValue("Inactive Alternate Background");
+    if (!color.isValid())
+        color = KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::AlternateBackground).color();
+    if (!color.isValid())
+        color = KColorScheme(QPalette::Active, KColorScheme::View).background().color();
+    return color;
 }
 
 QColor KrColorCacheImpl::getMarkedForegroundColor(bool isActive) const
 {
-	QString colorName = isActive?"Marked Foreground":"Inactive Marked Foreground";
-	if (m_colorSettings.getColorTextValue(colorName) == "transparent")
-		return QColor();
-	if (isActive && m_colorSettings.getColorTextValue(colorName).isEmpty())
-		return KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color();
-	if (!isActive && m_colorSettings.getColorTextValue(colorName).isEmpty())
-		return getMarkedForegroundColor(true);
-	return m_colorSettings.getColorValue(colorName);
+    QString colorName = isActive ? "Marked Foreground" : "Inactive Marked Foreground";
+    if (m_colorSettings.getColorTextValue(colorName) == "transparent")
+        return QColor();
+    if (isActive && m_colorSettings.getColorTextValue(colorName).isEmpty())
+        return KColorScheme(QPalette::Active, KColorScheme::Selection).foreground().color();
+    if (!isActive && m_colorSettings.getColorTextValue(colorName).isEmpty())
+        return getMarkedForegroundColor(true);
+    return m_colorSettings.getColorValue(colorName);
 }
 
 QColor KrColorCacheImpl::getMarkedBackgroundColor(bool isActive) const
 {
-	if (isActive && m_colorSettings.getColorTextValue("Marked Background").isEmpty())
-		return KColorScheme(QPalette::Active, KColorScheme::Selection).background().color();
-	if (isActive && m_colorSettings.getColorTextValue("Marked Background") == "Background")
-		return getBackgroundColor(true);
-	if (!isActive && m_colorSettings.getColorTextValue("Inactive Marked Background").isEmpty())
-		return getMarkedBackgroundColor(true);
-	if (!isActive && m_colorSettings.getColorTextValue("Inactive Marked Background") == "Inactive Background")
-		return getBackgroundColor(false);
-	return isActive ?
-		m_colorSettings.getColorValue("Marked Background")
-		: m_colorSettings.getColorValue("Inactive Marked Background");
+    if (isActive && m_colorSettings.getColorTextValue("Marked Background").isEmpty())
+        return KColorScheme(QPalette::Active, KColorScheme::Selection).background().color();
+    if (isActive && m_colorSettings.getColorTextValue("Marked Background") == "Background")
+        return getBackgroundColor(true);
+    if (!isActive && m_colorSettings.getColorTextValue("Inactive Marked Background").isEmpty())
+        return getMarkedBackgroundColor(true);
+    if (!isActive && m_colorSettings.getColorTextValue("Inactive Marked Background") == "Inactive Background")
+        return getBackgroundColor(false);
+    return isActive ?
+           m_colorSettings.getColorValue("Marked Background")
+           : m_colorSettings.getColorValue("Inactive Marked Background");
 }
 
 QColor KrColorCacheImpl::getAlternateMarkedBackgroundColor(bool isActive) const
 {
-	if (isActive && m_colorSettings.getColorTextValue("Alternate Marked Background") == "Alternate Background")
-		return getAlternateBackgroundColor(true);
-	if (isActive && m_colorSettings.getColorTextValue("Alternate Marked Background").isEmpty())
-		return getMarkedBackgroundColor(true);
-	if (!isActive && m_colorSettings.getColorTextValue("Inactive Alternate Marked Background").isEmpty())
-		return getAlternateMarkedBackgroundColor(true);
-	if (!isActive && m_colorSettings.getColorTextValue("Inactive Alternate Marked Background") == "Inactive Alternate Background")
-		return getAlternateBackgroundColor(false);
-	if (!isActive && m_colorSettings.getColorTextValue("Inactive Alternate Marked Background") == "Inactive Marked Background")
-		return getMarkedBackgroundColor(false);
-	return isActive ? 
-		m_colorSettings.getColorValue("Alternate Marked Background")
-		: m_colorSettings.getColorValue("Inactive Alternate Marked Background");
+    if (isActive && m_colorSettings.getColorTextValue("Alternate Marked Background") == "Alternate Background")
+        return getAlternateBackgroundColor(true);
+    if (isActive && m_colorSettings.getColorTextValue("Alternate Marked Background").isEmpty())
+        return getMarkedBackgroundColor(true);
+    if (!isActive && m_colorSettings.getColorTextValue("Inactive Alternate Marked Background").isEmpty())
+        return getAlternateMarkedBackgroundColor(true);
+    if (!isActive && m_colorSettings.getColorTextValue("Inactive Alternate Marked Background") == "Inactive Alternate Background")
+        return getAlternateBackgroundColor(false);
+    if (!isActive && m_colorSettings.getColorTextValue("Inactive Alternate Marked Background") == "Inactive Marked Background")
+        return getMarkedBackgroundColor(false);
+    return isActive ?
+           m_colorSettings.getColorValue("Alternate Marked Background")
+           : m_colorSettings.getColorValue("Inactive Alternate Marked Background");
 }
 
 QColor KrColorCacheImpl::getCurrentForegroundColor(bool isActive) const
 {
-	QColor color = m_colorSettings.getColorValue("Current Foreground");
-	if (!isActive) SETCOLOR(color, m_colorSettings.getColorValue("Inactive Current Foreground"));
-	return color;
+    QColor color = m_colorSettings.getColorValue("Current Foreground");
+    if (!isActive) SETCOLOR(color, m_colorSettings.getColorValue("Inactive Current Foreground"));
+    return color;
 }
 
 QColor KrColorCacheImpl::getCurrentBackgroundColor(bool isActive) const
 {
-	if (isActive && m_colorSettings.getColorTextValue("Current Background").isEmpty())
-		return QColor();
-	if (isActive && m_colorSettings.getColorTextValue("Current Background") == "Background")
-		return getBackgroundColor(true);
-	if (!isActive && m_colorSettings.getColorTextValue("Inactive Current Background").isEmpty())
-		return getCurrentBackgroundColor(true);
-	if (!isActive && m_colorSettings.getColorTextValue("Inactive Current Background") == "Inactive Background")
-		return getBackgroundColor(false);
-	return isActive ? 
-		m_colorSettings.getColorValue("Current Background")
-		: m_colorSettings.getColorValue("Inactive Current Background");
+    if (isActive && m_colorSettings.getColorTextValue("Current Background").isEmpty())
+        return QColor();
+    if (isActive && m_colorSettings.getColorTextValue("Current Background") == "Background")
+        return getBackgroundColor(true);
+    if (!isActive && m_colorSettings.getColorTextValue("Inactive Current Background").isEmpty())
+        return getCurrentBackgroundColor(true);
+    if (!isActive && m_colorSettings.getColorTextValue("Inactive Current Background") == "Inactive Background")
+        return getBackgroundColor(false);
+    return isActive ?
+           m_colorSettings.getColorValue("Current Background")
+           : m_colorSettings.getColorValue("Inactive Current Background");
 }
 
 QColor KrColorCacheImpl::getCurrentMarkedForegroundColor(bool isActive) const
 {
-	QString colorName = isActive?"Marked Current Foreground":"Inactive Marked Current Foreground";
-	if (isActive && m_colorSettings.getColorTextValue(colorName).isEmpty())
-		return QColor();
-	if (isActive && m_colorSettings.getColorTextValue(colorName) == "Marked Foreground")
-		return getMarkedForegroundColor(true);
-	if (!isActive && m_colorSettings.getColorTextValue(colorName).isEmpty())
-		return getCurrentMarkedForegroundColor(true);
-	if (!isActive && m_colorSettings.getColorTextValue(colorName) == "Inactive Marked Foreground")
-		return getMarkedForegroundColor(false);
-	return m_colorSettings.getColorValue(colorName);
+    QString colorName = isActive ? "Marked Current Foreground" : "Inactive Marked Current Foreground";
+    if (isActive && m_colorSettings.getColorTextValue(colorName).isEmpty())
+        return QColor();
+    if (isActive && m_colorSettings.getColorTextValue(colorName) == "Marked Foreground")
+        return getMarkedForegroundColor(true);
+    if (!isActive && m_colorSettings.getColorTextValue(colorName).isEmpty())
+        return getCurrentMarkedForegroundColor(true);
+    if (!isActive && m_colorSettings.getColorTextValue(colorName) == "Inactive Marked Foreground")
+        return getMarkedForegroundColor(false);
+    return m_colorSettings.getColorValue(colorName);
 }
 
 QColor KrColorCacheImpl::dimColor(QColor color, bool /* isBackgroundColor */) const
 {
-	int dimFactor = m_colorSettings.getNumValue("Dim Factor", 100);
-	QColor targetColor = m_colorSettings.getColorValue("Dim Target Color");
-	if (!targetColor.isValid())
-		targetColor = QColor(255, 255, 255);
-	bool dimBackground = m_colorSettings.getBoolValue("Dim Inactive Colors", false);
-	bool dim = dimFactor >= 0 && dimFactor < 100 && dimBackground;
-	if (dim)
-		color = KrColorCache::dimColor(color, dimFactor, targetColor);
-	return color;
+    int dimFactor = m_colorSettings.getNumValue("Dim Factor", 100);
+    QColor targetColor = m_colorSettings.getColorValue("Dim Target Color");
+    if (!targetColor.isValid())
+        targetColor = QColor(255, 255, 255);
+    bool dimBackground = m_colorSettings.getBoolValue("Dim Inactive Colors", false);
+    bool dim = dimFactor >= 0 && dimFactor < 100 && dimBackground;
+    if (dim)
+        color = KrColorCache::dimColor(color, dimFactor, targetColor);
+    return color;
 }
 
 
@@ -669,88 +649,86 @@ KrColorCache * KrColorCache::m_instance = 0;
 
 KrColorCache::KrColorCache()
 {
-	m_impl = new KrColorCacheImpl;
+    m_impl = new KrColorCacheImpl;
 }
 
 KrColorCache::~KrColorCache()
 {
-	delete m_impl;
+    delete m_impl;
 }
 
 KrColorCache & KrColorCache::getColorCache()
 {
-	if (!m_instance)
-	{
-		m_instance = new KrColorCache;
-		m_instance->refreshColors();
-	}
-	return * m_instance;
+    if (!m_instance) {
+        m_instance = new KrColorCache;
+        m_instance->refreshColors();
+    }
+    return * m_instance;
 }
 
 void KrColorCache::getColors(KrColorGroup  & result, const KrColorItemType & type) const
 {
-	// for the cache lookup: calculate a unique key from the type
-	char hashKey[128];
-	switch(type.m_fileType)
-	{
-		case KrColorItemType::Directory :
-		 	strcpy(hashKey, "Directory");
-			break;
-		case KrColorItemType::Executable :
-		 	strcpy(hashKey, "Executable");
-			break;
-		case KrColorItemType::InvalidSymlink :
-		 	strcpy(hashKey, "InvalidSymlink");
-			break;
-		case KrColorItemType::Symlink :
-		 	strcpy(hashKey, "Symlink");
-			break;
-		default:
-		 	strcpy(hashKey, "File");
-	}
-	if (type.m_activePanel)
-		strcat(hashKey, "-Active");
-	if (type.m_alternateBackgroundColor)
-		strcat(hashKey, "-Alternate");
-	if (type.m_currentItem)
-		strcat(hashKey, "-Current");
-	if (type.m_selectedItem)
-		strcat(hashKey, "-Selected");
+    // for the cache lookup: calculate a unique key from the type
+    char hashKey[128];
+    switch (type.m_fileType) {
+    case KrColorItemType::Directory :
+        strcpy(hashKey, "Directory");
+        break;
+    case KrColorItemType::Executable :
+        strcpy(hashKey, "Executable");
+        break;
+    case KrColorItemType::InvalidSymlink :
+        strcpy(hashKey, "InvalidSymlink");
+        break;
+    case KrColorItemType::Symlink :
+        strcpy(hashKey, "Symlink");
+        break;
+    default:
+        strcpy(hashKey, "File");
+    }
+    if (type.m_activePanel)
+        strcat(hashKey, "-Active");
+    if (type.m_alternateBackgroundColor)
+        strcat(hashKey, "-Alternate");
+    if (type.m_currentItem)
+        strcat(hashKey, "-Current");
+    if (type.m_selectedItem)
+        strcat(hashKey, "-Selected");
 
-	// lookup in cache
-	if (!m_impl->m_cachedColors.contains(hashKey))
-		// not found: calculate color group and store it in cache
-		m_impl->m_cachedColors[hashKey] = m_impl->getColors(type);
+    // lookup in cache
+    if (!m_impl->m_cachedColors.contains(hashKey))
+        // not found: calculate color group and store it in cache
+        m_impl->m_cachedColors[hashKey] = m_impl->getColors(type);
 
-	// get color group from cache
-	const KrColorGroup & col = m_impl->m_cachedColors[hashKey];
+    // get color group from cache
+    const KrColorGroup & col = m_impl->m_cachedColors[hashKey];
 
-	// copy colors in question to result color group
-	result.setBackground(col.background());
-	result.setText(col.text());
-	result.setHighlightedText(col.highlightedText());
-	result.setHighlight(col.highlight());
+    // copy colors in question to result color group
+    result.setBackground(col.background());
+    result.setText(col.text());
+    result.setHighlightedText(col.highlightedText());
+    result.setHighlight(col.highlight());
 }
 
 QColor KrColorCache::dimColor(const QColor & color, int dim, const QColor & targetColor)
 {
-   return QColor((targetColor.red() * (100 - dim) + color.red() * dim) / 100, 
-		(targetColor.green() * (100 - dim) + color.green() * dim) / 100, 
-		(targetColor.blue() * (100 - dim) + color.blue() * dim) / 100);
+    return QColor((targetColor.red() * (100 - dim) + color.red() * dim) / 100,
+                  (targetColor.green() * (100 - dim) + color.green() * dim) / 100,
+                  (targetColor.blue() * (100 - dim) + color.blue() * dim) / 100);
 }
 
 void KrColorCache::refreshColors()
 {
-	m_impl->m_cachedColors.clear();
-	m_impl->m_colorSettings = KrColorSettings();
-	colorsRefreshed();
+    m_impl->m_cachedColors.clear();
+    m_impl->m_colorSettings = KrColorSettings();
+    colorsRefreshed();
 }
 
 void KrColorCache::setColors(const KrColorSettings & colorSettings)
 {
-	m_impl->m_cachedColors.clear();
-	m_impl->m_colorSettings = colorSettings;
-	colorsRefreshed();
+    m_impl->m_cachedColors.clear();
+    m_impl->m_colorSettings = colorSettings;
+    colorsRefreshed();
 }
 
 #include "krcolorcache.moc"

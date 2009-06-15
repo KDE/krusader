@@ -42,52 +42,52 @@ class Queue;
 
 class QueueDialog : public QDialog
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private:
-  QueueDialog();
+    QueueDialog();
 
 public:
-  virtual ~QueueDialog();
+    virtual ~QueueDialog();
 
-  static void showDialog( bool autoHide = true );
-  static void deleteDialog();
-  static void everyQueueIsEmpty();
+    static void showDialog(bool autoHide = true);
+    static void deleteDialog();
+    static void everyQueueIsEmpty();
 
 public slots:
-  virtual void accept();
-  virtual void reject();
+    virtual void accept();
+    virtual void reject();
 
-  void slotUpdateToolbar();
-  void slotPauseClicked();
-  void slotScheduleClicked();
-  void slotNewTab();
-  void slotDeleteCurrentTab();
-  void slotPercentChanged( Queue *, int );
+    void slotUpdateToolbar();
+    void slotPauseClicked();
+    void slotScheduleClicked();
+    void slotNewTab();
+    void slotDeleteCurrentTab();
+    void slotPercentChanged(Queue *, int);
 
 protected:
-  virtual void paintEvent ( QPaintEvent * event );
-  virtual void mousePressEvent(QMouseEvent *me);
-  virtual void mouseMoveEvent(QMouseEvent *me);
-  virtual void keyPressEvent(QKeyEvent *ke);
+    virtual void paintEvent(QPaintEvent * event);
+    virtual void mousePressEvent(QMouseEvent *me);
+    virtual void mouseMoveEvent(QMouseEvent *me);
+    virtual void keyPressEvent(QKeyEvent *ke);
 
-  void         saveSettings();
+    void         saveSettings();
 
 private:
-  static QueueDialog * _queueDialog;
+    static QueueDialog * _queueDialog;
 
-  QToolButton        * _newTabButton;
-  QToolButton        * _closeTabButton;
-  QToolButton        * _pauseButton;
-  QToolButton        * _scheduleButton;
+    QToolButton        * _newTabButton;
+    QToolButton        * _closeTabButton;
+    QToolButton        * _pauseButton;
+    QToolButton        * _scheduleButton;
 
-  QProgressBar       * _progressBar;
-  QueueWidget        * _queueWidget;
-  QLabel             * _statusLabel;
+    QProgressBar       * _progressBar;
+    QueueWidget        * _queueWidget;
+    QLabel             * _statusLabel;
 
-  QPoint               _clickPos;
-  QPoint               _startPos;
-  bool                 _autoHide;
+    QPoint               _clickPos;
+    QPoint               _startPos;
+    bool                 _autoHide;
 };
 
 #endif // __QUEUEDIALOG_H__

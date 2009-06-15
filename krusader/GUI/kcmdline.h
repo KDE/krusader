@@ -49,25 +49,27 @@
 
 class KCMDModeButton;
 
-class KrHistoryCombo: public KHistoryComboBox {
-  Q_OBJECT
+class KrHistoryCombo: public KHistoryComboBox
+{
+    Q_OBJECT
 
-  public:
+public:
     KrHistoryCombo(QWidget *parent): KHistoryComboBox(parent) {}
 
-  protected:
-    void keyPressEvent( QKeyEvent *e );
+protected:
+    void keyPressEvent(QKeyEvent *e);
 
-  signals:
+signals:
     void returnToPanel();
 };
 
-class KCMDLine : public QWidget, KrActionBase {
+class KCMDLine : public QWidget, KrActionBase
+{
     Q_OBJECT
-  public:
-    KCMDLine( QWidget *parent = 0 );
+public:
+    KCMDLine(QWidget *parent = 0);
     ~KCMDLine();
-    void setCurrent( const QString & );
+    void setCurrent(const QString &);
     //virtual methods from KrActionBase
     void setText(QString text);
     QString command() const;
@@ -78,18 +80,24 @@ class KCMDLine : public QWidget, KrActionBase {
     bool acceptURLs() const;
     bool confirmExecution() const;
     bool doSubstitution() const;
-  signals:
-    void signalRun();		
-  public slots:
-    inline void setFocus() { cmdLine->setFocus(); } // overloaded for KCmdLine
+signals:
+    void signalRun();
+public slots:
+    inline void setFocus() {
+        cmdLine->setFocus();
+    } // overloaded for KCmdLine
     void slotReturnFocus(); // returns keyboard focus to panel
     void slotRun();
     void addPlaceholder();
-    void addText( QString text ) { cmdLine->lineEdit()->setText( cmdLine->lineEdit()->text() + text ); }
-    void popup() { cmdLine->showPopup(); }
+    void addText(QString text) {
+        cmdLine->lineEdit()->setText(cmdLine->lineEdit()->text() + text);
+    }
+    void popup() {
+        cmdLine->showPopup();
+    }
 
 
-  private:
+private:
     QLabel *path;
     KrHistoryCombo *cmdLine;
     KCMDModeButton *terminal;

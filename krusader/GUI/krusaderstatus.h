@@ -41,14 +41,15 @@
 #include <kstatusbar.h>
 #include <klocale.h>
 
-class KrusaderStatus : public KStatusBar {
-   Q_OBJECT
-public: 
-	KrusaderStatus(QWidget *parent=0);
-	~KrusaderStatus();
+class KrusaderStatus : public KStatusBar
+{
+    Q_OBJECT
+public:
+    KrusaderStatus(QWidget *parent = 0);
+    ~KrusaderStatus();
 
 private:
-	QLabel *mess;
+    QLabel *mess;
 
 };
 

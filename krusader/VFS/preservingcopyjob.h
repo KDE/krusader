@@ -40,15 +40,16 @@
 #include <kio/copyjob.h>
 
 typedef enum {
-  PM_NONE          = 0,
-  PM_PRESERVE_ATTR = 1,
-  PM_DEFAULT       = 2
+    PM_NONE          = 0,
+    PM_PRESERVE_ATTR = 1,
+    PM_DEFAULT       = 2
 } PreserveMode;
 
-class PreservingCopyJob {
+class PreservingCopyJob
+{
 
 public:
-  static KIO::Job *createCopyJob( PreserveMode pmode, const KUrl::List& src, const KUrl& dest, KIO::CopyJob::CopyMode mode, bool /* asMethod */, bool showProgressInfo );
+    static KIO::Job *createCopyJob(PreserveMode pmode, const KUrl::List& src, const KUrl& dest, KIO::CopyJob::CopyMode mode, bool /* asMethod */, bool showProgressInfo);
 };
 
 #endif /* __PRESERVING_COPY_JOB_H__ */

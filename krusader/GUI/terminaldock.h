@@ -33,35 +33,34 @@
  * It takes care of loading the library and initialising when necessary.
  * A big advantage is that the code which uses this class does not need to
  * check if the part was loaded successfully.
- * 
+ *
  */
 class TerminalDock : public QWidget
 {
-  Q_OBJECT
+    Q_OBJECT
 public slots:
-  void killTerminalEmulator();
+    void killTerminalEmulator();
 public:
-  TerminalDock(QWidget* parent);
-  virtual ~TerminalDock();
-  void sendInput(const QString& input);
-  void sendCd(const QString& path);
-  virtual bool eventFilter( QObject * watched, QEvent * e );
-  bool isTerminalVisible() const;
-  bool isInitialised() const;
-  bool initialise();
-  virtual void hideEvent(QHideEvent * e);
-  virtual void showEvent(QShowEvent * e);
-  inline KParts::Part* part()
-  {
-    return konsole_part;
-  }
+    TerminalDock(QWidget* parent);
+    virtual ~TerminalDock();
+    void sendInput(const QString& input);
+    void sendCd(const QString& path);
+    virtual bool eventFilter(QObject * watched, QEvent * e);
+    bool isTerminalVisible() const;
+    bool isInitialised() const;
+    bool initialise();
+    virtual void hideEvent(QHideEvent * e);
+    virtual void showEvent(QShowEvent * e);
+    inline KParts::Part* part() {
+        return konsole_part;
+    }
 private:
-  QString lastPath;                       // path of the last sendCd
-  QHBoxLayout *terminal_hbox;             // hbox for terminal_dock
-  KParts::ReadOnlyPart* konsole_part;     // the actual part pointer
-  TerminalInterface* t;                   // TerminalInterface of the konsole part
-  bool initialised;
-  bool applyShortcuts( QKeyEvent * ke );
+    QString lastPath;                       // path of the last sendCd
+    QHBoxLayout *terminal_hbox;             // hbox for terminal_dock
+    KParts::ReadOnlyPart* konsole_part;     // the actual part pointer
+    TerminalInterface* t;                   // TerminalInterface of the konsole part
+    bool initialised;
+    bool applyShortcuts(QKeyEvent * ke);
 };
 
 #endif /* TERMINALDOCK_H */

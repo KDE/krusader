@@ -28,19 +28,20 @@ class KActionMenu;
  * It extends QToolButton, set the icon etc., and creates a popup menu
  * containing the actions to actually switch the mode.
  */
-class KCMDModeButton : public QToolButton  {
-  Q_OBJECT
-public: 
-  /** Constructor. Sets up the menu, and the icon */
-  KCMDModeButton(QWidget *parent=0);
-  ~KCMDModeButton();
+class KCMDModeButton : public QToolButton
+{
+    Q_OBJECT
+public:
+    /** Constructor. Sets up the menu, and the icon */
+    KCMDModeButton(QWidget *parent = 0);
+    ~KCMDModeButton();
 
-  /** Shows the popup menu. Called when clicked to the button */
-  void showMenu();
+    /** Shows the popup menu. Called when clicked to the button */
+    void showMenu();
 
 private:
-  /** The menu containing the actions for switching the mode */
-  KActionMenu *action;
+    /** The menu containing the actions for switching the mode */
+    KActionMenu *action;
 };
 
 #endif

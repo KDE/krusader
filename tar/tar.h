@@ -26,26 +26,27 @@
 
 #include <kio/slavebase.h>
 
-class ArchiveProtocol : public KIO::SlaveBase {
+class ArchiveProtocol : public KIO::SlaveBase
+{
 public:
-	ArchiveProtocol( const QByteArray &pool, const QByteArray &app );
-	virtual ~ArchiveProtocol();
+    ArchiveProtocol(const QByteArray &pool, const QByteArray &app);
+    virtual ~ArchiveProtocol();
 
-	virtual void listDir( const KUrl & url );
-	virtual void stat( const KUrl & url );
-	virtual void get( const KUrl & url );
-	virtual void put( const KUrl& url, int permissions, bool overwrite, bool resume );
-	virtual void mkdir(const KUrl& url,int permissions);
+    virtual void listDir(const KUrl & url);
+    virtual void stat(const KUrl & url);
+    virtual void get(const KUrl & url);
+    virtual void put(const KUrl& url, int permissions, bool overwrite, bool resume);
+    virtual void mkdir(const KUrl& url, int permissions);
 
 protected:
-	void createUDSEntry( const KArchiveEntry * tarEntry, KIO::UDSEntry & entry );
-	bool checkNewFile( const KUrl & url, QString & path );
+    void createUDSEntry(const KArchiveEntry * tarEntry, KIO::UDSEntry & entry);
+    bool checkNewFile(const KUrl & url, QString & path);
 
-	KArchive * m_archiveFile;
-	QString m_archiveName;
-	QString user;
-	QString group;
-	time_t m_mtime;
+    KArchive * m_archiveFile;
+    QString m_archiveName;
+    QString user;
+    QString group;
+    time_t m_mtime;
 };
 
 #endif

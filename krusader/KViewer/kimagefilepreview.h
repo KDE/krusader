@@ -29,43 +29,44 @@ class QTimer;
 class KFileDialog;
 class KFileItem;
 
-class KrusaderImageFilePreview : public KPreviewWidgetBase {
-		Q_OBJECT
+class KrusaderImageFilePreview : public KPreviewWidgetBase
+{
+    Q_OBJECT
 
-	public:
-		KrusaderImageFilePreview( QWidget *parent );
-		~KrusaderImageFilePreview();
+public:
+    KrusaderImageFilePreview(QWidget *parent);
+    ~KrusaderImageFilePreview();
 
-		virtual QSize sizeHint() const;
+    virtual QSize sizeHint() const;
 
-	public slots:
-		virtual void showPreview( const KUrl &url );
-		virtual void clearPreview();
+public slots:
+    virtual void showPreview(const KUrl &url);
+    virtual void clearPreview();
 
-	protected slots:
-		void showPreview();
-		void showPreview( const KUrl& url, bool force );
+protected slots:
+    void showPreview();
+    void showPreview(const KUrl& url, bool force);
 
-		virtual void gotPreview( const KFileItem&, const QPixmap& );
+    virtual void gotPreview(const KFileItem&, const QPixmap&);
 
-	protected:
-		virtual void resizeEvent( QResizeEvent *e );
-		virtual KIO::PreviewJob * createJob( const KUrl& url,
-		                                     int w, int h );
+protected:
+    virtual void resizeEvent(QResizeEvent *e);
+    virtual KIO::PreviewJob * createJob(const KUrl& url,
+                                        int w, int h);
 
-	private slots:
-		void slotResult( KJob * );
-		virtual void slotFailed( const KFileItem& );
+private slots:
+    void slotResult(KJob *);
+    virtual void slotFailed(const KFileItem&);
 
-	private:
-		KUrl currentURL;
-		QTimer *timer;
-		QLabel *imageLabel;
-		QLabel *infoLabel;
-		KIO::PreviewJob *m_job;
-	private:
-		class KrusaderImageFilePreviewPrivate;
-		KrusaderImageFilePreviewPrivate *d;
+private:
+    KUrl currentURL;
+    QTimer *timer;
+    QLabel *imageLabel;
+    QLabel *infoLabel;
+    KIO::PreviewJob *m_job;
+private:
+    class KrusaderImageFilePreviewPrivate;
+    KrusaderImageFilePreviewPrivate *d;
 };
 
 #endif // KrusaderImageFilePreview_H

@@ -43,95 +43,105 @@
 class vfs;
 
 typedef enum {
-  ST_STARTING               = 0,
-  ST_CALCULATING_TOTAL_SIZE = 1,
-  ST_CREATING_DIRECTORY     = 2,
-  ST_COPYING                = 3
+    ST_STARTING               = 0,
+    ST_CALCULATING_TOTAL_SIZE = 1,
+    ST_CREATING_DIRECTORY     = 2,
+    ST_COPYING                = 3
 } State;
 
 class VirtualCopyJob : public KIO::Job
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  VirtualCopyJob( const QStringList *names, vfs * vfs, const KUrl& dest, const KUrl& baseURL,
-                  PreserveMode pmode, KIO::CopyJob::CopyMode mode, bool showProgressInfo,
-                  bool autoStart = true );
-  virtual ~VirtualCopyJob();
+    VirtualCopyJob(const QStringList *names, vfs * vfs, const KUrl& dest, const KUrl& baseURL,
+                   PreserveMode pmode, KIO::CopyJob::CopyMode mode, bool showProgressInfo,
+                   bool autoStart = true);
+    virtual ~VirtualCopyJob();
 
-  inline bool isSkipAll()       { return m_skipAll; }
-  inline void setSkipAll()      { m_skipAll = true; }
-  inline bool isOverwriteAll()  { return m_overwriteAll; }
-  inline void setOverwriteAll() { m_overwriteAll = true; }
-  inline bool isMulti()         { return m_multi; }
+    inline bool isSkipAll()       {
+        return m_skipAll;
+    }
+    inline void setSkipAll()      {
+        m_skipAll = true;
+    }
+    inline bool isOverwriteAll()  {
+        return m_overwriteAll;
+    }
+    inline void setOverwriteAll() {
+        m_overwriteAll = true;
+    }
+    inline bool isMulti()         {
+        return m_multi;
+    }
 
 protected:
-  void statNextDir();
-  void createNextDir();
-  void copyCurrentDir();
-  void directoryFinished( const QString & );
-  
+    void statNextDir();
+    void createNextDir();
+    void copyCurrentDir();
+    void directoryFinished(const QString &);
+
 public slots:
-  void slotStart();
+    void slotStart();
 
 protected slots:
-  void slotReport();
-  
-  void slotKdsResult( KJob * );
-  void slotStatResult( KJob * );
-  void slotMkdirResult( KJob * );
-  void slotCopyResult( KJob * );
+    void slotReport();
 
-  void slotCopying(KIO::Job *, const KUrl &, const KUrl &);
-  void slotMoving(KIO::Job *, const KUrl &, const KUrl &);
-  
-  void slotProcessedFiles (KIO::Job *, unsigned long );
-  void slotProcessedSize (KJob *, qulonglong);
+    void slotKdsResult(KJob *);
+    void slotStatResult(KJob *);
+    void slotMkdirResult(KJob *);
+    void slotCopyResult(KJob *);
+
+    void slotCopying(KIO::Job *, const KUrl &, const KUrl &);
+    void slotMoving(KIO::Job *, const KUrl &, const KUrl &);
+
+    void slotProcessedFiles(KIO::Job *, unsigned long);
+    void slotProcessedSize(KJob *, qulonglong);
 
 signals:
-  void totalFiles( KIO::Job *job, unsigned long files );
-  void totalDirs( KIO::Job *job, unsigned long dirs );
-  void processedFiles( KIO::Job *job, unsigned long files );
-  void processedDirs( KIO::Job *job, unsigned long dirs );
-  
+    void totalFiles(KIO::Job *job, unsigned long files);
+    void totalDirs(KIO::Job *job, unsigned long dirs);
+    void processedFiles(KIO::Job *job, unsigned long files);
+    void processedDirs(KIO::Job *job, unsigned long dirs);
+
 private:
-  bool                     m_overwriteAll;
-  bool                     m_skipAll;
-  bool                     m_multi;
+    bool                     m_overwriteAll;
+    bool                     m_skipAll;
+    bool                     m_multi;
 
-  KIO::filesize_t          m_totalSize;
-  unsigned long            m_totalFiles;
-  unsigned long            m_totalSubdirs;
+    KIO::filesize_t          m_totalSize;
+    unsigned long            m_totalFiles;
+    unsigned long            m_totalSubdirs;
 
-  qulonglong               m_processedSize;
-  unsigned long            m_processedFiles;
-  unsigned long            m_processedSubdirs;  
-    
-  qulonglong               m_tempSize;
-  unsigned long            m_tempFiles;
-    
-  QList<KUrl>              m_dirsToGetSize;
-  
-  QHash<QString, KUrl::List *> m_filesToCopy;
-  
-  QMap<QString,qulonglong> m_size;
-  QMap<QString,int>        m_filenum;
-  QMap<QString,int>        m_subdirs;
-  
-  KUrl                     m_baseURL;
-  KUrl                     m_dest;
-  PreserveMode             m_pmode;
-  KIO::CopyJob::CopyMode   m_mode;
-  bool                     m_showProgressInfo;
-  
-  State                    m_state;
-  
-  QTimer                   m_reportTimer;
-  
-  KUrl                     m_current;
-  QString                  m_currentDir;
-  
-  QStringList              m_dirStack;
+    qulonglong               m_processedSize;
+    unsigned long            m_processedFiles;
+    unsigned long            m_processedSubdirs;
+
+    qulonglong               m_tempSize;
+    unsigned long            m_tempFiles;
+
+    QList<KUrl>              m_dirsToGetSize;
+
+    QHash<QString, KUrl::List *> m_filesToCopy;
+
+    QMap<QString, qulonglong> m_size;
+    QMap<QString, int>        m_filenum;
+    QMap<QString, int>        m_subdirs;
+
+    KUrl                     m_baseURL;
+    KUrl                     m_dest;
+    PreserveMode             m_pmode;
+    KIO::CopyJob::CopyMode   m_mode;
+    bool                     m_showProgressInfo;
+
+    State                    m_state;
+
+    QTimer                   m_reportTimer;
+
+    KUrl                     m_current;
+    QString                  m_currentDir;
+
+    QStringList              m_dirStack;
 };
 
 #endif /* __VIRTUAL_COPY_JOB_H__ */

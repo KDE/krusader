@@ -17,9 +17,9 @@
      88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
      88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
      YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
- 
+
                                                      H e a d e r    F i l e
- 
+
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -73,14 +73,15 @@ class QueueManager;
 #define krOut kDebug(50010)
 #define MAX_VIEWS 6
 
-class Krusader : public KParts::MainWindow {
+class Krusader : public KParts::MainWindow
+{
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.krusader.Instance")
 
-  public:
+public:
     Krusader();
     virtual ~Krusader();
-    void refreshView();				 // re-create the main view
+    void refreshView();     // re-create the main view
     void configChanged();
     /**
      * This returns a defferent icon if krusader runs with root-privileges
@@ -91,42 +92,44 @@ class Krusader : public KParts::MainWindow {
 
     void moveToTop();
 
-  public slots:
-    void statusBarUpdate( QString& mess );
+public slots:
+    void statusBarUpdate(QString& mess);
     // in use by Krusader only
     void saveSettings();
     void savePosition();
     void updateUserActions();
-    void updateGUI( bool enforce = false );
+    void updateGUI(bool enforce = false);
     void slotClose();
-    void setDirectExit() { directExit = true; }
+    void setDirectExit() {
+        directExit = true;
+    }
 
-  protected:
+protected:
     bool queryExit() {
-      config->sync();
-      return true;
+        config->sync();
+        return true;
     }
     bool queryClose();
     void setupActions();
     void setupAccels();
     bool versionControl();  // handle version differences in krusaderrc
-    void showEvent ( QShowEvent * );
-    void hideEvent ( QHideEvent * );
-    void moveEvent ( QMoveEvent * );
-    void resizeEvent ( QResizeEvent * );
+    void showEvent(QShowEvent *);
+    void hideEvent(QHideEvent *);
+    void moveEvent(QMoveEvent *);
+    void resizeEvent(QResizeEvent *);
 
-  public Q_SLOTS:
+public Q_SLOTS:
     Q_SCRIPTABLE bool isRunning();
 
-  public:
+public:
     static Krusader *App;       // a kApp style pointer
     static QString   AppName;   // the name of the application
     KMountMan *mountMan;  // krusader's Mount Manager
     KrusaderView *mainView;  // The GUI
     KConfig *config;    // allow everyone to access the config
     KIconLoader *iconLoader; // the app's icon loader
-	 PopularUrls *popularUrls; // holds a sorted list of the most popular urls visited
-	 QueueManager *queueManager;
+    PopularUrls *popularUrls; // holds a sorted list of the most popular urls visited
+    QueueManager *queueManager;
     // Actions
     static KAction *actProperties, *actPack, *actUnpack, *actTest, *actCompare, *actCmdlinePopup;
     static KAction *actCalculate, *actSelect, *actUnselect, *actSelectAll, *actLocate, *actSwitchFullScreenTE;
@@ -143,14 +146,14 @@ class Krusader : public KParts::MainWindow {
     static KAction *actPopularUrls, *actLocationBar, *actJumpBack, *actSetJumpBack, *actCreateChecksum, *actMatchChecksum;
     static KAction *actView0, *actView1, *actView2, *actView3, *actView4, *actView5, *actCopy, *actPaste;
     static KToggleAction *actToggleTerminal;
-    static KAction *actSelectNewerAndSingle, *actSelectNewer, *actSelectSingle, 
-                        *actSelectDifferentAndSingle, *actSelectDifferent;
+    static KAction *actSelectNewerAndSingle, *actSelectNewer, *actSelectSingle,
+    *actSelectDifferentAndSingle, *actSelectDifferent;
     /** actions for setting the execution mode of commands from commanddline */
     static KAction *actExecStartAndForget,
-                        *actExecCollectSeparate,*actExecCollectTogether,
-                        *actExecTerminalExternal,*actExecTerminalEmbedded;
+    *actExecCollectSeparate, *actExecCollectTogether,
+    *actExecTerminalExternal, *actExecTerminalEmbedded;
     KToggleAction *actToggleFnkeys, *actToggleCmdline, *actShowToolBar,
-                  *actShowStatusBar, *actToggleHidden, *actCompareDirs;
+    *actShowStatusBar, *actToggleHidden, *actCompareDirs;
 
     static KAction **compareArray[];
     /** actions for setting the execution mode of commands from commanddline */
@@ -162,27 +165,27 @@ class Krusader : public KParts::MainWindow {
 
     // the internal progress bar variales + functions
     KRPleaseWaitHandler* plzWait;
-    void startWaiting( QString msg = "Please Wait", int count = 0 , bool cancel = false );
+    void startWaiting(QString msg = "Please Wait", int count = 0 , bool cancel = false);
     void stopWait();
-	 bool wasWaitingCancelled() const;
+    bool wasWaitingCancelled() const;
 
     KrusaderStatus *status;
     KRslots *slot;
-    
+
     static KMenu *userActionMenu;
     static UserMenu *userMenu;
     static UserAction *userAction;
-	 static KrBookmarkHandler *bookman;
+    static KrBookmarkHandler *bookman;
 
-    #ifdef __KJSEMBED__
+#ifdef __KJSEMBED__
     static KrJS *js;
     static KAction *actShowJSConsole;
-    #endif
+#endif
 
-  signals:
-    void changeMessage( QString );
+signals:
+    void changeMessage(QString);
 
-  private:
+private:
     KSystemTrayIcon *sysTray;
     QPoint       oldPos;
     QSize        oldSize;
@@ -191,7 +194,7 @@ class Krusader : public KParts::MainWindow {
     bool         directExit;
     KrJobStarter jobStarter;
     static void supportedTool(QStringList &tools, QString toolType,
-    		QStringList names, QString confName);
+                              QStringList names, QString confName);
 };
 
 // main modules
@@ -206,15 +209,15 @@ class Krusader : public KParts::MainWindow {
 #define ACTIVE_MNG   (MAIN_VIEW->activeManager())
 #define ACTIVE_PANEL (MAIN_VIEW->activePanel)
 #define ACTIVE_FUNC  (ACTIVE_PANEL->func)
-#define OTHER_MNG		(MAIN_VIEW->inactiveManager())
-#define OTHER_PANEL	(ACTIVE_PANEL->otherPanel)
-#define OTHER_FUNC	(OTHER_PANEL->func)
-#define LEFT_PANEL	(MAIN_VIEW->left)
-#define LEFT_FUNC		(LEFT_PANEL->func)
-#define LEFT_MNG		(MAIN_VIEW->leftMng)
+#define OTHER_MNG  (MAIN_VIEW->inactiveManager())
+#define OTHER_PANEL (ACTIVE_PANEL->otherPanel)
+#define OTHER_FUNC (OTHER_PANEL->func)
+#define LEFT_PANEL (MAIN_VIEW->left)
+#define LEFT_FUNC  (LEFT_PANEL->func)
+#define LEFT_MNG  (MAIN_VIEW->leftMng)
 #define RIGHT_PANEL  (MAIN_VIEW->right)
-#define RIGHT_FUNC	(RIGHT_PANEL->func)
-#define RIGHT_MNG		(MAIN_VIEW->rightMng)
+#define RIGHT_FUNC (RIGHT_PANEL->func)
+#define RIGHT_MNG  (MAIN_VIEW->rightMng)
 
 // krusader's actions - things krusader can do!
 #define krProperties      Krusader::App->actProperties     // file properties
@@ -223,8 +226,8 @@ class Krusader : public KParts::MainWindow {
 #define krTest            Krusader::App->actTest           // test archive
 #define krCompare         Krusader::App->actCompare        // compare 2 files by content
 #define krCalculate       Krusader::App->actCalculate      // calculate occupied space
-#define krCreateCS	  Krusader::App->actCreateChecksum
-#define krMatchCS	  Krusader::App->actMatchChecksum
+#define krCreateCS   Krusader::App->actCreateChecksum
+#define krMatchCS   Krusader::App->actMatchChecksum
 #define krSelect          Krusader::App->actSelect         // select a group by filter
 #define krSelectAll       Krusader::App->actSelectAll      // select all files
 #define krUnselect        Krusader::App->actUnselect       // unselect by filter
@@ -266,23 +269,23 @@ class Krusader : public KParts::MainWindow {
 #define krUserMenu        Krusader::App->actUserMenu
 #define krUserActionMenu      Krusader::App->userActionMenu
 #define krUserAction      Krusader::App->userAction
-#define krF2				  Krusader::App->actF2
-#define krF3				  Krusader::App->actF3
-#define krF4				  Krusader::App->actF4
-#define krF5				  Krusader::App->actF5
-#define krF6				  Krusader::App->actF6
-#define krF7				  Krusader::App->actF7
-#define krF8				  Krusader::App->actF8
-#define krF9				  Krusader::App->actF9
-#define krF10				  Krusader::App->actF10
-#define krPopularUrls	  Krusader::App->actPopularUrls
-#define krLocationBar	  Krusader::App->actLocationBar
-#define krJumpBack	  Krusader::App->actJumpBack
-#define krSetJumpBack	  Krusader::App->actSetJumpBack
+#define krF2      Krusader::App->actF2
+#define krF3      Krusader::App->actF3
+#define krF4      Krusader::App->actF4
+#define krF5      Krusader::App->actF5
+#define krF6      Krusader::App->actF6
+#define krF7      Krusader::App->actF7
+#define krF8      Krusader::App->actF8
+#define krF9      Krusader::App->actF9
+#define krF10      Krusader::App->actF10
+#define krPopularUrls   Krusader::App->actPopularUrls
+#define krLocationBar   Krusader::App->actLocationBar
+#define krJumpBack   Krusader::App->actJumpBack
+#define krSetJumpBack   Krusader::App->actSetJumpBack
 
 #ifdef __KJSEMBED__
-#define krJS			Krusader::App->js
-#define krJSConsole		Krusader::App->actShowJSConsole
+#define krJS   Krusader::App->js
+#define krJSConsole  Krusader::App->actShowJSConsole
 #endif
 
 #endif

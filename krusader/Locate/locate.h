@@ -44,64 +44,64 @@ class QTreeWidgetItem;
 
 class LocateDlg : public KDialog
 {
-  Q_OBJECT
-  
+    Q_OBJECT
+
 public:
-  LocateDlg();
+    LocateDlg();
 
-  static LocateDlg *LocateDialog;
+    static LocateDlg *LocateDialog;
 
-  virtual void      feedToListBox();
+    virtual void      feedToListBox();
 
-  void              reset();
+    void              reset();
 
 public slots:
-  virtual void      slotUser1();
-  virtual void      slotUser2();
-  virtual void      slotUser3();
+    virtual void      slotUser1();
+    virtual void      slotUser2();
+    virtual void      slotUser3();
 
-  void              processStdout();
-  void              processStderr();
-  void              locateFinished();
-  void              locateError();
-  void              slotRightClick(QTreeWidgetItem *, const QPoint &);
-  void              slotDoubleClick(QTreeWidgetItem *);
-  void              updateFinished();
-  
+    void              processStdout();
+    void              processStderr();
+    void              locateFinished();
+    void              locateError();
+    void              slotRightClick(QTreeWidgetItem *, const QPoint &);
+    void              slotDoubleClick(QTreeWidgetItem *);
+    void              updateFinished();
+
 protected:
-  virtual void      keyPressEvent( QKeyEvent * );
-  
+    virtual void      keyPressEvent(QKeyEvent *);
+
 private:
-  void              operate( QTreeWidgetItem *item, int task );
+    void              operate(QTreeWidgetItem *item, int task);
 
-  bool              find();
-  void              nextLine();
+    bool              find();
+    void              nextLine();
 
-  bool              dontSearchPath;
-  bool              onlyExist;
-  bool              isCs;
-  
-  bool              isFeedToListBox;
+    bool              dontSearchPath;
+    bool              onlyExist;
+    bool              isCs;
 
-  QString           pattern;
-  
-  KHistoryComboBox *locateSearchFor;
-  KrTreeWidget     *resultList;
-  QString           remaining;
-  QTreeWidgetItem  *lastItem;
+    bool              isFeedToListBox;
 
-  QString           collectedErr;
-  
-  long              findOptions;
-  QString           findPattern;
-  QTreeWidgetItem  *findCurrentItem;
+    QString           pattern;
 
-  QCheckBox        *dontSearchInPath;
-  QCheckBox        *existingFiles;
-  QCheckBox        *caseSensitive;
+    KHistoryComboBox *locateSearchFor;
+    KrTreeWidget     *resultList;
+    QString           remaining;
+    QTreeWidgetItem  *lastItem;
 
-  KProcess *locateProc;
-  static KProcess *updateProcess;
+    QString           collectedErr;
+
+    long              findOptions;
+    QString           findPattern;
+    QTreeWidgetItem  *findCurrentItem;
+
+    QCheckBox        *dontSearchInPath;
+    QCheckBox        *existingFiles;
+    QCheckBox        *caseSensitive;
+
+    KProcess *locateProc;
+    static KProcess *updateProcess;
 };
 
 #endif /* __LOCATE_H__ */

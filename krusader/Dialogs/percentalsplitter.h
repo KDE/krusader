@@ -31,28 +31,29 @@
 #ifndef PERCENTALSPLITTER_H
 #define PERCENTALSPLITTER_H
 
-#include <QtGui/QSplitter> 
-#include <QtGui/QLabel> 
+#include <QtGui/QSplitter>
+#include <QtGui/QLabel>
 
-class PercentalSplitter : public QSplitter {
-  Q_OBJECT
-  
+class PercentalSplitter : public QSplitter
+{
+    Q_OBJECT
+
 public:
-  PercentalSplitter( QWidget * parent = 0 );  
-  virtual ~PercentalSplitter();
-  
-  QString toolTipString( int p );
-  
+    PercentalSplitter(QWidget * parent = 0);
+    virtual ~PercentalSplitter();
+
+    QString toolTipString(int p);
+
 protected:
-  virtual void showEvent ( QShowEvent * event );
+    virtual void showEvent(QShowEvent * event);
 
 protected slots:
-  void slotSplitterMoved ( int pos, int index );
-  
+    void slotSplitterMoved(int pos, int index);
+
 private:
-  QLabel * label;
-  int opaqueOldPos;
-  QPoint labelLocation;
+    QLabel * label;
+    int opaqueOldPos;
+    QPoint labelLocation;
 };
 
 #endif /* __PERCENTAL_SPLITTER__ */

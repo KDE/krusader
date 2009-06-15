@@ -43,79 +43,109 @@ A
 
 class KRPieSlice;
 
-class KRPie : public QWidget {
+class KRPie : public QWidget
+{
     Q_OBJECT
-  public:
-    KRPie( KIO::filesize_t _totalSize, QWidget *parent = 0 );
-    void addSlice( KIO::filesize_t size, QString label );
+public:
+    KRPie(KIO::filesize_t _totalSize, QWidget *parent = 0);
+    void addSlice(KIO::filesize_t size, QString label);
 
-  protected:
-    void paintEvent( QPaintEvent * );
+protected:
+    void paintEvent(QPaintEvent *);
 
-  private:
+private:
     QList<KRPieSlice> slices;
     KIO::filesize_t totalSize, sizeLeft;
     static QColor colors[ 12 ];
 };
 
-class KRFSDisplay : public QWidget {
+class KRFSDisplay : public QWidget
+{
     Q_OBJECT
-  public:
+public:
     // this constructor is used for a mounted filesystem
-    KRFSDisplay( QWidget *parent, QString _alias, QString _realName,
-                 KIO::filesize_t _total, KIO::filesize_t _free );
+    KRFSDisplay(QWidget *parent, QString _alias, QString _realName,
+                KIO::filesize_t _total, KIO::filesize_t _free);
     // this one is for an unmounted/supermount file system
-    KRFSDisplay( QWidget *parent, QString _alias, QString _realName, bool sm = false );
+    KRFSDisplay(QWidget *parent, QString _alias, QString _realName, bool sm = false);
     // the last one is used inside MountMan(R), when no filesystem is selected
-    KRFSDisplay( QWidget *parent );
-    inline void setTotalSpace( KIO::filesize_t t ) { totalSpace = t; }
-    inline void setFreeSpace( KIO::filesize_t t ) { freeSpace = t; }
-    inline void setAlias( QString a ) { alias = a; }
-    inline void setRealName( QString r ) { realName = r; }
-    inline void setMounted( bool m ) { mounted = m; }
-    inline void setEmpty( bool e ) { empty = e; }
-    inline void setSupermount( bool s ) { supermount = s; }
+    KRFSDisplay(QWidget *parent);
+    inline void setTotalSpace(KIO::filesize_t t) {
+        totalSpace = t;
+    }
+    inline void setFreeSpace(KIO::filesize_t t) {
+        freeSpace = t;
+    }
+    inline void setAlias(QString a) {
+        alias = a;
+    }
+    inline void setRealName(QString r) {
+        realName = r;
+    }
+    inline void setMounted(bool m) {
+        mounted = m;
+    }
+    inline void setEmpty(bool e) {
+        empty = e;
+    }
+    inline void setSupermount(bool s) {
+        supermount = s;
+    }
 
-  protected:
-    void paintEvent( QPaintEvent * );
+protected:
+    void paintEvent(QPaintEvent *);
 
-  private:
+private:
     KIO::filesize_t totalSpace, freeSpace;
     QString alias, realName;
     bool mounted, empty, supermount;
 };
 
-class KRPieSlice {
-  public:
-    KRPieSlice( float _perct, QColor _color, QString _label ) :
-    perct( _perct ), color( _color ), label( _label ) {}
-    inline QColor getColor() { return color; }
-    inline float getPerct() { return perct; }
-    inline QString getLabel() { return label; }
-    inline void setPerct( float _perct ) { perct = _perct; }
-    inline void setLabel( QString _label ) { label = _label; }
+class KRPieSlice
+{
+public:
+    KRPieSlice(float _perct, QColor _color, QString _label) :
+            perct(_perct), color(_color), label(_label) {}
+    inline QColor getColor() {
+        return color;
+    }
+    inline float getPerct() {
+        return perct;
+    }
+    inline QString getLabel() {
+        return label;
+    }
+    inline void setPerct(float _perct) {
+        perct = _perct;
+    }
+    inline void setLabel(QString _label) {
+        label = _label;
+    }
 
-  private:
+private:
     float perct;
     QColor color;
     QString label;
 };
 
-class KrQuickSearch: public KLineEdit {
-      Q_OBJECT
-   public:
-      KrQuickSearch(QWidget *parent);
-      void addText(const QString &str) { setText(text()+str); }
-      void myKeyPressEvent(QKeyEvent *e);
-      void setMatch( bool match );
-      void myInputMethodEvent(QInputMethodEvent* e) {
+class KrQuickSearch: public KLineEdit
+{
+    Q_OBJECT
+public:
+    KrQuickSearch(QWidget *parent);
+    void addText(const QString &str) {
+        setText(text() + str);
+    }
+    void myKeyPressEvent(QKeyEvent *e);
+    void setMatch(bool match);
+    void myInputMethodEvent(QInputMethodEvent* e) {
         inputMethodEvent(e);
-      }
+    }
 
-   signals:
-      void stop(QKeyEvent *e);
-      void process(QKeyEvent *e);
-      void otherMatching(const QString &, int);
+signals:
+    void stop(QKeyEvent *e);
+    void process(QKeyEvent *e);
+    void otherMatching(const QString &, int);
 
 };
 

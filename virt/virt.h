@@ -28,32 +28,33 @@
 #include <kconfig.h>
 #include <kio/slavebase.h>
 
-class VirtProtocol : public KIO::SlaveBase {
+class VirtProtocol : public KIO::SlaveBase
+{
 public:
-	VirtProtocol( const QByteArray &pool, const QByteArray &app );
-	virtual ~VirtProtocol();
+    VirtProtocol(const QByteArray &pool, const QByteArray &app);
+    virtual ~VirtProtocol();
 
-	virtual void listDir ( const KUrl & url );
-	virtual void stat    ( const KUrl & url );
-	virtual void get    ( const KUrl & url );
-	virtual void mkdir(const KUrl& url,int permissions);
-	virtual void copy( const KUrl &src, const KUrl &dest, int permissions, bool overwrite );
-	virtual void del    (KUrl const & url, bool isFile);
+    virtual void listDir(const KUrl & url);
+    virtual void stat(const KUrl & url);
+    virtual void get(const KUrl & url);
+    virtual void mkdir(const KUrl& url, int permissions);
+    virtual void copy(const KUrl &src, const KUrl &dest, int permissions, bool overwrite);
+    virtual void del(KUrl const & url, bool isFile);
 
 protected:
-	bool lock();
-	bool unlock();
-	bool save();
-	bool load();
+    bool lock();
+    bool unlock();
+    bool save();
+    bool load();
 
-	void local_entry(const KUrl& url,KIO::UDSEntry& entry);
-	bool addDir(QString& path);
+    void local_entry(const KUrl& url, KIO::UDSEntry& entry);
+    bool addDir(QString& path);
 
 
-	static QHash<QString, KUrl::List*> kioVirtDict;
-	static KConfig* kio_virt_db;
+    static QHash<QString, KUrl::List*> kioVirtDict;
+    static KConfig* kio_virt_db;
 
-	bool rewriteURL(const KUrl&, KUrl&);
+    bool rewriteURL(const KUrl&, KUrl&);
 
 };
 

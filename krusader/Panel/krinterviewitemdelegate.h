@@ -24,18 +24,18 @@
 class KrInterViewItemDelegate : public QItemDelegate
 {
 public:
-	KrInterViewItemDelegate( QObject *parent = 0 );
-	
-	void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-	void drawDisplay ( QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text ) const;
-	QWidget * createEditor(QWidget *parent, const QStyleOptionViewItem &sovi, const QModelIndex &index) const;
-	void setEditorData(QWidget *editor, const QModelIndex &index) const;
-	QSize sizeHint ( const QStyleOptionViewItem & option, const QModelIndex & index ) const;
-	bool eventFilter(QObject *object, QEvent *event);
-	
+    KrInterViewItemDelegate(QObject *parent = 0);
+
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    void drawDisplay(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text) const;
+    QWidget * createEditor(QWidget *parent, const QStyleOptionViewItem &sovi, const QModelIndex &index) const;
+    void setEditorData(QWidget *editor, const QModelIndex &index) const;
+    QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const;
+    bool eventFilter(QObject *object, QEvent *event);
+
 private:
-	mutable int _currentlyEdited;
-	mutable bool _dontDraw;
+    mutable int _currentlyEdited;
+    mutable bool _dontDraw;
 };
 
 #endif

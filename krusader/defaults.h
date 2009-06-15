@@ -36,48 +36,48 @@
 
 ///////////////////////   [Startup]
 // UI Save Settings
-#define _UiSave           false 
+#define _UiSave           false
 // Show Cmd Line
-#define _ShowCmdline      true 
+#define _ShowCmdline      true
 // Show status bar
-#define _ShowStatusBar    true 
+#define _ShowStatusBar    true
 // Show tool bar
-#define _ShowToolBar      true 
+#define _ShowToolBar      true
 // Show FN Keys
-#define _ShowFNkeys       true 
+#define _ShowFNkeys       true
 // Show Terminal Emulator
-#define _ShowTerminalEmulator false 
+#define _ShowTerminalEmulator false
 // Remember Position
-#define _RememberPos      true 
+#define _RememberPos      true
 // Start to tray
 #define _StartToTray      false
 // Left Tab Bar
 // Right Tab Bar
 // Left Panel Popup
-#define _LeftPanelPopup		0
+#define _LeftPanelPopup  0
 // Right Panel Popup
-#define _RightPanelPopup	0
+#define _RightPanelPopup 0
 
 
 ////////////////////////[Look&Feel]
 // Filelist Font ///////
 #define _FilelistFont   new QFont(KGlobalSettings::generalFont())
 // Warn On Exit ////////
-#define _WarnOnExit     false 
+#define _WarnOnExit     false
 // Minimize To Tray ////
-#define _MinimizeToTray false 
+#define _MinimizeToTray false
 // Mark Dirs ///////////
-#define _MarkDirs       false 
+#define _MarkDirs       false
 // Show Hidden /////////
-#define _ShowHidden     true 
+#define _ShowHidden     true
 // Sort By Extension ///
-#define _SortByExt      false 
+#define _SortByExt      false
 // Case Sensative Sort /
-#define _CaseSensativeSort false 
+#define _CaseSensativeSort false
 // Html Min Font Size //
-#define _HtmlMinFontSize 12 
+#define _HtmlMinFontSize 12
 // Filelist Icon Size //
-#define _FilelistIconSize QString("22") 
+#define _FilelistIconSize QString("22")
 // Mouse Selection /////
 #define _MouseSelection 0 // 0 - normal (shift+click, ctrl+click), 1 - left click, 2 - right click
 // Use fullpath tab names /////
@@ -87,21 +87,21 @@
 
 // Panel Toolbar Checkboxes
 // Panel Toolbar Visible checkbox turned off
-#define _PanelToolBar       true 
+#define _PanelToolBar       true
 // cd / is turned on
-#define _cdRoot             true 
+#define _cdRoot             true
 // cd ~ is turned on
-#define _cdHome             false 
+#define _cdHome             false
 // cd .. is turned on
-#define _cdUp               true 
+#define _cdUp               true
 // cd other panel is turned on
-#define _cdOther            false 
+#define _cdOther            false
 // Open directory is turned on
-#define _Open               false 
+#define _Open               false
 // syncBrowseButton is turned on
-#define _syncBrowseButton   false 
+#define _syncBrowseButton   false
 // Use the default colors of KDE
-#define _KDEDefaultColors     true 
+#define _KDEDefaultColors     true
 // Enable Alternate Background colors
 #define _AlternateBackground  true
 // Show current item even if not focused
@@ -109,7 +109,7 @@
 // Dim the colors of the inactive panel
 #define _DimInactiveColors     false
 // Human Readable Size
-#define _HumanReadableSize		true
+#define _HumanReadableSize  true
 // With Icons
 #define _WithIcons          true
 // Single Click Selects
@@ -127,81 +127,81 @@
 
 /////////////////////// [General]
 // Mimetype Magic /////
-#define _MimetypeMagic true 
+#define _MimetypeMagic true
 // Move To Trash //////
-#define _MoveToTrash   false 
+#define _MoveToTrash   false
 // Terminal ///////////
 #define _Terminal      "konsole --workdir %d"
 // Send CDs ///////////
-#define _SendCDs		true
+#define _SendCDs  true
 // Editor /////////////
-#define _Editor        "internal editor" 
+#define _Editor        "internal editor"
 // Temp Directory /////
-#define _TempDirectory "/tmp/krusader.tmp" 
+#define _TempDirectory "/tmp/krusader.tmp"
 // Classic Quicksearch
-#define _NewStyleQuicksearch true 
+#define _NewStyleQuicksearch true
 // Case Sensitive quick search, if _NewStyleQuicksearch is true
 #define _CaseSensitiveQuicksearch false
 // View In Separate Window
-#define _ViewInSeparateWindow		false
+#define _ViewInSeparateWindow  false
 
 /////////////////////// [Advanced]
 // Permission Check ///
 //#define _PermCheck     true
 // AutoMount //////////
-#define _AutoMount        false 
+#define _AutoMount        false
 // Preserving date //////////
 #define _PreserveAttributes false
 // Nonmount Points ////
-#define _NonMountPoints	"/, "
+#define _NonMountPoints "/, "
 // Confirm Unempty Dir //     (for delete)
-#define _ConfirmUnemptyDir true 
+#define _ConfirmUnemptyDir true
 // Confirm Delete /////       (for deleting files)
-#define _ConfirmDelete true 
+#define _ConfirmDelete true
 // Confirm Copy ///////       (for copying files)
-#define _ConfirmCopy   true 
+#define _ConfirmCopy   true
 // Confirm Move ///////       (for moving files)
-#define _ConfirmMove   true 
+#define _ConfirmMove   true
 // Icon Cache Size ////
 #define _IconCacheSize 2048
 
 /////////////////////// [Archives]
 // Do Tar /////////////
-#define _DoTar         true 
+#define _DoTar         true
 // Do GZip ////////////
-#define _DoGZip        true 
+#define _DoGZip        true
 // Do Zip /////////////
-#define _DoZip         true 
+#define _DoZip         true
 // Do UnZip ///////////
-#define _DoUnZip       true 
+#define _DoUnZip       true
 // Do BZip2 ///////////
-#define _DoBZip2       true 
+#define _DoBZip2       true
 // Do LZMA ///////////
-#define _DoLZMA       true 
+#define _DoLZMA       true
 // Do Rar /////////////
-#define _DoRar         true 
+#define _DoRar         true
 // Do UnRar ///////////
-#define _DoUnRar       true 
+#define _DoUnRar       true
 // Do UnAce ///////////
-#define _DoUnAce       true 
+#define _DoUnAce       true
 // Do Arj /////////////
-#define _DoArj         true 
+#define _DoArj         true
 // Do UnArj ///////////
-#define _DoUnarj       true 
+#define _DoUnarj       true
 // Do RPM /////////////
-#define _DoRPM         true 
+#define _DoRPM         true
 // Do DEB /////////////          ====> new
 #define _DoDEB         true
 // Do Lha /////////////
-#define _DoLha         true 
+#define _DoLha         true
 // Do 7z /////////////          ====> new
 #define _Do7z          true
 // Allow Move Into Archive //
-#define _MoveIntoArchive false 
+#define _MoveIntoArchive false
 // Test Archives //////
-#define _TestArchives 	false 
+#define _TestArchives  false
 // Test Before Unpack ////
-#define _TestBeforeUnpack	true 
+#define _TestBeforeUnpack true
 // Supported Packers // ====> a QStringList of SYSTEM supported archives ( also new )
 // default compression level
 #define _defaultCompressionLevel 5
@@ -218,13 +218,13 @@
 
 /////////////////////// [Private]
 // Start Position /////
-#define _StartPosition QPoint(QApplication::desktop()->width()/2 - mainView->sizeHint().width()/2,QApplication::desktop()->height()/2 - 250) 
+#define _StartPosition QPoint(QApplication::desktop()->width()/2 - mainView->sizeHint().width()/2,QApplication::desktop()->height()/2 - 250)
 // Start Size /////////
-#define _StartSize     QSize(mainView->sizeHint().width(),500) 
+#define _StartSize     QSize(mainView->sizeHint().width(),500)
 // Panel Size /////////
-#define _PanelSize     0 
+#define _PanelSize     0
 // Terminal Size //////
-#define _TerminalSize  0 
+#define _TerminalSize  0
 // Left Name Size  - size of the left panel's name column
 // Left Size Size  - size of the left panel's size column
 // Left Date Size  - size of the left panel's date column
@@ -258,59 +258,59 @@
 
 /////////////////////// [Synchronize directories]
 // Don't overwrite automatically /////////////
-#define  _ConfirmOverWrites   false 
+#define  _ConfirmOverWrites   false
 // Recursive search in the subdirectories /////////////
-#define  _RecurseSubdirs    true 
+#define  _RecurseSubdirs    true
 // The searcher follows symlinks /////////////
-#define  _FollowSymlinks    false 
+#define  _FollowSymlinks    false
 // Files with similar size are compared by content /////////////
-#define  _CompareByContent  false 
+#define  _CompareByContent  false
 // The date information is ignored at synchronization /////////////
-#define  _IgnoreDate        false 
+#define  _IgnoreDate        false
 // Asymmetric Client-File Server compare mode /////////////
-#define  _Asymmetric        false 
+#define  _Asymmetric        false
 // Case insensitive compare in synchronizer /////////////
-#define  _IgnoreCase        false 
+#define  _IgnoreCase        false
 // Scrolls the results of the synchronization /////////////
-#define  _ScrollResults     false 
+#define  _ScrollResults     false
 // The right arrow button is turned on /////////////
-#define  _BtnLeftToRight    true 
+#define  _BtnLeftToRight    true
 // The equals button is turned on /////////////
-#define  _BtnEquals         true 
+#define  _BtnEquals         true
 // The not equals button is turned on /////////////
-#define  _BtnDifferents     true 
+#define  _BtnDifferents     true
 // The left arrow button is turned on /////////////
-#define  _BtnRightToLeft    true 
+#define  _BtnRightToLeft    true
 // The trash button is turned on /////////////
-#define  _BtnDeletable      true 
+#define  _BtnDeletable      true
 // The duplicates button is turned on /////////////
-#define  _BtnDuplicates     true 
+#define  _BtnDuplicates     true
 // The singles button is turned on /////////////
 #define  _BtnSingles        true
 
 /////////////////////// [Custom Selection Mode]
 // QT Selection
-#define _QtSelection			false
+#define _QtSelection   false
 // Left Selects
-#define _LeftSelects			true
+#define _LeftSelects   true
 // Left Preserves
-#define _LeftPreserves		false
+#define _LeftPreserves  false
 // ShiftCtrl Left Selects
-#define _ShiftCtrlLeft		false
+#define _ShiftCtrlLeft  false
 // Right Selects
-#define _RightSelects		true
+#define _RightSelects  true
 // Right Preserves
-#define _RightPreserves		false
+#define _RightPreserves  false
 // ShiftCtrl Right Selects
-#define _ShiftCtrlRight		false
+#define _ShiftCtrlRight  false
 // Space Moves Down
-#define _SpaceMovesDown		true
+#define _SpaceMovesDown  true
 // Space Calc Space
-#define _SpaceCalcSpace		true
+#define _SpaceCalcSpace  true
 // Insert Moves Down
-#define _InsertMovesDown	true
+#define _InsertMovesDown true
 // Immediate Context Menu
-#define _ImmediateContextMenu	true
+#define _ImmediateContextMenu true
 
 // Root directory
 #ifdef Q_WS_WIN

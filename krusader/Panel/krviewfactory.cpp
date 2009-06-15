@@ -41,61 +41,61 @@ extern KrViewInstance interBriefView;    // hold reference for linking
 extern KrViewInstance detailedView; // hold reference for linking
 extern KrViewInstance briefView;    // hold reference for linking
 
-KrViewInstance::KrViewInstance( int id, QString desc, QKeySequence shortcut, KrViewFactoryFunction fun, KrViewItemHeightChange fun2 ) :
-		m_id( id ), m_description( desc ), m_shortcut( shortcut ), m_factoryfun( fun ), m_ihchangefun( fun2 )
+KrViewInstance::KrViewInstance(int id, QString desc, QKeySequence shortcut, KrViewFactoryFunction fun, KrViewItemHeightChange fun2) :
+        m_id(id), m_description(desc), m_shortcut(shortcut), m_factoryfun(fun), m_ihchangefun(fun2)
 {
 }
 
-KrView * KrViewFactory::createView( int id, QWidget * widget, bool & left, KConfig *cfg )
+KrView * KrViewFactory::createView(int id, QWidget * widget, bool & left, KConfig *cfg)
 {
-	return (*(viewInstance( id )->factoryFunction()))( widget, left, cfg );
+    return (*(viewInstance(id)->factoryFunction()))(widget, left, cfg);
 }
 
-void KrViewFactory::itemHeightChanged( int id )
+void KrViewFactory::itemHeightChanged(int id)
 {
-	(*(viewInstance( id )->itemHChangeFunction()))();
+    (*(viewInstance(id)->itemHChangeFunction()))();
 }
 
 // static initialization, on first use idiom
 KrViewFactory & KrViewFactory::self()
 {
-	static KrViewFactory * factory = new KrViewFactory();
-	return *factory;
+    static KrViewFactory * factory = new KrViewFactory();
+    return *factory;
 }
 
-void KrViewFactory::registerView( KrViewInstance * inst )
+void KrViewFactory::registerView(KrViewInstance * inst)
 {
-	int position = 0;
-	
-	while( position < self().m_registeredViews.count() ) {
-		if( self().m_registeredViews[ position ]->id() > inst->id() )
-			break;
-		position++;
-	}
-	
-	self().m_registeredViews.insert( self().m_registeredViews.begin() + position, inst );
-	if ( self().m_defaultViewId == -1 || inst->id() < self().m_defaultViewId )
-		self().m_defaultViewId = inst->id();
+    int position = 0;
+
+    while (position < self().m_registeredViews.count()) {
+        if (self().m_registeredViews[ position ]->id() > inst->id())
+            break;
+        position++;
+    }
+
+    self().m_registeredViews.insert(self().m_registeredViews.begin() + position, inst);
+    if (self().m_defaultViewId == -1 || inst->id() < self().m_defaultViewId)
+        self().m_defaultViewId = inst->id();
 }
 
-KrViewInstance * KrViewFactory::viewInstance( int id )
+KrViewInstance * KrViewFactory::viewInstance(int id)
 {
-	foreach( KrViewInstance * inst, self().m_registeredViews )
-	if ( inst->id() == id )
-		return inst;
+    foreach(KrViewInstance * inst, self().m_registeredViews)
+    if (inst->id() == id)
+        return inst;
 
-	foreach( KrViewInstance * inst_dflt, self().m_registeredViews )
-	if ( inst_dflt->id() == self().m_defaultViewId )
-		return inst_dflt;
+    foreach(KrViewInstance * inst_dflt, self().m_registeredViews)
+    if (inst_dflt->id() == self().m_defaultViewId)
+        return inst_dflt;
 
-	fprintf( stderr, "Internal Error: no views registered!\n" );
-	exit( -1 );
+    fprintf(stderr, "Internal Error: no views registered!\n");
+    exit(-1);
 }
 
 void KrViewFactory::init()
 {
-	KrViewFactory::registerView( &detailedView );
-	KrViewFactory::registerView( &briefView );
-	KrViewFactory::registerView( &interDetailedView );
-	KrViewFactory::registerView( &interBriefView );
+    KrViewFactory::registerView(&detailedView);
+    KrViewFactory::registerView(&briefView);
+    KrViewFactory::registerView(&interDetailedView);
+    KrViewFactory::registerView(&interBriefView);
 }

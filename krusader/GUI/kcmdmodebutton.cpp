@@ -32,42 +32,44 @@
  * KCMDModeButton class, which represents a button with popup menu to switch
  * the mode of the krusader built-in command-line
  */
-KCMDModeButton::KCMDModeButton( QWidget *parent ) : QToolButton( parent ) {
-  setFixedSize( 22, 20 );
-/* // from the old terminal-button:
-  setText( i18n( "If pressed, Krusader executes command line in a terminal." ) );
-  setToolTip( i18n( "If pressed, Krusader executes command line in a terminal." ) );
-  QWhatsThis::add( terminal, i18n(
-                        "The 'run in terminal' button allows Krusader "
-                        "to run console (or otherwise non-graphical) "
-                        "programs in a terminal of your choice. If it's "
-                        "pressed, terminal mode is active." ) );
-*/
-  setIcon( SmallIcon( "konsole" ) );
-  adjustSize();
-  action = new KActionMenu( i18n("Execution mode"), this );
-  Q_CHECK_PTR( action );
-  for( int i=0; Krusader::execTypeArray[i] != 0; i++ )
-  {
-    action->addAction( *Krusader::execTypeArray[i] );
-  }
-  QMenu *pP = action->menu();
-  Q_CHECK_PTR( pP );
-  setMenu( pP );
-  setPopupMode( QToolButton::InstantPopup );
-  setAcceptDrops( false );
+KCMDModeButton::KCMDModeButton(QWidget *parent) : QToolButton(parent)
+{
+    setFixedSize(22, 20);
+    /* // from the old terminal-button:
+      setText( i18n( "If pressed, Krusader executes command line in a terminal." ) );
+      setToolTip( i18n( "If pressed, Krusader executes command line in a terminal." ) );
+      QWhatsThis::add( terminal, i18n(
+                            "The 'run in terminal' button allows Krusader "
+                            "to run console (or otherwise non-graphical) "
+                            "programs in a terminal of your choice. If it's "
+                            "pressed, terminal mode is active." ) );
+    */
+    setIcon(SmallIcon("konsole"));
+    adjustSize();
+    action = new KActionMenu(i18n("Execution mode"), this);
+    Q_CHECK_PTR(action);
+    for (int i = 0; Krusader::execTypeArray[i] != 0; i++) {
+        action->addAction(*Krusader::execTypeArray[i]);
+    }
+    QMenu *pP = action->menu();
+    Q_CHECK_PTR(pP);
+    setMenu(pP);
+    setPopupMode(QToolButton::InstantPopup);
+    setAcceptDrops(false);
 }
 
-KCMDModeButton::~KCMDModeButton() {
-  delete action;
+KCMDModeButton::~KCMDModeButton()
+{
+    delete action;
 }
 
 /** called when clicked to the button */
-void KCMDModeButton::showMenu() {
-  QMenu * pP = menu();
-  if ( pP ) {
-    menu() ->exec( mapToGlobal( QPoint( 0, 0 ) ) );
-  }
+void KCMDModeButton::showMenu()
+{
+    QMenu * pP = menu();
+    if (pP) {
+        menu() ->exec(mapToGlobal(QPoint(0, 0)));
+    }
 }
 
 

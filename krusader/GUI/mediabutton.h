@@ -34,52 +34,53 @@ class QMenu;
 class KMountPoint;
 class KIcon;
 
-class MediaButton : public QToolButton  {
-   Q_OBJECT
-public: 
-  MediaButton(QWidget *parent=0);
-  ~MediaButton();
+class MediaButton : public QToolButton
+{
+    Q_OBJECT
+public:
+    MediaButton(QWidget *parent = 0);
+    ~MediaButton();
 
 public slots:
-  void slotAboutToShow();
-  void slotAboutToHide();
-  void slotPopupActivated( QAction * );
-  void slotAccessibilityChanged(bool, const QString &);
-  void slotDeviceAdded(const QString&);
-  void slotDeviceRemoved(const QString&);
-  void showMenu();
-  void slotTimeout();
+    void slotAboutToShow();
+    void slotAboutToHide();
+    void slotPopupActivated(QAction *);
+    void slotAccessibilityChanged(bool, const QString &);
+    void slotDeviceAdded(const QString&);
+    void slotDeviceRemoved(const QString&);
+    void showMenu();
+    void slotTimeout();
 
 signals:
-  void openUrl(const KUrl&);
-  void aboutToShow();
+    void openUrl(const KUrl&);
+    void aboutToShow();
 
 protected:
-  bool eventFilter( QObject *o, QEvent *e );
-  bool getNameAndIcon( Solid::Device &, QString &, KIcon &);
+    bool eventFilter(QObject *o, QEvent *e);
+    bool getNameAndIcon(Solid::Device &, QString &, KIcon &);
 
 private:
-  void createMediaList();
+    void createMediaList();
 
-  QList<Solid::Device> storageDevices;
+    QList<Solid::Device> storageDevices;
 
-  void mount( QString, bool open=false, bool newtab = false );
-  void umount( QString );
-  void eject( QString );
+    void mount(QString, bool open = false, bool newtab = false);
+    void umount(QString);
+    void eject(QString);
 
-  void rightClickMenu( QString );
+    void rightClickMenu(QString);
 
 private slots:
-  void slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString &udi);
-  void slotTeardownDone(Solid::ErrorType error, QVariant errorData, const QString &udi);
+    void slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString &udi);
+    void slotTeardownDone(Solid::ErrorType error, QVariant errorData, const QString &udi);
 
 private:
-  QMenu  *popupMenu;
-  QMenu  *rightMenu;
-  QString udiToOpen;
-  bool    openInNewTab;
-  QMap<QString, QString> udiNameMap;
-  QTimer      mountCheckerTimer;
+    QMenu  *popupMenu;
+    QMenu  *rightMenu;
+    QString udiToOpen;
+    bool    openInNewTab;
+    QMap<QString, QString> udiNameMap;
+    QTimer      mountCheckerTimer;
 };
 
 #endif /* MEDIABUTTON_H */

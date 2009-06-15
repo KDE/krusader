@@ -39,31 +39,33 @@
 
 class DiskUsageViewer : public QWidget
 {
-  Q_OBJECT
-  
+    Q_OBJECT
+
 public:
-  DiskUsageViewer( QWidget *parent = 0 );
-  ~DiskUsageViewer();
-  
-  void openUrl( KUrl url );
-  void closeUrl();
-  void setStatusLabel( QLabel *statLabel, QString pref );
+    DiskUsageViewer(QWidget *parent = 0);
+    ~DiskUsageViewer();
 
-  inline DiskUsage * getWidget() { return diskUsage; }
-  
+    void openUrl(KUrl url);
+    void closeUrl();
+    void setStatusLabel(QLabel *statLabel, QString pref);
+
+    inline DiskUsage * getWidget() {
+        return diskUsage;
+    }
+
 signals:
-  void openUrlRequest(const KUrl &);
-  
-protected slots:
-  void slotUpdateStatus( QString status = QString() );
-  void slotNewSearch();
+    void openUrlRequest(const KUrl &);
 
-protected:  
-  DiskUsage *diskUsage;
-  QGridLayout *layout;
-  
-  QLabel *statusLabel;
-  QString prefix;
+protected slots:
+    void slotUpdateStatus(QString status = QString());
+    void slotNewSearch();
+
+protected:
+    DiskUsage *diskUsage;
+    QGridLayout *layout;
+
+    QLabel *statusLabel;
+    QString prefix;
 };
 
 #endif /* DISKUSAGEVIEWER_H */

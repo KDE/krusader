@@ -7,21 +7,22 @@
 
 #include "krbookmarkhandler.h"
 
-class KrBookmarkButton: public QToolButton {
-	Q_OBJECT
+class KrBookmarkButton: public QToolButton
+{
+    Q_OBJECT
 public:
-	KrBookmarkButton(QWidget *parent);
-	void showMenu();
+    KrBookmarkButton(QWidget *parent);
+    void showMenu();
 
 signals:
-	void openUrl(const KUrl &url);
-	void aboutToShow();
+    void openUrl(const KUrl &url);
+    void aboutToShow();
 
 protected slots:
-	void populate();
-	
+    void populate();
+
 private:
-	KActionMenu *acmBookmarks;
+    KActionMenu *acmBookmarks;
 };
 
 #endif // KRBOOKMARK_BUTTON_H

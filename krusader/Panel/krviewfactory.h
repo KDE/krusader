@@ -39,45 +39,61 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 class KrView;
 class KConfig;
 
-typedef KrView * (*KrViewFactoryFunction)( QWidget *, bool &, KConfig * );
-typedef void     (*KrViewItemHeightChange)();
+typedef KrView * (*KrViewFactoryFunction)(QWidget *, bool &, KConfig *);
+typedef void (*KrViewItemHeightChange)();
 
-class KrViewInstance {
+class KrViewInstance
+{
 public:
-	KrViewInstance( int id, QString desc, QKeySequence shortcut, KrViewFactoryFunction fun, KrViewItemHeightChange fun2 );
-	
-	inline int                     id()                    { return m_id; }
-	inline QString                 description()           { return m_description; }
-	inline QKeySequence            shortcut()              { return m_shortcut; }
-	inline KrViewFactoryFunction   factoryFunction()       { return m_factoryfun; }
-	inline KrViewItemHeightChange  itemHChangeFunction()   { return m_ihchangefun; }
-	
+    KrViewInstance(int id, QString desc, QKeySequence shortcut, KrViewFactoryFunction fun, KrViewItemHeightChange fun2);
+
+    inline int                     id()                    {
+        return m_id;
+    }
+    inline QString                 description()           {
+        return m_description;
+    }
+    inline QKeySequence            shortcut()              {
+        return m_shortcut;
+    }
+    inline KrViewFactoryFunction   factoryFunction()       {
+        return m_factoryfun;
+    }
+    inline KrViewItemHeightChange  itemHChangeFunction()   {
+        return m_ihchangefun;
+    }
+
 protected:
-	int                            m_id;
-	QString                        m_description;
-	QKeySequence                   m_shortcut;
-	KrViewFactoryFunction          m_factoryfun;
-	KrViewItemHeightChange         m_ihchangefun;
+    int                            m_id;
+    QString                        m_description;
+    QKeySequence                   m_shortcut;
+    KrViewFactoryFunction          m_factoryfun;
+    KrViewItemHeightChange         m_ihchangefun;
 };
 
-class KrViewFactory {
-	friend class KrViewInstance;
+class KrViewFactory
+{
+    friend class KrViewInstance;
 public:
-	static KrView *                createView( int id, QWidget * widget, bool & left, KConfig *cfg );
-	static void                    itemHeightChanged( int id );
-	static KrViewInstance *        viewInstance( int id );
-	static QList<KrViewInstance *> registeredViews()       { return self().m_registeredViews; }
-	static int                     defaultViewId()         { return self().m_defaultViewId; }
-	static void                    init();
+    static KrView *                createView(int id, QWidget * widget, bool & left, KConfig *cfg);
+    static void                    itemHeightChanged(int id);
+    static KrViewInstance *        viewInstance(int id);
+    static QList<KrViewInstance *> registeredViews()       {
+        return self().m_registeredViews;
+    }
+    static int                     defaultViewId()         {
+        return self().m_defaultViewId;
+    }
+    static void                    init();
 
 private:
-	KrViewFactory() : m_defaultViewId( -1 ) {}
-	
-	static KrViewFactory &         self();
-	static void                    registerView( KrViewInstance * );
+    KrViewFactory() : m_defaultViewId(-1) {}
 
-	QList<KrViewInstance *>        m_registeredViews;
-	int                            m_defaultViewId;
+    static KrViewFactory &         self();
+    static void                    registerView(KrViewInstance *);
+
+    QList<KrViewInstance *>        m_registeredViews;
+    int                            m_defaultViewId;
 };
 
 #endif /* __KRVIEWFACTORY_H__ */

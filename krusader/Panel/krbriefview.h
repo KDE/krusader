@@ -64,117 +64,142 @@ class Q3Header;
  * Apart from this, the view is self-reliant and you can use the vast interface to get whatever
  * information is necessary from it.
  */
-class KrBriefView: public K3IconView, public KrView {
-	friend class KrBriefViewItem;
-	Q_OBJECT
+class KrBriefView: public K3IconView, public KrView
+{
+    friend class KrBriefViewItem;
+    Q_OBJECT
 public:
-	KrBriefView( Q3Header *header, QWidget *parent, bool &left, KConfig *cfg = krConfig );
-	virtual ~KrBriefView();
-	virtual inline KrViewItem *getFirst() { return dynamic_cast<KrViewItem*>( firstItem() ); }
-	virtual inline KrViewItem *getLast() { return dynamic_cast<KrViewItem*>( lastItem() ); }
-	virtual inline KrViewItem *getNext( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<Q3IconViewItem*>( current ) ->nextItem() ); }
-	virtual inline KrViewItem *getPrev( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<Q3IconViewItem*>( current ) ->prevItem() ); }
-	virtual inline KrViewItem *getCurrentKrViewItem() { return dynamic_cast<KrViewItem*>( currentItem() ); }
-	virtual KrViewItem *getKrViewItemAt(const QPoint &vp);
-	virtual inline KrViewItem *findItemByName(const QString &name) { return dynamic_cast<KrViewItem*>( findItem( name, K3IconView::ExactMatch ) ); }
-	virtual void addItems(vfs* v, bool addUpDir = true);
-	virtual void delItem(const QString &);
-	virtual QString getCurrentItem() const;
-	virtual void makeItemVisible(const KrViewItem * item );
-	virtual void setCurrentItem(const QString& name );
-	virtual void setCurrentKrViewItem( KrViewItem * item );
-	virtual void updateView();
-	virtual void updateItem(KrViewItem* item );
-	virtual void clear();
-	virtual void sort()                        { if( sortDirection() ) sortOrderChanged();K3IconView::sort( true ); }
-	virtual void sort( bool ascending )        { if( sortDirection() != ascending ) sortOrderChanged();K3IconView::sort( ascending ); }
-	virtual void prepareForActive();
-	virtual void prepareForPassive();
-	virtual void saveSettings() {}
-	virtual void restoreSettings() {}
-	virtual QString nameInKConfig() {return _nameInKConfig;}
-	virtual void redraw() { ((QWidget *)parent())->show(); header->show(); viewport()->show(); show(); }
-	virtual int  itemsPerPage();
-	virtual void selectRegion( KrViewItem *, KrViewItem *, bool ) {} // not used
-	
-	static KrView* create( QWidget *parent, bool &left, KConfig *cfg );
+    KrBriefView(Q3Header *header, QWidget *parent, bool &left, KConfig *cfg = krConfig);
+    virtual ~KrBriefView();
+    virtual inline KrViewItem *getFirst() {
+        return dynamic_cast<KrViewItem*>(firstItem());
+    }
+    virtual inline KrViewItem *getLast() {
+        return dynamic_cast<KrViewItem*>(lastItem());
+    }
+    virtual inline KrViewItem *getNext(KrViewItem *current) {
+        return dynamic_cast<KrViewItem*>(dynamic_cast<Q3IconViewItem*>(current) ->nextItem());
+    }
+    virtual inline KrViewItem *getPrev(KrViewItem *current) {
+        return dynamic_cast<KrViewItem*>(dynamic_cast<Q3IconViewItem*>(current) ->prevItem());
+    }
+    virtual inline KrViewItem *getCurrentKrViewItem() {
+        return dynamic_cast<KrViewItem*>(currentItem());
+    }
+    virtual KrViewItem *getKrViewItemAt(const QPoint &vp);
+    virtual inline KrViewItem *findItemByName(const QString &name) {
+        return dynamic_cast<KrViewItem*>(findItem(name, K3IconView::ExactMatch));
+    }
+    virtual void addItems(vfs* v, bool addUpDir = true);
+    virtual void delItem(const QString &);
+    virtual QString getCurrentItem() const;
+    virtual void makeItemVisible(const KrViewItem * item);
+    virtual void setCurrentItem(const QString& name);
+    virtual void setCurrentKrViewItem(KrViewItem * item);
+    virtual void updateView();
+    virtual void updateItem(KrViewItem* item);
+    virtual void clear();
+    virtual void sort()                        {
+        if (sortDirection()) sortOrderChanged();K3IconView::sort(true);
+    }
+    virtual void sort(bool ascending)        {
+        if (sortDirection() != ascending) sortOrderChanged();K3IconView::sort(ascending);
+    }
+    virtual void prepareForActive();
+    virtual void prepareForPassive();
+    virtual void saveSettings() {}
+    virtual void restoreSettings() {}
+    virtual QString nameInKConfig() {
+        return _nameInKConfig;
+    }
+    virtual void redraw() {
+        ((QWidget *)parent())->show(); header->show(); viewport()->show(); show();
+    }
+    virtual int  itemsPerPage();
+    virtual void selectRegion(KrViewItem *, KrViewItem *, bool) {}   // not used
+
+    static KrView* create(QWidget *parent, bool &left, KConfig *cfg);
 
 protected:
-	virtual void setup();
-	virtual void initOperator();
-	virtual KrViewItem *preAddItem(vfile * vf);
-	virtual bool preDelItem(KrViewItem * item );
+    virtual void setup();
+    virtual void initOperator();
+    virtual KrViewItem *preAddItem(vfile * vf);
+    virtual bool preDelItem(KrViewItem * item);
 
-	void setColumnNr();
-	void redrawColumns();
+    void setColumnNr();
+    void redrawColumns();
 
-	virtual void resizeEvent ( QResizeEvent * );
-	virtual void keyPressEvent( QKeyEvent *e );
-	virtual void inputMethodEvent(QInputMethodEvent *e);
-	virtual void contentsMousePressEvent( QMouseEvent *e );
-	virtual void contentsMouseReleaseEvent (QMouseEvent *e);
-	virtual void contentsMouseMoveEvent ( QMouseEvent * e );
-	virtual void contentsMouseDoubleClickEvent ( QMouseEvent * e );
-	virtual bool acceptDrag( QDropEvent* e ) const;
-	virtual void contentsDropEvent( QDropEvent *e );
-	virtual void contentsDragMoveEvent( QDragMoveEvent *e );
-	virtual void contentsDragLeaveEvent ( QDragLeaveEvent * );
-	virtual void startDrag() { op()->startDrag(); }
-	virtual bool event( QEvent *e );
-	virtual bool eventFilter( QObject * watched, QEvent * e );
-	virtual void wheelEvent( QWheelEvent *e );
-	QMouseEvent * transformMouseEvent( QMouseEvent * );
+    virtual void resizeEvent(QResizeEvent *);
+    virtual void keyPressEvent(QKeyEvent *e);
+    virtual void inputMethodEvent(QInputMethodEvent *e);
+    virtual void contentsMousePressEvent(QMouseEvent *e);
+    virtual void contentsMouseReleaseEvent(QMouseEvent *e);
+    virtual void contentsMouseMoveEvent(QMouseEvent * e);
+    virtual void contentsMouseDoubleClickEvent(QMouseEvent * e);
+    virtual bool acceptDrag(QDropEvent* e) const;
+    virtual void contentsDropEvent(QDropEvent *e);
+    virtual void contentsDragMoveEvent(QDragMoveEvent *e);
+    virtual void contentsDragLeaveEvent(QDragLeaveEvent *);
+    virtual void startDrag() {
+        op()->startDrag();
+    }
+    virtual bool event(QEvent *e);
+    virtual bool eventFilter(QObject * watched, QEvent * e);
+    virtual void wheelEvent(QWheelEvent *e);
+    QMouseEvent * transformMouseEvent(QMouseEvent *);
 
 protected slots:
-	void rename( Q3IconViewItem *item );
-	void slotClicked( Q3IconViewItem *item );
-	void slotDoubleClicked( Q3IconViewItem *item );
-	void slotItemDescription( Q3IconViewItem * );
-	void slotCurrentChanged( Q3IconViewItem *item );
-	void handleContextMenu( Q3IconViewItem*, const QPoint& );
-	virtual void renameCurrentItem();
-	virtual void showContextMenu( );
-	void inplaceRenameFinished( Q3IconViewItem *it );
-	void setNameToMakeCurrent( Q3IconViewItem *it );
-	void sortOrderChanged();
-	void slotRightButtonPressed(Q3IconViewItem*, const QPoint& point);
-	void transformCurrentChanged( Q3IconViewItem * item ) { op()->emitCurrentChanged( dynamic_cast<KrViewItem *>(item ) ); }
+    void rename(Q3IconViewItem *item);
+    void slotClicked(Q3IconViewItem *item);
+    void slotDoubleClicked(Q3IconViewItem *item);
+    void slotItemDescription(Q3IconViewItem *);
+    void slotCurrentChanged(Q3IconViewItem *item);
+    void handleContextMenu(Q3IconViewItem*, const QPoint&);
+    virtual void renameCurrentItem();
+    virtual void showContextMenu();
+    void inplaceRenameFinished(Q3IconViewItem *it);
+    void setNameToMakeCurrent(Q3IconViewItem *it);
+    void sortOrderChanged();
+    void slotRightButtonPressed(Q3IconViewItem*, const QPoint& point);
+    void transformCurrentChanged(Q3IconViewItem * item) {
+        op()->emitCurrentChanged(dynamic_cast<KrViewItem *>(item));
+    }
 
-	/**
-	  * used internally to produce the signal middleButtonClicked()
-	 */
-	void slotMouseClicked( int button, Q3IconViewItem * item, const QPoint & pos );
-	inline void slotExecuted( Q3IconViewItem* i ) {
-		QString tmp = dynamic_cast<KrViewItem*>( i ) ->name();
-		op()->emitExecuted( tmp );
-	}
+    /**
+      * used internally to produce the signal middleButtonClicked()
+     */
+    void slotMouseClicked(int button, Q3IconViewItem * item, const QPoint & pos);
+    inline void slotExecuted(Q3IconViewItem* i) {
+        QString tmp = dynamic_cast<KrViewItem*>(i) ->name();
+        op()->emitExecuted(tmp);
+    }
 
 public slots:
-	void refreshColors();
-	void changeSortOrder();
+    void refreshColors();
+    void changeSortOrder();
 
-  
+
 signals:
-	void letsDrag(QStringList items, QPixmap icon);
-	void gotDrop(QDropEvent *);
+    void letsDrag(QStringList items, QPixmap icon);
+    void gotDrop(QDropEvent *);
 
 private:
-	Q3Header * header;
-	bool swushSelects;
-	QPoint dragStartPos;
-	Q3IconViewItem *lastSwushPosition;
-	KrViewItem *_currDragItem;
-	bool singleClicked;
-	bool modifierPressed;
-	QTime clickTime;
-	Q3IconViewItem *clickedItem;
-	QTimer renameTimer;
-	QTimer contextMenuTimer;
-	QPoint contextMenuPoint;
-	KrBriefViewItem *currentlyRenamedItem;
-	Q3IconViewItem *pressedItem;
-	QMouseEvent *mouseEvent;
-	bool inWheelEvent; // fix recursion crash
+    Q3Header * header;
+    bool swushSelects;
+    QPoint dragStartPos;
+    Q3IconViewItem *lastSwushPosition;
+    KrViewItem *_currDragItem;
+    bool singleClicked;
+    bool modifierPressed;
+    QTime clickTime;
+    Q3IconViewItem *clickedItem;
+    QTimer renameTimer;
+    QTimer contextMenuTimer;
+    QPoint contextMenuPoint;
+    KrBriefViewItem *currentlyRenamedItem;
+    Q3IconViewItem *pressedItem;
+    QMouseEvent *mouseEvent;
+    bool inWheelEvent; // fix recursion crash
 };
 
 #endif

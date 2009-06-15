@@ -55,48 +55,62 @@
 
 class KonfiguratorExtension : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KonfiguratorExtension(QObject *obj, QString cfgClass, QString cfgName, bool rst = false, int pg=FIRST_PAGE );
+    KonfiguratorExtension(QObject *obj, QString cfgClass, QString cfgName, bool rst = false, int pg = FIRST_PAGE);
 
-  virtual void    loadInitialValue();
-  virtual bool    apply();
-  virtual void    setDefaults();
-  virtual bool    isChanged();
-  virtual void    setSubPage(int pg) {subpage = pg;}
-  virtual int     subPage()          {return subpage;}
+    virtual void    loadInitialValue();
+    virtual bool    apply();
+    virtual void    setDefaults();
+    virtual bool    isChanged();
+    virtual void    setSubPage(int pg) {
+        subpage = pg;
+    }
+    virtual int     subPage()          {
+        return subpage;
+    }
 
-  inline QObject *object()           {return objectPtr;}
+    inline QObject *object()           {
+        return objectPtr;
+    }
 
-  inline QString  getCfgClass()      {return configClass;}
-  inline QString  getCfgName()       {return configName;}
+    inline QString  getCfgClass()      {
+        return configClass;
+    }
+    inline QString  getCfgName()       {
+        return configName;
+    }
 
 public slots:
-  void    setChanged()               {emit sigChanged( changed = true);}
-  void    setChanged( bool chg )     {emit sigChanged( changed = chg);}
+    void    setChanged()               {
+        emit sigChanged(changed = true);
+    }
+    void    setChanged(bool chg)     {
+        emit sigChanged(changed = chg);
+    }
 
 signals:
-  void    applyManually(QObject *,QString, QString);
-  void    applyAuto(QObject *,QString, QString);
-  void    setDefaultsManually(QObject *);
-  void    setDefaultsAuto(QObject *);
-  void    setInitialValue(QObject *);
-  void    sigChanged( bool );
+    void    applyManually(QObject *, QString, QString);
+    void    applyAuto(QObject *, QString, QString);
+    void    setDefaultsManually(QObject *);
+    void    setDefaultsAuto(QObject *);
+    void    setInitialValue(QObject *);
+    void    sigChanged(bool);
 
 protected:
-  QObject *objectPtr;
+    QObject *objectPtr;
 
-  bool    applyConnected;
-  bool    setDefaultsConnected;
-  bool    changed;
-  bool    restartNeeded;
-  int     subpage;
+    bool    applyConnected;
+    bool    setDefaultsConnected;
+    bool    changed;
+    bool    restartNeeded;
+    int     subpage;
 
-  QString configClass;
-  QString configName;
+    QString configClass;
+    QString configName;
 
-  virtual void connectNotify( const char *signal );
+    virtual void connectNotify(const char *signal);
 };
 
 
@@ -105,23 +119,25 @@ protected:
 
 class KonfiguratorCheckBox : public QCheckBox
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KonfiguratorCheckBox( QString cls, QString name, bool dflt, QString text,
-                        QWidget *parent=0, bool rst=false, int pg=FIRST_PAGE );
-  ~KonfiguratorCheckBox();
+    KonfiguratorCheckBox(QString cls, QString name, bool dflt, QString text,
+                         QWidget *parent = 0, bool rst = false, int pg = FIRST_PAGE);
+    ~KonfiguratorCheckBox();
 
-  inline KonfiguratorExtension *extension()   {return ext;}
+    inline KonfiguratorExtension *extension()   {
+        return ext;
+    }
 
 public slots:
-  virtual void loadInitialValue();
-  void slotApply(QObject *,QString, QString);
-  void slotSetDefaults(QObject *);
+    virtual void loadInitialValue();
+    void slotApply(QObject *, QString, QString);
+    void slotSetDefaults(QObject *);
 
 protected:
-  bool  defaultValue;
-  KonfiguratorExtension *ext;
+    bool  defaultValue;
+    KonfiguratorExtension *ext;
 };
 
 // KonfiguratorSpinBox class
@@ -129,23 +145,25 @@ protected:
 
 class KonfiguratorSpinBox : public QSpinBox
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KonfiguratorSpinBox( QString cls, QString name, int dflt, int min, int max,
-                       QWidget *parent=0, bool rst=false, int pg=FIRST_PAGE );
-  ~KonfiguratorSpinBox();
+    KonfiguratorSpinBox(QString cls, QString name, int dflt, int min, int max,
+                        QWidget *parent = 0, bool rst = false, int pg = FIRST_PAGE);
+    ~KonfiguratorSpinBox();
 
-  inline KonfiguratorExtension *extension()   {return ext;}
+    inline KonfiguratorExtension *extension()   {
+        return ext;
+    }
 
 public slots:
-  virtual void loadInitialValue();
-  void slotApply(QObject *,QString, QString);
-  void slotSetDefaults(QObject *);
+    virtual void loadInitialValue();
+    void slotApply(QObject *, QString, QString);
+    void slotSetDefaults(QObject *);
 
 protected:
-  int  defaultValue;
-  KonfiguratorExtension *ext;
+    int  defaultValue;
+    KonfiguratorExtension *ext;
 };
 
 // KonfiguratorCheckBoxGroup class
@@ -154,16 +172,18 @@ protected:
 class KonfiguratorCheckBoxGroup : public QWidget
 {
 public:
-  KonfiguratorCheckBoxGroup( QWidget * parent = 0 ) :
-    QWidget( parent ) {};
+    KonfiguratorCheckBoxGroup(QWidget * parent = 0) :
+            QWidget(parent) {};
 
-  void                    add( KonfiguratorCheckBox * );
-  int                     count() { return checkBoxList.count(); };
-  KonfiguratorCheckBox *  find( int index );
-  KonfiguratorCheckBox *  find( QString name );
+    void                    add(KonfiguratorCheckBox *);
+    int                     count() {
+        return checkBoxList.count();
+    };
+    KonfiguratorCheckBox *  find(int index);
+    KonfiguratorCheckBox *  find(QString name);
 
 private:
-  QList<KonfiguratorCheckBox *>  checkBoxList;
+    QList<KonfiguratorCheckBox *>  checkBoxList;
 };
 
 // KonfiguratorRadioButtons class
@@ -171,37 +191,41 @@ private:
 
 class KonfiguratorRadioButtons : public QWidget
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KonfiguratorRadioButtons( QString cls, QString name, QString dflt, QWidget *parent=0,
-                            bool rst=false, int pg=FIRST_PAGE );
-  ~KonfiguratorRadioButtons();
+    KonfiguratorRadioButtons(QString cls, QString name, QString dflt, QWidget *parent = 0,
+                             bool rst = false, int pg = FIRST_PAGE);
+    ~KonfiguratorRadioButtons();
 
-  inline KonfiguratorExtension *extension()   {return ext;}
+    inline KonfiguratorExtension *extension()   {
+        return ext;
+    }
 
-  void  addRadioButton( QRadioButton *radioWidget, QString name, QString value );
+    void  addRadioButton(QRadioButton *radioWidget, QString name, QString value);
 
-  void            selectButton( QString value );
+    void            selectButton(QString value);
 
-  int             count() { return radioButtons.count(); }
-  QString         selectedValue();
-  QRadioButton*   find( int index );
-  QRadioButton*   find( QString name );
+    int             count() {
+        return radioButtons.count();
+    }
+    QString         selectedValue();
+    QRadioButton*   find(int index);
+    QRadioButton*   find(QString name);
 
 public slots:
-  virtual void loadInitialValue();
-  void slotApply(QObject *,QString, QString);
-  void slotSetDefaults(QObject *);
+    virtual void loadInitialValue();
+    void slotApply(QObject *, QString, QString);
+    void slotSetDefaults(QObject *);
 
 protected:
-  QList<QRadioButton *>  radioButtons;
-  QList<QString>   radioValues;
-  QList<QString>   radioNames;
+    QList<QRadioButton *>  radioButtons;
+    QList<QString>   radioValues;
+    QList<QString>   radioNames;
 
-  QString         defaultValue;
+    QString         defaultValue;
 
-  KonfiguratorExtension *ext;
+    KonfiguratorExtension *ext;
 };
 
 // KonfiguratorEditBox class
@@ -209,23 +233,25 @@ protected:
 
 class KonfiguratorEditBox : public QLineEdit
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KonfiguratorEditBox( QString cls, QString name, QString dflt, QWidget *parent=0,
-                       bool rst=false, int pg=FIRST_PAGE );
-  ~KonfiguratorEditBox();
+    KonfiguratorEditBox(QString cls, QString name, QString dflt, QWidget *parent = 0,
+                        bool rst = false, int pg = FIRST_PAGE);
+    ~KonfiguratorEditBox();
 
-  inline KonfiguratorExtension *extension()   {return ext;}
+    inline KonfiguratorExtension *extension()   {
+        return ext;
+    }
 
 public slots:
-  virtual void loadInitialValue();
-  void slotApply(QObject *,QString, QString);
-  void slotSetDefaults(QObject *);
+    virtual void loadInitialValue();
+    void slotApply(QObject *, QString, QString);
+    void slotSetDefaults(QObject *);
 
 protected:
-  QString  defaultValue;
-  KonfiguratorExtension *ext;
+    QString  defaultValue;
+    KonfiguratorExtension *ext;
 };
 
 
@@ -234,23 +260,25 @@ protected:
 
 class KonfiguratorURLRequester : public KUrlRequester
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KonfiguratorURLRequester( QString cls, QString name, QString dflt, QWidget *parent=0,
-                       bool rst=false, int pg=FIRST_PAGE );
-  ~KonfiguratorURLRequester();
+    KonfiguratorURLRequester(QString cls, QString name, QString dflt, QWidget *parent = 0,
+                             bool rst = false, int pg = FIRST_PAGE);
+    ~KonfiguratorURLRequester();
 
-  inline KonfiguratorExtension *extension()   {return ext;}
+    inline KonfiguratorExtension *extension()   {
+        return ext;
+    }
 
 public slots:
-  virtual void loadInitialValue();
-  void slotApply(QObject *,QString, QString);
-  void slotSetDefaults(QObject *);
+    virtual void loadInitialValue();
+    void slotApply(QObject *, QString, QString);
+    void slotSetDefaults(QObject *);
 
 protected:
-  QString  defaultValue;
-  KonfiguratorExtension *ext;
+    QString  defaultValue;
+    KonfiguratorExtension *ext;
 };
 
 // KonfiguratorFontChooser class
@@ -258,49 +286,49 @@ protected:
 
 class KonfiguratorFontChooser : public QWidget
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KonfiguratorFontChooser( QString cls, QString name, QFont *dflt, QWidget *parent=0,
-                            bool rst=false, int pg=FIRST_PAGE );
-  ~KonfiguratorFontChooser();
+    KonfiguratorFontChooser(QString cls, QString name, QFont *dflt, QWidget *parent = 0,
+                            bool rst = false, int pg = FIRST_PAGE);
+    ~KonfiguratorFontChooser();
 
-  inline KonfiguratorExtension *extension()   {return ext;}
+    inline KonfiguratorExtension *extension()   {
+        return ext;
+    }
 
 public slots:
-  virtual void    loadInitialValue();
-  void            slotApply(QObject *,QString, QString);
-  void            slotSetDefaults(QObject *);
-  void            slotBrowseFont();
+    virtual void    loadInitialValue();
+    void            slotApply(QObject *, QString, QString);
+    void            slotSetDefaults(QObject *);
+    void            slotBrowseFont();
 
 protected:
-  QFont         * defaultValue;
-  QFont           font;
-  KonfiguratorExtension *ext;
+    QFont         * defaultValue;
+    QFont           font;
+    KonfiguratorExtension *ext;
 
-  QLabel        * pLabel;
-  QToolButton   * pToolButton;
+    QLabel        * pLabel;
+    QToolButton   * pToolButton;
 
-  void            setFont();
+    void            setFont();
 };
 
 // KONFIGURATOR_NAME_VALUE_PAIR structure
 ///////////////////////////////
 
-struct KONFIGURATOR_NAME_VALUE_PAIR
-{
-  QString text;
-  QString value;
+struct KONFIGURATOR_NAME_VALUE_PAIR {
+    QString text;
+    QString value;
 };
 
 // KONFIGURATOR_NAME_VALUE_TIP structure
 ///////////////////////////////
 
-struct KONFIGURATOR_NAME_VALUE_TIP
-{
-  QString text;
-  QString value;
-  QString tooltip;
+struct KONFIGURATOR_NAME_VALUE_TIP {
+    QString text;
+    QString value;
+    QString tooltip;
 };
 
 // KonfiguratorComboBox class
@@ -308,82 +336,85 @@ struct KONFIGURATOR_NAME_VALUE_TIP
 
 class KonfiguratorComboBox : public QComboBox
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KonfiguratorComboBox( QString cls, QString name, QString dflt,
-                        KONFIGURATOR_NAME_VALUE_PAIR *listIn, int listInLen,
-                        QWidget *parent=0,
-                        bool rst=false,  bool editable=false, int pg=FIRST_PAGE );
-  ~KonfiguratorComboBox();
+    KonfiguratorComboBox(QString cls, QString name, QString dflt,
+                         KONFIGURATOR_NAME_VALUE_PAIR *listIn, int listInLen,
+                         QWidget *parent = 0,
+                         bool rst = false,  bool editable = false, int pg = FIRST_PAGE);
+    ~KonfiguratorComboBox();
 
-  inline KonfiguratorExtension *extension()   {return ext;}
+    inline KonfiguratorExtension *extension()   {
+        return ext;
+    }
 
 public slots:
-  virtual void loadInitialValue();
-  void slotApply(QObject *,QString, QString);
-  void slotSetDefaults(QObject *);
+    virtual void loadInitialValue();
+    void slotApply(QObject *, QString, QString);
+    void slotSetDefaults(QObject *);
 
 protected:
-  QString                       defaultValue;
-  KONFIGURATOR_NAME_VALUE_PAIR *list;
-  int                           listLen;
-  KonfiguratorExtension        *ext;
+    QString                       defaultValue;
+    KONFIGURATOR_NAME_VALUE_PAIR *list;
+    int                           listLen;
+    KonfiguratorExtension        *ext;
 
-  void                          selectEntry( QString entry );
+    void                          selectEntry(QString entry);
 };
 
 
 // KonfiguratorColorChooser class
 ///////////////////////////////
 
-typedef struct
-{
-  QString name;
-  QColor  color;
-  QString value;
+typedef struct {
+    QString name;
+    QColor  color;
+    QString value;
 } ADDITIONAL_COLOR;
 
 class KonfiguratorColorChooser : public QComboBox
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KonfiguratorColorChooser( QString cls, QString name, QColor dflt,
-                            QWidget *parent=0, bool rst=false,
-                            ADDITIONAL_COLOR *addColPtr = 0, int addColNum = 0, int pg=FIRST_PAGE );
-  ~KonfiguratorColorChooser();
+    KonfiguratorColorChooser(QString cls, QString name, QColor dflt,
+                             QWidget *parent = 0, bool rst = false,
+                             ADDITIONAL_COLOR *addColPtr = 0, int addColNum = 0, int pg = FIRST_PAGE);
+    ~KonfiguratorColorChooser();
 
-  inline KonfiguratorExtension *extension()   {return ext;}
+    inline KonfiguratorExtension *extension()   {
+        return ext;
+    }
 
-  void          setDefaultColor( QColor dflt );
-  void          setDefaultText( QString text );
-  QColor        getColor();
-  void          changeAdditionalColor( int num, QColor color );
-  QString       getValue();
-  bool          isValueRGB();
-  void          setValue( QString value );
+    void          setDefaultColor(QColor dflt);
+    void          setDefaultText(QString text);
+    QColor        getColor();
+    void          changeAdditionalColor(int num, QColor color);
+    QString       getValue();
+    bool          isValueRGB();
+    void          setValue(QString value);
 
 public slots:
-  virtual void  loadInitialValue();
-  void          slotApply(QObject *,QString, QString);
-  void          slotSetDefaults(QObject *);
-  void          slotCurrentChanged( int number );
+    virtual void  loadInitialValue();
+    void          slotApply(QObject *, QString, QString);
+    void          slotSetDefaults(QObject *);
+    void          slotCurrentChanged(int number);
 
 signals:
-  void          colorChanged();
+    void          colorChanged();
 
 private:
-  void          addColor( QString text, QColor color );
-  QPixmap       createPixmap( QColor color );
+    void          addColor(QString text, QColor color);
+    QPixmap       createPixmap(QColor color);
 
 protected:
-  QColor                          defaultValue;
-  QColor                          customValue;
-  QList<QColor>                   palette;
-  QList<ADDITIONAL_COLOR>         additionalColors;
-  KonfiguratorExtension          *ext;
-  bool                            disableColorChooser;
+    QColor                          defaultValue;
+    QColor                          customValue;
+    QList<QColor>                   palette;
+    QList<ADDITIONAL_COLOR>         additionalColors;
+    KonfiguratorExtension          *ext;
+    bool                            disableColorChooser;
 };
 
 // KonfiguratorListBox class
@@ -391,30 +422,32 @@ protected:
 
 class KonfiguratorListBox : public KrListWidget
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KonfiguratorListBox( QString cls, QString name, QStringList dflt,
-                        QWidget *parent=0,
-                        bool rst=false,  int pg=FIRST_PAGE );
-  ~KonfiguratorListBox();
+    KonfiguratorListBox(QString cls, QString name, QStringList dflt,
+                        QWidget *parent = 0,
+                        bool rst = false,  int pg = FIRST_PAGE);
+    ~KonfiguratorListBox();
 
-  inline KonfiguratorExtension *extension()   {return ext;}
+    inline KonfiguratorExtension *extension()   {
+        return ext;
+    }
 
-  void addItem( const QString & );
-  void removeItem( const QString & );
+    void addItem(const QString &);
+    void removeItem(const QString &);
 
 public slots:
-  virtual void loadInitialValue();
-  void slotApply(QObject *,QString, QString);
-  void slotSetDefaults(QObject *);
+    virtual void loadInitialValue();
+    void slotApply(QObject *, QString, QString);
+    void slotSetDefaults(QObject *);
 
 protected:
-  QStringList                   list();
-  void                          setList( QStringList );
+    QStringList                   list();
+    void                          setList(QStringList);
 
-  QStringList                   defaultValue;
-  KonfiguratorExtension        *ext;
+    QStringList                   defaultValue;
+    KonfiguratorExtension        *ext;
 };
 
 #endif /* __KONFIGURATOR_ITEMS_H__ */

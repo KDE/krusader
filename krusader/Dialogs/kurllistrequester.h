@@ -43,38 +43,44 @@
 
 class KURLListRequester : public QWidget
 {
-  Q_OBJECT
-  
+    Q_OBJECT
+
 public:
-  KURLListRequester( QWidget *parent = 0 );  
-  
-  KUrl::List   urlList();
-  void         setUrlList( KUrl::List );
-  
-  KLineEdit    *lineEdit()    {return urlLineEdit;}
-  KrListWidget *listBox()     {return urlListBox;}
-  
-  void         setCompletionDir( QString dir ) { completion.setDir( dir ); }
+    KURLListRequester(QWidget *parent = 0);
+
+    KUrl::List   urlList();
+    void         setUrlList(KUrl::List);
+
+    KLineEdit    *lineEdit()    {
+        return urlLineEdit;
+    }
+    KrListWidget *listBox()     {
+        return urlListBox;
+    }
+
+    void         setCompletionDir(QString dir) {
+        completion.setDir(dir);
+    }
 
 signals:
-  void         checkValidity( QString &text, QString &error );
-  void         changed();
-  
+    void         checkValidity(QString &text, QString &error);
+    void         changed();
+
 protected slots:
-  void         slotAdd();
-  void         slotBrowse();
-  void         slotRightClicked( QListWidgetItem *, const QPoint & );
-  
+    void         slotAdd();
+    void         slotBrowse();
+    void         slotRightClicked(QListWidgetItem *, const QPoint &);
+
 protected:
-  virtual void keyPressEvent(QKeyEvent *e);
-  void         deleteSelectedItems();
-  
-  KLineEdit    *urlLineEdit;
-  KrListWidget *urlListBox;
-  QToolButton  *urlAddBtn;
-  QToolButton  *urlBrowseBtn;
-  
-  KUrlCompletion completion;
+    virtual void keyPressEvent(QKeyEvent *e);
+    void         deleteSelectedItems();
+
+    KLineEdit    *urlLineEdit;
+    KrListWidget *urlListBox;
+    QToolButton  *urlAddBtn;
+    QToolButton  *urlBrowseBtn;
+
+    KUrlCompletion completion;
 };
 
 #endif /* __KURLLISTREQUESTER_H__ */

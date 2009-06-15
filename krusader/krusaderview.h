@@ -39,7 +39,7 @@
 
 // QT includes
 #include <QtGui/QLayout>
-#include <QtGui/QSplitter> 
+#include <QtGui/QSplitter>
 #include <qwidget.h>
 #include <QtGui/QPushButton>
 #include <QGridLayout>
@@ -53,53 +53,60 @@ class KFnKeys;
 class KCMDLine;
 class TerminalDock;
 
-class KrusaderView : public QWidget  {
-   Q_OBJECT
+class KrusaderView : public QWidget
+{
+    Q_OBJECT
 
 public:
-	KrusaderView(QWidget *parent=0);
-	virtual ~KrusaderView(){}
-  void start(QStringList leftTabs, QList<int> leftTypes, QList<int> leftProps, int leftActiveTab,
-             QStringList rightTabs, QList<int> rightTypes, QList<int> rightProps, int rightActiveTab,
-             bool leftSideActive);
-  void cmdLineFocus();  // command line receive's keyboard focus
-  void cmdLineUnFocus();// return focus from command line to active panel
-  inline PanelManager *activeManager() const { return (activePanel==left ? leftMng : rightMng); }
-  inline PanelManager *inactiveManager() const { return (activePanel==left ? rightMng : leftMng); }
-  QList<int> getTerminalEmulatorSplitterSizes();
-  inline bool          isVertical() const { return horiz_splitter != 0 ? horiz_splitter->orientation() == Qt::Vertical : false; }
-  
+    KrusaderView(QWidget *parent = 0);
+    virtual ~KrusaderView() {}
+    void start(QStringList leftTabs, QList<int> leftTypes, QList<int> leftProps, int leftActiveTab,
+               QStringList rightTabs, QList<int> rightTypes, QList<int> rightProps, int rightActiveTab,
+               bool leftSideActive);
+    void cmdLineFocus();  // command line receive's keyboard focus
+    void cmdLineUnFocus();// return focus from command line to active panel
+    inline PanelManager *activeManager() const {
+        return (activePanel == left ? leftMng : rightMng);
+    }
+    inline PanelManager *inactiveManager() const {
+        return (activePanel == left ? rightMng : leftMng);
+    }
+    QList<int> getTerminalEmulatorSplitterSizes();
+    inline bool          isVertical() const {
+        return horiz_splitter != 0 ? horiz_splitter->orientation() == Qt::Vertical : false;
+    }
+
 public slots:
-  void slotCurrentChanged(QString p);
-	void slotSetActivePanel(ListPanel *p);
-  void slotTerminalEmulator(bool);
-	// manage the function keys to the CURRENT vfs
-	//////////////////////////////////////////////
-  // Tab - switch focus
-  void panelSwitch();
-  void toggleVerticalMode();
-  
-  void focusTerminalEmulator();
-  void switchFullScreenTE();
-  
-  void profiles( QString profileName = QString() );  
-  void loadPanelProfiles( QString group );
-  void savePanelProfiles( QString group );
+    void slotCurrentChanged(QString p);
+    void slotSetActivePanel(ListPanel *p);
+    void slotTerminalEmulator(bool);
+    // manage the function keys to the CURRENT vfs
+    //////////////////////////////////////////////
+    // Tab - switch focus
+    void panelSwitch();
+    void toggleVerticalMode();
 
-  void killTerminalEmulator();
+    void focusTerminalEmulator();
+    void switchFullScreenTE();
+
+    void profiles(QString profileName = QString());
+    void loadPanelProfiles(QString group);
+    void savePanelProfiles(QString group);
+
+    void killTerminalEmulator();
 
 public:
-  ListPanel  *activePanel;
-  ListPanel  *left,*right;								// the actual panels
-  PanelManager *leftMng, *rightMng;       // saving them for panel swaps
-  KFnKeys			*fnKeys;										// function keys
-  KCMDLine    *cmdLine;                   // command line widget
-  TerminalDock  *terminal_dock;             // docking widget for terminal emulator
-  QSplitter		*horiz_splitter, *vert_splitter;
-  QList<int>		 verticalSplitterSizes;
+    ListPanel  *activePanel;
+    ListPanel  *left, *right;       // the actual panels
+    PanelManager *leftMng, *rightMng;       // saving them for panel swaps
+    KFnKeys   *fnKeys;          // function keys
+    KCMDLine    *cmdLine;                   // command line widget
+    TerminalDock  *terminal_dock;             // docking widget for terminal emulator
+    QSplitter  *horiz_splitter, *vert_splitter;
+    QList<int>   verticalSplitterSizes;
 
 private:
-  QGridLayout *mainLayout, *terminal_layout;
+    QGridLayout *mainLayout, *terminal_layout;
 };
 
 #endif

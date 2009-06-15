@@ -41,106 +41,102 @@
 
 class KgColors : public KonfiguratorPage
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KgColors( bool first, QWidget* parent=0 );
+    KgColors(bool first, QWidget* parent = 0);
 
-  bool apply();
+    bool apply();
 
 public slots:
-  void slotDisable();
-  void slotForegroundChanged();
-  void slotBackgroundChanged();
-  void slotAltBackgroundChanged();
-  void slotActiveChanged();
-  void slotMarkedBackgroundChanged();
-  void slotInactiveForegroundChanged();
-  void slotInactiveBackgroundChanged();
-  void slotInactiveAltBackgroundChanged();
-  void slotInactiveMarkedBackgroundChanged();
-  void generatePreview();
+    void slotDisable();
+    void slotForegroundChanged();
+    void slotBackgroundChanged();
+    void slotAltBackgroundChanged();
+    void slotActiveChanged();
+    void slotMarkedBackgroundChanged();
+    void slotInactiveForegroundChanged();
+    void slotInactiveBackgroundChanged();
+    void slotInactiveAltBackgroundChanged();
+    void slotInactiveMarkedBackgroundChanged();
+    void generatePreview();
 
 protected slots:
-  void slotImportColors();
-  void slotExportColors();
+    void slotImportColors();
+    void slotExportColors();
 
 private:
-  class PreviewItem;
+    class PreviewItem;
 
-  int                        addColorSelector( QString cfgName, QString name, QColor dflt, QString dfltName = QString(),
-                                               ADDITIONAL_COLOR *addColor = 0, int addColNum = 0);
-  KonfiguratorColorChooser  *getColorSelector( QString name );
-  QLabel                    *getSelectorLabel( QString name );
-  void                       serialize(class QDataStream &);
-  void                       deserialize(class QDataStream &);
-  void                       serializeItem(class QDataStream &, const char * name);
-  void                       setColorWithDimming(PreviewItem * item, QColor foreground, QColor background, bool dimmed );
+    int                        addColorSelector(QString cfgName, QString name, QColor dflt, QString dfltName = QString(),
+            ADDITIONAL_COLOR *addColor = 0, int addColNum = 0);
+    KonfiguratorColorChooser  *getColorSelector(QString name);
+    QLabel                    *getSelectorLabel(QString name);
+    void                       serialize(class QDataStream &);
+    void                       deserialize(class QDataStream &);
+    void                       serializeItem(class QDataStream &, const char * name);
+    void                       setColorWithDimming(PreviewItem * item, QColor foreground, QColor background, bool dimmed);
 
 private:
-  QWidget                            *colorsGrp;
-  QGridLayout                        *colorsGrid;
-  int                                 offset;
-  int                                 endOfActiveColors;
-  int                                 endOfPanelColors;
+    QWidget                            *colorsGrp;
+    QGridLayout                        *colorsGrid;
+    int                                 offset;
+    int                                 endOfActiveColors;
+    int                                 endOfPanelColors;
 
-  QGroupBox                          *previewGrp;
-  QGridLayout                        *previewGrid;
-  QTabWidget                         *colorTabWidget;
+    QGroupBox                          *previewGrp;
+    QGridLayout                        *previewGrid;
+    QTabWidget                         *colorTabWidget;
 
-  QStackedWidget                     *inactiveColorStack;
-  QWidget                            *normalInactiveWidget;
-  QWidget                            *dimmedInactiveWidget;
-  KonfiguratorSpinBox                *dimFactor;
+    QStackedWidget                     *inactiveColorStack;
+    QWidget                            *normalInactiveWidget;
+    QWidget                            *dimmedInactiveWidget;
+    KonfiguratorSpinBox                *dimFactor;
 
-  KonfiguratorCheckBoxGroup          *generals;
+    KonfiguratorCheckBoxGroup          *generals;
 
-  QList<QLabel *>                     labelList;
-  QList<KonfiguratorColorChooser *>   itemList;
-  QList<QString>                      itemNames;
+    QList<QLabel *>                     labelList;
+    QList<KonfiguratorColorChooser *>   itemList;
+    QList<QString>                      itemNames;
 
-  KrTreeWidget                       *preview;
-  KPushButton *importBtn, *exportBtn;
+    KrTreeWidget                       *preview;
+    KPushButton *importBtn, *exportBtn;
 
-  class PreviewItem : public QTreeWidgetItem
-  {
-  private:
-    QColor  defaultBackground;
-    QColor  defaultForeground;
-    QString label;
-
-  public:
-    PreviewItem( QTreeWidget * parent, QString name ) : QTreeWidgetItem()
+    class PreviewItem : public QTreeWidgetItem
     {
-      setText( 0, name );
-      defaultBackground = QColor( 255, 255, 255 );
-      defaultForeground = QColor( 0, 0, 0 );
-      label = name;
-      parent->insertTopLevelItem( 0, this );
-    }
+    private:
+        QColor  defaultBackground;
+        QColor  defaultForeground;
+        QString label;
 
-    void setColor( QColor foregnd, QColor backgnd )
-    {
-      defaultForeground = foregnd;
-      defaultBackground = backgnd;
+    public:
+        PreviewItem(QTreeWidget * parent, QString name) : QTreeWidgetItem() {
+            setText(0, name);
+            defaultBackground = QColor(255, 255, 255);
+            defaultForeground = QColor(0, 0, 0);
+            label = name;
+            parent->insertTopLevelItem(0, this);
+        }
+
+        void setColor(QColor foregnd, QColor backgnd) {
+            defaultForeground = foregnd;
+            defaultBackground = backgnd;
 
 
-      QBrush textColor( foregnd );
-      QBrush baseColor( backgnd );
+            QBrush textColor(foregnd);
+            QBrush baseColor(backgnd);
 
-      for( int i=0; i != columnCount(); i++ )
-      {
-        if( backgnd.isValid() )
-          setBackground( i, baseColor );
-        if( foregnd.isValid() )
-          setForeground( i, textColor );
-      }
-    }
+            for (int i = 0; i != columnCount(); i++) {
+                if (backgnd.isValid())
+                    setBackground(i, baseColor);
+                if (foregnd.isValid())
+                    setForeground(i, textColor);
+            }
+        }
 
-    QString text()
-    {
-      return label;
-    }
-  };
+        QString text() {
+            return label;
+        }
+    };
 };
 #endif /* __KGCOLORS_H__ */

@@ -25,41 +25,61 @@ class File;
 
 namespace RadialMap
 {
-    class Segment //all angles are in 16ths of degrees
-    {
-    public:
-        Segment( const File *f, uint s, uint l, bool isFake = false )
-          : m_angleStart( s )
-          , m_angleSegment( l )
-          , m_file( f )
-          , m_hasHiddenChildren( false )
-          , m_fake( isFake ) {}
-        ~Segment();
+class Segment //all angles are in 16ths of degrees
+{
+public:
+    Segment(const File *f, uint s, uint l, bool isFake = false)
+            : m_angleStart(s)
+            , m_angleSegment(l)
+            , m_file(f)
+            , m_hasHiddenChildren(false)
+            , m_fake(isFake) {}
+    ~Segment();
 
-        uint          start() const { return m_angleStart; }
-        uint         length() const { return m_angleSegment; }
-        uint            end() const { return m_angleStart + m_angleSegment; }
-        const File    *file() const { return m_file; }
-        const QColor&   pen() const { return m_pen; }
-        const QColor& brush() const { return m_brush; }
+    uint          start() const {
+        return m_angleStart;
+    }
+    uint         length() const {
+        return m_angleSegment;
+    }
+    uint            end() const {
+        return m_angleStart + m_angleSegment;
+    }
+    const File    *file() const {
+        return m_file;
+    }
+    const QColor&   pen() const {
+        return m_pen;
+    }
+    const QColor& brush() const {
+        return m_brush;
+    }
 
-        bool isFake() const { return m_fake; }
-        bool hasHiddenChildren() const { return m_hasHiddenChildren; }
+    bool isFake() const {
+        return m_fake;
+    }
+    bool hasHiddenChildren() const {
+        return m_hasHiddenChildren;
+    }
 
-        bool intersects( uint a ) const { return ( ( a >= start() ) && ( a < end() ) ); }
+    bool intersects(uint a) const {
+        return ((a >= start()) && (a < end()));
+    }
 
-        friend class Map;
-        friend class Builder;
+    friend class Map;
+    friend class Builder;
 
-    private:
-        void setPalette( const QColor &p, const QColor &b ) { m_pen = p; m_brush = b; }
+private:
+    void setPalette(const QColor &p, const QColor &b) {
+        m_pen = p; m_brush = b;
+    }
 
-        const uint m_angleStart, m_angleSegment;
-        const File* const m_file;
-        QColor m_pen, m_brush;
-        bool m_hasHiddenChildren;
-        const bool m_fake;
-    };
+    const uint m_angleStart, m_angleSegment;
+    const File* const m_file;
+    QColor m_pen, m_brush;
+    bool m_hasHiddenChildren;
+    const bool m_fake;
+};
 }
 
 

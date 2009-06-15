@@ -25,14 +25,19 @@
   *@author Szombathelyi György
   */
 
-class KIsoDirectory : public KArchiveDirectory  {
-public: 
-    KIsoDirectory( KArchive* archive, const QString& name, int access, int date,
-                    int adate,int cdate, const QString& user, const QString& group,
-                   const QString& symlink);
+class KIsoDirectory : public KArchiveDirectory
+{
+public:
+    KIsoDirectory(KArchive* archive, const QString& name, int access, int date,
+                  int adate, int cdate, const QString& user, const QString& group,
+                  const QString& symlink);
     ~KIsoDirectory();
-    int adate() const { return m_adate; }
-    int cdate() const { return m_cdate; }
+    int adate() const {
+        return m_adate;
+    }
+    int cdate() const {
+        return m_cdate;
+    }
 private:
     int m_adate, m_cdate;
 };

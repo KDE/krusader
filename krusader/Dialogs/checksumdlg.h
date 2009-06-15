@@ -26,48 +26,52 @@
 class KTemporaryFile;
 extern void initChecksumModule();
 
-class CreateChecksumDlg: public KDialog {
+class CreateChecksumDlg: public KDialog
+{
 public:
-	CreateChecksumDlg(const QStringList& files, bool containFolders, const QString& path);
+    CreateChecksumDlg(const QStringList& files, bool containFolders, const QString& path);
 
 private:
-	KTemporaryFile *tmpOut, *tmpErr;
+    KTemporaryFile *tmpOut, *tmpErr;
 };
 
 
-class MatchChecksumDlg: public KDialog {
+class MatchChecksumDlg: public KDialog
+{
 public:
-	MatchChecksumDlg(const QStringList& files, bool containFolders, 
-		const QString& path, const QString& checksumFile=QString());
+    MatchChecksumDlg(const QStringList& files, bool containFolders,
+                     const QString& path, const QString& checksumFile = QString());
 
-	static QString checksumTypesFilter;
+    static QString checksumTypesFilter;
 
 protected:
-	bool verifyChecksumFile(QString path, QString& extension);
+    bool verifyChecksumFile(QString path, QString& extension);
 
 private:
-	KTemporaryFile *tmpOut, *tmpErr;
+    KTemporaryFile *tmpOut, *tmpErr;
 };
 
 
-class ChecksumResultsDlg: public KDialog {
+class ChecksumResultsDlg: public KDialog
+{
 public:
-	ChecksumResultsDlg(const QStringList& stdOut, const QStringList& stdErr,
-		const QString& suggestedFilename, const QString& binary, const QString& type,
-		bool standardFormat);
+    ChecksumResultsDlg(const QStringList& stdOut, const QStringList& stdErr,
+                       const QString& suggestedFilename, const QString& binary, const QString& type,
+                       bool standardFormat);
 
 protected:
-	bool saveChecksum(const QStringList& data, QString filename);
-	void savePerFile(const QStringList& data, const QString& type);
-	
+    bool saveChecksum(const QStringList& data, QString filename);
+    void savePerFile(const QStringList& data, const QString& type);
+
 private:
-	QString _binary;
+    QString _binary;
 };
 
 
-class VerifyResultDlg: public KDialog {
+class VerifyResultDlg: public KDialog
+{
 public:
-	VerifyResultDlg(const QStringList& failed);
+    VerifyResultDlg(const QStringList& failed);
 };
 
 #endif // CHECKSUMDLG_H

@@ -39,71 +39,78 @@
  * example:
  * \code
  * KUrl u = KChooseDir::getDir("target folder", "/suggested/path", ACTIVE_PANEL->virtualPath());
- * if (u.isEmpty()) { 
+ * if (u.isEmpty()) {
  *   // user canceled (either by pressing cancel, or esc
  * } else {
  *   // do you thing here: you've got a safe url to use
  * }
  * \endcode
  */
-class KChooseDir {
+class KChooseDir
+{
 public:
-	/**
-	 * \param text - description of the info requested from the user
-	 * \param url - a suggested url to appear in the box as a default choice
-	 * \param cwd - a path which is the current working directory (usually ACTIVE_PANEL->virtualPath()).
-	 *              this is used for completion of partial urls
-	 */
-	static KUrl getDir(QString text,const KUrl& url, const KUrl& cwd);
-	static KUrl getDir(QString text,const KUrl& url, const KUrl& cwd, bool & queue );
-	static KUrl getDir(QString text,const KUrl& url, const KUrl& cwd, bool & queue, bool & preserveAttrs );
-	static KUrl getDir(QString text,const KUrl& url, const KUrl& cwd, bool & queue, bool & preserveAttrs, KUrl &baseURL );
+    /**
+     * \param text - description of the info requested from the user
+     * \param url - a suggested url to appear in the box as a default choice
+     * \param cwd - a path which is the current working directory (usually ACTIVE_PANEL->virtualPath()).
+     *              this is used for completion of partial urls
+     */
+    static KUrl getDir(QString text, const KUrl& url, const KUrl& cwd);
+    static KUrl getDir(QString text, const KUrl& url, const KUrl& cwd, bool & queue);
+    static KUrl getDir(QString text, const KUrl& url, const KUrl& cwd, bool & queue, bool & preserveAttrs);
+    static KUrl getDir(QString text, const KUrl& url, const KUrl& cwd, bool & queue, bool & preserveAttrs, KUrl &baseURL);
 };
 
-class KUrlRequesterDlgForCopy : public KDialog {
-  Q_OBJECT
+class KUrlRequesterDlgForCopy : public KDialog
+{
+    Q_OBJECT
 public:
-	KUrlRequesterDlgForCopy( const QString& url, const QString& text, bool presAttrs,
-				QWidget *parent, bool modal=true, KUrl baseURL = KUrl() );
-	KUrlRequesterDlgForCopy();
+    KUrlRequesterDlgForCopy(const QString& url, const QString& text, bool presAttrs,
+                            QWidget *parent, bool modal = true, KUrl baseURL = KUrl());
+    KUrlRequesterDlgForCopy();
 
-	KUrl selectedURL() const;
-	KUrl baseURL() const;
-	bool preserveAttrs();
-	bool enqueue() { return queue; }
-	bool copyDirStructure();
-	void hidePreserveAttrs() { preserveAttrsCB->hide(); }
-        
-	KUrlRequester *urlRequester();
-	
+    KUrl selectedURL() const;
+    KUrl baseURL() const;
+    bool preserveAttrs();
+    bool enqueue() {
+        return queue;
+    }
+    bool copyDirStructure();
+    void hidePreserveAttrs() {
+        preserveAttrsCB->hide();
+    }
+
+    KUrlRequester *urlRequester();
+
 protected:
-	virtual void keyPressEvent( QKeyEvent *e );
-	
+    virtual void keyPressEvent(QKeyEvent *e);
+
 private slots:
-	void slotClear();
-	void slotQueue();
-	void slotTextChanged(const QString &);
-	void slotDirStructCBChanged();
+    void slotClear();
+    void slotQueue();
+    void slotTextChanged(const QString &);
+    void slotDirStructCBChanged();
 private:
-	KUrlRequester *urlRequester_;
-	QComboBox *baseUrlCombo;
-	QCheckBox *preserveAttrsCB;
-	QCheckBox *copyDirStructureCB;
-	bool queue;
+    KUrlRequester *urlRequester_;
+    QComboBox *baseUrlCombo;
+    QCheckBox *preserveAttrsCB;
+    QCheckBox *copyDirStructureCB;
+    bool queue;
 };
 
-class KRGetDate : public KDialog {
-  Q_OBJECT
+class KRGetDate : public KDialog
+{
+    Q_OBJECT
 public:
-  KRGetDate(QDate date=QDate::currentDate(), QWidget *parent = 0);
-  QDate getDate();
+    KRGetDate(QDate date = QDate::currentDate(), QWidget *parent = 0);
+    QDate getDate();
 
 private slots:
-  void setDate(QDate);
+    void setDate(QDate);
 
 private:
-  KDatePicker *dateWidget;
-  QDate chosenDate, originalDate;
+    KDatePicker *dateWidget;
+    QDate chosenDate, originalDate;
 };
 
 #endif

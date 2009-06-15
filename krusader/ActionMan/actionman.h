@@ -26,20 +26,21 @@ class UserActionPage;
 /**
  * This manages all useractions
  */
-class ActionMan : public KDialog {
-Q_OBJECT
+class ActionMan : public KDialog
+{
+    Q_OBJECT
 public:
-   ActionMan( QWidget* parent=0 );
-   ~ActionMan();
+    ActionMan(QWidget* parent = 0);
+    ~ActionMan();
 
 protected slots:
-   void slotClose();
-   void slotApply();
-   void slotEnableApplyButton();
-   void slotDisableApplyButton();
+    void slotClose();
+    void slotApply();
+    void slotEnableApplyButton();
+    void slotDisableApplyButton();
 
 private:
-  UserActionPage* userActionPage;
+    UserActionPage* userActionPage;
 };
 
 #endif // ifndef ACTIONMAN_H

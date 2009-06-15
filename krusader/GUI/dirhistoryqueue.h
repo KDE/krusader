@@ -25,21 +25,22 @@
 
 class ListPanel;
 
-class DirHistoryQueue : public QObject  {
-  Q_OBJECT
-public: 
-	DirHistoryQueue(ListPanel* p);
-	~DirHistoryQueue();
-	KUrl::List urlQueue;
+class DirHistoryQueue : public QObject
+{
+    Q_OBJECT
+public:
+    DirHistoryQueue(ListPanel* p);
+    ~DirHistoryQueue();
+    KUrl::List urlQueue;
 //  bool checkPath(const QString& path);
 //  void RemovePath(const QString& path);
 
 public slots: // Public slots
-  /** No descriptions */
-  void slotPathChanged(ListPanel* p);
+    /** No descriptions */
+    void slotPathChanged(ListPanel* p);
 private:
-//	void addUrl(const KUrl& url);
-	ListPanel* panel;
+// void addUrl(const KUrl& url);
+    ListPanel* panel;
 };
 
 #endif

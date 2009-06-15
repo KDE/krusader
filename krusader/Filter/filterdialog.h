@@ -29,7 +29,7 @@
  ***************************************************************************/
 
 #ifndef FILTERDIALOG_H
-#define FILTERDIALOG_H 
+#define FILTERDIALOG_H
 
 #include <kdialog.h>
 #include "../VFS/krquery.h"
@@ -39,22 +39,22 @@ class GeneralFilter;
 
 class FilterDialog : public KDialog
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  FilterDialog(  QWidget *parent = 0 );
-  KRQuery getQuery();
+    FilterDialog(QWidget *parent = 0);
+    KRQuery getQuery();
 
 public slots:
-  void slotCloseRequest( bool doAccept );
-  
+    void slotCloseRequest(bool doAccept);
+
 protected slots:
-  void slotOk();
+    void slotOk();
 
 private:
-  FilterTabs * filterTabs;
-  GeneralFilter * generalFilter;
-  KRQuery query;
+    FilterTabs * filterTabs;
+    GeneralFilter * generalFilter;
+    KRQuery query;
 };
 
 #endif /* FILTERDIALOG_H */

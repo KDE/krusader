@@ -53,38 +53,38 @@ KrTrashWatcher * KrTrashHandler::_trashWatcher = 0;
 
 bool KrTrashHandler::isTrashEmpty()
 {
-  KConfig trashConfig( "trashrc" );
-  KConfigGroup cfg( &trashConfig, "Status" );
-  return cfg.readEntry( "Empty", false );
+    KConfig trashConfig("trashrc");
+    KConfigGroup cfg(&trashConfig, "Status");
+    return cfg.readEntry("Empty", false);
 }
 
 QString KrTrashHandler::trashIcon()
 {
-  return isTrashEmpty() ? "user-trash" : "user-trash-full";
+    return isTrashEmpty() ? "user-trash" : "user-trash-full";
 }
 
 void KrTrashHandler::emptyTrash()
 {
-  QByteArray packedArgs;
-  QDataStream stream( &packedArgs, QIODevice::WriteOnly );
-  stream << (int)1;
-  KIO::Job *job = KIO::special( KUrl("trash:/"), packedArgs );
-  KNotification::event("Trash: emptied", QString() , QPixmap() , 0l, KNotification::DefaultEvent );
-  job->ui()->setWindow( krApp );
-  QObject::connect( job, SIGNAL( result( KJob * ) ), ACTIVE_PANEL->func, SLOT( refresh() ) );
+    QByteArray packedArgs;
+    QDataStream stream(&packedArgs, QIODevice::WriteOnly);
+    stream << (int)1;
+    KIO::Job *job = KIO::special(KUrl("trash:/"), packedArgs);
+    KNotification::event("Trash: emptied", QString() , QPixmap() , 0l, KNotification::DefaultEvent);
+    job->ui()->setWindow(krApp);
+    QObject::connect(job, SIGNAL(result(KJob *)), ACTIVE_PANEL->func, SLOT(refresh()));
 }
 
-void KrTrashHandler::restoreTrashedFiles( const KUrl::List &urls )
+void KrTrashHandler::restoreTrashedFiles(const KUrl::List &urls)
 {
-    KonqMultiRestoreJob* job = new KonqMultiRestoreJob( urls );
-    job->ui()->setWindow( krApp );
+    KonqMultiRestoreJob* job = new KonqMultiRestoreJob(urls);
+    job->ui()->setWindow(krApp);
     KIO::getJobTracker()->registerJob(job);
-    QObject::connect( job, SIGNAL( result( KJob * ) ), ACTIVE_PANEL->func, SLOT( refresh() ) );
+    QObject::connect(job, SIGNAL(result(KJob *)), ACTIVE_PANEL->func, SLOT(refresh()));
 }
 
 void KrTrashHandler::startWatcher()
 {
-    if( !_trashWatcher )
+    if (!_trashWatcher)
         _trashWatcher = new KrTrashWatcher();
 }
 
@@ -94,10 +94,10 @@ void KrTrashHandler::stopWatcher()
     _trashWatcher = 0;
 }
 
-KonqMultiRestoreJob::KonqMultiRestoreJob( const KUrl::List& urls )
-    : KIO::Job(),
-      m_urls( urls ), m_urlsIterator( m_urls.begin() ),
-      m_progress( 0 )
+KonqMultiRestoreJob::KonqMultiRestoreJob(const KUrl::List& urls)
+        : KIO::Job(),
+        m_urls(urls), m_urlsIterator(m_urls.begin()),
+        m_progress(0)
 {
     QTimer::singleShot(0, this, SLOT(slotStart()));
     setUiDelegate(new KIO::JobUiDelegate);
@@ -105,42 +105,37 @@ KonqMultiRestoreJob::KonqMultiRestoreJob( const KUrl::List& urls )
 
 void KonqMultiRestoreJob::slotStart()
 {
-    if ( m_urlsIterator == m_urls.begin() ) // first time: emit total
-        setTotalAmount( KJob::Files, m_urls.count() );
+    if (m_urlsIterator == m_urls.begin())   // first time: emit total
+        setTotalAmount(KJob::Files, m_urls.count());
 
-    if ( m_urlsIterator != m_urls.end() )
-    {
+    if (m_urlsIterator != m_urls.end()) {
         const KUrl& url = *m_urlsIterator;
 
         KUrl new_url = url;
-        if ( new_url.protocol()=="system"
-          && new_url.path().startsWith("/trash") )
-        {
+        if (new_url.protocol() == "system"
+                && new_url.path().startsWith("/trash")) {
             QString path = new_url.path();
-	    path.remove(0, 6);
-	    new_url.setProtocol("trash");
-	    new_url.setPath(path);
+            path.remove(0, 6);
+            new_url.setProtocol("trash");
+            new_url.setPath(path);
         }
 
-        Q_ASSERT( new_url.protocol() == "trash" );
+        Q_ASSERT(new_url.protocol() == "trash");
         QByteArray packedArgs;
-        QDataStream stream( &packedArgs, QIODevice::WriteOnly );
+        QDataStream stream(&packedArgs, QIODevice::WriteOnly);
         stream << (int)3 << new_url;
-        KIO::Job* job = KIO::special( new_url, packedArgs, KIO::HideProgressInfo );
-        addSubjob( job );
+        KIO::Job* job = KIO::special(new_url, packedArgs, KIO::HideProgressInfo);
+        addSubjob(job);
         setProcessedAmount(KJob::Files, processedAmount(KJob::Files) + 1);
-    }
-    else // done!
-    {
+    } else { // done!
         emitResult();
     }
 }
 
-void KonqMultiRestoreJob::slotResult( KJob *job )
+void KonqMultiRestoreJob::slotResult(KJob *job)
 {
-    if ( job->error() )
-    {
-        KIO::Job::slotResult( job ); // will set the error and emit result(this)
+    if (job->error()) {
+        KIO::Job::slotResult(job);   // will set the error and emit result(this)
         return;
     }
     removeSubjob(job);
@@ -148,7 +143,7 @@ void KonqMultiRestoreJob::slotResult( KJob *job )
     ++m_urlsIterator;
     ++m_progress;
     //emit processedSize( this, m_progress );
-    emitPercent( m_progress, m_urls.count() );
+    emitPercent(m_progress, m_urls.count());
     slotStart();
 }
 
@@ -156,12 +151,12 @@ void KonqMultiRestoreJob::slotResult( KJob *job )
 KrTrashWatcher::KrTrashWatcher()
 {
     QString trashrcFile = KGlobal::mainComponent().dirs()->saveLocation("config") +
-                            QString::fromLatin1("trashrc");
+                          QString::fromLatin1("trashrc");
     _watcher = new KDirWatch();
     // connect the watcher
-    connect(_watcher,SIGNAL(dirty(const QString&)),this,SLOT(slotDirty(const QString&)));
-    connect(_watcher,SIGNAL(created(const QString&)),this, SLOT(slotCreated(const QString&)));
-    _watcher->addFile( trashrcFile ); //start trashrc watcher
+    connect(_watcher, SIGNAL(dirty(const QString&)), this, SLOT(slotDirty(const QString&)));
+    connect(_watcher, SIGNAL(created(const QString&)), this, SLOT(slotCreated(const QString&)));
+    _watcher->addFile(trashrcFile);   //start trashrc watcher
     _watcher->startScan(true);
 }
 
@@ -171,10 +166,12 @@ KrTrashWatcher::~KrTrashWatcher()
     _watcher = 0;
 }
 
-void KrTrashWatcher::slotDirty(const QString& ) {
-    Krusader::actTrashBin->setIcon( KIcon( KrTrashHandler::trashIcon() ) );
+void KrTrashWatcher::slotDirty(const QString&)
+{
+    Krusader::actTrashBin->setIcon(KIcon(KrTrashHandler::trashIcon()));
 }
 
-void KrTrashWatcher::slotCreated(const QString& ) {
-    Krusader::actTrashBin->setIcon( KIcon( KrTrashHandler::trashIcon() ) );
+void KrTrashWatcher::slotCreated(const QString&)
+{
+    Krusader::actTrashBin->setIcon(KIcon(KrTrashHandler::trashIcon()));
 }

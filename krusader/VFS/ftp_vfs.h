@@ -7,10 +7,10 @@
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
   A vfs class that handels "ftp/samba" directory enteris
-	inherits: vfs
+ inherits: vfs
  ***************************************************************************
 
-  A 
+  A
 
      db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
      88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
@@ -36,43 +36,44 @@
 
 #include "vfs.h"
 
-class ftp_vfs : public vfs{
-	Q_OBJECT
+class ftp_vfs : public vfs
+{
+    Q_OBJECT
 public:
-	// the constructor simply uses the inherited constructor
-	ftp_vfs(QObject* panel);
-	~ftp_vfs();
+    // the constructor simply uses the inherited constructor
+    ftp_vfs(QObject* panel);
+    ~ftp_vfs();
 
-	/// Copy a file to the vfs (physical).
-	virtual void vfs_addFiles(KUrl::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "", PreserveMode pmode = PM_DEFAULT );
-	/// Remove a file from the vfs (physical)
-	virtual void vfs_delFiles(QStringList *fileNames, bool reallyDelete=false);
-	/// Return a list of URLs for multiple files
-	virtual KUrl::List* vfs_getFiles(QStringList* names);
-	/// Return a URL to a single file
-	virtual KUrl vfs_getFile(const QString& name);
-	/// Create a new directory
-	virtual void vfs_mkdir(const QString& name);
-	/// Rename file
-	virtual void vfs_rename(const QString& fileName,const QString& newName);
-	/// Return the VFS working dir	
-	QString vfs_workingDir();
-	
+    /// Copy a file to the vfs (physical).
+    virtual void vfs_addFiles(KUrl::List *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir = "", PreserveMode pmode = PM_DEFAULT);
+    /// Remove a file from the vfs (physical)
+    virtual void vfs_delFiles(QStringList *fileNames, bool reallyDelete = false);
+    /// Return a list of URLs for multiple files
+    virtual KUrl::List* vfs_getFiles(QStringList* names);
+    /// Return a URL to a single file
+    virtual KUrl vfs_getFile(const QString& name);
+    /// Create a new directory
+    virtual void vfs_mkdir(const QString& name);
+    /// Rename file
+    virtual void vfs_rename(const QString& fileName, const QString& newName);
+    /// Return the VFS working dir
+    QString vfs_workingDir();
+
 public slots:
-	/// Handles new files from the dir lister
-	void slotAddFiles(KIO::Job * job, const KIO::UDSEntryList& entries);
-	/// Redirection signal handlers
-	void slotRedirection(KIO::Job *, const KUrl &url);
-	void slotPermanentRedirection(KIO::Job*,const KUrl&,const KUrl& newUrl);
-	/// Called when the dir listing job is finished (for better or worst)
-	void slotListResult(KJob *job);
-	/// Active the dir listing job
-	bool populateVfsList(const KUrl& origin, bool showHidden);
+    /// Handles new files from the dir lister
+    void slotAddFiles(KIO::Job * job, const KIO::UDSEntryList& entries);
+    /// Redirection signal handlers
+    void slotRedirection(KIO::Job *, const KUrl &url);
+    void slotPermanentRedirection(KIO::Job*, const KUrl&, const KUrl& newUrl);
+    /// Called when the dir listing job is finished (for better or worst)
+    void slotListResult(KJob *job);
+    /// Active the dir listing job
+    bool populateVfsList(const KUrl& origin, bool showHidden);
 
 protected:
-	KUrl origin_backup;         //< used to backup the old URL when refreshing to a new one,
-	bool busy;
-	bool listError;     
+    KUrl origin_backup;         //< used to backup the old URL when refreshing to a new one,
+    bool busy;
+    bool listError;
 };
 
 #endif

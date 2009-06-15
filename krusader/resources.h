@@ -37,6 +37,6 @@
 #define S_READY_ID            1001
 
 // auxiliary functions (macros)
-#define MDISABLE(X)			menuBar()->setItemEnabled(X,false)
+#define MDISABLE(X)   menuBar()->setItemEnabled(X,false)
 
 #endif

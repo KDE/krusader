@@ -31,25 +31,25 @@ class KActionCollection;
 
 class KrRemoteEncodingMenu: public KActionMenu
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  KrRemoteEncodingMenu (const QString &text, const QString &icon, KActionCollection *parent=0);
+    KrRemoteEncodingMenu(const QString &text, const QString &icon, KActionCollection *parent = 0);
 
 protected slots:
 
-  void slotAboutToShow();
+    void slotAboutToShow();
 
-  void slotReload();
-  void slotDefault();
-  void slotTriggered ( QAction * );
+    void slotReload();
+    void slotDefault();
+    void slotTriggered(QAction *);
 
 private:
 
-  void loadSettings();
-  void updateKIOSlaves();
+    void loadSettings();
+    void updateKIOSlaves();
 
-  QStringList encodingNames;
-  bool        settingsLoaded;
+    QStringList encodingNames;
+    bool        settingsLoaded;
 };
 
 #endif /* REMOTEENCODING_MENU_H */

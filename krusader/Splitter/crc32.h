@@ -39,9 +39,9 @@ private:
     static bool             crc_initialized;
 
 public:
-    CRC32( unsigned long initialValue = (unsigned long)-1 );
+    CRC32(unsigned long initialValue = (unsigned long) - 1);
 
-    void            update( unsigned char *buffer, int bufferLen );
+    void            update(unsigned char *buffer, int bufferLen);
     unsigned long   result();
 };
 

@@ -40,132 +40,133 @@
 #include "../krusader.h"
 #include "../VFS/krarchandler.h"
 
-KgArchives::KgArchives( bool first, QWidget* parent ) :
-      KonfiguratorPage( first, parent )
+KgArchives::KgArchives(bool first, QWidget* parent) :
+        KonfiguratorPage(first, parent)
 {
-  QWidget *innerWidget = new QFrame( this );
-  setWidget( innerWidget );
-  setWidgetResizable( true );
-  QGridLayout *kgArchivesLayout = new QGridLayout( innerWidget );
-  kgArchivesLayout->setSpacing( 6 );
+    QWidget *innerWidget = new QFrame(this);
+    setWidget(innerWidget);
+    setWidgetResizable(true);
+    QGridLayout *kgArchivesLayout = new QGridLayout(innerWidget);
+    kgArchivesLayout->setSpacing(6);
 
-  //  -------------------------- GENERAL GROUPBOX ----------------------------------
+    //  -------------------------- GENERAL GROUPBOX ----------------------------------
 
-  QGroupBox *generalGrp = createFrame( i18n( "General" ), innerWidget );
-  QGridLayout *generalGrid = createGridLayout( generalGrp );
+    QGroupBox *generalGrp = createFrame(i18n("General"), innerWidget);
+    QGridLayout *generalGrid = createGridLayout(generalGrp);
 
-  addLabel( generalGrid, 0, 0, i18n( "Krusader transparently handles the following types of archives:" ),
-            generalGrp );
+    addLabel(generalGrid, 0, 0, i18n("Krusader transparently handles the following types of archives:"),
+             generalGrp);
 
-  KONFIGURATOR_CHECKBOX_PARAM packers[] =
-  //   cfg_class  cfg_name   default   text             restart tooltip
-    {{"Archives","Do Tar",   _DoTar,   i18n( "Tar" ),   false,  ""},
-     {"Archives","Do GZip",  _DoGZip,  i18n( "GZip" ),  false,  ""},
-     {"Archives","Do LZMA",  _DoLZMA,  i18n( "LZMA" ),  false,  ""},
-     {"Archives","Do BZip2", _DoBZip2, i18n( "BZip2" ), false,  ""},
-     {"Archives","Do UnZip", _DoUnZip, i18n( "Zip" ),   false,  ""},
-     {"Archives","Do UnRar", _DoUnRar, i18n( "Rar" ),   false,  ""},
-     {"Archives","Do Unarj", _DoArj,   i18n( "Arj" ),   false,  ""},
-     {"Archives","Do RPM",   _DoRPM,   i18n( "Rpm" ),   false,  ""},
-     {"Archives","Do UnAce", _DoUnAce, i18n( "Ace" ),   false,  ""},
-     {"Archives","Do Lha",   _DoLha,   i18n( "Lha" ),   false,  ""},
-     {"Archives","Do DEB",   _DoDEB,   i18n( "Deb" ),   false,  ""},
-     {"Archives","Do 7z",    _Do7z,    i18n( "7zip" ),  false,  ""}
+    KONFIGURATOR_CHECKBOX_PARAM packers[] =
+        //   cfg_class  cfg_name   default   text             restart tooltip
+    {{"Archives", "Do Tar",   _DoTar,   i18n("Tar"),   false,  ""},
+        {"Archives", "Do GZip",  _DoGZip,  i18n("GZip"),  false,  ""},
+        {"Archives", "Do LZMA",  _DoLZMA,  i18n("LZMA"),  false,  ""},
+        {"Archives", "Do BZip2", _DoBZip2, i18n("BZip2"), false,  ""},
+        {"Archives", "Do UnZip", _DoUnZip, i18n("Zip"),   false,  ""},
+        {"Archives", "Do UnRar", _DoUnRar, i18n("Rar"),   false,  ""},
+        {"Archives", "Do Unarj", _DoArj,   i18n("Arj"),   false,  ""},
+        {"Archives", "Do RPM",   _DoRPM,   i18n("Rpm"),   false,  ""},
+        {"Archives", "Do UnAce", _DoUnAce, i18n("Ace"),   false,  ""},
+        {"Archives", "Do Lha",   _DoLha,   i18n("Lha"),   false,  ""},
+        {"Archives", "Do DEB",   _DoDEB,   i18n("Deb"),   false,  ""},
+        {"Archives", "Do 7z",    _Do7z,    i18n("7zip"),  false,  ""}
     };
 
-  cbs = createCheckBoxGroup( 3, 0, packers, 12, generalGrp );
-  generalGrid->addWidget( cbs, 1, 0 );
+    cbs = createCheckBoxGroup(3, 0, packers, 12, generalGrp);
+    generalGrid->addWidget(cbs, 1, 0);
 
-  addLabel( generalGrid, 2, 0, i18n( "The archives that are \"grayed out\" were unavailable on your\n"
+    addLabel(generalGrid, 2, 0, i18n("The archives that are \"grayed out\" were unavailable on your\n"
                                      "system last time Krusader checked. If you wish Krusader to\n"
-                                     "search again, click the 'Auto Configure' button." ),
-            generalGrp );
+                                     "search again, click the 'Auto Configure' button."),
+             generalGrp);
 
-  QWidget *hboxWidget = new QWidget( generalGrp );
-  QHBoxLayout *hbox = new QHBoxLayout( hboxWidget );
+    QWidget *hboxWidget = new QWidget(generalGrp);
+    QHBoxLayout *hbox = new QHBoxLayout(hboxWidget);
 
-  QWidget * spcer1 = createSpacer( hboxWidget );
-  hbox->addWidget( spcer1 );
+    QWidget * spcer1 = createSpacer(hboxWidget);
+    hbox->addWidget(spcer1);
 
-  QPushButton *btnAutoConfigure = new QPushButton( i18n( "Auto Configure" ), hboxWidget );
-  hbox->addWidget( btnAutoConfigure );
+    QPushButton *btnAutoConfigure = new QPushButton(i18n("Auto Configure"), hboxWidget);
+    hbox->addWidget(btnAutoConfigure);
 
-  QWidget *spcer2 = createSpacer( hboxWidget );
-  hbox->addWidget( spcer2 );
+    QWidget *spcer2 = createSpacer(hboxWidget);
+    hbox->addWidget(spcer2);
 
-  generalGrid->addWidget( hboxWidget, 3, 0 );
-  connect( btnAutoConfigure, SIGNAL( clicked() ), this, SLOT( slotAutoConfigure() ) );
- 
-  kgArchivesLayout->addWidget( generalGrp, 0 ,0 );
+    generalGrid->addWidget(hboxWidget, 3, 0);
+    connect(btnAutoConfigure, SIGNAL(clicked()), this, SLOT(slotAutoConfigure()));
 
-  //  ------------------------ FINE-TUNING GROUPBOX --------------------------------
+    kgArchivesLayout->addWidget(generalGrp, 0 , 0);
 
-  QGroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), innerWidget );
-  QGridLayout *fineTuneGrid = createGridLayout( fineTuneGrp );
+    //  ------------------------ FINE-TUNING GROUPBOX --------------------------------
 
-  KONFIGURATOR_CHECKBOX_PARAM finetuners[] =
-  //   cfg_class  cfg_name                  default           text                                          restart ToolTip
+    QGroupBox *fineTuneGrp = createFrame(i18n("Fine-Tuning"), innerWidget);
+    QGridLayout *fineTuneGrid = createGridLayout(fineTuneGrp);
+
+    KONFIGURATOR_CHECKBOX_PARAM finetuners[] =
+        //   cfg_class  cfg_name                  default           text                                          restart ToolTip
     {//{"Archives","Allow Move Into Archive", _MoveIntoArchive, i18n( "Allow moving into archives" ),         false,  i18n( "This action can be tricky, since system failure during the process\nmight result in misplaced files. If this happens,\nthe files are stored in a temp directory inside /tmp." )},
-     {"Archives","Test Archives",           _TestArchives,    i18n( "Test archive after packing" ), false,  i18n( "Check the archive's integrity after packing it." )},
-     {"Archives","Test Before Unpack",      _TestBeforeUnpack,i18n( "Test archive before unpacking" ), false,  i18n( "Some corrupted archives might cause a crash; therefore, testing is suggested." )}};
+        {"Archives", "Test Archives",           _TestArchives,    i18n("Test archive after packing"), false,  i18n("Check the archive's integrity after packing it.")},
+        {"Archives", "Test Before Unpack",      _TestBeforeUnpack, i18n("Test archive before unpacking"), false,  i18n("Some corrupted archives might cause a crash; therefore, testing is suggested.")}
+    };
 
-  KonfiguratorCheckBoxGroup *finetunes = createCheckBoxGroup( 1, 0, finetuners, 2, fineTuneGrp );
+    KonfiguratorCheckBoxGroup *finetunes = createCheckBoxGroup(1, 0, finetuners, 2, fineTuneGrp);
 
-  disableNonExistingPackers();
-  fineTuneGrid->addWidget( finetunes, 1, 0 );
+    disableNonExistingPackers();
+    fineTuneGrid->addWidget(finetunes, 1, 0);
 
-  kgArchivesLayout->addWidget( fineTuneGrp, 1 ,0 );
-  
-  if( first )
-    slotAutoConfigure();
+    kgArchivesLayout->addWidget(fineTuneGrp, 1 , 0);
+
+    if (first)
+        slotAutoConfigure();
 
 }
 
 
 void KgArchives::slotAutoConfigure()
 {
-  KrResultTableDialog* dia = new KrResultTableDialog(this, KrResultTableDialog::Archiver, i18n("Search results"), i18n("Searching for packers..."),
-    "package", i18n("Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"));
-  dia->exec();
+    KrResultTableDialog* dia = new KrResultTableDialog(this, KrResultTableDialog::Archiver, i18n("Search results"), i18n("Searching for packers..."),
+            "package", i18n("Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"));
+    dia->exec();
 
-  disableNonExistingPackers();
+    disableNonExistingPackers();
 }
 
 void KgArchives::disableNonExistingPackers()
 {
-  #define PS(x) lst.contains(x)>0
+#define PS(x) lst.contains(x)>0
 
-  // get list of available packers
-  QStringList lst=KRarcHandler::supportedPackers();
-  cbs->find( "Do Tar" )->setEnabled(PS("tar"));
-  cbs->find( "Do GZip" )->setEnabled(PS("gzip"));
-  cbs->find( "Do BZip2" )->setEnabled(PS("bzip2"));
-  cbs->find( "Do LZMA" )->setEnabled(PS("lzma"));
-  cbs->find( "Do UnZip" )->setEnabled(PS("unzip"));
-  cbs->find( "Do Lha" )->setEnabled(PS("lha"));
-  cbs->find( "Do RPM" )->setEnabled(PS("rpm") || PS("cpio"));
-  cbs->find( "Do UnRar" )->setEnabled(PS("unrar") || PS("rar") );
-  cbs->find( "Do UnAce" )->setEnabled(PS("unace"));
-  cbs->find( "Do Unarj" )->setEnabled(PS("unarj") || PS("arj") );
-  cbs->find( "Do DEB" )->setEnabled(PS("dpkg") && PS("tar") );
-  cbs->find( "Do 7z" )->setEnabled( PS("7z") );
+    // get list of available packers
+    QStringList lst = KRarcHandler::supportedPackers();
+    cbs->find("Do Tar")->setEnabled(PS("tar"));
+    cbs->find("Do GZip")->setEnabled(PS("gzip"));
+    cbs->find("Do BZip2")->setEnabled(PS("bzip2"));
+    cbs->find("Do LZMA")->setEnabled(PS("lzma"));
+    cbs->find("Do UnZip")->setEnabled(PS("unzip"));
+    cbs->find("Do Lha")->setEnabled(PS("lha"));
+    cbs->find("Do RPM")->setEnabled(PS("rpm") || PS("cpio"));
+    cbs->find("Do UnRar")->setEnabled(PS("unrar") || PS("rar"));
+    cbs->find("Do UnAce")->setEnabled(PS("unace"));
+    cbs->find("Do Unarj")->setEnabled(PS("unarj") || PS("arj"));
+    cbs->find("Do DEB")->setEnabled(PS("dpkg") && PS("tar"));
+    cbs->find("Do 7z")->setEnabled(PS("7z"));
 
-  KConfigGroup group( krConfig, "Archives" );
-  group.writeEntry( "Supported Packers", lst );
+    KConfigGroup group(krConfig, "Archives");
+    group.writeEntry("Supported Packers", lst);
 }
 
 bool KgArchives::apply()
 {
-  KConfigGroup group( krConfig, "Archives" );
-  group.writeEntry("Supported Packers",KRarcHandler::supportedPackers());
-  return KonfiguratorPage::apply();
+    KConfigGroup group(krConfig, "Archives");
+    group.writeEntry("Supported Packers", KRarcHandler::supportedPackers());
+    return KonfiguratorPage::apply();
 }
 
 void KgArchives::setDefaults()
 {
-  KConfigGroup group( krConfig, "Archives" );
-  group.writeEntry("Supported Packers",KRarcHandler::supportedPackers());
-  return KonfiguratorPage::setDefaults();
+    KConfigGroup group(krConfig, "Archives");
+    group.writeEntry("Supported Packers", KRarcHandler::supportedPackers());
+    return KonfiguratorPage::setDefaults();
 }
 
 #include "kgarchives.moc"

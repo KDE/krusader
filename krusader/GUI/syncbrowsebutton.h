@@ -15,7 +15,7 @@ This is very handy if you have several identical clients which you want to updat
 simoultanious.
 
 The current version only manages sync-browse and got no mode-switch options.
- 
+
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -32,36 +32,37 @@ The current version only manages sync-browse and got no mode-switch options.
 #include <QPixmap>
 
 // No synchrone browsing
-#define SYNCBROWSE_OFF		0
+#define SYNCBROWSE_OFF  0
 // Change only the directory
-#define SYNCBROWSE_CD			1
+#define SYNCBROWSE_CD   1
 /*
 // Make new dirs in both panels
-#define SYNCBROWSE_MKDIR		2
+#define SYNCBROWSE_MKDIR  2
 // Delete in both panels
-#define SYNCBROWSE_DELETE		4
+#define SYNCBROWSE_DELETE  4
 
 // Do everything in all tabs on the other side (not only the oposite panel)
-#define SYNCBROWSE_ALLTABS		1024
+#define SYNCBROWSE_ALLTABS  1024
 // Copy files not only to the other panel but to all tabs on the other side
-#define SYNCBROWSE_COPY		2048
+#define SYNCBROWSE_COPY  2048
 */
 
-class SyncBrowseButton : public QToolButton  {
-   Q_OBJECT
-public: 
-  SyncBrowseButton(QWidget *parent=0);
-  ~SyncBrowseButton();
-  
-  int state();
+class SyncBrowseButton : public QToolButton
+{
+    Q_OBJECT
+public:
+    SyncBrowseButton(QWidget *parent = 0);
+    ~SyncBrowseButton();
+
+    int state();
 
 protected:
-  int _state;
-  QPixmap _icon_on;
-  QPixmap _icon_off;
-  
+    int _state;
+    QPixmap _icon_on;
+    QPixmap _icon_off;
+
 private slots:
-  void slotToggled(bool on);
+    void slotToggled(bool on);
 };
 
 #endif

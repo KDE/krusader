@@ -26,17 +26,18 @@
  * Here are all the Krusader-specific extensions implemented.
  */
 
-class KrJS: public KJSEmbed::KJSEmbedPart {
+class KrJS: public KJSEmbed::KJSEmbedPart
+{
 public:
-   KrJS();
+    KrJS();
 
-   /**
-    * This loads and runs a file. In addition to the original runFile function it displays an popup
-    * on errors and sets some variables
-    *
-    * @par filename The file to run
-    */
-   bool runFile(const QString & filename);
+    /**
+     * This loads and runs a file. In addition to the original runFile function it displays an popup
+     * on errors and sets some variables
+     *
+     * @par filename The file to run
+     */
+    bool runFile(const QString & filename);
 };
 
 #endif //KRJS_H

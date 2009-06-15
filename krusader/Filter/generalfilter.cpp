@@ -44,628 +44,610 @@
 #include <QLabel>
 #include <kcharsets.h>
 
-typedef struct
-{
-	const char *description;
-	const char *regExp;
-	int cursorAdjustment;
+typedef struct {
+    const char *description;
+    const char *regExp;
+    int cursorAdjustment;
 } term;
 
-static const term items[] =
-{
-	{ I18N_NOOP("Any Character"),                 ".",        0 },
-	{ I18N_NOOP("Start of Line"),                 "^",        0 },
-	{ I18N_NOOP("End of Line"),                   "$",        0 },
-	{ I18N_NOOP("Set of Characters"),             "[]",       -1 },
-	{ I18N_NOOP("Repeats, Zero or More Times"),   "*",        0 },
-	{ I18N_NOOP("Repeats, One or More Times"),    "+",        0 },
-	{ I18N_NOOP("Optional"),                      "?",        0 },
-	{ I18N_NOOP("Escape"),                        "\\",       0 },
-	{ I18N_NOOP("TAB"),                           "\\t",      0 },
-	{ I18N_NOOP("Newline"),                       "\\n",      0 },
-	{ I18N_NOOP("Carriage Return"),               "\\r",      0 },
-	{ I18N_NOOP("White Space"),                   "\\s",      0 },
-	{ I18N_NOOP("Digit"),                         "\\d",      0 },
+static const term items[] = {
+    { I18N_NOOP("Any Character"),                 ".",        0 },
+    { I18N_NOOP("Start of Line"),                 "^",        0 },
+    { I18N_NOOP("End of Line"),                   "$",        0 },
+    { I18N_NOOP("Set of Characters"),             "[]",       -1 },
+    { I18N_NOOP("Repeats, Zero or More Times"),   "*",        0 },
+    { I18N_NOOP("Repeats, One or More Times"),    "+",        0 },
+    { I18N_NOOP("Optional"),                      "?",        0 },
+    { I18N_NOOP("Escape"),                        "\\",       0 },
+    { I18N_NOOP("TAB"),                           "\\t",      0 },
+    { I18N_NOOP("Newline"),                       "\\n",      0 },
+    { I18N_NOOP("Carriage Return"),               "\\r",      0 },
+    { I18N_NOOP("White Space"),                   "\\s",      0 },
+    { I18N_NOOP("Digit"),                         "\\d",      0 },
 };
 
 class RegExpAction : public QAction
 {
 public:
-	RegExpAction( QObject *parent, const QString &text, const QString &regExp, int cursor )
-		: QAction( text, parent ), mText( text ), mRegExp( regExp ), mCursor( cursor )
-	{
-	}
-	
-	QString text() const { return mText; }
-	QString regExp() const { return mRegExp; }
-	int cursor() const { return mCursor; }
-	
+    RegExpAction(QObject *parent, const QString &text, const QString &regExp, int cursor)
+            : QAction(text, parent), mText(text), mRegExp(regExp), mCursor(cursor) {
+    }
+
+    QString text() const {
+        return mText;
+    }
+    QString regExp() const {
+        return mRegExp;
+    }
+    int cursor() const {
+        return mCursor;
+    }
+
 private:
-	QString mText;
-	QString mRegExp;
-	int mCursor;
+    QString mText;
+    QString mRegExp;
+    int mCursor;
 };
 
-GeneralFilter::GeneralFilter ( FilterTabs *tabs, int properties, QWidget *parent ) : QWidget ( parent ),
-		profileManager ( 0 ), fltTabs ( tabs )
+GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent) : QWidget(parent),
+        profileManager(0), fltTabs(tabs)
 {
-	QGridLayout *filterLayout = new QGridLayout ( this );
-	filterLayout->setSpacing ( 6 );
-	filterLayout->setContentsMargins ( 11, 11, 11, 11 );
+    QGridLayout *filterLayout = new QGridLayout(this);
+    filterLayout->setSpacing(6);
+    filterLayout->setContentsMargins(11, 11, 11, 11);
 
-	this->properties = properties;
+    this->properties = properties;
 
-	// Options for name filtering
+    // Options for name filtering
 
-	QGroupBox *nameGroup = new QGroupBox ( this );
-	nameGroup->setTitle ( i18n ( "File name" ) );
-	QGridLayout *nameGroupLayout = new QGridLayout ( nameGroup );
-	nameGroupLayout->setAlignment ( Qt::AlignTop );
-	nameGroupLayout->setSpacing ( 6 );
-	nameGroupLayout->setContentsMargins ( 11, 11, 11, 11 );
+    QGroupBox *nameGroup = new QGroupBox(this);
+    nameGroup->setTitle(i18n("File name"));
+    QGridLayout *nameGroupLayout = new QGridLayout(nameGroup);
+    nameGroupLayout->setAlignment(Qt::AlignTop);
+    nameGroupLayout->setSpacing(6);
+    nameGroupLayout->setContentsMargins(11, 11, 11, 11);
 
-	searchForCase = new QCheckBox ( nameGroup );
-	searchForCase->setText ( i18n ( "&Case sensitive" ) );
-	searchForCase->setChecked ( false );
-	nameGroupLayout->addWidget ( searchForCase, 1, 2 );
+    searchForCase = new QCheckBox(nameGroup);
+    searchForCase->setText(i18n("&Case sensitive"));
+    searchForCase->setChecked(false);
+    nameGroupLayout->addWidget(searchForCase, 1, 2);
 
-	QLabel *searchForLabel = new QLabel ( nameGroup );
-	searchForLabel->setText ( i18n ( "Search &for:" ) );
-	nameGroupLayout->addWidget ( searchForLabel, 0, 0 );
+    QLabel *searchForLabel = new QLabel(nameGroup);
+    searchForLabel->setText(i18n("Search &for:"));
+    nameGroupLayout->addWidget(searchForLabel, 0, 0);
 
-	searchFor = new KHistoryComboBox ( false, nameGroup/*, "searchFor"*/ );
-	QSizePolicy searchForPolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
-	searchForPolicy.setHeightForWidth( searchFor->sizePolicy().hasHeightForWidth() );
-	searchFor->setSizePolicy ( searchForPolicy );
-	searchFor->setEditable ( true );
-	searchFor->setDuplicatesEnabled ( false );
-	searchFor->setMaxCount ( 25 );
-	searchForLabel->setBuddy ( searchFor );
-	nameGroupLayout->addWidget ( searchFor, 0, 1, 1, 2 );
+    searchFor = new KHistoryComboBox(false, nameGroup/*, "searchFor"*/);
+    QSizePolicy searchForPolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    searchForPolicy.setHeightForWidth(searchFor->sizePolicy().hasHeightForWidth());
+    searchFor->setSizePolicy(searchForPolicy);
+    searchFor->setEditable(true);
+    searchFor->setDuplicatesEnabled(false);
+    searchFor->setMaxCount(25);
+    searchForLabel->setBuddy(searchFor);
+    nameGroupLayout->addWidget(searchFor, 0, 1, 1, 2);
 
-	QString s = "<p><img src='toolbar|find'></p>" + i18n ( "<p>The filename filtering criteria is defined here.</p><p>You can make use of wildcards. Multiple patterns are separated by space (means logical OR) and patterns are excluded from the search using the pipe symbol.</p><p>If the pattern is ended with a slash (<code>*pattern*/</code>), that means that pattern relates to recursive search of directories.<ul><li><code>pattern</code> - means to search those files/directories that name is <code>pattern</code>, recursive search goes through all subdirectories independently of the value of <code>pattern</code></li><li><code>pattern/</code> - means to search all files/directories, but recursive search goes through/excludes the directories that name is <code>pattern</code></li></ul><p></p><p>It's allowed to use quotation marks for names that contain space. Filter <code>\"Program&nbsp;Files\"</code> searches out those files/directories that name is <code>Program&nbsp;Files</code>.</p><p>Examples:<ul><code><li>*.o</li><li>*.h *.c\?\?</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</li></code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to '<code>*text*</code>'.</p>" );
-	searchFor->setWhatsThis( s );
-	searchForLabel->setWhatsThis( s );
+    QString s = "<p><img src='toolbar|find'></p>" + i18n("<p>The filename filtering criteria is defined here.</p><p>You can make use of wildcards. Multiple patterns are separated by space (means logical OR) and patterns are excluded from the search using the pipe symbol.</p><p>If the pattern is ended with a slash (<code>*pattern*/</code>), that means that pattern relates to recursive search of directories.<ul><li><code>pattern</code> - means to search those files/directories that name is <code>pattern</code>, recursive search goes through all subdirectories independently of the value of <code>pattern</code></li><li><code>pattern/</code> - means to search all files/directories, but recursive search goes through/excludes the directories that name is <code>pattern</code></li></ul><p></p><p>It's allowed to use quotation marks for names that contain space. Filter <code>\"Program&nbsp;Files\"</code> searches out those files/directories that name is <code>Program&nbsp;Files</code>.</p><p>Examples:<ul><code><li>*.o</li><li>*.h *.c\?\?</li><li>*.cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</li></code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to '<code>*text*</code>'.</p>");
+    searchFor->setWhatsThis(s);
+    searchForLabel->setWhatsThis(s);
 
-	QLabel *searchType = new QLabel ( nameGroup );
-	searchType->setText ( i18n ( "&Of type:" ) );
-	nameGroupLayout->addWidget ( searchType, 1, 0 );
+    QLabel *searchType = new QLabel(nameGroup);
+    searchType->setText(i18n("&Of type:"));
+    nameGroupLayout->addWidget(searchType, 1, 0);
 
-	ofType = new KComboBox ( false, nameGroup );
-	ofType->setObjectName ( "ofType" );
-	QSizePolicy ofTypePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
-	ofTypePolicy.setHeightForWidth( ofType->sizePolicy().hasHeightForWidth() );
-	ofType->setSizePolicy ( ofTypePolicy );
-	ofType->setEditable ( false );
-	searchType->setBuddy ( ofType );
-	ofType->addItem ( i18n ( "All Files" ) );
-	ofType->addItem ( i18n ( "Archives" ) );
-	ofType->addItem ( i18n ( "Directories" ) );
-	ofType->addItem ( i18n ( "Image Files" ) );
-	ofType->addItem ( i18n ( "Text Files" ) );
-	ofType->addItem ( i18n ( "Video Files" ) );
-	ofType->addItem ( i18n ( "Audio Files" ) );
-	connect( ofType, SIGNAL( currentIndexChanged(int) ), this, SLOT( slotDisable() ) );
+    ofType = new KComboBox(false, nameGroup);
+    ofType->setObjectName("ofType");
+    QSizePolicy ofTypePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    ofTypePolicy.setHeightForWidth(ofType->sizePolicy().hasHeightForWidth());
+    ofType->setSizePolicy(ofTypePolicy);
+    ofType->setEditable(false);
+    searchType->setBuddy(ofType);
+    ofType->addItem(i18n("All Files"));
+    ofType->addItem(i18n("Archives"));
+    ofType->addItem(i18n("Directories"));
+    ofType->addItem(i18n("Image Files"));
+    ofType->addItem(i18n("Text Files"));
+    ofType->addItem(i18n("Video Files"));
+    ofType->addItem(i18n("Audio Files"));
+    connect(ofType, SIGNAL(currentIndexChanged(int)), this, SLOT(slotDisable()));
 
-	nameGroupLayout->addWidget ( ofType, 1, 1 );
-	filterLayout->addWidget ( nameGroup, 0, 0 );
+    nameGroupLayout->addWidget(ofType, 1, 1);
+    filterLayout->addWidget(nameGroup, 0, 0);
 
-	middleLayout = new QHBoxLayout();
-	middleLayout->setSpacing ( 6 );
-	middleLayout->setContentsMargins ( 0, 0, 0, 0 );
-	QSpacerItem* middleSpacer = new QSpacerItem ( 1, 1, QSizePolicy::Fixed, QSizePolicy::Fixed );
-	middleLayout->addItem ( middleSpacer );
+    middleLayout = new QHBoxLayout();
+    middleLayout->setSpacing(6);
+    middleLayout->setContentsMargins(0, 0, 0, 0);
+    QSpacerItem* middleSpacer = new QSpacerItem(1, 1, QSizePolicy::Fixed, QSizePolicy::Fixed);
+    middleLayout->addItem(middleSpacer);
 
-	if ( properties & FilterTabs::HasProfileHandler )
-	{
-		// The profile handler
+    if (properties & FilterTabs::HasProfileHandler) {
+        // The profile handler
 
-		QGroupBox *profileHandler = new QGroupBox ( this );
-		profileHandler->setTitle ( i18n ( "&Profile handler" ) );
-		QGridLayout *profileLayout = new QGridLayout ( profileHandler );
-		profileLayout->setAlignment ( Qt::AlignTop );
-		profileLayout->setSpacing ( 6 );
-		profileLayout->setContentsMargins ( 11, 11, 11, 11 );
+        QGroupBox *profileHandler = new QGroupBox(this);
+        profileHandler->setTitle(i18n("&Profile handler"));
+        QGridLayout *profileLayout = new QGridLayout(profileHandler);
+        profileLayout->setAlignment(Qt::AlignTop);
+        profileLayout->setSpacing(6);
+        profileLayout->setContentsMargins(11, 11, 11, 11);
 
-		profileListBox = new KrListWidget ( profileHandler );
-		profileLayout->addWidget ( profileListBox, 0, 0, 4, 1 );
+        profileListBox = new KrListWidget(profileHandler);
+        profileLayout->addWidget(profileListBox, 0, 0, 4, 1);
 
-		profileAddBtn = new QPushButton ( i18n ( "&Add" ), profileHandler );
-		profileLayout->addWidget ( profileAddBtn, 0, 1 );
+        profileAddBtn = new QPushButton(i18n("&Add"), profileHandler);
+        profileLayout->addWidget(profileAddBtn, 0, 1);
 
-		profileLoadBtn = new QPushButton ( i18n ( "&Load" ), profileHandler );
-		profileLoadBtn->setEnabled ( false );
-		profileLayout->addWidget ( profileLoadBtn, 1, 1 );
+        profileLoadBtn = new QPushButton(i18n("&Load"), profileHandler);
+        profileLoadBtn->setEnabled(false);
+        profileLayout->addWidget(profileLoadBtn, 1, 1);
 
-		profileOverwriteBtn = new QPushButton ( i18n ( "&Overwrite" ), profileHandler );
-		profileOverwriteBtn->setEnabled ( false );
-		profileLayout->addWidget ( profileOverwriteBtn, 2, 1 );
+        profileOverwriteBtn = new QPushButton(i18n("&Overwrite"), profileHandler);
+        profileOverwriteBtn->setEnabled(false);
+        profileLayout->addWidget(profileOverwriteBtn, 2, 1);
 
-		profileRemoveBtn = new QPushButton ( i18n ( "&Remove" ), profileHandler );
-		profileRemoveBtn->setEnabled ( false );
-		profileLayout->addWidget ( profileRemoveBtn, 3, 1 );
+        profileRemoveBtn = new QPushButton(i18n("&Remove"), profileHandler);
+        profileRemoveBtn->setEnabled(false);
+        profileLayout->addWidget(profileRemoveBtn, 3, 1);
 
-		profileManager = new ProfileManager ( "SelectionProfile", this );
-		profileManager->hide();
+        profileManager = new ProfileManager("SelectionProfile", this);
+        profileManager->hide();
 
-		middleLayout->addWidget ( profileHandler );
+        middleLayout->addWidget(profileHandler);
 
-		refreshProfileListBox();
-	}
+        refreshProfileListBox();
+    }
 
-	if ( properties & FilterTabs::HasSearchIn )
-	{
-		// Options for search in
+    if (properties & FilterTabs::HasSearchIn) {
+        // Options for search in
 
-		QGroupBox *searchInGroup = new QGroupBox ( this );
-		searchInGroup->setTitle ( i18n ( "&Search in" ) );
-		QGridLayout *searchInLayout = new QGridLayout ( searchInGroup );
-		searchInLayout->setAlignment ( Qt::AlignTop );
-		searchInLayout->setSpacing ( 6 );
-		searchInLayout->setContentsMargins ( 11, 11, 11, 11 );
+        QGroupBox *searchInGroup = new QGroupBox(this);
+        searchInGroup->setTitle(i18n("&Search in"));
+        QGridLayout *searchInLayout = new QGridLayout(searchInGroup);
+        searchInLayout->setAlignment(Qt::AlignTop);
+        searchInLayout->setSpacing(6);
+        searchInLayout->setContentsMargins(11, 11, 11, 11);
 
-		searchIn = new KURLListRequester ( searchInGroup );
-		searchInLayout->addWidget ( searchIn, 0, 0 );
-		connect( searchIn, SIGNAL( changed() ), this, SLOT( slotDisable() ) );
+        searchIn = new KURLListRequester(searchInGroup);
+        searchInLayout->addWidget(searchIn, 0, 0);
+        connect(searchIn, SIGNAL(changed()), this, SLOT(slotDisable()));
 
-		middleLayout->addWidget ( searchInGroup );
-	}
+        middleLayout->addWidget(searchInGroup);
+    }
 
-	if ( properties & FilterTabs::HasDontSearchIn )
-	{
-		// Options for don't search in
+    if (properties & FilterTabs::HasDontSearchIn) {
+        // Options for don't search in
 
-		QGroupBox *dontSearchInGroup = new QGroupBox ( this );
-		dontSearchInGroup->setTitle ( i18n ( "&Don't search in" ) );
-		QGridLayout *dontSearchInLayout = new QGridLayout ( dontSearchInGroup );
-		dontSearchInLayout->setAlignment ( Qt::AlignTop );
-		dontSearchInLayout->setSpacing ( 6 );
-		dontSearchInLayout->setContentsMargins ( 11, 11, 11, 11 );
+        QGroupBox *dontSearchInGroup = new QGroupBox(this);
+        dontSearchInGroup->setTitle(i18n("&Don't search in"));
+        QGridLayout *dontSearchInLayout = new QGridLayout(dontSearchInGroup);
+        dontSearchInLayout->setAlignment(Qt::AlignTop);
+        dontSearchInLayout->setSpacing(6);
+        dontSearchInLayout->setContentsMargins(11, 11, 11, 11);
 
-		dontSearchIn = new KURLListRequester ( dontSearchInGroup );
-		dontSearchInLayout->addWidget ( dontSearchIn, 0, 0 );
+        dontSearchIn = new KURLListRequester(dontSearchInGroup);
+        dontSearchInLayout->addWidget(dontSearchIn, 0, 0);
 
-		middleLayout->addWidget ( dontSearchInGroup );
-	}
+        middleLayout->addWidget(dontSearchInGroup);
+    }
 
-	filterLayout->addLayout ( middleLayout, 1, 0 );
+    filterLayout->addLayout(middleLayout, 1, 0);
 
-	// Options for containing text
+    // Options for containing text
 
-	QGroupBox *containsGroup = new QGroupBox ( this );
-	containsGroup->setTitle ( i18n ( "Containing text" ) );
-	QGridLayout *containsLayout = new QGridLayout ( containsGroup );
-	containsLayout->setAlignment ( Qt::AlignTop );
-	containsLayout->setSpacing ( 6 );
-	containsLayout->setContentsMargins ( 11, 11, 11, 11 );
+    QGroupBox *containsGroup = new QGroupBox(this);
+    containsGroup->setTitle(i18n("Containing text"));
+    QGridLayout *containsLayout = new QGridLayout(containsGroup);
+    containsLayout->setAlignment(Qt::AlignTop);
+    containsLayout->setSpacing(6);
+    containsLayout->setContentsMargins(11, 11, 11, 11);
 
-	QHBoxLayout *containsTextLayout = new QHBoxLayout();
-	containsTextLayout->setSpacing ( 6 );
-	containsTextLayout->setContentsMargins ( 0, 0, 0, 0 );
+    QHBoxLayout *containsTextLayout = new QHBoxLayout();
+    containsTextLayout->setSpacing(6);
+    containsTextLayout->setContentsMargins(0, 0, 0, 0);
 
-	containsLabel = new QLabel ( containsGroup );
-	QSizePolicy containsLabelPolicy( QSizePolicy::Fixed, QSizePolicy::Minimum );
-	containsLabelPolicy.setHeightForWidth( containsLabel->sizePolicy().hasHeightForWidth() );
-	containsLabel->setSizePolicy ( containsLabelPolicy );
-	containsLabel->setText ( i18n ( "&Text:" ) );
-	containsTextLayout->addWidget ( containsLabel );
+    containsLabel = new QLabel(containsGroup);
+    QSizePolicy containsLabelPolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
+    containsLabelPolicy.setHeightForWidth(containsLabel->sizePolicy().hasHeightForWidth());
+    containsLabel->setSizePolicy(containsLabelPolicy);
+    containsLabel->setText(i18n("&Text:"));
+    containsTextLayout->addWidget(containsLabel);
 
-	containsText = new KHistoryComboBox ( false, containsGroup/*, "containsText"*/ );
-	QSizePolicy containsTextPolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
-	containsTextPolicy.setHeightForWidth( containsText->sizePolicy().hasHeightForWidth() );
-	containsText->setSizePolicy ( containsTextPolicy );
-	containsText->setDuplicatesEnabled ( false );
-	containsText->setMaxCount ( 25 );
-	containsTextLayout->addWidget ( containsText );
-	containsLabel->setBuddy ( containsText );
-	
-	containsRegExp = new QToolButton( containsGroup );
-	containsRegExp->setPopupMode( QToolButton::MenuButtonPopup );
-	containsRegExp->setCheckable( true );
-	containsRegExp->setText( i18n( "RegExp" ) );
-	// Populate the popup menu.
-	QMenu *patterns = new QMenu(containsRegExp);
-	for (int i = 0; (unsigned)i < sizeof(items) / sizeof(items[0]); i++)
-	{
-		patterns->addAction(new RegExpAction(patterns, i18n(items[i].description),
-			items[i].regExp, items[i].cursorAdjustment));
-	}
-	connect( containsRegExp, SIGNAL( toggled( bool ) ), this, SLOT( slotDisable() ) );
-	connect( containsRegExp, SIGNAL( triggered( QAction * ) ), this, SLOT( slotRegExpTriggered( QAction * ) ) );
-	containsRegExp->setMenu( patterns );
-	patterns->setEnabled( false );
+    containsText = new KHistoryComboBox(false, containsGroup/*, "containsText"*/);
+    QSizePolicy containsTextPolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    containsTextPolicy.setHeightForWidth(containsText->sizePolicy().hasHeightForWidth());
+    containsText->setSizePolicy(containsTextPolicy);
+    containsText->setDuplicatesEnabled(false);
+    containsText->setMaxCount(25);
+    containsTextLayout->addWidget(containsText);
+    containsLabel->setBuddy(containsText);
 
-	containsTextLayout->addWidget ( containsRegExp );
+    containsRegExp = new QToolButton(containsGroup);
+    containsRegExp->setPopupMode(QToolButton::MenuButtonPopup);
+    containsRegExp->setCheckable(true);
+    containsRegExp->setText(i18n("RegExp"));
+    // Populate the popup menu.
+    QMenu *patterns = new QMenu(containsRegExp);
+    for (int i = 0; (unsigned)i < sizeof(items) / sizeof(items[0]); i++) {
+        patterns->addAction(new RegExpAction(patterns, i18n(items[i].description),
+                                             items[i].regExp, items[i].cursorAdjustment));
+    }
+    connect(containsRegExp, SIGNAL(toggled(bool)), this, SLOT(slotDisable()));
+    connect(containsRegExp, SIGNAL(triggered(QAction *)), this, SLOT(slotRegExpTriggered(QAction *)));
+    containsRegExp->setMenu(patterns);
+    patterns->setEnabled(false);
 
-	containsLayout->addLayout ( containsTextLayout, 0, 0 );
+    containsTextLayout->addWidget(containsRegExp);
 
-	QHBoxLayout *containsCbsLayout = new QHBoxLayout();
-	containsCbsLayout->setSpacing ( 6 );
-	containsCbsLayout->setContentsMargins ( 0, 0, 0, 0 );
-	
-	encLabel = new QLabel( i18n( "Encoding:" ), containsGroup );
-	containsCbsLayout->addWidget ( encLabel );
-	contentEncoding = new QComboBox( containsGroup );
-	contentEncoding->setEditable( false );
-	contentEncoding->addItem( i18n( "Default" ) );
-	contentEncoding->addItems( KGlobal::charsets()->descriptiveEncodingNames() );
-	containsCbsLayout->addWidget ( contentEncoding );
-	
-	QSpacerItem* cbSpacer = new QSpacerItem ( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-	containsCbsLayout->addItem ( cbSpacer );
-	
-	containsWholeWord = new QCheckBox ( containsGroup );
-	QSizePolicy containsWholeWordPolicy( QSizePolicy::Preferred, QSizePolicy::Fixed );
-	containsWholeWordPolicy.setHeightForWidth( containsWholeWord->sizePolicy().hasHeightForWidth() );
-	containsWholeWord->setSizePolicy ( containsWholeWordPolicy );
-	containsWholeWord->setText ( i18n ( "&Match whole word only" ) );
-	containsWholeWord->setChecked ( false );
-	containsCbsLayout->addWidget ( containsWholeWord );
+    containsLayout->addLayout(containsTextLayout, 0, 0);
 
-	containsTextCase = new QCheckBox ( containsGroup );
-	QSizePolicy containsTextCasePolicy( QSizePolicy::Preferred, QSizePolicy::Fixed );
-	containsTextCasePolicy.setHeightForWidth( containsTextCase->sizePolicy().hasHeightForWidth() );
-	containsTextCase->setSizePolicy ( containsTextCasePolicy );
-	containsTextCase->setText ( i18n ( "Cas&e sensitive" ) );
-	containsTextCase->setChecked ( true );
-	containsCbsLayout->addWidget ( containsTextCase );
+    QHBoxLayout *containsCbsLayout = new QHBoxLayout();
+    containsCbsLayout->setSpacing(6);
+    containsCbsLayout->setContentsMargins(0, 0, 0, 0);
 
-	containsLayout->addLayout ( containsCbsLayout, 1, 0 );
+    encLabel = new QLabel(i18n("Encoding:"), containsGroup);
+    containsCbsLayout->addWidget(encLabel);
+    contentEncoding = new QComboBox(containsGroup);
+    contentEncoding->setEditable(false);
+    contentEncoding->addItem(i18n("Default"));
+    contentEncoding->addItems(KGlobal::charsets()->descriptiveEncodingNames());
+    containsCbsLayout->addWidget(contentEncoding);
 
-	filterLayout->addWidget ( containsGroup, 2, 0 );
+    QSpacerItem* cbSpacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    containsCbsLayout->addItem(cbSpacer);
 
-	QHBoxLayout *recurseLayout = new QHBoxLayout();
-	recurseLayout->setSpacing ( 6 );
-	recurseLayout->setContentsMargins ( 0, 0, 0, 0 );
-	QSpacerItem* recurseSpacer = new QSpacerItem ( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-	recurseLayout->addItem ( recurseSpacer );
-	
-	remoteContentSearch = new QCheckBox ( containsGroup );
-	QSizePolicy remoteContentSearchPolicy( QSizePolicy::Preferred, QSizePolicy::Fixed );
-	remoteContentSearchPolicy.setHeightForWidth( remoteContentSearch->sizePolicy().hasHeightForWidth() );
-	remoteContentSearch->setSizePolicy ( remoteContentSearchPolicy );
-	remoteContentSearch->setText ( i18n ( "&Remote content search" ) );
-	remoteContentSearch->setChecked ( false );
-	recurseLayout->addWidget ( remoteContentSearch );
-	if ( ! ( properties & FilterTabs::HasRemoteContentSearch ) )
-		remoteContentSearch->hide();
+    containsWholeWord = new QCheckBox(containsGroup);
+    QSizePolicy containsWholeWordPolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    containsWholeWordPolicy.setHeightForWidth(containsWholeWord->sizePolicy().hasHeightForWidth());
+    containsWholeWord->setSizePolicy(containsWholeWordPolicy);
+    containsWholeWord->setText(i18n("&Match whole word only"));
+    containsWholeWord->setChecked(false);
+    containsCbsLayout->addWidget(containsWholeWord);
 
-	if ( properties & FilterTabs::HasRecurseOptions )
-	{
-		// Options for recursive searching
-		searchInDirs = new QCheckBox ( this );
-		searchInDirs->setText ( i18n ( "Search in s&ubdirectories" ) );
-		searchInDirs->setChecked ( true );
-		recurseLayout->addWidget ( searchInDirs );
+    containsTextCase = new QCheckBox(containsGroup);
+    QSizePolicy containsTextCasePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    containsTextCasePolicy.setHeightForWidth(containsTextCase->sizePolicy().hasHeightForWidth());
+    containsTextCase->setSizePolicy(containsTextCasePolicy);
+    containsTextCase->setText(i18n("Cas&e sensitive"));
+    containsTextCase->setChecked(true);
+    containsCbsLayout->addWidget(containsTextCase);
 
-		searchInArchives = new QCheckBox ( this );
-		searchInArchives->setText ( i18n ( "Search in arch&ives" ) );
-		recurseLayout->addWidget ( searchInArchives );
+    containsLayout->addLayout(containsCbsLayout, 1, 0);
 
-		followLinks = new QCheckBox ( this );
-		followLinks->setText ( i18n ( "Follow &links" ) );
-		recurseLayout->addWidget ( followLinks );
+    filterLayout->addWidget(containsGroup, 2, 0);
 
-	}
-	filterLayout->addLayout ( recurseLayout, 3, 0 );
+    QHBoxLayout *recurseLayout = new QHBoxLayout();
+    recurseLayout->setSpacing(6);
+    recurseLayout->setContentsMargins(0, 0, 0, 0);
+    QSpacerItem* recurseSpacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    recurseLayout->addItem(recurseSpacer);
 
-	// Connection table
+    remoteContentSearch = new QCheckBox(containsGroup);
+    QSizePolicy remoteContentSearchPolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    remoteContentSearchPolicy.setHeightForWidth(remoteContentSearch->sizePolicy().hasHeightForWidth());
+    remoteContentSearch->setSizePolicy(remoteContentSearchPolicy);
+    remoteContentSearch->setText(i18n("&Remote content search"));
+    remoteContentSearch->setChecked(false);
+    recurseLayout->addWidget(remoteContentSearch);
+    if (!(properties & FilterTabs::HasRemoteContentSearch))
+        remoteContentSearch->hide();
 
-	if ( properties & FilterTabs::HasProfileHandler )
-	{
-		connect ( profileAddBtn,       SIGNAL ( clicked() ) , this, SLOT ( slotAddBtnClicked() ) );
-		connect ( profileLoadBtn,      SIGNAL ( clicked() ) , this, SLOT ( slotLoadBtnClicked() ) );
-		connect ( profileOverwriteBtn, SIGNAL ( clicked() ) , this, SLOT ( slotOverwriteBtnClicked() ) );
-		connect ( profileRemoveBtn,    SIGNAL ( clicked() ) , this, SLOT ( slotRemoveBtnClicked() ) );
-		connect ( profileListBox,      SIGNAL ( itemDoubleClicked ( QListWidgetItem * ) ) , this, SLOT ( slotProfileDoubleClicked ( QListWidgetItem * ) ) );
-		connect ( profileManager,      SIGNAL ( loadFromProfile ( QString ) ), fltTabs, SLOT ( loadFromProfile ( QString ) ) );
-		connect ( profileManager,      SIGNAL ( saveToProfile ( QString ) ), fltTabs, SLOT ( saveToProfile ( QString ) ) );
-	}
+    if (properties & FilterTabs::HasRecurseOptions) {
+        // Options for recursive searching
+        searchInDirs = new QCheckBox(this);
+        searchInDirs->setText(i18n("Search in s&ubdirectories"));
+        searchInDirs->setChecked(true);
+        recurseLayout->addWidget(searchInDirs);
 
-	connect ( searchFor, SIGNAL ( activated ( const QString& ) ), searchFor, SLOT ( addToHistory ( const QString& ) ) );
-	connect ( containsText, SIGNAL ( activated ( const QString& ) ), containsText, SLOT ( addToHistory ( const QString& ) ) );
+        searchInArchives = new QCheckBox(this);
+        searchInArchives->setText(i18n("Search in arch&ives"));
+        recurseLayout->addWidget(searchInArchives);
 
-	// load the completion and history lists
-	// ==> search for
-	KConfigGroup group( krConfig, "Search" );
-	QStringList list = group.readEntry ( "SearchFor Completion", QStringList() );
-	searchFor->completionObject()->setItems ( list );
-	list = group.readEntry ( "SearchFor History", QStringList() );
-	searchFor->setHistoryItems ( list );
-	// ==> grep
-	list = group.readEntry ( "ContainsText Completion", QStringList() );
-	containsText->completionObject()->setItems ( list );
-	list = group.readEntry ( "ContainsText History", QStringList() );
-	containsText->setHistoryItems ( list );
+        followLinks = new QCheckBox(this);
+        followLinks->setText(i18n("Follow &links"));
+        recurseLayout->addWidget(followLinks);
 
-	setTabOrder ( searchFor, containsText ); // search for -> content
-	setTabOrder ( containsText, searchType ); // content -> search type
-	
-	slotDisable();
+    }
+    filterLayout->addLayout(recurseLayout, 3, 0);
+
+    // Connection table
+
+    if (properties & FilterTabs::HasProfileHandler) {
+        connect(profileAddBtn,       SIGNAL(clicked()) , this, SLOT(slotAddBtnClicked()));
+        connect(profileLoadBtn,      SIGNAL(clicked()) , this, SLOT(slotLoadBtnClicked()));
+        connect(profileOverwriteBtn, SIGNAL(clicked()) , this, SLOT(slotOverwriteBtnClicked()));
+        connect(profileRemoveBtn,    SIGNAL(clicked()) , this, SLOT(slotRemoveBtnClicked()));
+        connect(profileListBox,      SIGNAL(itemDoubleClicked(QListWidgetItem *)) , this, SLOT(slotProfileDoubleClicked(QListWidgetItem *)));
+        connect(profileManager,      SIGNAL(loadFromProfile(QString)), fltTabs, SLOT(loadFromProfile(QString)));
+        connect(profileManager,      SIGNAL(saveToProfile(QString)), fltTabs, SLOT(saveToProfile(QString)));
+    }
+
+    connect(searchFor, SIGNAL(activated(const QString&)), searchFor, SLOT(addToHistory(const QString&)));
+    connect(containsText, SIGNAL(activated(const QString&)), containsText, SLOT(addToHistory(const QString&)));
+
+    // load the completion and history lists
+    // ==> search for
+    KConfigGroup group(krConfig, "Search");
+    QStringList list = group.readEntry("SearchFor Completion", QStringList());
+    searchFor->completionObject()->setItems(list);
+    list = group.readEntry("SearchFor History", QStringList());
+    searchFor->setHistoryItems(list);
+    // ==> grep
+    list = group.readEntry("ContainsText Completion", QStringList());
+    containsText->completionObject()->setItems(list);
+    list = group.readEntry("ContainsText History", QStringList());
+    containsText->setHistoryItems(list);
+
+    setTabOrder(searchFor, containsText);    // search for -> content
+    setTabOrder(containsText, searchType);    // content -> search type
+
+    slotDisable();
 }
 
 GeneralFilter::~GeneralFilter()
 {
-	// save the history combos
-	// ==> search for
-	QStringList list = searchFor->completionObject()->items();
-	KConfigGroup group( krConfig, "Search" );
-	group.writeEntry ( "SearchFor Completion", list );
-	list = searchFor->historyItems();
-	group.writeEntry ( "SearchFor History", list );
-	// ==> grep text
-	list = containsText->completionObject()->items();
-	group.writeEntry ( "ContainsText Completion", list );
-	list = containsText->historyItems();
-	group.writeEntry ( "ContainsText History", list );
+    // save the history combos
+    // ==> search for
+    QStringList list = searchFor->completionObject()->items();
+    KConfigGroup group(krConfig, "Search");
+    group.writeEntry("SearchFor Completion", list);
+    list = searchFor->historyItems();
+    group.writeEntry("SearchFor History", list);
+    // ==> grep text
+    list = containsText->completionObject()->items();
+    group.writeEntry("ContainsText Completion", list);
+    list = containsText->historyItems();
+    group.writeEntry("ContainsText History", list);
 
-	krConfig->sync();
+    krConfig->sync();
 }
 
-bool GeneralFilter::fillQuery ( KRQuery *query )
+bool GeneralFilter::fillQuery(KRQuery *query)
 {
-	// check that we have (at least) what to search, and where to search in
-	if ( searchFor->currentText().simplified().isEmpty() )
-	{
-		KMessageBox::error ( this ,i18n ( "No search criteria entered!" ) );
-		searchFor->setFocus();
-		return false;
-	}
+    // check that we have (at least) what to search, and where to search in
+    if (searchFor->currentText().simplified().isEmpty()) {
+        KMessageBox::error(this , i18n("No search criteria entered!"));
+        searchFor->setFocus();
+        return false;
+    }
 
-	// now fill the query
+    // now fill the query
 
-	query->setNameFilter ( searchFor->currentText().trimmed(), searchForCase->isChecked() );
+    query->setNameFilter(searchFor->currentText().trimmed(), searchForCase->isChecked());
 
-	bool remoteContent = ( properties & FilterTabs::HasRemoteContentSearch ) ?
-	                     remoteContentSearch->isChecked() : false;
-	
-	QString charset;
-	if( contentEncoding->currentIndex() != 0 )
-		charset = KGlobal::charsets()->encodingForName( contentEncoding->currentText() );
+    bool remoteContent = (properties & FilterTabs::HasRemoteContentSearch) ?
+                         remoteContentSearch->isChecked() : false;
 
-	query->setContent ( containsText->currentText(),
-	                    containsTextCase->isChecked(),
-	                    containsWholeWord->isChecked(),
-	                    remoteContent, charset, containsRegExp->isChecked() );
+    QString charset;
+    if (contentEncoding->currentIndex() != 0)
+        charset = KGlobal::charsets()->encodingForName(contentEncoding->currentText());
 
-	if ( ofType->currentText() !=i18n ( "All Files" ) )
-		query->setMimeType ( ofType->currentText() );
-	else query->setMimeType ( QString() );
+    query->setContent(containsText->currentText(),
+                      containsTextCase->isChecked(),
+                      containsWholeWord->isChecked(),
+                      remoteContent, charset, containsRegExp->isChecked());
 
-	if ( properties & FilterTabs::HasRecurseOptions )
-	{
-		query->setSearchInArchives ( searchInArchives->isChecked() );
-		query->setRecursive ( searchInDirs->isChecked() );
-		query->setFollowLinks ( followLinks->isChecked() );
+    if (ofType->currentText() != i18n("All Files"))
+        query->setMimeType(ofType->currentText());
+    else query->setMimeType(QString());
 
-		// create the lists
-	}
-	if ( properties & FilterTabs::HasSearchIn )
-	{
-		query->setSearchInDirs ( searchIn->urlList() );
+    if (properties & FilterTabs::HasRecurseOptions) {
+        query->setSearchInArchives(searchInArchives->isChecked());
+        query->setRecursive(searchInDirs->isChecked());
+        query->setFollowLinks(followLinks->isChecked());
 
-		// checking the lists
+        // create the lists
+    }
+    if (properties & FilterTabs::HasSearchIn) {
+        query->setSearchInDirs(searchIn->urlList());
 
-		if ( query->searchInDirs().isEmpty() )
-		{ // we need a place to search in
-			KMessageBox::error ( this ,i18n ( "Please specify a location to search in." ) );
-			searchIn->lineEdit()->setFocus();
-			return false;
-		}
-	}
+        // checking the lists
 
-	if ( properties & FilterTabs::HasDontSearchIn )
-		query->setDontSearchInDirs ( dontSearchIn->urlList() );
+        if (query->searchInDirs().isEmpty()) { // we need a place to search in
+            KMessageBox::error(this , i18n("Please specify a location to search in."));
+            searchIn->lineEdit()->setFocus();
+            return false;
+        }
+    }
 
-	return true;
+    if (properties & FilterTabs::HasDontSearchIn)
+        query->setDontSearchInDirs(dontSearchIn->urlList());
+
+    return true;
 }
 
 void GeneralFilter::queryAccepted()
 {
-	searchFor->addToHistory ( searchFor->currentText() );
-	containsText->addToHistory ( containsText->currentText() );
+    searchFor->addToHistory(searchFor->currentText());
+    containsText->addToHistory(containsText->currentText());
 }
 
-void GeneralFilter::loadFromProfile ( QString name )
+void GeneralFilter::loadFromProfile(QString name)
 {
-	KConfigGroup cfg( krConfig, name );
+    KConfigGroup cfg(krConfig, name);
 
-	searchForCase->setChecked ( cfg.readEntry ( "Case Sensitive Search", false ) );
-	containsTextCase->setChecked ( cfg.readEntry ( "Case Sensitive Content", false ) );
-	remoteContentSearch->setChecked ( cfg.readEntry ( "Remote Content Search", false ) );
-	containsWholeWord->setChecked ( cfg.readEntry ( "Match Whole Word Only", false ) );
-	containsRegExp->setChecked ( cfg.readEntry ( "Regular Expression", false ) );
-	containsText->setEditText ( cfg.readEntry ( "Contains Text", "" ) );
-	searchFor->setEditText ( cfg.readEntry ( "Search For", "" ) );
-	
-	QString charset = cfg.readEntry ( "Content Encoding", "" );
-	QString desc = KGlobal::charsets()->descriptionForEncoding( charset );
-	contentEncoding->setCurrentIndex( 0 );
-	for( int i=1; i < contentEncoding->count(); i++ )
-		if( contentEncoding->itemText( i ) == desc ) {
-			contentEncoding->setCurrentIndex( i );
-			break;
-		}
-	
-	QString mime = cfg.readEntry ( "Mime Type", "" );
-	for ( int i = ofType->count(); i >= 0; i-- )
-	{
-		ofType->setCurrentIndex( i );
-		if ( ofType->currentText() == mime )
-			break;
-	}
+    searchForCase->setChecked(cfg.readEntry("Case Sensitive Search", false));
+    containsTextCase->setChecked(cfg.readEntry("Case Sensitive Content", false));
+    remoteContentSearch->setChecked(cfg.readEntry("Remote Content Search", false));
+    containsWholeWord->setChecked(cfg.readEntry("Match Whole Word Only", false));
+    containsRegExp->setChecked(cfg.readEntry("Regular Expression", false));
+    containsText->setEditText(cfg.readEntry("Contains Text", ""));
+    searchFor->setEditText(cfg.readEntry("Search For", ""));
 
-	if ( properties & FilterTabs::HasRecurseOptions )
-	{
-		searchInDirs->setChecked ( cfg.readEntry ( "Search In Subdirectories", true ) );
-		searchInArchives->setChecked ( cfg.readEntry ( "Search In Archives", false ) );
-		followLinks->setChecked ( cfg.readEntry ( "Follow Symlinks", false ) );
-	}
+    QString charset = cfg.readEntry("Content Encoding", "");
+    QString desc = KGlobal::charsets()->descriptionForEncoding(charset);
+    contentEncoding->setCurrentIndex(0);
+    for (int i = 1; i < contentEncoding->count(); i++)
+        if (contentEncoding->itemText(i) == desc) {
+            contentEncoding->setCurrentIndex(i);
+            break;
+        }
 
-	if ( properties & FilterTabs::HasSearchIn )
-	{
-		searchIn->lineEdit()->setText ( cfg.readEntry ( "Search In Edit", "" ) );
+    QString mime = cfg.readEntry("Mime Type", "");
+    for (int i = ofType->count(); i >= 0; i--) {
+        ofType->setCurrentIndex(i);
+        if (ofType->currentText() == mime)
+            break;
+    }
 
-		searchIn->listBox()->clear();
-		QStringList searchInList = cfg.readEntry ( "Search In List", QStringList() );
-		if ( !searchInList.isEmpty() )
-			searchIn->listBox()->addItems ( searchInList );
-	}
+    if (properties & FilterTabs::HasRecurseOptions) {
+        searchInDirs->setChecked(cfg.readEntry("Search In Subdirectories", true));
+        searchInArchives->setChecked(cfg.readEntry("Search In Archives", false));
+        followLinks->setChecked(cfg.readEntry("Follow Symlinks", false));
+    }
 
-	if ( properties & FilterTabs::HasDontSearchIn )
-	{
-		dontSearchIn->lineEdit()->setText ( cfg.readEntry ( "Don't Search In Edit", "" ) );
+    if (properties & FilterTabs::HasSearchIn) {
+        searchIn->lineEdit()->setText(cfg.readEntry("Search In Edit", ""));
 
-		dontSearchIn->listBox()->clear();
-		QStringList dontSearchInList = cfg.readEntry ( "Don't Search In List", QStringList() );
-		if ( !dontSearchInList.isEmpty() )
-			dontSearchIn->listBox()->addItems ( dontSearchInList );
-	}
+        searchIn->listBox()->clear();
+        QStringList searchInList = cfg.readEntry("Search In List", QStringList());
+        if (!searchInList.isEmpty())
+            searchIn->listBox()->addItems(searchInList);
+    }
+
+    if (properties & FilterTabs::HasDontSearchIn) {
+        dontSearchIn->lineEdit()->setText(cfg.readEntry("Don't Search In Edit", ""));
+
+        dontSearchIn->listBox()->clear();
+        QStringList dontSearchInList = cfg.readEntry("Don't Search In List", QStringList());
+        if (!dontSearchInList.isEmpty())
+            dontSearchIn->listBox()->addItems(dontSearchInList);
+    }
 }
 
-void GeneralFilter::saveToProfile ( QString name )
+void GeneralFilter::saveToProfile(QString name)
 {
-	KConfigGroup group( krConfig, name );
+    KConfigGroup group(krConfig, name);
 
-	group.writeEntry ( "Case Sensitive Search", searchForCase->isChecked() );
-	group.writeEntry ( "Case Sensitive Content", containsTextCase->isChecked() );
-	group.writeEntry ( "Remote Content Search", remoteContentSearch->isChecked() );
-	group.writeEntry ( "Match Whole Word Only", containsWholeWord->isChecked() );
-	group.writeEntry ( "Regular Expression", containsRegExp->isChecked() );
-	
-	QString enc;
-	if( contentEncoding->currentIndex() != 0 )
-		enc = KGlobal::charsets()->encodingForName( contentEncoding->currentText() );
-	group.writeEntry ( "Content Encoding", enc );
-	
-	group.writeEntry ( "Contains Text", containsText->currentText() );
-	group.writeEntry ( "Search For", searchFor->currentText() );
+    group.writeEntry("Case Sensitive Search", searchForCase->isChecked());
+    group.writeEntry("Case Sensitive Content", containsTextCase->isChecked());
+    group.writeEntry("Remote Content Search", remoteContentSearch->isChecked());
+    group.writeEntry("Match Whole Word Only", containsWholeWord->isChecked());
+    group.writeEntry("Regular Expression", containsRegExp->isChecked());
 
-	group.writeEntry ( "Mime Type", ofType->currentText() );
+    QString enc;
+    if (contentEncoding->currentIndex() != 0)
+        enc = KGlobal::charsets()->encodingForName(contentEncoding->currentText());
+    group.writeEntry("Content Encoding", enc);
 
-	if ( properties & FilterTabs::HasRecurseOptions )
-	{
-		group.writeEntry ( "Search In Subdirectories", searchInDirs->isChecked() );
-		group.writeEntry ( "Search In Archives", searchInArchives->isChecked() );
-		group.writeEntry ( "Follow Symlinks", followLinks->isChecked() );
-	}
+    group.writeEntry("Contains Text", containsText->currentText());
+    group.writeEntry("Search For", searchFor->currentText());
 
-	if ( properties & FilterTabs::HasSearchIn )
-	{
-		group.writeEntry ( "Search In Edit", searchIn->lineEdit()->text() );
+    group.writeEntry("Mime Type", ofType->currentText());
 
-		QStringList searchInList;
-		for ( int i=0; i != searchIn->listBox()->count(); i++ )
-			searchInList.append ( searchIn->listBox()->item( i )->text().simplified() );
-		group.writeEntry ( "Search In List", searchInList );
-	}
+    if (properties & FilterTabs::HasRecurseOptions) {
+        group.writeEntry("Search In Subdirectories", searchInDirs->isChecked());
+        group.writeEntry("Search In Archives", searchInArchives->isChecked());
+        group.writeEntry("Follow Symlinks", followLinks->isChecked());
+    }
 
-	if ( properties & FilterTabs::HasDontSearchIn )
-	{
-		group.writeEntry ( "Don't Search In Edit", dontSearchIn->lineEdit()->text() );
+    if (properties & FilterTabs::HasSearchIn) {
+        group.writeEntry("Search In Edit", searchIn->lineEdit()->text());
 
-		QStringList dontSearchInList;
-		for ( int i=0; i != dontSearchIn->listBox()->count(); i++ )
-			dontSearchInList.append ( dontSearchIn->listBox()->item( i )->text().simplified() );
-		group.writeEntry ( "Don't Search In List", dontSearchInList );
-	}
+        QStringList searchInList;
+        for (int i = 0; i != searchIn->listBox()->count(); i++)
+            searchInList.append(searchIn->listBox()->item(i)->text().simplified());
+        group.writeEntry("Search In List", searchInList);
+    }
+
+    if (properties & FilterTabs::HasDontSearchIn) {
+        group.writeEntry("Don't Search In Edit", dontSearchIn->lineEdit()->text());
+
+        QStringList dontSearchInList;
+        for (int i = 0; i != dontSearchIn->listBox()->count(); i++)
+            dontSearchInList.append(dontSearchIn->listBox()->item(i)->text().simplified());
+        group.writeEntry("Don't Search In List", dontSearchInList);
+    }
 }
 
 void GeneralFilter::refreshProfileListBox()
 {
-	profileListBox->clear();
-	profileListBox->addItems ( ProfileManager::availableProfiles ( "SelectionProfile" ) );
+    profileListBox->clear();
+    profileListBox->addItems(ProfileManager::availableProfiles("SelectionProfile"));
 
-	if ( profileListBox->count() != 0 )
-	{
-		profileLoadBtn->setEnabled ( true );
-		profileOverwriteBtn->setEnabled ( true );
-		profileRemoveBtn->setEnabled ( true );
-	}
-	else
-	{
-		profileLoadBtn->setEnabled ( false );
-		profileOverwriteBtn->setEnabled ( false );
-		profileRemoveBtn->setEnabled ( false );
-	}
+    if (profileListBox->count() != 0) {
+        profileLoadBtn->setEnabled(true);
+        profileOverwriteBtn->setEnabled(true);
+        profileRemoveBtn->setEnabled(true);
+    } else {
+        profileLoadBtn->setEnabled(false);
+        profileOverwriteBtn->setEnabled(false);
+        profileRemoveBtn->setEnabled(false);
+    }
 }
 
 void GeneralFilter::slotAddBtnClicked()
 {
-	profileManager->newProfile ( searchFor->currentText().simplified() );
-	refreshProfileListBox();
+    profileManager->newProfile(searchFor->currentText().simplified());
+    refreshProfileListBox();
 }
 
 void GeneralFilter::slotOverwriteBtnClicked()
 {
-	QListWidgetItem *item = profileListBox->currentItem();
-	if ( item != 0 )
-		profileManager->overwriteProfile ( item->text() );
+    QListWidgetItem *item = profileListBox->currentItem();
+    if (item != 0)
+        profileManager->overwriteProfile(item->text());
 }
 
 void GeneralFilter::slotRemoveBtnClicked()
 {
-	QListWidgetItem *item = profileListBox->currentItem();
-	if ( item != 0 )
-	{
-		profileManager->deleteProfile ( item->text() );
-		refreshProfileListBox();
-	}
+    QListWidgetItem *item = profileListBox->currentItem();
+    if (item != 0) {
+        profileManager->deleteProfile(item->text());
+        refreshProfileListBox();
+    }
 }
 
-void GeneralFilter::slotProfileDoubleClicked ( QListWidgetItem *item )
+void GeneralFilter::slotProfileDoubleClicked(QListWidgetItem *item)
 {
-	if ( item != 0 )
-	{
-		QString profileName = item->text();
-		profileManager->loadProfile ( profileName );
-		fltTabs->close ( true );
-	}
+    if (item != 0) {
+        QString profileName = item->text();
+        profileManager->loadProfile(profileName);
+        fltTabs->close(true);
+    }
 }
 
 void GeneralFilter::slotLoadBtnClicked()
 {
-	QListWidgetItem *item = profileListBox->currentItem();
-	if ( item != 0 )
-		profileManager->loadProfile ( item->text() );
+    QListWidgetItem *item = profileListBox->currentItem();
+    if (item != 0)
+        profileManager->loadProfile(item->text());
 }
 
-void GeneralFilter::slotDisable() {
-	bool state = containsRegExp->isChecked();
-	bool global = ofType->currentText() !=i18n ( "Directories" );
-	bool remoteOnly = false;
-	if ( properties & FilterTabs::HasSearchIn )
-	{
-		KUrl::List urlList = searchIn->urlList();
-		remoteOnly = urlList.count() != 0;
-		foreach( const KUrl &url, urlList )
-			if( url.protocol() == "file" )
-				remoteOnly = false;
-	}
-	
-	containsWholeWord->setEnabled( !state && global );
-	containsRegExp->menu()->setEnabled( state && global );
-	encLabel->setEnabled( global );
-	contentEncoding->setEnabled( global );
-	containsTextCase->setEnabled( global );
-	containsRegExp->setEnabled( global );
-	if ( properties & FilterTabs::HasRemoteContentSearch )
-		remoteContentSearch->setEnabled( global );
-	if ( properties & FilterTabs::HasRecurseOptions )
-		searchInArchives->setEnabled( global && !remoteOnly );
-	containsLabel->setEnabled( global );
-	containsText->setEnabled( global );
+void GeneralFilter::slotDisable()
+{
+    bool state = containsRegExp->isChecked();
+    bool global = ofType->currentText() != i18n("Directories");
+    bool remoteOnly = false;
+    if (properties & FilterTabs::HasSearchIn) {
+        KUrl::List urlList = searchIn->urlList();
+        remoteOnly = urlList.count() != 0;
+        foreach(const KUrl &url, urlList)
+        if (url.protocol() == "file")
+            remoteOnly = false;
+    }
+
+    containsWholeWord->setEnabled(!state && global);
+    containsRegExp->menu()->setEnabled(state && global);
+    encLabel->setEnabled(global);
+    contentEncoding->setEnabled(global);
+    containsTextCase->setEnabled(global);
+    containsRegExp->setEnabled(global);
+    if (properties & FilterTabs::HasRemoteContentSearch)
+        remoteContentSearch->setEnabled(global);
+    if (properties & FilterTabs::HasRecurseOptions)
+        searchInArchives->setEnabled(global && !remoteOnly);
+    containsLabel->setEnabled(global);
+    containsText->setEnabled(global);
 }
 
-void GeneralFilter::slotRegExpTriggered( QAction * act ) {
-	if( act == 0 )
-		return;
-	RegExpAction *regAct = dynamic_cast<RegExpAction *>( act );
-	if( regAct == 0 )
-		return;
-	containsText->lineEdit()->insert(regAct->regExp());
-	containsText->lineEdit()->setCursorPosition(containsText->lineEdit()->cursorPosition() + regAct->cursor());
-	containsText->lineEdit()->setFocus();
+void GeneralFilter::slotRegExpTriggered(QAction * act)
+{
+    if (act == 0)
+        return;
+    RegExpAction *regAct = dynamic_cast<RegExpAction *>(act);
+    if (regAct == 0)
+        return;
+    containsText->lineEdit()->insert(regAct->regExp());
+    containsText->lineEdit()->setCursorPosition(containsText->lineEdit()->cursorPosition() + regAct->cursor());
+    containsText->lineEdit()->setFocus();
 }
 
 #include "generalfilter.moc"

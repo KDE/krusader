@@ -28,29 +28,30 @@
 class QTextStream;
 class QFile;
 
-class KrServices {
-public: 
-	KrServices(){}
-	~KrServices(){}
+class KrServices
+{
+public:
+    KrServices() {}
+    ~KrServices() {}
 
-	static bool         cmdExist(QString cmdName);
-	static QString      chooseFullPathName( QStringList names, QString confName );
-	static QString      detectFullPathName( QString name );
-	static QString      fullPathName( QString name, QString confName = QString() );
-	static QStringList  separateArgs( QString args );
-	static QString      registerdProtocol(QString mimetype);
-	static QString      getPath( const KUrl &url, KUrl::AdjustPathOption trailing=KUrl::LeaveTrailingSlash );
-	static void         clearProtocolCache();
-	static bool         fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines=false);
-	static bool         fileToStringList(QFile *file, QStringList& target, bool keepEmptyLines=false);
-	static QString		  quote( QString name );
-	static QStringList  quote( const QStringList& names );
+    static bool         cmdExist(QString cmdName);
+    static QString      chooseFullPathName(QStringList names, QString confName);
+    static QString      detectFullPathName(QString name);
+    static QString      fullPathName(QString name, QString confName = QString());
+    static QStringList  separateArgs(QString args);
+    static QString      registerdProtocol(QString mimetype);
+    static QString      getPath(const KUrl &url, KUrl::AdjustPathOption trailing = KUrl::LeaveTrailingSlash);
+    static void         clearProtocolCache();
+    static bool         fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines = false);
+    static bool         fileToStringList(QFile *file, QStringList& target, bool keepEmptyLines = false);
+    static QString    quote(QString name);
+    static QStringList  quote(const QStringList& names);
 
 protected:
-	static QString 	  escape( QString name );
+    static QString    escape(QString name);
 
 private:
-	static QMap<QString,QString>* slaveMap;
+    static QMap<QString, QString>* slaveMap;
 
 };
 

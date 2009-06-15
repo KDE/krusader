@@ -40,158 +40,153 @@
 class DUListViewItem : public QTreeWidgetItem
 {
 public:
-  DUListViewItem( DiskUsage *diskUsageIn, File *fileIn, QTreeWidget * parent, QString label1, 
-                  QString label2, QString label3, QString label4, QString label5, QString label6, 
-                  QString label7, QString label8, QString label9 ) 
-                  : QTreeWidgetItem( parent ), diskUsage( diskUsageIn ), file( fileIn )
-                  {
-                    setText( 0, label1 );
-                    setText( 1, label2 );
-                    setText( 2, label3 );
-                    setText( 3, label4 );
-                    setText( 4, label5 );
-                    setText( 5, label6 );
-                    setText( 6, label7 );
-                    setText( 7, label8 );
-                    setText( 8, label9 );
+    DUListViewItem(DiskUsage *diskUsageIn, File *fileIn, QTreeWidget * parent, QString label1,
+                   QString label2, QString label3, QString label4, QString label5, QString label6,
+                   QString label7, QString label8, QString label9)
+            : QTreeWidgetItem(parent), diskUsage(diskUsageIn), file(fileIn) {
+        setText(0, label1);
+        setText(1, label2);
+        setText(2, label3);
+        setText(3, label4);
+        setText(4, label5);
+        setText(5, label6);
+        setText(6, label7);
+        setText(7, label8);
+        setText(8, label9);
 
-                    setTextAlignment( 1, Qt::AlignRight );
-                    setTextAlignment( 2, Qt::AlignRight );
-                    setTextAlignment( 3, Qt::AlignRight );
+        setTextAlignment(1, Qt::AlignRight);
+        setTextAlignment(2, Qt::AlignRight);
+        setTextAlignment(3, Qt::AlignRight);
 
-                    setChildIndicatorPolicy( QTreeWidgetItem::DontShowIndicatorWhenChildless );
-                    diskUsage->addProperty( file, "ListView-Ref", this );
-                  }
-  DUListViewItem( DiskUsage *diskUsageIn, File *fileIn, QTreeWidgetItem * parent, QString label1, 
-                  QString label2, QString label3, QString label4, QString label5, QString label6, 
-                  QString label7, QString label8, QString label9 ) 
-                  : QTreeWidgetItem( parent ), diskUsage( diskUsageIn ), file( fileIn ) 
-                  {
-                    setText( 0, label1 );
-                    setText( 1, label2 );
-                    setText( 2, label3 );
-                    setText( 3, label4 );
-                    setText( 4, label5 );
-                    setText( 5, label6 );
-                    setText( 6, label7 );
-                    setText( 7, label8 );
-                    setText( 8, label9 );
+        setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicatorWhenChildless);
+        diskUsage->addProperty(file, "ListView-Ref", this);
+    }
+    DUListViewItem(DiskUsage *diskUsageIn, File *fileIn, QTreeWidgetItem * parent, QString label1,
+                   QString label2, QString label3, QString label4, QString label5, QString label6,
+                   QString label7, QString label8, QString label9)
+            : QTreeWidgetItem(parent), diskUsage(diskUsageIn), file(fileIn) {
+        setText(0, label1);
+        setText(1, label2);
+        setText(2, label3);
+        setText(3, label4);
+        setText(4, label5);
+        setText(5, label6);
+        setText(6, label7);
+        setText(7, label8);
+        setText(8, label9);
 
-                    setTextAlignment( 1, Qt::AlignRight );
-                    setTextAlignment( 2, Qt::AlignRight );
-                    setTextAlignment( 3, Qt::AlignRight );
+        setTextAlignment(1, Qt::AlignRight);
+        setTextAlignment(2, Qt::AlignRight);
+        setTextAlignment(3, Qt::AlignRight);
 
-                    setChildIndicatorPolicy( QTreeWidgetItem::DontShowIndicatorWhenChildless );
-                    diskUsage->addProperty( file, "ListView-Ref", this );
-                  }
-  DUListViewItem( DiskUsage *diskUsageIn, File *fileIn, QTreeWidget * parent, QTreeWidgetItem * after, 
-                  QString label1, QString label2, QString label3, QString label4, QString label5, 
-                  QString label6, QString label7, QString label8, QString label9 )
-                  : QTreeWidgetItem( parent, after ), diskUsage( diskUsageIn ), file( fileIn ) 
-                  {
-                    setText( 0, label1 );
-                    setText( 1, label2 );
-                    setText( 2, label3 );
-                    setText( 3, label4 );
-                    setText( 4, label5 );
-                    setText( 5, label6 );
-                    setText( 6, label7 );
-                    setText( 7, label8 );
-                    setText( 8, label9 );
+        setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicatorWhenChildless);
+        diskUsage->addProperty(file, "ListView-Ref", this);
+    }
+    DUListViewItem(DiskUsage *diskUsageIn, File *fileIn, QTreeWidget * parent, QTreeWidgetItem * after,
+                   QString label1, QString label2, QString label3, QString label4, QString label5,
+                   QString label6, QString label7, QString label8, QString label9)
+            : QTreeWidgetItem(parent, after), diskUsage(diskUsageIn), file(fileIn) {
+        setText(0, label1);
+        setText(1, label2);
+        setText(2, label3);
+        setText(3, label4);
+        setText(4, label5);
+        setText(5, label6);
+        setText(6, label7);
+        setText(7, label8);
+        setText(8, label9);
 
-                    setTextAlignment( 1, Qt::AlignRight );
-                    setTextAlignment( 2, Qt::AlignRight );
-                    setTextAlignment( 3, Qt::AlignRight );
+        setTextAlignment(1, Qt::AlignRight);
+        setTextAlignment(2, Qt::AlignRight);
+        setTextAlignment(3, Qt::AlignRight);
 
-                    setChildIndicatorPolicy( QTreeWidgetItem::DontShowIndicatorWhenChildless );
-                    diskUsage->addProperty( file, "ListView-Ref", this );
-                  }
-  DUListViewItem( DiskUsage *diskUsageIn, File *fileIn, QTreeWidgetItem * parent, QTreeWidgetItem * after, 
-                  QString label1, QString label2, QString label3, QString label4, QString label5, 
-                  QString label6, QString label7, QString label8, QString label9 )   
-                  : QTreeWidgetItem( parent, after ), 
-                  diskUsage( diskUsageIn ), file( fileIn ) 
-                  {
-                    setText( 0, label1 );
-                    setText( 1, label2 );
-                    setText( 2, label3 );
-                    setText( 3, label4 );
-                    setText( 4, label5 );
-                    setText( 5, label6 );
-                    setText( 6, label7 );
-                    setText( 7, label8 );
-                    setText( 8, label9 );
+        setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicatorWhenChildless);
+        diskUsage->addProperty(file, "ListView-Ref", this);
+    }
+    DUListViewItem(DiskUsage *diskUsageIn, File *fileIn, QTreeWidgetItem * parent, QTreeWidgetItem * after,
+                   QString label1, QString label2, QString label3, QString label4, QString label5,
+                   QString label6, QString label7, QString label8, QString label9)
+            : QTreeWidgetItem(parent, after),
+            diskUsage(diskUsageIn), file(fileIn) {
+        setText(0, label1);
+        setText(1, label2);
+        setText(2, label3);
+        setText(3, label4);
+        setText(4, label5);
+        setText(5, label6);
+        setText(6, label7);
+        setText(7, label8);
+        setText(8, label9);
 
-                    setTextAlignment( 1, Qt::AlignRight );
-                    setTextAlignment( 2, Qt::AlignRight );
-                    setTextAlignment( 3, Qt::AlignRight );
+        setTextAlignment(1, Qt::AlignRight);
+        setTextAlignment(2, Qt::AlignRight);
+        setTextAlignment(3, Qt::AlignRight);
 
-                    setChildIndicatorPolicy( QTreeWidgetItem::DontShowIndicatorWhenChildless );
-                    diskUsage->addProperty( file, "ListView-Ref", this );
-                  }
-  ~DUListViewItem()
-                  {
-                    diskUsage->removeProperty( file, "ListView-Ref" );
-                  }
-  
-  virtual bool operator<(const QTreeWidgetItem &other) const
-  {
-      int column = treeWidget() ? treeWidget()->sortColumn() : 0;
+        setChildIndicatorPolicy(QTreeWidgetItem::DontShowIndicatorWhenChildless);
+        diskUsage->addProperty(file, "ListView-Ref", this);
+    }
+    ~DUListViewItem() {
+        diskUsage->removeProperty(file, "ListView-Ref");
+    }
 
-      if( text( 0 ) == ".." )
-        return true;
+    virtual bool operator<(const QTreeWidgetItem &other) const {
+        int column = treeWidget() ? treeWidget()->sortColumn() : 0;
 
-      const DUListViewItem *compWith = dynamic_cast< const DUListViewItem * >( &other );
-      if( compWith == 0 )
-        return false;
+        if (text(0) == "..")
+            return true;
 
-      switch( column )
-      {
-      case 1:
-      case 2:
-        return file->size() > compWith->file->size();
-      case 3:
-        return file->ownSize() > compWith->file->ownSize();
-      case 5:
-        return file->time() < compWith->file->time();
-      default:
-        return text(column) < other.text(column);
-      }
-  }
+        const DUListViewItem *compWith = dynamic_cast< const DUListViewItem * >(&other);
+        if (compWith == 0)
+            return false;
 
-  inline File * getFile() { return file; }
-  
+        switch (column) {
+        case 1:
+        case 2:
+            return file->size() > compWith->file->size();
+        case 3:
+            return file->ownSize() > compWith->file->ownSize();
+        case 5:
+            return file->time() < compWith->file->time();
+        default:
+            return text(column) < other.text(column);
+        }
+    }
+
+    inline File * getFile() {
+        return file;
+    }
+
 private:
-  DiskUsage *diskUsage;
-  File *file;
+    DiskUsage *diskUsage;
+    File *file;
 };
 
 class DUListView : public KrTreeWidget
 {
-  Q_OBJECT
-  
-public:
-  DUListView( DiskUsage *usage );
-  ~DUListView();
+    Q_OBJECT
 
-  File * getCurrentFile();
-      
+public:
+    DUListView(DiskUsage *usage);
+    ~DUListView();
+
+    File * getCurrentFile();
+
 public slots:
-  void slotDirChanged( Directory * );
-  void slotChanged( File * );
-  void slotDeleted( File * );
-  void slotRightClicked(QTreeWidgetItem *, const QPoint &);
-  void slotExpanded( QTreeWidgetItem * );
-    
+    void slotDirChanged(Directory *);
+    void slotChanged(File *);
+    void slotDeleted(File *);
+    void slotRightClicked(QTreeWidgetItem *, const QPoint &);
+    void slotExpanded(QTreeWidgetItem *);
+
 protected:
-  DiskUsage *diskUsage;
-  
-  virtual void mouseDoubleClickEvent ( QMouseEvent * e );
-  virtual void keyPressEvent( QKeyEvent *e );
-    
+    DiskUsage *diskUsage;
+
+    virtual void mouseDoubleClickEvent(QMouseEvent * e);
+    virtual void keyPressEvent(QKeyEvent *e);
+
 private:
-  void addDirectory( Directory *dirEntry, QTreeWidgetItem *parent );
-  bool doubleClicked( QTreeWidgetItem * item );
+    void addDirectory(Directory *dirEntry, QTreeWidgetItem *parent);
+    bool doubleClicked(QTreeWidgetItem * item);
 };
 
 #endif /* __DU_LISTVIEW_H__ */

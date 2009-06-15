@@ -40,145 +40,150 @@
 
 class KRarcObserver : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  virtual ~KRarcObserver() {}
+    virtual ~KRarcObserver() {}
 
-  virtual void processEvents() = 0;
-  virtual void subJobStarted( const QString & jobTitle, int count ) = 0;
-  virtual void subJobStopped() = 0;
-  virtual bool wasCancelled() = 0;
-  virtual void error( const QString & error ) = 0;
-  virtual void detailedError( const QString & error, const QString & details ) = 0;
+    virtual void processEvents() = 0;
+    virtual void subJobStarted(const QString & jobTitle, int count) = 0;
+    virtual void subJobStopped() = 0;
+    virtual bool wasCancelled() = 0;
+    virtual void error(const QString & error) = 0;
+    virtual void detailedError(const QString & error, const QString & details) = 0;
 
 public slots:
-  virtual void incrementProgress( int ) = 0;
+    virtual void incrementProgress(int) = 0;
 };
 
-class KRarcHandler: public QObject {
-  Q_OBJECT
+class KRarcHandler: public QObject
+{
+    Q_OBJECT
 public:
-  static KRarcObserver *defaultObserver;
+    static KRarcObserver *defaultObserver;
 
-  // return the number of files in the archive
-  static long arcFileCount(QString archive, QString type, QString password, KRarcObserver *observer = defaultObserver);
-  // unpack an archive to destination directory
-  static bool unpack(QString archive, QString type, QString password, QString dest, KRarcObserver *observer = defaultObserver );
-  // pack an archive to destination directory
-  static bool pack(QStringList fileNames, QString type, QString dest, long count, QMap<QString,QString> extraProps, KRarcObserver *observer = defaultObserver );
-  // test an archive
-  static bool test(QString archive, QString type, QString password, long count = 0L, KRarcObserver *observer = defaultObserver );
-  // true - if the right unpacker exist in the system
-  static bool arcSupported(QString type);
-  // true - if supported and the user want us to handle this kind of archive
-  static bool arcHandled(QString type);
-  // return the a list of supported packers
-  static QStringList supportedPackers();
-  // true - if the url is an archive (ie: tar:/home/test/file.tar.bz2)
-  static bool isArchive(const KUrl& url);
-  // used to determine the type of the archive
-  static QString getType( bool &encrypted, QString fileName, QString mime, bool checkEncrypted = true );
-  // queries the password from the user
-  static QString getPassword( QString path );
-  // detects the archive type
-  static QString detectArchive( bool &encrypted, QString fileName, bool checkEncrypted = true );
+    // return the number of files in the archive
+    static long arcFileCount(QString archive, QString type, QString password, KRarcObserver *observer = defaultObserver);
+    // unpack an archive to destination directory
+    static bool unpack(QString archive, QString type, QString password, QString dest, KRarcObserver *observer = defaultObserver);
+    // pack an archive to destination directory
+    static bool pack(QStringList fileNames, QString type, QString dest, long count, QMap<QString, QString> extraProps, KRarcObserver *observer = defaultObserver);
+    // test an archive
+    static bool test(QString archive, QString type, QString password, long count = 0L, KRarcObserver *observer = defaultObserver);
+    // true - if the right unpacker exist in the system
+    static bool arcSupported(QString type);
+    // true - if supported and the user want us to handle this kind of archive
+    static bool arcHandled(QString type);
+    // return the a list of supported packers
+    static QStringList supportedPackers();
+    // true - if the url is an archive (ie: tar:/home/test/file.tar.bz2)
+    static bool isArchive(const KUrl& url);
+    // used to determine the type of the archive
+    static QString getType(bool &encrypted, QString fileName, QString mime, bool checkEncrypted = true);
+    // queries the password from the user
+    static QString getPassword(QString path);
+    // detects the archive type
+    static QString detectArchive(bool &encrypted, QString fileName, bool checkEncrypted = true);
 private:
-  // checks if the returned status is correct
-  static bool checkStatus( QString type, int exitCode );
+    // checks if the returned status is correct
+    static bool checkStatus(QString type, int exitCode);
 
-  static KWallet::Wallet * wallet;
+    static KWallet::Wallet * wallet;
 };
 
 /**
  * A Process which emits how manny lines it is writing to stdout or atderr.
  */
-class KrLinecountingProcess : public KProcess {
-	Q_OBJECT
+class KrLinecountingProcess : public KProcess
+{
+    Q_OBJECT
 public:
-	KrLinecountingProcess() : KProcess() {
-	setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect!
-		connect(this, SIGNAL(readyReadStandardError()), SLOT(receivedError()) );
-		connect(this, SIGNAL(readyReadStandardOutput()), SLOT(receivedOutput()) );
-	}
+    KrLinecountingProcess() : KProcess() {
+        setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect!
+        connect(this, SIGNAL(readyReadStandardError()), SLOT(receivedError()));
+        connect(this, SIGNAL(readyReadStandardOutput()), SLOT(receivedOutput()));
+    }
 
-	QString getErrorMsg() {
-		if( errorData.trimmed().isEmpty() )
-			return QString::fromLocal8Bit(outputData);
-		else
-			return QString::fromLocal8Bit(errorData);
-	}
-	
+    QString getErrorMsg() {
+        if (errorData.trimmed().isEmpty())
+            return QString::fromLocal8Bit(outputData);
+        else
+            return QString::fromLocal8Bit(errorData);
+    }
+
 public slots:
-	void receivedError() {
-		QByteArray newData(this->readAllStandardError());
-		emit newErrorLines(newData.count('\n'));
-		errorData += newData;
-		if( errorData.length() > 500 )
-			errorData = errorData.right( 500 );
-		receivedOutput(newData);
-	}
-	
-	void receivedOutput(QByteArray newData = QByteArray()) {
-		if (newData.isEmpty())
-			newData = this->readAllStandardOutput();
-		emit newOutputLines(newData.count('\n'));
-		outputData += newData;
-		if( outputData.length() > 500 )
-			outputData = outputData.right( 500 );
-	}
+    void receivedError() {
+        QByteArray newData(this->readAllStandardError());
+        emit newErrorLines(newData.count('\n'));
+        errorData += newData;
+        if (errorData.length() > 500)
+            errorData = errorData.right(500);
+        receivedOutput(newData);
+    }
+
+    void receivedOutput(QByteArray newData = QByteArray()) {
+        if (newData.isEmpty())
+            newData = this->readAllStandardOutput();
+        emit newOutputLines(newData.count('\n'));
+        outputData += newData;
+        if (outputData.length() > 500)
+            outputData = outputData.right(500);
+    }
 
 signals:
-	void newOutputLines(int count);
-	void newErrorLines(int count);
+    void newOutputLines(int count);
+    void newErrorLines(int count);
 
 private:
-	QByteArray errorData;
-	QByteArray outputData;
+    QByteArray errorData;
+    QByteArray outputData;
 };
 
-class Kr7zEncryptionChecker : public KProcess {
-	Q_OBJECT
-	
+class Kr7zEncryptionChecker : public KProcess
+{
+    Q_OBJECT
+
 public:
-	Kr7zEncryptionChecker() : KProcess(), encrypted( false ), lastData() {
-		setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect!
-		connect(this, SIGNAL(readyReadStandardOutput()), SLOT(receivedOutput()) );
-	}
+    Kr7zEncryptionChecker() : KProcess(), encrypted(false), lastData() {
+        setOutputChannelMode(KProcess::SeparateChannels); // without this output redirection has no effect!
+        connect(this, SIGNAL(readyReadStandardOutput()), SLOT(receivedOutput()));
+    }
 
 protected:
-  virtual void setupChildProcess() {
-    // This function is called after the fork but for the exec. We create a process group
-    // to work around a broken wrapper script of 7z. Without this only the wrapper is killed.
-    setsid(); // make this process leader of a new process group
-  }
+    virtual void setupChildProcess() {
+        // This function is called after the fork but for the exec. We create a process group
+        // to work around a broken wrapper script of 7z. Without this only the wrapper is killed.
+        setsid(); // make this process leader of a new process group
+    }
 
 public slots:
-	void receivedOutput() {
-		QString data =  QString::fromLocal8Bit(this->readAllStandardOutput());
-		
-		QString checkable = lastData + data;
-		
-		QStringList lines = checkable.split( '\n' );
-		lastData = lines[ lines.count() - 1 ];
-		for( int i=0; i != lines.count(); i++ ) {
-			QString line = lines[ i ].trimmed().toLower();
-			int ndx = line.indexOf( "testing" );
-			if( ndx >=0 )
-				line.truncate( ndx );
-			if( line.isEmpty() )
-				continue;
-			
-			if( line.contains( "password" ) && line.contains( "enter" ) ) {
-				encrypted = true;
-				::kill(- pid(), SIGKILL); // kill the whole process group by giving the negative PID
-			}
-		}
-	}
+    void receivedOutput() {
+        QString data =  QString::fromLocal8Bit(this->readAllStandardOutput());
 
-	bool isEncrypted() { return encrypted; }
+        QString checkable = lastData + data;
+
+        QStringList lines = checkable.split('\n');
+        lastData = lines[ lines.count() - 1 ];
+        for (int i = 0; i != lines.count(); i++) {
+            QString line = lines[ i ].trimmed().toLower();
+            int ndx = line.indexOf("testing");
+            if (ndx >= 0)
+                line.truncate(ndx);
+            if (line.isEmpty())
+                continue;
+
+            if (line.contains("password") && line.contains("enter")) {
+                encrypted = true;
+                ::kill(- pid(), SIGKILL); // kill the whole process group by giving the negative PID
+            }
+        }
+    }
+
+    bool isEncrypted() {
+        return encrypted;
+    }
 private:
-	bool encrypted;
-	QString lastData;
+    bool encrypted;
+    QString lastData;
 };
 
 #endif

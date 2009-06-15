@@ -48,52 +48,55 @@ class KDirSortFilterProxyModel;
 class QMimeData;
 class QPoint;
 
-class PanelPopup: public QWidget {
-   Q_OBJECT
+class PanelPopup: public QWidget
+{
+    Q_OBJECT
 
-   enum Parts { Tree, Preview, QuickPanel, View, DskUsage, Last=0xFF };
+    enum Parts { Tree, Preview, QuickPanel, View, DskUsage, Last = 0xFF };
 public:
-   PanelPopup( QSplitter *splitter, bool left );
-   ~PanelPopup();
-	inline int currentPage() const { return stack->currentWidget()->property( "KrusaderWidgetId" ).toInt(); }
+    PanelPopup(QSplitter *splitter, bool left);
+    ~PanelPopup();
+    inline int currentPage() const {
+        return stack->currentWidget()->property("KrusaderWidgetId").toInt();
+    }
 
-	void saveSizes();
+    void saveSizes();
 
 public slots:
-   void update(KUrl url);
-	void show();
-	void hide();
-	
+    void update(KUrl url);
+    void show();
+    void hide();
+
 signals:
-	void selection(const KUrl &url);
-	void hideMe();
-   
-protected slots:	
-	virtual void setFocus();
-	void tabSelected(int id);
-	void treeSelection();
-	void handleOpenUrlRequest(const KUrl &url);
-	void quickSelect();
-	void quickSelect(const QString &);
-        void quickSelectStore();
+    void selection(const KUrl &url);
+    void hideMe();
+
+protected slots:
+    virtual void setFocus();
+    void tabSelected(int id);
+    void treeSelection();
+    void handleOpenUrlRequest(const KUrl &url);
+    void quickSelect();
+    void quickSelect(const QString &);
+    void quickSelectStore();
 
 protected:
-	bool _left;
-	bool _hidden;
-	QStackedWidget *stack;
-	KrusaderImageFilePreview *viewer;
-	KrSqueezedTextLabel *dataLine;
-	QPointer<KIO::PreviewJob> pjob;
-	KrFileTreeView *tree;
-	QToolButton *treeBtn, *previewBtn, *quickBtn, *viewerBtn, *duBtn;
-	QButtonGroup *btns;
-	KLineEdit *quickFilter;
-	KComboBox *quickSelectCombo;
-	PanelViewer *panelviewer;
-	DiskUsageViewer *diskusage;
-	QWidget *quickPanel;
-	QList<int> splitterSizes;
-	QSplitter *splitter;
+    bool _left;
+    bool _hidden;
+    QStackedWidget *stack;
+    KrusaderImageFilePreview *viewer;
+    KrSqueezedTextLabel *dataLine;
+    QPointer<KIO::PreviewJob> pjob;
+    KrFileTreeView *tree;
+    QToolButton *treeBtn, *previewBtn, *quickBtn, *viewerBtn, *duBtn;
+    QButtonGroup *btns;
+    KLineEdit *quickFilter;
+    KComboBox *quickSelectCombo;
+    PanelViewer *panelviewer;
+    DiskUsageViewer *diskusage;
+    QWidget *quickPanel;
+    QList<int> splitterSizes;
+    QSplitter *splitter;
 };
 
 
@@ -102,36 +105,36 @@ class KrFileTreeView : public QTreeView
     friend class KrDirModel;
     Q_OBJECT
 
-    public:
-        KrFileTreeView(QWidget *parent = 0);
-        virtual ~KrFileTreeView() {}
+public:
+    KrFileTreeView(QWidget *parent = 0);
+    virtual ~KrFileTreeView() {}
 
-        KUrl currentUrl() const;
-        KUrl selectedUrl() const;
-        KUrl::List selectedUrls() const;
-        KUrl rootUrl() const;
+    KUrl currentUrl() const;
+    KUrl selectedUrl() const;
+    KUrl::List selectedUrls() const;
+    KUrl rootUrl() const;
 
-    public Q_SLOTS:
-        void setDirOnlyMode(bool enabled);
-        void setShowHiddenFiles(bool enabled);
-        void setCurrentUrl(const KUrl &url);
-        void setRootUrl(const KUrl &url);
+public Q_SLOTS:
+    void setDirOnlyMode(bool enabled);
+    void setShowHiddenFiles(bool enabled);
+    void setCurrentUrl(const KUrl &url);
+    void setRootUrl(const KUrl &url);
 
-    Q_SIGNALS:
-        void activated(const KUrl &url);
-        void currentChanged(const KUrl &url);
+Q_SIGNALS:
+    void activated(const KUrl &url);
+    void currentChanged(const KUrl &url);
 
 private Q_SLOTS:
-        void slotActivated(const QModelIndex&);
-        void slotCurrentChanged(const QModelIndex&, const QModelIndex&);
-        void slotExpanded(const QModelIndex&);
+    void slotActivated(const QModelIndex&);
+    void slotCurrentChanged(const QModelIndex&, const QModelIndex&);
+    void slotExpanded(const QModelIndex&);
 
 private:
-        KUrl urlForProxyIndex(const QModelIndex &index) const;
-        void dropMimeData ( const KUrl::List & lst, const KUrl & url, const QModelIndex & ind );
+    KUrl urlForProxyIndex(const QModelIndex &index) const;
+    void dropMimeData(const KUrl::List & lst, const KUrl & url, const QModelIndex & ind);
 
-        KDirModel *mSourceModel;
-        KDirSortFilterProxyModel *mProxyModel;
+    KDirModel *mSourceModel;
+    KDirSortFilterProxyModel *mProxyModel;
 };
 
 #endif

@@ -25,7 +25,8 @@
 #include "useraction.h"
 #include "kraction.h"
 
-UserActionPopupMenu::UserActionPopupMenu( const KUrl &currentURL, QWidget *parent )
-  : KActionMenu( i18n("User Actions"), parent ) {
-   krUserAction->populateMenu( this, &currentURL );
+UserActionPopupMenu::UserActionPopupMenu(const KUrl &currentURL, QWidget *parent)
+        : KActionMenu(i18n("User Actions"), parent)
+{
+    krUserAction->populateMenu(this, &currentURL);
 }

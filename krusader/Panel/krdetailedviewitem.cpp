@@ -48,278 +48,281 @@
 #include <kdebug.h>
 #include <kmimetype.h>
 
-#define COLUMN(X)	static_cast<const KrDetailedViewProperties*>(_viewProperties)->	\
-	column[ KrDetailedViewProperties::X ]
-#define PROPS	static_cast<const KrDetailedViewProperties*>(_viewProperties)
+#define COLUMN(X) static_cast<const KrDetailedViewProperties*>(_viewProperties)-> \
+    column[ KrDetailedViewProperties::X ]
+#define PROPS static_cast<const KrDetailedViewProperties*>(_viewProperties)
 #define PERM_BITMASK (S_ISUID|S_ISGID|S_ISVTX|S_IRWXU|S_IRWXG|S_IRWXO)
-#define VF	getVfile()
+#define VF getVfile()
 
 #ifdef FASTER
 int KrDetailedViewItem::expHeight = 0;
 #endif // FASTER
 
 KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, Q3ListViewItem *after, vfile *vf):
-	K3ListViewItem(parent, after), KrViewItem(vf, parent->properties()) {
+        K3ListViewItem(parent, after), KrViewItem(vf, parent->properties())
+{
 #ifdef FASTER
-	initiated = false;
-	// get the expected height of an item - should be done only once
-	if (expHeight == 0) {
-		KConfigGroup svr( krConfig, "Look&Feel" );
-  		expHeight = 2 + (svr.readEntry("Filelist Icon Size",_FilelistIconSize)).toInt();
-	}
+    initiated = false;
+    // get the expected height of an item - should be done only once
+    if (expHeight == 0) {
+        KConfigGroup svr(krConfig, "Look&Feel");
+        expHeight = 2 + (svr.readEntry("Filelist Icon Size", _FilelistIconSize)).toInt();
+    }
 
-#endif	
-	// there's a special case, where if _vf is null, then we've got the ".." (updir) item
-	// in that case, create a special vfile for that item, and delete it, if needed
-	if (!_vf) {
-		dummyVfile = true;
-		_vf = new vfile("..", 0, "drw-r--r--", 0, false, 0, 0, QString(), QString(), 0);
-		
-		setText(COLUMN(Name), "..");
-		setText(COLUMN(Size), i18n("<DIR>") );
-      if ( PROPS->displayIcons )
-         setPixmap( COLUMN(Name), FL_LOADICON( "go-up" ) );
-      setSelectable( false );
-#ifdef FASTER
-		initiated = true;
 #endif
-	}
-	
-	repaintItem();
+    // there's a special case, where if _vf is null, then we've got the ".." (updir) item
+    // in that case, create a special vfile for that item, and delete it, if needed
+    if (!_vf) {
+        dummyVfile = true;
+        _vf = new vfile("..", 0, "drw-r--r--", 0, false, 0, 0, QString(), QString(), 0);
+
+        setText(COLUMN(Name), "..");
+        setText(COLUMN(Size), i18n("<DIR>"));
+        if (PROPS->displayIcons)
+            setPixmap(COLUMN(Name), FL_LOADICON("go-up"));
+        setSelectable(false);
+#ifdef FASTER
+        initiated = true;
+#endif
+    }
+
+    repaintItem();
 }
 
 #ifdef FASTER
-void KrDetailedViewItem::setup() {
-	// idea: when not having pixmaps in the first place, the height of the item is smaller then with
-	// the pixmap. when the pixmap is inserted, the item resizes, thereby making ensureItemVisible()
-	// become 'confused' and stop working. therefore, we set the correct height here and avoid the issue
-	K3ListViewItem::setup();
-	setHeight(expHeight);
+void KrDetailedViewItem::setup()
+{
+    // idea: when not having pixmaps in the first place, the height of the item is smaller then with
+    // the pixmap. when the pixmap is inserted, the item resizes, thereby making ensureItemVisible()
+    // become 'confused' and stop working. therefore, we set the correct height here and avoid the issue
+    K3ListViewItem::setup();
+    setHeight(expHeight);
 }
 #endif
 
-void KrDetailedViewItem::repaintItem() {
-    if ( dummyVfile ) return;
+void KrDetailedViewItem::repaintItem()
+{
+    if (dummyVfile) return;
     QString tmp;
     // set text in columns, according to what columns are available
     int id = KrDetailedViewProperties::Unused;
     if ((id = COLUMN(Mime)) != -1) {
-      KMimeType::Ptr mt = KMimeType::mimeType(_vf->vfile_getMime());
-      if( mt )
-         tmp = mt->comment();
-      setText( id, tmp );
+        KMimeType::Ptr mt = KMimeType::mimeType(_vf->vfile_getMime());
+        if (mt)
+            tmp = mt->comment();
+        setText(id, tmp);
     }
     if ((id = COLUMN(Size)) != -1) {
-		 if (_vf->vfile_isDir() && _vf->vfile_getSize() <= 0) setText(id, i18n("<DIR>"));
-	    else setText(id, PROPS->humanReadableSize ? KIO::convertSize(_vf->vfile_getSize()) + "  " :
-		 						KRpermHandler::parseSize(_vf->vfile_getSize()) + ' ');
+        if (_vf->vfile_isDir() && _vf->vfile_getSize() <= 0) setText(id, i18n("<DIR>"));
+        else setText(id, PROPS->humanReadableSize ? KIO::convertSize(_vf->vfile_getSize()) + "  " :
+                         KRpermHandler::parseSize(_vf->vfile_getSize()) + ' ');
     }
 
     if ((id = COLUMN(DateTime)) != -1)
-      setText(id, dateTime());
+        setText(id, dateTime());
     if ((id = COLUMN(KrPermissions)) != -1) {
-      // first, build the krusader permissions
-      tmp=QString();
-      switch (_vf->vfile_isReadable()){
+        // first, build the krusader permissions
+        tmp = QString();
+        switch (_vf->vfile_isReadable()) {
         case ALLOWED_PERM: tmp+='r'; break;
         case UNKNOWN_PERM: tmp+='?'; break;
         case NO_PERM:      tmp+='-'; break;
-      }
-   	  switch (_vf->vfile_isWriteable()){
+        }
+        switch (_vf->vfile_isWriteable()) {
         case ALLOWED_PERM: tmp+='w'; break;
         case UNKNOWN_PERM: tmp+='?'; break;
         case NO_PERM:      tmp+='-'; break;
-      }
-   	  switch (_vf->vfile_isExecutable()){
+        }
+        switch (_vf->vfile_isExecutable()) {
         case ALLOWED_PERM: tmp+='x'; break;
         case UNKNOWN_PERM: tmp+='?'; break;
         case NO_PERM:      tmp+='-'; break;
-      }
-      setText(id, tmp);
+        }
+        setText(id, tmp);
     }
-    if ((id = COLUMN(Permissions) ) != -1) {
-		if (PROPS->numericPermissions) {
-      	setText(id, tmp.sprintf("%.4o", _vf->vfile_getMode() & PERM_BITMASK));
-		} else setText(id, _vf->vfile_getPerm());
-	 }
+    if ((id = COLUMN(Permissions)) != -1) {
+        if (PROPS->numericPermissions) {
+            setText(id, tmp.sprintf("%.4o", _vf->vfile_getMode() & PERM_BITMASK));
+        } else setText(id, _vf->vfile_getPerm());
+    }
     if ((id = COLUMN(Owner)) != -1) {
-      setText(id, _vf->vfile_getOwner());
+        setText(id, _vf->vfile_getOwner());
     }
     if ((id = COLUMN(Group)) != -1) {
-      setText(id, _vf->vfile_getGroup());
+        setText(id, _vf->vfile_getGroup());
     }
     // if we've got an extension column, clip the name accordingly
     QString name = this->name(), ext = "";
-    if ((id = COLUMN(Extension)) != -1 && !_vf->vfile_isDir()) { 
-    	ext = this->extension();
-	name = this->name(false); // request name without extension
-      	setText(id, ext);
+    if ((id = COLUMN(Extension)) != -1 && !_vf->vfile_isDir()) {
+        ext = this->extension();
+        name = this->name(false); // request name without extension
+        setText(id, ext);
     }
     setText(COLUMN(Name), name);
 #ifndef FASTER
     // display an icon if needed
     if (PROPS->displayIcons)
-      setPixmap(COLUMN(Name),KrView::getIcon(_vf));
+        setPixmap(COLUMN(Name), KrView::getIcon(_vf));
 #endif
 }
 
-QString num2qstring(KIO::filesize_t num){
-  QString buf;
-  buf.sprintf("%025llu",num);
-  return buf;
+QString num2qstring(KIO::filesize_t num)
+{
+    QString buf;
+    buf.sprintf("%025llu", num);
+    return buf;
 }
 
-void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align) {
+void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align)
+{
 #ifdef FASTER
-	if (!initiated && !dummyVfile) {
-		// display an icon if needed
-		if (PROPS->displayIcons)
-			setPixmap(COLUMN(Name),KrView::getIcon(_vf));
-		
-		initiated = true;
-	}
+    if (!initiated && !dummyVfile) {
+        // display an icon if needed
+        if (PROPS->displayIcons)
+            setPixmap(COLUMN(Name), KrView::getIcon(_vf));
+
+        initiated = true;
+    }
 #endif
-  
-  QColorGroup _cg(cg);
 
-   // This is ugly! I had to dublicate K3ListViewItem::paintCell() code, as the
-   // K3ListViewItem::paintCell() overwrites my color settings. So KrDetailedViewItem::paintCell
-   // must dublicate the K3ListViewItem::paintCell() code, do the required color settings
-   // and call QListViewItem::paintCell() afterwards (the base class of K3ListViewItem).
-   // This tabooed in the object oriented heaven, but necessary here. Blame the KDE team for
-   // this really poor paintCell implementation!
-   
-   const QPixmap *pm = listView()->viewport()->backgroundPixmap();
-   if (pm && !pm->isNull())
-   {
-         _cg.setBrush(QColorGroup::Base, QBrush(backgroundColor( column ), *pm));
-         p->setBrushOrigin( -listView()->contentsX(), -listView()->contentsY() );
-   }
-   else if (isAlternate())
-        if (listView()->viewport()->backgroundMode()==Qt::FixedColor)
-             _cg.setColor(QColorGroup::Background, static_cast< K3ListView* >(listView())->alternateBackground());
-       else
-             _cg.setColor(QColorGroup::Base, static_cast< K3ListView* >(listView())->alternateBackground());
+    QColorGroup _cg(cg);
 
-  // end of ugliness
+    // This is ugly! I had to dublicate K3ListViewItem::paintCell() code, as the
+    // K3ListViewItem::paintCell() overwrites my color settings. So KrDetailedViewItem::paintCell
+    // must dublicate the K3ListViewItem::paintCell() code, do the required color settings
+    // and call QListViewItem::paintCell() afterwards (the base class of K3ListViewItem).
+    // This tabooed in the object oriented heaven, but necessary here. Blame the KDE team for
+    // this really poor paintCell implementation!
 
-  KrColorItemType colorItemType;
-  colorItemType.m_activePanel = (dynamic_cast<KrView *>(listView()) == ACTIVE_PANEL->view);
-  colorItemType.m_alternateBackgroundColor = isAlternate();
-  colorItemType.m_currentItem = (listView()->currentItem() == this);
-  colorItemType.m_selectedItem = isSelected();
-  if (VF->vfile_isSymLink())
-  {
-     if (_vf->vfile_getMime() == "Broken Link !" )
-        colorItemType.m_fileType = KrColorItemType::InvalidSymlink;
-     else
-        colorItemType.m_fileType = KrColorItemType::Symlink;
-  }
-  else if (VF->vfile_isDir())
-     colorItemType.m_fileType = KrColorItemType::Directory;
-  else if (VF->vfile_isExecutable())
-     colorItemType.m_fileType = KrColorItemType::Executable;
-  else
-     colorItemType.m_fileType = KrColorItemType::File;
+    const QPixmap *pm = listView()->viewport()->backgroundPixmap();
+    if (pm && !pm->isNull()) {
+        _cg.setBrush(QColorGroup::Base, QBrush(backgroundColor(column), *pm));
+        p->setBrushOrigin(-listView()->contentsX(), -listView()->contentsY());
+    } else if (isAlternate())
+        if (listView()->viewport()->backgroundMode() == Qt::FixedColor)
+            _cg.setColor(QColorGroup::Background, static_cast< K3ListView* >(listView())->alternateBackground());
+        else
+            _cg.setColor(QColorGroup::Base, static_cast< K3ListView* >(listView())->alternateBackground());
 
-  KrColorGroup cols;
-  KrColorCache::getColorCache().getColors(cols, colorItemType);
-  _cg.setColor(QColorGroup::Base, cols.background());
-  _cg.setColor(QColorGroup::Background, cols.background());
-  _cg.setColor(QColorGroup::Text, cols.text());
-  _cg.setColor(QColorGroup::HighlightedText, cols.highlightedText());
-  _cg.setColor(QColorGroup::Highlight, cols.highlight());
+    // end of ugliness
 
-	// center the <DIR> thing if needed
-	if(column != COLUMN(Size))
-		Q3ListViewItem::paintCell(p, _cg, column, width, align);
-	else {
-  		if (dummyVfile) {
-			Q3ListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter); // updir
-  		} else {
-    		if (_vf->vfile_isDir() && _vf->vfile_getSize()<=0)
-      		Q3ListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter);
-    		else Q3ListViewItem::paintCell(p, _cg, column, width, align); // size
-  		}
-	}
+    KrColorItemType colorItemType;
+    colorItemType.m_activePanel = (dynamic_cast<KrView *>(listView()) == ACTIVE_PANEL->view);
+    colorItemType.m_alternateBackgroundColor = isAlternate();
+    colorItemType.m_currentItem = (listView()->currentItem() == this);
+    colorItemType.m_selectedItem = isSelected();
+    if (VF->vfile_isSymLink()) {
+        if (_vf->vfile_getMime() == "Broken Link !")
+            colorItemType.m_fileType = KrColorItemType::InvalidSymlink;
+        else
+            colorItemType.m_fileType = KrColorItemType::Symlink;
+    } else if (VF->vfile_isDir())
+        colorItemType.m_fileType = KrColorItemType::Directory;
+    else if (VF->vfile_isExecutable())
+        colorItemType.m_fileType = KrColorItemType::Executable;
+    else
+        colorItemType.m_fileType = KrColorItemType::File;
+
+    KrColorGroup cols;
+    KrColorCache::getColorCache().getColors(cols, colorItemType);
+    _cg.setColor(QColorGroup::Base, cols.background());
+    _cg.setColor(QColorGroup::Background, cols.background());
+    _cg.setColor(QColorGroup::Text, cols.text());
+    _cg.setColor(QColorGroup::HighlightedText, cols.highlightedText());
+    _cg.setColor(QColorGroup::Highlight, cols.highlight());
+
+    // center the <DIR> thing if needed
+    if (column != COLUMN(Size))
+        Q3ListViewItem::paintCell(p, _cg, column, width, align);
+    else {
+        if (dummyVfile) {
+            Q3ListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter); // updir
+        } else {
+            if (_vf->vfile_isDir() && _vf->vfile_getSize() <= 0)
+                Q3ListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter);
+            else Q3ListViewItem::paintCell(p, _cg, column, width, align); // size
+        }
+    }
 }
 
 void KrDetailedViewItem::paintFocus(QPainter *p, const QColorGroup &cg, const QRect &r)
 {
-   QRect rn = r;
-   if( rn.width() )
-     rn.setWidth( rn.width() - 1 );
-   if( rn.height() )
-     rn.setHeight( rn.height() - 1 );
+    QRect rn = r;
+    if (rn.width())
+        rn.setWidth(rn.width() - 1);
+    if (rn.height())
+        rn.setHeight(rn.height() - 1);
 
-   KrColorItemType colorItemType;
-   colorItemType.m_activePanel = (dynamic_cast<KrView *>(listView()) == ACTIVE_PANEL->view);
-   colorItemType.m_alternateBackgroundColor = isAlternate();
-   colorItemType.m_currentItem = (listView()->currentItem() == this);
-   colorItemType.m_selectedItem = isSelected();
-   colorItemType.m_fileType = KrColorItemType::File;
+    KrColorItemType colorItemType;
+    colorItemType.m_activePanel = (dynamic_cast<KrView *>(listView()) == ACTIVE_PANEL->view);
+    colorItemType.m_alternateBackgroundColor = isAlternate();
+    colorItemType.m_currentItem = (listView()->currentItem() == this);
+    colorItemType.m_selectedItem = isSelected();
+    colorItemType.m_fileType = KrColorItemType::File;
 
-   KrColorGroup cols;
-   KrColorCache::getColorCache().getColors(cols, colorItemType);
-   QColor col = cols.text();
+    KrColorGroup cols;
+    KrColorCache::getColorCache().getColors(cols, colorItemType);
+    QColor col = cols.text();
 
-   QPen pen( col );
-   pen.setStyle( Qt::DotLine );
-   p->setPen( pen );
-   p->drawRect( rn );
+    QPen pen(col);
+    pen.setStyle(Qt::DotLine);
+    p->setPen(pen);
+    p->drawRect(rn);
 }
 
 const QColor & KrDetailedViewItem::setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2)
 {
-   #define sqr(x) ((x)*(x))
-   int contrast = sqr(color1.red() - background.red()) + sqr(color1.green() - background.green()) + sqr(color1.blue() - background.blue());
+#define sqr(x) ((x)*(x))
+    int contrast = sqr(color1.red() - background.red()) + sqr(color1.green() - background.green()) + sqr(color1.blue() - background.blue());
 
-   // if the contrast between background and color1 is too small, take color2 instead.
-   if (contrast < 1000)
-      return color2;
-   return color1;
+    // if the contrast between background and color1 is too small, take color2 instead.
+    if (contrast < 1000)
+        return color2;
+    return color1;
 }
 
-int KrDetailedViewItem::compare(Q3ListViewItem *i,int col,bool ascending ) const {
-	bool alwaysSortDirsByName = (PROPS->sortMode & KrViewProperties::AlwaysSortDirsByName);
-  int asc = ( ascending ? -1 : 1 );
-  KrDetailedViewItem *other = (KrDetailedViewItem *)(i);
+int KrDetailedViewItem::compare(Q3ListViewItem *i, int col, bool ascending) const
+{
+    bool alwaysSortDirsByName = (PROPS->sortMode & KrViewProperties::AlwaysSortDirsByName);
+    int asc = (ascending ? -1 : 1);
+    KrDetailedViewItem *other = (KrDetailedViewItem *)(i);
 
-  bool thisDir = VF->vfile_isDir();
-  bool otherDir = other->VF->vfile_isDir();
+    bool thisDir = VF->vfile_isDir();
+    bool otherDir = other->VF->vfile_isDir();
 
-  // handle directory sorting
-  if ( thisDir ){
-    if ( !otherDir ) return 1*asc;
-  } else if( otherDir ) return -1*asc;
+    // handle directory sorting
+    if (thisDir) {
+        if (!otherDir) return 1*asc;
+    } else if (otherDir) return -1*asc;
 
-  if ( isDummy() ) return 1*asc;
-  if ( other->isDummy() ) return -1*asc;
-		
-  if (col == COLUMN(Name) ||
-			(alwaysSortDirsByName && thisDir && otherDir )) {
-    return compareTexts(name(), other->name(), asc, true);
-  } else if (col == COLUMN(Size) ) {
-      if( VF->vfile_getSize() == other->VF->vfile_getSize() )
-        return 0;
-      return (VF->vfile_getSize() > other->VF->vfile_getSize() ? 1 : -1);
-  } else if (col == COLUMN(DateTime) ) {
-      if( VF->vfile_getTime_t() == other->VF->vfile_getTime_t() )
-        return 0;
-      return (VF->vfile_getTime_t() > other->VF->vfile_getTime_t() ? 1 : -1);
-  } else if (col == COLUMN(Permissions) && PROPS->numericPermissions) {
-		int thisPerm = VF->vfile_getMode() & PERM_BITMASK;
-		int otherPerm = other->VF->vfile_getMode() & PERM_BITMASK;
-		if( thisPerm == otherPerm )
-			return 0;
-		return ((thisPerm > otherPerm) ? 1 : -1);
-  } else {
-     return compareTexts( text(col), i->text(col), asc, false );
-  }
+    if (isDummy()) return 1*asc;
+    if (other->isDummy()) return -1*asc;
+
+    if (col == COLUMN(Name) ||
+            (alwaysSortDirsByName && thisDir && otherDir)) {
+        return compareTexts(name(), other->name(), asc, true);
+    } else if (col == COLUMN(Size)) {
+        if (VF->vfile_getSize() == other->VF->vfile_getSize())
+            return 0;
+        return (VF->vfile_getSize() > other->VF->vfile_getSize() ? 1 : -1);
+    } else if (col == COLUMN(DateTime)) {
+        if (VF->vfile_getTime_t() == other->VF->vfile_getTime_t())
+            return 0;
+        return (VF->vfile_getTime_t() > other->VF->vfile_getTime_t() ? 1 : -1);
+    } else if (col == COLUMN(Permissions) && PROPS->numericPermissions) {
+        int thisPerm = VF->vfile_getMode() & PERM_BITMASK;
+        int otherPerm = other->VF->vfile_getMode() & PERM_BITMASK;
+        if (thisPerm == otherPerm)
+            return 0;
+        return ((thisPerm > otherPerm) ? 1 : -1);
+    } else {
+        return compareTexts(text(col), i->text(col), asc, false);
+    }
 }
 
-void KrDetailedViewItem::itemHeightChanged() {
+void KrDetailedViewItem::itemHeightChanged()
+{
 #ifdef FASTER
-	expHeight = 0;
+    expHeight = 0;
 #endif
 }

@@ -12,43 +12,45 @@ class KrQueueListWidget;
 
 class QueueWidget: public KTabWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	QueueWidget( QWidget * parent = 0 );
-	~QueueWidget();
-	
-	void deleteCurrent();
-	
+    QueueWidget(QWidget * parent = 0);
+    ~QueueWidget();
+
+    void deleteCurrent();
+
 protected slots:
-	void slotQueueAdded( Queue * );
-	void slotQueueDeleted( Queue * );
-	void slotCurrentChanged( Queue * );
-	void slotCurrentChanged( int );
+    void slotQueueAdded(Queue *);
+    void slotQueueDeleted(Queue *);
+    void slotCurrentChanged(Queue *);
+    void slotCurrentChanged(int);
 
 signals:
-	void currentChanged();
+    void currentChanged();
 
 private:
-	QMap<QString, KrQueueListWidget*> _queueWidgets;
+    QMap<QString, KrQueueListWidget*> _queueWidgets;
 };
 
 class KrQueueListWidget : public KrListWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	KrQueueListWidget( Queue * queue, QWidget * parent );
-	Queue * queue() { return _queue; }
-	void deleteItem( QListWidgetItem * item );
+    KrQueueListWidget(Queue * queue, QWidget * parent);
+    Queue * queue() {
+        return _queue;
+    }
+    void deleteItem(QListWidgetItem * item);
 
 public slots:
-	void slotChanged();
-	void slotItemRightClicked( QListWidgetItem * );
-	
+    void slotChanged();
+    void slotItemRightClicked(QListWidgetItem *);
+
 signals:
-	void stateChanged();
-	
+    void stateChanged();
+
 private:
-	QPointer<Queue> _queue;
+    QPointer<Queue> _queue;
 };
 
 

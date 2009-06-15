@@ -32,23 +32,23 @@
 #define KGARCHIVES_H
 
 #include "konfiguratorpage.h"
- 
+
 class KgArchives : public KonfiguratorPage
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KgArchives( bool first, QWidget* parent=0 );
-  virtual bool apply();
-  virtual void setDefaults();
+    KgArchives(bool first, QWidget* parent = 0);
+    virtual bool apply();
+    virtual void setDefaults();
 
 public slots:
-  void slotAutoConfigure();
-  
-protected:
-  KonfiguratorCheckBoxGroup *cbs;
+    void slotAutoConfigure();
 
-  void disableNonExistingPackers();
+protected:
+    KonfiguratorCheckBoxGroup *cbs;
+
+    void disableNonExistingPackers();
 };
 
 #endif /* __KGARCHIVES_H__ */

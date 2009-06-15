@@ -35,90 +35,95 @@
 #include "qstringlist.h"
 #include <QtCore/QDir>
 
-KRdirWatch::KRdirWatch(int msec,bool dirOnly):
-  delay(msec),t(this), changed(false) {
-  if(dirOnly) dir.setFilter( QDir::Dirs | QDir::Hidden | QDir::NoSymLinks );
-  watched.setAutoDelete(true);
-  connect(&t,SIGNAL(timeout()),this, SLOT(checkDirs()));
-  startScan();
+KRdirWatch::KRdirWatch(int msec, bool dirOnly):
+        delay(msec), t(this), changed(false)
+{
+    if (dirOnly) dir.setFilter(QDir::Dirs | QDir::Hidden | QDir::NoSymLinks);
+    watched.setAutoDelete(true);
+    connect(&t, SIGNAL(timeout()), this, SLOT(checkDirs()));
+    startScan();
 }
 
-KRdirWatch::~KRdirWatch(){
-  clearList();
-  stopScan();
+KRdirWatch::~KRdirWatch()
+{
+    clearList();
+    stopScan();
 }
 
-void KRdirWatch::removeDir(QString path){
-  t.stop();
-  for ( it = watched.first(); it != 0;  )
-    if (it->path == path) watched.remove();
-    else it = watched.next();
-  if (!stopped) startScan();
+void KRdirWatch::removeDir(QString path)
+{
+    t.stop();
+    for (it = watched.first(); it != 0;)
+        if (it->path == path) watched.remove();
+        else it = watched.next();
+    if (!stopped) startScan();
 }
 
-void KRdirWatch::addDir(QString path, bool checkPermissions){
-  t.stop();
+void KRdirWatch::addDir(QString path, bool checkPermissions)
+{
+    t.stop();
 
-  krDirEntry* temp = new krDirEntry;
-  if (!dir.cd(path)){ // if it's not a dir or don't exist - don't add it
-    //kDebug() << "KRDirWatch: can't watch " + path +", (don't exist)" << endl;
-    return;
-  }
-  if( checkPermissions ) {
-    // if we can't read it - don't bother
-    if (getgid() != 0 && !KRpermHandler::fileReadable(path) ){
-      //kDebug() << "KRDirWatch: can't watch " + path +", (not readable)" << endl;
-      return;
+    krDirEntry* temp = new krDirEntry;
+    if (!dir.cd(path)) { // if it's not a dir or don't exist - don't add it
+        //kDebug() << "KRDirWatch: can't watch " + path +", (don't exist)" << endl;
+        return;
     }
-    if (!KRpermHandler::fileWriteable(path) ){ // read-only directories can't be changed
-      //kDebug() << "KRDirWatch: not watching " + path +", (read-only directory)" << endl;
-      return;
+    if (checkPermissions) {
+        // if we can't read it - don't bother
+        if (getgid() != 0 && !KRpermHandler::fileReadable(path)) {
+            //kDebug() << "KRDirWatch: can't watch " + path +", (not readable)" << endl;
+            return;
+        }
+        if (!KRpermHandler::fileWriteable(path)) { // read-only directories can't be changed
+            //kDebug() << "KRDirWatch: not watching " + path +", (read-only directory)" << endl;
+            return;
+        }
     }
-  }
-  qfi.setFile(path);
+    qfi.setFile(path);
 
-  temp->path = dir.path();
-  temp->count = dir.entryList(QDir::TypeMask | QDir::AccessMask).count();
-  temp->lastModified = qfi.lastModified();
+    temp->path = dir.path();
+    temp->count = dir.entryList(QDir::TypeMask | QDir::AccessMask).count();
+    temp->lastModified = qfi.lastModified();
 
-  watched.append(temp);
-  if (!stopped) startScan();
+    watched.append(temp);
+    if (!stopped) startScan();
 }
 
 // here we do the actual checking
-void KRdirWatch::checkDirs(){
-  t.stop();
+void KRdirWatch::checkDirs()
+{
+    t.stop();
 
-  QString path;
-  unsigned long count;
-  QDateTime dt;
+    QString path;
+    unsigned long count;
+    QDateTime dt;
 
-  for ( it = watched.first(); it != 0; it = watched.next() ){
-    path = it->path;
-    qfi.setFile(path);
-    if (!dir.cd(path)){
-      clearList();
-      emit dirty();
-      return;
+    for (it = watched.first(); it != 0; it = watched.next()) {
+        path = it->path;
+        qfi.setFile(path);
+        if (!dir.cd(path)) {
+            clearList();
+            emit dirty();
+            return;
+        }
+        dt = qfi.lastModified();
+        count = dir.entryList(QDir::TypeMask | QDir::AccessMask).count();
+        // check for changes
+        if (it->lastModified != dt || it->count != count) {
+            changed = true;
+            it->lastModified = dt;
+            it->count = count;
+            startScan();
+            return;
+        }
+        if (changed) {
+            changed = false;
+            clearList();
+            emit dirty();
+            return;
+        }
     }
-    dt = qfi.lastModified();
-    count = dir.entryList(QDir::TypeMask | QDir::AccessMask).count();
-    // check for changes
-    if(it->lastModified!=dt || it->count!=count){
-      changed = true;
-      it->lastModified=dt;
-      it->count=count;
-      startScan();
-      return;
-    }
-    if(changed){
-      changed = false;
-      clearList();
-      emit dirty();
-      return;
-    }
-  }
-  if (!stopped) startScan();
+    if (!stopped) startScan();
 }
 
 #include "krdirwatch.moc"

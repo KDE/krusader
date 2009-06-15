@@ -38,37 +38,38 @@
 
 class FilterTabs : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
-  public:
+public:
 
-    enum
-    {
-      HasRemoteContentSearch  =   0x0800,
-      HasProfileHandler       =   0x1000,
-      HasRecurseOptions       =   0x2000,
-      HasSearchIn             =   0x4000,
-      HasDontSearchIn         =   0x8000,
+    enum {
+        HasRemoteContentSearch  =   0x0800,
+        HasProfileHandler       =   0x1000,
+        HasRecurseOptions       =   0x2000,
+        HasSearchIn             =   0x4000,
+        HasDontSearchIn         =   0x8000,
 
-      Default                 =   0xe000
+        Default                 =   0xe000
     };
 
-    static FilterTabs * addTo( QTabWidget *tabWidget, int props = FilterTabs::Default );
-    static KRQuery      getQuery( QWidget *parent = 0 );
+    static FilterTabs * addTo(QTabWidget *tabWidget, int props = FilterTabs::Default);
+    static KRQuery      getQuery(QWidget *parent = 0);
 
-    FilterBase *get( QString name );
+    FilterBase *get(QString name);
 
-  public slots:
-    void  loadFromProfile( QString );
-    void  saveToProfile( QString );
-    bool  fillQuery( KRQuery *query );
-    void  close( bool accept = true ) { emit closeRequest( accept ); }
+public slots:
+    void  loadFromProfile(QString);
+    void  saveToProfile(QString);
+    bool  fillQuery(KRQuery *query);
+    void  close(bool accept = true) {
+        emit closeRequest(accept);
+    }
 
-  signals:
-    void  closeRequest( bool accept = true );
-    
-  private:
-    FilterTabs( int properties, QTabWidget *tabWidget, QObject *parent );
+signals:
+    void  closeRequest(bool accept = true);
+
+private:
+    FilterTabs(int properties, QTabWidget *tabWidget, QObject *parent);
     void  acceptQuery();
 
     QList<FilterBase *> filterList;

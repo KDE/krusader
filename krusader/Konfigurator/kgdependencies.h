@@ -40,21 +40,21 @@ class QTabWidget;
 
 class KgDependencies : public KonfiguratorPage
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KgDependencies( bool first, QWidget* parent=0 );
+    KgDependencies(bool first, QWidget* parent = 0);
 
-  virtual int activeSubPage();
-  
+    virtual int activeSubPage();
+
 private:
-  void addApplication( QString name, QGridLayout *grid, int row, QWidget *parent, int page, QString additionalList=QString() );
-  
+    void addApplication(QString name, QGridLayout *grid, int row, QWidget *parent, int page, QString additionalList = QString());
+
 public slots:
-  void slotApply( QObject *obj, QString cls, QString name );
-  
+    void slotApply(QObject *obj, QString cls, QString name);
+
 private:
-  QTabWidget *tabWidget;
+    QTabWidget *tabWidget;
 };
 
 #endif /* __KGDEPENDENCIES_H__ */

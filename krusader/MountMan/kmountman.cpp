@@ -6,7 +6,7 @@ e-mail               : krusader@users.sourceforge.net
 web site             : http://krusader.sourceforge.net
 ---------------------------------------------------------------------------
 
-A 
+A
 
 db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
 88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
@@ -26,7 +26,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 *                                                                         *
 ***************************************************************************/
 
-#include "kmountman.h" 
+#include "kmountman.h"
 
 #include <sys/param.h>
 #include <time.h>
@@ -63,394 +63,407 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 static int __delayedIdx; // ugly: pass the processEvents deadlock
 
-KMountMan::KMountMan() : QObject(), Operational( false ), waiting(false), mountManGui( 0 ) {
-   _actions = 0L;
+KMountMan::KMountMan() : QObject(), Operational(false), waiting(false), mountManGui(0)
+{
+    _actions = 0L;
 
-	// added as a precaution, although we use kde services now
-	if( !KrServices::cmdExist( "mount" ) ) {
-    	Operational = false;
-	} else { 
-		Operational = true;
-	}
+    // added as a precaution, although we use kde services now
+    if (!KrServices::cmdExist("mount")) {
+        Operational = false;
+    } else {
+        Operational = true;
+    }
 
-	// list of FS that we don't manage at all
-	invalid_fs << "swap" << "/dev/pts" << "tmpfs" << "devpts" << "sysfs" << "rpc_pipefs" << "usbfs" << "binfmt_misc";
+    // list of FS that we don't manage at all
+    invalid_fs << "swap" << "/dev/pts" << "tmpfs" << "devpts" << "sysfs" << "rpc_pipefs" << "usbfs" << "binfmt_misc";
 #ifdef BSD
-	invalid_fs << "procfs";
+    invalid_fs << "procfs";
 #else
-	invalid_fs << "proc";
+    invalid_fs << "proc";
 #endif
 
-	// list of FS that we don't allow to mount/unmount
-	nonmount_fs << "supermount";
-	{
-		KConfigGroup group( krConfig, "Advanced");
-		QStringList nonmount = group.readEntry("Nonmount Points", _NonMountPoints).split(',');
-		nonmount_fs_mntpoint += nonmount;
-		// simplify the white space
-		for ( QStringList::Iterator it = nonmount_fs_mntpoint.begin(); it != nonmount_fs_mntpoint.end(); ++it ) {
-			*it = (*it).simplified();
-		}
-	}
-	
+    // list of FS that we don't allow to mount/unmount
+    nonmount_fs << "supermount";
+    {
+        KConfigGroup group(krConfig, "Advanced");
+        QStringList nonmount = group.readEntry("Nonmount Points", _NonMountPoints).split(',');
+        nonmount_fs_mntpoint += nonmount;
+        // simplify the white space
+        for (QStringList::Iterator it = nonmount_fs_mntpoint.begin(); it != nonmount_fs_mntpoint.end(); ++it) {
+            *it = (*it).simplified();
+        }
+    }
+
 }
 
 KMountMan::~KMountMan() {}
 
-bool KMountMan::invalidFilesystem(QString type) {
-	return (invalid_fs.contains(type) > 0);
+bool KMountMan::invalidFilesystem(QString type)
+{
+    return (invalid_fs.contains(type) > 0);
 }
 
 // this is an ugly hack, but type can actually be a mountpoint. oh well...
-bool KMountMan::nonmountFilesystem(QString type, QString mntPoint) {
-	return((nonmount_fs.contains(type) > 0) || (nonmount_fs_mntpoint.contains(mntPoint) > 0));
+bool KMountMan::nonmountFilesystem(QString type, QString mntPoint)
+{
+    return((nonmount_fs.contains(type) > 0) || (nonmount_fs_mntpoint.contains(mntPoint) > 0));
 }
 
-void KMountMan::mainWindow() {
-   mountManGui = new KMountManGUI();
-   delete mountManGui;   /* as KMountManGUI is modal, we can now delete it */
-   mountManGui = 0; /* for sanity */
+void KMountMan::mainWindow()
+{
+    mountManGui = new KMountManGUI();
+    delete mountManGui;   /* as KMountManGUI is modal, we can now delete it */
+    mountManGui = 0; /* for sanity */
 }
 
-KSharedPtr<KMountPoint> KMountMan::findInListByMntPoint(KMountPoint::List &lst, QString value) {
-	if( value.length() > 1 && value.endsWith( '/' ) )
-		value = value.left( value.length() - 1 );
-	
-	KSharedPtr<KMountPoint> m;
-	for (KMountPoint::List::iterator it = lst.begin(); it != lst.end(); ++it) {
-		m = *it;
-		QString mntPnt = m->mountPoint();
-		if( mntPnt.length() > 1 && mntPnt.endsWith( '/' ) )
-			mntPnt = mntPnt.left( mntPnt.length() - 1 );
-		if (mntPnt == value)
-			return m;
-	}
-	
-	return KSharedPtr<KMountPoint>();
+KSharedPtr<KMountPoint> KMountMan::findInListByMntPoint(KMountPoint::List &lst, QString value)
+{
+    if (value.length() > 1 && value.endsWith('/'))
+        value = value.left(value.length() - 1);
+
+    KSharedPtr<KMountPoint> m;
+    for (KMountPoint::List::iterator it = lst.begin(); it != lst.end(); ++it) {
+        m = *it;
+        QString mntPnt = m->mountPoint();
+        if (mntPnt.length() > 1 && mntPnt.endsWith('/'))
+            mntPnt = mntPnt.left(mntPnt.length() - 1);
+        if (mntPnt == value)
+            return m;
+    }
+
+    return KSharedPtr<KMountPoint>();
 }
 
-void KMountMan::jobResult(KJob *job) {
-	waiting = false;
-	if ( job->error() )
-		job->uiDelegate()->showErrorMessage();
+void KMountMan::jobResult(KJob *job)
+{
+    waiting = false;
+    if (job->error())
+        job->uiDelegate()->showErrorMessage();
 }
 
-void KMountMan::mount( QString mntPoint, bool blocking ) {
-	QString udi = findUdiForPath( mntPoint, Solid::DeviceInterface::StorageAccess );
-	if( !udi.isNull() )
-	{
-		Solid::Device device( udi );
-		Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
-		if( access && !access->isAccessible() ) {
-			connect( access, SIGNAL( setupDone(Solid::ErrorType, QVariant, const QString &) ),
-			         this, SLOT( slotSetupDone(Solid::ErrorType, QVariant, const QString &) ) );
-			if (blocking)
-				waiting = true; // prepare to block
-			access->setup();
-		}
-	} else {
-		KMountPoint::List possible = KMountPoint::possibleMountPoints(KMountPoint::NeedMountOptions);
-		KSharedPtr<KMountPoint> m = findInListByMntPoint(possible, mntPoint);
-		if (!((bool)m)) return;
-		if (blocking)
-		   waiting = true; // prepare to block
-		
-		// KDE4 doesn't allow mounting devices as user, because they think it's the right behaviour.
-		// I add this patch, as I don't think so.
-		if( geteuid() ) // tries to mount as an user?
-		{
-			KProcess proc;
-			proc << KrServices::fullPathName( "mount" ) << mntPoint;
-			proc.start();
-			if( !blocking )
-				return;
-			proc.waitForFinished(-1); // -1 msec blocks without timeout
-			if ( proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0 )
-				return;
-		}
-	
-		KIO::SimpleJob *job = KIO::mount(false, m->mountType().toLocal8Bit(), m->mountedFrom(), m->mountPoint(), false);
-		job->setUiDelegate(new KIO::JobUiDelegate() );
-		KIO::getJobTracker()->registerJob(job);
-		connect(job, SIGNAL(result(KJob* )), this, SLOT(jobResult(KJob* )));
-	}
-	while (blocking && waiting) {
-		qApp->processEvents();
-		usleep( 1000 );
-	}
+void KMountMan::mount(QString mntPoint, bool blocking)
+{
+    QString udi = findUdiForPath(mntPoint, Solid::DeviceInterface::StorageAccess);
+    if (!udi.isNull()) {
+        Solid::Device device(udi);
+        Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+        if (access && !access->isAccessible()) {
+            connect(access, SIGNAL(setupDone(Solid::ErrorType, QVariant, const QString &)),
+                    this, SLOT(slotSetupDone(Solid::ErrorType, QVariant, const QString &)));
+            if (blocking)
+                waiting = true; // prepare to block
+            access->setup();
+        }
+    } else {
+        KMountPoint::List possible = KMountPoint::possibleMountPoints(KMountPoint::NeedMountOptions);
+        KSharedPtr<KMountPoint> m = findInListByMntPoint(possible, mntPoint);
+        if (!((bool)m)) return;
+        if (blocking)
+            waiting = true; // prepare to block
+
+        // KDE4 doesn't allow mounting devices as user, because they think it's the right behaviour.
+        // I add this patch, as I don't think so.
+        if (geteuid()) { // tries to mount as an user?
+            KProcess proc;
+            proc << KrServices::fullPathName("mount") << mntPoint;
+            proc.start();
+            if (!blocking)
+                return;
+            proc.waitForFinished(-1); // -1 msec blocks without timeout
+            if (proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0)
+                return;
+        }
+
+        KIO::SimpleJob *job = KIO::mount(false, m->mountType().toLocal8Bit(), m->mountedFrom(), m->mountPoint(), false);
+        job->setUiDelegate(new KIO::JobUiDelegate());
+        KIO::getJobTracker()->registerJob(job);
+        connect(job, SIGNAL(result(KJob*)), this, SLOT(jobResult(KJob*)));
+    }
+    while (blocking && waiting) {
+        qApp->processEvents();
+        usleep(1000);
+    }
 }
 
-void KMountMan::unmount( QString mntPoint, bool blocking ) {
-	QString udi = findUdiForPath( mntPoint, Solid::DeviceInterface::StorageAccess );
-	if( !udi.isNull() )
-	{
-		Solid::Device device( udi );
-		Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
-		if( access && access->isAccessible() ) {
-			connect( access, SIGNAL( teardownDone(Solid::ErrorType, QVariant, const QString &) ),
-			         this, SLOT( slotTeardownDone(Solid::ErrorType, QVariant, const QString &) ) );
-			access->teardown();
-		}
-	} else {
-		if (blocking)
-		   waiting = true; // prepare to block
-		
-		// KDE4 doesn't allow unmounting devices as user, because they think it's the right behaviour.
-		// I add this patch, as I don't think so.
-		if( geteuid() ) // tries to mount as an user?
-		{
-			KProcess proc;
-			proc << KrServices::fullPathName( "umount" ) << mntPoint;
-			proc.start();
-			if( !blocking )
-				return;
-			proc.waitForFinished(-1); // -1 msec blocks without timeout
-			if ( proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0 )
-				return;
-		}
-		
-		KIO::SimpleJob *job = KIO::unmount(mntPoint, false);
-		job->setUiDelegate(new KIO::JobUiDelegate() );
-		KIO::getJobTracker()->registerJob(job);
-		connect(job, SIGNAL(result(KJob* )), this, SLOT(jobResult(KJob* )));
-	}
-	while (blocking && waiting) {
-		qApp->processEvents();
-		usleep( 1000 );
-	}
+void KMountMan::unmount(QString mntPoint, bool blocking)
+{
+    QString udi = findUdiForPath(mntPoint, Solid::DeviceInterface::StorageAccess);
+    if (!udi.isNull()) {
+        Solid::Device device(udi);
+        Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+        if (access && access->isAccessible()) {
+            connect(access, SIGNAL(teardownDone(Solid::ErrorType, QVariant, const QString &)),
+                    this, SLOT(slotTeardownDone(Solid::ErrorType, QVariant, const QString &)));
+            access->teardown();
+        }
+    } else {
+        if (blocking)
+            waiting = true; // prepare to block
+
+        // KDE4 doesn't allow unmounting devices as user, because they think it's the right behaviour.
+        // I add this patch, as I don't think so.
+        if (geteuid()) { // tries to mount as an user?
+            KProcess proc;
+            proc << KrServices::fullPathName("umount") << mntPoint;
+            proc.start();
+            if (!blocking)
+                return;
+            proc.waitForFinished(-1); // -1 msec blocks without timeout
+            if (proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0)
+                return;
+        }
+
+        KIO::SimpleJob *job = KIO::unmount(mntPoint, false);
+        job->setUiDelegate(new KIO::JobUiDelegate());
+        KIO::getJobTracker()->registerJob(job);
+        connect(job, SIGNAL(result(KJob*)), this, SLOT(jobResult(KJob*)));
+    }
+    while (blocking && waiting) {
+        qApp->processEvents();
+        usleep(1000);
+    }
 }
 
-KMountMan::mntStatus KMountMan::getStatus( QString mntPoint ) {	
-	KMountPoint::List::iterator it;
-   KSharedPtr<KMountPoint> m;
-	
-	// 1: is it already mounted
-	KMountPoint::List current = KMountPoint::currentMountPoints();
-	m = findInListByMntPoint(current, mntPoint);
-	if ((bool)m) 
-		return MOUNTED;
-	
-	// 2: is it a mount point but not mounted?
-	KMountPoint::List possible = KMountPoint::possibleMountPoints();
-	m = findInListByMntPoint(possible, mntPoint);
-	if ((bool)m) 
-		return NOT_MOUNTED;
-	
-	// 3: unknown
-	return DOESNT_EXIST;
+KMountMan::mntStatus KMountMan::getStatus(QString mntPoint)
+{
+    KMountPoint::List::iterator it;
+    KSharedPtr<KMountPoint> m;
+
+    // 1: is it already mounted
+    KMountPoint::List current = KMountPoint::currentMountPoints();
+    m = findInListByMntPoint(current, mntPoint);
+    if ((bool)m)
+        return MOUNTED;
+
+    // 2: is it a mount point but not mounted?
+    KMountPoint::List possible = KMountPoint::possibleMountPoints();
+    m = findInListByMntPoint(possible, mntPoint);
+    if ((bool)m)
+        return NOT_MOUNTED;
+
+    // 3: unknown
+    return DOESNT_EXIST;
 }
 
 
-void KMountMan::toggleMount( QString mntPoint ) {
-	mntStatus status = getStatus(mntPoint);
-	switch (status) {
-		case MOUNTED:
-			unmount(mntPoint);
-			break;
-		case NOT_MOUNTED:
-			mount(mntPoint);
-			break;
-		case DOESNT_EXIST:
-			// do nothing: no-op to make the compiler quiet ;-)
-			break;
-	}
+void KMountMan::toggleMount(QString mntPoint)
+{
+    mntStatus status = getStatus(mntPoint);
+    switch (status) {
+    case MOUNTED:
+        unmount(mntPoint);
+        break;
+    case NOT_MOUNTED:
+        mount(mntPoint);
+        break;
+    case DOESNT_EXIST:
+        // do nothing: no-op to make the compiler quiet ;-)
+        break;
+    }
 }
 
-void KMountMan::autoMount( QString path ) {
-   if ( getStatus( path ) == NOT_MOUNTED )
-      mount( path );
+void KMountMan::autoMount(QString path)
+{
+    if (getStatus(path) == NOT_MOUNTED)
+        mount(path);
 }
 
-void KMountMan::eject( QString mntPoint ) {
-   QString udi = findUdiForPath( mntPoint, Solid::DeviceInterface::OpticalDrive );
-   if( udi.isNull() )
-      return;
+void KMountMan::eject(QString mntPoint)
+{
+    QString udi = findUdiForPath(mntPoint, Solid::DeviceInterface::OpticalDrive);
+    if (udi.isNull())
+        return;
 
-   Solid::Device dev( udi );
-   Solid::OpticalDrive *drive = dev.as<Solid::OpticalDrive>();
-   if( drive == 0 )
-      return;
+    Solid::Device dev(udi);
+    Solid::OpticalDrive *drive = dev.as<Solid::OpticalDrive>();
+    if (drive == 0)
+        return;
 
-   connect(drive, SIGNAL(ejectDone(Solid::ErrorType, QVariant, const QString &)),
+    connect(drive, SIGNAL(ejectDone(Solid::ErrorType, QVariant, const QString &)),
             this, SLOT(slotTeardownDone(Solid::ErrorType, QVariant, const QString &)));
 
-   drive->eject();
+    drive->eject();
 }
 
 // returns true if the path is an ejectable mount point (at the moment CDROM and DVD)
-bool KMountMan::ejectable( QString path ) {
-   QString udi = findUdiForPath( path, Solid::DeviceInterface::OpticalDisc );
-   if( udi.isNull() )
-      return false;
+bool KMountMan::ejectable(QString path)
+{
+    QString udi = findUdiForPath(path, Solid::DeviceInterface::OpticalDisc);
+    if (udi.isNull())
+        return false;
 
-   Solid::Device dev( udi );
-   return dev.as<Solid::OpticalDisc>() != 0;
+    Solid::Device dev(udi);
+    return dev.as<Solid::OpticalDisc>() != 0;
 }
 
 
 // a mountMan special version of KIO::convertSize, which deals
 // with large filesystems ==> > 4GB, it actually receives size in
 // a minimum block of 1024 ==> data is KB not bytes
-QString KMountMan::convertSize( KIO::filesize_t size ) {
-   float fsize;
-   QString s;
-   // Tera-byte
-   if ( size >= 1073741824 ) {
-      fsize = ( float ) size / ( float ) 1073741824;
-      if ( fsize > 1024 )         // no name for something bigger than tera byte
-         // let's call it Zega-Byte, who'll ever find out? :-)
-         s = i18n( "%1 ZB", KGlobal::locale() ->formatNumber( fsize / ( float ) 1024, 1 ) );
-      else
-         s = i18n( "%1 TB", KGlobal::locale() ->formatNumber( fsize, 1 ) );
-   }
-   // Giga-byte
-   else if ( size >= 1048576 ) {
-      fsize = ( float ) size / ( float ) 1048576;
-      s = i18n( "%1 GB", KGlobal::locale() ->formatNumber( fsize, 1 ) );
-   }
-   // Mega-byte
-   else if ( size > 1024 ) {
-      fsize = ( float ) size / ( float ) 1024;
-      s = i18n( "%1 MB", KGlobal::locale() ->formatNumber( fsize, 1 ) );
-   }
-   // Kilo-byte
-   else {
-      fsize = ( float ) size;
-      s = i18n( "%1 KB", KGlobal::locale() ->formatNumber( fsize, 0 ) );
-   }
-   return s;
+QString KMountMan::convertSize(KIO::filesize_t size)
+{
+    float fsize;
+    QString s;
+    // Tera-byte
+    if (size >= 1073741824) {
+        fsize = (float) size / (float) 1073741824;
+        if (fsize > 1024)           // no name for something bigger than tera byte
+            // let's call it Zega-Byte, who'll ever find out? :-)
+            s = i18n("%1 ZB", KGlobal::locale() ->formatNumber(fsize / (float) 1024, 1));
+        else
+            s = i18n("%1 TB", KGlobal::locale() ->formatNumber(fsize, 1));
+    }
+    // Giga-byte
+    else if (size >= 1048576) {
+        fsize = (float) size / (float) 1048576;
+        s = i18n("%1 GB", KGlobal::locale() ->formatNumber(fsize, 1));
+    }
+    // Mega-byte
+    else if (size > 1024) {
+        fsize = (float) size / (float) 1024;
+        s = i18n("%1 MB", KGlobal::locale() ->formatNumber(fsize, 1));
+    }
+    // Kilo-byte
+    else {
+        fsize = (float) size;
+        s = i18n("%1 KB", KGlobal::locale() ->formatNumber(fsize, 0));
+    }
+    return s;
 }
 
 
 // populate the pop-up menu of the mountman tool-button with actions
-void KMountMan::quickList() {
-   if ( !Operational ) {
-      KMessageBox::error( 0, i18n( "MountMan is not operational. Sorry" ) );
-      return ;
-   }
-
-   // clear the popup menu
-   ( ( KToolBarPopupAction* ) krMountMan ) ->menu() ->clear();
-
-   // create lists of current and possible mount points
-   KMountPoint::List current = KMountPoint::currentMountPoints();
-   KMountPoint::List possible = KMountPoint::possibleMountPoints();
-
-   // create a menu, displaying mountpoints with possible actions
-   // also, populate a small array with the actions
-   if ( _actions )
-      delete[] _actions;
-   _actions = new QString[ possible.size() ];
-
-   KMountPoint::List::iterator it;
-   KSharedPtr<KMountPoint> m;
-   int idx;
-   for ( it = possible.begin(), idx = 0; it != possible.end(); ++it, ++idx ) {
-      m = *it;
-		// skip nonmountable file systems
-		if (nonmountFilesystem(m->mountType(), m->mountPoint()) || invalidFilesystem(m->mountType()))
-			continue;
-      // does the mountpoint exist in current list? if so, it can only
-      // be umounted, otherwise, it can be mounted
-      bool needUmount = false;
-      KMountPoint::List::iterator otherIt;
-      for ( otherIt = current.begin(); otherIt != current.end(); ++otherIt ) {
-         if ( ( *otherIt ) ->mountPoint() == m->mountPoint() ) { // found it, in needs umount
-            needUmount = true;
-            break;
-         }
-      }
-      // add the item to the menu
-      _actions[ idx ] = QString( needUmount ? "_U_" : "_M_" ) + m->mountPoint();
-      QString text = QString( ( needUmount ? i18n( "Unmount" ) : i18n( "Mount" ) ) ) + ' ' + m->mountPoint() +
-                     " (" + m->mountedFrom() + ')';
-
-
-      QAction * act = ( ( KToolBarPopupAction* ) krMountMan ) ->menu() ->addAction( text );
-      act->setData( QVariant( idx ) );
-   }
-   connect( ( ( KToolBarPopupAction* ) krMountMan ) ->menu(), SIGNAL( triggered( QAction * ) ),
-            this, SLOT( delayedPerformAction( QAction * ) ) );
-
-}
-
-void KMountMan::delayedPerformAction( QAction * act ) {
-   int idx = -1;
-   if( act && act->data().canConvert<int>() )
-     idx = act->data().toInt();
-   __delayedIdx = idx;
-
-   if ( idx < 0 )
-      return ;
-
-   QTimer::singleShot(0, this, SLOT(performAction()));   
-}
-
-void KMountMan::performAction() {
-   if( _actions == 0 || __delayedIdx < 0 ) // for sanity
-     return;
-
-   // ugly !!! take idx from the value put there by delayedPerformAction so 
-   // as to NOT DIE because of a processEvents deadlock!!! @#$@!@
-   int idx = __delayedIdx;
-
-   bool domount = _actions[ idx ].left( 3 ) == "_M_";
-   QString mountPoint = _actions[ idx ].mid( 3 );
-   if ( !domount ) { // umount
-      unmount( mountPoint);
-   } else { // mount
-      mount( mountPoint);
-   }
-
-   // free memory
-   delete[] _actions;
-   _actions = 0L;
-   disconnect( ( ( KToolBarPopupAction* ) krMountMan ) ->menu(), SIGNAL( triggered( QAction * ) ), 0, 0 );
-}
-
-QString KMountMan::findUdiForPath( QString path, const Solid::DeviceInterface::Type &expType )
+void KMountMan::quickList()
 {
-   KMountPoint::List current = KMountPoint::currentMountPoints();
-   KMountPoint::List possible = KMountPoint::possibleMountPoints();
-   KSharedPtr<KMountPoint> mp = findInListByMntPoint(current, path);
-   if( !(bool)mp )
-   {
-      mp = findInListByMntPoint(possible, path);
-      if( !(bool)mp )
-         return QString::null;
-   }
-   QString dev = QDir( mp->mountedFrom() ).canonicalPath();
-   QList<Solid::Device> storageDevices = Solid::Device::listFromType( Solid::DeviceInterface::Block );
+    if (!Operational) {
+        KMessageBox::error(0, i18n("MountMan is not operational. Sorry"));
+        return ;
+    }
 
-   for( int p = storageDevices.count()-1 ; p >= 0; p-- ) {
-      Solid::Device device = storageDevices[ p ];
-      QString udi     = device.udi();
+    // clear the popup menu
+    ((KToolBarPopupAction*) krMountMan) ->menu() ->clear();
 
-      Solid::Block * sb = device.as<Solid::Block>();
-      if( sb )
-      {
-         QString devb = QDir( sb->device() ).canonicalPath();
-         if( expType != Solid::DeviceInterface::Unknown && !device.isDeviceInterface( expType ) )
+    // create lists of current and possible mount points
+    KMountPoint::List current = KMountPoint::currentMountPoints();
+    KMountPoint::List possible = KMountPoint::possibleMountPoints();
+
+    // create a menu, displaying mountpoints with possible actions
+    // also, populate a small array with the actions
+    if (_actions)
+        delete[] _actions;
+    _actions = new QString[ possible.size()];
+
+    KMountPoint::List::iterator it;
+    KSharedPtr<KMountPoint> m;
+    int idx;
+    for (it = possible.begin(), idx = 0; it != possible.end(); ++it, ++idx) {
+        m = *it;
+        // skip nonmountable file systems
+        if (nonmountFilesystem(m->mountType(), m->mountPoint()) || invalidFilesystem(m->mountType()))
             continue;
-         if( devb == dev )
-            return udi;
-      }
-   }
+        // does the mountpoint exist in current list? if so, it can only
+        // be umounted, otherwise, it can be mounted
+        bool needUmount = false;
+        KMountPoint::List::iterator otherIt;
+        for (otherIt = current.begin(); otherIt != current.end(); ++otherIt) {
+            if ((*otherIt) ->mountPoint() == m->mountPoint()) {     // found it, in needs umount
+                needUmount = true;
+                break;
+            }
+        }
+        // add the item to the menu
+        _actions[ idx ] = QString(needUmount ? "_U_" : "_M_") + m->mountPoint();
+        QString text = QString((needUmount ? i18n("Unmount") : i18n("Mount"))) + ' ' + m->mountPoint() +
+                       " (" + m->mountedFrom() + ')';
 
-   return QString::null;
+
+        QAction * act = ((KToolBarPopupAction*) krMountMan) ->menu() ->addAction(text);
+        act->setData(QVariant(idx));
+    }
+    connect(((KToolBarPopupAction*) krMountMan) ->menu(), SIGNAL(triggered(QAction *)),
+            this, SLOT(delayedPerformAction(QAction *)));
+
 }
 
-void KMountMan::slotTeardownDone(Solid::ErrorType error, QVariant errorData, const QString &udi) {
+void KMountMan::delayedPerformAction(QAction * act)
+{
+    int idx = -1;
+    if (act && act->data().canConvert<int>())
+        idx = act->data().toInt();
+    __delayedIdx = idx;
+
+    if (idx < 0)
+        return ;
+
+    QTimer::singleShot(0, this, SLOT(performAction()));
+}
+
+void KMountMan::performAction()
+{
+    if (_actions == 0 || __delayedIdx < 0)  // for sanity
+        return;
+
+    // ugly !!! take idx from the value put there by delayedPerformAction so
+    // as to NOT DIE because of a processEvents deadlock!!! @#$@!@
+    int idx = __delayedIdx;
+
+    bool domount = _actions[ idx ].left(3) == "_M_";
+    QString mountPoint = _actions[ idx ].mid(3);
+    if (!domount) {   // umount
+        unmount(mountPoint);
+    } else { // mount
+        mount(mountPoint);
+    }
+
+    // free memory
+    delete[] _actions;
+    _actions = 0L;
+    disconnect(((KToolBarPopupAction*) krMountMan) ->menu(), SIGNAL(triggered(QAction *)), 0, 0);
+}
+
+QString KMountMan::findUdiForPath(QString path, const Solid::DeviceInterface::Type &expType)
+{
+    KMountPoint::List current = KMountPoint::currentMountPoints();
+    KMountPoint::List possible = KMountPoint::possibleMountPoints();
+    KSharedPtr<KMountPoint> mp = findInListByMntPoint(current, path);
+    if (!(bool)mp) {
+        mp = findInListByMntPoint(possible, path);
+        if (!(bool)mp)
+            return QString::null;
+    }
+    QString dev = QDir(mp->mountedFrom()).canonicalPath();
+    QList<Solid::Device> storageDevices = Solid::Device::listFromType(Solid::DeviceInterface::Block);
+
+    for (int p = storageDevices.count() - 1 ; p >= 0; p--) {
+        Solid::Device device = storageDevices[ p ];
+        QString udi     = device.udi();
+
+        Solid::Block * sb = device.as<Solid::Block>();
+        if (sb) {
+            QString devb = QDir(sb->device()).canonicalPath();
+            if (expType != Solid::DeviceInterface::Unknown && !device.isDeviceInterface(expType))
+                continue;
+            if (devb == dev)
+                return udi;
+        }
+    }
+
+    return QString::null;
+}
+
+void KMountMan::slotTeardownDone(Solid::ErrorType error, QVariant errorData, const QString &udi)
+{
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
-        KMessageBox::sorry( krApp, errorData.toString());
+        KMessageBox::sorry(krApp, errorData.toString());
     }
 }
 
-void KMountMan::slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString &udi) {
+void KMountMan::slotSetupDone(Solid::ErrorType error, QVariant errorData, const QString &udi)
+{
     waiting = false;
     if (error != Solid::NoError && errorData.isValid()) {
-        KMessageBox::sorry( krApp, errorData.toString());
+        KMessageBox::sorry(krApp, errorData.toString());
     }
 }
 

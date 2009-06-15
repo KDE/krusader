@@ -49,1071 +49,1060 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kcolorscheme.h>
 
 #define CANCEL_TWO_CLICK_RENAME {singleClicked = false;renameTimer.stop();}
-#define PROPS	 _properties
-#define VF	 getVfile()
+#define PROPS  _properties
+#define VF  getVfile()
 
 #define BRIEFVIEW_ID 3
-KrViewInstance briefView( BRIEFVIEW_ID, i18n( "Old Brief View (obsolete)" ), 0,
-                             KrBriefView::create, KrBriefViewItem::itemHeightChanged );
+KrViewInstance briefView(BRIEFVIEW_ID, i18n("Old Brief View (obsolete)"), 0,
+                         KrBriefView::create, KrBriefViewItem::itemHeightChanged);
 
-KrBriefView::KrBriefView( Q3Header * headerIn, QWidget *parent, bool &left, KConfig *cfg ):
-	K3IconView(parent), KrView( cfg ), header( headerIn ), _currDragItem( 0 ),
-            currentlyRenamedItem( 0 ), pressedItem( 0 ), mouseEvent( 0 ), inWheelEvent( false ) {
-	_nameInKConfig = QString( "KrBriefView" ) + QString( ( left ? "Left" : "Right" ) );
-	KConfigGroup group( krConfig, "Private" );
-	if ( group.readEntry("Enable Input Method", true))
-		setInputMethodEnabled(true);
-}
-
-void KrBriefView::setup() {
-   lastSwushPosition = 0;
-      
-   // use the {} so that KConfigGroup will work correctly!
-   KConfigGroup grpSvr( _config, "Look&Feel" );
-   setFont( grpSvr.readEntry( "Filelist Font", *_FilelistFont ) );
-   // decide on single click/double click selection
-   if ( grpSvr.readEntry( "Single Click Selects", _SingleClickSelects ) &&
-           KGlobalSettings::singleClick() ) {
-      connect( this, SIGNAL( executed( Q3IconViewItem* ) ), this, SLOT( slotExecuted( Q3IconViewItem* ) ) );
-   } else {
-      connect( this, SIGNAL( clicked( Q3IconViewItem* ) ), this, SLOT( slotClicked( Q3IconViewItem* ) ) );
-      connect( this, SIGNAL( doubleClicked( Q3IconViewItem* ) ), this, SLOT( slotDoubleClicked( Q3IconViewItem* ) ) );
-   }
-
-   // a change in the selection needs to update totals
-   connect( this, SIGNAL( onItem( Q3IconViewItem* ) ), this, SLOT( slotItemDescription( Q3IconViewItem* ) ) );
-   connect( this, SIGNAL( contextMenuRequested( Q3IconViewItem*, const QPoint& ) ),
-            this, SLOT( handleContextMenu( Q3IconViewItem*, const QPoint& ) ) );
-	connect( this, SIGNAL( rightButtonPressed(Q3IconViewItem*, const QPoint&)),
-		this, SLOT(slotRightButtonPressed(Q3IconViewItem*, const QPoint&)));
-   connect( this, SIGNAL( currentChanged( Q3IconViewItem* ) ), this, SLOT( setNameToMakeCurrent( Q3IconViewItem* ) ) );
-   connect( this, SIGNAL( currentChanged( Q3IconViewItem* ) ), this, SLOT( transformCurrentChanged( Q3IconViewItem* ) ) );
-   connect( &KrColorCache::getColorCache(), SIGNAL( colorsRefreshed() ), this, SLOT( refreshColors() ) );
-
-   // determine basic settings for the view
-   setAcceptDrops( true );
-   setItemsMovable( false );
-   setItemTextPos( Q3IconView::Right );
-   setArrangement( Q3IconView::TopToBottom );
-   setWordWrapIconText( false );
-   setSpacing( 0 );
-   horizontalScrollBar()->installEventFilter( this );
-
-   // allow in-place renaming
-
-   connect( this, SIGNAL( itemRenamed ( Q3IconViewItem * ) ), 
-            this, SLOT( inplaceRenameFinished( Q3IconViewItem * ) ) );
-   connect( &renameTimer, SIGNAL( timeout() ), this, SLOT( renameCurrentItem() ) );
-   connect( &contextMenuTimer, SIGNAL (timeout()), this, SLOT (showContextMenu()));
-
-   setSelectionMode( Q3IconView::Extended );
-
-   setFocusPolicy( Qt::StrongFocus );
-   restoreSettings();
-   refreshColors();
-
-   CANCEL_TWO_CLICK_RENAME;
-
-   // setting the header 
-   while( header->count() )
-      header->removeLabel( 0 );
-
-   header->addLabel( i18n( "Name" ) );
-   header->setStretchEnabled( true );
-
-   header->setSortIndicator( 0, sortDirection() ? Qt::Ascending : Qt::Descending );
-   connect( header, SIGNAL(clicked( int )), this, SLOT( changeSortOrder()));
-
-   header->installEventFilter( this );
-   header->show();
-}
-
-KrBriefView::~KrBriefView() {
-	delete _properties; _properties = 0;
-	delete _operator; _operator = 0;
-	if( mouseEvent )
-		delete mouseEvent;
-	mouseEvent = 0;
-//	delete toolTip;
-}
-
-void KrBriefView::resizeEvent ( QResizeEvent * resEvent )
+KrBriefView::KrBriefView(Q3Header * headerIn, QWidget *parent, bool &left, KConfig *cfg):
+        K3IconView(parent), KrView(cfg), header(headerIn), _currDragItem(0),
+        currentlyRenamedItem(0), pressedItem(0), mouseEvent(0), inWheelEvent(false)
 {
-   QPoint pnt( contentsX(), contentsY() );
-   QRect viewportRect( pnt, resEvent->oldSize() );
-   bool visible = false;
-   if( currentItem() )
-     visible = viewportRect.contains( currentItem()->rect() );
+    _nameInKConfig = QString("KrBriefView") + QString((left ? "Left" : "Right"));
+    KConfigGroup group(krConfig, "Private");
+    if (group.readEntry("Enable Input Method", true))
+        setInputMethodEnabled(true);
+}
 
-   K3IconView::resizeEvent( resEvent );
-   redrawColumns();
+void KrBriefView::setup()
+{
+    lastSwushPosition = 0;
 
-   if( visible && currentItem() )
-      ensureItemVisible( currentItem() );
+    // use the {} so that KConfigGroup will work correctly!
+    KConfigGroup grpSvr(_config, "Look&Feel");
+    setFont(grpSvr.readEntry("Filelist Font", *_FilelistFont));
+    // decide on single click/double click selection
+    if (grpSvr.readEntry("Single Click Selects", _SingleClickSelects) &&
+            KGlobalSettings::singleClick()) {
+        connect(this, SIGNAL(executed(Q3IconViewItem*)), this, SLOT(slotExecuted(Q3IconViewItem*)));
+    } else {
+        connect(this, SIGNAL(clicked(Q3IconViewItem*)), this, SLOT(slotClicked(Q3IconViewItem*)));
+        connect(this, SIGNAL(doubleClicked(Q3IconViewItem*)), this, SLOT(slotDoubleClicked(Q3IconViewItem*)));
+    }
+
+    // a change in the selection needs to update totals
+    connect(this, SIGNAL(onItem(Q3IconViewItem*)), this, SLOT(slotItemDescription(Q3IconViewItem*)));
+    connect(this, SIGNAL(contextMenuRequested(Q3IconViewItem*, const QPoint&)),
+            this, SLOT(handleContextMenu(Q3IconViewItem*, const QPoint&)));
+    connect(this, SIGNAL(rightButtonPressed(Q3IconViewItem*, const QPoint&)),
+            this, SLOT(slotRightButtonPressed(Q3IconViewItem*, const QPoint&)));
+    connect(this, SIGNAL(currentChanged(Q3IconViewItem*)), this, SLOT(setNameToMakeCurrent(Q3IconViewItem*)));
+    connect(this, SIGNAL(currentChanged(Q3IconViewItem*)), this, SLOT(transformCurrentChanged(Q3IconViewItem*)));
+    connect(&KrColorCache::getColorCache(), SIGNAL(colorsRefreshed()), this, SLOT(refreshColors()));
+
+    // determine basic settings for the view
+    setAcceptDrops(true);
+    setItemsMovable(false);
+    setItemTextPos(Q3IconView::Right);
+    setArrangement(Q3IconView::TopToBottom);
+    setWordWrapIconText(false);
+    setSpacing(0);
+    horizontalScrollBar()->installEventFilter(this);
+
+    // allow in-place renaming
+
+    connect(this, SIGNAL(itemRenamed(Q3IconViewItem *)),
+            this, SLOT(inplaceRenameFinished(Q3IconViewItem *)));
+    connect(&renameTimer, SIGNAL(timeout()), this, SLOT(renameCurrentItem()));
+    connect(&contextMenuTimer, SIGNAL(timeout()), this, SLOT(showContextMenu()));
+
+    setSelectionMode(Q3IconView::Extended);
+
+    setFocusPolicy(Qt::StrongFocus);
+    restoreSettings();
+    refreshColors();
+
+    CANCEL_TWO_CLICK_RENAME;
+
+    // setting the header
+    while (header->count())
+        header->removeLabel(0);
+
+    header->addLabel(i18n("Name"));
+    header->setStretchEnabled(true);
+
+    header->setSortIndicator(0, sortDirection() ? Qt::Ascending : Qt::Descending);
+    connect(header, SIGNAL(clicked(int)), this, SLOT(changeSortOrder()));
+
+    header->installEventFilter(this);
+    header->show();
+}
+
+KrBriefView::~KrBriefView()
+{
+    delete _properties; _properties = 0;
+    delete _operator; _operator = 0;
+    if (mouseEvent)
+        delete mouseEvent;
+    mouseEvent = 0;
+// delete toolTip;
+}
+
+void KrBriefView::resizeEvent(QResizeEvent * resEvent)
+{
+    QPoint pnt(contentsX(), contentsY());
+    QRect viewportRect(pnt, resEvent->oldSize());
+    bool visible = false;
+    if (currentItem())
+        visible = viewportRect.contains(currentItem()->rect());
+
+    K3IconView::resizeEvent(resEvent);
+    redrawColumns();
+
+    if (visible && currentItem())
+        ensureItemVisible(currentItem());
 }
 
 void KrBriefView::redrawColumns()
 {
-   bool ascending = sortDirection();
-   setSorting( false, ascending );
+    bool ascending = sortDirection();
+    setSorting(false, ascending);
 
-   if( PROPS )
-      setGridX( width() / PROPS->numberOfColumns );
+    if (PROPS)
+        setGridX(width() / PROPS->numberOfColumns);
 
-   // QT bug, it's important for recalculating the bounding rectangle
-   for( Q3IconViewItem * item = firstItem(); item; item = item->nextItem() )
-   {
-      QString txt = item->text();
-      item->setText( "" );
-      item->setText( txt );
-   }
+    // QT bug, it's important for recalculating the bounding rectangle
+    for (Q3IconViewItem * item = firstItem(); item; item = item->nextItem()) {
+        QString txt = item->text();
+        item->setText("");
+        item->setText(txt);
+    }
 
-   setSorting( true, ascending );
+    setSorting(true, ascending);
 
-   arrangeItemsInGrid();
+    arrangeItemsInGrid();
 }
 
 // if vfile passes the filter, create an item, otherwise, drop it
-KrViewItem *KrBriefView::preAddItem( vfile *vf ) {
-   bool isDir = vf->vfile_isDir();
-   if ( !isDir || ( isDir && ( _properties->filter & KrViewProperties::ApplyToDirs ) ) ) {
-      switch ( _properties->filter ) {
-            case KrViewProperties::All :
-               break;
-            case KrViewProperties::Custom :
-            if ( !_properties->filterMask.match( vf ) ) return 0;
+KrViewItem *KrBriefView::preAddItem(vfile *vf)
+{
+    bool isDir = vf->vfile_isDir();
+    if (!isDir || (isDir && (_properties->filter & KrViewProperties::ApplyToDirs))) {
+        switch (_properties->filter) {
+        case KrViewProperties::All :
             break;
-            case KrViewProperties::Dirs:
-            if ( !vf->vfile_isDir() ) return 0;
+        case KrViewProperties::Custom :
+            if (!_properties->filterMask.match(vf)) return 0;
             break;
-            case KrViewProperties::Files:
-            if ( vf->vfile_isDir() ) return 0;
+        case KrViewProperties::Dirs:
+            if (!vf->vfile_isDir()) return 0;
             break;
-            case KrViewProperties::ApplyToDirs :
+        case KrViewProperties::Files:
+            if (vf->vfile_isDir()) return 0;
+            break;
+        case KrViewProperties::ApplyToDirs :
             break; // no-op, stop compiler complaints
-      }
-   }
-   // passed the filter ...
-	return new KrBriefViewItem( this, lastItem(), vf );
+        }
+    }
+    // passed the filter ...
+    return new KrBriefViewItem(this, lastItem(), vf);
 }
 
-bool KrBriefView::preDelItem(KrViewItem *item) {
-   if( item ) {
-      KrBriefViewItem * viewItem = dynamic_cast<KrBriefViewItem*>( item );
-      if( viewItem == currentlyRenamedItem ) {
-         currentlyRenamedItem->cancelRename();
-         currentlyRenamedItem = 0;
-      }
-   }
-
-   return true;
-}
-
-void KrBriefView::addItems( vfs *v, bool addUpDir ) {
-   Q3IconViewItem * item = firstItem();
-   Q3IconViewItem * currentItem = item;
-
-   // add the up-dir arrow if needed
-   if ( addUpDir ) {
-      new KrBriefViewItem( this, ( Q3IconViewItem* ) 0L, ( vfile* ) 0L );
-   }
-
-
-   // text for updating the status bar
-   QString statusText = QString("%1/  ").arg( v->vfs_getOrigin().fileName() ) + i18n("Directory");
-
-   bool as = sortDirection();
-   setSorting( false, as ); // disable sorting
-
-   for ( vfile * vf = v->vfs_getFirstFile(); vf != 0 ; vf = v->vfs_getNextFile() ) {
-      bool isDir = vf->vfile_isDir();
-      if ( !isDir || ( isDir && ( _properties->filter & KrViewProperties::ApplyToDirs ) ) ) {
-         switch ( _properties->filter ) {
-               case KrViewProperties::All :
-               break;
-               case KrViewProperties::Custom :
-               if ( !_properties->filterMask.match( vf ) )
-                  continue;
-               break;
-               case KrViewProperties::Dirs:
-               if ( !vf->vfile_isDir() )
-                  continue;
-               break;
-               case KrViewProperties::Files:
-               if ( vf->vfile_isDir() )
-                  continue;
-               break;
-
-               case KrViewProperties::ApplyToDirs :
-               break; // no-op, stop compiler complaints
-         }
-      }
-
-      KrBriefViewItem *bvitem = new KrBriefViewItem( this, item, vf );
-      _dict.insert( vf->vfile_getName(), bvitem );
-      if ( isDir )
-         ++_numDirs;
-      else
-         _countSize += bvitem->VF->vfile_getSize();
-      ++_count;
-      // if the item should be current - make it so
-      if ( bvitem->name() == nameToMakeCurrent() )
-      {
-         currentItem = static_cast<Q3IconViewItem*>(bvitem);
-         statusText = bvitem->description();
-      }
-   }
-
-
-   // re-enable sorting
-   setSorting( true, as );
-   sort( as );
-
-   if ( !currentItem )
-      currentItem = firstItem();
-   K3IconView::setCurrentItem( currentItem );
-   ensureItemVisible( currentItem );
-
-   op()->emitItemDescription( statusText );
-}
-
-void KrBriefView::delItem( const QString &name ) {
-   KrView::delItem( name );
-   arrangeItemsInGrid();
-}
-
-QString KrBriefView::getCurrentItem() const {
-   Q3IconViewItem * it = currentItem();
-   if ( !it )
-      return QString();
-   else
-      return dynamic_cast<KrViewItem*>( it ) ->name();
-}
-
-void KrBriefView::setCurrentItem( const QString& name ) {
-   QHash<QString, KrViewItem*>::iterator itr = _dict.find( name );
-   if ( itr != _dict.end() )
-      K3IconView::setCurrentItem( dynamic_cast<KrBriefViewItem*>( *itr ) );
-}
-
-void KrBriefView::clear() {
-   if( currentlyRenamedItem ) {
-      currentlyRenamedItem->cancelRename();
-      currentlyRenamedItem = 0;
-   }
-
-   op()->emitSelectionChanged(); /* to avoid rename crash at refresh */
-   K3IconView::clear();
-   KrView::clear();
-}
-
-void KrBriefView::slotClicked( Q3IconViewItem *item ) {
-   if ( !item ) return ;
-
-   if ( !modifierPressed ) {
-      if ( singleClicked && !renameTimer.isActive() ) {
-         KSharedConfigPtr config = KGlobal::config();
-         KConfigGroup group( config, "KDE" );
-
-         int doubleClickInterval = group.readEntry( "DoubleClickInterval", 400 );
-
-         int msecsFromLastClick = clickTime.msecsTo( QTime::currentTime() );
-
-         if ( msecsFromLastClick > doubleClickInterval && msecsFromLastClick < 5 * doubleClickInterval ) {
-            singleClicked = false;
-            renameTimer.start( doubleClickInterval, true );
-            return ;
-         }
-      }
-
-      CANCEL_TWO_CLICK_RENAME;
-      singleClicked = true;
-      clickTime = QTime::currentTime();
-      clickedItem = item;
-   }
-}
-
-void KrBriefView::slotDoubleClicked( Q3IconViewItem *item ) {
-   CANCEL_TWO_CLICK_RENAME;
-   if ( !item )
-      return ;
-   QString tmp = dynamic_cast<KrViewItem*>( item ) ->name();
-   op()->emitExecuted(tmp);
-}
-
-void KrBriefView::prepareForActive() {
-   KrView::prepareForActive();
-   setFocus();
-   slotItemDescription( currentItem() );
-}
-
-void KrBriefView::prepareForPassive() {
-   KrView::prepareForPassive();
-   CANCEL_TWO_CLICK_RENAME;
-}
-
-void KrBriefView::slotItemDescription( Q3IconViewItem * item ) {
-   KrViewItem * it = static_cast<KrBriefViewItem*>( item );
-   if ( !it )
-      return ;
-   QString desc = it->description();
-   op()->emitItemDescription(desc);
-}
-
-
-void KrBriefView::slotCurrentChanged( Q3IconViewItem * item ) {
-   CANCEL_TWO_CLICK_RENAME;
-   if ( !item )
-      return ;
-   _nameToMakeCurrent = static_cast<KrBriefViewItem*>( item ) ->name();
-}
-
-void KrBriefView::contentsMousePressEvent( QMouseEvent * e ) {
-   bool callDefaultHandler = true, processEvent = true, selectionChanged = false;
-   pressedItem = 0;
-
-   e = transformMouseEvent( e );
-   
-   Q3IconViewItem * oldCurrent = currentItem();
-   Q3IconViewItem *newCurrent = findItem( e->pos() );
-   if (e->button() == Qt::RightButton)
-   {
-	if (KrSelectionMode::getSelectionHandler()->rightButtonSelects() || 
-		(((e->modifiers() & Qt::ShiftModifier) || (e->modifiers() & Qt::ControlModifier))) && KrSelectionMode::getSelectionHandler()->shiftCtrlRightButtonSelects())
-     {
-       if (KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection() && !(e->modifiers() & Qt::ShiftModifier)
-          && !(e->modifiers() & Qt::ControlModifier) && !(e->modifiers() & Qt::AltModifier))
-       {
-         if (newCurrent)
-         {
-           if (KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0)
-           {
-             swushSelects = !newCurrent->isSelected();
-             lastSwushPosition = newCurrent;
-           }
-           newCurrent->setSelected(!newCurrent->isSelected(), true);
-           newCurrent->repaint();
-			  selectionChanged = true;
-         }
-         callDefaultHandler = false;
-         processEvent = false;
-         e->accept();
-       }
-     }
-     else
-     {
-       callDefaultHandler = false;
-       processEvent = false;
-       e->accept();
-     }
-
-     if( !KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection() && KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0)
-     {
-       if( (e->modifiers() & Qt::ControlModifier) && !(e->modifiers() & Qt::AltModifier) )
-       {
-          if( newCurrent )
-          {
-             newCurrent->setSelected(!newCurrent->isSelected());
-             newCurrent->repaint();
-             selectionChanged = true;
-             callDefaultHandler = false;
-             e->accept();
-          }
-       }
-       else if( !(e->modifiers() & Qt::ControlModifier) && !(e->modifiers() & Qt::AltModifier) )
-       {
-          clearSelection();
-          if( newCurrent )
-          {
-             newCurrent->setSelected( true );
-             newCurrent->repaint();
-          }
-          selectionChanged = true;
-          callDefaultHandler = false;
-          e->accept();
-       }
-     }
-
-   }
-   if (e->button() == Qt::LeftButton)
-   {
-     dragStartPos = e->pos();
-	  if (KrSelectionMode::getSelectionHandler()->leftButtonSelects() || 
-	  		(((e->modifiers() & Qt::ShiftModifier) || (e->modifiers() & Qt::ControlModifier))) &&
-			KrSelectionMode::getSelectionHandler()->shiftCtrlLeftButtonSelects())
-     {
-       if (KrSelectionMode::getSelectionHandler()->leftButtonPreservesSelection() && !(e->modifiers() & Qt::ShiftModifier)
-          && !(e->modifiers() & Qt::ControlModifier) && !(e->modifiers() & Qt::AltModifier))
-       {
-         if (newCurrent)
-         {
-           newCurrent->setSelected(!newCurrent->isSelected(), true);
-           newCurrent->repaint();
-			  selectionChanged = true;
-         }
-         callDefaultHandler = false;
-         processEvent = false;
-         e->accept();
-       }
-     }
-     else
-     {
-       callDefaultHandler = false;
-       processEvent = false;
-       e->accept();
-     }
-   }
-
-   modifierPressed = false;
-   if ( (e->modifiers() & Qt::ShiftModifier) || (e->modifiers() & Qt::ControlModifier) || (e->modifiers() & Qt::AltModifier) ) {
-      CANCEL_TWO_CLICK_RENAME;
-      modifierPressed = true;
-   }
-
-   // stop quick search in case a mouse click occurred
-   KConfigGroup grpSvr( _config, "Look&Feel" );
-   if ( grpSvr.readEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
-      if ( MAIN_VIEW ) {
-         if ( ACTIVE_PANEL ) {
-            if ( ACTIVE_PANEL->quickSearch ) {
-               if ( ACTIVE_PANEL->quickSearch->isShown() ) {
-                  op()->stopQuickSearch( 0 );
-               }
-            }
-         }
-      }
-   }
-
-   if ( !_focused )
-   	op()->emitNeedFocus();
-   setFocus();
-
-   if (processEvent && ( (e->modifiers() & Qt::ShiftModifier) || (e->modifiers() & Qt::ControlModifier) || (e->modifiers() & Qt::AltModifier) ) && !KrSelectionMode::getSelectionHandler()->useQTSelection()){
-      if ( oldCurrent && newCurrent && oldCurrent != newCurrent && e->modifiers() & Qt::ShiftModifier ) {
-         int oldPos = oldCurrent->index();
-         int newPos = newCurrent->index();
-         Q3IconViewItem *top = 0, *bottom = 0;
-         if ( oldPos > newPos ) {
-            top = newCurrent;
-            bottom = oldCurrent;
-         } else {
-            top = oldCurrent;
-            bottom = newCurrent;
-         }
-         while( top )
-         {
-            if ( !top->isSelected() ) {
-               top->setSelected( true, true );
-               selectionChanged = true;
-            }
-            if ( top == bottom )
-               break;
-            top = top->nextItem();
-         }
-         Q3IconView::setCurrentItem( newCurrent );
-         callDefaultHandler = false;
-      }
-      if( e->modifiers() & Qt::ShiftModifier )
-         callDefaultHandler = false;
-   }
-	
-	if (selectionChanged)
-		updateView(); // don't call triggerUpdate directly!
-	
-   if (callDefaultHandler)
-   {
-     dragStartPos = QPoint( -1, -1 );
-
-     QString name = QString();    // will the file be deleted by the mouse event?
-     if( newCurrent )                 // save the name of the file
-       name = static_cast<KrBriefViewItem*>( newCurrent ) ->name();
-
-     pressedItem = newCurrent;
-
-     K3IconView::contentsMousePressEvent( e );
-
-     if( name.isEmpty() || _dict.find( name ) == _dict.end() ) // is the file still valid?
-       newCurrent = pressedItem = 0;                // if not, don't do any crash...
-   } else {
-     // emitting the missing signals from QIconView::contentsMousePressEvent();
-     // the right click signal is not emitted as it is used for selection
-
-     QPoint vp = contentsToViewport( e->pos() );
-
-     if( !newCurrent ) {
-       emit pressed( pressedItem = newCurrent );
-       emit pressed( newCurrent, viewport()->mapToGlobal( vp ) );
-     }
-
-     emit mouseButtonPressed( e->button(), newCurrent, viewport()->mapToGlobal( vp ) );
-   }
-
-   //   if (i != 0) // comment in, if click sould NOT select
-   //     setSelected(i, false);
-   if (newCurrent) Q3IconView::setCurrentItem(newCurrent);
-
-   if ( ACTIVE_PANEL->quickSearch->isShown() ) {
-      ACTIVE_PANEL->quickSearch->hide();
-      ACTIVE_PANEL->quickSearch->clear();
-      krDirUp->setEnabled( true );
-   }
-   if ( OTHER_PANEL->quickSearch->isShown() ) {
-      OTHER_PANEL->quickSearch->hide();
-      OTHER_PANEL->quickSearch->clear();
-      krDirUp->setEnabled( true );
-   }
-}
-
-void KrBriefView::contentsMouseReleaseEvent( QMouseEvent * e ) {
-  if (e->button() == Qt::RightButton)
-    contextMenuTimer.stop();
-  
-  e = transformMouseEvent( e );
-  
-  if( pressedItem ) {
-    QPoint vp = contentsToViewport( e->pos() );
-    Q3IconViewItem *newCurrent = findItem( e->pos() );
-
-    if( pressedItem == newCurrent ) {
-      // emitting the missing signals from QIconView::contentsMouseReleaseEvent();
-      // the right click signal is not emitted as it is used for selection
-
-      if( newCurrent ) {
-        emit clicked( newCurrent );
-        emit clicked( newCurrent, viewport()->mapToGlobal( vp ) );
-      }
-
-      slotMouseClicked( e->button(), newCurrent, viewport()->mapToGlobal( vp ) );
+bool KrBriefView::preDelItem(KrViewItem *item)
+{
+    if (item) {
+        KrBriefViewItem * viewItem = dynamic_cast<KrBriefViewItem*>(item);
+        if (viewItem == currentlyRenamedItem) {
+            currentlyRenamedItem->cancelRename();
+            currentlyRenamedItem = 0;
+        }
     }
 
-    pressedItem = 0;
-  }
+    return true;
 }
 
-void KrBriefView::contentsMouseMoveEvent ( QMouseEvent * e ) {
-   e = transformMouseEvent( e );
-
-   if ( ( singleClicked || renameTimer.isActive() ) && findItem( e->pos() ) != clickedItem )
-      CANCEL_TWO_CLICK_RENAME;
-
-   if ( dragStartPos != QPoint( -1, -1 ) &&
-        e->buttons() & Qt::LeftButton && ( dragStartPos - e->pos() ).manhattanLength() > QApplication::startDragDistance() )
-      startDrag();
-   if (KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection() 
-      && KrSelectionMode::getSelectionHandler()->rightButtonSelects() 
-      && KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0 && e->buttons() == Qt::RightButton)
-      {
-         Q3IconViewItem *newItem = findItem( e->pos() );
-         e->accept();
-         if (newItem != lastSwushPosition && newItem)
-         {
-           // is the new item above or below the previous one?
-           Q3IconViewItem * above = newItem;
-           Q3IconViewItem * below = newItem;
-           for (;(above || below) && above != lastSwushPosition && below != lastSwushPosition;)
-           {
-             if (above)
-               above = above->nextItem();
-             if (below)
-               below = below->prevItem();
-           }
-           if (above && (above == lastSwushPosition))
-           {
-             for (; above != newItem; above = above->prevItem())
-               above->setSelected(swushSelects,true);
-             newItem->setSelected(swushSelects,true);
-             lastSwushPosition = newItem;
-             updateView();
-           }
-           else if (below && (below == lastSwushPosition))
-           {
-             for (; below != newItem; below = below->nextItem())
-               below->setSelected(swushSelects,true);
-             newItem->setSelected(swushSelects,true);
-             lastSwushPosition = newItem;
-             updateView();
-           }
-           contextMenuTimer.stop();
-         }
-         // emitting the missing signals from QIconView::contentsMouseMoveEvent();
-         if( newItem )
-           emit onItem( newItem );
-         else
-           emit onViewport();
-      }
-      else
-         K3IconView::contentsMouseMoveEvent( e );
-}
-
-void KrBriefView::contentsMouseDoubleClickEvent ( QMouseEvent * e )
+void KrBriefView::addItems(vfs *v, bool addUpDir)
 {
-   e = transformMouseEvent ( e );
-   K3IconView::contentsMouseDoubleClickEvent( e );
+    Q3IconViewItem * item = firstItem();
+    Q3IconViewItem * currentItem = item;
+
+    // add the up-dir arrow if needed
+    if (addUpDir) {
+        new KrBriefViewItem(this, (Q3IconViewItem*) 0L, (vfile*) 0L);
+    }
+
+
+    // text for updating the status bar
+    QString statusText = QString("%1/  ").arg(v->vfs_getOrigin().fileName()) + i18n("Directory");
+
+    bool as = sortDirection();
+    setSorting(false, as);   // disable sorting
+
+    for (vfile * vf = v->vfs_getFirstFile(); vf != 0 ; vf = v->vfs_getNextFile()) {
+        bool isDir = vf->vfile_isDir();
+        if (!isDir || (isDir && (_properties->filter & KrViewProperties::ApplyToDirs))) {
+            switch (_properties->filter) {
+            case KrViewProperties::All :
+                break;
+            case KrViewProperties::Custom :
+                if (!_properties->filterMask.match(vf))
+                    continue;
+                break;
+            case KrViewProperties::Dirs:
+                if (!vf->vfile_isDir())
+                    continue;
+                break;
+            case KrViewProperties::Files:
+                if (vf->vfile_isDir())
+                    continue;
+                break;
+
+            case KrViewProperties::ApplyToDirs :
+                break; // no-op, stop compiler complaints
+            }
+        }
+
+        KrBriefViewItem *bvitem = new KrBriefViewItem(this, item, vf);
+        _dict.insert(vf->vfile_getName(), bvitem);
+        if (isDir)
+            ++_numDirs;
+        else
+            _countSize += bvitem->VF->vfile_getSize();
+        ++_count;
+        // if the item should be current - make it so
+        if (bvitem->name() == nameToMakeCurrent()) {
+            currentItem = static_cast<Q3IconViewItem*>(bvitem);
+            statusText = bvitem->description();
+        }
+    }
+
+
+    // re-enable sorting
+    setSorting(true, as);
+    sort(as);
+
+    if (!currentItem)
+        currentItem = firstItem();
+    K3IconView::setCurrentItem(currentItem);
+    ensureItemVisible(currentItem);
+
+    op()->emitItemDescription(statusText);
 }
 
-void KrBriefView::handleContextMenu( Q3IconViewItem * it, const QPoint & pos ) {
-   if ( !_focused )
-      op()->emitNeedFocus();
-   setFocus();
+void KrBriefView::delItem(const QString &name)
+{
+    KrView::delItem(name);
+    arrangeItemsInGrid();
+}
 
-   if ( !it )
-      return ;
-   if ( static_cast<KrBriefViewItem*>( it ) ->
-         name() == ".." )
-      return ;
-   int i = KrSelectionMode::getSelectionHandler()->showContextMenu();
-   contextMenuPoint = QPoint( pos.x(), pos.y() );
-   if (i < 0)
-     showContextMenu();
-   else if (i > 0)
-     contextMenuTimer.start(i, true);
+QString KrBriefView::getCurrentItem() const
+{
+    Q3IconViewItem * it = currentItem();
+    if (!it)
+        return QString();
+    else
+        return dynamic_cast<KrViewItem*>(it) ->name();
+}
+
+void KrBriefView::setCurrentItem(const QString& name)
+{
+    QHash<QString, KrViewItem*>::iterator itr = _dict.find(name);
+    if (itr != _dict.end())
+        K3IconView::setCurrentItem(dynamic_cast<KrBriefViewItem*>(*itr));
+}
+
+void KrBriefView::clear()
+{
+    if (currentlyRenamedItem) {
+        currentlyRenamedItem->cancelRename();
+        currentlyRenamedItem = 0;
+    }
+
+    op()->emitSelectionChanged(); /* to avoid rename crash at refresh */
+    K3IconView::clear();
+    KrView::clear();
+}
+
+void KrBriefView::slotClicked(Q3IconViewItem *item)
+{
+    if (!item) return ;
+
+    if (!modifierPressed) {
+        if (singleClicked && !renameTimer.isActive()) {
+            KSharedConfigPtr config = KGlobal::config();
+            KConfigGroup group(config, "KDE");
+
+            int doubleClickInterval = group.readEntry("DoubleClickInterval", 400);
+
+            int msecsFromLastClick = clickTime.msecsTo(QTime::currentTime());
+
+            if (msecsFromLastClick > doubleClickInterval && msecsFromLastClick < 5 * doubleClickInterval) {
+                singleClicked = false;
+                renameTimer.start(doubleClickInterval, true);
+                return ;
+            }
+        }
+
+        CANCEL_TWO_CLICK_RENAME;
+        singleClicked = true;
+        clickTime = QTime::currentTime();
+        clickedItem = item;
+    }
+}
+
+void KrBriefView::slotDoubleClicked(Q3IconViewItem *item)
+{
+    CANCEL_TWO_CLICK_RENAME;
+    if (!item)
+        return ;
+    QString tmp = dynamic_cast<KrViewItem*>(item) ->name();
+    op()->emitExecuted(tmp);
+}
+
+void KrBriefView::prepareForActive()
+{
+    KrView::prepareForActive();
+    setFocus();
+    slotItemDescription(currentItem());
+}
+
+void KrBriefView::prepareForPassive()
+{
+    KrView::prepareForPassive();
+    CANCEL_TWO_CLICK_RENAME;
+}
+
+void KrBriefView::slotItemDescription(Q3IconViewItem * item)
+{
+    KrViewItem * it = static_cast<KrBriefViewItem*>(item);
+    if (!it)
+        return ;
+    QString desc = it->description();
+    op()->emitItemDescription(desc);
+}
+
+
+void KrBriefView::slotCurrentChanged(Q3IconViewItem * item)
+{
+    CANCEL_TWO_CLICK_RENAME;
+    if (!item)
+        return ;
+    _nameToMakeCurrent = static_cast<KrBriefViewItem*>(item) ->name();
+}
+
+void KrBriefView::contentsMousePressEvent(QMouseEvent * e)
+{
+    bool callDefaultHandler = true, processEvent = true, selectionChanged = false;
+    pressedItem = 0;
+
+    e = transformMouseEvent(e);
+
+    Q3IconViewItem * oldCurrent = currentItem();
+    Q3IconViewItem *newCurrent = findItem(e->pos());
+    if (e->button() == Qt::RightButton) {
+        if (KrSelectionMode::getSelectionHandler()->rightButtonSelects() ||
+                (((e->modifiers() & Qt::ShiftModifier) || (e->modifiers() & Qt::ControlModifier))) && KrSelectionMode::getSelectionHandler()->shiftCtrlRightButtonSelects()) {
+            if (KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection() && !(e->modifiers() & Qt::ShiftModifier)
+                    && !(e->modifiers() & Qt::ControlModifier) && !(e->modifiers() & Qt::AltModifier)) {
+                if (newCurrent) {
+                    if (KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0) {
+                        swushSelects = !newCurrent->isSelected();
+                        lastSwushPosition = newCurrent;
+                    }
+                    newCurrent->setSelected(!newCurrent->isSelected(), true);
+                    newCurrent->repaint();
+                    selectionChanged = true;
+                }
+                callDefaultHandler = false;
+                processEvent = false;
+                e->accept();
+            }
+        } else {
+            callDefaultHandler = false;
+            processEvent = false;
+            e->accept();
+        }
+
+        if (!KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection() && KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0) {
+            if ((e->modifiers() & Qt::ControlModifier) && !(e->modifiers() & Qt::AltModifier)) {
+                if (newCurrent) {
+                    newCurrent->setSelected(!newCurrent->isSelected());
+                    newCurrent->repaint();
+                    selectionChanged = true;
+                    callDefaultHandler = false;
+                    e->accept();
+                }
+            } else if (!(e->modifiers() & Qt::ControlModifier) && !(e->modifiers() & Qt::AltModifier)) {
+                clearSelection();
+                if (newCurrent) {
+                    newCurrent->setSelected(true);
+                    newCurrent->repaint();
+                }
+                selectionChanged = true;
+                callDefaultHandler = false;
+                e->accept();
+            }
+        }
+
+    }
+    if (e->button() == Qt::LeftButton) {
+        dragStartPos = e->pos();
+        if (KrSelectionMode::getSelectionHandler()->leftButtonSelects() ||
+                (((e->modifiers() & Qt::ShiftModifier) || (e->modifiers() & Qt::ControlModifier))) &&
+                KrSelectionMode::getSelectionHandler()->shiftCtrlLeftButtonSelects()) {
+            if (KrSelectionMode::getSelectionHandler()->leftButtonPreservesSelection() && !(e->modifiers() & Qt::ShiftModifier)
+                    && !(e->modifiers() & Qt::ControlModifier) && !(e->modifiers() & Qt::AltModifier)) {
+                if (newCurrent) {
+                    newCurrent->setSelected(!newCurrent->isSelected(), true);
+                    newCurrent->repaint();
+                    selectionChanged = true;
+                }
+                callDefaultHandler = false;
+                processEvent = false;
+                e->accept();
+            }
+        } else {
+            callDefaultHandler = false;
+            processEvent = false;
+            e->accept();
+        }
+    }
+
+    modifierPressed = false;
+    if ((e->modifiers() & Qt::ShiftModifier) || (e->modifiers() & Qt::ControlModifier) || (e->modifiers() & Qt::AltModifier)) {
+        CANCEL_TWO_CLICK_RENAME;
+        modifierPressed = true;
+    }
+
+    // stop quick search in case a mouse click occurred
+    KConfigGroup grpSvr(_config, "Look&Feel");
+    if (grpSvr.readEntry("New Style Quicksearch", _NewStyleQuicksearch)) {
+        if (MAIN_VIEW) {
+            if (ACTIVE_PANEL) {
+                if (ACTIVE_PANEL->quickSearch) {
+                    if (ACTIVE_PANEL->quickSearch->isShown()) {
+                        op()->stopQuickSearch(0);
+                    }
+                }
+            }
+        }
+    }
+
+    if (!_focused)
+        op()->emitNeedFocus();
+    setFocus();
+
+    if (processEvent && ((e->modifiers() & Qt::ShiftModifier) || (e->modifiers() & Qt::ControlModifier) || (e->modifiers() & Qt::AltModifier)) && !KrSelectionMode::getSelectionHandler()->useQTSelection()) {
+        if (oldCurrent && newCurrent && oldCurrent != newCurrent && e->modifiers() & Qt::ShiftModifier) {
+            int oldPos = oldCurrent->index();
+            int newPos = newCurrent->index();
+            Q3IconViewItem *top = 0, *bottom = 0;
+            if (oldPos > newPos) {
+                top = newCurrent;
+                bottom = oldCurrent;
+            } else {
+                top = oldCurrent;
+                bottom = newCurrent;
+            }
+            while (top) {
+                if (!top->isSelected()) {
+                    top->setSelected(true, true);
+                    selectionChanged = true;
+                }
+                if (top == bottom)
+                    break;
+                top = top->nextItem();
+            }
+            Q3IconView::setCurrentItem(newCurrent);
+            callDefaultHandler = false;
+        }
+        if (e->modifiers() & Qt::ShiftModifier)
+            callDefaultHandler = false;
+    }
+
+    if (selectionChanged)
+        updateView(); // don't call triggerUpdate directly!
+
+    if (callDefaultHandler) {
+        dragStartPos = QPoint(-1, -1);
+
+        QString name = QString();    // will the file be deleted by the mouse event?
+        if (newCurrent)                  // save the name of the file
+            name = static_cast<KrBriefViewItem*>(newCurrent) ->name();
+
+        pressedItem = newCurrent;
+
+        K3IconView::contentsMousePressEvent(e);
+
+        if (name.isEmpty() || _dict.find(name) == _dict.end())    // is the file still valid?
+            newCurrent = pressedItem = 0;                // if not, don't do any crash...
+    } else {
+        // emitting the missing signals from QIconView::contentsMousePressEvent();
+        // the right click signal is not emitted as it is used for selection
+
+        QPoint vp = contentsToViewport(e->pos());
+
+        if (!newCurrent) {
+            emit pressed(pressedItem = newCurrent);
+            emit pressed(newCurrent, viewport()->mapToGlobal(vp));
+        }
+
+        emit mouseButtonPressed(e->button(), newCurrent, viewport()->mapToGlobal(vp));
+    }
+
+    //   if (i != 0) // comment in, if click sould NOT select
+    //     setSelected(i, false);
+    if (newCurrent) Q3IconView::setCurrentItem(newCurrent);
+
+    if (ACTIVE_PANEL->quickSearch->isShown()) {
+        ACTIVE_PANEL->quickSearch->hide();
+        ACTIVE_PANEL->quickSearch->clear();
+        krDirUp->setEnabled(true);
+    }
+    if (OTHER_PANEL->quickSearch->isShown()) {
+        OTHER_PANEL->quickSearch->hide();
+        OTHER_PANEL->quickSearch->clear();
+        krDirUp->setEnabled(true);
+    }
+}
+
+void KrBriefView::contentsMouseReleaseEvent(QMouseEvent * e)
+{
+    if (e->button() == Qt::RightButton)
+        contextMenuTimer.stop();
+
+    e = transformMouseEvent(e);
+
+    if (pressedItem) {
+        QPoint vp = contentsToViewport(e->pos());
+        Q3IconViewItem *newCurrent = findItem(e->pos());
+
+        if (pressedItem == newCurrent) {
+            // emitting the missing signals from QIconView::contentsMouseReleaseEvent();
+            // the right click signal is not emitted as it is used for selection
+
+            if (newCurrent) {
+                emit clicked(newCurrent);
+                emit clicked(newCurrent, viewport()->mapToGlobal(vp));
+            }
+
+            slotMouseClicked(e->button(), newCurrent, viewport()->mapToGlobal(vp));
+        }
+
+        pressedItem = 0;
+    }
+}
+
+void KrBriefView::contentsMouseMoveEvent(QMouseEvent * e)
+{
+    e = transformMouseEvent(e);
+
+    if ((singleClicked || renameTimer.isActive()) && findItem(e->pos()) != clickedItem)
+        CANCEL_TWO_CLICK_RENAME;
+
+    if (dragStartPos != QPoint(-1, -1) &&
+            e->buttons() & Qt::LeftButton && (dragStartPos - e->pos()).manhattanLength() > QApplication::startDragDistance())
+        startDrag();
+    if (KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection()
+            && KrSelectionMode::getSelectionHandler()->rightButtonSelects()
+            && KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0 && e->buttons() == Qt::RightButton) {
+        Q3IconViewItem *newItem = findItem(e->pos());
+        e->accept();
+        if (newItem != lastSwushPosition && newItem) {
+            // is the new item above or below the previous one?
+            Q3IconViewItem * above = newItem;
+            Q3IconViewItem * below = newItem;
+            for (;(above || below) && above != lastSwushPosition && below != lastSwushPosition;) {
+                if (above)
+                    above = above->nextItem();
+                if (below)
+                    below = below->prevItem();
+            }
+            if (above && (above == lastSwushPosition)) {
+                for (; above != newItem; above = above->prevItem())
+                    above->setSelected(swushSelects, true);
+                newItem->setSelected(swushSelects, true);
+                lastSwushPosition = newItem;
+                updateView();
+            } else if (below && (below == lastSwushPosition)) {
+                for (; below != newItem; below = below->nextItem())
+                    below->setSelected(swushSelects, true);
+                newItem->setSelected(swushSelects, true);
+                lastSwushPosition = newItem;
+                updateView();
+            }
+            contextMenuTimer.stop();
+        }
+        // emitting the missing signals from QIconView::contentsMouseMoveEvent();
+        if (newItem)
+            emit onItem(newItem);
+        else
+            emit onViewport();
+    } else
+        K3IconView::contentsMouseMoveEvent(e);
+}
+
+void KrBriefView::contentsMouseDoubleClickEvent(QMouseEvent * e)
+{
+    e = transformMouseEvent(e);
+    K3IconView::contentsMouseDoubleClickEvent(e);
+}
+
+void KrBriefView::handleContextMenu(Q3IconViewItem * it, const QPoint & pos)
+{
+    if (!_focused)
+        op()->emitNeedFocus();
+    setFocus();
+
+    if (!it)
+        return ;
+    if (static_cast<KrBriefViewItem*>(it) ->
+            name() == "..")
+        return ;
+    int i = KrSelectionMode::getSelectionHandler()->showContextMenu();
+    contextMenuPoint = QPoint(pos.x(), pos.y());
+    if (i < 0)
+        showContextMenu();
+    else if (i > 0)
+        contextMenuTimer.start(i, true);
 }
 
 void KrBriefView::showContextMenu()
 {
-	if (lastSwushPosition)
-		lastSwushPosition->setSelected(true);
-	op()->emitContextMenu( contextMenuPoint );
+    if (lastSwushPosition)
+        lastSwushPosition->setSelected(true);
+    op()->emitContextMenu(contextMenuPoint);
 }
 
-KrViewItem *KrBriefView::getKrViewItemAt( const QPoint & vp ) {
-   return dynamic_cast<KrViewItem*>( K3IconView::findItem( vp ) );
-}
-
-bool KrBriefView::acceptDrag( QDropEvent* ) const {
-   return true;
-}
-
-void KrBriefView::contentsDropEvent( QDropEvent * e ) {
-   _currDragItem = 0;
-   op()->emitGotDrop(e);
-   e->ignore();
-   K3IconView::contentsDropEvent( e );                   
-}
-
-void KrBriefView::contentsDragMoveEvent( QDragMoveEvent * e ) {
-   KrViewItem *oldDragItem = _currDragItem;
-
-   _currDragItem = getKrViewItemAt( e->pos() );
-   if( _currDragItem && !_currDragItem->VF->vfile_isDir() )
-     _currDragItem = 0;
-   
-   K3IconView::contentsDragMoveEvent( e );
-
-   if( _currDragItem != oldDragItem )
-   {
-     if( oldDragItem )
-        dynamic_cast<KrBriefViewItem *>( oldDragItem )->repaint();
-     if( _currDragItem )
-        dynamic_cast<KrBriefViewItem *>( _currDragItem )->repaint();
-   }
-}
-
-void KrBriefView::contentsDragLeaveEvent ( QDragLeaveEvent *e )
+KrViewItem *KrBriefView::getKrViewItemAt(const QPoint & vp)
 {
-   KrViewItem *oldDragItem = _currDragItem;
-
-   _currDragItem = 0;
-   K3IconView::contentsDragLeaveEvent( e );
-
-   if( oldDragItem )
-     dynamic_cast<KrBriefViewItem *>( oldDragItem )->repaint();
+    return dynamic_cast<KrViewItem*>(K3IconView::findItem(vp));
 }
 
-void KrBriefView::inputMethodEvent(QInputMethodEvent * /* e */ ) {
-	// TODO: the following 3 functions should somehow fit into this one. Csaba, did you implement this one?
+bool KrBriefView::acceptDrag(QDropEvent*) const
+{
+    return true;
 }
 
-int KrBriefView::itemsPerPage() {
-   Q3IconViewItem * item = firstItem();
-   if( item == 0 )
-      return 0;
-
-   QRect r( item->rect() );
-   if( r.height() == 0 )
-      return 0;
-
-   return visibleHeight() / r.height();
+void KrBriefView::contentsDropEvent(QDropEvent * e)
+{
+    _currDragItem = 0;
+    op()->emitGotDrop(e);
+    e->ignore();
+    K3IconView::contentsDropEvent(e);
 }
 
-void KrBriefView::keyPressEvent( QKeyEvent * e ) {
-   if ( !e || !firstItem() )
-      return ; // subclass bug
-   if(( e->key() != Qt::Key_Left && e->key() != Qt::Key_Right ) &&
-      ( handleKeyEvent( e ) ) ) // did the view class handled the event?
-         return;
-   switch ( e->key() ) {
-         case Qt::Key_Right :
-         if ( e->modifiers() == Qt::ControlModifier ) { // let the panel handle it
+void KrBriefView::contentsDragMoveEvent(QDragMoveEvent * e)
+{
+    KrViewItem *oldDragItem = _currDragItem;
+
+    _currDragItem = getKrViewItemAt(e->pos());
+    if (_currDragItem && !_currDragItem->VF->vfile_isDir())
+        _currDragItem = 0;
+
+    K3IconView::contentsDragMoveEvent(e);
+
+    if (_currDragItem != oldDragItem) {
+        if (oldDragItem)
+            dynamic_cast<KrBriefViewItem *>(oldDragItem)->repaint();
+        if (_currDragItem)
+            dynamic_cast<KrBriefViewItem *>(_currDragItem)->repaint();
+    }
+}
+
+void KrBriefView::contentsDragLeaveEvent(QDragLeaveEvent *e)
+{
+    KrViewItem *oldDragItem = _currDragItem;
+
+    _currDragItem = 0;
+    K3IconView::contentsDragLeaveEvent(e);
+
+    if (oldDragItem)
+        dynamic_cast<KrBriefViewItem *>(oldDragItem)->repaint();
+}
+
+void KrBriefView::inputMethodEvent(QInputMethodEvent * /* e */)
+{
+    // TODO: the following 3 functions should somehow fit into this one. Csaba, did you implement this one?
+}
+
+int KrBriefView::itemsPerPage()
+{
+    Q3IconViewItem * item = firstItem();
+    if (item == 0)
+        return 0;
+
+    QRect r(item->rect());
+    if (r.height() == 0)
+        return 0;
+
+    return visibleHeight() / r.height();
+}
+
+void KrBriefView::keyPressEvent(QKeyEvent * e)
+{
+    if (!e || !firstItem())
+        return ; // subclass bug
+    if ((e->key() != Qt::Key_Left && e->key() != Qt::Key_Right) &&
+            (handleKeyEvent(e)))      // did the view class handled the event?
+        return;
+    switch (e->key()) {
+    case Qt::Key_Right :
+        if (e->modifiers() == Qt::ControlModifier) {   // let the panel handle it
             e->ignore();
             break;
-         } else if (!KrSelectionMode::getSelectionHandler()->useQTSelection()) {
+        } else if (!KrSelectionMode::getSelectionHandler()->useQTSelection()) {
             Q3IconViewItem *i = currentItem();
             Q3IconViewItem *newCurrent = 0;
 
-            if ( !i ) break;
+            if (!i) break;
 
             int minY = i->y() - i->height() / 2;
             int minX  = i->width() / 2 + i->x();
 
-            if ( e->modifiers() == Qt::ShiftModifier ) setSelected( i, !i->isSelected(), true );
+            if (e->modifiers() == Qt::ShiftModifier) setSelected(i, !i->isSelected(), true);
 
-            while( i && i->x() <= minX )
-            {
-              if ( e->modifiers() == Qt::ShiftModifier ) setSelected( i, !i->isSelected(), true );
-              newCurrent = i;
-              i = i->nextItem();
+            while (i && i->x() <= minX) {
+                if (e->modifiers() == Qt::ShiftModifier) setSelected(i, !i->isSelected(), true);
+                newCurrent = i;
+                i = i->nextItem();
             }
 
-            while( i && i->y() < minY )
-            {
-              if ( e->modifiers() == Qt::ShiftModifier ) setSelected( i, !i->isSelected(), true );
-              newCurrent = i;
-              i = i->nextItem();
+            while (i && i->y() < minY) {
+                if (e->modifiers() == Qt::ShiftModifier) setSelected(i, !i->isSelected(), true);
+                newCurrent = i;
+                i = i->nextItem();
             }
 
-            if( i )
-            {
-              if ( e->modifiers() == Qt::ShiftModifier ) setSelected( i, !i->isSelected(), true );
-              newCurrent = i;
+            if (i) {
+                if (e->modifiers() == Qt::ShiftModifier) setSelected(i, !i->isSelected(), true);
+                newCurrent = i;
             }
 
-            if( newCurrent )
-            {
-              Q3IconView::setCurrentItem( newCurrent );
-              Q3IconView::ensureItemVisible( newCurrent );
+            if (newCurrent) {
+                Q3IconView::setCurrentItem(newCurrent);
+                Q3IconView::ensureItemVisible(newCurrent);
             }
-         } else K3IconView::keyPressEvent(e);
-         break;
-         case Qt::Key_Left :
-         if ( e->modifiers() == Qt::ControlModifier ) { // let the panel handle it
+        } else K3IconView::keyPressEvent(e);
+        break;
+    case Qt::Key_Left :
+        if (e->modifiers() == Qt::ControlModifier) {   // let the panel handle it
             e->ignore();
             break;
-         } else if (!KrSelectionMode::getSelectionHandler()->useQTSelection()) {
+        } else if (!KrSelectionMode::getSelectionHandler()->useQTSelection()) {
             Q3IconViewItem *i = currentItem();
             Q3IconViewItem *newCurrent = 0;
 
-            if ( !i ) break;
+            if (!i) break;
 
             int maxY = i->y() + i->height() / 2;
             int maxX  = i->x() - i->width() / 2;
 
-            if ( e->modifiers() == Qt::ShiftModifier ) setSelected( i, !i->isSelected(), true );
+            if (e->modifiers() == Qt::ShiftModifier) setSelected(i, !i->isSelected(), true);
 
-            while( i && i->x() >= maxX )
-            {
-              if ( e->modifiers() == Qt::ShiftModifier ) setSelected( i, !i->isSelected(), true );
-              newCurrent = i;
-              i = i->prevItem();
-            }
-
-            while( i && i->y() > maxY )
-            {
-              if ( e->modifiers() == Qt::ShiftModifier ) setSelected( i, !i->isSelected(), true );
-              newCurrent = i;
-              i = i->prevItem();
-            }
-            if( i )
-            {
-              if ( e->modifiers() == Qt::ShiftModifier ) setSelected( i, !i->isSelected(), true );
-              newCurrent = i;
+            while (i && i->x() >= maxX) {
+                if (e->modifiers() == Qt::ShiftModifier) setSelected(i, !i->isSelected(), true);
+                newCurrent = i;
+                i = i->prevItem();
             }
 
-            if( newCurrent )
-            {
-              Q3IconView::setCurrentItem( newCurrent );
-              Q3IconView::ensureItemVisible( newCurrent );
+            while (i && i->y() > maxY) {
+                if (e->modifiers() == Qt::ShiftModifier) setSelected(i, !i->isSelected(), true);
+                newCurrent = i;
+                i = i->prevItem();
             }
-         } else K3IconView::keyPressEvent(e);
-         break;
-         default:
-            K3IconView::keyPressEvent( e );
-   }
+            if (i) {
+                if (e->modifiers() == Qt::ShiftModifier) setSelected(i, !i->isSelected(), true);
+                newCurrent = i;
+            }
+
+            if (newCurrent) {
+                Q3IconView::setCurrentItem(newCurrent);
+                Q3IconView::ensureItemVisible(newCurrent);
+            }
+        } else K3IconView::keyPressEvent(e);
+        break;
+    default:
+        K3IconView::keyPressEvent(e);
+    }
 }
 // overridden to make sure EXTENSION won't be lost during rename
-void KrBriefView::rename( Q3IconViewItem * item ) {
-   currentlyRenamedItem = dynamic_cast< KrBriefViewItem * >( item );
-   currentlyRenamedItem->rename();
-   //TODO: renameLineEdit() ->selectAll();
-}
-
-void KrBriefView::renameCurrentItem() {
-   QString newName, fileName;
-
-	// handle inplace renaming, if possible
-	
-   KrBriefViewItem *it = static_cast<KrBriefViewItem*>(getCurrentKrViewItem());
-   if ( it )
-      fileName = it->name();
-   else
-      return ; // quit if no current item available
-   // don't allow anyone to rename ..
-   if ( fileName == ".." )
-      return ;
-
-   rename( static_cast<Q3IconViewItem*>( it ) );
-   // if applicable, select only the name without extension
-/* TODO:
-   KConfigGroup svr( krConfig, "Look&Feel" );
-   if (!svr.readEntry("Rename Selects Extension", true)) {
-     if (it->hasExtension() && !it->VF->vfile_isDir() ) 
-       renameLineEdit()->setSelection(0, it->name().lastIndexOf(it->extension())-1);
-   }*/
-}
-
-void KrBriefView::inplaceRenameFinished( Q3IconViewItem * it ) {
-   if ( !it ) { // major failure - call developers
-      krOut << "Major failure at inplaceRenameFinished(): item is null" << endl;
-      return;
-   }
-
-   KrBriefViewItem *item = dynamic_cast<KrBriefViewItem *>( it );
-   if( item->text() != item->name() )
-      op()->emitRenameItem( item->name(), item->text() );
-
-   currentlyRenamedItem = 0;
-   setFocus();
-}
-
-void KrBriefView::setNameToMakeCurrent( Q3IconViewItem * it ) {
-	if (!it) return;
-   KrView::setNameToMakeCurrent( static_cast<KrBriefViewItem*>( it ) ->name() );
-}
-
-void KrBriefView::slotMouseClicked( int button, Q3IconViewItem * item, const QPoint& ) {
-   pressedItem = 0; // if the signals are emitted, don't emit twice at contentsMouseReleaseEvent
-   if ( button == Qt::MidButton )
-      op()->emitMiddleButtonClicked( dynamic_cast<KrViewItem *>( item ) );
-}
-
-void KrBriefView::refreshColors() {
-   KConfigGroup group( krConfig, "Colors" );
-   bool kdeDefault = group.readEntry("KDE Default", false);
-   if ( !kdeDefault ) {
-      // KDE default is not chosen: set the background color (as this paints the empty areas) and the alternate color
-      bool isActive = hasFocus();
-      if ( MAIN_VIEW && ACTIVE_PANEL && ACTIVE_PANEL->view )
-         isActive = ( static_cast<KrView *>( this ) == ACTIVE_PANEL->view );
-      KrColorGroup cg;
-      KrColorCache::getColorCache().getColors(cg, KrColorItemType(KrColorItemType::File, false, isActive, false, false));
-      setPaletteBackgroundColor( cg.background() );
-      QPalette pal = palette();
-      pal.setColor( QPalette::Base, cg.background() );
-      setPalette( pal );
-   } else {
-      // KDE default is chosen: set back the background color
-      setPaletteBackgroundColor( KColorScheme(QPalette::Active, KColorScheme::View).background().color() );
-   }
-   slotUpdate();
-}
-
-bool KrBriefView::event( QEvent *e ) {
-   modifierPressed = false;
-
-   switch ( e->type() ) {
-         case QEvent::Timer:
-         case QEvent::MouseMove:
-         case QEvent::MouseButtonPress:
-         case QEvent::MouseButtonRelease:
-         break;
-         default:
-         CANCEL_TWO_CLICK_RENAME;
-   }
-   if( e->type() == QEvent::Wheel )
-   {
-      if ( !_focused )
-         op()->emitNeedFocus();
-      setFocus();
-   }
-   return K3IconView::event( e );
-}
-
-
-bool KrBriefView::eventFilter( QObject * watched, QEvent * e )
+void KrBriefView::rename(Q3IconViewItem * item)
 {
-  if( watched == horizontalScrollBar() )
-  {
-    if( e->type() == QEvent::Hide || e->type() == QEvent::Show )
-    {
-      bool res = K3IconView::eventFilter( watched, e );
-      arrangeItemsInGrid();
-      return res;
+    currentlyRenamedItem = dynamic_cast< KrBriefViewItem * >(item);
+    currentlyRenamedItem->rename();
+    //TODO: renameLineEdit() ->selectAll();
+}
+
+void KrBriefView::renameCurrentItem()
+{
+    QString newName, fileName;
+
+    // handle inplace renaming, if possible
+
+    KrBriefViewItem *it = static_cast<KrBriefViewItem*>(getCurrentKrViewItem());
+    if (it)
+        fileName = it->name();
+    else
+        return ; // quit if no current item available
+    // don't allow anyone to rename ..
+    if (fileName == "..")
+        return ;
+
+    rename(static_cast<Q3IconViewItem*>(it));
+    // if applicable, select only the name without extension
+    /* TODO:
+       KConfigGroup svr( krConfig, "Look&Feel" );
+       if (!svr.readEntry("Rename Selects Extension", true)) {
+         if (it->hasExtension() && !it->VF->vfile_isDir() )
+           renameLineEdit()->setSelection(0, it->name().lastIndexOf(it->extension())-1);
+       }*/
+}
+
+void KrBriefView::inplaceRenameFinished(Q3IconViewItem * it)
+{
+    if (!it) {   // major failure - call developers
+        krOut << "Major failure at inplaceRenameFinished(): item is null" << endl;
+        return;
     }
-  }
-  else if( watched == header )
-  {
-    if( e->type() == QEvent::MouseButtonPress && ((QMouseEvent *)e )->button() == Qt::RightButton )
-    {
-      setColumnNr();
-      return true;
+
+    KrBriefViewItem *item = dynamic_cast<KrBriefViewItem *>(it);
+    if (item->text() != item->name())
+        op()->emitRenameItem(item->name(), item->text());
+
+    currentlyRenamedItem = 0;
+    setFocus();
+}
+
+void KrBriefView::setNameToMakeCurrent(Q3IconViewItem * it)
+{
+    if (!it) return;
+    KrView::setNameToMakeCurrent(static_cast<KrBriefViewItem*>(it) ->name());
+}
+
+void KrBriefView::slotMouseClicked(int button, Q3IconViewItem * item, const QPoint&)
+{
+    pressedItem = 0; // if the signals are emitted, don't emit twice at contentsMouseReleaseEvent
+    if (button == Qt::MidButton)
+        op()->emitMiddleButtonClicked(dynamic_cast<KrViewItem *>(item));
+}
+
+void KrBriefView::refreshColors()
+{
+    KConfigGroup group(krConfig, "Colors");
+    bool kdeDefault = group.readEntry("KDE Default", false);
+    if (!kdeDefault) {
+        // KDE default is not chosen: set the background color (as this paints the empty areas) and the alternate color
+        bool isActive = hasFocus();
+        if (MAIN_VIEW && ACTIVE_PANEL && ACTIVE_PANEL->view)
+            isActive = (static_cast<KrView *>(this) == ACTIVE_PANEL->view);
+        KrColorGroup cg;
+        KrColorCache::getColorCache().getColors(cg, KrColorItemType(KrColorItemType::File, false, isActive, false, false));
+        setPaletteBackgroundColor(cg.background());
+        QPalette pal = palette();
+        pal.setColor(QPalette::Base, cg.background());
+        setPalette(pal);
+    } else {
+        // KDE default is chosen: set back the background color
+        setPaletteBackgroundColor(KColorScheme(QPalette::Active, KColorScheme::View).background().color());
     }
-    return false;
-  }
-  return K3IconView::eventFilter( watched, e );
+    slotUpdate();
 }
 
-void KrBriefView::makeItemVisible( const KrViewItem *item ) {
-//	qApp->processEvents();  // Please don't remove the comment. Causes crash if it is inserted!
-	ensureItemVisible( (Q3IconViewItem *)( static_cast<const KrBriefViewItem*>( item ) ) ); 
+bool KrBriefView::event(QEvent *e)
+{
+    modifierPressed = false;
+
+    switch (e->type()) {
+    case QEvent::Timer:
+    case QEvent::MouseMove:
+    case QEvent::MouseButtonPress:
+    case QEvent::MouseButtonRelease:
+        break;
+    default:
+        CANCEL_TWO_CLICK_RENAME;
+    }
+    if (e->type() == QEvent::Wheel) {
+        if (!_focused)
+            op()->emitNeedFocus();
+        setFocus();
+    }
+    return K3IconView::event(e);
 }
 
-void KrBriefView::setCurrentKrViewItem( KrViewItem *item ) {
-//	qApp->processEvents();  // Please don't remove the comment. Causes crash if it is inserted!
-	K3IconView::setCurrentItem( (Q3IconViewItem *)( static_cast<const KrBriefViewItem*>( item ) ) ); 
+
+bool KrBriefView::eventFilter(QObject * watched, QEvent * e)
+{
+    if (watched == horizontalScrollBar()) {
+        if (e->type() == QEvent::Hide || e->type() == QEvent::Show) {
+            bool res = K3IconView::eventFilter(watched, e);
+            arrangeItemsInGrid();
+            return res;
+        }
+    } else if (watched == header) {
+        if (e->type() == QEvent::MouseButtonPress && ((QMouseEvent *)e)->button() == Qt::RightButton) {
+            setColumnNr();
+            return true;
+        }
+        return false;
+    }
+    return K3IconView::eventFilter(watched, e);
 }
 
-void KrBriefView::initOperator() {
-	_operator = new KrViewOperator(this, this);
-	// QIconView emits selection changed, so chain them to operator
-	connect(this, SIGNAL(selectionChanged()), _operator, SLOT(emitSelectionChanged()));
+void KrBriefView::makeItemVisible(const KrViewItem *item)
+{
+// qApp->processEvents();  // Please don't remove the comment. Causes crash if it is inserted!
+    ensureItemVisible((Q3IconViewItem *)(static_cast<const KrBriefViewItem*>(item)));
+}
+
+void KrBriefView::setCurrentKrViewItem(KrViewItem *item)
+{
+// qApp->processEvents();  // Please don't remove the comment. Causes crash if it is inserted!
+    K3IconView::setCurrentItem((Q3IconViewItem *)(static_cast<const KrBriefViewItem*>(item)));
+}
+
+void KrBriefView::initOperator()
+{
+    _operator = new KrViewOperator(this, this);
+    // QIconView emits selection changed, so chain them to operator
+    connect(this, SIGNAL(selectionChanged()), _operator, SLOT(emitSelectionChanged()));
 }
 
 void KrBriefView::setColumnNr()
 {
-  KMenu popup( this );
-  popup.setTitle( i18n("Columns"));
-  
-  int COL_ID = 14700;
+    KMenu popup(this);
+    popup.setTitle(i18n("Columns"));
 
-  for( int i=1; i <= MAX_BRIEF_COLS; i++ )
-  {
-    QAction *act = popup.addAction( QString( "%1" ).arg( i ) );
-    act->setData( QVariant( COL_ID + i ) );
-    act->setCheckable( true );
-    act->setChecked( PROPS->numberOfColumns == i );
-  }
-  
-  QAction * res = popup.exec(QCursor::pos());
-  int result= -1;
-  if( res && res->data().canConvert<int>() )
-    result = res->data().toInt();
+    int COL_ID = 14700;
 
-  KConfigGroup group( krConfig, nameInKConfig() );
-  
-  if( result > COL_ID && result <= COL_ID + MAX_BRIEF_COLS )
-  {
-    group.writeEntry( "Number Of Brief Columns", result - COL_ID );
-    PROPS->numberOfColumns = result - COL_ID;
-    redrawColumns();
-  }
+    for (int i = 1; i <= MAX_BRIEF_COLS; i++) {
+        QAction *act = popup.addAction(QString("%1").arg(i));
+        act->setData(QVariant(COL_ID + i));
+        act->setCheckable(true);
+        act->setChecked(PROPS->numberOfColumns == i);
+    }
+
+    QAction * res = popup.exec(QCursor::pos());
+    int result = -1;
+    if (res && res->data().canConvert<int>())
+        result = res->data().toInt();
+
+    KConfigGroup group(krConfig, nameInKConfig());
+
+    if (result > COL_ID && result <= COL_ID + MAX_BRIEF_COLS) {
+        group.writeEntry("Number Of Brief Columns", result - COL_ID);
+        PROPS->numberOfColumns = result - COL_ID;
+        redrawColumns();
+    }
 }
 
-void KrBriefView::sortOrderChanged() {
-	ensureItemVisible(currentItem());
-	
-	if( !_focused )
-		op()->emitNeedFocus();
+void KrBriefView::sortOrderChanged()
+{
+    ensureItemVisible(currentItem());
+
+    if (!_focused)
+        op()->emitNeedFocus();
 
 }
 
-void KrBriefView::updateView() {
-	arrangeItemsInGrid();
-	op()->emitSelectionChanged();
+void KrBriefView::updateView()
+{
+    arrangeItemsInGrid();
+    op()->emitSelectionChanged();
 }
 
-void KrBriefView::updateItem(KrViewItem* item) {
-	dynamic_cast<KrBriefViewItem*>(item)->repaintItem();
+void KrBriefView::updateItem(KrViewItem* item)
+{
+    dynamic_cast<KrBriefViewItem*>(item)->repaintItem();
 }
 
-void KrBriefView::slotRightButtonPressed(Q3IconViewItem*, const QPoint& point) {
-	op()->emitEmptyContextMenu(point);
+void KrBriefView::slotRightButtonPressed(Q3IconViewItem*, const QPoint& point)
+{
+    op()->emitEmptyContextMenu(point);
 }
 
 void KrBriefView::changeSortOrder()
 {
-       bool asc = !sortDirection();
-       header->setSortIndicator( 0, asc ? Qt::Ascending : Qt::Descending );
-       sort( asc );
+    bool asc = !sortDirection();
+    header->setSortIndicator(0, asc ? Qt::Ascending : Qt::Descending);
+    sort(asc);
 }
 
-QMouseEvent * KrBriefView::transformMouseEvent( QMouseEvent * e )
+QMouseEvent * KrBriefView::transformMouseEvent(QMouseEvent * e)
 {
-	if( findItem( e->pos() ) != 0 )
-		return e;
-	
-	Q3IconViewItem *closestItem = 0;
-	int mouseX = e->pos().x(), mouseY = e->pos().y();
-	int closestDelta = 0x7FFFFFFF;
-	
-	int minX = ( mouseX / gridX() ) * gridX();
-	int maxX = minX + gridX();
-	
-	Q3IconViewItem *current = firstItem();
-	while( current )
-	{
-		if( current->x() >= minX && current->x() < maxX )
-		{
-			int delta = mouseY - current->y();
-			if( delta >= 0 && delta < closestDelta )
-			{
-				closestDelta = delta;
-				closestItem = current;
-			}
-		}
-		current = current->nextItem();
-	}
-	
-	if( closestItem != 0 )
-	{
-		if( mouseX - closestItem->x() > gridX() )
-			closestItem = 0;
-		else if( mouseY - closestItem->y() > closestItem->height() )
-			closestItem = 0;
-	}
-	
-	if( closestItem != 0 )
-	{
-		QRect rec = closestItem->textRect( false );
-		if( mouseX < rec.x() )
-			mouseX = rec.x();
-		if( mouseY < rec.y() )
-			mouseY = rec.y();
-		if( mouseX > rec.x() + rec.width() -1 )
-			mouseX = rec.x() + rec.width() -1;
-		if( mouseY > rec.y() + rec.height() -1 )
-			mouseY = rec.y() + rec.height() -1;
-		QPoint newPos( mouseX, mouseY );
-		QPoint glPos;
-		if( !e->globalPos().isNull() )
-		{
-			glPos = QPoint( mouseX - e->pos().x() + e->globalPos().x(),
-			                mouseY - e->pos().y() + e->globalPos().y() );
-		}
-		
-		if( mouseEvent )
-			delete mouseEvent;
-		return mouseEvent = new QMouseEvent( e->type(), newPos, glPos, e->button(), e->modifiers() );
-	}
-	
-	return e;
+    if (findItem(e->pos()) != 0)
+        return e;
+
+    Q3IconViewItem *closestItem = 0;
+    int mouseX = e->pos().x(), mouseY = e->pos().y();
+    int closestDelta = 0x7FFFFFFF;
+
+    int minX = (mouseX / gridX()) * gridX();
+    int maxX = minX + gridX();
+
+    Q3IconViewItem *current = firstItem();
+    while (current) {
+        if (current->x() >= minX && current->x() < maxX) {
+            int delta = mouseY - current->y();
+            if (delta >= 0 && delta < closestDelta) {
+                closestDelta = delta;
+                closestItem = current;
+            }
+        }
+        current = current->nextItem();
+    }
+
+    if (closestItem != 0) {
+        if (mouseX - closestItem->x() > gridX())
+            closestItem = 0;
+        else if (mouseY - closestItem->y() > closestItem->height())
+            closestItem = 0;
+    }
+
+    if (closestItem != 0) {
+        QRect rec = closestItem->textRect(false);
+        if (mouseX < rec.x())
+            mouseX = rec.x();
+        if (mouseY < rec.y())
+            mouseY = rec.y();
+        if (mouseX > rec.x() + rec.width() - 1)
+            mouseX = rec.x() + rec.width() - 1;
+        if (mouseY > rec.y() + rec.height() - 1)
+            mouseY = rec.y() + rec.height() - 1;
+        QPoint newPos(mouseX, mouseY);
+        QPoint glPos;
+        if (!e->globalPos().isNull()) {
+            glPos = QPoint(mouseX - e->pos().x() + e->globalPos().x(),
+                           mouseY - e->pos().y() + e->globalPos().y());
+        }
+
+        if (mouseEvent)
+            delete mouseEvent;
+        return mouseEvent = new QMouseEvent(e->type(), newPos, glPos, e->button(), e->modifiers());
+    }
+
+    return e;
 }
 
-void KrBriefView::wheelEvent( QWheelEvent *e )
+void KrBriefView::wheelEvent(QWheelEvent *e)
 {
-	// KDE 4.2 wheel event crashes
-	// because of recursive calls
-	if( inWheelEvent )
-		return;
-	inWheelEvent = true;
-	K3IconView::wheelEvent(e);
-	inWheelEvent = false;
+    // KDE 4.2 wheel event crashes
+    // because of recursive calls
+    if (inWheelEvent)
+        return;
+    inWheelEvent = true;
+    K3IconView::wheelEvent(e);
+    inWheelEvent = false;
 }
 
-KrView* KrBriefView::create( QWidget *parent, bool &left, KConfig *cfg ) {
-	QFrame * briefWidget = new QFrame( parent );
-	briefWidget->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
-	briefWidget->setLineWidth(parent->style()->pixelMetric(QStyle::PM_DefaultFrameWidth));
-	QVBoxLayout *briefLayout = new QVBoxLayout( briefWidget );
-	briefLayout->setSpacing( 0 );
-	briefLayout->setContentsMargins( 0, 0, 0, 0 );
-	Q3Header * header = new Q3Header( briefWidget );
-	briefLayout->addWidget( header );
-	KrBriefView * view = new KrBriefView( header, parent, left, cfg );
-	view->setFrameShape( QFrame::NoFrame );
-	briefLayout->addWidget( view );
-	connect( view, SIGNAL( destroyed() ), briefWidget, SLOT( deleteLater() ) );
-	view->setWidget( briefWidget );
-	return view;
+KrView* KrBriefView::create(QWidget *parent, bool &left, KConfig *cfg)
+{
+    QFrame * briefWidget = new QFrame(parent);
+    briefWidget->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
+    briefWidget->setLineWidth(parent->style()->pixelMetric(QStyle::PM_DefaultFrameWidth));
+    QVBoxLayout *briefLayout = new QVBoxLayout(briefWidget);
+    briefLayout->setSpacing(0);
+    briefLayout->setContentsMargins(0, 0, 0, 0);
+    Q3Header * header = new Q3Header(briefWidget);
+    briefLayout->addWidget(header);
+    KrBriefView * view = new KrBriefView(header, parent, left, cfg);
+    view->setFrameShape(QFrame::NoFrame);
+    briefLayout->addWidget(view);
+    connect(view, SIGNAL(destroyed()), briefWidget, SLOT(deleteLater()));
+    view->setWidget(briefWidget);
+    return view;
 }
 
 #include "krbriefview.moc"

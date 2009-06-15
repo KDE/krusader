@@ -43,70 +43,76 @@ class newFTPGUI;
 
 class KRMaskChoiceSub;
 
-class KRSpWidgets {
-  friend class KRMaskChoiceSub;
-  
-public: 
-	KRSpWidgets();
+class KRSpWidgets
+{
+    friend class KRMaskChoiceSub;
 
-  static KRQuery getMask( QString caption, bool nameOnly=false, QWidget * parent = 0 ); // get file-mask for (un)selecting files
-  static KUrl newFTP();
+public:
+    KRSpWidgets();
+
+    static KRQuery getMask(QString caption, bool nameOnly = false, QWidget * parent = 0); // get file-mask for (un)selecting files
+    static KUrl newFTP();
 
 private:
-  static QStringList maskList;  // used by KRMaskChoiceSub 
+    static QStringList maskList;  // used by KRMaskChoiceSub
 };
 
 /////////////////////////// newFTPSub ///////////////////////////////////////
-class newFTPSub : public newFTPGUI {
+class newFTPSub : public newFTPGUI
+{
 public:
-  newFTPSub();
+    newFTPSub();
 
 protected:
-  void reject();
-  void accept();
+    void reject();
+    void accept();
 };
 
 /////////////////////////// KRMaskChoiceSub /////////////////////////////////
 // Inherits KRMaskChoice's generated code to fully implement the functions //
 /////////////////////////////////////////////////////////////////////////////
-class KRMaskChoiceSub : public KRMaskChoice {
+class KRMaskChoiceSub : public KRMaskChoice
+{
 public:
-  KRMaskChoiceSub( QWidget * parent = 0 );
+    KRMaskChoiceSub(QWidget * parent = 0);
 
 public slots:
-  void addSelection();
-  void deleteSelection();
-  void clearSelections();
-  void acceptFromList(QListWidgetItem *i);
-  void currentItemChanged(QListWidgetItem *i);
-    
+    void addSelection();
+    void deleteSelection();
+    void clearSelections();
+    void acceptFromList(QListWidgetItem *i);
+    void currentItemChanged(QListWidgetItem *i);
+
 protected:
-  void reject();
-  void accept();  
+    void reject();
+    void accept();
 };
 
 /////////////////////////// QuickNavLineEdit //////////////////////////
 // same as line edit, but hold ctrl while pointing to it... and see! //
 ///////////////////////////////////////////////////////////////////////
 
-class QuickNavLineEdit: public KLineEdit {
+class QuickNavLineEdit: public KLineEdit
+{
 public:
-	QuickNavLineEdit(const QString &string, QWidget *parent);
- 	QuickNavLineEdit(QWidget *parent=0);
- 	virtual ~QuickNavLineEdit() {}
-	static int findCharFromPos(const QString &, const QFontMetrics &, int pos);
+    QuickNavLineEdit(const QString &string, QWidget *parent);
+    QuickNavLineEdit(QWidget *parent = 0);
+    virtual ~QuickNavLineEdit() {}
+    static int findCharFromPos(const QString &, const QFontMetrics &, int pos);
 protected:
-	void mouseMoveEvent( QMouseEvent *m);
-	void leaveEvent( QEvent * );
-	void mousePressEvent( QMouseEvent *m );
-	inline void clearAll() { _numOfSelectedChars = 0; if (_pop) _pop->deleteLater(); _pop = 0; _dummyDisplayed=false; }
-	void init();
-	
+    void mouseMoveEvent(QMouseEvent *m);
+    void leaveEvent(QEvent *);
+    void mousePressEvent(QMouseEvent *m);
+    inline void clearAll() {
+        _numOfSelectedChars = 0; if (_pop) _pop->deleteLater(); _pop = 0; _dummyDisplayed = false;
+    }
+    void init();
+
 private:
-	int charCount(const QMouseEvent * const , QString* const =0) ;
-	int _numOfSelectedChars;
-	bool _dummyDisplayed;
-	QPointer<KPassivePopup> _pop;
+    int charCount(const QMouseEvent * const , QString* const = 0) ;
+    int _numOfSelectedChars;
+    bool _dummyDisplayed;
+    QPointer<KPassivePopup> _pop;
 };
 
 #endif

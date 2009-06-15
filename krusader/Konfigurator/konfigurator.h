@@ -46,41 +46,43 @@ class QCloseEvent;
 
 class Konfigurator : public KPageDialog
 {
-   Q_OBJECT
+    Q_OBJECT
 
 public:
-  Konfigurator( bool f=false, int startPage = 0 ); // true if Konfigurator is run for the first time
-  ~Konfigurator() {};
+    Konfigurator(bool f = false, int startPage = 0); // true if Konfigurator is run for the first time
+    ~Konfigurator() {};
 
-  bool isGUIRestartNeeded() { return restartGUI; }
+    bool isGUIRestartNeeded() {
+        return restartGUI;
+    }
 
-  virtual void accept();
-  virtual void reject();
+    virtual void accept();
+    virtual void reject();
 
 protected:
-  void newPage(KonfiguratorPage *, const QString &, const QString &, const KIcon & );// adds widget and connects to slot
-  void createLayout( int startPage );
-  void closeDialog();
+    void newPage(KonfiguratorPage *, const QString &, const QString &, const KIcon &); // adds widget and connects to slot
+    void createLayout(int startPage);
+    void closeDialog();
 
-  virtual void resizeEvent( QResizeEvent *e );
+    virtual void resizeEvent(QResizeEvent *e);
 
 protected slots:
-  void slotUser1();
-  void slotApply();   // actually used for defaults
-  void slotCancel();
-  void slotApplyEnable();
-  bool slotPageSwitch(  KPageWidgetItem *, KPageWidgetItem * );
-  void slotRestorePage();
+    void slotUser1();
+    void slotApply();   // actually used for defaults
+    void slotCancel();
+    void slotApplyEnable();
+    bool slotPageSwitch(KPageWidgetItem *, KPageWidgetItem *);
+    void slotRestorePage();
 
 private:
-  QList<KPageWidgetItem*>     kgPages;
-  bool                        firstTime;
-  KPageWidgetItem            *lastPage;
-  bool                        internalCall;
-  QTimer                      restoreTimer;
-  bool                        restartGUI;
-  int                         sizeX;
-  int                         sizeY;
+    QList<KPageWidgetItem*>     kgPages;
+    bool                        firstTime;
+    KPageWidgetItem            *lastPage;
+    bool                        internalCall;
+    QTimer                      restoreTimer;
+    bool                        restartGUI;
+    int                         sizeX;
+    int                         sizeY;
 };
 
 #endif

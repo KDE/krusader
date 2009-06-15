@@ -34,110 +34,130 @@
 #include <QStyleOptionViewItem>
 #include <QtGui/QApplication>
 
-void KrStyleProxy::drawComplexControl ( ComplexControl control, const QStyleOptionComplex * option, QPainter * painter, const QWidget * widget ) const {
-  QApplication::style()->drawComplexControl( control, option, painter, widget );
+void KrStyleProxy::drawComplexControl(ComplexControl control, const QStyleOptionComplex * option, QPainter * painter, const QWidget * widget) const
+{
+    QApplication::style()->drawComplexControl(control, option, painter, widget);
 }
 
-void KrStyleProxy::drawControl ( ControlElement element, const QStyleOption * option, QPainter * painter, const QWidget * widget ) const {
-  QApplication::style()->drawControl( element, option, painter, widget );
+void KrStyleProxy::drawControl(ControlElement element, const QStyleOption * option, QPainter * painter, const QWidget * widget) const
+{
+    QApplication::style()->drawControl(element, option, painter, widget);
 }
 
-void KrStyleProxy::drawItemPixmap ( QPainter * painter, const QRect & rectangle, int alignment, const QPixmap & pixmap ) const {
-  QApplication::style()->drawItemPixmap( painter, rectangle, alignment, pixmap );
+void KrStyleProxy::drawItemPixmap(QPainter * painter, const QRect & rectangle, int alignment, const QPixmap & pixmap) const
+{
+    QApplication::style()->drawItemPixmap(painter, rectangle, alignment, pixmap);
 }
 
-void KrStyleProxy::drawItemText ( QPainter * painter, const QRect & rectangle, int alignment, const QPalette & palette, bool enabled, const QString & text, QPalette::ColorRole textRole ) const {
-  QApplication::style()->drawItemText( painter, rectangle, alignment, palette, enabled, text, textRole );
+void KrStyleProxy::drawItemText(QPainter * painter, const QRect & rectangle, int alignment, const QPalette & palette, bool enabled, const QString & text, QPalette::ColorRole textRole) const
+{
+    QApplication::style()->drawItemText(painter, rectangle, alignment, palette, enabled, text, textRole);
 }
 
-void KrStyleProxy::drawPrimitive ( PrimitiveElement element, const QStyleOption * option, QPainter * painter, const QWidget * widget ) const {
-  if( element == QStyle::PE_FrameFocusRect ) {
-      if (const QStyleOptionFocusRect *fropt = qstyleoption_cast<const QStyleOptionFocusRect *>(option)) {
-          QColor bg = fropt->backgroundColor;
-          QPen oldPen = painter->pen();
-          QPen newPen;
-          if (bg.isValid()) {
-              int h, s, v;
-              bg.getHsv(&h, &s, &v);
-              if (v >= 128)
-                  newPen.setColor(Qt::black);
-              else
-                  newPen.setColor(Qt::white);
-          } else {
-              newPen.setColor(option->palette.foreground().color());
-          }
-          newPen.setWidth( 0 );
-          newPen.setStyle( Qt::DotLine );
-          painter->setPen( newPen );
-          QRect focusRect = option->rect /*.adjusted(1, 1, -1, -1) */;
-          painter->drawRect(focusRect.adjusted(0, 0, -1, -1)); //draw pen inclusive
-          painter->setPen(oldPen);
-      }
-  }
-  else
-    QApplication::style()->drawPrimitive( element, option, painter, widget );
+void KrStyleProxy::drawPrimitive(PrimitiveElement element, const QStyleOption * option, QPainter * painter, const QWidget * widget) const
+{
+    if (element == QStyle::PE_FrameFocusRect) {
+        if (const QStyleOptionFocusRect *fropt = qstyleoption_cast<const QStyleOptionFocusRect *>(option)) {
+            QColor bg = fropt->backgroundColor;
+            QPen oldPen = painter->pen();
+            QPen newPen;
+            if (bg.isValid()) {
+                int h, s, v;
+                bg.getHsv(&h, &s, &v);
+                if (v >= 128)
+                    newPen.setColor(Qt::black);
+                else
+                    newPen.setColor(Qt::white);
+            } else {
+                newPen.setColor(option->palette.foreground().color());
+            }
+            newPen.setWidth(0);
+            newPen.setStyle(Qt::DotLine);
+            painter->setPen(newPen);
+            QRect focusRect = option->rect /*.adjusted(1, 1, -1, -1) */;
+            painter->drawRect(focusRect.adjusted(0, 0, -1, -1)); //draw pen inclusive
+            painter->setPen(oldPen);
+        }
+    } else
+        QApplication::style()->drawPrimitive(element, option, painter, widget);
 }
 
-QPixmap KrStyleProxy::generatedIconPixmap ( QIcon::Mode iconMode, const QPixmap & pixmap, const QStyleOption * option ) const {
-  return QApplication::style()->generatedIconPixmap( iconMode, pixmap, option );
+QPixmap KrStyleProxy::generatedIconPixmap(QIcon::Mode iconMode, const QPixmap & pixmap, const QStyleOption * option) const
+{
+    return QApplication::style()->generatedIconPixmap(iconMode, pixmap, option);
 }
 
-QStyle::SubControl KrStyleProxy::hitTestComplexControl ( ComplexControl control, const QStyleOptionComplex * option, const QPoint & position, const QWidget * widget ) const {
-  return QApplication::style()->hitTestComplexControl ( control, option, position, widget );
+QStyle::SubControl KrStyleProxy::hitTestComplexControl(ComplexControl control, const QStyleOptionComplex * option, const QPoint & position, const QWidget * widget) const
+{
+    return QApplication::style()->hitTestComplexControl(control, option, position, widget);
 }
 
-QRect KrStyleProxy::itemPixmapRect ( const QRect & rectangle, int alignment, const QPixmap & pixmap ) const {
-  return QApplication::style()->itemPixmapRect ( rectangle, alignment, pixmap );
+QRect KrStyleProxy::itemPixmapRect(const QRect & rectangle, int alignment, const QPixmap & pixmap) const
+{
+    return QApplication::style()->itemPixmapRect(rectangle, alignment, pixmap);
 }
 
-QRect KrStyleProxy::itemTextRect ( const QFontMetrics & metrics, const QRect & rectangle, int alignment, bool enabled, const QString & text ) const {
-  return QApplication::style()->itemTextRect ( metrics, rectangle, alignment, enabled, text );
+QRect KrStyleProxy::itemTextRect(const QFontMetrics & metrics, const QRect & rectangle, int alignment, bool enabled, const QString & text) const
+{
+    return QApplication::style()->itemTextRect(metrics, rectangle, alignment, enabled, text);
 }
 
-int KrStyleProxy::pixelMetric ( PixelMetric metric, const QStyleOption * option, const QWidget * widget ) const {
-  return QApplication::style()->pixelMetric ( metric, option, widget );
+int KrStyleProxy::pixelMetric(PixelMetric metric, const QStyleOption * option, const QWidget * widget) const
+{
+    return QApplication::style()->pixelMetric(metric, option, widget);
 }
 
-void KrStyleProxy::polish ( QWidget * widget ) {
-  QApplication::style()->polish( widget );
+void KrStyleProxy::polish(QWidget * widget)
+{
+    QApplication::style()->polish(widget);
 }
 
-void KrStyleProxy::polish ( QApplication * application ) {
-  QApplication::style()->polish( application );
+void KrStyleProxy::polish(QApplication * application)
+{
+    QApplication::style()->polish(application);
 }
 
-void KrStyleProxy::polish ( QPalette & palette ) {
-  QApplication::style()->polish( palette );
+void KrStyleProxy::polish(QPalette & palette)
+{
+    QApplication::style()->polish(palette);
 }
 
-QSize KrStyleProxy::sizeFromContents ( ContentsType type, const QStyleOption * option, const QSize & contentsSize, const QWidget * widget ) const {
-  return QApplication::style()->sizeFromContents ( type, option, contentsSize, widget );
+QSize KrStyleProxy::sizeFromContents(ContentsType type, const QStyleOption * option, const QSize & contentsSize, const QWidget * widget) const
+{
+    return QApplication::style()->sizeFromContents(type, option, contentsSize, widget);
 }
 
-QPalette KrStyleProxy::standardPalette () const {
-  return QApplication::style()->standardPalette ();
+QPalette KrStyleProxy::standardPalette() const
+{
+    return QApplication::style()->standardPalette();
 }
 
-int KrStyleProxy::styleHint ( StyleHint hint, const QStyleOption * option, const QWidget * widget, QStyleHintReturn * returnData ) const {
-  return QApplication::style()->styleHint( hint, option, widget, returnData );
+int KrStyleProxy::styleHint(StyleHint hint, const QStyleOption * option, const QWidget * widget, QStyleHintReturn * returnData) const
+{
+    return QApplication::style()->styleHint(hint, option, widget, returnData);
 }
 
-QRect KrStyleProxy::subControlRect ( ComplexControl control, const QStyleOptionComplex * option, SubControl subControl, const QWidget * widget ) const {
-  return QApplication::style()->subControlRect ( control, option, subControl, widget );
+QRect KrStyleProxy::subControlRect(ComplexControl control, const QStyleOptionComplex * option, SubControl subControl, const QWidget * widget) const
+{
+    return QApplication::style()->subControlRect(control, option, subControl, widget);
 }
 
-QRect KrStyleProxy::subElementRect ( SubElement element, const QStyleOption * option, const QWidget * widget ) const {
-  return QApplication::style()->subElementRect ( element, option, widget );
+QRect KrStyleProxy::subElementRect(SubElement element, const QStyleOption * option, const QWidget * widget) const
+{
+    return QApplication::style()->subElementRect(element, option, widget);
 }
 
-QPixmap KrStyleProxy::standardPixmap(QStyle::StandardPixmap pixmap, const QStyleOption* option, const QWidget*widget) const {
-  return QApplication::style()->standardPixmap ( pixmap, option, widget );
+QPixmap KrStyleProxy::standardPixmap(QStyle::StandardPixmap pixmap, const QStyleOption* option, const QWidget*widget) const
+{
+    return QApplication::style()->standardPixmap(pixmap, option, widget);
 }
 
-void KrStyleProxy::unpolish ( QWidget * widget ) {
-  QApplication::style()->unpolish( widget );
+void KrStyleProxy::unpolish(QWidget * widget)
+{
+    QApplication::style()->unpolish(widget);
 }
 
-void KrStyleProxy::unpolish ( QApplication * application ) {
-  QApplication::style()->unpolish( application );
+void KrStyleProxy::unpolish(QApplication * application)
+{
+    QApplication::style()->unpolish(application);
 }

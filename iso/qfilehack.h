@@ -27,12 +27,13 @@
   * block devices for example?
   */
 
-class QFileHack : public QFile  {
-public: 
+class QFileHack : public QFile
+{
+public:
     QFileHack();
-    QFileHack( const QString & name );
+    QFileHack(const QString & name);
     ~QFileHack();
-    virtual bool open ( QFile::OpenMode m );
+    virtual bool open(QFile::OpenMode m);
 };
 
 #endif

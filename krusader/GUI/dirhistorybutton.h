@@ -28,31 +28,32 @@ class QMenu;
 class QAction;
 class DirHistoryQueue;
 
-class DirHistoryButton : public QToolButton  {
-   Q_OBJECT
-public: 
-  DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent=0);
-  ~DirHistoryButton();
+class DirHistoryButton : public QToolButton
+{
+    Q_OBJECT
+public:
+    DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent = 0);
+    ~DirHistoryButton();
 
-  void showMenu();
+    void showMenu();
 
 signals:
-  void aboutToShow();
+    void aboutToShow();
 
 private:
-  QMenu* popupMenu;
-  DirHistoryQueue* historyQueue;
-  
+    QMenu* popupMenu;
+    DirHistoryQueue* historyQueue;
+
 public slots: // Public slots
-  /** No descriptions */
-  void slotPopup();
-  /** No descriptions */
-  void slotAboutToShow();
-  /** No descriptions */
-  void slotPopupActivated( QAction * );
+    /** No descriptions */
+    void slotPopup();
+    /** No descriptions */
+    void slotAboutToShow();
+    /** No descriptions */
+    void slotPopupActivated(QAction *);
 signals: // Signals
-  /** No descriptions */
-  void openUrl(const KUrl&);
+    /** No descriptions */
+    void openUrl(const KUrl&);
 };
 
 #endif

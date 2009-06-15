@@ -51,32 +51,43 @@
 class QPixmap;
 class KrDetailedView;
 
-class KrDetailedViewItem : public K3ListViewItem, public KrViewItem {
-friend class KrDetailedView;
+class KrDetailedViewItem : public K3ListViewItem, public KrViewItem
+{
+    friend class KrDetailedView;
 public:
-	KrDetailedViewItem(KrDetailedView *parent, Q3ListViewItem *after, vfile *vf);
-	inline bool isSelected() const { return K3ListViewItem::isSelected(); }
-	inline void setSelected(bool s) { K3ListViewItem::setSelected(s); repaint(); }
-	int compare(Q3ListViewItem *i,int col,bool ascending ) const;
-	void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align);
-	void paintFocus(QPainter *p, const QColorGroup &cg, const QRect &r);
-	void repaintItem();
-	static void itemHeightChanged(); // force the items to resize when icon/font size change
-#ifdef FASTER		
-	virtual void setup(); // called when listview needs to know the height of the item
+    KrDetailedViewItem(KrDetailedView *parent, Q3ListViewItem *after, vfile *vf);
+    inline bool isSelected() const {
+        return K3ListViewItem::isSelected();
+    }
+    inline void setSelected(bool s) {
+        K3ListViewItem::setSelected(s); repaint();
+    }
+    int compare(Q3ListViewItem *i, int col, bool ascending) const;
+    void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align);
+    void paintFocus(QPainter *p, const QColorGroup &cg, const QRect &r);
+    void repaintItem();
+    static void itemHeightChanged(); // force the items to resize when icon/font size change
+#ifdef FASTER
+    virtual void setup(); // called when listview needs to know the height of the item
 #endif
-        virtual QRect itemRect() const { return listView()->itemRect( this ); }
-        virtual void redraw() { repaintItem(); repaint(); }
+    virtual QRect itemRect() const {
+        return listView()->itemRect(this);
+    }
+    virtual void redraw() {
+        repaintItem(); repaint();
+    }
 protected:
-	// text() was made protected in order to catch every place where text(x) is used
-	// to gain unlawful information on the object
-	virtual inline QString text(int column) const { return K3ListViewItem::text(column); }
+    // text() was made protected in order to catch every place where text(x) is used
+    // to gain unlawful information on the object
+    virtual inline QString text(int column) const {
+        return K3ListViewItem::text(column);
+    }
 
 private:
-	static const QColor & setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2);
-#ifdef FASTER	
-	bool initiated;
-	static int expHeight;
+    static const QColor & setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2);
+#ifdef FASTER
+    bool initiated;
+    static int expHeight;
 #endif
 };
 

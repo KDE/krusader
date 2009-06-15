@@ -23,9 +23,10 @@
 
 class KUrl;
 
-class UserActionPopupMenu : public KActionMenu {
+class UserActionPopupMenu : public KActionMenu
+{
 public:
-   UserActionPopupMenu( const KUrl &currentURL, QWidget *parent = 0 );
+    UserActionPopupMenu(const KUrl &currentURL, QWidget *parent = 0);
 };
 
 #endif // USERACTIONPOPUPMENU_H

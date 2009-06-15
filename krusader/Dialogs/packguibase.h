@@ -39,9 +39,9 @@
 #include <QLabel>
 
 
-class QVBoxLayout; 
-class QHBoxLayout; 
-class QGridLayout; 
+class QVBoxLayout;
+class QHBoxLayout;
+class QGridLayout;
 class QCheckBox;
 class QComboBox;
 class QLabel;
@@ -53,11 +53,11 @@ class QSlider;
 class KHistoryComboBox;
 
 class PackGUIBase : public QDialog
-{ 
+{
     Q_OBJECT
 
 public:
-    PackGUIBase( QWidget* parent = 0 );
+    PackGUIBase(QWidget* parent = 0);
     ~PackGUIBase();
 
     QLabel* TextLabel3;
@@ -92,7 +92,7 @@ public:
 
 public slots:
     virtual void browse();
-    virtual bool extraProperties( QMap<QString,QString> & );
+    virtual bool extraProperties(QMap<QString, QString> &);
 
     void expand();
     void checkConsistency();
@@ -101,7 +101,7 @@ protected slots:
     virtual void slotQueue();
 
 protected:
-    virtual void keyPressEvent( QKeyEvent *e );
+    virtual void keyPressEvent(QKeyEvent *e);
 
     QHBoxLayout* hbox;
     QHBoxLayout* hbox_2;

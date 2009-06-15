@@ -35,10 +35,10 @@
 
 class KgAdvanced : public KonfiguratorPage
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KgAdvanced( bool first, QWidget* parent=0 );
+    KgAdvanced(bool first, QWidget* parent = 0);
 };
 
 #endif /* __KGADVANCED_H__ */

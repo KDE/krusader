@@ -33,17 +33,18 @@
 
 #include <QtGui/QListWidget>
 
-class KrListWidget : public QListWidget {
-  Q_OBJECT
+class KrListWidget : public QListWidget
+{
+    Q_OBJECT
 
 public:
-  KrListWidget( QWidget * parent = 0 );
+    KrListWidget(QWidget * parent = 0);
 
 signals:
-  void itemRightClicked( QListWidgetItem * it, const QPoint & pos );
+    void itemRightClicked(QListWidgetItem * it, const QPoint & pos);
 
 protected:
-  virtual bool event ( QEvent * event );
+    virtual bool event(QEvent * event);
 };
 
 #endif /* KRLISTVIEW_H */

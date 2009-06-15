@@ -22,66 +22,71 @@
 
 #include <kdebug.h>
 
-DirHistoryQueue::DirHistoryQueue( ListPanel* p ) {
-	panel = p;
+DirHistoryQueue::DirHistoryQueue(ListPanel* p)
+{
+    panel = p;
 
-	connect( panel, SIGNAL( pathChanged( ListPanel* ) ), this, SLOT( slotPathChanged( ListPanel* ) ) );
+    connect(panel, SIGNAL(pathChanged(ListPanel*)), this, SLOT(slotPathChanged(ListPanel*)));
 }
 DirHistoryQueue::~DirHistoryQueue() {}
 
 /** No descriptions */
-void DirHistoryQueue::slotPathChanged( ListPanel* p ) {
-	KUrl url = p->virtualPath();
-	// already in the queue ?
-	if(  urlQueue.indexOf( url ) >= 0 ){
-		// remove it !
-		urlQueue.removeAll( url );
-	}
-	// do we have room for another ?
-	if ( urlQueue.size() > 12 ) {
-		// no room - remove the oldest entry
-		urlQueue.pop_back();	
-	}
-	
-	urlQueue.push_front( url );
+void DirHistoryQueue::slotPathChanged(ListPanel* p)
+{
+    KUrl url = p->virtualPath();
+    // already in the queue ?
+    if (urlQueue.indexOf(url) >= 0) {
+        // remove it !
+        urlQueue.removeAll(url);
+    }
+    // do we have room for another ?
+    if (urlQueue.size() > 12) {
+        // no room - remove the oldest entry
+        urlQueue.pop_back();
+    }
+
+    urlQueue.push_front(url);
 }
 
 #if 0
-void DirHistoryQueue::addUrl(const KUrl& url){
-	if ( pathQueue.indexOf( path ) == -1 ) {
-		if ( pathQueue.size() > 12 ) {
-			// remove the oldest entry
-			pathQueue.pop_back();
-		}
-	} else {
-		pathQueue.remove( path );
-	}
+void DirHistoryQueue::addUrl(const KUrl& url)
+{
+    if (pathQueue.indexOf(path) == -1) {
+        if (pathQueue.size() > 12) {
+            // remove the oldest entry
+            pathQueue.pop_back();
+        }
+    } else {
+        pathQueue.remove(path);
+    }
 
-	pathQueue.push_front( path );
+    pathQueue.push_front(path);
 }
 
-void DirHistoryQueue::RemovePath( const QString& path ) {
-	QStringList::iterator it;
-	it = pathQueue.find( path );
-	if ( it != pathQueue.end() ) {
-		pathQueue.remove( it );
-	}
+void DirHistoryQueue::RemovePath(const QString& path)
+{
+    QStringList::iterator it;
+    it = pathQueue.find(path);
+    if (it != pathQueue.end()) {
+        pathQueue.remove(it);
+    }
 }
 
-bool DirHistoryQueue::checkPath( const QString& path ) {
-	KUrl url( path );
+bool DirHistoryQueue::checkPath(const QString& path)
+{
+    KUrl url(path);
 
-	QString p = url.path();
-	//  kDebug() << "url:" << p <<  ", file: " << url.fileName() << ", dir: " << url.directory() <<  endl;
-	if ( url.protocol() == "file" ) {
-		QDir dir( path );
-		if ( !dir.exists() ) {
-			RemovePath( path );
-			return false;
-		}
-	}
+    QString p = url.path();
+    //  kDebug() << "url:" << p <<  ", file: " << url.fileName() << ", dir: " << url.directory() <<  endl;
+    if (url.protocol() == "file") {
+        QDir dir(path);
+        if (!dir.exists()) {
+            RemovePath(path);
+            return false;
+        }
+    }
 
-	return true;
+    return true;
 
 }
 #endif

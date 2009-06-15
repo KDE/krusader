@@ -35,9 +35,9 @@
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QLabel>
-class QVBoxLayout; 
-class QHBoxLayout; 
-class QGridLayout; 
+class QVBoxLayout;
+class QHBoxLayout;
+class QGridLayout;
 class QComboBox;
 class QGroupBox;
 class QLabel;
@@ -46,11 +46,11 @@ class QListWidgetItem;
 class QPushButton;
 
 class KRMaskChoice : public QDialog
-{ 
+{
     Q_OBJECT
 
 public:
-    KRMaskChoice( QWidget* parent = 0 );
+    KRMaskChoice(QWidget* parent = 0);
     ~KRMaskChoice();
 
     QComboBox* selection;

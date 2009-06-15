@@ -36,99 +36,103 @@
 
 class PanelViewerBase;
 
-class KrViewer : public KParts::MainWindow {
-	Q_OBJECT
+class KrViewer : public KParts::MainWindow
+{
+    Q_OBJECT
 public:
-	virtual ~KrViewer();
-	
-	enum Mode{Generic,Text,Hex,Lister};
+    virtual ~KrViewer();
 
-	static void view( KUrl url, QWidget * parent = krApp );
-	static void view( KUrl url, Mode mode, bool new_window, QWidget * parent = krApp );
-	static void edit( KUrl url, QWidget * parent );
-	static void edit( KUrl url, Mode mode=Text, int new_window=-1, QWidget * parent = krApp );
-	
-	virtual bool eventFilter ( QObject * watched, QEvent * e );
+    enum Mode {Generic, Text, Hex, Lister};
+
+    static void view(KUrl url, QWidget * parent = krApp);
+    static void view(KUrl url, Mode mode, bool new_window, QWidget * parent = krApp);
+    static void edit(KUrl url, QWidget * parent);
+    static void edit(KUrl url, Mode mode = Text, int new_window = -1, QWidget * parent = krApp);
+
+    virtual bool eventFilter(QObject * watched, QEvent * e);
 
 public slots:
-	void keyPressEvent( QKeyEvent *e );
-	void createGUI( KParts::Part* );
+    void keyPressEvent(QKeyEvent *e);
+    void createGUI(KParts::Part*);
 
-	void viewGeneric();
-	void viewText();
-	void viewHex();
-	void viewLister();
-	void editText();
+    void viewGeneric();
+    void viewText();
+    void viewHex();
+    void viewLister();
+    void editText();
 
-	void print();
-	void copy();
+    void print();
+    void copy();
 
-	void tabChanged(QWidget* w);
-	void tabURLChanged( PanelViewerBase * pvb, const KUrl &url );
-	void tabCloseRequest(QWidget *w);
-	void tabCloseRequest();
-	void partDestroyed( PanelViewerBase * );
+    void tabChanged(QWidget* w);
+    void tabURLChanged(PanelViewerBase * pvb, const KUrl &url);
+    void tabCloseRequest(QWidget *w);
+    void tabCloseRequest();
+    void partDestroyed(PanelViewerBase *);
 
-	void nextTab();
-	void prevTab();
-	void detachTab();
-	
-	void checkModified();
+    void nextTab();
+    void prevTab();
+    void detachTab();
+
+    void checkModified();
 
 protected:
-	virtual bool queryClose();
-	virtual bool queryExit();
-	virtual void windowActivationChange ( bool oldActive );
-	virtual void resizeEvent( QResizeEvent *e );
+    virtual bool queryClose();
+    virtual bool queryExit();
+    virtual void windowActivationChange(bool oldActive);
+    virtual void resizeEvent(QResizeEvent *e);
 
-	virtual void focusInEvent( QFocusEvent * ){ if( viewers.removeAll( this ) ) viewers.prepend( this ); } // move to first
+    virtual void focusInEvent(QFocusEvent *) {
+        if (viewers.removeAll(this)) viewers.prepend(this);
+    } // move to first
 
 private:
-	KrViewer( QWidget *parent = 0 );
-	void addTab(PanelViewerBase* pvb, QString msg,QString iconName, KParts::Part* part);
-	PanelViewerBase * getPanelViewerBase( KParts::Part* part);
-	void updateActions( PanelViewerBase * base );
-	bool isValidPart( KParts::Part* part);
-	
-	static KrViewer* getViewer(bool new_window);	
+    KrViewer(QWidget *parent = 0);
+    void addTab(PanelViewerBase* pvb, QString msg, QString iconName, KParts::Part* part);
+    PanelViewerBase * getPanelViewerBase(KParts::Part* part);
+    void updateActions(PanelViewerBase * base);
+    bool isValidPart(KParts::Part* part);
 
-	KParts::PartManager manager;
-	QMenu* viewerMenu;
-	KTemporaryFile tmpFile;
-	KTabWidget tabBar;
-	QPointer<QWidget> returnFocusTo;
-	PanelViewerBase * returnFocusTab;
-	
-	QAction *detachAction;
+    static KrViewer* getViewer(bool new_window);
 
-	KAction *printAction;
-	KAction *copyAction;
+    KParts::PartManager manager;
+    QMenu* viewerMenu;
+    KTemporaryFile tmpFile;
+    KTabWidget tabBar;
+    QPointer<QWidget> returnFocusTo;
+    PanelViewerBase * returnFocusTab;
 
-	QAction *tabClose;
-	QAction *closeAct;
+    QAction *detachAction;
 
-	static QList<KrViewer *> viewers; // the first viewer is the active one
-	QList<int>    reservedKeys;   // the reserved key sequences
-	QList<QAction *> reservedKeyActions; // the IDs of the reserved keys
-	
-	int sizeX;
-	int sizeY;
+    KAction *printAction;
+    KAction *copyAction;
+
+    QAction *tabClose;
+    QAction *closeAct;
+
+    static QList<KrViewer *> viewers; // the first viewer is the active one
+    QList<int>    reservedKeys;   // the reserved key sequences
+    QList<QAction *> reservedKeyActions; // the IDs of the reserved keys
+
+    int sizeX;
+    int sizeY;
 };
 
-class Invoker : public QObject {
-	Q_OBJECT
-	
+class Invoker : public QObject
+{
+    Q_OBJECT
+
 public:
-	Invoker( QObject *recv, const char * slot ) {
-		connect( this, SIGNAL( invokeSignal() ), recv, slot );
-	}
-	
-	void invoke() {
-		emit invokeSignal();
-	}
-	
+    Invoker(QObject *recv, const char * slot) {
+        connect(this, SIGNAL(invokeSignal()), recv, slot);
+    }
+
+    void invoke() {
+        emit invokeSignal();
+    }
+
 signals:
-	void invokeSignal();
+    void invokeSignal();
 };
 
 #endif

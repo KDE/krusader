@@ -25,29 +25,30 @@
 #include <kfileitem.h>
 #include <kurl.h>
 
-class KrPreviewPopup : public QMenu {
-	Q_OBJECT
+class KrPreviewPopup : public QMenu
+{
+    Q_OBJECT
 
-public: 
-	KrPreviewPopup();
-	~KrPreviewPopup();
+public:
+    KrPreviewPopup();
+    ~KrPreviewPopup();
 
-	void setUrls(const KUrl::List* urls);
+    void setUrls(const KUrl::List* urls);
 public slots:
-	void addPreview(const KFileItem& file,const QPixmap& preview);
-	void view(QAction *);
+    void addPreview(const KFileItem& file, const QPixmap& preview);
+    void view(QAction *);
 
 protected:
-	virtual void paintEvent(QPaintEvent *e);
-	
-	QAction * prevNotAvailAction;
-	QList<KFileItem> files;
-	int id;
-	bool noPreview;
-	KUrl::List availablePreviews;
-	
-	int maxXSize;
-	int maxYSize;
+    virtual void paintEvent(QPaintEvent *e);
+
+    QAction * prevNotAvailAction;
+    QList<KFileItem> files;
+    int id;
+    bool noPreview;
+    KUrl::List availablePreviews;
+
+    int maxXSize;
+    int maxYSize;
 };
 
 #endif

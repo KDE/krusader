@@ -41,54 +41,54 @@
 
 class Combiner : public QProgressDialog
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private:
-  KUrl            splURL;
-  KUrl            readURL;
-  KUrl            writeURL;
+    KUrl            splURL;
+    KUrl            readURL;
+    KUrl            writeURL;
 
-  KUrl            baseURL;
-  KUrl            destinationURL;
-  CRC32          *crcContext;
-  QByteArray      transferArray;
+    KUrl            baseURL;
+    KUrl            destinationURL;
+    CRC32          *crcContext;
+    QByteArray      transferArray;
 
-  QString         splitFile;
-  QString         error;
+    QString         splitFile;
+    QString         error;
 
 
-  bool            hasValidSplitFile;
-  QString         expectedFileName;
-  KIO::filesize_t expectedSize;
-  QString         expectedCrcSum;
+    bool            hasValidSplitFile;
+    QString         expectedFileName;
+    KIO::filesize_t expectedSize;
+    QString         expectedCrcSum;
 
-  int             fileCounter;
-  int             permissions;
-  KIO::filesize_t receivedSize;
-  
-  KIO::TransferJob *combineReadJob;
-  KIO::TransferJob *combineWriteJob;
+    int             fileCounter;
+    int             permissions;
+    KIO::filesize_t receivedSize;
 
-  bool            unixNaming;
-  
+    KIO::TransferJob *combineReadJob;
+    KIO::TransferJob *combineWriteJob;
+
+    bool            unixNaming;
+
 public:
-  Combiner( QWidget* parent,  KUrl baseURLIn, KUrl destinationURLIn, bool unixNamingIn=false );
-  ~Combiner();
+    Combiner(QWidget* parent,  KUrl baseURLIn, KUrl destinationURLIn, bool unixNamingIn = false);
+    ~Combiner();
 
-  void combine();
+    void combine();
 
 public slots:
-  void combineSplitFileDataReceived(KIO::Job *, const QByteArray &byteArray);
-  void combineSplitFileFinished(KJob *job);
-  void combineDataReceived(KIO::Job *, const QByteArray &);
-  void combineReceiveFinished(KJob *);
-  void combineDataSend(KIO::Job *, QByteArray &);
-  void combineSendFinished(KJob *);
-  void combineWritePercent(KJob *, unsigned long);
+    void combineSplitFileDataReceived(KIO::Job *, const QByteArray &byteArray);
+    void combineSplitFileFinished(KJob *job);
+    void combineDataReceived(KIO::Job *, const QByteArray &);
+    void combineReceiveFinished(KJob *);
+    void combineDataSend(KIO::Job *, QByteArray &);
+    void combineSendFinished(KJob *);
+    void combineWritePercent(KJob *, unsigned long);
 
 private:
-  void openNextFile();
-  void combineAbortJobs();
+    void openNextFile();
+    void combineAbortJobs();
 };
 
 #endif /* __COMBINER_H__ */

@@ -39,167 +39,156 @@
 
 #include "../krusader.h"
 
-ProfileManager::ProfileManager( QString profileType, QWidget * parent ) 
-  : QPushButton( parent )
+ProfileManager::ProfileManager(QString profileType, QWidget * parent)
+        : QPushButton(parent)
 {
-  setText( "" );
-  KIconLoader *iconLoader = new KIconLoader();
-  QPixmap pm = iconLoader->loadIcon( "kr_profile", KIconLoader::Toolbar, 16 );
-  setIcon( QIcon( pm ) );
-  setFixedWidth( pm.width() + 15 );
-  setToolTip( i18n( "Profiles" ) );
-  
-  this->profileType = profileType;
-  
-  connect( this, SIGNAL( clicked() ), this, SLOT( profilePopup() ) );
+    setText("");
+    KIconLoader *iconLoader = new KIconLoader();
+    QPixmap pm = iconLoader->loadIcon("kr_profile", KIconLoader::Toolbar, 16);
+    setIcon(QIcon(pm));
+    setFixedWidth(pm.width() + 15);
+    setToolTip(i18n("Profiles"));
 
-  KConfigGroup group( krConfig, "Private");
-  profileList = group.readEntry( profileType, QStringList() );
+    this->profileType = profileType;
+
+    connect(this, SIGNAL(clicked()), this, SLOT(profilePopup()));
+
+    KConfigGroup group(krConfig, "Private");
+    profileList = group.readEntry(profileType, QStringList());
 }
 
 void ProfileManager::profilePopup()
 {
-  // profile menu identifiers
-  #define ADD_NEW_ENTRY_ID    1000
-  #define LOAD_ENTRY_ID       2000
-  #define REMOVE_ENTRY_ID     3000
-  #define OVERWRITE_ENTRY_ID  4000
-  
-  // create the menu
-  KMenu popup, removePopup, overwritePopup;
-  popup.setTitle(i18n("Profiles"));
-  
-  for( int i=0; i != profileList.count() ; i++ )
-  {
-    KConfigGroup group( krConfig, profileType + " - " + profileList[i] ); 
-    QString name = group.readEntry( "Name" );
-    popup.addAction( name )->setData( QVariant( (int)( LOAD_ENTRY_ID + i ) ) );
-    removePopup.addAction( name )->setData( QVariant( (int)( REMOVE_ENTRY_ID + i ) ) );
-    overwritePopup.addAction( name )->setData( QVariant( (int)( OVERWRITE_ENTRY_ID + i ) ) );
-  }
+    // profile menu identifiers
+#define ADD_NEW_ENTRY_ID    1000
+#define LOAD_ENTRY_ID       2000
+#define REMOVE_ENTRY_ID     3000
+#define OVERWRITE_ENTRY_ID  4000
 
-  popup.addSeparator();
-  
-  if( profileList.count() )
-  {
-    popup.addMenu( &removePopup )->setText( i18n("Remove entry") );
-    popup.addMenu( &overwritePopup )->setText( i18n("Overwrite entry") );
-  }
-  
-  popup.addAction(i18n("Add new entry") )->setData( QVariant( (int)( ADD_NEW_ENTRY_ID) ) );
+    // create the menu
+    KMenu popup, removePopup, overwritePopup;
+    popup.setTitle(i18n("Profiles"));
 
-
-  int result = 0;
-  QAction * res = popup.exec(QCursor::pos());
-  if( res && res->data().canConvert<int>() )
-    result = res->data().toInt();
-
-  // check out the user's selection
-  if( result == ADD_NEW_ENTRY_ID )
-    newProfile();
-  else if( result >= LOAD_ENTRY_ID && result < LOAD_ENTRY_ID + profileList.count() )
-  {
-    emit loadFromProfile( profileType + " - " + profileList[ result - LOAD_ENTRY_ID ] );
-  }else if( result >= REMOVE_ENTRY_ID && result < REMOVE_ENTRY_ID + profileList.count() )
-  { 
-    krConfig->deleteGroup( profileType + " - " + profileList[ result - REMOVE_ENTRY_ID ] );    
-    profileList.removeAll( profileList[ result - REMOVE_ENTRY_ID ] );
-  
-    KConfigGroup group( krConfig, "Private");
-    group.writeEntry( profileType, profileList );
-    krConfig->sync();
-  }else if( result >= OVERWRITE_ENTRY_ID && result < OVERWRITE_ENTRY_ID + profileList.count() )
-  {
-    emit saveToProfile( profileType + " - " + profileList[ result - OVERWRITE_ENTRY_ID ] );
-  }  
-}
-
-void ProfileManager::newProfile( QString defaultName )
-{
-  QString profile = KInputDialog::getText( i18n( "Krusader::ProfileManager" ), i18n( "Enter the profile name:" ), 
-                                           defaultName, 0, this );  
-  if( !profile.isEmpty() )
-  {
-    int profileNum = 1;
-    while( profileList.contains( QString( "%1" ).arg( profileNum ) ) )
-      profileNum++;
-
-    QString profileString = QString( "%1" ).arg( profileNum );
-    QString profileName = profileType + " - " + profileString;
-    profileList.append( QString( "%1" ).arg( profileString ) );
-  
-    KConfigGroup group( krConfig, "Private");
-    group.writeEntry( profileType, profileList );
-      
-    KConfigGroup pg( krConfig, profileName );
-    pg.writeEntry( "Name", profile );
-    emit saveToProfile( profileName );
-    krConfig->sync();
-  }
-}
-  
-void ProfileManager::deleteProfile( QString name )
-{
-  for( int i=0; i != profileList.count() ; i++ )
-  {
-    KConfigGroup group( krConfig, profileType + " - " + profileList[ i ] ); 
-    QString currentName = group.readEntry( "Name" );
-    
-    if( name == currentName )
-    {
-      krConfig->deleteGroup( profileType + " - " + profileList[ i ] );    
-      profileList.removeAll( profileList[ i ] );
-  
-      KConfigGroup pg( krConfig, "Private");
-      pg.writeEntry( profileType, profileList );
-      krConfig->sync();
-      return;
+    for (int i = 0; i != profileList.count() ; i++) {
+        KConfigGroup group(krConfig, profileType + " - " + profileList[i]);
+        QString name = group.readEntry("Name");
+        popup.addAction(name)->setData(QVariant((int)(LOAD_ENTRY_ID + i)));
+        removePopup.addAction(name)->setData(QVariant((int)(REMOVE_ENTRY_ID + i)));
+        overwritePopup.addAction(name)->setData(QVariant((int)(OVERWRITE_ENTRY_ID + i)));
     }
-  }
-}
-  
-void ProfileManager::overwriteProfile( QString name )
-{
-  for( int i=0; i != profileList.count() ; i++ )
-  {
-    KConfigGroup group( krConfig, profileType + " - " + profileList[ i ] ); 
-    QString currentName = group.readEntry( "Name" );
-    
-    if( name == currentName )
-    {
-      emit saveToProfile( profileType + " - " + profileList[ i ] );
-      return;
+
+    popup.addSeparator();
+
+    if (profileList.count()) {
+        popup.addMenu(&removePopup)->setText(i18n("Remove entry"));
+        popup.addMenu(&overwritePopup)->setText(i18n("Overwrite entry"));
     }
-  }
-}
 
-bool ProfileManager::loadProfile( QString name )
-{
-  for( int i=0; i != profileList.count() ; i++ )
-  {
-    KConfigGroup group( krConfig, profileType + " - " + profileList[i] ); 
-    QString currentName = group.readEntry( "Name" );
-    
-    if( name == currentName )
-    {
-      emit loadFromProfile( profileType + " - " + profileList[ i ] );
-      return true;
+    popup.addAction(i18n("Add new entry"))->setData(QVariant((int)(ADD_NEW_ENTRY_ID)));
+
+
+    int result = 0;
+    QAction * res = popup.exec(QCursor::pos());
+    if (res && res->data().canConvert<int>())
+        result = res->data().toInt();
+
+    // check out the user's selection
+    if (result == ADD_NEW_ENTRY_ID)
+        newProfile();
+    else if (result >= LOAD_ENTRY_ID && result < LOAD_ENTRY_ID + profileList.count()) {
+        emit loadFromProfile(profileType + " - " + profileList[ result - LOAD_ENTRY_ID ]);
+    } else if (result >= REMOVE_ENTRY_ID && result < REMOVE_ENTRY_ID + profileList.count()) {
+        krConfig->deleteGroup(profileType + " - " + profileList[ result - REMOVE_ENTRY_ID ]);
+        profileList.removeAll(profileList[ result - REMOVE_ENTRY_ID ]);
+
+        KConfigGroup group(krConfig, "Private");
+        group.writeEntry(profileType, profileList);
+        krConfig->sync();
+    } else if (result >= OVERWRITE_ENTRY_ID && result < OVERWRITE_ENTRY_ID + profileList.count()) {
+        emit saveToProfile(profileType + " - " + profileList[ result - OVERWRITE_ENTRY_ID ]);
     }
-  }
-  return false;    
 }
 
-QStringList ProfileManager::availableProfiles( QString profileType ) {
-  KConfigGroup group( krConfig, "Private");
-  QStringList profiles = group.readEntry( profileType, QStringList() );
-  QStringList profileNames;
+void ProfileManager::newProfile(QString defaultName)
+{
+    QString profile = KInputDialog::getText(i18n("Krusader::ProfileManager"), i18n("Enter the profile name:"),
+                                            defaultName, 0, this);
+    if (!profile.isEmpty()) {
+        int profileNum = 1;
+        while (profileList.contains(QString("%1").arg(profileNum)))
+            profileNum++;
 
-  for( int i=0; i != profiles.count() ; i++ ) {
-    KConfigGroup pg( krConfig, profileType + " - " + profiles[ i ] ); 
-    profileNames.append( pg.readEntry("Name") );
-  }
+        QString profileString = QString("%1").arg(profileNum);
+        QString profileName = profileType + " - " + profileString;
+        profileList.append(QString("%1").arg(profileString));
 
-  return profileNames;
+        KConfigGroup group(krConfig, "Private");
+        group.writeEntry(profileType, profileList);
+
+        KConfigGroup pg(krConfig, profileName);
+        pg.writeEntry("Name", profile);
+        emit saveToProfile(profileName);
+        krConfig->sync();
+    }
+}
+
+void ProfileManager::deleteProfile(QString name)
+{
+    for (int i = 0; i != profileList.count() ; i++) {
+        KConfigGroup group(krConfig, profileType + " - " + profileList[ i ]);
+        QString currentName = group.readEntry("Name");
+
+        if (name == currentName) {
+            krConfig->deleteGroup(profileType + " - " + profileList[ i ]);
+            profileList.removeAll(profileList[ i ]);
+
+            KConfigGroup pg(krConfig, "Private");
+            pg.writeEntry(profileType, profileList);
+            krConfig->sync();
+            return;
+        }
+    }
+}
+
+void ProfileManager::overwriteProfile(QString name)
+{
+    for (int i = 0; i != profileList.count() ; i++) {
+        KConfigGroup group(krConfig, profileType + " - " + profileList[ i ]);
+        QString currentName = group.readEntry("Name");
+
+        if (name == currentName) {
+            emit saveToProfile(profileType + " - " + profileList[ i ]);
+            return;
+        }
+    }
+}
+
+bool ProfileManager::loadProfile(QString name)
+{
+    for (int i = 0; i != profileList.count() ; i++) {
+        KConfigGroup group(krConfig, profileType + " - " + profileList[i]);
+        QString currentName = group.readEntry("Name");
+
+        if (name == currentName) {
+            emit loadFromProfile(profileType + " - " + profileList[ i ]);
+            return true;
+        }
+    }
+    return false;
+}
+
+QStringList ProfileManager::availableProfiles(QString profileType)
+{
+    KConfigGroup group(krConfig, "Private");
+    QStringList profiles = group.readEntry(profileType, QStringList());
+    QStringList profileNames;
+
+    for (int i = 0; i != profiles.count() ; i++) {
+        KConfigGroup pg(krConfig, profileType + " - " + profiles[ i ]);
+        profileNames.append(pg.readEntry("Name"));
+    }
+
+    return profileNames;
 }
 
 #include "profilemanager.moc"

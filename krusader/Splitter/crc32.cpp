@@ -37,18 +37,16 @@
 bool            CRC32::crc_initialized = false;
 unsigned long   CRC32::crc_table[ 256 ];
 
-CRC32::CRC32( unsigned long initialValue )
+CRC32::CRC32(unsigned long initialValue)
 {
     crc_accum = initialValue;
 
-    if( !crc_initialized )
-    {
-        for( int byte = 0; byte != 256; byte++ )
-        {
+    if (!crc_initialized) {
+        for (int byte = 0; byte != 256; byte++) {
             unsigned long data = byte;
 
-            for( int i = 8; i > 0 ; --i )
-                data = data & 1 ? ( data >> 1 ) ^ POLYNOMIAL : data >> 1;
+            for (int i = 8; i > 0 ; --i)
+                data = data & 1 ? (data >> 1) ^ POLYNOMIAL : data >> 1;
 
             crc_table[ byte ] = data;
         }
@@ -57,13 +55,13 @@ CRC32::CRC32( unsigned long initialValue )
     }
 }
 
-void CRC32::update( unsigned char *buffer, int bufferLen )
+void CRC32::update(unsigned char *buffer, int bufferLen)
 {
-    while( bufferLen-- > 0 )
-       crc_accum = ( (crc_accum >> 8) & MASK1 ) ^ crc_table[ (crc_accum & 0xff) ^ *buffer++ ];
+    while (bufferLen-- > 0)
+        crc_accum = ((crc_accum >> 8) & MASK1) ^ crc_table[(crc_accum & 0xff) ^ *buffer++ ];
 }
 
 unsigned long CRC32::result()
 {
-    return ( ~crc_accum ) & MASK2;
+    return (~crc_accum) & MASK2;
 }

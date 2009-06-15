@@ -60,79 +60,80 @@
 class QTreeWidget;
 class QTreeWidgetItem;
 
-class KrSearchDialog : public QDialog  {
-   Q_OBJECT
-public: 
-  KrSearchDialog(QString profile = 0, QWidget* parent = 0 );
+class KrSearchDialog : public QDialog
+{
+    Q_OBJECT
+public:
+    KrSearchDialog(QString profile = 0, QWidget* parent = 0);
 
-  void prepareGUI();
-    
-  static KrSearchDialog *SearchDialog;
-  
+    void prepareGUI();
+
+    static KrSearchDialog *SearchDialog;
+
 public slots:
-  void startSearch();
-  void stopSearch();
-  void feedToListBox();
-  void copyToClipBoard();
-  void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm, QString foundText);
-  void closeDialog( bool isAccept = true );
-  void resultDoubleClicked(QTreeWidgetItem*);
-  void resultClicked(QTreeWidgetItem*);
+    void startSearch();
+    void stopSearch();
+    void feedToListBox();
+    void copyToClipBoard();
+    void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm, QString foundText);
+    void closeDialog(bool isAccept = true);
+    void resultDoubleClicked(QTreeWidgetItem*);
+    void resultClicked(QTreeWidgetItem*);
 
-  virtual void keyPressEvent(QKeyEvent *e);
-  virtual void closeEvent(QCloseEvent *e);
-  virtual void rightClickMenu( QTreeWidgetItem*, const QPoint & );
-  virtual void resizeEvent( QResizeEvent *e );
+    virtual void keyPressEvent(QKeyEvent *e);
+    virtual void closeEvent(QCloseEvent *e);
+    virtual void rightClickMenu(QTreeWidgetItem*, const QPoint &);
+    virtual void resizeEvent(QResizeEvent *e);
 
 protected slots:
-  void reject();
+    void reject();
 
 private:
-  bool gui2query();
-  void editCurrent();
-  void viewCurrent();
-  void compareByContent();
+    bool gui2query();
+    void editCurrent();
+    void viewCurrent();
+    void compareByContent();
 
 private:
-  ProfileManager *profileManager;
+    ProfileManager *profileManager;
 
-  FilterTabs * filterTabs;
-  GeneralFilter * generalFilter;
-      
-  QPushButton* mainHelpBtn;
-  QPushButton* mainSearchBtn;
-  QPushButton* mainStopBtn;
-  QPushButton* mainCloseBtn;
-  QPushButton* mainFeedToListBoxBtn;
-  
-  QTabWidget* searcherTabs;  
-  QWidget* resultTab;
-  QGridLayout* resultLayout;
-  QLabel* foundLabel;
-  KrSqueezedTextLabel *foundTextLabel;
-  KSqueezedTextLabel *searchingLabel;
-  
-  QTreeWidget* resultsList;
+    FilterTabs * filterTabs;
+    GeneralFilter * generalFilter;
 
-  KRQuery *query;
-  KRSearchMod *searcher;
-  QStringList savedSearches;
-  bool isSearching;
-  bool closed;
-  
-  static QString lastSearchText;
-  static int     lastSearchType;
-  static bool    lastSearchForCase;
-  static bool    lastRemoteContentSearch;
-  static bool    lastContainsWholeWord;
-  static bool    lastContainsWithCase;
-  static bool    lastSearchInSubDirs;
-  static bool    lastSearchInArchives;
-  static bool    lastFollowSymLinks;
-  static bool    lastContainsRegExp;
-  
-  int            sizeX;
-  int            sizeY;
+    QPushButton* mainHelpBtn;
+    QPushButton* mainSearchBtn;
+    QPushButton* mainStopBtn;
+    QPushButton* mainCloseBtn;
+    QPushButton* mainFeedToListBoxBtn;
+
+    QTabWidget* searcherTabs;
+    QWidget* resultTab;
+    QGridLayout* resultLayout;
+    QLabel* foundLabel;
+    KrSqueezedTextLabel *foundTextLabel;
+    KSqueezedTextLabel *searchingLabel;
+
+    QTreeWidget* resultsList;
+
+    KRQuery *query;
+    KRSearchMod *searcher;
+    QStringList savedSearches;
+    bool isSearching;
+    bool closed;
+
+    static QString lastSearchText;
+    static int     lastSearchType;
+    static bool    lastSearchForCase;
+    static bool    lastRemoteContentSearch;
+    static bool    lastContainsWholeWord;
+    static bool    lastContainsWithCase;
+    static bool    lastSearchInSubDirs;
+    static bool    lastSearchInArchives;
+    static bool    lastFollowSymLinks;
+    static bool    lastContainsRegExp;
+
+    int            sizeX;
+    int            sizeY;
 };
 
 #endif

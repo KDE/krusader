@@ -37,72 +37,79 @@
 #include <QtCore/QObject>
 #include <QtCore/QTimer>
 
-class ListPanelFunc : public QObject{
-friend class ListPanel;
-	Q_OBJECT
+class ListPanelFunc : public QObject
+{
+    friend class ListPanel;
+    Q_OBJECT
 public slots:
-	inline vfile* getVFile(KrViewItem *item) { return files()->vfs_search(item->name()); }
-	inline vfile* getVFile(const QString& name) { return files()->vfs_search(name); }
-	void execute(const QString&);
-	void goInside(const QString&);
-	void openUrl(const KUrl& path, const QString& nameToMakeCurrent = QString());
-	void openUrl(const QString& path, const QString& nameToMakeCurrent = QString());
-	void popErronousUrl();
-	void immediateOpenUrl( const KUrl& path, bool disableLock = false);
-	void doOpenUrl();
-	void refresh();
-	void rename(const QString &oldname, const QString &newname);
+    inline vfile* getVFile(KrViewItem *item) {
+        return files()->vfs_search(item->name());
+    }
+    inline vfile* getVFile(const QString& name) {
+        return files()->vfs_search(name);
+    }
+    void execute(const QString&);
+    void goInside(const QString&);
+    void openUrl(const KUrl& path, const QString& nameToMakeCurrent = QString());
+    void openUrl(const QString& path, const QString& nameToMakeCurrent = QString());
+    void popErronousUrl();
+    void immediateOpenUrl(const KUrl& path, bool disableLock = false);
+    void doOpenUrl();
+    void refresh();
+    void rename(const QString &oldname, const QString &newname);
 
 public:
-	ListPanelFunc(class ListPanel *parent);
-	~ListPanelFunc();
+    ListPanelFunc(class ListPanel *parent);
+    ~ListPanelFunc();
 
-	vfs* files();  // return a pointer to the vfs
+    vfs* files();  // return a pointer to the vfs
 
-	void refreshActions();
-	void redirectLink();
-	void krlink(bool sym);
-	void goBack();
-	void dirUp();
-	void properties();
-	void terminal();
-	void editFile();
-	void view();
-	void rename();
-	void mkdir();
-	void moveFiles( bool enqueue=false );
-	void pack();
-	void unpack();
-	void testArchive();
-	void copyFiles( bool enqueue=false );
-	void deleteFiles(bool reallyDelete=false);
-	void calcSpace(); // calculate the occupied space and show it in a dialog
-	void createChecksum();
-	void matchChecksum();
-	void copyToClipboard( bool move=false );
-	void pasteFromClipboard();
+    void refreshActions();
+    void redirectLink();
+    void krlink(bool sym);
+    void goBack();
+    void dirUp();
+    void properties();
+    void terminal();
+    void editFile();
+    void view();
+    void rename();
+    void mkdir();
+    void moveFiles(bool enqueue = false);
+    void pack();
+    void unpack();
+    void testArchive();
+    void copyFiles(bool enqueue = false);
+    void deleteFiles(bool reallyDelete = false);
+    void calcSpace(); // calculate the occupied space and show it in a dialog
+    void createChecksum();
+    void matchChecksum();
+    void copyToClipboard(bool move = false);
+    void pasteFromClipboard();
 
-	// calculate the occupied space. A dialog appears, if calculation lasts more than 3 seconds
-	// and disappears, if the calculation is done. Returns true, if the result is ok and false
-	// otherwise (Cancel was pressed).
-	bool calcSpace(const QStringList & items,KIO::filesize_t & totalSize,unsigned long & totalFiles,unsigned long & totalDirs);
-	void FTPDisconnect();
-	void newFTPconnection();
-	inline ListPanelFunc* otherFunc(){ return panel->otherPanel->func; }
+    // calculate the occupied space. A dialog appears, if calculation lasts more than 3 seconds
+    // and disappears, if the calculation is done. Returns true, if the result is ok and false
+    // otherwise (Cancel was pressed).
+    bool calcSpace(const QStringList & items, KIO::filesize_t & totalSize, unsigned long & totalFiles, unsigned long & totalDirs);
+    void FTPDisconnect();
+    void newFTPconnection();
+    inline ListPanelFunc* otherFunc() {
+        return panel->otherPanel->func;
+    }
 
 private:
-	KUrl getVirtualBaseURL();
+    KUrl getVirtualBaseURL();
 
 protected:
-	ListPanel*           panel;     // our ListPanel
-	QList<KUrl>          urlStack;  // Path stack for the "go-previous" button
-	bool                 inRefresh; // true when we are in refresh()
-	vfs*                 vfsP;      // pointer to vfs.
-	QTimer               delayTimer;
-	KUrl                 delayURL;
-	bool                 delayLock;
-	QString              nameToMakeCurrent;
-	bool                 canGoBack();
+    ListPanel*           panel;     // our ListPanel
+    QList<KUrl>          urlStack;  // Path stack for the "go-previous" button
+    bool                 inRefresh; // true when we are in refresh()
+    vfs*                 vfsP;      // pointer to vfs.
+    QTimer               delayTimer;
+    KUrl                 delayURL;
+    bool                 delayLock;
+    QString              nameToMakeCurrent;
+    bool                 canGoBack();
 };
 
 #endif

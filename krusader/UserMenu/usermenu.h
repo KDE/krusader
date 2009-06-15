@@ -26,27 +26,29 @@ class QWidget;
 class UserMenu;
 class QAction;
 
-class UserMenuGui: public KMenu {
-   public:
-      UserMenuGui( UserMenu* menu, QWidget *parent = 0 );
-      void run();
-      void createMenu();
+class UserMenuGui: public KMenu
+{
+public:
+    UserMenuGui(UserMenu* menu, QWidget *parent = 0);
+    void run();
+    void createMenu();
 
-   protected:
-      void readEntries();
+protected:
+    void readEntries();
 
-   private:
-      QAction* _manageAction;
+private:
+    QAction* _manageAction;
 };
 
-class UserMenu : public QWidget {
-   public:
-      UserMenu( QWidget *parent = 0 );
-      void exec();
-      void update();
-   
-   private:
-      UserMenuGui* _popup;
+class UserMenu : public QWidget
+{
+public:
+    UserMenu(QWidget *parent = 0);
+    void exec();
+    void update();
+
+private:
+    UserMenuGui* _popup;
 };
 
 #endif

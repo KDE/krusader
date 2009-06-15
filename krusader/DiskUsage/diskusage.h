@@ -64,141 +64,151 @@ class LoaderWidget;
 
 class DiskUsage : public QStackedWidget
 {
-  Q_OBJECT
-  
+    Q_OBJECT
+
 public:
-  DiskUsage( QString confGroup, QWidget *parent = 0);
-  ~DiskUsage();
-  
-  void       load( KUrl dirName );
-  void       close();
-  void       stopLoad();
-  bool       isLoading()     { return loading; }
-  
-  void       setView( int view );
-  int        getActiveView() { return activeView; }
-  
-  Directory* getDirectory( QString path );
-  File *     getFile( QString path );
-  
-  QString    getConfigGroup() { return configGroup; }
-  
-  void *     getProperty( File *, QString );
-  void       addProperty( File *, QString, void * );
-  void       removeProperty( File *, QString );
-  
-  int        exclude( File *file, bool calcPercents = true, int depth = 0 );
-  void       includeAll();
-  
-  int        del( File *file, bool calcPercents = true, int depth = 0 );
-  
-  QString    getToolTip( File * );
-  
-  void       rightClickMenu( const QPoint &, File *, KMenu * = 0, QString = QString() );
-  
-  void       changeDirectory( Directory *dir );
-  
-  Directory* getCurrentDir();
-  File*      getCurrentFile();
-  
-  QPixmap    getIcon( QString mime );
-  
-  KUrl       getBaseURL() { return baseURL; }
-  
-public slots:  
-  void       dirUp();
-  void       clear();
-  
+    DiskUsage(QString confGroup, QWidget *parent = 0);
+    ~DiskUsage();
+
+    void       load(KUrl dirName);
+    void       close();
+    void       stopLoad();
+    bool       isLoading()     {
+        return loading;
+    }
+
+    void       setView(int view);
+    int        getActiveView() {
+        return activeView;
+    }
+
+    Directory* getDirectory(QString path);
+    File *     getFile(QString path);
+
+    QString    getConfigGroup() {
+        return configGroup;
+    }
+
+    void *     getProperty(File *, QString);
+    void       addProperty(File *, QString, void *);
+    void       removeProperty(File *, QString);
+
+    int        exclude(File *file, bool calcPercents = true, int depth = 0);
+    void       includeAll();
+
+    int        del(File *file, bool calcPercents = true, int depth = 0);
+
+    QString    getToolTip(File *);
+
+    void       rightClickMenu(const QPoint &, File *, KMenu * = 0, QString = QString());
+
+    void       changeDirectory(Directory *dir);
+
+    Directory* getCurrentDir();
+    File*      getCurrentFile();
+
+    QPixmap    getIcon(QString mime);
+
+    KUrl       getBaseURL() {
+        return baseURL;
+    }
+
+public slots:
+    void       dirUp();
+    void       clear();
+
 signals:
-  void       enteringDirectory( Directory * );
-  void       clearing();
-  void       changed( File * );
-  void       changeFinished();
-  void       deleted( File * );
-  void       deleteFinished();
-  void       status( QString );
-  void       viewChanged( int );
-  void       loadFinished( bool );
-  void       newSearch();
+    void       enteringDirectory(Directory *);
+    void       clearing();
+    void       changed(File *);
+    void       changeFinished();
+    void       deleted(File *);
+    void       deleteFinished();
+    void       status(QString);
+    void       viewChanged(int);
+    void       loadFinished(bool);
+    void       newSearch();
 
 protected slots:
-  void       slotLoadDirectory();
+    void       slotLoadDirectory();
 
 protected:
-  QHash< QString, Directory * > contentMap;
-  QHash< File *, Properties *> propertyMap;
-    
-  Directory* currentDirectory;
-  KIO::filesize_t currentSize;
- 
-  virtual void keyPressEvent( QKeyEvent * );
-  virtual bool event( QEvent * );
-  
-  int        calculateSizes( Directory *dir = 0, bool emitSig = false, int depth = 0 );
-  int        calculatePercents( bool emitSig = false, Directory *dir = 0 , int depth = 0 );
-  int        include( Directory *dir, int depth = 0 );
-  void       createStatus();
-  void       executeAction( int, File * = 0 );
-  
-  KUrl       baseURL;             //< the base URL of loading
+    QHash< QString, Directory * > contentMap;
+    QHash< File *, Properties *> propertyMap;
 
-  DUListView                *listView;
-  DULines                   *lineView;
-  DUFilelight               *filelightView;
-  LoaderWidget              *loaderView;
-  
-  Directory *root;
-  
-  int        activeView;
-  
-  QString    configGroup;
-  
-  bool       first;
-  bool       loading;
-  bool       abortLoading;
-  bool       clearAfterAbort;
-  bool       deleting;
+    Directory* currentDirectory;
+    KIO::filesize_t currentSize;
 
-  QStack<QString> directoryStack;
-  QStack<Directory *> parentStack;
+    virtual void keyPressEvent(QKeyEvent *);
+    virtual bool event(QEvent *);
 
-  vfs       * searchVfs;
-  vfile     * currentVfile;
-  Directory * currentParent;
-  QString     dirToCheck;
-  
-  int   fileNum; 
-  int   dirNum;
-  int   viewBeforeLoad;
+    int        calculateSizes(Directory *dir = 0, bool emitSig = false, int depth = 0);
+    int        calculatePercents(bool emitSig = false, Directory *dir = 0 , int depth = 0);
+    int        include(Directory *dir, int depth = 0);
+    void       createStatus();
+    void       executeAction(int, File * = 0);
 
-  QTimer loadingTimer;
+    KUrl       baseURL;             //< the base URL of loading
+
+    DUListView                *listView;
+    DULines                   *lineView;
+    DUFilelight               *filelightView;
+    LoaderWidget              *loaderView;
+
+    Directory *root;
+
+    int        activeView;
+
+    QString    configGroup;
+
+    bool       first;
+    bool       loading;
+    bool       abortLoading;
+    bool       clearAfterAbort;
+    bool       deleting;
+
+    QStack<QString> directoryStack;
+    QStack<Directory *> parentStack;
+
+    vfs       * searchVfs;
+    vfile     * currentVfile;
+    Directory * currentParent;
+    QString     dirToCheck;
+
+    int   fileNum;
+    int   dirNum;
+    int   viewBeforeLoad;
+
+    QTimer loadingTimer;
 };
 
 
 class LoaderWidget : public QScrollArea
 {
-  Q_OBJECT
-  
+    Q_OBJECT
+
 public:
-  LoaderWidget( QWidget *parent = 0 );
-  
-  void init();
-  void setCurrentURL( KUrl url );
-  void setValues( int fileNum, int dirNum, KIO::filesize_t total );  
-  bool wasCancelled()  { return cancelled; }
-  
+    LoaderWidget(QWidget *parent = 0);
+
+    void init();
+    void setCurrentURL(KUrl url);
+    void setValues(int fileNum, int dirNum, KIO::filesize_t total);
+    bool wasCancelled()  {
+        return cancelled;
+    }
+
 public slots:
-  void slotCancelled();
-  
+    void slotCancelled();
+
 protected:
-  QLabel *totalSize;
-  QLabel *files;
-  QLabel *directories;
-  
-  KSqueezedTextLabel *searchedDirectory;
-  QWidget *widget;
-    
-  bool   cancelled;
+    QLabel *totalSize;
+    QLabel *files;
+    QLabel *directories;
+
+    KSqueezedTextLabel *searchedDirectory;
+    QWidget *widget;
+
+    bool   cancelled;
 };
 
 #endif /* __DISK_USAGE_GUI_H__ */

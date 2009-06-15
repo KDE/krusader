@@ -37,34 +37,34 @@ class KrTreeWidget;
 
 class KgLookFeel : public KonfiguratorPage
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KgLookFeel( bool first, QWidget* parent=0 );
+    KgLookFeel(bool first, QWidget* parent = 0);
 
-  virtual int activeSubPage();
+    virtual int activeSubPage();
 
 protected:
-  KonfiguratorCheckBoxGroup *cbs;
-  KonfiguratorCheckBoxGroup* quicksearchCheckboxes;
-  KonfiguratorCheckBoxGroup *pnlcbs;
-  KonfiguratorCheckBoxGroup *panelToolbarActive;
-  KonfiguratorRadioButtons  *mouseRadio;
-  KonfiguratorCheckBoxGroup *mouseCheckboxes;
-  KrTreeWidget* mousePreview;
+    KonfiguratorCheckBoxGroup *cbs;
+    KonfiguratorCheckBoxGroup* quicksearchCheckboxes;
+    KonfiguratorCheckBoxGroup *pnlcbs;
+    KonfiguratorCheckBoxGroup *panelToolbarActive;
+    KonfiguratorRadioButtons  *mouseRadio;
+    KonfiguratorCheckBoxGroup *mouseCheckboxes;
+    KrTreeWidget* mousePreview;
 
 protected slots:
-  void slotDisable();
-  void slotEnablePanelToolbar();
-  void slotSelectionModeChanged();
-  void slotMouseCheckBoxChanged();
-  
+    void slotDisable();
+    void slotEnablePanelToolbar();
+    void slotSelectionModeChanged();
+    void slotMouseCheckBoxChanged();
+
 private:
-  void setupOperationTab();
-  void setupPanelTab();
-  void setupPanelToolbarTab();
-  void setupMouseModeTab();
-  QTabWidget *tabWidget;
+    void setupOperationTab();
+    void setupPanelTab();
+    void setupPanelToolbarTab();
+    void setupMouseModeTab();
+    QTabWidget *tabWidget;
 };
 
 #endif /* __KGLOOKFEEL_H__ */

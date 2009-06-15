@@ -52,132 +52,141 @@ class KTemporaryFile;
 
 class AbstractThreadedJob : public KIO::Job
 {
-friend class AbstractJobThread;
+    friend class AbstractJobThread;
 
-Q_OBJECT
+    Q_OBJECT
 
 protected:
-  AbstractThreadedJob();
+    AbstractThreadedJob();
 
-  void addEventResponse( QList<QVariant> * obj );
-  QList<QVariant> * getEventResponse( UserEvent * event );
-  void  sendEvent( UserEvent * event );
+    void addEventResponse(QList<QVariant> * obj);
+    QList<QVariant> * getEventResponse(UserEvent * event);
+    void  sendEvent(UserEvent * event);
 
-  virtual ~AbstractThreadedJob();
-  virtual bool event(QEvent *);
-  virtual void start( AbstractJobThread* );
+    virtual ~AbstractThreadedJob();
+    virtual bool event(QEvent *);
+    virtual void start(AbstractJobThread*);
 
 protected slots:
-  void slotDownloadResult( KJob* );
-  void slotProcessedAmount( KJob *, KJob::Unit, qulonglong );
-  void slotTotalAmount( KJob *, KJob::Unit, qulonglong );
-  void slotSpeed( KJob *, unsigned long );
-  void slotDescription( KJob *job, const QString &title, const QPair<QString, QString> &field1,
-                        const QPair<QString, QString> &field2 );
+    void slotDownloadResult(KJob*);
+    void slotProcessedAmount(KJob *, KJob::Unit, qulonglong);
+    void slotTotalAmount(KJob *, KJob::Unit, qulonglong);
+    void slotSpeed(KJob *, unsigned long);
+    void slotDescription(KJob *job, const QString &title, const QPair<QString, QString> &field1,
+                         const QPair<QString, QString> &field2);
 
 public:
-  QMutex                    _locker;
-  QWaitCondition            _waiter;
-  QStack<QList<QVariant> *> _stack;
-  QString                   _title;
-  qulonglong                _maxProgressValue;
-  qulonglong                _currentProgress;
-  QTime                     _time;
-  bool                      _exiting;
+    QMutex                    _locker;
+    QWaitCondition            _waiter;
+    QStack<QList<QVariant> *> _stack;
+    QString                   _title;
+    qulonglong                _maxProgressValue;
+    qulonglong                _currentProgress;
+    QTime                     _time;
+    bool                      _exiting;
 
 private:
-  AbstractJobThread *       _jobThread;
+    AbstractJobThread *       _jobThread;
 };
 
 
 
 class AbstractJobThread : public QThread
 {
-friend class AbstractThreadedJob;
-friend class AbstractJobObserver;
-Q_OBJECT
+    friend class AbstractThreadedJob;
+    friend class AbstractJobObserver;
+    Q_OBJECT
 
 public:
-  AbstractJobThread();
-  virtual ~AbstractJobThread();
+    AbstractJobThread();
+    virtual ~AbstractJobThread();
 
-  void abort();
-  KRarcObserver * observer();
+    void abort();
+    KRarcObserver * observer();
 
 protected slots:
-  virtual void slotStart() = 0;
+    virtual void slotStart() = 0;
 
 protected:
-  virtual void run();
-  void setJob( AbstractThreadedJob * job ) { _job = job; }
+    virtual void run();
+    void setJob(AbstractThreadedJob * job) {
+        _job = job;
+    }
 
-  KUrl::List remoteUrls( const KUrl &baseUrl, const QStringList & files );
-  KUrl downloadIfRemote( const KUrl &baseUrl, const QStringList & files );
-  void calcSpaceLocal( const KUrl &baseUrl, const QStringList & files, KIO::filesize_t &totalSize, 
-                       unsigned long &totalDirs, unsigned long &totalFiles );
+    KUrl::List remoteUrls(const KUrl &baseUrl, const QStringList & files);
+    KUrl downloadIfRemote(const KUrl &baseUrl, const QStringList & files);
+    void calcSpaceLocal(const KUrl &baseUrl, const QStringList & files, KIO::filesize_t &totalSize,
+                        unsigned long &totalDirs, unsigned long &totalFiles);
 
-  void sendError( int errorCode, QString message );
-  void sendInfo( QString message, QString a1 = QString(), QString a2 = QString(), QString a3 = QString(), QString a4 = QString() );
-  void sendReset( QString message, QString a1 = QString(""), QString a2 = QString(""), QString a3 = QString(""), QString a4 = QString("") );
-  void sendSuccess();
-  void sendMessage( const QString &message );
-  void sendMaxProgressValue( qulonglong value );
-  void sendAddProgress( qulonglong value, const QString &progress = QString() );
+    void sendError(int errorCode, QString message);
+    void sendInfo(QString message, QString a1 = QString(), QString a2 = QString(), QString a3 = QString(), QString a4 = QString());
+    void sendReset(QString message, QString a1 = QString(""), QString a2 = QString(""), QString a3 = QString(""), QString a4 = QString(""));
+    void sendSuccess();
+    void sendMessage(const QString &message);
+    void sendMaxProgressValue(qulonglong value);
+    void sendAddProgress(qulonglong value, const QString &progress = QString());
 
-  void setProgressTitle( const QString &title ) { _progressTitle = title; }
+    void setProgressTitle(const QString &title) {
+        _progressTitle = title;
+    }
 
-  QString tempFileIfRemote( const KUrl &kurl, const QString &type );
-  QString tempDirIfRemote( const KUrl &kurl );
-  bool uploadTempFiles();
+    QString tempFileIfRemote(const KUrl &kurl, const QString &type);
+    QString tempDirIfRemote(const KUrl &kurl);
+    bool uploadTempFiles();
 
-  bool isExited() { return _exited; }
-  void terminate();
+    bool isExited() {
+        return _exited;
+    }
+    void terminate();
 
-  QString getPassword( const QString &path );
+    QString getPassword(const QString &path);
 
-  AbstractThreadedJob *_job;
-  QEventLoop          *_loop;
+    AbstractThreadedJob *_job;
+    QEventLoop          *_loop;
 
-  KTempDir            *_downloadTempDir;
-  KRarcObserver       *_observer;
+    KTempDir            *_downloadTempDir;
+    KRarcObserver       *_observer;
 
-  KTemporaryFile      *_tempFile;
-  QString              _tempFileName;
-  KUrl                 _tempFileTarget;
-  KTempDir            *_tempDir;
-  QString              _tempDirName;
-  KUrl                 _tempDirTarget;
+    KTemporaryFile      *_tempFile;
+    QString              _tempFileName;
+    KUrl                 _tempFileTarget;
+    KTempDir            *_tempDir;
+    QString              _tempDirName;
+    KUrl                 _tempDirTarget;
 
-  bool                 _exited;
+    bool                 _exited;
 
-  QString              _progressTitle;
+    QString              _progressTitle;
 };
 
-enum PossibleCommands
-{
-  CMD_ERROR                =  1,
-  CMD_INFO                 =  2,
-  CMD_RESET                =  3,
-  CMD_DOWNLOAD_FILES       =  4,
-  CMD_UPLOAD_FILES         =  5,
-  CMD_SUCCESS              =  6,
-  CMD_MAXPROGRESSVALUE     =  7,
-  CMD_ADD_PROGRESS         =  8,
-  CMD_GET_PASSWORD         =  9,
-  CMD_MESSAGE              = 10
+enum PossibleCommands {
+    CMD_ERROR                =  1,
+    CMD_INFO                 =  2,
+    CMD_RESET                =  3,
+    CMD_DOWNLOAD_FILES       =  4,
+    CMD_UPLOAD_FILES         =  5,
+    CMD_SUCCESS              =  6,
+    CMD_MAXPROGRESSVALUE     =  7,
+    CMD_ADD_PROGRESS         =  8,
+    CMD_GET_PASSWORD         =  9,
+    CMD_MESSAGE              = 10
 };
 
 class UserEvent : public QEvent
 {
 public:
-  UserEvent( int command, const QList<QVariant> &args ) : QEvent( QEvent::User ), _command( command ), _args( args ) {}
+    UserEvent(int command, const QList<QVariant> &args) : QEvent(QEvent::User), _command(command), _args(args) {}
 
-  inline int                     command() { return _command; }
-  inline const QList<QVariant> & args()    { return _args; }
+    inline int                     command() {
+        return _command;
+    }
+    inline const QList<QVariant> & args()    {
+        return _args;
+    }
 
 protected:
-  int             _command;
-  QList<QVariant> _args;
+    int             _command;
+    QList<QVariant> _args;
 };
 
 #endif // __ABSTRACTTHREADED_JOB_H__

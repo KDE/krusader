@@ -39,20 +39,23 @@ class QLineEdit;
 class QComboBox;
 class QTreeWidget;
 
-class FeedToListBoxDialog : public KDialog {
-  Q_OBJECT
-  
-  public:
-    FeedToListBoxDialog( QWidget*, Synchronizer *, QTreeWidget *, bool);
+class FeedToListBoxDialog : public KDialog
+{
+    Q_OBJECT
+
+public:
+    FeedToListBoxDialog(QWidget*, Synchronizer *, QTreeWidget *, bool);
     virtual ~FeedToListBoxDialog() {};
 
-    bool isAccepted() {return accepted;};
+    bool isAccepted() {
+        return accepted;
+    };
 
-  protected slots:
+protected slots:
     void slotUser1();
     void slotOk();
 
-  private:
+private:
     Synchronizer * synchronizer;
     QTreeWidget  * syncList;
     QCheckBox    * cbSelected;

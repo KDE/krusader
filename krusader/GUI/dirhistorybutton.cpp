@@ -29,67 +29,71 @@
 
 #include <kdebug.h>
 
-DirHistoryButton::DirHistoryButton( DirHistoryQueue* hQ, QWidget *parent ) : QToolButton( parent ) {
-	KIconLoader * iconLoader = new KIconLoader();
-	QPixmap icon = iconLoader->loadIcon( "history", KIconLoader::Toolbar, 16 );
+DirHistoryButton::DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent) : QToolButton(parent)
+{
+    KIconLoader * iconLoader = new KIconLoader();
+    QPixmap icon = iconLoader->loadIcon("history", KIconLoader::Toolbar, 16);
 
-	setFixedSize( icon.width() + 4, icon.height() + 4 );
-	setIcon( QIcon( icon ) );
-	setText( i18n( "Open the directory history list" ) );
-	setToolTip( i18n( "Open the directory history list" ) );
-	setPopupMode( QToolButton::InstantPopup );
-	setAcceptDrops( false );
+    setFixedSize(icon.width() + 4, icon.height() + 4);
+    setIcon(QIcon(icon));
+    setText(i18n("Open the directory history list"));
+    setToolTip(i18n("Open the directory history list"));
+    setPopupMode(QToolButton::InstantPopup);
+    setAcceptDrops(false);
 
-	popupMenu = new QMenu( this );
-	Q_CHECK_PTR( popupMenu );
+    popupMenu = new QMenu(this);
+    Q_CHECK_PTR(popupMenu);
 
-	setMenu( popupMenu );
+    setMenu(popupMenu);
 
-	historyQueue = hQ;
+    historyQueue = hQ;
 
-	connect( popupMenu, SIGNAL( aboutToShow() ), this, SLOT( slotAboutToShow() ) );
-	connect( popupMenu, SIGNAL( triggered( QAction * ) ), this, SLOT( slotPopupActivated( QAction * ) ) );
+    connect(popupMenu, SIGNAL(aboutToShow()), this, SLOT(slotAboutToShow()));
+    connect(popupMenu, SIGNAL(triggered(QAction *)), this, SLOT(slotPopupActivated(QAction *)));
 }
 
 DirHistoryButton::~DirHistoryButton() {}
 
-void DirHistoryButton::showMenu() {
-	QMenu * pP = menu();
-	if ( pP ) {
-		menu() ->exec( mapToGlobal( QPoint( 0, height() ) ) );
-	}
+void DirHistoryButton::showMenu()
+{
+    QMenu * pP = menu();
+    if (pP) {
+        menu() ->exec(mapToGlobal(QPoint(0, height())));
+    }
 }
 /** No descriptions */
-void DirHistoryButton::slotPopup() {
-	//  kDebug() << "History slot" << endl;
+void DirHistoryButton::slotPopup()
+{
+    //  kDebug() << "History slot" << endl;
 }
 /** No descriptions */
-void DirHistoryButton::slotAboutToShow() {
-	emit aboutToShow();
-	//  kDebug() << "about to show" << endl;
-	popupMenu->clear();
-	KUrl::List::iterator it;
+void DirHistoryButton::slotAboutToShow()
+{
+    emit aboutToShow();
+    //  kDebug() << "about to show" << endl;
+    popupMenu->clear();
+    KUrl::List::iterator it;
 
-	QAction * first = 0;
-	int id = 0;
-	for ( it = historyQueue->urlQueue.begin(); it != historyQueue->urlQueue.end(); ++it ) {
-		QAction * act = popupMenu->addAction( (*it).prettyUrl() );
-		if( id == 0 )
-			first = act;
-		act->setData( QVariant( id++ ) );
-	}
-	if ( first ) {
-		first->setCheckable( true );
-		first->setChecked( true );
-	}
+    QAction * first = 0;
+    int id = 0;
+    for (it = historyQueue->urlQueue.begin(); it != historyQueue->urlQueue.end(); ++it) {
+        QAction * act = popupMenu->addAction((*it).prettyUrl());
+        if (id == 0)
+            first = act;
+        act->setData(QVariant(id++));
+    }
+    if (first) {
+        first->setCheckable(true);
+        first->setChecked(true);
+    }
 }
 /** No descriptions */
-void DirHistoryButton::slotPopupActivated( QAction * action ) {
-	if( action && action->data().canConvert<int>() )
-	{
-		int id = action->data().toInt();
-		emit openUrl( historyQueue->urlQueue[ id ] );
-	}
+void DirHistoryButton::slotPopupActivated(QAction * action)
+{
+    if (action && action->data().canConvert<int>()) {
+        int id = action->data().toInt();
+        emit openUrl(historyQueue->urlQueue[ id ]);
+    }
 }
 
 #include "dirhistorybutton.moc"

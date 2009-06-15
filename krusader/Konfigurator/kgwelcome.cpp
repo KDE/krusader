@@ -34,20 +34,20 @@
 #include <QGridLayout>
 #include <QLabel>
 
-KgWelcome::KgWelcome( bool first, QWidget* parent ) :
-  KonfiguratorPage( first, parent )
+KgWelcome::KgWelcome(bool first, QWidget* parent) :
+        KonfiguratorPage(first, parent)
 {
-  QGridLayout *kgWelcomeLayout = new QGridLayout( parent );
-  kgWelcomeLayout->setSpacing( 6 );
+    QGridLayout *kgWelcomeLayout = new QGridLayout(parent);
+    kgWelcomeLayout->setSpacing(6);
 
-  QString pix=KGlobal::dirs()->findResource("appdata","konfig_small.jpg");
-  QPixmap image0( pix );
-  
-  QLabel *pixmapLabel = new QLabel( parent );
-  pixmapLabel->setIcon( QIcon( image0 ) );
-  pixmapLabel->setScaledContents( true );
+    QString pix = KGlobal::dirs()->findResource("appdata", "konfig_small.jpg");
+    QPixmap image0(pix);
 
-  kgWelcomeLayout->addWidget( pixmapLabel, 0, 0 );
+    QLabel *pixmapLabel = new QLabel(parent);
+    pixmapLabel->setIcon(QIcon(image0));
+    pixmapLabel->setScaledContents(true);
+
+    kgWelcomeLayout->addWidget(pixmapLabel, 0, 0);
 }
 
 #include "kgwelcome.moc"

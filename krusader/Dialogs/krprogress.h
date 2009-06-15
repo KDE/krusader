@@ -30,53 +30,54 @@
 #include <ksqueezedtextlabel.h>
 #include <kio/progressbase.h>
 
-class KrProgress : public KIO::ProgressBase {
-  Q_OBJECT
+class KrProgress : public KIO::ProgressBase
+{
+    Q_OBJECT
 public:
 
-  KrProgress(KIO::Job* job);
-  virtual ~KrProgress();
+    KrProgress(KIO::Job* job);
+    virtual ~KrProgress();
 
 public slots:
-  virtual void slotTotalSize( KIO::Job*, KIO::filesize_t bytes );
-  virtual void slotTotalFiles( KIO::Job*, unsigned long files );
-  virtual void slotTotalDirs( KIO::Job*, unsigned long dirs );
+    virtual void slotTotalSize(KIO::Job*, KIO::filesize_t bytes);
+    virtual void slotTotalFiles(KIO::Job*, unsigned long files);
+    virtual void slotTotalDirs(KIO::Job*, unsigned long dirs);
 
-  virtual void slotProcessedSize( KIO::Job*, KIO::filesize_t bytes );
-  virtual void slotProcessedFiles( KIO::Job*, unsigned long files );
-  virtual void slotProcessedDirs( KIO::Job*, unsigned long dirs );
+    virtual void slotProcessedSize(KIO::Job*, KIO::filesize_t bytes);
+    virtual void slotProcessedFiles(KIO::Job*, unsigned long files);
+    virtual void slotProcessedDirs(KIO::Job*, unsigned long dirs);
 
-  virtual void slotSpeed( KIO::Job*, unsigned long bytes_per_second );
-  virtual void slotPercent( KIO::Job*, unsigned long percent );
-  virtual void slotInfoMessage( KIO::Job*, const QString & msg );
-	
-	virtual void slotStop();
-  virtual void closeEvent( QCloseEvent* );
+    virtual void slotSpeed(KIO::Job*, unsigned long bytes_per_second);
+    virtual void slotPercent(KIO::Job*, unsigned long percent);
+    virtual void slotInfoMessage(KIO::Job*, const QString & msg);
 
-protected:
-  void showTotals();
-  void setDestVisible( bool visible );
-
-  KSqueezedTextLabel* sourceLabel;
-  KSqueezedTextLabel* destLabel;
-  QLabel* progressLabel;
-  QLabel* destInvite;
-  QLabel* speedLabel;
-  QLabel* sizeLabel;
-  QLabel* resumeLabel;
-
-  KProgress* m_pProgressBar;
-
-  KIO::filesize_t m_iTotalSize;
-  unsigned long m_iTotalFiles;
-  unsigned long m_iTotalDirs;
-
-  KIO::filesize_t m_iProcessedSize;
-  unsigned long m_iProcessedDirs;
-  unsigned long m_iProcessedFiles;
+    virtual void slotStop();
+    virtual void closeEvent(QCloseEvent*);
 
 protected:
-  virtual void virtual_hook( int id, void* data );
+    void showTotals();
+    void setDestVisible(bool visible);
+
+    KSqueezedTextLabel* sourceLabel;
+    KSqueezedTextLabel* destLabel;
+    QLabel* progressLabel;
+    QLabel* destInvite;
+    QLabel* speedLabel;
+    QLabel* sizeLabel;
+    QLabel* resumeLabel;
+
+    KProgress* m_pProgressBar;
+
+    KIO::filesize_t m_iTotalSize;
+    unsigned long m_iTotalFiles;
+    unsigned long m_iTotalDirs;
+
+    KIO::filesize_t m_iProcessedSize;
+    unsigned long m_iProcessedDirs;
+    unsigned long m_iProcessedFiles;
+
+protected:
+    virtual void virtual_hook(int id, void* data);
 };
 
 

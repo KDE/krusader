@@ -42,25 +42,27 @@
 
 class SynchronizeDialog : QDialog
 {
-  Q_OBJECT
-  
-  public:
-    SynchronizeDialog(  QWidget*, Synchronizer *sync,
-                        int, KIO::filesize_t, int, KIO::filesize_t, int, KIO::filesize_t, int);
+    Q_OBJECT
+
+public:
+    SynchronizeDialog(QWidget*, Synchronizer *sync,
+                      int, KIO::filesize_t, int, KIO::filesize_t, int, KIO::filesize_t, int);
     ~SynchronizeDialog();
 
-    inline bool wasSyncronizationStarted()    { return syncStarted; }
-    
-  public slots:
+    inline bool wasSyncronizationStarted()    {
+        return syncStarted;
+    }
+
+public slots:
     void startSynchronization();
     void synchronizationFinished();
-    void processedSizes( int, KIO::filesize_t, int, KIO::filesize_t, int, KIO::filesize_t);
+    void processedSizes(int, KIO::filesize_t, int, KIO::filesize_t, int, KIO::filesize_t);
     void pauseOrResume();
     void pauseAccepted();
 
-  private:
+private:
     QProgressBar  *progress;
-    
+
     QCheckBox     *cbRightToLeft;
     QCheckBox     *cbLeftToRight;
     QCheckBox     *cbDeletable;
@@ -70,10 +72,10 @@ class SynchronizeDialog : QDialog
     QLabel        *lbDeletable;
 
     QCheckBox     *cbOverwrite;
-    
+
     QPushButton   *btnStart;
     QPushButton   *btnPause;
-    
+
     Synchronizer  *synchronizer;
 
     int               leftCopyNr;

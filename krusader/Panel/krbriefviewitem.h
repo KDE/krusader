@@ -51,42 +51,59 @@
 class QPixmap;
 class KrBriefView;
 
-class KrBriefViewItem : public K3IconViewItem, public KrViewItem {
-friend class KrBriefView;
-friend class KrCalcSpaceDialog;
+class KrBriefViewItem : public K3IconViewItem, public KrViewItem
+{
+    friend class KrBriefView;
+    friend class KrCalcSpaceDialog;
 public:
-	KrBriefViewItem(KrBriefView *parent, Q3IconViewItem *after, vfile *vf);
-	inline bool isSelected() const { return K3IconViewItem::isSelected(); }
-	inline void setSelected(bool s) { K3IconViewItem::setSelected(s, true); }
-	inline void cancelRename() { removeRenameBox(); }
-	int compare(Q3IconViewItem *i) const;
-	virtual void repaintItem();
-	static void itemHeightChanged(); // force the items to resize when icon/font size change
-	// TODO: virtual void setup(); // called when iconview needs to know the height of the item
+    KrBriefViewItem(KrBriefView *parent, Q3IconViewItem *after, vfile *vf);
+    inline bool isSelected() const {
+        return K3IconViewItem::isSelected();
+    }
+    inline void setSelected(bool s) {
+        K3IconViewItem::setSelected(s, true);
+    }
+    inline void cancelRename() {
+        removeRenameBox();
+    }
+    int compare(Q3IconViewItem *i) const;
+    virtual void repaintItem();
+    static void itemHeightChanged(); // force the items to resize when icon/font size change
+    // TODO: virtual void setup(); // called when iconview needs to know the height of the item
 #ifdef FASTER
-	virtual QPixmap * pixmap() const {return const_cast<QPixmap *>(&itemIcon);}
-	virtual void setPixmap ( const QPixmap &icon ) { itemIcon = icon;}
+    virtual QPixmap * pixmap() const {
+        return const_cast<QPixmap *>(&itemIcon);
+    }
+    virtual void setPixmap(const QPixmap &icon) {
+        itemIcon = icon;
+    }
 #endif
 
-	virtual QRect itemRect() const { return rect(); }
-        virtual void redraw() { repaint(); }
+    virtual QRect itemRect() const {
+        return rect();
+    }
+    virtual void redraw() {
+        repaint();
+    }
 
 
 protected:
-	virtual void paintItem(QPainter *p, const QColorGroup &cg);
-	virtual void paintFocus(QPainter *p, const QColorGroup &cg);
-	virtual void calcRect ( const QString & text_ = QString() );
+    virtual void paintItem(QPainter *p, const QColorGroup &cg);
+    virtual void paintFocus(QPainter *p, const QColorGroup &cg);
+    virtual void calcRect(const QString & text_ = QString());
 
 private:
 #ifdef FASTER
-	bool initiated;
-	static int expHeight;
-	QPixmap itemIcon;
+    bool initiated;
+    static int expHeight;
+    QPixmap itemIcon;
 #endif // FASTER
-	// TODO:
-	static const QColor & setColorIfContrastIsSufficient(const QColor & /* background */, const QColor & /* color1 */, const QColor & /* color2 */ ) {static QColor col; return col;}
-	
-//	static int expHeight;
+    // TODO:
+    static const QColor & setColorIfContrastIsSufficient(const QColor & /* background */, const QColor & /* color1 */, const QColor & /* color2 */) {
+        static QColor col; return col;
+    }
+
+// static int expHeight;
 };
 
 #endif

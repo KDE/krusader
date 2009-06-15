@@ -59,198 +59,191 @@
 #include "kgprotocols.h"
 #include <QtCore/QEvent>
 
-Konfigurator::Konfigurator( bool f, int startPage ) : KPageDialog( (QWidget *)0 ), firstTime(f), internalCall( false ),
-      restartGUI( false ), sizeX( -1 ), sizeY( -1 )
+Konfigurator::Konfigurator(bool f, int startPage) : KPageDialog((QWidget *)0), firstTime(f), internalCall(false),
+        restartGUI(false), sizeX(-1), sizeY(-1)
 {
-  setButtons( KDialog::Help | KDialog::User1 | KDialog::Apply | KDialog::Cancel );
-  setDefaultButton( KDialog::Apply );
-  setWindowTitle( i18n( "Konfigurator" ) );
-  setButtonGuiItem( KDialog::User1, KGuiItem( i18n("Defaults") ) );
-  setWindowModality( Qt::WindowModal );
+    setButtons(KDialog::Help | KDialog::User1 | KDialog::Apply | KDialog::Cancel);
+    setDefaultButton(KDialog::Apply);
+    setWindowTitle(i18n("Konfigurator"));
+    setButtonGuiItem(KDialog::User1, KGuiItem(i18n("Defaults")));
+    setWindowModality(Qt::WindowModal);
 
-  setPlainCaption(i18n("Konfigurator - Creating Your Own Krusader"));
-  setFaceType(KPageDialog::List);
+    setPlainCaption(i18n("Konfigurator - Creating Your Own Krusader"));
+    setFaceType(KPageDialog::List);
 
-  setButtonGuiItem( KDialog::Cancel, KGuiItem( i18n("Close") ) );
+    setButtonGuiItem(KDialog::Cancel, KGuiItem(i18n("Close")));
 
-  setHelp("konfigurator");
-  
-  connect( this, SIGNAL( currentPageChanged( KPageWidgetItem *, KPageWidgetItem * ) ), this, SLOT( slotPageSwitch( KPageWidgetItem *, KPageWidgetItem * ) ) );
-  connect( &restoreTimer, SIGNAL(timeout()), this, SLOT(slotRestorePage()));
-  connect( this, SIGNAL( applyClicked() ), this, SLOT( slotApply() ) );
-  connect( this, SIGNAL( cancelClicked() ), this, SLOT( slotCancel() ) );
-  connect( this, SIGNAL( user1Clicked() ), this, SLOT( slotUser1() ) );
-  
-  createLayout( startPage );
+    setHelp("konfigurator");
 
-  KConfigGroup group( krConfig, "Konfigurator");
-  int sx = group.readEntry( "Window Width", -1 );
-  int sy = group.readEntry( "Window Height", -1 );
+    connect(this, SIGNAL(currentPageChanged(KPageWidgetItem *, KPageWidgetItem *)), this, SLOT(slotPageSwitch(KPageWidgetItem *, KPageWidgetItem *)));
+    connect(&restoreTimer, SIGNAL(timeout()), this, SLOT(slotRestorePage()));
+    connect(this, SIGNAL(applyClicked()), this, SLOT(slotApply()));
+    connect(this, SIGNAL(cancelClicked()), this, SLOT(slotCancel()));
+    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
 
-  if( sx != -1 && sy != -1 )
-    resize( sx, sy );
-  else
-    resize( 900, 680 );
+    createLayout(startPage);
 
-  if( group.readEntry( "Window Maximized",  false ) )
-      showMaximized();
-  else
-      show();
+    KConfigGroup group(krConfig, "Konfigurator");
+    int sx = group.readEntry("Window Width", -1);
+    int sy = group.readEntry("Window Height", -1);
 
-  exec();
+    if (sx != -1 && sy != -1)
+        resize(sx, sy);
+    else
+        resize(900, 680);
+
+    if (group.readEntry("Window Maximized",  false))
+        showMaximized();
+    else
+        show();
+
+    exec();
 }
 
-void Konfigurator::resizeEvent( QResizeEvent *e )
+void Konfigurator::resizeEvent(QResizeEvent *e)
 {
-  if( !isMaximized() )
-  {
-    sizeX = e->size().width();
-    sizeY = e->size().height();
-  }
+    if (!isMaximized()) {
+        sizeX = e->size().width();
+        sizeY = e->size().height();
+    }
 
-  KDialog::resizeEvent( e );
+    KDialog::resizeEvent(e);
 }
 
 void Konfigurator::closeDialog()
 {
-  KConfigGroup group( krConfig, "Konfigurator");
+    KConfigGroup group(krConfig, "Konfigurator");
 
-  group.writeEntry("Window Width", sizeX );
-  group.writeEntry("Window Height", sizeY );
-  group.writeEntry("Window Maximized", isMaximized() );
+    group.writeEntry("Window Width", sizeX);
+    group.writeEntry("Window Height", sizeY);
+    group.writeEntry("Window Maximized", isMaximized());
 }
 
 void Konfigurator::reject()
 {
-  closeDialog();
-  KDialog::reject();
+    closeDialog();
+    KDialog::reject();
 }
 
 void Konfigurator::accept()
 {
-  closeDialog();
-  KDialog::accept();
+    closeDialog();
+    KDialog::accept();
 }
 
-void Konfigurator::newPage(KonfiguratorPage *page, const QString &name, const QString &desc, const KIcon &kicon )
+void Konfigurator::newPage(KonfiguratorPage *page, const QString &name, const QString &desc, const KIcon &kicon)
 {
-  KPageWidgetItem *item = new KPageWidgetItem( page, name );
-  item->setIcon( kicon );
-  item->setHeader( desc );
-  addPage( item );
+    KPageWidgetItem *item = new KPageWidgetItem(page, name);
+    item->setIcon(kicon);
+    item->setHeader(desc);
+    addPage(item);
 
-  kgPages.append(item);
-  connect( page, SIGNAL( sigChanged() ), this, SLOT( slotApplyEnable() ) );
+    kgPages.append(item);
+    connect(page, SIGNAL(sigChanged()), this, SLOT(slotApplyEnable()));
 }
 
-void Konfigurator::createLayout( int startPage )
+void Konfigurator::createLayout(int startPage)
 {
-  // startup
-  newPage(new KgStartup(firstTime, this), i18n("Startup"), i18n("Krusader's settings upon startup"), KIcon( "kfm_home", krLoader ) );
-  // look n' feel
-  newPage(new KgLookFeel(firstTime, this), i18n("Look & Feel"), i18n("Look & Feel"), KIcon("looknfeel", krLoader ) );
-  // colors
-  newPage(new KgColors(firstTime, this), i18n("Colors"), i18n("Colors"), KIcon("colors", krLoader ) );
-  // general
-  newPage(new KgGeneral(firstTime, this), i18n("General"), i18n("Basic Operations"), KIcon("configure", krLoader) );
-  // advanced
-  newPage(new KgAdvanced(firstTime, this), i18n("Advanced"), i18n("Be sure you know what you're doing!"), KIcon( "dialog-warning", krLoader) );
-  // archives
-  newPage(new KgArchives(firstTime, this), i18n("Archives"), i18n("Customize the way Krusader deals with archives"),
-    KIcon("tgz", krLoader));
-  // dependencies
-  newPage(new KgDependencies(firstTime, this), i18n("Dependencies"), i18n("Set the full path of the external applications"),
-    KIcon("kr_dependencies", krLoader ) );
-  // useractions
-  newPage(new KgUserActions(firstTime, this), i18n("User Actions"), i18n("Configure your personal actions"),
-    KIcon("kr_useractions", krLoader ) );
-  // protocols
-  newPage(new KgProtocols(firstTime, this), i18n("Protocols"), i18n("Link mimes to protocols"),
-    KIcon("kde", krLoader ) );
-        
-  setCurrentPage( kgPages.at( startPage ) );
-  slotApplyEnable();
+    // startup
+    newPage(new KgStartup(firstTime, this), i18n("Startup"), i18n("Krusader's settings upon startup"), KIcon("kfm_home", krLoader));
+    // look n' feel
+    newPage(new KgLookFeel(firstTime, this), i18n("Look & Feel"), i18n("Look & Feel"), KIcon("looknfeel", krLoader));
+    // colors
+    newPage(new KgColors(firstTime, this), i18n("Colors"), i18n("Colors"), KIcon("colors", krLoader));
+    // general
+    newPage(new KgGeneral(firstTime, this), i18n("General"), i18n("Basic Operations"), KIcon("configure", krLoader));
+    // advanced
+    newPage(new KgAdvanced(firstTime, this), i18n("Advanced"), i18n("Be sure you know what you're doing!"), KIcon("dialog-warning", krLoader));
+    // archives
+    newPage(new KgArchives(firstTime, this), i18n("Archives"), i18n("Customize the way Krusader deals with archives"),
+            KIcon("tgz", krLoader));
+    // dependencies
+    newPage(new KgDependencies(firstTime, this), i18n("Dependencies"), i18n("Set the full path of the external applications"),
+            KIcon("kr_dependencies", krLoader));
+    // useractions
+    newPage(new KgUserActions(firstTime, this), i18n("User Actions"), i18n("Configure your personal actions"),
+            KIcon("kr_useractions", krLoader));
+    // protocols
+    newPage(new KgProtocols(firstTime, this), i18n("Protocols"), i18n("Link mimes to protocols"),
+            KIcon("kde", krLoader));
+
+    setCurrentPage(kgPages.at(startPage));
+    slotApplyEnable();
 }
 
 void Konfigurator::slotUser1()
 {
-  ((KonfiguratorPage *)(currentPage()->widget()))->setDefaults();
+    ((KonfiguratorPage *)(currentPage()->widget()))->setDefaults();
 }
 #include <kdebug.h>
 void Konfigurator::slotApply()
 {
-  if( ((KonfiguratorPage *)(currentPage()->widget()))->apply() )
-  {
-    restartGUI = true;
+    if (((KonfiguratorPage *)(currentPage()->widget()))->apply()) {
+        restartGUI = true;
 //    KMessageBox::information(this,i18n("Changes to the GUI will be updated next time you run Krusader."),
 //     QString(),"konfigGUInotify");
-  }
+    }
 
-   // really ugly, but reload the Fn keys just in case - csaba: any better idea?
-	krApp->mainView->fnKeys->updateShortcuts();
+    // really ugly, but reload the Fn keys just in case - csaba: any better idea?
+    krApp->mainView->fnKeys->updateShortcuts();
 }
 
 void Konfigurator::slotCancel()
 {
-  lastPage = currentPage();
-  if( slotPageSwitch( lastPage, lastPage ) )
-    reject();
+    lastPage = currentPage();
+    if (slotPageSwitch(lastPage, lastPage))
+        reject();
 }
 
 void Konfigurator::slotApplyEnable()
 {
-  lastPage = currentPage();
-  enableButtonApply( ((KonfiguratorPage *)(lastPage->widget()))->isChanged() );
+    lastPage = currentPage();
+    enableButtonApply(((KonfiguratorPage *)(lastPage->widget()))->isChanged());
 }
 
-bool Konfigurator::slotPageSwitch( KPageWidgetItem *current, KPageWidgetItem *before )
+bool Konfigurator::slotPageSwitch(KPageWidgetItem *current, KPageWidgetItem *before)
 {
-  if( before == 0 )
-    return true;
+    if (before == 0)
+        return true;
 
-  KonfiguratorPage *currentPg = (KonfiguratorPage *)(before->widget());
+    KonfiguratorPage *currentPg = (KonfiguratorPage *)(before->widget());
 
-  if( internalCall )
-  {
-    internalCall = false;
-    return true;
-  }
-
-  if( currentPg->isChanged() )
-  {
-    int result = KMessageBox::questionYesNoCancel( 0, i18n("The current page has been changed. Do you want to apply changes?" ));
-
-    switch( result )
-    {
-    case KMessageBox::No:
-      currentPg->loadInitialValues();
-      currentPg->apply();
-      break;
-    case KMessageBox::Yes:
-      if( currentPg->apply() )
-      {
-        restartGUI = true;
-      }
-      break;
-    default:
-      restoreTimer.setSingleShot( true );
-      restoreTimer.start( 0 );
-      return false;
+    if (internalCall) {
+        internalCall = false;
+        return true;
     }
-  }
 
-  enableButtonApply( currentPg->isChanged() );
-  lastPage = current;
-  return true;
+    if (currentPg->isChanged()) {
+        int result = KMessageBox::questionYesNoCancel(0, i18n("The current page has been changed. Do you want to apply changes?"));
+
+        switch (result) {
+        case KMessageBox::No:
+            currentPg->loadInitialValues();
+            currentPg->apply();
+            break;
+        case KMessageBox::Yes:
+            if (currentPg->apply()) {
+                restartGUI = true;
+            }
+            break;
+        default:
+            restoreTimer.setSingleShot(true);
+            restoreTimer.start(0);
+            return false;
+        }
+    }
+
+    enableButtonApply(currentPg->isChanged());
+    lastPage = current;
+    return true;
 }
 
 void Konfigurator::slotRestorePage()
 {
-  if( lastPage != currentPage() )
-  {
-    internalCall = true;
-    setCurrentPage( lastPage );
-  }
+    if (lastPage != currentPage()) {
+        internalCall = true;
+        setCurrentPage(lastPage);
+    }
 }
 
 #include "konfigurator.moc"

@@ -32,39 +32,39 @@
 #include "krstyleproxy.h"
 #include <QtGui/QContextMenuEvent>
 
-KrListWidget::KrListWidget( QWidget * parent ) : QListWidget( parent ) {
-  setStyle( new KrStyleProxy() );
+KrListWidget::KrListWidget(QWidget * parent) : QListWidget(parent)
+{
+    setStyle(new KrStyleProxy());
 }
 
-bool KrListWidget::event ( QEvent * event )
+bool KrListWidget::event(QEvent * event)
 {
-  switch (event->type()) {
-  // HACK: QT 4 Context menu key isn't handled properly
-  case QEvent::ContextMenu:
-    {
-      QContextMenuEvent* ce = (QContextMenuEvent*) event;
+    switch (event->type()) {
+        // HACK: QT 4 Context menu key isn't handled properly
+    case QEvent::ContextMenu: {
+        QContextMenuEvent* ce = (QContextMenuEvent*) event;
 
-      if( ce->reason() == QContextMenuEvent::Mouse ) {
-        QPoint pos = viewport()->mapFromGlobal( ce->globalPos() );
+        if (ce->reason() == QContextMenuEvent::Mouse) {
+            QPoint pos = viewport()->mapFromGlobal(ce->globalPos());
 
-        QListWidgetItem * item = itemAt( pos );
+            QListWidgetItem * item = itemAt(pos);
 
-        emit itemRightClicked( item, ce->globalPos() );
-        return true;
-      } else {
-        if( currentItem() ) {
-          QRect r = visualItemRect( currentItem() );
-          QPoint p = viewport()->mapToGlobal( QPoint( r.x() + 5, r.y() + 5 ) );
+            emit itemRightClicked(item, ce->globalPos());
+            return true;
+        } else {
+            if (currentItem()) {
+                QRect r = visualItemRect(currentItem());
+                QPoint p = viewport()->mapToGlobal(QPoint(r.x() + 5, r.y() + 5));
 
-          emit itemRightClicked( currentItem(), p );
-          return true;
+                emit itemRightClicked(currentItem(), p);
+                return true;
+            }
         }
-      }
     }
     break;
-  default:
-    break;
-  }
+    default:
+        break;
+    }
 
-  return QListWidget::event( event );
+    return QListWidget::event(event);
 }

@@ -35,18 +35,18 @@
 
 class KgStartup : public KonfiguratorPage
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  KgStartup( bool first, QWidget* parent=0 );
+    KgStartup(bool first, QWidget* parent = 0);
 
 public slots:
-  void slotDisable();
-  
+    void slotDisable();
+
 protected:
-  KonfiguratorRadioButtons  *saveRadio;
-  KonfiguratorCheckBoxGroup *uiCbGroup;
-  KonfiguratorComboBox      *profileCombo;
+    KonfiguratorRadioButtons  *saveRadio;
+    KonfiguratorCheckBoxGroup *uiCbGroup;
+    KonfiguratorComboBox      *profileCombo;
 };
 
 #endif /* __KGSTARTUP_H__ */

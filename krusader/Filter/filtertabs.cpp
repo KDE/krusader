@@ -35,97 +35,91 @@
 
 #include <klocale.h>
 
-FilterTabs::FilterTabs( int properties, QTabWidget *tabWidget, QObject *parent ) :
-    QObject( parent )
+FilterTabs::FilterTabs(int properties, QTabWidget *tabWidget, QObject *parent) :
+        QObject(parent)
 {
-  this->tabWidget = tabWidget;
+    this->tabWidget = tabWidget;
 
-  GeneralFilter *generalFilter = new GeneralFilter( this, properties, tabWidget );
-  tabWidget->addTab( generalFilter, i18n( "&General" ) );
-  filterList.append( generalFilter );
-  pageNumbers.append( tabWidget->indexOf( generalFilter ) );
+    GeneralFilter *generalFilter = new GeneralFilter(this, properties, tabWidget);
+    tabWidget->addTab(generalFilter, i18n("&General"));
+    filterList.append(generalFilter);
+    pageNumbers.append(tabWidget->indexOf(generalFilter));
 
-  AdvancedFilter *advancedFilter = new AdvancedFilter( this, tabWidget );
-  tabWidget->addTab( advancedFilter, i18n( "&Advanced" ) );
-  filterList.append( advancedFilter );
-  pageNumbers.append( tabWidget->indexOf( advancedFilter ) );
+    AdvancedFilter *advancedFilter = new AdvancedFilter(this, tabWidget);
+    tabWidget->addTab(advancedFilter, i18n("&Advanced"));
+    filterList.append(advancedFilter);
+    pageNumbers.append(tabWidget->indexOf(advancedFilter));
 }
 
-FilterTabs * FilterTabs::addTo( QTabWidget *tabWidget, int props )
+FilterTabs * FilterTabs::addTo(QTabWidget *tabWidget, int props)
 {
-  return new FilterTabs( props, tabWidget, tabWidget );
+    return new FilterTabs(props, tabWidget, tabWidget);
 }
 
-void FilterTabs::saveToProfile( QString name )
+void FilterTabs::saveToProfile(QString name)
 {
-  QListIterator<FilterBase *> it(filterList);
-  while (it.hasNext())
-  {
-    FilterBase *filter = it.next();
+    QListIterator<FilterBase *> it(filterList);
+    while (it.hasNext()) {
+        FilterBase *filter = it.next();
 
-    filter->saveToProfile( name );
-  }
+        filter->saveToProfile(name);
+    }
 }
 
-void FilterTabs::loadFromProfile( QString name )
+void FilterTabs::loadFromProfile(QString name)
 {
-  QListIterator<FilterBase *> it(filterList);
-  while (it.hasNext())
-  {
-    FilterBase *filter = it.next();
+    QListIterator<FilterBase *> it(filterList);
+    while (it.hasNext()) {
+        FilterBase *filter = it.next();
 
-    filter->loadFromProfile( name );
-  }
+        filter->loadFromProfile(name);
+    }
 }
 
 void FilterTabs::acceptQuery()
 {
-  QListIterator<FilterBase *> it(filterList);
-  while (it.hasNext())
-  {
-    FilterBase *filter = it.next();
+    QListIterator<FilterBase *> it(filterList);
+    while (it.hasNext()) {
+        FilterBase *filter = it.next();
 
-    filter->queryAccepted();
-  }
-}
-
-bool FilterTabs::fillQuery( KRQuery *query )
-{
-  for( unsigned int i=0; i != filterList.count(); i++ )
-  {
-
-    FilterBase *filter = filterList.at( i );
-
-    bool result = filter->fillQuery( query );
-    if( result == false )
-    {
-      tabWidget->setCurrentIndex( pageNumbers[ i ] );
-      return false;
+        filter->queryAccepted();
     }
-  }
-
-  acceptQuery();
-  return true;
 }
 
-FilterBase * FilterTabs::get( QString name )
+bool FilterTabs::fillQuery(KRQuery *query)
 {
-  QListIterator<FilterBase *> it(filterList);
-  while (it.hasNext())
-  {
-    FilterBase *filter = it.next();
+    for (unsigned int i = 0; i != filterList.count(); i++) {
 
-    if( filter->name() == name )
-      return filter;
-  }
+        FilterBase *filter = filterList.at(i);
 
-  return 0;
+        bool result = filter->fillQuery(query);
+        if (result == false) {
+            tabWidget->setCurrentIndex(pageNumbers[ i ]);
+            return false;
+        }
+    }
+
+    acceptQuery();
+    return true;
 }
 
-KRQuery FilterTabs::getQuery( QWidget *parent )
+FilterBase * FilterTabs::get(QString name)
 {
-  FilterDialog dialog( parent );
-  return dialog.getQuery();
+    QListIterator<FilterBase *> it(filterList);
+    while (it.hasNext()) {
+        FilterBase *filter = it.next();
+
+        if (filter->name() == name)
+            return filter;
+    }
+
+    return 0;
+}
+
+KRQuery FilterTabs::getQuery(QWidget *parent)
+{
+    FilterDialog dialog(parent);
+    return dialog.getQuery();
 }
 
 #include "filtertabs.moc"

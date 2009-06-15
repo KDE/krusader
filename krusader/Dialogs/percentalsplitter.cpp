@@ -37,49 +37,54 @@
 #include <QtGui/QToolTip>
 #include <QtGui/QCursor>
 
-PercentalSplitter::PercentalSplitter( QWidget * parent ) : QSplitter( parent ), label( 0 ), opaqueOldPos( -1 ) {
-  connect( this, SIGNAL( splitterMoved ( int, int ) ), SLOT( slotSplitterMoved ( int, int ) ) );
-}
-  
-PercentalSplitter::~PercentalSplitter() {
-}
-  
-QString PercentalSplitter::toolTipString( int p ) {
-  QList<int> values = sizes();
-  if( values.count() != 0 ) {
-    int sum = 0;
-
-    QListIterator<int> it( values );
-    while( it.hasNext() )
-      sum += it.next();
-
-    if( sum == 0 )
-      sum++;
-
-    int percent = (int)(((double)p / (double)( sum )) * 10000. + 0.5);
-    return QString( "%1.%2%3" ).arg( percent / 100 ).arg( ( percent / 10 )%10 ).arg( percent % 10 ) + '%';
-  }
-  return QString();
-}
-  
-void PercentalSplitter::slotSplitterMoved ( int p, int index ) {  
-  handle( index ) -> setToolTip( toolTipString( p ) );
-
-  QToolTip::showText( QCursor::pos(), toolTipString( p ) , this);
+PercentalSplitter::PercentalSplitter(QWidget * parent) : QSplitter(parent), label(0), opaqueOldPos(-1)
+{
+    connect(this, SIGNAL(splitterMoved(int, int)), SLOT(slotSplitterMoved(int, int)));
 }
 
-void PercentalSplitter::showEvent ( QShowEvent * event ) {
-  QList<int> values = sizes();
+PercentalSplitter::~PercentalSplitter()
+{
+}
 
-  for( int i=0; i != count(); i++ ) {
-    int p = 0;
-    for( int j=0; j < i; j++ )
-      p += values[ j ];
+QString PercentalSplitter::toolTipString(int p)
+{
+    QList<int> values = sizes();
+    if (values.count() != 0) {
+        int sum = 0;
 
-    handle( i ) -> setToolTip( toolTipString( p ) );
-  }
+        QListIterator<int> it(values);
+        while (it.hasNext())
+            sum += it.next();
 
-  QSplitter::showEvent( event );
+        if (sum == 0)
+            sum++;
+
+        int percent = (int)(((double)p / (double)(sum)) * 10000. + 0.5);
+        return QString("%1.%2%3").arg(percent / 100).arg((percent / 10) % 10).arg(percent % 10) + '%';
+    }
+    return QString();
+}
+
+void PercentalSplitter::slotSplitterMoved(int p, int index)
+{
+    handle(index) -> setToolTip(toolTipString(p));
+
+    QToolTip::showText(QCursor::pos(), toolTipString(p) , this);
+}
+
+void PercentalSplitter::showEvent(QShowEvent * event)
+{
+    QList<int> values = sizes();
+
+    for (int i = 0; i != count(); i++) {
+        int p = 0;
+        for (int j = 0; j < i; j++)
+            p += values[ j ];
+
+        handle(i) -> setToolTip(toolTipString(p));
+    }
+
+    QSplitter::showEvent(event);
 }
 
 #include "percentalsplitter.moc"
