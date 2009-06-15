@@ -30,6 +30,10 @@
 
 #include "lister.h"
 
+#include <QtCore/QFile>
+#include <QtCore/QRect>
+#include <QtCore/QTextCodec>
+#include <QtCore/QTextStream>
 #include <QtGui/QLayout>
 #include <QtGui/QLabel>
 #include <QtGui/QPainter>
@@ -37,26 +41,24 @@
 #include <QtGui/QLineEdit>
 #include <QtGui/QPushButton>
 #include <QtGui/QToolButton>
-#include <QtCore/QFile>
-#include <QtCore/QTextCodec>
-#include <QtCore/QTextStream>
 #include <QtGui/QClipboard>
 #include <QtGui/QSpacerItem>
 #include <QtGui/QProgressBar>
-#include <QKeyEvent>
-#include <QScrollBar>
-#include <QtCore/QRect>
-#include <QHBoxLayout>
-#include <QMenu>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QScrollBar>
+#include <QtGui/QHBoxLayout>
+#include <QtGui/QMenu>
+
 #include <KColorScheme>
 #include <KTemporaryFile>
 #include <KMessageBox>
 #include <KActionCollection>
 #include <KInputDialog>
 
-#include <klocale.h>
-#include <kio/job.h>
-#include <kglobalsettings.h>
+#include <KIO/Job>
+#include <KLocale>
+#include <KGlobalSettings>
+
 #include "../krusader.h"
 
 #define  SEARCH_CACHE_CHARS 100000
@@ -70,7 +72,7 @@
 /* TODO: Implement size checking for viewing text files */
 /* TODO: Implement isFirst at fileToTextPosition */
 
-ListerTextArea::ListerTextArea(Lister *lister, QWidget *parent) : QTextEdit(parent), _lister(lister),
+ListerTextArea::ListerTextArea(Lister *lister, QWidget *parent) : KTextEdit(parent), _lister(lister),
         _sizeX(-1), _sizeY(-1), _cursorAnchorPos(-1), _inSliderOp(false), _inCursorUpdate(false)
 {
     connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(slotCursorPositionChanged()));
@@ -100,7 +102,7 @@ void ListerTextArea::sizeChanged()
 
 void ListerTextArea::resizeEvent(QResizeEvent * event)
 {
-    QTextEdit::resizeEvent(event);
+    KTextEdit::resizeEvent(event);
     redrawTextArea();
 }
 
@@ -613,7 +615,7 @@ void ListerTextArea::keyPressEvent(QKeyEvent * ke)
         }
     }
     int oldAnchor = textCursor().anchor();
-    QTextEdit::keyPressEvent(ke);
+    KTextEdit::keyPressEvent(ke);
     handleAnchorChange(oldAnchor);
 }
 
@@ -621,7 +623,7 @@ void ListerTextArea::mousePressEvent(QMouseEvent * e)
 {
     _cursorAnchorPos = -1;
     int oldAnchor = textCursor().anchor();
-    QTextEdit::mousePressEvent(e);
+    KTextEdit::mousePressEvent(e);
     handleAnchorChange(oldAnchor);
 }
 
@@ -629,7 +631,7 @@ void ListerTextArea::mouseDoubleClickEvent(QMouseEvent * e)
 {
     _cursorAnchorPos = -1;
     int oldAnchor = textCursor().anchor();
-    QTextEdit::mouseDoubleClickEvent(e);
+    KTextEdit::mouseDoubleClickEvent(e);
     handleAnchorChange(oldAnchor);
 }
 
@@ -642,7 +644,7 @@ void ListerTextArea::mouseMoveEvent(QMouseEvent * e)
     }
     if (_cursorAnchorPos == -1)
         _cursorAnchorPos = _cursorPos;
-    QTextEdit::mouseMoveEvent(e);
+    KTextEdit::mouseMoveEvent(e);
     if (_cursorAnchorPos == _cursorPos)
         _cursorAnchorPos = -1;
 }
@@ -942,7 +944,7 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
     connect(_searchStopButton, SIGNAL(clicked()), this, SLOT(searchDelete()));
     hbox->addWidget(_searchStopButton);
 
-    _searchLineEdit = new QLineEdit(statusWidget);
+    _searchLineEdit = new KLineEdit(statusWidget);
     _searchLineEdit->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
     _originalBackground = _searchLineEdit->palette().color(QPalette::Base);
@@ -1435,7 +1437,7 @@ void Lister::jumpToPosition()
 
     res = res.trimmed();
     qint64 pos = -1;
-    if (res.startsWith("0x")) {
+    if (res.startsWith(QLatin1String("0x"))) {
         res = res.mid(2);
         bool ok;
         qulonglong upos = res.toULongLong(&ok, 16);

@@ -127,10 +127,11 @@ KrViewer::KrViewer(QWidget *parent) :
     else
         resize(900, 700);
 
-    if (group.readEntry("Window Maximized",  false))
-        showMaximized();
-    else
-        show();
+    if (group.readEntry("Window Maximized",  false)) {
+        setWindowState(windowState() | Qt::WindowMaximized);
+    }
+
+    show();
 }
 
 KrViewer::~KrViewer()
@@ -249,8 +250,10 @@ KrViewer* KrViewer::getViewer(bool new_window)
         if (viewers.isEmpty()) {
             viewers.prepend(new KrViewer());   // add to first (active)
         } else {
-            if (viewers.first()->isMinimized())  // minimized? -> show it again
-                viewers.first()->showNormal();
+            if (viewers.first()->isMinimized()) { // minimized? -> show it again
+                viewers.first()->setWindowState(viewers.first()->windowState() & ~Qt::WindowMinimized | Qt::WindowActive);
+                viewers.first()->show();
+            }
             viewers.first()->raise();
             viewers.first()->activateWindow();
         }

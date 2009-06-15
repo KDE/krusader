@@ -31,14 +31,15 @@
 #ifndef LISTER_H
 #define LISTER_H
 
-#include <QWidget>
-#include <QtGui/QTextEdit>
+#include <QtCore/QList>
 #include <QtCore/QTimer>
-#include <QList>
-#include <QColor>
+#include <QtGui/QColor>
+#include <QtGui/QWidget>
 
-#include <kparts/part.h>
-#include <kparts/browserextension.h>
+#include <KLineEdit>
+#include <KParts/BrowserExtension>
+#include <KParts/Part>
+#include <KTextEdit>
 
 #include "../VFS/krquery.h"
 
@@ -46,17 +47,15 @@
 #define  SLIDER_MAX          10000
 #define  MAX_CHAR_LENGTH     4
 
-class QTextEdit;
 class Lister;
 class QLabel;
-class QLineEdit;
+class QProgressBar;
 class QPushButton;
 class QToolButton;
-class QProgressBar;
-class KTemporaryFile;
 class KAction;
+class KTemporaryFile;
 
-class ListerTextArea : public QTextEdit
+class ListerTextArea : public KTextEdit
 {
     Q_OBJECT
 
@@ -211,7 +210,7 @@ protected:
     ListerTextArea *_textArea;
     QScrollBar     *_scrollBar;
     QLabel         *_listerLabel;
-    QLineEdit      *_searchLineEdit;
+    KLineEdit      *_searchLineEdit;
     QProgressBar   *_searchProgressBar;
     QToolButton    *_searchStopButton;
     QPushButton    *_searchNextButton;
