@@ -675,7 +675,7 @@ void Krusader::setupActions() {
     NEW_KACTION(actProfiles, i18n("Pro&files"), "user-identity", Qt::ALT + Qt::SHIFT + Qt::Key_L, MAIN_VIEW, SLOT(profiles()), "profile");
     NEW_KACTION(actCalculate, i18n("Calculate &Occupied Space"), "kcalc", 0, SLOTS, SLOT(calcSpace()), "calculate");
     NEW_KACTION(actCreateChecksum, i18n("Create Checksum..."), "binary", 0, SLOTS, SLOT(createChecksum()), "create checksum");
-    NEW_KACTION(actMatchChecksum, i18n("Verify Checksum..."), "match_checksum", 0, SLOTS, SLOT(matchChecksum()), "match checksum");
+    NEW_KACTION(actMatchChecksum, i18n("Verify Checksum..."), "binary", 0, SLOTS, SLOT(matchChecksum()), "match checksum");
     NEW_KACTION(actProperties, i18n("&Properties..."), 0, Qt::ALT + Qt::Key_Enter, SLOTS, SLOT(properties()), "properties");
     NEW_KACTION(actPack, i18n("Pac&k..."), "archive-insert", Qt::ALT + Qt::SHIFT + Qt::Key_P, SLOTS, SLOT(slotPack()), "pack");
     NEW_KACTION(actUnpack, i18n("&Unpack..."), "archive-extract", Qt::ALT + Qt::SHIFT + Qt::Key_U, SLOTS, SLOT(slotUnpack()), "unpack");
@@ -728,7 +728,7 @@ void Krusader::setupActions() {
 
 
     NEW_KACTION(actHomeTerminal, i18n("Start &Terminal"), "terminal", 0, SLOTS, SLOT(homeTerminal()), "terminal@home");
-    NEW_KACTION(actFTPDisconnect, i18n("Disconnect &from Net"), "kr_ftp_disconnect", Qt::SHIFT + Qt::CTRL + Qt::Key_F, SLOTS, SLOT(FTPDisconnect()), "ftp disconnect");
+    NEW_KACTION(actFTPDisconnect, i18n("Disconnect &from Net"), "network-disconnect", Qt::SHIFT + Qt::CTRL + Qt::Key_F, SLOTS, SLOT(FTPDisconnect()), "ftp disconnect");
 
     actMountMan = new KToolBarPopupAction(KIcon("kr_mountman"), i18n("&MountMan..."), this);
     actMountMan->setShortcut(Qt::ALT + Qt::Key_Slash);
