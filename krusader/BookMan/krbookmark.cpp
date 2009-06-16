@@ -31,7 +31,7 @@ KrBookmark::KrBookmark(QString name, KUrl url, KActionCollection *parent, QStrin
         } else { // is it an archive?
             if (KRarcHandler::isArchive(_url))
                 setIcon(KIcon("tar"));
-            else setIcon(KIcon("folder_html"));
+            else setIcon(KIcon("folder-html"));
         }
     }
 }

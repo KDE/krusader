@@ -252,7 +252,7 @@ void KrPopupMenu::addEmptyMenuEntries()
 void KrPopupMenu::addCreateNewMenu()
 {
     createNewPopup.addAction(krLoader->loadIcon("folder", KIconLoader::Small), i18n("Folder..."))->setData(QVariant(MKDIR_ID));
-    createNewPopup.addAction(krLoader->loadIcon("txt", KIconLoader::Small), i18n("Text File..."))->setData(QVariant(NEW_TEXT_FILE_ID));
+    createNewPopup.addAction(krLoader->loadIcon("text-plain", KIconLoader::Small), i18n("Text File..."))->setData(QVariant(NEW_TEXT_FILE_ID));
 
     QAction *newAct = addMenu(&createNewPopup);
     newAct->setData(QVariant(CREATE_NEW_ID));

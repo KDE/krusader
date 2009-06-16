@@ -145,24 +145,24 @@ void Konfigurator::newPage(KonfiguratorPage *page, const QString &name, const QS
 void Konfigurator::createLayout(int startPage)
 {
     // startup
-    newPage(new KgStartup(firstTime, this), i18n("Startup"), i18n("Krusader's settings upon startup"), KIcon("kfm_home", krLoader));
+    newPage(new KgStartup(firstTime, this), i18n("Startup"), i18n("Krusader's settings upon startup"), KIcon("go-home", krLoader));
     // look n' feel
-    newPage(new KgLookFeel(firstTime, this), i18n("Look & Feel"), i18n("Look & Feel"), KIcon("looknfeel", krLoader));
+    newPage(new KgLookFeel(firstTime, this), i18n("Look & Feel"), i18n("Look & Feel"), KIcon("preferences-desktop-theme", krLoader));
     // colors
-    newPage(new KgColors(firstTime, this), i18n("Colors"), i18n("Colors"), KIcon("colors", krLoader));
+    newPage(new KgColors(firstTime, this), i18n("Colors"), i18n("Colors"), KIcon("preferences-desktop-color", krLoader));
     // general
-    newPage(new KgGeneral(firstTime, this), i18n("General"), i18n("Basic Operations"), KIcon("configure", krLoader));
+    newPage(new KgGeneral(firstTime, this), i18n("General"), i18n("Basic Operations"), KIcon("preferences-other", krLoader));
     // advanced
     newPage(new KgAdvanced(firstTime, this), i18n("Advanced"), i18n("Be sure you know what you're doing!"), KIcon("dialog-warning", krLoader));
     // archives
     newPage(new KgArchives(firstTime, this), i18n("Archives"), i18n("Customize the way Krusader deals with archives"),
-            KIcon("tgz", krLoader));
+            KIcon("utilities-file-archiver", krLoader));
     // dependencies
     newPage(new KgDependencies(firstTime, this), i18n("Dependencies"), i18n("Set the full path of the external applications"),
             KIcon("kr_dependencies", krLoader));
     // useractions
     newPage(new KgUserActions(firstTime, this), i18n("User Actions"), i18n("Configure your personal actions"),
-            KIcon("kr_useractions", krLoader));
+            KIcon("user-properties", krLoader));
     // protocols
     newPage(new KgProtocols(firstTime, this), i18n("Protocols"), i18n("Link mimes to protocols"),
             KIcon("kde", krLoader));

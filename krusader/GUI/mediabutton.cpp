@@ -40,7 +40,7 @@ MediaButton::MediaButton(QWidget *parent) : QToolButton(parent),
         popupMenu(0), rightMenu(0), openInNewTab(false)
 {
     KIconLoader * iconLoader = new KIconLoader();
-    QPixmap icon = iconLoader->loadIcon("blockdevice", KIconLoader::Toolbar, 16);
+    QPixmap icon = iconLoader->loadIcon("system-file-manager", KIconLoader::Toolbar, 16);
 
     setFixedSize(icon.width() + 4, icon.height() + 4);
     setIcon(QIcon(icon));

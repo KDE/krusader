@@ -218,7 +218,7 @@ void KgProtocols::addProtocol(QString name, bool changeCurrent)
         delete list[ 0 ];
         QTreeWidgetItem *listViewItem = new QTreeWidgetItem(linkList);
         listViewItem->setText(0, name);
-        listViewItem->setIcon(0, krLoader->loadIcon("exec", KIconLoader::Small));
+        listViewItem->setIcon(0, krLoader->loadIcon("go-next-view", KIconLoader::Small));
 
         if (changeCurrent)
             linkList->setCurrentItem(listViewItem);

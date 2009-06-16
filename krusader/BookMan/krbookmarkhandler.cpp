@@ -408,7 +408,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KMenu *menu)
         QAction *bmAddAct = menu->addAction(krLoader->loadIcon("bookmark-new", KIconLoader::Small),
                                             i18n("Bookmark Current"), this, SLOT(slotBookmarkCurrent()));
         _specialBookmarks.append(bmAddAct);
-        QAction *bmAct = menu->addAction(krLoader->loadIcon("bookmark", KIconLoader::Small),
+        QAction *bmAct = menu->addAction(krLoader->loadIcon("bookmarks", KIconLoader::Small),
                                          i18n("Manage Bookmarks"), manager, SLOT(slotEditBookmarks()));
         _specialBookmarks.append(bmAct);
 

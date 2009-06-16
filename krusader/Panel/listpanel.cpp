@@ -171,7 +171,7 @@ ListPanel::ListPanel(int typeIn, QWidget *parent, bool &left) :
     // a cancel button for the inplace refresh mechanism
     inlineRefreshCancelButton = new QToolButton(this);
     inlineRefreshCancelButton->setFixedSize(22, 20);
-    inlineRefreshCancelButton->setIcon(krLoader->loadIcon("cancel", KIconLoader::Toolbar, 16));
+    inlineRefreshCancelButton->setIcon(krLoader->loadIcon("dialog-cancel", KIconLoader::Toolbar, 16));
     connect(inlineRefreshCancelButton, SIGNAL(clicked()), this, SLOT(inlineRefreshCancel()));
 
     // a quick button to open the popup panel

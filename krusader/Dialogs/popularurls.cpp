@@ -265,7 +265,7 @@ PopularUrlsDlg::PopularUrlsDlg():
 
     // quick search
     QToolButton *btn = new QToolButton(widget);
-    btn->setIcon(SmallIcon("locationbar_erase"));
+    btn->setIcon(SmallIcon("edit-clear-locationbar-ltr"));
     search = new KTreeWidgetSearchLine(widget, urls);
     search->setTrapReturnKey(true);
     QLabel *lbl = new QLabel(i18n(" &Search: "), widget);
@@ -334,7 +334,7 @@ void PopularUrlsDlg::run(KUrl::List list)
         QTreeWidgetItem *item = new QTreeWidgetItem(urls, lastItem);
         lastItem = item;
         item->setText(0, (*it).isLocalFile() ? (*it).path() : (*it).prettyUrl());
-        item->setIcon(0, (*it).isLocalFile() ? SmallIcon("folder") : SmallIcon("folder_html"));
+        item->setIcon(0, (*it).isLocalFile() ? SmallIcon("folder") : SmallIcon("folder-html"));
     }
 
     setMinimumSize(urls->sizeHint().width() + 45, 400);

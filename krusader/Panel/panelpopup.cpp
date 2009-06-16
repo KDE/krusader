@@ -293,7 +293,7 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left) : QWidget(parent),
 
     treeBtn = new QToolButton(this);
     treeBtn->setToolTip(i18n("Tree Panel: a tree view of the local file system"));
-    treeBtn->setIcon(krLoader->loadIcon("view_tree", KIconLoader::Toolbar, 16));
+    treeBtn->setIcon(krLoader->loadIcon("view-list-tree", KIconLoader::Toolbar, 16));
     treeBtn->setFixedSize(20, 20);
     treeBtn->setCheckable(true);
     btns->addButton(treeBtn, Tree);
@@ -308,7 +308,7 @@ PanelPopup::PanelPopup(QSplitter *parent, bool left) : QWidget(parent),
 
     quickBtn = new QToolButton(this);
     quickBtn->setToolTip(i18n("Quick Panel: quick way to perform actions"));
-    quickBtn->setIcon(krLoader->loadIcon("misc", KIconLoader::Toolbar, 16));
+    quickBtn->setIcon(krLoader->loadIcon("fork", KIconLoader::Toolbar, 16));
     quickBtn->setFixedSize(20, 20);
     quickBtn->setCheckable(true);
     btns->addButton(quickBtn, QuickPanel);
