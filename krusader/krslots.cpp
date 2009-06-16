@@ -31,20 +31,19 @@
 #include "krslots.h"
 
 #include <QtCore/QDir>
-#include <qpoint.h>
+#include <QtCore/QPoint>
 #include <QtCore/QStringList>
-#include <qpixmapcache.h>
-#include <QKeyEvent>
-#include <QList>
-#include <QEvent>
+#include <QtCore/QList>
+#include <QtCore/QEvent>
+#include <QtGui/QPixmapCache>
+#include <QtGui/QKeyEvent>
 
-#include <ktoggleaction.h>
-#include <ktoolbar.h>
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <kedittoolbar.h>
-#include <kdeversion.h>
-#include <kcmdlineargs.h>
+#include <KToggleAction>
+#include <KToolBar>
+#include <KLocale>
+#include <KMessageBox>
+#include <KEditToolBar>
+#include <KCmdLineArgs>
 
 #ifdef __KJSEMBED__
 #include <kjsembed/jsconsolewidget.h>
@@ -672,9 +671,12 @@ void KRslots::configToolbar()
 {
     KConfigGroup cg(KGlobal::config(), QString());
     krApp->saveMainWindowSettings(cg);
-    KEditToolBar dlg(krApp->factory());
-    connect(&dlg, SIGNAL(newToolBarConfig()), this, SLOT(saveNewToolbarConfig()));
-    if (dlg.exec()) krApp->updateGUI();
+    QPointer<KEditToolBar> dlg = new KEditToolBar(krApp->factory());
+    connect(dlg, SIGNAL(newToolBarConfig()), this, SLOT(saveNewToolbarConfig()));
+    if (dlg->exec()) {
+        krApp->updateGUI();
+    }
+    delete dlg;
 }
 
 void KRslots::saveNewToolbarConfig()
