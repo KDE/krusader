@@ -54,10 +54,14 @@
 #include <KMessageBox>
 #include <KActionCollection>
 #include <KInputDialog>
+#include <KFileDialog>
 
 #include <KIO/Job>
 #include <KLocale>
 #include <KGlobalSettings>
+#include <kio/copyjob.h>
+#include <kio/jobuidelegate.h>
+#include <kuiserverjobtracker.h>
 
 #include "../krusader.h"
 
@@ -886,9 +890,13 @@ void ListerBrowserExtension::copy()
 }
 
 Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgress(false), _cache(0), _active(false), _searchLastFailedPosition(-1),
-        _searchProgressCounter(0), _tempFile(0)
+        _searchProgressCounter(0), _tempFile(0), _downloading(false)
 {
     setXMLFile("krusaderlisterui.rc");
+
+    _actionSaveAs = new KAction(KIcon("document-save-as"), i18n("Save as..."), this);
+    connect(_actionSaveAs, SIGNAL(triggered(bool)), SLOT(saveAs()));
+    actionCollection()->addAction("save_as", _actionSaveAs);
 
     _actionSearch = new KAction(KIcon("system-search"), i18n("Search"), this);
     _actionSearch->setShortcut(Qt::CTRL + Qt::Key_F);
@@ -1010,6 +1018,7 @@ Lister::~Lister()
 
 bool Lister::openUrl(const KUrl &listerUrl)
 {
+    _downloading = false;
     setUrl(listerUrl);
 
     if (_tempFile) {
@@ -1036,6 +1045,7 @@ bool Lister::openUrl(const KUrl &listerUrl)
                 this, SLOT(slotFileDataReceived(KIO::Job *, const QByteArray &)));
         connect(downloadJob, SIGNAL(result(KJob*)),
                 this, SLOT(slotFileFinished(KJob *)));
+        _downloading = false;
     }
     if (_cache) {
         delete []_cache;
@@ -1061,6 +1071,7 @@ void Lister::slotFileFinished(KJob *job)
         KIO::TransferJob *kioJob = (KIO::TransferJob *)job;
         KMessageBox::error(0, i18n("Error reading file %1!", kioJob->url().pathOrUrl()));
     }
+    _downloading = false;
 }
 
 
@@ -1464,4 +1475,24 @@ void Lister::jumpToPosition()
     _textArea->deleteAnchor();
     _textArea->setCursorPosition(pos, true);
     _textArea->ensureVisibleCursor();
+}
+
+void Lister::saveAs()
+{
+    KUrl url = KFileDialog::getSaveUrl(KUrl(), QString(), _textArea, i18n("Lister"));
+    if (url.isEmpty())
+        return;
+    KUrl sourceUrl;
+    if (!_downloading)
+        sourceUrl = KUrl(_filePath);
+    else
+        sourceUrl = this->url();
+
+    KUrl::List urlList;
+    urlList << sourceUrl;
+
+    KIO::Job *job = KIO::copy(urlList, url);
+    job->setUiDelegate(new KIO::JobUiDelegate());
+    KIO::getJobTracker()->registerJob(job);
+    job->ui()->setAutoErrorHandlingEnabled(true);
 }

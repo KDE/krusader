@@ -178,6 +178,7 @@ public slots:
     void            searchNext();
     void            searchPrev();
     void            jumpToPosition();
+    void            saveAs();
 
 protected slots:
     void            slotUpdate();
@@ -224,6 +225,7 @@ protected:
     QAction        *_matchWholeWordsOnlyAction;
     QAction        *_regExpAction;
 
+    KAction        *_actionSaveAs;
     KAction        *_actionSearch;
     KAction        *_actionSearchNext;
     KAction        *_actionSearchPrev;
@@ -248,6 +250,8 @@ protected:
     QColor          _originalForeground;
 
     KTemporaryFile *_tempFile;
+
+    bool            _downloading;
 };
 
 #endif // __LISTER_H__
