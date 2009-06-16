@@ -15,10 +15,10 @@
   stays equal. Choose 
   <emphasis role="bold">
     <menuchoice>
-      <guimenu>Commands</guimenu>
+      <guimenu>Tools</guimenu>
       <guimenuitem>Synchronize Directories</guimenuitem>
     </menuchoice>
-  </emphasis>or 
+  </emphasis> or 
   <keycombo action="simul">&Ctrl;
   <keycap>Y</keycap></keycombo> to start this feature. The 
   <link linkend="konfig-color">colors</link> are
@@ -76,9 +76,8 @@
       <guilabel>Follow symlinks</guilabel>, 
       <guilabel>Compare by content</guilabel>, 
       <guilabel>Ignore Date</guilabel>, 
-      <guilabel>Asymmetric</guilabel>,  
-      <guilabel>Ignore Case</guilabel> and
-      <guilabel>Hidden hidden files</guilabel>.
+      <guilabel>Asymmetric</guilabel> and  
+      <guilabel>Ignore Case</guilabel>.
       </para>
     </listitem>
     <listitem>
@@ -113,7 +112,9 @@
       <guibutton>Start</guibutton> button to start the
       synchronization process.</para>
     </listitem>
-  </orderedlist>A detailed explanation of all the functions and
+  </orderedlist>
+  
+  A detailed explanation of all the functions and
   buttons is described in the following text.</para>
 
 </sect2>
@@ -139,20 +140,20 @@
           <listitem>
             <para>
             <guilabel>File Filter</guilabel>: Filters the filenames
-            at synchronizing. e.g. 
+            at synchronizing. &eg; 
             <literal role="extension">*.png</literal> selects only
             files the names of which end with 
-            <literal role="extension">.png</literal> Directories are
+            <literal role="extension">.png</literal>. Directories are
             listed if the directory name ends with 
             <literal role="extension">.png</literal> or if the
             directory contains files which end with 
-            <literal role="extension">.png</literal> Multiple
+            <literal role="extension">.png</literal>. Multiple
             include/exclude example: 
             <literal role="extension">'*.cpp *.h |
-            *.moc.cpp'</literal>includes 
+            *.moc.cpp'</literal> includes 
             <literal role="extension">*.cpp *.h</literal> and
             exclude 
-            <literal role="extension">*.moc.cpp</literal></para>
+            <literal role="extension">*.moc.cpp</literal>.</para>
           </listitem>
           <listitem>
             <para>
@@ -264,7 +265,7 @@
             <guilabel>Left Directory</guilabel> is the target
             directory, the 
             <guilabel>Right Directory</guilabel> is the source
-            directory. This functions synchronizes the content of
+            directory. This function synchronizes the content of
             the left directory to the right directory. 
             <itemizedlist>
               <listitem>

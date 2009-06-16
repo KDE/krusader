@@ -109,7 +109,7 @@
       not you want to display it each time you start
       &krusader; in the <link linkend="konfigurator">Konfigurator Startup page</link>,
       and you can toggle its use in the current session in the
-      <link linkend="view-menu">View menu</link>. The Main Toolbar contents can be
+      <link linkend="settings-menu">Settings menu</link>. The Main Toolbar contents can be
       configured from the 
       <guimenuitem>Configure Toolbars</guimenuitem> in the
       <link linkend="settings-menu">Settings menu</link> or the 
@@ -133,7 +133,7 @@
       <guilabel>Actions Toolbar</guilabel>. To show it, use 
       <emphasis role="bold">
         <menuchoice>
-          <guimenu>View</guimenu>
+          <guimenu>Settings</guimenu>
           <guimenuitem>Show Actions Toolbar</guimenuitem>
         </menuchoice>
       </emphasis>. To add user actions, use 
@@ -188,7 +188,7 @@
           <userinput>
             <command>devices:/</command>
           </userinput>gives an overview of the devices
-          e.g. 
+          &eg; 
           <hardware>floppy</hardware> or 
           <hardware>CD-ROM</hardware> drives.</para>
         </listitem>
@@ -302,7 +302,7 @@
     selecting any file in a panel with the mouse. As always,
     default startup settings can be modified with the
     <link linkend="konfigurator">Konfigurator Startup page</link>, and you control the current
-    session with the <link linkend="view-menu">View menu</link>.</para>
+    session with the <link linkend="settings-menu">Settings menu</link>.</para>
     <!-- OLD
 <screenshot>
     <screeninfo>List Panel</screeninfo>
@@ -420,7 +420,7 @@
           the first few characters of a file name. Pressing
           &Enter; or double clicking on a file will
           open/execute that file. You can select/unselect files
-          using the mouse with the 
+          using the mouse, with the 
           <keycap>Insert</keycap> key or the
           <link linkend="edit-menu">Edit menu</link>.</para>
         </listitem>
@@ -525,9 +525,8 @@
           <emphasis>
             <guilabel>Quickselect Panel</guilabel>
           </emphasis>: is used to quickly select files,
-          e.g. 
-          <literal role="extension">*.png</literal>and click on the
-          
+          &eg; enter 
+          <literal role="extension">*.png</literal> and click on the
           <guibutton>"Go"</guibutton> button. The "floppy" button
           stores the current selection. The "select group dialog"
           is also available.</para>
@@ -551,8 +550,8 @@
         </listitem>
       </itemizedlist>
       <para>If needed you can resize the window
-      e.g. to better display a picture or view a file is
-      contents. Click on the arrow down button to close the 
+      &eg; to better display a picture or view a file contents. Click 
+      on the arrow down button to close the 
       <guilabel>3rd Hand Panel</guilabel>.</para>
     </sect2>
     <sect2 id="folderhistory">
@@ -571,7 +570,7 @@
     <para>This part of the <link linkend="gloss-gui">GUI</link> 
     can have four modes: Command Line, Terminal Emulator, show both and show none.
     You can choose your mode of operation either on start-up with the 
-    <link linkend="konfigurator">Konfigurator Startup page</link>, or for the current session with the <link linkend="view-menu">View menu</link> .
+    <link linkend="konfigurator">Konfigurator Startup page</link>, or for the current session with the <link linkend="settings-menu">Settings menu</link> .
     </para>
     
   <sect2 id="cmdline">
@@ -757,13 +756,13 @@
     <keycap>F9</keycap> key is used to rename files. 
     <guilabel>Mkdir</guilabel>
     <keycap>F7</keycap> can create whole directory trees on the fly
-    e.g. 
+    &eg; 
     <literal>foo/bar/test</literal>. You can choose to display 
     <link linkend="faqu_resize">or not</link> the 
     <guilabel>FN keys bar</guilabel> when starting up
     &krusader; via the <link linkend="konfigurator">Konfigurator Startup page</link>,
     and you can toggle its use in the current session with the
-    <link linkend="view-menu">View menu</link>. The actions and
+    <link linkend="settings-menu">Settings menu</link>. The actions and
     <link linkend="key_bindings">Key-Bindings</link> performed by the function keys are
     configurable since version 1.51, they will remain active with
     or without the 
