@@ -54,6 +54,7 @@ class QPushButton;
 class QToolButton;
 class KAction;
 class KTemporaryFile;
+class ListerEncodingMenu;
 
 class ListerTextArea : public KTextEdit
 {
@@ -171,6 +172,11 @@ public:
     void            enableSearch(bool);
     void            enableActions(bool);
 
+    QString         characterSet() {
+        return _characterSet;
+    }
+    void            setCharacterSet(QString set);
+
 public slots:
     void            searchAction() {
         enableSearch(true);
@@ -230,6 +236,7 @@ protected:
     KAction        *_actionSearchNext;
     KAction        *_actionSearchPrev;
     KAction        *_actionJumpToPosition;
+    ListerEncodingMenu *_actionEncoding;
 
     QString         _filePath;
     qint64          _fileSize;
@@ -248,6 +255,8 @@ protected:
 
     QColor          _originalBackground;
     QColor          _originalForeground;
+
+    QString         _characterSet;
 
     KTemporaryFile *_tempFile;
 

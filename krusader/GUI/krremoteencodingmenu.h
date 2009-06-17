@@ -40,8 +40,13 @@ protected slots:
     void slotAboutToShow();
 
     void slotReload();
-    void slotDefault();
     void slotTriggered(QAction *);
+
+    virtual void chooseDefault();
+    virtual void chooseEncoding(QString encoding);
+
+protected:
+    virtual QString currentCharacterSet();
 
 private:
 

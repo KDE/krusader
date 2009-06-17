@@ -62,8 +62,10 @@
 #include <kio/copyjob.h>
 #include <kio/jobuidelegate.h>
 #include <kuiserverjobtracker.h>
+#include <kcharsets.h>
 
 #include "../krusader.h"
+#include "../GUI/krremoteencodingmenu.h"
 
 #define  SEARCH_CACHE_CHARS 100000
 #define  SEARCH_MAX_ROW_LEN 4000
@@ -442,7 +444,11 @@ QStringList ListerTextArea::readLines(qint64 filePos, qint64 &endPos, int lines,
 
 QTextCodec * ListerTextArea::codec()
 {
-    return QTextCodec::codecForMib(4);   // TODO: implement text codecs
+    QString cs = _lister->characterSet();
+    if (cs.isEmpty())
+        return QTextCodec::codecForLocale();
+    else
+        return KGlobal::charsets()->codecForName(cs);
 }
 
 void ListerTextArea::setUpScrollBar()
@@ -889,6 +895,30 @@ void ListerBrowserExtension::copy()
     _lister->textArea()->copySelectedToClipboard();
 }
 
+class ListerEncodingMenu : public KrRemoteEncodingMenu
+{
+public:
+    ListerEncodingMenu(Lister *lister, const QString &text, const QString &icon, KActionCollection *parent) :
+            KrRemoteEncodingMenu(text, icon, parent), _lister(lister) {
+    }
+
+protected:
+    virtual QString currentCharacterSet() {
+        return _lister->characterSet();
+    }
+
+    virtual void chooseDefault() {
+        _lister->setCharacterSet(QString());
+    }
+
+    virtual void chooseEncoding(QString encodingName) {
+        QString charset = KGlobal::charsets()->encodingForName(encodingName);
+        _lister->setCharacterSet(charset);
+    }
+
+    Lister * _lister;
+};
+
 Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgress(false), _cache(0), _active(false), _searchLastFailedPosition(-1),
         _searchProgressCounter(0), _tempFile(0), _downloading(false)
 {
@@ -917,6 +947,8 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
     _actionJumpToPosition->setShortcut(Qt::CTRL + Qt::Key_G);
     connect(_actionJumpToPosition, SIGNAL(triggered(bool)), SLOT(jumpToPosition()));
     actionCollection()->addAction("jump_to_position", _actionJumpToPosition);
+
+    _actionEncoding = new ListerEncodingMenu(this, i18n("Select charset"), "character-set", actionCollection());
 
     QWidget * widget = new QWidget(parent);
     widget->setFocusPolicy(Qt::StrongFocus);
@@ -1495,4 +1527,10 @@ void Lister::saveAs()
     job->setUiDelegate(new KIO::JobUiDelegate());
     KIO::getJobTracker()->registerJob(job);
     job->ui()->setAutoErrorHandlingEnabled(true);
+}
+
+void Lister::setCharacterSet(QString set)
+{
+    _characterSet = set;
+    _textArea->redrawTextArea(true);
 }

@@ -51,9 +51,7 @@ void KrRemoteEncodingMenu::slotAboutToShow()
     foreach(QAction *act, acts)
     act->setChecked(false);
 
-    KUrl currentURL = ACTIVE_PANEL->virtualPath();
-
-    QString charset = KIO::SlaveConfig::self()->configData(currentURL.protocol(), currentURL.host(), DATA_KEY);
+    QString charset = currentCharacterSet();
     if (!charset.isEmpty()) {
         int id = 1;
         QStringList::Iterator it;
@@ -88,6 +86,12 @@ void KrRemoteEncodingMenu::slotAboutToShow()
             }
         }
     }
+}
+
+QString KrRemoteEncodingMenu::currentCharacterSet()
+{
+    KUrl currentURL = ACTIVE_PANEL->virtualPath();
+    return KIO::SlaveConfig::self()->configData(currentURL.protocol(), currentURL.host(), DATA_KEY);
 }
 
 void KrRemoteEncodingMenu::loadSettings()
@@ -132,24 +136,28 @@ void KrRemoteEncodingMenu::slotTriggered(QAction * act)
         slotReload();
         return;
     case -2:
-        slotDefault();
+        chooseDefault();
         return;
-    default: {
-        KUrl currentURL = ACTIVE_PANEL->virtualPath();
-
-        KConfig config(("kio_" + currentURL.protocol() + "rc").toLatin1());
-        QString host = currentURL.host();
-
-        QString charset = KGlobal::charsets()->encodingForName(encodingNames[id - 1]);
-
-        KConfigGroup group(&config, host);
-        group.writeEntry(DATA_KEY, charset);
-        config.sync();
-
-        // Update the io-slaves...
-        updateKIOSlaves();
+    default:
+        chooseEncoding(encodingNames[id - 1]);
     }
-    }
+}
+
+void KrRemoteEncodingMenu::chooseEncoding(QString encoding)
+{
+    KUrl currentURL = ACTIVE_PANEL->virtualPath();
+
+    KConfig config(("kio_" + currentURL.protocol() + "rc").toLatin1());
+    QString host = currentURL.host();
+
+    QString charset = KGlobal::charsets()->encodingForName(encoding);
+
+    KConfigGroup group(&config, host);
+    group.writeEntry(DATA_KEY, charset);
+    config.sync();
+
+    // Update the io-slaves...
+    updateKIOSlaves();
 }
 
 void KrRemoteEncodingMenu::slotReload()
@@ -157,7 +165,7 @@ void KrRemoteEncodingMenu::slotReload()
     loadSettings();
 }
 
-void KrRemoteEncodingMenu::slotDefault()
+void KrRemoteEncodingMenu::chooseDefault()
 {
     KUrl currentURL = ACTIVE_PANEL->virtualPath();
 
