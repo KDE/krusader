@@ -615,7 +615,7 @@
           <para>We've been receiving a lot of emails and bug
           reports (December 2005) regarding random crashes,
           especially during file operations such as copy, move,
-          etc. 
+          &etc; 
           <emphasis role="bold">These crashes are related to
           &Qt; 3.3.5 and NOT
           &krusader;.</emphasis> It seems that
@@ -713,7 +713,7 @@
           They are not allowing &krusader; to downsize
           as they have a minimum size. Just disable them 
             <menuchoice>
-              <guimenu>View</guimenu>
+              <guimenu>Settings</guimenu>
               <guimenuitem>Show FN Keys Bar</guimenuitem>
             </menuchoice>
           and you'll be able to resize
@@ -821,7 +821,7 @@
        
        Check the <link linkend="konfig-protocols">Konfigurator Protocol page</link>
    
-     If it doesn't work, backup your <filename>~/.kde/share/config/krusaderrc</filename> configuration file and remove it from this location,
+     If it doesn't work, backup your <filename>~/.kde/share/config/krusaderrc</filename> configuration file and remove it from this location.
      Restart Krusader, Krusader will now start the first start configuration wizard, follow these guidelines.
    
     </para>
@@ -883,7 +883,7 @@
           be turned on or off, depending on it's current setting.
           Now try your &FTP; session again to see if it
           works. Also, make sure you have no other &FTP;
-          sessions open (using web browsers, etc.), they can cause
+          sessions open (using web browsers, &etc;), they can cause
           complications. More information can be found in
           <ulink url="http://slacksite.com/other/ftp.html">Active &FTP; vs. Passive &FTP;, a Definitive Explanation</ulink>.</para>
           <para></para>
@@ -1026,7 +1026,7 @@
         </question>
         <answer>
           <para><link linkend="konfigurator">Konfigurator</link> is &krusader;s configuration module,
-                when you have installed &krusader; than you have also Konfigurator.
+                if you have installed &krusader; then you have also Konfigurator.
                 For some reason some people think it's an other &kde; application, but it is not, so
                 you don't need to install the &kde; Desktop Environment to use Konfigurator.
                 When running &krusader;, use 
@@ -1290,7 +1290,7 @@
        
        Now type <command>bt</command> to get the backtrace and type <command>q</command> to quit gdb.
 
-       Often the best debug results will be given when using the valgrint tool.
+       Often the best debug results will be given when using the valgrind tool.
   </para>
   <para> </para> <!-- Empty line to make it more readable -->
   </answer>
