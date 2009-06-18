@@ -75,6 +75,9 @@ public:
 
     void           getCursorPosition(int &x, int &y);
     qint64         getCursorPosition(bool &isfirst);
+    qint64         getCursorAnchor() {
+        return _cursorAnchorPos;
+    }
     void           setCursorPosition(qint64 p, bool isfirst);
     void           ensureVisibleCursor();
     void           deleteAnchor() {
@@ -185,6 +188,7 @@ public slots:
     void            searchPrev();
     void            jumpToPosition();
     void            saveAs();
+    void            saveSelected();
 
 protected slots:
     void            slotUpdate();
@@ -196,6 +200,9 @@ protected slots:
 
     void            slotFileDataReceived(KIO::Job *, const QByteArray &);
     void            slotFileFinished(KJob *);
+
+    void            slotDataSend(KIO::Job *, QByteArray &);
+    void            slotSendFinished(KJob *);
 
 protected:
     virtual bool    openUrl(const KUrl &url);
@@ -231,6 +238,7 @@ protected:
     QAction        *_matchWholeWordsOnlyAction;
     QAction        *_regExpAction;
 
+    KAction        *_actionSaveSelected;
     KAction        *_actionSaveAs;
     KAction        *_actionSearch;
     KAction        *_actionSearchNext;
@@ -261,6 +269,9 @@ protected:
     KTemporaryFile *_tempFile;
 
     bool            _downloading;
+
+    qint64          _savePosition;
+    qint64          _saveEnd;
 };
 
 #endif // __LISTER_H__

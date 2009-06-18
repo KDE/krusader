@@ -70,9 +70,6 @@
 #define  SEARCH_CACHE_CHARS 100000
 #define  SEARCH_MAX_ROW_LEN 4000
 
-/* TODO: Implement text codecs */
-/* TODO: Implement save selected */
-/* TODO: Implement save as */
 /* TODO: Implement print */
 /* TODO: Implement hex viewer */
 /* TODO: Implement size checking for viewing text files */
@@ -924,6 +921,10 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
 {
     setXMLFile("krusaderlisterui.rc");
 
+    _actionSaveSelected = new KAction(KIcon("document-save"), i18n("Save selection..."), this);
+    connect(_actionSaveSelected, SIGNAL(triggered(bool)), SLOT(saveSelected()));
+    actionCollection()->addAction("save_selected", _actionSaveSelected);
+
     _actionSaveAs = new KAction(KIcon("document-save-as"), i18n("Save as..."), this);
     connect(_actionSaveAs, SIGNAL(triggered(bool)), SLOT(saveAs()));
     actionCollection()->addAction("save_as", _actionSaveAs);
@@ -1527,6 +1528,61 @@ void Lister::saveAs()
     job->setUiDelegate(new KIO::JobUiDelegate());
     KIO::getJobTracker()->registerJob(job);
     job->ui()->setAutoErrorHandlingEnabled(true);
+}
+
+void Lister::saveSelected()
+{
+    bool isfirst;
+    qint64 start = _textArea->getCursorAnchor();
+    qint64 end = _textArea->getCursorPosition(isfirst);
+    if (start == -1 || start == end) {
+        KMessageBox::error(_textArea, i18n("Nothing is selected!"), i18n("Save selection..."));
+        return;
+    }
+    if (start > end) {
+        _savePosition = end;
+        _saveEnd = start;
+    } else {
+        _savePosition = start;
+        _saveEnd = end;
+    }
+
+    KUrl url = KFileDialog::getSaveUrl(KUrl(), QString(), _textArea, i18n("Lister"));
+    if (url.isEmpty())
+        return;
+
+    KIO::Job *saveJob = KIO::put(url, -1, KIO::Overwrite);
+    connect(saveJob, SIGNAL(dataReq(KIO::Job *, QByteArray &)),
+            this, SLOT(slotDataSend(KIO::Job *, QByteArray &)));
+    connect(saveJob, SIGNAL(result(KJob*)),
+            this, SLOT(slotSendFinished(KJob *)));
+
+    saveJob->setUiDelegate(new KIO::JobUiDelegate());
+    KIO::getJobTracker()->registerJob(saveJob);
+    saveJob->ui()->setAutoErrorHandlingEnabled(true);
+
+    _actionSaveSelected->setEnabled(false);
+}
+
+void Lister::slotDataSend(KIO::Job *, QByteArray &array)
+{
+    if (_savePosition >= _saveEnd) {
+        array = QByteArray();
+        return;
+    }
+    qint64 max = _saveEnd - _savePosition;
+    if (max > 1000)
+        max = 1000;
+    int maxBytes = (int)max;
+    char * cache = cacheRef(_savePosition, maxBytes);
+    _savePosition += maxBytes;
+
+    array = QByteArray(cache, maxBytes);
+}
+
+void Lister::slotSendFinished(KJob *)
+{
+    _actionSaveSelected->setEnabled(true);
 }
 
 void Lister::setCharacterSet(QString set)
