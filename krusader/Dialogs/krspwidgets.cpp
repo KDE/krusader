@@ -65,48 +65,58 @@ KRQuery KRSpWidgets::getMask(QString caption, bool nameOnly, QWidget * parent)
     if (!nameOnly) {
         return FilterTabs::getQuery(parent);
     } else {
-        KRMaskChoiceSub *p = new KRMaskChoiceSub(parent);
+        QPointer<KRMaskChoiceSub> p = new KRMaskChoiceSub(parent);
         p->setWindowTitle(caption);
         p->exec();
-        if (p->selection->currentText() == "") return KRQuery();
-        else return KRQuery(p->selection->currentText());
+        QString selection = p->selection->currentText();
+        delete p;
+        if (selection.isEmpty()) {
+            return KRQuery();
+        } else {
+            return KRQuery(selection);
+        }
     }
 }
 
 /////////////////////////// newFTP ////////////////////////////////////////
 KUrl KRSpWidgets::newFTP()
 {
-    newFTPSub *p = new newFTPSub();
+    QPointer<newFTPSub> p = new newFTPSub();
     p->exec();
-    if (p->url->currentText() == "") return KUrl(); // empty url
-    KUrl url;
+    QString uri = p->url->currentText();
+    if (uri.isEmpty()) {
+        delete p;
+        return KUrl(); // empty url
+    }
 
     QString protocol = p->prefix->currentText();
     protocol.truncate(protocol.length() - 3); // remove the trailing ://
+
     QString username = p->username->text().simplified();
     QString password = p->password->text().simplified();
-    QString uri = p->url->currentText();
 
-    int uriStart = uri.lastIndexOf('@');   /* lets the user enter user and password in the URI field */
+    int uriStart = uri.lastIndexOf('@'); /* lets the user enter user and password in the URI field */
     if (uriStart != -1) {
         QString uriUser = uri.left(uriStart);
         QString uriPsw = QString();
         uri = uri.mid(uriStart + 1);
 
-        int pswStart = uriUser.indexOf(':');   /* getting the password name from the URL */
+        int pswStart = uriUser.indexOf(':'); /* getting the password name from the URL */
         if (pswStart != -1) {
             uriPsw = uriUser.mid(pswStart + 1);
             uriUser = uriUser.left(pswStart);
         }
 
-        if (!uriUser.isEmpty())            /* handling the ftp proxy username and password also */
+        if (!uriUser.isEmpty()) { /* handling the ftp proxy username and password also */
             username = username.isEmpty() ? uriUser : username + '@' + uriUser;
+        }
 
-        if (!uriPsw.isEmpty())            /* handling the ftp proxy username and password also */
+        if (!uriPsw.isEmpty()) { /* handling the ftp proxy username and password also */
             password = password.isEmpty() ? uriPsw : password + '@' + uriPsw;
+        }
     }
 
-    QString host = uri;               /* separating the hostname and path from the uri */
+    QString host = uri; /* separating the hostname and path from the uri */
     QString path = QString();
     int pathStart = uri.indexOf("/");
     if (pathStart != -1) {
@@ -115,16 +125,21 @@ KUrl KRSpWidgets::newFTP()
     }
 
     /* setting the parameters of the URL */
+    KUrl url;
     url.setProtocol(protocol);
     url.setHost(host);
     url.setPath(path);
-    if (protocol == "ftp" || protocol == "fish" || protocol == "sftp")
+    if (protocol == "ftp" || protocol == "fish" || protocol == "sftp") {
         url.setPort(p->port->cleanText().toInt());
-    if (!username.isEmpty())
+    }
+    if (!username.isEmpty()) {
         url.setUser(username);
-    if (!password.isEmpty())
+    }
+    if (!password.isEmpty()) {
         url.setPass(password);
+    }
 
+    delete p;
     return url;
 }
 

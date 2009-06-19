@@ -613,11 +613,12 @@ QString KRarcHandler::getPassword(QString path)
 
     bool keep = true;
     QString user = "archive";
-    KIO::PasswordDialog passDlg(i18n("This archive is encrypted, please supply the password:"),
-                                user, true);
-    passDlg.setPassword(password);
-    if (passDlg.exec() == KIO::PasswordDialog::Accepted) {
-        password = passDlg.password();
+    QPointer<KIO::PasswordDialog> passDlg = new KIO::PasswordDialog(i18n("This archive is encrypted, please supply the password:"),
+                                                                    user,
+                                                                    true);
+    passDlg->setPassword(password);
+    if (passDlg->exec() == KIO::PasswordDialog::Accepted) {
+        password = passDlg->password();
         if (keep) {
             if (!KWallet::Wallet::isOpen(KWallet::Wallet::NetworkWallet()) && wallet != 0) {
                 delete wallet;
@@ -644,6 +645,7 @@ QString KRarcHandler::getPassword(QString path)
         }
         return password;
     }
+    delete passDlg;
 
     return "";
 }

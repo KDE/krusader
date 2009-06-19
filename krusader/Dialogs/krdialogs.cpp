@@ -45,7 +45,9 @@
 
 KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd)
 {
-    KUrlRequesterDialog *dlg = new KUrlRequesterDialog(vfs::pathOrUrl(url, KUrl::AddTrailingSlash), text, krApp);
+    QPointer<KUrlRequesterDialog> dlg = new KUrlRequesterDialog(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
+                                                                text,
+                                                                krApp);
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
     KUrl u;
     if (dlg->exec() == QDialog::Accepted) {
@@ -57,8 +59,9 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd)
             u.addPath(temp.path());
             u.cleanPath();
             if (u.protocol() == "zip" || u.protocol() == "krarc" || u.protocol() == "tar" || u.protocol() == "iso") {
-                if (QDir(u.path()).exists())
+                if (QDir(u.path()).exists()) {
                     u.setProtocol("file");
+                }
             }
         }
     }
@@ -68,7 +71,10 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd)
 
 KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &queue)
 {
-    KUrlRequesterDlgForCopy *dlg = new KUrlRequesterDlgForCopy(vfs::pathOrUrl(url, KUrl::AddTrailingSlash), text, false, krApp);
+    QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
+                                                                        text,
+                                                                        false,
+                                                                        krApp);
     dlg->hidePreserveAttrs();
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
     KUrl u;
@@ -81,8 +87,9 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
             u.addPath(temp.path());
             u.cleanPath();
             if (u.protocol() == "zip" || u.protocol() == "krarc" || u.protocol() == "tar" || u.protocol() == "iso") {
-                if (QDir(u.path()).exists())
+                if (QDir(u.path()).exists()) {
                     u.setProtocol("file");
+                }
             }
         }
     }
@@ -93,7 +100,10 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
 
 KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &queue, bool &preserveAttrs)
 {
-    KUrlRequesterDlgForCopy *dlg = new KUrlRequesterDlgForCopy(vfs::pathOrUrl(url, KUrl::AddTrailingSlash), text, preserveAttrs, krApp);
+    QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
+                                                                        text,
+                                                                        preserveAttrs,
+                                                                        krApp);
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
     KUrl u;
     if (dlg->exec() == QDialog::Accepted) {
@@ -105,8 +115,9 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
             u.addPath(temp.path());
             u.cleanPath();
             if (u.protocol() == "zip" || u.protocol() == "krarc" || u.protocol() == "tar" || u.protocol() == "iso") {
-                if (QDir(u.path()).exists())
+                if (QDir(u.path()).exists()) {
                     u.setProtocol("file");
+                }
             }
         }
     }
@@ -118,7 +129,12 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
 
 KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &queue, bool &preserveAttrs, KUrl &baseURL)
 {
-    KUrlRequesterDlgForCopy *dlg = new KUrlRequesterDlgForCopy(vfs::pathOrUrl(url, KUrl::AddTrailingSlash), text, preserveAttrs, krApp, true, baseURL);
+    QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
+                                                                        text,
+                                                                        preserveAttrs,
+                                                                        krApp,
+                                                                        true,
+                                                                        baseURL);
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
     KUrl u;
     if (dlg->exec() == QDialog::Accepted) {
@@ -130,8 +146,9 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
             u.addPath(temp.path());
             u.cleanPath();
             if (u.protocol() == "zip" || u.protocol() == "krarc" || u.protocol() == "tar" || u.protocol() == "iso") {
-                if (QDir(u.path()).exists())
+                if (QDir(u.path()).exists()) {
                     u.setProtocol("file");
+                }
             }
         }
 

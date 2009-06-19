@@ -29,6 +29,7 @@ class KHistoryComboBox;
 class newFTPGUI : public QDialog
 {
     Q_OBJECT
+
 public:
     newFTPGUI(QWidget* parent = 0);
     ~newFTPGUI();
