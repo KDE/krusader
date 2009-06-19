@@ -220,7 +220,7 @@ void KgGeneral::slotFindTools()
                                                                 KrResultTableDialog::Tool,
                                                                 i18n("Search results"),
                                                                 i18n("Searching for tools..."),
-                                                                "tools-utilities",
+                                                                "tools-wizard",
                                                                 i18n("Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"));
     dlg->exec();
     delete dlg;
