@@ -504,17 +504,21 @@ void LocateDlg::operate(QTreeWidgetItem *item, int task)
         long options = group.readEntry("Find Options", (long long)0);
         QStringList list = group.readEntry("Find Patterns", QStringList());
 
-        KFindDialog dlg(this, options, list);
-        if (dlg.exec() != QDialog::Accepted)
+        QPointer<KFindDialog> dlg = new KFindDialog(this, options, list);
+        if (dlg->exec() != QDialog::Accepted) {
+            delete dlg;
             return;
+        }
 
         QString first = QString::null;
-        if (list.count() != 0)
+        if (list.count() != 0) {
             first = list.first();
-        if (first != (findPattern = dlg.pattern()))
-            list.push_front(dlg.pattern());
+        }
+        if (first != (findPattern = dlg->pattern())) {
+            list.push_front(dlg->pattern());
+        }
 
-        group.writeEntry("Find Options", (long long)(findOptions = dlg.options()));
+        group.writeEntry("Find Options", (long long)(findOptions = dlg->options()));
         group.writeEntry("Find Patterns", list);
 
         if (!(findOptions & KFind::FromCursor) && resultList->topLevelItemCount())
@@ -526,10 +530,13 @@ void LocateDlg::operate(QTreeWidgetItem *item, int task)
         if (find() && findCurrentItem) {
             resultList->selectionModel()->clearSelection(); // HACK: QT 4 is not able to paint the focus frame because of a bug
             resultList->setCurrentItem(findCurrentItem);
-        } else
+        } else {
             KMessageBox::information(this, i18n("Search string not found!"));
+        }
 
         resultList->scrollTo(resultList->currentIndex());
+
+        delete dlg;
     }
     break;
     case FIND_NEXT_ID:

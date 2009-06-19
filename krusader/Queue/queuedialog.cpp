@@ -368,12 +368,13 @@ void QueueDialog::slotPauseClicked()
 
 void QueueDialog::slotScheduleClicked()
 {
-    KrTimeDialog dialog(this);
-    if (dialog.exec() == QDialog::Accepted) {
-        QTime startTime = dialog.getStartTime();
+    QPointer<KrTimeDialog> dialog = new KrTimeDialog(this);
+    if (dialog->exec() == QDialog::Accepted) {
+        QTime startTime = dialog->getStartTime();
         Queue * queue = QueueManager::currentQueue();
         queue->schedule(startTime);
     }
+    delete dialog;
 }
 
 void QueueDialog::slotNewTab()

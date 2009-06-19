@@ -53,11 +53,12 @@ void KrBookmarkHandler::slotBookmarkCurrent()
 
 void KrBookmarkHandler::bookmarkCurrent(KUrl url)
 {
-    KrAddBookmarkDlg dlg(krApp, url);
-    if (dlg.exec() == KDialog::Accepted) {
-        KrBookmark *bm = new KrBookmark(dlg.name(), dlg.url(), _collection);
-        addBookmark(bm, dlg.folder());
+    QPointer<KrAddBookmarkDlg> dlg = new KrAddBookmarkDlg(krApp, url);
+    if (dlg->exec() == KDialog::Accepted) {
+        KrBookmark *bm = new KrBookmark(dlg->name(), dlg->url(), _collection);
+        addBookmark(bm, dlg->folder());
     }
+    delete dlg;
 }
 
 void KrBookmarkHandler::addBookmark(KrBookmark *bm, KrBookmark *folder)

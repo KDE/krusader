@@ -125,11 +125,17 @@ KgArchives::KgArchives(bool first, QWidget* parent) :
 
 void KgArchives::slotAutoConfigure()
 {
-    KrResultTableDialog* dia = new KrResultTableDialog(this, KrResultTableDialog::Archiver, i18n("Search results"), i18n("Searching for packers..."),
-            "package", i18n("Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"));
-    dia->exec();
+    QPointer<KrResultTableDialog> dlg = new KrResultTableDialog(this,
+                                                                KrResultTableDialog::Archiver,
+                                                                i18n("Search results"),
+                                                                i18n("Searching for packers..."),
+                                                                "utilities-file-archiver",
+                                                                i18n("Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"));
+    dlg->exec();
 
     disableNonExistingPackers();
+
+    delete dlg;
 }
 
 void KgArchives::disableNonExistingPackers()
