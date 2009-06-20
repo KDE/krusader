@@ -41,6 +41,12 @@
 #include "../panelmanager.h"
 #include "../krtrashhandler.h"
 
+#ifdef __LIBKONQ__
+#include <konq_popupmenu.h>
+#include <konq_menuactions.h>
+#include <konq_popupmenuinformation.h>
+#endif
+
 void KrPopupMenu::run(const QPoint &pos, ListPanel *panel)
 {
     KrPopupMenu menu(panel);
@@ -143,13 +149,26 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
     }
 
 #ifdef __LIBKONQ__
-    // -------------- konqueror menu
-    actions = new KActionCollection(this);
-    konqMenu = new KonqPopupMenu(KonqBookmarkManager::self(), _items, panel->func->files()->vfs_getOrigin(), *actions, 0, this,
-                                 KonqPopupMenu::NoFlags, KParts::BrowserExtension::DefaultPopupItems);
-    QAction * konqAct = addMenu(konqMenu);
-    konqAct->setData(QVariant(KONQ_MENU_ID));
-    konqAct->setText(i18n("Konqueror Menu"));
+	// -------------- konqueror menu
+    // This section adds all Konqueror/Dolphin menu items.
+    // It's now updated to KDE4 and working, I've just commented it out.
+    // Section below this one adds only servicemenus.
+
+    // Append only servicemenus
+
+    //TODO: deprecated since KDE4.3: remove these three lines
+    KonqPopupMenuInformation info;
+    info.setItems( _items );
+    info.setParentWidget( this );
+
+    konqMenuActions = new KonqMenuActions();
+    //TODO: deprecated since KDE4.3: remove this line, use two commented lines
+    konqMenuActions->setPopupMenuInfo ( info );
+    //konqMenuActions->setParentWidget( this );
+    //konqMenuActions->setItemListProperties( _items );
+    konqMenuActions->addActionsTo( this );
+
+    addSeparator();
 #endif
 
     // ------------- 'create new' submenu
@@ -241,6 +260,7 @@ KrPopupMenu::~KrPopupMenu()
     if (actions) delete actions;
 #ifdef __LIBKONQ__
     if (konqMenu) delete konqMenu;
+    if (konqMenuActions) delete konqMenuActions;
 #endif
 }
 

@@ -26,7 +26,8 @@
 
 #ifdef __LIBKONQ__
 #include <konq_popupmenu.h>
-#include <konqbookmarkmanager.h>
+#include <konq_menuactions.h>
+#include <kbookmarkmanager.h>
 #endif
 
 #include "listpanel.h"
@@ -94,6 +95,7 @@ private:
     KService::List offers;
 #ifdef __LIBKONQ__
     KonqPopupMenu *konqMenu;
+    KonqMenuActions *konqMenuActions;
 #endif
 };
 

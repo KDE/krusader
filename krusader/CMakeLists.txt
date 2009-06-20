@@ -2,6 +2,16 @@ include_directories(${KDE4_INCLUDES})
 
 configure_file(krusaderversion.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/krusaderversion.h)
 
+find_package(LibKonq)
+
+if(LIBKONQ_FOUND)
+    message("-- LibKonq found. Building with LibKonq features.")
+    add_definitions(-D__LIBKONQ__)
+    include_directories( ${LIBKONQ_INCLUDE_DIR} )
+else(LIBKONQ_FOUND)
+    message("-- LibKonq not found. Building without LibKonq feature.")
+endif(LIBKONQ_FOUND)
+
 add_subdirectory(ActionMan)
 add_subdirectory(BookMan)
 add_subdirectory(Dialogs)
@@ -69,6 +79,10 @@ target_link_libraries(krusader
                       ${KDE4_KDEUI_LIBS}
                       ${KDE4_KFILE_LIBS}
                       ${KDE4_KDECORE_LIBS})
+
+if(LIBKONQ_FOUND)
+    target_link_libraries( krusader ${LIBKONQ_LIBRARY} )
+endif(LIBKONQ_FOUND)
 
 install(TARGETS krusader ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES krusader.desktop
