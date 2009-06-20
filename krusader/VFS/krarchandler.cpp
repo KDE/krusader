@@ -643,6 +643,7 @@ QString KRarcHandler::getPassword(QString path)
                 }
             }
         }
+        delete passDlg;
         return password;
     }
     delete passDlg;
