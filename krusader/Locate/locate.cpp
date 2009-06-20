@@ -340,8 +340,9 @@ void LocateDlg::processStdout()
             if (dontSearchPath) {
                 QRegExp regExp(pattern, isCs ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::Wildcard);
                 QString fileName = (*it).trimmed();
-                if (fileName.endsWith("/") && fileName != "/")
+                if (fileName.endsWith(QLatin1String("/")) && fileName != "/") {
                     fileName.truncate(fileName.length() - 1);
+                }
                 fileName = fileName.mid(fileName.lastIndexOf('/') + 1);
 
                 if (!regExp.exactMatch(fileName))

@@ -662,13 +662,15 @@ bool KRarcHandler::isArchive(const KUrl& url)
 QString KRarcHandler::getType(bool &encrypted, QString fileName, QString mime, bool checkEncrypted)
 {
     QString result = detectArchive(encrypted, fileName, checkEncrypted);
-    if (result.isNull())
+    if (result.isNull()) {
         result = mime;
-    else
+    } else {
         result = '-' + result;
+    }
 
-    if (result.endsWith("-7z"))
+    if (result.endsWith(QLatin1String("-7z"))) {
         result = "-7z";
+    }
 
     return result.right(4);
 }
@@ -828,10 +830,13 @@ QString KRarcHandler::detectArchive(bool &encrypted, QString fileName, bool chec
         }
     }
 
-    if (fileName.endsWith(".tar.lzma") || fileName.endsWith(".tlz"))
+    if (fileName.endsWith(QLatin1String(".tar.lzma")) ||
+        fileName.endsWith(QLatin1String(".tlz"))) {
         return "tlz";
-    if (fileName.endsWith(".lzma"))
+    }
+    if (fileName.endsWith(QLatin1String(".lzma"))) {
         return "lzma";
+    }
 
     return QString();
 }

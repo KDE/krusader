@@ -112,8 +112,8 @@ void KonqMultiRestoreJob::slotStart()
         const KUrl& url = *m_urlsIterator;
 
         KUrl new_url = url;
-        if (new_url.protocol() == "system"
-                && new_url.path().startsWith("/trash")) {
+        if (new_url.protocol() == "system" &&
+            new_url.path().startsWith(QLatin1String("/trash"))) {
             QString path = new_url.path();
             path.remove(0, 6);
             new_url.setProtocol("trash");

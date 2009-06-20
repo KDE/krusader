@@ -219,7 +219,7 @@ void MediaButton::slotPopupActivated(QAction * action)
 {
     if (action && action->data().canConvert<QString>()) {
         QString id = action->data().toString();
-        if (id.startsWith("remote:")) {
+        if (id.startsWith(QLatin1String("remote:"))) {
             QString mountPoint = id.mid(7);
 
             bool mounted = false;
@@ -286,7 +286,7 @@ void MediaButton::rightClickMenu(QString udi)
     if (rightMenu)
         rightMenu->close();
 
-    bool network = udi.startsWith("remote:");
+    bool network = udi.startsWith(QLatin1String("remote:"));
     bool ejectable = false;
     bool mounted = false;
     KUrl openURL;
@@ -375,7 +375,7 @@ void MediaButton::rightClickMenu(QString udi)
 
 void MediaButton::mount(QString udi, bool open, bool newtab)
 {
-    if (udi.startsWith("remote:")) {
+    if (udi.startsWith(QLatin1String("remote:"))) {
         QString mp = udi.mid(7);
         krMtMan.mount(mp, true);
         if (newtab)
@@ -427,7 +427,7 @@ void MediaButton::slotSetupDone(Solid::ErrorType error, QVariant errorData, cons
 
 void MediaButton::umount(QString udi)
 {
-    if (udi.startsWith("remote:")) {
+    if (udi.startsWith(QLatin1String("remote:"))) {
         krMtMan.unmount(udi.mid(7), false);
         return;
     }
@@ -526,7 +526,9 @@ void MediaButton::slotTimeout()
     QList<QAction *> actionList = popupMenu->actions();
 
     foreach(QAction * act, actionList) {
-        if (act && act->data().canConvert<QString>() && act->data().toString().startsWith("remote:")) {
+        if (act &&
+            act->data().canConvert<QString>() &&
+            act->data().toString().startsWith(QLatin1String("remote:"))) {
             QString mountPoint = act->data().toString().mid(7);
             bool available = false;
 

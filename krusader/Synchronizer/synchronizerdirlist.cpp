@@ -215,7 +215,7 @@ void SynchronizerDirList::slotEntries(KIO::Job * job, const KIO::UDSEntryList& e
     while (it != end) {
         KFileItem kfi(*it, ((KIO::ListJob *)job)->url(), true, true);
         QString key = kfi.text();
-        if (key != "." && key != ".." && (!ignoreHidden || !key.startsWith("."))) {
+        if (key != "." && key != ".." && (!ignoreHidden || !key.startsWith(QLatin1String(".")))) {
             mode_t mode = kfi.mode() | kfi.permissions();
             QString perm = KRpermHandler::mode2QString(mode);
             if (kfi.isDir())
