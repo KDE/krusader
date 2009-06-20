@@ -28,29 +28,30 @@
  *                                                                         *
  ***************************************************************************/
 
-// KDE includes
-#include <kcmdlineargs.h>
-#include <kaboutdata.h>
-#include <kactionmenu.h>
-#include <klocale.h>
-#include <kstandarddirs.h>
-#include <ksplashscreen.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <signal.h>
-#include <QtCore/QEventLoop>
-#include <QtDBus/QtDBus>
-#include <QPixmap>
-#include <QAbstractEventDispatcher>
 
-// Krusader includes
+#include <QtCore/QEventLoop>
+#include <QtCore/QAbstractEventDispatcher>
+#include <QtGui/QPixmap>
+#include <QtDBus/QtDBus>
+
+#include <kde_file.h>
+#include <KCmdLineArgs>
+#include <KAboutData>
+#include <KActionMenu>
+#include <KLocale>
+#include <KStandardDirs>
+#include <KSplashScreen>
+#include <KStartupInfo>
+
 #include "krusader.h"
 #include "krusaderversion.h"
 #include "krslots.h"
 #include "krusaderapp.h"
 #include "defaults.h"
-#include <kstartupinfo.h>
-#include <Panel/krviewfactory.h>
-#include <stdlib.h>
+#include "Panel/krviewfactory.h"
 
 static const char *description = "Krusader\nTwin-Panel File Manager for KDE";
 
@@ -249,9 +250,9 @@ int main(int argc, char *argv[])
     }
 
     // catching SIGTERM, SIGHUP, SIGQUIT
-    signal(SIGTERM, sigterm_handler);
-    signal(SIGPIPE, sigterm_handler);
-    signal(SIGHUP, sigterm_handler);
+    KDE_signal(SIGTERM, sigterm_handler);
+    KDE_signal(SIGPIPE, sigterm_handler);
+    KDE_signal(SIGHUP, sigterm_handler);
 
     // make sure we receive X's focus in/out events
     QObject::connect(&app, SIGNAL(windowActive()), krusader.slot, SLOT(windowActive()));

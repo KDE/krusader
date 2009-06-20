@@ -44,19 +44,18 @@
 #endif
 
 #include <QtCore/QTimer>
-#include <QByteArray>
-#include <QDir>
+#include <QtCore/QByteArray>
+#include <QtCore/QDir>
 
-#include <kmessagebox.h>
-#include <kmimetype.h>
-#include <kio/jobclasses.h>
-#include <kio/deletejob.h>
-#include <kio/jobuidelegate.h>
-#include <klocale.h>
-#include <kglobalsettings.h>
-#include <kdebug.h>
 #include <kde_file.h>
-#include <kfileitem.h>
+#include <KMessageBox>
+#include <KMimeType>
+#include <KIO/DeleteJob>
+#include <KIO/JobUiDelegate>
+#include <KLocale>
+#include <KGlobalSettings>
+#include <KDebug>
+#include <KFileItem>
 
 #include "../Dialogs/krdialogs.h"
 #include "../MountMan/kmountman.h"
@@ -118,10 +117,10 @@ bool normal_vfs::populateVfsList(const KUrl& origin, bool showHidden)
         return false;
     }
 
-    struct dirent* dirEnt;
+    KDE_struct_dirent* dirEnt;
     QString name;
 
-    while ((dirEnt = readdir(dir)) != NULL) {
+    while ((dirEnt = KDE_readdir(dir)) != NULL) {
         name = QString::fromLocal8Bit(dirEnt->d_name);
 
         // show hidden files ?

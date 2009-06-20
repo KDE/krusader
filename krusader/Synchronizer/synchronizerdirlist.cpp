@@ -29,19 +29,6 @@
  ***************************************************************************/
 
 #include "synchronizerdirlist.h"
-#include "../VFS/vfs.h"
-#include "../VFS/krpermhandler.h"
-#include <dirent.h>
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <kfileitem.h>
-#include <kde_file.h>
-#include <QtGui/QApplication>
-#include <QtCore/QDir>
-#include <kdeversion.h>
-#include <kio/jobuidelegate.h>
-#include <string.h>
-
 
 #ifdef HAVE_POSIX_ACL
 #include <sys/acl.h>
@@ -49,6 +36,21 @@
 #include <acl/libacl.h>
 #endif
 #endif
+#include <string.h>
+#include <dirent.h>
+
+#include <QtCore/QDir>
+#include <QtGui/QApplication>
+
+#include <kde_file.h>
+#include <kdeversion.h>
+#include <KLocale>
+#include <KMessageBox>
+#include <KFileItem>
+#include <KIO/JobUiDelegate>
+
+#include "../VFS/vfs.h"
+#include "../VFS/krpermhandler.h"
 
 SynchronizerDirList::SynchronizerDirList(QWidget *w, bool hidden) : QObject(), QHash<QString, vfile *>(), fileIterator(0),
         parentWidget(w), busy(false), result(false), ignoreHidden(hidden), currentUrl()
@@ -133,10 +135,10 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
             return false;
         }
 
-        struct dirent* dirEnt;
+        KDE_struct_dirent* dirEnt;
         QString name;
 
-        while ((dirEnt = readdir(dir)) != NULL) {
+        while ((dirEnt = KDE_readdir(dir)) != NULL) {
             name = QString::fromLocal8Bit(dirEnt->d_name);
 
             if (name == "." || name == "..") continue;

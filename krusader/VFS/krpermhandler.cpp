@@ -42,9 +42,9 @@
 #include <QtCore/QDateTime>
 #include <QtCore/QDir>
 
-#include <klocale.h>
-#include <kglobal.h>
 #include <kde_file.h>
+#include <KLocale>
+#include <KGlobal>
 
 #include "../resources.h"
 
@@ -270,8 +270,8 @@ bool KRpermHandler::fileExist(QString path, QString name)
     if (QDir(path).exists(name)) return true;
     DIR* dir = opendir(path.toLocal8Bit());
     if (!dir) return false;
-    struct dirent* dirEnt;
-    while ((dirEnt = readdir(dir))) {
+    KDE_struct_dirent* dirEnt;
+    while ((dirEnt = KDE_readdir(dir))) {
         if (dirEnt->d_name == name) {
             closedir(dir);
             return true;

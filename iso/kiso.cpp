@@ -32,13 +32,14 @@
 #include <QtCore/QDir>
 #include <QtCore/QFile>
 
-#include <kdebug.h>
-#include <kurl.h>
-#include <kmimetype.h>
-#include <kconfig.h>
-#include <kfilterdev.h>
-#include <kfilterbase.h>
-#include <kconfiggroup.h>
+#include <kde_file.h>
+#include <KDebug>
+#include <KUrl>
+#include <KMimeType>
+#include <KConfig>
+#include <KConfigGroup>
+#include <KFilterBase>
+#include <KFilterDev>
 
 #include "libisofs/isofs.h"
 #include "qfilehack.h"
@@ -72,7 +73,7 @@ static int getTracks(const char *fname, int *tracks)
     struct cdrom_tocentry tocentry;
 
     kDebug() << "getTracks open:" << fname << endl;
-    fd = open(fname, O_RDONLY | O_NONBLOCK);
+    fd = KDE_open(fname, O_RDONLY | O_NONBLOCK);
     if (fd > 0) {
         if (ioctl(fd, CDROMREADTOCHDR, &tochead) != -1) {
             kDebug() << "getTracks first track:" << tochead.cdth_trk0
@@ -345,7 +346,7 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
 {
     iso_vol_desc *desc;
     QString path, tmp, uid, gid;
-    struct stat buf;
+    KDE_struct_stat buf;
     int tracks[2*100], trackno = 0, i, access, c_b, c_i, c_j;
     KArchiveDirectory *root;
     struct iso_directory_record* idr;
@@ -363,7 +364,7 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
     /* We'll use the permission and user/group of the 'host' file except
      * in Rock Ridge, where the permissions are stored on the file system
      */
-    if (::stat(m_filename.toLocal8Bit(), &buf) < 0) {
+    if (KDE_stat(m_filename.toLocal8Bit(), &buf) < 0) {
         /* defaults, if stat fails */
         memset(&buf, 0, sizeof(struct stat));
         buf.st_mode = 0777;

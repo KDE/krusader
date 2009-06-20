@@ -22,15 +22,17 @@
 #include <unistd.h>
 #include <time.h>
 
-#include <kfileitem.h>
-#include <kglobalsettings.h>
-#include <kurl.h>
-#include <kmessagebox.h>
-#include <klocale.h>
+#include <kde_file.h>
+#include <KFileItem>
+#include <KGlobalSettings>
+#include <KUrl>
+#include <KMessageBox>
+#include <KLocale>
+#include <KStandardDirs>
+#include <KIO/CopyJob>
+#include <KIO/DeleteJob>
+#include <KIO/StatJob>
 #include <kio/directorysizejob.h>
-#include <kio/deletejob.h>
-#include <kio/copyjob.h>
-#include <kstandarddirs.h>
 
 #include "krpermhandler.h"
 #include "../krusader.h"

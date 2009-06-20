@@ -8,17 +8,18 @@
 
 #include <QtCore/QFile>
 #include <QtCore/QFileInfo>
-#include <qptrqueue.h>
+#include <QtCore/QQueue>
 
-#include <kurl.h>
-#include <kdebug.h>
-#include <kcomponentdata.h>
-#include <ktar.h>
-#include <kzip.h>
-#include <kar.h>
-#include <kmimemagic.h>
-#include <klocale.h>
+#include <kde_file.h>
 #include <kdeversion.h>
+#include <kmimemagic.h> // TODO: use kmimetype
+#include <KUrl>
+#include <KDebug>
+#include <KComponentData>
+#include <KTar>
+#include <KZip>
+#include <KAr>
+#include <KLocale>
 
 using namespace KIO;
 
@@ -64,7 +65,7 @@ void ArchiveProtocol::put(const KUrl& url, int, bool, bool resume)
     }
 
     QByteArray  tempBuffer;
-    QPtrQueue<QByteArray> buffer;
+    QQueue<QByteArray> buffer;
     buffer.setAutoDelete(true);
     int readResult = 0;
     int size = 0;
@@ -108,8 +109,8 @@ bool ArchiveProtocol::checkNewFile(const KUrl & url, QString & path)
     // Are we already looking at that file ?
     if (m_archiveFile && m_archiveName == fullPath.left(m_archiveName.length())) {
         // Has it changed ?
-        struct stat statbuf;
-        if (::stat(QFile::encodeName(m_archiveName), &statbuf) == 0) {
+        KDE_struct_stat statbuf;
+        if (KDE_stat(QFile::encodeName(m_archiveName), &statbuf) == 0) {
             if (m_mtime == statbuf.st_mtime) {
                 path = fullPath.mid(m_archiveName.length());
                 kDebug(7109) << "ArchiveProtocol::checkNewFile returning " << path << endl;
@@ -139,8 +140,8 @@ bool ArchiveProtocol::checkNewFile(const KUrl & url, QString & path)
     while ((pos = fullPath.find('/', pos + 1)) != -1) {
         QString tryPath = fullPath.left(pos);
         kDebug(7109) << fullPath << "  trying " << tryPath << endl;
-        struct stat statbuf;
-        if (::stat(QFile::encodeName(tryPath), &statbuf) == 0 && !S_ISDIR(statbuf.st_mode)) {
+        KDE_struct_stat statbuf;
+        if (KDE_stat(QFile::encodeName(tryPath), &statbuf) == 0 && !S_ISDIR(statbuf.st_mode)) {
             archiveFile = tryPath;
             m_mtime = statbuf.st_mtime;
             user = QFileInfo(archiveFile).owner();
@@ -234,8 +235,8 @@ void ArchiveProtocol::listDir(const KUrl & url)
     if (!checkNewFile(url, path)) {
         QCString _path(QFile::encodeName(url.path()));
         kDebug(7109) << "Checking (stat) on " << _path << endl;
-        struct stat buff;
-        if (::stat(_path.data(), &buff) == -1 || !S_ISDIR(buff.st_mode)) {
+        KDE_struct_stat buff;
+        if (KDE_stat(_path.data(), &buff) == -1 || !S_ISDIR(buff.st_mode)) {
             error(KIO::ERR_DOES_NOT_EXIST, url.prettyUrl());
             return ;
         }
@@ -310,8 +311,8 @@ void ArchiveProtocol::stat(const KUrl & url)
         // when pressing up after being in the root of an archive
         QCString _path(QFile::encodeName(url.path()));
         kDebug(7109) << "ArchiveProtocol::stat (stat) on " << _path << endl;
-        struct stat buff;
-        if (::stat(_path.data(), &buff) == -1 || !S_ISDIR(buff.st_mode)) {
+        KDE_struct_stat buff;
+        if (KDE_stat(_path.data(), &buff) == -1 || !S_ISDIR(buff.st_mode)) {
             kDebug(7109) << "isdir=" << S_ISDIR(buff.st_mode) << "  errno=" << strerror(errno) << endl;
             error(KIO::ERR_DOES_NOT_EXIST, url.path());
             return ;

@@ -30,13 +30,13 @@
 
 #include <QtCore/QFile>
 #include <QtCore/QDir>
-#include <QByteArray>
+#include <QtCore/QByteArray>
 
 #include <kde_file.h>
-#include <kurl.h>
-#include <kdebug.h>
-#include <kcomponentdata.h>
-#include <kmimetype.h>
+#include <KUrl>
+#include <KDebug>
+#include <KComponentData>
+#include <KMimeType>
 
 #include "libisofs/iso_fs.h"
 #include "kiso.h"
@@ -99,8 +99,8 @@ bool kio_isoProtocol::checkNewFile(QString fullPath, QString & path, int startse
     if (m_isoFile && startsec == m_isoFile->startSec() &&
             m_isoFile->fileName() == fullPath.left(m_isoFile->fileName().length())) {
         // Has it changed ?
-        struct stat statbuf;
-        if (::stat(QFile::encodeName(m_isoFile->fileName()), &statbuf) == 0) {
+        KDE_struct_stat statbuf;
+        if (KDE_stat(QFile::encodeName(m_isoFile->fileName()), &statbuf) == 0) {
             if (m_mtime == statbuf.st_mtime) {
                 path = fullPath.mid(m_isoFile->fileName().length());
                 kDebug()   << "kio_isoProtocol::checkNewFile returning " << path << endl;
@@ -218,8 +218,8 @@ void kio_isoProtocol::listDir(const KUrl & url)
     if (!checkNewFile(getPath(url), path, url.hasRef() ? url.htmlRef().toInt() : -1)) {
         QByteArray _path(QFile::encodeName(getPath(url)));
         kDebug()  << "Checking (stat) on " << _path << endl;
-        struct stat buff;
-        if (::stat(_path.data(), &buff) == -1 || !S_ISDIR(buff.st_mode)) {
+        KDE_struct_stat buff;
+        if (KDE_stat(_path.data(), &buff) == -1 || !S_ISDIR(buff.st_mode)) {
             error(KIO::ERR_DOES_NOT_EXIST, getPath(url));
             return;
         }
@@ -298,8 +298,8 @@ void kio_isoProtocol::stat(const KUrl & url)
         // when pressing up after being in the root of an archive
         QByteArray _path(QFile::encodeName(getPath(url)));
         kDebug()  << "kio_isoProtocol::stat (stat) on " << _path << endl;
-        struct stat buff;
-        if (::stat(_path.data(), &buff) == -1 || !S_ISDIR(buff.st_mode)) {
+        KDE_struct_stat buff;
+        if (KDE_stat(_path.data(), &buff) == -1 || !S_ISDIR(buff.st_mode)) {
             kDebug() << "isdir=" << S_ISDIR(buff.st_mode) << "  errno=" << strerror(errno) << endl;
             error(KIO::ERR_DOES_NOT_EXIST, getPath(url));
             return;

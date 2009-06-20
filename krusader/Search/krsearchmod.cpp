@@ -38,9 +38,9 @@
 #include <QtCore/QDir>
 #include <QtCore/QRegExp>
 
-#include <klocale.h>
 #include <kde_file.h>
-#include <kmimetype.h>
+#include <KLocale>
+#include <KMimeType>
 
 #include "../VFS/krquery.h"
 #include "../krusader.h"
@@ -128,9 +128,9 @@ void KRSearchMod::scanLocalDir(KUrl urlToScan)
     DIR* d = opendir(dir.toLocal8Bit());
     if (!d) return ;
 
-    struct dirent* dirEnt;
+    KDE_struct_dirent* dirEnt;
 
-    while ((dirEnt = readdir(d)) != NULL) {
+    while ((dirEnt = KDE_readdir(d)) != NULL) {
         QString name = QString::fromLocal8Bit(dirEnt->d_name);
 
         // we don't scan the ".",".." enteries

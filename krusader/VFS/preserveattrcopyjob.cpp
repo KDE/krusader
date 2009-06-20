@@ -26,37 +26,33 @@
 */
 
 #include "preserveattrcopyjob.h"
-#include <kio/deletejob.h>
-
-#include <klocale.h>
-#include <kdesktopfile.h>
-#include <kdebug.h>
-#include <kde_file.h>
-
-#include <kio/slave.h>
-#include <kio/scheduler.h>
-#include <kdirwatch.h>
-#include <kprotocolmanager.h>
-
-#include <kio/jobuidelegate.h>
-
-#include <kdirnotify.h>
-#include <ktemporaryfile.h>
-#include <kuiserverjobtracker.h>
 
 #if defined(Q_OS_UNIX) || defined(Q_WS_WIN)
 #include <utime.h>
 #endif
 #include <assert.h>
+#include <sys/stat.h> // mode_t
+#include <sys/types.h>
+#include <pwd.h>
+#include <grp.h>
 
 #include <QtCore/QTimer>
 #include <QtCore/QFile>
-#include <sys/stat.h> // mode_t
-#include <sys/types.h>
-#include <QPointer>
+#include <QtCore/QPointer>
 
-#include <pwd.h>
-#include <grp.h>
+#include <kde_file.h>
+#include <kuiserverjobtracker.h>
+#include <OrgKdeKDirNotifyInterface>
+#include <KLocale>
+#include <KDesktopFile>
+#include <KDebug>
+#include <KDirWatch>
+#include <KProtocolManager>
+#include <KTemporaryFile>
+#include <KIO/Slave>
+#include <KIO/Scheduler>
+#include <KIO/JobUiDelegate>
+#include <KIO/DeleteJob>
 
 Attributes::Attributes()
 {
@@ -1413,13 +1409,13 @@ void PreserveAttrCopyJob::slotResultRenaming(KJob* job)
             tmpFile.open();
             QByteArray _tmp(QFile::encodeName(tmpFile.fileName()));
             //kDebug(7007) << "PreserveAttrCopyJob::slotResult KTemporaryFile using " << _tmp << " as intermediary";
-            if (::rename(_src, _tmp) == 0) {
-                if (!QFile::exists(_dest) && ::rename(_tmp, _dest) == 0) {
+            if (KDE_rename(_src, _tmp) == 0) {
+                if (!QFile::exists(_dest) && KDE_rename(_tmp, _dest) == 0) {
                     //kDebug(7007) << "Success.";
                     err = 0;
                 } else {
                     // Revert back to original name!
-                    if (::rename(_tmp, _src) != 0) {
+                    if (KDE_rename(_tmp, _src) != 0) {
                         kError(7007) << "Couldn't rename " << tmpFile.fileName() << " back to " << _src << " !" << endl;
                         // Severe error, abort
                         Job::slotResult(job);   // will set the error and emit result(this)
