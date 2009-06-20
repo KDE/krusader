@@ -141,7 +141,7 @@ void KRSearchMod::scanLocalDir(KUrl urlToScan)
 
         KUrl url = KUrl(dir + name);
 
-        QString mime = QString();
+        QString mime;
         if (query->searchInArchives() || !query->hasMimeType()) {
             KMimeType::Ptr mt = KMimeType::findByUrl(url, stat_p.st_mode, true, false);
             if (mt)

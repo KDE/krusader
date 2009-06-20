@@ -42,7 +42,7 @@ class KrAction: public KAction, public KrActionBase
 {
     Q_OBJECT
 public:
-    KrAction(KActionCollection *parent, QString name = QString::null);
+    KrAction(KActionCollection *parent, QString name = QString());
     ~KrAction();
 
     /**

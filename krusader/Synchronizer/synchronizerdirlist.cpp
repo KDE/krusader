@@ -170,7 +170,7 @@ bool SynchronizerDirList::load(const QString &urlIn, bool wait)
                 }
             }
 
-            QString mime = QString();
+            QString mime;
 
             KUrl fileURL = KUrl(fullName);
 

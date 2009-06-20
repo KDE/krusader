@@ -91,7 +91,7 @@ void KURLListRequester::slotAdd()
 {
     QString text = urlLineEdit->text().simplified();
     if (text.length()) {
-        QString error = QString();
+        QString error;
         emit checkValidity(text, error);
 
         if (!error.isNull())
@@ -156,7 +156,7 @@ KUrl::List KURLListRequester::urlList()
 
     QString text = urlLineEdit->text().simplified();
     if (!text.isEmpty()) {
-        QString error = QString();
+        QString error;
         emit checkValidity(text, error);
         if (error.isNull())
             urls.append(KUrl(text));
@@ -167,7 +167,7 @@ KUrl::List KURLListRequester::urlList()
 
         QString text = item->text().simplified();
 
-        QString error = QString();
+        QString error;
         emit checkValidity(text, error);
         if (error.isNull())
             urls.append(KUrl(text));

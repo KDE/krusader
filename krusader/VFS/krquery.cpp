@@ -413,7 +413,7 @@ bool KRQuery::containsContent(QString file) const
     if (checkBuffer(buffer, 0))
         return true;
 
-    lastSuccessfulGrep = QString(); // nothing was found
+    lastSuccessfulGrep.clear(); // nothing was found
     return false;
 }
 

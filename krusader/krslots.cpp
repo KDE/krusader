@@ -192,7 +192,8 @@ void KRslots::compareContent(KUrl url1, KUrl url2)
         return;
     }
 
-    QString tmp1 = QString(), tmp2 = QString();
+    QString tmp1;
+    QString tmp2;
 
     // kdiff3 sucks with spaces
     if (KUrl(diffProg).fileName() == "kdiff3" && !url1.prettyUrl().contains(" ") && !url2.prettyUrl().contains(" ")) {
@@ -886,7 +887,7 @@ void KRslots::slotCombine()
     KUrl          baseURL;
     bool          unixStyle = false;
     bool          windowsStyle = false;
-    QString       commonName = QString();
+    QString       commonName;
     int           commonLength = 0;
 
     ((ListPanel*)ACTIVE_PANEL)->getSelectedNames(&list);

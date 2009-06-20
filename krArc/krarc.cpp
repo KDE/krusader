@@ -769,7 +769,7 @@ bool kio_krarcProtocol::setArcFile(const KUrl& url)
                 codec = QTextCodec::codecForMib(4 /* latin-1 */);
 
             delete arcFile;
-            password = QString();
+            password.clear();
             extArcReady = false;
             arcFile = newArcFile;
         } else { // same old file
@@ -782,7 +782,7 @@ bool kio_krarcProtocol::setArcFile(const KUrl& url)
         extArcReady = false;
         if (arcFile) {
             delete arcFile;
-            password = QString();
+            password.clear();
             arcFile = 0L;
         }
         QString newPath = path;
@@ -1080,14 +1080,14 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
     UDSEntryList* dir;
     UDSEntry entry;
 
-    QString owner        = QString();
-    QString group        = QString();
-    QString symlinkDest  = QString();
-    QString perm         = QString();
+    QString owner;
+    QString group;
+    QString symlinkDest;
+    QString perm;
     mode_t mode          = 0666;
     size_t size          = 0;
     time_t time          = ::time(0);
-    QString fullName     = QString();
+    QString fullName;
 
     if (arcType == "zip") {
         // permissions
@@ -1381,7 +1381,7 @@ bool kio_krarcProtocol::initArcParameters()
 
     noencoding = false;
 
-    cmd     = QString();
+    cmd.clear();
     listCmd = QStringList();
     getCmd  = QStringList();
     copyCmd = QStringList();
@@ -1759,7 +1759,7 @@ void kio_krarcProtocol::invalidatePassword()
     authInfo.url.setHost(fileName /*.replace('/','_')*/);
     authInfo.url.setProtocol("krarc");
 
-    password = QString();
+    password.clear();
 
     cacheAuthentication(authInfo);
 }
@@ -1789,7 +1789,7 @@ QString kio_krarcProtocol::getPassword()
         return (password = authInfo.password);
     }
 
-    authInfo.password = QString();
+    authInfo.password.clear();
 
     if (openPasswordDialog(authInfo, i18n("Accessing the file requires password.")) && !authInfo.password.isNull()) {
         KRDEBUG(authInfo.password);

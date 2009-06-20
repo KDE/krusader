@@ -511,7 +511,7 @@ void LocateDlg::operate(QTreeWidgetItem *item, int task)
             return;
         }
 
-        QString first = QString::null;
+        QString first;
         if (list.count() != 0) {
             first = list.first();
         }

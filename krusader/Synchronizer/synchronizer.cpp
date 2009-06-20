@@ -115,7 +115,8 @@ void Synchronizer::reset()
     leftCopyNr = rightCopyNr = deleteNr = 0;
     leftCopySize = rightCopySize = deleteSize = 0;
     comparedDirs = fileCount = 0;
-    leftBaseDir = rightBaseDir = QString();
+    leftBaseDir.clear();
+    rightBaseDir.clear();
     clearLists();
 }
 

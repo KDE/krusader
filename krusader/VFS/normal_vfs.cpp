@@ -262,7 +262,7 @@ vfile* normal_vfs::vfileFromName(const QString& name, char * rawName)
     if (S_ISDIR(stat_p.st_mode)) perm[0] = 'd';
 
     KUrl mimeUrl = KUrl(path);
-    QString mime = QString();
+    QString mime;
 
     char symDest[256];
     memset(symDest, 0, 256);
@@ -292,7 +292,8 @@ vfile* normal_vfs::vfileFromName(const QString& name, char * rawName)
 
 void normal_vfs::getACL(vfile *file, QString &acl, QString &defAcl)
 {
-    acl = defAcl = QString();
+    acl.clear();
+    defAcl.clear();
 #ifdef HAVE_POSIX_ACL
     QByteArray fileName = file->vfile_getUrl().path(KUrl::RemoveTrailingSlash).toLocal8Bit();
 #ifdef HAVE_NON_POSIX_ACL_EXTENSIONS

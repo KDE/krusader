@@ -385,7 +385,7 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
         c_b = 1;c_i = 1;c_j = 1;
         root = rootDir();
         if (trackno > 1) {
-            path = QString();
+            path.clear();
             QTextStream(&path) << "Track " << tracks[(i<<1)+1];
             root = new KIsoDirectory(this, path, access | S_IFDIR,
                                      buf.st_mtime, buf.st_atime, buf.st_ctime, uid, gid, QString());

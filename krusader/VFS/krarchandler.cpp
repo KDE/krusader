@@ -484,7 +484,7 @@ bool KRarcHandler::pack(QStringList fileNames, QString type, QString dest, long 
         packer << KrServices::fullPathName("7z") << "-y" << "a"; type = "-7z";
     } else return false;
 
-    QString password = QString();
+    QString password;
 
     if (extraProps.count("Password") > 0) {
         password = extraProps[ "Password" ];
@@ -502,7 +502,7 @@ bool KRarcHandler::pack(QStringList fileNames, QString type, QString dest, long 
                 else
                     packer << QString("-p%1").arg(password);
             } else
-                password = QString();
+                password.clear();
         }
     }
 

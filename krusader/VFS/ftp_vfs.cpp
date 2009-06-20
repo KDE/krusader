@@ -160,7 +160,7 @@ void ftp_vfs::slotListResult(KJob *job)
 
 bool ftp_vfs::populateVfsList(const KUrl& origin, bool showHidden)
 {
-    QString errorMsg = QString();
+    QString errorMsg;
     if (!origin.isValid())
         errorMsg = i18n("Malformed URL:\n%1", origin.url());
     if (!KProtocolManager::supportsListing(origin)) {

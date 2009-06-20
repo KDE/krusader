@@ -120,7 +120,7 @@ bool kio_isoProtocol::checkNewFile(QString fullPath, QString & path, int startse
     // Find where the iso file is in the full path
     int pos = 0;
     QString isoFile;
-    path = QString();
+    path.clear();
 
     int len = fullPath.length();
     if (len != 0 && fullPath[ len - 1 ] != DIR_SEPARATOR_CHAR)

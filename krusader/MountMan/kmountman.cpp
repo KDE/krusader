@@ -429,7 +429,7 @@ QString KMountMan::findUdiForPath(QString path, const Solid::DeviceInterface::Ty
     if (!(bool)mp) {
         mp = findInListByMntPoint(possible, path);
         if (!(bool)mp)
-            return QString::null;
+            return QString();
     }
     QString dev = QDir(mp->mountedFrom()).canonicalPath();
     QList<Solid::Device> storageDevices = Solid::Device::listFromType(Solid::DeviceInterface::Block);
@@ -448,7 +448,7 @@ QString KMountMan::findUdiForPath(QString path, const Solid::DeviceInterface::Ty
         }
     }
 
-    return QString::null;
+    return QString();
 }
 
 void KMountMan::slotTeardownDone(Solid::ErrorType error, QVariant errorData, const QString &udi)

@@ -321,7 +321,7 @@ Krusader::Krusader() : KParts::MainWindow(0,
             if (!leftTabs[ i ].startsWith('/') && leftTabs[ i ].indexOf(":/") < 0)
                 leftTabs[ i ] = QDir::currentPath() + '/' + leftTabs[ i ];
         }
-        startProfile = QString();
+        startProfile.clear();
     }
     if (args->isSet("right")) {
         rightTabs = args->getOption("right").split(',');
@@ -336,7 +336,7 @@ Krusader::Krusader() : KParts::MainWindow(0,
             if (!rightTabs[ i ].startsWith('/') && rightTabs[ i ].indexOf(":/") < 0)
                 rightTabs[ i ] = QDir::currentPath() + '/' + rightTabs[ i ];
         }
-        startProfile = QString();
+        startProfile.clear();
     }
 
     while (leftTabTypes.count() < leftTabs.count())

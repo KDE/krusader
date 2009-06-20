@@ -117,7 +117,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
     // check if all the list have the same mimetype
     for (int i = 1; i < items.size(); ++i) {
         if (panel->func->getVFile(items[ i ]) ->vfile_getMime() != mime) {
-            mime = QString();
+            mime.clear();
             break;
         }
     }

@@ -668,7 +668,7 @@ TagString exp_Ask::expFunc(const ListPanel*, const QStringList& parameter, const
     else
         caption = parameter[2];
     if (parameter.count() <= 1 || parameter[1].isEmpty())
-        preset = QString();
+        preset.clear();
     else
         preset = parameter[1];
 
@@ -1049,7 +1049,7 @@ TagString exp_Script::expFunc(const ListPanel*, const QStringList& parameter, co
 
     KJS::ExecState *exec = krJS->globalExec();
 
-    QString jsReturn = QString();
+    QString jsReturn;
     if (parameter[1].toLower() == "yes")   // to stay compatible with the old-style parameter
         jsReturn = "cmd";
     else {
@@ -1170,7 +1170,7 @@ void Expander::expand(const QString& stringToExpand, bool useUrl)
 TagString Expander::expandCurrent(const QString& stringToExpand, bool useUrl)
 {
     TagString result;
-    QString exp = QString();
+    QString exp;
     TagString tmpResult;
     int begin, end, i;
 //    int brackets = 0;

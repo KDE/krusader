@@ -63,11 +63,11 @@ vfile::vfile(const QString& name,                   // useful construtor
 {
     vfile_name = name;
     vfile_size = size;
-    vfile_owner = QString();
+    vfile_owner.clear();
     vfile_ownerId = owner;
-    vfile_group = QString();
+    vfile_group.clear();
     vfile_groupId = group;
-    vfile_userName = QString();
+    vfile_userName.clear();
     vfile_perm = perm;
     vfile_time_t = mtime;
     vfile_symLink = symLink;

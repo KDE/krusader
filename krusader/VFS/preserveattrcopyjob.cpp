@@ -60,7 +60,7 @@ Attributes::Attributes()
     uid = (uid_t) - 1;
     gid = (gid_t) - 1;
     mode = (mode_t) - 1;
-    acl = QString();
+    acl.clear();
 }
 
 Attributes::Attributes(time_t tIn, uid_t uIn, gid_t gIn, mode_t modeIn, const QString & aclIn)

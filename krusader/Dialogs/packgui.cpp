@@ -123,9 +123,9 @@ void PackGUI::accept()
 
 void PackGUI::reject()
 {
-    filename = QString();
-    destination = QString();
-    type = QString();
+    filename.clear();
+    destination.clear();
+    type.clear();
     PackGUIBase::reject();
 }
 
