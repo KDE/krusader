@@ -73,6 +73,7 @@ protected slots:
     void slotMakeCurrentVisible();
     virtual void renameCurrentItem();
     void sectionResized(int, int, int);
+    virtual void currentChanged ( const QModelIndex & current, const QModelIndex & previous );
 
 protected:
     virtual void setup();
