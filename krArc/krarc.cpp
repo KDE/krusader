@@ -911,14 +911,14 @@ bool kio_krarcProtocol::initDirDict(const KUrl&url, bool forced)
     if (arcType == "rar" || arcType == "arj" || arcType == "lha" || arcType == "7z") {
         while (temp.readLine(buf, 1000) != -1) {
             line = decodeString(buf);
-            if (line.startsWith("----------")) break;
+            if (line.startsWith(QLatin1String("----------"))) break;
         }
     }
     while (temp.readLine(buf, 1000) != -1) {
         line = decodeString(buf);
         if (arcType == "rar") {
             // the rar list is ended with a ------ line.
-            if (line.startsWith("----------")) {
+            if (line.startsWith(QLatin1String("----------"))) {
                 invalidLine = !invalidLine;
                 continue;
             }
@@ -937,7 +937,7 @@ bool kio_krarcProtocol::initDirDict(const KUrl&url, bool forced)
         }
         if (arcType == "arj") {
             // the arj list is ended with a ------ line.
-            if (line.startsWith("----------")) {
+            if (line.startsWith(QLatin1String("----------"))) {
                 invalidLine = !invalidLine;
                 continue;
             }
@@ -954,7 +954,7 @@ bool kio_krarcProtocol::initDirDict(const KUrl&url, bool forced)
         }
         if (arcType == "lha" || arcType == "7z") {
             // the arj list is ended with a ------ line.
-            if (line.startsWith("----------")) break;
+            if (line.startsWith(QLatin1String("----------"))) break;
         }
         parseLine(lineNo++, line.trimmed());
     }
@@ -1201,7 +1201,9 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
     }
     if (arcType == "lzma") {
         fullName = arcFile->name();
-        if (fullName.endsWith("lzma")) fullName.truncate(fullName.length() - 5);
+        if (fullName.endsWith(QLatin1String("lzma"))) {
+            fullName.truncate(fullName.length() - 5);
+        }
         mode = arcFile->mode();
         size = arcFile->size();
     }
@@ -1209,7 +1211,9 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         // There is no way to list bzip2 files, so we take our information from
         // the archive itself...
         fullName = arcFile->name();
-        if (fullName.endsWith("bz2")) fullName.truncate(fullName.length() - 4);
+        if (fullName.endsWith(QLatin1String("bz2"))) {
+            fullName.truncate(fullName.length() - 4);
+        }
         mode = arcFile->mode();
         size = arcFile->size();
     }
@@ -1702,10 +1706,14 @@ QString kio_krarcProtocol::detectArchive(bool &encrypted, QString fileName)
         }
     }
 
-    if (fileName.endsWith(".tar.lzma") || fileName.endsWith(".tlz"))
+    if (fileName.endsWith(QLatin1String(".tar.lzma")) ||
+            fileName.endsWith(QLatin1String(".tlz"))) {
         return "tlz";
-    if (fileName.endsWith(".lzma"))
+    }
+    if (fileName.endsWith(QLatin1String(".lzma"))) {
         return "lzma";
+    }
+
     return QString();
 }
 
