@@ -62,6 +62,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
 {
 #ifdef __LIBKONQ__
     konqMenu = 0;
+    konqMenuActions = 0;
 #endif
 
     panel->view->getSelectedKrViewItems(&items);
