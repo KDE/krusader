@@ -100,7 +100,7 @@ public slots:
 protected slots:
     void slotMakeCurrentVisible();
     virtual void renameCurrentItem();
-    virtual void currentChanged ( const QModelIndex & current, const QModelIndex & previous );
+    virtual void currentChanged(const QModelIndex & current, const QModelIndex & previous);
 
 protected:
     virtual void setup();

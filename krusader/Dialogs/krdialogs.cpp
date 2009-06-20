@@ -46,8 +46,8 @@
 KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd)
 {
     QPointer<KUrlRequesterDialog> dlg = new KUrlRequesterDialog(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
-                                                                text,
-                                                                krApp);
+            text,
+            krApp);
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
     KUrl u;
     if (dlg->exec() == QDialog::Accepted) {
@@ -72,9 +72,9 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd)
 KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &queue)
 {
     QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
-                                                                        text,
-                                                                        false,
-                                                                        krApp);
+            text,
+            false,
+            krApp);
     dlg->hidePreserveAttrs();
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
     KUrl u;
@@ -101,9 +101,9 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
 KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &queue, bool &preserveAttrs)
 {
     QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
-                                                                        text,
-                                                                        preserveAttrs,
-                                                                        krApp);
+            text,
+            preserveAttrs,
+            krApp);
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
     KUrl u;
     if (dlg->exec() == QDialog::Accepted) {
@@ -130,11 +130,11 @@ KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &qu
 KUrl KChooseDir::getDir(QString text, const KUrl& url, const KUrl& cwd, bool &queue, bool &preserveAttrs, KUrl &baseURL)
 {
     QPointer<KUrlRequesterDlgForCopy> dlg = new KUrlRequesterDlgForCopy(vfs::pathOrUrl(url, KUrl::AddTrailingSlash),
-                                                                        text,
-                                                                        preserveAttrs,
-                                                                        krApp,
-                                                                        true,
-                                                                        baseURL);
+            text,
+            preserveAttrs,
+            krApp,
+            true,
+            baseURL);
     dlg->urlRequester()->completionObject()->setDir(cwd.url());
     KUrl u;
     if (dlg->exec() == QDialog::Accepted) {

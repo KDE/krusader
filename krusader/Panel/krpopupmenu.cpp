@@ -149,7 +149,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
     }
 
 #ifdef __LIBKONQ__
-	// -------------- konqueror menu
+    // -------------- konqueror menu
     // This section adds all Konqueror/Dolphin menu items.
     // It's now updated to KDE4 and working, I've just commented it out.
     // Section below this one adds only servicemenus.
@@ -158,15 +158,15 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KMenu(parent), 
 
     //TODO: deprecated since KDE4.3: remove these three lines
     KonqPopupMenuInformation info;
-    info.setItems( _items );
-    info.setParentWidget( this );
+    info.setItems(_items);
+    info.setParentWidget(this);
 
     konqMenuActions = new KonqMenuActions();
     //TODO: deprecated since KDE4.3: remove this line, use two commented lines
-    konqMenuActions->setPopupMenuInfo ( info );
+    konqMenuActions->setPopupMenuInfo(info);
     //konqMenuActions->setParentWidget( this );
     //konqMenuActions->setItemListProperties( _items );
-    konqMenuActions->addActionsTo( this );
+    konqMenuActions->addActionsTo(this);
 
     addSeparator();
 #endif

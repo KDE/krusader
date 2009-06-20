@@ -180,8 +180,8 @@ newFTPGUI::~newFTPGUI()
 void newFTPGUI::slotTextChanged(const QString& string)
 {
     if (string.startsWith(QLatin1String("ftp")) ||
-        string.startsWith(QLatin1String("sftp")) ||
-        string.startsWith(QLatin1String("fish"))) {
+            string.startsWith(QLatin1String("sftp")) ||
+            string.startsWith(QLatin1String("fish"))) {
         if (port->value() == 21 || port->value() == 22) {
             port->setValue(string.startsWith(QLatin1String("ftp")) ? 21 : 22);
         }

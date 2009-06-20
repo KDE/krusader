@@ -125,14 +125,13 @@ KrViewItem* KrInterDetailedView::findItemByName(const QString &name)
     return getKrInterViewItem(ndx);
 }
 
-void KrInterDetailedView::currentChanged( const QModelIndex & current, const QModelIndex & previous )
+void KrInterDetailedView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
 {
-    if (_model->ready())
-    {
+    if (_model->ready()) {
         KrViewItem * item = getKrInterViewItem(currentIndex());
-        op()->emitCurrentChanged( item );
+        op()->emitCurrentChanged(item);
     }
-    QTreeView::currentChanged( current, previous );
+    QTreeView::currentChanged(current, previous);
 }
 
 QString KrInterDetailedView::getCurrentItem() const

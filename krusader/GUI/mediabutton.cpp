@@ -527,8 +527,8 @@ void MediaButton::slotTimeout()
 
     foreach(QAction * act, actionList) {
         if (act &&
-            act->data().canConvert<QString>() &&
-            act->data().toString().startsWith(QLatin1String("remote:"))) {
+                act->data().canConvert<QString>() &&
+                act->data().toString().startsWith(QLatin1String("remote:"))) {
             QString mountPoint = act->data().toString().mid(7);
             bool available = false;
 

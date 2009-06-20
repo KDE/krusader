@@ -614,8 +614,8 @@ QString KRarcHandler::getPassword(QString path)
     bool keep = true;
     QString user = "archive";
     QPointer<KIO::PasswordDialog> passDlg = new KIO::PasswordDialog(i18n("This archive is encrypted, please supply the password:"),
-                                                                    user,
-                                                                    true);
+            user,
+            true);
     passDlg->setPassword(password);
     if (passDlg->exec() == KIO::PasswordDialog::Accepted) {
         password = passDlg->password();
@@ -831,7 +831,7 @@ QString KRarcHandler::detectArchive(bool &encrypted, QString fileName, bool chec
     }
 
     if (fileName.endsWith(QLatin1String(".tar.lzma")) ||
-        fileName.endsWith(QLatin1String(".tlz"))) {
+            fileName.endsWith(QLatin1String(".tlz"))) {
         return "tlz";
     }
     if (fileName.endsWith(QLatin1String(".lzma"))) {

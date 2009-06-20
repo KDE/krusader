@@ -143,14 +143,13 @@ KrViewItem* KrInterBriefView::findItemByName(const QString &name)
     return getKrInterViewItem(ndx);
 }
 
-void KrInterBriefView::currentChanged( const QModelIndex & current, const QModelIndex & previous )
+void KrInterBriefView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
 {
-    if (_model->ready())
-    {
+    if (_model->ready()) {
         KrViewItem * item = getKrInterViewItem(currentIndex());
-        op()->emitCurrentChanged( item );
+        op()->emitCurrentChanged(item);
     }
-    QAbstractItemView::currentChanged( current, previous );
+    QAbstractItemView::currentChanged(current, previous);
 }
 
 QString KrInterBriefView::getCurrentItem() const

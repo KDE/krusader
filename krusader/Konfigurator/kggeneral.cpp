@@ -217,11 +217,11 @@ void KgGeneral::applyTempDir(QObject *obj, QString cls, QString name)
 void KgGeneral::slotFindTools()
 {
     QPointer<KrResultTableDialog> dlg = new KrResultTableDialog(this,
-                                                                KrResultTableDialog::Tool,
-                                                                i18n("Search results"),
-                                                                i18n("Searching for tools..."),
-                                                                "tools-wizard",
-                                                                i18n("Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"));
+            KrResultTableDialog::Tool,
+            i18n("Search results"),
+            i18n("Searching for tools..."),
+            "tools-wizard",
+            i18n("Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"));
     dlg->exec();
     delete dlg;
 }
