@@ -75,7 +75,7 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
     if (PS("7z")) typeData->addItem("7z");
     // set the last used packer as the top one
     QString tmp = group.readEntry("lastUsedPacker", QString());
-    if (tmp != QString()) {
+    if (!tmp.isEmpty()) {
         for (int i = 0; i < typeData->count(); ++i)
             if (typeData->itemText(i) == tmp) {
                 typeData->removeItem(i);
@@ -101,8 +101,9 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
 void PackGUI::browse()
 {
     QString temp = KFileDialog::getExistingDirectory(dirData->text(), 0, i18n("Please select a directory"));
-    if (temp != QString())
+    if (!temp.isEmpty()) {
         dirData->setText(temp);
+    }
 }
 
 void PackGUI::accept()

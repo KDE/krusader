@@ -94,7 +94,7 @@ KrResultTableDialog::KrResultTableDialog(QWidget *parent, DialogType type,
     _topLayout->addWidget(hSep);
 
     // +++ Hint +++
-    if (hint != QString()) {
+    if (!hint.isEmpty()) {
         _hintLabel = new QLabel(hint, _page);
         _hintLabel->setIndent(5);
         _hintLabel->setAlignment(Qt::AlignRight);

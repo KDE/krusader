@@ -887,8 +887,9 @@ void ListPanelFunc::pack()
         defaultName = fileNames.first();
     // ask the user for archive name and packer
     new PackGUI(defaultName, vfs::pathOrUrl(panel->otherPanel->virtualPath(), KUrl::RemoveTrailingSlash), fileNames.count(), fileNames.first());
-    if (PackGUI::type == QString())
+    if (PackGUI::type.isEmpty()) {
         return ; // the user canceled
+    }
 
     // check for partial URLs
     if (!PackGUI::destination.contains(":/") && !PackGUI::destination.startsWith('/')) {

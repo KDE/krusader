@@ -152,17 +152,17 @@ void KrColorSettingsImpl::loadFromConfig()
     }
     names = KrColorSettingNames::getNumNames();
     for (QStringList::Iterator it = names.begin(); it != names.end(); ++it) {
-        if (group.readEntry(*it, QString()) != QString())
+        if (!group.readEntry(*it, QString()).isEmpty()) {
             m_numValues[*it] = group.readEntry(*it, (long long)0);
+        }
     }
     names = KrColorSettingNames::getBoolNames();
     for (QStringList::Iterator it = names.begin(); it != names.end(); ++it) {
-        if (group.readEntry(*it, QString()) != QString())
+        if (!group.readEntry(*it, QString()).isEmpty()) {
             m_boolValues[*it] = group.readEntry(*it, false);
+        }
     }
 }
-
-
 
 KrColorSettings::KrColorSettings()
 {

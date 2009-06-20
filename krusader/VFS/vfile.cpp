@@ -154,7 +154,7 @@ char vfile::vfile_isExecutable() const
 
 const QString& vfile::vfile_getMime(bool fast)
 {
-    if (vfile_mimeType == QString()) { // mimetype == "" is OK so don't check mimetype.empty() !
+    if (vfile_mimeType.isEmpty()) { // mimetype == "" is OK so don't check mimetype.empty() !
         KMimeType::Ptr mt = KMimeType::findByUrl(vfile_getUrl(), vfile_getMode(), vfile_getUrl().isLocalFile(), fast);
         vfile_mimeType = mt ? mt->name() : "Broken Link !";
         if (mt)

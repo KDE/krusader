@@ -542,7 +542,9 @@ void KgColors::slotImportColors()
     QString basedir = KGlobal::dirs()->findResourceDir("appdata", "total_commander.keymap");
     // let the user select a file to load
     QString file = KFileDialog::getOpenFileName(basedir, "*.color", 0, i18n("Select a color-scheme file"));
-    if (file == QString()) return;
+    if (file.isEmpty()) {
+        return;
+    }
     QFile f(file);
     if (!f.open(QIODevice::ReadOnly)) {
         KMessageBox::error(this, i18n("Error: unable to read from file"), i18n("Error"));
@@ -557,7 +559,9 @@ void KgColors::slotImportColors()
 void KgColors::slotExportColors()
 {
     QString file = KFileDialog::getSaveFileName(QString(), "*", 0, i18n("Select a color scheme file"));
-    if (file == QString()) return;
+    if (file.isEmpty()) {
+        return;
+    }
     QFile f(file);
     if (f.exists() && KMessageBox::warningContinueCancel(this,
             i18n("File %1 already exists. Are you sure you want to overwrite it?", file),

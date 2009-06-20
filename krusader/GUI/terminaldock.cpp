@@ -148,7 +148,7 @@ bool TerminalDock::applyShortcuts(QKeyEvent * ke)
             && ((ke->modifiers() & ~Qt::ShiftModifier) == Qt::ControlModifier)) {
 
         QString filename = ACTIVE_PANEL->view->getCurrentItem();
-        if (filename == QString()) {
+        if (filename.isEmpty()) {
             return true;
         }
         if (ke->modifiers() & Qt::ShiftModifier) {

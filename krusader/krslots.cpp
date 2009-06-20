@@ -283,8 +283,9 @@ void KRslots::toggleTerminal()
 void KRslots::insertFileName(bool full_path)
 {
     QString filename = ACTIVE_PANEL->view->getCurrentItem();
-    if (filename == QString())
+    if (filename.isEmpty()) {
         return;
+    }
 
     if (full_path) {
         QString path = vfs::pathOrUrl(ACTIVE_FUNC->files()->vfs_getOrigin(), KUrl::AddTrailingSlash);

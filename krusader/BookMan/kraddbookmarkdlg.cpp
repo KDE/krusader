@@ -121,8 +121,9 @@ void KrAddBookmarkDlg::newFolder()
 {
     // get the name
     QString newFolder = KInputDialog::getText(i18n("New Folder"), i18n("Folder name:"), QString(), 0, this);
-    if (newFolder == QString())
+    if (newFolder.isEmpty()) {
         return;
+    }
 
     QList<QTreeWidgetItem *> items = _createIn->selectedItems();
     if (items.count() == 0)

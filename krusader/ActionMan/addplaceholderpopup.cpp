@@ -116,9 +116,10 @@ QString AddPlaceholderPopup::getPlaceholder(const QPoint& pos)
     if (res->data().toInt() == EXECUTABLE_ID) {   // did the user need an executable ?
         // select an executable
         QString filename = KFileDialog::getOpenFileName(QString(), QString(), this);
-        if (filename != QString())
+        if (!filename.isEmpty()) {
             return filename + ' '; // with extra space
-        //return filename; // without extra space
+            // return filename; // without extra space
+        }
     } else { // user selected something from the menus
         Expander expander;
         const exp_placeholder* currentPlaceholder = expander.placeholder(res->data().toInt() & ~(ACTIVE_MASK | OTHER_MASK | LEFT_MASK | RIGHT_MASK | INDEPENDENT_MASK));
