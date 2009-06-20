@@ -9,10 +9,6 @@ set(Panel_SRCS
     listpanel.cpp 
     panelpopup.cpp 
     krselectionmode.cpp 
-    krdetailedviewitem.cpp 
-    krdetailedview.cpp 
-    krbriefview.cpp 
-    krbriefviewitem.cpp
     krvfsmodel.cpp
     krinterbriefview.cpp
     krinterdetailedview.cpp
@@ -22,4 +18,4 @@ set(Panel_SRCS
 
 kde4_add_library(Panel STATIC ${Panel_SRCS})
 
-target_link_libraries(Panel Dialogs GUI KViewer ${KDE4_KFILE_LIBS} ${KDE4_KDE3SUPPORT_LIBRARY})
+target_link_libraries(Panel Dialogs GUI KViewer ${KDE4_KFILE_LIBS} )

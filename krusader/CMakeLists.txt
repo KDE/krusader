@@ -68,8 +68,6 @@ target_link_libraries(krusader
                       ${KDE4_KHTML_LIBS}
                       ${KDE4_KDEUI_LIBS}
                       ${KDE4_KFILE_LIBS}
-                      ${QT_QT3SUPPORT_LIBRARY}
-                      ${KDE4_KDE3SUPPORT_LIBS}
                       ${KDE4_KDECORE_LIBS})
 
 install(TARGETS krusader ${INSTALL_TARGETS_DEFAULT_ARGS})
