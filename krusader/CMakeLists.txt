@@ -5,11 +5,11 @@ configure_file(krusaderversion.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/krusaderversi
 find_package(LibKonq)
 
 if(LIBKONQ_FOUND)
-    message("-- LibKonq found. Building with LibKonq features.")
+    message(STATUS "libkonq library found")
     add_definitions(-D__LIBKONQ__)
     include_directories( ${LIBKONQ_INCLUDE_DIR} )
 else(LIBKONQ_FOUND)
-    message("-- LibKonq not found. Building without LibKonq feature.")
+    message(STATUS "libkonq library not found")
 endif(LIBKONQ_FOUND)
 
 add_subdirectory(ActionMan)
