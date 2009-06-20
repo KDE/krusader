@@ -31,10 +31,10 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #ifndef KRVIEWFACTORY_H
 #define KRVIEWFACTORY_H
 
-#include <QString>
-#include <QKeySequence>
-#include <QWidget>
-#include <QList>
+#include <QtCore/QList>
+#include <QtCore/QString>
+#include <QtGui/QKeySequence>
+#include <QtGui/QWidget>
 
 class KrView;
 class KConfig;
