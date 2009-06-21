@@ -52,20 +52,19 @@
 #include <QtGui/QPrintDialog>
 #include <QtGui/QPrinter>
 
+#include <kuiserverjobtracker.h>
 #include <KColorScheme>
 #include <KTemporaryFile>
 #include <KMessageBox>
 #include <KActionCollection>
 #include <KInputDialog>
 #include <KFileDialog>
-
-#include <KIO/Job>
 #include <KLocale>
 #include <KGlobalSettings>
-#include <kio/copyjob.h>
-#include <kio/jobuidelegate.h>
-#include <kuiserverjobtracker.h>
-#include <kcharsets.h>
+#include <KCharsets>
+#include <KIO/Job>
+#include <KIO/CopyJob>
+#include <KIO/JobUiDelegate>
 
 #include "../krusader.h"
 #include "../GUI/krremoteencodingmenu.h"
@@ -1275,11 +1274,11 @@ void Lister::search(bool forward, bool restart)
 
     if (hex) {
         QString hexcontent = _searchLineEdit->text();
-        hexcontent.replace("0x", "");
-        hexcontent.replace(" ", "");
-        hexcontent.replace("\t", "");
-        hexcontent.replace("\n", "");
-        hexcontent.replace("\r", "");
+        hexcontent.remove('0x');
+        hexcontent.remove(' ');
+        hexcontent.remove('\t');
+        hexcontent.remove('\n');
+        hexcontent.remove('\r');
 
         _searchHexQuery = QByteArray();
 
@@ -1288,7 +1287,7 @@ void Lister::search(bool forward, bool restart)
             return;
         }
 
-        while (hexcontent != QString()) {
+        while (!hexcontent.isEmpty()) {
             QString hexData = hexcontent.left(2);
             hexcontent = hexcontent.mid(2);
             bool ok = true;
@@ -1498,7 +1497,7 @@ void Lister::searchTextChanged()
 {
     searchDelete();
     if (_fileSize < 0x10000) { // autosearch files less than 64k
-        if (_searchLineEdit->text() != QString()) {
+        if (!_searchLineEdit->text().isEmpty()) {
             bool isfirst;
             qint64 anchor = _textArea->getCursorAnchor();
             qint64 cursor = _textArea->getCursorPosition(isfirst);
