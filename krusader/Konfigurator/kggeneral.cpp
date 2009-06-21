@@ -118,6 +118,19 @@ KgGeneral::KgGeneral(bool first, QWidget* parent) :
                                    i18n("Internal editor and viewer opens each file in a separate window"), vboxWidget, false,
                                    i18n("If checked, each file will open in a separate window, otherwise, the viewer will work in a single, tabbed mode")));
 
+    QWidget * hboxWidget4 = new QWidget(vboxWidget);
+    QHBoxLayout * hbox4 = new QHBoxLayout(hboxWidget4);
+
+    QLabel *label5 = new QLabel(i18n("Use lister if the text file is bigger than:"), hboxWidget4);
+    hbox4->addWidget(label5);
+    KonfiguratorSpinBox *spinBox = createSpinBox("General", "Lister Limit", _ListerLimit,
+                                   0, 0x7FFFFFFF, hboxWidget4, false);
+    hbox4->addWidget(spinBox);
+    QLabel *label6 = new QLabel(i18n("MB"), hboxWidget4);
+    hbox4->addWidget(label6);
+
+    vbox->addWidget(hboxWidget4);
+
     hbox2->addWidget(vboxWidget);
     generalGrid->addWidget(hboxWidget2, 6, 0, 3, 2);
 

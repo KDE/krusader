@@ -73,7 +73,6 @@
 #define  SEARCH_CACHE_CHARS 100000
 #define  SEARCH_MAX_ROW_LEN 4000
 
-/* TODO: Implement size checking for viewing text files */
 /* TODO: Implement fast search for files less than 64k */
 /* TODO: Implement hex viewer */
 /* TODO: Implement hex search */

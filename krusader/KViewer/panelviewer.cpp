@@ -35,6 +35,7 @@
 #include <kde_file.h>
 
 #include "lister.h"
+#include "../defaults.h"
 
 #define DICTSIZE 211
 
@@ -67,6 +68,28 @@ PanelViewerBase::~PanelViewerBase()
     delete fallback;
 }
 
+KFileItem PanelViewerBase::readFileInfo(const KUrl & url)
+{
+    if (url.isLocalFile())
+        return KFileItem(KFileItem::Unknown, KFileItem::Unknown, url);
+
+    KIO::StatJob* statJob = KIO::stat(url, KIO::HideProgressInfo);
+    connect(statJob, SIGNAL(result(KJob*)), this, SLOT(slotStatResult(KJob*)));
+    busy = true;
+    while (busy) qApp->processEvents();
+    if (entry.count() != 0) {
+        return KFileItem(entry, url);
+    }
+    return KFileItem();
+}
+
+void PanelViewerBase::slotStatResult(KJob* job)
+{
+    if (!job || job->error()) entry = KIO::UDSEntry();
+    else entry = static_cast<KIO::StatJob*>(job)->statResult();
+    busy = false;
+}
+
 /* ----==={ PanelViewer }===---- */
 
 PanelViewer::PanelViewer(QWidget *parent) :
@@ -84,25 +107,41 @@ KParts::ReadOnlyPart* PanelViewer::openUrl(const KUrl &url, KrViewer::Mode mode)
     closeUrl();
     curl = url;
 
+    KIO::filesize_t fileSize = readFileInfo(curl).size();
+    KConfigGroup group(krConfig, "General");
+    KIO::filesize_t limit = (KIO::filesize_t)group.readEntry("Lister Limit", _ListerLimit);
+    limit *= 0x100000;
+    if (fileSize > limit && mode == KrViewer::Text)
+        mode = KrViewer::Lister;
+
     if (mode == KrViewer::Generic) {
         KMimeType::Ptr mt = KMimeType::findByUrl(curl);
         cmimetype = mt ? mt->name() : QString();
-        // KDE 4 HACK : START
-        // KDE 4 crashes at viewing directories
-        if (cmimetype == "inode/directory")
-            return 0;
-        // KDE 4 HACK : END
-        if (mimes->find(cmimetype) == mimes->end()) {
-            cpart = getPart(cmimetype);
-            mimes->insert(cmimetype, cpart);
-        } else
-            cpart = (*mimes)[ cmimetype ];
+        if (fileSize > limit && (cmimetype.startsWith(QLatin1String("text/")) ||
+                                 cmimetype.startsWith(QLatin1String("all/"))))
+            mode = KrViewer::Lister;
+        else {
+            // KDE 4 HACK : START
+            // KDE 4 crashes at viewing directories
+            if (cmimetype == "inode/directory")
+                return 0;
+            // KDE 4 HACK : END
+            if (mimes->find(cmimetype) == mimes->end()) {
+                cpart = getPart(cmimetype);
+                mimes->insert(cmimetype, cpart);
+            } else
+                cpart = (*mimes)[ cmimetype ];
+        }
     }
 
     KTemporaryFile tmpFile;
 
     if (mode == KrViewer::Lister) {
-        cpart = new Lister(this);
+        if (mimes->find(QLatin1String("krusader_lister")) == mimes->end()) {
+            cpart = new Lister(this);
+            mimes->insert(QLatin1String("krusader_lister"), cpart);
+        } else
+            cpart = (*mimes)[ QLatin1String("krusader_lister")];
     }
 
     if (mode == KrViewer::Hex) {
@@ -276,14 +315,9 @@ KParts::ReadOnlyPart* PanelEditor::openUrl(const KUrl &url, KrViewer::Mode mode)
     }
 
     bool create = true;
-    KIO::StatJob* statJob = KIO::stat(url, KIO::HideProgressInfo);
-    connect(statJob, SIGNAL(result(KJob*)), this, SLOT(slotStatResult(KJob*)));
-    busy = true;
-    while (busy) qApp->processEvents();
-    if (entry.count() != 0) {
-        KFileItem file(entry, url);
-        if (file.isReadable()) create = false;
-    }
+    KFileItem file = readFileInfo(url);
+    if (!file.isNull() && file.isReadable())
+        create = false;
 
     if (create) {
         if (static_cast<KParts::ReadWritePart *>((KParts::ReadOnlyPart *)cpart)->saveAs(curl)) {
@@ -345,13 +379,6 @@ KParts::ReadWritePart* PanelEditor::getPart(QString mimetype)
         }
     }
     return part;
-}
-
-void PanelEditor::slotStatResult(KJob* job)
-{
-    if (!job || job->error()) entry = KIO::UDSEntry();
-    else entry = static_cast<KIO::StatJob*>(job)->statResult();
-    busy = false;
 }
 
 bool PanelEditor::isModified()

@@ -54,6 +54,8 @@ public:
     }
     virtual bool isEditor() = 0;
 
+    KFileItem readFileInfo(const KUrl &);
+
 public slots:
     virtual KParts::ReadOnlyPart* openUrl(const KUrl&, KrViewer::Mode = KrViewer::Generic) {
         return 0;
@@ -74,6 +76,7 @@ protected slots:
     void slotCPartDestroyed() {
         emit partDestroyed(this);
     }
+    void slotStatResult(KJob* job);
 
 protected:
     QHash<QString, QPointer<KParts::ReadOnlyPart> > *mimes;
@@ -83,6 +86,8 @@ protected:
     KUrl curl;
     QLabel *fallback;
 
+    bool busy;
+    KIO::UDSEntry entry;
 };
 
 class PanelViewer: public PanelViewerBase
@@ -119,7 +124,6 @@ public slots:
     KParts::ReadOnlyPart* openUrl(const KUrl &url, KrViewer::Mode mode = KrViewer::Generic);
     bool closeUrl();
     bool queryClose();
-    void slotStatResult(KJob* job);
 
 public:
     PanelEditor(QWidget *parent = 0);
@@ -127,9 +131,6 @@ public:
 
 protected:
     KParts::ReadWritePart* getPart(QString mimetype);
-
-    bool busy;
-    KIO::UDSEntry entry;
 };
 
 #endif
