@@ -1698,7 +1698,7 @@ void Lister::print()
 
                 painter.setFont(fixedFont);
                 int yoffset = normalFontHeight + 1;
-                foreach(QString row, rows) {
+                foreach(const QString &row, rows) {
                     painter.drawText(0, yoffset + fixedFontHeight, row);
                     yoffset += fixedFontHeight;
                 }
