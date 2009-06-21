@@ -70,6 +70,9 @@ public:
     void           fileToTextPosition(qint64 p, bool isfirst, int &x, int &y);
 
     QTextCodec   * codec();
+    int            tabWidth() {
+        return _tabWidth;
+    }
 
     void           copySelectedToClipboard();
 
@@ -146,6 +149,7 @@ public:
 
 public slots:
     void copy();
+    void print();
 
 protected:
     Lister   *_lister;
@@ -189,6 +193,7 @@ public slots:
     void            jumpToPosition();
     void            saveAs();
     void            saveSelected();
+    void            print();
 
 protected slots:
     void            slotUpdate();
@@ -219,6 +224,7 @@ protected:
 
     qint64          getFileSize();
     void            search(bool forward);
+    QStringList     readLines(qint64 &filePos, qint64 endPos, int columns, int lines);
 
     QTimer          _updateTimer;
     ListerTextArea *_textArea;
@@ -240,6 +246,7 @@ protected:
 
     KAction        *_actionSaveSelected;
     KAction        *_actionSaveAs;
+    KAction        *_actionPrint;
     KAction        *_actionSearch;
     KAction        *_actionSearchNext;
     KAction        *_actionSearchPrev;

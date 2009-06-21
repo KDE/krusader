@@ -32,6 +32,7 @@
 
 #include <QtCore/QFile>
 #include <QtCore/QRect>
+#include <QtCore/QDate>
 #include <QtCore/QTextCodec>
 #include <QtCore/QTextStream>
 #include <QtGui/QLayout>
@@ -48,6 +49,8 @@
 #include <QtGui/QScrollBar>
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QMenu>
+#include <QtGui/QPrintDialog>
+#include <QtGui/QPrinter>
 
 #include <KColorScheme>
 #include <KTemporaryFile>
@@ -70,9 +73,10 @@
 #define  SEARCH_CACHE_CHARS 100000
 #define  SEARCH_MAX_ROW_LEN 4000
 
-/* TODO: Implement print */
-/* TODO: Implement hex viewer */
 /* TODO: Implement size checking for viewing text files */
+/* TODO: Implement fast search for files less than 64k */
+/* TODO: Implement hex viewer */
+/* TODO: Implement hex search */
 /* TODO: Implement isFirst at fileToTextPosition */
 
 ListerTextArea::ListerTextArea(Lister *lister, QWidget *parent) : KTextEdit(parent), _lister(lister),
@@ -885,11 +889,17 @@ ListerBrowserExtension::ListerBrowserExtension(Lister * lister) : KParts::Browse
     _lister = lister;
 
     emit enableAction("copy", true);
+    emit enableAction("print", true);
 }
 
 void ListerBrowserExtension::copy()
 {
     _lister->textArea()->copySelectedToClipboard();
+}
+
+void ListerBrowserExtension::print()
+{
+    _lister->print();
 }
 
 class ListerEncodingMenu : public KrRemoteEncodingMenu
@@ -928,6 +938,11 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
     _actionSaveAs = new KAction(KIcon("document-save-as"), i18n("Save as..."), this);
     connect(_actionSaveAs, SIGNAL(triggered(bool)), SLOT(saveAs()));
     actionCollection()->addAction("save_as", _actionSaveAs);
+
+    _actionPrint = new KAction(KIcon("document-print"), i18n("Print..."), this);
+    _actionPrint->setShortcut(Qt::CTRL + Qt::Key_P);
+    connect(_actionPrint, SIGNAL(triggered(bool)), SLOT(print()));
+    actionCollection()->addAction("print", _actionPrint);
 
     _actionSearch = new KAction(KIcon("system-search"), i18n("Search"), this);
     _actionSearch->setShortcut(Qt::CTRL + Qt::Key_F);
@@ -1589,4 +1604,170 @@ void Lister::setCharacterSet(QString set)
 {
     _characterSet = set;
     _textArea->redrawTextArea(true);
+}
+
+void Lister::print()
+{
+    bool isfirst;
+    qint64 anchor = _textArea->getCursorAnchor();
+    qint64 cursor = _textArea->getCursorPosition(isfirst);
+    bool hasSelection = (anchor != -1 && anchor != cursor);
+
+    QString docName = url().fileName();
+    QPrinter printer;
+    printer.setDocName(docName);
+
+    QPointer<QPrintDialog> printDialog = new QPrintDialog(&printer, _textArea);
+
+    if (hasSelection)
+        printDialog->addEnabledOption(QAbstractPrintDialog::PrintSelection);
+
+    if (printDialog->exec()) {
+        if (printer.pageOrder() == QPrinter::LastPageFirst) {
+            switch (KMessageBox::warningContinueCancel(_textArea,
+                    i18n("Reverse printing is not supported. Continue with normal printing?"))) {
+            case KMessageBox::Continue :
+                break;
+            default:
+                return;
+            }
+        }
+        QPainter painter;
+        painter.begin(&printer);
+
+        QDate date = QDate::currentDate();
+        QString dateString = date.toString(Qt::SystemLocaleShortDate);
+
+        QRect pageRect = printer.pageRect();
+        QRect drawingRect(0, 0, pageRect.width(), pageRect.height());
+
+        QFont normalFont = KGlobalSettings::generalFont();
+        QFont fixedFont  = KGlobalSettings::fixedFont();
+
+        QFontMetrics fmNormal(normalFont);
+        int normalFontHeight = fmNormal.height();
+
+        QFontMetrics fmFixed(fixedFont);
+        int fixedFontHeight = fmFixed.height();
+        int fixedFontWidth = fmFixed.width("W");
+        if (fixedFontHeight <= 0)
+            fixedFontHeight = 1;
+        if (fixedFontWidth <= 0)
+            fixedFontWidth = 1;
+
+        int effPageSize = drawingRect.height() - normalFontHeight - 1;
+        int rowsPerPage = effPageSize / fixedFontHeight;
+        if (rowsPerPage <= 0)
+            rowsPerPage = 1;
+        int columnsPerPage = drawingRect.width() / fixedFontWidth;
+        if (columnsPerPage <= 0)
+            columnsPerPage = 1;
+
+        bool firstPage = true;
+
+        qint64 startPos = 0;
+        qint64 endPos = _fileSize;
+        if (printer.printRange() == QPrinter::Selection) {
+            if (anchor > cursor)
+                startPos = cursor, endPos = anchor;
+            else
+                startPos = anchor, endPos = cursor;
+        }
+
+        for (int page = 1;; ++page) {
+            QStringList rows = readLines(startPos, endPos, columnsPerPage, rowsPerPage);
+
+            bool visible = true;
+            if (printer.fromPage() && page < printer.fromPage())
+                visible = false;
+            if (printer.toPage() && printer.toPage() >= printer.fromPage() && page > printer.toPage())
+                visible = false;
+
+            if (visible) {
+                if (!firstPage)
+                    printer.newPage();
+                firstPage = false;
+                // Use the painter to draw on the page.
+                painter.setFont(normalFont);
+
+                painter.drawText(drawingRect, Qt::AlignLeft, dateString);
+                painter.drawText(drawingRect, Qt::AlignHCenter, docName);
+                painter.drawText(drawingRect, Qt::AlignRight, QString("%1").arg(page));
+
+                painter.drawLine(0, normalFontHeight, drawingRect.width(), normalFontHeight);
+
+                painter.setFont(fixedFont);
+                int yoffset = normalFontHeight + 1;
+                foreach(QString row, rows) {
+                    painter.drawText(0, yoffset + fixedFontHeight, row);
+                    yoffset += fixedFontHeight;
+                }
+            }
+            if (startPos >= endPos)
+                break;
+        }
+    }
+
+    delete printDialog;
+}
+
+QStringList Lister::readLines(qint64 &filePos, qint64 endPos, int columns, int lines)
+{
+    QStringList list;
+    int maxBytes = columns * lines * MAX_CHAR_LENGTH;
+    if (maxBytes > (endPos - filePos))
+        maxBytes = (int)(endPos - filePos);
+    if (maxBytes <= 0)
+        return list;
+    char * cache = cacheRef(filePos, maxBytes);
+    if (cache == 0 || maxBytes == 0)
+        return list;
+
+    QTextCodec * textCodec = _textArea->codec();
+    QTextDecoder * decoder = textCodec->makeDecoder();
+
+    int cnt = 0;
+    int y = 0;
+    QString row = "";
+    bool isLastLongLine = false;
+    while (cnt < maxBytes && y < lines) {
+        QString chr = decoder->toUnicode(cache + (cnt++), 1);
+        if (!chr.isEmpty()) {
+            if (chr == "\n") {
+                if (!isLastLongLine) {
+                    list << row;
+                    row = "";
+                    y++;
+                }
+                isLastLongLine = false;
+            } else {
+                isLastLongLine = false;
+                if (chr == "\t") {
+                    int tabLength = _textArea->tabWidth() - (row.length() % _textArea->tabWidth());
+                    if (row.length() + tabLength > columns) {
+                        list << row;
+                        row = "";
+                        y++;
+                    }
+                    row += QString(tabLength, QChar(' '));
+                } else
+                    row += chr;
+
+                if (row.length() >= columns) {
+                    list << row;
+                    row = "";
+                    y++;
+                    isLastLongLine = true;
+                }
+            }
+        }
+    }
+
+    if (y < lines)
+        list << row;
+
+    filePos += cnt;
+
+    delete decoder;
+    return list;
 }
