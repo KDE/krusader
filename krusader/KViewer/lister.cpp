@@ -73,9 +73,8 @@
 #define  SEARCH_CACHE_CHARS 100000
 #define  SEARCH_MAX_ROW_LEN 4000
 
-/* TODO: Implement hex viewer */
 /* TODO: Implement hex search */
-/* TODO: Implement isFirst at fileToTextPosition */
+/* TODO: Implement hex viewer */
 
 ListerTextArea::ListerTextArea(Lister *lister, QWidget *parent) : KTextEdit(parent), _lister(lister),
         _sizeX(-1), _sizeY(-1), _cursorAnchorPos(-1), _inSliderOp(false), _inCursorUpdate(false)
@@ -181,7 +180,7 @@ qint64 ListerTextArea::textToFilePosition(int x, int y, bool &isfirst)
     return rowStart + stream.pos();
 }
 
-void ListerTextArea::fileToTextPosition(qint64 p, bool /* isfirst */, int &x, int &y)
+void ListerTextArea::fileToTextPosition(qint64 p, bool isfirst, int &x, int &y)
 {
     if (p < _screenStartPos || p > _screenEndPos || _rowStarts.count() < 1) {
         x = -1;
@@ -200,6 +199,19 @@ void ListerTextArea::fileToTextPosition(qint64 p, bool /* isfirst */, int &x, in
         qint64 rowStart = _rowStarts[ y ];
         x = 0;
         if (rowStart >= p) {
+            if ((rowStart == p) && !isfirst && y > 0) {
+                qint64 previousRow = _rowStarts[ y - 1 ];
+                char * cache = _lister->cacheRef(previousRow, maxBytes);
+                QByteArray cachedBuffer(cache, p - previousRow);
+
+                QTextStream stream(&cachedBuffer);
+                stream.setCodec(codec());
+                stream.read(_rowContent[ y - 1].length());
+                if (previousRow + stream.pos() == p) {
+                    y--;
+                    x = _rowContent[ y ].length();
+                }
+            }
             return;
         }
 
