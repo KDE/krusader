@@ -202,6 +202,7 @@ protected slots:
     void            searchSucceeded();
     void            searchFailed();
     void            searchDelete();
+    void            searchTextChanged();
 
     void            slotFileDataReceived(KIO::Job *, const QByteArray &);
     void            slotFileFinished(KJob *);
@@ -221,9 +222,10 @@ protected:
     void            setColor(bool match, bool restore);
     void            hideProgressBar();
     void            updateProgressBar();
+    void            resetSearchPosition();
 
     qint64          getFileSize();
-    void            search(bool forward);
+    void            search(bool forward, bool restart = false);
     QStringList     readLines(qint64 &filePos, qint64 endPos, int columns, int lines);
 
     QTimer          _updateTimer;
@@ -276,6 +278,7 @@ protected:
     KTemporaryFile *_tempFile;
 
     bool            _downloading;
+    bool            _restartFromBeginning;
 
     qint64          _savePosition;
     qint64          _saveEnd;

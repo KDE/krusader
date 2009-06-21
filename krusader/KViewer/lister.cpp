@@ -73,7 +73,6 @@
 #define  SEARCH_CACHE_CHARS 100000
 #define  SEARCH_MAX_ROW_LEN 4000
 
-/* TODO: Implement fast search for files less than 64k */
 /* TODO: Implement hex viewer */
 /* TODO: Implement hex search */
 /* TODO: Implement isFirst at fileToTextPosition */
@@ -1006,7 +1005,7 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
     _originalForeground = _searchLineEdit->palette().color(QPalette::Text);
 
     connect(_searchLineEdit, SIGNAL(returnPressed()), this, SLOT(searchNext()));
-    connect(_searchLineEdit, SIGNAL(textChanged(const QString &)), this, SLOT(searchDelete()));
+    connect(_searchLineEdit, SIGNAL(textChanged(const QString &)), this, SLOT(searchTextChanged()));
 
     hbox->addWidget(_searchLineEdit);
     _searchNextButton = new QPushButton(KIcon("go-down"), i18n("Next"), statusWidget);
@@ -1237,8 +1236,9 @@ void Lister::searchPrev()
     search(false);
 }
 
-void Lister::search(bool forward)
+void Lister::search(bool forward, bool restart)
 {
+    _restartFromBeginning = restart;
     if (_searchInProgress || _searchLineEdit->text().isEmpty())
         return;
     if (_searchLineEdit->isHidden())
@@ -1285,8 +1285,12 @@ void Lister::slotSearchMore()
         _searchPosition--;
 
     if (_searchPosition < 0 || _searchPosition >= _fileSize) {
-        searchFailed();
-        return;
+        if (_restartFromBeginning)
+            resetSearchPosition();
+        else {
+            searchFailed();
+            return;
+        }
     }
 
     int maxCacheSize = SEARCH_CACHE_CHARS;
@@ -1367,16 +1371,28 @@ void Lister::slotSearchMore()
     }
 
     if (_searchIsForward && searchPos + cnt >= _fileSize) {
-        searchFailed();
-        return;
-    }
-
-    if (_searchPosition <= 0 || _searchPosition >= _fileSize) {
-        searchFailed();
-        return;
+        if (_restartFromBeginning)
+            resetSearchPosition();
+        else {
+            searchFailed();
+            return;
+        }
+    } else if (_searchPosition <= 0 || _searchPosition >= _fileSize) {
+        if (_restartFromBeginning)
+            resetSearchPosition();
+        else {
+            searchFailed();
+            return;
+        }
     }
 
     QTimer::singleShot(0, this, SLOT(slotSearchMore()));
+}
+
+void Lister::resetSearchPosition()
+{
+    _restartFromBeginning = false;
+    _searchPosition = _searchIsForward ? 0 : _fileSize - 1;
 }
 
 void Lister::searchSucceeded()
@@ -1408,6 +1424,22 @@ void Lister::searchDelete()
     _searchLastFailedPosition = -1;
 
     enableActions(true);
+}
+
+void Lister::searchTextChanged()
+{
+    searchDelete();
+    if (_fileSize < 0x10000) { // autosearch files less than 64k
+        if (_searchLineEdit->text() != QString()) {
+            bool isfirst;
+            qint64 anchor = _textArea->getCursorAnchor();
+            qint64 cursor = _textArea->getCursorPosition(isfirst);
+            if (cursor > anchor && anchor != -1) {
+                _textArea->setCursorPosition(anchor, true);
+            }
+            search(true, true);
+        }
+    }
 }
 
 void Lister::setColor(bool match, bool restore)
