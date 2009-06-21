@@ -1367,10 +1367,17 @@ void Lister::slotSearchMore()
     if (_searchHexadecimal) {
         QByteArray cacheItems(cache, maxCacheSize);
         int ndx = _searchIsForward ? cacheItems.indexOf(_searchHexQuery) : cacheItems.lastIndexOf(_searchHexQuery);
-        _searchPosition += maxCacheSize;
-        if (maxCacheSize > _searchHexQuery.length())
-            _searchPosition -= _searchHexQuery.length();
-        cnt = _searchPosition - searchPos;
+        if (maxCacheSize > _searchHexQuery.length()) {
+            if (_searchIsForward) {
+                _searchPosition = searchPos + maxCacheSize;
+                if ((_searchPosition < _fileSize) && (maxCacheSize > _searchHexQuery.length()))
+                    _searchPosition -= _searchHexQuery.length();
+                cnt = _searchPosition - searchPos;
+            } else {
+                if (_searchPosition > 0)
+                    _searchPosition += _searchHexQuery.length();
+            }
+        }
         if (ndx != -1) {
             foundAnchor = searchPos + ndx;
             foundCursor = foundAnchor + _searchHexQuery.length();
@@ -1471,6 +1478,8 @@ void Lister::searchFailed()
     hideProgressBar();
     bool isfirst;
     _searchLastFailedPosition = _textArea->getCursorPosition(isfirst);
+    if (!_searchIsForward)
+        _searchLastFailedPosition--;
 
     enableActions(true);
 }
