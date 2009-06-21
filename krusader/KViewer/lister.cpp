@@ -73,7 +73,6 @@
 #define  SEARCH_CACHE_CHARS 100000
 #define  SEARCH_MAX_ROW_LEN 4000
 
-/* TODO: Implement hex search */
 /* TODO: Implement hex viewer */
 
 ListerTextArea::ListerTextArea(Lister *lister, QWidget *parent) : KTextEdit(parent), _lister(lister),
@@ -851,6 +850,8 @@ void ListerTextArea::ensureVisibleCursor()
             while (readPos < newScreenStart) {
                 previousPos = readPos;
                 readLines(readPos, readPos, 1);
+                if (readPos == previousPos)
+                    break;
             }
 
             newScreenStart = previousPos;
@@ -1040,6 +1041,8 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
     _matchWholeWordsOnlyAction->setCheckable(true);
     _regExpAction = menu->addAction(i18n("RegExp"));
     _regExpAction->setCheckable(true);
+    _hexAction = menu->addAction(i18n("Hexadecimal"));
+    _hexAction->setCheckable(true);
     _searchOptions->setMenu(menu);
 
     hbox->addWidget(_searchOptions);
@@ -1127,7 +1130,7 @@ void Lister::slotFileFinished(KJob *job)
     _tempFile->flush();
     if (job->error()) {   /* any error occurred? */
         KIO::TransferJob *kioJob = (KIO::TransferJob *)job;
-        KMessageBox::error(0, i18n("Error reading file %1!", kioJob->url().pathOrUrl()));
+        KMessageBox::error(_textArea, i18n("Error reading file %1!", kioJob->url().pathOrUrl()));
     }
     _downloading = false;
 }
@@ -1268,9 +1271,39 @@ void Lister::search(bool forward, bool restart)
     bool caseSensitive = _caseSensitiveAction->isChecked();
     bool matchWholeWord = _matchWholeWordsOnlyAction->isChecked();
     bool regExp = _regExpAction->isChecked();
+    bool hex = _hexAction->isChecked();
 
-    _searchQuery.setContent(_searchLineEdit->text(), caseSensitive, matchWholeWord, false, _textArea->codec()->name(), regExp);
+    if (hex) {
+        QString hexcontent = _searchLineEdit->text();
+        hexcontent.replace("0x", "");
+        hexcontent.replace(" ", "");
+        hexcontent.replace("\t", "");
+        hexcontent.replace("\n", "");
+        hexcontent.replace("\r", "");
+
+        _searchHexQuery = QByteArray();
+
+        if (hexcontent.length() & 1) {
+            setColor(false, false);
+            return;
+        }
+
+        while (hexcontent != QString()) {
+            QString hexData = hexcontent.left(2);
+            hexcontent = hexcontent.mid(2);
+            bool ok = true;
+            int c = hexData.toUInt(&ok, 16);
+            if (!ok) {
+                setColor(false, false);
+                return;
+            }
+            _searchHexQuery.push_back((char) c);
+        }
+    } else {
+        _searchQuery.setContent(_searchLineEdit->text(), caseSensitive, matchWholeWord, false, _textArea->codec()->name(), regExp);
+    }
     _searchIsForward = forward;
+    _searchHexadecimal = hex;
 
     QTimer::singleShot(0, this, SLOT(slotSearchMore()));
     _searchInProgress = true;
@@ -1327,54 +1360,68 @@ void Lister::slotSearchMore()
         return;
     }
 
-    QTextCodec * textCodec = _textArea->codec();
-    QTextDecoder * decoder = textCodec->makeDecoder();
-
-    int cnt = 0;
-    int rowStart = 0;
-
-    QString row = "";
     qint64 foundAnchor = -1;
     qint64 foundCursor = -1;
+    int cnt = 0;
 
-    while (cnt < maxCacheSize) {
-        QString chr = decoder->toUnicode(cache + (cnt++), 1);
-        if (!chr.isEmpty() || cnt >= maxCacheSize) {
-            if (chr != "\n")
-                row += chr;
+    if (_searchHexadecimal) {
+        QByteArray cacheItems(cache, maxCacheSize);
+        int ndx = _searchIsForward ? cacheItems.indexOf(_searchHexQuery) : cacheItems.lastIndexOf(_searchHexQuery);
+        _searchPosition += maxCacheSize;
+        if (maxCacheSize > _searchHexQuery.length())
+            _searchPosition -= _searchHexQuery.length();
+        cnt = _searchPosition - searchPos;
+        if (ndx != -1) {
+            foundAnchor = searchPos + ndx;
+            foundCursor = foundAnchor + _searchHexQuery.length();
+        }
+    } else {
+        QTextCodec * textCodec = _textArea->codec();
+        QTextDecoder * decoder = textCodec->makeDecoder();
 
-            if (chr == "\n" || row.length() >= SEARCH_MAX_ROW_LEN || cnt >= maxCacheSize) {
-                if (setPosition) {
-                    _searchPosition = searchPos + cnt;
-                    if (!_searchIsForward) {
-                        _searchPosition ++;
-                        setPosition = false;
+        int rowStart = 0;
+
+        QString row = "";
+
+        while (cnt < maxCacheSize) {
+            QString chr = decoder->toUnicode(cache + (cnt++), 1);
+            if (!chr.isEmpty() || cnt >= maxCacheSize) {
+                if (chr != "\n")
+                    row += chr;
+
+                if (chr == "\n" || row.length() >= SEARCH_MAX_ROW_LEN || cnt >= maxCacheSize) {
+                    if (setPosition) {
+                        _searchPosition = searchPos + cnt;
+                        if (!_searchIsForward) {
+                            _searchPosition ++;
+                            setPosition = false;
+                        }
                     }
+
+                    if (_searchQuery.checkLine(row, !_searchIsForward)) {
+                        QByteArray cachedBuffer(cache + rowStart, maxCacheSize - rowStart);
+
+                        QTextStream stream(&cachedBuffer);
+                        stream.setCodec(textCodec);
+
+                        stream.read(_searchQuery.matchIndex());
+                        foundAnchor = searchPos + rowStart + stream.pos();
+
+                        stream.read(_searchQuery.matchLength());
+                        foundCursor = searchPos + rowStart + stream.pos();
+
+                        if (_searchIsForward)
+                            break;
+                    }
+
+                    row = "";
+                    rowStart = cnt;
                 }
-
-                if (_searchQuery.checkLine(row, !_searchIsForward)) {
-                    QByteArray cachedBuffer(cache + rowStart, maxCacheSize - rowStart);
-
-                    QTextStream stream(&cachedBuffer);
-                    stream.setCodec(textCodec);
-
-                    stream.read(_searchQuery.matchIndex());
-                    foundAnchor = searchPos + rowStart + stream.pos();
-
-                    stream.read(_searchQuery.matchLength());
-                    foundCursor = searchPos + rowStart + stream.pos();
-
-                    if (_searchIsForward)
-                        break;
-                }
-
-                row = "";
-                rowStart = cnt;
             }
         }
-    }
 
-    delete decoder;
+        delete decoder;
+    }
 
     if (foundAnchor != -1 && foundCursor != -1) {
         _textArea->setAnchorAndCursor(foundAnchor, foundCursor);

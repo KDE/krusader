@@ -238,6 +238,7 @@ protected:
     QPushButton    *_searchNextButton;
     QPushButton    *_searchPrevButton;
     bool            _searchInProgress;
+    bool            _searchHexadecimal;
     QPushButton    *_searchOptions;
     QLabel         *_statusLabel;
 
@@ -245,6 +246,7 @@ protected:
     QAction        *_caseSensitiveAction;
     QAction        *_matchWholeWordsOnlyAction;
     QAction        *_regExpAction;
+    QAction        *_hexAction;
 
     KAction        *_actionSaveSelected;
     KAction        *_actionSaveAs;
@@ -265,6 +267,7 @@ protected:
     bool            _active;
 
     KRQuery         _searchQuery;
+    QByteArray      _searchHexQuery;
     qint64          _searchPosition;
     bool            _searchIsForward;
     qint64          _searchLastFailedPosition;
