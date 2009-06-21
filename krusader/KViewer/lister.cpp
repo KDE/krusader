@@ -1274,7 +1274,7 @@ void Lister::search(bool forward, bool restart)
 
     if (hex) {
         QString hexcontent = _searchLineEdit->text();
-        hexcontent.remove('0x');
+        hexcontent.remove(QLatin1String("0x"));
         hexcontent.remove(' ');
         hexcontent.remove('\t');
         hexcontent.remove('\n');
