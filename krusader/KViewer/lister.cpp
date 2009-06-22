@@ -72,6 +72,7 @@
 #define  SEARCH_CACHE_CHARS 100000
 #define  SEARCH_MAX_ROW_LEN 4000
 #define  CONTROL_CHAR       752
+#define  CACHE_SIZE         100000
 
 ListerTextArea::ListerTextArea(Lister *lister, QWidget *parent) : KTextEdit(parent), _lister(lister),
         _sizeX(-1), _sizeY(-1), _cursorAnchorPos(-1), _inSliderOp(false), _inCursorUpdate(false), _hexMode(false)
@@ -758,18 +759,26 @@ void ListerTextArea::slotActionTriggered(int action)
         if (_screenStartPos == 0)
             break;
 
-        int maxSize = _sizeX * _sizeY * MAX_CHAR_LENGTH;
-        qint64 readPos = _screenStartPos - maxSize;
-        if (readPos < 0)
-            readPos = 0;
-        qint64 previousPos = readPos;
+        if (_hexMode) {
+            int bytesPerRow = _lister->hexBytesPerLine(_sizeX);
+            _screenStartPos = (_screenStartPos / bytesPerRow) * bytesPerRow;
+            _screenStartPos -= bytesPerRow;
+            if (_screenStartPos < 0)
+                _screenStartPos = 0;
+        } else {
+            int maxSize = _sizeX * _sizeY * MAX_CHAR_LENGTH;
+            qint64 readPos = _screenStartPos - maxSize;
+            if (readPos < 0)
+                readPos = 0;
+            qint64 previousPos = readPos;
 
-        while (readPos < _screenStartPos) {
-            previousPos = readPos;
-            readLines(readPos, readPos, 1);
+            while (readPos < _screenStartPos) {
+                previousPos = readPos;
+                readLines(readPos, readPos, 1);
+            }
+
+            _screenStartPos = previousPos;
         }
-
-        _screenStartPos = previousPos;
     }
     break;
     case QAbstractSlider::SliderPageStepAdd: {
@@ -793,32 +802,40 @@ void ListerTextArea::slotActionTriggered(int action)
         if (_screenStartPos == 0)
             break;
 
-        int maxSize = 2 * _sizeX * _sizeY * MAX_CHAR_LENGTH;
-        qint64 readPos = _screenStartPos - maxSize;
-        if (readPos < 0)
-            readPos = 0;
+        if (_hexMode) {
+            int bytesPerRow = _lister->hexBytesPerLine(_sizeX);
+            _screenStartPos = (_screenStartPos / bytesPerRow) * bytesPerRow;
+            _screenStartPos -= _sizeY * bytesPerRow;
+            if (_screenStartPos < 0)
+                _screenStartPos = 0;
+        } else {
+            int maxSize = 2 * _sizeX * _sizeY * MAX_CHAR_LENGTH;
+            qint64 readPos = _screenStartPos - maxSize;
+            if (readPos < 0)
+                readPos = 0;
 
-        int numRows = _sizeY;
-        if (numRows < 1)
-            numRows = 1;
-        qint64 previousPoses[ numRows ];
-        for (int i = 0; i != numRows; i++)
-            previousPoses[ i ] = -1;
+            int numRows = _sizeY;
+            if (numRows < 1)
+                numRows = 1;
+            qint64 previousPoses[ numRows ];
+            for (int i = 0; i != numRows; i++)
+                previousPoses[ i ] = -1;
 
-        int circularCounter = 0;
-        while (readPos < _screenStartPos) {
-            previousPoses[ circularCounter ]  = readPos;
-            circularCounter = (circularCounter + 1) % numRows;
-            readLines(readPos, readPos, 1);
+            int circularCounter = 0;
+            while (readPos < _screenStartPos) {
+                previousPoses[ circularCounter ]  = readPos;
+                circularCounter = (circularCounter + 1) % numRows;
+                readLines(readPos, readPos, 1);
+            }
+
+            _skippedLines = _sizeY;
+            while (previousPoses[ circularCounter ] == -1) {
+                circularCounter = (++circularCounter) % numRows;
+                _skippedLines--;
+            }
+
+            _screenStartPos = previousPoses[ circularCounter ];
         }
-
-        _skippedLines = _sizeY;
-        while (previousPoses[ circularCounter ] == -1) {
-            circularCounter = (++circularCounter) % numRows;
-            _skippedLines--;
-        }
-
-        _screenStartPos = previousPoses[ circularCounter ];
     }
     break;
     case QAbstractSlider::SliderToMinimum:
@@ -844,18 +861,23 @@ void ListerTextArea::slotActionTriggered(int action)
             pos = _lastPageStartPos * pos / SLIDER_MAX;
 
         if (pos != 0) {
-            int maxSize = _sizeX * _sizeY * MAX_CHAR_LENGTH;
-            qint64 readPos = pos - maxSize;
-            if (readPos < 0)
-                readPos = 0;
-            qint64 previousPos = readPos;
+            if (_hexMode) {
+                int bytesPerRow = _lister->hexBytesPerLine(_sizeX);
+                pos = (pos / bytesPerRow) * bytesPerRow;
+            } else {
+                int maxSize = _sizeX * _sizeY * MAX_CHAR_LENGTH;
+                qint64 readPos = pos - maxSize;
+                if (readPos < 0)
+                    readPos = 0;
+                qint64 previousPos = readPos;
 
-            while (readPos <= pos) {
-                previousPos = readPos;
-                readLines(readPos, readPos, 1);
+                while (readPos <= pos) {
+                    previousPos = readPos;
+                    readLines(readPos, readPos, 1);
+                }
+
+                pos = previousPos;
             }
-
-            pos = previousPos;
         }
 
         _screenStartPos = pos;
@@ -950,6 +972,7 @@ void ListerTextArea::setHexMode(bool hexMode)
     bool isfirst;
     qint64 pos = getCursorPosition(isfirst);
     _hexMode = hexMode;
+    _screenStartPos = 0;
     calculateText(true);
     setCursorPosition(pos, isfirst);
     ensureVisibleCursor();
@@ -1210,8 +1233,8 @@ char * Lister::cacheRef(qint64 filePos, int &size)
     if ((_cache != 0) && (filePos >= _cachePos) && (filePos + size <= _cachePos + _cacheSize))
         return _cache + (filePos - _cachePos);
 
-    int cacheSize = size * LISTER_CACHE_FACTOR;
-    int negativeOffset = size * (LISTER_CACHE_FACTOR / 2);
+    int cacheSize = CACHE_SIZE;
+    int negativeOffset = CACHE_SIZE * 2 / 5;
     qint64 cachePos = filePos - negativeOffset;
     if (cachePos < 0)
         cachePos = 0;

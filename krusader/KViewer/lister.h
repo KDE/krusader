@@ -43,7 +43,6 @@
 
 #include "../VFS/krquery.h"
 
-#define  LISTER_CACHE_FACTOR 3
 #define  SLIDER_MAX          10000
 #define  MAX_CHAR_LENGTH     4
 
