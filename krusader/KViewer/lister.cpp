@@ -71,11 +71,10 @@
 
 #define  SEARCH_CACHE_CHARS 100000
 #define  SEARCH_MAX_ROW_LEN 4000
-
-/* TODO: Implement hex viewer */
+#define  CONTROL_CHAR       752
 
 ListerTextArea::ListerTextArea(Lister *lister, QWidget *parent) : KTextEdit(parent), _lister(lister),
-        _sizeX(-1), _sizeY(-1), _cursorAnchorPos(-1), _inSliderOp(false), _inCursorUpdate(false)
+        _sizeX(-1), _sizeY(-1), _cursorAnchorPos(-1), _inSliderOp(false), _inCursorUpdate(false), _hexMode(false)
 {
     connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(slotCursorPositionChanged()));
     _tabWidth = 4;
@@ -167,6 +166,13 @@ qint64 ListerTextArea::textToFilePosition(int x, int y, bool &isfirst)
     if (x == 0)
         return rowStart;
 
+    if (_hexMode) {
+        qint64 pos = rowStart + _lister->hexPositionToIndex(_sizeX, x);
+        if (pos > _lister->fileSize())
+            pos = _lister->fileSize();
+        return pos;
+    }
+
     // we can't use fromUnicode because of the invalid encoded chars
     int maxBytes = 2 * _sizeX * MAX_CHAR_LENGTH;
     char * cache = _lister->cacheRef(rowStart, maxBytes);
@@ -193,8 +199,13 @@ void ListerTextArea::fileToTextPosition(qint64 p, bool isfirst, int &x, int &y)
             return;
         }
 
-        int maxBytes = 2 * _sizeX * MAX_CHAR_LENGTH;
         qint64 rowStart = _rowStarts[ y ];
+        if (_hexMode) {
+            x = _lister->hexIndexToPosition(_sizeX, (int)(p - rowStart));
+            return;
+        }
+
+        int maxBytes = 2 * _sizeX * MAX_CHAR_LENGTH;
         x = 0;
         if (rowStart >= p) {
             if ((rowStart == p) && !isfirst && y > 0) {
@@ -317,16 +328,23 @@ void ListerTextArea::setCursorPosition(qint64 p, bool isfirst)
     int anchorX = -1, anchorY = -1;
     if (_cursorAnchorPos != -1 && _cursorAnchorPos != p) {
         int anchPos = _cursorAnchorPos;
+        bool anchorBelow = false, anchorAbove = false;
         if (anchPos < _screenStartPos) {
             anchPos = _screenStartPos;
             anchorY = -2;
+            anchorAbove = true;
         }
         if (anchPos > _screenEndPos) {
             anchPos = _screenEndPos;
             anchorY = -3;
+            anchorBelow = true;
         }
 
         fileToTextPosition(anchPos, isfirst, anchorX, anchorY);
+        if (anchorAbove && _hexMode)
+            anchorX = 0;
+        if (anchorBelow && _hexMode && _rowContent.count() > 0)
+            anchorX = _rowContent[ 0 ].length();
     }
     setCursorPosition(x, y, anchorX, anchorY);
 }
@@ -357,6 +375,18 @@ QString ListerTextArea::readSection(qint64 p1, qint64 p2)
     QString section;
     qint64 pos = p1;
 
+    if (_hexMode) {
+        while (p1 != p2) {
+            QStringList list = _lister->readHexLines(p1, p2, _sizeX, 1);
+            if (list.count() == 0)
+                break;
+            if (section != QString())
+                section += QChar('\n');
+            section += list[ 0 ];
+        }
+        return section;
+    }
+
     QTextCodec * textCodec = codec();
     QTextDecoder * decoder = textCodec->makeDecoder();
 
@@ -379,6 +409,25 @@ QStringList ListerTextArea::readLines(qint64 filePos, qint64 &endPos, int lines,
 {
     endPos = filePos;
     QStringList list;
+
+    if (_hexMode) {
+        endPos = _lister->fileSize();
+        if (filePos >= endPos)
+            return list;
+        qint64 startPos = filePos;
+        int bytes = _lister->hexBytesPerLine(_sizeX);
+        filePos = startPos = ((startPos) / bytes) * bytes;
+        list = _lister->readHexLines(filePos, endPos, _sizeX, lines);
+        endPos = filePos;
+        if (locs) {
+            for (int i = 0; i != list.count(); i++) {
+                (*locs) << startPos;
+                startPos += bytes;
+            }
+        }
+        return list;
+    }
+
     int maxBytes = _sizeX * _sizeY * MAX_CHAR_LENGTH;
     char * cache = _lister->cacheRef(filePos, maxBytes);
     if (cache == 0 || maxBytes == 0)
@@ -398,6 +447,8 @@ QStringList ListerTextArea::readLines(qint64 filePos, qint64 &endPos, int lines,
         int lastCnt = cnt;
         QString chr = decoder->toUnicode(cache + (cnt++), 1);
         if (!chr.isEmpty()) {
+            if ((chr[ 0 ] < 32) && (chr[ 0 ] != '\n') && (chr[ 0 ] != '\t'))
+                chr = QChar(CONTROL_CHAR);
             if (chr == "\n") {
                 if (!isLastLongLine) {
                     list << row;
@@ -894,6 +945,16 @@ void ListerTextArea::handleAnchorChange(int oldAnchor)
     }
 }
 
+void ListerTextArea::setHexMode(bool hexMode)
+{
+    bool isfirst;
+    qint64 pos = getCursorPosition(isfirst);
+    _hexMode = hexMode;
+    calculateText(true);
+    setCursorPosition(pos, isfirst);
+    ensureVisibleCursor();
+}
+
 ListerBrowserExtension::ListerBrowserExtension(Lister * lister) : KParts::BrowserExtension(lister)
 {
     _lister = lister;
@@ -973,6 +1034,11 @@ Lister::Lister(QWidget *parent) : KParts::ReadOnlyPart(parent), _searchInProgres
     _actionJumpToPosition->setShortcut(Qt::CTRL + Qt::Key_G);
     connect(_actionJumpToPosition, SIGNAL(triggered(bool)), SLOT(jumpToPosition()));
     actionCollection()->addAction("jump_to_position", _actionJumpToPosition);
+
+    _actionHexMode = new KAction(KIcon("document-preview"), i18n("Hex mode"), this);
+    _actionHexMode->setShortcut(Qt::CTRL + Qt::Key_H);
+    connect(_actionHexMode, SIGNAL(triggered(bool)), SLOT(toggleHexMode()));
+    actionCollection()->addAction("hex_mode", _actionHexMode);
 
     _actionEncoding = new ListerEncodingMenu(this, i18n("Select charset"), "character-set", actionCollection());
 
@@ -1811,6 +1877,8 @@ void Lister::print()
 
 QStringList Lister::readLines(qint64 &filePos, qint64 endPos, int columns, int lines)
 {
+    if (_textArea->hexMode())
+        return readHexLines(filePos, endPos, columns, lines);
     QStringList list;
     int maxBytes = columns * lines * MAX_CHAR_LENGTH;
     if (maxBytes > (endPos - filePos))
@@ -1831,6 +1899,8 @@ QStringList Lister::readLines(qint64 &filePos, qint64 endPos, int columns, int l
     while (cnt < maxBytes && y < lines) {
         QString chr = decoder->toUnicode(cache + (cnt++), 1);
         if (!chr.isEmpty()) {
+            if ((chr[ 0 ] < 32) && (chr[ 0 ] != '\n') && (chr[ 0 ] != '\t'))
+                chr = QChar(' ');
             if (chr == "\n") {
                 if (!isLastLongLine) {
                     list << row;
@@ -1868,4 +1938,136 @@ QStringList Lister::readLines(qint64 &filePos, qint64 endPos, int columns, int l
 
     delete decoder;
     return list;
+}
+
+int Lister::hexPositionDigits()
+{
+    int positionDigits = 0;
+    qint64 checker = _fileSize;
+    while (checker) {
+        positionDigits++;
+        checker /= 16;
+    }
+    if (positionDigits < 8)
+        positionDigits = 8;
+    return positionDigits;
+}
+
+int Lister::hexBytesPerLine(int columns)
+{
+    int positionDigits = hexPositionDigits();
+    int bytesPerRow = 8;
+    if (columns >= positionDigits + 5 + 64)
+        bytesPerRow = 16;
+    if (columns >= positionDigits + 5 + 128)
+        bytesPerRow = 32;
+
+    return bytesPerRow;
+}
+
+QStringList Lister::readHexLines(qint64 &filePos, qint64 endPos, int columns, int lines)
+{
+    int positionDigits = hexPositionDigits();
+    int bytesPerRow = hexBytesPerLine(columns);
+
+    QStringList list;
+
+    qint64 choppedPos = (filePos / bytesPerRow) * bytesPerRow;
+    int maxBytes = bytesPerRow * lines;
+    if (maxBytes > (endPos - choppedPos))
+        maxBytes = (int)(endPos - choppedPos);
+    if (maxBytes <= 0)
+        return list;
+
+    char * cache = cacheRef(choppedPos, maxBytes);
+
+    if (cache == 0 || maxBytes == 0)
+        return list;
+
+    int cnt = 0;
+    for (int l = 0; l < lines; l++) {
+        if (filePos >= endPos)
+            break;
+        qint64 printPos = (filePos / bytesPerRow) * bytesPerRow;
+        QString pos;
+        pos.setNum(printPos, 16);
+        while (pos.length() < positionDigits)
+            pos = QString("0") + pos;
+        pos = QString("0x") + pos;
+        pos += QString(": ");
+
+        QString charData;
+
+        for (int i = 0; i != bytesPerRow; i++, cnt++) {
+            qint64 currentPos = printPos + i;
+            if (currentPos < filePos || currentPos >= endPos) {
+                pos += QString("   ");
+                charData += QString(" ");
+            } else {
+                char c = cache[ cnt ];
+                int charCode = (int)c;
+                if (charCode < 0)
+                    charCode += 256;
+                QString hex;
+                hex.setNum(charCode, 16);
+                if (hex.length() < 2)
+                    hex = QString("0") + hex;
+                pos += hex + QString(" ");
+                if (c < 32 || c >= 128)
+                    c = '.';
+                charData += QChar(c);
+            }
+        }
+
+        pos += QString(" ") + charData;
+        list << pos;
+        filePos = printPos + bytesPerRow;
+    }
+
+    if (filePos > endPos)
+        filePos = endPos;
+
+    return list;
+}
+
+int Lister::hexIndexToPosition(int columns, int index)
+{
+    int positionDigits = hexPositionDigits();
+    int bytesPerRow = hexBytesPerLine(columns);
+
+    if (index >= bytesPerRow)
+        index = bytesPerRow;
+
+    return positionDigits + 4 + (3*index);
+}
+
+int Lister::hexPositionToIndex(int columns, int position)
+{
+    int positionDigits = hexPositionDigits();
+    int bytesPerRow = hexBytesPerLine(columns);
+
+    position -= 4 + positionDigits;
+    if (position <= 0)
+        return 0;
+
+    position /= 3;
+    if (position >= bytesPerRow)
+        return bytesPerRow;
+    return position;
+}
+
+void Lister::toggleHexMode()
+{
+    setHexMode(!_textArea->hexMode());
+}
+
+void Lister::setHexMode(bool mode)
+{
+    if (mode) {
+        _textArea->setHexMode(true);
+        _actionHexMode->setText(i18n("Text mode"));
+    } else {
+        _textArea->setHexMode(false);
+        _actionHexMode->setText(i18n("Hex mode"));
+    }
 }

@@ -140,13 +140,33 @@ KParts::ReadOnlyPart* PanelViewer::openUrl(const KUrl &url, KrViewer::Mode mode)
         if (mimes->find(QLatin1String("krusader_lister")) == mimes->end()) {
             cpart = new Lister(this);
             mimes->insert(QLatin1String("krusader_lister"), cpart);
-        } else
+        } else {
             cpart = (*mimes)[ QLatin1String("krusader_lister")];
+            if (cpart) {
+                Lister *lister = dynamic_cast<Lister *>((KParts::ReadOnlyPart *)cpart);
+                if (lister)
+                    lister->setHexMode(false);
+            }
+        }
     }
 
     if (mode == KrViewer::Hex) {
         if (!cpart) cpart = getHexPart();
-        if (!cpart) oldHexViewer(tmpFile);
+        if (!cpart) {
+            if (mimes->find(QLatin1String("krusader_lister")) == mimes->end()) {
+                Lister *lister = new Lister(this);
+                lister->setHexMode(true);
+                cpart = lister;
+                mimes->insert(QLatin1String("krusader_lister"), cpart);
+            } else {
+                cpart = (*mimes)[ QLatin1String("krusader_lister")];
+                if (cpart) {
+                    Lister *lister = dynamic_cast<Lister *>((KParts::ReadOnlyPart *)cpart);
+                    if (lister)
+                        lister->setHexMode(true);
+                }
+            }
+        }
     }
 
     if (!cpart) cpart = getPart("text/plain");
@@ -157,7 +177,7 @@ KParts::ReadOnlyPart* PanelViewer::openUrl(const KUrl &url, KrViewer::Mode mode)
         setCurrentWidget(cpart->widget());
     }
     if (cpart && cpart->openUrl(curl)) {
-        curl = url; /* needed because of the oldHexViewer */
+        curl = url;
         connect(cpart, SIGNAL(destroyed()), this, SLOT(slotCPartDestroyed()));
         return cpart;
     } else {
@@ -222,58 +242,6 @@ KParts::ReadOnlyPart* PanelViewer::getHexPart()
     }
 
     return part;
-}
-
-void PanelViewer::oldHexViewer(KTemporaryFile& tmpFile)
-{
-    QString file;
-    // files that are not local must first be downloaded
-    if (!curl.isLocalFile()) {
-        if (!KIO::NetAccess::download(curl, file, this)) {
-            KMessageBox::sorry(this, i18n("KrViewer is unable to download: ") + curl.url());
-            return ;
-        }
-    } else file = curl.path();
-
-    // create a hex file
-    QFile f_in(file);
-    f_in.open(QIODevice::ReadOnly);
-    QDataStream in(&f_in);
-
-    tmpFile.open(); // else there is no filename
-    FILE *out = KDE_fopen(tmpFile.fileName().toLocal8Bit(), "w");   // TODO get rid of FILE*
-
-    KIO::filesize_t fileSize = f_in.size();
-    KIO::filesize_t address = 0;
-    char buf[ 16 ];
-    unsigned char* pBuff = (unsigned char*) buf;
-
-    while (address < fileSize) {
-        memset(buf, 0, 16);
-        int bufSize = ((fileSize - address) > 16) ? 16 : (fileSize - address);
-        in.readRawData(buf, bufSize);
-        fprintf(out, "0x%8.8llx: ", address);
-        for (int i = 0; i < 16; ++i) {
-            if (i < bufSize) fprintf(out, "%2.2x ", pBuff[ i ]);
-            else fprintf(out, "   ");
-        }
-        fprintf(out, "| ");
-
-        for (int i = 0; i < bufSize; ++i) {
-            if (buf[ i ] > ' ' && buf[ i ] < '~') fputc(buf[ i ], out);
-            else fputc('.', out);
-        }
-        fputc('\n', out);
-
-        address += 16;
-    }
-    // clean up
-    f_in.close();
-    fclose(out);
-    if (!curl.isLocalFile())
-        KIO::NetAccess::removeTempFile(file);
-
-    curl = tmpFile.fileName();
 }
 
 /* ----==={ PanelEditor }===---- */

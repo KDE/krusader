@@ -108,7 +108,6 @@ public:
 protected:
     KParts::ReadOnlyPart *getPart(QString mimetype);
     KParts::ReadOnlyPart*  getHexPart();
-    void oldHexViewer(KTemporaryFile& tmpFile);
 };
 
 class PanelEditor: public PanelViewerBase

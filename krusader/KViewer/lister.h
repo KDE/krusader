@@ -73,6 +73,10 @@ public:
     int            tabWidth() {
         return _tabWidth;
     }
+    bool           hexMode() {
+        return _hexMode;
+    }
+    void           setHexMode(bool hexMode);
 
     void           copySelectedToClipboard();
 
@@ -138,6 +142,7 @@ protected:
 
     bool           _inSliderOp;
     bool           _inCursorUpdate;
+    bool           _hexMode;
 };
 
 class ListerBrowserExtension : public KParts::BrowserExtension
@@ -183,6 +188,14 @@ public:
         return _characterSet;
     }
     void            setCharacterSet(QString set);
+    void            setHexMode(bool);
+
+    QStringList     readHexLines(qint64 &filePos, qint64 endPos, int columns, int lines);
+    int             hexBytesPerLine(int columns);
+    int             hexPositionDigits();
+    int             hexIndexToPosition(int columns, int index);
+    int             hexPositionToIndex(int columns, int position);
+
 
 public slots:
     void            searchAction() {
@@ -194,6 +207,7 @@ public slots:
     void            saveAs();
     void            saveSelected();
     void            print();
+    void            toggleHexMode();
 
 protected slots:
     void            slotUpdate();
@@ -255,6 +269,7 @@ protected:
     KAction        *_actionSearchNext;
     KAction        *_actionSearchPrev;
     KAction        *_actionJumpToPosition;
+    KAction        *_actionHexMode;
     ListerEncodingMenu *_actionEncoding;
 
     QString         _filePath;
