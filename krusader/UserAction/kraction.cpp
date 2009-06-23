@@ -20,32 +20,32 @@
 
 #include "kraction.h"
 
-#include <QtGui/QTextEdit>
+#include <QtCore/QEvent>
+#include <QtCore/QFile>
+#include <QtCore/QRegExp>
 #include <QtCore/QTextStream>
+
 #include <QtGui/QBoxLayout>
 #include <QtGui/QLayout>
 #include <QtGui/QSplitter>
 #include <QtGui/QPushButton>
 #include <QtGui/QCheckBox>
-#include <QtCore/QFile>
 #include <QtGui/QLabel>
-#include <QKeyEvent>
-#include <QEvent>
-#include <QtCore/QRegExp>
+#include <QtGui/QKeyEvent>
 
-#include <kdialog.h>
-#include <kdebug.h>
-#include <klocale.h>
-#include <kinputdialog.h>
-#include <kactioncollection.h>
-#include <kshell.h>
-#include <kaction.h>
-#include <kurl.h>
-#include <kmessagebox.h>
-#include <kfiledialog.h>
-#include <kvbox.h>
-#include <kpushbutton.h>
-#include <kmimetype.h>
+#include <KDialog>
+#include <KDebug>
+#include <KLocale>
+#include <KInputDialog>
+#include <KActionCollection>
+#include <KShell>
+#include <KAction>
+#include <KUrl>
+#include <KMessageBox>
+#include <KFileDialog>
+#include <KVBox>
+#include <KPushButton>
+#include <KMimeType>
 
 #include "expander.h"
 #include "useraction.h"
@@ -81,7 +81,7 @@ KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *pa
 
         stdoutBox->setSpacing(6);
         stdoutBox->addWidget(new QLabel(i18n("Standard Output (stdout)"), stdoutWidget));
-        _stdout = new QTextEdit(stdoutWidget);
+        _stdout = new KTextEdit(stdoutWidget);
         _stdout->setReadOnly(true);
         _stdout->setMinimumWidth(fontMetrics().maxWidth() * 40);
         stdoutBox->addWidget(_stdout);
@@ -91,14 +91,14 @@ KrActionProcDlg::KrActionProcDlg(QString caption, bool enableStderr, QWidget *pa
 
         stderrBox->setSpacing(6);
         stderrBox->addWidget(new QLabel(i18n("Standard Error (stderr)"), stderrWidget));
-        _stderr = new QTextEdit(stderrWidget);
+        _stderr = new KTextEdit(stderrWidget);
         _stderr->setReadOnly(true);
         _stderr->setMinimumWidth(fontMetrics().maxWidth() * 40);
         stderrBox->addWidget(_stderr);
     } else {
         // create stdout
         new QLabel(i18n("Output"), page);
-        _stdout = new QTextEdit(page);
+        _stdout = new KTextEdit(page);
         _stdout->setReadOnly(true);
         _stdout->setMinimumWidth(fontMetrics().maxWidth() * 40);
     }

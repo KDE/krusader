@@ -21,17 +21,19 @@
 #ifndef KRACTION_H
 #define KRACTION_H
 
-#include <kaction.h>
-#include <kprocess.h>
-#include <kdialog.h>
 #include <QtCore/QByteArray>
+
+#include <KAction>
+#include <KProcess>
+#include <KDialog>
+#include <KTextEdit>
+
 #include "kractionbase.h"
 
 class UserActionProperties;
-class QTextEdit;
-class KActionCollection;
-class QDomElement;
 class QDomDocument;
+class QDomElement;
+class KActionCollection;
 
 /**
  * This subclass of KAction extends it with an individual executor and
@@ -200,8 +202,11 @@ protected slots:
     void slotUser1(); ///< This is used to save the buffer to disc
 
 private:
-    QTextEdit *_stdout, *_stderr, *_currentTextEdit;
-    QFont normalFont, fixedFont;
+    KTextEdit *_stdout;
+    KTextEdit *_stderr;
+    KTextEdit *_currentTextEdit;
+    QFont normalFont;
+    QFont fixedFont;
 private slots:
     void currentTextEditChanged();
 };
