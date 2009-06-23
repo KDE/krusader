@@ -328,11 +328,12 @@ void QueueDialog::slotUpdateToolbar()
             _pauseButton->setIcon(KIcon("media-playback-start"));
             _pauseButton->setToolTip(i18n("Start processing the queue (Ctrl+P)"));
             QTime time = currentQueue->scheduleTime();
-            if (time.isNull())
+            if (time.isNull()) {
                 _statusLabel->setText(i18n("The queue is paused."));
-            else
-                _statusLabel->setText(i18n("Scheduled to start at %1.")
-                                      .arg(time.toString("hh:mm:ss")));
+            } else {
+                _statusLabel->setText(i18n("Scheduled to start at %1.",
+                                           time.toString("hh:mm:ss")));
+            }
         } else {
             _statusLabel->setText(i18n("The queue is running."));
             _pauseButton->setIcon(KIcon("media-playback-pause"));
