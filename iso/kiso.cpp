@@ -46,7 +46,7 @@
 #include "libisofs/isofs.h"
 #include "qfilehack.h"
 
-#ifdef Q_OS_UNIX
+#ifdef Q_OS_LINUX
 #undef __STRICT_ANSI__
 #include <linux/cdrom.h>
 #define __STRICT_ANSI__
@@ -69,7 +69,7 @@ static int getTracks(const char *fname, int *tracks)
     int ret = 0;
     memset(tracks, 0, 200*sizeof(int));
 
-#ifdef Q_OS_UNIX
+#ifdef Q_OS_LINUX
     int fd, i;
     struct cdrom_tochdr tochead;
     struct cdrom_tocentry tocentry;
