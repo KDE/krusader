@@ -284,7 +284,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent) 
 
     encLabel = new QLabel(i18n("Encoding:"), containsGroup);
     containsCbsLayout->addWidget(encLabel);
-    contentEncoding = new QComboBox(containsGroup);
+    contentEncoding = new KComboBox(containsGroup);
     contentEncoding->setEditable(false);
     contentEncoding->addItem(i18n("Default"));
     contentEncoding->addItems(KGlobal::charsets()->descriptiveEncodingNames());

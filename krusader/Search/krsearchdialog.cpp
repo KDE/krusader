@@ -241,7 +241,7 @@ KrSearchDialog::KrSearchDialog(QString profile, QWidget* parent)
 
     // creating the searcher tabs
 
-    searcherTabs = new QTabWidget(this);
+    searcherTabs = new KTabWidget(this);
 
     filterTabs = FilterTabs::addTo(searcherTabs, FilterTabs::Default | FilterTabs::HasRemoteContentSearch);
     generalFilter = (GeneralFilter *)filterTabs->get("GeneralFilter");

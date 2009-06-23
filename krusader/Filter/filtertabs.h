@@ -31,8 +31,9 @@
 #ifndef FILTERTABS_H
 #define FILTERTABS_H
 
-#include <QtGui/QTabWidget>
-#include <QList>
+#include <QtCore/QList>
+
+#include <KTabWidget>
 
 #include "filterbase.h"
 
@@ -52,7 +53,7 @@ public:
         Default                 =   0xe000
     };
 
-    static FilterTabs * addTo(QTabWidget *tabWidget, int props = FilterTabs::Default);
+    static FilterTabs * addTo(KTabWidget *tabWidget, int props = FilterTabs::Default);
     static KRQuery      getQuery(QWidget *parent = 0);
 
     FilterBase *get(QString name);
@@ -69,13 +70,13 @@ signals:
     void  closeRequest(bool accept = true);
 
 private:
-    FilterTabs(int properties, QTabWidget *tabWidget, QObject *parent);
+    FilterTabs(int properties, KTabWidget *tabWidget, QObject *parent);
     void  acceptQuery();
 
     QList<FilterBase *> filterList;
     QList<int>      pageNumbers;
 
-    QTabWidget * tabWidget;
+    KTabWidget * tabWidget;
 };
 
 #endif /* FILTERTABS_H */

@@ -42,7 +42,7 @@ FilterDialog::FilterDialog(QWidget *parent)
     setModal(true);
     setButtons(Ok | Cancel);
 
-    QTabWidget *filterWidget = new QTabWidget;
+    KTabWidget *filterWidget = new KTabWidget;
 
     filterTabs = FilterTabs::addTo(filterWidget, FilterTabs::HasProfileHandler);
     generalFilter = (GeneralFilter *) filterTabs->get("GeneralFilter");

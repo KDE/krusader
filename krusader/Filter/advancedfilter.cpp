@@ -32,20 +32,20 @@
 
 #include <time.h>
 
-#include <QtGui/QGroupBox>
-#include <QHBoxLayout>
-#include <QGridLayout>
-#include <QPixmap>
+#include <QtCore/QFile>
 #include <QtCore/QTextStream>
+#include <QtGui/QGroupBox>
+#include <QtGui/QHBoxLayout>
+#include <QtGui/QGridLayout>
+#include <QtGui/QPixmap>
 #include <QtGui/QLayout>
 #include <QtGui/QLabel>
 #include <QtGui/QButtonGroup>
-#include <QtCore/QFile>
 
-#include <klocale.h>
-#include <kdebug.h>
-#include <kmessagebox.h>
-#include <kiconloader.h>
+#include <KLocale>
+#include <KDebug>
+#include <KMessageBox>
+#include <KIconLoader>
 
 #include "../krusader.h"
 #include "../Dialogs/krdialogs.h"
@@ -75,7 +75,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     biggerThanEnabled->setText(i18n("&Bigger than"));
     sizeLayout->addWidget(biggerThanEnabled, 0, 0);
 
-    biggerThanAmount = new QLineEdit(sizeGroup);
+    biggerThanAmount = new KLineEdit(sizeGroup);
     biggerThanAmount->setEnabled(false);
     QSizePolicy biggerThanPolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     biggerThanPolicy.setHeightForWidth(biggerThanAmount->sizePolicy().hasHeightForWidth());
@@ -93,7 +93,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     smallerThanEnabled->setText(i18n("&Smaller than"));
     sizeLayout->addWidget(smallerThanEnabled, 0, 3);
 
-    smallerThanAmount = new QLineEdit(sizeGroup);
+    smallerThanAmount = new KLineEdit(sizeGroup);
     smallerThanAmount->setEnabled(false);
     QSizePolicy smallerThanPolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     smallerThanPolicy.setHeightForWidth(smallerThanAmount->sizePolicy().hasHeightForWidth());
@@ -134,7 +134,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
 
     dateLayout->addWidget(modifiedBetweenEnabled, 0, 0, 1, 2);
 
-    modifiedBetweenData1 = new QLineEdit(dateGroup);
+    modifiedBetweenData1 = new KLineEdit(dateGroup);
     modifiedBetweenData1->setEnabled(false);
     modifiedBetweenData1->setText("");
     dateLayout->addWidget(modifiedBetweenData1, 0, 2, 1, 2);
@@ -149,7 +149,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     andLabel->setText(i18n("an&d"));
     dateLayout->addWidget(andLabel, 0, 5);
 
-    modifiedBetweenData2 = new QLineEdit(dateGroup);
+    modifiedBetweenData2 = new KLineEdit(dateGroup);
     modifiedBetweenData2->setEnabled(false);
     modifiedBetweenData2->setText("");
     andLabel->setBuddy(modifiedBetweenData2);
@@ -166,7 +166,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     btnGroup->addButton(notModifiedAfterEnabled);
     dateLayout->addWidget(notModifiedAfterEnabled, 1, 0, 1, 2);
 
-    notModifiedAfterData = new QLineEdit(dateGroup);
+    notModifiedAfterData = new KLineEdit(dateGroup);
     notModifiedAfterData->setEnabled(false);
     notModifiedAfterData->setText("");
     dateLayout->addWidget(notModifiedAfterData, 1, 2, 1, 2);
@@ -182,12 +182,12 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     btnGroup->addButton(modifiedInTheLastEnabled);
     dateLayout->addWidget(modifiedInTheLastEnabled, 2, 0);
 
-    modifiedInTheLastData = new QLineEdit(dateGroup);
+    modifiedInTheLastData = new KLineEdit(dateGroup);
     modifiedInTheLastData->setEnabled(false);
     modifiedInTheLastData->setText("");
     dateLayout->addWidget(modifiedInTheLastData, 2, 2);
 
-    modifiedInTheLastType = new QComboBox(dateGroup);
+    modifiedInTheLastType = new KComboBox(dateGroup);
     modifiedInTheLastType->addItem(i18n("days"));
     modifiedInTheLastType->addItem(i18n("weeks"));
     modifiedInTheLastType->addItem(i18n("months"));
@@ -195,7 +195,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     modifiedInTheLastType->setEnabled(false);
     dateLayout->addWidget(modifiedInTheLastType, 2, 3, 1, 2);
 
-    notModifiedInTheLastData = new QLineEdit(dateGroup);
+    notModifiedInTheLastData = new KLineEdit(dateGroup);
     notModifiedInTheLastData->setEnabled(false);
     notModifiedInTheLastData->setText("");
     dateLayout->addWidget(notModifiedInTheLastData, 3, 2);
@@ -205,7 +205,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     notModifiedInTheLastLbl->setBuddy(notModifiedInTheLastData);
     dateLayout->addWidget(notModifiedInTheLastLbl, 3, 0);
 
-    notModifiedInTheLastType = new QComboBox(dateGroup);
+    notModifiedInTheLastType = new KComboBox(dateGroup);
     notModifiedInTheLastType->addItem(i18n("days"));
     notModifiedInTheLastType->addItem(i18n("weeks"));
     notModifiedInTheLastType->addItem(i18n("months"));
@@ -232,7 +232,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     belongsToUserEnabled->setText(i18n("Belongs to &user"));
     hboxLayout->addWidget(belongsToUserEnabled);
 
-    belongsToUserData = new QComboBox(ownershipGroup);
+    belongsToUserData = new KComboBox(ownershipGroup);
     belongsToUserData->setEnabled(false);
     belongsToUserData->setEditable(false);
     hboxLayout->addWidget(belongsToUserData);
@@ -241,7 +241,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     belongsToGroupEnabled->setText(i18n("Belongs to gr&oup"));
     hboxLayout->addWidget(belongsToGroupEnabled);
 
-    belongsToGroupData = new QComboBox(ownershipGroup);
+    belongsToGroupData = new KComboBox(ownershipGroup);
     belongsToGroupData->setEnabled(false);
     belongsToGroupData->setEditable(false);
     hboxLayout->addWidget(belongsToGroupData);
@@ -257,7 +257,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     ownerGroup->setTitle(i18n("O&wner"));
     int width = 2 * height + height / 2;
 
-    ownerR = new QComboBox(ownerGroup);
+    ownerR = new KComboBox(ownerGroup);
     ownerR->addItem(i18n("?"));
     ownerR->addItem(i18n("r"));
     ownerR->addItem(i18n("-"));
@@ -265,7 +265,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     ownerR->setGeometry(QRect(10, 20, width, height + 6));
     ownerHBox->addWidget(ownerR);
 
-    ownerW = new QComboBox(ownerGroup);
+    ownerW = new KComboBox(ownerGroup);
     ownerW->addItem(i18n("?"));
     ownerW->addItem(i18n("w"));
     ownerW->addItem(i18n("-"));
@@ -273,7 +273,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     ownerW->setGeometry(QRect(10 + width, 20, width, height + 6));
     ownerHBox->addWidget(ownerW);
 
-    ownerX = new QComboBox(ownerGroup);
+    ownerX = new KComboBox(ownerGroup);
     ownerX->addItem(i18n("?"));
     ownerX->addItem(i18n("x"));
     ownerX->addItem(i18n("-"));
@@ -287,7 +287,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     QHBoxLayout *groupHBox = new QHBoxLayout(groupGroup);
     groupGroup->setTitle(i18n("Grou&p"));
 
-    groupR = new QComboBox(groupGroup);
+    groupR = new KComboBox(groupGroup);
     groupR->addItem(i18n("?"));
     groupR->addItem(i18n("r"));
     groupR->addItem(i18n("-"));
@@ -295,7 +295,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     groupR->setGeometry(QRect(10, 20, width, height + 6));
     groupHBox->addWidget(groupR);
 
-    groupW = new QComboBox(groupGroup);
+    groupW = new KComboBox(groupGroup);
     groupW->addItem(i18n("?"));
     groupW->addItem(i18n("w"));
     groupW->addItem(i18n("-"));
@@ -303,7 +303,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     groupW->setGeometry(QRect(10 + width, 20, width, height + 6));
     groupHBox->addWidget(groupW);
 
-    groupX = new QComboBox(groupGroup);
+    groupX = new KComboBox(groupGroup);
     groupX->addItem(i18n("?"));
     groupX->addItem(i18n("x"));
     groupX->addItem(i18n("-"));
@@ -317,7 +317,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     QHBoxLayout *allHBox = new QHBoxLayout(allGroup);
     allGroup->setTitle(i18n("A&ll"));
 
-    allR = new QComboBox(allGroup);
+    allR = new KComboBox(allGroup);
     allR->addItem(i18n("?"));
     allR->addItem(i18n("r"));
     allR->addItem(i18n("-"));
@@ -325,7 +325,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     allR->setGeometry(QRect(10, 20, width, height + 6));
     allHBox->addWidget(allR);
 
-    allW = new QComboBox(allGroup);
+    allW = new KComboBox(allGroup);
     allW->addItem(i18n("?"));
     allW->addItem(i18n("w"));
     allW->addItem(i18n("-"));
@@ -333,7 +333,7 @@ AdvancedFilter::AdvancedFilter(FilterTabs *tabs, QWidget *parent) : QWidget(pare
     allW->setGeometry(QRect(10 + width, 20, width, height + 6));
     allHBox->addWidget(allW);
 
-    allX = new QComboBox(allGroup);
+    allX = new KComboBox(allGroup);
     allX->addItem(i18n("?"));
     allX->addItem(i18n("x"));
     allX->addItem(i18n("-"));
@@ -437,7 +437,7 @@ void AdvancedFilter::notModifiedAfterSetDate()
     changeDate(notModifiedAfterData);
 }
 
-void AdvancedFilter::changeDate(QLineEdit *p)
+void AdvancedFilter::changeDate(KLineEdit *p)
 {
     // check if the current date is valid
     QDate d = KGlobal::locale()->readDate(p->text());
@@ -470,7 +470,7 @@ void AdvancedFilter::qdate2time_t (time_t *dest, QDate d, bool start)
 }
 
 
-void AdvancedFilter::fillList(QComboBox *list, QString filename)
+void AdvancedFilter::fillList(KComboBox *list, QString filename)
 {
     QFile data(filename);
     if (!data.open(QIODevice::ReadOnly)) {
@@ -487,7 +487,7 @@ void AdvancedFilter::fillList(QComboBox *list, QString filename)
     }
 }
 
-void AdvancedFilter::invalidDateMessage(QLineEdit *p)
+void AdvancedFilter::invalidDateMessage(KLineEdit *p)
 {
     // FIXME p->text() is empty sometimes (to reproduce, set date to "13.09.005")
     KMessageBox::detailedError(this, i18n("Invalid date entered."),

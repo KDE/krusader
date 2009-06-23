@@ -31,16 +31,16 @@
 #ifndef SYNCHRONIZERGUI_H
 #define SYNCHRONIZERGUI_H
 
+#include <QtCore/QMap>
 #include <QtGui/QDialog>
-#include <QResizeEvent>
-#include <QKeyEvent>
+#include <QtGui/QResizeEvent>
+#include <QtGui/QKeyEvent>
 #include <QtGui/QPixmap>
 #include <QtGui/QCheckBox>
-#include <qmap.h>
 #include <QtGui/QLabel>
-#include <QtGui/QTabWidget>
 
-#include <kcombobox.h>
+#include <KComboBox>
+#include <KTabWidget>
 
 #include "synchronizer.h"
 #include "../GUI/profilemanager.h"
@@ -191,7 +191,7 @@ protected:
     FilterTabs     *filterTabs;
     GeneralFilter  *generalFilter;
 
-    QTabWidget    *synchronizerTabs;
+    KTabWidget    *synchronizerTabs;
 
     KHistoryComboBox *leftLocation;
     KHistoryComboBox *rightLocation;

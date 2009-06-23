@@ -35,7 +35,7 @@
 
 #include <klocale.h>
 
-FilterTabs::FilterTabs(int properties, QTabWidget *tabWidget, QObject *parent) :
+FilterTabs::FilterTabs(int properties, KTabWidget *tabWidget, QObject *parent) :
         QObject(parent)
 {
     this->tabWidget = tabWidget;
@@ -51,7 +51,7 @@ FilterTabs::FilterTabs(int properties, QTabWidget *tabWidget, QObject *parent) :
     pageNumbers.append(tabWidget->indexOf(advancedFilter));
 }
 
-FilterTabs * FilterTabs::addTo(QTabWidget *tabWidget, int props)
+FilterTabs * FilterTabs::addTo(KTabWidget *tabWidget, int props)
 {
     return new FilterTabs(props, tabWidget, tabWidget);
 }

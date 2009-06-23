@@ -34,20 +34,20 @@
 #include <sys/types.h>
 #include <time.h>
 
-#include <qwidget.h>
-#include <QResizeEvent>
-#include <QGridLayout>
-#include <QLabel>
-#include <QKeyEvent>
-#include <QCloseEvent>
-#include <QtCore/QStringList>
 #include <QtCore/QString>
+#include <QtCore/QStringList>
+#include <QtGui/QWidget>
+#include <QtGui/QResizeEvent>
+#include <QtGui/QGridLayout>
+#include <QtGui/QLabel>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QCloseEvent>
 #include <QtGui/QTabWidget>
 #include <QtGui/QDialog>
 
-#include <ksqueezedtextlabel.h>
-#include <kglobal.h>
-#include <klocale.h>
+#include <KSqueezedTextLabel>
+#include <KGlobal>
+#include <KLocale>
 
 #include "../Filter/filtertabs.h"
 #include "../Filter/generalfilter.h"
@@ -106,7 +106,7 @@ private:
     QPushButton* mainCloseBtn;
     QPushButton* mainFeedToListBoxBtn;
 
-    QTabWidget* searcherTabs;
+    KTabWidget* searcherTabs;
     QWidget* resultTab;
     QGridLayout* resultLayout;
     QLabel* foundLabel;

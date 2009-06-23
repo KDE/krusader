@@ -34,12 +34,13 @@
 #include "filterbase.h"
 #include "../VFS/krquery.h"
 
-#include <QWidget>
+#include <QtGui/QWidget>
 #include <QtGui/QCheckBox>
-#include <kcombobox.h>
-#include <klineedit.h>
 #include <QtGui/QRadioButton>
 #include <QtGui/QToolButton>
+
+#include <KComboBox>
+#include <KLineEdit>
 
 class AdvancedFilter : public QWidget, public FilterBase
 {
@@ -66,54 +67,54 @@ public slots:
 
 public:
     QCheckBox* smallerThanEnabled;
-    QLineEdit* smallerThanAmount;
+    KLineEdit* smallerThanAmount;
     KComboBox* smallerThanType;
 
     QCheckBox* biggerThanEnabled;
     KComboBox* biggerThanType;
-    QLineEdit* biggerThanAmount;
+    KLineEdit* biggerThanAmount;
 
     QRadioButton* modifiedBetweenEnabled;
     QRadioButton* notModifiedAfterEnabled;
     QRadioButton* modifiedInTheLastEnabled;
 
-    QLineEdit* modifiedBetweenData1;
-    QLineEdit* modifiedBetweenData2;
+    KLineEdit* modifiedBetweenData1;
+    KLineEdit* modifiedBetweenData2;
 
     QToolButton* modifiedBetweenBtn1;
     QToolButton* modifiedBetweenBtn2;
     QToolButton* notModifiedAfterBtn;
 
-    QLineEdit* notModifiedAfterData;
-    QLineEdit* modifiedInTheLastData;
-    QLineEdit* notModifiedInTheLastData;
-    QComboBox* modifiedInTheLastType;
-    QComboBox* notModifiedInTheLastType;
+    KLineEdit* notModifiedAfterData;
+    KLineEdit* modifiedInTheLastData;
+    KLineEdit* notModifiedInTheLastData;
+    KComboBox* modifiedInTheLastType;
+    KComboBox* notModifiedInTheLastType;
 
     QCheckBox* belongsToUserEnabled;
-    QComboBox* belongsToUserData;
+    KComboBox* belongsToUserData;
     QCheckBox* belongsToGroupEnabled;
-    QComboBox* belongsToGroupData;
+    KComboBox* belongsToGroupData;
 
     QCheckBox* permissionsEnabled;
 
-    QComboBox* ownerW;
-    QComboBox* ownerR;
-    QComboBox* ownerX;
-    QComboBox* groupW;
-    QComboBox* groupR;
-    QComboBox* groupX;
-    QComboBox* allW;
-    QComboBox* allX;
-    QComboBox* allR;
+    KComboBox* ownerW;
+    KComboBox* ownerR;
+    KComboBox* ownerX;
+    KComboBox* groupW;
+    KComboBox* groupR;
+    KComboBox* groupX;
+    KComboBox* allW;
+    KComboBox* allX;
+    KComboBox* allR;
 
     FilterTabs *fltTabs;
 
 private:
-    void changeDate(QLineEdit *p);
-    void fillList(QComboBox *list, QString filename);
+    void changeDate(KLineEdit *p);
+    void fillList(KComboBox *list, QString filename);
     void qdate2time_t(time_t *dest, QDate d, bool start);
-    void invalidDateMessage(QLineEdit *p);
+    void invalidDateMessage(KLineEdit *p);
 };
 
 #endif /* ADVANCEDFILTER_H */

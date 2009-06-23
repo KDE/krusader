@@ -31,21 +31,22 @@
 #ifndef GENERALFILTER_H
 #define GENERALFILTER_H
 
-#include "filterbase.h"
-#include "../VFS/krquery.h"
-#include "../Dialogs/kurllistrequester.h"
-#include "../GUI/profilemanager.h"
-
-#include <QWidget>
+#include <QtGui/QWidget>
 #include <QtGui/QLayout>
 #include <QtGui/QGroupBox>
 #include <QtGui/QCheckBox>
 #include <QtGui/QLabel>
+#include <QtGui/QHBoxLayout>
+
+#include <KComboBox>
+#include <KShellCompletion>
+#include <KHistoryComboBox>
+
+#include "filterbase.h"
+#include "../VFS/krquery.h"
+#include "../Dialogs/kurllistrequester.h"
+#include "../GUI/profilemanager.h"
 #include "../GUI/krlistwidget.h"
-#include <QHBoxLayout>
-#include <kcombobox.h>
-#include <kshellcompletion.h>
-#include <khistorycombobox.h>
 
 class GeneralFilter : public QWidget, public FilterBase
 {
@@ -77,7 +78,7 @@ public slots:
     void    refreshProfileListBox();
 
 public:
-    QComboBox* contentEncoding;
+    KComboBox* contentEncoding;
     QCheckBox* searchForCase;
     QCheckBox* remoteContentSearch;
     QCheckBox* containsTextCase;
