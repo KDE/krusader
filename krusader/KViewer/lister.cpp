@@ -767,9 +767,39 @@ void ListerTextArea::slotActionTriggered(int action)
                 _screenStartPos = 0;
         } else {
             int maxSize = _sizeX * _sizeY * MAX_CHAR_LENGTH;
+            QByteArray encodedEnter = codec()->fromUnicode(QString("\n"));
+
             qint64 readPos = _screenStartPos - maxSize;
             if (readPos < 0)
                 readPos = 0;
+            maxSize = _screenStartPos - readPos;
+
+            char * cache = _lister->cacheRef(readPos, maxSize);
+            QByteArray backBuffer(cache, maxSize);
+
+            int from = maxSize;
+            while (from > 0) {
+                from--;
+                from = backBuffer.lastIndexOf(encodedEnter, from);
+                if (from == -1)
+                    break;
+                int backRef = from - 20;
+                if (backRef < 0)
+                    backRef = 0;
+                int size = from - backRef + encodedEnter.size();
+                QString decoded = codec()->toUnicode(cache + backRef, size);
+                if (decoded.endsWith("\n")) {
+                    if (from < (maxSize - encodedEnter.size())) {
+                        from += encodedEnter.size();
+                        break;
+                    }
+                }
+            }
+
+            if (from == -1)
+                from = 0;
+            readPos += from;
+
             qint64 previousPos = readPos;
 
             while (readPos < _screenStartPos) {
@@ -810,31 +840,63 @@ void ListerTextArea::slotActionTriggered(int action)
                 _screenStartPos = 0;
         } else {
             int maxSize = 2 * _sizeX * _sizeY * MAX_CHAR_LENGTH;
+            QByteArray encodedEnter = codec()->fromUnicode(QString("\n"));
+
             qint64 readPos = _screenStartPos - maxSize;
             if (readPos < 0)
                 readPos = 0;
+            maxSize = _screenStartPos - readPos;
 
-            int numRows = _sizeY;
-            if (numRows < 1)
-                numRows = 1;
-            qint64 previousPoses[ numRows ];
-            for (int i = 0; i != numRows; i++)
-                previousPoses[ i ] = -1;
+            char * cache = _lister->cacheRef(readPos, maxSize);
+            QByteArray backBuffer(cache, maxSize);
 
-            int circularCounter = 0;
-            while (readPos < _screenStartPos) {
-                previousPoses[ circularCounter ]  = readPos;
-                circularCounter = (circularCounter + 1) % numRows;
-                readLines(readPos, readPos, 1);
+            int sizeY = _sizeY + 1;
+            int origSizeY = sizeY;
+            int from = maxSize;
+            int lastEnter = maxSize;
+
+        repeat:     while (from > 0) {
+                from--;
+                from = backBuffer.lastIndexOf(encodedEnter, from);
+                if (from == -1)
+                    break;
+                int backRef = from - 20;
+                if (backRef < 0)
+                    backRef = 0;
+                int size = from - backRef + encodedEnter.size();
+                QString decoded = codec()->toUnicode(cache + backRef, size);
+                if (decoded.endsWith("\n")) {
+                    if (from < (maxSize - encodedEnter.size())) {
+                        int arrayStart = from + encodedEnter.size();
+                        decoded = codec()->toUnicode(cache + arrayStart, lastEnter - arrayStart);
+                        sizeY -= ((decoded.length() / (_sizeX + 1)) + 1);
+                        if (sizeY < 0) {
+                            from = arrayStart;
+                            break;
+                        }
+                    }
+                    lastEnter = from;
+                }
             }
 
-            _skippedLines = _sizeY;
-            while (previousPoses[ circularCounter ] == -1) {
-                circularCounter = (++circularCounter) % numRows;
-                _skippedLines--;
+            if (from == -1)
+                from = 0;
+            qint64 searchPos = readPos + from;
+
+            QList<qint64> locs;
+            while (searchPos < _screenStartPos) {
+                locs << searchPos;
+                readLines(searchPos, searchPos, 1);
             }
 
-            _screenStartPos = previousPoses[ circularCounter ];
+            if (locs.count() >= _sizeY)
+                _screenStartPos = locs[ locs.count() - _sizeY ];
+            else if (from != 0) {
+                origSizeY += locs.count() + 1;
+                sizeY = origSizeY;
+                goto repeat;
+            } else if (readPos == 0)
+                _screenStartPos = 0;
         }
     }
     break;
