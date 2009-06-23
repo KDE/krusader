@@ -17,27 +17,29 @@
  *****************************************************************************/
 
 #include "queuedialog.h"
+
+#include <QtCore/QEvent>
+#include <QtCore/QRect>
+#include <QtGui/QLayout>
+#include <QtGui/QFrame>
+#include <QtGui/QPainter>
+#include <QtGui/QStyleOption>
+#include <QtGui/QLabel>
+#include <QtGui/QFont>
+#include <QtGui/QToolButton>
+#include <QtGui/QImage>
+#include <QtGui/QTimeEdit>
+#include <QtGui/QProgressBar>
+
+#include <KLocale>
+#include <KGlobalSettings>
+#include <KIconEffect>
+#include <KInputDialog>
+#include <KMessageBox>
+
 #include "queuewidget.h"
 #include "queue_mgr.h"
 #include "../krusader.h"
-#include <QtGui/QLayout>
-#include <qframe.h>
-#include <klocale.h>
-#include <kdialog.h>
-#include <QtCore/QEvent>
-#include <QtGui/QPainter>
-#include <QtCore/QRect>
-#include <qstyleoption.h>
-#include <QtGui/QLabel>
-#include <kglobalsettings.h>
-#include <qfont.h>
-#include <QtGui/QToolButton>
-#include <QtGui/QImage>
-#include <kiconeffect.h>
-#include <kinputdialog.h>
-#include <kmessagebox.h>
-#include <QTimeEdit>
-#include <QProgressBar>
 
 class KrImageButton : public QToolButton
 {
@@ -113,7 +115,7 @@ private:
 
 QueueDialog * QueueDialog::_queueDialog = 0;
 
-QueueDialog::QueueDialog() : QDialog(0, Qt::FramelessWindowHint), _autoHide(true)
+QueueDialog::QueueDialog() : KDialog(0, Qt::FramelessWindowHint), _autoHide(true)
 {
     setWindowModality(Qt::NonModal);
     setWindowTitle(i18n("Krusader::Queue Manager"));
@@ -257,7 +259,7 @@ void QueueDialog::showDialog(bool autoHide)
 
 void QueueDialog::paintEvent(QPaintEvent * event)
 {
-    QDialog::paintEvent(event);
+    KDialog::paintEvent(event);
     QPainter p(this);
 
     int lineWidth = 2;
@@ -293,14 +295,14 @@ void QueueDialog::accept()
 {
     _autoHide = true;
     saveSettings();
-    QDialog::accept();
+    KDialog::accept();
 }
 
 void QueueDialog::reject()
 {
     _autoHide = true;
     saveSettings();
-    QDialog::reject();
+    KDialog::reject();
 }
 
 void QueueDialog::saveSettings()
@@ -478,6 +480,6 @@ void QueueDialog::keyPressEvent(QKeyEvent *ke)
     }
     break;
     }
-    QDialog::keyPressEvent(ke);
+    KDialog::keyPressEvent(ke);
 }
 
