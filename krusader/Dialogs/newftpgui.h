@@ -6,25 +6,29 @@
 **
 ** WARNING! All changes made in this file will be lost!
 ****************************************************************************/
+
 #ifndef NEWFTPGUI_H
 #define NEWFTPGUI_H
 
 #include <QtCore/QVariant>
+#include <QtCore/QEvent>
+#include <QtGui/QVBoxLayout>
+#include <QtGui/QGridLayout>
+#include <QtGui/QHBoxLayout>
+#include <QtGui/QLabel>
 #include <QtGui/QDialog>
-#include <QVBoxLayout>
-#include <QEvent>
-#include <QGridLayout>
-#include <QHBoxLayout>
-#include <QLabel>
+
+#include <KLineEdit>
+
 class QVBoxLayout;
 class QHBoxLayout;
 class QGridLayout;
 class QLabel;
-class QLineEdit;
 class QPushButton;
 class QSpinBox;
 class KComboBox;
 class KHistoryComboBox;
+class KLineEdit;
 
 class newFTPGUI : public QDialog
 {
@@ -41,13 +45,13 @@ public:
     QLabel* TextLabel1_2;
     QLabel* TextLabel1_3;
     QSpinBox* port;
-    QLineEdit* password;
+    KLineEdit* password;
     QPushButton* connectBtn;
     QPushButton* saveBtn;
     QPushButton* cancelBtn;
     QLabel* PixmapLabel1;
     QLabel* TextLabel3;
-    QLineEdit* username;
+    KLineEdit* username;
     KHistoryComboBox* url;
 
 public slots:

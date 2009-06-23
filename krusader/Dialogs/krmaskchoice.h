@@ -30,22 +30,24 @@
 #ifndef KRMASKCHOICE_H
 #define KRMASKCHOICE_H
 
-#include <QtGui/QDialog>
-#include <QVBoxLayout>
-#include <QGridLayout>
-#include <QHBoxLayout>
-#include <QLabel>
+#include <QtGui/QVBoxLayout>
+#include <QtGui/QGridLayout>
+#include <QtGui/QHBoxLayout>
+#include <QtGui/QLabel>
+
+#include <KDialog>
+
 class QVBoxLayout;
 class QHBoxLayout;
 class QGridLayout;
-class QComboBox;
 class QGroupBox;
 class QLabel;
-class KrListWidget;
 class QListWidgetItem;
 class QPushButton;
+class KComboBox;
+class KrListWidget;
 
-class KRMaskChoice : public QDialog
+class KRMaskChoice : public KDialog
 {
     Q_OBJECT
 
@@ -53,7 +55,7 @@ public:
     KRMaskChoice(QWidget* parent = 0);
     ~KRMaskChoice();
 
-    QComboBox* selection;
+    KComboBox* selection;
     QLabel* PixmapLabel1;
     QLabel* label;
     QGroupBox* GroupBox1;

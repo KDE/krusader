@@ -6,34 +6,29 @@
 **
 ** WARNING! All changes made in this file will be lost!
 ****************************************************************************/
+
 #include "newftpgui.h"
 
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
 #include <QtGui/QPushButton>
-#include <qspinbox.h>
-#include <QtGui/QLayout>
-#include <QtCore/QVariant>
+#include <QtGui/QSpinBox>
 #include <QtGui/QImage>
 #include <QtGui/QPixmap>
-#include <QEvent>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <klocale.h>
-#include <kprotocolinfo.h>
-#include <kcombobox.h>
-#include <kiconloader.h>
-#include <khistorycombobox.h>
-#include <kconfiggroup.h>
+
+#include <KLocale>
+#include <KProtocolInfo>
+#include <KComboBox>
+#include <KIconLoader>
+#include <KHistoryComboBox>
+#include <KConfigGroup>
+
 #include "../krusader.h"
 
-
-/*
- *  Constructs a newFTPGUI which is a child of 'parent', with the
- *  name 'name' and widget flags set to 'f'
+/**
+ * Constructs a newFTPGUI which is a child of 'parent', with the
+ * name 'name' and widget flags set to 'f'
  *
- *  The dialog will by default be modeless, unless you set 'modal' to
- *  TRUE to construct a modal dialog.
+ * The dialog will by default be modeless, unless you set 'modal' to
+ * TRUE to construct a modal dialog.
  */
 
 #define SIZE_MINIMUM QSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed )
@@ -47,7 +42,7 @@ newFTPGUI::newFTPGUI(QWidget* parent)
     layout->setContentsMargins(11, 11, 11, 11);
     layout->setSpacing(6);
 
-    resize(342, 261);
+    resize(320, 240);
     setWindowTitle(i18n("New Network Connection"));
 //     setSizeGripEnabled( true );
     QSizePolicy policy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -125,11 +120,11 @@ newFTPGUI::newFTPGUI(QWidget* parent)
 
     TextLabel1_2 = new QLabel(i18n("Username:"), this);
     layout->addWidget(TextLabel1_2);
-    username = new QLineEdit(this);
+    username = new KLineEdit(this);
     layout->addWidget(username);
     TextLabel1_2_2 = new QLabel(i18n("Password:"), this);
     layout->addWidget(TextLabel1_2_2);
-    password = new QLineEdit(this);
+    password = new KLineEdit(this);
     password->setEchoMode(QLineEdit::Password);
     layout->addWidget(password);
 

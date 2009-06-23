@@ -28,36 +28,38 @@
  *                                                                         *
  ***************************************************************************/
 #include "krmaskchoice.h"
-#include "../GUI/krlistwidget.h"
 
-#include <QtGui/QComboBox>
+#include <QtCore/QVariant>
 #include <QtGui/QGroupBox>
 #include <QtGui/QLabel>
 #include <QtGui/QPushButton>
 #include <QtGui/QLayout>
-#include <QtCore/QVariant>
 #include <QtGui/QMessageBox>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <klocale.h>
+#include <QtGui/QHBoxLayout>
+#include <QtGui/QVBoxLayout>
 #include <QtGui/QLineEdit>
 
-/*
- *  Constructs a KRMaskChoice which is a child of 'parent', with the
- *  name 'name' and widget flags set to 'f'
+#include <KLocale>
+#include <KComboBox>
+
+#include "../GUI/krlistwidget.h"
+
+/**
+ * Constructs a KRMaskChoice which is a child of 'parent', with the
+ * name 'name' and widget flags set to 'f'
  *
- *  The dialog will by default be modeless, unless you set 'modal' to
- *  TRUE to construct a modal dialog.
+ * The dialog will by default be modeless, unless you set 'modal' to
+ * TRUE to construct a modal dialog.
  */
 KRMaskChoice::KRMaskChoice(QWidget* parent)
-        : QDialog(parent)
+        : KDialog(parent)
 {
     setModal(true);
     resize(401, 314);
     setWindowTitle(i18n("Choose Files"));
     setSizePolicy(QSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred));
 
-    selection = new QComboBox(this);
+    selection = new KComboBox(this);
     int height = QFontMetrics(selection->font()).height();
     height =  height + 5 * (height > 14) + 6;
     selection->setGeometry(QRect(12, 48, 377, height));
