@@ -381,7 +381,7 @@ QString ListerTextArea::readSection(qint64 p1, qint64 p2)
             QStringList list = _lister->readHexLines(p1, p2, _sizeX, 1);
             if (list.count() == 0)
                 break;
-            if (section != QString())
+            if (!section.isEmpty())
                 section += QChar('\n');
             section += list[ 0 ];
         }
