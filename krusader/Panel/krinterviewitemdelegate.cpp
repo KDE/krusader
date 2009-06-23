@@ -19,9 +19,9 @@
 #include "krinterviewitemdelegate.h"
 #include "krvfsmodel.h"
 
-#include <QDialog>
-#include <QPainter>
-#include <QLineEdit>
+#include <QtGui/QDialog>
+#include <QtGui/QPainter>
+#include <QtGui/QLineEdit>
 
 KrInterViewItemDelegate::KrInterViewItemDelegate(QObject *parent) :
         QItemDelegate(parent), _currentlyEdited(-1) {}

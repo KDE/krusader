@@ -32,11 +32,11 @@
 #define LOCATE_H
 
 #include <QtGui/QCheckBox>
-#include <QKeyEvent>
+#include <QtGui/QKeyEvent>
 
-#include <kdialog.h>
-#include <kcombobox.h>
-#include <khistorycombobox.h>
+#include <KDialog>
+#include <KComboBox>
+#include <KHistoryComboBox>
 
 class KProcess;
 class KrTreeWidget;

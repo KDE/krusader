@@ -21,26 +21,24 @@
 #ifndef PANELTABBAR_H
 #define PANELTABBAR_H
 
-#include <kurl.h>
-//#include <QResizeEvent>
-//#include <QMouseEvent>
-#include <QDragMoveEvent>
-#include <QDragEnterEvent>
-#include <QTabBar>
-#include <QVariant>
+#include <QtCore/QVariant>
+#include <QtGui/QDragMoveEvent>
+#include <QtGui/QDragEnterEvent>
+
+#include <KUrl>
+#include <KTabBar>
 
 class QMouseEvent;
 class KAction;
 class KActionMenu;
 class ListPanel;
 
-
 /**
- * This class extends QTabBar such that right-clicking on a tab pops-up a menu
+ * This class extends KTabBar such that right-clicking on a tab pops-up a menu
  * containing relevant actions for the tab. It also emits signals (caught by PanelManager)
  * to create a new tab, close the current tab and change a panel when a tab was clicked
  */
-class PanelTabBar : public QTabBar
+class PanelTabBar : public KTabBar
 {
     Q_OBJECT
 public:

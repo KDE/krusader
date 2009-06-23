@@ -19,22 +19,25 @@
  *****************************************************************************/
 
 #include "paneltabbar.h"
-#include "Panel/listpanel.h"
-#include "defaults.h"
-#include <kaction.h>
-#include <klocale.h>
-#include <kmenu.h>
-#include <kshortcut.h>
+
 #include <QtCore/QEvent>
 #include <QtGui/QFontMetrics>
-#include <QResizeEvent>
-#include <QMouseEvent>
-#include <kdebug.h>
-#include <kactionmenu.h>
+#include <QtGui/QResizeEvent>
+#include <QtGui/QMouseEvent>
+
+#include <KAction>
+#include <KLocale>
+#include <KMenu>
+#include <KShortcut>
+#include <KDebug>
+#include <KActionMenu>
+
+#include "Panel/listpanel.h"
+#include "defaults.h"
 
 #define DISPLAY(X) (X.isLocalFile() ? X.path() : X.prettyUrl())
 
-PanelTabBar::PanelTabBar(QWidget *parent): QTabBar(parent), _maxTabLength(0)
+PanelTabBar::PanelTabBar(QWidget *parent): KTabBar(parent), _maxTabLength(0)
 {
     _panelActionMenu = new KActionMenu(i18n("Panel"), this);
 
@@ -49,14 +52,14 @@ PanelTabBar::PanelTabBar(QWidget *parent): QTabBar(parent), _maxTabLength(0)
     insertAction(krCloseDuplicatedTabs);
     krCloseTab->setEnabled(false); //can't close a single tab
 
-    setShape(QTabBar::TriangularSouth);
+    setShape(KTabBar::TriangularSouth);
 }
 
 void PanelTabBar::mousePressEvent(QMouseEvent* e)
 {
     int clickedTab = tabAt(e->pos());
     if (-1 == clickedTab) { // clicked on nothing ...
-        QTabBar::mousePressEvent(e);
+        KTabBar::mousePressEvent(e);
         return;
     }
 
@@ -78,7 +81,7 @@ void PanelTabBar::mousePressEvent(QMouseEvent* e)
             if (e->button() == Qt::MidButton) { // close the current tab
                 emit closeCurrentTab();
             }
-    QTabBar::mousePressEvent(e);
+    KTabBar::mousePressEvent(e);
 }
 
 void PanelTabBar::insertAction(KAction* action)
@@ -260,7 +263,7 @@ QString PanelTabBar::squeeze(QString text, int index)
 
 void PanelTabBar::resizeEvent(QResizeEvent *e)
 {
-    QTabBar::resizeEvent(e);
+    KTabBar::resizeEvent(e);
 
     for (int i = 0; i < count(); i++)
         setTabText(i, squeeze(DISPLAY(((ListPanel*)tabData(i).toLongLong())->virtualPath()), i));
@@ -277,7 +280,7 @@ void PanelTabBar::dragEnterEvent(QDragEnterEvent *e)
         setCurrentIndex(t);
         emit changePanel((ListPanel*)tabData(t).toLongLong());
     }
-    QTabBar::dragEnterEvent(e);
+    KTabBar::dragEnterEvent(e);
 }
 
 void PanelTabBar::dragMoveEvent(QDragMoveEvent *e)
@@ -289,7 +292,7 @@ void PanelTabBar::dragMoveEvent(QDragMoveEvent *e)
         setCurrentIndex(t);
         emit changePanel((ListPanel*)tabData(t).toLongLong());
     }
-    QTabBar::dragMoveEvent(e);
+    KTabBar::dragMoveEvent(e);
 }
 
 #include "paneltabbar.moc"

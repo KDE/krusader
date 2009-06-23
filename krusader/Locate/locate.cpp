@@ -473,7 +473,7 @@ void LocateDlg::keyPressEvent(QKeyEvent *e)
         break;
     }
 
-    QDialog::keyPressEvent(e);
+    KDialog::keyPressEvent(e);
 }
 
 void LocateDlg::operate(QTreeWidgetItem *item, int task)

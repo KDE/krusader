@@ -29,20 +29,22 @@
  ***************************************************************************/
 
 #include "diskusagegui.h"
+
+#include <QtCore/QTimer>
+#include <QtGui/QResizeEvent>
+#include <QtGui/QGridLayout>
+#include <QtGui/QHBoxLayout>
+#include <QtGui/QLabel>
+
+#include <klocale.h>
+
 #include "../kicons.h"
 #include "../krusader.h"
 #include "../VFS/vfs.h"
 #include "../Dialogs/krdialogs.h"
 
-#include <QtCore/QTimer>
-#include <QResizeEvent>
-#include <QGridLayout>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <klocale.h>
-
 DiskUsageGUI::DiskUsageGUI(KUrl openDir, QWidget* parent)
-        : QDialog(parent), exitAtFailure(true)
+        : KDialog(parent), exitAtFailure(true)
 {
     setWindowTitle(i18n("Krusader::Disk Usage"));
 
@@ -170,7 +172,7 @@ void DiskUsageGUI::resizeEvent(QResizeEvent *e)
         sizeX = e->size().width();
         sizeY = e->size().height();
     }
-    QDialog::resizeEvent(e);
+    KDialog::resizeEvent(e);
 }
 
 void DiskUsageGUI::reject()
@@ -181,7 +183,7 @@ void DiskUsageGUI::reject()
     group.writeEntry("Window Maximized", isMaximized());
     group.writeEntry("View", diskUsage->getActiveView());
 
-    QDialog::reject();
+    KDialog::reject();
 }
 
 void DiskUsageGUI::loadUsageInfo()

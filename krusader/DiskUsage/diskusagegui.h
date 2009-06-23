@@ -31,17 +31,17 @@
 #ifndef DISKUSAGEGUI_H
 #define DISKUSAGEGUI_H
 
-#include <QtGui/QDialog>
 #include <QtGui/QLayout>
 #include <QtGui/QToolButton>
-#include <QResizeEvent>
+#include <QtGui/QResizeEvent>
 
-#include <kurl.h>
-#include <ksqueezedtextlabel.h>
+#include <KUrl>
+#include <KSqueezedTextLabel>
+#include <KDialog>
 
 #include "diskusage.h"
 
-class DiskUsageGUI : public QDialog
+class DiskUsageGUI : public KDialog
 {
     Q_OBJECT
 
