@@ -1,5 +1,6 @@
 /*****************************************************************************
  * Copyright (C) 2004 Jonas Bähr <jonas.baehr@web.de>                        *
+ * Copyright (C) 2004 Shie Erlich <erlich@users.sourceforge.net>             *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *
@@ -61,13 +62,12 @@ private:
 #define EXP_FUNC virtual TagString expFunc ( const ListPanel*, const TagStringList&, const bool&, Expander& ) const
 #define SIMPLE_EXP_FUNC virtual TagString expFunc ( const ListPanel*, const QStringList&, const bool&, Expander& ) const
 /**
-  *  Abstract baseclass for all expander-functions (which replace placeholder).
-  *  A Placeholder is an entry containing the expression, its expanding function and Parameter.
-  *
+ * Abstract baseclass for all expander-functions (which replace placeholder).
+ * A Placeholder is an entry containing the expression,
+ * its expanding function and Parameter.
+ *
  * Not to be created on the heap
-  *
-  * @author Jonas B�r (http://www.jonas-baehr.de)
-  */
+ */
 class exp_placeholder
 {
 public:
@@ -191,8 +191,6 @@ private:
  * .
  * Since all placeholders are expanded in the order they appear in the command,
  * little one-line-scripts are possible
- *
- * @author Jonas B�r (http://www.jonas-baehr.de), Shie Erlich
  */
 class Expander
 {

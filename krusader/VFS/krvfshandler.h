@@ -26,10 +26,6 @@
 
 #include "vfs.h"
 
-/**
-  *@author Shie Erlich & Rafi Yanai
-  */
-
 class KrVfsHandler : public QObject
 {
     Q_OBJECT

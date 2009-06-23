@@ -1,5 +1,6 @@
 /*****************************************************************************
  * Copyright (C) 2004 Jonas Bähr <jonas.baehr@web.de>                        *
+ * Copyright (C) 2004 Shie Erlich <erlich@users.sourceforge.net>             *
  *                                                                           *
  * This program is free software; you can redistribute it and/or modify      *
  * it under the terms of the GNU General Public License as published by      *

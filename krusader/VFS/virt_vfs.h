@@ -25,10 +25,6 @@
 
 #include "vfs.h"
 
-/**
-  *@author Shie Erlich & Rafi Yanai
-  */
-
 class virt_vfs : public vfs
 {
     Q_OBJECT

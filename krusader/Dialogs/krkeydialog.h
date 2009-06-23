@@ -23,7 +23,6 @@
 
 /**
  * @short KDE's KKeyDialog extended by the ability to export/import shortcuts
- * @author Jonas Bähr
  */
 class KrKeyDialog : protected KShortcutsDialog
 {
