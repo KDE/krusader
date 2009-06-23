@@ -219,7 +219,7 @@ int main(int argc, char *argv[])
         fprintf(stderr, "DBus Error: %s, %s\n", reply.error().name().toLocal8Bit().constData(), reply.error().message().toLocal8Bit().constData());
 
     if (reply.isValid() && (bool)reply) {
-        fprintf(stderr, i18n("Application already running!\n").toLocal8Bit());
+        fprintf(stderr, "%s", i18n("Application already running!\n").toLocal8Bit().data());
         KStartupInfo::appStarted();
         return 1;
     }
