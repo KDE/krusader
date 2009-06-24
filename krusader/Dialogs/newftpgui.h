@@ -1,65 +1,63 @@
-/****************************************************************************
-** Form interface generated from reading ui file 'newftpgui.ui'
-**
-** Created: Fri Oct 27 23:47:08 2000
-**      by:  The User Interface Compiler (uic)
-**
-** WARNING! All changes made in this file will be lost!
-****************************************************************************/
+/*****************************************************************************
+ * Copyright (C) 2002 Shie Erlich <erlich@users.sourceforge.net>             *
+ * Copyright (C) 2002 Rafi Yanai <yanai@users.sourceforge.net>               *
+ *                                                                           *
+ * This program is free software; you can redistribute it and/or modify      *
+ * it under the terms of the GNU General Public License as published by      *
+ * the Free Software Foundation; either version 2 of the License, or         *
+ * (at your option) any later version.                                       *
+ *                                                                           *
+ * This package is distributed in the hope that it will be useful,           *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of            *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
+ * GNU General Public License for more details.                              *
+ *                                                                           *
+ * You should have received a copy of the GNU General Public License         *
+ * along with this package; if not, write to the Free Software               *
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
+ *****************************************************************************/
 
 #ifndef NEWFTPGUI_H
 #define NEWFTPGUI_H
 
-#include <QtCore/QVariant>
-#include <QtCore/QEvent>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QGridLayout>
-#include <QtGui/QHBoxLayout>
 #include <QtGui/QLabel>
-#include <QtGui/QDialog>
+#include <QtGui/QSpinBox>
 
+#include <KDialog>
+#include <KComboBox>
+#include <KHistoryComboBox>
 #include <KLineEdit>
 
-class QVBoxLayout;
-class QHBoxLayout;
-class QGridLayout;
-class QLabel;
-class QPushButton;
-class QSpinBox;
-class KComboBox;
-class KHistoryComboBox;
-class KLineEdit;
+class QEvent;
+class QString;
+class QWidget;
 
-class newFTPGUI : public QDialog
+class newFTPGUI : public KDialog
 {
     Q_OBJECT
 
 public:
-    newFTPGUI(QWidget* parent = 0);
+    newFTPGUI(QWidget *parent = 0);
     ~newFTPGUI();
 
-    QLabel* TextLabel1;
-    KComboBox* prefix;
-    QLabel* TextLabel1_2_2;
-    QLabel* TextLabel1_22;
-    QLabel* TextLabel1_2;
-    QLabel* TextLabel1_3;
+    QLabel* iconLabel;
+    QLabel* aboutLabel;
+    QLabel* protocolLabel;
+    QLabel* passwordLabel;
+    QLabel* hostLabel;
+    QLabel* usernameLabel;
+    QLabel* portLabel;
     QSpinBox* port;
-    KLineEdit* password;
-    QPushButton* connectBtn;
-    QPushButton* saveBtn;
-    QPushButton* cancelBtn;
-    QLabel* PixmapLabel1;
-    QLabel* TextLabel3;
-    KLineEdit* username;
+    KComboBox* prefix;
     KHistoryComboBox* url;
+    KLineEdit* username;
+    KLineEdit* password;
 
 public slots:
-    void slotTextChanged(const QString& string);
+    void slotTextChanged(const QString &);
 
 protected:
-    QHBoxLayout* hbox;
-    bool event(QEvent*);
+    bool event(QEvent *);
 };
 
-#endif // NEWFTPGUI_H
+#endif

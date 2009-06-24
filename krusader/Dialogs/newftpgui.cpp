@@ -1,84 +1,80 @@
-/****************************************************************************
-** Form implementation generated from reading ui file 'newftpgui.ui'
-**
-** Created: Fri Oct 27 23:47:10 2000
-**      by:  The User Interface Compiler (uic)
-**
-** WARNING! All changes made in this file will be lost!
-****************************************************************************/
+/*****************************************************************************
+ * Copyright (C) 2002 Shie Erlich <erlich@users.sourceforge.net>             *
+ * Copyright (C) 2002 Rafi Yanai <yanai@users.sourceforge.net>               *
+ * Copyright (C) 2009 Fathi Boudra <fboudra@gmail.com>                       *
+ *                                                                           *
+ * This program is free software; you can redistribute it and/or modify      *
+ * it under the terms of the GNU General Public License as published by      *
+ * the Free Software Foundation; either version 2 of the License, or         *
+ * (at your option) any later version.                                       *
+ *                                                                           *
+ * This package is distributed in the hope that it will be useful,           *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of            *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
+ * GNU General Public License for more details.                              *
+ *                                                                           *
+ * You should have received a copy of the GNU General Public License         *
+ * along with this package; if not, write to the Free Software               *
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA *
+ *****************************************************************************/
 
 #include "newftpgui.h"
 
-#include <QtGui/QPushButton>
-#include <QtGui/QSpinBox>
-#include <QtGui/QImage>
-#include <QtGui/QPixmap>
+#include <QtCore/QStringList>
+#include <QtGui/QFont>
+#include <QtGui/QGridLayout>
+#include <QtGui/QHBoxLayout>
+#include <QtGui/QSizePolicy>
+#include <QtGui/QWidget>
 
+#include <KConfigGroup>
+#include <KIconLoader>
 #include <KLocale>
 #include <KProtocolInfo>
-#include <KComboBox>
-#include <KIconLoader>
-#include <KHistoryComboBox>
-#include <KConfigGroup>
 
 #include "../krusader.h"
 
+#define SIZE_MINIMUM QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed)
+
 /**
- * Constructs a newFTPGUI which is a child of 'parent', with the
- * name 'name' and widget flags set to 'f'
- *
- * The dialog will by default be modeless, unless you set 'modal' to
- * TRUE to construct a modal dialog.
+ * Constructs a newFTPGUI which is a child of 'parent',
+ * with the name 'name' and widget flags set to 'f'
  */
-
-#define SIZE_MINIMUM QSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed )
-
-newFTPGUI::newFTPGUI(QWidget* parent)
-        : QDialog(parent)
+newFTPGUI::newFTPGUI(QWidget* parent) : KDialog(parent)
 {
-
-    setModal(true);
-    QVBoxLayout * layout = new QVBoxLayout(this);
-    layout->setContentsMargins(11, 11, 11, 11);
-    layout->setSpacing(6);
+    QWidget *widget = new QWidget(this);
 
     resize(320, 240);
+    setButtonText(KDialog::Ok, i18n("&Connect"));
+    setMainWidget(widget);
+    setModal(true);
     setWindowTitle(i18n("New Network Connection"));
-//     setSizeGripEnabled( true );
+
     QSizePolicy policy(QSizePolicy::Preferred, QSizePolicy::Preferred);
     policy.setHeightForWidth(sizePolicy().hasHeightForWidth());
     setSizePolicy(policy);
-    //setMinimumSize( QSize( 342, 261 ) );
 
-    QWidget * hbox_image_widget = new QWidget(this);
-    QHBoxLayout* hbox_image = new QHBoxLayout(hbox_image_widget);
-    hbox_image->setSpacing(6);
+    iconLabel = new QLabel(widget);
+    iconLabel->setPixmap(krLoader->loadIcon("network-wired", KIconLoader::Desktop, 32));
+    iconLabel->setSizePolicy(SIZE_MINIMUM);
 
-    PixmapLabel1 = new QLabel(hbox_image_widget);
-    PixmapLabel1->setPixmap(krLoader->loadIcon("network-wired", KIconLoader::Desktop, 32));
-    PixmapLabel1->setSizePolicy(SIZE_MINIMUM);
-    hbox_image->addWidget(PixmapLabel1);
+    aboutLabel = new QLabel(i18n("About to connect to..."), widget);
+    QFont font(aboutLabel->font());
+    font.setBold(true);
+    aboutLabel->setFont(font);
 
-    TextLabel3 = new QLabel(i18n("About to connect to..."), hbox_image_widget);
-    QFont TextLabel3_font(TextLabel3->font());
-    TextLabel3_font.setBold(true);
-    TextLabel3->setFont(TextLabel3_font);
-    hbox_image->addWidget(TextLabel3);
-    layout->addWidget(hbox_image_widget);
+    protocolLabel = new QLabel(i18n("Protocol:"), widget);
+    hostLabel = new QLabel(i18n("Host:"), widget);
+    portLabel = new QLabel(i18n("Port:"), widget);
 
+    prefix = new KComboBox(widget);
+    prefix->setObjectName(QString::fromUtf8("protocol"));
+    prefix->setSizePolicy(SIZE_MINIMUM);
 
-    QWidget * grid_host = new QWidget(this);
-    QGridLayout * grid_layout = new QGridLayout(grid_host);
-
-    grid_layout->addWidget(TextLabel1 = new QLabel(i18n("Protocol:"), grid_host), 0, 0);
-    grid_layout->addWidget(TextLabel1_22 = new QLabel(i18n("Host:"), grid_host), 0, 1);
-    grid_layout->addWidget(TextLabel1_3 = new QLabel(i18n("Port:"), grid_host), 0, 2);
+    url = new KHistoryComboBox(widget);
+    url->setMaxCount(25);
 
     QStringList protocols = KProtocolInfo::protocols();
-
-    prefix = new KComboBox(false, grid_host);
-    grid_layout->addWidget(prefix, 1, 0);
-    prefix->setObjectName("protocol");
     if (protocols.contains("ftp"))
         prefix->addItem(i18n("ftp://"));
     if (protocols.contains("smb"))
@@ -87,19 +83,7 @@ newFTPGUI::newFTPGUI(QWidget* parent)
         prefix->addItem(i18n("fish://"));
     if (protocols.contains("sftp"))
         prefix->addItem(i18n("sftp://"));
-    prefix->setAcceptDrops(false);
-    prefix->setEnabled(true);
-    prefix->setSizePolicy(SIZE_MINIMUM);
-    connect(prefix, SIGNAL(activated(const QString&)),
-            this, SLOT(slotTextChanged(const QString&)));
 
-    url = new KHistoryComboBox(grid_host);
-    grid_layout->addWidget(url);
-    //url->setMaximumHeight( 20 );
-    url->setMaxCount(25);
-    url->setDuplicatesEnabled(false);
-    connect(url, SIGNAL(activated(const QString&)),
-            url, SLOT(addToHistory(const QString&)));
     // load the history and completion list after creating the history combo
     KConfigGroup group(krConfig, "Private");
     QStringList list = group.readEntry("newFTP Completion list", QStringList());
@@ -107,69 +91,57 @@ newFTPGUI::newFTPGUI(QWidget* parent)
     list = group.readEntry("newFTP History list", QStringList());
     url->setHistoryItems(list);
 
-    port = new QSpinBox(grid_host);
+    port = new QSpinBox(widget);
     port->setMaximum(65535);
-    grid_layout->addWidget(port, 1, 2);
     port->setValue(21);
     port->setSizePolicy(SIZE_MINIMUM);
 
-    layout->addWidget(grid_host);
-
-    TextLabel1_2 = new QLabel(i18n("Username:"), this);
-    layout->addWidget(TextLabel1_2);
-    username = new KLineEdit(this);
-    layout->addWidget(username);
-    TextLabel1_2_2 = new QLabel(i18n("Password:"), this);
-    layout->addWidget(TextLabel1_2_2);
-    password = new KLineEdit(this);
+    usernameLabel = new QLabel(i18n("Username:"), widget);
+    username = new KLineEdit(widget);
+    passwordLabel = new QLabel(i18n("Password:"), widget);
+    password = new KLineEdit(widget);
     password->setEchoMode(QLineEdit::Password);
-    layout->addWidget(password);
 
+    QHBoxLayout *horizontalLayout = new QHBoxLayout();
+    horizontalLayout->addWidget(iconLabel);
+    horizontalLayout->addWidget(aboutLabel);
 
-    QWidget* Layout6 = new QWidget(this);
-    hbox = new QHBoxLayout(Layout6);
-    hbox->setSpacing(6);
-    hbox->setContentsMargins(0, 0, 0, 0);
+    QGridLayout *gridLayout = new QGridLayout();
+    gridLayout->addWidget(protocolLabel, 0, 0, 1, 1);
+    gridLayout->addWidget(hostLabel, 0, 1, 1, 1);
+    gridLayout->addWidget(portLabel, 0, 2, 1, 1);
+    gridLayout->addWidget(prefix, 1, 0, 1, 1);
+    gridLayout->addWidget(url, 1, 1, 1, 1);
+    gridLayout->addWidget(port, 1, 2, 1, 1);
+    gridLayout->addWidget(usernameLabel, 2, 0, 1, 1);
+    gridLayout->addWidget(username, 3, 0, 1, 3);
+    gridLayout->addWidget(passwordLabel, 4, 0, 1, 1);
+    gridLayout->addWidget(password, 5, 0, 1, 3);
 
-    hbox->addItem(new QSpacerItem(1, 1, QSizePolicy::Expanding));
+    QGridLayout *widgetLayout = new QGridLayout(widget);
+    widgetLayout->addLayout(horizontalLayout, 0, 0, 1, 1);
+    widgetLayout->addLayout(gridLayout, 1, 0, 1, 1);
 
-    connectBtn = new QPushButton(i18n("&Connect"), Layout6);
-    connectBtn->setAutoDefault(true);
-    connectBtn->setDefault(true);
-    hbox->addWidget(connectBtn);
+    connect(prefix, SIGNAL(activated(const QString &)),
+            this, SLOT(slotTextChanged(const QString &)));
+    connect(url, SIGNAL(activated(const QString &)),
+            url, SLOT(addToHistory(const QString &)));
 
-    //saveBtn = new QPushButton( i18n( "&Save"  ), Layout6 );
-    //saveBtn->setAutoDefault( true );
-    //hbox->addWidget( saveBtn );
-
-    cancelBtn = new QPushButton(i18n("&Cancel"), Layout6);
-    cancelBtn->setAutoDefault(true);
-    hbox->addWidget(cancelBtn);
-
-    layout->addWidget(Layout6);
-
-    // signals and slots connections
-    connect(connectBtn, SIGNAL(clicked()), this, SLOT(accept()));
-    connect(cancelBtn, SIGNAL(clicked()), this, SLOT(reject()));
-
-    // tab order
     setTabOrder(url, username);
     setTabOrder(username, password);
-    setTabOrder(password, connectBtn);
-    setTabOrder(connectBtn, cancelBtn);
-    setTabOrder(cancelBtn, prefix);
+    setTabOrder(password, prefix);
     setTabOrder(prefix, url);
 }
 
-/*
- *  Destroys the object and frees any allocated resources
+/**
+ * Destroys the object and frees any allocated resources
  */
 newFTPGUI::~newFTPGUI()
 {
     // no need to delete child widgets, Qt does it all for us
 }
 
-void newFTPGUI::slotTextChanged(const QString& string)
+void newFTPGUI::slotTextChanged(const QString &string)
 {
     if (string.startsWith(QLatin1String("ftp")) ||
             string.startsWith(QLatin1String("sftp")) ||
@@ -183,17 +155,16 @@ void newFTPGUI::slotTextChanged(const QString& string)
     }
 }
 
-/*
- *  Main event handler. Reimplemented to handle application
- *  font changes
+/**
+ * Main event handler. Reimplemented to handle application font changes
  */
-bool newFTPGUI::event(QEvent* ev)
+bool newFTPGUI::event(QEvent *ev)
 {
-    bool ret = QDialog::event(ev);
+    bool ret = KDialog::event(ev);
     if (ev->type() == QEvent::ApplicationFontChange) {
-        QFont TextLabel3_font(TextLabel3->font());
-        TextLabel3_font.setBold(true);
-        TextLabel3->setFont(TextLabel3_font);
+        QFont font(aboutLabel->font());
+        font.setBold(true);
+        aboutLabel->setFont(font);
     }
     return ret;
 }
