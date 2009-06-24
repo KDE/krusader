@@ -78,6 +78,7 @@ A
 #include "../Dialogs/checksumdlg.h"
 #include "../KViewer/krviewer.h"
 #include "../resources.h"
+#include "../panelmanager.h"
 #include "../krservices.h"
 #include "../GUI/syncbrowsebutton.h"
 #include "../Queue/queue_mgr.h"
@@ -134,7 +135,8 @@ void ListPanelFunc::immediateOpenUrl(const KUrl& urlIn, bool disableLock)
     }
 
     if (!disableLock && panel->isLocked() && !files() ->vfs_getOrigin().equals(url, KUrl::CompareWithoutTrailingSlash)) {
-        SLOTS->newTab(url);
+        PanelManager * manager = panel->isLeft() ? MAIN_VIEW->leftMng : MAIN_VIEW->rightMng;
+        manager->slotNewTab(url);
         return;
     }
 
