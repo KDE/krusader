@@ -1328,6 +1328,9 @@ char * Lister::cacheRef(qint64 filePos, int &size)
     _cache = newCache;
     _cacheSize = bytes;
     _cachePos = cachePos;
+    int newSize = _cacheSize - (filePos - _cachePos);
+    if (newSize < size)
+        size = newSize;
 
     return _cache + (filePos - _cachePos);
 }
