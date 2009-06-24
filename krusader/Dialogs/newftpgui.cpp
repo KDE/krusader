@@ -110,9 +110,6 @@ newFTPGUI::newFTPGUI(QWidget* parent)
     port = new QSpinBox(grid_host);
     port->setMaximum(65535);
     grid_layout->addWidget(port, 1, 2);
-#if QT_VERSION < 300
-    port->setFrameShadow(QSpinBox::Sunken);
-#endif
     port->setValue(21);
     port->setSizePolicy(SIZE_MINIMUM);
 
