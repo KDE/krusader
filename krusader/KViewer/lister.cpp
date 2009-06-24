@@ -991,6 +991,8 @@ void ListerTextArea::ensureVisibleCursor()
             newScreenStart = previousPos;
             delta--;
         }
+        if (newScreenStart > _lastPageStartPos)
+            newScreenStart = _lastPageStartPos;
 
         _screenStartPos = newScreenStart;
         slotActionTriggered(QAbstractSlider::SliderNoAction);
