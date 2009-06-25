@@ -1,0 +1,70 @@
+A Short Tutorial for the User Actions System
+============================================
+Go to the Konfigurator and choose "Useractions". There you manage all your
+actions. If you add an new action, you get an empty input-mask where you can
+enter all the properties. The action will be added as soon as you press "ok".
+Now it's shown in the list on the left. 
+
+You can choose it if you want to edit the properties (the changes will take 
+effect if you press OK), remove it (per default you will be asked again if 
+you realy want to delete it but you can disable it by checking "don't ask me again").
+
+If you export a useraction you have to give a file where to store it. If it
+does not exists it will be created. If it contains already some useractions,
+the action you're exporting will be added to that file.
+
+If you import some actions they will be added automaticly to your list. If
+there are name-conflicts (the names have to be unique because these are the
+ID for KDE's action-system) you're asked to resolve them. For this, the list on
+the left will only show the actions where conflicts exists. You now can give
+them new names or remove them.
+
+All actions you've defined are now shown in the usermenu and in KDE's dialogs
+for changing shortcuts and managing the toolbar. In addition all actions
+which are available for the current item will also show up in the rightclick
+menu.
+
+The fields of the properties are  (* are required):
+name*: a unique name of the action, used to identiy it for KDE's action-system
+title*: the title displayed in the menus/dialogs
+icon: the icon for you action
+tooltip: a tooltip for your action - i.e. displayed in the toolbar on mouseover
+desctiption: a description of what the action is doing.
+command*: that is the command which is finaly executed. you can add
+  placeholder using a GUI with the 'add'-button 
+startpath: the working-directory for your command execution-mode should be clear
+command eccepts: tells if the placeholder should return local addesses or URLs
+Default shortcut: the action will be init with this shortcut
+
+On the advanced-tab you can say where your command should be visible (for the
+rightclick-menu). In addition it's possibe to change the command executed and 
+confirm it separately. You can also set a user under which the command should 
+be executed.
+
+There are basicly two kinds of placeholders:
+1) those who access internal functions of Krusader
+2) those who are are replaced by a string.
+
+it's important to know that the first category is performed at expansion-time,
+meaning that the extra confirmation has only effect on programms which are
+executed, not on internal functions (which aree called earlyer)
+
+The list of placeholders is accessable via the 'add' button. 
+Some Placeholders can get parameters, for those is also a GUI provided.
+The following list is already implemented:
+    Path       replaced by the panels path
+    Count      replaced by the number of <first parameter>
+    Filter     replaced by the panels filter-mask
+    Current    replaced by the current item
+    List       replaced by a list of all <first paremeter>
+    Select     manipulates the selection in a panel
+    Goto       changes the panels's path to <first parameter>
+    Ask        asks the user for a some text and is replaced by the answer
+    Clipboard  manipulates the clipboard
+    Copy       copies a file, useful for quick, local, backups
+    Sync       opens the Synchronizer with a given profile
+    NewSearch  opens the search-windows with a given profile
+    Profile    loads a given panel-profile
+    
+Enjoy,
+

@@ -16,7 +16,7 @@ add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 
 add_subdirectory(krusader)
 add_subdirectory(pics)
-add_subdirectory(doc)
+add_subdirectory(doc-extras)
 add_subdirectory(krArc)
 add_subdirectory(iso)
 #add_subdirectory(virt) - not used
