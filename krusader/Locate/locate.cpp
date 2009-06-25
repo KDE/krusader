@@ -136,6 +136,7 @@ LocateDlg::LocateDlg() : KDialog(0), isFeedToListBox(false)
     hbox->addWidget(label);
 
     locateSearchFor = new KHistoryComboBox(false, hboxWidget);
+    locateSearchFor->setMinimumContentsLength(10);
     hbox->addWidget(locateSearchFor);
 
     label->setBuddy(locateSearchFor);

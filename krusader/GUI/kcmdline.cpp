@@ -81,6 +81,7 @@ KCMDLine::KCMDLine(QWidget *parent) : QWidget(parent)
     completion.setMode(KUrlCompletion::FileCompletion);
     cmdLine = new KrHistoryCombo(this);
     cmdLine->setMaxCount(100);  // remember 100 commands
+    cmdLine->setMinimumContentsLength(10);
     cmdLine->setDuplicatesEnabled(false);
     cmdLine->setFont(KGlobalSettings::generalFont());
     cmdLine->setMaximumHeight(height);
@@ -168,9 +169,8 @@ void KCMDLine::slotRun()
         QString dir = command1.right(command1.length() - command1.indexOf(" ")).trimmed();
         if (dir == "~")
             dir = QDir::homePath();
-        else
-            if (dir.left(1) != "/" && !dir.contains(":/"))
-                dir = panelPath + (panelPath == "/" ? "" : "/") + dir;
+        else if (dir.left(1) != "/" && !dir.contains(":/"))
+            dir = panelPath + (panelPath == "/" ? "" : "/") + dir;
         SLOTS->refresh(dir);
     } else {
         exec();

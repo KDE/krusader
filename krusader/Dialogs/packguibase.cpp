@@ -276,6 +276,8 @@ PackGUIBase::PackGUIBase(QWidget* parent)
     commandLineSwitches = new KHistoryComboBox(advancedWidget);
     commandLineSwitches->setMaxCount(25);  // remember 25 items
     commandLineSwitches->setDuplicatesEnabled(false);
+    commandLineSwitches->setMinimumContentsLength(10);
+
     QStringList list = group.readEntry("Command Line Switches", QStringList());
     commandLineSwitches->setHistoryItems(list);
 
@@ -359,14 +361,13 @@ void PackGUIBase::checkConsistency()
     if (password->text().isEmpty() && passwordAgain->text().isEmpty()) {
         pal.setColor(passwordConsistencyLabel->foregroundRole(), KColorScheme(QPalette::Active, KColorScheme::View).foreground().color());
         passwordConsistencyLabel->setText(i18n("No password specified"));
-    } else
-        if (password->text() == passwordAgain->text()) {
-            pal.setColor(passwordConsistencyLabel->foregroundRole(), KColorScheme(QPalette::Active, KColorScheme::View).foreground().color());
-            passwordConsistencyLabel->setText(i18n("The passwords are equal"));
-        } else {
-            pal.setColor(passwordConsistencyLabel->foregroundRole(), Qt::red);
-            passwordConsistencyLabel->setText(i18n("The passwords are different"));
-        }
+    } else if (password->text() == passwordAgain->text()) {
+        pal.setColor(passwordConsistencyLabel->foregroundRole(), KColorScheme(QPalette::Active, KColorScheme::View).foreground().color());
+        passwordConsistencyLabel->setText(i18n("The passwords are equal"));
+    } else {
+        pal.setColor(passwordConsistencyLabel->foregroundRole(), Qt::red);
+        passwordConsistencyLabel->setText(i18n("The passwords are different"));
+    }
     passwordConsistencyLabel->setPalette(pal);
 
     QString packer = typeData->currentText();

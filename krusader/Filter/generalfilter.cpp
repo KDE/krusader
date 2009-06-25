@@ -123,6 +123,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent) 
     searchFor->setEditable(true);
     searchFor->setDuplicatesEnabled(false);
     searchFor->setMaxCount(25);
+    searchFor->setMinimumContentsLength(10);
     searchForLabel->setBuddy(searchFor);
     nameGroupLayout->addWidget(searchFor, 0, 1, 1, 2);
 
@@ -256,6 +257,7 @@ GeneralFilter::GeneralFilter(FilterTabs *tabs, int properties, QWidget *parent) 
     containsText->setSizePolicy(containsTextPolicy);
     containsText->setDuplicatesEnabled(false);
     containsText->setMaxCount(25);
+    containsText->setMinimumContentsLength(10);
     containsTextLayout->addWidget(containsText);
     containsLabel->setBuddy(containsText);
 

@@ -73,6 +73,7 @@ newFTPGUI::newFTPGUI(QWidget* parent) : KDialog(parent)
 
     url = new KHistoryComboBox(widget);
     url->setMaxCount(25);
+    url->setMinimumContentsLength(10);
 
     QStringList protocols = KProtocolInfo::protocols();
     if (protocols.contains("ftp"))
