@@ -282,6 +282,7 @@ void ListPanel::createView()
     view->init();
     view->redraw();
     view->op()->setQuickSearch(quickSearch);
+    quickSearch->setFocusProxy(view->widget());
 
     splt->insertWidget(0, view->widget());
 
@@ -305,6 +306,7 @@ void ListPanel::changeType(int type)
 {
     if (panelType != type) {
         panelType = type;
+        quickSearch->setFocusProxy(0);
         delete view;
         createView();
 
@@ -773,9 +775,8 @@ void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
                     // keep the folder_open icon until we're finished, do it only
                     // if the folder is writeable, to avoid flicker
                 }
-            } else
-                if (e->source() == this)
-                    return ; // no dragging onto ourselves
+            } else if (e->source() == this)
+                return ; // no dragging onto ourselves
         }
     } else    // if dragged from this panel onto an empty spot in the panel...
         if (dragFromThisPanel) {    // leave!

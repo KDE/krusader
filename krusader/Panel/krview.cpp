@@ -38,6 +38,7 @@
 #include <qnamespace.h>
 #include <qpixmapcache.h>
 #include <QtCore/QDir>
+#include <QtCore/QRegExp>
 #include <QtGui/QBitmap>
 #include <QtGui/QPainter>
 #include <QPixmap>
@@ -121,8 +122,9 @@ void KrViewOperator::quickSearch(const QString & str, int direction)
     }
     KConfigGroup grpSvr(_view->_config, "Look&Feel");
     bool caseSensitive = grpSvr.readEntry("Case Sensitive Quicksearch", _CaseSensitiveQuicksearch);
+    QRegExp rx(str, caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive, QRegExp::Wildcard);
     if (!direction) {
-        if (caseSensitive ? item->name().startsWith(str) : item->name().toLower().startsWith(str.toLower())) {
+        if (rx.indexIn(item->name()) == 0) {
             _quickSearch->setMatch(true);
             return ;
         }
@@ -137,7 +139,7 @@ void KrViewOperator::quickSearch(const QString & str, int direction)
             _quickSearch->setMatch(false);
             return ;
         }
-        if (caseSensitive ? item->name().startsWith(str) : item->name().toLower().startsWith(str.toLower())) {
+        if (rx.indexIn(item->name()) == 0) {
             _view->setCurrentKrViewItem(item);
             _view->makeItemVisible(item);
             _quickSearch->setMatch(true);
