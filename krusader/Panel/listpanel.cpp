@@ -854,6 +854,12 @@ void ListPanel::handleDropOnView(QDropEvent *e, QWidget *widget)
     tempFiles->vfs_addFiles(&URLs, mode, notify, dir);
 }
 
+void ListPanel::vfs_refresh(KJob *job)
+{
+    if (func)
+        func->refresh();
+}
+
 void ListPanel::startDragging(QStringList names, QPixmap px)
 {
     KUrl::List * urls = func->files() ->vfs_getFiles(&names);

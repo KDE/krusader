@@ -147,28 +147,26 @@ bool vfs::vfs_refresh()
         }
 
         // compare the two list emiting signals when needed;;
-        for (vfile* vf = vfs_getFirstFile(); vf ;) {
-            name = vf->vfile_getName();
+        QList<QString> keys = vfs_filesP->keys();
+        foreach(QString name, keys) {
+            vfile* vf = (*vfs_filesP)[name];
             vfile* newVf = (*vfs_tempFilesP)[name];
             if (!newVf) {
-                // the file was deleted..
-                emit deletedVfile(name);
-                delete(*vfs_filesP)[ name ];
-                vfileIterator  = vfs_filesP->erase(vfs_filesP->find(name));
-                // the remove() advance our iterator !
-                if (vfileIterator ==  vfs_filesP->end())
-                    vf = 0;
-                else
-                    vf = *vfileIterator;
+                if (name != "..") {
+                    // the file was deleted..
+                    emit deletedVfile(name);
+                    delete(*vfs_filesP)[ name ];
+                    vfs_filesP->remove(name);
+                }
             } else {
                 if (*vf != *newVf) {
                     // the file was changed..
                     *vf = *newVf;
                     emit updatedVfile(vf);
                 }
-                vf = vfs_getNextFile();
             }
-            delete(*vfs_tempFilesP)[ name ];
+            if ((*vfs_tempFilesP)[ name ])
+                delete(*vfs_tempFilesP)[ name ];
             vfs_tempFilesP->remove(name);
         }
         // everything thats left is a new file

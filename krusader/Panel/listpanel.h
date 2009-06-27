@@ -142,6 +142,7 @@ public slots:
     void slotCleared();
     void panelActive(); // called when the panel becomes active
     void panelInactive(); // called when panel becomes inactive
+    void vfs_refresh(KJob *job);
 
 
     ///////////////////////// service functions - called internally ////////////////////////
